@@ -1,29 +1,36 @@
-Return-Path: <mkotson@octagonsystems.com>
+Return-Path: <tom.zanussi@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96A9CE00799; Fri, 12 Sep 2014 14:09:43 -0700 (PDT)
+	id 334EFE00799; Fri, 12 Sep 2014 14:54:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.octagonsystems.com (mail.octagonsystems.com [67.42.245.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C334E006DB
-	for <yocto@yoctoproject.org>; Fri, 12 Sep 2014 14:09:37 -0700 (PDT)
-MIME-Version: 1.0
-Date: Fri, 12 Sep 2014 15:09:36 -0600
-X-MimeOLE: Produced By Microsoft Exchange V6.5
-Message-ID: <A6CCE322CA624947AEB978379C760A5001A2CCB1@mail.octagonsystems.com>
-In-Reply-To: <1410539171.26951.7.camel@empanada.home.network>
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Thread-Topic: [yocto] yocto-bsp create question
-Thread-Index: Ac/OyuP80WUpU3m5RgKDBp+mC3fSdgAAtwUg
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF4A6E006DB
+	for <yocto@yoctoproject.org>; Fri, 12 Sep 2014 14:54:30 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga101.fm.intel.com with ESMTP; 12 Sep 2014 14:54:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,862,1389772800"; d="scan'208";a="385472855"
+Received: from mmckenna-mobl2.ger.corp.intel.com (HELO [10.255.12.206])
+	([10.255.12.206])
+	by FMSMGA003.fm.intel.com with ESMTP; 12 Sep 2014 14:49:15 -0700
+Message-ID: <1410558862.26951.18.camel@empanada.home.network>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Michael Kotson <mkotson@octagonsystems.com>
+Date: Fri, 12 Sep 2014 16:54:22 -0500
+In-Reply-To: <A6CCE322CA624947AEB978379C760A5001A2CCB1@mail.octagonsystems.com>
 References: <A6CCE322CA624947AEB978379C760A5001A2CC91@mail.octagonsystems.com>
 	<1410539171.26951.7.camel@empanada.home.network>
-From: "Michael Kotson" <mkotson@octagonsystems.com>
-To: "Tom Zanussi" <tom.zanussi@intel.com>
+	<A6CCE322CA624947AEB978379C760A5001A2CCB1@mail.octagonsystems.com>
+X-Mailer: Evolution 3.8.5 (3.8.5-2.fc19) 
+Mime-Version: 1.0
 Cc: yocto@yoctoproject.org
 Subject: Re: yocto-bsp create question
 X-BeenThere: yocto@yoctoproject.org
@@ -37,64 +44,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Sep 2014 21:09:43 -0000
-Content-class: urn:content-classes:message
-Content-Type: text/plain;
-	charset="UTF-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 12 Sep 2014 21:54:43 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-SGkgVG9tLA0KICAgVGhhbmtzIGZvciB0aGUgcmVzcG9uc2UuICBJIGZpbGVkIGFuIGVuaGFuY2Vt
-ZW50IHJlcXVlc3QsIGJ1dCBpbiB0aGUgbWVhbnRpbWUgaXMgdGhlcmUgYSBwcmVmZXJyZWQgbWV0
-aG9kIHRvIGNyZWF0ZSBvdXIgb3duIEJTUCBmcm9tIFZhbGxleWlzbGFuZD8NCg0KQWxsIHRoZSBi
-ZXN0LA0KTWljaGFlbA0KDQpNaWNoYWVsIEtvdHNvbg0KQ2hpZWYgVGVjaG5vbG9neSBPZmZpY2Vy
-DQoNCk9UZWw6wqDCoCAoMzAzKSA0MTItMjA1NSAgICAgICAgDQpURS1NYWlsOiBta290c29uQG9j
-dGFnb25zeXN0ZW1zLmNvbQ0KIE5PVElDRTogVGhlIGluZm9ybWF0aW9uIGNvbnRhaW5lZCBpbiB0
-aGlzIGVtYWlsIGFuZCBhbnkgZG9jdW1lbnQgYXR0YWNoZWQgaGVyZXRvIGlzIGludGVuZGVkIG9u
-bHkgZm9yIHRoZSBuYW1lZCByZWNpcGllbnQocykuIElmIHlvdSBhcmUgbm90IHRoZSBpbnRlbmRl
-ZCByZWNpcGllbnQsIG5vciB0aGUgZW1wbG95ZWUgb3IgYWdlbnQgcmVzcG9uc2libGUgZm9yIGRl
-bGl2ZXJpbmcgdGhpcyBtZXNzYWdlIGluIGNvbmZpZGVuY2UgdG8gdGhlIGludGVuZGVkIHJlY2lw
-aWVudChzKSwgeW91IGFyZSBoZXJlYnkgbm90aWZpZWQgdGhhdCB5b3UgaGF2ZSByZWNlaXZlZCB0
-aGlzIHRyYW5zbWl0dGFsIGluIGVycm9yLCBhbmQgYW55IHJldmlldywgZGlzc2VtaW5hdGlvbiwg
-ZGlzdHJpYnV0aW9uIG9yIGNvcHlpbmcgb2YgdGhpcyB0cmFuc21pdHRhbCBvciBpdHMgYXR0YWNo
-bWVudHMgaXMgc3RyaWN0bHkgcHJvaGliaXRlZC4gSWYgeW91IGhhdmUgcmVjZWl2ZWQgdGhpcyB0
-cmFuc21pdHRhbCBhbmQvb3IgYXR0YWNobWVudHMgaW4gZXJyb3IsIHBsZWFzZSBub3RpZnkgbWUg
-aW1tZWRpYXRlbHkgYnkgcmVwbHkgZS1tYWlsIGFuZCB0aGVuIGRlbGV0ZSB0aGlzIG1lc3NhZ2Us
-IGluY2x1ZGluZyBhbnkgYXR0YWNobWVudHMuIA0KDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0t
-LS0tDQpGcm9tOiBUb20gWmFudXNzaSBbbWFpbHRvOnRvbS56YW51c3NpQGludGVsLmNvbV0gDQpT
-ZW50OiBGcmlkYXksIFNlcHRlbWJlciAxMiwgMjAxNCAxMDoyNiBBTQ0KVG86IE1pY2hhZWwgS290
-c29uDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10geW9j
-dG8tYnNwIGNyZWF0ZSBxdWVzdGlvbg0KDQpPbiBGcmksIDIwMTQtMDktMTIgYXQgMTA6MDcgLTA2
-MDAsIE1pY2hhZWwgS290c29uIHdyb3RlOg0KPiBIaSBhbGwsDQo+IA0KPiAgICBXZSBhcmUgdHJ5
-aW5nIHRvIGNyZWF0ZSBhIGN1c3RvbSBCU1AgYmFzZWQgb2ZmIG9mIHZhbGxleWlzbGFuZC02NCAN
-Cj4gdXNpbmcgdGhlIHlvY3RvLWJzcCBzY3JpcHQuICBXaGVuIHdlIGFyZSBwcmVzZW50ZWQgY2hv
-aWNlcyBmb3Igd2hpY2ggDQo+IEJTUCB0byBicmFuY2ggZnJvbSwgdmFsbGV5aXNsYW5kIGlzbuKA
-mXQgb25lIG9mIHRoZSBjaG9pY2VzLiAgV2UgaGF2ZSANCj4gdHJpZWQgYWxsIG9mIHRoZSBkaWZm
-ZXJlbnQga2VybmVsIG9wdGlvbnMgcHJlc2VudGVkLCBidXQgbm8gbHVjay4gIEnigJltIA0KPiBw
-cmV0dHkgc3VyZSB3ZSBoYXZlIHRoZSBsYXllcnMgYWRkZWQgY29ycmVjdGx5LCBhcyB3ZSBjYW4g
-YnVpbGQNCj4gdmFsbGV5aXNsYW5kLTMyIGFuZCB2YWxsZXlpc2xhbmQtNjQgaW5zaWRlIG9mIGhv
-YiB3aXRoIG5vIHByb2JsZW1zLg0KPiBBbnkgaWRlYSB3aGF0IHdlIGFyZSBkb2luZyB3cm9uZz8N
-Cj4gDQoNCk5vdGhpbmcgdGhhdCB5b3UncmUgZG9pbmcgd3JvbmcsIGl0J3MganVzdCB0aGF0IHRo
-ZSB2YWxsZXlpc2xhbmQgQlNQcyBhcmUgYnVpbHQgYSBsaXR0bGUgZGlmZmVyZW50bHkgZnJvbSB0
-aGUgbm9ybWFsIEJTUHMgLSBpbnN0ZWFkIG9mIGEgbWFjaGluZSBicmFuY2gsIHRoZXkgZG8gYSBt
-ZXJnZSBvZiBhIHZhbGxleWlzbGFuZC1pbyBicmFuY2ggaW50byBhbm90aGVyIGJyYW5jaCBhbmQg
-dGhlIHlvY3RvLWJzcCB0b29scyBhcmVuJ3Qgc2V0IHVwIHRvIGRvIHRoYXQuICBUaGV5J2QgbmVl
-ZCB0byBiZSBlbmhhbmNlZCB0byBlbmhhbmNlZCB0byBoYW5kbGUgY2FzZXMgbGlrZSB0aGF0LiAg
-SSdkIHN1Z2dlc3QgZmlsaW5nIGEgYW4gZW5oYW5jZW1lbnQgYnVnIHNvIHdlIGNhbiBhZGQgdGhh
-dCBjYXBhYmlsaXR5Li4NCg0KVGhhbmtzLA0KDQpUb20NCg0KDQoNCj4gIA0KPiANCj4gQWxsIHRo
-ZSBiZXN0LA0KPiANCj4gTWljaGFlbA0KPiANCj4gIA0KPiANCj4gIA0KPiANCj4gTWljaGFlbCBL
-b3Rzb24NCj4gDQo+IENoaWVmIFRlY2hub2xvZ3kgT2ZmaWNlcg0KPiANCj4gDQo+IA0KPiAoVGVs
-OiAgICgzMDMpIDQxMi0yMDU1ICAgICAgICANCj4gDQo+ICpFLU1haWw6IG1rb3Rzb25Ab2N0YWdv
-bnN5c3RlbXMuY29tDQo+IA0KPiBOT1RJQ0U6IFRoZSBpbmZvcm1hdGlvbiBjb250YWluZWQgaW4g
-dGhpcyBlbWFpbCBhbmQgYW55IGRvY3VtZW50IA0KPiBhdHRhY2hlZCBoZXJldG8gaXMgaW50ZW5k
-ZWQgb25seSBmb3IgdGhlIG5hbWVkIHJlY2lwaWVudChzKS4gSWYgeW91IA0KPiBhcmUgbm90IHRo
-ZSBpbnRlbmRlZCByZWNpcGllbnQsIG5vciB0aGUgZW1wbG95ZWUgb3IgYWdlbnQgcmVzcG9uc2li
-bGUgDQo+IGZvciBkZWxpdmVyaW5nIHRoaXMgbWVzc2FnZSBpbiBjb25maWRlbmNlIHRvIHRoZSBp
-bnRlbmRlZCANCj4gcmVjaXBpZW50KHMpLCB5b3UgYXJlIGhlcmVieSBub3RpZmllZCB0aGF0IHlv
-dSBoYXZlIHJlY2VpdmVkIHRoaXMgDQo+IHRyYW5zbWl0dGFsIGluIGVycm9yLCBhbmQgYW55IHJl
-dmlldywgZGlzc2VtaW5hdGlvbiwgZGlzdHJpYnV0aW9uIG9yIA0KPiBjb3B5aW5nIG9mIHRoaXMg
-dHJhbnNtaXR0YWwgb3IgaXRzIGF0dGFjaG1lbnRzIGlzIHN0cmljdGx5IHByb2hpYml0ZWQuDQo+
-IElmIHlvdSBoYXZlIHJlY2VpdmVkIHRoaXMgdHJhbnNtaXR0YWwgYW5kL29yIGF0dGFjaG1lbnRz
-IGluIGVycm9yLCANCj4gcGxlYXNlIG5vdGlmeSBtZSBpbW1lZGlhdGVseSBieSByZXBseSBlLW1h
-aWwgYW5kIHRoZW4gZGVsZXRlIHRoaXMgDQo+IG1lc3NhZ2UsIGluY2x1ZGluZyBhbnkgYXR0YWNo
-bWVudHMuDQo+IA0KPiAgDQo+IA0KPiANCg0KDQo=
+On Fri, 2014-09-12 at 15:09 -0600, Michael Kotson wrote:
+> Hi Tom,
+>    Thanks for the response.  I filed an enhancement request, but in
+> the meantime is there a preferred method to create our own BSP from
+> Valleyisland?
+> 
+
+Thanks for filing the request, it's been assigned to me and I'll try to
+get to it as soon as I can.
+
+In the meantime, I guess what I'd suggest is that you start by copying
+the valleyisland bsp you're interested in and modifying it to suit your
+needs.  This is essentially what users had to do before yocto-bsp
+existed and is the reason it was created - to take all the cut-and-paste
+drudgery out of that exercise.
+
+Tom
+
+
+> All the best,
+> Michael
+> 
+> Michael Kotson
+> Chief Technology Officer
+> 
+> OTel:   (303) 412-2055        
+> TE-Mail: mkotson@octagonsystems.com
+>  NOTICE: The information contained in this email and any document attached hereto is intended only for the named recipient(s). If you are not the intended recipient, nor the employee or agent responsible for delivering this message in confidence to the intended recipient(s), you are hereby notified that you have received this transmittal in error, and any review, dissemination, distribution or copying of this transmittal or its attachments is strictly prohibited. If you have received this transmittal and/or attachments in error, please notify me immediately by reply e-mail and then delete this message, including any attachments. 
+> 
+> 
+> -----Original Message-----
+> From: Tom Zanussi [mailto:tom.zanussi@intel.com] 
+> Sent: Friday, September 12, 2014 10:26 AM
+> To: Michael Kotson
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] yocto-bsp create question
+> 
+> On Fri, 2014-09-12 at 10:07 -0600, Michael Kotson wrote:
+> > Hi all,
+> > 
+> >    We are trying to create a custom BSP based off of valleyisland-64 
+> > using the yocto-bsp script.  When we are presented choices for which 
+> > BSP to branch from, valleyisland isn’t one of the choices.  We have 
+> > tried all of the different kernel options presented, but no luck.  I’m 
+> > pretty sure we have the layers added correctly, as we can build
+> > valleyisland-32 and valleyisland-64 inside of hob with no problems.
+> > Any idea what we are doing wrong?
+> > 
+> 
+> Nothing that you're doing wrong, it's just that the valleyisland BSPs are built a little differently from the normal BSPs - instead of a machine branch, they do a merge of a valleyisland-io branch into another branch and the yocto-bsp tools aren't set up to do that.  They'd need to be enhanced to enhanced to handle cases like that.  I'd suggest filing a an enhancement bug so we can add that capability..
+> 
+> Thanks,
+> 
+> Tom
+> 
+> 
+> 
+> >  
+> > 
+> > All the best,
+> > 
+> > Michael
+> > 
+> >  
+> > 
+> >  
+> > 
+> > Michael Kotson
+> > 
+> > Chief Technology Officer
+> > 
+> > 
+> > 
+> > (Tel:   (303) 412-2055        
+> > 
+> > *E-Mail: mkotson@octagonsystems.com
+> > 
+> > NOTICE: The information contained in this email and any document 
+> > attached hereto is intended only for the named recipient(s). If you 
+> > are not the intended recipient, nor the employee or agent responsible 
+> > for delivering this message in confidence to the intended 
+> > recipient(s), you are hereby notified that you have received this 
+> > transmittal in error, and any review, dissemination, distribution or 
+> > copying of this transmittal or its attachments is strictly prohibited.
+> > If you have received this transmittal and/or attachments in error, 
+> > please notify me immediately by reply e-mail and then delete this 
+> > message, including any attachments.
+> > 
+> >  
+> > 
+> > 
+> 
+> 
+
+
 
