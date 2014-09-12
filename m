@@ -1,36 +1,40 @@
-Return-Path: <tom.zanussi@intel.com>
+Return-Path: <Vincent.Riera@imgtec.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3FD83E0078E; Fri, 12 Sep 2014 09:26:20 -0700 (PDT)
+	id 7C7A7E0079B; Fri, 12 Sep 2014 09:52:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA309E006C5
-	for <yocto@yoctoproject.org>; Fri, 12 Sep 2014 09:26:12 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 12 Sep 2014 09:20:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,514,1406617200"; d="scan'208";a="602076712"
-Received: from mmckenna-mobl2.ger.corp.intel.com (HELO [10.255.12.206])
-	([10.255.12.206])
-	by orsmga002.jf.intel.com with ESMTP; 12 Sep 2014 09:26:11 -0700
-Message-ID: <1410539171.26951.7.camel@empanada.home.network>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Michael Kotson <mkotson@octagonsystems.com>
-Date: Fri, 12 Sep 2014 11:26:11 -0500
-In-Reply-To: <A6CCE322CA624947AEB978379C760A5001A2CC91@mail.octagonsystems.com>
-References: <A6CCE322CA624947AEB978379C760A5001A2CC91@mail.octagonsystems.com>
-X-Mailer: Evolution 3.8.5 (3.8.5-2.fc19) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: yocto-bsp create question
+X-Greylist: delayed 946 seconds by postgrey-1.32 at yocto-www;
+	Fri, 12 Sep 2014 09:51:48 PDT
+Received: from mailapp01.imgtec.com (mailapp01.imgtec.com [195.59.15.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74748E006DB
+	for <yocto@yoctoproject.org>; Fri, 12 Sep 2014 09:51:48 -0700 (PDT)
+Received: from KLMAIL01.kl.imgtec.org (unknown [192.168.5.35])
+	by Websense Email Security Gateway with ESMTPS id 8EAC7563AB838
+	for <yocto@yoctoproject.org>; Fri, 12 Sep 2014 17:35:58 +0100 (IST)
+Received: from KLMAIL02.kl.imgtec.org (10.40.60.222) by KLMAIL01.kl.imgtec.org
+	(192.168.5.35) with Microsoft SMTP Server (TLS) id 14.3.195.1;
+	Fri, 12 Sep 2014 17:36:01 +0100
+Received: from LEMAIL01.le.imgtec.org (192.168.152.62) by
+	klmail02.kl.imgtec.org (10.40.60.222) with Microsoft SMTP Server (TLS)
+	id 14.3.195.1; Fri, 12 Sep 2014 17:36:01 +0100
+Received: from localhost.localdomain (192.168.154.104) by
+	LEMAIL01.le.imgtec.org (192.168.152.62) with Microsoft SMTP Server
+	(TLS) id 14.3.195.1; Fri, 12 Sep 2014 17:36:00 +0100
+From: Vicente Olivert Riera <Vincent.Riera@imgtec.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 12 Sep 2014 17:35:52 +0100
+Message-ID: <1410539753-24011-2-git-send-email-Vincent.Riera@imgtec.com>
+X-Mailer: git-send-email 1.7.1
+In-Reply-To: <1410539753-24011-1-git-send-email-Vincent.Riera@imgtec.com>
+References: <1410539753-24011-1-git-send-email-Vincent.Riera@imgtec.com>
+MIME-Version: 1.0
+X-Originating-IP: [192.168.154.104]
+Subject: [PATCH 1/2] Add support for MIPS32r2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,69 +46,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Sep 2014 16:26:20 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 12 Sep 2014 16:52:06 -0000
+Content-Type: text/plain
 
-On Fri, 2014-09-12 at 10:07 -0600, Michael Kotson wrote:
-> Hi all,
-> 
->    We are trying to create a custom BSP based off of valleyisland-64
-> using the yocto-bsp script.  When we are presented choices for which
-> BSP to branch from, valleyisland isn’t one of the choices.  We have
-> tried all of the different kernel options presented, but no luck.  I’m
-> pretty sure we have the layers added correctly, as we can build
-> valleyisland-32 and valleyisland-64 inside of hob with no problems.
-> Any idea what we are doing wrong?
-> 
+Add support for MIPS32r2.
 
-Nothing that you're doing wrong, it's just that the valleyisland BSPs
-are built a little differently from the normal BSPs - instead of a
-machine branch, they do a merge of a valleyisland-io branch into another
-branch and the yocto-bsp tools aren't set up to do that.  They'd need to
-be enhanced to enhanced to handle cases like that.  I'd suggest filing a
-an enhancement bug so we can add that capability..
+Signed-off-by: Vicente Olivert Riera <Vincent.Riera@imgtec.com>
+---
+ meta/conf/machine/include/tune-mips32r2.inc |   25 +++++++++++++++++++++++++
+ 1 files changed, 25 insertions(+), 0 deletions(-)
+ create mode 100644 meta/conf/machine/include/tune-mips32r2.inc
 
-Thanks,
-
-Tom
-
-
-
->  
-> 
-> All the best,
-> 
-> Michael
-> 
->  
-> 
->  
-> 
-> Michael Kotson
-> 
-> Chief Technology Officer
-> 
-> 
-> 
-> (Tel:   (303) 412-2055        
-> 
-> *E-Mail: mkotson@octagonsystems.com
-> 
-> NOTICE: The information contained in this email and any document
-> attached hereto is intended only for the named recipient(s). If you
-> are not the intended recipient, nor the employee or agent responsible
-> for delivering this message in confidence to the intended
-> recipient(s), you are hereby notified that you have received this
-> transmittal in error, and any review, dissemination, distribution or
-> copying of this transmittal or its attachments is strictly prohibited.
-> If you have received this transmittal and/or attachments in error,
-> please notify me immediately by reply e-mail and then delete this
-> message, including any attachments. 
-> 
->  
-> 
-> 
-
+diff --git a/meta/conf/machine/include/tune-mips32r2.inc b/meta/conf/machine/include/tune-mips32r2.inc
+new file mode 100644
+index 0000000..b36d00a
+--- /dev/null
++++ b/meta/conf/machine/include/tune-mips32r2.inc
+@@ -0,0 +1,25 @@
++DEFAULTTUNE ?= "mips32r2"
++
++require conf/machine/include/mips/arch-mips.inc
++
++TUNEVALID[mips32r2] = "Enable mips32r2 specific processor optimizations"
++TUNECONFLICTS[mips32r2] = "n64 n32"
++TUNE_CCARGS .= "${@bb.utils.contains("TUNE_FEATURES", "mips32r2", " -march=mips32r2", "", d)}"
++
++AVAILTUNES += "mips32r2 mips32r2el mips32r2-nf mips32r2el-nf"
++
++TUNE_FEATURES_tune-mips32r2 = "${TUNE_FEATURES_tune-mips} mips32r2"
++MIPSPKGSFX_VARIANT_tune-mips32r2 = "mips32r2"
++PACKAGE_EXTRA_ARCHS_tune-mips32r2 = "mips mips32r2"
++
++TUNE_FEATURES_tune-mips32r2el = "${TUNE_FEATURES_tune-mipsel} mips32r2"
++MIPSPKGSFX_VARIANT_tune-mips32r2el = "mips32r2el"
++PACKAGE_EXTRA_ARCHS_tune-mips32r2el = "mipsel mips32r2el"
++
++TUNE_FEATURES_tune-mips32r2-nf = "${TUNE_FEATURES_tune-mips-nf} mips32r2"
++MIPSPKGSFX_VARIANT_tune-mips32r2-nf = "mips32r2"
++PACKAGE_EXTRA_ARCHS_tune-mips32r2-nf = "mips-nf mips32r2-nf"
++
++TUNE_FEATURES_tune-mips32r2el-nf = "${TUNE_FEATURES_tune-mipsr2el-nf} mips32r2"
++MIPSPKGSFX_VARIANT_tune-mips32r2el-nf = "mips32r2el"
++PACKAGE_EXTRA_ARCHS_tune-mips32r2el-nf = "mipsel-nf mips32r2el-nf"
+-- 
+1.7.1
 
 
