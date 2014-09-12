@@ -1,27 +1,58 @@
-Return-Path: <pokybuild@centos6.osl.yoctoproject.org>
+Return-Path: <dbjorklu@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3CB82E00744; Thu, 11 Sep 2014 17:34:13 -0700 (PDT)
+	id 5D368E00790; Thu, 11 Sep 2014 22:36:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
-	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.217.175 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from centos6.osl.yoctoproject.org (ab04 [10.0.10.104])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDC62E006DB
-	for <yocto@yoctoproject.org>; Thu, 11 Sep 2014 17:34:10 -0700 (PDT)
-Received: by centos6.osl.yoctoproject.org (Postfix, from userid 1006)
-	id 64FF0202B41; Fri, 12 Sep 2014 00:34:09 +0000 (UTC)
-Date: Fri, 12 Sep 2014 00:34:09 +0000
-To: yocto@yoctoproject.org
-User-Agent: Heirloom mailx 12.4 7/29/08
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f175.google.com (mail-lb0-f175.google.com
+	[209.85.217.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFDDEE006EF
+	for <yocto@yoctoproject.org>; Thu, 11 Sep 2014 22:36:22 -0700 (PDT)
+Received: by mail-lb0-f175.google.com with SMTP id v6so249904lbi.6
+	for <yocto@yoctoproject.org>; Thu, 11 Sep 2014 22:36:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=9imvuYNMZf5SuLW69RSlB2ExHQKJJefV7X6IjaQPfd4=;
+	b=q106GU9tDGH7IFuXv9RCq8z+xrjC1DrwyaFbRFRGh/h+oPyD3SuftULkci6MhitBzY
+	e8RZ6ELS4iN59EJIfRMw/omIPk75TGh2ZpLVHlD3M5e7fVPCpe09prAXQsBBVos5SJ1D
+	qrMP714pALel24SyhteWbUdg2OM17C50SKCRSXO0yWOVQNis9kLKeJk5X/uPlKxXz6I0
+	40jV21V49qCHv1Eqln4/w7QZQbZRGXJphKabuJJSxNZYm8UwpdvArmbJSkSFX3Tu/l+x
+	6QWnlryDWeiLWsc2Xh90PB+b2zzKS1G+j1yfIQrzjRReKk5zrBDWj+MmJesPeVyD4NaV
+	78Qw==
+X-Received: by 10.112.184.161 with SMTP id ev1mr5700550lbc.82.1410500181246;
+	Thu, 11 Sep 2014 22:36:21 -0700 (PDT)
+Received: from [10.0.16.61] (an229.netikka.fi. [213.250.75.229])
+	by mx.google.com with ESMTPSA id zc10sm951029lbb.40.2014.09.11.22.36.20
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 11 Sep 2014 22:36:20 -0700 (PDT)
+Sender: =?UTF-8?Q?Dag_Bj=C3=B6rklund?= <dbjorklu@gmail.com>
+Message-ID: <54128652.8030708@iki.fi>
+Date: Fri, 12 Sep 2014 08:36:18 +0300
+From: =?UTF-8?B?RGFnIEJqw7Zya2x1bmQ=?= <dag@iki.fi>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.0
 MIME-Version: 1.0
-Message-Id: <20140912003409.64FF0202B41@centos6.osl.yoctoproject.org>
-From: pokybuild@centos6.osl.yoctoproject.org (Poky Build User)
-Cc: yocto@yoctoproject.org, otavio@ossystems.com.br
-Subject: Release Candidate Build for yocto-1.7_M3.rc2 now available.
+To: "Burton, Ross" <ross.burton@intel.com>
+References: <CALb224-2biSJpCoLBojkMgjGKX4a_YUayfUQwByFTDNYqVKeCA@mail.gmail.com>
+	<540F4F0B.7010707@balister.org>
+	<1548923.UYKtK7c5ZH@peggleto-mobl5.ger.corp.intel.com>
+	<541033E3.2040804@iki.fi>
+	<CAJTo0LaJhbaGZeKVqMaf1YX4SokzZuQ9BguvrjWWvf-TF-C3Og@mail.gmail.com>
+In-Reply-To: <CAJTo0LaJhbaGZeKVqMaf1YX4SokzZuQ9BguvrjWWvf-TF-C3Og@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Populate /var/lib/opkg/status
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,31 +64,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Sep 2014 00:34:13 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 12 Sep 2014 05:36:32 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+On 10.09.2014 14:50, Burton, Ross wrote:
+> On 10 September 2014 12:20, Dag Björklund <dag@iki.fi> wrote:
+>> How do I populate /var/lib/opkg/status so that all .ipk packages that Yocto
+>> has installed for me are seen if I e.g. say 'opkg list-installed'?
+> The IMAGE_FEATURE "package-management" controls whether images have
+> this data preserved, so you probably need to add that to your image.
+>
+> Ross
+Thanks, found this in the documentation now as well. Unfortunately I 
+don't see a difference.
+Should I find a /var/lib/opkg/status file after adding the feature and 
+building?
 
-A release candidate build for yocto-1.7_M3.rc2 is now available at:
+Dag
 
- 
-http://autobuilder.yoctoproject.org/pub/releases/yocto-1.7_M3.rc2
-
-
-Please begin QA on this build as soon as possible.
-
-
-Build hash information: 
-meta-intel : 200ebb54f46f364e7eb1738c5e993374f03f407d 
-meta-fsl-arm : dad75d7e653f9575e959b17478ff2a0df5bf09dc 
-meta-minnow : 238a45e9da8bbfff7a6af220b48c11cabd31e01c 
-meta-qt3 : 3016129d90b7ac8517a5227d819f10ad417b5b45 
-meta-fsl-ppc : 478f29c3e97760f2ff443227950ce21d9510a280 
-poky : 429802fe6691c8a70ec9735c0db4c6a4e1e1b038 
-
-
-This is an automated message from
-The Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder
-Email: elizabeth.flanagan@intel.com 
 
