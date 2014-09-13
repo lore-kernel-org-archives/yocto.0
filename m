@@ -1,32 +1,53 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 422E6E00799; Sat, 13 Sep 2014 04:48:21 -0700 (PDT)
+	id 018D9E0074B; Sat, 13 Sep 2014 13:54:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=no
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW autolearn=no
 	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.51 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B913E006DB
-	for <yocto@yoctoproject.org>; Sat, 13 Sep 2014 04:48:10 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 089FEF811DD; Sat, 13 Sep 2014 05:48:06 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id E2C35F811DB;
-	Sat, 13 Sep 2014 05:48:04 -0600 (MDT)
-Message-ID: <54142F22.6070101@mlbassoc.com>
-Date: Sat, 13 Sep 2014 05:48:50 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.1.1
-MIME-Version: 1.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f51.google.com (mail-pa0-f51.google.com
+	[209.85.220.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E21F5E00514
+	for <yocto@yoctoproject.org>; Sat, 13 Sep 2014 13:54:41 -0700 (PDT)
+Received: by mail-pa0-f51.google.com with SMTP id kx10so3794756pab.10
+	for <yocto@yoctoproject.org>; Sat, 13 Sep 2014 13:54:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=Oh30XCA7G6e9fZYZIbaZ0xwH7ZC6xDNaQ7R3FAn+4fk=;
+	b=sDhZ+s2xXoTSMHHeIrx3pt2h3oUZcJ5TqNch7sKBiuhrbOrTjqkUJWWYZze6OzsCIB
+	7y8F2xd7UBAlYNAjXrDsypxDNcPuog8ABfbQioiWaiWi4D9OFnddZEao+XNLDI9jj15K
+	U950VwvehdE1+JmwZ1Nc/+5eRLFtPQhaaI52u4bl1w1r7ovx76VYGRsgrElAoXlMkr35
+	JU0KQcMDVqIcKBgyLdt3DurPFMihJD/QzioHJhGZuiIzeJ/MFm+iYTomQ7zx6HqskdGy
+	L2WgdV6cah89hOW7na6hfBT4W2qpUhc5E5NaeWFZOkE+qc79E8+360+XVMq/DBuZQdgY
+	lcdQ==
+X-Received: by 10.70.52.41 with SMTP id q9mr7880936pdo.39.1410641680588;
+	Sat, 13 Sep 2014 13:54:40 -0700 (PDT)
+Received: from Pahoa2.mvista.com (c-76-20-92-207.hsd1.ca.comcast.net.
+	[76.20.92.207])
+	by mx.google.com with ESMTPSA id ka1sm7303260pbd.70.2014.09.13.13.54.38
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Sat, 13 Sep 2014 13:54:39 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-References: <54134C92.3080208@gmail.com>	<CAJTo0LZi1rLbkDYbYTYSFz6h9i_SXA8BP2Vxpv7vkgQbSgUT3A@mail.gmail.com>
-	<5413C4E3.4060102@gmail.com>
-In-Reply-To: <5413C4E3.4060102@gmail.com>
-Subject: Re: Basic build fails
+Date: Sat, 13 Sep 2014 13:54:35 -0700
+Message-Id: <1410641675-26473-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [meta-security][PATCH] packagegroup: ccs-tools exlude if no kernel support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,72 +59,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 13 Sep 2014 11:48:21 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 13 Sep 2014 20:54:49 -0000
 
-On 2014-09-12 22:15, Arun Kumar wrote:
-> Thanks for the reply ross, but the build noise is too much form me to put it in here. I will post the last few lines of which i can make some sense, but the rest is somewhat incomprehensible.
->
-> /-------------------------------------------------------------------------------
-> | make[1]: *** [s-attrtab] Killed
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/packagegroup/packagegroup-core-security.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-This is very suspicious - looks like your build may have been killed by running
-out of memory...
-
-> | make[1]: *** Waiting for unfinished jobs....
-> | make[1]: Leaving directory `/home/arun/Documents/Dev/yocto/tmp/work/x86_64-poky-linux/gcc-cross-i586/4.9.1-r0/gcc-4.9.1/build.x86_64-linux.i586-poky-linux/gcc'
-> | make: *** [all-gcc] Error 2
-> | ERROR: oe_runmake failed
-> | WARNING: exit code 1 from a shell command.
-> | ERROR: Function failed: do_compile (log file is located at /home/arun/Documents/Dev/yocto/build/../tmp/work/x86_64-poky-linux/gcc-cross-i586/4.9.1-r0/temp/log.do_compile.29857)
-> ERROR: Task 595 (/home/arun/Documents/Dev/yocto/poky/meta/recipes-devtools/gcc/gcc-cross_4.9.bb, do_compile) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 2729 tasks of which 2728 didn't need to be rerun and 1 failed.
-> No currently running tasks (307 of 5634)
->
-> Summary: 1 task failed:
->    /home/arun/Documents/Dev/yocto/poky/meta/recipes-devtools/gcc/gcc-cross_4.9.bb, do_compile
-> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-> /-------------------------------------------------------------------------------------------------------
->
-> here is the pastebin link to the whole error http://pastebin.com/Y1JsA8dt
-> hope this helps
-
-How much memory (RAM+SWAP) does your host build machine have?
-
-> On Saturday 13 September 2014 01:37 AM, Burton, Ross wrote:
->> On 12 September 2014 20:42, Arun Kumar <arunkr.linux@gmail.com> wrote:
->>> Hi all,
->>>
->>>      I am new to the yocto project and was following the steps given in the quick start guide. I made a slight change as given in the superuser section.
->>>
->>> I used the "fetchall" option to get all the packages first and then started the build, now when i use this command
->>>
->>> "bitbake -k core-image-sato" i get the following error
->>>
->>> /------------------------------------------------------------------------------------
->>> ERROR: Task 595 (/home/arun/Documents/Dev/yocto/poky/meta/recipes-devtools/gcc/gcc-cross_4.9.bb, do_compile) failed with exit code '1'
->>> NOTE: Tasks Summary: Attempted 2729 tasks of which 1784 didn't need to be rerun and 1 failed.
->>> No currently running tasks (2729 of 5634)
->>>
->>> Summary: 1 task failed:
->>>    /home/arun/Documents/Dev/yocto/poky/meta/recipes-devtools/gcc/gcc-cross_4.9.bb, do_compile
->>> Summary: There was 1 WARNING message shown.
->>> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
->>> /------------------------------------------------------------------------------------
->>>
->>> any idea or hint where i might be going wrong?
->> You've trimmed the output at just the place where it was telling you
->> what went wrong.  Re-run bitbake gcc-cross, and paste the output of
->> that.
->>
->> Ross
->>
->
-
+diff --git a/recipes-security/packagegroup/packagegroup-core-security.bb b/recipes-security/packagegroup/packagegroup-core-security.bb
+index c635b28..ef8f707 100644
+--- a/recipes-security/packagegroup/packagegroup-core-security.bb
++++ b/recipes-security/packagegroup/packagegroup-core-security.bb
+@@ -54,5 +54,5 @@ RDEPENDS_packagegroup-security-ids = " \
+ 
+ SUMMARY_packagegroup-security-mac = "Security Mandatory Access Control systems"
+ RDEPENDS_packagegroup-security-mac = " \
+-    ccs-tools \
++    ${@bb.utils.contains("DISTRO_FEATURES", "tomoyo", "ccs-tools", "",d)} \
+     "
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+1.9.1
+
 
