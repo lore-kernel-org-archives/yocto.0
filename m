@@ -1,17 +1,16 @@
-Return-Path: <ncrypticus@gmail.com>
+Return-Path: <arunkr.linux@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F0453E00799; Fri, 12 Sep 2014 17:57:54 -0700 (PDT)
+	id 4E9C5E0079A; Fri, 12 Sep 2014 21:15:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=no version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW autolearn=no
+	version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ncrypticus[at]gmail.com)
+	mail provider *      (arunkr.linux[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
@@ -19,37 +18,42 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.212.181 listed in list.dnswl.org]
-Received: from mail-wi0-f181.google.com (mail-wi0-f181.google.com
-	[209.85.212.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F0B9E006DB
-	for <yocto@yoctoproject.org>; Fri, 12 Sep 2014 17:57:45 -0700 (PDT)
-Received: by mail-wi0-f181.google.com with SMTP id bs8so1471086wib.2
-	for <yocto@yoctoproject.org>; Fri, 12 Sep 2014 17:57:44 -0700 (PDT)
+	*      [209.85.192.172 listed in list.dnswl.org]
+Received: from mail-pd0-f172.google.com (mail-pd0-f172.google.com
+	[209.85.192.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25EA7E0078E
+	for <yocto@yoctoproject.org>; Fri, 12 Sep 2014 21:15:40 -0700 (PDT)
+Received: by mail-pd0-f172.google.com with SMTP id v10so2586197pde.31
+	for <yocto@yoctoproject.org>; Fri, 12 Sep 2014 21:15:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=+8KJug7M+NLlt5eWZ2ztT3IoKYbe+EvcmQT7cg9ICtI=;
-	b=yaizTn9MNRXSr3Tj6a5okzs/LGY5s7Xkc0nIN986yi1qGw0Tg6Bo+V/EW+qyRfZ7fB
-	LlYT/Qdb2S3Llyapf/YhRYzhBxJdb37stbilw6mZ0MN9zpjtrwV1Ukc6ubefR+wyk0by
-	/y9YaUTJYC9MUamEPCpckIDsDGp8OlrTtausCEPmrWj+iTP/431Ph9r46t6gqoQizj+o
-	ByKkrCMXIU4m9hAodUoIjCOtTpOd5tlxk2k0hc6ckHeIrQyAjluGexMiNWAC0SYG0gls
-	t0w0zM1+kROLj4fxje/IaKG4fs8SkavIi0phfZz87dAlfRF/tCItqLJTVaFJE0qD45o/
-	PGpw==
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=jZqGLDbHpHXzcZ2uz5heoFADpmQm8FsZEhpLiD0kE/8=;
+	b=S9rhIpWtkrBnr/edgNpg2fWG0uuPwENDFEF9wkWz8GlBFfmblTRiqj0OyRLNAeLU56
+	020i9jFlQXSLKDKISPcfYSIOIU8pjtaUNHqAYRnGzquOWgVM18zl63/aqOklQWUDEa/P
+	Jv/kTnIAEsfdQBZxfM7gFKmAu3op+z9zJlyvAWlv+AaPJZZMr79mMe5WDWvcaLC2WdEc
+	qBUWfNwqFwzz8MRS/KTXrUGxUtYSr43dDvAmMBWBb6DV07GCQToX9gHEGUzruZwHib8w
+	K77oxYmagofnSVIWGus4CNbANwU8bRSmMdKidXdG65esGe1fa1aPb12nwFw9wz6TPoAU
+	/Nyg==
+X-Received: by 10.68.69.70 with SMTP id c6mr17729730pbu.111.1410581740483;
+	Fri, 12 Sep 2014 21:15:40 -0700 (PDT)
+Received: from [192.168.0.103] ([123.201.144.93])
+	by mx.google.com with ESMTPSA id ad10sm5504405pad.4.2014.09.12.21.15.37
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 12 Sep 2014 21:15:39 -0700 (PDT)
+Message-ID: <5413C4E3.4060102@gmail.com>
+Date: Sat, 13 Sep 2014 09:45:31 +0530
+From: Arun Kumar <arunkr.linux@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.1.1
 MIME-Version: 1.0
-X-Received: by 10.180.187.76 with SMTP id fq12mr6629581wic.4.1410569864515;
-	Fri, 12 Sep 2014 17:57:44 -0700 (PDT)
-Received: by 10.194.10.202 with HTTP; Fri, 12 Sep 2014 17:57:44 -0700 (PDT)
-In-Reply-To: <5413487C.4050707@mindchasers.com>
-References: <CAMSG=xXz_1rwzc-gdfNNeMGx3cx051X+sfnCBEZMPbvgryvH6A@mail.gmail.com>
-	<CAMSG=xXmfOnQJwkQ5qHsSendSRX+xSHRH94jc5kJKGqqNV0gAg@mail.gmail.com>
-	<5413487C.4050707@mindchasers.com>
-Date: Fri, 12 Sep 2014 17:57:44 -0700
-Message-ID: <CAMSG=xXsUOLFFRgqihdGdXMEKiGwZ3AgO+d85rp2Q1GhDLq-uQ@mail.gmail.com>
-From: Nemicolopterus Crypticus <ncrypticus@gmail.com>
-To: Bob Cochran <yocto@mindchasers.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Specified toolchain directory does not contain a toolchain generated with meta-ide-support.
+To: "Burton, Ross" <ross.burton@intel.com>, 
+	Yocto Project Mailing List <yocto@yoctoproject.org>
+References: <54134C92.3080208@gmail.com>
+	<CAJTo0LZi1rLbkDYbYTYSFz6h9i_SXA8BP2Vxpv7vkgQbSgUT3A@mail.gmail.com>
+In-Reply-To: <CAJTo0LZi1rLbkDYbYTYSFz6h9i_SXA8BP2Vxpv7vkgQbSgUT3A@mail.gmail.com>
+Subject: Re: Basic build fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,157 +65,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 13 Sep 2014 00:57:55 -0000
-Content-Type: multipart/alternative; boundary=001a11c37f80b496860502e7e30a
+X-List-Received-Date: Sat, 13 Sep 2014 04:15:50 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---001a11c37f80b496860502e7e30a
-Content-Type: text/plain; charset=UTF-8
+Thanks for the reply ross, but the build noise is too much form me to put it in here. I will post the last few lines of which i can make some sense, but the rest is somewhat incomprehensible.
 
-Yes - I can source the script, and I do successfully get my path updated.
-That's unfortunate.  I can run the toolchain on the command line, but the
-developers I am working with need to use Eclipse. The plug-in seems like
-the right solution, so I would very much like to get this to work.
+/-------------------------------------------------------------------------------
+| make[1]: *** [s-attrtab] Killed
+| make[1]: *** Waiting for unfinished jobs....
+| make[1]: Leaving directory `/home/arun/Documents/Dev/yocto/tmp/work/x86_64-poky-linux/gcc-cross-i586/4.9.1-r0/gcc-4.9.1/build.x86_64-linux.i586-poky-linux/gcc'
+| make: *** [all-gcc] Error 2
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+| ERROR: Function failed: do_compile (log file is located at /home/arun/Documents/Dev/yocto/build/../tmp/work/x86_64-poky-linux/gcc-cross-i586/4.9.1-r0/temp/log.do_compile.29857)
+ERROR: Task 595 (/home/arun/Documents/Dev/yocto/poky/meta/recipes-devtools/gcc/gcc-cross_4.9.bb, do_compile) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 2729 tasks of which 2728 didn't need to be rerun and 1 failed.
+No currently running tasks (307 of 5634)
 
-It occurred to me that these issues might be because I'm using an older
-version of bitbake:
-$ bitbake --version
-BitBake Build Tool Core version 1.20.0, bitbake version 1.20.0
+Summary: 1 task failed:
+  /home/arun/Documents/Dev/yocto/poky/meta/recipes-devtools/gcc/gcc-cross_4.9.bb, do_compile
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+/-------------------------------------------------------------------------------------------------------
 
-Could that have something to do with the failure?
+here is the pastebin link to the whole error http://pastebin.com/Y1JsA8dt
+hope this helps
 
-On Fri, Sep 12, 2014 at 12:24 PM, Bob Cochran <yocto@mindchasers.com> wrote:
 
-> On 09/12/2014 12:57 PM, Nemicolopterus Crypticus wrote:
->
->>  >Just double checking that you are specifying the "toolchain root
->> location" as your top level build directory (the one above
->> /conf/local.conf - the directory where you run bitbake).
+
+On Saturday 13 September 2014 01:37 AM, Burton, Ross wrote:
+> On 12 September 2014 20:42, Arun Kumar <arunkr.linux@gmail.com> wrote:
+>> Hi all,
 >>
->> Yes that occurred to me too, since the phrasing is a bit unclear. I
->> tried both.  Here's a depiction of my directory structure:
+>>     I am new to the yocto project and was following the steps given in the quick start guide. I made a slight change as given in the superuser section.
 >>
->> oe-core
->>       |---- build
->>            |---- conf (including local.conf)
->>            |---- downloads
->>            |---- tmp-eglibc
->>               |---- environment-setup-blahblah
->>               |---- <etc.>
->>            |---- <etcc>
->>       |---- bitbake
->>       |---- gcc-toolchain
->>       |---- meta
->>       |---- <etc. lots more>
+>> I used the "fetchall" option to get all the packages first and then started the build, now when i use this command
 >>
->> I tried with the root at build, and in build/tmp-eglibc with no luck.
+>> "bitbake -k core-image-sato" i get the following error
 >>
->> Is it possible the toolchain didn't get built?
+>> /------------------------------------------------------------------------------------
+>> ERROR: Task 595 (/home/arun/Documents/Dev/yocto/poky/meta/recipes-devtools/gcc/gcc-cross_4.9.bb, do_compile) failed with exit code '1'
+>> NOTE: Tasks Summary: Attempted 2729 tasks of which 1784 didn't need to be rerun and 1 failed.
+>> No currently running tasks (2729 of 5634)
 >>
->
-> What happens when you source your environment script?  You should have
-> your path set up to find your cross toolchain.  If that's the case, you
-> should be able to run the toolchain on the command line.
->
-> I work with the powerpc toolchain, so I can cross-compile a simple test
-> app after sourcing my env script:
->
-> powerpc64-poky-linux-gcc main.c -o tst
->
-> and verify I have generated a 64-bit powerpc ELF executable with
->
-> file tst
->
->
->
->
->
-> I'm just wondering since
->
->> that's what the error claims. Is there any way to confirm that the
->> toolchain did indeed get built?  I ran bitbake meta-ide-toolchain, but
->> our system is large and I'm not familiar with every aspect of it. Is it
->> possible some other settings elsewhere got changed in a way that would
->> prevent the toolchain from building?
+>> Summary: 1 task failed:
+>>   /home/arun/Documents/Dev/yocto/poky/meta/recipes-devtools/gcc/gcc-cross_4.9.bb, do_compile
+>> Summary: There was 1 WARNING message shown.
+>> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+>> /------------------------------------------------------------------------------------
 >>
+>> any idea or hint where i might be going wrong?
+> You've trimmed the output at just the place where it was telling you
+> what went wrong.  Re-run bitbake gcc-cross, and paste the output of
+> that.
 >
+> Ross
 >
 
---001a11c37f80b496860502e7e30a
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Yes - I can source the script, and I do successfully get m=
-y path updated. That&#39;s unfortunate. =C2=A0I can run the toolchain on th=
-e command line, but the developers I am working with need to use Eclipse. T=
-he plug-in seems like the right solution, so I would very much like to get =
-this to work.<div><br></div><div>It occurred to me that these issues might =
-be because I&#39;m using an older version of bitbake:</div><div><div>$ bitb=
-ake --version</div><div>BitBake Build Tool Core version 1.20.0, bitbake ver=
-sion 1.20.0</div></div><div><br></div><div>Could that have something to do =
-with the failure?</div></div><div class=3D"gmail_extra"><br><div class=3D"g=
-mail_quote">On Fri, Sep 12, 2014 at 12:24 PM, Bob Cochran <span dir=3D"ltr"=
->&lt;<a href=3D"mailto:yocto@mindchasers.com" target=3D"_blank">yocto@mindc=
-hasers.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span cl=
-ass=3D"">On 09/12/2014 12:57 PM, Nemicolopterus Crypticus wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-=C2=A0&gt;Just double checking that you are specifying the &quot;toolchain =
-root<br>
-location&quot; as your top level build directory (the one above<br>
-/conf/local.conf - the directory where you run bitbake).<br>
-<br>
-Yes that occurred to me too, since the phrasing is a bit unclear. I<br>
-tried both.=C2=A0 Here&#39;s a depiction of my directory structure:<br>
-<br>
-oe-core<br>
-=C2=A0 =C2=A0 =C2=A0 |---- build<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|---- conf (including local.conf)<=
-br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|---- downloads<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|---- tmp-eglibc<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |---- environment-setup-bl=
-ahblah<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |---- &lt;etc.&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|---- &lt;etcc&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 |---- bitbake<br>
-=C2=A0 =C2=A0 =C2=A0 |---- gcc-toolchain<br>
-=C2=A0 =C2=A0 =C2=A0 |---- meta<br>
-=C2=A0 =C2=A0 =C2=A0 |---- &lt;etc. lots more&gt;<br>
-<br>
-I tried with the root at build, and in build/tmp-eglibc with no luck.<br>
-<br>
-Is it possible the toolchain didn&#39;t get built?<br>
-</blockquote>
-<br></span>
-What happens when you source your environment script?=C2=A0 You should have=
- your path set up to find your cross toolchain.=C2=A0 If that&#39;s the cas=
-e, you should be able to run the toolchain on the command line.<br>
-<br>
-I work with the powerpc toolchain, so I can cross-compile a simple test app=
- after sourcing my env script:<br>
-<br>
-powerpc64-poky-linux-gcc main.c -o tst<br>
-<br>
-and verify I have generated a 64-bit powerpc ELF executable with<br>
-<br>
-file tst<div class=3D"HOEnZb"><div class=3D"h5"><br>
-<br>
-<br>
-<br>
-<br>
-I&#39;m just wondering since<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-that&#39;s what the error claims. Is there any way to confirm that the<br>
-toolchain did indeed get built?=C2=A0 I ran bitbake meta-ide-toolchain, but=
-<br>
-our system is large and I&#39;m not familiar with every aspect of it. Is it=
-<br>
-possible some other settings elsewhere got changed in a way that would<br>
-prevent the toolchain from building?<br>
-</blockquote>
-<br>
-</div></div></blockquote></div><br></div>
-
---001a11c37f80b496860502e7e30a--
