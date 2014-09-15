@@ -1,47 +1,49 @@
-Return-Path: <joe@deserted.net>
+Return-Path: <ncrypticus@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9405BE00846; Mon, 15 Sep 2014 12:46:31 -0700 (PDT)
+	id 6C6AEE00849; Mon, 15 Sep 2014 16:18:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.182 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ncrypticus[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-ig0-f182.google.com (mail-ig0-f182.google.com
-	[209.85.213.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47135E0077E
-	for <yocto@yoctoproject.org>; Mon, 15 Sep 2014 12:46:22 -0700 (PDT)
-Received: by mail-ig0-f182.google.com with SMTP id h18so4587821igc.3
-	for <yocto@yoctoproject.org>; Mon, 15 Sep 2014 12:46:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:sender:from:to:subject:date:message-id;
-	bh=OoukGfnDkePUJ2CEINGG22B9hXzD/6hECZKIp064uxU=;
-	b=G5vZOWzc22khWceftGvDIAj6O5HQdpCAJ6S8Q0Ja/E1vxi4+JnauaCahqedv685ZjL
-	mg3VCFtIxsMfpd8L9xVbUIppL/DrVPZEhBBzyb8QoL4S/S2XfalwlT9igaKD70RlZE9v
-	6mD0Xf19jH7cD21hfds9a2Lj1850gNTbbb8FUbz4Aeoge97wyvAwp8TeMp6s3PYnFc6q
-	/Fv7VPEZ/cUNAzmjgy1GHuQKksXaw64djxk9bL3709JO8pD5+oF2cUEBatLvFOYiNOBF
-	6VAU7wxTYysjaAYscXL/+DycQUNMikQMJ5L9Iw7xhZO1pQSdqPccjUKBbC3YwpbX+NqE
-	IOEA==
-X-Gm-Message-State: ALoCoQmIZVMRvWPLQ8E+lAzp+ZPDNBUqqhIzrLmyt+2+qjFKJu7bfAeVHKTc3mCPQivsJeYA07MP
-X-Received: by 10.50.85.74 with SMTP id f10mr22395716igz.4.1410810381613;
-	Mon, 15 Sep 2014 12:46:21 -0700 (PDT)
-Received: from mir.deserted.net (24-246-4-250.cable.teksavvy.com.
-	[24.246.4.250]) by mx.google.com with ESMTPSA id
-	cj8sm10934547igb.11.2014.09.15.12.46.20 for <yocto@yoctoproject.org>
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 15 Sep 2014 12:46:20 -0700 (PDT)
-Sender: Joe MacDonald <joe@deserted.net>
-From: Joe MacDonald <joe_macdonald@mentor.com>
-To: yocto@yoctoproject.org
-Date: Mon, 15 Sep 2014 15:46:35 -0400
-Message-Id: <1410810395-16786-1-git-send-email-joe_macdonald@mentor.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [meta-selinux][PATCH] selinux-userspace: update userspace SRC_URI and checksums
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.219.48 listed in list.dnswl.org]
+Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
+	[209.85.219.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B6DAE0077E
+	for <yocto@yoctoproject.org>; Mon, 15 Sep 2014 16:18:18 -0700 (PDT)
+Received: by mail-oa0-f48.google.com with SMTP id g18so3096612oah.21
+	for <yocto@yoctoproject.org>; Mon, 15 Sep 2014 16:18:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=eAV+ZgBle1nTrjCJbSTANX8IHBtFGPxuAg/em0v4j2E=;
+	b=CaBY/ix2c/GociEqWJF39XGIR/6oFOUZsp0Of68+JjWSRtGWCLUbxpa3/OB2axdVjm
+	rdC5DHjYllGFhIyTQ/+FCN590gOxWSbLiGHl9KxFN8wnyyUJ/H6A6D5VfdKUz4W4Yn2F
+	KIFkzCROU2PsT5GDOQ6+/MtdEZHfMx1tWLDjjqFO2drh17B0AEngDBS1RHxaV+wpIepq
+	RPezpldQo0rJZy9mT+UTyP7iskl3mo1+poggVCGAhjEAzEQnwj4jxrcRt+PAQe/ABSTZ
+	TVR88jDryUmR44kmuTHd+tlE7uASaxL5YZ6njCvXd5Y4r1O5yZ6JXP/DQaR6SXkK6Z/z
+	Ksvg==
+MIME-Version: 1.0
+X-Received: by 10.60.179.200 with SMTP id di8mr4779043oec.75.1410823097109;
+	Mon, 15 Sep 2014 16:18:17 -0700 (PDT)
+Received: by 10.202.169.82 with HTTP; Mon, 15 Sep 2014 16:18:17 -0700 (PDT)
+Date: Mon, 15 Sep 2014 16:18:17 -0700
+Message-ID: <CAMSG=xWG4j-eZRwzpA+CyaiKwcvc-t18fut+-vsGBL4cLFftwQ@mail.gmail.com>
+From: Nemicolopterus Crypticus <ncrypticus@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Eclipse plug-in
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,177 +55,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Sep 2014 19:46:31 -0000
+X-List-Received-Date: Mon, 15 Sep 2014 23:18:24 -0000
+Content-Type: multipart/alternative; boundary=047d7bd6bd248b52a6050322d914
 
-Trac has been turned off on OSS.  Update all SRC_URI links for the
-userspace components to point at the github project releases.  The github
-releases also have a slightly different directory structure in the
-tarballs, requiring an update of the checksums as well.
+--047d7bd6bd248b52a6050322d914
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
----
+I'm having issues getting the eclipse plug-in to work.  The script that
+initializes the environment gets built properly, and I am able to run
+"make" from the command line. But for some reason, Eclipse seems to be
+configured incorrectly.
 
-Trac/OSS has been turned off on the Tresys website where we were getting the
-userspace release tarballs.  It's been quite a while since all of this
-development moved to github, so as a first step toward updating the core
-utilities, get builds working again by pointing the SRC_URIs somewhere
-functional.
+Background:
+    |--- Kepler 4.3.2 installed.
+    |--- Completed all of the steps in 4.2.2.1.2 from here
+<http://www.yoctoproject.org/docs/1.6/dev-manual/dev-manual.html#adt-eclipse>
+(i.e.,
+I configured Eclipse)
+    |--- I installed the pre-built plugin from here
+<http://downloads.yoctoproject.org/releases/eclipse-plugin/1.6/kepler/>.
+    |--- Because I'm using the toolchain from within the build directory, I
+followed these instructions
+<http://www.yoctoproject.org/docs/1.6/adt-manual/adt-manual.html#using-the-toolchain-from-within-the-build-tree>
+.
 
- recipes-security/selinux/checkpolicy_2.2.bb       |    4 ++--
- recipes-security/selinux/libselinux_2.2.2.bb      |    4 ++--
- recipes-security/selinux/libsemanage_2.2.bb       |    4 ++--
- recipes-security/selinux/libsepol_2.2.bb          |    4 ++--
- recipes-security/selinux/policycoreutils_2.2.5.bb |    4 ++--
- recipes-security/selinux/selinux_20131030.inc     |    2 +-
- recipes-security/selinux/selinux_common.inc       |    6 +++++-
- recipes-security/selinux/selinux_git.inc          |    6 ++++--
- recipes-security/selinux/sepolgen_1.2.1.bb        |    4 ++--
- recipes-security/setools/setools_3.3.8.bb         |    2 +-
- 10 files changed, 23 insertions(+), 17 deletions(-)
+[?] - At this stage, how can I confirm that the toolchain is built
+properly? I can see the environment-setup script is there, and it properly
+sets the environment. Is there anything else I should see to confirm?
 
-diff --git a/recipes-security/selinux/checkpolicy_2.2.bb b/recipes-security/selinux/checkpolicy_2.2.bb
-index 47bbf57..23d57c1 100644
---- a/recipes-security/selinux/checkpolicy_2.2.bb
-+++ b/recipes-security/selinux/checkpolicy_2.2.bb
-@@ -5,5 +5,5 @@ include ${BPN}.inc
- 
- LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
- 
--SRC_URI[md5sum] = "9662eaa1163de67cf3d392b58d262552"
--SRC_URI[sha256sum] = "9ff6698f4d4cb59c9c916e348187d533ada4107f90c253ef7304905934e9adf8"
-+SRC_URI[md5sum] = "d76d5c70cd594fdb15f8d319c6536324"
-+SRC_URI[sha256sum] = "5d74075379cbaf17135c2a113a3053bd2e7b2a2c54ac04458de652457306c020"
-diff --git a/recipes-security/selinux/libselinux_2.2.2.bb b/recipes-security/selinux/libselinux_2.2.2.bb
-index 0027a35..d6502ad 100644
---- a/recipes-security/selinux/libselinux_2.2.2.bb
-+++ b/recipes-security/selinux/libselinux_2.2.2.bb
-@@ -5,8 +5,8 @@ include ${BPN}.inc
- 
- LIC_FILES_CHKSUM = "file://LICENSE;md5=84b4d2c6ef954a2d4081e775a270d0d0"
- 
--SRC_URI[md5sum] = "55026eb4654c4f732a27c191b39bebaf"
--SRC_URI[sha256sum] = "30ab363416806da907b86b97f1d31c252473e3200358bb1570f563c8312b5a3e"
-+SRC_URI[md5sum] = "c13ea5de171f21fee399abfd4aef9481"
-+SRC_URI[sha256sum] = "cc8354d67d7bef11fb2a03d23e788c6f4e8510b6760c3778dc7baf6dcfa97539"
- 
- SRC_URI += "\
-         file://libselinux-drop-Wno-unused-but-set-variable.patch \
-diff --git a/recipes-security/selinux/libsemanage_2.2.bb b/recipes-security/selinux/libsemanage_2.2.bb
-index 6a67d9f..1f00d07 100644
---- a/recipes-security/selinux/libsemanage_2.2.bb
-+++ b/recipes-security/selinux/libsemanage_2.2.bb
-@@ -5,8 +5,8 @@ include ${BPN}.inc
- 
- LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
- 
--SRC_URI[md5sum] = "2a939538645de6023633bc2247a5e72e"
--SRC_URI[sha256sum] = "11f60bfa0f1c6063cd9bd99ce0cb4acc9d6d9e9b8d7743d39e847bcd7803bd75"
-+SRC_URI[md5sum] = "2bb8f4b728a5667519764297b7725c19"
-+SRC_URI[sha256sum] = "9b421ce1df10594cb467eef37faeb403d5c6b341a4b7e4b407ac4cb77df95cba"
- 
- SRC_URI += "\
- 	file://libsemanage-Fix-execve-segfaults-on-Ubuntu.patch \
-diff --git a/recipes-security/selinux/libsepol_2.2.bb b/recipes-security/selinux/libsepol_2.2.bb
-index 485d1da..a0b7df7 100644
---- a/recipes-security/selinux/libsepol_2.2.bb
-+++ b/recipes-security/selinux/libsepol_2.2.bb
-@@ -5,5 +5,5 @@ include ${BPN}.inc
- 
- LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
- 
--SRC_URI[md5sum] = "41cbe38ea809b5752f520bdeac4d2cf8"
--SRC_URI[sha256sum] = "77a4b27006295805bdbd7f240038cb32a49be1d60847d413899501702933fc0f"
-+SRC_URI[md5sum] = "2d43599ed29fea9ef41218ec9635ef64"
-+SRC_URI[sha256sum] = "fbd77459fd03979a9020289b10c89a0af56a52bcd0f7ae0a78455713bb04878b"
-diff --git a/recipes-security/selinux/policycoreutils_2.2.5.bb b/recipes-security/selinux/policycoreutils_2.2.5.bb
-index 2bbf541..96cf354 100644
---- a/recipes-security/selinux/policycoreutils_2.2.5.bb
-+++ b/recipes-security/selinux/policycoreutils_2.2.5.bb
-@@ -5,8 +5,8 @@ include ${BPN}.inc
- 
- LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
- 
--SRC_URI[md5sum] = "a2963d7024c5c4ce89f2459d48f91ec8"
--SRC_URI[sha256sum] = "bbf850a8c3c2f371f439d6525663eecdd3a737acd594d2f27f8d8f3a07830cc4"
-+SRC_URI[md5sum] = "f330a90c566c8b564858d45399ce3dd1"
-+SRC_URI[sha256sum] = "3d2c8806742004693c2d4726abbc4f412340ee07bed407976dd8abeda09a4333"
- 
- SRC_URI += "\
- 	file://policycoreutils-fix-sepolicy-install-path.patch \
-diff --git a/recipes-security/selinux/selinux_20131030.inc b/recipes-security/selinux/selinux_20131030.inc
-index 2cb35d5..01cc52f 100644
---- a/recipes-security/selinux/selinux_20131030.inc
-+++ b/recipes-security/selinux/selinux_20131030.inc
-@@ -1,5 +1,5 @@
- SELINUX_RELEASE = "20131030"
- 
--SRC_URI = "http://userspace.selinuxproject.org/releases/${SELINUX_RELEASE}/${BPN}-${PV}.tar.gz"
-+SRC_URI = "https://github.com/SELinuxProject/selinux/archive/${BPN}-${PV}.tar.gz"
- 
- include selinux_common.inc
-diff --git a/recipes-security/selinux/selinux_common.inc b/recipes-security/selinux/selinux_common.inc
-index 6997cee..e53792d 100644
---- a/recipes-security/selinux/selinux_common.inc
-+++ b/recipes-security/selinux/selinux_common.inc
-@@ -1,10 +1,14 @@
--HOMEPAGE = "http://userspace.selinuxproject.org"
-+HOMEPAGE = "https://github.com/SELinuxProject"
- 
- # EXTRA_OEMAKE is typically: -e MAKEFLAGS=
- # "MAKEFLAGS= " causes problems as ENV variables will not pass to subdirs, so
- # we redefine EXTRA_OEMAKE here
- EXTRA_OEMAKE = "-e"
- 
-+# Releases are now from the base of the full tree, necessitating our skipping
-+# through an extra level of directories.
-+S = "${WORKDIR}/selinux-${BPN}-${PV}/${BPN}"
-+
- do_compile() {
-     oe_runmake all \
-             INCLUDEDIR='${STAGING_INCDIR}' \
-diff --git a/recipes-security/selinux/selinux_git.inc b/recipes-security/selinux/selinux_git.inc
-index bb64d0d..d56f25b 100644
---- a/recipes-security/selinux/selinux_git.inc
-+++ b/recipes-security/selinux/selinux_git.inc
-@@ -2,8 +2,10 @@ SRCREV = "edc2e99687b050d5be21a78a66d038aa1fc068d9"
- 
- SRC_URI = "git://oss.tresys.com/git/selinux.git;protocol=http"
- 
--S = "${WORKDIR}/git/${BPN}"
--
- include selinux_common.inc
- 
-+# ${S} is set in selinux_common above, but we need to change it here since the
-+# top level directory is named differently
-+S = "${WORKDIR}/git/${BPN}"
-+
- DEFAULT_PREFERENCE = "-1"
-diff --git a/recipes-security/selinux/sepolgen_1.2.1.bb b/recipes-security/selinux/sepolgen_1.2.1.bb
-index a253e17..21dff41 100644
---- a/recipes-security/selinux/sepolgen_1.2.1.bb
-+++ b/recipes-security/selinux/sepolgen_1.2.1.bb
-@@ -5,5 +5,5 @@ include ${BPN}.inc
- 
- LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
- 
--SRC_URI[md5sum] = "ce662a83188bc3a9b40c15792fcaf2c8"
--SRC_URI[sha256sum] = "438c246bdc6b3cf1b12116831f4c601aaae6e93decb007dddab212a3c88781b0"
-+SRC_URI[md5sum] = "308011ba495b6770239bb3d371d277d3"
-+SRC_URI[sha256sum] = "7a5710f7c8be16dfbaf8da98c3c0e46bc6159f2df5340e9efb975b084f61413c"
-diff --git a/recipes-security/setools/setools_3.3.8.bb b/recipes-security/setools/setools_3.3.8.bb
-index ba1802a..6f3b1dd 100644
---- a/recipes-security/setools/setools_3.3.8.bb
-+++ b/recipes-security/setools/setools_3.3.8.bb
-@@ -8,7 +8,7 @@ SETools."
- SECTION = "base"
- LICENSE = "GPLv2 & LGPLv2.1"
- 
--SRC_URI = "http://oss.tresys.com/projects/setools/chrome/site/dists/setools-${PV}/setools-${PV}.tar.bz2;"
-+SRC_URI = "https://raw.githubusercontent.com/wiki/TresysTechnology/setools3/files/dists/setools-${PV}/setools-${PV}.tar.bz2"
- SRC_URI[md5sum] = "d68d0d4e4da0f01da0f208782ff04b91"
- SRC_URI[sha256sum] = "44387ecc9a231ec536a937783440cd8960a72c51f14bffc1604b7525e341e999"
- 
--- 
-1.7.9.5
+Current steps:
+1. Source the above-referenced environment-setup script, and then in that
+same shell I open eclipse.
+2. Set the "Toolchain Root Location" to the build directory, just above the
+tmp directory, where above-referenced script is located.
+3. Set the Sysroot Location to the appropriate directory.
+**I am unable to set the Target Architecture - because the box is grayed
+out. I don't know why this would be the case.**
+
+When I hit "apply" I see this error:
+
+Specified toolchain directory does not contain a toolchain
+generated with "bitbake meta-ide-support"
 
 
+What am I missing? Getting this Eclipse plug-in would be immensely helpful.
+I appreciate all suggestions.
+
+--047d7bd6bd248b52a6050322d914
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I&#39;m having issues getting the eclipse plug-in to work.=
+ =C2=A0The script that initializes the environment gets built properly, and=
+ I am able to run &quot;make&quot; from the command line. But for some reas=
+on, Eclipse seems to be configured incorrectly.<div><br></div><div>Backgrou=
+nd:</div><div>=C2=A0 =C2=A0 |--- Kepler 4.3.2 installed.</div><div>=C2=A0 =
+=C2=A0 |--- Completed all of the steps in 4.2.2.1.2 from <a href=3D"http://=
+www.yoctoproject.org/docs/1.6/dev-manual/dev-manual.html#adt-eclipse">here<=
+/a>=C2=A0(i.e., I configured Eclipse)</div><div>=C2=A0 =C2=A0 |--- I instal=
+led the pre-built plugin from <a href=3D"http://downloads.yoctoproject.org/=
+releases/eclipse-plugin/1.6/kepler/">here</a>.</div><div>=C2=A0 =C2=A0 |---=
+ Because I&#39;m using the toolchain from within the build directory, I fol=
+lowed <a href=3D"http://www.yoctoproject.org/docs/1.6/adt-manual/adt-manual=
+.html#using-the-toolchain-from-within-the-build-tree">these instructions</a=
+>.</div><div><br></div><div>[?] - At this stage, how can I confirm that the=
+ toolchain is built properly? I can see the environment-setup script is the=
+re, and it properly sets the environment. Is there anything else I should s=
+ee to confirm?</div><div><br></div><div>Current steps:</div><div>1. Source =
+the above-referenced environment-setup script, and then in that same shell =
+I open eclipse.</div><div>2. Set the &quot;Toolchain Root Location&quot; to=
+ the build directory, just above the tmp directory, where above-referenced =
+script is located.</div><div>3. Set the Sysroot Location to the appropriate=
+ directory.</div><div>**I am unable to set the Target Architecture - becaus=
+e the box is grayed out. I don&#39;t know why this would be the case.**</di=
+v><div><br></div><div>When I hit &quot;apply&quot; I see this error:</div><=
+div><pre style=3D"font-family:courier,&#39;courier new&#39;,monospace;font-=
+size:14px;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;margin-b=
+ottom:0px;color:rgb(0,0,0);line-height:19.600000381469727px">Specified tool=
+chain directory does not contain a toolchain
+generated with &quot;bitbake meta-ide-support&quot;</pre></div><div><br></d=
+iv><div>What am I missing? Getting this Eclipse plug-in would be immensely =
+helpful. I appreciate all suggestions.</div><div><br></div><div><br></div><=
+div><br></div><div><br></div></div>
+
+--047d7bd6bd248b52a6050322d914--
