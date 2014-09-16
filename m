@@ -1,49 +1,42 @@
-Return-Path: <ncrypticus@gmail.com>
+Return-Path: <Neil.Wu@Emerson.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6C6AEE00849; Mon, 15 Sep 2014 16:18:24 -0700 (PDT)
+	id CA533E00846; Mon, 15 Sep 2014 19:04:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ncrypticus[at]gmail.com)
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [144.191.128.190 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.219.48 listed in list.dnswl.org]
-Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
-	[209.85.219.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B6DAE0077E
-	for <yocto@yoctoproject.org>; Mon, 15 Sep 2014 16:18:18 -0700 (PDT)
-Received: by mail-oa0-f48.google.com with SMTP id g18so3096612oah.21
-	for <yocto@yoctoproject.org>; Mon, 15 Sep 2014 16:18:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=eAV+ZgBle1nTrjCJbSTANX8IHBtFGPxuAg/em0v4j2E=;
-	b=CaBY/ix2c/GociEqWJF39XGIR/6oFOUZsp0Of68+JjWSRtGWCLUbxpa3/OB2axdVjm
-	rdC5DHjYllGFhIyTQ/+FCN590gOxWSbLiGHl9KxFN8wnyyUJ/H6A6D5VfdKUz4W4Yn2F
-	KIFkzCROU2PsT5GDOQ6+/MtdEZHfMx1tWLDjjqFO2drh17B0AEngDBS1RHxaV+wpIepq
-	RPezpldQo0rJZy9mT+UTyP7iskl3mo1+poggVCGAhjEAzEQnwj4jxrcRt+PAQe/ABSTZ
-	TVR88jDryUmR44kmuTHd+tlE7uASaxL5YZ6njCvXd5Y4r1O5yZ6JXP/DQaR6SXkK6Z/z
-	Ksvg==
+Received: from USSTLZ-PINFEZ06.extemr.org (usstlz-pinfez06.extemr.org
+	[144.191.128.190])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12165E0078A
+	for <yocto@yoctoproject.org>; Mon, 15 Sep 2014 19:04:45 -0700 (PDT)
+Received: from USSTLZ-PMSG001.emrsn.org (10.16.72.26) by
+	USSTLZ-PINFEZ06.extemr.org (10.16.8.79) with Microsoft SMTP Server
+	(TLS) id 14.3.158.1; Tue, 16 Sep 2014 02:04:43 +0000
+Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.186]) by
+	USSTLZ-PMSG001.emrsn.org ([169.254.1.153]) with mapi id 14.03.0158.001;
+	Tue, 16 Sep 2014 02:04:44 +0000
+From: <Neil.Wu@Emerson.com>
+To: <ross.burton@intel.com>
+Thread-Topic: [yocto] create_image.tar fail
+Thread-Index: AQHP0M2IndNYhRkOn0KFNtCkIN7eppwDALuA
+Date: Tue, 16 Sep 2014 02:04:42 +0000
+Message-ID: <3204FE6663E1F14CAF4CA6928E60C85215B7FFEF@USSTLZ-PMSG012.emrsn.org>
+References: <3204FE6663E1F14CAF4CA6928E60C85215B7EF55@USSTLZ-PMSG012.emrsn.org>
+	<CAJTo0LZUpwsx7T_c6MBEc-CnhfAJq5oYRPVtYjNa+C46Rs-3RQ@mail.gmail.com>
+In-Reply-To: <CAJTo0LZUpwsx7T_c6MBEc-CnhfAJq5oYRPVtYjNa+C46Rs-3RQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.75.1]
 MIME-Version: 1.0
-X-Received: by 10.60.179.200 with SMTP id di8mr4779043oec.75.1410823097109;
-	Mon, 15 Sep 2014 16:18:17 -0700 (PDT)
-Received: by 10.202.169.82 with HTTP; Mon, 15 Sep 2014 16:18:17 -0700 (PDT)
-Date: Mon, 15 Sep 2014 16:18:17 -0700
-Message-ID: <CAMSG=xWG4j-eZRwzpA+CyaiKwcvc-t18fut+-vsGBL4cLFftwQ@mail.gmail.com>
-From: Nemicolopterus Crypticus <ncrypticus@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Eclipse plug-in
+Cc: yocto@yoctoproject.org
+Subject: Re: create_image.tar fail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,87 +48,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Sep 2014 23:18:24 -0000
-Content-Type: multipart/alternative; boundary=047d7bd6bd248b52a6050322d914
+X-List-Received-Date: Tue, 16 Sep 2014 02:04:46 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---047d7bd6bd248b52a6050322d914
-Content-Type: text/plain; charset=UTF-8
+SGkgQnVydG9uIDoNCglZb3UgYXJlIHNvIGdyZWF0ISBUaGFuayB5b3UgdmVyeSBtdWNoIC5NeSBw
+cm9ibGVtIGhhcyByZXNvbHZlZC4gDQoJQWx0aG91Z2ggSSBkb24ndCBpbnN0YWxsIHRoZSBidXN5
+Ym94LCBidXQgSSAgZmluZCB0aGUgYnVzeWJveC1zdGF0aWMgYW5kIHVidW50dS1zdGFuZGFyZCBp
+biBteSBzeXN0ZW0uIEFmZXIgcmVtb3ZlIHRoZW0gLCBjb21waWxpbmcgaXMgc3VjY2Vzc2Z1bC4N
+CiAgICAgIA0KCWJ1c3lib3gtc3RhdGljOiAvdXNyL3NoYXJlL2RvYy9idXN5Ym94LXN0YXRpYy9l
+eGFtcGxlcy91ZGhjcC9zYW1wbGUucmVuZXcNCiAgICAgIGJ1c3lib3gtc3RhdGljOiAvdXNyL3No
+YXJlL2RvYy9idXN5Ym94LXN0YXRpYy9leGFtcGxlcy9tZGV2X2ZhdC5jb25mDQogICAgICBidXN5
+Ym94LXN0YXRpYzogL3Vzci9zaGFyZS9kb2MvYnVzeWJveC1zdGF0aWMvZXhhbXBsZXMvbWRldi5j
+b25mDQogICAgICBidXN5Ym94LXN0YXRpYzogL3Vzci9zaGFyZS9kb2MvYnVzeWJveC1zdGF0aWMv
+ZXhhbXBsZXMNCiAgICAgIGJ1c3lib3gtc3RhdGljOiAvdXNyL3NoYXJlL2RvYy9idXN5Ym94LXN0
+YXRpYy9leGFtcGxlcy91ZGhjcC9zYW1wbGUubmFrDQoNCiAgICAgIEZpbmFsbHksIHNpbmNlcmVs
+eSB0aGFua3MgZm9yIHlvdXIgaGVscC4NCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9t
+OiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dIA0KU2VudDogTW9u
+ZGF5LCBTZXB0ZW1iZXIgMTUsIDIwMTQgNjoxMiBQTQ0KVG86IFd1LCBOZWlsIFtDTElNQVRFL1JT
+L0NOXQ0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIGNy
+ZWF0ZV9pbWFnZS50YXIgZmFpbA0KDQpPbiAxNSBTZXB0ZW1iZXIgMjAxNCAwOTo0OCwgIDxOZWls
+Lld1QGVtZXJzb24uY29tPiB3cm90ZToNCj4gQnVzeUJveCB2MS4yMS4xIChVYnVudHUgMToxLjIx
+LjAtMXVidW50dTEpIG11bHRpLWNhbGwgYmluYXJ5Lg0KDQpJdHMgdXNpbmcgYnVzeWJveCdzIHRh
+ciwgZG9uJ3QgZG8gdGhpcy4gIEVpdGhlciB1bmluc3RhbGwgYnVzeWJveCwgb3IgY2hhbmdlIHRo
+ZSBhbHRlcm5hdGl2ZXMgc28gdGhhdCAvdXNyL2Jpbi90YXIgaXMgR05VIHRhciwgbm90IGJ1c3li
+b3ggdGFyLg0KDQpSb3NzDQo=
 
-I'm having issues getting the eclipse plug-in to work.  The script that
-initializes the environment gets built properly, and I am able to run
-"make" from the command line. But for some reason, Eclipse seems to be
-configured incorrectly.
-
-Background:
-    |--- Kepler 4.3.2 installed.
-    |--- Completed all of the steps in 4.2.2.1.2 from here
-<http://www.yoctoproject.org/docs/1.6/dev-manual/dev-manual.html#adt-eclipse>
-(i.e.,
-I configured Eclipse)
-    |--- I installed the pre-built plugin from here
-<http://downloads.yoctoproject.org/releases/eclipse-plugin/1.6/kepler/>.
-    |--- Because I'm using the toolchain from within the build directory, I
-followed these instructions
-<http://www.yoctoproject.org/docs/1.6/adt-manual/adt-manual.html#using-the-toolchain-from-within-the-build-tree>
-.
-
-[?] - At this stage, how can I confirm that the toolchain is built
-properly? I can see the environment-setup script is there, and it properly
-sets the environment. Is there anything else I should see to confirm?
-
-Current steps:
-1. Source the above-referenced environment-setup script, and then in that
-same shell I open eclipse.
-2. Set the "Toolchain Root Location" to the build directory, just above the
-tmp directory, where above-referenced script is located.
-3. Set the Sysroot Location to the appropriate directory.
-**I am unable to set the Target Architecture - because the box is grayed
-out. I don't know why this would be the case.**
-
-When I hit "apply" I see this error:
-
-Specified toolchain directory does not contain a toolchain
-generated with "bitbake meta-ide-support"
-
-
-What am I missing? Getting this Eclipse plug-in would be immensely helpful.
-I appreciate all suggestions.
-
---047d7bd6bd248b52a6050322d914
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I&#39;m having issues getting the eclipse plug-in to work.=
- =C2=A0The script that initializes the environment gets built properly, and=
- I am able to run &quot;make&quot; from the command line. But for some reas=
-on, Eclipse seems to be configured incorrectly.<div><br></div><div>Backgrou=
-nd:</div><div>=C2=A0 =C2=A0 |--- Kepler 4.3.2 installed.</div><div>=C2=A0 =
-=C2=A0 |--- Completed all of the steps in 4.2.2.1.2 from <a href=3D"http://=
-www.yoctoproject.org/docs/1.6/dev-manual/dev-manual.html#adt-eclipse">here<=
-/a>=C2=A0(i.e., I configured Eclipse)</div><div>=C2=A0 =C2=A0 |--- I instal=
-led the pre-built plugin from <a href=3D"http://downloads.yoctoproject.org/=
-releases/eclipse-plugin/1.6/kepler/">here</a>.</div><div>=C2=A0 =C2=A0 |---=
- Because I&#39;m using the toolchain from within the build directory, I fol=
-lowed <a href=3D"http://www.yoctoproject.org/docs/1.6/adt-manual/adt-manual=
-.html#using-the-toolchain-from-within-the-build-tree">these instructions</a=
->.</div><div><br></div><div>[?] - At this stage, how can I confirm that the=
- toolchain is built properly? I can see the environment-setup script is the=
-re, and it properly sets the environment. Is there anything else I should s=
-ee to confirm?</div><div><br></div><div>Current steps:</div><div>1. Source =
-the above-referenced environment-setup script, and then in that same shell =
-I open eclipse.</div><div>2. Set the &quot;Toolchain Root Location&quot; to=
- the build directory, just above the tmp directory, where above-referenced =
-script is located.</div><div>3. Set the Sysroot Location to the appropriate=
- directory.</div><div>**I am unable to set the Target Architecture - becaus=
-e the box is grayed out. I don&#39;t know why this would be the case.**</di=
-v><div><br></div><div>When I hit &quot;apply&quot; I see this error:</div><=
-div><pre style=3D"font-family:courier,&#39;courier new&#39;,monospace;font-=
-size:14px;white-space:pre-wrap;word-wrap:break-word;margin-top:0px;margin-b=
-ottom:0px;color:rgb(0,0,0);line-height:19.600000381469727px">Specified tool=
-chain directory does not contain a toolchain
-generated with &quot;bitbake meta-ide-support&quot;</pre></div><div><br></d=
-iv><div>What am I missing? Getting this Eclipse plug-in would be immensely =
-helpful. I appreciate all suggestions.</div><div><br></div><div><br></div><=
-div><br></div><div><br></div></div>
-
---047d7bd6bd248b52a6050322d914--
