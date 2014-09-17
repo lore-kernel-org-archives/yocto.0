@@ -1,40 +1,40 @@
-Return-Path: <Xin.Ouyang@windriver.com>
+Return-Path: <Kai.Kang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 476A9E0084D; Tue, 16 Sep 2014 22:53:31 -0700 (PDT)
+	id 942AFE0084D; Wed, 17 Sep 2014 00:54:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BA0BE00786
-	for <yocto@yoctoproject.org>; Tue, 16 Sep 2014 22:53:24 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4251FE00786
+	for <yocto@yoctoproject.org>; Wed, 17 Sep 2014 00:53:49 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id s8H5rFTu010014
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 16 Sep 2014 22:53:15 -0700 (PDT)
-Received: from pascal-macbookpro.corp.ad.wrs.com (128.224.159.159) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.174.1; Tue, 16 Sep 2014 22:53:14 -0700
-Message-ID: <541921C9.4010900@windriver.com>
-Date: Wed, 17 Sep 2014 13:53:13 +0800
-From: Pascal Ouyang <xin.ouyang@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id s8H7rmYK017924
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 17 Sep 2014 00:53:48 -0700 (PDT)
+Received: from [128.224.162.231] (128.224.162.231) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.174.1;
+	Wed, 17 Sep 2014 00:53:47 -0700
+Message-ID: <54193E0B.5040002@windriver.com>
+Date: Wed, 17 Sep 2014 15:53:47 +0800
+From: Kang Kai <Kai.Kang@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
 MIME-Version: 1.0
-To: Philip Tricca <flihp@twobit.us>
-References: <1410177817-19839-1-git-send-email-flihp@twobit.us>
-	<54131665.6090909@twobit.us>
-In-Reply-To: <54131665.6090909@twobit.us>
-X-TagToolbar-Keys: D20140917135313276
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH 0/3] Version number cleanup
+To: <yocto@yoctoproject.org>
+References: <1408072893-28126-1-git-send-email-kai.kang@windriver.com>
+	<1408072893-28126-2-git-send-email-kai.kang@windriver.com>
+In-Reply-To: <1408072893-28126-2-git-send-email-kai.kang@windriver.com>
+X-Originating-IP: [128.224.162.231]
+Subject: Re: [PATCH] qemu: enable aarch64 support in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,61 +46,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Sep 2014 05:53:31 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 17 Sep 2014 07:54:05 -0000
+Content-Type: multipart/alternative;
+	boundary="------------060902020203010707050501"
 
-于 14-9-12 下午11:51, Philip Tricca 写道:
-> Hello Xin,
+--------------060902020203010707050501
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 2014?08?15? 11:21, Kai Kang wrote:
+> qemu 2.1.0 support aarch64 targets, so add aarch64 to QEMU_TARGETS to
+> enable qemu aarch64 support. Var QEMU_TARGETS in poky.conf overrides the
+> var in qemu recipe, so add in poky.conf too.
 >
-> Just noticed that you pushed these patches to the meta-selinux repo but
-> with your name and a slightly different commit message in one case.
-> Other than forgetting to copy you on my initial message to the list was
-> there a problem with my patches? Just want to be sure that the next time
-> I send out patches I get them right if there was in fact an issue with
-> these ones.
+> Signed-off-by: Kai Kang <kai.kang@windriver.com>
+> ---
+>   meta-yocto/conf/distro/poky.conf | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 >
+> diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
+> index ec251f9..9a67b50 100644
+> --- a/meta-yocto/conf/distro/poky.conf
+> +++ b/meta-yocto/conf/distro/poky.conf
+> @@ -44,7 +44,7 @@ DISTRO_EXTRA_RDEPENDS_append_qemux86-64 = " ${POKYQEMUDEPS}"
+>   
+>   TCLIBCAPPEND = ""
+>   
+> -QEMU_TARGETS ?= "arm i386 mips mipsel ppc x86_64"
+> +QEMU_TARGETS ?= "arm aarch64 i386 mips mipsel ppc x86_64"
+>   # Other QEMU_TARGETS "mips64 mips64el sh4"
+>   
+>   PREMIRRORS ??= "\
 
-Hi Philip,
-
-I'm sorry that I had missed your mail before pushing.
-
-I used to do small fixes with diectly pushing and not sending review in 
-the maillist, that's why I missed your mail. In the future commits, I 
-will send reivews and check the maillist carefully to avoid similar missing.
-
-Thanks you for your contribution to meta-selinux. :)
-
-- Pascal
-
-> Thanks,
-> Philip
->
-> On 09/08/2014 08:03 AM, Philip Tricca wrote:
->> Patch set to use wildcards in the version numbers of the at and shadow
->> bbappends and to remove the 3.4 kernel bbappend.
->>
->> Philip Tricca (3):
->>    shadow: Use wildcard for version number in bbappend.
->>    at: Use wildcard for version number in bbappend.
->>    linux-yocto: Remove bbappend for old 3.4 kernel.
->>
->>   recipes-extended/at/at_%.bbappend               |    7 +++++++
->>   recipes-extended/at/at_3.1.14.bbappend          |    7 -------
->>   recipes-extended/shadow/shadow_%.bbappend       |    5 +++++
->>   recipes-extended/shadow/shadow_4.1.4.3.bbappend |    5 -----
->>   recipes-kernel/linux/linux-yocto_3.4.bbappend   |    7 -------
->>   5 files changed, 12 insertions(+), 19 deletions(-)
->>   create mode 100644 recipes-extended/at/at_%.bbappend
->>   delete mode 100644 recipes-extended/at/at_3.1.14.bbappend
->>   create mode 100644 recipes-extended/shadow/shadow_%.bbappend
->>   delete mode 100644 recipes-extended/shadow/shadow_4.1.4.3.bbappend
->>   delete mode 100644 recipes-kernel/linux/linux-yocto_3.4.bbappend
->>
->
->
-
+ping?
 
 -- 
-- Pascal
+Regards,
+Neil | Kai Kang
 
+
+--------------060902020203010707050501
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 2014&#24180;08&#26376;15&#26085; 11:21, Kai Kang wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:1408072893-28126-2-git-send-email-kai.kang@windriver.com"
+      type="cite">
+      <pre wrap="">qemu 2.1.0 support aarch64 targets, so add aarch64 to QEMU_TARGETS to
+enable qemu aarch64 support. Var QEMU_TARGETS in poky.conf overrides the
+var in qemu recipe, so add in poky.conf too.
+
+Signed-off-by: Kai Kang <a class="moz-txt-link-rfc2396E" href="mailto:kai.kang@windriver.com">&lt;kai.kang@windriver.com&gt;</a>
+---
+ meta-yocto/conf/distro/poky.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
+index ec251f9..9a67b50 100644
+--- a/meta-yocto/conf/distro/poky.conf
++++ b/meta-yocto/conf/distro/poky.conf
+@@ -44,7 +44,7 @@ DISTRO_EXTRA_RDEPENDS_append_qemux86-64 = " ${POKYQEMUDEPS}"
+ 
+ TCLIBCAPPEND = ""
+ 
+-QEMU_TARGETS ?= "arm i386 mips mipsel ppc x86_64"
++QEMU_TARGETS ?= "arm aarch64 i386 mips mipsel ppc x86_64"
+ # Other QEMU_TARGETS "mips64 mips64el sh4"
+ 
+ PREMIRRORS ??= "\
+</pre>
+    </blockquote>
+    <br>
+    <font size="+1">ping?</font><br>
+    <br>
+    <pre class="moz-signature" cols="72">-- 
+Regards,
+Neil | Kai Kang</pre>
+  </body>
+</html>
+
+--------------060902020203010707050501--
