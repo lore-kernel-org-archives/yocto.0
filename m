@@ -1,48 +1,40 @@
-Return-Path: <vmartin@avaya.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AE191E00781; Thu, 18 Sep 2014 09:19:29 -0700 (PDT)
+	id 8DDD6E00855; Thu, 18 Sep 2014 13:06:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_20,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.152.71.100 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
-	*      [score: 0.0765]
-X-Greylist: delayed 69 seconds by postgrey-1.32 at yocto-www;
-	Thu, 18 Sep 2014 09:19:28 PDT
-Received: from de307622-de-outbound.net.avaya.com
-	(de307622-de-outbound.net.avaya.com [198.152.71.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45495E0056A
-	for <yocto@yoctoproject.org>; Thu, 18 Sep 2014 09:19:28 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AtwGAEsFG1SHCzIm/2dsb2JhbABggkcjI1Nb0R4BgQkWAQFwCIQFAQEDEhteAQwJFVYmAQQbGogcAZxGhGWhG49Gg2aBHQWPOIIWkzCNVoFpHIFZgjSBAgEBAQ
-X-IronPort-AV: E=Sophos;i="5.04,548,1406606400"; d="scan'208,217";a="72705255"
-Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
-	([135.11.50.38]) by de307622-de-outbound.net.avaya.com with ESMTP;
-	18 Sep 2014 12:18:16 -0400
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC01.global.avaya.com) ([135.11.85.12])
-	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/AES128-SHA;
-	18 Sep 2014 12:18:15 -0400
-Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
-	AZ-US1EXHC01.global.avaya.com ([135.11.85.12]) with mapi id
-	14.03.0174.001; Thu, 18 Sep 2014 12:18:15 -0400
-From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Customizing task basehash
-Thread-Index: Ac/TWyjFypHKSIkASUaSiPdRCClY4g==
-Date: Thu, 18 Sep 2014 16:18:14 +0000
-Message-ID: <30C2D590D16A5C46ADFE6521910377982FDD4037@AZ-US1EXMB03.global.avaya.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.11.85.50]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B85DE00781
+	for <yocto@yoctoproject.org>; Thu, 18 Sep 2014 13:06:50 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id s8IK6dkj019055
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 18 Sep 2014 13:06:40 -0700 (PDT)
+Received: from msp-dhcp29.wrs.com (172.25.34.29) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 18 Sep 2014 13:06:39 -0700
+Message-ID: <541B3B4E.30300@windriver.com>
+Date: Thu, 18 Sep 2014 15:06:38 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-Subject: Customizing task basehash
+To: Joe MacDonald <Joe_MacDonald@mentor.com>, <xin.ouyang@windriver.com>,
+	<flihp@twobit.us>
+References: <20140918195737.GB6322@mentor.com>
+In-Reply-To: <20140918195737.GB6322@mentor.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux] refpolicy update in master-next
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,111 +46,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Sep 2014 16:19:29 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_30C2D590D16A5C46ADFE6521910377982FDD4037AZUS1EXMB03glob_"
+X-List-Received-Date: Thu, 18 Sep 2014 20:06:58 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_30C2D590D16A5C46ADFE6521910377982FDD4037AZUS1EXMB03glob_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-I have defined a class with a customized fetch task (that
-copies files from a local directory to the ${S} directory).
-
-I am looking for a way to cause the fetch task to run
-whenever the contents of the local directory change
-w.r.t. what was last fetched/copied to ${S}.
-
-Seems to me that I could do this by including the hash
-of the source directory contents into the basehash of
-the fetch task.
-
-But I can't see how to do that. It is possible, or am I
-thinking in the wrong direction? Is there a better way
-to achieve what I need?
-
-MV
-
---_000_30C2D590D16A5C46ADFE6521910377982FDD4037AZUS1EXMB03glob_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 9/18/14, 2:57 PM, Joe MacDonald wrote:
+> Hey all,
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">I have defined a class with a customized fetch task =
-(that<o:p></o:p></p>
-<p class=3D"MsoNormal">copies files from a local directory to the ${S} dire=
-ctory).<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am looking for a way to cause the fetch task to ru=
-n<o:p></o:p></p>
-<p class=3D"MsoNormal">whenever the contents of the local directory change<=
-o:p></o:p></p>
-<p class=3D"MsoNormal">w.r.t. what was last fetched/copied to ${S}.<o:p></o=
-:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Seems to me that I could do this by including the ha=
-sh<o:p></o:p></p>
-<p class=3D"MsoNormal">of the source directory contents into the basehash o=
-f<o:p></o:p></p>
-<p class=3D"MsoNormal">the fetch task.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">But I can&#8217;t see how to do that. It is possible=
-, or am I<o:p></o:p></p>
-<p class=3D"MsoNormal">thinking in the wrong direction? Is there a better w=
-ay<o:p></o:p></p>
-<p class=3D"MsoNormal">to achieve what I need?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">MV<o:p></o:p></p>
-</div>
-</body>
-</html>
+> As we'd all discussed at different times in the past, we're well behind
+> the curve on a refpolicy update for meta-selinux.  With the 1.7 release
+> of Yocto coming up, we thought it was important to update the policy
+> sooner rather than later, so I'm starting that work now.
+>
+> It's being done in master-next and currently the only recipe that has
+> been updated is the -mls one.  Over the next few days I'll be updating
+> the others, then working through testing and trying to make sure they're
+> all sane.  It would help me out immensely if you had time to kick the
+> tires as well on your favourite policy variant.
+>
+> Depending on how long this takes, the next step is updating the
+> userspace.  Fortunately this time around, though, the current userspace
+> is still officially up to the task of managing the current policy, so a
+> full update isn't strictly required.  It'd be a really nice thing to
+> have done, though.  :-)
+>
 
---_000_30C2D590D16A5C46ADFE6521910377982FDD4037AZUS1EXMB03glob_--
+I spoke with Joe about this work this morning, and I think master-next is the 
+right place to do this.  So if you have immediate bug fixes, we'll try to apply 
+them to both master and master-next.  And then continue to use master-next to 
+stage the policy changes (or anything else that requires a bit more 'soak' time) 
+before merging.
+
+I'd like to try to get 'master' of meta-selinux fully synced and working with 
+the 'master' of Poky around the time of Poky's release (within a week or so of 
+the release at least)..  then we can branch and let the master continue to flow 
+with any "new" work.  (It's a plan, I'm not sure if it'll happen or not.)
+
+If anyone has any concerns let me know.. otherwise I think this is the plan!
+
+--Mark
+
