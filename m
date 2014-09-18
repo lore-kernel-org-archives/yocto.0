@@ -1,45 +1,37 @@
-Return-Path: <sandrieu@greenflex.com>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F1CA8E00790; Thu, 18 Sep 2014 09:47:10 -0700 (PDT)
+	id D23D9E00790; Thu, 18 Sep 2014 12:57:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_05,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
-	*      [score: 0.0189]
-X-Greylist: delayed 450 seconds by postgrey-1.32 at yocto-www;
-	Thu, 18 Sep 2014 09:47:06 PDT
-Received: from smtp-out.fingerprint.fr (smtp-out.fingerprint.fr
-	[109.69.192.220])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80BD9E00576
-	for <yocto@yoctoproject.org>; Thu, 18 Sep 2014 09:47:06 -0700 (PDT)
-Received: from mxr1.fingerprint.fr (unknown [192.168.2.144])
-	by smtp-out.fingerprint.fr (Postfix) with SMTP id 5797E8007A
-	for <yocto@yoctoproject.org>; Thu, 18 Sep 2014 18:38:50 +0200 (CEST)
-Received: (qmail 28648 invoked from network); 18 Sep 2014 16:39:34 -0000
-Received: from unknown (HELO SRV-MAIL.greenflex.group) (185.3.64.10)
-	by mxr1.fingerprint.fr with SMTP; 18 Sep 2014 16:39:34 -0000
-Received: from SRV-MAIL.greenflex.group (192.168.100.25) by
-	SRV-MAIL.greenflex.group (192.168.100.25) with Microsoft SMTP Server
-	(TLS) id 15.0.913.22; Thu, 18 Sep 2014 18:39:33 +0200
-Received: from SRV-MAIL.greenflex.group ([fe80::64f4:d152:2fe:b001]) by
-	SRV-MAIL.greenflex.group ([fe80::64f4:d152:2fe:b001%12]) with mapi id
-	15.00.0913.011; Thu, 18 Sep 2014 18:39:33 +0200
-From: Simon Andrieu <sandrieu@greenflex.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Poky/Yocto drivers for cellular modem
-Thread-Index: Ac/TXvwaLsgfP3XiRNm/Yr6NzlivBQ==
-Date: Thu, 18 Sep 2014 16:39:33 +0000
-Message-ID: <d412ce5cffb0466c897447c7b8674054@SRV-MAIL.greenflex.group>
-Accept-Language: fr-FR, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [62.193.55.84]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C6ACE0056A
+	for <yocto@yoctoproject.org>; Thu, 18 Sep 2014 12:57:40 -0700 (PDT)
+Received: from svr-orw-fem-06.mgc.mentorg.com ([147.34.97.120])
+	by relay1.mentorg.com with esmtp 
+	id 1XUhpj-0006jr-58 from Joe_MacDonald@mentor.com ;
+	Thu, 18 Sep 2014 12:57:39 -0700
+Received: from burninator (147.34.91.1) by SVR-ORW-FEM-06.mgc.mentorg.com
+	(147.34.97.120) with Microsoft SMTP Server id 14.3.181.6;
+	Thu, 18 Sep 2014 12:57:37 -0700
+Received: by burninator (Postfix, from userid 1000)	id A2644580D7C; Thu, 18
+	Sep 2014 15:57:37 -0400 (EDT)
+Date: Thu, 18 Sep 2014 15:57:37 -0400
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: <xin.ouyang@windriver.com>, <mark.hatle@windriver.com>, <flihp@twobit.us>
+Message-ID: <20140918195737.GB6322@mentor.com>
 MIME-Version: 1.0
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-703 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
 X-Mailman-Approved-At: Fri, 19 Sep 2014 14:29:21 -0700
-Subject: Poky/Yocto drivers for cellular modem
+Cc: yocto@yoctoproject.org
+Subject: [meta-selinux] refpolicy update in master-next
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,126 +43,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Sep 2014 16:47:11 -0000
-Content-Language: fr-FR
-Content-Type: multipart/alternative;
-	boundary="_000_d412ce5cffb0466c897447c7b8674054SRVMAILgreenflexgroup_"
+X-List-Received-Date: Thu, 18 Sep 2014 19:57:49 -0000
+X-Groupsio-MsgNum: 21520
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="NDin8bjvE/0mNLFQ"
+Content-Disposition: inline
 
---_000_d412ce5cffb0466c897447c7b8674054SRVMAILgreenflexgroup_
-Content-Type: text/plain; charset="us-ascii"
+--NDin8bjvE/0mNLFQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hey all,
 
-I work for a company  that develops telemetry boxes, and that uses a Poky/Y=
-octo distribution running on the main board.
-It is planned to integrate a cellular module connected via USB or serial li=
-nk to the main board.
+As we'd all discussed at different times in the past, we're well behind
+the curve on a refpolicy update for meta-selinux.  With the 1.7 release
+of Yocto coming up, we thought it was important to update the policy
+sooner rather than later, so I'm starting that work now.
 
-Using some Linux distribution, it exists drivers that help recognizing a ce=
-llular modem USB stick and to raise a corresponding network interface.
-Would you know please if such a generic cellular modem driver exists in Pok=
-y/Yocto distribution please?
-More further, It could be helpful to have some tutorial notes to integrate =
-it please.
+It's being done in master-next and currently the only recipe that has
+been updated is the -mls one.  Over the next few days I'll be updating
+the others, then working through testing and trying to make sure they're
+all sane.  It would help me out immensely if you had time to kick the
+tires as well on your favourite policy variant.
 
-I would be also interested by information on various cellular modem support=
- solutions, if already studied.
+Depending on how long this takes, the next step is updating the
+userspace.  Fortunately this time around, though, the current userspace
+is still officially up to the task of managing the current policy, so a
+full update isn't strictly required.  It'd be a really nice thing to
+have done, though.  :-)
 
-Thanks for your help.
+--=20
+-Joe MacDonald.
+:wq
 
-Best Regards,
-Simon Andrieu
+--NDin8bjvE/0mNLFQ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
---_000_d412ce5cffb0466c897447c7b8674054SRVMAILgreenflexgroup_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"FR" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I work for a company &nbsp;that=
- develops telemetry boxes, and that uses a Poky/Yocto distribution running =
-on the main board.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">It is planned to integrate a ce=
-llular module connected via USB or serial link to the main board.<o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Using some Linux distribution, =
-it exists drivers that help recognizing a cellular modem USB stick and to r=
-aise a corresponding network interface.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Would you know please if such a=
- generic cellular modem driver exists in Poky/Yocto distribution please?<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">More further, It could be helpf=
-ul to have some tutorial notes to integrate it please.<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I would be also interested by i=
-nformation on various cellular modem support solutions, if already studied.=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks for your help.<o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Best Regards,<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Simon Andrieu<o:p></o:p></span>=
-</p>
-</div>
-</body>
-</html>
+iQEcBAEBAgAGBQJUGzkxAAoJEEn8ffcsOfaWTj4IAMbMNIhR5obbpfVOflrlA4dU
+q6iV1jS6SV7wkJN3uEObCM501JJCZybi42BX1Pq5qdzF0h4QHkYxYIuj2g/nIii5
+jgzBQWecB3UV0TvTk/9CAjms94TEfk47b18+BRpqqL2E+KyoMJGyvMyldlv8oO4X
+gUuTyaNXr+flKiKScJXhxoImj8BkRpX8tvz5BwirVgex2Iqz35KCWrOCSPnx1wCX
+VxgJ+MmGww1nUqjlvzVmjQZg6v21MEGNMKiKAN1ILqolMwEDgLnGp6sH8f89BPgK
+d4/BCrAK2C0Ga4u7uwrklFz77y8s03cdw8rdZtYxr4FRMUgp9fWx8mmi8FVsYag=
+=0mvB
+-----END PGP SIGNATURE-----
 
---_000_d412ce5cffb0466c897447c7b8674054SRVMAILgreenflexgroup_--
+--NDin8bjvE/0mNLFQ--
