@@ -1,27 +1,31 @@
-Return-Path: <pokybuild@opensuse131-a.osl.yoctoproject.org>
+Return-Path: <roxana.ciobanu@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65C04E00853; Wed, 17 Sep 2014 14:26:08 -0700 (PDT)
+	id CA945E00858; Thu, 18 Sep 2014 03:12:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
-	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from opensuse131-a.osl.yoctoproject.org (ab05 [10.0.10.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 025C7E007AA
-	for <yocto@yoctoproject.org>; Wed, 17 Sep 2014 14:26:08 -0700 (PDT)
-Received: by opensuse131-a.osl.yoctoproject.org (Postfix, from userid 1006)
-	id 5810743D7B; Wed, 17 Sep 2014 21:22:04 +0000 (GMT)
-Date: Wed, 17 Sep 2014 21:22:04 +0000
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F97FE007AA
+	for <yocto@yoctoproject.org>; Thu, 18 Sep 2014 03:12:49 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga103.fm.intel.com with ESMTP; 18 Sep 2014 03:03:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,862,1389772800"; d="scan'208";a="387961519"
+Received: from roxana-optiplex-9010.rb.intel.com ([10.237.105.45])
+	by FMSMGA003.fm.intel.com with ESMTP; 18 Sep 2014 03:07:14 -0700
+From: Roxana Ciobanu <roxana.ciobanu@intel.com>
 To: yocto@yoctoproject.org
-User-Agent: Heirloom mailx 12.5 7/5/10
-MIME-Version: 1.0
-Message-Id: <20140917212204.5810743D7B@opensuse131-a.osl.yoctoproject.org>
-From: pokybuild@opensuse131-a.osl.yoctoproject.org (Poky Build User)
-Cc: yocto@yoctoproject.org, otavio@ossystems.com.br
-Subject: Build available for QA
+Date: Thu, 18 Sep 2014 13:12:50 +0300
+Message-Id: <cover.1411035077.git.roxana.ciobanu@intel.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [PATCH 0/1] [error-report-web]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,29 +37,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Sep 2014 21:26:08 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 18 Sep 2014 10:12:56 -0000
 
+The following changes since commit 661cc25d79ce5a443b3ef842ea97b3e913cd2818:
 
-    A build identified as needing QA has finished on the autobuilder. This
-    build is located at:
+  error-report-web: Sorting error tables (2014-09-08 17:02:24 +0300)
 
- 
-    http://autobuilder.yoctoproject.org/pub/nightly/20140916-2
+are available in the git repository at:
 
+  git://git.yoctoproject.org/poky-contrib roxana/YB6540
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=roxana/YB6540
 
-Build hash information: 
-meta-intel : 200ebb54f46f364e7eb1738c5e993374f03f407d 
-meta-fsl-arm : ccba003438f8bda6cf50675050dbf66e9aec5395 
-meta-minnow : 238a45e9da8bbfff7a6af220b48c11cabd31e01c 
-meta-qt3 : 3016129d90b7ac8517a5227d819f10ad417b5b45 
-meta-fsl-ppc : 478f29c3e97760f2ff443227950ce21d9510a280 
-poky : 7d80f8e9468253496a7097685aac8f468940a9c5 
+Roxana Ciobanu (1):
+  error-report-web: Enhancements to the error pager
 
+ Post/static/css/custom.css    | 17 +++++++++++++++++
+ templates/error-details.html  | 22 ++++++++++++++++------
+ templates/error-page.html     |  2 +-
+ templates/latest-errors.html  | 25 ++++++++++++++++---------
+ templates/search-details.html | 16 ++++++++++++----
+ 5 files changed, 62 insertions(+), 20 deletions(-)
 
-This is an automated message from
-The Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder
-Email: elizabeth.flanagan@intel.com 
+-- 
+1.9.1
+
 
