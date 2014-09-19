@@ -1,49 +1,38 @@
-Return-Path: <Nicholas.Crast@saabsensis.com>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B9009E00851; Fri, 19 Sep 2014 13:14:20 -0700 (PDT)
+	id B4834E00851; Fri, 19 Sep 2014 14:17:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from smtpmail.saabsensis.com (smtpmail.saabsensis.com [173.225.55.4])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7478E007BA
-	for <yocto@yoctoproject.org>; Fri, 19 Sep 2014 13:14:14 -0700 (PDT)
-Received: from [10.92.64.54] (helo=ssa-syr-dimstar4.saabusa.com)
-	by smtpmail.saabsensis.com with esmtps (TLS1.0:RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.72) (envelope-from <Nicholas.Crast@saabsensis.com>)
-	id 1XV4ZJ-000251-57
-	for yocto@yoctoproject.org; Fri, 19 Sep 2014 16:14:13 -0400
-Received: from corpmail01.corp.sensis.com ([10.93.64.16])
-	by ssa-syr-dimstar4.saabusa.com with esmtp (Exim 4.72)
-	(envelope-from <Nicholas.Crast@saabsensis.com>) id 1XV4Z3-0008N1-Eq
-	for yocto@yoctoproject.org; Fri, 19 Sep 2014 16:13:57 -0400
-Received: from CORPMAIL01.corp.sensis.com ([10.93.64.16]) by
-	corpmail01.corp.sensis.com ([10.93.64.16]) with mapi id 14.03.0195.001;
-	Fri, 19 Sep 2014 16:13:57 -0400
-From: "Crast, Nicholas" <Nicholas.Crast@saabsensis.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Eglibc-locale QA Failure
-Thread-Index: Ac/URj24RFr08GFWTKuKEHJ+4nQdrw==
-Date: Fri, 19 Sep 2014 20:13:56 +0000
-Message-ID: <36A43B0E1E88D84791516F9D44BC48331B3D968F@corpmail01.corp.sensis.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.93.80.50]
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DA33E007C1
+	for <yocto@yoctoproject.org>; Fri, 19 Sep 2014 14:17:21 -0700 (PDT)
+Received: from svr-orw-fem-03.mgc.mentorg.com ([147.34.97.39])
+	by relay1.mentorg.com with esmtp 
+	id 1XV5YN-0002eJ-TF from Joe_MacDonald@mentor.com ;
+	Fri, 19 Sep 2014 14:17:19 -0700
+Received: from burninator (147.34.91.1) by svr-orw-fem-03.mgc.mentorg.com
+	(147.34.97.39) with Microsoft SMTP Server id 14.3.181.6;
+	Fri, 19 Sep 2014 14:17:19 -0700
+Received: by burninator (Postfix, from userid 1000)	id 657E95812BA; Fri, 19
+	Sep 2014 17:17:18 -0400 (EDT)
+Date: Fri, 19 Sep 2014 17:17:18 -0400
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: <xin.ouyang@windriver.com>, Mark Hatle <mark.hatle@windriver.com>
+Message-ID: <20140919211717.GB5036@mentor.com>
+References: <20140918195737.GB6322@mentor.com> <541B3B4E.30300@windriver.com>
 MIME-Version: 1.0
-X-Sensis-MailScanner-Information: Scanned at Sensis Corporation by MailScanner
-X-Sensis-MailScanner-ID: 1XV4Z3-0008N1-Eq
-X-Sensis-MailScanner: Found to be clean
-X-Sensis-MailScanner-SpamCheck: not spam (whitelisted),
-	SpamAssassin (not cached, score=-1.899, required 5,
-	autolearn=not spam, BAYES_00 -1.90, HTML_MESSAGE 0.00)
-X-Sensis-MailScanner-From: nicholas.crast@saabsensis.com
-Subject: Eglibc-locale QA Failure
+In-Reply-To: <541B3B4E.30300@windriver.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-703 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux] refpolicy update in master-next
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,191 +44,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Sep 2014 20:14:20 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_36A43B0E1E88D84791516F9D44BC48331B3D968Fcorpmail01corps_"
+X-List-Received-Date: Fri, 19 Sep 2014 21:17:34 -0000
+X-Groupsio-MsgNum: 21518
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="5/uDoXvLw7AC5HRs"
+Content-Disposition: inline
 
---_000_36A43B0E1E88D84791516F9D44BC48331B3D968Fcorpmail01corps_
-Content-Type: text/plain; charset="us-ascii"
+--5/uDoXvLw7AC5HRs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-All,
+[Re: [meta-selinux] refpolicy update in master-next] On 14.09.18 (Thu 15:06=
+) Mark Hatle wrote:
 
-When I try to build based on poky-tiny, I get the following error:
+> On 9/18/14, 2:57 PM, Joe MacDonald wrote:
+> >Hey all,
+> >
+> >As we'd all discussed at different times in the past, we're well behind
+> >the curve on a refpolicy update for meta-selinux.  With the 1.7 release
+> >of Yocto coming up, we thought it was important to update the policy
+> >sooner rather than later, so I'm starting that work now.
+> >
+> >It's being done in master-next and currently the only recipe that has
+> >been updated is the -mls one.  Over the next few days I'll be updating
+> >the others, then working through testing and trying to make sure they're
+> >all sane.  It would help me out immensely if you had time to kick the
+> >tires as well on your favourite policy variant.
+> >
+> >Depending on how long this takes, the next step is updating the
+> >userspace.  Fortunately this time around, though, the current userspace
+> >is still officially up to the task of managing the current policy, so a
+> >full update isn't strictly required.  It'd be a really nice thing to
+> >have done, though.  :-)
+> >
+>=20
+> I spoke with Joe about this work this morning, and I think
+> master-next is the right place to do this.  So if you have immediate
+> bug fixes, we'll try to apply them to both master and master-next.
+> And then continue to use master-next to stage the policy changes (or
+> anything else that requires a bit more 'soak' time) before merging.
+>=20
+> I'd like to try to get 'master' of meta-selinux fully synced and
+> working with the 'master' of Poky around the time of Poky's release
+> (within a week or so of the release at least)..  then we can branch
+> and let the master continue to flow with any "new" work.  (It's a
+> plan, I'm not sure if it'll happen or not.)
+>=20
+> If anyone has any concerns let me know.. otherwise I think this is the pl=
+an!
 
-ERROR: QA Issue: eglibc-locale: Files/directories were installed but not sh=
-ipped
-  /usr/lib
-  /usr/bin
-  /usr/lib/locale
-  /usr/share/i18n
-  /usr/share/i18n/locales
-  /usr/share/i18n/locales/POSIX
-ERROR: QA run found fatal errors. Please consider fixing them.
-ERROR: Function failed: do_package_qa
+The plan proceeds!  :-)
 
-Here is the image recipe I am running:
+Anyway, so I've now updated all of the policies in refpolicy/ and I'm
+starting in on the testing.
 
-DESCRIPTION =3D "A console-only image with more full-featured Linux system =
-\
-functionality installed."
+Pascal:  Can you pay particular attention to refpolicy-minimum?  The
+straight forward-port of it failed to install the unconfined module
+(obviously kind of important to r-min) due to some failure inside
+prepare_policy_store().  I started debugging it, then saw that there was
+a copy in the refpolicy-minimum recipe as well as one in
+refpolicy_common.inc.  Both of them need to be cleaned up, but they both
+appeared to be doing the same thing in slightly different ways.  Given
+that, I turfed the one from refpolicy-minimum and it looks like the
+unconfined.pp is installed properly using the version from
+refpolicy_common.  It wasn't clear looking at either the function or the
+commit log why a duplicate version of the function was placed in
+refpolicy-minimum, so please have a look to see why it was there and if
+it's still needed.
 
-module_autoload_fwreg =3D "fwreg"
+Thanks.
 
-IMAGE_INSTALL =3D "\
-    packagegroup-core-boot \
-    ${ROOTFS_PKGMANAGE_BOOTSTRAP} \
-    ${CORE_IMAGE_EXTRA_INSTALL} \
-    openssh \
-    "
+--=20
+-Joe MacDonald.
+:wq
 
-inherit core-image
+--5/uDoXvLw7AC5HRs
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-Can anyone help me figure out what the problem is?
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
 
--Nick
+iQEcBAEBAgAGBQJUHJ1dAAoJEEn8ffcsOfaWVtcH/0yLq69ju/xy69uCDDHVzT5J
+jOx7BLGM+RoAMNWKKIiNKQKzl/ycF9lAfLLbE/LCUGd0pg5zj0i8OPT3L/4PK+7J
+bhiKhEMAb5ErwU7pf3w1ymgepFpvcdv6F9pAwJm/VrLYVWbpYd4pTGLez2wLFUcI
+oixIqST2BdVJgJS9g+O48eU7O4sNwvaG7OToMEa2fYerSCmjvFOum4Ic+oTTlctA
+z6smPohmysBMpTDe2tOM8VZ2kzCCcepUEC56YlnE2AOQVQRjleez3HF2xoMDGl01
+JxT/kTi2BZ2qHOUxREryrsr6A9541J1GK2lHqy3Nqcd3va8//hGmR8lxLPfsyoY=
+=Owrw
+-----END PGP SIGNATURE-----
 
-----------------------------------------
-Nick Crast
-Associate Software Engineer
-Saab Sensis Corporation
-Phone: 315-445-5703
-Email: Nicholas.Crast@saabsensis.com<mailto:Nicholas.Crast@saabsensis.com>
-
-
-This message is intended only for the addressee and may contain information=
- that is company confidential or privileged. Any technical data in this mes=
-sage may be exported only in accordance with the U.S. International Traffic=
- in Arms Regulations (22 CFR Parts 120-130) or the Export Administration Re=
-gulations (15 CFR Parts 730-774). Unauthorized use is strictly prohibited a=
-nd may be unlawful. If you are not the intended recipient, or the person re=
-sponsible for delivering to the intended recipient, you should not read, co=
-py, disclose or otherwise use this message. If you have received this email=
- in error, please delete it, and advise the sender immediately.
-
---_000_36A43B0E1E88D84791516F9D44BC48331B3D968Fcorpmail01corps_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">All,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">When I try to build based on poky-tiny, I get the fo=
-llowing error:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">ERROR: QA Issue: eglibc-locale: Files/directories we=
-re installed but not shipped<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; /usr/lib<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; /usr/bin<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; /usr/lib/locale<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; /usr/share/i18n<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; /usr/share/i18n/locales<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; /usr/share/i18n/locales/POSIX<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR: QA run found fatal errors. Please consider fi=
-xing them.<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR: Function failed: do_package_qa<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Here is the image recipe I am running:<o:p></o:p></p=
->
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">DESCRIPTION =3D &quot;A console-only image with more=
- full-featured Linux system \<o:p></o:p></p>
-<p class=3D"MsoNormal">functionality installed.&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">module_autoload_fwreg =3D &quot;fwreg&quot;<o:p></o:=
-p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">IMAGE_INSTALL =3D &quot;\<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; packagegroup-core-boot \<o:p></o:=
-p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; ${ROOTFS_PKGMANAGE_BOOTSTRAP} \<o=
-:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; ${CORE_IMAGE_EXTRA_INSTALL} \<o:p=
-></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; openssh \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; &quot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">inherit core-image<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Can anyone help me figure out what the problem is?<o=
-:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">-Nick<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">----------------------------------------<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal">Nick Crast<o:p></o:p></p>
-<p class=3D"MsoNormal">Associate Software Engineer<o:p></o:p></p>
-<p class=3D"MsoNormal">Saab Sensis Corporation<o:p></o:p></p>
-<p class=3D"MsoNormal">Phone: 315-445-5703<o:p></o:p></p>
-<p class=3D"MsoNormal">Email: <a href=3D"mailto:Nicholas.Crast@saabsensis.c=
-om">Nicholas.Crast@saabsensis.com</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<br>
-<i><small>This message is intended only for the addressee and may contain i=
-nformation that is company confidential or privileged. Any technical data i=
-n this message may be exported only in accordance with the U.S. Internation=
-al Traffic in Arms Regulations (22
- CFR Parts 120-130) or the Export Administration Regulations (15 CFR Parts =
-730-774). Unauthorized use is strictly prohibited and may be unlawful. If y=
-ou are not the intended recipient, or the person responsible for delivering=
- to the intended recipient, you
- should not read, copy, disclose or otherwise use this message. If you have=
- received this email in error, please delete it, and advise the sender imme=
-diately.
-</i></small>
-</body>
-</html>
-
---_000_36A43B0E1E88D84791516F9D44BC48331B3D968Fcorpmail01corps_--
+--5/uDoXvLw7AC5HRs--
