@@ -1,54 +1,61 @@
-Return-Path: <rudolf.streif@gmail.com>
+Return-Path: <scerveau@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0E6BDE00843; Fri, 19 Sep 2014 07:57:46 -0700 (PDT)
+	id C5D2FE00851; Fri, 19 Sep 2014 08:28:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, MIME_QP_LONG_LINE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (rudolf.streif[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.172 listed in list.dnswl.org]
+	mail provider *      (scerveau[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ob0-f172.google.com (mail-ob0-f172.google.com
-	[209.85.214.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 678BAE0079A
-	for <yocto@yoctoproject.org>; Fri, 19 Sep 2014 07:57:38 -0700 (PDT)
-Received: by mail-ob0-f172.google.com with SMTP id uy5so1807290obc.31
-	for <yocto@yoctoproject.org>; Fri, 19 Sep 2014 07:57:38 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.172 listed in list.dnswl.org]
+Received: from mail-wi0-f172.google.com (mail-wi0-f172.google.com
+	[209.85.212.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42C9AE00819;
+	Fri, 19 Sep 2014 08:28:34 -0700 (PDT)
+Received: by mail-wi0-f172.google.com with SMTP id hi2so2244604wib.5
+	for <multiple recipients>; Fri, 19 Sep 2014 08:28:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=o6PFc4lHIpRNpMHPt/KcUD6L99fee6j54Uxr2aBHzfc=;
-	b=nBDkdDkWqP2uM3kAfbb0TiWEMpFKIk4TdEyOLAf0sxpZFmwbGCQf/DtsgC1yPb14VW
-	CeTdQVxgb2xAUGpSWQs6Hht32KeoKxHZCTf1L1FHWU0tz8XqiyDsjlZeZnhJviLE8uJy
-	dZJDIgVxf04osr13oKk3AApdf/QRsrW3/L5AQgu9xp1URbkqAKqiqlN+wEYguW1xO3yB
-	wooeD1O/Ig+a8YHKSX/hAWcrg2KkDR3M7bqDTuFo5mAeQlVcTk3aczOW9k3H3/WN5EYa
-	0G7V3707c1OpWEUuO6xrebE0rWUgUSx1Ocuf3gvu4QO9ZgHiiHG+fn1/jgNgRK/DPQDu
-	iHUw==
-MIME-Version: 1.0
-X-Received: by 10.60.64.40 with SMTP id l8mr1865320oes.63.1411138658346; Fri,
-	19 Sep 2014 07:57:38 -0700 (PDT)
-Received: by 10.182.76.227 with HTTP; Fri, 19 Sep 2014 07:57:38 -0700 (PDT)
-In-Reply-To: <CABhkJRdYQfPKbmPZQA+Tk33QaG0LvPBmubWed5Zggj_s88yCkw@mail.gmail.com>
-References: <CABhkJRdYQfPKbmPZQA+Tk33QaG0LvPBmubWed5Zggj_s88yCkw@mail.gmail.com>
-Date: Fri, 19 Sep 2014 07:57:38 -0700
-Message-ID: <CAEKp-abEgBnx8f7ZYP4zb0kbz9rPjo5cFhDGgRrdw1dxsUSCzQ@mail.gmail.com>
-From: Rudolf Streif <rudolf.streif@gmail.com>
-To: Ashish Dalela <ashish.dalela@gmail.com>
+	h=references:mime-version:in-reply-to:content-type
+	:content-transfer-encoding:message-id:cc:from:subject:date:to;
+	bh=yPWwhNSlX4XRIrSwH59TccFbHU/vIxlNJJfOWhLAFNE=;
+	b=n4X5R2mCMZqdHTDNucjiB6AJaBHiZRV4DBWGvOVTPPRf6FcxDsij0JwbNOR8/uxCor
+	venE3JJkS7Q+VysFqkir4OuCurZ2XQkCr5g6tzxVIeS11JrspeMe+GvoMdh7r50ZctnF
+	QJXdQMGxym0TFFc41VgCakp1eOH32mwcyCcORQoJVrXzUiVqcTVSIVDMwvSjrH38zUIR
+	BWsTimqW3LPEcl5kbO0H1giRVJd9y7wR358gjMzsaivYvOOq9soZL095kdgRgIrIo94+
+	LMoZ2FhGUmkdB/eDO/urRfR4DtQ3w41r22gA0WJma+at1+4wVqcKrjpdP4mBHmJWZ5Jz
+	J47A==
+X-Received: by 10.180.9.37 with SMTP id w5mr6934628wia.39.1411140513361;
+	Fri, 19 Sep 2014 08:28:33 -0700 (PDT)
+Received: from [192.168.0.13] (fac34-7-88-162-140-92.fbx.proxad.net.
+	[88.162.140.92])
+	by mx.google.com with ESMTPSA id y15sm2459531wib.20.2014.09.19.08.28.32
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 19 Sep 2014 08:28:32 -0700 (PDT)
+References: <CAP3RZogedpFsq8r+2yoydjQ3M=jAhCA8Oby02mZaP-=7=K_EZA@mail.gmail.com>
+Mime-Version: 1.0 (1.0)
+In-Reply-To: <CAP3RZogedpFsq8r+2yoydjQ3M=jAhCA8Oby02mZaP-=7=K_EZA@mail.gmail.com>
+Message-Id: <363ED442-A2F0-46F3-AC6A-37B34453694F@gmail.com>
+X-Mailer: iPhone Mail (11D257)
+From: Stephane Cerveau <scerveau@gmail.com>
+Date: Fri, 19 Sep 2014 17:28:33 +0200
+To: jags gediya <jags.gediya@gmail.com>
 X-Mailman-Approved-At: Fri, 19 Sep 2014 14:29:21 -0700
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Linux Headers question
+Cc: "meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-freescale] Start daemon or execute script at boot time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,57 +67,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Sep 2014 14:57:46 -0000
-Content-Type: multipart/alternative; boundary=001a11c3de0675adc005036c5215
-
---001a11c3de0675adc005036c5215
-Content-Type: text/plain; charset=UTF-8
-
-Hi Ashish,
-
-Which Yocto package has stdio.h file (and other header files)?
->
-> That depends on what C library you are using. The default for YP/OE is
-eglibc. The headers would be in eglibc-dev.
-
-
-> I tried linux-libc-headers-dev and linux-libc-headers-dbg and I did not
-> get the stdio.h file.
->
-> I see a packages-split directory for eglibc-dev but I don't see an RPM
-> being built for that (I have RPMs being built for every other build). Also
-> I cannot do bitbake eglibc-dev.
->
-
-The RPM would be libc6-dev-<version>.<architecture>.rpm, for
-instance libc6-dev-2.19-r0.cortexa8hf_vfp_neon.rpm for an ARM Cortex A8
-using hard fp.
-
-Best regards,
-Rudi
-
---001a11c3de0675adc005036c5215
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Fri, 19 Sep 2014 15:28:45 -0000
+Content-Type: text/plain;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Ashish,<br><div class=3D"gmail_extra"><br><div class=3D=
-"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left=
--style:solid;padding-left:1ex"><div dir=3D"ltr"><div>Which Yocto package ha=
-s stdio.h file (and other header files)?</div><div><br></div></div></blockq=
-uote><div>That depends on what C library you are using. The default for YP/=
-OE is eglibc. The headers would be in eglibc-dev.</div><div>=C2=A0</div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;padd=
-ing-left:1ex"><div dir=3D"ltr"><div></div><div>I tried linux-libc-headers-d=
-ev and linux-libc-headers-dbg and I did not get the stdio.h file.</div><div=
-><br></div><div>I see a packages-split directory for=C2=A0eglibc-dev but I =
-don&#39;t see an RPM being built for that (I have RPMs being built for ever=
-y other build). Also I cannot do bitbake=C2=A0eglibc-dev.</div></div></bloc=
-kquote><div><br></div><div>The RPM would be=C2=A0libc6-dev-&lt;version&gt;.=
-&lt;architecture&gt;.rpm, for instance=C2=A0libc6-dev-2.19-r0.cortexa8hf_vf=
-p_neon.rpm for an ARM Cortex A8 using hard fp.</div><div>=C2=A0</div><div>B=
-est regards,</div><div>Rudi</div></div>
-</div></div>
+It depends if your daemon is built by a recipe and if your are using initrd o=
+r systemd. If so you have to make your recipe inherit from systemd or initrd=
+. I guess you can find exemples in poky recipes...
 
---001a11c3de0675adc005036c5215--
+> Le 19 sept. 2014 =C3=A0 17:14, jags gediya <jags.gediya@gmail.com> a =C3=A9=
+crit :
+>=20
+> Hi All,
+>=20
+> If i want to execute some thing or start daemon at boot time, where
+> can i make changes in yocto source code, so that it reflects in the
+> file-system?
+>=20
+>=20
+> Thanks,
+> Jags
+> --=20
+> _______________________________________________
+> meta-freescale mailing list
+> meta-freescale@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/meta-freescale
+
