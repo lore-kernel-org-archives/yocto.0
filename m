@@ -1,51 +1,48 @@
-Return-Path: <Nicholas.Crast@saabsensis.com>
+Return-Path: <harshjain32@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 189FEE00852; Fri, 19 Sep 2014 09:53:23 -0700 (PDT)
+	id 9B306E00852; Fri, 19 Sep 2014 11:11:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (harshjain32[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from smtpmail.saabsensis.com (smtpmail.saabsensis.com [173.225.55.4])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5962EE00819
-	for <yocto@yoctoproject.org>; Fri, 19 Sep 2014 09:53:20 -0700 (PDT)
-Received: from [10.92.64.54] (helo=ssa-syr-dimstar4.saabusa.com)
-	by smtpmail.saabsensis.com with esmtps (TLS1.0:RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.72) (envelope-from <Nicholas.Crast@saabsensis.com>)
-	id 1XV1Qt-0002xa-8D; Fri, 19 Sep 2014 12:53:19 -0400
-Received: from corpmail01.corp.sensis.com ([10.93.64.16])
-	by ssa-syr-dimstar4.saabusa.com with esmtp (Exim 4.72)
-	(envelope-from <Nicholas.Crast@saabsensis.com>)
-	id 1XV1QZ-000611-O5; Fri, 19 Sep 2014 12:52:59 -0400
-Received: from CORPMAIL01.corp.sensis.com ([10.93.64.16]) by
-	corpmail01.corp.sensis.com ([10.93.64.16]) with mapi id 14.03.0195.001;
-	Fri, 19 Sep 2014 12:52:59 -0400
-From: "Crast, Nicholas" <Nicholas.Crast@saabsensis.com>
-To: jags gediya <jags.gediya@gmail.com>, "meta-freescale@yoctoproject.org"
-	<meta-freescale@yoctoproject.org>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Start daemon or execute script at boot time
-Thread-Index: AQHP1BzE4PxWjqh7hkOEYVNjcM72jpwIq/yw
-Date: Fri, 19 Sep 2014 16:52:59 +0000
-Message-ID: <36A43B0E1E88D84791516F9D44BC48331B3D8630@corpmail01.corp.sensis.com>
-References: <CAP3RZogedpFsq8r+2yoydjQ3M=jAhCA8Oby02mZaP-=7=K_EZA@mail.gmail.com>
-In-Reply-To: <CAP3RZogedpFsq8r+2yoydjQ3M=jAhCA8Oby02mZaP-=7=K_EZA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.93.80.50]
+	*      [score: 0.0019]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.169 listed in list.dnswl.org]
+Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
+	[209.85.212.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15E32E00844
+	for <yocto@yoctoproject.org>; Fri, 19 Sep 2014 11:11:00 -0700 (PDT)
+Received: by mail-wi0-f169.google.com with SMTP id fb4so45564wid.2
+	for <yocto@yoctoproject.org>; Fri, 19 Sep 2014 11:11:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=+GTUXdd/7MODc6KPbmzvgfTaWHM+M/vB1zqEH2O7KJE=;
+	b=zN5wZKrD5n0eoMBuAfWeIh16axeq/7GUDIytZfZlukJ1O7hFF9bWQ1KZVyShDb5Qi+
+	O2X1vSYe10qdERwzG63wL9PPPwPSxvGbaxbd/oGb0++aQPN66fXvQew5W8FYCodfNMaW
+	W9Ax7YupIea3xyj0VGG/G3pwmtC7Ceuu4qnU7++GgomqzvU0TYwUEdw9tDFjKzOyQA3b
+	PGkriKOPJDj/8CfAAtJgbI+phykN6mLqz9fHoOtNCVdyYoRMGEjL4rJhsgLoEmOqj23v
+	ckaM0xmtmiy0r5rK7cbQJhF2WOopqqcOMZLVTgr9iN5xZOex43atwoD2QbbWu6fVxBmi
+	pocQ==
 MIME-Version: 1.0
-X-Sensis-MailScanner-Information: Scanned at Sensis Corporation by MailScanner
-X-Sensis-MailScanner-ID: 1XV1QZ-000611-O5
-X-Sensis-MailScanner: Found to be clean
-X-Sensis-MailScanner-SpamCheck: not spam (whitelisted),
-	SpamAssassin (not cached, score=-1.9, required 5, autolearn=not spam,
-	BAYES_00 -1.90)
-X-Sensis-MailScanner-From: nicholas.crast@saabsensis.com
-Subject: Re: Start daemon or execute script at boot time
+X-Received: by 10.194.95.8 with SMTP id dg8mr2823529wjb.1.1411150260124; Fri,
+	19 Sep 2014 11:11:00 -0700 (PDT)
+Received: by 10.216.96.11 with HTTP; Fri, 19 Sep 2014 11:11:00 -0700 (PDT)
+Date: Fri, 19 Sep 2014 23:41:00 +0530
+Message-ID: <CAKuL1XTwmyTHTOZxwxCh31F3aB0M=PWExkO-SVLwXhGGD1vveA@mail.gmail.com>
+From: harsh jain <harshjain32@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Update recipe file to avoid conflict with other dependant packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,56 +54,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Sep 2014 16:53:23 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 19 Sep 2014 18:11:07 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Take a look at this link:
+Hi,
 
-http://docs.openembedded.ru/update-rc-d_class.html
-
-It has some good examples and explanation about how to modify the startup s=
-equence.=20
-
--Nick
-
-----------------------------------------
-Nick Crast
-Associate Software Engineer
-Saab Sensis Corporation
-Phone: 315-445-5703
-Email: Nicholas.Crast@saabsensis.com
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of jags gediya
-Sent: Friday, September 19, 2014 11:17 AM
-To: meta-freescale@yoctoproject.org; yocto@yoctoproject.org
-Subject: [yocto] Start daemon or execute script at boot time
-
-Hi All,
-
-If i want to execute some thing or start daemon at boot time, where can i m=
-ake changes in yocto source code, so that it reflects in the file-system?
+I am trying to install python version 2.7.4 after updating recipe file
+of version 2.7.3.There are several other packages in my build system
+which depends upon Python version 2.7.3.When I try to make build these
+dependant packages give warning.
+What I needs to update in build environment so that these packages can
+also included.I am assuming that these dependants packages are also
+compatible with python verson 2.7.4.
 
 
-Thanks,
-Jags
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
--
-This message is intended only for the addressee and may contain information=
- that is company confidential or privileged.  Any technical data in this me=
-ssage may be exported only in accordance with the U.S. International Traffi=
-c in Arms Regulations (22 CFR Parts 120-130) or the Export Administration R=
-egulations (15 CFR Parts 730-774). Unauthorized use is strictly prohibited =
-and may be unlawful. If you are not the intended recipient, or the person r=
-esponsible for delivering to the intended recipient, you should not read, c=
-opy, disclose or otherwise use this message. If you have received this emai=
-l in error, please delete it, and advise the sender immediately.=20
--          =
+Regards
+Harsh Jain
 
