@@ -1,6 +1,6 @@
 Return-Path: <maciej.borzecki@open-rnd.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CAB5CE006DB; Sat, 20 Sep 2014 06:00:35 -0700 (PDT)
+	id BCB3BE00749; Sat, 20 Sep 2014 06:36:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,21 +9,20 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81E95E0056A
-	for <yocto@yoctoproject.org>; Sat, 20 Sep 2014 06:00:29 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73739E005BD
+	for <yocto@yoctoproject.org>; Sat, 20 Sep 2014 06:36:19 -0700 (PDT)
 Received: from comp-006-thk.localnet (unknown [78.10.73.118])
-	by open-rnd.nazwa.pl (Postfix) with ESMTP id 426CB308FFAC;
-	Sat, 20 Sep 2014 15:00:26 +0200 (CEST)
+	by open-rnd.nazwa.pl (Postfix) with ESMTP id 2BBB7609E17;
+	Sat, 20 Sep 2014 15:36:18 +0200 (CEST)
 From: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
-To: yocto@yoctoproject.org
-Date: Sat, 20 Sep 2014 15:00:25 +0200
-Message-ID: <1541757.qLRXd1AgeH@comp-006-thk>
+To: Simon Andrieu <sandrieu@greenflex.com>
+Date: Sat, 20 Sep 2014 15:36:17 +0200
+Message-ID: <7941014.zzsrkBRl7b@comp-006-thk>
 User-Agent: KMail/4.13.3 (Linux/3.16.2-200.fc20.x86_64; KDE/4.13.3; x86_64; ; )
-In-Reply-To: <CAMCfZKFb9MZFK4mcwxbXn2Kub=wY7M7XdaOzfTZWb84Bv5Lziw@mail.gmail.com>
+In-Reply-To: <d412ce5cffb0466c897447c7b8674054@SRV-MAIL.greenflex.group>
 References: <d412ce5cffb0466c897447c7b8674054@SRV-MAIL.greenflex.group>
-	<CAJTo0LZv+ee0DRnfGXtrtx6Q3Pa17pA3TiLmqPvcyf8rBNL16w@mail.gmail.com>
-	<CAMCfZKFb9MZFK4mcwxbXn2Kub=wY7M7XdaOzfTZWb84Bv5Lziw@mail.gmail.com>
 MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
 Subject: Re: Poky/Yocto drivers for cellular modem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -36,46 +35,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 20 Sep 2014 13:00:35 -0000
+X-List-Received-Date: Sat, 20 Sep 2014 13:36:32 -0000
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
 
-On Saturday 20 of September 2014 05:52:58 Diego Sueiro wrote:
-> Take a look at meta-eca:
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-eca/tree/
-
-Do you have any clue why it's a separate layer? The recipes mostly seem=
- to=20
-overlap with OE-core.
-
-> Regards,
+On Thursday 18 of September 2014 16:39:33 Simon Andrieu wrote:
+> Hi,
 >=20
-> --
-> *dS
-> Diego Sueiro
-> sent from mobile.
+> I work for a company  that develops telemetry boxes, and that uses a
+> Poky/Yocto distribution running on the main board. It is planned to
+> integrate a cellular module connected via USB or serial link to the m=
+ain
+> board.
 >=20
-> Em 19/09/2014 18:34, "Burton, Ross" <ross.burton@intel.com> escreveu:=
+> Using some Linux distribution, it exists drivers that help recognizin=
+g a
+> cellular modem USB stick and to raise a corresponding network interfa=
+ce.
+> Would you know please if such a generic cellular modem driver exists =
+in
+> Poky/Yocto distribution please? More further, It could be helpful to =
+have
+> some tutorial notes to integrate it please.
 
-> > On 18 September 2014 17:39, Simon Andrieu <sandrieu@greenflex.com> =
-wrote:
-> > > Using some Linux distribution, it exists drivers that help recogn=
-izing a
-> > > cellular modem USB stick and to raise a corresponding network int=
-erface.
-> > >=20
-> > > Would you know please if such a generic cellular modem driver exi=
-sts in
-> > > Poky/Yocto distribution please?
-> >=20
-> > Would connman + ofono be suitable?
-> >=20
-> > Ross
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
+I'm working a similar applications. Most USB devices seem to implement =
+CDC ACM=20
+that works quite well with kernel drivers. Basically you end up with on=
+e of=20
+/dev/ttyACM devices that pppd can talk to.=20
+
+In past, due to image size constraints, we had custom code that looked =
+at=20
+these devices (used libudev to correlated /dev entries with usb devices=
+) and=20
+started pppd, thus skipping ofono/connman and their deps. The current s=
+etups=20
+are mostly systemd/systemd-networkd + pppd glue. Without much trouble i=
+t's=20
+possible to get ~20MB ext3 rootfs image with all the stuff you need.
+
+There were also some dongles that came up as CDC Ether, but I've only s=
+een=20
+this for some WiMAX modules that I'm not sure are even available on the=
+ market=20
+anymore.
+
+For transport, you can find rabbitmq-c in meta-oe. I'll also be sending=
+ some=20
+patches for Paho MQTT libraries and mosquitto next week or so.
 
 --=20
 
