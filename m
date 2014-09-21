@@ -1,16 +1,17 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <navani.srivastava@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ECB7EE00749; Sat, 20 Sep 2014 16:05:40 -0700 (PDT)
+	id 47604E007BA; Sat, 20 Sep 2014 20:56:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (navani.srivastava[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
@@ -18,34 +19,36 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.223.182 listed in list.dnswl.org]
-Received: from mail-ie0-f182.google.com (mail-ie0-f182.google.com
-	[209.85.223.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 357EFE005BD
-	for <yocto@yoctoproject.org>; Sat, 20 Sep 2014 16:05:39 -0700 (PDT)
-Received: by mail-ie0-f182.google.com with SMTP id tp5so194484ieb.27
-	for <yocto@yoctoproject.org>; Sat, 20 Sep 2014 16:05:38 -0700 (PDT)
+	*      [209.85.223.181 listed in list.dnswl.org]
+Received: from mail-ie0-f181.google.com (mail-ie0-f181.google.com
+	[209.85.223.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8EAEE0073E
+	for <yocto@yoctoproject.org>; Sat, 20 Sep 2014 20:56:08 -0700 (PDT)
+Received: by mail-ie0-f181.google.com with SMTP id tr6so5642275ieb.12
+	for <yocto@yoctoproject.org>; Sat, 20 Sep 2014 20:56:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=LvbPz9oNNQN3py28ElW2a+chP5YnxaZuWaQ5AyC0vRo=;
-	b=ZlUFBtTkBnW5p38Ugl0pkfKF4AGmtjcoHfGGjeItTxCTj5nTNvWbF5jJZkYrbnWts7
-	WBUHUwiBes6fe2IHaVaHo6itjkNPZ3SYJujDMChZxZMV9Ta/JcFvYUDosJGAALKZMqwJ
-	CyI/I2IxXl7hON6X9WvLRNL/kyjJRJeDkmSs5AyI5ewmEm6BLjB408CpbdNKQPWaxJKe
-	ietSncGTEcVC9jhY0EYHWnCra2oToTTic/iZC4HVGbmSH1M6XTTD8vrWp34hVvyMLk34
-	YOFi70Jlk5TOcMXHi757coIG5x3Q4FFEDRBRJDAZgn6nbgZVxDiB/WIhtWKC0F7YmI95
-	pvXg==
-X-Received: by 10.50.61.99 with SMTP id o3mr5362577igr.30.1411254338844; Sat,
-	20 Sep 2014 16:05:38 -0700 (PDT)
+	bh=urOUTiDWEcC+X6S/GY75MNEuASJZwwUbkHK7nt2J1ww=;
+	b=lqS2zMMsFzwP1imzGA8GmI8Qp/abKBdKdtvc5pLUIlEPO5u7Zb4uAsw6c3uDjafK0m
+	P0da75BLVkwdlyZWNwVCUxVTvKx9pDgK1saFJKRKF4osmJqEsX7scjVBhkSNOBnZIdCJ
+	Ns/kR24E/wWcnxYf2Ja8Mm2QgZeqmJnc0gGj2IHHf56QPzPUzbU4JXboNE/pq42GGgmI
+	/6nztUYAVexvc4sgbPGgi3k6YHMIBLDslf175Kfctj0mKUaFDI6dhllMmJHVyZD9gsRn
+	m4Oay8oY4a4SF2E9zin9DCUQ9eor9vkeSRTJBkYjMXlN2/NYREJIqzbu1QddTq1ZQFmb
+	KZqA==
 MIME-Version: 1.0
-Received: by 10.50.240.6 with HTTP; Sat, 20 Sep 2014 16:05:08 -0700 (PDT)
-In-Reply-To: <CA+Z6RkW1D8pPpGCTu_SwF5Q+d0Um-MuYQM3mtube=u2txu0V6A@mail.gmail.com>
+X-Received: by 10.50.138.194 with SMTP id qs2mr6437166igb.4.1411271767771;
+	Sat, 20 Sep 2014 20:56:07 -0700 (PDT)
+Received: by 10.107.132.217 with HTTP; Sat, 20 Sep 2014 20:56:07 -0700 (PDT)
+Received: by 10.107.132.217 with HTTP; Sat, 20 Sep 2014 20:56:07 -0700 (PDT)
+In-Reply-To: <CAMKF1srWLwFN9-t70Yz=pLV6v77xapE2Y_=y-SrtY=1Mke-90Q@mail.gmail.com>
 References: <CA+Z6RkW1D8pPpGCTu_SwF5Q+d0Um-MuYQM3mtube=u2txu0V6A@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 20 Sep 2014 16:05:08 -0700
-Message-ID: <CAMKF1srWLwFN9-t70Yz=pLV6v77xapE2Y_=y-SrtY=1Mke-90Q@mail.gmail.com>
-To: Navani Srivastava <navani.srivastava@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	<CAMKF1srWLwFN9-t70Yz=pLV6v77xapE2Y_=y-SrtY=1Mke-90Q@mail.gmail.com>
+Date: Sun, 21 Sep 2014 09:26:07 +0530
+Message-ID: <CA+Z6RkWwt9Xyd4jj7mRQHEBNK4O-wFWpmoN0kKaDDu6=_-ADyA@mail.gmail.com>
+From: Navani Srivastava <navani.srivastava@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@yoctoproject.org,
 	Navani Srivastava <navani.srivastava@lnttechservices.com>
 Subject: Re: Integration of custom recipe with SDK
 X-BeenThere: yocto@yoctoproject.org
@@ -59,35 +62,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 20 Sep 2014 23:05:41 -0000
+X-List-Received-Date: Sun, 21 Sep 2014 03:56:14 -0000
+Content-Type: multipart/alternative; boundary=089e01183c906650b305038b50cc
+
+--089e01183c906650b305038b50cc
 Content-Type: text/plain; charset=UTF-8
 
-On Thu, Sep 18, 2014 at 5:12 AM, Navani Srivastava
-<navani.srivastava@gmail.com> wrote:
-> Hi,
->
-> I am using Poky-8.0.2 danny version for development.
->
-> I want to integrate my custom recipe with sdk generated by
-> meta-toolchain-qte so that I can use header files and libraries generated by
-> my custom recipe for cross compilation. I am not sure of the proper way to
-> do it. Right now generated header files and libraries could be found in
-> rootfs generated for the target machine but for SDK there is no progress.
->
-> Any help is appreciable..
+We are not using populatesdk ... we need to generate it through
+meta-toolchain-qte only so i am trying with the solution provided by randy..
 
-if you were generating SDK using -cpopulate_sdk <yourimage>
+Navani
+On 21 Sep 2014 04:35, "Khem Raj" <raj.khem@gmail.com> wrote:
 
-then it would be automatically included in your next spin of SDK.
+> On Thu, Sep 18, 2014 at 5:12 AM, Navani Srivastava
+> <navani.srivastava@gmail.com> wrote:
+> > Hi,
+> >
+> > I am using Poky-8.0.2 danny version for development.
+> >
+> > I want to integrate my custom recipe with sdk generated by
+> > meta-toolchain-qte so that I can use header files and libraries
+> generated by
+> > my custom recipe for cross compilation. I am not sure of the proper way
+> to
+> > do it. Right now generated header files and libraries could be found in
+> > rootfs generated for the target machine but for SDK there is no progress.
+> >
+> > Any help is appreciable..
+>
+> if you were generating SDK using -cpopulate_sdk <yourimage>
+>
+> then it would be automatically included in your next spin of SDK.
+>
+> >
+> > Thanks
+> > Navani
+> >
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> >
+>
 
->
-> Thanks
-> Navani
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+--089e01183c906650b305038b50cc
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<p dir=3D"ltr">We are not using populatesdk ... we need to generate it thro=
+ugh meta-toolchain-qte only so i am trying with the solution provided by ra=
+ndy..</p>
+<p dir=3D"ltr">Navani</p>
+<div class=3D"gmail_quote">On 21 Sep 2014 04:35, &quot;Khem Raj&quot; &lt;<=
+a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<br t=
+ype=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
+ .8ex;border-left:1px #ccc solid;padding-left:1ex">On Thu, Sep 18, 2014 at =
+5:12 AM, Navani Srivastava<br>
+&lt;<a href=3D"mailto:navani.srivastava@gmail.com">navani.srivastava@gmail.=
+com</a>&gt; wrote:<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; I am using Poky-8.0.2 danny version for development.<br>
+&gt;<br>
+&gt; I want to integrate my custom recipe with sdk generated by<br>
+&gt; meta-toolchain-qte so that I can use header files and libraries genera=
+ted by<br>
+&gt; my custom recipe for cross compilation. I am not sure of the proper wa=
+y to<br>
+&gt; do it. Right now generated header files and libraries could be found i=
+n<br>
+&gt; rootfs generated for the target machine but for SDK there is no progre=
+ss.<br>
+&gt;<br>
+&gt; Any help is appreciable..<br>
+<br>
+if you were generating SDK using -cpopulate_sdk &lt;yourimage&gt;<br>
+<br>
+then it would be automatically included in your next spin of SDK.<br>
+<br>
+&gt;<br>
+&gt; Thanks<br>
+&gt; Navani<br>
+&gt;<br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_b=
+lank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+&gt;<br>
+</blockquote></div>
+
+--089e01183c906650b305038b50cc--
