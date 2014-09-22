@@ -1,50 +1,51 @@
-Return-Path: <edk@tlindustries.com>
+Return-Path: <john.s.summers@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 465BBE005BD; Mon, 22 Sep 2014 12:16:50 -0700 (PDT)
+	id C55FAE00744; Mon, 22 Sep 2014 12:19:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	XPRIO autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [173.203.187.102 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000] *  1.5 XPRIO Has X-Priority header
-X-Greylist: delayed 592 seconds by postgrey-1.32 at yocto-www;
-	Mon, 22 Sep 2014 12:16:35 PDT
-Received: from smtp102.iad3a.emailsrvr.com (smtp102.iad3a.emailsrvr.com
-	[173.203.187.102])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06894E0054C
-	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 12:16:35 -0700 (PDT)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by smtp5.relay.iad3a.emailsrvr.com (SMTP Server) with ESMTP id
-	E242A80121; Mon, 22 Sep 2014 15:06:41 -0400 (EDT)
-X-Virus-Scanned: OK
-Received: from app57.wa-webapps.iad3a (relay-webapps.rsapps.net
-	[172.27.255.140])
-	by smtp5.relay.iad3a.emailsrvr.com (SMTP Server) with ESMTP id
-	CB253800CC; Mon, 22 Sep 2014 15:06:41 -0400 (EDT)
-X-Sender-Id: MAILER-DAEMON
-Received: from app57.wa-webapps.iad3a (relay-webapps.rsapps.net
-	[172.27.255.140]) by 0.0.0.0:25 (trex/5.2.10);
-	Mon, 22 Sep 2014 19:06:41 GMT
-Received: from tlindustries.com (localhost.localdomain [127.0.0.1])
-	by app57.wa-webapps.iad3a (Postfix) with ESMTP id BC992180064;
-	Mon, 22 Sep 2014 15:06:41 -0400 (EDT)
-Received: by webmail.emailsrvr.com (Authenticated sender: edk@tlindustries.com,
-	from: edk@tlindustries.com) 
-	with HTTP; Mon, 22 Sep 2014 15:06:41 -0400 (EDT)
-Date: Mon, 22 Sep 2014 15:06:41 -0400 (EDT)
-From: edk@tlindustries.com
-To: yocto@yoctoproject.org
+	*      [score: 0.0000]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97A5DE00566
+	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 12:19:44 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by fmsmga101.fm.intel.com with ESMTP; 22 Sep 2014 12:19:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.04,573,1406617200"; d="scan'208";a="479249091"
+Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
+	by azsmga001.ch.intel.com with ESMTP; 22 Sep 2014 12:19:31 -0700
+Received: from fmsmsx111.amr.corp.intel.com (10.18.116.5) by
+	FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server
+	(TLS) id 14.3.195.1; Mon, 22 Sep 2014 12:19:31 -0700
+Received: from fmsmsx106.amr.corp.intel.com ([169.254.6.135]) by
+	fmsmsx111.amr.corp.intel.com ([169.254.12.120]) with mapi id
+	14.03.0195.001; Mon, 22 Sep 2014 12:19:31 -0700
+From: "Summers, John S" <john.s.summers@intel.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] Packages util-linux and gettext both showing undefined
+	reference
+Thread-Index: Ac/UZukDqRQi6fEkRgawA0lmIJuUTACUor0AAAz8fbD//6+0gIAAXyjw
+Date: Mon, 22 Sep 2014 19:19:30 +0000
+Message-ID: <AC825E12842FCA4C9E6DDED8AF00318F1FB7D767@FMSMSX106.amr.corp.intel.com>
+References: <AC825E12842FCA4C9E6DDED8AF00318F1FB70C57@FMSMSX106.amr.corp.intel.com>
+	<CAJTo0LaFn30Fxx2UeJbAdH94Kv1uLbDisiMXHNCHu49POoscwg@mail.gmail.com>
+	<AC825E12842FCA4C9E6DDED8AF00318F1FB79231@FMSMSX106.amr.corp.intel.com>
+	<CAJTo0LYt=tZxtDO0qmOT+aNNdZxMOEqfum=dXrQO1UumYkQLJA@mail.gmail.com>
+In-Reply-To: <CAJTo0LYt=tZxtDO0qmOT+aNNdZxMOEqfum=dXrQO1UumYkQLJA@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.108]
 MIME-Version: 1.0
-Importance: Normal
-X-Priority: 3 (Normal)
-X-Type: plain
-Message-ID: <1411412801.770326130@mail.emailsrvr.com>
-X-Mailer: webmail7.0
-Subject: xdebug - phpinfo() doesn't report xdebug.
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>
+Subject: Re: Packages util-linux and gettext both showing undefined reference
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,43 +57,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Sep 2014 19:16:50 -0000
-Content-Type: text/plain;charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 22 Sep 2014 19:19:50 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hello,=0AMy first post here and I'm very new to Yocto.  Thanks to all who h=
-ave contributed to this awesome project!=0A =0AI need some help getting xde=
-bug to work with modphp and apache2 in the yocto environment.=0A=0AI have s=
-uccessfully built a target image that serves web pages fine with modphp and=
- apache2.  HOWEVER I can't seem to get xdebug to appear anywhere in the php=
-info() report.=0A=0AI realize this may not be a yocto specific question, bu=
-t I have used xdebug and modphp in other Linux environments and have never =
-had this problem. I'm curious if anyone has used xdebug successfully with Y=
-octo or can see what I may be doing wrong.=0A=0AHere is what I have so far:=
-=0A=0AAccording to the http://xdebug.org/wizard.php I should use xdebug 2.2=
-.5 for php 5.5.2.  Since Yocto dora only has xdebug 2.2.3, I copied the xde=
-bug_2.2.5.bb recipe (unchanged) from master to my layer.=0A=0ATo fix an inv=
-alid source url and to get some needed modphp features, I wrote a modphp_5.=
-5.2.bbappend file in my layer:=0A=0A# ELK: bad link - original: http://www.=
-php.net/distributions/php-${PV}.tar.bz2=0ASRC_URI_remove =3D "http://www.ph=
-p.net/distributions/php-${PV}.tar.bz2 "=0ASRC_URI =3D. "http://museum.php.n=
-et/php5/php-${PV}.tar.bz2 "=0ADEPENDS +=3D "libxml2"=0A=0AEXTRA_OECONF_remo=
-ve =3D " \=0A  --disable-pdo \=0A  --disable-xml \=0A  --disable-xmlreader =
-\=0A  --disable-xmlwriter \=0A  --disable-simplexml \=0A  --disable-libxml =
-\=0A"=0A=0AEXTRA_OECONF +=3D " \=0A  --enable-pdo \=0A  --enable-xml \=0A  =
---enable-xmlreader \=0A  --enable-xmlwriter \=0A  --enable-simplexml \=0A  =
---enable-libxml \=0A  --with-libxml-dir=3D${STAGING_DIR_TARGET}${exec_prefi=
-x} \=0A"=0A=0AOther specific information: =0A  1. Yocto Dora 1.5=0A  2. Ker=
-nel: 3.0.35-4.1.0-edm_fairy+ga97aa82 (for Technexion edm1-cf-imx6 / Fairy b=
-oard)=0A  2. xdebug_2.2.5.bb=0A  3. modphp_5.5.2.bb (with my above bbappend=
-).=0A  4. apache2-native_2.4.6.bb, apache2_2.4.6.bb (dora)=0A  5. Manually =
-edited the following to /etc/php/apache2-php5/php.ini on the target and reb=
-ooted:=0A=0A[XDebug]=0Azend_extension=3D/usr/lib/php5/extensions/debug-zts-=
-20121212/xdebug.so=0Axdebug.remote_enable=3D1=0Axdebug.remote_handler=3Ddbg=
-p=0Axdebug.remote_mode=3Dreq=0Axdebug.remote_host=3D192.168.1.31=0Axdebug.r=
-emote_port=3D9000=0A=0AA link to my phpinfo() report:=0A   http://pastebin.=
-com/QVhnwbWm=0A=0AAgain the above builds fine and runs ok, but I can't get =
-xdebug to work.=0AThanks in advance for any help that anyone can provide!=
-=0A=0AEd=0A=0A=0A=0A
-
+SGkgRGFycmVuLA0KDQpNYXliZSBJIHNob3VsZCBlbGFib3JhdGUgYSBiaXQgb24gd2hhdCBJIGFt
+IHRyeWluZyB0byBkby4gIEJhc2ljYWxseSwgSSBhbSB0cnlpbmcgdG8gZGV2ZWxvcCBhbiBlbWJl
+ZGRlZCBFRkktYm9vdGFibGUgaW1hZ2UgdXNpbmcgdGhlIHBva3ktdGlueSBkaXN0cm8uDQoNCkkg
+d291bGQgbGlrZSB0byBiZSBhYmxlIHRvIGF1dG9tYXRlIHRoZSBpbWFnZSBnZW5lcmF0aW9uIHBy
+b2Nlc3MsIHNvIEkndmUgYmVlbiB1c2luZyB0aGUgIndpYyIgdG9vbCB0byBnZW5lcmF0ZSB0aGUg
+aW1hZ2UuICBXaWMgaGFzIGJlZW4gd29ya2luZyBncmVhdCAoYXQgbGVhc3QgaXQgd29ya3MgZmlu
+ZSB3aXRoIG1hbnVhbCBwYXJhbWV0ZXJzLCB0aGUgLWUgYXJndW1lbnQgcmVzdWx0cyBpbiBhIGZh
+aWx1cmUgYXMgZGVzY3JpYmVkIGF0IGh0dHBzOi8vYnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9z
+aG93X2J1Zy5jZ2k/aWQ9NjcwNCZsaXN0X2lkPWNvb2tpZSksIGJ1dCBpdCBhcHBlYXJzIHRoYXQg
+dGhlIGluaXRyYW1mcyBpbWFnZSBpcyBub3QgYmVpbmcgZ2VuZXJhdGVkIHByb3Blcmx5LCByZXN1
+bHRpbmcgaW4gYSBrZXJuZWwgUGFuaWMgd2hlbiBJIGxvYWQgdGhlIGltYWdlIHZpYSBVRUZJLg0K
+DQpJIHNhdyB0aGF0IHBva3ktdGlueSBieSBkZWZhdWx0IHVzZXMgdGhlIGZvbGxvd2luZyBpbWFn
+ZSB0eXBlczoNCklNQUdFX0ZTVFlQRVMgPSAiZXh0MiBjcGlvLmd6Ig0KDQpUaGlzIGlzIGluIG15
+IGZvby1sYXllci9jb25mL2Rpc3Ryby9mb28tbGF5ZXIuY29uZiBmaWxlLiAgVGhlcmUncyBhbHNv
+IGEgbm90ZSB0aGVyZSBzYXlpbmcgdGhhdCAiV2UgZG9uJ3QgYnVpbGQgbGl2ZSBhcyB0aGF0IHB1
+bGxzIGluIGEgbG90IG9mIGRlcGVuZGVuY2llcyBmb3IgbGl2ZSBpbWFnZSBhbmQgdGhlIGluc3Rh
+bGxlciwgbGlrZSB1ZGV2LCBncnViLCBldGMuICBUaGVzZSBwdWxsIGluIGdldHRleHQsIHdoaWNo
+IGZhaWxzIHRvIGJ1aWxkIHdpdGggd2lkZSBjaGFyYWN0ZXIgc3VwcG9ydC4iDQoNCkRvZXMgdGhp
+cyBtZWFuIHRoYXQgd2ljIGlzIG5vdCBzdXBwb3J0ZWQgd2l0aCBwb2t5LXRpbnk/ICBJZiBpdCBp
+cyBzdXBwb3J0ZWQsIGFyZSB0aGVyZSBhbnkgYWRkaXRpb25hbCByZXF1aXJlbWVudHMgZm9yIGJ1
+aWxkaW5nIGluaXRyYW1mcyBpbWFnZXMgaW50byB3aWMgZ2VuZXJhdGVkIGltYWdlcz8NCg0KQWxz
+bywgSSBkb24ndCBzZWUgY29yZS1pbWFnZS1taW5pbWFsLWluaXRyYW1mcyBhZGRlZCBpbiBwb2t5
+LXRpbnkgYXMgYSBQTkJMQUNLTElTVCBpbWFnZS4gIERvIHlvdSBrbm93IG9mIGFueSBhZGRpdGlv
+bmFsIGNvbmZpZ3VyYXRpb24gSSBuZWVkIHRvIGdldCB0aGlzIGltYWdlIHRvIGJ1aWxkIHByb3Bl
+cmx5IChlaXRoZXIgZGlyZWN0bHkgd2l0aCBiaXRiYWtlIG9yIGVtYmVkZGVkIGludG8gbXkgcmVj
+aXBlKT8NCg0KVGhhbmtzIGluIGFkdmFuY2UsDQpTdHVhcnQNCg0KLS0tLS1PcmlnaW5hbCBNZXNz
+YWdlLS0tLS0NCkZyb206IEJ1cnRvbiwgUm9zcyBbbWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNv
+bV0gDQpTZW50OiBNb25kYXksIFNlcHRlbWJlciAyMiwgMjAxNCAxMDoyOCBBTQ0KVG86IFN1bW1l
+cnMsIEpvaG4gUw0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc7IERhcnJlbiBIYXJ0DQpTdWJq
+ZWN0OiBSZTogW3lvY3RvXSBQYWNrYWdlcyB1dGlsLWxpbnV4IGFuZCBnZXR0ZXh0IGJvdGggc2hv
+d2luZyB1bmRlZmluZWQgcmVmZXJlbmNlDQoNCk9uIDIyIFNlcHRlbWJlciAyMDE0IDE4OjA1LCBT
+dW1tZXJzLCBKb2huIFMgPGpvaG4ucy5zdW1tZXJzQGludGVsLmNvbT4gd3JvdGU6DQo+IERJU1RS
+TyAgICAgICAgICAgID0gInBva3ktdGlueSINCg0KSSBleHBlY3QgdGhpcyBpcyB3aGF0J3MgY2F1
+c2luZyB0aGUgcHJvYmxlbS4gIHBva3ktdGlueSBpcyB2ZXJ5IGN1dC1kb3duLiAgQ0MnaW5nIERh
+cnJlbiBmb3IgYSBtb3JlIGluZm9ybWVkIGNvbW1lbnQuDQoNClJvc3MNCg==
 
