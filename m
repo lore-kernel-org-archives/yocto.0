@@ -1,57 +1,49 @@
-Return-Path: <sodovkar@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4441E007A0; Mon, 22 Sep 2014 10:07:44 -0700 (PDT)
+	id A27E2E005BD; Mon, 22 Sep 2014 10:28:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (sodovkar[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.215.54 listed in list.dnswl.org]
-Received: from mail-la0-f54.google.com (mail-la0-f54.google.com
-	[209.85.215.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF28BE0034C
-	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 10:07:42 -0700 (PDT)
-Received: by mail-la0-f54.google.com with SMTP id ge10so6987268lab.41
-	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 10:07:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=iynhVjD/23oPtrjvEFFBXrKHCN3faMMkAC3rz48RQxQ=;
-	b=Bz+xF6yn1AIV6BuHq06BS1lD6/R4AzOUnfPb5VWtLnL6Y/WHc40PWFbsdZQ0XQgi2X
-	QAoYJuTJtO0UTEJ7N4nwk4+qPPchcGSyZpO94jI7vsu+eaX4QjDlEMboO0J+CRO/iXBj
-	HVf4iodZOF7zB1/jFg/EN/I7gP6XfPkjSLyIRZQNeBuQefEKcwD4szER5hqA9rsV5QH2
-	znUskN+t3F1Qg83OIm/jHv97W9fK/nLJAqiKZesycX1PRbEV0mpDn4KvSO6j4naXJ3LY
-	iA3RfIRGjVpCoh7DQhMh04QqZ4AGRRU7Q4XLduGP/SplWlM2ZV4dKQNJ+uEqmaF6QcCd
-	iDpQ==
-X-Received: by 10.112.72.10 with SMTP id z10mr3910005lbu.87.1411405661742;
-	Mon, 22 Sep 2014 10:07:41 -0700 (PDT)
-Received: from ?IPv6:2a00:1028:86f0:2742:922b:34ff:fed2:fd27?
-	(dynamic-2a00-1028-86f0-2742-922b-34ff-fed2-fd27.ipv6.broadband.iol.cz.
-	[2a00:1028:86f0:2742:922b:34ff:fed2:fd27])
-	by mx.google.com with ESMTPSA id wj8sm3950516lbb.34.2014.09.22.10.07.39
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 22 Sep 2014 10:07:40 -0700 (PDT)
-Message-ID: <5420569D.4090306@gmail.com>
-Date: Mon, 22 Sep 2014 19:04:29 +0200
-From: Soda <sodovkar@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.8.0
+	*      [209.85.192.46 listed in list.dnswl.org]
+Received: from mail-qg0-f46.google.com (mail-qg0-f46.google.com
+	[209.85.192.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EE14E0034C
+	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 10:28:30 -0700 (PDT)
+Received: by mail-qg0-f46.google.com with SMTP id q108so3218871qgd.19
+	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 10:28:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=N2vXCydbG88kZw1WTEx67cSxdHjEJesMA1LssWOeGRQ=;
+	b=m54OW5LfwQeD7NMaM2yEW0CkWydO46sjO3YaQ1rQpLkuX8p94SGPtxfUNAoM45FnG3
+	UyZ3BW3toLCHXPZk7nANmshrSOqntk6QF6+WOd3/bNfbo5E1hnmRI8gDqz4TjFza92qX
+	e8WBGUEWBDjwiKZbil9Uewxosxim/JNsIx1NyrJ2dUuQx7/uDXIS6iP/3t/pjQDaUWOQ
+	ioA1tUFa7edEViITHEGCiBYpdR4t74lcVtOs6T1Iamb/bussDlcoS413REjVA1s0c+w2
+	9ofr73RpysVcVmn8j+kKLi+YwWC5jO+89P0S4I9b6DK1IPAxlF8zowUC9dbk8SQ/+Tlu
+	kGPQ==
+X-Gm-Message-State: ALoCoQn1YcSQC1nuAql87Q4Cb/wuedc3fyBUeVaw631yaaA+sGk+02u2lj5et8XdFpaQmuRmppId
+X-Received: by 10.140.40.84 with SMTP id w78mr11169824qgw.87.1411406909319;
+	Mon, 22 Sep 2014 10:28:29 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: midnight-commander sub-shell
+Received: by 10.140.34.180 with HTTP; Mon, 22 Sep 2014 10:28:09 -0700 (PDT)
+In-Reply-To: <AC825E12842FCA4C9E6DDED8AF00318F1FB79231@FMSMSX106.amr.corp.intel.com>
+References: <AC825E12842FCA4C9E6DDED8AF00318F1FB70C57@FMSMSX106.amr.corp.intel.com>
+	<CAJTo0LaFn30Fxx2UeJbAdH94Kv1uLbDisiMXHNCHu49POoscwg@mail.gmail.com>
+	<AC825E12842FCA4C9E6DDED8AF00318F1FB79231@FMSMSX106.amr.corp.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 22 Sep 2014 18:28:09 +0100
+Message-ID: <CAJTo0LYt=tZxtDO0qmOT+aNNdZxMOEqfum=dXrQO1UumYkQLJA@mail.gmail.com>
+To: "Summers, John S" <john.s.summers@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Darren Hart <dvhart@linux.intel.com>
+Subject: Re: Packages util-linux and gettext both showing undefined reference
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,12 +55,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Sep 2014 17:07:44 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 22 Sep 2014 17:28:43 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi,
-the mc package is working well in my distro. But I cannot enable the 
-subshell (ctrl+o) even if mc -V shows
-"With subshell support as default".  Any advices please?
+On 22 September 2014 18:05, Summers, John S <john.s.summers@intel.com> wrote:
+> DISTRO            = "poky-tiny"
+
+I expect this is what's causing the problem.  poky-tiny is very
+cut-down.  CC'ing Darren for a more informed comment.
+
+Ross
 
