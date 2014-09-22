@@ -1,57 +1,39 @@
-Return-Path: <navani.srivastava@gmail.com>
+Return-Path: <Neil.Wu@Emerson.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9097E0086B; Mon, 22 Sep 2014 02:18:48 -0700 (PDT)
+	id 09E48E00876; Mon, 22 Sep 2014 02:18:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (navani.srivastava[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [144.191.128.190 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.174 listed in list.dnswl.org]
-Received: from mail-ig0-f174.google.com (mail-ig0-f174.google.com
-	[209.85.213.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F567E00869
-	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 02:18:45 -0700 (PDT)
-Received: by mail-ig0-f174.google.com with SMTP id r10so2324380igi.13
-	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 02:18:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=nFQZ+4v/6xwslJRbF8NoQCcWZlCVcebIJkJ2Kz0GXbQ=;
-	b=RrCkqpJ/txWnSw4zmWNNEfZ89n1j9cK8TgtfNTuGxEOOBk/PJpobRWvcESBdPkTCZF
-	iPSNB2mHszBYb736c14U0qcJlsb8DX0TGcT2vDOq25XhXAuALbMqNqQn7u7odtJUyNm+
-	jO/I6Drtucd9Van0QKLxm+1N7xF1cd3A7ji+BDI81OVJxJdNZWwuJ0Nlwmfx8OXmyynu
-	g2oRQBhg4F+EoixljRbGd5n62f1XRhe8OzsmKVaO9qDzMsZNc2vgx6VOrQAVAlnK6Lxz
-	iKipye30QFUXHrIaIWm43ILPYPQ1mdATuB24sk5nLg5eEpipvaFvVrvjotfY1Vlb5J3j
-	teew==
-X-Received: by 10.50.85.38 with SMTP id e6mr12942070igz.5.1411377525019; Mon,
-	22 Sep 2014 02:18:45 -0700 (PDT)
+Received: from USSTLZ-PINFEZ06.extemr.org (usstlz-pinfez06.extemr.org
+	[144.191.128.190])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1897BE00872
+	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 02:18:51 -0700 (PDT)
+Received: from USSTLZ-PMSG001.emrsn.org (10.16.72.26) by
+	USSTLZ-PINFEZ06.extemr.org (10.16.8.79) with Microsoft SMTP Server
+	(TLS) id 14.3.158.1; Mon, 22 Sep 2014 09:18:49 +0000
+Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.186]) by
+	USSTLZ-PMSG001.emrsn.org ([169.254.1.153]) with mapi id 14.03.0158.001;
+	Mon, 22 Sep 2014 09:18:49 +0000
+From: <Neil.Wu@Emerson.com>
+To: <yocto@yoctoproject.org>
+Thread-Topic: create_image.tar fail
+Thread-Index: Ac/QwcFOPo0Bg5rkSSK4jS9YNrymzgFg8X/g
+Date: Mon, 22 Sep 2014 09:18:48 +0000
+Message-ID: <3204FE6663E1F14CAF4CA6928E60C85215B813D9@USSTLZ-PMSG012.emrsn.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.75.1]
 MIME-Version: 1.0
-Received: by 10.107.132.217 with HTTP; Mon, 22 Sep 2014 02:18:24 -0700 (PDT)
-In-Reply-To: <2002943.O9tR5uaDDD@peggleto-mobl5.ger.corp.intel.com>
-References: <CA+Z6RkW1D8pPpGCTu_SwF5Q+d0Um-MuYQM3mtube=u2txu0V6A@mail.gmail.com>
-	<26633520.FLER5Y4OlA@peggleto-mobl5.ger.corp.intel.com>
-	<CA+Z6RkWSwoqcn9HBttOn1jrTaX5X=OhLLGVsex5TqzWcHGG1LQ@mail.gmail.com>
-	<2002943.O9tR5uaDDD@peggleto-mobl5.ger.corp.intel.com>
-From: Navani Srivastava <navani.srivastava@gmail.com>
-Date: Mon, 22 Sep 2014 14:48:24 +0530
-Message-ID: <CA+Z6RkWN=wbJkf94rwPWNqDKdGvhGPRvdTXFjqM+Uho8mTCzkg@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: Navani Srivastava <navani.srivastava@lnttechservices.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Integration of custom recipe with SDK
+Subject: Re: create_image.tar fail
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,129 +45,199 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Sep 2014 09:18:48 -0000
-Content-Type: multipart/alternative; boundary=089e0149c67a05dd1d0503a3f0eb
+X-List-Received-Date: Mon, 22 Sep 2014 09:18:54 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_3204FE6663E1F14CAF4CA6928E60C85215B813D9USSTLZPMSG012em_"
 
---089e0149c67a05dd1d0503a3f0eb
-Content-Type: text/plain; charset=UTF-8
-
-I will follow the suggestion given by you and will update the result.
-However in case if I want to integrate custom recipe with
-meta-toolchain-qte, is there any example existing which can help me in
-understanding?
-
-Right now I am following the procedure given by Randy but some example
-could be of a great help!!
-
-Regards
-
-Navani
-
-On Mon, Sep 22, 2014 at 2:21 PM, Paul Eggleton <
-paul.eggleton@linux.intel.com> wrote:
-
-> On Monday 22 September 2014 14:06:26 Navani Srivastava wrote:
-> > On Mon, Sep 22, 2014 at 1:45 PM, Paul Eggleton <
-> > paul.eggleton@linux.intel.com> wrote:
-> > > On Sunday 21 September 2014 09:26:07 Navani Srivastava wrote:
-> > > > We are not using populatesdk ... we need to generate it through
-> > > > meta-toolchain-qte only so i am trying with the solution provided by
-> > > > randy..
-> > >
-> > > Can I ask why? I'd like to understand where -c populate_sdk needs
-> further
-> > > improvement.
-> >
-> > I have to generate toolchain which contain qt related tools also like
-> qmake
-> > and qjson, so we are using meta-toolchain-qte to generate the toolchain..
-> > Do you suggest it's better to integrate meta-toolchain-qte somehow with
-> > populate_sdk so that we can make life easier?
->
-> It is possible to integrate the two - all you need to do is ensure the
-> extra
-> qte tools get added to the SDK. One way to achieve this would be to add the
-> following to your image recipe:
->
-> QTNAME = "qte"
-> QT_DIR_NAME = "qtopia"
-> require recipes-qt/meta/meta-toolchain-qt.inc
->
-> (I haven't tested this so I'm not 100% sure if it will work, but it
-> should.)
->
-> Cheers,
-> Paul
->
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
->
-
---089e0149c67a05dd1d0503a3f0eb
-Content-Type: text/html; charset=UTF-8
+--_000_3204FE6663E1F14CAF4CA6928E60C85215B813D9USSTLZPMSG012em_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><p class=3D"">I will follow the suggestion given by you an=
-d will update
-the result. However in case if I want to integrate custom recipe with
-meta-toolchain-qte, is there any example existing which can help me in
-understanding?</p>
+Hi,
+I use the yocto-bsp tools to creat a new bsp layer, I found this problem li=
+ke following :
 
-<p class=3D"">Right now I am following the procedure given by Randy but
-some example could be of a great help!!</p><p class=3D"">Regards</p><p clas=
-s=3D"">Navani</p></div><div class=3D"gmail_extra"><br><div class=3D"gmail_q=
-uote">On Mon, Sep 22, 2014 at 2:21 PM, Paul Eggleton <span dir=3D"ltr">&lt;=
-<a href=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">paul.egg=
-leton@linux.intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1e=
-x"><span class=3D"">On Monday 22 September 2014 14:06:26 Navani Srivastava =
-wrote:<br>
-&gt; On Mon, Sep 22, 2014 at 1:45 PM, Paul Eggleton &lt;<br>
-&gt; <a href=3D"mailto:paul.eggleton@linux.intel.com">paul.eggleton@linux.i=
-ntel.com</a>&gt; wrote:<br>
-&gt; &gt; On Sunday 21 September 2014 09:26:07 Navani Srivastava wrote:<br>
-&gt; &gt; &gt; We are not using populatesdk ... we need to generate it thro=
-ugh<br>
-&gt; &gt; &gt; meta-toolchain-qte only so i am trying with the solution pro=
-vided by<br>
-&gt; &gt; &gt; randy..<br>
-&gt; &gt;<br>
-&gt; &gt; Can I ask why? I&#39;d like to understand where -c populate_sdk n=
-eeds further<br>
-&gt; &gt; improvement.<br>
-&gt;<br>
-</span><span class=3D"">&gt; I have to generate toolchain which contain qt =
-related tools also like qmake<br>
-&gt; and qjson, so we are using meta-toolchain-qte to generate the toolchai=
-n..<br>
-&gt; Do you suggest it&#39;s better to integrate meta-toolchain-qte somehow=
- with<br>
-&gt; populate_sdk so that we can make life easier?<br>
-<br>
-</span>It is possible to integrate the two - all you need to do is ensure t=
-he extra<br>
-qte tools get added to the SDK. One way to achieve this would be to add the=
-<br>
-following to your image recipe:<br>
-<br>
-QTNAME =3D &quot;qte&quot;<br>
-QT_DIR_NAME =3D &quot;qtopia&quot;<br>
-require recipes-qt/meta/meta-toolchain-qt.inc<br>
-<br>
-(I haven&#39;t tested this so I&#39;m not 100% sure if it will work, but it=
- should.)<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-Cheers,<br>
-Paul<br>
-<br>
-<br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</div></div></blockquote></div><br></div>
+Yoctto-bsp creat myx86 quem
 
---089e0149c67a05dd1d0503a3f0eb--
+Traceback (most recent call last):
+  File "/home/etcrs/poky/scripts/yocto-bsp", line 150, in <module>
+    ret =3D main()
+  File "/home/etcrs/poky/scripts/yocto-bsp", line 145, in main
+    invoke_subcommand(args, parser, yocto_bsp_help_usage, subcommands)
+  File "/home/etcrs/poky/scripts/lib/bsp/help.py", line 73, in invoke_subco=
+mmand
+    subcommands.get(args[0], subcommand_error)[0](args[1:], usage)
+  File "/home/etcrs/poky/scripts/yocto-bsp", line 89, in yocto_bsp_create_s=
+ubcommand
+    yocto_bsp_create(machine, karch, scripts_path, bsp_output_dir, options.=
+codedump, options.properties_file)
+  File "/home/etcrs/poky/scripts/lib/bsp/engine.py", line 1450, in yocto_bs=
+p_create
+    yocto_common_create(machine, arch, scripts_path, bsp_output_dir, codedu=
+mp, properties_file, properties)
+SyntaxError: function specified for 'gen' property returned nothing : input=
+ type:"choicelist" name:"new_kbranch" nameappend:"i386" gen:"bsp.kernel.all=
+_branches" branches_base:"standard:standard/common-pc" prio:"20" msg:"Pleas=
+e choose a machine branch to base this BSP on:" default:"standard/common-pc=
+/base"
+
+How to resolve this problem ?  If you know ,please tell me.
+Thanks very much.
+
+
+Thank you&Best regards
+Neil Wu
+
+
+--_000_3204FE6663E1F14CAF4CA6928E60C85215B813D9USSTLZPMSG012em_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"\@SimSun";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi,<o:p></o:p></span></=
+b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;;color:#1F497D">I use the yocto-bsp too=
+ls to creat a new bsp layer, I found this problem like following :<o:p></o:=
+p></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span=
+></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;;color:#1F497D">Yoctto-bsp creat myx86 =
+quem<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span=
+></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;;color:#1F497D">Traceback (most recent cal=
+l last):<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp; File &quot;/home/et=
+crs/poky/scripts/yocto-bsp&quot;, line 150, in &lt;module&gt;<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp;&nbsp;&nbsp; ret =3D=
+ main()<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp; File &quot;/home/et=
+crs/poky/scripts/yocto-bsp&quot;, line 145, in main<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp;&nbsp;&nbsp; invoke_=
+subcommand(args, parser, yocto_bsp_help_usage, subcommands)<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp; File &quot;/home/et=
+crs/poky/scripts/lib/bsp/help.py&quot;, line 73, in invoke_subcommand<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp;&nbsp;&nbsp; subcomm=
+ands.get(args[0], subcommand_error)[0](args[1:], usage)<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp; File &quot;/home/et=
+crs/poky/scripts/yocto-bsp&quot;, line 89, in yocto_bsp_create_subcommand<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp;&nbsp;&nbsp; yocto_b=
+sp_create(machine, karch, scripts_path, bsp_output_dir, options.codedump, o=
+ptions.properties_file)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp; File &quot;/home/et=
+crs/poky/scripts/lib/bsp/engine.py&quot;, line 1450, in yocto_bsp_create<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;;color:#1F497D">&nbsp;&nbsp;&nbsp; yocto_c=
+ommon_create(machine, arch, scripts_path, bsp_output_dir, codedump, propert=
+ies_file, properties)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;;color:red">SyntaxError: function specifie=
+d for 'gen' property returned nothing : input type:&quot;choicelist&quot; n=
+ame:&quot;new_kbranch&quot; nameappend:&quot;i386&quot; gen:&quot;bsp.kerne=
+l.all_branches&quot;
+ branches_base:&quot;standard:standard/common-pc&quot; prio:&quot;20&quot; =
+msg:&quot;Please choose a machine branch to base this BSP on:&quot; default=
+:&quot;standard/common-pc/base&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ta=
+homa&quot;,&quot;sans-serif&quot;;color:red"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;;color:#1F497D">How to resolve this pro=
+blem ?&nbsp; If you know ,please tell me.<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;;color:#1F497D">Thanks very much.<o:p><=
+/o:p></span></b></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thank you&amp;Best regards<o:p></o:p></p>
+<p class=3D"MsoNormal">Neil Wu<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_3204FE6663E1F14CAF4CA6928E60C85215B813D9USSTLZPMSG012em_--
