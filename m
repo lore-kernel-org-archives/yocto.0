@@ -1,51 +1,55 @@
-Return-Path: <vmartin@avaya.com>
+Return-Path: <jdelapena@lexmark.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B05EFE0086B; Mon, 22 Sep 2014 05:03:59 -0700 (PDT)
+	id B7C25E0086B; Mon, 22 Sep 2014 05:05:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [135.11.29.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [64.18.3.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 70 seconds by postgrey-1.32 at yocto-www;
-	Mon, 22 Sep 2014 05:03:58 PDT
-Received: from p-us1-iereast-outbound.us1.avaya.com
-	(p-us1-iereast-outbound.us1.avaya.com [135.11.29.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B38EEE00869
-	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 05:03:58 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AiAFANMOIFTGmAcV/2dsb2JhbABggmsjgSoEgn3PGwEZcRYBAXiEAwEBAQEDEhERRQwEAgEIDQQEAQEBAgIGHQMCAgIwFAEICAEBBA4FCBqIHAGjV4pPlXYBF4EsjikxBwaCcjaBHQWRV5M0jV2DYWyBSIECAQEB
-X-IronPort-AV: E=Sophos;i="5.04,571,1406606400"; d="scan'208";a="85689259"
-Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
-	([198.152.7.21]) by p-us1-iereast-outbound.us1.avaya.com with ESMTP;
-	22 Sep 2014 08:02:47 -0400
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC02.global.avaya.com) ([135.11.85.13])
-	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
-	22 Sep 2014 08:02:47 -0400
-Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
-	AZ-US1EXHC02.global.avaya.com ([::1]) with mapi id 14.03.0174.001;
-	Mon, 22 Sep 2014 08:02:46 -0400
-From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Forcing fetch task when source changes
-Thread-Index: Ac/WV6OeWyp3DS2TR6W6LXTA2odZVAAIu5UAAAd+lKA=
-Date: Mon, 22 Sep 2014 12:02:46 +0000
-Message-ID: <30C2D590D16A5C46ADFE6521910377982FDD65C6@AZ-US1EXMB03.global.avaya.com>
-References: <30C2D590D16A5C46ADFE6521910377982FDD658D@AZ-US1EXMB03.global.avaya.com>
-	<CAJTo0LZHQDW6ALvgvZZQ2snwd36TA5Ug6sKTnMWLyfUTq5GF1A@mail.gmail.com>
-In-Reply-To: <CAJTo0LZHQDW6ALvgvZZQ2snwd36TA5Ug6sKTnMWLyfUTq5GF1A@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.11.85.50]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from exprod8og112.obsmtp.com (exprod8og112.obsmtp.com [64.18.3.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35195E00869
+	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 05:05:27 -0700 (PDT)
+Received: from mail-wi0-f182.google.com ([209.85.212.182]) (using TLSv1) by
+	exprod8ob112.postini.com ([64.18.7.12]) with SMTP
+	ID DSNKVCAQhk0WDWexRX8teiLWanW9V6T/L/1X@postini.com;
+	Mon, 22 Sep 2014 05:05:30 PDT
+Received: by mail-wi0-f182.google.com with SMTP id d1so2834130wiv.3
+	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 05:05:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=AqzDRvnDkX6WAoD/EHOTdmjGM0moOj9gzKE98oKRuOY=;
+	b=f7FrQ0ihO90Q0GYmJKcyhpyHNT6emo19Ft8DuH3DmDDl18F6zcNL5IDtcOYrRH/Sdw
+	sFDzrzYOtXr1g+E48iBpZNKk1/aAZl39+GGBSt+sYQHrxym27+aDLx2FRVGOixi94XTo
+	+eLnKLDDWFFwHzbrihhDzrnN5fB7jIKUjwMtsrT+GWhkAXYy5wlbO4PEalaqPznoEpgJ
+	XpXBoz7Ez8d4nP3CFH0q2ypW89+bRPbPMBHaepzaaiMgfaptg7A92AfV16QYPxuU2Dzv
+	2ay0H0MTFNKMiuD/uhqwpTWlChC50puncEkNIceg/6EOhQdGhqSs36aazn9uu3GozwPe
+	EGew==
+X-Gm-Message-State: ALoCoQnsORGevRTssgnw7TwEUbUMuf1jI+PFW854HipbO+JR5dSfRhfaWSpS/wexvT4NBXwNZZ7E9emwjggbnM2rXHFLRvOF2D1Ri+DgIAApVl7lJE8XgA7JbTwqL+gWd1ogWnb31fy0Wc/sAjb0WAZ0ZpMjV10/4w==
+X-Received: by 10.180.218.99 with SMTP id pf3mr15089213wic.19.1411387525584;
+	Mon, 22 Sep 2014 05:05:25 -0700 (PDT)
 MIME-Version: 1.0
+X-Received: by 10.180.218.99 with SMTP id pf3mr15089199wic.19.1411387525515;
+	Mon, 22 Sep 2014 05:05:25 -0700 (PDT)
+Received: by 10.27.170.66 with HTTP; Mon, 22 Sep 2014 05:05:25 -0700 (PDT)
+In-Reply-To: <CAJTo0LZVPdNsbrnqgSfdarqi0bjiJDNOAmb5wgvRhOOy7qkYyg@mail.gmail.com>
+References: <CAJrRHk5Kt5eqoTH_cnD8Px+NKe99cSLOb7b_1q4am_d=eDnWuQ@mail.gmail.com>
+	<CAJTo0LZFP0i+LSYdE35cDNS3ZN4GEkFinoyQ6bTEA0E8gLvnFQ@mail.gmail.com>
+	<CAJrRHk4pjaLTwO8ggUoQKs4ALVY565rU2SvcTyAYsSmm=jHvTQ@mail.gmail.com>
+	<CAJTo0LZVPdNsbrnqgSfdarqi0bjiJDNOAmb5wgvRhOOy7qkYyg@mail.gmail.com>
+Date: Mon, 22 Sep 2014 20:05:25 +0800
+Message-ID: <CAJrRHk6fuL=44SCQuwZRBfbvhvYw6_g=0Uf3Tw=yFowe9KDvWg@mail.gmail.com>
+From: =?UTF-8?Q?Joseph_Andrew_de_la_Pe=C3=B1a?= <jdelapena@lexmark.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Forcing fetch task when source changes
+Subject: Re: Nothing PROVIDES nativesdk-krb5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,27 +61,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Sep 2014 12:03:59 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 22 Sep 2014 12:05:33 -0000
+Content-Type: multipart/alternative; boundary=001a1134cde8196bcb0503a644f7
 
-V291bGQgdGhpcyB3b3JrIGZvciBhIGRpcmVjdG9yeSB0cmVlIGFzIG9wcG9zZWQgdG8gYSBzaW5n
-bGUgZmlsZT8NCg0KQWxzbywgdGhlIGN1cnJlbnQgImNvcHkiIGlzIG5vdCBhIHN0cmFpZ2h0IGNv
-cHksIGl0IGV4Y2x1ZGVzIGNlcnRhaW4gZmlsZXMuDQpCdXQgSSBtaWdodCBiZSBhYmxlIHRvIGRl
-YWwgd2l0aCB0aGF0IHBvc3QtZmV0Y2guDQoNCk1WDQoNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3Nh
-Z2UtLS0tLQ0KPiBGcm9tOiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5j
-b21dDQo+IFNlbnQ6IFNlcHRlbWJlciAyMiwgMjAxNCA3OjM0IEFNDQo+IFRvOiBWdWlsbGUsIE1h
-cnRpbiAoTWFydGluKQ0KPiBDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiBTdWJqZWN0OiBS
-ZTogW3lvY3RvXSBGb3JjaW5nIGZldGNoIHRhc2sgd2hlbiBzb3VyY2UgY2hhbmdlcw0KPiANCj4g
-T24gMjIgU2VwdGVtYmVyIDIwMTQgMTI6MjUsIFZ1aWxsZSwgTWFydGluIChNYXJ0aW4pIDx2bWFy
-dGluQGF2YXlhLmNvbT4NCj4gd3JvdGU6DQo+ID4gSSBoYXZlIGRlZmluZWQgYSBjbGFzcyB3aXRo
-IGEgY3VzdG9taXplZCBmZXRjaCB0YXNrICh0aGF0DQo+ID4NCj4gPiBjb3BpZXMgZmlsZXMgZnJv
-bSBhIGxvY2FsIHJlYWQtb25seSBkaXJlY3RvcnkgdG8gdGhlICR7U30NCj4gPg0KPiA+IGRpcmVj
-dG9yeSkuDQo+ID4NCj4gPg0KPiA+DQo+ID4gSSBhbSBsb29raW5nIGZvciBhIHdheSB0byBjYXVz
-ZSB0aGUgZmV0Y2ggdGFzayB0byBydW4NCj4gPg0KPiA+IGFnYWluIHdoZW5ldmVyIHRoZSBjb250
-ZW50cyBvZiB0aGUgbG9jYWwgZGlyZWN0b3J5DQo+ID4NCj4gPiBjaGFuZ2Ugdy5yLnQuIHdoYXQg
-d2FzIGxhc3QgZmV0Y2hlZC9jb3BpZWQgdG8gJHtTfS4NCj4gDQo+IFdoeSBub3QganVzdCB1c2Ug
-bG9jYWwgVVJJcyBpbiB0aGUgU1JDX1VSSToNCj4gDQo+IFNSQ19VUkk9ImZpbGU6Ly8vaG9tZS9m
-b28vYmFyL2Zsb2IuYyINCj4gDQo+IFJvc3MNCg==
+--001a1134cde8196bcb0503a644f7
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+Good day Ross,
+
+Yes, our recipe is depending on curl. The dependency chain is
+(nativesdk-our_unit, nativesdk-curl, nativesdk-krb5).
+The recipe needed curl for certain functions. It works perfectly for native
+but when it comes to nativesdk, there is the disconnect. Why is krb5 not
+seen in sdk but no error is seen for native?
+
+- Joseph
+
+On Mon, Sep 22, 2014 at 7:45 PM, Burton, Ross <ross.burton@intel.com> wrote=
+:
+
+> On 22 September 2014 12:41, Joseph Andrew de la Pe=C3=B1a
+> <jdelapena@lexmark.com> wrote:
+> > What poky version are you referring to? I'm using dora poky HEAD. Haven=
+'t
+> > seen any krb5 recipe.
+> > Please enlighten me.
+>
+> Well krb5 is in meta-oe/meta-connectivity.  But the point is that
+> something is adding a dependency to curl for krb5, and as far as I
+> can't tell it's not oe-core or meta-connectivity.  Using bitbake -e
+> will tell you where it came from.
+>
+> Ross
+>
+
+--001a1134cde8196bcb0503a644f7
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Good day Ross,<div><br></div><div>Yes, our recipe is depen=
+ding on curl. The dependency chain is (nativesdk-our_unit, nativesdk-curl, =
+nativesdk-krb5).</div><div>The recipe needed curl for certain functions. It=
+ works perfectly for native but when it comes to nativesdk, there is the di=
+sconnect. Why is krb5 not seen in sdk but no error is seen for native?</div=
+><div><br></div><div>- Joseph</div></div><div class=3D"gmail_extra"><br><di=
+v class=3D"gmail_quote">On Mon, Sep 22, 2014 at 7:45 PM, Burton, Ross <span=
+ dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank"=
+>ross.burton@intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_=
+quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1=
+ex">On 22 September 2014 12:41, Joseph Andrew de la Pe=C3=B1a<br>
+<span class=3D"">&lt;<a href=3D"mailto:jdelapena@lexmark.com">jdelapena@lex=
+mark.com</a>&gt; wrote:<br>
+&gt; What poky version are you referring to? I&#39;m using dora poky HEAD. =
+Haven&#39;t<br>
+&gt; seen any krb5 recipe.<br>
+&gt; Please enlighten me.<br>
+<br>
+</span>Well krb5 is in meta-oe/meta-connectivity.=C2=A0 But the point is th=
+at<br>
+something is adding a dependency to curl for krb5, and as far as I<br>
+can&#39;t tell it&#39;s not oe-core or meta-connectivity.=C2=A0 Using bitba=
+ke -e<br>
+will tell you where it came from.<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+Ross<br>
+</font></span></blockquote></div><br></div>
+
+--001a1134cde8196bcb0503a644f7--
