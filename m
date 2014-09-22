@@ -1,59 +1,56 @@
-Return-Path: <jdelapena@lexmark.com>
+Return-Path: <joe@deserted.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 10155E0086B; Mon, 22 Sep 2014 06:16:31 -0700 (PDT)
+	id CA7F5E0086B; Mon, 22 Sep 2014 06:36:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [64.18.3.38 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from exprod8og119.obsmtp.com (exprod8og119.obsmtp.com [64.18.3.38])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C68DE00869
-	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 06:16:25 -0700 (PDT)
-Received: from mail-we0-f173.google.com ([74.125.82.173]) (using TLSv1) by
-	exprod8ob119.postini.com ([64.18.7.12]) with SMTP
-	ID DSNKVCAhKItEy5HY9CfQiRDcHqbBk7gQqKOV@postini.com;
-	Mon, 22 Sep 2014 06:16:28 PDT
-Received: by mail-we0-f173.google.com with SMTP id x48so1442301wes.32
-	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 06:16:23 -0700 (PDT)
+Received: from mail-ie0-f172.google.com (mail-ie0-f172.google.com
+	[209.85.223.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69137E00869
+	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 06:36:05 -0700 (PDT)
+Received: by mail-ie0-f172.google.com with SMTP id rp18so5419379iec.17
+	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 06:36:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=ak6l2xMICAsnCvnp81dVvankVdwb8GAbFmSG2hDp+3I=;
-	b=bNMGdPt6KYbUmbtoOu+SiWOgQWPuQJuPlZR3h6OIntyqSJ6lphPSyWHhwTgQdy3K+f
-	wxxcF445EbqxSMDVCmoXQyfvfcUrNEF5c/ovLzWxzzbBzwbgVfMFvsPCaGDEfQlBQGvg
-	bt+EuQZ5AyRvCgXroD4YkHr3mX13NtBxaoGIzZZtq/vkCS+b8unYFAiOkB7YSvloBqkw
-	Al1LgGTJk/ABtWzfKtC9X3gpDaCSJMeHrl7XwCu4L43h/9rvMfK1hh5gpvNp9bIRop9f
-	efavvc+RpAgbDUJcVrFtSQ4XnULuAmi7/hWXs0xL5yo7vzKbYgbm6IKR6aHrMeTVeVSr
-	vXqQ==
-X-Gm-Message-State: ALoCoQn4DZbOl+2oTpPo6iXbXEmJ7oAhH/PEBzsKqXA+R98xP2h7MpR5uUSJ4sjpKCMh2CljRocb0+CbzW1iiDBnCFiZB6+6mkrzTreG8OzB3/K6lrv5iLbixHQDPl8z5OIgDKBdn8c6XPgF3iywYfjLhPrA9Cec9w==
-X-Received: by 10.180.19.167 with SMTP id g7mr755854wie.19.1411391783413;
-	Mon, 22 Sep 2014 06:16:23 -0700 (PDT)
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=x1AKn+xElrVZT6k906GJ20isV/AUbEmCUYxiiPY0baE=;
+	b=iXmQu+z06rf9MA6446aRb5+6f6n0yGiyV9ssE9vrsaZwEe4i0gr2TqVwzRhlaqTo78
+	to9HT7vMO9MiCovpr3kCGzWTCuRUJ+nqvR8vRaj8YRYM3k1gz/vn7V4vNBfiPXKEYyWr
+	YZqwughS5gtwxQu/2CvE1QjJGyAT63RakkGcRdlZe28zBb0VGsCEHDpcbXHnzqTBN/RZ
+	zBM4irvR7B3b8OoAbnIv57SuyqSLQ+v3xeI9K3N5NcKIIOCjiB95Q6cRaEiVqRcDGzRO
+	SBko0XH9/HIdHxAP2uhllq3JPVfI7CrgxQPwjjPr1ZBQsd/NBfexbGASWD0HHgwRjeVa
+	9nKQ==
+X-Gm-Message-State: ALoCoQlo7Sd7tV/J3CpjTHg3GUt8YjAEgIhxnfRqQ8l471BnIr6tWa4VEmMo8kyi/AGJfODY19et
+X-Received: by 10.50.79.165 with SMTP id k5mr14631839igx.16.1411392964270;
+	Mon, 22 Sep 2014 06:36:04 -0700 (PDT)
+Received: from deserted.net (24-246-4-250.cable.teksavvy.com. [24.246.4.250])
+	by mx.google.com with ESMTPSA id
+	lq10sm8776374igb.22.2014.09.22.06.36.01 for <multiple recipients>
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Mon, 22 Sep 2014 06:36:01 -0700 (PDT)
+Date: Mon, 22 Sep 2014 09:35:59 -0400
+From: Joe MacDonald <joe@deserted.net>
+To: Pascal Ouyang <xin.ouyang@windriver.com>
+Message-ID: <20140922133559.GA28255@deserted.net>
+References: <20140918195737.GB6322@mentor.com> <541B3B4E.30300@windriver.com>
+	<20140919211717.GB5036@mentor.com> <541FDDEF.5050600@windriver.com>
 MIME-Version: 1.0
-X-Received: by 10.180.19.167 with SMTP id g7mr755849wie.19.1411391783332; Mon,
-	22 Sep 2014 06:16:23 -0700 (PDT)
-Received: by 10.27.170.66 with HTTP; Mon, 22 Sep 2014 06:16:23 -0700 (PDT)
-In-Reply-To: <CAJTo0Lba3u=9jxAaFG5yq3cGBJzf9fHkdYFB0koAqqeTXX0HkA@mail.gmail.com>
-References: <CAJrRHk5Kt5eqoTH_cnD8Px+NKe99cSLOb7b_1q4am_d=eDnWuQ@mail.gmail.com>
-	<CAJTo0LZFP0i+LSYdE35cDNS3ZN4GEkFinoyQ6bTEA0E8gLvnFQ@mail.gmail.com>
-	<CAJrRHk4pjaLTwO8ggUoQKs4ALVY565rU2SvcTyAYsSmm=jHvTQ@mail.gmail.com>
-	<CAJTo0LZVPdNsbrnqgSfdarqi0bjiJDNOAmb5wgvRhOOy7qkYyg@mail.gmail.com>
-	<CAJrRHk6fuL=44SCQuwZRBfbvhvYw6_g=0Uf3Tw=yFowe9KDvWg@mail.gmail.com>
-	<CAJTo0LaKrQmFh_SzprfhpMUBQ5zCuG2M6-tSHayW90NxdnkrbA@mail.gmail.com>
-	<CAJrRHk71oTAv_Yko4m1_LAWP=cXJy-6jA93qiG40-xkb2-Z=mA@mail.gmail.com>
-	<CAJTo0Lba3u=9jxAaFG5yq3cGBJzf9fHkdYFB0koAqqeTXX0HkA@mail.gmail.com>
-Date: Mon, 22 Sep 2014 21:16:23 +0800
-Message-ID: <CAJrRHk6hi6A=2ioDMGnfk4JQ0UAk5rJuSvuy4raZGw55rrkW2w@mail.gmail.com>
-From: =?UTF-8?Q?Joseph_Andrew_de_la_Pe=C3=B1a?= <jdelapena@lexmark.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Nothing PROVIDES nativesdk-krb5
+In-Reply-To: <541FDDEF.5050600@windriver.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-703 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux] refpolicy update in master-next
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,57 +62,154 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Sep 2014 13:16:31 -0000
-Content-Type: multipart/alternative; boundary=bcaec53d5dffe2881b0503a74109
+X-List-Received-Date: Mon, 22 Sep 2014 13:36:15 -0000
+X-Groupsio-MsgNum: 21555
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="WIyZ46R2i8wDzkSu"
+Content-Disposition: inline
 
---bcaec53d5dffe2881b0503a74109
-Content-Type: text/plain; charset=UTF-8
+--WIyZ46R2i8wDzkSu
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Good day Ross,
+Hi Pascal,
 
-How about if I wanted to depend on krb5?
+[Re: [yocto] [meta-selinux] refpolicy update in master-next] On 14.09.22 (M=
+on 16:29) Pascal Ouyang wrote:
 
-Thanks,
-Joseph
+> =E4=BA=8E 14-9-20 =E4=B8=8A=E5=8D=885:17, Joe MacDonald =E5=86=99=E9=81=
+=93:
+> >[Re: [meta-selinux] refpolicy update in master-next] On 14.09.18 (Thu 15=
+:06) Mark Hatle wrote:
+> >
+> >>On 9/18/14, 2:57 PM, Joe MacDonald wrote:
+> >>>Hey all,
+> >>>
+> >>>As we'd all discussed at different times in the past, we're well behind
+> >>>the curve on a refpolicy update for meta-selinux.  With the 1.7 release
+> >>>of Yocto coming up, we thought it was important to update the policy
+> >>>sooner rather than later, so I'm starting that work now.
+> >>>
+> >>>It's being done in master-next and currently the only recipe that has
+> >>>been updated is the -mls one.  Over the next few days I'll be updating
+> >>>the others, then working through testing and trying to make sure they'=
+re
+> >>>all sane.  It would help me out immensely if you had time to kick the
+> >>>tires as well on your favourite policy variant.
+> >>>
+> >>>Depending on how long this takes, the next step is updating the
+> >>>userspace.  Fortunately this time around, though, the current userspace
+> >>>is still officially up to the task of managing the current policy, so a
+> >>>full update isn't strictly required.  It'd be a really nice thing to
+> >>>have done, though.  :-)
+> >>>
+> >>
+> >>I spoke with Joe about this work this morning, and I think
+> >>master-next is the right place to do this.  So if you have immediate
+> >>bug fixes, we'll try to apply them to both master and master-next.
+> >>And then continue to use master-next to stage the policy changes (or
+> >>anything else that requires a bit more 'soak' time) before merging.
+> >>
+> >>I'd like to try to get 'master' of meta-selinux fully synced and
+> >>working with the 'master' of Poky around the time of Poky's release
+> >>(within a week or so of the release at least)..  then we can branch
+> >>and let the master continue to flow with any "new" work.  (It's a
+> >>plan, I'm not sure if it'll happen or not.)
+> >>
+> >>If anyone has any concerns let me know.. otherwise I think this is the =
+plan!
+> >
+> >The plan proceeds!  :-)
+> >
+> >Anyway, so I've now updated all of the policies in refpolicy/ and I'm
+> >starting in on the testing.
+> >
+> >Pascal:  Can you pay particular attention to refpolicy-minimum?  The
+> >straight forward-port of it failed to install the unconfined module
+> >(obviously kind of important to r-min) due to some failure inside
+> >prepare_policy_store().  I started debugging it, then saw that there was
+> >a copy in the refpolicy-minimum recipe as well as one in
+> >refpolicy_common.inc.  Both of them need to be cleaned up, but they both
+> >appeared to be doing the same thing in slightly different ways.  Given
+> >that, I turfed the one from refpolicy-minimum and it looks like the
+> >unconfined.pp is installed properly using the version from
+> >refpolicy_common.  It wasn't clear looking at either the function or the
+> >commit log why a duplicate version of the function was placed in
+> >refpolicy-minimum, so please have a look to see why it was there and if
+> >it's still needed.
+>=20
+> Hi Joe,
+>=20
+> The original prepare_policy_store() has a naming bug for
+> compressed_policy, and I have fixed it.
+> A "clear compressed_policy distro feature" commit is also pushed, as
+> I have mentioned to you.
 
-On Mon, Sep 22, 2014 at 8:23 PM, Burton, Ross <ross.burton@intel.com> wrote=
-:
+Actually, I had a look at what you pushed and it wasn't quite what we
+talked about, I don't think.  I said I'd thought there was still value
+in having the uncompressed policy installed on the target, but that
+changing the default (and obviously correcting the bug you'd mentioned
+where uncompressed policies were not actually being installed regardless
+of the flag) was fine.
 
-> On 22 September 2014 13:14, Joseph Andrew de la Pe=C3=B1a
-> <jdelapena@lexmark.com> wrote:
-> > Certainly not. How can I get pass this?
->
-> You use bitbake -e nativesdk-curl, search that for "krb5", and it
-> should tell you where the krb5 dependency came from.  What you do then
-> depends on what and how added that dependency.
->
-> Ross
->
+Here's my thinking on this.
 
---bcaec53d5dffe2881b0503a74109
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+core-image-selinux contains all the tools necessary to install, create
+and manage policy on a system.  Therefore you don't actually have to
+have anything except the core-image-selinux system to do anything with
+it.  If you need to refer back to the existing policy, though, you need
+to either have an editor that uncompresses on the fly (which we don't
+actually have on the system, though I imagine something like SLIDE or
+SEEdit can do that, I don't know) uncompress the policy then load it
+into something like semodule_unpack.  That's necessary because (last I
+checked, at least, I can go double-check now that I'm thinking about it)
+semodule_unpack doesn't know how to managed bzip compressed modules.
+And since the compressed modules are still named '*.pp', uncompressing
+them is kind of a pain, requiring a bit of shell dancing either dealing
+with 'foo.pp.out' or moving the modules around before uncompressing
+them.
 
-<div dir=3D"ltr"><div>Good day Ross,</div><div><br></div>How about if I wan=
-ted to depend on krb5?<div><br></div><div>Thanks,</div><div>Joseph</div></d=
-iv><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Mon, Sep 22=
-, 2014 at 8:23 PM, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ros=
-s.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;</span> =
-wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
-er-left:1px #ccc solid;padding-left:1ex">On 22 September 2014 13:14, Joseph=
- Andrew de la Pe=C3=B1a<br>
-<span class=3D"">&lt;<a href=3D"mailto:jdelapena@lexmark.com">jdelapena@lex=
-mark.com</a>&gt; wrote:<br>
-&gt; Certainly not. How can I get pass this?<br>
-<br>
-</span>You use bitbake -e nativesdk-curl, search that for &quot;krb5&quot;,=
- and it<br>
-should tell you where the krb5 dependency came from.=C2=A0 What you do then=
-<br>
-depends on what and how added that dependency.<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-Ross<br>
-</font></span></blockquote></div><br></div>
+So I do think it's worth having a switch that lets you decide whether
+you think it's likely you'd want to unpack and manipulate module
+components on the system.  But I'm all for the default being "no, that's
+not likely".
 
---bcaec53d5dffe2881b0503a74109--
+Unrelated, please don't push to master-next right now, with my current
+debug and update workflow if you hadn't told me you'd pushed a change to
+master-next that hadn't been sent through the list, there's a good
+chance it would've gotten lost.  There is a *lot* of churn in
+master-next right now and, as always with these branches, nothing is
+expected to be fast-forward for the time-being.
+
+-J.
+
+>=20
+> Thanks. :)
+>=20
+> - Pascal
+>=20
+> >
+> >Thanks.
+> >
+>=20
+>=20
+> --=20
+> - Pascal
+--=20
+-Joe MacDonald.
+:wq
+
+--WIyZ46R2i8wDzkSu
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iEYEARECAAYFAlQgJbIACgkQwFvcllog0XwaAQCdGFKhaXdxpQ/2XfSnapF8zPQX
+Gj0AoKNcUnN+iJ8DhAfKjvaS+QU53a8W
+=4vc8
+-----END PGP SIGNATURE-----
+
+--WIyZ46R2i8wDzkSu--
