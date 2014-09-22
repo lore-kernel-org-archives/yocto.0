@@ -1,41 +1,57 @@
-Return-Path: <Xin.Ouyang@windriver.com>
+Return-Path: <navani.srivastava@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8AB9FE0086B; Mon, 22 Sep 2014 01:29:53 -0700 (PDT)
+	id 3BC00E0086B; Mon, 22 Sep 2014 01:36:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (navani.srivastava[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0BC2E00869
-	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 01:29:48 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id s8M8TcPs001814
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 22 Sep 2014 01:29:38 -0700 (PDT)
-Received: from pascal-macbookpro.corp.ad.wrs.com (128.224.159.159) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.174.1; Mon, 22 Sep 2014 01:29:37 -0700
-Message-ID: <541FDDEF.5050600@windriver.com>
-Date: Mon, 22 Sep 2014 16:29:35 +0800
-From: Pascal Ouyang <xin.ouyang@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.181 listed in list.dnswl.org]
+Received: from mail-ie0-f181.google.com (mail-ie0-f181.google.com
+	[209.85.223.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1BD0E00869
+	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 01:36:47 -0700 (PDT)
+Received: by mail-ie0-f181.google.com with SMTP id tr6so6899861ieb.12
+	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 01:36:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=TArdFzyE1BbrkSeQ76O5ZZFyMO54RBtFZ/H8gczUjnc=;
+	b=HLawNx3SIYzISRz0n6FHTGsPOmlCkx7F+NwwBTCMhhV6VIU3cvOTlQBfSy61PkB9XE
+	AhIb0V4CC6ZPdlxibQl++llMwfliyqRnJjIgrJvvwE9ZVJQwTe/pVTTwWxY+9TJp3iLd
+	hspe3XDWgLwbDJV9llNdpFSJQpa7sp/qyo7dsdgQk9KF1Kdai+P/l9Q94R8xRb1+G+UW
+	cGxOsHI8MoVivNN8vPs7vEefhz3KfuXOMzFiyYWdTGXCfnTlE2VhDjjNROW9Q+QyCW1h
+	dTbZnlE8zmy0rjdp8VlU1p9rSYWJNt0u4lTxZ/hL5S0DSxlwAEHNXcASMcpBvGT5hLiU
+	DZ5w==
+X-Received: by 10.50.87.99 with SMTP id w3mr1613689igz.4.1411375006953; Mon,
+	22 Sep 2014 01:36:46 -0700 (PDT)
 MIME-Version: 1.0
-To: Joe MacDonald <Joe_MacDonald@mentor.com>, Mark Hatle
-	<mark.hatle@windriver.com>
-References: <20140918195737.GB6322@mentor.com> <541B3B4E.30300@windriver.com>
-	<20140919211717.GB5036@mentor.com>
-In-Reply-To: <20140919211717.GB5036@mentor.com>
-X-TagToolbar-Keys: D20140922162935292
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux] refpolicy update in master-next
+Received: by 10.107.132.217 with HTTP; Mon, 22 Sep 2014 01:36:26 -0700 (PDT)
+In-Reply-To: <26633520.FLER5Y4OlA@peggleto-mobl5.ger.corp.intel.com>
+References: <CA+Z6RkW1D8pPpGCTu_SwF5Q+d0Um-MuYQM3mtube=u2txu0V6A@mail.gmail.com>
+	<CAMKF1srWLwFN9-t70Yz=pLV6v77xapE2Y_=y-SrtY=1Mke-90Q@mail.gmail.com>
+	<CA+Z6RkWwt9Xyd4jj7mRQHEBNK4O-wFWpmoN0kKaDDu6=_-ADyA@mail.gmail.com>
+	<26633520.FLER5Y4OlA@peggleto-mobl5.ger.corp.intel.com>
+From: Navani Srivastava <navani.srivastava@gmail.com>
+Date: Mon, 22 Sep 2014 14:06:26 +0530
+Message-ID: <CA+Z6RkWSwoqcn9HBttOn1jrTaX5X=OhLLGVsex5TqzWcHGG1LQ@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: Navani Srivastava <navani.srivastava@lnttechservices.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Integration of custom recipe with SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,83 +63,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Sep 2014 08:29:53 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 22 Sep 2014 08:36:55 -0000
+Content-Type: multipart/alternative; boundary=089e0111b854ef37440503a359dd
 
-于 14-9-20 上午5:17, Joe MacDonald 写道:
-> [Re: [meta-selinux] refpolicy update in master-next] On 14.09.18 (Thu 15:06) Mark Hatle wrote:
+--089e0111b854ef37440503a359dd
+Content-Type: text/plain; charset=UTF-8
+
+I have to generate toolchain which contain qt related tools also like qmake
+and qjson, so we are using meta-toolchain-qte to generate the toolchain..
+Do you suggest it's better to integrate meta-toolchain-qte somehow with
+populate_sdk so that we can make life easier?
+
+Regards
+Navani
+
+On Mon, Sep 22, 2014 at 1:45 PM, Paul Eggleton <
+paul.eggleton@linux.intel.com> wrote:
+
+> On Sunday 21 September 2014 09:26:07 Navani Srivastava wrote:
+> > We are not using populatesdk ... we need to generate it through
+> > meta-toolchain-qte only so i am trying with the solution provided by
+> randy..
 >
->> On 9/18/14, 2:57 PM, Joe MacDonald wrote:
->>> Hey all,
->>>
->>> As we'd all discussed at different times in the past, we're well behind
->>> the curve on a refpolicy update for meta-selinux.  With the 1.7 release
->>> of Yocto coming up, we thought it was important to update the policy
->>> sooner rather than later, so I'm starting that work now.
->>>
->>> It's being done in master-next and currently the only recipe that has
->>> been updated is the -mls one.  Over the next few days I'll be updating
->>> the others, then working through testing and trying to make sure they're
->>> all sane.  It would help me out immensely if you had time to kick the
->>> tires as well on your favourite policy variant.
->>>
->>> Depending on how long this takes, the next step is updating the
->>> userspace.  Fortunately this time around, though, the current userspace
->>> is still officially up to the task of managing the current policy, so a
->>> full update isn't strictly required.  It'd be a really nice thing to
->>> have done, though.  :-)
->>>
->>
->> I spoke with Joe about this work this morning, and I think
->> master-next is the right place to do this.  So if you have immediate
->> bug fixes, we'll try to apply them to both master and master-next.
->> And then continue to use master-next to stage the policy changes (or
->> anything else that requires a bit more 'soak' time) before merging.
->>
->> I'd like to try to get 'master' of meta-selinux fully synced and
->> working with the 'master' of Poky around the time of Poky's release
->> (within a week or so of the release at least)..  then we can branch
->> and let the master continue to flow with any "new" work.  (It's a
->> plan, I'm not sure if it'll happen or not.)
->>
->> If anyone has any concerns let me know.. otherwise I think this is the plan!
+> Can I ask why? I'd like to understand where -c populate_sdk needs further
+> improvement.
 >
-> The plan proceeds!  :-)
+> Cheers,
+> Paul
 >
-> Anyway, so I've now updated all of the policies in refpolicy/ and I'm
-> starting in on the testing.
+> --
 >
-> Pascal:  Can you pay particular attention to refpolicy-minimum?  The
-> straight forward-port of it failed to install the unconfined module
-> (obviously kind of important to r-min) due to some failure inside
-> prepare_policy_store().  I started debugging it, then saw that there was
-> a copy in the refpolicy-minimum recipe as well as one in
-> refpolicy_common.inc.  Both of them need to be cleaned up, but they both
-> appeared to be doing the same thing in slightly different ways.  Given
-> that, I turfed the one from refpolicy-minimum and it looks like the
-> unconfined.pp is installed properly using the version from
-> refpolicy_common.  It wasn't clear looking at either the function or the
-> commit log why a duplicate version of the function was placed in
-> refpolicy-minimum, so please have a look to see why it was there and if
-> it's still needed.
-
-Hi Joe,
-
-The original prepare_policy_store() has a naming bug for 
-compressed_policy, and I have fixed it.
-A "clear compressed_policy distro feature" commit is also pushed, as I 
-have mentioned to you.
-
-Thanks. :)
-
-- Pascal
-
->
-> Thanks.
+> Paul Eggleton
+> Intel Open Source Technology Centre
 >
 
+--089e0111b854ef37440503a359dd
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
--- 
-- Pascal
+<div dir=3D"ltr">I have to generate toolchain which contain qt related tool=
+s also like qmake and qjson, so we are using meta-toolchain-qte to generate=
+ the toolchain..=C2=A0<div>Do you suggest it&#39;s better to integrate meta=
+-toolchain-qte somehow with populate_sdk so that we can make life easier?=
+=C2=A0</div><div><br></div><div>Regards</div><div>Navani</div></div><div cl=
+ass=3D"gmail_extra"><br><div class=3D"gmail_quote">On Mon, Sep 22, 2014 at =
+1:45 PM, Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"mailto:paul.eggleto=
+n@linux.intel.com" target=3D"_blank">paul.eggleton@linux.intel.com</a>&gt;<=
+/span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
+ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On Sunday =
+21 September 2014 09:26:07 Navani Srivastava wrote:<br>
+&gt; We are not using populatesdk ... we need to generate it through<br>
+&gt; meta-toolchain-qte only so i am trying with the solution provided by r=
+andy..<br>
+<br>
+</span>Can I ask why? I&#39;d like to understand where -c populate_sdk need=
+s further<br>
+improvement.<br>
+<br>
+Cheers,<br>
+Paul<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+--<br>
+<br>
+Paul Eggleton<br>
+Intel Open Source Technology Centre<br>
+</font></span></blockquote></div><br></div>
 
+--089e0111b854ef37440503a359dd--
