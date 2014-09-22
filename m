@@ -1,44 +1,46 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <john.s.summers@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D170EE00566; Mon, 22 Sep 2014 09:04:07 -0700 (PDT)
+	id 65CABE00566; Mon, 22 Sep 2014 10:06:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.43 listed in list.dnswl.org]
-Received: from mail-qg0-f43.google.com (mail-qg0-f43.google.com
-	[209.85.192.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C183E0034C
-	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 09:04:04 -0700 (PDT)
-Received: by mail-qg0-f43.google.com with SMTP id f51so3183404qge.16
-	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 09:04:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:content-transfer-encoding;
-	bh=9bA+k6s6tHa+6EKOXRN9iMOEqSVykm6OMDHiU+vzZ5w=;
-	b=Em2Yr2Z43Y5lkWbiRq42zG5azaCv0ftqKur+cTDrvG4D8TP5XcZTVbO6QLAl3B9JO/
-	/1IEFQIILjlEt/2v9YyIS3e9FU2uhFlPhi1GVc9h8mu+G0xTNOX7NR1Oekv3/n2qwT7X
-	XnGU8uvhMPP6n79XIy8FOTmNAGCXFZpjSJ/C7VlLJnr1HmS+a1mNU3XrptEthZ6QTpka
-	KIOIenp25MmLm42l5l5uNYi3CQgb8ErVewKE9gC6/HkTicJ/oUzdn5rHx8lQI2M1QZrB
-	lB0If1fLYvDIRYlhf848CidWEJBWitln2t/9egD12zcrKQy3d5bv7POzTURtQ/P+p/tc
-	V8Hg==
-X-Gm-Message-State: ALoCoQn8T6TepyJL8aIPbJtlxG9+GPpmsrVAJdUJYxU089XrjJziUQfdSWJxLZ4byJsdc8oWJ3AU
-X-Received: by 10.224.104.2 with SMTP id m2mr24035919qao.52.1411401843303;
-	Mon, 22 Sep 2014 09:04:03 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.140.34.180 with HTTP; Mon, 22 Sep 2014 09:03:42 -0700 (PDT)
-In-Reply-To: <AC825E12842FCA4C9E6DDED8AF00318F1FB70C57@FMSMSX106.amr.corp.intel.com>
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1785FE0034C
+	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 10:05:53 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 22 Sep 2014 09:59:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.04,572,1406617200"; d="scan'208";a="577036672"
+Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
+	by orsmga001.jf.intel.com with ESMTP; 22 Sep 2014 10:05:09 -0700
+Received: from fmsmsx116.amr.corp.intel.com (10.18.116.20) by
+	FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server
+	(TLS) id 14.3.195.1; Mon, 22 Sep 2014 10:05:05 -0700
+Received: from fmsmsx106.amr.corp.intel.com ([169.254.6.135]) by
+	fmsmsx116.amr.corp.intel.com ([169.254.2.27]) with mapi id
+	14.03.0195.001; Mon, 22 Sep 2014 10:05:04 -0700
+From: "Summers, John S" <john.s.summers@intel.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] Packages util-linux and gettext both showing undefined
+	reference
+Thread-Index: Ac/UZukDqRQi6fEkRgawA0lmIJuUTACUor0AAAz8fbA=
+Date: Mon, 22 Sep 2014 17:05:04 +0000
+Message-ID: <AC825E12842FCA4C9E6DDED8AF00318F1FB79231@FMSMSX106.amr.corp.intel.com>
 References: <AC825E12842FCA4C9E6DDED8AF00318F1FB70C57@FMSMSX106.amr.corp.intel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 22 Sep 2014 17:03:42 +0100
-Message-ID: <CAJTo0LaFn30Fxx2UeJbAdH94Kv1uLbDisiMXHNCHu49POoscwg@mail.gmail.com>
-To: "Summers, John S" <john.s.summers@intel.com>
+	<CAJTo0LaFn30Fxx2UeJbAdH94Kv1uLbDisiMXHNCHu49POoscwg@mail.gmail.com>
+In-Reply-To: <CAJTo0LaFn30Fxx2UeJbAdH94Kv1uLbDisiMXHNCHu49POoscwg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.107]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Packages util-linux and gettext both showing undefined reference
 X-BeenThere: yocto@yoctoproject.org
@@ -52,27 +54,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Sep 2014 16:04:07 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 22 Sep 2014 17:06:03 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 20 September 2014 01:08, Summers, John S <john.s.summers@intel.com> wrot=
-e:
-> I am showing build failures for both util-linux (bitbake util-linux) and
-> gettext (bitbake gettext):
-> .../tmp/work/core2-64-poky-linux/util-linux/2.24.2-r1/util-linux-2.24.2/t=
-ext-utils/more.c:1947:
-> undefined reference to `mbrtowc'
-> =E2=80=A6/tmp/work/core2-64-poky-linux/util-linux/2.24.2-r1/util-linux-2.=
-24.2/text-utils/more.c:1970:
-> undefined reference to `wcwidth'
->
-> I am trying to build a core-image-minimal-initramfs image and get the abo=
-ve
-> error.
-
-What revision of git was this, and what OE distro?  I've not seen this befo=
-re.
-
-Ross
+SGVyZSBpcyBteSBidWlsZCBjb25maWd1cmF0aW9uOg0KQkJfVkVSU0lPTiAgICAgICAgPSAiMS4y
+My4yIg0KQlVJTERfU1lTICAgICAgICAgPSAieDg2XzY0LWxpbnV4Ig0KTkFUSVZFTFNCU1RSSU5H
+ICAgPSAiVWJ1bnR1LTE0LjA0Ig0KVEFSR0VUX1NZUyAgICAgICAgPSAieDg2XzY0LXBva3ktbGlu
+dXgiDQpNQUNISU5FICAgICAgICAgICA9ICI8Y3VzdG9tIG1hY2hpbmUgcmVjaXBlPiINCkRJU1RS
+TyAgICAgICAgICAgID0gInBva3ktdGlueSINCkRJU1RST19WRVJTSU9OICAgID0gIjEuNitzbmFw
+c2hvdC0yMDE0MDkyMiINClRVTkVfRkVBVFVSRVMgICAgID0gIm02NCBjb3JlMiINClRBUkdFVF9G
+UFUgICAgICAgID0gIiINCg0KVGhpcyBpcyB1c2luZyB0aGUgbGF0ZXN0IHJldmlzaW9uIG9mIHBv
+a3k6DQpvcmlnaW4JZ2l0Oi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvcG9reSAoZmV0Y2gpDQoNClRo
+YW5rcywNClN0dWFydA0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogQnVydG9u
+LCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXSANClNlbnQ6IE1vbmRheSwgU2Vw
+dGVtYmVyIDIyLCAyMDE0IDk6MDQgQU0NClRvOiBTdW1tZXJzLCBKb2huIFMNCkNjOiB5b2N0b0B5
+b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBQYWNrYWdlcyB1dGlsLWxpbnV4
+IGFuZCBnZXR0ZXh0IGJvdGggc2hvd2luZyB1bmRlZmluZWQgcmVmZXJlbmNlDQoNCk9uIDIwIFNl
+cHRlbWJlciAyMDE0IDAxOjA4LCBTdW1tZXJzLCBKb2huIFMgPGpvaG4ucy5zdW1tZXJzQGludGVs
+LmNvbT4gd3JvdGU6DQo+IEkgYW0gc2hvd2luZyBidWlsZCBmYWlsdXJlcyBmb3IgYm90aCB1dGls
+LWxpbnV4IChiaXRiYWtlIHV0aWwtbGludXgpIA0KPiBhbmQgZ2V0dGV4dCAoYml0YmFrZSBnZXR0
+ZXh0KToNCj4gLi4uL3RtcC93b3JrL2NvcmUyLTY0LXBva3ktbGludXgvdXRpbC1saW51eC8yLjI0
+LjItcjEvdXRpbC1saW51eC0yLjI0LjIvdGV4dC11dGlscy9tb3JlLmM6MTk0NzoNCj4gdW5kZWZp
+bmVkIHJlZmVyZW5jZSB0byBgbWJydG93YycNCj4g4oCmL3RtcC93b3JrL2NvcmUyLTY0LXBva3kt
+bGludXgvdXRpbC1saW51eC8yLjI0LjItcjEvdXRpbC1saW51eC0yLjI0LjIvdGV4dC11dGlscy9t
+b3JlLmM6MTk3MDoNCj4gdW5kZWZpbmVkIHJlZmVyZW5jZSB0byBgd2N3aWR0aCcNCj4NCj4gSSBh
+bSB0cnlpbmcgdG8gYnVpbGQgYSBjb3JlLWltYWdlLW1pbmltYWwtaW5pdHJhbWZzIGltYWdlIGFu
+ZCBnZXQgdGhlIA0KPiBhYm92ZSBlcnJvci4NCg0KV2hhdCByZXZpc2lvbiBvZiBnaXQgd2FzIHRo
+aXMsIGFuZCB3aGF0IE9FIGRpc3Rybz8gIEkndmUgbm90IHNlZW4gdGhpcyBiZWZvcmUuDQoNClJv
+c3MNCg==
 
