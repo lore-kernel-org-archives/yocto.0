@@ -1,49 +1,46 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <vmartin@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78DD3E0086B; Mon, 22 Sep 2014 04:01:02 -0700 (PDT)
+	id DE4D3E0086F; Mon, 22 Sep 2014 04:25:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.176 listed in list.dnswl.org]
-Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
-	[209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13B11E00869
-	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 04:00:57 -0700 (PDT)
-Received: by mail-qc0-f176.google.com with SMTP id x3so5826343qcv.7
-	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 04:00:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=N8Da848GNvkdfL9BiKnJ3QU50Zu9HN36X/gxzafGeOo=;
-	b=CPY6oOdB/CoespnDI0KEaGNl3yJwVgNEjj//jZK0UWgM+tcxDxJTtiLaPne8eDXWVW
-	ji3knfHMpkY80siUKq/7RXN6RqBo8C5BoZeMm7zTW9M8LdhXgld2w7zEM1ugKPe1wKWa
-	46dtdWEYE0rzDUpT4fCwjvEjea4y811pHw0G/3hX3ehdVW86pUVfOz3UU3U0Z24A3Qvq
-	qRK4NSgXDE4/cFcDqr8Ma89gEuyhs+zNtu3aGrYLkq0mAx/foVV04smKXr411uZBR3JG
-	bw5AOSUFSvpM3k5JIDNUF2qGmUcZWLQ7FrF1IHFBMl+0rULkrsb3N8GCoamRE8BtWXtU
-	R+nQ==
-X-Gm-Message-State: ALoCoQlUbUX5tifjsO+zSKUbIPQkTG0R4E1rNkoYzVOdi6HlmaY/9f9KvK4+QVl8NzVg9BVIYDf9
-X-Received: by 10.140.97.247 with SMTP id m110mr20741551qge.80.1411383656193; 
-	Mon, 22 Sep 2014 04:00:56 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [198.152.71.100 listed in list.dnswl.org]
+Received: from de307622-de-outbound.net.avaya.com
+	(de307622-de-outbound.net.avaya.com [198.152.71.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 127FEE0086A
+	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 04:25:34 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AoMGAO8FIFTGmAcV/2dsb2JhbABggkgjI1Nb0hgBgQkWAQFwCIQFAQEDEhteAQwJFVYmAQQbGogcAZ5jhGmgXI9Vg2aBHQWRV5M0jV2DYYI0gQIBAQE
+X-IronPort-AV: E=Sophos;i="5.04,571,1406606400"; d="scan'208,217";a="73050663"
+Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
+	([198.152.7.21]) by de307622-de-outbound.net.avaya.com with ESMTP;
+	22 Sep 2014 07:25:32 -0400
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-US1EXHC04.global.avaya.com) ([135.11.85.15])
+	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
+	22 Sep 2014 07:25:32 -0400
+Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
+	AZ-US1EXHC04.global.avaya.com ([135.11.85.15]) with mapi id
+	14.03.0174.001; Mon, 22 Sep 2014 07:25:31 -0400
+From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Forcing fetch task when source changes
+Thread-Index: Ac/WV6OeWyp3DS2TR6W6LXTA2odZVA==
+Date: Mon, 22 Sep 2014 11:25:29 +0000
+Message-ID: <30C2D590D16A5C46ADFE6521910377982FDD658D@AZ-US1EXMB03.global.avaya.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [135.11.85.50]
 MIME-Version: 1.0
-Received: by 10.140.34.180 with HTTP; Mon, 22 Sep 2014 04:00:35 -0700 (PDT)
-In-Reply-To: <1541757.qLRXd1AgeH@comp-006-thk>
-References: <d412ce5cffb0466c897447c7b8674054@SRV-MAIL.greenflex.group>
-	<CAJTo0LZv+ee0DRnfGXtrtx6Q3Pa17pA3TiLmqPvcyf8rBNL16w@mail.gmail.com>
-	<CAMCfZKFb9MZFK4mcwxbXn2Kub=wY7M7XdaOzfTZWb84Bv5Lziw@mail.gmail.com>
-	<1541757.qLRXd1AgeH@comp-006-thk>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 22 Sep 2014 12:00:35 +0100
-Message-ID: <CAJTo0LYWYKGhW0vqV0rZyHe4n4M_bvavzWhGp8=PVg_mZtyi0Q@mail.gmail.com>
-To: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Poky/Yocto drivers for cellular modem
+Subject: Forcing fetch task when source changes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,19 +52,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Sep 2014 11:01:02 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 22 Sep 2014 11:25:38 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_30C2D590D16A5C46ADFE6521910377982FDD658DAZUS1EXMB03glob_"
 
-On 20 September 2014 14:00, Maciej Borzecki <maciej.borzecki@open-rnd.pl> wrote:
->> Take a look at meta-eca:
->> http://git.yoctoproject.org/cgit/cgit.cgi/meta-eca/tree/
+--_000_30C2D590D16A5C46ADFE6521910377982FDD658DAZUS1EXMB03glob_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+I have defined a class with a customized fetch task (that
+copies files from a local read-only directory to the ${S}
+directory).
+
+I am looking for a way to cause the fetch task to run
+again whenever the contents of the local directory
+change w.r.t. what was last fetched/copied to ${S}.
+
+Is there a way to do that?
+
+MV
+
+--_000_30C2D590D16A5C46ADFE6521910377982FDD658DAZUS1EXMB03glob_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> Do you have any clue why it's a separate layer? The recipes mostly seem to
-> overlap with OE-core.
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">I have defined a class with a customized fetch task =
+(that<o:p></o:p></p>
+<p class=3D"MsoNormal">copies files from a local read-only directory to the=
+ ${S}<o:p></o:p></p>
+<p class=3D"MsoNormal">directory).<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am looking for a way to cause the fetch task to ru=
+n<o:p></o:p></p>
+<p class=3D"MsoNormal">again whenever the contents of the local directory<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">change w.r.t. what was last fetched/copied to ${S}.<=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Is there a way to do that?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">MV<o:p></o:p></p>
+</div>
+</body>
+</html>
 
-There's what were at the time newer versions, or tweaks to existing
-recipes.  Hopefully the maintainers will refresh the layer when 1.7 is
-released.
-
-Ross
-
+--_000_30C2D590D16A5C46ADFE6521910377982FDD658DAZUS1EXMB03glob_--
