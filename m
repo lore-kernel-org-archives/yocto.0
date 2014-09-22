@@ -1,27 +1,54 @@
-Return-Path: <packages@packages.i.yoctoproject.org>
+Return-Path: <harshjain32@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9868FE0086A; Sun, 21 Sep 2014 19:18:59 -0700 (PDT)
+	id C56F5E0086A; Sun, 21 Sep 2014 23:53:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
-	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (harshjain32[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from packages.i.yoctoproject.org (packages.i.yoctoproject.org
-	[10.0.10.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1C78E00869
-	for <yocto@yoctoproject.org>; Sun, 21 Sep 2014 19:18:57 -0700 (PDT)
-Received: by packages.i.yoctoproject.org (Postfix, from userid 802)
-	id DC448A42D9; Mon, 22 Sep 2014 02:18:57 +0000 (UTC)
-Date: Mon, 22 Sep 2014 02:18:57 +0000
-From: "package-report@yoctoproject.org" <packages@packages.i.yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20140922021857.GA4971@packages.i.yoctoproject.org>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.179 listed in list.dnswl.org]
+Received: from mail-we0-f179.google.com (mail-we0-f179.google.com
+	[74.125.82.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E4DDE00851
+	for <yocto@yoctoproject.org>; Sun, 21 Sep 2014 23:52:58 -0700 (PDT)
+Received: by mail-we0-f179.google.com with SMTP id u56so2357815wes.10
+	for <yocto@yoctoproject.org>; Sun, 21 Sep 2014 23:52:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=+W2D4CmaApREUx2P4PkJPNvZy24K6gsDrs+305bSPEw=;
+	b=OcysTpcszhFmR1equumk2Liiam+lcmxLjFyX9Zx+lGYlq/7bEOOjNqCLKXwESuPT0L
+	OqMhg0kNPKFfMyU2/5zEz9k7mXCah1CD2j/tcBpp2L0Bjp00q25GsN/dAgPtXlLnGci7
+	YvTkhUabH87o4hbQlIxeupN4oxh7SVAsjx9opB5GaDfxXmM+fxvP2E+pRlHN/+rafpi6
+	N0//lhvgEJZol6C/EgKAKZxJReBoEBjT3mMUMHXMt2fniYx21k+GdJaP2NVVgZNVWjip
+	Dj+QMlkVADEiSIjqOGeXq4d8FjxDBWtnJBipS59Cix6EZpLM9txioFaIjL5raEcBZkb6
+	ayIg==
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: [Package Report System]Manual check recipes name list
+X-Received: by 10.194.94.196 with SMTP id de4mr1668368wjb.86.1411368777676;
+	Sun, 21 Sep 2014 23:52:57 -0700 (PDT)
+Received: by 10.216.96.11 with HTTP; Sun, 21 Sep 2014 23:52:57 -0700 (PDT)
+In-Reply-To: <CAKuL1XQegnpVr2neK-z+sgBbQjNEb-S0ZF2=owBg11VgXSRMRA@mail.gmail.com>
+References: <CAKuL1XTwmyTHTOZxwxCh31F3aB0M=PWExkO-SVLwXhGGD1vveA@mail.gmail.com>
+	<CAJTo0LaojbZbjz-io_L3W3tQUPzL0ZMYFA11vjnW8NY6GVemzQ@mail.gmail.com>
+	<CAKuL1XQegnpVr2neK-z+sgBbQjNEb-S0ZF2=owBg11VgXSRMRA@mail.gmail.com>
+Date: Mon, 22 Sep 2014 12:22:57 +0530
+Message-ID: <CAKuL1XSVfXkZN2ybCo=iv1m-FZMxV7_vP4eNBO2T5dfkGZs5bA@mail.gmail.com>
+From: harsh jain <harshjain32@gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Update recipe file to avoid conflict with other dependant packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,53 +60,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Sep 2014 02:18:59 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 22 Sep 2014 06:53:06 -0000
+Content-Type: text/plain; charset=UTF-8
 
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+Hi,
 
+Given below logs message when I tried with python 2.7.4
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-man                      1.6g                N/A                 41902 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-libdaemon                0.14                N/A                 41902 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-libnss-mdns              0.10                N/A                 41902 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-libffi                   3.1                 N/A                 41902 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-puzzles                  r10116              N/A                 41902 d                  Ross Burton <ross.burton@inte...        No data                       
-libxslt                  1.1.28              N/A                 41902 d                  Ross Burton <ross.burton@inte...        No data                       
-mesa                     10.1.3              N/A                 41902 d                  Ross Burton <ross.burton@inte...        No data                       
-midori                   0.5.5               N/A                 41902 d                  Ross Burton <ross.burton@inte...        No data                       
-libpng                   1.6.13              1.6.6               355 day                  Ross Burton <ross.burton@inte...        No data                       
-tzdata                   2014g               N/A                 41902 d                  Robert Yang <liezhi.yang@wind...        No data                       
-xinetd                   2.3.15              N/A                 41902 d                  Richard Purdie <richard.purdi...        No data                       
-latencytop               0.5                 N/A                 41902 d                  Richard Purdie <richard.purdi...        No data                       
-lsof                     4.87                N/A                 41902 d                  Richard Purdie <richard.purdi...        No data                       
-quicky                   0.4                 N/A                 41902 d                  Paul Eggleton <paul.eggleton@...        No data                       
-nativesdk-qt4-tools      4.8.6               N/A                 41902 d                  Paul Eggleton <paul.eggleton@...        No data                       
-qt-mobility-embedded...  1.2.0               N/A                 41902 d                  Paul Eggleton <paul.eggleton@...        No data                       
-qt4-x11-free             4.8.6               N/A                 41902 d                  Paul Eggleton <paul.eggleton@...        No data                       
-dosfstools               2.11                N/A                 41902 d                  Paul Eggleton <paul.eggleton@...        No data                       
-blktool                  4-6.1               N/A                 41902 d                  Paul Eggleton <paul.eggleton@...        No data                       
-qt4-native               4.8.6               N/A                 41902 d                  Paul Eggleton <paul.eggleton@...        No data                       
-qt-mobility-x11          1.2.0               N/A                 41902 d                  Paul Eggleton <paul.eggleton@...        No data                       
-python-smartpm           1.4.1               N/A                 41902 d                  Paul Eggleton <paul.eggleton@...        No data                       
-unfs3                    0.9.22.r490         N/A                 41902 d                  Paul Eggleton <paul.eggleton@...        No data                       
-cdrtools-native          3.01a20             N/A                 41902 d                  Paul Eggleton <paul.eggleton@...        No data                       
-waffle                   1.3.0               N/A                 41902 d                  No Maintainer info                      No data                       
-orc                      0.4.18              N/A                 41902 d                  No Maintainer info                      No data                       
-nss-myhostname           0.3                 N/A                 41902 d                  No Maintainer info                      No data                       
-docbook-xsl-styleshe...  1.78.1              N/A                 41902 d                  No Maintainer info                      No data                       
-pseudo                   1.6.1               N/A                 41902 d                  Mark Hatle <mark.hatle@windri...        No data                       
-bind                     9.9.5               N/A                 41902 d                  Kai Kang <kai.kang@windriver....        No data                       
-pax                      3.4                 N/A                 41902 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
-tremor                   20120314            20120122            560 day                  Cristian Iorga <cristian.iorg...        Same revision on different SVN...
-libatomics-ops           7.2                 N/A                 41902 d                  Cristian Iorga <cristian.iorg...        No data                       
-sudo                     1.8.10p3            N/A                 41902 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
-lz4                      r122                122                 41902 d                  Armin Kuster <akuster@mvista....        No data                       
-nettle                   2.7.1               N/A                 41902 d                  Armin Kuster <akuster808@gmai...        No data                       
-Manual Check Count: 36
-Manual Need Check Count: 36
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+NOTE: Resolving any missing task queue dependencies
+NOTE: preferred version 2.7.3 of python not available (for item python-core)
+NOTE: versions of python available: 2.7.4
+NOTE: preferred version 2.7.3 of python not available (for item python-2to3)
+NOTE: versions of python available: 2.7.4
+NOTE: preferred version 2.7.3 of python not available (for item python-audio)
+NOTE: versions of python available: 2.7.4
+NOTE: preferred version 2.7.3 of python not available (for item python-bsddb)
+NOTE: versions of python available: 2.7.4
+NOTE: preferred version 2.7.3 of python not available (for item python-codecs)
+NOTE: versions of python available: 2.7.4
+NOTE: preferred version 2.7.3 of python not available (for item python-compile)
+NOTE: versions of python available: 2.7.4
+NOTE: preferred version 2.7.3 of python not available (for item python-compiler)
+NOTE: versions of python available: 2.7.4
+NOTE: preferred version 2.7.3 of python not available (for item
+plython-compression)
+NOTE: versions of python available: 2.7.4
+
+Regards
+Harsh Jain
+
+On Sat, Sep 20, 2014 at 10:06 AM, harsh jain <harshjain32@gmail.com> wrote:
+> Hi,
+>
+> I am trying to reproduce the  warding issue again from last 3 days.
+> This time I am struck with some more inconsitent errors like
+>
+> Traceback (most recent call last):
+>   File "/home/aricent/openembedded/openembedded-core/bitbake/lib/bb/command.py",
+> line 99, in runAsyncCommand
+>     commandmethod(self.cmds_async, self, options)
+>   File "/home/aricent/openembedded/openembedded-core/bitbake/lib/bb/command.py",
+> line 331, in generateTargetsTree
+>     command.cooker.generateTargetsTree(klass, pkg_list)
+>   File "/home/aricent/openembedded/openembedded-core/bitbake/lib/bb/cooker.py",
+> line 888, in generateTargetsTree
+>     tree = self.generatePkgDepTreeData(pkgs, 'build')
+>   File "/home/aricent/openembedded/openembedded-core/bitbake/lib/bb/cooker.py",
+> line 634, in generatePkgDepTreeData
+>     depend_tree["pn"][pn][ei] = vars(self.recipecache)[ei][fn]
+> KeyError: '/home/aricent/openembedded/openembedded-core/meta/recipes-extended/tcp-wrappers/tcp-wrappers_7.6.bb'
+>
+>
+>
+> The name of recipe file is not constant some time it comes with some
+> other recipe file the workaround for this is,
+>
+>       1) Rename the recipe file to _old(tcp-wrappers_7.6.bb_old) and
+> start the HOB.
+>       2) In Drop Down Menu select machine "genericarm8".This time it
+> will parse successfully.
+>       3) Then after build image steps fail,obviously it will because
+> he will not get tcp-wrapper bb file.
+>       4) Now if I rename the recipe again to original.repeats the step
+> 2,3 . It moves forward.
+>
+> I am suspect that some temporary file is causing the this problem. I
+> have used kill command to kill the HOB.
+>
+>
+> Regards
+> Harsh Jain
+>
+>
+>
+> On Sat, Sep 20, 2014 at 12:10 AM, Burton, Ross <ross.burton@intel.com> wrote:
+>> On 19 September 2014 19:11, harsh jain <harshjain32@gmail.com> wrote:
+>>> I am trying to install python version 2.7.4 after updating recipe file
+>>> of version 2.7.3.There are several other packages in my build system
+>>> which depends upon Python version 2.7.3.When I try to make build these
+>>> dependant packages give warning.
+>>> What I needs to update in build environment so that these packages can
+>>> also included.I am assuming that these dependants packages are also
+>>> compatible with python verson 2.7.4.
+>>
+>> What are these warnings, because I can't think of anything off-hand
+>> which will warn when the minor version changes.
+>>
+>> Ross
 
