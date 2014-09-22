@@ -1,40 +1,41 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <Xin.Ouyang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0A2EDE0086B; Mon, 22 Sep 2014 01:15:45 -0700 (PDT)
+	id 8AB9FE0086B; Mon, 22 Sep 2014 01:29:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD84BE00869
-	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 01:15:39 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by fmsmga102.fm.intel.com with ESMTP; 22 Sep 2014 01:15:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,570,1406617200"; d="scan'208";a="479122920"
-Received: from mpsamara-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.120.108])
-	by azsmga001.ch.intel.com with ESMTP; 22 Sep 2014 01:15:37 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Navani Srivastava <navani.srivastava@gmail.com>
-Date: Mon, 22 Sep 2014 09:15:36 +0100
-Message-ID: <26633520.FLER5Y4OlA@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.13.3 (Linux/3.16.2-200.fc20.x86_64; KDE/4.14.1; x86_64; ; )
-In-Reply-To: <CA+Z6RkWwt9Xyd4jj7mRQHEBNK4O-wFWpmoN0kKaDDu6=_-ADyA@mail.gmail.com>
-References: <CA+Z6RkW1D8pPpGCTu_SwF5Q+d0Um-MuYQM3mtube=u2txu0V6A@mail.gmail.com>
-	<CAMKF1srWLwFN9-t70Yz=pLV6v77xapE2Y_=y-SrtY=1Mke-90Q@mail.gmail.com>
-	<CA+Z6RkWwt9Xyd4jj7mRQHEBNK4O-wFWpmoN0kKaDDu6=_-ADyA@mail.gmail.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0BC2E00869
+	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 01:29:48 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id s8M8TcPs001814
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 22 Sep 2014 01:29:38 -0700 (PDT)
+Received: from pascal-macbookpro.corp.ad.wrs.com (128.224.159.159) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.174.1; Mon, 22 Sep 2014 01:29:37 -0700
+Message-ID: <541FDDEF.5050600@windriver.com>
+Date: Mon, 22 Sep 2014 16:29:35 +0800
+From: Pascal Ouyang <xin.ouyang@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-Cc: Navani Srivastava <navani.srivastava@lnttechservices.com>,
-	yocto@yoctoproject.org
-Subject: Re: Integration of custom recipe with SDK
+To: Joe MacDonald <Joe_MacDonald@mentor.com>, Mark Hatle
+	<mark.hatle@windriver.com>
+References: <20140918195737.GB6322@mentor.com> <541B3B4E.30300@windriver.com>
+	<20140919211717.GB5036@mentor.com>
+In-Reply-To: <20140919211717.GB5036@mentor.com>
+X-TagToolbar-Keys: D20140922162935292
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux] refpolicy update in master-next
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,22 +47,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Sep 2014 08:15:45 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 22 Sep 2014 08:29:53 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sunday 21 September 2014 09:26:07 Navani Srivastava wrote:
-> We are not using populatesdk ... we need to generate it through
-> meta-toolchain-qte only so i am trying with the solution provided by randy..
+于 14-9-20 上午5:17, Joe MacDonald 写道:
+> [Re: [meta-selinux] refpolicy update in master-next] On 14.09.18 (Thu 15:06) Mark Hatle wrote:
+>
+>> On 9/18/14, 2:57 PM, Joe MacDonald wrote:
+>>> Hey all,
+>>>
+>>> As we'd all discussed at different times in the past, we're well behind
+>>> the curve on a refpolicy update for meta-selinux.  With the 1.7 release
+>>> of Yocto coming up, we thought it was important to update the policy
+>>> sooner rather than later, so I'm starting that work now.
+>>>
+>>> It's being done in master-next and currently the only recipe that has
+>>> been updated is the -mls one.  Over the next few days I'll be updating
+>>> the others, then working through testing and trying to make sure they're
+>>> all sane.  It would help me out immensely if you had time to kick the
+>>> tires as well on your favourite policy variant.
+>>>
+>>> Depending on how long this takes, the next step is updating the
+>>> userspace.  Fortunately this time around, though, the current userspace
+>>> is still officially up to the task of managing the current policy, so a
+>>> full update isn't strictly required.  It'd be a really nice thing to
+>>> have done, though.  :-)
+>>>
+>>
+>> I spoke with Joe about this work this morning, and I think
+>> master-next is the right place to do this.  So if you have immediate
+>> bug fixes, we'll try to apply them to both master and master-next.
+>> And then continue to use master-next to stage the policy changes (or
+>> anything else that requires a bit more 'soak' time) before merging.
+>>
+>> I'd like to try to get 'master' of meta-selinux fully synced and
+>> working with the 'master' of Poky around the time of Poky's release
+>> (within a week or so of the release at least)..  then we can branch
+>> and let the master continue to flow with any "new" work.  (It's a
+>> plan, I'm not sure if it'll happen or not.)
+>>
+>> If anyone has any concerns let me know.. otherwise I think this is the plan!
+>
+> The plan proceeds!  :-)
+>
+> Anyway, so I've now updated all of the policies in refpolicy/ and I'm
+> starting in on the testing.
+>
+> Pascal:  Can you pay particular attention to refpolicy-minimum?  The
+> straight forward-port of it failed to install the unconfined module
+> (obviously kind of important to r-min) due to some failure inside
+> prepare_policy_store().  I started debugging it, then saw that there was
+> a copy in the refpolicy-minimum recipe as well as one in
+> refpolicy_common.inc.  Both of them need to be cleaned up, but they both
+> appeared to be doing the same thing in slightly different ways.  Given
+> that, I turfed the one from refpolicy-minimum and it looks like the
+> unconfined.pp is installed properly using the version from
+> refpolicy_common.  It wasn't clear looking at either the function or the
+> commit log why a duplicate version of the function was placed in
+> refpolicy-minimum, so please have a look to see why it was there and if
+> it's still needed.
 
-Can I ask why? I'd like to understand where -c populate_sdk needs further 
-improvement.
+Hi Joe,
 
-Cheers,
-Paul
+The original prepare_policy_store() has a naming bug for 
+compressed_policy, and I have fixed it.
+A "clear compressed_policy distro feature" commit is also pushed, as I 
+have mentioned to you.
+
+Thanks. :)
+
+- Pascal
+
+>
+> Thanks.
+>
+
 
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+- Pascal
 
