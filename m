@@ -1,6 +1,6 @@
 Return-Path: <californialsullivan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 74155E00885; Tue, 23 Sep 2014 10:20:40 -0700 (PDT)
+	id 9432DE00885; Tue, 23 Sep 2014 10:20:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -19,26 +19,26 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
 	and not from a mailing list
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CD60E00875
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3E5DE0087C
 	for <yocto@yoctoproject.org>; Tue, 23 Sep 2014 10:20:39 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 23 Sep 2014 10:11:35 -0700
+	by orsmga101.jf.intel.com with ESMTP; 23 Sep 2014 10:11:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,581,1406617200"; d="scan'208";a="607285933"
+X-IronPort-AV: E=Sophos;i="5.04,581,1406617200"; d="scan'208";a="607285953"
 Received: from sullical-studio-xps-9100.jf.intel.com (HELO
 	sullical-Studio-XPS-9100) ([10.7.198.88])
-	by orsmga002.jf.intel.com with SMTP; 23 Sep 2014 10:11:34 -0700
+	by orsmga002.jf.intel.com with SMTP; 23 Sep 2014 10:11:36 -0700
 Received: by sullical-Studio-XPS-9100 (sSMTP sendmail emulation);
-	Tue, 23 Sep 2014 10:14:06 -0700
+	Tue, 23 Sep 2014 10:14:08 -0700
 From: californialsullivan@gmail.com
 To: yocto@yoctoproject.org
-Date: Tue, 23 Sep 2014 10:13:51 -0700
-Message-Id: <1411492434-340-10-git-send-email-californialsullivan@gmail.com>
+Date: Tue, 23 Sep 2014 10:13:53 -0700
+Message-Id: <1411492434-340-12-git-send-email-californialsullivan@gmail.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1411492434-340-1-git-send-email-californialsullivan@gmail.com>
 References: <1411492434-340-1-git-send-email-californialsullivan@gmail.com>
 Cc: California Sullivan <california.l.sullivan@intel.com>
-Subject: [PATCH 10/13] DeleteGoogleVM.py: Rename to DeleteGoogleVMs.py
+Subject: [PATCH 12/13] REAMDE-GOOGLE-CLOUD: Update documentation to be more specific.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,136 +50,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Sep 2014 17:20:40 -0000
+X-List-Received-Date: Tue, 23 Sep 2014 17:20:42 -0000
 
 From: California Sullivan <california.l.sullivan@intel.com>
 
-It can delete multiple at once if multiple were created at once.
-
 Signed-off-by: California Sullivan <california.l.sullivan@intel.com>
 ---
- .../autobuilder/buildsteps/DeleteGoogleVM.py       | 52 ----------------------
- .../autobuilder/buildsteps/DeleteGoogleVMs.py      | 52 ++++++++++++++++++++++
- 2 files changed, 52 insertions(+), 52 deletions(-)
- delete mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVM.py
- create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVMs.py
+ README-GOOGLE-CLOUD | 46 ++++++++++++++++++++++++++++++----------------
+ 1 file changed, 30 insertions(+), 16 deletions(-)
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVM.py b/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVM.py
-deleted file mode 100644
-index 29b45a4..0000000
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVM.py
-+++ /dev/null
-@@ -1,52 +0,0 @@
--'''
--Created on Aug 13, 2014
--
--__author__ = "California Sullivan"
--__copyright__ = "Copyright 2014, Intel Corp."
--__credits__ = ["California Sullivan"]
--__license__ = "GPL"
--__version__ = "2.0"
--__maintainer__ = "Elizabeth Flanagan"
--__email__ = "elizabeth.flanagan@intel.com"
--'''
--
--from buildbot.steps.shell import ShellCommand
--
--class DeleteGoogleVM(ShellCommand):
--    haltOnFailure = True
--    flunkOnFailure = True
--    name = "Delete Google VM"
--    def __init__(self, factory, argdict=None, **kwargs):
--
--        self.factory = factory
--        self.description = "Deleting Google VMs"
--        for k, v in argdict.iteritems():
--            if type(v) is bool:
--                setattr(self, k, str(v))
--            else:
--                setattr(self, k, v)
--        # Timeout needs to be passed to LoggingBuildStep as a kwarg
--        self.timeout = 1000
--        kwargs['timeout']=self.timeout
--        ShellCommand.__init__(self, **kwargs)
--
--
--    def start(self):
--        self.vmnames = self.getProperty("vmnames")
--        self.vmcount = self.getProperty("vmcount")
--        self.zone = self.getProperty("zone")
--
--        if self.vmnames is not None and self.vmnames != "":
--            self.command = "gcloud compute instances delete"
--            self.command += " " + self.vmnames
--
--        if self.zone is not None and self.zone in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
--            self.command += " --zone " + self.zone
--        else:
--            self.command += " --zone us-central1-a"
--        self.command += " --quiet"
--        ShellCommand.start(self)
--
--    def describe(self, done=False):
--        description = ShellCommand.describe(self,done)
--        return description
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVMs.py b/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVMs.py
-new file mode 100644
-index 0000000..b0071cf
---- /dev/null
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVMs.py
-@@ -0,0 +1,52 @@
-+'''
-+Created on Aug 13, 2014
+diff --git a/README-GOOGLE-CLOUD b/README-GOOGLE-CLOUD
+index 30bf5b6..34c80a9 100644
+--- a/README-GOOGLE-CLOUD
++++ b/README-GOOGLE-CLOUD
+@@ -6,7 +6,7 @@ limitations.
+ First of all, Google's gcloud command line tool is required for
+ all functions (see https://developers.google.com/cloud/sdk/gcloud/).
+ 
+-Next, the controller system is required to be authenticated with Google's cloud
++Next, the controller machine is required to be authenticated with Google's cloud
+ system (see https://developers.google.com/cloud/sdk/gcloud/reference/auth/).
+ 
+ Third, the workers must be on a network which has the worker port
+@@ -21,19 +21,29 @@ gcloud compute firewall-rules autobuilder-allow --network autobuilder-network \
+ This sets up a network that is suitable for both controllers and workers, as
+ it allows all default autobuilder connections, as well as ssh and http. The
+ key:value pair 'network':'autobuilder-network' can then be added to your
+-ProvisionGoogleVM buildstep for use.
++ProvisionGoogleVMs buildstep, allowing provisioned machines to connect to
++controllers.
+ 
+ Fourth, additional workers must be added to yocto-controller/controller.cfg
+ with the format:
+      BuildWorker("worker<N>", "<WORKER-PASSWORD>", max_builds=3)
+ where N is 0...however many workers you want and WORKER-PASSWORD is the default
+-password.
++password. For example, if I wanted to add three workers for the cloud builder:
 +
-+__author__ = "California Sullivan"
-+__copyright__ = "Copyright 2014, Intel Corp."
-+__credits__ = ["California Sullivan"]
-+__license__ = "GPL"
-+__version__ = "2.0"
-+__maintainer__ = "Elizabeth Flanagan"
-+__email__ = "elizabeth.flanagan@intel.com"
-+'''
++    c['workers'] = [BuildWorker("example-worker", "eeieHim8V", max_builds=3),]
 +
-+from buildbot.steps.shell import ShellCommand
++would be changed to this:
 +
-+class DeleteGoogleVMs(ShellCommand):
-+    haltOnFailure = True
-+    flunkOnFailure = True
-+    name = "Delete Google VMs"
-+    def __init__(self, factory, argdict=None, **kwargs):
++    c['workers'] = [BuildWorker("example-worker", "eeieHim8V", max_builds=3),
++                    BuildWorker("worker0", "eeieHim8V", max_builds=3),
++                    BuildWorker("worker1", "eeieHim8V", max_builds=3),
++                    BuildWorker("worker2", "eeieHim8V", max_builds=3),]
+ 
+ Finally, the worker-init script is only an example and has a couple
+-limitations. It has only been tested for debian VMs and will likely not work
+-on others. Also, the <HOST_ADDR> and <PASS> fields will need to be manually
+-edited in it if your autobuilder was created before the addition of the
+-GoogleVM buildsteps or if the controller machine is behind a firewall.
++limitations itself. It has only been tested for debian VMs and will likely not
++work on others. Also, the <HOST_ADDR> and <PASS> fields will need to be
++manually edited in it if your autobuilder was created before the addition of
++the GoogleVM buildsteps or if the controller machine is behind a firewall.
+ 
+ HowTo
+ ----------
+@@ -41,14 +51,18 @@ HowTo
+ Assuming that the limitations above have been dealt with, this will provision
+ one new VM and completely set it up, including connections
+ 
+-{'ProvisionGoogleVM':{
+-    'vmname':'autobuilder-worker-startup-test',
+-    'vmcount':1,
+-    'zone':'us-central1-a',
+-    'machine':'n1-standard-4',
+-    'disksize':'230GB',
+-    'startupscript':'/home/autobuilder/yocto-autobuilder/bin/worker-init',
+-    'network':'autobuilder-network'}}
++    {'ProvisionGoogleVMs':{
++        'vmname':'autobuilder-worker-startup-test',
++        'vmcount':1,
++        'zone':'us-central1-a',
++        'machine':'n1-standard-4',
++        'disksize':'230GB',
++        'startupscript':'/path/to/yocto-autobuilder/bin/worker-init',
++        'network':'autobuilder-network'}}
 +
-+        self.factory = factory
-+        self.description = "Deleting Google VMs"
-+        for k, v in argdict.iteritems():
-+            if type(v) is bool:
-+                setattr(self, k, str(v))
-+            else:
-+                setattr(self, k, v)
-+        # Timeout needs to be passed to LoggingBuildStep as a kwarg
-+        self.timeout = 1000
-+        kwargs['timeout']=self.timeout
-+        ShellCommand.__init__(self, **kwargs)
-+
-+
-+    def start(self):
-+        self.vmnames = self.getProperty("vmnames")
-+        self.vmcount = self.getProperty("vmcount")
-+        self.zone = self.getProperty("zone")
-+
-+        if self.vmnames is not None and self.vmnames != "":
-+            self.command = "gcloud compute instances delete"
-+            self.command += " " + self.vmnames
-+
-+        if self.zone is not None and self.zone in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
-+            self.command += " --zone " + self.zone
-+        else:
-+            self.command += " --zone us-central1-a"
-+        self.command += " --quiet"
-+        ShellCommand.start(self)
-+
-+    def describe(self, done=False):
-+        description = ShellCommand.describe(self,done)
-+        return description
++And this will delete the entire VM when you are finished with it:
+ 
++    {'DeleteGoogleVMs': {}}
+ 
+-{'DeleteGoogleVM': {}}
++Note that the current implementation of DeleteGoogleVM requires that its in the
++same buildset as CreateGoogleVM.
 -- 
 1.9.1
 
