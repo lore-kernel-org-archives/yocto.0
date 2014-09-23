@@ -1,58 +1,56 @@
-Return-Path: <navani.srivastava@gmail.com>
+Return-Path: <btv1==3433b300ed1==Matt.Schuckmann@planar.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 62A58E00874; Mon, 22 Sep 2014 21:26:28 -0700 (PDT)
+	id 545EFE00890; Mon, 22 Sep 2014 21:32:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (navani.srivastava[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.170 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ie0-f170.google.com (mail-ie0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90706E00871
-	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 21:26:24 -0700 (PDT)
-Received: by mail-ie0-f170.google.com with SMTP id x19so5920101ier.1
-	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 21:26:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=H57+eoAmze0CZkbA8DvCOyhiExsIJoZ3KKs9aeKK1n0=;
-	b=jkhWQXORV31CGCaYgej4cuEOnOm75l5JmAmn1w1UVSY5e//1vFrb1X9OkDHCi4fDeo
-	JEgbIK3QBuZ4r8yvMJ0igf3wvCvU3yi7RzI9RCRbOVYaTPB2nQXMILjoPb9gjW1+k99S
-	uHqhhb60x8S5hP45B3O9v5iZcajtkjXU3ZuBZMn1H9UHfF6bbG4jhE04QiOZQ7Phngwf
-	wZ50jc8yc+Q9Okp/PDw9D5lbKvJKu08PPFgjcPXghkWL+z6JQbd4SvTdevcLiZBMKM1v
-	S00ct48IWvKqB+wftNaA9BHtB/TNk9/+13FCWnZRbnpe2vLSbHoSiZAv/Ml1K8XjWk1w
-	dvjg==
-X-Received: by 10.50.117.106 with SMTP id kd10mr194321igb.5.1411446383534;
-	Mon, 22 Sep 2014 21:26:23 -0700 (PDT)
+Received: from barbvt10.planar.com (mail.planar.com [199.244.172.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB085E00875
+	for <yocto@yoctoproject.org>; Mon, 22 Sep 2014 21:32:17 -0700 (PDT)
+X-ASG-Debug-ID: 1411446717-04b02b73834765f0001-yzSStA
+Received: from msxbvt03.planar.net ([172.16.0.147]) by barbvt10.planar.com
+	with ESMTP id cqg8EiKz3G9PUUN0; Mon, 22 Sep 2014 21:31:57 -0700 (PDT)
+X-Barracuda-Envelope-From: Matt.Schuckmann@planar.com
+Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
+	with mapi; Mon, 22 Sep 2014 21:31:57 -0700
+From: Matt Schuckmann <Matt.Schuckmann@planar.com>
+To: =?utf-8?B?Sm9zZXBoIEFuZHJldyBkZSBsYSBQZcOxYQ==?= <jdelapena@lexmark.com>
+Date: Mon, 22 Sep 2014 21:31:54 -0700
+Thread-Topic: [yocto] How to include static library and headers in sdk
+X-ASG-Orig-Subj: Re: [yocto] How to include static library and headers in sdk
+Thread-Index: Ac/W505B1GQwQobuTdWLr7fpAcwD/Q==
+Message-ID: <0BCF42B3-E535-4126-A211-041FBD780946@planar.com>
+References: <4B07ADD556F70043925DA2E9C5D4346D2FD87281CF@MSXBEBVT12.planar.net>
+	<CAJrRHk5wwXTHq0G3vDjp_=MKB6COWBBGd2JG9+_r-q-3yU3jrQ@mail.gmail.com>
+In-Reply-To: <CAJrRHk5wwXTHq0G3vDjp_=MKB6COWBBGd2JG9+_r-q-3yU3jrQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-Received: by 10.107.132.217 with HTTP; Mon, 22 Sep 2014 21:26:03 -0700 (PDT)
-In-Reply-To: <CA+Z6RkWN=wbJkf94rwPWNqDKdGvhGPRvdTXFjqM+Uho8mTCzkg@mail.gmail.com>
-References: <CA+Z6RkW1D8pPpGCTu_SwF5Q+d0Um-MuYQM3mtube=u2txu0V6A@mail.gmail.com>
-	<26633520.FLER5Y4OlA@peggleto-mobl5.ger.corp.intel.com>
-	<CA+Z6RkWSwoqcn9HBttOn1jrTaX5X=OhLLGVsex5TqzWcHGG1LQ@mail.gmail.com>
-	<2002943.O9tR5uaDDD@peggleto-mobl5.ger.corp.intel.com>
-	<CA+Z6RkWN=wbJkf94rwPWNqDKdGvhGPRvdTXFjqM+Uho8mTCzkg@mail.gmail.com>
-From: Navani Srivastava <navani.srivastava@gmail.com>
-Date: Tue, 23 Sep 2014 09:56:03 +0530
-Message-ID: <CA+Z6RkUOs2panpkstvdoiy8cCf7vL_7XCcUkQq4hyPvGYG=3NQ@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: Navani Srivastava <navani.srivastava@lnttechservices.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Integration of custom recipe with SDK
+X-Barracuda-Connect: UNKNOWN[172.16.0.147]
+X-Barracuda-Start-Time: 1411446717
+X-Barracuda-URL: http://10.10.111.112:8000/cgi-mod/mark.cgi
+X-Barracuda-BRTS-Status: 1
+X-Virus-Scanned: by bsmtpd at planar.com
+X-Barracuda-Bayes: INNOCENT GLOBAL 0.0000 1.0000 -2.0210
+X-Barracuda-Spam-Score: -2.02
+X-Barracuda-Spam-Status: No,
+	SCORE=-2.02 using per-user scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.9776
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to include static library and headers in sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,194 +62,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Sep 2014 04:26:28 -0000
-X-Groupsio-MsgNum: 21574
-Content-Type: multipart/mixed; boundary=089e0139fb625062440503b3f854
+X-List-Received-Date: Tue, 23 Sep 2014 04:32:20 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_0BCF42B3E5354126A211041FBD780946planarcom_"
 
---089e0139fb625062440503b3f854
-Content-Type: multipart/alternative; boundary=089e0139fb625062400503b3f852
-
---089e0139fb625062400503b3f852
-Content-Type: text/plain; charset=UTF-8
-
-Please find the recipe attached herewith for qjson. This recipe is helpful
-to work with qt4-embedded as qt4 doesn't have qjson feature in built.
-I tried 'bitbake -c populate_sdk <myimage>' but it has not integrated qjson
-package along. I am suspecting qjson recipe now. Am i missing anything in
-attached recipe which is blocking me to integrate qjson in SDK?
-
-Navani
-
-On Mon, Sep 22, 2014 at 2:48 PM, Navani Srivastava <
-navani.srivastava@gmail.com> wrote:
-
-> I will follow the suggestion given by you and will update the result.
-> However in case if I want to integrate custom recipe with
-> meta-toolchain-qte, is there any example existing which can help me in
-> understanding?
->
-> Right now I am following the procedure given by Randy but some example
-> could be of a great help!!
->
-> Regards
->
-> Navani
->
-> On Mon, Sep 22, 2014 at 2:21 PM, Paul Eggleton <
-> paul.eggleton@linux.intel.com> wrote:
->
->> On Monday 22 September 2014 14:06:26 Navani Srivastava wrote:
->> > On Mon, Sep 22, 2014 at 1:45 PM, Paul Eggleton <
->> > paul.eggleton@linux.intel.com> wrote:
->> > > On Sunday 21 September 2014 09:26:07 Navani Srivastava wrote:
->> > > > We are not using populatesdk ... we need to generate it through
->> > > > meta-toolchain-qte only so i am trying with the solution provided by
->> > > > randy..
->> > >
->> > > Can I ask why? I'd like to understand where -c populate_sdk needs
->> further
->> > > improvement.
->> >
->> > I have to generate toolchain which contain qt related tools also like
->> qmake
->> > and qjson, so we are using meta-toolchain-qte to generate the
->> toolchain..
->> > Do you suggest it's better to integrate meta-toolchain-qte somehow with
->> > populate_sdk so that we can make life easier?
->>
->> It is possible to integrate the two - all you need to do is ensure the
->> extra
->> qte tools get added to the SDK. One way to achieve this would be to add
->> the
->> following to your image recipe:
->>
->> QTNAME = "qte"
->> QT_DIR_NAME = "qtopia"
->> require recipes-qt/meta/meta-toolchain-qt.inc
->>
->> (I haven't tested this so I'm not 100% sure if it will work, but it
->> should.)
->>
->> Cheers,
->> Paul
->>
->>
->> --
->>
->> Paul Eggleton
->> Intel Open Source Technology Centre
->>
->
->
-
---089e0139fb625062400503b3f852
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Please find the recipe attached herewith for qjson. This r=
-ecipe is helpful to work with qt4-embedded as qt4 doesn&#39;t have qjson fe=
-ature in built.=C2=A0<div>I tried &#39;bitbake -c populate_sdk &lt;myimage&=
-gt;&#39; but it has not integrated qjson package along. I am suspecting qjs=
-on recipe now. Am i missing anything in attached recipe which is blocking m=
-e to integrate qjson in SDK?=C2=A0</div><div><br></div><div>Navani</div></d=
-iv><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Mon, Sep 22=
-, 2014 at 2:48 PM, Navani Srivastava <span dir=3D"ltr">&lt;<a href=3D"mailt=
-o:navani.srivastava@gmail.com" target=3D"_blank">navani.srivastava@gmail.co=
-m</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">=
-<p>I will follow the suggestion given by you and will update
-the result. However in case if I want to integrate custom recipe with
-meta-toolchain-qte, is there any example existing which can help me in
-understanding?</p>
-
-<p>Right now I am following the procedure given by Randy but
-some example could be of a great help!!</p><p>Regards</p><span class=3D"HOE=
-nZb"><font color=3D"#888888"><p>Navani</p></font></span></div><div class=3D=
-"HOEnZb"><div class=3D"h5"><div class=3D"gmail_extra"><br><div class=3D"gma=
-il_quote">On Mon, Sep 22, 2014 at 2:21 PM, Paul Eggleton <span dir=3D"ltr">=
-&lt;<a href=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">paul=
-.eggleton@linux.intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gma=
-il_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-lef=
-t:1ex"><span>On Monday 22 September 2014 14:06:26 Navani Srivastava wrote:<=
-br>
-&gt; On Mon, Sep 22, 2014 at 1:45 PM, Paul Eggleton &lt;<br>
-&gt; <a href=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">pau=
-l.eggleton@linux.intel.com</a>&gt; wrote:<br>
-&gt; &gt; On Sunday 21 September 2014 09:26:07 Navani Srivastava wrote:<br>
-&gt; &gt; &gt; We are not using populatesdk ... we need to generate it thro=
-ugh<br>
-&gt; &gt; &gt; meta-toolchain-qte only so i am trying with the solution pro=
-vided by<br>
-&gt; &gt; &gt; randy..<br>
-&gt; &gt;<br>
-&gt; &gt; Can I ask why? I&#39;d like to understand where -c populate_sdk n=
-eeds further<br>
-&gt; &gt; improvement.<br>
-&gt;<br>
-</span><span>&gt; I have to generate toolchain which contain qt related too=
-ls also like qmake<br>
-&gt; and qjson, so we are using meta-toolchain-qte to generate the toolchai=
-n..<br>
-&gt; Do you suggest it&#39;s better to integrate meta-toolchain-qte somehow=
- with<br>
-&gt; populate_sdk so that we can make life easier?<br>
-<br>
-</span>It is possible to integrate the two - all you need to do is ensure t=
-he extra<br>
-qte tools get added to the SDK. One way to achieve this would be to add the=
-<br>
-following to your image recipe:<br>
-<br>
-QTNAME =3D &quot;qte&quot;<br>
-QT_DIR_NAME =3D &quot;qtopia&quot;<br>
-require recipes-qt/meta/meta-toolchain-qt.inc<br>
-<br>
-(I haven&#39;t tested this so I&#39;m not 100% sure if it will work, but it=
- should.)<br>
-<div><div><br>
-Cheers,<br>
-Paul<br>
-<br>
-<br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</div></div></blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
-
---089e0139fb625062400503b3f852--
-
---089e0139fb625062440503b3f854
-Content-Type: application/octet-stream; name="qjson_0.7.1.bb"
-Content-Disposition: attachment; filename="qjson_0.7.1.bb"
+--_000_0BCF42B3E5354126A211041FBD780946planarcom_
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
-X-Attachment-Id: f_i0eqjk180
 
-REVTQ1JJUFRJT04gPSAiQSBKc29uIGxpYnJhcnkgZm9yIFFUIgpIT01FUEFHRSA9ICJodHRwOi8v
-cWpzb24uc291cmNlZm9yZ2UubmV0LyIKU0VDVElPTiA9ICJsaWJzIgoKTElDRU5TRSA9ICJMR1BM
-djIiCkxJQ19GSUxFU19DSEtTVU0gPSAiZmlsZTovL0NPUFlJTkcubGliO21kNT0zNTExZDcyNmQw
-OTE0NGM4NTkwYWJhNDYyM2NhMmU5ZiIKClNSQ1JFViA9ICIzN2JlMmI3YmY0Y2ZlOTc4NDY2NWU1
-MjBlYTAzNjgzYTlmMTRmMWQwIgpQViA9ICIwLjcuMSIKClBSID0gInIwIgpTID0gIiR7V09SS0RJ
-Un0vZ2l0IgoKU1JDX1VSSSA9ICJnaXQ6Ly9naXRvcmlvdXMub3JnL3Fqc29uL3Fqc29uLmdpdCIK
-CkZJTEVTXyR7UE59ID0gIiR7bGliZGlyfS9xdDQiCgpSREVQRU5EUyArPSAicXQ0LWVtYmVkZGVk
-IgpERVBFTkRTICs9ICJjbWFrZSBwa2djb25maWcgcXQ0LWVtYmVkZGVkIgoKaW5oZXJpdCBxdDRl
-IGNtYWtlCmluaGVyaXQgYXV0b3Rvb2xzIGdldHRleHQKCkVYVFJBX09FQ01BS0UgPSAiLURRVF9M
-SUJSQVJZX0RJUj0ke09FX1FNQUtFX0xJQkRJUl9RVH0gXAogICAgICAgICAgICAgICAgIC1EUVRf
-SU5TVEFMTF9MSUJTPSR7T0VfUU1BS0VfTElCRElSX1FUfSBcCiAgICAgICAgICAgICAgICAgLURR
-VF9JTkNMVURFX0RJUj0ke09FX1FNQUtFX0lOQ0RJUl9RVH0gXAoJCSAtRFFUX0hFQURFUlNfRElS
-PSR7T0VfUU1BS0VfSU5DRElSX1FUfSBcCiAgICAgICAgICAgICAgICAgLURRVF9NT0NfRVhFQ1VU
-QUJMRT0ke09FX1FNQUtFX01PQ30gXAogICAgICAgICAgICAgICAgIC1EUVRfVUlDX0VYRUNVVEFC
-TEU9JHtPRV9RTUFLRV9VSUN9IFwKICAgICAgICAgICAgICAgICAtRFFUX1VJQzNfRVhFQ1VUQUJM
-RT0ke09FX1FNQUtFX1VJQzN9IFwKICAgICAgICAgICAgICAgICAtRFFUX1JDQ19FWEVDVVRBQkxF
-PSR7T0VfUU1BS0VfUkNDfSBcCiAgICAgICAgICAgICAgICAgLURRVF9RTUFLRV9FWEVDVVRBQkxF
-PSR7T0VfUU1BS0VfUU1BS0V9IFwKICAgICAgICAgICAgICAgICAtRFFUX1FUQ09SRV9JTkNMVURF
-X0RJUj0ke09FX1FNQUtFX0lOQ0RJUl9RVH0vUXRDb3JlIFwKICAgICAgICAgICAgICAgICAtRFFU
-X0RCVVNYTUwyQ1BQX0VYRUNVVEFCTEU9L3Vzci9iaW4vcWRidXN4bWwyY3BwIFwKICAgICAgICAg
-ICAgICAgICAtRFFUX0RCVVNDUFAyWE1MX0VYRUNVVEFCTEU9L3Vzci9iaW4vcWRidXNjcHAyeG1s
-IFwKCQkgLURRVF9NS1NQRUNTX0RJUj0ke1FNQUtFU1BFQ30vLi4vIFwKICAgICAgICAgICAgICAg
-ICIKCiMgQWRkaW5nIG91ciBsaWIgZmlsZSB0byB0aGUgbWFpbiBwYWNrYWdlCkZJTEVTXyR7UE59
-ID0gIiR7bGliZGlyfS8qIgoKZG9fY29uZmlndXJlX3ByZXBlbmQoKSB7Cn0KCmRvX2luc3RhbGxf
-cHJlcGVuZCgpIHsKfQo=
+VGhhbmtzIGZvciB0aGUgcmVzcG9uc2UgYnV0IEknbSBub3Qgc3VyZSB0aGF0IEkgdW5kZXJzdGFu
+ZC4NCldoZXJlIGRvZXMgdGhpcyBzdHVmZiBnbz8gSW4gYSBQYWNrYWdlZ3JvdXAgZmlsZS4NCg0K
+SSB0cmllZCBhZGRpbmcgc2ltcGxlMS1zdGF0aWNkZXYgdG8gSU1BR0VfSU5TVEFMTCBhbmQgSSBn
+ZXQgYW4gZXJyb3IgdGhhdCBpdCBkb2Vzbid0IGV4aXN0Lg0KDQpDYW4geW91IHBvaW50IG1lIGF0
+IGFuIGV4YW1wbGU/DQoNCk1hdHQgUy4NClNlbnQgZnJvbSBteSBwb2NrZXQNCg0KT24gU2VwIDIy
+LCAyMDE0LCBhdCA3OjUyIFBNLCBKb3NlcGggQW5kcmV3IGRlIGxhIFBlw7FhIDxqZGVsYXBlbmFA
+bGV4bWFyay5jb208bWFpbHRvOmpkZWxhcGVuYUBsZXhtYXJrLmNvbT4+IHdyb3RlOg0KDQpHb29k
+IGRheSBNYXR0LA0KDQpZb3UgbmVlZCB0byBleHBsaWNpdGx5IFJERVBFTkRTIHlvdXItdW5pdC1z
+dGF0aWNkZXYgYW5kIHlvdXItdW5pdCBpbiB5b3VyIGltYWdlJ3MgcGFja2FnZWdyb3VwLiBBc3N1
+bWluZywgeW91ciBGSUxFU18ke1BOfS1zdGF0aWNkZXYgaXMgeW91ciAuYSBhbmQgRklMRVNfJHtQ
+Tn0gY29udGFpbnMgeW91ciBoZWFkZXJzLg0KDQpUaGFua3MsDQpKb3NlcGgNCg0KT24gVHVlLCBT
+ZXAgMjMsIDIwMTQgYXQgOTo1NyBBTSwgTWF0dCBTY2h1Y2ttYW5uIDxNYXR0LlNjaHVja21hbm5A
+cGxhbmFyLmNvbTxtYWlsdG86TWF0dC5TY2h1Y2ttYW5uQHBsYW5hci5jb20+PiB3cm90ZToNCkkn
+dmUgZ290IGEgY3VzdG9tIGltYWdlIGFuZCAyIGN1c3RvbSByZWNpcGVzIGJvdGggdmVyeSBzaW1w
+bGUgbGlicmFyaWVzIHRoYXQgdXNlIGNtYWtlLg0KSSBpbmNsdWRlZCB0aGUgbGlicmFyaWVzIGlu
+dG8gbXkgaW1hZ2UgYnkgYWRkaW5nDQpFWFRSQV9JTUFHRURFUEVORFMgKz0gInNpbXBsZTEiDQpF
+WFRSQV9JTUFHRURFUEVORFMgKz0gInNpbXBsZTIiDQpUbyBteSBpbWFnZSByZWNpcGUuDQoNCldo
+ZW4gSSBidWlsZCBteSBpbWFnZSAoaS5lLiBiaXRiYWtlIGN1c3RvbS1pbWFnZSApIEkgY2FuIHNl
+ZSB0aGF0IHRoZSBsaWJyYXJ5IGhlYWRlciBmaWxlcyBhbmQgLmEgZmlsZXMgYXJlIHBsYWNlZCBp
+biB0aGUgY29ycmVjdCBwbGFjZSBpbiB0aGUgc3lzcm9vdCBkaXJlY3RvcnkuDQoNCkhvd2V2ZXIg
+d2hlbiBJIHRyeSB0byBjcmVhdGUgYW4gc2RrIChpLmUuIGJpdGJha2UgY3VzdG9tLWltYWdlIC1j
+IHBvcHVsYXRlX3NkaykgYW5kIHRoZW4gaW5zdGFsbCB0aGUgU0RLIHRoZSBoZWFkZXJzIGFuZCAu
+YSBmaWxlcyBhcmUgbm93aGVyZSB0byBiZSBmb3VuZCBpbiB0aGUgaW5zdGFsbGVkIHN5c3Jvb3Qu
+DQoNCldoYXQgYW0gSSBtaXNzaW5nPw0KDQpUaGFua3MsDQpNYXR0IFMuDQoNCi0tDQpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KeW9jdG8gbWFpbGluZyBs
+aXN0DQp5b2N0b0B5b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
+Pg0KaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvDQoNCg==
 
---089e0139fb625062440503b3f854--
+--_000_0BCF42B3E5354126A211041FBD780946planarcom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+PGh0bWw+PGhlYWQ+PG1ldGEgaHR0cC1lcXVpdj0iY29udGVudC10eXBlIiBjb250ZW50PSJ0ZXh0
+L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPjwvaGVhZD48Ym9keSBkaXI9ImF1dG8iPjxkaXY+VGhhbmtz
+IGZvciB0aGUgcmVzcG9uc2UgYnV0IEknbSBub3Qgc3VyZSB0aGF0IEkgdW5kZXJzdGFuZC4mbmJz
+cDs8L2Rpdj48ZGl2PldoZXJlIGRvZXMgdGhpcyBzdHVmZiBnbz8gSW4gYSBQYWNrYWdlZ3JvdXAg
+ZmlsZS4mbmJzcDs8L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PkkgdHJpZWQgYWRkaW5nIHNpbXBs
+ZTEtc3RhdGljZGV2IHRvIElNQUdFX0lOU1RBTEwgYW5kIEkgZ2V0IGFuIGVycm9yIHRoYXQgaXQg
+ZG9lc24ndCBleGlzdC4mbmJzcDs8L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PkNhbiB5b3UgcG9p
+bnQgbWUgYXQgYW4gZXhhbXBsZT88YnI+PGJyPjxkaXY+TWF0dCBTLiZuYnNwOzwvZGl2PlNlbnQg
+ZnJvbSBteSBwb2NrZXQ8L2Rpdj48ZGl2Pjxicj5PbiBTZXAgMjIsIDIwMTQsIGF0IDc6NTIgUE0s
+IEpvc2VwaCBBbmRyZXcgZGUgbGEgUGXDsWEgJmx0OzxhIGhyZWY9Im1haWx0bzpqZGVsYXBlbmFA
+bGV4bWFyay5jb20iPmpkZWxhcGVuYUBsZXhtYXJrLmNvbTwvYT4mZ3Q7IHdyb3RlOjxicj48YnI+
+PC9kaXY+PGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+PGRpdj48ZGl2IGRpcj0ibHRyIj48ZGl2Pkdv
+b2QgZGF5IE1hdHQsPC9kaXY+PGRpdj48YnI+PC9kaXY+WW91IG5lZWQgdG8gZXhwbGljaXRseSBS
+REVQRU5EUyB5b3VyLXVuaXQtc3RhdGljZGV2IGFuZCB5b3VyLXVuaXQgaW4geW91ciBpbWFnZSdz
+IHBhY2thZ2Vncm91cC4gQXNzdW1pbmcsIHlvdXIgRklMRVNfJHtQTn0tc3RhdGljZGV2IGlzIHlv
+dXIgLmEgYW5kIEZJTEVTXyR7UE59IGNvbnRhaW5zIHlvdXIgaGVhZGVycy48ZGl2Pjxicj48L2Rp
+dj48ZGl2PlRoYW5rcyw8L2Rpdj48ZGl2Pkpvc2VwaDwvZGl2PjwvZGl2PjxkaXYgY2xhc3M9Imdt
+YWlsX2V4dHJhIj48YnI+PGRpdiBjbGFzcz0iZ21haWxfcXVvdGUiPk9uIFR1ZSwgU2VwIDIzLCAy
+MDE0IGF0IDk6NTcgQU0sIE1hdHQgU2NodWNrbWFubiA8c3BhbiBkaXI9Imx0ciI+Jmx0OzxhIGhy
+ZWY9Im1haWx0bzpNYXR0LlNjaHVja21hbm5AcGxhbmFyLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPk1h
+dHQuU2NodWNrbWFubkBwbGFuYXIuY29tPC9hPiZndDs8L3NwYW4+IHdyb3RlOjxicj48YmxvY2tx
+dW90ZSBjbGFzcz0iZ21haWxfcXVvdGUiIHN0eWxlPSJtYXJnaW46MCAwIDAgLjhleDtib3JkZXIt
+bGVmdDoxcHggI2NjYyBzb2xpZDtwYWRkaW5nLWxlZnQ6MWV4Ij5JJ3ZlIGdvdCBhIGN1c3RvbSBp
+bWFnZSBhbmQgMiBjdXN0b20gcmVjaXBlcyBib3RoIHZlcnkgc2ltcGxlIGxpYnJhcmllcyB0aGF0
+IHVzZSBjbWFrZS48YnI+DQpJIGluY2x1ZGVkIHRoZSBsaWJyYXJpZXMgaW50byBteSBpbWFnZSBi
+eSBhZGRpbmc8YnI+DQpFWFRSQV9JTUFHRURFUEVORFMgKz0gInNpbXBsZTEiPGJyPg0KRVhUUkFf
+SU1BR0VERVBFTkRTICs9ICJzaW1wbGUyIjxicj4NClRvIG15IGltYWdlIHJlY2lwZS48YnI+DQo8
+YnI+DQpXaGVuIEkgYnVpbGQgbXkgaW1hZ2UgKGkuZS4gYml0YmFrZSBjdXN0b20taW1hZ2UgKSBJ
+IGNhbiBzZWUgdGhhdCB0aGUgbGlicmFyeSBoZWFkZXIgZmlsZXMgYW5kIC5hIGZpbGVzIGFyZSBw
+bGFjZWQgaW4gdGhlIGNvcnJlY3QgcGxhY2UgaW4gdGhlIHN5c3Jvb3QgZGlyZWN0b3J5Ljxicj4N
+Cjxicj4NCkhvd2V2ZXIgd2hlbiBJIHRyeSB0byBjcmVhdGUgYW4gc2RrIChpLmUuIGJpdGJha2Ug
+Y3VzdG9tLWltYWdlIC1jIHBvcHVsYXRlX3NkaykgYW5kIHRoZW4gaW5zdGFsbCB0aGUgU0RLIHRo
+ZSBoZWFkZXJzIGFuZCAuYSBmaWxlcyBhcmUgbm93aGVyZSB0byBiZSBmb3VuZCBpbiB0aGUgaW5z
+dGFsbGVkIHN5c3Jvb3QuPGJyPg0KPGJyPg0KV2hhdCBhbSBJIG1pc3Npbmc/PGJyPg0KPGJyPg0K
+VGhhbmtzLDxicj4NCk1hdHQgUy48YnI+DQo8c3BhbiBjbGFzcz0iSE9FblpiIj48Zm9udCBjb2xv
+cj0iIzg4ODg4OCI+PGJyPg0KLS08YnI+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXzxicj4NCnlvY3RvIG1haWxpbmcgbGlzdDxicj4NCjxhIGhyZWY9Im1h
+aWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnIj55b2N0b0B5b2N0b3Byb2plY3Qub3JnPC9hPjxi
+cj4NCjxhIGhyZWY9Imh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0
+byIgdGFyZ2V0PSJfYmxhbmsiPmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5m
+by95b2N0bzwvYT48YnI+DQo8L2ZvbnQ+PC9zcGFuPjwvYmxvY2txdW90ZT48L2Rpdj48YnI+PC9k
+aXY+DQo8L2Rpdj48L2Jsb2NrcXVvdGU+PC9ib2R5PjwvaHRtbD4=
+
+--_000_0BCF42B3E5354126A211041FBD780946planarcom_--
