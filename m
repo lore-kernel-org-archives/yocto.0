@@ -1,6 +1,6 @@
 Return-Path: <californialsullivan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 64752E00890; Tue, 23 Sep 2014 10:20:40 -0700 (PDT)
+	id 74155E00885; Tue, 23 Sep 2014 10:20:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -19,26 +19,26 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
 	and not from a mailing list
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C976E0086F
-	for <yocto@yoctoproject.org>; Tue, 23 Sep 2014 10:20:36 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CD60E00875
+	for <yocto@yoctoproject.org>; Tue, 23 Sep 2014 10:20:39 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 23 Sep 2014 10:11:34 -0700
+	by orsmga101.jf.intel.com with ESMTP; 23 Sep 2014 10:11:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,581,1406617200"; d="scan'208";a="607285920"
+X-IronPort-AV: E=Sophos;i="5.04,581,1406617200"; d="scan'208";a="607285933"
 Received: from sullical-studio-xps-9100.jf.intel.com (HELO
 	sullical-Studio-XPS-9100) ([10.7.198.88])
-	by orsmga002.jf.intel.com with SMTP; 23 Sep 2014 10:11:33 -0700
+	by orsmga002.jf.intel.com with SMTP; 23 Sep 2014 10:11:34 -0700
 Received: by sullical-Studio-XPS-9100 (sSMTP sendmail emulation);
-	Tue, 23 Sep 2014 10:14:05 -0700
+	Tue, 23 Sep 2014 10:14:06 -0700
 From: californialsullivan@gmail.com
 To: yocto@yoctoproject.org
-Date: Tue, 23 Sep 2014 10:13:50 -0700
-Message-Id: <1411492434-340-9-git-send-email-californialsullivan@gmail.com>
+Date: Tue, 23 Sep 2014 10:13:51 -0700
+Message-Id: <1411492434-340-10-git-send-email-californialsullivan@gmail.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1411492434-340-1-git-send-email-californialsullivan@gmail.com>
 References: <1411492434-340-1-git-send-email-californialsullivan@gmail.com>
 Cc: California Sullivan <california.l.sullivan@intel.com>
-Subject: [PATCH 09/13] ProvisionGoogleVM.py: Fix metadata's input name.
+Subject: [PATCH 10/13] DeleteGoogleVM.py: Rename to DeleteGoogleVMs.py
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,24 +54,132 @@ X-List-Received-Date: Tue, 23 Sep 2014 17:20:40 -0000
 
 From: California Sullivan <california.l.sullivan@intel.com>
 
+It can delete multiple at once if multiple were created at once.
+
 Signed-off-by: California Sullivan <california.l.sullivan@intel.com>
 ---
- lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../autobuilder/buildsteps/DeleteGoogleVM.py       | 52 ----------------------
+ .../autobuilder/buildsteps/DeleteGoogleVMs.py      | 52 ++++++++++++++++++++++
+ 2 files changed, 52 insertions(+), 52 deletions(-)
+ delete mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVM.py
+ create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVMs.py
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py b/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py
-index cd35759..e7f488f 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py
-@@ -65,7 +65,7 @@ class ProvisionGoogleVM(ShellCommand):
-             if self.startupscript is not None and self.startupscript != "":
-                 self.command += " --metadata-from-file startup-script="+YOCTO_ABBASE+"/bin/"+self.startupscript
-                 if self.metadata is not None and self.metadata != "":
--                    self.command += " --metadata " + self.scriptargs
-+                    self.command += " --metadata " + self.metadata
-             self.command += " 1> /dev/null";
- 
-             # Timeout needs to be passed to LoggingBuildStep as a kwarg
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVM.py b/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVM.py
+deleted file mode 100644
+index 29b45a4..0000000
+--- a/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVM.py
++++ /dev/null
+@@ -1,52 +0,0 @@
+-'''
+-Created on Aug 13, 2014
+-
+-__author__ = "California Sullivan"
+-__copyright__ = "Copyright 2014, Intel Corp."
+-__credits__ = ["California Sullivan"]
+-__license__ = "GPL"
+-__version__ = "2.0"
+-__maintainer__ = "Elizabeth Flanagan"
+-__email__ = "elizabeth.flanagan@intel.com"
+-'''
+-
+-from buildbot.steps.shell import ShellCommand
+-
+-class DeleteGoogleVM(ShellCommand):
+-    haltOnFailure = True
+-    flunkOnFailure = True
+-    name = "Delete Google VM"
+-    def __init__(self, factory, argdict=None, **kwargs):
+-
+-        self.factory = factory
+-        self.description = "Deleting Google VMs"
+-        for k, v in argdict.iteritems():
+-            if type(v) is bool:
+-                setattr(self, k, str(v))
+-            else:
+-                setattr(self, k, v)
+-        # Timeout needs to be passed to LoggingBuildStep as a kwarg
+-        self.timeout = 1000
+-        kwargs['timeout']=self.timeout
+-        ShellCommand.__init__(self, **kwargs)
+-
+-
+-    def start(self):
+-        self.vmnames = self.getProperty("vmnames")
+-        self.vmcount = self.getProperty("vmcount")
+-        self.zone = self.getProperty("zone")
+-
+-        if self.vmnames is not None and self.vmnames != "":
+-            self.command = "gcloud compute instances delete"
+-            self.command += " " + self.vmnames
+-
+-        if self.zone is not None and self.zone in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
+-            self.command += " --zone " + self.zone
+-        else:
+-            self.command += " --zone us-central1-a"
+-        self.command += " --quiet"
+-        ShellCommand.start(self)
+-
+-    def describe(self, done=False):
+-        description = ShellCommand.describe(self,done)
+-        return description
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVMs.py b/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVMs.py
+new file mode 100644
+index 0000000..b0071cf
+--- /dev/null
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVMs.py
+@@ -0,0 +1,52 @@
++'''
++Created on Aug 13, 2014
++
++__author__ = "California Sullivan"
++__copyright__ = "Copyright 2014, Intel Corp."
++__credits__ = ["California Sullivan"]
++__license__ = "GPL"
++__version__ = "2.0"
++__maintainer__ = "Elizabeth Flanagan"
++__email__ = "elizabeth.flanagan@intel.com"
++'''
++
++from buildbot.steps.shell import ShellCommand
++
++class DeleteGoogleVMs(ShellCommand):
++    haltOnFailure = True
++    flunkOnFailure = True
++    name = "Delete Google VMs"
++    def __init__(self, factory, argdict=None, **kwargs):
++
++        self.factory = factory
++        self.description = "Deleting Google VMs"
++        for k, v in argdict.iteritems():
++            if type(v) is bool:
++                setattr(self, k, str(v))
++            else:
++                setattr(self, k, v)
++        # Timeout needs to be passed to LoggingBuildStep as a kwarg
++        self.timeout = 1000
++        kwargs['timeout']=self.timeout
++        ShellCommand.__init__(self, **kwargs)
++
++
++    def start(self):
++        self.vmnames = self.getProperty("vmnames")
++        self.vmcount = self.getProperty("vmcount")
++        self.zone = self.getProperty("zone")
++
++        if self.vmnames is not None and self.vmnames != "":
++            self.command = "gcloud compute instances delete"
++            self.command += " " + self.vmnames
++
++        if self.zone is not None and self.zone in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
++            self.command += " --zone " + self.zone
++        else:
++            self.command += " --zone us-central1-a"
++        self.command += " --quiet"
++        ShellCommand.start(self)
++
++    def describe(self, done=False):
++        description = ShellCommand.describe(self,done)
++        return description
 -- 
 1.9.1
 
