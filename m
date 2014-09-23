@@ -1,44 +1,58 @@
-Return-Path: <californialsullivan@gmail.com>
+Return-Path: <btv1==3433b300ed1==Matt.Schuckmann@planar.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A0C7EE00876; Tue, 23 Sep 2014 10:20:42 -0700 (PDT)
+	id 81EF7E00890; Tue, 23 Sep 2014 10:22:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
-	FREEMAIL_FROM, NML_ADSP_CUSTOM_MED,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (californialsullivan[at]gmail.com)
-	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
-	*      CUSTOM_MED
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
-	and not from a mailing list
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6C36E0086E
-	for <yocto@yoctoproject.org>; Tue, 23 Sep 2014 10:20:39 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 23 Sep 2014 10:11:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,581,1406617200"; d="scan'208";a="607285966"
-Received: from sullical-studio-xps-9100.jf.intel.com (HELO
-	sullical-Studio-XPS-9100) ([10.7.198.88])
-	by orsmga002.jf.intel.com with SMTP; 23 Sep 2014 10:11:37 -0700
-Received: by sullical-Studio-XPS-9100 (sSMTP sendmail emulation);
-	Tue, 23 Sep 2014 10:14:09 -0700
-From: californialsullivan@gmail.com
-To: yocto@yoctoproject.org
-Date: Tue, 23 Sep 2014 10:13:54 -0700
-Message-Id: <1411492434-340-13-git-send-email-californialsullivan@gmail.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1411492434-340-1-git-send-email-californialsullivan@gmail.com>
-References: <1411492434-340-1-git-send-email-californialsullivan@gmail.com>
-Cc: California Sullivan <california.l.sullivan@intel.com>
-Subject: [PATCH 13/13] ProvisionGoogleVMs.py: Delete VM before trying to provision it.
+Received: from barbvt11.planar.com (mail.planar.com [199.244.172.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDA10E00890
+	for <yocto@yoctoproject.org>; Tue, 23 Sep 2014 10:21:52 -0700 (PDT)
+X-ASG-Debug-ID: 1411492906-04afd213609c2790001-yzSStA
+Received: from msxbvt03.planar.net (msxbvt03.planar.net [172.16.0.147]) by
+	barbvt11.planar.com with ESMTP id UBWSBGblJutoxFnW;
+	Tue, 23 Sep 2014 10:21:46 -0700 (PDT)
+X-Barracuda-Envelope-From: Matt.Schuckmann@planar.com
+Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
+	with mapi; Tue, 23 Sep 2014 10:21:46 -0700
+From: Matt Schuckmann <Matt.Schuckmann@planar.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Date: Tue, 23 Sep 2014 10:21:44 -0700
+Thread-Topic: [yocto] How to include static library and headers in sdk
+X-ASG-Orig-Subj: RE: [yocto] How to include static library and headers in sdk
+Thread-Index: Ac/XTxRyON0C/8aPTwu4cExNTxF30wAAYyWA
+Message-ID: <4B07ADD556F70043925DA2E9C5D4346D2FD8728262@MSXBEBVT12.planar.net>
+References: <4B07ADD556F70043925DA2E9C5D4346D2FD87281CF@MSXBEBVT12.planar.net>
+	<37147476.ADdIiFqJFs@peggleto-mobl5.ger.corp.intel.com>
+	<4B07ADD556F70043925DA2E9C5D4346D2FD872824A@MSXBEBVT12.planar.net>
+	<156836059.zJCsOPYVjU@peggleto-mobl5.ger.corp.intel.com>
+In-Reply-To: <156836059.zJCsOPYVjU@peggleto-mobl5.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+X-Barracuda-Connect: msxbvt03.planar.net[172.16.0.147]
+X-Barracuda-Start-Time: 1411492906
+X-Barracuda-URL: http://10.10.111.113:8000/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at planar.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Bayes: INNOCENT GLOBAL 0.0169 1.0000 -1.9111
+X-Barracuda-Spam-Score: -1.41
+X-Barracuda-Spam-Status: No,
+	SCORE=-1.41 using per-user scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=WEIRD_PORT
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.9793
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+	0.50 WEIRD_PORT URI: Uses non-standard port number for HTTP
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to include static library and headers in sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,56 +64,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Sep 2014 17:20:42 -0000
+X-List-Received-Date: Tue, 23 Sep 2014 17:22:03 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: California Sullivan <california.l.sullivan@intel.com>
+> -----Original Message-----
+> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
+> Sent: Tuesday, September 23, 2014 9:54 AM
+> To: Matt Schuckmann
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] How to include static library and headers in sdk
+>=20
+> On Tuesday 23 September 2014 09:43:55 Matt Schuckmann wrote:
+> > > -----Original Message-----
+> > > From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
+> > > Sent: Tuesday, September 23, 2014 2:10 AM
+> > > To: Matt Schuckmann
+> > > Cc: yocto@yoctoproject.org
+> > > Subject: Re: [yocto] How to include static library and headers in
+> > > sdk
+> > >
+> > > On Monday 22 September 2014 18:57:03 Matt Schuckmann wrote:
+> > > > I've got a custom image and 2 custom recipes both very simple
+> > > > libraries that use cmake. I included the libraries into my image
+> > > > by adding EXTRA_IMAGEDEPENDS +=3D "simple1"
+> > > > EXTRA_IMAGEDEPENDS +=3D "simple2"
+> > > > To my image recipe.
+> > >
+> > > Except this doesn't actually add those things into your image, it
+> > > only ensures they are built alongside it. To actually add them to
+> > > the image
+> >
+> > > you need to ensure you add them to IMAGE_INSTALL; see:
+> > If I add my simple1 and simple2 recipes to IMAGE_INSTALL I get the
+> > following error in the do_rootfs task: * opkg_install_cmd: Cannot
+> > install package simple1.
+> >
+> > I assumed that this is because there really is nothing to install in
+> > the image as this is a static library with nothing that should go in
+> the image.
+> > > http://www.yoctoproject.org/docs/current/dev-manual/dev-> >
+> > > manual.html#usingpoky-extend-customimage
+> > >
+> > > > When I build my image (i.e. bitbake custom-image ) I can see that
+> > > > the library header files and .a files are placed in the correct
+> > > > place in the sysroot directory.
+> > > >
+> > > > However when I try to create an sdk (i.e. bitbake custom-image -c
+> > > > populate_sdk) and then install the SDK the headers and .a files
+> > > > are nowhere to be found in the installed sysroot.
+> > >
+> > > If you want all -staticdev packages in the SDK for the libraries in
+> > > your image, add the following to your local.conf (or the image
+> > > recipe,
+> > >
+> > > doesn't matter which):
+> > >  SDKIMAGE_FEATURES =3D "dev-pkgs dbg-pkgs staticdev-pkgs"
+> > >
+> > > If you want a single staticdev package in the SDK you'd need to add
+> > > the
+> > >
+> > > following instead:
+> > >  TOOLCHAIN_HOST_TASK_append =3D " simple1-staticdev"
+> >
+> > Again if I try adding this to my image recipe I get a similar error
+> > * opkg_install_cmd: Cannot install package simple1-staticdev.
+> >
+> > For reference here is my simple1 recipe, maybe I'm missing something
+> > in there.
+> >
+> > DESCRIPTION =3D "Simple library 1."
+> > LICENSE =3D "CLOSED"
+> > LIC_FILES_CHKSUM =3D ""
+> >
+> > SRC_URI =3D "git://git@gitlab.work.net/libs/simple1.git;protocol=3Dssh"
+> > SRCREV =3D "${AUTOREV}"
+> >
+> > S =3D "${WORKDIR}/git"
+> >
+> > inherit pkgconfig cmake
+>=20
+> So is your recipe actually producing any packages at all? i.e. are any
+> of the directories under packages-split within the workdir for the
+> recipe non-empty?
+> At the moment it looks like it isn't producing anything.
 
-In the case that somebody turned off a build before it completed, the
-buildstep would attempt and fail to procure a new VM, failing the build.
+Yes the simple1-dev directory contains the include files and the library fi=
+le under usr/include and usr/lib respectively.=20
+The simple1-staticdev directory contains only the library file under usr/li=
+b.=20
 
-Signed-off-by: California Sullivan <california.l.sullivan@intel.com>
----
- .../autobuilder/buildsteps/ProvisionGoogleVMs.py         | 16 ++++++++++------
- 1 file changed, 10 insertions(+), 6 deletions(-)
+My understanding, limited as it is, is that the cmake class handles identif=
+ying what goes in what package automagicaly assuming some basic conventions=
+ about where things get installed. Note if I run:=20
+bitbake -e simple1
+and search for FILES_simple1-staticdev I find:=20
+# $FILES_simple1-staticdev
+#   rename from FILES_${PN}-staticdev data.py:170 [expandKeys]
+FILES_simple1-staticdev=3D"/usr/lib/*.a /lib/*.a /usr/lib/simple1/*.a"
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVMs.py b/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVMs.py
-index d0bc6eb..262526f 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVMs.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVMs.py
-@@ -19,6 +19,7 @@ class ProvisionGoogleVMs(ShellCommand):
-     name = "Provision Google VMs"
-     def __init__(self, factory, argdict=None, **kwargs):
-         self.vmname=None
-+        self.vmnames=""
-         self.vmcount=1
-         self.startupscript=None
-         self.metadata=None
-@@ -38,15 +39,18 @@ class ProvisionGoogleVMs(ShellCommand):
-         if self.vmname is None or self.vmname == "":
-             self.finished(FAILURE)
-         else:
--            self.command = "gcloud compute instances create"
--            self.vmnames = ""
-+            self.command = ""
-+            if self.zone is None or self.zone not in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
-+                self.zone = "us-central1-a"
-             for x in range(0, self.vmcount):
-                 self.vmnames += " " + self.vmname + "-" + str(x)
-+            self.command += " gcloud compute instances delete"
-             self.command += self.vmnames
--            if self.zone is not None and self.zone in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
--                self.command += " --zone " + self.zone
--            else:
--                self.command += " --zone us-central1-a"
-+            self.command += " --zone " + self.zone + " --quiet;"
-+            self.command += " gcloud compute instances create"
-+            self.command += self.vmnames
-+            self.command += " --zone " + self.zone
-+
-             if self.disksize is not None and self.disksize != "":
-                 self.command += " --boot-disk-size " + self.disksize
-             else:
--- 
-1.9.1
+Or search for FILES_simple1-dev
+#
+# $FILES_simple1-dev
+#   rename from FILES_${PN}-dev data.py:170 [expandKeys]
+#     "${includedir} ${FILES_SOLIBSDEV} ${libdir}/*.la ${libdir}/*.o ${libd=
+ir}/pkgconfig ${datadir}/pkgconfig ${datadir}/aclocal ${base_libdir}/*.o ${=
+libdir}/${BPN}/*.la ${base_libdir}/*.la"
+FILES_jsoncpp-dev=3D"/usr/include /lib/lib*.so /usr/lib/lib*.so /usr/lib/*.=
+la /usr/lib/*.o /usr/lib/pkgconfig /usr/share/pkgconfig /usr/share/aclocal =
+/lib/*.o /usr/lib/simple1/*.la /lib/*.la"
 
+If my understanding is wrong then that's totally understandable as I'm new =
+to this as there really isn't much of any documentation on how the cmake cl=
+ass works.=20
+
+Thanks,
+Matt S.=20
 
