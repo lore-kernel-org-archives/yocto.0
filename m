@@ -1,6 +1,6 @@
 Return-Path: <californialsullivan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9D2BE00876; Tue, 23 Sep 2014 10:26:31 -0700 (PDT)
+	id B32E4E00875; Tue, 23 Sep 2014 10:26:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -19,26 +19,26 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
 	and not from a mailing list
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 256E3E0086E
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25A1CE0086F
 	for <yocto@yoctoproject.org>; Tue, 23 Sep 2014 10:26:26 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 23 Sep 2014 10:05:14 -0700
+	by orsmga102.jf.intel.com with ESMTP; 23 Sep 2014 10:05:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,581,1406617200"; d="scan'208";a="607285847"
+X-IronPort-AV: E=Sophos;i="5.04,581,1406617200"; d="scan'208";a="607285864"
 Received: from sullical-studio-xps-9100.jf.intel.com (HELO
 	sullical-Studio-XPS-9100) ([10.7.198.88])
-	by orsmga002.jf.intel.com with SMTP; 23 Sep 2014 10:11:26 -0700
+	by orsmga002.jf.intel.com with SMTP; 23 Sep 2014 10:11:27 -0700
 Received: by sullical-Studio-XPS-9100 (sSMTP sendmail emulation);
-	Tue, 23 Sep 2014 10:13:58 -0700
+	Tue, 23 Sep 2014 10:13:59 -0700
 From: californialsullivan@gmail.com
 To: yocto@yoctoproject.org
-Date: Tue, 23 Sep 2014 10:13:44 -0700
-Message-Id: <1411492434-340-3-git-send-email-californialsullivan@gmail.com>
+Date: Tue, 23 Sep 2014 10:13:45 -0700
+Message-Id: <1411492434-340-4-git-send-email-californialsullivan@gmail.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1411492434-340-1-git-send-email-californialsullivan@gmail.com>
 References: <1411492434-340-1-git-send-email-californialsullivan@gmail.com>
 Cc: California Sullivan <california.l.sullivan@intel.com>
-Subject: [PATCH 03/13] bin: add worker-init script
+Subject: [PATCH 04/13] yocto-autobuilder-setup: Add address and host replacement for worker-init
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,61 +54,29 @@ X-List-Received-Date: Tue, 23 Sep 2014 17:26:31 -0000
 
 From: California Sullivan <california.l.sullivan@intel.com>
 
-This script takes a fresh debian VM and completely sets it up and starts a
-worker, and connects it to the controller. It is to be used by the
-ProvisionGoogleVM build step.
+The first time the config is successfully ran the worker-init script will also
+be fixed to use info from this host and autobuilder instance.
 
 Signed-off-by: California Sullivan <california.l.sullivan@intel.com>
 ---
- bin/worker-init | 39 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
- create mode 100755 bin/worker-init
+ yocto-autobuilder-setup | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/bin/worker-init b/bin/worker-init
-new file mode 100755
-index 0000000..7c6f827
---- /dev/null
-+++ b/bin/worker-init
-@@ -0,0 +1,39 @@
-+#!/bin/bash
-+
-+if [ ! -f /var/log/firstboot.log ]
-+then
-+  START_SECTOR=$(fdisk -l | grep sda1 | sed 's/\*//' | awk '{ print $2 }')
-+  echo -e "d\nn\n\n\n$START_SECTOR\n\nw\n" | fdisk /dev/sda
-+  touch /var/log/firstboot.log
-+  reboot
-+fi
-+
-+if [ ! -f /var/log/secondboot.log ]
-+then
-+  resize2fs /dev/sda1
-+  sudo apt-get update
-+  yes | sudo apt-get install make
-+  yes | sudo apt-get install git
-+  yes | sudo apt-get install gcc
-+  yes | sudo apt-get install g++
-+  yes | sudo apt-get install diffstat
-+  yes | sudo apt-get install texinfo
-+  yes | sudo apt-get install bzip2
-+  yes | sudo apt-get install gawk
-+  yes | sudo apt-get install chrpath
-+  yes | sudo apt-get install libsdl1.2-dev
-+  yes "dummyinfo" | adduser autobuilder
-+  touch /var/log/secondboot.log
-+fi
-+
-+WORKER_NUM=$(uname -n | grep -o [0-9])
-+
-+cd /home/autobuilder
-+su autobuilder -c "yes 'yes' | git clone git://git.yoctoproject.org/yocto-autobuilder"
-+
-+cd yocto-autobuilder
-+su autobuilder -c '. ./yocto-autobuilder-setup'
-+su autobuilder -c "sed -i 's/example-worker/worker'$WORKER_NUM'/' yocto-worker/buildbot.tac"
-+su autobuilder -c 'sed -i "s/passwd =.*/passwd = '"'"'<PASS>'"'"'/" yocto-worker/buildbot.tac'
-+su autobuilder -c 'sed -i "s/buildmaster_host =.*/buildmaster_host = '"'"'<HOST_ADDR>'"'"'/" yocto-worker/buildbot.tac'
-+su autobuilder -c '. ./yocto-autobuilder-setup; ./yocto-start-autobuilder worker &'
+diff --git a/yocto-autobuilder-setup b/yocto-autobuilder-setup
+index aee71ce..a74d033 100644
+--- a/yocto-autobuilder-setup
++++ b/yocto-autobuilder-setup
+@@ -153,6 +153,10 @@ if [ -n "${config_check:+x}" ]; then
+     sed -i "s/<USER>/$username/g" ${PWD}/yocto-worker/buildbot.tac
+     sed -i "s/<PASS>/$password/g" ${PWD}/yocto-worker/buildbot.tac
+     echo ""
++    echo " Updating worker-init script used for google cloud building. "
++    sed -i "s/<HOST_ADDR>/$HOST_ADDR/' ${PWD}/bin/worker-init
++    sed -i "s/<PASS>/$password/' ${PWD}/bin/worker-init
++    echo ""
+     echo " If you wish to use your own generated username and password please "
+     echo " modify the above files as needed. Please see the README for more "
+     echo " information. "
 -- 
 1.9.1
 
