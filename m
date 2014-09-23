@@ -1,47 +1,46 @@
-Return-Path: <vmartin@avaya.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CBFBAE00871; Tue, 23 Sep 2014 05:46:24 -0700 (PDT)
+	id 41C8DE00873; Tue, 23 Sep 2014 06:32:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.177 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [135.11.29.13 listed in list.dnswl.org]
-Received: from p-us1-iereast-outbound.us1.avaya.com
-	(p-us1-iereast-outbound.us1.avaya.com [135.11.29.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 821E2E0086E
-	for <yocto@yoctoproject.org>; Tue, 23 Sep 2014 05:46:14 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AjoFAN5qIVSHCzIm/2dsb2JhbABggmsjgSoEgn3OJQEYdRYBAXmEAwEBAQEDEhERRQwEAgEIDQQEAQEBAgIGHQMCAgIwFAEICAEBBA4FCBqIHAGjDYpPljMBF4EsjioxBwaCcjaBHQWRWpM3jV6DYmyBSIECAQEB
-X-IronPort-AV: E=Sophos;i="5.04,579,1406606400"; d="scan'208";a="85863169"
-Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
-	([135.11.50.38]) by p-us1-iereast-outbound.us1.avaya.com with ESMTP;
-	23 Sep 2014 08:46:12 -0400
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC03.global.avaya.com) ([135.11.85.14])
-	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/AES128-SHA;
-	23 Sep 2014 08:46:12 -0400
-Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
-	AZ-US1EXHC03.global.avaya.com ([::1]) with mapi id 14.03.0174.001;
-	Tue, 23 Sep 2014 08:46:12 -0400
-From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Forcing fetch task when source changes
-Thread-Index: Ac/WV6OeWyp3DS2TR6W6LXTA2odZVAAIu5UAAAd+lKA=
-Date: Tue, 23 Sep 2014 12:46:11 +0000
-Message-ID: <30C2D590D16A5C46ADFE6521910377982FDD6E5A@AZ-US1EXMB03.global.avaya.com>
+Received: from mail-qc0-f177.google.com (mail-qc0-f177.google.com
+	[209.85.216.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BA97E0086E
+	for <yocto@yoctoproject.org>; Tue, 23 Sep 2014 06:32:53 -0700 (PDT)
+Received: by mail-qc0-f177.google.com with SMTP id x13so1711569qcv.36
+	for <yocto@yoctoproject.org>; Tue, 23 Sep 2014 06:32:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=jehord4JEioRnCnJnom1i/obnpbtXTUv282yoHyRDHM=;
+	b=VFfU9h7luorGiY6X44vToYNaDMIB0vpBJuX4TaLnFjgOhy6wWShWc/rYTOsOA4A26m
+	by6x8V5qVdEI9hUgKzDPvbOwh1ns2iIqdfixdmPC3GOcOMKovapvdXNMRGdXIwnnOpQS
+	R2lB3BYsTngy7mhvjPhh1/Uw0d80F7B+iV2g0OPvBRGD26FD1iFKajoC1agwDfNatrmE
+	NeCi5YfpEL7gaaGicWYf+h99X3Fgg7sbIA51ZLrjfsB5Nx1J1+LkO294sJ5JAs9x+ZTX
+	bmRUUajxR0VxS9CeJ9IeCJvGoYbndiLAYz0x+PbIX30goFFplp7gyAEcTXd9pCpZ0Pnm
+	BJfA==
+X-Gm-Message-State: ALoCoQm7+urz25A8cAJdTeCpHSvpvdUAJVwTZHRPEN6uBrW1SHEolHb0deqae14otIeyjFX1Gtck
+X-Received: by 10.224.103.65 with SMTP id j1mr32197835qao.17.1411479172609;
+	Tue, 23 Sep 2014 06:32:52 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.140.34.180 with HTTP; Tue, 23 Sep 2014 06:32:31 -0700 (PDT)
+In-Reply-To: <30C2D590D16A5C46ADFE6521910377982FDD6E5A@AZ-US1EXMB03.global.avaya.com>
 References: <30C2D590D16A5C46ADFE6521910377982FDD658D@AZ-US1EXMB03.global.avaya.com>
 	<CAJTo0LZHQDW6ALvgvZZQ2snwd36TA5Ug6sKTnMWLyfUTq5GF1A@mail.gmail.com>
-In-Reply-To: <CAJTo0LZHQDW6ALvgvZZQ2snwd36TA5Ug6sKTnMWLyfUTq5GF1A@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.11.85.50]
-MIME-Version: 1.0
+	<30C2D590D16A5C46ADFE6521910377982FDD6E5A@AZ-US1EXMB03.global.avaya.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 23 Sep 2014 14:32:31 +0100
+Message-ID: <CAJTo0LankC7Z_KZREj-eNciRo2RVus+Y5yc-V8dCT38mn4obbA@mail.gmail.com>
+To: "Vuille, Martin (Martin)" <vmartin@avaya.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Forcing fetch task when source changes
 X-BeenThere: yocto@yoctoproject.org
@@ -55,32 +54,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Sep 2014 12:46:24 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 23 Sep 2014 13:32:55 -0000
+Content-Type: text/plain; charset=UTF-8
 
-UGVyaGFwcyBJIG1pc3VuZGVyc3Rvb2QgeW91ciBzdWdnZXN0aW9uIG9yIEkgYW0gbWlzc2luZw0K
-c29tZXRoaW5nIG9idmlvdXMsIGJ1dCB0aGlzIGRvZXNuJ3Qgd29yayBlaXRoZXIuDQoNCklmIEkg
-cG9pbnQgdG8gbXkgc291cmNlIHdpdGggU1JDX1VSSSwgdGhlIHNvdXJjZSBkb2VzIGdldA0KY29w
-aWVkIG92ZXIgdG8gJHtTfSBidXQgY2hhbmdpbmcgdGhlIHNvdXJjZSBkb2Vzbid0IHRyaWdnZXIN
-CmEgbmV3IGZldGNoL3VucGFjay4NCg0KVGhpcyBpcyBjbGVhbmVyIHRoYW4gd2hhdCBJIHdhcyBk
-b2luZywgYnV0IGRvZXNuJ3QgYWRkcmVzcw0KbXkgaXNzdWUgb2YgaGF2aW5nIHRvIG1hbnVhbGx5
-IGZvcmNlIGEgZmV0Y2gvdW5wYWNrIGV2ZXJ5DQp0aW1lIHRoZSBzb3VyY2UgY2hhbmdlcy4NCg0K
-UGVyaGFwcyBkdWUgdG8gbXkgb2xkIHZlcnNpb25zOiBQb2t5IDEuMiBhbmQgYml0YmFrZSAxLjE1
-LjE/DQoNCk1WDQoNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBCdXJ0
-b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dDQo+IFNlbnQ6IFNlcHRlbWJl
-ciAyMiwgMjAxNCA3OjM0IEFNDQo+IFRvOiBWdWlsbGUsIE1hcnRpbiAoTWFydGluKQ0KPiBDYzog
-eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiBTdWJqZWN0OiBSZTogW3lvY3RvXSBGb3JjaW5nIGZl
-dGNoIHRhc2sgd2hlbiBzb3VyY2UgY2hhbmdlcw0KPiANCj4gT24gMjIgU2VwdGVtYmVyIDIwMTQg
-MTI6MjUsIFZ1aWxsZSwgTWFydGluIChNYXJ0aW4pIDx2bWFydGluQGF2YXlhLmNvbT4NCj4gd3Jv
-dGU6DQo+ID4gSSBoYXZlIGRlZmluZWQgYSBjbGFzcyB3aXRoIGEgY3VzdG9taXplZCBmZXRjaCB0
-YXNrICh0aGF0DQo+ID4NCj4gPiBjb3BpZXMgZmlsZXMgZnJvbSBhIGxvY2FsIHJlYWQtb25seSBk
-aXJlY3RvcnkgdG8gdGhlICR7U30NCj4gPg0KPiA+IGRpcmVjdG9yeSkuDQo+ID4NCj4gPg0KPiA+
-DQo+ID4gSSBhbSBsb29raW5nIGZvciBhIHdheSB0byBjYXVzZSB0aGUgZmV0Y2ggdGFzayB0byBy
-dW4NCj4gPg0KPiA+IGFnYWluIHdoZW5ldmVyIHRoZSBjb250ZW50cyBvZiB0aGUgbG9jYWwgZGly
-ZWN0b3J5DQo+ID4NCj4gPiBjaGFuZ2Ugdy5yLnQuIHdoYXQgd2FzIGxhc3QgZmV0Y2hlZC9jb3Bp
-ZWQgdG8gJHtTfS4NCj4gDQo+IFdoeSBub3QganVzdCB1c2UgbG9jYWwgVVJJcyBpbiB0aGUgU1JD
-X1VSSToNCj4gDQo+IFNSQ19VUkk9ImZpbGU6Ly8vaG9tZS9mb28vYmFyL2Zsb2IuYyINCj4gDQo+
-IFJvc3MNCg==
+On 23 September 2014 13:46, Vuille, Martin (Martin) <vmartin@avaya.com> wrote:
+> Perhaps due to my old versions: Poky 1.2 and bitbake 1.15.1?
+
+Yes.
+
+http://git.yoctoproject.org/cgit.cgi/poky/commit/meta/conf/bitbake.conf?id=eaf54b8dbf9371965b4ccf18609edeb8eee16144
+is where the hashing was introduced to rebuild automatically when
+inputs change, but that landed in 1.3 onwards.  The support was there
+in 1.2 so you could try setting BB_SIGNATURE_HANDLER in your
+distribution configuration to see if it works...
+
+Ross
 
