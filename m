@@ -1,45 +1,52 @@
-Return-Path: <california.l.sullivan@gmail.com>
+Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 781BAE0087E; Tue, 23 Sep 2014 10:09:22 -0700 (PDT)
+	id 66770E00786; Tue, 23 Sep 2014 12:48:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
-	FREEMAIL_FROM, NML_ADSP_CUSTOM_MED,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (california.l.sullivan[at]gmail.com)
-	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
-	*      CUSTOM_MED
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (danielhilst[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.42 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
-	and not from a mailing list
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 843BBE00875
-	for <yocto@yoctoproject.org>; Tue, 23 Sep 2014 10:09:10 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 23 Sep 2014 10:04:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,581,1406617200"; d="scan'208";a="577672995"
-Received: from sullical-studio-xps-9100.jf.intel.com (HELO
-	sullical-Studio-XPS-9100) ([10.7.198.88])
-	by orsmga001.jf.intel.com with SMTP; 23 Sep 2014 10:03:33 -0700
-Received: by sullical-Studio-XPS-9100 (sSMTP sendmail emulation);
-	Tue, 23 Sep 2014 10:06:05 -0700
-From: california.l.sullivan@gmail.com
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qg0-f42.google.com (mail-qg0-f42.google.com
+	[209.85.192.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93441E0034C
+	for <yocto@yoctoproject.org>; Tue, 23 Sep 2014 12:48:12 -0700 (PDT)
+Received: by mail-qg0-f42.google.com with SMTP id z60so3735333qgd.15
+	for <yocto@yoctoproject.org>; Tue, 23 Sep 2014 12:48:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=OHZye40qUCllHg/kcXoPOpGUbYwhkGWxTxC4SoeQs0o=;
+	b=tIboDI6aVJd3Ue8bP5hmaKjvM6ZM9Av74QmFGyKIFz19QvSXKL7rj0hiZJwdCuwMpm
+	zdVrx9ZFqrH9IBiVGIQQzMMzQrZySOwER8LMTh8mlS3wf97eQ+5qCPPDY+3tQGazXNeH
+	HXD5clOIfl6wVGt5wt2jsg9Zn+MxAFp+NHL8aSO2Z4HcfSp89aHzmcMHCsukO92Hojpd
+	tqUnkzWZZMFx2KzRxci+NLw2qK2J0v/W9ua4lBF7xGvKdhJbh2uWG7KktO5kPmRl1WMb
+	fH5ZnwLjHwrk5s4XfR+tREoPj0tOgd64wqK7TfRv10W3/m27CTPXZj1RNE6GscuFQOiu
+	rSgQ==
+X-Received: by 10.140.83.105 with SMTP id i96mr3036129qgd.18.1411501691688;
+	Tue, 23 Sep 2014 12:48:11 -0700 (PDT)
+Received: from arch.localdomain ([187.11.221.17])
+	by mx.google.com with ESMTPSA id i6sm11020061qge.37.2014.09.23.12.48.09
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Tue, 23 Sep 2014 12:48:11 -0700 (PDT)
+From: Daniel Hilst SellI <danielhilst@gmail.com>
 To: yocto@yoctoproject.org
-Date: Tue, 23 Sep 2014 10:05:38 -0700
-Message-Id: <1411491940-32686-11-git-send-email-california.l.sullivan@gmail.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1411491940-32686-1-git-send-email-california.l.sullivan@gmail.com>
-References: <1411491940-32686-1-git-send-email-california.l.sullivan@gmail.com>
-X-Mailman-Approved-At: Tue, 23 Sep 2014 11:54:23 -0700
-Cc: California Sullivan <california.l.sullivan@intel.com>
-Subject: [PATCH 11/13] ProvisionGoogleVM.py: Rename to ProvisionGoogleVMs.py
+Date: Tue, 23 Sep 2014 16:43:56 -0300
+Message-Id: <1411501436-25404-1-git-send-email-danielhilst@gmail.com>
+X-Mailer: git-send-email 2.1.0
+Subject: [PATCH] ARM: Headfull JVM added.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,205 +58,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Sep 2014 17:09:22 -0000
+X-List-Received-Date: Tue, 23 Sep 2014 19:48:23 -0000
 
-From: California Sullivan <california.l.sullivan@intel.com>
-
-This can provision multiple VMs at once.
-
-Signed-off-by: California Sullivan <california.l.sullivan@intel.com>
+I've added the headful version of the JVM. Also, I'm suggesting a new
+way of fetching. Since Oracle forces it's users to go to its website
+and accept the aggrement, non-human fetching is aways hack and error
+prone.  What I sugest is that the build system ask for the user to
+visit the website, download the package and put it on right place, if
+isn't already there.
 ---
- .../autobuilder/buildsteps/ProvisionGoogleVM.py    | 86 ----------------------
- .../autobuilder/buildsteps/ProvisionGoogleVMs.py   | 86 ++++++++++++++++++++++
- 2 files changed, 86 insertions(+), 86 deletions(-)
- delete mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py
- create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVMs.py
+ ...le-jse-ejre-arm-vfp-hflt-client-headful_1.7.0.bb | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
+ create mode 100644 recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hflt-client-headful_1.7.0.bb
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py b/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py
-deleted file mode 100644
-index e7f488f..0000000
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py
-+++ /dev/null
-@@ -1,86 +0,0 @@
--'''
--Created on Aug 13, 2014
--
--__author__ = "California Sullivan"
--__copyright__ = "Copyright 2014, Intel Corp."
--__credits__ = ["California Sullivan"]
--__license__ = "GPL"
--__version__ = "2.0"
--__maintainer__ = "Elizabeth Flanagan"
--__email__ = "elizabeth.flanagan@intel.com"
--'''
--
--from autobuilder.config import *
--from buildbot.steps.shell import ShellCommand
--
--class ProvisionGoogleVM(ShellCommand):
--    haltOnFailure = True
--    flunkOnFailure = True
--    name = "Provision Google VM"
--    def __init__(self, factory, argdict=None, **kwargs):
--        self.vmname=None
--        self.vmcount=1
--        self.startupscript=None
--        self.metadata=None
--        self.zone="us-central1-a"
--        self.image=None
--        self.machine=None
--        self.network=None
--        self.disksize=None
--        self.factory = factory
--        self.description = "Provision Google VM"
--        for k, v in argdict.iteritems():
--            if type(v) is bool:
--                setattr(self, k, str(v))
--            else:
--                setattr(self, k, v)
--
--        if self.vmname is None or self.vmname == "":
--            self.finished(FAILURE)
--        else:
--            self.command = "gcloud compute instances create"
--            self.vmnames = ""
--            for x in range(0, self.vmcount):
--                self.vmnames += " " + self.vmname + "-" + str(x)
--            self.command += self.vmnames
--            if self.zone is not None and self.zone in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
--                self.command += " --zone " + self.zone
--            else:
--                self.command += " --zone us-central1-a"
--            if self.disksize is not None and self.disksize != "":
--                self.command += " --boot-disk-size " + self.disksize
--            else:
--                self.command += " --boot-disk-size 200GB"
--            if self.image is None:
--                self.command += " --image debian-7"
--            else:
--                self.command += " --image " + self.image
--
--            if self.machine is not None and self.machine in ["g1-small", "f1-micro", "n1-standard-1", "n1-standard-2", "n1-standard-4", "n1-standard-8", "n1-standard-16", "n1-highmem-2", "n1-highmem-4"]:
--                self.command += " --machine-type " + self.machine
--            else:
--                self.command += " --machine-type n1-standard-1"
--            if self.network is not None and self.network != "":
--                self.command += " --network " + self.network
--            if self.startupscript is not None and self.startupscript != "":
--                self.command += " --metadata-from-file startup-script="+YOCTO_ABBASE+"/bin/"+self.startupscript
--                if self.metadata is not None and self.metadata != "":
--                    self.command += " --metadata " + self.metadata
--            self.command += " 1> /dev/null";
--
--            # Timeout needs to be passed to LoggingBuildStep as a kwarg
--            self.timeout = 1000
--            kwargs['timeout']=self.timeout
--            ShellCommand.__init__(self, **kwargs)
--
--    def describe(self, done=False):
--        description = ShellCommand.describe(self,done)
--        return description
--
--    def commandComplete(self, cmd):
--        if not cmd.didFail():
--            self.setProperty("vmnames", self.vmnames)
--            self.setProperty("zone", self.zone)
--            self.setProperty("vmcount", self.vmcount)
--
--
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVMs.py b/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVMs.py
+diff --git a/recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hflt-client-headful_1.7.0.bb b/recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hflt-client-headful_1.7.0.bb
 new file mode 100644
-index 0000000..d0bc6eb
+index 0000000..e3030a6
 --- /dev/null
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVMs.py
-@@ -0,0 +1,86 @@
-+'''
-+Created on Aug 13, 2014
++++ b/recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hflt-client-headful_1.7.0.bb
+@@ -0,0 +1,21 @@
++PV_UPDATE = "60"
++BUILD_NUMBER = "19"
 +
-+__author__ = "California Sullivan"
-+__copyright__ = "Copyright 2014, Intel Corp."
-+__credits__ = ["California Sullivan"]
-+__license__ = "GPL"
-+__version__ = "2.0"
-+__maintainer__ = "Elizabeth Flanagan"
-+__email__ = "elizabeth.flanagan@intel.com"
-+'''
++require oracle-jse-ejre.inc
 +
-+from autobuilder.config import *
-+from buildbot.steps.shell import ShellCommand
++#  ejre-7u60-fcs-b19-linux-arm-vfp-hflt-client_headful-07_may_2014.tar.gz
++DL_FILE = "ejre-7u${PV_UPDATE}-fcs-b${BUILD_NUMBER}-linux-arm-vfp-hflt-client_headful-07_may_2014.tar.gz"
++SRC_URI = "http://download.oracle.com/otn/java/ejre/7u${PV_UPDATE}-b${BUILD_NUMBER}/${DL_FILE}"
 +
-+class ProvisionGoogleVMs(ShellCommand):
-+    haltOnFailure = True
-+    flunkOnFailure = True
-+    name = "Provision Google VMs"
-+    def __init__(self, factory, argdict=None, **kwargs):
-+        self.vmname=None
-+        self.vmcount=1
-+        self.startupscript=None
-+        self.metadata=None
-+        self.zone="us-central1-a"
-+        self.image=None
-+        self.machine=None
-+        self.network=None
-+        self.disksize=None
-+        self.factory = factory
-+        self.description = "Provision Google VMs"
-+        for k, v in argdict.iteritems():
-+            if type(v) is bool:
-+                setattr(self, k, str(v))
-+            else:
-+                setattr(self, k, v)
++SRC_URI[md5sum] = "b72400960629e7403c4b579dada2a804"
++SRC_URI[sha256sum] = "c4a64be693e0e27ca95ffe3036c56156e3d75e07f620fd913308eb03cdf86779"
 +
-+        if self.vmname is None or self.vmname == "":
-+            self.finished(FAILURE)
-+        else:
-+            self.command = "gcloud compute instances create"
-+            self.vmnames = ""
-+            for x in range(0, self.vmcount):
-+                self.vmnames += " " + self.vmname + "-" + str(x)
-+            self.command += self.vmnames
-+            if self.zone is not None and self.zone in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
-+                self.command += " --zone " + self.zone
-+            else:
-+                self.command += " --zone us-central1-a"
-+            if self.disksize is not None and self.disksize != "":
-+                self.command += " --boot-disk-size " + self.disksize
-+            else:
-+                self.command += " --boot-disk-size 200GB"
-+            if self.image is None:
-+                self.command += " --image debian-7"
-+            else:
-+                self.command += " --image " + self.image
-+
-+            if self.machine is not None and self.machine in ["g1-small", "f1-micro", "n1-standard-1", "n1-standard-2", "n1-standard-4", "n1-standard-8", "n1-standard-16", "n1-highmem-2", "n1-highmem-4"]:
-+                self.command += " --machine-type " + self.machine
-+            else:
-+                self.command += " --machine-type n1-standard-1"
-+            if self.network is not None and self.network != "":
-+                self.command += " --network " + self.network
-+            if self.startupscript is not None and self.startupscript != "":
-+                self.command += " --metadata-from-file startup-script="+YOCTO_ABBASE+"/bin/"+self.startupscript
-+                if self.metadata is not None and self.metadata != "":
-+                    self.command += " --metadata " + self.metadata
-+            self.command += " 1> /dev/null";
-+
-+            # Timeout needs to be passed to LoggingBuildStep as a kwarg
-+            self.timeout = 1000
-+            kwargs['timeout']=self.timeout
-+            ShellCommand.__init__(self, **kwargs)
-+
-+    def describe(self, done=False):
-+        description = ShellCommand.describe(self,done)
-+        return description
-+
-+    def commandComplete(self, cmd):
-+        if not cmd.didFail():
-+            self.setProperty("vmnames", self.vmnames)
-+            self.setProperty("zone", self.zone)
-+            self.setProperty("vmcount", self.vmcount)
-+
-+
++do_fetch() {
++        if ! test -f "${DL_DIR}/${DL_FILE}"; then
++            echo "Please accept the License Agreement, download the ${DL_FILE} and put it on ${DL_DIR}"
++            echo "The download link can be found at http://www.oracle.com/technetwork/java/embedded/embedded-se/downloads/javase-embedded-downloads-2209751.html"
++            return 1
++        else
++            return 0
++        fi
++}
+\ No newline at end of file
 -- 
-1.9.1
+2.1.0
 
 
