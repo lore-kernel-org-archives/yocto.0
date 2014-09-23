@@ -1,6 +1,6 @@
 Return-Path: <californialsullivan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 32CEDE0088B; Tue, 23 Sep 2014 10:26:29 -0700 (PDT)
+	id 428D8E0088A; Tue, 23 Sep 2014 10:26:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -19,24 +19,26 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
 	and not from a mailing list
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E00BAE00786
-	for <yocto@yoctoproject.org>; Tue, 23 Sep 2014 10:26:20 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E140BE0084F
+	for <yocto@yoctoproject.org>; Tue, 23 Sep 2014 10:26:22 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 23 Sep 2014 10:05:12 -0700
+	by orsmga102.jf.intel.com with ESMTP; 23 Sep 2014 10:05:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,581,1406617200"; d="scan'208";a="607285829"
+X-IronPort-AV: E=Sophos;i="5.04,581,1406617200"; d="scan'208";a="607285837"
 Received: from sullical-studio-xps-9100.jf.intel.com (HELO
 	sullical-Studio-XPS-9100) ([10.7.198.88])
-	by orsmga002.jf.intel.com with SMTP; 23 Sep 2014 10:11:24 -0700
+	by orsmga002.jf.intel.com with SMTP; 23 Sep 2014 10:11:25 -0700
 Received: by sullical-Studio-XPS-9100 (sSMTP sendmail emulation);
-	Tue, 23 Sep 2014 10:13:56 -0700
+	Tue, 23 Sep 2014 10:13:57 -0700
 From: californialsullivan@gmail.com
 To: yocto@yoctoproject.org
-Date: Tue, 23 Sep 2014 10:13:42 -0700
-Message-Id: <1411492434-340-1-git-send-email-californialsullivan@gmail.com>
+Date: Tue, 23 Sep 2014 10:13:43 -0700
+Message-Id: <1411492434-340-2-git-send-email-californialsullivan@gmail.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1411492434-340-1-git-send-email-californialsullivan@gmail.com>
+References: <1411492434-340-1-git-send-email-californialsullivan@gmail.com>
 Cc: California Sullivan <california.l.sullivan@intel.com>
-Subject: [PATCH 01/13] buildsteps: Add ProvisionGoogleVM.py
+Subject: [PATCH 02/13] buildsteps: add DeleteGoogleVM.py build step.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,20 +54,21 @@ X-List-Received-Date: Tue, 23 Sep 2014 17:26:29 -0000
 
 From: California Sullivan <california.l.sullivan@intel.com>
 
-This build step provisions a Google VM using the gcloud command line tool.
+This build step deletes the Google VMs created in the previous ProvisionGoogleVM
+build step using Google's gcloud command line tool.
 
 Signed-off-by: California Sullivan <california.l.sullivan@intel.com>
 ---
- .../autobuilder/buildsteps/ProvisionGoogleVM.py    | 85 ++++++++++++++++++++++
- 1 file changed, 85 insertions(+)
- create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py
+ .../autobuilder/buildsteps/DeleteGoogleVM.py       | 52 ++++++++++++++++++++++
+ 1 file changed, 52 insertions(+)
+ create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVM.py
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py b/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVM.py b/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVM.py
 new file mode 100644
-index 0000000..fb667dd
+index 0000000..29b45a4
 --- /dev/null
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py
-@@ -0,0 +1,85 @@
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVM.py
+@@ -0,0 +1,52 @@
 +'''
 +Created on Aug 13, 2014
 +
@@ -80,77 +83,44 @@ index 0000000..fb667dd
 +
 +from buildbot.steps.shell import ShellCommand
 +
-+class ProvisionGoogleVM(ShellCommand):
++class DeleteGoogleVM(ShellCommand):
 +    haltOnFailure = True
 +    flunkOnFailure = True
-+    name = "Provision Google VM"
++    name = "Delete Google VM"
 +    def __init__(self, factory, argdict=None, **kwargs):
-+        self.vmname=None
-+        self.vmcount=1
-+        self.startupscript=None
-+        self.metadata=None
-+        self.zone="us-central1-a"
-+        self.image=None
-+        self.machine=None
-+        self.network=None
-+        self.disksize=None
++
 +        self.factory = factory
-+        self.description = "Provision Google VM"
++        self.description = "Deleting Google VMs"
 +        for k, v in argdict.iteritems():
 +            if type(v) is bool:
 +                setattr(self, k, str(v))
 +            else:
 +                setattr(self, k, v)
++        # Timeout needs to be passed to LoggingBuildStep as a kwarg
++        self.timeout = 1000
++        kwargs['timeout']=self.timeout
++        ShellCommand.__init__(self, **kwargs)
 +
-+        if self.vmname is None or self.vmname == "":
-+            self.finished(FAILURE)
++
++    def start(self):
++        self.vmnames = self.getProperty("vmnames")
++        self.vmcount = self.getProperty("vmcount")
++        self.zone = self.getProperty("zone")
++
++        if self.vmnames is not None and self.vmnames != "":
++            self.command = "gcloud compute instances delete"
++            self.command += " " + self.vmnames
++
++        if self.zone is not None and self.zone in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
++            self.command += " --zone " + self.zone
 +        else:
-+            self.command = "gcloud compute instances create"
-+            self.vmnames = ""
-+            for x in range(0, self.vmcount):
-+                self.vmnames += " " + self.vmname + "-" + str(x)
-+            self.command += self.vmnames
-+            if self.zone is not None and self.zone in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
-+                self.command += " --zone " + self.zone
-+            else:
-+                self.command += " --zone us-central1-a"
-+            if self.disksize is not None and self.disksize != "":
-+                self.command += " --boot-disk-size " + self.disksize
-+            else:
-+                self.command += " --boot-disk-size 200GB"
-+            if self.image is None:
-+                self.command += " --image debian-7"
-+            else:
-+                self.command += " --image " + self.image
-+
-+            if self.machine is not None and self.machine in ["g1-small", "f1-micro", "n1-standard-1", "n1-standard-2", "n1-standard-4", "n1-standard-8", "n1-standard-16", "n1-highmem-2", "n1-highmem-4"]:
-+                self.command += " --machine-type " + self.machine
-+            else:
-+                self.command += " --machine-type n1-standard-1"
-+            if self.network is not None and self.network != "":
-+                self.command += " --network " + self.network
-+            if self.startupscript is not None and self.startupscript != "":
-+                self.command += " --metadata-from-file startup-script=" + self.startupscript
-+                if self.metadata is not None and self.metadata != "":
-+                    self.command += " --metadata " + self.scriptargs
-+            self.command += " 1> /dev/null";
-+
-+            # Timeout needs to be passed to LoggingBuildStep as a kwarg
-+            self.timeout = 1000
-+            kwargs['timeout']=self.timeout
-+            ShellCommand.__init__(self, **kwargs)
++            self.command += " --zone us-central1-a"
++        self.command += " --quiet"
++        ShellCommand.start(self)
 +
 +    def describe(self, done=False):
 +        description = ShellCommand.describe(self,done)
 +        return description
-+
-+    def commandComplete(self, cmd):
-+        if not cmd.didFail():
-+            self.setProperty("vmnames", self.vmnames)
-+            self.setProperty("zone", self.zone)
-+            self.setProperty("vmcount", self.vmcount)
-+
-+
 -- 
 1.9.1
 
