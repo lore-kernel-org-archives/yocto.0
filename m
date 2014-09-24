@@ -1,48 +1,49 @@
-Return-Path: <vmartin@avaya.com>
+Return-Path: <ohliger.tim@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A45EFE00871; Wed, 24 Sep 2014 05:51:40 -0700 (PDT)
+	id 10707E007DF; Wed, 24 Sep 2014 06:30:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.152.13.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ohliger.tim[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
-	Wed, 24 Sep 2014 05:51:32 PDT
-Received: from co300216-co-outbound.net.avaya.com
-	(co300216-co-outbound.net.avaya.com [198.152.13.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61BEDE0086E
-	for <yocto@yoctoproject.org>; Wed, 24 Sep 2014 05:51:32 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AjINAE+9IlTGmAcV/2dsb2JhbABggkgjI1NYA7kvgjqMbIFth00BgQoWAQFaH4QFAQEDEhteAQwJFVYmAQQbGogcAQydOIRpoQyPbYNmgR0FkVuEOohphhSERIkbgUYBghuCNIECAQEB
-X-IronPort-AV: E=Sophos;i="5.04,589,1406606400"; d="scan'208,217";a="83768332"
-Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
-	([198.152.7.21]) by co300216-co-outbound.net.avaya.com with ESMTP;
-	24 Sep 2014 08:50:26 -0400
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC02.global.avaya.com) ([135.11.85.13])
-	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
-	24 Sep 2014 08:50:26 -0400
-Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
-	AZ-US1EXHC02.global.avaya.com ([::1]) with mapi id 14.03.0174.001;
-	Wed, 24 Sep 2014 08:50:25 -0400
-From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: SRC_URI parameter: "subdir" does not work for local files
-Thread-Index: Ac/X9gJBEgG26tmcSfKOreT6DJjuVQ==
-Date: Wed, 24 Sep 2014 12:50:24 +0000
-Message-ID: <30C2D590D16A5C46ADFE6521910377982FDD732F@AZ-US1EXMB03.global.avaya.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.11.85.50]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.41 listed in list.dnswl.org]
+Received: from mail-oi0-f41.google.com (mail-oi0-f41.google.com
+	[209.85.218.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8C94E0034C
+	for <yocto@yoctoproject.org>; Wed, 24 Sep 2014 06:30:13 -0700 (PDT)
+Received: by mail-oi0-f41.google.com with SMTP id u20so6359985oif.0
+	for <yocto@yoctoproject.org>; Wed, 24 Sep 2014 06:30:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=V+LfP2lisTIz5d/kqJp1TVlMWcOqROonz/ncQmwIaF0=;
+	b=oq2Jo/HCwupVi10KHfvC/T8UefptEkZ74UgbnY8wbol7yqnajvQQidQNORTKweEg/M
+	OmLeOtJThB5goVxYe7Fh+V+0DxqhNd7K8UWIXOh5IGV4VbLUyyqJv52PSCdKiBOB4kmo
+	cK8CxQWsZH96EBWMgFlfByUwC+dGR6Idq6/7B6lWAdFExsyqVNS1b6X/w9X73cAePq2y
+	/BOY5LdTBzkGJ9AZyS8D+xVdeOk+JyoIfBneksHnoZBItX7Ti9dGJUgcoV79v6BKXmXU
+	dPaVygSlvzYy2CUliOpf+gAj/uDFeUY/EBQaiICrl74OxAkCEEm3WjZhM2jkH09adc2I
+	IPdQ==
 MIME-Version: 1.0
-Subject: SRC_URI parameter: "subdir" does not work for local files
+X-Received: by 10.60.130.196 with SMTP id og4mr6948057oeb.1.1411565412561;
+	Wed, 24 Sep 2014 06:30:12 -0700 (PDT)
+Received: by 10.182.252.202 with HTTP; Wed, 24 Sep 2014 06:30:12 -0700 (PDT)
+Date: Wed, 24 Sep 2014 15:30:12 +0200
+Message-ID: <CALp=6pUUGVRL+oCZ3hA2wFkVQB9HEiMHSKF16Ynf6HkdLDRtGw@mail.gmail.com>
+From: Tim Ohliger <ohliger.tim@gmail.com>
+To: yocto@yoctoproject.org
+Subject: tools-sdk with gcc-runtime
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,87 +55,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Sep 2014 12:51:40 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_30C2D590D16A5C46ADFE6521910377982FDD732FAZUS1EXMB03glob_"
+X-List-Received-Date: Wed, 24 Sep 2014 13:30:25 -0000
+Content-Type: multipart/alternative; boundary=089e013a0dd4fe3c7b0503cfaece
 
---_000_30C2D590D16A5C46ADFE6521910377982FDD732FAZUS1EXMB03glob_
-Content-Type: text/plain; charset="us-ascii"
+--089e013a0dd4fe3c7b0503cfaece
+Content-Type: text/plain; charset=UTF-8
+
+Hello.
+
+Currently I am trying to build the core-image-full-cmdline with
+crystalforest-server machine from meta-intel/meta-crystalforest and using
+Yocto Project 1.6 (daisy) release.
+I am quite new to yocto so this might be a beginner's mistake.
+
+When I install the image-feature "tools-sdk" on my image to use gcc amongst
+others, it seems like some libs are missing, e.g. libssp.so.
+I found those in the gcc-runtime package.
+Unfortunately adding gcc-runtime to IMAGE_INSTALL does not work and
+displays during bitbake the error:
+"ERROR: gcc-runtime not found in the base feeds (crystalforest_server
+corei7-64-intel-common corei7-64 core2-64 x86_64 noarch any all)"
+Followed by a quite long list of packages.
+
+I added those two lines to conf/local.conf
+EXTRA_IMAGE_FEATURES = "debug-tweaks dev-pkgs tools-sdk ssh-server-openssh
+package-management"
+IMAGE_INSTALL_append = " git gcc-runtime "
+
+I hope anybody can help me.
+
+Best regards
+Tim Ohliger
+
+--089e013a0dd4fe3c7b0503cfaece
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-We have run into the problem fixed by this patch
+<div dir=3D"ltr"><div><div><div><div>Hello.<br><br></div>Currently I am try=
+ing to build the core-image-full-cmdline with crystalforest-server machine =
+from meta-intel/meta-crystalforest and using Yocto Project 1.6 (daisy) rele=
+ase.<br></div>I am quite new to yocto so this might be a beginner&#39;s mis=
+take. <br><br>When I install the image-feature &quot;tools-sdk&quot; on my =
+image to use gcc amongst others, it seems like some libs are missing, e.g. =
+libssp.so.<br>I found those in the gcc-runtime package.<br>Unfortunately ad=
+ding gcc-runtime to IMAGE_INSTALL does not work and displays during bitbake=
+ the error:<br>&quot;ERROR: gcc-runtime not found in the base feeds (crysta=
+lforest_server corei7-64-intel-common corei7-64 core2-64 x86_64 noarch any =
+all)&quot;<br>Followed by a quite long list of packages.<br><br>I added tho=
+se two lines to conf/local.conf<br>EXTRA_IMAGE_FEATURES =3D &quot;debug-twe=
+aks dev-pkgs tools-sdk ssh-server-openssh package-management&quot;<br>IMAGE=
+_INSTALL_append =3D &quot; git gcc-runtime &quot;<br><br></div>I hope anybo=
+dy can help me.<br></div><br>Best regards<br>Tim Ohliger<br></div>
 
-http://patchwork.openembedded.org/patch/77027/
-
-Will this fix be included in 1.7/Dizzy?
-
-MV
-
---_000_30C2D590D16A5C46ADFE6521910377982FDD732FAZUS1EXMB03glob_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:m=3D"http://sc=
-hemas.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-=
-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">We have run into the problem fixed by this patch<o:p=
-></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><a href=3D"http://patchwork.openembedded.org/patch/7=
-7027/">http://patchwork.openembedded.org/patch/77027/</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Will this fix be included in 1.7/Dizzy?<o:p></o:p></=
-p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">MV<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_30C2D590D16A5C46ADFE6521910377982FDD732FAZUS1EXMB03glob_--
+--089e013a0dd4fe3c7b0503cfaece--
