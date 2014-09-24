@@ -1,49 +1,44 @@
-Return-Path: <machuu.oovah@gmail.com>
+Return-Path: <lschwab@xeralux.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 66C08E00857; Wed, 24 Sep 2014 14:14:08 -0700 (PDT)
+	id 27CCEE00857; Wed, 24 Sep 2014 15:04:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (machuu.oovah[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.66 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.160.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-la0-f66.google.com (mail-la0-f66.google.com
-	[209.85.215.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAAFBE00848
-	for <yocto@yoctoproject.org>; Wed, 24 Sep 2014 14:14:05 -0700 (PDT)
-Received: by mail-la0-f66.google.com with SMTP id s18so3509835lam.5
-	for <yocto@yoctoproject.org>; Wed, 24 Sep 2014 14:14:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=ni0gVo3cFlZSLIrSIVEL6fvTvv5+N+Uc26DIuynLSGE=;
-	b=IyjWNzt7OF21r+NXY2uPU/JpuV7cxhwHLB60RWJB4uGwo6FiakTCu0KrDk1UbXuhHZ
-	Mg7sqkGr4KH+EukKh2uexmRMf7fdkHQqh05OKtqnFX/4tJmLhMev8VXiuO8mAtIdSQpQ
-	p+iMKTMnBB2DnIAub8hvqhbSuiNkkEb1n09f2t2U4DKPJNeAPMSAVcLOqdwfrFp2KNJ7
-	vDJnHCnyLi7YxYtQoPcS6BkdF2YNowPrMW0OUEHPDBc6362HgT+XzMP3NIRMmbPAR85C
-	6Wsykj27DUEeHSqVo8Yls9+3sIcI7/jncs8iS58IITifeJ2LzMKqYXyLeNtGn5y/1Szw
-	hOsg==
+Received: from mail-yk0-f179.google.com (mail-yk0-f179.google.com
+	[209.85.160.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAB02E00849
+	for <yocto@yoctoproject.org>; Wed, 24 Sep 2014 15:04:47 -0700 (PDT)
+Received: by mail-yk0-f179.google.com with SMTP id 142so2795592ykq.24
+	for <yocto@yoctoproject.org>; Wed, 24 Sep 2014 15:04:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=MZyD6f9BK1tpMkwFZBmgNjWLRiCP58WMP+W7EjEHdBY=;
+	b=eUweCrI2sUVs28osz9GQgPjfGbGeWSATLxtO3EJ+f8APc58FUCtTsdIaLp2reE1Gc+
+	/3Cg/E8EZbsKRvK0pOTYW5EfmsegGsh3zDt43Og9vmRwjWe0EUIAiEV2en7Faoal4yZ+
+	WjYOhO7mj04a+AA7SJ0kRNmWvGtNg7NCaCYILPD0VaQKPkcsFy4IRf3kJ4Re7VmrZnHd
+	OVqPJDtiFAQn06Xk52iVzHk410OYjxtQ5Da2TIOZ2pM2y3IAxWwtaXX8SrzZQrcwkOE5
+	b8K8WqLWAPOMNk48o6kDtJMx+YAycpOd2pO3vM9PQ0edN2bxWmYlDw+Mxgs+TRt6ANjg
+	2leQ==
+X-Gm-Message-State: ALoCoQl+Dy2uvHZ37bOC2aMf4F9faf01+dIXScA0/IYsmJNZn2SAflPIQn+ggh1m2NrqFofRpPd+
 MIME-Version: 1.0
-X-Received: by 10.112.164.203 with SMTP id ys11mr8380964lbb.83.1411593244528; 
-	Wed, 24 Sep 2014 14:14:04 -0700 (PDT)
-Received: by 10.112.60.103 with HTTP; Wed, 24 Sep 2014 14:14:04 -0700 (PDT)
-Date: Wed, 24 Sep 2014 17:14:04 -0400
-Message-ID: <CAA3b0-7UmLr7idO9bdB8H4D0GrfoyFOJ9D6TfUHWe7P0-jFHFA@mail.gmail.com>
-From: machuu oovah <machuu.oovah@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Configure Issue
+X-Received: by 10.236.11.6 with SMTP id 6mr3606999yhw.90.1411596287049; Wed,
+	24 Sep 2014 15:04:47 -0700 (PDT)
+Received: by 10.170.162.135 with HTTP; Wed, 24 Sep 2014 15:04:46 -0700 (PDT)
+Date: Wed, 24 Sep 2014 15:04:46 -0700
+Message-ID: <CALb2249ipWUiPNwyRiDUpJeqaq0DELAz20ZRZeroJuf2CxQhPQ@mail.gmail.com>
+From: Leo Schwab <lschwab@sensity.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: Herp-a-Derp Alert: Changes to SRCREV Unpack Wrong Version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,113 +50,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Sep 2014 21:14:08 -0000
-Content-Type: multipart/alternative; boundary=001a1133be8ae8549c0503d629d0
+X-List-Received-Date: Wed, 24 Sep 2014 22:04:57 -0000
+Content-Type: multipart/alternative; boundary=001a113674784194310503d6dfb2
 
---001a1133be8ae8549c0503d629d0
+--001a113674784194310503d6dfb2
 Content-Type: text/plain; charset=UTF-8
 
-I'm tyring to make an updated version of the postgresql recipe, and I'm
-getting a pretty stubborn error.
-The build machine is running Ubuntu 12.04, and I'm using the scripts from
-https://git.congatec.com/yocto/bsp-scripts.git
+I suspect this is a common issue, but my Google-fu has gotten me no closer
+to understanding what I might be doing wrong, so here goes:
 
-I have altered the postgresql_9.2.4.bb recipe to postgresql_9.3.5.bb. I
-updated the remove.autoconf.version.check.patch, so I don't get the
-autoconf version warning anymore.
+We have written recipes for various goodies -- both .bb and .bbappend forms
+-- where SRC_URI points to a Git repository, and SRCREV names a commit ID
+(not a tag or a branch name).  When we update the SRCREV to something
+newer, 'bitbake' goes through the motions of rebuilding the recipe but,
+when we look at the result, the thing it built is still the old revision.
+This is confirmed when we look at the file 'log.do_unpack' in the build
+directory, where it is clearly checking out the wrong commit ID.
 
-Now do_configure is failing with a perl related error
+I've tried fiddling around various ways with SRC_URI and SRCREV, but the
+problem persists.  All our SRC_URIs have a 'branch=' parameter, and the
+SRCREV points to a commit ID on that branch.  I've tried adding a
+'name=blah' parameter to the SRC_URI, and then declaring SRCREV_blah, but
+that doesn't seem to help, either.  We do not do anything with ${PV} or
+${PR} in our recipes.
 
-autoreconf: running: gnu-configize
-Perl lib version (5.14.3) doesn't match executable
-'/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/usr/bin/autom4te'
-version (v5.14.2) at
-/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/usr/lib/perl-native/perl/5.14.3/Config.pm
-line 60.
-Compilation failed in require at
-/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/usr/lib/perl-native/perl/5.14.3/File/Copy.pm
-line 14.
-BEGIN failed--compilation aborted at
-/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/usr/lib/perl-native/perl/5.14.3/File/Copy.pm
-line 14.
-Compilation failed in require at
-/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/usr/share/autoconf/Autom4te/FileUtils.pm
-line 167.
-BEGIN failed--compilation aborted at
-/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/usr/share/autoconf/Autom4te/FileUtils.pm
-line 167.
-Compilation failed in require at
-/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/usr/bin/autom4te
-line 40.
-BEGIN failed--compilation aborted at
-/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/usr/bin/autom4te
-line 40.
-autoreconf: Leaving directory `.'
+In short, from where is the do_unpack step getting the SRCREV it's passing
+to 'git checkout'?  How can I trigger a rebuild using the value named in
+the recipe when SRCREV is updated?  We are using Yocto 1.6.1 (Dora).
 
-Further down, this stands out
+Thanks,
+Schwab
 
-| perl_embed_ldflags='
--L/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/usr/lib
--L/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/lib
--Wl,-rpath-link,/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/usr/lib
--Wl,-rpath-link,/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/lib
--Wl,-rpath,/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/usr/lib
--Wl,-rpath,/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/lib
--Wl,-O1 -fstack-protector
--L/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/usr/lib/perl-native/perl/5.14.3/CORE
--lperl -lnsl -ldl -lm -lcrypt -lutil -lpthread -lc'
-
-because it contains -L/usr/local/lib
-I've been trying to figure out how to stop the local system directories
-from being included, but I'm not sure where to start.
-
-Any help is appreciated, thanks in advance.
-
---001a1133be8ae8549c0503d629d0
+--001a113674784194310503d6dfb2
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>I&#39;m tyring to make an updated version of the=
- postgresql recipe, and I&#39;m getting a pretty stubborn error. <br>The bu=
-ild machine is running Ubuntu 12.04, and I&#39;m using the scripts from <co=
-de class=3D"">https:</code><code class=3D"">//<a href=3D"http://git.congate=
-c.com/yocto/bsp-scripts.git">git.congatec.com/yocto/bsp-scripts.git</a></co=
-de></div><div><br>I have altered the <a href=3D"http://postgresql_9.2.4.bb"=
->postgresql_9.2.4.bb</a> recipe to <a href=3D"http://postgresql_9.3.5.bb">p=
-ostgresql_9.3.5.bb</a>. I updated the remove.autoconf.version.check.patch, =
-so I don&#39;t get the autoconf version warning anymore.<br></div><div><br>=
-</div>Now do_configure is failing with a perl related error<br><br>autoreco=
-nf: running: gnu-configize<br>Perl lib version (5.14.3) doesn&#39;t match e=
-xecutable &#39;/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x=
-86_64-linux/usr/bin/autom4te&#39; version (v5.14.2) at /home/yocto-user/yoc=
-to/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/usr/lib/perl-native/per=
-l/5.14.3/Config.pm line 60.<br>Compilation failed in require at /home/yocto=
--user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/usr/lib/perl-n=
-ative/perl/5.14.3/File/Copy.pm line 14.<br>BEGIN failed--compilation aborte=
-d at /home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linu=
-x/usr/lib/perl-native/perl/5.14.3/File/Copy.pm line 14.<br>Compilation fail=
-ed in require at /home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots=
-/x86_64-linux/usr/share/autoconf/Autom4te/FileUtils.pm line 167.<br>BEGIN f=
-ailed--compilation aborted at /home/yocto-user/yocto/bsp-scripts/build-qmx6=
-/tmp/sysroots/x86_64-linux/usr/share/autoconf/Autom4te/FileUtils.pm line 16=
-7.<br>Compilation failed in require at /home/yocto-user/yocto/bsp-scripts/b=
-uild-qmx6/tmp/sysroots/x86_64-linux/usr/bin/autom4te line 40.<br>BEGIN fail=
-ed--compilation aborted at /home/yocto-user/yocto/bsp-scripts/build-qmx6/tm=
-p/sysroots/x86_64-linux/usr/bin/autom4te line 40.<br>autoreconf: Leaving di=
-rectory `.&#39;<br><br></div><div>Further down, this stands out<br><br>| pe=
-rl_embed_ldflags=3D&#39; -L/home/yocto-user/yocto/bsp-scripts/build-qmx6/tm=
-p/sysroots/x86_64-linux/usr/lib -L/home/yocto-user/yocto/bsp-scripts/build-=
-qmx6/tmp/sysroots/x86_64-linux/lib -Wl,-rpath-link,/home/yocto-user/yocto/b=
-sp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/usr/lib -Wl,-rpath-link,/ho=
-me/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/lib -W=
-l,-rpath,/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-=
-linux/usr/lib -Wl,-rpath,/home/yocto-user/yocto/bsp-scripts/build-qmx6/tmp/=
-sysroots/x86_64-linux/lib -Wl,-O1 -fstack-protector=C2=A0=C2=A0 -L/home/yoc=
-to-user/yocto/bsp-scripts/build-qmx6/tmp/sysroots/x86_64-linux/usr/lib/perl=
--native/perl/5.14.3/CORE -lperl -lnsl -ldl -lm -lcrypt -lutil -lpthread -lc=
-&#39;<br><br></div><div>because it contains -L/usr/local/lib<br></div><div>=
-I&#39;ve been trying to figure out how to stop the local system directories=
- from being included, but I&#39;m not sure where to start.<br></div><div><b=
-r></div><div>Any help is appreciated, thanks in advance.<br></div></div>
+<div dir=3D"ltr">I suspect this is a common issue, but my Google-fu has got=
+ten me no closer to understanding what I might be doing wrong, so here goes=
+:<div><br></div><div>We have written recipes for various goodies -- both .b=
+b and .bbappend forms -- where SRC_URI points to a Git repository, and SRCR=
+EV names a commit ID (not a tag or a branch name).=C2=A0 When we update the=
+ SRCREV to something newer, &#39;bitbake&#39; goes through the motions of r=
+ebuilding the recipe but, when we look at the result, the thing it built is=
+ still the old revision.=C2=A0 This is confirmed when we look at the file &=
+#39;log.do_unpack&#39; in the build directory, where it is clearly checking=
+ out the wrong commit ID.</div><div><br></div><div>I&#39;ve tried fiddling =
+around various ways with SRC_URI and SRCREV, but the problem persists.=C2=
+=A0 All our SRC_URIs have a &#39;branch=3D&#39; parameter, and the SRCREV p=
+oints to a commit ID on that branch.=C2=A0 I&#39;ve tried adding a &#39;nam=
+e=3Dblah&#39; parameter to the SRC_URI, and then declaring SRCREV_blah, but=
+ that doesn&#39;t seem to help, either.=C2=A0 We do not do anything with ${=
+PV} or ${PR} in our recipes.</div><div><br></div><div>In short, from where =
+is the do_unpack step getting the SRCREV it&#39;s passing to &#39;git check=
+out&#39;?=C2=A0 How can I trigger a rebuild using the value named in the re=
+cipe when SRCREV is updated?=C2=A0 We are using Yocto 1.6.1 (Dora).</div><d=
+iv><br></div><div>Thanks,</div><div>Schwab</div><div><br></div></div>
 
---001a1133be8ae8549c0503d629d0--
+--001a113674784194310503d6dfb2--
