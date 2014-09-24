@@ -1,46 +1,37 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <sona.sarmadi@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 03E09E00786; Wed, 24 Sep 2014 03:05:34 -0700 (PDT)
+	id 0389AE00786; Wed, 24 Sep 2014 04:44:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.53 listed in list.dnswl.org]
-Received: from mail-qg0-f53.google.com (mail-qg0-f53.google.com
-	[209.85.192.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD88CE0034C
-	for <yocto@yoctoproject.org>; Wed, 24 Sep 2014 03:05:23 -0700 (PDT)
-Received: by mail-qg0-f53.google.com with SMTP id e89so5320486qgf.12
-	for <yocto@yoctoproject.org>; Wed, 24 Sep 2014 03:05:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=bEE9foGxuVS2uqtmrEoQG7Ux70FrygYGIp6n2K+4oW0=;
-	b=g333hoCHBdQd/NANmWksVD8VyQQm4i1VFP0R1ina0FAVzSeBuRyEERxx6xLVSb2W84
-	mvwnm1+K5akfdBtjTUSX9gA9CKrvd4k02ZqXvtb6gb/BdZGrKw2x8jAt/pm969/XxKpI
-	iLtiQDExEnqFrE8RCotnGdIbLL1tIbPuh5N/trjZ9TUiLqwCm2OeNY6mdfBFpN7kdG42
-	77+gJsUhQOAZDwgImyGK2i05j05Dux7BvvB/lc6sweuURyimGwApeWX/fxVJvvTluHG1
-	SnCfRAbWhjO65Bpgq1VfU4Vf9avfdy3p6+xda05zEPcQc5HPDCR0Qi4A4Ux0dlT01mWI
-	vKyQ==
-X-Gm-Message-State: ALoCoQmGbQZXDYbhYORFqN9JGpWl+uHUggK7B7o2NzvBV78a87AlEJsXTSpK8irU/H2y+Pupswa4
-X-Received: by 10.140.27.139 with SMTP id 11mr6658814qgx.59.1411553122552;
-	Wed, 24 Sep 2014 03:05:22 -0700 (PDT)
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 3D256E0034C
+	for <yocto@yoctoproject.org>; Wed, 24 Sep 2014 04:44:32 -0700 (PDT)
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
+	14.03.0158.001; Wed, 24 Sep 2014 13:44:27 +0200
+From: Sona Sarmadi <sona.sarmadi@enea.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] Minutes: Yocto Project Technical Team Meeting -
+	Tuesday, September 9, 2014 8:00 AM US Pacific Time
+Thread-Index: Ac/XQo4hBhntRsg5RiSOdOw20uDoygAepqGQAAKwBQAACOkjwA==
+Date: Wed, 24 Sep 2014 11:44:27 +0000
+Message-ID: <3230301C09DEF9499B442BBE162C5E4825721849@SESTOEX04.enea.se>
+References: <9ADD3FDE8B189B4AA2F8A3C711F8155E552870EB@fmsmsx111.amr.corp.intel.com>
+	<3230301C09DEF9499B442BBE162C5E4825717E76@SESTOEX04.enea.se>
+	<CAJTo0LZX5zVCyeDZVrhxsVoZRhHce4ePmxW+GiLLzm8OrFmm7w@mail.gmail.com>
+In-Reply-To: <CAJTo0LZX5zVCyeDZVrhxsVoZRhHce4ePmxW+GiLLzm8OrFmm7w@mail.gmail.com>
+Accept-Language: sv-SE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.140.6]
 MIME-Version: 1.0
-Received: by 10.140.34.180 with HTTP; Wed, 24 Sep 2014 03:05:02 -0700 (PDT)
-In-Reply-To: <9c7f907ca73448338304b78ceb440afd@SRV-MAIL.greenflex.group>
-References: <9c7f907ca73448338304b78ceb440afd@SRV-MAIL.greenflex.group>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 24 Sep 2014 11:05:02 +0100
-Message-ID: <CAJTo0LZY0JAifk+RMc5YMz7CnUsh3grvOEPM4rCBuQPt70pkzA@mail.gmail.com>
-To: Simon Andrieu <sandrieu@greenflex.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Support to install TUN/TAP kernel-module-tun
+Subject: Re: Minutes: Yocto Project Technical Team Meeting - Tuesday, September 9, 2014 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,26 +43,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Sep 2014 10:05:34 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 24 Sep 2014 11:44:38 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 24 September 2014 10:48, Simon Andrieu <sandrieu@greenflex.com> wrote:
-> Thanks for your various helpful answers that enable me to understand better the possible solutions to connect a cellular modem.
->
-> I am first trying the Ofono solution, and came to this message error (dmesg):
-> Jun 11 09:11:13 igep00x0 daemon.info ofonod[1261]: Modem support (CDC support: unknown)
-> Jun 11 09:11:14 igep00x0 daemon.err ofonod[1261]: Missing support for TUN/TAP devices
->
-> From my search, I have to install the kernel-module-tun module.
-> Could you help me to know the repository to configure for using zipper and installing it please?
-> (Could you also confirm me that installing kernel-module-tun is the right solution please?)
-
-An easier way would be to add it to your image recipe:
-
-http://www.yoctoproject.org/docs/1.6.1/mega-manual/mega-manual.html#usingpoky-extend-customimage
-
-Although maybe we should be adding a rrecommends on kernel-module-tun
-to ofono (patch welcome).
-
-Ross
+IA0KPiBBcyB3ZWxsIGFzIHNlY3VyaXR5IGZpeGVzIGZvciB0aGUga2VybmVsLCBkbyB5b3UgYWxz
+byBjb3ZlciBzZWN1cml0eSBmaXhlcyBmb3IgdGhlDQo+IHVzZXJzcGFjZSAoaS5lLiBldmVyeXRo
+aW5nIGVsc2UgaW4gb2UtY29yZSk/ICBIZWxwIGtlZXBpbmcgdGhlIHJlc3Qgb2YgdGhlDQo+IHN5
+c3RlbSBzYWZlLCBhbmQgcmVsZXZhbnQgZml4ZXMgYmFja3BvcnRlZCB0byB0aGUgc3RhYmxlIHJl
+bGVhc2VzLCBpcyBhbHdheXMNCj4gd2VsY29tZS4NCg0KWWVzLCB3ZSBtb25pdG9yIG9zcy1zZWN1
+cml0eSBwdWJsaWMgbWFpbGluZyBsaXN0LCBhcyBzb29uIGEgbmV3IHZ1bG5lcmFiaWxpdHkgKENW
+RSkgaW4gdGhlIExpbnV4IGtlcm5lbCBvciB1c2Vyc3BhY2UgaXMgYW5ub3VuY2VkIGluIHRoYXQg
+bGlzdCwgd2UgdHJ5IHRvIGNhdGNoIHRoZW0gYW5kIGJhY2twb3J0IGFsbCB3aGljaCBhcmUgcmVs
+ZXZhbnQuIFdlIGxvb2sgZm9yIG90aGVyIHNvdXJjZXMgYXMgd2VsbCBidXQgb3NzLXNlY3VyaXkg
+KG9zcy1zZWN1cml0eUBsaXN0cy5vcGVud2FsbC5jb20pIGlzIGEgZ29vZCBzb3VyY2UvbWFpbGlu
+ZyBsaXN0LyB0byBkZXRlY3QgdnVsbmVyYWJpbGl0aWVzIGluIG9wZW4gc291cmNlIHByb2R1Y3Rz
+IChrZXJuZWwgJiB1c2Vyc3BhY2UpLiANCg0KL1NvbmENCg0KDQogDQoNCg0K
 
