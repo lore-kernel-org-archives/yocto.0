@@ -1,28 +1,49 @@
-Return-Path: <pokybuild@opensuse131.osl.yoctoproject.org>
+Return-Path: <jdelapena@lexmark.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 85723E00786; Wed, 24 Sep 2014 01:43:42 -0700 (PDT)
+	id 21E2EE00786; Wed, 24 Sep 2014 02:17:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
-	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [64.18.3.92 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from opensuse131.osl.yoctoproject.org
-	(opensuse131.osl.yoctoproject.org [10.0.10.112])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A49B1E0034C
-	for <yocto@yoctoproject.org>; Wed, 24 Sep 2014 01:43:40 -0700 (PDT)
-Received: by opensuse131.osl.yoctoproject.org (Postfix, from userid 1006)
-	id 247391E0450; Wed, 24 Sep 2014 08:43:37 +0000 (UTC)
-Date: Wed, 24 Sep 2014 08:43:37 +0000
-To: yocto@yoctoproject.org
-User-Agent: Heirloom mailx 12.5 7/5/10
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from exprod8og106.obsmtp.com (exprod8og106.obsmtp.com [64.18.3.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D41BE0034C
+	for <yocto@yoctoproject.org>; Wed, 24 Sep 2014 02:17:52 -0700 (PDT)
+Received: from mail-wi0-f182.google.com ([209.85.212.182]) (using TLSv1) by
+	exprod8ob106.postini.com ([64.18.7.12]) with SMTP
+	ID DSNKVCKMPzG9Jk8IZb6F949VRUSmB7/5qQEZ@postini.com;
+	Wed, 24 Sep 2014 02:17:55 PDT
+Received: by mail-wi0-f182.google.com with SMTP id d1so6802203wiv.9
+	for <yocto@yoctoproject.org>; Wed, 24 Sep 2014 02:17:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=8COosQTjof3WkfpxENZndx+Mk7VNQG/py+fJNfG6oJ4=;
+	b=I9p/UQh4x2m22ifhB80vpgogzv4LzWz5HGOOm9kLjE6JMeeq4AZ2RU6yPGwf6FB5rs
+	Q83UNCGtx8E4h56ya84Ei/87o8h+7yCrBRj7XxkgkOG7YgE15+/4x87UitF8PwmkW87J
+	3xopuLOtKzICn/Kc/7hOxGnlJ9ajdOihATR3ehQGB+ELXSeWgKzGTe1d1dvLKWu9nTQg
+	q6DP2BdbThDCsHvSLSVvo4raPQCW3V+z4/i/VW2j977fUSr7ToqlHBxLCUgviklC1xfD
+	IQVBLCYbKaOsLhYVvLamnbbMcur89Y+pbJKzZ6VwtYIvu6pLFJURJj0TPhwwdAhdHoLm
+	CZqA==
+X-Gm-Message-State: ALoCoQmW2o8f0Z/x20rKG6U7sFcsyrxCLcMR106zoscZzmFvrEXfUba7fK/PxQx9LQE8poGAGKY67OcgVP+8JBf8tW28Wb83ZuVVxOOGX8VqZiUOo14UAFw6z26kNUZ62sHt5xYFR4wk6EZ1R999eU8QcHB7kcbWCQ==
+X-Received: by 10.194.190.69 with SMTP id go5mr6738929wjc.56.1411550270299;
+	Wed, 24 Sep 2014 02:17:50 -0700 (PDT)
 MIME-Version: 1.0
-Message-Id: <20140924084338.247391E0450@opensuse131.osl.yoctoproject.org>
-From: pokybuild@opensuse131.osl.yoctoproject.org (Poky Build User)
-Cc: yocto@yoctoproject.org, otavio@ossystems.com.br
-Subject: Release Candidate Build for yocto-1.7.rc1 now available.
+X-Received: by 10.194.190.69 with SMTP id go5mr6738920wjc.56.1411550270192;
+	Wed, 24 Sep 2014 02:17:50 -0700 (PDT)
+Received: by 10.27.170.66 with HTTP; Wed, 24 Sep 2014 02:17:50 -0700 (PDT)
+Date: Wed, 24 Sep 2014 17:17:50 +0800
+Message-ID: <CAJrRHk7B27DHJ99CUkKD32_wpegyQ5MYx2OtVavxomLL4Vo=HQ@mail.gmail.com>
+From: =?UTF-8?Q?Joseph_Andrew_de_la_Pe=C3=B1a?= <jdelapena@lexmark.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Difference of i586-poky and i686-pokysdk in SDK sysroots
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,31 +55,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Sep 2014 08:43:42 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 24 Sep 2014 09:17:59 -0000
+Content-Type: multipart/alternative; boundary=047d7bdc7d0e7010330503cc28a6
+
+--047d7bdc7d0e7010330503cc28a6
+Content-Type: text/plain; charset=UTF-8
+
+Good day Yocto Community,
+
+I would like to ask a very simple question, what is the difference
+of i586-poky and i686-pokysdk in SDK sysroots?
+
+Does a BBCLASSEXTEND="native" install the package in SDK i586-poky and
+BBCLASSEXTEND="nativesdk" on the other?
 
 
-A release candidate build for yocto-1.7.rc1 is now available at:
-
- 
-http://autobuilder.yoctoproject.org/pub/releases/yocto-1.7.rc1
+Sorry for such a dumb question. But would just want to know the best
+practice on where is a package most appropriate to put into in SDK.
 
 
-Please begin QA on this build as soon as possible.
+Looking forward to your responses.
 
+Thanks,
+Joseph
 
-Build hash information: 
-meta-intel : a369fa8f2d76528cb296ef9314e613e26585d54d 
-meta-fsl-arm : 2680f54d02fa6efe4cd2aaef7bda9e46cf3e9672 
-meta-minnow : 238a45e9da8bbfff7a6af220b48c11cabd31e01c 
-meta-qt3 : 3016129d90b7ac8517a5227d819f10ad417b5b45 
-meta-fsl-ppc : 478f29c3e97760f2ff443227950ce21d9510a280 
-poky : 8ac8eca2e3bd8c78e2b31ea974930ed0243258a3 
+--047d7bdc7d0e7010330503cc28a6
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Good day Yocto Community,<div><br></div><div>I would like =
+to ask a very simple question, what is the difference of=C2=A0i586-poky and=
+ i686-pokysdk in SDK sysroots?</div><div><br></div><div>Does a BBCLASSEXTEN=
+D=3D&quot;native&quot; install the package in SDK i586-poky and</div><div>B=
+BCLASSEXTEND=3D&quot;nativesdk&quot; on the other?</div><div><br></div><div=
+><br></div><div>Sorry for such a dumb question. But would just want to know=
+ the best practice on where is a package most appropriate to put into in SD=
+K.</div><div><br></div><div><br></div><div>Looking forward to your response=
+s.</div><div><br></div><div>Thanks,</div><div>Joseph</div></div>
 
-This is an automated message from
-The Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder
-Email: elizabeth.flanagan@intel.com 
-
+--047d7bdc7d0e7010330503cc28a6--
