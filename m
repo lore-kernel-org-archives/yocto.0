@@ -1,39 +1,42 @@
-Return-Path: <Joe_MacDonald@mentor.com>
+Return-Path: <f.suligoi@asem.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DABE0E00857; Wed, 24 Sep 2014 07:37:31 -0700 (PDT)
+	id 6361FE00849; Wed, 24 Sep 2014 08:44:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56A97E00848
-	for <yocto@yoctoproject.org>; Wed, 24 Sep 2014 07:37:24 -0700 (PDT)
-Received: from svr-orw-fem-02x.mgc.mentorg.com ([147.34.96.206]
-	helo=SVR-ORW-FEM-02.mgc.mentorg.com)
-	by relay1.mentorg.com with esmtp 
-	id 1XWnh5-0002s3-GF from Joe_MacDonald@mentor.com ;
-	Wed, 24 Sep 2014 07:37:23 -0700
-Received: from burninator (147.34.91.1) by svr-orw-fem-02.mgc.mentorg.com
-	(147.34.96.168) with Microsoft SMTP Server id 14.3.181.6;
-	Wed, 24 Sep 2014 07:37:22 -0700
-Received: by burninator (Postfix, from userid 1000)	id AFED4580FB5; Wed, 24
-	Sep 2014 10:37:22 -0400 (EDT)
-Date: Wed, 24 Sep 2014 10:37:22 -0400
-From: Joe MacDonald <Joe_MacDonald@mentor.com>
-To: <rongqing.li@windriver.com>
-Message-ID: <20140924143722.GB8841@mentor.com>
-References: <1411522429-30924-1-git-send-email-rongqing.li@windriver.com>
+X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_40,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
+	*      [score: 0.2318]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 310 seconds by postgrey-1.32 at yocto-www;
+	Wed, 24 Sep 2014 08:44:22 PDT
+Received: from smtp.asem.it (smtp.asem.it [151.22.69.122])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC1FBE005BD
+	for <yocto@yoctoproject.org>; Wed, 24 Sep 2014 08:44:22 -0700 (PDT)
+Received: from webmail.asem.it by asem.it (smtp.asem.it)
+	(SecurityGateway 3.0.2) with ESMTP id SG001402106.MSG 
+	for <yocto@yoctoproject.org>; Wed, 24 Sep 2014 17:47:03 +0200AS
+Received: from ASAS013.asem.intra ([172.16.16.50]) by ASAS014.asem.intra
+	([172.16.16.51]) with mapi id 14.02.0387.000;
+	Wed, 24 Sep 2014 17:38:30 +0200
+From: Flavio Suligoi <f.suligoi@asem.it>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Daisy 1.6.1 - matchbox-keyboard doesn't "pop up" automatically
+	any more
+Thread-Index: Ac/YDIYSBbzTn+OhRIeuccuYpVVolg==
+Date: Wed, 24 Sep 2014 15:38:29 +0000
+Message-ID: <3A8890C59B0943428C1CECF15A6881A70113CBD2@ASAS013.asem.intra>
+Accept-Language: it-IT, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.17.135]
 MIME-Version: 1.0
-In-Reply-To: <1411522429-30924-1-git-send-email-rongqing.li@windriver.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-703 http://www.vim.org
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH][meta-selinux] dhcp: remove the unrecognised without-selinux configuration warning
+X-SGHeloLookup-Result: hardfail smtp.helo=webmail.asem.it (does not match
+	172.16.16.51)
+X-SGOP-RefID: str=0001.0A0C0204.5422E59D.0096, ss=1, re=0.000,
+	fgs=0 (_st=1 _vt=0 _iwf=0)
+Subject: Daisy 1.6.1 - matchbox-keyboard doesn't "pop up" automatically any more
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,66 +48,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Sep 2014 14:37:31 -0000
-X-Groupsio-MsgNum: 21638
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="UHN/qo2QbUvPLonB"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 24 Sep 2014 15:44:26 -0000
+Content-Language: it-IT
+Content-Type: multipart/alternative;
+	boundary="_000_3A8890C59B0943428C1CECF15A6881A70113CBD2ASAS013asemintr_"
 
---UHN/qo2QbUvPLonB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--_000_3A8890C59B0943428C1CECF15A6881A70113CBD2ASAS013asemintr_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Merged, thanks Roy.
--J.
+Hi all,
 
-[[yocto] [PATCH][meta-selinux] dhcp: remove the unrecognised without-selinu=
-x configuration warning] On 14.09.24 (Wed 09:33) rongqing.li@windriver.com =
-wrote:
+with the old Dylan 1.4 the matchbox-keyboard works perfectly and pops up au=
+tomatically when I open a terminal window, or a web browser, or the notes a=
+pplication, etc.
 
-> From: "Roy.Li" <rongqing.li@windriver.com>
->=20
-> dhcp 4.3 has no selinux related configuration options, but it needs the
-> correct initscript when SELinux is enabled, so inherit selinux, not
-> inherit with-selinux
->=20
-> Signed-off-by: Roy.Li <rongqing.li@windriver.com>
-> ---
->  recipes-connectivity/dhcp/dhcp_4.3.0.bbappend |    2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/recipes-connectivity/dhcp/dhcp_4.3.0.bbappend b/recipes-conn=
-ectivity/dhcp/dhcp_4.3.0.bbappend
-> index 900c2aa..2d2232c 100644
-> --- a/recipes-connectivity/dhcp/dhcp_4.3.0.bbappend
-> +++ b/recipes-connectivity/dhcp/dhcp_4.3.0.bbappend
-> @@ -1,3 +1,3 @@
-> -inherit with-selinux
-> +inherit selinux
-> =20
->  FILESEXTRAPATHS_prepend :=3D "${@target_selinux(d, '${THISDIR}/files:')}"
-> --=20
-> 1.7.10.4
->=20
---=20
--Joe MacDonald.
-:wq
+But now, with Daisy 1.6.1 I can start the matchbox-keyboard __ONLY__ if I c=
+lick manually on the keyboard icon on the matchbox-panel title-bar. It is a=
+ big problem in full screen applications (as a web browser in a "kiosk mode=
+", for example).
 
---UHN/qo2QbUvPLonB
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+Any idea to solve this issue?
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
+Regards,
 
-iQEcBAEBAgAGBQJUItciAAoJEEn8ffcsOfaW7ocIAKw6GvIwzw4SXwDSsMsRRyWI
-6iRGc/ZhwruhYvkNZ3QkL21MpOMZMBTE3VezjNkEXBH/PzPCrBHzTyhALjw5eyOa
-/ADJ0f7zvrk+ROyKiKMT04AE7WEkRJ5bU2Jc3a+eKShcusW4XbwjpLhkY3BOaCpP
-G/M4f+ypA0urefNQqvQyuJ6c5s3MjLktiwM5Gl53E9d7SBs/rkHivjoz4gSrCozg
-X81MTAoWTqsE7A1LEEOoJSNUXU1IRzGKm0VTjPuivT9RBxeaQqf81FNqHpSkcarV
-qkpjIjSAKzPUVqRhEBLYRfhYHYJv1QuGfw8n4bKvkKa4JqMhO+ai/fm52laqMsY=
-=SfuU
------END PGP SIGNATURE-----
+Flavio
 
---UHN/qo2QbUvPLonB--
+
+
+
+--_000_3A8890C59B0943428C1CECF15A6881A70113CBD2ASAS013asemintr_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
+0;}</style>
+</head>
+<body ocsi=3D"0" fpstyle=3D"1">
+<div style=3D"direction: ltr;font-family: Arial;color: #000000;font-size: 1=
+0pt;">Hi all,<br>
+<br>
+with the old Dylan 1.4 the matchbox-keyboard works perfectly and pops up au=
+tomatically when I open a terminal window, or a web browser, or the notes a=
+pplication, etc.<br>
+<br>
+But now, with Daisy 1.6.1 I can start the matchbox-keyboard __ONLY__ if I c=
+lick manually on the keyboard icon on the matchbox-panel title-bar. It is a=
+ big problem in full screen applications (as a web browser in a &quot;kiosk=
+ mode&quot;, for example).<br>
+<br>
+Any idea to solve this issue?<br>
+<br>
+Regards,<br>
+<br>
+Flavio<br>
+<div><br>
+<div style=3D"font-family:Tahoma; font-size:13px">
+<div style=3D"font-family:Tahoma; font-size:13px">
+<div style=3D"font-family:Tahoma; font-size:13px">
+<div style=3D"font-family:Tahoma; font-size:13px">
+<div style=3D"font-family:Tahoma; font-size:13px">
+<div style=3D"font-family:Tahoma; font-size:13px">
+<div style=3D"font-family:Tahoma; font-size:13px">
+<div style=3D"font-family:Tahoma; font-size:13px">
+<div style=3D"font-family:Tahoma; font-size:13px">
+<div style=3D"font-family:Tahoma; font-size:13px">
+<div style=3D"font-family:Tahoma; font-size:13px">
+<div style=3D"font-family:Tahoma; font-size:13px">
+<div style=3D"font-family:Tahoma; font-size:13px">
+<p class=3D"MsoNormal"><br>
+</p>
+<br>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_3A8890C59B0943428C1CECF15A6881A70113CBD2ASAS013asemintr_--
