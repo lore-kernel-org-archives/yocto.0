@@ -1,33 +1,48 @@
-Return-Path: <sona.sarmadi@enea.com>
+Return-Path: <alberk@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E21E3E0086B; Thu, 25 Sep 2014 01:22:38 -0700 (PDT)
+	id 28070E0086F; Thu, 25 Sep 2014 03:00:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (alberk[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 67CDEE00868
-	for <yocto@yoctoproject.org>; Thu, 25 Sep 2014 01:22:34 -0700 (PDT)
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
-	14.03.0158.001; Thu, 25 Sep 2014 10:22:24 +0200
-From: Sona Sarmadi <sona.sarmadi@enea.com>
-To: "Burton, Ross" <ross.burton@intel.com>, "Jolley, Stephen K"
-	<stephen.k.jolley@intel.com>, Bruce Ashfield <bruce.ashfield@windriver.com>
-Thread-Topic: CVE-2014-6271: remote code execution through bash
-Thread-Index: Ac/YmbY3bUJpuijYRhe71kl9VOEtng==
-Date: Thu, 25 Sep 2014 08:22:24 +0000
-Message-ID: <3230301C09DEF9499B442BBE162C5E4825731D03@SESTOEX04.enea.se>
-Accept-Language: sv-SE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.140.6]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.182 listed in list.dnswl.org]
+Received: from mail-qc0-f182.google.com (mail-qc0-f182.google.com
+	[209.85.216.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9706CE0086B
+	for <yocto@yoctoproject.org>; Thu, 25 Sep 2014 03:00:01 -0700 (PDT)
+Received: by mail-qc0-f182.google.com with SMTP id x3so1842437qcv.27
+	for <yocto@yoctoproject.org>; Thu, 25 Sep 2014 03:00:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=fqXL8hEWA2d0RQMSlyl1EO035Sgv0gzvi7qaoD3+KLI=;
+	b=IbdYB7ruvgmb/GwM2BzqgZSL8ak1QFdpNCniV0lpt9L+Ad2NB7d+3/s0aBNrXXa7h7
+	FVW+iwmIcpjawVIYVYmWHO96P0g70TgGLMTOx907t35HWhoXocUnQGgHhDS4LH5TQ7gS
+	kFYFPmu5nmQbTvZb1DrAKvoketH5Kr/aHUNs3xED8atOKA8KKupxF474bBmib4Ad/ztk
+	O2wNQMPnc0uXo6EGmp7PaxFFQoTDz4mCZR2TidxcB9IyPTbgTHKBf1KRU06cGafBzoQS
+	rRAC0VmB4Xm+LEpJny1+gtrsVoSyeNH72Yf4AT/exIXUEK4+LDtsvRqKvqGk4T901WrA
+	lCJA==
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: CVE-2014-6271: remote code execution through bash
+X-Received: by 10.224.92.83 with SMTP id q19mr15890542qam.29.1411639200806;
+	Thu, 25 Sep 2014 03:00:00 -0700 (PDT)
+Received: by 10.140.44.68 with HTTP; Thu, 25 Sep 2014 03:00:00 -0700 (PDT)
+Date: Thu, 25 Sep 2014 18:00:00 +0800
+Message-ID: <CACjDgAMYTpdLF5YSJNVkceaYMXCVT1n-th1nJuTc=nYFu7EPDg@mail.gmail.com>
+From: Albert K <alberk@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Adding OpenEmbedded layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,33 +54,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Sep 2014 08:22:39 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 25 Sep 2014 10:00:08 -0000
+Content-Type: text/plain; charset=UTF-8
 
-U2VjdXJpdHkgYnVnIGluIGJhc2g6DQoNCmh0dHA6Ly9zZWNsaXN0cy5vcmcvb3NzLXNlYy8yMDE0
-L3EzLzY0OQ0KDQovU29uYQ0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206
-IEJ1cnRvbiwgUm9zcyBbbWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbV0NCj4gU2VudDogZGVu
-IDI0IHNlcHRlbWJlciAyMDE0IDIyOjU5DQo+IFRvOiBTb25hIFNhcm1hZGkNCj4gQ2M6IEpvbGxl
-eSwgU3RlcGhlbiBLOyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+IFN1YmplY3Q6IFJlOiBbeW9j
-dG9dIE1pbnV0ZXM6IFlvY3RvIFByb2plY3QgVGVjaG5pY2FsIFRlYW0gTWVldGluZyAtDQo+IFR1
-ZXNkYXksIFNlcHRlbWJlciA5LCAyMDE0IDg6MDAgQU0gVVMgUGFjaWZpYyBUaW1lDQo+IA0KPiBP
-biAyNCBTZXB0ZW1iZXIgMjAxNCAxMjo0NCwgU29uYSBTYXJtYWRpIDxzb25hLnNhcm1hZGlAZW5l
-YS5jb20+DQo+IHdyb3RlOg0KPiA+PiBBcyB3ZWxsIGFzIHNlY3VyaXR5IGZpeGVzIGZvciB0aGUg
-a2VybmVsLCBkbyB5b3UgYWxzbyBjb3ZlciBzZWN1cml0eQ0KPiA+PiBmaXhlcyBmb3IgdGhlIHVz
-ZXJzcGFjZSAoaS5lLiBldmVyeXRoaW5nIGVsc2UgaW4gb2UtY29yZSk/ICBIZWxwDQo+ID4+IGtl
-ZXBpbmcgdGhlIHJlc3Qgb2YgdGhlIHN5c3RlbSBzYWZlLCBhbmQgcmVsZXZhbnQgZml4ZXMgYmFj
-a3BvcnRlZCB0bw0KPiA+PiB0aGUgc3RhYmxlIHJlbGVhc2VzLCBpcyBhbHdheXMgd2VsY29tZS4N
-Cj4gPg0KPiA+IFllcywgd2UgbW9uaXRvciBvc3Mtc2VjdXJpdHkgcHVibGljIG1haWxpbmcgbGlz
-dCwgYXMgc29vbiBhIG5ldyB2dWxuZXJhYmlsaXR5DQo+IChDVkUpIGluIHRoZSBMaW51eCBrZXJu
-ZWwgb3IgdXNlcnNwYWNlIGlzIGFubm91bmNlZCBpbiB0aGF0IGxpc3QsIHdlIHRyeSB0bw0KPiBj
-YXRjaCB0aGVtIGFuZCBiYWNrcG9ydCBhbGwgd2hpY2ggYXJlIHJlbGV2YW50LiBXZSBsb29rIGZv
-ciBvdGhlciBzb3VyY2VzIGFzDQo+IHdlbGwgYnV0IG9zcy1zZWN1cml5IChvc3Mtc2VjdXJpdHlA
-bGlzdHMub3BlbndhbGwuY29tKSBpcyBhIGdvb2QNCj4gc291cmNlL21haWxpbmcgbGlzdC8gdG8g
-ZGV0ZWN0IHZ1bG5lcmFiaWxpdGllcyBpbiBvcGVuIHNvdXJjZSBwcm9kdWN0cyAoa2VybmVsDQo+
-ICYgdXNlcnNwYWNlKS4NCj4gDQo+IA0KPiBXZWxsIHRoaXMgaXMgY29udmVuaWVudCB0aW1pbmcu
-Li4gIEknbSBzdXJlIHlvdSd2ZSBub3RpY2VkIHRoZSBDVkUgaW4gYmFzaCwgd2lsbA0KPiB5b3Vy
-IHRlYW0gYmUgYWJsZSB0byBzdWJtaXQgcGF0Y2hlcyBmb3IgdGhlIHJlbGVhc2VzIHdlIGFyZSBz
-dXBwb3J0aW5nICgxLjQNCj4gb253YXJkcyk/DQo+IA0KPiBSb3NzDQo=
+Hi,
+
+I am getting the following error during the build  after adding the
+OpenEmbedded layer what is wrong here?.   I have installed poky daisy
+1.6.1 and the basic install can compile without error.   I wanted to
+add luajit recipe and that was found in the meta-oe of
+meta-OpenEmbedded and have clone the git.
+
+ I tried both manually editing the build/conf/bblayers.conf as well as
+adding the layer in hob both throws the same error below.
+
+How do I resolve the issue?  Thanks for helping.
+
+ExpansionError during parsing
+/yocto/poky/meta-openembedded/meta-oe/recipes-support/lzip/lzip_1.15.bb:
+Failure expanding variable do_fetch[file-checksums], expression was
+${@bb.fetch.get_checksum_file_list(d)} which triggered exception
+MalformedUrl: The URL: '${SAVANNAH_GNU_MIRROR}/lzip/lzip-1.15.tar.gz'
+is invalid and cannot be interpreted
 
