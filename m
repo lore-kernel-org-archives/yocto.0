@@ -1,45 +1,39 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D0806E00790; Thu, 25 Sep 2014 15:41:03 -0700 (PDT)
+	id 08570E00873; Thu, 25 Sep 2014 15:49:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.181 listed in list.dnswl.org]
-Received: from mail-qc0-f181.google.com (mail-qc0-f181.google.com
-	[209.85.216.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A81E3E0074B
-	for <yocto@yoctoproject.org>; Thu, 25 Sep 2014 15:40:59 -0700 (PDT)
-Received: by mail-qc0-f181.google.com with SMTP id w7so2987239qcr.12
-	for <yocto@yoctoproject.org>; Thu, 25 Sep 2014 15:40:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=hkcNM4IsMVfn5HpPlHC63Yi0OCbGZVcnA/oxHgU5XCU=;
-	b=djRQPovnNgYyN6M8uf2gnYkiIst8AZayQ+RQ5yqDtZj/0PDiwB6GV26jb8TxQS0yAM
-	UXR7cyVeNgNWOICJC0d3zBF/F8I46ZhcICSB+T8s7rhytPhpKPBlTUHbQsRHiyAVy0EW
-	XOrgoi18k6mh3woGZzCQAL91lsXD4X6Wtunc/f9/88/yl6yb8aFH9Yc3dAoA7/u/9oSM
-	6S5uMj5AikwGbNPrp3J0mNNvCCtzWhVWXxWo8NxcuiJNKp9HHvauUmkY77tP0GGr/MKq
-	woofZU86XuFxyKEmHWvhgCU9ixzb9bNxaISKi9txU4Vy/ZzIzWorv5deT+FJW97rZBz7
-	/2Ig==
-X-Gm-Message-State: ALoCoQmlW8lsb8IVoFBjaymvlsP9jiofZCmYL+tAT9bxEfe3Doz8nl4k9ofC+Km/iWDZLcsLD/HJ
-X-Received: by 10.140.27.139 with SMTP id 11mr20342666qgx.59.1411684859136;
-	Thu, 25 Sep 2014 15:40:59 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB6D1E0074B
+	for <yocto@yoctoproject.org>; Thu, 25 Sep 2014 15:49:01 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id s8PMmvdA005247
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 25 Sep 2014 15:48:57 -0700 (PDT)
+Received: from msp-dhcp33.wrs.com (172.25.34.33) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 25 Sep 2014 15:48:56 -0700
+Message-ID: <54249BD8.1030702@windriver.com>
+Date: Thu, 25 Sep 2014 17:48:56 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-Received: by 10.140.34.180 with HTTP; Thu, 25 Sep 2014 15:40:39 -0700 (PDT)
-In-Reply-To: <1411641352-19058-1-git-send-email-f.deldegan@endian.com>
+To: <yocto@yoctoproject.org>, Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
 References: <1411641352-19058-1-git-send-email-f.deldegan@endian.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 25 Sep 2014 23:40:39 +0100
-Message-ID: <CAJTo0LYf-qWXia8EuKSnck5=yYLGspckqm27y3kxMDESSdL5Og@mail.gmail.com>
-To: Francesco Del Degan <f.deldegan@endian.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<CAJTo0LYf-qWXia8EuKSnck5=yYLGspckqm27y3kxMDESSdL5Og@mail.gmail.com>
+In-Reply-To: <CAJTo0LYf-qWXia8EuKSnck5=yYLGspckqm27y3kxMDESSdL5Og@mail.gmail.com>
 Subject: Re: [PATCH] bash: update to latest (025) patchset (fixes CVE-2014-6271)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -52,21 +46,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Sep 2014 22:41:03 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 25 Sep 2014 22:49:05 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hu Francesco,
+On 9/25/14, 5:40 PM, Burton, Ross wrote:
+> Hu Francesco,
+>
+> On 25 September 2014 11:35, Francesco Del Degan <f.deldegan@endian.com> wrote:
+>> Updated to reflect the latest patchset in bash 4.3.
+>> Fixes the CVE-2014-6271.
+>
+> I'm hearing that this isn't a complete fix, so lets wait for more patches.
+>
+> Is it possible to cherry-pick just the security fixes, instead of
+> every patch they've released?
+>
+> Finally, patches for oe-core should go to openembedded-core@, not yocto@.
+>
+> Ross
+>
 
-On 25 September 2014 11:35, Francesco Del Degan <f.deldegan@endian.com> wrote:
-> Updated to reflect the latest patchset in bash 4.3.
-> Fixes the CVE-2014-6271.
+Patch 025 fixes CVE-2014-6271, but does NOT fix CVE-2014-7169 or possibly two 
+other issues people are currently looking into.  (None of this is confidential 
+BTW..  you can all follow along on the oss-security mailing list.)
 
-I'm hearing that this isn't a complete fix, so lets wait for more patches.
+So I would recommend that someone get the 025 patch (don't forget to patch bash 
+3.2 as well) in.. and we should wait until their is an official one for 7169.
 
-Is it possible to cherry-pick just the security fixes, instead of
-every patch they've released?
-
-Finally, patches for oe-core should go to openembedded-core@, not yocto@.
-
-Ross
+--Mark
 
