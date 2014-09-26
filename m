@@ -1,30 +1,39 @@
-Return-Path: <maciej.borzecki@open-rnd.pl>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 523E0E006DB; Fri, 26 Sep 2014 06:33:38 -0700 (PDT)
+	id 75873E00781; Fri, 26 Sep 2014 07:03:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB6BCE0056A
-	for <yocto@yoctoproject.org>; Fri, 26 Sep 2014 06:33:27 -0700 (PDT)
-Received: from comp-006-thk.localnet (unknown [46.170.72.194])
-	by open-rnd.nazwa.pl (Postfix) with ESMTP id 106DD2B03837;
-	Fri, 26 Sep 2014 15:33:23 +0200 (CEST)
-From: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
-To: yocto@yoctoproject.org
-Date: Fri, 26 Sep 2014 15:33:21 +0200
-Message-ID: <9606779.IXITSfPP3q@comp-006-thk>
-User-Agent: KMail/4.13.3 (Linux/3.16.2-201.fc20.x86_64; KDE/4.14.1; x86_64; ; )
-In-Reply-To: <CAKC+oqWEzdLPS5+MgaXRa2g0erY6QU6Vjbbf=nOgQa0Du_pesw@mail.gmail.com>
-References: <CAKC+oqU3-ZQc34489BrPYOVr05JOke=dHUkCruPLfV+LODWDVQ@mail.gmail.com>
-	<CAMCfZKGTajCrqFyeOj9SXLqckK-pvh4vLi6Zc_QyFXubkUxHOQ@mail.gmail.com>
-	<CAKC+oqWEzdLPS5+MgaXRa2g0erY6QU6Vjbbf=nOgQa0Du_pesw@mail.gmail.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 395B2E0056A
+	for <yocto@yoctoproject.org>; Fri, 26 Sep 2014 07:03:10 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id s8QE3ANR007416
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Fri, 26 Sep 2014 07:03:10 -0700 (PDT)
+Received: from Marks-MacBook-Pro.local (172.25.36.233) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.174.1; Fri, 26 Sep 2014 07:03:09 -0700
+Message-ID: <5425721C.4000008@windriver.com>
+Date: Fri, 26 Sep 2014 09:03:08 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-Subject: Re: yocto 1.6 - beaglebone black - cape manager
+To: <yocto@yoctoproject.org>
+References: <1411641352-19058-1-git-send-email-f.deldegan@endian.com>	<CAJTo0LYf-qWXia8EuKSnck5=yYLGspckqm27y3kxMDESSdL5Og@mail.gmail.com>	<54249BD8.1030702@windriver.com>	<CAJTo0LZGT0ogEA-PDfZOYVznJew0BP069d=_UU75qX-z2pPSyg@mail.gmail.com>
+	<CALNVO6bKcz5f_nhK_vYqC83z4_cw4W=L3FYVL7oOenY6PhCQog@mail.gmail.com>
+In-Reply-To: <CALNVO6bKcz5f_nhK_vYqC83z4_cw4W=L3FYVL7oOenY6PhCQog@mail.gmail.com>
+Subject: Re: [OE-core] [PATCH] bash: update to latest (025) patchset (fixes CVE-2014-6271)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,249 +45,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Sep 2014 13:33:38 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Fri, 26 Sep 2014 14:03:21 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Friday 26 of September 2014 15:17:52 TakkTakk wrote:
-> ok, I removed uEnv.txt, pressed the boot switch.
-> Starting kernel ... and hang.
-> why - "Image Name:   Linux-3.14.0-yocto-standard " ?
+On 9/25/14, 10:00 PM, Francesco Del Degan wrote:
+> Yes, patch 026 that fixes CVE-2014-7169 is underway, should be pushed out today:
+>
+> http://www.openwall.com/lists/oss-security/2014/09/26/1
+>
+> bash-4.2 (as in dora) got patch048 for CVE-2014-6179 and should receive patch049
+> as well.
+>
+> I'm going to send bash 3.2 and 4.2  patches in oe core ml.
 
-I'd recommend switching to current master (what is to be 1.7 soon), ski=
-pping=20
-meta-beaglebone for now and build core-image-minimal. Then prepare SD c=
-ard=20
-image either manually or with wic and try booting that. I'm doing such =
-builds=20
-every couple of days, so far without too many problems.
+There are two additional issues as well.
 
-Once you get that working, add meta-beaglebone layer, handpick kernel/u=
--boot=20
-versions if needed, add whatever extra packages you need. Best if you d=
-o it=20
-step by step.
+CVE-2014-7186 - bash: parser can allow out-of-bounds memory access while
+handling redir_stack
 
->=20
-> U-Boot SPL 2013.04-dirty (Sep 09 2014 - 21:38:22)
-> musb-hdrc: ConfigData=3D0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO Tx=
-,
-> SoftConn) musb-hdrc: MHDRC RTL version 2.0
-> musb-hdrc: setup fifo_mode 4
-> musb-hdrc: 28/31 max ep, 16384/16384 memory
-> USB Peripheral mode controller at 47401000 using PIO, IRQ 0
-> musb-hdrc: ConfigData=3D0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO Tx=
-,
-> SoftConn) musb-hdrc: MHDRC RTL version 2.0
-> musb-hdrc: setup fifo_mode 4
-> musb-hdrc: 28/31 max ep, 16384/16384 memory
-> USB Host mode controller at 47401800 using PIO, IRQ 0
-> OMAP SD/MMC: 0
-> reading u-boot.img
-> reading u-boot.img
->=20
->=20
-> U-Boot 2013.04-dirty (Sep 09 2014 - 21:38:22)
->=20
-> I2C:   ready
-> DRAM:  512 MiB
-> WARNING: Caches not enabled
-> NAND:  No NAND device found!!!
-> 0 MiB
-> MMC:   OMAP SD/MMC: 0, OMAP SD/MMC: 1
-> *** Warning - readenv() failed, using default environment
->=20
-> musb-hdrc: ConfigData=3D0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO Tx=
-,
-> SoftConn)
-> musb-hdrc: MHDRC RTL version 2.0
-> musb-hdrc: setup fifo_mode 4
-> musb-hdrc: 28/31 max ep, 16384/16384 memory
-> USB Peripheral mode controller at 47401000 using PIO, IRQ 0
-> musb-hdrc: ConfigData=3D0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO Tx=
-,
-> SoftConn)
-> musb-hdrc: MHDRC RTL version 2.0
-> musb-hdrc: setup fifo_mode 4
-> musb-hdrc: 28/31 max ep, 16384/16384 memory
-> USB Host mode controller at 47401800 using PIO, IRQ 0
-> Net:   <ethaddr> not set. Validating first E-fuse MAC
-> cpsw, usb_ether
-> Hit any key to stop autoboot:  0
-> gpio: pin 53 (gpio 53) value is 1
-> mmc0 is current device
-> micro SD card found
-> mmc0 is current device
-> gpio: pin 54 (gpio 54) value is 1
-> SD/MMC found on device 0
-> reading uEnv.txt
-> ** Unable to read file uEnv.txt **
-> gpio: pin 55 (gpio 55) value is 1
-> 4985736 bytes read in 957 ms (5 MiB/s)
-> gpio: pin 56 (gpio 56) value is 1
-> 24868 bytes read in 92 ms (263.7 KiB/s)
-> Booting from mmc ...
-> ## Booting kernel from Legacy Image at 80007fc0 ...
->    Image Name:   Linux-3.14.0-yocto-standard
->    Image Type:   ARM Linux Kernel Image (uncompressed)
->    Data Size:    4985672 Bytes =3D 4.8 MiB
->    Load Address: 80008000
->    Entry Point:  80008000
->    Verifying Checksum ... OK
-> ## Flattened Device Tree blob at 80f80000
->    Booting using the fdt blob at 0x80f80000
->    XIP Kernel Image ... OK
-> OK
->    Using Device Tree in place at 80f80000, end 80f89123
->=20
-> Starting kernel ...
->=20
-> 2014-09-25 14:18 GMT+02:00 Diego Sueiro <diego.sueiro@gmail.com>:
-> > Takk,
-> >=20
-> > On Wed, Sep 24, 2014 at 5:20 PM, TakkTakk <tomek82221@gazeta.pl> wr=
-ote:
-> >> ok, i changed "bootz" to "bootm" and i kept S2 swith pressed.
-> >> Yocto not booting, two leds D2, D3 is shining.
-> >>=20
-> >> Serial console output:
-> >>=20
-> >> U-Boot SPL 2013.04-dirty (Sep 09 2014 - 21:38:22)
-> >> musb-hdrc: ConfigData=3D0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO=
- Tx,
-> >> SoftConn)
-> >> musb-hdrc: MHDRC RTL version 2.0
-> >> musb-hdrc: setup fifo_mode 4
-> >> musb-hdrc: 28/31 max ep, 16384/16384 memory
-> >> USB Peripheral mode controller at 47401000 using PIO, IRQ 0
-> >> musb-hdrc: ConfigData=3D0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO=
- Tx,
-> >> SoftConn)
-> >> musb-hdrc: MHDRC RTL version 2.0
-> >> musb-hdrc: setup fifo_mode 4
-> >> musb-hdrc: 28/31 max ep, 16384/16384 memory
-> >> USB Host mode controller at 47401800 using PIO, IRQ 0
-> >> OMAP SD/MMC: 0
-> >> reading u-boot.img
-> >> reading u-boot.img
-> >>=20
-> >>=20
-> >> U-Boot 2013.04-dirty (Sep 09 2014 - 21:38:22)
-> >>=20
-> >> I2C:   ready
-> >> DRAM:  512 MiB
-> >> WARNING: Caches not enabled
-> >> NAND:  No NAND device found!!!
-> >> 0 MiB
-> >> MMC:   OMAP SD/MMC: 0, OMAP SD/MMC: 1
-> >> *** Warning - readenv() failed, using default environment
-> >>=20
-> >> musb-hdrc: ConfigData=3D0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO=
- Tx,
-> >> SoftConn)
-> >> musb-hdrc: MHDRC RTL version 2.0
-> >> musb-hdrc: setup fifo_mode 4
-> >> musb-hdrc: 28/31 max ep, 16384/16384 memory
-> >> USB Peripheral mode controller at 47401000 using PIO, IRQ 0
-> >> musb-hdrc: ConfigData=3D0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO=
- Tx,
-> >> SoftConn)
-> >> musb-hdrc: MHDRC RTL version 2.0
-> >> musb-hdrc: setup fifo_mode 4
-> >> musb-hdrc: 28/31 max ep, 16384/16384 memory
-> >> USB Host mode controller at 47401800 using PIO, IRQ 0
-> >> Net:   <ethaddr> not set. Validating first E-fuse MAC
-> >> cpsw, usb_ether
-> >> Hit any key to stop autoboot:  0
-> >> gpio: pin 53 (gpio 53) value is 1
-> >> mmc0 is current device
-> >> micro SD card found
-> >> mmc0 is current device
-> >> gpio: pin 54 (gpio 54) value is 1
-> >> SD/MMC found on device 0
-> >> reading uEnv.txt
-> >> 527 bytes read in 4 ms (127.9 KiB/s)
-> >> Loaded environment from uEnv.txt
-> >> Importing environment from mmc ...
-> >> Running uenvcmd ...
-> >> reading uImage
-> >> 4368264 bytes read in 499 ms (8.3 MiB/s)
-> >> reading /dtbs/am335x-boneblack.dtb
-> >> 29192 bytes read in 10 ms (2.8 MiB/s)
-> >> ## Booting kernel from Legacy Image at 80200000 ...
-> >>=20
-> >>    Image Name:   Linux-3.8.13
-> >>    Image Type:   ARM Linux Kernel Image (uncompressed)
-> >>    Data Size:    4368200 Bytes =3D 4.2 MiB
-> >>    Load Address: 80008000
-> >>    Entry Point:  80008000
-> >>    Verifying Checksum ... OK
-> >>=20
-> >> ## Flattened Device Tree blob at 80f80000
-> >>=20
-> >>    Booting using the fdt blob at 0x80f80000
-> >>    Loading Kernel Image ... OK
-> >>=20
-> >> OK
-> >>=20
-> >>    Using Device Tree in place at 80f80000, end 80f8a207
-> >>=20
-> >> Starting kernel ...
-> >>=20
-> >> Uncompressing Linux... done, booting the kernel.
-> >=20
-> > Hummm. That's strange.
-> > I don't know if kernel 3.8.13 populate the serial debug interface a=
-s ttyO0
-> > or ttyS0.
-> >=20
-> > I think you can remove your uEnv.txt file from FAT partition and po=
-werup
-> > the board by pressing the boot switch,
-> > The u-boot from meta-beagleboard doesn't need any extra configurati=
-on.
-> >=20
-> >=20
-> > Regards,
-> >=20
-> > --
-> > *dS
-> > Diego Sueiro
-> >=20
-> > Administrador do Embarcados
-> > www.embarcados.com.br
-> >=20
-> > /*long live rock 'n roll*/
+CVE-2014-7187 - bash: off-by-one error in deeply nested flow control constructs
 
---=20
+(The above two are so new they are not yet published on the CVE web sites.)
 
-Maciej Borz=C4=99cki=20
-Senior Software Engineer Open-RnD Sp. z o.o.=20
-www.open-rnd.pl, Facebook, Twitter=20
-mobile: +48 telefon, fax: +48 42 657 9079=20
+A patch for these has been posted to the oss-security list, but has not yet been 
+validated by the bash maintainer.
 
-Niniejsza wiadomo=C5=9B=C4=87 wraz z za=C5=82=C4=85cznikami mo=C5=BCe z=
-awiera=C4=87 chronione prawem lub=20
-poufne informacje i zosta=C5=82a wys=C5=82ana wy=C5=82=C4=85cznie do wi=
-adomo=C5=9Bci i u=C5=BCytku os=C3=B3b, do=20
-kt=C3=B3rych zosta=C5=82a zaadresowana. Je=C5=9Bli wiadomo=C5=9B=C4=87 =
-zosta=C5=82a otrzymana przypadkowo=20
-zabrania si=C4=99 jej kopiowania lub rozsy=C5=82ania do os=C3=B3b trzec=
-ich. W takim przypadku=20
-uprasza si=C4=99 o natychmiastowe zniszczenie wiadomo=C5=9Bci oraz poin=
-formowanie=20
-nadawcy o zaistnia=C5=82ej sytuacji za pomoc=C4=85 wiadomo=C5=9Bci zwro=
-tnej. Dzi=C4=99kujemy.=20
+We'll need to watch for this as well.
 
-This message, including any attachments hereto, may contain privileged =
-or=20
-confidential information and is sent solely for the attention and use o=
-f the=20
-intended addressee(s). If you are not an intended addressee, you may ne=
-ither=20
-use this message nor copy or deliver it to anyone. In such case, you sh=
-ould=20
-immediately destroy this message and kindly notify the sender by reply =
-email.=20
-Thank you. 
+--Mark
+
+>
+> On Fri, Sep 26, 2014 at 1:15 AM, Burton, Ross <ross.burton@intel.com
+> <mailto:ross.burton@intel.com>> wrote:
+>
+>     On 25 September 2014 23:48, Mark Hatle <mark.hatle@windriver.com
+>     <mailto:mark.hatle@windriver.com>> wrote:
+>     > So I would recommend that someone get the 025 patch (don't forget to patch
+>     > bash 3.2 as well) in.. and we should wait until their is an official one for
+>     > 7169.
+>
+>     Agreed, and patches sent.
+>
+>     Ross
+>     --
+>     _______________________________________________
+>     yocto mailing list
+>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>     https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>
+>
+> --
+> --
+> :: e n d i a n
+> :: security with passion
+>
+> :: Francesco Del Degan
+> :: software engineer
+> :: http://www.endian.com <http://www.endian.com/>  :: f.deldegan (AT) endian.com
+> <http://endian.com/>
+>
+>
+
 
