@@ -1,54 +1,48 @@
-Return-Path: <alberk@gmail.com>
+Return-Path: <alexandru.c.georgescu@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D6AB9E00869; Sun, 28 Sep 2014 22:34:11 -0700 (PDT)
+	id 06657E00869; Mon, 29 Sep 2014 00:19:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_00,DEAR_SOMETHING,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (alberk[at]gmail.com)
-	*  2.0 DEAR_SOMETHING BODY: Contains 'Dear (something)'
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.179 listed in list.dnswl.org]
-Received: from mail-qc0-f179.google.com (mail-qc0-f179.google.com
-	[209.85.216.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 372CAE00861
-	for <yocto@yoctoproject.org>; Sun, 28 Sep 2014 22:34:06 -0700 (PDT)
-Received: by mail-qc0-f179.google.com with SMTP id x3so1210901qcv.10
-	for <yocto@yoctoproject.org>; Sun, 28 Sep 2014 22:34:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=iWRWasx75wsTpJcr/88efH1o+0oSrE69nor2+yfLSis=;
-	b=JZDTd0OHhizUTKCF4CqfaYAM5svgNdFZn+NjuTm6rsm3T0WGwVPivAZfnJBuybbRru
-	wNdC1eYyo1VsWkHEmoUEx5w1AlLuZJzN9UpQR6bt4yDoEIwgK0UeVQhEncQuQVlh8g2g
-	5I5Uh4apRKKdNGzzi5RJfSSX6p+Zj+zrBRVffNTy6zU0NlUt8D6j+xC4j55EKSgWqiGv
-	g8pc0EfNziDaDXh/uU0i+EnfeBCQJMPSUY89Sobfyq5b+2CqGIm5SLN8wEuN6n80FzsL
-	eN60BFfdAp6E2oUGje7LPF68qtYwuZSh66oc/5QERV9mX3iWHuPdqlafD+HI7riW7krk
-	9+rA==
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0BDEE00861
+	for <yocto@yoctoproject.org>; Mon, 29 Sep 2014 00:19:37 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 29 Sep 2014 00:19:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.04,618,1406617200"; d="scan'208";a="606848683"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by fmsmga002.fm.intel.com with ESMTP; 29 Sep 2014 00:19:36 -0700
+Received: from irsmsx154.ger.corp.intel.com (163.33.192.96) by
+	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
+	(TLS) id 14.3.195.1; Mon, 29 Sep 2014 08:19:35 +0100
+Received: from irsmsx110.ger.corp.intel.com ([169.254.15.199]) by
+	IRSMSX154.ger.corp.intel.com ([169.254.12.124]) with mapi id
+	14.03.0195.001; Mon, 29 Sep 2014 08:19:35 +0100
+From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
+To: atulkumar singh <atul.singh008@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto]  Release Candidate Build for yocto-1.7.rc1 now available.
+Thread-Index: AQHP27W4avOXRHXjE069qiddWqlsCw==
+Date: Mon, 29 Sep 2014 07:19:34 +0000
+Message-ID: <D04EE22F.B56F%alexandru.c.georgescu@intel.com>
+References: <9da1f854e6334a388820b4c09a6071ce@HKNPR03MB354.apcprd03.prod.outlook.com>
+	<CAH21_vGJ0EMGhvdbNXGNULSUkPwhzYyQXagBHKyGpsU6hoLF9Q@mail.gmail.com>
+In-Reply-To: <CAH21_vGJ0EMGhvdbNXGNULSUkPwhzYyQXagBHKyGpsU6hoLF9Q@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.4.4.140807
+x-originating-ip: [10.237.108.66]
 MIME-Version: 1.0
-X-Received: by 10.229.67.69 with SMTP id q5mr125630qci.25.1411968846159; Sun,
-	28 Sep 2014 22:34:06 -0700 (PDT)
-Received: by 10.140.98.233 with HTTP; Sun, 28 Sep 2014 22:34:06 -0700 (PDT)
-In-Reply-To: <CAMKF1sqjcM3OQVkgh-fxPEW007CAaAy7MzoP7Y2ZZ-Hi_3Z5Jg@mail.gmail.com>
-References: <CACjDgAMqZ31WnnnQQn-bC1c1G302EcE0mMTEg01x8rn4989M8Q@mail.gmail.com>
-	<CAMKF1sqjcM3OQVkgh-fxPEW007CAaAy7MzoP7Y2ZZ-Hi_3Z5Jg@mail.gmail.com>
-Date: Mon, 29 Sep 2014 13:34:06 +0800
-Message-ID: <CACjDgAMhqJMHpT++Lwpy4vkbeJQOZtOOGBgg1HMSf1=-kiSHtg@mail.gmail.com>
-From: Albert K <alberk@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Luajit Compile Error
+Subject: Re: Release Candidate Build for yocto-1.7.rc1 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,143 +54,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Sep 2014 05:34:11 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 29 Sep 2014 07:19:53 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <16FFD641EDF99547A1EB443AC759C218@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-Dear Sir,
+Hi Atul,
+M3 was released so yes, the build below is a weekly build for M4. This week=
+ is starting the 1.7_M4.rc1 build according to the Yocto calendar: https://=
+wiki.yoctoproject.org/wiki/YoctoCalendar
 
-Thanks a million.   Adding the gcc-multilib to the build host did the
-trick.  Works like a charm.  Thanks again.
+Regards,
+--
+Alexandru Georgescu
+Yocto QA Engineer
+SSG/SSD Open Source Technology Center Romania
 
-On Mon, Sep 29, 2014 at 12:57 PM, Khem Raj <raj.khem@gmail.com> wrote:
-> On Sun, Sep 28, 2014 at 7:22 PM, Albert K <alberk@gmail.com> wrote:
->> Dear all,
->>
->> I am getting error when i include luajit package from the
->> meta-embedded and this is build from the core-image-minimal
->> layer(yocto daisy).  Can someone help to point me the right direction
->> for fixing the compile error as show below?  Thanks.
->>
->
-> its expecting 32bit gcc to be available on your build host. So install
-> gcc-multilib
-> on build machine and it should go on.
->
->>
->> yocto@ubuntu-yocto:/yocto/poky/build/tmp/work/i586-poky-linux/luajit/2.0.2-r0/temp$
->> cat log.do_compile.16806
->> DEBUG: Executing shell function do_compile
->> NOTE: make -j 4 CROSS=i586-poky-linux- TARGET_CFLAGS=
->> --sysroot=/yocto/poky/build/tmp/sysroots/qemux86 TARGET_LDFLAGS=
->> --sysroot=/yocto/poky/build/tmp/sysroots/qemux86 TARGET_SHLDFLAGS=
->> --sysroot=/yocto/poky/build/tmp/sysroots/qemux86 HOST_CC=gcc  -m32
->> ==== Building LuaJIT 2.0.2 ====
->> make -C src
->> make[1]: Entering directory
->> `/yocto/poky/build/tmp/work/i586-poky-linux/luajit/2.0.2-r0/LuaJIT-2.0.2/src'
->> HOSTCC    host/minilua.o
->> HOSTCC    host/buildvm_asm.o
->> HOSTCC    host/buildvm_peobj.o
->> HOSTCC    host/buildvm_lib.o
->> In file included from host/buildvm_peobj.c:9:0:
->> host/buildvm.h:9:23: fatal error: sys/types.h: No such file or directory
->>  #include <sys/types.h>
->>                        ^
->> In file included from host/buildvm_asm.c:6:0:
->> host/buildvm.h:9:23: fatal error: sys/types.h: No such file or directory
->>  #include <sys/types.h>
->>                        ^
->> compilation terminated.
->> In file included from host/buildvm_lib.c:6:0:
->> host/buildvm.h:9:23: fatal error: sys/types.h: No such file or directory
->>  #include <sys/types.h>
->>                        ^
->> compilation terminated.
->> compilation terminated.
->> make[1]: *** [host/buildvm_asm.o] Error 1
->> make[1]: *** Waiting for unfinished jobs....
->> make[1]: *** [host/buildvm_peobj.o] Error 1
->> make[1]: *** [host/buildvm_lib.o] Error 1
->> In file included from /usr/include/limits.h:25:0,
->>                  from
->> /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/limits.h:168,
->>                  from
->> /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/syslimits.h:7,
->>                  from
->> /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/limits.h:34,
->>                  from host/minilua.c:32:
->> /usr/include/features.h:374:25: fatal error: sys/cdefs.h: No such file
->> or directory
->>  #  include <sys/cdefs.h>
->>                          ^
->> compilation terminated.
->> make[1]: *** [host/minilua.o] Error 1
->> make[1]: Leaving directory
->> `/yocto/poky/build/tmp/work/i586-poky-linux/luajit/2.0.2-r0/LuaJIT-2.0.2/src'
->> make: *** [default] Error 2
->> ERROR: oe_runmake failed
->> WARNING: exit code 1 from a shell command.
->> ERROR: Function failed: do_compile (log file is located at
->> /yocto/poky/build/tmp/work/i586-poky-linux/luajit/2.0.2-r0/temp/log.do_compile.16806)
->> yocto@ubuntu-yocto:/yocto/poky/build/tmp/work/i586-poky-linux/luajit/2.0.2-r0/temp$
->> cat log.do_compile.16806
->> DEBUG: Executing shell function do_compile
->> NOTE: make -j 4 CROSS=i586-poky-linux- TARGET_CFLAGS=
->> --sysroot=/yocto/poky/build/tmp/sysroots/qemux86 TARGET_LDFLAGS=
->> --sysroot=/yocto/poky/build/tmp/sysroots/qemux86 TARGET_SHLDFLAGS=
->> --sysroot=/yocto/poky/build/tmp/sysroots/qemux86 HOST_CC=gcc  -m32
->> ==== Building LuaJIT 2.0.2 ====
->> make -C src
->> make[1]: Entering directory
->> `/yocto/poky/build/tmp/work/i586-poky-linux/luajit/2.0.2-r0/LuaJIT-2.0.2/src'
->> HOSTCC    host/minilua.o
->> HOSTCC    host/buildvm_asm.o
->> HOSTCC    host/buildvm_peobj.o
->> HOSTCC    host/buildvm_lib.o
->> In file included from host/buildvm_peobj.c:9:0:
->> host/buildvm.h:9:23: fatal error: sys/types.h: No such file or directory
->>  #include <sys/types.h>
->>                        ^
->> In file included from host/buildvm_asm.c:6:0:
->> host/buildvm.h:9:23: fatal error: sys/types.h: No such file or directory
->>  #include <sys/types.h>
->>                        ^
->> compilation terminated.
->> In file included from host/buildvm_lib.c:6:0:
->> host/buildvm.h:9:23: fatal error: sys/types.h: No such file or directory
->>  #include <sys/types.h>
->>                        ^
->> compilation terminated.
->> compilation terminated.
->> make[1]: *** [host/buildvm_asm.o] Error 1
->> make[1]: *** Waiting for unfinished jobs....
->> make[1]: *** [host/buildvm_peobj.o] Error 1
->> make[1]: *** [host/buildvm_lib.o] Error 1
->> In file included from /usr/include/limits.h:25:0,
->>                  from
->> /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/limits.h:168,
->>                  from
->> /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/syslimits.h:7,
->>                  from
->> /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed/limits.h:34,
->>                  from host/minilua.c:32:
->> /usr/include/features.h:374:25: fatal error: sys/cdefs.h: No such file
->> or directory
->>  #  include <sys/cdefs.h>
->>                          ^
->> compilation terminated.
->> make[1]: *** [host/minilua.o] Error 1
->> make[1]: Leaving directory
->> `/yocto/poky/build/tmp/work/i586-poky-linux/luajit/2.0.2-r0/LuaJIT-2.0.2/src'
->> make: *** [default] Error 2
->> ERROR: oe_runmake failed
->> WARNING: exit code 1 from a shell command.
->> ERROR: Function failed: do_compile (log file is located at
->> /yocto/poky/build/tmp/work/i586-poky-linux/luajit/2.0.2-r0/temp/log.do_compile.16806)
->> yocto@ubuntu-yocto:/yocto/poky/build/tmp/work/i586-poky-linux/luajit/2.0.2-r0/temp$
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+From: atulkumar singh <atul.singh008@gmail.com<mailto:atul.singh008@gmail.c=
+om>>
+Date: Wednesday 24 September 2014 16:50
+To: "yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>" <yocto@yoctopro=
+ject.org<mailto:yocto@yoctoproject.org>>
+Subject: [yocto] Release Candidate Build for yocto-1.7.rc1 now available.
+
+
+Hi All,
+
+
+
+Please let me know whether the release candidate mentioned below with commi=
+t is for 1.7M4?
+
+
+
+Regards,
+
+Atul
+
+
+
+************************************************************************
+
+A release candidate build for yocto-1.7.rc1 is now available at:
+
+
+
+http://autobuilder.yoctoproject.org/pub/releases/yocto-1.7.rc1
+
+
+
+
+
+Please begin QA on this build as soon as possible.
+
+
+
+
+
+Build hash information:
+
+meta-intel : a369fa8f2d76528cb296ef9314e613e26585d54d
+
+meta-fsl-arm : 2680f54d02fa6efe4cd2aaef7bda9e46cf3e9672
+
+meta-minnow : 238a45e9da8bbfff7a6af220b48c11cabd31e01c
+
+meta-qt3 : 3016129d90b7ac8517a5227d819f10ad417b5b45
+
+meta-fsl-ppc : 478f29c3e97760f2ff443227950ce21d9510a280
+
+poky : 8ac8eca2e3bd8c78e2b31ea974930ed0243258a3
+
+
+
+
+
+This is an automated message from
+
+The Yocto Project Autobuilder
+
+Git: git://git.yoctoproject.org/yocto-autobuilder<http://git.yoctoproject.o=
+rg/yocto-autobuilder>
+
+Email: elizabeth.flanagan at intel.com<http://intel.com>
 
