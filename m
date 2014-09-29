@@ -1,48 +1,52 @@
-Return-Path: <alexandru.c.georgescu@intel.com>
+Return-Path: <k4230r6@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 06657E00869; Mon, 29 Sep 2014 00:19:53 -0700 (PDT)
+	id 19985E00869; Mon, 29 Sep 2014 00:52:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (k4230r6[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.174 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0BDEE00861
-	for <yocto@yoctoproject.org>; Mon, 29 Sep 2014 00:19:37 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 29 Sep 2014 00:19:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,618,1406617200"; d="scan'208";a="606848683"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by fmsmga002.fm.intel.com with ESMTP; 29 Sep 2014 00:19:36 -0700
-Received: from irsmsx154.ger.corp.intel.com (163.33.192.96) by
-	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
-	(TLS) id 14.3.195.1; Mon, 29 Sep 2014 08:19:35 +0100
-Received: from irsmsx110.ger.corp.intel.com ([169.254.15.199]) by
-	IRSMSX154.ger.corp.intel.com ([169.254.12.124]) with mapi id
-	14.03.0195.001; Mon, 29 Sep 2014 08:19:35 +0100
-From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
-To: atulkumar singh <atul.singh008@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto]  Release Candidate Build for yocto-1.7.rc1 now available.
-Thread-Index: AQHP27W4avOXRHXjE069qiddWqlsCw==
-Date: Mon, 29 Sep 2014 07:19:34 +0000
-Message-ID: <D04EE22F.B56F%alexandru.c.georgescu@intel.com>
-References: <9da1f854e6334a388820b4c09a6071ce@HKNPR03MB354.apcprd03.prod.outlook.com>
-	<CAH21_vGJ0EMGhvdbNXGNULSUkPwhzYyQXagBHKyGpsU6hoLF9Q@mail.gmail.com>
-In-Reply-To: <CAH21_vGJ0EMGhvdbNXGNULSUkPwhzYyQXagBHKyGpsU6hoLF9Q@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.4.4.140807
-x-originating-ip: [10.237.108.66]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ie0-f174.google.com (mail-ie0-f174.google.com
+	[209.85.223.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB711E00861
+	for <yocto@yoctoproject.org>; Mon, 29 Sep 2014 00:52:40 -0700 (PDT)
+Received: by mail-ie0-f174.google.com with SMTP id tr6so891998ieb.19
+	for <yocto@yoctoproject.org>; Mon, 29 Sep 2014 00:52:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=bM9iZu8M4Q7BA4lOR0DLIxA3sjR1wT9YjSa1qd61RCU=;
+	b=mq3Tav1CV4F3pQcTCaaEnEIkVcIHOxcddfcbBDLJ9P4I3EzSndoW/YqFwLDwdoUY3A
+	SWdI6ulFCfagTZ/FU0iZro5eD12A9sZIj1ruJPCkkJQVfenQy4xTawuxZuYbCflUq04M
+	f7CLhxmuYY3v63/t1k1SqD3Gy6sLE6FAHRLW7rnnW/RpLfU1ufRvNSVfyQTo9rJ1tOdI
+	/ncSxyVJJpz7SiWhWmAC4STJ5u+vn5FCzwaW3PTlXo4l3Y31R7zzmCkc60iX7zLOFIyX
+	bsF5FWuqckq0UmKoKVn4Ee68R/M3vYyp6Xt6RwcYIhY+GiFQXLyf2OcH8u0H5zTXWaoX
+	yqfA==
 MIME-Version: 1.0
-Subject: Re: Release Candidate Build for yocto-1.7.rc1 now available.
+X-Received: by 10.50.122.5 with SMTP id lo5mr32981430igb.25.1411977159441;
+	Mon, 29 Sep 2014 00:52:39 -0700 (PDT)
+Received: by 10.64.76.108 with HTTP; Mon, 29 Sep 2014 00:52:39 -0700 (PDT)
+In-Reply-To: <AD958144-D4EB-42F9-B6C9-D391C7D9A84C@keylevel.com>
+References: <AD958144-D4EB-42F9-B6C9-D391C7D9A84C@keylevel.com>
+Date: Mon, 29 Sep 2014 09:52:39 +0200
+Message-ID: <CAALGJZbTYeiqynQm7_7igto48annBnKUSihFSNzHtn4QBfdxjA@mail.gmail.com>
+From: Christian Ege <k4230r6@gmail.com>
+To: Chris Tapp <opensource@keylevel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: PR and bbappend files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,88 +58,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Sep 2014 07:19:53 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <16FFD641EDF99547A1EB443AC759C218@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 29 Sep 2014 07:52:49 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi Atul,
-M3 was released so yes, the build below is a weekly build for M4. This week=
- is starting the 1.7_M4.rc1 build according to the Yocto calendar: https://=
-wiki.yoctoproject.org/wiki/YoctoCalendar
+Hi,
+2014-09-28 11:47 GMT+02:00 Chris Tapp <opensource@keylevel.com>:
+> I'm currently using a bbappend file to patch bash under 'danny' due to "Shellshocked" - basically by adding patches 11..50 to the SRC_URI.
+>
+> However, patches are still coming out ;-)
+>
+> How do I make sure that new ones get reflected in the build? I would normally bump PR in a .bb file, but I don't think a .bbappend should be changing this?
+For danny you can use PRINC
+http://www.yoctoproject.org/docs/1.3.2/poky-ref-manual/poky-ref-manual.html#var-PRINC
+For newer releases this is deprecated.
 
-Regards,
---
-Alexandru Georgescu
-Yocto QA Engineer
-SSG/SSD Open Source Technology Center Romania
-
-From: atulkumar singh <atul.singh008@gmail.com<mailto:atul.singh008@gmail.c=
-om>>
-Date: Wednesday 24 September 2014 16:50
-To: "yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>" <yocto@yoctopro=
-ject.org<mailto:yocto@yoctoproject.org>>
-Subject: [yocto] Release Candidate Build for yocto-1.7.rc1 now available.
+Could you please be so kind and share your bbappend + patches?
+Is there any chance to get this in the official poky branches?
 
 
-Hi All,
-
-
-
-Please let me know whether the release candidate mentioned below with commi=
-t is for 1.7M4?
-
-
-
-Regards,
-
-Atul
-
-
-
-************************************************************************
-
-A release candidate build for yocto-1.7.rc1 is now available at:
+regards,
+Christian
+>
+> --
+>
+> Chris Tapp
+> opensource@keylevel.com
+> www.keylevel.com
+>
+> ----
+> You can tell you're getting older when your car insurance gets real cheap!
+>
+>
+>
+>
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
 
-http://autobuilder.yoctoproject.org/pub/releases/yocto-1.7.rc1
-
-
-
-
-
-Please begin QA on this build as soon as possible.
-
-
-
-
-
-Build hash information:
-
-meta-intel : a369fa8f2d76528cb296ef9314e613e26585d54d
-
-meta-fsl-arm : 2680f54d02fa6efe4cd2aaef7bda9e46cf3e9672
-
-meta-minnow : 238a45e9da8bbfff7a6af220b48c11cabd31e01c
-
-meta-qt3 : 3016129d90b7ac8517a5227d819f10ad417b5b45
-
-meta-fsl-ppc : 478f29c3e97760f2ff443227950ce21d9510a280
-
-poky : 8ac8eca2e3bd8c78e2b31ea974930ed0243258a3
-
-
-
-
-
-This is an automated message from
-
-The Yocto Project Autobuilder
-
-Git: git://git.yoctoproject.org/yocto-autobuilder<http://git.yoctoproject.o=
-rg/yocto-autobuilder>
-
-Email: elizabeth.flanagan at intel.com<http://intel.com>
+-- 
+http://project-magpie.github.io/
 
