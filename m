@@ -1,41 +1,58 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <Chris.Carr@ge.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1FF02E00873; Mon, 29 Sep 2014 04:30:49 -0700 (PDT)
+	id BCD59E00873; Mon, 29 Sep 2014 05:53:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [67.231.157.48 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D049E00869
-	for <yocto@yoctoproject.org>; Mon, 29 Sep 2014 04:30:36 -0700 (PDT)
-Received: from [109.224.171.0] (port=57071
-	helo=macbook-pro.durham.keylevel.com)
-	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.82)
-	(envelope-from <opensource@keylevel.com>)
-	id 1XYZ9x-0010q0-O1; Mon, 29 Sep 2014 12:30:32 +0100
-Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <CAALGJZbTYeiqynQm7_7igto48annBnKUSihFSNzHtn4QBfdxjA@mail.gmail.com>
-Date: Mon, 29 Sep 2014 12:30:29 +0100
-Message-Id: <8AB8D694-3A44-470B-BAB8-2BE7C562C537@keylevel.com>
-References: <AD958144-D4EB-42F9-B6C9-D391C7D9A84C@keylevel.com>
-	<CAALGJZbTYeiqynQm7_7igto48annBnKUSihFSNzHtn4QBfdxjA@mail.gmail.com>
-To: Christian Ege <k4230r6@gmail.com>
-X-Mailer: Apple Mail (2.1878.6)
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - a180.4uh.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
-	chris.tapp@keylevel.com
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: PR and bbappend files
+X-Greylist: delayed 4213 seconds by postgrey-1.32 at yocto-www;
+	Mon, 29 Sep 2014 05:53:49 PDT
+Received: from mx0b-00176a03.pphosted.com (mx0b-00176a03.pphosted.com
+	[67.231.157.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48D52E00869
+	for <yocto@yoctoproject.org>; Mon, 29 Sep 2014 05:53:49 -0700 (PDT)
+Received: from pps.filterd (m0048206.ppops.net [127.0.0.1])
+	by m0048206.ppops.net-00176a03. (8.14.7/8.14.7) with SMTP id
+	s8TBekrW039726
+	for <yocto@yoctoproject.org>; Mon, 29 Sep 2014 07:43:35 -0400
+Received: from alpmlip10.e2k.ad.ge.com (n165-156-000-000.static.ge.com
+	[165.156.5.1] (may be forged))
+	by m0048206.ppops.net-00176a03. with ESMTP id 1pq666r105-22
+	(version=TLSv1/SSLv3 cipher=RC4-SHA bits=128 verify=NOT)
+	for <yocto@yoctoproject.org>; Mon, 29 Sep 2014 07:43:35 -0400
+Received: from unknown (HELO ALPMBHT02.e2k.ad.ge.com) ([3.159.19.195])
+	by alpmlip10.e2k.ad.ge.com with ESMTP/TLS/AES128-SHA;
+	29 Sep 2014 07:38:48 -0400
+Received: from CINMBAPD02.e2k.ad.ge.com (3.159.212.68) by
+	ALPMBHT02.e2k.ad.ge.com (3.159.19.195) with Microsoft SMTP Server (TLS)
+	id 14.3.195.1; Mon, 29 Sep 2014 07:43:27 -0400
+Received: from [3.26.68.158] (3.159.212.193) by CINMBAPD02.e2k.ad.ge.com
+	(3.159.212.68) with Microsoft SMTP Server id 14.3.195.1;
+	Mon, 29 Sep 2014 07:43:27 -0400
+Message-ID: <542945DD.2010800@ge.com>
+Date: Mon, 29 Sep 2014 12:43:25 +0100
+From: "Carr, Chris (GE Intelligent Platforms)" <chris.carr@ge.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.1.2
+MIME-Version: 1.0
+To: <yocto@yoctoproject.org>
+X-Originating-IP: [3.159.212.193]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.12.52, 1.0.28,
+	0.0.0000
+	definitions=2014-09-29_02:2014-09-29, 2014-09-29,
+	1970-01-01 signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
+	suspectscore=1 phishscore=0
+	adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
+	scancount=1
+	engine=7.0.1-1402240000 definitions=main-1409290111
+Subject: Issues removing RRECOMMENDS packages with BAD_RECOMMENDATIONS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,80 +64,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Sep 2014 11:30:49 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 29 Sep 2014 12:53:52 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+Hi,
+
+I have successfully built a custom root filesystem, but I'm having issues stopping certain packages from being installed.
+
+Basically the BAD_RECOMMENDATIONS that I have defined is not removing/preventing the installation of the RRECOMMENDS packages. This is using opkg as the package manager.
+
+I am using:
+
+BAD_RECOMMENDATIONS=" \
+    busybox-udhcpc \
+    e2fsprogs-e2fsck \
+    udev-hwdb \
+    update-rc.d \
+    vim-help \
+    vim-syntax \
+    vim-tutor \
+    "
+
+All of which are specified as RRECOMMENDS in various recipes.
+
+The BAD_RECOMMENDATIONS all seem to write the correct entries to the /var/lib/opkg/status file (desinstall hold not-installed), which I've confirmed with some debug in the package_manager.py. However when the packages are being installed in the rootfs stage, then only a couple of them are processed and ignored.
+
+The strange thing is, that depending on the verbosity of the opkg-cl command, the number of packages successfully processed changes. The higher the verbosity the more packages from BAD_RECOMMENDATIONS are processed.
+
+I include the output of the rootfs creation below, with the "ignoring recommendation" lines pulled out.
+
+I believe that I am using BAD_RECOMMENDATIONS correctly, I just cannot see what is going wrong.
+I've tried with the a newer version of opkg (0.2.3) but that showed the same issues.
+
+Thanks for any help
+
+Chris Carr
 
 
-On 29 Sep 2014, at 08:52, Christian Ege <k4230r6@gmail.com> wrote:
+-------------------------------
 
-> Hi,
-> 2014-09-28 11:47 GMT+02:00 Chris Tapp <opensource@keylevel.com>:
->> I'm currently using a bbappend file to patch bash under 'danny' due =
-to "Shellshocked" - basically by adding patches 11..50 to the SRC_URI.
->>=20
->> However, patches are still coming out ;-)
->>=20
->> How do I make sure that new ones get reflected in the build? I would =
-normally bump PR in a .bb file, but I don't think a .bbappend should be =
-changing this?
-> For danny you can use PRINC
-> =
-http://www.yoctoproject.org/docs/1.3.2/poky-ref-manual/poky-ref-manual.htm=
-l#var-PRINC
-> For newer releases this is deprecated.
->=20
-> Could you please be so kind and share your bbappend + patches?
+-bash-4.2$ /srv/nfs/chris/owc_up/poky/build/tmp/sysroots/x86_64-linux/usr/bin/opkg-cl -v
+opkg version 0.2.2
 
-Sure - I'll make this public after I finish work today.
+Default Run:
 
-> Is there any chance to get this in the official poky branches?
->=20
->=20
-> regards,
-> Christian
->>=20
->> --
->>=20
->> Chris Tapp
->> opensource@keylevel.com
->> www.keylevel.com
->>=20
->> ----
->> You can tell you're getting older when your car insurance gets real =
-cheap!
->>=20
->>=20
->>=20
->>=20
->>=20
->>=20
->>=20
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->=20
->=20
->=20
-> --=20
-> http://project-magpie.github.io/
+NOTE: /srv/nfs/chris/owc_up/poky/build/tmp/sysroots/x86_64-linux/usr/bin/opkg-cl -f /srv/nfs/chris/owc_up/poky/build/tmp/work/da923rc-owc_cc-linux-gnuspe/openware-core/1.0-r0/opkg.conf -o /srv/nfs/chris/owc_up/poky/build/tmp/work/da923rc-owc_cc-linux-gnuspe/openware-core/1.0-r0/rootfs --force_postinstall --prefer-arch-to-version   install opkg-collateral packagegroup-owc-system packagegroup-owc-boot packagegroup-owc-net opkg packagegroup-owc-ruby
 
---
+vim: ignoring recommendation for vim-syntax at user request
+systemd: ignoring recommendation for e2fsprogs-e2fsck at user request
 
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
+Debug V1:
 
-----
-You can tell you're getting older when your car insurance gets real =
-cheap!
+NOTE: /srv/nfs/chris/owc_up/poky/build/tmp/sysroots/x86_64-linux/usr/bin/opkg-cl -V1 -f /srv/nfs/chris/owc_up/poky/build/tmp/work/da923rc-owc_cc-linux-gnuspe/openware-core/1.0-r0/opkg.conf -o /srv/nfs/chris/owc_up/poky/build/tmp/work/da923rc-owc_cc-linux-gnuspe/openware-core/1.0-r0/rootfs --force_postinstall --prefer-arch-to-version   install opkg-collateral packagegroup-owc-system packagegroup-owc-boot packagegroup-owc-net opkg packagegroup-owc-ruby
 
+vim: ignoring recommendation for vim-syntax at user request
+systemd: ignoring recommendation for e2fsprogs-e2fsck at user request
 
+Debug V2:
 
+NOTE: /srv/nfs/chris/owc_up/poky/build/tmp/sysroots/x86_64-linux/usr/bin/opkg-cl -V2 -f /srv/nfs/chris/owc_up/poky/build/tmp/work/da923rc-owc_cc-linux-gnuspe/openware-core/1.0-r0/opkg.conf -o /srv/nfs/chris/owc_up/poky/build/tmp/work/da923rc-owc_cc-linux-gnuspe/openware-core/1.0-r0/rootfs --force_postinstall --prefer-arch-to-version   install opkg-collateral packagegroup-owc-system packagegroup-owc-boot packagegroup-owc-net opkg packagegroup-owc-ruby
 
+vim: ignoring recommendation for vim-syntax at user request
+systemd: ignoring recommendation for udev-hwdb at user request
+systemd: ignoring recommendation for e2fsprogs-e2fsck at user request
 
+Debug V3:
+
+NOTE: /srv/nfs/chris/owc_up/poky/build/tmp/sysroots/x86_64-linux/usr/bin/opkg-cl -V3 -f /srv/nfs/chris/owc_up/poky/build/tmp/work/da923rc-owc_cc-linux-gnuspe/openware-core/1.0-r0/opkg.conf -o /srv/nfs/chris/owc_up/poky/build/tmp/work/da923rc-owc_cc-linux-gnuspe/openware-core/1.0-r0/rootfs --force_postinstall --prefer-arch-to-version   install opkg-collateral packagegroup-owc-system packagegroup-owc-boot packagegroup-owc-net opkg packagegroup-owc-ruby
+
+vim: ignoring recommendation for vim-help at user request
+vim: ignoring recommendation for vim-syntax at user request
+vim: ignoring recommendation for vim-tutor at user request
+rsyslog: ignoring recommendation for update-rc.d at user request
+busybox: ignoring recommendation for update-rc.d at user request
+busybox: ignoring recommendation for busybox-udhcpc at user request
+dbus-1: ignoring recommendation for update-rc.d at user request
+systemd: ignoring recommendation for update-rc.d at user request
+systemd: ignoring recommendation for udev-hwdb at user request
+systemd: ignoring recommendation for e2fsprogs-e2fsck at user request
+run-postinsts: ignoring recommendation for update-rc.d at user request
+ntp: ignoring recommendation for update-rc.d at user request
+quagga: ignoring recommendation for update-rc.d at user request
+dropbear: ignoring recommendation for update-rc.d at user request
+rarpd: ignoring recommendation for update-rc.d at user request
+
+Debug V4:
+
+NOTE: /srv/nfs/chris/owc_up/poky/build/tmp/sysroots/x86_64-linux/usr/bin/opkg-cl -V4 -f /srv/nfs/chris/owc_up/poky/build/tmp/work/da923rc-owc_cc-linux-gnuspe/openware-core/1.0-r0/opkg.conf -o /srv/nfs/chris/owc_up/poky/build/tmp/work/da923rc-owc_cc-linux-gnuspe/openware-core/1.0-r0/rootfs --force_postinstall --prefer-arch-to-version   install opkg-collateral packagegroup-owc-system packagegroup-owc-boot packagegroup-owc-net opkg packagegroup-owc-ruby
+
+vim: ignoring recommendation for vim-help at user request
+vim: ignoring recommendation for vim-syntax at user request
+vim: ignoring recommendation for vim-tutor at user request
+rsyslog: ignoring recommendation for update-rc.d at user request
+busybox: ignoring recommendation for update-rc.d at user request
+busybox: ignoring recommendation for busybox-udhcpc at user request
+dbus-1: ignoring recommendation for update-rc.d at user request
+systemd: ignoring recommendation for update-rc.d at user request
+systemd: ignoring recommendation for udev-hwdb at user request
+systemd: ignoring recommendation for e2fsprogs-e2fsck at user request
+run-postinsts: ignoring recommendation for update-rc.d at user request
+ntp: ignoring recommendation for update-rc.d at user request
+quagga: ignoring recommendation for update-rc.d at user request
+dropbear: ignoring recommendation for update-rc.d at user request
+rarpd: ignoring recommendation for update-rc.d at user request
 
 
 
