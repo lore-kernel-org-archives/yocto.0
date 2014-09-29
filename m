@@ -1,52 +1,36 @@
-Return-Path: <k4230r6@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 19985E00869; Mon, 29 Sep 2014 00:52:49 -0700 (PDT)
+	id 9D4A8E00873; Mon, 29 Sep 2014 01:39:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (k4230r6[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.174 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ie0-f174.google.com (mail-ie0-f174.google.com
-	[209.85.223.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB711E00861
-	for <yocto@yoctoproject.org>; Mon, 29 Sep 2014 00:52:40 -0700 (PDT)
-Received: by mail-ie0-f174.google.com with SMTP id tr6so891998ieb.19
-	for <yocto@yoctoproject.org>; Mon, 29 Sep 2014 00:52:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=bM9iZu8M4Q7BA4lOR0DLIxA3sjR1wT9YjSa1qd61RCU=;
-	b=mq3Tav1CV4F3pQcTCaaEnEIkVcIHOxcddfcbBDLJ9P4I3EzSndoW/YqFwLDwdoUY3A
-	SWdI6ulFCfagTZ/FU0iZro5eD12A9sZIj1ruJPCkkJQVfenQy4xTawuxZuYbCflUq04M
-	f7CLhxmuYY3v63/t1k1SqD3Gy6sLE6FAHRLW7rnnW/RpLfU1ufRvNSVfyQTo9rJ1tOdI
-	/ncSxyVJJpz7SiWhWmAC4STJ5u+vn5FCzwaW3PTlXo4l3Y31R7zzmCkc60iX7zLOFIyX
-	bsF5FWuqckq0UmKoKVn4Ee68R/M3vYyp6Xt6RwcYIhY+GiFQXLyf2OcH8u0H5zTXWaoX
-	yqfA==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8FAEE00869
+	for <yocto@yoctoproject.org>; Mon, 29 Sep 2014 01:39:39 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga103.jf.intel.com with ESMTP; 29 Sep 2014 01:37:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.04,618,1406617200"; d="scan'208";a="580519921"
+Received: from marksmed-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.120.173])
+	by orsmga001.jf.intel.com with ESMTP; 29 Sep 2014 01:39:36 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Joseph Andrew de la =?ISO-8859-1?Q?Pe=F1a?= <jdelapena@lexmark.com>
+Date: Mon, 29 Sep 2014 09:39:36 +0100
+Message-ID: <2647971.Ts2ODotvJE@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.1 (Linux/3.16.3-200.fc20.x86_64; KDE/4.14.1; x86_64; ; )
+In-Reply-To: <CAJrRHk58ivpRq3GD8XbNp9YOCdivLhCK_36=p16RgHqR3ZO2GA@mail.gmail.com>
+References: <CAJrRHk4r+MngXE5oAUhde40u+KNNS9FYMjGDJw0NR1oqJU-9LQ@mail.gmail.com>
+	<5194477.G6vUEZEebf@peggleto-mobl5.ger.corp.intel.com>
+	<CAJrRHk58ivpRq3GD8XbNp9YOCdivLhCK_36=p16RgHqR3ZO2GA@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.50.122.5 with SMTP id lo5mr32981430igb.25.1411977159441;
-	Mon, 29 Sep 2014 00:52:39 -0700 (PDT)
-Received: by 10.64.76.108 with HTTP; Mon, 29 Sep 2014 00:52:39 -0700 (PDT)
-In-Reply-To: <AD958144-D4EB-42F9-B6C9-D391C7D9A84C@keylevel.com>
-References: <AD958144-D4EB-42F9-B6C9-D391C7D9A84C@keylevel.com>
-Date: Mon, 29 Sep 2014 09:52:39 +0200
-Message-ID: <CAALGJZbTYeiqynQm7_7igto48annBnKUSihFSNzHtn4QBfdxjA@mail.gmail.com>
-From: Christian Ege <k4230r6@gmail.com>
-To: Chris Tapp <opensource@keylevel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: PR and bbappend files
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Wildcard in RDEPENDS when exporting perl modules to SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,50 +42,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Sep 2014 07:52:49 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 29 Sep 2014 08:39:43 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-Hi,
-2014-09-28 11:47 GMT+02:00 Chris Tapp <opensource@keylevel.com>:
-> I'm currently using a bbappend file to patch bash under 'danny' due to "Shellshocked" - basically by adding patches 11..50 to the SRC_URI.
+On Monday 29 September 2014 08:09:33 Joseph Andrew de la Pe=F1a wrote:
+> On Fri, Sep 26, 2014 at 5:02 PM, Paul Eggleton <
+> paul.eggleton@linux.intel.com> wrote:
+> > There isn't, but you can just add nativesdk-perl-modules to your SD=
+K (via
+> > appending to TOOLCHAIN_TARGET_TASK) to accomplish the same thing - =
+it's a
+> > meta-package that will bring in all of the core modules.
 >
-> However, patches are still coming out ;-)
->
-> How do I make sure that new ones get reflected in the build? I would normally bump PR in a .bb file, but I don't think a .bbappend should be changing this?
-For danny you can use PRINC
-http://www.yoctoproject.org/docs/1.3.2/poky-ref-manual/poky-ref-manual.html#var-PRINC
-For newer releases this is deprecated.
+> I would like to ask why you specifically noted the TOOLCHAIN_TARGET_T=
+ASK
+> and not the TOOLCHAIN_HOST_TASK?
+> Why are you inclined to putting it into the target sysroot and not th=
+e host
+> sysroot? Or plainly what are the guidelines on where to put the unit =
+to
+> that toolchain task?
 
-Could you please be so kind and share your bbappend + patches?
-Is there any chance to get this in the official poky branches?
+Actually I had this wrong, it should be TOOLCHAIN_HOST_TASK - it's not =
+a=20
+target package. Where to put a particular package in the two parts of t=
+he SDK=20
+depends on where the package is normally designed to run - the build ho=
+st or=20
+the target.
 
+Cheers,
+Paul
 
-regards,
-Christian
->
-> --
->
-> Chris Tapp
-> opensource@keylevel.com
-> www.keylevel.com
->
-> ----
-> You can tell you're getting older when your car insurance gets real cheap!
->
->
->
->
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+--=20
 
-
-
--- 
-http://project-magpie.github.io/
+Paul Eggleton
+Intel Open Source Technology Centre
 
