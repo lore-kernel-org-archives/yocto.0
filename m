@@ -1,46 +1,37 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <ezekiel@sanborndeasis.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB104E00877; Tue, 30 Sep 2014 13:05:37 -0700 (PDT)
+	id 5E879E007DF; Tue, 30 Sep 2014 16:02:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+X-Spam-Level: *
+X-Spam-Status: No, score=1.5 required=5.0 tests=BAYES_50,HTML_MESSAGE,
+	MIME_HTML_ONLY,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [173.201.192.192 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFA22E0079A
-	for <yocto@yoctoproject.org>; Tue, 30 Sep 2014 13:05:25 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga103.jf.intel.com with ESMTP; 30 Sep 2014 13:03:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,628,1406617200"; 
-	d="scan'208,217";a="581483027"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by orsmga001.jf.intel.com with ESMTP; 30 Sep 2014 13:05:19 -0700
-Received: from orsmsx154.amr.corp.intel.com (10.22.226.12) by
-	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
-	(TLS) id 14.3.195.1; Tue, 30 Sep 2014 13:05:19 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.56]) by
-	ORSMSX154.amr.corp.intel.com ([169.254.11.92]) with mapi id
-	14.03.0195.001; Tue, 30 Sep 2014 13:05:18 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Chris Hallinan <challinan@gmail.com>, Jeff Osier-Mixon <jefro@jefro.net>
-Thread-Topic: [yocto] YP documentation survey
-Thread-Index: AQHP3Nty+gaH9MwPQUq78WEG9V2Ru5waGSYw
-Date: Tue, 30 Sep 2014 20:05:18 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988E3E79A@ORSMSX101.amr.corp.intel.com>
-References: <CA+YB3rZasuoA8fysS3ZkbcRm9xidC7NA=Y1YAY=FYw278frkCQ@mail.gmail.com>
-	<CAME0jBRVVXpK7pJBuRiONC2Uqsasz3TFnPgnp0h92H2n+_Wiqg@mail.gmail.com>
-In-Reply-To: <CAME0jBRVVXpK7pJBuRiONC2Uqsasz3TFnPgnp0h92H2n+_Wiqg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
-MIME-Version: 1.0
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: YP documentation survey
+	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+	*      [score: 0.4970]
+	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
+X-Greylist: delayed 123 seconds by postgrey-1.32 at yocto-www;
+	Tue, 30 Sep 2014 16:02:27 PDT
+Received: from p3plwbeout14-06.prod.phx3.secureserver.net
+	(p3plsmtp14-06-2.prod.phx3.secureserver.net [173.201.192.192])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 316E4E0034C
+	for <yocto@yoctoproject.org>; Tue, 30 Sep 2014 16:02:27 -0700 (PDT)
+Received: from localhost ([173.201.192.244])
+	by p3plwbeout14-06.prod.phx3.secureserver.net with bizsmtp
+	id xb0K1o0015GqY0l01b0KLU; Tue, 30 Sep 2014 16:00:19 -0700
+X-SID: xb0K1o0015GqY0l01
+Received: (qmail 15403 invoked by uid 99); 30 Sep 2014 23:00:19 -0000
+X-Originating-IP: 54.240.196.169
+User-Agent: Workspace Webmail 5.7.3
+Message-Id: <20140930160017.8c4e4b9406b77e1e78d5069819454ed7.477e300d77.wbe@email14.secureserver.net>
+From: <ezekiel@sanborndeasis.net>
+To: yocto@yoctoproject.org
+Date: Tue, 30 Sep 2014 16:00:17 -0700
+Mime-Version: 1.0
+Subject: fetch task not run after SRCREV updated
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,355 +43,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Sep 2014 20:05:38 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237988E3E79AORSMSX101amrcor_"
-
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237988E3E79AORSMSX101amrcor_
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 30 Sep 2014 23:02:30 -0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
 
-I could not replicate the failure here.  I cloned the latest poky and then =
-checked out a branch based on the 'yocto-1.6' tag.  I was able to 'make DOC=
-=3Dmega-manual' and 'make DOC=3Ddev-manual' with no issues.  If you want, y=
-ou can email me directly with more details of how it is failing on your end=
-.
+<html><body><span style=3D"font-family:Verdana; color:#000000; font-size:10=
+pt;"><div>I noticed that if I update the SRCREV value in a recipe to a newe=
+r rev for a GIT repository, OE does not think it needs to run the fetch ste=
+p unless I force it. In other words</div><div><br></div><div>bitbake -c fet=
+ch foobar</div><div><br></div><div>does not pick up that the SRCREV it was =
+downloaded for is no longer correct.</div><div><br></div><div>bitbake -f -c=
+ fetch foobar</div><div><br></div><div>obviously works fine. It appears to =
+come down to the do_fetch stampfile.  Is this intended functionality? It se=
+ems that if my SRCREV does not match against what was downloaded that shoul=
+d be invalidated and the fetch should be forced. Am I missing something?</d=
+iv><div><br></div><div>-Ezekiel<br></div></span></body></html>
 
-Thanks,
-Scott
-
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Chris Hallinan
-Sent: Tuesday, September 30, 2014 11:22 AM
-To: Jeff Osier-Mixon
-Cc: Yocto Project
-Subject: Re: [yocto] YP documentation survey
-
-You forgot the fourth question:
-
-- Who reads the docs?  ;)
-
-In all seriousness, the YP has some of the best docs I've ever seen come ou=
-t of an open source project.
-
-My only comment: make it easier to build the latest docs from git.  I seem =
-to always hit errors, and I've seen other posts about that, too. I just did=
- a quick make DOC=3Dmega-manual on Daisy, and it failed with:
-"tar: mega-manual.html: Cannot stat: No such file or directory"
-
-make DOC=3Ddev-manual failed due to missing dependencies, and in the 30 sec=
-onds I spent while writing this e-mail, I couldn't figure out what to insta=
-ll on my U14.04 host to satisfy it.
-
-I don't have much use/fondness for html docs.  Give me a searchable PDF any=
- day.
-
-Another suggestion might be to include a setup script that makes sure the p=
-roper packages are installed.
-
-All in all, I give the docs a straight 'A' for being well written, informat=
-ive, and nearly always relatively current, but then, I don't read the docs.=
-.. ;)
-
-My $0.02
-
-Let the comments fly ;)
-
--Chris
-
-
-
-
-
-
-On Tue, Sep 30, 2014 at 1:43 PM, Jeff Osier-Mixon <jefro@jefro.net<mailto:j=
-efro@jefro.net>> wrote:
-Hello - this is the first in a series of short surveys to find out how
-the Yocto Project core team can continue to deliver world-class tools,
-templates, and processes for creating embedded Linux operating
-systems. We will try to keep the surveys short, but we strongly
-encourage you to provide information and opinions on all questions.
-The more information you provide, the better the Yocto Project will
-be.
-
-We appreciate all responses, either on the survey, on this thread, or
-privately back to me. If you respond privately, your comments will be
-kept anonymous unless otherwise specified.
-
-We're starting with documentation.
-
-https://www.surveymonkey.com/r/SJVQT5M
-
-- Does the Yocto Project documentation serve your needs?
-
-- What do you like best about the documentation?
-
-- What do you notice that is missing?
-
-
-Thanks
---
-Jeff Osier-Mixon @Intel
-Yocto Project Community Manager http://yoctoproject.org
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-https://lists.yoctoproject.org/listinfo/yocto
-
-
-
---
-Life is like Linux - it never stands still.
-
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237988E3E79AORSMSX101amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.hoenzb
-	{mso-style-name:hoenzb;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">I could not replicate the=
- failure here.&nbsp; I cloned the latest poky and then checked out a branch=
- based on the &#8216;yocto-1.6&#8217; tag.&nbsp; I was able to &#8216;make =
-DOC=3Dmega-manual&#8217;
- and &#8216;make DOC=3Ddev-manual&#8217; with no issues.&nbsp; If you want,=
- you can email me directly with more details of how it is failing on your e=
-nd.&nbsp;
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thanks,
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Scott<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
-unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-<b>On Behalf Of </b>Chris Hallinan<br>
-<b>Sent:</b> Tuesday, September 30, 2014 11:22 AM<br>
-<b>To:</b> Jeff Osier-Mixon<br>
-<b>Cc:</b> Yocto Project<br>
-<b>Subject:</b> Re: [yocto] YP documentation survey<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal">You forgot the fourth question:<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">- Who reads the docs? &nbsp;;)<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">In all seriousness, the YP has some of the best docs=
- I've ever seen come out of an open source project. &nbsp;<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">My only comment: make it easier to build the latest =
-docs from git.&nbsp; I seem to always hit errors, and I've seen other posts=
- about that, too. I just did a quick make DOC=3Dmega-manual on Daisy, and i=
-t failed with:<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">&quot;tar: mega-manual.html: Cannot stat: No such fi=
-le or directory&quot; &nbsp;<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">make DOC=3Ddev-manual failed due to missing dependen=
-cies, and in the 30 seconds I spent while writing this e-mail, I couldn't f=
-igure out what to install on my U14.04 host to satisfy it.<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I don't have much use/fondness for html docs.&nbsp; =
-Give me a searchable PDF any day.<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Another suggestion might be to include a setup scrip=
-t that makes sure the proper packages are installed.<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">All in all, I give the docs a straight 'A' for being=
- well written, informative, and nearly always relatively current, but then,=
- I don't read the docs... ;)<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">My $0.02<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Let the comments fly ;)<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">-Chris<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal">On Tue, Sep 30, 2014 at 1:43 PM, Jeff Osier-Mixon &l=
-t;<a href=3D"mailto:jefro@jefro.net" target=3D"_blank">jefro@jefro.net</a>&=
-gt; wrote:<o:p></o:p></p>
-<p class=3D"MsoNormal">Hello - this is the first in a series of short surve=
-ys to find out how<br>
-the Yocto Project core team can continue to deliver world-class tools,<br>
-templates, and processes for creating embedded Linux operating<br>
-systems. We will try to keep the surveys short, but we strongly<br>
-encourage you to provide information and opinions on all questions.<br>
-The more information you provide, the better the Yocto Project will<br>
-be.<br>
-<br>
-We appreciate all responses, either on the survey, on this thread, or<br>
-privately back to me. If you respond privately, your comments will be<br>
-kept anonymous unless otherwise specified.<br>
-<br>
-We're starting with documentation.<br>
-<br>
-<a href=3D"https://www.surveymonkey.com/r/SJVQT5M" target=3D"_blank">https:=
-//www.surveymonkey.com/r/SJVQT5M</a><br>
-<br>
-- Does the Yocto Project documentation serve your needs?<br>
-<br>
-- What do you like best about the documentation?<br>
-<br>
-- What do you notice that is missing?<br>
-<br>
-<br>
-Thanks<br>
-<span class=3D"hoenzb"><span style=3D"color:#888888">--</span></span><span =
-style=3D"color:#888888"><br>
-<span class=3D"hoenzb">Jeff Osier-Mixon @Intel</span><br>
-<span class=3D"hoenzb">Yocto Project Community Manager <a href=3D"http://yo=
-ctoproject.org" target=3D"_blank">
-http://yoctoproject.org</a></span><br>
-<span class=3D"hoenzb">--</span><br>
-<span class=3D"hoenzb">_______________________________________________</spa=
-n><br>
-<span class=3D"hoenzb">yocto mailing list</span><br>
-<span class=3D"hoenzb"><a href=3D"mailto:yocto@yoctoproject.org">yocto@yoct=
-oproject.org</a></span><br>
-<span class=3D"hoenzb"><a href=3D"https://lists.yoctoproject.org/listinfo/y=
-octo" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a></=
-span></span><o:p></o:p></p>
-</div>
-<p class=3D"MsoNormal"><br>
-<br clear=3D"all">
-<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">-- <br>
-Life is like Linux - it never stands still.<o:p></o:p></p>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237988E3E79AORSMSX101amrcor_--
