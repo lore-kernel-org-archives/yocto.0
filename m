@@ -1,44 +1,39 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 61BB5E0079E; Mon, 29 Sep 2014 15:00:12 -0700 (PDT)
+	id 2712AE0084E; Tue, 30 Sep 2014 00:53:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.42 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-qg0-f42.google.com (mail-qg0-f42.google.com
-	[209.85.192.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED8D3E006DB
-	for <yocto@yoctoproject.org>; Mon, 29 Sep 2014 15:00:10 -0700 (PDT)
-Received: by mail-qg0-f42.google.com with SMTP id z60so11500006qgd.29
-	for <yocto@yoctoproject.org>; Mon, 29 Sep 2014 15:00:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=CVQeQ3njUstqGTdKF4T7azaZp1gyghkwx07BU7b4W9o=;
-	b=Euet3iqFbOiJKJ+fhLqTLgKmTRU5gWom2bP9QE/BuDRamEBJ3HIgqQQYBsltJo92pI
-	+6+u14WKagLdX64Z2xyz3Vrtodcvb/vfMHWeBYJ+a4+W5KEfZzJOOMFmL4YPmAdfHD4R
-	4gyFbg1qnECsxMh0f0r5pj4TdAKUx/r1qGYuwM4ideCqmjkPfGLDMNocICKS8Vud6erc
-	TZVDGJleBqkdO5HQuJ07w86YJ2Pi5MFH1CLXcb/5s31HjBUTuWQJB2bDKQXF7+PFMwb1
-	vEd+EwOJXbG/EsfNWdBPOqLKCDJQCPy2Hm4WR+CxKJgGmwoa2jZnTG+jdJt1pLevyiyu
-	CNig==
-X-Gm-Message-State: ALoCoQn1iZqblHqOiL0ygYebGcogtI3IaBy5HdE7ZbWoGiRFzgvswnRK8+Y6fjzMc2eUcLEwMIn8
-X-Received: by 10.224.63.140 with SMTP id b12mr38872705qai.22.1412028009581;
-	Mon, 29 Sep 2014 15:00:09 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.140.34.180 with HTTP; Mon, 29 Sep 2014 14:59:49 -0700 (PDT)
-In-Reply-To: <221FE6F5-8350-467B-9744-402B89707FAF@keylevel.com>
+Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5B9AE006DB
+	for <yocto@yoctoproject.org>; Tue, 30 Sep 2014 00:53:14 -0700 (PDT)
+Received: from [109.224.171.0] (port=65119
+	helo=macbook-pro.durham.keylevel.com)
+	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.82)
+	(envelope-from <opensource@keylevel.com>)
+	id 1XYsFA-003ITT-D7; Tue, 30 Sep 2014 08:53:10 +0100
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <CAJTo0LY=A-dj2VZU3iP_R=SVSHYsV+fXgrPUnfFz62FPEFgaOA@mail.gmail.com>
+Date: Tue, 30 Sep 2014 08:53:08 +0100
+Message-Id: <E882175C-A206-42C7-96CB-FA54E0AC8A9D@keylevel.com>
 References: <221FE6F5-8350-467B-9744-402B89707FAF@keylevel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 29 Sep 2014 22:59:49 +0100
-Message-ID: <CAJTo0LY=A-dj2VZU3iP_R=SVSHYsV+fXgrPUnfFz62FPEFgaOA@mail.gmail.com>
-To: Chris Tapp <opensource@keylevel.com>
+	<CAJTo0LY=A-dj2VZU3iP_R=SVSHYsV+fXgrPUnfFz62FPEFgaOA@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+X-Mailer: Apple Mail (2.1878.6)
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - a180.4uh.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
+	chris.tapp@keylevel.com
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Fetcher question
 X-BeenThere: yocto@yoctoproject.org
@@ -52,16 +47,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Sep 2014 22:00:12 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 30 Sep 2014 07:53:19 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 29 September 2014 22:36, Chris Tapp <opensource@keylevel.com> wrote:
-> How would the fetcher handle the file changing after it had already been downloaded and passed a checksum test? Would the change have been detected?
 
-The checksum comparison is only done at fetch.
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=5571 talks about
-extending that to verify the checksums at do_unpack() to catch
-situations like this.
+On 29 Sep 2014, at 22:59, Burton, Ross <ross.burton@intel.com> wrote:
 
-Ross
+> On 29 September 2014 22:36, Chris Tapp <opensource@keylevel.com> =
+wrote:
+>> How would the fetcher handle the file changing after it had already =
+been downloaded and passed a checksum test? Would the change have been =
+detected?
+>=20
+> The checksum comparison is only done at fetch.
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5571 talks about
+> extending that to verify the checksums at do_unpack() to catch
+> situations like this.
+
+I'm not sure this is quite the same - in this case the (downloaded) file =
+and checksum would have matched but the remote file has changed.
+
+I don't think there's a lot that can be done about this other than try =
+and persuade people not to change published files ;-)
+
+--
+
+Chris Tapp
+opensource@keylevel.com
+www.keylevel.com
+
+----
+You can tell you're getting older when your car insurance gets real =
+cheap!
+
 
