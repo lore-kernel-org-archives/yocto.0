@@ -1,49 +1,48 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <ncrypticus@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 28A6FE00876; Tue, 30 Sep 2014 11:30:55 -0700 (PDT)
+	id 2B972E00878; Tue, 30 Sep 2014 12:08:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ncrypticus[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.43 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C411E0034C
-	for <yocto@yoctoproject.org>; Tue, 30 Sep 2014 11:30:45 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by orsmga102.jf.intel.com with ESMTP; 30 Sep 2014 11:24:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,628,1406617200"; 
-	d="scan'208,217";a="481059820"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by azsmga001.ch.intel.com with ESMTP; 30 Sep 2014 11:30:43 -0700
-Received: from orsmsx156.amr.corp.intel.com (10.22.240.22) by
-	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
-	(TLS) id 14.3.195.1; Tue, 30 Sep 2014 11:30:43 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.56]) by
-	ORSMSX156.amr.corp.intel.com ([169.254.8.137]) with mapi id
-	14.03.0195.001; Tue, 30 Sep 2014 11:30:43 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Chris Hallinan <challinan@gmail.com>, Jeff Osier-Mixon <jefro@jefro.net>
-Thread-Topic: [yocto] YP documentation survey
-Thread-Index: AQHP3Nty+gaH9MwPQUq78WEG9V2Ru5wZ/xGw
-Date: Tue, 30 Sep 2014 18:30:42 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988E3E67C@ORSMSX101.amr.corp.intel.com>
-References: <CA+YB3rZasuoA8fysS3ZkbcRm9xidC7NA=Y1YAY=FYw278frkCQ@mail.gmail.com>
-	<CAME0jBRVVXpK7pJBuRiONC2Uqsasz3TFnPgnp0h92H2n+_Wiqg@mail.gmail.com>
-In-Reply-To: <CAME0jBRVVXpK7pJBuRiONC2Uqsasz3TFnPgnp0h92H2n+_Wiqg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wg0-f43.google.com (mail-wg0-f43.google.com [74.125.82.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAFD6E00876
+	for <yocto@yoctoproject.org>; Tue, 30 Sep 2014 12:08:31 -0700 (PDT)
+Received: by mail-wg0-f43.google.com with SMTP id a1so4364577wgh.2
+	for <yocto@yoctoproject.org>; Tue, 30 Sep 2014 12:08:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=L51Sss158uw+vLD0eu2B9wAXbMfx8i6QMTcN01ZVcSs=;
+	b=X9lMeoe9npY76cvz7wvzB5StK/dukyWp2580e6ZPsGNc4+Jcl80PmqKZkgBhvnF49V
+	YHmRDG3Mq5wsKMupQe0eY7WKv6tpg2LBnjQUAnyvaA+hJxpUW412mnjRl8NtbR/POWo9
+	nmNKLw3AFzkeAhX4bIaBI3j4Ivvhz58wtAAZtzSWaejk7kIwQ9BMUxvJ7zoJhspWSTNK
+	J97lxT85IvW2260FeaBZzb8NncArBpOph18XZ3qTWCC607PLosstySh40yO4+CRKilqG
+	n02pgeB+GNqJpkgBCcWMaHdbVQRic1jjPJ0IX637IICMQARbiwElD7xU+2svHNclVR5e
+	v+eA==
 MIME-Version: 1.0
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: YP documentation survey
+X-Received: by 10.180.38.114 with SMTP id f18mr8099882wik.24.1412104109891;
+	Tue, 30 Sep 2014 12:08:29 -0700 (PDT)
+Received: by 10.194.10.202 with HTTP; Tue, 30 Sep 2014 12:08:29 -0700 (PDT)
+Date: Tue, 30 Sep 2014 12:08:29 -0700
+Message-ID: <CAMSG=xVdr6S7XwkwNnqPNHCrrCLxycmAf4X_wqGrBh36p2vTKg@mail.gmail.com>
+From: Nemicolopterus Crypticus <ncrypticus@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Yocto Plugin NullPointerException
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,362 +54,187 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Sep 2014 18:30:55 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237988E3E67CORSMSX101amrcor_"
+X-List-Received-Date: Tue, 30 Sep 2014 19:08:40 -0000
+Content-Type: multipart/alternative; boundary=e89a8f6439c6db261605044d1bed
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237988E3E67CORSMSX101amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--e89a8f6439c6db261605044d1bed
+Content-Type: text/plain; charset=UTF-8
+
+Note: The plugin works on a different project in the same Eclipse
+workspace. I am attempting to create some Project-specific settings, and
+point the Toolchain and Sysroot to a different directory, and I'm getting
+this error.
+
+Full output here:http://pastebin.com/CkGfWspY
+
+Running Kepler 4.3.2
+
+Any thoughts? I'm completely stuck.
+
+
+!SESSION 2014-09-30 11:41:03.071
+-----------------------------------------------
+eclipse.buildId=4.3.2.M20140221-1700
+java.version=1.6.0_45
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product
+org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.ui 4 4 2014-09-30 11:41:19.338
+!MESSAGE Referenced part does not exist yet: org.eclipse.ui.views.TaskList.
+
+!ENTRY org.eclipse.ui 4 0 2014-09-30 11:42:43.588
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+    at org.yocto.sdk.ide.YoctoSDKChecker.checkYoctoSDK(Unknown Source)
+    at org.yocto.sdk.ide.YoctoUISetting.validateInput(Unknown Source)
+    at
+org.yocto.sdk.ide.preferences.YoctoSDKPreferencePage.performOk(Unknown
+Source)
+    at
+org.eclipse.jface.preference.PreferencePage.performApply(PreferencePage.java:432)
+    at
+org.eclipse.jface.preference.PreferencePage$2.widgetSelected(PreferencePage.java:281)
+    at
+org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:248)
+    at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+    at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1392)
+    at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3742)
+    at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3363)
+    at org.eclipse.jface.window.Window.runEventLoop(Window.java:826)
+    at org.eclipse.jface.window.Window.open(Window.java:802)
+    at
+org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog.open(WorkbenchPreferenceDialog.java:215)
+    at
+org.eclipse.ui.internal.OpenPreferencesAction.run(OpenPreferencesAction.java:65)
+    at org.eclipse.jface.action.Action.runWithEvent(Action.java:499)
+    at
+org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:584)
+    at
+org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:501)
+    at
+org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:411)
+    at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+    at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1392)
+    at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3742)
+    at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3363)
+    at
+org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1113)
+    at
+org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+    at
+org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:997)
+    at
+org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:140)
+    at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:611)
+    at
+org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+    at
+org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:567)
+    at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+    at
+org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+    at
+org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+    at
+org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+    at
+org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+    at
+org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:354)
+    at
+org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:181)
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+    at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+    at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+    at java.lang.reflect.Method.invoke(Unknown Source)
+    at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:636)
+    at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
+    at org.eclipse.equinox.launcher.Main.run(Main.java:1450)
+    at org.eclipse.equinox.launcher.Main.main(Main.java:1426)
+
+--e89a8f6439c6db261605044d1bed
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Sounds like a make problem on the mega-manual fail.  I will look at that fi=
-le and make sure that I have or at least am checking for all the various ot=
-her manuals in HTML form that must exist in order for mega-manual to make. =
- Regarding the dev-manual failure I would be interested in seeing what depe=
-ndencies were causing the issue.
+<div dir=3D"ltr"><div><div><div>Note: The plugin works on a different proje=
+ct in the same Eclipse=20
+workspace. I am attempting to create some Project-specific settings, and po=
+int the Toolchain and Sysroot to a different directory, and I&#39;m
+ getting this error.<br><br></div>Full output here:<a href=3D"http://pasteb=
+in.com/CkGfWspY">http://pastebin.com/CkGfWspY</a><br><br></div><div>Running=
+ Kepler 4.3.2<br><br></div>Any thoughts? I&#39;m completely stuck.<br></div=
+><br><div><div><div><br>!SESSION 2014-09-30 11:41:03.071 ------------------=
+-----------------------------<br>eclipse.buildId=3D4.3.2.M20140221-1700<br>=
+java.version=3D1.6.0_45<br>java.vendor=3DSun Microsystems Inc.<br>BootLoade=
+r constants: OS=3Dlinux, ARCH=3Dx86_64, WS=3Dgtk, NL=3Den_US<br>Framework a=
+rguments:=C2=A0 -product org.eclipse.epp.package.standard.product<br>Comman=
+d-line arguments:=C2=A0 -os linux -ws gtk -arch x86_64 -product org.eclipse=
+.epp.package.standard.product<br><br>!ENTRY org.eclipse.ui 4 4 2014-09-30 1=
+1:41:19.338<br>!MESSAGE Referenced part does not exist yet: org.eclipse.ui.=
+views.TaskList.<br><br>!ENTRY org.eclipse.ui 4 0 2014-09-30 11:42:43.588<br=
+>!MESSAGE Unhandled event loop exception<br>!STACK 0<br>java.lang.NullPoint=
+erException<br>=C2=A0=C2=A0=C2=A0 at org.yocto.sdk.ide.YoctoSDKChecker.chec=
+kYoctoSDK(Unknown Source)<br>=C2=A0=C2=A0=C2=A0 at org.yocto.sdk.ide.YoctoU=
+ISetting.validateInput(Unknown Source)<br>=C2=A0=C2=A0=C2=A0 at org.yocto.s=
+dk.ide.preferences.YoctoSDKPreferencePage.performOk(Unknown Source)<br>=C2=
+=A0=C2=A0=C2=A0 at org.eclipse.jface.preference.PreferencePage.performApply=
+(PreferencePage.java:432)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.jface.prefer=
+ence.PreferencePage$2.widgetSelected(PreferencePage.java:281)<br>=C2=A0=C2=
+=A0=C2=A0 at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListene=
+r.java:248)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.swt.widgets.EventTable.sen=
+dEvent(EventTable.java:84)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.swt.widgets=
+.Widget.sendEvent(Widget.java:1392)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.sw=
+t.widgets.Display.runDeferredEvents(Display.java:3742)<br>=C2=A0=C2=A0=C2=
+=A0 at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3363)<b=
+r>=C2=A0=C2=A0=C2=A0 at org.eclipse.jface.window.Window.runEventLoop(Window=
+.java:826)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.jface.window.Window.open(Wi=
+ndow.java:802)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.ui.internal.dialogs.Wor=
+kbenchPreferenceDialog.open(WorkbenchPreferenceDialog.java:215)<br>=C2=A0=
+=C2=A0=C2=A0 at org.eclipse.ui.internal.OpenPreferencesAction.run(OpenPrefe=
+rencesAction.java:65)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.jface.action.Act=
+ion.runWithEvent(Action.java:499)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.jfac=
+e.action.ActionContributionItem.handleWidgetSelection(ActionContributionIte=
+m.java:584)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.jface.action.ActionContrib=
+utionItem.access$2(ActionContributionItem.java:501)<br>=C2=A0=C2=A0=C2=A0 a=
+t org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContr=
+ibutionItem.java:411)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.swt.widgets.Even=
+tTable.sendEvent(EventTable.java:84)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.s=
+wt.widgets.Widget.sendEvent(Widget.java:1392)<br>=C2=A0=C2=A0=C2=A0 at org.=
+eclipse.swt.widgets.Display.runDeferredEvents(Display.java:3742)<br>=C2=A0=
+=C2=A0=C2=A0 at org.eclipse.swt.widgets.Display.readAndDispatch(Display.jav=
+a:3363)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.e4.ui.internal.workbench.swt.P=
+artRenderingEngine$9.run(PartRenderingEngine.java:1113)<br>=C2=A0=C2=A0=C2=
+=A0 at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.j=
+ava:332)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.e4.ui.internal.workbench.swt.=
+PartRenderingEngine.run(PartRenderingEngine.java:997)<br>=C2=A0=C2=A0=C2=A0=
+ at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workb=
+ench.java:140)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.ui.internal.Workbench$5=
+.run(Workbench.java:611)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.core.databind=
+ing.observable.Realm.runWithDefault(Realm.java:332)<br>=C2=A0=C2=A0=C2=A0 a=
+t org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:56=
+7)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.ui.PlatformUI.createAndRunWorkbench=
+(PlatformUI.java:150)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.ui.internal.ide.=
+application.IDEApplication.start(IDEApplication.java:124)<br>=C2=A0=C2=A0=
+=C2=A0 at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppH=
+andle.java:196)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.core.runtime.internal.=
+adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)<br>=
+=C2=A0=C2=A0=C2=A0 at org.eclipse.core.runtime.internal.adaptor.EclipseAppL=
+auncher.start(EclipseAppLauncher.java:79)<br>=C2=A0=C2=A0=C2=A0 at org.ecli=
+pse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:354)<br>=C2=
+=A0=C2=A0=C2=A0 at org.eclipse.core.runtime.adaptor.EclipseStarter.run(Ecli=
+pseStarter.java:181)<br>=C2=A0=C2=A0=C2=A0 at sun.reflect.NativeMethodAcces=
+sorImpl.invoke0(Native Method)<br>=C2=A0=C2=A0=C2=A0 at sun.reflect.NativeM=
+ethodAccessorImpl.invoke(Unknown Source)<br>=C2=A0=C2=A0=C2=A0 at sun.refle=
+ct.DelegatingMethodAccessorImpl.invoke(Unknown Source)<br>=C2=A0=C2=A0=C2=
+=A0 at java.lang.reflect.Method.invoke(Unknown Source)<br>=C2=A0=C2=A0=C2=
+=A0 at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:636)<br>=
+=C2=A0=C2=A0=C2=A0 at org.eclipse.equinox.launcher.Main.basicRun(Main.java:=
+591)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.equinox.launcher.Main.run(Main.ja=
+va:1450)<br>=C2=A0=C2=A0=C2=A0 at org.eclipse.equinox.launcher.Main.main(Ma=
+in.java:1426)<br></div></div></div></div>
 
-I am glad for the "straight A"... that is good to hear Chris.
-
-Thanks,
-Scott
-
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Chris Hallinan
-Sent: Tuesday, September 30, 2014 11:22 AM
-To: Jeff Osier-Mixon
-Cc: Yocto Project
-Subject: Re: [yocto] YP documentation survey
-
-You forgot the fourth question:
-
-- Who reads the docs?  ;)
-
-In all seriousness, the YP has some of the best docs I've ever seen come ou=
-t of an open source project.
-
-My only comment: make it easier to build the latest docs from git.  I seem =
-to always hit errors, and I've seen other posts about that, too. I just did=
- a quick make DOC=3Dmega-manual on Daisy, and it failed with:
-"tar: mega-manual.html: Cannot stat: No such file or directory"
-
-make DOC=3Ddev-manual failed due to missing dependencies, and in the 30 sec=
-onds I spent while writing this e-mail, I couldn't figure out what to insta=
-ll on my U14.04 host to satisfy it.
-
-I don't have much use/fondness for html docs.  Give me a searchable PDF any=
- day.
-
-Another suggestion might be to include a setup script that makes sure the p=
-roper packages are installed.
-
-All in all, I give the docs a straight 'A' for being well written, informat=
-ive, and nearly always relatively current, but then, I don't read the docs.=
-.. ;)
-
-My $0.02
-
-Let the comments fly ;)
-
--Chris
-
-
-
-
-
-
-On Tue, Sep 30, 2014 at 1:43 PM, Jeff Osier-Mixon <jefro@jefro.net<mailto:j=
-efro@jefro.net>> wrote:
-Hello - this is the first in a series of short surveys to find out how
-the Yocto Project core team can continue to deliver world-class tools,
-templates, and processes for creating embedded Linux operating
-systems. We will try to keep the surveys short, but we strongly
-encourage you to provide information and opinions on all questions.
-The more information you provide, the better the Yocto Project will
-be.
-
-We appreciate all responses, either on the survey, on this thread, or
-privately back to me. If you respond privately, your comments will be
-kept anonymous unless otherwise specified.
-
-We're starting with documentation.
-
-https://www.surveymonkey.com/r/SJVQT5M
-
-- Does the Yocto Project documentation serve your needs?
-
-- What do you like best about the documentation?
-
-- What do you notice that is missing?
-
-
-Thanks
---
-Jeff Osier-Mixon @Intel
-Yocto Project Community Manager http://yoctoproject.org
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-https://lists.yoctoproject.org/listinfo/yocto
-
-
-
---
-Life is like Linux - it never stands still.
-
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237988E3E67CORSMSX101amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.hoenzb
-	{mso-style-name:hoenzb;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Sounds like a make proble=
-m on the mega-manual fail.&nbsp; I will look at that file and make sure tha=
-t I have or at least am checking for all the various other manuals
- in HTML form that must exist in order for mega-manual to make.&nbsp; Regar=
-ding the dev-manual failure I would be interested in seeing what dependenci=
-es were causing the issue. &nbsp;&nbsp;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">I am glad for the &#8220;=
-straight A&#8221;&#8230; that is good to hear Chris.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thanks,
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Scott<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
-unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-<b>On Behalf Of </b>Chris Hallinan<br>
-<b>Sent:</b> Tuesday, September 30, 2014 11:22 AM<br>
-<b>To:</b> Jeff Osier-Mixon<br>
-<b>Cc:</b> Yocto Project<br>
-<b>Subject:</b> Re: [yocto] YP documentation survey<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal">You forgot the fourth question:<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">- Who reads the docs? &nbsp;;)<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">In all seriousness, the YP has some of the best docs=
- I've ever seen come out of an open source project. &nbsp;<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">My only comment: make it easier to build the latest =
-docs from git.&nbsp; I seem to always hit errors, and I've seen other posts=
- about that, too. I just did a quick make DOC=3Dmega-manual on Daisy, and i=
-t failed with:<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">&quot;tar: mega-manual.html: Cannot stat: No such fi=
-le or directory&quot; &nbsp;<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">make DOC=3Ddev-manual failed due to missing dependen=
-cies, and in the 30 seconds I spent while writing this e-mail, I couldn't f=
-igure out what to install on my U14.04 host to satisfy it.<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I don't have much use/fondness for html docs.&nbsp; =
-Give me a searchable PDF any day.<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Another suggestion might be to include a setup scrip=
-t that makes sure the proper packages are installed.<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">All in all, I give the docs a straight 'A' for being=
- well written, informative, and nearly always relatively current, but then,=
- I don't read the docs... ;)<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">My $0.02<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Let the comments fly ;)<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal">-Chris<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</div>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal">On Tue, Sep 30, 2014 at 1:43 PM, Jeff Osier-Mixon &l=
-t;<a href=3D"mailto:jefro@jefro.net" target=3D"_blank">jefro@jefro.net</a>&=
-gt; wrote:<o:p></o:p></p>
-<p class=3D"MsoNormal">Hello - this is the first in a series of short surve=
-ys to find out how<br>
-the Yocto Project core team can continue to deliver world-class tools,<br>
-templates, and processes for creating embedded Linux operating<br>
-systems. We will try to keep the surveys short, but we strongly<br>
-encourage you to provide information and opinions on all questions.<br>
-The more information you provide, the better the Yocto Project will<br>
-be.<br>
-<br>
-We appreciate all responses, either on the survey, on this thread, or<br>
-privately back to me. If you respond privately, your comments will be<br>
-kept anonymous unless otherwise specified.<br>
-<br>
-We're starting with documentation.<br>
-<br>
-<a href=3D"https://www.surveymonkey.com/r/SJVQT5M" target=3D"_blank">https:=
-//www.surveymonkey.com/r/SJVQT5M</a><br>
-<br>
-- Does the Yocto Project documentation serve your needs?<br>
-<br>
-- What do you like best about the documentation?<br>
-<br>
-- What do you notice that is missing?<br>
-<br>
-<br>
-Thanks<br>
-<span class=3D"hoenzb"><span style=3D"color:#888888">--</span></span><span =
-style=3D"color:#888888"><br>
-<span class=3D"hoenzb">Jeff Osier-Mixon @Intel</span><br>
-<span class=3D"hoenzb">Yocto Project Community Manager <a href=3D"http://yo=
-ctoproject.org" target=3D"_blank">
-http://yoctoproject.org</a></span><br>
-<span class=3D"hoenzb">--</span><br>
-<span class=3D"hoenzb">_______________________________________________</spa=
-n><br>
-<span class=3D"hoenzb">yocto mailing list</span><br>
-<span class=3D"hoenzb"><a href=3D"mailto:yocto@yoctoproject.org">yocto@yoct=
-oproject.org</a></span><br>
-<span class=3D"hoenzb"><a href=3D"https://lists.yoctoproject.org/listinfo/y=
-octo" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a></=
-span></span><o:p></o:p></p>
-</div>
-<p class=3D"MsoNormal"><br>
-<br clear=3D"all">
-<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">-- <br>
-Life is like Linux - it never stands still.<o:p></o:p></p>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237988E3E67CORSMSX101amrcor_--
+--e89a8f6439c6db261605044d1bed--
