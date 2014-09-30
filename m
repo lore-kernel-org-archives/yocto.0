@@ -1,48 +1,40 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <californialsullivan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 54607E0084E; Tue, 30 Sep 2014 02:39:39 -0700 (PDT)
+	id 590F0E00876; Tue, 30 Sep 2014 09:59:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
+	FREEMAIL_FROM,NML_ADSP_CUSTOM_MED autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (californialsullivan[at]gmail.com)
+	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
+	*      CUSTOM_MED
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.45 listed in list.dnswl.org]
-Received: from mail-qg0-f45.google.com (mail-qg0-f45.google.com
-	[209.85.192.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B02CE006DB
-	for <yocto@yoctoproject.org>; Tue, 30 Sep 2014 02:39:28 -0700 (PDT)
-Received: by mail-qg0-f45.google.com with SMTP id e89so1533351qgf.18
-	for <yocto@yoctoproject.org>; Tue, 30 Sep 2014 02:39:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=44oOfaPANipRLJhPEuXs+dU6P1b9hU0nUoHeCQNjqyg=;
-	b=bdf9Jsed1DoBnXafeckjENGHgLhY/169E2zT57xguqq2fYu+9TmlFGxZDeiWhRVy42
-	vfoHxmX3cH8hKwrGVEYcUseXEB9dAagIOqPOVQX4cNh+yrLnPG9JuulG09JOq2vlnFzi
-	Tvr2uDCYpxrGGoekAOgF6uf6qIvHko3JJsCjQCGc+x047F8FqAALsQ9Q6LrNQsitwFQp
-	1Yc0L+4tHLkE5gwg5yHeoieLQ7IeubQxdWmvQA2CagnY7zFarXXjmuw71UlBpLaSkjLZ
-	dvKswk4vUubP5KUpBDyRBKGGyYXyjw1mMqhmCh22ToDeqCKiPFhqJa8ESdzfnHDNZg5h
-	flmw==
-X-Gm-Message-State: ALoCoQmSOKJaM331rIAb4l/7rhEeluEd1gDGxTrgWIDoUh00meymEhx6rPlUBJqnCooN5jAP1dj6
-X-Received: by 10.140.97.247 with SMTP id m110mr19613078qge.80.1412069968221; 
-	Tue, 30 Sep 2014 02:39:28 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.140.34.180 with HTTP; Tue, 30 Sep 2014 02:39:07 -0700 (PDT)
-In-Reply-To: <E882175C-A206-42C7-96CB-FA54E0AC8A9D@keylevel.com>
-References: <221FE6F5-8350-467B-9744-402B89707FAF@keylevel.com>
-	<CAJTo0LY=A-dj2VZU3iP_R=SVSHYsV+fXgrPUnfFz62FPEFgaOA@mail.gmail.com>
-	<E882175C-A206-42C7-96CB-FA54E0AC8A9D@keylevel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 30 Sep 2014 10:39:07 +0100
-Message-ID: <CAJTo0LZ3TkWTj-yAH6DY-V05236Om4DxCzfjtGbEKJcQAVWdzQ@mail.gmail.com>
-To: Chris Tapp <opensource@keylevel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Fetcher question
+	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
+	and not from a mailing list
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AA00E0034C
+	for <yocto@yoctoproject.org>; Tue, 30 Sep 2014 09:59:45 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga103.jf.intel.com with ESMTP; 30 Sep 2014 09:57:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.04,627,1406617200"; d="scan'208";a="581376891"
+Received: from sullical-studio-xps-9100.jf.intel.com (HELO
+	sullical-Studio-XPS-9100) ([10.7.198.172])
+	by orsmga001.jf.intel.com with SMTP; 30 Sep 2014 09:59:43 -0700
+Received: by sullical-Studio-XPS-9100 (sSMTP sendmail emulation);
+	Tue, 30 Sep 2014 10:02:17 -0700
+From: californialsullivan@gmail.com
+To: yocto@yoctoproject.org
+Date: Tue, 30 Sep 2014 10:01:54 -0700
+Message-Id: <1412096519-8995-2-git-send-email-californialsullivan@gmail.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1412096519-8995-1-git-send-email-californialsullivan@gmail.com>
+References: <1412096519-8995-1-git-send-email-californialsullivan@gmail.com>
+Cc: California Sullivan <california.l.sullivan@intel.com>
+Subject: [PATCH V2 2/7] DeleteGoogleVMs.py: Initial commit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,15 +46,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Sep 2014 09:39:39 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 30 Sep 2014 16:59:48 -0000
 
-On 30 September 2014 08:53, Chris Tapp <opensource@keylevel.com> wrote:
-> I'm not sure this is quite the same - in this case the (downloaded) file and checksum would have matched but the remote file has changed.
+From: California Sullivan <california.l.sullivan@intel.com>
 
-When upstream change a file we normally hear about it fairly quickly,
-and fix the checksum in the recipe.  Upstreams that deliberately do
-this don't seem capable of understanding the pain it causes...
+This build step deletes the Google VMs created in the previous ProvisionGoogleVM
+build step using Google's gcloud command line tool.
 
-Ross
+Signed-off-by: California Sullivan <california.l.sullivan@intel.com>
+---
+ .../autobuilder/buildsteps/DeleteGoogleVMs.py      | 52 ++++++++++++++++++++++
+ 1 file changed, 52 insertions(+)
+ create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVMs.py
+
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVMs.py b/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVMs.py
+new file mode 100644
+index 0000000..b0071cf
+--- /dev/null
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVMs.py
+@@ -0,0 +1,52 @@
++'''
++Created on Aug 13, 2014
++
++__author__ = "California Sullivan"
++__copyright__ = "Copyright 2014, Intel Corp."
++__credits__ = ["California Sullivan"]
++__license__ = "GPL"
++__version__ = "2.0"
++__maintainer__ = "Elizabeth Flanagan"
++__email__ = "elizabeth.flanagan@intel.com"
++'''
++
++from buildbot.steps.shell import ShellCommand
++
++class DeleteGoogleVMs(ShellCommand):
++    haltOnFailure = True
++    flunkOnFailure = True
++    name = "Delete Google VMs"
++    def __init__(self, factory, argdict=None, **kwargs):
++
++        self.factory = factory
++        self.description = "Deleting Google VMs"
++        for k, v in argdict.iteritems():
++            if type(v) is bool:
++                setattr(self, k, str(v))
++            else:
++                setattr(self, k, v)
++        # Timeout needs to be passed to LoggingBuildStep as a kwarg
++        self.timeout = 1000
++        kwargs['timeout']=self.timeout
++        ShellCommand.__init__(self, **kwargs)
++
++
++    def start(self):
++        self.vmnames = self.getProperty("vmnames")
++        self.vmcount = self.getProperty("vmcount")
++        self.zone = self.getProperty("zone")
++
++        if self.vmnames is not None and self.vmnames != "":
++            self.command = "gcloud compute instances delete"
++            self.command += " " + self.vmnames
++
++        if self.zone is not None and self.zone in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
++            self.command += " --zone " + self.zone
++        else:
++            self.command += " --zone us-central1-a"
++        self.command += " --quiet"
++        ShellCommand.start(self)
++
++    def describe(self, done=False):
++        description = ShellCommand.describe(self,done)
++        return description
+-- 
+1.9.1
+
 
