@@ -1,42 +1,45 @@
-Return-Path: <californialsullivan@gmail.com>
+Return-Path: <jefro.net@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EDFEFE00888; Tue, 30 Sep 2014 10:00:16 -0700 (PDT)
+	id 11D69E00876; Tue, 30 Sep 2014 10:44:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
-	FREEMAIL_FROM, NML_ADSP_CUSTOM_MED,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (californialsullivan[at]gmail.com)
-	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
-	*      CUSTOM_MED
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.217.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
-	and not from a mailing list
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81A8DE00885
-	for <yocto@yoctoproject.org>; Tue, 30 Sep 2014 10:00:13 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 30 Sep 2014 09:53:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,627,1406617200"; d="scan'208";a="611010864"
-Received: from sullical-studio-xps-9100.jf.intel.com (HELO
-	sullical-Studio-XPS-9100) ([10.7.198.172])
-	by orsmga002.jf.intel.com with SMTP; 30 Sep 2014 09:59:32 -0700
-Received: by sullical-Studio-XPS-9100 (sSMTP sendmail emulation);
-	Tue, 30 Sep 2014 10:02:05 -0700
-From: californialsullivan@gmail.com
-To: yocto@yoctoproject.org
-Date: Tue, 30 Sep 2014 10:01:53 -0700
-Message-Id: <1412096519-8995-1-git-send-email-californialsullivan@gmail.com>
-X-Mailer: git-send-email 1.9.1
-Cc: California Sullivan <california.l.sullivan@intel.com>
-Subject: [PATCH V2 1/7] ProvisionGoogleVM.py: Initial commit
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f170.google.com (mail-lb0-f170.google.com
+	[209.85.217.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BC78E0034C
+	for <yocto@yoctoproject.org>; Tue, 30 Sep 2014 10:43:50 -0700 (PDT)
+Received: by mail-lb0-f170.google.com with SMTP id n15so8809631lbi.15
+	for <yocto@yoctoproject.org>; Tue, 30 Sep 2014 10:43:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:from:date:message-id:subject:to:content-type;
+	bh=n4UJdVKBwvruUnPhRNfF1DUqHhXbhg5fKUwT4GfQ4S4=;
+	b=qcUOtgQ5ioHdLi+9oK19/SoO2QArzDz8zLV0Bqm/DQqLRBwXL7U9oB43feZGjMaE2I
+	XjMhTVqTfRNLKBJN5nU57VTJqYZY7oEswFmLCyPtngDQWtPYlcwIPX8SyqdFw4hYuxBX
+	SElHgRqU8PTnlv8OS6JHWEAWkiQNgoxgl6nm0cKEnetV1r2wU6vCQwVfqT6uAPuCWYDs
+	dItwbkKeJEXq7Og2rUNn3lebSCRRG7bzCezopJDmLyQzBAOP+glOsA87/nYCA9SzpxFg
+	/kLchkJTYCueptpAVQJuF6kHVcg8X6ny+ckD8C46i030uGz0XrFx4a4o11Mo0ZNMIKpy
+	cq5w==
+X-Received: by 10.112.34.78 with SMTP id x14mr31708443lbi.38.1412099029555;
+	Tue, 30 Sep 2014 10:43:49 -0700 (PDT)
+MIME-Version: 1.0
+Sender: jefro.net@gmail.com
+Received: by 10.112.208.38 with HTTP; Tue, 30 Sep 2014 10:43:29 -0700 (PDT)
+From: Jeff Osier-Mixon <jefro@jefro.net>
+Date: Tue, 30 Sep 2014 10:43:29 -0700
+X-Google-Sender-Auth: H2nOtSC1MnlnDZP31oZoOy89clU
+Message-ID: <CA+YB3rZasuoA8fysS3ZkbcRm9xidC7NA=Y1YAY=FYw278frkCQ@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: YP documentation survey
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,110 +51,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Sep 2014 17:00:17 -0000
+X-List-Received-Date: Tue, 30 Sep 2014 17:44:01 -0000
+Content-Type: text/plain; charset=UTF-8
 
-From: California Sullivan <california.l.sullivan@intel.com>
+Hello - this is the first in a series of short surveys to find out how
+the Yocto Project core team can continue to deliver world-class tools,
+templates, and processes for creating embedded Linux operating
+systems. We will try to keep the surveys short, but we strongly
+encourage you to provide information and opinions on all questions.
+The more information you provide, the better the Yocto Project will
+be.
 
-This build step provisions a Google VM using the gcloud command line tool.
+We appreciate all responses, either on the survey, on this thread, or
+privately back to me. If you respond privately, your comments will be
+kept anonymous unless otherwise specified.
 
-Signed-off-by: California Sullivan <california.l.sullivan@intel.com>
----
- .../autobuilder/buildsteps/ProvisionGoogleVM.py    | 85 ++++++++++++++++++++++
- 1 file changed, 85 insertions(+)
- create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py
+We're starting with documentation.
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py b/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py
-new file mode 100644
-index 0000000..fb667dd
---- /dev/null
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py
-@@ -0,0 +1,85 @@
-+'''
-+Created on Aug 13, 2014
-+
-+__author__ = "California Sullivan"
-+__copyright__ = "Copyright 2014, Intel Corp."
-+__credits__ = ["California Sullivan"]
-+__license__ = "GPL"
-+__version__ = "2.0"
-+__maintainer__ = "Elizabeth Flanagan"
-+__email__ = "elizabeth.flanagan@intel.com"
-+'''
-+
-+from buildbot.steps.shell import ShellCommand
-+
-+class ProvisionGoogleVM(ShellCommand):
-+    haltOnFailure = True
-+    flunkOnFailure = True
-+    name = "Provision Google VM"
-+    def __init__(self, factory, argdict=None, **kwargs):
-+        self.vmname=None
-+        self.vmcount=1
-+        self.startupscript=None
-+        self.metadata=None
-+        self.zone="us-central1-a"
-+        self.image=None
-+        self.machine=None
-+        self.network=None
-+        self.disksize=None
-+        self.factory = factory
-+        self.description = "Provision Google VM"
-+        for k, v in argdict.iteritems():
-+            if type(v) is bool:
-+                setattr(self, k, str(v))
-+            else:
-+                setattr(self, k, v)
-+
-+        if self.vmname is None or self.vmname == "":
-+            self.finished(FAILURE)
-+        else:
-+            self.command = "gcloud compute instances create"
-+            self.vmnames = ""
-+            for x in range(0, self.vmcount):
-+                self.vmnames += " " + self.vmname + "-" + str(x)
-+            self.command += self.vmnames
-+            if self.zone is not None and self.zone in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
-+                self.command += " --zone " + self.zone
-+            else:
-+                self.command += " --zone us-central1-a"
-+            if self.disksize is not None and self.disksize != "":
-+                self.command += " --boot-disk-size " + self.disksize
-+            else:
-+                self.command += " --boot-disk-size 200GB"
-+            if self.image is None:
-+                self.command += " --image debian-7"
-+            else:
-+                self.command += " --image " + self.image
-+
-+            if self.machine is not None and self.machine in ["g1-small", "f1-micro", "n1-standard-1", "n1-standard-2", "n1-standard-4", "n1-standard-8", "n1-standard-16", "n1-highmem-2", "n1-highmem-4"]:
-+                self.command += " --machine-type " + self.machine
-+            else:
-+                self.command += " --machine-type n1-standard-1"
-+            if self.network is not None and self.network != "":
-+                self.command += " --network " + self.network
-+            if self.startupscript is not None and self.startupscript != "":
-+                self.command += " --metadata-from-file startup-script=" + self.startupscript
-+                if self.metadata is not None and self.metadata != "":
-+                    self.command += " --metadata " + self.scriptargs
-+            self.command += " 1> /dev/null";
-+
-+            # Timeout needs to be passed to LoggingBuildStep as a kwarg
-+            self.timeout = 1000
-+            kwargs['timeout']=self.timeout
-+            ShellCommand.__init__(self, **kwargs)
-+
-+    def describe(self, done=False):
-+        description = ShellCommand.describe(self,done)
-+        return description
-+
-+    def commandComplete(self, cmd):
-+        if not cmd.didFail():
-+            self.setProperty("vmnames", self.vmnames)
-+            self.setProperty("zone", self.zone)
-+            self.setProperty("vmcount", self.vmcount)
-+
-+
+https://www.surveymonkey.com/r/SJVQT5M
+
+- Does the Yocto Project documentation serve your needs?
+
+- What do you like best about the documentation?
+
+- What do you notice that is missing?
+
+
+Thanks
 -- 
-1.9.1
-
+Jeff Osier-Mixon @Intel
+Yocto Project Community Manager http://yoctoproject.org
 
