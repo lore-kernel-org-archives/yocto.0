@@ -1,46 +1,36 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 90DF0E00857; Wed,  1 Oct 2014 15:12:27 -0700 (PDT)
+	id 9447BE00857; Wed,  1 Oct 2014 15:53:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.174 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-qc0-f174.google.com (mail-qc0-f174.google.com
-	[209.85.216.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E38AEE0074B
-	for <yocto@yoctoproject.org>; Wed,  1 Oct 2014 15:12:26 -0700 (PDT)
-Received: by mail-qc0-f174.google.com with SMTP id m20so1211084qcx.19
-	for <yocto@yoctoproject.org>; Wed, 01 Oct 2014 15:12:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=isSkz/T3dERP5CmssJ06w1lP9TkeXnUpavh/RHzlPzU=;
-	b=JWx16YbZCpfsBZ81/qmyupd9kfBbxhjsXgsnor8IqxuMVG4X/QU6caxMnGDQSIiaPP
-	azBmD7Wk0FF9BWMcw1GKPFY90/QYU0X0Xe9iSeAxc+OUWky3BYT0FE6fNCxKp0LqAMkM
-	I+E7N6Y2e5OQOjPZTGKwsZH9LrMjL3wygSIXjvYHi4hmbIGf1gdFB6BXVH5jxIoj1kWD
-	LwSkjXfKYwufMYtlEVBwArlGTp+fmbGx4jIP5aDSqr5IdSPhkWPZz7+KcDMd4/YuzCqK
-	3cd30gZHyl0n2d5JwDzY9U57dL2JP3oYGSnPskMdySPwYUQlE2JsLqlJRRVGpB6FJqXP
-	Z1UQ==
-X-Gm-Message-State: ALoCoQnD6EX7ermKj72yMade9eKZjg8gVwG9Nk5TlolDgamnQfx/+cyTn8QCpuCnWmhuQhYT+Z0d
-X-Received: by 10.224.103.194 with SMTP id l2mr30627873qao.93.1412201545318;
-	Wed, 01 Oct 2014 15:12:25 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.140.34.180 with HTTP; Wed, 1 Oct 2014 15:12:04 -0700 (PDT)
-In-Reply-To: <20141001150034.8c4e4b9406b77e1e78d5069819454ed7.98d894cedc.wbe@email14.secureserver.net>
-References: <20141001150034.8c4e4b9406b77e1e78d5069819454ed7.98d894cedc.wbe@email14.secureserver.net>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 1 Oct 2014 23:12:04 +0100
-Message-ID: <CAJTo0LbY+PEQsbKrjs1gdRWjjJ62eYABRiN9FkvgGAx-ctozBg@mail.gmail.com>
-To: Ezekiel Sanborndeasis <ezekiel@sanborndeasis.net>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: fetch task not run after SRCREV updated
+Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96368E0074B
+	for <yocto@yoctoproject.org>; Wed,  1 Oct 2014 15:53:22 -0700 (PDT)
+Received: from [109.224.171.0] (port=6388 helo=macbook-pro.durham.keylevel.com)
+	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.82)
+	(envelope-from <opensource@keylevel.com>) id 1XZSlo-0001St-QE
+	for yocto@yoctoproject.org; Wed, 01 Oct 2014 23:53:19 +0100
+From: Chris Tapp <opensource@keylevel.com>
+Message-Id: <364730A1-6000-43D1-8A25-1A899C8ED5DB@keylevel.com>
+Date: Wed, 1 Oct 2014 23:53:16 +0100
+To: Yocto Project <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+X-Mailer: Apple Mail (2.1878.6)
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - a180.4uh.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
+	chris.tapp@keylevel.com
+Subject: Fan speed control
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,15 +42,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Oct 2014 22:12:27 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 01 Oct 2014 22:53:28 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-On 1 October 2014 23:00,  <ezekiel@sanborndeasis.net> wrote:
-> Is this the fix
->
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=202ae5af74f546a9788290a96b0f3c370ee047b2
+Are there any recipes compatible with generic_pc to allow the cpu and =
+system fan speeds to be controlled?
 
-Yes, that's it.
+--
 
-Ross
+Chris Tapp
+opensource@keylevel.com
+www.keylevel.com
+
+----
+You can tell you're getting older when your car insurance gets real =
+cheap!
+
 
