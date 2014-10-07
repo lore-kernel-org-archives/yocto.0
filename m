@@ -1,63 +1,37 @@
-Return-Path: <Chris.Carr@ge.com>
+Return-Path: <sona.sarmadi@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 88CAEE00877; Tue,  7 Oct 2014 07:04:35 -0700 (PDT)
+	id 07661E00885; Tue,  7 Oct 2014 07:05:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	URIBL_RHS_DOB autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,URIBL_RHS_DOB
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 1.5 URIBL_RHS_DOB Contains an URI of a new domain (Day
-	Old Bread) *      [URIs: ge.com]
+	Old Bread) *      [URIs: intel.com]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [67.231.157.48 listed in list.dnswl.org]
-Received: from mx0b-00176a03.pphosted.com (mx0b-00176a03.pphosted.com
-	[67.231.157.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 364DEE00853
-	for <yocto@yoctoproject.org>; Tue,  7 Oct 2014 07:04:31 -0700 (PDT)
-Received: from pps.filterd (m0048300.ppops.net [127.0.0.1])
-	by m0048300.ppops.net-00176a03. (8.14.7/8.14.7) with SMTP id
-	s97E3w3b041190
-	for <yocto@yoctoproject.org>; Tue, 7 Oct 2014 10:04:30 -0400
-Received: from cinmlip10.e2k.ad.ge.com ([12.71.149.1])
-	by m0048300.ppops.net-00176a03. with ESMTP id 1pvh4h80sk-21
-	(version=TLSv1/SSLv3 cipher=RC4-SHA bits=128 verify=NOT)
-	for <yocto@yoctoproject.org>; Tue, 07 Oct 2014 10:04:30 -0400
-Received: from unknown (HELO ALPMBHT01.e2k.ad.ge.com) ([3.159.19.194])
-	by cinmlip10.e2k.ad.ge.com with ESMTP/TLS/AES128-SHA;
-	07 Oct 2014 10:00:59 -0400
-Received: from CINMBAPD03.e2k.ad.ge.com (3.159.212.69) by
-	ALPMBHT01.e2k.ad.ge.com (3.159.19.194) with Microsoft SMTP Server (TLS)
-	id 14.3.195.1; Tue, 7 Oct 2014 10:04:13 -0400
-Received: from [3.26.68.158] (3.159.212.192) by CINMBAPD03.e2k.ad.ge.com
-	(3.159.212.69) with Microsoft SMTP Server id 14.3.195.1; Tue, 7 Oct 2014
-	10:04:12 -0400
-Message-ID: <5433F2DA.60300@ge.com>
-Date: Tue, 7 Oct 2014 15:04:10 +0100
-From: "Carr, Chris (GE Intelligent Platforms)" <chris.carr@ge.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.1.2
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 39769E00876
+	for <yocto@yoctoproject.org>; Tue,  7 Oct 2014 07:05:25 -0700 (PDT)
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
+	14.03.0158.001; Tue, 7 Oct 2014 16:05:17 +0200
+From: Sona Sarmadi <sona.sarmadi@enea.com>
+To: "Jolley, Stephen K" <stephen.k.jolley@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Agenda: Yocto Project Technical Team Meeting -
+	Tuesday, October  7, 2014 8:00 AM US Pacific Time
+Thread-Index: Ac/h1SXkF0f6hHdzTeyRRNfCq3uYwAAYaYmw
+Date: Tue, 7 Oct 2014 14:05:17 +0000
+Message-ID: <3230301C09DEF9499B442BBE162C5E482575E10D@SESTOEX04.enea.se>
+References: <9ADD3FDE8B189B4AA2F8A3C711F8155E552A5581@fmsmsx111.amr.corp.intel.com>
+In-Reply-To: <9ADD3FDE8B189B4AA2F8A3C711F8155E552A5581@fmsmsx111.amr.corp.intel.com>
+Accept-Language: sv-SE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.1.188]
 MIME-Version: 1.0
-To: "Burton, Ross" <ross.burton@intel.com>
-References: <542945DD.2010800@ge.com>
-	<CAJTo0LYNSGpdRhh7qfjDjE_rJca80XgGJDmzpgpTQqFteit-3A@mail.gmail.com>
-	<5433BE53.8000108@ge.com>
-	<CAJTo0LYJz=9tB8cc_dTRAwusLny7UbvHsjkU0Z2fNUDDTsxQKw@mail.gmail.com>
-In-Reply-To: <CAJTo0LYJz=9tB8cc_dTRAwusLny7UbvHsjkU0Z2fNUDDTsxQKw@mail.gmail.com>
-X-Originating-IP: [3.159.212.192]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.12.52, 1.0.28,
-	0.0.0000
-	definitions=2014-10-07_05:2014-10-07, 2014-10-07,
-	1970-01-01 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
-	suspectscore=0 phishscore=0
-	adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
-	scancount=1
-	engine=7.0.1-1402240000 definitions=main-1410070126
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Issues removing RRECOMMENDS packages with BAD_RECOMMENDATIONS
+Subject: Re: Agenda: Yocto Project Technical Team Meeting - Tuesday, October 7, 2014 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,26 +43,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Oct 2014 14:04:35 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 07 Oct 2014 14:05:29 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 07/10/2014 11:26, Burton, Ross wrote:
-> On 7 October 2014 11:20, Carr, Chris (GE Intelligent Platforms)
-> <chris.carr@ge.com> wrote:
->> I've switched over to the RPM package manager and rebuilt the deploy image.
->>
->> From the list that I had in BAD_RECOMMENDATIONS, none of the packages appear in the deploy image.
-> 
-> So we're found a difference in behaviour between the rpm and opkg
-> backends.  Can you file a bug for the opkg backend in bugzilla?
-> (oe-core->deployment).
-> 
-> Ross
-> 
+Hi all,
 
-I've raised the bug in bugzilla.
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=6816
+I would like to bring up following security issue in this meeting if there =
+is interest for it in the group:
 
-Chris
+- Collaboration within Yocto project when a critical vulnerability like Hea=
+rtbleed/Shellshock occurs
+We applied GNU patches in our branches, tested and sent updates to our cust=
+omers, then Yocto came up with a patch and we took that one later (our own =
+work did become redundant). It would have been better if we collaborated wi=
+thin the Yocto project and together created a security patch, tested it for=
+ different architectures and sent a Security Notification/Advisory to the l=
+ist with background/summary of CVEs, tests ..etc? (i.e. divided the work be=
+tween us ). =20
+
+Do you think it is good idea to create a security team and discuss security=
+ topics in that list? Is there any volunteer/interest? =20
+
+Thanks
+Sona=20
+
+
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Jolley, Stephen K
+Sent: den 7 oktober 2014 04:20
+To: yocto@yoctoproject.org
+Subject: [yocto] Agenda: Yocto Project Technical Team Meeting - Tuesday, Oc=
+tober 7, 2014 8:00 AM US Pacific Time
+
+Tuesday, October 7, 2014 8:00 AM US Pacific Time
+
+Agenda:
+=A0
+* Opens collection - 5 min (Stephen)
+* Yocto Project status - 5 min (Stephen/team)
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.7_Status
+https://wiki.yoctoproject.org/wiki/Yocto_1.7_Schedule
+https://wiki.yoctoproject.org/wiki/Yocto_1.7_Features
+* SWAT team rotation: Beth -> Paul
+https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+* Opens - 10 min=20
+* Team Sharing - 10 min
+
+
+We encourage people attending the meeting to logon the Yocto Project IRC ch=
+ancel during the meeting (optional):
+
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
+
+Conference Details:
+Company:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 WIND RIVER SYS
+Ready-Access Number: 8007302996/9139049836
+Access Code:=A0=A0=A0=A0 2705751
+
+For International numbers see: https://www.yoctoproject.org/tools-resources=
+/community/weekly-technical-call
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124=20
+I =A0=A0Work Telephone:=A0=A0=A0=A0=A0=A0=A0=A0=A0 (503) 712-0534
+(=A0=A0=A0 Cell:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 (208) 244-4460
+((Email:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0 stephen.k.jolley@intel.com
+
 
