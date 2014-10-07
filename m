@@ -1,37 +1,35 @@
-Return-Path: <sona.sarmadi@enea.com>
+Return-Path: <daniel.ca@nestgroup.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 07661E00885; Tue,  7 Oct 2014 07:05:29 -0700 (PDT)
+	id C0A7CE00846; Tue,  7 Oct 2014 06:54:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,URIBL_RHS_DOB
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 1.5 URIBL_RHS_DOB Contains an URI of a new domain (Day
-	Old Bread) *      [URIs: intel.com]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 39769E00876
-	for <yocto@yoctoproject.org>; Tue,  7 Oct 2014 07:05:25 -0700 (PDT)
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
-	14.03.0158.001; Tue, 7 Oct 2014 16:05:17 +0200
-From: Sona Sarmadi <sona.sarmadi@enea.com>
-To: "Jolley, Stephen K" <stephen.k.jolley@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Agenda: Yocto Project Technical Team Meeting -
-	Tuesday, October  7, 2014 8:00 AM US Pacific Time
-Thread-Index: Ac/h1SXkF0f6hHdzTeyRRNfCq3uYwAAYaYmw
-Date: Tue, 7 Oct 2014 14:05:17 +0000
-Message-ID: <3230301C09DEF9499B442BBE162C5E482575E10D@SESTOEX04.enea.se>
-References: <9ADD3FDE8B189B4AA2F8A3C711F8155E552A5581@fmsmsx111.amr.corp.intel.com>
-In-Reply-To: <9ADD3FDE8B189B4AA2F8A3C711F8155E552A5581@fmsmsx111.amr.corp.intel.com>
-Accept-Language: sv-SE, en-US
+X-Spam-Status: No, score=0.8 required=5.0 tests=BAYES_50,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
+	*      [score: 0.4732]
+X-Greylist: delayed 2915 seconds by postgrey-1.32 at yocto-www;
+	Tue, 07 Oct 2014 06:54:10 PDT
+Received: from mxchn-out.nestgroup.net (mxchn-out.nestgroup.net
+	[182.72.190.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC1DDE007C1
+	for <yocto@yoctoproject.org>; Tue,  7 Oct 2014 06:54:09 -0700 (PDT)
+Received: from mail02.chn.nestgroup.net ([10.8.0.25])
+	by mxchn-out.nestgroup.net (8.13.8/8.13.8) with ESMTP id s97D5VZj016347
+	for <yocto@yoctoproject.org>; Tue, 7 Oct 2014 18:35:31 +0530
+MIME-Version: 1.0
+X-MimeOLE: Produced By Microsoft Exchange V6.5
+Date: Tue, 7 Oct 2014 18:35:30 +0530
+Message-ID: <DFA4DD36883F5641AD609D011918C1B309CB8ABA@new-ex1.nestgroup.net>
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.1.188]
-MIME-Version: 1.0
-Subject: Re: Agenda: Yocto Project Technical Team Meeting - Tuesday, October 7, 2014 8:00 AM US Pacific Time
+Thread-Topic: CAN Support
+Thread-Index: Ac/iL18kH9KJPZmfRyOswiwK1OlMVg==
+From: "Daniel C. A (NESTIT)" <daniel.ca@nestgroup.net>
+To: <yocto@yoctoproject.org>
+X-Mailman-Approved-At: Tue, 07 Oct 2014 08:05:49 -0700
+Subject: CAN Support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,79 +41,154 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Oct 2014 14:05:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 07 Oct 2014 13:54:15 -0000
+Content-class: urn:content-classes:message
+Content-Type: multipart/alternative;
+	boundary="----_=_NextPart_001_01CFE22F.5F7039C5"
+
+------_=_NextPart_001_01CFE22F.5F7039C5
+Content-Type: text/plain;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+Hi,
 
-I would like to bring up following security issue in this meeting if there =
-is interest for it in the group:
+                Presently im working on i.mx6 EVK for Automotive
+application. I have used 'fsl-image-gui' which was Bitbaked using
+Yocto-dora release. Since I'm worked on CAN interfaces, I got the
+following queries.
 
-- Collaboration within Yocto project when a critical vulnerability like Hea=
-rtbleed/Shellshock occurs
-We applied GNU patches in our branches, tested and sent updates to our cust=
-omers, then Yocto came up with a patch and we took that one later (our own =
-work did become redundant). It would have been better if we collaborated wi=
-thin the Yocto project and together created a security patch, tested it for=
- different architectures and sent a Security Notification/Advisory to the l=
-ist with background/summary of CVEs, tests ..etc? (i.e. divided the work be=
-tween us ). =20
+1.       How to make CAN interfaces up on EVK?
 
-Do you think it is good idea to create a security team and discuss security=
- topics in that list? Is there any volunteer/interest? =20
+2.       Is there anything that I have to consider when I Bitbake
+fsl-image-gui?
 
-Thanks
-Sona=20
+3.       Has fsl-image-gui got support for basic drivers like
+CAN,I2c,gpio driver., etc?
 
+4.       My intention is to test CAN Tx/rx using CAN Analyzer and EVK,
+what all are the steps for the same?Is there any document that I can
+follow?
 
+=20
 
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Jolley, Stephen K
-Sent: den 7 oktober 2014 04:20
-To: yocto@yoctoproject.org
-Subject: [yocto] Agenda: Yocto Project Technical Team Meeting - Tuesday, Oc=
-tober 7, 2014 8:00 AM US Pacific Time
+Regards,
 
-Tuesday, October 7, 2014 8:00 AM US Pacific Time
+           Daniel C A
 
-Agenda:
-=A0
-* Opens collection - 5 min (Stephen)
-* Yocto Project status - 5 min (Stephen/team)
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.7_Status
-https://wiki.yoctoproject.org/wiki/Yocto_1.7_Schedule
-https://wiki.yoctoproject.org/wiki/Yocto_1.7_Features
-* SWAT team rotation: Beth -> Paul
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-* Opens - 10 min=20
-* Team Sharing - 10 min
+=20
 
 
-We encourage people attending the meeting to logon the Yocto Project IRC ch=
-ancel during the meeting (optional):
+------_=_NextPart_001_01CFE22F.5F7039C5
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html=20
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 12 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:564798544;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1832179528 1074331663 1074331673 1074331675 =
+1074331663 1074331673 1074331675 1074331663 1074331673 1074331675;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-IN link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p =
+class=3DMsoNormal>Hi,<o:p></o:p></p><p =
+class=3DMsoNormal>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Presently im working on i.mx6 EVK =
+for Automotive application. I have used &#8216;fsl-image-gui&#8217; =
+which was Bitbaked using Yocto-dora release. Since I&#8217;m worked on =
+CAN interfaces, I got the following queries.<o:p></o:p></p><p =
+class=3DMsoListParagraph style=3D'text-indent:-18.0pt;mso-list:l0 level1 =
+lfo1'><![if !supportLists]><span style=3D'mso-list:Ignore'>1.<span =
+style=3D'font:7.0pt "Times New =
+Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><![endif]>How =
+to make CAN interfaces up on EVK?<o:p></o:p></p><p =
+class=3DMsoListParagraph style=3D'text-indent:-18.0pt;mso-list:l0 level1 =
+lfo1'><![if !supportLists]><span style=3D'mso-list:Ignore'>2.<span =
+style=3D'font:7.0pt "Times New =
+Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><![endif]>Is =
+there anything that I have to consider when I Bitbake =
+fsl-image-gui?<o:p></o:p></p><p class=3DMsoListParagraph =
+style=3D'text-indent:-18.0pt;mso-list:l0 level1 lfo1'><![if =
+!supportLists]><span style=3D'mso-list:Ignore'>3.<span =
+style=3D'font:7.0pt "Times New =
+Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><![endif]>Has =
+fsl-image-gui got support for basic drivers like CAN,I2c,gpio driver., =
+etc?<o:p></o:p></p><p class=3DMsoListParagraph =
+style=3D'text-indent:-18.0pt;mso-list:l0 level1 lfo1'><![if =
+!supportLists]><span style=3D'mso-list:Ignore'>4.<span =
+style=3D'font:7.0pt "Times New =
+Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><![endif]>My =
+intention is to test CAN Tx/rx using CAN Analyzer and EVK, what all are =
+the steps for the same?Is there any document that I can =
+follow?<o:p></o:p></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Times New =
+Roman","serif"'>Regards,<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US style=3D'font-family:"Times New =
+Roman","serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; Daniel C A<o:p></o:p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-Conference Details:
-Company:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 WIND RIVER SYS
-Ready-Access Number: 8007302996/9139049836
-Access Code:=A0=A0=A0=A0 2705751
-
-For International numbers see: https://www.yoctoproject.org/tools-resources=
-/community/weekly-technical-call
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124=20
-I =A0=A0Work Telephone:=A0=A0=A0=A0=A0=A0=A0=A0=A0 (503) 712-0534
-(=A0=A0=A0 Cell:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 (208) 244-4460
-((Email:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0 stephen.k.jolley@intel.com
-
-
+------_=_NextPart_001_01CFE22F.5F7039C5--
