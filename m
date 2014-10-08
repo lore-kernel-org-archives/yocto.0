@@ -1,42 +1,61 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <navani.srivastava@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1ADACE00853; Wed,  8 Oct 2014 00:54:50 -0700 (PDT)
+	id 9AD99E00853; Wed,  8 Oct 2014 02:49:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (navani.srivastava[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.181 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A983E007C1
-	for <yocto@yoctoproject.org>; Wed,  8 Oct 2014 00:54:42 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 9ED5E27E09F;
-	Wed,  8 Oct 2014 07:54:39 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id UuNgw-DWtyk5; Wed,  8 Oct 2014 07:54:36 +0000 (UTC)
-Received: from [192.168.1.30] (AMarseille-651-1-73-5.w109-208.abo.wanadoo.fr
-	[109.208.168.5])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 3583D27E099;
-	Wed,  8 Oct 2014 07:54:36 +0000 (UTC)
-Message-ID: <5434EDB7.8060600@dynamicdevices.co.uk>
-Date: Wed, 08 Oct 2014 09:54:31 +0200
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f181.google.com (mail-ig0-f181.google.com
+	[209.85.213.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 085CCE007C1
+	for <yocto@yoctoproject.org>; Wed,  8 Oct 2014 02:49:24 -0700 (PDT)
+Received: by mail-ig0-f181.google.com with SMTP id r10so7744419igi.14
+	for <yocto@yoctoproject.org>; Wed, 08 Oct 2014 02:49:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=pmJ4zBelTomRlVuRsiLbunnJAcRcAP24OJPj9cl2roE=;
+	b=PAmuYufQAmmcP5mfKy2ludadhryY6W9c90bHxJWQSj1uHFvT7m7IfzxmjVb51aEDfu
+	U432VMWyMYoikhQE5ArKMWqfWmMXimVRpjplCvZj0AjwxUeLHjRvV12k0nTEuNnpUyeJ
+	y++4nd6t/QK3hyszseTr6ys8g8QvXyQpah1QoeGuztNGsmz0zCV4g7/aeZSuQ/5s20WP
+	x8/9C1BdHcgy5KESfqwFpNvwH7AXPw3smrBorwfQWHegyF5oN8KrbkoZKakHxpRU079D
+	BhDR0XbvrAYmiOmpgzAicqUyp4Adgpw7A4kBGqIEch/yXjlyJ7Ky2fRwd0loqqPjO3+A
+	hajg==
+X-Received: by 10.50.33.71 with SMTP id p7mr4640709igi.4.1412761399319; Wed,
+	08 Oct 2014 02:43:19 -0700 (PDT)
 MIME-Version: 1.0
-To: "Daniel C. A (NESTIT)" <daniel.ca@nestgroup.net>, yocto@yoctoproject.org
-References: <DFA4DD36883F5641AD609D011918C1B309CB8ABA@new-ex1.nestgroup.net>
-In-Reply-To: <DFA4DD36883F5641AD609D011918C1B309CB8ABA@new-ex1.nestgroup.net>
-Subject: Re: CAN Support
+Received: by 10.107.132.211 with HTTP; Wed, 8 Oct 2014 02:42:59 -0700 (PDT)
+In-Reply-To: <5424DC2A.1060002@gmail.com>
+References: <CA+Z6RkW1D8pPpGCTu_SwF5Q+d0Um-MuYQM3mtube=u2txu0V6A@mail.gmail.com>
+	<CAMKF1sqc0+V0V__Ot1T_Qzd-DPpTK4OF9ooAz2EOEEXfT-S-aQ@mail.gmail.com>
+	<CA+Z6RkUeUs0=EQ3adks8jBYbEQkiA6G8iP+Em8_YzHSGo2124Q@mail.gmail.com>
+	<2064454.kM4kxd3gIa@peggleto-mobl5.ger.corp.intel.com>
+	<CA+Z6RkXJWR0R6et_mz3kQatXCkRTzE85HaLHi2BKA8b6Ywq2mQ@mail.gmail.com>
+	<CA+Z6RkUk5zeR3SiYd_ce2cY0-9fDSErhZuO4h2h9V-2ckp9icQ@mail.gmail.com>
+	<5424DC2A.1060002@gmail.com>
+From: Navani Srivastava <navani.srivastava@gmail.com>
+Date: Wed, 8 Oct 2014 15:12:59 +0530
+Message-ID: <CA+Z6RkWgtKsxQX-xD8tf0DrcUZ=XicDYOSAs1KQCJvEwxf_dsw@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	Navani Srivastava <navani.srivastava@lnttechservices.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Integration of custom recipe with SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,295 +67,207 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Oct 2014 07:54:50 -0000
-X-Groupsio-MsgNum: 21769
-Content-Type: multipart/alternative;
-	boundary="------------040602070905060900040903"
+X-List-Received-Date: Wed, 08 Oct 2014 09:49:27 -0000
+Content-Type: multipart/alternative; boundary=089e0153898c5be2b40504e625dc
 
---------------040602070905060900040903
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+--089e0153898c5be2b40504e625dc
+Content-Type: text/plain; charset=UTF-8
 
-Hi Daniel,
+>>when populate_sdk gives you an SDK I dont understand why this is a
+requirement
+Now i remember.. This link was the reason that I was not using populate_sdk
+to build SDK for me..
+ "https://lists.yoctoproject.org/pipermail/yocto/2013-August/015771.html"
 
-On 07/10/2014 15:05, Daniel C. A (NESTIT) wrote:
->
-> Hi,
->
->                 Presently im working on i.mx6 EVK for Automotive
-> application. I have used 'fsl-image-gui' which was Bitbaked using
-> Yocto-dora release. Since I'm worked on CAN interfaces, I got the
-> following queries.
->
-> 1.       How to make CAN interfaces up on EVK?
->
-> 2.       Is there anything that I have to consider when I Bitbake
-> fsl-image-gui?
->
-> 3.       Has fsl-image-gui got support for basic drivers like
-> CAN,I2c,gpio driver., etc?
->
-> 4.       My intention is to test CAN Tx/rx using CAN Analyzer and EVK,
-> what all are the steps for the same?Is there any document that I can
-> follow?
->
->  
->
-> Regards,
->
->            Daniel C A
->
->  
+I still tried to build through populate_sdk and have faced the same issue
+in SDK as mentioned in the link.
+
+Regards
+Navani
+
+On Fri, Sep 26, 2014 at 8:53 AM, Khem Raj <raj.khem@gmail.com> wrote:
+
+> -----BEGIN PGP SIGNED MESSAGE-----
+> Hash: SHA1
 >
 >
+>
+> On 9/24/14 5:01 AM, Navani Srivastava wrote:
+> > Removing integration of meta-toolchain-qte from my image helped in
+> building
+> > qjson as a part of SDK when running bitbake -c populate_sdk -v <myimage>
+> or
+> > bitbake <myimage>.
+> >
+>
+> OK. Thats what is expected.
+>
+> > Integration of meta-toolchain-qte might need some more modifications.
+> >
+> > Still as a requirement, I need to integrate my custom recipe with
+> > meta-toolchain-qte to generate SDK having custom recipe as a tool.
+>
+> when populate_sdk gives you an SDK I dont understand why this is a
+> requirement
+>
+>  I have
+> > created nativesdk bb file for custom recipe to integrate it via
+> > nativesdk-packagegroup-qte-toolchain-host.bb but no luck..
+> >
+> > On Wed, Sep 24, 2014 at 1:14 PM, Navani Srivastava <
+> > navani.srivastava@gmail.com> wrote:
+> >
+> >> Yes.. i did...
+> >> On 24 Sep 2014 12:56, "Paul Eggleton" <paul.eggleton@linux.intel.com>
+> >> wrote:
+> >>
+> >>> On Wednesday 24 September 2014 10:26:41 Navani Srivastava wrote:
+> >>>> I corrected FILES_${PN} and added following in my image recipe-
+> >>>> QTNAME = "qte"
+> >>>> QT_DIR_NAME = "qtopia"
+> >>>> require recipes-qt/meta/meta-toolchain-qt.bb
+> >>>>
+> >>>> but that didn't make any difference related to SDK integration. On
+> >>>> executing 'bitbake -v <MyImageName>', it is generating rootfs and sdk,
+> >>> in
+> >>>> which contains rootfs contains qjson libraries but sdk doesn't
+> integrate
+> >>>> anything.
+> >>>
+> >>> To generate the SDK you'd need to also do bitbake -c populate_sdk
+> >>> <imagename>
+> >>> - you did do that as well after making the changes to the recipe,
+> right ?
+> >>>
+> >>> Cheers,
+> >>> Paul
+> >>>
+> >>> --
+> >>>
+> >>> Paul Eggleton
+> >>> Intel Open Source Technology Centre
+> >>>
+> >>
+> >
+>
+> - --
+> - -Khem
+> -----BEGIN PGP SIGNATURE-----
+> Version: GnuPG/MacGPG2 v2.0.22 (Darwin)
+> Comment: GPGTools - https://gpgtools.org
+>
+> iEYEARECAAYFAlQk3CoACgkQuwUzVZGdMxS3EgCfVUdFehr4kmLrXfLy6jN25Q0e
+> YSAAn3Dhe/y2xVpFYtpTtDMGCA7qOQR5
+> =FZTr
+> -----END PGP SIGNATURE-----
+>
 
-Have you asked over at the meta-freescale list? As you know, driver
-support is likely to be closely linked to the Linux kernel
-provided for the i.MX6, and they are in the best position over on that
-list to answer your question.
+--089e0153898c5be2b40504e625dc
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Whilst I don't have a definitive answer for you if you look at the
-Freescale Embedded Linux bundle for the i.MX6 processor
-(e.g. L3.10.17_1.0.0_LINUX_DOCS
-<https://www.freescale.com/webapp/Download?colCode=L3.10.17_1.0.0_LINUX_DOCS&appType=license&location=null&fasp=1&WT_TYPE=Supporting%20Information&WT_VENDOR=FREESCALE&WT_FILE_FORMAT=gz&WT_ASSET=Documentation&fileExt=.gz> )
-you will see sections on GPIO, I2C, and FlexCAN. There are also details
-in those sections on
-the specific kernel configuration options that need to be turned on if
-they are not already turned on by default in the
-meta-freescale kernel configuration.
+<div dir=3D"ltr">&gt;&gt;<span style=3D"font-family:arial,sans-serif;font-s=
+ize:13px">when populate_sdk gives you an SDK I dont understand why this is =
+a</span><br style=3D"font-family:arial,sans-serif;font-size:13px"><span sty=
+le=3D"font-family:arial,sans-serif;font-size:13px">requirement</span><div>N=
+ow i remember.. This link was the reason that I was not using populate_sdk =
+to build SDK for me..</div><div>=C2=A0&quot;<a href=3D"https://lists.yoctop=
+roject.org/pipermail/yocto/2013-August/015771.html">https://lists.yoctoproj=
+ect.org/pipermail/yocto/2013-August/015771.html</a>&quot;=C2=A0<br></div><d=
+iv><br></div><div>I still tried to build through populate_sdk and have face=
+d the same issue in SDK as mentioned in the link.</div><div><br></div><div>=
+Regards</div><div>Navani</div></div><div class=3D"gmail_extra"><br><div cla=
+ss=3D"gmail_quote">On Fri, Sep 26, 2014 at 8:53 AM, Khem Raj <span dir=3D"l=
+tr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gm=
+ail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D=
+"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">-----BEGIN =
+PGP SIGNED MESSAGE-----<br>
+Hash: SHA1<br>
+<span class=3D""><br>
+<br>
+<br>
+On 9/24/14 5:01 AM, Navani Srivastava wrote:<br>
+&gt; Removing integration of meta-toolchain-qte from my image helped in bui=
+lding<br>
+&gt; qjson as a part of SDK when running bitbake -c populate_sdk -v &lt;myi=
+mage&gt; or<br>
+&gt; bitbake &lt;myimage&gt;.<br>
+&gt;<br>
+<br>
+</span>OK. Thats what is expected.<br>
+<span class=3D""><br>
+&gt; Integration of meta-toolchain-qte might need some more modifications.<=
+br>
+&gt;<br>
+&gt; Still as a requirement, I need to integrate my custom recipe with<br>
+&gt; meta-toolchain-qte to generate SDK having custom recipe as a tool.<br>
+<br>
+</span>when populate_sdk gives you an SDK I dont understand why this is a<b=
+r>
+requirement<br>
+<div><div class=3D"h5"><br>
+=C2=A0I have<br>
+&gt; created nativesdk bb file for custom recipe to integrate it via<br>
+&gt; <a href=3D"http://nativesdk-packagegroup-qte-toolchain-host.bb" target=
+=3D"_blank">nativesdk-packagegroup-qte-toolchain-host.bb</a> but no luck..<=
+br>
+&gt;<br>
+&gt; On Wed, Sep 24, 2014 at 1:14 PM, Navani Srivastava &lt;<br>
+&gt; <a href=3D"mailto:navani.srivastava@gmail.com">navani.srivastava@gmail=
+.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt;&gt; Yes.. i did...<br>
+&gt;&gt; On 24 Sep 2014 12:56, &quot;Paul Eggleton&quot; &lt;<a href=3D"mai=
+lto:paul.eggleton@linux.intel.com">paul.eggleton@linux.intel.com</a>&gt;<br=
+>
+&gt;&gt; wrote:<br>
+&gt;&gt;<br>
+&gt;&gt;&gt; On Wednesday 24 September 2014 10:26:41 Navani Srivastava wrot=
+e:<br>
+&gt;&gt;&gt;&gt; I corrected FILES_${PN} and added following in my image re=
+cipe-<br>
+&gt;&gt;&gt;&gt; QTNAME =3D &quot;qte&quot;<br>
+&gt;&gt;&gt;&gt; QT_DIR_NAME =3D &quot;qtopia&quot;<br>
+&gt;&gt;&gt;&gt; require recipes-qt/meta/<a href=3D"http://meta-toolchain-q=
+t.bb" target=3D"_blank">meta-toolchain-qt.bb</a><br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; but that didn&#39;t make any difference related to SDK int=
+egration. On<br>
+&gt;&gt;&gt;&gt; executing &#39;bitbake -v &lt;MyImageName&gt;&#39;, it is =
+generating rootfs and sdk,<br>
+&gt;&gt;&gt; in<br>
+&gt;&gt;&gt;&gt; which contains rootfs contains qjson libraries but sdk doe=
+sn&#39;t integrate<br>
+&gt;&gt;&gt;&gt; anything.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; To generate the SDK you&#39;d need to also do bitbake -c popul=
+ate_sdk<br>
+&gt;&gt;&gt; &lt;imagename&gt;<br>
+&gt;&gt;&gt; - you did do that as well after making the changes to the reci=
+pe, right ?<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Cheers,<br>
+&gt;&gt;&gt; Paul<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; --<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Paul Eggleton<br>
+&gt;&gt;&gt; Intel Open Source Technology Centre<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;<br>
+<br>
+</div></div>- --<br>
+- -Khem<br>
+-----BEGIN PGP SIGNATURE-----<br>
+Version: GnuPG/MacGPG2 v2.0.22 (Darwin)<br>
+Comment: GPGTools - <a href=3D"https://gpgtools.org" target=3D"_blank">http=
+s://gpgtools.org</a><br>
+<br>
+iEYEARECAAYFAlQk3CoACgkQuwUzVZGdMxS3EgCfVUdFehr4kmLrXfLy6jN25Q0e<br>
+YSAAn3Dhe/y2xVpFYtpTtDMGCA7qOQR5<br>
+=3DFZTr<br>
+-----END PGP SIGNATURE-----<br>
+</blockquote></div><br></div>
 
-If the drivers you need are not built into the standard kernel by
-default then you will need to make some configuration changes.
-
-To do so you might wish to start by looking at the Yocto kernel
-development manual here
-
-http://www.yoctoproject.org/docs/1.6.1/kernel-dev/kernel-dev.html
-
-Incidentally. I haven't yet had a chance to pick up a copy of Otavio
-Salvador's book "Embedded Linux Development with Yocto Project"
-but he's active with all of this over on the meta-freescale list so you
-could probably do worse than take a look at his book.
-
-e.g.
-http://www.amazon.co.uk/Embedded-Linux-Development-Yocto-Project/dp/1783282339
-
-Regards,
-
-Alex
-
-
-
---------------040602070905060900040903
-Content-Type: multipart/related;
- boundary="------------030309090805040300050202"
-
---------------030309090805040300050202
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    Hi Daniel,<br>
-    <br>
-    <div class="moz-cite-prefix">On 07/10/2014 15:05, Daniel C. A
-      (NESTIT) wrote:<br>
-    </div>
-    <blockquote
-cite="mid:DFA4DD36883F5641AD609D011918C1B309CB8ABA@new-ex1.nestgroup.net"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=ISO-8859-1">
-      <meta name="Generator" content="Microsoft Word 12 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:564798544;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1832179528 1074331663 1074331673 1074331675 1074331663 1074331673 1074331675 1074331663 1074331673 1074331675;}
-@list l0:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal">Hi,<o:p></o:p></p>
-        <p class="MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Presently im working on
-          i.mx6 EVK for Automotive application. I have used
-          &#8216;fsl-image-gui&#8217; which was Bitbaked using Yocto-dora release.
-          Since I&#8217;m worked on CAN interfaces, I got the following
-          queries.<o:p></o:p></p>
-        <p class="MsoListParagraph"
-          style="text-indent:-18.0pt;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><span
-            style="mso-list:Ignore">1.<span style="font:7.0pt
-              &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><!--[endif]-->How
-          to make CAN interfaces up on EVK?<o:p></o:p></p>
-        <p class="MsoListParagraph"
-          style="text-indent:-18.0pt;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><span
-            style="mso-list:Ignore">2.<span style="font:7.0pt
-              &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><!--[endif]-->Is
-          there anything that I have to consider when I Bitbake
-          fsl-image-gui?<o:p></o:p></p>
-        <p class="MsoListParagraph"
-          style="text-indent:-18.0pt;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><span
-            style="mso-list:Ignore">3.<span style="font:7.0pt
-              &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><!--[endif]-->Has
-          fsl-image-gui got support for basic drivers like CAN,I2c,gpio
-          driver., etc?<o:p></o:p></p>
-        <p class="MsoListParagraph"
-          style="text-indent:-18.0pt;mso-list:l0 level1 lfo1"><!--[if !supportLists]--><span
-            style="mso-list:Ignore">4.<span style="font:7.0pt
-              &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><!--[endif]-->My
-          intention is to test CAN Tx/rx using CAN Analyzer and EVK,
-          what all are the steps for the same?Is there any document that
-          I can follow?<o:p></o:p></p>
-        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-        <p class="MsoNormal"><span style="font-family:&quot;Times New
-            Roman&quot;,&quot;serif&quot;" lang="EN-US">Regards,<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="font-family:&quot;Times New
-            Roman&quot;,&quot;serif&quot;" lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Daniel C A<o:p></o:p></span></p>
-        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-      </div>
-      <br>
-    </blockquote>
-    <br>
-    Have you asked over at the meta-freescale list? As you know, driver
-    support is likely to be closely linked to the Linux kernel<br>
-    provided for the i.MX6, and they are in the best position over on
-    that list to answer your question.<br>
-    <br>
-    Whilst I don't have a definitive answer for you if you look at the
-    Freescale Embedded Linux bundle for the i.MX6 processor<br>
-    (e.g. <a
-href="https://www.freescale.com/webapp/Download?colCode=L3.10.17_1.0.0_LINUX_DOCS&amp;appType=license&amp;location=null&amp;fasp=1&amp;WT_TYPE=Supporting%20Information&amp;WT_VENDOR=FREESCALE&amp;WT_FILE_FORMAT=gz&amp;WT_ASSET=Documentation&amp;fileExt=.gz"
-      onclick='s_objectID="https://www.freescale.com/webapp/Download?colCode=L3.10.17_1.0.0_LINUX_DOCS&amp;appType=license&amp;locat_1";return
-      this.s_oc?this.s_oc(e):true' style="color: rgb(1, 123, 186);
-      text-decoration: none; font-family: arial, sans-serif; font-size:
-      12px; font-style: normal; font-variant: normal; font-weight:
-      normal; letter-spacing: normal; line-height: normal; orphans:
-      auto; text-align: -webkit-left; text-indent: 0px; text-transform:
-      none; white-space: normal; widows: auto; word-spacing: 0px;
-      -webkit-text-stroke-width: 0px; background-color: rgb(236, 240,
-      241);">L3.10.17_1.0.0_LINUX_DOCS</a><span style="color: rgb(81,
-      98, 111); font-family: arial, sans-serif; font-size: 12px;
-      font-style: normal; font-variant: normal; font-weight: normal;
-      letter-spacing: normal; line-height: normal; orphans: auto;
-      text-align: -webkit-left; text-indent: 0px; text-transform: none;
-      white-space: normal; widows: auto; word-spacing: 0px;
-      -webkit-text-stroke-width: 0px; display: inline !important; float:
-      none; background-color: rgb(236, 240, 241);">&nbsp;</span><img
-      src="cid:part2.02050706.03010007@dynamicdevices.co.uk" alt=""
-      style="color: rgb(81, 98, 111); font-family: arial, sans-serif;
-      font-size: 12px; font-style: normal; font-variant: normal;
-      font-weight: normal; letter-spacing: normal; line-height: normal;
-      orphans: auto; text-align: -webkit-left; text-indent: 0px;
-      text-transform: none; white-space: normal; widows: auto;
-      word-spacing: 0px; -webkit-text-stroke-width: 0px;
-      background-color: rgb(236, 240, 241);"><span style="color: rgb(81,
-      98, 111); font-family: arial, sans-serif; font-size: 12px;
-      font-style: normal; font-variant: normal; font-weight: normal;
-      letter-spacing: normal; line-height: normal; orphans: auto;
-      text-align: -webkit-left; text-indent: 0px; text-transform: none;
-      white-space: normal; widows: auto; word-spacing: 0px;
-      -webkit-text-stroke-width: 0px; display: inline !important; float:
-      none; background-color: rgb(236, 240, 241);"> )</span> you will
-    see sections on GPIO, I2C, and FlexCAN. There are also details in
-    those sections on <br>
-    the specific kernel configuration options that need to be turned on
-    if they are not already turned on by default in the <br>
-    meta-freescale kernel configuration.<br>
-    <br>
-    If the drivers you need are not built into the standard kernel by
-    default then you will need to make some configuration changes.<br>
-    <br>
-    To do so you might wish to start by looking at the Yocto kernel
-    development manual here<br>
-    <br>
-    <a class="moz-txt-link-freetext" href="http://www.yoctoproject.org/docs/1.6.1/kernel-dev/kernel-dev.html">http://www.yoctoproject.org/docs/1.6.1/kernel-dev/kernel-dev.html</a><br>
-    <br>
-    Incidentally. I haven't yet had a chance to pick up a copy of Otavio
-    Salvador's book "Embedded Linux Development with Yocto Project"<br>
-    but he's active with all of this over on the meta-freescale list so
-    you could probably do worse than take a look at his book.<br>
-    <br>
-    e.g.
-<a class="moz-txt-link-freetext" href="http://www.amazon.co.uk/Embedded-Linux-Development-Yocto-Project/dp/1783282339">http://www.amazon.co.uk/Embedded-Linux-Development-Yocto-Project/dp/1783282339</a><br>
-    <br>
-    Regards,<br>
-    <br>
-    Alex<br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------030309090805040300050202
-Content-Type: image/gif;
- name="SECURITYINFOIMAGE.gif"
-Content-Transfer-Encoding: base64
-Content-ID: <part2.02050706.03010007@dynamicdevices.co.uk>
-Content-Disposition: inline;
- filename="SECURITYINFOIMAGE.gif"
-
-R0lGODlhCgAMAHAAACH5BAEAAAUALAAAAAAKAAwAggAAAH6TlsTP0XyVmf///wAAAAAAAAAAAAMn
-WDqsXkPI8aITdImbRwgMA0JEaRIBWQYmNZjsWsRoq57o/O1f9vwJADs=
-
---------------030309090805040300050202--
-
---------------040602070905060900040903--
+--089e0153898c5be2b40504e625dc--
