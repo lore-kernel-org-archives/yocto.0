@@ -1,37 +1,48 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <denis@denix.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BE2F0E0078E; Fri, 10 Oct 2014 16:19:29 -0700 (PDT)
+	id 70A15E0078E; Fri, 10 Oct 2014 16:28:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,HDRS_LCASE,
+	RCVD_IN_DNSWL_NONE,T_MANY_HDRS_LCASE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83216E0076C
-	for <yocto@yoctoproject.org>; Fri, 10 Oct 2014 16:19:24 -0700 (PDT)
-Received: from durham.keylevel.com ([88.97.63.243]:36969
-	helo=macbook-pro.durham.keylevel.com)
-	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.82)
-	(envelope-from <opensource@keylevel.com>) id 1XcjSx-003MrZ-7G
-	for yocto@yoctoproject.org; Sat, 11 Oct 2014 00:19:21 +0100
-From: Chris Tapp <opensource@keylevel.com>
-Message-Id: <C795FDAD-3EFD-4254-B775-7F6D3191F797@keylevel.com>
-Date: Sat, 11 Oct 2014 00:19:19 +0100
-To: Yocto Project <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
-X-Mailer: Apple Mail (2.1878.6)
-X-OutGoing-Spam-Status: No, score=-3.5
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - a180.4uh.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
-	chris.tapp@keylevel.com
-Subject: Packaging foo required!
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [206.46.173.21 listed in list.dnswl.org]
+	*  1.0 HDRS_LCASE Odd capitalization of message header
+	* 0.0 T_MANY_HDRS_LCASE Odd capitalization of multiple message headers
+Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
+	[206.46.173.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57755E0076C
+	for <yocto@yoctoproject.org>; Fri, 10 Oct 2014 16:28:31 -0700 (PDT)
+Received: from gandalf.denix.org ([unknown] [108.18.33.160])
+	by vms173021.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0ND900FPX56KAGCA@vms173021.mailsrvcs.net> for
+	yocto@yoctoproject.org; Fri, 10 Oct 2014 18:28:12 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id AEDFA20183; Fri,
+	10 Oct 2014 19:27:56 -0400 (EDT)
+Date: Fri, 10 Oct 2014 19:27:56 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: Wy kevinthesun <kevinthesunwy@gmail.com>
+Message-id: <20141010232756.GR25997@denix.org>
+References: <CAG6mzOMePPK-DkfwFfyftCojc17R2Qx6=yNvZbkXk8Mmg6gk6A@mail.gmail.com>
+	<CAP71Wjw5hZa753z828dz9HeOMuTDscQQiCkFe0_EjF6zhvGixA@mail.gmail.com>
+	<CAG6mzOOZ0bCAWu7iv=yDfMpCfyq94WEO0j27NzZUU=q2s0THrA@mail.gmail.com>
+	<CAG6mzOPEMuMs3BWZsZK1AJG=4ucBHm19m6sir10g3t87NTQDJg@mail.gmail.com>
+	<20141008204308.GM25997@denix.org>
+	<CAG6mzOMzmmeafkG3UFhWd=OtQ-CjDpU4nRGG86+WqPp6aMVDjw@mail.gmail.com>
+	<CAP71WjwDxDEsS1C-_-MEs1tmkXQaMzgwmXRDjGfZi8uUR2zJJg@mail.gmail.com>
+	<CAG6mzON96UH=mFnrrkC3KWudoUqPdQSdT9wPH1_Vj=vgFdzTDQ@mail.gmail.com>
+	<CAP71WjyH9GJ0xVbe+pO+Ww3CPAXkpTsabqn1XZumN-LR0ffSyg@mail.gmail.com>
+	<CAG6mzOPvNvjcN+2kmeYkd3efkbsSa5gsG4SUF0VMT-f8_ZnB7w@mail.gmail.com>
+MIME-version: 1.0
+In-reply-to: <CAG6mzOPvNvjcN+2kmeYkd3efkbsSa5gsG4SUF0VMT-f8_ZnB7w@mail.gmail.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: Cannot run simple binary executable file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,34 +54,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Oct 2014 23:19:29 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 10 Oct 2014 23:28:37 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-I've got a recipe that builds the turbosight kernel drivers. This =
-currently builds loads of stuff, most of which I don't want to install =
-in the final image.
+On Fri, Oct 10, 2014 at 04:15:42PM -0700, Wy kevinthesun wrote:
+> I tried both hard and hardfp. They both returned 3 errors:
+> 
+> C compiler cannot create executables    Hello        -1    Configure Problem
+> in `/home/kevinthefire/workspace/Hello':    Hello        -1    Configure
+> Problem
+> make: *** No rule to make target `all'.    Hello             C/C++ Problem
 
-I would like to use MACHINE_EXTRA_RDEPENDS in my local.conf to pull in =
-the modules that I actually need, but that doesn't trigger building of =
-'turbosight' as the recipe only RPROVIDES 'turbosight'.
+That doesn't sound like a toolchain error, but rather an autotools one. Make 
+sure you are setting up cross compilation properly.
 
-I can get round this by manually adding RPROVIDES_${PN} =3D =
-"kernel-module-x" entries to the recipe for each module, but there are =
-lots and that would be rather painful if I did it for all the modules!
 
-Is there some magic I can use to automatically generate a list of =
-RPROVIDES for all of the packages that are produced, or should this =
-already be happening?
-
---
-
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
-
-----
-You can tell you're getting older when your car insurance gets real =
-cheap!
-
+> 2014-10-09 23:12 GMT-07:00 Nicolas Dechesne <nicolas.dechesne@linaro.org>:
+> 
+> > On Thu, Oct 9, 2014 at 10:27 PM, Wy kevinthesun <kevinthesunwy@gmail.com>
+> > wrote:
+> > > It seems that Yocto 1.5.1 is built with hard float. However, the 1.51,
+> > 1.6
+> > > and  1.62 toolchains are soft float. When I tried to set
+> > > "-mfloat-abi=hardfp" in the compile option, the compiling process ran
+> > into
+> > > error. It seems these toolchains don't  support hard float? How can I
+> > solve
+> > > this problem?
+> > >
+> > > These are my set in the environment file of 1.5.1 toolchain:
+> > > export CC="arm-poky-linux-gnueabi-gcc  -march=armv5te -marm
+> > > -mthumb-interwork -mfloat-abi=hardfp
+> > > --sysroot=/opt/poky/1.5.1/sysroots/armv5te-poky-linux-gnueabi"
+> > > export CXX="arm-poky-linux-gnueabi-g++  -march=armv5te -marm
+> > > -mthumb-interwork -mfloat-abi=hardfp
+> > > --sysroot=/opt/poky/1.5.1/sysroots/armv5te-poky-linux-gnueabi"
+> > > export CPP="arm-poky-linux-gnueabi-gcc -E  -march=armv5te -marm
+> > > -mthumb-interwork -mfloat-abi=hardfp
+> > > --sysroot=/opt/poky/1.5.1/sysroots/armv5te-poky-linux-gnueabi"
+> > >
+> > > It ran into error.
+> >
+> >
+> > maybe because the gcc documentation says -mfloat-abi=hard, not =hardfp ?
+> >
+> > in general, showing us the error you have is much preferred, otherwise
+> > it's difficult to help if we don't really know what went wrong.
+> >
+> > cheers.
+> >
 
