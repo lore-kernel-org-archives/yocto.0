@@ -1,53 +1,44 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <sandrieu@greenflex.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 76F54E00790; Thu,  9 Oct 2014 23:13:00 -0700 (PDT)
+	id 012C6E00799; Fri, 10 Oct 2014 09:11:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.218.50 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-oi0-f50.google.com (mail-oi0-f50.google.com
-	[209.85.218.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40F8EE00769
-	for <yocto@yoctoproject.org>; Thu,  9 Oct 2014 23:12:56 -0700 (PDT)
-Received: by mail-oi0-f50.google.com with SMTP id i138so5580804oig.23
-	for <yocto@yoctoproject.org>; Thu, 09 Oct 2014 23:12:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=AKbNk1VhjVUJULdrKw6KaxIvDeefMQg+6kHSkWfbFKY=;
-	b=WE0r8k8iE4JtwR3wOHP0s1H3+iq+WS67n/yLt+0DXa+KgEpZRPEeAfhnUPwjDfv3KC
-	M3AR5ydIDcniq5WsZN9gUnropFH0IMmoMA8M5ohBrta05uN8POfaSA3C2bfwqiRpw1b/
-	Jfb2T5uNUuDJkwgckmss1EKbJGCDQxAVCYl77r9Ilat3F0dDGaWAvFhaFnR6THCfT/Mc
-	3nebQug6Fnw6Qp9YrkdM2lKDJMHjtO8m+qcUCMUIEg3VvubTzrgGRqjkMLGWd9G5jyP8
-	jt4s2qQcv387PwUlCjQEx9xb3/97htbxX8T5Ep9uz4xW5crHa39/G9+Uu9YjfQX/mOau
-	gG3A==
-X-Gm-Message-State: ALoCoQmxunCEhOpg8vKk4ZrKDWsh7K9AZF38Ps5UucF8CfVOBMTntHm7r5iCcKmw2XMLRQZMgANy
-X-Received: by 10.202.184.135 with SMTP id i129mr2410851oif.53.1412921575518; 
-	Thu, 09 Oct 2014 23:12:55 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from smtp-out.fingerprint.fr (smtp-out.fingerprint.fr
+	[109.69.192.220])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9981E0076C
+	for <yocto@yoctoproject.org>; Fri, 10 Oct 2014 09:11:55 -0700 (PDT)
+Received: from mxr1.fingerprint.fr (unknown [192.168.2.144])
+	by smtp-out.fingerprint.fr (Postfix) with SMTP id 67B54836E2
+	for <yocto@yoctoproject.org>; Fri, 10 Oct 2014 18:11:50 +0200 (CEST)
+Received: (qmail 16363 invoked from network); 10 Oct 2014 16:11:50 -0000
+Received: from unknown (HELO SRV-MAIL.greenflex.group) (185.3.64.10)
+	by mxr1.fingerprint.fr with SMTP; 10 Oct 2014 16:11:50 -0000
+Received: from SRV-MAIL.greenflex.group (192.168.100.25) by
+	SRV-MAIL.greenflex.group (192.168.100.25) with Microsoft SMTP Server
+	(TLS) id 15.0.913.22; Fri, 10 Oct 2014 18:11:51 +0200
+Received: from SRV-MAIL.greenflex.group ([fe80::64f4:d152:2fe:b001]) by
+	SRV-MAIL.greenflex.group ([fe80::64f4:d152:2fe:b001%12]) with mapi id
+	15.00.0913.011; Fri, 10 Oct 2014 18:11:51 +0200
+From: Simon Andrieu <sandrieu@greenflex.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: cellular modem connection with USB: how to have /dev/ttyACM0
+	interface?
+Thread-Index: Ac/kpMNa3/kDLiLATKKIWw8PmE92/g==
+Date: Fri, 10 Oct 2014 16:11:51 +0000
+Message-ID: <0ce4c396ad1544acbf2e1295f9536be1@SRV-MAIL.greenflex.group>
+Accept-Language: fr-FR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [62.193.55.84]
 MIME-Version: 1.0
-Received: by 10.76.187.8 with HTTP; Thu, 9 Oct 2014 23:12:35 -0700 (PDT)
-In-Reply-To: <CAG6mzON96UH=mFnrrkC3KWudoUqPdQSdT9wPH1_Vj=vgFdzTDQ@mail.gmail.com>
-References: <CAG6mzOMePPK-DkfwFfyftCojc17R2Qx6=yNvZbkXk8Mmg6gk6A@mail.gmail.com>
-	<CAP71Wjw5hZa753z828dz9HeOMuTDscQQiCkFe0_EjF6zhvGixA@mail.gmail.com>
-	<CAG6mzOOZ0bCAWu7iv=yDfMpCfyq94WEO0j27NzZUU=q2s0THrA@mail.gmail.com>
-	<CAG6mzOPEMuMs3BWZsZK1AJG=4ucBHm19m6sir10g3t87NTQDJg@mail.gmail.com>
-	<20141008204308.GM25997@denix.org>
-	<CAG6mzOMzmmeafkG3UFhWd=OtQ-CjDpU4nRGG86+WqPp6aMVDjw@mail.gmail.com>
-	<CAP71WjwDxDEsS1C-_-MEs1tmkXQaMzgwmXRDjGfZi8uUR2zJJg@mail.gmail.com>
-	<CAG6mzON96UH=mFnrrkC3KWudoUqPdQSdT9wPH1_Vj=vgFdzTDQ@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Fri, 10 Oct 2014 08:12:35 +0200
-Message-ID: <CAP71WjyH9GJ0xVbe+pO+Ww3CPAXkpTsabqn1XZumN-LR0ffSyg@mail.gmail.com>
-To: Wy kevinthesun <kevinthesunwy@gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Cannot run simple binary executable file
+Cc: Arnaud Dejean <arnaud.dejean@bnextenergy.com>
+Subject: cellular modem connection with USB: how to have /dev/ttyACM0 interface?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,34 +50,153 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Oct 2014 06:13:00 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 10 Oct 2014 16:11:58 -0000
+Content-Language: fr-FR
+Content-Type: multipart/alternative;
+	boundary="_000_0ce4c396ad1544acbf2e1295f9536be1SRVMAILgreenflexgroup_"
 
-On Thu, Oct 9, 2014 at 10:27 PM, Wy kevinthesun <kevinthesunwy@gmail.com> wrote:
-> It seems that Yocto 1.5.1 is built with hard float. However, the 1.51, 1.6
-> and  1.62 toolchains are soft float. When I tried to set
-> "-mfloat-abi=hardfp" in the compile option, the compiling process ran into
-> error. It seems these toolchains don't  support hard float? How can I solve
-> this problem?
+--_000_0ce4c396ad1544acbf2e1295f9536be1SRVMAILgreenflexgroup_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+I work on connecting a cellular module (with H24 Telit component) using an =
+USB interface to our Yocto distribution.
+The /dev/ttyACM0 interface is not mounted on the Yocto distribution I use f=
+ollowing USB connection. Here are the dmesg logs:
+[65133.056335] usb 2-1: new high speed USB device using musb-hdrc and addre=
+ss 2
+[65133.214965] usb 2-1: device v22b8 p2d91 is not supported
+[65133.220520] usb 2-1: New USB device found, idVendor=3D22b8, idProduct=3D=
+2d91
+[65133.227508] usb 2-1: New USB device strings: Mfr=3D1, Product=3D2, Seria=
+lNumber=3D0
+[65133.234924] usb 2-1: Product: Motorola Phone (H24)
+[65133.239929] usb 2-1: Manufacturer: Motorola, Inc.
+[65133.274108] usbcore: registered new interface driver cdc_acm
+[65133.280029] cdc_acm: v0.26:USB Abstract Control Model driver for USB mod=
+ems and ISDN adapters
+
+Maybe the used cdc-acm driver is not the right version.
+Would you know which cdc-acm driver version I should use please?
+How is it possible to change/upgrade the cdc-acm module?
+Would you have any advice to help me please?
+
+Thanks for your help.
+
+Regards,
+Simon Andrieu
+
+
+--_000_0ce4c396ad1544acbf2e1295f9536be1SRVMAILgreenflexgroup_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> These are my set in the environment file of 1.5.1 toolchain:
-> export CC="arm-poky-linux-gnueabi-gcc  -march=armv5te -marm
-> -mthumb-interwork -mfloat-abi=hardfp
-> --sysroot=/opt/poky/1.5.1/sysroots/armv5te-poky-linux-gnueabi"
-> export CXX="arm-poky-linux-gnueabi-g++  -march=armv5te -marm
-> -mthumb-interwork -mfloat-abi=hardfp
-> --sysroot=/opt/poky/1.5.1/sysroots/armv5te-poky-linux-gnueabi"
-> export CPP="arm-poky-linux-gnueabi-gcc -E  -march=armv5te -marm
-> -mthumb-interwork -mfloat-abi=hardfp
-> --sysroot=/opt/poky/1.5.1/sysroots/armv5te-poky-linux-gnueabi"
->
-> It ran into error.
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"FR" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I work on connecting a cellular=
+ module (with H24 Telit component) using an USB interface to our Yocto dist=
+ribution.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">The /dev/ttyACM0 interface is n=
+ot mounted on the Yocto distribution I use following USB connection. Here a=
+re the dmesg logs:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Courier New&quot;">[65133.056335] usb 2-1: new high speed USB d=
+evice using musb-hdrc and address 2<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Courier New&quot;">[65133.214965] usb 2-1: device v22b8 p2d91 i=
+s not supported<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Courier New&quot;">[65133.220520] usb 2-1: New USB device found=
+, idVendor=3D22b8, idProduct=3D2d91<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Courier New&quot;">[65133.227508] usb 2-1: New USB device strin=
+gs: Mfr=3D1, Product=3D2, SerialNumber=3D0<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Courier New&quot;">[65133.234924] usb 2-1: Product: Motorola Ph=
+one (H24)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Courier New&quot;">[65133.239929] usb 2-1: Manufacturer: Motoro=
+la, Inc.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Courier New&quot;">[65133.274108] usbcore: registered new inter=
+face driver cdc_acm<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:9.0pt;font-f=
+amily:&quot;Courier New&quot;">[65133.280029] cdc_acm: v0.26:USB Abstract C=
+ontrol Model driver for USB modems and ISDN adapters<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Maybe the used cdc-acm driver i=
+s not the right version.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Would you know which cdc-acm dr=
+iver version I should use please?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">How is it possible to change/up=
+grade the cdc-acm module?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Would you have any advice to he=
+lp me please?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks for your help.<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Regards,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Simon Andrieu<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-
-maybe because the gcc documentation says -mfloat-abi=hard, not =hardfp ?
-
-in general, showing us the error you have is much preferred, otherwise
-it's difficult to help if we don't really know what went wrong.
-
-cheers.
-
+--_000_0ce4c396ad1544acbf2e1295f9536be1SRVMAILgreenflexgroup_--
