@@ -1,50 +1,48 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <alberk@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ADDBFE00796; Sat, 11 Oct 2014 04:07:08 -0700 (PDT)
+	id 2FDD0E0080C; Sat, 11 Oct 2014 09:52:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_20,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
-	*      [score: 0.1511]
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_05,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (alberk[at]gmail.com)
+	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
+	*      [score: 0.0172]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [208.80.206.84 listed in list.dnswl.org]
-X-Greylist: delayed 207 seconds by postgrey-1.32 at yocto-www;
-	Sat, 11 Oct 2014 04:07:03 PDT
-Received: from smtp684.redcondor.net (smtp684.redcondor.net [208.80.206.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7879BE00781
-	for <yocto@yoctoproject.org>; Sat, 11 Oct 2014 04:07:03 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp684.redcondor.net ({700db0a8-6fb7-4c8b-9b2a-6812225182d8})
-	via TCP (outbound) with ESMTPS id 20141011110334897
-	for <yocto@yoctoproject.org>; Sat, 11 Oct 2014 11:03:34 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [99.240.204.5] (port=59668 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1XcuSW-0000c4-7O
-	for yocto@yoctoproject.org; Sat, 11 Oct 2014 07:03:36 -0400
-Date: Sat, 11 Oct 2014 07:03:27 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1410110701570.14485@localhost>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+	*      [209.85.216.53 listed in list.dnswl.org]
+Received: from mail-qa0-f53.google.com (mail-qa0-f53.google.com
+	[209.85.216.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85FD0E00799
+	for <yocto@yoctoproject.org>; Sat, 11 Oct 2014 09:52:06 -0700 (PDT)
+Received: by mail-qa0-f53.google.com with SMTP id v10so2934058qac.12
+	for <yocto@yoctoproject.org>; Sat, 11 Oct 2014 09:52:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=9OT1NDD7A4pGGC6fMjDMTda763NHv97OePpG75iGHa4=;
+	b=k7INBMNeItFaQrndzA5Jav7UKUnqCABOXcZbM6nvLIBjOx94EzFwptYkuGIkqhoxm/
+	Ai2yE63EMR+zeColjRtHdUy/bHCDZHzEHU2wG1V3yqnKM6CuxzdcveSrYz4iIPchMGI3
+	cyooffFPHsUh9TFdLmzlBhfxwnv3w53dKzQxa6U0XffEKEHKX43Cmv/eF7AKLHYx0jlI
+	QvJz0dHGb/L4Ck0bKz47Hc50QHlUS6RJP8ZTIu7UW2V9sEXS3/QGhmtxbxOxoW7am3I2
+	+hqOJ8XykAmz7NBlo73BjZ1Wq4EdNcwC7S0tbdK641+b+Kj9nyL+axl21oEMpHBimFcQ
+	XxmA==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: is anything happening with "meta-kernel-dev" layer?
+X-Received: by 10.140.19.36 with SMTP id 33mr20986501qgg.32.1413046326235;
+	Sat, 11 Oct 2014 09:52:06 -0700 (PDT)
+Received: by 10.140.86.147 with HTTP; Sat, 11 Oct 2014 09:52:06 -0700 (PDT)
+Date: Sun, 12 Oct 2014 00:52:06 +0800
+Message-ID: <CACjDgAPDSC5v2QO432YnmRjDLM04ucF0odrjRP9+bS14bWhkQQ@mail.gmail.com>
+From: Albert K <alberk@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: PCEngines APU1c
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,30 +54,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 11 Oct 2014 11:07:08 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Sat, 11 Oct 2014 16:52:12 -0000
+Content-Type: text/plain; charset=UTF-8
 
+Dear all,
 
-  just noticed the entry at:
+May I know if anyone has a BSP for PCEngines APU1c ?   Thanks.
 
-http://layers.openembedded.org/layerindex/branch/master/layers
-
-for "meta-kernel-dev":
-
-http://layers.openembedded.org/layerindex/branch/master/layer/meta-kernel-dev/
-
-which doesn't seem to be doing a whole lot these days. is this still
-relevant? should it be tossed from the active layers page?
-
-rday
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+Regards.
 
