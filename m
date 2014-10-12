@@ -1,48 +1,27 @@
-Return-Path: <alberk@gmail.com>
+Return-Path: <pokybuild@ubuntu1204.osl.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2FDD0E0080C; Sat, 11 Oct 2014 09:52:12 -0700 (PDT)
+	id 20425E00877; Sat, 11 Oct 2014 17:52:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_05,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (alberk[at]gmail.com)
-	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
-	*      [score: 0.0172]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.53 listed in list.dnswl.org]
-Received: from mail-qa0-f53.google.com (mail-qa0-f53.google.com
-	[209.85.216.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85FD0E00799
-	for <yocto@yoctoproject.org>; Sat, 11 Oct 2014 09:52:06 -0700 (PDT)
-Received: by mail-qa0-f53.google.com with SMTP id v10so2934058qac.12
-	for <yocto@yoctoproject.org>; Sat, 11 Oct 2014 09:52:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=9OT1NDD7A4pGGC6fMjDMTda763NHv97OePpG75iGHa4=;
-	b=k7INBMNeItFaQrndzA5Jav7UKUnqCABOXcZbM6nvLIBjOx94EzFwptYkuGIkqhoxm/
-	Ai2yE63EMR+zeColjRtHdUy/bHCDZHzEHU2wG1V3yqnKM6CuxzdcveSrYz4iIPchMGI3
-	cyooffFPHsUh9TFdLmzlBhfxwnv3w53dKzQxa6U0XffEKEHKX43Cmv/eF7AKLHYx0jlI
-	QvJz0dHGb/L4Ck0bKz47Hc50QHlUS6RJP8ZTIu7UW2V9sEXS3/QGhmtxbxOxoW7am3I2
-	+hqOJ8XykAmz7NBlo73BjZ1Wq4EdNcwC7S0tbdK641+b+Kj9nyL+axl21oEMpHBimFcQ
-	XxmA==
-MIME-Version: 1.0
-X-Received: by 10.140.19.36 with SMTP id 33mr20986501qgg.32.1413046326235;
-	Sat, 11 Oct 2014 09:52:06 -0700 (PDT)
-Received: by 10.140.86.147 with HTTP; Sat, 11 Oct 2014 09:52:06 -0700 (PDT)
-Date: Sun, 12 Oct 2014 00:52:06 +0800
-Message-ID: <CACjDgAPDSC5v2QO432YnmRjDLM04ucF0odrjRP9+bS14bWhkQQ@mail.gmail.com>
-From: Albert K <alberk@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: PCEngines APU1c
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
+	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from ubuntu1204.osl.yoctoproject.org
+	(ubuntu1204.osl.yoctoproject.org [10.0.10.110])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2EEE6E0080C;
+	Sat, 11 Oct 2014 17:51:57 -0700 (PDT)
+Received: by ubuntu1204.osl.yoctoproject.org (Postfix, from userid 1006)
+	id D66DC2C0219; Sun, 12 Oct 2014 00:51:56 +0000 (UTC)
+To: yocto@yoctoproject.org
+Message-Id: <20141012005156.D66DC2C0219@ubuntu1204.osl.yoctoproject.org>
+Date: Sun, 12 Oct 2014 00:51:56 +0000 (UTC)
+From: pokybuild@ubuntu1204.osl.yoctoproject.org (Poky Build User)
+Cc: @ossystems.com.bryi.zhao, elizabeth.flanagan@intel.comyocto, @windriver.com,
+	@yoctoproject.orgalexandru.c.georgescu, @intel.comotavio
+Subject: Release Candidate Build for yocto-1.7.rc4 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,12 +33,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 11 Oct 2014 16:52:12 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 12 Oct 2014 00:52:01 -0000
 
-Dear all,
+-e 
+A release candidate build for yocto-1.7.rc4 is now available at:
 
-May I know if anyone has a BSP for PCEngines APU1c ?   Thanks.
+ 
+http://autobuilder.yoctoproject.org/pub/releases/yocto-1.7.rc4
 
-Regards.
+
+Please begin QA on this build as soon as possible.
+
+
+Build hash information: 
+meta-intel : 8e5fe6c0f5cf710e1a46c5f203e52f069874768a 
+meta-fsl-arm : 1c1d7045696abd02aaf58e311ffae467b34bc4c1 
+meta-minnow : 13a5f2ab84c7284647a3e067a33109c11dae0568 
+meta-qt3 : 3016129d90b7ac8517a5227d819f10ad417b5b45 
+meta-fsl-ppc : deb326df1489d4844f911605a2627f95c89b167f 
+poky : ccf5a4d2342c4fd40e4e0b332ea7e34e0bf175d4 
+
+
+This is an automated message from
+The Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder
+Email: elizabeth.flanagan@intel.com 
 
