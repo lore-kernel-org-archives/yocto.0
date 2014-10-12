@@ -1,27 +1,38 @@
-Return-Path: <pokybuild@ubuntu1204.osl.yoctoproject.org>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20425E00877; Sat, 11 Oct 2014 17:52:01 -0700 (PDT)
+	id 600A5E00877; Sat, 11 Oct 2014 18:20:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.1
-X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
-	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from ubuntu1204.osl.yoctoproject.org
-	(ubuntu1204.osl.yoctoproject.org [10.0.10.110])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2EEE6E0080C;
-	Sat, 11 Oct 2014 17:51:57 -0700 (PDT)
-Received: by ubuntu1204.osl.yoctoproject.org (Postfix, from userid 1006)
-	id D66DC2C0219; Sun, 12 Oct 2014 00:51:56 +0000 (UTC)
-To: yocto@yoctoproject.org
-Message-Id: <20141012005156.D66DC2C0219@ubuntu1204.osl.yoctoproject.org>
-Date: Sun, 12 Oct 2014 00:51:56 +0000 (UTC)
-From: pokybuild@ubuntu1204.osl.yoctoproject.org (Poky Build User)
-Cc: @ossystems.com.bryi.zhao, elizabeth.flanagan@intel.comyocto, @windriver.com,
-	@yoctoproject.orgalexandru.c.georgescu, @intel.comotavio
-Subject: Release Candidate Build for yocto-1.7.rc4 now available.
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A651E0080C
+	for <yocto@yoctoproject.org>; Sat, 11 Oct 2014 18:20:36 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id s9C1KQgA025442
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sat, 11 Oct 2014 18:20:26 -0700 (PDT)
+Received: from server.local (128.224.21.190) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.174.1;
+	Sat, 11 Oct 2014 18:20:26 -0700
+Message-ID: <5439D6FC.9060704@windriver.com>
+Date: Sat, 11 Oct 2014 21:18:52 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+MIME-Version: 1.0
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+References: <alpine.LFD.2.11.1410110701570.14485@localhost>
+In-Reply-To: <alpine.LFD.2.11.1410110701570.14485@localhost>
+Subject: Re: is anything happening with "meta-kernel-dev" layer?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,29 +44,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 12 Oct 2014 00:52:01 -0000
+X-List-Received-Date: Sun, 12 Oct 2014 01:20:39 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
--e 
-A release candidate build for yocto-1.7.rc4 is now available at:
+On 2014-10-11, 7:03 AM, Robert P. J. Day wrote:
+>
+>    just noticed the entry at:
+>
+> http://layers.openembedded.org/layerindex/branch/master/layers
+>
+> for "meta-kernel-dev":
+>
+> http://layers.openembedded.org/layerindex/branch/master/layer/meta-kernel-dev/
+>
+> which doesn't seem to be doing a whole lot these days. is this still
+> relevant? should it be tossed from the active layers page?
 
- 
-http://autobuilder.yoctoproject.org/pub/releases/yocto-1.7.rc4
+I still use it every day, but it is being re-worked for 1.8. That being
+said, the functionality that it added is largely present in core now,
+and will be addressed by other developer workflow improvements.
 
+Bruce
 
-Please begin QA on this build as soon as possible.
+>
+> rday
+>
 
-
-Build hash information: 
-meta-intel : 8e5fe6c0f5cf710e1a46c5f203e52f069874768a 
-meta-fsl-arm : 1c1d7045696abd02aaf58e311ffae467b34bc4c1 
-meta-minnow : 13a5f2ab84c7284647a3e067a33109c11dae0568 
-meta-qt3 : 3016129d90b7ac8517a5227d819f10ad417b5b45 
-meta-fsl-ppc : deb326df1489d4844f911605a2627f95c89b167f 
-poky : ccf5a4d2342c4fd40e4e0b332ea7e34e0bf175d4 
-
-
-This is an automated message from
-The Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder
-Email: elizabeth.flanagan@intel.com 
 
