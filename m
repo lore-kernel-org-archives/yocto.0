@@ -1,49 +1,36 @@
-Return-Path: <navani.srivastava@gmail.com>
+Return-Path: <sona.sarmadi@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 67B74E008A2; Tue, 14 Oct 2014 02:41:19 -0700 (PDT)
+	id BF6EEE00853; Tue, 14 Oct 2014 07:39:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (navani.srivastava[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.174 listed in list.dnswl.org]
-Received: from mail-ig0-f174.google.com (mail-ig0-f174.google.com
-	[209.85.213.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E98FE00846
-	for <yocto@yoctoproject.org>; Tue, 14 Oct 2014 02:41:11 -0700 (PDT)
-Received: by mail-ig0-f174.google.com with SMTP id a13so13806563igq.13
-	for <yocto@yoctoproject.org>; Tue, 14 Oct 2014 02:41:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=xgg15NNh1hlUPgrWHsRK3ssIuHiGvke+zMOFi830vNk=;
-	b=o44pxgVYmqEGmUOQDPFPNZ9ak6G2Y1tc5c4Ej06BG1c8Y3Di7wjM01bz98BhVLZ2DX
-	YC00hi1Jjw92IaNkgBgmAVzunbqPTLsNlYUE+m6XS+YlkjQ+Za3G29FUrZvowc8VbisI
-	TJRCOMZOf9+J2Eu9goLSL2zci4lHrkHvIbOge2mzDCq/QYheSa3dc04ntAHsDAiowfJA
-	7zSxMKRMEle6eNGA68n2xUlHupZUsiH+QZyaA/nlIG16/bCPcrIWOYNPGJYXuw3J5JOP
-	2JfDf4FwPWa8zt/YvkVge7bRA8VO/Isx5b/efRC8Tde3cNFyCNvQHrQZUNjJaPaqg6Fe
-	egRA==
-X-Received: by 10.50.112.164 with SMTP id ir4mr8126353igb.1.1413279670161;
-	Tue, 14 Oct 2014 02:41:10 -0700 (PDT)
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id BCF95E007C1
+	for <yocto@yoctoproject.org>; Tue, 14 Oct 2014 07:39:30 -0700 (PDT)
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
+	14.03.0158.001; Tue, 14 Oct 2014 16:39:25 +0200
+From: Sona Sarmadi <sona.sarmadi@enea.com>
+To: "openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: [oss-security] Truly scary SSL 3.0 vuln to be revealed soon:
+Thread-Index: AQHP56BCEucTJt1X1Uauj1I8gN6wCpwvqK4w
+Date: Tue, 14 Oct 2014 14:39:24 +0000
+Message-ID: <3230301C09DEF9499B442BBE162C5E4825766DAD@SESTOEX04.enea.se>
+References: <3230301C09DEF9499B442BBE162C5E48257669F3@SESTOEX04.enea.se>
+	<20141014131541.090af81a@pc>
+In-Reply-To: <20141014131541.090af81a@pc>
+Accept-Language: sv-SE, en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.1.188]
 MIME-Version: 1.0
-Received: by 10.107.132.26 with HTTP; Tue, 14 Oct 2014 02:40:49 -0700 (PDT)
-From: Navani Srivastava <navani.srivastava@gmail.com>
-Date: Tue, 14 Oct 2014 15:10:49 +0530
-Message-ID: <CA+Z6RkVM=PVYmE3o3XfuWDXiWK_rSzdvLuvGgyRjVJpKKkeq+A@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Adding nativesdk package to toolchain
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: FW: [oss-security] Truly scary SSL 3.0 vuln to be revealed soon:
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,63 +42,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Oct 2014 09:41:19 -0000
-X-Groupsio-MsgNum: 21802
-Content-Type: multipart/mixed; boundary=089e01175f6bb5896405055ed050
+X-List-Received-Date: Tue, 14 Oct 2014 14:39:41 -0000
+X-Groupsio-MsgNum: 21803
+Content-Language: en-US
+Content-Type: multipart/mixed;
+	boundary="_002_3230301C09DEF9499B442BBE162C5E4825766DADSESTOEX04enease_"
 
---089e01175f6bb5896405055ed050
-Content-Type: multipart/alternative; boundary=089e01175f6bb5896005055ed04e
-
---089e01175f6bb5896005055ed04e
-Content-Type: text/plain; charset=UTF-8
-
-Hello,
-
-I am trying to add a nativesdk package of a custom recipe to toolchain in
-Poky-8.0.2. I have added nativesdk-qjson (custom package) to
-TOOLCHAIN_HOST_TASK variable, but it is throwing following error while
-generating the toolchain-
-
-Collected errors:
-|  * opkg_install_cmd: Cannot install package nativesdk-qjson.
-
-Attached is the recipe for nativesdk package. How can I make it work?
-
-Thanks
-Navani
-
---089e01175f6bb5896005055ed04e
-Content-Type: text/html; charset=UTF-8
+--_002_3230301C09DEF9499B442BBE162C5E4825766DADSESTOEX04enease_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I am trying to add a =
-nativesdk package of a custom recipe to toolchain in Poky-8.0.2. I have add=
-ed nativesdk-qjson (custom package) to TOOLCHAIN_HOST_TASK variable, but it=
- is throwing following error while generating the toolchain-</div><div><br>=
-</div><div>Collected errors:</div><div>| =C2=A0* opkg_install_cmd: Cannot i=
-nstall package nativesdk-qjson.</div><div><br></div><div>Attached is the re=
-cipe for nativesdk package. How can I make it work?</div><div><br></div><di=
-v>Thanks</div><div>Navani</div><div><br></div><div><br></div></div>
+Hi all,
 
---089e01175f6bb5896005055ed04e--
+It seems that another vulnerability is coming soon, the advice is disable S=
+SLv3.:
+http://www.theregister.co.uk/2014/10/14/nasty_ssl_30_vulnerability_to_drop_=
+tomorrow/
 
---089e01175f6bb5896405055ed050
-Content-Type: application/octet-stream; name="nativesdk-qjson_0.8.1.bb"
-Content-Disposition: attachment; filename="nativesdk-qjson_0.8.1.bb"
+
+From Hanno B=F6ck [hanno@hboeck.de]:
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Whether it's scary or not I have an advice for you: Disable SSLv3.
+
+It causes a lot of headache already. I once had to debug a rather subtle is=
+sue in combination with SNI.
+The problem: Browsers downgrade out of protocol to SSLv3 if they can't conn=
+ect via TLS. They do this in order to support broken server implementations=
+. However this downgrade can also be triggered by bad or slow internet conn=
+ections - and then you'll loose SNI. So sometimes your visitors will get th=
+e wrong certificate presented.
+I solved this for my servers by disabling SSLv3. It was a minor problem whe=
+n I did this but it is almost no problem today.
+
+You will lock out IE6 users on Windows XP. However even people who use Wind=
+ows XP+IE and installed their updates have TLS 1.0 support.
+I also encountered a small number of people who had manually disabled TLS 1=
+.0 in firefox for unknown reasons. However this was a few years ago. Curren=
+t Firefox versions make it harder to do this. I assume the reason was that =
+they thought "v3 sound newer than v1.0".
+
+A number of people already recommend disabling SSLv3, e.g. the Qualys confi=
+guration guide. Disable it now - no matter if the rumors about a serious vu=
+ln are true, you'll be safe.
+
+BR - Sona=20
+
+--_002_3230301C09DEF9499B442BBE162C5E4825766DADSESTOEX04enease_
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: signature.asc
+Content-Disposition: attachment; filename="signature.asc"; size=836;
+	creation-date="Tue, 14 Oct 2014 14:39:24 GMT";
+	modification-date="Tue, 14 Oct 2014 14:39:24 GMT"
 Content-Transfer-Encoding: base64
-X-Attachment-Id: f_i19238a20
 
-REVTQ1JJUFRJT04gPSAiQSBKc29uIGxpYnJhcnkgZm9yIFFUIgpIT01FUEFHRSA9ICJodHRwOi8v
-cWpzb24uc291cmNlZm9yZ2UubmV0LyIKU0VDVElPTiA9ICJsaWJzIgpSREVQRU5EU18ke1BOfSAr
-PSAibmF0aXZlc2RrLXFqc29uIgoKTElDRU5TRSA9ICJMR1BMdjIiCkxJQ19GSUxFU19DSEtTVU0g
-PSAiZmlsZTovL0NPUFlJTkcubGliO21kNT0zNTExZDcyNmQwOTE0NGM4NTkwYWJhNDYyM2NhMmU5
-ZiIKClNSQ1JFViA9ICJjNmQ5MmJhZGE3NmJlMmM0NmRjZjZmNTg1ZjAzYjJmYmE0N2Y5ZGEzIgpQ
-ViA9ICIwLjguMSIKUFIgPSAicjAiCgpTID0gIiR7V09SS0RJUn0vZ2l0IgoKU1JDX1VSSSA9ICJn
-aXQ6Ly9naXRodWIuY29tL2ZsYXZpby9xanNvbi5naXQ7cHJvdG9jb2w9Z2l0IFwKCSAgIGZpbGU6
-Ly9DaGFuZ2VDTWFrZUxpc3QucGF0Y2g7cGF0Y2g9MSAiCgpERVBFTkRTICs9ICJjbWFrZSBwa2dj
-b25maWciCgppbmhlcml0IGNtYWtlCmluaGVyaXQgYXV0b3Rvb2xzIGdldHRleHQgcGtnY29uZmln
-CmluaGVyaXQgbmF0aXZlc2RrCgojIEFkZGluZyBvdXIgbGliIGZpbGUgdG8gdGhlIG1haW4gcGFj
-a2FnZQpGSUxFU18ke1BOfS1kYmcgKz0gIiR7bGliZGlyfS8qIgpGSUxFU18ke1BOfSArPSAiJHtp
-bmNsdWRlZGlyfS8qIgoKQkJDTEFTU0VYVEVORCA9ICJuYXRpdmVzZGsiCg==
+LS0tLS1CRUdJTiBQR1AgU0lHTkFUVVJFLS0tLS0NClZlcnNpb246IEdudVBHIHYyDQoNCmlRSWNC
+QUVCQ2dBR0JRSlVQUVhkQUFvSkVLV0lBSEs3dFI1Q1I0WVFBTWdabE8xSzI2cmVxWGN1RWNhTXJL
+MksNClVVUDlHTDJtdmk2SlFEQ2dDdHRsTkxEZVBIWlNUQjJGTXhxTlJhRm1QU21hNHdyQVFvUkl0
+YWovcnVzUkpoWWUNCmxUSjIrZEY1dDdyTkJJUnlMTFNJTjY0eEtwT3Y0eGVaR3dVTUtjSjc2ajlB
+SzY1ZVJ4YTJZVHRtM1dzN3pBL3ENCkVSaCtsSURTRElndkpvVEwrOGtsZWx3L3IyZEJMOGdteVN3
+WUxXR2FZNkJGRDRCSnFIbW5qRTN5dmxzZG5xL2wNCkZVSGU3TnltQXIvWEYvNVdNbnliY0hHM3Zm
+ZTIyRktUSWFkaDhNanJ5dWRiVy9qNnBGbEExS1pIcWphcmpWT2UNCmZ4U1hGdENRMzZaejNyeXdm
+UmpscnZyeS9mRDB0U05DNjFrVEhwOFFGVmtERitaZURVUWhWUHJzVXVWQmIzZkkNCkpPditzcE9S
+WUtyWHZ2YU5IanJocWc2N055WlczbFhJVHgzU0N4RXlrcVpJNE8yNGo5TEFGc0lOVHYwN2t3cUEN
+CndHZlBWS1Yrck9rU2FOVVduZGYzRHFnZTdKMXJxOHdXUkhiQnhSYlVXL2hxdmZQbUJ6S3pQQzdZ
+SmVYUUdXemUNCnpUNFJzMms3TS9FanhHT2NiTVppSWVYc0pHQXo1TDhqYnVybkI5aFhqN0NmVU5R
+Q09DZE9mUkNWdmlhd3NDWE8NCmlwbkl4RkRLM3NZcVIyMGs4MnpmNG5hRFFwbGJQM0dGcXB6Q09q
+bUdlT0dKV1dWcjB3ZzJmVDA2eHNsY1lBTVUNCmJqQ1BPc2ZmT0tQSHh5R05MVnZwcEU0SndYZm5O
+dWEzWHV6aXp1enBrRGxsS2J3bkQwNGJhOXFaNk4vQlpQYWUNCkoxZDU4eDhPcEtvbmkzSHYrSy9k
+DQo9am5Tcw0KLS0tLS1FTkQgUEdQIFNJR05BVFVSRS0tLS0tDQo=
 
---089e01175f6bb5896405055ed050--
+--_002_3230301C09DEF9499B442BBE162C5E4825766DADSESTOEX04enease_--
