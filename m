@@ -1,57 +1,48 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <kevin@smartthings.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8A970E00860; Wed, 15 Oct 2014 07:38:15 -0700 (PDT)
+	id 7B12CE008A2; Mon, 13 Oct 2014 22:30:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [157.56.110.132 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1on0132.outbound.protection.outlook.com [157.56.110.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 348EBE00848
-	for <yocto@yoctoproject.org>; Wed, 15 Oct 2014 07:38:06 -0700 (PDT)
-Received: from BLUPR05MB037.namprd05.prod.outlook.com (10.255.210.145) by
-	BLUPR05MB040.namprd05.prod.outlook.com (10.255.210.156) with Microsoft
-	SMTP Server (TLS) id 15.0.1049.19; Wed, 15 Oct 2014 14:22:12 +0000
-Received: from BLUPR05MB037.namprd05.prod.outlook.com ([169.254.7.242]) by
-	BLUPR05MB037.namprd05.prod.outlook.com ([169.254.7.242]) with mapi id
-	15.00.1049.012; Wed, 15 Oct 2014 14:22:12 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "Burton, Ross" <ross.burton@intel.com>, Sona Sarmadi
-	<sona.sarmadi@enea.com>
-Thread-Topic: [OE-core] Truly scary SSL 3.0 vuln to be revealed soon:
-Thread-Index: Ac/oO1a66AZx1WfuSiqPuqDXwzOnfwAJHviAAATKbpA=
-Date: Wed, 15 Oct 2014 14:22:11 +0000
-Message-ID: <93f9b7532eb648119a368bf707bd2f6b@BLUPR05MB037.namprd05.prod.outlook.com>
-References: <3230301C09DEF9499B442BBE162C5E482576880D@SESTOEX04.enea.se>
-	<CAJTo0La=7QNS53qZDgShj+9yr6Ge0hyk9HFAdS+Ue0bZAkck4A@mail.gmail.com>
-In-Reply-To: <CAJTo0La=7QNS53qZDgShj+9yr6Ge0hyk9HFAdS+Ue0bZAkck4A@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-vipre-scanned: 008BF8F1008498008BFA3E
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [98.100.91.242]
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:;SRVR:BLUPR05MB040;
-x-exchange-antispam-report-test: UriScan:;
-x-forefront-prvs: 0365C0E14B
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(189002)(51704005)(377454003)(13464003)(24454002)(199003)(108616004)(85306004)(33646002)(85852003)(40100003)(15202345003)(101416001)(4396001)(2656002)(87936001)(122556002)(97736003)(120916001)(77096002)(50986999)(76176999)(107046002)(54356999)(76576001)(76482002)(95666004)(99286002)(105586002)(106356001)(20776003)(19580405001)(66066001)(19580395003)(64706001)(92566001)(86362001)(15975445006)(46102003)(80022003)(74316001)(21056001)(31966008)(24736002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BLUPR05MB040;
-	H:BLUPR05MB037.namprd05.prod.outlook.com; FPR:; MLV:sfv;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Truly scary SSL 3.0 vuln to be revealed soon:
+Received: from mail-ig0-f173.google.com (mail-ig0-f173.google.com
+	[209.85.213.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F9ACE0089F
+	for <yocto@yoctoproject.org>; Mon, 13 Oct 2014 22:30:01 -0700 (PDT)
+Received: by mail-ig0-f173.google.com with SMTP id h18so13175332igc.12
+	for <yocto@yoctoproject.org>; Mon, 13 Oct 2014 22:30:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=RmsLrmStqy/f5cWJgdxS/J6+FG63pzn5sCYy2r7T7Tk=;
+	b=RxrP8EvP9ZooFyWEG1Vr8mVj3FJQIT/hU6u2e6wREadQazfRaG4FUQmne3NOtn7bCc
+	hVkTarfM7wQk6Zfuf9pVjJoWI8R+vcOlPqZnFWjJ4yLBLBW37uULgwIyvVdLRd2AbE1b
+	uLhCVZWPkTIBtC0pADJkhhHeAqmMOh91skXZgedj/u8S/x6zFwq7GprEEMPfMkXKv6Cj
+	jAElhhIQM2HDKVqzShgl6H26A3lzxqT5kGnnplKevMSL1yN2nf2JbmO7A9qzYQ34vbp6
+	ANnLEs9np/oWGCBhkUAUGqjkuHe6IsKjgeUZdi1HOOIM9JOcYnI7bRAMKfp4VFPJ8s/z
+	05Rg==
+X-Gm-Message-State: ALoCoQkUBFq0MS8dlRcfAl9ALmIBij6f4B5YPcZDLPlx/fqAR9gzfP5q1KF3QClI6X5uXDvKewV+
+X-Received: by 10.50.78.166 with SMTP id c6mr4387162igx.16.1413264600548;
+	Mon, 13 Oct 2014 22:30:00 -0700 (PDT)
+Received: from localhost.localdomain (c-98-250-20-24.hsd1.mi.comcast.net.
+	[98.250.20.24]) by mx.google.com with ESMTPSA id
+	mk5sm10750912igb.15.2014.10.13.22.29.58 for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 13 Oct 2014 22:29:59 -0700 (PDT)
+From: Kevin Vanden Berge <kevin@smartthings.com>
+To: yocto@yoctoproject.org
+Date: Tue, 14 Oct 2014 01:29:19 -0400
+Message-Id: <1413264559-12816-1-git-send-email-kevin@smartthings.com>
+X-Mailer: git-send-email 1.9.1
+X-Mailman-Approved-At: Wed, 15 Oct 2014 08:20:56 -0700
+Cc: Kevin Vanden Berge <kevin@smartthings.com>
+Subject: [meta-oracle-java][PATCH]] Adding the jdk for arm. Version 1.7.0_u60
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,54 +54,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Oct 2014 14:38:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 14 Oct 2014 05:30:14 -0000
 
-Um9zcywNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBvcGVuZW1iZWRk
-ZWQtY29yZS1ib3VuY2VzQGxpc3RzLm9wZW5lbWJlZGRlZC5vcmcNCj4gW21haWx0bzpvcGVuZW1i
-ZWRkZWQtY29yZS1ib3VuY2VzQGxpc3RzLm9wZW5lbWJlZGRlZC5vcmddIE9uIEJlaGFsZg0KPiBP
-ZiBCdXJ0b24sIFJvc3MNCj4gU2VudDogV2VkbmVzZGF5LCBPY3RvYmVyIDE1LCAyMDE0IDY6MDcg
-QU0NCj4gVG86IFNvbmEgU2FybWFkaQ0KPiBDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzsgb3Bl
-bmVtYmVkZGVkLQ0KPiBjb3JlQGxpc3RzLm9wZW5lbWJlZGRlZC5vcmcNCj4gU3ViamVjdDogUmU6
-IFtPRS1jb3JlXSBUcnVseSBzY2FyeSBTU0wgMy4wIHZ1bG4gdG8gYmUgcmV2ZWFsZWQgc29vbjoN
-Cj4gDQo+IE9uIDE1IE9jdG9iZXIgMjAxNCAwNzo0OCwgU29uYSBTYXJtYWRpIDxzb25hLnNhcm1h
-ZGlAZW5lYS5jb20+IHdyb3RlOg0KPiA+IFRoZSBhZHZpY2UgaXM6IERpc2FibGUgU1NMdjMuDQo+
-ID4NCj4gPiBJIGNyZWF0ZWQgaHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2plY3Qub3JnL3Nob3df
-YnVnLmNnaT9pZD02ODQzICBzbyB3ZQ0KPiBjYW4gc3RhcnQgdG8gd29yayB3aXRoIHRoaXMgaW1t
-ZWRpYXRlbHkuDQo+IA0KPiBQcmVzdW1hYmx5IHRoZSBsaXN0IG9mIGFmZmVjdGVkIHBhY2thZ2Vz
-IGlzOg0KPiAtIGdudXRscw0KPiAtIG9wZW5zc2wNCj4gLSBuc3MNCj4gDQo+IEFyZSB0aGVyZSBt
-b3JlPyAgV2lsbCBFTkVBIGJlIGFibGUgdG8gc2VuZCBwYXRjaGVzIHRvIHRoZXNlIHBhY2thZ2Vz
-Pw0KPg0KDQpJIGRpZCBhIGZldyBxdWljayBzZWFyY2hlcyBvZiByZWNpcGUgbmFtZXMgYW5kIGRl
-c2NyaXB0aW9ucyBvbiB0aGUgbWV0YS1vcGVuZW1iZWRkZWQgYW5kIHBva3kgKHdoaWNoIGluY2x1
-ZGVzIG9lLWNvcmUpIGxheWVycyBmb3IgU1NMIGFuZCBUTFMgcmVsYXRpb24uICBUaGUgc2VhcmNo
-ZXMgSSB1c2VkIGZyb20gdGhlIHBva3kgZGlyZWN0b3J5IHdlcmU6DQoNCmZpbmQgbWV0YSogLW5h
-bWUgIipzc2wqLmJiIg0KZmluZCBtZXRhKiAtbmFtZSAiKnRscyouYmIiDQpncmVwIC1uckUgJyhz
-c2x8U1NMfHRsc3xUTFMpJyBtZXRhKiB8IGdyZXAgLXZFICcoRFNTU0x8ZHNzc2x8W0xsXW9zc2xl
-c3MpJyB8IGdyZXAgJ1wuYmI6Jw0KDQpUaGVuIGlnbm9yaW5nIHBhY2thZ2VzIHRoYXQgZXhwcmVz
-c2x5IGRpc2FibGUgU1NMLCBoZXJlJ3Mgd2hhdCBJIGZvdW5kIGZvciBvdGhlciBwYWNrYWdlcyB0
-byBldmFsdWF0ZToNCnB5dGhvbi1weW9wZW5zc2wNCnNvY2F0DQpjdXJsDQpsaWJzb3VwDQpwYWNr
-YWdlZ3JvdXAtdG9vbHNldC1uYXRpdmUNCnBhY2thZ2Vncm91cC1jb3JlLWJhc2ljDQpwYWNrYWdl
-Z3JvdXAtY29yZS1sc2INCmx0cA0KbWFpbHgNCmxpYmFyY2hpdmUNCmlwdXRpbHMNCm1zbXRwDQp3
-ZWJraXQtZ3RrDQpwYWNrYWdlZ3JvdXAtc2VsZi1ob3N0ZWQNCmVnbGliYw0KZ2xpYi1uZXR3b3Jr
-aW5nDQp4MTF2bmMNCmJpbmQNCnRlbGVwYXRoeS1pZGxlDQpvcGVuc3NoDQp2YWxncmluZA0KdGNm
-LWFnZW50DQpweXRob24tbmF0aXZlDQpweXRob24NCnJwbQ0KbmVvbg0Kbm9zdHJvbW8NCmNoZXJv
-a2VlDQphcGFjaGUyDQphamVudGkNCm5ldC1zbm1wDQpjbGF3cy1tYWlsDQpzeWxwaGVlZA0KbGli
-aW1vYmlsZWRldmljZQ0KbG91ZG1vdXRoDQpob3N0YXAtZGFlbW9uDQpnYXRlb25lDQpsaWJ0b3Jy
-ZW50DQprcmI1DQpuZXR3b3JrbWFuYWdlcg0Kbm9kZWpzNA0Kbm9kZWpzDQpsaWJjLWNsaWVudA0K
-cHl0aG9uLXR3aXN0ZWQNCnB5dGhvbi1tMmNyeXB0bw0KbGlua3MNCmxpbmtzLXgxMQ0Kb3Blbmxk
-YXANCmdzb2FwDQptYnVmZmVyDQpjcnlwdHNldHVwDQppa3NlbWVsDQpzdHJvbmdzd2FuDQpjYS1j
-ZXJ0aWZpY2F0ZXMNCmxpYmV0cGFuDQpjeXJ1cy1zYXNsDQp2c2Z0cGQNCmFjY2VsLXBwcA0Kb3Bl
-bnZwbg0Kem5jDQphenkNCm1pZG9yaQ0Kb3NjYW0NCnR2aGVhZGVuZA0KDQpBbG1vc3QgYWxsIHRo
-ZSBwYWNrYWdlcyByZXF1aXJlIG9wZW5zc2wgb3IgZ251dGxzLCBzbyBwYXRjaGluZyBvcGVuc3Ns
-IGFuZCBnbnV0bHMgbWF5IGJlIHN1ZmZpY2llbnQgZm9yIG1vc3Qgb2YgdGhlc2UgcGFja2FnZXMu
-ICBJJ20gc3RpbGwgd29ya2luZyB3aXRoIHRoZSBkeWxhbiBicmFuY2guIElmIGFueSBuZXcgcGFj
-a2FnZXMgaGF2ZSBiZWVuIGFkZGVkIHNpbmNlIHRoZW4gSSBtYXkgaGF2ZSBtaXNzZWQgdGhlbS4g
-IEknbSBub3Qgc3VyZSBob3cgZHJvcGJlYXIgZG9lcyBpdHMgZW5jcnlwdGlvbiwgc28gdGhhdCBt
-YXkgYmUgb25lIHRvIGxvb2sgYXQgYWxzby4NCg0KUmVnYXJkcywNCkJyeWFuIEV2ZW5zb24NCg0K
-PiBSb3NzDQo+IC0tDQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fDQo+IE9wZW5lbWJlZGRlZC1jb3JlIG1haWxpbmcgbGlzdA0KPiBPcGVuZW1iZWRkZWQt
-Y29yZUBsaXN0cy5vcGVuZW1iZWRkZWQub3JnDQo+IGh0dHA6Ly9saXN0cy5vcGVuZW1iZWRkZWQu
-b3JnL21haWxtYW4vbGlzdGluZm8vb3BlbmVtYmVkZGVkLWNvcmUNCg==
+---
+ recipes-devtools/oracle-java/oracle-jse-jdk-arm_1.7.0.bb | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+ create mode 100644 recipes-devtools/oracle-java/oracle-jse-jdk-arm_1.7.0.bb
+
+diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk-arm_1.7.0.bb b/recipes-devtools/oracle-java/oracle-jse-jdk-arm_1.7.0.bb
+new file mode 100644
+index 0000000..61a447d
+--- /dev/null
++++ b/recipes-devtools/oracle-java/oracle-jse-jdk-arm_1.7.0.bb
+@@ -0,0 +1,12 @@
++PV_UPDATE = "60"
++BUILD_NUMBER = "01"
++
++require oracle-jse-jdk.inc
++
++SRC_URI = "file://jdk-7u${PV_UPDATE}-linux-arm-vfp-hflt.tar.gz"
++
++SRC_URI[md5sum] = "715b0e8ba2a06bded75f6a92427e2701"
++SRC_URI[sha256sum] = "b6231064ad2c9fbbcb099dba17b1dcf12033e922b9c24e4348b9a01e9ebaa85c"
++
++
++RPROVIDES_${PN} += "jdk-arm"
+-- 
+1.9.1
+
 
