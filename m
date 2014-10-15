@@ -1,39 +1,36 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <sona.sarmadi@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 91B5AE00853; Tue, 14 Oct 2014 08:38:58 -0700 (PDT)
+	id F16CAE00862; Tue, 14 Oct 2014 23:49:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6ADEEE007C1
-	for <yocto@yoctoproject.org>; Tue, 14 Oct 2014 08:38:48 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 14 Oct 2014 08:38:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,717,1406617200"; d="scan'208";a="588777589"
-Received: from gtotamun-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.121.192])
-	by orsmga001.jf.intel.com with ESMTP; 14 Oct 2014 08:35:53 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Matt Schuckmann <Matt.Schuckmann@planar.com>
-Date: Tue, 14 Oct 2014 16:35:51 +0100
-Message-ID: <1698813.aG202tMgGX@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.1 (Linux/3.16.4-200.fc20.x86_64; KDE/4.14.1; x86_64; ; )
-In-Reply-To: <4B07ADD556F70043925DA2E9C5D4346D2FD8728292@MSXBEBVT12.planar.net>
-References: <4B07ADD556F70043925DA2E9C5D4346D2FD87281CF@MSXBEBVT12.planar.net>
-	<2336754.PRSm2CVh32@peggleto-mobl5.ger.corp.intel.com>
-	<4B07ADD556F70043925DA2E9C5D4346D2FD8728292@MSXBEBVT12.planar.net>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 42DC4E007C1
+	for <yocto@yoctoproject.org>; Tue, 14 Oct 2014 23:49:07 -0700 (PDT)
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
+	14.03.0158.001; Wed, 15 Oct 2014 08:49:00 +0200
+From: Sona Sarmadi <sona.sarmadi@enea.com>
+To: Mark Hatle <mark.hatle@windriver.com>, Khem Raj <raj.khem@gmail.com>,
+	"Saul Wold (sgw@linux.intel.com)" <sgw@linux.intel.com>, "Burton, Ross
+	<ross.burton@intel.com> (ross.burton@intel.com)" <ross.burton@intel.com>
+Thread-Topic: Truly scary SSL 3.0 vuln to be revealed soon:
+Thread-Index: Ac/oO1a66AZx1WfuSiqPuqDXwzOnfw==
+Date: Wed, 15 Oct 2014 06:48:59 +0000
+Message-ID: <3230301C09DEF9499B442BBE162C5E482576880D@SESTOEX04.enea.se>
+Accept-Language: sv-SE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.140.6]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to include static library and headers in sdk
+Cc: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>,
+	"'openembedded-core@lists.openembedded.org'"
+	<openembedded-core@lists.openembedded.org>
+Subject: Truly scary SSL 3.0 vuln to be revealed soon:
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,66 +42,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Oct 2014 15:38:58 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 15 Oct 2014 06:49:16 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Tuesday 23 September 2014 11:38:35 Matt Schuckmann wrote:
-> Paul Eggleton wrote:
-> > So the way our system works, we assume that a recipe will have a main
-> > package and in the case of a library that that will contain the actual
-> > library file; the dev package just contains headers and the non-
-> > versioned symlink to the library. Thus if you install the -dev package,
-> > it's assumed it won't be of any use unless you install the main
-> > package, hence the hard dependency. Also, the -staticdev package
-> > depends upon the -dev package. However, if the main package is empty,
-> > it won't be produced at all, but the -dev package still depends upon it
-> > and you'll get the error above. If all you want to do is ship a static
-> > .a file in the -staticdev package and you're never going to have a main
-> > package, probably the thing to do is just drop the dependency on the
-> > main package, by adding the following to your recipe:
-> > 
-> > RDEPENDS_${PN}-dev = ""
-> 
-> Ok that did it.
-> The final solution was to add
-> RDEPENDS_${PN}-dev = ""
-> To the library recipe file so that dev and staticdev don't depend on the
-> binary package (because it's empty because it's a static library).
-> 
-> And to add the staticdev packages to the TOOLCHAIN_TARGET_TASK list in the
-> image file. (question could this part be put in a package group, should
-> it?)
+Hi guys,
 
-It could be, that's largely up to how you want to package things for convenience.
+Yesterday The Register published this:
+http://www.theregister.co.uk/2014/10/14/nasty_ssl_30_vulnerability_to_drop_=
+tomorrow/
 
-> That was really hard for a beginner to figure out, I never would have gotten
-> it without your help Paul. It makes sense now but I don't think I could
-> have figured it out from just reading the documentation (partially because
-> there is so much documentation and variation in how things are done).
-> 
-> It seems like there should be a repository of example recipes covering
-> common cases like this, has anything been started?
+and today following was published:
+https://www.openssl.org/~bodo/ssl-poodle.pdf
+http://googleonlinesecurity.blogspot.de/2014/10/this-poodle-bites-exploitin=
+g-ssl-30.html
 
-Well, I'd hope that what we provide in the "Writing a new recipe" manual
-section [1] should be helpful enough to get started, if not we should extend
-or improve that. 
+The advice is: Disable SSLv3.
 
-Another thing we should look at going forward is trying to avoid annoying
-issues such as this one coming up at all. For example we could change the
-RDEPENDS relationship here to an RRECOMMENDS and then it shouldn't cause the
-error to occur. FYI I've opened an enhancement bug to track improving the
-behaviour in this situation:
+I created https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D6843  so we c=
+an start to work with this immediately.=20
 
-  https://bugzilla.yoctoproject.org/show_bug.cgi?id=6839
+It would be good to sync the work like we did with the "shellshock" at the =
+end :) .
 
-Cheers,
-Paul
+Cheers
+Sona
 
-[1] http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#new-recipe-writing-a-new-recipe
 
--- 
+Sona Sarmadi
+Security Responsible for Enea Linux
+Enea
+Jan Stenbecks torg 17,
+Box 1033, SE-164 21=A0Kista,=A0Sweden
+Direct: +46 8 5071=A0 4475
+Mobile: +46 70 971 4475
+sona.sarmadi@enea.com
+www.enea.com=20
 
-Paul Eggleton
-Intel Open Source Technology Centre
+This message, including attachments, is CONFIDENTIAL. It may also be privil=
+eged or otherwise protected by law. If you received this email by mistake p=
+lease let us know by reply and then delete it from your system; you should =
+not copy it or disclose its contents to anyone.
+
+> -----Original Message-----
+> From: Sona Sarmadi
+> Sent: den 14 oktober 2014 16:39
+> To: openembedded-core@lists.openembedded.org
+> Cc: yocto@yoctoproject.org
+> Subject: FW: [oss-security] Truly scary SSL 3.0 vuln to be revealed soon:
+>=20
+> Hi all,
+>=20
+> It seems that another vulnerability is coming soon, the advice is disable
+> SSLv3.:
+> http://www.theregister.co.uk/2014/10/14/nasty_ssl_30_vulnerability_to_dr
+> op_tomorrow/
+>=20
+>=20
+> From Hanno B=F6ck [hanno@hboeck.de]:
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> Whether it's scary or not I have an advice for you: Disable SSLv3.
+>=20
+> It causes a lot of headache already. I once had to debug a rather subtle =
+issue
+> in combination with SNI.
+> The problem: Browsers downgrade out of protocol to SSLv3 if they can't
+> connect via TLS. They do this in order to support broken server
+> implementations. However this downgrade can also be triggered by bad or
+> slow internet connections - and then you'll loose SNI. So sometimes your
+> visitors will get the wrong certificate presented.
+> I solved this for my servers by disabling SSLv3. It was a minor problem w=
+hen I
+> did this but it is almost no problem today.
+>=20
+> You will lock out IE6 users on Windows XP. However even people who use
+> Windows XP+IE and installed their updates have TLS 1.0 support.
+> I also encountered a small number of people who had manually disabled TLS
+> 1.0 in firefox for unknown reasons. However this was a few years ago.
+> Current Firefox versions make it harder to do this. I assume the reason w=
+as
+> that they thought "v3 sound newer than v1.0".
+>=20
+> A number of people already recommend disabling SSLv3, e.g. the Qualys
+> configuration guide. Disable it now - no matter if the rumors about a ser=
+ious
+> vuln are true, you'll be safe.
+>=20
+> BR - Sona
 
