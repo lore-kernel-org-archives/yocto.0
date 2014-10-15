@@ -1,48 +1,49 @@
-Return-Path: <kevin@smartthings.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7B12CE008A2; Mon, 13 Oct 2014 22:30:14 -0700 (PDT)
+	id F3275E00799; Wed, 15 Oct 2014 08:32:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.173 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-ig0-f173.google.com (mail-ig0-f173.google.com
-	[209.85.213.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F9ACE0089F
-	for <yocto@yoctoproject.org>; Mon, 13 Oct 2014 22:30:01 -0700 (PDT)
-Received: by mail-ig0-f173.google.com with SMTP id h18so13175332igc.12
-	for <yocto@yoctoproject.org>; Mon, 13 Oct 2014 22:30:00 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.47 listed in list.dnswl.org]
+Received: from mail-qg0-f47.google.com (mail-qg0-f47.google.com
+	[209.85.192.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98EE3E006EF
+	for <yocto@yoctoproject.org>; Wed, 15 Oct 2014 08:32:16 -0700 (PDT)
+Received: by mail-qg0-f47.google.com with SMTP id i50so1072747qgf.34
+	for <yocto@yoctoproject.org>; Wed, 15 Oct 2014 08:32:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=RmsLrmStqy/f5cWJgdxS/J6+FG63pzn5sCYy2r7T7Tk=;
-	b=RxrP8EvP9ZooFyWEG1Vr8mVj3FJQIT/hU6u2e6wREadQazfRaG4FUQmne3NOtn7bCc
-	hVkTarfM7wQk6Zfuf9pVjJoWI8R+vcOlPqZnFWjJ4yLBLBW37uULgwIyvVdLRd2AbE1b
-	uLhCVZWPkTIBtC0pADJkhhHeAqmMOh91skXZgedj/u8S/x6zFwq7GprEEMPfMkXKv6Cj
-	jAElhhIQM2HDKVqzShgl6H26A3lzxqT5kGnnplKevMSL1yN2nf2JbmO7A9qzYQ34vbp6
-	ANnLEs9np/oWGCBhkUAUGqjkuHe6IsKjgeUZdi1HOOIM9JOcYnI7bRAMKfp4VFPJ8s/z
-	05Rg==
-X-Gm-Message-State: ALoCoQkUBFq0MS8dlRcfAl9ALmIBij6f4B5YPcZDLPlx/fqAR9gzfP5q1KF3QClI6X5uXDvKewV+
-X-Received: by 10.50.78.166 with SMTP id c6mr4387162igx.16.1413264600548;
-	Mon, 13 Oct 2014 22:30:00 -0700 (PDT)
-Received: from localhost.localdomain (c-98-250-20-24.hsd1.mi.comcast.net.
-	[98.250.20.24]) by mx.google.com with ESMTPSA id
-	mk5sm10750912igb.15.2014.10.13.22.29.58 for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 13 Oct 2014 22:29:59 -0700 (PDT)
-From: Kevin Vanden Berge <kevin@smartthings.com>
-To: yocto@yoctoproject.org
-Date: Tue, 14 Oct 2014 01:29:19 -0400
-Message-Id: <1413264559-12816-1-git-send-email-kevin@smartthings.com>
-X-Mailer: git-send-email 1.9.1
-X-Mailman-Approved-At: Wed, 15 Oct 2014 08:20:56 -0700
-Cc: Kevin Vanden Berge <kevin@smartthings.com>
-Subject: [meta-oracle-java][PATCH]] Adding the jdk for arm. Version 1.7.0_u60
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=p41qwdsKouVbnDygjmjxMh/7FaEjYzZ2EVmEiTb4GwM=;
+	b=mydn7na/cTdnWotZ639kWhBHNdDCzKW7ze63t4Hr6mo6IcEj3MPNTqoDTkM5t3/f0F
+	gSBH5XaX3dRDMGshFQsFO5fGuCOCP8TFo0tfd8IvRw7imTruQKeX+9jotkCTVKKAdrDV
+	Qugb75Djqxxz7tUKcnfkopkBi08mSQoD+/DpI3eDFbY6AJhWO4oWe1GW/o35JRNEW/rz
+	o9/XKO9p3p85me1NBAPs0iqraHPpkMswnyvRsFVBkvTQxonTEDfl8yyMKGylSOldkHG8
+	1Q2sZK6eNgBmzX94I+QpF2fjY/a4zQ+aJorVRBYFN1el3OxyFzQif09sMSF+QQbx9pby
+	xWIw==
+X-Gm-Message-State: ALoCoQmVkYA8fwm769BstElMnMu2ilPgDeF3rFSew6EqTQibQRXsibzScxU+e9N9F2TER5/U6GTb
+X-Received: by 10.229.37.138 with SMTP id x10mr21843593qcd.5.1413387135652;
+	Wed, 15 Oct 2014 08:32:15 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.140.93.65 with HTTP; Wed, 15 Oct 2014 08:31:55 -0700 (PDT)
+In-Reply-To: <CAJTo0La=7QNS53qZDgShj+9yr6Ge0hyk9HFAdS+Ue0bZAkck4A@mail.gmail.com>
+References: <3230301C09DEF9499B442BBE162C5E482576880D@SESTOEX04.enea.se>
+	<CAJTo0La=7QNS53qZDgShj+9yr6Ge0hyk9HFAdS+Ue0bZAkck4A@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 15 Oct 2014 16:31:55 +0100
+Message-ID: <CAJTo0La9iMQ4ZiSuTFo35271c2McpzkSvugOEqL6dBNoncdkZQ@mail.gmail.com>
+To: Sona Sarmadi <sona.sarmadi@enea.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: Truly scary SSL 3.0 vuln to be revealed soon:
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,32 +55,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Oct 2014 05:30:14 -0000
+X-List-Received-Date: Wed, 15 Oct 2014 15:32:20 -0000
+Content-Type: text/plain; charset=UTF-8
 
----
- recipes-devtools/oracle-java/oracle-jse-jdk-arm_1.7.0.bb | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
- create mode 100644 recipes-devtools/oracle-java/oracle-jse-jdk-arm_1.7.0.bb
+On 15 October 2014 11:07, Burton, Ross <ross.burton@intel.com> wrote:
+> Presumably the list of affected packages is:
+> - gnutls
+> - openssl
+> - nss
 
-diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk-arm_1.7.0.bb b/recipes-devtools/oracle-java/oracle-jse-jdk-arm_1.7.0.bb
-new file mode 100644
-index 0000000..61a447d
---- /dev/null
-+++ b/recipes-devtools/oracle-java/oracle-jse-jdk-arm_1.7.0.bb
-@@ -0,0 +1,12 @@
-+PV_UPDATE = "60"
-+BUILD_NUMBER = "01"
-+
-+require oracle-jse-jdk.inc
-+
-+SRC_URI = "file://jdk-7u${PV_UPDATE}-linux-arm-vfp-hflt.tar.gz"
-+
-+SRC_URI[md5sum] = "715b0e8ba2a06bded75f6a92427e2701"
-+SRC_URI[sha256sum] = "b6231064ad2c9fbbcb099dba17b1dcf12033e922b9c24e4348b9a01e9ebaa85c"
-+
-+
-+RPROVIDES_${PN} += "jdk-arm"
--- 
-1.9.1
+There's a openssl 1.0.1j out now (fixing FOUR (!) CVEs, including
+"disabling SSLv3 didn't work"...).  I think considering the situation
+we'd take the upgrade for dizzy, even though we've frozen.  Anyone
+volunteering to take lead of upgrading dizzy to 1.0.1j and backporting
+the relevant patches to the previous releases? (eg daisy is on
+1.0.1g).
 
+Ross
 
