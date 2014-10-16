@@ -1,53 +1,48 @@
-Return-Path: <btv1==3669040a9bc==Matt.Schuckmann@planar.com>
+Return-Path: <chmorgan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AFCCAE00799; Wed, 15 Oct 2014 17:39:50 -0700 (PDT)
+	id DDEECE00799; Wed, 15 Oct 2014 18:22:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.0 required=5.0 tests=BAYES_40 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
-	*      [score: 0.2957]
-X-Greylist: delayed 1063 seconds by postgrey-1.32 at yocto-www;
-	Wed, 15 Oct 2014 17:39:42 PDT
-Received: from barbvt11.planar.com (mail.planar.com [199.244.172.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95904E006EF
-	for <yocto@yoctoproject.org>; Wed, 15 Oct 2014 17:39:42 -0700 (PDT)
-X-ASG-Debug-ID: 1413418915-04afd24212122590001-yzSStA
-Received: from msxbvt03.planar.net (msxbvt03.planar.net [172.16.0.147]) by
-	barbvt11.planar.com with ESMTP id qUjxUeABXx7do55c for
-	<yocto@yoctoproject.org>; Wed, 15 Oct 2014 17:21:55 -0700 (PDT)
-X-Barracuda-Envelope-From: Matt.Schuckmann@planar.com
-Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
-	with mapi; Wed, 15 Oct 2014 17:21:55 -0700
-From: Matt Schuckmann <Matt.Schuckmann@planar.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Date: Wed, 15 Oct 2014 17:21:54 -0700
-Thread-Topic: Creating new u-boot board
-X-ASG-Orig-Subj: Creating new u-boot board
-Thread-Index: Ac/o1zBiSi9w17JoQKyDEZDIEZ0fhw==
-Message-ID: <4B07ADD556F70043925DA2E9C5D4346D2FD87999CB@MSXBEBVT12.planar.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (chmorgan[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.178 listed in list.dnswl.org]
+Received: from mail-ig0-f178.google.com (mail-ig0-f178.google.com
+	[209.85.213.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C082E006EF
+	for <yocto@yoctoproject.org>; Wed, 15 Oct 2014 18:22:49 -0700 (PDT)
+Received: by mail-ig0-f178.google.com with SMTP id h3so2575403igd.5
+	for <yocto@yoctoproject.org>; Wed, 15 Oct 2014 18:22:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=jBsYvjck2Xr9BVYCs9yfuuUa1JstFQXffftI6cmqpBU=;
+	b=p3TxPIxHE4wYExr90mt4j5myk42eZWmrD+MSkLzxSwlURJ9j6r9eMmS+xI7/3NS7ms
+	NIAiGhd1Qedk+7WBgv6YI11eCb+WTbEhXVdhvOYs+8fMxeA9SPxpuDeUo1E01DecbwM7
+	l8XF7P7QA0JJmYjukc7wjRF8nlhqaWLTBGoprPJWzELN/XueK0awbIq/3QN5RzDO47dg
+	Vqg5LmS+/fOh4VsWXbmid0aYFM3LWqTYisNvm0rswzOod/0tRspMKSJ6Je7bEhOwhZp8
+	k3bx/n4SPhO/x/4irA4SWC3tReRSO/FwLlmeobh5UANOGdZZL3GwHSCQ6nM79FI1O0sI
+	FY7g==
+X-Received: by 10.51.17.69 with SMTP id gc5mr18173783igd.24.1413422569005;
+	Wed, 15 Oct 2014 18:22:49 -0700 (PDT)
 MIME-Version: 1.0
-X-Barracuda-Connect: msxbvt03.planar.net[172.16.0.147]
-X-Barracuda-Start-Time: 1413418915
-X-Barracuda-URL: http://10.10.111.113:8000/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at planar.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Bayes: INNOCENT GLOBAL 0.4960 1.0000 0.0000
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No,
-	SCORE=0.00 using per-user scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.10615
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-Subject: Creating new u-boot board
+Received: by 10.64.113.134 with HTTP; Wed, 15 Oct 2014 18:22:28 -0700 (PDT)
+From: Chris Morgan <chmorgan@gmail.com>
+Date: Wed, 15 Oct 2014 21:22:28 -0400
+Message-ID: <CAAPegz0mkfnopK_s8PATfn5G6-ym365g3xwpR7szS98-4YR2_Q@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: gitsm recursive submodules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,32 +54,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Oct 2014 00:39:50 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 16 Oct 2014 01:22:52 -0000
+Content-Type: text/plain; charset=UTF-8
 
-I'm pretty confused about what is the best way to go on this.=20
-I realize that there are several paths that I could take but I really don't=
- know which is the best way to go.=20
+Hello all.
 
-We are creating a new board largely based off the beaglebone design but cus=
-tomized to our needs.
-I'm basing my software work off the TI SDK 7.0 (yes I know that is almost a=
- year but it is the TI blessed version)
+I posted some time ago about git with submodules and was pointed to
+gitsm. I've been using gitsm for sometime but ran into another issue.
 
-I feel like I need to create a new u-boot board configuration which I have =
-done in my own sandbox.=20
+It looks like gitsm is not performing a recursive submodule update. I
+have a repository that is comprised of submodules, one of those
+submodules has a couple of other submodules. Should gitsm be handling
+this today?
 
-Now I don't know if I should be creating a patch for my changes and adding =
-them to a bbappends for the ti u-boot recipe or if I should create a new cl=
-one of ti's u-boot repo to check my changes into and create a new recipe th=
-at references my repo? Or is there another option that I should be explorin=
-g.=20
+Starting from a clean build directory I can bitbake until the recipe
+fails, then go into the working directory and do a 'git submodule
+update --init' I can get the recipe to finish building.
 
-Which path is preferred?
-What are the short/long term pro's and con's of each approach?=20
+Recommendations on how I should proceed?
 
-Matt S.=20
-
+Chris
 
