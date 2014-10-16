@@ -1,50 +1,45 @@
-Return-Path: <jatedev@gmail.com>
+Return-Path: <henry.bruce@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0BBCAE00799; Wed, 15 Oct 2014 14:45:22 -0700 (PDT)
+	id B6778E00799; Wed, 15 Oct 2014 17:30:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jatedev[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.48 listed in list.dnswl.org]
-Received: from mail-qg0-f48.google.com (mail-qg0-f48.google.com
-	[209.85.192.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CBEBE006EF
-	for <yocto@yoctoproject.org>; Wed, 15 Oct 2014 14:45:16 -0700 (PDT)
-Received: by mail-qg0-f48.google.com with SMTP id i50so1626735qgf.21
-	for <yocto@yoctoproject.org>; Wed, 15 Oct 2014 14:45:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:cc:content-type;
-	bh=b99W8MYf+J1XFzmpCIeMFwllmuvc+X03T9v31Tw/QEw=;
-	b=pw2i8AdG20+jsWZEtPqsi7/czhYKaWRx98rZYodciA7rUvdxCYMmWW/VEEDAqelhi7
-	XA1mhreq+bCmz9ldvmu79zxvK1SQ7c42UDabc31eF+buC9P7aoGoTscrDzDyL/hzrqRf
-	51z+f2kc8kG7f75xsMRMG/fjo8iXQRS4kBsiz+sBUCFBuYLMFyh7gX/jL3+vQHyUQd7/
-	NyJmrSFhgBROHYMSVkHVaL1boO1lhAR9AOYR7Qaa2BUeMOT+4E1O5idDJlu4zW3cnX9i
-	wgbNXUzl065EBDT2cVs6+Snm3tD4fw5XYhTJa9NkXD83DCKquqGcGVS9qbtvDcBcSRAA
-	Fumg==
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C308E006EF
+	for <yocto@yoctoproject.org>; Wed, 15 Oct 2014 17:30:27 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 15 Oct 2014 17:24:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.04,728,1406617200"; 
+	d="scan'208,217";a="619539664"
+Received: from orsmsx110.amr.corp.intel.com ([10.22.240.8])
+	by orsmga002.jf.intel.com with ESMTP; 15 Oct 2014 17:30:08 -0700
+Received: from orsmsx114.amr.corp.intel.com (10.22.240.10) by
+	ORSMSX110.amr.corp.intel.com (10.22.240.8) with Microsoft SMTP Server
+	(TLS) id 14.3.195.1; Wed, 15 Oct 2014 17:30:07 -0700
+Received: from orsmsx104.amr.corp.intel.com ([169.254.3.12]) by
+	ORSMSX114.amr.corp.intel.com ([169.254.8.51]) with mapi id
+	14.03.0195.001; Wed, 15 Oct 2014 17:30:07 -0700
+From: "Bruce, Henry" <henry.bruce@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Opencv Java binding not building
+Thread-Index: Ac/o2FD3t8N87fBTT4CcAoBdm4+Qvw==
+Date: Thu, 16 Oct 2014 00:30:06 +0000
+Message-ID: <F81DC1078564A34BB4DA30CAE03814D1275FC06F@ORSMSX104.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-X-Received: by 10.224.125.129 with SMTP id y1mr2226951qar.75.1413409515872;
-	Wed, 15 Oct 2014 14:45:15 -0700 (PDT)
-Received: by 10.140.94.227 with HTTP; Wed, 15 Oct 2014 14:45:15 -0700 (PDT)
-Date: Wed, 15 Oct 2014 17:45:15 -0400
-Message-ID: <CAPphmgZBXAod92ddPR_3VFReStBgBNshTNEKxfOATZ1caeq+Kw@mail.gmail.com>
-From: Jate Sujjavanich <jatedev@gmail.com>
-To: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: local.conf assignment priority with autobuilder
+Subject: Opencv Java binding not building
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,45 +51,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Oct 2014 21:45:22 -0000
-Content-Type: multipart/alternative; boundary=001a11c35ac41dbe0905057d0c88
+X-List-Received-Date: Thu, 16 Oct 2014 00:30:38 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_F81DC1078564A34BB4DA30CAE03814D1275FC06FORSMSX104amrcor_"
 
---001a11c35ac41dbe0905057d0c88
-Content-Type: text/plain; charset=UTF-8
-
-I am attempting to control debug-tweaks via an image recipe.
-
-Previous posts suggest that the autobuilder will use auto.conf and ignore
-local.conf. However, meta/conf/bitbake.conf says that the include order is
-auto.conf, and then local.conf.
-
-This means that the default local.conf.template installed overrides with a
-regular assignment.
-
-EXTRA_IMAGE_FEATURES = "debug-tweaks"
-
-
-Perhaps the assignment in local.conf be a weak one, i.e. ?= where it would
-not override a previous assignment.
-
-Or maybe I need a new buildstep. How should I be doing this?
-
-
-- Jate S.
-
---001a11c35ac41dbe0905057d0c88
-Content-Type: text/html; charset=UTF-8
+--_000_F81DC1078564A34BB4DA30CAE03814D1275FC06FORSMSX104amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div>I am attempting to control debug-tweak=
-s via an image recipe.<br><br>Previous posts suggest that the autobuilder w=
-ill use auto.conf and ignore local.conf. However, meta/conf/bitbake.conf sa=
-ys that the include order is auto.conf, and then local.conf.<br><br>This me=
-ans that the default local.conf.template installed overrides with a regular=
- assignment.<br><br></div>EXTRA_IMAGE_FEATURES =3D &quot;debug-tweaks&quot;=
-<br><br><br></div>Perhaps the assignment in local.conf be a weak one, i.e. =
-?=3D where it would not override a previous assignment.<br><br></div>Or may=
-be I need a new buildstep. How should I be doing this?<br><br><br></div>- J=
-ate S.<br></div>
+All,
 
---001a11c35ac41dbe0905057d0c88--
+I'm trying to figure out why opencv 2.4.8 (daisy branch) is not building it=
+s Java binding (jar file and matching JNI so). I can see from the do_config=
+ure log that the Java tools are not being detected (message is 'Could NOT f=
+ind JNI') which explains why it is not being built. However if I run 'bitba=
+ke opencv -c devshell' and then run cmake manually in the devshell the Java=
+ tools are detected and binding is built. I can't see anything in the recip=
+e that would disable Java. Any ideas on why devshell is behaving correctly =
+but image build is not? Note that openjdk-7 is part of the image build and =
+it works.
+
+Thanks,
+
+Henry
+
+
+
+--_000_F81DC1078564A34BB4DA30CAE03814D1275FC06FORSMSX104amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
+<div>All,</div>
+<div>&nbsp;</div>
+<div>I&#8217;m trying to figure out why opencv 2.4.8 (daisy branch) is not =
+building its Java binding (jar file and matching JNI so). I can see from th=
+e do_configure log that the Java tools are not being detected (message is &=
+#8216;Could NOT find JNI&#8217;) which explains why
+it is not being built. However if I run &#8216;bitbake opencv &#8211;c devs=
+hell&#8217; and then run cmake manually in the devshell the Java tools are =
+detected and binding is built. I can&#8217;t see anything in the recipe tha=
+t would disable Java. Any ideas on why devshell is behaving
+correctly but image build is not? Note that openjdk-7 is part of the image =
+build and it works.</div>
+<div>&nbsp;</div>
+<div>Thanks,</div>
+<div>&nbsp;</div>
+<div>Henry</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+</span></font>
+</body>
+</html>
+
+--_000_F81DC1078564A34BB4DA30CAE03814D1275FC06FORSMSX104amrcor_--
