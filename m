@@ -1,47 +1,49 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <paul.betafive@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 565DDE00790; Thu, 16 Oct 2014 13:50:01 -0700 (PDT)
+	id E08B8E0079E; Fri, 17 Oct 2014 01:08:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.175 listed in list.dnswl.org]
+	*      [209.85.216.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-qc0-f175.google.com (mail-qc0-f175.google.com
-	[209.85.216.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18998E00744
-	for <yocto@yoctoproject.org>; Thu, 16 Oct 2014 13:49:53 -0700 (PDT)
-Received: by mail-qc0-f175.google.com with SMTP id b13so3827891qcw.20
-	for <yocto@yoctoproject.org>; Thu, 16 Oct 2014 13:49:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=4hAByZcDO2+aygUMmhnqHtH2M8TV794Y1X/ELx+9SEs=;
-	b=FInTERAgaFGEnBkahCdcczMFbad8e9SC0D+bWXz0N1jqAdpXXo0CnJ/vBrIXc3KP2O
-	94PS3iwZL3/kFI9PX6594zYz7EzquRweHtMhRIjaV6AMRu1QXIFmM5LXqBwj0LhYY1kw
-	AbynSAHfBHIuEwn9YUJOIJ9C0cHdTOwiCyGnObqqhZ9sZlktbEdWUFGZk0fm84ZVczD4
-	ffZvkJnQqMCaWGRcDAyq2IbGi2/NSZOerdXDmKr4cPUOwn+WlpbnY++2tZnDrKcma7e1
-	FyACKMRK+xn0vHdD3LEd5IU1NyPrgu2Cgo2EMLqa9WIz72O3AHQ1jVwm6odAmEA+wYtq
-	z7nw==
-X-Gm-Message-State: ALoCoQn5PVg9AVlVu7hBtOcrXWqYCBEZxl5dhkbR4O2mNytdG6qur2xCCnXHCidPx2WMRZo/xr1X
-X-Received: by 10.224.2.135 with SMTP id 7mr6235530qaj.64.1413492592938; Thu,
-	16 Oct 2014 13:49:52 -0700 (PDT)
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qc0-f177.google.com (mail-qc0-f177.google.com
+	[209.85.216.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93726E00744
+	for <yocto@yoctoproject.org>; Fri, 17 Oct 2014 01:08:00 -0700 (PDT)
+Received: by mail-qc0-f177.google.com with SMTP id c9so178009qcz.36
+	for <yocto@yoctoproject.org>; Fri, 17 Oct 2014 01:07:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=U5jXcaFK971D4HAu4wsgZHVAOLWDBY6MpMJE4QnQXqU=;
+	b=MYcvN1wbqtlfyrcNAj1v/WDeFmFPkNQcljVhMIhUXFjONIMKZgiLYD4WcDWNMeMR1E
+	JLMlX1znZ3OSvBLVlPfwk1v0Zc3sRsvImh8TfCrChPQuDObtHXF55fYl7SioqWiQTpNE
+	UckoVt2xnQK9ejj4eeiJ7Mlz2t3vumPfTxR9Wh76QrvtciE0jK3gGk7apIabavLIrMsM
+	hCT68659fsqYAm7gzkEngtJxKB5Pqa965+X3/cyoxno/ciws8+JxAhoGJvXo9QBPV6oM
+	bUS993In8x572tWKKwTGG2I4cN2+6t5xXZ6Fa9rHBONXF5Liba7aBSt4sWnSm/pi/CE9
+	sHig==
+X-Received: by 10.229.106.68 with SMTP id w4mr9779245qco.18.1413533279859;
+	Fri, 17 Oct 2014 01:07:59 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.140.93.65 with HTTP; Thu, 16 Oct 2014 13:49:32 -0700 (PDT)
-In-Reply-To: <CAOd_LFwg_TBgDqzGLNpVTC2aY7YySzXKRtSbGsGK39i75VPf9g@mail.gmail.com>
-References: <CAAPegz0mkfnopK_s8PATfn5G6-ym365g3xwpR7szS98-4YR2_Q@mail.gmail.com>
-	<CAOd_LFwg_TBgDqzGLNpVTC2aY7YySzXKRtSbGsGK39i75VPf9g@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 16 Oct 2014 21:49:32 +0100
-Message-ID: <CAJTo0LbBz6V2DovEgm48oHj-Mf_=xawNfvTBOXtv0kk6P1mxTA@mail.gmail.com>
-To: Cliff Brake <cliff.brake@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: gitsm recursive submodules
+Sender: paul.betafive@gmail.com
+Received: by 10.140.142.78 with HTTP; Fri, 17 Oct 2014 01:07:19 -0700 (PDT)
+In-Reply-To: <CAPoQQ-1xzG=SqaBrPp-W-tOd9W3fWyZ=skUTEpvq+mEQ3P_CuA@mail.gmail.com>
+References: <CAPoQQ-1xzG=SqaBrPp-W-tOd9W3fWyZ=skUTEpvq+mEQ3P_CuA@mail.gmail.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Fri, 17 Oct 2014 09:07:19 +0100
+X-Google-Sender-Auth: I29JipjsZTKb9gthIQQW7Tm3X2I
+Message-ID: <CANyK_8cvEcxAC3tJMJHSif01gnXZU=L=TTu990_uENTrjTYK1g@mail.gmail.com>
+To: Cody P Schafer <dev@codyps.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Questions regarding adding a new llvm based cross-compiler
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,27 +55,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Oct 2014 20:50:01 -0000
+X-List-Received-Date: Fri, 17 Oct 2014 08:08:03 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On 16 October 2014 21:44, Cliff Brake <cliff.brake@gmail.com> wrote:
-> It seems the gitsm fetcher should be modified to do a recursive update:
+On 16 October 2014 18:46, Cody P Schafer <dev@codyps.com> wrote:
+> Hi all,
 >
-> http://cgit.openembedded.org/bitbake/tree/lib/bb/fetch2/gitsm.py
->
-> replace:
->
->         runfetchcmd(ud.basecmd + " submodule init", d)
->         runfetchcmd(ud.basecmd + " submodule update", d)
->
-> with
->
->         runfetchcmd(ud.basecmd + " submodule update --init --recursive", d)
->
-> Alternatively, you might be able to add a task in your recipe to do
-> the submodule stuff.
+> I'm working on creating a layer for the rust compiler (which uses
+> llvm) and was wondering if there were any best practices and/or
+> examples people could point me at.
 
-If it really is that simple, a tested patch would be much appreciated!
+I can't really offer much help on the LLVM side, but I can say this
+will be really useful work. I'm slowly learning Rust and researching
+how it can be used for embedded development and it will be excellent
+to have a rust compiler working as part of OpenEmbedded/Yocto.
 
-Ross
+If you need any testing of this layer once it's created, just let me know.
+
+Cheers,
+
+-- 
+Paul Barker
+
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
