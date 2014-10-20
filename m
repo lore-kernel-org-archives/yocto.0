@@ -1,63 +1,58 @@
-Return-Path: <Mans.Andersson@nibe.se>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5E355E00849; Mon, 20 Oct 2014 09:27:59 -0700 (PDT)
+	id 1558EE00846; Mon, 20 Oct 2014 09:46:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.182 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 902 seconds by postgrey-1.32 at yocto-www;
-	Mon, 20 Oct 2014 09:27:49 PDT
-Received: from bmail.nibe.se (bmail.nibe.se [212.162.190.12])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F443E00830
-	for <yocto@yoctoproject.org>; Mon, 20 Oct 2014 09:27:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; d=nibe.se; s=s1024; c=relaxed/simple;
-	q=dns/txt; i=@nibe.se; t=1413821561; x=1416413561;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=emdd4nRtlmyenhp+vrq0BRs1ScV4XyjKzaQdDLVj8Y4=;
-	b=LkNGwx4ZkeXD00tNgyzr6ApYdeYpwacp1pbdyZlqHHfoRChfgfAqma3kFAiocl7P
-	OxLE6tP8pGo8gOT3NY6TOOzozcmf09x0zMRQIYYKqAP3j9qiwo9KjxqRUshxuTvg
-	XhJib3iHmXRQVhqwIAScwOK5WcMS58IOdHGZa7Fdfzg=;
-X-AuditID: 0a0201f8-f79006d00000152c-e0-54453479c95e
-Received: from mail.nibe.se (nivm320.nibe.se [10.2.0.33])
-	(using TLS with cipher AES256-SHA (256/256 bits))
-	(Client did not present a certificate)
-	by bmail.nibe.se (NIBE mail) with SMTP id 07.34.05420.97435445;
-	Mon, 20 Oct 2014 18:12:41 +0200 (CEST)
-From: =?iso-8859-1?Q?M=E5ns_Andersson?= <Mans.Andersson@nibe.se>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Error building x86_64-mingw32 SDK
-Thread-Index: Ac/sf9ahnb1tnR3bSt2VOkGPafKLZw==
-Date: Mon, 20 Oct 2014 16:12:40 +0000
-Message-ID: <bee194324ff24327bf8acafcc45167e0@nivm320.nibe.se>
-Accept-Language: en-US, sv-SE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.21.2]
+Received: from mail-pd0-f182.google.com (mail-pd0-f182.google.com
+	[209.85.192.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9BB1E0080C
+	for <yocto@yoctoproject.org>; Mon, 20 Oct 2014 09:46:07 -0700 (PDT)
+Received: by mail-pd0-f182.google.com with SMTP id y10so5335144pdj.13
+	for <yocto@yoctoproject.org>; Mon, 20 Oct 2014 09:46:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=VyBmFfwcF3HEN1+SEGfsDeVvtdYoT34Qag4M0u37208=;
+	b=gHTdaAeTCVW3kjfViXSSz08n7/tmgjhgbkWJkFG6CdTwdJB5/4FkFOSi6SZt8j37bD
+	EBsKGWP3L2kUvVSW+CpzFGSmueggBreVuSM8JF+NDdgMgtkqBz/qKVCDjpOh6pk+fMVH
+	GSL/4knez9EAaeb5Dp+gWMW3CcppYfpyylAOs78k+KT873Ehv99oLGCyGOQa6qayJgl8
+	aPeqOQJx7DL0ouKVCeBvscZnwAUJfXb2sRUwhowYtA5BI2nqjCPjb2BbNU03SI2yLOwr
+	DrNXxgv/CFxc+mmYdXPCMhtCQC9ZLW2kevi4Cp1vFkYjTIXgcjYHkricyukk6eB6TZP6
+	V8FQ==
+X-Received: by 10.68.69.68 with SMTP id c4mr555885pbu.168.1413823566976;
+	Mon, 20 Oct 2014 09:46:06 -0700 (PDT)
+Received: from Akusters-laptop.local ([2601:c:9380:601:9900:e163:dafd:f6a0])
+	by mx.google.com with ESMTPSA id iw1sm9706631pac.21.2014.10.20.09.46.04
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 20 Oct 2014 09:46:05 -0700 (PDT)
+Message-ID: <54453C4A.306@gmail.com>
+Date: Mon, 20 Oct 2014 09:46:02 -0700
+From: akuster808 <akuster808@gmail.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrNIsWRmVeSWpSXmKPExsXCxcSgqFtp4hpiMPEIv8Wkl2vYHBg92k/0
-	sQUwRnHZpKTmZJalFunbJXBl7F6whr3gAG/F+SU8DYwdPF2MnBwSAiYS674/ZoKwxSQu3FvP
-	1sXIxSEk8J9RYtGaU+wgCTYBB4mN85pZQWwRAVOJF8e+sIHYwgJaEi3L77BBxPUl7tydxg5h
-	60nc/veIGcRmEVCVWH/nD1icV8BO4sz2+0A2BwejgKzE3w1gI5kFxCVuPZkPdYOAxJI955kh
-	bFGJl4//sULY8hIPlj5lg6jXk7gxdQqUrS2xbOFrZojxghInZz5hmcAoNAvJ2FlIWmYhaZmF
-	pGUBI8sqRt6k3MTMHL28zKRUveLUTYzgsGX8sYNx7mbNQ4wCHIxKPLxTNVxDhFgTy4orcw8x
-	SnIwKYnyXjQCCvEl5adUZiQWZ8QXleakFh9ilOBgVhLhVVAByvGmJFZWpRblw6SkOViUxHlv
-	LwsPFhJITyxJzU5NLUgtgsnKcHAoSfDuBRkqWJSanlqRlplTgpBm4uAEGc4DNPwzSA1vcUFi
-	bnFmOkT+FKOklDjvY5CEAEgiozQPrvcVozjQC8K8PMZAWR5gCoLregU0kAlk4AYXkIEliQgp
-	qQbGVV52M/RbeX/eb2zNtSli2nw1bennlsj7GaXHz3K9DDrB/FqG1efxl9NJNpqcPtt1T9nO
-	NDrEcGPG+Y8yd77tuPLg56lXttkJjecDTLZ3q0Zt2XVXa8am7p1x7Kc/Vt5ktHMuWHB/m/0Z
-	7dBzKVfb9b88e1VVyOr10i3Y4efxx8aTF3p/+vhzrRJLcUaioRZzUXEiAFkgDMf+AgAA
-Subject: Error building x86_64-mingw32 SDK
+To: Lai Eddy <eddy.lai.tw@gmail.com>
+References: <CACrgodd5fQP3yWfc7eYbVg8+oGPQWU4EG9thKmYV35-NfNX0HQ@mail.gmail.com>
+In-Reply-To: <CACrgodd5fQP3yWfc7eYbVg8+oGPQWU4EG9thKmYV35-NfNX0HQ@mail.gmail.com>
+Cc: "linux-yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-security] nmap build failed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,43 +64,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Oct 2014 16:27:59 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 20 Oct 2014 16:46:14 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
-I encountered an error building the x86_64-mingw32 SDK using poky (daisy, b=
-da51ee) and meta-mingw (daisy, e9208b8) which I can't solve. Has anyone exp=
-erienced something similar?
+On 10/20/14, 2:27 AM, Lai Eddy wrote:
 
-Thanks,
-// M=E5ns
+Lai,
 
-$ bitbake -c populate_sdk myboard-base-image
-...
-| DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common', 'common-linux=
-', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi', 'common']
-| DEBUG: Executing shell function create_sdk_files
-| ('movefile: Failed to move', '/oe/poky/myboard/tmp/work/myboard-poky-linu=
-x-gnueabi/myboard-base-image/1.0-r0/sdk/image/var/lib/opkg/lists', 'to', '/=
-oe/poky/myboard/tmp/work/myboard-poky-linux-gnueabi/myboard-base-image/1.0-=
-r0/sdk/image/opt/poky/1.6.1/sysroots/x86_64-pokysdk-mingw32/var/lib/opkg', =
-OSError(39, 'Directory not empty'))
-| ('movefile: Failed to move', '/oe/poky/myboard/tmp/work/myboard-poky-linu=
-x-gnueabi/myboard-base-image/1.0-r0/sdk/image/var/lib/opkg/status', 'to', '=
-/oe/poky/myboard/tmp/work/myboard-poky-linux-gnueabi/myboard-base-image/1.0=
--r0/sdk/image/opt/poky/1.6.1/sysroots/x86_64-pokysdk-mingw32/var/lib/opkg',=
- OSError(21, 'Is a directory'))
-| DEBUG: Shell function create_sdk_files finished
-| DEBUG: Executing shell function tar_sdk
-| tar: ./sysroots/cortexa8t2hf-vfp-neon-poky-linux-gnueabi/var/lock: File r=
-emoved before we read it
-| tar: ./sysroots/cortexa8t2hf-vfp-neon-poky-linux-gnueabi/etc/mtab: File r=
-emoved before we read it
-| WARNING: exit code 1 from a shell command.
-| DEBUG: Python function do_populate_sdk finished
-| ERROR: Function failed: tar_sdk (log file is located at /oe/poky/myboard/=
-tmp/work/myboard-poky-linux-gnueabi/myboard-base-image/1.0-r0/temp/log.do_p=
-opulate_sdk.22271)
+thanks for reporting this, I will take a look into this. I have not 
+tried daisy on recent meta-security.
+
+- Armin
+> build with yocto 1.6.1 on Ubuntu 12.04,
+> have add extra dep. to local.conf according to REAME
+>   /poky/openembedded-core/meta \
+>   /poky/meta-openembedded/meta-oe \
+>   /poky/meta-openembedded/meta-perl \
+>   /poky/meta-security \
+>
+> but got following error message:
+>
+> $ bitbake -k core-image-full-cmdline
+> ERROR: ExpansionError during parsing 
+> /poky/meta-openembedded/meta-perl/recipes-perl/libtest/libtest-harness-perl_3.30.bb 
+> <http://libtest-harness-perl_3.30.bb>: Failure expanding variable 
+> do_fetch[file-checksums], expression was 
+> ${@bb.fetch.get_checksum_file_list(d)} which triggered exception 
+> MalformedUrl: The URL: 
+> '${CPAN_MIRROR}/authors/id/L/LE/LEONT/Test-Harness-3.30.tar.gz' is 
+> invalid and cannot be interpreted
+>
+> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+>
+>
+>
+>
+
 
