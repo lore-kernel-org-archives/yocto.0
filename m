@@ -1,59 +1,59 @@
 Return-Path: <dev@codyps.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8B4A1E00846; Mon, 20 Oct 2014 12:45:12 -0700 (PDT)
+	id 05B45E00863; Mon, 20 Oct 2014 12:47:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.215.52 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.171 listed in list.dnswl.org]
-Received: from mail-lb0-f171.google.com (mail-lb0-f171.google.com
-	[209.85.217.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82CB9E0080C
-	for <yocto@yoctoproject.org>; Mon, 20 Oct 2014 12:45:09 -0700 (PDT)
-Received: by mail-lb0-f171.google.com with SMTP id z12so4574605lbi.16
-	for <yocto@yoctoproject.org>; Mon, 20 Oct 2014 12:45:08 -0700 (PDT)
+Received: from mail-la0-f52.google.com (mail-la0-f52.google.com
+	[209.85.215.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22C55E00846
+	for <yocto@yoctoproject.org>; Mon, 20 Oct 2014 12:47:03 -0700 (PDT)
+Received: by mail-la0-f52.google.com with SMTP id hz20so4654690lab.11
+	for <yocto@yoctoproject.org>; Mon, 20 Oct 2014 12:47:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codyps.com; s=google;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=k8e1zogxyh4v/E59lSB8OEOgokkxFwzfrlL67g3vGOk=;
-	b=JHFyOaIH9k2RF6h3TksxvZEGrbn67x4nydnYNzLL9eJZDVnnDjufz6HatG9iH3DijG
-	UqaWYoqCkXCbHmbvxK/aPZIlngD9r77oWahEZ12n93CUggo4mSkP+vKP1UTeNH6aKTWw
-	ri+EzT+G/GjwGiVXT7nDMUoBYcUwyNRBUc3eY=
+	bh=EXxC0DQHjZPuMmZOPw7UkSepTK7FPoOyOa6Z7gjtp+o=;
+	b=QkwgLH6Yk/rppLOmKf2B8SrwgzSu5hZXJWiLmHAOLF/HtxVhmTc9CaP7AMoW+FNBqy
+	MQvfPpRHnjRXYQXsHtI6oF+Yl6waO3DxYfTqDYJutEq8Bu44SuQy+qIPkY3sc0h+M0XF
+	cMMrD+o07W3i8Ac8Lj5NeifWx33l9S3h80vH4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:date
 	:message-id:subject:from:to:cc:content-type;
-	bh=k8e1zogxyh4v/E59lSB8OEOgokkxFwzfrlL67g3vGOk=;
-	b=mNX/W/6Vj5mrHXFbnaScX1Vap8HKFKjVMSbkrob+08iATduBPZETWN1/skk0E4hHBh
-	8YpDqd6f+OaRcmmcbtNL8BsXm4W3F7b4Zb0NfL3JjqJMkjtE6f8AGWNcZOv3p3oqueoI
-	2IvhhUrRp/N/VvmHmE0thM6Xx0VKeRKUh5ceBZaqzKn//cqWimdWxTy5jGaPtO11YVLq
-	3kcmKUW/34oxFQE6KtMSqgNxddmyCDMQc9ZJ+EU958ikzZk0jOc8TSKNzQ+u8y64svid
-	A/zQ8i8cra6Ep2W0RARiYq0k52fuejg6Lr25RWYAnmQwDkbVSar3Fgcz2lndDWoQVJ5x
-	jcNg==
-X-Gm-Message-State: ALoCoQlNMg7bdF6G3jpF58jGWJVIMhaSYU1Tg943vnrDn+FSYRlt18gkXqwvpQkizr9DDZr6zQvl
+	bh=EXxC0DQHjZPuMmZOPw7UkSepTK7FPoOyOa6Z7gjtp+o=;
+	b=UGD2oNL5fRsPUYWamkXumTm5Bjzqpo2dMXkzi+iGcU4YUOwpfkZD/+pB18mMsob1aO
+	gulJBNfnWOyAt/Rf3zfSbvynLAq1yrLZObCy9IMQfOB/9sm+DjIf1VVdqjAQTMbMpduR
+	TQuRoMXOHQZhdFtXQUvyyWfncIJ/URjMoAtgeXp7yvVQlx8Dazz2uOp9eMiIHUykjX4s
+	zNpW7tyHaxhPVDXWxL3XwrPCN9WVB5BcQK1oSsBfNe/RuiiGkXnUpQF3kZlQt5NOp813
+	p/tESCNf0MkDBJH1aF8urnSgOMPQafYYVv57u70xCoMPhyjXtcXdmTe7UT7tjZRsryd1
+	sonQ==
+X-Gm-Message-State: ALoCoQnTubAbiaepl0KUBMqfLT0FcOIgkgjdGdBYdwIpm9cb/coi4bHjRlBXH/fYTqQZHwp+Wta7
 MIME-Version: 1.0
-X-Received: by 10.112.94.133 with SMTP id dc5mr29732037lbb.11.1413834307888;
-	Mon, 20 Oct 2014 12:45:07 -0700 (PDT)
-Received: by 10.112.188.161 with HTTP; Mon, 20 Oct 2014 12:45:07 -0700 (PDT)
+X-Received: by 10.112.189.10 with SMTP id ge10mr29457380lbc.23.1413834421638; 
+	Mon, 20 Oct 2014 12:47:01 -0700 (PDT)
+Received: by 10.112.188.161 with HTTP; Mon, 20 Oct 2014 12:47:01 -0700 (PDT)
 X-Originating-IP: [72.74.84.52]
-In-Reply-To: <20141017174824.GR3000@jama>
+In-Reply-To: <CAMKF1sogNqEOMnQ2A-uX0i=K_=6p9mtgGuDCG1guYJTUuPyniw@mail.gmail.com>
 References: <CAPoQQ-1xzG=SqaBrPp-W-tOd9W3fWyZ=skUTEpvq+mEQ3P_CuA@mail.gmail.com>
 	<CANyK_8cvEcxAC3tJMJHSif01gnXZU=L=TTu990_uENTrjTYK1g@mail.gmail.com>
-	<20141017174824.GR3000@jama>
-Date: Mon, 20 Oct 2014 15:45:07 -0400
-Message-ID: <CAPoQQ-1xo79Z=VO2C=TrQFL4kQ3O-obADQFkwf1KYMLK2LdFtg@mail.gmail.com>
+	<CAMKF1sogNqEOMnQ2A-uX0i=K_=6p9mtgGuDCG1guYJTUuPyniw@mail.gmail.com>
+Date: Mon, 20 Oct 2014 15:47:01 -0400
+Message-ID: <CAPoQQ-2Rc-69YMf__yGNNGhb1kxw8a+fp2AYAqY4VxRgrxzNqg@mail.gmail.com>
 From: Cody P Schafer <dev@codyps.com>
-To: Martin Jansa <martin.jansa@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: Questions regarding adding a new llvm based cross-compiler
 X-BeenThere: yocto@yoctoproject.org
@@ -67,35 +67,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Oct 2014 19:45:12 -0000
+X-List-Received-Date: Mon, 20 Oct 2014 19:47:05 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Fri, Oct 17, 2014 at 1:48 PM, Martin Jansa <martin.jansa@gmail.com> wrote:
-> On Fri, Oct 17, 2014 at 09:07:19AM +0100, Paul Barker wrote:
->> On 16 October 2014 18:46, Cody P Schafer <dev@codyps.com> wrote:
->> > Hi all,
->> >
->> > I'm working on creating a layer for the rust compiler (which uses
->> > llvm) and was wondering if there were any best practices and/or
->> > examples people could point me at.
+On Sun, Oct 19, 2014 at 4:10 AM, Khem Raj <raj.khem@gmail.com> wrote:
 >
-> Are you using llvm recipes from meta-oe (or at least starting from
-> them)?
+[...]
+> I have started to integrate clang into oe
+> Which probably is quitquite similar to this effortwise. Its very
+> prelimpreliminary. Check my github repo. I should add it to layer index
 
-I wasn't. Rust packages a particular llvm version already (and ties it
-into it's build scripts). I'm planning on just using that one.
+(repo link for the interested: https://github.com/kraj/meta-clang)
 
-> I haven't tried it yet, but I've asked Servo developer, how they do
-> cross-builds and he said that it's really simple with Rust and Cargo,
-> which support cross-compilation by design.
-
-Well:
-
-From what I've found, crossbuilds work fine if you're using one of a
-small set of blessed triples (ie: not arm-poky-linux-gnueabi, but
-arm-unknown-linux-gnueabihf), and you don't set any special
-CFLAGS/LDFLAGS variables (which oe does).
-And the infrastructure is not in place to allow packagers to easily
-add/use different triples and "linkers" (rustc calls gcc/cc to link
-it's programs, and as a result needs to know where it is).
+Khem: the complication for me is rustc doesn't magically build for all
+targets it supports (at the moment) when using gcc as the
+compiler/linker (rustc calls an external binary, typically gcc or cc
+to link it's code). As a result, I can't just build for -native. I'm
+currently fighting with cross.bbclass to convince it to do what I
+want.
 
