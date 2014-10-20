@@ -1,46 +1,39 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A87C8E00861; Mon, 20 Oct 2014 03:42:04 -0700 (PDT)
+	id DF3F2E00863; Mon, 20 Oct 2014 07:55:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.41 listed in list.dnswl.org]
-Received: from mail-qa0-f41.google.com (mail-qa0-f41.google.com
-	[209.85.216.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED6B8E0071C
-	for <yocto@yoctoproject.org>; Mon, 20 Oct 2014 03:42:02 -0700 (PDT)
-Received: by mail-qa0-f41.google.com with SMTP id n8so3137950qaq.14
-	for <yocto@yoctoproject.org>; Mon, 20 Oct 2014 03:42:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:content-transfer-encoding;
-	bh=V2jqMaDeY2wrnFvz9TrSw4yRuEwxtU+wcpfgqGCAVtY=;
-	b=isqWZ0Qkm2TNVVzrBhh+m0ZH/asjSR2lamCbI7ffJ9XD26vAuEiEJQlbN7M2wPAWp/
-	d2s71NeENRz4oAYw3lZOJp14VccNMiog1Q1QLjZTw2pBjq5VvXiSbUeEZdkqRtcs6aCa
-	56qQAwGOZHM5eebYcdhGAJ/rJXzY8dcPO7lz5crYW6uq4J12HqtyIpCh/DXVd47BQakK
-	fTNAiVNAzR7L/52fsDSBYYpWazGJCokR5TVa/FgulnZNeXmhTuOysK9rvK3WT7LWakZo
-	ySeu+nlkdmJDIcG7UuaMDtgOM6GfB6DrptQ5wwues8MPp7NpObTYy3ICgD18SHxfHzS4
-	+p0A==
-X-Gm-Message-State: ALoCoQlFQ9WXIH4KA+OgwLoCxKJj0LDsbvXWzASSmys6WHJA3KdWIlHHbV9b3VU3lk718yxsAFsj
-X-Received: by 10.229.37.138 with SMTP id x10mr19243231qcd.5.1413801721646;
-	Mon, 20 Oct 2014 03:42:01 -0700 (PDT)
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D06FE00846
+	for <yocto@yoctoproject.org>; Mon, 20 Oct 2014 07:54:59 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 22F5527E099
+	for <yocto@yoctoproject.org>; Mon, 20 Oct 2014 14:54:58 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id wXf6Xmcv54B7 for <yocto@yoctoproject.org>;
+	Mon, 20 Oct 2014 14:54:56 +0000 (UTC)
+Received: from [192.168.1.19] (AMarseille-651-1-95-183.w109-208.abo.wanadoo.fr
+	[109.208.62.183])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id CDE1727E084
+	for <yocto@yoctoproject.org>; Mon, 20 Oct 2014 14:54:56 +0000 (UTC)
+Message-ID: <5445223D.3020709@dynamicdevices.co.uk>
+Date: Mon, 20 Oct 2014 16:54:53 +0200
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-Received: by 10.140.93.65 with HTTP; Mon, 20 Oct 2014 03:41:41 -0700 (PDT)
-In-Reply-To: <3204FE6663E1F14CAF4CA6928E60C85215BBF531@USSTLZ-PMSG012.emrsn.org>
-References: <3204FE6663E1F14CAF4CA6928E60C85215BBF531@USSTLZ-PMSG012.emrsn.org>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 20 Oct 2014 11:41:41 +0100
-Message-ID: <CAJTo0La5r2h1v=gmfWXUKqCgRsa33h0HT0jEF2KFpce9G+AVrQ@mail.gmail.com>
-To: Neil.Wu@emerson.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: create_image.tar fail
+To: Yocto <yocto@yoctoproject.org>
+Subject: [meta-mono] Mono updated to 3.10.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,39 +45,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Oct 2014 10:42:04 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 20 Oct 2014 14:55:06 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On 20 October 2014 03:24,  <Neil.Wu@emerson.com> wrote:
-> =C2=B7                   I need to  creat a new recipes to add libtdb to =
-rootfs.
-> The source code of tdb is Makefile-Base Package. Bitbake make will run th=
-e
-> makefile  automatically to finish the do_compile. But , I must to execute
-> one =E2=80=9Cconfigure=E2=80=9D file of source code in do_configure task =
-before do_compile.
-> How to execute the =E2=80=9Cconfigure=E2=80=9D  in do_configure task ?
->
-> =C2=B7
->
-> =C2=B7                  do_configure{
->
-> =C2=B7                             =E2=80=A6=E2=80=A6=E2=80=A6=E2=80=A6  =
- /*how to execure the configure file*/
->
-> =C2=B7                            }
->
->
->
->             How to solve the problem?  If you know , please help me.  Tha=
-nk
-> you.
 
-Just write the commands that you'd normally run to configure the
-software.  However in this case libtdb (assuming you mean the tdb from
-Samba) appears to use waf, so simply doing "inherit waf" will give you
-configure/compile/install functions automatically.
+I've updated support for Mono build in meta-mono master to 3.10.0 (the
+current release).
 
-Ross
+I've performed basic build testing on an qemux86 build of
+core-image-mono, based on core-image-sato, running a "Hello World"
+console application and a "Hello World" Windows Forms application.
+
+There has been feedback that issues with armhf support are addressed in
+3.10.0 but I have not yet had time to investigate.
+
+ref: https://bugzilla.xamarin.com/show_bug.cgi?id=20239
+
+All feedback on testing and/or issues appreciated.
+
+Regards,
+
+Alex
+
 
