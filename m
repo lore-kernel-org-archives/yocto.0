@@ -1,49 +1,50 @@
-Return-Path: <alexandru.c.georgescu@intel.com>
+Return-Path: <eddy.lai.tw@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D2D40E0071C; Mon, 20 Oct 2014 00:13:19 -0700 (PDT)
+	id A417BE00861; Mon, 20 Oct 2014 02:27:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=unavailable version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (eddy.lai.tw[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97F62E0071C;
-	Mon, 20 Oct 2014 00:13:15 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga101.fm.intel.com with ESMTP; 20 Oct 2014 00:13:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,862,1389772800"; d="scan'208";a="402789522"
-Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
-	by FMSMGA003.fm.intel.com with ESMTP; 20 Oct 2014 00:05:43 -0700
-Received: from irsmsx110.ger.corp.intel.com ([169.254.15.199]) by
-	IRSMSX102.ger.corp.intel.com ([169.254.2.200]) with mapi id
-	14.03.0195.001; Mon, 20 Oct 2014 08:13:07 +0100
-From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
-To: Michael Halstead <michael@yoctoproject.org>, Paul Barker
-	<paul@paulbarker.me.uk>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>, "Zhao, Yi (Wind River)"
-	<yi.zhao@windriver.com>
-Thread-Topic: [yocto] Release Candidate Build for yocto-1.7.rc4 now available.
-Thread-Index: AQHP7DVLBpPSteFNG02yVqIMI1zbXA==
-Date: Mon, 20 Oct 2014 07:13:06 +0000
-Message-ID: <D06A908D.C746%alexandru.c.georgescu@intel.com>
-References: <20141012005156.D66DC2C0219@ubuntu1204.osl.yoctoproject.org>
-	<CANyK_8fVecgg=pZnV9fwqz=YB3OM9mmm2MN4JD=L0ct15qKBpQ@mail.gmail.com>
-	<544435BD.4080001@yoctoproject.org>
-In-Reply-To: <544435BD.4080001@yoctoproject.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.4.5.141003
-x-originating-ip: [10.237.108.32]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f50.google.com (mail-oi0-f50.google.com
+	[209.85.218.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26A84E0071C
+	for <yocto@yoctoproject.org>; Mon, 20 Oct 2014 02:27:04 -0700 (PDT)
+Received: by mail-oi0-f50.google.com with SMTP id i138so3305239oig.23
+	for <yocto@yoctoproject.org>; Mon, 20 Oct 2014 02:27:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:cc:content-type;
+	bh=8alIqbJvwZqG7Zv+JLxcOfhJVbzekl5MdHWHu9Y93qY=;
+	b=pPbbo9UYK3gwDXWiwQ26gJSF/t/1s1fLc2Lhk7BytTz72a3+3JoTRXoQKaA97MTzM3
+	mjfgFKoQcpQ7ftzpU2uftPT6ASZD91e5/8HEfUp0obxCnoCR6gWbV/gJwOh27BMI9sDV
+	L/niV2HXxCNUifrQp7ZB6PkE4TA4oBLGEATRORPoE7CEqADPHsxZyNMFrCPUi4rZ6Yeu
+	nmNcZu5Y0p/MfBOtR5yFCl4SVjo1pFbKi3XNmX98jbSbANeJzKQXEXLbcWVPl7hr9FTw
+	mUAy0sZGCVYR6SVwk5yJ5ytjNUe4MEduXSlIcjBv6lOhhtTqFkLRQ/ECa/uMEYwgCXgz
+	Dq6A==
 MIME-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Release Candidate Build for yocto-1.7.rc4 now available.
+X-Received: by 10.202.77.75 with SMTP id a72mr21175472oib.8.1413797224302;
+	Mon, 20 Oct 2014 02:27:04 -0700 (PDT)
+Received: by 10.76.72.4 with HTTP; Mon, 20 Oct 2014 02:27:04 -0700 (PDT)
+Date: Mon, 20 Oct 2014 17:27:04 +0800
+Message-ID: <CACrgodd5fQP3yWfc7eYbVg8+oGPQWU4EG9thKmYV35-NfNX0HQ@mail.gmail.com>
+From: Lai Eddy <eddy.lai.tw@gmail.com>
+To: Armin Kuster <akuster808@gmail.com>
+Cc: "linux-yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: [meta-security] nmap build failed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,51 +56,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Oct 2014 07:13:19 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <BA9BBAE50C79434787583B9C70F41527@intel.com>
+X-List-Received-Date: Mon, 20 Oct 2014 09:27:08 -0000
+Content-Type: multipart/alternative; boundary=001a1135308256ce460505d7519a
+
+--001a1135308256ce460505d7519a
+Content-Type: text/plain; charset=UTF-8
+
+build with yocto 1.6.1 on Ubuntu 12.04,
+have add extra dep. to local.conf according to REAME
+  /poky/openembedded-core/meta \
+  /poky/meta-openembedded/meta-oe \
+  /poky/meta-openembedded/meta-perl \
+  /poky/meta-security \
+
+but got following error message:
+
+$ bitbake -k core-image-full-cmdline
+ERROR: ExpansionError during parsing
+/poky/meta-openembedded/meta-perl/recipes-perl/libtest/
+libtest-harness-perl_3.30.bb: Failure expanding variable
+do_fetch[file-checksums], expression was
+${@bb.fetch.get_checksum_file_list(d)} which triggered exception
+MalformedUrl: The URL:
+'${CPAN_MIRROR}/authors/id/L/LE/LEONT/Test-Harness-3.30.tar.gz' is invalid
+and cannot be interpreted
+
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+
+--001a1135308256ce460505d7519a
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Michael,
-Can you add me and Yi on the CC as well?
+<div dir=3D"ltr"><div><div>build with yocto 1.6.1 on Ubuntu 12.04,<br></div=
+>have add extra dep. to local.conf according to REAME<br>=C2=A0 /poky/opene=
+mbedded-core/meta \<br>=C2=A0 /poky/meta-openembedded/meta-oe \<br>=C2=A0 /=
+poky/meta-openembedded/meta-perl \<br>=C2=A0 /poky/meta-security \<br><br><=
+/div>but got following error message:<br><br><div><div>$ bitbake -k core-im=
+age-full-cmdline<br>ERROR: ExpansionError during parsing /poky/meta-openemb=
+edded/meta-perl/recipes-perl/libtest/<a href=3D"http://libtest-harness-perl=
+_3.30.bb">libtest-harness-perl_3.30.bb</a>: Failure expanding variable do_f=
+etch[file-checksums], expression was ${@bb.fetch.get_checksum_file_list(d)}=
+ which triggered exception MalformedUrl: The URL: &#39;${CPAN_MIRROR}/autho=
+rs/id/L/LE/LEONT/Test-Harness-3.30.tar.gz&#39; is invalid and cannot be int=
+erpreted<br><br>Summary: There was 1 ERROR message shown, returning a non-z=
+ero exit code.<br><br><div><br></div><div><br></div><div><br></div></div></=
+div></div>
 
-Thanks,
---
-Alexandru Georgescu
-Yocto QA Engineer
-SSG/SSD Open Source Technology Center Romania
-
-
-
-
-On 20/10/14 01:05, "Michael Halstead" <michael@yoctoproject.org> wrote:
-
->The QA_MAIL_CC value in ./config/autobuilder.conf needed to be comma
->separated. I think it is fixed now.
->
->Thanks for the report.
->
->Michael Halstead
->Yocto Project / SysAdmin
->
->On 10/12/2014 04:33 AM, Paul Barker wrote:
->> On 12 October 2014 01:51, Poky Build User
->> <pokybuild@ubuntu1204.osl.yoctoproject.org> wrote:
->>> This is an automated message from
->>> The Yocto Project Autobuilder
->>> Git: git://git.yoctoproject.org/yocto-autobuilder
->>> Email: elizabeth.flanagan@intel.com
->> Beth,
->>
->> I noticed that the Cc list for the original email looks to be corrupted:
->>     Cc: ""@ossystems.com.bryi.zhao, elizabeth.flanagan@intel.comyocto,
->>          ""@windriver.com, ""@yoctoproject.orgalexandru.c.georgescu,
->>          ""@intel.comotavio
->>
->> Just letting you know incase you missed this and it needs attention,
->>
->
->
-
-
+--001a1135308256ce460505d7519a--
