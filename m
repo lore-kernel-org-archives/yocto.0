@@ -1,17 +1,16 @@
-Return-Path: <challinan@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AB71AE00862; Tue, 21 Oct 2014 06:34:58 -0700 (PDT)
+	id AEA17E008F3; Tue, 21 Oct 2014 08:01:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (challinan[at]gmail.com)
+	mail provider *      (akuster808[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
@@ -19,31 +18,42 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.214.173 listed in list.dnswl.org]
-Received: from mail-ob0-f173.google.com (mail-ob0-f173.google.com
-	[209.85.214.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49514E007C1
-	for <yocto@yoctoproject.org>; Tue, 21 Oct 2014 06:34:53 -0700 (PDT)
-Received: by mail-ob0-f173.google.com with SMTP id wp4so989726obc.4
-	for <yocto@yoctoproject.org>; Tue, 21 Oct 2014 06:34:52 -0700 (PDT)
+	*      [209.85.192.171 listed in list.dnswl.org]
+Received: from mail-pd0-f171.google.com (mail-pd0-f171.google.com
+	[209.85.192.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4592E007C1
+	for <yocto@yoctoproject.org>; Tue, 21 Oct 2014 08:01:21 -0700 (PDT)
+Received: by mail-pd0-f171.google.com with SMTP id ft15so1504235pdb.30
+	for <yocto@yoctoproject.org>; Tue, 21 Oct 2014 08:01:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=lKtu44+bSYPycmMS/r+f8sNQV+oyUtZxZ2sd69A79lk=;
-	b=oZAUYry8RCbXgB/UU4sI7ZnjVuNa/1QwAiwjCtcyUN3MAYKD/EkGUEhyH3Bja3dGdu
-	jVtTeMNsTcDA8UuD+V2YLh65B/ovyIw8hjipxCWacSuQ0sHzCBzm7XDMsQ4+l2BcxfuD
-	Qdbzrnt9pLnQoqw3gGH+kI/v2udIatWpXq21TDIqFoU2z8bBf3393YiOPPeEW1B0y/E3
-	Nt/AMjHXphuZ0IgMx/s7D6rkzzMK8+kJxOxxPhTYWOqYO7WP49KcMgC+GUJM8USLMLGF
-	mIfO8YFLctAU9cucNhIsStIyXut6bdUWPuRGqvl0TR8iXS0TrFsf6yZ0CDdgEYq/ltIJ
-	ETxQ==
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=6BfW9ZMEVsHIYfOrHQJMAj0pPz8ZD4m+vOCMHWXepwE=;
+	b=cZN2Byd1dsy1/7PCk9L6ATeGqXsVvaN43D+KJr9PktSfKUgutYRsUaJ2xgHeZtAY1R
+	RNddM4wESvgzFtYlNhfLL1hjahKD+RDWg2dkmU+SocAoVe4c6N1vfo9G6YWMngAmc03z
+	fhddx01cG2jB3liMAEoMj5Tb6Lka6uzkMAL1QTIECHQReglWfh3hoEn3Xc/VX0UCQOGk
+	a5x3vxinxZo/lyrDvPMFGVcgiyDyZ9UGW9TLDVruxJ9ERfn7nfk5nlJWZUY9JsJNMxHK
+	CS988py71dQzqiMb8Vrskr/qczw2QdJKCFoM5KpF0PCdfYQCTuC+EO/7AEL3KlAkt4uh
+	9LDA==
+X-Received: by 10.68.251.99 with SMTP id zj3mr35497763pbc.105.1413903680694;
+	Tue, 21 Oct 2014 08:01:20 -0700 (PDT)
+Received: from ?IPv6:2601:c:9380:601:1197:fac2:a00b:668a?
+	([2601:c:9380:601:1197:fac2:a00b:668a])
+	by mx.google.com with ESMTPSA id f2sm12179688pdo.29.2014.10.21.08.01.18
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 21 Oct 2014 08:01:19 -0700 (PDT)
+Message-ID: <5446753A.5060508@gmail.com>
+Date: Tue, 21 Oct 2014 08:01:14 -0700
+From: akuster808 <akuster808@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.1.2
 MIME-Version: 1.0
-X-Received: by 10.182.125.34 with SMTP id mn2mr1938911obb.80.1413898492408;
-	Tue, 21 Oct 2014 06:34:52 -0700 (PDT)
-Received: by 10.202.17.1 with HTTP; Tue, 21 Oct 2014 06:34:52 -0700 (PDT)
-Date: Tue, 21 Oct 2014 09:34:52 -0400
-Message-ID: <CAME0jBQi5P-G74G-G9zK1mmqYt3_GCSUrH9++c2QvksXDLHn+Q@mail.gmail.com>
-From: Chris Hallinan <challinan@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: qemuarm built from daisy has no mouse pointer display when run on darwin
+To: Lai Eddy <eddy.lai.tw@gmail.com>
+References: <CACrgodd5fQP3yWfc7eYbVg8+oGPQWU4EG9thKmYV35-NfNX0HQ@mail.gmail.com>
+In-Reply-To: <CACrgodd5fQP3yWfc7eYbVg8+oGPQWU4EG9thKmYV35-NfNX0HQ@mail.gmail.com>
+Cc: "linux-yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-security] nmap build failed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,61 +65,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Oct 2014 13:34:58 -0000
-Content-Type: multipart/alternative; boundary=089e0122fa246377a80505eee514
+X-List-Received-Date: Tue, 21 Oct 2014 15:01:25 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---089e0122fa246377a80505eee514
-Content-Type: text/plain; charset=ISO-8859-1
+Lai,
 
-Greetings,
+I can not reproduce this using daisy branch of yocto and 
+opemembeded-core. Libtest does not exist in the daisy branch of 
+meta-perl. Can you provide me with the Build Configuration when you 
+first start to build and hoe you appended nmap to your image
 
-I'm playing around with core-image-sato built for MACHINE=qemuarm, and
-running under qemu-system-arm on Mavericks.  I'm using qemu version 2.1.2
-from macports, and the qemuarm images were built from YP 1.6/Daisy.
+- Armin
 
-My core-image-sato binaries (kernel/rootfs) run perfectly on the host on
-which it was built (U12.04) and in fact, runs fine on my Mavericks platform
-except there is no mouse pointer visible.  When I move the mouse into the
-qemu window and click once, the mouse pointer disappears.  I am getting
-mouse events from /dev/input/event1, and in fact, clicking around blindly I
-have determined that I can actually click on stuff and cause them to
-execute, it's just that there is no visible mouse pointer.
+On 10/20/2014 02:27 AM, Lai Eddy wrote:
+> build with yocto 1.6.1 on Ubuntu 12.04,
+> have add extra dep. to local.conf according to REAME
+>    /poky/openembedded-core/meta \
+>    /poky/meta-openembedded/meta-oe \
+>    /poky/meta-openembedded/meta-perl \
+>    /poky/meta-security \
+>
+> but got following error message:
+>
+> $ bitbake -k core-image-full-cmdline
+> ERROR: ExpansionError during parsing
+> /poky/meta-openembedded/meta-perl/recipes-perl/libtest/libtest-harness-perl_3.30.bb
+> <http://libtest-harness-perl_3.30.bb>: Failure expanding variable
+> do_fetch[file-checksums], expression was
+> ${@bb.fetch.get_checksum_file_list(d)} which triggered exception
+> MalformedUrl: The URL:
+> '${CPAN_MIRROR}/authors/id/L/LE/LEONT/Test-Harness-3.30.tar.gz' is
+> invalid and cannot be interpreted
+>
+> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+>
+>
+>
+>
 
-While I realize this is likely not a supported scenario, it would be hugely
-convenient for me in my workflow.  I travel with a MB Air, and it's just
-too lightweight for a VM.  Can anyone suggest how I might go about
-troubleshooting and/or discovering a possible workaround?  Anyone have any
-ideas?  Is there a better list where I might ask this question?
-
-Thanks,
-
-Chris Hallinan
-
--- 
-Life is like Linux - it never stands still.
-
---089e0122fa246377a80505eee514
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Greetings,<div><br></div><div>I&#39;m playing around with =
-core-image-sato built for MACHINE=3Dqemuarm, and running under qemu-system-=
-arm on Mavericks.=A0 I&#39;m using qemu version 2.1.2 from macports, and th=
-e qemuarm images were built from YP 1.6/Daisy.</div><div><br></div><div>My =
-core-image-sato binaries (kernel/rootfs) run perfectly on the host on which=
- it was built (U12.04) and in fact, runs fine on my Mavericks platform exce=
-pt there is no mouse pointer visible.=A0 When I move the mouse into the qem=
-u window and click once, the mouse pointer disappears.=A0 I am getting mous=
-e events from /dev/input/event1, and in fact, clicking around blindly I hav=
-e determined that I can actually click on stuff and cause them to execute, =
-it&#39;s just that there is no visible mouse pointer.</div><div><br></div><=
-div>While I realize this is likely not a supported scenario, it would be hu=
-gely convenient for me in my workflow.=A0 I travel with a MB Air, and it&#3=
-9;s just too lightweight for a VM.=A0 Can anyone suggest how I might go abo=
-ut troubleshooting and/or discovering a possible workaround?=A0 Anyone have=
- any ideas?=A0 Is there a better list where I might ask this question?</div=
-><div><br></div><div>Thanks,</div><div><br></div><div>Chris Hallinan</div><=
-div><br>-- <br>Life is like Linux - it never stands still.<br><br>
-</div></div>
-
---089e0122fa246377a80505eee514--
