@@ -1,41 +1,59 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <xerofoify@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BEE5FE007EB; Wed, 22 Oct 2014 13:26:24 -0700 (PDT)
+	id AAA46E007D6; Wed, 22 Oct 2014 15:25:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (xerofoify[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.175 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 1120 seconds by postgrey-1.32 at yocto-www;
-	Wed, 22 Oct 2014 13:26:21 PDT
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4C78E00799
-	for <yocto@yoctoproject.org>; Wed, 22 Oct 2014 13:26:21 -0700 (PDT)
-Received: from [99.240.204.5] (port=54089 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Xh2CD-0002e4-7s; Wed, 22 Oct 2014 16:07:49 -0400
-Date: Wed, 22 Oct 2014 16:07:37 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: nick <xerofoify@gmail.com>
-In-Reply-To: <54457446.5090809@gmail.com>
-Message-ID: <alpine.LFD.2.11.1410221602280.4422@localhost>
-References: <54457446.5090809@gmail.com>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f175.google.com (mail-ig0-f175.google.com
+	[209.85.213.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA296E00790
+	for <yocto@yoctoproject.org>; Wed, 22 Oct 2014 15:25:10 -0700 (PDT)
+Received: by mail-ig0-f175.google.com with SMTP id uq10so1834635igb.8
+	for <yocto@yoctoproject.org>; Wed, 22 Oct 2014 15:25:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=BWYlZbziW5ANTBA8chLFrVoHA+ELvpKZy2ngBpqrw8k=;
+	b=uCYNzpxG6Ygm5o9oP0t9KOzIF5yupfsOKA3fIMR687P41lk968vbAyb++6Yoqo6Ocj
+	6XQTMFQOTgyudsEZz1rMqaRrCUlHnAD/yduYaMUQgFTOvaXcEVVuj6/m243okcP43UXa
+	6vyUsnRHXLPUG2LZPVGigkTLHax66dnsUa/tTUIUldUwyTnu5VYUyVuttiR68LXKKugE
+	zJ382KkIksC3GoYUZvSgzl61fDbFeUM5YIZYTbotbDnWVQAOkj5oyK2NrPv2lB+pbiSF
+	eSQrYnxMYjo5qJpsuJcNzMA4vsUoaOMEwZbRn9qHNBFR5N+/RjdRKe0fjR06OYiwkYnP
+	cmew==
+X-Received: by 10.42.94.131 with SMTP id b3mr4050990icn.92.1414016710389;
+	Wed, 22 Oct 2014 15:25:10 -0700 (PDT)
+Received: from [192.168.0.50]
+	(CPE0026f3330aca-CM0026f3330ac6.cpe.net.cable.rogers.com.
+	[99.231.92.7])
+	by mx.google.com with ESMTPSA id gb12sm1386427igd.0.2014.10.22.15.25.09
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 22 Oct 2014 15:25:09 -0700 (PDT)
+Message-ID: <54482EC4.6090901@gmail.com>
+Date: Wed, 22 Oct 2014 18:25:08 -0400
+From: nick <xerofoify@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+To: Chris Tapp <opensource@keylevel.com>
+References: <54457446.5090809@gmail.com>
+	<6C4C72C1-9016-4C6B-80D5-16572BE7A9ED@keylevel.com>
+In-Reply-To: <6C4C72C1-9016-4C6B-80D5-16572BE7A9ED@keylevel.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: Time To Build Yocto
 X-BeenThere: yocto@yoctoproject.org
@@ -49,44 +67,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Oct 2014 20:26:24 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 22 Oct 2014 22:25:12 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-On Mon, 20 Oct 2014, nick wrote:
+Thanks Chris,
+I was wondering if a i7 was worth it seems it is and yes for the matter, I did have issues with the kernel
+community and trying to work then out.
+Nick
 
-> I am wondering from your experience how long is the largest build
-> you have ever seen and what was it building. I am considering a high
-> powered build system for Yocto and want to known about build times
-> in order to help me with purchasing decisions.
-
-dear yocto mailing list:
-
-  at the risk of sounding heartless, please don't feed the troll. nick
-krause is notorious from the kernel and kernel newbie mailing lists as
-someone who, desperate to get his name into the git log as a kernel
-developer, has pissed off pretty much *everyone* by submitting
-badly-formed, ill-considered patches against numerous subsystems, to
-the point where he was finally *banned* from LKML. that didn't slow
-him down, as he simply joined the kernel newbies ML and did exactly
-the same thing there.
-
-  this is nick:
-
-http://www.themukt.com/2014/08/04/someone-trolling-linux-kernel-mailing-lists-really-hard/
-
-it remains to be seen if nick has changed his ways at all -- i am
-simply posting this as a public service announcement so you know what
-you might be getting into.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+On 14-10-22 03:59 PM, Chris Tapp wrote:
+> 
+> On 20 Oct 2014, at 21:44, nick <xerofoify@gmail.com> wrote:
+> 
+>> I am wondering from your experience how long is the largest build you have ever seen and what was it building. I am 
+>> considering a high powered build system for Yocto and want to known about build times in order to help me with
+>> purchasing decisions.
+> 
+> There was a recent thread discussing this - have a look at https://lists.yoctoproject.org/pipermail/yocto/2014-October/021808.html
+> 
+> You need to start by working out what you'll be spending most of your time doing - full image builds, incremental images, single recipes, etc.
+> 
+> My build system has an i7-3820 overclocked to 4.6 GHz with 16 GB RAM and SSDs. It takes about an hour to build an X11 image from scratch (no shared state, source already downloaded). I could reduce the build time to about 25 minutes by upgrading to a new CPU (12 core, 24 threads) for $2700 - once you have your use-case you can do the math to work out what the payback time will be ;-)
+> 
+> --
+> 
+> Chris Tapp
+> opensource@keylevel.com
+> www.keylevel.com
+> 
+> ----
+> You can tell you're getting older when your car insurance gets real cheap!
+> 
 
