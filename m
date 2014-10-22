@@ -1,58 +1,40 @@
-Return-Path: <xerofoify@gmail.com>
+Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A016CE00849; Mon, 20 Oct 2014 13:44:59 -0700 (PDT)
+	id 970FBE007D6; Wed, 22 Oct 2014 12:59:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (xerofoify[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.178 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ie0-f178.google.com (mail-ie0-f178.google.com
-	[209.85.223.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB8EEE00830
-	for <yocto@yoctoproject.org.>; Mon, 20 Oct 2014 13:44:56 -0700 (PDT)
-Received: by mail-ie0-f178.google.com with SMTP id rl12so5432597iec.23
-	for <yocto@yoctoproject.org.>; Mon, 20 Oct 2014 13:44:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=PUG5efGm0hSVRyCj1OAEuVzd6znHKTsSc4Q3qPl68qY=;
-	b=SBgSyQHc/UbbAFH5rjVUpUM+Yvw8oTcr78WEFRlybvBdNhVGcU2AF+FEdpYlHmzLGr
-	dYjfCpgTE71K/oX8PrToyN2JGk/WrD1QaAQ4B0JbFkp/yXunES3ugayQZONGwYwVmjUz
-	eZLNsjvLY/PImEODtnR+A4pmQ0+sLeJsj/M5uJrFc95GhvYBU79rzT5oYO34jNk85Opo
-	0RU/naGBdU84CeqhrF64SiYfz4D1pQhrXKoBrq6B1Ci+I31tKdQ8Z4oCmRgdJjNOmdFX
-	UE6Cks7cu0wS9+z5foHtlvDmFLD9GcHUsqzkAQIiSaiC3hl2QbHJ3bNzoMGQXdg6tjO2
-	DKFg==
-X-Received: by 10.43.153.131 with SMTP id la3mr28903039icc.38.1413837895191;
-	Mon, 20 Oct 2014 13:44:55 -0700 (PDT)
-Received: from [192.168.0.50]
-	(CPE0026f3330aca-CM0026f3330ac6.cpe.net.cable.rogers.com.
-	[99.231.92.7])
-	by mx.google.com with ESMTPSA id b4sm5037791iod.37.2014.10.20.13.44.54
-	for <yocto@yoctoproject.org.>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 20 Oct 2014 13:44:54 -0700 (PDT)
-Message-ID: <54457446.5090809@gmail.com>
-Date: Mon, 20 Oct 2014 16:44:54 -0400
-From: nick <xerofoify@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Wed, 22 Oct 2014 11:11:03 -0700
-Subject: Time To Build Yocto
+Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A269E00790
+	for <yocto@yoctoproject.org>; Wed, 22 Oct 2014 12:59:46 -0700 (PDT)
+Received: from durham.keylevel.com ([88.97.63.243]:20493
+	helo=macbook-pro.durham.keylevel.com)
+	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.82)
+	(envelope-from <opensource@keylevel.com>)
+	id 1Xh24I-002RIi-F7; Wed, 22 Oct 2014 20:59:41 +0100
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <54457446.5090809@gmail.com>
+Date: Wed, 22 Oct 2014 20:59:37 +0100
+Message-Id: <6C4C72C1-9016-4C6B-80D5-16572BE7A9ED@keylevel.com>
+References: <54457446.5090809@gmail.com>
+To: nick <xerofoify@gmail.com>
+X-Mailer: Apple Mail (2.1878.6)
+X-OutGoing-Spam-Status: No, score=-3.5
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - a180.4uh.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
+	chris.tapp@keylevel.com
+Cc: yocto@yoctoproject.org
+Subject: Re: Time To Build Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,12 +46,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Oct 2014 20:44:59 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 22 Oct 2014 19:59:57 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-I am wondering from your experience how long is the largest build you have ever seen and what was it building. I am 
-considering a high powered build system for Yocto and want to known about build times in order to help me with
-purchasing decisions.
-Cheers Nick 
+
+On 20 Oct 2014, at 21:44, nick <xerofoify@gmail.com> wrote:
+
+> I am wondering from your experience how long is the largest build you =
+have ever seen and what was it building. I am=20
+> considering a high powered build system for Yocto and want to known =
+about build times in order to help me with
+> purchasing decisions.
+
+There was a recent thread discussing this - have a look at =
+https://lists.yoctoproject.org/pipermail/yocto/2014-October/021808.html
+
+You need to start by working out what you'll be spending most of your =
+time doing - full image builds, incremental images, single recipes, etc.
+
+My build system has an i7-3820 overclocked to 4.6 GHz with 16 GB RAM and =
+SSDs. It takes about an hour to build an X11 image from scratch (no =
+shared state, source already downloaded). I could reduce the build time =
+to about 25 minutes by upgrading to a new CPU (12 core, 24 threads) for =
+$2700 - once you have your use-case you can do the math to work out what =
+the payback time will be ;-)
+
+--
+
+Chris Tapp
+opensource@keylevel.com
+www.keylevel.com
+
+----
+You can tell you're getting older when your car insurance gets real =
+cheap!
+
 
