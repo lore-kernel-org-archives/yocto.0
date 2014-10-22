@@ -1,51 +1,39 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <Neil.Wu@Emerson.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E4F12E0084F; Tue, 21 Oct 2014 22:43:26 -0700 (PDT)
+	id 8DC8CE0084F; Tue, 21 Oct 2014 22:55:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.217.173 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [144.191.128.189 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f173.google.com (mail-lb0-f173.google.com
-	[209.85.217.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CB09E00790;
-	Tue, 21 Oct 2014 22:43:21 -0700 (PDT)
-Received: by mail-lb0-f173.google.com with SMTP id 10so2208755lbg.4
-	for <multiple recipients>; Tue, 21 Oct 2014 22:43:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=ynBBEc3RN9hw9bKibZk+2RgtSaHee5i7rpcPSxmJfeU=;
-	b=dsys/FjGvxcOG760kSqz61HhCm0YHrY43BnVeD9cvAuKTyYj53nvin0aahVDiOmJK+
-	wppfveezjqmV5+sydWCbAE84rel7XUgXRLl9IduChEiR1E8xc5bqQTar4Yb52RgCVmLW
-	Tn5bsQRSoB6ZFw2QPPBcPPAcHHaAnuO1sNfcuC3n+A1cSF6v5MtglRnC4iT7i4HBB3FF
-	4tNCLS5a31GpLe7RJVSQnkolety+XpwnrWQLTaUW4zuwNfteXkyZ3TIjtFnNvFCvdF4b
-	e5ImcI8PgsrxDcydtn0QHC0Ul9yyhj2czyhnTS7gRMqsKz0Zzh6HwAU4N8NbcWxGA19B
-	H9ug==
-X-Received: by 10.152.7.7 with SMTP id f7mr38846553laa.57.1413956600650; Tue,
-	21 Oct 2014 22:43:20 -0700 (PDT)
+Received: from USSTLZ-PINFEZ05.extemr.org (usstlz-pinfez05.extemr.org
+	[144.191.128.189])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A500E00790
+	for <yocto@yoctoproject.org>; Tue, 21 Oct 2014 22:55:49 -0700 (PDT)
+Received: from USSTLZ-PMSG013.emrsn.org (10.16.72.195) by
+	USSTLZ-PINFEZ05.extemr.org (10.16.8.78) with Microsoft SMTP Server
+	(TLS) id 14.3.158.1; Wed, 22 Oct 2014 05:55:47 +0000
+Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.183]) by
+	USSTLZ-PMSG013.emrsn.org ([169.254.5.149]) with mapi id 14.03.0158.001;
+	Wed, 22 Oct 2014 05:55:47 +0000
+From: <Neil.Wu@Emerson.com>
+To: <yocto@yoctoproject.org>
+Thread-Topic: =?gb2312?B?c2FtYmEgdGRiIGNvbXBpbGUgZXJyb3KjoQ==?=
+Thread-Index: Ac/QwcFOPo0Bg5rkSSK4jS9YNrymzgFg8X/gBXFQsfAAbFTo4A==
+Date: Wed, 22 Oct 2014 05:55:46 +0000
+Message-ID: <3204FE6663E1F14CAF4CA6928E60C85215BC072F@USSTLZ-PMSG012.emrsn.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.75.1]
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.112.6.234 with HTTP; Tue, 21 Oct 2014 22:43:00 -0700 (PDT)
-In-Reply-To: <CAP3RZojGKU=iq9dMJsa1RUq0neGpDg1Y0t4yG9kTiB8mJzBXKA@mail.gmail.com>
-References: <CAP3RZojGKU=iq9dMJsa1RUq0neGpDg1Y0t4yG9kTiB8mJzBXKA@mail.gmail.com>
-From: Christopher Larson <clarson@kergoth.com>
-Date: Tue, 21 Oct 2014 22:43:00 -0700
-X-Google-Sender-Auth: z0sbiffd0FWh8KkdZBMGU48fV6I
-Message-ID: <CABcZANnkayPv+ZXLxb7O_Bux7jmdK7PUiGyA3yAo=SH+GvW96g@mail.gmail.com>
-To: jags gediya <jags.gediya@gmail.com>
-Cc: "meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-freescale] /etc directory path in yocto
+Subject: =?UTF-8?B?c2FtYmEgdGRiIGNvbXBpbGUgZXJyb3LvvIE=?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,80 +45,342 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Oct 2014 05:43:27 -0000
-Content-Type: multipart/alternative; boundary=001a11c2870ae8e0d90505fc6c0d
+X-List-Received-Date: Wed, 22 Oct 2014 05:55:56 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_3204FE6663E1F14CAF4CA6928E60C85215BC072FUSSTLZPMSG012em_"
 
---001a11c2870ae8e0d90505fc6c0d
-Content-Type: text/plain; charset=UTF-8
+--_000_3204FE6663E1F14CAF4CA6928E60C85215BC072FUSSTLZPMSG012em_
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 
-On Tue, Oct 21, 2014 at 10:28 PM, jags gediya <jags.gediya@gmail.com> wrote:
+SGkgYWxsLA0KICAgICAgICAgICAgICAgIEkgY3JlYXQgdGhlIHJlY2lwZXMgb2YgdGhlIHNhbWJh
+IHRkYiwgY29tcGlsZSB0aGUgeDg2IHBhY2thZ2UgaXMgb2sgLGJ1dCBpdCBhcHBlciBhbiBlcnJv
+ciB3aGVuIEkgoa5tIGNvbXBpbGluZyAgdGhlIGFybSBwYWNrYWdlICwgbGlrZSB0aGUgZm9sbG93
+aW5nIDoNCg0KQnVpbGQgQ29uZmlndXJhdGlvbjoNCkJCX1ZFUlNJT04gICAgICAgID0gIjEuMjIu
+MCINCkJVSUxEX1NZUyAgICAgICAgID0gImk2ODYtbGludXgiDQpOQVRJVkVMU0JTVFJJTkcgICA9
+ICJVYnVudHUtMTQuMDQiDQpUQVJHRVRfU1lTICAgICAgICA9ICJhcm0tcG9reS1saW51eC1nbnVl
+YWJpIg0KTUFDSElORSAgICAgICAgICAgPSAicWVtdWFybSINCkRJU1RSTyAgICAgICAgICAgID0g
+InBva3kiDQpESVNUUk9fVkVSU0lPTiAgICA9ICIxLjYuMSINClRVTkVfRkVBVFVSRVMgICAgID0g
+ImFybXY1IHRodW1iIGRzcCINClRBUkdFVF9GUFUgICAgICAgID0gInNvZnQiDQptZXRhDQptZXRh
+LXlvY3RvDQptZXRhLXlvY3RvLWJzcA0KbWV0YS1HNCAgICAgICAgICAgPSAiZGFpc3k6NTI1ZWM3
+MWUyYzhkZGU3MjQ5OWY0ZTRjYzY3NjZmNmRiOWM4M2U5MCINCg0KTk9URTogUHJlcGFyaW5nIHJ1
+bnF1ZXVlDQpOT1RFOiBFeGVjdXRpbmcgU2V0U2NlbmUgVGFza3MNCk5PVEU6IEV4ZWN1dGluZyBS
+dW5RdWV1ZSBUYXNrcw0KRVJST1I6IEZ1bmN0aW9uIGZhaWxlZDogZG9fY29uZmlndXJlIChsb2cg
+ZmlsZSBpcyBsb2NhdGVkIGF0IC9ob21lL2V0Y3JzL3Bva3kvYnVpbGQvdG1wL3dvcmsvYXJtdjV0
+ZS1wb2t5LWxpbnV4LWdudWVhYmkvZzR0ZGIvMS4zLjEtcjAvdGVtcC9sb2cuZG9fY29uZmlndXJl
+LjIwMTQ1KQ0KRVJST1I6IExvZ2ZpbGUgb2YgZmFpbHVyZSBzdG9yZWQgaW46IC9ob21lL2V0Y3Jz
+L3Bva3kvYnVpbGQvdG1wL3dvcmsvYXJtdjV0ZS1wb2t5LWxpbnV4LWdudWVhYmkvZzR0ZGIvMS4z
+LjEtcjAvdGVtcC9sb2cuZG9fY29uZmlndXJlLjIwMTQ1DQpMb2cgZGF0YSBmb2xsb3dzOg0KfCBE
+RUJVRzogRXhlY3V0aW5nIHB5dGhvbiBmdW5jdGlvbiBzeXNyb290X2NsZWFuc3N0YXRlDQp8IERF
+QlVHOiBQeXRob24gZnVuY3Rpb24gc3lzcm9vdF9jbGVhbnNzdGF0ZSBmaW5pc2hlZA0KfCBERUJV
+RzogRXhlY3V0aW5nIHNoZWxsIGZ1bmN0aW9uIGRvX2NvbmZpZ3VyZQ0KfCBDaGVja2luZyBmb3Ig
+cHJvZ3JhbSBnY2Mgb3IgY2MgICAgICAgICAgIDogWydhcm0tcG9reS1saW51eC1nbnVlYWJpLWdj
+YycsICctbWFyY2g9YXJtdjV0ZScsICctbWFybScsICctbXRodW1iLWludGVyd29yaycsICctLXN5
+c3Jvb3Q9L2hvbWUvZXRjcnMvcG9reS9idWlsZC90bXAvc3lzcm9vdHMvcWVtdWFybSddDQp8IENo
+ZWNraW5nIGZvciBwcm9ncmFtIGFyICAgICAgICAgICAgICAgICAgOiBhcm0tcG9reS1saW51eC1n
+bnVlYWJpLWFyDQp8IENoZWNraW5nIGZvciBwcm9ncmFtIHJhbmxpYiAgICAgICAgICAgICAgOiBh
+cm0tcG9reS1saW51eC1nbnVlYWJpLXJhbmxpYg0KfCBDaGVja2luZyBmb3IgZ2NjICAgICAgICAg
+ICAgICAgICAgICAgICAgIDogb2sNCnwgQ2hlY2tpbmcgZm9yIHByb2dyYW0gZ2l0ICAgICAgICAg
+ICAgICAgICA6IC9vcHQvcG9reS8xLjYuMS9zeXNyb290cy9pNjg2LXBva3lzZGstbGludXgvdXNy
+L2Jpbi9naXQNCnwgQ2hlY2sgZm9yIC1NRCAgICAgICAgICAgICAgICAgICAgICAgICAgICA6IHll
+cw0KfCBDaGVja2luZyBmb3IgcHJvZ3JhbSBnZGIgICAgICAgICAgICAgICAgIDogL3Vzci9iaW4v
+Z2RiDQp8IENoZWNraW5nIGJ1aWxkIHN5c3RlbSAgICAgICAgICAgICAgICAgICAgOiBMaW51eCBT
+aXRlU3VwZXJ2aXNvciAzLjEzLjAtMzAtZ2VuZXJpYyAjNTQtVWJ1bnR1IFNNUCBNb24gSnVuIDkg
+MjI6NDc6NTkgVVRDIDIwMTQgaTY4NiBpNjg2IGk2ODYgR05VL0xpbnV4DQp8IENoZWNraW5nIGZv
+ciBoZWFkZXIgc3lzL3V0c25hbWUuaCAgICAgICAgOiB5ZXMNCnwgQ2hlY2tpbmcgdW5hbWUgc3lz
+bmFtZSB0eXBlICAgICAgICAgICAgICA6IFRyYWNlYmFjayAobW9zdCByZWNlbnQgY2FsbCBsYXN0
+KToNCnwgICBGaWxlICIuL2J1aWxkdG9vbHMvYmluL3dhZiIsIGxpbmUgNzYsIGluIDxtb2R1bGU+
+DQp8ICAgICBTY3JpcHRpbmcucHJlcGFyZSh0LCBjd2QsIFZFUlNJT04sIHdhZmRpcikNCnwgICBG
+aWxlICIvaG9tZS9ldGNycy9wb2t5L2J1aWxkL3RtcC93b3JrL2FybXY1dGUtcG9reS1saW51eC1n
+bnVlYWJpL2c0dGRiLzEuMy4xLXIwL3RkYi0xLjMuMS9idWlsZHRvb2xzL3dhZmFkbWluL1Njcmlw
+dGluZy5weSIsIGxpbmUgMTQ1LCBpbiBwcmVwYXJlDQoNCklmIHlvdSBrbm93IHRoZSBzb2x1dGlv
+biwgcGxlYXNlIGhlbHAgbWUhDQoNClRoYW5rIHlvdSZCZXN0IHJlZ2FyZHMNCk5laWwgV3UNCg0K
 
-> I am compiling the custom recipie and i am getting the error in
-> do_install function.
->
-> Below is the do_install function
->
-> do_install() {
->         oe_runmake install DESTDIR=${D} SBINDIR=${sbindir}
-> MANDIR=${mandir} \
->                                       INCLUDEDIR=${includedir}
-> }
->
-> Error:
->  saving cache in little endian encoding
-> ldconfig: Can't create temporary cache file /etc/ld.so.cache~: Permission
-> denied
->
-> Looking like, it is trying to create that file in host system's /etc
-> directory. How can I avoid it and do_install function can use /etc
-> directory of rootfs?
->
-
-Read the makefiles of the project you're building. Specifically, modify
-them to stop running ldconfig.
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
-
---001a11c2870ae8e0d90505fc6c0d
-Content-Type: text/html; charset=UTF-8
+--_000_3204FE6663E1F14CAF4CA6928E60C85215BC072FUSSTLZPMSG012em_
+Content-Type: text/html; charset="gb2312"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Tue, Oct 21, 2014 at 10:28 PM, jags gediya <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:jags.gediya@gmail.com" target=3D"_blank">jags.gediya@gmail.com</=
-a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
- 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":9q" clas=
-s=3D"a3s" style=3D"overflow:hidden">I am compiling the custom recipie and i=
- am getting the error in<br>
-do_install function.<br>
-<br>
-Below is the do_install function<br>
-<br>
-do_install() {<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 oe_runmake install DESTDIR=3D${D} SBINDIR=3D${s=
-bindir} MANDIR=3D${mandir} \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 INCLUDEDIR=3D${=
-includedir}<br>
-}<br>
-<br>
-Error:<br>
-=C2=A0saving cache in little endian encoding<br>
-ldconfig: Can&#39;t create temporary cache file /etc/ld.so.cache~: Permissi=
-on denied<br>
-<br>
-Looking like, it is trying to create that file in host system&#39;s /etc<br=
->
-directory. How can I avoid it and do_install function can use /etc<br>
-directory of rootfs?</div></blockquote></div><br></div><div class=3D"gmail_=
-extra">Read the makefiles of the project you&#39;re building. Specifically,=
- modify them to stop running ldconfig.<br>-- <br>Christopher Larson<br>clar=
-son at kergoth dot com<br>Founder - BitBake, OpenEmbedded, OpenZaurus<br>Ma=
-intainer - Tslib<br>Senior Software Engineer, Mentor Graphics
-</div></div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dgb2312">
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:24864807;
+	mso-list-template-ids:-162079504;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1
+	{mso-list-id:1249921462;
+	mso-list-template-ids:437657730;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level3
+	{mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level4
+	{mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level5
+	{mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level6
+	{mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level7
+	{mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level8
+	{mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l1:level9
+	{mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Hi all,<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I crea=
+t the recipes of the samba tdb, compile the x86 package is ok ,but it apper=
+ an error when I =A1=AEm compiling &nbsp;the arm package , like the followi=
+ng :<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Build Configuration:<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">BB_VERSION&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;1.22.0&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">BUILD_SYS&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;i686-linux&quot;<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NATIVELSBSTRING&nbsp;&=
+nbsp; =3D &quot;Ubuntu-14.04&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">TARGET_SYS&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;arm-poky-linux-gnueabi&quot;<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">MACHINE&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;qemuarm&quot;<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">DISTRO&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;poky&quot;<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">DISTRO_VERSION&nbsp;&n=
+bsp;&nbsp; =3D &quot;1.6.1&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">TUNE_FEATURES&nbsp;&nb=
+sp;&nbsp;&nbsp; =3D &quot;armv5 thumb dsp&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">TARGET_FPU&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;soft&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">meta&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">meta-yocto&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">meta-yocto-bsp&nbsp;&n=
+bsp;&nbsp; <o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">meta-G4&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;daisy:525ec71e2c8dd=
+e72499f4e4cc6766f6db9c83e90&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: Preparing runque=
+ue<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: Executing SetSce=
+ne Tasks<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: Executing RunQue=
+ue Tasks<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">ERROR: Function failed=
+: do_configure (log file is located at /home/etcrs/poky/build/tmp/work/armv=
+5te-poky-linux-gnueabi/g4tdb/1.3.1-r0/temp/log.do_configure.20145)<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">ERROR: Logfile of fail=
+ure stored in: /home/etcrs/poky/build/tmp/work/armv5te-poky-linux-gnueabi/g=
+4tdb/1.3.1-r0/temp/log.do_configure.20145<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Log data follows:<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| DEBUG: Executing pyt=
+hon function sysroot_cleansstate<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| DEBUG: Python functi=
+on sysroot_cleansstate finished<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| DEBUG: Executing she=
+ll function do_configure<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| Checking for program=
+ gcc or cc&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: ['=
+arm-poky-linux-gnueabi-gcc', '-march=3Darmv5te', '-marm', '-mthumb-interwor=
+k', '--sysroot=3D/home/etcrs/poky/build/tmp/sysroots/qemuarm']<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| Checking for program=
+ ar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : arm-poky-linux-gnueabi-ar<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| Checking for program=
+ ranlib&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&=
+nbsp;&nbsp;: arm-poky-linux-gnueabi-ranlib<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| Checking for gcc&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : ok<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| Checking for program=
+ git&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; : /opt/poky/1.6.1/sysroots/i686-pokysdk-linux/usr=
+/bin/git<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| Check for -MD&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; : yes<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| Checking for program=
+ gdb&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; : /usr/bin/gdb<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| Checking build syste=
+m&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : Linux SiteSupervisor 3.13.0-30-g=
+eneric #54-Ubuntu SMP Mon Jun 9 22:47:59 UTC 2014 i686 i686 i686 GNU/Linux<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| Checking for header =
+sys/utsname.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : yes<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><b><span style=3D"color:red">| Checking uname sysnam=
+e type&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; : Traceback (most recent call last):<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"color:red">|&nbsp;&nbsp; File &quo=
+t;./buildtools/bin/waf&quot;, line 76, in &lt;module&gt;<o:p></o:p></span><=
+/b></p>
+<p class=3D"MsoNormal"><b><span style=3D"color:red">|&nbsp;&nbsp;&nbsp;&nbs=
+p; Scripting.prepare(t, cwd, VERSION, wafdir)<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"color:red">|&nbsp;&nbsp; File &quo=
+t;/home/etcrs/poky/build/tmp/work/armv5te-poky-linux-gnueabi/g4tdb/1.3.1-r0=
+/tdb-1.3.1/buildtools/wafadmin/Scripting.py&quot;, line 145, in prepare<o:p=
+></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"color:black"><o:p>&nbsp;</o:p></sp=
+an></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"color:black">If you know the solut=
+ion, please help me!<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal">Thank you&amp;Best regards<o:p></o:p></p>
+<p class=3D"MsoNormal">Neil Wu<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
---001a11c2870ae8e0d90505fc6c0d--
+--_000_3204FE6663E1F14CAF4CA6928E60C85215BC072FUSSTLZPMSG012em_--
