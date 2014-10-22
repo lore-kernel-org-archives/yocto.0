@@ -1,6 +1,6 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 970FBE007D6; Wed, 22 Oct 2014 12:59:57 -0700 (PDT)
+	id BEE5FE007EB; Wed, 22 Oct 2014 13:26:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,31 +8,34 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A269E00790
-	for <yocto@yoctoproject.org>; Wed, 22 Oct 2014 12:59:46 -0700 (PDT)
-Received: from durham.keylevel.com ([88.97.63.243]:20493
-	helo=macbook-pro.durham.keylevel.com)
-	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.82)
-	(envelope-from <opensource@keylevel.com>)
-	id 1Xh24I-002RIi-F7; Wed, 22 Oct 2014 20:59:41 +0100
-Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <54457446.5090809@gmail.com>
-Date: Wed, 22 Oct 2014 20:59:37 +0100
-Message-Id: <6C4C72C1-9016-4C6B-80D5-16572BE7A9ED@keylevel.com>
-References: <54457446.5090809@gmail.com>
+X-Greylist: delayed 1120 seconds by postgrey-1.32 at yocto-www;
+	Wed, 22 Oct 2014 13:26:21 PDT
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4C78E00799
+	for <yocto@yoctoproject.org>; Wed, 22 Oct 2014 13:26:21 -0700 (PDT)
+Received: from [99.240.204.5] (port=54089 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Xh2CD-0002e4-7s; Wed, 22 Oct 2014 16:07:49 -0400
+Date: Wed, 22 Oct 2014 16:07:37 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
 To: nick <xerofoify@gmail.com>
-X-Mailer: Apple Mail (2.1878.6)
-X-OutGoing-Spam-Status: No, score=-3.5
+In-Reply-To: <54457446.5090809@gmail.com>
+Message-ID: <alpine.LFD.2.11.1410221602280.4422@localhost>
+References: <54457446.5090809@gmail.com>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
 	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - a180.4uh.net
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
 X-AntiAbuse: Original Domain - yoctoproject.org
 X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
-	chris.tapp@keylevel.com
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Cc: yocto@yoctoproject.org
 Subject: Re: Time To Build Yocto
 X-BeenThere: yocto@yoctoproject.org
@@ -46,40 +49,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Oct 2014 19:59:57 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 22 Oct 2014 20:26:24 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
+On Mon, 20 Oct 2014, nick wrote:
 
-On 20 Oct 2014, at 21:44, nick <xerofoify@gmail.com> wrote:
+> I am wondering from your experience how long is the largest build
+> you have ever seen and what was it building. I am considering a high
+> powered build system for Yocto and want to known about build times
+> in order to help me with purchasing decisions.
 
-> I am wondering from your experience how long is the largest build you =
-have ever seen and what was it building. I am=20
-> considering a high powered build system for Yocto and want to known =
-about build times in order to help me with
-> purchasing decisions.
+dear yocto mailing list:
 
-There was a recent thread discussing this - have a look at =
-https://lists.yoctoproject.org/pipermail/yocto/2014-October/021808.html
+  at the risk of sounding heartless, please don't feed the troll. nick
+krause is notorious from the kernel and kernel newbie mailing lists as
+someone who, desperate to get his name into the git log as a kernel
+developer, has pissed off pretty much *everyone* by submitting
+badly-formed, ill-considered patches against numerous subsystems, to
+the point where he was finally *banned* from LKML. that didn't slow
+him down, as he simply joined the kernel newbies ML and did exactly
+the same thing there.
 
-You need to start by working out what you'll be spending most of your =
-time doing - full image builds, incremental images, single recipes, etc.
+  this is nick:
 
-My build system has an i7-3820 overclocked to 4.6 GHz with 16 GB RAM and =
-SSDs. It takes about an hour to build an X11 image from scratch (no =
-shared state, source already downloaded). I could reduce the build time =
-to about 25 minutes by upgrading to a new CPU (12 core, 24 threads) for =
-$2700 - once you have your use-case you can do the math to work out what =
-the payback time will be ;-)
+http://www.themukt.com/2014/08/04/someone-trolling-linux-kernel-mailing-lists-really-hard/
 
---
+it remains to be seen if nick has changed his ways at all -- i am
+simply posting this as a public service announcement so you know what
+you might be getting into.
 
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
+rday
 
-----
-You can tell you're getting older when your car insurance gets real =
-cheap!
+-- 
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
