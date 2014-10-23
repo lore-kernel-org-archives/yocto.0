@@ -1,6 +1,6 @@
-Return-Path: <xerofoify@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AAA46E007D6; Wed, 22 Oct 2014 15:25:12 -0700 (PDT)
+	id D5BBAE007D6; Wed, 22 Oct 2014 18:02:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (xerofoify[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.175 listed in list.dnswl.org]
+	mail provider *      (akuster808[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,43 +16,41 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f175.google.com (mail-ig0-f175.google.com
-	[209.85.213.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA296E00790
-	for <yocto@yoctoproject.org>; Wed, 22 Oct 2014 15:25:10 -0700 (PDT)
-Received: by mail-ig0-f175.google.com with SMTP id uq10so1834635igb.8
-	for <yocto@yoctoproject.org>; Wed, 22 Oct 2014 15:25:10 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.170 listed in list.dnswl.org]
+Received: from mail-pd0-f170.google.com (mail-pd0-f170.google.com
+	[209.85.192.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 863FFE00790
+	for <yocto@yoctoproject.org>; Wed, 22 Oct 2014 18:02:23 -0700 (PDT)
+Received: by mail-pd0-f170.google.com with SMTP id z10so28796pdj.15
+	for <yocto@yoctoproject.org>; Wed, 22 Oct 2014 18:02:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=BWYlZbziW5ANTBA8chLFrVoHA+ELvpKZy2ngBpqrw8k=;
-	b=uCYNzpxG6Ygm5o9oP0t9KOzIF5yupfsOKA3fIMR687P41lk968vbAyb++6Yoqo6Ocj
-	6XQTMFQOTgyudsEZz1rMqaRrCUlHnAD/yduYaMUQgFTOvaXcEVVuj6/m243okcP43UXa
-	6vyUsnRHXLPUG2LZPVGigkTLHax66dnsUa/tTUIUldUwyTnu5VYUyVuttiR68LXKKugE
-	zJ382KkIksC3GoYUZvSgzl61fDbFeUM5YIZYTbotbDnWVQAOkj5oyK2NrPv2lB+pbiSF
-	eSQrYnxMYjo5qJpsuJcNzMA4vsUoaOMEwZbRn9qHNBFR5N+/RjdRKe0fjR06OYiwkYnP
-	cmew==
-X-Received: by 10.42.94.131 with SMTP id b3mr4050990icn.92.1414016710389;
-	Wed, 22 Oct 2014 15:25:10 -0700 (PDT)
-Received: from [192.168.0.50]
-	(CPE0026f3330aca-CM0026f3330ac6.cpe.net.cable.rogers.com.
-	[99.231.92.7])
-	by mx.google.com with ESMTPSA id gb12sm1386427igd.0.2014.10.22.15.25.09
-	for <multiple recipients>
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=faFwpuFuYi8rr0wev/dyvA86gqn1jog1H+STN2fg664=;
+	b=hUjEZ3VLPT7egvewNAz2n+pdnxomJZd8bVLWxujYoNYA5sUVPpKEPQwAhYbUpmBvFs
+	yMsQ68e5XO3sSU81bNH+LIqx1viMRl+GcRGr3C7pKhPHDz3uniwGK1llzXUnbNcL+ao4
+	YrRf4qwZ99B8ANi7I1+jWJCdOiEqV9fCcXTX+BHGEr9GDE/f9LnzHMZ9jMvjjVY6zCSg
+	NFyVLMHmzWiTTtm1dDjE+yAZyC7R/PTBOOpP56YpksMQ5/INsjRFcyarP1N5srlevkL+
+	/s6Zvg3qmby7HfdaEjWQcCEHbrWBUNbCpmUPKKYWrcKsmSZb5MuzqDG360mLJMT1FkBf
+	WUdg==
+X-Received: by 10.66.141.142 with SMTP id ro14mr1376511pab.111.1414026142846; 
+	Wed, 22 Oct 2014 18:02:22 -0700 (PDT)
+Received: from ?IPv6:2601:c:9380:601:783b:a6f2:99d2:a41?
+	([2601:c:9380:601:783b:a6f2:99d2:a41])
+	by mx.google.com with ESMTPSA id fz1sm181453pbb.80.2014.10.22.18.02.21
+	for <yocto@yoctoproject.org>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 22 Oct 2014 15:25:09 -0700 (PDT)
-Message-ID: <54482EC4.6090901@gmail.com>
-Date: Wed, 22 Oct 2014 18:25:08 -0400
-From: nick <xerofoify@gmail.com>
+	Wed, 22 Oct 2014 18:02:21 -0700 (PDT)
+Message-ID: <5448539B.70200@gmail.com>
+Date: Wed, 22 Oct 2014 18:02:19 -0700
+From: akuster808 <akuster808@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
 MIME-Version: 1.0
-To: Chris Tapp <opensource@keylevel.com>
-References: <54457446.5090809@gmail.com>
-	<6C4C72C1-9016-4C6B-80D5-16572BE7A9ED@keylevel.com>
-In-Reply-To: <6C4C72C1-9016-4C6B-80D5-16572BE7A9ED@keylevel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Time To Build Yocto
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: meta layer branching guidelines
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,36 +62,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Oct 2014 22:25:12 -0000
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Thu, 23 Oct 2014 01:02:28 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Thanks Chris,
-I was wondering if a i7 was worth it seems it is and yes for the matter, I did have issues with the kernel
-community and trying to work then out.
-Nick
+Hello,
 
-On 14-10-22 03:59 PM, Chris Tapp wrote:
-> 
-> On 20 Oct 2014, at 21:44, nick <xerofoify@gmail.com> wrote:
-> 
->> I am wondering from your experience how long is the largest build you have ever seen and what was it building. I am 
->> considering a high powered build system for Yocto and want to known about build times in order to help me with
->> purchasing decisions.
-> 
-> There was a recent thread discussing this - have a look at https://lists.yoctoproject.org/pipermail/yocto/2014-October/021808.html
-> 
-> You need to start by working out what you'll be spending most of your time doing - full image builds, incremental images, single recipes, etc.
-> 
-> My build system has an i7-3820 overclocked to 4.6 GHz with 16 GB RAM and SSDs. It takes about an hour to build an X11 image from scratch (no shared state, source already downloaded). I could reduce the build time to about 25 minutes by upgrading to a new CPU (12 core, 24 threads) for $2700 - once you have your use-case you can do the math to work out what the payback time will be ;-)
-> 
-> --
-> 
-> Chris Tapp
-> opensource@keylevel.com
-> www.keylevel.com
-> 
-> ----
-> You can tell you're getting older when your car insurance gets real cheap!
-> 
+I am looking for a guideline when to branch a layer to an official 
+release. I know Richard is concerned with layer quality but I can not 
+quantify what that might be and how to apply it to layers outside 
+nightly builds and QA. If anyone has any links to any information on the 
+subject please let me know. I am striking out.
+
+regards,
+Armin
 
