@@ -1,37 +1,34 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <prashanthg@vtitan.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B62DCE00830; Fri, 24 Oct 2014 03:32:11 -0700 (PDT)
+	id D2798E00830; Fri, 24 Oct 2014 03:39:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [72.5.230.103 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA979E0079E
-	for <yocto@yoctoproject.org>; Fri, 24 Oct 2014 03:32:03 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	s9OAVNhh016249; Fri, 24 Oct 2014 11:31:23 +0100
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id Wi-R969OLdNh; Fri, 24 Oct 2014 11:31:23 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	s9OAVIOW016245
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NOT);
-	Fri, 24 Oct 2014 11:31:19 +0100
-Message-ID: <1414146713.30118.6.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Jens Rehsack <rehsack@gmail.com>
-Date: Fri, 24 Oct 2014 11:31:53 +0100
-In-Reply-To: <DEACBB97-4D85-4426-ACA9-1FF991E74AF1@gmail.com>
-References: <DEACBB97-4D85-4426-ACA9-1FF991E74AF1@gmail.com>
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: OpenSSL-1.0.1j update making builds failing ...
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 907 seconds by postgrey-1.32 at yocto-www;
+	Fri, 24 Oct 2014 03:39:42 PDT
+Received: from sender1.zohomail.com (sender1.zohomail.com [72.5.230.103])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A04BDE0079E
+	for <yocto@yoctoproject.org>; Fri, 24 Oct 2014 03:39:42 -0700 (PDT)
+Received: from mail.zoho.com by mx.zohomail.com
+	with SMTP id 1414146245700387.09252308979205;
+	Fri, 24 Oct 2014 03:24:05 -0700 (PDT)
+Date: Fri, 24 Oct 2014 15:54:05 +0530
+From: prashanthg <prashanthg@vtitan.com>
+To: <yocto@yoctoproject.org>
+Message-ID: <14941a5ee26.12063369a129838.8774317176061551786@vtitan.com>
+MIME-Version: 1.0
+X-Priority: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
+Subject: Yocto Daisy - Beaglebone Black - core-image-minimal - Error: do_compile
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,24 +40,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Oct 2014 10:32:11 -0000
+X-List-Received-Date: Fri, 24 Oct 2014 10:39:46 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_172614_1058147135.1414146245652"
+
+------=_Part_172614_1058147135.1414146245652
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Fri, 2014-10-24 at 11:14 +0200, Jens Rehsack wrote:
-> yesterday applied OpenSSL update on daisy
-> (https://github.com/rdm-dev/poky/commit/27a877becf76a1410aa96c02a25bb885bfbddf04) fails to bitbake, because newly added *ptest* files does not exists. Further patches had been removed from recipe without removing the files themselves ...
-> 
-> The first (for us critical) issue I've hacked away by
-> https://github.com/rdm-dev/poky/commit/1ab58562a6adbbc1f48a78900912c7775f6172a3 - I do not recommend to apply that patch, I favor fixing the root cause (unfortunately a task for Ross?).
-> 
-> Best regards and thanks for the continuous improvements!
 
-Later on yesterday
-http://git.yoctoproject.org/cgit.cgi/poky/commit/?h=daisy&id=e93f9a838260100ece7cac36f01e42e321e6414b was merged which should have fixed this.
+Hi,
 
-Cheers,
+I have been facing issues with 'bitbake core-image-minimal' with Qt5 library added for BBB.
 
-Richard
+Error Log: http://pastebin.com/ADdyJnz8
+
+Build Configuration:
+BB_VERSION        = "1.22.0"
+BUILD_SYS         = "i686-linux"
+NATIVELSBSTRING   = "Ubuntu-13.10"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "beaglebone"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.6.1"
+TUNE_FEATURES     = "armv7a vfp neon callconvention-hard cortexa8"
+TARGET_FPU        = "vfp-neon"
+meta              
+meta-yocto        
+meta-yocto-bsp    = "daisy:bda51ee7821de9120f6f536fcabe592f2a0c8a37"
+meta-oe           = "daisy:518cd119a8724dbd485a5d5c5047de59e8fbd652"
+meta-ti           = "daisy:80924d3bba59d6920217216c73af43fdd40d0152"
+meta-qt5          = "daisy:c29c317e0f22202bfaa85329a580564bbc179089"
+
+It would be great if you can help me solve this issue.
+
+Thanks and Regards,
+Prashanth
 
 
+------=_Part_172614_1058147135.1414146245652
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>=
+<meta content=3D"text/html;charset=3DUTF-8" http-equiv=3D"Content-Type"></h=
+ead><body ><div style=3D'font-size:10pt;font-family:Verdana,Arial,Helvetica=
+,sans-serif;'><br><font face=3D"verdana">Hi,<br><br>I have been facing issu=
+es with 'bitbake core-image-minimal' with Qt5 library added for BBB.<br><br=
+>Error Log: http://pastebin.com/ADdyJnz8<br><br>Build Configuration:<br>BB_=
+VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "1.22.0"<br>BUILD_SYS=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "i686-linux"<br>NATIVE=
+LSBSTRING&nbsp;&nbsp; =3D "Ubuntu-13.10"<br>TARGET_SYS&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; =3D "arm-poky-linux-gnueabi"<br>MACHINE&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "beaglebone"<br>DISTRO&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "poky"=
+<br>DISTRO_VERSION&nbsp;&nbsp;&nbsp; =3D "1.6.1"<br>TUNE_FEATURES&nbsp;&nbs=
+p;&nbsp;&nbsp; =3D "armv7a vfp neon callconvention-hard cortexa8"<br>TARGET=
+_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "vfp-neon"<br>meta&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b=
+r>meta-yocto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>meta-yocto-bsp&n=
+bsp;&nbsp;&nbsp; =3D "daisy:bda51ee7821de9120f6f536fcabe592f2a0c8a37"<br>me=
+ta-oe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "dais=
+y:518cd119a8724dbd485a5d5c5047de59e8fbd652"<br>meta-ti&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "daisy:80924d3bba59d6920217216c=
+73af43fdd40d0152"<br>meta-qt5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp; =3D "daisy:c29c317e0f22202bfaa85329a580564bbc179089"<br><br>It wou=
+ld be great if you can help me solve this issue.<br><br>Thanks and Regards,=
+<br>Prashanth<br></font></div></body></html>
+
+------=_Part_172614_1058147135.1414146245652--
