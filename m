@@ -1,38 +1,51 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 06F09E00830; Fri, 24 Oct 2014 04:14:08 -0700 (PDT)
+	id EC0E1E00830; Fri, 24 Oct 2014 04:15:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55F13E0079E
-	for <yocto@yoctoproject.org>; Fri, 24 Oct 2014 04:14:04 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 24 Oct 2014 04:14:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,779,1406617200"; d="scan'208";a="624578843"
-Received: from nmcnulty-mobl1.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.121.119])
-	by orsmga002.jf.intel.com with ESMTP; 24 Oct 2014 04:14:03 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Diego Sueiro <diego.sueiro@gmail.com>, prashanthg <prashanthg@vtitan.com>
-Date: Fri, 24 Oct 2014 12:14:02 +0100
-Message-ID: <1862666.GZ37KUIjUa@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.2 (Linux/3.16.6-200.fc20.x86_64; KDE/4.14.2; x86_64; ; )
-In-Reply-To: <CAMCfZKHH88UfJgTsAze-Osu70CppqZ-iQPxU+kYpxEJ7MozHbw@mail.gmail.com>
-References: <14941a5ee26.12063369a129838.8774317176061551786@vtitan.com>
-	<CAMCfZKHH88UfJgTsAze-Osu70CppqZ-iQPxU+kYpxEJ7MozHbw@mail.gmail.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-yh0-f54.google.com (mail-yh0-f54.google.com
+	[209.85.213.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1119E0079E
+	for <yocto@yoctoproject.org>; Fri, 24 Oct 2014 04:15:17 -0700 (PDT)
+Received: by mail-yh0-f54.google.com with SMTP id 29so403600yhl.41
+	for <yocto@yoctoproject.org>; Fri, 24 Oct 2014 04:15:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=s5bw1FgKDsJ7+ZQOY5EHl60sWfq32KPQAItg446fcZ8=;
+	b=OPxlPe//7/ZWXAAdlM1Fez5Kn6F1tz0jMT2oCkiOUmhuBHRNc/20VLlwYcZa3NTZma
+	TcLbq+iLpAtNkpLI6yLIOhc/aXZV0f5m34h4vKtpY3oo83j7RvRcLVHCw+4ESz48kSRf
+	ixbcfbq60Uzp2bYS3spsVXRoSLeSjXqix0YfTerRrBLRASaDwEwHvydtb5PHZoH81OuX
+	a87uex2OJeLtkfryHnSp98Mf7GjWG3/iHN8D2W9vBEIpMSSk36RvDQWsFIBUQAko1LO3
+	ypkWKxiu3b0LLgmmHlgsw1x/hCjjaVQp8mT6lRDWgYPzOMjJofQK6Cc+gKtipHWUE45A
+	PRNA==
+X-Gm-Message-State: ALoCoQn3B8I7pk5Uif/W29UAodwNit2gmKlmDaGHfF8NtGLWWARJwBgzkzhL/KtFJce6PQ8fajx1
+X-Received: by 10.170.37.10 with SMTP id 10mr5582271ykf.99.1414149314754; Fri,
+	24 Oct 2014 04:15:14 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Yocto Daisy - Beaglebone Black - core-image-minimal - Error: do_compile
+Received: by 10.140.93.65 with HTTP; Fri, 24 Oct 2014 04:14:54 -0700 (PDT)
+In-Reply-To: <CAJTo0LYXgprW_13tW-tUrObA4B0sLcTSSBFTiKiFWUpxrwzNoA@mail.gmail.com>
+References: <5449BD8D.3070907@gmail.com> <1414139646.30118.4.camel@ted>
+	<544A24BB.5020604@gmail.com>
+	<802B8E31E3519842A6CEE1B497E861B164F20D@IRSMSX108.ger.corp.intel.com>
+	<CAJTo0LYXgprW_13tW-tUrObA4B0sLcTSSBFTiKiFWUpxrwzNoA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 24 Oct 2014 12:14:54 +0100
+Message-ID: <CAJTo0La=rM=_=sjWf4hGq=e-eCPtVCiwGRtikatOaY795aCOXA@mail.gmail.com>
+To: "Mihail, StanciuX" <stanciux.mihail@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	nick <xerofoify@gmail.com>
+Subject: Re: Failing Build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,62 +57,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Oct 2014 11:14:08 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 24 Oct 2014 11:15:27 -0000
+Content-Type: multipart/alternative; boundary=001a11378d5a90c9630506294b0f
 
-On Friday 24 October 2014 09:06:00 Diego Sueiro wrote:
-> On Fri, Oct 24, 2014 at 8:24 AM, prashanthg <prashanthg@vtitan.com> wrote:
-> > I have been facing issues with 'bitbake core-image-minimal' with Qt5
-> > library added for BBB.
-> > 
-> > Error Log: http://pastebin.com/ADdyJnz8
-> > 
-> > Build Configuration:
-> > BB_VERSION        = "1.22.0"
-> > BUILD_SYS         = "i686-linux"
-> > NATIVELSBSTRING   = "Ubuntu-13.10"
-> > TARGET_SYS        = "arm-poky-linux-gnueabi"
-> > MACHINE           = "beaglebone"
-> > DISTRO            = "poky"
-> > DISTRO_VERSION    = "1.6.1"
-> > TUNE_FEATURES     = "armv7a vfp neon callconvention-hard cortexa8"
-> > TARGET_FPU        = "vfp-neon"
-> > meta
-> > meta-yocto
-> > meta-yocto-bsp    = "daisy:bda51ee7821de9120f6f536fcabe592f2a0c8a37"
-> > meta-oe           = "daisy:518cd119a8724dbd485a5d5c5047de59e8fbd652"
-> > meta-ti           = "daisy:80924d3bba59d6920217216c73af43fdd40d0152"
-> > meta-qt5          = "daisy:c29c317e0f22202bfaa85329a580564bbc179089"
-> > 
-> > It would be great if you can help me solve this issue.
-> > 
-> > Thanks and Regards,
-> > Prashanth
-> 
-> I have Qt5.3.2 (meta-qt5 on master branch) with accelerated graphics built
-> and running on BBB.
-> I did not have seen this error.
-> 
-> Note that you need to remove meta-yocto-bsp from your bblayers.conf to get
-> the BSP support from meta-ti.
+--001a11378d5a90c9630506294b0f
+Content-Type: text/plain; charset=UTF-8
 
-That is true, but I don't think that's related to the issue here. I believe I 
-have seen this issue before, a long time ago, and it relates to the file-native 
-recipe rebuilding after a recipe upgrade - it picks up the "magic" data file 
-from the previous older build and fails because the version doesn't match. 
-Cleaning the recipe should work around the issue:
+On 24 October 2014 12:12, Burton, Ross <ross.burton@intel.com> wrote:
 
- bitbake -c clean file-native
+> On 24 October 2014 12:00, Mihail, StanciuX <stanciux.mihail@intel.com>
+> wrote:
+>
+>> Looks to me that the core-image-rt-sdk recipe includes both the rt-kernel
+>> and the normal kernel, and maybe it shouldn't?
+>
+>
+> FWIW, I appear to be able to replicate this with just core-image-rt.
+>
 
-Then you can re-try the original build. We should try to properly reproduce 
-and fix the underlying issue however.
+This is a case of RTFM.
 
-Cheers,
-Paul
+"""
+In order to build the image with the linux-yocto-rt kernel, be sure to
+include the following line in your
+local.conf, bblayers.conf, or your $MACHINE.conf.
 
--- 
+PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
+"""
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Ross
 
+--001a11378d5a90c9630506294b0f
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On 2=
+4 October 2014 12:12, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:=
+ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&gt;</spa=
+n> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-=
+style:solid;padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra"><=
+span class=3D""><div class=3D"gmail_quote">On 24 October 2014 12:00, Mihail=
+, StanciuX <span dir=3D"ltr">&lt;<a href=3D"mailto:stanciux.mihail@intel.co=
+m" target=3D"_blank">stanciux.mihail@intel.com</a>&gt;</span> wrote:<br><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;padd=
+ing-left:1ex">Looks to me that the core-image-rt-sdk recipe includes both t=
+he rt-kernel and the normal kernel, and maybe it shouldn&#39;t?</blockquote=
+></div><br></span>FWIW, I appear to be able to replicate this with just cor=
+e-image-rt.</div></div></blockquote><div><br></div><div>This is a case of R=
+TFM.</div><div><br></div><div>&quot;&quot;&quot;</div><div>In order to buil=
+d the image with the linux-yocto-rt kernel, be sure to include the followin=
+g line in your</div><div>local.conf, bblayers.conf, or your $MACHINE.conf.<=
+/div><div><br></div><div>PREFERRED_PROVIDER_virtual/kernel =3D &quot;linux-=
+yocto-rt&quot;=C2=A0</div><div>&quot;&quot;&quot;</div><div><br></div><div>=
+Ross</div></div></div></div>
+
+--001a11378d5a90c9630506294b0f--
