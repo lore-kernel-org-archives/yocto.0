@@ -1,6 +1,6 @@
 Return-Path: <rudnik.mathias@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5BBBEE00860; Sat, 25 Oct 2014 11:53:15 -0700 (PDT)
+	id 817F7E00860; Sat, 25 Oct 2014 12:36:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,39 +18,40 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.212.179 listed in list.dnswl.org]
-Received: from mail-wi0-f179.google.com (mail-wi0-f179.google.com
-	[209.85.212.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D24EE0080D
-	for <yocto@yoctoproject.org>; Sat, 25 Oct 2014 11:53:05 -0700 (PDT)
-Received: by mail-wi0-f179.google.com with SMTP id h11so1496679wiw.6
-	for <yocto@yoctoproject.org>; Sat, 25 Oct 2014 11:53:04 -0700 (PDT)
+	*      [74.125.82.52 listed in list.dnswl.org]
+Received: from mail-wg0-f52.google.com (mail-wg0-f52.google.com [74.125.82.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CFB4E0080D
+	for <yocto@yoctoproject.org>; Sat, 25 Oct 2014 12:36:43 -0700 (PDT)
+Received: by mail-wg0-f52.google.com with SMTP id y10so596730wgg.23
+	for <yocto@yoctoproject.org>; Sat, 25 Oct 2014 12:36:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=googlemail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=m64LTucBpZrJ0QAALoA3S6yMXbcbqJoU5YUcuVRazvU=;
-	b=pXUYsHK65+LgPYH25JDsJopkttJl7cTXjauI22AI5qf48qvlWzUJ+jmPclWT+UyCpn
-	uXPA5J5PNZSxN4UsbPlW7lEbTBve+ishcx7pU3nqmpRKunk8qnc7buUCqqpc9E6N9RRk
-	HfIBGb2fSAmbuMu94lqXCNJCQh+k2w8BpX47h7ezqPd2bQudlgHs/ybWcu/85IpQ6Rmx
-	BGujF1BP80ouyE3WYmjD3SI3m319rq3XMXjJl0Ryi4eAuB6N6Yc6sHdRidZ44Vap9KfN
-	GWWl7JfDQU0+UFj+2s1D248nzpiL1yH25VaChbUStba9w0dhU5HQAFU4qX2pHJl4kcnK
-	KI5A==
-X-Received: by 10.194.6.233 with SMTP id e9mr13179554wja.20.1414263184006;
-	Sat, 25 Oct 2014 11:53:04 -0700 (PDT)
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=l7DUVGdXOib8TS+ui5Mhz2ZlpZyp//ghuaODqSHrcbA=;
+	b=XxfV5Ur2IYSgtmK+YKxV2WsQvZzFeYVnLXkIZnY/PIRuch0YgLI4kh9JY7tkCXJZIS
+	Yb+r3LnRR9FKnBJtK/VORXZ98kJcVVaLeL3HQs8MfjC6TOgW4YMHBXgUvPorhfsYUWH6
+	zpmKmFYtL8j3GEKb+vZRH4NH4kzf28DZGg2b/u7KuaOA8Twp5LzKVxR2Y+v0QUpPTFgH
+	3Wrm/Qri4EihpUWPznCjDnG/5SSgT3e+0XPV6tgw1es1LYJ4Q2nkOLVkZ/xWT5XDMUOT
+	Go9ZZGDL6HEfv0248JJMSSapl6KzoeiAUPO6nqj+fqojuoLS8NZIuJURdZqOiSHPlclM
+	sn0g==
+X-Received: by 10.180.36.48 with SMTP id n16mr12127314wij.6.1414265802034;
+	Sat, 25 Oct 2014 12:36:42 -0700 (PDT)
 Received: from [192.168.178.24] (p579584D8.dip0.t-ipconnect.de.
 	[87.149.132.216])
-	by mx.google.com with ESMTPSA id cz3sm9557472wjb.23.2014.10.25.11.53.02
+	by mx.google.com with ESMTPSA id fx2sm9646469wjb.37.2014.10.25.12.36.40
 	for <yocto@yoctoproject.org>
 	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sat, 25 Oct 2014 11:53:03 -0700 (PDT)
-Message-ID: <544BF18D.1030106@googlemail.com>
-Date: Sat, 25 Oct 2014 20:53:01 +0200
+	Sat, 25 Oct 2014 12:36:41 -0700 (PDT)
+Message-ID: <544BFBC7.1060000@googlemail.com>
+Date: Sat, 25 Oct 2014 21:36:39 +0200
 From: Mathias Rudnik <rudnik.mathias@googlemail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
+References: <544BF18D.1030106@googlemail.com>
+In-Reply-To: <544BF18D.1030106@googlemail.com>
 Subject: "yocto-kernel config list yocto-bsp" throws error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -63,34 +64,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 25 Oct 2014 18:53:15 -0000
+X-List-Received-Date: Sat, 25 Oct 2014 19:36:54 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi,
-
-when issuing the command "$ yocto-kernel config list yocto-bsp" command 
-i get following error message:
-
-Traceback (most recent call last):
-   File "/home/c0dix/Downloads/Font/poky/scripts/yocto-kernel", line 
-394, in <module>
-     ret = main()
-   File "/home/c0dix/Downloads/Font/poky/scripts/yocto-kernel", line 
-389, in main
-     invoke_subcommand(args, parser, yocto_kernel_help_usage, subcommands)
-   File "/home/c0dix/Downloads/Font/poky/scripts/lib/bsp/help.py", line 
-73, in invoke_subcommand
-     subcommands.get(args[0], subcommand_error)[0](args[1:], usage)
-   File "/home/c0dix/Downloads/Font/poky/scripts/yocto-kernel", line 65, 
-in yocto_kernel_config_list_subcommand
-     yocto_kernel_config_list(scripts_path, args[0])
-   File "/home/c0dix/Downloads/Font/poky/scripts/lib/bsp/kernel.py", 
-line 191, in yocto_kernel_config_list
-     config_items = read_config_items(scripts_path, machine)
-AttributeError: 'NoneType' object has no attribute 'readlines'
-
-Any ideas how to solve this problem?
-
-
+I just found out that whenever this error is thrown it means that there 
+is no kernel config file in the specified layer (here it was 
+meta-yocto-bsp).
+Therefore the configuration options can't be listed.
+I think it's very irritating that in such cases a traceback is printed.
 
