@@ -1,50 +1,53 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <coldnew.tw@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 23375E00848; Fri, 24 Oct 2014 08:24:44 -0700 (PDT)
+	id 6577FE0087D; Fri, 24 Oct 2014 19:22:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [157.56.110.116 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (coldnew.tw[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1on0116.outbound.protection.outlook.com [157.56.110.116])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48400E00796
-	for <yocto@yoctoproject.org>; Fri, 24 Oct 2014 08:24:33 -0700 (PDT)
-Received: from BLUPR05MB037.namprd05.prod.outlook.com (10.255.210.145) by
-	BLUPR05MB038.namprd05.prod.outlook.com (10.255.210.147) with Microsoft
-	SMTP Server (TLS) id 15.1.6.9; Fri, 24 Oct 2014 15:24:29 +0000
-Received: from BLUPR05MB037.namprd05.prod.outlook.com ([169.254.7.93]) by
-	BLUPR05MB037.namprd05.prod.outlook.com ([169.254.7.93]) with mapi id
-	15.01.0006.000; Fri, 24 Oct 2014 15:24:29 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Questions on transition to PR service
-Thread-Index: Ac/vnA3TCpZl3w7fQXSOhKlf/GZ6dA==
-Date: Fri, 24 Oct 2014 15:24:28 +0000
-Message-ID: <76210ac2936a4783a4a6eccff3825363@BLUPR05MB037.namprd05.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-vipre-scanned: 00C67F9E0085A000C680EB
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [98.100.91.242]
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:;SRVR:BLUPR05MB038;
-x-exchange-antispam-report-test: UriScan:;
-x-forefront-prvs: 0374433C81
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(164054003)(199003)(189002)(97736003)(77096002)(76576001)(95666004)(76482002)(2501002)(120916001)(50986999)(54356999)(99396003)(40100003)(21056001)(108616004)(85306004)(85852003)(122556002)(101416001)(87936001)(2656002)(92566001)(33646002)(107046002)(2351001)(107886001)(66066001)(110136001)(31966008)(64706001)(106356001)(4396001)(80022003)(86362001)(46102003)(105586002)(229853001)(20776003)(24736002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BLUPR05MB038;
-	H:BLUPR05MB037.namprd05.prod.outlook.com; FPR:; MLV:sfv;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-Subject: Questions on transition to PR service
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f49.google.com (mail-pa0-f49.google.com
+	[209.85.220.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07426E0084E
+	for <yocto@yoctoproject.org>; Fri, 24 Oct 2014 19:22:01 -0700 (PDT)
+Received: by mail-pa0-f49.google.com with SMTP id hz1so2128780pad.22
+	for <yocto@yoctoproject.org>; Fri, 24 Oct 2014 19:22:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=QMBht4XEf9dobmlXPzugdbQQerV2J5zsYlIpKiHnYvc=;
+	b=ebR5x02/+Aj4gdsQjBLbmn1X4pjOEHH+J37exYwDEIQb2gHh8+M79LdrAJtewFuwnl
+	WLEib9GQeKvOOjchpFmgWdo00zCc5fO+kc/EJGrbDQi9TmLe1K+MGN3hfkJIgWg+QcMS
+	pVKdSB/Cs6ic2f/quY5EJWkMooj5CaYb5AtbMr7pax5lXJWinyGN4iVvIY968oP2f9XR
+	v1ijEpbUyFCtOnHBtdbks008SvUiwUeDre8aafN23lbToxLVVc90/TlGXX8Axh3mVIXj
+	CNMCStDmQk5ouMqLgC/2bSvDfsWdS97/pxy/PjyDA7rwZxiZxchEOl/1Y4Vo+DAJsXZL
+	PFNw==
+X-Received: by 10.68.166.130 with SMTP id zg2mr8237637pbb.87.1414203721219;
+	Fri, 24 Oct 2014 19:22:01 -0700 (PDT)
+Received: from localhost.localdomain
+	(61-62-6-208-adsl-tpe.dynamic.so-net.net.tw. [61.62.6.208])
+	by mx.google.com with ESMTPSA id
+	nk11sm4958548pdb.40.2014.10.24.19.21.57 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 24 Oct 2014 19:21:59 -0700 (PDT)
+From: Yen-Chin Lee <coldnew.tw@gmail.com>
+To: yocto@yoctoproject.org
+Date: Sat, 25 Oct 2014 10:21:47 +0800
+Message-Id: <1414203707-21296-1-git-send-email-coldnew.tw@gmail.com>
+X-Mailer: git-send-email 1.9.3 (Apple Git-50)
+Subject: [meta-raspberrypi][PATCH] qtbase: Add basic Qt5 building support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,42 +59,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Oct 2014 15:24:44 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Sat, 25 Oct 2014 02:22:06 -0000
 
-QWxsLA0KDQpJIGFtIGN1cnJlbnRseSBvbiB0aGUgZHlsYW4gYnJhbmNoIGFuZCBJIGFtIHdvcmtp
-bmcgdG93YXJkIHRyYW5zaXRpb25pbmcgdG8gdGhlIGRhaXN5IGJyYW5jaC4gIE92ZXJhbGwgaXQg
-aXMgYnVpbGRpbmcgb2theSBidXQgbm93IG9uIHRoZSBkYWlzeSBicmFuY2ggSSBhbSBnZXR0aW5n
-IHRoZSB3YXJuaW5ncyBhYm91dCB1c2luZyBQUklOQyBiZWluZyBkZXByZWNhdGVkIGFuZCBJIHNo
-b3VsZCBiZSB1c2luZyB0aGUgUFIgc2VydmljZS4gIEJlZm9yZSBJIG1ha2UgdGhlIHRyYW5zaXRp
-b24sIEkgaGF2ZSBzb21lIHF1ZXN0aW9ucyBhYm91dCBpdHMgb3BlcmF0aW9uIHRoYXQgSSBjb3Vs
-ZG4ndCBmaW5kIGFuc3dlcnMgdG8gaW4gdGhlIGRvY3VtZW50YXRpb24uDQoNCjEuIERvZXMgdGhl
-IFBSIHNlcnZpY2UgZG8gYW4gaW5pdGlhbCBQUiBhcHBlbmQgd2hlbiBmaXJzdCBlbmFibGVkPyAg
-Rm9yIGV4YW1wbGUsIGxldCdzIHNheSBJIGp1c3QgYnVpbHQgY29yZS1pbWFnZS1taW5pbWFsLiAg
-SWYgSSB0aGVuIGVuYWJsZSB0aGUgUFIgc2VydmljZSBhbmQgcmUtaXNzdWUgImJpdGJha2UgY29y
-ZS1pbWFnZS1taW5pbWFsIiwgZG9lcyB0aGUgUFIgc2VydmljZSBhcHBlbmQgYSAiLjEiIHRvIGV2
-ZXJ5IHBhY2thZ2UgdGhhdCBpcyBidWlsdCBieSBjb3JlLWltYWdlLW1pbmltYWwgb3Igd2lsbCBp
-dCBvbmx5IGFwcGVuZCB0aGUgIi4xIiB0byBhIHBhY2thZ2UgdGhlIGZpcnN0IHRpbWUgdGhlIG1l
-dGFkYXRhIGNoYW5nZXMgZm9yIHRoZSBwYWNrYWdlIGFuZCBpdCBpcyByZWJ1aWx0PyAgSSB3YW50
-IHRvIG1ha2Ugc3VyZSB0aGF0IA0KMi4gSWYgYSByZWNpcGUgZ2V0cyB1cGdyYWRlZCwgZG9lcyB0
-aGUgUFIgYXBwZW5kZWQgdmFsdWUgZ2V0IHJlc2V0PyAgRm9yIGV4YW1wbGUsIGlmIEkgdXBncmFk
-ZSByZWNpcGUgZm9vXzEuMC4wLmJiIHRvIGZvb18yLjAuMC5iYiwgZG9lcyB0aGUgUFIgc2Vydmlj
-ZSByZXNldCBpdHMgYXBwZW5kZWQgdmFsdWUgdG8gIi4xIj8NCjMuIEkgc2VlIHRoYXQgdGhlIGJp
-dGJha2UtcHJzZXJ2LXRvb2wgc2NyaXB0IGhhcyBhIG1ldGhvZCBmb3IgaW1wb3J0aW5nIGFuZCBl
-eHBvcnRpbmcgdGhlIFBScy4gIE15IGdvYWwgaXMgdG8gYmUgYWJsZSB0byByZS1nZW5lcmF0ZSBh
-IHNwZWNpZmljIHJlbGVhc2Ugd2l0aCB0aGUgc2FtZSBQUnMgaWYgbmVlZGVkLCBidXQgSSB3YW50
-IHRvIHZlcmlmeSBob3cgdGhpcyB3b3VsZCB3b3JrIHdpdGggdGhlIFBSIHNlcnZpY2UuICBJZiBJ
-IHdlcmUgdG8gZG8gdGhlIGZvbGxvd2luZzoNCglhLiBCdWlsZCBhIHZlcnNpb24gb2YgY29yZS1p
-bWFnZS1taW5pbWFsIG9uIG1hY2hpbmUgQSB3aXRoIHRoZSBsYXRlc3QgdXBzdHJlYW0gY2hhbmdl
-cyBhbmQgYSBmZXcgY2hhbmdlcyB0byBvdXIgb3duIGFwcGxpY2F0aW9ucy4NCgliLiBDb21taXQg
-dGhlIGxhdGVzdCBsYXllcnMgdG8gb3VyIGxvY2FsIEdpdCByZXBvc2l0b3J5Lg0KCWMuIEV4cG9y
-dCB0aGUgUFJzIGFuZCBjb21taXQgdGhlIG91dHB1dCBmaWxlIHRvIG91ciBsb2NhbCBHaXQgcmVw
-b3NpdG9yeS4NCglkLiBUYWcgb3VyIGxvY2FsIEdpdCByZXBvc2l0b3JpZXMgYXMgInYxLjAiLg0K
-CWUuIE9uIG1hY2hpbmUgQiwgY2hlY2tvdXQgInYxLjAiLCBpbXBvcnQgdGhlIFBScyBhbmQgcmVi
-dWlsZCBjb3JlLWltYWdlIG1pbmltYWwuDQpXb3VsZCB0aGUgcmVzdWx0aW5nIFBScyBmb3IgZWFj
-aCBwYWNrYWdlIGJlIHRoZSBzYW1lIG9uIG1hY2hpbmUgQSBhbmQgbWFjaGluZSBCPyAgSWYgbm90
-LCBpcyB0aGVyZSBhIGRpZmZlcmVudCBvcmRlciBvZiBvcGVyYXRpb25zL21ldGhvZCB0byBnZXQg
-dGhlIHNhbWUgUFJzPw0KDQpUaGFua3MsDQpCcnlhbg0K
+To build raspberrypi with Qt5, we need to add extra QT_CONFIG_FLAGS to
+indicate device config.
+
+Signed-off-by: Yen-Chin Lee <coldnew.tw@gmail.com>
+---
+ recipes-qt/qt5/qtbase_%.bbappend | 7 +++++++
+ 1 file changed, 7 insertions(+)
+ create mode 100644 recipes-qt/qt5/qtbase_%.bbappend
+
+diff --git a/recipes-qt/qt5/qtbase_%.bbappend b/recipes-qt/qt5/qtbase_%.bbappend
+new file mode 100644
+index 0000000..c994cf5
+--- /dev/null
++++ b/recipes-qt/qt5/qtbase_%.bbappend
+@@ -0,0 +1,7 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++QT_CONFIG_FLAGS += " \
++    -device linux-rasp-pi-g++ \
++    -device-option CROSS_COMPILE=${TARGET_PREFIX} \
++    -I${STAGING_DIR_TARGET}${includedir}/interface/vcos/pthreads \
++"
+-- 
+1.9.3 (Apple Git-50)
+
 
