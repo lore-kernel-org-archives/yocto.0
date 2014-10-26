@@ -1,47 +1,48 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <dlaroche7@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 01F73E008F3; Sun, 26 Oct 2014 13:23:28 -0700 (PDT)
+	id 46895E008F5; Sun, 26 Oct 2014 14:42:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (dlaroche7[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.216.52 listed in list.dnswl.org]
-Received: from mail-qa0-f52.google.com (mail-qa0-f52.google.com
-	[209.85.216.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB3D8E0084A
-	for <yocto@yoctoproject.org>; Sun, 26 Oct 2014 13:23:22 -0700 (PDT)
-Received: by mail-qa0-f52.google.com with SMTP id u7so648080qaz.39
-	for <yocto@yoctoproject.org>; Sun, 26 Oct 2014 13:23:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=j2Ol+H0QuU5WlJKY2Vm3BhZCtcJWnO6LLKhoKzajRnY=;
-	b=FThrk8TdMFJjlXKnNqPjTG04cKhDsdExGoWWQTuatxAyHBbRWBjs+WY2DiDL46+G6e
-	MV46cpv3YwlrzR/kbXWQ9wvLGG1/fXcIee+d/JEEQrROWk0PIYL9YE6ClvkkUqqbxexM
-	rHAKA32eJW4+9B5vqi3rrcnUCWmGt+2CmJzG1O8S2oRhsX05WwIVgddHYJ0koYXNRoN+
-	AY41eOg+7VuNpd/dPiC+k2Uvm1GhWw4NNyNpqHC6Rbjd3E1T/Rn7gSfLwGwMDg7Cs64+
-	Na0r8wAjGd64Exg+/yltTb0TicINUkMzoSuoRl+7Y1pZmaZ4I3Quk56+uIVQ7N49GQZa
-	xNXA==
-X-Gm-Message-State: ALoCoQn/BqHLuQNk6cXFxW0eGYrajicNK2fXombntKxeznS+olCj0Ls8uXbiv+OipZ9a6xX6NxPA
-X-Received: by 10.140.94.246 with SMTP id g109mr3389878qge.77.1414355001501;
-	Sun, 26 Oct 2014 13:23:21 -0700 (PDT)
+	*      [209.85.218.54 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f54.google.com (mail-oi0-f54.google.com
+	[209.85.218.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA3CBE0084A
+	for <yocto@yoctoproject.org>; Sun, 26 Oct 2014 14:41:53 -0700 (PDT)
+Received: by mail-oi0-f54.google.com with SMTP id v63so2537925oia.27
+	for <yocto@yoctoproject.org>; Sun, 26 Oct 2014 14:41:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Tk6iYkYJxV2PNHui5u/3BobTPc3RfGiSz4iemgSgJ6U=;
+	b=XN96pCjWw99B1cS+TeJ3lln8NJQ+XgUH5vS0OK6pHMlbkafN0X/x8bM0kHaCYDPYcQ
+	uEXdUD57bnyAasvv2O8mB/wFxaE7jzoN7DmTwA17aX39CTD/oDLHTdpqsXH9n8uBj7jT
+	HPeMkcXaubKPjSd0Hm00uSYd8/1e59gwuVtYdsEhDJ8WELPE0cPfNwkij4GlPRvdzeoQ
+	CxCob+Haw0rIVetA9zoOidfGjUljSMgFCztQ4hpdvTITQmN1WUyIi2lIWJuMh/OQK0C4
+	As2czE2FtHfKsGpDtxt+5z+EJnpHnoEiHCzYo6O+NQF5Ru77/OwXcJglu/U4K2rgEuGC
+	/3SA==
 MIME-Version: 1.0
-Received: by 10.140.92.179 with HTTP; Sun, 26 Oct 2014 13:23:01 -0700 (PDT)
-In-Reply-To: <30C2D590D16A5C46ADFE65219103779841147C0F@AZ-US1EXMB03.global.avaya.com>
-References: <30C2D590D16A5C46ADFE65219103779841147C0F@AZ-US1EXMB03.global.avaya.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Sun, 26 Oct 2014 20:23:01 +0000
-Message-ID: <CAJTo0LYQnpxaeUtoxmDzrOPfHA8ZOFGBv_++dDwNeERiDdmzQg@mail.gmail.com>
-To: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: "File exists" exception when IMAGE_LINK_NAME is empty ("")
+X-Received: by 10.60.48.4 with SMTP id h4mr4026948oen.42.1414359712387; Sun,
+	26 Oct 2014 14:41:52 -0700 (PDT)
+Received: by 10.202.49.2 with HTTP; Sun, 26 Oct 2014 14:41:52 -0700 (PDT)
+Date: Sun, 26 Oct 2014 17:41:52 -0400
+Message-ID: <CAELZnSmhcswJLt8VWyWRLCKPtaEONz_KhqyC5TnwaSeDR1xXLA@mail.gmail.com>
+From: Denis Laroche <dlaroche7@gmail.com>
+To: yocto@yoctoproject.org
+Subject: bash tab completion not working
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,35 +54,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 26 Oct 2014 20:23:28 -0000
-Content-Type: multipart/alternative; boundary=001a113a81d67380c60506592fb6
-
---001a113a81d67380c60506592fb6
+X-List-Received-Date: Sun, 26 Oct 2014 21:42:00 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On 25 October 2014 22:12, Vuille, Martin (Martin) <vmartin@avaya.com> wrote:
+Hi all,
 
-> Personally, I feel the correct behavior would be to not create the
-> symlinks when IMAGE_LINK_NAME is the empty string.
->
+I built image core-image-full-cmdline on a beaglebone black and the
+tab completion feature of bash is not working. Pressing the tab key
+just puts the cursor to the next tab stop.
 
-Seems reasonable, can you send a patch?
+Looking at the bash binary on my workstation with the ldd command, I
+see it is dependent on libreadline, but I don't see that dependency on
+the binary of the beaglebone. I created a layer with a
+bash_4.3.bbappend file containing this:
 
-Ross
+DEPENDS ?= ""
+DEPENDS += "ncurses readline"
 
---001a113a81d67380c60506592fb6
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+EXTRA_OECONF ?= ""
+EXTRA_OECONF += "--enable-readline --with-curses"
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 25 October 2014 22:12, Vuille, Martin (Martin) <span dir=3D"ltr">&lt;<a =
-href=3D"mailto:vmartin@avaya.com" target=3D"_blank">vmartin@avaya.com</a>&g=
-t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":4af" class=
-=3D"a3s" style=3D"overflow:hidden">Personally, I feel the correct behavior =
-would be to not create the<br>
-symlinks when IMAGE_LINK_NAME is the empty string.</div></blockquote></div>=
-<br>Seems reasonable, can you send a patch?</div><div class=3D"gmail_extra"=
-><br></div><div class=3D"gmail_extra">Ross</div></div>
+I also added the layer to the build/conf/bblayers.conf file. Alas,
+after rebuilding bash it still doesn't have a dependency on readline
+and tab completion still doesn't work.
 
---001a113a81d67380c60506592fb6--
+Would someone have a suggestion?
+
+--
+D. Laroche
+
