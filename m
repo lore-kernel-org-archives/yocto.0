@@ -1,51 +1,45 @@
-Return-Path: <paul.betafive@gmail.com>
+Return-Path: <michael.g.wood@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D2E61E0090A; Mon, 27 Oct 2014 02:55:45 -0700 (PDT)
+	id 01237E00873; Mon, 27 Oct 2014 09:46:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.52 listed in list.dnswl.org]
+	*      [74.125.82.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qa0-f52.google.com (mail-qa0-f52.google.com
-	[209.85.216.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 671D4E008FB
-	for <yocto@yoctoproject.org>; Mon, 27 Oct 2014 02:55:44 -0700 (PDT)
-Received: by mail-qa0-f52.google.com with SMTP id u7so1155498qaz.25
-	for <yocto@yoctoproject.org>; Mon, 27 Oct 2014 02:55:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=w1QblD23hn03QTvM4K67iVwEH7ZRxJshHoXX12vL7wE=;
-	b=bR4vU5VCKoPJ4cLLwC2v29jqDTorcJR0ElGDKm/LIzjVi284OM4H5JBr2Igf7dERsS
-	GPMghr5QX6Uy2/S7fIvj3HKEHOEEPBGHE9jy093vK6DJA8y2aKP/vlR31ycGWqBI1p8g
-	2RaGvoEuT2+I1HWwktfbIzEc/JKdko32lvDXHBIpNzo9sPBdLy8WicKMKG5Jz3C/DJB0
-	j7xd+aM+QCbLbo0Fz6nXgC5mqjW4U7gbBPfzsOpOAdVcpRnP0wYO068p/mZy5ngVlOYy
-	yyviyywhXqIwvPPsZxRZbxhrNAN/9o3X5d7YfFAvMzCB2M/hGeJewtPB4ivf2nyTxOdf
-	NU+w==
-X-Received: by 10.140.34.102 with SMTP id k93mr28890743qgk.21.1414403744155;
-	Mon, 27 Oct 2014 02:55:44 -0700 (PDT)
-MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.140.142.78 with HTTP; Mon, 27 Oct 2014 02:55:03 -0700 (PDT)
-In-Reply-To: <CANyK_8eHtCb+a_a1fx16R3Nw0WVBU5mh6TFxSOwx06mRWdjuGA@mail.gmail.com>
-References: <544E11CF.6010701@windriver.com>
-	<CANyK_8eHtCb+a_a1fx16R3Nw0WVBU5mh6TFxSOwx06mRWdjuGA@mail.gmail.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Mon, 27 Oct 2014 09:55:03 +0000
-X-Google-Sender-Auth: t0_rusC9SDUN6f1M0yWnC9ZJ6Fs
-Message-ID: <CANyK_8e8u5V3m33GQ8yFjcBFrWMHu05Yup_qJjg8tu-qDW584g@mail.gmail.com>
-To: Liu Jian <jian.liu@windriver.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	opkg-devel <opkg-devel@googlegroups.com>
-Subject: Re: [OE-core] [PATCH] opkg-utils: update-alternatives fails for "[" and "[[" in busybox
+Received: from mail-wg0-f46.google.com (mail-wg0-f46.google.com [74.125.82.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FDD5E007A0
+	for <yocto@yoctoproject.org>; Mon, 27 Oct 2014 09:46:34 -0700 (PDT)
+Received: by mail-wg0-f46.google.com with SMTP id x13so1777640wgg.5
+	for <yocto@yoctoproject.org>; Mon, 27 Oct 2014 09:46:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=cxOx3FzedTyyY/VqP8CUDdW0txg7gb62eIRh5YnaFwg=;
+	b=ZShIRdFpgAcj33OqSv2k9JAS9/PLZqnOQA2LhN8AvftUGr94bZCEdFY1XJxtwVwfri
+	tggaS+PffvwdddG85HwznMbYRB8JA2VDn46fgm9NKFfBbKwC+q0qyBFrslbHiPb/roNL
+	FZAfOcENbjAuw7mdtf321bnRKquWbKwPyO8J3QvjfaVpHxiHX9lXUN/TILnsBd0uWDS7
+	Td480Yb4I9ePmlcxtTv8oFY7XMwaFhnfZngpE50WwLLy3AjxDTcSd2qnYdqObtzIGmAx
+	4MVnZdrdVKYGHRcSBzPfSn/ULRiUAR3MvqhT7WuBNDTRXdCr361r0k6EeJuAH355O13P
+	kbSQ==
+X-Gm-Message-State: ALoCoQnl6VanuXsl68Ua3K43RWL2hdGrrDlPJsFoDsItK2W50bHfEx8+1AYi1Cvxhk+RPy6X2wMF
+X-Received: by 10.194.9.1 with SMTP id v1mr3408674wja.124.1414428393884;
+	Mon, 27 Oct 2014 09:46:33 -0700 (PDT)
+Received: from draco.icx.intel.com ([83.217.123.106])
+	by mx.google.com with ESMTPSA id cu9sm16193690wjc.3.2014.10.27.09.46.33
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 27 Oct 2014 09:46:33 -0700 (PDT)
+From: Michael Wood <michael.g.wood@intel.com>
+To: yocto@yoctoproject.org
+Date: Mon, 27 Oct 2014 16:45:44 +0000
+Message-Id: <1414428344-13904-1-git-send-email-michael.g.wood@intel.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [error-report-web][PATCH] parser: Check for tag markup in the metadata fields
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,36 +51,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Oct 2014 09:55:45 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 27 Oct 2014 16:46:39 -0000
 
-On 27 October 2014 09:52, Paul Barker <paul@paulbarker.me.uk> wrote:
->
-> Sorry, you've sent a patch for oe-core to the wrong mailing lists here.
->
-> Also, this patch doesn't apply against oe-core anyway, it looks like
-> your email program has corrupted it by wrapping lines. Please use 'git
-> send-email' if you can.
->
-> To make this change, please submit a patch for opkg-utils itself
-> rather than for oe-core. In oe-core, we can then simply change SRCREV
-> rather than holding additional patches.
->
-> Thanks,
->
+Before we commit the error report metadata to the database do a
+rudimentary check on all fields that are passed to the graphs page to
+avoid any XSS happening.
 
-Actually, that's a bit short worded. Hope it doesn't sound harsh,
-getting patches in the right format to the right list can be a pain if
-you're new to the project.
+Signed-off-by: Michael Wood <michael.g.wood@intel.com>
+---
+ Post/parser.py | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-If you've got any questions just ask, either on the mailing list or on
-IRC. I or someone else should be able to help you out.
-
-Thanks,
-
+diff --git a/Post/parser.py b/Post/parser.py
+index fae9194..b180165 100644
+--- a/Post/parser.py
++++ b/Post/parser.py
+@@ -18,8 +18,21 @@ class Parser:
+     def __init__(self, data):
+         self.data = data
+ 
++    # returns true if the values contain '<' char
++    # Ignore the failures field (which is an array anyway)
++    def contains_tags (self, data):
++        for key,val in data.items():
++            if key == 'failures':
++                continue
++
++            if '<' in val:
++                return True
++        return False
++
+     def parse(self):
+         jsondata = json.loads(self.data)
++        if self.contains_tags(jsondata) == True:
++            return
+ 
+         MACHINE_NAME = str(jsondata['machine'])
+         NATIVELSBSTRING = str(jsondata['nativelsb'])
 -- 
-Paul Barker
+1.9.1
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
 
