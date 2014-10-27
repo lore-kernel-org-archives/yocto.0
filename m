@@ -1,48 +1,27 @@
-Return-Path: <scadlye@gmail.com>
+Return-Path: <packages@packages.i.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0897AE008F6; Sun, 26 Oct 2014 17:05:02 -0700 (PDT)
+	id 08542E00902; Sun, 26 Oct 2014 19:18:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (scadlye[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
+	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.194 listed in list.dnswl.org]
-Received: from mail-qc0-f194.google.com (mail-qc0-f194.google.com
-	[209.85.216.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92160E0084A
-	for <yocto@yoctoproject.org>; Sun, 26 Oct 2014 17:04:51 -0700 (PDT)
-Received: by mail-qc0-f194.google.com with SMTP id b13so378445qcw.1
-	for <yocto@yoctoproject.org>; Sun, 26 Oct 2014 17:04:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=zTRwLwyUBKs9NwtQeJ0uJXpwYFNkFzMoz6/9ZFY+qP8=;
-	b=I/xfYU9ry0Hdr03jeHqbHwS7p/3fWk5Th+agn/YPo0sQdLbxiBwsS4DGm3Awp7TeQA
-	CSkjyDac2le85WlcngpCL1m+ZNECO5UgK0Nyq4Zf5i+RjAvii5bwpVmbNyis+8HfgVKd
-	szx4jIm3UdKSXzZ2kOqtDkkKGGjBbX4A98e+qq282kRhyyPevvbLNxOwfPI8UOb+ApwE
-	2CzaTn/7pm/gGDF4kakao6x5MN7Yvwr8Xu8L4eMbzsIq8jWN9vhfGQ+oIsBFA2c9jm/a
-	ks7zT1A8cdA6Cro+sAW2z6r9HM/gsI1YARmglsZxXHJaWBk1pWrt0tZ4AGAnCzBAsGbW
-	3f5Q==
-MIME-Version: 1.0
-X-Received: by 10.224.80.193 with SMTP id u1mr27023891qak.86.1414368291457;
-	Sun, 26 Oct 2014 17:04:51 -0700 (PDT)
-Received: by 10.229.11.197 with HTTP; Sun, 26 Oct 2014 17:04:51 -0700 (PDT)
-Date: Mon, 27 Oct 2014 01:04:51 +0100
-Message-ID: <CAOHzp89c11bx+GSOUg+ggtPiRffyERPd9-U86uqPhxappgSQuQ@mail.gmail.com>
-From: =?UTF-8?Q?Sylvain_D=C3=A9castel?= <scadlye@gmail.com>
+Received: from packages.i.yoctoproject.org (packages.i.yoctoproject.org
+	[10.0.10.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9756BE008FC
+	for <yocto@yoctoproject.org>; Sun, 26 Oct 2014 19:18:43 -0700 (PDT)
+Received: by packages.i.yoctoproject.org (Postfix, from userid 802)
+	id 95C91A409E; Mon, 27 Oct 2014 02:18:43 +0000 (UTC)
+Date: Mon, 27 Oct 2014 02:18:43 +0000
+From: "package-report@yoctoproject.org" <packages@packages.i.yoctoproject.org>
 To: yocto@yoctoproject.org
-Subject: Package not found in base feeds with custom BSP but default settings
+Message-ID: <20141027021843.GA12130@packages.i.yoctoproject.org>
+MIME-Version: 1.0
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: [Package Report System]Manual check recipes name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,50 +33,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Oct 2014 00:05:02 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 27 Oct 2014 02:18:45 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Hi All,
+This mail was sent out by Package Report System.
+It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
+You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
 
-I have not so much experience with oe, and I am facing an error that I
-cannot understand yet. I tried to search on the web about his issue,
-but I did not find any useful result.
 
-Here is what I did with my oe :
-
-- Install yocto project and checkout daisy branch
-- Set up a build directory : myBeagle
-- Configure for beaglebone
-- bitbake core-image-minimal
-=> Everything is OK
-
-Now I wan to create my own BSP
-- Setup a BSP layer with the yocto-bsp create tool => meta-myBeagleBSP
-- Config is let by default for beaglebone
-- Update my local.conf to select myBeagleBSP target
-- bitbake core-image-minimal
-
-=> Everything seems to build fine
-=> But when running the do_rootfs, I get this error message :
-ERROR: packagegroup-core-boot not found in the base feeds (myBeagleBSP
-armv7a-vfp-neon armv7a-vfp armv7a armv6-vfp armv6 armv5e-vfp armv5e
-armv5-vfp armv5 armv4 arm noarch any all)
-
-This is followed by tons of package names in red.
-
-I found in the document that the base feeds is the content of the
-folders under tmp/deploy/rpm and in the tmp/deploy/rpm/myBeagleBSP
-folder I can find these packages :
-packagegroup-core-boot-1.0-r17.mybeaglebsp.rpm
-packagegroup-core-boot-dbg-1.0-r17.mybeaglebsp.rpm
-packagegroup-core-boot-dev-1.0-r17.mybeaglebsp.rpm
-
-So I think that I am missing something, but I don't know what . I let
-nearly every settings to default values. And I cannot figure out why
-the beaglebone machine can build fine but my own machine with same
-settings is failing...
-
-Thanks, best regards
-
-~Slyde~
+PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
+man                      1.6g                N/A                 41937 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+dtc                      1.4.0+gitAUTO...    N/A                 41937 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libdaemon                0.14                N/A                 41937 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libnss-mdns              0.10                N/A                 41937 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libffi                   3.1                 N/A                 41937 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+puzzles                  r10116              N/A                 41937 d                  Ross Burton <ross.burton@inte...        No data                       
+libxslt                  1.1.28              N/A                 41937 d                  Ross Burton <ross.burton@inte...        No data                       
+mesa                     10.1.3              N/A                 41937 d                  Ross Burton <ross.burton@inte...        No data                       
+midori                   0.5.5               N/A                 41937 d                  Ross Burton <ross.burton@inte...        No data                       
+libpng                   1.6.13              1.6.6               390 day                  Ross Burton <ross.burton@inte...        No data                       
+tzdata                   2014h               N/A                 41937 d                  Robert Yang <liezhi.yang@wind...        No data                       
+xinetd                   2.3.15              N/A                 41937 d                  Richard Purdie <richard.purdi...        No data                       
+latencytop               0.5                 N/A                 41937 d                  Richard Purdie <richard.purdi...        No data                       
+lsof                     4.87                N/A                 41937 d                  Richard Purdie <richard.purdi...        No data                       
+quicky                   0.4                 N/A                 41937 d                  Paul Eggleton <paul.eggleton@...        No data                       
+nativesdk-qt4-tools      4.8.6               N/A                 41937 d                  Paul Eggleton <paul.eggleton@...        No data                       
+qt4-x11-free             4.8.6               N/A                 41937 d                  Paul Eggleton <paul.eggleton@...        No data                       
+dosfstools               2.11                N/A                 41937 d                  Paul Eggleton <paul.eggleton@...        No data                       
+blktool                  4-6.1               N/A                 41937 d                  Paul Eggleton <paul.eggleton@...        No data                       
+qt4-native               4.8.6               N/A                 41937 d                  Paul Eggleton <paul.eggleton@...        No data                       
+python-smartpm           1.4.1               N/A                 41937 d                  Paul Eggleton <paul.eggleton@...        No data                       
+unfs3                    0.9.22.r490         N/A                 41937 d                  Paul Eggleton <paul.eggleton@...        No data                       
+cdrtools-native          3.01a20             N/A                 41937 d                  Paul Eggleton <paul.eggleton@...        No data                       
+waffle                   1.3.0               N/A                 41937 d                  No Maintainer info                      No data                       
+nss-myhostname           0.3                 N/A                 41937 d                  No Maintainer info                      No data                       
+docbook-xsl-styleshe...  1.78.1              N/A                 41937 d                  No Maintainer info                      No data                       
+pseudo                   1.6.2               N/A                 41937 d                  Mark Hatle <mark.hatle@windri...        No data                       
+bind                     9.9.5               N/A                 41937 d                  Kai Kang <kai.kang@windriver....        No data                       
+ghostscript              9.14                N/A                 41937 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+pax                      3.4                 N/A                 41937 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+tremor                   20120314            20120122            595 day                  Cristian Iorga <cristian.iorg...        Same revision on different SVN...
+libatomics-ops           7.2                 N/A                 41937 d                  Cristian Iorga <cristian.iorg...        No data                       
+sudo                     1.8.10p3            N/A                 41937 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+lz4                      r122                122                 41937 d                  Armin Kuster <akuster@mvista....        No data                       
+nettle                   2.7.1               N/A                 41937 d                  Armin Kuster <akuster808@gmai...        No data                       
+Manual Check Count: 35
+Manual Need Check Count: 35
+Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
