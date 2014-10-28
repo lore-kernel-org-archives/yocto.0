@@ -1,53 +1,36 @@
-Return-Path: <paul.betafive@gmail.com>
+Return-Path: <peter.bergin@tritech.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F3C72E00873; Tue, 28 Oct 2014 02:29:08 -0700 (PDT)
+	id 7D074E00877; Tue, 28 Oct 2014 05:18:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.181 listed in list.dnswl.org]
-Received: from mail-qc0-f181.google.com (mail-qc0-f181.google.com
-	[209.85.216.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 801F7E007A0
-	for <yocto@yoctoproject.org>; Tue, 28 Oct 2014 02:29:01 -0700 (PDT)
-Received: by mail-qc0-f181.google.com with SMTP id w7so147913qcr.26
-	for <yocto@yoctoproject.org>; Tue, 28 Oct 2014 02:29:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=zIQ7I26ZWwTv53oDn86Ki2KlUqXZHA9FAJCZfkSLwkE=;
-	b=oBGl3v95DPoDhq0dBe0JQC22iiTG80R8KmODtjO53l5pYzJWKA/OaWfloJonh8IkCl
-	CCLw4g+W+eN0uIigedElWucH7ZhmWX0lUdhJJJUnzdo9ypVmb8ZQ+y92LJi6Okde/cEt
-	atwljakZaTfEynzApaLXpBWsEeavbtS1yphXxSYIjpblm39L4jMI0+hz9JQnqYAAB6pv
-	4T6bST7N3c1Rjujhd+Fn2ggjO+tSyHaNNW+vFNyfb+BVFwO4IMQLcrLnU9mFgTFIvpLw
-	2EeLogSiAobTwbhRoGKEp8dr4jgB3UaDI4O8sSnuLR+tIa64YpSoY7VkrIt6MCH1cczn
-	gg0A==
-X-Received: by 10.140.32.227 with SMTP id h90mr2691674qgh.13.1414488540519;
-	Tue, 28 Oct 2014 02:29:00 -0700 (PDT)
+X-Greylist: delayed 356 seconds by postgrey-1.32 at yocto-www;
+	Tue, 28 Oct 2014 05:18:43 PDT
+Received: from tritech.se (tritech.se [46.59.120.190])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3935E00848
+	for <yocto@yoctoproject.org>; Tue, 28 Oct 2014 05:18:42 -0700 (PDT)
+Received: from post.tritech.se (post.tritech.se [10.75.60.100])
+	by tritech.se (8.14.3/8.14.3) with ESMTP id s9SCCexj004417
+	for <yocto@yoctoproject.org>; Tue, 28 Oct 2014 13:12:45 +0100
+Received: from POST.tritech.se ([10.75.60.100]) by post ([10.75.60.100]) with
+	mapi id 14.02.0387.000; Tue, 28 Oct 2014 13:12:39 +0100
+From: Peter Bergin <peter.bergin@tritech.se>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: icecc
+Thread-Index: Ac/yqHeDSM7Lm6YfQxiSWcaNwfXdXA==
+Date: Tue, 28 Oct 2014 12:12:39 +0000
+Message-ID: <43F0718C449F6A46B393DA2BEC8E01280C645342@post>
+Accept-Language: sv-SE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [194.236.6.200]
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.140.142.78 with HTTP; Tue, 28 Oct 2014 02:28:20 -0700 (PDT)
-In-Reply-To: <544EF91D.1030306@windriver.com>
-References: <544E11CF.6010701@windriver.com>
-	<CANyK_8eHtCb+a_a1fx16R3Nw0WVBU5mh6TFxSOwx06mRWdjuGA@mail.gmail.com>
-	<CANyK_8e8u5V3m33GQ8yFjcBFrWMHu05Yup_qJjg8tu-qDW584g@mail.gmail.com>
-	<544EF91D.1030306@windriver.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Tue, 28 Oct 2014 09:28:20 +0000
-X-Google-Sender-Auth: 07BkutZyR-KkbuNRDp0146YJ9oU
-Message-ID: <CANyK_8eRCTfCOEi80_kFhEEQcreEWmxy=9jVG_kw6XviZCLJFA@mail.gmail.com>
-To: Liu Jian <jian.liu@windriver.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	opkg-devel <opkg-devel@googlegroups.com>
-Subject: Re: [opkg-devel] Re: [OE-core] [PATCH] opkg-utils: update-alternatives fails for "[" and "[[" in busybox
+Subject: icecc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,48 +42,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Oct 2014 09:29:09 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 28 Oct 2014 12:18:48 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 28 October 2014 02:02, Liu Jian <jian.liu@windriver.com> wrote:
-> Hi Paul,
->
-> Thanks to your correction.
->
-> Could you please tell me the mailing lists? I use this mailing lists
-> following the
-> guidance of
-> http://git.yoctoproject.org/cgit/cgit.cgi/opkg-utils/tree/CONTRIBUTING.
->
-> You told me that URL in your last mail. So should I follow the instruction
-> in it?
->
-> Thanks very much!
->
-> Jian
->
+Hi,
 
-The mailing lists you sent the patch to are correct for opkg-utils.
-The patch you sent modified the opkg-utils recipe within OpenEmbedded
-rather than modifying opkg-utils itself. As opkg and opkg-utils are
-part of the Yocto Project, we prefer to fix problems in the upstream
-repositories rather than maintaining patches within OpenEmbedded.
+I am trying to get icecc working together with Poky (daisy branch). I follo=
+w the Yocto Project Reference Manual chapter "7.45. icecc.bbclass" and I ca=
+n not get it working.
 
-To submit a patch for opkg-utils, you need to clone from
-git://git.yoctoproject.org/opkg-utils, apply and commit your changes
-with a Sign-off as you have done for OpenEmbedded. So the patch will
-apply to the opkg-utils repository rather than the openembedded-core
-repository. Then send that patch to the mailing lists. I'd recommend
-sending via 'git send-email' rather than using your normal email
-client as that will ensure the patch doesn't get corrupted.
-Alternatively, for opkg and opkg-utils I accept patches attached to a
-regular email as a .patch file.
+The manual states that I on a distribution level can add the following:
 
-Many thanks,
+    INHERIT_DISTRO +=3D "icecc"
+    ICECC_DISABLED ??=3D "1"
 
--- 
-Paul Barker
+This will make sure my builders use the same sstate signatures regardless i=
+f they use icecc or not. The way I did it to test was to create my own dist=
+ro layer, called mydist, that inherits from Poky.
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+    $ cat ../meta-mydist/conf/distro/mydist.conf
+
+    require conf/distro/poky.conf
+
+    DISTRO =3D "mydist"
+    DISTRO_NAME =3D "MyDist"
+
+    INHERIT_DISTRO +=3D "icecc"
+    ICECC_DISABLED ??=3D "1"
+
+In my bblayers.conf I added this layer directly after the meta-yocto layer.=
+ But with this addition my build environment will not work anymore. What ha=
+ppens is that the variable INHERIT_DISTRO is overwritten because my layer i=
+s picked before the poky/meta/conf/distro/defaultsetup.conf. I get the same=
+ behaviour if i edit the poky.conf and not use my own distro.
+
+    $ bitbake core-image-base -e
+
+    ...
+
+    #
+    # $INHERIT_DISTRO [3 operations]
+    #   append /work/yocto/course/meta-mydist/conf/distro/mydist.conf:6
+    #     "icecc"
+    #   set? /work/yocto/course/poky/meta/conf/distro/defaultsetup.conf:22
+    #     "debian devshell sstate license"
+    #   set /work/yocto/course/poky/meta/conf/documentation.conf:226
+    #     [doc] "Lists classes that will be inherited at the distribution l=
+evel. It is unlikely that you want to edit this variable."
+    # computed:
+    #   " icecc"
+    INHERIT_DISTRO=3D" icecc"
+    #
+
+    ...
+
+What is wrong here, documentation or my setup? Can someone give me advice?
+
+Regards,
+/Peter
+
+
+
+
+
+
+Peter Bergin
+
+
+
+peter.bergin@tritech.se
++46 733 35 21 05
+
+
+www.tritech.se
++46 31 763 38 00
+Nordstadstorget 6
+SE-411 05 G?teborg, Sweden
 
