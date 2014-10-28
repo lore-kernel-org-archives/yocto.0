@@ -1,43 +1,37 @@
-Return-Path: <Jian.Liu@windriver.com>
+Return-Path: <peter.bergin@tritech.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 31E8BE00873; Mon, 27 Oct 2014 19:04:12 -0700 (PDT)
+	id 67296E00848; Tue, 28 Oct 2014 08:24:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9D1DE007C0
-	for <yocto@yoctoproject.org>; Mon, 27 Oct 2014 19:04:09 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id s9S243YJ025982
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 27 Oct 2014 19:04:04 -0700 (PDT)
-Received: from [128.224.163.134] (128.224.163.134) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 27 Oct 2014 19:04:03 -0700
-Message-ID: <544EF91D.1030306@windriver.com>
-Date: Tue, 28 Oct 2014 10:02:05 +0800
-From: Liu Jian <jian.liu@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+Received: from tritech.se (tritech.se [46.59.120.190])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86C19E007BA
+	for <yocto@yoctoproject.org>; Tue, 28 Oct 2014 08:24:11 -0700 (PDT)
+Received: from post.tritech.se (post.tritech.se [10.75.60.100])
+	by tritech.se (8.14.3/8.14.3) with ESMTP id s9SFO4Yb009208;
+	Tue, 28 Oct 2014 16:24:09 +0100
+Received: from POST.tritech.se ([10.75.60.100]) by post ([10.75.60.100]) with
+	mapi id 14.02.0387.000; Tue, 28 Oct 2014 16:24:04 +0100
+From: Peter Bergin <peter.bergin@tritech.se>
+To: Chiz Chikwendu <chiz.chikwendu@Haemonetics.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Qt5.3
+Thread-Index: Ac/yEICSq7lGeQqPTpKlts42IeSk8A==
+Date: Tue, 28 Oct 2014 15:24:03 +0000
+Message-ID: <43F0718C449F6A46B393DA2BEC8E01280C645706@post>
+References: <A0F68394C677A9428EE03709453BAAEC795A2443@BRS-Exch02.haemo.net>
+Accept-Language: sv-SE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [194.236.6.200]
 MIME-Version: 1.0
-To: Paul Barker <paul@paulbarker.me.uk>, opkg-devel
-	<opkg-devel@googlegroups.com>,
-	Yocto discussion list <yocto@yoctoproject.org>
-References: <544E11CF.6010701@windriver.com>
-	<CANyK_8eHtCb+a_a1fx16R3Nw0WVBU5mh6TFxSOwx06mRWdjuGA@mail.gmail.com>
-	<CANyK_8e8u5V3m33GQ8yFjcBFrWMHu05Yup_qJjg8tu-qDW584g@mail.gmail.com>
-In-Reply-To: <CANyK_8e8u5V3m33GQ8yFjcBFrWMHu05Yup_qJjg8tu-qDW584g@mail.gmail.com>
-X-Mailman-Approved-At: Tue, 28 Oct 2014 08:08:08 -0700
-Subject: Re: [OE-core] [PATCH] opkg-utils: update-alternatives fails for "[" and "[[" in busybox
+Subject: Re: Qt5.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,127 +43,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Oct 2014 02:04:12 -0000
+X-List-Received-Date: Tue, 28 Oct 2014 15:24:20 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="------------060008030709080000090406"
+	boundary="_000_43F0718C449F6A46B393DA2BEC8E01280C645706post_"
 
---------------060008030709080000090406
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+--_000_43F0718C449F6A46B393DA2BEC8E01280C645706post_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Paul,
+Hi,
 
-Thanks to your correction.
+On 10/28/2014 04:13 PM, Chiz Chikwendu wrote:
+Has anyone built qt5.3 for an application an intel atom platform?
+I have problems with unbuildable dependency with =93ruby-native=94.
+Anyone know how to get around this?
 
-Could you please tell me the mailing lists? I use this mailing lists 
-following the
-guidance of 
-http://git.yoctoproject.org/cgit/cgit.cgi/opkg-utils/tree/CONTRIBUTING.
+Chiz
 
-You told me that URL in your last mail. So should I follow the 
-instruction in it?
+have you added the meta-ruby layer to your conf/bblayers.conf?
 
-Thanks very much!
+See the README file in the meta-qt5 layer for which layers it depends on.
 
-Jian
+Regards,
+/Peter
 
-
-于 2014年10月27日 17:55, Paul Barker 写道:
-> On 27 October 2014 09:52, Paul Barker <paul@paulbarker.me.uk> wrote:
->> Sorry, you've sent a patch for oe-core to the wrong mailing lists here.
->>
->> Also, this patch doesn't apply against oe-core anyway, it looks like
->> your email program has corrupted it by wrapping lines. Please use 'git
->> send-email' if you can.
->>
->> To make this change, please submit a patch for opkg-utils itself
->> rather than for oe-core. In oe-core, we can then simply change SRCREV
->> rather than holding additional patches.
->>
->> Thanks,
->>
-> Actually, that's a bit short worded. Hope it doesn't sound harsh,
-> getting patches in the right format to the right list can be a pain if
-> you're new to the project.
->
-> If you've got any questions just ask, either on the mailing list or on
-> IRC. I or someone else should be able to help you out.
->
-> Thanks,
->
-
--- 
-Jian Liu
-Email: jian.liu@windriver.com
-Office Phone: 86-10-84778539
-
-
---------------060008030709080000090406
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+--_000_43F0718C449F6A46B393DA2BEC8E01280C645706post_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    Hi Paul,<br>
-    <br>
-    Thanks to your correction.<br>
-    <br>
-    <font color="#3366ff">Could you please tell me the mailing lists?</font>
-    I use this mailing lists following the<br>
-    guidance of
-    <a class="moz-txt-link-freetext" href="http://git.yoctoproject.org/cgit/cgit.cgi/opkg-utils/tree/CONTRIBUTING">http://git.yoctoproject.org/cgit/cgit.cgi/opkg-utils/tree/CONTRIBUTING</a>.<br>
-    <br>
-    You told me that URL in your last mail. <font color="#3366ff">So
-      should I follow the instruction in it?</font><br>
-    <pre wrap="">Thanks very much!
-</pre>
-    Jian<br>
-    <br>
-    <br>
-    <div class="moz-cite-prefix">于 2014年10月27日 17:55, Paul Barker 写道:<br>
-    </div>
-    <blockquote
-cite="mid:CANyK_8e8u5V3m33GQ8yFjcBFrWMHu05Yup_qJjg8tu-qDW584g@mail.gmail.com"
-      type="cite">
-      <pre wrap="">On 27 October 2014 09:52, Paul Barker <a class="moz-txt-link-rfc2396E" href="mailto:paul@paulbarker.me.uk">&lt;paul@paulbarker.me.uk&gt;</a> wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="">
-Sorry, you've sent a patch for oe-core to the wrong mailing lists here.
-
-Also, this patch doesn't apply against oe-core anyway, it looks like
-your email program has corrupted it by wrapping lines. Please use 'git
-send-email' if you can.
-
-To make this change, please submit a patch for opkg-utils itself
-rather than for oe-core. In oe-core, we can then simply change SRCREV
-rather than holding additional patches.
-
-Thanks,
-
-</pre>
-      </blockquote>
-      <pre wrap="">
-Actually, that's a bit short worded. Hope it doesn't sound harsh,
-getting patches in the right format to the right list can be a pain if
-you're new to the project.
-
-If you've got any questions just ask, either on the mailing list or on
-IRC. I or someone else should be able to help you out.
-
-Thanks,
-
-</pre>
-    </blockquote>
-    <br>
-    <pre class="moz-signature" cols="72">-- 
-Jian Liu
-Email: <a class="moz-txt-link-abbreviated" href="mailto:jian.liu@windriver.com">jian.liu@windriver.com</a>
-Office Phone: 86-10-84778539</pre>
-  </body>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+</head>
+<body bgcolor=3D"#FFFFFF" text=3D"#000000">
+<div class=3D"moz-cite-prefix">Hi,<br>
+<br>
+On 10/28/2014 04:13 PM, Chiz Chikwendu wrote:<br>
+</div>
+<blockquote cite=3D"mid:A0F68394C677A9428EE03709453BAAEC795A2443@BRS-Exch02=
+.haemo.net" type=3D"cite">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered=0A=
+        medium)">
+<style><!--=0A=
+/* Font Definitions */=0A=
+@font-face=0A=
+	{font-family:Calibri;=0A=
+	panose-1:2 15 5 2 2 2 4 3 2 4;}=0A=
+/* Style Definitions */=0A=
+p.MsoNormal, li.MsoNormal, div.MsoNormal=0A=
+	{margin:0in;=0A=
+	margin-bottom:.0001pt;=0A=
+	font-size:11.0pt;=0A=
+	font-family:"Calibri","sans-serif";}=0A=
+a:link, span.MsoHyperlink=0A=
+	{mso-style-priority:99;=0A=
+	color:blue;=0A=
+	text-decoration:underline;}=0A=
+a:visited, span.MsoHyperlinkFollowed=0A=
+	{mso-style-priority:99;=0A=
+	color:purple;=0A=
+	text-decoration:underline;}=0A=
+span.EmailStyle17=0A=
+	{mso-style-type:personal-compose;=0A=
+	font-family:"Calibri","sans-serif";=0A=
+	color:windowtext;}=0A=
+.MsoChpDefault=0A=
+	{mso-style-type:export-only;=0A=
+	font-family:"Calibri","sans-serif";}=0A=
+@page WordSection1=0A=
+	{size:8.5in 11.0in;=0A=
+	margin:1.0in 1.0in 1.0in 1.0in;}=0A=
+div.WordSection1=0A=
+	{page:WordSection1;}=0A=
+--></style><!--[if gte mso 9]><xml>=0A=
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />=0A=
+</xml><![endif]--><!--[if gte mso 9]><xml>=0A=
+<o:shapelayout v:ext=3D"edit">=0A=
+<o:idmap v:ext=3D"edit" data=3D"1" />=0A=
+</o:shapelayout></xml><![endif]-->
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Has anyone built qt5.3 for an application an intel a=
+tom platform?<o:p></o:p></p>
+<p class=3D"MsoNormal">I have problems with unbuildable dependency with =93=
+ruby-native=94.<o:p></o:p></p>
+<p class=3D"MsoNormal">Anyone know how to get around this?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Chiz<o:p></o:p></p>
+</div>
+</blockquote>
+<br>
+have you added the meta-ruby layer to your conf/bblayers.conf?<br>
+<br>
+See the README file in the meta-qt5 layer for which layers it depends on.<b=
+r>
+<br>
+Regards,<br>
+/Peter<br>
+</body>
 </html>
 
---------------060008030709080000090406--
+--_000_43F0718C449F6A46B393DA2BEC8E01280C645706post_--
