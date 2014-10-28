@@ -1,47 +1,51 @@
-Return-Path: <isak.lichtenstein@kistler.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 45C8DE00877; Tue, 28 Oct 2014 00:04:52 -0700 (PDT)
+	id 99339E00873; Tue, 28 Oct 2014 00:48:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [195.49.77.148 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Tue, 28 Oct 2014 00:04:49 PDT
-Received: from mx1.kistler.com (mx1.kistler.com [195.49.77.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B39BFE00848
-	for <yocto@yoctoproject.org>; Tue, 28 Oct 2014 00:04:49 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.04,801,1406584800"; d="scan'208";a="12800368"
-Received: from unknown (HELO kihagsepp01.int.kistler.com) ([192.168.52.67])
-	by mx1.kistler.com with ESMTP/TLS/ADH-AES256-SHA;
-	28 Oct 2014 08:03:42 +0100
-Received: from mx1.kistler.com (unknown [192.168.52.57])
-	by kihagsepp01.int.kistler.com (Postfix) with ESMTPS;
-	Tue, 28 Oct 2014 08:03:40 +0100 (CET)
-X-IronPort-AV: E=Sophos;i="5.04,801,1406584800"; d="scan'208";a="12800366"
-Received: from kihagwinex02.int.kistler.com ([192.168.100.31])
-	by mx1.kistler.com with ESMTP/TLS/AES128-SHA; 28 Oct 2014 08:03:40 +0100
-Received: from KIHAGWINEX01.int.kistler.com ([fe80::d70:7df0:c903:4e43]) by
-	kihagwinex02.int.kistler.com ([fe80::10cf:df86:bb65:2502%16]) with mapi
-	id 14.03.0181.006; Tue, 28 Oct 2014 08:03:11 +0100
-From: Isak Lichtenstein <Isak.Lichtenstein@kistler.com>
-To: Matt Schuckmann <Matt.Schuckmann@planar.com>, Yocto Project
-	<yocto@yoctoproject.org>
-Thread-Topic: How to get fw_env.config installed
-Thread-Index: Ac/yfJIlnU2RnJZNQYi9q8/VNvxjcg==
-Date: Tue, 28 Oct 2014 07:03:39 +0000
-Message-ID: <91B4C1B91AAEFD42AC985EA0F3D4E668C086DB39@kihagwinex01.int.kistler.com>
-Accept-Language: en-GB, de-CH, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.100.116]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.47 listed in list.dnswl.org]
+Received: from mail-qg0-f47.google.com (mail-qg0-f47.google.com
+	[209.85.192.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99B3AE007A0
+	for <yocto@yoctoproject.org>; Tue, 28 Oct 2014 00:48:11 -0700 (PDT)
+Received: by mail-qg0-f47.google.com with SMTP id j107so66936qga.6
+	for <yocto@yoctoproject.org>; Tue, 28 Oct 2014 00:48:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=4kSxL7Z9dblLX0NYlTQUfWM6d4AHWZ0FyBMGuUhSRGE=;
+	b=OQZdHV/pweu6lYQgGbX3aUIT8GBOHOfYSmr/hjEkfEjsm2+V4faDD8B57eWPNbxfNV
+	xSFHtYUzj54jpIU5OVdkwTYPmArSsEY0mSoN5CRxsvta/mWthBKBFAIuF/X40c2E4hEE
+	l0jRkFTnaksO3JUxt1S4q7e+XG0/qFky9GfLzbnYj+3y23F5TPpomiBE7I/AZsxRIuQb
+	kBIUNrsh0tnrjvv50baY2FZDyt+W1gWP4/wiWxq2wWvUmfxDWCgI8SSYN1vVg9wEZe8q
+	hDAXn7E6QOgMHknKxA79xozcLDEwFJeYL1vfVymoYRNEciFG2Wi0F88X3kvOHiAwzwvM
+	M6xg==
+X-Gm-Message-State: ALoCoQm2WDBx3ovspkR1KtGt6vSlGo+zaNzQwElD1eUkVuP3TDZhGcUov9JJ/FQdoZ6TNzo2V9aX
+X-Received: by 10.224.160.83 with SMTP id m19mr2260463qax.17.1414482491257;
+	Tue, 28 Oct 2014 00:48:11 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: How to get fw_env.config installed
+Received: by 10.140.98.213 with HTTP; Tue, 28 Oct 2014 00:47:51 -0700 (PDT)
+In-Reply-To: <3204FE6663E1F14CAF4CA6928E60C85215BC1C1E@USSTLZ-PMSG012.emrsn.org>
+References: <CACjDgAMqZ31WnnnQQn-bC1c1G302EcE0mMTEg01x8rn4989M8Q@mail.gmail.com>
+	<CAMKF1sqjcM3OQVkgh-fxPEW007CAaAy7MzoP7Y2ZZ-Hi_3Z5Jg@mail.gmail.com>
+	<CACjDgAMhqJMHpT++Lwpy4vkbeJQOZtOOGBgg1HMSf1=-kiSHtg@mail.gmail.com>
+	<A8FC939F80655644A89BB21CCD3741E87C17AF@G08CNEXMBPEKD02.g08.fujitsu.local>
+	<3204FE6663E1F14CAF4CA6928E60C85215BC1C1E@USSTLZ-PMSG012.emrsn.org>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 28 Oct 2014 07:47:51 +0000
+Message-ID: <CAJTo0LaPX78AO1roHQL5zmVD9DMoxgh5RSnT2BSugzXtrmxWYg@mail.gmail.com>
+To: Neil.Wu@emerson.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Luajit Compile Error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,57 +57,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Oct 2014 07:04:52 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 28 Oct 2014 07:48:17 -0000
+Content-Type: multipart/alternative; boundary=047d7bacb2aa6ee47e050676de41
+
+--047d7bacb2aa6ee47e050676de41
+Content-Type: text/plain; charset=UTF-8
+
+Hi,
+
+It's probably a good idea to put this somewhere public, like a new layer on
+eg github, or add it to meta-oe.  Before then, I've some comments on your
+recipe:
+
+On 28 October 2014 01:40, <Neil.Wu@emerson.com> wrote:
+
+> FILESEXTRAPATHS_prepend  := "${THISDIR}/${PN}:"
+>
+#FILESPATH := "${THISDIR}/${PN}"
+>
+
+You don't need to do this.
+
+
+> FILES_${PN} += "/usr/share/* \
+>         /usr/include/* \
+>         /usr/share/lua/* \
+>         /usr/share/luajit-2.0.2/* \
+>         /usr/share/man/* \
+>         /usr/share/lua/5.1/* \
+>         /usr/lib/* \
+>         /usr/bin/*"
+>
+
+Don't put headers into $PN.  The default FILES_${PN} covers most of those
+paths too.
+
+
+> S = "${WORKDIR}/${PN}-${PV}"
+>
+
+This is the default value.
+
+
+> PARALLEL_MAKEINST="PREFIX=${D}/usr"
+>
+PARALLEL_MAKE="'PREFIX=${D}' 'CROSS=${TARGET_SYS}-'  'TARGET_SYS=Linux' "
+>
+
+PARALLEL_MAKE* are specifically for parallelism arguments to make (_MAKE
+for build time, _MAKEINST for make install time).  Set all of these in
+EXTRA_OEMAKE and it will get added passed automatically when you call
+oe_runmake.  Does it really need different values for PREFIX at build and
+install time?
+
+Ross
+
+--047d7bacb2aa6ee47e050676de41
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
- Hi Matt,
+<div dir=3D"ltr"><div class=3D"gmail_extra">Hi,</div><div class=3D"gmail_ex=
+tra"><br></div><div class=3D"gmail_extra">It&#39;s probably a good idea to =
+put this somewhere public, like a new layer on eg github, or add it to meta=
+-oe.=C2=A0 Before then, I&#39;ve some comments on your recipe:</div><div cl=
+ass=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><div class=3D"gmai=
+l_quote">On 28 October 2014 01:40,  <span dir=3D"ltr">&lt;<a href=3D"mailto=
+:Neil.Wu@emerson.com" target=3D"_blank">Neil.Wu@emerson.com</a>&gt;</span> =
+wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-sty=
+le:solid;padding-left:1ex"><div id=3D":1qy" class=3D"" style=3D"overflow:hi=
+dden">FILESEXTRAPATHS_prepend=C2=A0 :=3D &quot;${THISDIR}/${PN}:&quot;=C2=
+=A0</div></blockquote><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);bor=
+der-left-style:solid;padding-left:1ex"><div id=3D":1qy" class=3D"" style=3D=
+"overflow:hidden">
+#FILESPATH :=3D &quot;${THISDIR}/${PN}&quot;<br></div></blockquote><div><br=
+></div><div>You don&#39;t need to do this.</div><div>=C2=A0</div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width=
+:1px;border-left-color:rgb(204,204,204);border-left-style:solid;padding-lef=
+t:1ex"><div id=3D":1qy" class=3D"" style=3D"overflow:hidden">FILES_${PN} +=
+=3D &quot;/usr/share/* \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/* \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/share/lua/* \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/share/luajit-2.0.2/* \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/share/man/* \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/share/lua/5.1/* \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/lib/* \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/bin/*&quot;<br></div></blockquote><div><br=
+></div><div>Don&#39;t put headers into $PN.=C2=A0 The default FILES_${PN} c=
+overs most of those paths too.</div><div>=C2=A0</div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-=
+left-color:rgb(204,204,204);border-left-style:solid;padding-left:1ex"><div =
+id=3D":1qy" class=3D"" style=3D"overflow:hidden">S =3D &quot;${WORKDIR}/${P=
+N}-${PV}&quot;<br></div></blockquote><div><br></div><div>This is the defaul=
+t value.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204=
+,204);border-left-style:solid;padding-left:1ex"><div id=3D":1qy" class=3D""=
+ style=3D"overflow:hidden">
+PARALLEL_MAKEINST=3D&quot;PREFIX=3D${D}/usr&quot;=C2=A0</div></blockquote><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;pa=
+dding-left:1ex"><div id=3D":1qy" class=3D"" style=3D"overflow:hidden">
+PARALLEL_MAKE=3D&quot;&#39;PREFIX=3D${D}&#39; &#39;CROSS=3D${TARGET_SYS}-&#=
+39;=C2=A0 &#39;TARGET_SYS=3DLinux&#39; &quot;<br></div></blockquote><div><b=
+r></div>PARALLEL_MAKE* are specifically for parallelism arguments to make (=
+_MAKE for build time, _MAKEINST for make install time).=C2=A0 Set all of th=
+ese in EXTRA_OEMAKE and it will get added passed automatically when you cal=
+l oe_runmake.=C2=A0 Does it really need different values for PREFIX at buil=
+d and install time?</div><div class=3D"gmail_quote"><br></div><div class=3D=
+"gmail_quote">Ross</div></div></div>
 
-> I'm working on including the u-boot fw utility tools in my image, specifi=
-cally
-> fw_printenv and fw_setenv.
-> For these to work the file fw_env.config needs to be placed at /etc/fw_en=
-v.config.
->=20
-> I can see in oe-core/meta/recipes-bsp/u-boot/u-boot.inc there is a test t=
-hat if
-> fw_env.config is in the working dir it will be installed in ${sysconfdir}=
- and I can see
-> in the meta-ti/recipes-bsp/u-boot/u-boot-beagleboard_2011.09.bb they simp=
-ly
-> include file://fw_env.conf in the SRC_URI list to get the file in the wor=
-king dir.
->=20
-> So I created a bbappend file for the ti u-boot recipe (u-boot-ti-staging_=
-2013.10.bb)
-> that I'm using and build and I don't get the file in my image root filesy=
-stem.
->=20
-> If I run bitbake -c install virtual/bootloader I can see that the file do=
-es get copied
-> into u-boot's working dir image/etc directory but it never makes it into =
-the final root
-> filesystem.
->=20
-> What am I missing?
-
-The u-boot.inc file is looking for  a ".config" file, not ".conf".
-
-BR
-
-Isak
-
->=20
-> Thanks,
-> Matt S.
->=20
-> PS I should note that I'm working Dylan branch with the TI Arago layer.
->=20
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+--047d7bacb2aa6ee47e050676de41--
