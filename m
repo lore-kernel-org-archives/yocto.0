@@ -1,49 +1,47 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <lixin.fnst@cn.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 99339E00873; Tue, 28 Oct 2014 00:48:17 -0700 (PDT)
+	id E3B22E00873; Tue, 28 Oct 2014 02:10:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RDNS_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.47 listed in list.dnswl.org]
-Received: from mail-qg0-f47.google.com (mail-qg0-f47.google.com
-	[209.85.192.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99B3AE007A0
-	for <yocto@yoctoproject.org>; Tue, 28 Oct 2014 00:48:11 -0700 (PDT)
-Received: by mail-qg0-f47.google.com with SMTP id j107so66936qga.6
-	for <yocto@yoctoproject.org>; Tue, 28 Oct 2014 00:48:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=4kSxL7Z9dblLX0NYlTQUfWM6d4AHWZ0FyBMGuUhSRGE=;
-	b=OQZdHV/pweu6lYQgGbX3aUIT8GBOHOfYSmr/hjEkfEjsm2+V4faDD8B57eWPNbxfNV
-	xSFHtYUzj54jpIU5OVdkwTYPmArSsEY0mSoN5CRxsvta/mWthBKBFAIuF/X40c2E4hEE
-	l0jRkFTnaksO3JUxt1S4q7e+XG0/qFky9GfLzbnYj+3y23F5TPpomiBE7I/AZsxRIuQb
-	kBIUNrsh0tnrjvv50baY2FZDyt+W1gWP4/wiWxq2wWvUmfxDWCgI8SSYN1vVg9wEZe8q
-	hDAXn7E6QOgMHknKxA79xozcLDEwFJeYL1vfVymoYRNEciFG2Wi0F88X3kvOHiAwzwvM
-	M6xg==
-X-Gm-Message-State: ALoCoQm2WDBx3ovspkR1KtGt6vSlGo+zaNzQwElD1eUkVuP3TDZhGcUov9JJ/FQdoZ6TNzo2V9aX
-X-Received: by 10.224.160.83 with SMTP id m19mr2260463qax.17.1414482491257;
-	Tue, 28 Oct 2014 00:48:11 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.140.98.213 with HTTP; Tue, 28 Oct 2014 00:47:51 -0700 (PDT)
-In-Reply-To: <3204FE6663E1F14CAF4CA6928E60C85215BC1C1E@USSTLZ-PMSG012.emrsn.org>
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29609E007A0
+	for <yocto@yoctoproject.org>; Tue, 28 Oct 2014 02:10:05 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.04,801,1406563200"; d="scan'208,217";a="42464766"
+Received: from localhost (HELO edo.cn.fujitsu.com) ([10.167.33.5])
+	by heian.cn.fujitsu.com with ESMTP; 28 Oct 2014 17:06:51 +0800
+Received: from G08CNEXCHPEKD03.g08.fujitsu.local (localhost.localdomain
+	[127.0.0.1])
+	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id s9S99qlt009302;
+	Tue, 28 Oct 2014 17:09:52 +0800
+Received: from G08CNEXMBPEKD02.g08.fujitsu.local ([10.167.33.84]) by
+	G08CNEXCHPEKD03.g08.fujitsu.local ([10.167.33.85]) with mapi id
+	14.03.0181.006; Tue, 28 Oct 2014 17:10:01 +0800
+From: "Li, Xin" <lixin.fnst@cn.fujitsu.com>
+To: "Burton, Ross" <ross.burton@intel.com>, "Neil.Wu@emerson.com"
+	<Neil.Wu@emerson.com>
+Thread-Topic: [yocto] Luajit Compile Error
+Thread-Index: AQHP24xbLkTXTqP1fEKewsgmrjLMUJwXBqMAgAAKIACALIzIMIABSQwQ///jJ4CAAJmGMA==
+Date: Tue, 28 Oct 2014 09:10:02 +0000
+Message-ID: <A8FC939F80655644A89BB21CCD3741E87C1AD0@G08CNEXMBPEKD02.g08.fujitsu.local>
 References: <CACjDgAMqZ31WnnnQQn-bC1c1G302EcE0mMTEg01x8rn4989M8Q@mail.gmail.com>
 	<CAMKF1sqjcM3OQVkgh-fxPEW007CAaAy7MzoP7Y2ZZ-Hi_3Z5Jg@mail.gmail.com>
 	<CACjDgAMhqJMHpT++Lwpy4vkbeJQOZtOOGBgg1HMSf1=-kiSHtg@mail.gmail.com>
 	<A8FC939F80655644A89BB21CCD3741E87C17AF@G08CNEXMBPEKD02.g08.fujitsu.local>
 	<3204FE6663E1F14CAF4CA6928E60C85215BC1C1E@USSTLZ-PMSG012.emrsn.org>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 28 Oct 2014 07:47:51 +0000
-Message-ID: <CAJTo0LaPX78AO1roHQL5zmVD9DMoxgh5RSnT2BSugzXtrmxWYg@mail.gmail.com>
-To: Neil.Wu@emerson.com
+	<CAJTo0LaPX78AO1roHQL5zmVD9DMoxgh5RSnT2BSugzXtrmxWYg@mail.gmail.com>
+In-Reply-To: <CAJTo0LaPX78AO1roHQL5zmVD9DMoxgh5RSnT2BSugzXtrmxWYg@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.167.226.37]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Luajit Compile Error
 X-BeenThere: yocto@yoctoproject.org
@@ -57,114 +55,196 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Oct 2014 07:48:17 -0000
-Content-Type: multipart/alternative; boundary=047d7bacb2aa6ee47e050676de41
+X-List-Received-Date: Tue, 28 Oct 2014 09:10:09 -0000
+Content-Language: zh-CN
+Content-Type: multipart/alternative;
+	boundary="_000_A8FC939F80655644A89BB21CCD3741E87C1AD0G08CNEXMBPEKD02g0_"
 
---047d7bacb2aa6ee47e050676de41
-Content-Type: text/plain; charset=UTF-8
+--_000_A8FC939F80655644A89BB21CCD3741E87C1AD0G08CNEXMBPEKD02g0_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi,
+SGksDQoNCkluZGVlZCx0aGVyZSBpcyBhIGx1YWppdCByZWNpcGUgaW4gbWV0YS1vZS4NCllvdSBj
+YW4gaGF2ZSBhIGxvb2sgYXQ6IGh0dHA6Ly9sYXllcnMub3BlbmVtYmVkZGVkLm9yZy9sYXllcmlu
+ZGV4L3JlY2lwZS80OTE4Ly4NCg0KQmVzdCBSZWdhcmRzLA0KTGkgWGluDQoNCg0KRnJvbTogQnVy
+dG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KU2VudDogVHVlc2RheSwg
+T2N0b2JlciAyOCwgMjAxNCAzOjQ4IFBNDQpUbzogTmVpbC5XdUBlbWVyc29uLmNvbQ0KQ2M6IExp
+LCBYaW4v5p2OIOasozsgeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0
+b10gTHVhaml0IENvbXBpbGUgRXJyb3INCg0KSGksDQoNCkl0J3MgcHJvYmFibHkgYSBnb29kIGlk
+ZWEgdG8gcHV0IHRoaXMgc29tZXdoZXJlIHB1YmxpYywgbGlrZSBhIG5ldyBsYXllciBvbiBlZyBn
+aXRodWIsIG9yIGFkZCBpdCB0byBtZXRhLW9lLiAgQmVmb3JlIHRoZW4sIEkndmUgc29tZSBjb21t
+ZW50cyBvbiB5b3VyIHJlY2lwZToNCg0KT24gMjggT2N0b2JlciAyMDE0IDAxOjQwLCA8TmVpbC5X
+dUBlbWVyc29uLmNvbTxtYWlsdG86TmVpbC5XdUBlbWVyc29uLmNvbT4+IHdyb3RlOg0KRklMRVNF
+WFRSQVBBVEhTX3ByZXBlbmQgIDo9ICIke1RISVNESVJ9LyR7UE59OiINCiNGSUxFU1BBVEggOj0g
+IiR7VEhJU0RJUn0vJHtQTn0iDQoNCllvdSBkb24ndCBuZWVkIHRvIGRvIHRoaXMuDQoNCkZJTEVT
+XyR7UE59ICs9ICIvdXNyL3NoYXJlLyogXA0KICAgICAgICAvdXNyL2luY2x1ZGUvKiBcDQogICAg
+ICAgIC91c3Ivc2hhcmUvbHVhLyogXA0KICAgICAgICAvdXNyL3NoYXJlL2x1YWppdC0yLjAuMi8q
+IFwNCiAgICAgICAgL3Vzci9zaGFyZS9tYW4vKiBcDQogICAgICAgIC91c3Ivc2hhcmUvbHVhLzUu
+MS8qIFwNCiAgICAgICAgL3Vzci9saWIvKiBcDQogICAgICAgIC91c3IvYmluLyoiDQoNCkRvbid0
+IHB1dCBoZWFkZXJzIGludG8gJFBOLiAgVGhlIGRlZmF1bHQgRklMRVNfJHtQTn0gY292ZXJzIG1v
+c3Qgb2YgdGhvc2UgcGF0aHMgdG9vLg0KDQpTID0gIiR7V09SS0RJUn0vJHtQTn0tJHtQVn0iDQoN
+ClRoaXMgaXMgdGhlIGRlZmF1bHQgdmFsdWUuDQoNClBBUkFMTEVMX01BS0VJTlNUPSJQUkVGSVg9
+JHtEfS91c3IiDQpQQVJBTExFTF9NQUtFPSInUFJFRklYPSR7RH0nICdDUk9TUz0ke1RBUkdFVF9T
+WVN9LScgICdUQVJHRVRfU1lTPUxpbnV4JyAiDQoNClBBUkFMTEVMX01BS0UqIGFyZSBzcGVjaWZp
+Y2FsbHkgZm9yIHBhcmFsbGVsaXNtIGFyZ3VtZW50cyB0byBtYWtlIChfTUFLRSBmb3IgYnVpbGQg
+dGltZSwgX01BS0VJTlNUIGZvciBtYWtlIGluc3RhbGwgdGltZSkuICBTZXQgYWxsIG9mIHRoZXNl
+IGluIEVYVFJBX09FTUFLRSBhbmQgaXQgd2lsbCBnZXQgYWRkZWQgcGFzc2VkIGF1dG9tYXRpY2Fs
+bHkgd2hlbiB5b3UgY2FsbCBvZV9ydW5tYWtlLiAgRG9lcyBpdCByZWFsbHkgbmVlZCBkaWZmZXJl
+bnQgdmFsdWVzIGZvciBQUkVGSVggYXQgYnVpbGQgYW5kIGluc3RhbGwgdGltZT8NCg0KUm9zcw0K
 
-It's probably a good idea to put this somewhere public, like a new layer on
-eg github, or add it to meta-oe.  Before then, I've some comments on your
-recipe:
+--_000_A8FC939F80655644A89BB21CCD3741E87C1AD0G08CNEXMBPEKD02g0_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 28 October 2014 01:40, <Neil.Wu@emerson.com> wrote:
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+5a6L5L2TOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtm
+b250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0
+O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUg
+MiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5v
+c2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJc
+QOWui+S9kyI7DQoJcGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQovKiBTdHlsZSBEZWZp
+bml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXtt
+YXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0K
+CWZvbnQtZmFtaWx5OuWui+S9kzt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1z
+dHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxp
+bmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1w
+cmlvcml0eTo5OTsNCgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9
+DQpzcGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglm
+b250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1z
+b0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6
+IkNhbGlicmkiLCJzYW5zLXNlcmlmIjt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIu
+MHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcyLjBwdCA5MC4wcHQgNzIuMHB0IDkwLjBwdDt9DQpkaXYu
+V29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBn
+dGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIx
+MDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpz
+aGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIg
+Lz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxh
+bmc9IlpILUNOIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IldvcmRT
+ZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
+ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztj
+b2xvcjojMUY0OTdEIj5IaSw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIg
+c3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
+dW90Oztjb2xvcjojMUY0OTdEIj5JbmRlZWQsdGhlcmUgaXMgYSBsdWFqaXQgcmVjaXBlIGluIG1l
+dGEtb2UuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+bGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90
+O3NhbnMtc2VyaWYmcXVvdDsiPllvdSBjYW4gaGF2ZSBhIGxvb2sgYXQ6DQo8YSBocmVmPSJodHRw
+Oi8vbGF5ZXJzLm9wZW5lbWJlZGRlZC5vcmcvbGF5ZXJpbmRleC9yZWNpcGUvNDkxOC8iPmh0dHA6
+Ly9sYXllcnMub3BlbmVtYmVkZGVkLm9yZy9sYXllcmluZGV4L3JlY2lwZS80OTE4LzwvYT48c3Bh
+biBzdHlsZT0iY29sb3I6IzFGNDk3RCI+LjxvOnA+PC9vOnA+PC9zcGFuPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtZmFtaWx5
+OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+PG86cD4mbmJzcDs8
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
+IHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
+cXVvdDsiPkJlc3QgUmVnYXJkcyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGli
+cmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+TGkgWGluPG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250
+LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9
+IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
+JnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8
+L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29s
+aWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBjbSAwY20gMGNtIDQuMHB0Ij4NCjxkaXY+DQo8ZGl2IHN0
+eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0REYgMS4wcHQ7cGFkZGluZzoz
+LjBwdCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJF
+Ti1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1
+b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJF
+Ti1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1
+b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1
+cnRvbkBpbnRlbC5jb21dDQo8YnI+DQo8Yj5TZW50OjwvYj4gVHVlc2RheSwgT2N0b2JlciAyOCwg
+MjAxNCAzOjQ4IFBNPGJyPg0KPGI+VG86PC9iPiBOZWlsLld1QGVtZXJzb24uY29tPGJyPg0KPGI+
+Q2M6PC9iPiBMaSwgWGluLzwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdCI+5p2O
+PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1Rh
+aG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4NCjwvc3Bhbj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjEwLjBwdCI+5qyjPC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9u
+dC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1z
+ZXJpZiZxdW90OyI+OyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+
+IFJlOiBbeW9jdG9dIEx1YWppdCBDb21waWxlIEVycm9yPG86cD48L286cD48L3NwYW4+PC9wPg0K
+PC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48
+bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5IaSw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4m
+bmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gbGFuZz0iRU4tVVMiPkl0J3MgcHJvYmFibHkgYSBnb29kIGlkZWEgdG8gcHV0IHRo
+aXMgc29tZXdoZXJlIHB1YmxpYywgbGlrZSBhIG5ldyBsYXllciBvbiBlZyBnaXRodWIsIG9yIGFk
+ZCBpdCB0byBtZXRhLW9lLiZuYnNwOyBCZWZvcmUgdGhlbiwgSSd2ZSBzb21lIGNvbW1lbnRzIG9u
+IHlvdXIgcmVjaXBlOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
+bj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+bGFuZz0iRU4tVVMiPk9uIDI4IE9jdG9iZXIgMjAxNCAwMTo0MCwgJmx0OzxhIGhyZWY9Im1haWx0
+bzpOZWlsLld1QGVtZXJzb24uY29tIiB0YXJnZXQ9Il9ibGFuayI+TmVpbC5XdUBlbWVyc29uLmNv
+bTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXYgaWQ9IjoxcXkiPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkZJTEVTRVhUUkFQQVRIU19w
+cmVwZW5kJm5ic3A7IDo9ICZxdW90OyR7VEhJU0RJUn0vJHtQTn06JnF1b3Q7Jm5ic3A7PG86cD48
+L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7
+Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBjbSAwY20gMGNtIDYuMHB0
+O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowY20iPg0KPGRpdiBpZD0iOjFxeSI+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+I0ZJTEVTUEFUSCA6PSAmcXVv
+dDske1RISVNESVJ9LyR7UE59JnF1b3Q7PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8
+L2Jsb2NrcXVvdGU+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
+VVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5Zb3UgZG9uJ3QgbmVlZCB0byBkbyB0aGlz
+LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
+dj4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0ND
+Q0NDIDEuMHB0O3BhZGRpbmc6MGNtIDBjbSAwY20gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFy
+Z2luLXJpZ2h0OjBjbSI+DQo8ZGl2IGlkPSI6MXF5Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIGxhbmc9IkVOLVVTIj5GSUxFU18ke1BOfSAmIzQzOz0gJnF1b3Q7L3Vzci9zaGFyZS8qIFw8
+YnI+DQombmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgL3Vzci9pbmNsdWRlLyogXDxicj4NCiZu
+YnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAvdXNyL3NoYXJlL2x1YS8qIFw8YnI+DQombmJzcDsg
+Jm5ic3A7ICZuYnNwOyAmbmJzcDsgL3Vzci9zaGFyZS9sdWFqaXQtMi4wLjIvKiBcPGJyPg0KJm5i
+c3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7IC91c3Ivc2hhcmUvbWFuLyogXDxicj4NCiZuYnNwOyAm
+bmJzcDsgJm5ic3A7ICZuYnNwOyAvdXNyL3NoYXJlL2x1YS81LjEvKiBcPGJyPg0KJm5ic3A7ICZu
+YnNwOyAmbmJzcDsgJm5ic3A7IC91c3IvbGliLyogXDxicj4NCiZuYnNwOyAmbmJzcDsgJm5ic3A7
+ICZuYnNwOyAvdXNyL2Jpbi8qJnF1b3Q7PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8
+L2Jsb2NrcXVvdGU+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
+VVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5Eb24ndCBwdXQgaGVhZGVycyBpbnRvICRQ
+Ti4mbmJzcDsgVGhlIGRlZmF1bHQgRklMRVNfJHtQTn0gY292ZXJzIG1vc3Qgb2YgdGhvc2UgcGF0
+aHMgdG9vLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xp
+ZCAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGNtIDBjbSAwY20gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44
+cHQ7bWFyZ2luLXJpZ2h0OjBjbSI+DQo8ZGl2IGlkPSI6MXF5Ij4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5TID0gJnF1b3Q7JHtXT1JLRElSfS8ke1BOfS0ke1BWfSZx
+dW90OzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpw
+Pjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBs
+YW5nPSJFTi1VUyI+VGhpcyBpcyB0aGUgZGVmYXVsdCB2YWx1ZS48bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1V
+UyI+Jm5ic3A7PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHls
+ZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBj
+bSAwY20gMGNtIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowY20iPg0KPGRp
+diBpZD0iOjFxeSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+UEFS
+QUxMRUxfTUFLRUlOU1Q9JnF1b3Q7UFJFRklYPSR7RH0vdXNyJnF1b3Q7Jm5ic3A7PG86cD48L286
+cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8YmxvY2txdW90ZSBzdHlsZT0i
+Ym9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBjbSAw
+Y20gMGNtIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowY20iPg0KPGRpdiBp
+ZD0iOjFxeSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+UEFSQUxM
+RUxfTUFLRT0mcXVvdDsnUFJFRklYPSR7RH0nICdDUk9TUz0ke1RBUkdFVF9TWVN9LScmbmJzcDsg
+J1RBUkdFVF9TWVM9TGludXgnICZxdW90OzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0K
+PC9ibG9ja3F1b3RlPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVO
+LVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5QQVJBTExFTF9NQUtFKiBhcmUgc3BlY2lmaWNhbGx5
+IGZvciBwYXJhbGxlbGlzbSBhcmd1bWVudHMgdG8gbWFrZSAoX01BS0UgZm9yIGJ1aWxkIHRpbWUs
+IF9NQUtFSU5TVCBmb3IgbWFrZSBpbnN0YWxsIHRpbWUpLiZuYnNwOyBTZXQgYWxsIG9mIHRoZXNl
+IGluIEVYVFJBX09FTUFLRSBhbmQgaXQgd2lsbCBnZXQgYWRkZWQgcGFzc2VkIGF1dG9tYXRpY2Fs
+bHkgd2hlbiB5b3UgY2FsbCBvZV9ydW5tYWtlLiZuYnNwOw0KIERvZXMgaXQgcmVhbGx5IG5lZWQg
+ZGlmZmVyZW50IHZhbHVlcyBmb3IgUFJFRklYIGF0IGJ1aWxkIGFuZCBpbnN0YWxsIHRpbWU/PG86
+cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5Sb3NzPG86cD48
+L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4N
+CjwvYm9keT4NCjwvaHRtbD4NCg==
 
-> FILESEXTRAPATHS_prepend  := "${THISDIR}/${PN}:"
->
-#FILESPATH := "${THISDIR}/${PN}"
->
-
-You don't need to do this.
-
-
-> FILES_${PN} += "/usr/share/* \
->         /usr/include/* \
->         /usr/share/lua/* \
->         /usr/share/luajit-2.0.2/* \
->         /usr/share/man/* \
->         /usr/share/lua/5.1/* \
->         /usr/lib/* \
->         /usr/bin/*"
->
-
-Don't put headers into $PN.  The default FILES_${PN} covers most of those
-paths too.
-
-
-> S = "${WORKDIR}/${PN}-${PV}"
->
-
-This is the default value.
-
-
-> PARALLEL_MAKEINST="PREFIX=${D}/usr"
->
-PARALLEL_MAKE="'PREFIX=${D}' 'CROSS=${TARGET_SYS}-'  'TARGET_SYS=Linux' "
->
-
-PARALLEL_MAKE* are specifically for parallelism arguments to make (_MAKE
-for build time, _MAKEINST for make install time).  Set all of these in
-EXTRA_OEMAKE and it will get added passed automatically when you call
-oe_runmake.  Does it really need different values for PREFIX at build and
-install time?
-
-Ross
-
---047d7bacb2aa6ee47e050676de41
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra">Hi,</div><div class=3D"gmail_ex=
-tra"><br></div><div class=3D"gmail_extra">It&#39;s probably a good idea to =
-put this somewhere public, like a new layer on eg github, or add it to meta=
--oe.=C2=A0 Before then, I&#39;ve some comments on your recipe:</div><div cl=
-ass=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><div class=3D"gmai=
-l_quote">On 28 October 2014 01:40,  <span dir=3D"ltr">&lt;<a href=3D"mailto=
-:Neil.Wu@emerson.com" target=3D"_blank">Neil.Wu@emerson.com</a>&gt;</span> =
-wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-sty=
-le:solid;padding-left:1ex"><div id=3D":1qy" class=3D"" style=3D"overflow:hi=
-dden">FILESEXTRAPATHS_prepend=C2=A0 :=3D &quot;${THISDIR}/${PN}:&quot;=C2=
-=A0</div></blockquote><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);bor=
-der-left-style:solid;padding-left:1ex"><div id=3D":1qy" class=3D"" style=3D=
-"overflow:hidden">
-#FILESPATH :=3D &quot;${THISDIR}/${PN}&quot;<br></div></blockquote><div><br=
-></div><div>You don&#39;t need to do this.</div><div>=C2=A0</div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width=
-:1px;border-left-color:rgb(204,204,204);border-left-style:solid;padding-lef=
-t:1ex"><div id=3D":1qy" class=3D"" style=3D"overflow:hidden">FILES_${PN} +=
-=3D &quot;/usr/share/* \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/include/* \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/share/lua/* \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/share/luajit-2.0.2/* \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/share/man/* \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/share/lua/5.1/* \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/lib/* \<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /usr/bin/*&quot;<br></div></blockquote><div><br=
-></div><div>Don&#39;t put headers into $PN.=C2=A0 The default FILES_${PN} c=
-overs most of those paths too.</div><div>=C2=A0</div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-=
-left-color:rgb(204,204,204);border-left-style:solid;padding-left:1ex"><div =
-id=3D":1qy" class=3D"" style=3D"overflow:hidden">S =3D &quot;${WORKDIR}/${P=
-N}-${PV}&quot;<br></div></blockquote><div><br></div><div>This is the defaul=
-t value.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204=
-,204);border-left-style:solid;padding-left:1ex"><div id=3D":1qy" class=3D""=
- style=3D"overflow:hidden">
-PARALLEL_MAKEINST=3D&quot;PREFIX=3D${D}/usr&quot;=C2=A0</div></blockquote><=
-blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
-eft-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;pa=
-dding-left:1ex"><div id=3D":1qy" class=3D"" style=3D"overflow:hidden">
-PARALLEL_MAKE=3D&quot;&#39;PREFIX=3D${D}&#39; &#39;CROSS=3D${TARGET_SYS}-&#=
-39;=C2=A0 &#39;TARGET_SYS=3DLinux&#39; &quot;<br></div></blockquote><div><b=
-r></div>PARALLEL_MAKE* are specifically for parallelism arguments to make (=
-_MAKE for build time, _MAKEINST for make install time).=C2=A0 Set all of th=
-ese in EXTRA_OEMAKE and it will get added passed automatically when you cal=
-l oe_runmake.=C2=A0 Does it really need different values for PREFIX at buil=
-d and install time?</div><div class=3D"gmail_quote"><br></div><div class=3D=
-"gmail_quote">Ross</div></div></div>
-
---047d7bacb2aa6ee47e050676de41--
+--_000_A8FC939F80655644A89BB21CCD3741E87C1AD0G08CNEXMBPEKD02g0_--
