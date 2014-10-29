@@ -1,36 +1,50 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DB23BE00877; Wed, 29 Oct 2014 07:57:16 -0700 (PDT)
+	id C4774E00877; Wed, 29 Oct 2014 08:13:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
+	FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (marc.szymkowiak91[at]googlemail.com)
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
+	*      CUSTOM_MED
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE661E00799
-	for <yocto@yoctoproject.org>; Wed, 29 Oct 2014 07:57:13 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 29 Oct 2014 07:57:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,810,1406617200"; d="scan'208";a="622812376"
-Received: from mriddel-mobl.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.108])
-	by fmsmga002.fm.intel.com with ESMTP; 29 Oct 2014 07:57:12 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Marc <marc.szymkowiak91@googlemail.com>
-Date: Wed, 29 Oct 2014 14:57:11 +0000
-Message-ID: <6633556.9qjGFBlA9Y@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.2 (Linux/3.16.6-203.fc20.x86_64; KDE/4.14.2; x86_64; ; )
-In-Reply-To: <loom.20141029T144602-493@post.gmane.org>
+	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
+	and not from a mailing list
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC248E00799
+	for <yocto@yoctoproject.org>; Wed, 29 Oct 2014 08:13:46 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1XjUwH-0002YO-8X
+	for yocto@yoctoproject.org; Wed, 29 Oct 2014 16:13:33 +0100
+Received: from r1.office.abatplus.de ([109.233.138.66])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 29 Oct 2014 16:13:33 +0100
+Received: from marc.szymkowiak91 by r1.office.abatplus.de with local (Gmexim
+	0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 29 Oct 2014 16:13:33 +0100
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Marc <marc.szymkowiak91@googlemail.com>
+Date: Wed, 29 Oct 2014 15:13:20 +0000 (UTC)
+Message-ID: <loom.20141029T161236-453@post.gmane.org>
 References: <loom.20141029T144602-493@post.gmane.org>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
+	<6633556.9qjGFBlA9Y@peggleto-mobl5.ger.corp.intel.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 109.233.138.66 (Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:32.0) Gecko/20100101 Firefox/32.0)
 Subject: Re: Error with vServer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -43,39 +57,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Oct 2014 14:57:16 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 29 Oct 2014 15:13:57 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-Hi Marc,
+> 
+> Does /home/yocto/yocto/poky/build-hd/tmp/buildstats/ exist? If not, is it
+just 
+> the buildstats directory that is not yet created? (It should be created 
+> automatically, but I'm just trying to diagnose the issue.)
+> 
+> Cheers,
+> Paul
+> 
 
-On Wednesday 29 October 2014 13:46:56 Marc wrote:
-> i try to build an Image with yoctos poky on my vserver (Ubuntu 14.04 LTS
-> minimal - Vserver 64bit)
-> 
-> With my own pc with the same ubuntu version i don't have any problems to
-> build the image, but on my vserver i get a lot of errors like this one:
-> 
-> ERROR: Execution of event handler 'run_buildstats' failed
-> Traceback (most recent call last):
->   File "run_buildstats(e)", line 85, in
-> run_buildstats(e=<bb.build.TaskSucceeded object at 0x7f5f79df6c10>)
->   File "buildstats.bbclass", line 2, in get_device(e=<bb.build.TaskSucceeded
-> object at 0x7f5f79df6c10>)
-> IOError: [Errno 2] No such file or directory:
-> '/home/yocto/yocto/poky/build-hd/tmp/buildstats//.device'
-> 
-> What can i do?
 
-Does /home/yocto/yocto/poky/build-hd/tmp/buildstats/ exist? If not, is it just 
-the buildstats directory that is not yet created? (It should be created 
-automatically, but I'm just trying to diagnose the issue.)
+Hello Paul,
+
+thx for your answer, yes the directory is created
 
 Cheers,
-Paul
+Marc
 
--- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
