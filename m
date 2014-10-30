@@ -1,51 +1,36 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <Jian.Liu@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C4774E00877; Wed, 29 Oct 2014 08:13:57 -0700 (PDT)
+	id 632C4E008C1; Wed, 29 Oct 2014 22:42:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
-	FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marc.szymkowiak91[at]googlemail.com)
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
-	*      CUSTOM_MED
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
-	and not from a mailing list
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC248E00799
-	for <yocto@yoctoproject.org>; Wed, 29 Oct 2014 08:13:46 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1XjUwH-0002YO-8X
-	for yocto@yoctoproject.org; Wed, 29 Oct 2014 16:13:33 +0100
-Received: from r1.office.abatplus.de ([109.233.138.66])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 29 Oct 2014 16:13:33 +0100
-Received: from marc.szymkowiak91 by r1.office.abatplus.de with local (Gmexim
-	0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 29 Oct 2014 16:13:33 +0100
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Marc <marc.szymkowiak91@googlemail.com>
-Date: Wed, 29 Oct 2014 15:13:20 +0000 (UTC)
-Message-ID: <loom.20141029T161236-453@post.gmane.org>
-References: <loom.20141029T144602-493@post.gmane.org>
-	<6633556.9qjGFBlA9Y@peggleto-mobl5.ger.corp.intel.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: sea.gmane.org
-User-Agent: Loom/3.14 (http://gmane.org/)
-X-Loom-IP: 109.233.138.66 (Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:32.0) Gecko/20100101 Firefox/32.0)
-Subject: Re: Error with vServer
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5043E008BC
+	for <yocto@yoctoproject.org>; Wed, 29 Oct 2014 22:42:38 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id s9U5gWJS011825
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 29 Oct 2014 22:42:32 -0700 (PDT)
+Received: from [128.224.163.134] (128.224.163.134) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.174.1;
+	Wed, 29 Oct 2014 22:42:32 -0700
+Message-ID: <5451CF50.9060501@windriver.com>
+Date: Thu, 30 Oct 2014 13:40:32 +0800
+From: Liu Jian <jian.liu@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+MIME-Version: 1.0
+To: opkg-devel <opkg-devel@googlegroups.com>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Subject: [opkg-utils PATCH] update-alternatives: Installing fails for "["
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,27 +42,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Oct 2014 15:13:57 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Thu, 30 Oct 2014 05:42:53 -0000
+X-Groupsio-MsgNum: 21985
+Content-Type: multipart/mixed; boundary="------------000502090001010900080803"
+
+--------------000502090001010900080803
+Content-Type: text/plain; charset="GB2312"
 Content-Transfer-Encoding: 7bit
 
-> 
-> Does /home/yocto/yocto/poky/build-hd/tmp/buildstats/ exist? If not, is it
-just 
-> the buildstats directory that is not yet created? (It should be created 
-> automatically, but I'm just trying to diagnose the issue.)
-> 
-> Cheers,
-> Paul
-> 
 
 
-Hello Paul,
+--------------000502090001010900080803
+Content-Type: text/x-patch;
+	name="opkg-utils-update-alternatives-fails-for-lbracket.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename="opkg-utils-update-alternatives-fails-for-lbracket.patch"
 
-thx for your answer, yes the directory is created
+From 6431466b7c3f5fe76720372593fc785b572db84c Mon Sep 17 00:00:00 2001
+From: Jian Liu <jian.liu@windriver.com>
+Date: Wed, 29 Oct 2014 09:58:14 +0800
+Subject: [opkg-utils PATCH] update-alternatives: Installing fails for "["
 
-Cheers,
-Marc
+Insalling packages using update-alternatives will give the following error lines:
+sed: -e expression #1, char 41: unterminated address regex
+sed: -e expression #1, char 42: unterminated address regex
+This is caused by the script update-alternatives.
+"[" can not be used directly in sed expression, which should be escaped
+in sed expression.
+
+Signed-off-by: Jian Liu <jian.liu@windriver.com>
+---
+ update-alternatives |    6 +++++-
+ 1 files changed, 5 insertions(+), 1 deletions(-)
+
+diff --git a/update-alternatives b/update-alternatives
+index c332309..8916cbd 100644
+--- a/update-alternatives
++++ b/update-alternatives
+@@ -68,6 +68,10 @@ protect_slashes() {
+ 	sed -e 's/\//\\\//g'
+ }
+ 
++protect_special_character() {
++	sed -e 's/\[/\\\[/g'
++}
++
+ remove_alt() {
+ 	[ $# -lt 2 ] && return 1
+ 	local name="$1"
+@@ -75,7 +79,7 @@ remove_alt() {
+ 
+ 	[ ! -f $ad/$name ] && return 0
+ 
+-	path=`echo $path | protect_slashes`
++	path=`echo $path | protect_slashes | protect_special_character`
+ 	sed -ne "/^$path\>.*/!p" $ad/$name > $ad/$name.new
+ 	mv $ad/$name.new $ad/$name
+ }
+-- 
+1.7.0.5
 
 
-
+--------------000502090001010900080803--
