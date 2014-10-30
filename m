@@ -1,51 +1,44 @@
-Return-Path: <paul.betafive@gmail.com>
+Return-Path: <mgloff@emacinc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B9C76E0084D; Thu, 30 Oct 2014 12:08:53 -0700 (PDT)
+	id E9674E0084D; Thu, 30 Oct 2014 12:47:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.175 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.180 listed in list.dnswl.org]
-Received: from mail-qc0-f180.google.com (mail-qc0-f180.google.com
-	[209.85.216.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72CE6E007BA
-	for <yocto@yoctoproject.org>; Thu, 30 Oct 2014 12:08:47 -0700 (PDT)
-Received: by mail-qc0-f180.google.com with SMTP id o8so4616566qcw.25
-	for <yocto@yoctoproject.org>; Thu, 30 Oct 2014 12:08:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=MCJ9wE4dlgXyOWv7dFfU6gBDUNbRaB+dp4hLi78ID7E=;
-	b=Tpee4TpRT0uZLXP0b8AwPgtjv3k4stdEnpjt0UMAnkTgyqbKLxH62xcXz0W/8a9Lr2
-	pfZbh/R5wNVyHMszLayxKmFalBNTHrWK/SIf1LM1HEAmp7lTMynfnMMZRCIQfPgG+H66
-	jFagwIE/TmOb1nWAqh2bGsW4q/Ou96lwbcMfLPP3A0CJd1k2cpdaIxASFlUvgzLwpG6f
-	xd5y6o2Mmo2qL4Pxq5yaB2lk5RBzzu6G77kpv9tzl7X4uHjb6j+PCO4Z84A7D7sz7Y1d
-	5dw9rb9vSm/rqtJMfAxEWU7ltIlzJjETRuuV6UNStK9eMFGtj/dn2oLqCjzCHQhS/Dm5
-	otNA==
-X-Received: by 10.224.97.72 with SMTP id k8mr29349052qan.25.1414696106847;
-	Thu, 30 Oct 2014 12:08:26 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-ig0-f175.google.com (mail-ig0-f175.google.com
+	[209.85.213.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28CCDE007BA
+	for <yocto@yoctoproject.org>; Thu, 30 Oct 2014 12:46:58 -0700 (PDT)
+Received: by mail-ig0-f175.google.com with SMTP id h3so4028868igd.2
+	for <yocto@yoctoproject.org>; Thu, 30 Oct 2014 12:46:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=0hszLbX+YPmWgqTDOs5dG25HUxtwRFShbMQFkSR5984=;
+	b=YDIgy/mAAPiGVMfqnKzmfG21BL2AO6s0lxwhOhxxBltWAa7T04YG8PwKTYsD/r6Kmd
+	xHVPCgJOEer+BxkAwcPituSL4asK7sPa/iQJal4NmTSTz0gWhYndtUmkBdeBDPFxKFEu
+	zIvWLSI9SRic9hBmJdnZS67V+/f+5G9Wq8mLQv05I/AQeMC3z13rvytRD1gRfvQy90ww
+	rOUR213wb8fpFNYztqvf9VAtEJ4vuwPIWj46Js+r77iqx25BSG1d7CQRdWQGrduOK7Hm
+	eO4HlsYUtM39NP9cAcjeDG/R3cgj4SeBtEDPyti6m32Xtw7t74b9XzzK/zLZ8jI2/b2D
+	RXKQ==
+X-Gm-Message-State: ALoCoQnTMQTT3pJ81wXIPudVgSvK8Jd26yoSPLKYoBzP2CNPI2ihoTZtR/9fbhVuqESFkwBLis78
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.140.142.78 with HTTP; Thu, 30 Oct 2014 12:07:46 -0700 (PDT)
-In-Reply-To: <545281C5.2020004@linux.intel.com>
-References: <545281C5.2020004@linux.intel.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Thu, 30 Oct 2014 19:07:46 +0000
-X-Google-Sender-Auth: mY3-rwf9TCC7QJyIgv2ptBvIes4
-Message-ID: <CANyK_8cJA7F3CTZ8psAUaAz-qBG31cM2fJEsd6VLX-ALcxBoKg@mail.gmail.com>
-To: Saul Wold <sgw@linux.intel.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Package Upgrading for 1.8
+X-Received: by 10.51.16.99 with SMTP id fv3mr529298igd.31.1414698418262; Thu,
+	30 Oct 2014 12:46:58 -0700 (PDT)
+Received: by 10.107.148.145 with HTTP; Thu, 30 Oct 2014 12:46:58 -0700 (PDT)
+Date: Thu, 30 Oct 2014 14:46:58 -0500
+Message-ID: <CALXw4G7HBPGg-WPZf15Sg8Y7-cFKNK0_-bcKB=PFQZ40qpCuZQ@mail.gmail.com>
+From: Michael Gloff <mgloff@emacinc.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Build warning chown/chmod
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,42 +50,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Oct 2014 19:08:53 -0000
+X-List-Received-Date: Thu, 30 Oct 2014 19:47:01 -0000
+Content-Type: multipart/alternative; boundary=001a1134a522af94af0506a924f5
+
+--001a1134a522af94af0506a924f5
 Content-Type: text/plain; charset=UTF-8
 
-On 30 October 2014 18:21, Saul Wold <sgw@linux.intel.com> wrote:
->
-> Folks,
->
-> Just a reminder now that master is open again for patches, now is a great
-> time to consider doing package Updates.  Based on some rough estimates from
-> 1.7 we did around 300 updates from 34 contributors, that got us about 73%
-> packages upgrades.
->
-> We currently have about 180 packages due to be updated based on the Package
-> Reporting from this last week, about 65 of those where not updated in 1.7 so
-> should be given some priority (see attached file), there are also 10 that
-> need maintainers, let me know if you are interested in any of them.
+I'm getting a lot of warnings of
 
-I don't see opkg, opkg-utils or libarchive in those emails or on
-http://packages.yoctoproject.org/upgradepkgname. Any particular reason
-they're missing?
+copyfile: failed to chown/chmod
+/opt/oe/build/tmp/work/core2-32-emac-linux/gcc-runtime/4.8.2-r0/gcc-4.8.2/build.i586-emac-linux.i586-emac-linux/gcc/config/sparc/linux64.h
 
-I'll send an upgrade to opkg v0.2.3 tomorrow, then further upgrades
-once they're available.
+I suspect it is something with my development machine as this doesn't
+happen on the build server. For some reason when any patch is applied, the
+ownership of the patched files gets changed to root, thus the warning. I've
+cleared the build directory to no avail. I'm working with daisy branch of
+both poky and meta-oe. Has anyone else seen this before or possibly know
+what might be the cause?
 
-Once I've merged a patch by Jian Liu to opkg-utils there will likely
-be an opkg-utils SRCREV update.
+Michael Gloff
 
-I have my eye on libarchive as well as I'm using it within the
-development versions of opkg. I'm subscribed to their announcement
-mailing list so I'll know when a new release is made.
+--001a1134a522af94af0506a924f5
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Cheers,
+<div dir=3D"ltr"><div><div>I&#39;m getting a lot of warnings of<br><br>copy=
+file: failed to chown/chmod /opt/oe/build/tmp/work/core2-32-emac-linux/gcc-=
+runtime/4.8.2-r0/gcc-4.8.2/build.i586-emac-linux.i586-emac-linux/gcc/config=
+/sparc/linux64.h<br><br></div>I suspect it is something with my development=
+ machine as this doesn&#39;t happen on the build server. For some reason wh=
+en any patch is applied, the ownership of the patched files gets changed to=
+ root, thus the warning. I&#39;ve cleared the build directory to no avail. =
+I&#39;m working with daisy branch of both poky and meta-oe. Has anyone else=
+ seen this before or possibly know what might be the cause?<br><br></div>Mi=
+chael Gloff<br></div>
 
--- 
-Paul Barker
-
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
-
+--001a1134a522af94af0506a924f5--
