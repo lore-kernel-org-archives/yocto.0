@@ -1,49 +1,57 @@
-Return-Path: <mikehogg@mountdrive.com>
+Return-Path: <xerofoify@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C0BE2E007A0; Fri, 31 Oct 2014 08:15:19 -0700 (PDT)
+	id 41675E007A0; Fri, 31 Oct 2014 10:44:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (xerofoify[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.169 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [46.183.10.83 listed in list.dnswl.org]
-X-Greylist: delayed 538 seconds by postgrey-1.32 at yocto-www;
-	Fri, 31 Oct 2014 08:15:10 PDT
-Received: from 5.array2.smtp.34sp.com (5.array2.smtp.34sp.com [46.183.10.83])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 461D8E00749
-	for <yocto@yoctoproject.org>; Fri, 31 Oct 2014 08:15:10 -0700 (PDT)
-Received: from smtpauth1.array1.smtp.34sp.com (lvs3.34sp.com [80.82.124.221])
-	by 5.array2.smtp.34sp.com (Postfix) with ESMTP id 1A1BC202A3
-	for <yocto@yoctoproject.org>; Fri, 31 Oct 2014 15:06:10 +0000 (GMT)
-Received: from host81-148-60-18.in-addr.btopenworld.com ([81.148.60.18]:54532
-	helo=[192.168.192.40])
-	by smtpauth1.array1.smtp.34sp.com with esmtpsa (TLSv1:AES256-SHA:256)
-	(Exim 4.72) (envelope-from <mikehogg@mountdrive.com>)
-	id 1XkDmD-00023P-OB; Fri, 31 Oct 2014 15:06:09 +0000
-User-Agent: K-9 Mail for Android
-In-Reply-To: <BLU436-SMTP125444BFE2825F659D2B396929A0@phx.gbl>
-References: <BLU436-SMTP125444BFE2825F659D2B396929A0@phx.gbl>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ie0-f169.google.com (mail-ie0-f169.google.com
+	[209.85.223.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 194F1E00749
+	for <yocto@yoctoproject.org>; Fri, 31 Oct 2014 10:44:03 -0700 (PDT)
+Received: by mail-ie0-f169.google.com with SMTP id tr6so1798072ieb.0
+	for <yocto@yoctoproject.org>; Fri, 31 Oct 2014 10:44:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=em9hSIk9TNCVbsFeeyIy3OkLawHCCBcUucnXy93Yglc=;
+	b=oYobQkX3qahioKqECnIAwMbAWiKapBtaEEgm3JD4jie43XZ8QnuJ9abE+alWEBhU3l
+	HR8fwU/6S8vGlPKdPKYnDkK2A0Mq8Ve2ruWw4ciSWmIkRhYwHTSRja8q64CbsKyijsaS
+	DIVIkn927BZi7j2vNCXLcJB2kX6CTVFoQ1YPLmKVwH5HQr+W8KGcS8ukntUvCod0f+sQ
+	2RlwnZxcG0WcRxTN0vEfHt/9EUbRFcMRsbwsf95HTOjDdQ/oZS60t7rcWwrYaB+Xwtvr
+	eyJ/SG9K76SraOkdNx2rzgLzvI8RtGSdeW1uXkFOvfXn4cFn3Pkzocc/0jkeZcC8J+YY
+	FKWA==
+X-Received: by 10.43.2.4 with SMTP id ns4mr9751014icb.13.1414777442956;
+	Fri, 31 Oct 2014 10:44:02 -0700 (PDT)
+Received: from [192.168.0.50]
+	(CPE0026f3330aca-CM0026f3330ac6.cpe.net.cable.rogers.com.
+	[99.231.92.7])
+	by mx.google.com with ESMTPSA id xb4sm5859234igc.11.2014.10.31.10.44.01
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 31 Oct 2014 10:44:02 -0700 (PDT)
+Message-ID: <5453CA61.5090902@gmail.com>
+Date: Fri, 31 Oct 2014 13:44:01 -0400
+From: nick <xerofoify@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
 MIME-Version: 1.0
-From: Mike Hogg <mikehogg@mountdrive.com>
-Date: Fri, 31 Oct 2014 15:06:07 +0000
-To: Natural Groove <natural_groove@hotmail.fr>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <6686EF67-F451-4B2B-87D3-F9AB644F8299@mountdrive.com>
-X-Authenticated-As: mountdrive.com
-X-OriginalSMTPIP: 81.148.60.18
-X-34SP-MailScanner-Information: Please contact the ISP for more information
-X-34SP-MailScanner-ID: 1A1BC202A3.A2B9E
-X-34SP-MailScanner: Found to be clean
-X-34SP-MailScanner-SpamCheck: not spam, SpamAssassin (not cached,
-	score=0.002, required 6, HTML_MESSAGE 0.00, URIBL_BLOCKED 0.00)
-X-34SP-MailScanner-From: mikehogg@mountdrive.com
-X-Mailman-Approved-At: Fri, 31 Oct 2014 08:40:17 -0700
-Subject: Re: Raspberry b+ support
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Angstrom Build Failing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,65 +63,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Oct 2014 15:15:19 -0000
-Content-Type: multipart/alternative;
-	boundary="----I2SV4Y0RQ4BTY0X9KAHPXY05QJHIZU"
+X-List-Received-Date: Fri, 31 Oct 2014 17:44:10 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
-------I2SV4Y0RQ4BTY0X9KAHPXY05QJHIZU
-Content-Type: text/plain;
- charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Greetings,
+I am getting a failing build after cloning the angstrom build scripts. My build log is pasted below.
+Cheers Nick 
+nick@nick-System-Product-Name:/media/nick/Build_Drive/setup-scripts$ MACHINE=beaglebone ./oebb.sh update
+Processing bitbake: Current branch 1.20 is up to date.
+Processing meta-angstrom: Current branch angstrom-v2013.12-yocto1.5 is up to date.
+Processing meta-openembedded: Current branch angstrom-staging-yocto1.5 is up to date.
+Processing meta-beagleboard: Current branch dora is up to date.
+Processing meta-ti: Current branch angstrom-staging-yocto1.5 is up to date.
+Processing meta-ettus: Fixed to revision 5a6a642f6707dc42a5210dbbf01d2bdfd869d4b0, skipping update
+Processing meta-fsl-arm: Current branch angstrom-staging-yocto1.5 is up to date.
+Processing meta-fsl-arm-extra: Current branch dora is up to date.
+Processing meta-nslu2: Fixed to revision bdcb4297ddb22f4eecddd4d8436cf9b6c6111922, skipping update
+Processing meta-smartphone: Fixed to revision 537d0c2ab41284012e1ba79716b085a861a6812a, skipping update
+Processing meta-intel: Current branch dora is up to date.
+Processing meta-xilinx: Fixed to revision 21c3cd3f058d736742ebc23a7a954f23456fbea5, skipping update
+Processing meta-openpandora: Fixed to revision 53ad3e60e4ed4fc7b946a2130da4bb9a8671341c, skipping update
+Processing meta-raspberrypi: Current branch dora is up to date.
+Processing meta-atmel: Current branch angstromv2013.12-staging is up to date.
+Processing meta-handheld: Fixed to revision 5b5e68a93aae1016f5ac1d057a721b2dbf30b8d8, skipping update
+Processing meta-opie: Fixed to revision b241408b31c2ffd941b8b38bd385136ef675a703, skipping update
+Processing meta-java: Current branch dora is up to date.
+Processing meta-browser: Fixed to revision fc3969f63bda343c38c40a23f746c560c4735f3e, skipping update
+Processing meta-mono: Fixed to revision ac286b1682e6bcc486ceb30ef90a936949bbfeab, skipping update
+layer repository name: meta-kde
+layer uri: git://gitorious.org/openembedded-core-layers/meta-kde.git
+layer branch/revision: master/f45abfd4d87b0132a2565499392d2d49f465d847
 
-Yes you can and I have=2E Search the pi forum for my posts there, last time=
- I tried a yocto build for the b+ it pulled in the old pi firmware which do=
-esn't work on the b+=2E Per my notes on the pi forum thats easily fixed by =
-copying firmware from another b+ image=2E=20
+Layer checkout missing at /media/nick/Build_Drive/setup-scripts/sources/meta-kde, creating one
+Cloning into '/media/nick/Build_Drive/setup-scripts/sources/meta-kde'...
+fatal: protocol error: expected sha/ref, got '
+----------------------------------------------
+Cannot find repository /openembedded-core-layers/meta-kde.git
+----------------------------------------------'
+/media/nick/Build_Drive/setup-scripts/scripts/layerman: line 19: cd: /media/nick/Build_Drive/setup-scripts/sources/meta-kde: No such file or directory
+fatal: Could not parse object 'f45abfd4d87b0132a2565499392d2d49f465d847'.
+Layers present in repository:
+find: `/media/nick/Build_Drive/setup-scripts/sources/meta-kde': No such file or directory
 
-On 31 October 2014 12:13:53 GMT+00:00, Natural Groove <natural_groove@hotm=
-ail=2Efr> wrote:
->Hi,
->
->I am interested in using oe to crossbuild stuff for raspberry pi b+,
->and=20
->I wondered if someone already achieved to do this?
-> From what I read there are some specifics to deal with, can someone=20
->help me with setting this up for b+?
->
->Thanks in advance
->Natural
->
->---
->Ce courrier =C3=A9lectronique ne contient aucun virus ou logiciel
->malveillant parce que la protection avast! Antivirus est active=2E
->http://www=2Eavast=2Ecom
->
->--=20
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject=2Eorg
->https://lists=2Eyoctoproject=2Eorg/listinfo/yocto
+Processing meta-kde: /media/nick/Build_Drive/setup-scripts/scripts/layerman: line 79: cd: /media/nick/Build_Drive/setup-scripts/sources/meta-kde: No such file or directory
+Processing meta-linaro: Current branch dora is up to date.
+Processing meta-minnow: Current branch dora is up to date.
+Processing meta-sunxi: Fixed to revision f1e777d5526ea7c7a4f3a828b21d26c2c0650b83, skipping update
+Processing meta-qt5: Current branch dora is up to date.
+Processing meta-ros: Fixed to revision 64c8b5edb221263e7fac7c03629c730ade422dff, skipping update
+Processing meta-uav: Fixed to revision 6f663cc32532ae66dd6c06d3d79c0f3578975a6c, skipping update
+Processing meta-dominion: Current branch master is up to date.
+Processing meta-exynos: Fixed to revision ac21b106ce5c4c928f62e8f72ebeac9b02d113e2, skipping update
+Processing meta-telephony: Fixed to revision f71f5ea031d96a5a84bde4531974542ae49f8bee, skipping update
+Processing meta-qt5: Current branch dora is up to date.
+Processing openembedded-core: Current branch angstrom-staging-yocto1.5 is up to date.
 
-------I2SV4Y0RQ4BTY0X9KAHPXY05QJHIZU
-Content-Type: text/html;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html><head></head><body>Yes you can and I have=2E Search the pi forum for =
-my posts there, last time I tried a yocto build for the b+ it pulled in the=
- old pi firmware which doesn&#39;t work on the b+=2E Per my notes on the pi=
- forum thats easily fixed by copying firmware from another b+ image=2E <br>=
-<br><div class=3D"gmail_quote">On 31 October 2014 12:13:53 GMT+00:00, Natur=
-al Groove &lt;natural_groove@hotmail=2Efr&gt; wrote:<blockquote class=3D"gm=
-ail_quote" style=3D"margin: 0pt 0pt 0pt 0=2E8ex; border-left: 1px solid rgb=
-(204, 204, 204); padding-left: 1ex;">
-<pre class=3D"k9mail">Hi,<br /><br />I am interested in using oe to crossb=
-uild stuff for raspberry pi b+, and <br />I wondered if someone already ach=
-ieved to do this?<br /> From what I read there are some specifics to deal w=
-ith, can someone <br />help me with setting this up for b+?<br /><br />Than=
-ks in advance<br />Natural<br /><br />---<br />Ce courrier =C3=A9lectroniqu=
-e ne contient aucun virus ou logiciel malveillant parce que la protection a=
-vast! Antivirus est active=2E<br /><a href=3D"http://www=2Eavast=2Ecom">htt=
-p://www=2Eavast=2Ecom</a><br /></pre></blockquote></div></body></html>
-
-------I2SV4Y0RQ4BTY0X9KAHPXY05QJHIZU--
