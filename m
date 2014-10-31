@@ -1,39 +1,47 @@
-Return-Path: <sgw@linux.intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 895A1E0084D; Thu, 30 Oct 2014 14:50:20 -0700 (PDT)
+	id 5EEB8E0084D; Thu, 30 Oct 2014 17:19:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B522E007BA
-	for <yocto@yoctoproject.org>; Thu, 30 Oct 2014 14:50:12 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga103.fm.intel.com with ESMTP; 30 Oct 2014 14:44:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,862,1389772800"; d="scan'208";a="408742816"
-Received: from unknown (HELO [10.255.13.109]) ([10.255.13.109])
-	by FMSMGA003.fm.intel.com with ESMTP; 30 Oct 2014 14:42:01 -0700
-Message-ID: <5452B292.6050204@linux.intel.com>
-Date: Thu, 30 Oct 2014 14:50:10 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.7.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.45 listed in list.dnswl.org]
+Received: from mail-qg0-f45.google.com (mail-qg0-f45.google.com
+	[209.85.192.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25157E007BA
+	for <yocto@yoctoproject.org>; Thu, 30 Oct 2014 17:19:05 -0700 (PDT)
+Received: by mail-qg0-f45.google.com with SMTP id z107so4879630qgd.32
+	for <yocto@yoctoproject.org>; Thu, 30 Oct 2014 17:19:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=NqWO81/3spR239xT/vWEcZMGsCCZHP4WCWUOguMBvNU=;
+	b=N5J+BvLH8hyYDC4GBqIwCV1txfkZ8Ozb7vuMMIAPvdnAWX+51PrTYK7BOieTM9LgwX
+	KjFKzh6I/Pl+DqMsPGaOoybVKjLriyKP3ZJreZXMLUEdIXHqJS9esshmnVYkdQxJNkCh
+	Y6fahP2ACIEyw2gLnUKmcpL8LK6uyaU/0f3qTCwHbqBC6pOoQ2VmcNF4EFM0icb/0led
+	RRxnDyy22vCvsO775jKQtkVxZbyeBh1SPMTg4qCZYYYVf8YK8pE45yo305NU8QTIU3VO
+	Qgs5BgRiheg1WgJgxWdofbiVjUN79BcZXFfPfCgu1UOtT2rwZoCbskIu4NsnypIFOS2E
+	6g9w==
+X-Gm-Message-State: ALoCoQnuCXfluUv1SnPQbZ9pzL1bB877dULJ/eTAmaG5JCRDz4L8awHtEZTWZLCePaAvd34xf/1B
+X-Received: by 10.224.2.135 with SMTP id 7mr32411529qaj.64.1414714438215; Thu,
+	30 Oct 2014 17:13:58 -0700 (PDT)
 MIME-Version: 1.0
-To: Paul Barker <paul@paulbarker.me.uk>
-References: <545281C5.2020004@linux.intel.com>
-	<CANyK_8cJA7F3CTZ8psAUaAz-qBG31cM2fJEsd6VLX-ALcxBoKg@mail.gmail.com>
-In-Reply-To: <CANyK_8cJA7F3CTZ8psAUaAz-qBG31cM2fJEsd6VLX-ALcxBoKg@mail.gmail.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Package Upgrading for 1.8
+Received: by 10.140.98.213 with HTTP; Thu, 30 Oct 2014 17:13:38 -0700 (PDT)
+In-Reply-To: <CALXw4G7HBPGg-WPZf15Sg8Y7-cFKNK0_-bcKB=PFQZ40qpCuZQ@mail.gmail.com>
+References: <CALXw4G7HBPGg-WPZf15Sg8Y7-cFKNK0_-bcKB=PFQZ40qpCuZQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 31 Oct 2014 00:13:38 +0000
+Message-ID: <CAJTo0LamCUm7qwjM0rAdtUw=fJhkXYzDKUtg79HN+YS+9LGxJw@mail.gmail.com>
+To: Michael Gloff <mgloff@emacinc.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Build warning chown/chmod
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,49 +53,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Oct 2014 21:50:20 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 31 Oct 2014 00:19:18 -0000
+Content-Type: multipart/alternative; boundary=001a11c3defa8c8bbe0506acdf8c
 
-On 10/30/2014 12:07 PM, Paul Barker wrote:
-> On 30 October 2014 18:21, Saul Wold <sgw@linux.intel.com> wrote:
->>
->> Folks,
->>
->> Just a reminder now that master is open again for patches, now is a great
->> time to consider doing package Updates.  Based on some rough estimates from
->> 1.7 we did around 300 updates from 34 contributors, that got us about 73%
->> packages upgrades.
->>
->> We currently have about 180 packages due to be updated based on the Package
->> Reporting from this last week, about 65 of those where not updated in 1.7 so
->> should be given some priority (see attached file), there are also 10 that
->> need maintainers, let me know if you are interested in any of them.
->
-> I don't see opkg, opkg-utils or libarchive in those emails or on
-> http://packages.yoctoproject.org/upgradepkgname. Any particular reason
-> they're missing?
->
-I will look into that, could be that the code in the fetcher is not 
-catching opkg correctly, we are working on updating that code to do a 
-better job.
+--001a11c3defa8c8bbe0506acdf8c
+Content-Type: text/plain; charset=UTF-8
 
-> I'll send an upgrade to opkg v0.2.3 tomorrow, then further upgrades
-> once they're available.
->
-> Once I've merged a patch by Jian Liu to opkg-utils there will likely
-> be an opkg-utils SRCREV update.
->
-> I have my eye on libarchive as well as I'm using it within the
-> development versions of opkg. I'm subscribed to their announcement
-> mailing list so I'll know when a new release is made.
->
-Thanks, saw your email earlier, thanks your hard work on the OPKG* know 
-it's appreciated.
+On 30 October 2014 19:46, Michael Gloff <mgloff@emacinc.com> wrote:
 
-Sau!
-
-
-> Cheers,
+> copyfile: failed to chown/chmod
+> /opt/oe/build/tmp/work/core2-32-emac-linux/gcc-runtime/4.8.2-r0/gcc-4.8.2/build.i586-emac-linux.i586-emac-linux/gcc/config/sparc/linux64.h
+>
+> I suspect it is something with my development machine as this doesn't
+> happen on the build server. For some reason when any patch is applied, the
+> ownership of the patched files gets changed to root, thus the warning. I've
+> cleared the build directory to no avail. I'm working with daisy branch of
+> both poky and meta-oe. Has anyone else seen this before or possibly know
+> what might be the cause?
 >
 
+Check for sticky bits on directories such as /opt or /opt/oe.
+
+Ross
+
+--001a11c3defa8c8bbe0506acdf8c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 30 October 2014 19:46, Michael Gloff <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:mgloff@emacinc.com" target=3D"_blank">mgloff@emacinc.com</a>&gt;</span=
+> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex"><div>copyfile: failed to chown/c=
+hmod /opt/oe/build/tmp/work/core2-32-emac-linux/gcc-runtime/4.8.2-r0/gcc-4.=
+8.2/build.i586-emac-linux.i586-emac-linux/gcc/config/sparc/linux64.h<br><br=
+></div>I suspect it is something with my development machine as this doesn&=
+#39;t happen on the build server. For some reason when any patch is applied=
+, the ownership of the patched files gets changed to root, thus the warning=
+. I&#39;ve cleared the build directory to no avail. I&#39;m working with da=
+isy branch of both poky and meta-oe. Has anyone else seen this before or po=
+ssibly know what might be the cause?<span class=3D"HOEnZb"><font color=3D"#=
+888888"><br></font></span></blockquote></div><br>Check for sticky bits on d=
+irectories such as /opt or /opt/oe.</div><div class=3D"gmail_extra"><br></d=
+iv><div class=3D"gmail_extra">Ross</div></div>
+
+--001a11c3defa8c8bbe0506acdf8c--
