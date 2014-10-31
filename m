@@ -1,49 +1,51 @@
 Return-Path: <paul.betafive@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6563E008B3; Fri, 31 Oct 2014 03:28:11 -0700 (PDT)
+	id 515AEE008B3; Fri, 31 Oct 2014 03:45:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.43 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.179 listed in list.dnswl.org]
-Received: from mail-qc0-f179.google.com (mail-qc0-f179.google.com
-	[209.85.216.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E3F3E007BA
-	for <yocto@yoctoproject.org>; Fri, 31 Oct 2014 03:28:01 -0700 (PDT)
-Received: by mail-qc0-f179.google.com with SMTP id o8so5519361qcw.24
-	for <yocto@yoctoproject.org>; Fri, 31 Oct 2014 03:28:00 -0700 (PDT)
+Received: from mail-qa0-f43.google.com (mail-qa0-f43.google.com
+	[209.85.216.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BEC6E007BA
+	for <yocto@yoctoproject.org>; Fri, 31 Oct 2014 03:45:05 -0700 (PDT)
+Received: by mail-qa0-f43.google.com with SMTP id j7so5031024qaq.16
+	for <yocto@yoctoproject.org>; Fri, 31 Oct 2014 03:45:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:sender:in-reply-to:references:from:date:message-id
 	:subject:to:cc:content-type;
-	bh=5CrCCrMCgajYnIgjMboBmPacPR3q8EnDZQkfGCZpHBI=;
-	b=Odknd5y4Pv6VxCRsYwMArxiizpbHLKZkwmuGgpPkye7Pp0XJLeTy5QAoJwFZ/cOsF5
-	LSsXxvf3vUYqbYrRZDewlmK6z1c+sqPEaYn4NUV2v7Nb3tZgCawzcZJjR5CD/tB39sJJ
-	yClu3DbSRfkBcp5JyaBhdWxmnG5JYtu+on8SfX19IZKMFVWf9x/ooANgCoOgQuRenEaY
-	Boms5lhNKY28suJw7XQI4y+h9yaTIlUufBxgK82yIoxXKsrKdaTxBSKfMA2wdRJCyJcH
-	NUwYtG+e6paV3ZTi0xkA+AEvgnWtWOPmxtz52D6v9hppinOghYQQ538mgdlEVW2KbkHR
-	X7vQ==
-X-Received: by 10.224.97.72 with SMTP id k8mr35273708qan.25.1414751280493;
-	Fri, 31 Oct 2014 03:28:00 -0700 (PDT)
+	bh=eqn+A6oX9o+dNAxvvOM5/Bq83Y9CHrYm+J9RJ7VAwCw=;
+	b=TqDQEbc2dixWi15p9w6J7WTbCVvH51rzqTsebN9K4zyPW5duYtvsXq5c1Hma4Vu0xL
+	i/ExDylmV7/9ABqCAJPdsCTO7I2g2H4BhD/rozHoJS9k6nGdnttrHRFiBpnwvHgWCZ7T
+	kGkivsKWz4DCETyjWl4eTI6o5UomH0FOmmD4FJHrGRiD7Og4TzE6l1BXW0lFHuRTsSNe
+	vBvxmOhj/xS21a+h1WCs+DJyapgOqYHYsO/yfZEdCNN2uaDs6065lQduA/Qo1txfVJzp
+	2t+aZTEndRVwrViTE084vsw2ugQrFAJtBk4EWVfIeAgCFZvvmjacvLC0AdIz8jsDadLV
+	3Mrg==
+X-Received: by 10.224.61.7 with SMTP id r7mr36059748qah.9.1414752304541; Fri,
+	31 Oct 2014 03:45:04 -0700 (PDT)
 MIME-Version: 1.0
 Sender: paul.betafive@gmail.com
-Received: by 10.140.142.78 with HTTP; Fri, 31 Oct 2014 03:27:20 -0700 (PDT)
-In-Reply-To: <5452E48D.50505@windriver.com>
-References: <5451CF50.9060501@windriver.com> <5452E48D.50505@windriver.com>
+Received: by 10.140.142.78 with HTTP; Fri, 31 Oct 2014 03:44:24 -0700 (PDT)
+In-Reply-To: <54525C63.4070309@linaro.org>
+References: <CANyK_8cFPyXs2R5+x3AiMNnPW4Q6hWnNdsjTHrf50M4F6VGJQQ@mail.gmail.com>
+	<54525C63.4070309@linaro.org>
 From: Paul Barker <paul@paulbarker.me.uk>
-Date: Fri, 31 Oct 2014 10:27:20 +0000
-X-Google-Sender-Auth: j2OknuNK4D8fo24PZi2AG6aOWmo
-Message-ID: <CANyK_8dZHUQqc=hhP=EFuWGY7rgd7wL9XMPtwQ0NAw=JzhYKFg@mail.gmail.com>
-To: opkg-devel <opkg-devel@googlegroups.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [opkg-devel] Re: [opkg-utils PATCH] update-alternatives: Installing fails for "["
+Date: Fri, 31 Oct 2014 10:44:24 +0000
+X-Google-Sender-Auth: FQA3DNZo83Eynv93gCvTdjo3iBA
+Message-ID: <CANyK_8dxGiwRJ_o-g-QCYS2XBrZDV0jHbZ+gO=6n5pBs_4Q7xA@mail.gmail.com>
+To: Trevor Woerner <trevor.woerner@linaro.org>
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+	OE Core <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] opkg Status Update
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,27 +57,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Oct 2014 10:28:11 -0000
+X-List-Received-Date: Fri, 31 Oct 2014 10:45:07 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On 31 October 2014 01:23, Liu Jian <jian.liu@windriver.com> wrote:
-> Insalling packages using update-alternatives will give the following
-> error lines:
-> sed: -e expression #1, char 41: unterminated address regex
-> sed: -e expression #1, char 42: unterminated address regex
-> This is caused by the script update-alternatives.
-> "[" can not be used directly in sed expression, which should be escaped
-> in sed expression.
+On 30 October 2014 15:42, Trevor Woerner <trevor.woerner@linaro.org> wrote:
+> Hi Paul,
 >
-> Signed-off-by: Jian Liu <jian.liu@windriver.com>
-> ---
-> update-alternatives | 6 +++++-
-> 1 files changed, 5 insertions(+), 1 deletions(-)
+> I too wanted to express my thanks to you for this work!
+>
+> On 10/28/14 19:33, Paul Barker wrote:
+>> This would be a great time for someone to step up and
+>> help move things forward to v0.4.0 and beyond.
+>
+> Is there a roadmap for opkg somewhere?
 
-I've merged this to opkg-utils, many thanks!
+There isn't currently a roadmap. I'm currently just trying to get
+v0.3.0 out the door as it's dragged on a lot longer than I'd planned.
+I'm probably going to aim for shorter, smaller development cycles
+after this release.
 
-I'm about to send a patch for openembedded-core which updates the
-opkg-utils SRCREV to use this new commit.
+Once v0.3.0 is released I'll be updating the opkg issue tracker
+(https://code.google.com/p/opkg/issues) to include planned bugfixes
+and enhancements for the v0.4.0 and v0.5.0 releases. If you've got any
+feature requests for the next release cycle or two, please add them to
+the issue tracker.
+
+Thanks,
 
 -- 
 Paul Barker
