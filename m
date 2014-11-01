@@ -1,49 +1,38 @@
-Return-Path: <vmartin@avaya.com>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3769DE0084E; Sat,  1 Nov 2014 06:45:26 -0700 (PDT)
+	id 20DB1E0084E; Sat,  1 Nov 2014 08:53:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [192.94.38.131 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [198.152.71.100 listed in list.dnswl.org]
-Received: from de307622-de-outbound.net.avaya.com
-	(de307622-de-outbound.net.avaya.com [198.152.71.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C79F4E00777
-	for <yocto@yoctoproject.org>; Sat,  1 Nov 2014 06:45:13 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: Ah4FAC/jVFSHCzIm/2dsb2JhbABcgmsjgSwE1QsCgRUWAQEBAQEBfIQCAQEBAQMSKEsEAgEIDQEDBAEBCxQJBzIUCQgBAQQBEggaiB8BqimfIAEBAQEBBQEBAQEBAQEBGpBfOAaDJ4EeBZIalAWOMoN4bIFIgQMBAQE
-X-IronPort-AV: E=Sophos;i="5.07,295,1413259200"; d="scan'208";a="78990598"
-Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
-	([135.11.50.38]) by de307622-de-outbound.net.avaya.com with ESMTP;
-	01 Nov 2014 09:45:10 -0400
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC01.global.avaya.com) ([135.11.85.12])
-	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/AES128-SHA;
-	01 Nov 2014 09:45:10 -0400
-Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
-	AZ-US1EXHC01.global.avaya.com ([135.11.85.12]) with mapi id
-	14.03.0174.001; Sat, 1 Nov 2014 09:45:09 -0400
-From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: Bob Cochran <yocto@mindchasers.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] How to debug dependency/setscene/sstate issues
-Thread-Index: Ac/1y75N0KVW1nbGS6yguTxUJ5ovGQAKq5OAAAchGJA=
-Date: Sat, 1 Nov 2014 13:45:08 +0000
-Message-ID: <30C2D590D16A5C46ADFE65219103779841151DE1@AZ-US1EXMB03.global.avaya.com>
-References: <30C2D590D16A5C46ADFE6521910377984114ED96@AZ-US1EXMB03.global.avaya.com>
-	<5454DB3F.9080209@mindchasers.com>
-In-Reply-To: <5454DB3F.9080209@mindchasers.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.11.85.50]
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1121E00777
+	for <yocto@yoctoproject.org>; Sat,  1 Nov 2014 08:53:42 -0700 (PDT)
+Received: from svr-orw-fem-04.mgc.mentorg.com ([147.34.97.41])
+	by relay1.mentorg.com with esmtp 
+	id 1Xkazk-0005Nu-Lr from Joe_MacDonald@mentor.com ;
+	Sat, 01 Nov 2014 08:53:40 -0700
+Received: from burninator (147.34.91.1) by svr-orw-fem-04.mgc.mentorg.com
+	(147.34.97.41) with Microsoft SMTP Server id 14.3.181.6; Sat, 1 Nov 2014
+	08:53:40 -0700
+Received: by burninator (Postfix, from userid 1000)	id 2F422582054; Sat,  1
+	Nov 2014 11:53:39 -0400 (EDT)
+Date: Sat, 1 Nov 2014 11:53:39 -0400
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: <yocto@yoctoproject.org>
+Message-ID: <20141101155338.GH5513@mentor.com>
 MIME-Version: 1.0
-Subject: Re: How to debug dependency/setscene/sstate issues
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-703 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: [meta-selinux] master-next updated
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,30 +44,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 01 Nov 2014 13:45:26 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Sat, 01 Nov 2014 15:53:57 -0000
+X-Groupsio-MsgNum: 22015
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="dCSxeJc5W8HZXZrD"
+Content-Disposition: inline
+
+--dCSxeJc5W8HZXZrD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Bob Cochran
-> Sent: November 01, 2014 9:08 AM
-> To: yocto@yoctoproject.org
-> Subject: Re: [yocto] How to debug dependency/setscene/sstate issues
->=20
-> Won't Toaster give you the insight you seek?
->=20
-> I still need to ramp up on mastering it, but I was hoping it would help w=
-ith
-> this sort of thing.
->=20
+Happy Halloween, all.  There were a few treats left over, so here's one
+for anyone using meta-selinux.  master-next has been updated with the
+latest (stable) userspace tools that will match the refpolicy updates I
+did back in September.  I'm probably also going to provide another
+userspace update to the next stable release when it is out (it's at rc5
+the last time I looked) but unless that happens in the next couple of
+days, it won't be before we create a 1.7 branch in the layer.
 
-I'm still a Yocto newbie, so not familiar with Toaster.
+As with any Halloween treat, please check it over carefully before
+consuming.  If nothing spooky pops up in the next couple of days,
+master-next will become master, we'll create the branch and master-next
+will again be left to the cobwebs for a little while.
 
-Thanks for the tip, I'll see what it can do for me.
+Boo!
 
-MV
-=20
+--=20
+-Joe MacDonald.
+:wq
 
+--dCSxeJc5W8HZXZrD
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iQEcBAEBAgAGBQJUVQH/AAoJEEn8ffcsOfaWR40H/1G9jZB1aq74Ak6KXi4ClBDo
+ZuUS5e5w+tEe0g7bQrYgNNJLUEiiAlLLdWV21FtEpECS29RgQVGFcnkgnUGXzcSQ
+PpJUzt6rKZcwTeqdczsN/ITd9Rs03+uSbjzASQEvlCgpaKRLdUQRoPpCD7MUvLmc
+3bMpjBGiam/wRzr6jWzFNGFTuLSzUJD2VEQRpCh+XZX0nsoGJzoJtXlgW9KNOl64
+A8VawJ21FrAQR5S8C28zoga5fluJtTKoSdxQL4CGZ8M5falk7wCcRBVB98cQxSrz
+6em4EnUqaxdV+S6LBvhBX21QvQT08CMn4q77Dx1Y1z3/S++pEHZkTguuYWLhqH8=
+=YxFX
+-----END PGP SIGNATURE-----
+
+--dCSxeJc5W8HZXZrD--
