@@ -1,53 +1,54 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <jdelapena@lexmark.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9DE4E008B5; Sat,  1 Nov 2014 21:13:24 -0700 (PDT)
+	id 00B35E008BA; Sun,  2 Nov 2014 15:35:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.170 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pd0-f170.google.com (mail-pd0-f170.google.com
-	[209.85.192.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE7E0E0085A
-	for <yocto@yoctoproject.org>; Sat,  1 Nov 2014 21:13:21 -0700 (PDT)
-Received: by mail-pd0-f170.google.com with SMTP id z10so9566334pdj.15
-	for <yocto@yoctoproject.org>; Sat, 01 Nov 2014 21:13:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=3vmSmepnClTxTmBYEcHZe0x0+HveJtUhvK1B9gPLVGo=;
-	b=ePV7TYIpCy609yf+1j0ZtMJR0xbqL6t+FC1RUtS7Wqzm1x/PbakXX/rzX9ZwoObWKm
-	LAyIB9YCULhGFJDE2Y7Vo2pwYS+Bt7vvgh6GVnZL6zjuabUSYQPU1lfgV6FMEDNgaaxK
-	AL6fvMnvCJqhVRMJt2VgD/tK3Hj/vwU74Fk3xKZcn5491+pfjLdgNpVAnHyCwpM/x9nV
-	1wTL5Db26kcLinlAPmhQ054aS7Z+QyB+VLOXuFqRGMmKtjIhtrTDEMIQoGikgNGD0mRH
-	qL71hYszENvsyprD4Qj89Ytu1FDzxcDywnN2r0lnnTrEMMLzjH48edgxbj7SQMGWCKZO
-	4xWw==
-X-Received: by 10.66.241.239 with SMTP id wl15mr35564363pac.15.1414901601083; 
-	Sat, 01 Nov 2014 21:13:21 -0700 (PDT)
-Received: from Pahoa2.mvista.com (c-76-20-92-207.hsd1.ca.comcast.net.
-	[76.20.92.207])
-	by mx.google.com with ESMTPSA id pi2sm2224397pdb.14.2014.11.01.21.13.18
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sat, 01 Nov 2014 21:13:19 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sat,  1 Nov 2014 21:13:16 -0700
-Message-Id: <1414901596-6220-1-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [meta-security][PATCH] samhain: update to 3.1.3
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [64.18.3.30 listed in list.dnswl.org]
+Received: from exprod8og115.obsmtp.com (exprod8og115.obsmtp.com [64.18.3.30])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2DBBE00881
+	for <yocto@yoctoproject.org>; Sun,  2 Nov 2014 15:35:53 -0800 (PST)
+Received: from mail-lb0-f176.google.com ([209.85.217.176]) (using TLSv1) by
+	exprod8ob115.postini.com ([64.18.7.12]) with SMTP
+	ID DSNKVFa/2dkjOcOzMYWAVVI26cZCkWEyXmyc@postini.com;
+	Sun, 02 Nov 2014 15:35:57 PST
+Received: by mail-lb0-f176.google.com with SMTP id z11so6603915lbi.35
+	for <yocto@yoctoproject.org>; Sun, 02 Nov 2014 15:35:51 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=q4F5fuvkdzxrYWijBhQ3aXkInxbSEgkahA+t8E4IiEk=;
+	b=KjfWnTP7DSU5kgc4MiskbojDJaGGQ84uEIG3FLvrCmi6K4CsnD/yiIoa68CbWtgF1Z
+	CXy/ELcutw+1dJDsfbuIUYilsormK7hM57NhDgCIpFYJDyBH/DlbyLLEqllDpeJrlIai
+	0pOuN601+5dR3/rvCwmMNNMebRvPbVV6HTkS8XhTO8VPVchjrzEClzRPyRJ5kix0GLhX
+	RUAxhrdHFLtg8EGhOeMqcE74x8YezdNtlZfbk24pE7c8rUuQtZ+/c5g8RXKGxTxdJUsD
+	om78x8eqkVsSwav1IXlnnooKf51bnE3V60M/4PorEdIlcw+6tcE50sXYHiJRMn5lQ+mg
+	LaiQ==
+X-Gm-Message-State: ALoCoQnhqkPAYvIXkGmBS+UVM3UsrCgtc2NM2zVNBD3sQkR+RUnR2bImaKeQ2vLu6IGBuDujIp5m9WM7d0tIWzFVj4Lzx7MDjogqrL/URCmcdKf970Tj7hLnvoaxj/YL50SyNZyt4Pexj4WhBg2gNpsmonROwgZYHQ==
+X-Received: by 10.112.140.135 with SMTP id rg7mr46826362lbb.24.1414971351766; 
+	Sun, 02 Nov 2014 15:35:51 -0800 (PST)
+MIME-Version: 1.0
+X-Received: by 10.112.140.135 with SMTP id rg7mr46826342lbb.24.1414971351599; 
+	Sun, 02 Nov 2014 15:35:51 -0800 (PST)
+Received: by 10.152.2.40 with HTTP; Sun, 2 Nov 2014 15:35:51 -0800 (PST)
+In-Reply-To: <20141027080733.D8D1F380909@gemini.denx.de>
+References: <CAJrRHk6aVPLjZ9ruyr+koS7cVQTRt-+-jGv6L+AdFTTBW_Wmxg@mail.gmail.com>
+	<CAJrRHk4Q_bnrv2g1Kup9BTJj9gVMufKmSLtmBx8K5hmp7mE+PQ@mail.gmail.com>
+	<20141027080733.D8D1F380909@gemini.denx.de>
+Date: Mon, 3 Nov 2014 07:35:51 +0800
+Message-ID: <CAJrRHk7gP=jZZguTf0F34v4Hou0xOrdhDSLVM9Hzjs_tbHxKQA@mail.gmail.com>
+From: =?UTF-8?Q?Joseph_Andrew_de_la_Pe=C3=B1a?= <jdelapena@lexmark.com>
+To: Wolfgang Denk <wd@denx.de>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: PERL5LIB not properly reflecting target_sdk_dir
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,41 +60,175 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 02 Nov 2014 04:13:24 -0000
+X-List-Received-Date: Sun, 02 Nov 2014 23:36:00 -0000
+Content-Type: multipart/alternative; boundary=001a11c26a86c7a46d0506e8b0c3
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../samhain/{samhain-client_3.1.2.bb => samhain-client_3.1.3.bb}      | 0
- .../samhain/{samhain-server_3.1.2.bb => samhain-server_3.1.3.bb}      | 0
- recipes-security/samhain/samhain.inc                                  | 4 ++--
- 3 files changed, 2 insertions(+), 2 deletions(-)
- rename recipes-security/samhain/{samhain-client_3.1.2.bb => samhain-client_3.1.3.bb} (100%)
- rename recipes-security/samhain/{samhain-server_3.1.2.bb => samhain-server_3.1.3.bb} (100%)
+--001a11c26a86c7a46d0506e8b0c3
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/recipes-security/samhain/samhain-client_3.1.2.bb b/recipes-security/samhain/samhain-client_3.1.3.bb
-similarity index 100%
-rename from recipes-security/samhain/samhain-client_3.1.2.bb
-rename to recipes-security/samhain/samhain-client_3.1.3.bb
-diff --git a/recipes-security/samhain/samhain-server_3.1.2.bb b/recipes-security/samhain/samhain-server_3.1.3.bb
-similarity index 100%
-rename from recipes-security/samhain/samhain-server_3.1.2.bb
-rename to recipes-security/samhain/samhain-server_3.1.3.bb
-diff --git a/recipes-security/samhain/samhain.inc b/recipes-security/samhain/samhain.inc
-index cd5862b..b914cb1 100644
---- a/recipes-security/samhain/samhain.inc
-+++ b/recipes-security/samhain/samhain.inc
-@@ -9,8 +9,8 @@ SRC_URI = "http://la-samhna.de/archive/samhain_signed-${PV}.tar.gz \
- 	   file://${INITSCRIPT_NAME}.default \
- 	  "
- 
--SRC_URI[md5sum] = "48c663707899dca4f3853c3192e9862c"
--SRC_URI[sha256sum] = "840218137a4c77970fa9f61c5f79d05de4bb2b287736a55d771125c94f9a51fc"
-+SRC_URI[md5sum] = "64572a4dbfdc8065d6e9f7ca0eab0a34"
-+SRC_URI[sha256sum] = "c234afaf9ba3c6b7d240858b74423f935185de66e996405b3016ec4a288a7e1e"
- 
- S = "${WORKDIR}/samhain-${PV}"
- 
--- 
-1.9.1
+Good day Wolfgang,
 
+Thank you for helping me with this. I have seen the bug report. Hopefully
+we get a resolution soon.
 
+- Joseph
+
+On Mon, Oct 27, 2014 at 4:07 PM, Wolfgang Denk <wd@denx.de> wrote:
+
+> Dear Joseph Andrew de la Pe=C3=B1a,
+>
+> In message <
+> CAJrRHk4Q_bnrv2g1Kup9BTJj9gVMufKmSLtmBx8K5hmp7mE+PQ@mail.gmail.com> you
+> wrote:
+> >
+> > anyone?
+>
+> I confirm the problem.
+>
+> > > I have seen a problem in SDK installation where PERL5LIB does not
+> reflect
+> > > vendor_perl location.
+> > > I have specified SDK installtion path as /bonus/scratch/sdk. Yet when=
+ I
+> > > executed -V no vendor_perl is included in PERL5LIB.
+>
+> To be more precise, PERL5LIB is not set in the environment, and the
+> installation routine cannot fix the built-in strings in the perl
+> binary.
+>
+> > > @INC:
+> > > /bonus/scratch/sdk/sysroots/i686-pokysdk-linux//usr/lib/perl/5.14.3
+> > > /bonus/scratch/sdk/sysroots/i686-pokysdk-linux//usr/lib/perl
+> > > /bonus/scratch/sdk/sysroots/i686-pokysdk-linux//usr/lib/perl/5.14.3
+> > >
+> > >
+> /opt/sdk/1.5.1/sysroots/i686-pokysdk-linux//usr/lib/perl/site_perl/5.14.3=
+/
+> > >
+> /opt/sdk/1.5.1/sysroots/i686-pokysdk-linux//usr/lib/perl/site_perl/5.14.3
+> > >
+> > >
+> /opt/sdk/1.5.1/sysroots/i686-pokysdk-linux//usr/lib/perl/vendor_perl/5.14=
+.3/
+> > >
+> /opt/sdk/1.5.1/sysroots/i686-pokysdk-linux//usr/lib/perl/vendor_perl/5.14=
+.3
+> > > /opt/sdk/1.5.1/sysroots/i686-pokysdk-linux//usr/lib/perl/5.14.3/
+> > > /opt/sdk/1.5.1/sysroots/i686-pokysdk-linux//usr/lib/perl/5.14.3
+> > > /opt/sdk/1.5.1/sysroots/i686-pokysdk-linux//usr/lib/perl/5.14.3
+>
+> As you can see, even though you install into a non-standard directory
+> (/bonus/scratch/sdk), perl still references the built-in path
+> (/opt/sdk/...).
+>
+> The problem is present in all versions of Yocto, up to and including
+> the upcoming 1.7.
+>
+> I've opened a bug for it, see
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D6890
+>
+> Best regards,
+>
+> Wolfgang Denk
+>
+> --
+> DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+> HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+> Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+> "You know, after a woman's raised a family and so on,  she  wants  to
+> start living her own life."   "Whose life she's _been_ living, then?"
+>                                   - Terry Pratchett, _Witches Abroad_
+>
+
+--001a11c26a86c7a46d0506e8b0c3
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Good day Wolfgang,<div><br></div><div>Thank you for helpin=
+g me with this. I have seen the bug report. Hopefully we get a resolution s=
+oon.</div><div><br></div><div>- Joseph</div></div><div class=3D"gmail_extra=
+"><br><div class=3D"gmail_quote">On Mon, Oct 27, 2014 at 4:07 PM, Wolfgang =
+Denk <span dir=3D"ltr">&lt;<a href=3D"mailto:wd@denx.de" target=3D"_blank">=
+wd@denx.de</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Dear Jos=
+eph Andrew de la Pe=C3=B1a,<br>
+<br>
+In message &lt;<a href=3D"mailto:CAJrRHk4Q_bnrv2g1Kup9BTJj9gVMufKmSLtmBx8K5=
+hmp7mE%2BPQ@mail.gmail.com">CAJrRHk4Q_bnrv2g1Kup9BTJj9gVMufKmSLtmBx8K5hmp7m=
+E+PQ@mail.gmail.com</a>&gt; you wrote:<br>
+&gt;<br>
+&gt; anyone?<br>
+<br>
+I confirm the problem.<br>
+<span class=3D""><br>
+&gt; &gt; I have seen a problem in SDK installation where PERL5LIB does not=
+ reflect<br>
+&gt; &gt; vendor_perl location.<br>
+&gt; &gt; I have specified SDK installtion path as /bonus/scratch/sdk. Yet =
+when I<br>
+&gt; &gt; executed -V no vendor_perl is included in PERL5LIB.<br>
+<br>
+</span>To be more precise, PERL5LIB is not set in the environment, and the<=
+br>
+installation routine cannot fix the built-in strings in the perl<br>
+binary.<br>
+<span class=3D""><br>
+&gt; &gt; @INC:<br>
+&gt; &gt; /bonus/scratch/sdk/sysroots/i686-pokysdk-linux//usr/lib/perl/5.14=
+.3<br>
+&gt; &gt; /bonus/scratch/sdk/sysroots/i686-pokysdk-linux//usr/lib/perl<br>
+&gt; &gt; /bonus/scratch/sdk/sysroots/i686-pokysdk-linux//usr/lib/perl/5.14=
+.3<br>
+&gt; &gt;<br>
+&gt; &gt; /opt/sdk/1.5.1/sysroots/i686-pokysdk-linux//usr/lib/perl/site_per=
+l/5.14.3/<br>
+&gt; &gt; /opt/sdk/1.5.1/sysroots/i686-pokysdk-linux//usr/lib/perl/site_per=
+l/5.14.3<br>
+&gt; &gt;<br>
+&gt; &gt; /opt/sdk/1.5.1/sysroots/i686-pokysdk-linux//usr/lib/perl/vendor_p=
+erl/5.14.3/<br>
+&gt; &gt; /opt/sdk/1.5.1/sysroots/i686-pokysdk-linux//usr/lib/perl/vendor_p=
+erl/5.14.3<br>
+&gt; &gt; /opt/sdk/1.5.1/sysroots/i686-pokysdk-linux//usr/lib/perl/5.14.3/<=
+br>
+&gt; &gt; /opt/sdk/1.5.1/sysroots/i686-pokysdk-linux//usr/lib/perl/5.14.3<b=
+r>
+&gt; &gt; /opt/sdk/1.5.1/sysroots/i686-pokysdk-linux//usr/lib/perl/5.14.3<b=
+r>
+<br>
+</span>As you can see, even though you install into a non-standard director=
+y<br>
+(/bonus/scratch/sdk), perl still references the built-in path<br>
+(/opt/sdk/...).<br>
+<br>
+The problem is present in all versions of Yocto, up to and including<br>
+the upcoming 1.7.<br>
+<br>
+I&#39;ve opened a bug for it, see<br>
+<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D6890" target=
+=3D"_blank">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D6890</a><br=
+>
+<br>
+Best regards,<br>
+<br>
+Wolfgang Denk<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+--<br>
+DENX Software Engineering GmbH,=C2=A0 =C2=A0 =C2=A0MD: Wolfgang Denk &amp; =
+Detlev Zundel<br>
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany<br>
+Phone: <a href=3D"tel:%28%2B49%29-8142-66989-10" value=3D"+4981426698910">(=
++49)-8142-66989-10</a> Fax: <a href=3D"tel:%28%2B49%29-8142-66989-80" value=
+=3D"+4981426698980">(+49)-8142-66989-80</a> Email: <a href=3D"mailto:wd@den=
+x.de">wd@denx.de</a><br>
+&quot;You know, after a woman&#39;s raised a family and so on,=C2=A0 she=C2=
+=A0 wants=C2=A0 to<br>
+start living her own life.&quot;=C2=A0 =C2=A0&quot;Whose life she&#39;s _be=
+en_ living, then?&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 - Terry Pratchett, _Witches A=
+broad_<br>
+</font></span></blockquote></div><br></div>
+
+--001a11c26a86c7a46d0506e8b0c3--
