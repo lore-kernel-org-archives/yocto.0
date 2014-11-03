@@ -1,6 +1,6 @@
 Return-Path: <vmartin@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6D10E008EA; Mon,  3 Nov 2014 06:20:53 -0800 (PST)
+	id 18D23E008EC; Mon,  3 Nov 2014 06:23:02 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,41 +10,42 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
 	high *      trust
-	*      [198.152.13.100 listed in list.dnswl.org]
-Received: from co300216-co-outbound.net.avaya.com
-	(co300216-co-outbound.net.avaya.com [198.152.13.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 978F7E008BA
-	for <yocto@yoctoproject.org>; Mon,  3 Nov 2014 06:20:41 -0800 (PST)
+	*      [135.11.29.13 listed in list.dnswl.org]
+Received: from p-us1-iereast-outbound.us1.avaya.com
+	(p-us1-iereast-outbound.us1.avaya.com [135.11.29.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBCFBE008BA
+	for <yocto@yoctoproject.org>; Mon,  3 Nov 2014 06:22:51 -0800 (PST)
 X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AhcFAK6OV1SHCzIm/2dsb2JhbABcgmsjgSwE1VMCgSAWAQEBAQEBfIQCAQEBAQMSKD8MBAIBCA0IAQIKFAkHMhQRAQEEDgUIGogfAahinn0BAQEBAQEBAQEBAQEBAQEBAQEBAQEXkF8xB4MtgR4FkhqNGIZthwGDKIQJg3hsAYFHgQMBAQE
-X-IronPort-AV: E=Sophos;i="5.07,308,1413259200"; d="scan'208";a="90348507"
+X-IronPort-Anti-Spam-Result: AhkFAKOOV1SHCzIm/2dsb2JhbABcgmsjVFgEzgaHTQKBIBYBAQEBAQF8hAIBAQEBAxJzBAIBCA0IAQwdBzIUEQEBBAESCBqIHwEMqFaefQEBAQEBAQQBAQEBAQEBAQEBARMEkF84gy2BHgWLOIZihE+ISYZtiimECYN4bAGBR4EDAQEB
+X-IronPort-AV: E=Sophos;i="5.07,308,1413259200"; d="scan'208";a="92897543"
 Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
-	([135.11.50.38]) by co300216-co-outbound.net.avaya.com with ESMTP;
-	03 Nov 2014 09:20:32 -0500
+	([135.11.50.38]) by p-us1-iereast-outbound.us1.avaya.com with ESMTP;
+	03 Nov 2014 09:22:49 -0500
 X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC03.global.avaya.com) ([135.11.85.14])
+Received: from unknown (HELO AZ-US1EXHC01.global.avaya.com) ([135.11.85.12])
 	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/AES128-SHA;
-	03 Nov 2014 09:20:32 -0500
+	03 Nov 2014 09:22:49 -0500
 Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
-	AZ-US1EXHC03.global.avaya.com ([::1]) with mapi id 14.03.0174.001;
-	Mon, 3 Nov 2014 09:20:32 -0500
+	AZ-US1EXHC01.global.avaya.com ([135.11.85.12]) with mapi id
+	14.03.0174.001; Mon, 3 Nov 2014 09:22:48 -0500
 From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] Another sstate rebuild issue, badly need help
-	understanding sstate
-Thread-Index: Ac/3ZHenwuDsNv5FQjOB/ZYFOtnF4wANa0OAAAo/PEA=
-Date: Mon, 3 Nov 2014 14:20:31 +0000
-Message-ID: <30C2D590D16A5C46ADFE652191037798411584BB@AZ-US1EXMB03.global.avaya.com>
-References: <30C2D590D16A5C46ADFE652191037798411583BD@AZ-US1EXMB03.global.avaya.com>
-	<1550328.akuF352sGY@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <1550328.akuF352sGY@peggleto-mobl5.ger.corp.intel.com>
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] How to debug dependency/setscene/sstate issues
+Thread-Index: Ac/1y75N0KVW1nbGS6yguTxUJ5ovGQAKq5OAAAchGJAAYcLNgAAKILZg
+Date: Mon, 3 Nov 2014 14:22:48 +0000
+Message-ID: <30C2D590D16A5C46ADFE652191037798411584D4@AZ-US1EXMB03.global.avaya.com>
+References: <30C2D590D16A5C46ADFE6521910377984114ED96@AZ-US1EXMB03.global.avaya.com>
+	<5454DB3F.9080209@mindchasers.com>
+	<30C2D590D16A5C46ADFE65219103779841151DE1@AZ-US1EXMB03.global.avaya.com>
+	<D07D3A8A.4D1C6%belen.barros.pena@intel.com>
+In-Reply-To: <D07D3A8A.4D1C6%belen.barros.pena@intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [135.11.85.49]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Another sstate rebuild issue, badly need help understanding sstate
+Subject: Re: How to debug dependency/setscene/sstate issues
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,57 +57,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Nov 2014 14:20:53 -0000
+X-List-Received-Date: Mon, 03 Nov 2014 14:23:02 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Paul,
+Hi Bel=E9n,
 
 > -----Original Message-----
-> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
-> Sent: November 03, 2014 9:13 AM
+> From: Barros Pena, Belen [mailto:belen.barros.pena@intel.com]
+> Sent: November 03, 2014 9:12 AM
 >=20
-> On Monday 03 November 2014 12:53:23 Vuille, Martin wrote:
-> > Poky 1.6.1 / daisy
-> >
-> > I have a variable "REV_TOOLS" defined in distro/conf/somename.conf in
-> > a custom distro layer from a git repo.
-> >
-> > This variable is assigned to SRCREV in a number of recipes (SRCREV =3D
-> > "${REV_TOOLS}") for packages included in my images and SDKs.
-> >
-> > Pulled an update to the distro layer that changed the value of REV_TOOL=
-S.
-> >
-> > Rebuilt all my images and SDKs, but bitbake decided there was nothing t=
-o
-> do.
-> >
-> > Looking at toaster, all the do_build tasks for the packages affected
-> > by this change say "Prebuilt" and the other tasks say "Covered". If I
-> > understand correctly, this means sstate didn't detect any change.
-> >
-> > I am continually running into this problem and am at my wits' end. Why
-> > didn't the affected packages get rebuilt? Clearly there is something I
-> > don't understand and would appreciate some hint.
+> Hi Martin,
 >=20
-> I honestly don't know how to explain this behaviour either, because it
-> should not happen this way. BitBake automatically extracts variable
-> references within variable values and adds them to the dependencies of
-> the variable, so a change to REV_TOOLS should have resulted in the
-> signatures changing for the do_fetch tasks for all of the recipes where
-> SRCREV contained the reference and thus all of those recipes and the ones
-> that depend upon them getting rebuilt.
+> You probably found this already, but just in case. The instructions to se=
+t up
+> Toaster:
 >=20
-> Did you use oe-init-build-env or oe-init-build-env-memres to initialise y=
-our
-> build environment?
+> https://wiki.yoctoproject.org/wiki/Toaster
+>=20
+> When you select a build, the 'Tasks' section in the left navigation will =
+tell
+> you which tasks used shared state objects (tasks with outcome 'cached'),
+> and which tasks didn't find a valid shared state object and executed inst=
+ead
+> (tasks with cache attempt set to 'File not in cache'). If you click on a =
+task
+> name, you will see which file the task looked for and where. This might h=
+elp
+> debug your issue.
+>=20
+> There is a video explaining the Tasks information in Toaster at
+>=20
+> https://wiki.yoctoproject.org/wiki/images/a/a4/Toaster-manual-
+> v5.webmhd.web
+> m
 >=20
 
-oe-init-build-env, prefixed with TEMPLATECONF to point to our custom
-distro layer.
+Thanks for the info. I am now using Toaster successfully.
 
 MV
-
 
