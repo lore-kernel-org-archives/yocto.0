@@ -1,37 +1,39 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9ED57E00902; Mon,  3 Nov 2014 07:07:54 -0800 (PST)
+	id 41FC2E00908; Mon,  3 Nov 2014 07:08:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A537E0087C
-	for <yocto@yoctoproject.org>; Mon,  3 Nov 2014 07:07:41 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga101.fm.intel.com with ESMTP; 03 Nov 2014 07:07:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,862,1389772800"; d="scan'208";a="410409330"
-Received: from sergeypo-mobl1.ccr.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.106])
-	by FMSMGA003.fm.intel.com with ESMTP; 03 Nov 2014 06:58:44 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-Date: Mon, 03 Nov 2014 15:07:07 +0000
-Message-ID: <10257674.LIyMAV53eN@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.2 (Linux/3.16.6-203.fc20.x86_64; KDE/4.14.2; x86_64; ; )
-In-Reply-To: <30C2D590D16A5C46ADFE6521910377984115851A@AZ-US1EXMB03.global.avaya.com>
-References: <30C2D590D16A5C46ADFE6521910377984115851A@AZ-US1EXMB03.global.avaya.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Upper-case letters in package names OK?
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 467B0E0087C
+	for <yocto@yoctoproject.org>; Mon,  3 Nov 2014 07:08:29 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	sA3F7nct018050; Mon, 3 Nov 2014 15:07:49 GMT
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id Hp_63DZvgAyb; Mon,  3 Nov 2014 15:07:49 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	sA3F7iPu018046
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-GCM-SHA256 bits=128
+	verify=NOT); Mon, 3 Nov 2014 15:07:45 GMT
+Message-ID: <1415027299.5111.18.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: nick <xerofoify@gmail.com>
+Date: Mon, 03 Nov 2014 15:08:19 +0000
+In-Reply-To: <54556BF4.2020803@gmail.com>
+References: <54551DFF.6060000@gmail.com> <54552CB3.30002@gmail.com>
+	<1851809.saLbNT2Y4Q@peggleto-mobl5.ger.corp.intel.com>
+	<54556BF4.2020803@gmail.com>
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+Mime-Version: 1.0
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: Angstrom Build Fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,27 +45,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Nov 2014 15:07:54 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 03 Nov 2014 15:08:37 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Monday 03 November 2014 14:40:42 Vuille, Martin wrote:
-> I have a package named "foo-Bar" built by a recipe "foo-Bar_1.0.0.bb".
->
-> Just noticed in Toaster that for that package it is reporting the package
-> name as "foo-" instead of "foo-Bar".
-> 
-> Is that a bug in Toaster or a restriction on package names?
+On Sat, 2014-11-01 at 19:25 -0400, nick wrote:
+> This isn't a network issue as I can fetch Yocto sources from other servers without 
+> any problems.
 
-Assuming it's foo-Bar and not foo_Bar then it is definitely a bug somewhere. 
-However some package managers still don't like uppercase in package names and 
-therefore we tend not to use them.
+It can a network issue, routes to different places go through different
+servers and so whilst less common than complete network failure, you can
+have a DNS problem or a routing problem to certain hosts, maybe not in
+your local network but in that of your provider.
 
 Cheers,
-Paul
 
--- 
+Richard
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
