@@ -1,6 +1,6 @@
-Return-Path: <wd@denx.de>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CD917E008C9; Wed,  5 Nov 2014 11:30:32 -0800 (PST)
+	id CC0AEE008C9; Wed,  5 Nov 2014 12:31:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,40 +8,31 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [212.18.0.10 listed in list.dnswl.org]
+	*      [192.94.38.131 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 533C2E0080D
-	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 11:30:17 -0800 (PST)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3jXycm1mzhz3hjcY
-	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 20:30:15 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
-	by mail.m-online.net (Postfix) with ESMTP id 3jXycl6VLGzvh43
-	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 20:30:15 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.184])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
-	port 10024) with ESMTP id ibW1s4LVhFfs for <yocto@yoctoproject.org>;
-	Wed,  5 Nov 2014 20:30:13 +0100 (CET)
-X-Auth-Info: baefX/6fGTcw00Mp8ljDFi1oNkqPXrtAw1IeSGnccHc=
-Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
-	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA
-	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 20:30:12 +0100 (CET)
-Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id A2D081AAC2F
-	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 20:30:08 +0100 (CET)
-Received: by gemini.denx.de (Postfix, from userid 500)
-	id 709413833C8; Wed,  5 Nov 2014 20:30:08 +0100 (MET)
-From: Wolfgang Denk <wd@denx.de>
-To: yocto@yoctoproject.org
-Date: Wed,  5 Nov 2014 20:29:51 +0100
-Message-Id: <1415215791-27197-1-git-send-email-wd@denx.de>
-X-Mailer: git-send-email 1.9.3
-In-Reply-To: <20141027080733.D8D1F380909@gemini.denx.de>
-References: <20141027080733.D8D1F380909@gemini.denx.de>
-Subject: [PATCH] Perl: fix PERL5LIB settings
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F662E0080D
+	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 12:31:10 -0800 (PST)
+Received: from svr-orw-fem-03.mgc.mentorg.com ([147.34.97.39])
+	by relay1.mentorg.com with esmtp 
+	id 1Xm7ET-0000H4-1R from Joe_MacDonald@mentor.com ;
+	Wed, 05 Nov 2014 12:31:09 -0800
+Received: from burninator (147.34.91.1) by svr-orw-fem-03.mgc.mentorg.com
+	(147.34.97.39) with Microsoft SMTP Server id 14.3.181.6; Wed, 5 Nov 2014
+	12:31:08 -0800
+Received: by burninator (Postfix, from userid 1000)	id 8B271580A3B; Wed,  5
+	Nov 2014 15:31:07 -0500 (EST)
+Date: Wed, 5 Nov 2014 15:31:07 -0500
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: <yocto@yoctoproject.org>
+Message-ID: <20141105203106.GB815@mentor.com>
+MIME-Version: 1.0
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-703 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: [meta-selinux] master branch updated / dizzy branch created
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,48 +44,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Nov 2014 19:30:32 -0000
+X-List-Received-Date: Wed, 05 Nov 2014 20:31:14 -0000
+X-Groupsio-MsgNum: 22076
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="rJwd6BRFiFCcLxzm"
+Content-Disposition: inline
 
-The PERL5LIB settings in the perl wrapper script did not include the
-"site_perl" or "vendor_perl" directories, which caused some errors.
+--rJwd6BRFiFCcLxzm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-See https://bugzilla.yoctoproject.org/show_bug.cgi?id=6890
+Hi all,
 
-Signed-off-by: Wolfgang Denk <wd@denx.de>
----
- meta/recipes-devtools/perl/perl-native_5.14.3.bb | 4 ++--
- meta/recipes-devtools/perl/perl_5.14.3.bb        | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+As previously discussed, meta-selinux has been updated with both the
+latest reference policy (and derivatives) and userspace tools.  As
+nothing has come up with testing in master-next those changes have now
+been merged into master.  At the same time we now have a dizzy branch to
+provide stable updates for Yocto 1.7 as required.
 
-diff --git a/meta/recipes-devtools/perl/perl-native_5.14.3.bb b/meta/recipes-devtools/perl/perl-native_5.14.3.bb
-index c9ec2d2..8ea7ddb 100644
---- a/meta/recipes-devtools/perl/perl-native_5.14.3.bb
-+++ b/meta/recipes-devtools/perl/perl-native_5.14.3.bb
-@@ -101,8 +101,8 @@ do_install () {
- 		install $i ${D}${libdir}/perl/${PV}/CORE
- 	done
- 
--	create_wrapper ${D}${bindir}/perl PERL5LIB='$PERL5LIB:${STAGING_LIBDIR}/perl/${PV}:${STAGING_LIBDIR}/perl/'
--	create_wrapper ${D}${bindir}/perl${PV} PERL5LIB='$PERL5LIB:${STAGING_LIBDIR}/perl/${PV}:${STAGING_LIBDIR}/perl/'
-+	create_wrapper ${D}${bindir}/perl PERL5LIB='$PERL5LIB:${STAGING_LIBDIR}/perl/${PV}:${STAGING_LIBDIR}/perl:${STAGING_LIBDIR}/perl/site_perl/${PV}:${STAGING_LIBDIR}/perl/vendor_perl/${PV}'
-+	create_wrapper ${D}${bindir}/perl${PV} PERL5LIB='$PERL5LIB:${STAGING_LIBDIR}/perl/${PV}:${STAGING_LIBDIR}/perl${STAGING_LIBDIR}/perl:${STAGING_LIBDIR}/perl/site_perl/${PV}:${STAGING_LIBDIR}/perl/vendor_perl/${PV}'
- }
- 
- SYSROOT_PREPROCESS_FUNCS += "perl_sysroot_create_wrapper"
-diff --git a/meta/recipes-devtools/perl/perl_5.14.3.bb b/meta/recipes-devtools/perl/perl_5.14.3.bb
-index 1e14e17..7ea2c99 100644
---- a/meta/recipes-devtools/perl/perl_5.14.3.bb
-+++ b/meta/recipes-devtools/perl/perl_5.14.3.bb
-@@ -215,7 +215,7 @@ do_install() {
- 
- do_install_append_class-nativesdk () {
-         create_wrapper ${D}${bindir}/perl \
--            PERL5LIB='$PERL5LIB:$OECORE_NATIVE_SYSROOT/${libdir_nativesdk}/perl:$OECORE_NATIVE_SYSROOT/${libdir_nativesdk}/perl/${PV}'
-+            PERL5LIB='$PERL5LIB:$OECORE_NATIVE_SYSROOT/${libdir_nativesdk}/perl:$OECORE_NATIVE_SYSROOT/${libdir_nativesdk}/perl/${PV}:$OECORE_NATIVE_SYSROOT/${libdir_nativesdk}/perl/site_perl/${PV}:$OECORE_NATIVE_SYSROOT/${libdir_nativesdk}/perl/vendor_perl/${PV}'
- }
- 
- PACKAGE_PREPROCESS_FUNCS += "perl_package_preprocess"
--- 
-1.8.3.1
+Please let us know if you see anything unexpected.
 
+--=20
+-Joe MacDonald.
+:wq
 
+--rJwd6BRFiFCcLxzm
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iQEcBAEBAgAGBQJUWokKAAoJEEn8ffcsOfaWXMoH/3XEXlQGy+4VTOBx9bjyA94d
+0AzwH+HZqc/7hcIz08gjbAHnuAQFala9OZcuKVADfFNFKyEBZ9v1GCUI5yfR8AwM
+ANlfv78Pd9TMBXnS7u0CL2oI6dqlu7Oxdf3uudeYuSkJC24BukdmX+54+aPbb3rm
+kdrZgID2RgsnWFBs2ddJaAVIb0G1n3opNoQbZC1eDrRdEQGeSfRC5JOvxuadsLNI
++TnBn9gX2VfovrEVdmcjrmr5Wi3aGfSZyrqCjC8OqE/qhuWHqLmYFqMsQb+qC4hW
+z19Kcm1mmH9Wgs2YFFMivAQYDEWcU6F7iGu47tdBH2knKGFM2n0uDR56LrEObrI=
+=QFXK
+-----END PGP SIGNATURE-----
+
+--rJwd6BRFiFCcLxzm--
