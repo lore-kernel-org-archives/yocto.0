@@ -1,51 +1,34 @@
-Return-Path: <vmartin@avaya.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3860AE0084D; Wed,  5 Nov 2014 04:18:39 -0800 (PST)
+	id A5E5EE0084D; Wed,  5 Nov 2014 04:21:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [135.11.29.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from p-us1-iereast-outbound.us1.avaya.com
-	(p-us1-iereast-outbound.us1.avaya.com [135.11.29.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE3FDE0082F
-	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 04:18:36 -0800 (PST)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: Ag0FAKoUWlSHCzIm/2dsb2JhbABcgmsjgTHWEwKBGBYBAQEBAQF8hAIBAQEBAxIoPwwEAgEIDQgBDBQFBAcyFBEBAQQOBQgaiB8BqFOfegEBAQEBAQEDAQEBAQEBAQEBAQEXkF8xB4MtgR4FkiGHGAWMbYRciVmCNIFEbAGBR4EDAQEB
-X-IronPort-AV: E=Sophos;i="5.07,319,1413259200"; d="scan'208";a="93262623"
-Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
-	([135.11.50.38]) by p-us1-iereast-outbound.us1.avaya.com with ESMTP;
-	05 Nov 2014 07:18:35 -0500
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC04.global.avaya.com) ([135.11.85.15])
-	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/AES128-SHA;
-	05 Nov 2014 07:18:36 -0500
-Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
-	AZ-US1EXHC04.global.avaya.com ([135.11.85.15]) with mapi id
-	14.03.0174.001; Wed, 5 Nov 2014 07:18:35 -0500
-From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] Added package to RDEPENDS in packagegroup, image that
-	IMAGE_INSTALLs packagegroup not rebuilt
-Thread-Index: Ac/4eMhanGlrvFCTRpOmuNhgElcUwwAbUznQAAq4WoAAB6/pMA==
-Date: Wed, 5 Nov 2014 12:18:33 +0000
-Message-ID: <30C2D590D16A5C46ADFE6521910377984115AEEC@AZ-US1EXMB03.global.avaya.com>
-References: <30C2D590D16A5C46ADFE6521910377984115A3E1@AZ-US1EXMB03.global.avaya.com>
-	<30C2D590D16A5C46ADFE6521910377984115AEB2@AZ-US1EXMB03.global.avaya.com>
-	<2114805.U50kVqpKQr@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <2114805.U50kVqpKQr@peggleto-mobl5.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.11.85.50]
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17DC4E0082F
+	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 04:20:59 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 05 Nov 2014 04:19:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.07,319,1413270000"; d="scan'208";a="631870850"
+Received: from sergeypo-mobl1.ccr.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.106])
+	by orsmga002.jf.intel.com with ESMTP; 05 Nov 2014 04:20:57 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: openembedded-core@lists.openembedded.org, yocto@yoctoproject.org
+Date: Wed, 05 Nov 2014 12:20:56 +0000
+Message-ID: <1735659.Fcs0eVF5SY@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.2 (Linux/3.16.7-200.fc20.x86_64; KDE/4.14.2; x86_64; ; )
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Added package to RDEPENDS in packagegroup, image that IMAGE_INSTALLs packagegroup not rebuilt
+Subject: Warning - INCOMPATIBLE_LICENSE regression affecting 1.7 (dizzy)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,43 +40,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Nov 2014 12:18:39 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 05 Nov 2014 12:21:01 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-> -----Original Message-----
-> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
-> Sent: November 05, 2014 5:56 AM
-> >
-> > I deliberately introduced syntax errors into the packagegroup .bb file
->=20
-> What kind of syntax error? Inside a function or outside?
->=20
+Hi folks,
 
-This is my packagegroup .bb file as it stands...
+Unfortunately we've recently discovered that a regression in INCOMPATIBLE_LICENSE
+behaviour has crept into the 1.7 release. We have a bug report covering the issue
+here:
 
-DESCRIPTION =3D "Whatever"
+  https://bugzilla.yoctoproject.org/show_bug.cgi?id=6930
 
-inherit packagegroup
+The fix has been merged to the master and dizzy branches as of this morning:
 
-LICENSE =3D "CLOSED"
-PACKAGE_ARCH =3D "${MACHINE_ARCH}"
-ALLOW_EMPTY_${PN} =3D "1"
-PR =3D "r1"
+  http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?h=dizzy&id=f3a177cf045b19612b7d2c96889ac24307191c3d
+  http://cgit.openembedded.org/openembedded-core/commit/?h=dizzy&id=652008fd9dc909836819e5c6808c63643eff6db6
 
-frozzle the flab_flab
+If you use INCOMPATIBLE_LICENSE with dizzy / 1.7 it is strongly
+recommended that you either use the current tip of the dizzy branch or apply
+this patch locally. A 1.7.1 point release is upcoming that will include this
+fix.
 
-# Additional third-party packages
-RDEPENDS_${PN} +=3D "\
-    ethtool \
-    gdbserver \
-    lsof \
-    openssl-utils \
-    page-types \
-    strace \
-    vim \
-    vim-common \
-    daemonize \
-"
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
