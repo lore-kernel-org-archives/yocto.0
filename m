@@ -1,52 +1,47 @@
-Return-Path: <vmartin@avaya.com>
+Return-Path: <wd@denx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 93511E008CE; Wed,  5 Nov 2014 08:39:08 -0800 (PST)
+	id CD917E008C9; Wed,  5 Nov 2014 11:30:32 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.152.71.100 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [212.18.0.10 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from de307622-de-outbound.net.avaya.com
-	(de307622-de-outbound.net.avaya.com [198.152.71.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06E22E00830
-	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 08:38:58 -0800 (PST)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AhoFAL9RWlTGmAcV/2dsb2JhbABcgmsjgS0E1GcCgRoWAQEBAQEBfIQCAQEBAQMSKD8MBAIBCA0IAQwUBQQHMhQRAgQOBQgaiB8Bqx2fcgEBAQEBAQEBAQEBAQEBAQEBAQEBAReQYDEHgy2BHgWSIYcYBYYDhmyEXYVShAmCNIFEbAGBR4EDAQEB
-X-IronPort-AV: E=Sophos;i="5.07,320,1413259200"; d="scan'208";a="79488583"
-Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
-	([198.152.7.21]) by de307622-de-outbound.net.avaya.com with ESMTP;
-	05 Nov 2014 11:38:56 -0500
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC02.global.avaya.com) ([135.11.85.13])
-	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
-	05 Nov 2014 11:38:56 -0500
-Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
-	AZ-US1EXHC02.global.avaya.com ([::1]) with mapi id 14.03.0174.001;
-	Wed, 5 Nov 2014 11:38:55 -0500
-From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] Added package to RDEPENDS in packagegroup, image that
-	IMAGE_INSTALLs packagegroup not rebuilt
-Thread-Index: Ac/4eMhanGlrvFCTRpOmuNhgElcUwwAbUznQAAOkCBAABPw9MAAK+/AAAApL3cD//7ENgIAAU1Mg//+ubACAAFNMAP//rpKAgABTc1D//6+oAAAKa2uAAAnTEQAAHRtDMA==
-Date: Wed, 5 Nov 2014 16:38:55 +0000
-Message-ID: <30C2D590D16A5C46ADFE6521910377984115B37B@AZ-US1EXMB03.global.avaya.com>
-References: <30C2D590D16A5C46ADFE6521910377984115A3E1@AZ-US1EXMB03.global.avaya.com>
-	<3767317.YZ2G7oXJFq@peggleto-mobl5.ger.corp.intel.com>
-	<30C2D590D16A5C46ADFE6521910377984115B321@AZ-US1EXMB03.global.avaya.com>
-	<1843797.y7lrT8GqOk@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <1843797.y7lrT8GqOk@peggleto-mobl5.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.11.85.50]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Added package to RDEPENDS in packagegroup, image that IMAGE_INSTALLs packagegroup not rebuilt
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 533C2E0080D
+	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 11:30:17 -0800 (PST)
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3jXycm1mzhz3hjcY
+	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 20:30:15 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3jXycl6VLGzvh43
+	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 20:30:15 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.184])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024) with ESMTP id ibW1s4LVhFfs for <yocto@yoctoproject.org>;
+	Wed,  5 Nov 2014 20:30:13 +0100 (CET)
+X-Auth-Info: baefX/6fGTcw00Mp8ljDFi1oNkqPXrtAw1IeSGnccHc=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA
+	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 20:30:12 +0100 (CET)
+Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id A2D081AAC2F
+	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 20:30:08 +0100 (CET)
+Received: by gemini.denx.de (Postfix, from userid 500)
+	id 709413833C8; Wed,  5 Nov 2014 20:30:08 +0100 (MET)
+From: Wolfgang Denk <wd@denx.de>
+To: yocto@yoctoproject.org
+Date: Wed,  5 Nov 2014 20:29:51 +0100
+Message-Id: <1415215791-27197-1-git-send-email-wd@denx.de>
+X-Mailer: git-send-email 1.9.3
+In-Reply-To: <20141027080733.D8D1F380909@gemini.denx.de>
+References: <20141027080733.D8D1F380909@gemini.denx.de>
+Subject: [PATCH] Perl: fix PERL5LIB settings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,33 +53,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Nov 2014 16:39:08 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 05 Nov 2014 19:30:32 -0000
 
-> -----Original Message-----
-> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
-> Sent: November 05, 2014 11:04 AM
->=20
-> OK, so this kind of explains it. To be perfectly honest the bitbake memor=
-y
-> resident functionality (which Toaster uses behind the scenes) does have
-> some holes in picking up changes, but I hadn't realised it would manifest=
- in
-> this particular manner. It seems like at the moment you'd need to stop an=
-d
-> restart Toaster to be sure that the change gets picked up.
->=20
+The PERL5LIB settings in the perl wrapper script did not include the
+"site_perl" or "vendor_perl" directories, which caused some errors.
 
-- Stopped Toaster
-- Removed the two cache directories
-- bitbake <packagegroup>
+See https://bugzilla.yoctoproject.org/show_bug.cgi?id=6890
 
-is working. It is running do_package on each of the packages in the
-packagegroup.
+Signed-off-by: Wolfgang Denk <wd@denx.de>
+---
+ meta/recipes-devtools/perl/perl-native_5.14.3.bb | 4 ++--
+ meta/recipes-devtools/perl/perl_5.14.3.bb        | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-Thanks for your time debugging this.
+diff --git a/meta/recipes-devtools/perl/perl-native_5.14.3.bb b/meta/recipes-devtools/perl/perl-native_5.14.3.bb
+index c9ec2d2..8ea7ddb 100644
+--- a/meta/recipes-devtools/perl/perl-native_5.14.3.bb
++++ b/meta/recipes-devtools/perl/perl-native_5.14.3.bb
+@@ -101,8 +101,8 @@ do_install () {
+ 		install $i ${D}${libdir}/perl/${PV}/CORE
+ 	done
+ 
+-	create_wrapper ${D}${bindir}/perl PERL5LIB='$PERL5LIB:${STAGING_LIBDIR}/perl/${PV}:${STAGING_LIBDIR}/perl/'
+-	create_wrapper ${D}${bindir}/perl${PV} PERL5LIB='$PERL5LIB:${STAGING_LIBDIR}/perl/${PV}:${STAGING_LIBDIR}/perl/'
++	create_wrapper ${D}${bindir}/perl PERL5LIB='$PERL5LIB:${STAGING_LIBDIR}/perl/${PV}:${STAGING_LIBDIR}/perl:${STAGING_LIBDIR}/perl/site_perl/${PV}:${STAGING_LIBDIR}/perl/vendor_perl/${PV}'
++	create_wrapper ${D}${bindir}/perl${PV} PERL5LIB='$PERL5LIB:${STAGING_LIBDIR}/perl/${PV}:${STAGING_LIBDIR}/perl${STAGING_LIBDIR}/perl:${STAGING_LIBDIR}/perl/site_perl/${PV}:${STAGING_LIBDIR}/perl/vendor_perl/${PV}'
+ }
+ 
+ SYSROOT_PREPROCESS_FUNCS += "perl_sysroot_create_wrapper"
+diff --git a/meta/recipes-devtools/perl/perl_5.14.3.bb b/meta/recipes-devtools/perl/perl_5.14.3.bb
+index 1e14e17..7ea2c99 100644
+--- a/meta/recipes-devtools/perl/perl_5.14.3.bb
++++ b/meta/recipes-devtools/perl/perl_5.14.3.bb
+@@ -215,7 +215,7 @@ do_install() {
+ 
+ do_install_append_class-nativesdk () {
+         create_wrapper ${D}${bindir}/perl \
+-            PERL5LIB='$PERL5LIB:$OECORE_NATIVE_SYSROOT/${libdir_nativesdk}/perl:$OECORE_NATIVE_SYSROOT/${libdir_nativesdk}/perl/${PV}'
++            PERL5LIB='$PERL5LIB:$OECORE_NATIVE_SYSROOT/${libdir_nativesdk}/perl:$OECORE_NATIVE_SYSROOT/${libdir_nativesdk}/perl/${PV}:$OECORE_NATIVE_SYSROOT/${libdir_nativesdk}/perl/site_perl/${PV}:$OECORE_NATIVE_SYSROOT/${libdir_nativesdk}/perl/vendor_perl/${PV}'
+ }
+ 
+ PACKAGE_PREPROCESS_FUNCS += "perl_package_preprocess"
+-- 
+1.8.3.1
 
-MV
 
