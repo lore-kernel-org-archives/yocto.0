@@ -1,48 +1,51 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <vmartin@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BA980E00874; Wed,  5 Nov 2014 05:15:20 -0800 (PST)
+	id D2BFCE008CE; Wed,  5 Nov 2014 07:01:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.47 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [198.152.13.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-wg0-f47.google.com (mail-wg0-f47.google.com [74.125.82.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57ECDE0082F
-	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 05:15:09 -0800 (PST)
-Received: by mail-wg0-f47.google.com with SMTP id a1so871246wgh.6
-	for <yocto@yoctoproject.org>; Wed, 05 Nov 2014 05:15:08 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=LDqSBS3s/SKyqCCLuOE83m/0WJMx6Hk6PLNXUKfYvn4=;
-	b=eY404RAGXzxJy1sVr1amReDz/OCXbcm+Mr7pVFOUuq6ygliIteMj2I4KVlG5BM6bxW
-	SYZSYZE9P8PAoce6UvYzOuBJYz9pyDmmyeMfgchPwMbiwpYpVcbEmt5N/ZaUE9vJmL2o
-	wOYPF2SvKT7bnscMHQmTi2a0EaFVGNIwwxyVd9y5GBu3VW42gg79F737TauWxn5JPYa8
-	2gEktPYpgvfLKmK+ctK2hQeXvSBQT/4Ig0HQxhFjmefYGrtktDDfj7qw64/6oycP2pBp
-	S01DH03VPVQa5ad3Tq6TT8TrwduYiUQK528ey3ZiVe6llBOTb1qqAe7H35SYZOS3Vk4D
-	HTkQ==
-X-Gm-Message-State: ALoCoQk1gWZS2Ae7qrF0j5H44kzhmG15qyAaZ6RC3vihR/qRN2N2/o3Q1B+a/DoDHwpI/f1ctnpk
-X-Received: by 10.194.77.199 with SMTP id u7mr27483394wjw.92.1415193308694;
-	Wed, 05 Nov 2014 05:15:08 -0800 (PST)
+Received: from co300216-co-outbound.net.avaya.com
+	(co300216-co-outbound.net.avaya.com [198.152.13.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A80A3E008C9
+	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 07:01:06 -0800 (PST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: Ah0FAAI7WlTGmAcV/2dsb2JhbABcgmsjgSMKBNRnAoEWFgEBAQEBAXyEAgEBAQEDEihLBAIBCA0IAQwUBQQHMhQRAQEEARIIGogfAaoPn3MBAQEBBgEBAQEBAQEBGpBgOIMtgR4FkiGHGAWGA4ZsEoRLiVuCNIFEbIFIgQMBAQE
+X-IronPort-AV: E=Sophos;i="5.07,320,1413259200"; d="scan'208";a="90736473"
+Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
+	([198.152.7.21]) by co300216-co-outbound.net.avaya.com with ESMTP;
+	05 Nov 2014 10:01:04 -0500
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-US1EXHC02.global.avaya.com) ([135.11.85.13])
+	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
+	05 Nov 2014 10:01:04 -0500
+Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
+	AZ-US1EXHC02.global.avaya.com ([::1]) with mapi id 14.03.0174.001;
+	Wed, 5 Nov 2014 10:01:04 -0500
+From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+To: "Vuille, Martin (Martin)" <vmartin@avaya.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Added package to RDEPENDS in packagegroup, image that
+	IMAGE_INSTALLs packagegroup not rebuilt
+Thread-Index: Ac/4eMhanGlrvFCTRpOmuNhgElcUwwAbUznQAAOkCBAABPw9MA==
+Date: Wed, 5 Nov 2014 15:01:02 +0000
+Message-ID: <30C2D590D16A5C46ADFE6521910377984115B283@AZ-US1EXMB03.global.avaya.com>
+References: <30C2D590D16A5C46ADFE6521910377984115A3E1@AZ-US1EXMB03.global.avaya.com>
+	<30C2D590D16A5C46ADFE6521910377984115AEB2@AZ-US1EXMB03.global.avaya.com>
+	<30C2D590D16A5C46ADFE6521910377984115AFCF@AZ-US1EXMB03.global.avaya.com>
+In-Reply-To: <30C2D590D16A5C46ADFE6521910377984115AFCF@AZ-US1EXMB03.global.avaya.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [135.11.85.50]
 MIME-Version: 1.0
-Received: by 10.216.75.70 with HTTP; Wed, 5 Nov 2014 05:14:48 -0800 (PST)
-X-Originating-IP: [195.249.189.34]
-In-Reply-To: <6686EF67-F451-4B2B-87D3-F9AB644F8299@mountdrive.com>
-References: <BLU436-SMTP125444BFE2825F659D2B396929A0@phx.gbl>
-	<6686EF67-F451-4B2B-87D3-F9AB644F8299@mountdrive.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Wed, 5 Nov 2014 14:14:48 +0100
-Message-ID: <CAK18fxEytL2hZeHfNR5gb+py0PTki2ni4Guy4mL7iH43MYWntQ@mail.gmail.com>
-To: Mike Hogg <mikehogg@mountdrive.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Raspberry b+ support
+Subject: Re: Added package to RDEPENDS in packagegroup, image that IMAGE_INSTALLs packagegroup not rebuilt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,98 +57,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Nov 2014 13:15:20 -0000
-Content-Type: multipart/alternative; boundary=047d7bfd061c741eec05071c5ebc
-
---047d7bfd061c741eec05071c5ebc
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 05 Nov 2014 15:01:16 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I did nothing regarding RPI b+ as i don't own a device like that. If you
-guys can make it work and patches are needed in order to accomplish this,
-please send them over mailing list and/or review gerrit.
-Thanks.
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Vuille, Martin (Martin)
+> Sent: November 05, 2014 7:35 AM
+> >
+> > Indeed it appears that the <packagegroup>.bb file is not being read.
+> >
+>=20
+> But bitbake <packagegroup> -e does re-parse the file and reports the synt=
+ax
+> error
+>=20
+> Repeating bitbake <packagegroup> after the above still sees no error
+>=20
 
+In the -DDD output I see
 
+"DEBUG: Using cache in '/home/platform/Workspace/somename/poky/build/tmp/ca=
+che/default-eglibc/sonic/i686'"
 
-On Fri, Oct 31, 2014 at 4:06 PM, Mike Hogg <mikehogg@mountdrive.com> wrote:
+If I rename /home/platform/Workspace/somename/poky/build/tmp/cache/default-=
+eglibc/sonic/i686 to
+/home/platform/Workspace/somename/poky/build/tmp/cache/default-eglibc/sonic=
+/i686-saved and then run
 
-> Yes you can and I have. Search the pi forum for my posts there, last time
-> I tried a yocto build for the b+ it pulled in the old pi firmware which
-> doesn't work on the b+. Per my notes on the pi forum thats easily fixed b=
-y
-> copying firmware from another b+ image.
->
-> On 31 October 2014 12:13:53 GMT+00:00, Natural Groove <
-> natural_groove@hotmail.fr> wrote:
->>
->> Hi,
->>
->> I am interested in using oe to crossbuild stuff for raspberry pi b+, and
->> I wondered if someone already achieved to do this?
->>  From what I read there are some specifics to deal with, can someone
->> help me with setting this up for b+?
->>
->> Thanks in advance
->> Natural
->>
->> ---
->> Ce courrier =C3=A9lectronique ne contient aucun virus ou logiciel malvei=
-llant parce que la protection avast! Antivirus est active.
->> http://www.avast.com
->>
->>
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
+bitbake <packagegroup>, the .bb file is reparsed
 
+If I rename the directory back, then=20
 
---=20
-*Andrei Gherzan*
+bitbake <packagegroup> goes back to doing nothing
 
---047d7bfd061c741eec05071c5ebc
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Something stands out here...=20
 
-<div dir=3D"ltr">I did nothing regarding RPI b+ as i don&#39;t own a device=
- like that. If you guys can make it work and patches are needed in order to=
- accomplish this, please send them over mailing list and/or review gerrit.<=
-div>Thanks.<br><div><br></div><div><br></div></div></div><div class=3D"gmai=
-l_extra"><br><div class=3D"gmail_quote">On Fri, Oct 31, 2014 at 4:06 PM, Mi=
-ke Hogg <span dir=3D"ltr">&lt;<a href=3D"mailto:mikehogg@mountdrive.com" ta=
-rget=3D"_blank">mikehogg@mountdrive.com</a>&gt;</span> wrote:<br><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
-id;padding-left:1ex"><div>Yes you can and I have. Search the pi forum for m=
-y posts there, last time I tried a yocto build for the b+ it pulled in the =
-old pi firmware which doesn&#39;t work on the b+. Per my notes on the pi fo=
-rum thats easily fixed by copying firmware from another b+ image. <br><div>=
-<div class=3D"h5"><br><div class=3D"gmail_quote">On 31 October 2014 12:13:5=
-3 GMT+00:00, Natural Groove &lt;<a href=3D"mailto:natural_groove@hotmail.fr=
-" target=3D"_blank">natural_groove@hotmail.fr</a>&gt; wrote:<blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0pt 0pt 0pt 0.8ex;border-left:1px solid =
-rgb(204,204,204);padding-left:1ex">
-<pre>Hi,<br><br>I am interested in using oe to crossbuild stuff for raspber=
-ry pi b+, and <br>I wondered if someone already achieved to do this?<br> Fr=
-om what I read there are some specifics to deal with, can someone <br>help =
-me with setting this up for b+?<br><br>Thanks in advance<br>Natural<br><br>=
----<br>Ce courrier =C3=A9lectronique ne contient aucun virus ou logiciel ma=
-lveillant parce que la protection avast! Antivirus est active.<br><a href=
-=3D"http://www.avast.com" target=3D"_blank">http://www.avast.com</a><br></p=
-re></blockquote></div></div></div></div><br>--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div cla=
-ss=3D"gmail_signature"><div dir=3D"ltr"><div style=3D"text-align:center"></=
-div><div style=3D"text-align:center"><div align=3D"left"><b style=3D"font-f=
-amily:Arial;font-size:small;color:rgb(51,51,51);text-align:center">Andrei G=
-herzan</b><br></div></div></div></div>
-</div>
+My build machine is x86_64 but my SDKMACHINE is i686. And I see that the di=
+rectory name
+above includes i686.
 
---047d7bfd061c741eec05071c5ebc--
+Might there be something to this?
+
+MV
+
