@@ -1,34 +1,49 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <vmartin@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A5E5EE0084D; Wed,  5 Nov 2014 04:21:01 -0800 (PST)
+	id 85141E0084D; Wed,  5 Nov 2014 04:34:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [198.152.71.100 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17DC4E0082F
-	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 04:20:59 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 05 Nov 2014 04:19:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,319,1413270000"; d="scan'208";a="631870850"
-Received: from sergeypo-mobl1.ccr.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.106])
-	by orsmga002.jf.intel.com with ESMTP; 05 Nov 2014 04:20:57 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: openembedded-core@lists.openembedded.org, yocto@yoctoproject.org
-Date: Wed, 05 Nov 2014 12:20:56 +0000
-Message-ID: <1735659.Fcs0eVF5SY@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.2 (Linux/3.16.7-200.fc20.x86_64; KDE/4.14.2; x86_64; ; )
+Received: from de307622-de-outbound.net.avaya.com
+	(de307622-de-outbound.net.avaya.com [198.152.71.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0929E0082F
+	for <yocto@yoctoproject.org>; Wed,  5 Nov 2014 04:34:45 -0800 (PST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AiYFACIYWlTGmAcV/2dsb2JhbABcgmsjgTHWEwKBFhYBAQEBAQFxC4QCAQEBAQMSKEsEAgEIDQgBDBQFCzIlAQEEGxqIHwGoW596AQEIAQEBAQEdkGA4gy2BHgWSIYcYBYYDhmwShEuJW4I0gUSCNIEDAQEB
+X-IronPort-AV: E=Sophos;i="5.07,319,1413259200"; d="scan'208";a="79447352"
+Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
+	([198.152.7.21]) by de307622-de-outbound.net.avaya.com with ESMTP;
+	05 Nov 2014 07:34:43 -0500
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-US1EXHC01.global.avaya.com) ([135.11.85.12])
+	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
+	05 Nov 2014 07:34:43 -0500
+Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
+	AZ-US1EXHC01.global.avaya.com ([135.11.85.12]) with mapi id
+	14.03.0174.001; Wed, 5 Nov 2014 07:34:42 -0500
+From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Added package to RDEPENDS in packagegroup, image that
+	IMAGE_INSTALLs packagegroup not rebuilt
+Thread-Index: Ac/4eMhanGlrvFCTRpOmuNhgElcUwwAbUznQAAOkCBA=
+Date: Wed, 5 Nov 2014 12:34:41 +0000
+Message-ID: <30C2D590D16A5C46ADFE6521910377984115AFCF@AZ-US1EXMB03.global.avaya.com>
+References: <30C2D590D16A5C46ADFE6521910377984115A3E1@AZ-US1EXMB03.global.avaya.com>
+	<30C2D590D16A5C46ADFE6521910377984115AEB2@AZ-US1EXMB03.global.avaya.com>
+In-Reply-To: <30C2D590D16A5C46ADFE6521910377984115AEB2@AZ-US1EXMB03.global.avaya.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [135.11.85.50]
 MIME-Version: 1.0
-Subject: Warning - INCOMPATIBLE_LICENSE regression affecting 1.7 (dizzy)
+Subject: Re: Added package to RDEPENDS in packagegroup, image that IMAGE_INSTALLs packagegroup not rebuilt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,32 +55,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Nov 2014 12:21:01 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Wed, 05 Nov 2014 12:34:47 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi folks,
+> -----Original Message-----
+> From: Vuille, Martin (Martin)
+> Sent: November 05, 2014 5:53 AM
+>=20
+>=20
+> I deliberately introduced syntax errors into the packagegroup .bb file
+>=20
+> bitbake <image> does not report any error bitbake <packagegroup> does
+> not report any error
+>=20
+> Indeed it appears that the <packagegroup>.bb file is not being read.
+>=20
 
-Unfortunately we've recently discovered that a regression in INCOMPATIBLE_LICENSE
-behaviour has crept into the 1.7 release. We have a bug report covering the issue
-here:
+But bitbake <packagegroup> -e does re-parse the file and reports the syntax=
+ error
 
-  https://bugzilla.yoctoproject.org/show_bug.cgi?id=6930
+Repeating bitbake <packagegroup> after the above still sees no error
 
-The fix has been merged to the master and dizzy branches as of this morning:
-
-  http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?h=dizzy&id=f3a177cf045b19612b7d2c96889ac24307191c3d
-  http://cgit.openembedded.org/openembedded-core/commit/?h=dizzy&id=652008fd9dc909836819e5c6808c63643eff6db6
-
-If you use INCOMPATIBLE_LICENSE with dizzy / 1.7 it is strongly
-recommended that you either use the current tip of the dizzy branch or apply
-this patch locally. A 1.7.1 point release is upcoming that will include this
-fix.
-
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+MV
 
