@@ -1,40 +1,53 @@
-Return-Path: <bremalathar@hcl.com>
+Return-Path: <vmartin@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 08CEFE00902; Thu,  6 Nov 2014 03:16:23 -0800 (PST)
+	id 95EF5E00903; Thu,  6 Nov 2014 04:41:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [198.152.71.100 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
-	Thu, 06 Nov 2014 03:16:17 PST
-Received: from GWS08.hcl.com (gws08.hcl.com [192.8.186.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7726E00830
-	for <yocto@yoctoproject.org>; Thu,  6 Nov 2014 03:16:17 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.07,325,1413225000"; d="scan'208,217";a="29002578"
-Received: from unknown (HELO CHN-CORP-HT01.CORP.HCL.IN) ([10.249.2.33])
-	by GWS08.hcl.com with ESMTP/TLS/AES128-SHA; 06 Nov 2014 16:42:04 +0530
-Received: from CHN-HCLT-CSHT03.HCLT.CORP.HCL.IN (10.150.12.28) by
-	CHN-CORP-HT01.CORP.HCL.IN (10.249.2.33) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Thu, 6 Nov 2014 16:45:07 +0530
-Received: from CHN-HCLT-MBS04.HCLT.CORP.HCL.IN ([10.150.12.19]) by
-	CHN-HCLT-CSHT03.HCLT.CORP.HCL.IN ([::1]) with mapi id 14.03.0123.003;
-	Thu, 6 Nov 2014 16:45:07 +0530
-From: "Bremalatha Ramalingam - ERS, HCL Tech" <bremalathar@hcl.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: How to access a device on the LPC bus on the linux environment
-Thread-Index: Ac/5suUVnzm0t7SVRUm0QzQY3BHKjQ==
-Date: Thu, 6 Nov 2014 11:15:06 +0000
-Message-ID: <85BEC37D441A9046A1055938F61F94E10EB5BB94@chn-hclt-mbs04.HCLT.CORP.HCL.IN>
+Received: from de307622-de-outbound.net.avaya.com
+	(de307622-de-outbound.net.avaya.com [198.152.71.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51C2BE008C9
+	for <yocto@yoctoproject.org>; Thu,  6 Nov 2014 04:41:23 -0800 (PST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AhoFAHNrW1TGmAcV/2dsb2JhbABbgmsjVFkEyxqHTgKBHxYBAQEBAQF8hAIBAQEBAxIoPwwEAgEIDQgBDBQFBAcyFBECBAENBQgaiB8BDK0moCMBAQEBAQEBAQEBAQEBAQEBAQEBAQETBJBgMQeDLYEeBZIjhFKCSAWMcYReiVyCNIFEbAGBR4EDAQEB
+X-IronPort-AV: E=Sophos;i="5.07,325,1413259200"; d="scan'208";a="79620950"
+Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
+	([198.152.7.21]) by de307622-de-outbound.net.avaya.com with ESMTP;
+	06 Nov 2014 07:41:21 -0500
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-US1EXHC04.global.avaya.com) ([135.11.85.15])
+	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
+	06 Nov 2014 07:41:21 -0500
+Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
+	AZ-US1EXHC04.global.avaya.com ([135.11.85.15]) with mapi id
+	14.03.0174.001; Thu, 6 Nov 2014 07:41:20 -0500
+From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, Isak Lichtenstein
+	<Isak.Lichtenstein@kistler.com>
+Thread-Topic: AW: [yocto] Added package to RDEPENDS in packagegroup, image
+	that IMAGE_INSTALLs packagegroup not rebuilt
+Thread-Index: Ac/4eMhanGlrvFCTRpOmuNhgElcUwwAbUznQAAOkCBAABPw9MAAK+/AAAApL3cD//7ENgIAAU1Mg//+ubACAAFNMAP//rpKAgABTc1D//6+oAAAKa2uAAAnTEQAAHRtDMAAPYdGAABn7NAAAOWi9wA==
+Date: Thu, 6 Nov 2014 12:41:19 +0000
+Message-ID: <30C2D590D16A5C46ADFE6521910377984115B951@AZ-US1EXMB03.global.avaya.com>
+References: <30C2D590D16A5C46ADFE6521910377984115A3E1@AZ-US1EXMB03.global.avaya.com>
+	<30C2D590D16A5C46ADFE6521910377984115B37B@AZ-US1EXMB03.global.avaya.com>
+	<91B4C1B91AAEFD42AC985EA0F3D4E668C086FFA4@kihagwinex01.int.kistler.com>
+	<1950865.LtTncEkeGK@peggleto-mobl5.ger.corp.intel.com>
+In-Reply-To: <1950865.LtTncEkeGK@peggleto-mobl5.ger.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.150.5.114]
+x-originating-ip: [135.11.85.50]
 MIME-Version: 1.0
-Subject: How to access a device on the LPC bus on the linux environment
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Added package to RDEPENDS in packagegroup, image that IMAGE_INSTALLs packagegroup not rebuilt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,153 +59,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Nov 2014 11:16:23 -0000
+X-List-Received-Date: Thu, 06 Nov 2014 12:41:36 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_85BEC37D441A9046A1055938F61F94E10EB5BB94chnhcltmbs04HCL_"
-
---_000_85BEC37D441A9046A1055938F61F94E10EB5BB94chnhcltmbs04HCL_
 Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 
-Hi All,
-How to access a device on LPC bus in the Linux environment?
-Thanks,
+> -----Original Message-----
+> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
+> Sent: November 06, 2014 5:16 AM
+>=20
+> This is a slightly different symptom of the same underlying problem, yes.
+>=20
 
+I have filed a bug report in Yocto Bugzilla
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D6935
 
+MV
 
-::DISCLAIMER::
----------------------------------------------------------------------------=
--------------------------------------------------------------------------
-
-The contents of this e-mail and any attachment(s) are confidential and inte=
-nded for the named recipient(s) only.
-E-mail transmission is not guaranteed to be secure or error-free as informa=
-tion could be intercepted, corrupted,
-lost, destroyed, arrive late or incomplete, or may contain viruses in trans=
-mission. The e mail and its contents
-(with or without referred errors) shall therefore not attach any liability =
-on the originator or HCL or its affiliates.
-Views or opinions, if any, presented in this email are solely those of the =
-author and may not necessarily reflect the
-views or opinions of HCL or its affiliates. Any form of reproduction, disse=
-mination, copying, disclosure, modification,
-distribution and / or publication of this message without the prior written=
- consent of authorized representative of
-HCL is strictly prohibited. If you have received this email in error please=
- delete it and notify the sender immediately.
-Before opening any email and/or attachments, please check them for viruses =
-and other defects.
-
----------------------------------------------------------------------------=
--------------------------------------------------------------------------
-
---_000_85BEC37D441A9046A1055938F61F94E10EB5BB94chnhcltmbs04HCL_
-Content-Type: text/html; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-h1
-	{mso-style-priority:9;
-	mso-style-link:"Heading 1 Char";
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:24.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.Heading1Char
-	{mso-style-name:"Heading 1 Char";
-	mso-style-priority:9;
-	mso-style-link:"Heading 1";
-	font-family:"Times New Roman","serif";
-	font-weight:bold;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<h1><span style=3D"font-size:10.0pt;font-weight:normal">Hi All,<o:p></o:p><=
-/span></h1>
-<h1><span style=3D"font-size:10.0pt;font-weight:normal">How to access a dev=
-ice on LPC bus in the Linux environment?<o:p></o:p></span></h1>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></p>
-</div>
-<span style=3D"FONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 7=
-.5pt; mso-fareast-font-family: 'Times New Roman'">
-<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><br><br><font style=3D"F=
-ONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 9px">::DISCLAIMER=
-::<br>---------------------------------------------------------------------=
----------------------------------------------------------------------------=
-----</font></P>
-<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><font style=3D"FONT-FAMI=
-LY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 11px">The contents of thi=
-s e-mail and any attachment(s) are confidential and intended for the named =
-recipient(s) only.<br>E-mail transmission is not guaranteed to be secure or=
- error-free as information could be intercepted, corrupted, <br>lost, destr=
-oyed, arrive late or incomplete, or may contain viruses in transmission. Th=
-e e mail and its contents <br>(with or without referred errors) shall there=
-fore not attach any liability on the originator or HCL or its affiliates. <=
-br>Views or opinions, if any, presented in this email are solely those of t=
-he author and may not necessarily reflect the <br>views or opinions of HCL =
-or its affiliates. Any form of reproduction, dissemination, copying, disclo=
-sure, modification, <br>distribution and / or publication of this message w=
-ithout the prior written consent of authorized representative of <br>HCL is=
- strictly prohibited. If you have received this email in error please delet=
-e it and notify the sender immediately. <br>Before opening any email and/or=
- attachments, please check them for viruses and other defects.</font></P>
-<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><font style=3D"FONT-FAMI=
-LY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 11px">-------------------=
----------------------------------------------------------------------------=
-------------------------------------------------------</font></span></P></b=
-ody>
-</html>
-
---_000_85BEC37D441A9046A1055938F61F94E10EB5BB94chnhcltmbs04HCL_--
