@@ -1,54 +1,44 @@
-Return-Path: <pierre-yves.mordret@st.com>
+Return-Path: <mikhail.zakharov@cognitivesystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8CE90E0084F; Thu,  6 Nov 2014 07:28:10 -0800 (PST)
+	id C7A82E00860; Thu,  6 Nov 2014 13:20:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [62.209.51.94 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0017]
-X-Greylist: delayed 1577 seconds by postgrey-1.32 at yocto-www;
-	Thu, 06 Nov 2014 07:28:05 PST
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com
-	[62.209.51.94])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5530E007BA
-	for <yocto@yoctoproject.org>; Thu,  6 Nov 2014 07:28:05 -0800 (PST)
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.14.5/8.14.5) with SMTP id
-	sA6F1QIS015503
-	for <yocto@yoctoproject.org>; Thu, 6 Nov 2014 16:01:47 +0100
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com with ESMTP id 1qg85s8wk0-1
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT)
-	for <yocto@yoctoproject.org>; Thu, 06 Nov 2014 16:01:47 +0100
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5D98E34
-	for <yocto@yoctoproject.org>; Thu,  6 Nov 2014 15:01:19 +0000 (GMT)
-Received: from Webmail-eu.st.com (safex1hubcas2.st.com [10.75.90.16])
-	by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 922F95A517
-	for <yocto@yoctoproject.org>; Thu,  6 Nov 2014 15:01:45 +0000 (GMT)
-Received: from SAFEX1MAIL5.st.com ([10.75.90.28]) by SAFEX1HUBCAS2.st.com
-	([10.75.90.16]) with mapi; Thu, 6 Nov 2014 16:01:45 +0100
-From: Pierre Yves MORDRET <pierre-yves.mordret@st.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0004]
+X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
+	Thu, 06 Nov 2014 13:20:39 PST
+Received: from ironport.highqlp.com (ironport.highqlp.com [207.107.155.245])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD377E0084E
+	for <yocto@yoctoproject.org>; Thu,  6 Nov 2014 13:20:39 -0800 (PST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: ApcVAJDlW1SsAWkL/2dsb2JhbABbgmwjVDABIwnLIAuIdBYBAQEBAQECWBcLgjkzCAQdAg1lOlEBFSlCJwQbE4gmAQQDqk2lNpVjBZMyg0WJDoYxhGCCboZtgUcBCgEBAYIjgjSBAwEBAQ
+X-IPAS-Result: ApcVAJDlW1SsAWkL/2dsb2JhbABbgmwjVDABIwnLIAuIdBYBAQEBAQECWBcLgjkzCAQdAg1lOlEBFSlCJwQbE4gmAQQDqk2lNpVjBZMyg0WJDoYxhGCCboZtgUcBCgEBAYIjgjSBAwEBAQ
+X-IronPort-AV: E=McAfee;i="5600,1067,7613"; a="60127"
+X-IronPort-AV: E=Sophos;i="5.07,327,1413259200"; 
+   d="scan'208";a="60127"
+Received: from unknown (HELO cas.cognitivesystems.com) ([172.1.105.11])
+	by ironport.cognitivesystems.com with ESMTP; 06 Nov 2014 16:19:11 -0500
+Received: from mb.cognitivesystems.com (2002:ac01:680b::ac01:680b) by
+	mb.cognitivesystems.com (2002:ac01:680b::ac01:680b) with Microsoft SMTP
+	Server (TLS) id 15.0.995.29; Thu, 6 Nov 2014 16:20:43 -0500
+Received: from mb.cognitivesystems.com ([fe80::8d75:bde8:1d24:bd44]) by
+	mb.cognitivesystems.com ([fe80::8d75:bde8:1d24:bd44%12]) with mapi id
+	15.00.0995.028; Thu, 6 Nov 2014 16:20:43 -0500
+From: Mikhail Zakharov <mikhail.zakharov@cognitivesystems.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 6 Nov 2014 16:01:44 +0100
-Thread-Topic: Build issue with daisy branch
-Thread-Index: Ac/5zuaKr79pFab9SCWdQMaMiSDChA==
-Message-ID: <2C73D3E46744804E888EDCCD6FBE4FD089616794EE@SAFEX1MAIL5.st.com>
+Thread-Topic: do_make_scripts race condition with externalsrc
+Thread-Index: AQHP+geFic+7cug8rkeNNFNB8FD6oQ==
+Date: Thu, 6 Nov 2014 21:20:43 +0000
+Message-ID: <ee1969c0e04c43e0866e8a2eb627c265@mb.cognitivesystems.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+x-originating-ip: [172.1.105.2]
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.12.52, 1.0.28,
-	0.0.0000
-	definitions=2014-11-06_05:2014-11-06, 2014-11-06,
-	1970-01-01 signatures=0
-Subject: Build issue with daisy branch
+Subject: do_make_scripts race condition with externalsrc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,25 +50,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Nov 2014 15:28:10 -0000
+X-List-Received-Date: Thu, 06 Nov 2014 21:20:42 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
-
-Recently I came across a build issue when using daisy branch.
-
-   ports/linux/xattr/portdefs.h:1:24: fatal error: attr/xattr.h: No such fi=
-le or directory
-   #include <attr/xattr.h>
-
-    ERROR: Function failed: do_compile (log file is located at  .../tmp-egl=
-ibc/work/x86_64-nativesdk-oesdk-linux/nativesdk-pseudo/1.6.2-r0/temp/log.do=
-_compile.26354)
-
-I saw an upgrade in daisy branch related to pseudo.
-Do you know which package is supposed to provide "attr/xattr.h"
-
-Thanks in advance
+Hello,=0A=
+=0A=
+We are having problems with using externalsrc.bbclass for building=0A=
+kernel modules (module.bbclass)=0A=
+=0A=
+When building multiple kernel modules from clean workspace in parallel,=0A=
+if one of the modules inherits externalsrc, the build will fail with the=0A=
+following error:=0A=
+=0A=
+OSError: [Errno 20] Not a directory:=0A=
+'/home/user/poky/tmp/kernel-scripts.lock/home'=0A=
+ERROR: Task 3=0A=
+(/home/user/poky/meta-custom/recipes-kernel/externalsrc-module/externalsrc-=
+module.bb,=0A=
+do_make_scripts)=0A=
+=0A=
+full error log:=0A=
+http://pastebin.com/aP5GMcsw=0A=
+=0A=
+contents of externalsrc-module.bb:=0A=
+http://pastebin.com/QXY2r7dx=0A=
+=0A=
+re-running bitbake after the failure allows the build to complete=0A=
+successfully.=0A=
+=0A=
+Any help with solutions/workarounds for this would be greatly appreciated.=
+=0A=
+=0A=
+Kind regards,=0A=
+Mikhail=0A=
+=0A=
+=0A=
 
