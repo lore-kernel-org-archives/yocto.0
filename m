@@ -1,39 +1,37 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <alexander.haenel-baas@sieb-meyer.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8A144E00872; Thu,  6 Nov 2014 02:16:19 -0800 (PST)
+	id 91776E008C9; Thu,  6 Nov 2014 03:03:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3727EE0080D
-	for <yocto@yoctoproject.org>; Thu,  6 Nov 2014 02:16:14 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga101.fm.intel.com with ESMTP; 06 Nov 2014 02:16:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,862,1389772800"; d="scan'208";a="412341769"
-Received: from ckithala-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.65])
-	by FMSMGA003.fm.intel.com with ESMTP; 06 Nov 2014 02:07:38 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Isak Lichtenstein <Isak.Lichtenstein@kistler.com>
-Date: Thu, 06 Nov 2014 10:16:12 +0000
-Message-ID: <1950865.LtTncEkeGK@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.2 (Linux/3.16.7-200.fc20.x86_64; KDE/4.14.2; x86_64; ; )
-In-Reply-To: <91B4C1B91AAEFD42AC985EA0F3D4E668C086FFA4@kihagwinex01.int.kistler.com>
-References: <30C2D590D16A5C46ADFE6521910377984115A3E1@AZ-US1EXMB03.global.avaya.com>
-	<30C2D590D16A5C46ADFE6521910377984115B37B@AZ-US1EXMB03.global.avaya.com>
-	<91B4C1B91AAEFD42AC985EA0F3D4E668C086FFA4@kihagwinex01.int.kistler.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 74 seconds by postgrey-1.32 at yocto-www;
+	Thu, 06 Nov 2014 03:03:54 PST
+Received: from mail.sieb-meyer.de (smnotes1.sieb-meyer.de [213.252.170.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3640BE00830
+	for <yocto@yoctoproject.org>; Thu,  6 Nov 2014 03:03:54 -0800 (PST)
+Received: from SMEXCHANGE01.siebmeyer.org ([::1]) by
+	SMExchange01.siebmeyer.org ([::1]) with mapi id 14.02.0387.000;
+	Thu, 6 Nov 2014 12:02:35 +0100
+From: =?iso-8859-1?Q?H=E4nel-Baas=2C_Alexander?=
+	<alexander.haenel-baas@sieb-meyer.de>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: eclipse yocto plugin lost the settings
+Thread-Index: Ac/5sII28HjonYx9TcuPXovW7aUaww==
+Date: Thu, 6 Nov 2014 11:02:33 +0000
+Message-ID: <9BA84827B30CBE4996725F98F7DC9123428E3116@SMExchange01.siebmeyer.org>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.11.207]
+x-kse-antivirus-interceptor-info: scan successful
+x-kse-antivirus-info: Clean
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Added package to RDEPENDS in packagegroup, image that IMAGE_INSTALLs packagegroup not rebuilt
+Subject: eclipse yocto plugin lost the settings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,86 +43,167 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Nov 2014 10:16:19 -0000
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 06 Nov 2014 11:03:58 -0000
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_9BA84827B30CBE4996725F98F7DC9123428E3116SMExchange01sie_"
+
+--_000_9BA84827B30CBE4996725F98F7DC9123428E3116SMExchange01sie_
 Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Thursday 06 November 2014 07:59:15 Isak Lichtenstein wrote:
-> Hi Martin,
->=20
-> > -----Urspr=FCngliche Nachricht-----
-> > Von: yocto-bounces@yoctoproject.org
-> > [mailto:yocto-bounces@yoctoproject.org]
-> > Im Auftrag von Vuille, Martin (Martin)
-> > Gesendet: 05 November 2014 17:39
-> > An: Paul Eggleton
-> > Cc: yocto@yoctoproject.org
-> > Betreff: Re: [yocto] Added package to RDEPENDS in packagegroup, ima=
-ge that
-> > IMAGE_INSTALLs packagegroup not rebuilt
-> >=20
-> > > -----Original Message-----
-> > > From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
-> > > Sent: November 05, 2014 11:04 AM
-> > >=20
-> > > OK, so this kind of explains it. To be perfectly honest the bitba=
-ke
-> > > memory resident functionality (which Toaster uses behind the scen=
-es)
-> > > does have some holes in picking up changes, but I hadn't realised=
- it
-> > > would manifest in this particular manner. It seems like at the mo=
-ment
-> > > you'd need to stop and restart Toaster to be sure that the change=
- gets
-> > > picked>=20
-> > up.
-> >=20
-> >=20
-> > - Stopped Toaster
-> > - Removed the two cache directories
-> > - bitbake <packagegroup>
->=20
-> I've spent yesterday morning trying to debug a similar problem. I had=
+Hi
 
-> INHERIT +=3D "rm_work" enabled in my local.conf file, and when removi=
-ng it, I
-> go the following error.: ERROR: No such task: do_rm_work
-> ERROR: Task 10
-> (/home/user/branches/dev/yocto/meta-libtest/recipes-support/libtest/l=
-ibtest
-> _1.0.bb, do_rm_work) failed with exit code '1'.
->=20
-> bitbake -e libtest | grep INHERIT showed me that rm_work was still ar=
-ound
-> despite having removed it from my local.conf . INHERIT=3D" rm_work
-> own-mirrors buildhistory toaster poky-sanity package_ipk image-mklibs=
+I have installed the yoco eclipse plug in from http://downloads.yoctoprojec=
+t.org/releases/eclipse-plugin/1.6/kepler.
 
-> image-prelink debian devshell sstate license blacklist sanity toaster=
+During the installation process I become the message:
+" Warning: You are installing software that contains unsigned content. The =
+authenticity or validity of this software cannot be established. Do you wan=
+t to continue with the installation?"
 
-> buildhistory"
->=20
->=20
-> Eventually I worked out that it was because I had Toaster running tha=
-t the
-> changes in local.conf where only partially picked up, and that's what=
+I continued the installation.
 
-> created the error.
->=20
-> I'm not sure if this bug is related to the one you're seeing, but in =
-case it
-> is, it's definitely easier to reproduce than deleting/renaming the ca=
-che
-> directories.
+My Problem is now, I set the Toolchain/Sysroot location in the Yocto ADT Di=
+alog, then press Apply/OK button to save the settings.
+Then close the Dialog open it again, and my settings are lost...
 
-This is a slightly different symptom of the same underlying problem, ye=
-s.
+I look into installed software->plugins an see that the Signed symbol is br=
+oken.
 
-Cheers,
-Paul
+The Eclipse version is:
+Keppler Version: Kepler Service Release 2
+Build id: 20140224-0627
+and  runs on a debian System
 
---=20
+What can I do to get the plugin to work?
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Greeting and thanks,
+Alex
 
+
+
+
+
+--_000_9BA84827B30CBE4996725F98F7DC9123428E3116SMExchange01sie_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Sprechblasentext Zchn";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-fareast-language:EN-US;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.SprechblasentextZchn
+	{mso-style-name:"Sprechblasentext Zchn";
+	mso-style-priority:99;
+	mso-style-link:Sprechblasentext;
+	font-family:"Tahoma","sans-serif";}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I have installed the yoco eclip=
+se plug in from
+<a href=3D"http://downloads.yoctoproject.org/releases/eclipse-plugin/1.6/ke=
+pler">http://downloads.yoctoproject.org/releases/eclipse-plugin/1.6/kepler<=
+/a>.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">During the installation process=
+ I become the message:
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&#8221; Warning: You are instal=
+ling software that contains unsigned content. The authenticity or validity =
+of this software cannot be established. Do you want to continue with the in=
+stallation?&#8221;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I continued the installation.<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">My Problem is now, I set the To=
+olchain/Sysroot location in the Yocto ADT Dialog, then press Apply/OK butto=
+n to save the settings.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Then close the Dialog open it a=
+gain, and my settings are lost&#8230;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I look into installed software-=
+&gt;plugins an see that the Signed symbol is broken.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">The Eclipse version is:<o:p></o=
+:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Keppler Version: Kepler Service=
+ Release 2<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Build id: 20140224-0627<o:p></o=
+:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">and &nbsp;runs on a debian Syst=
+em<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">What can I do to get the plugin=
+ to work?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Greeting and thanks,<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Alex<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp; <o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_9BA84827B30CBE4996725F98F7DC9123428E3116SMExchange01sie_--
