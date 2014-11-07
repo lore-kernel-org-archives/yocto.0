@@ -1,55 +1,52 @@
-Return-Path: <ting.liu@freescale.com>
+Return-Path: <bruce.ashfield@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 133E1E00901; Thu,  6 Nov 2014 19:31:48 -0800 (PST)
+	id 565F3E0076C; Fri,  7 Nov 2014 08:44:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [157.56.111.110 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bruce.ashfield[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 899 seconds by postgrey-1.32 at yocto-www;
-	Thu, 06 Nov 2014 19:31:44 PST
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1bon0110.outbound.protection.outlook.com [157.56.111.110])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84D52E00860
-	for <yocto@yoctoproject.org>; Thu,  6 Nov 2014 19:31:44 -0800 (PST)
-Received: from BN1PR03MB156.namprd03.prod.outlook.com (10.255.201.28) by
-	BN1PR03MB154.namprd03.prod.outlook.com (10.255.201.18) with Microsoft
-	SMTP Server (TLS) id 15.1.11.14; Fri, 7 Nov 2014 03:16:42 +0000
-Received: from BN1PR03MB156.namprd03.prod.outlook.com ([169.254.14.88]) by
-	BN1PR03MB156.namprd03.prod.outlook.com ([169.254.14.88]) with mapi id
-	15.01.0016.006; Fri, 7 Nov 2014 03:16:42 +0000
-From: "ting.liu@freescale.com" <ting.liu@freescale.com>
-To: "Neil.Wu@Emerson.com" <Neil.Wu@Emerson.com>
-Thread-Topic: Can not generate the ccgi-${PV} package
-Thread-Index: Ac/6NKRwhXPCQAGzQEuIFZDgXR9GiQABA26Q
-Date: Fri, 7 Nov 2014 03:16:42 +0000
-Message-ID: <e01911cf0e2245a3b563abb8538991bc@BN1PR03MB156.namprd03.prod.outlook.com>
-References: <3204FE6663E1F14CAF4CA6928E60C8521E20DCA9@USSTLZ-PMSG012.emrsn.org>
-In-Reply-To: <3204FE6663E1F14CAF4CA6928E60C8521E20DCA9@USSTLZ-PMSG012.emrsn.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [123.151.195.49]
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:;SRVR:BN1PR03MB154;
-x-exchange-antispam-report-test: UriScan:;
-x-forefront-prvs: 03883BD916
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(377454003)(199003)(189002)(16236675004)(15395725005)(4396001)(50986999)(92566001)(2656002)(2501002)(18717965001)(77156002)(19580405001)(62966003)(46102003)(15975445006)(19580395003)(77096003)(97736003)(54356999)(101416001)(86362001)(76176999)(76576001)(87936001)(2351001)(74316001)(19625215002)(110136001)(105586002)(33646002)(66066001)(122556002)(106356001)(40100003)(99286002)(20776003)(95666004)(64706001)(31966008)(19300405004)(120916001)(108616004)(107046002)(99396003)(21056001)(19617315012)(15202345003)(24736002)(228453006);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN1PR03MB154;
-	H:BN1PR03MB156.namprd03.prod.outlook.com; FPR:; MLV:sfv;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.48 listed in list.dnswl.org]
+Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1A5CE002A8
+	for <yocto@yoctoproject.org>; Fri,  7 Nov 2014 08:44:21 -0800 (PST)
+Received: by mail-la0-f48.google.com with SMTP id gq15so4666489lab.7
+	for <yocto@yoctoproject.org>; Fri, 07 Nov 2014 08:44:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=rvkPB8afjtalLFWj0M4IgzStk033cZDcuNUrsJyOn58=;
+	b=OOOPJjv1b/HCmlkBigBQ43SixJnq0DBi3Z+Jx6mvb2r2dL7Io5cAek2VtOdQOsHejo
+	/QooFOveAkSOs5mYD6XbeePOjoLpsAgyRSrk3Ep+1XvA5+yOo/YrnF3uRAcNLZQdJhqZ
+	HJpSQFqy+iwhuSGW0yNPz3QOcq9Bfg25FuCxF+SiCyPTlWYqit0K5hfed3oWerAs/Xe2
+	A9blrytLwPeO5QpAQUzvIBdq2B4Hcz82iHIVWu7ACy44wPujVVi5FVm4n+FOVSqecZF5
+	q+j6snYhrgWNqRIc3yXZsegG+THviA8cznRrBKnMgq7gfqndDnnTc418ToiPgxTx051E
+	h3gw==
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-X-Mailman-Approved-At: Fri, 07 Nov 2014 08:25:52 -0800
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Can not generate the ccgi-${PV} package
+X-Received: by 10.152.10.67 with SMTP id g3mr4435717lab.59.1415378660014; Fri,
+	07 Nov 2014 08:44:20 -0800 (PST)
+Received: by 10.112.4.168 with HTTP; Fri, 7 Nov 2014 08:44:19 -0800 (PST)
+In-Reply-To: <545C0067.1080506@ll.mit.edu>
+References: <545C0067.1080506@ll.mit.edu>
+Date: Fri, 7 Nov 2014 11:44:19 -0500
+Message-ID: <CADkTA4NoX-SFyUs+sEEWJX8cKZSpYvKKMYG8H-HjVrA2s-7DDg@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: Jeff Wang <jeffrey.wang@ll.mit.edu>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: Test in do_patch() fails for annotated tags
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,307 +58,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Nov 2014 03:31:48 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_e01911cf0e2245a3b563abb8538991bcBN1PR03MB156namprd03pro_"
+X-List-Received-Date: Fri, 07 Nov 2014 16:44:26 -0000
+Content-Type: text/plain; charset=UTF-8
 
---_000_e01911cf0e2245a3b563abb8538991bcBN1PR03MB156namprd03pro_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Jeff and I have already exchanged email on this yesterday. While using a tag
+for the SRCREV is not typically something we suggest .. tweaking the
+ancestor check is fine in this case, since it works in both scenarios.
 
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Neil.Wu@Emerson.com
-Sent: Friday, November 07, 2014 10:44 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] Can not generate the ccgi-${PV} package
+I have a patch queued to address this, and am soaking it now.
 
+Bruce
 
-Hi, all
-
-     I try to compile libccgi .
-
-     At end , I don't why can't create the standard ccgi-${PV} package.
-
-     The just create ccgi-dbg-${PV}  ccgi-dev-${PV}, do you know why??
-
-
-
-     The following is my recipes .bb file:
-
-SUMMARY =3D "Add ccgi lib to rootfs"
-
-HOMEPAGE =3D "http://sourceforge.net/projects/libccgi/?source=3Dtyp_redirec=
-t"
-
-LICENSE =3D "GPLv2"
-
-FILESEXTRAPATHS_prepend  :=3D "${THISDIR}/${PN}:"
-
-LIC_FILES_CHKSUM =3D "file://COPYING;md5=3Dd32239bcb673463ab874e80d47fae504=
-<file:///\\COPYING;md5=3Dd32239bcb673463ab874e80d47fae504>"
-
-
-
-FILES_${PN} =3D "/usr \
-
-              /usr/include \
-
-              /usr/lib \
-
-              /usr/include/ccgi.h \
-
-              /usr/lib/libccgi.so \
-
-"
-
-SRC_URI =3D "file://${PN}-${PV}.tar.gz<file:///\\$%7bPN%7d-$%7bPV%7d.tar.gz=
->"
-
-
-
-S =3D "${WORKDIR}/${PN}-${PV}"
-
-
-
-PARALLEL_MAKEINST=3D"prefix=3D${D}/usr"
-
-EXTRA_OEMAKE =3D 'CROSS=3D${HOST_PREFIX}'
-
-
-
-do_install () {
-
-              install -d ${D}${includedir}
-
-              install -d ${D}${libdir}
-
-              install -m 0755  ${S}/*.h ${D}${includedir}
-
-              install -m 0755  ${S}/*.so ${D}${libdir}
-
-}
-There is no file to be packaged as ${PN}. You can added below line to gener=
-ate it.
-ALLOW_EMPTY_${PN} =3D "1"
-
--Ting
-
-
-
-
-Thank you&Best regards
-Neil Wu
-
-
---_000_e01911cf0e2245a3b563abb8538991bcBN1PR03MB156namprd03pro_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Thu, Nov 6, 2014 at 6:12 PM, Jeff Wang <jeffrey.wang@ll.mit.edu> wrote:
+> Commit 92c1ece6c347030d48995a36f4c67861356e59d3 causes the test in
+> do_patch() in kernel-yocto.bbclass to fail if ${machine_srcrev} is an
+> annotated tag. The check is meant to ensure that ${machine_srcrev} is an
+> ancestor of HEAD, but if ${machine_srcrev} is a tag, then "$(git rev-parse
+> --verify ${machine_srcrev})" evaluates to the SHA of the tag instead of what
+> it's pointing to.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle19
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.25in 1.0in 1.25in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
-unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-<b>On Behalf Of </b>Neil.Wu@Emerson.com<br>
-<b>Sent:</b> Friday, November 07, 2014 10:44 AM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] Can not generate the ccgi-${PV} package<o:p></o:p><=
-/span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Hi, all<o:p></o:p></p>
-<p class=3D"MsoPlainText"><b><span style=3D"color:black">&nbsp;&nbsp;&nbsp;=
-&nbsp; I try to compile libccgi .
-<o:p></o:p></span></b></p>
-<p class=3D"MsoPlainText"><b><span style=3D"color:black">&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;At end , I don't why can&#8217;t create the standard
-</span><span style=3D"color:red">ccgi-${PV}</span><span style=3D"color:blac=
-k"> package.<o:p></o:p></span></b></p>
-<p class=3D"MsoPlainText"><b><span style=3D"color:black">&nbsp;&nbsp;&nbsp;=
-&nbsp; The just create </span>
-<span style=3D"color:red">ccgi-dbg-${PV}&nbsp; ccgi-dev-${PV},</span><span =
-style=3D"color:black"> do you know why??<o:p></o:p></span></b></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">&nbsp;&nbsp;&nbsp;&nb=
-sp; <o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"color:black">&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;<b>The following is my recipes .bb file:</b><o:p></o:p></span></p>
-<p class=3D"MsoPlainText" style=3D"margin-left:.5in"><span style=3D"color:b=
-lack"><br>
-</span><span style=3D"font-size:9.0pt;color:black">SUMMARY =3D &quot;Add cc=
-gi lib to rootfs&quot;</span><span style=3D"color:black"><o:p></o:p></span>=
-</p>
-<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
-ze:9.0pt;color:black">HOMEPAGE =3D &quot;<a href=3D"http://sourceforge.net/=
-projects/libccgi/?source=3Dtyp_redirect">http://sourceforge.net/projects/li=
-bccgi/?source=3Dtyp_redirect</a>&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
-ze:9.0pt;color:black">LICENSE =3D &quot;GPLv2&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
-ze:9.0pt;color:black">FILESEXTRAPATHS_prepend&nbsp; :=3D &quot;${THISDIR}/$=
-{PN}:&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
-ze:9.0pt;color:black">LIC_FILES_CHKSUM =3D &quot;<a href=3D"file:///\\COPYI=
-NG;md5=3Dd32239bcb673463ab874e80d47fae504">file://COPYING;md5=3Dd32239bcb67=
-3463ab874e80d47fae504</a>&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black"><o:p>=
-&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
-ze:9.0pt;color:black">FILES_${PN} =3D &quot;/usr \<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /usr/i=
-nclude \<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /usr/l=
-ib \<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /usr/i=
-nclude/ccgi.h \<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /usr/l=
-ib/libccgi.so \<o:p></o:p></span></p>
-<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
-ze:9.0pt;color:black">&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
-ze:9.0pt;color:black">SRC_URI =3D &quot;<a href=3D"file:///\\$%7bPN%7d-$%7b=
-PV%7d.tar.gz">file://${PN}-${PV}.tar.gz</a>&quot;<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black"><o:p>=
-&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
-ze:9.0pt;color:black">S =3D &quot;${WORKDIR}/${PN}-${PV}&quot;<o:p></o:p></=
-span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black"><o:p>=
-&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
-ze:9.0pt;color:black">PARALLEL_MAKEINST=3D&quot;prefix=3D${D}/usr&quot;<o:p=
-></o:p></span></p>
-<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
-ze:9.0pt;color:black">EXTRA_OEMAKE =3D 'CROSS=3D${HOST_PREFIX}'<o:p></o:p><=
-/span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black"><o:p>=
-&nbsp;</o:p></span></p>
-<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
-ze:9.0pt;color:black">do_install () {<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; instal=
-l -d ${D}${includedir}
-<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; instal=
-l -d ${D}${libdir}<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; instal=
-l -m 0755&nbsp; ${S}/*.h ${D}${includedir}<o:p></o:p></span></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; instal=
-l -m 0755&nbsp; ${S}/*.so ${D}${libdir}<o:p></o:p></span></p>
-<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
-ze:9.0pt;color:black">}<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">There is no file to be=
- packaged as ${PN}. You can added below line to generate it.<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">ALLOW_EMPTY_${PN} =3D =
-&quot;1&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">-Ting<o:p></o:p></span=
-></p>
-<p class=3D"MsoPlainText"><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt"><o:p>&nbsp;</o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thank you&amp;Best regards<o:p></o:p></p>
-<p class=3D"MsoNormal">Neil Wu<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</div>
-</body>
-</html>
+> Replacing "$(git rev-parse --verify ${machine_srcrev})" with "$(git
+> rev-parse --verify ${machine_srcrev}~0)" seems to fix the problem. See
+> http://stackoverflow.com/a/1863712/1454667
+>
+> --
+> Jeff Wang
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
---_000_e01911cf0e2245a3b563abb8538991bcBN1PR03MB156namprd03pro_--
+
+
+-- 
+"Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end"
+
