@@ -1,45 +1,55 @@
-Return-Path: <prvs=6387b4dcc0=jeffrey.wang@ll.mit.edu>
+Return-Path: <ting.liu@freescale.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0B7EEE00860; Thu,  6 Nov 2014 16:03:18 -0800 (PST)
+	id 133E1E00901; Thu,  6 Nov 2014 19:31:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-	UNPARSEABLE_RELAY autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [129.55.12.45 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [157.56.111.110 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
-	lines
-X-Greylist: delayed 3016 seconds by postgrey-1.32 at yocto-www;
-	Thu, 06 Nov 2014 16:03:05 PST
-Received: from mx1.ll.mit.edu (MX1.LL.MIT.EDU [129.55.12.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57D99E0084E
-	for <yocto@yoctoproject.org>; Thu,  6 Nov 2014 16:03:05 -0800 (PST)
-Received: from LLE2K10-HUB02.mitll.ad.local (LLE2K10-HUB02.mitll.ad.local) by
-	mx1.ll.mit.edu (unknown) with ESMTP id sA6NClN5019475 for
-	<yocto@yoctoproject.org>; Thu, 6 Nov 2014 18:12:47 -0500
-Message-ID: <545C0067.1080506@ll.mit.edu>
-Date: Thu, 6 Nov 2014 18:12:39 -0500
-From: Jeff Wang <jeffrey.wang@ll.mit.edu>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 899 seconds by postgrey-1.32 at yocto-www;
+	Thu, 06 Nov 2014 19:31:44 PST
+Received: from na01-bn1-obe.outbound.protection.outlook.com
+	(mail-bn1bon0110.outbound.protection.outlook.com [157.56.111.110])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84D52E00860
+	for <yocto@yoctoproject.org>; Thu,  6 Nov 2014 19:31:44 -0800 (PST)
+Received: from BN1PR03MB156.namprd03.prod.outlook.com (10.255.201.28) by
+	BN1PR03MB154.namprd03.prod.outlook.com (10.255.201.18) with Microsoft
+	SMTP Server (TLS) id 15.1.11.14; Fri, 7 Nov 2014 03:16:42 +0000
+Received: from BN1PR03MB156.namprd03.prod.outlook.com ([169.254.14.88]) by
+	BN1PR03MB156.namprd03.prod.outlook.com ([169.254.14.88]) with mapi id
+	15.01.0016.006; Fri, 7 Nov 2014 03:16:42 +0000
+From: "ting.liu@freescale.com" <ting.liu@freescale.com>
+To: "Neil.Wu@Emerson.com" <Neil.Wu@Emerson.com>
+Thread-Topic: Can not generate the ccgi-${PV} package
+Thread-Index: Ac/6NKRwhXPCQAGzQEuIFZDgXR9GiQABA26Q
+Date: Fri, 7 Nov 2014 03:16:42 +0000
+Message-ID: <e01911cf0e2245a3b563abb8538991bc@BN1PR03MB156.namprd03.prod.outlook.com>
+References: <3204FE6663E1F14CAF4CA6928E60C8521E20DCA9@USSTLZ-PMSG012.emrsn.org>
+In-Reply-To: <3204FE6663E1F14CAF4CA6928E60C8521E20DCA9@USSTLZ-PMSG012.emrsn.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [123.151.195.49]
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:;SRVR:BN1PR03MB154;
+x-exchange-antispam-report-test: UriScan:;
+x-forefront-prvs: 03883BD916
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(377454003)(199003)(189002)(16236675004)(15395725005)(4396001)(50986999)(92566001)(2656002)(2501002)(18717965001)(77156002)(19580405001)(62966003)(46102003)(15975445006)(19580395003)(77096003)(97736003)(54356999)(101416001)(86362001)(76176999)(76576001)(87936001)(2351001)(74316001)(19625215002)(110136001)(105586002)(33646002)(66066001)(122556002)(106356001)(40100003)(99286002)(20776003)(95666004)(64706001)(31966008)(19300405004)(120916001)(108616004)(107046002)(99396003)(21056001)(19617315012)(15202345003)(24736002)(228453006);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BN1PR03MB154;
+	H:BN1PR03MB156.namprd03.prod.outlook.com; FPR:; MLV:sfv;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-X-Originating-IP: [172.25.192.145]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.12.52, 1.0.28,
-	0.0.0000
-	definitions=2014-11-06_07:2014-11-06, 2014-11-06,
-	1970-01-01 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
-	suspectscore=1 phishscore=0
-	adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
-	scancount=1
-	engine=7.0.1-1402240000 definitions=main-1411060181
+X-OriginatorOrg: freescale.com
 X-Mailman-Approved-At: Fri, 07 Nov 2014 08:25:52 -0800
-Subject: Test in do_patch() fails for annotated tags
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Can not generate the ccgi-${PV} package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,93 +61,307 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Nov 2014 00:03:18 -0000
-X-Groupsio-MsgNum: 22097
-Content-Type: multipart/signed; protocol="application/pkcs7-signature";
-	micalg=sha1; boundary="------------ms070403000506090600070801"
+X-List-Received-Date: Fri, 07 Nov 2014 03:31:48 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_e01911cf0e2245a3b563abb8538991bcBN1PR03MB156namprd03pro_"
 
---------------ms070403000506090600070801
-Content-Type: text/plain; charset=utf-8; format=flowed
+--_000_e01911cf0e2245a3b563abb8538991bcBN1PR03MB156namprd03pro_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Commit 92c1ece6c347030d48995a36f4c67861356e59d3 causes the test in=20
-do_patch() in kernel-yocto.bbclass to fail if ${machine_srcrev} is an=20
-annotated tag. The check is meant to ensure that ${machine_srcrev} is an =
-
-ancestor of HEAD, but if ${machine_srcrev} is a tag, then "$(git=20
-rev-parse --verify ${machine_srcrev})" evaluates to the SHA of the tag=20
-instead of what it's pointing to.
-
-Replacing "$(git rev-parse --verify ${machine_srcrev})" with "$(git=20
-rev-parse --verify ${machine_srcrev}~0)" seems to fix the problem. See=20
-http://stackoverflow.com/a/1863712/1454667
-
---=20
-Jeff Wang
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Neil.Wu@Emerson.com
+Sent: Friday, November 07, 2014 10:44 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Can not generate the ccgi-${PV} package
 
 
+Hi, all
 
---------------ms070403000506090600070801
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+     I try to compile libccgi .
 
-MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIJtzCCBLww
-ggOkoAMCAQICASkwDQYJKoZIhvcNAQEFBQAwVDELMAkGA1UEBhMCVVMxHzAdBgNVBAoTFk1JVCBM
-aW5jb2xuIExhYm9yYXRvcnkxDDAKBgNVBAsTA1BLSTEWMBQGA1UEAxMNTUlUTEwgUm9vdCBDQTAe
-Fw0xMzEyMTcwMDAwMDBaFw0yMDEyMzEyMzU5NTlaMFExCzAJBgNVBAYTAlVTMR8wHQYDVQQKExZN
-SVQgTGluY29sbiBMYWJvcmF0b3J5MQwwCgYDVQQLEwNQS0kxEzARBgNVBAMTCk1JVExMIENBLTMw
-ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDaMFJ1bXy25bW03EbqHwHSSpyQVlAAC2gc
-KS9SlQRfqMW8F3yZAjncbIthG4CjgdYml7v+LMVc59IkOzpQzmi+8I59eDZsmANiUEL0kNwsEUif
-Semk671G+mNZKLG0LnpyvAnlSzlA923G0p16TksleXagrDfDyWKFSLF49vFZp3WbtkwopqC+b3NP
-Js/oW6YpHF5gmNKkHb5wBiOgYYRtJUfLHy7MebrECgEwfFrxvL7IPPwnOTqw/2KKWA/eJdIagICa
-HIHO+VBDlA01Y/4Saj2PP+6QqFhUH9XB3G2iq48CqfiJ8MAhoz121vTlzLWBcAVI/dn+JSTHIFll
-Q5F/AgMBAAGjggGaMIIBljASBgNVHRMBAf8ECDAGAQH/AgEAMB0GA1UdDgQWBBTXYGYOe0mNdUwN
-/c9G3sjHEofKvzAfBgNVHSMEGDAWgBRnqnrP9AqmuXK1iqDSnfIQw0PtKTAOBgNVHQ8BAf8EBAMC
-AYYwZgYIKwYBBQUHAQEEWjBYMC0GCCsGAQUFBzAChiFodHRwOi8vY3JsLmxsLm1pdC5lZHUvZ2V0
-dG8/TExSQ0EwJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3NwLmxsLm1pdC5lZHUvb2NzcDAzBgNVHR8E
-LDAqMCigJqAkhiJodHRwOi8vY3JsLmxsLm1pdC5lZHUvZ2V0Y3JsP0xMUkNBMIGSBgNVHSAEgYow
-gYcwDQYLKoZIhvcSAgEDAQYwDQYLKoZIhvcSAgEDAQgwDQYLKoZIhvcSAgEDAQcwDQYLKoZIhvcS
-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
-QrH+mAAAAAAAAA==
+     At end , I don't why can't create the standard ccgi-${PV} package.
 
---------------ms070403000506090600070801--
+     The just create ccgi-dbg-${PV}  ccgi-dev-${PV}, do you know why??
+
+
+
+     The following is my recipes .bb file:
+
+SUMMARY =3D "Add ccgi lib to rootfs"
+
+HOMEPAGE =3D "http://sourceforge.net/projects/libccgi/?source=3Dtyp_redirec=
+t"
+
+LICENSE =3D "GPLv2"
+
+FILESEXTRAPATHS_prepend  :=3D "${THISDIR}/${PN}:"
+
+LIC_FILES_CHKSUM =3D "file://COPYING;md5=3Dd32239bcb673463ab874e80d47fae504=
+<file:///\\COPYING;md5=3Dd32239bcb673463ab874e80d47fae504>"
+
+
+
+FILES_${PN} =3D "/usr \
+
+              /usr/include \
+
+              /usr/lib \
+
+              /usr/include/ccgi.h \
+
+              /usr/lib/libccgi.so \
+
+"
+
+SRC_URI =3D "file://${PN}-${PV}.tar.gz<file:///\\$%7bPN%7d-$%7bPV%7d.tar.gz=
+>"
+
+
+
+S =3D "${WORKDIR}/${PN}-${PV}"
+
+
+
+PARALLEL_MAKEINST=3D"prefix=3D${D}/usr"
+
+EXTRA_OEMAKE =3D 'CROSS=3D${HOST_PREFIX}'
+
+
+
+do_install () {
+
+              install -d ${D}${includedir}
+
+              install -d ${D}${libdir}
+
+              install -m 0755  ${S}/*.h ${D}${includedir}
+
+              install -m 0755  ${S}/*.so ${D}${libdir}
+
+}
+There is no file to be packaged as ${PN}. You can added below line to gener=
+ate it.
+ALLOW_EMPTY_${PN} =3D "1"
+
+-Ting
+
+
+
+
+Thank you&Best regards
+Neil Wu
+
+
+--_000_e01911cf0e2245a3b563abb8538991bcBN1PR03MB156namprd03pro_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
+unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+<b>On Behalf Of </b>Neil.Wu@Emerson.com<br>
+<b>Sent:</b> Friday, November 07, 2014 10:44 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] Can not generate the ccgi-${PV} package<o:p></o:p><=
+/span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Hi, all<o:p></o:p></p>
+<p class=3D"MsoPlainText"><b><span style=3D"color:black">&nbsp;&nbsp;&nbsp;=
+&nbsp; I try to compile libccgi .
+<o:p></o:p></span></b></p>
+<p class=3D"MsoPlainText"><b><span style=3D"color:black">&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;At end , I don't why can&#8217;t create the standard
+</span><span style=3D"color:red">ccgi-${PV}</span><span style=3D"color:blac=
+k"> package.<o:p></o:p></span></b></p>
+<p class=3D"MsoPlainText"><b><span style=3D"color:black">&nbsp;&nbsp;&nbsp;=
+&nbsp; The just create </span>
+<span style=3D"color:red">ccgi-dbg-${PV}&nbsp; ccgi-dev-${PV},</span><span =
+style=3D"color:black"> do you know why??<o:p></o:p></span></b></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black">&nbsp;&nbsp;&nbsp;&nb=
+sp; <o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"color:black">&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;<b>The following is my recipes .bb file:</b><o:p></o:p></span></p>
+<p class=3D"MsoPlainText" style=3D"margin-left:.5in"><span style=3D"color:b=
+lack"><br>
+</span><span style=3D"font-size:9.0pt;color:black">SUMMARY =3D &quot;Add cc=
+gi lib to rootfs&quot;</span><span style=3D"color:black"><o:p></o:p></span>=
+</p>
+<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
+ze:9.0pt;color:black">HOMEPAGE =3D &quot;<a href=3D"http://sourceforge.net/=
+projects/libccgi/?source=3Dtyp_redirect">http://sourceforge.net/projects/li=
+bccgi/?source=3Dtyp_redirect</a>&quot;<o:p></o:p></span></p>
+<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
+ze:9.0pt;color:black">LICENSE =3D &quot;GPLv2&quot;<o:p></o:p></span></p>
+<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
+ze:9.0pt;color:black">FILESEXTRAPATHS_prepend&nbsp; :=3D &quot;${THISDIR}/$=
+{PN}:&quot;<o:p></o:p></span></p>
+<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
+ze:9.0pt;color:black">LIC_FILES_CHKSUM =3D &quot;<a href=3D"file:///\\COPYI=
+NG;md5=3Dd32239bcb673463ab874e80d47fae504">file://COPYING;md5=3Dd32239bcb67=
+3463ab874e80d47fae504</a>&quot;<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black"><o:p>=
+&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
+ze:9.0pt;color:black">FILES_${PN} =3D &quot;/usr \<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /usr/i=
+nclude \<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /usr/l=
+ib \<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /usr/i=
+nclude/ccgi.h \<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /usr/l=
+ib/libccgi.so \<o:p></o:p></span></p>
+<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
+ze:9.0pt;color:black">&quot;<o:p></o:p></span></p>
+<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
+ze:9.0pt;color:black">SRC_URI =3D &quot;<a href=3D"file:///\\$%7bPN%7d-$%7b=
+PV%7d.tar.gz">file://${PN}-${PV}.tar.gz</a>&quot;<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black"><o:p>=
+&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
+ze:9.0pt;color:black">S =3D &quot;${WORKDIR}/${PN}-${PV}&quot;<o:p></o:p></=
+span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black"><o:p>=
+&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
+ze:9.0pt;color:black">PARALLEL_MAKEINST=3D&quot;prefix=3D${D}/usr&quot;<o:p=
+></o:p></span></p>
+<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
+ze:9.0pt;color:black">EXTRA_OEMAKE =3D 'CROSS=3D${HOST_PREFIX}'<o:p></o:p><=
+/span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black"><o:p>=
+&nbsp;</o:p></span></p>
+<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
+ze:9.0pt;color:black">do_install () {<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; instal=
+l -d ${D}${includedir}
+<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; instal=
+l -d ${D}${libdir}<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; instal=
+l -m 0755&nbsp; ${S}/*.h ${D}${includedir}<o:p></o:p></span></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:9.0pt;color:black">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; instal=
+l -m 0755&nbsp; ${S}/*.so ${D}${libdir}<o:p></o:p></span></p>
+<p class=3D"MsoPlainText" style=3D"text-indent:.5in"><span style=3D"font-si=
+ze:9.0pt;color:black">}<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">There is no file to be=
+ packaged as ${PN}. You can added below line to generate it.<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">ALLOW_EMPTY_${PN} =3D =
+&quot;1&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">-Ting<o:p></o:p></span=
+></p>
+<p class=3D"MsoPlainText"><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt"><o:p>&nbsp;</o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thank you&amp;Best regards<o:p></o:p></p>
+<p class=3D"MsoNormal">Neil Wu<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_e01911cf0e2245a3b563abb8538991bcBN1PR03MB156namprd03pro_--
