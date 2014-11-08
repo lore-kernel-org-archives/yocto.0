@@ -1,34 +1,58 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <diego.sueiro@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 95E09E00832; Sat,  8 Nov 2014 09:18:03 -0800 (PST)
+	id E5EF2E0084F; Sat,  8 Nov 2014 10:04:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW, URIBL_RHS_DOB autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (diego.sueiro[at]gmail.com)
+	*  1.5 URIBL_RHS_DOB Contains an URI of a new domain (Day Old Bread)
+	*      [URIs: intel.com]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.42 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5576DE00832
-	for <yocto@yoctoproject.org>; Sat,  8 Nov 2014 09:17:58 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id sA8HHv2R015817
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Sat, 8 Nov 2014 09:17:57 -0800 (PST)
-Received: from msp-dhcp23.wrs.com (172.25.34.23) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.174.1;
-	Sat, 8 Nov 2014 09:17:56 -0800
-From: Mark Hatle <mark.hatle@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Sat, 8 Nov 2014 11:17:54 -0600
-Message-ID: <1415467075-233424-1-git-send-email-mark.hatle@windriver.com>
-X-Mailer: git-send-email 1.9.3
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qa0-f42.google.com (mail-qa0-f42.google.com
+	[209.85.216.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66C5CE00830
+	for <yocto@yoctoproject.org>; Sat,  8 Nov 2014 10:03:57 -0800 (PST)
+Received: by mail-qa0-f42.google.com with SMTP id k15so3717228qaq.1
+	for <yocto@yoctoproject.org>; Sat, 08 Nov 2014 10:03:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=hF4l1csyUjqRHX95wgXFGNnklXSoqGQoWk7OK3jRWj8=;
+	b=it8/IuVu8oPOidd1CtFVTjPIgDqDgie2y9ROVRyvWLe+IlMQwRfmneVra2R1hw9gsW
+	KPWxK4hl73WXlhU5IRPfuTF0kbi8tqVN6xk7SuA730DKGon+klstdJ/+oVyaYb6wBAKz
+	JtLuCBFqVSQ3upDwTO4sYE/paFzQMfP9nGmH8oQr65Dy781SzC/oMepXh1gHNhMc5PDb
+	Znn8DhFgJT/RR6yEy9MX3Aq3/oGea7bcLzaGYSF8nf7kBKsDgWa2dlHKD32erviBVbkv
+	XPMM7FSWGdr8dUTeTn1pTl0jIrexVs+/GYE/6QHXNfCzScNx/e8DnAs8o7AL8T3AWLmj
+	04Eg==
 MIME-Version: 1.0
-Subject: [PATCH] [meta-mingw] Add whitelist of WINDRES and RC to hash
+X-Received: by 10.140.98.202 with SMTP id o68mr1517962qge.49.1415469835800;
+	Sat, 08 Nov 2014 10:03:55 -0800 (PST)
+Received: by 10.140.82.20 with HTTP; Sat, 8 Nov 2014 10:03:55 -0800 (PST)
+Received: by 10.140.82.20 with HTTP; Sat, 8 Nov 2014 10:03:55 -0800 (PST)
+In-Reply-To: <CAJTo0LY1X+LeRst8o2mAN4vHewB5NM8DYB7Roczm+=E0YbBWGA@mail.gmail.com>
+References: <545E21EA.9040403@ripperd.com>
+	<CAFZh4h_rar=t5MV5jsEsoZ6YPx04jVx9QkTq-SJV5jmXk6oUqw@mail.gmail.com>
+	<CAJTo0LY1X+LeRst8o2mAN4vHewB5NM8DYB7Roczm+=E0YbBWGA@mail.gmail.com>
+Date: Sat, 8 Nov 2014 16:03:55 -0200
+Message-ID: <CAMCfZKEXVDcd44Yf4AOdKWcYd7UOed71zAFihEJmo6zkbHdvhA@mail.gmail.com>
+From: Diego Sueiro <diego.sueiro@gmail.com>
+To: Ross Burton <ross.burton@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Build optimization question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,20 +64,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Nov 2014 17:18:03 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sat, 08 Nov 2014 18:04:01 -0000
+Content-Type: multipart/alternative; boundary=001a11394ea2c0d8bf05075cc01d
 
-Add the two specific exported values to the hash, otherwise task hashes change
-and things rebuild unnecessarily.  (perl-native may also fail to rebuild.)
+--001a11394ea2c0d8bf05075cc01d
+Content-Type: text/plain; charset=ISO-8859-1
 
-Mark Hatle (1):
-  *-mingw32.conf: Add whitelist of WINDRES and RC to hash
+Take a look at poky-tiny distro:
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-yocto/conf/distro/poky-tiny.conf
 
- conf/machine-sdk/i686-mingw32.conf   | 2 ++
- conf/machine-sdk/x86_64-mingw32.conf | 4 +++-
- 2 files changed, 5 insertions(+), 1 deletion(-)
+As you are using BBB you can optimize u-boot code and remove some board
+detection steps.
 
--- 
-2.0.1
+I noticed that MLO generated by u-boot 2014.07 mainline is too much faster
+than the old ones.
 
+Regards,
 
+--
+*dS
+Diego Sueiro
+sent from mobile.
+Em 08/11/2014 12:54, "Burton, Ross" <ross.burton@intel.com> escreveu:
+
+>
+> On 8 November 2014 14:23, Brian Hutchinson <b.hutchman@gmail.com> wrote:
+>
+>> I'm planning to just start excluding some of the packages in it ... I
+>> don't need sound, wireless, Bluetooth etc.
+>>
+>>
+> If you don't need sound, wifi, and bluetooth then remove the relevant
+> flags from DISTRO_FEATURES and they'll never be built.
+>
+> Ross
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--001a11394ea2c0d8bf05075cc01d
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<p dir=3D"ltr">Take a look at poky-tiny distro:<br>
+<a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-yocto/c=
+onf/distro/poky-tiny.conf">http://git.yoctoproject.org/cgit/cgit.cgi/poky/t=
+ree/meta-yocto/conf/distro/poky-tiny.conf</a></p>
+<p dir=3D"ltr">As you are using BBB you can optimize u-boot code and remove=
+ some board detection steps. </p>
+<p dir=3D"ltr">I noticed that MLO generated by u-boot 2014.07 mainline is t=
+oo much faster than the old ones. </p>
+<p dir=3D"ltr">Regards, </p>
+<p dir=3D"ltr">--<br>
+*dS<br>
+Diego Sueiro<br>
+sent from mobile. </p>
+<div class=3D"gmail_quote">Em 08/11/2014 12:54, &quot;Burton, Ross&quot; &l=
+t;<a href=3D"mailto:ross.burton@intel.com">ross.burton@intel.com</a>&gt; es=
+creveu:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"=
+margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"=
+ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 8 Novembe=
+r 2014 14:23, Brian Hutchinson <span dir=3D"ltr">&lt;<a href=3D"mailto:b.hu=
+tchman@gmail.com" target=3D"_blank">b.hutchman@gmail.com</a>&gt;</span> wro=
+te:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
+left:1px #ccc solid;padding-left:1ex"><p dir=3D"ltr">I&#39;m planning to ju=
+st start excluding some of the packages in it ... I don&#39;t need sound, w=
+ireless, Bluetooth etc.</p>
+<p dir=3D"ltr"></p></blockquote></div><br>If you don&#39;t need sound, wifi=
+, and bluetooth then remove the relevant flags from DISTRO_FEATURES and the=
+y&#39;ll never be built.</div><div class=3D"gmail_extra"><br></div><div cla=
+ss=3D"gmail_extra">Ross</div></div>
+<br>--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div>
+
+--001a11394ea2c0d8bf05075cc01d--
