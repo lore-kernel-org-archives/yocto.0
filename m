@@ -1,61 +1,57 @@
-Return-Path: <rehsack@gmail.com>
+Return-Path: <dean@ripperd.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 54F16E00830; Sat,  8 Nov 2014 04:47:11 -0800 (PST)
+	id 60E22E00830; Sat,  8 Nov 2014 06:01:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
-	URIBL_RHS_DOB autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 1.5 URIBL_RHS_DOB Contains an URI of a new domain (Day
-	Old Bread) *      [URIs: github.com]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (rehsack[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.41 listed in list.dnswl.org]
-Received: from mail-wg0-f41.google.com (mail-wg0-f41.google.com [74.125.82.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF5F0E007BA
-	for <yocto@yoctoproject.org>; Sat,  8 Nov 2014 04:47:03 -0800 (PST)
-Received: by mail-wg0-f41.google.com with SMTP id k14so5585914wgh.28
-	for <yocto@yoctoproject.org>; Sat, 08 Nov 2014 04:47:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=pQtFRcVY2+KOA/fLzMqwQaZi0gFYbeZ50G0OerIG78A=;
-	b=tHt/jJ30KCCRzTXLVFK56ECBYeGcGl3RCR2jMBI6s2XKiff5mSzJus5AsV+cXplFuS
-	AAYHTLTujRd7NpOGmkPDx7fQ4X7IaSdkRwF/CyyWHkBFg7cE1ZiDc+LXlCarG13n/LyD
-	4y4FOvtvy0FVN5pRZLfxDNVfGpYXaN084/mLxlD3H6AGVJP0V6rnxvelTcPDc0POmyMF
-	eV9a8TzR+xl4Gfuyqo5JoostZv93iA0HAZ5RjojsyInU4VBH5N4Rh5tgq5YrhAzizAOV
-	d1mlQW090Uh3YYb9m+E22VSnQgcIdmbzr0Wv5xEjgGvBGKyMev+TtCIynLE/4VMWm4e/
-	kHlQ==
-X-Received: by 10.180.10.231 with SMTP id l7mr13954251wib.1.1415450822882;
-	Sat, 08 Nov 2014 04:47:02 -0800 (PST)
-Received: from ernie.muppets.liwing.de (p578b540c.dip0.t-ipconnect.de.
-	[87.139.84.12])
-	by mx.google.com with ESMTPSA id a8sm5583210wiz.21.2014.11.08.04.47.01
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sat, 08 Nov 2014 04:47:01 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
-From: Jens Rehsack <rehsack@gmail.com>
-In-Reply-To: <CAJTo0Lbd4JcvuipFTGDu_3c1kyQDO49gxfp59QwjzFW=618jhQ@mail.gmail.com>
-Date: Sat, 8 Nov 2014 13:47:01 +0100
-Message-Id: <37719788-60D1-4C79-BCC4-4F4FA3DFDEB1@gmail.com>
-References: <20141027080733.D8D1F380909@gemini.denx.de>
-	<1415215791-27197-1-git-send-email-wd@denx.de>
-	<CAJTo0Lbd4JcvuipFTGDu_3c1kyQDO49gxfp59QwjzFW=618jhQ@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-X-Mailer: Apple Mail (2.1878.6)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] Perl: fix PERL5LIB settings
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [96.114.154.168 listed in list.dnswl.org]
+X-Greylist: delayed 71 seconds by postgrey-1.32 at yocto-www;
+	Sat, 08 Nov 2014 06:01:25 PST
+Received: from resqmta-po-09v.sys.comcast.net (resqmta-po-09v.sys.comcast.net
+	[96.114.154.168])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EF8EE007BA
+	for <yocto@yoctoproject.org>; Sat,  8 Nov 2014 06:01:25 -0800 (PST)
+Received: from resomta-po-19v.sys.comcast.net ([96.114.154.243])
+	by resqmta-po-09v.sys.comcast.net with comcast
+	id D1zE1p0025FMDhs0120Dda; Sat, 08 Nov 2014 14:00:13 +0000
+Received: from mail.ripperd.com ([24.118.104.28])
+	by resomta-po-19v.sys.comcast.net with comcast
+	id D20C1p00Q0cmX740120DjS; Sat, 08 Nov 2014 14:00:13 +0000
+Received: by mail.ripperd.com (Postfix, from userid 65534)
+	id 3C5F5663AF; Sat,  8 Nov 2014 08:00:12 -0600 (CST)
+Received: from [10.0.1.6] (unknown [10.0.1.6])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by mail.ripperd.com (Postfix) with ESMTPSA id 0E6BF66398
+	for <yocto@yoctoproject.org>; Sat,  8 Nov 2014 08:00:11 -0600 (CST)
+Message-ID: <545E21EA.9040403@ripperd.com>
+Date: Sat, 08 Nov 2014 08:00:10 -0600
+From: Dean <dean@ripperd.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
+MIME-Version: 1.0
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=comcast.net;
+	s=q20140121; t=1415455213;
+	bh=2J1zXMnFscQOGEjHXZqjFrJQG73e2hJJ6tJEFx7pRxo=;
+	h=Received:Received:Received:Received:Message-ID:Date:From:
+	MIME-Version:To:Subject:Content-Type;
+	b=kwSbaP2z+VPu7tonRWB+eKHay071JlrN5CkUbfNgtj1HzUj0xhpmDptg62GnITWO7
+	rSUX3tgsfhQEbCZU+4kVZyQShmUZc4gmckuzel64iGdlfhuC2QWMQIdMI+WtMwPYmS
+	0Q4gl7SHxjkDY/Dbhn6cYHeEq9SklXSh9v5L0H5LXkTUdaH7nKrVpOqLlYSbiDr+Ml
+	SQsKxjGLH1DbFpMHEXlu9Ob6csw/R3Qj+p4lBPqjOeJQs86ZSOcaESBXad1F1Q0lQi
+	kFWn5QaU8C4FH3E8MZF3nu650Lb2t35qaMGyKm+3mQla7+c0C4lz+djKBVdZZwgvja
+	+aQzFl08I6/kQ==
+Subject: Build optimization question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,40 +63,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Nov 2014 12:47:11 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 08 Nov 2014 14:01:28 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+So I am using core-image-minimal and trying to shrink things as much as 
+possible for boot speed. I wrap the bitbake command in some other 
+commands to basically extract the image and then attach it to a kernel 
+as a ramdisk. So the size of the image is critical to boot speed.
+
+In some of my custom packages I have used -Os in the gcc command line.
+Is there a way to set this globally for all the packages built into the 
+image?
+
+Any other hints or tips to reduce the size of the build? Or potential 
+changes to u-boot to make it load faster? This is running on a 
+beaglebone black.
 
 
-Am 07.11.2014 um 12:55 schrieb Burton, Ross <ross.burton@intel.com>:
-
-> Hi Wolfgang,
->=20
-> On 5 November 2014 19:29, Wolfgang Denk <wd@denx.de> wrote:
->  meta/recipes-devtools/perl/perl-native_5.14.3.bb | 4 ++--
->  meta/recipes-devtools/perl/perl_5.14.3.bb        | 2 +-
->  2 files changed, 3 insertions(+), 3 deletions(-)
->=20
-> Perl was upgraded to 5.20.0 in July, can you rebase and verify that =
-this is still required?
-
-I can finally confirm that it fixes the issues in daisy (bitbaking =
-Dancer2 using =
-https://github.com/rehsack/meta-cpan/tree/master/recipes-www/dancer2-perl)=
-.
-You can try whether Dancer2 bitbakes for dizzy and/or master to verify - =
-for me it's impossible to create a dizzy build - to many daisy adoptions =
-and release pressure for next weeks.
-If you know someone having dizzy - bitbake Dancer2, Unix::Statgrab or =
-alike to prove ...
-
-Cheers
---=20
-Jens Rehsack
-rehsack@gmail.com
-
-
-
-
-
+Thanks,
+Dean
 
