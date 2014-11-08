@@ -1,48 +1,38 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 82440E00832; Sat,  8 Nov 2014 06:54:01 -0800 (PST)
+	id 9A976E00876; Sat,  8 Nov 2014 09:18:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.173 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	URIBL_RHS_DOB autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 1.5 URIBL_RHS_DOB Contains an URI of a new domain (Day
+	Old Bread) *      [URIs: windriver.com]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qc0-f173.google.com (mail-qc0-f173.google.com
-	[209.85.216.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5707E0072A
-	for <yocto@yoctoproject.org>; Sat,  8 Nov 2014 06:53:57 -0800 (PST)
-Received: by mail-qc0-f173.google.com with SMTP id x3so3919972qcv.18
-	for <yocto@yoctoproject.org>; Sat, 08 Nov 2014 06:53:56 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=o7pRKQVpc4dekjRXsaPf7mnyd94IK0YfEpb5M9/rmKk=;
-	b=Y4zia8SHUH7+g+6QZ45O0jCnsii9lLWE0k9U7I7TLGtgPLgQz8XEd4/KBDmzhh430u
-	MchbSgbgFrkMhCfxFyUM4FgsVVH4ctCks4+cwjxqn0KWd0qbYySPvIdvnQIOX9PIWY/y
-	t/vSFiKvHti12gy8aqorsw6M0Mxj59mzuqowbqPxFh/n2jmbyBGB8h+HFUnT1dzB9eDM
-	qx/CsJn0lA/prs/z45WE1ueMLxzRQpa60sdfTMVU+dY0kwn20pACdceewOw+Q/rJNW3d
-	uavjhNFRIEqZUp9KOjNyMhrKUNvb5myQCy8pZSNrSEWe2ltrPV9+pInVg/Eui2rc+hQ9
-	b8VA==
-X-Gm-Message-State: ALoCoQkgCDChWXo5CxF/Wjnj7sjBUzSRSeTGYjTPyyw2cjx3bXXOaXyuUfx4L+uyAjkW7uQ3oIXL
-X-Received: by 10.224.2.135 with SMTP id 7mr28394903qaj.64.1415458436767; Sat,
-	08 Nov 2014 06:53:56 -0800 (PST)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A15A7E00830
+	for <yocto@yoctoproject.org>; Sat,  8 Nov 2014 09:17:59 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id sA8HHwf6013640
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Sat, 8 Nov 2014 09:17:58 -0800 (PST)
+Received: from msp-dhcp23.wrs.com (172.25.34.23) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.174.1;
+	Sat, 8 Nov 2014 09:17:57 -0800
+From: Mark Hatle <mark.hatle@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Sat, 8 Nov 2014 11:17:55 -0600
+Message-ID: <1415467075-233424-2-git-send-email-mark.hatle@windriver.com>
+X-Mailer: git-send-email 1.9.3
+In-Reply-To: <1415467075-233424-1-git-send-email-mark.hatle@windriver.com>
+References: <1415467075-233424-1-git-send-email-mark.hatle@windriver.com>
 MIME-Version: 1.0
-Received: by 10.140.98.213 with HTTP; Sat, 8 Nov 2014 06:53:36 -0800 (PST)
-In-Reply-To: <CAFZh4h_rar=t5MV5jsEsoZ6YPx04jVx9QkTq-SJV5jmXk6oUqw@mail.gmail.com>
-References: <545E21EA.9040403@ripperd.com>
-	<CAFZh4h_rar=t5MV5jsEsoZ6YPx04jVx9QkTq-SJV5jmXk6oUqw@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Sat, 8 Nov 2014 14:53:36 +0000
-Message-ID: <CAJTo0LY1X+LeRst8o2mAN4vHewB5NM8DYB7Roczm+=E0YbBWGA@mail.gmail.com>
-To: Brian Hutchinson <b.hutchman@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Build optimization question
+Subject: [PATCH] [meta-mingw] *-mingw32.conf: Add whitelist of WINDRES and RC to hash
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,37 +44,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Nov 2014 14:54:01 -0000
-Content-Type: multipart/alternative; boundary=001a11c3defa51827505075a19a1
+X-List-Received-Date: Sat, 08 Nov 2014 17:18:01 -0000
+Content-Type: text/plain
 
---001a11c3defa51827505075a19a1
-Content-Type: text/plain; charset=UTF-8
+WINDRES and RC values are exported when building for a mingw32 target.  These
+values, due to being exported, end up in the signature hash for everything in
+the system.  By adding these to the whitelist we prevent contamination and
+allow the system to properly reuse existing -native and other sstate-cache.
 
-On 8 November 2014 14:23, Brian Hutchinson <b.hutchman@gmail.com> wrote:
+Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
+---
+ conf/machine-sdk/i686-mingw32.conf   | 2 ++
+ conf/machine-sdk/x86_64-mingw32.conf | 4 +++-
+ 2 files changed, 5 insertions(+), 1 deletion(-)
 
-> I'm planning to just start excluding some of the packages in it ... I
-> don't need sound, wireless, Bluetooth etc.
->
->
-If you don't need sound, wifi, and bluetooth then remove the relevant flags
-from DISTRO_FEATURES and they'll never be built.
+diff --git a/conf/machine-sdk/i686-mingw32.conf b/conf/machine-sdk/i686-mingw32.conf
+index eec3ced..0bdedaa 100644
+--- a/conf/machine-sdk/i686-mingw32.conf
++++ b/conf/machine-sdk/i686-mingw32.conf
+@@ -27,3 +27,5 @@ MACHINEOVERRIDES .= ":sdkmingw32"
+ 
+ export WINDRES = "${HOST_PREFIX}windres --include-dir=${STAGING_INCDIR}"
+ export RC = "${WINDRES}"
++
++BB_HASHBASE_WHITELIST_append = " WINDRES RC"
+diff --git a/conf/machine-sdk/x86_64-mingw32.conf b/conf/machine-sdk/x86_64-mingw32.conf
+index be9a8c4..5e80dfa 100644
+--- a/conf/machine-sdk/x86_64-mingw32.conf
++++ b/conf/machine-sdk/x86_64-mingw32.conf
+@@ -26,4 +26,6 @@ SDKPKGSUFFIX = "nativesdk-mingw32"
+ MACHINEOVERRIDES .= ":sdkmingw32"
+ 
+ export WINDRES = "${HOST_PREFIX}windres --include-dir=${STAGING_INCDIR}"
+-export RC = "${WINDRES}"
+\ No newline at end of file
++export RC = "${WINDRES}"
++
++BB_HASHBASE_WHITELIST_append = " WINDRES RC"
+-- 
+2.0.1
 
-Ross
 
---001a11c3defa51827505075a19a1
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 8 November 2014 14:23, Brian Hutchinson <span dir=3D"ltr">&lt;<a href=3D=
-"mailto:b.hutchman@gmail.com" target=3D"_blank">b.hutchman@gmail.com</a>&gt=
-;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
-.8ex;border-left:1px #ccc solid;padding-left:1ex"><p dir=3D"ltr">I&#39;m pl=
-anning to just start excluding some of the packages in it ... I don&#39;t n=
-eed sound, wireless, Bluetooth etc.</p>
-<p dir=3D"ltr"></p></blockquote></div><br>If you don&#39;t need sound, wifi=
-, and bluetooth then remove the relevant flags from DISTRO_FEATURES and the=
-y&#39;ll never be built.</div><div class=3D"gmail_extra"><br></div><div cla=
-ss=3D"gmail_extra">Ross</div></div>
-
---001a11c3defa51827505075a19a1--
