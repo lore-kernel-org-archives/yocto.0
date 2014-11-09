@@ -1,61 +1,27 @@
-Return-Path: <xerofoify@gmail.com>
+Return-Path: <yocto@mindchasers.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8CF36E008D3; Sat,  8 Nov 2014 20:27:14 -0800 (PST)
+	id 3BBB1E008BA; Sun,  9 Nov 2014 13:13:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (xerofoify[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.176 listed in list.dnswl.org]
-Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AA75E00876
-	for <yocto@yoctoproject.org>; Sat,  8 Nov 2014 20:27:09 -0800 (PST)
-Received: by mail-ig0-f176.google.com with SMTP id l13so16195411iga.3
-	for <yocto@yoctoproject.org>; Sat, 08 Nov 2014 20:27:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=WtiTs4r8gciGK2c+M3J5xRzlu29d4jtSHqKBhLLEfm0=;
-	b=o9uOc14GAunqveRN4ExVF9mDsKxtoDnx4vh8Yyu4WQLlzklsoBT0vRYBWrh7Dlqx4E
-	PCtyEvbn+rUco2aI2h+dwXCaaAWamVnnikfFExUwDpZyPhEZP7UvFg6V3GnpRt8LYIFp
-	HRecugbTD6joZbVRrrE4CHyB/TCRwJTN13hzdxClEVVjSGdjrdxMpG6Qys+9cu20tQXz
-	xqiz+/8q0jYdbTav7pf9wq3/Efin6fsRkcNNX3Ad35U2FCOGITY8jOVNirmYN6UXGEhN
-	b6rGuKoSAV0rxaN0cwAeJGp7Yg28ffFFLe2oe0dHfzePmpb7GxXwRX8I0cOsQzA0CXID
-	gCQw==
-X-Received: by 10.50.114.97 with SMTP id jf1mr15493633igb.29.1415507228686;
-	Sat, 08 Nov 2014 20:27:08 -0800 (PST)
-Received: from [192.168.0.50]
-	(CPE0026f3330aca-CM0026f3330ac6.cpe.net.cable.rogers.com.
-	[99.231.92.7])
-	by mx.google.com with ESMTPSA id g70sm6448548ioe.18.2014.11.08.20.27.07
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 08 Nov 2014 20:27:08 -0800 (PST)
-Message-ID: <545EED1B.5030203@gmail.com>
-Date: Sat, 08 Nov 2014 23:27:07 -0500
-From: nick <xerofoify@gmail.com>
+Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1090FE007C0
+	for <yocto@yoctoproject.org>; Sun,  9 Nov 2014 13:13:49 -0800 (PST)
+Received: from [192.168.1.10] (unknown [68.38.40.177])
+	by smtp.webfaction.com (Postfix) with ESMTP id 8886C2078F06
+	for <yocto@yoctoproject.org>; Sun,  9 Nov 2014 21:13:48 +0000 (UTC)
+Message-ID: <545FD907.2070003@mindchasers.com>
+Date: Sun, 09 Nov 2014 16:13:43 -0500
+From: Bob Cochran <yocto@mindchasers.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
 MIME-Version: 1.0
-To: Diego Sueiro <diego.sueiro@gmail.com>, Ross Burton <ross.burton@intel.com>
-References: <545E21EA.9040403@ripperd.com>	<CAFZh4h_rar=t5MV5jsEsoZ6YPx04jVx9QkTq-SJV5jmXk6oUqw@mail.gmail.com>	<CAJTo0LY1X+LeRst8o2mAN4vHewB5NM8DYB7Roczm+=E0YbBWGA@mail.gmail.com>
-	<CAMCfZKEXVDcd44Yf4AOdKWcYd7UOed71zAFihEJmo6zkbHdvhA@mail.gmail.com>
-In-Reply-To: <CAMCfZKEXVDcd44Yf4AOdKWcYd7UOed71zAFihEJmo6zkbHdvhA@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Build optimization question
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: newbb.vim vs skeleton recipe in yocto-docs dev manual....
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,58 +33,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 09 Nov 2014 04:27:14 -0000
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Sun, 09 Nov 2014 21:13:55 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Diego,
-I agree with Ross here in from my experience with embedded systems the three best ways to strip your root
-file system are by removing unneeded boot loader coe, removing unneeded kernel components and that of striping
-your middle ware to smaller versions like Busybox and other similiar packages like elibc. Also running strip
-after your debugging is done for the target can strip your code even further, there are cases of stripping large
-programs like the kernel down from 20 megabytes to 2. Lastly, linking Busybox statically is great if you don't need
-a reason to link it against a C library implementation as static versions of Busybox can easily be less then  10
-megabytes from my reading and experience.
-Regards Nick    
+Hi,
 
-On 14-11-08 01:03 PM, Diego Sueiro wrote:
-> Take a look at poky-tiny distro:
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-yocto/conf/distro/poky-tiny.conf
-> 
-> As you are using BBB you can optimize u-boot code and remove some board
-> detection steps.
-> 
-> I noticed that MLO generated by u-boot 2014.07 mainline is too much faster
-> than the old ones.
-> 
-> Regards,
-> 
-> --
-> *dS
-> Diego Sueiro
-> sent from mobile.
-> Em 08/11/2014 12:54, "Burton, Ross" <ross.burton@intel.com> escreveu:
-> 
->>
->> On 8 November 2014 14:23, Brian Hutchinson <b.hutchman@gmail.com> wrote:
->>
->>> I'm planning to just start excluding some of the packages in it ... I
->>> don't need sound, wireless, Bluetooth etc.
->>>
->>>
->> If you don't need sound, wifi, and bluetooth then remove the relevant
->> flags from DISTRO_FEATURES and they'll never be built.
->>
->> Ross
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
-> 
-> 
-> 
+I just noticed that newbb.vim in bitbake/contrib is notably different 
+from the skeleton recipe proposed in the latest Dev Manual.
+
+I'll submit a patch if someone can give me some guidance on what should 
+be in newbb.vim (or maybe it's the manual that needs to be patched).
+
+Bob
+
+
+ From yocto-docs: Dev Manual (modify the following skeleton recipe):
+
+SUMMARY = ""
+HOMEPAGE = ""
+LICENSE = ""
+LIC_FILES_CHKSUM = ""
+SRC_URI = ""
+SRC_URI[md5sum] = ""
+SRC_URI[sha256sum] = ""
+S = "${WORKDIR}/${PN}-${PV}"
+
+
+
+ From newbb.vim:
+
+DESCRIPTION = ""
+HOMEPAGE = ""
+LICENSE = ""
+SECTION = ""
+DEPENDS = ""
+
+SRC_URI = ""
+
+
 
