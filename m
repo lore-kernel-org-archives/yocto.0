@@ -1,56 +1,59 @@
-Return-Path: <diego.sueiro@gmail.com>
+Return-Path: <xerofoify@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E5EF2E0084F; Sat,  8 Nov 2014 10:04:00 -0800 (PST)
+	id 8CF36E008D3; Sat,  8 Nov 2014 20:27:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW, URIBL_RHS_DOB autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (diego.sueiro[at]gmail.com)
-	*  1.5 URIBL_RHS_DOB Contains an URI of a new domain (Day Old Bread)
-	*      [URIs: intel.com]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.42 listed in list.dnswl.org]
+	mail provider *      (xerofoify[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qa0-f42.google.com (mail-qa0-f42.google.com
-	[209.85.216.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66C5CE00830
-	for <yocto@yoctoproject.org>; Sat,  8 Nov 2014 10:03:57 -0800 (PST)
-Received: by mail-qa0-f42.google.com with SMTP id k15so3717228qaq.1
-	for <yocto@yoctoproject.org>; Sat, 08 Nov 2014 10:03:57 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.176 listed in list.dnswl.org]
+Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AA75E00876
+	for <yocto@yoctoproject.org>; Sat,  8 Nov 2014 20:27:09 -0800 (PST)
+Received: by mail-ig0-f176.google.com with SMTP id l13so16195411iga.3
+	for <yocto@yoctoproject.org>; Sat, 08 Nov 2014 20:27:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=hF4l1csyUjqRHX95wgXFGNnklXSoqGQoWk7OK3jRWj8=;
-	b=it8/IuVu8oPOidd1CtFVTjPIgDqDgie2y9ROVRyvWLe+IlMQwRfmneVra2R1hw9gsW
-	KPWxK4hl73WXlhU5IRPfuTF0kbi8tqVN6xk7SuA730DKGon+klstdJ/+oVyaYb6wBAKz
-	JtLuCBFqVSQ3upDwTO4sYE/paFzQMfP9nGmH8oQr65Dy781SzC/oMepXh1gHNhMc5PDb
-	Znn8DhFgJT/RR6yEy9MX3Aq3/oGea7bcLzaGYSF8nf7kBKsDgWa2dlHKD32erviBVbkv
-	XPMM7FSWGdr8dUTeTn1pTl0jIrexVs+/GYE/6QHXNfCzScNx/e8DnAs8o7AL8T3AWLmj
-	04Eg==
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=WtiTs4r8gciGK2c+M3J5xRzlu29d4jtSHqKBhLLEfm0=;
+	b=o9uOc14GAunqveRN4ExVF9mDsKxtoDnx4vh8Yyu4WQLlzklsoBT0vRYBWrh7Dlqx4E
+	PCtyEvbn+rUco2aI2h+dwXCaaAWamVnnikfFExUwDpZyPhEZP7UvFg6V3GnpRt8LYIFp
+	HRecugbTD6joZbVRrrE4CHyB/TCRwJTN13hzdxClEVVjSGdjrdxMpG6Qys+9cu20tQXz
+	xqiz+/8q0jYdbTav7pf9wq3/Efin6fsRkcNNX3Ad35U2FCOGITY8jOVNirmYN6UXGEhN
+	b6rGuKoSAV0rxaN0cwAeJGp7Yg28ffFFLe2oe0dHfzePmpb7GxXwRX8I0cOsQzA0CXID
+	gCQw==
+X-Received: by 10.50.114.97 with SMTP id jf1mr15493633igb.29.1415507228686;
+	Sat, 08 Nov 2014 20:27:08 -0800 (PST)
+Received: from [192.168.0.50]
+	(CPE0026f3330aca-CM0026f3330ac6.cpe.net.cable.rogers.com.
+	[99.231.92.7])
+	by mx.google.com with ESMTPSA id g70sm6448548ioe.18.2014.11.08.20.27.07
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 08 Nov 2014 20:27:08 -0800 (PST)
+Message-ID: <545EED1B.5030203@gmail.com>
+Date: Sat, 08 Nov 2014 23:27:07 -0500
+From: nick <xerofoify@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
 MIME-Version: 1.0
-X-Received: by 10.140.98.202 with SMTP id o68mr1517962qge.49.1415469835800;
-	Sat, 08 Nov 2014 10:03:55 -0800 (PST)
-Received: by 10.140.82.20 with HTTP; Sat, 8 Nov 2014 10:03:55 -0800 (PST)
-Received: by 10.140.82.20 with HTTP; Sat, 8 Nov 2014 10:03:55 -0800 (PST)
-In-Reply-To: <CAJTo0LY1X+LeRst8o2mAN4vHewB5NM8DYB7Roczm+=E0YbBWGA@mail.gmail.com>
-References: <545E21EA.9040403@ripperd.com>
-	<CAFZh4h_rar=t5MV5jsEsoZ6YPx04jVx9QkTq-SJV5jmXk6oUqw@mail.gmail.com>
-	<CAJTo0LY1X+LeRst8o2mAN4vHewB5NM8DYB7Roczm+=E0YbBWGA@mail.gmail.com>
-Date: Sat, 8 Nov 2014 16:03:55 -0200
-Message-ID: <CAMCfZKEXVDcd44Yf4AOdKWcYd7UOed71zAFihEJmo6zkbHdvhA@mail.gmail.com>
-From: Diego Sueiro <diego.sueiro@gmail.com>
-To: Ross Burton <ross.burton@intel.com>
+To: Diego Sueiro <diego.sueiro@gmail.com>, Ross Burton <ross.burton@intel.com>
+References: <545E21EA.9040403@ripperd.com>	<CAFZh4h_rar=t5MV5jsEsoZ6YPx04jVx9QkTq-SJV5jmXk6oUqw@mail.gmail.com>	<CAJTo0LY1X+LeRst8o2mAN4vHewB5NM8DYB7Roczm+=E0YbBWGA@mail.gmail.com>
+	<CAMCfZKEXVDcd44Yf4AOdKWcYd7UOed71zAFihEJmo6zkbHdvhA@mail.gmail.com>
+In-Reply-To: <CAMCfZKEXVDcd44Yf4AOdKWcYd7UOed71zAFihEJmo6zkbHdvhA@mail.gmail.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: Build optimization question
 X-BeenThere: yocto@yoctoproject.org
@@ -64,87 +67,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Nov 2014 18:04:01 -0000
-Content-Type: multipart/alternative; boundary=001a11394ea2c0d8bf05075cc01d
+X-List-Received-Date: Sun, 09 Nov 2014 04:27:14 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
---001a11394ea2c0d8bf05075cc01d
-Content-Type: text/plain; charset=ISO-8859-1
+Diego,
+I agree with Ross here in from my experience with embedded systems the three best ways to strip your root
+file system are by removing unneeded boot loader coe, removing unneeded kernel components and that of striping
+your middle ware to smaller versions like Busybox and other similiar packages like elibc. Also running strip
+after your debugging is done for the target can strip your code even further, there are cases of stripping large
+programs like the kernel down from 20 megabytes to 2. Lastly, linking Busybox statically is great if you don't need
+a reason to link it against a C library implementation as static versions of Busybox can easily be less then  10
+megabytes from my reading and experience.
+Regards Nick    
 
-Take a look at poky-tiny distro:
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-yocto/conf/distro/poky-tiny.conf
-
-As you are using BBB you can optimize u-boot code and remove some board
-detection steps.
-
-I noticed that MLO generated by u-boot 2014.07 mainline is too much faster
-than the old ones.
-
-Regards,
-
---
-*dS
-Diego Sueiro
-sent from mobile.
-Em 08/11/2014 12:54, "Burton, Ross" <ross.burton@intel.com> escreveu:
-
->
-> On 8 November 2014 14:23, Brian Hutchinson <b.hutchman@gmail.com> wrote:
->
->> I'm planning to just start excluding some of the packages in it ... I
->> don't need sound, wireless, Bluetooth etc.
->>
->>
-> If you don't need sound, wifi, and bluetooth then remove the relevant
-> flags from DISTRO_FEATURES and they'll never be built.
->
-> Ross
->
+On 14-11-08 01:03 PM, Diego Sueiro wrote:
+> Take a look at poky-tiny distro:
+> http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-yocto/conf/distro/poky-tiny.conf
+> 
+> As you are using BBB you can optimize u-boot code and remove some board
+> detection steps.
+> 
+> I noticed that MLO generated by u-boot 2014.07 mainline is too much faster
+> than the old ones.
+> 
+> Regards,
+> 
 > --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
+> *dS
+> Diego Sueiro
+> sent from mobile.
+> Em 08/11/2014 12:54, "Burton, Ross" <ross.burton@intel.com> escreveu:
+> 
+>>
+>> On 8 November 2014 14:23, Brian Hutchinson <b.hutchman@gmail.com> wrote:
+>>
+>>> I'm planning to just start excluding some of the packages in it ... I
+>>> don't need sound, wireless, Bluetooth etc.
+>>>
+>>>
+>> If you don't need sound, wifi, and bluetooth then remove the relevant
+>> flags from DISTRO_FEATURES and they'll never be built.
+>>
+>> Ross
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+> 
+> 
+> 
 
---001a11394ea2c0d8bf05075cc01d
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<p dir=3D"ltr">Take a look at poky-tiny distro:<br>
-<a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-yocto/c=
-onf/distro/poky-tiny.conf">http://git.yoctoproject.org/cgit/cgit.cgi/poky/t=
-ree/meta-yocto/conf/distro/poky-tiny.conf</a></p>
-<p dir=3D"ltr">As you are using BBB you can optimize u-boot code and remove=
- some board detection steps. </p>
-<p dir=3D"ltr">I noticed that MLO generated by u-boot 2014.07 mainline is t=
-oo much faster than the old ones. </p>
-<p dir=3D"ltr">Regards, </p>
-<p dir=3D"ltr">--<br>
-*dS<br>
-Diego Sueiro<br>
-sent from mobile. </p>
-<div class=3D"gmail_quote">Em 08/11/2014 12:54, &quot;Burton, Ross&quot; &l=
-t;<a href=3D"mailto:ross.burton@intel.com">ross.burton@intel.com</a>&gt; es=
-creveu:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"=
-margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"=
-ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 8 Novembe=
-r 2014 14:23, Brian Hutchinson <span dir=3D"ltr">&lt;<a href=3D"mailto:b.hu=
-tchman@gmail.com" target=3D"_blank">b.hutchman@gmail.com</a>&gt;</span> wro=
-te:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
-left:1px #ccc solid;padding-left:1ex"><p dir=3D"ltr">I&#39;m planning to ju=
-st start excluding some of the packages in it ... I don&#39;t need sound, w=
-ireless, Bluetooth etc.</p>
-<p dir=3D"ltr"></p></blockquote></div><br>If you don&#39;t need sound, wifi=
-, and bluetooth then remove the relevant flags from DISTRO_FEATURES and the=
-y&#39;ll never be built.</div><div class=3D"gmail_extra"><br></div><div cla=
-ss=3D"gmail_extra">Ross</div></div>
-<br>--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div>
-
---001a11394ea2c0d8bf05075cc01d--
