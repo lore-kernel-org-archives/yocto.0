@@ -1,51 +1,37 @@
-Return-Path: <belen.barros.pena@intel.com>
+Return-Path: <peterengcomau001@adam.com.au>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6E42FE008E3; Tue, 11 Nov 2014 08:10:11 -0800 (PST)
+	id 790E4E0085F; Mon, 10 Nov 2014 12:06:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [202.136.110.237 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9799E00830
-	for <yocto@yoctoproject.org>; Tue, 11 Nov 2014 08:10:07 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 11 Nov 2014 08:08:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,362,1413270000"; d="scan'208";a="606000942"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by orsmga001.jf.intel.com with ESMTP; 11 Nov 2014 08:10:03 -0800
-Received: from irsmsx110.ger.corp.intel.com ([169.254.15.3]) by
-	IRSMSX101.ger.corp.intel.com ([169.254.1.144]) with mapi id
-	14.03.0195.001; Tue, 11 Nov 2014 16:09:24 +0000
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: John Unland <opensourcejohn2112@gmail.com>
-Thread-Topic: [yocto] Making Hob better.
-Thread-Index: AQHP/cnbbx7bQV45akubzW4tuKn3nA==
-Date: Tue, 11 Nov 2014 16:09:22 +0000
-Message-ID: <D087E4B4.4DDB7%belen.barros.pena@intel.com>
-References: <CAByxTR_jmYDr4QUAtXg20UBV_FXZ-yUk=WEJ3LTA1wkaRAx6Yw@mail.gmail.com>
-	<D08793BD.4DAD5%belen.barros.pena@intel.com>
-	<4b71e65f9d0949928a7575be01750a68@BN1PR0301MB0641.namprd03.prod.outlook.com>
-	<D087C161.4DC2F%belen.barros.pena@intel.com>
-	<CAByxTR-TLaK2NSwctbqH2rpTx9Lvhj_b3h32oYb1otfbV_inOA@mail.gmail.com>
-In-Reply-To: <CAByxTR-TLaK2NSwctbqH2rpTx9Lvhj_b3h32oYb1otfbV_inOA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.4.5.141003
-x-originating-ip: [10.237.224.33]
+	*      [score: 0.0001]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 3082 seconds by postgrey-1.32 at yocto-www;
+	Mon, 10 Nov 2014 12:06:07 PST
+Received: from webmail3.adam.net.au (webmail3.adam.net.au [202.136.110.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C205E0072A
+	for <yocto@yoctoproject.org>; Mon, 10 Nov 2014 12:06:07 -0800 (PST)
+Received: from localhost (webmail3.adam.net.au [127.0.0.1])
+	by webmail3.adam.net.au (8.13.8/8.13.8) with ESMTP id sAAJEgPc016928
+	for <yocto@yoctoproject.org>; Tue, 11 Nov 2014 05:44:42 +1030
+Message-Id: <ca96b16ed0e3c0413d554c852210f8e0eb4ffc55@webmail.adam.com.au>
+From: peterengcomau001@adam.com.au
+To: yocto@yoctoproject.org
+X-Mailer: Atmail 6.3.5.8698
+Date: Tue, 11 Nov 2014 05:44:42 +1030
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Making Hob better.
+X-Mailman-Approved-At: Tue, 11 Nov 2014 08:15:21 -0800
+Subject: bbappend recipe causes errors with only two lines of code
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: peterengcomau001@adam.com.au
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -54,29 +40,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Nov 2014 16:10:11 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <DAEAD00C9A8E024DAC7B049EE27B1A4E@intel.com>
+X-List-Received-Date: Mon, 10 Nov 2014 20:06:20 -0000
+Content-Type: multipart/alternative;
+	boundary="=_adce24750b4dfaa96d93b8d9f7d36f44"
+
+--=_adce24750b4dfaa96d93b8d9f7d36f44
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
+I am using Yocto 1.6.1 and run a build that works fine.=0AI add a new la=
+yer and recipe=0A~/poky/meta-atmel-lsp/recipes-lsp/lighttpd with a recip=
+e=0Alighttpd_1.4.33.bbappend and this has only two lines:=0AFILESEXTRAPA=
+THS_prepend :=3D "#{THISDIR}/files:"SRC_URI =3D=0A"file://lighttpd.conf"=
+=0AThis results in a failure:=0A/home/lachlan/poky/meta/recipes-extended=
+/lighttpd/lightpd_1.4.33.bb,=0Ado_installNot that the lighttpd.conf file=
+ is in the 'files' directory=0Aas is identical to the original=C2=A0=0AI=
+f I remove the line SRC_URI=3D ....... , the build works OK=0AIf I now c=
+hange absolutely nothing other than un-comment one line=0A(the mod_WebDA=
+V module) in the local lighttpd.conf file:This results=0Ain a failure:=
+=0A/home/lachlan/poky/meta/recipes-extended/lighttpd/lightpd_1.4.33.bb,=
+=0Ado_unpack=C2=A0=0AIf I go back to the original lighttpd.conf file in=
+ my local 'files'=0Adirectory then do the following ->=0AIf I change the=
+ second line to SCR_URI +=3D "file://lighttpd.conf"I get=0Athe same do_u=
+npack error=0AIf i change the second line to SRC_URI_append =3D=0A"file:=
+//lighttpd.conf" it also get the do_unpack error.=0AIf I merge the two l=
+ines into one so ther is now only the one line=0ASRC_URI_append =3D "fil=
+e://${THISDIR}/files/lighttpd.conf"I get an=0Aerror: Unable to get check=
+sum for lighttpd SRC_URI entry=0Alighttpd.conf No such file found, and i=
+t refers to the=C2=A0original=0Arecipe locations in=0Apoky/meta/recipes-=
+extended/lighttpd/files/lighttpd.conf=0AI get the same error using a sin=
+gle line when I uses SRC_URI =3D, or=0ASRC_URI +=3D , instead of SRC_URI=
+_append.=0AI run $ bitabke -c cleansstate =C2=A0between builds.=C2=A0=0A=
+What could be causing the error. There is only two lines in the=0Abbappe=
+nd file and the included file is identical to the original=0A.conf file.=
+=0AThanksLachlan=0A---- Message sent via Adam Internet WebMail - http://=
+www.adam.com.au/
 
-On 11/11/2014 15:46, "John Unland" <opensourcejohn2112@gmail.com> wrote:
+--=_adce24750b4dfaa96d93b8d9f7d36f44
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
->>A kernel configuration module for Toaster is something that we'd like to
->>see at some point. And the branding one I agree it would be great to
->>have.
->>Feel free to open Bugzilla entries for both.
->
->Under what catagories would these two be filed under?
+<html><body><div>I am using Yocto 1.6.1 and run a build that works fine.=
+</div><div><br /></div><div>I add a new layer and recipe ~/poky/meta-atm=
+el-lsp/recipes-lsp/lighttpd with a recipe lighttpd_1.4.33.bbappend and t=
+his has only two lines:</div><div><br /></div><div>FILESEXTRAPATHS_prepe=
+nd :=3D "#{THISDIR}/files:"</div><div>SRC_URI =3D "file://lighttpd.conf"=
+</div><div><br /></div><div>This results in a failure: /home/lachlan/pok=
+y/meta/recipes-extended/lighttpd/lightpd_1.4.33.bb, do_install</div><div=
+>Not that the lighttpd.conf file is in the 'files' directory as is ident=
+ical to the original=C2=A0</div><div><br /></div><div>If I remove the li=
+ne SRC_URI=3D ....... , the build works OK</div><div><br /></div><div>If=
+ I now change absolutely nothing other than un-comment one line (the mod=
+_WebDAV module) in the local lighttpd.conf file:</div><div>This results=
+ in a failure: /home/lachlan/poky/meta/recipes-extended/lighttpd/lightpd=
+_1.4.33.bb, do_unpack=C2=A0</div><div><br /></div><div>If I go back to t=
+he original lighttpd.conf file in my local 'files' directory then do the=
+ following -&gt;</div><div><br /></div><div>If I change the second line=
+ to SCR_URI +=3D "file://lighttpd.conf"</div><div>I get the same do_unpa=
+ck error</div><div><br /></div><div>If i change the second line to SRC_U=
+RI_append =3D "file://lighttpd.conf" it also get the do_unpack error.</d=
+iv><div><br /></div><div>If I merge the two lines into one so ther is no=
+w only the one line SRC_URI_append =3D "file://${THISDIR}/files/lighttpd=
+conf"</div><div>I get an error: Unable to get checksum for lighttpd SRC=
+_URI entry lighttpd.conf No such file found, and it refers to the=C2=A0<=
+/div><div>original recipe locations in poky/meta/recipes-extended/lightt=
+pd/files/lighttpd.conf</div><div><br /></div><div>I get the same error u=
+sing a single line when I uses SRC_URI =3D, or SRC_URI +=3D , instead of=
+ SRC_URI_append.</div><div><br /></div><div>I run $ bitabke -c cleanssta=
+te =C2=A0between builds.=C2=A0</div><div><br /></div><div>What could be=
+ causing the error. There is only two lines in the bbappend file and the=
+ included file is identical to the original .conf file.</div><div><br />=
+</div><div>Thanks</div><div>Lachlan</div><div><br /></div>---- Message s=
+ent via Adam Internet WebMail  - http://www.adam.com.au/</body></html>
 
-Toaster
-
-https://bugzilla.yoctoproject.org/enter_bug.cgi?product=3DToaster
-
-Cheers
-
-Bel=E9n
-
-
-
+--=_adce24750b4dfaa96d93b8d9f7d36f44--
