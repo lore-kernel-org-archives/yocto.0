@@ -1,68 +1,27 @@
-Return-Path: <xerofoify@gmail.com>
+Return-Path: <packages@packages.i.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9BEE4E008D7; Sun,  9 Nov 2014 17:58:38 -0800 (PST)
+	id 3DAC9E007C2; Sun,  9 Nov 2014 18:18:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (xerofoify[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.170 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
+	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f170.google.com (mail-ig0-f170.google.com
-	[209.85.213.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9EB8E007C2
-	for <yocto@yoctoproject.org>; Sun,  9 Nov 2014 17:58:30 -0800 (PST)
-Received: by mail-ig0-f170.google.com with SMTP id h15so14911202igd.1
-	for <yocto@yoctoproject.org>; Sun, 09 Nov 2014 17:58:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=NBbWrpR0yDEDOVf2pkxCjcYBWOI5RhoqPzlulsdXd3E=;
-	b=hPaFoOugomdPiMcZm60hs9xgBsuilkaM6jIIMa0FnnGA+74QyghMlrKiA6bmCAMqbm
-	PGAVXvCjgRtNH5cHHFl4bM4KNo6JkdHqu5sYk9sFpMZZuTBNtccrnLiJTFEQMxYqLFc6
-	LT+IMxA1qFemWacM0pPhhDLuyg3bef8cPyact6th8smtHVm3LqvPkWHrWPf7TIQ1x+91
-	EDmJ8HtVyhxIwSh3nRkb/rxcGZklYs4CH6RWwQJUYYkF/0iSOVcd9lJiclH0eDM/0ZL4
-	pgiTRB6oT4ju0VPMca4dv63B21sNNzScoQiYkceb+zRUvI47ggzfWRIO90xEmSE8HfQ+
-	n++Q==
-X-Received: by 10.43.165.66 with SMTP id mv2mr32235542icc.51.1415584709827;
-	Sun, 09 Nov 2014 17:58:29 -0800 (PST)
-Received: from [192.168.0.50]
-	(CPE0026f3330aca-CM0026f3330ac6.cpe.net.cable.rogers.com.
-	[99.231.92.7])
-	by mx.google.com with ESMTPSA id y11sm7654156iod.31.2014.11.09.17.58.29
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 09 Nov 2014 17:58:29 -0800 (PST)
-Message-ID: <54601BC4.1080409@gmail.com>
-Date: Sun, 09 Nov 2014 20:58:28 -0500
-From: nick <xerofoify@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
+Received: from packages.i.yoctoproject.org (packages.i.yoctoproject.org
+	[10.0.10.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2BE5E007C2
+	for <yocto@yoctoproject.org>; Sun,  9 Nov 2014 18:18:51 -0800 (PST)
+Received: by packages.i.yoctoproject.org (Postfix, from userid 802)
+	id A0F31A409E; Mon, 10 Nov 2014 02:18:51 +0000 (UTC)
+Date: Mon, 10 Nov 2014 02:18:51 +0000
+From: "package-report@yoctoproject.org" <packages@packages.i.yoctoproject.org>
+To: yocto@yoctoproject.org
+Message-ID: <20141110021851.GA8167@packages.i.yoctoproject.org>
 MIME-Version: 1.0
-To: Nick D'Ademo <nickdademo@gmail.com>, 
-	Yocto list discussion <yocto@yoctoproject.org>
-References: <CANR6C54aazdi1bArSq-DdqMMJGcbQMuR2HsygV_8LDdTy3oUHg@mail.gmail.com>
-	<54601032.8020203@gmail.com>
-	<CANR6C57RL+fuZdXU7wUoQgN5XkFu9mcz=Ef-VQfEH-2coViLWA@mail.gmail.com>
-	<546013FD.5080802@gmail.com>
-	<CANR6C57voYqR9t-7P-=qUuudn6t7u=PFgGcWTy92xUUOy4H-Kw@mail.gmail.com>
-	<5460169F.8090001@gmail.com>
-	<CANR6C56k7M=kQV=sq8dXf3KK5zEXk_KPZ+TmrL5BqDoWV_hYMg@mail.gmail.com>
-	<546018F8.2030201@gmail.com>
-	<CANR6C55j8Q08JhyGx1nekPqPyuwGcau52tJe=8=r59ACjewrfA@mail.gmail.com>
-In-Reply-To: <CANR6C55j8Q08JhyGx1nekPqPyuwGcau52tJe=8=r59ACjewrfA@mail.gmail.com>
-Subject: Re: Unable to find the ncurses libraries when running menuconfig
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: [Package Report System]Upgrade recipes name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,184 +33,225 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Nov 2014 01:58:38 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 10 Nov 2014 02:18:54 -0000
+X-Groupsio-MsgNum: 22128
+Content-Type: multipart/mixed; boundary="FCuugMFkClbJLl1L"
+Content-Disposition: inline
 
-Seems to after reading and doing some research a build issue with multiple jobs or try running rm -r tmp in your
-build and then rebuild as it may be an issue with out of date temp files.
-Cheers Nick 
+--FCuugMFkClbJLl1L
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 14-11-09 08:51 PM, Nick D'Ademo wrote:
-> Thanks for trying that out Nick.
-> 
-> Issue is present on both 3.14 and 3.17 for me.
-> All paths in the require lines are correct too.
-> 
-> Any other ideas?
-> 
-> 
-> 
-> On Mon, Nov 10, 2014 at 12:46 PM, nick <xerofoify@gmail.com> wrote:
-> 
->> I tried bitbake linux-yocto -c menuconfig on my own system running the
->> same distro and it seems to my
->> default use kernel 3.14 not 3.17 otherwise this seems be fine from my
->> understanding. Also check all the
->> paths in your require lines as there may be an issue with your builds and
->> the path set up by these files
->> that you are linking to for your kernel build.
->> Nick
->> On 14-11-09 08:40 PM, Nick D'Ademo wrote:
->>> Thanks Nick.
->>>
->>> Machine conf is as follows (it's actually nearly identical to nuc.conf -
->>> however, BT support, multilib, and preferred providers have been added):
->>>
->>> #@TYPE: Machine
->>> #@NAME: chiefriver
->>>
->>> #@WEBTITLE: Intel Next Unit of Computing (NUC) Model: DC3217IYE
->>>
->>> #@DESCRIPTION: Machine configuration for Intel NUC model DC3217IYE
->>> # i.e. Ivy Bridge + Panther Point
->>>
->>> PREFERRED_VERSION_linux-yocto ?= "3.17%"
->>> MACHINE_FEATURES += "va-impl-intel wifi efi bluetooth"
->>> MACHINE_FEATURES += "intel-ucode"
->>>
->>> require conf/machine/include/meta-intel.inc
->>> require conf/machine/include/intel-corei7-64-common.inc
->>> require conf/machine/include/intel-common-pkgarch.inc
->>> require multilib.conf
->>>
->>> MACHINE_HWCODECS ?= "va-intel gst-va-intel"
->>>
->>> XSERVER ?= "${XSERVER_X86_BASE} \
->>>            ${XSERVER_X86_EXT} \
->>>            ${XSERVER_X86_I965} \
->>>            "
->>>
->>> MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-iwlwifi-6000g2b-6 lms8"
->>>
->>> # disable the serial port configuration
->>> SERIAL_CONSOLE = ""
->>>
->>> PREFERRED_PROVIDER_jpeg = "jpeg"
->>> PREFERRED_PROVIDER_jpeg-native = "jpeg-native"
->>> PREFERRED_PROVIDER_virtual/fftw = "fftw"
->>>
->>>
->>>
->>> On Mon, Nov 10, 2014 at 12:36 PM, nick <xerofoify@gmail.com> wrote:
->>>
->>>> Hey Nick,
->>>> This seems to then be an issue with incorrect paths or build information
->>>> in your nuc.conf
->>>> as the most likely culprit. If you can post your machine's conf file I
->>>> will be glad to see
->>>> if there are any issues I can spot.
->>>> Nick
->>>>
->>>> On 14-11-09 08:33 PM, Nick D'Ademo wrote:
->>>>> 1) source oe-init-build-env is run before building.
->>>>> 2) We are actually using a custom machine .conf based on nuc.conf, so
->>>>> actually: MACHINE = "custom_machine_name". I replaced it with "nuc" in
->>>> this
->>>>> post to avoid confusion.
->>>>>
->>>>> On Mon, Nov 10, 2014 at 12:25 PM, nick <xerofoify@gmail.com> wrote:
->>>>>
->>>>>> Do you run source oe-init-build-env before building and why is your
->>>> machine
->>>>>> set to nuc seems this may be an issue?
->>>>>> Nick
->>>>>>
->>>>>> On 14-11-09 08:15 PM, Nick D'Ademo wrote:
->>>>>>> Thanks for the quick reply Nick.
->>>>>>>
->>>>>>> Host system is Ubuntu 14.04. ncurses is already installed:
->>>>>>>
->>>>>>> sudo apt-get install libncurses5-dev
->>>>>>> Reading package lists... Done
->>>>>>> Building dependency tree
->>>>>>> Reading state information... Done
->>>>>>> libncurses5-dev is already the newest version.
->>>>>>>
->>>>>>>
->>>>>>> On Mon, Nov 10, 2014 at 12:09 PM, nick <xerofoify@gmail.com> wrote:
->>>>>>>
->>>>>>>> Check to see if you actuality have it installed on your host system
->>>> for
->>>>>>>> your package manager.
->>>>>>>> The library for ncurses for compiling the kernel is different based
->> on
->>>>>>>> your distro, check
->>>>>>>> your distro's installer and install the correct ncurses package
->> first.
->>>>>> If
->>>>>>>> this is still an
->>>>>>>> issue please reply with a newer error message.
->>>>>>>> Cheers Nick
->>>>>>>>
->>>>>>>> On 14-11-09 08:05 PM, Nick D'Ademo wrote:
->>>>>>>>> Getting a strange error when attempting to configure the Yocto
->> Linux
->>>>>>>> kernel
->>>>>>>>> via: bitbake linux-yocto -c menuconfig.
->>>>>>>>>
->>>>>>>>> Does anyone have any ideas? (error message below)
->>>>>>>>> Much appreciated.
->>>>>>>>>
->>>>>>>>> Build Configuration:
->>>>>>>>> BB_VERSION        = "1.24.0"
->>>>>>>>> BUILD_SYS         = "x86_64-linux"
->>>>>>>>> NATIVELSBSTRING   = "Ubuntu-14.04"
->>>>>>>>> TARGET_SYS        = "x86_64-poky-linux"
->>>>>>>>> MACHINE           = "nuc"
->>>>>>>>> DISTRO            = "poky"
->>>>>>>>> DISTRO_VERSION    = "1.7"
->>>>>>>>> TUNE_FEATURES     = "m64 corei7"
->>>>>>>>> TARGET_FPU        = ""
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> *make[1]: Entering directory
->>>>>>>>>
->>>>>>>>
->>>>>>
->>>>
->> `/home/nick/poky/build/tmp/work/corei7-64-intel-common-poky-linux/linux-yocto/3.17.1+gitAUTOINC+b86dd5c6f4_0caf16d385-r0/linux-corei7-64-intel-common-standard-build'
->>>>>>>>> GEN     ./Makefile *** Unable to find the ncurses libraries or the
->>>> ***
->>>>>>>>> required header files. *** 'make menuconfig' requires the ncurses
->>>>>>>>> libraries. ***  *** Install ncurses (ncurses-devel) and try again.
->>>> ***
->>>>>>>>> make[3]: *** [scripts/kconfig/dochecklxdialog] Error 1make[2]: ***
->>>>>>>>> [menuconfig] Error 2make[1]: *** [sub-make] Error 2make: ***
->>>>>> [__sub-make]
->>>>>>>>> Error 2Command failed.Press any key to continue... *
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>
->>>>>>>
->>>>>>
->>>>>
->>>>
->>>
->>
-> 
+This mail was sent out by Package Report System.
+This message list those recipes which need to be upgraded. If maintainers believe some of them needn't to upgrade this time, they can fill in RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this recipe remainder until newer upstream version was detected.
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 because the new version is unstable"
+You can check the detail information at http://packages.yoctoproject.org/upgradepkgname
 
+
+PackageName                   Version                       UpVersion                     Maintainer                                        NoUpgradeReason               
+ccache                        3.1.9                         3.1.10                        Wenzong Fan <wenzong.fan@windriver.com>           
+chkconfig                     1.3.58                        1.3.63                        Wenzong Fan <wenzong.fan@windriver.com>           
+gettext                       0.18.3.2                      0.19.3                        Wenzong Fan <wenzong.fan@windriver.com>           
+blktrace                      1.0.5+gitAUTOINC+d6918c8      1.1.0+gitAUTOINC+2cf87e6      Tom Zanussi <tom.zanussi@intel.com>               
+systemtap-uprobes             2.6+gitAUTOINC+7682e51d2e     2.6+gitAUTOINC+6fb025a        Tom Zanussi <tom.zanussi@intel.com>               
+sysprof                       1.2.0+gitAUTOINC+cd44ee6      1.2.0+gitAUTOINC+6901897      Tom Zanussi <tom.zanussi@intel.com>               
+npth                          1.0                           1.1                           Saul Wold <sgw@linux.intel.com>                   
+boost                         1.56.0                        1.57.0                        Saul Wold <sgw@linux.intel.com>                   
+lsbinitscripts                9.56.1                        9.58                          Saul Wold <sgw@linux.intel.com>                   
+mkelfimage                    4.0+gitAUTOINC+686a48a339     4.0+gitAUTOINC+c32b4a4        Saul Wold <sgw@linux.intel.com>                   
+opkg-utils                    0.1.8+gitAUTOINC+eae0d8f      0.1.8+gitAUTOINC+762d9da      Saul Wold <sgw@linux.intel.com>                   
+mtd-utils                     1.5.1+gitAUTOINC+9f10713      1.5.1+gitAUTOINC+92686f2      Saul Wold <sgw@linux.intel.com>                   
+u-boot-mkimage                v2013.07+gitAUTOINC+62c1      v2013.07+gitAUTOINC+11ad      Saul Wold <sgw@linux.intel.com>                   
+libaio                        0.3.109                       0.3.110                       Saul Wold <sgw@linux.intel.com>                   
+kmod                          18+gitAUTOINC+ae58de0fcb      18+gitAUTOINC+27eceb2         Saul Wold <sgw@linux.intel.com>                   
+systemtap                     2.6+gitAUTOINC+7682e51d2e     2.6+gitAUTOINC+6fb025a        Saul Wold <sgw@linux.intel.com>                   
+gnupg                         2.0.26                        2.1.0                         Saul Wold <sgw@linux.intel.com>                   
+valgrind                      3.9.0                         3.10.0                        Saul Wold <sgw@linux.intel.com>                   
+libassuan                     2.1.2                         2.1.3                         Saul Wold <sgw@linux.intel.com>                   
+libunique                     1.1.6                         3.0.2                         Saul Wold <sgw@linux.intel.com>                   Do not upgrade to version: 2....
+liburcu                       0.8.5                         0.8.6                         Saul Wold <sgw@linux.intel.com>                   
+rgb                           1.0.5                         1.0.6                         Saul Wold <sgw@linux.intel.com>                   
+babeltrace                    1.2.1+gitAUTOINC+66c2a20      1.2.4+gitAUTOINC+200b270      Saul Wold <sgw@linux.intel.com>                   
+mx-1.0                        1.4.7+gitAUTOINC+9b1db6b      1.99.4+gitAUTOINC+63da1f2     Saul Wold <sgw@linux.intel.com>                   PRS 1.99 is dev version       
+usbutils                      007                           008                           Saul Wold <sgw@linux.intel.com>                   
+curl                          7.37.1                        7.39.0                        Saul Wold <sgw@linux.intel.com>                   
+mobile-broadband-provider-info20140618+gitrAUTOINC+d06      20140618+gitrAUTOINC+40c      Saul Wold <sgw@linux.intel.com>                   
+base-passwd                   3.5.29                        3.5.37                        Saul Wold <sgw@linux.intel.com>                   
+xserver-xorg                  1.15.1                        1.16.99.901                   Ross Burton <ross.burton@intel.com>               
+puzzles                       r10116                        N/A                           Ross Burton <ross.burton@intel.com>               
+gtk+                          2.24.24                       3.15.1                        Ross Burton <ross.burton@intel.com>               Do not upgrade to version: 2....
+gnutls                        3.3.5                         3.3.9                         Ross Burton <ross.burton@intel.com>               
+xcb-util-image                0.3.9                         0.4.0                         Ross Burton <ross.burton@intel.com>               
+libxext                       1.3.2                         1.3.3                         Ross Burton <ross.burton@intel.com>               
+vala                          0.24.0                        0.26.1                        Ross Burton <ross.burton@intel.com>               
+clutter-1.0                   1.18.2                        1.20.0                        Ross Burton <ross.burton@intel.com>               
+gtk+3                         3.12.2                        3.15.1                        Ross Burton <ross.burton@intel.com>               
+libxcb                        1.10                          1.11                          Ross Burton <ross.burton@intel.com>               
+xcb-util                      0.3.9                         0.4.0                         Ross Burton <ross.burton@intel.com>               
+libpam                        1.1.6                         1.1.8                         Ross Burton <ross.burton@intel.com>               
+libtasn1                      4.0                           4.2                           Ross Burton <ross.burton@intel.com>               
+librsvg                       2.40.2                        2.40.5                        Ross Burton <ross.burton@intel.com>               
+clutter-gtk-1.0               1.4.4                         1.6.0                         Ross Burton <ross.burton@intel.com>               
+libsoup-2.4                   2.46.0                        2.48.0                        Ross Burton <ross.burton@intel.com>               
+gdk-pixbuf                    2.30.8                        2.31.1                        Ross Burton <ross.burton@intel.com>               2.27.2 is unstable            
+pango                         1.36.6                        1.36.8                        Ross Burton <ross.burton@intel.com>               
+at-spi2-core                  2.12.0                        2.15.1                        Ross Burton <ross.burton@intel.com>               
+xcb-proto                     1.10                          1.11                          Ross Burton <ross.burton@intel.com>               
+atk                           2.12.0                        2.15.1                        Ross Burton <ross.burton@intel.com>               
+gtk-update-icon-cache-native  3.4.4                         3.15.1                        Ross Burton <ross.burton@intel.com>               
+xf86-video-omap               0.4.2+gitrAUTOINC+ae0394      0.4.3+gitrAUTOINC+d48d09c     Ross Burton <ross.burton@intel.com>               
+xinit                         1.3.3                         1.3.4                         Ross Burton <ross.burton@intel.com>               
+xf86-video-intel              2.99.912                      2.99.916                      Ross Burton <ross.burton@intel.com>               
+libnotify                     0.6.0                         0.7.6                         Ross Burton <ross.burton@intel.com>               
+liberation-fonts              1.04                          2.00.1                        Ross Burton <ross.burton@intel.com>               2.00.0 - fontforge package re...
+glib-networking               2.38.0                        2.42.0                        Ross Burton <ross.burton@intel.com>               Pending Glib-2.0 Update       
+xdg-utils                     1.1.0-rc1                     1.0.2                         Ross Burton <ross.burton@intel.com>               only release candidates avail...
+vte                           0.28.2                        0.38.1                        Ross Burton <ross.burton@intel.com>               Pending Glib-2.0 Update       
+at-spi2-atk                   2.12.1                        2.14.1                        Ross Burton <ross.burton@intel.com>               
+xkeyboard-config              2.12                          2.13                          Ross Burton <ross.burton@intel.com>               
+xf86-input-synaptics          1.8.0                         1.8.1                         Ross Burton <ross.burton@intel.com>               
+xtrans                        1.3.4                         1.3.5                         Ross Burton <ross.burton@intel.com>               
+matchbox-panel-2              2.0+gitAUTOINC+26a3a67b41     2.0+gitAUTOINC+1a7304d        Ross Burton <ross.burton@intel.com>               
+webkit-gtk                    1.8.3                         2.7.1                         Ross Burton <ross.burton@intel.com>               >= 1.10.2 needs ruby          
+piglit                        1.0+gitrAUTOINC+bbeff5d2      1.0+gitrAUTOINC+a4f0342       Ross Burton <ross.burton@intel.com>               
+matchbox-desktop              2.0+gitAUTOINC+71e3e6e042     2.0+gitAUTOINC+09170f4        Ross Burton <ross.burton@intel.com>               
+clutter-gst-1.0               1.6.0                         2.99.4                        Ross Burton <ross.burton@intel.com>               
+xcb-util-keysyms              0.3.9                         0.4.0                         Ross Burton <ross.burton@intel.com>               
+cairo                         1.12.16                       1.14.0                        Ross Burton <ross.burton@intel.com>               
+xinput-calibrator             0.7.5+gitAUTOINC+c01c5af      0.7.5+gitAUTOINC+03dadf5      Ross Burton <ross.burton@intel.com>               
+json-glib                     1.0.0                         1.0.2                         Ross Burton <ross.burton@intel.com>               
+matchbox-keyboard             0.0+gitAUTOINC+217f1bfe14     0.0+gitAUTOINC+c818436        Ross Burton <ross.burton@intel.com>               
+presentproto                  1.0+gitAUTOINC+24f3a56e54     1.0+gitAUTOINC+ef84007        Ross Burton <ross.burton@intel.com>               
+glib-2.0                      2.40.0                        2.43.0                        Robert Yang <liezhi.yang@windriver.com>           
+logrotate                     3.8.7                         3.8.8                         Robert Yang <liezhi.yang@windriver.com>           
+autogen-native                5.18.3                        5.18.3-5                      Robert Yang <liezhi.yang@windriver.com>           
+make                          4.0                           4.1                           Robert Yang <liezhi.yang@windriver.com>           
+mklibs-native                 0.1.39                        0.1.40                        Robert Yang <liezhi.yang@windriver.com>           
+gmp                           6.0.0                         6.0.0a                        Robert Yang <liezhi.yang@windriver.com>           
+nativesdk-libtool             2.4.2                         2.4.3                         Robert Yang <liezhi.yang@windriver.com>           
+rsync                         3.1.0                         3.1.1                         Robert Yang <liezhi.yang@windriver.com>           
+libtool                       2.4.2                         2.4.3                         Robert Yang <liezhi.yang@windriver.com>           
+file                          5.18                          5.20                          Robert Yang <liezhi.yang@windriver.com>           
+e2fsprogs                     1.42.9                        1.42.12                       Robert Yang <liezhi.yang@windriver.com>           
+python-gst                    0.10.22                       1.4.0                         Richard Purdie <richard.purdie@linuxfoundation.org>
+python                        2.7.3                         3.4.2rc1                      Richard Purdie <richard.purdie@linuxfoundation.org>
+python-scons                  2.3.2                         2.3.4                         Richard Purdie <richard.purdie@linuxfoundation.org>
+tcf-agent                     0.4.0+gitAUTOINC+4ef94ec      8.0+gitAUTOINC+8a4bf89        Richard Purdie <richard.purdie@linuxfoundation.org>
+btrfs-tools                   3.14.2+gitAUTOINC+44cdb6      3.17.1+gitAUTOINC+5005192     Richard Purdie <richard.purdie@linuxfoundation.org>
+python-pygobject              2.28.3                        3.14.0                        Richard Purdie <richard.purdie@linuxfoundation.org>Newer versions of python-pygo...
+libdrm                        2.4.54                        2.4.58                        Richard Purdie <richard.purdie@linuxfoundation.org>
+python3                       3.3.3                         3.4.2rc1                      Richard Purdie <richard.purdie@linuxfoundation.org>
+gpgme                         1.4.3                         1.5.1                         Paul Eggleton <paul.eggleton@linux.intel.com>     
+dropbear                      2014.63                       2014.66                       Paul Eggleton <paul.eggleton@linux.intel.com>     
+libgpg-error                  1.12                          1.17                          Paul Eggleton <paul.eggleton@linux.intel.com>     
+ethtool                       3.15                          3.16                          Paul Eggleton <paul.eggleton@linux.intel.com>     
+libav                         0.8.15                        11                            Paul Eggleton <paul.eggleton@linux.intel.com>     
+augeas                        1.2.0                         1.3.0                         Paul Eggleton <paul.eggleton@linux.intel.com>     
+openjade-native               1.3.2                         1.3.3                         Paul Eggleton <paul.eggleton@linux.intel.com>     
+openssh                       6.6p1                         6.7p1                         Paul Eggleton <paul.eggleton@linux.intel.com>     
+x264                          r2265+gitAUTOINC+ffc3ad4      r2265+gitAUTOINC+dd79a61      Paul Eggleton <paul.eggleton@linux.intel.com>     
+createrepo                    0.4.11                        0.10.3                        Paul Eggleton <paul.eggleton@linux.intel.com>     Versions after 0.9.* use YUM,...
+yasm                          1.2.0                         1.3.0                         Paul Eggleton <paul.eggleton@linux.intel.com>     
+unfs3                         0.9.22.r490                   N/A                           Paul Eggleton <paul.eggleton@linux.intel.com>     
+python-nose                   1.2.1                         1.3.4                         No Maintainer info                                
+xmlto                         0.0.25                        0.0.26                        No Maintainer info                                
+libevdev                      1.2.2                         1.3                           No Maintainer info                                
+dbus-test                     1.8.2                         1.9.0                         No Maintainer info                                
+libnewt-python                0.52.17                       0.52.18                       No Maintainer info                                
+serf                          1.3.6                         1.3.8                         No Maintainer info                                
+python-mako                   0.9.1                         1.0.0                         No Maintainer info                                
+xf86-video-modesetting        0.8.1                         0.9.0                         No Maintainer info                                
+python-numpy                  1.7.0                         1.9.1                         No Maintainer info                                
+bootchart2                    0.14.6+gitAUTOINC+b65ed4      2.0.0.3+gitAUTOINC+3ab81      No Maintainer info                                
+bjam-native                   1.56.0                        1.57.0                        No Maintainer info                                
+python3-distribute            0.6.32                        0.7.3                         No Maintainer info                                
+rpm                           5.4.14                        5.4.15-0.20140824             Mark Hatle <mark.hatle@windriver.com>             
+libsdl                        1.2.15                        1.2.15-1                      Kai Kang <kai.kang@windriver.com>                 
+ghostscript                   9.14                          9.15                          Hongxu Jia <hongxu.jia@windriver.com>             
+parted                        3.1                           3.2                           Hongxu Jia <hongxu.jia@windriver.com>             
+elfutils                      0.148                         0.160                         Hongxu Jia <hongxu.jia@windriver.com>             
+lsb                           4.1                           1.4                           Hongxu Jia <hongxu.jia@windriver.com>             
+bash                          4.3                           4.3.30                        Hongxu Jia <hongxu.jia@windriver.com>             
+libnewt                       0.52.17                       0.52.18                       Hongxu Jia <hongxu.jia@windriver.com>             
+cracklib                      2.9.1                         2.9.2                         Hongxu Jia <hongxu.jia@windriver.com>             
+libxml2                       2.9.1                         2.9.2                         Hongxu Jia <hongxu.jia@windriver.com>             
+directfb                      1.7.4                         1.7.6                         Hongxu Jia <hongxu.jia@windriver.com>             
+apr-util                      1.5.3                         1.5.4                         Hongxu Jia <hongxu.jia@windriver.com>             
+pax-utils                     0.8.1                         0.9.1                         Hongxu Jia <hongxu.jia@windriver.com>             
+ppp                           2.4.6                         2.4.7                         Hongxu Jia <hongxu.jia@windriver.com>             
+groff                         1.22.2                        1.22.3                        Hongxu Jia <hongxu.jia@windriver.com>             1.18.1.4 is latest GPLv2 Vers...
+gummiboot                     43+gitAUTOINC+4062c51075      45+gitAUTOINC+eb3daf2         Darren Hart <dvhart@linux.intel.com>              
+trace-cmd                     2.3.2+gitAUTOINC+79e08f8      2.4+gitAUTOINC+293f625        Darren Hart <dvhart@linux.intel.com>              
+kernelshark                   1.2+gitAUTOINC+7055ffd37b     2.4+gitAUTOINC+293f625        Darren Hart <dvhart@linux.intel.com>              0.2 is the latest version.    
+syslinux                      6.01                          6.03                          Darren Hart <dvhart@linux.intel.com>              Waiting for 4.06 for 3.3 kern...
+telepathy-mission-control     5.16.1                        5.99.11                       Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0-plugins-good     1.4.1                         1.4.4                         Cristian Iorga <cristian.iorga@intel.com>         
+apmd                          3.2.2-14                      3.2.2                         Cristian Iorga <cristian.iorga@intel.com>         
+telepathy-idle                0.2.0                         0.99.11                       Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0-libav            1.4.1                         1.4.4                         Cristian Iorga <cristian.iorga@intel.com>         
+tremor                        20120314                      N/A                           Cristian Iorga <cristian.iorga@intel.com>         Same revision on different SV...
+bluez4                        4.101                         5.25                          Cristian Iorga <cristian.iorga@intel.com>         BlueZ 5.x is not backward-com...
+bluez5                        5.22                          5.25                          Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0-plugins-bad      1.4.1                         1.4.4                         Cristian Iorga <cristian.iorga@intel.com>         
+sbc                           1.2                           1.3                           Cristian Iorga <cristian.iorga@intel.com>         
+telepathy-glib                0.24.0                        0.99.11                       Cristian Iorga <cristian.iorga@intel.com>         
+wireless-tools                30.pre9                       29                            Cristian Iorga <cristian.iorga@intel.com>         
+iproute2                      3.16.0                        3.17.0                        Cristian Iorga <cristian.iorga@intel.com>         
+wpa-supplicant                2.2                           2.3                           Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0                  1.4.1                         1.4.4                         Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0-plugins-base     1.4.1                         1.4.4                         Cristian Iorga <cristian.iorga@intel.com>         
+db                            6.0.30                        6.1.19                        Cristian Iorga <cristian.iorga@intel.com>         API compatibility issue       
+gst-plugin-bluetooth          4.101                         5.25                          Cristian Iorga <cristian.iorga@intel.com>         
+net-tools                     1.60-25                       1.60                          Cristian Iorga <cristian.iorga@intel.com>         
+gst-fluendo-mp3               0.10.19                       0.10.31                       Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0-plugins-ugly     1.4.1                         1.4.4                         Cristian Iorga <cristian.iorga@intel.com>         
+libpcap                       1.6.1                         1.6.2                         Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0-rtsp-server      1.4.1                         1.4.4                         Cristian Iorga <cristian.iorga@intel.com>         
+gst-fluendo-mpegdemux         0.10.72                       0.10.81                       Cristian Iorga <cristian.iorga@intel.com>         
+neon                          0.30.0                        0.30.1                        Cristian Iorga <cristian.iorga@intel.com>         
+linux-firmware                0.0+gitAUTOINC+dec41bce44     0.0+gitAUTOINC+0e5f637        Cristian Iorga <cristian.iorga@intel.com>         
+netbase                       5.2                           5.3                           Cristian Iorga <cristian.iorga@intel.com>         
+tcl                           8.6.2                         8.6.3                         Chong Lu <Chong.Lu@windriver.com>                 
+dbus                          1.8.2                         1.9.0                         Chong Lu <Chong.Lu@windriver.com>                 D-BUS 1.7.x is the developmen...
+bison                         2.7.1                         3.0.2                         Chong Lu <Chong.Lu@windriver.com>                 
+dbus-glib                     0.100.2                       0.102                         Chong Lu <Chong.Lu@windriver.com>                 
+byacc                         20140715                      20141006                      Chong Lu <Chong.Lu@windriver.com>                 
+tar                           1.27.1                        1.28                          Chen Qi <Qi.Chen@windriver.com>                   
+xz                            5.1.3alpha                    5.1.4beta                     Chen Qi <Qi.Chen@windriver.com>                   
+grep                          2.19                          2.20                          Chen Qi <Qi.Chen@windriver.com>                   
+sysstat                       10.2.1                        11.1.2                        Chen Qi <Qi.Chen@windriver.com>                   
+coreutils                     8.22                          8.23                          Chen Qi <Qi.Chen@windriver.com>                   
+sysklogd                      1.5                           1.5.1                         Chen Qi <Qi.Chen@windriver.com>                   
+linux-libc-headers            3.16                          3.17.2                        Bruce Ashfield <bruce.ashfield@windriver.com>     
+lz4                           r123                          N/A                           Armin Kuster <akuster@mvista.com>                 
+apt                           0.9.9.4                       1.0.9.3                       An?bal Lim?n <anibal.limon@linux.intel.com>       
+mc                            4.8.12                        4.8.13                        An?bal Lim?n <anibal.limon@linux.intel.com>       
+jpeg                          8d                            9a                            An?bal Lim?n <anibal.limon@linux.intel.com>       webkit-gtk 1.8.3 doesn't work...
+dpkg                          1.17.4                        1.17.21                       An?bal Lim?n <anibal.limon@linux.intel.com>       
+xrandr                        1.4.2                         1.4.3                         An?bal Lim?n <anibal.limon@linux.intel.com>       
+screen                        4.0.3                         4.2.1                         An?bal Lim?n <anibal.limon@linux.intel.com>       
+sqlite3                       3.8.6.0                       3080701                       An?bal Lim?n <anibal.limon@linux.intel.com>       
+gnome-common                  3.12.0                        3.14.0                        Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+gsettings-desktop-schemas     3.10.1                        3.14.1                        Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+gnome-icon-theme              2.31.0                        3.12.0                        Alejandro Hernandez <alejandro.hernandez@linux.intel.com>waiting for the sato gtk3 port
+nfs-utils                     1.3.0                         1.3.1                         Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+gnome-desktop                 2.32.1                        3.15.1                        Alejandro Hernandez <alejandro.hernandez@linux.intel.com>waiting for the sato gtk3 port
+cronie                        1.4.11                        1.4.12                        Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
+Upgradable Count: 167
+Upgrade Total Count: 188
+The based commit merge time is:
+Sun Nov 9 10:21:24 2014 +0000
+The based commit is:
+commit 3c741a8d33acbf4b3d5eecc04533bc76e2f37253
+Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date:   Tue Nov 4 11:39:07 2014 +0000
+Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+
+--FCuugMFkClbJLl1L
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="potential_format_problem.log"
+
+recipe_color.inc/17: RECIPE_COLOR = "green"
+
+--FCuugMFkClbJLl1L--
