@@ -1,17 +1,17 @@
 Return-Path: <nickdademo@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A618FE008D7; Sun,  9 Nov 2014 17:43:00 -0800 (PST)
+	id D0777E00849; Sun,  9 Nov 2014 17:52:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (nickdademo[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.214.174 listed in list.dnswl.org]
+	*      [209.85.214.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,37 +20,38 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-ob0-f174.google.com (mail-ob0-f174.google.com
-	[209.85.214.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55864E007C2
-	for <yocto@yoctoproject.org>; Sun,  9 Nov 2014 17:42:57 -0800 (PST)
-Received: by mail-ob0-f174.google.com with SMTP id uz6so5002489obc.33
-	for <yocto@yoctoproject.org>; Sun, 09 Nov 2014 17:42:57 -0800 (PST)
+Received: from mail-ob0-f182.google.com (mail-ob0-f182.google.com
+	[209.85.214.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52EC0E007C0
+	for <yocto@yoctoproject.org>; Sun,  9 Nov 2014 17:52:11 -0800 (PST)
+Received: by mail-ob0-f182.google.com with SMTP id nt9so5426569obb.41
+	for <yocto@yoctoproject.org>; Sun, 09 Nov 2014 17:52:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=DVNcWSvkOoyKr66syBEM3T24v/pTUAf9XfuPJJOGsxM=;
-	b=oGWJG+3vHABcEZVKma2Mbm39fnk8cBt89NAXkSLKnjjLWenSO7QYTmY6uLkJpJSGRC
-	igffvWckH/dk/nRLt9eMELolLbdRY53+5gAZuCJcfrWohzfpIskAdJbZoz+tT4qRA3TG
-	vrvstr28Kkos5aBdaVaa5V5NkQ2qtzV17U+At5g8vfc9TpAC9DERwkXq783sSqQOfjEH
-	ewdzw7db+oyHW4H7vidynzITMJKHWyH0AxjgllzqVT0qvBxS2sREiLq9EcWpNBp2jU8x
-	W8Tpn/gaOSmX2AF9v31ag+G7XhUMqNjpLSJFUlrFmgRoKJ8Ne9VoD3kmgbL/m937T/qr
-	iEsg==
-X-Received: by 10.182.50.198 with SMTP id e6mr5105049obo.45.1415583777560;
-	Sun, 09 Nov 2014 17:42:57 -0800 (PST)
+	:content-type; bh=vDyRPj+NGWLJ34SJNHzgzDikuY38Iiq1tcXAoM/lgYs=;
+	b=Hq+bOGnMn9g4o4ookicuDE2DrOK5wHjyrnPrID2bnsxXv5Rz+zNpgQQCUmtpI/Xz2/
+	3rDVrnoRuZVFqIqkcee2qm7zKgqotoo6D5ptF3sh1OTOUzqbI42cETvqnXDLMGj3ExKT
+	Z7R8Ppr55d3KFDMRjD+k2kXEiADbADbT2ad6FHewuQlQ6fpIViMkSyVtvAxoRQ/mZOxw
+	Rs3IO4O8uj0v2xW4DRyINtX1xsr9zFSUC7iVsyrGtRfvBn7ez4qbIuSxSR7mcBX9iBDl
+	Kwf+YsKVrEMN9XK0R32O5umEe1LdfnGKZWYa1BA2zNvk7BEgXBDetkhyKp4J1NdRFNfI
+	1Jag==
+X-Received: by 10.202.128.139 with SMTP id b133mr22748791oid.52.1415584331153; 
+	Sun, 09 Nov 2014 17:52:11 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.76.167.163 with HTTP; Sun, 9 Nov 2014 17:42:36 -0800 (PST)
-In-Reply-To: <5460158A.1000108@mindchasers.com>
+Received: by 10.76.167.163 with HTTP; Sun, 9 Nov 2014 17:51:51 -0800 (PST)
+In-Reply-To: <546018F8.2030201@gmail.com>
 References: <CANR6C54aazdi1bArSq-DdqMMJGcbQMuR2HsygV_8LDdTy3oUHg@mail.gmail.com>
 	<54601032.8020203@gmail.com>
 	<CANR6C57RL+fuZdXU7wUoQgN5XkFu9mcz=Ef-VQfEH-2coViLWA@mail.gmail.com>
-	<5460158A.1000108@mindchasers.com>
+	<546013FD.5080802@gmail.com>
+	<CANR6C57voYqR9t-7P-=qUuudn6t7u=PFgGcWTy92xUUOy4H-Kw@mail.gmail.com>
+	<5460169F.8090001@gmail.com>
+	<CANR6C56k7M=kQV=sq8dXf3KK5zEXk_KPZ+TmrL5BqDoWV_hYMg@mail.gmail.com>
+	<546018F8.2030201@gmail.com>
 From: "Nick D'Ademo" <nickdademo@gmail.com>
-Date: Mon, 10 Nov 2014 12:42:36 +1100
-Message-ID: <CANR6C57niqeDaJHCB-Z=52A-sqkih5NFm-bxVUUDp6YamAy3eg@mail.gmail.com>
-To: Bob Cochran <yocto@mindchasers.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
+Date: Mon, 10 Nov 2014 12:51:51 +1100
+Message-ID: <CANR6C55j8Q08JhyGx1nekPqPyuwGcau52tJe=8=r59ACjewrfA@mail.gmail.com>
+To: nick <xerofoify@gmail.com>, Yocto list discussion <yocto@yoctoproject.org>
 Subject: Re: Unable to find the ncurses libraries when running menuconfig
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -63,256 +64,384 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Nov 2014 01:43:00 -0000
-Content-Type: multipart/alternative; boundary=089e01537fc6361dec050777489c
+X-List-Received-Date: Mon, 10 Nov 2014 01:52:21 -0000
+Content-Type: multipart/alternative; boundary=001a113ef44235486705077769b7
 
---089e01537fc6361dec050777489c
+--001a113ef44235486705077769b7
 Content-Type: text/plain; charset=UTF-8
 
-Thanks Bob - glad to hear I'm not the first to see this!
+Thanks for trying that out Nick.
 
-Not using the ADT and 'source oe-init-build-env' is run before building.
+Issue is present on both 3.14 and 3.17 for me.
+All paths in the require lines are correct too.
 
-On Mon, Nov 10, 2014 at 12:31 PM, Bob Cochran <yocto@mindchasers.com> wrote:
+Any other ideas?
 
-> On 11/09/2014 08:15 PM, Nick D'Ademo wrote:
->
->> Thanks for the quick reply Nick.
->>
->> Host system is Ubuntu 14.04. ncurses is already installed:
->>
->> sudo apt-get install libncurses5-dev
->> Reading package lists... Done
->> Building dependency tree
->> Reading state information... Done
->> libncurses5-dev is already the newest version.
->>
->
->
-> Oh boy, I've seen this before.  I seem to remember this being caused by a
-> problem with the path setup or something in the environment and maybe not
-> being able to find the scripts folder or reaching a wrong folder first.
->
-> How are you setting up your environment before invoking bitbake?
->
-> Were you using the ADT?  If so check out cross compiling the kernel here:
-> http://www.openembedded.org/wiki/SDK/Toolchain/
-> Application_Developer_Toolkit
->
->
->
->
->>
->> On Mon, Nov 10, 2014 at 12:09 PM, nick <xerofoify@gmail.com
->> <mailto:xerofoify@gmail.com>> wrote:
->>
->>     Check to see if you actuality have it installed on your host system
->>     for your package manager.
->>     The library for ncurses for compiling the kernel is different based
->>     on your distro, check
->>     your distro's installer and install the correct ncurses package
->>     first. If this is still an
->>     issue please reply with a newer error message.
->>     Cheers Nick
->>
->>     On 14-11-09 08:05 PM, Nick D'Ademo wrote:
->>     > Getting a strange error when attempting to configure the Yocto
->> Linux kernel
->>     > via: bitbake linux-yocto -c menuconfig.
->>     >
->>     > Does anyone have any ideas? (error message below)
->>     > Much appreciated.
->>     >
->>     > Build Configuration:
->>     > BB_VERSION        = "1.24.0"
->>     > BUILD_SYS         = "x86_64-linux"
->>     > NATIVELSBSTRING   = "Ubuntu-14.04"
->>     > TARGET_SYS        = "x86_64-poky-linux"
->>     > MACHINE           = "nuc"
->>     > DISTRO            = "poky"
->>     > DISTRO_VERSION    = "1.7"
->>     > TUNE_FEATURES     = "m64 corei7"
->>     > TARGET_FPU        = ""
->>     >
->>     >
->>     >
->>     >
->>     >
->>     >
->>     >
->>     >
->>     >
->>     >
->>     >
->>     >
->>     >
->>     >
->>     >
->>      > *make[1]: Entering directory
->>     > `/home/nick/poky/build/tmp/work/corei7-64-intel-common-
->> poky-linux/linux-yocto/3.17.1+gitAUTOINC+b86dd5c6f4_
->> 0caf16d385-r0/linux-corei7-64-intel-common-standard-build'
->>     > GEN     ./Makefile *** Unable to find the ncurses libraries or the
->> ***
->>     > required header files. *** 'make menuconfig' requires the ncurses
->>     > libraries. ***  *** Install ncurses (ncurses-devel) and try again.
->> ***
->>     > make[3]: *** [scripts/kconfig/dochecklxdialog] Error 1make[2]: ***
->>     > [menuconfig] Error 2make[1]: *** [sub-make] Error 2make: ***
->> [__sub-make]
->>      > Error 2Command failed.Press any key to continue... *
->>      >
->>      >
->>      >
->>
->>
->>
->>
->>
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+
+
+On Mon, Nov 10, 2014 at 12:46 PM, nick <xerofoify@gmail.com> wrote:
+
+> I tried bitbake linux-yocto -c menuconfig on my own system running the
+> same distro and it seems to my
+> default use kernel 3.14 not 3.17 otherwise this seems be fine from my
+> understanding. Also check all the
+> paths in your require lines as there may be an issue with your builds and
+> the path set up by these files
+> that you are linking to for your kernel build.
+> Nick
+> On 14-11-09 08:40 PM, Nick D'Ademo wrote:
+> > Thanks Nick.
+> >
+> > Machine conf is as follows (it's actually nearly identical to nuc.conf -
+> > however, BT support, multilib, and preferred providers have been added):
+> >
+> > #@TYPE: Machine
+> > #@NAME: chiefriver
+> >
+> > #@WEBTITLE: Intel Next Unit of Computing (NUC) Model: DC3217IYE
+> >
+> > #@DESCRIPTION: Machine configuration for Intel NUC model DC3217IYE
+> > # i.e. Ivy Bridge + Panther Point
+> >
+> > PREFERRED_VERSION_linux-yocto ?= "3.17%"
+> > MACHINE_FEATURES += "va-impl-intel wifi efi bluetooth"
+> > MACHINE_FEATURES += "intel-ucode"
+> >
+> > require conf/machine/include/meta-intel.inc
+> > require conf/machine/include/intel-corei7-64-common.inc
+> > require conf/machine/include/intel-common-pkgarch.inc
+> > require multilib.conf
+> >
+> > MACHINE_HWCODECS ?= "va-intel gst-va-intel"
+> >
+> > XSERVER ?= "${XSERVER_X86_BASE} \
+> >            ${XSERVER_X86_EXT} \
+> >            ${XSERVER_X86_I965} \
+> >            "
+> >
+> > MACHINE_EXTRA_RRECOMMENDS += "linux-firmware-iwlwifi-6000g2b-6 lms8"
+> >
+> > # disable the serial port configuration
+> > SERIAL_CONSOLE = ""
+> >
+> > PREFERRED_PROVIDER_jpeg = "jpeg"
+> > PREFERRED_PROVIDER_jpeg-native = "jpeg-native"
+> > PREFERRED_PROVIDER_virtual/fftw = "fftw"
+> >
+> >
+> >
+> > On Mon, Nov 10, 2014 at 12:36 PM, nick <xerofoify@gmail.com> wrote:
+> >
+> >> Hey Nick,
+> >> This seems to then be an issue with incorrect paths or build information
+> >> in your nuc.conf
+> >> as the most likely culprit. If you can post your machine's conf file I
+> >> will be glad to see
+> >> if there are any issues I can spot.
+> >> Nick
+> >>
+> >> On 14-11-09 08:33 PM, Nick D'Ademo wrote:
+> >>> 1) source oe-init-build-env is run before building.
+> >>> 2) We are actually using a custom machine .conf based on nuc.conf, so
+> >>> actually: MACHINE = "custom_machine_name". I replaced it with "nuc" in
+> >> this
+> >>> post to avoid confusion.
+> >>>
+> >>> On Mon, Nov 10, 2014 at 12:25 PM, nick <xerofoify@gmail.com> wrote:
+> >>>
+> >>>> Do you run source oe-init-build-env before building and why is your
+> >> machine
+> >>>> set to nuc seems this may be an issue?
+> >>>> Nick
+> >>>>
+> >>>> On 14-11-09 08:15 PM, Nick D'Ademo wrote:
+> >>>>> Thanks for the quick reply Nick.
+> >>>>>
+> >>>>> Host system is Ubuntu 14.04. ncurses is already installed:
+> >>>>>
+> >>>>> sudo apt-get install libncurses5-dev
+> >>>>> Reading package lists... Done
+> >>>>> Building dependency tree
+> >>>>> Reading state information... Done
+> >>>>> libncurses5-dev is already the newest version.
+> >>>>>
+> >>>>>
+> >>>>> On Mon, Nov 10, 2014 at 12:09 PM, nick <xerofoify@gmail.com> wrote:
+> >>>>>
+> >>>>>> Check to see if you actuality have it installed on your host system
+> >> for
+> >>>>>> your package manager.
+> >>>>>> The library for ncurses for compiling the kernel is different based
+> on
+> >>>>>> your distro, check
+> >>>>>> your distro's installer and install the correct ncurses package
+> first.
+> >>>> If
+> >>>>>> this is still an
+> >>>>>> issue please reply with a newer error message.
+> >>>>>> Cheers Nick
+> >>>>>>
+> >>>>>> On 14-11-09 08:05 PM, Nick D'Ademo wrote:
+> >>>>>>> Getting a strange error when attempting to configure the Yocto
+> Linux
+> >>>>>> kernel
+> >>>>>>> via: bitbake linux-yocto -c menuconfig.
+> >>>>>>>
+> >>>>>>> Does anyone have any ideas? (error message below)
+> >>>>>>> Much appreciated.
+> >>>>>>>
+> >>>>>>> Build Configuration:
+> >>>>>>> BB_VERSION        = "1.24.0"
+> >>>>>>> BUILD_SYS         = "x86_64-linux"
+> >>>>>>> NATIVELSBSTRING   = "Ubuntu-14.04"
+> >>>>>>> TARGET_SYS        = "x86_64-poky-linux"
+> >>>>>>> MACHINE           = "nuc"
+> >>>>>>> DISTRO            = "poky"
+> >>>>>>> DISTRO_VERSION    = "1.7"
+> >>>>>>> TUNE_FEATURES     = "m64 corei7"
+> >>>>>>> TARGET_FPU        = ""
+> >>>>>>>
+> >>>>>>>
+> >>>>>>>
+> >>>>>>>
+> >>>>>>>
+> >>>>>>>
+> >>>>>>>
+> >>>>>>>
+> >>>>>>>
+> >>>>>>>
+> >>>>>>>
+> >>>>>>>
+> >>>>>>>
+> >>>>>>>
+> >>>>>>>
+> >>>>>>> *make[1]: Entering directory
+> >>>>>>>
+> >>>>>>
+> >>>>
+> >>
+> `/home/nick/poky/build/tmp/work/corei7-64-intel-common-poky-linux/linux-yocto/3.17.1+gitAUTOINC+b86dd5c6f4_0caf16d385-r0/linux-corei7-64-intel-common-standard-build'
+> >>>>>>> GEN     ./Makefile *** Unable to find the ncurses libraries or the
+> >> ***
+> >>>>>>> required header files. *** 'make menuconfig' requires the ncurses
+> >>>>>>> libraries. ***  *** Install ncurses (ncurses-devel) and try again.
+> >> ***
+> >>>>>>> make[3]: *** [scripts/kconfig/dochecklxdialog] Error 1make[2]: ***
+> >>>>>>> [menuconfig] Error 2make[1]: *** [sub-make] Error 2make: ***
+> >>>> [__sub-make]
+> >>>>>>> Error 2Command failed.Press any key to continue... *
+> >>>>>>>
+> >>>>>>>
+> >>>>>>>
+> >>>>>>
+> >>>>>
+> >>>>
+> >>>
+> >>
+> >
 >
 
---089e01537fc6361dec050777489c
+--001a113ef44235486705077769b7
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Thanks Bob - glad to hear I&#39;m not the first to se=
-e this!<br><br></div>Not using the ADT and &#39;source oe-init-build-env&#3=
-9; is run before building.<br><div class=3D"gmail_extra">
-<br><div class=3D"gmail_quote">On Mon, Nov 10, 2014 at 12:31 PM, Bob Cochra=
-n <span dir=3D"ltr">&lt;<a href=3D"mailto:yocto@mindchasers.com" target=3D"=
-_blank">yocto@mindchasers.com</a>&gt;</span> wrote:<br><blockquote class=3D=
-"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding=
--left:1ex"><span class=3D"">On 11/09/2014 08:15 PM, Nick D&#39;Ademo wrote:=
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-Thanks for the quick reply Nick.<br>
-<br>
-Host system is Ubuntu 14.04. ncurses is already installed:<br>
-<br>
-sudo apt-get install libncurses5-dev<br>
-Reading package lists... Done<br>
-Building dependency tree<br>
-Reading state information... Done<br>
-libncurses5-dev is already the newest version.<br>
-</blockquote>
-<br>
-<br></span>
-Oh boy, I&#39;ve seen this before.=C2=A0 I seem to remember this being caus=
-ed by a problem with the path setup or something in the environment and may=
-be not being able to find the scripts folder or reaching a wrong folder fir=
-st.<br>
-<br>
-How are you setting up your environment before invoking bitbake?<br>
-<br>
-Were you using the ADT?=C2=A0 If so check out cross compiling the kernel he=
-re: <a href=3D"http://www.openembedded.org/wiki/SDK/Toolchain/Application_D=
-eveloper_Toolkit" target=3D"_blank">http://www.openembedded.org/<u></u>wiki=
-/SDK/Toolchain/<u></u>Application_Developer_Toolkit</a><br>
-<br>
-<br>
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><span class=3D"">
-<br>
-<br>
-On Mon, Nov 10, 2014 at 12:09 PM, nick &lt;<a href=3D"mailto:xerofoify@gmai=
-l.com" target=3D"_blank">xerofoify@gmail.com</a><br></span><div><div class=
-=3D"h5">
-&lt;mailto:<a href=3D"mailto:xerofoify@gmail.com" target=3D"_blank">xerofoi=
-fy@gmail.com</a>&gt;&gt; wrote:<br>
-<br>
-=C2=A0 =C2=A0 Check to see if you actuality have it installed on your host =
-system<br>
-=C2=A0 =C2=A0 for your package manager.<br>
-=C2=A0 =C2=A0 The library for ncurses for compiling the kernel is different=
- based<br>
-=C2=A0 =C2=A0 on your distro, check<br>
-=C2=A0 =C2=A0 your distro&#39;s installer and install the correct ncurses p=
-ackage<br>
-=C2=A0 =C2=A0 first. If this is still an<br>
-=C2=A0 =C2=A0 issue please reply with a newer error message.<br>
-=C2=A0 =C2=A0 Cheers Nick<br>
-<br>
-=C2=A0 =C2=A0 On 14-11-09 08:05 PM, Nick D&#39;Ademo wrote:<br>
-=C2=A0 =C2=A0 &gt; Getting a strange error when attempting to configure the=
- Yocto Linux kernel<br>
-=C2=A0 =C2=A0 &gt; via: bitbake linux-yocto -c menuconfig.<br>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 &gt; Does anyone have any ideas? (error message below)<br>
-=C2=A0 =C2=A0 &gt; Much appreciated.<br>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 &gt; Build Configuration:<br>
-=C2=A0 =C2=A0 &gt; BB_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;1.24.0&q=
-uot;<br>
-=C2=A0 =C2=A0 &gt; BUILD_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;x86=
-_64-linux&quot;<br>
-=C2=A0 =C2=A0 &gt; NATIVELSBSTRING=C2=A0 =C2=A0=3D &quot;Ubuntu-14.04&quot;=
-<br>
-=C2=A0 =C2=A0 &gt; TARGET_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;x86_64-p=
-oky-linux&quot;<br>
-=C2=A0 =C2=A0 &gt; MACHINE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quo=
-t;nuc&quot;<br>
-=C2=A0 =C2=A0 &gt; DISTRO=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quo=
-t;poky&quot;<br>
-=C2=A0 =C2=A0 &gt; DISTRO_VERSION=C2=A0 =C2=A0 =3D &quot;1.7&quot;<br>
-=C2=A0 =C2=A0 &gt; TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0=3D &quot;m64 corei7&qu=
-ot;<br>
-=C2=A0 =C2=A0 &gt; TARGET_FPU=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;&quot;<b=
-r>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 &gt;<br>
-=C2=A0 =C2=A0 =C2=A0&gt; *make[1]: Entering directory<br>
-=C2=A0 =C2=A0 &gt; `/home/nick/poky/build/tmp/<u></u>work/corei7-64-intel-c=
-ommon-<u></u>poky-linux/linux-yocto/3.17.1+<u></u>gitAUTOINC+b86dd5c6f4_<u>=
-</u>0caf16d385-r0/linux-corei7-64-<u></u>intel-common-standard-build&#39;<b=
-r>
-=C2=A0 =C2=A0 &gt; GEN=C2=A0 =C2=A0 =C2=A0./Makefile *** Unable to find the=
- ncurses libraries or the ***<br>
-=C2=A0 =C2=A0 &gt; required header files. *** &#39;make menuconfig&#39; req=
-uires the ncurses<br>
-=C2=A0 =C2=A0 &gt; libraries. ***=C2=A0 *** Install ncurses (ncurses-devel)=
- and try again. ***<br>
-=C2=A0 =C2=A0 &gt; make[3]: *** [scripts/kconfig/<u></u>dochecklxdialog] Er=
-ror 1make[2]: ***<br>
-=C2=A0 =C2=A0 &gt; [menuconfig] Error 2make[1]: *** [sub-make] Error 2make:=
- *** [__sub-make]<br>
-=C2=A0 =C2=A0 =C2=A0&gt; Error 2Command failed.Press any key to continue...=
- *<br>
-=C2=A0 =C2=A0 =C2=A0&gt;<br>
-=C2=A0 =C2=A0 =C2=A0&gt;<br>
-=C2=A0 =C2=A0 =C2=A0&gt;<br>
-<br>
-<br>
-<br>
-<br>
-</div></div></blockquote><span class=3D"HOEnZb"><font color=3D"#888888">
-<br>
--- <br>
-______________________________<u></u>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
-</font></span></blockquote></div><br></div></div>
+<div dir=3D"ltr"><div><div><div>Thanks for trying that out Nick.<br><br></d=
+iv>Issue is present on both 3.14 and 3.17 for me.<br></div>All paths in the=
+ require lines are correct too.<br><br></div>Any other ideas?<br><div><div>=
+<br><br><div><div><div class=3D"gmail_extra">
+<br><div class=3D"gmail_quote">On Mon, Nov 10, 2014 at 12:46 PM, nick <span=
+ dir=3D"ltr">&lt;<a href=3D"mailto:xerofoify@gmail.com" target=3D"_blank">x=
+erofoify@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
+I tried bitbake linux-yocto -c menuconfig on my own system running the same=
+ distro and it seems to my<br>
+default use kernel 3.14 not 3.17 otherwise this seems be fine from my under=
+standing. Also check all the<br>
+paths in your require lines as there may be an issue with your builds and t=
+he path set up by these files<br>
+that you are linking to for your kernel build.<br>
+<span class=3D"HOEnZb"><font color=3D"#888888">Nick<br>
+</font></span><div class=3D"HOEnZb"><div class=3D"h5">On 14-11-09 08:40 PM,=
+ Nick D&#39;Ademo wrote:<br>
+&gt; Thanks Nick.<br>
+&gt;<br>
+&gt; Machine conf is as follows (it&#39;s actually nearly identical to nuc.=
+conf -<br>
+&gt; however, BT support, multilib, and preferred providers have been added=
+):<br>
+&gt;<br>
+&gt; #@TYPE: Machine<br>
+&gt; #@NAME: chiefriver<br>
+&gt;<br>
+&gt; #@WEBTITLE: Intel Next Unit of Computing (NUC) Model: DC3217IYE<br>
+&gt;<br>
+&gt; #@DESCRIPTION: Machine configuration for Intel NUC model DC3217IYE<br>
+&gt; # i.e. Ivy Bridge + Panther Point<br>
+&gt;<br>
+&gt; PREFERRED_VERSION_linux-yocto ?=3D &quot;3.17%&quot;<br>
+&gt; MACHINE_FEATURES +=3D &quot;va-impl-intel wifi efi bluetooth&quot;<br>
+&gt; MACHINE_FEATURES +=3D &quot;intel-ucode&quot;<br>
+&gt;<br>
+&gt; require conf/machine/include/meta-intel.inc<br>
+&gt; require conf/machine/include/intel-corei7-64-common.inc<br>
+&gt; require conf/machine/include/intel-common-pkgarch.inc<br>
+&gt; require multilib.conf<br>
+&gt;<br>
+&gt; MACHINE_HWCODECS ?=3D &quot;va-intel gst-va-intel&quot;<br>
+&gt;<br>
+&gt; XSERVER ?=3D &quot;${XSERVER_X86_BASE} \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ${XSERVER_X86_EXT} \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ${XSERVER_X86_I965} \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;<br>
+&gt;<br>
+&gt; MACHINE_EXTRA_RRECOMMENDS +=3D &quot;linux-firmware-iwlwifi-6000g2b-6 =
+lms8&quot;<br>
+&gt;<br>
+&gt; # disable the serial port configuration<br>
+&gt; SERIAL_CONSOLE =3D &quot;&quot;<br>
+&gt;<br>
+&gt; PREFERRED_PROVIDER_jpeg =3D &quot;jpeg&quot;<br>
+&gt; PREFERRED_PROVIDER_jpeg-native =3D &quot;jpeg-native&quot;<br>
+&gt; PREFERRED_PROVIDER_virtual/fftw =3D &quot;fftw&quot;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; On Mon, Nov 10, 2014 at 12:36 PM, nick &lt;<a href=3D"mailto:xerofoify=
+@gmail.com">xerofoify@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt;&gt; Hey Nick,<br>
+&gt;&gt; This seems to then be an issue with incorrect paths or build infor=
+mation<br>
+&gt;&gt; in your nuc.conf<br>
+&gt;&gt; as the most likely culprit. If you can post your machine&#39;s con=
+f file I<br>
+&gt;&gt; will be glad to see<br>
+&gt;&gt; if there are any issues I can spot.<br>
+&gt;&gt; Nick<br>
+&gt;&gt;<br>
+&gt;&gt; On 14-11-09 08:33 PM, Nick D&#39;Ademo wrote:<br>
+&gt;&gt;&gt; 1) source oe-init-build-env is run before building.<br>
+&gt;&gt;&gt; 2) We are actually using a custom machine .conf based on nuc.c=
+onf, so<br>
+&gt;&gt;&gt; actually: MACHINE =3D &quot;custom_machine_name&quot;. I repla=
+ced it with &quot;nuc&quot; in<br>
+&gt;&gt; this<br>
+&gt;&gt;&gt; post to avoid confusion.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; On Mon, Nov 10, 2014 at 12:25 PM, nick &lt;<a href=3D"mailto:x=
+erofoify@gmail.com">xerofoify@gmail.com</a>&gt; wrote:<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; Do you run source oe-init-build-env before building and wh=
+y is your<br>
+&gt;&gt; machine<br>
+&gt;&gt;&gt;&gt; set to nuc seems this may be an issue?<br>
+&gt;&gt;&gt;&gt; Nick<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; On 14-11-09 08:15 PM, Nick D&#39;Ademo wrote:<br>
+&gt;&gt;&gt;&gt;&gt; Thanks for the quick reply Nick.<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; Host system is Ubuntu 14.04. ncurses is already instal=
+led:<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; sudo apt-get install libncurses5-dev<br>
+&gt;&gt;&gt;&gt;&gt; Reading package lists... Done<br>
+&gt;&gt;&gt;&gt;&gt; Building dependency tree<br>
+&gt;&gt;&gt;&gt;&gt; Reading state information... Done<br>
+&gt;&gt;&gt;&gt;&gt; libncurses5-dev is already the newest version.<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt; On Mon, Nov 10, 2014 at 12:09 PM, nick &lt;<a href=3D"=
+mailto:xerofoify@gmail.com">xerofoify@gmail.com</a>&gt; wrote:<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; Check to see if you actuality have it installed on=
+ your host system<br>
+&gt;&gt; for<br>
+&gt;&gt;&gt;&gt;&gt;&gt; your package manager.<br>
+&gt;&gt;&gt;&gt;&gt;&gt; The library for ncurses for compiling the kernel i=
+s different based on<br>
+&gt;&gt;&gt;&gt;&gt;&gt; your distro, check<br>
+&gt;&gt;&gt;&gt;&gt;&gt; your distro&#39;s installer and install the correc=
+t ncurses package first.<br>
+&gt;&gt;&gt;&gt; If<br>
+&gt;&gt;&gt;&gt;&gt;&gt; this is still an<br>
+&gt;&gt;&gt;&gt;&gt;&gt; issue please reply with a newer error message.<br>
+&gt;&gt;&gt;&gt;&gt;&gt; Cheers Nick<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt; On 14-11-09 08:05 PM, Nick D&#39;Ademo wrote:<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Getting a strange error when attempting to con=
+figure the Yocto Linux<br>
+&gt;&gt;&gt;&gt;&gt;&gt; kernel<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; via: bitbake linux-yocto -c menuconfig.<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Does anyone have any ideas? (error message bel=
+ow)<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Much appreciated.<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Build Configuration:<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; BB_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quo=
+t;1.24.0&quot;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; BUILD_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D=
+ &quot;x86_64-linux&quot;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; NATIVELSBSTRING=C2=A0 =C2=A0=3D &quot;Ubuntu-1=
+4.04&quot;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; TARGET_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quo=
+t;x86_64-poky-linux&quot;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; MACHINE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0=3D &quot;nuc&quot;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; DISTRO=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =3D &quot;poky&quot;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; DISTRO_VERSION=C2=A0 =C2=A0 =3D &quot;1.7&quot=
+;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0=3D &quot;m64=
+ corei7&quot;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; TARGET_FPU=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quo=
+t;&quot;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; *make[1]: Entering directory<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt; `/home/nick/poky/build/tmp/work/corei7-64-intel-common-poky-linux/=
+linux-yocto/3.17.1+gitAUTOINC+b86dd5c6f4_0caf16d385-r0/linux-corei7-64-inte=
+l-common-standard-build&#39;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; GEN=C2=A0 =C2=A0 =C2=A0./Makefile *** Unable t=
+o find the ncurses libraries or the<br>
+&gt;&gt; ***<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; required header files. *** &#39;make menuconfi=
+g&#39; requires the ncurses<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; libraries. ***=C2=A0 *** Install ncurses (ncur=
+ses-devel) and try again.<br>
+&gt;&gt; ***<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; make[3]: *** [scripts/kconfig/dochecklxdialog]=
+ Error 1make[2]: ***<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; [menuconfig] Error 2make[1]: *** [sub-make] Er=
+ror 2make: ***<br>
+&gt;&gt;&gt;&gt; [__sub-make]<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Error 2Command failed.Press any key to continu=
+e... *<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;<br>
+</div></div></blockquote></div><br></div></div></div></div></div></div>
 
---089e01537fc6361dec050777489c--
+--001a113ef44235486705077769b7--
