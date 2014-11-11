@@ -1,59 +1,42 @@
-Return-Path: <xerofoify@gmail.com>
+Return-Path: <leimaohui@cn.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C193AE008CA; Mon, 10 Nov 2014 18:43:28 -0800 (PST)
+	id CF18FE00905; Tue, 11 Nov 2014 01:59:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (xerofoify[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.174 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ie0-f174.google.com (mail-ie0-f174.google.com
-	[209.85.223.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15E90E007C0
-	for <yocto@yoctoproject.org>; Mon, 10 Nov 2014 18:43:26 -0800 (PST)
-Received: by mail-ie0-f174.google.com with SMTP id x19so10651548ier.19
-	for <yocto@yoctoproject.org>; Mon, 10 Nov 2014 18:43:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=TsbHY+sSVtG2yO5e0Hbw77G6lT/RGpr/1EKbI0Jl8/E=;
-	b=CHefbTV8IKfV+b8Bk57E9LGG0M7zr1EBoEP3DLp979UBk5aNxQe+ZifvR2W2CwjJz+
-	PsPVUQMF00ml/eqgj5ioHz/BPJtNEVB23rg+Ih0/JRwRgPr5KlxCMHbgsu2bgebySsMY
-	WKy48cMmmgrhV9IcOIQl/9SGK/8FpZCjdiqlvG/zkgcW5b42if7oqUt0aBIn0VCwez7a
-	3pCssQEDKeFcDbRLrM+HWoB9+XkDaQdBZAzy42PN3Nwr6Wku0huMmZMp8fkZQ+3VVpff
-	VK+k1JsQ9pf7qGcsmUAKCtTVxa5YpLVxBSYNZ+sekMoJF4m+qmq2dq3ZFc9TxirFaw9e
-	s+aQ==
-X-Received: by 10.42.206.144 with SMTP id fu16mr592985icb.79.1415673806036;
-	Mon, 10 Nov 2014 18:43:26 -0800 (PST)
-Received: from [192.168.0.50]
-	(CPE0026f3330aca-CM0026f3330ac6.cpe.net.cable.rogers.com.
-	[99.231.92.7])
-	by mx.google.com with ESMTPSA id m63sm9175326ioe.40.2014.11.10.18.43.25
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 10 Nov 2014 18:43:25 -0800 (PST)
-Message-ID: <546177CC.7010008@gmail.com>
-Date: Mon, 10 Nov 2014 21:43:24 -0500
-From: nick <xerofoify@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDAE5E008B4
+	for <yocto@yoctoproject.org>; Tue, 11 Nov 2014 01:59:25 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.04,848,1406563200"; d="scan'208";a="43194607"
+Received: from unknown (HELO edo.cn.fujitsu.com) ([10.167.33.5])
+	by heian.cn.fujitsu.com with ESMTP; 11 Nov 2014 17:56:09 +0800
+Received: from G08CNEXCHPEKD01.g08.fujitsu.local (localhost.localdomain
+	[127.0.0.1])
+	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id sAB9x8bt019788;
+	Tue, 11 Nov 2014 17:59:08 +0800
+Received: from G08CNEXMBPEKD01.g08.fujitsu.local ([10.167.33.81]) by
+	G08CNEXCHPEKD01.g08.fujitsu.local ([10.167.33.80]) with mapi id
+	14.03.0181.006; Tue, 11 Nov 2014 17:59:28 +0800
+From: "Lei, Maohui" <leimaohui@cn.fujitsu.com>
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] question about toaster in yocto 1.7
+Thread-Index: AQHP/NbHWilKIe9i7Uu2an/eiFsTyZxbKvkA
+Date: Tue, 11 Nov 2014 09:59:27 +0000
+Message-ID: <1B56A49860EB2D45ADE3731B15C959FDAC160A@G08CNEXMBPEKD01.g08.fujitsu.local>
+References: <D0864728.4D9D1%belen.barros.pena@intel.com>
+In-Reply-To: <D0864728.4D9D1%belen.barros.pena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.167.226.59]
 MIME-Version: 1.0
-To: John Unland <opensourcejohn2112@gmail.com>, yocto@yoctoproject.org
-References: <CAByxTR_jmYDr4QUAtXg20UBV_FXZ-yUk=WEJ3LTA1wkaRAx6Yw@mail.gmail.com>
-In-Reply-To: <CAByxTR_jmYDr4QUAtXg20UBV_FXZ-yUk=WEJ3LTA1wkaRAx6Yw@mail.gmail.com>
-Subject: Re: Making Hob better.
+Subject: Re: question about toaster in yocto 1.7
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,59 +48,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Nov 2014 02:43:28 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 11 Nov 2014 09:59:30 -0000
+Content-Language: zh-CN
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 
-John,
-Hob is not meant to be like Suse Studios. Further more you are right about the interface sucking 
-hard for certain things, I would recommend you start cleaning that up first and then afterwards 
-move on to other areas of interest with YP.
-Cheers Nick 
-
-On 14-11-10 06:58 PM, John Unland wrote:
-> Hello everyone,
-> 
-> I am new to the embedded space, been working with embedded for a
-> couple of months now as well as Linux itself. After much time spent
-> with Hob I have to say it's a awesome tool to use. However I would
-> like it to be better than it already is, I see the potential of this
-> interface to help newbies like myself, weather it be hobbyist or
-> industrial use. So below is what I have found through my fiddling
-> around with Hob.
-> 
-> 
-> -Some interface inconsistencies when your selecting layers, image
-> type, distro type etc.
-> 
-> -Image deployments (Only .hddimg and .iso can be deployed to physical
-> media at the end (To my knowledge) of the build process. There's is a
-> lot of FS types, but I would really like to have a steps on how to
-> install these other FS types which documentation nor simply goggling
-> it helps)
-> 
-> -Branding. There are ways to go and edit files to specify how to
-> rebrand and stuff but that requires a command line. I would like to
-> have the simple screen where I can add branding (Boot screens, Logos,
-> and distro names etc.). I could definitely if Hob does have a Web User
-> interface where I can't access a command line to change parameters of
-> the finished product.
-> 
-> -Documentation is awesome, however from a person that has only a year
-> and a half experience using Linux it's kinda hard reading it
-> sometimes. (Not really anything bad on Yocto's part. I would just like
-> to input something that newbies can be represented in this project)
-> 
-> I really could see Hob become a open source version of openSUSE Studio
-> (Which it's closed source) but for embedded devices. So that's just my
-> hopes for Hob / Yocto could become...
-> 
-> Lastly, I would really love to help with development as well. I
-> haven't really gotten into programming that much but I have worked
-> with the Fedora Server Special Interest Group doing QA for Alpha and
-> Beta release. So if anyone can put me in the right direction I can
-> certainly help YP out.
-> 
-> Thank you.
-> 
+SGkgQmVsqKZuDQoNCj4gTm8sIEkgYW0gYWZyYWlkIFRvYXN0ZXIgc3RpbGwgY2Fubm90IGxhdW5j
+aCBidWlsZHMgaW4gWW9jdG8gUHJvamVjdCAxLjcuDQo+IFdlIGFyZSB3b3JraW5nIG9uIGl0IHRo
+b3VnaCwgc28gVG9hc3RlciBzaG91bGQgYmUgYWJsZSB0byBsYXVuY2ggYnVpbGRzIGluIFlvY3Rv
+DQo+IFByb2plY3QgMS44LiBJZiB5b3Ugd2FudCB0byBoZWxwIHVzIG1ha2UgaXQgaGFwcGVuIChj
+b250cmlidXRpb25zIHNvcmVseSBuZWVkZWQpLA0KPiBsZXQgbWUga25vdy4NCg0KVGhhbmtzIGZv
+ciB5b3VyIHJlcGx5Lg0KDQpBbHRob3VnaCBJIGFtIHZlcnkgaW50ZXJlc3RlZCBpbiBUb2FzdGVy
+LCBidXQgSSdtIG5vdCBzdXJlIHRoZXJlIGlzIGVub3VnaCB0aW1lIHRvIGRvIHRoaXMuDQoNCkNo
+ZWVycw0KDQpMZWkgTWFvaHVpDQoNCg0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+
+IEZyb206IEJhcnJvcyBQZW5hLCBCZWxlbiBbbWFpbHRvOmJlbGVuLmJhcnJvcy5wZW5hQGludGVs
+LmNvbV0NCj4gU2VudDogTW9uZGF5LCBOb3ZlbWJlciAxMCwgMjAxNCA3OjA5IFBNDQo+IFRvOiBM
+ZWksIE1hb2h1aS/A1yDDr7vbOyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+IFN1YmplY3Q6IFJl
+OiBbeW9jdG9dIHF1ZXN0aW9uIGFib3V0IHRvYXN0ZXIgaW4geW9jdG8gMS43DQo+IA0KPiBPbiAx
+MC8xMS8yMDE0IDEwOjIzLCAiTGVpLCBNYW9odWkiIDxsZWltYW9odWlAY24uZnVqaXRzdS5jb20+
+IHdyb3RlOg0KPiANCj4gPkhpIGFsbA0KPiA+DQo+ID4gICBJIGhhdmUgcmVhZCB0aGUgIlRvYXN0
+ZXIgTWFudWFsIDEuNyIgYW5kIGhhdmUgYSBxdWVzdGlvbiA6DQo+ID4gICBUaGUgdG9hc3RlciBz
+dGlsbCBjYW4ndCBsYXVuY2ggYSBidWlsZCBpbiB5b2N0byAxLjcgPw0KPiANCj4gSGkgTGVpLA0K
+PiANCj4gTm8sIEkgYW0gYWZyYWlkIFRvYXN0ZXIgc3RpbGwgY2Fubm90IGxhdW5jaCBidWlsZHMg
+aW4gWW9jdG8gUHJvamVjdCAxLjcuDQo+IFdlIGFyZSB3b3JraW5nIG9uIGl0IHRob3VnaCwgc28g
+VG9hc3RlciBzaG91bGQgYmUgYWJsZSB0byBsYXVuY2ggYnVpbGRzIGluIFlvY3RvDQo+IFByb2pl
+Y3QgMS44LiBJZiB5b3Ugd2FudCB0byBoZWxwIHVzIG1ha2UgaXQgaGFwcGVuIChjb250cmlidXRp
+b25zIHNvcmVseSBuZWVkZWQpLA0KPiBsZXQgbWUga25vdy4NCj4gDQo+IENoZWVycw0KPiANCj4g
+QmVsqKZuDQo+IA0KPiA+DQo+ID5UaGFua3MsDQo+ID4NCj4gPkxlaSBNYW9odWkNCj4gPi0tDQo+
+ID5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiA+eW9j
+dG8gbWFpbGluZyBsaXN0DQo+ID55b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+ID5odHRwczovL2xp
+c3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg0K
 
