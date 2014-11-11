@@ -1,57 +1,47 @@
-Return-Path: <opensourcejohn2112@gmail.com>
+Return-Path: <anthony.b.padua@lmco.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 18750E00874; Tue, 11 Nov 2014 09:51:35 -0800 (PST)
+	id 80ACBE0087C; Tue, 11 Nov 2014 13:33:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (opensourcejohn2112[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.35.35.12 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.52 listed in list.dnswl.org]
-Received: from mail-oi0-f52.google.com (mail-oi0-f52.google.com
-	[209.85.218.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A983DE0072A
-	for <yocto@yoctoproject.org>; Tue, 11 Nov 2014 09:51:24 -0800 (PST)
-Received: by mail-oi0-f52.google.com with SMTP id u20so7286275oif.39
-	for <yocto@yoctoproject.org>; Tue, 11 Nov 2014 09:51:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=PyxKjuRVVrl4bob1lzeyXZQ1AJ6obtztoWy9mVdsGb4=;
-	b=ZdnAezME6/sCggv3sYgX6GKoKlgJPWsZFCwtOqugHympBQadkq2+9Wnym7SeJWgWmr
-	IVzmrIPiMtVrv51h3ywL0a+/S4q3PISjlc/rSlxnrbbP9gdk25VoSy+FrEGgtxz4X4bW
-	jGokPurR88p3wm1Cpna3cm51Fo2key4poROzvo40Cjud6nf8vZ7xXeczHPld/hVuvMc7
-	cxWqjamkKALh03i4fvrMFeFt3gH5A7+96T+hfukNzCT/DvPQXYxFIc9VCxhvb9utPIQJ
-	KRR3d7Wd+q+09xsSjQvQ4iZ3dbRIy3BvAiujRK69zKbIOR+7z4wbgtfhjI4BXHsUtnru
-	V5XA==
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 6407 seconds by postgrey-1.32 at yocto-www;
+	Tue, 11 Nov 2014 13:32:56 PST
+Received: from mailfo02.lmco.com (mailfo02.lmco.com [192.35.35.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32AC5E007C0
+	for <yocto@yoctoproject.org>; Tue, 11 Nov 2014 13:32:56 -0800 (PST)
+Received: from HVXHTPN10.us.lmco.com (hvxhtpn10.ems.lmco.com [158.186.149.28])
+	by mailfo02.lmco.com (8.14.5/8.14.5) with ESMTP id sABJk6YI009361
+	for <yocto@yoctoproject.org>; Tue, 11 Nov 2014 19:46:07 GMT
+Received: from HVXDSP41.us.lmco.com ([fe80::f842:f7dd:ab78:45f6]) by
+	HVXHTPN10.us.lmco.com ([fe80::ed1d:9a54:1e81:8133%15]) with mapi id
+	14.03.0174.001; Tue, 11 Nov 2014 14:45:23 -0500
+From: "Padua, Anthony B" <anthony.b.padua@lmco.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Truncated 64 bit return from kernel space
+Thread-Index: Ac/959j5y+kwlFH2SdewBdW3tZKhGQ==
+Date: Tue, 11 Nov 2014 19:45:22 +0000
+Message-ID: <AC814B99C7C45E44AF2061B27C57E2450A5C31C6@HVXDSP41.us.lmco.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [158.186.156.90]
 MIME-Version: 1.0
-X-Received: by 10.182.20.195 with SMTP id p3mr33502512obe.42.1415728283998;
-	Tue, 11 Nov 2014 09:51:23 -0800 (PST)
-Received: by 10.202.104.196 with HTTP; Tue, 11 Nov 2014 09:51:23 -0800 (PST)
-In-Reply-To: <D087E4B4.4DDB7%belen.barros.pena@intel.com>
-References: <CAByxTR_jmYDr4QUAtXg20UBV_FXZ-yUk=WEJ3LTA1wkaRAx6Yw@mail.gmail.com>
-	<D08793BD.4DAD5%belen.barros.pena@intel.com>
-	<4b71e65f9d0949928a7575be01750a68@BN1PR0301MB0641.namprd03.prod.outlook.com>
-	<D087C161.4DC2F%belen.barros.pena@intel.com>
-	<CAByxTR-TLaK2NSwctbqH2rpTx9Lvhj_b3h32oYb1otfbV_inOA@mail.gmail.com>
-	<D087E4B4.4DDB7%belen.barros.pena@intel.com>
-Date: Tue, 11 Nov 2014 11:51:23 -0600
-Message-ID: <CAByxTR-AS8DcboJH-iP5kgw3OitUKEYP7ZK5riJsuVX1bNNUpg@mail.gmail.com>
-From: John Unland <opensourcejohn2112@gmail.com>
-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Making Hob better.
+X-LM-Outbound: External 158.186.149.28 cntry=us
+	g=be3bf51839b2610732057f9e4c4627ac q=sABJk6YI009361 m=2
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.13.68, 1.0.28,
+	0.0.0000
+	definitions=2014-11-11_07:2014-11-11, 2014-11-11,
+	1970-01-01 signatures=0
+Subject: Truncated 64 bit return from kernel space
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,41 +53,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Nov 2014 17:51:35 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 11 Nov 2014 21:33:06 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_AC814B99C7C45E44AF2061B27C57E2450A5C31C6HVXDSP41uslmcoc_"
+
+--_000_AC814B99C7C45E44AF2061B27C57E2450A5C31C6HVXDSP41uslmcoc_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
->Toaster
+Hello all,
 
->https://bugzilla.yoctoproject.org/enter_bug.cgi?product=3DToaster
+I have a custom kernel module driver that returns a truncated 64-bit value.=
+ The first 32-bits are missing.
 
->Cheers
+The driver is called using llseek() and the address used in user space and =
+in kernel space is 64-bits, but when returning from kernel space, the first=
+ 32-bits gets truncated, only returning the second half. I've used printk o=
+n the address value before returning it in the driver and it is the full 64=
+-bit address. The return is using loff_t, and I'm using a genericx86-64 Lin=
+ux kernel.
 
->Bel=C3=A9n
+Any thoughts?
+Thanks,
+-----------------------------
+Anthony B. Padua
 
-What about bootloaders? Where would I file a enhancement for different
-boot loaders (U-Boot, Lilo, etc.). Would be good if we had a boot
-loaders layer.
+--_000_AC814B99C7C45E44AF2061B27C57E2450A5C31C6HVXDSP41uslmcoc_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 11, 2014 at 10:09 AM, Barros Pena, Belen
-<belen.barros.pena@intel.com> wrote:
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> On 11/11/2014 15:46, "John Unland" <opensourcejohn2112@gmail.com> wrote:
->
->>>A kernel configuration module for Toaster is something that we'd like to
->>>see at some point. And the branding one I agree it would be great to
->>>have.
->>>Feel free to open Bugzilla entries for both.
->>
->>Under what catagories would these two be filed under?
->
-> Toaster
->
-> https://bugzilla.yoctoproject.org/enter_bug.cgi?product=3DToaster
->
-> Cheers
->
-> Bel=C3=A9n
->
->
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Vladimir Script";
+	panose-1:3 5 4 2 4 4 7 7 3 5;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Times New Roman","serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Times New Roman&quo=
+t;,&quot;serif&quot;">Hello all,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Times New Roman&quo=
+t;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Times New Roman&quo=
+t;,&quot;serif&quot;">I have a custom kernel module driver that returns a t=
+runcated 64-bit value. The first 32-bits are missing.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Times New Roman&quo=
+t;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Times New Roman&quo=
+t;,&quot;serif&quot;">The driver is called using llseek() and the address u=
+sed in user space and in kernel space is 64-bits, but when returning from k=
+ernel space, the first 32-bits gets truncated, only returning
+ the second half. I&#8217;ve used printk on the address value before return=
+ing it in the driver and it is the full 64-bit address. The return is using=
+ loff_t, and I&#8217;m using a genericx86-64 Linux kernel.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Times New Roman&quo=
+t;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Times New Roman&quo=
+t;,&quot;serif&quot;">Any thoughts?
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Times New Roman&quo=
+t;,&quot;serif&quot;">Thanks,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:22.0pt;font-family:&quot;Vl=
+adimir Script&quot;">-----------------------------<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;font-family:&quot;Vl=
+adimir Script&quot;;color:#00B050">Anthony B. Padua<o:p></o:p></span></p>
+</div>
+</body>
+</html>
 
+--_000_AC814B99C7C45E44AF2061B27C57E2450A5C31C6HVXDSP41uslmcoc_--
