@@ -1,17 +1,21 @@
-Return-Path: <xerofoify@gmail.com>
+Return-Path: <opensourcejohn2112@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 832ACE008DB; Tue, 11 Nov 2014 06:50:00 -0800 (PST)
+	id 02F9CE008DC; Tue, 11 Nov 2014 07:46:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+	URIBL_DBL_ABUSE_REDIR,URIBL_DBL_REDIR autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (xerofoify[at]gmail.com)
+	mail provider *      (opensourcejohn2112[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.213.169 listed in list.dnswl.org]
+	*      [209.85.218.54 listed in list.dnswl.org]
+	* 0.0 URIBL_DBL_ABUSE_REDIR Contains an abused redirector URL listed in
+	*      the DBL blocklist *      [URIs: goo.gl]
+	*  0.0 URIBL_DBL_REDIR Contains a URL listed in the DBL as a spammed
+	*      redirector domain *      [URIs: goo.gl]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,59 +23,38 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f169.google.com (mail-ig0-f169.google.com
-	[209.85.213.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E91A6E0087C
-	for <yocto@yoctoproject.org>; Tue, 11 Nov 2014 06:49:56 -0800 (PST)
-Received: by mail-ig0-f169.google.com with SMTP id hn18so1182141igb.2
-	for <yocto@yoctoproject.org>; Tue, 11 Nov 2014 06:49:56 -0800 (PST)
+Received: from mail-oi0-f54.google.com (mail-oi0-f54.google.com
+	[209.85.218.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20069E00874
+	for <yocto@yoctoproject.org>; Tue, 11 Nov 2014 07:46:20 -0800 (PST)
+Received: by mail-oi0-f54.google.com with SMTP id a141so7185606oig.13
+	for <yocto@yoctoproject.org>; Tue, 11 Nov 2014 07:46:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=8LyD3w/K40oX8mlQxaPyeL5WX49FTJwsCA1MUtaWqLc=;
-	b=0H2tHKf2Ptb6CgKHnMwMmwzyOclQBF6IpXcBpTdiZSozZ2BpchfY20PoRi1EEgDE2a
-	Yx5eCw852Zuhr40cUZIPtSMqy1mNlGfIK9Wyx9/6fbDte0DwBylPQpwAjZZ3ITQsbB0E
-	qAX+Dz4kz3S4s5FtVwZtDWQ8q//5CIadQAHzNF4N1fsGGMXkTVxDhXFO/PjRIidy/cL1
-	ngWX4xLHLnsu3y/N/n+byIblat5cOt2imL4Y6tO5kpJ6nLKC/XjaDcn82znyBNEwOib+
-	9S93wM3ryBQ08g3aGAmztj7mtqP3L4drC5AlZC9wsamN1Q5cypBonNtn8D00XAJnmxwg
-	gOQA==
-X-Received: by 10.107.134.203 with SMTP id q72mr41734412ioi.51.1415717396400; 
-	Tue, 11 Nov 2014 06:49:56 -0800 (PST)
-Received: from [192.168.0.50]
-	(CPE0026f3330aca-CM0026f3330ac6.cpe.net.cable.rogers.com.
-	[99.231.92.7])
-	by mx.google.com with ESMTPSA id 124sm5662679ioe.12.2014.11.11.06.49.55
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 11 Nov 2014 06:49:55 -0800 (PST)
-Message-ID: <54622212.7060802@gmail.com>
-Date: Tue, 11 Nov 2014 09:49:54 -0500
-From: nick <xerofoify@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=Fh9ov87ic9FtRYZrOfhZcECeB+M9vzkSymtkz8H1t6A=;
+	b=slYRVnNia3VkAwiQrgO8wMxumqtCTkeCGSvrpATqvGYooVAIcudt8phOhBTe0QVoaF
+	56g7FLz/BcxC0pIg0SWdUsEZu5ffj15PtsN75cOj08sJX2LKqYK3qKB1CgcXBew/UAgD
+	Z8aZynIqZgGuLaLUlouF+6RqYblF9b2XOf5/fxDKyOk3Ej1uu0x74QME3o+aSOQ/QBFa
+	b9n44hEhgSigyL0nMdv288xjk+gvQ0U0YWk4Zz7QVs3rS7ntx1gsKnIiYip/mMumUoF3
+	WCxzppjNjcQj4RXhIWedZkL3cXM4n2sjBCJJmFwmO4OR6g5QIJPE9fIwPlVCfpRA1IfI
+	nRfg==
 MIME-Version: 1.0
-To: Nick D'Ademo <nickdademo@gmail.com>
-References: <CANR6C54aazdi1bArSq-DdqMMJGcbQMuR2HsygV_8LDdTy3oUHg@mail.gmail.com>
-	<CANR6C57voYqR9t-7P-=qUuudn6t7u=PFgGcWTy92xUUOy4H-Kw@mail.gmail.com>
-	<5460169F.8090001@gmail.com>
-	<CANR6C56k7M=kQV=sq8dXf3KK5zEXk_KPZ+TmrL5BqDoWV_hYMg@mail.gmail.com>
-	<546018F8.2030201@gmail.com>
-	<CANR6C55j8Q08JhyGx1nekPqPyuwGcau52tJe=8=r59ACjewrfA@mail.gmail.com>
-	<54601BC4.1080409@gmail.com>
-	<CANR6C54hAYqnvjrtg6_pNcTqAibrCKhaCFEOhkfr=6j2jLPjZg@mail.gmail.com>
-	<54602A9F.1040907@gmail.com>
-	<CANR6C57+VqbBTT1UwE-JNqdaqt4+tg2J9OPqs+u=i-z98NgsOQ@mail.gmail.com>
-	<5460346B.1080207@gmail.com>
-	<CANR6C54h_9yEfro=3P-qEz9Am-RdTHO_ezidrfDRdJtUpqEJdw@mail.gmail.com>
-	<54609D5F.2000604@gmail.com>
-	<CANR6C55w60UE-HoRyvBrSz1p+UCD=sqUe8QZku5qmnW28kGSqg@mail.gmail.com>
-	<CAPDOMViVWRXHGFbaipcy4x+kxVDKX6wW5GoKYiiK=6kPpQ65hA@mail.gmail.com>
-	<CANR6C56cEgXYO-7BUpL_-_uojYUqUcqzzrfA+nB4GH8zd8Kftw@mail.gmail.com>
-	<54621AC5.7080707@gmail.com>
-	<CANR6C57n+_=d-8mC4TszXoMSpObiCNPwWLoytwnGu--KKTMFcQ@mail.gmail.com>
-In-Reply-To: <CANR6C57n+_=d-8mC4TszXoMSpObiCNPwWLoytwnGu--KKTMFcQ@mail.gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Unable to find the ncurses libraries when running menuconfig
+X-Received: by 10.182.118.167 with SMTP id kn7mr449497obb.85.1415720780019;
+	Tue, 11 Nov 2014 07:46:20 -0800 (PST)
+Received: by 10.202.104.196 with HTTP; Tue, 11 Nov 2014 07:46:19 -0800 (PST)
+In-Reply-To: <D087C161.4DC2F%belen.barros.pena@intel.com>
+References: <CAByxTR_jmYDr4QUAtXg20UBV_FXZ-yUk=WEJ3LTA1wkaRAx6Yw@mail.gmail.com>
+	<D08793BD.4DAD5%belen.barros.pena@intel.com>
+	<4b71e65f9d0949928a7575be01750a68@BN1PR0301MB0641.namprd03.prod.outlook.com>
+	<D087C161.4DC2F%belen.barros.pena@intel.com>
+Date: Tue, 11 Nov 2014 09:46:19 -0600
+Message-ID: <CAByxTR-TLaK2NSwctbqH2rpTx9Lvhj_b3h32oYb1otfbV_inOA@mail.gmail.com>
+From: John Unland <opensourcejohn2112@gmail.com>
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Richard Schmitt <richard.schmitt@freescale.com>
+Subject: Re: Making Hob better.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,446 +66,151 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Nov 2014 14:50:00 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 11 Nov 2014 15:46:29 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-I would state so as if you need it and it doesn't work then it probably is a bug
-with bitbake.
-Cheers Nick 
+>It is great to see so much interest in Hob: for a while we thought nobody
+>was using it!
 
-On 14-11-11 09:37 AM, Nick D'Ademo wrote:
-> Would this be classified as a BitBake bug then?
-> 
-> I actually have a recipe which requires 32-bit libs - I'll see if there's a
-> way around it.
-> 
-> Thanks for your help thus far.
-> 
-> Nick
-> 
-> On Wed, Nov 12, 2014 at 1:18 AM, nick <xerofoify@gmail.com> wrote:
-> 
->> That was my issue with your build, but I wasn't sure if that was going to
->> prevent the build from you companies requirements. I would recommend only
->> making the build 64 bit as it seems that there is no reason for backwards
->> compatibility with older 32 bit libraries for your build.
->> Regards Nick
+I do see the potential for toaster as wel (Forgot to mention it). Yes
+I do see in the near future Hob being phased out in later releases.
+But for what it is right now, there are people using it, I really
+think it's a great idea to have something like hob for embedded
+systems espically the Hobbyist crowd.
+
+>A kernel configuration module for Toaster is something that we'd like to
+>see at some point. And the branding one I agree it would be great to have.
+>Feel free to open Bugzilla entries for both.
+
+Under what catagories would these two be filed under?
+
+>Contributions are very welcome! :) You can get involved in both
+>development and QA work. To get started, you can subscribe to the Toaster
+>mailing list:
+
+Sure I'll start looking over there. I'm pretty busy with my college
+schedule right now so I'm afraid I can't make it to the regular
+meetings. But thanks for the offer! :)
+
+>Hob is not meant to be like Suse Studios. Further more you are right about=
+ the interface sucking
+>hard for certain things, I would recommend you start cleaning that up firs=
+t and then afterwards
+>move on to other areas of interest with YP.
+>Cheers Nick
+
+I see, will do.
+
+Cheers.
+
+On Tue, Nov 11, 2014 at 7:53 AM, Barros Pena, Belen
+<belen.barros.pena@intel.com> wrote:
+> Hi Richard,
+>
+> On 11/11/2014 12:58, "Richard Schmitt" <richard.schmitt@freescale.com>
+> wrote:
+>
+>>We also are looking to update Hob.
+>
+> It is great to see so much interest in Hob: for a while we thought nobody
+> was using it! But I should probably be clear about the project plans in
+> relation to Hob. The final goal is to replace it with Toaster. Hob is
+> still being maintained, but no new features are planned for it.
+>
+> You are of course free to take Hob and add to it if you feel that's the
+> tool that better suits your needs. However:
+>
+> * I cannot guarantee that Hob will be included in future releases of the
+> Yocto Project.
+>
+> * Having been very involved in both Hob and Toaster, I must say that
+> Toaster will be much more powerful, easier to extend with new features
+> like the ones you suggest below, and in general way nicer to use.
+>
+> I am not sure how much you know about the Toaster project, or if there is
+> anything in it that makes it unfit for your needs. But I would be happy t=
+o
+> have a chat about it all, answer any questions you may have, and demo it
+> if you'd like to see it.
+>
+>>In particular, adding kernel feature support.  Branding would be nice
+>>too.
+>
+> A kernel configuration module for Toaster is something that we'd like to
+> see at some point. And the branding one I agree it would be great to have=
+.
+> Feel free to open Bugzilla entries for both.
+>
+> Cheers
+>
+> Bel=C3=A9n
+>
 >>
->> On 14-11-11 06:23 AM, Nick D'Ademo wrote:
->>> A bit of progress (found the cause of the error at least):
->>>
->>> The script that is failing is: linux/scripts/kconfig/lxdialog/
->>> *check-lxdialog.sh*
->>>
->>> I added 'set -x' to the script so I could see the output as BitBake
->>> executes it... The function within that script which is failing is
->> *check()
->>> *- in particular the following is failing:
->>>
->>>
->>>
->>>
->>> *$cc -x c - -o $tmp 2>/dev/null <<'EOF'#include CURSES_LOCmain() {}EOF*
->>>
->>> *Script output:*
->>> *gcc -isystem/home/nick/poky/build/tmp/sysroots/x86_64-linux/usr/include
->>> -O2 -pipe -L/home/nick/poky/build/tmp/sysroots/x86_64-linux/usr/lib
->>> -L/home/nick/poky/build/tmp/sysroots/x86_64-linux/lib
->>> -Wl,-rpath-link,/home/nick/poky/build/tmp/sysroots/x86_64-linux/usr/lib
->>> -Wl,-rpath-link,/home/nick/poky/build/tmp/sysroots/x86_64-linux/lib
->>> -Wl,-rpath,/home/nick/poky/build/tmp/sysroots/x86_64-linux/usr/lib
->>> -Wl,-rpath,/home/nick/poky/build/tmp/sysroots/x86_64-linux/lib -Wl,-O1
->>> '-DCURSES_LOC=<ncurses.h>' -DLOCALE
->>> -L/home/nick/poky/build/tmp/sysroots/custom_machine_name/usr/lib64
->>> -lncursesw -ltinfo -x c - -o .lxdialog.tmp*
->>>
->>> This command is returning 1 when it should be returning 0 (i.e.
->> successful
->>> compile).
->>>
->>> The exact error is:
->>>
->>>
->>> */usr/bin/ld: cannot find /lib64/libc.so.6/usr/bin/ld: cannot find
->>> /usr/lib64/libc_nonshared.acollect2: error: ld returned 1 exit status*
->>>
->>> Where is it trying to find those libraries? In my host system (they don't
->>> exist!) or the system root of my build? The files *only* exist in my
->> system
->>> root @ */home/nick/poky/build/tmp/sysroots/custom_machine_name/usr/lib64
->> *and
->>> */home/nick/poky/build/tmp/sysroots/custom_machine_name/lib64.*
->>>
->>> I suspect that this may be due to the fact that my custom machine conf
->> is a
->>> multilib configuration...
->>>
->>> Any further ideas?
->>>
->>>
->>> On Tue, Nov 11, 2014 at 2:10 AM, Nick Krause <xerofoify@gmail.com>
->> wrote:
->>>
->>>> On Mon, Nov 10, 2014 at 7:56 AM, Nick D'Ademo <nickdademo@gmail.com>
->>>> wrote:
->>>>> If I do the following (from the same Terminal that oe-init-build-env
->> has
->>>>> been run):
->>>>> 1) cd
->>>>>
->>>>
->> /home/nick/poky/build/tmp/work/corei7-64-intel-common-poky-linux/linux-yocto/3.17.1+gitAUTOINC+b86dd5c6f4_0caf16d385-r0/linux-corei7-64-intel-common-standard-build
->>>>> 2) make menuconfig
->>>>>
->>>>> Menu config loads correctly.
->>>>>
->>>>> So for some reason, 'bitbake linux-yocto -c menuconfig' is not invoking
->>>>> menuconfig properly.
->>>>>
->>>>> Any ideas where to look in regard to my custom machine config?
->>>>>
->>>>>
->>>>>
->>>>> On Mon, Nov 10, 2014 at 10:11 PM, nick <xerofoify@gmail.com> wrote:
->>>>>>
->>>>>> Nick,
->>>>>> Yes this is a issue with your custom machine and I believe this is a
->>>> issue
->>>>>> with your your machine
->>>>>> conf is located in the build directories.
->>>>>> Cheers Nick
->>>>>>
->>>>>> On 14-11-10 02:26 AM, Nick D'Ademo wrote:
->>>>>>> menuconfig works with a core-image-minimal vanilla build:
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>> *Build Configuration:BB_VERSION        = "1.24.0"BUILD_SYS         =
->>>>>>> "x86_64-linux"NATIVELSBSTRING   = "Ubuntu-14.04"TARGET_SYS        =
->>>>>>> "arm-poky-linux-gnueabi"MACHINE           = "qemuarm"DISTRO
->>>>   =
->>>>>>> "poky"DISTRO_VERSION    = "1.7"TUNE_FEATURES     = "arm armv5 thumb
->>>>>>> dsp"TARGET_FPU        = "soft"meta              meta-yocto
->>>>>>> meta-yocto-bsp    =
->>>>>>> "master:45bb9e3323073070453647a32289dc1792f3d660"meta-oe
->>>>>>> meta-multimedia   meta-gnome        =
->>>>>>> "master:dac2422f737c351c37a8405a76b5f0b5df9311a0"*
->>>>>>>
->>>>>>>
->>>>>>> So this must be an issue with my custom machine.
->>>>>>>
->>>>>>>
->>>>>>> On Mon, Nov 10, 2014 at 2:43 PM, nick <xerofoify@gmail.com> wrote:
->>>>>>>
->>>>>>>> Nick,
->>>>>>>> Then this is an issue with your machine conf or paths required for
->>>>>>>> kernel
->>>>>>>> building. Are you able
->>>>>>>> to build a poky distro with a working kernel and this is just a
->> issue
->>>>>>>> with
->>>>>>>> you building the yocto
->>>>>>>> kernel alone or can you also not build poky too?
->>>>>>>> Cheers Nick
->>>>>>>>
->>>>>>>> On 14-11-09 10:36 PM, Nick D'Ademo wrote:
->>>>>>>>> Just tried with the latest 3.17.2 kernel. 'make menuconfig' works
->>>> fine
->>>>>>>> and
->>>>>>>>> loads the interactive kernel config.
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> On Mon, Nov 10, 2014 at 2:01 PM, nick <xerofoify@gmail.com> wrote:
->>>>>>>>>
->>>>>>>>>> Try downloading a stock kernel for kernel.org and extract it in
->>>> your
->>>>>>>> home
->>>>>>>>>> directory and run make menuconfig in
->>>>>>>>>> the root of the kernel source tree, if this works then I am
->>>> assuming
->>>>>>>>>> either ncurses or your machine conf is wrong
->>>>>>>>>> somewhere.
->>>>>>>>>> Cheers Nick
->>>>>>>>>>
->>>>>>>>>> On 14-11-09 09:51 PM, Nick D'Ademo wrote:
->>>>>>>>>>> Hi Nick,
->>>>>>>>>>>
->>>>>>>>>>> I removed build/tmp/ and performed a rebuild - I'm still
->>>>>>>>>>> experiencing
->>>>>>>> the
->>>>>>>>>>> same error message unfortunately.
->>>>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>> On Mon, Nov 10, 2014 at 12:58 PM, nick <xerofoify@gmail.com>
->>>> wrote:
->>>>>>>>>>>
->>>>>>>>>>>> Seems to after reading and doing some research a build issue
->> with
->>>>>>>>>> multiple
->>>>>>>>>>>> jobs or try running rm -r tmp in your
->>>>>>>>>>>> build and then rebuild as it may be an issue with out of date
->>>> temp
->>>>>>>>>> files.
->>>>>>>>>>>> Cheers Nick
->>>>>>>>>>>>
->>>>>>>>>>>> On 14-11-09 08:51 PM, Nick D'Ademo wrote:
->>>>>>>>>>>>> Thanks for trying that out Nick.
->>>>>>>>>>>>>
->>>>>>>>>>>>> Issue is present on both 3.14 and 3.17 for me.
->>>>>>>>>>>>> All paths in the require lines are correct too.
->>>>>>>>>>>>>
->>>>>>>>>>>>> Any other ideas?
->>>>>>>>>>>>>
->>>>>>>>>>>>>
->>>>>>>>>>>>>
->>>>>>>>>>>>> On Mon, Nov 10, 2014 at 12:46 PM, nick <xerofoify@gmail.com>
->>>>>>>>>>>>> wrote:
->>>>>>>>>>>>>
->>>>>>>>>>>>>> I tried bitbake linux-yocto -c menuconfig on my own system
->>>>>>>>>>>>>> running
->>>>>>>> the
->>>>>>>>>>>>>> same distro and it seems to my
->>>>>>>>>>>>>> default use kernel 3.14 not 3.17 otherwise this seems be fine
->>>>>>>>>>>>>> from
->>>>>>>> my
->>>>>>>>>>>>>> understanding. Also check all the
->>>>>>>>>>>>>> paths in your require lines as there may be an issue with your
->>>>>>>> builds
->>>>>>>>>>>> and
->>>>>>>>>>>>>> the path set up by these files
->>>>>>>>>>>>>> that you are linking to for your kernel build.
->>>>>>>>>>>>>> Nick
->>>>>>>>>>>>>> On 14-11-09 08:40 PM, Nick D'Ademo wrote:
->>>>>>>>>>>>>>> Thanks Nick.
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> Machine conf is as follows (it's actually nearly identical to
->>>>>>>>>> nuc.conf
->>>>>>>>>>>> -
->>>>>>>>>>>>>>> however, BT support, multilib, and preferred providers have
->>>> been
->>>>>>>>>>>> added):
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> #@TYPE: Machine
->>>>>>>>>>>>>>> #@NAME: chiefriver
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> #@WEBTITLE: Intel Next Unit of Computing (NUC) Model:
->>>> DC3217IYE
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> #@DESCRIPTION: Machine configuration for Intel NUC model
->>>>>>>>>>>>>>> DC3217IYE
->>>>>>>>>>>>>>> # i.e. Ivy Bridge + Panther Point
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> PREFERRED_VERSION_linux-yocto ?= "3.17%"
->>>>>>>>>>>>>>> MACHINE_FEATURES += "va-impl-intel wifi efi bluetooth"
->>>>>>>>>>>>>>> MACHINE_FEATURES += "intel-ucode"
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> require conf/machine/include/meta-intel.inc
->>>>>>>>>>>>>>> require conf/machine/include/intel-corei7-64-common.inc
->>>>>>>>>>>>>>> require conf/machine/include/intel-common-pkgarch.inc
->>>>>>>>>>>>>>> require multilib.conf
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> MACHINE_HWCODECS ?= "va-intel gst-va-intel"
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> XSERVER ?= "${XSERVER_X86_BASE} \
->>>>>>>>>>>>>>>            ${XSERVER_X86_EXT} \
->>>>>>>>>>>>>>>            ${XSERVER_X86_I965} \
->>>>>>>>>>>>>>>            "
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> MACHINE_EXTRA_RRECOMMENDS +=
->> "linux-firmware-iwlwifi-6000g2b-6
->>>>>>>> lms8"
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> # disable the serial port configuration
->>>>>>>>>>>>>>> SERIAL_CONSOLE = ""
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> PREFERRED_PROVIDER_jpeg = "jpeg"
->>>>>>>>>>>>>>> PREFERRED_PROVIDER_jpeg-native = "jpeg-native"
->>>>>>>>>>>>>>> PREFERRED_PROVIDER_virtual/fftw = "fftw"
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> On Mon, Nov 10, 2014 at 12:36 PM, nick <xerofoify@gmail.com>
->>>>>>>> wrote:
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>> Hey Nick,
->>>>>>>>>>>>>>>> This seems to then be an issue with incorrect paths or build
->>>>>>>>>>>> information
->>>>>>>>>>>>>>>> in your nuc.conf
->>>>>>>>>>>>>>>> as the most likely culprit. If you can post your machine's
->>>> conf
->>>>>>>>>> file I
->>>>>>>>>>>>>>>> will be glad to see
->>>>>>>>>>>>>>>> if there are any issues I can spot.
->>>>>>>>>>>>>>>> Nick
->>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>> On 14-11-09 08:33 PM, Nick D'Ademo wrote:
->>>>>>>>>>>>>>>>> 1) source oe-init-build-env is run before building.
->>>>>>>>>>>>>>>>> 2) We are actually using a custom machine .conf based on
->>>>>>>> nuc.conf,
->>>>>>>>>> so
->>>>>>>>>>>>>>>>> actually: MACHINE = "custom_machine_name". I replaced it
->>>> with
->>>>>>>> "nuc"
->>>>>>>>>>>> in
->>>>>>>>>>>>>>>> this
->>>>>>>>>>>>>>>>> post to avoid confusion.
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> On Mon, Nov 10, 2014 at 12:25 PM, nick <
->> xerofoify@gmail.com
->>>>>
->>>>>>>>>> wrote:
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> Do you run source oe-init-build-env before building and
->> why
->>>>>>>>>>>>>>>>>> is
->>>>>>>>>> your
->>>>>>>>>>>>>>>> machine
->>>>>>>>>>>>>>>>>> set to nuc seems this may be an issue?
->>>>>>>>>>>>>>>>>> Nick
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> On 14-11-09 08:15 PM, Nick D'Ademo wrote:
->>>>>>>>>>>>>>>>>>> Thanks for the quick reply Nick.
->>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>> Host system is Ubuntu 14.04. ncurses is already
->> installed:
->>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>> sudo apt-get install libncurses5-dev
->>>>>>>>>>>>>>>>>>> Reading package lists... Done
->>>>>>>>>>>>>>>>>>> Building dependency tree
->>>>>>>>>>>>>>>>>>> Reading state information... Done
->>>>>>>>>>>>>>>>>>> libncurses5-dev is already the newest version.
->>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>> On Mon, Nov 10, 2014 at 12:09 PM, nick <
->>>> xerofoify@gmail.com>
->>>>>>>>>>>> wrote:
->>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>> Check to see if you actuality have it installed on your
->>>>>>>>>>>>>>>>>>>> host
->>>>>>>>>>>> system
->>>>>>>>>>>>>>>> for
->>>>>>>>>>>>>>>>>>>> your package manager.
->>>>>>>>>>>>>>>>>>>> The library for ncurses for compiling the kernel is
->>>>>>>>>>>>>>>>>>>> different
->>>>>>>>>>>> based
->>>>>>>>>>>>>> on
->>>>>>>>>>>>>>>>>>>> your distro, check
->>>>>>>>>>>>>>>>>>>> your distro's installer and install the correct ncurses
->>>>>>>> package
->>>>>>>>>>>>>> first.
->>>>>>>>>>>>>>>>>> If
->>>>>>>>>>>>>>>>>>>> this is still an
->>>>>>>>>>>>>>>>>>>> issue please reply with a newer error message.
->>>>>>>>>>>>>>>>>>>> Cheers Nick
->>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>> On 14-11-09 08:05 PM, Nick D'Ademo wrote:
->>>>>>>>>>>>>>>>>>>>> Getting a strange error when attempting to configure
->> the
->>>>>>>> Yocto
->>>>>>>>>>>>>> Linux
->>>>>>>>>>>>>>>>>>>> kernel
->>>>>>>>>>>>>>>>>>>>> via: bitbake linux-yocto -c menuconfig.
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>> Does anyone have any ideas? (error message below)
->>>>>>>>>>>>>>>>>>>>> Much appreciated.
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>> Build Configuration:
->>>>>>>>>>>>>>>>>>>>> BB_VERSION        = "1.24.0"
->>>>>>>>>>>>>>>>>>>>> BUILD_SYS         = "x86_64-linux"
->>>>>>>>>>>>>>>>>>>>> NATIVELSBSTRING   = "Ubuntu-14.04"
->>>>>>>>>>>>>>>>>>>>> TARGET_SYS        = "x86_64-poky-linux"
->>>>>>>>>>>>>>>>>>>>> MACHINE           = "nuc"
->>>>>>>>>>>>>>>>>>>>> DISTRO            = "poky"
->>>>>>>>>>>>>>>>>>>>> DISTRO_VERSION    = "1.7"
->>>>>>>>>>>>>>>>>>>>> TUNE_FEATURES     = "m64 corei7"
->>>>>>>>>>>>>>>>>>>>> TARGET_FPU        = ""
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>> *make[1]: Entering directory
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>
->> `/home/nick/poky/build/tmp/work/corei7-64-intel-common-poky-linux/linux-yocto/3.17.1+gitAUTOINC+b86dd5c6f4_0caf16d385-r0/linux-corei7-64-intel-common-standard-build'
->>>>>>>>>>>>>>>>>>>>> GEN     ./Makefile *** Unable to find the ncurses
->>>>>>>>>>>>>>>>>>>>> libraries
->>>>>>>> or
->>>>>>>>>>>> the
->>>>>>>>>>>>>>>> ***
->>>>>>>>>>>>>>>>>>>>> required header files. *** 'make menuconfig' requires
->>>> the
->>>>>>>>>> ncurses
->>>>>>>>>>>>>>>>>>>>> libraries. ***  *** Install ncurses (ncurses-devel) and
->>>>>>>>>>>>>>>>>>>>> try
->>>>>>>>>>>> again.
->>>>>>>>>>>>>>>> ***
->>>>>>>>>>>>>>>>>>>>> make[3]: *** [scripts/kconfig/dochecklxdialog] Error
->>>>>>>> 1make[2]:
->>>>>>>>>>>> ***
->>>>>>>>>>>>>>>>>>>>> [menuconfig] Error 2make[1]: *** [sub-make] Error
->> 2make:
->>>>>>>>>>>>>>>>>>>>> ***
->>>>>>>>>>>>>>>>>> [__sub-make]
->>>>>>>>>>>>>>>>>>>>> Error 2Command failed.Press any key to continue... *
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>
->>>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>
->>>>>>>>
->>>>>>>
->>>>>
->>>>>
->>>> Clearly your machine config is not  in the correct directory or the
->>>> layers needed for  you machine config are not being correctly
->>>> configured. Look at the Yocto Manual on writing Board Support Scripts
->>>> for more information.
->>>> Cheers Nick
->>>>
->>>
+>>Rich
 >>
-> 
+>>-----Original Message-----
+>>From: yocto-bounces@yoctoproject.org
+>>[mailto:yocto-bounces@yoctoproject.org] On Behalf Of Barros Pena, Belen
+>>Sent: Tuesday, November 11, 2014 4:37 AM
+>>To: John Unland; yocto@yoctoproject.org
+>>Subject: Re: [yocto] Making Hob better.
+>>
+>>Hi John,
+>>
+>>Thanks for your feedback on Hob: I agree with everything you said.
+>>
+>>We are currently moving towards web-based interfaces for the Yocto
+>>Project tools, and are working on something called Toaster that
+>>eventually will do what Hob does. You can get more information on Toaster
+>>at
+>>
+>>https://www.yoctoproject.org/documentation/toaster-manual-17
+>>
+>>On 10/11/2014 23:58, "John Unland" <opensourcejohn2112@gmail.com> wrote:
+>>
+>>>Lastly, I would really love to help with development as well.
+>>> I
+>>>haven't really gotten into programming that much but I have worked with
+>>>the Fedora Server Special Interest Group doing QA for Alpha and Beta
+>>>release. So if anyone can put me in the right direction I can certainly
+>>>help YP out.
+>>
+>>Contributions are very welcome! :) You can get involved in both
+>>development and QA work. To get started, you can subscribe to the Toaster
+>>mailing list:
+>>
+>>https://lists.yoctoproject.org/listinfo/toaster
+>>
+>>You can have a look at the features we are currently working on in the
+>>Yocto Project Bugzilla instance
+>>
+>>http://goo.gl/KncliQ
+>>
+>>There is information on how to contribute at
+>>
+>>https://wiki.yoctoproject.org/wiki/Contribute_to_Toaster
+>>
+>>We also have a weekly call that happens on Wednesdays at 4pm GMT. If you
+>>would like to join the call, let me know.
+>>
+>>All the best,
+>>
+>>Bel=C3=A9n
+>>
+>>
+>>>
+>>>Thank you.
+>>>--
+>>>_______________________________________________
+>>>yocto mailing list
+>>>yocto@yoctoproject.org
+>>>https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>--
+>>_______________________________________________
+>>yocto mailing list
+>>yocto@yoctoproject.org
+>>https://lists.yoctoproject.org/listinfo/yocto
+>
 
