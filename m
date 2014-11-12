@@ -1,38 +1,53 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <andreas2025@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E019BE00777; Wed, 12 Nov 2014 09:44:42 -0800 (PST)
+	id 25F34E00777; Wed, 12 Nov 2014 12:25:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FREEMAIL_REPLY,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (andreas2025[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8E66E005B7
-	for <yocto@yoctoproject.org>; Wed, 12 Nov 2014 09:44:41 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 12 Nov 2014 09:44:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,370,1413270000"; d="scan'208";a="621331560"
-Received: from tskannan-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.181])
-	by fmsmga001.fm.intel.com with ESMTP; 12 Nov 2014 09:33:41 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: John Unland <opensourcejohn2112@gmail.com>, yocto@yoctoproject.org
-Date: Wed, 12 Nov 2014 17:33:39 +0000
-Message-ID: <2092067.aaeApHOQI2@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.2 (Linux/3.16.7-200.fc20.x86_64; KDE/4.14.2; x86_64; ; )
-In-Reply-To: <CAByxTR-AS8DcboJH-iP5kgw3OitUKEYP7ZK5riJsuVX1bNNUpg@mail.gmail.com>
-References: <CAByxTR_jmYDr4QUAtXg20UBV_FXZ-yUk=WEJ3LTA1wkaRAx6Yw@mail.gmail.com>
-	<D087E4B4.4DDB7%belen.barros.pena@intel.com>
-	<CAByxTR-AS8DcboJH-iP5kgw3OitUKEYP7ZK5riJsuVX1bNNUpg@mail.gmail.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.53 listed in list.dnswl.org]
+	*  1.0 FREEMAIL_REPLY From and body contain different freemails
+Received: from mail-wg0-f53.google.com (mail-wg0-f53.google.com [74.125.82.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F794E005B7
+	for <yocto@yoctoproject.org>; Wed, 12 Nov 2014 12:25:20 -0800 (PST)
+Received: by mail-wg0-f53.google.com with SMTP id b13so15154403wgh.40
+	for <yocto@yoctoproject.org>; Wed, 12 Nov 2014 12:25:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=QGDUvN9IBAGylKHW4y20lRIHy6Hg/VV6iQuWeOW5Gvs=;
+	b=c67CgQazULDyFbQMXNHO1IKNDVYFhVSKrn17oB1ZR7RYEVPC8IRxD4nf+jAyyXg2k0
+	vHsLCbN7O467Dvs0px2MrDKM1KQMPEx9mp1ulY0PaybrMK2HFvnhkK/cYqksCwdmmrwO
+	fpaCkwNb/MRViF3CTFScZNsrAHAz9NirBeU6IB/3GhxUGfI1vOfAQkd487/JTmXt1bem
+	RtBFH15QqZ47H8o7juQoPd0SlXxxQDMRnZ5/aVhZPM/TeE9n4dibhCAbQtLoNlN4ZDgY
+	ZePT1ii+loRt7zfUCmEK5iXqEEmWnzPYnJKetS3zU2JuGcBBdlUuqlnWtJhQmGHn3k0a
+	ewsg==
 MIME-Version: 1.0
-Subject: Re: Making Hob better.
+X-Received: by 10.180.76.41 with SMTP id h9mr53774470wiw.40.1415823919453;
+	Wed, 12 Nov 2014 12:25:19 -0800 (PST)
+Received: by 10.216.203.7 with HTTP; Wed, 12 Nov 2014 12:25:19 -0800 (PST)
+In-Reply-To: <20141112130245.GA2450@jama>
+References: <CAAVaN8zpgtbJOet0bmYiHJKFNL9_O4UaL6K-cMUP=xVykY=pCg@mail.gmail.com>
+	<20141112130245.GA2450@jama>
+Date: Wed, 12 Nov 2014 20:25:19 +0000
+Message-ID: <CAAVaN8zsR=gZZzViWa-9EL85VCDCa1mkGAsPM0OwPS7Aodr15w@mail.gmail.com>
+From: Andy Ng <andreas2025@gmail.com>
+To: Martin Jansa <martin.jansa@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Removing old git revisions from the build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,32 +59,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Nov 2014 17:44:43 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 12 Nov 2014 20:25:33 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi John,
+Great! It works! I used rm_old_work
 
-On Tuesday 11 November 2014 11:51:23 John Unland wrote:
-> What about bootloaders? Where would I file a enhancement for different
-> boot loaders (U-Boot, Lilo, etc.). Would be good if we had a boot
-> loaders layer.
+Thank you Martin!
+A
 
-I'm not sure a separate bootloaders layer would really make sense - we 
-normally keep bootloaders either in OE-Core (where we currently have u-boot, 
-grub, grub-efi, syslinux, gummiboot, etc.) or in specific BSPs where a specific 
-bootloader is needed (or a specific version of an existing bootloader, e.g. 
-BSPs shipping their own version of u-boot is common). FWIW there is also a 
-meta-initramfs layer in the meta-openembedded repository which contains 
-kexecboot.
-
-Are there bootloader(s) that you are looking for that are currently missing?
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+On Wed, Nov 12, 2014 at 1:02 PM, Martin Jansa <martin.jansa@gmail.com> wrote:
+> On Wed, Nov 12, 2014 at 12:02:58PM +0000, Andy Ng wrote:
+>> Hello,
+>>
+>> I am using Dylan and my kernel recipe has AUTOREV.
+>> Everything works fine and any new kernel changes are checked out and
+>> a new kernel is built. However, I have noticed that the old builds are
+>> not deleted and after a while started having space problems.
+>>
+>> Is there any way to have the old git revisions deleted automatically
+>> from the "tmp" area?
+>
+> rm_work will make them smaller, there is also rm_old_work which will
+> remove all WORKDIRs except latest:
+> https://github.com/shr-distribution/meta-smartphone/blob/shr/meta-shr/classes/rm_old_work.bbclass
+>
+> --
+> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
