@@ -1,67 +1,39 @@
-Return-Path: <xerofoify@gmail.com>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8AEABE008CA; Tue, 11 Nov 2014 18:32:06 -0800 (PST)
+	id 0DE8AE008CF; Tue, 11 Nov 2014 23:12:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-	URIBL_DBL_ABUSE_REDIR,URIBL_DBL_REDIR autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (xerofoify[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.193 listed in list.dnswl.org]
-	*  0.0 URIBL_DBL_REDIR Contains a URL listed in the DBL as a spammed
-	*      redirector domain *      [URIs: goo.gl]
-	* 0.0 URIBL_DBL_ABUSE_REDIR Contains an abused redirector URL listed in
-	*      the DBL blocklist *      [URIs: goo.gl]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f193.google.com (mail-ig0-f193.google.com
-	[209.85.213.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D907E007C0
-	for <yocto@yoctoproject.org>; Tue, 11 Nov 2014 18:31:55 -0800 (PST)
-Received: by mail-ig0-f193.google.com with SMTP id hn15so465271igb.8
-	for <yocto@yoctoproject.org>; Tue, 11 Nov 2014 18:31:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=Lt5l9D76TGVSxf8CFEbtott2f4rO8LHw+ICEgeFjatM=;
-	b=JtkUqdC5Wyj1xoFG8ptFCH3ZBp9eDVnck8zOoPfl4BpjYW5hSOOCmq6UlgpV2lMZms
-	TYylp+cJtRispFsVRd1uo7FCvdoW1Jk78Wf9FgFrH2cvOGNE808vG5cOwMJDZdZNYdA3
-	w0P4kKcjXyd3lhlwVKvBrtO4RotbyLeOLz86eIyaOfhO3WAsw1SajwdGh5PPFtQlRmMc
-	OrMPMr0j3xviVKhPf1JkKq53UrZ07gSj+L7ajpMdMN8XhxLZQevO73qhZWJR09F6Oieb
-	zOigAmiw4lVcaijfClvfhF+6as42/ugP1t/huZUoiHtmEeaJ9DqqFeS+eEfFujvabCxp
-	yr1A==
-X-Received: by 10.107.172.68 with SMTP id v65mr14239346ioe.60.1415759515204;
-	Tue, 11 Nov 2014 18:31:55 -0800 (PST)
-Received: from [192.168.0.50]
-	(CPE0026f3330aca-CM0026f3330ac6.cpe.net.cable.rogers.com.
-	[99.231.92.7])
-	by mx.google.com with ESMTPSA id sd11sm7245249igb.8.2014.11.11.18.31.54
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 11 Nov 2014 18:31:54 -0800 (PST)
-Message-ID: <5462C699.2080902@gmail.com>
-Date: Tue, 11 Nov 2014 21:31:53 -0500
-From: nick <xerofoify@gmail.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B727E007C0
+	for <yocto@yoctoproject.org>; Tue, 11 Nov 2014 23:12:22 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id sAC7CJ8E007847
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 11 Nov 2014 23:12:19 -0800 (PST)
+Received: from [128.224.162.187] (128.224.162.187) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.174.1;
+	Tue, 11 Nov 2014 23:12:19 -0800
+Message-ID: <546308C7.2010906@windriver.com>
+Date: Wed, 12 Nov 2014 15:14:15 +0800
+From: ChenQi <Qi.Chen@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
+	rv:31.0) Gecko/20100101 Thunderbird/31.1.2
 MIME-Version: 1.0
-To: John Unland <opensourcejohn2112@gmail.com>, 
-	"Barros Pena, Belen" <belen.barros.pena@intel.com>
-References: <CAByxTR_jmYDr4QUAtXg20UBV_FXZ-yUk=WEJ3LTA1wkaRAx6Yw@mail.gmail.com>	<D08793BD.4DAD5%belen.barros.pena@intel.com>	<4b71e65f9d0949928a7575be01750a68@BN1PR0301MB0641.namprd03.prod.outlook.com>	<D087C161.4DC2F%belen.barros.pena@intel.com>
-	<CAByxTR-TLaK2NSwctbqH2rpTx9Lvhj_b3h32oYb1otfbV_inOA@mail.gmail.com>
-In-Reply-To: <CAByxTR-TLaK2NSwctbqH2rpTx9Lvhj_b3h32oYb1otfbV_inOA@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Richard Schmitt <richard.schmitt@freescale.com>
-Subject: Re: Making Hob better.
+To: Sergio Prado <sergiosiena@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <CAKm6Z3U_M8J_8tL3awdEo4aFHmY5gQt5hMh5mxggAcLqXatKnw@mail.gmail.com>
+In-Reply-To: <CAKm6Z3U_M8J_8tL3awdEo4aFHmY5gQt5hMh5mxggAcLqXatKnw@mail.gmail.com>
+X-Originating-IP: [128.224.162.187]
+Subject: Re: Bitbake bash completion
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,153 +45,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Nov 2014 02:32:06 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 12 Nov 2014 07:12:30 -0000
+X-Groupsio-MsgNum: 22164
+Content-Type: multipart/mixed; boundary="------------060906080704010503070302"
 
-I am too interesting in helping out Yocto but more with kernel work on Yocto rt and 
-standard kernel recipes. If someone would like to point me in the right direction to
-aid in helping out in this area of the Yocto project that would be very helpful.
-Thanks Nick 
+--------------060906080704010503070302
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 14-11-11 10:46 AM, John Unland wrote:
->> It is great to see so much interest in Hob: for a while we thought nobody
->> was using it!
-> 
-> I do see the potential for toaster as wel (Forgot to mention it). Yes
-> I do see in the near future Hob being phased out in later releases.
-> But for what it is right now, there are people using it, I really
-> think it's a great idea to have something like hob for embedded
-> systems espically the Hobbyist crowd.
-> 
->> A kernel configuration module for Toaster is something that we'd like to
->> see at some point. And the branding one I agree it would be great to have.
->> Feel free to open Bugzilla entries for both.
-> 
-> Under what catagories would these two be filed under?
-> 
->> Contributions are very welcome! :) You can get involved in both
->> development and QA work. To get started, you can subscribe to the Toaster
->> mailing list:
-> 
-> Sure I'll start looking over there. I'm pretty busy with my college
-> schedule right now so I'm afraid I can't make it to the regular
-> meetings. But thanks for the offer! :)
-> 
->> Hob is not meant to be like Suse Studios. Further more you are right about the interface sucking
->> hard for certain things, I would recommend you start cleaning that up first and then afterwards
->> move on to other areas of interest with YP.
->> Cheers Nick
-> 
-> I see, will do.
-> 
-> Cheers.
-> 
-> On Tue, Nov 11, 2014 at 7:53 AM, Barros Pena, Belen
-> <belen.barros.pena@intel.com> wrote:
->> Hi Richard,
->>
->> On 11/11/2014 12:58, "Richard Schmitt" <richard.schmitt@freescale.com>
->> wrote:
->>
->>> We also are looking to update Hob.
->>
->> It is great to see so much interest in Hob: for a while we thought nobody
->> was using it! But I should probably be clear about the project plans in
->> relation to Hob. The final goal is to replace it with Toaster. Hob is
->> still being maintained, but no new features are planned for it.
->>
->> You are of course free to take Hob and add to it if you feel that's the
->> tool that better suits your needs. However:
->>
->> * I cannot guarantee that Hob will be included in future releases of the
->> Yocto Project.
->>
->> * Having been very involved in both Hob and Toaster, I must say that
->> Toaster will be much more powerful, easier to extend with new features
->> like the ones you suggest below, and in general way nicer to use.
->>
->> I am not sure how much you know about the Toaster project, or if there is
->> anything in it that makes it unfit for your needs. But I would be happy to
->> have a chat about it all, answer any questions you may have, and demo it
->> if you'd like to see it.
->>
->>> In particular, adding kernel feature support.  Branding would be nice
->>> too.
->>
->> A kernel configuration module for Toaster is something that we'd like to
->> see at some point. And the branding one I agree it would be great to have.
->> Feel free to open Bugzilla entries for both.
->>
->> Cheers
->>
->> Belén
->>
->>>
->>> Rich
->>>
->>> -----Original Message-----
->>> From: yocto-bounces@yoctoproject.org
->>> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Barros Pena, Belen
->>> Sent: Tuesday, November 11, 2014 4:37 AM
->>> To: John Unland; yocto@yoctoproject.org
->>> Subject: Re: [yocto] Making Hob better.
->>>
->>> Hi John,
->>>
->>> Thanks for your feedback on Hob: I agree with everything you said.
->>>
->>> We are currently moving towards web-based interfaces for the Yocto
->>> Project tools, and are working on something called Toaster that
->>> eventually will do what Hob does. You can get more information on Toaster
->>> at
->>>
->>> https://www.yoctoproject.org/documentation/toaster-manual-17
->>>
->>> On 10/11/2014 23:58, "John Unland" <opensourcejohn2112@gmail.com> wrote:
->>>
->>>> Lastly, I would really love to help with development as well.
->>>> I
->>>> haven't really gotten into programming that much but I have worked with
->>>> the Fedora Server Special Interest Group doing QA for Alpha and Beta
->>>> release. So if anyone can put me in the right direction I can certainly
->>>> help YP out.
->>>
->>> Contributions are very welcome! :) You can get involved in both
->>> development and QA work. To get started, you can subscribe to the Toaster
->>> mailing list:
->>>
->>> https://lists.yoctoproject.org/listinfo/toaster
->>>
->>> You can have a look at the features we are currently working on in the
->>> Yocto Project Bugzilla instance
->>>
->>> http://goo.gl/KncliQ
->>>
->>> There is information on how to contribute at
->>>
->>> https://wiki.yoctoproject.org/wiki/Contribute_to_Toaster
->>>
->>> We also have a weekly call that happens on Wednesdays at 4pm GMT. If you
->>> would like to join the call, let me know.
->>>
->>> All the best,
->>>
->>> Belén
->>>
->>>
->>>>
->>>> Thank you.
->>>> --
->>>> _______________________________________________
->>>> yocto mailing list
->>>> yocto@yoctoproject.org
->>>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
+Hi Prado,
 
+It's really a good idea. I've tried it out.
+
+Attached is a patch to improve speed, accuracy and user experience.
+
+Regards,
+Chen Qi
+
+On 11/12/2014 08:27 AM, Sergio Prado wrote:
+> Hello all,
+>
+> I have just written a bitbake bash completion script so it could make
+> my life easier when trying to discover a recipe name and bake it.
+>
+> https://github.com/sergioprado/bitbake-bash-completion
+>
+> It should complete all commands (bitbake 1.22.0), recipes and tasks.
+>
+> When running for the first time, it will execute "bitbake -e" to get
+> the BBPATH variable and save it in a hidden file. It will use this
+> file on subsequent executions.
+>
+> Feel free to try it and let me know if you find any bug or have
+> suggestions on how to improve it.
+>
+> Thanks,
+>
+> Sergio Prado
+> www.sergioprado.org
+> https://twitter.com/sergioprado
+
+
+--------------060906080704010503070302
+Content-Type: text/x-patch;
+	name="0001-Improve-speed-accuracy-and-user-experience.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename="0001-Improve-speed-accuracy-and-user-experience.patch"
+
+From 40497abfe58313ed9171abc122bffe559ca85509 Mon Sep 17 00:00:00 2001
+From: Chen Qi <Qi.Chen@windriver.com>
+Date: Wed, 12 Nov 2014 02:06:49 -0500
+Subject: [PATCH] Improve speed, accuracy and user experience
+
+Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
+---
+ bitbake |   42 ++++++++++++++++++++++++++----------------
+ 1 file changed, 26 insertions(+), 16 deletions(-)
+
+diff --git a/bitbake b/bitbake
+index e904d97..63f2d52 100644
+--- a/bitbake
++++ b/bitbake
+@@ -9,7 +9,7 @@
+ _bitbake()
+ {
+     local cur prev opts_short opts_long tasks bbdir bbfile recipes
+-    local ui bblayers_conf bblayers_md5 bblayers_bbpath
++    local ui bblayers_conf bblayers_md5 bblayers_bbfile bblayers_recipes
+ 
+     COMPREPLY=()
+ 
+@@ -79,30 +79,40 @@ _bitbake()
+ 
+     bblayers_conf="conf/bblayers.conf"
+     bblayers_md5=".bblayers.conf.md5"
+-    bblayers_bbpath=".bblayers.bbpath"
++    bblayers_bbfile=".bblayers.bbfile"
++    bblayers_recipes=".bblayers.recipes"
++
++    _parse_recipes () {
++	echo `bitbake -e | grep "^BBFILES=" | cut -d "=" -f 2 | sed -e 's/"//g'` > $bblayers_bbfile
++	 for bbfile_entry in `cat $bblayers_bbfile`; do
++	     if [ "${bbfile_entry%.bbappend}" = "${bbfile_entry}" ]; then
++		 echo $bbfile_entry
++	     fi
++	 done | while read recipe_path; do
++	     recipe="${recipe_path##*/}"
++	     recipe="${recipe%%_*.bb}"
++	     recipe="${recipe%%.bb}"
++	     if [ "$recipe" != "*" ]; then
++		 echo $recipe
++	     fi
++	 done > $bblayers_recipes
++    }
+ 
+     if [ ! -e $bblayers_conf ]; then
+         return 0;
+     fi
+ 
++    if [ "$prev" = "bitbake" -a "$cur" = "" ]; then
++	_parse_recipes
++    fi
++
+     md5sum --quiet --status -c $bblayers_md5 2>/dev/null
+-    if [ $? != 0 -o ! -e $bblayers_bbpath ]; then
+-         printf "\nReading BBPATH..."
++    if [ $? != 0 -o ! -e $bblayers_recipes ]; then
+          md5sum $bblayers_conf > $bblayers_md5
+-         echo `bitbake -e | grep "^BBPATH=" | cut -d "=" -f 2 | sed -e 's/^"//'  -e 's/"$//'` > $bblayers_bbpath
+-         echo "done! Press TAB to continue..."
++	 _parse_recipes
+     fi
+ 
+-    for bbdir in `cat $bblayers_bbpath | sed s/:/\ /g`; do
+-        for bbfile in `echo $bbdir/*/*/${cur}*.bb`; do
+-            if [ -e $bbfile ]; then
+-                bbfile=`basename $bbfile`
+-                bbfile=${bbfile%%_*.bb}
+-                bbfile=${bbfile%%.bb}
+-                recipes="$recipes $bbfile"
+-            fi
+-        done
+-    done
++    recipes=`cat $bblayers_recipes`
+ 
+     COMPREPLY=( $(compgen -W "${recipes}" -- ${cur}) )
+     return 0
+-- 
+1.7.9.5
+
+
+--------------060906080704010503070302--
