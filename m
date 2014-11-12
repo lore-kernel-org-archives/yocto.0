@@ -1,48 +1,27 @@
-Return-Path: <opensourcejohn2112@gmail.com>
+Return-Path: <pokybuild@fedora20.osl.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EEAF4E00769; Wed, 12 Nov 2014 13:18:22 -0800 (PST)
+	id EA087E005B7; Wed, 12 Nov 2014 14:54:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (opensourcejohn2112[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
+	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.169 listed in list.dnswl.org]
-Received: from mail-ob0-f169.google.com (mail-ob0-f169.google.com
-	[209.85.214.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 088B5E00769
-	for <yocto@yoctoproject.org>; Wed, 12 Nov 2014 13:18:21 -0800 (PST)
-Received: by mail-ob0-f169.google.com with SMTP id va2so9970849obc.0
-	for <yocto@yoctoproject.org>; Wed, 12 Nov 2014 13:18:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Kb8EEogAPPBCH5w/kgDI4oyTdrcAWyc2x/SfrlS89u4=;
-	b=T3o2dJb2OdaN+dQ/PTjZLyEXWhddsDE4l0BsLIQj8jKIfW9xL+ksubeb1sVJVuso7r
-	ksH58WhJtNIb22f8H84NXXKIPbdS6upktzE8IfoHA3q3/BpoBLVTFwjtEStGfjRsWusb
-	vBI7WfN8hYm2RsPbuxKplAmfSEhqFDj0smJtPELBNRjxQNAH94mPn7C05XnLkor5DxhK
-	yfRARVjG7uJk13aTLqaupZ17YI7XjguvAqiKjMExlDIXQZtSpxTaTvfmNhZ2ei3FRr0j
-	+Fm1pzSFJNX8Y/JRttCeqHrXrntRYFxiLOLK5/NbiWPDdMGLCvx0fBIUVaFS6exfgClx
-	rdyQ==
+Received: from fedora20.osl.yoctoproject.org (ab06 [10.0.10.106])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 947DAE005B7;
+	Wed, 12 Nov 2014 14:54:54 -0800 (PST)
+Received: by fedora20.osl.yoctoproject.org (Postfix, from userid 1006)
+	id 294088020F; Wed, 12 Nov 2014 22:54:54 +0000 (UTC)
+Date: Wed, 12 Nov 2014 22:54:54 +0000
+To: yocto@yoctoproject.org
+User-Agent: Heirloom mailx 12.5 7/5/10
 MIME-Version: 1.0
-X-Received: by 10.182.4.10 with SMTP id g10mr40970435obg.35.1415827100659;
-	Wed, 12 Nov 2014 13:18:20 -0800 (PST)
-Received: by 10.202.104.196 with HTTP; Wed, 12 Nov 2014 13:18:20 -0800 (PST)
-Date: Wed, 12 Nov 2014 15:18:20 -0600
-Message-ID: <CAByxTR_FokGs5SHExf1o55j3UeeVWA_mugg+qdxAnYcR_=+-4A@mail.gmail.com>
-From: John Unland <opensourcejohn2112@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Hob and Toaster Languages.
+Message-Id: <20141112225454.294088020F@fedora20.osl.yoctoproject.org>
+From: pokybuild@fedora20.osl.yoctoproject.org (Poky Build User)
+Cc: otavio@ossystems.com.br
+Subject: Build available for QA
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,13 +33,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Nov 2014 21:18:23 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 12 Nov 2014 22:54:57 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-What is Hob and Toaster written in? Figured I would like to contribute
-maybe a deployment tool when you have created a image (I know there is
-the deployment tool for Hob but it only works for .iso and .hddimg FS)
 
-Thanks,
-John
+    A build identified as needing QA has finished on the autobuilder. This
+    build is located at:
+
+ 
+    http://autobuilder.yoctoproject.org/pub/nightly/20141112-2
+
+
+Build hash information: 
+meta-intel : 0f6d30a95c84ec239f5a30bbfba17ed42e2cf284 
+meta-fsl-arm : fbe06aa1dd82265f74a62ae410d0df83f2f1947c 
+meta-minnow : 13a5f2ab84c7284647a3e067a33109c11dae0568 
+meta-qt3 : 3016129d90b7ac8517a5227d819f10ad417b5b45 
+meta-fsl-ppc : deb326df1489d4844f911605a2627f95c89b167f 
+poky : edaeb8940813b620090a0797ad3b6a076897512d 
+
+
+This is an automated message from
+The Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder
+Email: elizabeth.flanagan@intel.com 
 
