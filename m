@@ -1,6 +1,6 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <sergiosiena@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D1D19E008E3; Wed, 12 Nov 2014 05:02:47 -0800 (PST)
+	id 76F4DE008E3; Wed, 12 Nov 2014 05:09:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.jansa[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.212.170 listed in list.dnswl.org]
+	mail provider *      (sergiosiena[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,40 +16,38 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
-	[209.85.212.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F79CE008CA
-	for <yocto@yoctoproject.org>; Wed, 12 Nov 2014 05:02:44 -0800 (PST)
-Received: by mail-wi0-f170.google.com with SMTP id r20so4820295wiv.1
-	for <yocto@yoctoproject.org>; Wed, 12 Nov 2014 05:02:44 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.51 listed in list.dnswl.org]
+Received: from mail-la0-f51.google.com (mail-la0-f51.google.com
+	[209.85.215.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05919E008CA
+	for <yocto@yoctoproject.org>; Wed, 12 Nov 2014 05:09:04 -0800 (PST)
+Received: by mail-la0-f51.google.com with SMTP id q1so11367747lam.10
+	for <yocto@yoctoproject.org>; Wed, 12 Nov 2014 05:09:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:date:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=SHSjOmOC+hOKo9OIJ/KeeGH1LseyecG9z/3aD1lSp14=;
-	b=udkeuVJzIkWjom1zkMj1N/aQ0EvOYI3bkfYTfSiEmbdH9SaiBcnd5F0+nbqtmAaMDL
-	QmkEpVMch9p77rUNl2vZ2w6z8WHvdoMloUA48JsDS/YzDOk+3DBd/EXEpuYo95jxxbKY
-	kfr6Qtg9HmeTuJ8sebginQnfP5lTlH/LIZfOOL1PqfRYxcQLAC3La1ZFWAWgEEQNkhPD
-	TqDq7wbYUwOraBwd7W1/te02B9aHqmEWdH2S/raAvvey3xLPSbWMfGNbIfLi1YOY0C39
-	LUxAt59YvTl/Y2Dh4u8ViwIgv7zChrnGPmIDlTbq+zt/F3ypPSkv5hpVzDKzI72ygWuw
-	PAqQ==
-X-Received: by 10.180.20.173 with SMTP id o13mr22805317wie.70.1415797363907;
-	Wed, 12 Nov 2014 05:02:43 -0800 (PST)
-Received: from localhost (ip-89-176-104-3.net.upcbroadband.cz. [89.176.104.3])
-	by mx.google.com with ESMTPSA id
-	fq1sm21574982wib.12.2014.11.12.05.02.43 for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 12 Nov 2014 05:02:43 -0800 (PST)
-From: Martin Jansa <martin.jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-Date: Wed, 12 Nov 2014 14:02:45 +0100
-To: Andy Ng <andreas2025@gmail.com>
-Message-ID: <20141112130245.GA2450@jama>
-References: <CAAVaN8zpgtbJOet0bmYiHJKFNL9_O4UaL6K-cMUP=xVykY=pCg@mail.gmail.com>
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=v8fCBSQKLjDc8L55eyg3Mza1JKKTI7BqLZUAR8w3Gtw=;
+	b=mYdpP2ybB3rxielAisqxFH8k6GcxBEvqb5XDm2LKWkEMkt48uGQ13DQBgV4tNUjW+2
+	i3LpOTlvJsCc0+kbXlA57D/3H9moqXe1FLr+OZ5YodAjCuNhNJRGU/Og+O4/1dbSqGGg
+	cQitruNGkNUYcG5r8Vt4lvjq5vC0BV+U0uwY1SLYrDVzAi9pE8Mz8F+FhkOxmzzCtoIi
+	wN+oiAmQH0mn6g0cioXco2AesWsJOyY0BlfHccGjmuTiac2dXVrmlT/LabRADXQIIeRF
+	/hwbpKgcPxP7dqpD1A3YZP9EuxiLnP6OfkFvmhJNsj7cs3M+yQsfaz5o1Q17sTh3Yhq2
+	qeEg==
+X-Received: by 10.152.22.194 with SMTP id g2mr42110220laf.33.1415797743624;
+	Wed, 12 Nov 2014 05:09:03 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAAVaN8zpgtbJOet0bmYiHJKFNL9_O4UaL6K-cMUP=xVykY=pCg@mail.gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: yocto@yoctoproject.org
-Subject: Re: Removing old git revisions from the build
+Received: by 10.152.36.161 with HTTP; Wed, 12 Nov 2014 05:08:33 -0800 (PST)
+In-Reply-To: <546308C7.2010906@windriver.com>
+References: <CAKm6Z3U_M8J_8tL3awdEo4aFHmY5gQt5hMh5mxggAcLqXatKnw@mail.gmail.com>
+	<546308C7.2010906@windriver.com>
+From: Sergio Prado <sergiosiena@gmail.com>
+Date: Wed, 12 Nov 2014 11:08:33 -0200
+Message-ID: <CAKm6Z3VTpSGt_VR71ET6tX=M0TTO+Wdj=8QGzu=jP=iKujRJLg@mail.gmail.com>
+To: ChenQi <Qi.Chen@windriver.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Bitbake bash completion
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,46 +59,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Nov 2014 13:02:47 -0000
-X-Groupsio-MsgNum: 22166
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="y0ulUmNC+osPPQO6"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 12 Nov 2014 13:09:15 -0000
+Content-Type: text/plain; charset=UTF-8
 
---y0ulUmNC+osPPQO6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hello Chen,
 
-On Wed, Nov 12, 2014 at 12:02:58PM +0000, Andy Ng wrote:
-> Hello,
->=20
-> I am using Dylan and my kernel recipe has AUTOREV.
-> Everything works fine and any new kernel changes are checked out and
-> a new kernel is built. However, I have noticed that the old builds are
-> not deleted and after a while started having space problems.
->=20
-> Is there any way to have the old git revisions deleted automatically
-> from the "tmp" area?
+Good idea on keeping the cache of available bitbake recipes.
 
-rm_work will make them smaller, there is also rm_old_work which will
-remove all WORKDIRs except latest:
-https://github.com/shr-distribution/meta-smartphone/blob/shr/meta-shr/class=
-es/rm_old_work.bbclass
+Patch applied, thanks.
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+Sergio Prado
+www.sergioprado.org
+https://twitter.com/sergioprado
 
---y0ulUmNC+osPPQO6
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
+2014-11-12 5:14 GMT-02:00 ChenQi <Qi.Chen@windriver.com>:
+> Hi Prado,
+>
+> It's really a good idea. I've tried it out.
+>
+> Attached is a patch to improve speed, accuracy and user experience.
+>
+> Regards,
+> Chen Qi
+>
+>
+> On 11/12/2014 08:27 AM, Sergio Prado wrote:
+>>
+>> Hello all,
+>>
+>> I have just written a bitbake bash completion script so it could make
+>> my life easier when trying to discover a recipe name and bake it.
+>>
+>> https://github.com/sergioprado/bitbake-bash-completion
+>>
+>> It should complete all commands (bitbake 1.22.0), recipes and tasks.
+>>
+>> When running for the first time, it will execute "bitbake -e" to get
+>> the BBPATH variable and save it in a hidden file. It will use this
+>> file on subsequent executions.
+>>
+>> Feel free to try it and let me know if you find any bug or have
+>> suggestions on how to improve it.
+>>
+>> Thanks,
+>>
+>> Sergio Prado
+>> www.sergioprado.org
+>> https://twitter.com/sergioprado
+>
+>
 
-iEYEARECAAYFAlRjWnUACgkQN1Ujt2V2gByiHACdGVX8OcYQ4fSAE9lV/j+7TerY
-5wMAnRjyDqIpxBWEhxsO2VtEp4eUTGUn
-=Os8j
------END PGP SIGNATURE-----
-
---y0ulUmNC+osPPQO6--
