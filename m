@@ -1,51 +1,49 @@
-Return-Path: <Stuart.Weaver@datapath.co.uk>
+Return-Path: <mike.looijmans@topic.nl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F00F1E008CC; Thu, 13 Nov 2014 04:28:01 -0800 (PST)
+	id C7689E0090F; Thu, 13 Nov 2014 05:01:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [195.245.231.139 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 414 seconds by postgrey-1.32 at yocto-www;
-	Thu, 13 Nov 2014 04:27:54 PST
-Received: from mail1.bemta5.messagelabs.com (mail1.bemta5.messagelabs.com
-	[195.245.231.139])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82E87E00831
-	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 04:27:54 -0800 (PST)
-Received: from [85.158.139.19] by server-3.bemta-5.messagelabs.com id
-	31/A6-14727-922A4645; Thu, 13 Nov 2014 12:20:57 +0000
-X-Env-Sender: Stuart.Weaver@datapath.co.uk
-X-Msg-Ref: server-16.tower-178.messagelabs.com!1415881256!32171426!1
-X-Originating-IP: [77.107.122.35]
-X-StarScan-Received: 
-X-StarScan-Version: 6.12.4; banners=datapath.co.uk,-,-
-X-VirusChecked: Checked
-Received: (qmail 22019 invoked from network); 13 Nov 2014 12:20:57 -0000
-Received: from unknown (HELO LEICESTER.internal.datapath.co.uk) (77.107.122.35)
-	by server-16.tower-178.messagelabs.com with AES256-SHA encrypted SMTP;
-	13 Nov 2014 12:20:57 -0000
-Received: from LEICESTER.internal.datapath.co.uk ([::1]) by
-	LEICESTER.internal.datapath.co.uk ([::1]) with mapi id 14.03.0210.002;
-	Thu, 13 Nov 2014 12:20:56 +0000
-From: Stuart Weaver <Stuart.Weaver@datapath.co.uk>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: do_rootfs failure
-Thread-Index: Ac//OvkevqELs4MiQmSz1NjIr+HD7Q==
-Date: Thu, 13 Nov 2014 12:20:56 +0000
-Message-ID: <2DCC166D4F5C8443941662E1E67FD5C1396DFFBC@LEICESTER.internal.datapath.co.uk>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.20.0.126]
+X-Greylist: delayed 95 seconds by postgrey-1.32 at yocto-www;
+	Thu, 13 Nov 2014 05:01:35 PST
+Received: from retry101.mer-nm.internl.net (vif1-retry101.mer-nm.internl.net
+	[217.149.192.107])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0119E0091D
+	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 05:01:35 -0800 (PST)
+Received: from smtp102.mer-nm.internl.net (smtp102.mer-nm.internl.net
+	[217.149.192.138])
+	by retry101.mer-nm.internl.net (Postfix) with ESMTP id 0B51440D2E
+	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 14:00:04 +0100 (CET)
+Received: from amavisd-new (mailscanner02.wrt-nm.internl.net [217.149.192.114])
+	by smtp102.mer-nm.internl.net (Postfix) with ESMTP id 060393F8BF
+	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 13:59:59 +0100 (CET)
+Received: from smtp102.mer-nm.internl.net ([217.149.192.138])
+	by amavisd-new (mailscanner02.wrt-nm.internl.net [217.149.192.160])
+	(amavisd-new, port 10024) with ESMTP for <yocto@yoctoproject.org>;
+	Thu, 13 Nov 2014 13:59:58 +0100 (CET)
+Received: from TOP-EX01.TOPIC.LOCAL (mail.topic.nl [82.204.13.182])
+	(using TLSv1 with cipher AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by smtp102.mer-nm.internl.net (Postfix) with ESMTPS
+	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 13:59:58 +0100 (CET)
+Received: from [192.168.80.45] (192.168.80.45) by TOP-EX01.TOPIC.LOCAL
+	(192.168.10.102) with Microsoft SMTP Server (TLS) id 14.3.181.6;
+	Thu, 13 Nov 2014 14:00:12 +0100
+Message-ID: <5464AB4D.8020409@topic.nl>
+Date: Thu, 13 Nov 2014 13:59:57 +0100
+From: Mike Looijmans <mike.looijmans@topic.nl>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-Subject: do_rootfs failure
+To: <yocto@yoctoproject.org>
+X-Originating-IP: [192.168.80.45]
+X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
+X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
+Subject: Sato image runs, but doesn't start its GUI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,161 +55,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Nov 2014 12:28:02 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_2DCC166D4F5C8443941662E1E67FD5C1396DFFBCLEICESTERintern_"
-
---_000_2DCC166D4F5C8443941662E1E67FD5C1396DFFBCLEICESTERintern_
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 13 Nov 2014 13:01:49 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Hi All,
+=EF=BB=BFI finally got around to trying to use our custom board's BSP with =
+Yocto images.
 
-I'm trying to include a file which is over 2.5GB into a Yocto image at /et=
-c/FILE01 however I'm hitting errors with output being the following:
+Since the board has a touchscreen (well, actually it has two) I built the=20
+core-image-sato.
 
-ERROR:
-error: unpacking of archive failed on file /etc/FILE01;54649e43: cpio: rea=
-d failed - Resource temporarily unavailable
-  53:Installing libxdmcp6       ######################################## [=
- 12%]
-  54:Installing libtinfo5       ######################################## [=
- 13%]
-  55:Installing libuuid1        ######################################## [=
- 13%]
-  56:Installing libnl-3-200     ######################################## [=
- 13%]
+I had to tweak the startup a bit, because our framebuffer is in the FPGA it=
+=20
+won't be available until after programming it and loading the modules.
 
-ERROR: Function failed: do_rootfs
+Setting psplash to S05 instead of S00, and modutils to load at S04 fixes th=
+e=20
+initialization order problems I saw.
 
-Looking into the build directory, I'm finding that the file has been fetch=
-ed etc...
-I've tested the same setup with a smaller file (~250MB) and the image comp=
-letes which makes the primary suspect be the size of the file.
+What I get now is a nice Yocto logo on the screen, and a progress bar that=
+=20
+almost fills up. But nothing else happens. I'd expect the GUI to start then=
+,=20
+but apparently there's nothing to trigger that?
 
-Google didn't seem to solve any questions, but is there a limit on how big=
- a .rpm package can be or someplace else with in Yocto?
+Display works, touch works, everything seems in perfect working order.
 
-Any information would be very helpful!
+I can't find anything that attempts to start anything. There's nothing in=20
+inittab, and there's nothing in rc3.d that resembles an attempt at starting=
+=20
+something desktop GUI application or so.
 
-Many Thanks,
-Stuart
+Am I missing something, is this a bug, or is this expected behaviour and am=
+ I=20
+supposed to type some magic command first?
 
-______________________________________________________________________
-This email has been scanned by the Symantec Email Security.cloud service.
-For more information please visit http://www.symanteccloud.com
-______________________________________________________________________
 
---_000_2DCC166D4F5C8443941662E1E67FD5C1396DFFBCLEICESTERintern_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Met vriendelijke groet / kind regards,
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-mic=
-rosoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word=
-" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"ht=
-tp://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii=
-">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-=09{font-family:"Cambria Math";
-=09panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-=09{font-family:Calibri;
-=09panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-=09{margin:0cm;
-=09margin-bottom:.0001pt;
-=09font-size:11.0pt;
-=09font-family:"Calibri",sans-serif;
-=09mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-=09{mso-style-priority:99;
-=09color:#0563C1;
-=09text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-=09{mso-style-priority:99;
-=09color:#954F72;
-=09text-decoration:underline;}
-span.EmailStyle17
-=09{mso-style-type:personal-compose;
-=09font-family:"Calibri",sans-serif;
-=09color:windowtext;}
-.MsoChpDefault
-=09{mso-style-type:export-only;
-=09font-family:"Calibri",sans-serif;
-=09mso-fareast-language:EN-US;}
-@page WordSection1
-=09{size:612.0pt 792.0pt;
-=09margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-=09{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi All,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I&#8217;m trying to include a file which is over 2.=
-5GB into a Yocto image at /etc/FILE01 however I&#8217;m hitting errors wit=
-h output being the following:<o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-GB"><o:p>&nb=
-sp;</o:p></span></p>
-<p class=3D"MsoNormal">ERROR: <o:p></o:p></p>
-<p class=3D"MsoNormal">error: unpacking of archive failed on file /etc/FIL=
-E01;54649e43: cpio: read failed - Resource temporarily unavailable<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">&nbsp; 53:Installing libxdmcp6&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ######################################## [ 12%]<o:p></o:p>=
-</p>
-<p class=3D"MsoNormal">&nbsp; 54:Installing libtinfo5&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; ######################################## [ 13%]<o:p></o:p>=
-</p>
-<p class=3D"MsoNormal">&nbsp; 55:Installing libuuid1&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; ######################################## [ 13%]<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal">&nbsp; 56:Installing libnl-3-200&nbsp;&nbsp;&nbsp;&=
-nbsp; ######################################## [ 13%]<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">ERROR: Function failed: do_rootfs<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Looking into the build directory, I&#8217;m finding=
- that the file has been fetched etc...
-<o:p></o:p></p>
-<p class=3D"MsoNormal">I&#8217;ve tested the same setup with a smaller fil=
-e (~250MB) and the image completes which makes the primary suspect be the =
-size of the file.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Google didn&#8217;t seem to solve any questions, bu=
-t is there a limit on how big a .rpm package can be or someplace else with=
- in Yocto?
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Any information would be very helpful!<o:p></o:p></=
-p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Many Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Stuart<o:p></o:p></p>
-</div>
-<br clear=3D"both">
-______________________________________________________________________<BR>=
+Mike Looijmans
+System Expert
 
-This email has been scanned by the Symantec Email Security.cloud service.<=
-BR>
-For more information please visit http://www.symanteccloud.com<BR>
-______________________________________________________________________<BR>=
 
-</body>
-</html>
+TOPIC Embedded Systems
+Eindhovenseweg 32-C, NL-5683 KH Best
+Postbus 440, NL-5680 AK Best
+Telefoon: (+31) (0) 499 33 69 79
+Telefax:  (+31) (0) 499 33 69 70
+E-mail: mike.looijmans@topic.nl
+Website: www.topic.nl
 
---_000_2DCC166D4F5C8443941662E1E67FD5C1396DFFBCLEICESTERintern_--
+Please consider the environment before printing this e-mail
+
+Visit us at Bits & Chips Smart Systems 20th November, 1931 Congrescentum Br=
+abanthallen 's-Hertogenbosch, stand number 34
+http://bc-smartsystems.nl
+
+
