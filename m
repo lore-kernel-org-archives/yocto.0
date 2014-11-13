@@ -1,77 +1,39 @@
-Return-Path: <xerofoify@gmail.com>
+Return-Path: <Neil.Wu@Emerson.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 835C3E008C3; Wed, 12 Nov 2014 17:15:57 -0800 (PST)
+	id 23AAEE008CC; Thu, 13 Nov 2014 01:43:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (xerofoify[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.174 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [144.191.128.192 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f174.google.com (mail-ig0-f174.google.com
-	[209.85.213.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21B72E005B7
-	for <yocto@yoctoproject.org>; Wed, 12 Nov 2014 17:15:55 -0800 (PST)
-Received: by mail-ig0-f174.google.com with SMTP id hn18so4126409igb.1
-	for <yocto@yoctoproject.org>; Wed, 12 Nov 2014 17:15:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=1Fx4irCOZ/OYmMqsKMkdD5t1bPfb0cVHzVZLlB4CdyY=;
-	b=aSTmG29VDbmgTgLMLeUlExzKQepaT9hYr3weSluidGgFRkSLvfxC/rNYJF7ihw2DCx
-	1KNoKEH2K+9DjGcdRR50bWz3blCJYsVxNcmfRSYj+DjKe7Pv6bZJXRF5JrNpOD3kFzBT
-	spsQ6LFKLJnFVqETgGnHXHgOjwOYj4lw+N+UwqM7rrnG8IVyUFFOsxBO/VAnYn2wBNwb
-	zcU4rhiq5PUiiQuXh7ZhVZM1VgEYLObt4htlq4dR8qVe2ayCvcsXjQoms/ojo2kKeBZC
-	drTSgVIaGQjySeEz3nFQ2uyn0Hb5GmrwAs+FqiQi+QswDxseZOs3pVxrNy28KYsOQTKi
-	hHjw==
-X-Received: by 10.107.155.209 with SMTP id d200mr17297239ioe.12.1415841354843; 
-	Wed, 12 Nov 2014 17:15:54 -0800 (PST)
-Received: from [192.168.0.50]
-	(CPE0026f3330aca-CM0026f3330ac6.cpe.net.cable.rogers.com.
-	[99.231.92.7])
-	by mx.google.com with ESMTPSA id 5sm8724160igl.17.2014.11.12.17.15.53
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 12 Nov 2014 17:15:54 -0800 (PST)
-Message-ID: <54640649.40005@gmail.com>
-Date: Wed, 12 Nov 2014 20:15:53 -0500
-From: nick <xerofoify@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from USSTLZ-PINFEZ08.extemr.org (usstlz-pinfez08.extemr.org
+	[144.191.128.192])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03C90E00831
+	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 01:43:10 -0800 (PST)
+Received: from USSTLZ-PMSG005.emrsn.org (10.16.72.187) by
+	USSTLZ-PINFEZ08.extemr.org (10.16.8.81) with Microsoft SMTP Server
+	(TLS) id 14.3.158.1; Thu, 13 Nov 2014 09:43:09 +0000
+Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.30]) by
+	USSTLZ-PMSG005.emrsn.org ([169.254.8.212]) with mapi id 14.03.0158.001;
+	Thu, 13 Nov 2014 09:43:08 +0000
+From: <Neil.Wu@Emerson.com>
+To: <yocto@yoctoproject.org>
+Thread-Topic: Can't find the header files after install adt_installer.tar.gz
+Thread-Index: Ac/6NKRwhXPCQAGzQEuIFZDgXR9GiQE70huA
+Date: Thu, 13 Nov 2014 09:43:08 +0000
+Message-ID: <3204FE6663E1F14CAF4CA6928E60C8521E20E32E@USSTLZ-PMSG012.emrsn.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.75.1]
 MIME-Version: 1.0
-To: Nick D'Ademo <nickdademo@gmail.com>
-References: <CANR6C54aazdi1bArSq-DdqMMJGcbQMuR2HsygV_8LDdTy3oUHg@mail.gmail.com>
-	<CANR6C56k7M=kQV=sq8dXf3KK5zEXk_KPZ+TmrL5BqDoWV_hYMg@mail.gmail.com>
-	<546018F8.2030201@gmail.com>
-	<CANR6C55j8Q08JhyGx1nekPqPyuwGcau52tJe=8=r59ACjewrfA@mail.gmail.com>
-	<54601BC4.1080409@gmail.com>
-	<CANR6C54hAYqnvjrtg6_pNcTqAibrCKhaCFEOhkfr=6j2jLPjZg@mail.gmail.com>
-	<54602A9F.1040907@gmail.com>
-	<CANR6C57+VqbBTT1UwE-JNqdaqt4+tg2J9OPqs+u=i-z98NgsOQ@mail.gmail.com>
-	<5460346B.1080207@gmail.com>
-	<CANR6C54h_9yEfro=3P-qEz9Am-RdTHO_ezidrfDRdJtUpqEJdw@mail.gmail.com>
-	<54609D5F.2000604@gmail.com>
-	<CANR6C55w60UE-HoRyvBrSz1p+UCD=sqUe8QZku5qmnW28kGSqg@mail.gmail.com>
-	<CAPDOMViVWRXHGFbaipcy4x+kxVDKX6wW5GoKYiiK=6kPpQ65hA@mail.gmail.com>
-	<CANR6C56cEgXYO-7BUpL_-_uojYUqUcqzzrfA+nB4GH8zd8Kftw@mail.gmail.com>
-	<54621AC5.7080707@gmail.com>
-	<CANR6C57n+_=d-8mC4TszXoMSpObiCNPwWLoytwnGu--KKTMFcQ@mail.gmail.com>
-	<54622212.7060802@gmail.com>
-	<CANR6C54=ZZtnW0MVNcBk--Agmohw7WtnfioQLtJqHpWbdFricw@mail.gmail.com>
-In-Reply-To: <CANR6C54=ZZtnW0MVNcBk--Agmohw7WtnfioQLtJqHpWbdFricw@mail.gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Unable to find the ncurses libraries when running menuconfig
+Subject: Can't find the header files after install adt_installer.tar.gz
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,480 +45,170 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Nov 2014 01:15:57 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 13 Nov 2014 09:43:23 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_3204FE6663E1F14CAF4CA6928E60C8521E20E32EUSSTLZPMSG012em_"
 
-Seems like the best way to report any bug including ones related to YP.
-Nick
+--_000_3204FE6663E1F14CAF4CA6928E60C8521E20E32EUSSTLZPMSG012em_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 14-11-12 08:12 PM, Nick D'Ademo wrote:
-> OK, I'll come up with a simple test case + procedure to reproduce it.
-> 
-> Cheers,
-> Nick
-> 
-> On Wed, Nov 12, 2014 at 1:49 AM, nick <xerofoify@gmail.com> wrote:
-> 
->> I would state so as if you need it and it doesn't work then it probably is
->> a bug
->> with bitbake.
->> Cheers Nick
->>
->> On 14-11-11 09:37 AM, Nick D'Ademo wrote:
->>> Would this be classified as a BitBake bug then?
->>>
->>> I actually have a recipe which requires 32-bit libs - I'll see if
->> there's a
->>> way around it.
->>>
->>> Thanks for your help thus far.
->>>
->>> Nick
->>>
->>> On Wed, Nov 12, 2014 at 1:18 AM, nick <xerofoify@gmail.com> wrote:
->>>
->>>> That was my issue with your build, but I wasn't sure if that was going
->> to
->>>> prevent the build from you companies requirements. I would recommend
->> only
->>>> making the build 64 bit as it seems that there is no reason for
->> backwards
->>>> compatibility with older 32 bit libraries for your build.
->>>> Regards Nick
->>>>
->>>> On 14-11-11 06:23 AM, Nick D'Ademo wrote:
->>>>> A bit of progress (found the cause of the error at least):
->>>>>
->>>>> The script that is failing is: linux/scripts/kconfig/lxdialog/
->>>>> *check-lxdialog.sh*
->>>>>
->>>>> I added 'set -x' to the script so I could see the output as BitBake
->>>>> executes it... The function within that script which is failing is
->>>> *check()
->>>>> *- in particular the following is failing:
->>>>>
->>>>>
->>>>>
->>>>>
->>>>> *$cc -x c - -o $tmp 2>/dev/null <<'EOF'#include CURSES_LOCmain() {}EOF*
->>>>>
->>>>> *Script output:*
->>>>> *gcc
->> -isystem/home/nick/poky/build/tmp/sysroots/x86_64-linux/usr/include
->>>>> -O2 -pipe -L/home/nick/poky/build/tmp/sysroots/x86_64-linux/usr/lib
->>>>> -L/home/nick/poky/build/tmp/sysroots/x86_64-linux/lib
->>>>> -Wl,-rpath-link,/home/nick/poky/build/tmp/sysroots/x86_64-linux/usr/lib
->>>>> -Wl,-rpath-link,/home/nick/poky/build/tmp/sysroots/x86_64-linux/lib
->>>>> -Wl,-rpath,/home/nick/poky/build/tmp/sysroots/x86_64-linux/usr/lib
->>>>> -Wl,-rpath,/home/nick/poky/build/tmp/sysroots/x86_64-linux/lib -Wl,-O1
->>>>> '-DCURSES_LOC=<ncurses.h>' -DLOCALE
->>>>> -L/home/nick/poky/build/tmp/sysroots/custom_machine_name/usr/lib64
->>>>> -lncursesw -ltinfo -x c - -o .lxdialog.tmp*
->>>>>
->>>>> This command is returning 1 when it should be returning 0 (i.e.
->>>> successful
->>>>> compile).
->>>>>
->>>>> The exact error is:
->>>>>
->>>>>
->>>>> */usr/bin/ld: cannot find /lib64/libc.so.6/usr/bin/ld: cannot find
->>>>> /usr/lib64/libc_nonshared.acollect2: error: ld returned 1 exit status*
->>>>>
->>>>> Where is it trying to find those libraries? In my host system (they
->> don't
->>>>> exist!) or the system root of my build? The files *only* exist in my
->>>> system
->>>>> root @
->> */home/nick/poky/build/tmp/sysroots/custom_machine_name/usr/lib64
->>>> *and
->>>>> */home/nick/poky/build/tmp/sysroots/custom_machine_name/lib64.*
->>>>>
->>>>> I suspect that this may be due to the fact that my custom machine conf
->>>> is a
->>>>> multilib configuration...
->>>>>
->>>>> Any further ideas?
->>>>>
->>>>>
->>>>> On Tue, Nov 11, 2014 at 2:10 AM, Nick Krause <xerofoify@gmail.com>
->>>> wrote:
->>>>>
->>>>>> On Mon, Nov 10, 2014 at 7:56 AM, Nick D'Ademo <nickdademo@gmail.com>
->>>>>> wrote:
->>>>>>> If I do the following (from the same Terminal that oe-init-build-env
->>>> has
->>>>>>> been run):
->>>>>>> 1) cd
->>>>>>>
->>>>>>
->>>>
->> /home/nick/poky/build/tmp/work/corei7-64-intel-common-poky-linux/linux-yocto/3.17.1+gitAUTOINC+b86dd5c6f4_0caf16d385-r0/linux-corei7-64-intel-common-standard-build
->>>>>>> 2) make menuconfig
->>>>>>>
->>>>>>> Menu config loads correctly.
->>>>>>>
->>>>>>> So for some reason, 'bitbake linux-yocto -c menuconfig' is not
->> invoking
->>>>>>> menuconfig properly.
->>>>>>>
->>>>>>> Any ideas where to look in regard to my custom machine config?
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>> On Mon, Nov 10, 2014 at 10:11 PM, nick <xerofoify@gmail.com> wrote:
->>>>>>>>
->>>>>>>> Nick,
->>>>>>>> Yes this is a issue with your custom machine and I believe this is a
->>>>>> issue
->>>>>>>> with your your machine
->>>>>>>> conf is located in the build directories.
->>>>>>>> Cheers Nick
->>>>>>>>
->>>>>>>> On 14-11-10 02:26 AM, Nick D'Ademo wrote:
->>>>>>>>> menuconfig works with a core-image-minimal vanilla build:
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> *Build Configuration:BB_VERSION        = "1.24.0"BUILD_SYS
->>  =
->>>>>>>>> "x86_64-linux"NATIVELSBSTRING   = "Ubuntu-14.04"TARGET_SYS        =
->>>>>>>>> "arm-poky-linux-gnueabi"MACHINE           = "qemuarm"DISTRO
->>>>>>   =
->>>>>>>>> "poky"DISTRO_VERSION    = "1.7"TUNE_FEATURES     = "arm armv5 thumb
->>>>>>>>> dsp"TARGET_FPU        = "soft"meta              meta-yocto
->>>>>>>>> meta-yocto-bsp    =
->>>>>>>>> "master:45bb9e3323073070453647a32289dc1792f3d660"meta-oe
->>>>>>>>> meta-multimedia   meta-gnome        =
->>>>>>>>> "master:dac2422f737c351c37a8405a76b5f0b5df9311a0"*
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> So this must be an issue with my custom machine.
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> On Mon, Nov 10, 2014 at 2:43 PM, nick <xerofoify@gmail.com> wrote:
->>>>>>>>>
->>>>>>>>>> Nick,
->>>>>>>>>> Then this is an issue with your machine conf or paths required for
->>>>>>>>>> kernel
->>>>>>>>>> building. Are you able
->>>>>>>>>> to build a poky distro with a working kernel and this is just a
->>>> issue
->>>>>>>>>> with
->>>>>>>>>> you building the yocto
->>>>>>>>>> kernel alone or can you also not build poky too?
->>>>>>>>>> Cheers Nick
->>>>>>>>>>
->>>>>>>>>> On 14-11-09 10:36 PM, Nick D'Ademo wrote:
->>>>>>>>>>> Just tried with the latest 3.17.2 kernel. 'make menuconfig' works
->>>>>> fine
->>>>>>>>>> and
->>>>>>>>>>> loads the interactive kernel config.
->>>>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>> On Mon, Nov 10, 2014 at 2:01 PM, nick <xerofoify@gmail.com>
->> wrote:
->>>>>>>>>>>
->>>>>>>>>>>> Try downloading a stock kernel for kernel.org and extract it in
->>>>>> your
->>>>>>>>>> home
->>>>>>>>>>>> directory and run make menuconfig in
->>>>>>>>>>>> the root of the kernel source tree, if this works then I am
->>>>>> assuming
->>>>>>>>>>>> either ncurses or your machine conf is wrong
->>>>>>>>>>>> somewhere.
->>>>>>>>>>>> Cheers Nick
->>>>>>>>>>>>
->>>>>>>>>>>> On 14-11-09 09:51 PM, Nick D'Ademo wrote:
->>>>>>>>>>>>> Hi Nick,
->>>>>>>>>>>>>
->>>>>>>>>>>>> I removed build/tmp/ and performed a rebuild - I'm still
->>>>>>>>>>>>> experiencing
->>>>>>>>>> the
->>>>>>>>>>>>> same error message unfortunately.
->>>>>>>>>>>>>
->>>>>>>>>>>>>
->>>>>>>>>>>>> On Mon, Nov 10, 2014 at 12:58 PM, nick <xerofoify@gmail.com>
->>>>>> wrote:
->>>>>>>>>>>>>
->>>>>>>>>>>>>> Seems to after reading and doing some research a build issue
->>>> with
->>>>>>>>>>>> multiple
->>>>>>>>>>>>>> jobs or try running rm -r tmp in your
->>>>>>>>>>>>>> build and then rebuild as it may be an issue with out of date
->>>>>> temp
->>>>>>>>>>>> files.
->>>>>>>>>>>>>> Cheers Nick
->>>>>>>>>>>>>>
->>>>>>>>>>>>>> On 14-11-09 08:51 PM, Nick D'Ademo wrote:
->>>>>>>>>>>>>>> Thanks for trying that out Nick.
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> Issue is present on both 3.14 and 3.17 for me.
->>>>>>>>>>>>>>> All paths in the require lines are correct too.
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> Any other ideas?
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> On Mon, Nov 10, 2014 at 12:46 PM, nick <xerofoify@gmail.com>
->>>>>>>>>>>>>>> wrote:
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>> I tried bitbake linux-yocto -c menuconfig on my own system
->>>>>>>>>>>>>>>> running
->>>>>>>>>> the
->>>>>>>>>>>>>>>> same distro and it seems to my
->>>>>>>>>>>>>>>> default use kernel 3.14 not 3.17 otherwise this seems be
->> fine
->>>>>>>>>>>>>>>> from
->>>>>>>>>> my
->>>>>>>>>>>>>>>> understanding. Also check all the
->>>>>>>>>>>>>>>> paths in your require lines as there may be an issue with
->> your
->>>>>>>>>> builds
->>>>>>>>>>>>>> and
->>>>>>>>>>>>>>>> the path set up by these files
->>>>>>>>>>>>>>>> that you are linking to for your kernel build.
->>>>>>>>>>>>>>>> Nick
->>>>>>>>>>>>>>>> On 14-11-09 08:40 PM, Nick D'Ademo wrote:
->>>>>>>>>>>>>>>>> Thanks Nick.
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> Machine conf is as follows (it's actually nearly identical
->> to
->>>>>>>>>>>> nuc.conf
->>>>>>>>>>>>>> -
->>>>>>>>>>>>>>>>> however, BT support, multilib, and preferred providers have
->>>>>> been
->>>>>>>>>>>>>> added):
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> #@TYPE: Machine
->>>>>>>>>>>>>>>>> #@NAME: chiefriver
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> #@WEBTITLE: Intel Next Unit of Computing (NUC) Model:
->>>>>> DC3217IYE
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> #@DESCRIPTION: Machine configuration for Intel NUC model
->>>>>>>>>>>>>>>>> DC3217IYE
->>>>>>>>>>>>>>>>> # i.e. Ivy Bridge + Panther Point
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> PREFERRED_VERSION_linux-yocto ?= "3.17%"
->>>>>>>>>>>>>>>>> MACHINE_FEATURES += "va-impl-intel wifi efi bluetooth"
->>>>>>>>>>>>>>>>> MACHINE_FEATURES += "intel-ucode"
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> require conf/machine/include/meta-intel.inc
->>>>>>>>>>>>>>>>> require conf/machine/include/intel-corei7-64-common.inc
->>>>>>>>>>>>>>>>> require conf/machine/include/intel-common-pkgarch.inc
->>>>>>>>>>>>>>>>> require multilib.conf
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> MACHINE_HWCODECS ?= "va-intel gst-va-intel"
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> XSERVER ?= "${XSERVER_X86_BASE} \
->>>>>>>>>>>>>>>>>            ${XSERVER_X86_EXT} \
->>>>>>>>>>>>>>>>>            ${XSERVER_X86_I965} \
->>>>>>>>>>>>>>>>>            "
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> MACHINE_EXTRA_RRECOMMENDS +=
->>>> "linux-firmware-iwlwifi-6000g2b-6
->>>>>>>>>> lms8"
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> # disable the serial port configuration
->>>>>>>>>>>>>>>>> SERIAL_CONSOLE = ""
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> PREFERRED_PROVIDER_jpeg = "jpeg"
->>>>>>>>>>>>>>>>> PREFERRED_PROVIDER_jpeg-native = "jpeg-native"
->>>>>>>>>>>>>>>>> PREFERRED_PROVIDER_virtual/fftw = "fftw"
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>> On Mon, Nov 10, 2014 at 12:36 PM, nick <
->> xerofoify@gmail.com>
->>>>>>>>>> wrote:
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> Hey Nick,
->>>>>>>>>>>>>>>>>> This seems to then be an issue with incorrect paths or
->> build
->>>>>>>>>>>>>> information
->>>>>>>>>>>>>>>>>> in your nuc.conf
->>>>>>>>>>>>>>>>>> as the most likely culprit. If you can post your machine's
->>>>>> conf
->>>>>>>>>>>> file I
->>>>>>>>>>>>>>>>>> will be glad to see
->>>>>>>>>>>>>>>>>> if there are any issues I can spot.
->>>>>>>>>>>>>>>>>> Nick
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>> On 14-11-09 08:33 PM, Nick D'Ademo wrote:
->>>>>>>>>>>>>>>>>>> 1) source oe-init-build-env is run before building.
->>>>>>>>>>>>>>>>>>> 2) We are actually using a custom machine .conf based on
->>>>>>>>>> nuc.conf,
->>>>>>>>>>>> so
->>>>>>>>>>>>>>>>>>> actually: MACHINE = "custom_machine_name". I replaced it
->>>>>> with
->>>>>>>>>> "nuc"
->>>>>>>>>>>>>> in
->>>>>>>>>>>>>>>>>> this
->>>>>>>>>>>>>>>>>>> post to avoid confusion.
->>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>> On Mon, Nov 10, 2014 at 12:25 PM, nick <
->>>> xerofoify@gmail.com
->>>>>>>
->>>>>>>>>>>> wrote:
->>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>> Do you run source oe-init-build-env before building and
->>>> why
->>>>>>>>>>>>>>>>>>>> is
->>>>>>>>>>>> your
->>>>>>>>>>>>>>>>>> machine
->>>>>>>>>>>>>>>>>>>> set to nuc seems this may be an issue?
->>>>>>>>>>>>>>>>>>>> Nick
->>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>> On 14-11-09 08:15 PM, Nick D'Ademo wrote:
->>>>>>>>>>>>>>>>>>>>> Thanks for the quick reply Nick.
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>> Host system is Ubuntu 14.04. ncurses is already
->>>> installed:
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>> sudo apt-get install libncurses5-dev
->>>>>>>>>>>>>>>>>>>>> Reading package lists... Done
->>>>>>>>>>>>>>>>>>>>> Building dependency tree
->>>>>>>>>>>>>>>>>>>>> Reading state information... Done
->>>>>>>>>>>>>>>>>>>>> libncurses5-dev is already the newest version.
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>> On Mon, Nov 10, 2014 at 12:09 PM, nick <
->>>>>> xerofoify@gmail.com>
->>>>>>>>>>>>>> wrote:
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>> Check to see if you actuality have it installed on
->> your
->>>>>>>>>>>>>>>>>>>>>> host
->>>>>>>>>>>>>> system
->>>>>>>>>>>>>>>>>> for
->>>>>>>>>>>>>>>>>>>>>> your package manager.
->>>>>>>>>>>>>>>>>>>>>> The library for ncurses for compiling the kernel is
->>>>>>>>>>>>>>>>>>>>>> different
->>>>>>>>>>>>>> based
->>>>>>>>>>>>>>>> on
->>>>>>>>>>>>>>>>>>>>>> your distro, check
->>>>>>>>>>>>>>>>>>>>>> your distro's installer and install the correct
->> ncurses
->>>>>>>>>> package
->>>>>>>>>>>>>>>> first.
->>>>>>>>>>>>>>>>>>>> If
->>>>>>>>>>>>>>>>>>>>>> this is still an
->>>>>>>>>>>>>>>>>>>>>> issue please reply with a newer error message.
->>>>>>>>>>>>>>>>>>>>>> Cheers Nick
->>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>> On 14-11-09 08:05 PM, Nick D'Ademo wrote:
->>>>>>>>>>>>>>>>>>>>>>> Getting a strange error when attempting to configure
->>>> the
->>>>>>>>>> Yocto
->>>>>>>>>>>>>>>> Linux
->>>>>>>>>>>>>>>>>>>>>> kernel
->>>>>>>>>>>>>>>>>>>>>>> via: bitbake linux-yocto -c menuconfig.
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>> Does anyone have any ideas? (error message below)
->>>>>>>>>>>>>>>>>>>>>>> Much appreciated.
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>> Build Configuration:
->>>>>>>>>>>>>>>>>>>>>>> BB_VERSION        = "1.24.0"
->>>>>>>>>>>>>>>>>>>>>>> BUILD_SYS         = "x86_64-linux"
->>>>>>>>>>>>>>>>>>>>>>> NATIVELSBSTRING   = "Ubuntu-14.04"
->>>>>>>>>>>>>>>>>>>>>>> TARGET_SYS        = "x86_64-poky-linux"
->>>>>>>>>>>>>>>>>>>>>>> MACHINE           = "nuc"
->>>>>>>>>>>>>>>>>>>>>>> DISTRO            = "poky"
->>>>>>>>>>>>>>>>>>>>>>> DISTRO_VERSION    = "1.7"
->>>>>>>>>>>>>>>>>>>>>>> TUNE_FEATURES     = "m64 corei7"
->>>>>>>>>>>>>>>>>>>>>>> TARGET_FPU        = ""
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>> *make[1]: Entering directory
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>>
->>>>>>
->>>>
->> `/home/nick/poky/build/tmp/work/corei7-64-intel-common-poky-linux/linux-yocto/3.17.1+gitAUTOINC+b86dd5c6f4_0caf16d385-r0/linux-corei7-64-intel-common-standard-build'
->>>>>>>>>>>>>>>>>>>>>>> GEN     ./Makefile *** Unable to find the ncurses
->>>>>>>>>>>>>>>>>>>>>>> libraries
->>>>>>>>>> or
->>>>>>>>>>>>>> the
->>>>>>>>>>>>>>>>>> ***
->>>>>>>>>>>>>>>>>>>>>>> required header files. *** 'make menuconfig' requires
->>>>>> the
->>>>>>>>>>>> ncurses
->>>>>>>>>>>>>>>>>>>>>>> libraries. ***  *** Install ncurses (ncurses-devel)
->> and
->>>>>>>>>>>>>>>>>>>>>>> try
->>>>>>>>>>>>>> again.
->>>>>>>>>>>>>>>>>> ***
->>>>>>>>>>>>>>>>>>>>>>> make[3]: *** [scripts/kconfig/dochecklxdialog] Error
->>>>>>>>>> 1make[2]:
->>>>>>>>>>>>>> ***
->>>>>>>>>>>>>>>>>>>>>>> [menuconfig] Error 2make[1]: *** [sub-make] Error
->>>> 2make:
->>>>>>>>>>>>>>>>>>>>>>> ***
->>>>>>>>>>>>>>>>>>>> [__sub-make]
->>>>>>>>>>>>>>>>>>>>>>> Error 2Command failed.Press any key to continue... *
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>
->>>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>
->>>>>>>
->>>>>>>
->>>>>> Clearly your machine config is not  in the correct directory or the
->>>>>> layers needed for  you machine config are not being correctly
->>>>>> configured. Look at the Yocto Manual on writing Board Support Scripts
->>>>>> for more information.
->>>>>> Cheers Nick
->>>>>>
->>>>>
->>>>
->>>
->>
-> 
+Hi all :
+           I have installed  the adt_installer .tar.gz like fllowing:
+              $ cd ~
+              $ tar -xjf adt_installer.tar.bz2
+              $ cd adt-installer
+              $ ./adt_installer
 
+        Because the YOCTOADT_TARGET_SYSROOT_LOC_arm=3D"$HOME/test-yocto/$YO=
+CTOADT_TARGET_MACHINE_arm  in adt_installer.conf file ,
+        then I extract the myself Root Filesystem:
+             $source /opt/poky/1.7/environment-setup-i586-poky-linux
+             $ runqemu-extract-sdk           ~/Downloads/core-image-arm-roo=
+tfs.tar.bz2           $HOME/ test-yocto/ qemuarm/
+
+       Try to compile  the  "Helloworld", it apper this error:
+          hello.c:1:19: fatal error: stdio.h: No such file or directory
+
+    Do you know how to resolve the issue? Please help me !
+    Thank you very much!
+
+--_000_3204FE6663E1F14CAF4CA6928E60C8521E20E32EUSSTLZPMSG012em_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">Hi al=
+l :<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I have installed &n=
+bsp;the adt_installer .tar.gz like fllowing:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;$=
+ cd ~<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
+;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$=
+ tar -xjf adt_installer.tar.bz2<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;$=
+ cd adt-installer<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
+;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$=
+ ./adt_installer<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D"><o:p>=
+&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Because the YOCTOADT_TARGET_SYSROOT_L=
+OC_arm=3D&quot;$HOME/test-yocto/$YOCTOADT_TARGET_MACHINE_arm&nbsp; in adt_i=
+nstaller.conf file ,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;then I extract the myself Root Filesy=
+stem:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $source=
+ /opt/poky/1.7/environment-setup-i586-poky-linux<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
+; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ runqe=
+mu-extract-sdk &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+~/Downloads/core-image-arm-rootfs.tar.bz2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;$HOME/ test-yocto/</span><span style=3D"font-siz=
+e:16.0pt">
+</span><span style=3D"font-size:16.0pt;color:#1F497D">qemuarm/<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D"><o:p>=
+&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Try to compile &nbsp;the &nbsp;&#8220;Hello=
+world&#8221;, it apper this error:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
+<span style=3D"font-size:16.0pt;color:red">hello.c:1:19: fatal error: stdio=
+.h: No such file or directory<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:red"><o:p>&nbs=
+p;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
+;&nbsp;&nbsp; Do you know how to resolve the issue? Please help me !
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
+;&nbsp;&nbsp;&nbsp;Thank you very much!<o:p></o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_3204FE6663E1F14CAF4CA6928E60C8521E20E32EUSSTLZPMSG012em_--
