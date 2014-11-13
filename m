@@ -1,34 +1,57 @@
-Return-Path: <peterengcomau001@adam.com.au>
+Return-Path: <bevenson@melinkcorp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D784AE0087D; Thu, 13 Nov 2014 07:21:01 -0800 (PST)
+	id 9F214E008C3; Thu, 13 Nov 2014 09:18:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [202.136.110.237 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [157.56.110.139 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from webmail3.adam.net.au (webmail3.adam.net.au [202.136.110.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A7D3E0087D
-	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 07:20:55 -0800 (PST)
-Received: from localhost (webmail3.adam.net.au [127.0.0.1])
-	by webmail3.adam.net.au (8.13.8/8.13.8) with ESMTP id sADFKq9x023600
-	for <yocto@yoctoproject.org>; Fri, 14 Nov 2014 01:50:52 +1030
-Message-Id: <93cd4bfbc3529dd7d48c2698e647b33f0400040b@webmail.adam.com.au>
-From: peterengcomau001@adam.com.au
-To: yocto@yoctoproject.org
-X-Mailer: Atmail 6.3.5.8698
-Date: Fri, 14 Nov 2014 01:50:52 +1030
+Received: from na01-bn1-obe.outbound.protection.outlook.com
+	(mail-bn1on0139.outbound.protection.outlook.com [157.56.110.139])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D582AE00831
+	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 09:18:35 -0800 (PST)
+Received: from BLUPR05MB037.namprd05.prod.outlook.com (10.255.210.145) by
+	BLUPR05MB040.namprd05.prod.outlook.com (10.255.210.156) with Microsoft
+	SMTP Server (TLS) id 15.1.16.15; Thu, 13 Nov 2014 17:03:08 +0000
+Received: from BLUPR05MB037.namprd05.prod.outlook.com ([169.254.7.98]) by
+	BLUPR05MB037.namprd05.prod.outlook.com ([169.254.7.98]) with mapi id
+	15.01.0016.006; Thu, 13 Nov 2014 17:03:08 +0000
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: "peterengcomau001@adam.com.au" <peterengcomau001@adam.com.au>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] recipe fails to load local files
+Thread-Index: AQHP/1V6cxPGsivkV0a2dGx9FjFE7Zxew4ew
+Date: Thu, 13 Nov 2014 17:03:07 +0000
+Message-ID: <e28ab8baec5c4d3aa9b4adb87c4c9bff@BLUPR05MB037.namprd05.prod.outlook.com>
+References: <93cd4bfbc3529dd7d48c2698e647b33f0400040b@webmail.adam.com.au>
+In-Reply-To: <93cd4bfbc3529dd7d48c2698e647b33f0400040b@webmail.adam.com.au>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-vipre-scanned: 00F172080087C600F17355
+x-originating-ip: [98.100.91.242]
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:;SRVR:BLUPR05MB040;
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0;PCL:0;RULEID:;SRVR:BLUPR05MB040;
+x-forefront-prvs: 0394259C80
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(199003)(377454003)(189002)(101416001)(15395725005)(19625215002)(15202345003)(46102003)(16236675004)(15975445006)(76576001)(92566001)(31966008)(74316001)(21056001)(87936001)(19580405001)(2656002)(19580395003)(108616004)(86362001)(122556002)(106116001)(105586002)(106356001)(566704002)(95666004)(99286002)(76176999)(54356999)(50986999)(40100003)(4396001)(19617315012)(33646002)(77096003)(77156002)(19300405004)(107886001)(107046002)(97736003)(64706001)(20776003)(120916001)(62966003)(2501002)(66066001)(99396003)(24736002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BLUPR05MB040;
+	H:BLUPR05MB037.namprd05.prod.outlook.com; FPR:; MLV:sfv;
+	PTR:InfoNoRecords; A:3; MX:3; LANG:en; 
 MIME-Version: 1.0
-Subject: recipe fails to load local files
+X-OriginatorOrg: melinkcorp.com
+Subject: Re: recipe fails to load local files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: peterengcomau001@adam.com.au
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -37,84 +60,191 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Nov 2014 15:21:01 -0000
+X-List-Received-Date: Thu, 13 Nov 2014 17:18:40 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="=_ba8bca316a73b517793e552d95713117"
+	boundary="_000_e28ab8baec5c4d3aa9b4adb87c4c9bffBLUPR05MB037namprd05pro_"
 
---=_ba8bca316a73b517793e552d95713117
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--_000_e28ab8baec5c4d3aa9b4adb87c4c9bffBLUPR05MB037namprd05pro_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I am using yocto 1.6.1 and I have a a number of recipes in =0A~/home/pok=
-y/meta-atmel-lsp/recipes-lsp.=0A=0AI have a lightpd.bbappend that loads=
- local files, I have a=0Awpa-supplicant.bbappend that loads local files,=
- but I am also trying=0Ato load some firmware that should load local fil=
-es but fails.=0A=0AIn ~/home/poky/meta-atmel-lsp/recipes-lsp/zd1211-firm=
-ware/ I have the=0Arecipe zd1211-firmware_1.55.bb as follows:=0A=0A_____=
-__________________________________=0ASUMMARY =3D "Belkin Wifi Firmware"=
-=0ALICENSE =3D "GPL"=0A=0ASRC_URI =3D "=0A=C2=A0 file://zd1211_ub =0A=C2=
-=A0 file://zd1211_uph =0A=C2=A0 file://zd1211_uphm =0A=C2=A0 file://zd12=
-11_uphr =0A=C2=A0 file://zd1211_ur =0A"=0A=0Ado_install() {=0A=C2=A0=C2=
-=A0=C2=A0 =C2=A0=C2=A0=C2=A0 install -d ${D}/lib/firmware/zd1211=0A=C2=
-=A0=C2=A0=C2=A0 install -m 0755 ${WORKDIR}/zd1211_*=C2=A0=C2=A0=C2=A0=0A=
-${D}/lib/firmware/zd1211/=0A}=0A_____________________________________=0A=
-I sourced these files but not the recipe from:=0Ahttp://sourceforge.net/=
-projects/zd1211/=0A=0AThe files indicated in the recipe are in :=0A~/hom=
-e/poky/meta-atmel-lsp/recipes-lsp/zd1211-firmware/zd1211-firmware/=0A=0A=
-When I create the image, no directory is created as=0A/lib/firmware/zd12=
-11=0Aand also no files are loaded into it.=0A=0AI have also tried {THISD=
-IR}=C2=A0 instead of using {WORKDIR}=0AI also tried specifying a specifi=
-c file rather than using the wild=0Acard=0AI have also tried using 'cp'=
- instead of 'install -m 0755'=0A=0ANone seem to work.=0AI am expecting t=
-he firmware files to be located in:=0A~/poky/build-atmel/tmp/work/sama5d=
-3xek-poky-linux-gnueabi/atmel-qt5-demo-image/1.0-r0/rootfs/etc/firmware=
-=0Abut they are not.=0A=0AI originally started with a recipe to load the=
- files directly from=0Athe source, but that did not work. The original r=
-ecipe used was=0Azd1211-firmware_1.4.bb from:=0Ahttps://gitorious.org/op=
-encsbc/openembedded/source/583297ac295f1b381019ccecb4ae6abaa69cbc6c:reci=
-pes/zd1211=0A=0AThat did not work and now I am extracting the files from=
- the .tar and=0Atrying to load them direct.=0AMaybe the same problem exi=
-sts between the original recipe and loading=0Athe .tar files.=0A=0AThank=
-s for any help=0ALachlan=0A=0A---- Message sent via Adam Internet WebMai=
-l - http://www.adam.com.au/
+TGFjaGxhbiwNCg0KSWYgdGhhdCBpcyB5b3VyIGVudGlyZSByZWNpcGUsIEkgZG9u4oCZdCBzZWUg
+YW55IEZJTEVTIHNwZWNpZmljYXRpb246IGh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2Nz
+LzEuNy9tZWdhLW1hbnVhbC9tZWdhLW1hbnVhbC5odG1sI3Zhci1GSUxFUy4gIFRoZSBTUkNfVVJJ
+IGp1c3Qgc2F5cyB3aGVyZSB0byBnZXQgdGhlIHNvdXJjZSwgYnV0IHRoZSBGSUxFUyBzdGF0ZXMg
+d2hpY2ggZmlsZXMgYXJlIGV4cGVjdGVkIHRvIGJlIGFkZGVkIHRvIHRoZSBwYWNrYWdlLiAgSSBi
+ZWxpZXZlIHRoZSBGSUxFUyB2YXJpYWJsZSBpcyBhdXRvLXBvcHVsYXRlZCBieSBhIGNvbXBpbGVk
+IHBhY2thZ2UsIHdoaWNoIGlzIHdoeSB5b3UgbWF5IG5vdCBzZWUgdGhlIEZJTEVTIHZhcmlhYmxl
+IGluIGV2ZXJ5IHJlY2lwZS4gIEJ1dCBpbiB5b3VyIGNhc2UgaW4gd2hpY2ggeW91IGRvbuKAmXQg
+Y29tcGlsZSB0aGUgY29kZSBidXQgYXJlIGp1c3QgaW5zdGFsbGluZyBmaWxlcyBvbiBkaXNrLCB5
+b3UgbmVlZCB0byBmaWxsIG91dCB0aGUgRklMRVMgdmFyaWFibGUuDQoNClJlZ2FyZHMsDQpCcnlh
+bg0KDQpGcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1i
+b3VuY2VzQHlvY3RvcHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBwZXRlcmVuZ2NvbWF1MDAxQGFk
+YW0uY29tLmF1DQpTZW50OiBUaHVyc2RheSwgTm92ZW1iZXIgMTMsIDIwMTQgMTA6MjEgQU0NClRv
+OiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBbeW9jdG9dIHJlY2lwZSBmYWlscyB0
+byBsb2FkIGxvY2FsIGZpbGVzDQoNCkkgYW0gdXNpbmcgeW9jdG8gMS42LjEgYW5kIEkgaGF2ZSBh
+IGEgbnVtYmVyIG9mIHJlY2lwZXMgaW4NCn4vaG9tZS9wb2t5L21ldGEtYXRtZWwtbHNwL3JlY2lw
+ZXMtbHNwLg0KDQpJIGhhdmUgYSBsaWdodHBkYmJhcHBlbmQgdGhhdCBsb2FkcyBsb2NhbCBmaWxl
+cywgSSBoYXZlIGEgd3BhLXN1cHBsaWNhbnQuYmJhcHBlbmQgdGhhdCBsb2FkcyBsb2NhbCBmaWxl
+cywgYnV0IEkgYW0gYWxzbyB0cnlpbmcgdG8gbG9hZCBzb21lIGZpcm13YXJlIHRoYXQgc2hvdWxk
+IGxvYWQgbG9jYWwgZmlsZXMgYnV0IGZhaWxzLg0KDQpJbiB+L2hvbWUvcG9reS9tZXRhLWF0bWVs
+LWxzcC9yZWNpcGVzLWxzcC96ZDEyMTEtZmlybXdhcmUvIEkgaGF2ZSB0aGUgcmVjaXBlIHpkMTIx
+MS1maXJtd2FyZV8xLjU1LmJiIGFzIGZvbGxvd3M6DQoNCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fXw0KU1VNTUFSWSA9ICJCZWxraW4gV2lmaSBGaXJtd2FyZSINCkxJQ0VO
+U0UgPSAiR1BMIg0KDQpTUkNfVVJJID0gIlwNCiAgZmlsZTovL3pkMTIxMV91YjxmaWxlOi8vL1xc
+emQxMjExX3ViPiBcDQogIGZpbGU6Ly96ZDEyMTFfdXBoPGZpbGU6Ly8vXFx6ZDEyMTFfdXBoPiBc
+DQogIGZpbGU6Ly96ZDEyMTFfdXBobTxmaWxlOi8vL1xcemQxMjExX3VwaG0+IFwNCiAgZmlsZTov
+L3pkMTIxMV91cGhyPGZpbGU6Ly8vXFx6ZDEyMTFfdXBocj4gXA0KICBmaWxlOi8vemQxMjExX3Vy
+PGZpbGU6Ly8vXFx6ZDEyMTFfdXI+IFwNCiINCg0KZG9faW5zdGFsbCgpIHsNCiAgICAgICAgaW5z
+dGFsbCAtZCAke0R9L2xpYi9maXJtd2FyZS96ZDEyMTENCiAgICBpbnN0YWxsIC1tIDA3NTUgJHtX
+T1JLRElSfS96ZDEyMTFfKiAgICAke0R9L2xpYi9maXJtd2FyZS96ZDEyMTEvDQp9DQpfX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQpJIHNvdXJjZWQgdGhlc2UgZmlsZXMgYnV0
+IG5vdCB0aGUgcmVjaXBlIGZyb206DQpodHRwOi8vc291cmNlZm9yZ2UubmV0L3Byb2plY3RzL3pk
+MTIxMS8NCg0KVGhlIGZpbGVzIGluZGljYXRlZCBpbiB0aGUgcmVjaXBlIGFyZSBpbiA6DQp+L2hv
+bWUvcG9reS9tZXRhLWF0bWVsLWxzcC9yZWNpcGVzLWxzcC96ZDEyMTEtZmlybXdhcmUvemQxMjEx
+LWZpcm13YXJlLw0KDQpXaGVuIEkgY3JlYXRlIHRoZSBpbWFnZSwgbm8gZGlyZWN0b3J5IGlzIGNy
+ZWF0ZWQgYXMgL2xpYi9maXJtd2FyZS96ZDEyMTENCmFuZCBhbHNvIG5vIGZpbGVzIGFyZSBsb2Fk
+ZWQgaW50byBpdC4NCg0KSSBoYXZlIGFsc28gdHJpZWQge1RISVNESVJ9ICBpbnN0ZWFkIG9mIHVz
+aW5nIHtXT1JLRElSfQ0KSSBhbHNvIHRyaWVkIHNwZWNpZnlpbmcgYSBzcGVjaWZpYyBmaWxlIHJh
+dGhlciB0aGFuIHVzaW5nIHRoZSB3aWxkIGNhcmQNCkkgaGF2ZSBhbHNvIHRyaWVkIHVzaW5nICdj
+cCcgaW5zdGVhZCBvZiAnaW5zdGFsbCAtbSAwNzU1Jw0KDQpOb25lIHNlZW0gdG8gd29yay4NCkkg
+YW0gZXhwZWN0aW5nIHRoZSBmaXJtd2FyZSBmaWxlcyB0byBiZSBsb2NhdGVkIGluOg0Kfi9wb2t5
+L2J1aWxkLWF0bWVsL3RtcC93b3JrL3NhbWE1ZDN4ZWstcG9reS1saW51eC1nbnVlYWJpL2F0bWVs
+LXF0NS1kZW1vLWltYWdlLzEuMC1yMC9yb290ZnMvZXRjL2Zpcm13YXJlDQpidXQgdGhleSBhcmUg
+bm90Lg0KDQpJIG9yaWdpbmFsbHkgc3RhcnRlZCB3aXRoIGEgcmVjaXBlIHRvIGxvYWQgdGhlIGZp
+bGVzIGRpcmVjdGx5IGZyb20gdGhlIHNvdXJjZSwgYnV0IHRoYXQgZGlkIG5vdCB3b3JrLiBUaGUg
+b3JpZ2luYWwgcmVjaXBlIHVzZWQgd2FzIHpkMTIxMS1maXJtd2FyZV8xLjQuYmIgZnJvbToNCmh0
+dHBzOi8vZ2l0b3Jpb3VzLm9yZy9vcGVuY3NiYy9vcGVuZW1iZWRkZWQvc291cmNlLzU4MzI5N2Fj
+Mjk1ZjFiMzgxMDE5Y2NlY2I0YWU2YWJhYTY5Y2JjNmM6cmVjaXBlcy96ZDEyMTENCg0KVGhhdCBk
+aWQgbm90IHdvcmsgYW5kIG5vdyBJIGFtIGV4dHJhY3RpbmcgdGhlIGZpbGVzIGZyb20gdGhlIC50
+YXIgYW5kIHRyeWluZyB0byBsb2FkIHRoZW0gZGlyZWN0Lg0KTWF5YmUgdGhlIHNhbWUgcHJvYmxl
+bSBleGlzdHMgYmV0d2VlbiB0aGUgb3JpZ2luYWwgcmVjaXBlIGFuZCBsb2FkaW5nIHRoZSAudGFy
+IGZpbGVzLg0KDQpUaGFua3MgZm9yIGFueSBoZWxwDQpMYWNobGFuDQoNCi0tLS0gTWVzc2FnZSBz
+ZW50IHZpYSBBZGFtIEludGVybmV0IFdlYk1haWwgLSBodHRwOi8vd3d3LmFkYW0uY29tLmF1Lw0K
 
---=_ba8bca316a73b517793e552d95713117
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--_000_e28ab8baec5c4d3aa9b4adb87c4c9bffBLUPR05MB037namprd05pro_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-<html><body>I am using yocto 1.6.1 and I have a a number of recipes in <=
-br />~/home/poky/meta-atmel-lsp/recipes-lsp.<br /><br />I have a lightpd=
-bbappend that loads local files, I have a wpa-supplicant.bbappend that=
- loads local files, but I am also trying to load some firmware that shou=
-ld load local files but fails.<br /><br />In ~/home/poky/meta-atmel-lsp/=
-recipes-lsp/zd1211-firmware/ I have the recipe zd1211-firmware_1.55.bb a=
-s follows:<br /><br />_______________________________________<br />SUMMA=
-RY =3D "Belkin Wifi Firmware"<br />LICENSE =3D "GPL"<br /><br />SRC_URI=
- =3D "\<br />=C2=A0 file://zd1211_ub \<br />=C2=A0 file://zd1211_uph \<b=
-r />=C2=A0 file://zd1211_uphm \<br />=C2=A0 file://zd1211_uphr \<br />=
-=C2=A0 file://zd1211_ur \<br />"<br /><br />do_install() {<br />=C2=A0=
-=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 install -d ${D}/lib/firmware/zd1211<br /=
->=C2=A0=C2=A0=C2=A0 install -m 0755 ${WORKDIR}/zd1211_*=C2=A0=C2=A0=C2=
-=A0 ${D}/lib/firmware/zd1211/<br />}<br />______________________________=
-_______<br />I sourced these files but not the recipe from:<br />http://=
-sourceforge.net/projects/zd1211/<br /><br />The files indicated in the r=
-ecipe are in :<br />~/home/poky/meta-atmel-lsp/recipes-lsp/zd1211-firmwa=
-re/zd1211-firmware/<br /><br />When I create the image, no directory is=
- created as /lib/firmware/zd1211<br />and also no files are loaded into=
- it.<br /><br />I have also tried {THISDIR}=C2=A0 instead of using {WORK=
-DIR}<br />I also tried specifying a specific file rather than using the=
- wild card<br />I have also tried using 'cp' instead of 'install -m 0755=
-'<br /><br />None seem to work.<br />I am expecting the firmware files t=
-o be located in:<br />~/poky/build-atmel/tmp/work/sama5d3xek-poky-linux-=
-gnueabi/atmel-qt5-demo-image/1.0-r0/rootfs/etc/firmware<br />but they ar=
-e not.<br /><br />I originally started with a recipe to load the files d=
-irectly from the source, but that did not work. The original recipe used=
- was zd1211-firmware_1.4.bb from:<br />https://gitorious.org/opencsbc/op=
-enembedded/source/583297ac295f1b381019ccecb4ae6abaa69cbc6c:recipes/zd121=
-1<br /><br />That did not work and now I am extracting the files from th=
-e .tar and trying to load them direct.<br />Maybe the same problem exist=
-s between the original recipe and loading the .tar files.<br /><br />Tha=
-nks for any help<br />Lachlan<br /><br />---- Message sent via Adam Inte=
-rnet WebMail  - http://www.adam.com.au/</body></html>
+PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4
+bWxuczp3PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTp3b3JkIiB4bWxuczptPSJo
+dHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL29mZmljZS8yMDA0LzEyL29tbWwiIHhtbG5zPSJo
+dHRwOi8vd3d3LnczLm9yZy9UUi9SRUMtaHRtbDQwIj4NCjxoZWFkPg0KPG1ldGEgaHR0cC1lcXVp
+dj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9dXRmLTgiPg0KPG1l
+dGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAoZmlsdGVyZWQg
+bWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2
+IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToy
+IDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3Jt
+YWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1i
+b3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBO
+ZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5
+bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6IzA1NjNDMTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJs
+aW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUt
+cHJpb3JpdHk6OTk7DQoJY29sb3I6Izk1NEY3MjsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5l
+O30NCnNwYW4uRW1haWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQt
+ZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQpzcGFuLkVt
+YWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21wb3NlOw0KCWZvbnQtZmFt
+aWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hw
+RGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0
+O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4w
+aW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0
+aW9uMTt9DQotLT48L3N0eWxlPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMw
+NTYzQzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
+eTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3
+RCI+TGFjaGxhbiw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
+b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286
+cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlm
+JnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPklmIHRoYXQgaXMgeW91ciBlbnRpcmUgcmVjaXBlLCBJIGRv
+buKAmXQgc2VlIGFueSBGSUxFUyBzcGVjaWZpY2F0aW9uOg0KPGEgaHJlZj0iaHR0cDovL3d3dy55
+b2N0b3Byb2plY3Qub3JnL2RvY3MvMS43L21lZ2EtbWFudWFsL21lZ2EtbWFudWFsLmh0bWwjdmFy
+LUZJTEVTIj4NCmh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLzEuNy9tZWdhLW1hbnVh
+bC9tZWdhLW1hbnVhbC5odG1sI3Zhci1GSUxFUzwvYT4uJm5ic3A7IFRoZSBTUkNfVVJJIGp1c3Qg
+c2F5cyB3aGVyZSB0byBnZXQgdGhlIHNvdXJjZSwgYnV0IHRoZSBGSUxFUyBzdGF0ZXMgd2hpY2gg
+ZmlsZXMgYXJlIGV4cGVjdGVkIHRvIGJlIGFkZGVkIHRvIHRoZSBwYWNrYWdlLiZuYnNwOyBJIGJl
+bGlldmUgdGhlIEZJTEVTIHZhcmlhYmxlIGlzIGF1dG8tcG9wdWxhdGVkIGJ5IGEgY29tcGlsZWQN
+CiBwYWNrYWdlLCB3aGljaCBpcyB3aHkgeW91IG1heSBub3Qgc2VlIHRoZSBGSUxFUyB2YXJpYWJs
+ZSBpbiBldmVyeSByZWNpcGUuICZuYnNwO0J1dCBpbiB5b3VyIGNhc2UgaW4gd2hpY2ggeW91IGRv
+buKAmXQgY29tcGlsZSB0aGUgY29kZSBidXQgYXJlIGp1c3QgaW5zdGFsbGluZyBmaWxlcyBvbiBk
+aXNrLCB5b3UgbmVlZCB0byBmaWxsIG91dCB0aGUgRklMRVMgdmFyaWFibGUuPG86cD48L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1
+b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5S
+ZWdhcmRzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+JnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5CcnlhbjxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
+Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxl
+PSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCBibHVlIDEuNXB0O3BhZGRpbmc6MGluIDBp
+biAwaW4gNC4wcHQiPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6
+c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
+OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+
+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
+cmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9q
+ZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10NCjxiPk9uIEJl
+aGFsZiBPZiA8L2I+cGV0ZXJlbmdjb21hdTAwMUBhZGFtLmNvbS5hdTxicj4NCjxiPlNlbnQ6PC9i
+PiBUaHVyc2RheSwgTm92ZW1iZXIgMTMsIDIwMTQgMTA6MjEgQU08YnI+DQo8Yj5Ubzo8L2I+IHlv
+Y3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW3lvY3RvXSByZWNpcGUg
+ZmFpbHMgdG8gbG9hZCBsb2NhbCBmaWxlczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0K
+PC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPkkgYW0gdXNpbmcgeW9jdG8gMS42LjEgYW5kIEkgaGF2ZSBhIGEgbnVt
+YmVyIG9mIHJlY2lwZXMgaW4gPGJyPg0Kfi9ob21lL3Bva3kvbWV0YS1hdG1lbC1sc3AvcmVjaXBl
+cy1sc3AuPGJyPg0KPGJyPg0KSSBoYXZlIGEgbGlnaHRwZGJiYXBwZW5kIHRoYXQgbG9hZHMgbG9j
+YWwgZmlsZXMsIEkgaGF2ZSBhIHdwYS1zdXBwbGljYW50LmJiYXBwZW5kIHRoYXQgbG9hZHMgbG9j
+YWwgZmlsZXMsIGJ1dCBJIGFtIGFsc28gdHJ5aW5nIHRvIGxvYWQgc29tZSBmaXJtd2FyZSB0aGF0
+IHNob3VsZCBsb2FkIGxvY2FsIGZpbGVzIGJ1dCBmYWlscy48YnI+DQo8YnI+DQpJbiB+L2hvbWUv
+cG9reS9tZXRhLWF0bWVsLWxzcC9yZWNpcGVzLWxzcC96ZDEyMTEtZmlybXdhcmUvIEkgaGF2ZSB0
+aGUgcmVjaXBlIHpkMTIxMS1maXJtd2FyZV8xLjU1LmJiIGFzIGZvbGxvd3M6PGJyPg0KPGJyPg0K
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KU1VNTUFSWSA9ICZx
+dW90O0JlbGtpbiBXaWZpIEZpcm13YXJlJnF1b3Q7PGJyPg0KTElDRU5TRSA9ICZxdW90O0dQTCZx
+dW90Ozxicj4NCjxicj4NClNSQ19VUkkgPSAmcXVvdDtcPGJyPg0KJm5ic3A7IDxhIGhyZWY9ImZp
+bGU6Ly8vXFx6ZDEyMTFfdWIiPmZpbGU6Ly96ZDEyMTFfdWI8L2E+IFw8YnI+DQombmJzcDsgPGEg
+aHJlZj0iZmlsZTovLy9cXHpkMTIxMV91cGgiPmZpbGU6Ly96ZDEyMTFfdXBoPC9hPiBcPGJyPg0K
+Jm5ic3A7IDxhIGhyZWY9ImZpbGU6Ly8vXFx6ZDEyMTFfdXBobSI+ZmlsZTovL3pkMTIxMV91cGht
+PC9hPiBcPGJyPg0KJm5ic3A7IDxhIGhyZWY9ImZpbGU6Ly8vXFx6ZDEyMTFfdXBociI+ZmlsZTov
+L3pkMTIxMV91cGhyPC9hPiBcPGJyPg0KJm5ic3A7IDxhIGhyZWY9ImZpbGU6Ly8vXFx6ZDEyMTFf
+dXIiPmZpbGU6Ly96ZDEyMTFfdXI8L2E+IFw8YnI+DQomcXVvdDs8YnI+DQo8YnI+DQpkb19pbnN0
+YWxsKCkgezxicj4NCiZuYnNwOyZuYnNwOyZuYnNwOyAmbmJzcDsmbmJzcDsmbmJzcDsgaW5zdGFs
+bCAtZCAke0R9L2xpYi9maXJtd2FyZS96ZDEyMTE8YnI+DQombmJzcDsmbmJzcDsmbmJzcDsgaW5z
+dGFsbCAtbSAwNzU1ICR7V09SS0RJUn0vemQxMjExXyombmJzcDsmbmJzcDsmbmJzcDsgJHtEfS9s
+aWIvZmlybXdhcmUvemQxMjExLzxicj4NCn08YnI+DQpfX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fPGJyPg0KSSBzb3VyY2VkIHRoZXNlIGZpbGVzIGJ1dCBub3QgdGhlIHJlY2lw
+ZSBmcm9tOjxicj4NCjxhIGhyZWY9Imh0dHA6Ly9zb3VyY2Vmb3JnZS5uZXQvcHJvamVjdHMvemQx
+MjExLyI+aHR0cDovL3NvdXJjZWZvcmdlLm5ldC9wcm9qZWN0cy96ZDEyMTEvPC9hPjxicj4NCjxi
+cj4NClRoZSBmaWxlcyBpbmRpY2F0ZWQgaW4gdGhlIHJlY2lwZSBhcmUgaW4gOjxicj4NCn4vaG9t
+ZS9wb2t5L21ldGEtYXRtZWwtbHNwL3JlY2lwZXMtbHNwL3pkMTIxMS1maXJtd2FyZS96ZDEyMTEt
+ZmlybXdhcmUvPGJyPg0KPGJyPg0KV2hlbiBJIGNyZWF0ZSB0aGUgaW1hZ2UsIG5vIGRpcmVjdG9y
+eSBpcyBjcmVhdGVkIGFzIC9saWIvZmlybXdhcmUvemQxMjExPGJyPg0KYW5kIGFsc28gbm8gZmls
+ZXMgYXJlIGxvYWRlZCBpbnRvIGl0Ljxicj4NCjxicj4NCkkgaGF2ZSBhbHNvIHRyaWVkIHtUSElT
+RElSfSZuYnNwOyBpbnN0ZWFkIG9mIHVzaW5nIHtXT1JLRElSfTxicj4NCkkgYWxzbyB0cmllZCBz
+cGVjaWZ5aW5nIGEgc3BlY2lmaWMgZmlsZSByYXRoZXIgdGhhbiB1c2luZyB0aGUgd2lsZCBjYXJk
+PGJyPg0KSSBoYXZlIGFsc28gdHJpZWQgdXNpbmcgJ2NwJyBpbnN0ZWFkIG9mICdpbnN0YWxsIC1t
+IDA3NTUnPGJyPg0KPGJyPg0KTm9uZSBzZWVtIHRvIHdvcmsuPGJyPg0KSSBhbSBleHBlY3Rpbmcg
+dGhlIGZpcm13YXJlIGZpbGVzIHRvIGJlIGxvY2F0ZWQgaW46PGJyPg0Kfi9wb2t5L2J1aWxkLWF0
+bWVsL3RtcC93b3JrL3NhbWE1ZDN4ZWstcG9reS1saW51eC1nbnVlYWJpL2F0bWVsLXF0NS1kZW1v
+LWltYWdlLzEuMC1yMC9yb290ZnMvZXRjL2Zpcm13YXJlPGJyPg0KYnV0IHRoZXkgYXJlIG5vdC48
+YnI+DQo8YnI+DQpJIG9yaWdpbmFsbHkgc3RhcnRlZCB3aXRoIGEgcmVjaXBlIHRvIGxvYWQgdGhl
+IGZpbGVzIGRpcmVjdGx5IGZyb20gdGhlIHNvdXJjZSwgYnV0IHRoYXQgZGlkIG5vdCB3b3JrLiBU
+aGUgb3JpZ2luYWwgcmVjaXBlIHVzZWQgd2FzIHpkMTIxMS1maXJtd2FyZV8xLjQuYmIgZnJvbTo8
+YnI+DQo8YSBocmVmPSJodHRwczovL2dpdG9yaW91cy5vcmcvb3BlbmNzYmMvb3BlbmVtYmVkZGVk
+L3NvdXJjZS81ODMyOTdhYzI5NWYxYjM4MTAxOWNjZWNiNGFlNmFiYWE2OWNiYzZjOnJlY2lwZXMv
+emQxMjExIj5odHRwczovL2dpdG9yaW91cy5vcmcvb3BlbmNzYmMvb3BlbmVtYmVkZGVkL3NvdXJj
+ZS81ODMyOTdhYzI5NWYxYjM4MTAxOWNjZWNiNGFlNmFiYWE2OWNiYzZjOnJlY2lwZXMvemQxMjEx
+PC9hPjxicj4NCjxicj4NClRoYXQgZGlkIG5vdCB3b3JrIGFuZCBub3cgSSBhbSBleHRyYWN0aW5n
+IHRoZSBmaWxlcyBmcm9tIHRoZSAudGFyIGFuZCB0cnlpbmcgdG8gbG9hZCB0aGVtIGRpcmVjdC48
+YnI+DQpNYXliZSB0aGUgc2FtZSBwcm9ibGVtIGV4aXN0cyBiZXR3ZWVuIHRoZSBvcmlnaW5hbCBy
+ZWNpcGUgYW5kIGxvYWRpbmcgdGhlIC50YXIgZmlsZXMuPGJyPg0KPGJyPg0KVGhhbmtzIGZvciBh
+bnkgaGVscDxicj4NCkxhY2hsYW48YnI+DQo8YnI+DQotLS0tIE1lc3NhZ2Ugc2VudCB2aWEgQWRh
+bSBJbnRlcm5ldCBXZWJNYWlsIC0gPGEgaHJlZj0iaHR0cDovL3d3dy5hZGFtLmNvbS5hdS8iPmh0
+dHA6Ly93d3cuYWRhbS5jb20uYXUvPC9hPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4N
+CjwvYm9keT4NCjwvaHRtbD4NCg==
 
---=_ba8bca316a73b517793e552d95713117--
+--_000_e28ab8baec5c4d3aa9b4adb87c4c9bffBLUPR05MB037namprd05pro_--
