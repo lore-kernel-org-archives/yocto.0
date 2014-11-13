@@ -1,39 +1,51 @@
-Return-Path: <Neil.Wu@Emerson.com>
+Return-Path: <Stuart.Weaver@datapath.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 23AAEE008CC; Thu, 13 Nov 2014 01:43:23 -0800 (PST)
+	id F00F1E008CC; Thu, 13 Nov 2014 04:28:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [144.191.128.192 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [195.245.231.139 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from USSTLZ-PINFEZ08.extemr.org (usstlz-pinfez08.extemr.org
-	[144.191.128.192])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03C90E00831
-	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 01:43:10 -0800 (PST)
-Received: from USSTLZ-PMSG005.emrsn.org (10.16.72.187) by
-	USSTLZ-PINFEZ08.extemr.org (10.16.8.81) with Microsoft SMTP Server
-	(TLS) id 14.3.158.1; Thu, 13 Nov 2014 09:43:09 +0000
-Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.30]) by
-	USSTLZ-PMSG005.emrsn.org ([169.254.8.212]) with mapi id 14.03.0158.001;
-	Thu, 13 Nov 2014 09:43:08 +0000
-From: <Neil.Wu@Emerson.com>
-To: <yocto@yoctoproject.org>
-Thread-Topic: Can't find the header files after install adt_installer.tar.gz
-Thread-Index: Ac/6NKRwhXPCQAGzQEuIFZDgXR9GiQE70huA
-Date: Thu, 13 Nov 2014 09:43:08 +0000
-Message-ID: <3204FE6663E1F14CAF4CA6928E60C8521E20E32E@USSTLZ-PMSG012.emrsn.org>
-Accept-Language: en-US
+X-Greylist: delayed 414 seconds by postgrey-1.32 at yocto-www;
+	Thu, 13 Nov 2014 04:27:54 PST
+Received: from mail1.bemta5.messagelabs.com (mail1.bemta5.messagelabs.com
+	[195.245.231.139])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82E87E00831
+	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 04:27:54 -0800 (PST)
+Received: from [85.158.139.19] by server-3.bemta-5.messagelabs.com id
+	31/A6-14727-922A4645; Thu, 13 Nov 2014 12:20:57 +0000
+X-Env-Sender: Stuart.Weaver@datapath.co.uk
+X-Msg-Ref: server-16.tower-178.messagelabs.com!1415881256!32171426!1
+X-Originating-IP: [77.107.122.35]
+X-StarScan-Received: 
+X-StarScan-Version: 6.12.4; banners=datapath.co.uk,-,-
+X-VirusChecked: Checked
+Received: (qmail 22019 invoked from network); 13 Nov 2014 12:20:57 -0000
+Received: from unknown (HELO LEICESTER.internal.datapath.co.uk) (77.107.122.35)
+	by server-16.tower-178.messagelabs.com with AES256-SHA encrypted SMTP;
+	13 Nov 2014 12:20:57 -0000
+Received: from LEICESTER.internal.datapath.co.uk ([::1]) by
+	LEICESTER.internal.datapath.co.uk ([::1]) with mapi id 14.03.0210.002;
+	Thu, 13 Nov 2014 12:20:56 +0000
+From: Stuart Weaver <Stuart.Weaver@datapath.co.uk>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: do_rootfs failure
+Thread-Index: Ac//OvkevqELs4MiQmSz1NjIr+HD7Q==
+Date: Thu, 13 Nov 2014 12:20:56 +0000
+Message-ID: <2DCC166D4F5C8443941662E1E67FD5C1396DFFBC@LEICESTER.internal.datapath.co.uk>
+Accept-Language: en-GB, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.75.1]
+x-originating-ip: [10.20.0.126]
 MIME-Version: 1.0
-Subject: Can't find the header files after install adt_installer.tar.gz
+Subject: do_rootfs failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,106 +57,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Nov 2014 09:43:23 -0000
+X-List-Received-Date: Thu, 13 Nov 2014 12:28:02 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_3204FE6663E1F14CAF4CA6928E60C8521E20E32EUSSTLZPMSG012em_"
+	boundary="_000_2DCC166D4F5C8443941662E1E67FD5C1396DFFBCLEICESTERintern_"
 
---_000_3204FE6663E1F14CAF4CA6928E60C8521E20E32EUSSTLZPMSG012em_
+--_000_2DCC166D4F5C8443941662E1E67FD5C1396DFFBCLEICESTERintern_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all :
-           I have installed  the adt_installer .tar.gz like fllowing:
-              $ cd ~
-              $ tar -xjf adt_installer.tar.bz2
-              $ cd adt-installer
-              $ ./adt_installer
+Hi All,
 
-        Because the YOCTOADT_TARGET_SYSROOT_LOC_arm=3D"$HOME/test-yocto/$YO=
-CTOADT_TARGET_MACHINE_arm  in adt_installer.conf file ,
-        then I extract the myself Root Filesystem:
-             $source /opt/poky/1.7/environment-setup-i586-poky-linux
-             $ runqemu-extract-sdk           ~/Downloads/core-image-arm-roo=
-tfs.tar.bz2           $HOME/ test-yocto/ qemuarm/
+I'm trying to include a file which is over 2.5GB into a Yocto image at /et=
+c/FILE01 however I'm hitting errors with output being the following:
 
-       Try to compile  the  "Helloworld", it apper this error:
-          hello.c:1:19: fatal error: stdio.h: No such file or directory
+ERROR:
+error: unpacking of archive failed on file /etc/FILE01;54649e43: cpio: rea=
+d failed - Resource temporarily unavailable
+  53:Installing libxdmcp6       ######################################## [=
+ 12%]
+  54:Installing libtinfo5       ######################################## [=
+ 13%]
+  55:Installing libuuid1        ######################################## [=
+ 13%]
+  56:Installing libnl-3-200     ######################################## [=
+ 13%]
 
-    Do you know how to resolve the issue? Please help me !
-    Thank you very much!
+ERROR: Function failed: do_rootfs
 
---_000_3204FE6663E1F14CAF4CA6928E60C8521E20E32EUSSTLZPMSG012em_
+Looking into the build directory, I'm finding that the file has been fetch=
+ed etc...
+I've tested the same setup with a smaller file (~250MB) and the image comp=
+letes which makes the primary suspect be the size of the file.
+
+Google didn't seem to solve any questions, but is there a limit on how big=
+ a .rpm package can be or someplace else with in Yocto?
+
+Any information would be very helpful!
+
+Many Thanks,
+Stuart
+
+______________________________________________________________________
+This email has been scanned by the Symantec Email Security.cloud service.
+For more information please visit http://www.symanteccloud.com
+______________________________________________________________________
+
+--_000_2DCC166D4F5C8443941662E1E67FD5C1396DFFBCLEICESTERintern_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-mic=
+rosoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word=
+" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"ht=
+tp://www.w3.org/TR/REC-html40">
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii=
+">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
 <style><!--
 /* Font Definitions */
 @font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
+=09{font-family:"Cambria Math";
+=09panose-1:2 4 5 3 5 4 6 3 2 4;}
 @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
+=09{font-family:Calibri;
+=09panose-1:2 15 5 2 2 2 4 3 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
+=09{margin:0cm;
+=09margin-bottom:.0001pt;
+=09font-size:11.0pt;
+=09font-family:"Calibri",sans-serif;
+=09mso-fareast-language:EN-US;}
 a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
+=09{mso-style-priority:99;
+=09color:#0563C1;
+=09text-decoration:underline;}
 a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle19
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
+=09{mso-style-priority:99;
+=09color:#954F72;
+=09text-decoration:underline;}
+span.EmailStyle17
+=09{mso-style-type:personal-compose;
+=09font-family:"Calibri",sans-serif;
+=09color:windowtext;}
 .MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
+=09{mso-style-type:export-only;
+=09font-family:"Calibri",sans-serif;
+=09mso-fareast-language:EN-US;}
 @page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.25in 1.0in 1.25in;}
+=09{size:612.0pt 792.0pt;
+=09margin:72.0pt 72.0pt 72.0pt 72.0pt;}
 div.WordSection1
-	{page:WordSection1;}
+=09{page:WordSection1;}
 --></style><!--[if gte mso 9]><xml>
 <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
@@ -152,63 +158,60 @@ div.WordSection1
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
 </head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<body lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#954F72">
 <div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">Hi al=
-l :<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I have installed &n=
-bsp;the adt_installer .tar.gz like fllowing:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;$=
- cd ~<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
-;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$=
- tar -xjf adt_installer.tar.bz2<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;$=
- cd adt-installer<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
-;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$=
- ./adt_installer<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D"><o:p>=
-&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Because the YOCTOADT_TARGET_SYSROOT_L=
-OC_arm=3D&quot;$HOME/test-yocto/$YOCTOADT_TARGET_MACHINE_arm&nbsp; in adt_i=
-nstaller.conf file ,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;then I extract the myself Root Filesy=
-stem:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $source=
- /opt/poky/1.7/environment-setup-i586-poky-linux<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
-; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$ runqe=
-mu-extract-sdk &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-~/Downloads/core-image-arm-rootfs.tar.bz2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;$HOME/ test-yocto/</span><span style=3D"font-siz=
-e:16.0pt">
-</span><span style=3D"font-size:16.0pt;color:#1F497D">qemuarm/<o:p></o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D"><o:p>=
-&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;Try to compile &nbsp;the &nbsp;&#8220;Hello=
-world&#8221;, it apper this error:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-<span style=3D"font-size:16.0pt;color:red">hello.c:1:19: fatal error: stdio=
-.h: No such file or directory<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:red"><o:p>&nbs=
-p;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
-;&nbsp;&nbsp; Do you know how to resolve the issue? Please help me !
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:16.0pt;color:#1F497D">&nbsp=
-;&nbsp;&nbsp;&nbsp;Thank you very much!<o:p></o:p></span></p>
+<p class=3D"MsoNormal">Hi All,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;m trying to include a file which is over 2.=
+5GB into a Yocto image at /etc/FILE01 however I&#8217;m hitting errors wit=
+h output being the following:<o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-GB"><o:p>&nb=
+sp;</o:p></span></p>
+<p class=3D"MsoNormal">ERROR: <o:p></o:p></p>
+<p class=3D"MsoNormal">error: unpacking of archive failed on file /etc/FIL=
+E01;54649e43: cpio: read failed - Resource temporarily unavailable<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&nbsp; 53:Installing libxdmcp6&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; ######################################## [ 12%]<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">&nbsp; 54:Installing libtinfo5&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; ######################################## [ 13%]<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">&nbsp; 55:Installing libuuid1&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; ######################################## [ 13%]<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal">&nbsp; 56:Installing libnl-3-200&nbsp;&nbsp;&nbsp;&=
+nbsp; ######################################## [ 13%]<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">ERROR: Function failed: do_rootfs<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Looking into the build directory, I&#8217;m finding=
+ that the file has been fetched etc...
+<o:p></o:p></p>
+<p class=3D"MsoNormal">I&#8217;ve tested the same setup with a smaller fil=
+e (~250MB) and the image completes which makes the primary suspect be the =
+size of the file.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Google didn&#8217;t seem to solve any questions, bu=
+t is there a limit on how big a .rpm package can be or someplace else with=
+ in Yocto?
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Any information would be very helpful!<o:p></o:p></=
+p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Many Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Stuart<o:p></o:p></p>
 </div>
+<br clear=3D"both">
+______________________________________________________________________<BR>=
+
+This email has been scanned by the Symantec Email Security.cloud service.<=
+BR>
+For more information please visit http://www.symanteccloud.com<BR>
+______________________________________________________________________<BR>=
+
 </body>
 </html>
 
---_000_3204FE6663E1F14CAF4CA6928E60C8521E20E32EUSSTLZPMSG012em_--
+--_000_2DCC166D4F5C8443941662E1E67FD5C1396DFFBCLEICESTERintern_--
