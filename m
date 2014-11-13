@@ -1,49 +1,47 @@
-Return-Path: <mike.looijmans@topic.nl>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C7689E0090F; Thu, 13 Nov 2014 05:01:49 -0800 (PST)
+	id 821B5E008CC; Thu, 13 Nov 2014 05:08:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 95 seconds by postgrey-1.32 at yocto-www;
-	Thu, 13 Nov 2014 05:01:35 PST
-Received: from retry101.mer-nm.internl.net (vif1-retry101.mer-nm.internl.net
-	[217.149.192.107])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0119E0091D
-	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 05:01:35 -0800 (PST)
-Received: from smtp102.mer-nm.internl.net (smtp102.mer-nm.internl.net
-	[217.149.192.138])
-	by retry101.mer-nm.internl.net (Postfix) with ESMTP id 0B51440D2E
-	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 14:00:04 +0100 (CET)
-Received: from amavisd-new (mailscanner02.wrt-nm.internl.net [217.149.192.114])
-	by smtp102.mer-nm.internl.net (Postfix) with ESMTP id 060393F8BF
-	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 13:59:59 +0100 (CET)
-Received: from smtp102.mer-nm.internl.net ([217.149.192.138])
-	by amavisd-new (mailscanner02.wrt-nm.internl.net [217.149.192.160])
-	(amavisd-new, port 10024) with ESMTP for <yocto@yoctoproject.org>;
-	Thu, 13 Nov 2014 13:59:58 +0100 (CET)
-Received: from TOP-EX01.TOPIC.LOCAL (mail.topic.nl [82.204.13.182])
-	(using TLSv1 with cipher AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by smtp102.mer-nm.internl.net (Postfix) with ESMTPS
-	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 13:59:58 +0100 (CET)
-Received: from [192.168.80.45] (192.168.80.45) by TOP-EX01.TOPIC.LOCAL
-	(192.168.10.102) with Microsoft SMTP Server (TLS) id 14.3.181.6;
-	Thu, 13 Nov 2014 14:00:12 +0100
-Message-ID: <5464AB4D.8020409@topic.nl>
-Date: Thu, 13 Nov 2014 13:59:57 +0100
-From: Mike Looijmans <mike.looijmans@topic.nl>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.53 listed in list.dnswl.org]
+Received: from mail-qg0-f53.google.com (mail-qg0-f53.google.com
+	[209.85.192.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40E34E00831
+	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 05:08:19 -0800 (PST)
+Received: by mail-qg0-f53.google.com with SMTP id z107so10523793qgd.12
+	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 05:08:18 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=92FN1Rm0Zr907O72zL8SAM+wynCIb3RlTrARElCLzVA=;
+	b=MhSKZHSg13STCNgDIGPao368MGXaVGqT3ArrRWR3+hZEG//Rs8qXzNNBNuxWbJ/hSR
+	fEDYUQ+Pc9mxvDd0I7l4BWiR0ydMrjis5KBJsCaCo8l5FXLt6EBQ0S+oc3LZFPpnFPcY
+	y6iuMFdYIaIHBcwPQPuzOGKadAsTiB1V6PpXxqyIHfHBTUmsc3qi+PT4OPAMasZZofLD
+	DovM1wOmcPKJJJC6fRfpEmh3FJvop2ErXfu5KMDJZedIExFlTNpWPg3yK7p+z08/jO/h
+	Z+kAxMlvzNOma+hz7G8ZXG117uLlImn+mO1CmQ3q0BYaHkHWMKim2kPXFJ0iySwQP4h/
+	j1Zg==
+X-Gm-Message-State: ALoCoQnNhyvF06sKfrZjQMK2xGLEqqVJw7wUnTcf0ByLbNuAd7az3SlLgr6dlgwlASGJTDWZGJYm
+X-Received: by 10.140.109.244 with SMTP id l107mr2962053qgf.80.1415884098542; 
+	Thu, 13 Nov 2014 05:08:18 -0800 (PST)
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-X-Originating-IP: [192.168.80.45]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
-Subject: Sato image runs, but doesn't start its GUI
+Received: by 10.140.98.213 with HTTP; Thu, 13 Nov 2014 05:07:58 -0800 (PST)
+In-Reply-To: <5464AB4D.8020409@topic.nl>
+References: <5464AB4D.8020409@topic.nl>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 13 Nov 2014 13:07:58 +0000
+Message-ID: <CAJTo0Lb35s=8_JkTwxtkOskW0c+WX3U7pz5erBKSvYXVxE3riw@mail.gmail.com>
+To: Mike Looijmans <mike.looijmans@topic.nl>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Sato image runs, but doesn't start its GUI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,60 +53,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Nov 2014 13:01:49 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Thu, 13 Nov 2014 13:08:26 -0000
+Content-Type: multipart/alternative; boundary=001a113b7e50bcc5e00507bd342f
+
+--001a113b7e50bcc5e00507bd342f
+Content-Type: text/plain; charset=UTF-8
+
+On 13 November 2014 12:59, Mike Looijmans <mike.looijmans@topic.nl> wrote:
+
+> I can't find anything that attempts to start anything. There's nothing in
+> inittab, and there's nothing in rc3.d that resembles an attempt at starting
+> something desktop GUI application or so.
+>
+
+core-image-sato should be shipping the xserver-nodm init script, which
+starts X.
+
+Ross
+
+--001a113b7e50bcc5e00507bd342f
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-=EF=BB=BFI finally got around to trying to use our custom board's BSP with =
-Yocto images.
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 13 November 2014 12:59, Mike Looijmans <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:mike.looijmans@topic.nl" target=3D"_blank">mike.looijmans@topic.nl</=
+a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":5bn" cla=
+ss=3D"a3s" style=3D"overflow:hidden">I can&#39;t find anything that attempt=
+s to start anything. There&#39;s nothing in inittab, and there&#39;s nothin=
+g in rc3.d that resembles an attempt at starting something desktop GUI appl=
+ication or so.<br></div></blockquote></div><br>core-image-sato should be sh=
+ipping the xserver-nodm init script, which starts X.</div><div class=3D"gma=
+il_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
 
-Since the board has a touchscreen (well, actually it has two) I built the=20
-core-image-sato.
-
-I had to tweak the startup a bit, because our framebuffer is in the FPGA it=
-=20
-won't be available until after programming it and loading the modules.
-
-Setting psplash to S05 instead of S00, and modutils to load at S04 fixes th=
-e=20
-initialization order problems I saw.
-
-What I get now is a nice Yocto logo on the screen, and a progress bar that=
-=20
-almost fills up. But nothing else happens. I'd expect the GUI to start then=
-,=20
-but apparently there's nothing to trigger that?
-
-Display works, touch works, everything seems in perfect working order.
-
-I can't find anything that attempts to start anything. There's nothing in=20
-inittab, and there's nothing in rc3.d that resembles an attempt at starting=
-=20
-something desktop GUI application or so.
-
-Am I missing something, is this a bug, or is this expected behaviour and am=
- I=20
-supposed to type some magic command first?
-
-
-Met vriendelijke groet / kind regards,
-
-Mike Looijmans
-System Expert
-
-
-TOPIC Embedded Systems
-Eindhovenseweg 32-C, NL-5683 KH Best
-Postbus 440, NL-5680 AK Best
-Telefoon: (+31) (0) 499 33 69 79
-Telefax:  (+31) (0) 499 33 69 70
-E-mail: mike.looijmans@topic.nl
-Website: www.topic.nl
-
-Please consider the environment before printing this e-mail
-
-Visit us at Bits & Chips Smart Systems 20th November, 1931 Congrescentum Br=
-abanthallen 's-Hertogenbosch, stand number 34
-http://bc-smartsystems.nl
-
-
+--001a113b7e50bcc5e00507bd342f--
