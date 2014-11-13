@@ -1,50 +1,32 @@
-Return-Path: <mgloff@emacinc.com>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 97E37E008C3; Thu, 13 Nov 2014 09:58:42 -0800 (PST)
+	id DA71CE008C3; Thu, 13 Nov 2014 10:17:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.172 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-ie0-f172.google.com (mail-ie0-f172.google.com
-	[209.85.223.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4266FE00831
-	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 09:58:38 -0800 (PST)
-Received: by mail-ie0-f172.google.com with SMTP id ar1so1482614iec.31
-	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 09:58:37 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=YDideWvuqt5I+wCEAbPtUrfs00VEq1izAmj4aCuWZJ0=;
-	b=No711RdE1zHnaVz8db8o4OYbRHnocmnEuI9WATcZEuqF3BfRhf9Of/xJ3S1f6Ncnqt
-	qjWciRSMYErG+7BMDO0MFTy4jKfGcuk4MJwzt0KcKQSqHuwZc1MQnZM0XIdgUycRmJti
-	UF3m1SaY+CaAtECYUMUxhdzXiqvFI48h7YQiBTmLEDowjcRXCQzKnR64jwm2Vg9QGQP9
-	v+ucR6okc+mjLom19W8UZ8t3W+hTvmjNANTroK2EfK1RAL5Z0sLEk0Jz20kFq7C08C2M
-	Y2c+Z9mUyAIcJan1tVHQgcPpw8Ou373qWKqJQvPDlfAFyt7OuNZNcRGE+NJVJBTdh1ya
-	eKiw==
-X-Gm-Message-State: ALoCoQkQfyEOjbIb1bRbKS49vRGxyND/tb8eV/AYc0P6euFzMc/SfK1vuVd2oY0flIltFJ/zvtj5
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33C2DE00831
+	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 10:17:52 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 13 Nov 2014 10:16:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.07,379,1413270000"; d="scan'208";a="636522764"
+Received: from alimon-thinkpad-w540.zpn.intel.com ([10.219.4.154])
+	by orsmga002.jf.intel.com with ESMTP; 13 Nov 2014 10:16:06 -0800
+From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 13 Nov 2014 12:16:58 -0600
+Message-Id: <1415902618-5947-1-git-send-email-anibal.limon@linux.intel.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-X-Received: by 10.50.3.106 with SMTP id b10mr364114igb.41.1415901517531; Thu,
-	13 Nov 2014 09:58:37 -0800 (PST)
-Received: by 10.107.47.155 with HTTP; Thu, 13 Nov 2014 09:58:37 -0800 (PST)
-In-Reply-To: <CAJTo0LbFLKJ304sCbSGZW0w9rpEe5oN5Ao3bAr8a-yLjNrRKkQ@mail.gmail.com>
-References: <5464AB4D.8020409@topic.nl>
-	<CAJTo0Lb35s=8_JkTwxtkOskW0c+WX3U7pz5erBKSvYXVxE3riw@mail.gmail.com>
-	<5464ADD9.1090604@topic.nl> <5464AFCC.5010709@topic.nl>
-	<CAJTo0LbFLKJ304sCbSGZW0w9rpEe5oN5Ao3bAr8a-yLjNrRKkQ@mail.gmail.com>
-Date: Thu, 13 Nov 2014 11:58:37 -0600
-Message-ID: <CALXw4G6V7CWLx5HJvvHg7WRkALHpqZji4EXq8x0f_coxQD3AFQ@mail.gmail.com>
-From: Michael Gloff <mgloff@emacinc.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Sato image touchscreen calibration is borked
+Subject: [PATCH] maintainers.inc: remove utf-8 characters due to package reporting system not handling utf-8 in sqlite database
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,105 +38,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Nov 2014 17:58:42 -0000
-Content-Type: multipart/alternative; boundary=089e013a0080fd94670507c142c7
-
---089e013a0080fd94670507c142c7
+X-List-Received-Date: Thu, 13 Nov 2014 18:17:57 -0000
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, Nov 13, 2014 at 7:28 AM, Burton, Ross <ross.burton@intel.com> wrote:
+Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
+---
+ meta-yocto/conf/distro/include/maintainers.inc | 30 +++++++++++++-------------
+ 1 file changed, 15 insertions(+), 15 deletions(-)
 
-> Hi,
->
-> On 13 November 2014 13:19, Mike Looijmans <mike.looijmans@topic.nl> wrote:
->
->> I've been using "ts_calibrate" in the past, and that worked just fine on
->> this board.
->>
->
-> Modern X servers don't use tslib, so this won't work since we stopped
-> using kdrive about two years ago.
->
-> BTW, you can use tslib with xorg. This is what I have set up as I find
-ts_calibrate easier to work with.
+diff --git a/meta-yocto/conf/distro/include/maintainers.inc b/meta-yocto/conf/distro/include/maintainers.inc
+index 62bb57d..0c1da37 100644
+--- a/meta-yocto/conf/distro/include/maintainers.inc
++++ b/meta-yocto/conf/distro/include/maintainers.inc
+@@ -28,7 +28,7 @@
+ # Please keep this list in alphabetical order.
+ #
+ RECIPE_MAINTAINER_pn-acl = "Chong Lu <Chong.Lu@windriver.com>"
+-RECIPE_MAINTAINER_pn-acpid = "Aníbal Limón <anibal.limon@linux.intel.com>"
++RECIPE_MAINTAINER_pn-acpid = "Anibal Limon <anibal.limon@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-adt-installer = "Jessica Zhang <jessica.zhang@intel.com>"
+ RECIPE_MAINTAINER_pn-alsa-lib = "Cristian Iorga <cristian.iorga@intel.com>"
+ RECIPE_MAINTAINER_pn-alsa-state = "Cristian Iorga <cristian.iorga@intel.com>"
+@@ -38,7 +38,7 @@ RECIPE_MAINTAINER_pn-alsa-utils-alsaconf = "Cristian Iorga <cristian.iorga@intel
+ RECIPE_MAINTAINER_pn-apmd = "Cristian Iorga <cristian.iorga@intel.com>"
+ RECIPE_MAINTAINER_pn-apr = "Hongxu Jia <hongxu.jia@windriver.com>"
+ RECIPE_MAINTAINER_pn-apr-util = "Hongxu Jia <hongxu.jia@windriver.com>"
+-RECIPE_MAINTAINER_pn-apt = "Aníbal Limón <anibal.limon@linux.intel.com>"
++RECIPE_MAINTAINER_pn-apt = "Anibal Limon <anibal.limon@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-aspell = "Alejandro Hernandez <alejandro.hernandez@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-atk = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-at = "Saul Wold <sgw@linux.intel.com>"
+@@ -143,7 +143,7 @@ RECIPE_MAINTAINER_pn-docbook-sgml-dtd-4.5-native = "Paul Eggleton <paul.eggleton
+ RECIPE_MAINTAINER_pn-docbook-sgml-dtd = "Paul Eggleton <paul.eggleton@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-docbook-utils = "Paul Eggleton <paul.eggleton@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-dosfstools = "Paul Eggleton <paul.eggleton@linux.intel.com>"
+-RECIPE_MAINTAINER_pn-dpkg = "Aníbal Limón <anibal.limon@linux.intel.com>"
++RECIPE_MAINTAINER_pn-dpkg = "Anibal Limon <anibal.limon@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-dri2proto = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-dropbear = "Paul Eggleton <paul.eggleton@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-dtc = "Saul Wold <sgw@linux.intel.com>"
+@@ -261,7 +261,7 @@ RECIPE_MAINTAINER_pn-iproute2 = "Cristian Iorga <cristian.iorga@intel.com>"
+ RECIPE_MAINTAINER_pn-iptables = "Cristian Iorga <cristian.iorga@intel.com>"
+ RECIPE_MAINTAINER_pn-iputils = "Saul Wold <sgw@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-irda-utils = "Cristian Iorga <cristian.iorga@intel.com>"
+-RECIPE_MAINTAINER_pn-jpeg = "Aníbal Limón <anibal.limon@linux.intel.com>"
++RECIPE_MAINTAINER_pn-jpeg = "Anibal Limon <anibal.limon@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-json-glib = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-kbd = "Saul Wold <sgw@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-kbproto = "Ross Burton <ross.burton@intel.com>"
+@@ -277,7 +277,7 @@ RECIPE_MAINTAINER_pn-ldconfig-native = "Saul Wold <sgw@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-leafpad = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-less = "Saul Wold <sgw@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-liba52 = "Cristian Iorga <cristian.iorga@intel.com>"
+-RECIPE_MAINTAINER_pn-libacpi = "Aníbal Limón <anibal.limon@linux.intel.com>"
++RECIPE_MAINTAINER_pn-libacpi = "Anibal Limon <anibal.limon@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-libaio = "Saul Wold <sgw@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-libarchive = "Paul Barker <paul@paulbarker.me.uk>"
+ RECIPE_MAINTAINER_pn-libart-lgpl = "Ross Burton <ross.burton@intel.com>"
+@@ -415,7 +415,7 @@ RECIPE_MAINTAINER_pn-lrzsz = "Cristian Iorga <cristian.iorga@intel.com>"
+ RECIPE_MAINTAINER_pn-lsbinitscripts = "Saul Wold <sgw@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-lsbtest = "Yi Zhao <yi.zhao@windriver.com>"
+ RECIPE_MAINTAINER_pn-lsb = "Hongxu Jia <hongxu.jia@windriver.com>"
+-RECIPE_MAINTAINER_pn-lsof = "Aníbal Limón <anibal.limon@linux.intel.com>"
++RECIPE_MAINTAINER_pn-lsof = "Anibal Limon <anibal.limon@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-ltp = "Robert Yang <liezhi.yang@windriver.com>"
+ RECIPE_MAINTAINER_pn-lttng-modules = "Richard Purdie <richard.purdie@linuxfoundation.org>"
+ RECIPE_MAINTAINER_pn-lttng-tools = "Richard Purdie <richard.purdie@linuxfoundation.org>"
+@@ -440,7 +440,7 @@ RECIPE_MAINTAINER_pn-matchbox-session = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-matchbox-terminal = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-matchbox-theme-sato = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-matchbox-wm = "Ross Burton <ross.burton@intel.com>"
+-RECIPE_MAINTAINER_pn-mc = "Aníbal Limón <anibal.limon@linux.intel.com>"
++RECIPE_MAINTAINER_pn-mc = "Anibal Limon <anibal.limon@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-mdadm = "Richard Purdie <richard.purdie@linuxfoundation.org>"
+ RECIPE_MAINTAINER_pn-menu-cache = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-mesa-demos = "Saul Wold <sgw@linux.intel.com>"
+@@ -537,7 +537,7 @@ RECIPE_MAINTAINER_pn-piglit = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-pigz = "Saul Wold <sgw@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-pinentry = "Armin Kuster <akuster808@gmail.com>"
+ RECIPE_MAINTAINER_pn-pixman = "Ross Burton <ross.burton@intel.com>"
+-RECIPE_MAINTAINER_pn-pkgconfig = "Aníbal Limón <anibal.limon@linux.intel.com>"
++RECIPE_MAINTAINER_pn-pkgconfig = "Anibal Limon <anibal.limon@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-pm-utils = "Cristian Iorga <cristian.iorga@intel.com>"
+ RECIPE_MAINTAINER_pn-pointercal = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-poky-feed-config-opkg = "Saul Wold <sgw@linux.intel.com>"
+@@ -608,7 +608,7 @@ RECIPE_MAINTAINER_pn-rxvt-unicode = "Saul Wold <sgw@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-sato-icon-theme = "Alejandro Hernandez <alejandro.hernandez@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-sato-screenshot = "Saul Wold <sgw@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-sbc = "Cristian Iorga <cristian.iorga@intel.com>"
+-RECIPE_MAINTAINER_pn-screen = "Aníbal Limón <anibal.limon@linux.intel.com>"
++RECIPE_MAINTAINER_pn-screen = "Anibal Limon <anibal.limon@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-scrnsaverproto = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-sed = "Chen Qi <Qi.Chen@windriver.com>"
+ RECIPE_MAINTAINER_pn-setserial = "Saul Wold <sgw@linux.intel.com>"
+@@ -623,7 +623,7 @@ RECIPE_MAINTAINER_pn-shutdown-desktop = "Saul Wold <sgw@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-slang = "Kai Kang <kai.kang@windriver.com>"
+ RECIPE_MAINTAINER_pn-socat = "Hongxu Jia <hongxu.jia@windriver.com>"
+ RECIPE_MAINTAINER_pn-speex = "Cristian Iorga <cristian.iorga@intel.com>"
+-RECIPE_MAINTAINER_pn-sqlite3 = "Aníbal Limón <anibal.limon@linux.intel.com>"
++RECIPE_MAINTAINER_pn-sqlite3 = "Anibal Limon <anibal.limon@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-squashfs-tools = "Saul Wold <sgw@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-startup-notification = "Saul Wold <sgw@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-stat = "Chen Qi <Qi.Chen@windriver.com>"
+@@ -665,8 +665,8 @@ RECIPE_MAINTAINER_pn-tzdata = "Robert Yang <liezhi.yang@windriver.com>"
+ RECIPE_MAINTAINER_pn-ubootchart = "Saul Wold <sgw@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-u-boot-fw-utils = "Saul Wold <sgw@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-u-boot-mkimage = "Saul Wold <sgw@linux.intel.com>"
+-RECIPE_MAINTAINER_pn-udev-extraconf = "Aníbal Limón <anibal.limon@linux.intel.com>"
+-RECIPE_MAINTAINER_pn-udev = "Aníbal Limón <anibal.limon@linux.intel.com>"
++RECIPE_MAINTAINER_pn-udev-extraconf = "Anibal Limon <anibal.limon@linux.intel.com>"
++RECIPE_MAINTAINER_pn-udev = "Anibal Limon <anibal.limon@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-unifdef = "Richard Purdie <richard.purdie@linuxfoundation.org>"
+ RECIPE_MAINTAINER_pn-unzip = "Alejandro Hernandez <alejandro.hernandez@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-update-rc.d = "Saul Wold <sgw@linux.intel.com>"
+@@ -725,7 +725,7 @@ RECIPE_MAINTAINER_pn-xf86-video-vmware = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-xf86vidmodeproto = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-xhost = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-xineramaproto = "Ross Burton <ross.burton@intel.com>"
+-RECIPE_MAINTAINER_pn-xinetd = "Aníbal Limón <anibal.limon@linux.intel.com>"
++RECIPE_MAINTAINER_pn-xinetd = "Anibal Limon <anibal.limon@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-xinit = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-xinput = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-xinput-calibrator = "Ross Burton <ross.burton@intel.com>"
+@@ -736,12 +736,12 @@ RECIPE_MAINTAINER_pn-xmodmap = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-xorg-minimal-fonts = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-xprop = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-xproto = "Ross Burton <ross.burton@intel.com>"
+-RECIPE_MAINTAINER_pn-xrandr = "Aníbal Limón <anibal.limon@linux.intel.com>"
++RECIPE_MAINTAINER_pn-xrandr = "Anibal Limon <anibal.limon@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-xrestop = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-xserver-nodm-init = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-xserver-xf86-config = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-xserver-xorg = "Ross Burton <ross.burton@intel.com>"
+-RECIPE_MAINTAINER_pn-xset = "Aníbal Limón <anibal.limon@linux.intel.com>"
++RECIPE_MAINTAINER_pn-xset = "Anibal Limon <anibal.limon@linux.intel.com>"
+ RECIPE_MAINTAINER_pn-xtrans = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-xtscal = "Ross Burton <ross.burton@intel.com>"
+ RECIPE_MAINTAINER_pn-xvideo-tests = "Cristian Iorga <cristian.iorga@intel.com>"
+-- 
+1.9.1
 
 
-> DEBUG: Adding click 0 (X=1023, Y=599)
->> DEBUG: Adding click 1 (X=607, Y=599)
->> DEBUG: Not adding click 2 (X=1023, Y=599): within 7 pixels of previous
->> click
->> DEBUG: Not adding click 2 (X=1023, Y=599): within 7 pixels of previous
->> click
->> DEBUG: Not adding click 2 (X=1023, Y=599): within 7 pixels of previous
->> click
->
->
-> Well, it's not within seven pixels is it...  I wonder if there's a bug in
-> the logic.  It might be worth bumping the xinput-calibrator revision to the
-> latest commit in the upstream git repo in case this has been fixed already
-> there.
->
-> I bought a HDMI display with an integrated touchscreen to test this sort
-> of thing, but the device was so dodgy that it often caused the kernel to
-> hang on boot...
->
-> Ross
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-Michael Gloff
-
---089e013a0080fd94670507c142c7
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">On Thu, Nov 13, 2014 at 7:28 AM, Burton, Ross <span dir=3D"ltr">&lt;<a =
-href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.c=
-om</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"=
->Hi,<div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 13 Novembe=
-r 2014 13:19, Mike Looijmans <span dir=3D"ltr">&lt;<a href=3D"mailto:mike.l=
-ooijmans@topic.nl" target=3D"_blank">mike.looijmans@topic.nl</a>&gt;</span>=
- wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bor=
-der-left:1px #ccc solid;padding-left:1ex">I&#39;ve been using &quot;ts_cali=
-brate&quot; in the past, and that worked just fine on this board.<br></bloc=
-kquote><div><br></div><div>Modern X servers don&#39;t use tslib, so this wo=
-n&#39;t work since we stopped using kdrive about two years ago.</div><div><=
-br></div></div></div></div></blockquote><div>BTW, you can use tslib with xo=
-rg. This is what I have set up as I find ts_calibrate easier to work with.<=
-br></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin=
-:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><=
-div class=3D"gmail_extra"><div class=3D"gmail_quote"><div></div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:=
-1px;border-left-color:rgb(204,204,204);border-left-style:solid;padding-left=
-:1ex">DEBUG: Adding click 0 (X=3D1023, Y=3D599)<br>
-DEBUG: Adding click 1 (X=3D607, Y=3D599)<br>
-DEBUG: Not adding click 2 (X=3D1023, Y=3D599): within 7 pixels of previous =
-click<br>
-DEBUG: Not adding click 2 (X=3D1023, Y=3D599): within 7 pixels of previous =
-click<br>
-DEBUG: Not adding click 2 (X=3D1023, Y=3D599): within 7 pixels of previous =
-click</blockquote><div><br></div><div>Well, it&#39;s not within seven pixel=
-s is it...=C2=A0 I wonder if there&#39;s a bug in the logic.=C2=A0 It might=
- be worth bumping the xinput-calibrator revision to the latest commit in th=
-e upstream git repo in case this has been fixed already there.</div><div><b=
-r></div><div>I bought a HDMI display with an integrated touchscreen to test=
- this sort of thing, but the device was so dodgy that it often caused the k=
-ernel to hang on boot...</div><span class=3D"HOEnZb"><font color=3D"#888888=
-"><div><br></div><div>Ross</div></font></span></div></div></div>
-<br>--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote><div><br></div><div>Michael Gloff <br></div></div><br></di=
-v></div>
-
---089e013a0080fd94670507c142c7--
