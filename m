@@ -1,53 +1,44 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 04100E008FF; Fri, 14 Nov 2014 06:19:34 -0800 (PST)
+	id DC97AE008EC; Fri, 14 Nov 2014 06:45:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [157.56.110.143 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [83.145.59.143 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1on0143.outbound.protection.outlook.com [157.56.110.143])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3623DE00876
-	for <yocto@yoctoproject.org>; Fri, 14 Nov 2014 06:19:26 -0800 (PST)
-Received: from BLUPR05MB037.namprd05.prod.outlook.com (10.255.210.145) by
-	BLUPR05MB039.namprd05.prod.outlook.com (10.255.210.148) with Microsoft
-	SMTP Server (TLS) id 15.1.16.15; Fri, 14 Nov 2014 14:19:24 +0000
-Received: from BLUPR05MB037.namprd05.prod.outlook.com ([169.254.7.98]) by
-	BLUPR05MB037.namprd05.prod.outlook.com ([169.254.7.98]) with mapi id
-	15.01.0016.006; Fri, 14 Nov 2014 14:19:24 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "peterengcomau001@adam.com.au" <peterengcomau001@adam.com.au>,
+Received: from STOEXHUB02.domain01.net (STOEXHUB02.domain01.net
+	[83.145.59.143])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37064E00876
+	for <yocto@yoctoproject.org>; Fri, 14 Nov 2014 06:45:04 -0800 (PST)
+Received: from ad.chargestorm.se (81.232.163.241) by stoexhub02.domain01.net
+	(10.12.10.2) with Microsoft SMTP Server (TLS) id 8.3.279.1;
+	Fri, 14 Nov 2014 15:44:59 +0100
+Date: Fri, 14 Nov 2014 15:44:24 +0100
+From: Anders Darander <anders@chargestorm.se>
+To: Bryan Evenson <bevenson@melinkcorp.com>
+Message-ID: <20141114144424.GF13784@ad.chargestorm.se>
+Mail-Followup-To: Bryan Evenson <bevenson@melinkcorp.com>,
+	"peterengcomau001@adam.com.au" <peterengcomau001@adam.com.au>,
 	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] recipe fails to load local files
-Thread-Index: AQHP/1V6cxPGsivkV0a2dGx9FjFE7Zxew4ewgAEKHACAAE9REA==
-Date: Fri, 14 Nov 2014 14:19:24 +0000
-Message-ID: <885d21953fc445daa4fdafc4ce3bad04@BLUPR05MB037.namprd05.prod.outlook.com>
 References: <e28ab8baec5c4d3aa9b4adb87c4c9bff@BLUPR05MB037.namprd05.prod.outlook.com>
 	<aab5394606c7e87db4c1c28307cccd252e1a103c@webmail.adam.com.au>
-In-Reply-To: <aab5394606c7e87db4c1c28307cccd252e1a103c@webmail.adam.com.au>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-vipre-scanned: 005899340087E000589A81
-x-originating-ip: [98.100.91.242]
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:;SRVR:BLUPR05MB039;
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0;PCL:0;RULEID:;SRVR:BLUPR05MB039;
-x-forefront-prvs: 03950F25EC
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(189002)(13464003)(51704005)(377454003)(199003)(99396003)(97736003)(120916001)(15975445006)(33646002)(101416001)(74316001)(108616004)(15202345003)(86362001)(92566001)(2501002)(64706001)(77096003)(66066001)(19580395003)(20776003)(19580405001)(106356001)(77156002)(54356999)(50986999)(4396001)(62966003)(106116001)(105586002)(76176999)(76576001)(2656002)(87936001)(122556002)(40100003)(95666004)(21056001)(31966008)(566704002)(46102003)(107886001)(107046002)(15395725005)(24736002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BLUPR05MB039;
-	H:BLUPR05MB037.namprd05.prod.outlook.com; FPR:; MLV:sfv;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+	<885d21953fc445daa4fdafc4ce3bad04@BLUPR05MB037.namprd05.prod.outlook.com>
 MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
+In-Reply-To: <885d21953fc445daa4fdafc4ce3bad04@BLUPR05MB037.namprd05.prod.outlook.com>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.5.23 (2014-03-12)
+X-GFI-SMTP-Submission: 1
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"peterengcomau001@adam.com.au" <peterengcomau001@adam.com.au>
 Subject: Re: recipe fails to load local files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -60,153 +51,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Nov 2014 14:19:34 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 14 Nov 2014 14:45:09 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-TGFjaGxhbiwNCg0KSSBoYXZlIHNvbWUgcmVjaXBlIGNoYW5nZXMgaW5saW5lIGJlbG93Lg0KDQo+
-IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IHBldGVyZW5nY29tYXUwMDFAYWRh
-bS5jb20uYXUNCj4gW21haWx0bzpwZXRlcmVuZ2NvbWF1MDAxQGFkYW0uY29tLmF1XQ0KPiBTZW50
-OiBGcmlkYXksIE5vdmVtYmVyIDE0LCAyMDE0IDM6MzcgQU0NCj4gVG86IEJyeWFuIEV2ZW5zb247
-IHBldGVyZW5nY29tYXUwMDFAYWRhbS5jb20uYXU7DQo+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcN
-Cj4gU3ViamVjdDogUkU6IFt5b2N0b10gcmVjaXBlIGZhaWxzIHRvIGxvYWQgbG9jYWwgZmlsZXMN
-Cj4gDQo+IEJhc2VkIG9uIHlvdXIgc3VnZ2VzdGlvbiBCcnlhbiwgYW5kIHJlZmVycmluZyB0byBT
-ZWN0aW9uIDEwIC1HbG9zc2FyeSBvZiB0aGUNCj4gcmVmLW1hbnVhbCByZWdhcmRpbmcgRklMRVMs
-IEkgaGF2ZSBjaGFuZ2VkIHRoZSByZWNpcGUgYXMgZm9sbG93czoNCj4gX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IERFU0NSSVBUSU9OID0gIkJlbGtpbiBXaWZp
-IEZpcm13YXJlIg0KPiBQUiA9ICIxLjUiDQoNClBSIGlzIG5vdCB0aGUgZmlybXdhcmUgdmVyc2lv
-biwgaXTigJlzIHRoZSByZWNpcGUgdmVyc2lvbi4gIFN0YXJ0IHdpdGggInIwIi4gIEFmdGVyIG1h
-a2luZyB0aGlzIGNoYW5nZSBkbyBhICJiaXRiYWtlIC1jIGNsZWFuYWxsIHpkMTIxMS1maXJtd2Fy
-ZSIgdG8gcmVtb3ZlIHRoZSBvbGQgcGFja2FnZXMgYXMgeW91IHdvdWxkIGJlIGdvaW5nIGJhY2t3
-YXJkcyBmb3IgdGhlIHBhY2thZ2UuDQoNCj4gTElDRU5TRSA9ICJDTE9TRUQiDQo+IEZJTEVTXyR7
-UE59ICs9ICJ+L3Bva3kvbWV0YS1hdG1lbC1sc3AvcmVjaXBlcy1sc3AvemQxMjExLQ0KPiBmaXJt
-d2FyZS96ZDEyMTEtZmlybXdhcmUiDQoNCkZJTEVTIGRvZXNuJ3Qgc3BlY2lmeSB3aGVyZSB0byBm
-aW5kIHRoZSBmaWxlcyBvbiB0aGUgYnVpbGQgbWFjaGluZSwgaXQgc3BlY2lmaWVzIHdoZXJlIHRo
-ZSBpbnN0YWxsZWQgZmlsZXMgZXhpc3Qgb24gdGhlIHRhcmdldCBmaWxlc3lzdGVtLiAgVGhpcyBp
-cyB3aGF0IHRoZSBlcnJvciB5b3UgYXJlIHNlZWluZyBpcyB0ZWxsaW5nIHlvdTsgdGhlIGZpbGVz
-IHdlcmUgaW5zdGFsbGVkIGluIHRoZSBkb19pbnN0YWxsIHN0ZXAgYnV0IHRoZXkgZGlkIG5vdCBn
-ZXQgcGxhY2VkIGluIHRoZSBmaW5hbCBwYWNrYWdlLiAgSW4geW91ciBjYXNlIEkgYmVsaWV2ZToN
-Cg0KRklMRVNfJHtQTn0gKz0gIiR7bGliZGlyfS96ZDEyMTFfKiINCg0Kd291bGQgd29yay4NCg0K
-PiBTUkNfVVJJID0gIlwNCj4gICBmaWxlOi8vemQxMjExX3ViIFwNCj4gICBmaWxlOi8vemQxMjEx
-X3VwaCBcDQo+ICAgZmlsZTovL3pkMTIxMV91cGhtIFwNCj4gICBmaWxlOi8vemQxMjExX3VwaHIg
-XA0KPiAgIGZpbGU6Ly96ZDEyMTFfdXIgXA0KPiAiDQo+IA0KPiBkb19pbnN0YWxsKCkgew0KPiAg
-ICAgICAgIGluc3RhbGwgLWQgJHtEfS9saWIvZmlybXdhcmUvemQxMjExDQo+ICAgICBpbnN0YWxs
-IC1tIDA1NTUgJHtXT1JLRElSfS96ZDEyMTFfKiAgICAke0R9L2xpYi9maXJtd2FyZS96ZDEyMTEv
-DQo+IH0NCg0KQXMgbWVudGlvbmVkIGluIHRoZSBGSUxFUyB2YXJpYWJsZSBkZXNjcmlwdGlvbiBp
-biB0aGUgWW9jdG8gbWFudWFsLCB5b3Ugc2hvdWxkIHVzZSB0aGUgc3RhbmRhcmQgcGF0aCB2YXJp
-YWJsZXMgd2hlbmV2ZXIgcG9zc2libGUuICBUaGUgbGlzdCBvZiBhdmFpbGFibGUgcGF0aCB2YXJp
-YWJsZXMgYXJlIG5lYXIgdGhlIHRvcCBvZiBtZXRhL2NvbmYvYml0YmFrZS5jb25mLiAgVGhhdCBt
-ZWFucyBpbiB5b3VyIGNhc2UgdGhlIGZvbGxvd2luZyB3b3VsZCBiZSBiZXR0ZXI6DQoNCiBkb19p
-bnN0YWxsKCkgew0KICAgICAgICAgaW5zdGFsbCAtZCAke0R9LyR7bGliZGlyfS9maXJtd2FyZS96
-ZDEyMTENCiAgICAgaW5zdGFsbCAtbSAwNTU1ICR7V09SS0RJUn0vemQxMjExXyogICAgJHtEfS8k
-e2xpYmRpcn0vZmlybXdhcmUvemQxMjExLw0KDQpSZWdhcmRzLA0KQnJ5YW4NCg0KPiBfX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IF8N
-Cj4gDQo+IEkgaGFkIG5vdCBzZWVuIGEgcmVmZXJlbmNlIHRvIHRoZSBGSUxFUyBwYXJhbWV0ZXIg
-cHJldmlvdXNseS4gSG93ZXZlciwgdGhpcw0KPiBzdGlsbCBkb2VzIG5vdCB3b3JrLg0KPiANCj4g
-UmVmZXJpbmcgdG8gOg0KPiBodHRwOi8vd3d3LmVtYmVkZGVkbGludXgub3JnLmNuL09FTWFudWFs
-L3JlY2lwZXNfZXhhbXBsZXMuaHRtbA0KPiANCj4gSSBydW4gdGhlIGZvbGx3b2luZyBjb21tYW5k
-IGZyb20gbXkgYnVpbGQgZGlyZWN0b3J5Og0KPiAkIGJpdGJha2UgLWIgbWV0YS1hdG1lbC1sc3Av
-cmVjaXBlcy1sc3AvemQxMjExLWZpcm13YXJlL3pkMTIxMS0NCj4gZmlybXdhcmVfMS41LmJiDQo+
-IA0KPiBhbmQgSSBnZXQgdGhlIGZvbGxvd2luZyBlcnJvcjoNCj4gX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBFUlJPUjogUUEgSXNzdWU6IHpkMTIxMS1maXJt
-d2FyZTogRmlsZXMvZGlyZWN0b3JpZXMgd2VyZSBpbnN0YWxsZWQgYnV0IG5vdA0KPiBzaGlwcGVk
-DQo+ICAgL2xpYg0KPiAgIC9saWIvZmlybXdhcmUNCj4gICAvbGliL2Zpcm13YXJlL3pkMTIxMQ0K
-PiAgIC9saWIvZmlybXdhcmUvemQxMjExL3pkMTIxMV91cGhyDQo+ICAgL2xpYi9maXJtd2FyZS96
-ZDEyMTEvemQxMjExX3ViDQo+ICAgL2xpYi9maXJtd2FyZS96ZDEyMTEvemQxMjExX3VwaG0NCj4g
-ICAvbGliL2Zpcm13YXJlL3pkMTIxMS96ZDEyMTFfdXINCj4gICAvbGliL2Zpcm13YXJlL3pkMTIx
-MS96ZDEyMTFfdXBoDQo+IEVSUk9SOiBRQSBydW4gZm91bmQgZmF0YWwgZXJyb3JzLiBQbGVhc2Ug
-Y29uc2lkZXIgZml4aW5nIHRoZW0uDQo+IEVSUk9SOiBGdW5jdGlvbiBmYWlsZWQ6IGRvX3BhY2th
-Z2VfcWENCj4gRVJST1I6IExvZ2ZpbGUgb2YgZmFpbHVyZSBzdG9yZWQgaW46IC9ob21lL2xhY2hs
-YW4vcG9reS9idWlsZC0NCj4gYXRtZWwvdG1wL3dvcmsvY29ydGV4YTV0MmhmLXZmcC1wb2t5LWxp
-bnV4LWdudWVhYmkvemQxMjExLQ0KPiBmaXJtd2FyZS8xLjUtMS41L3RlbXAvbG9nLmRvX3BhY2th
-Z2UuMzk5MQ0KPiBFUlJPUjogVGFzayAxMCAoL2hvbWUvbGFjaGxhbi9wb2t5L21ldGEtYXRtZWwt
-bHNwL3JlY2lwZXMtbHNwL3pkMTIxMS0NCj4gZmlybXdhcmUvemQxMjExLWZpcm13YXJlXzEuNS5i
-YiwgZG9fcGFja2FnZSkgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJw0KPiBOT1RFOiBUYXNrcyBT
-dW1tYXJ5OiBBdHRlbXB0ZWQgOSB0YXNrcyBvZiB3aGljaCA2IGRpZG4ndCBuZWVkIHRvIGJlIHJl
-cnVuDQo+IGFuZCAxIGZhaWxlZC4NCj4gTm8gY3VycmVudGx5IHJ1bm5pbmcgdGFza3MgKDkgb2Yg
-MTIpDQo+IA0KPiBTdW1tYXJ5OiAxIHRhc2sgZmFpbGVkOg0KPiAgIC9ob21lL2xhY2hsYW4vcG9r
-eS9tZXRhLWF0bWVsLWxzcC9yZWNpcGVzLWxzcC96ZDEyMTEtZmlybXdhcmUvemQxMjExLQ0KPiBm
-aXJtd2FyZV8xLjUuYmIsIGRvX3BhY2thZ2UNCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXw0KPiANCj4gTm90ZSB0aGF0IGkgYWxzbyBoYWQgdG8gYWRkcmVz
-cyB0aGUgTElDRU5TRSByZWZlcmVuY2UgYXMgSSB3YXMgZ2V0dGluZw0KPiBMSUNFTlNFX0NIQ0tT
-VU0gZXJyb3JzDQo+IA0KPiBBbHNvIG5vdGUgdGhhdCB3aGVuIEkgdHJ5IHRvIGJ1aWxkIHRoZSBm
-dWxsIGltYWdlLCB0aGVyZSBpcyBubyBlcnJvciBidXQgdGhlIGZpbGVzDQo+IGFyZSBub3QgcHJl
-c2VudC4NCj4gSW4gbXkgYnVpbGQgZGlyZWN0b3J5IGNvbmZpZ3VyYXRpb24gZmlsZSBJIGhhdmUg
-dGhlIHJlZmVyZW5jZSB0byBteSByZWNpcGUNCj4gbGF5ZXI6DQo+ICAgL2hvbWUvbGFjaGxhbi9w
-b2t5L21ldGEtYXRtZWwtbHNwIFwNCj4gYnV0IGFsdGhvdWdoIG90aGVyIHJlY2lwZXMgaW4gdGhp
-cyBkaXJlY3RvcnkgYXJlIHdvcmtpbmcgZmluZSwgdGhpcyByZWNpcGUNCj4gc2VlbXMgdG8gYmUg
-b3Zlcmxvb2tlZC4gSSBrbm93IHRoYXQgdGhlIGZ1bGwgaW1hZ2UgYnVpbGQgc2VlcyB0aGUgcmVj
-aXBlDQo+IGJlY2F1c2UgaWYgSSBjb21tZW50IG91dCB0aGUgTElDRU5TRSByZWZlcmVuY2UsIHRo
-ZSBmdWxsIGltYWdlIGJ1aWxkDQo+IGluZGljYXRlcyBhbiBlcnJvciBpbiB0aGlzIHJlZ2FyZC4N
-Cj4gDQo+IFRoYW5rcyBmb3IgYW55IGhlbHANCj4gTGFjaGxhbg0KPiANCj4gDQo+IA0KPiANCj4g
-DQo+IA0KPiAJLS0tLS0gT3JpZ2luYWwgTWVzc2FnZSAtLS0tLQ0KPiANCj4gCUZyb206DQo+IAki
-QnJ5YW4gRXZlbnNvbiIgPGJldmVuc29uQG1lbGlua2NvcnAuY29tPg0KPiANCj4gCVRvOg0KPiAJ
-InBldGVyZW5nY29tYXUwMDFAYWRhbS5jb20uYXUiDQo+IDxwZXRlcmVuZ2NvbWF1MDAxQGFkYW0u
-Y29tLmF1PiwgInlvY3RvQHlvY3RvcHJvamVjdC5vcmciDQo+IDx5b2N0b0B5b2N0b3Byb2plY3Qu
-b3JnPg0KPiANCj4gCUNjOg0KPiANCj4gCVNlbnQ6DQo+IAlUaHUsIDEzIE5vdiAyMDE0IDE3OjAz
-OjA3ICswMDAwDQo+IA0KPiAJU3ViamVjdDoNCj4gCVJFOiBbeW9jdG9dIHJlY2lwZSBmYWlscyB0
-byBsb2FkIGxvY2FsIGZpbGVzDQo+IA0KPiANCj4gDQo+IA0KPiAJTGFjaGxhbiwNCj4gDQo+IA0K
-PiANCj4gDQo+IA0KPiANCj4gDQo+IA0KPiANCj4gDQo+IA0KPiAJSWYgdGhhdCBpcyB5b3VyIGVu
-dGlyZSByZWNpcGUsIEkgZG9u4oCZdCBzZWUgYW55IEZJTEVTIHNwZWNpZmljYXRpb246DQo+IGh0
-dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLzEuNy9tZWdhLW1hbnVhbC9tZWdhLQ0KPiBt
-YW51YWwuaHRtbCN2YXItRklMRVMgPGh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLzEu
-Ny9tZWdhLQ0KPiBtYW51YWwvbWVnYS1tYW51YWwuaHRtbCN2YXItRklMRVM+IC4gIFRoZSBTUkNf
-VVJJIGp1c3Qgc2F5cyB3aGVyZSB0byBnZXQNCj4gdGhlIHNvdXJjZSwgYnV0IHRoZSBGSUxFUyBz
-dGF0ZXMgd2hpY2ggZmlsZXMgYXJlIGV4cGVjdGVkIHRvIGJlIGFkZGVkIHRvIHRoZQ0KPiBwYWNr
-YWdlLiAgSSBiZWxpZXZlIHRoZSBGSUxFUyB2YXJpYWJsZSBpcyBhdXRvLXBvcHVsYXRlZCBieSBh
-IGNvbXBpbGVkDQo+IHBhY2thZ2UsIHdoaWNoIGlzIHdoeSB5b3UgbWF5IG5vdCBzZWUgdGhlIEZJ
-TEVTIHZhcmlhYmxlIGluIGV2ZXJ5IHJlY2lwZS4NCj4gQnV0IGluIHlvdXIgY2FzZSBpbiB3aGlj
-aCB5b3UgZG9u4oCZdCBjb21waWxlIHRoZSBjb2RlIGJ1dCBhcmUganVzdCBpbnN0YWxsaW5nDQo+
-IGZpbGVzIG9uIGRpc2ssIHlvdSBuZWVkIHRvIGZpbGwgb3V0IHRoZSBGSUxFUyB2YXJpYWJsZS4N
-Cj4gDQo+IA0KPiANCj4gDQo+IA0KPiANCj4gDQo+IA0KPiANCj4gDQo+IA0KPiAJUmVnYXJkcywN
-Cj4gDQo+IA0KPiANCj4gDQo+IA0KPiAJQnJ5YW4NCj4gDQo+IA0KPiANCj4gDQo+IA0KPiANCj4g
-DQo+IA0KPiANCj4gDQo+IA0KPiAJRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3Jn
-IFttYWlsdG86eW9jdG8tDQo+IGJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10gT24gQmVoYWxmIE9m
-DQo+IHBldGVyZW5nY29tYXUwMDFAYWRhbS5jb20uYXUNCj4gCVNlbnQ6IFRodXJzZGF5LCBOb3Zl
-bWJlciAxMywgMjAxNCAxMDoyMSBBTQ0KPiAJVG86IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4g
-CVN1YmplY3Q6IFt5b2N0b10gcmVjaXBlIGZhaWxzIHRvIGxvYWQgbG9jYWwgZmlsZXMNCj4gDQo+
-IA0KPiANCj4gDQo+IA0KPiANCj4gDQo+IA0KPiANCj4gDQo+IA0KPiAJSSBhbSB1c2luZyB5b2N0
-byAxLjYuMSBhbmQgSSBoYXZlIGEgYSBudW1iZXIgb2YgcmVjaXBlcyBpbg0KPiAJfi9ob21lL3Bv
-a3kvbWV0YS1hdG1lbC1sc3AvcmVjaXBlcy1sc3AuDQo+IA0KPiAJSSBoYXZlIGEgbGlnaHRwZGJi
-YXBwZW5kIHRoYXQgbG9hZHMgbG9jYWwgZmlsZXMsIEkgaGF2ZSBhIHdwYS0NCj4gc3VwcGxpY2Fu
-dC5iYmFwcGVuZCB0aGF0IGxvYWRzIGxvY2FsIGZpbGVzLCBidXQgSSBhbSBhbHNvIHRyeWluZyB0
-byBsb2FkIHNvbWUNCj4gZmlybXdhcmUgdGhhdCBzaG91bGQgbG9hZCBsb2NhbCBmaWxlcyBidXQg
-ZmFpbHMuDQo+IA0KPiAJSW4gfi9ob21lL3Bva3kvbWV0YS1hdG1lbC1sc3AvcmVjaXBlcy1sc3Av
-emQxMjExLWZpcm13YXJlLyBJDQo+IGhhdmUgdGhlIHJlY2lwZSB6ZDEyMTEtZmlybXdhcmVfMS41
-NS5iYiBhcyBmb2xsb3dzOg0KPiANCj4gCV9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fXw0KPiAJU1VNTUFSWSA9ICJCZWxraW4gV2lmaSBGaXJtd2FyZSINCj4gCUxJQ0VOU0Ug
-PSAiR1BMIg0KPiANCj4gCVNSQ19VUkkgPSAiXA0KPiAJICBmaWxlOi8vemQxMjExX3ViIFwNCj4g
-CSAgZmlsZTovL3pkMTIxMV91cGggXA0KPiAJICBmaWxlOi8vemQxMjExX3VwaG0gXA0KPiAJICBm
-aWxlOi8vemQxMjExX3VwaHIgXA0KPiAJICBmaWxlOi8vemQxMjExX3VyIFwNCj4gCSINCj4gDQo+
-IAlkb19pbnN0YWxsKCkgew0KPiAJICAgICAgICBpbnN0YWxsIC1kICR7RH0vbGliL2Zpcm13YXJl
-L3pkMTIxMQ0KPiAJICAgIGluc3RhbGwgLW0gMDc1NSAke1dPUktESVJ9L3pkMTIxMV8qICAgICR7
-RH0vbGliL2Zpcm13YXJlL3pkMTIxMS8NCj4gCX0NCj4gCV9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX18NCj4gCUkgc291cmNlZCB0aGVzZSBmaWxlcyBidXQgbm90IHRoZSByZWNp
-cGUgZnJvbToNCj4gCWh0dHA6Ly9zb3VyY2Vmb3JnZS5uZXQvcHJvamVjdHMvemQxMjExLw0KPiAN
-Cj4gCVRoZSBmaWxlcyBpbmRpY2F0ZWQgaW4gdGhlIHJlY2lwZSBhcmUgaW4gOg0KPiAJfi9ob21l
-L3Bva3kvbWV0YS1hdG1lbC1sc3AvcmVjaXBlcy1sc3AvemQxMjExLWZpcm13YXJlL3pkMTIxMS0N
-Cj4gZmlybXdhcmUvDQo+IA0KPiAJV2hlbiBJIGNyZWF0ZSB0aGUgaW1hZ2UsIG5vIGRpcmVjdG9y
-eSBpcyBjcmVhdGVkIGFzDQo+IC9saWIvZmlybXdhcmUvemQxMjExDQo+IAlhbmQgYWxzbyBubyBm
-aWxlcyBhcmUgbG9hZGVkIGludG8gaXQuDQo+IA0KPiAJSSBoYXZlIGFsc28gdHJpZWQge1RISVNE
-SVJ9ICBpbnN0ZWFkIG9mIHVzaW5nIHtXT1JLRElSfQ0KPiAJSSBhbHNvIHRyaWVkIHNwZWNpZnlp
-bmcgYSBzcGVjaWZpYyBmaWxlIHJhdGhlciB0aGFuIHVzaW5nIHRoZSB3aWxkIGNhcmQNCj4gCUkg
-aGF2ZSBhbHNvIHRyaWVkIHVzaW5nICdjcCcgaW5zdGVhZCBvZiAnaW5zdGFsbCAtbSAwNzU1Jw0K
-PiANCj4gCU5vbmUgc2VlbSB0byB3b3JrLg0KPiAJSSBhbSBleHBlY3RpbmcgdGhlIGZpcm13YXJl
-IGZpbGVzIHRvIGJlIGxvY2F0ZWQgaW46DQo+IAl+L3Bva3kvYnVpbGQtYXRtZWwvdG1wL3dvcmsv
-c2FtYTVkM3hlay1wb2t5LWxpbnV4LQ0KPiBnbnVlYWJpL2F0bWVsLXF0NS1kZW1vLWltYWdlLzEu
-MC1yMC9yb290ZnMvZXRjL2Zpcm13YXJlDQo+IAlidXQgdGhleSBhcmUgbm90Lg0KPiANCj4gCUkg
-b3JpZ2luYWxseSBzdGFydGVkIHdpdGggYSByZWNpcGUgdG8gbG9hZCB0aGUgZmlsZXMgZGlyZWN0
-bHkgZnJvbSB0aGUNCj4gc291cmNlLCBidXQgdGhhdCBkaWQgbm90IHdvcmsuIFRoZSBvcmlnaW5h
-bCByZWNpcGUgdXNlZCB3YXMgemQxMjExLQ0KPiBmaXJtd2FyZV8xLjQuYmIgZnJvbToNCj4gCWh0
-dHBzOi8vZ2l0b3Jpb3VzLm9yZy9vcGVuY3NiYy9vcGVuZW1iZWRkZWQvc291cmNlLzU4MzI5N2Fj
-MjkNCj4gNWYxYjM4MTAxOWNjZWNiNGFlNmFiYWE2OWNiYzZjOnJlY2lwZXMvemQxMjExDQo+IA0K
-PiAJVGhhdCBkaWQgbm90IHdvcmsgYW5kIG5vdyBJIGFtIGV4dHJhY3RpbmcgdGhlIGZpbGVzIGZy
-b20gdGhlIC50YXIgYW5kDQo+IHRyeWluZyB0byBsb2FkIHRoZW0gZGlyZWN0Lg0KPiAJTWF5YmUg
-dGhlIHNhbWUgcHJvYmxlbSBleGlzdHMgYmV0d2VlbiB0aGUgb3JpZ2luYWwgcmVjaXBlIGFuZA0K
-PiBsb2FkaW5nIHRoZSAudGFyIGZpbGVzLg0KPiANCj4gCVRoYW5rcyBmb3IgYW55IGhlbHANCj4g
-CUxhY2hsYW4NCj4gDQo+IAktLS0tIE1lc3NhZ2Ugc2VudCB2aWEgQWRhbSBJbnRlcm5ldCBXZWJN
-YWlsIC0NCj4gaHR0cDovL3d3dy5hZGFtLmNvbS5hdS8NCj4gDQo+IA0KPiANCj4gDQo+IA0KPiAt
-LS0tIE1lc3NhZ2Ugc2VudCB2aWEgQWRhbSBJbnRlcm5ldCBXZWJNYWlsIC0gaHR0cDovL3d3dy5h
-ZGFtLmNvbS5hdS8NCg==
+Just a few nitpick's...
+
+* Bryan Evenson <bevenson@melinkcorp.com> [141114 15:21]:
+
+> > LICENSE = "CLOSED"
+> > FILES_${PN} += "~/poky/meta-atmel-lsp/recipes-lsp/zd1211-
+> > firmware/zd1211-firmware"
+
+> FILES doesn't specify where to find the files on the build machine, it
+> specifies where the installed files exist on the target filesystem.
+> This is what the error you are seeing is telling you; the files were
+> installed in the do_install step but they did not get placed in the
+> final package.  In your case I believe:
+
+> FILES_${PN} += "${libdir}/zd1211_*"
+
+FILES_${PN} += "/lib/firmware/zd1211"
+
+> would work.
+
+> > SRC_URI = "\
+> >   file://zd1211_ub \
+> >   file://zd1211_uph \
+> >   file://zd1211_uphm \
+> >   file://zd1211_uphr \
+> >   file://zd1211_ur \
+> > "
+
+> > do_install() {
+> >         install -d ${D}/lib/firmware/zd1211
+> >     install -m 0555 ${WORKDIR}/zd1211_*    ${D}/lib/firmware/zd1211/
+> > }
+
+> As mentioned in the FILES variable description in the Yocto manual,
+> you should use the standard path variables whenever possible.  The
+> list of available path variables are near the top of
+> meta/conf/bitbake.conf.  That means in your case the following would
+> be better:
+
+Well, in general that's true. Though, in this specific case, it should
+actually be a hardcoded /lib/firmware. ${libdir} could be lib64 or
+something else, especially in a multilib-build. However, the firmware
+files are always searched for in /lib/firmware.
+
+Cheers,
+Anders
+
+>  do_install() {
+>          install -d ${D}/${libdir}/firmware/zd1211
+>      install -m 0555 ${WORKDIR}/zd1211_*    ${D}/${libdir}/firmware/zd1211/
+
+-- 
+Anders Darander
+ChargeStorm AB / eStorm AB
 
