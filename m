@@ -1,34 +1,55 @@
-Return-Path: <maciej.borzecki@open-rnd.pl>
+Return-Path: <mgloff@emacinc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 23159E0084F; Fri, 14 Nov 2014 00:13:17 -0800 (PST)
+	id 5BD0FE0084F; Fri, 14 Nov 2014 00:17:32 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.171 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95135E00831
-	for <yocto@yoctoproject.org>; Fri, 14 Nov 2014 00:13:13 -0800 (PST)
-Received: from comp-006-thk (unknown [46.170.72.194])
-	by open-rnd.nazwa.pl (Postfix) with ESMTP id 918712DAD3D;
-	Fri, 14 Nov 2014 09:13:11 +0100 (CET)
-Message-ID: <1415952791.3565.1.camel@open-rnd.pl>
-From: Maciek Borzecki <maciej.borzecki@open-rnd.pl>
-To: Edward Wingate <edwingate8@gmail.com>
-Date: Fri, 14 Nov 2014 09:13:11 +0100
-In-Reply-To: <CAGMdoFnkFtyjZ7R1jzBM3WUCYEi_A-httnntQZFBVgiahBz9tw@mail.gmail.com>
-References: <CAGMdoFnkFtyjZ7R1jzBM3WUCYEi_A-httnntQZFBVgiahBz9tw@mail.gmail.com>
-Organization: Open-RnD sp. z o.o.
-X-Mailer: Evolution 3.12.5 (3.12.5-1.fc20) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Web frameworks on embedded linux
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-ie0-f171.google.com (mail-ie0-f171.google.com
+	[209.85.223.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73988E00831
+	for <yocto@yoctoproject.org>; Fri, 14 Nov 2014 00:17:23 -0800 (PST)
+Received: by mail-ie0-f171.google.com with SMTP id x19so17445642ier.16
+	for <yocto@yoctoproject.org>; Fri, 14 Nov 2014 00:17:23 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=BSulEOSlHHNEQqY2FDEU5++tjrikq6Il/L+22V78lk8=;
+	b=hSlAiaUfBe/9+nRHuvU4c9nxvEtmokD/MFTtnddzGDIXylO06VJ9K549S1WEV55B1a
+	o0Mj7oQCzvOt+n7tfwD3daFyYcriUNE/1+POs2wUWKzwwB9u0BgKoVVj6TdouSr7ZrfW
+	1LOWEHzb/l53YtxrwH79Dwfq85TLL/ncd0cHwBY62+xbBMbOE3alw2Uq4KVMHFQGKOTP
+	LGDE3H0jqNjq2pHtyOmNGvaBiksfZVjkp42HwOXock3gPAwgTkniMwScBb9Z/tHJZZg5
+	dqpzUgYUtJaSGnWnVbDSqwO5hNSmD/UB4f9ruxf3q0L6fUey+D6IsH/GS0j0yA/mblDF
+	23Jw==
+X-Gm-Message-State: ALoCoQliFumi5AiQd+g7pX3/TVYgmhhIXScqagqVLLL71H8TnCgLVhDFSK6AT7shd14bpnubaA3l
+MIME-Version: 1.0
+X-Received: by 10.43.65.145 with SMTP id xm17mr9893055icb.2.1415953043193;
+	Fri, 14 Nov 2014 00:17:23 -0800 (PST)
+Received: by 10.107.47.155 with HTTP; Fri, 14 Nov 2014 00:17:23 -0800 (PST)
+In-Reply-To: <CAJTo0LZXJRjcb2P=DUtKH0XToNSLoaNgNF7K97e+LxjGC05=Tg@mail.gmail.com>
+References: <5464AB4D.8020409@topic.nl>
+	<CAJTo0Lb35s=8_JkTwxtkOskW0c+WX3U7pz5erBKSvYXVxE3riw@mail.gmail.com>
+	<5464ADD9.1090604@topic.nl> <5464AFCC.5010709@topic.nl>
+	<CAJTo0LbFLKJ304sCbSGZW0w9rpEe5oN5Ao3bAr8a-yLjNrRKkQ@mail.gmail.com>
+	<CALXw4G6V7CWLx5HJvvHg7WRkALHpqZji4EXq8x0f_coxQD3AFQ@mail.gmail.com>
+	<CAJTo0LZXJRjcb2P=DUtKH0XToNSLoaNgNF7K97e+LxjGC05=Tg@mail.gmail.com>
+Date: Fri, 14 Nov 2014 02:17:23 -0600
+Message-ID: <CALXw4G6gZhA6tv6zQyaG4owLM+T1Yd8TBC94Y7dNWDbCW8D9SQ@mail.gmail.com>
+From: Michael Gloff <mgloff@emacinc.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Sato image touchscreen calibration is borked
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: maciej.borzecki@open-rnd.pl
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -37,53 +58,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Nov 2014 08:13:17 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 14 Nov 2014 08:17:32 -0000
+Content-Type: multipart/alternative; boundary=bcaec51d29982895510507cd4295
 
-On czw, 2014-11-13 at 23:12 -0800, Edward Wingate wrote:
-> I've been trying to get an existing python flask application running
-> on an embedded linux distro (Poky).  The web app was originally
-> deployed on a Debian distro.  I need to move the application to a less
-> heftier board and wanted to try a distro created by Yocto, rather than
-> try to pare down Debian.
-> 
-> I've been following the chain of dependencies for the web application
-> and adding them to Yocto to try and get the app to work (nginx, uwsgi,
-> python, pyserial, etc.), and hit a bump - Python's built-in logging
-> and codecs modules are not provided by Yocto.  Maybe I can add them
-> myself, or maybe I'll rip them out of the application, but I wanted to
-> take a step back and see if maybe Python/Flask is not the best app
-> framework to use in an embedded linux distro.  
-Have you installed python-modules pacakge? This package pulls in all
-standard python modules as dependencies.
+--bcaec51d29982895510507cd4295
+Content-Type: text/plain; charset=UTF-8
 
-I've used Tornado to provide a REST-ful API for an Android application
-and some basic web pages with status information and so on. Worked quite
-well.
+On Thu, Nov 13, 2014 at 5:05 PM, Burton, Ross <ross.burton@intel.com> wrote:
 
+>
+> On 13 November 2014 17:58, Michael Gloff <mgloff@emacinc.com> wrote:
+>
+>> BTW, you can use tslib with xorg. This is what I have set up as I find
+>> ts_calibrate easier to work with.
+>
+>
+> The only mention of e.g. ts_read() that I can see in the xserver source is
+> in the kdrive server.  Is there some compatibility mode or something that
+> I'm unaware of?
+>
+> Ross
+>
 
+Ross,
+I am using the xf86-input-tslib X driver. I forgot about that piece of the
+puzzle.
+And the following in xorg.conf
 
--- 
-Maciej Borzęcki
-Senior Software Developer at Open-RnD Sp. z o.o., Poland
-www.open-rnd.pl
-mobile: +48 889 117 365, fax: +48 42 657 9079
+Section "ServerLayout"
+        InputDevice    "TouchScreen0" "CorePointer"
+    Identifier     "X.org Configured"
+    Screen      0  "Screen0" 0 0
+EndSection
 
-Niniejsza wiadomość wraz z załącznikami może zawierać chronione prawem
-lub poufne informacje i została wysłana wyłącznie do wiadomości i
-użytku osób, do których została zaadresowana. Jeśli wiadomość została
-otrzymana przypadkowo zabrania się jej kopiowania lub rozsyłania do
-osób trzecich. W takim przypadku uprasza się o natychmiastowe
-zniszczenie wiadomości oraz poinformowanie nadawcy o zaistniałej
-sytuacji za pomocą wiadomości zwrotnej. Dziękujemy.
+:
+:
 
-This message, including any attachments hereto, may contain privileged
-or confidential information and is sent solely for the attention and
-use of the intended addressee(s). If you are not an intended addressee,
-you may neither use this message nor copy or deliver it to anyone. In
-such case, you should immediately destroy this message and kindly notify
-the sender by reply email. Thank you.
+Section "InputDevice"
+        Identifier "TouchScreen0"
+    Driver "tslib"
+        Option "Device" "/dev/input/touchscreen0"
+    Option "CorePointer" "on"
+    Option "SendCoreEvents" "on"
+    Option "Protocol" "Auto"
+        Option "ScreenNo" "0"
+EndSection
 
+I've also found that I need to comment out the touchschreen section of
+10-evdev.conf as it tries to interfere.
+That 'should' work, although I haven't tried on any standard build.
 
+Michael Gloff
 
+--bcaec51d29982895510507cd4295
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
+te">On Thu, Nov 13, 2014 at 5:05 PM, Burton, Ross <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.c=
+om</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x"><div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quot=
+e">On 13 November 2014 17:58, Michael Gloff <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:mgloff@emacinc.com" target=3D"_blank">mgloff@emacinc.com</a>&gt;=
+</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">BTW, yo=
+u can use tslib with xorg. This is what I have set up as I find ts_calibrat=
+e easier to work with.</blockquote></div><br>The only mention of e.g. ts_re=
+ad() that I can see in the xserver source is in the kdrive server.=C2=A0 Is=
+ there some compatibility mode or something that I&#39;m unaware of?</div><=
+span class=3D""><font color=3D"#888888"><div class=3D"gmail_extra"><br></di=
+v><div class=3D"gmail_extra">Ross</div></font></span></div></blockquote><di=
+v><br></div><div>Ross,<br>I am using the xf86-input-tslib X driver. I forgo=
+t about that piece of the puzzle.=C2=A0 <br>And the following in xorg.conf<=
+br><br>Section &quot;ServerLayout&quot;<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 InputDevice=C2=A0=C2=A0=C2=A0 &quot;TouchScreen0&quot; &quot;C=
+orePointer&quot;<br>=C2=A0=C2=A0=C2=A0 Identifier=C2=A0=C2=A0=C2=A0=C2=A0 &=
+quot;X.org Configured&quot;<br>=C2=A0=C2=A0=C2=A0 Screen=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 0=C2=A0 &quot;Screen0&quot; 0 0<br>EndSection<br><br>:<br>:<br=
+><br>Section &quot;InputDevice&quot;<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 Identifier &quot;TouchScreen0&quot;<br>=C2=A0=C2=A0=C2=A0 Driver =
+&quot;tslib&quot;<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Option &quo=
+t;Device&quot; &quot;/dev/input/touchscreen0&quot;<br>=C2=A0=C2=A0=C2=A0 Op=
+tion &quot;CorePointer&quot; &quot;on&quot;<br>=C2=A0=C2=A0=C2=A0 Option &q=
+uot;SendCoreEvents&quot; &quot;on&quot;<br>=C2=A0=C2=A0=C2=A0 Option &quot;=
+Protocol&quot; &quot;Auto&quot;<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 Option &quot;ScreenNo&quot; &quot;0&quot;<br>EndSection<br><br></div><d=
+iv>I&#39;ve also found that I need to comment out the touchschreen section =
+of 10-evdev.conf as it tries to interfere. <br>That &#39;should&#39; work, =
+although I haven&#39;t tried on any standard build. <br>=C2=A0<br></div></d=
+iv></div><div class=3D"gmail_extra">Michael Gloff<br></div></div>
+
+--bcaec51d29982895510507cd4295--
