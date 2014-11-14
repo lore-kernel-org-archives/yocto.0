@@ -1,43 +1,49 @@
-Return-Path: <Neil.Wu@Emerson.com>
+Return-Path: <jdelapena@lexmark.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 000FAE008CC; Thu, 13 Nov 2014 21:05:22 -0800 (PST)
+	id B596CE008CC; Thu, 13 Nov 2014 21:30:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [64.18.3.24 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [144.191.128.188 listed in list.dnswl.org]
-Received: from USSTLZ-PINFEZ04.extemr.org (usstlz-pinfez04.extemr.org
-	[144.191.128.188])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C386E00837
-	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 21:05:17 -0800 (PST)
-Received: from USSTLZ-PMSG006.emrsn.org (10.16.72.188) by
-	USSTLZ-PINFEZ04.extemr.org (10.16.8.77) with Microsoft SMTP Server
-	(TLS) id 14.3.158.1; Fri, 14 Nov 2014 05:05:16 +0000
-Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.30]) by
-	USSTLZ-PMSG006.emrsn.org ([169.254.1.142]) with mapi id 14.03.0158.001;
-	Fri, 14 Nov 2014 05:05:16 +0000
-From: <Neil.Wu@Emerson.com>
-To: <xerofoify@gmail.com>
-Thread-Topic: [yocto] Can't find the header files after install
-	adt_installer.tar.gz
-Thread-Index: AQHP/1M1mcLKnJuQLUOYlovCuwlH5Jxfc/VA
-Date: Fri, 14 Nov 2014 05:05:15 +0000
-Message-ID: <3204FE6663E1F14CAF4CA6928E60C8521E20E474@USSTLZ-PMSG012.emrsn.org>
-References: <3204FE6663E1F14CAF4CA6928E60C8521E20E32E@USSTLZ-PMSG012.emrsn.org>
-	<CAPDOMVgwLM-PJVADkCL=iCoKkE1E9jLQTsF+DekQHk-kYNzo=A@mail.gmail.com>
-In-Reply-To: <CAPDOMVgwLM-PJVADkCL=iCoKkE1E9jLQTsF+DekQHk-kYNzo=A@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.75.1]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from exprod8og112.obsmtp.com (exprod8og112.obsmtp.com [64.18.3.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB307E00837
+	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 21:30:10 -0800 (PST)
+Received: from mail-lb0-f176.google.com ([209.85.217.176]) (using TLSv1) by
+	exprod8ob112.postini.com ([64.18.7.12]) with SMTP
+	ID DSNKVGWTYabAaIViSCQvwO61AQCXai2RIGE9@postini.com;
+	Thu, 13 Nov 2014 21:30:13 PST
+Received: by mail-lb0-f176.google.com with SMTP id 10so12414937lbg.35
+	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 21:30:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=ZXc+g0ZJSBAKDnzF+ZpPh50Avy6roHtUcnitaC0BIWI=;
+	b=GKSdGI6M8vRGjldLF9MwXK13FVORrVs5gh2jjkkhuDPFOHXPe0tWx8uP+ueSdGPtxE
+	32dteBGbv9hSRjUv1oiWv1LZB75jGDr4IIkxlycCfGPrLpCNFauft8N+ylj9dmhsuTtX
+	bvP+SCeICUIvYnJ7D6uRWfscR5QEttbAh0Xm/nfBmu9/bQ4Bo2R02kRTWPvvRqgykv0O
+	uhJhTMHAPZe8ky8zNPgEV6gcscxKEl3abDBue42NOKEMOMxg4+ffltJjZykTXWZxjhLh
+	SLov9j9giHyLy6vuiTb9KGviOAgXlaYyXzyZTivi1iqYAnNQmFA4cPmQCody9kOdfy9x
+	8PuA==
+X-Gm-Message-State: ALoCoQl9VA0S/1GzCOGruxSMhApoS0PwV4qhwfPZtg7BC0AskRcIud15LykaVtctdGsSznTX/5uejlqHBK/fAy/Jf0QkWbq2aC5SO5spGD0OVbkS6KDxpu0poEL1P/l4VYskEoFjFkMeCcVnscGxxrDYM5ETqB33KA==
+X-Received: by 10.112.202.104 with SMTP id kh8mr6346002lbc.46.1415943008295;
+	Thu, 13 Nov 2014 21:30:08 -0800 (PST)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Can't find the header files after install adt_installer.tar.gz
+X-Received: by 10.112.202.104 with SMTP id kh8mr6345987lbc.46.1415943007959;
+	Thu, 13 Nov 2014 21:30:07 -0800 (PST)
+Received: by 10.152.2.40 with HTTP; Thu, 13 Nov 2014 21:30:07 -0800 (PST)
+Date: Fri, 14 Nov 2014 13:30:07 +0800
+Message-ID: <CAJrRHk4BDYQ44V+-JCCjev+vvGuzF5bDYZbE2EqwQ8NaXRjNAA@mail.gmail.com>
+From: =?UTF-8?Q?Joseph_Andrew_de_la_Pe=C3=B1a?= <jdelapena@lexmark.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Split package in native and nativesdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,43 +55,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Nov 2014 05:05:23 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 14 Nov 2014 05:30:15 -0000
+Content-Type: multipart/alternative; boundary=001a11c371980312590507caec4c
 
-VGhhbmsgeW91IGZvciB5b3VyIHJlcGx5Lg0KSSBqdXN0IG1vdmUgdGhlIGFkdF9pbnN0YWxsZXIu
-dGFyLmd6IHRvIGFub3RoZXIgcGMgd2hpY2ggZG9uJ3QgaGF2ZSB5b2N0byBwcm9qZWN0LiBJbnN0
-YWxsIHRoZSBhZHRfaW5zdGFsbGVyIGFuZCBleGVjdXRlIHRoZSBlbnZpcm9ubWVudC1zZXR1cC1h
-cm12NXRlLXBva3ktbGludXgtZ251ZWFiaQ0KDQpUaGVuIGNvbXBpbGUgdGhlIGhlbGxvLmMNCmFy
-bS1wb2t5LWxpbnV4LWdudWVhYmktZ2NjIGhlbGxvLmMgLW8gaGVsbG8NCg0KSSBkb24ndCBrbm93
-IHdoZXRoZXIgbmVlZCB0byBkbyBvdGhlciB0aGluZz8NCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0t
-LS0tDQpGcm9tOiBOaWNrIEtyYXVzZSBbbWFpbHRvOnhlcm9mb2lmeUBnbWFpbC5jb21dIA0KU2Vu
-dDogVGh1cnNkYXksIE5vdmVtYmVyIDEzLCAyMDE0IDExOjA1IFBNDQpUbzogV3UsIE5laWwgW0NM
-SU1BVEUvUlMvQ05dDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5
-b2N0b10gQ2FuJ3QgZmluZCB0aGUgaGVhZGVyIGZpbGVzIGFmdGVyIGluc3RhbGwgYWR0X2luc3Rh
-bGxlci50YXIuZ3oNCg0KSGF2ZSB5b3UgcmVhZCB0aGUgeW9jdG8gZG9jcyBvbiBBRFQgZm9yIGJ1
-aWxkaW5nIGNvcnJlY3RseSB5b3VyIGRldmVsb3BtZW50IGtpdCwgc2VlbXMgdG8gbWUgcmF0aGVy
-IHRyaXZpYWwgZXJyb3IgaW4gZWl0aGVyIHlvdXIgYnVpbGQgb3IgYml0YmFrZSByZWNpcGUgZm9y
-IGhlbGxvIHdvcmxkLg0KQ2hlZXJzIE5pY2sNCg0KT24gVGh1LCBOb3YgMTMsIDIwMTQgYXQgNDo0
-MyBBTSwgIDxOZWlsLld1QGVtZXJzb24uY29tPiB3cm90ZToNCj4gSGkgYWxsIDoNCj4NCj4gICAg
-ICAgICAgICBJIGhhdmUgaW5zdGFsbGVkICB0aGUgYWR0X2luc3RhbGxlciAudGFyLmd6IGxpa2Ug
-Zmxsb3dpbmc6DQo+DQo+ICAgICAgICAgICAgICAgJCBjZCB+DQo+DQo+ICAgICAgICAgICAgICAg
-JCB0YXIgLXhqZiBhZHRfaW5zdGFsbGVyLnRhci5iejINCj4NCj4gICAgICAgICAgICAgICAkIGNk
-IGFkdC1pbnN0YWxsZXINCj4NCj4gICAgICAgICAgICAgICAkIC4vYWR0X2luc3RhbGxlcg0KPg0K
-Pg0KPg0KPiAgICAgICAgIEJlY2F1c2UgdGhlDQo+IFlPQ1RPQURUX1RBUkdFVF9TWVNST09UX0xP
-Q19hcm09IiRIT01FL3Rlc3QteW9jdG8vJFlPQ1RPQURUX1RBUkdFVF9NQUMNCj4gSElORV9hcm0N
-Cj4gaW4gYWR0X2luc3RhbGxlci5jb25mIGZpbGUgLA0KPg0KPiAgICAgICAgIHRoZW4gSSBleHRy
-YWN0IHRoZSBteXNlbGYgUm9vdCBGaWxlc3lzdGVtOg0KPg0KPiAgICAgICAgICAgICAgJHNvdXJj
-ZSAvb3B0L3Bva3kvMS43L2Vudmlyb25tZW50LXNldHVwLWk1ODYtcG9reS1saW51eA0KPg0KPiAg
-ICAgICAgICAgICAgJCBydW5xZW11LWV4dHJhY3Qtc2RrDQo+IH4vRG93bmxvYWRzL2NvcmUtaW1h
-Z2UtYXJtLXJvb3Rmcy50YXIuYnoyICAgICAgICAgICAkSE9NRS8gdGVzdC15b2N0by8NCj4gcWVt
-dWFybS8NCj4NCj4NCj4NCj4gICAgICAgIFRyeSB0byBjb21waWxlICB0aGUgIOKAnEhlbGxvd29y
-bGTigJ0sIGl0IGFwcGVyIHRoaXMgZXJyb3I6DQo+DQo+ICAgICAgICAgICBoZWxsby5jOjE6MTk6
-IGZhdGFsIGVycm9yOiBzdGRpby5oOiBObyBzdWNoIGZpbGUgb3IgDQo+IGRpcmVjdG9yeQ0KPg0K
-Pg0KPg0KPiAgICAgRG8geW91IGtub3cgaG93IHRvIHJlc29sdmUgdGhlIGlzc3VlPyBQbGVhc2Ug
-aGVscCBtZSAhDQo+DQo+ICAgICBUaGFuayB5b3UgdmVyeSBtdWNoIQ0KPg0KPg0KPiAtLQ0KPiBf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiB5b2N0byBt
-YWlsaW5nIGxpc3QNCj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiBodHRwczovL2xpc3RzLnlv
-Y3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCj4NCg==
+--001a11c371980312590507caec4c
+Content-Type: text/plain; charset=UTF-8
 
+Good day Yocto dev community,
+
+I would like to ask how do I make a certain package only publishable in
+native in just one recipe? I would want that my scripts will be published
+as a separate package ${PN}-scripts but not publishable in target sysroot.
+I want it be placed in host sysroot both in native and nativesdk.
+
+Right now here's what I did:
+
+PROVIDES_${PN}_class-native += "${PN}-scripts"
+PACKAGES_class-native += " ${PN}-scripts"
+FILES_${PN} += "${datadir}/sample/*"
+FILES_${PN}-scripts += "${bindir}/*"
+
+BBCLASSEXTEND += "native nativesdk"
+
+
+With the above changes, the sample unit still publishes the script in
+target sysroot in SDK and in image.
+
+Please enlighten me.
+
+Thanks,
+Joseph
+
+--001a11c371980312590507caec4c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Good day Yocto dev community,<div><br></div><div>I would l=
+ike to ask how do I make a certain package only publishable in native in ju=
+st one recipe? I would want that my scripts will be published as a separate=
+ package ${PN}-scripts but not publishable in target sysroot. I want it be =
+placed in host sysroot both in native and nativesdk.</div><div><br></div><d=
+iv>Right now here&#39;s what I did:</div><div><br></div><div>PROVIDES_${PN}=
+_class-native +=3D &quot;${PN}-scripts&quot;</div><div>PACKAGES_class-nativ=
+e +=3D &quot; ${PN}-scripts&quot;</div><div>FILES_${PN} +=3D &quot;${datadi=
+r}/sample/*&quot;</div><div>FILES_${PN}-scripts +=3D &quot;${bindir}/*&quot=
+;</div><div><br></div><div>BBCLASSEXTEND +=3D &quot;native nativesdk&quot;<=
+/div><div><br></div><div><br></div><div>With the above changes, the sample =
+unit still publishes the script in target sysroot in SDK and in image.</div=
+><div><br></div><div>Please enlighten me.</div><div><br></div><div>Thanks,<=
+/div><div>Joseph</div></div>
+
+--001a11c371980312590507caec4c--
