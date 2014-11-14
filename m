@@ -1,47 +1,48 @@
-Return-Path: <wd@denx.de>
+Return-Path: <belen.barros.pena@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF5E1E00876; Fri, 14 Nov 2014 01:55:11 -0800 (PST)
+	id 738A2E008EC; Fri, 14 Nov 2014 02:13:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,HDRS_LCASE,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [212.18.0.10 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 HDRS_LCASE Odd capitalization of message header
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EDE4E00837
-	for <yocto@yoctoproject.org>; Fri, 14 Nov 2014 01:54:59 -0800 (PST)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3jfFQn6qxtz3hjtv
-	for <yocto@yoctoproject.org>; Fri, 14 Nov 2014 10:54:57 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
-	by mail.m-online.net (Postfix) with ESMTP id 3jfFQn3NgRzvk96
-	for <yocto@yoctoproject.org>; Fri, 14 Nov 2014 10:54:57 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.184])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
-	port 10024) with ESMTP id dTcY-i1M6AFW for <yocto@yoctoproject.org>;
-	Fri, 14 Nov 2014 10:54:56 +0100 (CET)
-X-Auth-Info: diPZry2T9yeNsxgDXppTa5p+9YNzhZ0KCNK7e+DeOgo=
-Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
-	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA
-	for <yocto@yoctoproject.org>; Fri, 14 Nov 2014 10:54:56 +0100 (CET)
-Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id 3D4A71AAC41
-	for <yocto@yoctoproject.org>; Fri, 14 Nov 2014 10:54:56 +0100 (CET)
-Received: from gemini.denx.de (localhost [IPv6:::1])
-	by gemini.denx.de (Postfix) with ESMTP id 0FE0E382CC5
-	for <yocto@yoctoproject.org>; Fri, 14 Nov 2014 10:54:56 +0100 (MET)
-To: Yocto <yocto@yoctoproject.org>
-From: Wolfgang Denk <wd@denx.de>
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19C4BE00837
+	for <yocto@yoctoproject.org>; Fri, 14 Nov 2014 02:13:30 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 14 Nov 2014 02:13:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.07,384,1413270000"; d="scan'208";a="631889907"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by fmsmga002.fm.intel.com with ESMTP; 14 Nov 2014 02:12:52 -0800
+Received: from irsmsx110.ger.corp.intel.com ([169.254.15.215]) by
+	IRSMSX103.ger.corp.intel.com ([169.254.3.134]) with mapi id
+	14.03.0195.001; Fri, 14 Nov 2014 10:11:57 +0000
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: John Unland <opensourcejohn2112@gmail.com>, Rudolf Streif
+	<rudolf.streif@gmail.com>
+Thread-Topic: [yocto] Hob and Toaster Languages.
+Thread-Index: AQHP//NrPQPcVvGu/0K6mdW2l3StRA==
+Date: Fri, 14 Nov 2014 10:11:56 +0000
+Message-ID: <D08B8579.4E329%belen.barros.pena@intel.com>
+References: <CAByxTR_FokGs5SHExf1o55j3UeeVWA_mugg+qdxAnYcR_=+-4A@mail.gmail.com>
+	<CAEKp-aYUPN5kLcU75++zH+n-9ZQkUg8_zhG-+2buht_=DSP81A@mail.gmail.com>
+	<CAByxTR_QusEg1O=UVJp9M0e2A_k6=d-drwbTnPcE55ADh72LhQ@mail.gmail.com>
+	<CAByxTR-QBJe5LniJP_tTUbaXLC3ybdF1O=USwT7VrtOuk-gqpw@mail.gmail.com>
+In-Reply-To: <CAByxTR-QBJe5LniJP_tTUbaXLC3ybdF1O=USwT7VrtOuk-gqpw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.4.5.141003
+x-originating-ip: [10.237.224.33]
 MIME-Version: 1.0
-Date: Fri, 14 Nov 2014 10:54:56 +0100
-Message-Id: <20141114095456.0FE0E382CC5@gemini.denx.de>
-Subject: Referencing sysroot libraries during build?
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Hob and Toaster Languages.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,73 +54,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Nov 2014 09:55:12 -0000
-Content-type: text/plain; charset=UTF-8
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Fri, 14 Nov 2014 10:13:34 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <570727AA40071E41995A042F8DFD2863@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+On 13/11/2014 23:49, "John Unland" <opensourcejohn2112@gmail.com> wrote:
 
-I have a build problem which is caused by libraries not being found.
+>Almost forgot, what about the interface for Hob. I'm thinking GTK+, am
+>I correct?
 
-It's a recipe to build the U-Boot bot loader which includes running
-the "mkimage" tool generated during this build.  This fails as
-follows:
+Yes: GTK 2.x using PyGtk (if I got this wrong, please someone correct me).
 
-...
-|   LD      u-boot
-|   OBJCOPY u-boot.bin
-|   MKIMAGE u-boot.img
-|
-/opt/eldk/build/eldk-rel-v5.6-2014-08-17-fe344de-mcvevk/tmp/work/mcvevk-linux-gnueabi/u-boot/v2014.10+gitAUTOINC+c43fd23cf6-r0/git/tools/mkimage:
-error while loading shared libraries: libssl.so.1.0.0: cannot open shared object file: No such file or directory
-| make: *** [u-boot.img] Error 127 
+Cheers
 
-I verified that the LD_LIBRARY_PATH variable is not set when these
-commands are run, which explains the problem:
+Bel=E9n
 
--> ldd /opt/eldk/build/eldk-rel-v5.6-2014-08-17-fe344de-mcvevk/tmp/work/mcvevk-linux-gnueabi/u-boot/v2014.10+gitAUTOINC+c43fd23cf6-r0/git/tools/mkimage
-        linux-vdso.so.1 =>  (0x00007fff6a7fe000)
-        libssl.so.1.0.0 => not found
-        libcrypto.so.1.0.0 => not found
-        libc.so.6 => /lib64/libc.so.6 (0x0000003396000000)
-        /lib64/ld-linux-x86-64.so.2 (0x0000003395c00000)
+Bel=E9n
 
-The reason is that this system uses a different version of these libraries:
+>
+>Thanks,
+>John
+>
+>On Wed, Nov 12, 2014 at 5:36 PM, John Unland
+><opensourcejohn2112@gmail.com> wrote:
+>> Thank you.
+>>
+>> Regards,
+>> John
+>>
+>> On Wed, Nov 12, 2014 at 5:35 PM, Rudolf Streif
+>><rudolf.streif@gmail.com> wrote:
+>>> Hi John,
+>>>
+>>> Both are written in Python. Toaster is built on the Django Python web
+>>> framework (https://www.djangoproject.com/).
+>>>
+>>> Cheers,
+>>> Rudi
+>>>
+>>> On Wed, Nov 12, 2014 at 1:18 PM, John Unland
+>>><opensourcejohn2112@gmail.com>
+>>> wrote:
+>>>>
+>>>> What is Hob and Toaster written in? Figured I would like to contribute
+>>>> maybe a deployment tool when you have created a image (I know there is
+>>>> the deployment tool for Hob but it only works for .iso and .hddimg FS)
+>>>>
+>>>> Thanks,
+>>>> John
+>>>> --
+>>>> _______________________________________________
+>>>> yocto mailing list
+>>>> yocto@yoctoproject.org
+>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>>
+>>>
+>>>
+>>> --
+>>> Rudolf J. Streif
+>>>
+>--=20
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
--> ls -l /lib64/libssl.so.1* /lib64/libcrypto.so.1*
--rwxr-xr-x 1 root root 1972736 Aug  8 13:48 /lib64/libcrypto.so.1.0.1e
-lrwxrwxrwx 1 root root      19 Sep  2 23:49 /lib64/libcrypto.so.10 -> libcrypto.so.1.0.1e
--rwxr-xr-x 1 root root  446040 Aug  8 13:48 /lib64/libssl.so.1.0.1e
-lrwxrwxrwx 1 root root      16 Sep  2 23:49 /lib64/libssl.so.10 -> libssl.so.1.0.1e
-
-
-So the host system is using one version of these libraries, while the
-build is done against a different version.
-
-I can work around this problem by adding the build's sysroot
-libraries to LD_LIBRARY_PATH, like that:
-
-do_compile_prepend () {
-	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${STAGING_LIBDIR_NATIVE}:${STAGING_LIBDIR_NATIVE}/../../lib
-}
-
-But this looks wrong to me - if this was needed, should it not be
-done on a much higer level, at some central point so that all tools
-run during the build will automatically pick up the matching
-libraries from sysroot?
-
-Or is this some problem anywhere else in my own code?
-
-Thanks in advance.
-
-Best regards,
-
-Wolfgang Denk
-
--- 
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-If I had to live my life again,  I'd  make  the  same  mistakes, only
-sooner.                                          -- Tallulah Bankhead
 
