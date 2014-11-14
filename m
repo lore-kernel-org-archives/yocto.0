@@ -1,49 +1,54 @@
-Return-Path: <edwingate8@gmail.com>
+Return-Path: <jdelapena@lexmark.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9BDFCE0084F; Thu, 13 Nov 2014 23:12:34 -0800 (PST)
+	id E9BBFE0084F; Thu, 13 Nov 2014 23:33:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (edwingate8[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.193 listed in list.dnswl.org]
-Received: from mail-ig0-f193.google.com (mail-ig0-f193.google.com
-	[209.85.213.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 216D9E00831
-	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 23:12:29 -0800 (PST)
-Received: by mail-ig0-f193.google.com with SMTP id hl2so215868igb.8
-	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 23:12:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=/pvVCtxqCJmwzRD+41zDKOHmx2zf5EPhsFnsCYeCfIw=;
-	b=JCBtC5Fqh1PTtRNo0dDDXieGD/uJAzi4CblsMRzO4nLHYRje/vYqMd3FOMVJ5g2MWD
-	4GFQxPqHJf5ksgvl2kVARYsRFYLzmKi1U+7h92rDD0CfbLe18+FI/mK3WMa+LHIa7U7c
-	rjUX5McdJ1l6IkDm+a2YOaKY5dvvmX9uKDhCfRiDCcX2sdrtNRYjEMj5BIV2Hzq40O+b
-	PMcYVhEKEfvQmi0eIpDGw0ygHbMKpObXaReAW/5Yn1Cv2Oj/JmcG3OjL4K8KmYZhz6hB
-	FKD6/p4O0WR8nodvjjwjFve/YGZQFJeXDiyueGHLFHopASFK5KXnti3+rrJyWHX1asqK
-	g0Pg==
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [64.18.3.86 listed in list.dnswl.org]
+Received: from exprod8og103.obsmtp.com (exprod8og103.obsmtp.com [64.18.3.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 858B2E00831
+	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 23:33:26 -0800 (PST)
+Received: from mail-la0-f44.google.com ([209.85.215.44]) (using TLSv1) by
+	exprod8ob103.postini.com ([64.18.7.12]) with SMTP
+	ID DSNKVGWwRbmsM2D8darat523I0LiLAA19/gA@postini.com;
+	Thu, 13 Nov 2014 23:33:31 PST
+Received: by mail-la0-f44.google.com with SMTP id hz20so4494185lab.17
+	for <yocto@yoctoproject.org>; Thu, 13 Nov 2014 23:33:24 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=5ONxI5fF0NKrV18nAa1XheKYyXdVtw1EoMEv8x/EKvc=;
+	b=dPB73jHthZTyCKXFLjQmI25CMUZQsJQhWvkbDPb4uOjR+lF6AQuyu4bQ60xDtxScOK
+	uHRbLG1RncwIEVj+JOpNEFwmzU38Pd3AHEWS+qG1aqu76xdlx8IpwJWVwBLMxq6UDqVL
+	zTzR5XEvcZwocLn8fOvt7gJVbWVVbD8FzitU46zDDfnx6BD5d5owh6Ldw745gxbLYoEy
+	NbDODaP9mwRqW31UGT3Gkd13MSZW4rU7cjdc7fHL2PmtMM9ZX1g7Jnc5FwY8NyVUPyau
+	n4+mjBhsRXObTqsL2XxK4vtB/jjM3odobXVoFd+ZLrBNj8YTJdi0VeEDEeUYfjAWrJrk
+	dbGw==
+X-Gm-Message-State: ALoCoQnc58u1O7hYTw0KOzqtkOCuiq26vYf1KornhnczlTElYbLV6V4OMKeoMhs9mssA9V13sQWWwW9r92GPkID5BinLLhtyeW5Zh6Ob4A+Jp1rDUeGx/Ig9u3uB0DjEvCSXrBr2wM0zsRXLcxgrLojKh+qz6JEKag==
+X-Received: by 10.112.159.129 with SMTP id xc1mr6840970lbb.24.1415950404146;
+	Thu, 13 Nov 2014 23:33:24 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.42.237.211 with SMTP id kp19mr230763icb.70.1415949148810;
-	Thu, 13 Nov 2014 23:12:28 -0800 (PST)
-Received: by 10.50.155.170 with HTTP; Thu, 13 Nov 2014 23:12:28 -0800 (PST)
-Date: Thu, 13 Nov 2014 23:12:28 -0800
-Message-ID: <CAGMdoFnkFtyjZ7R1jzBM3WUCYEi_A-httnntQZFBVgiahBz9tw@mail.gmail.com>
-From: Edward Wingate <edwingate8@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Web frameworks on embedded linux
+X-Received: by 10.112.159.129 with SMTP id xc1mr6840944lbb.24.1415950403786;
+	Thu, 13 Nov 2014 23:33:23 -0800 (PST)
+Received: by 10.152.2.40 with HTTP; Thu, 13 Nov 2014 23:33:23 -0800 (PST)
+In-Reply-To: <3204FE6663E1F14CAF4CA6928E60C8521E20E474@USSTLZ-PMSG012.emrsn.org>
+References: <3204FE6663E1F14CAF4CA6928E60C8521E20E32E@USSTLZ-PMSG012.emrsn.org>
+	<CAPDOMVgwLM-PJVADkCL=iCoKkE1E9jLQTsF+DekQHk-kYNzo=A@mail.gmail.com>
+	<3204FE6663E1F14CAF4CA6928E60C8521E20E474@USSTLZ-PMSG012.emrsn.org>
+Date: Fri, 14 Nov 2014 15:33:23 +0800
+Message-ID: <CAJrRHk4NgYkqwj8yROa2oASiKstCi8HAfV75_mtA9mUz-RBJ7Q@mail.gmail.com>
+From: =?UTF-8?Q?Joseph_Andrew_de_la_Pe=C3=B1a?= <jdelapena@lexmark.com>
+To: Neil.Wu@emerson.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Can't find the header files after install adt_installer.tar.gz
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,102 +60,207 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Nov 2014 07:12:34 -0000
-Content-Type: multipart/alternative; boundary=047d7b6d7c2808f4380507cc5a38
+X-List-Received-Date: Fri, 14 Nov 2014 07:33:35 -0000
+Content-Type: multipart/alternative; boundary=001a11c313acd675c40507cca426
 
---047d7b6d7c2808f4380507cc5a38
+--001a11c313acd675c40507cca426
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-I've been trying to get an existing python flask application running on an
-embedded linux distro (Poky).  The web app was originally deployed on a
-Debian distro.  I need to move the application to a less heftier board
-and wanted to try a distro created by Yocto, rather than try to pare down
-Debian.
+Good day Neil,
 
-I've been following the chain of dependencies for the web application and
-adding them to Yocto to try and get the app to work (nginx, uwsgi, python,
-pyserial, etc.), and hit a bump - Python's built-in logging and codecs
-modules are not provided by Yocto.  Maybe I can add them myself, or maybe
-I'll rip them out of the application, but I wanted to take a step back and
-see if maybe Python/Flask is not the best app framework to use in an
-embedded linux distro.
+I believe you need to use $CC or $BUILD_CC in your makefile to be able to
+have the correct $INCLUDE paths. The $INCLUDE paths will eventually point
+to your ADT's target_sysroot /usr/include
 
-CPU is not a problem.  This board has ARM Cortex A9 processor running at
-667MHz.  RAM should be OK as well at 512MB, but I am limited by the 32 MB
-flash size on the board. I started with core-image-minimal on Poky (which
-was ~3MB), and I'm up to almost 8MB now.  I guesstimate that I'm maybe 50%
-of the way along the dependency chain. I haven't even gotten to flask yet,
-just the webserver, uwsgi and plain python.  The size I'm referring to is
-just the ramdisk image, not including FSBL nor u-boot (which are minimal
-and shouldn't grow much, if at all, at this point).  I don't know what I'll
-eventually end up at, but I do have to share the 32MB flash with other
-data; it's not dedicated to the OS/Linux.  How much space the OS gets is
-still up in the air.  I'd say at least 16 MB and maybe as much as 20-24 MB.
+- J
 
-While it would be nice to reuse the already written web application, if the
-Python/Flask stack turns out to be too heavy, a port/rewrite is not out of
-the question.  This application just displays a web frontend to get/set
-values on a device over a serial port.
+On Fri, Nov 14, 2014 at 1:05 PM, <Neil.Wu@emerson.com> wrote:
 
-So I wanted to get the list's thoughts and experience on:
+> Thank you for your reply.
+> I just move the adt_installer.tar.gz to another pc which don't have yocto
+> project. Install the adt_installer and execute the
+> environment-setup-armv5te-poky-linux-gnueabi
+>
+> Then compile the hello.c
+> arm-poky-linux-gnueabi-gcc hello.c -o hello
+>
+> I don't know whether need to do other thing?
+> -----Original Message-----
+> From: Nick Krause [mailto:xerofoify@gmail.com]
+> Sent: Thursday, November 13, 2014 11:05 PM
+> To: Wu, Neil [CLIMATE/RS/CN]
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Can't find the header files after install
+> adt_installer.tar.gz
+>
+> Have you read the yocto docs on ADT for building correctly your
+> development kit, seems to me rather trivial error in either your build or
+> bitbake recipe for hello world.
+> Cheers Nick
+>
+> On Thu, Nov 13, 2014 at 4:43 AM,  <Neil.Wu@emerson.com> wrote:
+> > Hi all :
+> >
+> >            I have installed  the adt_installer .tar.gz like fllowing:
+> >
+> >               $ cd ~
+> >
+> >               $ tar -xjf adt_installer.tar.bz2
+> >
+> >               $ cd adt-installer
+> >
+> >               $ ./adt_installer
+> >
+> >
+> >
+> >         Because the
+> > YOCTOADT_TARGET_SYSROOT_LOC_arm=3D"$HOME/test-yocto/$YOCTOADT_TARGET_MA=
+C
+> > HINE_arm
+> > in adt_installer.conf file ,
+> >
+> >         then I extract the myself Root Filesystem:
+> >
+> >              $source /opt/poky/1.7/environment-setup-i586-poky-linux
+> >
+> >              $ runqemu-extract-sdk
+> > ~/Downloads/core-image-arm-rootfs.tar.bz2           $HOME/ test-yocto/
+> > qemuarm/
+> >
+> >
+> >
+> >        Try to compile  the  =E2=80=9CHelloworld=E2=80=9D, it apper this=
+ error:
+> >
+> >           hello.c:1:19: fatal error: stdio.h: No such file or
+> > directory
+> >
+> >
+> >
+> >     Do you know how to resolve the issue? Please help me !
+> >
+> >     Thank you very much!
+> >
+> >
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> >
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-1) Web application frameworks to use with an embedded linux constrained by
-image size.  How well supported by Yocto recipes is the framework?  I've
-been intrigued by the Lua language and the Kepler/Orbit web framework for
-Lua, but except for Lua, there doesn't appear to be Yocto recipes for them.
-
-
-2) Python modules that Yocto doesn't provide recipes for, like logging and
-codecs modules.  How difficult is it to augment python-core?  Is it just a
-matter of adding your own recipe in your own layer? Logging and codecs is
-normally a part of a default Python install, so not sure yet how I would go
-about adding this.
-
-Thanks for your help.
-
-Edward
-
---047d7b6d7c2808f4380507cc5a38
+--001a11c313acd675c40507cca426
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I&#39;ve been trying to get an existing python flask appli=
-cation running on an embedded linux distro (Poky).=C2=A0 The web app was or=
-iginally deployed on a Debian distro.=C2=A0 I need to move the application =
-to a less heftier board and=C2=A0wanted to try a distro created by Yocto, r=
-ather than try to pare down Debian.<br><br>I&#39;ve been following the chai=
-n of dependencies for the web application and adding them to Yocto to try a=
-nd get the app to work (nginx, uwsgi, python, pyserial, etc.), and hit a bu=
-mp - Python&#39;s built-in logging and codecs modules are not provided by Y=
-octo.=C2=A0 Maybe I can add them myself, or maybe I&#39;ll rip them out of =
-the application, but I wanted to take a step back and see if maybe Python/F=
-lask is not the best app framework to use in an embedded linux distro. =C2=
-=A0<br><br>CPU is not a problem.=C2=A0 This board has ARM Cortex A9 process=
-or running at 667MHz.=C2=A0 RAM should be OK as well at 512MB, but I am lim=
-ited by the 32 MB flash size on the board. I started with core-image-minima=
-l on Poky (which was ~3MB), and I&#39;m up to almost 8MB now.=C2=A0 I guess=
-timate that I&#39;m maybe 50% of the way along the dependency chain. I have=
-n&#39;t even gotten to flask yet, just the webserver, uwsgi and plain pytho=
-n.=C2=A0 The size I&#39;m referring to is just the ramdisk image, not inclu=
-ding FSBL nor u-boot (which are minimal and shouldn&#39;t grow much, if at =
-all, at this point).=C2=A0 I don&#39;t know what I&#39;ll eventually end up=
- at, but I do have to share the 32MB flash with other data; it&#39;s not de=
-dicated to the OS/Linux.=C2=A0 How much space the OS gets is still up in th=
-e air.=C2=A0 I&#39;d say at least 16 MB and maybe as much as 20-24 MB.<br><=
-br>While it would be nice to reuse the already written web application, if =
-the Python/Flask stack turns out to be too heavy, a port/rewrite is not out=
- of the question.=C2=A0 This application just displays a web frontend to ge=
-t/set values on a device over a serial port.<br><br>So I wanted to get the =
-list&#39;s thoughts and experience on:<br><br>1) Web application frameworks=
- to use with an embedded linux constrained by image size.=C2=A0 How well su=
-pported by Yocto recipes is the framework?=C2=A0 I&#39;ve been intrigued by=
- the Lua language and the Kepler/Orbit web framework for Lua, but except fo=
-r Lua, there doesn&#39;t appear to be Yocto recipes for them. =C2=A0<br><br=
->2) Python modules that Yocto doesn&#39;t provide recipes for, like logging=
- and codecs modules.=C2=A0 How difficult is it to augment python-core?=C2=
-=A0 Is it just a matter of adding your own recipe in your own layer? Loggin=
-g and codecs is normally a part of a default Python install, so not sure ye=
-t how I would go about adding this.<br><div><br></div><div>Thanks for your =
-help.</div><div><br></div><div>Edward</div></div>
+<div dir=3D"ltr">Good day Neil,<div><br></div><div>I believe you need to us=
+e $CC or $BUILD_CC in your makefile to be able to have the correct $INCLUDE=
+ paths. The $INCLUDE paths will eventually point to your ADT&#39;s target_s=
+ysroot /usr/include</div><div><br></div><div>- J</div></div><div class=3D"g=
+mail_extra"><br><div class=3D"gmail_quote">On Fri, Nov 14, 2014 at 1:05 PM,=
+  <span dir=3D"ltr">&lt;<a href=3D"mailto:Neil.Wu@emerson.com" target=3D"_b=
+lank">Neil.Wu@emerson.com</a>&gt;</span> wrote:<br><blockquote class=3D"gma=
+il_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-lef=
+t:1ex">Thank you for your reply.<br>
+I just move the adt_installer.tar.gz to another pc which don&#39;t have yoc=
+to project. Install the adt_installer and execute the environment-setup-arm=
+v5te-poky-linux-gnueabi<br>
+<br>
+Then compile the hello.c<br>
+arm-poky-linux-gnueabi-gcc hello.c -o hello<br>
+<br>
+I don&#39;t know whether need to do other thing?<br>
+<div class=3D"HOEnZb"><div class=3D"h5">-----Original Message-----<br>
+From: Nick Krause [mailto:<a href=3D"mailto:xerofoify@gmail.com">xerofoify@=
+gmail.com</a>]<br>
+Sent: Thursday, November 13, 2014 11:05 PM<br>
+To: Wu, Neil [CLIMATE/RS/CN]<br>
+Cc: <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br=
+>
+Subject: Re: [yocto] Can&#39;t find the header files after install adt_inst=
+aller.tar.gz<br>
+<br>
+Have you read the yocto docs on ADT for building correctly your development=
+ kit, seems to me rather trivial error in either your build or bitbake reci=
+pe for hello world.<br>
+Cheers Nick<br>
+<br>
+On Thu, Nov 13, 2014 at 4:43 AM,=C2=A0 &lt;<a href=3D"mailto:Neil.Wu@emerso=
+n.com">Neil.Wu@emerson.com</a>&gt; wrote:<br>
+&gt; Hi all :<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 I have installed=C2=A0 the ad=
+t_installer .tar.gz like fllowing:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0$ cd ~<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0$ tar -xjf adt_i=
+nstaller.tar.bz2<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0$ cd adt-install=
+er<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0$ ./adt_installe=
+r<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Because the<br>
+&gt; YOCTOADT_TARGET_SYSROOT_LOC_arm=3D&quot;$HOME/test-yocto/$YOCTOADT_TAR=
+GET_MAC<br>
+&gt; HINE_arm<br>
+&gt; in adt_installer.conf file ,<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0then I extract the myself Root Filesy=
+stem:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 $source /opt/poky/1.7/=
+environment-setup-i586-poky-linux<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 $ runqemu-extract-sdk<=
+br>
+&gt; ~/Downloads/core-image-arm-rootfs.tar.bz2=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0$HOME/ test-yocto/<br>
+&gt; qemuarm/<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 Try to compile=C2=A0 the=C2=A0 =E2=80=9CHel=
+loworld=E2=80=9D, it apper this error:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0hello.c:1:19: fatal error: std=
+io.h: No such file or<br>
+&gt; directory<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Do you know how to resolve the issue? Please help m=
+e !<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0Thank you very much!<br>
+&gt;<br>
+&gt;<br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_b=
+lank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+&gt;<br>
+--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</div></div></blockquote></div><br></div>
 
---047d7b6d7c2808f4380507cc5a38--
+--001a11c313acd675c40507cca426--
