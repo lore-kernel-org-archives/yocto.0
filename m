@@ -1,28 +1,39 @@
-Return-Path: <packages@packages.i.yoctoproject.org>
+Return-Path: <Neil.Wu@Emerson.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A5683E0072A; Sun, 16 Nov 2014 18:01:12 -0800 (PST)
+	id 1CD0AE0072A; Sun, 16 Nov 2014 18:16:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
-	NAME_EMAIL_DIFF autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
-	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [144.191.128.191 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  1.0 NAME_EMAIL_DIFF Sender NAME is an unrelated email address
-Received: from packages.i.yoctoproject.org (packages.i.yoctoproject.org
-	[10.0.10.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01E0CE0071C
-	for <yocto@yoctoproject.org>; Sun, 16 Nov 2014 18:01:11 -0800 (PST)
-Received: by packages.i.yoctoproject.org (Postfix, from userid 802)
-	id F3F9FA409E; Mon, 17 Nov 2014 02:01:10 +0000 (UTC)
-Date: Mon, 17 Nov 2014 02:01:10 +0000
-From: "package-report@yoctoproject.org" <packages@packages.i.yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20141117020110.GA19555@packages.i.yoctoproject.org>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from USSTLZ-PINFEZ07.extemr.org (usstlz-pinfez07.extemr.org
+	[144.191.128.191])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DB80E0048B
+	for <yocto@yoctoproject.org>; Sun, 16 Nov 2014 18:16:24 -0800 (PST)
+Received: from USSTLZ-PMSG003.emrsn.org (10.16.72.185) by
+	USSTLZ-PINFEZ07.extemr.org (10.16.8.80) with Microsoft SMTP Server
+	(TLS) id 14.3.158.1; Mon, 17 Nov 2014 02:16:23 +0000
+Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.30]) by
+	USSTLZ-PMSG003.emrsn.org ([169.254.7.37]) with mapi id 14.03.0158.001;
+	Mon, 17 Nov 2014 02:16:23 +0000
+From: <Neil.Wu@Emerson.com>
+To: <yocto@yoctoproject.org>
+Thread-Topic: Compile th nativesdk-automake fail.
+Thread-Index: Ac/6NKRwhXPCQAGzQEuIFZDgXR9GiQE70huAALn2KxA=
+Date: Mon, 17 Nov 2014 02:16:21 +0000
+Message-ID: <3204FE6663E1F14CAF4CA6928E60C8521E20E67E@USSTLZ-PMSG012.emrsn.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.75.1]
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: [Package Report System]Manual check recipes name list
+Subject: Compile th nativesdk-automake fail.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,51 +45,151 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Nov 2014 02:01:12 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 17 Nov 2014 02:16:26 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_3204FE6663E1F14CAF4CA6928E60C8521E20E67EUSSTLZPMSG012em_"
 
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+--_000_3204FE6663E1F14CAF4CA6928E60C8521E20E67EUSSTLZPMSG012em_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+Hi all :
+It appears the following problem when compiling the nativesdk-automake:
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-man                      1.6g                N/A                 41958 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-dtc                      1.4.0+gitAUTO...    N/A                 41958 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-libdaemon                0.14                N/A                 41958 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-libnss-mdns              0.10                N/A                 41958 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-libffi                   3.1                 N/A                 41958 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-puzzles                  r10116              N/A                 41958 d                  Ross Burton <ross.burton@inte...        No data                       
-libxslt                  1.1.28              N/A                 41958 d                  Ross Burton <ross.burton@inte...        No data                       
-mesa                     10.1.3              N/A                 41958 d                  Ross Burton <ross.burton@inte...        No data                       
-libpng                   1.6.13              1.6.6               411 day                  Ross Burton <ross.burton@inte...        No data                       
-tzdata                   2014j               N/A                 41958 d                  Robert Yang <liezhi.yang@wind...        No data                       
-latencytop               0.5                 N/A                 110 day                  Richard Purdie <richard.purdi...        No data                       
-quicky                   0.4                 N/A                 41958 d                  Paul Eggleton <paul.eggleton@...        No data                       
-nativesdk-qt4-tools      4.8.6               N/A                 41958 d                  Paul Eggleton <paul.eggleton@...        No data                       
-qt4-x11-free             4.8.6               N/A                 41958 d                  Paul Eggleton <paul.eggleton@...        No data                       
-dosfstools               2.11                N/A                 41958 d                  Paul Eggleton <paul.eggleton@...        No data                       
-blktool                  4-6.1               N/A                 41958 d                  Paul Eggleton <paul.eggleton@...        No data                       
-qt4-native               4.8.6               N/A                 41958 d                  Paul Eggleton <paul.eggleton@...        No data                       
-python-smartpm           1.4.1               N/A                 41958 d                  Paul Eggleton <paul.eggleton@...        No data                       
-unfs3                    0.9.22.r490         N/A                 41958 d                  Paul Eggleton <paul.eggleton@...        No data                       
-cdrtools-native          3.01a20             N/A                 41958 d                  Paul Eggleton <paul.eggleton@...        No data                       
-waffle                   1.3.0               N/A                 41958 d                  No Maintainer info                      No data                       
-nss-myhostname           0.3                 N/A                 41958 d                  No Maintainer info                      No data                       
-docbook-xsl-styleshe...  1.78.1              N/A                 41958 d                  No Maintainer info                      No data                       
-pseudo                   1.6.2               N/A                 41958 d                  Mark Hatle <mark.hatle@windri...        No data                       
-bind                     9.9.5               N/A                 41958 d                  Kai Kang <kai.kang@windriver....        No data                       
-pax                      3.4                 N/A                 41958 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
-tremor                   20120314            20120122            616 day                  Cristian Iorga <cristian.iorg...        Same revision on different SVN...
-libatomics-ops           7.2                 N/A                 41958 d                  Cristian Iorga <cristian.iorg...        No data                       
-sudo                     1.8.10p3            N/A                 41958 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
-lz4                      r123                122                 79 days                  Armin Kuster <akuster808@gmai...        No data                       
-nettle                   2.7.1               N/A                 88 days                  Armin Kuster <akuster808@gmai...        3.0.0 breaks gnutls, api chang...
-xinetd                   2.3.15              N/A                 110 day                  An?bal Lim?n <anibal.limon@li...        No data                       
-lsof                     4.87                N/A                 110 day                  An?bal Lim?n <anibal.limon@li...        No data                       
-midori                   0.5.5               N/A                 41958 d                  Alejandro Hernandez <alejandr...        No data                       
-Manual Check Count: 34
-Manual Need Check Count: 34
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+| Can't locate Text/Tabs.pm in @INC (@INC contains: //usr/lib/perl/5.14.3 /=
+/usr/lib/perl //usr/lib/perl/5.14.3 /opt/poky/1.6.1/sysroots/i686-pokysdk-l=
+inux/usr/lib/perl/site_perl/5.14.3/ /opt/poky/1.6.1/sysroots/i686-pokysdk-l=
+inux/usr/lib/perl/site_perl/5.14.3 /opt/poky/1.6.1/sysroots/i686-pokysdk-li=
+nux/usr/lib/perl/vendor_perl/5.14.3/ /opt/poky/1.6.1/sysroots/i686-pokysdk-=
+linux/usr/lib/perl/vendor_perl/5.14.3 /opt/poky/1.6.1/sysroots/i686-pokysdk=
+-linux/usr/lib/perl/5.14.3/ /opt/poky/1.6.1/sysroots/i686-pokysdk-linux/usr=
+/lib/perl/5.14.3 /opt/poky/1.6.1/sysroots/i686-pokysdk-linux/usr/lib/perl/5=
+.14.3 .) at /home/etcrs/poky/build/tmp/work/i686-nativesdk-pokysdk-linux/na=
+tivesdk-automake/1.14-r0/automake-1.14/doc/help2man line 25.
+| BEGIN failed--compilation aborted at /home/etcrs/poky/build/tmp/work/i686=
+-nativesdk-pokysdk-linux/nativesdk-automake/1.14-r0/automake-1.14/doc/help2=
+man line 25.
 
+If someone has also encountered such a problem, please tell me how to resol=
+ve it!
+Thank you !
+
+--_000_3204FE6663E1F14CAF4CA6928E60C8521E20E67EUSSTLZPMSG012em_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle20
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle21
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Hi all :<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">It appears the followi=
+ng problem when compiling the nativesdk-automake:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| Can't locate Text/Ta=
+bs.pm in @INC (@INC contains: //usr/lib/perl/5.14.3 //usr/lib/perl //usr/li=
+b/perl/5.14.3 /opt/poky/1.6.1/sysroots/i686-pokysdk-linux/usr/lib/perl/site=
+_perl/5.14.3/ /opt/poky/1.6.1/sysroots/i686-pokysdk-linux/usr/lib/perl/site=
+_perl/5.14.3
+ /opt/poky/1.6.1/sysroots/i686-pokysdk-linux/usr/lib/perl/vendor_perl/5.14.=
+3/ /opt/poky/1.6.1/sysroots/i686-pokysdk-linux/usr/lib/perl/vendor_perl/5.1=
+4.3 /opt/poky/1.6.1/sysroots/i686-pokysdk-linux/usr/lib/perl/5.14.3/ /opt/p=
+oky/1.6.1/sysroots/i686-pokysdk-linux/usr/lib/perl/5.14.3
+ /opt/poky/1.6.1/sysroots/i686-pokysdk-linux/usr/lib/perl/5.14.3 .) at /hom=
+e/etcrs/poky/build/tmp/work/i686-nativesdk-pokysdk-linux/nativesdk-automake=
+/1.14-r0/automake-1.14/doc/help2man line 25.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">| BEGIN failed--compil=
+ation aborted at /home/etcrs/poky/build/tmp/work/i686-nativesdk-pokysdk-lin=
+ux/nativesdk-automake/1.14-r0/automake-1.14/doc/help2man line 25.<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">If someone has also en=
+countered such a problem, please tell me how to resolve it!
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Thank you !<o:p></o:p>=
+</span></p>
+</div>
+</body>
+</html>
+
+--_000_3204FE6663E1F14CAF4CA6928E60C8521E20E67EUSSTLZPMSG012em_--
