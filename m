@@ -1,45 +1,50 @@
-Return-Path: <mike.looijmans@topic.nl>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7412DE00830; Sun, 16 Nov 2014 23:26:01 -0800 (PST)
+	id E4FE3E00837; Mon, 17 Nov 2014 03:06:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp103.mer-nm.internl.net (smtp103.mer-nm.internl.net
-	[217.149.192.139])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 069B6E0080C
-	for <yocto@yoctoproject.org>; Sun, 16 Nov 2014 23:25:51 -0800 (PST)
-Received: from amavisd-new (mailscanner06.wrt-nm.internl.net [217.149.192.58])
-	by smtp103.mer-nm.internl.net (Postfix) with ESMTP id 932293F825;
-	Mon, 17 Nov 2014 08:25:49 +0100 (CET)
-Received: from smtp103.mer-nm.internl.net ([217.149.192.139])
-	by amavisd-new (mailscanner06.wrt-nm.internl.net [217.149.192.160])
-	(amavisd-new, port 10024)
-	with ESMTP; Mon, 17 Nov 2014 08:25:48 +0100 (CET)
-Received: from TOP-EX01.TOPIC.LOCAL (mail.topic.nl [82.204.13.182])
-	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by smtp103.mer-nm.internl.net (Postfix) with ESMTPS;
-	Mon, 17 Nov 2014 08:25:47 +0100 (CET)
-Received: from [192.168.80.45] (192.168.80.45) by TOP-EX01.TOPIC.LOCAL
-	(192.168.10.102) with Microsoft SMTP Server (TLS) id 14.3.181.6;
-	Mon, 17 Nov 2014 08:26:02 +0100
-Message-ID: <5469A2FA.6020004@topic.nl>
-Date: Mon, 17 Nov 2014 08:25:46 +0100
-From: Mike Looijmans <mike.looijmans@topic.nl>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.50 listed in list.dnswl.org]
+Received: from mail-qg0-f50.google.com (mail-qg0-f50.google.com
+	[209.85.192.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E340E0071C
+	for <yocto@yoctoproject.org>; Mon, 17 Nov 2014 03:05:50 -0800 (PST)
+Received: by mail-qg0-f50.google.com with SMTP id e89so3992931qgf.9
+	for <yocto@yoctoproject.org>; Mon, 17 Nov 2014 03:05:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=1kM/zk7SJ0G6WTj8lM6/aXSj0Y9vdP3Uf28GCUOQ/KI=;
+	b=Fxr4Sb4XP0lQDySiObdAj3seXmasu05JlV/XfEsR41zByDjyq95ZRAqWYVvQug7qax
+	w4RYZ2/xLkITQif5aTOZyi+yVP0XLGeTzIv4EPvP5pFBxGoMO1eK/+o93JR2fokS7wrt
+	uVgTm8G27qriUU7TEf0ApNZy5+LjspUFFKe4K1QEmrWYHpldv+7kkIMToWkYj6AslAZr
+	9pFOBbXZEYrbnqpamUBVr5uvNndbc3IJkt1hFBwK+g1zsRNmOJ3NqtsqF7V9f9f43MS8
+	oar0sEStjXDhxPW7l467tj/XDm1kJkUNT95CKBSpZ9aYLH+ncQ6VxlU8tnl8rTWLMuVc
+	UK0g==
+X-Gm-Message-State: ALoCoQmcNZ1NcBF0u7i5fe8jhsiB0q3CrWEAbo6fvAHOB8X72UEd+hJAOBfybNgxG+TyHNkLubb6
+X-Received: by 10.140.94.233 with SMTP id g96mr12806185qge.77.1416222350431;
+	Mon, 17 Nov 2014 03:05:50 -0800 (PST)
 MIME-Version: 1.0
-To: Michael Gloff <mgloff@emacinc.com>, "Burton, Ross" <ross.burton@intel.com>
-References: <5464AB4D.8020409@topic.nl>	<CAJTo0Lb35s=8_JkTwxtkOskW0c+WX3U7pz5erBKSvYXVxE3riw@mail.gmail.com>	<5464ADD9.1090604@topic.nl>	<5464AFCC.5010709@topic.nl>	<CAJTo0LbFLKJ304sCbSGZW0w9rpEe5oN5Ao3bAr8a-yLjNrRKkQ@mail.gmail.com>
+Received: by 10.140.48.231 with HTTP; Mon, 17 Nov 2014 03:05:30 -0800 (PST)
+In-Reply-To: <5469A2FA.6020004@topic.nl>
+References: <5464AB4D.8020409@topic.nl>
+	<CAJTo0Lb35s=8_JkTwxtkOskW0c+WX3U7pz5erBKSvYXVxE3riw@mail.gmail.com>
+	<5464ADD9.1090604@topic.nl> <5464AFCC.5010709@topic.nl>
+	<CAJTo0LbFLKJ304sCbSGZW0w9rpEe5oN5Ao3bAr8a-yLjNrRKkQ@mail.gmail.com>
 	<CALXw4G6V7CWLx5HJvvHg7WRkALHpqZji4EXq8x0f_coxQD3AFQ@mail.gmail.com>
-In-Reply-To: <CALXw4G6V7CWLx5HJvvHg7WRkALHpqZji4EXq8x0f_coxQD3AFQ@mail.gmail.com>
-X-Originating-IP: [192.168.80.45]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
+	<5469A2FA.6020004@topic.nl>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 17 Nov 2014 11:05:30 +0000
+Message-ID: <CAJTo0LbHPwBg0yK__-140TFeHpgu7p7QcYizpz2QSOxZvGRXhw@mail.gmail.com>
+To: Mike Looijmans <mike.looijmans@topic.nl>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Sato image touchscreen calibration is borked
 X-BeenThere: yocto@yoctoproject.org
@@ -53,56 +58,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Nov 2014 07:26:01 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-List-Received-Date: Mon, 17 Nov 2014 11:06:04 -0000
+Content-Type: multipart/alternative; boundary=001a113a7bd01eea7405080bf645
+
+--001a113a7bd01eea7405080bf645
+Content-Type: text/plain; charset=UTF-8
+
+On 17 November 2014 07:25, Mike Looijmans <mike.looijmans@topic.nl> wrote:
+
+> BTW, you can use tslib with xorg. This is what I have set up as I find
+>> ts_calibrate easier to work with.
+>>
+>
+> Interesting option, can you elaborate on that (in particular, in
+> combination with Yocto builds)?
+
+
+meta-oe has xf86-input-tslib.  Installing that might still work.  It's been
+untouched since 2009 which is why I assumed it would have bit-rotted by now.
+
+Ross
+
+--001a113a7bd01eea7405080bf645
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-=EF=BB=BFOn 11/13/2014 06:58 PM, Michael Gloff wrote:
-> On Thu, Nov 13, 2014 at 7:28 AM, Burton, Ross <ross.burton@intel.com
-> <mailto:ross.burton@intel.com>> wrote:
->
->     Hi,
->
->     On 13 November 2014 13:19, Mike Looijmans <mike.looijmans@topic.nl
->     <mailto:mike.looijmans@topic.nl>> wrote:
->
->         I've been using "ts_calibrate" in the past, and that worked just =
-fine
->         on this board.
->
->
->     Modern X servers don't use tslib, so this won't work since we stopped
->     using kdrive about two years ago.
->
-> BTW, you can use tslib with xorg. This is what I have set up as I find
-> ts_calibrate easier to work with.
-
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 17 November 2014 07:25, Mike Looijmans <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:mike.looijmans@topic.nl" target=3D"_blank">mike.looijmans@topic.nl</=
+a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><blockquote class=3D=
+"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding=
+-left:1ex"><span class=3D"">BTW, you can use tslib with xorg. This is what =
+I have set up as I find<br>
+ts_calibrate easier to work with.<br>
+</span></blockquote>
+<br>
 Interesting option, can you elaborate on that (in particular, in combinatio=
-n=20
-with Yocto builds)?
+n with Yocto builds)?</blockquote></div><br>meta-oe has xf86-input-tslib.=
+=C2=A0 Installing that might still work.=C2=A0 It&#39;s been untouched sinc=
+e 2009 which is why I assumed it would have bit-rotted by now.</div><div cl=
+ass=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
 
-
-
-
-
-Met vriendelijke groet / kind regards,
-
-Mike Looijmans
-System Expert
-
-
-TOPIC Embedded Systems
-Eindhovenseweg 32-C, NL-5683 KH Best
-Postbus 440, NL-5680 AK Best
-Telefoon: (+31) (0) 499 33 69 79
-Telefax:  (+31) (0) 499 33 69 70
-E-mail: mike.looijmans@topic.nl
-Website: www.topic.nl
-
-Please consider the environment before printing this e-mail
-
-Visit us at Bits & Chips Smart Systems 20th November, 1931 Congrescentum Br=
-abanthallen 's-Hertogenbosch, stand number 34
-http://bc-smartsystems.nl
-
-
+--001a113a7bd01eea7405080bf645--
