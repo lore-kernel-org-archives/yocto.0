@@ -1,52 +1,56 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <bevenson@melinkcorp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E4FE3E00837; Mon, 17 Nov 2014 03:06:03 -0800 (PST)
+	id 41CF5E00830; Mon, 17 Nov 2014 05:49:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [157.56.110.104 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.50 listed in list.dnswl.org]
-Received: from mail-qg0-f50.google.com (mail-qg0-f50.google.com
-	[209.85.192.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E340E0071C
-	for <yocto@yoctoproject.org>; Mon, 17 Nov 2014 03:05:50 -0800 (PST)
-Received: by mail-qg0-f50.google.com with SMTP id e89so3992931qgf.9
-	for <yocto@yoctoproject.org>; Mon, 17 Nov 2014 03:05:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=1kM/zk7SJ0G6WTj8lM6/aXSj0Y9vdP3Uf28GCUOQ/KI=;
-	b=Fxr4Sb4XP0lQDySiObdAj3seXmasu05JlV/XfEsR41zByDjyq95ZRAqWYVvQug7qax
-	w4RYZ2/xLkITQif5aTOZyi+yVP0XLGeTzIv4EPvP5pFBxGoMO1eK/+o93JR2fokS7wrt
-	uVgTm8G27qriUU7TEf0ApNZy5+LjspUFFKe4K1QEmrWYHpldv+7kkIMToWkYj6AslAZr
-	9pFOBbXZEYrbnqpamUBVr5uvNndbc3IJkt1hFBwK+g1zsRNmOJ3NqtsqF7V9f9f43MS8
-	oar0sEStjXDhxPW7l467tj/XDm1kJkUNT95CKBSpZ9aYLH+ncQ6VxlU8tnl8rTWLMuVc
-	UK0g==
-X-Gm-Message-State: ALoCoQmcNZ1NcBF0u7i5fe8jhsiB0q3CrWEAbo6fvAHOB8X72UEd+hJAOBfybNgxG+TyHNkLubb6
-X-Received: by 10.140.94.233 with SMTP id g96mr12806185qge.77.1416222350431;
-	Mon, 17 Nov 2014 03:05:50 -0800 (PST)
+Received: from na01-bn1-obe.outbound.protection.outlook.com
+	(mail-bn1bn0104.outbound.protection.outlook.com [157.56.110.104])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF503E0072A
+	for <yocto@yoctoproject.org>; Mon, 17 Nov 2014 05:49:41 -0800 (PST)
+Received: from BLUPR05MB037.namprd05.prod.outlook.com (10.255.210.145) by
+	BLUPR05MB038.namprd05.prod.outlook.com (10.255.210.147) with Microsoft
+	SMTP Server (TLS) id 15.1.16.15; Mon, 17 Nov 2014 13:49:35 +0000
+Received: from BLUPR05MB037.namprd05.prod.outlook.com ([169.254.7.98]) by
+	BLUPR05MB037.namprd05.prod.outlook.com ([169.254.7.98]) with mapi id
+	15.01.0016.006; Mon, 17 Nov 2014 13:49:35 +0000
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: "peterengcomau001@adam.com.au" <peterengcomau001@adam.com.au>, "Alexandru
+	Vaduva" <vaduvajanalexandru@yahoo.com>, Anders Darander
+	<anders@chargestorm.se>
+Thread-Topic: [yocto] recipe fails to load local files
+Thread-Index: AQHP/1V6cxPGsivkV0a2dGx9FjFE7Zxew4ewgAEKHACAAE9REIAAF1gAgAHcboCAAAwwAIABLjaAgAGIEjA=
+Date: Mon, 17 Nov 2014 13:49:35 +0000
+Message-ID: <45b628263f84460385d48263d89fd81b@BLUPR05MB037.namprd05.prod.outlook.com>
+References: <190755735.675679.1416081194869.JavaMail.yahoo@jws10032.mail.ne1.yahoo.com>
+	<c9dbdd6d8a8f4cad34cf72059ecb75b92b957b17@webmail.adam.com.au>
+In-Reply-To: <c9dbdd6d8a8f4cad34cf72059ecb75b92b957b17@webmail.adam.com.au>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-vipre-scanned: 002D5E84008834002D5FD1
+x-originating-ip: [98.100.91.242]
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:;SRVR:BLUPR05MB038;
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0;PCL:0;RULEID:;SRVR:BLUPR05MB038;
+x-forefront-prvs: 03982FDC1D
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6009001)(377454003)(13464003)(189002)(24454002)(164054003)(199003)(2656002)(87936001)(107046002)(120916001)(566704002)(106356001)(33646002)(106116001)(95666004)(105586002)(99286002)(97736003)(21056001)(76576001)(31966008)(122556002)(4396001)(77156002)(77096003)(62966003)(40100003)(2501002)(15202345003)(74316001)(108616004)(2521001)(19580395003)(19580405001)(15975445006)(92566001)(86362001)(50986999)(20776003)(64706001)(66066001)(99396003)(46102003)(101416001)(54356999)(76176999)(24736002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BLUPR05MB038;
+	H:BLUPR05MB037.namprd05.prod.outlook.com; FPR:; MLV:sfv;
+	PTR:InfoNoRecords; MX:3; A:3; LANG:en; 
 MIME-Version: 1.0
-Received: by 10.140.48.231 with HTTP; Mon, 17 Nov 2014 03:05:30 -0800 (PST)
-In-Reply-To: <5469A2FA.6020004@topic.nl>
-References: <5464AB4D.8020409@topic.nl>
-	<CAJTo0Lb35s=8_JkTwxtkOskW0c+WX3U7pz5erBKSvYXVxE3riw@mail.gmail.com>
-	<5464ADD9.1090604@topic.nl> <5464AFCC.5010709@topic.nl>
-	<CAJTo0LbFLKJ304sCbSGZW0w9rpEe5oN5Ao3bAr8a-yLjNrRKkQ@mail.gmail.com>
-	<CALXw4G6V7CWLx5HJvvHg7WRkALHpqZji4EXq8x0f_coxQD3AFQ@mail.gmail.com>
-	<5469A2FA.6020004@topic.nl>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 17 Nov 2014 11:05:30 +0000
-Message-ID: <CAJTo0LbHPwBg0yK__-140TFeHpgu7p7QcYizpz2QSOxZvGRXhw@mail.gmail.com>
-To: Mike Looijmans <mike.looijmans@topic.nl>
+X-OriginatorOrg: melinkcorp.com
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Sato image touchscreen calibration is borked
+Subject: Re: recipe fails to load local files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,46 +62,137 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Nov 2014 11:06:04 -0000
-Content-Type: multipart/alternative; boundary=001a113a7bd01eea7405080bf645
+X-List-Received-Date: Mon, 17 Nov 2014 13:49:52 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---001a113a7bd01eea7405080bf645
-Content-Type: text/plain; charset=UTF-8
+TGFjaGxhbiwNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBwZXRlcmVu
+Z2NvbWF1MDAxQGFkYW0uY29tLmF1DQo+IFttYWlsdG86cGV0ZXJlbmdjb21hdTAwMUBhZGFtLmNv
+bS5hdV0NCj4gU2VudDogU3VuZGF5LCBOb3ZlbWJlciAxNiwgMjAxNCA4OjU1IEFNDQo+IFRvOiBB
+bGV4YW5kcnUgVmFkdXZhOyBwZXRlcmVuZ2NvbWF1MDAxQGFkYW0uY29tLmF1OyBBbmRlcnMNCj4g
+RGFyYW5kZXI7IEJyeWFuIEV2ZW5zb24NCj4gQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4g
+U3ViamVjdDogUmU6IFt5b2N0b10gcmVjaXBlIGZhaWxzIHRvIGxvYWQgbG9jYWwgZmlsZXMNCj4g
+DQo+IFRoZXJlIGlzIG5vIHBhY2thZ2UgY2FsbGVkIHpkMTIxMSB0aGF0IEkgY2FuIGlkZW50aWZ5
+LiBJZiBJIHJ1bg0KPiAkIGJpdGJha2UgYXRtZWwtcXQ1LWRlbW8taW1hZ2UgLWcgLXUgZGVwZXhw
+DQo+IEl0IGRvZXMgbm90IGxpc3QgYSBwYWNrYWdlIHRoYXQgaGFzIHpkMTIxMSBpbiBpdC4gSGF2
+aW5nIHNhaWQgdGhhdCwgaWYgSSBydW4NCj4gJCBmaW5kIC1uYW1lIHpkMTIxMSoNCj4gSXQgc2hv
+d3MgdGhhdCB6ZDEyMTFydyBhbmQgemQxMjExcncua28gZmlsZXMgYXJlIGluIHRoZSByb290ZnMg
+aW4gdGhlDQo+IHRtcC93b3JrIGRpcmVjdG9yeSB1bmRlciBrZXJuZWwvZHJpdmVycy9uZXQvd2ly
+bGVzcy4NCj4gDQo+IElzIHRoYXQgd2hhdCB5b3UgYXJlIHJlZmVycmluZyB0bz8NCj4gDQo+IExh
+Y2hsYW4NCj4gDQo+IA0KPiAJLS0tLS0gT3JpZ2luYWwgTWVzc2FnZSAtLS0tLQ0KPiANCj4gCUZy
+b206DQo+IAkiQWxleGFuZHJ1IFZhZHV2YSIgPHZhZHV2YWphbmFsZXhhbmRydUB5YWhvby5jb20+
+DQo+IA0KPiAJVG86DQo+IAkicGV0ZXJlbmdjb21hdTAwMUBhZGFtLmNvbS5hdSINCj4gPHBldGVy
+ZW5nY29tYXUwMDFAYWRhbS5jb20uYXU+LCAiQW5kZXJzIERhcmFuZGVyIg0KPiA8YW5kZXJzQGNo
+YXJnZXN0b3JtLnNlPiwgIkJyeWFuIEV2ZW5zb24iIDxiZXZlbnNvbkBtZWxpbmtjb3JwLmNvbT4N
+Cj4gDQo+IAlDYzoNCj4gCSJ5b2N0b0B5b2N0b3Byb2plY3Qub3JnIiA8eW9jdG9AeW9jdG9wcm9q
+ZWN0Lm9yZz4NCj4gDQo+IAlTZW50Og0KPiAJU2F0LCAxNSBOb3YgMjAxNCAxOTo1MzoxNCArMDAw
+MCAoVVRDKQ0KPiANCj4gCVN1YmplY3Q6DQo+IAlSZTogW3lvY3RvXSByZWNpcGUgZmFpbHMgdG8g
+bG9hZCBsb2NhbCBmaWxlcw0KPiANCj4gDQo+IA0KPiAJSXMgInpkMTIxMSIgYXZhaWxhYmxlIGlu
+IHBhY2thZ2VzIGFuZCBwYWNrYWdlLXNwbGl0L3pkMTIxMS0NCj4gZmlybXdhcmUqPw0KDQpUbyBl
+eHBhbmQgb24gQWxleGFuZHJ1J3MgcXVlc3Rpb24sIHRoZSBmaXJzdCBzdGVwIGlzIHRvIHZlcmlm
+eSB0aGF0IHRoZSBsaWJyYXJ5IGZpbGVzIGFyZSBub3cgYmVpbmcgYWRkZWQgdG8gdGhlIHpkMTIx
+MS1maXJtd2FyZSBwYWNrYWdlLiAgQXNzdW1pbmcgeW91IGFyZSB1c2luZyBvcGtnIGZvciBwYWNr
+YWdlIG1hbmFnZW1lbnQgc2VhcmNoIGluIHRtcC9kZXBsb3kvaXBrLyBmb3IgYW55IGZpbGVzIG5h
+bWVkICJ6ZDEyMTEtZmlybXdhcmUuKmlwayIuICBZb3Ugc2hvdWxkIGZpbmQgb25lIG5hbWVkIHNv
+bWV0aGluZyBsaWtlIHpkMTIxMS1maXJtd2FyZV8xLjUtcjBfIHNhbWE1ZDN4ZWsuaXBrLiAgT3Bl
+biB0aGUgcGFja2FnZSB1cCB3aXRoIGZpbGUtcm9sbGVyIGFuZCB2ZXJpZnkgdGhhdCB0aGUgbGli
+L2Zpcm13YXJlIGRpcmVjdG9yeSBjb250YWlucyB0aGUgbGlicmFyaWVzIHRoYXQgeW91IGludGVu
+ZGVkIHRvIGFkZCB0byB0aGUgcGFja2FnZS4gIElmIHNvLCB0aGVuIHRoZSBwYWNrYWdlIGlzIGJl
+aW5nIGJ1aWx0IGNvcnJlY3RseS4NCg0KT25jZSB0aGUgcGFja2FnZSBpcyBiZWluZyBidWlsdCBj
+b3JyZWN0bHksIHRoZSBwYWNrYWdlIG5lZWRzIHRvIGJlIGFkZGVkIHRvIHlvdXIgaW1hZ2UuICBQ
+YWNrYWdlcyBhcmUgb25seSBhZGRlZCB0byBhbiBpbWFnZSB3aGVuIHRoZXkgYXJlIHNwZWNpZmlj
+YWxseSBsaXN0ZWQgaW4gdGhlIGltYWdlIHJlY2lwZSBvciBpZiBpdCBpcyBhIHJlcXVpcmVkIGRl
+cGVuZGVuY3kgb2YgYSBwYWNrYWdlIHRoYXQgaGFzIGJlZW4gYWRkZWQgdG8gdGhlIGltYWdlLiAg
+SWYgeW91IGRvbid0IGFscmVhZHkgaGF2ZSBhIC5iYmFwcGVuZCBmb3IgdGhlIGltYWdlLCB5b3Ug
+bmVlZCB0byBjcmVhdGUgb25lIGluIHlvdXIgbGF5ZXIgYW5kIGFkZCB0aGUgemQxMjExLWZpcm13
+YXJlIHBhY2thZ2UuICBUaGUgLmJiYXBwZW5kIG5lZWRzIHRvIGZvbGxvdyB0aGUgc2FtZSBkaXJl
+Y3Rvcnkgc3RydWN0dXJlIGFzIHRoZSBpbWFnZSByZWNpcGUgaW4gdGhlIG1ldGEtYXRtZWwgbGF5
+ZXIuICBTbyBmb3IgeW91ciBzcGVjaWZpYyBjYXNlOg0KDQoxLiBDcmVhdGUgdGhlIGZpbGUgfi9w
+b2t5L21ldGEtYXRtZWwtbHNwL3JlY2lwZXMtcXQvaW1hZ2VzL2F0bWVsLXF0NS1kZW1vLWltYWdl
+LmJiYXBwZW5kLCBhZGRpbmcgZGlyZWN0b3JpZXMgYXMgbmVlZGVkIGZvciB0aGUgZnVsbCBwYXRo
+Lg0KMi4gQWRkIHRoZSBmb2xsb3dpbmcgY29udGVudHMgdG8gdGhlIGF0bWVsLXF0NS1kZW1vLWlt
+YWdlLmJiYXBwZW5kOg0KDQpJTUFHRV9JTlNUQUxMICs9ICIgXA0KCXpkMTIxMS1maXJtd2FyZSBc
+DQoiDQoNClRoZSBleHRyYSBsaW5lcyBhbmQgdGhlIFwgYXQgdGhlIGVuZCBvZiB0aGUgbGluZSBp
+cyB0aGVyZSB0byBtYWtlIHN1cmUgdHdvIHBhY2thZ2UgbmFtZXMgZG9uJ3QgZ2V0IG1lcmdlZCB0
+b2dldGhlciB3aGVuIElNQUdFX0lOU1RBTEwgZ2V0cyBidWlsdC4NCg0KMy4gSWYgeW91IGFyZSBu
+b3QgdXNpbmcgdGhlIFBSIHNlcnZpY2UgKGh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2Nz
+LzEuNy9tZWdhLW1hbnVhbC9tZWdhLW1hbnVhbC5odG1sI3dvcmtpbmctd2l0aC1hLXByLXNlcnZp
+Y2UpLCBhbHNvIGFkZCB0aGUgZm9sbG93aW5nIHRvIHlvdXIgLmJiYXBwZW5kOg0KDQpQUiA9ICJy
+MSINCg0Kb3RoZXJ3aXNlIHlvdSBtYXkgbm90IHNlZSB5b3VyIGNoYW5nZSBpbiB0aGUgZmluYWwg
+aW1hZ2UuDQoNCjQuIFJlLWJ1aWxkIGF0bWVsLXF0NS1kZW1vLWltYWdlLiAgWW91IHNob3VsZCBu
+b3cgc2VlIHlvdXIgbGlicmFyeSBmaWxlcyBpbiB0aGUgZmluYWwgaW1hZ2UuDQoNClJlZ2FyZHMs
+DQpCcnlhbg0KDQpBZnRlciB5b3UgbWFrZSB0aGF0IGNoYW5nZSBhbmQgcmVidWlsZCANCj4gDQo+
+IA0KPiAJT24gU2F0dXJkYXksIE5vdmVtYmVyIDE1LCAyMDE0IDk6MDkgUE0sDQo+ICJwZXRlcmVu
+Z2NvbWF1MDAxQGFkYW0uY29tLmF1IiA8cGV0ZXJlbmdjb21hdTAwMUBhZGFtLmNvbS5hdT4NCj4g
+d3JvdGU6DQo+IA0KPiANCj4gDQo+IAlUaGFua3MsIEkgaGF2ZSBkb25lIHRoZSBjaGFuZ2VzIGFu
+ZCBubyBsb25nZXIgZ2V0IHRoZSBlcnJvci4NCj4gSG93ZXZlciwgdGhlIGZpcm13YXJlIGZpbGVz
+IHN0aWxsIGRvIG5vdCBnZXQgZ2VuZXJhdGVkIHdoZW4gSSBidWlsZCB0aGUNCj4gaW1hZ2UuDQo+
+IAlUaGUgY3VycmVudCByZWNpcGUgSSBhbSB1c2luZyBpczoNCj4gCV9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fDQo+IAlERVNDUklQVElPTiA9ICJCZWxraW4gV2lmaSBGaXJt
+d2FyZSINCj4gCUxJQ0VOU0UgPSAiR1BMIg0KPiAJUFIgPSAicjAiDQo+IA0KPiAJRklMRVNQQVRI
+ID0gIiR7VEhJU0RJUn0vJHtQTn0iDQo+IAlGSUxFU18ke1BOfSArPSAiL2xpYi9maXJtd2FyZS96
+ZDEyMTEiDQo+IA0KPiAJU1JDX1VSSSA9ICJcDQo+IAkgIGZpbGU6Ly96ZDEyMTFfdWIgXA0KPiAJ
+ICBmaWxlOi8vemQxMjExX3VwaCBcDQo+IAkgIGZpbGU6Ly96ZDEyMTFfdXBobSBcDQo+IAkgIGZp
+bGU6Ly96ZDEyMTFfdXBociBcDQo+IAkgIGZpbGU6Ly96ZDEyMTFfdXIgXA0KPiAJIg0KPiANCj4g
+CVMgPSAiJHtXT1JLRElSfSINCj4gDQo+IAlkb19pbnN0YWxsKCkgew0KPiAJICAgICAgICBpbnN0
+YWxsIC1kICR7RH0vbGliL2Zpcm13YXJlL3pkMTIxMQ0KPiAJICAgIGluc3RhbGwgLW0gMDU1NSAk
+e1dPUktESVJ9L3pkMTIxMV8qICAgICR7RH0vbGliL2Zpcm13YXJlL3pkMTIxMS8NCj4gCX0NCj4g
+CV9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gDQo+IAlObyBlcnJv
+cnMgcmVzdWx0IHdoZW4gYnVpbGRpbmcgdGhlIGltYWdlLiBIb3dldmVyLCB0aGVyZSBpcyBubw0K
+PiBkaXJlY3Rvcnkgb3IgZmlsZXMgaW46DQo+IAl+L3Bva3kvYnVpbGQtYXRtZWwvdG1wL3dvcmsv
+c2FtYTVkM3hlay1wb2t5LWxpbnV4LQ0KPiBnbnVlYWJpL2F0bWVsLXF0NS1kZW1vLWltYWdlLzEu
+MC1yMC9yb290ZnMvbGliL2Zpcm13YXJlDQo+IA0KPiAJVGhlIHJlY2lwZXMgYXJlIGluIGZpbGU6
+DQo+IAl+L3Bva3kvbWV0YS1hdG1lbC1sc3AvcmVjaXBlcy1sc3AvemQxMjExLWZpcm13YXJlDQo+
+IAlUaGVyZSBhcmUgb3RoZXIgcmVjaXBlcyBpbiB+L3Bva3kvbWV0YS1hdG1lbC1sc3AvcmVjaXBl
+cy1sc3AgdGhhdA0KPiB3b3JrLCBzbyBiaXRiYWtlIGNhbiBzZWUgdGhlc2Ugb2sgKGJ1dCB0aGVz
+ZSBhcmUgYmJhcHBlbmQsIG5vdCBiYiBmaWxlcykNCj4gDQo+IAlJbiBpZGVhcyB3aHkgdGhlDQo+
+IA0KPiANCj4gDQo+IAkJLS0tLS0gT3JpZ2luYWwgTWVzc2FnZSAtLS0tLQ0KPiANCj4gCQlGcm9t
+Og0KPiAJCSJBbmRlcnMgRGFyYW5kZXIiIDxhbmRlcnNAY2hhcmdlc3Rvcm0uc2U+DQo+IA0KPiAJ
+CVRvOg0KPiAJCSJCcnlhbiBFdmVuc29uIiA8YmV2ZW5zb25AbWVsaW5rY29ycC5jb20+DQo+IA0K
+PiAJCUNjOg0KPiAJCSJwZXRlcmVuZ2NvbWF1MDAxQGFkYW0uY29tLmF1Ig0KPiA8cGV0ZXJlbmdj
+b21hdTAwMUBhZGFtLmNvbS5hdT4sICJ5b2N0b0B5b2N0b3Byb2plY3Qub3JnIg0KPiA8eW9jdG9A
+eW9jdG9wcm9qZWN0Lm9yZz4NCj4gDQo+IAkJU2VudDoNCj4gCQlGcmksIDE0IE5vdiAyMDE0IDE1
+OjQ0OjI0ICswMTAwDQo+IA0KPiAJCVN1YmplY3Q6DQo+IAkJUmU6IFt5b2N0b10gcmVjaXBlIGZh
+aWxzIHRvIGxvYWQgbG9jYWwgZmlsZXMNCj4gDQo+IA0KPiAJCUp1c3QgYSBmZXcgbml0cGljaydz
+Li4NCj4gDQo+IAkJKiBCcnlhbiBFdmVuc29uIDxiZXZlbnNvbkBtZWxpbmtjb3JwLmNvbT4gWzE0
+MTExNA0KPiAxNToyMV06DQo+IA0KPiAJCT4gPiBMSUNFTlNFID0gIkNMT1NFRCINCj4gCQk+ID4g
+RklMRVNfJHtQTn0gKz0gIn4vcG9reS9tZXRhLWF0bWVsLWxzcC9yZWNpcGVzLQ0KPiBsc3AvemQx
+MjExLQ0KPiAJCT4gPiBmaXJtd2FyZS96ZDEyMTEtZmlybXdhcmUiDQo+IA0KPiAJCT4gRklMRVMg
+ZG9lc24ndCBzcGVjaWZ5IHdoZXJlIHRvIGZpbmQgdGhlIGZpbGVzIG9uIHRoZSBidWlsZA0KPiBt
+YWNoaW5lLCBpdA0KPiAJCT4gc3BlY2lmaWVzIHdoZXJlIHRoZSBpbnN0YWxsZWQgZmlsZXMgZXhp
+c3Qgb24gdGhlIHRhcmdldA0KPiBmaWxlc3lzdGVtLg0KPiAJCT4gVGhpcyBpcyB3aGF0IHRoZSBl
+cnJvciB5b3UgYXJlIHNlZWluZyBpcyB0ZWxsaW5nIHlvdTsgdGhlIGZpbGVzDQo+IHdlcmUNCj4g
+CQk+IGluc3RhbGxlZCBpbiB0aGUgZG9faW5zdGFsbCBzdGVwIGJ1dCB0aGV5IGRpZCBub3QgZ2V0
+IHBsYWNlZCBpbg0KPiB0aGUNCj4gCQk+IGZpbmFsIHBhY2thZ2UuIEluIHlvdXIgY2FzZSBJIGJl
+bGlldmU6DQo+IA0KPiAJCT4gRklMRVNfJHtQTn0gKz0gIiR7bGliZGlyfS96ZDEyMTFfKiINCj4g
+DQo+IAkJRklMRVNfJHtQTn0gKz0gIi9saWIvZmlybXdhcmUvemQxMjExIg0KPiANCj4gCQk+IHdv
+dWxkIHdvcmsuDQo+IA0KPiAJCT4gPiBTUkNfVVJJID0gIlwNCj4gCQk+ID4gZmlsZTovL3pkMTIx
+MV91YiBcDQo+IAkJPiA+IGZpbGU6Ly96ZDEyMTFfdXBoIFwNCj4gCQk+ID4gZmlsZTovL3pkMTIx
+MV91cGhtIFwNCj4gCQk+ID4gZmlsZTovL3pkMTIxMV91cGhyIFwNCj4gCQk+ID4gZmlsZTovL3pk
+MTIxMV91ciBcDQo+IAkJPiA+ICINCj4gDQo+IAkJPiA+IGRvX2luc3RhbGwoKSB7DQo+IAkJPiA+
+IGluc3RhbGwgLWQgJHtEfS9saWIvZmlybXdhcmUvemQxMjExDQo+IAkJPiA+IGluc3RhbGwgLW0g
+MDU1NSAke1dPUktESVJ9L3pkMTIxMV8qDQo+ICR7RH0vbGliL2Zpcm13YXJlL3pkMTIxMS8NCj4g
+CQk+ID4gfQ0KPiANCj4gCQk+IEFzIG1lbnRpb25lZCBpbiB0aGUgRklMRVMgdmFyaWFibGUgZGVz
+Y3JpcHRpb24gaW4gdGhlIFlvY3RvDQo+IG1hbnVhbCwNCj4gCQk+IHlvdSBzaG91bGQgdXNlIHRo
+ZSBzdGFuZGFyZCBwYXRoIHZhcmlhYmxlcyB3aGVuZXZlcg0KPiBwb3NzaWJsZS4gVGhlDQo+IAkJ
+PiBsaXN0IG9mIGF2YWlsYWJsZSBwYXRoIHZhcmlhYmxlcyBhcmUgbmVhciB0aGUgdG9wIG9mDQo+
+IAkJPiBtZXRhL2NvbmYvYml0YmFrZS5jb25mLiBUaGF0IG1lYW5zIGluIHlvdXIgY2FzZSB0aGUN
+Cj4gZm9sbG93aW5nIHdvdWxkDQo+IAkJPiBiZSBiZXR0ZXI6DQo+IA0KPiAJCVdlbGwsIGluIGdl
+bmVyYWwgdGhhdCdzIHRydWUuIFRob3VnaCwgaW4gdGhpcyBzcGVjaWZpYyBjYXNlLCBpdA0KPiBz
+aG91bGQNCj4gCQlhY3R1YWxseSBiZSBhIGhhcmRjb2RlZCAvbGliL2Zpcm13YXJlLiAke2xpYmRp
+cn0gY291bGQgYmUgbGliNjQNCj4gb3INCj4gCQlzb21ldGhpbmcgZWxzZSwgZXNwZWNpYWxseSBp
+biBhIG11bHRpbGliLWJ1aWxkLiBIb3dldmVyLCB0aGUNCj4gZmlybXdhcmUNCj4gCQlmaWxlcyBh
+cmUgYWx3YXlzIHNlYXJjaGVkIGZvciBpbiAvbGliL2Zpcm13YXJlLg0KPiANCj4gCQlDaGVlcnMs
+DQo+IAkJQW5kZXJzDQo+IA0KPiAJCT4gZG9faW5zdGFsbCgpIHsNCj4gCQk+IGluc3RhbGwgLWQg
+JHtEfS8ke2xpYmRpcn0vZmlybXdhcmUvemQxMjExDQo+IAkJPiBpbnN0YWxsIC1tIDA1NTUgJHtX
+T1JLRElSfS96ZDEyMTFfKg0KPiAke0R9LyR7bGliZGlyfS9maXJtd2FyZS96ZDEyMTEvDQo+IA0K
+PiAJCS0tDQo+IAkJQW5kZXJzIERhcmFuZGVyDQo+IAkJQ2hhcmdlU3Rvcm0gQUIgLyBlU3Rvcm0g
+QUINCj4gDQo+IA0KPiAJLS0tLSBNZXNzYWdlIHNlbnQgdmlhIEFkYW0gSW50ZXJuZXQgV2ViTWFp
+bCAtDQo+IGh0dHA6Ly93d3cuYWRhbS5jb20uYXUvDQo+IA0KPiAJLS0NCj4gCV9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IAl5b2N0byBtYWlsaW5nIGxp
+c3QNCj4gCXlvY3RvQHlvY3RvcHJvamVjdC5vcmcgPG1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qu
+b3JnPg0KPiAJaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3RvcmcvbGlzdGluZm8veW9jdG8NCj4g
+PGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bz4NCj4gDQo+IA0K
+PiANCg0K
 
-On 17 November 2014 07:25, Mike Looijmans <mike.looijmans@topic.nl> wrote:
-
-> BTW, you can use tslib with xorg. This is what I have set up as I find
->> ts_calibrate easier to work with.
->>
->
-> Interesting option, can you elaborate on that (in particular, in
-> combination with Yocto builds)?
-
-
-meta-oe has xf86-input-tslib.  Installing that might still work.  It's been
-untouched since 2009 which is why I assumed it would have bit-rotted by now.
-
-Ross
-
---001a113a7bd01eea7405080bf645
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 17 November 2014 07:25, Mike Looijmans <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:mike.looijmans@topic.nl" target=3D"_blank">mike.looijmans@topic.nl</=
-a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
- 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><blockquote class=3D=
-"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding=
--left:1ex"><span class=3D"">BTW, you can use tslib with xorg. This is what =
-I have set up as I find<br>
-ts_calibrate easier to work with.<br>
-</span></blockquote>
-<br>
-Interesting option, can you elaborate on that (in particular, in combinatio=
-n with Yocto builds)?</blockquote></div><br>meta-oe has xf86-input-tslib.=
-=C2=A0 Installing that might still work.=C2=A0 It&#39;s been untouched sinc=
-e 2009 which is why I assumed it would have bit-rotted by now.</div><div cl=
-ass=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
-
---001a113a7bd01eea7405080bf645--
