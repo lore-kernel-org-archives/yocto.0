@@ -1,6 +1,6 @@
-Return-Path: <Stefan.Eichenberger@netmodule.com>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CBF32E008D9; Tue, 18 Nov 2014 08:37:33 -0800 (PST)
+	id C4790E008CF; Tue, 18 Nov 2014 13:34:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,27 +8,23 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from webmail.netmodule.com (webmail.netmodule.com [194.29.26.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32915E008CA
-	for <yocto@yoctoproject.org>; Tue, 18 Nov 2014 08:37:28 -0800 (PST)
-Received: from [172.16.92.119] (172.16.92.119) by ebro.netmodule.intranet
-	(172.16.92.40) with Microsoft SMTP Server (TLS) id 15.0.913.22;
-	Tue, 18 Nov 2014 17:36:52 +0100
-Message-ID: <546B7517.9040003@netmodule.com>
-Date: Tue, 18 Nov 2014 17:34:31 +0100
-From: Stefan Eichenberger <stefan.eichenberger@netmodule.com>
+X-Greylist: delayed 399 seconds by postgrey-1.32 at yocto-www;
+	Tue, 18 Nov 2014 13:34:57 PST
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id AE0BBE0087D
+	for <yocto@yoctoproject.org>; Tue, 18 Nov 2014 13:34:57 -0800 (PST)
+Received: (qmail 18530 invoked by uid 1003); 18 Nov 2014 21:28:16 -0000
+Received: from unknown (HELO ?192.168.1.109?) (philip@opensdr.com@71.171.45.99)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	18 Nov 2014 21:28:16 -0000
+Message-ID: <546BB9EF.4040807@balister.org>
+Date: Tue, 18 Nov 2014 16:28:15 -0500
+From: Philip Balister <philip@balister.org>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Icedove/31.2.0
+	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
 MIME-Version: 1.0
-To: ChenQi <Qi.Chen@windriver.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <d08a8413c6434f89929894aca02a399c@ebro.netmodule.intranet>
-	<546AB7E7.5010304@windriver.com>
-In-Reply-To: <546AB7E7.5010304@windriver.com>
-X-Originating-IP: [172.16.92.119]
-X-ClientProxiedBy: ebro.netmodule.intranet (172.16.92.40) To
-	ebro.netmodule.intranet (172.16.92.40)
-Subject: Re: Busybox sh link
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Layer model doomed, unless we all work together
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,48 +36,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Nov 2014 16:37:33 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 18 Nov 2014 21:34:59 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-On 11/18/2014 04:07 AM, ChenQi wrote:
-> On 11/17/2014 10:07 PM, Stefan Eichenberger wrote:
->> Hello all
->>
->> I have a question regarding busybox and sh. If I want to install bash 
->> together with busybox ash, yocto does not consider the 
->> ALTERNATIVE_PRIORITY in each case (e.g. if bash is installed before 
->> busybox). The problem is that do_install of busybox creates a link to 
->> busybox.nosuid. Is there a reason for that? Shouldn't 
->> update-alternatives create that link for us? There is already a patch 
->> available that targets this problem 
->> (467b19efbaa9c0cb04d2665e8cd9a0919849a5ed ) but it only works if ash 
->> is completely disabled in the busybox config.
->>
->> So the main question is, wouldn't it be possible to remove this lines 
->> completely?
->>
->> Regards,
->> Stefan
->>
->>
->
-> I can confirm that this is indeed a problem. And we need to fix this.
-> I think the reason for this line is mainly to make 'busybox' provide 
-> '/bin/sh' so that do_rootfs would succeed.
->
-> Regards,
-> Chen Qi
+As evidence, please review this list:
 
-Probably I miss something but I don't understand why do_rootfs fails if 
-the link is not provided? Isn't the link created anyhow during package 
-installation in the postinstall script with update-alternatives if 
-necessary?
+http://layers.openembedded.org/layerindex/branch/master/duplicates/
 
-For testing I removed the link creation temporary from the recipe and 
-built the core-image-minimal for qemux86, it was creating the link 
-correctly in this case.
+I mean FOUR recipes for alsa-plugins?
 
-Regards,
-Stefan
+I am trying to fix the pyqt recipe in meta-oe, and had th eidea to check
+for it in other layers. This leads me to meta-ivi-demo, which has an
+update for sip-native and another pyqt recipe. To be fair, they are
+using Qt5, so it is a little more complex.
+
+At any rate, we need to stop ripping recipes out of layers and maing
+local copies, or worse, updating our local copies and not the primary
+layer. The intent of the layer concept was not to fragment development
+across many separate repositories.
+
+I see a couple of issues we need to start talking about:
+
+1) recipes that need to move closer to core because a range of other
+packages use them.
+
+2) people feel they have to remove recipes from layers and make local
+copies.
+
+And just so people know what seriously pisses me off :) Copying a recipe
+from a layer, updating it, and not sending the recipe to the layer they
+got the update from.
+
+Thanks for letting me vent,
+
+Philip
 
