@@ -1,52 +1,35 @@
-Return-Path: <bobadeshrikant@gmail.com>
+Return-Path: <Stefan.Eichenberger@netmodule.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 42749E008CA; Wed, 19 Nov 2014 00:16:45 -0800 (PST)
+	id 2C60DE008D9; Wed, 19 Nov 2014 01:11:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bobadeshrikant[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.42 listed in list.dnswl.org]
-Received: from mail-wg0-f42.google.com (mail-wg0-f42.google.com [74.125.82.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD7F1E0087D
-	for <yocto@yoctoproject.org>; Wed, 19 Nov 2014 00:16:33 -0800 (PST)
-Received: by mail-wg0-f42.google.com with SMTP id z12so111155wgg.29
-	for <yocto@yoctoproject.org>; Wed, 19 Nov 2014 00:16:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=6MS/hhLXk+8n0Kzz3lSUxKtxpSMMjLgGTaX0QjAKxeI=;
-	b=NfJ3lvfuI+y0Pz+bK7t+NJFbpbZDAwCNWf6PmUpn2DoH+aJbZZJUMw8xm5905fVY69
-	ccybqVkTyESAdaq02GVX3hbqDr4qsKG6mfBmq9uJuDBsblloNSUYYv4SgsKf26WrpkDp
-	KBlM4zAMBobJoXgiSUxg9+2hApbqyf3gorZcY6DoMA7E/tdE3GHfcFZbF/wqdUZ+psqO
-	hSyCRnnfyJJDtmH7gPcrrDBPnrbaTYeRyMZcpkEjqwpehZc85LrTNCydjy46ibV4czI8
-	NfxjyWdlnF/ABhVrLLtS5RMVP4GihMVXvrFXbY9QJrXxHCNijpgFdCoHSO6KoL8thNUN
-	a2sw==
-X-Received: by 10.180.87.72 with SMTP id v8mr11239094wiz.22.1416384992126;
-	Wed, 19 Nov 2014 00:16:32 -0800 (PST)
-Received: from sbobade-VirtualBox.inp.mentorg.com ([139.181.35.34])
-	by mx.google.com with ESMTPSA id cr6sm1192793wjb.44.2014.11.19.00.16.29
-	for <multiple recipients>
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 19 Nov 2014 00:16:31 -0800 (PST)
-From: Shrikant Bobade <bobadeshrikant@gmail.com>
-To: yocto@yoctoproject.org
-Date: Wed, 19 Nov 2014 13:46:21 +0530
-Message-Id: <1416384981-18501-1-git-send-email-bobadeshrikant@gmail.com>
-X-Mailer: git-send-email 1.7.9.5
-Cc: Shrikant Bobade <Shrikant_Bobade@mentor.com>
-Subject: [meta-selinux][PATCH 3/3] pkggrp-core-selinux: coreutils addition
+Received: from webmail.netmodule.com (webmail.netmodule.com [194.29.26.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 529BCE0087D
+	for <yocto@yoctoproject.org>; Wed, 19 Nov 2014 01:11:21 -0800 (PST)
+Received: from [172.16.92.119] (172.16.92.119) by ebro.netmodule.intranet
+	(172.16.92.40) with Microsoft SMTP Server (TLS) id 15.0.913.22;
+	Wed, 19 Nov 2014 10:10:46 +0100
+Message-ID: <546C5E09.5080705@netmodule.com>
+Date: Wed, 19 Nov 2014 10:08:25 +0100
+From: Stefan Eichenberger <stefan.eichenberger@netmodule.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Icedove/31.2.0
+MIME-Version: 1.0
+To: ChenQi <Qi.Chen@windriver.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <d08a8413c6434f89929894aca02a399c@ebro.netmodule.intranet>
+	<546AB7E7.5010304@windriver.com> <546B7517.9040003@netmodule.com>
+	<546C320E.2010104@windriver.com>
+In-Reply-To: <546C320E.2010104@windriver.com>
+X-Originating-IP: [172.16.92.119]
+X-ClientProxiedBy: ebro.netmodule.intranet (172.16.92.40) To
+	ebro.netmodule.intranet (172.16.92.40)
+Subject: Re: Busybox sh link
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,29 +41,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Nov 2014 08:16:45 -0000
+X-List-Received-Date: Wed, 19 Nov 2014 09:11:26 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Shrikant Bobade <Shrikant_Bobade@mentor.com>
+On 11/19/2014 07:00 AM, ChenQi wrote:
+> On 11/19/2014 12:34 AM, Stefan Eichenberger wrote:
+>> On 11/18/2014 04:07 AM, ChenQi wrote:
+>>> On 11/17/2014 10:07 PM, Stefan Eichenberger wrote:
+>>>> Hello all
+>>>>
+>>>> I have a question regarding busybox and sh. If I want to install 
+>>>> bash together with busybox ash, yocto does not consider the 
+>>>> ALTERNATIVE_PRIORITY in each case (e.g. if bash is installed before 
+>>>> busybox). The problem is that do_install of busybox creates a link 
+>>>> to busybox.nosuid. Is there a reason for that? Shouldn't 
+>>>> update-alternatives create that link for us? There is already a 
+>>>> patch available that targets this problem 
+>>>> (467b19efbaa9c0cb04d2665e8cd9a0919849a5ed ) but it only works if 
+>>>> ash is completely disabled in the busybox config.
+>>>>
+>>>> So the main question is, wouldn't it be possible to remove this 
+>>>> lines completely?
+>>>>
+>>>> Regards,
+>>>> Stefan
+>>>>
+>>>>
+>>>
+>>> I can confirm that this is indeed a problem. And we need to fix this.
+>>> I think the reason for this line is mainly to make 'busybox' provide 
+>>> '/bin/sh' so that do_rootfs would succeed.
+>>>
+>>> Regards,
+>>> Chen Qi
+>>
+>> Probably I miss something but I don't understand why do_rootfs fails 
+>> if the link is not provided? Isn't the link created anyhow during 
+>> package installation in the postinstall script with 
+>> update-alternatives if necessary?
+>>
+>> For testing I removed the link creation temporary from the recipe and 
+>> built the core-image-minimal for qemux86, it was creating the link 
+>> correctly in this case.
+>>
+>> Regards,
+>> Stefan
+>>
+>>
+>
+> Hi Stefan,
+>
+> I did some testing, and could not reproduce the problem.
+> I then realized that as the sh link is managed by ALTERNATIVES 
+> mechanism, it will always point to bash instead of busybox.
+>
+> I tested it by the following steps:
+> 1. build core-image-minimal with bash installed
+> 2. reinstall bash
+> 3. reinstall busybox
+>
+> So I think the current code is right.
+>
+> I'm not sure if I missed something. If so, could you please provide 
+> more information?
+>
+> Best Regards,
+> Chen Qi
 
-To add coreutils to packagegroup-core-selinux
-inorder to get chcon avaibility.
+Hi Chen,
 
-Signed-off-by: Shrikant Bobade <Shrikant_Bobade@mentor.com>
----
- .../packagegroups/packagegroup-core-selinux.bb     |    1 +
- 1 file changed, 1 insertion(+)
+You are right, sorry! I think I figured out what I've missed. On an 
+image I have disabled busybox ash completely, therefore I didn't saw the 
+update-alternative running for sh. Because it was an older version of 
+yocto without the above patch, I've got an invalid image. I then tough 
+the same problem would appear if I enable busybox ash again, but in this 
+case update-alternative would run, so the problem wouldn't appear.
 
-diff --git a/recipes-security/packagegroups/packagegroup-core-selinux.bb b/recipes-security/packagegroups/packagegroup-core-selinux.bb
-index 1852aba..40b35d1 100644
---- a/recipes-security/packagegroups/packagegroup-core-selinux.bb
-+++ b/recipes-security/packagegroups/packagegroup-core-selinux.bb
-@@ -25,4 +25,5 @@ RDEPENDS_${PN} = " \
- 	selinux-config \
- 	refpolicy-standard \
- 	refpolicy-mls \
-+	coreutils \
- 	"
--- 
-1.7.9.5
+Sorry for the false alarm!
+
+Regards,
+Stefan
+
+
 
 
