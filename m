@@ -1,34 +1,45 @@
-Return-Path: <peterengcomau001@adam.com.au>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E4DF7E0087D; Wed, 19 Nov 2014 09:10:53 -0800 (PST)
+	id 05BCCE007C0; Wed, 19 Nov 2014 12:57:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [202.136.110.236 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [192.94.38.131 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from webmail4.adam.net.au (webmail4.adam.net.au [202.136.110.236])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39D00E0071C
-	for <yocto@yoctoproject.org>; Wed, 19 Nov 2014 09:10:46 -0800 (PST)
-Received: from localhost (webmail4.adam.net.au [127.0.0.1])
-	by webmail4.adam.net.au (8.13.8/8.13.8) with ESMTP id sAJHAhgT022422
-	for <yocto@yoctoproject.org>; Thu, 20 Nov 2014 03:40:43 +1030
-Message-Id: <70cd34b97d473ac6ce6f537bc609a2e8c5a1f971@webmail.adam.com.au>
-From: peterengcomau001@adam.com.au
-To: yocto@yoctoproject.org
-X-Mailer: Atmail 6.3.5.8698
-Date: Thu, 20 Nov 2014 03:40:43 +1030
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 992F0E0071C
+	for <yocto@yoctoproject.org>; Wed, 19 Nov 2014 12:56:50 -0800 (PST)
+Received: from svr-orw-fem-02x.mgc.mentorg.com ([147.34.96.206]
+	helo=SVR-ORW-FEM-02.mgc.mentorg.com)
+	by relay1.mentorg.com with esmtp 
+	id 1XrCIy-0004f9-Uv from Joe_MacDonald@mentor.com ;
+	Wed, 19 Nov 2014 12:56:49 -0800
+Received: from burninator (147.34.91.1) by svr-orw-fem-02.mgc.mentorg.com
+	(147.34.96.168) with Microsoft SMTP Server id 14.3.181.6;
+	Wed, 19 Nov 2014 12:56:48 -0800
+Received: by burninator (Postfix, from userid 1000)	id A0D8C5805F1; Wed, 19
+	Nov 2014 15:56:47 -0500 (EST)
+Date: Wed, 19 Nov 2014 15:56:47 -0500
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: Qian Lei <qianl.fnst@cn.fujitsu.com>
+Message-ID: <20141119205646.GL6216@mentor.com>
+References: <1416382491-11239-1-git-send-email-qianl.fnst@cn.fujitsu.com>
 MIME-Version: 1.0
-Subject: lighttpd webDav does not allow files to save
+In-Reply-To: <1416382491-11239-1-git-send-email-qianl.fnst@cn.fujitsu.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-704 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: yocto@yoctoproject.org, openembedded-devel@lists.openembedded.org
+Subject: Re: [oe] [meta-selinux][PATCH] ustr: Change the SRC_URI to upstream and add a new patch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: peterengcomau001@adam.com.au
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -37,88 +48,150 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Nov 2014 17:10:54 -0000
-Content-Type: multipart/alternative;
-	boundary="=_d7ddd93155d0d2930f9c89b280d54811"
+X-List-Received-Date: Wed, 19 Nov 2014 20:57:04 -0000
+X-Groupsio-MsgNum: 22264
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="dZihrQ6eCIduWT38"
+Content-Disposition: inline
 
---=_d7ddd93155d0d2930f9c89b280d54811
-Content-Type: text/plain; charset=UTF-8
+--dZihrQ6eCIduWT38
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-I am running Yocto 1.6.1 with standard atmel build or=0Aatmel-qt5-demo-i=
-mage=0AI have added a a lighttpd_1.4.33.bbappend recipe in the directory=
-=0A~/poky/meta-atmel-lsp/recipes-extended/lighttpd with the following=0A=
-contents:___________________FILESEXTRAPATHS_prepend :=3D=0A"${THISDIR}/$=
-{PN}:"=0ARDEPENDS_${PN} +=3D " lighttpd-module-webdav"=0ASRC_URI +=3D "=
- file://lighttpd.conf   file://index.htm =0Afile://config.jsn "=0Ado_ins=
-tall_append() { rm -f ${D}/www/pages/index.html install -m 0777=0A-d ${D=
-}/www/pages/dav install -m 0555 $WORKDIR}/index.htm=0A${D}/www/pages/ in=
-stall -m 0777 ${WORKDIR}/config.jsn=0A${D}/www/pages/}__________________=
-_________=0A=0AIn the subdirectory "lighttpd" I have modified the standa=
-rd=0Alighttpd.conf file by uncommenting "mod_webdav" and I have added:=
-=0A$HTTP["url"] =3D~ "^/dav($|/)" { webdav.activate =3D "enable"=0Awebda=
-v.is-readonly =3D "disable"}=0AI have also added my own index.htm and co=
-nfig.htm file=0AWhen I load and run the new image, my modified index.htm=
-l pages gets=0Aserved up ok. Also, I can map the /www/pages/dav/ to a Wi=
-ndows dirive=0Aand view an open the files it contains.However, the syste=
-m does not=0Aallow me to store anything.=0A1. If I use the Windows Mappe=
-d drive to store a text file into the=0Adav directory, it gives me an er=
-ror.2. If I use my index.html page to=0Aupdate the config.jsn file via a=
- 'PUT', it does not save the new file.=0AHere is some extra informationr=
-oot@sama5d3xek:/www/pages# ls=0A-l-rwxrwxrwx 1 root root =C2=A0 =C2=A083=
- Nov 19 08:51 config.jsndrwxrwxrwx 2=0Aroot root =C2=A0 160 Nov 19 10:02=
- dav-r-xr-xr-x 1 root root 47641 Nov 19=0A08:51 index.htm=0Aroot@sama5d3=
-xek:/www# ls -ldrwxrwxrwx 8 root root 904 Nov 19 09:55=0Apages=0ACan any=
-one advise why the lighttpd is serving data but wont allow=0Aeither the=
- web client or the dav client to save/update files in theri=0Aappropriat=
-e folders?=0AThanksLachlan=0A---- Message sent via Adam Internet WebMail=
- - http://www.adam.com.au/
+Thanks for the submission.  Just a couple of comments.
 
---=_d7ddd93155d0d2930f9c89b280d54811
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+[[oe] [meta-selinux][PATCH] ustr: Change the SRC_URI to upstream and add a =
+new patch] On 14.11.19 (Wed 15:34) Qian Lei wrote:
 
-<html><body>I am running Yocto 1.6.1 with standard atmel build or atmel-=
-qt5-demo-image<div><br /></div><div>I have added a a lighttpd_1.4.33.bba=
-ppend recipe in the directory ~/poky/meta-atmel-lsp/recipes-extended/lig=
-httpd with the following contents:</div><div>___________________</div><d=
-iv>FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"</div><div><br /></di=
-v><div>RDEPENDS_${PN} +=3D " lighttpd-module-webdav"</div><div><br /></d=
-iv><div>SRC_URI +=3D " file://lighttpd.conf \<span class=3D"Apple-tab-sp=
-an">=09</span></div><div><span class=3D"Apple-tab-span">=09=09=09</span>=
-file://index.htm \</div><div><span class=3D"Apple-tab-span">=09=09=09</s=
-pan>file://config.jsn "</div><div><br /></div><div>do_install_append() {=
-</div><div><span class=3D"Apple-tab-span">=09</span>rm -f ${D}/www/pages=
-/index.html</div><div><span class=3D"Apple-tab-span">=09</span>install -=
-m 0777 -d ${D}/www/pages/dav</div><div><span class=3D"Apple-tab-span">=
-=09</span>install -m 0555 $WORKDIR}/index.htm<span class=3D"Apple-tab-sp=
-an">=09</span>${D}/www/pages/</div><div><span class=3D"Apple-tab-span">=
-=09</span>install -m 0777 ${WORKDIR}/config.jsn<span class=3D"Apple-tab-=
-span">=09</span>${D}/www/pages/</div><div>}</div><div>__________________=
-_________<br /><br /></div><div>In the subdirectory "lighttpd" I have mo=
-dified the standard lighttpd.conf file by uncommenting "mod_webdav" and=
- I have added:</div><div><br /></div><div>$HTTP["url"] =3D~ "^/dav($|/)"=
- {</div><div><span class=3D"Apple-tab-span">=09</span>webdav.activate=
- =3D "enable"</div><div><span class=3D"Apple-tab-span">=09</span>webdav.=
-is-readonly =3D "disable"</div><div>}</div><div><br /></div><div>I have=
- also added my own index.htm and config.htm file</div><div><br /></div><=
-div>When I load and run the new image, my modified index.html pages gets=
- served up ok. Also, I can map the /www/pages/dav/ to a Windows dirive a=
-nd view an open the files it contains.</div><div>However, the system doe=
-s not allow me to store anything.</div><div><br /></div><div>1. If I use=
- the Windows Mapped drive to store a text file into the dav directory, i=
-t gives me an error.</div><div>2. If I use my index.html page to update=
- the config.jsn file via a 'PUT', it does not save the new file.</div><d=
-iv><br /></div><div>Here is some extra information</div><div>root@sama5d=
-3xek:/www/pages# ls -l</div><div><div>-rwxrwxrwx 1 root root =C2=A0 =C2=
-=A083 Nov 19 08:51 config.jsn</div><div>drwxrwxrwx 2 root root =C2=A0 16=
-0 Nov 19 10:02 dav</div><div>-r-xr-xr-x 1 root root 47641 Nov 19 08:51 i=
-ndex.htm</div></div><div><br /></div><div><div>root@sama5d3xek:/www# ls=
- -l</div><div>drwxrwxrwx 8 root root 904 Nov 19 09:55 pages</div></div><=
-div><br /></div><div>Can anyone advise why the lighttpd is serving data=
- but wont allow either the web client or the dav client to save/update f=
-iles in theri appropriate folders?</div><div><br /></div><div>Thanks</di=
-v><div>Lachlan</div><div><br /></div>---- Message sent via Adam Internet=
- WebMail  - http://www.adam.com.au/</body></html>
+> Official upstream is still Ok, using it first.
+> Add a new patch which is applied in Fedora20
 
---=_d7ddd93155d0d2930f9c89b280d54811--
+As these are two unrelated issues, I think two patches would've been
+appropriate with 1/2 being the one that updates the SRC_URI and 2/2
+being the c99 patch.
+
+You should also provide an upstream-status for the C99 patch.  As you
+say it came from Fedora, odds are it is already submitted upstream, so
+'pending' could be appropriate here, but I don't know.
+
+Finally, meta-selinux patches should go to yocto@yoctoproject.org (cc'd
+here), not the openembedded-dev@ list.
+
+I'm fine with making the changes I described above or you can send out a
+new version of the patch/patches if you like.  I won't do anything with
+it before tomorrow, either way, to give everyone time to have a look.
+
+-J.
+
+>=20
+> Signed-off-by: Qian Lei <qianl.fnst@cn.fujitsu.com>
+> ---
+>  recipes-extended/ustr/ustr/ustr-c99-inline.patch | 44 ++++++++++++++++++=
+++++++
+>  recipes-extended/ustr/ustr_1.0.4.bb              |  8 ++---
+>  2 files changed, 47 insertions(+), 5 deletions(-)
+>  create mode 100644 recipes-extended/ustr/ustr/ustr-c99-inline.patch
+>=20
+> diff --git a/recipes-extended/ustr/ustr/ustr-c99-inline.patch b/recipes-e=
+xtended/ustr/ustr/ustr-c99-inline.patch
+> new file mode 100644
+> index 0000000..5f2d5da
+> --- /dev/null
+> +++ b/recipes-extended/ustr/ustr/ustr-c99-inline.patch
+> @@ -0,0 +1,44 @@
+> +From 1b1c36ec67b7976d0bca0b6c7b766540cb541c1e Mon Sep 17 00:00:00 2001
+> +From: Qian Lei <qianl.fnst@cn.fujitsu.com>
+> +Date: Wed, 19 Nov 2014 14:48:18 +0800
+> +Subject: [PATCH] c99-inline
+> +
+> +Signed-off-by: Qian Lei <qianl.fnst@cn.fujitsu.com>
+> +---
+> + ustr-compiler.h | 12 +++++++++---
+> + 1 file changed, 9 insertions(+), 3 deletions(-)
+> +
+> +diff --git a/ustr-compiler.h b/ustr-compiler.h
+> +index 642e6e8..63735e0 100644
+> +--- a/ustr-compiler.h
+> ++++ b/ustr-compiler.h
+> +@@ -113,17 +113,23 @@
+> + #endif
+> +=20
+> + #ifndef USTR_CONF_EI_PROTO /* external inline */
+> +-# if USTR_CONF_INCLUDE_CODEONLY_HEADERS
+> ++# if USTR_CONF_INCLUDE_CODEONLY_HEADERS || ! defined(__GNUC__) || \
+> ++     ! USTR_CONF_COMPILE_USE_INLINE
+> + #  define USTR_CONF_EI_PROTO static USTR__INLINE
+> + # else
+> + #  define USTR_CONF_EI_PROTO extern
+> + # endif
+> + #endif
+> + #ifndef USTR_CONF_II_PROTO /* implementation of inline */
+> +-# if USTR_CONF_INCLUDE_CODEONLY_HEADERS
+> ++# if USTR_CONF_INCLUDE_CODEONLY_HEADERS || ! defined(__GNUC__) || \
+> ++     ! USTR_CONF_COMPILE_USE_INLINE
+> + #  define USTR_CONF_II_PROTO static USTR__INLINE
+> + # else
+> +-#  define USTR_CONF_II_PROTO extern inline
+> ++#  if defined(__GNUC_STDC_INLINE__) || defined(__GNUC_GNU_INLINE__)
+> ++#   define USTR_CONF_II_PROTO extern inline __attribute__ ((__gnu_inlin=
+e__))
+> ++#  else
+> ++#   define USTR_CONF_II_PROTO extern inline
+> ++#  endif
+> + # endif
+> + #endif
+> +=20
+> +--=20
+> +1.8.3.1
+> +
+> diff --git a/recipes-extended/ustr/ustr_1.0.4.bb b/recipes-extended/ustr/=
+ustr_1.0.4.bb
+> index 6651a73..485e80d 100644
+> --- a/recipes-extended/ustr/ustr_1.0.4.bb
+> +++ b/recipes-extended/ustr/ustr_1.0.4.bb
+> @@ -11,13 +11,11 @@ LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dc79c6e2ae1=
+3418d16d7dc82df960a1e7 \
+>  		    file://LICENSE_LGPL;md5=3Dd8045f3b8f929c1cb29a1e3fd737b499 \
+>  		    file://LICENSE_MIT;md5=3Dc61e779b782608472bd87593c3c3916f"
+> =20
+> -# Official upstream seems to be offline.. replace w/ a Fedora Project mi=
+rror.
+> -# http://www.and.org/ustr/1.0.4/ustr-1.0.4.tar.bz2=20
+> -
+>  SRC_URI =3D "\
+> -    http://pkgs.fedoraproject.org/repo/pkgs/ustr/ustr-1.0.4.tar.bz2/9314=
+7d9f0c9765d4cd0f04f7e44bdfce/ustr-1.0.4.tar.bz2 \
+> +    http://www.and.org/ustr/${PV}/${PN}-${PV}.tar.bz2 \
+>      file://ustr-makefile-fix.patch;patch=3D1 \
+> -    file://ustr-fix__va_copy-not-defined.patch;patch=3D2"
+> +    file://ustr-fix__va_copy-not-defined.patch;patch=3D2 \
+> +    file://ustr-c99-inline.patch;patch=3D3"
+>  SRC_URI[md5sum] =3D "93147d9f0c9765d4cd0f04f7e44bdfce"
+>  SRC_URI[sha256sum] =3D "3daf6eae9f78de1e872c0b2b83cce35515b94d4bb8a074e4=
+8f331fd99e1fc2c4"
+> =20
+> --=20
+> 1.8.3.1
+>=20
+--=20
+-Joe MacDonald.
+:wq
+
+--dZihrQ6eCIduWT38
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iQEcBAEBAgAGBQJUbQQOAAoJEEn8ffcsOfaW6L8IAL0RvvfdCEBw4t/tfO6eAgce
+L7C0Vpqg+IPH/hmxMjJFmPts0SHA1lp7ybaCHHVe3VDkpJSyJJVNTgA7PA52Wklc
+eJmN+5chuLQeefrZK5EKIKnK9382LfA3qM9cleLaElbUGtvu02uf6CosTRcnS2gZ
+4D9oCnRxuW1SKV/o82u7C6gs/iugbY832g461QgQV/5WgO8IQVnt0Pz1728TFywN
+oio6ocMDO/DZZfcsQpbLuM4Oblq7T08X/UbXFyV9tDxK6oEvc2z7P9XDkVM5UFRj
+lJTUcRJvCdOHzndz3ckp7hQZ98dNvhVwRDNoXJIGOUnI1ynxc8Ww1yRT24cwG34=
+=OVOV
+-----END PGP SIGNATURE-----
+
+--dZihrQ6eCIduWT38--
