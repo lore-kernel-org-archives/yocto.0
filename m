@@ -1,54 +1,35 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB6A1E008FB; Wed, 19 Nov 2014 07:12:17 -0800 (PST)
+	id DF48EE00903; Wed, 19 Nov 2014 07:19:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [157.56.110.109 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1bn0109.outbound.protection.outlook.com [157.56.110.109])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E1E5E008F2
-	for <yocto@yoctoproject.org>; Wed, 19 Nov 2014 07:12:14 -0800 (PST)
-Received: from BY2PR05MB048.namprd05.prod.outlook.com (10.242.34.156) by
-	BY2PR05MB048.namprd05.prod.outlook.com (10.242.34.156) with Microsoft
-	SMTP Server (TLS) id 15.1.16.15; Wed, 19 Nov 2014 15:12:09 +0000
-Received: from BY2PR05MB048.namprd05.prod.outlook.com ([169.254.9.224]) by
-	BY2PR05MB048.namprd05.prod.outlook.com ([169.254.9.152]) with mapi id
-	15.01.0016.006; Wed, 19 Nov 2014 15:12:09 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"elizabeth.flanagan@intel.com" <elizabeth.flanagan@intel.com>
-Thread-Topic: autobuilder: How to set PREMIRRORS?
-Thread-Index: Ac//SnMU4cyS3XABQce6M1Hid22YVgDIzViQAGcGIQA=
-Date: Wed, 19 Nov 2014 15:12:08 +0000
-Message-ID: <7686657984f84a938af3bdb15ef65992@BY2PR05MB048.namprd05.prod.outlook.com>
-References: <7383172b808e4ec3a8e2550c04cc9e91@BLUPR05MB037.namprd05.prod.outlook.com>
-	<40cfd0ca83f94c9eb826ab2573d41453@BLUPR05MB037.namprd05.prod.outlook.com>
-In-Reply-To: <40cfd0ca83f94c9eb826ab2573d41453@BLUPR05MB037.namprd05.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-vipre-scanned: 007C98C700886C007C9A14
-x-originating-ip: [98.100.91.242]
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:;SRVR:BY2PR05MB048;
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0;PCL:0;RULEID:;SRVR:BY2PR05MB048;
-x-forefront-prvs: 04004D94E2
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(164054003)(51704005)(189002)(377454003)(199003)(13464003)(62966003)(66066001)(74316001)(20776003)(107046002)(64706001)(95666004)(40100003)(106356001)(120916001)(97736003)(105586002)(99396003)(46102003)(77156002)(122556002)(77096003)(33646002)(76576001)(107886001)(99286002)(31966008)(2656002)(21056001)(92566001)(101416001)(19580405001)(50986999)(54356999)(19580395003)(76176999)(87936001)(86362001)(15202345003)(2501002)(108616004)(4396001)(15975445006)(24736002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BY2PR05MB048;
-	H:BY2PR05MB048.namprd05.prod.outlook.com; FPR:; MLV:sfv;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id B466CE008FB
+	for <yocto@yoctoproject.org>; Wed, 19 Nov 2014 07:19:38 -0800 (PST)
+Received: (qmail 26092 invoked by uid 1003); 19 Nov 2014 15:19:38 -0000
+Received: from unknown (HELO ?192.168.1.109?) (philip@opensdr.com@71.171.45.99)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	19 Nov 2014 15:19:38 -0000
+Message-ID: <546CB505.2070807@balister.org>
+Date: Wed, 19 Nov 2014 10:19:33 -0500
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
 MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-Subject: Re: autobuilder: How to set PREMIRRORS?
+To: Martin Jansa <martin.jansa@gmail.com>, 
+	"Burton, Ross" <ross.burton@intel.com>
+References: <546BB9EF.4040807@balister.org>
+	<CAJTo0LaKHeK+hL_s9z-pPT6dnzCR5mw4MgOkg4Zch=S=dWWGMA@mail.gmail.com>
+	<20141118230324.GA2477@jama>
+In-Reply-To: <20141118230324.GA2477@jama>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Layer model doomed, unless we all work together
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,55 +41,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Nov 2014 15:12:18 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 19 Nov 2014 15:19:46 -0000
+X-Groupsio-MsgNum: 22261
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature";
+	boundary="xxBJLQHWEi0psjAuROjLo62mW0TBcesqw"
 
-QWxsLA0KDQpJJ20gZ2V0dGluZyBjbG9zZSB0byBpbXBsZW1lbnRpbmcgdGhpcyBmZWF0dXJlLCBi
-dXQgSSdtIGhhdmluZyBzb21lIGlzc3VlcyBnZXR0aW5nIGF1dG8uY29uZiBmb3JtYXR0ZWQgY29y
-cmVjdGx5LiAgU2VlIGJlbG93Lg0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZy
-b206IEJyeWFuIEV2ZW5zb24NCj4gU2VudDogTW9uZGF5LCBOb3ZlbWJlciAxNywgMjAxNCA5OjA4
-IEFNDQo+IFRvOiBCcnlhbiBFdmVuc29uOyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnOyBlbGl6YWJl
-dGguZmxhbmFnYW5AaW50ZWwuY29tDQo+IFN1YmplY3Q6IFJFOiBhdXRvYnVpbGRlcjogSG93IHRv
-IHNldCBQUkVNSVJST1JTPw0KPiANCj4gQWxsLA0KPiANCj4gQWZ0ZXIgbG9va2luZyB0aHJvdWdo
-IHRoZSBhdXRvYnVpbGRlciBjb2RlLCBJIGRvbid0IHNlZSBhbnl3aGVyZSBpbiB3aGljaA0KPiBQ
-UkVNSVJST1JTIGNhbiBiZSBzZXQgYW5kIHVzZWQuICBJIHNlZSBpbiBDcmVhdGVBdXRvQ29uZi5w
-eSB0aGF0DQo+IFBSRU1JUlJPUlMgaXMgYWx3YXlzIHNldCB0byAiIi4gIEkgZG9uJ3QgdGhpbmsg
-aXQnZCBiZSB0aGF0IGRpZmZpY3VsdCB0byBhZGQNCj4gUFJFTUlSUk9SUyBhcyBhIENyZWF0ZUF1
-dG9Db25mIHBhcmFtZXRlciBmb3IgdGhlIGJ1aWxkc2V0cy4gIEkgY2FuIHdvcmsNCj4gb24gdGhl
-IGNoYW5nZSBhbmQgc3VibWl0IHRoZSBwYXRjaC4gIEJ1dCBiZWZvcmUgSSBzdGFydCBJIGhhdmUg
-YSBmZXcNCj4gcXVlc3Rpb25zOg0KPiANCj4gMS4gSSBwbGFuIG9uIGltcGxlbWVudGluZyB0aGUg
-UFJFTUlSUk9SUyBwYXJhbWV0ZXIgYXMgYW4gYXJyYXksIHNpbWlsYXIgdG8NCj4gJ2xheWVyZGly
-cycgZm9yIENyZWF0ZUJCTGF5ZXJzQ29uZi4gIEZvciBleGFtcGxlOg0KPiANCj4geydDcmVhdGVB
-dXRvQ29uZicgOiB7J1BSRU1JUlJPUlMnIDogWydnaXQ6Ly8uKi8uKg0KPiBodHRwOi8vb3VyL2xv
-Y2FsL21pcnJvci9wYXRoL21pcnJvci9zb3VyY2VzLyAnLA0KPiAJJ2Z0cDovLy4qLy4qIGh0dHA6
-Ly9vdXIvbG9jYWwvbWlycm9yL3BhdGggL21pcnJvci9zb3VyY2VzLyAnLA0KPiAJJ2h0dHA6Ly8u
-Ki8uKiBodHRwOi8vb3VyL2xvY2FsL21pcnJvci9wYXRoL21pcnJvci9zb3VyY2VzLyAnLA0KPiAJ
-J2h0dHBzOi8vLiovLiogaHR0cDovL291ci9sb2NhbC9taXJyb3IvcGF0aC9taXJyb3Ivc291cmNl
-cy8gJ119DQo+IA0KPiB3b3VsZCBhZGQgdGhlIGZvbGxvd2luZyB0byBhdXRvLmNvbmY6DQo+IA0K
-PiAgUFJFTUlSUk9SUyA9ICdnaXQ6Ly8uKi8uKiBodHRwOi8vb3VyL2xvY2FsL21pcnJvci9wYXRo
-L21pcnJvci9zb3VyY2VzLyAgXA0KPiAgCWZ0cDovLy4qLy4qIGh0dHA6Ly9vdXIvbG9jYWwvbWly
-cm9yL3BhdGggL21pcnJvci9zb3VyY2VzLyAgXA0KPiAgCWh0dHA6Ly8uKi8uKiBodHRwOi8vb3Vy
-L2xvY2FsL21pcnJvci9wYXRoL21pcnJvci9zb3VyY2VzLyAgXA0KPiAgCWh0dHBzOi8vLiovLiog
-aHR0cDovL291ci9sb2NhbC9taXJyb3IvcGF0aC9taXJyb3Ivc291cmNlcy8gJw0KPiANCj4gRG9l
-cyB0aGlzIHNvdW5kIHJlYXNvbmFibGUsIG9yIHdvdWxkIGEgZGlmZmVyZW50IHBhcmFtZXRlciBm
-b3JtYXQgYmUNCj4gcHJlZmVycmVkPw0KDQpJIGFtIHRyeWluZyB0byBhZGQgYSBzaW5nbGUgUFJF
-TUlSUk9SIHVzaW5nIHRoZSBzeW50YXggSSBzcGVjaWZpZWQgYWJvdmUuICBBdCB0aGlzIHRpbWUg
-aXQgaXMgZ2V0dGluZyBpbnNlcnRlZCBpbiBhdXRvLmNvbmYuICBIb3dldmVyLCB0aGUgc3lzdGVt
-IGlzIGdvaW5nIGludG8gYW4gaW5maW5pdGUgbG9vcCBidWlsZGluZyB0aGUgUFJFTUlSUk9SIHBh
-dGguICBUaGUgYWRkZWQgY29udGVudCB0byBhdXRvLmNvbmYgYXQgdGhpcyB0aW1lIGxvb2tzIGxp
-a2U6DQoNClBSRU1JUlJPUlMgPSAiIFwgDQpodHRwOi8vLiouKiBodHRwOi8vc2VydmVyLnJlcG8u
-bG9jYWwvbWlycm9yL3NvdXJjZXMvIFxuIFwgDQoiDQoNCkFuZCBmcm9tIGxvb2tpbmcgYXQgbG9n
-LmRvX2ZldGNoIGZvciB0aGUgcGFja2FnZSB0aGF0IGF0dGVtcHRzIHRvIHVzZSB0aGUgUFJFTUlS
-Uk9SLCB0aGUgbG9nIGlzIGZpbGxlZCB3aXRoICJzZXJ2ZXIucmVwby5sb2NhbHNlcnZlci5yZXBv
-LmxvY2Fsc2VydmVyLnJlcG8ubG9jYWwiIHJlcGVhdGluZy4gIEFueSB0aXBzIG9uIGhvdyBQUkVN
-SVJST1JTIHNob3VsZCBiZSBidWlsdD8NCg0KSGVyZSdzIHdoYXQgSSBoYXZlIHNvIGZhciBpbiBD
-cmVhdGVBdXRvQ29uZi5weToNCg0KICAgICAgICAgICAgc2VsZi5QUkVNSVJST1JTPSIiDQogICAg
-ICAgICAgICBmb3V0ID0gZm91dCArICdQUkVNSVJST1JTID0gIiBcIFxuJw0KICAgICAgICAgICAg
-aWYgbGlzdChzZWxmLlBSRU1JUlJPUlMpOg0KICAgICAgICAgICAgICAgIGZvciBwcmVtaXJyb3Ig
-aW4gc2VsZi5QUkVNSVJST1JTOg0KICAgICAgICAgICAgICAgICAgICBmb3V0ID0gZm91dCArIHBy
-ZW1pcnJvciArICcgXFxcXG4gXCBcbicNCiAgICAgICAgICAgIGZvdXQgPSBmb3V0ICsgJyIgXG4n
-DQoNCkFueSB0aXBzIG9uIGhvdyB0byBjaGFuZ2UgdGhpbmdzIHNvIFBSRU1JUlJPUlMgaXMgY29y
-cmVjdGx5IHBhcnNlZD8NCg0KVGhhbmtzLA0KQnJ5YW4NCg0K
+--xxBJLQHWEi0psjAuROjLo62mW0TBcesqw
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
+On 11/18/2014 06:03 PM, Martin Jansa wrote:
+> On Tue, Nov 18, 2014 at 09:57:30PM +0000, Burton, Ross wrote:
+>> Looking over the duplicate list, there's some obvious low-hanging frui=
+t.
+>> Angstrom duplicates recipes that are in meta-multimedia. meta-webos an=
+d
+>> meta-webos-ports seem to be full of duplicates.  meta-guacamayo has so=
+me
+>=20
+> meta-webos-ports is fork of meta-webos, so duplicates between these 2
+> are expected.
+
+Paul explained you can use the filter button to adjust the layers
+scanned for dupes. This should be all layers minus meta-webos-ports:
+
+http://layers.openembedded.org/layerindex/branch/master/duplicates/?l=3D9=
+1&l=3D123&l=3D30&l=3D147&l=3D168&l=3D148&l=3D31&l=3D65&l=3D66&l=3D32&l=3D=
+124&l=3D164&l=3D67&l=3D149&l=3D77&l=3D101&l=3D118&l=3D33&l=3D3&l=3D34&l=3D=
+142&l=3D169&l=3D35&l=3D137&l=3D171&l=3D139&l=3D108&l=3D162&l=3D81&l=3D82&=
+l=3D95&l=3D125&l=3D145&l=3D146&l=3D114&l=3D4&l=3D36&l=3D68&l=3D140&l=3D83=
+&l=3D132&l=3D5&l=3D154&l=3D120&l=3D84&l=3D6&l=3D93&l=3D112&l=3D7&l=3D37&l=
+=3D167&l=3D38&l=3D8&l=3D98&l=3D39&l=3D165&l=3D40&l=3D105&l=3D69&l=3D9&l=3D=
+10&l=3D110&l=3D107&l=3D11&l=3D12&l=3D13&l=3D14&l=3D41&l=3D15&l=3D99&l=3D1=
+51&l=3D170&l=3D85&l=3D42&l=3D43&l=3D113&l=3D159&l=3D16&l=3D78&l=3D92&l=3D=
+103&l=3D157&l=3D97&l=3D119&l=3D70&l=3D152&l=3D153&l=3D71&l=3D126&l=3D115&=
+l=3D136&l=3D44&l=3D45&l=3D163&l=3D17&l=3D102&l=3D150&l=3D46&l=3D18&l=3D19=
+&l=3D79&l=3D2&l=3D138&l=3D174&l=3D20&l=3D21&l=3D128&l=3D129&l=3D130&l=3D1=
+31&l=3D47&l=3D104&l=3D48&l=3D135&l=3D22&l=3D173&l=3D121&l=3D23&l=3D160&l=3D=
+49&l=3D106&l=3D24&l=3D50&l=3D117&l=3D143&l=3D87&l=3D51&l=3D52&l=3D25&l=3D=
+133&l=3D116&l=3D53&l=3D72&l=3D122&l=3D73&l=3D54&l=3D55&l=3D172&l=3D88&l=3D=
+109&l=3D56&l=3D57&l=3D100&l=3D26&l=3D155&l=3D90&l=3D58&l=3D144&l=3D59&l=3D=
+60&l=3D74&l=3D61&l=3D75&l=3D158&l=3D134&l=3D62&l=3D111&l=3D27&l=3D76&l=3D=
+28&l=3D141&l=3D1&l=3D64
+
+Although that url might fail, you get the idea how to use the tool better=
+ :)
+
+Philip
+
+
+>=20
+> Also meta-webos master branch is compatible only with 1.4 dylan release=
+,
+> so some of the duplicated recipes are actually backports from newer OE.=
+
+>=20
+
+
+--xxBJLQHWEi0psjAuROjLo62mW0TBcesqw
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQEcBAEBAgAGBQJUbLUJAAoJEMDJd4rr0merf2QH/1od1WNuMREpNUhcRIaqvd3q
+/1zJTUxPkYrF8QX6BcF9Wc6/kdPZo2ELYBg24bu2Xi4aJlTXgaNUqk2w96QoEHgr
+FEd6Ykjch6UQPjdcisHg9ejuQX4LDvLyfzhpzMVWPL6NCrBQodPHLeGG63Ihhg63
+JHItxeXjM8z07tYxG8Am7myP7bN2ZLENCMW5UcNTsHDqJp4Z6OXX6K0DTfb3mQVv
+DC4NDUaJUYrsfIGX6cEtz54bhSyEiQ0oThVPo5DUamUw8zBGrha9c3pOokl9W83I
+FzCFsi1Gc9F7x0uIcmVDzlSM7lI7ZHERpveGDbJarAMKHx4J8CdG97+T3eWuYD0=
+=PrfI
+-----END PGP SIGNATURE-----
+
+--xxBJLQHWEi0psjAuROjLo62mW0TBcesqw--
