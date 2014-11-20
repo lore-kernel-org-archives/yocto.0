@@ -1,49 +1,65 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <mahdisaadat@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1B396E008FB; Thu, 20 Nov 2014 04:04:49 -0800 (PST)
+	id 6FEA8E00902; Thu, 20 Nov 2014 04:47:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS,WEIRD_PORT autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mahdisaadat[at]yahoo.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [98.139.213.150 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2E9AE0087D
-	for <yocto@yoctoproject.org>; Thu, 20 Nov 2014 04:04:38 -0800 (PST)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1XrQTT-0005tn-Ay
-	for yocto@yoctoproject.org; Thu, 20 Nov 2014 13:04:35 +0100
-Received: from ppp005054121147.access.hol.gr ([5.54.121.147])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Thu, 20 Nov 2014 13:04:35 +0100
-Received: from gmane by ppp005054121147.access.hol.gr with local (Gmexim 0.1
-	(Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Thu, 20 Nov 2014 13:04:35 +0100
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Thu, 20 Nov 2014 14:04:20 +0200
-Message-ID: <546DD8C4.6010800@reliableembeddedsystems.com>
-References: <546BB9EF.4040807@balister.org>	<CAJTo0LaKHeK+hL_s9z-pPT6dnzCR5mw4MgOkg4Zch=S=dWWGMA@mail.gmail.com>	<20141118230324.GA2477@jama>
-	<546CB505.2070807@balister.org>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: ppp005054121147.access.hol.gr
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.0
-In-Reply-To: <546CB505.2070807@balister.org>
-Cc: Yocto Project <public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org>
-Subject: Re: Layer model doomed, unless we all work together
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm5-vm0.bullet.mail.bf1.yahoo.com
+	(nm5-vm0.bullet.mail.bf1.yahoo.com [98.139.213.150])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB1B9E008C9
+	for <yocto@yoctoproject.org>; Thu, 20 Nov 2014 04:47:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1416487638; bh=vqdYgMGQvWEER+vJZj/vbYz6euaaTex09T5Ws9Kur4Q=;
+	h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject;
+	b=B5NtLvE1G7KMYyn46yGC7Hrm/D1X46L/OOuHtWlmFvr5Y9I6AzAY5XfpdWZ0LboPXZ5yXUsER/UtAMRkQgoB/cY4IwJKJrr7JgnOQoxe/em5Ec1lmPQAgn5Jk0bnKvWQwCWw7h84FlydtJk9sjNK1FOKcVIMblPyEJm6l6GlZNNMDosdTJUrUGLMsxmE+plMjSPrUxMn3r7wi3YGnSgpS6RhBBc3bk8oRf2PoK0NIHNWesb2IRzZKbCcDQQxcatH2N/yKj89xv5bBdRI+H19Siat0oGgVDoofHrP1FAdgR1r56sdUzrZC4uFukurKlC8YXnzddrVakJ1IcjmPae8/w==
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s2048; d=yahoo.com;
+	b=bZakOldojtvKWH1eHLYfCq9p2Kf/sGkWsdVjmy/5kSnguI0VGUDzo9SD8VwJHtfiF55Lp1mSq/s9iCHUIh1FTQhrcn4Cpakpl3qUOyaguWBVj4dVkPRc0WTvYPqtVkmwemUHVfAvxy3FtNpTcMmE4IwfX+U3XO8MamHCgnfFDw994xP6bDcbVkI2v+D/pvZ17FBregXg7nAkKU9KBMJ9/sAkbMgfIfhkzuxI//ewPHWeLnPFxyfc/J4ByPv9HxqLQuGtzCaKrPCL17SrWLURX4O1uHtX2A86HTBT1YE8+izFct1pLSmE4S+3z/b+2uCW0hSySDhQZvfyKjT7D1752g==;
+Received: from [98.139.215.142] by nm5.bullet.mail.bf1.yahoo.com with NNFMP;
+	20 Nov 2014 12:47:18 -0000
+Received: from [98.139.212.216] by tm13.bullet.mail.bf1.yahoo.com with NNFMP;
+	20 Nov 2014 12:47:18 -0000
+Received: from [127.0.0.1] by omp1025.mail.bf1.yahoo.com with NNFMP;
+	20 Nov 2014 12:47:18 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 375866.535.bm@omp1025.mail.bf1.yahoo.com
+X-YMail-OSG: 8pmSfTkVM1mOWXtyIOYIauRYrgN4T3f.Re9GvoXkXRKkif5WPf_fxz_zhSYWT1t
+	DQn01QSrrPQt2.hitiHi126DokISetUNMUPPptTxdnj_ifPQ7vDDCenbTPEGA8tGo50JR2yIN3hq
+	0Zi.4zKMQKSqpvse7V5etaAZJ4rZNBQNtBr1ouPc1LsMO4Uk3WPfA8j_aFIsbHxQiOCMB.lwxIHR
+	s2SVp2eCMGKDDDeAYCwZE73ex.eNhLACwmmkVQQeMkxYkQ0YUJF6aHKblDp9shNsX.kSl2NJfQlV
+	wyhtNszmXcWbk0L_4Rd2uItSRW9lJjn9GerjVLkPSKbaptFq.hekgEdkG4LMyGTxOk8nUuyXjTpD
+	K_i4_IicZ10WUcdtgaGptXETmFFllmNmgWCVQPmIOt_eCc4hueekdZP87sNEicUH71Gipk9VQK4E
+	qL3Szqgz1WRwR_hnx51H2jYYs5Cp9x3i8itLxEseud_9q4JyUwqFNllljWNCgn6LH.Ml5TX_e.fp
+	WCf6LE1IpAitc42hnM.LYHBoQOF7v6Z61sU4Az6B8.Bu5qv2d
+Received: by 76.13.26.138; Thu, 20 Nov 2014 12:47:17 +0000 
+Date: Thu, 20 Nov 2014 12:47:17 +0000 (UTC)
+From: Mahdi Sa'adat <mahdisaadat@yahoo.com>
+To: "poky@yoctoproject.org" <poky@yoctoproject.org>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <2038600814.3067041.1416487637680.JavaMail.yahoo@jws10667.mail.bf1.yahoo.com>
+In-Reply-To: <952664770.1585494.1416248426041.JavaMail.yahoo@jws10657.mail.bf1.yahoo.com>
+References: <952664770.1585494.1416248426041.JavaMail.yahoo@jws10657.mail.bf1.yahoo.com>
+MIME-Version: 1.0
+Subject: Fw: progressbar
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Mahdi Sa'adat <mahdisaadat@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -52,49 +68,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Nov 2014 12:04:49 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 20 Nov 2014 12:47:23 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_3067040_1863296216.1416487637673"
 
-Hi,
+------=_Part_3067040_1863296216.1416487637673
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 11/19/2014 05:19 PM, Philip Balister wrote:
-> 
-> http://layers.openembedded.org/layerindex/branch/master/duplicates/?l=91&l=123&l=30&l=147&l=168&l=148&l=31&l=65&l=66&l=32&l=124&l=164&l=67&l=149&l=77&l=101&l=118&l=33&l=3&l=34&l=142&l=169&l=35&l=137&l=171&l=139&l=108&l=162&l=81&l=82&l=95&l=125&l=145&l=146&l=114&l=4&l=36&l=68&l=140&l=83&l=132&l=5&l=154&l=120&l=84&l=6&l=93&l=112&l=7&l=37&l=167&l=38&l=8&l=98&l=39&l=165&l=40&l=105&l=69&l=9&l=10&l=110&l=107&l=11&l=12&l=13&l=14&l=41&l=15&l=99&l=151&l=170&l=85&l=42&l=43&l=113&l=159&l=16&l=78&l=92&l=103&l=157&l=97&l=119&l=70&l=152&l=153&l=71&l=126&l=115&l=136&l=44&l=45&l=163&l=17&l=102&l=150&l=46&l=18&l=19&l=79&l=2&l=138&l=174&l=20&l=21&l=128&l=129&l=130&l=131&l=47&l=104&l=48&l=135&l=22&l=173&l=121&l=23&l=160&l=49&l=106&l=24&l=50&l=117&l=143&l=87&l=51&l=52&l=25&l=133&l=116&l=53&l=72&l=122&l=73&l=54&l=55&l=172&l=88&l=109&l=56&l=57&l=100&l=26&l=155&l=90&l=58&l=144&l=59&l=60&l=74&l=61&l=75&l=158&l=134&l=62&l=111&l=27&l=76&l=28&l=141&l=1&l=64
-> 
-> Although that url might fail, you get the idea how to use the tool better :)
+=C2=A0=C2=A0No one answer my email :(
+_________________
+Regards
+Mahdi Saadat
 
-The url works for me;)
-
-You just mention duplicated classes and recipes here, but there are more
-things which should be cleaned up ;)
-
-The worst thing about Yocto/poky/OE is, that people can do and do things
-in many mysterious ways. Looking through various meta-layers you don't
-see a "common coding style", which means that you either need to twist
-your brain to understand what others did, or write things from scratch.
-
-I guess we should first publish "best practices" and then try to enforce
-them in a first step with maybe with something like "WARN_QA" and
-"ERROR_QA" and/or extend oelint.
-
-What do you think?
-
-> 
-> Philip
-> 
-
-Regards,
-
-Robert
+    ----- Forwarded Message -----
+  From: Mahdi Sa'adat <mahdisaadat@yahoo.com>
+ To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>=20
+ Sent: Monday, November 17, 2014 9:50 PM
+ Subject: progressbar
+  =20
+=C2=A0hii build the image-minimal , and want to add the dialog installer fo=
+r it with progress bar and dialog , when i use install.sh, in the image ins=
+tallation on target device the message shows that "dialog and progress coul=
+d not find".could you please inform me about the creating progress bar when=
+ installing th image on dest device.=C2=A0
+_________________
+Regards
+Mahdi Saadat
 
 
-..."Stroustroup writes in the ARM: C programmers think that memory
-allocation is too important to be left to the computer, Lisp programmers
-think that memory allocation is too important to be left to the programmer."
+  
 
-My public pgp key is available,at:
-http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
+------=_Part_3067040_1863296216.1416487637673
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
+nt-size:14px"><div id=3D"yui_3_16_0_1_1416485527867_5057"><span></span></di=
+v><div></div><div id=3D"yui_3_16_0_1_1416485527867_5056">&nbsp;</div><div c=
+lass=3D"signature" id=3D"yui_3_16_0_1_1416485527867_5055"><div id=3D"yui_3_=
+16_0_1_1416485527867_5054">&nbsp;No one answer my email :(<br>_____________=
+____<br><span style=3D"font-family:Courier New, courier, monaco, monospace,=
+ sans-serif;font-style:italic;">Regards</span><br><span style=3D"font-famil=
+y:Courier New, courier, monaco, monospace, sans-serif;">Mahdi Saadat</span>=
+<br></div></div><br>  <div style=3D"font-family: HelveticaNeue, Helvetica N=
+eue, Helvetica, Arial, Lucida Grande, sans-serif; font-size: 14px;" id=3D"y=
+ui_3_16_0_1_1416485527867_5051"> <div style=3D"font-family: HelveticaNeue, =
+Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif; font-size: 16p=
+x;" id=3D"yui_3_16_0_1_1416485527867_5050"> <div dir=3D"ltr" id=3D"yui_3_16=
+_0_1_1416485527867_5049"> ----- Forwarded Message -----<br>  <font size=3D"=
+2" face=3D"Arial" id=3D"yui_3_16_0_1_1416485527867_5048"> <b><span style=3D=
+"font-weight:bold;">From:</span></b> Mahdi Sa'adat &lt;mahdisaadat@yahoo.co=
+m&gt;<br> <b><span style=3D"font-weight: bold;">To:</span></b> "yocto@yocto=
+project.org" &lt;yocto@yoctoproject.org&gt; <br> <b><span style=3D"font-wei=
+ght: bold;">Sent:</span></b> Monday, November 17, 2014 9:50 PM<br> <b><span=
+ style=3D"font-weight: bold;">Subject:</span></b> progressbar<br> </font> <=
+/div> <div class=3D"y_msg_container" id=3D"yui_3_16_0_1_1416485527867_5058"=
+><br><div id=3D"yiv2823032370"><div id=3D"yui_3_16_0_1_1416485527867_5068">=
+<div style=3D"color:#000;background-color:#fff;font-family:HelveticaNeue, H=
+elvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font-size:14px;"=
+ id=3D"yui_3_16_0_1_1416485527867_5067"><div id=3D"yiv2823032370yui_3_16_0_=
+1_1416248240090_2950"><span></span></div><div></div><div id=3D"yiv282303237=
+0yui_3_16_0_1_1416248240090_2827">&nbsp;hi</div><div dir=3D"ltr" id=3D"yiv2=
+823032370yui_3_16_0_1_1416243217953_8063" class=3D"yiv2823032370" style=3D"=
+"><span id=3D"yiv2823032370yui_3_16_0_1_1416243217953_8062" class=3D"yiv282=
+3032370" style=3D"">i build the image-minimal , and want to add the dialog =
+installer for it with progress bar and dialog , when i use install.sh, in t=
+he image installation on target device the message shows that "dialog and p=
+rogress could not find".</span></div><div dir=3D"ltr" id=3D"yiv2823032370yu=
+i_3_16_0_1_1416243217953_8063" class=3D"yiv2823032370" style=3D""><span id=
+=3D"yiv2823032370yui_3_16_0_1_1416243217953_8083" class=3D"yiv2823032370" s=
+tyle=3D"">could you please inform me about the creating progress bar when i=
+nstalling th image on dest device.</span></div><div class=3D"yiv2823032370"=
+ style=3D""></div><div id=3D"yiv2823032370yui_3_16_0_1_1416243217953_8055" =
+class=3D"yiv2823032370" style=3D"">&nbsp;</div><div class=3D"yiv2823032370s=
+ignature" id=3D"yiv2823032370yui_3_16_0_1_1416248240090_2826"><div id=3D"yi=
+v2823032370yui_3_16_0_1_1416248240090_2825"><br>_________________<br><span =
+style=3D"font-family:Courier New, courier, monaco, monospace, sans-serif;fo=
+nt-style:italic;">Regards</span><br><span style=3D"font-family:Courier New,=
+ courier, monaco, monospace, sans-serif;" id=3D"yui_3_16_0_1_1416485527867_=
+5096">Mahdi Saadat</span><br></div></div></div></div></div><br><br></div> <=
+/div> </div>  </div></body></html>
 
-
+------=_Part_3067040_1863296216.1416487637673--
