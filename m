@@ -1,55 +1,36 @@
-Return-Path: <s.stirtzel@googlemail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F3F2CE008FB; Thu, 20 Nov 2014 04:53:54 -0800 (PST)
+	id 2BE15E008F2; Thu, 20 Nov 2014 05:43:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (s.stirtzel[at]googlemail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f43.google.com (mail-oi0-f43.google.com
-	[209.85.218.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42A87E008C3;
-	Thu, 20 Nov 2014 04:53:43 -0800 (PST)
-Received: by mail-oi0-f43.google.com with SMTP id a3so1961797oib.2
-	for <multiple recipients>; Thu, 20 Nov 2014 04:53:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=lVKc2nntE9iPjY38Ysyr4e6hcBOja2y2WdqTKadxENY=;
-	b=DDgQkBwhGUdGs7w3CELXcrIE+popDaTGr4bL4NBPIZLDNIipaDZTLIG+STH+V8xDoz
-	IIVrre2to9M/Pf3GDjrUPfc9yKe5dpkwNRWC+ZeC02KPVLF4lKUv6lJHxU5PqrKKcEGC
-	LZ5YVL2IpYK1z8CZdRC1968pC9utyN/6wphVxvTMX1D+h1vCpnGLlLw75fAKyiijxxGv
-	1xuplGyda/4dyTRCMcFzfuABLYda+jlry52psTTq9a/M+BIQkcz+oMII/uJaLD/ncmmM
-	h1QeMbCtLKPSclD+gX2gQB5O1yjVNcKTtup8iLeZTgM5JVQJRhX1WO5Y17NJDa1XsKoF
-	6hDg==
-X-Received: by 10.60.68.108 with SMTP id v12mr175700oet.69.1416488022839; Thu,
-	20 Nov 2014 04:53:42 -0800 (PST)
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B76FE007B9
+	for <yocto@yoctoproject.org>; Thu, 20 Nov 2014 05:43:35 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga103.jf.intel.com with ESMTP; 20 Nov 2014 05:40:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.07,424,1413270000"; d="scan'208";a="611105533"
+Received: from snaufer-mobl1.gar.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.207])
+	by orsmga001.jf.intel.com with ESMTP; 20 Nov 2014 05:43:33 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 20 Nov 2014 13:43:31 +0000
+Message-ID: <3780775.YvVDClAEQ0@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.3 (Linux/3.17.2-200.fc20.x86_64; KDE/4.14.3; x86_64; ; )
+In-Reply-To: <20141120033439.GA906@mentor.com>
+References: <546BB9EF.4040807@balister.org> <20141120033439.GA906@mentor.com>
 MIME-Version: 1.0
-Received: by 10.76.158.195 with HTTP; Thu, 20 Nov 2014 04:53:22 -0800 (PST)
-In-Reply-To: <2038600814.3067041.1416487637680.JavaMail.yahoo@jws10667.mail.bf1.yahoo.com>
-References: <952664770.1585494.1416248426041.JavaMail.yahoo@jws10657.mail.bf1.yahoo.com>
-	<2038600814.3067041.1416487637680.JavaMail.yahoo@jws10667.mail.bf1.yahoo.com>
-From: Samuel Stirtzel <s.stirtzel@googlemail.com>
-Date: Thu, 20 Nov 2014 13:53:22 +0100
-Message-ID: <CAGiJk9dfyeSxv5J30L6k8UhMRVJDFr+Qv2J3aoR9kjwPDdESmA@mail.gmail.com>
-To: "Mahdi Sa'adat" <mahdisaadat@yahoo.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"poky@yoctoproject.org" <poky@yoctoproject.org>
-Subject: Re: Fw: progressbar
+Subject: Re: Layer model doomed, unless we all work together
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,19 +42,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Nov 2014 12:53:55 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 20 Nov 2014 13:43:38 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-2014-11-20 13:47 GMT+01:00 Mahdi Sa'adat <mahdisaadat@yahoo.com>:
->
->  No one answer my email :(
+On Wednesday 19 November 2014 22:34:41 Joe MacDonald wrote:
+> [[yocto] Layer model doomed, unless we all work together] On 14.11.18 (Tue 
+16:28) Philip Balister wrote:
+> > I see a couple of issues we need to start talking about:
+> > 
+> > 1) recipes that need to move closer to core because a range of other
+> > packages use them.
+> 
+> This was actually the only thing I thought needed further discussion
+> (everything else should largely be a nod-in-agreement thing), as in some
+> cases I'm not sure it's always clear what constitutes "closer to the
+> core".  Poky and oe-core layers are pretty clear, but the next step
+> beyond that isn't.  Are all layers hosted on git.yoctoproject.org
+> inherhently "more core" than layers on git.openenbedded.org?  And
+> there's a number of shells when you start including all of the github
+> projects, setting aside other open-source project hosting services.
 
-Blame Yahoo:
-http://www.ietf.org/mail-archive/web/ietf/current/msg87153.html
+The answer to me there is certainly not. I've said this recently in other 
+discussions, but I'll say it here anyway in case anyone else isn't sure - 
+layers on git.yoctoproject.org should not be considered in any way more official 
+than anywhere else solely based on them being hosted there. Anyone who wants 
+to maintain and publish a layer suitable for others to use can get a 
+repository on git.yoctoproject.org - there's no official review, validation, or 
+acceptance criteria in the general case just for having a repository there 
+(beyond being related to the project, that is).
 
+To me this isn't so much about "closer to the core", it's about:
 
+ 1) sensible recipe groupings, e.g. meta-networking rather than a particular 
+project's mixed recipes layer
+
+ 2) good maintenance, i.e. recipes are semi-regularly updated when upstream 
+releases happen, fixed when needed to accommodate changes that happen in other 
+layers it depends upon such as OE-Core, and the maintainer is reasonably 
+responsive to patches or questions relating to the layer.
+
+We need both of those things to encourage re-use, and if we have both then it 
+doesn't really matter where a layer is hosted as long as it's listed in the 
+layer index.
+ 
+> Looking at the link you sent out based on Paul's suggestion, I see I'm
+> actually on both sides of this equation, so yay!  And I'll limit the
+> discussion to what's indexed there.
+> 
+> Here're my examples.
+> 
+> iscsi-initiator-utils: both in meta-networking nd meta-openstack.  Both
+> at the same version currently but wildly different contents.
+> meta-openstack is a git.yoctoproject.org project, so does that make it
+> closer to the core?  I would think not, but as I recall there had been
+> some comment about the openstack layer intending to limit layer
+> dependencies outside Yocto core when it first appeared, so maybe making
+> meta-networking a dependency is a non-starter for them.
+
+So I've talked to Bruce about meta-openstack before, with particular regard to 
+the number of python recipes that the layer ships and future overlap with 
+meta-python, and apparently the policy there is not to pull in other layers 
+for some dependencies with the aim of avoiding breakage on upgrades. I don't 
+like that very much at all, to be frank, but I can at least understand it 
+given how huge OpenStack is. It does of course mean that the overlap with that 
+layer in particular is only going to increase as time goes on.
+ 
+Cheers,
+Paul
 
 -- 
-Regards
-Samuel
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
