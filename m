@@ -1,45 +1,52 @@
-Return-Path: <paul.betafive@gmail.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CDD67E008C3; Thu, 20 Nov 2014 02:32:48 -0800 (PST)
+	id F2B52E008C9; Thu, 20 Nov 2014 03:58:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.43 listed in list.dnswl.org]
+	*      [209.85.212.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qa0-f43.google.com (mail-qa0-f43.google.com
-	[209.85.216.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8125BE007BA
-	for <yocto@yoctoproject.org>; Thu, 20 Nov 2014 02:32:44 -0800 (PST)
-Received: by mail-qa0-f43.google.com with SMTP id bm13so1710552qab.16
-	for <yocto@yoctoproject.org>; Thu, 20 Nov 2014 02:32:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:from:date:message-id:subject:to:content-type;
-	bh=fT0JYHEsOxkKJE+Vomn0I72mNTbkplccBG8O2qXd19c=;
-	b=Gksrq5sfz+uAs3Y5hVJ0zaa3KxcxPnTYBc5nS3RqMnaCPcDxW/4ksECzlVODyPdT5/
-	jaeXymk1CkRvQceTGUDKHFUVOvrij6lMw4/a0Gnrl/6wyOHTJUAptJydOuQz+ZKH84eU
-	ju8UX59SmjhwQ/3lGvtWPve1LpY+RAC4H0FYTnxl+kONdKyQ4G14pHrdiOceLkMt8/CA
-	hYeHjnIwpS1ijA9ryXefll2AFAG4/lftJnM41wY4awUM0MwrYuDqNqhmUaBuCxwzUETp
-	xN+nPCZPCzoOTgkg6YIgHB8eoBxjH3+OJIOXEt8u549dWPhXVVXr1f1jy7CjcdtOT+VS
-	Wg1A==
-X-Received: by 10.140.23.198 with SMTP id 64mr58114544qgp.62.1416479563935;
-	Thu, 20 Nov 2014 02:32:43 -0800 (PST)
+Received: from mail-wi0-f173.google.com (mail-wi0-f173.google.com
+	[209.85.212.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14DFBE0087D
+	for <yocto@yoctoproject.org>; Thu, 20 Nov 2014 03:58:27 -0800 (PST)
+Received: by mail-wi0-f173.google.com with SMTP id r20so8414205wiv.12
+	for <yocto@yoctoproject.org>; Thu, 20 Nov 2014 03:58:27 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=7F6PdmBO+5/RN/7zlIet9OhvS6/EYHAXy1nk27wQdnk=;
+	b=BHdzM1ZqURs5GPrRlmCD+gdtvmtAe5Pnq9wZVzd9nvSIAbBCGkdtmpC3NdDDOZxSLf
+	bIZJ64jH9TKB9XyXaQ8Ks5j2L1EidTFn61rFxBOJDuFrwCZTrFQIpuEvgiiTgLwbooaw
+	sNmYuGurNmediBIqilPm+B5dVeFjkPo41qp3P/NvzDsh6v+m6Ar7fAaeZCTB0pYquMpI
+	3voIpP6P9+iDrDRqd0LCyQhxVFgmeCNKkfGjEV/xWsbWbfYXuS3zo6aOj1GjolwNOxUH
+	cXMYKl8PaZvatSaCos1FtDp96uAfxjU4U63PyYoUMWbZqTbH/ZHW5m4O4+LbxGCnlV63
+	XKPg==
+X-Gm-Message-State: ALoCoQnReAagP2R1NJ6X8KqLsmtDRP3yd0/QtNRPuEM/ubEwIAtmHpqI+2NPJWTNPJjmwmS1ZBMV
+X-Received: by 10.180.11.65 with SMTP id o1mr15024115wib.22.1416484706901;
+	Thu, 20 Nov 2014 03:58:26 -0800 (PST)
+Received: from gmail.com (dhcp-189-34.gjk.dk. [195.249.189.34])
+	by mx.google.com with ESMTPSA id pu3sm3070583wjc.14.2014.11.20.03.58.25
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 20 Nov 2014 03:58:26 -0800 (PST)
+Date: Thu, 20 Nov 2014 12:58:17 +0100
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Yen-Chin Lee <coldnew.tw@gmail.com>
+Message-ID: <20141120115817.GA24610@gmail.com>
+References: <1414203707-21296-1-git-send-email-coldnew.tw@gmail.com>
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.140.143.146 with HTTP; Thu, 20 Nov 2014 02:32:03 -0800 (PST)
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Thu, 20 Nov 2014 10:32:03 +0000
-X-Google-Sender-Auth: Lubh2dGy70PsdB835_uvA_fPDRs
-Message-ID: <CANyK_8fnHw+R1F1nXiM8so-XMYm-34qU4e6f44XHsfTC-YeJ+A@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: FOSDEM 2015 Embedded devroom Call For Participation
+In-Reply-To: <1414203707-21296-1-git-send-email-coldnew.tw@gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH] qtbase: Add basic Qt5 building support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,96 +58,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Nov 2014 10:32:48 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 20 Nov 2014 11:58:36 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Hi all,
+Hello Yen,
 
-I've seen this CFP elsewhere but not on any Yocto Project related
-lists. I'm reposting it incase anyone has missed it. It'd be good to
-see some Yocto Project talks at FOSDEM 2015!
+On Sat, Oct 25, 2014 at 10:21:47AM +0800, Yen-Chin Lee wrote:
+> To build raspberrypi with Qt5, we need to add extra QT_CONFIG_FLAGS to
+> indicate device config.
+>
+> Signed-off-by: Yen-Chin Lee <coldnew.tw@gmail.com>
+> ---
+>  recipes-qt/qt5/qtbase_%.bbappend | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>  create mode 100644 recipes-qt/qt5/qtbase_%.bbappend
+>
+> diff --git a/recipes-qt/qt5/qtbase_%.bbappend b/recipes-qt/qt5/qtbase_%.bbappend
+> new file mode 100644
+> index 0000000..c994cf5
+> --- /dev/null
+> +++ b/recipes-qt/qt5/qtbase_%.bbappend
+> @@ -0,0 +1,7 @@
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> +
+> +QT_CONFIG_FLAGS += " \
+> +    -device linux-rasp-pi-g++ \
+> +    -device-option CROSS_COMPILE=${TARGET_PREFIX} \
+> +    -I${STAGING_DIR_TARGET}${includedir}/interface/vcos/pthreads \
+> +"
 
-Call For Participation (CFP)
-Embedded devroom FOSDEM 2015
+If we add this append we need to change the layer dependencies and probably add
+this package to the test image too. But maybe we can avoid this by using a
+separate layer specific directory as meta-fsl-arm does with qt5-layer.
 
-Devroom date: Saturday January 31st and February 1st 2015 in Brussels,
-Belgium
+Check https://github.com/Freescale/meta-fsl-arm and
+https://github.com/Freescale/meta-fsl-arm/blob/master/conf/layer.conf
 
-CFP deadline: Monday December 1st 2014
-Final notification two weeks later, December 15th 2014
-
-CFP Introduction
-----------------------
-Embedded software is transforming the world, and FOSS embedded software is
-leading the way. From automotive to the Internet of Things, small devices,
-embedded systems, industrial process control and automatons are beginning
-their inevitable rise to the singularity. Join in! Or be assimilated. ;)
-
-NB: This year FOSDEM plans to record all presentations, no exceptions.
-Please only propose a talk that you're really able and willing to share.
-
-Topics Sought
-------------------
-The embedded devroom seeks topics related to automotive, mobile,
-autonomous, and generally small systems. Related areas are of course of
-interest as well and our definition of "embedded" is elastic. Are you
-controlling and launching rockets, made your own set-top box, built some
-heating control for your house, hacked your mobile phone or just built a
-small gadget using FOSS software then you might have exactly what we're
-looking for. This year the automotive devroom has been merged into the
-embedded devroom so automotive projects are for sure on topic here too.
-
-CFP Schedule And Submission Details
-----------------------------------------------------
-Please submit proposals no later than the first of December.
-
-Please use the following URL to submit your talk to FOSDEM 2015:
-
-https://penta.fosdem.org/submission/FOSDEM15
-
-and follow the following rules:
-
-    * Select as the Track "embedded devroom".
-
-    * Include a title.  (Note that "Subtitle" entry doesn't appear on
-all conference documents, so make sure "Title" can stand on its own without
-"Subtitle" present.) Also try to make it catchy and descriptive of what you
-will talk about. For example "Launching rockets with an Arduino" and not
-"Programming a microcontroller for aerodynamic control"
-
-   * Include an Abstract of about 500 characters and a full description of
-any length you wish, but in both fields, please be concise, but clear and
-descriptive.
-
-   * Indicate whether you seek a 25 or 45 minute slot.
-
-   * Use the "Links" sub-area to your past work in the field you'd like to
-share.
-
-   * Affirmative confirmation that you agree to CC-By-SA-4.0 or Cc-By-4.0
-licensing of your talk, in the "Submission Notes" field. Add a statement
-such as this:  "Should my presentation be scheduled for FOSDEM 2015, I
-hereby agree to license all recordings, slides and any other materials
-presented under the Creative Commons Attribution Share-Alike 4.0
-International license.  Sincerely, s/YOUR_NAME/"
-
-   * Also in the notes field, note your affirmative confirmation of
-availability to speak on Saturday 31 January or 1 February 2015 in
-Brussels. Also mention if you plan to do a demo and if you have special
-requirements.
-
-   * Make sure you give a valid email so we can contact you easily in case
-we have more questions or want to make sure you received the confirmation.
-Should you have any questions we can send more information as needed.
-
-Thank you very much and we look forward to reviewing your proposals!
-
--- Philippe and Jeremiah along with the other members of
-the FOSDEM embedded devroom team.
-
--- 
-Paul Barker
-
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+P.S.: Sorry for this very late reply but I had a very busy period lately.
+Thanks for understanding.
+--
+Andrei Gherzan
 
