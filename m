@@ -1,41 +1,41 @@
-Return-Path: <qianl.fnst@cn.fujitsu.com>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 505F8E007C2; Wed, 19 Nov 2014 17:52:14 -0800 (PST)
+	id B0853E0087D; Wed, 19 Nov 2014 19:34:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [192.94.38.131 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
-	Wed, 19 Nov 2014 17:52:12 PST
-Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DDDFE0071C
-	for <yocto@yoctoproject.org>; Wed, 19 Nov 2014 17:52:11 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.04,848,1406563200"; d="scan'208";a="43695997"
-Received: from unknown (HELO edo.cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 20 Nov 2014 09:47:51 +0800
-Received: from G08CNEXCHPEKD03.g08.fujitsu.local (localhost.localdomain
-	[127.0.0.1])
-	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id sAK1onUn031133;
-	Thu, 20 Nov 2014 09:50:49 +0800
-Received: from Fedora (10.167.226.40) by G08CNEXCHPEKD03.g08.fujitsu.local
-	(10.167.33.89) with Microsoft SMTP Server id 14.3.181.6;
-	Thu, 20 Nov 2014 09:51:08 +0800
-Date: Thu, 20 Nov 2014 09:51:03 +0800
-From: Qian Lei <qianl.fnst@cn.fujitsu.com>
-To: Joe MacDonald <Joe_MacDonald@mentor.com>
-Message-ID: <20141120095103.2f61ea12@Fedora>
-In-Reply-To: <20141119205646.GL6216@mentor.com>
-References: <1416382491-11239-1-git-send-email-qianl.fnst@cn.fujitsu.com>
-	<20141119205646.GL6216@mentor.com>
-Organization: FNST
-X-Mailer: Claws Mail 3.9.3 (GTK+ 2.24.22; x86_64-redhat-linux-gnu)
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79599E007B9
+	for <yocto@yoctoproject.org>; Wed, 19 Nov 2014 19:34:46 -0800 (PST)
+Received: from svr-orw-fem-04.mgc.mentorg.com ([147.34.97.41])
+	by relay1.mentorg.com with esmtp 
+	id 1XrIW4-0000iD-BZ from Joe_MacDonald@mentor.com ;
+	Wed, 19 Nov 2014 19:34:44 -0800
+Received: from burninator (147.34.91.1) by svr-orw-fem-04.mgc.mentorg.com
+	(147.34.97.41) with Microsoft SMTP Server id 14.3.181.6;
+	Wed, 19 Nov 2014 19:34:43 -0800
+Received: by burninator (Postfix, from userid 1000)	id 73E715809CE; Wed, 19
+	Nov 2014 22:34:41 -0500 (EST)
+Date: Wed, 19 Nov 2014 22:34:41 -0500
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: Philip Balister <philip@balister.org>
+Message-ID: <20141120033439.GA906@mentor.com>
+References: <546BB9EF.4040807@balister.org>
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, openembedded-devel@lists.openembedded.org
-Subject: Re: [oe] [meta-selinux][PATCH] ustr: Change the SRC_URI to upstream and add a new patch
+In-Reply-To: <546BB9EF.4040807@balister.org>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-704 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Layer model doomed, unless we all work together
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,40 +47,142 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Nov 2014 01:52:14 -0000
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 20 Nov 2014 03:34:52 -0000
+X-Groupsio-MsgNum: 22269
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="qDbXVdCdHGoSgWSk"
+Content-Disposition: inline
 
-On Wed, 19 Nov 2014 15:56:47 -0500
-Joe MacDonald <Joe_MacDonald@mentor.com> wrote:
+--qDbXVdCdHGoSgWSk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Thanks for the submission.  Just a couple of comments.
-> 
-> [[oe] [meta-selinux][PATCH] ustr: Change the SRC_URI to upstream and add a
-> new patch] On 14.11.19 (Wed 15:34) Qian Lei wrote:
-> 
-> > Official upstream is still Ok, using it first.
-> > Add a new patch which is applied in Fedora20
-> 
-> As these are two unrelated issues, I think two patches would've been
-> appropriate with 1/2 being the one that updates the SRC_URI and 2/2
-> being the c99 patch.
-> 
-> You should also provide an upstream-status for the C99 patch.  As you
-> say it came from Fedora, odds are it is already submitted upstream, so
-> 'pending' could be appropriate here, but I don't know.
-> 
-> Finally, meta-selinux patches should go to yocto@yoctoproject.org (cc'd
-> here), not the openembedded-dev@ list.
-> 
-> I'm fine with making the changes I described above or you can send out a
-> new version of the patch/patches if you like.  I won't do anything with
-> it before tomorrow, either way, to give everyone time to have a look.
-> 
-> -J.
+Hey Philip,
 
-Thanks for your reply.It really help me a lot. I'll take your advice and send a
-new version of patches to yocto soon.
+[[yocto] Layer model doomed, unless we all work together] On 14.11.18 (Tue =
+16:28) Philip Balister wrote:
 
-Qian Lei
+> As evidence, please review this list:
+>=20
+> http://layers.openembedded.org/layerindex/branch/master/duplicates/
+>=20
+> I mean FOUR recipes for alsa-plugins?
+>=20
+> I am trying to fix the pyqt recipe in meta-oe, and had th eidea to check
+> for it in other layers. This leads me to meta-ivi-demo, which has an
+> update for sip-native and another pyqt recipe. To be fair, they are
+> using Qt5, so it is a little more complex.
+>=20
+> At any rate, we need to stop ripping recipes out of layers and maing
+> local copies, or worse, updating our local copies and not the primary
+> layer. The intent of the layer concept was not to fragment development
+> across many separate repositories.
 
+I completely agree and I'm glad you brought it up.  I'm all for doing
+what I can to help on this.  I also second Ross' suggestion, perhaps we
+could start working on an implementation of RFC5841 as a first phase,
+though I'm thinking that may not be the healthiest thing for me.  :-)
+
+> I see a couple of issues we need to start talking about:
+>=20
+> 1) recipes that need to move closer to core because a range of other
+> packages use them.
+
+This was actually the only thing I thought needed further discussion
+(everything else should largely be a nod-in-agreement thing), as in some
+cases I'm not sure it's always clear what constitutes "closer to the
+core".  Poky and oe-core layers are pretty clear, but the next step
+beyond that isn't.  Are all layers hosted on git.yoctoproject.org
+inherhently "more core" than layers on git.openenbedded.org?  And
+there's a number of shells when you start including all of the github
+projects, setting aside other open-source project hosting services.
+
+Looking at the link you sent out based on Paul's suggestion, I see I'm
+actually on both sides of this equation, so yay!  And I'll limit the
+discussion to what's indexed there.
+
+Here're my examples.
+
+iscsi-initiator-utils: both in meta-networking nd meta-openstack.  Both
+at the same version currently but wildly different contents.
+meta-openstack is a git.yoctoproject.org project, so does that make it
+closer to the core?  I would think not, but as I recall there had been
+some comment about the openstack layer intending to limit layer
+dependencies outside Yocto core when it first appeared, so maybe making
+meta-networking a dependency is a non-starter for them.
+
+That said, I feel sorry for Alex's meta-cgl layer since it looks like it
+uses both meta-networking and meta-openstack and bbappends to
+iscsi-initiator-utils, which have significantly different patch sets.
+It hasn't bitten me in any of my testing with meta-cgl yet, but I didn't
+even notice this before now and I wasn't testing iscsi.  I would not be
+at all surprised if different people have different results using iscsi
+with meta-cgl now.
+
+On the other side of the coin is the swig recipe in meta-selinux and
+meta-oe.  The selinux build requires swig, so the meta-selinux layer
+needs to know it is there.  I was actually gearing up a while back to
+ditch the swig recipe in meta-selinux since it was so old and obviously
+behind the meta-oe version, but didn't ... for reasons that now escape
+me but could have been "because that would make meta-selinux depend on
+meta-oe", which isn't necessarily a dependency we wanted to bring in for
+meta-selinux.  But I'm highly allergic to duplicating (and inevitably
+diverging) data, so I'd still like to kick swig out of meta-selinux.
+But I also almost never build meta-selinux projects without some of
+meta-oe kicking around too.  Maybe that's everyone who uses
+meta-selinux, I don't know.
+
+Anyway, just to keep it really interesting, is meta-selinux and
+meta-security, both including recipes for libcap-ng, both at the same
+version, both different again (though not nearly so bad as the example
+above).  Which of these is more core?  I honestly don't know, since I
+have used them together and separately on roughly equal number of
+projects and I expect that trend will continue for a good long while for
+me.  I think this might be a scenario where meta-selinux and
+meta-security could make a case for trying to push this recipe further
+toward the core.
+
+Also, in light of this discovery, I'll be sending a patch for
+meta-security soon, since the meta-selinux changes for libcap-ng are
+almost certainly wanted there too.  But that's neither here nor there.
+
+> 2) people feel they have to remove recipes from layers and make local
+> copies.
+>=20
+> And just so people know what seriously pisses me off :) Copying a recipe
+> from a layer, updating it, and not sending the recipe to the layer they
+> got the update from.
+
+I don't know if that's what has happened with any of the recipes in the
+layers I baby-sit, but if it is, it was absolutely not intentional and
+I'll see what I can do about recovering a bit of karma by tidying up
+about the place a bit.  :-)
+
+-J.
+
+>=20
+> Thanks for letting me vent,
+>=20
+> Philip
+--=20
+-Joe MacDonald.
+:wq
+
+--qDbXVdCdHGoSgWSk
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iQEcBAEBAgAGBQJUbWFPAAoJEEn8ffcsOfaWbuYH/ihGznR25EScY4UnoeGrobB1
+dXyjqAkaH/1zccg8tgU84zDrWCsMKACz2zrh8F4aXgB6Spbvd6LI6mE3OTrKpZG8
+8DFzMx2p0kBIRtrzSzL5e3MPGGrED/hmTfY2619CVwK/KaBGRk8Iiox+Ufly0ea/
+jlw9IIa088BoilKiZwESqPsLpUMAc1/zSngVqSTr0A/eZpoOoBrCqlNNCKfSVcXH
+hvrkDsbOmT9jtMYhdSERetiOAdIq23W8EkFNHbgwoZkSxYHNYSoaFNrK0aCsu80z
+/N7PGdIADXuqnuoE6dMuf93xBa1ERgwzjYo6uCRMjcfHT5FqTSV1vOdbHlSBxUg=
+=LJjx
+-----END PGP SIGNATURE-----
+
+--qDbXVdCdHGoSgWSk--
