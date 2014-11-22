@@ -1,47 +1,29 @@
-Return-Path: <J.Spriggs@raylase.de>
+Return-Path: <mahdis@nimakco.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D5615E008F3; Fri, 21 Nov 2014 05:19:31 -0800 (PST)
+	id 21EC5E0030B; Fri, 21 Nov 2014 23:28:25 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-X-Greylist: delayed 307 seconds by postgrey-1.32 at yocto-www;
-	Fri, 21 Nov 2014 05:19:26 PST
-Received: from emailsecurity.raylase.de (mail.raylase.de [217.6.128.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FCE2E0085D
-	for <yocto@yoctoproject.org>; Fri, 21 Nov 2014 05:19:26 -0800 (PST)
-Received: from emailsecurity.raylase.de (127.0.0.1) id hdstu20171sq for
-	<yocto@yoctoproject.org>;
-	Fri, 21 Nov 2014 14:14:18 +0100 (envelope-from <J.Spriggs@raylase.de>)
-Received: from EXCHANGE-A.raylase.de ([192.168.1.16])
-	by emailsecurity.raylase.de (RAYLASE AG)
-	with ESMTPS (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-SHA
-	bits=256/256)
-	id 201411211314170065686; Fri, 21 Nov 2014 14:14:17 +0100
-Received: from EXCHANGE-B.raylase.de (192.168.2.12) by EXCHANGE-A.raylase.de
-	(192.168.1.16) with Microsoft SMTP Server (TLS) id 14.3.210.2;
-	Fri, 21 Nov 2014 14:14:18 +0100
-Received: from EXCHANGE-B.raylase.de ([fe80::3144:5b1b:13e0:ad49]) by
-	EXCHANGE-B.raylase.de ([fe80::3144:5b1b:13e0:ad49%14]) with mapi id
-	14.03.0210.002; Fri, 21 Nov 2014 14:14:17 +0100
-From: "Spriggs, Jim" <J.Spriggs@raylase.de>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Newbie confusion: trying to use meta-mono on poky-socfpga
-	(Arrow SoCKit)
-Thread-Index: AdAFjQjhqDIRVS47RT+9LUF/RtgC+Q==
-Date: Fri, 21 Nov 2014 13:14:15 +0000
-Message-ID: <2238EDC6081C944E97E4EE915AE5CBEC51FD801C@EXCHANGE-B.raylase.de>
-Accept-Language: en-GB, de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.255.1]
+X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_40,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
+	*      [score: 0.3718]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
+	Fri, 21 Nov 2014 23:28:22 PST
+Received: from mail82.nedahosting.com (mail82.nedahosting.com [64.130.220.82])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 927F8E002A6
+	for <yocto@yoctoproject.org>; Fri, 21 Nov 2014 23:28:22 -0800 (PST)
+Received: from UnknownHost [188.211.106.246] by mail.nedahosting.com with SMTP;
+	Sat, 22 Nov 2014 02:19:08 -0500
+From: "Mahdi Saadat" <MahdiS@nimakco.net>
+To: <yocto@yoctoproject.org>
+Date: Sat, 22 Nov 2014 11:11:16 +0330
+Message-ID: <003401d00627$b71a7500$254f5f00$@nimakco.net>
 MIME-Version: 1.0
-X-Mlf-Version: 8.0.5.2663
-X-Mlf-UniqueId: o201411211314170065686
-Subject: Newbie confusion: trying to use meta-mono on poky-socfpga (Arrow SoCKit)
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AdAGJ6k0S9kiNuIyRdOAMzn9MVmjjg==
+Subject: Progress Bar
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,62 +35,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Nov 2014 13:19:31 -0000
-Content-Language: en-GB
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Sat, 22 Nov 2014 07:28:25 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0035_01D00645.0D4A5630"
+Content-Language: fa
 
-SGkgR3V5cywNCg0KWyB5ZXMsIEkndmUgYWxzbyBwb3N0ZWQgdGhpcyBxdWVzdGlvbiBvbiByb2Nr
-ZXRib2FyZHMgbGlzdF0NCg0KTXkgZ29hbCBpcyB0byBydW4gImNvbnNvbGUiIC5ORVQgYXBwcyB2
-aWEgTW9ubyBvbiB0aGUgQXJyb3cgU29DS2l0IHdpdGggcG9reS1zb2NmcGdhIHYxNC4wDQoNCk15
-IGZpcnN0IHN0ZXBzIHdlcmU6DQoxKSBBZGQgdGhlIG1ldGEtbW9ubyBsYXllciB0byBiYmxheWVy
-cy5jb25mDQoyKSBQdXQgIklNQUdFX0lOU1RBTExfYXBwZW5kID0gIiBtb25vIiIgaW4gbG9jYWwu
-Y29uZg0KMykgRXhlY3V0ZSAiYml0YmFrZSBhbHRlcmEtZ3NyZC1pbWFnZSAiLi4uDQoNCi0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tDQoNCkJ1aWxkIENvbmZpZ3VyYXRpb246DQpCQl9WRVJTSU9OICAgICAgICA9ICIxLjE2LjAi
-DQpUQVJHRVRfQVJDSCAgICAgICA9ICJhcm0iDQpUQVJHRVRfT1MgICAgICAgICA9ICJsaW51eC1n
-bnVlYWJpIg0KTUFDSElORSAgICAgICAgICAgPSAic29jZnBnYV9jeWNsb25lNSINCkRJU1RSTyAg
-ICAgICAgICAgID0gInBva3kiDQpESVNUUk9fVkVSU0lPTiAgICA9ICIxLjMiDQpUVU5FX0ZFQVRV
-UkVTICAgICA9ICJhcm12N2EgdmZwIG5lb24gY2FsbGNvbnZlbnRpb24taGFyZCBjb3J0ZXhhOSIN
-ClRBUkdFVF9GUFUgICAgICAgID0gInZmcC1uZW9uIg0KbWV0YQ0KbWV0YS15b2N0bw0KbWV0YS15
-b2N0by1ic3ANCm1ldGEtYWx0ZXJhDQptZXRhLWxpbmFybyAgICAgICA9ICJhY2RzMTQuMDo4M2Ew
-MWM0YjJkYTY2NDY0OGQ4Y2EwNDI1YmE2Yjk4ZmY5YTViN2NhIg0KbWV0YS1tb25vICAgICAgICAg
-PSAibWFzdGVyOjgwMjEzODcyMWNjNzJlNWY0ZmI5ODUzYjA1NTJhMTE3ZTY3NzUzNmUiDQoNCk5P
-VEU6IFJlc29sdmluZyBhbnkgbWlzc2luZyB0YXNrIHF1ZXVlIGRlcGVuZGVuY2llcw0KRVJST1I6
-IE5vdGhpbmcgUFJPVklERVMgJ2xpYnhmdCcgKGJ1dCAvaG9tZS9qaW0vUHJvamVjdHMvcG9reS1z
-b2NmcGdhL21ldGEtbW9uby9yZWNpcGVzLW1vbm8vbGliZ2RpcGx1cy9saWJnZGlwbHVzXzIuMTAu
-OC5iYiBERVBFTkRTIG9uIG9yIG90aGVyd2lzZSByZXF1aXJlcyBpdCkNCkVSUk9SOiBsaWJ4ZnQg
-d2FzIHNraXBwZWQ6ICd4MTEnIG5vdCBpbiBESVNUUk9fRkVBVFVSRVMNCk5PVEU6IFJ1bnRpbWUg
-dGFyZ2V0ICdtb25vJyBpcyB1bmJ1aWxkYWJsZSwgcmVtb3ZpbmcuLi4NCk1pc3Npbmcgb3IgdW5i
-dWlsZGFibGUgZGVwZW5kZW5jeSBjaGFpbiB3YXM6IFsnbW9ubycsICdsaWJnZGlwbHVzJywgJ2xp
-YnhmdCddDQpFUlJPUjogUmVxdWlyZWQgYnVpbGQgdGFyZ2V0ICdhbHRlcmEtZ3NyZC1pbWFnZScg
-aGFzIG5vIGJ1aWxkYWJsZSBwcm92aWRlcnMuDQpNaXNzaW5nIG9yIHVuYnVpbGRhYmxlIGRlcGVu
-ZGVuY3kgY2hhaW4gd2FzOiBbJ2FsdGVyYS1nc3JkLWltYWdlJywgJ21vbm8nLCAnbGliZ2RpcGx1
-cycsICdsaWJ4ZnQnXQ0KDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KDQpPYnZpb3VzbHksICJ4MTEgbm90IGluIERJU1RS
-T19GRUFUVVJFUyIgaXMgYSBjbHVlLCBidXQgYXMgYSBOZXdiaWUsIEknbSBub3QgZXhhY3RseSBz
-dXJlIHdoYXQgaXQncyB0ZWxsaW5nIG1lLg0KDQpBZnRlciBzcGVuZGluZyBzZXZlcmFsIGhvdXJz
-IHRyYXdsaW5nIHRocm91Z2ggdGhlIHRoZSBvdGhlciBsYXllcnMgYW5kIHJlY2lwZXMgaW4gcG9r
-eS1zb2NmcGdhLCAgSSdtIGNvbWluZyB0byB0aGUgY29uY2x1c2lvbiB0aGF0IHRoZSBsYWNrIG9m
-IHgxMSBpcyBzb21laG93IGR1ZSB0byB0aGUgbWFjaGluZSBjb25maWd1cmF0aW9uLg0KDQpXb3Vs
-ZCBzb21lb25lIGJlIGtpbmQgZW5vdWdoIGNvbmZpcm0gb3IgZGVueSBteSBjb25jbHVzaW9uLCBh
-bmQgcGVyaGFwcyBwb2ludCBtZSBpbiB0aGUgcmlnaHQgZGlyZWN0aW9uLCBpZiB0aGVyZSBpcyBv
-bmU/DQoNCg0KVGhhbmtzIQ0KLS0NCmppbQ0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fXw0KDQpSQVlMQVNFIEFHDQpBcmdlbHNyaWVkZXIgRmVsZCAyKzQNCjgyMjM0IFdlc3NsaW5n
-DQpHZXJtYW55DQpUZWwuOiArNDktKDApODE1My84OCA5OC0wDQpGYXg6ICs0OS0oMCk4MTUzLzg4
-IDk4LTEwDQpodHRwOi8vd3d3LnJheWxhc2UuZGUNCg0KRGlzdHJpY3QgQ291cnQgTXVuaWNoLCBI
-UkIgMTMxNDUwDQoNCkJvYXJkOiBQZXRlciB2b24gSmFuIChDRU8pDQoNClN1cGVydmlzb3J5IEJv
-YXJkOiBEci4gVWxyaWNoIExvaG1hbm4gKENoYWlybWFuKQ0KDQoNCkRpZXNlIEUtTWFpbCBlbnRo
-w6RsdCB2ZXJ0cmF1bGljaGUgdW5kL29kZXIgcmVjaHRsaWNoIGdlc2Now7x0enRlIEluZm9ybWF0
-aW9uZW4uIFdlbm4gU2llIG5pY2h0IGRlciByaWNodGlnZSBBZHJlc3NhdCBzaW5kIG9kZXIgZGll
-c2UgRS1NYWlsIGlycnTDvG1saWNoIGVyaGFsdGVuIGhhYmVuLCBpbmZvcm1pZXJlbiBTaWUgYml0
-dGUgc29mb3J0IGRlbiBBYnNlbmRlciB1bmQgdmVybmljaHRlbiBTaWUgZGllc2UgTWFpbC4gRGFz
-IHVuZXJsYXVidGUgS29waWVyZW4gc293aWUgZGllIHVuYmVmdWd0ZSBXZWl0ZXJnYWJlIGRpZXNl
-ciBNYWlsIGlzdCBuaWNodCBnZXN0YXR0ZXQuDQoNClRoaXMgZS1tYWlsIG1heSBjb250YWluIGNv
-bmZpZGVudGlhbCBhbmQvb3IgcHJpdmlsZWdlZCBpbmZvcm1hdGlvbi4gSWYgeW91IGFyZSBub3Qg
-dGhlIGludGVuZGVkIHJlY2lwaWVudCAob3IgaGF2ZSByZWNlaXZlZCB0aGlzIGUtbWFpbCBpbiBl
-cnJvcikgcGxlYXNlIG5vdGlmeSB0aGUgc2VuZGVyIGltbWVkaWF0ZWx5IGFuZCBkZXN0cm95IHRo
-aXMgZS1tYWlsLiBBbnkgdW5hdXRob3JpemVkIGNvcHlpbmcsIGRpc2Nsb3N1cmUgb3IgZGlzdHJp
-YnV0aW9uIG9mIHRoZSBtYXRlcmlhbCBpbiB0aGlzIGUtbWFpbCBpcyBzdHJpY3RseSBmb3JiaWRk
-ZW4uDQo=
+------=_NextPart_000_0035_01D00645.0D4A5630
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
+ hi
+] build the image-minimal , and want to add the dialog installer for it with
+progress bar and dialog , when i use install.sh, in the image installation
+on target device the message shows that "dialog and progress could not
+find".
+could you please inform me about the creating progress bar when installing
+th image on dest device
+
+
+---------------
+Regards
+Mahdi Saadat
+
+
+
+------=_NextPart_000_0035_01D00645.0D4A5630
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii">
+<META NAME=3D"Generator" CONTENT=3D"MS Exchange Server version =
+rmj.rmm.rup.rpr">
+<TITLE>Progress  Bar</TITLE>
+</HEAD>
+<BODY>
+<!-- Converted from text/rtf format -->
+
+<P DIR=3DLTR><SPAN LANG=3D"en-us"></SPAN><SPAN =
+LANG=3D"en-us"></SPAN><SPAN LANG=3D"en-us"><FONT FACE=3D"Times New =
+Roman">&nbsp;hi</FONT></SPAN></P>
+
+<P DIR=3DLTR><SPAN LANG=3D"en-us"></SPAN><SPAN =
+LANG=3D"en-us"></SPAN><SPAN LANG=3D"en-us"></SPAN><SPAN =
+LANG=3D"fa"><FONT FACE=3D"Times New Roman"><SPAN =
+DIR=3DRTL>]</SPAN></FONT></SPAN><SPAN LANG=3D"en-us"></SPAN><SPAN =
+LANG=3D"en-us"></SPAN><SPAN LANG=3D"en-us"><FONT FACE=3D"Times New =
+Roman">&lrm; build the image-minimal , and want to add the dialog =
+installer for it with progress bar and dialog , when i use install.sh, =
+in the image installation on target device the message shows that =
+&quot;dialog and progress could not find&quot;.</FONT></SPAN></P>
+
+<P DIR=3DLTR><SPAN LANG=3D"en-us"><FONT FACE=3D"Times New Roman">could =
+you please inform me about the creating progress bar when installing th =
+image on dest device</FONT></SPAN></P>
+
+<P DIR=3DRTL><SPAN LANG=3D"en-us"></SPAN></P>
+
+<P DIR=3DRTL><SPAN LANG=3D"en-us"></SPAN></P>
+
+<P DIR=3DLTR><SPAN LANG=3D"en-us"></SPAN><SPAN LANG=3D"fa-ir"><FONT =
+FACE=3D"Calibri">---------------</FONT></SPAN></P>
+
+<P DIR=3DLTR><SPAN LANG=3D"en-us"></SPAN><SPAN =
+LANG=3D"en-us"></SPAN><SPAN LANG=3D"fa-ir"></SPAN><SPAN =
+LANG=3D"fa-ir"><FONT FACE=3D"Arial Rounded MT =
+Bold">Regards</FONT></SPAN></P>
+
+<P DIR=3DLTR><SPAN LANG=3D"fa-ir"><FONT FACE=3D"Arial Rounded MT =
+Bold">Mahdi Saadat</FONT></SPAN><SPAN LANG=3D"en-us"></SPAN><SPAN =
+LANG=3D"en-us"></SPAN><SPAN LANG=3D"fa"></SPAN></P>
+
+<P DIR=3DRTL><SPAN LANG=3D"en-us"></SPAN></P>
+
+</BODY>
+</HTML>
+
+------=_NextPart_000_0035_01D00645.0D4A5630--
