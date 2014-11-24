@@ -1,38 +1,55 @@
-Return-Path: <tom.zanussi@intel.com>
+Return-Path: <Nishanth.S@Altiux.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E4222E008C1; Mon, 24 Nov 2014 05:48:56 -0800 (PST)
+	id 21E10E0089B; Sun, 23 Nov 2014 22:18:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FBD7E00837
-	for <yocto@yoctoproject.org>; Mon, 24 Nov 2014 05:48:47 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 24 Nov 2014 05:48:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,449,1413270000"; d="scan'208";a="613100042"
-Received: from unknown (HELO [10.255.13.44]) ([10.255.13.44])
-	by orsmga001.jf.intel.com with ESMTP; 24 Nov 2014 05:48:41 -0800
-Message-ID: <1416836921.29940.7.camel@picadillo>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-Date: Mon, 24 Nov 2014 07:48:41 -0600
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237988E64349@ORSMSX101.amr.corp.intel.com>
-References: <33c36dfd.5d02.149dd26d066.Coremail.huanmateme@163.com>
-	<1416770590.29940.4.camel@picadillo>
-	<b5e0969.c3cd.149e0145e72.Coremail.huanmateme@163.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237988E64349@ORSMSX101.amr.corp.intel.com>
-X-Mailer: Evolution 3.10.4 (3.10.4-4.fc20) 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Running "yocto-bsp create .." in the source directory(poky) brings up an error. "poky directory vs build directory"
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [134.170.140.91 listed in list.dnswl.org]
+X-Greylist: delayed 847 seconds by postgrey-1.32 at yocto-www;
+	Sun, 23 Nov 2014 22:18:37 PST
+Received: from APAC01-HK1-obe.outbound.protection.outlook.com
+	(mail-hk1on0091.outbound.protection.outlook.com [134.170.140.91])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A9F0E00863
+	for <yocto@yoctoproject.org>; Sun, 23 Nov 2014 22:18:37 -0800 (PST)
+Received: from [172.16.0.96] (111.93.235.83) by
+	HK2PR06MB0563.apcprd06.prod.outlook.com (25.161.183.156) with Microsoft
+	SMTP Server (TLS) id 15.1.16.15; Mon, 24 Nov 2014 06:04:26 +0000
+Message-ID: <5472CA61.7020303@altiux.com>
+Date: Mon, 24 Nov 2014 11:34:17 +0530
+From: Nishanth S <Nishanth.S@altiux.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
+MIME-Version: 1.0
+To: <yocto@yoctoproject.org>
+References: <546AE780.7070208@altiux.com>
+	<969F26A8BAB325438E7EB80D3C3134FB2F3BE196@IRSMSX105.ger.corp.intel.com>
+In-Reply-To: <969F26A8BAB325438E7EB80D3C3134FB2F3BE196@IRSMSX105.ger.corp.intel.com>
+X-Originating-IP: [111.93.235.83]
+X-ClientProxiedBy: HKXPR02CA0052.apcprd02.prod.outlook.com (25.161.48.37) To
+	HK2PR06MB0563.apcprd06.prod.outlook.com (25.161.183.156)
+X-Microsoft-Antispam: UriScan:;
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:;SRVR:HK2PR06MB0563;
+X-Exchange-Antispam-Report-Test: UriScan:;
+X-Exchange-Antispam-Report-CFA-Test: BCL:0;PCL:0;RULEID:;SRVR:HK2PR06MB0563;
+X-Forefront-PRVS: 040513D301
+X-Forefront-Antispam-Report: SFV:NSPM;
+	SFS:(10009020)(6009001)(6049001)(189002)(199003)(87976001)(110136001)(120916001)(99396003)(4396001)(50986999)(65816999)(95666004)(65806001)(47776003)(21056001)(87266999)(31966008)(106356001)(105586002)(107046002)(76176999)(92726001)(42186005)(36756003)(23746002)(40100003)(50466002)(59896002)(97736003)(66066001)(77156002)(20776003)(65956001)(122386002)(64706001)(101416001)(19580395003)(107886001)(86362001)(2351001)(80316001)(46102003)(102836001)(54356999)(33656002)(62966003)(83506001)(77096003)(450100001)(92566001)(64126003)(7099021);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:HK2PR06MB0563; H:[172.16.0.96];
+	FPR:; MLV:ovrnspm; PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+Received-SPF: None (protection.outlook.com: Altiux.com does not designate
+	permitted sender hosts)
+Authentication-Results: spf=none (sender IP is )
+	smtp.mailfrom=Nishanth.S@Altiux.com; 
+X-Exchange-Antispam-Report-CFA-Test: BCL:0;PCL:0;RULEID:;SRVR:HK2PR06MB0563;
+X-OriginatorOrg: Altiux.com
+X-Mailman-Approved-At: Mon, 24 Nov 2014 08:04:26 -0800
+Subject: Re: [bitbake-devel] how to update a package on yocto project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,104 +61,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Nov 2014 13:48:57 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 24 Nov 2014 06:18:44 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, 2014-11-24 at 07:07 -0600, Rifenbark, Scott M wrote:
-> Hi ,
-> 
->  
-> 
-> Although that sentence could be written differently, it is correct.
-> Step six of the example says “By default, the script creates the new
-> BSP Layer in the current working directory of the Source Directory,
-> which is poky in this case.”  The clause at the end of the sentence is
+Hi
 
-Yes, it's ambiguous as to what 'which is poky' refers to.  I think that
-just changing it to 'in the current working directory (poky/build in
-this case)' is most clear (your revision seems to still have some
-ambiguity, I think).
+board : Intel Galileo Gen 1
 
-Tom
+I use yocto project for build image/tarball for the board.
 
->  tied to the “Source Directory”, which in fact is poky.  I will
-> re-write that sentence though to remove any chance of confusion.  You
-> can see the change at
-> http://www.yoctoproject.org/docs/1.7/bsp-guide/bsp-guide.html#creating-a-new-bsp-layer-using-the-yocto-bsp-script.
-> 
->  
-> 
-> Thanks, 
-> 
-> Scott
-> 
->  
-> 
-> From: yocto-bounces@yoctoproject.org
-> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Biao
-> Sent: Sunday, November 23, 2014 8:35 PM
-> To: Zanussi, Tom
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Running "yocto-bsp create .." in the source
-> directory(poky) brings up an error. "poky directory vs build
-> directory"
-> 
-> 
->  
-> 
-> 
-> At 2014-11-24 03:23:10, "Tom Zanussi" <tom.zanussi@intel.com> wrote:
-> >Hi,
-> > 
-> >On Sun, 2014-11-23 at 22:55 +0800, Biao wrote:
-> >> Hi all,
-> >> I am doing excises following this section
-> >> ----------------------------------------------------------------------
-> >> http://www.yoctoproject.org/docs/1.7/bsp-guide/bsp-guide.html#creating-a-new-bsp-layer-using-the-yocto-bsp-script
-> >> 1.6.2. Creating a new BSP Layer Using the yocto-bsp Script
-> >> ...
-> >>  $ yocto-bsp create myarm qemu
-> >> ....
-> >> By default, the script creates the new BSP Layer in the current
-> >> working directory of the  Source Directory , which is  poky  in this
-> >> case. 
-> >> ....
-> >> ---------------------------------------------------------------------
-> >> To my understand, it means after "source oe-init-build-env mybuild", i
-> >> should change to the poky directory to run the "yocto-bsp create ..."
-> >> command,
-> > 
-> >Yes, the documentation is misleading - yocto-bsp assumes you're in the
-> >build directory after you've sourced oe-init-build-env, and not the poky
-> >dir.
-> > 
-> >Tom
->  
-> I see, thanks for you help, Tom.
->  
-> Jerry
-> > 
-> >> however, i got an error  
-> >> " Do you need a new machine branch for this BSP (the alternative is to
-> >> re-use an existing branch)? [y/n] [default: y] 
-> >> The BBPATH variable is not set and bitbake did not find a
-> >> conf/bblayers.conf file in the expected location.
-> >> Maybe you accidentally invoked bitbake from the wrong directory?
-> >> Couldn't find BBLAYERS in bitbake -e output, exiting." 
-> >> It seems it is asking me to run "yocto-bsp create ..." in the build
-> >> directory
-> >> 
-> >> 
-> >> Which one is correct? Do we have a wrong document?
-> >> 
-> >> 
-> >> Thanks,
-> >> Jerry 
-> >> 
-> >> 
-> > 
-> > 
+How to update a existing package???
 
+I mean, I use openjdk-6 on my board.
+
+But I need to change it to openjdk-7.
+
+I edited local.conf by adding following line.
+
+preferred_version_openjdkXXXX = XXXX
+
+
+
+
+I tried this but the resulting image.tar had only openjdk-6.
+
+How do I include openjdk-7 with core-image???
+
+-- 
+Regards,
+Nishanth.S
 
 
