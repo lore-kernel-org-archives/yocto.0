@@ -1,55 +1,29 @@
-Return-Path: <Nishanth.S@Altiux.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21E10E0089B; Sun, 23 Nov 2014 22:18:44 -0800 (PST)
+	id 39074E00905; Mon, 24 Nov 2014 08:04:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [134.170.140.91 listed in list.dnswl.org]
-X-Greylist: delayed 847 seconds by postgrey-1.32 at yocto-www;
-	Sun, 23 Nov 2014 22:18:37 PST
-Received: from APAC01-HK1-obe.outbound.protection.outlook.com
-	(mail-hk1on0091.outbound.protection.outlook.com [134.170.140.91])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A9F0E00863
-	for <yocto@yoctoproject.org>; Sun, 23 Nov 2014 22:18:37 -0800 (PST)
-Received: from [172.16.0.96] (111.93.235.83) by
-	HK2PR06MB0563.apcprd06.prod.outlook.com (25.161.183.156) with Microsoft
-	SMTP Server (TLS) id 15.1.16.15; Mon, 24 Nov 2014 06:04:26 +0000
-Message-ID: <5472CA61.7020303@altiux.com>
-Date: Mon, 24 Nov 2014 11:34:17 +0530
-From: Nishanth S <Nishanth.S@altiux.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5796FE0071C
+	for <yocto@yoctoproject.org>; Mon, 24 Nov 2014 08:04:41 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id C7886F811F4; Mon, 24 Nov 2014 09:04:40 -0700 (MST)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 0DC5CF811F2;
+	Mon, 24 Nov 2014 09:04:40 -0700 (MST)
+Message-ID: <5473571B.9080702@mlbassoc.com>
+Date: Mon, 24 Nov 2014 09:04:43 -0700
+From: Gary Thomas <gary@mlbassoc.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <546AE780.7070208@altiux.com>
-	<969F26A8BAB325438E7EB80D3C3134FB2F3BE196@IRSMSX105.ger.corp.intel.com>
-In-Reply-To: <969F26A8BAB325438E7EB80D3C3134FB2F3BE196@IRSMSX105.ger.corp.intel.com>
-X-Originating-IP: [111.93.235.83]
-X-ClientProxiedBy: HKXPR02CA0052.apcprd02.prod.outlook.com (25.161.48.37) To
-	HK2PR06MB0563.apcprd06.prod.outlook.com (25.161.183.156)
-X-Microsoft-Antispam: UriScan:;
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:;SRVR:HK2PR06MB0563;
-X-Exchange-Antispam-Report-Test: UriScan:;
-X-Exchange-Antispam-Report-CFA-Test: BCL:0;PCL:0;RULEID:;SRVR:HK2PR06MB0563;
-X-Forefront-PRVS: 040513D301
-X-Forefront-Antispam-Report: SFV:NSPM;
-	SFS:(10009020)(6009001)(6049001)(189002)(199003)(87976001)(110136001)(120916001)(99396003)(4396001)(50986999)(65816999)(95666004)(65806001)(47776003)(21056001)(87266999)(31966008)(106356001)(105586002)(107046002)(76176999)(92726001)(42186005)(36756003)(23746002)(40100003)(50466002)(59896002)(97736003)(66066001)(77156002)(20776003)(65956001)(122386002)(64706001)(101416001)(19580395003)(107886001)(86362001)(2351001)(80316001)(46102003)(102836001)(54356999)(33656002)(62966003)(83506001)(77096003)(450100001)(92566001)(64126003)(7099021);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:HK2PR06MB0563; H:[172.16.0.96];
-	FPR:; MLV:ovrnspm; PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-Received-SPF: None (protection.outlook.com: Altiux.com does not designate
-	permitted sender hosts)
-Authentication-Results: spf=none (sender IP is )
-	smtp.mailfrom=Nishanth.S@Altiux.com; 
-X-Exchange-Antispam-Report-CFA-Test: BCL:0;PCL:0;RULEID:;SRVR:HK2PR06MB0563;
-X-OriginatorOrg: Altiux.com
-X-Mailman-Approved-At: Mon, 24 Nov 2014 08:04:26 -0800
-Subject: Re: [bitbake-devel] how to update a package on yocto project
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Missing firmware files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,35 +35,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Nov 2014 06:18:44 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+X-List-Received-Date: Mon, 24 Nov 2014 16:04:49 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi
+I have a .bbappend which I use to add some non-public firmware
+files to linux-firmware.  This set up used to work, but today
+I'm getting only empty packages.  Here's my .bbappend fragment
 
-board : Intel Galileo Gen 1
+   #---------------------------------------------------------------------------------------
+   # Wi2Wi (based on Marvell SDIO 86xx devices
+   #
+   LICENSE_${PN}-wi2wi = "Firmware:LICENCE.Wi2Wi_firmware.txt"
+   PROVIDES += " linux-firmware-wi2wi "
+   SRC_URI += " \
+	http://www.not-public.com/Wi2Wi-firmware.tgz;name=Wi2Wi-firmware \
+   "
+   SRC_URI[Wi2Wi-firmware.md5sum] = "2b400aee75e7522eb7f9a299aaa6d023"
+   SRC_URI[Wi2Wi-firmware.sha256sum] = "33b08d06169074e3d680df20f057580bbc5aa3aaa07e8ba3744c9318d0cbba5d"
 
-I use yocto project for build image/tarball for the board.
+   do_install_append() {
+         cd ${S}
+	install -d  ${D}/lib/firmware/
+	# Wi2Wi via libertas
+	install -m 0666 ${WORKDIR}/sd8688.bin ${D}/lib/firmware
+	install -m 0666 ${WORKDIR}/sd8688_helper.bin ${D}/lib/firmware
+	install -m 0666 ${WORKDIR}/LICENCE.Wi2Wi_firmware.txt ${D}/lib/firmware/
+   }
 
-How to update a existing package???
+   PACKAGES += "${PN}-wi2wi"
+   FILES_${PN}-wi2wi = "/lib/firmware/sd86*.bin /lib/firmware/LICENCE.Wi2Wi_firmware.txt"
+   RPROVIDES_${PN}-wi2wi = "${PN}-wi2wi"
 
-I mean, I use openjdk-6 on my board.
+The desired files do end up in my install image, but not in the
+split package linux-firmware-wi2wi
 
-But I need to change it to openjdk-7.
+Any ideas what I'm missing in the packaging that is ending up with
+empty packages?
 
-I edited local.conf by adding following line.
-
-preferred_version_openjdkXXXX = XXXX
-
-
-
-
-I tried this but the resulting image.tar had only openjdk-6.
-
-How do I include openjdk-7 with core-image???
+Thanks
 
 -- 
-Regards,
-Nishanth.S
-
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
