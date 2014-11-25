@@ -1,33 +1,50 @@
-Return-Path: <yocto@mindchasers.com>
+Return-Path: <smoosvi.work@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C0F7BE008D9; Tue, 25 Nov 2014 12:38:53 -0800 (PST)
+	id EE31EE008D9; Tue, 25 Nov 2014 12:57:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=AC_DIV_BONANZA,BAYES_00,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (smoosvi.work[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95B51E0084E
-	for <yocto@yoctoproject.org>; Tue, 25 Nov 2014 12:38:49 -0800 (PST)
-Received: from [192.168.1.10] (unknown [68.38.40.177])
-	by smtp.webfaction.com (Postfix) with ESMTP id 065D220793B7;
-	Tue, 25 Nov 2014 20:38:48 +0000 (UTC)
-Message-ID: <5474E8D7.601@mindchasers.com>
-Date: Tue, 25 Nov 2014 15:38:47 -0500
-From: Bob Cochran <yocto@mindchasers.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.0 AC_DIV_BONANZA RAW: Too many divs in a row... spammy template
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.193 listed in list.dnswl.org]
+Received: from mail-vc0-f193.google.com (mail-vc0-f193.google.com
+	[209.85.220.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D535E0084E
+	for <yocto@yoctoproject.org>; Tue, 25 Nov 2014 12:57:30 -0800 (PST)
+Received: by mail-vc0-f193.google.com with SMTP id hq11so120021vcb.4
+	for <yocto@yoctoproject.org>; Tue, 25 Nov 2014 12:57:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=fxSP8REHAN+MYWHh//NmbOxOGgue/0CKzo4U73KdKN4=;
+	b=sUBZb1uXWzmPEtmX1KwrHt1IbSDIhHNtrD1zA5wp12XDhzz+HEYGs7VzyO3CsC2O82
+	6yPTqRHtOW1AMnlw9o1FROuQ1p9DFqVtOtSODU/lBEba3ITuaY6CThI8Dvvd+dyrJel1
+	mc7A6yl4QGkRBa46/39KOiGpOZH6cRfTkedoEJPgRl4XUQF4NdsWVRTqOvSzpNoXCssy
+	pnFDOSuM/tDOqygghEZmnupu6aen1gB5lS5H2xoWykxsBkVTI3jaSJ/RCFWFzXip8eVx
+	O0mZilojFIL4y24hk5+k4W1RCXX6gfQTOABKM5bH7LdqtOk2PaZHOukdIWKurcjUWwZe
+	zgUA==
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, 
-	"Stevens, Nick" <Nick.Stevens@etherios.com>
-References: <94A9084532A7034A80AF38392EE560FF11063166@MTK-SMS-XCH03.digi.com>
-	<5473A266.6070407@mindchasers.com>
-	<4839222.tS45RDzaJt@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <4839222.tS45RDzaJt@peggleto-mobl5.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Layer Priority with Wildcard .bbappend Files
+X-Received: by 10.52.28.7 with SMTP id x7mr13574898vdg.27.1416949049880; Tue,
+	25 Nov 2014 12:57:29 -0800 (PST)
+Received: by 10.31.33.65 with HTTP; Tue, 25 Nov 2014 12:57:29 -0800 (PST)
+Date: Tue, 25 Nov 2014 20:57:29 +0000
+Message-ID: <CADuAu8Qw_EZdNBN15LMoYz9tLX8PBP7pYWc_AgXd-+41yrPEFA@mail.gmail.com>
+From: Syed Moosvi <smoosvi.work@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Headers missing in generated SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,152 +56,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Nov 2014 20:38:53 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 25 Nov 2014 20:57:34 -0000
+Content-Type: multipart/alternative; boundary=20cf3078153ec8793c0508b528a1
 
-On 11/25/2014 06:12 AM, Paul Eggleton wrote:
-> Hi Bob / Nick,
->
-> On Monday 24 November 2014 16:25:58 Bob Cochran wrote:
->> On 11/24/2014 03:22 PM, Stevens, Nick wrote:
->>> I think I've encountered a bug with how multiple bbappend files are
->>> processed when one of the bbappends contains a filename wildcard, but I
->>> want to make sure there's not something I'm missing before filing a bug
->>> report.>
->>> I have a BSP layer and a customization layer that are based on the OE/poky
->>> Daisy release. The output of `bitbake-layers show-layers` looks like:
->>>       layer                 path                 priority
->>>       =====================================================
->>>       meta                  poky/meta            5
->>>       meta-yocto            poky/meta-yocto      5
->>>       meta-yocto-bsp        poky/meta-yocto-bsp  5
->>>       ...ellided...
->>>       meta-bsp              meta-bsp             6
->>>       meta-custom           meta-custom          8
->>>
->>> In meta-bsp there is a bbappend for base-files named base-
->>> files_3.0.14.bbappend. The meta-bsp bbappend adds a sysctl.conf to /etc -
->>> pretty straightforward:
->>>       FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->>>       SRC_URI += "file://sysctl.conf"
->>>       do_install_append() {
->>>
->>>           install -m 0644 ${WORKDIR}/sysctl.conf ${D}${sysconfdir}/
->>>
->>>       }
->>>
->>> Now what I want to do is add a file called base-files_%.bbappend to meta-
->>> custom. It has its own version of sysctl.conf, and the recipe looks like
->>> this:
->>>       FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->>>
->>> Here's where things get weird. If I run `bitbake -e base-files` and pull
->>> out the section for FILESEXTRAPATHS, this is what I get (note that I've
->>> stripped out the huge absolute paths to make this easier to read):
->>>       # $FILESEXTRAPATHS [5 operations]
->>>       #   set poky/meta/conf/documentation.conf:172
->>>       #     [doc] "Extends the search path the OpenEmbedded build system
->>>       uses when looking for files and patches as it processes recipes and
->>>       append files." #   _prepend
->>>       meta-custom/recipes-core/base-files/base-files_%.bbappend:6 #
->>>       "meta-custom/recipes-core/base-files/base-files:"
->>>       #   _prepend
->>>       meta-bsp/recipes-core/base-files/base-files_3.0.14.bbappend:3
->>>       #     "meta-bsp/recipes-core/base-files/base-files:"
->>>       #   set data_smart.py:432 [finalize]
->>>       #     "meta-custom/recipes-core/base-files/base-files:"
->>>       #   set data_smart.py:432 [finalize]
->>>       #
->>>       "meta-bsp/recipes-core/base-files/base-files:meta-custom/recipes-cor
->>>       e/base-files/base-files:" # computed:
->>>       #
->>>       "meta-bsp/recipes-core/base-files/base-files:meta-custom/recipes-cor
->>>       e/base-files/base-files:"
->>>       FILESEXTRAPATHS="meta-bsp/recipes-core/base-files/base-files:meta-cu
->>>       stom/recipes-core/base-files/base-files:">
->>> For some reason meta-bsp is coming before meta-custom in FILESEXTRAPATHS,
->>> even though meta-custom has a higher priority!
->>
->> I also have some questions about how FILESEXTRAPATHS is supposed to work
->> with append files and layer priorities.
->>
->> Does a higher layer priority mean that the FILESEXTRAPATHS operation
->> should occur first?
->
-> No. bbappends are parsed in ascending layer priority order. It wouldn't make
-> sense to do it in the reverse - you want the higher priority layer's settings
-> to take precedence
->
->> If this is the case, then a lower priority layer prepend will appear to the
->> left of the higher layer prepend since it runs later, and this will probably
->> not provide the result you want.
->
-> The highest priority layer's bbappend will prepend last, thus anything it
-> prepends will be first in the list.
->
->> The prepend and layer logic seems messy to me.  I would like to have a
->> way to write my custom layer and specify that what I include in my
->> SRC_URI in each recipe is definitive and can not be overwritten.
->> Suggestions on how to best accomplish this will be greatly appreciated.
->
-> I think this is pretty much already the case. Is the problem that you can't
-> follow the current behaviour, or that you don't completely trust the layers
-> you are pulling in?
+--20cf3078153ec8793c0508b528a1
+Content-Type: text/plain; charset=UTF-8
+
+Hi All,
+
+           I am working on danny branch and having an issue with respect to
+adding headers in the generated SDK toolchain.
+
+I am generating the SDK using
+
+$ bitbake -c populate_sdk image_name
+
+When I generate the SDK, the openssl and alsa headers were missing from
+/opt/poky/1.3/sysroots/image-poky-linux-gnueabi/usr/include
+
+Adding the following did add the ALSA headers but the openssl headers are
+still missing
+
+TOOLCHAIN_TARGET_TASK_append = " openssl-dev"
+
+TOOLCHAIN_TARGET_TASK_append = " alsa-dev"
+
+Therefore can anyone please let me know the following
+
+1) What headers ar populated in /opt/poky/1.3/sysroots/image
+-poky-linux-gnueabi/usr/include.
+
+2) How do I make the openssl headers appear in /opt/poky/1.3/sysroots/image
+-poky-linux-gnueabi/usr/include
+
+3) I though all the headers for all the libs used in target will be
+populated in the SDK. Is this not true?
+
+4) Also noticed the headers are present in but not in generated SDK.
+/tmp/sysroots/image/usr/include/openssl/
 
 
-Thanks Paul.  Something is amiss when I try to prepend my recipes. I 
-suspect it has something to do with OVERRIDE interactions.    I'm 
-digging and will report later.
+Thanks,
+Syed
 
+--20cf3078153ec8793c0508b528a1
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><div><div><div><div><div><div><div><div><div>Hi All,<=
+br><br></div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 I=
+ am working on danny branch and having an issue with respect to adding head=
+ers in the generated SDK toolchain.<br><br></div><div>I am generating the S=
+DK using<br><br><font><span style=3D"font-size:10pt">$ bitbake -c populate_=
+sdk image_name</span></font><br></div><div><br></div>When I generate the SD=
+K, the openssl and alsa headers were missing from <span style=3D"font-size:=
+15px;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-w=
+eight:normal;font-style:normal;font-variant:normal;text-decoration:none;ver=
+tical-align:baseline" id=3D"docs-internal-guid-22e52584-e8af-dafd-82d2-942f=
+c150acb9">/opt/poky/1.3/sysroots/image</span><span style=3D"font-size:15px;=
+font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-weight=
+:normal;font-style:normal;font-variant:normal;text-decoration:none;vertical=
+-align:baseline" id=3D"docs-internal-guid-22e52584-e8af-dafd-82d2-942fc150a=
+cb9"><font face=3D"Calibri"><span style=3D"font-size:11pt">-poky-linux-gnue=
+abi</span></font>/usr/include<br><br></span></div><span style=3D"font-size:=
+15px;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-w=
+eight:normal;font-style:normal;font-variant:normal;text-decoration:none;ver=
+tical-align:baseline" id=3D"docs-internal-guid-22e52584-e8af-dafd-82d2-942f=
+c150acb9">Adding the following did add the ALSA headers but the openssl hea=
+ders are still missing<br><br></span><p dir=3D"ltr" style=3D"line-height:1.=
+15;margin-top:0pt;margin-bottom:0pt" id=3D"docs-internal-guid-22e52584-e8b0=
+-ea47-d356-67b9520d6b8a"><span style=3D"font-size:15px;font-family:Arial;co=
+lor:rgb(0,0,0);background-color:transparent;font-weight:normal;font-style:n=
+ormal;font-variant:normal;text-decoration:none;vertical-align:baseline">TOO=
+LCHAIN_TARGET_TASK_append =3D &quot; openssl-dev&quot;</span></p><p dir=3D"=
+ltr" style=3D"line-height:1.15;margin-top:0pt;margin-bottom:0pt"></p><p dir=
+=3D"ltr" style=3D"line-height:1.15;margin-top:0pt;margin-bottom:0pt" id=3D"=
+docs-internal-guid-22e52584-e8b0-ea47-d356-67b9520d6b8a"><span style=3D"fon=
+t-size:15px;font-family:Arial;color:rgb(0,0,0);background-color:transparent=
+;font-weight:normal;font-style:normal;font-variant:normal;text-decoration:n=
+one;vertical-align:baseline">TOOLCHAIN_TARGET_TASK_append =3D &quot; alsa-d=
+ev&quot;</span></p><br></div>Therefore can anyone please let me know the fo=
+llowing<br><br></div>1) What headers ar populated in <span style=3D"font-si=
+ze:15px;font-family:Arial;color:rgb(0,0,0);background-color:transparent;fon=
+t-weight:normal;font-style:normal;font-variant:normal;text-decoration:none;=
+vertical-align:baseline" id=3D"docs-internal-guid-22e52584-e8af-dafd-82d2-9=
+42fc150acb9">/opt/poky/1.3/sysroots/</span><span style=3D"font-size:15px;fo=
+nt-family:Arial;color:rgb(0,0,0);background-color:transparent;font-weight:n=
+ormal;font-style:normal;font-variant:normal;text-decoration:none;vertical-a=
+lign:baseline" id=3D"docs-internal-guid-22e52584-e8af-dafd-82d2-942fc150acb=
+9"><span style=3D"font-size:15px;font-family:Arial;color:rgb(0,0,0);backgro=
+und-color:transparent;font-weight:normal;font-style:normal;font-variant:nor=
+mal;text-decoration:none;vertical-align:baseline" id=3D"docs-internal-guid-=
+22e52584-e8af-dafd-82d2-942fc150acb9">image</span><span style=3D"font-size:=
+15px;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-w=
+eight:normal;font-style:normal;font-variant:normal;text-decoration:none;ver=
+tical-align:baseline" id=3D"docs-internal-guid-22e52584-e8af-dafd-82d2-942f=
+c150acb9"><font face=3D"Calibri"><span style=3D"font-size:11pt">-poky-linux=
+-gnueabi</span></font></span>/usr/include. <br><br></span></div><span style=
+=3D"font-size:15px;font-family:Arial;color:rgb(0,0,0);background-color:tran=
+sparent;font-weight:normal;font-style:normal;font-variant:normal;text-decor=
+ation:none;vertical-align:baseline" id=3D"docs-internal-guid-22e52584-e8af-=
+dafd-82d2-942fc150acb9">2) How do I make the openssl headers appear in </sp=
+an><span style=3D"font-size:15px;font-family:Arial;color:rgb(0,0,0);backgro=
+und-color:transparent;font-weight:normal;font-style:normal;font-variant:nor=
+mal;text-decoration:none;vertical-align:baseline" id=3D"docs-internal-guid-=
+22e52584-e8af-dafd-82d2-942fc150acb9">/opt/poky/1.3/sysroots/</span><span s=
+tyle=3D"font-size:15px;font-family:Arial;color:rgb(0,0,0);background-color:=
+transparent;font-weight:normal;font-style:normal;font-variant:normal;text-d=
+ecoration:none;vertical-align:baseline" id=3D"docs-internal-guid-22e52584-e=
+8af-dafd-82d2-942fc150acb9"><span style=3D"font-size:15px;font-family:Arial=
+;color:rgb(0,0,0);background-color:transparent;font-weight:normal;font-styl=
+e:normal;font-variant:normal;text-decoration:none;vertical-align:baseline" =
+id=3D"docs-internal-guid-22e52584-e8af-dafd-82d2-942fc150acb9">image</span>=
+<span style=3D"font-size:15px;font-family:Arial;color:rgb(0,0,0);background=
+-color:transparent;font-weight:normal;font-style:normal;font-variant:normal=
+;text-decoration:none;vertical-align:baseline" id=3D"docs-internal-guid-22e=
+52584-e8af-dafd-82d2-942fc150acb9"><font face=3D"Calibri"><span style=3D"fo=
+nt-size:11pt">-poky-linux-gnueabi</span></font></span>/usr/include<br><br><=
+/span></div><span style=3D"font-size:15px;font-family:Arial;color:rgb(0,0,0=
+);background-color:transparent;font-weight:normal;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline" id=3D"docs-inter=
+nal-guid-22e52584-e8af-dafd-82d2-942fc150acb9">3) I though all the headers =
+for all the libs used in target will be populated in the SDK. Is this not t=
+rue?<br><br></span></div><div><span style=3D"font-size:15px;font-family:Ari=
+al;color:rgb(0,0,0);background-color:transparent;font-weight:normal;font-st=
+yle:normal;font-variant:normal;text-decoration:none;vertical-align:baseline=
+" id=3D"docs-internal-guid-22e52584-e8af-dafd-82d2-942fc150acb9">4) Also no=
+ticed the headers are present in but not in generated SDK.<br></span><font =
+face=3D"Calibri"><span style=3D"font-size:11pt">/tmp/sysroots/image/usr/inc=
+lude/openssl/</span></font></div><br><br></div>Thanks,<br></div>Syed<br></d=
+iv>
 
->
->> I have been trying to accomplish this with FILESOVERRIDES, but this
->> logic seems counterintuitive since  DISTROOVERRIDES take precedence over
->> MACHINEOVERRIDES in building the file search path during the unpack task.
->>
->> It seems to me that the file search path should be built using
->> FILESOVERRIDES from left to right:  TRANSLATED_TARGET_ARCH,
->> MACHINEOVERRIDES, and then DISTROOVERRIDES (specific to generic), but
->> this isn't what I'm seeing.  Still investigating how it's all put
->> together...
->>
->>
->> I verified this by building an image - the sysctl.conf that ends up in
->> the final image is the one from meta-bsp, not the one from meta-custom.
->> But if I switch the name of base-files_%.bbappend in meta-custom to
->> base-files_3.0.14.bbappend, this is what I get:
->>>       # $FILESEXTRAPATHS [5 operations]
->>>       #   set poky/meta/conf/documentation.conf:172
->>>       #     [doc] "Extends the search path the OpenEmbedded build system
->>>       uses when looking for files and patches as it processes recipes and
->>>       append files." #   _prepend
->>>       meta-bsp/recipes-core/base-files/base-files_3.0.14.bbappend:3 #
->>>       "meta-bsp/recipes-core/base-files/base-files:"
->>>       #   _prepend
->>>       meta-custom/recipes-core/base-files/base-files_3.0.14.bbappend:6 #
->>>         "meta-custom/recipes-core/base-files/base-files:"
->>>       #   set data_smart.py:432 [finalize]
->>>       #     "meta-bsp/recipes-core/base-files/base-files:"
->>>       #   set data_smart.py:432 [finalize]
->>>       #
->>>       "meta-custom/recipes-core/base-files/base-files:meta-bsp/recipes-cor
->>>       e/base-files/base-files:" # computed:
->>>       #
->>>       "meta-custom/recipes-core/base-files/base-files:meta-bsp/recipes-cor
->>>       e/base-files/base-files:"
->>>       FILESEXTRAPATHS="meta-custom/recipes-core/base-files/base-files:meta
->>>       -bsp/recipes-core/base-files/base-files:">
->>> And now the sysctl.conf file is being pulled from meta-custom.
->
-> That absolutely should not happen. If you change it back does it revert to the
-> version from meta-bsp? The wildcarding should not change the order in which
-> the files are applied. The only corner case I can think of would be if the
-> layer priority values are the same number - this isn't the case is it?
->
-> Cheers,
-> Paul
->
-
-
+--20cf3078153ec8793c0508b528a1--
