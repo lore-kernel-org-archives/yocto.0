@@ -1,39 +1,39 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6C548E008FC; Tue, 25 Nov 2014 02:10:07 -0800 (PST)
+	id D97BAE008F1; Tue, 25 Nov 2014 03:12:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-	URIBL_BLACK autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 1.7 URIBL_BLACK Contains an URL listed in the URIBL
-	blacklist *      [URIs: configure.ac]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
 	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC406E007C2
-	for <yocto@yoctoproject.org>; Tue, 25 Nov 2014 02:10:03 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga103.fm.intel.com with ESMTP; 25 Nov 2014 02:02:58 -0800
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5806AE007C2
+	for <yocto@yoctoproject.org>; Tue, 25 Nov 2014 03:12:53 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 25 Nov 2014 03:12:53 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,862,1389772800"; d="scan'208";a="421190121"
+X-IronPort-AV: E=Sophos;i="5.07,455,1413270000"; d="scan'208";a="643138648"
 Received: from ksperera-mobl.gar.corp.intel.com (HELO
 	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.204])
-	by FMSMGA003.fm.intel.com with ESMTP; 25 Nov 2014 02:00:15 -0800
+	by orsmga002.jf.intel.com with ESMTP; 25 Nov 2014 03:12:49 -0800
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: peterengcomau001@adam.com.au
-Date: Tue, 25 Nov 2014 10:09:47 +0000
-Message-ID: <2765347.88ba3R8xYF@peggleto-mobl5.ger.corp.intel.com>
+To: Bob Cochran <yocto@mindchasers.com>, "Stevens,
+	Nick" <Nick.Stevens@etherios.com>
+Date: Tue, 25 Nov 2014 11:12:43 +0000
+Message-ID: <4839222.tS45RDzaJt@peggleto-mobl5.ger.corp.intel.com>
 Organization: Intel Corporation
 User-Agent: KMail/4.14.3 (Linux/3.17.3-200.fc20.x86_64; KDE/4.14.3; x86_64; ; )
-In-Reply-To: <2df2d7aa3b39e3f653036d785fb7c24a779a7d2d@webmail.adam.com.au>
-References: <2df2d7aa3b39e3f653036d785fb7c24a779a7d2d@webmail.adam.com.au>
+In-Reply-To: <5473A266.6070407@mindchasers.com>
+References: <94A9084532A7034A80AF38392EE560FF11063166@MTK-SMS-XCH03.digi.com>
+	<5473A266.6070407@mindchasers.com>
 MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: New error in 1.7
+Subject: Re: Layer Priority with Wildcard .bbappend Files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,195 +45,140 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Nov 2014 10:10:07 -0000
+X-List-Received-Date: Tue, 25 Nov 2014 11:12:55 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Hi there,
+Hi Bob / Nick,
 
-On Tuesday 25 November 2014 19:27:13 peterengcomau001@adam.com.au wrote:
-> thank you. i have fixed the curl problem but a new problem has occured
-> with the build. This problem did not appear in v1.6.1. The problem is:
+On Monday 24 November 2014 16:25:58 Bob Cochran wrote:
+> On 11/24/2014 03:22 PM, Stevens, Nick wrote:
+> > I think I've encountered a bug with how multiple bbappend files are
+> > processed when one of the bbappends contains a filename wildcard, but I
+> > want to make sure there's not something I'm missing before filing a bug
+> > report.> 
+> > I have a BSP layer and a customization layer that are based on the OE/poky
+> > Daisy release. The output of `bitbake-layers show-layers` looks like:
+> >      layer                 path                 priority
+> >      =====================================================
+> >      meta                  poky/meta            5
+> >      meta-yocto            poky/meta-yocto      5
+> >      meta-yocto-bsp        poky/meta-yocto-bsp  5
+> >      ...ellided...
+> >      meta-bsp              meta-bsp             6
+> >      meta-custom           meta-custom          8
+> > 
+> > In meta-bsp there is a bbappend for base-files named base-
+> > files_3.0.14.bbappend. The meta-bsp bbappend adds a sysctl.conf to /etc -
+> > pretty straightforward:
+> >      FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> >      SRC_URI += "file://sysctl.conf"
+> >      do_install_append() {
+> >      
+> >          install -m 0644 ${WORKDIR}/sysctl.conf ${D}${sysconfdir}/
+> >      
+> >      }
+> > 
+> > Now what I want to do is add a file called base-files_%.bbappend to meta-
+> > custom. It has its own version of sysctl.conf, and the recipe looks like
+> > this:
+> >      FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> > 
+> > Here's where things get weird. If I run `bitbake -e base-files` and pull
+> > out the section for FILESEXTRAPATHS, this is what I get (note that I've
+> > stripped out the huge absolute paths to make this easier to read):
+> >      # $FILESEXTRAPATHS [5 operations]
+> >      #   set poky/meta/conf/documentation.conf:172
+> >      #     [doc] "Extends the search path the OpenEmbedded build system
+> >      uses when looking for files and patches as it processes recipes and
+> >      append files." #   _prepend
+> >      meta-custom/recipes-core/base-files/base-files_%.bbappend:6 #    
+> >      "meta-custom/recipes-core/base-files/base-files:"
+> >      #   _prepend
+> >      meta-bsp/recipes-core/base-files/base-files_3.0.14.bbappend:3
+> >      #     "meta-bsp/recipes-core/base-files/base-files:"
+> >      #   set data_smart.py:432 [finalize]
+> >      #     "meta-custom/recipes-core/base-files/base-files:"
+> >      #   set data_smart.py:432 [finalize]
+> >      #    
+> >      "meta-bsp/recipes-core/base-files/base-files:meta-custom/recipes-cor
+> >      e/base-files/base-files:" # computed:
+> >      #  
+> >      "meta-bsp/recipes-core/base-files/base-files:meta-custom/recipes-cor
+> >      e/base-files/base-files:"
+> >      FILESEXTRAPATHS="meta-bsp/recipes-core/base-files/base-files:meta-cu
+> >      stom/recipes-core/base-files/base-files:"> 
+> > For some reason meta-bsp is coming before meta-custom in FILESEXTRAPATHS,
+> > even though meta-custom has a higher priority!
+>
+> I also have some questions about how FILESEXTRAPATHS is supposed to work
+> with append files and layer priorities.
 > 
-> 	lachlan@lachlan-SVP13215PXB:~/poky/build-atmel$ bitbake
-> atmel-qt5-demo-image -c populate_sdk
-> 
-> 	Loading cache: 100%
-> 
-> |###########################################################################
-> |###########################################################################
-> |#####|
-> ETA: 00:00:00
-> 
-> 	Loaded 2108 entries from dependency cache.
-> 
-> 	NOTE: Resolving any missing task queue dependencies
-> 
-> 	Build Configuration:
-> 
-> 	BB_VERSION = "1.24.0"
-> 
-> 	BUILD_SYS = "x86_64-linux"
-> 
-> 	NATIVELSBSTRING = "Ubuntu-14.04"
-> 
-> 	TARGET_SYS = "arm-poky-linux-gnueabi"
-> 
-> 	MACHINE = "sama5d3xek"
-> 
-> 	DISTRO = "poky"
-> 
-> 	DISTRO_VERSION = "1.7"
-> 
-> 	TUNE_FEATURES = "arm armv7a vfp thumb callconvention-hard cortexa5"
-> 
-> 
-> 	TARGET_FPU = "vfp"
-> 
-> 	meta-atmel = "my_branch:711809b0d91f816b10e70508986b3f43098000ba"
-> 
-> 	meta-qt5 = "my_branch:0732e184acef5e0200f46d7f95702774e5de1904"
-> 
-> 	meta
-> 
-> 	meta-yocto
-> 
-> 	meta-yocto-bsp = "dizzy:db7f4f31c915a59c502cac4be905d23df5246b3d"
-> 
-> 	meta-oe
-> 
-> 	meta-python
-> 
-> 	meta-networking
-> 
-> 	meta-ruby = "my_branch:9efaed99125b1c4324663d9a1b2d3319c74e7278"
-> 
-> 	NOTE: Preparing runqueue
-> 
-> 	NOTE: Executing SetScene Tasks
-> 
-> 	NOTE: Executing RunQueue Tasks
-> 
-> 	ERROR: Function failed: do_configure (log file is located at
-> /home/lachlan/poky/build-atmel/tmp/work/cortexa5t2hf-vfp-poky-linux-gnueabi/
-> gstreamer1.0-plugins-hantro/1.0-r1/temp/log.do_configure.5736)
-> 
-> 
-> 	ERROR: Logfile of failure stored in:
-> /home/lachlan/poky/build-atmel/tmp/work/cortexa5t2hf-vfp-poky-linux-gnueabi/
-> gstreamer1.0-plugins-hantro/1.0-r1/temp/log.do_configure.5736
-> 	Log data follows:
-> 	| DEBUG: Executing python function sysroot_cleansstate
-> 	| 
-> 	| DEBUG: Python function sysroot_cleansstate finished
-> 	| 
-> 	| DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
-> 
-> 'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi',
-> 'common']
-> 
-> 	| DEBUG: Executing shell function autotools_preconfigure
-> 	| 
-> 	| DEBUG: Shell function autotools_preconfigure finished
-> 	| 
-> 	| DEBUG: Executing python function autotools_copy_aclocals
-> 	| 
-> 	| DEBUG: Python function autotools_copy_aclocals finished
-> 	| 
-> 	| DEBUG: Executing shell function do_configure
-> 	| 
-> 	| automake (GNU automake) 1.14.1
-> 	| 
-> 	| Copyright (C) 2013 Free Software Foundation, Inc.
-> 	| 
-> 	| License GPLv2+: GNU GPL version 2 or later
-> 	| 
-> 	| This is free software: you are free to change and redistribute it.
-> 	| 
-> 	| 
-> 	| There is NO WARRANTY, to the extent permitted by law.
-> 	| 
-> 	| 
-> 	| 
-> 	| Written by Tom Tromey
-> 	| 
-> 	| and Alexandre Duret-Lutz .
-> 	| 
-> 	| AUTOV is 1.14
-> 	| 
-> 	| NOTE: Executing ACLOCAL="aclocal
-> 
-> --system-acdir=/home/lachlan/poky/build-atmel/tmp/work/cortexa5t2hf-vfp-poky
-> -linux-gnueabi/gstreamer1.0-plugins-hantro/1.0-r1/build/aclocal-copy/
-> --automake-acdir=/home/lachlan/poky/build-atmel/tmp/sysroots/x86_64-linux/u
-> sr/share/aclocal-1.14" autoreconf --verbose --install --force
-> --exclude=autopoint -I
-> /home/lachlan/poky/build-atmel/tmp/work/cortexa5t2hf-vfp-poky-linux-gnueabi/
-> gstreamer1.0-plugins-hantro/1.0-r1/gst-hantro-g1-1.0/m4/
-> 	| autoreconf: Entering directory `'
-> 	| 
-> 	| autoreconf: configure.ac: not using Gettext
-> 	| 
-> 	| autoreconf: running: aclocal
-> 
-> --system-acdir=/home/lachlan/poky/build-atmel/tmp/work/cortexa5t2hf-vfp-poky
-> -linux-gnueabi/gstreamer1.0-plugins-hantro/1.0-r1/build/aclocal-copy/
-> --automake-acdir=/home/lachlan/poky/build-atmel/tmp/sysroots/x86_64-linux/u
-> sr/share/aclocal-1.14 -I
-> /home/lachlan/poky/build-atmel/tmp/work/cortexa5t2hf-vfp-poky-linux-gnueabi/
-> gstreamer1.0-plugins-hantro/1.0-r1/gst-hantro-g1-1.0/m4/ -I
-> /home/lachlan/poky/build-atmel/tmp/work/cortexa5t2hf-vfp-poky-linux-gnueabi/
-> gstreamer1.0-plugins-hantro/1.0-r1/gst-hantro-g1-1.0/m4/ --force -I m4 -I
-> common/m4
-> 
-> 	| autoreconf: configure.ac: tracing
-> 	| 
-> 	| autoreconf: running: libtoolize --copy --force
-> 	| 
-> 	| libtoolize: putting auxiliary files in `.'.
-> 	| 
-> 	| libtoolize: copying file `./ltmain.sh'
-> 	| 
-> 	| libtoolize: putting macros in `m4'.
-> 	| 
-> 	| libtoolize: copying file `m4/libtool.m4'
-> 	| 
-> 	| libtoolize: copying file `m4/ltoptions.m4'
-> 	| 
-> 	| libtoolize: copying file `m4/ltsugar.m4'
-> 	| 
-> 	| libtoolize: copying file `m4/ltversion.m4'
-> 	| 
-> 	| libtoolize: copying file `m4/lt~obsolete.m4'
-> 	| 
-> 	| libtoolize: Remember to add `LT_INIT' to configure.ac.
-> 	| 
-> 	| libtoolize: Consider adding `AC_CONFIG_MACRO_DIR([m4])' to
-> 
-> configure.ac and
-> 
-> 	| libtoolize: rerunning libtoolize, to keep the correct libtool
-> 
-> macros in-tree
-> 
-> 	| autoreconf: running:
-> /home/lachlan/poky/build-atmel/tmp/sysroots/x86_64-linux/usr/bin/autoconf
-> --include=/home/lachlan/poky/build-atmel/tmp/work/cortexa5t2hf-vfp-poky-linu
-> x-gnueabi/gstreamer1.0-plugins-hantro/1.0-r1/gst-hantro-g1-1.0/m4/ --force
-> 
-> 	| autoreconf: running:
-> /home/lachlan/poky/build-atmel/tmp/sysroots/x86_64-linux/usr/bin/autoheader
-> --include=/home/lachlan/poky/build-atmel/tmp/work/cortexa5t2hf-vfp-poky-linu
-> x-gnueabi/gstreamer1.0-plugins-hantro/1.0-r1/gst-hantro-g1-1.0/m4/ --force
-> 
-> 	| autoreconf: running: automake --add-missing --copy --force-missing
-> 	| 
-> 	| 
-> 	| Makefile.am: error: required file './AUTHORS' not found
+> Does a higher layer priority mean that the FILESEXTRAPATHS operation
+> should occur first?  
 
-This is likely a result of the --foreign option being removed - see:
+No. bbappends are parsed in ascending layer priority order. It wouldn't make 
+sense to do it in the reverse - you want the higher priority layer's settings 
+to take precedence
 
-  http://www.yoctoproject.org/docs/1.7/ref-manual/ref-manual.html#migration-1.7-autotools-class-changes
+> If this is the case, then a lower priority layer prepend will appear to the
+> left of the higher layer prepend since it runs later, and this will probably
+> not provide the result you want.
+
+The highest priority layer's bbappend will prepend last, thus anything it 
+prepends will be first in the list.
+
+> The prepend and layer logic seems messy to me.  I would like to have a
+> way to write my custom layer and specify that what I include in my
+> SRC_URI in each recipe is definitive and can not be overwritten.
+> Suggestions on how to best accomplish this will be greatly appreciated.
+
+I think this is pretty much already the case. Is the problem that you can't 
+follow the current behaviour, or that you don't completely trust the layers 
+you are pulling in?
+ 
+> I have been trying to accomplish this with FILESOVERRIDES, but this
+> logic seems counterintuitive since  DISTROOVERRIDES take precedence over
+> MACHINEOVERRIDES in building the file search path during the unpack task.
+> 
+> It seems to me that the file search path should be built using
+> FILESOVERRIDES from left to right:  TRANSLATED_TARGET_ARCH,
+> MACHINEOVERRIDES, and then DISTROOVERRIDES (specific to generic), but
+> this isn't what I'm seeing.  Still investigating how it's all put
+> together...
+> 
+> 
+> I verified this by building an image - the sysctl.conf that ends up in
+> the final image is the one from meta-bsp, not the one from meta-custom.
+> But if I switch the name of base-files_%.bbappend in meta-custom to
+> base-files_3.0.14.bbappend, this is what I get:
+> >      # $FILESEXTRAPATHS [5 operations]
+> >      #   set poky/meta/conf/documentation.conf:172
+> >      #     [doc] "Extends the search path the OpenEmbedded build system
+> >      uses when looking for files and patches as it processes recipes and
+> >      append files." #   _prepend
+> >      meta-bsp/recipes-core/base-files/base-files_3.0.14.bbappend:3 #    
+> >      "meta-bsp/recipes-core/base-files/base-files:"
+> >      #   _prepend
+> >      meta-custom/recipes-core/base-files/base-files_3.0.14.bbappend:6 #  
+> >        "meta-custom/recipes-core/base-files/base-files:"
+> >      #   set data_smart.py:432 [finalize]
+> >      #     "meta-bsp/recipes-core/base-files/base-files:"
+> >      #   set data_smart.py:432 [finalize]
+> >      #    
+> >      "meta-custom/recipes-core/base-files/base-files:meta-bsp/recipes-cor
+> >      e/base-files/base-files:" # computed:
+> >      #  
+> >      "meta-custom/recipes-core/base-files/base-files:meta-bsp/recipes-cor
+> >      e/base-files/base-files:"
+> >      FILESEXTRAPATHS="meta-custom/recipes-core/base-files/base-files:meta
+> >      -bsp/recipes-core/base-files/base-files:"> 
+> > And now the sysctl.conf file is being pulled from meta-custom.
+
+That absolutely should not happen. If you change it back does it revert to the 
+version from meta-bsp? The wildcarding should not change the order in which 
+the files are applied. The only corner case I can think of would be if the 
+layer priority values are the same number - this isn't the case is it?
 
 Cheers,
 Paul
