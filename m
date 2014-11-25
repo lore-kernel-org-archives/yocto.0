@@ -1,36 +1,64 @@
-Return-Path: <peterengcomau001@adam.com.au>
+Return-Path: <Nick.Stevens@etherios.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 089B3E0085F; Tue, 25 Nov 2014 08:14:08 -0800 (PST)
+	id 75171E008D9; Tue, 25 Nov 2014 10:11:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [216.82.243.196 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [202.136.110.238 listed in list.dnswl.org]
-Received: from webmail2.adam.net.au (webmail2.adam.net.au [202.136.110.238])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AC83E0084A
-	for <yocto@yoctoproject.org>; Tue, 25 Nov 2014 08:13:55 -0800 (PST)
-Received: from localhost (webmail2.adam.net.au [127.0.0.1])
-	by webmail2.adam.net.au (8.13.8/8.13.8) with ESMTP id sAPGDHqk013166;
-	Wed, 26 Nov 2014 02:43:18 +1030
-Message-Id: <f36cad6dbfa6fc9e2121fcea6efeefbb9db05c32@webmail.adam.com.au>
-From: peterengcomau001@adam.com.au
-To: "Anders Darander" <anders@chargestorm.se>, peterengcomau001@adam.com.au
-X-Mailer: Atmail 6.3.5.8698
-in-reply-to: <20141125125640.GB6282@ad.chargestorm.se>
-Date: Wed, 26 Nov 2014 02:43:17 +1030
+X-Greylist: delayed 415 seconds by postgrey-1.32 at yocto-www;
+	Tue, 25 Nov 2014 10:11:32 PST
+Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
+	[216.82.243.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98096E0084E
+	for <yocto@yoctoproject.org>; Tue, 25 Nov 2014 10:11:32 -0800 (PST)
+Received: from [216.82.241.196] by server-4.bemta-8.messagelabs.com id
+	45/9B-27904-4B4C4745; Tue, 25 Nov 2014 18:04:36 +0000
+X-Env-Sender: Nick.Stevens@etherios.com
+X-Msg-Ref: server-7.tower-46.messagelabs.com!1416938675!37953491!1
+X-Originating-IP: [66.77.174.13]
+X-StarScan-Received: 
+X-StarScan-Version: 6.12.4; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 14923 invoked from network); 25 Nov 2014 18:04:35 -0000
+Received: from mail.mx1.digi.com (HELO mcl-sms-ns1.digi.com) (66.77.174.13)
+	by server-7.tower-46.messagelabs.com with RC4-SHA encrypted SMTP;
+	25 Nov 2014 18:04:35 -0000
+Received: from MTK-SMS-XCH01.digi.com (10.10.8.195) by mail.mx1.digi.com
+	(172.16.1.13) with Microsoft SMTP Server (TLS) id 8.3.377.0;
+	Tue, 25 Nov 2014 12:04:25 -0600
+Received: from MTK-SMS-XCH03.digi.com ([fe80::484d:c326:e7f1:a9fd]) by
+	MTK-SMS-XCH01.digi.com ([fe80::cca7:5299:c88e:1c40%20]) with mapi id
+	14.03.0210.002; Tue, 25 Nov 2014 12:04:35 -0600
+From: "Stevens, Nick" <Nick.Stevens@etherios.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, Bob Cochran
+	<yocto@mindchasers.com>
+Thread-Topic: [yocto] Layer Priority with Wildcard .bbappend Files
+Thread-Index: AdAIHwfCBhVTY1O2QDWJavgID0T9SQAQH+cAABzfuYAAAZKjYA==
+Date: Tue, 25 Nov 2014 18:04:34 +0000
+Message-ID: <94A9084532A7034A80AF38392EE560FF11064340@MTK-SMS-XCH03.digi.com>
+References: <94A9084532A7034A80AF38392EE560FF11063166@MTK-SMS-XCH03.digi.com>
+	<5473A266.6070407@mindchasers.com>
+	<4839222.tS45RDzaJt@peggleto-mobl5.ger.corp.intel.com>
+In-Reply-To: <4839222.tS45RDzaJt@peggleto-mobl5.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.35.1.176]
+x-kse-antivirus-interceptor-info: scan successful
+x-kse-antivirus-info: Clean
 MIME-Version: 1.0
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-Subject: Re: New error in 1.7
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Layer Priority with Wildcard .bbappend Files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: peterengcomau001@adam.com.au
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -39,95 +67,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Nov 2014 16:14:08 -0000
-Content-Type: multipart/alternative;
-	boundary="=_3718a379ceb791591ce83e1ec9fecf5f"
-
---=_3718a379ceb791591ce83e1ec9fecf5f
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 25 Nov 2014 18:11:44 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-=C2=A0My original problem is that the image built in 1.6.1 does not buil=
-d=0Ain 1.7. Paul indicated this is probably because of the -foreign issu=
-e=0Aas referred to in the reference manual Section 5.6.3 when upgrading.=
-=C2=A0=0AWhat I need to do is modify my recipe to include this. I unders=
-tand=0Aonce I have modified the recipe I can generate a patch against th=
-e=0Aoriginal.=0AHowever, I still cannot identify the original change to=
- the recipe=0Arequired to add this item.=0AI have added to the recipe=0A=
-EXTRA_OECONF =3D " 'AM_INIT_AUTOMAKE([foreign]); "=0AIs this the correct=
- change to the recipe to ensure the config.ac file=0Ais updated so that=
- any non-conformance with GNU guidelines is=0Aoverlooked?=0AI am still g=
-etting the original error error.=0ADo I need to add :do_config() {}and i=
-f so, what do I put in the=0Abetween the brackets? note that it looks li=
-ke do_config is being run=0Aalready because that is what is generating t=
-he error=0ARegardsLachlan =0A=0A----- Original Message -----=0AFrom: "An=
-ders Darander" =0ATo:"peterengcomau001@adam.com.au" =0ACc:"Paul Eggleton=
-" , "yocto@yoctoproject.org" =0ASent:Tue, 25 Nov 2014 13:56:41 +0100=0AS=
-ubject:Re: [yocto] New error in 1.7=0A=0A * peterengcomau001@adam.com.au=
-  [141125 13:44]:=0A > This is new territory for me.=0A > I have created=
- the following patch=0A > diff --git a/configure.ac b/configure.ac=0A >=
- --- a/configure.ac=0A > +++ b/configure.ac=0A > @@ -16 +16 @@ AC_CONFIG=
-_SRCDIR([libop/op_config.h])=0A > -AM_INIT_AUTOMAKE=0A > +AM_INIT_AUTOMA=
-KE([foreign])=0A=0A Yep, that's not really a valid patch file (at least=
- not one that can=0Abe=0A applied.=0A=0A > Can you direct me to some inf=
-ormation that describes the exact=0Asyntax=0A > for creating patches?=0A=
-=0A If you want to do it by hand, look at the "Creating patches with=0Ad=
-iff"=0A section on http://jungels.net/articles/diff-patch-ten-minutes.ht=
-ml.=0A=0A If you think you might need to add multiple patches, rework th=
-em=0Aetc.=0A I'd recommend using git.=0A=0A Cheers,=0A Anders=0A=0A --=
- =0A Anders Darander=0A ChargeStorm AB / eStorm AB=0A -- =0A ___________=
-____________________________________=0A yocto mailing list=0A yocto@yoct=
-oproject.org=0A https://lists.yoctoproject.org/listinfo/yocto=0A---- Mes=
-sage sent via Adam Internet WebMail - http://www.adam.com.au/
+Hi Paul,
 
---=_3718a379ceb791591ce83e1ec9fecf5f
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+> > I verified this by building an image - the sysctl.conf that ends up in
+> > the final image is the one from meta-bsp, not the one from meta-custom.
+> > But if I switch the name of base-files_%.bbappend in meta-custom to
+> > base-files_3.0.14.bbappend, this is what I get:
+> > >      # $FILESEXTRAPATHS [5 operations]
+> > >      #   set poky/meta/conf/documentation.conf:172
+> > >      #     [doc] "Extends the search path the OpenEmbedded build
+> system
+> > >      uses when looking for files and patches as it processes recipes
+> and
+> > >      append files." #   _prepend
+> > >      meta-bsp/recipes-core/base-files/base-files_3.0.14.bbappend:3 #
+> > >      "meta-bsp/recipes-core/base-files/base-files:"
+> > >      #   _prepend
+> > >      meta-custom/recipes-core/base-files/base-files_3.0.14.bbappend:6
+> #
+> > >        "meta-custom/recipes-core/base-files/base-files:"
+> > >      #   set data_smart.py:432 [finalize]
+> > >      #     "meta-bsp/recipes-core/base-files/base-files:"
+> > >      #   set data_smart.py:432 [finalize]
+> > >      #
+> > >      "meta-custom/recipes-core/base-files/base-files:meta-bsp/recipes=
+-
+> cor
+> > >      e/base-files/base-files:" # computed:
+> > >      #
+> > >      "meta-custom/recipes-core/base-files/base-files:meta-bsp/recipes=
+-
+> cor
+> > >      e/base-files/base-files:"
+> > >      FILESEXTRAPATHS=3D"meta-custom/recipes-core/base-files/base-
+> files:meta
+> > >      -bsp/recipes-core/base-files/base-files:">
+> > > And now the sysctl.conf file is being pulled from meta-custom.
+>=20
+> That absolutely should not happen. If you change it back does it revert t=
+o
+> the version from meta-bsp? The wildcarding should not change the order in
+> which the files are applied. The only corner case I can think of would be
+> if the layer priority values are the same number - this isn't the case is
+> it?
 
-<html><body>=C2=A0My original problem is that the image built in 1.6.1 d=
-oes not build in 1.7. Paul indicated this is probably because of the -fo=
-reign issue as referred to in the reference manual Section 5.6.3 when up=
-grading.=C2=A0<div><br /></div><div>What I need to do is modify my recip=
-e to include this. I understand once I have modified the recipe I can ge=
-nerate a patch against the original.</div><div><br /></div><div>However,=
- I still cannot identify the original change to the recipe required to a=
-dd this item.</div><div><br /></div><div>I have added to the recipe</div=
-><div><br /></div><div>EXTRA_OECONF =3D " 'AM_INIT_AUTOMAKE([foreign]);=
- "</div><div><br /></div><div>Is this the correct change to the recipe t=
-o ensure the config.ac file is updated so that any non-conformance with=
- GNU guidelines is overlooked?</div><div><br /></div><div>I am still get=
-ting the original error error.</div><div><br /></div><div>Do I need to a=
-dd :</div><div>do_config() {}</div><div>and if so, what do I put in the=
- between the brackets? note that it looks like do_config is being run al=
-ready because that is what is generating the error</div><div><br /></div=
-><div>Regards</div><div>Lachlan</div>=0A=09=09=09=09<br /><blockquote><b=
-r />----- Original Message -----<br /><div style=3D"width:100%;backgroun=
-d:rgb(228,228,228);"><div style=3D"font-weight:bold;">From:</div> "Ander=
-s Darander" &lt;anders@chargestorm.se&gt;</div><br /><div style=3D"font-=
-weight:bold;">To:</div>"peterengcomau001@adam.com.au" &lt;peterengcomau0=
-01@adam.com.au&gt;<br /><div style=3D"font-weight:bold;">Cc:</div>"Paul=
- Eggleton" &lt;paul.eggleton@linux.intel.com&gt;, "yocto@yoctoproject.or=
-g" &lt;yocto@yoctoproject.org&gt;<br /><div style=3D"font-weight:bold;">=
-Sent:</div>Tue, 25 Nov 2014 13:56:41 +0100<br /><div style=3D"font-weigh=
-t:bold;">Subject:</div>Re: [yocto] New error in 1.7<br /><br /><br />=0A=
-* peterengcomau001@adam.com.au &lt;peterengcomau001@adam.com.au&gt; [141=
-125 13:44]:<br />=0A&gt;    This is new territory for me.<br />=0A&gt; =
-   I have created the following patch<br />=0A&gt;    diff --git a/confi=
-gure.ac b/configure.ac<br />=0A&gt;    --- a/configure.ac<br />=0A&gt; =
-   +++ b/configure.ac<br />=0A&gt;    @@ -16 +16 @@ AC_CONFIG_SRCDIR([li=
-bop/op_config.h])<br />=0A&gt;    -AM_INIT_AUTOMAKE<br />=0A&gt;    +AM_=
-INIT_AUTOMAKE([foreign])<br /><br />=0AYep, that's not really a valid pa=
-tch file (at least not one that can be<br />=0Aapplied.<br /><br />=0A&g=
-t;    Can you direct me to some information that describes the exact syn=
-tax<br />=0A&gt;    for creating patches?<br /><br />=0AIf you want to d=
-o it by hand, look at the "Creating patches with diff"<br />=0Asection o=
-n http://jungels.net/articles/diff-patch-ten-minutes.html.<br /><br />=
-=0AIf you think you might need to add multiple patches, rework them etc.=
-<br />=0AI'd recommend using git.<br /><br />=0ACheers,<br />=0AAnders<b=
-r /><br />=0A-- <br />=0AAnders Darander<br />=0AChargeStorm AB / eStorm=
- AB<br />=0A-- <br />=0A_______________________________________________<=
-br />=0Ayocto mailing list<br />=0Ayocto@yoctoproject.org<br />=0Ahttps:=
-//lists.yoctoproject.org/listinfo/yocto<br /></blockquote>---- Message s=
-ent via Adam Internet WebMail  - http://www.adam.com.au/</body></html>
+The behavior does reappear if I change the file name back to a wildcard. An=
+d no, the layers are different priorities - meta-custom is priority 8 and m=
+eta-bsp is priority 6.
 
---=_3718a379ceb791591ce83e1ec9fecf5f--
+Definitely sounds like there's some unexpected behavior here. I am going to=
+ dig in some more and see if I can find a limited test case that reproduces=
+ the issue, and then I'll get a bug report opened.
+
+Thanks!
+Nick
+
