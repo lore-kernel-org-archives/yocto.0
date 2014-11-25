@@ -1,6 +1,6 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D97BAE008F1; Tue, 25 Nov 2014 03:12:55 -0800 (PST)
+	id 80F18E008FC; Tue, 25 Nov 2014 03:20:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,30 +10,30 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
 	high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5806AE007C2
-	for <yocto@yoctoproject.org>; Tue, 25 Nov 2014 03:12:53 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 25 Nov 2014 03:12:53 -0800
+	*      [192.55.52.88 listed in list.dnswl.org]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4154AE008E2
+	for <yocto@yoctoproject.org>; Tue, 25 Nov 2014 03:20:45 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 25 Nov 2014 03:20:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,455,1413270000"; d="scan'208";a="643138648"
+X-IronPort-AV: E=Sophos;i="5.07,455,1413270000"; d="scan'208";a="637728159"
 Received: from ksperera-mobl.gar.corp.intel.com (HELO
 	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.204])
-	by orsmga002.jf.intel.com with ESMTP; 25 Nov 2014 03:12:49 -0800
+	by fmsmga002.fm.intel.com with ESMTP; 25 Nov 2014 03:20:21 -0800
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Bob Cochran <yocto@mindchasers.com>, "Stevens,
-	Nick" <Nick.Stevens@etherios.com>
-Date: Tue, 25 Nov 2014 11:12:43 +0000
-Message-ID: <4839222.tS45RDzaJt@peggleto-mobl5.ger.corp.intel.com>
+To: Nishanth S <Nishanth.S@altiux.com>
+Date: Tue, 25 Nov 2014 11:20:20 +0000
+Message-ID: <4588822.SDbnQVoq17@peggleto-mobl5.ger.corp.intel.com>
 Organization: Intel Corporation
 User-Agent: KMail/4.14.3 (Linux/3.17.3-200.fc20.x86_64; KDE/4.14.3; x86_64; ; )
-In-Reply-To: <5473A266.6070407@mindchasers.com>
-References: <94A9084532A7034A80AF38392EE560FF11063166@MTK-SMS-XCH03.digi.com>
-	<5473A266.6070407@mindchasers.com>
+In-Reply-To: <5472CA61.7020303@altiux.com>
+References: <546AE780.7070208@altiux.com>
+	<969F26A8BAB325438E7EB80D3C3134FB2F3BE196@IRSMSX105.ger.corp.intel.com>
+	<5472CA61.7020303@altiux.com>
 MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: Layer Priority with Wildcard .bbappend Files
+Subject: Re: [bitbake-devel] how to update a package on yocto project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,140 +45,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Nov 2014 11:12:55 -0000
+X-List-Received-Date: Tue, 25 Nov 2014 11:20:48 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Hi Bob / Nick,
+Hi Nishanth,
 
-On Monday 24 November 2014 16:25:58 Bob Cochran wrote:
-> On 11/24/2014 03:22 PM, Stevens, Nick wrote:
-> > I think I've encountered a bug with how multiple bbappend files are
-> > processed when one of the bbappends contains a filename wildcard, but I
-> > want to make sure there's not something I'm missing before filing a bug
-> > report.> 
-> > I have a BSP layer and a customization layer that are based on the OE/poky
-> > Daisy release. The output of `bitbake-layers show-layers` looks like:
-> >      layer                 path                 priority
-> >      =====================================================
-> >      meta                  poky/meta            5
-> >      meta-yocto            poky/meta-yocto      5
-> >      meta-yocto-bsp        poky/meta-yocto-bsp  5
-> >      ...ellided...
-> >      meta-bsp              meta-bsp             6
-> >      meta-custom           meta-custom          8
-> > 
-> > In meta-bsp there is a bbappend for base-files named base-
-> > files_3.0.14.bbappend. The meta-bsp bbappend adds a sysctl.conf to /etc -
-> > pretty straightforward:
-> >      FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> >      SRC_URI += "file://sysctl.conf"
-> >      do_install_append() {
-> >      
-> >          install -m 0644 ${WORKDIR}/sysctl.conf ${D}${sysconfdir}/
-> >      
-> >      }
-> > 
-> > Now what I want to do is add a file called base-files_%.bbappend to meta-
-> > custom. It has its own version of sysctl.conf, and the recipe looks like
-> > this:
-> >      FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> > 
-> > Here's where things get weird. If I run `bitbake -e base-files` and pull
-> > out the section for FILESEXTRAPATHS, this is what I get (note that I've
-> > stripped out the huge absolute paths to make this easier to read):
-> >      # $FILESEXTRAPATHS [5 operations]
-> >      #   set poky/meta/conf/documentation.conf:172
-> >      #     [doc] "Extends the search path the OpenEmbedded build system
-> >      uses when looking for files and patches as it processes recipes and
-> >      append files." #   _prepend
-> >      meta-custom/recipes-core/base-files/base-files_%.bbappend:6 #    
-> >      "meta-custom/recipes-core/base-files/base-files:"
-> >      #   _prepend
-> >      meta-bsp/recipes-core/base-files/base-files_3.0.14.bbappend:3
-> >      #     "meta-bsp/recipes-core/base-files/base-files:"
-> >      #   set data_smart.py:432 [finalize]
-> >      #     "meta-custom/recipes-core/base-files/base-files:"
-> >      #   set data_smart.py:432 [finalize]
-> >      #    
-> >      "meta-bsp/recipes-core/base-files/base-files:meta-custom/recipes-cor
-> >      e/base-files/base-files:" # computed:
-> >      #  
-> >      "meta-bsp/recipes-core/base-files/base-files:meta-custom/recipes-cor
-> >      e/base-files/base-files:"
-> >      FILESEXTRAPATHS="meta-bsp/recipes-core/base-files/base-files:meta-cu
-> >      stom/recipes-core/base-files/base-files:"> 
-> > For some reason meta-bsp is coming before meta-custom in FILESEXTRAPATHS,
-> > even though meta-custom has a higher priority!
->
-> I also have some questions about how FILESEXTRAPATHS is supposed to work
-> with append files and layer priorities.
+On Monday 24 November 2014 11:34:17 Nishanth S wrote:
+> board : Intel Galileo Gen 1
 > 
-> Does a higher layer priority mean that the FILESEXTRAPATHS operation
-> should occur first?  
-
-No. bbappends are parsed in ascending layer priority order. It wouldn't make 
-sense to do it in the reverse - you want the higher priority layer's settings 
-to take precedence
-
-> If this is the case, then a lower priority layer prepend will appear to the
-> left of the higher layer prepend since it runs later, and this will probably
-> not provide the result you want.
-
-The highest priority layer's bbappend will prepend last, thus anything it 
-prepends will be first in the list.
-
-> The prepend and layer logic seems messy to me.  I would like to have a
-> way to write my custom layer and specify that what I include in my
-> SRC_URI in each recipe is definitive and can not be overwritten.
-> Suggestions on how to best accomplish this will be greatly appreciated.
-
-I think this is pretty much already the case. Is the problem that you can't 
-follow the current behaviour, or that you don't completely trust the layers 
-you are pulling in?
- 
-> I have been trying to accomplish this with FILESOVERRIDES, but this
-> logic seems counterintuitive since  DISTROOVERRIDES take precedence over
-> MACHINEOVERRIDES in building the file search path during the unpack task.
+> I use yocto project for build image/tarball for the board.
 > 
-> It seems to me that the file search path should be built using
-> FILESOVERRIDES from left to right:  TRANSLATED_TARGET_ARCH,
-> MACHINEOVERRIDES, and then DISTROOVERRIDES (specific to generic), but
-> this isn't what I'm seeing.  Still investigating how it's all put
-> together...
+> How to update a existing package???
+> 
+> I mean, I use openjdk-6 on my board.
+> 
+> But I need to change it to openjdk-7.
+> 
+> I edited local.conf by adding following line.
+> 
+> preferred_version_openjdkXXXX = XXXX
 > 
 > 
-> I verified this by building an image - the sysctl.conf that ends up in
-> the final image is the one from meta-bsp, not the one from meta-custom.
-> But if I switch the name of base-files_%.bbappend in meta-custom to
-> base-files_3.0.14.bbappend, this is what I get:
-> >      # $FILESEXTRAPATHS [5 operations]
-> >      #   set poky/meta/conf/documentation.conf:172
-> >      #     [doc] "Extends the search path the OpenEmbedded build system
-> >      uses when looking for files and patches as it processes recipes and
-> >      append files." #   _prepend
-> >      meta-bsp/recipes-core/base-files/base-files_3.0.14.bbappend:3 #    
-> >      "meta-bsp/recipes-core/base-files/base-files:"
-> >      #   _prepend
-> >      meta-custom/recipes-core/base-files/base-files_3.0.14.bbappend:6 #  
-> >        "meta-custom/recipes-core/base-files/base-files:"
-> >      #   set data_smart.py:432 [finalize]
-> >      #     "meta-bsp/recipes-core/base-files/base-files:"
-> >      #   set data_smart.py:432 [finalize]
-> >      #    
-> >      "meta-custom/recipes-core/base-files/base-files:meta-bsp/recipes-cor
-> >      e/base-files/base-files:" # computed:
-> >      #  
-> >      "meta-custom/recipes-core/base-files/base-files:meta-bsp/recipes-cor
-> >      e/base-files/base-files:"
-> >      FILESEXTRAPATHS="meta-custom/recipes-core/base-files/base-files:meta
-> >      -bsp/recipes-core/base-files/base-files:"> 
-> > And now the sysctl.conf file is being pulled from meta-custom.
+> 
+> 
+> I tried this but the resulting image.tar had only openjdk-6.
+> 
+> How do I include openjdk-7 with core-image???
 
-That absolutely should not happen. If you change it back does it revert to the 
-version from meta-bsp? The wildcarding should not change the order in which 
-the files are applied. The only corner case I can think of would be if the 
-layer priority values are the same number - this isn't the case is it?
+There needs to be a recipe to actually provide that - PREFERRED_VERSION only 
+selects between available versioned recipes. Is there an openjdk-7 recipe in 
+your configuration? If not, you will need to add one.
 
 Cheers,
 Paul
