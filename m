@@ -1,51 +1,36 @@
-Return-Path: <tritini@gmail.com>
+Return-Path: <peterengcomau001@adam.com.au>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BE250E0085F; Tue, 25 Nov 2014 07:52:15 -0800 (PST)
+	id 089B3E0085F; Tue, 25 Nov 2014 08:14:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (tritini[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [74.125.82.44 listed in list.dnswl.org]
-Received: from mail-wg0-f44.google.com (mail-wg0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22313E0084A
-	for <yocto@yoctoproject.org>; Tue, 25 Nov 2014 07:52:06 -0800 (PST)
-Received: by mail-wg0-f44.google.com with SMTP id b13so1238005wgh.31
-	for <yocto@yoctoproject.org>; Tue, 25 Nov 2014 07:52:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=7YY+l0k8RqA6dUTTBc12Y1spU+T6bZRRUzSQOmwwfuI=;
-	b=aMqFtDLSsyB7IHmyFAapgpAA8DlcMGECF0n+bOc0j8WnNlmJGB8XiYKqJEORYrcmL9
-	0LhUnB7jVaMYDFdNapBjxqDlR0iyCqU/32bsSuEqSjqS3OV0PBWP5lablBN57t8fDQ2X
-	vG2YiU/PPPkNo7BTqzTYpqE5PU8cbgcyDzquVKJ3fWE2stVKx+GScvYve+Fz5E8Z07go
-	tTWdPvUt0yPLdSaIguuWldvJ9ofOuMQejclozKgrYEd5OC/VYFTV+5BPbfyRY1xxJDqe
-	FCIbet+4XTp1LU2OWcN/Js2j7cnxTkjobs2Lt1F7y7FsKo6RuVDMH3YkK5ufQYnEGm22
-	xiTQ==
+	*      [202.136.110.238 listed in list.dnswl.org]
+Received: from webmail2.adam.net.au (webmail2.adam.net.au [202.136.110.238])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AC83E0084A
+	for <yocto@yoctoproject.org>; Tue, 25 Nov 2014 08:13:55 -0800 (PST)
+Received: from localhost (webmail2.adam.net.au [127.0.0.1])
+	by webmail2.adam.net.au (8.13.8/8.13.8) with ESMTP id sAPGDHqk013166;
+	Wed, 26 Nov 2014 02:43:18 +1030
+Message-Id: <f36cad6dbfa6fc9e2121fcea6efeefbb9db05c32@webmail.adam.com.au>
+From: peterengcomau001@adam.com.au
+To: "Anders Darander" <anders@chargestorm.se>, peterengcomau001@adam.com.au
+X-Mailer: Atmail 6.3.5.8698
+in-reply-to: <20141125125640.GB6282@ad.chargestorm.se>
+Date: Wed, 26 Nov 2014 02:43:17 +1030
 MIME-Version: 1.0
-X-Received: by 10.180.98.170 with SMTP id ej10mr32436868wib.74.1416930725022; 
-	Tue, 25 Nov 2014 07:52:05 -0800 (PST)
-Received: by 10.216.45.81 with HTTP; Tue, 25 Nov 2014 07:52:05 -0800 (PST)
-Date: Tue, 25 Nov 2014 16:52:05 +0100
-Message-ID: <CAAkv465A4n-xaP6McmAHsRLkDQNpuKyGAuAiX7ifwgqkgMiqeQ@mail.gmail.com>
-From: Tran TriTin <tritini@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Meta-Raspberry and Meta-Oracle-Java: ERROR
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: New error in 1.7
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: peterengcomau001@adam.com.au
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -54,138 +39,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Nov 2014 15:52:15 -0000
-Content-Type: multipart/alternative; boundary=f46d044288888a11960508b0e4ad
+X-List-Received-Date: Tue, 25 Nov 2014 16:14:08 -0000
+Content-Type: multipart/alternative;
+	boundary="=_3718a379ceb791591ce83e1ec9fecf5f"
 
---f46d044288888a11960508b0e4ad
+--=_3718a379ceb791591ce83e1ec9fecf5f
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+=C2=A0My original problem is that the image built in 1.6.1 does not buil=
+d=0Ain 1.7. Paul indicated this is probably because of the -foreign issu=
+e=0Aas referred to in the reference manual Section 5.6.3 when upgrading.=
+=C2=A0=0AWhat I need to do is modify my recipe to include this. I unders=
+tand=0Aonce I have modified the recipe I can generate a patch against th=
+e=0Aoriginal.=0AHowever, I still cannot identify the original change to=
+ the recipe=0Arequired to add this item.=0AI have added to the recipe=0A=
+EXTRA_OECONF =3D " 'AM_INIT_AUTOMAKE([foreign]); "=0AIs this the correct=
+ change to the recipe to ensure the config.ac file=0Ais updated so that=
+ any non-conformance with GNU guidelines is=0Aoverlooked?=0AI am still g=
+etting the original error error.=0ADo I need to add :do_config() {}and i=
+f so, what do I put in the=0Abetween the brackets? note that it looks li=
+ke do_config is being run=0Aalready because that is what is generating t=
+he error=0ARegardsLachlan =0A=0A----- Original Message -----=0AFrom: "An=
+ders Darander" =0ATo:"peterengcomau001@adam.com.au" =0ACc:"Paul Eggleton=
+" , "yocto@yoctoproject.org" =0ASent:Tue, 25 Nov 2014 13:56:41 +0100=0AS=
+ubject:Re: [yocto] New error in 1.7=0A=0A * peterengcomau001@adam.com.au=
+  [141125 13:44]:=0A > This is new territory for me.=0A > I have created=
+ the following patch=0A > diff --git a/configure.ac b/configure.ac=0A >=
+ --- a/configure.ac=0A > +++ b/configure.ac=0A > @@ -16 +16 @@ AC_CONFIG=
+_SRCDIR([libop/op_config.h])=0A > -AM_INIT_AUTOMAKE=0A > +AM_INIT_AUTOMA=
+KE([foreign])=0A=0A Yep, that's not really a valid patch file (at least=
+ not one that can=0Abe=0A applied.=0A=0A > Can you direct me to some inf=
+ormation that describes the exact=0Asyntax=0A > for creating patches?=0A=
+=0A If you want to do it by hand, look at the "Creating patches with=0Ad=
+iff"=0A section on http://jungels.net/articles/diff-patch-ten-minutes.ht=
+ml.=0A=0A If you think you might need to add multiple patches, rework th=
+em=0Aetc.=0A I'd recommend using git.=0A=0A Cheers,=0A Anders=0A=0A --=
+ =0A Anders Darander=0A ChargeStorm AB / eStorm AB=0A -- =0A ___________=
+____________________________________=0A yocto mailing list=0A yocto@yoct=
+oproject.org=0A https://lists.yoctoproject.org/listinfo/yocto=0A---- Mes=
+sage sent via Adam Internet WebMail - http://www.adam.com.au/
 
-i am newbie to Yocto. Last days i tried to build an image for my
-RaspberryPi with Meta-Raspberry and Meta-Oracle-Java but it did not work.
-This is error i received. Can anyone help me?
-Thanks in advance.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*[tvtritin@g-105-1 build-raspberry-java]$ bitbake -k rpi-basic-imageLoading
-cache: 100% |###########################################| ETA:
-00:00:00Loaded 1320 entries from dependency cache.NOTE: Resolving any
-missing task queue dependenciesBuild Configuration:BB_VERSION        =
-"1.24.0"BUILD_SYS         = "x86_64-linux"NATIVELSBSTRING   =
-"CentOS-6.5"TARGET_SYS        = "arm-poky-linux-gnueabi"MACHINE           =
-"raspberrypi"DISTRO            = "poky"DISTRO_VERSION    =
-"1.7"TUNE_FEATURES     = "arm armv6 vfp"TARGET_FPU        =
-"vfp"meta              meta-yocto        meta-yocto-bsp
-meta-raspberrypi  =
-"dizzy:db7f4f31c915a59c502cac4be905d23df5246b3d"meta-oracle-java  =
-"master:d5256fe7ae592f19ffe0619c093b333eb9f92a93"NOTE: Preparing
-runqueueNOTE: Executing SetScene TasksNOTE: Executing RunQueue TasksERROR:
-Unable to install packages. Command
-'/home/tvtritin/DemoYOCTO/poky1.7/build-raspberry-java/tmp/sysroots/x86_64-linux/usr/bin/smart
---quiet
---data-dir=/home/tvtritin/DemoYOCTO/poky1.7/build-raspberry-java/tmp/work/raspberrypi-poky-linux-gnueabi/rpi-basic-image/1.0-r0/rootfs/var/lib/smart
-install -y packagegroup-core-ssh-dropbear@all run-postinsts@all
-psplash-raspberrypi@armv6_vfp kernel-modules@raspberrypi
-oracle-jse-ejre-arm-vfp-hflt-client-headless@armv6_vfp
-packagegroup-core-boot@raspberrypi' returned 1:error: Can't install
-oracle-jse-ejre-arm-vfp-hflt-client-headless-1.7.0-u71r0@armv6_vfp: no
-package provides ld-linux-armhf.so.3(GLIBC_2.4)ERROR: Function failed:
-do_rootfsERROR: Logfile of failure stored in:
-/home/tvtritin/DemoYOCTO/poky1.7/build-raspberry-java/tmp/work/raspberrypi-poky-linux-gnueabi/rpi-basic-image/1.0-r0/temp/log.do_rootfs.17752ERROR:
-Task 7
-(/home/tvtritin/DemoYOCTO/poky1.7/meta-raspberrypi/recipes-core/images/rpi-basic-image.bb
-<http://rpi-basic-image.bb>, do_rootfs) failed with exit code '1'NOTE:
-Tasks Summary: Attempted 2074 tasks of which 2073 didn't need to be rerun
-and 1 failed.No currently running tasks (2073 of 2075)Summary: 1 task
-failed:
-/home/tvtritin/DemoYOCTO/poky1.7/meta-raspberrypi/recipes-core/images/rpi-basic-image.bb
-<http://rpi-basic-image.bb>, do_rootfsSummary: There were 2 ERROR messages
-shown, returning a non-zero exit code.*
-
---f46d044288888a11960508b0e4ad
+--=_3718a379ceb791591ce83e1ec9fecf5f
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>Hi all,<br><br></div>i am newbie to Yocto. Last =
-days i tried to build an image for my RaspberryPi with Meta-Raspberry and M=
-eta-Oracle-Java but it did not work. This is error i received. Can anyone h=
-elp me?<br></div>Thanks in advance.<br><div><br><i>[tvtritin@g-105-1 build-=
-raspberry-java]$ bitbake -k rpi-basic-image<br>Loading cache: 100% |#######=
-####################################| ETA:=C2=A0 00:00:00<br>Loaded 1320 en=
-tries from dependency cache.<br>NOTE: Resolving any missing task queue depe=
-ndencies<br><br>Build Configuration:<br>BB_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 =3D &quot;1.24.0&quot;<br>BUILD_SYS=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;x86_64-linux&quot;<br>NATIVELSBSTRING=
-=C2=A0=C2=A0 =3D &quot;CentOS-6.5&quot;<br>TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 =3D &quot;arm-poky-linux-gnueabi&quot;<br>MACHINE=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;raspber=
-rypi&quot;<br>DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=C2=A0=C2=A0=C2=A0 =3D &=
-quot;1.7&quot;<br>TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;arm armv6=
- vfp&quot;<br>TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quo=
-t;vfp&quot;<br>meta=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 <br>meta-yocto=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 <br>meta-yocto-bsp=C2=A0=C2=A0=C2=A0 <br>meta-raspberrypi=C2=A0 =3D =
-&quot;dizzy:db7f4f31c915a59c502cac4be905d23df5246b3d&quot;<br>meta-oracle-j=
-ava=C2=A0 =3D &quot;master:d5256fe7ae592f19ffe0619c093b333eb9f92a93&quot;<b=
-r><br>NOTE: Preparing runqueue<br>NOTE: Executing SetScene Tasks<br>NOTE: E=
-xecuting RunQueue Tasks<br>ERROR: Unable to install packages. Command &#39;=
-/home/tvtritin/DemoYOCTO/poky1.7/build-raspberry-java/tmp/sysroots/x86_64-l=
-inux/usr/bin/smart --quiet --data-dir=3D/home/tvtritin/DemoYOCTO/poky1.7/bu=
-ild-raspberry-java/tmp/work/raspberrypi-poky-linux-gnueabi/rpi-basic-image/=
-1.0-r0/rootfs/var/lib/smart install -y packagegroup-core-ssh-dropbear@all r=
-un-postinsts@all psplash-raspberrypi@armv6_vfp kernel-modules@raspberrypi o=
-racle-jse-ejre-arm-vfp-hflt-client-headless@armv6_vfp packagegroup-core-boo=
-t@raspberrypi&#39; returned 1:<br>error: Can&#39;t install oracle-jse-ejre-=
-arm-vfp-hflt-client-headless-1.7.0-u71r0@armv6_vfp: no package provides ld-=
-linux-armhf.so.3(GLIBC_2.4)<br><br><br>ERROR: Function failed: do_rootfs<br=
->ERROR: Logfile of failure stored in: /home/tvtritin/DemoYOCTO/poky1.7/buil=
-d-raspberry-java/tmp/work/raspberrypi-poky-linux-gnueabi/rpi-basic-image/1.=
-0-r0/temp/log.do_rootfs.17752<br>ERROR: Task 7 (/home/tvtritin/DemoYOCTO/po=
-ky1.7/meta-raspberrypi/recipes-core/images/<a href=3D"http://rpi-basic-imag=
-e.bb">rpi-basic-image.bb</a>, do_rootfs) failed with exit code &#39;1&#39;<=
-br>NOTE: Tasks Summary: Attempted 2074 tasks of which 2073 didn&#39;t need =
-to be rerun and 1 failed.<br>No currently running tasks (2073 of 2075)<br><=
-br>Summary: 1 task failed:<br>=C2=A0 /home/tvtritin/DemoYOCTO/poky1.7/meta-=
-raspberrypi/recipes-core/images/<a href=3D"http://rpi-basic-image.bb">rpi-b=
-asic-image.bb</a>, do_rootfs<br>Summary: There were 2 ERROR messages shown,=
- returning a non-zero exit code.<br></i><br></div></div>
+<html><body>=C2=A0My original problem is that the image built in 1.6.1 d=
+oes not build in 1.7. Paul indicated this is probably because of the -fo=
+reign issue as referred to in the reference manual Section 5.6.3 when up=
+grading.=C2=A0<div><br /></div><div>What I need to do is modify my recip=
+e to include this. I understand once I have modified the recipe I can ge=
+nerate a patch against the original.</div><div><br /></div><div>However,=
+ I still cannot identify the original change to the recipe required to a=
+dd this item.</div><div><br /></div><div>I have added to the recipe</div=
+><div><br /></div><div>EXTRA_OECONF =3D " 'AM_INIT_AUTOMAKE([foreign]);=
+ "</div><div><br /></div><div>Is this the correct change to the recipe t=
+o ensure the config.ac file is updated so that any non-conformance with=
+ GNU guidelines is overlooked?</div><div><br /></div><div>I am still get=
+ting the original error error.</div><div><br /></div><div>Do I need to a=
+dd :</div><div>do_config() {}</div><div>and if so, what do I put in the=
+ between the brackets? note that it looks like do_config is being run al=
+ready because that is what is generating the error</div><div><br /></div=
+><div>Regards</div><div>Lachlan</div>=0A=09=09=09=09<br /><blockquote><b=
+r />----- Original Message -----<br /><div style=3D"width:100%;backgroun=
+d:rgb(228,228,228);"><div style=3D"font-weight:bold;">From:</div> "Ander=
+s Darander" &lt;anders@chargestorm.se&gt;</div><br /><div style=3D"font-=
+weight:bold;">To:</div>"peterengcomau001@adam.com.au" &lt;peterengcomau0=
+01@adam.com.au&gt;<br /><div style=3D"font-weight:bold;">Cc:</div>"Paul=
+ Eggleton" &lt;paul.eggleton@linux.intel.com&gt;, "yocto@yoctoproject.or=
+g" &lt;yocto@yoctoproject.org&gt;<br /><div style=3D"font-weight:bold;">=
+Sent:</div>Tue, 25 Nov 2014 13:56:41 +0100<br /><div style=3D"font-weigh=
+t:bold;">Subject:</div>Re: [yocto] New error in 1.7<br /><br /><br />=0A=
+* peterengcomau001@adam.com.au &lt;peterengcomau001@adam.com.au&gt; [141=
+125 13:44]:<br />=0A&gt;    This is new territory for me.<br />=0A&gt; =
+   I have created the following patch<br />=0A&gt;    diff --git a/confi=
+gure.ac b/configure.ac<br />=0A&gt;    --- a/configure.ac<br />=0A&gt; =
+   +++ b/configure.ac<br />=0A&gt;    @@ -16 +16 @@ AC_CONFIG_SRCDIR([li=
+bop/op_config.h])<br />=0A&gt;    -AM_INIT_AUTOMAKE<br />=0A&gt;    +AM_=
+INIT_AUTOMAKE([foreign])<br /><br />=0AYep, that's not really a valid pa=
+tch file (at least not one that can be<br />=0Aapplied.<br /><br />=0A&g=
+t;    Can you direct me to some information that describes the exact syn=
+tax<br />=0A&gt;    for creating patches?<br /><br />=0AIf you want to d=
+o it by hand, look at the "Creating patches with diff"<br />=0Asection o=
+n http://jungels.net/articles/diff-patch-ten-minutes.html.<br /><br />=
+=0AIf you think you might need to add multiple patches, rework them etc.=
+<br />=0AI'd recommend using git.<br /><br />=0ACheers,<br />=0AAnders<b=
+r /><br />=0A-- <br />=0AAnders Darander<br />=0AChargeStorm AB / eStorm=
+ AB<br />=0A-- <br />=0A_______________________________________________<=
+br />=0Ayocto mailing list<br />=0Ayocto@yoctoproject.org<br />=0Ahttps:=
+//lists.yoctoproject.org/listinfo/yocto<br /></blockquote>---- Message s=
+ent via Adam Internet WebMail  - http://www.adam.com.au/</body></html>
 
---f46d044288888a11960508b0e4ad--
+--=_3718a379ceb791591ce83e1ec9fecf5f--
