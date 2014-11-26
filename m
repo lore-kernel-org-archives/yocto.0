@@ -1,51 +1,37 @@
-Return-Path: <wd@denx.de>
+Return-Path: <matt.schuckmann@planar.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 82FEDE00953; Tue, 25 Nov 2014 22:58:42 -0800 (PST)
+	id 9E974E00953; Tue, 25 Nov 2014 23:51:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [212.18.0.9 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 506D9E008D9
-	for <yocto@yoctoproject.org>; Tue, 25 Nov 2014 22:58:32 -0800 (PST)
-Received: from frontend02.mail.m-online.net (unknown [192.168.8.183])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3jnXxf5NLfz3hjW2;
-	Wed, 26 Nov 2014 07:58:30 +0100 (CET)
-Received: from localhost (dynscan2.mnet-online.de [192.168.6.69])
-	by mail.m-online.net (Postfix) with ESMTP id 3jnXxf56RSzvhV9;
-	Wed, 26 Nov 2014 07:58:30 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.184])
-	by localhost (dynscan2.mail.m-online.net [192.168.6.69]) (amavisd-new,
-	port 10024)
-	with ESMTP id n_v8FZJRM-0F; Wed, 26 Nov 2014 07:58:29 +0100 (CET)
-X-Auth-Info: BnaZdpu4zo94cnk2ytixqb/KX3uM4fIzhJcIYAFaI3g=
-Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
-	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
-	Wed, 26 Nov 2014 07:58:29 +0100 (CET)
-Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id B817A1AAC53;
-	Wed, 26 Nov 2014 07:58:29 +0100 (CET)
-Received: from gemini.denx.de (localhost [IPv6:::1])
-	by gemini.denx.de (Postfix) with ESMTP id A3CB33823E9;
-	Wed, 26 Nov 2014 07:58:29 +0100 (MET)
-To: Gangadhar N <gangadhar.ubuntu@gmail.com>
-From: Wolfgang Denk <wd@denx.de>
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [63.128.21.105 listed in list.dnswl.org]
+Received: from us-smtp-delivery-105.mimecast.com
+	(us-smtp-delivery-105.mimecast.com [63.128.21.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD14EE008C6
+	for <yocto@yoctoproject.org>; Tue, 25 Nov 2014 23:51:43 -0800 (PST)
+Received: from msxbvt03.planar.net (199.244.171.48 [199.244.171.48]) by
+	us-mta-6.us.mimecast.lan; Wed, 26 Nov 2014 02:51:41 -0500
+Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
+	with mapi; Tue, 25 Nov 2014 23:51:35 -0800
+From: Matt Schuckmann <Matt.Schuckmann@planar.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Tue, 25 Nov 2014 23:51:33 -0800
+Thread-Topic: Support for writable files with a read-only root file system
+Thread-Index: AdAJTZ3XNi7l6+XhTSW9vKEnveuh8g==
+Message-ID: <4B07ADD556F70043925DA2E9C5D4346D2FDB561BFD@MSXBEBVT12.planar.net>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-In-reply-to: <CAKxnL=hSs5NNCQY9ZTZi0XWXGJOOn0i_0f-X7k7JksCZZrGo9w@mail.gmail.com>
-References: <CAKxnL=hSs5NNCQY9ZTZi0XWXGJOOn0i_0f-X7k7JksCZZrGo9w@mail.gmail.com>
-Comments: In-reply-to Gangadhar N <gangadhar.ubuntu@gmail.com>
-	message dated "Wed, 26 Nov 2014 12:17:01 +0530."
-Date: Wed, 26 Nov 2014 07:58:29 +0100
-Message-Id: <20141126065829.A3CB33823E9@gemini.denx.de>
-Cc: yocto@yoctoproject.org
-Subject: Re: how to separate packages in downloads folder into those that run on target and those that do not run on target?
+X-MC-Unique: mkK0Hv3dRWCHDT4hchoF2A-1
+Subject: Support for writable files with a read-only root file system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,37 +43,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Nov 2014 06:58:42 -0000
-Content-type: text/plain; charset=UTF-8
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Wed, 26 Nov 2014 07:51:54 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset=WINDOWS-1252
+Content-Transfer-Encoding: quoted-printable
 
-Dear Gangadhar,
+I've been investigating the support for read only root file systems and try=
+ing to suss out how to support persistent writeable files in my image where=
+ the root file system is read only, this seems like a very common thing for=
+ an embedded Linux system to need but I'm not seeing the support for it.=20
+=20
+I should note that I'm working off of the Dylan branch, I'm not sure if thi=
+ngs have changed in a newer branch.=20
 
-In message <CAKxnL=hSs5NNCQY9ZTZi0XWXGJOOn0i_0f-X7k7JksCZZrGo9w@mail.gmail.com> you wrote:
-> 
-> I want to separate the packages in downloads folder. I want to separate the
-> packages into those that run on target and those that do not run on the
-> target. The idea is to feed the packages that go into target to fossology
+So far I've had to read the code to figure out as much as I have, and I hav=
+en't found any documentation for this, am I missing something?=20
 
+It appears that my recipe(s) are supposed to install a volatiles file under=
+ ${D}${sysconfdir}/default/volatiles/ that lists out the volatile directori=
+es, links and files that need to be created in the image.=20
 
-Do you think such a separation is possible at all?  Depending on your
-target configuration, packages might go into both - for example, if
-you build SDK / toolchain images, then gcc and related tools will be
-both in the cross tools and in the target file system.
+For writeable persistent files I would presume that I should specify links =
+that point to some place on a write partition.=20
 
-And why do you need to split the downloads folder for that?  You have
-the list of packages that get installed into your target file system -
-is this not sufficient?
+What I don't see is any sort of mechanism for setting up the default files =
+on that writeable partition, am I on my own for this or is there some other=
+ recommended mechanism.=20
 
-Best regards,
+In my early research I found the MentorEmbedded/meta-ro-rootfs layer that h=
+ad a nifty way of specifying VOLATILE_BINDS to create a list of binds that =
+should occur at boot up and in the process creating the mounts if the targe=
+t of the bind didn't exist a copy was made from the read only location, thi=
+s appears to have provided a sort of default to go into the writeable locat=
+ion. Was this functionality abandoned when support for ro-rootfs was brough=
+t into oe-core? If so why?=20
 
-Wolfgang Denk
+A good example for the kind of writeable persistent file that I intend to h=
+ave is /etc/network/interfaces
+How do I go about letting the init_ifupdown recipe install it normally and =
+then have another recipe or even the image configure it to be either a link=
+ or a bind mount at another location while still preserving the default con=
+tents.=20
 
--- 
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-The complexity of software is an essential property, not an  acciden-
-tal  one. Hence, descriptions of a software entity that abstract away
-its complexity often abstract away its essence.    - Fred Brooks, Jr.
+I hope I'm making sense here.=20
+
+Thanks,
+Matt S.=20
+
 
