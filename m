@@ -1,49 +1,40 @@
-Return-Path: <yuchankit@gmail.com>
+Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5C040E0082F; Wed, 26 Nov 2014 23:10:01 -0800 (PST)
+	id 88477E00874; Thu, 27 Nov 2014 13:00:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (yuchankit[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.212.175 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wi0-f175.google.com (mail-wi0-f175.google.com
-	[209.85.212.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4542E0034B
-	for <yocto@yoctoproject.org>; Wed, 26 Nov 2014 23:09:59 -0800 (PST)
-Received: by mail-wi0-f175.google.com with SMTP id l15so14788397wiw.8
-	for <yocto@yoctoproject.org>; Wed, 26 Nov 2014 23:09:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=qrsTZyu3IrBrpN2yVIkZ+MZeaNYiWnOTcGY5oByczcw=;
-	b=PinxJMFVYtC19gtc0drhOWUGpjRJpy3JSbA/movrVeDSqd3dprqs2cRpGyfYPhJ5nE
-	ACgTkV80ezRXoOgzz8XybrnUpee3gvCbNdg9zeyYfPOFLXuVlD5hssOq3CsjHhAWN9dn
-	0iljTVmxxSik1xjmfQyFlWhQLKkYxO587rSx3nemI445UJJONg/HSytUyOhsYWSI00tF
-	+lfxey3AvkOWyg5mGU7WMtvHObfIYGm4udFkPkVUDmxF1pVdcExRvyJDykJPdk484Sid
-	tTkqcj1aWYlgPLcA/x3oZVF/tF4HC8xz8hEXwuzoNrZ83MCMolD/W2/L+YJWdGs54E7N
-	7Fcw==
-MIME-Version: 1.0
-X-Received: by 10.194.134.234 with SMTP id pn10mr57221487wjb.34.1417072198875; 
-	Wed, 26 Nov 2014 23:09:58 -0800 (PST)
-Received: by 10.180.72.208 with HTTP; Wed, 26 Nov 2014 23:09:58 -0800 (PST)
-Date: Thu, 27 Nov 2014 15:09:58 +0800
-Message-ID: <CANusJLONn2JMy-7nLY4EbZsjx3RT+H5brRyqevtq-rxWB=AsSA@mail.gmail.com>
-From: Chan Kit Yu <yuchankit@gmail.com>
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Thu, 27 Nov 2014 10:54:53 -0800
-Subject: Creating a recipe to create /usr/local
+Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14BD6E006EF
+	for <yocto@yoctoproject.org>; Thu, 27 Nov 2014 13:00:10 -0800 (PST)
+Received: from durham.keylevel.com ([88.97.63.243]:47331
+	helo=macbook-pro.durham.keylevel.com)
+	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.84)
+	(envelope-from <opensource@keylevel.com>)
+	id 1Xu6AR-001VDa-NP; Thu, 27 Nov 2014 21:00:04 +0000
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <CANusJLONn2JMy-7nLY4EbZsjx3RT+H5brRyqevtq-rxWB=AsSA@mail.gmail.com>
+Date: Thu, 27 Nov 2014 21:00:02 +0000
+Message-Id: <D4365608-70BA-4FF1-AF43-7C8334DA93BF@keylevel.com>
+References: <CANusJLONn2JMy-7nLY4EbZsjx3RT+H5brRyqevtq-rxWB=AsSA@mail.gmail.com>
+To: Chan Kit Yu <yuchankit@gmail.com>
+X-Mailer: Apple Mail (2.1878.6)
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - a180.4uh.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
+	chris.tapp@keylevel.com
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Creating a recipe to create /usr/local
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,35 +46,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Nov 2014 07:10:01 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 27 Nov 2014 21:00:14 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Hi all,
 
-I'm not sure if emailing this is the most appropriate way and I
-apologize in advance if that's not.
+On 27 Nov 2014, at 07:09, Chan Kit Yu <yuchankit@gmail.com> wrote:
 
-I have some scripts that require /usr/local to exist in Yocto and
-therefore I need to a recipe to create /usr/local directory. I tried
-to accomplish this with a simple recipe but that proved futile.
+> Hi all,
+>=20
+> I'm not sure if emailing this is the most appropriate way and I
+> apologize in advance if that's not.
+>=20
+> I have some scripts that require /usr/local to exist in Yocto and
+> therefore I need to a recipe to create /usr/local directory. I tried
+> to accomplish this with a simple recipe but that proved futile.
+>=20
+> Although bitbaking that particular recipe was fine, trying to include
+> that package in local.conf resulted errors and those errors are
+> gibberish (it listed all the packages inside the image that I was
+> trying to comple) . Here's my simple stupid recipe:
+>=20
+> SUMMARY=3D "...."
+> LICENSE =3D "something...."
+> ...
+> ...
+> INSANE_SKIP_${PN} =3D "installed-vs-shipped"
+>=20
+> do_install(){
+>     mkdir -p ${D}/usr/local
+> }
 
-Although bitbaking that particular recipe was fine, trying to include
-that package in local.conf resulted errors and those errors are
-gibberish (it listed all the packages inside the image that I was
-trying to comple) . Here's my simple stupid recipe:
+You need to use 'install' rather than mkdir
 
-SUMMARY= "...."
-LICENSE = "something...."
-...
-...
-INSANE_SKIP_${PN} = "installed-vs-shipped"
 
-do_install(){
-     mkdir -p ${D}/usr/local
-}
+> Is there a better way (or preferably the canonical way) to do this?
 
-Is there a better way (or preferably the canonical way) to do this?
+Yes, there are some definitions you can use. In your case it would be:
 
-Thanks,
-Chan Kit
+   # Install the 'local' directory to make sure it exists
+   install -d ${D}${prefix}/local
+
+   # Install a file to this location
+   install -f ${WORKDIR}/myfile ${D}${prefix}/local
+
+The available definitions are shown at the top of meta/conf/bitbake.conf =
+in your Poky installation.
+
+--
+
+Chris Tapp
+opensource@keylevel.com
+www.keylevel.com
+
+----
+You can tell you're getting older when your car insurance gets real =
+cheap!
+
 
