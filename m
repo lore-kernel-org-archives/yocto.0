@@ -1,6 +1,6 @@
 Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 762A1E00970; Fri, 28 Nov 2014 04:31:24 -0800 (PST)
+	id B8589E00970; Fri, 28 Nov 2014 04:38:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,20 +9,18 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F7D4E0082F
-	for <yocto@yoctoproject.org>; Fri, 28 Nov 2014 04:31:20 -0800 (PST)
-Received: from durham.keylevel.com ([88.97.63.243]:32081
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65325E0082F
+	for <yocto@yoctoproject.org>; Fri, 28 Nov 2014 04:38:00 -0800 (PST)
+Received: from durham.keylevel.com ([88.97.63.243]:29930
 	helo=macbook-pro.durham.keylevel.com)
 	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.84)
-	(envelope-from <opensource@keylevel.com>) id 1XuKhd-003Ufs-Ud
-	for yocto@yoctoproject.org; Fri, 28 Nov 2014 12:31:16 +0000
-Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+	(envelope-from <opensource@keylevel.com>) id 1XuKo6-003VfC-2x
+	for yocto@yoctoproject.org; Fri, 28 Nov 2014 12:37:57 +0000
 From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <467FA14F-1250-4420-8877-CA5BD2EAA3A8@keylevel.com>
-Date: Fri, 28 Nov 2014 12:31:15 +0000
-Message-Id: <87EA197B-5A58-4803-8E7A-459BEDE0DE18@keylevel.com>
-References: <467FA14F-1250-4420-8877-CA5BD2EAA3A8@keylevel.com>
+Message-Id: <98D134EE-9E05-4289-BA83-F0369DA15620@keylevel.com>
+Date: Fri, 28 Nov 2014 12:37:55 +0000
 To: Yocto Project <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
 X-Mailer: Apple Mail (2.1878.6)
 X-OutGoing-Spam-Status: No, score=-1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -33,7 +31,7 @@ X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
 X-AntiAbuse: Sender Address Domain - keylevel.com
 X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
 	chris.tapp@keylevel.com
-Subject: Re: How do firmware patches get loaded?
+Subject: Adding firmware to initramfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,27 +43,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Nov 2014 12:31:24 -0000
+X-List-Received-Date: Fri, 28 Nov 2014 12:38:06 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
+I'm network booting a system using iPXE. The process uses a =
+core-image-minimal-initramfs image to select the final rootfs that gets =
+loaded.
 
-On 28 Nov 2014, at 00:49, Chris Tapp <opensource@keylevel.com> wrote:
+This generally works fine, but I need to be able to install =
+linux-firmware in the initramfs image (specifically for the NIC that =
+gets used to load the final rootfs).
 
-> I've got a board with an rtl8168 NIC. I've enabled this in the kernel, =
-but I get the following showing in the system log at boot:
->=20
->   r8169 0000:03:00.0 eth0: unable to load firmware patch =
-rtl_nic/rtl8168g-2.fw (-2)
->=20
-> The NIC works, but it looks as if the missing file is causing a 60 =
-second delay at boot time.
->=20
-> What do I need to do to get this file installed / loaded?
+How do I get linux-firmware to install in core-image-minimal-initramfs? =
+I've tried adding the following into local.conf, but with no luck:
 
-Sorted - this just needed the following in local.conf:
-
-MACHINE_EXTRA_RRECOMMENDS +=3D "linux-firmware"
+MACHINE_ESSENTIAL_EXTRA_RDEPENDS +=3D "linux-firmware"
+IMAGE_INSTALL_append =3D " linux-firmware"
+CORE_IMAGE_EXTRA_INSTALL +=3D " linux-firmware"
 
 --
 
