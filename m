@@ -1,57 +1,47 @@
-Return-Path: <s.stirtzel@googlemail.com>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 592A3E00970; Fri, 28 Nov 2014 05:23:56 -0800 (PST)
+	id 23F4FE00970; Fri, 28 Nov 2014 05:52:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (s.stirtzel[at]googlemail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [83.145.59.141 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.212.177 listed in list.dnswl.org]
-Received: from mail-wi0-f177.google.com (mail-wi0-f177.google.com
-	[209.85.212.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B79BAE0082F
-	for <yocto@yoctoproject.org>; Fri, 28 Nov 2014 05:23:52 -0800 (PST)
-Received: by mail-wi0-f177.google.com with SMTP id l15so11220156wiw.10
-	for <yocto@yoctoproject.org>; Fri, 28 Nov 2014 05:23:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=Pzr0UbEqVDmAdy4mCgFe5cnNBp6HmEp4p1b3x5YZIaI=;
-	b=xt4gPX/EjyK+hxTxmvGWca7pFm/Fe7GD0TIxaSP33G1NMVYYGrawPJPeqzAZ22PuqA
-	z1n1mF7G3oL5c3J1izOitQ5yqF4xT/MumWKPRXdJq1lOzge6OAdswiLS0hZpr9wtFRae
-	3fywXb1hofXA17mOCfCE9Se9di9NiOVN+bewZQGeEISgFHY60BJ9/jwXtG2LtR6X8uXY
-	N5/qSpd4CDBx5F1d6nXk8FjRCDkt/A7bz53XTv5Thj19WTvsuBiIDJNixHN58URsTNWA
-	V2as0in3kZUfAVEoAln4CL2+Ac9ol5e19Xo9YzTm2Irqx8hd1aNIMkb0eMG1gA14g5YQ
-	yD4A==
-X-Received: by 10.180.73.206 with SMTP id n14mr37749526wiv.60.1417181031946;
-	Fri, 28 Nov 2014 05:23:51 -0800 (PST)
+Received: from stoexhubfe02.domain01.net (STOEXHUBFE02.domain01.net
+	[83.145.59.141])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E29DDE008EA
+	for <yocto@yoctoproject.org>; Fri, 28 Nov 2014 05:52:28 -0800 (PST)
+Received: from ad.chargestorm.se (81.232.163.241) by stoexhubfe02.domain01.net
+	(10.12.10.7) with Microsoft SMTP Server (TLS) id 8.3.279.1;
+	Fri, 28 Nov 2014 14:52:25 +0100
+Date: Fri, 28 Nov 2014 14:51:45 +0100
+From: Anders Darander <anders@chargestorm.se>
+To: Matt Schuckmann <Matt.Schuckmann@planar.com>
+Message-ID: <20141128135145.GA9445@ad.chargestorm.se>
+Mail-Followup-To: Matt Schuckmann <Matt.Schuckmann@planar.com>,
+	Jim Rafert <jimr@spectralogic.com>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <4B07ADD556F70043925DA2E9C5D4346D2FDB561BFD@MSXBEBVT12.planar.net>
+	<5475E5E2.7090805@topic.nl>
+	<86196249137E0843B2E0673D4F731E0C0108E25842@reactor.sldomain.com>
+	<4B07ADD556F70043925DA2E9C5D4346D2FDB561C51@MSXBEBVT12.planar.net>
 MIME-Version: 1.0
-Received: by 10.27.10.11 with HTTP; Fri, 28 Nov 2014 05:23:31 -0800 (PST)
-In-Reply-To: <4009F04F5925CD4C95FBD9BE756381FE02848F2A69@MSSRVS5.atlas.de>
-References: <4009F04F5925CD4C95FBD9BE756381FE02848F2A67@MSSRVS5.atlas.de>
-	<CAGiJk9eNcBVFPRKG92WdwGC=ysWDX2m2F9qHr2uLxQP6i90WRA@mail.gmail.com>
-	<4009F04F5925CD4C95FBD9BE756381FE02848F2A68@MSSRVS5.atlas.de>
-	<CAGiJk9c-w9Jwx6McyjkjWq9yo80zU2bNwRiRY=Os9_eJ3KJO8Q@mail.gmail.com>
-	<4009F04F5925CD4C95FBD9BE756381FE02848F2A69@MSSRVS5.atlas.de>
-From: Samuel Stirtzel <s.stirtzel@googlemail.com>
-Date: Fri, 28 Nov 2014 14:23:31 +0100
-Message-ID: <CAGiJk9efNDb9DurbgV892bwM69tn3jH52UpDj15RZbKT8OZuog@mail.gmail.com>
-To: Matthias.Heise@atlas-elektronik.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: do_fetch linux hangs after defconfig/conf-fragment change
+In-Reply-To: <4B07ADD556F70043925DA2E9C5D4346D2FDB561C51@MSXBEBVT12.planar.net>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.5.23 (2014-03-12)
+X-GFI-SMTP-Submission: 1
+Cc: Jim Rafert <jimr@spectralogic.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Support for writable files with a read-only root file system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,22 +53,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Nov 2014 13:23:56 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 28 Nov 2014 13:52:35 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-2014-11-28 14:09 GMT+01:00  <Matthias.Heise@atlas-elektronik.com>:
->
-> I made the git setting to replace git:// with https:// which at least worked once ...
-> But when trying to clone as you suggested I'm asked for username and password for github.com !?
->
+* Matt Schuckmann <Matt.Schuckmann@planar.com> [141126 18:22]:
+> Yes you are correct I want a small number of files into to reside in a
+> writeable partition with links in the root file system to point to
+> them. I guess I latched on to the volatiles mechanism because it seems
+> close to meeting my needs.
 
-Strange, it works for me... takes some time but doesn't ask for
-username/password.
+The volatile-binds from meta-ro-rootfs can be used to handle exactly
+this. (I.e. they doesn't have to point to tmpfs).
 
+The 3rd alternative is the old classical approach of using a symbolic
+links...
 
+> Making entire directory hierarchies like /etc writeable seems risky,
+> things that you never want changed could get changed. Furthermore it
+> makes it harder to deal with setting up default versions of files. 
 
+> Is there really no mechanism for this type of thing in OE? It seems
+> like such a common thing for anybody creating a system with a ro root
+> file system to need or am I missing something. 
+
+It depends on your which version you're running. Up to daisy, you'd have
+to use meta-ro-rootfs to get access to volatile-binds.
+
+From dizzy onward, volatile-bind was merged to oe-core, so there's no
+need for an additional layer nowadays.
+
+> If there is not such a mechanism then I will probably recreate the
+> VOLATILE_BINDS mechanism that was in the MentorEmbedded layer and
+> maybe call it PERSISTENT_BINDS or some such. I'm pretty new to OE so
+> whatever I come up with will be pretty rough but I'd be willing to
+> share my solution if there was interest. 
+
+Use volatile-binds.
+
+Cheers,
+Anders
 
 -- 
-Regards
-Samuel
+Never make any mistaeks.
+		-- Anonymous, in a mail discussion about to a kernel bug report
 
