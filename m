@@ -1,43 +1,37 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <bart.thoelen@telenet.be>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 456BFE009E4; Fri, 28 Nov 2014 00:40:51 -0800 (PST)
+	id 4A7D4E008EA; Fri, 28 Nov 2014 00:54:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [195.130.137.88 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 223CEE00972
-	for <yocto@yoctoproject.org>; Fri, 28 Nov 2014 00:40:30 -0800 (PST)
-Received: from durham.keylevel.com ([88.97.63.243]:42134
-	helo=macbook-pro.durham.keylevel.com)
-	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.84)
-	(envelope-from <opensource@keylevel.com>)
-	id 1XuH6G-002ztc-Hm; Fri, 28 Nov 2014 08:40:27 +0000
-Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <CANusJLMn_0V4SskWVHQSWqik-KHCsHAh9sf9uBMt52-AfH261g@mail.gmail.com>
-Date: Fri, 28 Nov 2014 08:40:25 +0000
-Message-Id: <BE5DDCAC-2A40-4A50-BBD4-3D0C74BB7EAB@keylevel.com>
-References: <CANusJLONn2JMy-7nLY4EbZsjx3RT+H5brRyqevtq-rxWB=AsSA@mail.gmail.com>
-	<D4365608-70BA-4FF1-AF43-7C8334DA93BF@keylevel.com>
-	<CANusJLMp8wQXPQrefRpwwNxTh=A0yjAxoS1Svyso=w8fT99Zaw@mail.gmail.com>
-	<CANusJLMn_0V4SskWVHQSWqik-KHCsHAh9sf9uBMt52-AfH261g@mail.gmail.com>
-To: Chan Kit Yu <yuchankit@gmail.com>
-X-Mailer: Apple Mail (2.1878.6)
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - a180.4uh.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
-	chris.tapp@keylevel.com
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Creating a recipe to create /usr/local
+X-Greylist: delayed 302 seconds by postgrey-1.32 at yocto-www;
+	Fri, 28 Nov 2014 00:54:44 PST
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [195.130.137.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC788E006EF
+	for <yocto@yoctoproject.org>; Fri, 28 Nov 2014 00:54:44 -0800 (PST)
+Received: from zcshobo42.telenet-ops.be ([213.224.145.76])
+	by michel.telenet-ops.be with bizsmtp
+	id Lwpg1p00d1f7MJD06wpgv0; Fri, 28 Nov 2014 09:49:40 +0100
+Date: Fri, 28 Nov 2014 09:49:40 +0100 (CET)
+From: bart.thoelen@telenet.be
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Message-ID: <1608096582.60660456.1417164580603.JavaMail.root@telenet.be>
+In-Reply-To: <3519242.bp6EKar7DE@peggleto-mobl5.ger.corp.intel.com>
+References: <64061056.59535533.1417105449594.JavaMail.root@telenet.be>
+	<3519242.bp6EKar7DE@peggleto-mobl5.ger.corp.intel.com>
+MIME-Version: 1.0
+X-Originating-IP: [::ffff:94.107.227.132]
+Thread-Topic: RPATH invalid
+Thread-Index: /RvmhmZ1Qd5e1ChOPGymbcsfLLL1Xg==
+Cc: yocto@yoctoproject.org
+Subject: Re: RPATH invalid
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,112 +43,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Nov 2014 08:40:51 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 28 Nov 2014 08:54:49 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
 
-On 28 Nov 2014, at 01:55, Chan Kit Yu <yuchankit@gmail.com> wrote:
 
-> I would also like to add that bitbaking that recipe alone was fine but
-> bitbaking my image to include that package failed.
+----- Original Message -----
+> From: "Paul Eggleton" <paul.eggleton@linux.intel.com>
+> To: "bart thoelen" <bart.thoelen@telenet.be>
+> Cc: yocto@yoctoproject.org
+> Sent: Thursday, November 27, 2014 5:43:17 PM
+> Subject: Re: [yocto] RPATH invalid
+> 
+> Hi there,
+> 
+> On Thursday 27 November 2014 17:24:09 bart.thoelen@telenet.be wrote:
+> > I now the following issue pops up here and there, but I cannot find a
+> > proper
+> > answer on what is wrong.
+> > 
+> > I'm trying to build a custom created auto-tools package in yocto (daisy
+> > release). I get this QA check error:
+> > 
+> > 
+> > 
+> > ERROR: QA Issue: package logctrl contains bad RPATH
+> > /mnt/data/sources/dx2/yocto/dx2/yocto/build/tmp/sysroots/zynq-lc80dx-appl/u
+> > sr/lib in file
+> > /mnt/data/sources/dx2/yocto/dx2/yocto/build/tmp/work/armv7a-vfp-neon-poky-l
+> > inux-gnueabi/logctrl/1.0.0-r0/packages-split/logctrl/usr/bin/logctrl ERROR:
+> > QA run found fatal errors. Please consider fixing them.
+> > ERROR: Function failed: do_package_qa
+> > ERROR: Logfile of failure stored in:
+> > /mnt/data/sources/dx2/yocto/dx2/yocto/build/tmp/work/armv7a-vfp-neon-poky-l
+> > inux-gnueabi/logctrl/1.0.0-r0/temp/log.do_package.20691 ERROR: Task 10
+> > (/mnt/data/sources/dx2/yocto/dx2/yocto/meta-nikon/recipes-core/logctrl/logc
+> > trl_1.0.0.bb, do_package) failed with exit code '1'
+> > 
+> > I guess this must be passed via the configure - see configure log (ignore
+> > --without-rpath):
+> 
+> It depends entirely on whether the configure script provides an option for
+> this, it looks like this one either does not, or if it does it isn't called
+> --without-rpath.
+> 
+> There are some hints here about how to solve this kind of problem in the
+> general case:
+> 
+>   http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#qa-issue-rpaths
+> 
+> Ultimately you'll need to dig into how this particular software's own
+> build system is set up with regard to enabling RPATHs when compiling
+> - usually it's a matter of stopping the appropriate arguments from being
+> passed to the compiler/linker.
 
-I'm not sure what's going on - can you post the error message (or at =
-least the relevant part)?
+That is exactly what I was thinking as well.  I created the automake scripts myself, they all behave well
+when I build project the 'the old-fashion' way - i.e. doing the configure and make manually.
+The project is building in Buildroot without any problem.  I'm moving towards yocto now.  So I really need to understand 
+what yocto does differently so that I can adapt my automake scripts.
 
-> On Fri, Nov 28, 2014 at 9:43 AM, Chan Kit Yu <yuchankit@gmail.com> =
-wrote:
->> Hi Chris,
->>=20
->> Thank you very much :-)
->> But it was no good. I still get the same error even with the =
-"install" use.
->>=20
->> Here I attach the full recipe just in case I did wrong somewhere:
->>=20
->> SUMMARY =3D "Create /usr/local"
->> SECTION =3D "meta-networking"
->> LICENSE =3D "MIT"
->> LIC_FILES_CHKSUM =3D
->> =
-"file://${COMMON_LICENSE_DIR}/MIT;md5=3D0835ade698e0bcf8506ecda2f7b4f302"
->> #INSANE_SKIP_${PN} =3D "installed-vs-shipped"
->>=20
->> do_install(){
->>        install -d  ${D}${prefix}/local/
->> }
->>=20
->> Chan Kit
->>=20
->>=20
->>=20
->> On Fri, Nov 28, 2014 at 5:00 AM, Chris Tapp <opensource@keylevel.com> =
-wrote:
->>>=20
->>> On 27 Nov 2014, at 07:09, Chan Kit Yu <yuchankit@gmail.com> wrote:
->>>=20
->>>> Hi all,
->>>>=20
->>>> I'm not sure if emailing this is the most appropriate way and I
->>>> apologize in advance if that's not.
->>>>=20
->>>> I have some scripts that require /usr/local to exist in Yocto and
->>>> therefore I need to a recipe to create /usr/local directory. I =
-tried
->>>> to accomplish this with a simple recipe but that proved futile.
->>>>=20
->>>> Although bitbaking that particular recipe was fine, trying to =
-include
->>>> that package in local.conf resulted errors and those errors are
->>>> gibberish (it listed all the packages inside the image that I was
->>>> trying to comple) . Here's my simple stupid recipe:
->>>>=20
->>>> SUMMARY=3D "...."
->>>> LICENSE =3D "something...."
->>>> ...
->>>> ...
->>>> INSANE_SKIP_${PN} =3D "installed-vs-shipped"
->>>>=20
->>>> do_install(){
->>>>    mkdir -p ${D}/usr/local
->>>> }
->>>=20
->>> You need to use 'install' rather than mkdir
->>>=20
->>>=20
->>>> Is there a better way (or preferably the canonical way) to do this?
->>>=20
->>> Yes, there are some definitions you can use. In your case it would =
-be:
->>>=20
->>>   # Install the 'local' directory to make sure it exists
->>>   install -d ${D}${prefix}/local
->>>=20
->>>   # Install a file to this location
->>>   install -f ${WORKDIR}/myfile ${D}${prefix}/local
->>>=20
->>> The available definitions are shown at the top of =
-meta/conf/bitbake.conf in your Poky installation.
->>>=20
->>> --
->>>=20
->>> Chris Tapp
->>> opensource@keylevel.com
->>> www.keylevel.com
->>>=20
->>> ----
->>> You can tell you're getting older when your car insurance gets real =
-cheap!
->>>=20
+Anyway, I could just disable the QA checks for RPATH - but this is not the way I like to work.
 
---
+greets,
 
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
+BartT.
 
-----
-You can tell you're getting older when your car insurance gets real =
-cheap!
-
+> 
+> Cheers,
+> Paul
+> 
+> --
+> 
+> Paul Eggleton
+> Intel Open Source Technology Centre
+> 
 
