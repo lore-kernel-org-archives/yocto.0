@@ -1,54 +1,57 @@
-Return-Path: <Matthias.Heise@atlas-elektronik.com>
+Return-Path: <yukatharsanij@tataelxsi.co.in>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 53E0CE0077F; Fri, 28 Nov 2014 01:36:12 -0800 (PST)
+	id 9DD40E0077F; Fri, 28 Nov 2014 02:00:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [194.156.172.86 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [134.170.132.127 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 393 seconds by postgrey-1.32 at yocto-www;
-	Fri, 28 Nov 2014 01:36:04 PST
-Received: from mail96.atlas.de (mail96.atlas.de [194.156.172.86])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D999BE0034B
-	for <yocto@yoctoproject.org>; Fri, 28 Nov 2014 01:36:04 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail96.atlas.de (Postfix) with ESMTP id 7689410909
-	for <yocto@yoctoproject.org>; Fri, 28 Nov 2014 10:29:30 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mail96.atlas.de
-Received: from mail96.atlas.de ([127.0.0.1])
-	by localhost (mail96.atlas.de [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id QNfDTdzvXx6k for <yocto@yoctoproject.org>;
-	Fri, 28 Nov 2014 10:29:19 +0100 (CET)
-Received: from mgsrv01.atlas.de (mail01.atlas.mailrelays.atlas.de
-	[10.200.101.16]) by mail96.atlas.de (Postfix) with ESMTP
-	for <yocto@yoctoproject.org>; Fri, 28 Nov 2014 10:29:19 +0100 (CET)
-Received: from MSSRVS3.atlas.de (mssrvs3.atlas.de [10.200.101.73])
-	by mgsrv01.atlas.de (Postfix) with ESMTP id 40F1B27169
-	for <yocto@yoctoproject.org>; Fri, 28 Nov 2014 10:29:19 +0100 (CET)
-Received: from MSSRVS5.atlas.de
-	([fe80:0000:0000:0000:cd6c:87f4:14.12.253.152]) by MSSRVS3.atlas.de
-	([10.200.101.73]) with mapi; Fri, 28 Nov 2014 10:29:19 +0100
-From: <Matthias.Heise@atlas-elektronik.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 28 Nov 2014 10:29:18 +0100
-Thread-Topic: do_fetch linux hangs after defconfig/conf-fragment change
-Thread-Index: AdAK7bP3x0vjkCV+QHqlJv50lIqbSw==
-Message-ID: <4009F04F5925CD4C95FBD9BE756381FE02848F2A67@MSSRVS5.atlas.de>
-Accept-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: de-DE
+X-Greylist: delayed 1116 seconds by postgrey-1.32 at yocto-www;
+	Fri, 28 Nov 2014 02:00:02 PST
+Received: from APAC01-SG1-obe.outbound.protection.outlook.com
+	(mail-sg1hn0127.outbound.protection.outlook.com [134.170.132.127])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B187CE006EF
+	for <yocto@yoctoproject.org>; Fri, 28 Nov 2014 02:00:02 -0800 (PST)
+Received: from [192.168.30.116] (59.160.207.43) by
+	HKNPR04MB193.apcprd04.prod.outlook.com (10.242.105.14) with Microsoft
+	SMTP Server (TLS) id 15.1.26.15; Fri, 28 Nov 2014 09:25:20 +0000
+Message-ID: <54783F79.1080103@tataelxsi.co.in>
+Date: Fri, 28 Nov 2014 14:55:13 +0530
+From: Yukatharsani Jeyachandra <yukatharsanij@tataelxsi.co.in>
+Organization: Tata Elxsi
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.1.0
 MIME-Version: 1.0
-Subject: do_fetch linux hangs after defconfig/conf-fragment change
+To: <yocto@yoctoproject.org>
+References: <CANusJLONn2JMy-7nLY4EbZsjx3RT+H5brRyqevtq-rxWB=AsSA@mail.gmail.com>	<D4365608-70BA-4FF1-AF43-7C8334DA93BF@keylevel.com>	<CANusJLMp8wQXPQrefRpwwNxTh=A0yjAxoS1Svyso=w8fT99Zaw@mail.gmail.com>	<CANusJLMn_0V4SskWVHQSWqik-KHCsHAh9sf9uBMt52-AfH261g@mail.gmail.com>	<BE5DDCAC-2A40-4A50-BBD4-3D0C74BB7EAB@keylevel.com>
+	<CANusJLPQk9_0Bo-xyj9AySdrqgSWGAvyP5Eu-U_F2H1iRJdLrA@mail.gmail.com>
+In-Reply-To: <CANusJLPQk9_0Bo-xyj9AySdrqgSWGAvyP5Eu-U_F2H1iRJdLrA@mail.gmail.com>
+X-Originating-IP: [59.160.207.43]
+X-ClientProxiedBy: SINPR01CA0018.apcprd01.prod.exchangelabs.com
+	(10.141.109.18) To HKNPR04MB193.apcprd04.prod.outlook.com
+	(10.242.105.14)
+X-Microsoft-Antispam: UriScan:;
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:;SRVR:HKNPR04MB193;
+X-Exchange-Antispam-Report-Test: UriScan:;
+X-Exchange-Antispam-Report-CFA-Test: BCL:0;PCL:0;RULEID:;SRVR:HKNPR04MB193;
+X-Forefront-PRVS: 04097B7F7F
+X-Forefront-Antispam-Report: SFV:NSPM;
+	SFS:(10019020)(6049001)(51704005)(52164004)(52044002)(199003)(164054003)(377454003)(45984002)(24454002)(53754006)(189002)(377424004)(42186005)(105586002)(107886001)(106356001)(16601075003)(20776003)(99396003)(76176999)(95666004)(53806999)(87266999)(54356999)(43066003)(2351001)(107046002)(102836001)(21056001)(36756003)(65806001)(101416001)(4396001)(66066001)(64706001)(65956001)(93886004)(120916001)(65816999)(122386002)(71186001)(86362001)(50986999)(15202345003)(74482002)(33656002)(46102003)(84326002)(40100003)(450100001)(62966003)(110136001)(19617315012)(117156001)(77096003)(19580405001)(83506001)(77156002)(97736003)(15974865002)(59896002)(19580395003)(512944002)(87976001)(15975445006)(575784001)(80316001)(92726001)(80872002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:HKNPR04MB193; H:[192.168.30.116];
+	FPR:; SPF:None; MLV:sfv; PTR:InfoNoRecords; A:0; MX:1; LANG:en; 
+X-Exchange-Antispam-Report-CFA-Test: BCL:0;PCL:0;RULEID:;SRVR:HKNPR04MB193;
+X-OriginatorOrg: tataelxsi.co.in
+Subject: Re: Creating a recipe to create /usr/local
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: yukatharsanij@tataelxsi.co.in
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -57,96 +60,288 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Nov 2014 09:36:12 -0000
-Content-Language: de-DE
+X-List-Received-Date: Fri, 28 Nov 2014 10:00:15 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_4009F04F5925CD4C95FBD9BE756381FE02848F2A67MSSRVS5atlasd_"
+	boundary="------------050908030706000905000900"
 
---_000_4009F04F5925CD4C95FBD9BE756381FE02848F2A67MSSRVS5atlasd_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--------------050908030706000905000900
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi all,
+Please add
+     FILES_PN = "${prefix}/local/*"  line in your recipe.
 
-I'm quite new to yocto and currently am playing around with all kinds of ba=
-sic functions and procedures of yocto to step by step learn and get to know=
- yocto and bitbake.
-Currently I'm trying to store the kernel config settings in some way in my =
-layer to have it modular. So I read about config fragments. Unfortunately I=
- can't test what I did as when running bitbake the do_fetch for the linux s=
-ource is started and doesn't end. Even when enabling/disabling only one lin=
-e in the defconfig file, which I tried as test, this happens. That isn't no=
-rmal is it ? What can I do about this ?
-Thank you,
-Best regards,
-Mat
+Thanks,
+yukatharsani J.
+
+On 28-11-2014 14:50, Chan Kit Yu wrote:
+> Not sure if you wanna read through the log file. I was initially
+> dumbfounded but reading through the log I think I found the issue.
+> Here's the main error (I think) that could have caused the failure.
+> (my package name is "folder"):
+>
+> ERROR: folder not found in the base feeds (valleyisland_64
+> corei7-64-intel-common corei7-64 core2-64 x86_64 noarch any all).
+>
+> I also attached the error log so feel free to parse it if you feel like it.
+>
+> Thanks,
+> Chan Kit
+>
+>
+> On Fri, Nov 28, 2014 at 4:40 PM, Chris Tapp <opensource@keylevel.com> wrote:
+>> On 28 Nov 2014, at 01:55, Chan Kit Yu <yuchankit@gmail.com> wrote:
+>>
+>>> I would also like to add that bitbaking that recipe alone was fine but
+>>> bitbaking my image to include that package failed.
+>> I'm not sure what's going on - can you post the error message (or at least the relevant part)?
+>>
+>>> On Fri, Nov 28, 2014 at 9:43 AM, Chan Kit Yu <yuchankit@gmail.com> wrote:
+>>>> Hi Chris,
+>>>>
+>>>> Thank you very much :-)
+>>>> But it was no good. I still get the same error even with the "install" use.
+>>>>
+>>>> Here I attach the full recipe just in case I did wrong somewhere:
+>>>>
+>>>> SUMMARY = "Create /usr/local"
+>>>> SECTION = "meta-networking"
+>>>> LICENSE = "MIT"
+>>>> LIC_FILES_CHKSUM =
+>>>> "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+>>>> #INSANE_SKIP_${PN} = "installed-vs-shipped"
+>>>>
+>>>> do_install(){
+>>>>         install -d  ${D}${prefix}/local/
+>>>> }
+>>>>
+>>>> Chan Kit
+>>>>
+>>>>
+>>>>
+>>>> On Fri, Nov 28, 2014 at 5:00 AM, Chris Tapp <opensource@keylevel.com> wrote:
+>>>>> On 27 Nov 2014, at 07:09, Chan Kit Yu <yuchankit@gmail.com> wrote:
+>>>>>
+>>>>>> Hi all,
+>>>>>>
+>>>>>> I'm not sure if emailing this is the most appropriate way and I
+>>>>>> apologize in advance if that's not.
+>>>>>>
+>>>>>> I have some scripts that require /usr/local to exist in Yocto and
+>>>>>> therefore I need to a recipe to create /usr/local directory. I tried
+>>>>>> to accomplish this with a simple recipe but that proved futile.
+>>>>>>
+>>>>>> Although bitbaking that particular recipe was fine, trying to include
+>>>>>> that package in local.conf resulted errors and those errors are
+>>>>>> gibberish (it listed all the packages inside the image that I was
+>>>>>> trying to comple) . Here's my simple stupid recipe:
+>>>>>>
+>>>>>> SUMMARY= "...."
+>>>>>> LICENSE = "something...."
+>>>>>> ...
+>>>>>> ...
+>>>>>> INSANE_SKIP_${PN} = "installed-vs-shipped"
+>>>>>>
+>>>>>> do_install(){
+>>>>>>     mkdir -p ${D}/usr/local
+>>>>>> }
+>>>>> You need to use 'install' rather than mkdir
+>>>>>
+>>>>>
+>>>>>> Is there a better way (or preferably the canonical way) to do this?
+>>>>> Yes, there are some definitions you can use. In your case it would be:
+>>>>>
+>>>>>    # Install the 'local' directory to make sure it exists
+>>>>>    install -d ${D}${prefix}/local
+>>>>>
+>>>>>    # Install a file to this location
+>>>>>    install -f ${WORKDIR}/myfile ${D}${prefix}/local
+>>>>>
+>>>>> The available definitions are shown at the top of meta/conf/bitbake.conf in your Poky installation.
+>>>>>
+>>>>> --
+>>>>>
+>>>>> Chris Tapp
+>>>>> opensource@keylevel.com
+>>>>> www.keylevel.com
+>>>>>
+>>>>> ----
+>>>>> You can tell you're getting older when your car insurance gets real cheap!
+>>>>>
+>> --
+>>
+>> Chris Tapp
+>> opensource@keylevel.com
+>> www.keylevel.com
+>>
+>> ----
+>> You can tell you're getting older when your car insurance gets real cheap!
+>>
+>>
+>>
+
+
+--------------050908030706000905000900
+Content-Type: text/html; charset="windows-1252"
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Please add <br>
+        FILES_PN = "${prefix}/local/*"  line in your recipe.<br>
+    <br>
+    Thanks,<br>
+    yukatharsani J.<br>
+    <br>
+    <div class="moz-cite-prefix">On 28-11-2014 14:50, Chan Kit Yu wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CANusJLPQk9_0Bo-xyj9AySdrqgSWGAvyP5Eu-U_F2H1iRJdLrA@mail.gmail.com"
+      type="cite">
+      <pre wrap="">Not sure if you wanna read through the log file. I was initially
+dumbfounded but reading through the log I think I found the issue.
+Here's the main error (I think) that could have caused the failure.
+(my package name is "folder"):
+
+ERROR: folder not found in the base feeds (valleyisland_64
+corei7-64-intel-common corei7-64 core2-64 x86_64 noarch any all).
+
+I also attached the error log so feel free to parse it if you feel like it.
+
+Thanks,
+Chan Kit
+
+
+On Fri, Nov 28, 2014 at 4:40 PM, Chris Tapp <a class="moz-txt-link-rfc2396E" href="mailto:opensource@keylevel.com">&lt;opensource@keylevel.com&gt;</a> wrote:
+</pre>
+      <blockquote type="cite">
+        <pre wrap="">
+On 28 Nov 2014, at 01:55, Chan Kit Yu <a class="moz-txt-link-rfc2396E" href="mailto:yuchankit@gmail.com">&lt;yuchankit@gmail.com&gt;</a> wrote:
+
+</pre>
+        <blockquote type="cite">
+          <pre wrap="">I would also like to add that bitbaking that recipe alone was fine but
+bitbaking my image to include that package failed.
+</pre>
+        </blockquote>
+        <pre wrap="">
+I'm not sure what's going on - can you post the error message (or at least the relevant part)?
+
+</pre>
+        <blockquote type="cite">
+          <pre wrap="">On Fri, Nov 28, 2014 at 9:43 AM, Chan Kit Yu <a class="moz-txt-link-rfc2396E" href="mailto:yuchankit@gmail.com">&lt;yuchankit@gmail.com&gt;</a> wrote:
+</pre>
+          <blockquote type="cite">
+            <pre wrap="">Hi Chris,
+
+Thank you very much :-)
+But it was no good. I still get the same error even with the "install" use.
+
+Here I attach the full recipe just in case I did wrong somewhere:
+
+SUMMARY = "Create /usr/local"
+SECTION = "meta-networking"
+LICENSE = "MIT"
+LIC_FILES_CHKSUM =
+<a class="moz-txt-link-rfc2396E" href="file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302">"file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"</a>
+#INSANE_SKIP_${PN} = "installed-vs-shipped"
+
+do_install(){
+       install -d  ${D}${prefix}/local/
+}
+
+Chan Kit
 
 
 
---_000_4009F04F5925CD4C95FBD9BE756381FE02848F2A67MSSRVS5atlasd_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On Fri, Nov 28, 2014 at 5:00 AM, Chris Tapp <a class="moz-txt-link-rfc2396E" href="mailto:opensource@keylevel.com">&lt;opensource@keylevel.com&gt;</a> wrote:
+</pre>
+            <blockquote type="cite">
+              <pre wrap="">
+On 27 Nov 2014, at 07:09, Chan Kit Yu <a class="moz-txt-link-rfc2396E" href="mailto:yuchankit@gmail.com">&lt;yuchankit@gmail.com&gt;</a> wrote:
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=
-=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
-oft Word 14 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DDE link=3Dblue vlink=
-=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal>Hi all,<o:p></o:p>=
-</p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span la=
-ng=3DEN-US>I&#8217;m quite new to yocto and currently am playing around wit=
-h all kinds of basic functions and procedures of yocto to step by step lear=
-n and get to know yocto and bitbake.<o:p></o:p></span></p><p class=3DMsoNor=
-mal><span lang=3DEN-US>Currently I&#8217;m trying to store the kernel confi=
-g settings in some way in my layer to have it modular. So I read about conf=
-ig fragments. Unfortunately I can&#8217;t test what I did as when running b=
-itbake the do_fetch for the linux source is started and doesn&#8217;t end. =
-Even when enabling/disabling only one line in the defconfig file, which I t=
-ried as test, this happens. That isn&#8217;t normal is it ? What can I do a=
-bout this ?<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Th=
-ank you,<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Best =
-regards,<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Mat <=
-o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o=
-:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></sp=
-an></p></div></body></html>=
+</pre>
+              <blockquote type="cite">
+                <pre wrap="">Hi all,
 
---_000_4009F04F5925CD4C95FBD9BE756381FE02848F2A67MSSRVS5atlasd_--
+I'm not sure if emailing this is the most appropriate way and I
+apologize in advance if that's not.
+
+I have some scripts that require /usr/local to exist in Yocto and
+therefore I need to a recipe to create /usr/local directory. I tried
+to accomplish this with a simple recipe but that proved futile.
+
+Although bitbaking that particular recipe was fine, trying to include
+that package in local.conf resulted errors and those errors are
+gibberish (it listed all the packages inside the image that I was
+trying to comple) . Here's my simple stupid recipe:
+
+SUMMARY= "...."
+LICENSE = "something...."
+...
+...
+INSANE_SKIP_${PN} = "installed-vs-shipped"
+
+do_install(){
+   mkdir -p ${D}/usr/local
+}
+</pre>
+              </blockquote>
+              <pre wrap="">
+You need to use 'install' rather than mkdir
+
+
+</pre>
+              <blockquote type="cite">
+                <pre wrap="">Is there a better way (or preferably the canonical way) to do this?
+</pre>
+              </blockquote>
+              <pre wrap="">
+Yes, there are some definitions you can use. In your case it would be:
+
+  # Install the 'local' directory to make sure it exists
+  install -d ${D}${prefix}/local
+
+  # Install a file to this location
+  install -f ${WORKDIR}/myfile ${D}${prefix}/local
+
+The available definitions are shown at the top of meta/conf/bitbake.conf in your Poky installation.
+
+--
+
+Chris Tapp
+<a class="moz-txt-link-abbreviated" href="mailto:opensource@keylevel.com">opensource@keylevel.com</a>
+<a class="moz-txt-link-abbreviated" href="http://www.keylevel.com">www.keylevel.com</a>
+
+----
+You can tell you're getting older when your car insurance gets real cheap!
+
+</pre>
+            </blockquote>
+          </blockquote>
+        </blockquote>
+        <pre wrap="">
+--
+
+Chris Tapp
+<a class="moz-txt-link-abbreviated" href="mailto:opensource@keylevel.com">opensource@keylevel.com</a>
+<a class="moz-txt-link-abbreviated" href="http://www.keylevel.com">www.keylevel.com</a>
+
+----
+You can tell you're getting older when your car insurance gets real cheap!
+
+</pre>
+        <br>
+        <fieldset class="mimeAttachmentHeader"></fieldset>
+        <br>
+      </blockquote>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------050908030706000905000900--
