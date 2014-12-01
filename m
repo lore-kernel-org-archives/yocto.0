@@ -1,53 +1,56 @@
-Return-Path: <yuchankit@gmail.com>
+Return-Path: <yuq825@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A382BE0091D; Sun, 30 Nov 2014 18:19:51 -0800 (PST)
+	id 3A00AE00924; Sun, 30 Nov 2014 19:01:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (yuchankit[at]gmail.com)
+	mail provider *      (yuq825[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [74.125.82.43 listed in list.dnswl.org]
+	*      [209.85.223.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wg0-f43.google.com (mail-wg0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51BB2E00837
-	for <yocto@yoctoproject.org>; Sun, 30 Nov 2014 18:19:42 -0800 (PST)
-Received: by mail-wg0-f43.google.com with SMTP id l18so13000171wgh.16
-	for <yocto@yoctoproject.org>; Sun, 30 Nov 2014 18:19:41 -0800 (PST)
+Received: from mail-ie0-f182.google.com (mail-ie0-f182.google.com
+	[209.85.223.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52F9BE0084A
+	for <yocto@yoctoproject.org>; Sun, 30 Nov 2014 19:01:16 -0800 (PST)
+Received: by mail-ie0-f182.google.com with SMTP id x19so8607180ier.41
+	for <yocto@yoctoproject.org>; Sun, 30 Nov 2014 19:01:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=0O5stV1lsI+M0U6rjIw6NH9z+uKm0nE4ojb/umUGDco=;
-	b=gn6OKtbPaDltAWr2C9Sxi7l1TAW2PeOrOOkwXfBj89cZHaYv2Z6VxUPGk4xFIsKbIc
-	ezhSHUt+gdTp9sUL6NuGbM5Atc4mncz81ZXMyGK3pFQQ0mqXYfWHOfe/a+CS+zsf1IpC
-	xx0c3DPPPnifnWGSOjvBnWRJbmQ0SW/VxeRVuz7SnfTIXPNSphM5nnh0VOXTT88MSD/D
-	sv8DVtjdhl6hjB6YpJRKOq0DG7DDM+pYa8P7aK1g4lmNDKkTZA48swtiOpk7i99nnjGS
-	A/suL8768mivmKIzJOy5qNBoTj4VqnA+tOUP+5rawf4bRk7xQQ2VxZRDwixPl+jxIEtK
-	JI/w==
+	bh=nTH2ok/Sugqx/jTWpqv2+zMSQCy353dTBnSp2JGfrnU=;
+	b=Dsqls3ESF+DqBvNJ2/lsTVmaB14JKH8E0lo3haDZUmdvr+MXxR1mBmeGDkqKxypCee
+	2tX/tx4WzRtiYIMTr1Oled0Tg42TXFQcHR5H2xeDGrEGfd95u9IBCHbVi3fGd0dTCfRN
+	2Z4TOQzaFdIRYybF+k79hfbZHrM05gkQFJNKQrpraLegK5gyCUcW1nqPKt5rEJhBS5IM
+	1Yq96ok8i09s905feerTvWZ7UO5HHv7wY8ChQXLCwJlpiPOSvi4asH2yZ84aFnDsIWk9
+	bo9R9pBGCsQjl7E8XxrFiDbsyHfS7RkItjtZPq5MZhXUzBVdRWE+yFmuN/o+ElrjyEws
+	IN3A==
 MIME-Version: 1.0
-X-Received: by 10.194.134.234 with SMTP id pn10mr91559431wjb.34.1417400381087; 
-	Sun, 30 Nov 2014 18:19:41 -0800 (PST)
-Received: by 10.180.72.208 with HTTP; Sun, 30 Nov 2014 18:19:41 -0800 (PST)
-In-Reply-To: <CANusJLOstxQyp+feBLSbnSAqHhBCTGu=DDGQ2BtJ=Rotu1ZYeg@mail.gmail.com>
-References: <CANusJLONn2JMy-7nLY4EbZsjx3RT+H5brRyqevtq-rxWB=AsSA@mail.gmail.com>
-	<CANyK_8dXPEHPYDYXdpggbn7LQ879dwT0Z6v0k_aF+sOE71krjQ@mail.gmail.com>
-	<CANusJLOstxQyp+feBLSbnSAqHhBCTGu=DDGQ2BtJ=Rotu1ZYeg@mail.gmail.com>
-Date: Mon, 1 Dec 2014 10:19:41 +0800
-Message-ID: <CANusJLPqpv-ZFxewBNH1-f028MdgmzgcfPsgry1=Ag0tajV=aQ@mail.gmail.com>
-From: Chan Kit Yu <yuchankit@gmail.com>
-To: Paul Barker <paul@paulbarker.me.uk>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Creating a recipe to create /usr/local
+X-Received: by 10.42.197.134 with SMTP id ek6mr22110203icb.7.1417402876108;
+	Sun, 30 Nov 2014 19:01:16 -0800 (PST)
+Received: by 10.107.10.7 with HTTP; Sun, 30 Nov 2014 19:01:16 -0800 (PST)
+In-Reply-To: <547BCC00.2070106@windriver.com>
+References: <CAKGbVbtPT_ZwgLs72HMGbk-VesbUyRiQBoQDG+UrGMFZWg4qwQ@mail.gmail.com>
+	<547ACF5C.8010403@windriver.com>
+	<CAKGbVbuLb-fzeGp78NxWYysVru=cweptGcjq2AuzVath+DC57g@mail.gmail.com>
+	<547BCC00.2070106@windriver.com>
+Date: Mon, 1 Dec 2014 11:01:16 +0800
+Message-ID: <CAKGbVbsNf6VbfcS+juDCiifr6Z0kYmyu32iNH=a9SOwt6248Dg@mail.gmail.com>
+From: Qiang Yu <yuq825@gmail.com>
+To: ChenQi <Qi.Chen@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: When to create a new build directory for yocto?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,99 +62,254 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Dec 2014 02:19:51 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 01 Dec 2014 03:01:18 -0000
+Content-Type: multipart/alternative; boundary=20cf303ea61aef283c05091ed2d6
 
-Hi Paul,
+--20cf303ea61aef283c05091ed2d6
+Content-Type: text/plain; charset=UTF-8
 
-Your approach worked and I thank you for that.
+Hi Chen Qi,
 
-However I have some more unrelated questions (if you don't mind):
+Thanks for your suggestion.
 
-1. I noticed some mainstream Python modules that are supposed to come
-with default Python installation are not present. I take the example
-of sqlite3 module not present in default Python 2.7.3 installation. I
-need to include python-sqlite3 in local.conf before I got that baked
-inside the image. So my question is how can I check what modules are
-installed (aside from doing smart search command) by a default Python
-2 installation. I baked my image using core-image-sato-sdk command.
-2. I found out that the startx command tries to start xfce by default
-(judging from xfce* error that I got) and therefore fails since I
-don't have xfce installed. So how do I configure startx to start other
-desktop environment in Yocto? Also, the startx command does not seem
-to go to init 5 (I configured mine to start in init 3) and therefore
-fails if I don't type init 5 command before it starts. And if I put
-init 5 command, it jumps straight to the matchbox desktop. I did some
-forensics on the init command and I only need to modify ~/.Xsession
-file in order to change what DE init 5 would start. TL:DR : Is init 5
-the canonical way to start an X desktop instead of startx ?
+I mean the tmp/deploy/ipk dir will have one copy each build dir. And two
+boards of the same SOC will
+share most of them, so the disk space of the tmp/deploy/ipk part is wasted.
+
+Regards,
+Qiang
 
 
-Thanks again,
-Chan Kit
+On Mon, Dec 1, 2014 at 10:01 AM, ChenQi <Qi.Chen@windriver.com> wrote:
 
-
-
-
-
-On Fri, Nov 28, 2014 at 7:33 PM, Chan Kit Yu <yuchankit@gmail.com> wrote:
-> Thanks for saving me from myself. I will try it out and let you know my
-> results
+>  Sharing sstate is safe and efficient.
+> sstate does not contain any package.
 >
-> On Nov 28, 2014 7:22 PM, "Paul Barker" <paul@paulbarker.me.uk> wrote:
+> Regards,
+> Chen Qi
+>
+>
+> On 11/30/2014 10:28 PM, Qiang Yu wrote:
+>
+> Why share the sstate? Does it contain previously build ipk packages in
+> other build directories for reuse?
+>
+>  Regards,
+> Qiang
+>
+> On Sun, Nov 30, 2014 at 4:03 PM, ChenQi <Qi.Chen@windriver.com> wrote:
+>
+>>  I would suggest to use separate build directories but let these builds
+>> to share downloads and sstate.
 >>
->> On 27 November 2014 at 07:09, Chan Kit Yu <yuchankit@gmail.com> wrote:
->> > Hi all,
->> >
->> > I'm not sure if emailing this is the most appropriate way and I
->> > apologize in advance if that's not.
->> >
->> > I have some scripts that require /usr/local to exist in Yocto and
->> > therefore I need to a recipe to create /usr/local directory. I tried
->> > to accomplish this with a simple recipe but that proved futile.
->> >
->> > Although bitbaking that particular recipe was fine, trying to include
->> > that package in local.conf resulted errors and those errors are
->> > gibberish (it listed all the packages inside the image that I was
->> > trying to comple) . Here's my simple stupid recipe:
->> >
->> > SUMMARY= "...."
->> > LICENSE = "something...."
->> > ...
->> > ...
->> > INSANE_SKIP_${PN} = "installed-vs-shipped"
+>> Regards,
+>> Chen Qi
 >>
->> This line is hiding the warning that a file has been installed (copied
->> into ${D} by your do_install function) but not shipped (which means
->> placed in an actual package).
 >>
->> /usr/local isn't usually populated so isn't included in a package by
->> default, you can modify FILES_xxx to change what is included in the
->> package 'xxx'. In a recipe the main package name (which is based off
->> the recipe file name), is stored in ${PN}.
+>> On 11/30/2014 12:49 PM, Qiang Yu wrote:
 >>
->> So basically, you need to add something like:
->>     FILES_${PN} += "/usr/local"
+>> Hi all,
 >>
->> Also, you should never need to use INSANE_SKIP unless you're doing
->> something that is actually insane. Those warnings are there for a
->> reason!
+>> I'm maintaining a Yocto build system to produce these outputs:
 >>
->> >
->> > do_install(){
->> >      mkdir -p ${D}/usr/local
->> > }
->> >
->> > Is there a better way (or preferably the canonical way) to do this?
->> >
->> > Thanks,
->> > Chan Kit
+>> 1. ARM SOC 1
+>>   1). board 1 image
+>>   2). board 2 image
+>>   3). SDK for i686
+>>   4). SDK for x86_64
+>> 2. ARM SOC 2
+>>   1). board 3 image
+>>   2). board 4 image
+>>   3). SDK for i686
+>>   4). SDK for x86_64
 >>
->> Cheers,
+>> Now I don't know the right way to create build directories for these
+>> builds. The simplest way
+>> I think is creating one build directory for each of these builds. But it
+>> wast resource for boards
+>> with the same SOC which can share cross toolchain. And ARM SOC 1 and ARM
+>> SOC 2 use
+>> different conf/bblayers.conf to add different BSP layer, I need to modify
+>> it when switch SOC.
+>> So the right way is creating one build directory for each SOC, then
+>> bitbake each output's recipe,
+>> right?
+>>
+>> I am also not sure if I can put the SDK and board image in the same build
+>> directory. Because
+>> once I build a board's image after creating its SDK, I add gdbserver to
+>> it, but the build fail without
+>> really building the gdbserver package. So I guess the board image build
+>> is confused by the SDK
+>> build state.
+>>
+>>  So the conclusion is I need a recommended way to separate output into
+>> different build directories:
+>> 1. minimize rebuild shared packages
+>> 2. no build state corruption
+>> 3. if multi output in the same build dir, no change to conf/ files or an
+>> easy way to switch between
+>>
+>>  Regards,
+>> Qiang
+>>
+>>
+>>
+>>
 >>
 >> --
->> Paul Barker
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 >>
->> Email: paul@paulbarker.me.uk
->> http://www.paulbarker.me.uk
+>>
+>
+>
 
+--20cf303ea61aef283c05091ed2d6
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Chen Qi,</div><div><br></div>Thanks for your sugge=
+stion.=C2=A0<div><br></div><div>I mean the=C2=A0tmp/deploy/ipk=C2=A0dir wil=
+l have one copy each build dir. And two boards of the same SOC will</div><d=
+iv>share most of them, so the disk space of the tmp/deploy/ipk part is wast=
+ed.</div><div><br></div><div>Regards,</div><div>Qiang</div><div><br></div><=
+/div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Mon, Dec =
+1, 2014 at 10:01 AM, ChenQi <span dir=3D"ltr">&lt;<a href=3D"mailto:Qi.Chen=
+@windriver.com" target=3D"_blank">Qi.Chen@windriver.com</a>&gt;</span> wrot=
+e:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
+eft:1px #ccc solid;padding-left:1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF" text=3D"#000000">
+    <div>Sharing sstate is safe and efficient.<br>
+      sstate does not contain any package.<br>
+      <br>
+      Regards,<br>
+      Chen Qi<div><div class=3D"h5"><br>
+      <br>
+      On 11/30/2014 10:28 PM, Qiang Yu wrote:<br>
+    </div></div></div><div><div class=3D"h5">
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">Why share the sstate? Does it contain previously
+        build ipk packages in other build directories for reuse?
+        <div><br>
+        </div>
+        <div>Regards,</div>
+        <div>Qiang</div>
+      </div>
+      <div class=3D"gmail_extra"><br>
+        <div class=3D"gmail_quote">On Sun, Nov 30, 2014 at 4:03 PM, ChenQi
+          <span dir=3D"ltr">&lt;<a href=3D"mailto:Qi.Chen@windriver.com" ta=
+rget=3D"_blank">Qi.Chen@windriver.com</a>&gt;</span>
+          wrote:<br>
+          <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
+er-left:1px #ccc solid;padding-left:1ex">
+            <div bgcolor=3D"#FFFFFF" text=3D"#000000">
+              <div>I would suggest to use separate build directories but
+                let these builds to share downloads and sstate.<br>
+                <br>
+                Regards,<br>
+                Chen Qi
+                <div>
+                  <div><br>
+                    <br>
+                    On 11/30/2014 12:49 PM, Qiang Yu wrote:<br>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <blockquote type=3D"cite">
+                    <div dir=3D"ltr">Hi all,<br>
+                      <br>
+                      I&#39;m maintaining a Yocto build system to produce
+                      these outputs:<br>
+                      <br>
+                      1. ARM SOC 1<br>
+                      =C2=A0 1). board 1 image<br>
+                      =C2=A0 2). board 2 image<br>
+                      =C2=A0 3). SDK for i686<br>
+                      =C2=A0 4). SDK for x86_64<br>
+                      2. ARM SOC 2<br>
+                      =C2=A0 1). board 3 image<br>
+                      =C2=A0 2). board 4 image<br>
+                      =C2=A0 3). SDK for i686<br>
+                      =C2=A0 4). SDK for x86_64<br>
+                      <br>
+                      Now I don&#39;t know the right way to create build
+                      directories for these builds. The simplest way=C2=A0
+                      <div>I think is creating one build directory for
+                        each of these builds. But it wast resource for
+                        boards=C2=A0</div>
+                      <div>with the same SOC which can share cross
+                        toolchain. And ARM SOC 1 and ARM SOC 2 use=C2=A0</d=
+iv>
+                      <div>different conf/bblayers.conf to add different
+                        BSP layer, I need to modify it when switch SOC.=C2=
+=A0</div>
+                      <div>So the right way is creating one build
+                        directory for each=C2=A0SOC, then bitbake each
+                        output&#39;s recipe,=C2=A0</div>
+                      <div>right?</div>
+                      <div><br>
+                        I am also not sure if I can put the SDK and
+                        board image in the same build directory.
+                        Because=C2=A0</div>
+                      <div>once I build a board&#39;s image after creating
+                        its SDK, I add gdbserver to it, but the build
+                        fail without=C2=A0</div>
+                      <div>really building the gdbserver package. So I
+                        guess the board image build is confused by the
+                        SDK=C2=A0</div>
+                      <div>build state.
+                        <div><br>
+                        </div>
+                        <div>So the conclusion is I need a recommended
+                          way to separate output into different build
+                          directories:</div>
+                        <div>1. minimize rebuild shared packages</div>
+                        <div>2. no build state corruption</div>
+                        <div>3. if multi output in the same build dir,
+                          no change to conf/ files or an easy way to
+                          switch between</div>
+                        <div><br>
+                        </div>
+                        <div>Regards,</div>
+                        <div>Qiang</div>
+                        <div><br>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <fieldset></fieldset>
+                    <br>
+                  </blockquote>
+                  <br>
+                </div>
+              </div>
+            </div>
+            <br>
+            --<br>
+            _______________________________________________<br>
+            yocto mailing list<br>
+            <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoc=
+to@yoctoproject.org</a><br>
+            <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" targe=
+t=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+            <br>
+          </blockquote>
+        </div>
+        <br>
+      </div>
+    </blockquote>
+    <br>
+  </div></div></div>
+
+</blockquote></div><br></div>
+
+--20cf303ea61aef283c05091ed2d6--
