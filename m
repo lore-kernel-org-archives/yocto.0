@@ -1,49 +1,33 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <yocto@mindchasers.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B508EE00860; Mon,  1 Dec 2014 09:19:27 -0800 (PST)
+	id B805AE00872; Mon,  1 Dec 2014 09:54:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Level: *
+X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,UC_GIBBERISH_OBFU
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.46 listed in list.dnswl.org]
-Received: from mail-qg0-f46.google.com (mail-qg0-f46.google.com
-	[209.85.192.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91903E0030B
-	for <yocto@yoctoproject.org>; Mon,  1 Dec 2014 09:19:19 -0800 (PST)
-Received: by mail-qg0-f46.google.com with SMTP id z107so7786810qgd.19
-	for <yocto@yoctoproject.org>; Mon, 01 Dec 2014 09:19:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=QzuinxZXLt/K65FG8rzpDjUkEo14w8JjdvAlGOdhWp8=;
-	b=Eo7EOjtmqvMlBjj82YmJfNo6tesvuC74iJXwmXs0LO/tazh1bFYSIzqbUV5XZ30be5
-	oIfNB/gktULtVSe6durJyDSIGNEqoNxSVrvWtepKfEoG5WJ1QENjkA+2pJflbIiAY8f6
-	eRg+p4pcJ/LbpCLGAwc7cwTIrtBEeRftfM8jCSjDqf0NiwKbc8YMpqPq3D8og3F/45cV
-	MzequXE3aU0f+7/NStlBL8CBJbHrSTZyUiIwnGNGLXRORMl2awPgc1TFd75Xq70+rbQb
-	rlxhP8Ij1qZ+Ds+mhL4jelseJJSGsO+cl7Q3fgwPTHv7+dsECia6IL2XNe+z+k/BUXP8
-	gY+g==
-X-Gm-Message-State: ALoCoQkCcKLeOy+ESDwe1NvZwjHLN4CaBbp1jBODsIe1N0YnkGeNk2feas/xs6htHS7olg1Na1Bk
-X-Received: by 10.140.109.135 with SMTP id l7mr58014906qgf.80.1417454358556;
-	Mon, 01 Dec 2014 09:19:18 -0800 (PST)
+	* 3.0 UC_GIBBERISH_OBFU Multiple instances of "word VERYLONGGIBBERISH
+	*      word"
+Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D3B5E0030B
+	for <yocto@yoctoproject.org>; Mon,  1 Dec 2014 09:54:29 -0800 (PST)
+Received: from [192.168.1.10] (unknown [68.38.40.177])
+	by smtp.webfaction.com (Postfix) with ESMTP id 339B1207976A;
+	Mon,  1 Dec 2014 17:54:28 +0000 (UTC)
+Message-ID: <547CAB53.1070901@mindchasers.com>
+Date: Mon, 01 Dec 2014 12:54:27 -0500
+From: Bob Cochran <yocto@mindchasers.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
 MIME-Version: 1.0
-Received: by 10.140.48.231 with HTTP; Mon, 1 Dec 2014 09:18:58 -0800 (PST)
-In-Reply-To: <547C9E68.8010006@jenslucius.de>
-References: <547C8D29.9060007@jenslucius.de>
-	<CAJTo0LYDwSxccfiQ9p7pwZ8HS8mzFQ1ZfDEUriJs3tRhOqe12w@mail.gmail.com>
-	<547C9E68.8010006@jenslucius.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 1 Dec 2014 17:18:58 +0000
-Message-ID: <CAJTo0LaXfNOMtOCY5Yc0cXDfcmyA8_B_rkBSu0HJRGWb6QOf_g@mail.gmail.com>
-To: Jens Lucius <incnews@jenslucius.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Custom recipe not working with 1.7.0 any more
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+References: <547C0400.3010706@mindchasers.com>
+	<1417453004.15614.30.camel@linuxfoundation.org>
+In-Reply-To: <1417453004.15614.30.camel@linuxfoundation.org>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Questioning FILESOVERRIDES implied precedence in setting FILESPATH...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,37 +39,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Dec 2014 17:19:27 -0000
-Content-Type: multipart/alternative; boundary=001a113a4eb2870c5805092acf7b
+X-List-Received-Date: Mon, 01 Dec 2014 17:54:39 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---001a113a4eb2870c5805092acf7b
-Content-Type: text/plain; charset=UTF-8
+On 12/01/2014 11:56 AM, Richard Purdie wrote:
+> On Mon, 2014-12-01 at 01:00 -0500, Bob Cochran wrote:
+>> In poky master, FILESOVERRIDES is constructed as follows:
+>>
+>> "${TRANSLATED_TARGET_ARCH}:${MACHINEOVERRIDES}:${DISTROOVERRIDES}"
+>>
+>> For my current build, I get:
+>>
+>> FILESOVERRIDES="powerpc:custom-machine:e500v2:qoriq-ppc:poky"
+>>
+>> FILESPATH is built by calling base_set_filespath(), which is in
+>> utils.bbclass
+>>
+>> This function constructs FILESPATH in such a way that the distro folder
+>> ("poky") comes before the other overrides ( precedence is applied right
+>> to left using FILESOVERRIDES )
+>>
+>> I see that there was a patch to reverse the ordering back in Oct of 2013
+>> (0bd63125c3b44) to make sure MACHINE overrides had precedence over
+>> platform specific overrides.  However, I'm wondering if the intent was
+>> to have the distro override both.  This doesn't make sense to me, so
+>> please clarify whether this is correct.  If it is, please explain why
+>> distro gets a higher precedence over machine.
+>
+> It is intentional, the concept is that the distro is the ultimate
+> authority on configuration and it should be able to override anything,
+> including machine specific choices. I would agree that can work well in
+> some cases and less well in others.
 
-On 1 December 2014 at 16:59, Jens Lucius <incnews@jenslucius.de> wrote:
 
-> What should be used with aconfigure?
+Thank you Richard.  Good to know and somewhat surprising.
+
+Regarding MACHINE, I think the MACHINE I specify in my local.conf should 
+be the most specific machine when it comes to FILESOVERRIDES.  In other 
+words, MACHINEOVERRIDES in BSP layers shouldn't override my MACHINE 
+specified in my local.conf.
+
+Is this a correct assumption?
+
+If not, where is the right place to add the most specific 
+MACHINEOVERRIDES for my configuration / target image (so it appends all 
+other MACHINEOVERRIDES)?
+
+Bob
+
+
+
+>
+> Cheers,
+>
+> Richard
+>
 >
 
-Well, what is aconfigure?  Is it actually generated by autoconf, or
-something hand-coded?  If it's not autoconf then you shouldn't be using the
-autotools classes.
 
-Ross
-
---001a113a4eb2870c5805092acf7b
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 1 December 2014 at 16:59, Jens Lucius <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:incnews@jenslucius.de" target=3D"_blank">incnews@jenslucius.de</a>&gt=
-;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
-.8ex;border-left:1px #ccc solid;padding-left:1ex"><div text=3D"#000000" bgc=
-olor=3D"#FFFFFF">What should be used with aconfigure?<div class=3D"yj6qo aj=
-U"><div id=3D":1qs" class=3D"ajR" tabindex=3D"0"></div></div></div></blockq=
-uote></div><br>Well, what is aconfigure?=C2=A0 Is it actually generated by =
-autoconf, or something hand-coded?=C2=A0 If it&#39;s not autoconf then you =
-shouldn&#39;t be using the autotools classes.</div><div class=3D"gmail_extr=
-a"><br></div><div class=3D"gmail_extra">Ross</div></div>
-
---001a113a4eb2870c5805092acf7b--
