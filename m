@@ -1,49 +1,58 @@
-Return-Path: <Matthias.Heise@atlas-elektronik.com>
+Return-Path: <s.stirtzel@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C386DE0091D; Mon,  1 Dec 2014 00:46:53 -0800 (PST)
+	id 7BAB3E0091D; Mon,  1 Dec 2014 00:50:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [194.156.172.86 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (s.stirtzel[at]googlemail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail96.atlas.de (mail96.atlas.de [194.156.172.86])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17B57E0084A
-	for <yocto@yoctoproject.org>; Mon,  1 Dec 2014 00:46:42 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail96.atlas.de (Postfix) with ESMTP id 52AA1105FB
-	for <yocto@yoctoproject.org>; Mon,  1 Dec 2014 09:46:42 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mail96.atlas.de
-Received: from mail96.atlas.de ([127.0.0.1])
-	by localhost (mail96.atlas.de [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id b2fbLcfvYdWr for <yocto@yoctoproject.org>;
-	Mon,  1 Dec 2014 09:46:31 +0100 (CET)
-Received: from mgsrv01.atlas.de (mail01.atlas.mailrelays.atlas.de
-	[10.200.101.16]) by mail96.atlas.de (Postfix) with ESMTP
-	for <yocto@yoctoproject.org>; Mon,  1 Dec 2014 09:46:31 +0100 (CET)
-Received: from MSSRVS1.atlas.de (mssrvs1.atlas.de [10.200.101.71])
-	by mgsrv01.atlas.de (Postfix) with ESMTP id 891FB2716A
-	for <yocto@yoctoproject.org>; Mon,  1 Dec 2014 09:46:31 +0100 (CET)
-Received: from MSSRVS5.atlas.de
-	([fe80:0000:0000:0000:cd6c:87f4:14.12.253.152]) by MSSRVS1.atlas.de
-	([10.200.101.71]) with mapi; Mon, 1 Dec 2014 09:46:31 +0100
-From: <Matthias.Heise@atlas-elektronik.com>
-To: <yocto@yoctoproject.org>
-Date: Mon, 1 Dec 2014 09:46:30 +0100
-Thread-Topic: add a user via recipe
-Thread-Index: AdANQc+SmvW9mJqCR0q3i2MSfYHREg==
-Message-ID: <4009F04F5925CD4C95FBD9BE756381FE02848F2A6B@MSSRVS5.atlas.de>
-Accept-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: de-DE
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41A7DE0084A
+	for <yocto@yoctoproject.org>; Mon,  1 Dec 2014 00:50:27 -0800 (PST)
+Received: by mail-wg0-f54.google.com with SMTP id l2so13477050wgh.41
+	for <yocto@yoctoproject.org>; Mon, 01 Dec 2014 00:50:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=nuTpGILRFjVObjUWtXLAtMNJ4KexB0Oji8zUp1yy69k=;
+	b=szX/VRtKyReO0/UKEvbxhwYg++379Aa67nDW+BE6JZpP536qtOl2TdPNbmupkXHU8m
+	WPx1Q3e0O8w3wTz6rtWcJn23MVmXEIZnuuTOBG+JPL+7o1AGJAZZNslVzCoM5v2kQUdR
+	e5NHKEocgDk3PNKZpFrv6xplT+hSA5Xee5Ye7srxdspudAv6/2SZS5Z5291K4Ek2+hGw
+	QtH9WoIYmE74kd3HaQyP1pRleCj9/A9xjpYHcZXKLT/+5Pi+uOzL1eBQy0+kU+N8Xj76
+	Hw/bZXWgaiOwFPhK3LBFvjZsQFN/2qdrWW2741mz6lsHtJaQoViHa6yyAvhHrsqbC8qO
+	j2Jg==
+X-Received: by 10.194.85.137 with SMTP id h9mr48294030wjz.70.1417423827239;
+	Mon, 01 Dec 2014 00:50:27 -0800 (PST)
 MIME-Version: 1.0
-Subject: add a user via recipe
+Received: by 10.27.10.11 with HTTP; Mon, 1 Dec 2014 00:50:07 -0800 (PST)
+In-Reply-To: <4009F04F5925CD4C95FBD9BE756381FE02848F2A6A@MSSRVS5.atlas.de>
+References: <4009F04F5925CD4C95FBD9BE756381FE02848F2A67@MSSRVS5.atlas.de>
+	<CAGiJk9eNcBVFPRKG92WdwGC=ysWDX2m2F9qHr2uLxQP6i90WRA@mail.gmail.com>
+	<4009F04F5925CD4C95FBD9BE756381FE02848F2A68@MSSRVS5.atlas.de>
+	<CAGiJk9c-w9Jwx6McyjkjWq9yo80zU2bNwRiRY=Os9_eJ3KJO8Q@mail.gmail.com>
+	<4009F04F5925CD4C95FBD9BE756381FE02848F2A69@MSSRVS5.atlas.de>
+	<CAGiJk9efNDb9DurbgV892bwM69tn3jH52UpDj15RZbKT8OZuog@mail.gmail.com>
+	<4009F04F5925CD4C95FBD9BE756381FE02848F2A6A@MSSRVS5.atlas.de>
+From: Samuel Stirtzel <s.stirtzel@googlemail.com>
+Date: Mon, 1 Dec 2014 09:50:07 +0100
+Message-ID: <CAGiJk9faSZnP-PbLDYzqCHr-=U+8CCYE9DgU3BbgD_qyn0JRpA@mail.gmail.com>
+To: Matthias.Heise@atlas-elektronik.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: do_fetch linux hangs after defconfig/conf-fragment change
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,124 +64,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Dec 2014 08:46:53 -0000
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_4009F04F5925CD4C95FBD9BE756381FE02848F2A6BMSSRVS5atlasd_"
-
---_000_4009F04F5925CD4C95FBD9BE756381FE02848F2A6BMSSRVS5atlasd_
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 01 Dec 2014 08:50:39 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi there,
+2014-12-01 9:35 GMT+01:00  <Matthias.Heise@atlas-elektronik.com>:
+>
+> I executed "bitbake -c clean linux_wandboard" and retried, then it worked=
+ again. But still for me the question is open why the sources are re-fetche=
+d only because I enable/disable kernel options (in menuconfig). Shouldn't t=
+his be just a matter of re-compiling ?
 
-I'm still trying to add a user via recipe. The method with
+The task checksum for do_fetch is invalidated by the changed source
+file (E.g.: when the defconfig file has been changed).
+See http://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#c=
+hecksums
 
-inherit extrausers
-EXTRA_USER_PARAMS =3D "useradd -p '\$6\$53uYm/0Fnll\$Nc0RbHSvqRrd63Tw98TO3V=
-1n25ORK9oR4QHqRIriXzLy0il/7.LIacX7mz7RJ1tdPIWiCJLNyQa7dKBNURqEg1' fstuser;"
 
-Does not work (no errors just no user in image), as well as this :
 
-ROOTFS_POSTPROCESS_COMMAND +=3D "add_a_user;"
+--=20
+Regards
+Samuel
 
-add_a_user(){
-     useradd -p '\$6\$53uYm/0Fnll\$Nc0RbHSvqRrd63Tw98TO3V1n25ORK9oR4QHqRIri=
-XzLy0il/7.LIacX7mz7RJ1tdPIWiCJLNyQa7dKBNURqEg1' fstuser;
-}
-
-Which results in an error during bitbake :
-useradd: /etc/passwd.23966: Permission denied
-useradd cannot lock /etc/passwd; try again later
-
-any ideas to that ?
-thanks,
-regards
-Mat
-
---_000_4009F04F5925CD4C95FBD9BE756381FE02848F2A6BMSSRVS5atlasd_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=
-=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
-oft Word 14 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DDE link=3Dblue vlink=
-=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span lang=3DEN-US=
->Hi there,<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:=
-p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>I&#8217;m =
-still trying to add a user via recipe. The method with <o:p></o:p></span></=
-p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p cl=
-ass=3DMsoNormal style=3D'text-autospace:none'><span lang=3DEN-US style=3D'f=
-ont-family:"Courier New"'>inherit extrausers<o:p></o:p></span></p><p class=
-=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Courier New"'>EXTRA_U=
-SER_PARAMS =3D &quot;useradd -p '\$6\$53uYm/0Fnll\$Nc0RbHSvqRrd63Tw98TO3V1n=
-25ORK9oR4QHqRIriXzLy0il/7.LIacX7mz7RJ1tdPIWiCJLNyQa7dKBNURqEg1' fstuser;&qu=
-ot;<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'f=
-ont-family:"Courier New"'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal>=
-<span lang=3DEN-US>Does not work (no errors just no user in image), as well=
- as this :<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US sty=
-le=3D'font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p><p class=3DMso=
-Normal><span lang=3DEN-US style=3D'font-family:"Courier New"'>ROOTFS_POSTPR=
-OCESS_COMMAND +=3D &quot;add_a_user;&quot;<o:p></o:p></span></p><p class=3D=
-MsoNormal><span lang=3DEN-US style=3D'font-family:"Courier New"'><o:p>&nbsp=
-;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'font-fam=
-ily:"Courier New"'>add_a_user(){<o:p></o:p></span></p><p class=3DMsoNormal>=
-<span lang=3DEN-US style=3D'font-family:"Courier New"'>&nbsp;&nbsp;&nbsp;&n=
-bsp; useradd -p '\$6\$53uYm/0Fnll\$Nc0RbHSvqRrd63Tw98TO3V1n25ORK9oR4QHqRIri=
-XzLy0il/7.LIacX7mz7RJ1tdPIWiCJLNyQa7dKBNURqEg1' fstuser;<o:p></o:p></span><=
-/p><p class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Courier Ne=
-w"'>}<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nb=
-sp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Which results i=
-n an error during bitbake :<o:p></o:p></span></p><p class=3DMsoNormal><span=
- lang=3DEN-US style=3D'font-family:"Courier New"'>useradd: /etc/passwd.2396=
-6: Permission denied<o:p></o:p></span></p><p class=3DMsoNormal><span lang=
-=3DEN-US style=3D'font-family:"Courier New"'>useradd cannot lock /etc/passw=
-d; try again later<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DE=
-N-US style=3D'font-family:"Courier New"'><o:p>&nbsp;</o:p></span></p><p cla=
-ss=3DMsoNormal><span lang=3DEN-US>any ideas to that ?<o:p></o:p></span></p>=
-<p class=3DMsoNormal><span lang=3DEN-US>thanks,<o:p></o:p></span></p><p cla=
-ss=3DMsoNormal><span lang=3DEN-US>regards<o:p></o:p></span></p><p class=3DM=
-soNormal><span lang=3DEN-US>Mat<o:p></o:p></span></p></div></body></html>=
-
---_000_4009F04F5925CD4C95FBD9BE756381FE02848F2A6BMSSRVS5atlasd_--
