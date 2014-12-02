@@ -1,48 +1,44 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2E43AE00872; Mon,  1 Dec 2014 14:55:36 -0800 (PST)
+	id AA432E0093B; Mon,  1 Dec 2014 17:16:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.50 listed in list.dnswl.org]
+	*      [209.85.220.175 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qa0-f50.google.com (mail-qa0-f50.google.com
-	[209.85.216.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97D92E0084E
-	for <yocto@yoctoproject.org>; Mon,  1 Dec 2014 14:55:32 -0800 (PST)
-Received: by mail-qa0-f50.google.com with SMTP id w8so7892745qac.37
-	for <yocto@yoctoproject.org>; Mon, 01 Dec 2014 14:55:31 -0800 (PST)
+Received: from mail-vc0-f175.google.com (mail-vc0-f175.google.com
+	[209.85.220.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F224E0084E
+	for <yocto@yoctoproject.org>; Mon,  1 Dec 2014 17:16:29 -0800 (PST)
+Received: by mail-vc0-f175.google.com with SMTP id hy10so5264039vcb.20
+	for <yocto@yoctoproject.org>; Mon, 01 Dec 2014 17:16:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=GwMLDv1xVvLmwuVNOLJ+InC648lzDPYBCgcPMmRrIFg=;
-	b=NhdusnWctWfgFjtnWe8oNDDkT6lmRNonRbF2Sw9pE6ogtT+il/3V/m8FPIlZMXeYzB
-	HDq40D9lb8D9HVTs/MsvJFEU05d2Qa/9sA+eybgboQ69vpJwGbuaNwPd4rftPCQnMpEv
-	36IiKejPGUT6E+JDVu28VejRA4cy65oaq1ilU0lsQ1XUCRFBzqkmF2PI5eqn+d4h0eCk
-	dvbfJoJhtf97EKPyEaJEibnnePHj1csXBek4p1MN0VAuC2mJNdAFehJXxrXZDIChgxJc
-	7ourXeWBQXGHH/mGUQCfXJN4t1phR5uGXXVKs41i67+BIpUbpXDEbhYbNI3ohAXwqSNC
-	pKHg==
-X-Gm-Message-State: ALoCoQlmTF9HbUv4FVXOHMACdY2IsmQkhbN4tK9Alll3lruzcH2XPsbqMV6ccrbRuoxci3qB5q9I
-X-Received: by 10.140.96.101 with SMTP id j92mr88620452qge.87.1417474531561;
-	Mon, 01 Dec 2014 14:55:31 -0800 (PST)
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=VYID1NWKmTuC/atR8YUikUphJiT4F+SPP8zoxdjDmFg=;
+	b=NLB/KxCNsmQx6ZGHHxCPpvm5352VPCbI5xOYMajBmgAX0yBD9EWZgaNYk/5Zsk806E
+	Oqn1gQIIHjIma3xm25KkwNNP2f7VQdj6fjq4ZOS6J5HGViFsoqwIVRTxj3Lq66VF9rNm
+	FCBvg3sM/CGpdP9pYznv1TuMQnimUNN9OKU722P6sU9GDs/2gAjJAKXM6TeOWzVv+zGQ
+	BvhUpIBSrVl+rEFkTMB9irUVV2pDSDm7P8VlOv8oCOM2efjHomijhCWn9dzOZtY65qBR
+	0Y5YIF0JWngG1JAV1cfBooH83uTMwvo3Cfp5isg5h0az8BJwQW7is6ynDqLcisSYV1w7
+	/odQ==
+X-Gm-Message-State: ALoCoQlUGhT8pTv5RXeacLXuf1MeoWfN4FJUa/bNRmsVz1SWqSGUyOuy9BqmPS4pkKY9gyjsNVOZ
 MIME-Version: 1.0
-Received: by 10.140.48.231 with HTTP; Mon, 1 Dec 2014 14:55:11 -0800 (PST)
-In-Reply-To: <CAPhnLPAOP_zqsP2Obows-X9nyqoDU6OLQWypw7R_6=krZ4qqjQ@mail.gmail.com>
-References: <1416504504-20259-1-git-send-email-ross.burton@intel.com>
-	<CAPhnLPAOP_zqsP2Obows-X9nyqoDU6OLQWypw7R_6=krZ4qqjQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 1 Dec 2014 22:55:11 +0000
-Message-ID: <CAJTo0Lb3zJ0bJD5GrWLKHWLO6306pTx07J8i+jNxYRKP1yg6xQ@mail.gmail.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [autobuilder][PATCH] buildset-config.controller: add nightly-arm64 target
+X-Received: by 10.52.27.10 with SMTP id p10mr25388000vdg.89.1417482989164;
+	Mon, 01 Dec 2014 17:16:29 -0800 (PST)
+Received: by 10.52.244.44 with HTTP; Mon, 1 Dec 2014 17:16:29 -0800 (PST)
+Date: Tue, 2 Dec 2014 01:16:29 +0000
+Message-ID: <CAPhnLPB1OyaaCrGbV9n5c_0ZccWkfEetqA+z-PXa1GE01taD=Q@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	yocto-announce@yoctoproject.org
+Subject: Intel Board Support for Yocto Project "dizzy" 1.7 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,45 +50,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Dec 2014 22:55:36 -0000
-Content-Type: multipart/alternative; boundary=001a113a9d8aeeaaa305092f8192
-
---001a113a9d8aeeaaa305092f8192
+X-List-Received-Date: Tue, 02 Dec 2014 01:16:35 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On 1 December 2014 at 22:39, Flanagan, Elizabeth <
-elizabeth.flanagan@intel.com> wrote:
+I am pleased to announce the release of the meta-intel 2.0 BSPs for the Yocto
+Project "dizzy" 1.7 release.
 
-> Pulled into master, I'll bring it into production this week. Note: it
-> will not be part of nightly, so if you want it kicked on prod
-> autobuilders for nightlies, we'll have to do some extra work for that
-> (LAYERVERSION bump, and code in the buildstep to skip this build to
-> ensure backwards compatibility).
->
+These BSPs are built against the Yocto 1.7 release (dizzy-12.0.0)
 
-I'll ensure we layerversion bump when the machine is merged, but for now
-this is for testing a patch set that isn't in master yet anyway.
+Layer Name: meta-intel
+Download: http://downloads.yoctoproject.org/releases/yocto/yocto-1.7/meta-intel-2.0-dizzy-1.7.tar.bz2
+URL: git://git.yoctoproject.org/meta-intel
+Branch: dizzy
+Hash: 0f6d30a95c84ec239f5a30bbfba17ed42e2cf284
+Tag: 2.0-dizzy-1.7
+md5sum: 4a0d2b058e71afe74ac2f30e190c46b4
 
-Cheers,
-Ross
+BSP downloads
+crownbay-noemgd :
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.7/machines/crownbay-noemgd/crownbay-noemgd-2.0-dizzy-1.7.tar.bz2
+emenlow-noemgd :
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.7/machines/emenlow-noemgd/emenlow-noemgd-2.0-dizzy-1.7.tar.bz2
+fri2-noemgd : http://downloads.yoctoproject.org/releases/yocto/yocto-1.7/machines/fri2-noemgd/fri2-noemgd-2.0-dizzy-1.7.tar.bz2
+intel-core2-32 :
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.7/machines/intel-core2-32/intel-core2-32-2.0-dizzy-1.7.tar.bz2
+intel-corei7-64 :
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.7/machines/intel-corei7-64/intel-corei7-64-2.0-dizzy-1.7.tar.bz2
+jasperforest : http://downloads.yoctoproject.org/releases/yocto/yocto-1.7/machines/jasperforest/jasperforest-2.0-dizzy-1.7.tar.bz2
+nuc : http://downloads.yoctoproject.org/releases/yocto/yocto-1.7/machines/nuc/nuc-2.0-dizzy-1.7.tar.bz2
+sugarbay : http://downloads.yoctoproject.org/releases/yocto/yocto-1.7/machines/sugarbay/sugarbay-2.0-dizzy-1.7.tar.bz2
 
---001a113a9d8aeeaaa305092f8192
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Features
+--------
+- A feature for updating Intel processor microcode at early boot stage
+has been added
+- BSP kernel has been updated to v3.17.1
+- The LTSI kernel has been updated to v3.10.43
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On 1=
- December 2014 at 22:39, Flanagan, Elizabeth <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:elizabeth.flanagan@intel.com" target=3D"_blank">elizabeth.flanag=
-an@intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Pulled=
- into master, I&#39;ll bring it into production this week. Note: it<br>
-will not be part of nightly, so if you want it kicked on prod<br>
-autobuilders for nightlies, we&#39;ll have to do some extra work for that<b=
-r>
-(LAYERVERSION bump, and code in the buildstep to skip this build to<br>
-ensure backwards compatibility).<br></blockquote><div><br></div><div>I&#39;=
-ll ensure we layerversion bump when the machine is merged, but for now this=
- is for testing a patch set that isn&#39;t in master yet anyway.</div><div>=
-<br></div><div>Cheers,</div><div>Ross=C2=A0</div></div><br></div></div>
+Bug Fixes
+---------
+Bug 6807 - crownbay-noemgd with 3.17 kernel doesn't boot into graphics
+Bug 6342 - Enable wifi feature for Sugarbay BSP for the Huronriver laptop
+Bug 6710 - linux-yocto-rt recipe failing to build
+Bug 5114 - meta-intel: intel microcode update
+Bug 6460 - Fix module_autoload_*
 
---001a113a9d8aeeaaa305092f8192--
+
+-- 
+Elizabeth Flanagan
+Intel Corp.
+
