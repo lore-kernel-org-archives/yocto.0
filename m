@@ -1,58 +1,42 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <cristian.iorga@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5545EE00895; Tue,  2 Dec 2014 07:54:22 -0800 (PST)
+	id 9C36AE008AA; Tue,  2 Dec 2014 08:31:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.173 listed in list.dnswl.org]
-Received: from mail-pd0-f173.google.com (mail-pd0-f173.google.com
-	[209.85.192.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C251E0080C
-	for <yocto@yoctoproject.org>; Tue,  2 Dec 2014 07:54:18 -0800 (PST)
-Received: by mail-pd0-f173.google.com with SMTP id ft15so13351338pdb.18
-	for <yocto@yoctoproject.org>; Tue, 02 Dec 2014 07:54:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=xV1VOHod/NOkMV+Ai1lFOdsd3d0SO6jgWj9LtNUvq00=;
-	b=gvdpPRrG+vAm92LGVe9eIibPTdm9HBR8Az2693MfRwqJAgAU1CNZlFq3mtDeRmM6iD
-	8OpWFl0CNmBil7iZ1XX2DGGXpFOpF1kHb6JD5xtMOE0n1ZnII0IE8JJWuR8StWYScpgM
-	Rc/Qxf/AiHmKK2PGJLMWUorSPaJYNaywSr3XPFczS9yN3Rmg++8ELQyUm7sTLqaeqweN
-	YvKT+4Noj8z/Q9Fbe9Mjg0V28AQENNNG7sJ19bCw3ECf/aZuZJ7RFEboUaza4ev+35A1
-	YmiL7x0P2TSgNCjnT9jguI1y5ktNwhQWS30ctS2HF2CVIfxmSrtacwm4IGt5hr7aUtL9
-	oTKw==
-X-Received: by 10.70.88.231 with SMTP id bj7mr7139382pdb.168.1417535658310;
-	Tue, 02 Dec 2014 07:54:18 -0800 (PST)
-Received: from ?IPv6:2601:c:9380:601:7817:c089:b413:c9c4?
-	([2601:c:9380:601:7817:c089:b413:c9c4])
-	by mx.google.com with ESMTPSA id zf5sm5729285pbb.31.2014.12.02.07.54.16
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 02 Dec 2014 07:54:16 -0800 (PST)
-Message-ID: <547DE09E.3090203@gmail.com>
-Date: Tue, 02 Dec 2014 07:54:06 -0800
-From: akuster808 <akuster808@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A4D1E0080C
+	for <yocto@yoctoproject.org>; Tue,  2 Dec 2014 08:31:29 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga102.jf.intel.com with ESMTP; 02 Dec 2014 08:28:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.04,691,1406617200"; 
+	d="scan'208,217";a="492351297"
+Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
+	by orsmga003.jf.intel.com with ESMTP; 02 Dec 2014 08:28:14 -0800
+Received: from irsmsx105.ger.corp.intel.com ([169.254.7.144]) by
+	IRSMSX104.ger.corp.intel.com ([169.254.5.209]) with mapi id
+	14.03.0195.001; Tue, 2 Dec 2014 16:31:23 +0000
+From: "Iorga, Cristian" <cristian.iorga@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: CI day off Dec 03 2014
+Thread-Index: AdAOTTcjesgL3n06SoaUB0kOK5Ziqg==
+Date: Tue, 2 Dec 2014 16:31:23 +0000
+Message-ID: <969F26A8BAB325438E7EB80D3C3134FB2F3C27D1@IRSMSX105.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.180]
 MIME-Version: 1.0
-To: Bian Naimeng <biannm@cn.fujitsu.com>, yocto@yoctoproject.org
-References: <1417507403-7408-1-git-send-email-biannm@cn.fujitsu.com>
-In-Reply-To: <1417507403-7408-1-git-send-email-biannm@cn.fujitsu.com>
-Subject: Re: [PATCH 0/2] Add some recipes
+Subject: CI day off Dec 03 2014
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,33 +48,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Dec 2014 15:54:22 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 02 Dec 2014 16:31:35 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_969F26A8BAB325438E7EB80D3C3134FB2F3C27D1IRSMSX105gercor_"
 
+--_000_969F26A8BAB325438E7EB80D3C3134FB2F3C27D1IRSMSX105gercor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Bian,
+CI day off Dec 03 2014
 
-Is device-mapper-multipath the same as 
-meta-openembeded/meta-oe/recipes-support/multipath-tools/multipath-tools_git.bb 
-?
+--_000_969F26A8BAB325438E7EB80D3C3134FB2F3C27D1IRSMSX105gercor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-- Armin
-
-
-On 12/02/2014 12:03 AM, Bian Naimeng wrote:
-> Bian Naimeng (2):
->    [meta-cgl] device-mapper-multipath: add recipe
->    [meta-cgl]drbd: add recipe
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
->   .../device-mapper-multipath/multipathd.init.patch  | 12 +++++
->   .../device-mapper-multipath_0.5.0.bb               | 53 ++++++++++++++++++++
->   meta-cgl-common/recipes-cgl/drbd/drbd/drbd.service | 12 +++++
->   meta-cgl-common/recipes-cgl/drbd/drbd_8.4.4.bb     | 57 ++++++++++++++++++++++
->   4 files changed, 134 insertions(+)
->   create mode 100644 meta-cgl-common/recipes-cgl/device-mapper-multipath/device-mapper-multipath/multipathd.init.patch
->   create mode 100644 meta-cgl-common/recipes-cgl/device-mapper-multipath/device-mapper-multipath_0.5.0.bb
->   create mode 100644 meta-cgl-common/recipes-cgl/drbd/drbd/drbd.service
->   create mode 100644 meta-cgl-common/recipes-cgl/drbd/drbd_8.4.4.bb
->
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">CI day off Dec 03 2014<o:p></o:p></p>
+</div>
+</body>
+</html>
 
+--_000_969F26A8BAB325438E7EB80D3C3134FB2F3C27D1IRSMSX105gercor_--
