@@ -1,41 +1,53 @@
-Return-Path: <californialsullivan@gmail.com>
+Return-Path: <J.Spriggs@raylase.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC0B3E008C1; Tue,  2 Dec 2014 10:34:34 -0800 (PST)
+	id 3D539E008CC; Tue,  2 Dec 2014 11:15:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
-	FREEMAIL_FROM, NML_ADSP_CUSTOM_MED,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (californialsullivan[at]gmail.com)
-	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
-	*      CUSTOM_MED
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
-	and not from a mailing list
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DE57E00895
-	for <yocto@yoctoproject.org>; Tue,  2 Dec 2014 10:34:31 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga103.jf.intel.com with ESMTP; 02 Dec 2014 10:31:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,502,1413270000"; d="scan'208";a="647050302"
-Received: from unknown (HELO localhost.jf.intel.com) ([10.7.198.57])
-	by orsmga002.jf.intel.com with ESMTP; 02 Dec 2014 10:34:31 -0800
-From: californialsullivan@gmail.com
-To: yocto@yoctoproject.org
-Date: Tue,  2 Dec 2014 10:31:41 -0500
-Message-Id: <1417534303-20323-5-git-send-email-californialsullivan@gmail.com>
-X-Mailer: git-send-email 1.9.3
-In-Reply-To: <1417534303-20323-1-git-send-email-californialsullivan@gmail.com>
-References: <1417534303-20323-1-git-send-email-californialsullivan@gmail.com>
-Cc: California Sullivan <california.l.sullivan@intel.com>
-Subject: [PATCH 5/7] README-GOOGLE-CLOUD: initial commit
+Received: from emailsecurity.raylase.de (mail.raylase.de [217.6.128.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9E89E0086F
+	for <yocto@yoctoproject.org>; Tue,  2 Dec 2014 11:15:29 -0800 (PST)
+Received: from emailsecurity.raylase.de (127.0.0.1) id hfo7ta0171sd for
+	<yocto@yoctoproject.org>;
+	Tue, 2 Dec 2014 20:15:28 +0100 (envelope-from <J.Spriggs@raylase.de>)
+Received: from EXCHANGE-A.raylase.de ([192.168.1.16])
+	by emailsecurity.raylase.de (RAYLASE AG)
+	with ESMTPS (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-SHA
+	bits=256/256)
+	id 201412021915280011287; Tue, 02 Dec 2014 20:15:28 +0100
+Received: from EXCHANGE-B.raylase.de (192.168.2.12) by EXCHANGE-A.raylase.de
+	(192.168.1.16) with Microsoft SMTP Server (TLS) id 14.3.210.2;
+	Tue, 2 Dec 2014 20:15:27 +0100
+Received: from EXCHANGE-B.raylase.de ([fe80::3144:5b1b:13e0:ad49]) by
+	EXCHANGE-B.raylase.de ([fe80::3144:5b1b:13e0:ad49%14]) with mapi id
+	14.03.0210.002; Tue, 2 Dec 2014 20:15:27 +0100
+From: "Spriggs, Jim" <J.Spriggs@raylase.de>
+To: "rfi@lists.rocketboards.org" <rfi@lists.rocketboards.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [Rfi] "bitbake altera-gsrd-image -c populate_sdk" fails with
+	"Multiple .bb files ... nativesdk-libiconv ...
+	external-linaro-toolchain.bb ... eglibc_2.16.bb"
+Thread-Index: AdAODLajOW2E6hQITpeUwmjQuUgUIwAVU0eE
+Date: Tue, 2 Dec 2014 19:15:25 +0000
+Message-ID: <2238EDC6081C944E97E4EE915AE5CBEC52011AD4@EXCHANGE-B.raylase.de>
+References: <2238EDC6081C944E97E4EE915AE5CBEC5200F783@EXCHANGE-B.raylase.de>
+In-Reply-To: <2238EDC6081C944E97E4EE915AE5CBEC5200F783@EXCHANGE-B.raylase.de>
+Accept-Language: en-GB, de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.255.1]
+MIME-Version: 1.0
+X-Mlf-Version: 8.0.5.2663
+X-Mlf-UniqueId: o201412021915280011287
+Cc: "Wilfert, Dennis" <D.Wilfert.extern@raylase.de>,
+	=?iso-8859-1?Q?H=F6cht=2C_Matthias?= <M.Hoecht@raylase.de>,
+	"Weber, Markus" <M.Weber@raylase.de>, "Dambacher,
+	Berthold" <B.Dambacher@raylase.de>
+Subject: Re: [Rfi] "bitbake altera-gsrd-image -c populate_sdk" fails with "Multiple .bb files ... nativesdk-libiconv ... external-linaro-toolchain.bb ... eglibc_2.16.bb"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,93 +59,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Dec 2014 18:34:34 -0000
+X-List-Received-Date: Tue, 02 Dec 2014 19:15:49 -0000
+Content-Language: en-GB
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-From: California Sullivan <california.l.sullivan@intel.com>
+Re-Hi,
 
-Goes over some limitations and gives an example of how to use it.
+Some more investigations...
 
-Signed-off-by: California Sullivan <california.l.sullivan@intel.com>
----
- README-GOOGLE-CLOUD | 68 +++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 68 insertions(+)
- create mode 100644 README-GOOGLE-CLOUD
+To shorten the build run times, I used the altera-image-minimal and core-im=
+age-minimal recipes instead of the (much larger) altera-gsrd-image.
 
-diff --git a/README-GOOGLE-CLOUD b/README-GOOGLE-CLOUD
-new file mode 100644
-index 0000000..34c80a9
---- /dev/null
-+++ b/README-GOOGLE-CLOUD
-@@ -0,0 +1,68 @@
-+Limitations
-+------------
-+The current implementation of the Google Cloud building has a couple of
-+limitations.
-+
-+First of all, Google's gcloud command line tool is required for
-+all functions (see https://developers.google.com/cloud/sdk/gcloud/).
-+
-+Next, the controller machine is required to be authenticated with Google's cloud
-+system (see https://developers.google.com/cloud/sdk/gcloud/reference/auth/).
-+
-+Third, the workers must be on a network which has the worker port
-+(port 9989 by default) open. This can be done by setting up a network and
-+using that network in the ProvisionGoogleVM builstep. Example commands to
-+set up a network:
-+
-+gcloud compute networks create autobuilder-network
-+gcloud compute firewall-rules autobuilder-allow --network autobuilder-network \
-+    --allow tcp:8010 tcp:9989 tcp:80 tcp:22
-+
-+This sets up a network that is suitable for both controllers and workers, as
-+it allows all default autobuilder connections, as well as ssh and http. The
-+key:value pair 'network':'autobuilder-network' can then be added to your
-+ProvisionGoogleVMs buildstep, allowing provisioned machines to connect to
-+controllers.
-+
-+Fourth, additional workers must be added to yocto-controller/controller.cfg
-+with the format:
-+     BuildWorker("worker<N>", "<WORKER-PASSWORD>", max_builds=3)
-+where N is 0...however many workers you want and WORKER-PASSWORD is the default
-+password. For example, if I wanted to add three workers for the cloud builder:
-+
-+    c['workers'] = [BuildWorker("example-worker", "eeieHim8V", max_builds=3),]
-+
-+would be changed to this:
-+
-+    c['workers'] = [BuildWorker("example-worker", "eeieHim8V", max_builds=3),
-+                    BuildWorker("worker0", "eeieHim8V", max_builds=3),
-+                    BuildWorker("worker1", "eeieHim8V", max_builds=3),
-+                    BuildWorker("worker2", "eeieHim8V", max_builds=3),]
-+
-+Finally, the worker-init script is only an example and has a couple
-+limitations itself. It has only been tested for debian VMs and will likely not
-+work on others. Also, the <HOST_ADDR> and <PASS> fields will need to be
-+manually edited in it if your autobuilder was created before the addition of
-+the GoogleVM buildsteps or if the controller machine is behind a firewall.
-+
-+HowTo
-+----------
-+
-+Assuming that the limitations above have been dealt with, this will provision
-+one new VM and completely set it up, including connections
-+
-+    {'ProvisionGoogleVMs':{
-+        'vmname':'autobuilder-worker-startup-test',
-+        'vmcount':1,
-+        'zone':'us-central1-a',
-+        'machine':'n1-standard-4',
-+        'disksize':'230GB',
-+        'startupscript':'/path/to/yocto-autobuilder/bin/worker-init',
-+        'network':'autobuilder-network'}}
-+
-+And this will delete the entire VM when you are finished with it:
-+
-+    {'DeleteGoogleVMs': {}}
-+
-+Note that the current implementation of DeleteGoogleVM requires that its in the
-+same buildset as CreateGoogleVM.
--- 
-1.9.3
+As they stand, both recipes can be built without problems.
 
+WIth "bitbake <recipe> -c populate_sdk" both fail as above with "Multiple .=
+bb files..."
+
+Since one of the duplicate providers is apparently the external-linaro-tool=
+chain, I decided to eliminate it from site.conf, and let bitbake build the =
+"internal" toolchain.
+
+This time the "-c populate_sdk" worked like a charm.
+
+So it looks to me as if there's an incompatibility between the *external* l=
+inaro toolchain and the "populte_sdk" task in the altera version of poky.
+
+I'm more than happy to try and fix the problem, but I don't (yet) have a cl=
+ue where to look next.
+
+Has anyone got a pointer for me, please?
+--
+jim
+
+________________________________________
+From: rfi-bounces@lists.rocketboards.org [rfi-bounces@lists.rocketboards.or=
+g] on behalf of Spriggs, Jim [J.Spriggs@raylase.de]
+Sent: 02 December 2014 10:12
+To: rfi@lists.rocketboards.org
+Subject: [Rfi] "bitbake altera-gsrd-image -c populate_sdk" fails with "Mult=
+iple .bb files ... nativesdk-libiconv ... external-linaro-toolchain.bb ... =
+eglibc_2.16.bb"
+
+Hi Guys,
+
+Having followed the instructions at http://www.rocketboards.org/foswiki/Doc=
+umentation/GSRD140CompilingLinuxCopyArrowSoCKitEdition  to set up for build=
+ing the GSRD image,
+I tried "bitbake altera-gsrd-image" and it worked just fine, producing the =
+image as expected.
+
+Then I tried "bitbake altera-gsrd-image -c populate_sdk", and got the error=
+ message in the Subject.
+
+As an utter newbie, I'm hoping someone can point out (in simple terms!) wha=
+t I'm doing wrong.
+
+Is populate_sdk not supported by SoCKit GSRD 14.0 ?
+Is my invocation wrong?
+
+Thanks for any clues!
+
+--
+Jim
+PS: sorry about the company sig - I can't switch it off.
+
+
+
+________________________________
+
+RAYLASE AG
+Argelsrieder Feld 2+4
+82234 Wessling
+Germany
+Tel.: +49-(0)8153/88 98-0
+Fax: +49-(0)8153/88 98-10
+http://www.raylase.de
+
+District Court Munich, HRB 131450
+
+Board: Peter von Jan (CEO)
+
+Supervisory Board: Dr. Ulrich Lohmann (Chairman)
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen. Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FC=
+mlich erhalten haben, informieren Sie bitte sofort den Absender und vernich=
+ten Sie diese Mail. Das unerlaubte Kopieren sowie die unbefugte Weitergabe =
+dieser Mail ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+are not the intended recipient (or have received this e-mail in error) plea=
+se notify the sender immediately and destroy this e-mail. Any unauthorized =
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly forbidden.
+_______________________________________________
+Rfi mailing list
+Rfi@lists.rocketboards.org
+http://lists.rocketboards.org/cgi-bin/mailman/listinfo/rfi
+
+________________________________
+
+RAYLASE AG
+Argelsrieder Feld 2+4
+82234 Wessling
+Germany
+Tel.: +49-(0)8153/88 98-0
+Fax: +49-(0)8153/88 98-10
+http://www.raylase.de
+
+District Court Munich, HRB 131450
+
+Board: Peter von Jan (CEO)
+
+Supervisory Board: Dr. Ulrich Lohmann (Chairman)
+
+
+Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
+tionen. Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FC=
+mlich erhalten haben, informieren Sie bitte sofort den Absender und vernich=
+ten Sie diese Mail. Das unerlaubte Kopieren sowie die unbefugte Weitergabe =
+dieser Mail ist nicht gestattet.
+
+This e-mail may contain confidential and/or privileged information. If you =
+are not the intended recipient (or have received this e-mail in error) plea=
+se notify the sender immediately and destroy this e-mail. Any unauthorized =
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly forbidden.
 
