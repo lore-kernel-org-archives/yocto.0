@@ -1,17 +1,17 @@
 Return-Path: <californialsullivan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5276AE008D3; Tue,  2 Dec 2014 10:34:33 -0800 (PST)
+	id 74611E008D9; Tue,  2 Dec 2014 10:34:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
 	FREEMAIL_FROM, NML_ADSP_CUSTOM_MED,
 	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (californialsullivan[at]gmail.com)
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
 	*      [134.134.136.65 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (californialsullivan[at]gmail.com)
 	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
 	*      CUSTOM_MED
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
@@ -19,23 +19,23 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
 	and not from a mailing list
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71389E0080C
-	for <yocto@yoctoproject.org>; Tue,  2 Dec 2014 10:34:28 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F417DE008C1
+	for <yocto@yoctoproject.org>; Tue,  2 Dec 2014 10:34:30 -0800 (PST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga103.jf.intel.com with ESMTP; 02 Dec 2014 10:31:07 -0800
+	by orsmga103.jf.intel.com with ESMTP; 02 Dec 2014 10:31:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,502,1413270000"; d="scan'208";a="647050279"
+X-IronPort-AV: E=Sophos;i="5.07,502,1413270000"; d="scan'208";a="647050295"
 Received: from unknown (HELO localhost.jf.intel.com) ([10.7.198.57])
-	by orsmga002.jf.intel.com with ESMTP; 02 Dec 2014 10:34:28 -0800
+	by orsmga002.jf.intel.com with ESMTP; 02 Dec 2014 10:34:30 -0800
 From: californialsullivan@gmail.com
 To: yocto@yoctoproject.org
-Date: Tue,  2 Dec 2014 10:31:38 -0500
-Message-Id: <1417534303-20323-2-git-send-email-californialsullivan@gmail.com>
+Date: Tue,  2 Dec 2014 10:31:40 -0500
+Message-Id: <1417534303-20323-4-git-send-email-californialsullivan@gmail.com>
 X-Mailer: git-send-email 1.9.3
 In-Reply-To: <1417534303-20323-1-git-send-email-californialsullivan@gmail.com>
 References: <1417534303-20323-1-git-send-email-californialsullivan@gmail.com>
 Cc: California Sullivan <california.l.sullivan@intel.com>
-Subject: [PATCH 2/7] DeleteGoogleVMs.py: Initial commit
+Subject: [PATCH 4/7] yocto-autobuilder-setup: Add worker init script setup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,77 +47,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Dec 2014 18:34:33 -0000
+X-List-Received-Date: Tue, 02 Dec 2014 18:34:34 -0000
 
 From: California Sullivan <california.l.sullivan@intel.com>
 
-This build step deletes the Google VMs created in the previous ProvisionGoogleVM
-build step using Google's gcloud command line tool.
+The password and address fields in the worker init script need to
+be set up.
 
 Signed-off-by: California Sullivan <california.l.sullivan@intel.com>
 ---
- .../autobuilder/buildsteps/DeleteGoogleVMs.py      | 52 ++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
- create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVMs.py
+ yocto-autobuilder-setup | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVMs.py b/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVMs.py
-new file mode 100644
-index 0000000..b0071cf
---- /dev/null
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/DeleteGoogleVMs.py
-@@ -0,0 +1,52 @@
-+'''
-+Created on Aug 13, 2014
-+
-+__author__ = "California Sullivan"
-+__copyright__ = "Copyright 2014, Intel Corp."
-+__credits__ = ["California Sullivan"]
-+__license__ = "GPL"
-+__version__ = "2.0"
-+__maintainer__ = "Elizabeth Flanagan"
-+__email__ = "elizabeth.flanagan@intel.com"
-+'''
-+
-+from buildbot.steps.shell import ShellCommand
-+
-+class DeleteGoogleVMs(ShellCommand):
-+    haltOnFailure = True
-+    flunkOnFailure = True
-+    name = "Delete Google VMs"
-+    def __init__(self, factory, argdict=None, **kwargs):
-+
-+        self.factory = factory
-+        self.description = "Deleting Google VMs"
-+        for k, v in argdict.iteritems():
-+            if type(v) is bool:
-+                setattr(self, k, str(v))
-+            else:
-+                setattr(self, k, v)
-+        # Timeout needs to be passed to LoggingBuildStep as a kwarg
-+        self.timeout = 1000
-+        kwargs['timeout']=self.timeout
-+        ShellCommand.__init__(self, **kwargs)
-+
-+
-+    def start(self):
-+        self.vmnames = self.getProperty("vmnames")
-+        self.vmcount = self.getProperty("vmcount")
-+        self.zone = self.getProperty("zone")
-+
-+        if self.vmnames is not None and self.vmnames != "":
-+            self.command = "gcloud compute instances delete"
-+            self.command += " " + self.vmnames
-+
-+        if self.zone is not None and self.zone in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
-+            self.command += " --zone " + self.zone
-+        else:
-+            self.command += " --zone us-central1-a"
-+        self.command += " --quiet"
-+        ShellCommand.start(self)
-+
-+    def describe(self, done=False):
-+        description = ShellCommand.describe(self,done)
-+        return description
+diff --git a/yocto-autobuilder-setup b/yocto-autobuilder-setup
+index aee71ce..615deb4 100644
+--- a/yocto-autobuilder-setup
++++ b/yocto-autobuilder-setup
+@@ -60,6 +60,7 @@ export OPTIMIZED_GIT_CLONE=False
+ export OGIT_TRASH_DIR=/tmp/yocto-autobuilder/git/trash
+ export OGIT_TRASH_CRON_TIME="0 0 * * *"
+ export OGIT_TRASH_NICE_LEVEL="19"
++HOST_ADDR=$(hostname -I)
+ 
+ ##########################
+ #
+@@ -153,6 +154,10 @@ if [ -n "${config_check:+x}" ]; then
+     sed -i "s/<USER>/$username/g" ${PWD}/yocto-worker/buildbot.tac
+     sed -i "s/<PASS>/$password/g" ${PWD}/yocto-worker/buildbot.tac
+     echo ""
++    echo " Updating worker-init script used for google cloud building. "
++    sed -i "s/<HOST_ADDR>/$HOST_ADDR/" ${PWD}/bin/worker-init
++    sed -i "s/<PASS>/$password/" ${PWD}/bin/worker-init
++    echo ""
+     echo " If you wish to use your own generated username and password please "
+     echo " modify the above files as needed. Please see the README for more "
+     echo " information. "
 -- 
 1.9.3
 
