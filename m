@@ -1,6 +1,6 @@
 Return-Path: <californialsullivan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 74611E008D9; Tue,  2 Dec 2014 10:34:34 -0800 (PST)
+	id 85E1AE008C6; Tue,  2 Dec 2014 10:34:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -19,23 +19,23 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
 	and not from a mailing list
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F417DE008C1
-	for <yocto@yoctoproject.org>; Tue,  2 Dec 2014 10:34:30 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CACA6E008CC
+	for <yocto@yoctoproject.org>; Tue,  2 Dec 2014 10:34:32 -0800 (PST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga103.jf.intel.com with ESMTP; 02 Dec 2014 10:31:09 -0800
+	by orsmga103.jf.intel.com with ESMTP; 02 Dec 2014 10:31:11 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,502,1413270000"; d="scan'208";a="647050295"
+X-IronPort-AV: E=Sophos;i="5.07,502,1413270000"; d="scan'208";a="647050314"
 Received: from unknown (HELO localhost.jf.intel.com) ([10.7.198.57])
-	by orsmga002.jf.intel.com with ESMTP; 02 Dec 2014 10:34:30 -0800
+	by orsmga002.jf.intel.com with ESMTP; 02 Dec 2014 10:34:32 -0800
 From: californialsullivan@gmail.com
 To: yocto@yoctoproject.org
-Date: Tue,  2 Dec 2014 10:31:40 -0500
-Message-Id: <1417534303-20323-4-git-send-email-californialsullivan@gmail.com>
+Date: Tue,  2 Dec 2014 10:31:43 -0500
+Message-Id: <1417534303-20323-7-git-send-email-californialsullivan@gmail.com>
 X-Mailer: git-send-email 1.9.3
 In-Reply-To: <1417534303-20323-1-git-send-email-californialsullivan@gmail.com>
 References: <1417534303-20323-1-git-send-email-californialsullivan@gmail.com>
 Cc: California Sullivan <california.l.sullivan@intel.com>
-Subject: [PATCH 4/7] yocto-autobuilder-setup: Add worker init script setup
+Subject: [PATCH 7/7] ProvisionGoogleVMs.py: Delete VM before trying to provision it.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,37 +51,51 @@ X-List-Received-Date: Tue, 02 Dec 2014 18:34:34 -0000
 
 From: California Sullivan <california.l.sullivan@intel.com>
 
-The password and address fields in the worker init script need to
-be set up.
+In the case that somebody turned off a build before it completed, the
+buildstep would attempt and fail to procure a new VM, failing the build.
 
 Signed-off-by: California Sullivan <california.l.sullivan@intel.com>
 ---
- yocto-autobuilder-setup | 5 +++++
- 1 file changed, 5 insertions(+)
+ .../autobuilder/buildsteps/ProvisionGoogleVMs.py         | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
 
-diff --git a/yocto-autobuilder-setup b/yocto-autobuilder-setup
-index aee71ce..615deb4 100644
---- a/yocto-autobuilder-setup
-+++ b/yocto-autobuilder-setup
-@@ -60,6 +60,7 @@ export OPTIMIZED_GIT_CLONE=False
- export OGIT_TRASH_DIR=/tmp/yocto-autobuilder/git/trash
- export OGIT_TRASH_CRON_TIME="0 0 * * *"
- export OGIT_TRASH_NICE_LEVEL="19"
-+HOST_ADDR=$(hostname -I)
- 
- ##########################
- #
-@@ -153,6 +154,10 @@ if [ -n "${config_check:+x}" ]; then
-     sed -i "s/<USER>/$username/g" ${PWD}/yocto-worker/buildbot.tac
-     sed -i "s/<PASS>/$password/g" ${PWD}/yocto-worker/buildbot.tac
-     echo ""
-+    echo " Updating worker-init script used for google cloud building. "
-+    sed -i "s/<HOST_ADDR>/$HOST_ADDR/" ${PWD}/bin/worker-init
-+    sed -i "s/<PASS>/$password/" ${PWD}/bin/worker-init
-+    echo ""
-     echo " If you wish to use your own generated username and password please "
-     echo " modify the above files as needed. Please see the README for more "
-     echo " information. "
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVMs.py b/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVMs.py
+index d0bc6eb..262526f 100644
+--- a/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVMs.py
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVMs.py
+@@ -19,6 +19,7 @@ class ProvisionGoogleVMs(ShellCommand):
+     name = "Provision Google VMs"
+     def __init__(self, factory, argdict=None, **kwargs):
+         self.vmname=None
++        self.vmnames=""
+         self.vmcount=1
+         self.startupscript=None
+         self.metadata=None
+@@ -38,15 +39,18 @@ class ProvisionGoogleVMs(ShellCommand):
+         if self.vmname is None or self.vmname == "":
+             self.finished(FAILURE)
+         else:
+-            self.command = "gcloud compute instances create"
+-            self.vmnames = ""
++            self.command = ""
++            if self.zone is None or self.zone not in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
++                self.zone = "us-central1-a"
+             for x in range(0, self.vmcount):
+                 self.vmnames += " " + self.vmname + "-" + str(x)
++            self.command += " gcloud compute instances delete"
+             self.command += self.vmnames
+-            if self.zone is not None and self.zone in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
+-                self.command += " --zone " + self.zone
+-            else:
+-                self.command += " --zone us-central1-a"
++            self.command += " --zone " + self.zone + " --quiet;"
++            self.command += " gcloud compute instances create"
++            self.command += self.vmnames
++            self.command += " --zone " + self.zone
++
+             if self.disksize is not None and self.disksize != "":
+                 self.command += " --boot-disk-size " + self.disksize
+             else:
 -- 
 1.9.3
 
