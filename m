@@ -1,6 +1,6 @@
 Return-Path: <californialsullivan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9B932E008C6; Tue,  2 Dec 2014 10:34:34 -0800 (PST)
+	id AC0B3E008C1; Tue,  2 Dec 2014 10:34:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -19,23 +19,23 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
 	and not from a mailing list
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26065E008B4
-	for <yocto@yoctoproject.org>; Tue,  2 Dec 2014 10:34:32 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DE57E00895
+	for <yocto@yoctoproject.org>; Tue,  2 Dec 2014 10:34:31 -0800 (PST)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga103.jf.intel.com with ESMTP; 02 Dec 2014 10:31:10 -0800
+	by orsmga103.jf.intel.com with ESMTP; 02 Dec 2014 10:31:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,502,1413270000"; d="scan'208";a="647050307"
+X-IronPort-AV: E=Sophos;i="5.07,502,1413270000"; d="scan'208";a="647050302"
 Received: from unknown (HELO localhost.jf.intel.com) ([10.7.198.57])
-	by orsmga002.jf.intel.com with ESMTP; 02 Dec 2014 10:34:32 -0800
+	by orsmga002.jf.intel.com with ESMTP; 02 Dec 2014 10:34:31 -0800
 From: californialsullivan@gmail.com
 To: yocto@yoctoproject.org
-Date: Tue,  2 Dec 2014 10:31:42 -0500
-Message-Id: <1417534303-20323-6-git-send-email-californialsullivan@gmail.com>
+Date: Tue,  2 Dec 2014 10:31:41 -0500
+Message-Id: <1417534303-20323-5-git-send-email-californialsullivan@gmail.com>
 X-Mailer: git-send-email 1.9.3
 In-Reply-To: <1417534303-20323-1-git-send-email-californialsullivan@gmail.com>
 References: <1417534303-20323-1-git-send-email-californialsullivan@gmail.com>
 Cc: California Sullivan <california.l.sullivan@intel.com>
-Subject: [PATCH 6/7] ProvisionGoogleVMs.py: startup script now looks in bin directory of autobuilder.
+Subject: [PATCH 5/7] README-GOOGLE-CLOUD: initial commit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,197 +51,88 @@ X-List-Received-Date: Tue, 02 Dec 2014 18:34:34 -0000
 
 From: California Sullivan <california.l.sullivan@intel.com>
 
+Goes over some limitations and gives an example of how to use it.
+
 Signed-off-by: California Sullivan <california.l.sullivan@intel.com>
 ---
- .../autobuilder/buildsteps/ProvisionGoogleVM.py    | 85 ---------------------
- .../autobuilder/buildsteps/ProvisionGoogleVMs.py   | 86 ++++++++++++++++++++++
- 2 files changed, 86 insertions(+), 85 deletions(-)
- delete mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py
- create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVMs.py
+ README-GOOGLE-CLOUD | 68 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 68 insertions(+)
+ create mode 100644 README-GOOGLE-CLOUD
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py b/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py
-deleted file mode 100644
-index fb667dd..0000000
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVM.py
-+++ /dev/null
-@@ -1,85 +0,0 @@
--'''
--Created on Aug 13, 2014
--
--__author__ = "California Sullivan"
--__copyright__ = "Copyright 2014, Intel Corp."
--__credits__ = ["California Sullivan"]
--__license__ = "GPL"
--__version__ = "2.0"
--__maintainer__ = "Elizabeth Flanagan"
--__email__ = "elizabeth.flanagan@intel.com"
--'''
--
--from buildbot.steps.shell import ShellCommand
--
--class ProvisionGoogleVM(ShellCommand):
--    haltOnFailure = True
--    flunkOnFailure = True
--    name = "Provision Google VM"
--    def __init__(self, factory, argdict=None, **kwargs):
--        self.vmname=None
--        self.vmcount=1
--        self.startupscript=None
--        self.metadata=None
--        self.zone="us-central1-a"
--        self.image=None
--        self.machine=None
--        self.network=None
--        self.disksize=None
--        self.factory = factory
--        self.description = "Provision Google VM"
--        for k, v in argdict.iteritems():
--            if type(v) is bool:
--                setattr(self, k, str(v))
--            else:
--                setattr(self, k, v)
--
--        if self.vmname is None or self.vmname == "":
--            self.finished(FAILURE)
--        else:
--            self.command = "gcloud compute instances create"
--            self.vmnames = ""
--            for x in range(0, self.vmcount):
--                self.vmnames += " " + self.vmname + "-" + str(x)
--            self.command += self.vmnames
--            if self.zone is not None and self.zone in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
--                self.command += " --zone " + self.zone
--            else:
--                self.command += " --zone us-central1-a"
--            if self.disksize is not None and self.disksize != "":
--                self.command += " --boot-disk-size " + self.disksize
--            else:
--                self.command += " --boot-disk-size 200GB"
--            if self.image is None:
--                self.command += " --image debian-7"
--            else:
--                self.command += " --image " + self.image
--
--            if self.machine is not None and self.machine in ["g1-small", "f1-micro", "n1-standard-1", "n1-standard-2", "n1-standard-4", "n1-standard-8", "n1-standard-16", "n1-highmem-2", "n1-highmem-4"]:
--                self.command += " --machine-type " + self.machine
--            else:
--                self.command += " --machine-type n1-standard-1"
--            if self.network is not None and self.network != "":
--                self.command += " --network " + self.network
--            if self.startupscript is not None and self.startupscript != "":
--                self.command += " --metadata-from-file startup-script=" + self.startupscript
--                if self.metadata is not None and self.metadata != "":
--                    self.command += " --metadata " + self.scriptargs
--            self.command += " 1> /dev/null";
--
--            # Timeout needs to be passed to LoggingBuildStep as a kwarg
--            self.timeout = 1000
--            kwargs['timeout']=self.timeout
--            ShellCommand.__init__(self, **kwargs)
--
--    def describe(self, done=False):
--        description = ShellCommand.describe(self,done)
--        return description
--
--    def commandComplete(self, cmd):
--        if not cmd.didFail():
--            self.setProperty("vmnames", self.vmnames)
--            self.setProperty("zone", self.zone)
--            self.setProperty("vmcount", self.vmcount)
--
--
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVMs.py b/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVMs.py
+diff --git a/README-GOOGLE-CLOUD b/README-GOOGLE-CLOUD
 new file mode 100644
-index 0000000..d0bc6eb
+index 0000000..34c80a9
 --- /dev/null
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/ProvisionGoogleVMs.py
-@@ -0,0 +1,86 @@
-+'''
-+Created on Aug 13, 2014
++++ b/README-GOOGLE-CLOUD
+@@ -0,0 +1,68 @@
++Limitations
++------------
++The current implementation of the Google Cloud building has a couple of
++limitations.
 +
-+__author__ = "California Sullivan"
-+__copyright__ = "Copyright 2014, Intel Corp."
-+__credits__ = ["California Sullivan"]
-+__license__ = "GPL"
-+__version__ = "2.0"
-+__maintainer__ = "Elizabeth Flanagan"
-+__email__ = "elizabeth.flanagan@intel.com"
-+'''
++First of all, Google's gcloud command line tool is required for
++all functions (see https://developers.google.com/cloud/sdk/gcloud/).
 +
-+from autobuilder.config import *
-+from buildbot.steps.shell import ShellCommand
++Next, the controller machine is required to be authenticated with Google's cloud
++system (see https://developers.google.com/cloud/sdk/gcloud/reference/auth/).
 +
-+class ProvisionGoogleVMs(ShellCommand):
-+    haltOnFailure = True
-+    flunkOnFailure = True
-+    name = "Provision Google VMs"
-+    def __init__(self, factory, argdict=None, **kwargs):
-+        self.vmname=None
-+        self.vmcount=1
-+        self.startupscript=None
-+        self.metadata=None
-+        self.zone="us-central1-a"
-+        self.image=None
-+        self.machine=None
-+        self.network=None
-+        self.disksize=None
-+        self.factory = factory
-+        self.description = "Provision Google VMs"
-+        for k, v in argdict.iteritems():
-+            if type(v) is bool:
-+                setattr(self, k, str(v))
-+            else:
-+                setattr(self, k, v)
++Third, the workers must be on a network which has the worker port
++(port 9989 by default) open. This can be done by setting up a network and
++using that network in the ProvisionGoogleVM builstep. Example commands to
++set up a network:
 +
-+        if self.vmname is None or self.vmname == "":
-+            self.finished(FAILURE)
-+        else:
-+            self.command = "gcloud compute instances create"
-+            self.vmnames = ""
-+            for x in range(0, self.vmcount):
-+                self.vmnames += " " + self.vmname + "-" + str(x)
-+            self.command += self.vmnames
-+            if self.zone is not None and self.zone in ["us-central1-a", "us-central1-b", "us-central1-f", "europe-west1-a", "europe-west1-b", "asia-east1-a", "asia-east1-b", "asia-east1-b"]:
-+                self.command += " --zone " + self.zone
-+            else:
-+                self.command += " --zone us-central1-a"
-+            if self.disksize is not None and self.disksize != "":
-+                self.command += " --boot-disk-size " + self.disksize
-+            else:
-+                self.command += " --boot-disk-size 200GB"
-+            if self.image is None:
-+                self.command += " --image debian-7"
-+            else:
-+                self.command += " --image " + self.image
++gcloud compute networks create autobuilder-network
++gcloud compute firewall-rules autobuilder-allow --network autobuilder-network \
++    --allow tcp:8010 tcp:9989 tcp:80 tcp:22
 +
-+            if self.machine is not None and self.machine in ["g1-small", "f1-micro", "n1-standard-1", "n1-standard-2", "n1-standard-4", "n1-standard-8", "n1-standard-16", "n1-highmem-2", "n1-highmem-4"]:
-+                self.command += " --machine-type " + self.machine
-+            else:
-+                self.command += " --machine-type n1-standard-1"
-+            if self.network is not None and self.network != "":
-+                self.command += " --network " + self.network
-+            if self.startupscript is not None and self.startupscript != "":
-+                self.command += " --metadata-from-file startup-script="+YOCTO_ABBASE+"/bin/"+self.startupscript
-+                if self.metadata is not None and self.metadata != "":
-+                    self.command += " --metadata " + self.metadata
-+            self.command += " 1> /dev/null";
++This sets up a network that is suitable for both controllers and workers, as
++it allows all default autobuilder connections, as well as ssh and http. The
++key:value pair 'network':'autobuilder-network' can then be added to your
++ProvisionGoogleVMs buildstep, allowing provisioned machines to connect to
++controllers.
 +
-+            # Timeout needs to be passed to LoggingBuildStep as a kwarg
-+            self.timeout = 1000
-+            kwargs['timeout']=self.timeout
-+            ShellCommand.__init__(self, **kwargs)
++Fourth, additional workers must be added to yocto-controller/controller.cfg
++with the format:
++     BuildWorker("worker<N>", "<WORKER-PASSWORD>", max_builds=3)
++where N is 0...however many workers you want and WORKER-PASSWORD is the default
++password. For example, if I wanted to add three workers for the cloud builder:
 +
-+    def describe(self, done=False):
-+        description = ShellCommand.describe(self,done)
-+        return description
++    c['workers'] = [BuildWorker("example-worker", "eeieHim8V", max_builds=3),]
 +
-+    def commandComplete(self, cmd):
-+        if not cmd.didFail():
-+            self.setProperty("vmnames", self.vmnames)
-+            self.setProperty("zone", self.zone)
-+            self.setProperty("vmcount", self.vmcount)
++would be changed to this:
 +
++    c['workers'] = [BuildWorker("example-worker", "eeieHim8V", max_builds=3),
++                    BuildWorker("worker0", "eeieHim8V", max_builds=3),
++                    BuildWorker("worker1", "eeieHim8V", max_builds=3),
++                    BuildWorker("worker2", "eeieHim8V", max_builds=3),]
 +
++Finally, the worker-init script is only an example and has a couple
++limitations itself. It has only been tested for debian VMs and will likely not
++work on others. Also, the <HOST_ADDR> and <PASS> fields will need to be
++manually edited in it if your autobuilder was created before the addition of
++the GoogleVM buildsteps or if the controller machine is behind a firewall.
++
++HowTo
++----------
++
++Assuming that the limitations above have been dealt with, this will provision
++one new VM and completely set it up, including connections
++
++    {'ProvisionGoogleVMs':{
++        'vmname':'autobuilder-worker-startup-test',
++        'vmcount':1,
++        'zone':'us-central1-a',
++        'machine':'n1-standard-4',
++        'disksize':'230GB',
++        'startupscript':'/path/to/yocto-autobuilder/bin/worker-init',
++        'network':'autobuilder-network'}}
++
++And this will delete the entire VM when you are finished with it:
++
++    {'DeleteGoogleVMs': {}}
++
++Note that the current implementation of DeleteGoogleVM requires that its in the
++same buildset as CreateGoogleVM.
 -- 
 1.9.3
 
