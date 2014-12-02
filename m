@@ -1,37 +1,58 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC7AEE006EF; Tue,  2 Dec 2014 06:09:24 -0800 (PST)
+	id 5545EE00895; Tue,  2 Dec 2014 07:54:22 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2696FE0034B
-	for <yocto@yoctoproject.org>; Tue,  2 Dec 2014 06:09:15 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 02 Dec 2014 06:06:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,501,1413270000"; d="scan'208";a="641357850"
-Received: from fodonogx-mobl.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.21.108])
-	by fmsmga002.fm.intel.com with ESMTP; 02 Dec 2014 06:06:52 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Fabrice Coulon <fabrice.coulon@axis.com>
-Date: Tue, 02 Dec 2014 14:06:51 +0000
-Message-ID: <5704119.0hoZ2pIDf1@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.3 (Linux/3.17.3-200.fc20.x86_64; KDE/4.14.3; x86_64; ; )
-In-Reply-To: <547DB99C.7000404@axis.com>
-References: <547DB99C.7000404@axis.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.173 listed in list.dnswl.org]
+Received: from mail-pd0-f173.google.com (mail-pd0-f173.google.com
+	[209.85.192.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C251E0080C
+	for <yocto@yoctoproject.org>; Tue,  2 Dec 2014 07:54:18 -0800 (PST)
+Received: by mail-pd0-f173.google.com with SMTP id ft15so13351338pdb.18
+	for <yocto@yoctoproject.org>; Tue, 02 Dec 2014 07:54:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=xV1VOHod/NOkMV+Ai1lFOdsd3d0SO6jgWj9LtNUvq00=;
+	b=gvdpPRrG+vAm92LGVe9eIibPTdm9HBR8Az2693MfRwqJAgAU1CNZlFq3mtDeRmM6iD
+	8OpWFl0CNmBil7iZ1XX2DGGXpFOpF1kHb6JD5xtMOE0n1ZnII0IE8JJWuR8StWYScpgM
+	Rc/Qxf/AiHmKK2PGJLMWUorSPaJYNaywSr3XPFczS9yN3Rmg++8ELQyUm7sTLqaeqweN
+	YvKT+4Noj8z/Q9Fbe9Mjg0V28AQENNNG7sJ19bCw3ECf/aZuZJ7RFEboUaza4ev+35A1
+	YmiL7x0P2TSgNCjnT9jguI1y5ktNwhQWS30ctS2HF2CVIfxmSrtacwm4IGt5hr7aUtL9
+	oTKw==
+X-Received: by 10.70.88.231 with SMTP id bj7mr7139382pdb.168.1417535658310;
+	Tue, 02 Dec 2014 07:54:18 -0800 (PST)
+Received: from ?IPv6:2601:c:9380:601:7817:c089:b413:c9c4?
+	([2601:c:9380:601:7817:c089:b413:c9c4])
+	by mx.google.com with ESMTPSA id zf5sm5729285pbb.31.2014.12.02.07.54.16
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 02 Dec 2014 07:54:16 -0800 (PST)
+Message-ID: <547DE09E.3090203@gmail.com>
+Date: Tue, 02 Dec 2014 07:54:06 -0800
+From: akuster808 <akuster808@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.2.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Export bitbake variables between recipes
+To: Bian Naimeng <biannm@cn.fujitsu.com>, yocto@yoctoproject.org
+References: <1417507403-7408-1-git-send-email-biannm@cn.fujitsu.com>
+In-Reply-To: <1417507403-7408-1-git-send-email-biannm@cn.fujitsu.com>
+Subject: Re: [PATCH 0/2] Add some recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,35 +64,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Dec 2014 14:09:24 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 02 Dec 2014 15:54:22 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Fabrice,
 
-On Tuesday 02 December 2014 14:07:40 Fabrice Coulon wrote:
-> Is it possible to export one bitbake variable from one recipe and make it
-> available from inside another recipe? For example: we want to export
-> from our systemd_%.bbappend where the systemctl command has been installed,
-> in order to, from another recipe depending on systemd, refer to the absolute
-> path where systemctl was installed. Any ideas or suggestions on how to do
-> that?
+Bian,
 
-There's no mechanism to do this, no. The only way for this kind of thing to 
-work is for it to be specified at the configuration level (e.g. ${bindir} points 
-to the subdirectory /usr/bin and this variable would be used both when 
-choosing where the executable should be installed and finding it later - this 
-would typically be how this kind of problem would be solved since it would be 
-unusual to have systemctl installed somewhere other than ${bindir}). 
+Is device-mapper-multipath the same as 
+meta-openembeded/meta-oe/recipes-support/multipath-tools/multipath-tools_git.bb 
+?
 
-(Another alternative is pkg-config, but I don't think that really applies in 
-this situation.)
+- Armin
 
-Cheers,
-Paul
 
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+On 12/02/2014 12:03 AM, Bian Naimeng wrote:
+> Bian Naimeng (2):
+>    [meta-cgl] device-mapper-multipath: add recipe
+>    [meta-cgl]drbd: add recipe
+>
+>   .../device-mapper-multipath/multipathd.init.patch  | 12 +++++
+>   .../device-mapper-multipath_0.5.0.bb               | 53 ++++++++++++++++++++
+>   meta-cgl-common/recipes-cgl/drbd/drbd/drbd.service | 12 +++++
+>   meta-cgl-common/recipes-cgl/drbd/drbd_8.4.4.bb     | 57 ++++++++++++++++++++++
+>   4 files changed, 134 insertions(+)
+>   create mode 100644 meta-cgl-common/recipes-cgl/device-mapper-multipath/device-mapper-multipath/multipathd.init.patch
+>   create mode 100644 meta-cgl-common/recipes-cgl/device-mapper-multipath/device-mapper-multipath_0.5.0.bb
+>   create mode 100644 meta-cgl-common/recipes-cgl/drbd/drbd/drbd.service
+>   create mode 100644 meta-cgl-common/recipes-cgl/drbd/drbd_8.4.4.bb
+>
 
