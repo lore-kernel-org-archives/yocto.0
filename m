@@ -1,49 +1,44 @@
-Return-Path: <Matthias.Heise@atlas-elektronik.com>
+Return-Path: <chan.kitx.yu@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6D1A1E00895; Wed,  3 Dec 2014 06:15:40 -0800 (PST)
+	id E252AE0086F; Tue,  2 Dec 2014 21:40:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [194.156.172.86 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail96.atlas.de (mail96.atlas.de [194.156.172.86])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC474E0086F
-	for <yocto@yoctoproject.org>; Wed,  3 Dec 2014 06:15:35 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail96.atlas.de (Postfix) with ESMTP id 9FE4F10152
-	for <yocto@yoctoproject.org>; Wed,  3 Dec 2014 15:15:33 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mail96.atlas.de
-Received: from mail96.atlas.de ([127.0.0.1])
-	by localhost (mail96.atlas.de [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id yYCacxiihAJm for <yocto@yoctoproject.org>;
-	Wed,  3 Dec 2014 15:15:23 +0100 (CET)
-Received: from mgsrv01.atlas.de (mail01.atlas.mailrelays.atlas.de
-	[10.200.101.16]) by mail96.atlas.de (Postfix) with ESMTP
-	for <yocto@yoctoproject.org>; Wed,  3 Dec 2014 15:15:22 +0100 (CET)
-Received: from MSSRVS3.atlas.de (mssrvs3.atlas.de [10.200.101.73])
-	by mgsrv01.atlas.de (Postfix) with ESMTP id D45242716A
-	for <yocto@yoctoproject.org>; Wed,  3 Dec 2014 15:15:22 +0100 (CET)
-Received: from MSSRVS5.atlas.de
-	([fe80:0000:0000:0000:cd6c:87f4:14.12.253.152]) by MSSRVS3.atlas.de
-	([10.200.101.73]) with mapi; Wed, 3 Dec 2014 15:15:22 +0100
-From: <Matthias.Heise@atlas-elektronik.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 3 Dec 2014 15:15:21 +0100
-Thread-Topic: u-boot precompiled ?
-Thread-Index: AdAPAvVJEAyRUeL6Sc+WKuHRrUDnbA==
-Message-ID: <4009F04F5925CD4C95FBD9BE756381FE02848F2A72@MSSRVS5.atlas.de>
-Accept-Language: de-DE
-X-MS-Has-Attach: 
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 677CBE00521
+	for <yocto@yoctoproject.org>; Tue,  2 Dec 2014 21:40:26 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 02 Dec 2014 21:40:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.07,505,1413270000"; 
+	d="2415'?scan'208,217";a="647347828"
+Received: from pgsmsx103.gar.corp.intel.com ([10.221.44.82])
+	by orsmga002.jf.intel.com with ESMTP; 02 Dec 2014 21:40:24 -0800
+Received: from pgsmsx101.gar.corp.intel.com ([169.254.1.232]) by
+	PGSMSX103.gar.corp.intel.com ([169.254.2.83]) with mapi id
+	14.03.0195.001; Wed, 3 Dec 2014 13:40:23 +0800
+From: "Yu, Chan KitX" <chan.kitx.yu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Issue with compiling x264 package in Yocto
+Thread-Index: AdAOuortikp7HXDVS8+z6FnGA1jk7Q==
+Date: Wed, 3 Dec 2014 05:40:22 +0000
+Message-ID: <0E4D391FE2BDEC45AA0B4E32D6BD598A2405A5@PGSMSX101.gar.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-acceptlanguage: de-DE
+x-originating-ip: [172.30.20.206]
 MIME-Version: 1.0
-Subject: u-boot precompiled ?
+X-Mailman-Approved-At: Wed, 03 Dec 2014 11:12:18 -0800
+Cc: "yuchankit@gmail.com" <yuchankit@gmail.com>
+Subject: Issue with compiling x264 package in Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,49 +50,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Dec 2014 14:15:40 -0000
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_4009F04F5925CD4C95FBD9BE756381FE02848F2A72MSSRVS5atlasd_"
+X-List-Received-Date: Wed, 03 Dec 2014 05:40:37 -0000
+X-Groupsio-MsgNum: 22470
+Content-Language: en-US
+Content-Type: multipart/mixed;
+	boundary="_004_0E4D391FE2BDEC45AA0B4E32D6BD598A2405A5PGSMSX101garcorpi_"
 
---_000_4009F04F5925CD4C95FBD9BE756381FE02848F2A72MSSRVS5atlasd_
+--_004_0E4D391FE2BDEC45AA0B4E32D6BD598A2405A5PGSMSX101garcorpi_
+Content-Type: multipart/alternative;
+	boundary="_000_0E4D391FE2BDEC45AA0B4E32D6BD598A2405A5PGSMSX101garcorpi_"
+
+--_000_0E4D391FE2BDEC45AA0B4E32D6BD598A2405A5PGSMSX101garcorpi_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 Hi all,
 
-I'm still trying to find out basic things about getting a system up and run=
-ning. This question is about U-Boot, is it right that for example for my wa=
-ndboard a pre-compiled *.imx is just downloaded ?
-So if I want to make settings to U-Boot I make them directly in the source,=
- compile it and re-direct in a recipe to take that new file as bootloader ?=
- Or can I make the settings within a recipe and I just didn't find the spot=
- ?
-Thanks for your time,
-Regards
-Mat
+I had the following issues with building x264 package in Yocto
 
---_000_4009F04F5925CD4C95FBD9BE756381FE02848F2A72MSSRVS5atlasd_
+ERROR: Fetcher failure: Fetch command failed with exit code 128, output:
+Cloning into bare repository '/home/autoeye/daisy/poky/mybuilds/downloads/g=
+it2/git.videolan.org.x264.git'...
+FATAL: Failed to determine SOCKS server.
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+
+DEBUG: Python function base_do_fetch finished
+DEBUG: Python function do_fetch finished
+ERROR: Function failed: Fetcher failure for URL: 'git://git.videolan.org/x2=
+64.git'. Unable to fetch URL from any source.
+
+Weirdly, git cloning that repository worked marvelously. I'm out of my dept=
+h here so I'm posting here so more minds can dig this. I have also attached=
+ the full log files so those interested can read the whole error log. I thi=
+nk I have set the SOCKS proxy correctly since git clone works for me but I'=
+m open to suggestions.
+
+Cheers,
+Chan Kit
+
+--_000_0E4D391FE2BDEC45AA0B4E32D6BD598A2405A5PGSMSX101garcorpi_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 <html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
 osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
 xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"Content-Type" CONTENT=
-=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
-oft Word 14 (filtered medium)"><style><!--
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
 /* Font Definitions */
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
+	{margin:0in;
 	margin-bottom:.0001pt;
 	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
+	font-family:"Calibri","sans-serif";}
 a:link, span.MsoHyperlink
 	{mso-style-priority:99;
 	color:blue;
@@ -106,17 +122,16 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:purple;
 	text-decoration:underline;}
-span.E-MailFormatvorlage17
+span.EmailStyle17
 	{mso-style-type:personal-compose;
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
+	font-family:"Calibri","sans-serif";}
 @page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
 div.WordSection1
 	{page:WordSection1;}
 --></style><!--[if gte mso 9]><xml>
@@ -124,20 +139,60 @@ div.WordSection1
 </xml><![endif]--><!--[if gte mso 9]><xml>
 <o:shapelayout v:ext=3D"edit">
 <o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DDE link=3Dblue vlink=
-=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span lang=3DEN-US=
->Hi all,<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>=
-&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>I&#8217;m st=
-ill trying to find out basic things about getting a system up and running. =
-This question is about U-Boot, is it right that for example for my wandboar=
-d a pre-compiled *.imx is just downloaded ? <o:p></o:p></span></p><p class=
-=3DMsoNormal><span lang=3DEN-US>So if I want to make settings to U-Boot I m=
-ake them directly in the source, compile it and re-direct in a recipe to ta=
-ke that new file as bootloader ? Or can I make the settings within a recipe=
- and I just didn&#8217;t find the spot ?<o:p></o:p></span></p><p class=3DMs=
-oNormal><span lang=3DEN-US>Thanks for your time,<o:p></o:p></span></p><p cl=
-ass=3DMsoNormal><span lang=3DEN-US>Regards <o:p></o:p></span></p><p class=
-=3DMsoNormal><span lang=3DEN-US>Mat<o:p></o:p></span></p></div></body></htm=
-l>=
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I had the following issues with building x264 packag=
+e in Yocto<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">ERROR: Fetcher failure: Fetch command failed with ex=
+it code 128, output:<o:p></o:p></p>
+<p class=3D"MsoNormal">Cloning into bare repository '/home/autoeye/daisy/po=
+ky/mybuilds/downloads/git2/git.videolan.org.x264.git'...<o:p></o:p></p>
+<p class=3D"MsoNormal">FATAL: Failed to determine SOCKS server.<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal">fatal: Could not read from remote repository.<o:p></=
+o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Please make sure you have the correct access rights<=
+o:p></o:p></p>
+<p class=3D"MsoNormal">and the repository exists.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">DEBUG: Python function base_do_fetch finished<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">DEBUG: Python function do_fetch finished<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal">ERROR: Function failed: Fetcher failure for URL: 'gi=
+t://git.videolan.org/x264.git'. Unable to fetch URL from any source.<o:p></=
+o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Weirdly, git cloning that repository worked marvelou=
+sly. I&#8217;m out of my depth here so I&#8217;m posting here so more minds=
+ can dig this. I have also attached the full log files so those interested =
+can read the whole error log. I think I have set
+ the SOCKS proxy correctly since git clone works for me but I&#8217;m open =
+to suggestions.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Cheers,<o:p></o:p></p>
+<p class=3D"MsoNormal">Chan Kit<o:p></o:p></p>
+</div>
+</body>
+</html>
 
---_000_4009F04F5925CD4C95FBD9BE756381FE02848F2A72MSSRVS5atlasd_--
+--_000_0E4D391FE2BDEC45AA0B4E32D6BD598A2405A5PGSMSX101garcorpi_--
+
+--_004_0E4D391FE2BDEC45AA0B4E32D6BD598A2405A5PGSMSX101garcorpi_
+Content-Type: application/octet-stream; name="run.do_fetch.2415"
+Content-Description: run.do_fetch.2415
+Content-Disposition: attachment; filename="run.do_fetch.2415"; size=75;
+	creation-date="Wed, 03 Dec 2014 05:38:55 GMT";
+	modification-date="Wed, 03 Dec 2014 13:11:59 GMT"
+Content-Transfer-Encoding: base64
+
+CmRlZiBkb19mZXRjaChkKToKICAgIGJiLmJ1aWxkLmV4ZWNfZnVuYygnYmFzZV9kb19mZXRjaCcs
+IGQpCgoKZG9fZmV0Y2goZCkK
+
+--_004_0E4D391FE2BDEC45AA0B4E32D6BD598A2405A5PGSMSX101garcorpi_--
