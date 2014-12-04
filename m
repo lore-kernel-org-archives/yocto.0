@@ -1,45 +1,44 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <chan.kitx.yu@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 84BF0E0080C; Wed,  3 Dec 2014 15:17:42 -0800 (PST)
+	id AF5DDE00521; Wed,  3 Dec 2014 17:45:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.172 listed in list.dnswl.org]
-Received: from mail-qc0-f172.google.com (mail-qc0-f172.google.com
-	[209.85.216.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 434FAE002F9
-	for <yocto@yoctoproject.org>; Wed,  3 Dec 2014 15:17:38 -0800 (PST)
-Received: by mail-qc0-f172.google.com with SMTP id m20so12034124qcx.31
-	for <yocto@yoctoproject.org>; Wed, 03 Dec 2014 15:17:38 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=/OAdaUz3NKe/JS5UxG4AZAV0pN9Sq24yE5X9M4V7V3Q=;
-	b=V/gCw1iXaDviMovGEACxm6i8BHMr1d+u8X3wwz5Zqaaosgp2UqxHT5Nj9X6GtQ8PAo
-	pUQzuSusoWxAdt+dwCx/KibR2IAPsYVaZlqHt7bU768zY3NNWjd52LdiGLPXJBv+QQiS
-	eqUXdgAS1gVs8T/KHf349Ewt5azUxmuGMWcs2ptqi4QolXEaX+41zYRup0GJa8oVfSjN
-	hZAJ+qOwKYkOLSVY84R4p2t2/L6+XOKMM+wR6o7IHqk0XIxtoz+j4yWDQZxaJ3HMh0JU
-	eoZkvWsOWJ+zCg/wXjXTmQpfC3ubz+3VhHAR5SOFSeAD/uMWcd9oaVVaKtYcRIjoJeT6
-	g8yw==
-X-Gm-Message-State: ALoCoQlGRyDNa1vSkqd2aiYoOiFdAEroZ8ow6hYGFLpmNHNF4pP+nBNIfGuhLH1mwR3sxIsXLcD0
-X-Received: by 10.224.60.74 with SMTP id o10mr5099712qah.22.1417648657994;
-	Wed, 03 Dec 2014 15:17:37 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.140.48.231 with HTTP; Wed, 3 Dec 2014 15:17:17 -0800 (PST)
-In-Reply-To: <0E4D391FE2BDEC45AA0B4E32D6BD598A2405A5@PGSMSX101.gar.corp.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65881E002F9
+	for <yocto@yoctoproject.org>; Wed,  3 Dec 2014 17:45:47 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 03 Dec 2014 17:45:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.07,511,1413270000"; 
+	d="scan'208,217";a="618295482"
+Received: from pgsmsx104.gar.corp.intel.com ([10.221.44.91])
+	by orsmga001.jf.intel.com with ESMTP; 03 Dec 2014 17:45:45 -0800
+Received: from pgsmsx101.gar.corp.intel.com ([169.254.1.232]) by
+	PGSMSX104.gar.corp.intel.com ([169.254.3.105]) with mapi id
+	14.03.0195.001; Thu, 4 Dec 2014 09:45:35 +0800
+From: "Yu, Chan KitX" <chan.kitx.yu@intel.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] Issue with compiling x264 package in Yocto
+Thread-Index: AdAOuortikp7HXDVS8+z6FnGA1jk7QAUa5uAABXwUZA=
+Date: Thu, 4 Dec 2014 01:45:34 +0000
+Message-ID: <0E4D391FE2BDEC45AA0B4E32D6BD598A240641@PGSMSX101.gar.corp.intel.com>
 References: <0E4D391FE2BDEC45AA0B4E32D6BD598A2405A5@PGSMSX101.gar.corp.intel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 3 Dec 2014 23:17:17 +0000
-Message-ID: <CAJTo0LYkDFDAuiomQxvUcKfQVvgWe8YdHtpUsjzM7Aqg5VoSEw@mail.gmail.com>
-To: "Yu, Chan KitX" <chan.kitx.yu@intel.com>
+	<CAJTo0LYkDFDAuiomQxvUcKfQVvgWe8YdHtpUsjzM7Aqg5VoSEw@mail.gmail.com>
+In-Reply-To: <CAJTo0LYkDFDAuiomQxvUcKfQVvgWe8YdHtpUsjzM7Aqg5VoSEw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.30.20.206]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	"yuchankit@gmail.com" <yuchankit@gmail.com>
 Subject: Re: Issue with compiling x264 package in Yocto
@@ -54,50 +53,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Dec 2014 23:17:42 -0000
-Content-Type: multipart/alternative; boundary=001a11c3f53ead49f40509580c77
+X-List-Received-Date: Thu, 04 Dec 2014 01:45:53 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_0E4D391FE2BDEC45AA0B4E32D6BD598A240641PGSMSX101garcorpi_"
 
---001a11c3f53ead49f40509580c77
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--_000_0E4D391FE2BDEC45AA0B4E32D6BD598A240641PGSMSX101garcorpi_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 3 December 2014 at 05:40, Yu, Chan KitX <chan.kitx.yu@intel.com> wrote:
+VW5mb3J0dW5hdGVseSwgdGhhdCBkb2VzbuKAmXQgd29yay4gSSBhbHNvIGFkZGVkIHBva3kvc2Ny
+aXB0cy8gaW50byBQQVRIIHNvIG9lLWdpdC1wcm94eSBpcyB3aXRoaW4gUEFUSCBidXQgbm8gZ29v
+ZC4gU28gSeKAmW0gc3R1Y2sgaGVyZSBub3cgZ2V0dGluZyB4MjY0IHRvIGdpdCBjbG9uZSDimLkN
+Cg0KSSBhbHNvIGFkZGVkIEdJVF9QUk9YWV9DT01NQU5EIHRvIG9lLWdpdC1wcm94eSBidXQgbm8g
+bHVjay4NCg0KQ2hhbiBLaXQNCg0KDQpGcm9tOiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1
+cnRvbkBpbnRlbC5jb21dDQpTZW50OiBUaHVyc2RheSwgRGVjZW1iZXIgMDQsIDIwMTQgNzoxNyBB
+TQ0KVG86IFl1LCBDaGFuIEtpdFgNCkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnOyB5dWNoYW5r
+aXRAZ21haWwuY29tDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBJc3N1ZSB3aXRoIGNvbXBpbGluZyB4
+MjY0IHBhY2thZ2UgaW4gWW9jdG8NCg0KDQpPbiAzIERlY2VtYmVyIDIwMTQgYXQgMDU6NDAsIFl1
+LCBDaGFuIEtpdFggPGNoYW4ua2l0eC55dUBpbnRlbC5jb208bWFpbHRvOmNoYW4ua2l0eC55dUBp
+bnRlbC5jb20+PiB3cm90ZToNCldlaXJkbHksIGdpdCBjbG9uaW5nIHRoYXQgcmVwb3NpdG9yeSB3
+b3JrZWQgbWFydmVsb3VzbHkuIEnigJltIG91dCBvZiBteSBkZXB0aCBoZXJlIHNvIEnigJltIHBv
+c3RpbmcgaGVyZSBzbyBtb3JlIG1pbmRzIGNhbiBkaWcgdGhpcy4gSSBoYXZlIGFsc28gYXR0YWNo
+ZWQgdGhlIGZ1bGwgbG9nIGZpbGVzIHNvIHRob3NlIGludGVyZXN0ZWQgY2FuIHJlYWQgdGhlIHdo
+b2xlIGVycm9yIGxvZy4gSSB0aGluayBJIGhhdmUgc2V0IHRoZSBTT0NLUyBwcm94eSBjb3JyZWN0
+bHkgc2luY2UgZ2l0IGNsb25lIHdvcmtzIGZvciBtZSBidXQgSeKAmW0gb3BlbiB0byBzdWdnZXN0
+aW9ucy4NCg0KYml0YmFrZSBjbGVhcnMgdGhlIGVudmlyb25tZW50IHdoZW4gc3RhcnRpbmcgc28g
+aXRzIHBvc3NpYmxlIHRoYXQgeW91ciBwcm94eSBzZXR0aW5ncyBhcmUgYmVpbmcgbG9zdC4gIEkg
+YmVsaWV2ZSBzZXR0aW5nIGVnIEFMTF9QUk9YWT0ic29ja3M6Ly9teS5wcm94eS8iIGluIHlvdXIg
+bG9jYWwuY29uZiBzaG91bGQgd29yay4NCg0KUm9zcw0K
 
-> Weirdly, git cloning that repository worked marvelously. I=E2=80=99m out =
-of my
-> depth here so I=E2=80=99m posting here so more minds can dig this. I have=
- also
-> attached the full log files so those interested can read the whole error
-> log. I think I have set the SOCKS proxy correctly since git clone works f=
-or
-> me but I=E2=80=99m open to suggestions.
->
->
-bitbake clears the environment when starting so its possible that your
-proxy settings are being lost.  I believe setting eg
-ALL_PROXY=3D"socks://my.proxy/" in your local.conf should work.
+--_000_0E4D391FE2BDEC45AA0B4E32D6BD598A240641PGSMSX101garcorpi_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Ross
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
+CXtmb250LWZhbWlseTpXaW5nZGluZ3M7DQoJcGFub3NlLTE6NSAwIDAgMCAwIDAgMCAwIDAgMDt9
+DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIg
+MiAyIDQgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJcGFub3Nl
+LTE6MiAxMSA2IDQgMyA1IDQgNCAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNv
+Tm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJn
+aW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGlt
+ZXMgTmV3IFJvbWFuIiwic2VyaWYiO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNv
+LXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVy
+bGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxl
+LXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5l
+O30NCnNwYW4uRW1haWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0K
+CWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQou
+TXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWls
+eToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjgu
+NWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRT
+ZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1z
+byA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIg
+Lz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVs
+YXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8
+L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJF
+Ti1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlv
+bjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
+Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2Nv
+bG9yOiMxRjQ5N0QiPlVuZm9ydHVuYXRlbHksIHRoYXQgZG9lc27igJl0IHdvcmsuIEkgYWxzbyBh
+ZGRlZCBwb2t5L3NjcmlwdHMvIGludG8gUEFUSCBzbyBvZS1naXQtcHJveHkgaXMgd2l0aGluIFBB
+VEggYnV0IG5vIGdvb2QuIFNvIEnigJltIHN0dWNrIGhlcmUgbm93IGdldHRpbmcgeDI2NCB0byBn
+aXQNCiBjbG9uZSA8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
+bHk6V2luZ2RpbmdzO2NvbG9yOiMxRjQ5N0QiPkw8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlm
+JnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1
+b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5JIGFsc28gYWRkZWQgR0lUX1BST1hZ
+X0NPTU1BTkQgdG8gb2UtZ2l0LXByb3h5IGJ1dCBubyBsdWNrLjxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xv
+cjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
+YnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+Q2hhbiBLaXQ8
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
+bnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
+dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9y
+OiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1Rh
+aG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZx
+dW90O3NhbnMtc2VyaWYmcXVvdDsiPiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBp
+bnRlbC5jb21dDQo8YnI+DQo8Yj5TZW50OjwvYj4gVGh1cnNkYXksIERlY2VtYmVyIDA0LCAyMDE0
+IDc6MTcgQU08YnI+DQo8Yj5Ubzo8L2I+IFl1LCBDaGFuIEtpdFg8YnI+DQo8Yj5DYzo8L2I+IHlv
+Y3RvQHlvY3RvcHJvamVjdC5vcmc7IHl1Y2hhbmtpdEBnbWFpbC5jb208YnI+DQo8Yj5TdWJqZWN0
+OjwvYj4gUmU6IFt5b2N0b10gSXNzdWUgd2l0aCBjb21waWxpbmcgeDI2NCBwYWNrYWdlIGluIFlv
+Y3RvPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
+cDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIDMgRGVjZW1iZXIg
+MjAxNCBhdCAwNTo0MCwgWXUsIENoYW4gS2l0WCAmbHQ7PGEgaHJlZj0ibWFpbHRvOmNoYW4ua2l0
+eC55dUBpbnRlbC5jb20iIHRhcmdldD0iX2JsYW5rIj5jaGFuLmtpdHgueXVAaW50ZWwuY29tPC9h
+PiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0i
+bXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPldlaXJk
+bHksIGdpdCBjbG9uaW5nIHRoYXQgcmVwb3NpdG9yeSB3b3JrZWQgbWFydmVsb3VzbHkuIEnigJlt
+IG91dCBvZiBteSBkZXB0aCBoZXJlIHNvIEnigJltIHBvc3RpbmcgaGVyZSBzbyBtb3JlIG1pbmRz
+IGNhbiBkaWcgdGhpcy4gSSBoYXZlIGFsc28gYXR0YWNoZWQgdGhlIGZ1bGwgbG9nIGZpbGVzIHNv
+IHRob3NlDQogaW50ZXJlc3RlZCBjYW4gcmVhZCB0aGUgd2hvbGUgZXJyb3IgbG9nLiBJIHRoaW5r
+IEkgaGF2ZSBzZXQgdGhlIFNPQ0tTIHByb3h5IGNvcnJlY3RseSBzaW5jZSBnaXQgY2xvbmUgd29y
+a3MgZm9yIG1lIGJ1dCBJ4oCZbSBvcGVuIHRvIHN1Z2dlc3Rpb25zLjxvOnA+PC9vOnA+PC9wPg0K
+PC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48YnI+DQpiaXRiYWtlIGNsZWFycyB0aGUgZW52
+aXJvbm1lbnQgd2hlbiBzdGFydGluZyBzbyBpdHMgcG9zc2libGUgdGhhdCB5b3VyIHByb3h5IHNl
+dHRpbmdzIGFyZSBiZWluZyBsb3N0LiZuYnNwOyBJIGJlbGlldmUgc2V0dGluZyBlZyBBTExfUFJP
+WFk9JnF1b3Q7c29ja3M6Ly9teS5wcm94eS8mcXVvdDsgaW4geW91ciBsb2NhbC5jb25mIHNob3Vs
+ZCB3b3JrLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj5Sb3NzPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+
+DQo8L2h0bWw+DQo=
 
---001a11c3f53ead49f40509580c77
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 3 December 2014 at 05:40, Yu, Chan KitX <span dir=3D"ltr">&lt;<a href=3D=
-"mailto:chan.kitx.yu@intel.com" target=3D"_blank">chan.kitx.yu@intel.com</a=
->&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 =
-0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNormal=
-">Weirdly, git cloning that repository worked marvelously. I=E2=80=99m out =
-of my depth here so I=E2=80=99m posting here so more minds can dig this. I =
-have also attached the full log files so those interested can read the whol=
-e error log. I think I have set
- the SOCKS proxy correctly since git clone works for me but I=E2=80=99m ope=
-n to suggestions.<u></u><u></u></p>
-<p class=3D"MsoNormal"></p></blockquote></div><br>bitbake clears the enviro=
-nment when starting so its possible that your proxy settings are being lost=
-.=C2=A0 I believe setting eg ALL_PROXY=3D&quot;socks://my.proxy/&quot; in y=
-our local.conf should work.</div><div class=3D"gmail_extra"><br></div><div =
-class=3D"gmail_extra">Ross</div></div>
-
---001a11c3f53ead49f40509580c77--
+--_000_0E4D391FE2BDEC45AA0B4E32D6BD598A240641PGSMSX101garcorpi_--
