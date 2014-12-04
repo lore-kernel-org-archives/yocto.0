@@ -1,49 +1,49 @@
-Return-Path: <mohd.azril.ahmad@gmail.com>
+Return-Path: <boon.leong.ong@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 812BFE00521; Wed,  3 Dec 2014 23:50:01 -0800 (PST)
+	id 9D6ACE00521; Thu,  4 Dec 2014 01:16:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mohd.azril.ahmad[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.42 listed in list.dnswl.org]
-Received: from mail-qa0-f42.google.com (mail-qa0-f42.google.com
-	[209.85.216.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E15D2E002F9
-	for <yocto@yoctoproject.org>; Wed,  3 Dec 2014 23:49:57 -0800 (PST)
-Received: by mail-qa0-f42.google.com with SMTP id j7so11729658qaq.29
-	for <yocto@yoctoproject.org>; Wed, 03 Dec 2014 23:49:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=jqi8hyI46PvKuMBMTD1rd6oFUi5C2Aspc6waZtQW3uY=;
-	b=x7kdUrLGk2IuksgCJZSSSjzro+O4YTtrmKUJE2HM4LVn0JKTD7BSxYNOCvwnU/M+kW
-	nAYSnkLi/3EihtkLVuzPIwdpAyAcw4oEen6Y91j3MWY7jnA7kHL3PyxAa2PsBrpeCS3Z
-	sgkBIYarHph4MoZoHcNGTOLB9GHTLxfKMlphvP3f7w/ewlPhPHW8x4FMPovnhlzWng7T
-	jv5YySCwJX7YyiFLwNNrtwJIn8+NA/Ev2eUK4GPgi+EspQdGqPVaO9abpVZSJ23an3aH
-	WiTiN56Fj4lcFTtpWCv8SRX23zNgE81ZC4xpir8aDb8vkNDG3UH2w5dELOQT/yBqDzEL
-	WLIA==
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7ECEE002F9;
+	Thu,  4 Dec 2014 01:16:45 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 04 Dec 2014 01:15:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.07,514,1413270000"; 
+	d="scan'208,217";a="648120867"
+Received: from pgsmsx104.gar.corp.intel.com ([10.221.44.91])
+	by orsmga002.jf.intel.com with ESMTP; 04 Dec 2014 01:16:44 -0800
+Received: from pgsmsx105.gar.corp.intel.com ([169.254.4.174]) by
+	PGSMSX104.gar.corp.intel.com ([169.254.3.33]) with mapi id
+	14.03.0195.001; Thu, 4 Dec 2014 17:16:43 +0800
+From: "Ong, Boon Leong" <boon.leong.ong@intel.com>
+To: Mohd Azril Ahmad <mohd.azril.ahmad@gmail.com>
+Thread-Topic: [yocto] GStreamer1.0 : gstreamer1.0-plugins-* doesn't extract
+	the codec libraries into GStreamer library path
+Thread-Index: AQHQD5coBh4E2O90vUm2jfXNv/k33Zx/Jniw
+Date: Thu, 4 Dec 2014 09:16:42 +0000
+Message-ID: <AF233D1473C1364ABD51D28909A1B1B73269627C@pgsmsx105.gar.corp.intel.com>
+References: <CAJzb4Mg+WTSa=baqRsZxU2jWX3K94TT=10Gfi-f-DBwEJ5p0OQ@mail.gmail.com>
+In-Reply-To: <CAJzb4Mg+WTSa=baqRsZxU2jWX3K94TT=10Gfi-f-DBwEJ5p0OQ@mail.gmail.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.30.20.206]
 MIME-Version: 1.0
-X-Received: by 10.224.37.133 with SMTP id x5mr14790128qad.58.1417679396528;
-	Wed, 03 Dec 2014 23:49:56 -0800 (PST)
-Received: by 10.140.109.118 with HTTP; Wed, 3 Dec 2014 23:49:56 -0800 (PST)
-Date: Thu, 4 Dec 2014 15:49:56 +0800
-Message-ID: <CAJzb4Mg+WTSa=baqRsZxU2jWX3K94TT=10Gfi-f-DBwEJ5p0OQ@mail.gmail.com>
-From: Mohd Azril Ahmad <mohd.azril.ahmad@gmail.com>
-To: yocto@yoctoproject.org
-Subject: GStreamer1.0 : gstreamer1.0-plugins-* doesn't extract the codec libraries into GStreamer library path
+Cc: "meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Chang, Rebecca
+	Swee Fun" <rebecca.swee.fun.chang@intel.com>, "Anuar,
+	Nuhairi" <nuhairi.anuar@intel.com>
+Subject: Re: GStreamer1.0 : gstreamer1.0-plugins-* doesn't extract the codec libraries into GStreamer library path
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,62 +55,148 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Dec 2014 07:50:01 -0000
-Content-Type: multipart/alternative; boundary=001a11c1f4bad5e78405095f34ae
+X-List-Received-Date: Thu, 04 Dec 2014 09:16:48 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_AF233D1473C1364ABD51D28909A1B1B73269627Cpgsmsx105garcor_"
 
---001a11c1f4bad5e78405095f34ae
-Content-Type: text/plain; charset=UTF-8
+--_000_AF233D1473C1364ABD51D28909A1B1B73269627Cpgsmsx105garcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi all,
+SGkgQXpyaWwsDQogICAgICAgICAgICAgICAgVGhhbmsgeW91IGZvciB5b3VyICBxdWVzdGlvbi4g
+Rm9yIG1ldGEtaW50ZWwgcmVsYXRlZCBxdWVzdGlvbiwgeW91IHNob3VsZCBjaGFubmVsIHRoZW0g
+dG8gbWV0YS1pbnRlbCBNL0wuDQogICAgICAgICAgICAgICAgU2luY2UgSSBjYXRjaCBpdCBoZXJl
+LCBJIGhhdmUganVzdCBhZGRlZCBpdCBvbiB5b3VyIGJlaGFsZi4NCiAgICAgICAgICAgICAgICBU
+aGFua3MNCg0KQkwNCg0KRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWls
+dG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgTW9oZCBBenJp
+bCBBaG1hZA0KU2VudDogVGh1cnNkYXksIERlY2VtYmVyIDQsIDIwMTQgMzo1MCBQTQ0KVG86IHlv
+Y3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFt5b2N0b10gR1N0cmVhbWVyMS4wIDogZ3N0
+cmVhbWVyMS4wLXBsdWdpbnMtKiBkb2Vzbid0IGV4dHJhY3QgdGhlIGNvZGVjIGxpYnJhcmllcyBp
+bnRvIEdTdHJlYW1lciBsaWJyYXJ5IHBhdGgNCg0KSGkgYWxsLA0KSSBoYXZlIHN1Y2Nlc3NmdWxs
+eSBidWlsdCB0aGUgWW9jdG8gd2l0aCBtdWx0aWxpYiBlbnZpcm9ubWVudCBieSB1c2luZyB0aGUg
+bWV0YS1pbnRlbCBCU1AgKFZhbGxleUlzbGFuZCkuIFBsdXMsIEknbSBpbmNsdWRpbmcgdGhlIEdT
+dHJlYW1lcjEuMCBiYXNlICsgVkFBUEkgYXMgbXkgZGVmYXVsdCB2aWRlbyBwbGF5ZXIuDQpEdXJp
+bmcgdGhlIGJvb3QtdXAgdGltZSwgSSd2ZSBub3RpY2VkIHRoYXQgdGhlIEdTdHJlYW1lcjEuMC1w
+bHVnaW4gbGlicmFyaWVzIChnb29kLCBiYWQsIGFuZCB1Z2x5KSBhcmUgbm90IGV4dHJhY3RlZCBp
+bnRvIHRoZSBHU1QgbGlicmFyeSBwYXRoICgvdXNyL2xpYjY0L2dzdHJlYW1lci0xLjAvKS4NCioq
+T24gZmlyc3QsIEkgd2FzIGxvb2tpbmcgZm9yICJsaWJnc3Rpc29tcDQuc28iICh0byBwbGF5IHZp
+ZGVvIHdpdGggcXRkZW11eCBwaXBlbGluZSkgYnV0IGdzdC1pbnNwZWN0LTEuMCByZXR1cm5zIG5v
+dGhpbmcuDQpBZnRlciBzb21lIGludmVzdGlnYXRpb25zLCBJJ3ZlIG9ic2VydmVkIHRoYXQgdGhl
+IGJpdGJha2UgKC5iYikgYW5kIGluY2x1ZGUgKC5pbmMpIHJlY2lwZSBmb3IgZ3N0cmVhbWVyMS4w
+LXBsdWdpbnMtPGdvb2QvYmFkL3VnbHk+IGRvZXMgbm90IHBhY2thZ2Ugb3V0IHRoZSAqLnNvIGZp
+bGVzIGFuZCBJIGhhdmUgbm8gY2hvaWNlIGJ1dCB0byBmb3JjZSBhIC5iYmFwcGVuZCB0byBpbnN0
+YWxsIGZvciBpdCBieSBhZGRpbmcgOg0KDQpGSUxFU18ke1BOfSArPSAiJHtsaWJkaXJ9L2dzdHJl
+YW1lci0xLjAvKi5zbyINCk15IHF1ZXN0aW9uIGhlcmUsIHdoeSB0aGUgcGx1Z2luIGxpYnJhcmll
+cyBhcmUgbm90IGV4dHJhY3RlZCA/IGlzIGl0IGR1ZSB0byBtdWx0aWxpYiBlbnZpcm9ubWVudCA/
+IG9yIG1pc3NpbmcgcGFja2FnaW5nIHN0ZXBzIGluIGRlZmF1bHQgcmVjaXBlID8NClBsZWFzZSBh
+ZHZpc2UgLi4NCg0KVGhhbmtzLg0KDQpSZWdhcmRzLA0KQXpyaWwNCg0KDQo=
 
-I have successfully built the Yocto with multilib environment by using the
-meta-intel BSP (ValleyIsland). Plus, I'm including the GStreamer1.0 base +
-VAAPI as my default video player.
+--_000_AF233D1473C1364ABD51D28909A1B1B73269627Cpgsmsx105garcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-During the boot-up time, I've noticed that the GStreamer1.0-plugin
-libraries (good, bad, and ugly) are not extracted into the GST library path
-(/usr/lib64/gstreamer-1.0/).
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
+DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
+b2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBz
+cGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
+cjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxl
+MTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGli
+cmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28t
+c3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJp
+Zjt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEu
+MGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2Vj
+dGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVm
+YXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48
+IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxv
+OmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwh
+W2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZs
+aW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
+YWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+SGkgQXpyaWwsDQo8bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
+b3I6IzFGNDk3RCI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
+c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IFRoYW5rIHlvdSBm
+b3IgeW91ciAmbmJzcDtxdWVzdGlvbi4gRm9yIG1ldGEtaW50ZWwgcmVsYXRlZCBxdWVzdGlvbiwg
+eW91IHNob3VsZCBjaGFubmVsIHRoZW0gdG8gbWV0YS1pbnRlbCBNL0wuPG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5
+N0QiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBTaW5jZSBJIGNhdGNoIGl0IGhl
+cmUsIEkgaGF2ZSBqdXN0IGFkZGVkIGl0IG9uIHlvdXIgYmVoYWxmLjxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdE
+Ij4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
+bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgVGhhbmtzPG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5
+N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
+dDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5CTDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
+cmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvYT48L3A+DQo8ZGl2
+IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCBibHVlIDEuNXB0O3BhZGRpbmc6
+MGluIDBpbiAwaW4gNC4wcHQiPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRl
+ci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJvbTo8L3NwYW4+PC9iPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
+dDssc2Fucy1zZXJpZiI+IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlv
+Y3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10NCjxiPk9uIEJlaGFsZiBPZiA8L2I+TW9oZCBB
+enJpbCBBaG1hZDxicj4NCjxiPlNlbnQ6PC9iPiBUaHVyc2RheSwgRGVjZW1iZXIgNCwgMjAxNCAz
+OjUwIFBNPGJyPg0KPGI+VG86PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3Vi
+amVjdDo8L2I+IFt5b2N0b10gR1N0cmVhbWVyMS4wIDogZ3N0cmVhbWVyMS4wLXBsdWdpbnMtKiBk
+b2Vzbid0IGV4dHJhY3QgdGhlIGNvZGVjIGxpYnJhcmllcyBpbnRvIEdTdHJlYW1lciBsaWJyYXJ5
+IHBhdGg8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPkhpIGFsbCw8bzpw
+PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1i
+b3R0b206MTIuMHB0Ij5JIGhhdmUgc3VjY2Vzc2Z1bGx5IGJ1aWx0IHRoZSBZb2N0byB3aXRoIG11
+bHRpbGliIGVudmlyb25tZW50IGJ5IHVzaW5nIHRoZSBtZXRhLWludGVsIEJTUCAoVmFsbGV5SXNs
+YW5kKS4gUGx1cywgSSdtIGluY2x1ZGluZyB0aGUgR1N0cmVhbWVyMS4wIGJhc2UgJiM0MzsgVkFB
+UEkgYXMgbXkgZGVmYXVsdCB2aWRlbyBwbGF5ZXIuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxk
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPkR1
+cmluZyB0aGUgYm9vdC11cCB0aW1lLCBJJ3ZlIG5vdGljZWQgdGhhdCB0aGUgR1N0cmVhbWVyMS4w
+LXBsdWdpbiBsaWJyYXJpZXMgKGdvb2QsIGJhZCwgYW5kIHVnbHkpIGFyZSBub3QgZXh0cmFjdGVk
+IGludG8gdGhlIEdTVCBsaWJyYXJ5IHBhdGggKC91c3IvbGliNjQvZ3N0cmVhbWVyLTEuMC8pLjxv
+OnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
+Im1hcmdpbi1ib3R0b206MTIuMHB0Ij4qKk9uIGZpcnN0LCBJIHdhcyBsb29raW5nIGZvciAmcXVv
+dDtsaWJnc3Rpc29tcDQuc28mcXVvdDsgKHRvIHBsYXkgdmlkZW8gd2l0aCBxdGRlbXV4IHBpcGVs
+aW5lKSBidXQgZ3N0LWluc3BlY3QtMS4wIHJldHVybnMgbm90aGluZy48bzpwPjwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9t
+OjEyLjBwdCI+QWZ0ZXIgc29tZSBpbnZlc3RpZ2F0aW9ucywgSSd2ZSBvYnNlcnZlZCB0aGF0IHRo
+ZSBiaXRiYWtlICguYmIpIGFuZCBpbmNsdWRlICguaW5jKSByZWNpcGUgZm9yIGdzdHJlYW1lcjEu
+MC1wbHVnaW5zLSZsdDtnb29kL2JhZC91Z2x5Jmd0OyBkb2VzIG5vdCBwYWNrYWdlIG91dCB0aGUg
+Ki5zbyBmaWxlcyBhbmQgSSBoYXZlIG5vIGNob2ljZSBidXQgdG8gZm9yY2UgYSAuYmJhcHBlbmQN
+CiB0byBpbnN0YWxsIGZvciBpdCBieSBhZGRpbmcgOjxicj4NCjxicj4NCkZJTEVTXyR7UE59ICYj
+NDM7PSAmcXVvdDske2xpYmRpcn0vZ3N0cmVhbWVyLTEuMC8qLnNvJnF1b3Q7PG86cD48L286cD48
+L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJv
+dHRvbToxMi4wcHQiPk15IHF1ZXN0aW9uIGhlcmUsIHdoeSB0aGUgcGx1Z2luIGxpYnJhcmllcyBh
+cmUgbm90IGV4dHJhY3RlZCA/IGlzIGl0IGR1ZSB0byBtdWx0aWxpYiBlbnZpcm9ubWVudCA/IG9y
+IG1pc3NpbmcgcGFja2FnaW5nIHN0ZXBzIGluIGRlZmF1bHQgcmVjaXBlID88bzpwPjwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlBsZWFzZSBhZHZpc2UgLi48
+bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhh
+bmtzLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij5SZWdhcmRzLDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+QXpyaWw8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-**On first, I was looking for "libgstisomp4.so" (to play video with qtdemux
-pipeline) but gst-inspect-1.0 returns nothing.
-
-After some investigations, I've observed that the bitbake (.bb) and include
-(.inc) recipe for gstreamer1.0-plugins-<good/bad/ugly> does not package out
-the *.so files and I have no choice but to force a .bbappend to install for
-it by adding :
-
-FILES_${PN} += "${libdir}/gstreamer-1.0/*.so"
-
-My question here, why the plugin libraries are not extracted ? is it due to
-multilib environment ? or missing packaging steps in default recipe ?
-
-Please advise ..
-
-Thanks.
-
-Regards,
-Azril
-
---001a11c1f4bad5e78405095f34ae
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div>Hi all,<br><br></div>I have successfully built t=
-he Yocto with multilib environment by using the meta-intel BSP (ValleyIslan=
-d). Plus, I&#39;m including the GStreamer1.0 base + VAAPI as my default vid=
-eo player.<br><br></div><div>During the boot-up time, I&#39;ve noticed that=
- the GStreamer1.0-plugin libraries (good, bad, and ugly) are not extracted =
-into the GST library path (/usr/lib64/gstreamer-1.0/).<br><br></div><div>**=
-On first, I was looking for &quot;libgstisomp4.so&quot; (to play video with=
- qtdemux pipeline) but gst-inspect-1.0 returns nothing.<br><br></div><div>A=
-fter some investigations, I&#39;ve observed that the bitbake (.bb) and incl=
-ude (.inc) recipe for gstreamer1.0-plugins-&lt;good/bad/ugly&gt; does not p=
-ackage out the *.so files and I have no choice but to force a .bbappend to =
-install for it by adding :<br><br>FILES_${PN} +=3D &quot;${libdir}/gstreame=
-r-1.0/*.so&quot;<br><br></div><div>My question here, why the plugin librari=
-es are not extracted ? is it due to multilib environment ? or missing packa=
-ging steps in default recipe ?<br><br></div><div>Please advise ..<br></div>=
-<div><br></div><div>Thanks.<br></div><div><br></div><div>Regards,<br></div>=
-<div>Azril<br></div><div><br></div><div><br><br></div></div>
-
---001a11c1f4bad5e78405095f34ae--
+--_000_AF233D1473C1364ABD51D28909A1B1B73269627Cpgsmsx105garcor_--
