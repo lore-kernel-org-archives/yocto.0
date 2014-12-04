@@ -1,49 +1,51 @@
-Return-Path: <boon.leong.ong@intel.com>
+Return-Path: <Matthias.Heise@atlas-elektronik.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9D6ACE00521; Thu,  4 Dec 2014 01:16:48 -0800 (PST)
+	id 23954E00521; Thu,  4 Dec 2014 01:49:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [194.156.172.86 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7ECEE002F9;
-	Thu,  4 Dec 2014 01:16:45 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 04 Dec 2014 01:15:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,514,1413270000"; 
-	d="scan'208,217";a="648120867"
-Received: from pgsmsx104.gar.corp.intel.com ([10.221.44.91])
-	by orsmga002.jf.intel.com with ESMTP; 04 Dec 2014 01:16:44 -0800
-Received: from pgsmsx105.gar.corp.intel.com ([169.254.4.174]) by
-	PGSMSX104.gar.corp.intel.com ([169.254.3.33]) with mapi id
-	14.03.0195.001; Thu, 4 Dec 2014 17:16:43 +0800
-From: "Ong, Boon Leong" <boon.leong.ong@intel.com>
-To: Mohd Azril Ahmad <mohd.azril.ahmad@gmail.com>
-Thread-Topic: [yocto] GStreamer1.0 : gstreamer1.0-plugins-* doesn't extract
-	the codec libraries into GStreamer library path
-Thread-Index: AQHQD5coBh4E2O90vUm2jfXNv/k33Zx/Jniw
-Date: Thu, 4 Dec 2014 09:16:42 +0000
-Message-ID: <AF233D1473C1364ABD51D28909A1B1B73269627C@pgsmsx105.gar.corp.intel.com>
-References: <CAJzb4Mg+WTSa=baqRsZxU2jWX3K94TT=10Gfi-f-DBwEJ5p0OQ@mail.gmail.com>
-In-Reply-To: <CAJzb4Mg+WTSa=baqRsZxU2jWX3K94TT=10Gfi-f-DBwEJ5p0OQ@mail.gmail.com>
-Accept-Language: en-GB, en-US
+Received: from mail96.atlas.de (mail96.atlas.de [194.156.172.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 540D4E002F9
+	for <yocto@yoctoproject.org>; Thu,  4 Dec 2014 01:49:25 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail96.atlas.de (Postfix) with ESMTP id 667F51015A
+	for <yocto@yoctoproject.org>; Thu,  4 Dec 2014 10:49:24 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mail96.atlas.de
+Received: from mail96.atlas.de ([127.0.0.1])
+	by localhost (mail96.atlas.de [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id eSK1BQT4fYOc for <yocto@yoctoproject.org>;
+	Thu,  4 Dec 2014 10:49:13 +0100 (CET)
+Received: from mgsrv01.atlas.de (mail01.atlas.mailrelays.atlas.de
+	[10.200.101.16]) by mail96.atlas.de (Postfix) with ESMTP
+	for <yocto@yoctoproject.org>; Thu,  4 Dec 2014 10:49:13 +0100 (CET)
+Received: from MSSRVS1.atlas.de (mssrvs1.atlas.de [10.200.101.71])
+	by mgsrv01.atlas.de (Postfix) with ESMTP id 5444D2716A
+	for <yocto@yoctoproject.org>; Thu,  4 Dec 2014 10:49:13 +0100 (CET)
+Received: from MSSRVS5.atlas.de
+	([fe80:0000:0000:0000:cd6c:87f4:14.12.253.152]) by MSSRVS1.atlas.de
+	([10.200.101.71]) with mapi; Thu, 4 Dec 2014 10:49:13 +0100
+From: <Matthias.Heise@atlas-elektronik.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 4 Dec 2014 10:49:12 +0100
+Thread-Topic: u-boot precompiled ?
+Thread-Index: AdAPAvVJEAyRUeL6Sc+WKuHRrUDnbAApAe9Q
+Message-ID: <4009F04F5925CD4C95FBD9BE756381FE02848F2A73@MSSRVS5.atlas.de>
+References: <4009F04F5925CD4C95FBD9BE756381FE02848F2A72@MSSRVS5.atlas.de>
+In-Reply-To: <4009F04F5925CD4C95FBD9BE756381FE02848F2A72@MSSRVS5.atlas.de>
+Accept-Language: de-DE
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.30.20.206]
+acceptlanguage: de-DE
 MIME-Version: 1.0
-Cc: "meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Chang, Rebecca
-	Swee Fun" <rebecca.swee.fun.chang@intel.com>, "Anuar,
-	Nuhairi" <nuhairi.anuar@intel.com>
-Subject: Re: GStreamer1.0 : gstreamer1.0-plugins-* doesn't extract the codec libraries into GStreamer library path
+Subject: Re: u-boot precompiled ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,148 +57,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Dec 2014 09:16:48 -0000
-Content-Language: en-US
+X-List-Received-Date: Thu, 04 Dec 2014 09:49:31 -0000
+Content-Language: de-DE
 Content-Type: multipart/alternative;
-	boundary="_000_AF233D1473C1364ABD51D28909A1B1B73269627Cpgsmsx105garcor_"
+	boundary="_000_4009F04F5925CD4C95FBD9BE756381FE02848F2A73MSSRVS5atlasd_"
 
---_000_AF233D1473C1364ABD51D28909A1B1B73269627Cpgsmsx105garcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_4009F04F5925CD4C95FBD9BE756381FE02848F2A73MSSRVS5atlasd_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgQXpyaWwsDQogICAgICAgICAgICAgICAgVGhhbmsgeW91IGZvciB5b3VyICBxdWVzdGlvbi4g
-Rm9yIG1ldGEtaW50ZWwgcmVsYXRlZCBxdWVzdGlvbiwgeW91IHNob3VsZCBjaGFubmVsIHRoZW0g
-dG8gbWV0YS1pbnRlbCBNL0wuDQogICAgICAgICAgICAgICAgU2luY2UgSSBjYXRjaCBpdCBoZXJl
-LCBJIGhhdmUganVzdCBhZGRlZCBpdCBvbiB5b3VyIGJlaGFsZi4NCiAgICAgICAgICAgICAgICBU
-aGFua3MNCg0KQkwNCg0KRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWls
-dG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgTW9oZCBBenJp
-bCBBaG1hZA0KU2VudDogVGh1cnNkYXksIERlY2VtYmVyIDQsIDIwMTQgMzo1MCBQTQ0KVG86IHlv
-Y3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFt5b2N0b10gR1N0cmVhbWVyMS4wIDogZ3N0
-cmVhbWVyMS4wLXBsdWdpbnMtKiBkb2Vzbid0IGV4dHJhY3QgdGhlIGNvZGVjIGxpYnJhcmllcyBp
-bnRvIEdTdHJlYW1lciBsaWJyYXJ5IHBhdGgNCg0KSGkgYWxsLA0KSSBoYXZlIHN1Y2Nlc3NmdWxs
-eSBidWlsdCB0aGUgWW9jdG8gd2l0aCBtdWx0aWxpYiBlbnZpcm9ubWVudCBieSB1c2luZyB0aGUg
-bWV0YS1pbnRlbCBCU1AgKFZhbGxleUlzbGFuZCkuIFBsdXMsIEknbSBpbmNsdWRpbmcgdGhlIEdT
-dHJlYW1lcjEuMCBiYXNlICsgVkFBUEkgYXMgbXkgZGVmYXVsdCB2aWRlbyBwbGF5ZXIuDQpEdXJp
-bmcgdGhlIGJvb3QtdXAgdGltZSwgSSd2ZSBub3RpY2VkIHRoYXQgdGhlIEdTdHJlYW1lcjEuMC1w
-bHVnaW4gbGlicmFyaWVzIChnb29kLCBiYWQsIGFuZCB1Z2x5KSBhcmUgbm90IGV4dHJhY3RlZCBp
-bnRvIHRoZSBHU1QgbGlicmFyeSBwYXRoICgvdXNyL2xpYjY0L2dzdHJlYW1lci0xLjAvKS4NCioq
-T24gZmlyc3QsIEkgd2FzIGxvb2tpbmcgZm9yICJsaWJnc3Rpc29tcDQuc28iICh0byBwbGF5IHZp
-ZGVvIHdpdGggcXRkZW11eCBwaXBlbGluZSkgYnV0IGdzdC1pbnNwZWN0LTEuMCByZXR1cm5zIG5v
-dGhpbmcuDQpBZnRlciBzb21lIGludmVzdGlnYXRpb25zLCBJJ3ZlIG9ic2VydmVkIHRoYXQgdGhl
-IGJpdGJha2UgKC5iYikgYW5kIGluY2x1ZGUgKC5pbmMpIHJlY2lwZSBmb3IgZ3N0cmVhbWVyMS4w
-LXBsdWdpbnMtPGdvb2QvYmFkL3VnbHk+IGRvZXMgbm90IHBhY2thZ2Ugb3V0IHRoZSAqLnNvIGZp
-bGVzIGFuZCBJIGhhdmUgbm8gY2hvaWNlIGJ1dCB0byBmb3JjZSBhIC5iYmFwcGVuZCB0byBpbnN0
-YWxsIGZvciBpdCBieSBhZGRpbmcgOg0KDQpGSUxFU18ke1BOfSArPSAiJHtsaWJkaXJ9L2dzdHJl
-YW1lci0xLjAvKi5zbyINCk15IHF1ZXN0aW9uIGhlcmUsIHdoeSB0aGUgcGx1Z2luIGxpYnJhcmll
-cyBhcmUgbm90IGV4dHJhY3RlZCA/IGlzIGl0IGR1ZSB0byBtdWx0aWxpYiBlbnZpcm9ubWVudCA/
-IG9yIG1pc3NpbmcgcGFja2FnaW5nIHN0ZXBzIGluIGRlZmF1bHQgcmVjaXBlID8NClBsZWFzZSBh
-ZHZpc2UgLi4NCg0KVGhhbmtzLg0KDQpSZWdhcmRzLA0KQXpyaWwNCg0KDQo=
+Even if this is a stupid question a little advise would be nice ... like "d=
+on't ask so stupid questions, go read this and that" or something... no tim=
+e ? Should I rather unsubscribe from this list until I'm an expert?
 
---_000_AF233D1473C1364ABD51D28909A1B1B73269627Cpgsmsx105garcor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Von: Heise, Matthias
+Gesendet: Mittwoch, 3. Dezember 2014 15:15
+An: 'yocto@yoctoproject.org'
+Betreff: u-boot precompiled ?
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBz
-cGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
-cjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxl
-MTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGli
-cmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28t
-c3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJp
-Zjt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEu
-MGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2Vj
-dGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVm
-YXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48
-IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxv
-OmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwh
-W2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZs
-aW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
-YWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+SGkgQXpyaWwsDQo8bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
-b3I6IzFGNDk3RCI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7IFRoYW5rIHlvdSBm
-b3IgeW91ciAmbmJzcDtxdWVzdGlvbi4gRm9yIG1ldGEtaW50ZWwgcmVsYXRlZCBxdWVzdGlvbiwg
-eW91IHNob3VsZCBjaGFubmVsIHRoZW0gdG8gbWV0YS1pbnRlbCBNL0wuPG86cD48L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
-cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5
-N0QiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyBTaW5jZSBJIGNhdGNoIGl0IGhl
-cmUsIEkgaGF2ZSBqdXN0IGFkZGVkIGl0IG9uIHlvdXIgYmVoYWxmLjxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdE
-Ij4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgVGhhbmtzPG86cD48L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
-cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5
-N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
-dDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5CTDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
-cmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvYT48L3A+DQo8ZGl2
-IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCBibHVlIDEuNXB0O3BhZGRpbmc6
-MGluIDBpbiAwaW4gNC4wcHQiPg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRl
-ci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RnJvbTo8L3NwYW4+PC9iPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
-dDssc2Fucy1zZXJpZiI+IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlv
-Y3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10NCjxiPk9uIEJlaGFsZiBPZiA8L2I+TW9oZCBB
-enJpbCBBaG1hZDxicj4NCjxiPlNlbnQ6PC9iPiBUaHVyc2RheSwgRGVjZW1iZXIgNCwgMjAxNCAz
-OjUwIFBNPGJyPg0KPGI+VG86PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3Vi
-amVjdDo8L2I+IFt5b2N0b10gR1N0cmVhbWVyMS4wIDogZ3N0cmVhbWVyMS4wLXBsdWdpbnMtKiBk
-b2Vzbid0IGV4dHJhY3QgdGhlIGNvZGVjIGxpYnJhcmllcyBpbnRvIEdTdHJlYW1lciBsaWJyYXJ5
-IHBhdGg8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPkhpIGFsbCw8bzpw
-PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1i
-b3R0b206MTIuMHB0Ij5JIGhhdmUgc3VjY2Vzc2Z1bGx5IGJ1aWx0IHRoZSBZb2N0byB3aXRoIG11
-bHRpbGliIGVudmlyb25tZW50IGJ5IHVzaW5nIHRoZSBtZXRhLWludGVsIEJTUCAoVmFsbGV5SXNs
-YW5kKS4gUGx1cywgSSdtIGluY2x1ZGluZyB0aGUgR1N0cmVhbWVyMS4wIGJhc2UgJiM0MzsgVkFB
-UEkgYXMgbXkgZGVmYXVsdCB2aWRlbyBwbGF5ZXIuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPkR1
-cmluZyB0aGUgYm9vdC11cCB0aW1lLCBJJ3ZlIG5vdGljZWQgdGhhdCB0aGUgR1N0cmVhbWVyMS4w
-LXBsdWdpbiBsaWJyYXJpZXMgKGdvb2QsIGJhZCwgYW5kIHVnbHkpIGFyZSBub3QgZXh0cmFjdGVk
-IGludG8gdGhlIEdTVCBsaWJyYXJ5IHBhdGggKC91c3IvbGliNjQvZ3N0cmVhbWVyLTEuMC8pLjxv
-OnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
-Im1hcmdpbi1ib3R0b206MTIuMHB0Ij4qKk9uIGZpcnN0LCBJIHdhcyBsb29raW5nIGZvciAmcXVv
-dDtsaWJnc3Rpc29tcDQuc28mcXVvdDsgKHRvIHBsYXkgdmlkZW8gd2l0aCBxdGRlbXV4IHBpcGVs
-aW5lKSBidXQgZ3N0LWluc3BlY3QtMS4wIHJldHVybnMgbm90aGluZy48bzpwPjwvbzpwPjwvcD4N
-CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9t
-OjEyLjBwdCI+QWZ0ZXIgc29tZSBpbnZlc3RpZ2F0aW9ucywgSSd2ZSBvYnNlcnZlZCB0aGF0IHRo
-ZSBiaXRiYWtlICguYmIpIGFuZCBpbmNsdWRlICguaW5jKSByZWNpcGUgZm9yIGdzdHJlYW1lcjEu
-MC1wbHVnaW5zLSZsdDtnb29kL2JhZC91Z2x5Jmd0OyBkb2VzIG5vdCBwYWNrYWdlIG91dCB0aGUg
-Ki5zbyBmaWxlcyBhbmQgSSBoYXZlIG5vIGNob2ljZSBidXQgdG8gZm9yY2UgYSAuYmJhcHBlbmQN
-CiB0byBpbnN0YWxsIGZvciBpdCBieSBhZGRpbmcgOjxicj4NCjxicj4NCkZJTEVTXyR7UE59ICYj
-NDM7PSAmcXVvdDske2xpYmRpcn0vZ3N0cmVhbWVyLTEuMC8qLnNvJnF1b3Q7PG86cD48L286cD48
-L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJv
-dHRvbToxMi4wcHQiPk15IHF1ZXN0aW9uIGhlcmUsIHdoeSB0aGUgcGx1Z2luIGxpYnJhcmllcyBh
-cmUgbm90IGV4dHJhY3RlZCA/IGlzIGl0IGR1ZSB0byBtdWx0aWxpYiBlbnZpcm9ubWVudCA/IG9y
-IG1pc3NpbmcgcGFja2FnaW5nIHN0ZXBzIGluIGRlZmF1bHQgcmVjaXBlID88bzpwPjwvbzpwPjwv
-cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlBsZWFzZSBhZHZpc2UgLi48
-bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
-Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhh
-bmtzLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij5SZWdhcmRzLDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+QXpyaWw8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwv
-cD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+Hi all,
 
---_000_AF233D1473C1364ABD51D28909A1B1B73269627Cpgsmsx105garcor_--
+I'm still trying to find out basic things about getting a system up and run=
+ning. This question is about U-Boot, is it right that for example for my wa=
+ndboard a pre-compiled *.imx is just downloaded ?
+So if I want to make settings to U-Boot I make them directly in the source,=
+ compile it and re-direct in a recipe to take that new file as bootloader ?=
+ Or can I make the settings within a recipe and I just didn't find the spot=
+ ?
+Thanks for your time,
+Regards
+Mat
+
+--_000_4009F04F5925CD4C95FBD9BE756381FE02848F2A73MSSRVS5atlasd_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"Content-Type" CONTENT=
+=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
+oft Word 14 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.E-MailFormatvorlage18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DDE link=3Dblue vlink=
+=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span lang=3DEN-US=
+ style=3D'color:#1F497D'>Even if this is a stupid question a little advise =
+would be nice &#8230; like &#8220;don&#8217;t ask so stupid questions, go r=
+ead this and that&#8221; or something&#8230; no time ? Should I rather unsu=
+bscribe from this list until I&#8217;m an expert?<o:p></o:p></span></p><p c=
+lass=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><div style=
+=3D'border:none;border-left:solid blue 1.5pt;padding:0cm 0cm 0cm 4.0pt'><di=
+v><div style=3D'border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0c=
+m 0cm 0cm'><p class=3DMsoNormal><b><span style=3D'font-size:10.0pt;font-fam=
+ily:"Tahoma","sans-serif";mso-fareast-language:DE'>Von:</span></b><span sty=
+le=3D'font-size:10.0pt;font-family:"Tahoma","sans-serif";mso-fareast-langua=
+ge:DE'> Heise, Matthias <br><b>Gesendet:</b> Mittwoch, 3. Dezember 2014 15:=
+15<br><b>An:</b> 'yocto@yoctoproject.org'<br><b>Betreff:</b> u-boot precomp=
+iled ?<o:p></o:p></span></p></div></div><p class=3DMsoNormal><o:p>&nbsp;</o=
+:p></p><p class=3DMsoNormal><span lang=3DEN-US>Hi all,<o:p></o:p></span></p=
+><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p cla=
+ss=3DMsoNormal><span lang=3DEN-US>I&#8217;m still trying to find out basic =
+things about getting a system up and running. This question is about U-Boot=
+, is it right that for example for my wandboard a pre-compiled *.imx is jus=
+t downloaded ? <o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-U=
+S>So if I want to make settings to U-Boot I make them directly in the sourc=
+e, compile it and re-direct in a recipe to take that new file as bootloader=
+ ? Or can I make the settings within a recipe and I just didn&#8217;t find =
+the spot ?<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Tha=
+nks for your time,<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DE=
+N-US>Regards <o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>=
+Mat<o:p></o:p></span></p></div></div></body></html>=
+
+--_000_4009F04F5925CD4C95FBD9BE756381FE02848F2A73MSSRVS5atlasd_--
