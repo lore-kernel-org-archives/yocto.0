@@ -1,39 +1,42 @@
-Return-Path: <matt.schuckmann@planar.com>
+Return-Path: <chan.kitx.yu@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6BF62E00922; Thu,  4 Dec 2014 19:10:23 -0800 (PST)
+	id 61CC7E00927; Thu,  4 Dec 2014 20:11:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [63.128.21.105 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from us-smtp-delivery-105.mimecast.com
-	(us-smtp-delivery-105.mimecast.com [63.128.21.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F300CE008FC
-	for <yocto@yoctoproject.org>; Thu,  4 Dec 2014 19:10:19 -0800 (PST)
-Received: from msxbvt03.planar.net (199.244.171.48 [199.244.171.48]) by
-	us-mta-10.us.mimecast.lan; Thu, 04 Dec 2014 22:10:17 -0500
-Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
-	with mapi; Thu, 4 Dec 2014 19:07:27 -0800
-From: Matt Schuckmann <Matt.Schuckmann@planar.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 4 Dec 2014 19:07:27 -0800
-Thread-Topic: How to force bitbake to install a package
-Thread-Index: AdAQMoTI1/MEXCMoQMKow+QOnIMacQABMJXQ
-Message-ID: <4B07ADD556F70043925DA2E9C5D4346D2FDB5623B7@MSXBEBVT12.planar.net>
-References: <4B07ADD556F70043925DA2E9C5D4346D2FDB5623B4@MSXBEBVT12.planar.net>
-In-Reply-To: <4B07ADD556F70043925DA2E9C5D4346D2FDB5623B4@MSXBEBVT12.planar.net>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1DBEE0090A
+	for <yocto@yoctoproject.org>; Thu,  4 Dec 2014 20:11:30 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 04 Dec 2014 20:11:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.07,520,1413270000"; 
+	d="scan'208,217";a="618977083"
+Received: from pgsmsx102.gar.corp.intel.com ([10.221.44.80])
+	by orsmga001.jf.intel.com with ESMTP; 04 Dec 2014 20:11:29 -0800
+Received: from pgsmsx104.gar.corp.intel.com ([169.254.3.33]) by
+	PGSMSX102.gar.corp.intel.com ([169.254.6.7]) with mapi id
+	14.03.0195.001; Fri, 5 Dec 2014 12:09:11 +0800
+From: "Yu, Chan KitX" <chan.kitx.yu@intel.com>
+To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+Thread-Topic: do_fetch() with svn which has http prefix
+Thread-Index: AdAQQOGAwSzqv8DCRhSeMNRdoaQvvQ==
+Date: Fri, 5 Dec 2014 04:09:10 +0000
+Message-ID: <0E4D391FE2BDEC45AA0B4E32D6BD598A245C92@PGSMSX104.gar.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+x-originating-ip: [172.30.20.205]
 MIME-Version: 1.0
-X-MC-Unique: JAzGalI7RPCWnWB7DWemRw-3
-Subject: Re: How to force bitbake to install a package
+Subject: do_fetch() with svn which has http prefix
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,89 +48,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Dec 2014 03:10:23 -0000
+X-List-Received-Date: Fri, 05 Dec 2014 04:11:40 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset=WINDOWS-1252
+Content-Type: multipart/alternative;
+	boundary="_000_0E4D391FE2BDEC45AA0B4E32D6BD598A245C92PGSMSX104garcorpi_"
+
+--_000_0E4D391FE2BDEC45AA0B4E32D6BD598A245C92PGSMSX104garcorpi_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Ok I'm trying to really dig into this to understand it and I've discovered =
-that for my current problem the pkg_postinst_${PN}() is not getting run. I =
-fact what I keep seeing is the remnants of an older version of pkg_postinst=
-_${PN}() function.=20
+Hi,
 
-I have yet to figure out how to debug or see the execution of pkg_postinst =
-functions, they seem to be different from the do_install(), do_compile() fu=
-nctions but I'm having trouble finding documentation on them.
+I need to do svn checkout http://llvm.org/svn/llvm-project/llvm/trunk but s=
+ince that repo has a http prefix, I don't think it's smart enough to recogn=
+ize that the link is actually an SVN repo. So how do I work around this pro=
+blem?
 
-Here is my current pkg_postinst function
-pkg_postinst () {
-=09touch $D${sysconfdir}/foo.bar.conf
-=09if [ -f $D${sysconfdir}/lighttpd.conf ] ; then
-=09=09cat $D${sysconfdir}/lighttpd.conf.web-api >> $D${sysconfdir}/lighttpd=
-.conf
-else
-=09echo "No lighttpd.conf found, aborting"
-=09exit 1
-fi
-}
+Thanks,
+Chan Kit
 
-Any suggestions as to why this isn't getting run?=20
+--_000_0E4D391FE2BDEC45AA0B4E32D6BD598A245C92PGSMSX104garcorpi_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,=20
-Matt S.=20
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+tt
+	{mso-style-priority:99;
+	font-family:"Courier New";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I need to do svn checkout <tt><span style=3D"font-si=
+ze:10.0pt"><a href=3D"http://llvm.org/svn/llvm-project/llvm/trunk">http://l=
+lvm.org/svn/llvm-project/llvm/trunk</a>
+</span></tt>but since that repo has a http prefix, I don&#8217;t think it&#=
+8217;s smart enough to recognize that the link is actually an SVN repo. So =
+how do I work around this problem?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Chan Kit<o:p></o:p></p>
+</div>
+</body>
+</html>
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Matt Schuckmann
-> Sent: Thursday, December 04, 2014 6:24 PM
-> To: yocto@yoctoproject.org
-> Subject: [yocto] How to force bitbake to install a package
->=20
-> I'm going nuts on this, I can't figure what magic incantation is to
-> ensure that my changes to a recipe getting applied to the image I'm
-> building.
->=20
-> I'm working off the Dylan branch (IT amsdk 7.0)
->=20
-> Here is my current work flow,
->=20
-> Make some small edit to a file in a recipe in my layer, say a
-> lighttpd.conf file.
-> ~/oe-build/build $ bitbake web-ui
->=20
-> I can see that it rebuilt and repackaged, so I go ahead and build the
-> image.
-> ~/oe-build/build & bitbake my-base-image
->=20
-> I can see that it performs do_rootfs, looks good, I can also go to my
-> tmp/deploy/image directory and see a new image.tar.gz file has been
-> created.
->=20
-> I unpack the tar file to my NFS shared rootfs directory (or a new
-> rootfs dir) and my change isn't there. I don't always see this problem
-> but it definitely crops up and once I see it I haven't figured out how
-> to fix it.
->=20
-> I've tried all sorts of combinations of:
-> bitbake -c clean web-ui
-> bitbake -c cleansstate web-ui
-> bitbake -c clean my-base-image
-> bitbake -c cleansstate my-base-image
-> bitbake -c rootfs -f my-base-image
->=20
-> Invariably the only way I can reliably see my change take effect is to
-> blow away my entire tmp directory and start over which is painful.
->=20
-> So what am I missing?
->=20
-> Thanks,
-> Matt S.
->=20
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
+--_000_0E4D391FE2BDEC45AA0B4E32D6BD598A245C92PGSMSX104garcorpi_--
