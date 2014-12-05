@@ -1,46 +1,56 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0EA0AE00922; Fri,  5 Dec 2014 00:05:45 -0800 (PST)
+	id E4F7AE00922; Fri,  5 Dec 2014 00:09:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	UC_GIBBERISH_OBFU autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.182 listed in list.dnswl.org]
+	*      [209.85.217.181 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 3.0 UC_GIBBERISH_OBFU Multiple instances of "word VERYLONGGIBBERISH
-	*      word"
-Received: from mail-vc0-f182.google.com (mail-vc0-f182.google.com
-	[209.85.220.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E971E00916
-	for <yocto@yoctoproject.org>; Fri,  5 Dec 2014 00:05:36 -0800 (PST)
-Received: by mail-vc0-f182.google.com with SMTP id hq12so75027vcb.27
-	for <yocto@yoctoproject.org>; Fri, 05 Dec 2014 00:05:35 -0800 (PST)
+Received: from mail-lb0-f181.google.com (mail-lb0-f181.google.com
+	[209.85.217.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8666EE0091D
+	for <yocto@yoctoproject.org>; Fri,  5 Dec 2014 00:09:25 -0800 (PST)
+Received: by mail-lb0-f181.google.com with SMTP id l4so144596lbv.12
+	for <yocto@yoctoproject.org>; Fri, 05 Dec 2014 00:09:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=d2y7Ir5vZ4tl0ithNEq2rAJF7aZQ5Q9BQr6rsD7w5iQ=;
-	b=ewIs8JRWIN56ev40oShHncZhpsBaa7tFggHFrHw5AnPD39STTZ7a1kVVeZOXw9VIgc
-	OcMkPAnIe1twnYSvTXLzoNxjpB1A8JW/pYbTHViJxpedJl/quGrRh/McPuraWGV0lwsh
-	8DuQjVebNlXs56hMPRiTgbN5ivIMMZASv0bWFXQ8wbIafhByYtUV/kMV2P9+5EUtfJIo
-	XsCu2Z5YvIP0OXyFpoGcHpi7dxogBiozhitdm5G1+ez7S2JfWlFn5YmNpQ7Mr3ddAhJa
-	X87N23HnQmweQKh58DZ1t6nI0/HrFTok4OUbF2rg26vEpTAcw3Cklbu3PRf8nEliafS+
-	aRnw==
-X-Gm-Message-State: ALoCoQkQgWWYMtVod9VCFO/e1PL7F9+kRyoBZVcIaXVmj59iFNeGbFF/TDi4wB+2tx1r7ZcXUKh1
+	h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
+	:mime-version:content-type:content-disposition:organization
+	:user-agent;
+	bh=gbbCINfdQOyOLdxUd/Pj+6+1GwapaM/APpeiu7lqsB0=;
+	b=PIJ+u8u1gjRZ3Qj/HHhH3cYDBxP8BjGwHQ5mAPTOJHdK0Pv8d8VSKSxPXTk9BwKePa
+	MmAhzk8nt9r/nD1r4FFq/yl8yuufCEcig+ISa7zvCwZ/61841YUtyowlNREIU3c7K8rx
+	bSgMOXr+rsqkIeQJfFry2AIyaUSLJGP+gVbeWrZQICiL6W3BAnYQQBHKQedPyphsF5Ll
+	v18q1cb9D9NFmQbnrvFIjUDm/oImuYWdpsTGodfa3d6EnNgNOZV8uCyZlRP3ROIIYEfT
+	R8Crlifp0kvXEALCVIMXg9CpOXsx2s3qcBnUAuJ2HR0EUWxNbUPKfKhtAQzPv8CH3zky
+	p6cQ==
+X-Gm-Message-State: ALoCoQkQO+/K7bBaC8bCHtE2Dn9o/XNJ/pAkvxIs9nu9723kziz84H6T4ruEzUfj5/fS+2TdK8Km
+X-Received: by 10.112.171.170 with SMTP id av10mr1554436lbc.77.1417766963903; 
+	Fri, 05 Dec 2014 00:09:23 -0800 (PST)
+Received: from ad.chargestorm.se (c-83-233-19-145.cust.bredband2.com.
+	[83.233.19.145])
+	by mx.google.com with ESMTPSA id li3sm8102472lbc.31.2014.12.05.00.09.22
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 05 Dec 2014 00:09:23 -0800 (PST)
+Date: Fri, 5 Dec 2014 09:08:39 +0100
+From: Anders Darander <anders@chargestorm.se>
+To: Yocto Project <yocto@yoctoproject.org>
+Message-ID: <20141205080839.GA813@ad.chargestorm.se>
+Mail-Followup-To: Yocto Project <yocto@yoctoproject.org>
 MIME-Version: 1.0
-X-Received: by 10.220.74.9 with SMTP id s9mr7694594vcj.74.1417766735473; Fri,
-	05 Dec 2014 00:05:35 -0800 (PST)
-Received: by 10.52.244.44 with HTTP; Fri, 5 Dec 2014 00:05:35 -0800 (PST)
-Date: Fri, 5 Dec 2014 08:05:35 +0000
-Message-ID: <CAPhnLPB3uF=XKsh2PN1OZyAkMYE-N107S7GKPS5rxFhxymsDLQ@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	yocto-announce@yoctoproject.org
-Subject: [ANNOUNCEMENT] Yocto Project 1.6.2 (daisy) now available.
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Subject: qemu-native fails to build, due to libgpg-error-native
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,143 +62,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Dec 2014 08:05:45 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 05 Dec 2014 08:09:38 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-All,
+Hi,
 
-We are pleased to release the second point release for the Yocto
-Project's "daisy" release. This release has fixes for 25 CVEs
-including CVE-2014-3566.
+We've recently replaces on of our buildmachines, and while doing this,
+we've been running into what looks like on ordering & dependency issue.
 
-Several fixes for CVE-2014-3566 (the SSL Poodle vulnerability) have
-been applied to OpenSSL in this release; however, due to the nature of
-the vulnerability you will need to ensure that SSL 3.0 support is
-either disabled, or alternatively that TLS_FALLBACK_SCSV is
-implemented in both clients and servers that use TLS/SSL.
-
-For more information, check with the upstream provider of TLS/SSL
-client / server software that you are using.
-
-https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
-https://www.us-cert.gov/ncas/alerts/TA14-290A
-
-Downloads are available at:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.6.2/poky-daisy-11.0.2.tar.bz2
+The issue may very well be related to our host OS, which is openSuSE
+13.2 (i.e. it's not yet validated...). 
 
 
-Release Name: poky-daisy-11.0.2
-Branch: daisy
-Tag: daisy-11.0.2
-Hash: e3dd621197548b4cf64988e757e9bc926082db73
-md5sum: d0fec76994622bf668ce13779ac73f43
-download: http://downloads.yoctoproject.org/releases/yocto/yocto-1.6.2/poky-daisy-11.0.2.tar.bz2
+The simplified test case is simply
+1) Check out poky (we've seen the issue on master, dizzy, and daisy
+branches)
+2) . ./oe-init-build-env
+3) bitbake libgpg-error-native
+4) bitbake qemu-native
 
-Release Name: meta-qt3-daisy-11.0.2
-Branch: daisy
-Tag: daisy-11.0.2
-Hash: 3016129d90b7ac8517a5227d819f10ad417b5b45
-md5sum: 139394eca6575b9ab31d2f79f7830f2a
-download: http://downloads.yoctoproject.org/releases/yocto/yocto-1.6.2/meta-qt3-daisy-11.0.2.tar.bz2
+Now qemu-native fails at do_configure:
 
-Release Name: eclipse-poky-juno-daisy-11.0.2
-Branch: daisy
-Tag: daisy-11.0.2
-Hash: 26bfc407781aa185f244a47ba63120343cee4a37
-md5sum: bce7d1644d6bf4ea528db9a511124bba
-download: http://downloads.yoctoproject.org/releases/yocto/yocto-1.6.2/eclipse-poky-juno-daisy-11.0.2.tar.bz2
+| ERROR: User requested feature sdl
+|        configure was not able to find it.
+|        Install SDL devel
 
-Release Name: eclipse-poky-kepler-daisy-11.0.2
-Branch: daisy
-Tag: daisy-11.0.2
-Hash: 932891014ea068e196fcf1f9efedb8a672fb81a0
-md5sum: f85546bfd1da67d72c0b743780146220
-download: http://downloads.yoctoproject.org/releases/yocto/yocto-1.6.2/eclipse-poky-kepler-daisy-11.0.2.tar.bz2
+Upon inspecting config.log (when building from poky master), the culprit
+is that libgpg-error is not found (or more likely the wrong version).
 
-Bug Fixes
----------
-adt-installer: fix sed input file error
-bash: Fix for exported function namespace change
-binutils: Add fix for recent patch on older gcc
-binutils: Apply the proper fix for PR 16428
-bitbake: codeparser: don't interact with the cache for subshells
-bitbake: codeparser: Fix to better catch all getVar references
-build-appliance-image: Update to daisy head revision
-build-appliance-image: Update to daisy head revision
-cairo: explicitly disable LTO support by backporting patch which removes it
-crosssdk: Clear MACHINEOVERRIDES
-dev-manual: Updated the "Making Images More Secure" section.
-documentation: Added "November 2014" to manual history lists.
-documentation: Updated manual history tables to support 1.6.2
-kernel: don't copy .so.dbg files into kernel source install
-kernelshark: Remove trace-cmd from the kernelshark package
-layer.conf: Add in useradd dependencies as ABISAFE dependencies
-layer.conf: Mark opkg-utils as ABISAFE for update-alternatives usage
-libarchive: avoid dependency on e2fsprogs
-libxml2: fix python packaging for nativesdk
-ltp: Added zip-native as a DEPENDS
-lttng-modules: Update to version 2.4.2
-mega-manual.sed: Updates to support links to BB manual
-native/nativesdk: Clear MACHINEOVERRIDES
-openssh: avoid screen sessions being killed on disconnect with systemd
-openssl: upgrade to 1.0.1j
-openssl: Upgrade to 1.0.1j
-perf: add slang to the dependencies
-perf: explicitly disable libunwind
-perf: fix broken shell comparsion in do_install
-perf: split packging
-poky.conf: Bump DISTRO_VERISON for 1.6.2
-poky-ent: Updated the YOCTO_RELEASE_NOTES variable.
-poky.ent: Updated variables to support a 1.6.2 release.
-populate_sdk_base: Fix grep command usage on old hosts
-populate_sdk_deb: Fix non x86_64 SDK builds
-profile-manual: Updates to the LTTng Documentation section.
-pseudo*.bb: update to pseudo 1.6.2
-pseudo.inc: Clean up backport of version update to 1.6.2
-python: force off_t size to 8 to enable large file support
-qemu: Explicitly disable libiscsi, its not in DEPENDS
-qt4: Fix Qt 4.8.5 source to new location
-readline: Patch for readline multikey dispatch issue
-ref-manual: Updated note in the "CentOS Packages" section.
-ref-manual, yocto-project-qs: Fixed some references to BitBake Manual.
-shadow-securetty: add freescale lpuart
-udev-cache.default: set PROBE_PLATFORM_BUS to "yes" by default
-udev: update init script for conditional probing of platform bus
-update-rc.d/systemd: Remove OVERRIDES dependency
-useradd-staticids.bbclass: Fix for Bug 6633
-wic: Fix bad directory name in bootimg-efi
-wic: Remove fstype from mkefidisk canned wks
+gcc -fPIE -DPIE -m64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
+-D_LARGEFILE_SOURCE -Wstrict-prototypes -Wredundant-decls -Wall -Wundef
+-Wwrite-strings -Wmissing-prototypes -fno-strict-aliasing -fno-common
+-isystem/mnt/cs-builds/anders/poky/build/tmp/sysroots/x86_64-linux/usr/include
+-O2 -pipe -Wendif-labels -Wmissing-include-dirs -Wempty-body
+-Wnested-externs -Wformat-security -Wformat-y2k -Winit-self
+-Wignored-qualifiers -Wold-style-declaration -Wold-style-definition
+-Wtype-limits -fstack-protector-all -D_GNU_SOURCE=1 -D_REENTRANT
+-I/usr/include/SDL -o config-temp/qemu-conf.exe config-temp/qemu-conf.c
+-Wl,-z,relro -Wl,-z,now -pie -m64 -g
+-L/mnt/cs-builds/anders/poky/build/tmp/sysroots/x86_64-linux/usr/lib
+-L/mnt/cs-builds/anders/poky/build/tmp/sysroots/x86_64-linux/lib
+-Wl,-rpath-link,/mnt/cs-builds/anders/poky/build/tmp/sysroots/x86_64-linux/usr/lib
+-Wl,-rpath-link,/mnt/cs-builds/anders/poky/build/tmp/sysroots/x86_64-linux/lib
+-Wl,-rpath,/mnt/cs-builds/anders/poky/build/tmp/sysroots/x86_64-linux/usr/lib
+-Wl,-rpath,/mnt/cs-builds/anders/poky/build/tmp/sysroots/x86_64-linux/lib
+-Wl,-O1 -L/usr/lib64 -lSDL -lpthread
+/usr/lib64/libgcrypt.so.20: undefined reference to
+`gpg_err_set_errno@GPG_ERROR_1.0'
+/usr/lib64/libgcrypt.so.20: undefined reference to
+`gpg_err_code_from_syserror@GPG_ERROR_1.0'
+/usr/lib64/libgcrypt.so.20: undefined reference to
+`gpg_err_code_from_errno@GPG_ERROR_1.0'
+/usr/lib64/libgcrypt.so.20: undefined reference to
+`gpgrt_lock_unlock@GPG_ERROR_1.0'
+/usr/lib64/libgcrypt.so.20: undefined reference to
+`gpg_strerror@GPG_ERROR_1.0'
+/usr/lib64/libgcrypt.so.20: undefined reference to
+`gpg_strsource@GPG_ERROR_1.0'
+/usr/lib64/libgcrypt.so.20: undefined reference to
+`gpgrt_lock_lock@GPG_ERROR_1.0'
+collect2: error: ld returned 1 exit status
 
-Security Fixes
---------------
-bash: Fix CVE-2014-6271
-bash: Fix CVE-2014-7169
-bash: Fix for CVE-2014-6277
-bash: Fix-for-CVE-2014-6278
-bash: Fix for CVE-2014-7186 and CVE-2014-7187
-curl: Security Advisory - curl - CVE-2014-3613
-curl: Security Advisory - curl - CVE-2014-3620
-dpkg: Security Advisory - CVE-2014-0471
-dpkg: Security Advisory - CVE-2014-3127
-eglibc: CVE-2014-5119 fix
-gnupg: CVE-2013-4242
-gst-ffmpeg: Add CVE patches
-gst-ffmpeg: Security Advisory - ffmpeg - CVE-2013-0869
-gst-ffmpeg: Security Advisory - ffmpeg - CVE-2013-4358
-libpam: Security Advisory - CVE-2014-2583
-libtiff: fix CVE-2013-1961
-libtiff: Security Advisory - CVE-2012-4564
-nspr: Fix for CVE-2014-1545
-nss-3.15.1: fix CVE-2013-1739
-nss: CVE-2013-5606
-nss: CVE-2014-1544
-perl: fix for CVE-2010-4777
-pulseaudio: fix CVE-2014-3970
-readline: Security Advisory - readline - CVE-2014-2524
-wget: Fix for CVE-2014-4887
+As the build works if libgpg-error-native hasn't been built prior to
+qemu-native, it seems to me that when it works, it takes libgpg-error
+from the host, while in the failing case it takes it from the native
+sysroot...
 
+Any pointers on how to make the configure step consistent in looking at
+for the host libgpg-error? Or should qemu-native be linked against
+libgcrypt from the sysroot too?
+
+I'll likely continue looking at this issue next week, though any pointer
+that will help me will be much appreciated.
+
+Cheers,
+Anders
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Anders Darander
+ChargeStorm AB / eStorm AB
 
