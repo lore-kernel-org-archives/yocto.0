@@ -1,42 +1,59 @@
-Return-Path: <chan.kitx.yu@intel.com>
+Return-Path: <sven.ebenfeld@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 61CC7E00927; Thu,  4 Dec 2014 20:11:40 -0800 (PST)
+	id 9F5D2E00927; Thu,  4 Dec 2014 21:50:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (sven.ebenfeld[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1DBEE0090A
-	for <yocto@yoctoproject.org>; Thu,  4 Dec 2014 20:11:30 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 04 Dec 2014 20:11:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,520,1413270000"; 
-	d="scan'208,217";a="618977083"
-Received: from pgsmsx102.gar.corp.intel.com ([10.221.44.80])
-	by orsmga001.jf.intel.com with ESMTP; 04 Dec 2014 20:11:29 -0800
-Received: from pgsmsx104.gar.corp.intel.com ([169.254.3.33]) by
-	PGSMSX102.gar.corp.intel.com ([169.254.6.7]) with mapi id
-	14.03.0195.001; Fri, 5 Dec 2014 12:09:11 +0800
-From: "Yu, Chan KitX" <chan.kitx.yu@intel.com>
-To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
-Thread-Topic: do_fetch() with svn which has http prefix
-Thread-Index: AdAQQOGAwSzqv8DCRhSeMNRdoaQvvQ==
-Date: Fri, 5 Dec 2014 04:09:10 +0000
-Message-ID: <0E4D391FE2BDEC45AA0B4E32D6BD598A245C92@PGSMSX104.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.30.20.205]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.179 listed in list.dnswl.org]
+Received: from mail-wi0-f179.google.com (mail-wi0-f179.google.com
+	[209.85.212.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22BBDE0090A
+	for <yocto@yoctoproject.org>; Thu,  4 Dec 2014 21:50:05 -0800 (PST)
+Received: by mail-wi0-f179.google.com with SMTP id ex7so277021wid.12
+	for <yocto@yoctoproject.org>; Thu, 04 Dec 2014 21:50:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=/igJQEKmDRgZm4ByH57Ri/3vE0QHZKJ+vpytKxck/Go=;
+	b=tW2bXdwk5TaSj+r7dnzRgfZ2xiWKg4CLnS4ZE6DkVo/vM/0f5XFFRzL80oEB0mbx5d
+	P2go+oYA0gSbEME7vRZPGFlWmQmSIG80ueBNtpvYSotcgjAWdPrZYrQ+V35iCfQVf+G0
+	F5/SjI1MhG4SX7dkJOYYqxxxOkvd/puKdA4UBziRwEi1Xz48j/UHfU8kEIC5j/AqAzmF
+	zsr6Z6Pz9vn/ZUzu++pHs94bNilX2sFuUEXySinMzFfmDGQDw6XG2EZ/SyrLMTJzgsUk
+	A+hPxqlarbRVQqZVrMHnFxop3QKGe9H+zmKkdJI8f6GPHn65lWHSLqWfjkbkECxGfwxg
+	53Vw==
+X-Received: by 10.180.101.200 with SMTP id fi8mr1328966wib.77.1417758604085;
+	Thu, 04 Dec 2014 21:50:04 -0800 (PST)
+Received: from [192.168.50.245] (ip-37-24-44-195.hsi14.unitymediagroup.de.
+	[37.24.44.195])
+	by mx.google.com with ESMTPSA id d5sm43455251wjb.34.2014.12.04.21.50.02
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 04 Dec 2014 21:50:03 -0800 (PST)
+Message-ID: <54814789.304@gmail.com>
+Date: Fri, 05 Dec 2014 06:50:01 +0100
+From: Sven Ebenfeld <sven.ebenfeld@gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
-Subject: do_fetch() with svn which has http prefix
+To: "Yu, Chan KitX" <chan.kitx.yu@intel.com>, 
+	Yocto Project <yocto@yoctoproject.org>
+References: <0E4D391FE2BDEC45AA0B4E32D6BD598A245C92@PGSMSX104.gar.corp.intel.com>
+In-Reply-To: <0E4D391FE2BDEC45AA0B4E32D6BD598A245C92@PGSMSX104.gar.corp.intel.com>
+Subject: Re: do_fetch() with svn which has http prefix
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,93 +65,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Dec 2014 04:11:40 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_0E4D391FE2BDEC45AA0B4E32D6BD598A245C92PGSMSX104garcorpi_"
+X-List-Received-Date: Fri, 05 Dec 2014 05:50:16 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
---_000_0E4D391FE2BDEC45AA0B4E32D6BD598A245C92PGSMSX104garcorpi_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hi Chan,
 
-Hi,
+Am 05.12.2014 um 05:09 schrieb Yu, Chan KitX:
+> Hi,
+> 
+> I need to do svn checkout http://llvm.org/svn/llvm-project/llvm/trunk but since that repo has a http prefix, I don't think it's smart enough to recognize that the link is actually an SVN repo. So how do I work around this problem?
 
-I need to do svn checkout http://llvm.org/svn/llvm-project/llvm/trunk but s=
-ince that repo has a http prefix, I don't think it's smart enough to recogn=
-ize that the link is actually an SVN repo. So how do I work around this pro=
-blem?
+Use svn://llvm.org/svn/llvm-project/llvm;protocol=http;module=trunk as
+fetch URL.
 
-Thanks,
-Chan Kit
+> 
+> Thanks,
+> Chan Kit
+> 
+> 
+> 
 
---_000_0E4D391FE2BDEC45AA0B4E32D6BD598A245C92PGSMSX104garcorpi_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Cheers,
+Sven
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-tt
-	{mso-style-priority:99;
-	font-family:"Courier New";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I need to do svn checkout <tt><span style=3D"font-si=
-ze:10.0pt"><a href=3D"http://llvm.org/svn/llvm-project/llvm/trunk">http://l=
-lvm.org/svn/llvm-project/llvm/trunk</a>
-</span></tt>but since that repo has a http prefix, I don&#8217;t think it&#=
-8217;s smart enough to recognize that the link is actually an SVN repo. So =
-how do I work around this problem?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Chan Kit<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_0E4D391FE2BDEC45AA0B4E32D6BD598A245C92PGSMSX104garcorpi_--
