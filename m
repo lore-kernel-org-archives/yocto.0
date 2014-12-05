@@ -1,32 +1,62 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <vrajaram@cisco.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 67CA2E008D9; Fri,  5 Dec 2014 06:21:55 -0800 (PST)
+	id 03FE9E00897; Fri,  5 Dec 2014 06:54:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-14.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_HI,
+	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -7.5 USER_IN_DEF_DKIM_WL From: address is in the default
+	DKIM white-list
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6DF1E008A7
-	for <yocto@yoctoproject.org>; Fri,  5 Dec 2014 06:21:47 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 67F3CF81199; Fri,  5 Dec 2014 07:21:47 -0700 (MST)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 56B6EF81188;
-	Fri,  5 Dec 2014 07:21:45 -0700 (MST)
-Message-ID: <5481BF8F.4030403@mlbassoc.com>
-Date: Fri, 05 Dec 2014 07:22:07 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [173.37.86.76 listed in list.dnswl.org]
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
+	Fri, 05 Dec 2014 06:54:14 PST
+Received: from rcdn-iport-5.cisco.com (rcdn-iport-5.cisco.com [173.37.86.76])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2A9FE002A6
+	for <yocto@yoctoproject.org>; Fri,  5 Dec 2014 06:54:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=cisco.com; i=@cisco.com; l=751; q=dns/txt; s=iport;
+	t=1417791256; x=1419000856;
+	h=from:to:subject:date:message-id:content-id:
+	content-transfer-encoding:mime-version;
+	bh=YifH5ux0E4wB9ysl2OkLGIXCf46gYKn80QsMvgrFOBU=;
+	b=Qn6XU0ApQU4NJPHlUOFisW+kRWIEpEDiKFOfKiBfXuHB0kdvV9dFFP8K
+	f3zd/5PePAsIihAGpB0GBIUZ6+aCaGjDhOngau330ddT5qBLYfyHOCf+Q
+	dT+jsjhVA8lR9zQ3MyL85BNL7OZLAA2MvURsWozgLyXwvvNX9e4byU5gc 8=;
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: Aj8FAJHGgVStJV2Y/2dsb2JhbABZgwZSWATEJYIehzoWAQEBAQF9hAmBCwGBACcEiE6wV6YuAQEIAgEflQwFigCFRoN+hhuBVoksiD2Db2+BRX4BAQE
+X-IronPort-AV: E=Sophos;i="5.07,522,1413244800"; d="scan'208";a="377859520"
+Received: from rcdn-core-1.cisco.com ([173.37.93.152])
+	by rcdn-iport-5.cisco.com with ESMTP; 05 Dec 2014 14:53:13 +0000
+Received: from xhc-rcd-x01.cisco.com (xhc-rcd-x01.cisco.com [173.37.183.75])
+	by rcdn-core-1.cisco.com (8.14.5/8.14.5) with ESMTP id sB5ErBdb024642
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Fri, 5 Dec 2014 14:53:11 GMT
+Received: from xmb-rcd-x10.cisco.com ([169.254.15.204]) by
+	xhc-rcd-x01.cisco.com ([173.37.183.75]) with mapi id 14.03.0195.001;
+	Fri, 5 Dec 2014 08:53:11 -0600
+From: "Vinodh Rajaraman (vrajaram)" <vrajaram@cisco.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: using preferred_provider
+Thread-Index: AQHQEJsve1U5a69pv0i2zB4s3Wbf7w==
+Date: Fri, 5 Dec 2014 14:53:10 +0000
+Message-ID: <D0A7C4AC.AE92%vrajaram@cisco.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.65.35.167]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <4009F04F5925CD4C95FBD9BE756381FE02848F2A72@MSSRVS5.atlas.de>	<4009F04F5925CD4C95FBD9BE756381FE02848F2A73@MSSRVS5.atlas.de>	<4B07ADD556F70043925DA2E9C5D4346D2FDB562272@MSXBEBVT12.planar.net>
-	<4009F04F5925CD4C95FBD9BE756381FE02848F2A75@MSSRVS5.atlas.de>
-In-Reply-To: <4009F04F5925CD4C95FBD9BE756381FE02848F2A75@MSSRVS5.atlas.de>
-Subject: Re: u-boot precompiled ?
+Subject: using preferred_provider
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,79 +68,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Dec 2014 14:21:55 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 05 Dec 2014 14:54:18 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <A3A4DCAAEAB1B846A99A31AF6B372E08@emea.cisco.com>
+Content-Transfer-Encoding: quoted-printable
 
-On 2014-12-05 05:48, Matthias.Heise@atlas-elektronik.com wrote:
-> Hello Matt,
->
-> thanks very much for your reply, I was able to create a simple patch changing an u-boot setting as test and “bbappended” it. I just didn’t believe before that the various u-boot
-> settings are “hard-coded” but they obviously are in the “<board>.h”, so patching it seems to be the only way for changing settings from within yocto, right?
 
-What U-Boot settings are you asking about?
+Facing an issue, where item 'libpython2.7.so.1.0=B9 is provided by 2
+different packages (libpython2.7-1.0-2.7.2-r5.19.lib32_x86, core.bb).
+Core.bb is our own implementation that packages this file. While building
+final image, do_rootfs() complains that there is a conflict and errors
+out.=20
 
-> *Von:*Matt Schuckmann [mailto:Matt.Schuckmann@planar.com]
-> *Gesendet:* Donnerstag, 4. Dezember 2014 18:31
-> *An:* Heise, Matthias; yocto@yoctoproject.org
-> *Betreff:* RE: u-boot precompiled ?
->
-> Mat,
->
-> I’m fairly new to OpenEmbedded (4 months now and I still feel like a noobi but I’m trying to give back while the pain is still fresh in my mind)
->
-> For something like u-boot it kind of depends on what your changing. If you need to change the u-boot code and the changes are small then typically you’d create a patch f for your
-> changes and then make them part of a .bbappend in your layer for the recipe. There are examples on the net for how to create a .bbappend and reference the patch file.
->
-> Generally your .bbappend can be as simple as:
->
-> FILESEXTRAPATHS_prepend = “:${THISDIR}/files”
->
-> SRC_URI += “files://xyzzy.patch”
->
-> Where your patches are in subdirectory of your recipe directory.
->
-> Remember that generally recipes are about how to obtain the code, build it and package it for distribution, you can do recipes that deal with a pre-built binary but that is
-> generally not the case.
->
-> Hope this helps,
->
-> Matt S.
->
-> *From:*yocto-bounces@yoctoproject.org <mailto:yocto-bounces@yoctoproject.org> [mailto:yocto-bounces@yoctoproject.org] *On Behalf Of *Matthias.Heise@atlas-elektronik.com
-> <mailto:Matthias.Heise@atlas-elektronik.com>
-> *Sent:* Thursday, December 04, 2014 1:49 AM
-> *To:* yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
-> *Subject:* Re: [yocto] u-boot precompiled ?
->
-> Even if this is a stupid question a little advise would be nice … like “don’t ask so stupid questions, go read this and that” or something… no time ? Should I rather unsubscribe
-> from this list until I’m an expert?
->
-> *Von:*Heise, Matthias
-> *Gesendet:* Mittwoch, 3. Dezember 2014 15:15
-> *An:* 'yocto@yoctoproject.org'
-> *Betreff:* u-boot precompiled ?
->
-> Hi all,
->
-> I’m still trying to find out basic things about getting a system up and running. This question is about U-Boot, is it right that for example for my wandboard a pre-compiled *.imx
-> is just downloaded ?
->
-> So if I want to make settings to U-Boot I make them directly in the source, compile it and re-direct in a recipe to take that new file as bootloader ? Or can I make the settings
-> within a recipe and I just didn’t find the spot ?
->
-> Thanks for your time,
->
-> Regards
->
-> Mat
->
->
->
+error: file /usr/lib/libpython2.7.so.1.0 conflicts between attempted
+installs of core-1.0-r0.lib32_n9000 and
+libpython2.7-1.0-2.7.2-r5.19.lib32_x86
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+
+Is it okay to add below variable to denote that I want to ignore content
+of libpython2.7 and use the item provided by core? Or is below syntax
+wrong? I keep getting above error, so looking for some help to resolve
+this.=20
+
+PREFERRED_PROVIDER_libpython2.7.so.1.0 ?=3D "core"
+
+
+
+Vinodh
+
+
 
