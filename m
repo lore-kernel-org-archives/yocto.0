@@ -1,35 +1,52 @@
-Return-Path: <peterengcomau001@adam.com.au>
+Return-Path: <ulfwin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F0B8BE00872; Sat,  6 Dec 2014 19:11:37 -0800 (PST)
+	id 1EB93E00837; Sun,  7 Dec 2014 03:22:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [202.136.110.238 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ulfwin[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from webmail2.adam.net.au (webmail2.adam.net.au [202.136.110.238])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3BC5E00833
-	for <yocto@yoctoproject.org>; Sat,  6 Dec 2014 19:11:26 -0800 (PST)
-Received: from localhost (webmail2.adam.net.au [127.0.0.1])
-	by webmail2.adam.net.au (8.13.8/8.13.8) with ESMTP id sB73BKeY028491;
-	Sun, 7 Dec 2014 13:41:20 +1030
-Message-Id: <2f122a2cc42c6ffa877fcc0a19addea7e46735d1@webmail.adam.com.au>
-From: peterengcomau001@adam.com.au
-To: "Tran TriTin" <tritini@gmail.com>, yocto@yoctoproject.org
-X-Mailer: Atmail 6.3.5.8698
-in-reply-to: <CAAkv4643OfQq6vx2GiKDf31H7bJc8uNo+Bb2mO86FB4aP6tCug@mail.gmail.com>
-Date: Sun, 07 Dec 2014 13:41:20 +1030
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.179 listed in list.dnswl.org]
+Received: from mail-lb0-f179.google.com (mail-lb0-f179.google.com
+	[209.85.217.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAF0FE00345
+	for <yocto@yoctoproject.org>; Sun,  7 Dec 2014 03:22:08 -0800 (PST)
+Received: by mail-lb0-f179.google.com with SMTP id z11so2486122lbi.38
+	for <yocto@yoctoproject.org>; Sun, 07 Dec 2014 03:22:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=1CFd/rfEwohJ1MlnOEGH8uoxjg7rCXVAm7zqB82hBRU=;
+	b=qCmI5Yj0wRMbCe3ikmCQTjtTU4Kb8pD3EsoBB/grZiGyMWM30Dpf6yvfu4tYaYoab1
+	dLCABUT0XjIa5nzUcgIdMk4LcMRQKiuTwNXZR7sqLjiBiR3QL415lORsbwgGipJPNR4U
+	0KM3zxkL3gCqE80BGn1u55MhSvR9xVicanKpjln0+gILePhmwQBLxulYG+AHUmmbu72l
+	QCeKL8jOWEKHM1kEpvRA2cDmKYoD3ps29plKv1dmtHewj2YheWpZHL4FAMupoWdmfsLl
+	+XTp6il1Dg+xeaBNvGMbt14k4j1khq+PpW7KlZPIW/4UGOXcAmLj5YaTzykBkJQulMlt
+	9LwA==
 MIME-Version: 1.0
-Subject: Re: Build a Toolchain-QT
+X-Received: by 10.152.3.100 with SMTP id b4mr11019498lab.68.1417951326214;
+	Sun, 07 Dec 2014 03:22:06 -0800 (PST)
+Received: by 10.25.42.131 with HTTP; Sun, 7 Dec 2014 03:22:06 -0800 (PST)
+Date: Sun, 7 Dec 2014 12:22:06 +0100
+Message-ID: <CAP9QVgA8bD6oro2rxut4sceWr7qXjD4A5QGWz4BU6UXGCWZvEg@mail.gmail.com>
+From: Ulf Winberg <ulfwin@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Using anonymous python function to define variables
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: peterengcomau001@adam.com.au
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -38,125 +55,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 07 Dec 2014 03:11:38 -0000
-Content-Type: multipart/alternative;
-	boundary="=_1dc0ca7983e6ce76ff7d8879870e2924"
+X-List-Received-Date: Sun, 07 Dec 2014 11:22:12 -0000
+Content-Type: multipart/alternative; boundary=089e014940641ba0f005099e85fd
 
---=_1dc0ca7983e6ce76ff7d8879870e2924
+--089e014940641ba0f005099e85fd
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-Try using $ bitbake -k meta-toolchain-qte=C2=A0This builds the toochain=
-=0Afor the embedded version of QTLachlan=C2=A0 =0A=0A----- Original Mess=
-age -----=0AFrom: "Tran TriTin" =0ATo:=0ACc:=0ASent:Thu, 4 Dec 2014 13:1=
-0:20 +0100=0ASubject:[yocto] Build a Toolchain-QT=0A=0A    Hi all,=C2=A0=
-=0A=0Ai tried to build a toolchain for Qt SDK with following command, bu=
-t i=0Areceived an error.=0ACan anyone know how to fix it?=0AThanks in ad=
-vance.=0A=0A[tvtritin@g-105-1 build-core-image]$ bitbake -k meta-toolcha=
-in-qt=0ALoading cache: 100% |###########################################=
-|=0AETA:=C2=A0 00:00:00=0ALoaded 1294 entries from dependency cache.=0AN=
-OTE: Resolving any missing task queue dependencies=0A=0ABuild Configurat=
-ion:=0ABB_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "1.24.0"=
-=0ABUILD_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "x86_64=
--linux"=0ANATIVELSBSTRING=C2=A0=C2=A0 =3D "CentOS-6.6"=0ATARGET_SYS=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "i586-poky-linux"=0AMACHINE=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "qemux8=
-6"=0ADISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 =3D "poky"=0ADISTRO_VERSION=C2=A0=C2=A0=C2=A0 =3D "1.7"=0ATUNE_FE=
-ATURES=C2=A0=C2=A0=C2=A0=C2=A0 =3D "m32 i586"=0ATARGET_FPU=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D ""=0Ameta=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=0Ameta-yocto=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=0Ameta-yocto-bsp=C2=A0=
-=C2=A0=C2=A0 =3D ":"=0Ameta-oracle-java=C2=A0 =3D=0A"master:d5256fe7ae59=
-2f19ffe0619c093b333eb9f92a93"=0A=0ANOTE: Preparing runqueue=0ANOTE: Exec=
-uting SetScene Tasks=0ANOTE: Executing RunQueue Tasks=0AERROR: Unable to=
- install packages. Command=0A'/home/tvtritin/DemoYOCTO/poky1.7/build-cor=
-e-image-java/tmp/sysroots/x86_64-linux/usr/bin/apt-get=C2=A0=0Ainstall -=
--force-yes --allow-unauthenticated=0Anativesdk-packagegroup-qt-toolchain=
--host=0Apackagegroup-cross-canadian-qemux86' returned 100:=0AReading pac=
-kage lists...=0ABuilding dependency tree...=0AReading state information.=
-.=0AW: Unable to read=0A/home/tvtritin/DemoYOCTO/poky1.7/build-core-ima=
-ge-java/tmp/work/i586-poky-linux/meta-toolchain-qt/1.0-r7/apt-sdk/prefer=
-ences.d/=0A- DirectoryExists (2: No such file or directory)=0AE: Unable=
- to locate package nativesdk-packagegroup-qt-toolchain-host=0AE: Unable=
- to locate package packagegroup-cross-canadian-qemux86=0A=0AERROR: Funct=
-ion failed: do_populate_sdk=0AERROR: Logfile of failure stored in:=0A/ho=
-me/tvtritin/DemoYOCTO/poky1.7/build-core-image-java/tmp/work/i586-poky-l=
-inux/meta-toolchain-qt/1.0-r7/temp/log.do_populate_sdk.11662=0AERROR: Ta=
-sk 7=0A(/home/tvtritin/DemoYOCTO/poky1.7/meta/recipes-qt/meta/meta-toolc=
-hain-qt.bb=0A[1], do_populate_sdk) failed with exit code '1'=0ANOTE: Tas=
-ks Summary: Attempted 3790 tasks of which 3789 didn't need=0Ato be rerun=
- and 1 failed.=0ANo currently running tasks (3789 of 3791)=0A=0ASummary:=
- 1 task failed:=0A=C2=A0=0A/home/tvtritin/DemoYOCTO/poky1.7/meta/recipes=
--qt/meta/meta-toolchain-qt.bb=0A[2], do_populate_sdk=0ASummary: There wa=
-s 1 WARNING message shown.=0ASummary: There were 2 ERROR messages shown,=
- returning a non-zero exit=0Acode.=0A=0A Best regards,=0A ---- Message s=
-ent via Adam Internet WebMail -=0Ahttp://www.adam.com.au/=0A=0ALinks:=0A=
-------=0A[1] http://meta-toolchain-qt.bb/=0A[2] http://meta-toolchain-qt=
-bb/=0A
+I'm struggling with trying to dynamically set a file name, to be used with
+"require". See code below:
 
---=_1dc0ca7983e6ce76ff7d8879870e2924
+python () {
+       TA = d.getVar('TARGET_ARCH', True)
+       if TA == "arm":
+               javaPkg = "oracle-jse-ejre-arm-vfp-hflt-client-headless"
+       elif TA == "i586":
+               javaPkg = "oracle-jse-jre-i586"
+       elif TA == "x86_64":
+               javaPkg = "oracle-jse-jre-x86-64"
+       else:
+               raise Exception("Target architecture '%s' is not supported
+by the meta-oracle-java layer" %TA)
+       d.setVar('JAVA_PKG', javaPkg)
+}
+
+require ${JAVA_PKG}.inc
+
+The python function executes properly (if I print javaPkg, it shows up
+correctly) but the "JAVA_PKG" variable does not become available for
+"require". From what I can read in section 3.4.4 in this link
+<http://www.yoctoproject.org/docs/1.6/bitbake-user-manual/bitbake-user-manual.html>,
+it seems to me it should work. Could someone please explain to me why it
+doesn't?
+
+Thank you in advance!
+
+Ulf
+
+--089e014940641ba0f005099e85fd
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html><body>Try using $ bitbake -k meta-toolchain-qte=C2=A0<div>This bui=
-lds the toochain for the embedded version of QT</div><div>Lachlan=C2=A0<=
-div>=0A=09=09=09=09<br /><blockquote><br />----- Original Message -----<=
-br /><div style=3D"width:100%;background:rgb(228,228,228);"><div style=
-=3D"font-weight:bold;">From:</div> "Tran TriTin" &lt;tritini@gmail.com&g=
-t;</div><br /><div style=3D"font-weight:bold;">To:</div>&lt;yocto@yoctop=
-roject.org&gt;<br /><div style=3D"font-weight:bold;">Cc:</div><br /><div=
- style=3D"font-weight:bold;">Sent:</div>Thu, 4 Dec 2014 13:10:20 +0100<b=
-r /><div style=3D"font-weight:bold;">Subject:</div>[yocto] Build a Toolc=
-hain-QT<br /><br /><br /><div dir=3D"ltr">=0A<div style=3D"font-size:12.=
-8000001907349px;">=0A<div>=0A<div>=0A<div>Hi all,=C2=A0<br /><br /></div=
->i tried to build a toolchain for Qt SDK with following command, but i r=
-eceived an error.<br /></div>Can anyone know how to fix it?<br /></div>T=
-hanks in advance.<br /><br /><i>[tvtritin@g-105-1 build-core-image]$ bit=
-bake -k meta-toolchain-qt<br />Loading cache: 100% |####################=
-#######################| ETA:=C2=A0 00:00:00<br />Loaded 1294 entries fr=
-om dependency cache.<br />NOTE: Resolving any missing task queue depende=
-ncies<br /><br />Build Configuration:<br />BB_VERSION=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 =3D "1.24.0"<br />BUILD_SYS=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "x86_64-linux"<br />NATIVELSBSTRING=
-=C2=A0=C2=A0 =3D "CentOS-6.6"<br />TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 =3D "i586-poky-linux"<br />MACHINE=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "qemux86"<br />DISTRO=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "poky"<=
-br />DISTRO_VERSION=C2=A0=C2=A0=C2=A0 =3D "1.7"<br />TUNE_FEATURES=C2=A0=
-=C2=A0=C2=A0=C2=A0 =3D "m32 i586"<br />TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 =3D ""<br />meta=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<br />meta-yocto=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<br />meta-yocto-bsp=C2=A0=
-=C2=A0=C2=A0 =3D "&lt;unknown&gt;:&lt;unknown&gt;"<br />meta-oracle-java=
-=C2=A0 =3D "master:d5256fe7ae592f19ffe0619c093b333eb9f92a93"<br /><br />=
-NOTE: Preparing runqueue<br />NOTE: Executing SetScene Tasks<br />NOTE:=
- Executing RunQueue Tasks<br /><span style=3D"color:rgb(204,0,0);"><b>ER=
-ROR</b>: Unable to install packages. Command '/home/tvtritin/DemoYOCTO/p=
-oky1.7/build-core-image-java/tmp/sysroots/x86_64-linux/usr/bin/apt-get=
-=C2=A0 install --force-yes --allow-unauthenticated nativesdk-packagegrou=
-p-qt-toolchain-host packagegroup-cross-canadian-qemux86' returned 100:<b=
-r />Reading package lists...<br />Building dependency tree...<br />Readi=
-ng state information...<br />W: Unable to read /home/tvtritin/DemoYOCTO/=
-poky1.7/build-core-image-java/tmp/work/i586-poky-linux/meta-toolchain-qt=
-/1.0-r7/apt-sdk/preferences.d/ - DirectoryExists (2: No such file or dir=
-ectory)<br />E: Unable to locate package nativesdk-packagegroup-qt-toolc=
-hain-host<br />E: Unable to locate package packagegroup-cross-canadian-q=
-emux86<br /><br /><b>ERROR</b>: Function failed: do_populate_sdk<br /><b=
->ERROR</b>: Logfile of failure stored in: /home/tvtritin/DemoYOCTO/poky1=
-7/build-core-image-java/tmp/work/i586-poky-linux/meta-toolchain-qt/1.0-=
-r7/temp/log.do_populate_sdk.11662<br /><b>ERROR</b>: Task 7 (/home/tvtri=
-tin/DemoYOCTO/poky1.7/meta/recipes-qt/meta/<a href=3D"http://meta-toolch=
-ain-qt.bb/">meta-toolchain-qt.bb</a>, do_populate_sdk) failed with exit=
- code '1'</span><br />NOTE: Tasks Summary: Attempted 3790 tasks of which=
- 3789 didn't need to be rerun and 1 failed.<br />No currently running ta=
-sks (3789 of 3791)<br /><br />Summary: 1 task failed:<br />=C2=A0 /home/=
-tvtritin/DemoYOCTO/poky1.7/meta/recipes-qt/meta/<a href=3D"http://meta-t=
-oolchain-qt.bb/">meta-toolchain-qt.bb</a>, do_populate_sdk<br />Summary:=
- There was 1 WARNING message shown.<br />Summary: There were 2 ERROR mes=
-sages shown, returning a non-zero exit code.</i><br /><br /><br /><br />=
-</div>=0A<span style=3D"font-size:12.8000001907349px;">Best regards,</sp=
-an><br /></div>=0A=0A</blockquote></div></div>---- Message sent via Adam=
- Internet WebMail  - http://www.adam.com.au/</body></html>
+<div dir=3D"ltr"><div><div><div>I&#39;m struggling with trying to dynamical=
+ly set a file name, to be used with &quot;require&quot;. See code below:<br=
+><br><span style=3D"font-family:monospace">python () {<br>=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 TA =3D d.getVar(&#39;TARGET_ARCH&#39;, True)<br>=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if TA =3D=3D &quot;arm&quot;:<br>=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 javaPkg =3D &quot;oracle-jse-ejre-arm-vfp-hflt-client-headless&quot;<br=
+>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 elif TA =3D=3D &quot;i586&quot;:<br>=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 javaPkg =3D &quot;oracle-jse-jre-i586&quot;<br>=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 elif TA =3D=3D &quot;x86_64&quot;:<br>=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 javaPkg =
+=3D &quot;oracle-jse-jre-x86-64&quot;<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 else:<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 raise Exception(&quot;Target architecture &#39;%s&=
+#39; is not supported by the meta-oracle-java layer&quot; %TA)<br>=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 d.setVar(&#39;JAVA_PKG&#39;, javaPkg)<br>}<br><=
+br>require ${JAVA_PKG}.inc</span><br><br></div>The python function executes=
+ properly (if I print javaPkg, it shows up correctly) but the &quot;JAVA_PK=
+G&quot; variable does not become available for &quot;require&quot;. From wh=
+at I can read in section 3.4.4 in <a href=3D"http://www.yoctoproject.org/do=
+cs/1.6/bitbake-user-manual/bitbake-user-manual.html">this link</a>, it seem=
+s to me it should work. Could someone please explain to me why it doesn&#39=
+;t?<br><br></div>Thank you in advance!<br><br></div>Ulf<br></div>
 
---=_1dc0ca7983e6ce76ff7d8879870e2924--
+--089e014940641ba0f005099e85fd--
