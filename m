@@ -1,39 +1,35 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <peterengcomau001@adam.com.au>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A556E008F6; Fri,  5 Dec 2014 07:28:28 -0800 (PST)
+	id F0B8BE00872; Sat,  6 Dec 2014 19:11:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [107.14.166.228 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [202.136.110.238 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from cdptpa-oedge-vip.email.rr.com
-	(cdptpa-outbound-snat.email.rr.com [107.14.166.228])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A86CE008CF
-	for <yocto@yoctoproject.org>; Fri,  5 Dec 2014 07:28:26 -0800 (PST)
-Received: from [98.100.91.242] ([98.100.91.242:34167]
-	helo=ih3-development-ubuntu-vm.melinkcorp.local)
-	by cdptpa-oedge01 (envelope-from <bevenson@melinkcorp.com>)
-	(ecelerity 3.5.0.35861 r(Momo-dev:tip)) with ESMTP
-	id EF/FA-29844-6CEC1845; Fri, 05 Dec 2014 15:27:02 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: yocto@yoctoproject.org, california.l.sullivan@intel.com,
-	elizabeth.flanagan@intel.com, bevenson@melinkcorp.com
-Date: Fri,  5 Dec 2014 10:26:53 -0500
-Message-Id: <1417793213-26974-3-git-send-email-bevenson@melinkcorp.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1417793213-26974-1-git-send-email-bevenson@melinkcorp.com>
-References: <1417793213-26974-1-git-send-email-bevenson@melinkcorp.com>
-X-RR-Connecting-IP: 107.14.168.118:25
-X-Cloudmark-Score: 0
-Subject: [autobuilder][PATCH 2/2] Documentation: Document GitPoller changesource
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from webmail2.adam.net.au (webmail2.adam.net.au [202.136.110.238])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3BC5E00833
+	for <yocto@yoctoproject.org>; Sat,  6 Dec 2014 19:11:26 -0800 (PST)
+Received: from localhost (webmail2.adam.net.au [127.0.0.1])
+	by webmail2.adam.net.au (8.13.8/8.13.8) with ESMTP id sB73BKeY028491;
+	Sun, 7 Dec 2014 13:41:20 +1030
+Message-Id: <2f122a2cc42c6ffa877fcc0a19addea7e46735d1@webmail.adam.com.au>
+From: peterengcomau001@adam.com.au
+To: "Tran TriTin" <tritini@gmail.com>, yocto@yoctoproject.org
+X-Mailer: Atmail 6.3.5.8698
+in-reply-to: <CAAkv4643OfQq6vx2GiKDf31H7bJc8uNo+Bb2mO86FB4aP6tCug@mail.gmail.com>
+Date: Sun, 07 Dec 2014 13:41:20 +1030
+MIME-Version: 1.0
+Subject: Re: Build a Toolchain-QT
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: peterengcomau001@adam.com.au
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -42,137 +38,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Dec 2014 15:28:28 -0000
+X-List-Received-Date: Sun, 07 Dec 2014 03:11:38 -0000
+Content-Type: multipart/alternative;
+	boundary="=_1dc0ca7983e6ce76ff7d8879870e2924"
 
-Adds documentation to README-NEW-AUTOBUILDER and the HTML
-documentation on how to use the GitPoller changesource.
+--=_1dc0ca7983e6ce76ff7d8879870e2924
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Bryan Evenson <bevenson@melinkcorp.com>
----
- README-NEW-AUTOBUILDER                       |   35 +++++++++++++++++++++-----
- docs/YoctoAutobuilderDevelopersDocument.html |   26 +++++++++++++++++--
- 2 files changed, 53 insertions(+), 8 deletions(-)
+Try using $ bitbake -k meta-toolchain-qte=C2=A0This builds the toochain=
+=0Afor the embedded version of QTLachlan=C2=A0 =0A=0A----- Original Mess=
+age -----=0AFrom: "Tran TriTin" =0ATo:=0ACc:=0ASent:Thu, 4 Dec 2014 13:1=
+0:20 +0100=0ASubject:[yocto] Build a Toolchain-QT=0A=0A    Hi all,=C2=A0=
+=0A=0Ai tried to build a toolchain for Qt SDK with following command, bu=
+t i=0Areceived an error.=0ACan anyone know how to fix it?=0AThanks in ad=
+vance.=0A=0A[tvtritin@g-105-1 build-core-image]$ bitbake -k meta-toolcha=
+in-qt=0ALoading cache: 100% |###########################################=
+|=0AETA:=C2=A0 00:00:00=0ALoaded 1294 entries from dependency cache.=0AN=
+OTE: Resolving any missing task queue dependencies=0A=0ABuild Configurat=
+ion:=0ABB_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "1.24.0"=
+=0ABUILD_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "x86_64=
+-linux"=0ANATIVELSBSTRING=C2=A0=C2=A0 =3D "CentOS-6.6"=0ATARGET_SYS=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "i586-poky-linux"=0AMACHINE=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "qemux8=
+6"=0ADISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 =3D "poky"=0ADISTRO_VERSION=C2=A0=C2=A0=C2=A0 =3D "1.7"=0ATUNE_FE=
+ATURES=C2=A0=C2=A0=C2=A0=C2=A0 =3D "m32 i586"=0ATARGET_FPU=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D ""=0Ameta=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=0Ameta-yocto=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=0Ameta-yocto-bsp=C2=A0=
+=C2=A0=C2=A0 =3D ":"=0Ameta-oracle-java=C2=A0 =3D=0A"master:d5256fe7ae59=
+2f19ffe0619c093b333eb9f92a93"=0A=0ANOTE: Preparing runqueue=0ANOTE: Exec=
+uting SetScene Tasks=0ANOTE: Executing RunQueue Tasks=0AERROR: Unable to=
+ install packages. Command=0A'/home/tvtritin/DemoYOCTO/poky1.7/build-cor=
+e-image-java/tmp/sysroots/x86_64-linux/usr/bin/apt-get=C2=A0=0Ainstall -=
+-force-yes --allow-unauthenticated=0Anativesdk-packagegroup-qt-toolchain=
+-host=0Apackagegroup-cross-canadian-qemux86' returned 100:=0AReading pac=
+kage lists...=0ABuilding dependency tree...=0AReading state information.=
+.=0AW: Unable to read=0A/home/tvtritin/DemoYOCTO/poky1.7/build-core-ima=
+ge-java/tmp/work/i586-poky-linux/meta-toolchain-qt/1.0-r7/apt-sdk/prefer=
+ences.d/=0A- DirectoryExists (2: No such file or directory)=0AE: Unable=
+ to locate package nativesdk-packagegroup-qt-toolchain-host=0AE: Unable=
+ to locate package packagegroup-cross-canadian-qemux86=0A=0AERROR: Funct=
+ion failed: do_populate_sdk=0AERROR: Logfile of failure stored in:=0A/ho=
+me/tvtritin/DemoYOCTO/poky1.7/build-core-image-java/tmp/work/i586-poky-l=
+inux/meta-toolchain-qt/1.0-r7/temp/log.do_populate_sdk.11662=0AERROR: Ta=
+sk 7=0A(/home/tvtritin/DemoYOCTO/poky1.7/meta/recipes-qt/meta/meta-toolc=
+hain-qt.bb=0A[1], do_populate_sdk) failed with exit code '1'=0ANOTE: Tas=
+ks Summary: Attempted 3790 tasks of which 3789 didn't need=0Ato be rerun=
+ and 1 failed.=0ANo currently running tasks (3789 of 3791)=0A=0ASummary:=
+ 1 task failed:=0A=C2=A0=0A/home/tvtritin/DemoYOCTO/poky1.7/meta/recipes=
+-qt/meta/meta-toolchain-qt.bb=0A[2], do_populate_sdk=0ASummary: There wa=
+s 1 WARNING message shown.=0ASummary: There were 2 ERROR messages shown,=
+ returning a non-zero exit=0Acode.=0A=0A Best regards,=0A ---- Message s=
+ent via Adam Internet WebMail -=0Ahttp://www.adam.com.au/=0A=0ALinks:=0A=
+------=0A[1] http://meta-toolchain-qt.bb/=0A[2] http://meta-toolchain-qt=
+bb/=0A
 
-diff --git a/README-NEW-AUTOBUILDER b/README-NEW-AUTOBUILDER
-index a6476f2..97bbe61 100644
---- a/README-NEW-AUTOBUILDER
-+++ b/README-NEW-AUTOBUILDER
-@@ -182,7 +182,8 @@ scheduler: A list of dicts. Each item defines a scheduler associated with this
-                     definition.
- 
-                stable-timer: how long (in seconds) to wait after change before
--                    triggering build to allow for changes to settle.
-+                    triggering build to allow for changes to settle.  Defaults
-+                    to 60 seconds.
- 
- 	       change-user: the user name which the remote hook will use; the
-                     default value is the repository name as per the 'repository'
-@@ -194,6 +195,17 @@ scheduler: A list of dicts. Each item defines a scheduler associated with this
-                     secret to avoid injection of arbitrary changes into your
-                     autobuilder.
- 
-+               changesource: the type of changesource to use for the scheduler;
-+                    the default setting is a PBChangeSource.  Only other valid
-+                    option is 'GitPoller' for a GitPoller changesource.  See the
-+                    official Buildbot documentation at
-+                    http://docs.buildbot.net/latest/manual/cfg-changesources.html
-+                    for more information on changesources.
-+               
-+               interval: The interval between polling for changes.  Only valid
-+                    for GitPoller changesources.  Defaults to 300 seconds (five
-+                    minutes).
-+
-            Extra Notes on SingleBranchScheduler setup
-            ------------------------------------------
- 
-@@ -204,10 +216,10 @@ scheduler: A list of dicts. Each item defines a scheduler associated with this
-            do nightly rebuilds for some repos and immediate for others.
- 
-            The scheduler change filter is set up to watch changes only in the
--           single repository specified, so you have to set up your repository
--           hook to sent the repository url in the change set with the
--           --repository argument to git_buildbot.py, e.g., your git post-receive
--           hook could look something like:
-+           single repository specified.  If you are using a PBChangeSource, you
-+           have to set up your repository hook to send the repository url in the
-+           change set with the --repository argument to git_buildbot.py, e.g.,
-+           your git post-receive hook could look something like:
- 
-              #!/bin/sh
-              echo "$1 $2 $3" | \
-@@ -224,7 +236,18 @@ scheduler: A list of dicts. Each item defines a scheduler associated with this
-                   git_buildbot.py --repository="file:///where_your_repo_is"
- 
-            Because of the way builbot change sources work, your change user
--           names must not colide with the user names used by your slaves.
-+           names must not collide with the user names used by your slaves.
-+
-+           If you are using a GitPoller changesource and you specify a valid
-+           repository but an non-existent branch, Buildbot will silently ignore
-+           your scheduler. If a repository has changed recently but your build
-+           has not triggered, validate that your repository and branch settings
-+           are valid.
-+
-+           For either a PBChangeSource or a GitPoller changesource, the
-+           scheduler will not see the initial repository discovery as a change.
-+           If you are using a SingleBranchScheduler schedule, it is good
-+           practice to force a build to verify the buildset works correctly.
- 
- Example:
- 
-diff --git a/docs/YoctoAutobuilderDevelopersDocument.html b/docs/YoctoAutobuilderDevelopersDocument.html
-index e3eb406..d8c5ccb 100644
---- a/docs/YoctoAutobuilderDevelopersDocument.html
-+++ b/docs/YoctoAutobuilderDevelopersDocument.html
-@@ -1218,7 +1218,7 @@
-                         <p class="c0"><span class="c9">the user name which the remote hook will use; the &nbsp;default value is the repository name as per the &#39;repository&#39; property.</span></p>
-                     </td>
-                 </tr>
--                <tr class="c3">
-+                 <tr class="c3">
-                     <td class="c15" colspan="1" rowspan="1">
-                         <p class="c0"><span class="c9">change-password</span></p>
-                     </td>
-@@ -1229,15 +1229,37 @@
-                         <p class="c0"><span class="c9">password which the remote hook will use; the default is the buildbot default &#39;changepw&#39; -- if your autobuilder is publically accessible, you want to keep this secret to avoid injection of arbitrary changes into your autobuilder.<br></span></p>
-                     </td>
-                 </tr>
-+                <tr class="c3">
-+                    <td class="c15" colspan="1" rowspan="1">
-+                        <p class="c0"><span class="c9">changesource</span></p>
-+                    </td>
-+                    <td class="c28" colspan="1" rowspan="1">
-+                        <p class="c0"><span class="c9">Optional</span></p>
-+                    </td>
-+                    <td class="c45" colspan="1" rowspan="1">
-+                        <p class="c0"><span class="c9">the type of changesource to use for the scheduler; the default setting is a PBChangeSource. Only other valid option is 'GitPoller' for a GitPoller changesource. See the <span class="c20"><a class="c29" href="http://docs.buildbot.net/latest/manual/cfg-changesources.html">Buildbot Changesource documentation</a></span><span>&nbsp;for more information on changesources.<br></span></p>
-+                    </td>
-+                <tr class="c3">
-+                    <td class="c15" colspan="1" rowspan="1">
-+                        <p class="c0"><span class="c9">interval</span></p>
-+                    </td>
-+                    <td class="c28" colspan="1" rowspan="1">
-+                        <p class="c0"><span class="c9">Optional</span></p>
-+                    </td>
-+                    <td class="c45" colspan="1" rowspan="1">
-+                        <p class="c0"><span class="c9">The interval between polling for changes. Only valid for GitPoller changesources. Defaults to 300 seconds (five minutes).<br></span></p>
-+                    </td>
-+                 </tr>
-             </tbody>
-         </table>
-         <h5 class="c4 c14"><a name="h.9xpudqajj26x"></a><span><br></span><span class="c43">Extra Notes on SingleBranchScheduler setup</span><span><br></span></h5>
-         <p class="c4"><span>There is one SBS scheduler for each repository in the buildset, i.e., if your buildset contains more repositories, and you want build triggered by changes to any of them, you need to define a scheduler for each. This also means that you can mix and match, e.g., only do nightly rebuilds for some repos and immediate for others.<br></span></p>
--        <p class="c4"><span>The scheduler change filter is set up to watch changes only in the single repository specified, so you have to set up your repository hook to sent the repository url in the change set with the --repository argument to git_buildbot.py, e.g., your git post-receive &nbsp;hook could look something like:<br></span></p>
-+        <p class="c4"><span>The scheduler change filter is set up to watch changes only in the single repository specified. If you are using a PBChangeSource, you have to set up your repository hook to send the repository url in the change set with the --repository argument to git_buildbot.py, e.g., your git post-receive hook could look something like:<br></span></p>
-         <h6 class="c4 c14"><a name="h.xrluuas8ukd9"></a><span><br> &nbsp; &nbsp;#!/bin/sh<br> &nbsp; &nbsp;echo &quot;$1 $2 $3&quot; | git_buildbot.py --repository=&quot;git://some_repo...&quot;<br></span></h6>
-         <p class="c4"><span><br>For local testing, you can use a post-merge hook instead, along these lines:</span></p>
-         <h6 class="c4 c14"><a name="h.64rcw99ffkjq"></a><span><br> &nbsp; &nbsp;#!/bin/sh<br> &nbsp; &nbsp;PRE=$(git rev-parse &#39;HEAD@{1}&#39;)<br> &nbsp; &nbsp;POST=$(git rev-parse HEAD)<br> &nbsp; &nbsp;SYMNAME=$(git rev-parse --symbolic-full-name HEAD)<br> &nbsp; &nbsp;echo &quot;$PRE $POST $SYMNAME&quot; | \<br> &nbsp; &nbsp;git_buildbot.py --repository=&quot;file:///where_your_repo_is&quot;</span></h6>
-         <p class="c4"><span><br>Because of the way buildbot change sources work, your change user names must not collide with the user names used by your slaves.</span></p>
-+        <p class="c4"><span><br>If you are using a GitPoller changesource and you specify a valid repository but an non-existent branch, Buildbot will silently ignore your scheduler. If a repository has changed recently but your build has not triggered, validate that your repository and branch settings are valid.</span></p><p class="c4"><span><br>For either a PBChangeSource or a GitPoller changesource, the scheduler will not see the initial repository discovery as a change. If you are using a SingleBranchScheduler schedule, it is good practice to force a build after initial setup to verify the buildset works correctly.</span></p>
-         <p class="c4 c6"><span></span></p>
-         <h3 class="c4 c14"><a name="h.fs6mwzkke7xv"></a><span>How do I create my own buildset?</span></h3>
-         <ol class="c7 lst-kix_rxf8talb6b1y-0 start" start="1">
--- 
-1.7.9.5
+--=_1dc0ca7983e6ce76ff7d8879870e2924
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<html><body>Try using $ bitbake -k meta-toolchain-qte=C2=A0<div>This bui=
+lds the toochain for the embedded version of QT</div><div>Lachlan=C2=A0<=
+div>=0A=09=09=09=09<br /><blockquote><br />----- Original Message -----<=
+br /><div style=3D"width:100%;background:rgb(228,228,228);"><div style=
+=3D"font-weight:bold;">From:</div> "Tran TriTin" &lt;tritini@gmail.com&g=
+t;</div><br /><div style=3D"font-weight:bold;">To:</div>&lt;yocto@yoctop=
+roject.org&gt;<br /><div style=3D"font-weight:bold;">Cc:</div><br /><div=
+ style=3D"font-weight:bold;">Sent:</div>Thu, 4 Dec 2014 13:10:20 +0100<b=
+r /><div style=3D"font-weight:bold;">Subject:</div>[yocto] Build a Toolc=
+hain-QT<br /><br /><br /><div dir=3D"ltr">=0A<div style=3D"font-size:12.=
+8000001907349px;">=0A<div>=0A<div>=0A<div>Hi all,=C2=A0<br /><br /></div=
+>i tried to build a toolchain for Qt SDK with following command, but i r=
+eceived an error.<br /></div>Can anyone know how to fix it?<br /></div>T=
+hanks in advance.<br /><br /><i>[tvtritin@g-105-1 build-core-image]$ bit=
+bake -k meta-toolchain-qt<br />Loading cache: 100% |####################=
+#######################| ETA:=C2=A0 00:00:00<br />Loaded 1294 entries fr=
+om dependency cache.<br />NOTE: Resolving any missing task queue depende=
+ncies<br /><br />Build Configuration:<br />BB_VERSION=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 =3D "1.24.0"<br />BUILD_SYS=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "x86_64-linux"<br />NATIVELSBSTRING=
+=C2=A0=C2=A0 =3D "CentOS-6.6"<br />TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 =3D "i586-poky-linux"<br />MACHINE=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "qemux86"<br />DISTRO=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "poky"<=
+br />DISTRO_VERSION=C2=A0=C2=A0=C2=A0 =3D "1.7"<br />TUNE_FEATURES=C2=A0=
+=C2=A0=C2=A0=C2=A0 =3D "m32 i586"<br />TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 =3D ""<br />meta=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<br />meta-yocto=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0<br />meta-yocto-bsp=C2=A0=
+=C2=A0=C2=A0 =3D "&lt;unknown&gt;:&lt;unknown&gt;"<br />meta-oracle-java=
+=C2=A0 =3D "master:d5256fe7ae592f19ffe0619c093b333eb9f92a93"<br /><br />=
+NOTE: Preparing runqueue<br />NOTE: Executing SetScene Tasks<br />NOTE:=
+ Executing RunQueue Tasks<br /><span style=3D"color:rgb(204,0,0);"><b>ER=
+ROR</b>: Unable to install packages. Command '/home/tvtritin/DemoYOCTO/p=
+oky1.7/build-core-image-java/tmp/sysroots/x86_64-linux/usr/bin/apt-get=
+=C2=A0 install --force-yes --allow-unauthenticated nativesdk-packagegrou=
+p-qt-toolchain-host packagegroup-cross-canadian-qemux86' returned 100:<b=
+r />Reading package lists...<br />Building dependency tree...<br />Readi=
+ng state information...<br />W: Unable to read /home/tvtritin/DemoYOCTO/=
+poky1.7/build-core-image-java/tmp/work/i586-poky-linux/meta-toolchain-qt=
+/1.0-r7/apt-sdk/preferences.d/ - DirectoryExists (2: No such file or dir=
+ectory)<br />E: Unable to locate package nativesdk-packagegroup-qt-toolc=
+hain-host<br />E: Unable to locate package packagegroup-cross-canadian-q=
+emux86<br /><br /><b>ERROR</b>: Function failed: do_populate_sdk<br /><b=
+>ERROR</b>: Logfile of failure stored in: /home/tvtritin/DemoYOCTO/poky1=
+7/build-core-image-java/tmp/work/i586-poky-linux/meta-toolchain-qt/1.0-=
+r7/temp/log.do_populate_sdk.11662<br /><b>ERROR</b>: Task 7 (/home/tvtri=
+tin/DemoYOCTO/poky1.7/meta/recipes-qt/meta/<a href=3D"http://meta-toolch=
+ain-qt.bb/">meta-toolchain-qt.bb</a>, do_populate_sdk) failed with exit=
+ code '1'</span><br />NOTE: Tasks Summary: Attempted 3790 tasks of which=
+ 3789 didn't need to be rerun and 1 failed.<br />No currently running ta=
+sks (3789 of 3791)<br /><br />Summary: 1 task failed:<br />=C2=A0 /home/=
+tvtritin/DemoYOCTO/poky1.7/meta/recipes-qt/meta/<a href=3D"http://meta-t=
+oolchain-qt.bb/">meta-toolchain-qt.bb</a>, do_populate_sdk<br />Summary:=
+ There was 1 WARNING message shown.<br />Summary: There were 2 ERROR mes=
+sages shown, returning a non-zero exit code.</i><br /><br /><br /><br />=
+</div>=0A<span style=3D"font-size:12.8000001907349px;">Best regards,</sp=
+an><br /></div>=0A=0A</blockquote></div></div>---- Message sent via Adam=
+ Internet WebMail  - http://www.adam.com.au/</body></html>
 
+--=_1dc0ca7983e6ce76ff7d8879870e2924--
