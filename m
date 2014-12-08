@@ -1,17 +1,17 @@
-Return-Path: <grsandeep85@gmail.com>
+Return-Path: <vaduvajanalexandru@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4D6FFE006EF; Mon,  8 Dec 2014 07:53:10 -0800 (PST)
+	id 31D5AE00832; Mon,  8 Dec 2014 08:30:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (grsandeep85[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.51 listed in list.dnswl.org]
+	mail provider *      (vaduvajanalexandru[at]yahoo.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [98.138.90.81 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,37 +20,49 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f51.google.com (mail-oi0-f51.google.com
-	[209.85.218.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 059B7E00344
-	for <yocto@yoctoproject.org>; Mon,  8 Dec 2014 07:53:04 -0800 (PST)
-Received: by mail-oi0-f51.google.com with SMTP id e131so3531263oig.10
-	for <yocto@yoctoproject.org>; Mon, 08 Dec 2014 07:53:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=x97Le+mvbVaNf22pRHJbfwhl4yJ384YsEa2WL4ooAgk=;
-	b=Ql9ODrS/wBo0Ffb69PfSIj1EtUnev+2YqfcIsNa+6HfoRm2n/7EFXhnfjjXg6Z9AlH
-	VZs/Uv5Wgp+qrh2cNSz1P6D9D50bh8FMCcJfJ6eZgVMmzleiQO9cQiFd5uHx7BxLYtZW
-	iHXnOfGNXE2Vytj8HG17CY9n6rc/ICZ2BsuaVMD9SmFiCpbrYOr4RggMeXcQcBpjAcW2
-	yfY++cn6RYpszTgciq1s+YW4vepjXQzbtpaBxnKaqr2iJ4MEeSV4irc/+LtSa/xZP2A8
-	d/9nNC4LjxsKnmyngw9Jebjs6i9Rw4T6RK0TklYY6jt+k9AU3VScFPiZGvdAAoX2+NiH
-	b2zg==
+Received: from nm18.bullet.mail.ne1.yahoo.com (nm18.bullet.mail.ne1.yahoo.com
+	[98.138.90.81])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C914FE006EF
+	for <yocto@yoctoproject.org>; Mon,  8 Dec 2014 08:30:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1418056241; bh=oJjADIwOYkqQc8YPybmmP1T69UEKka7Nk5IYgs2eTKo=;
+	h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject;
+	b=KC+JXWKpg3+8BFXq9NsBXabIYG4G7e17f1rJVHdlLPKRPuXijL33ZQNXeLRdGbhlkgvlaj8UtqK6FAP1cyd8DAL/NdxpMiVx8wSZO3qiruEHkeVzEM5vExb2dmHuiW/0apr5leMx8SekKgrLhyo3L8HCRiyZCh3LIwaoxP6+hZ/8E1PfbnSktCR3exgesfljDLeF4jMWDB6EPrDq5NOOnlDANC97sl4Qxes/dKE6RcwQl2FVUjWOfCt6en9jftpz+sAulcF8b5fKt4PRUOiZWQI92SicHRehtF0ds0PpOLhL6AiMKtdjjDAtGsPji19X+Rkw0qY3BaH0cx3B/1HV6g==
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s2048; d=yahoo.com;
+	b=ZQIk6cVzPJT0ThIHU0dtRt3WpBtllGSzcGJjm6lBjtjOxBTX2uH2wXpJ+A2tuCbIW1B4fBVkXeCBFY8pEXlH8oCVahHN0xjN0UpIJf44tM4qOvH7DX4igsboRIG4VuKOquYxF191hgyE7Wo2x4OmKe60efs8jyz0CD6lNzqUWhoVJPELPlZmQfnP2FsDwvPLANHO9qxfFmp6JzcWkFjd03670pNuFLLJGQS5sa6sxHlfhM4Lb/XsjnWxiYVEwvYc8tUiQKzDUE3kyvZNyExoRDDb//2q5jKvrTsXnTEhXC4NDiBLLgVciSIMGatzZ0xTG33/xTJWKTFaXNBjdENVeA==;
+Received: from [98.138.226.180] by nm18.bullet.mail.ne1.yahoo.com with NNFMP;
+	08 Dec 2014 16:30:41 -0000
+Received: from [98.138.89.169] by tm15.bullet.mail.ne1.yahoo.com with NNFMP;
+	08 Dec 2014 16:30:41 -0000
+Received: from [127.0.0.1] by omp1025.mail.ne1.yahoo.com with NNFMP;
+	08 Dec 2014 16:30:41 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 239154.69727.bm@omp1025.mail.ne1.yahoo.com
+X-YMail-OSG: Agcogb8VM1kNZ8vFAlIXzC9SRP0KX3z90fEC7fj7Ne18XAD1pyxq29cv7s8Xq7K
+	GSsXuzpOqDLZSzkNOfj46YwzhaLvuy9l4vlxQ7LKsfz6fACrLHGVWi7UqZzJLCQ2fKdspWPEHfcg
+	Ah159T_naMsIJIUKoNIZF4m4xh_RHuQ8.qkzRdkPM.6sqvDGfezeFCaqoNUmqTEs72mUnfA2qpfG
+	1aHkddG2w3q0ym2GWbRThGSYr7xgZy0fFHVMSly3kLyxHLXOTcX3PEIHcaNvaMM7GbwbtniIFMVN
+	ergLvXzLiS7ToOIm0hqXoyRQnzY.RA2jGwc3RmALV8dum.9w0HZyx5HPV5oLgHq6bCBWnDY1W7R_
+	M94BkiiqmDJRsYISMONRMy9wfSPNKBEhFQwiBm.CWb1AiEfXb0zi2dQJSkgnqdYuSPdKpXbwhUl6
+	WtT3wW20jv5FkA.suvJyrXg_QItG_I2IV0Jv0VpITW2j6rZXgU2bXqwNEjsev_3vOcLQ8PoRtCQa
+	q0n9sXnrrDhggbEmICoQcsCyAxkMR5D0TjN0_SgUDeTcla_McPZujmg0eWaHhb9MbAo3TsJCKnOb
+	0rTRkBlBz.G267jZQPJ2wbNtcEsrKRDdbgEdaxzzt3FkyXocqn6d4gcCETkBZnoi.h3uGQ6ktMd6
+	9KM1PI840eVoVA0JHePuyrmRR6h0O.V_4S2LCByPhi808fZe09.y6wlzWCoJQmDcbraHOJgXsyO9
+	j7Kee7hbW
+Received: by 98.138.101.178; Mon, 08 Dec 2014 16:30:40 +0000 
+Date: Mon, 8 Dec 2014 16:30:39 +0000 (UTC)
+From: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
+To: Li xin <lixin.fnst@cn.fujitsu.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <758343160.4123317.1418056239652.JavaMail.yahoo@jws100204.mail.ne1.yahoo.com>
+In-Reply-To: <1418034837-1966-1-git-send-email-lixin.fnst@cn.fujitsu.com>
+References: <1418034837-1966-1-git-send-email-lixin.fnst@cn.fujitsu.com>
 MIME-Version: 1.0
-X-Received: by 10.182.199.106 with SMTP id jj10mr19863672obc.27.1418053983830; 
-	Mon, 08 Dec 2014 07:53:03 -0800 (PST)
-Received: by 10.76.22.12 with HTTP; Mon, 8 Dec 2014 07:53:03 -0800 (PST)
-In-Reply-To: <E5FF0F26CCED3843A9B0899B389686BA41C983@POCITMSEXMB05.LntUniverse.com>
-References: <E5FF0F26CCED3843A9B0899B389686BA41C983@POCITMSEXMB05.LntUniverse.com>
-Date: Mon, 8 Dec 2014 08:53:03 -0700
-Message-ID: <CAKP9-Sjk1bOYyrQJOUWFOAHXTarKwUbRn2-AmaHL9giXE2fs8A@mail.gmail.com>
-From: "Sandeep G.R" <grsandeep85@gmail.com>
-To: Shalini K P <Shalini.KP@lnttechservices.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: regarding yocto installation
+Subject: Re: [meta-cgl][PATCH] openais: upgrade to 1.1.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -59,230 +71,165 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Dec 2014 15:53:10 -0000
-Content-Type: multipart/alternative; boundary=e89a8ff1ca2afa89f10509b66b75
+X-List-Received-Date: Mon, 08 Dec 2014 16:30:47 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_4123316_924813481.1418056239647"
 
---e89a8ff1ca2afa89f10509b66b75
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hi Shalini,
-
-            Your repo url in not a valid one (
-https://dl-ssl.google.com/dl/googlesource/git-repo/repo) Please follow this
-link https://github.com/Freescale/fsl-community-bsp-platform
-
-
-
-On Mon, Dec 8, 2014 at 1:57 AM, Shalini K P <Shalini.KP@lnttechservices.com>
-wrote:
-
->
->
-> Hi,
->
->
->
->    M trying to install yocto on host Ubuntu 12.04. I m following these
-> steps.
->
-> mkdir ~/bin
->
-> $ curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo >
-> ~/bin/repo
->
-> $ chmod a+x ~/bin/repo
->
-> $ PATH=${PATH}:~/bin
->
-> * Download the BSP metadata (recipes + configuration files + classes)
->
-> $ mkdir fsl-community-bsp
->
-> $ cd fsl-community-bsp
->
-> fsl-community-bsp $ repo init \
->
-> -u https://github.com/Freescale/fsl-community-bsp-platform \
->
-> -b dylan
->
-> fsl-community-bsp $ repo sync
->
-> *Fetching project meta-fsl-arm-extra*
->
-> *Fetching project poky*
->
-> *Fetching project meta-fsl-arm*
->
-> *Fetching project meta-openembedded*
->
-> *Fetching projects:  16% (1/6)  Fetching project fsl-community-bsp-base*
->
->
->
-> After this it does not proceed further. Can anyone please help me how to
-> proceed further.
->
->
->
->
->
-> Regards
->
-> Shalini
->
-> *L&T Technology Services Ltd*
->
-> www.LntTechservices.com <http://www.lnttechservices.com/>
->
-> This Email may contain confidential or privileged information for the
-> intended recipient (s). If you are not the intended recipient, please do
-> not use or disseminate the information, notify the sender and delete it
-> from your system.
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-
-
--- 
-*Thanks & Regards,*
-*Sandeep G R*
-
---e89a8ff1ca2afa89f10509b66b75
-Content-Type: text/html; charset=ISO-8859-1
+------=_Part_4123316_924813481.1418056239647
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:&#39;tre=
-buchet ms&#39;,sans-serif;color:rgb(7,55,99)">Hi Shalini,</div><div class=
-=3D"gmail_default" style=3D"font-family:&#39;trebuchet ms&#39;,sans-serif;c=
-olor:rgb(7,55,99)"><br></div><div class=3D"gmail_default" style=3D"font-fam=
-ily:&#39;trebuchet ms&#39;,sans-serif;color:rgb(7,55,99)">&nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; Your repo url in not a valid one (<a href=3D"https=
-://dl-ssl.google.com/dl/googlesource/git-repo/repo" target=3D"_blank" style=
-=3D"font-size:13px;font-family:CMTT10">https://dl-ssl.google.com/dl/googles=
-ource/git-repo/repo</a>) Please follow this link <a href=3D"https://github.=
-com/Freescale/fsl-community-bsp-platform">https://github.com/Freescale/fsl-=
-community-bsp-platform</a></div><div class=3D"gmail_default" style=3D"font-=
-family:&#39;trebuchet ms&#39;,sans-serif;color:rgb(7,55,99)"><br></div><div=
- class=3D"gmail_default" style><font color=3D"#073763" face=3D"trebuchet ms=
-, sans-serif"><br></font></div></div><div class=3D"gmail_extra"><br><div cl=
-ass=3D"gmail_quote">On Mon, Dec 8, 2014 at 1:57 AM, Shalini K P <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:Shalini.KP@lnttechservices.com" target=3D"_b=
-lank">Shalini.KP@lnttechservices.com</a>&gt;</span> wrote:<br><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
-padding-left:1ex">
+Thank you for the help.I will try to test and apply it as soon as possible.=
+=C2=A0
+
+Alex Vaduva
+=20
+
+     On Monday, December 8, 2014 12:35 PM, Li xin <lixin.fnst@cn.fujitsu.co=
+m> wrote:
+  =20
+
+ Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
+---
+ meta-cgl-common/recipes-cgl/openais/openais_1.1.3.bb | 18 ----------------=
+--
+ meta-cgl-common/recipes-cgl/openais/openais_1.1.4.bb | 16 ++++++++++++++++
+ 2 files changed, 16 insertions(+), 18 deletions(-)
+ delete mode 100644 meta-cgl-common/recipes-cgl/openais/openais_1.1.3.bb
+ create mode 100644 meta-cgl-common/recipes-cgl/openais/openais_1.1.4.bb
+
+diff --git a/meta-cgl-common/recipes-cgl/openais/openais_1.1.3.bb b/meta-cg=
+l-common/recipes-cgl/openais/openais_1.1.3.bb
+deleted file mode 100644
+index 2a03b9a..0000000
+--- a/meta-cgl-common/recipes-cgl/openais/openais_1.1.3.bb
++++ /dev/null
+@@ -1,18 +0,0 @@
+-DESCRIPTION =3D "Implementation of the Service Availability Forum Applicat=
+ion Interface Specification (AIS)"
+-LICENSE =3D "BSD"
+-LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D4cb00dd52a063edbece6ae248a2ba66=
+3"
+-DEPENDS =3D "cluster-glue corosync"
+-
+-#=C2=A0=C2=A0=C2=A0 ftp://ftp@openais.org/downloads/openais-${PV}/openais-=
+${PV}.tar.gz
+-
+-SRC_URI =3D " \
+-=C2=A0=C2=A0=C2=A0 ftp://ftp@tux.rainside.sk/gentoo/distfiles/openais-${PV=
+}.tar.gz \
+-=C2=A0=C2=A0=C2=A0 file://fix-lcrso-linkage.patch \
+-=C2=A0 =C2=A0 file://build-cleanup-configure-ac.patch \
+-=C2=A0=C2=A0=C2=A0 "
+-SRC_URI[md5sum] =3D "13d8d590f806fb396d750b086c6c0b78"
+-SRC_URI[sha256sum] =3D "eeef58dd2df3eb16ba68b3fbdc6f0d4dfb537443f1c091ec6f=
+0431594f2f00b6"
+-
+-inherit autotools pkgconfig
+-
+-FILES_${PN}-dbg +=3D "${libexecdir}/lcrso/.debug"
+diff --git a/meta-cgl-common/recipes-cgl/openais/openais_1.1.4.bb b/meta-cg=
+l-common/recipes-cgl/openais/openais_1.1.4.bb
+new file mode 100644
+index 0000000..23d704d
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/openais/openais_1.1.4.bb
+@@ -0,0 +1,16 @@
++DESCRIPTION =3D "Implementation of the Service Availability Forum Applicat=
+ion Interface Specification (AIS)"
++LICENSE =3D "BSD"
++LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D4cb00dd52a063edbece6ae248a2ba66=
+3"
++DEPENDS =3D "cluster-glue corosync"
++
++SRC_URI =3D "ftp://ftp@tux.rainside.sk/gentoo/distfiles/${BP}.tar.gz \
++=C2=A0 =C2=A0 file://fix-lcrso-linkage.patch \
++=C2=A0 =C2=A0 file://build-cleanup-configure-ac.patch \
++=C2=A0=C2=A0=C2=A0 "
++SRC_URI[md5sum] =3D "e500ad3c49fdc45d8653f864e80ed82c"
++SRC_URI[sha256sum] =3D "974b4959f3c401c16156dab31e65a6d45bbf84dd85a88c2a36=
+2712e738c06934"
++
++inherit autotools pkgconfig
++
++EXTRA_OECONF =3D '--with-initddir=3D/etc/init.d'
++FILES_${PN}-dbg +=3D "${libexecdir}/lcrso/.debug"
+--=20
+1.8.4.2
+
+--=20
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
 
+   
 
+------=_Part_4123316_924813481.1418056239647
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
+nt-size:12px"><div id=3D"yui_3_16_0_1_1418055273867_21637">Thank you for th=
+e help.</div><div id=3D"yui_3_16_0_1_1418055273867_21636" dir=3D"ltr">I wil=
+l try to test and apply it as soon as possible.&nbsp;</div><div id=3D"yui_3=
+_16_0_1_1418055273867_21645" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_1_=
+1418055273867_21646" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_1_14180552=
+73867_21647" dir=3D"ltr">Alex Vaduva<br></div><div id=3D"yui_3_16_0_1_14180=
+55273867_21635"><span></span></div> <div class=3D"qtdSeparateBR"><br><br></=
+div><div style=3D"display: block;" class=3D"yahoo_quoted"> <div style=3D"fo=
+nt-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, =
+sans-serif; font-size: 12px;"> <div style=3D"font-family: HelveticaNeue, He=
+lvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif; font-size: 16px;=
+"> <div dir=3D"ltr"> <font face=3D"Arial" size=3D"2"> On Monday, December 8=
+, 2014 12:35 PM, Li xin &lt;lixin.fnst@cn.fujitsu.com&gt; wrote:<br> </font=
+> </div>  <br><br> <div class=3D"y_msg_container">Signed-off-by: Li Xin &lt=
+;<a ymailto=3D"mailto:lixin.fnst@cn.fujitsu.com" href=3D"mailto:lixin.fnst@=
+cn.fujitsu.com">lixin.fnst@cn.fujitsu.com</a>&gt;<br>---<br> meta-cgl-commo=
+n/recipes-cgl/openais/openais_1.1.3.bb | 18 ------------------<br> meta-cgl=
+-common/recipes-cgl/openais/openais_1.1.4.bb | 16 ++++++++++++++++<br> 2 fi=
+les changed, 16 insertions(+), 18 deletions(-)<br> delete mode 100644 meta-=
+cgl-common/recipes-cgl/openais/openais_1.1.3.bb<br> create mode 100644 meta=
+-cgl-common/recipes-cgl/openais/openais_1.1.4.bb<br><br>diff --git a/meta-c=
+gl-common/recipes-cgl/openais/openais_1.1.3.bb b/meta-cgl-common/recipes-cg=
+l/openais/openais_1.1.3.bb<br>deleted file mode 100644<br>index 2a03b9a..00=
+00000<br>--- a/meta-cgl-common/recipes-cgl/openais/openais_1.1.3.bb<br>+++ =
+/dev/null<br>@@ -1,18 +0,0 @@<br>-DESCRIPTION =3D "Implementation of the Se=
+rvice Availability Forum Application Interface Specification (AIS)"<br>-LIC=
+ENSE =3D "BSD"<br>-LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D4cb00dd52a063=
+edbece6ae248a2ba663"<br>-DEPENDS =3D "cluster-glue corosync"<br>-<br>-#&nbs=
+p;&nbsp;&nbsp; <a href=3D"ftp://ftp@openais.org/downloads/openais-$" target=
+=3D"_blank">ftp://ftp@openais.org/downloads/openais-$</a>{PV}/openais-${PV}=
+.tar.gz<br>-<br>-SRC_URI =3D " \<br>-&nbsp;&nbsp;&nbsp; <a href=3D"ftp://ft=
+p@tux.rainside.sk/gentoo/distfiles/openais-$" target=3D"_blank">ftp://ftp@t=
+ux.rainside.sk/gentoo/distfiles/openais-$</a>{PV}.tar.gz \<br>-&nbsp;&nbsp;=
+&nbsp; file://fix-lcrso-linkage.patch \<br>-&nbsp; &nbsp; file://build-clea=
+nup-configure-ac.patch \<br>-&nbsp;&nbsp;&nbsp; "<br>-SRC_URI[md5sum] =3D "=
+13d8d590f806fb396d750b086c6c0b78"<br>-SRC_URI[sha256sum] =3D "eeef58dd2df3e=
+b16ba68b3fbdc6f0d4dfb537443f1c091ec6f0431594f2f00b6"<br>-<br>-inherit autot=
+ools pkgconfig<br>-<br>-FILES_${PN}-dbg +=3D "${libexecdir}/lcrso/.debug"<b=
+r>diff --git a/meta-cgl-common/recipes-cgl/openais/openais_1.1.4.bb b/meta-=
+cgl-common/recipes-cgl/openais/openais_1.1.4.bb<br>new file mode 100644<br>=
+index 0000000..23d704d<br>--- /dev/null<br>+++ b/meta-cgl-common/recipes-cg=
+l/openais/openais_1.1.4.bb<br>@@ -0,0 +1,16 @@<br>+DESCRIPTION =3D "Impleme=
+ntation of the Service Availability Forum Application Interface Specificati=
+on (AIS)"<br>+LICENSE =3D "BSD"<br>+LIC_FILES_CHKSUM =3D "file://LICENSE;md=
+5=3D4cb00dd52a063edbece6ae248a2ba663"<br>+DEPENDS =3D "cluster-glue corosyn=
+c"<br>+<br>+SRC_URI =3D "<a href=3D"ftp://ftp@tux.rainside.sk/gentoo/distfi=
+les/$" target=3D"_blank">ftp://ftp@tux.rainside.sk/gentoo/distfiles/$</a>{B=
+P}.tar.gz \<br>+&nbsp; &nbsp; file://fix-lcrso-linkage.patch \<br>+&nbsp; &=
+nbsp; file://build-cleanup-configure-ac.patch \<br>+&nbsp;&nbsp;&nbsp; "<br=
+>+SRC_URI[md5sum] =3D "e500ad3c49fdc45d8653f864e80ed82c"<br>+SRC_URI[sha256=
+sum] =3D "974b4959f3c401c16156dab31e65a6d45bbf84dd85a88c2a362712e738c06934"=
+<br>+<br>+inherit autotools pkgconfig<br>+<br>+EXTRA_OECONF =3D '--with-ini=
+tddir=3D/etc/init.d'<br>+FILES_${PN}-dbg +=3D "${libexecdir}/lcrso/.debug"<=
+br>-- <br>1.8.4.2<br><br>-- <br>___________________________________________=
+____<br>yocto mailing list<br><a ymailto=3D"mailto:yocto@yoctoproject.org" =
+href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br><a hre=
+f=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank">https=
+://lists.yoctoproject.org/listinfo/yocto</a><br><br><br></div>  </div> </di=
+v>  </div> </div></body></html>
 
-<div lang=3D"EN-IN" link=3D"blue" vlink=3D"purple">
-<div>
-<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
-<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp; M trying to install yocto on host Ubunt=
-u 12.04. I m following these steps.<u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:10.0pt;font-family:CMTT10;color:#007121">mkdir
-</span><span style=3D"font-size:10.0pt;font-family:CMTT10;color:black">~/bi=
-n<u></u><u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:10.0pt;font-family:CMTT10;color:black">$ curl <a href=3D"https://dl-ssl.=
-google.com/dl/googlesource/git-repo/repo" target=3D"_blank">https://dl-ssl.=
-google.com/dl/googlesource/git-repo/repo</a>
-</span><span style=3D"font-size:10.0pt;font-family:CMTT10;color:#007121">&g=
-t; </span><span style=3D"font-size:10.0pt;font-family:CMTT10;color:black">~=
-/bin/repo<u></u><u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:10.0pt;font-family:CMTT10;color:black">$
-</span><span style=3D"font-size:10.0pt;font-family:CMTT10;color:#007121">ch=
-mod </span>
-<span style=3D"font-size:10.0pt;font-family:CMTT10;color:black">a+x ~/bin/r=
-epo<u></u><u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:10.0pt;font-family:CMTT10;color:black">$
-</span><span style=3D"font-size:10.0pt;font-family:CMTT10;color:#007121">PA=
-TH=3D$</span><span style=3D"font-size:10.0pt;font-family:CMSY10;color:#0071=
-21">{</span><span style=3D"font-size:10.0pt;font-family:CMTT10;color:#00712=
-1">PATH</span><span style=3D"font-size:10.0pt;font-family:CMSY10;color:#007=
-121">}</span><span style=3D"font-size:10.0pt;font-family:CMTT10;color:black=
-">:~/bin<u></u><u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:10.0pt;font-family:CMSY10;color:black">&bull;
-</span><span style=3D"font-size:10.0pt;font-family:CMR10;color:black">Downl=
-oad the BSP metadata (recipes + configuration files + classes)<u></u><u></u=
-></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:10.0pt;font-family:CMTT10;color:black">$
-</span><span style=3D"font-size:10.0pt;font-family:CMTT10;color:#007121">mk=
-dir </span>
-<span style=3D"font-size:10.0pt;font-family:CMTT10;color:black">fsl-communi=
-ty-bsp<u></u><u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:10.0pt;font-family:CMTT10;color:black">$
-</span><span style=3D"font-size:10.0pt;font-family:CMTT10;color:#007121">cd=
- </span>
-<span style=3D"font-size:10.0pt;font-family:CMTT10;color:black">fsl-communi=
-ty-bsp<u></u><u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:10.0pt;font-family:CMTT10;color:black">fsl-community-bsp $ repo init
-</span><span style=3D"font-size:10.0pt;font-family:CMSY10;color:#007121">\<=
-u></u><u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:10.0pt;font-family:CMTT10;color:black">-u <a href=3D"https://github.com/=
-Freescale/fsl-community-bsp-platform" target=3D"_blank">https://github.com/=
-Freescale/fsl-community-bsp-platform</a>
-</span><span style=3D"font-size:10.0pt;font-family:CMSY10;color:#007121">\<=
-u></u><u></u></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
-ze:10.0pt;font-family:CMTT10;color:black">-b dylan<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:CMTT10;c=
-olor:black">fsl-community-bsp $ repo
-</span><span style=3D"font-size:10.0pt;font-family:CMTT10;color:#007121">sy=
-nc<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><b>Fetching project meta-fsl-arm-extra<u></u><u></u>=
-</b></p>
-<p class=3D"MsoNormal"><b>Fetching project poky<u></u><u></u></b></p>
-<p class=3D"MsoNormal"><b>Fetching project meta-fsl-arm<u></u><u></u></b></=
-p>
-<p class=3D"MsoNormal"><b>Fetching project meta-openembedded<u></u><u></u><=
-/b></p>
-<p class=3D"MsoNormal"><b>Fetching projects:&nbsp; 16% (1/6)&nbsp; Fetching=
- project fsl-community-bsp-base<u></u><u></u></b></p>
-<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
-<p class=3D"MsoNormal">After this it does not proceed further. Can anyone p=
-lease help me how to proceed further.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
-<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
-<p class=3D"MsoNormal">Regards<u></u><u></u></p>
-<p class=3D"MsoNormal">Shalini<u></u><u></u></p>
-</div>
-<p><strong>L&amp;T Technology Services Ltd</strong></p>
-<p><a href=3D"http://www.lnttechservices.com/" target=3D"_blank">www.LntTec=
-hservices.com</a></p>
-<p>This Email may contain confidential or privileged information for the in=
-tended recipient (s). If you are not the intended recipient, please do not =
-use or disseminate the information, notify the sender and delete it from yo=
-ur system.</p>
-</div>
-
-<br>--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div cla=
-ss=3D"gmail_signature"><div dir=3D"ltr"><font face=3D"trebuchet ms, sans-se=
-rif" color=3D"#073763"><b>Thanks &amp; Regards,</b></font><div><font face=
-=3D"trebuchet ms, sans-serif" color=3D"#073763"><b>Sandeep G R</b></font><b=
-r><br></div></div></div>
-</div>
-
---e89a8ff1ca2afa89f10509b66b75--
+------=_Part_4123316_924813481.1418056239647--
