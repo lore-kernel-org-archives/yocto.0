@@ -1,46 +1,37 @@
-Return-Path: <chan.kitx.yu@intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5E510E00953; Mon,  8 Dec 2014 01:35:45 -0800 (PST)
+	id 47681E00953; Mon,  8 Dec 2014 01:41:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBE25E008AA
-	for <yocto@yoctoproject.org>; Mon,  8 Dec 2014 01:35:34 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 08 Dec 2014 01:35:33 -0800
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E550E0091D
+	for <yocto@yoctoproject.org>; Mon,  8 Dec 2014 01:41:16 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 08 Dec 2014 01:41:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,537,1413270000"; 
-	d="scan'208,217";a="620310098"
-Received: from pgsmsx106.gar.corp.intel.com ([10.221.44.98])
-	by orsmga001.jf.intel.com with ESMTP; 08 Dec 2014 01:35:32 -0800
-Received: from pgsmsx102.gar.corp.intel.com (10.221.44.80) by
-	pgsmsx106.gar.corp.intel.com (10.221.44.98) with Microsoft SMTP Server
-	(TLS) id 14.3.195.1; Mon, 8 Dec 2014 17:35:31 +0800
-Received: from pgsmsx101.gar.corp.intel.com ([169.254.1.62]) by
-	PGSMSX102.gar.corp.intel.com ([169.254.6.7]) with mapi id
-	14.03.0195.001; Mon, 8 Dec 2014 17:35:31 +0800
-From: "Yu, Chan KitX" <chan.kitx.yu@intel.com>
-To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
-Thread-Topic: Need guidance on compiling clang+rt-compiler+llvm 3.3
-Thread-Index: AdASyJvQd99LljA7QCeZqKT6ZG68eg==
-Date: Mon, 8 Dec 2014 09:35:31 +0000
-Message-ID: <0E4D391FE2BDEC45AA0B4E32D6BD598A24E0B9@PGSMSX101.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.30.20.205]
+X-IronPort-AV: E=Sophos;i="5.07,537,1413270000"; d="scan'208";a="634338276"
+Received: from apwitke-mobl2.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.30.33])
+	by fmsmga001.fm.intel.com with ESMTP; 08 Dec 2014 01:41:15 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Ulf Winberg <ulfwin@gmail.com>
+Date: Mon, 08 Dec 2014 09:41:14 +0000
+Message-ID: <1426837.Z6YLN2FboT@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.3 (Linux/3.17.4-200.fc20.x86_64; KDE/4.14.3; x86_64; ; )
+In-Reply-To: <CAP9QVgA8bD6oro2rxut4sceWr7qXjD4A5QGWz4BU6UXGCWZvEg@mail.gmail.com>
+References: <CAP9QVgA8bD6oro2rxut4sceWr7qXjD4A5QGWz4BU6UXGCWZvEg@mail.gmail.com>
 MIME-Version: 1.0
-Cc: "'yuchankit@gmail.com'" <yuchankit@gmail.com>
-Subject: Need guidance on compiling clang+rt-compiler+llvm 3.3
+Cc: yocto@yoctoproject.org
+Subject: Re: Using anonymous python function to define variables
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,140 +43,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Dec 2014 09:35:45 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_0E4D391FE2BDEC45AA0B4E32D6BD598A24E0B9PGSMSX101garcorpi_"
-
---_000_0E4D391FE2BDEC45AA0B4E32D6BD598A24E0B9PGSMSX101garcorpi_
+X-List-Received-Date: Mon, 08 Dec 2014 09:41:26 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Hi guys,
+Hi Ulf,
 
-Before I go to my errors let me outline the steps I took.
+On Sunday 07 December 2014 12:22:06 Ulf Winberg wrote:
+> I'm struggling with trying to dynamically set a file name, to be used with
+> "require". See code below:
+> 
+> python () {
+>        TA = d.getVar('TARGET_ARCH', True)
+>        if TA == "arm":
+>                javaPkg = "oracle-jse-ejre-arm-vfp-hflt-client-headless"
+>        elif TA == "i586":
+>                javaPkg = "oracle-jse-jre-i586"
+>        elif TA == "x86_64":
+>                javaPkg = "oracle-jse-jre-x86-64"
+>        else:
+>                raise Exception("Target architecture '%s' is not supported
+> by the meta-oracle-java layer" %TA)
+>        d.setVar('JAVA_PKG', javaPkg)
+> }
+> 
+> require ${JAVA_PKG}.inc
+> 
+> The python function executes properly (if I print javaPkg, it shows up
+> correctly) but the "JAVA_PKG" variable does not become available for
+> "require". From what I can read in section 3.4.4 in this link
+> <http://www.yoctoproject.org/docs/1.6/bitbake-user-manual/bitbake-user-manua
+> l.html>, it seems to me it should work. Could someone please explain to me
+> why it doesn't?
 
-I started off with the LLVM recipe that I got from http://cgit.openembedded=
-.org/meta-openembedded/tree/meta-oe/recipes-core/llvm . Then I added the fo=
-llowing to llvm.inc's do_configure_prepend() because I wanted to compile Cl=
-ang, rt-compiler and Clang tools together with LLVM. I also added the SRC_U=
-RI and Licensing for all of them but I don't think that's the main issue he=
-re:
+I'm pretty sure this is because anonymous functions don't get executed until 
+finalize() is called, which is towards the end of parsing; the "require" 
+statement must be handled immediately. Try this instead:
 
-mv ${WORKDIR}/cfe-${PV}.src ${S}/tools/clang
-mv ${WORKDIR}/compiler-rt-${PV}.src ${S}/projects/compiler-rt
-mv ${WORKDIR}/clang-tools-extra-${PV}.src ${S}/tools/clang/extra
+---------------- snip ----------------
 
-The three lines copies the extracted files to the source directory because =
-that's the way the LLVM does it according to http://clang.llvm.org/get_star=
-ted.html .
+def get_java_package(d):
+    TA = d.getVar('TARGET_ARCH', True)
+    if TA == "arm":
+        javaPkg = "oracle-jse-ejre-arm-vfp-hflt-client-headless"
+    elif TA == "i586":
+        javaPkg = "oracle-jse-jre-i586"
+    elif TA == "x86_64":
+        javaPkg = "oracle-jse-jre-x86-64"
+    else:
+        raise bb.parse.SkipPackage("Target architecture '%s' is not supported 
+by the meta-oracle-java layer" % TA)
+    return javaPkg
 
-The compilation went well but I got "Files/directories were installed but n=
-ot shipped error".  The log is at http://pastebin.com/e831Ex9E .
+JAVA_PKG = "${@get_java_package(d)}"
 
-I then tried to add the install -d ${D}${libdir}/clang to do_install() func=
-tion but no good..hence my reason of posting here to have more eyes looking=
- at this.
+require ${JAVA_PKG}.inc
 
-Let me know if you need more info.
+---------------- snip ----------------
 
-Thanks,
-Chan Kit
+The question is though, do you really need a separate inc file for each 
+architecture? You can use overrides for this sort of thing e.g.:
 
---_000_0E4D391FE2BDEC45AA0B4E32D6BD598A24E0B9PGSMSX101garcorpi_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+---------------- snip ----------------
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi guys,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Before I go to my errors let me outline the steps I =
-took.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I started off with the LLVM recipe that I got from <=
-a href=3D"http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recip=
-es-core/llvm">
-http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-core/ll=
-vm</a> . Then I added the following to llvm.inc&#8217;s do_configure_prepen=
-d() because I wanted to compile Clang, rt-compiler and Clang tools together=
- with LLVM. I also added the SRC_URI and
- Licensing for all of them but I don&#8217;t think that&#8217;s the main is=
-sue here:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">mv ${WORKDIR}/cfe-${PV}.src ${S}/tools/clang<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">mv ${WORKDIR}/compiler-rt-${PV}.src ${S}/projects/co=
-mpiler-rt<o:p></o:p></p>
-<p class=3D"MsoNormal">mv ${WORKDIR}/clang-tools-extra-${PV}.src ${S}/tools=
-/clang/extra<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The three lines copies the extracted files to the so=
-urce directory because that&#8217;s the way the LLVM does it according to
-<a href=3D"http://clang.llvm.org/get_started.html">http://clang.llvm.org/ge=
-t_started.html</a> .<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The compilation went well but I got &#8220;Files/dir=
-ectories were installed but not shipped error&#8221;. &nbsp;The log is at
-<a href=3D"http://pastebin.com/e831Ex9E">http://pastebin.com/e831Ex9E</a> .=
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I then tried to add the install -d ${D}${libdir}/cla=
-ng to do_install() function but no good..hence my reason of posting here to=
- have more eyes looking at this.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Let me know if you need more info.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Chan Kit<o:p></o:p></p>
-</div>
-</body>
-</html>
+SOMEVAR = "default value"
+SOMEVAR_arm = "value if arm"
+SOMEVAR_x86-64 = "value if x86-64"
 
---_000_0E4D391FE2BDEC45AA0B4E32D6BD598A24E0B9PGSMSX101garcorpi_--
+---------------- snip ----------------
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
