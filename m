@@ -1,37 +1,29 @@
-Return-Path: <matt.schuckmann@planar.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DD7FCE0084A; Mon,  8 Dec 2014 10:17:53 -0800 (PST)
+	id 27A51E0084A; Mon,  8 Dec 2014 11:28:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [63.128.21.105 listed in list.dnswl.org]
-Received: from us-smtp-delivery-105.mimecast.com
-	(us-smtp-delivery-105.mimecast.com [63.128.21.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6614FE007C1
-	for <yocto@yoctoproject.org>; Mon,  8 Dec 2014 10:17:42 -0800 (PST)
-Received: from msxbvt03.planar.net (199.244.171.48 [199.244.171.48]) by
-	us-mta-8.us.mimecast.lan; Mon, 08 Dec 2014 13:17:39 -0500
-Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
-	with mapi; Mon, 8 Dec 2014 10:17:39 -0800
-From: Matt Schuckmann <Matt.Schuckmann@planar.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Mon, 8 Dec 2014 10:17:37 -0800
-Thread-Topic: Debugging opkg installs
-Thread-Index: AdATEz8WWVNR8aWcReOSeGbeTMv0OA==
-Message-ID: <4B07ADD556F70043925DA2E9C5D4346D2FDB5625DA@MSXBEBVT12.planar.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E56F3E007C1
+	for <yocto@yoctoproject.org>; Mon,  8 Dec 2014 11:27:50 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id D2837F81205; Mon,  8 Dec 2014 12:27:49 -0700 (MST)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id F009AF81204;
+	Mon,  8 Dec 2014 12:27:47 -0700 (MST)
+Message-ID: <5485FBB4.4020501@mlbassoc.com>
+Date: Mon, 08 Dec 2014 12:27:48 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
-X-MC-Unique: ZKjXatiJQamCBmxWUy7yng-1
-Subject: Debugging opkg installs
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: .bbappend and require
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,26 +35,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Dec 2014 18:17:53 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset=WINDOWS-1252
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 08 Dec 2014 19:28:13 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I'm looking for some tips on debugging package install problems.=20
-Recently I've had a problem where edits to a pkg_postinst function in one o=
-f my recipes was not getting run when rebuilding my image. The only way I c=
-ould get the pkg_postinst() function to run was to wipe out my complete ope=
-nembedded build/tmp directory and let it rebuild everything from scratch (a=
-nd the sstate cache). I'd really like to understand what was going on here.=
- My guess is there was some sort of flag somewhere that was telling the opk=
-g to not run the postinst script for that package because it had already be=
-en done once.=20
+I have a base image in my distribution (e.g. xyz-image-base.bb).
+Many of my layers will build on this using 'require', e.g.
+   require recipes-base/images/xyz-image-base.bb
 
-It would also be nice to know how to run opkg installs locally on my dev sy=
-stem to test out recipes but I haven't quite worked out the right tools in =
-place on my dev system and or what the right commands are.
+Sometimes a given layer may create many such image recipes, each
+using 'require' to fill in the base.  It would be nice to be able
+to adjust the base recipe using a .bbappend in the layer so that
+all images built by that layer use the same changes.  I've found
+that this doesn't work as .bbappend files do not seem to be used
+by 'require'.
 
-Thanks,
-Matt S.=20
+It's easy to see this bug in action - just create a file
+'core-image-minimal.bbappend' which contains:
+   CORE_IMAGE_EXTRA_INSTALL += " non-existent-package"
+With this, you *can* build core-image-minimal-dev (which uses
+'require' to build on core-image-minimal) but not core-image-minimal.
 
+Is there some [good] reason for this behaviour or a bug?
+Could it be made to work the way I had hoped/expected?
+
+Thanks
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
