@@ -1,6 +1,6 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A7F31E0086F; Tue,  9 Dec 2014 07:51:31 -0800 (PST)
+	id C4F9FE009C6; Tue,  9 Dec 2014 07:51:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,28 +12,28 @@ X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18589E009BC
-	for <yocto@yoctoproject.org>; Tue,  9 Dec 2014 07:51:29 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA7A8E0086F
+	for <yocto@yoctoproject.org>; Tue,  9 Dec 2014 07:51:47 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id sB9FpSi0012187
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 9 Dec 2014 07:51:28 -0800 (PST)
-Received: from Marks-MacBook-Pro.local (172.25.36.230) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.174.1; Tue, 9 Dec 2014 07:51:27 -0800
-Message-ID: <54871A7E.1050806@windriver.com>
-Date: Tue, 9 Dec 2014 09:51:26 -0600
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id sB9FpeCp012190
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL);
+	Tue, 9 Dec 2014 07:51:40 -0800 (PST)
+Received: from [128.224.92.225] (128.224.92.225) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.174.1;
+	Tue, 9 Dec 2014 07:51:39 -0800
+Message-ID: <54871A89.4020704@windriver.com>
+Date: Tue, 9 Dec 2014 10:51:37 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <CAKGbVbu0YsX18JUF89ec-6M8yUCHnfAM5B7ERQNiAYHTALJ8Bw@mail.gmail.com>	<CAAA4K6J_MjbyeL7Js1hw5C=7BqKFger1sanOtxjCe6tLBaQhvQ@mail.gmail.com>	<CAKGbVbuRpjsk2TViL=yhLOnp9Sguw3f29HHLaXE-xtt9Pud5HA@mail.gmail.com>
-	<CAAA4K6+dayiFaCo07ynMjefPkLjg5_54m2G16VExdUe-TpUYCg@mail.gmail.com>
-In-Reply-To: <CAAA4K6+dayiFaCo07ynMjefPkLjg5_54m2G16VExdUe-TpUYCg@mail.gmail.com>
-Subject: Re: prelink & mklibs problem
+To: Maciej Borzecki <maciej.borzecki@open-rnd.pl>, <yocto@yoctoproject.org>,
+	Denys Dmytriyenko <denys@ti.com>
+References: <1418139871-21134-1-git-send-email-maciej.borzecki@open-rnd.pl>
+In-Reply-To: <1418139871-21134-1-git-send-email-maciej.borzecki@open-rnd.pl>
+Cc: Maciek Borzecki <maciek.borzecki@gmail.com>
+Subject: Re: [meta-yocto-bsp][PATCH] beaglebone.conf: update KERNEL_IMAGETYPE to match u-boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,166 +45,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Dec 2014 15:51:31 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Tue, 09 Dec 2014 15:51:55 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 12/8/14, 3:55 AM, Jegan Chandru wrote:
-> I recommend you to file a bug here https://bugzilla.yoctoproject.org/ if not
-> done already. You may get a proper answer on armhf support there. From what I
-> see, (someone please correct me if I am wrong), there is no prelink dynamic link
-> armhf patch. You can also create and submit the patch for review. AFAIK, you are
-> gonna need to something like below,
->
-> .dynamic_linker = "/lib/ld-linux-armhf.so.3" in arch-arm.c.
->
-> This is not tested though. Please do a test yourselves.
+On 12/09/2014 10:44 AM, Maciej Borzecki wrote:
+> U-boot 2014.07 in Poky expects a zImage kernel image, thus a build done with
+> current machien config will not be directly useable. Update machine config to
+> produce a zImage.
 
-See: http://marc.info/?l=fedora-arm&m=135417053128837&w=2
+poky's README.hardware should be updated as well. When we wrote the 
+instructions
+(and tested on 3.14) the uImage worked, so that is what is referenced
+in the instructions :)
 
-Nobody had requested prelink support for armhf up to this point.
+Bruce
 
-Open an enhancement / bug and assign it to me.  I'll do what I can to integrate 
-the patch officially.
-
-I had been waiting for the prelink upstream to merge this, but they never 
-bothered to, so I'll have to make it a Yocto Project 'cross-prelink' specific path.
-
---Mark
-
-> -JC
 >
-> On Mon, Dec 8, 2014 at 1:52 PM, Qiang Yu <yuq825@gmail.com
-> <mailto:yuq825@gmail.com>> wrote:
+> Signed-off-by: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
+> Signed-off-by: Maciek Borzecki <maciek.borzecki@gmail.com>
+> ---
+>   meta-yocto-bsp/conf/machine/beaglebone.conf | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 >
->     Thanks for your reply. I almost give up.
+> diff --git a/meta-yocto-bsp/conf/machine/beaglebone.conf b/meta-yocto-bsp/conf/machine/beaglebone.conf
+> index a316207..fb0189d 100644
+> --- a/meta-yocto-bsp/conf/machine/beaglebone.conf
+> +++ b/meta-yocto-bsp/conf/machine/beaglebone.conf
+> @@ -24,7 +24,7 @@ SERIAL_CONSOLE = "115200 ttyO0"
+>   PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+>   PREFERRED_VERSION_linux-yocto ?= "3.14%"
 >
->     You mean that current yocto build doesn't support hard float ABI prelink,
->     and the prelink source code needs to
->     be modified to use ld-linux-armhf.so.3?
->
->     So this problem affect all armhf build of yocto, in other words prelink
->     doesn't work for yocto armhf at all now?
->
->     Regards,
->     Qiang
->
->     On Mon, Dec 8, 2014 at 3:28 PM, Jegan Chandru <pcjegan@gmail.com
->     <mailto:pcjegan@gmail.com>> wrote:
->
->         Hi,
->
->         I think it has to do with the ld-linux-armhf.so.3. May be you should
->         tell prelink that you have hard float ARM ABI to prelink for, than
->         ld-linux.so.3 . It means you need to add ld-linux-armhf.so.3 as a
->         dynamic linker.
->         You should patch the prelink source to get this done.
->
->         HTH.
->
->         -JC
->
->
->
->         On Fri, Dec 5, 2014 at 7:41 AM, Qiang Yu <yuq825@gmail.com
->         <mailto:yuq825@gmail.com>> wrote:
->
->             Hi all,
->
->             I'm building a image with local.conf:
->             USER_CLASSES ?= "buildstats image-mklibs image-prelink"
->
->             but I think prelink does nothing on my image, because the MD5SUM is
->             the same before and after
->             the prelink stage. The mklibs stage is also strange not print
->             anything. How to make prelink and
->             mklibs really work?
->
->             Here is the log of log.do_rootfs:
->
->             NOTE: ###### Generate images #######
->             NOTE: Executing mklibs_optimize_image ...
->             DEBUG: Executing shell function mklibs_optimize_image
->             DEBUG: Shell function mklibs_optimize_image finished
->             NOTE: Executing prelink_image ...
->             DEBUG: Executing shell function prelink_image
->             Size before prelinking 49304.
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /sbin/fstab-decode: Using /lib/ld-linux-armhf.so.3, not
->             /lib/ld-linux.so.3 as dynamic linker
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /sbin/bootlogd: Using /lib/ld-linux-armhf.so.3, not
->             /lib/ld-linux.so.3 as dynamic linker
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /sbin/killall5: Using /lib/ld-linux-armhf.so.3, not
->             /lib/ld-linux.so.3 as dynamic linker
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /sbin/init.sysvinit: Using /lib/ld-linux-armhf.so.3, not
->             /lib/ld-linux.so.3 as dynamic linker
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /sbin/halt.sysvinit: Using /lib/ld-linux-armhf.so.3, not
->             /lib/ld-linux.so.3 as dynamic linker
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /sbin/shutdown.sysvinit: Using /lib/ld-linux-armhf.so.3, not
->             /lib/ld-linux.so.3 as dynamic linker
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /sbin/runlevel.sysvinit: Using /lib/ld-linux-armhf.so.3, not
->             /lib/ld-linux.so.3 as dynamic linker
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /usr/sbin/dropbearmulti: Using /lib/ld-linux-armhf.so.3, not
->             /lib/ld-linux.so.3 as dynamic linker
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /bin/mountpoint.sysvinit: Using /lib/ld-linux-armhf.so.3, not
->             /lib/ld-linux.so.3 as dynamic linker
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /bin/busybox.suid: Using /lib/ld-linux-armhf.so.3, not
->             /lib/ld-linux.so.3 as dynamic linker
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /bin/busybox.nosuid: Using /lib/ld-linux-armhf.so.3, not
->             /lib/ld-linux.so.3 as dynamic linker
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /usr/bin/utmpdump.sysvinit: Using /lib/ld-linux-armhf.so.3, not
->             /lib/ld-linux.so.3 as dynamic linker
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /usr/bin/mesg.sysvinit: Using /lib/ld-linux-armhf.so.3, not
->             /lib/ld-linux.so.3 as dynamic linker
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /usr/bin/last.sysvinit: Using /lib/ld-linux-armhf.so.3, not
->             /lib/ld-linux.so.3 as dynamic linker
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /usr/bin/opkg-cl: Using /lib/ld-linux-armhf.so.3, not
->             /lib/ld-linux.so.3 as dynamic linker
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /usr/bin/bmw: Using /lib/ld-linux-armhf.so.3, not /lib/ld-linux.so.3
->             as dynamic linker
->             /opt/yocto/rootfs/tmp/sysroots/x86_64-linux/usr/sbin/prelink:
->             /usr/bin/wall.sysvinit: Using /lib/ld-linux-armhf.so.3, not
->             /lib/ld-linux.so.3 as dynamic linker
->             Size after prelinking 49304.
->             DEBUG: Shell function prelink_image finished
->
->             Regards,
->             Qiang
->
->
->             --
->             _______________________________________________
->             yocto mailing list
->             yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->             https://lists.yoctoproject.org/listinfo/yocto
->
->
->
->
->         --
->         JCP
->
->
->
->
->
-> --
-> JCP
+> -KERNEL_IMAGETYPE = "uImage"
+> +KERNEL_IMAGETYPE = "zImage"
+>   KERNEL_DEVICETREE = "am335x-bone.dtb am335x-boneblack.dtb"
+>   KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
 >
 >
 
