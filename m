@@ -1,6 +1,6 @@
 Return-Path: <chan.kitx.yu@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CBFADE00853; Mon,  8 Dec 2014 17:19:37 -0800 (PST)
+	id 15486E00853; Mon,  8 Dec 2014 18:37:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,26 +12,25 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7651AE007C1
-	for <yocto@yoctoproject.org>; Mon,  8 Dec 2014 17:19:32 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga103.jf.intel.com with ESMTP; 08 Dec 2014 17:17:25 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6134CE007C1
+	for <yocto@yoctoproject.org>; Mon,  8 Dec 2014 18:37:43 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga103.jf.intel.com with ESMTP; 08 Dec 2014 18:35:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,541,1413270000"; d="scan'208";a="650623843"
-Received: from pgsmsx106.gar.corp.intel.com ([10.221.44.98])
-	by orsmga002.jf.intel.com with ESMTP; 08 Dec 2014 17:19:17 -0800
+X-IronPort-AV: E=Sophos;i="5.07,542,1413270000"; d="scan'208";a="620753307"
+Received: from kmsmsx151.gar.corp.intel.com ([172.21.73.86])
+	by orsmga001.jf.intel.com with ESMTP; 08 Dec 2014 18:37:42 -0800
 Received: from pgsmsx101.gar.corp.intel.com ([169.254.1.62]) by
-	pgsmsx106.gar.corp.intel.com ([169.254.9.17]) with mapi id
-	14.03.0195.001; Tue, 9 Dec 2014 09:19:13 +0800
+	KMSMSX151.gar.corp.intel.com ([169.254.10.78]) with mapi id
+	14.03.0195.001; Tue, 9 Dec 2014 10:37:00 +0800
 From: "Yu, Chan KitX" <chan.kitx.yu@intel.com>
 To: Jim Rafert <jimr@spectralogic.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
 Thread-Topic: Building clang with Yocto
-Thread-Index: AQHQEw7mRsY0MXmXQESP6lU4D7T5NZyGdePQ
-Date: Tue, 9 Dec 2014 01:19:13 +0000
-Message-ID: <0E4D391FE2BDEC45AA0B4E32D6BD598A2500FD@PGSMSX101.gar.corp.intel.com>
-References: <86196249137E0843B2E0673D4F731E0C0108E2902F@reactor.sldomain.com>
-In-Reply-To: <86196249137E0843B2E0673D4F731E0C0108E2902F@reactor.sldomain.com>
+Thread-Index: AQHQEw7mRsY0MXmXQESP6lU4D7T5NZyGdePQgAAVi/A=
+Date: Tue, 9 Dec 2014 02:36:59 +0000
+Message-ID: <0E4D391FE2BDEC45AA0B4E32D6BD598A25014B@PGSMSX101.gar.corp.intel.com>
+References: <86196249137E0843B2E0673D4F731E0C0108E2902F@reactor.sldomain.com> 
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -49,10 +48,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Dec 2014 01:19:37 -0000
+X-List-Received-Date: Tue, 09 Dec 2014 02:37:54 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+I **think** I'm just inches away from success. I think I just need to invok=
+e a correct install command somewhere in the do_install function but so far=
+ I have not managed to do so. But right now the alternative way of jamming =
+the compiler into the SDK sounds tempting to me.
+
+-----Original Message-----
+From: Yu, Chan KitX=20
+Sent: Tuesday, December 09, 2014 9:19 AM
+To: 'Jim Rafert'; yocto@yoctoproject.org
+Subject: RE: Building clang with Yocto
 
 Hi Jim,
 
