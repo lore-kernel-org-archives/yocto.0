@@ -1,55 +1,52 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <otavio.salvador@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5DDCCE00931; Tue,  9 Dec 2014 05:26:44 -0800 (PST)
+	id DADE4E00931; Tue,  9 Dec 2014 06:24:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [157.56.110.102 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.192.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1bn0102.outbound.protection.outlook.com [157.56.110.102])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED01FE0090E
-	for <yocto@yoctoproject.org>; Tue,  9 Dec 2014 05:26:33 -0800 (PST)
-Received: from BLUPR05MB037.namprd05.prod.outlook.com (10.255.210.145) by
-	BLUPR05MB040.namprd05.prod.outlook.com (10.255.210.156) with Microsoft
-	SMTP Server (TLS) id 15.1.31.17; Tue, 9 Dec 2014 13:26:30 +0000
-Received: from BLUPR05MB037.namprd05.prod.outlook.com ([169.254.7.110]) by
-	BLUPR05MB037.namprd05.prod.outlook.com ([169.254.7.110]) with mapi id
-	15.01.0031.000; Tue, 9 Dec 2014 13:26:30 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Thread-Topic: [autobuilder][PATCH 0/2] GitPoller changesource improvements
-Thread-Index: AQHQEJ/rWzyO627/c0eHKBDxnD50H5yGbhAAgADW25A=
-Date: Tue, 9 Dec 2014 13:26:30 +0000
-Message-ID: <BLUPR05MB037FF40669BF4F3CC924C3DBB650@BLUPR05MB037.namprd05.prod.outlook.com>
-References: <1417793213-26974-1-git-send-email-bevenson@melinkcorp.com>
-	<CAPhnLPCyfRZ+SPG0pPJxs=20LqwWzoWxnRTwXRkM6zBZtj5Qnw@mail.gmail.com>
-In-Reply-To: <CAPhnLPCyfRZ+SPG0pPJxs=20LqwWzoWxnRTwXRkM6zBZtj5Qnw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-vipre-scanned: 000C840D008AD8000C855A
-x-originating-ip: [98.100.91.242]
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:;SRVR:BLUPR05MB040;
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0;PCL:0;RULEID:;SRVR:BLUPR05MB040;
-x-forefront-prvs: 0420213CCD
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(199003)(13464003)(52604005)(51704005)(377454003)(24454002)(189002)(41574002)(54606007)(97736003)(106356001)(2656002)(64706001)(66066001)(74316001)(120916001)(107046002)(77156002)(62966003)(19580395003)(21056001)(54206007)(54356999)(101416001)(20776003)(86362001)(575784001)(105586002)(102836002)(68736005)(4396001)(92566001)(46102003)(87936001)(19580405001)(110136001)(40100003)(50986999)(122556002)(76176999)(33656002)(76576001)(99286002)(31966008)(106116001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BLUPR05MB040;
-	H:BLUPR05MB037.namprd05.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	California L Sullivan <california.l.sullivan@intel.com>
-Subject: Re: [autobuilder][PATCH 0/2] GitPoller changesource improvements
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qg0-f49.google.com (mail-qg0-f49.google.com
+	[209.85.192.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15FA8E0090E
+	for <yocto@yoctoproject.org>; Tue,  9 Dec 2014 06:24:07 -0800 (PST)
+Received: by mail-qg0-f49.google.com with SMTP id a108so447366qge.36
+	for <yocto@yoctoproject.org>; Tue, 09 Dec 2014 06:24:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:cc:subject:date:message-id:organization;
+	bh=mTOMeVeoH5ckO27RVwbaZ4wL6/hHazSvhXlSDT7I/kY=;
+	b=OSX5Qx4IID/jYnv84ngtrT3LEVY8OmNc6fmRS3qN53mJufduPbqbnC18UuyJC/L2qv
+	tkoX5sijxLtYOtnkHELTkaZerUfWcdPZ1zmHy5Pbdm9Yu7wZ8s9T+I48yF0+No2lWI4L
+	k6Enf1z7emnadzirSWsbcPscBZ+f9znKsFumBc9g9q5TyF9l97GNpWsXp0BSteyal01+
+	7/FQjn4eT1fABPLBXP9KOKd5CfhRk+EMfsnuqRLTKHPVw7SoR6emYtjHEKGwV8YmHJD3
+	3xFmTnzVs297/mOR6KvVghrD+QiMDzFbtyI5wdMFB4rUiQbRw7HYMfTJ393T3IcCgOXm
+	DWBA==
+X-Received: by 10.224.56.3 with SMTP id w3mr3986930qag.51.1418135047024;
+	Tue, 09 Dec 2014 06:24:07 -0800 (PST)
+Received: from nano.lab.ossystems.com.br ([177.194.193.50])
+	by mx.google.com with ESMTPSA id p14sm1219067qaa.1.2014.12.09.06.24.05
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 09 Dec 2014 06:24:06 -0800 (PST)
+Sender: Otavio Salvador <otavio.salvador@gmail.com>
+Received: by nano.lab.ossystems.com.br (Postfix, from userid 1000)
+	id CA5561C9342E0; Tue,  9 Dec 2014 12:24:02 -0200 (BRST)
+From: Otavio Salvador <otavio@ossystems.com.br>
+To: Yocto Project Mailing List <yocto@yoctoproject.org>
+Date: Tue,  9 Dec 2014 12:23:56 -0200
+Message-Id: <1418135036-30801-1-git-send-email-otavio@ossystems.com.br>
+X-Mailer: git-send-email 2.1.3
+Organization: O.S. Systems Software LTDA.
+Cc: Otavio Salvador <otavio@ossystems.com.br>
+Subject: [PATCH] distro/poky: Add Debian 8 (Jessie) as sanity tested
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,40 +58,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Dec 2014 13:26:44 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 09 Dec 2014 14:24:10 -0000
 
-RWxpemFiZXRoLA0KDQpUaGFua3MgZm9yIHB1bGxpbmcgaW4gbXkgY29tbWl0cywgYnV0IGl0IGlz
-IGluY29tcGxldGUuICBUaGUgdG9wIHR3byBjb21taXRzIGZyb20gdGhlIHN1bGxpY2FsL2NvbnRy
-aWIgYnJhbmNoIGFyZSBuZWVkZWQgYmVmb3JlIHRoZSBHaXRQb2xsZXIgY2hhbmdlc291cmNlIHdp
-bGwgd29yay4gIFNwZWNpZmljYWxseSwgdGhleSBhcmUgY29tbWl0cyBlY2YxYjg3MTZkN2U2OTVh
-ODg5NzZiYmE3NDdhZjVjNWJiZTAwMDdmIGFuZCBjMGFhYzVjNDE1Nzk3YWFjNWMyMDRiMmI3MGVl
-NWE4OTZkNzZmZmRjLiAgT25jZSB0aGVzZSBhcmUgaW4gcGxhY2UgdGhlIEdpdFBvbGxlciBjaGFu
-Z2Vzb3VyY2Ugc2hvdWxkIHdvcmsuDQoNClJlZ2FyZHMsDQpCcnlhbg0KDQo+IC0tLS0tT3JpZ2lu
-YWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEZsYW5hZ2FuLCBFbGl6YWJldGggW21haWx0bzplbGl6
-YWJldGguZmxhbmFnYW5AaW50ZWwuY29tXQ0KPiBTZW50OiBNb25kYXksIERlY2VtYmVyIDA4LCAy
-MDE0IDc6MzMgUE0NCj4gVG86IEJyeWFuIEV2ZW5zb24NCj4gQ2M6IHlvY3RvQHlvY3RvcHJvamVj
-dC5vcmc7IENhbGlmb3JuaWEgTCBTdWxsaXZhbg0KPiBTdWJqZWN0OiBSZTogW2F1dG9idWlsZGVy
-XVtQQVRDSCAwLzJdIEdpdFBvbGxlciBjaGFuZ2Vzb3VyY2UgaW1wcm92ZW1lbnRzDQo+IA0KPiBQ
-dWxsZWQgaW50byBtYXN0ZXIsIHRoYW5rcyENCj4gDQo+IC1iDQo+IA0KPiBPbiBGcmksIERlYyA1
-LCAyMDE0IGF0IDM6MjYgUE0sIEJyeWFuIEV2ZW5zb24gPGJldmVuc29uQG1lbGlua2NvcnAuY29t
-Pg0KPiB3cm90ZToNCj4gPiBUaGVzZSBhcmUgZml4ZXMgb24gdG9wIG9mIENhbGlmb3JuaWEgU3Vs
-bGl2YW4ncyB3b3JrIGZvciBhZGRpbmcgdGhlDQo+ID4gR2l0UG9sbGVyIGNoYW5nZXNvdXJjZS4g
-IFdpdGggbXkgdGVzdGluZywgSSB3YXMgdW5hYmxlIHRvIGdldCB0aGUNCj4gPiBHaXRQb2xsZXIg
-Y2hhbmdlc291cmNlIHRvIHdvcmsgdW50aWwgSSBhZGRlZCB0aGUgZmlyc3QgcGF0Y2guICBUaGUN
-Cj4gPiBzZWNvbmQgcGF0Y2ggZG9jdW1lbnRzIGhvdyB0byB1c2UgdGhlIEdpdFBvbGxlciBjaGFu
-Z2Vzb3VyY2UuDQo+ID4NCj4gPiBBcHBsaWVzIG9uIHRvcCBvZiBIRUFEIG9mIGdpdDovL2dpdC55
-b2N0b3Byb2plY3Qub3JnL3lvY3RvLWF1dG9idWlsZGVyDQo+ID4gYnJhbmNoIHN1bGxpY2FsL2Nv
-bnRyaWINCj4gPg0KPiA+IEJyeWFuIEV2ZW5zb24gKDIpOg0KPiA+ICAgQXV0b2J1aWxkZXIucHk6
-IEltcG9ydCBnaXRwb2xsZXIgbW9kdWxlDQo+ID4gICBEb2N1bWVudGF0aW9uOiBEb2N1bWVudCBH
-aXRQb2xsZXIgY2hhbmdlc291cmNlDQo+ID4NCj4gPiAgUkVBRE1FLU5FVy1BVVRPQlVJTERFUiAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDM1ICsrKysrKysrKysrKysrKystLS0tDQo+
-ID4gIGRvY3MvWW9jdG9BdXRvYnVpbGRlckRldmVsb3BlcnNEb2N1bWVudC5odG1sICAgICAgIHwg
-ICAyNg0KPiArKysrKysrKysrKysrLS0NCj4gPiAgLi4uL3NpdGUtcGFja2FnZXMvYXV0b2J1aWxk
-ZXIvQXV0b2J1aWxkZXIucHkgICAgICAgfCAgICAxICsNCj4gPiAgMyBmaWxlcyBjaGFuZ2VkLCA1
-NCBpbnNlcnRpb25zKCspLCA4IGRlbGV0aW9ucygtKQ0KPiA+DQo+ID4gLS0NCj4gPiAxLjcuOS41
-DQo+ID4NCj4gDQo+IA0KPiANCj4gLS0NCj4gRWxpemFiZXRoIEZsYW5hZ2FuDQo+IFlvY3RvIFBy
-b2plY3QNCj4gQnVpbGQgYW5kIFJlbGVhc2UNCg==
+The Debian 8 (codename Jessie) is frozen and has been in use in our
+machines for some time. It has been working fine and as it is about to
+be released it is better to whitelist it and remove the ugly warning
+from build logs.
+
+Signed-off-by: Otavio Salvador <otavio@ossystems.com.br>
+---
+ meta-yocto/conf/distro/poky.conf | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
+index 0e66e84..72db36d 100644
+--- a/meta-yocto/conf/distro/poky.conf
++++ b/meta-yocto/conf/distro/poky.conf
+@@ -81,6 +81,7 @@ SANITY_TESTED_DISTROS ?= " \
+             Fedora-20 \n \
+             CentOS-6.5 \n \
+             Debian-7.* \n \
++            Debian-8.* \n \
+             openSUSE-project-12.3 \n \
+             openSUSE-project-13.1 \n \
+             "
+-- 
+2.1.3
+
 
