@@ -1,31 +1,53 @@
-Return-Path: <maciej.borzecki@open-rnd.pl>
+Return-Path: <otavio.salvador@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1F816E0083A; Tue,  9 Dec 2014 06:56:03 -0800 (PST)
+	id 00B09E0086F; Tue,  9 Dec 2014 07:32:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.160.169 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDA83E0082B
-	for <yocto@yoctoproject.org>; Tue,  9 Dec 2014 06:55:54 -0800 (PST)
-Received: from localhost.localdomain (unknown [46.170.72.194])
-	by open-rnd.nazwa.pl (Postfix) with ESMTP id 3061B2DBBB9
-	for <yocto@yoctoproject.org>; Tue,  9 Dec 2014 15:55:52 +0100 (CET)
-Message-ID: <1418136951.4131.10.camel@open-rnd.pl>
-From: Maciek Borzecki <maciej.borzecki@open-rnd.pl>
-To: yocto@yoctoproject.org
-Date: Tue, 09 Dec 2014 15:55:51 +0100
-Organization: Open-RnD sp. z o.o.
-X-Mailer: Evolution 3.12.8 (3.12.8-1.fc21) 
-Mime-Version: 1.0
-Subject: BeagleBone - uboot & zImage in current master
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-yk0-f169.google.com (mail-yk0-f169.google.com
+	[209.85.160.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AEE7BE0082F
+	for <yocto@yoctoproject.org>; Tue,  9 Dec 2014 07:32:45 -0800 (PST)
+Received: by mail-yk0-f169.google.com with SMTP id 79so355644ykr.0
+	for <yocto@yoctoproject.org>; Tue, 09 Dec 2014 07:32:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:cc:content-type;
+	bh=zidPhi7WPz0IRkOTfDrNeERUEvceGZH6nmvBy59F3Lo=;
+	b=hCk0MX/nJbhOAIC0I1JqWtldfpuLulKhCeoCzHJVCV0VGcPrNE5DjGbSMNOVWWTQv9
+	PpUEdyTcLyFQhDMce9TOVlpjhfPrQFR+7xcqtTEp65293e9MAsNeDmS+LbklSKCTAKgJ
+	LNb+8yOsZoFUyqshbXzXXybeoICv/JSslpQMcgZd48CHxlC9P3JcJZ57YvCrD2W5aj+1
+	/b7APY4R9XS8le1OcF/etmdS9mbrXxT+y9fjnnQwvlwFsCwFEqs5uk8J4I13l9ndXMt9
+	6t1Eu2HQA5tQyh/lLt8yc3SSkd7nRSzJjoDPh0gdj0xsYJ0JVJcQsx6oSdjNHDeVxMlm
+	npzQ==
+MIME-Version: 1.0
+X-Received: by 10.170.129.147 with SMTP id v141mr3990091ykb.110.1418139164764; 
+	Tue, 09 Dec 2014 07:32:44 -0800 (PST)
+Sender: otavio.salvador@gmail.com
+Received: by 10.170.171.132 with HTTP; Tue, 9 Dec 2014 07:32:44 -0800 (PST)
+In-Reply-To: <20141209152907.GB18757@axis.com>
+References: <1418135572-5521-1-git-send-email-otavio@ossystems.com.br>
+	<20141209152907.GB18757@axis.com>
+Date: Tue, 9 Dec 2014 13:32:44 -0200
+X-Google-Sender-Auth: 7nuzKiWhgNnb6fAX8IROr7tpO2Y
+Message-ID: <CAP9ODKqOJs0yh4q0FrKkYKsYQGMhM-X+LU5y=k+0-itumS=jZQ@mail.gmail.com>
+From: Otavio Salvador <otavio@ossystems.com.br>
+To: Olof Johansson <olof.johansson@axis.com>
+Cc: Yocto Project Mailing List <yocto@yoctoproject.org>
+Subject: Re: [PATCH v2] distro/poky: Add Debian 8 (Jessie) as sanity tested
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: maciej.borzecki@open-rnd.pl
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -34,42 +56,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Dec 2014 14:56:03 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 09 Dec 2014 15:32:49 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi,
+On Tue, Dec 9, 2014 at 1:29 PM, Olof Johansson <olof.johansson@axis.com> wrote:
+> On 14-12-09 15:32 +0100, Otavio Salvador wrote:
+>> The Debian 8 (codename Jessie) is frozen and has been in use in our
+>> machines for some time. It has been working fine and as it is about to
+>> be released it is better to whitelist it and remove the ugly warning
+>> from build logs.
+>>
+>> Signed-off-by: Otavio Salvador <otavio@ossystems.com.br>
+>> ---
+>>  meta-yocto/conf/distro/poky.conf | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
+>> index 0e66e84..6aff7b9 100644
+>> --- a/meta-yocto/conf/distro/poky.conf
+>> +++ b/meta-yocto/conf/distro/poky.conf
+>> @@ -81,6 +81,7 @@ SANITY_TESTED_DISTROS ?= " \
+>>              Fedora-20 \n \
+>>              CentOS-6.5 \n \
+>>              Debian-7.* \n \
+>> +            Debian-GNU-Linux-8 \n \
+>
+> Where did you get that name from? Bitbake calls it Debian-8.0 for
+> me:
+>
+> | WARNING: Host distribution "Debian-8.0" has not been validated
+> | with this version of the build system; you may possibly
+> | experience unexpected failures. It is recommended that you use a
+> | tested distribution.
+>
+> I would propose
+>
+>    Debian-8.* \n
+>
+> instead. But yeah, I've been running Jessie for some weeks, and I
+> support its inclusion at this point (it's in its pre-release
+> feature freeze).
 
-I'm observing an issue when booting BBB using today's master (Poky 
-b813bdebb36501500e86fea5f7e15b4b15ea0902). From what I see, default
-u-boot config expects a zImage, while the beaglebone.conf sets
-KERNEL_IMAGETYPE to uImage.
+This was my first patch and failed on me.
 
-Also the boot mmc devices seem to be off, the default config has
-mmcdev=1, while previously it was 0.
+Ahhhh we need lsb-release for it to work.
 
-Has anyone observed similar issues?
+Richard, can you pick the v1 or want me to send a v3?
 
 -- 
-Maciej Borzęcki
-Senior Software Developer at Open-RnD Sp. z o.o., Poland
-www.open-rnd.pl
-mobile: +48 889 117 365, fax: +48 42 657 9079
-
-Niniejsza wiadomość wraz z załącznikami może zawierać chronione prawem
-lub poufne informacje i została wysłana wyłącznie do wiadomości i
-użytku osób, do których została zaadresowana. Jeśli wiadomość została
-otrzymana przypadkowo zabrania się jej kopiowania lub rozsyłania do
-osób trzecich. W takim przypadku uprasza się o natychmiastowe
-zniszczenie wiadomości oraz poinformowanie nadawcy o zaistniałej
-sytuacji za pomocą wiadomości zwrotnej. Dziękujemy.
-
-This message, including any attachments hereto, may contain privileged
-or confidential information and is sent solely for the attention and
-use of the intended addressee(s). If you are not an intended addressee,
-you may neither use this message nor copy or deliver it to anyone. In
-such case, you should immediately destroy this message and kindly notify
-the sender by reply email. Thank you.
-
-
+Otavio Salvador                             O.S. Systems
+http://www.ossystems.com.br        http://code.ossystems.com.br
+Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
 
