@@ -1,58 +1,39 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9E883E0087C; Wed, 10 Dec 2014 14:39:29 -0800 (PST)
+	id 5AC59E0087C; Wed, 10 Dec 2014 15:10:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.182 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pd0-f182.google.com (mail-pd0-f182.google.com
-	[209.85.192.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D870E0080C
-	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 14:39:22 -0800 (PST)
-Received: by mail-pd0-f182.google.com with SMTP id p10so3678797pdj.13
-	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 14:39:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=NIKcQ/ZW35Jj3vtzZTZq1kPBTMEQmEUX63CkPrKVxqk=;
-	b=WemKdRuKMQmrgSA5fxCsVxgdC7KV37SEqQSJzkQ+b7ZvCq5Y4Qug5FiBnxcD6wiOvx
-	ykSb224UjhbYp2L5Qr1b6FxjDbnrvg2IcK1O4PIYfRTM6DAJgCQfL7/SXupx8yuW+Tgj
-	SgZA3KO8bsYbm0ZZlu/jmFszckvg0Hk9BlZvDwcPGc9dGotL+u5jVMCmyYAt9hPBVRhL
-	OWK2Qu/rLpQKuP7u3KEkwkh92Ms1SK3pgSR+YVBZ4B1msFWMTB0eTUJDEIqX8NH+65tU
-	z738rkDwxeVPEInpZvkpzqmpuyN4VgjYpvmYboau/3Ce5Ut55YlHYjiKvV4nbnFW3aN3
-	N6dQ==
-X-Received: by 10.66.155.225 with SMTP id vz1mr10797283pab.133.1418251162185; 
-	Wed, 10 Dec 2014 14:39:22 -0800 (PST)
-Received: from 10.177.195.168-ra01.everett.wa.seattle.comcast.net
-	(fw01.everett.wa.seattle.comcast.net. [69.241.105.242])
-	by mx.google.com with ESMTPSA id ko4sm5158693pdb.31.2014.12.10.14.39.21
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 10 Dec 2014 14:39:21 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 8.1 \(1993\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CACzyEJ9bhV0iZWR7Tdis_n+oDB8yKzjM=J0M7e+YY+ZPz0ZufQ@mail.gmail.com>
-Date: Wed, 10 Dec 2014 14:39:19 -0800
-Message-Id: <D2ABFB01-ED92-4251-8B39-F89A9D178C72@gmail.com>
-References: <CACzyEJ9bhV0iZWR7Tdis_n+oDB8yKzjM=J0M7e+YY+ZPz0ZufQ@mail.gmail.com>
-To: Insop Song <insop.song@gmail.com>
-X-Mailer: Apple Mail (2.1993)
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>, P@draigbrady.com
-Subject: Re: add a process memory check utility (ps_mem)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C67D4E0080C
+	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 15:09:59 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id sBAN9vZW015716
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 15:09:58 -0800 (PST)
+Received: from Marks-MacBook-Pro.local (172.25.36.230) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.174.1; Wed, 10 Dec 2014 15:09:57 -0800
+Message-ID: <5488D2C4.4040704@windriver.com>
+Date: Wed, 10 Dec 2014 17:09:56 -0600
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+MIME-Version: 1.0
+To: <yocto@yoctoproject.org>
+References: <CAKGbVbu0YsX18JUF89ec-6M8yUCHnfAM5B7ERQNiAYHTALJ8Bw@mail.gmail.com>	<CAAA4K6J_MjbyeL7Js1hw5C=7BqKFger1sanOtxjCe6tLBaQhvQ@mail.gmail.com>	<CAKGbVbuRpjsk2TViL=yhLOnp9Sguw3f29HHLaXE-xtt9Pud5HA@mail.gmail.com>	<CAAA4K6+dayiFaCo07ynMjefPkLjg5_54m2G16VExdUe-TpUYCg@mail.gmail.com>	<54871A7E.1050806@windriver.com>	<CAKGbVbv4-orudnvHJYBUZy25MX96Rx2=DEahEDUFxToPOwediQ@mail.gmail.com>
+	<5487B76E.7010708@windriver.com>
+In-Reply-To: <5487B76E.7010708@windriver.com>
+Subject: Re: prelink & mklibs problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,86 +45,243 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Dec 2014 22:39:29 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 10 Dec 2014 23:10:08 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 12/9/14, 9:01 PM, Mark Hatle wrote:
+> On 12/9/14, 8:41 PM, Qiang Yu wrote:
+>> I have submitted a bug here:
+>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=7056
+>
+> (Responded in the bug as well...)  I have a test version of the cross prelink
+> with the ARM HF patch available, as commit:
+>
+> 2cde4ff118b5244f5577d9bc585c1ee521740af0
+>
+> To enable it, use the following in your local.conf:
+>
+> SRCREV_pn-prelink = "2cde4ff118b5244f5577d9bc585c1ee521740af0"
 
-> On Dec 10, 2014, at 1:33 PM, Insop Song <insop.song@gmail.com> wrote:
->=20
-> Hi Khem,
->=20
-> I've been using this memory check utility (ps_mem) and wrote a bb file
-> to include it in our yocto image.
->=20
-> I thought it'd nice to include this in yocto upstream as well.
->=20
-> - It's called ps_mem, "A utility to accurately report the in core
-> memory usage for a program"
-> - https://github.com/pixelb
->=20
-> Could you consider to include ps_mem in upstream? and let me know what
-> and where to put if is okay? I can follow up.
+That link breaks regular arm prelink, it also missed a patch for the prelink-rtld.
 
-sure, please post it for meta-openembedded/meta-oe
+Got a new one:
 
->=20
->=20
-> Thank you,
->=20
-> Insop
->=20
->=20
-> - this is my bb file as an example
->=20
-> diff --git a/recipes-gs/ps_mem/psmem.bb b/recipes-gs/ps_mem/psmem.bb
-> new file mode 100644
-> index 0000000..d408298
-> --- /dev/null
-> +++ b/recipes-gs/ps_mem/psmem.bb
-> @@ -0,0 +1,26 @@
-> +#
-> +# ps_mem
-> +#
-> +SUMMARY =3D "A utility to accurately report the in core memory usage
-> for a program"
-> +HOMEPAGE =3D "https://github.com/pixelb/ps_mem"
-> +LICENSE =3D "LGPLv2"
-> +LIC_FILES_CHKSUM =3D =
-"file://LICENSE;md5=3Dc05fdef0c0d05f619748e9bb0fb41b21"
-> +
-> +PR =3D =E2=80=9Cr0"
+SRCREV_pn-prelink = "81bab23a4661fdaaa859325d6d3603811ecf1849"
 
-remove this
+--Mark
 
-> +
-> +SRC_URI =3D =
-"git://github.com/pixelb/ps_mem.git;branch=3Dmaster;protocol=3Dgit"
-> +SRCREV =3D "702b461d16062f14a9f4191bc731adcf48b51489"
-> +
-> +S =3D "${WORKDIR}/git"
-> +
-> +do_compile () {
-> + echo "No compile needed"
-> +}
-> +
-> +do_install () {
-> + install -d ${D}${bindir}
-> + install -m 0755 ${S}/ps_mem.py ${D}${bindir}/ps_mem
-
-you need a dependency on python atlas
-
-> +}
-> +
-> +FILES_${PN} +=3D "/*=E2=80=9D
-
-why is this needed may be you want www to go under /var
-
-> +FILES_${PN}-dbg +=3D "/www/pages/.debug=E2=80=9D
-
-this could go into /var/www
-
-> --=20
-> 1.7.9.5
+> If this works for you, I'll finish the patch and submit the changes.
+>
+> --Mark
+>
+>> Regards,
+>> Qiang
+>>
+>> On Tue, Dec 9, 2014 at 11:51 PM, Mark Hatle <mark.hatle@windriver.com
+>> <mailto:mark.hatle@windriver.com>> wrote:
+>>
+>>      On 12/8/14, 3:55 AM, Jegan Chandru wrote:
+>>
+>>          I recommend you to file a bug here https://bugzilla.yoctoproject.__org/
+>>          <https://bugzilla.yoctoproject.org/> if not
+>>          done already. You may get a proper answer on armhf support there. From
+>>          what I
+>>          see, (someone please correct me if I am wrong), there is no prelink
+>>          dynamic link
+>>          armhf patch. You can also create and submit the patch for review. AFAIK,
+>>          you are
+>>          gonna need to something like below,
+>>
+>>          .dynamic_linker = "/lib/ld-linux-armhf.so.3" in arch-arm.c.
+>>
+>>          This is not tested though. Please do a test yourselves.
+>>
+>>
+>>      See: http://marc.info/?l=fedora-__arm&m=135417053128837&w=2
+>>      <http://marc.info/?l=fedora-arm&m=135417053128837&w=2>
+>>
+>>      Nobody had requested prelink support for armhf up to this point.
+>>
+>>      Open an enhancement / bug and assign it to me.  I'll do what I can to
+>>      integrate the patch officially.
+>>
+>>      I had been waiting for the prelink upstream to merge this, but they never
+>>      bothered to, so I'll have to make it a Yocto Project 'cross-prelink'
+>>      specific path.
+>>
+>>      --Mark
+>>
+>>          -JC
+>>
+>>          On Mon, Dec 8, 2014 at 1:52 PM, Qiang Yu <yuq825@gmail.com
+>>          <mailto:yuq825@gmail.com>
+>>          <mailto:yuq825@gmail.com <mailto:yuq825@gmail.com>>> wrote:
+>>
+>>               Thanks for your reply. I almost give up.
+>>
+>>               You mean that current yocto build doesn't support hard float ABI
+>>          prelink,
+>>               and the prelink source code needs to
+>>               be modified to use ld-linux-armhf.so.3?
+>>
+>>               So this problem affect all armhf build of yocto, in other words prelink
+>>               doesn't work for yocto armhf at all now?
+>>
+>>               Regards,
+>>               Qiang
+>>
+>>               On Mon, Dec 8, 2014 at 3:28 PM, Jegan Chandru <pcjegan@gmail.com
+>>          <mailto:pcjegan@gmail.com>
+>>               <mailto:pcjegan@gmail.com <mailto:pcjegan@gmail.com>>> wrote:
+>>
+>>                   Hi,
+>>
+>>                   I think it has to do with the ld-linux-armhf.so.3. May be you
+>>          should
+>>                   tell prelink that you have hard float ARM ABI to prelink for, than
+>>                   ld-linux.so.3 . It means you need to add ld-linux-armhf.so.3 as a
+>>                   dynamic linker.
+>>                   You should patch the prelink source to get this done.
+>>
+>>                   HTH.
+>>
+>>                   -JC
+>>
+>>
+>>
+>>                   On Fri, Dec 5, 2014 at 7:41 AM, Qiang Yu <yuq825@gmail.com
+>>          <mailto:yuq825@gmail.com>
+>>                   <mailto:yuq825@gmail.com <mailto:yuq825@gmail.com>>> wrote:
+>>
+>>                       Hi all,
+>>
+>>                       I'm building a image with local.conf:
+>>                       USER_CLASSES ?= "buildstats image-mklibs image-prelink"
+>>
+>>                       but I think prelink does nothing on my image, because the
+>>          MD5SUM is
+>>                       the same before and after
+>>                       the prelink stage. The mklibs stage is also strange not print
+>>                       anything. How to make prelink and
+>>                       mklibs really work?
+>>
+>>                       Here is the log of log.do_rootfs:
+>>
+>>                       NOTE: ###### Generate images #######
+>>                       NOTE: Executing mklibs_optimize_image ...
+>>                       DEBUG: Executing shell function mklibs_optimize_image
+>>                       DEBUG: Shell function mklibs_optimize_image finished
+>>                       NOTE: Executing prelink_image ...
+>>                       DEBUG: Executing shell function prelink_image
+>>                       Size before prelinking 49304.
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /sbin/fstab-decode: Using /lib/ld-linux-armhf.so.3, not
+>>                       /lib/ld-linux.so.3 as dynamic linker
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /sbin/bootlogd: Using /lib/ld-linux-armhf.so.3, not
+>>                       /lib/ld-linux.so.3 as dynamic linker
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /sbin/killall5: Using /lib/ld-linux-armhf.so.3, not
+>>                       /lib/ld-linux.so.3 as dynamic linker
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /sbin/init.sysvinit: Using /lib/ld-linux-armhf.so.3, not
+>>                       /lib/ld-linux.so.3 as dynamic linker
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /sbin/halt.sysvinit: Using /lib/ld-linux-armhf.so.3, not
+>>                       /lib/ld-linux.so.3 as dynamic linker
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /sbin/shutdown.sysvinit: Using /lib/ld-linux-armhf.so.3, not
+>>                       /lib/ld-linux.so.3 as dynamic linker
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /sbin/runlevel.sysvinit: Using /lib/ld-linux-armhf.so.3, not
+>>                       /lib/ld-linux.so.3 as dynamic linker
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /usr/sbin/dropbearmulti: Using /lib/ld-linux-armhf.so.3, not
+>>                       /lib/ld-linux.so.3 as dynamic linker
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /bin/mountpoint.sysvinit: Using /lib/ld-linux-armhf.so.3, not
+>>                       /lib/ld-linux.so.3 as dynamic linker
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /bin/busybox.suid: Using /lib/ld-linux-armhf.so.3, not
+>>                       /lib/ld-linux.so.3 as dynamic linker
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /bin/busybox.nosuid: Using /lib/ld-linux-armhf.so.3, not
+>>                       /lib/ld-linux.so.3 as dynamic linker
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /usr/bin/utmpdump.sysvinit: Using /lib/ld-linux-armhf.so.3, not
+>>                       /lib/ld-linux.so.3 as dynamic linker
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /usr/bin/mesg.sysvinit: Using /lib/ld-linux-armhf.so.3, not
+>>                       /lib/ld-linux.so.3 as dynamic linker
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /usr/bin/last.sysvinit: Using /lib/ld-linux-armhf.so.3, not
+>>                       /lib/ld-linux.so.3 as dynamic linker
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /usr/bin/opkg-cl: Using /lib/ld-linux-armhf.so.3, not
+>>                       /lib/ld-linux.so.3 as dynamic linker
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /usr/bin/bmw: Using /lib/ld-linux-armhf.so.3, not
+>>          /lib/ld-linux.so.3
+>>                       as dynamic linker
+>>
+>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__sbin/prelink:
+>>                       /usr/bin/wall.sysvinit: Using /lib/ld-linux-armhf.so.3, not
+>>                       /lib/ld-linux.so.3 as dynamic linker
+>>                       Size after prelinking 49304.
+>>                       DEBUG: Shell function prelink_image finished
+>>
+>>                       Regards,
+>>                       Qiang
+>>
+>>
+>>                       --
+>>                       _________________________________________________
+>>                       yocto mailing list
+>>          yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>>          <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>__>
+>>          https://lists.yoctoproject.__org/listinfo/yocto
+>>          <https://lists.yoctoproject.org/listinfo/yocto>
+>>
+>>
+>>
+>>
+>>                   --
+>>                   JCP
+>>
+>>
+>>
+>>
+>>
+>>          --
+>>          JCP
+>>
+>>
+>>
+>>      --
+>>      _________________________________________________
+>>      yocto mailing list
+>>      yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>>      https://lists.yoctoproject.__org/listinfo/yocto
+>>      <https://lists.yoctoproject.org/listinfo/yocto>
+>>
+>>
+>
 
 
