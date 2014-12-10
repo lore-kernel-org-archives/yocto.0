@@ -1,6 +1,6 @@
 Return-Path: <maciej.borzecki@open-rnd.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E6A1FE0093A; Wed, 10 Dec 2014 04:12:18 -0800 (PST)
+	id 1B60BE0093A; Wed, 10 Dec 2014 04:12:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,21 +9,19 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9F5EE00924
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB520E00928
 	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 04:12:13 -0800 (PST)
 Received: from localhost.localdomain (unknown [78.10.193.111])
-	by open-rnd.nazwa.pl (Postfix) with ESMTP id 8BFBF42A7A4;
-	Wed, 10 Dec 2014 13:12:12 +0100 (CET)
+	by open-rnd.nazwa.pl (Postfix) with ESMTP id 3D1F5427934;
+	Wed, 10 Dec 2014 13:12:11 +0100 (CET)
 From: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
 To: yocto@yoctoproject.org, Andrei Gherzan <andrei@gherzan.ro>,
 	Dan McGregor <dan.mcgregor@usask.ca>, Paul Barker <paul@paulbarker.me.uk>
-Date: Wed, 10 Dec 2014 13:12:04 +0100
-Message-Id: <1418213525-1202-2-git-send-email-maciej.borzecki@open-rnd.pl>
+Date: Wed, 10 Dec 2014 13:12:03 +0100
+Message-Id: <1418213525-1202-1-git-send-email-maciej.borzecki@open-rnd.pl>
 X-Mailer: git-send-email 1.9.3
-In-Reply-To: <1418213525-1202-1-git-send-email-maciej.borzecki@open-rnd.pl>
-References: <1418213525-1202-1-git-send-email-maciej.borzecki@open-rnd.pl>
 Cc: Maciek Borzecki <maciek.borzecki@gmail.com>
-Subject: [meta-raspberrypi][PATCH 1/2] raspberrypi.conf: add IMAGE_BOOT_FILES
+Subject: [meta-raspberrypi][PATCH 0/2] wic support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,28 +33,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Dec 2014 12:12:19 -0000
+X-List-Received-Date: Wed, 10 Dec 2014 12:12:20 -0000
 
-Add IMAGE_BOOT_FILES that defines a list of files to be placed in boot
-partition. The variable is effectivey used with wic when building a SD
-card image.
+The patch series adds support for wic image build tool. The patches allow for a
+bootable SD card image to be built with wic, without any additional changes.
 
-Signed-off-by: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
-Signed-off-by: Maciek Borzecki <maciek.borzecki@gmail.com>
----
- conf/machine/raspberrypi.conf | 2 ++
- 1 file changed, 2 insertions(+)
+The first patch defines an IMAGE_BOOT_FILES variable that will pick up all of
+bcm2835 boot files and the kernel file (renaming it to kernel.img). The patch
+uses glob pattern and thus depends on a patch series posted here:
+http://lists.openembedded.org/pipermail/openembedded-core/2014-December/099732.html
 
-diff --git a/conf/machine/raspberrypi.conf b/conf/machine/raspberrypi.conf
-index 1b3702f..732ba32 100644
---- a/conf/machine/raspberrypi.conf
-+++ b/conf/machine/raspberrypi.conf
-@@ -35,3 +35,5 @@ MACHINE_EXTRA_RRECOMMENDS += " \
- 
- # Set raspberrypi splash image
- SPLASH = "psplash-raspberrypi"
-+
-+IMAGE_BOOT_FILES ?= "bcm2835-bootfiles/* ${KERNEL_IMAGETYPE};kernel.img"
+The second patch adds a kickstart file that mirrors the layout defined in
+sdcard_image-rpi.bbclass. Note that this patch is mainly for reference, as the
+default sdimage-bootpart.wks from Poky will also produce a bootable image.
+
+Maciej Borzecki (2):
+  raspberrypi.conf: add IMAGE_BOOT_FILES
+  sdimage-raspberrypi.wks: kickstart image definition
+
+ conf/machine/raspberrypi.conf                        | 2 ++
+ scripts/lib/image/canned-wks/sdimage-raspberrypi.wks | 6 ++++++
+ 2 files changed, 8 insertions(+)
+ create mode 100644 scripts/lib/image/canned-wks/sdimage-raspberrypi.wks
+
 -- 
 1.9.3
 
