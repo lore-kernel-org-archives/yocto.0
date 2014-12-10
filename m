@@ -1,49 +1,65 @@
-Return-Path: <alexandru.damian@intel.com>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6F5C7E00930; Wed, 10 Dec 2014 03:14:20 -0800 (PST)
+	id 676FFE00930; Wed, 10 Dec 2014 03:17:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.215.45 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.45 listed in list.dnswl.org]
-Received: from mail-oi0-f45.google.com (mail-oi0-f45.google.com
-	[209.85.218.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41581E00922
-	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 03:14:14 -0800 (PST)
-Received: by mail-oi0-f45.google.com with SMTP id a141so1836296oig.4
-	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 03:14:13 -0800 (PST)
+Received: from mail-la0-f45.google.com (mail-la0-f45.google.com
+	[209.85.215.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BAD4AE00922
+	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 03:17:39 -0800 (PST)
+Received: by mail-la0-f45.google.com with SMTP id gq15so2201919lab.32
+	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 03:17:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=fQNiYvJANIVVcYugHRAiTy/jdTgLWG72Tcv4XQjSQSw=;
-	b=fjBZ0yZWnevFqhL3mK94uKaPNgn5yFigopYpcI6hnfVrQyR/oaLsGIDBceB3FBwhgw
-	3L0/o22+CRIdpEXZh/ktnrB3vCXvZmLRiKHEd/rWVHW9KqzhKaILlC0fbgme3xQSeWw+
-	EL09pYj+Yuj3fVvCYAdAEAD58W0LIzgoftCe3KgMlrqRb4yqv0WI2Q5BWzJPXjfyIw8g
-	Rr26XLYNgQq8atcOxKXS3ntq2nuVDHLiUUod/4P0xfsf26XN/p1/2aw4xqXwi/EwHvg1
-	n1LlXdtWkle2pdKbf51y8JwHU/y6UgLNdpo7uoXV+2xXOKW4n4GormZ8zClOx7lXZ1wU
-	vTsw==
-X-Gm-Message-State: ALoCoQlyxLUp4oInLUEg512aSoFmpwcoqIOruYN2G+vAuGf43tmnoWtjsisNXnenQGWVk/pq2Ylj
-X-Received: by 10.202.66.70 with SMTP id p67mr2110591oia.10.1418210053626;
-	Wed, 10 Dec 2014 03:14:13 -0800 (PST)
+	h=x-gm-message-state:date:from:to:cc:subject:message-id
+	:mail-followup-to:references:mime-version:content-type
+	:content-disposition:content-transfer-encoding:in-reply-to
+	:organization:user-agent;
+	bh=0jwBANTavAS+RFKBivxpNSfFNMAAD0+BkRezesbDJS0=;
+	b=JqJrFZv54ZoquDzl86sLY4lcGAT4anwzLH0gWKNHL2L+aaUMR2+S1+jlBHEENEM9Un
+	8gIpBpq/UKQHLdWmXBcpRJC6x9NqLV1EpS9YFs9hWQ9+YwEje/DOvYm+CN+QhxsDXz6t
+	H6Dd8UxgbjPd+ufFY5XnCbjF0GaEj//VLkonOEFYvg+Xc9E080nRuIWgomVwx3vxBxFI
+	Qf1ImWTlzQJbzXLJ9qzlFiqYxm+8LFkNMwNTPX3Ie+jJJhVMzBoh56jCbBCGYBBboev2
+	Ddkr4L6zqcvKGHlR9120HiIXsROX7uPdOC5z0vkUJU/vXEDNtZ2c0vHogo31zcae6jW2
+	2O6g==
+X-Gm-Message-State: ALoCoQmPdC1n5/1Zqrww9RHxPpUBARJgMC2Kiv1oMWjTOGhIDK5PkAG2luz0GZry64xtlTF0a6SH
+X-Received: by 10.152.7.180 with SMTP id k20mr3669809laa.4.1418210258209;
+	Wed, 10 Dec 2014 03:17:38 -0800 (PST)
+Received: from ad.chargestorm.se (81-232-163-241-no29.business.telia.com.
+	[81.232.163.241])
+	by mx.google.com with ESMTPSA id n4sm619028lan.39.2014.12.10.03.17.36
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 10 Dec 2014 03:17:37 -0800 (PST)
+Date: Wed, 10 Dec 2014 12:16:51 +0100
+From: Anders Darander <anders@chargestorm.se>
+To: Matthias.Heise@atlas-elektronik.com
+Message-ID: <20141210111651.GD14155@ad.chargestorm.se>
+Mail-Followup-To: Matthias.Heise@atlas-elektronik.com,
+	jimr@spectralogic.com, yocto@yoctoproject.org
+References: <4009F04F5925CD4C95FBD9BE756381FE02848F2A77@MSSRVS5.atlas.de>
+	<86196249137E0843B2E0673D4F731E0C0108E2916C@reactor.sldomain.com>
+	<4009F04F5925CD4C95FBD9BE756381FE02848F2A78@MSSRVS5.atlas.de>
+	<20141210102413.GC14155@ad.chargestorm.se>
+	<4009F04F5925CD4C95FBD9BE756381FE02848F2A7A@MSSRVS5.atlas.de>
 MIME-Version: 1.0
-Received: by 10.76.134.71 with HTTP; Wed, 10 Dec 2014 03:13:53 -0800 (PST)
-In-Reply-To: <CAPhnLPAJhemtHnbRQcfQrJc--xjgqS47MkA96YPKFwaBueYM0w@mail.gmail.com>
-References: <CAJ2CSBtOSTYuXDyn885Z2o-h05Rob-R2Q6CB85BEJVbXhtcdjw@mail.gmail.com>
-	<CAPhnLPAJhemtHnbRQcfQrJc--xjgqS47MkA96YPKFwaBueYM0w@mail.gmail.com>
-From: "Damian, Alexandru" <alexandru.damian@intel.com>
-Date: Wed, 10 Dec 2014 11:13:53 +0000
-Message-ID: <CAJ2CSBsau7yx2LCnw4nOu5c0vTRayJgZcfNEiMXKqm6U59anEg@mail.gmail.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>
-Subject: Re: RFC - enable toaster on the autobuilder
+In-Reply-To: <4009F04F5925CD4C95FBD9BE756381FE02848F2A7A@MSSRVS5.atlas.de>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: jimr@spectralogic.com, yocto@yoctoproject.org
+Subject: Re: nfs-boot problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,193 +71,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Dec 2014 11:14:20 -0000
-Content-Type: multipart/alternative; boundary=001a113dd27e76bd220509dac23d
-
---001a113dd27e76bd220509dac23d
-Content-Type: text/plain; charset=UTF-8
-
-Hi,
-
-Thanks for the quick reply -
-
-yes, Toaster needs buildhistory; it also needs the "toaster" bbclass in the
-INHERIT list.
-
-I'll make the changes and re-submit.
-
-Cheers,
-Alex
-
-On Tue, Dec 9, 2014 at 6:07 PM, Flanagan, Elizabeth <
-elizabeth.flanagan@intel.com> wrote:
-
-> A few initial comments.
->
-> TOASTER_UPLOADURL needs to be added to
-> config/autobuilder.conf.example. It would also be nice if it was added
-> to docs. Please set it to a localhost URL and comment it out for the
-> time being.
->
-> Also, can we make it TOASTER_UPLOAD_URL. It matches my naming
-> convention for config strings a bit closer.
->
-> If toaster needs buildhistory, I'm going to have to do some work on
-> getting buildhistory to setup automatically on an autobuilder install
-> (or at least document how to do it).
->
-> -b
->
-> On Tue, Dec 9, 2014 at 8:42 AM, Damian, Alexandru
-> <alexandru.damian@intel.com> wrote:
-> > Hello,
-> >
-> > I'm sending a patchset to enable Toaster logging for the autobuilder -
-> can
-> > you please review and comment ?
-> >
-> > I have pending Bitbake patchset (poky-contrib:adamian/devel-settings)
-> > Bitbake that adds two toaster-on-autobuilder related features:
-> > 1. build event logging flag (-w) will write an UI event log file
-> > 2. toaster end point that receives a log file over a HTTP POST request
-> and
-> > loads the data in the toaster database
-> >
-> > Based on this approach, I've created an autobuilder patchset that
-> enables 1.
-> > at all times, and 2. uploads the data to a Toaster server if such server
-> is
-> > specified in the build configuration
-> >
-> > Can you please review:
-> >
-> > poky-contrib: adamian/autobuilder-enable-toaster
-> >
-> >
-> > Thanks,
-> > Alex
-> >
-> > --
-> > Alex Damian
-> > Yocto Project
-> > SSG / OTC
-> >
-> > ---------------------------------------------------------------------
-> > Intel Corporation (UK) Limited
-> > Registered No. 1134945 (England)
-> > Registered Office: Pipers Way, Swindon SN3 1RJ
-> > VAT No: 860 2173 47
-> >
-> > This e-mail and any attachments may contain confidential material for
-> > the sole use of the intended recipient(s). Any review or distribution
-> > by others is strictly prohibited. If you are not the intended
-> > recipient, please contact the sender and delete all copies.
->
->
->
-> --
-> Elizabeth Flanagan
-> Yocto Project
-> Build and Release
->
-
-
-
--- 
-Alex Damian
-Yocto Project
-SSG / OTC
-
---001a113dd27e76bd220509dac23d
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Wed, 10 Dec 2014 11:17:45 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,s=
-ans-serif">Hi,<br><br>Thanks for the quick reply -<br><br>yes, Toaster need=
-s buildhistory; it also needs the &quot;toaster&quot; bbclass in the INHERI=
-T list.<br><br></div><div class=3D"gmail_default" style=3D"font-family:taho=
-ma,sans-serif">I&#39;ll make the changes and re-submit.<br></div><div class=
-=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>Cheers,<br>A=
-lex<br></div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote=
-">On Tue, Dec 9, 2014 at 6:07 PM, Flanagan, Elizabeth <span dir=3D"ltr">&lt=
-;<a href=3D"mailto:elizabeth.flanagan@intel.com" target=3D"_blank">elizabet=
-h.flanagan@intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
-">A few initial comments.<br>
-<br>
-TOASTER_UPLOADURL needs to be added to<br>
-config/autobuilder.conf.example. It would also be nice if it was added<br>
-to docs. Please set it to a localhost URL and comment it out for the<br>
-time being.<br>
-<br>
-Also, can we make it TOASTER_UPLOAD_URL. It matches my naming<br>
-convention for config strings a bit closer.<br>
-<br>
-If toaster needs buildhistory, I&#39;m going to have to do some work on<br>
-getting buildhistory to setup automatically on an autobuilder install<br>
-(or at least document how to do it).<br>
-<br>
--b<br>
-<div><div class=3D"h5"><br>
-On Tue, Dec 9, 2014 at 8:42 AM, Damian, Alexandru<br>
-&lt;<a href=3D"mailto:alexandru.damian@intel.com">alexandru.damian@intel.co=
-m</a>&gt; wrote:<br>
-&gt; Hello,<br>
-&gt;<br>
-&gt; I&#39;m sending a patchset to enable Toaster logging for the autobuild=
-er - can<br>
-&gt; you please review and comment ?<br>
-&gt;<br>
-&gt; I have pending Bitbake patchset (poky-contrib:adamian/devel-settings)<=
-br>
-&gt; Bitbake that adds two toaster-on-autobuilder related features:<br>
-&gt; 1. build event logging flag (-w) will write an UI event log file<br>
-&gt; 2. toaster end point that receives a log file over a HTTP POST request=
- and<br>
-&gt; loads the data in the toaster database<br>
-&gt;<br>
-&gt; Based on this approach, I&#39;ve created an autobuilder patchset that =
-enables 1.<br>
-&gt; at all times, and 2. uploads the data to a Toaster server if such serv=
-er is<br>
-&gt; specified in the build configuration<br>
-&gt;<br>
-&gt; Can you please review:<br>
-&gt;<br>
-&gt; poky-contrib: adamian/autobuilder-enable-toaster<br>
-&gt;<br>
-&gt;<br>
-&gt; Thanks,<br>
-&gt; Alex<br>
-&gt;<br>
-&gt; --<br>
-&gt; Alex Damian<br>
-&gt; Yocto Project<br>
-&gt; SSG / OTC<br>
-&gt;<br>
-</div></div>&gt; ----------------------------------------------------------=
------------<br>
-&gt; Intel Corporation (UK) Limited<br>
-&gt; Registered No. 1134945 (England)<br>
-&gt; Registered Office: Pipers Way, Swindon SN3 1RJ<br>
-&gt; VAT No: 860 2173 47<br>
-&gt;<br>
-&gt; This e-mail and any attachments may contain confidential material for<=
-br>
-&gt; the sole use of the intended recipient(s). Any review or distribution<=
-br>
-&gt; by others is strictly prohibited. If you are not the intended<br>
-&gt; recipient, please contact the sender and delete all copies.<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-<br>
-<br>
---<br>
-Elizabeth Flanagan<br>
-Yocto Project<br>
-Build and Release<br>
-</font></span></blockquote></div><br><br clear=3D"all"><br>-- <br><div clas=
-s=3D"gmail_signature"><div dir=3D"ltr">Alex Damian<div>Yocto Project<br></d=
-iv><div>SSG / OTC=C2=A0</div></div></div>
-</div>
+* Matthias.Heise@atlas-elektronik.com <Matthias.Heise@atlas-elektronik.com>=
+ [141210 11:48]:
+> > -----Urspr=FCngliche Nachricht-----
+> > Von: Anders Darander [mailto:anders@chargestorm.se]
+> > Gesendet: Mittwoch, 10. Dezember 2014 11:24
+> > An: Heise, Matthias
+> > Cc: jimr@spectralogic.com; yocto@yoctoproject.org
+> > Betreff: Re: [yocto] nfs-boot problem
 
---001a113dd27e76bd220509dac23d--
+> > * Matthias.Heise@atlas-elektronik.com <Matthias.Heise@atlas-
+> > elektronik.com> [141210 09:35]:
+> > > As to the rootfs, this folder
+> > > fsl-community-bsp/build/tmp/work/wandboard_quad-poky-linux-
+> > gnueabi/cor
+> > > e-image-minimal/1.0-r0/rootfs seems to be exactly the structure that
+> > > is packed into the
+> > > image.tar.bz2 so I thought it is a good idea to directly use it as nfs
+> > > share. Is there some reason not to do so ?
+
+> > Well, there're quite few. For instance file and directory ownership,
+> > permissions etc.
+
+> Yes, I can see that
+
+> >If you're not using devtmpfs, and thus would like static
+> > device nodes, they wouldn't be created in the build directory.
+
+> This is a little beyond my horizon, if you don't mind, could you
+> please explain this a little, I may be lacking some knowledge here...
+> sorry
+
+Well, nowadays most people are letting the kernel create the device
+nodes itself (possibly with some extra help from udev/mdev). Though, on
+really tiny systems you might still want to manually create all device
+nodes statically during image create time. In that special case, the
+device node names will be available in the build directory .../rootfs,
+but they will be regular files, not device nodes.
+
+If you don't know about this, it's quite likely you don't have to bother
+with this at the moment.
+
+> > Thus, you really should be using the tarball when you want to run an nf=
+sroot.
+
+> Tried again but again it didn't work, do you have an idea what could be w=
+rong ?
+
+What steps have you taken?
+
+How have you unpacked and exported the rootfs?
+
+If you have export e.g. /export/rootfs, it's usually enough (for a
+simple image at least) to run `sudo tar xf ....rootfs.tar.bz2`.
+
+
+Cheers,
+Anders
+--=20
+Anders Darander
+ChargeStorm AB / eStorm AB
+
