@@ -1,49 +1,44 @@
 Return-Path: <yannick.koehler@hp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7AE57E00A53; Wed, 10 Dec 2014 07:02:10 -0800 (PST)
+	id 66C82E0080C; Wed, 10 Dec 2014 08:03:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [15.240.0.71 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 460 seconds by postgrey-1.32 at yocto-www;
-	Wed, 10 Dec 2014 07:01:54 PST
-Received: from g9t1613g.houston.hp.com (g9t1613g.houston.hp.com [15.240.0.71])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42CD6E00A28
-	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 07:01:54 -0800 (PST)
-Received: from g2t2353.austin.hp.com (g2t2353.austin.hp.com [15.217.128.52])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by g9t1613g.houston.hp.com (Postfix) with ESMTPS id 87B3A6216A
-	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 14:54:13 +0000 (UTC)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [15.217.128.53 listed in list.dnswl.org]
+X-Greylist: delayed 4139 seconds by postgrey-1.32 at yocto-www;
+	Wed, 10 Dec 2014 08:03:01 PST
+Received: from g2t2354.austin.hp.com (g2t2354.austin.hp.com [15.217.128.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37CAEE00461
+	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 08:03:01 -0800 (PST)
 Received: from G2W4316.americas.hpqcorp.net (g2w4316.austin.hp.com
 	[16.197.9.73]) (using TLSv1 with cipher AES128-SHA (128/128 bits))
 	(No client certificate requested)
-	by g2t2353.austin.hp.com (Postfix) with ESMTPS id 046261A6
-	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 14:54:01 +0000 (UTC)
-Received: from G2W4311.americas.hpqcorp.net (16.197.24.199) by
+	by g2t2354.austin.hp.com (Postfix) with ESMTPS id 6FC4D115
+	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 16:03:00 +0000 (UTC)
+Received: from G2W4312.americas.hpqcorp.net (16.197.24.214) by
 	G2W4316.americas.hpqcorp.net (16.197.9.73) with Microsoft SMTP Server
-	(TLS) id 14.3.169.1; Wed, 10 Dec 2014 14:53:24 +0000
+	(TLS) id 14.3.169.1; Wed, 10 Dec 2014 16:02:25 +0000
 Received: from G2W2533.americas.hpqcorp.net ([169.254.6.187]) by
-	G2W4311.americas.hpqcorp.net ([16.197.24.199]) with mapi id
-	14.03.0169.001; Wed, 10 Dec 2014 14:53:24 +0000
+	G2W4312.americas.hpqcorp.net ([16.197.24.214]) with mapi id
+	14.03.0169.001; Wed, 10 Dec 2014 16:02:25 +0000
 From: "Koehler, Yannick (HP Networking)" <yannick.koehler@hp.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Thread-Topic: Poky-tiny core-image-minimal issue
-Thread-Index: AdAUiEahhb4zA9MFSyascyZHYYTzEw==
-Date: Wed, 10 Dec 2014 14:53:23 +0000
-Message-ID: <95CF81BBD42FB348A182716C4D4310A80548589D@G2W2533.americas.hpqcorp.net>
+Thread-Index: AdAUiEahhb4zA9MFSyascyZHYYTzEwACjQPw
+Date: Wed, 10 Dec 2014 16:02:24 +0000
+Message-ID: <95CF81BBD42FB348A182716C4D4310A805485911@G2W2533.americas.hpqcorp.net>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [16.192.129.41]
+x-originating-ip: [16.193.232.25]
 MIME-Version: 1.0
-Subject: Poky-tiny core-image-minimal issue
+Subject: Re: Poky-tiny core-image-minimal issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,10 +50,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Dec 2014 15:02:10 -0000
+X-List-Received-Date: Wed, 10 Dec 2014 16:03:09 -0000
 Content-Language: fr-FR
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
+Did a little more digging and found that adding ext2 to poky-tiny.cfg and i=
+t worked, maybe this should be push to repository:
+
+# Functionality flags
+KERNEL_FEATURES =3D "ext2"
+
+--
+Yannick Koehler
+
+-----Message d'origine-----
+De=A0: Koehler, Yannick (HP Networking)=20
+Envoy=E9=A0: December-10-14 9:53 AM
+=C0=A0: 'yocto@yoctoproject.org'
+Objet=A0: Poky-tiny core-image-minimal issue
 
 Hi,
 
