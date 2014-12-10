@@ -1,36 +1,52 @@
-Return-Path: <maciej.borzecki@open-rnd.pl>
+Return-Path: <insop.song@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36824E0082F; Wed, 10 Dec 2014 11:28:03 -0800 (PST)
+	id 78DDBE0087C; Wed, 10 Dec 2014 13:34:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (insop.song[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FEF6E00461
-	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 11:27:54 -0800 (PST)
-Received: from localhost.localdomain (unknown [78.8.74.197])
-	by open-rnd.nazwa.pl (Postfix) with ESMTP id C49A1235B02;
-	Wed, 10 Dec 2014 20:27:51 +0100 (CET)
-Message-ID: <1418239670.8014.3.camel@open-rnd.pl>
-From: Maciek Borzecki <maciej.borzecki@open-rnd.pl>
-To: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 10 Dec 2014 20:27:50 +0100
-In-Reply-To: <FABD1EBC-088D-41C9-8CD0-F7D2D4493896@gmail.com>
-References: <95CF81BBD42FB348A182716C4D4310A805485ADE@G2W2533.americas.hpqcorp.net>
-	<FABD1EBC-088D-41C9-8CD0-F7D2D4493896@gmail.com>
-Organization: Open-RnD sp. z o.o.
-X-Mailer: Evolution 3.12.8 (3.12.8-1.fc21) 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Koehler,
-	Yannick \(HP Networking\)" <yannick.koehler@hp.com>
-Subject: Re: parallel build of multiple machine/os?
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.47 listed in list.dnswl.org]
+Received: from mail-wg0-f47.google.com (mail-wg0-f47.google.com [74.125.82.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41BA3E0080C
+	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 13:34:18 -0800 (PST)
+Received: by mail-wg0-f47.google.com with SMTP id n12so4804786wgh.20
+	for <yocto@yoctoproject.org>; Wed, 10 Dec 2014 13:34:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:cc:content-type;
+	bh=f7VaLnDLOEm3OWG0cjRVA+OCCwIcsSDwmF3s1FTNHAg=;
+	b=sITr2PrzTC8BG7/w0i6D2jPwlf0hH02Ig2Vt6aVSqcIvt+/0mUrwjgBx0Er8SA5jkL
+	OKJQ39HWwYc8EpOnFkbRWSCxRpaZSDTtsmb2cUZWEatJT/sEl3OCE529lKstx1Hv53EM
+	QH1RuXp9fWUTDGO3Q1z4fnW+Ab0H4dvY2Cxwu+9pVydJzoeiy1L38gNnHpnqaXunTAjD
+	od3ix0QtqllEOzG29PFtY9C2MDxOY2NzFsWwrxDBj3bngF092viQY+NFmQaSKac1FlP+
+	iwo8SbqQYU2LMtvPt+eRMOnzq81E8fT95K3b73gu/NXZVBC+A4lOPKs0xlPT1dLR09qz
+	Fycw==
+X-Received: by 10.194.82.97 with SMTP id h1mr10499035wjy.116.1418247257511;
+	Wed, 10 Dec 2014 13:34:17 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.194.7.99 with HTTP; Wed, 10 Dec 2014 13:33:57 -0800 (PST)
+From: Insop Song <insop.song@gmail.com>
+Date: Wed, 10 Dec 2014 13:33:57 -0800
+Message-ID: <CACzyEJ9bhV0iZWR7Tdis_n+oDB8yKzjM=J0M7e+YY+ZPz0ZufQ@mail.gmail.com>
+To: Yocto Project Discussion <yocto@yoctoproject.org>,
+	Khem Raj <raj.khem@gmail.com>
+Cc: P@draigbrady.com
+Subject: add a process memory check utility (ps_mem)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: maciej.borzecki@open-rnd.pl
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -39,48 +55,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Dec 2014 19:28:03 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 10 Dec 2014 21:34:27 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On śro, 2014-12-10 at 11:00 -0800, Khem Raj wrote:
-> > On Dec 10, 2014, at 10:52 AM, Koehler, Yannick (HP Networking)
-> <yannick.koehler@hp.com> wrote: > > Can Yocto build for example in a
-> single bitbake call an image for x86, ppc, arm, others?  Or is the call
-> to bitbake limited to a single architecture?  And if so, how? > > I see
-> that lots of *-native package are built, and I guess is that for each
-> machine/os those would be reused, as such, it appears it would be a
-> benefit to be able to build multiple package version for different
-> architecture/distro/machine in a single invocation of bitbake. > 
-> 
-> parallel multi-machine builds have been discussed but not thought of
-> worth doing. you could however share lot of common packages among
-> machines sequentially.
+Hi Khem,
 
-Out of curiosity, are parallel builds using the same SSTATE_DIR and
-DL_DIR, but all other *_DIR variables distinct, considered safe?
+I've been using this memory check utility (ps_mem) and wrote a bb file
+to include it in our yocto image.
+
+I thought it'd nice to include this in yocto upstream as well.
+
+- It's called ps_mem, "A utility to accurately report the in core
+memory usage for a program"
+- https://github.com/pixelb
+
+Could you consider to include ps_mem in upstream? and let me know what
+and where to put if is okay? I can follow up.
 
 
+Thank you,
+
+Insop
+
+
+- this is my bb file as an example
+
+diff --git a/recipes-gs/ps_mem/psmem.bb b/recipes-gs/ps_mem/psmem.bb
+new file mode 100644
+index 0000000..d408298
+--- /dev/null
++++ b/recipes-gs/ps_mem/psmem.bb
+@@ -0,0 +1,26 @@
++#
++# ps_mem
++#
++SUMMARY = "A utility to accurately report the in core memory usage
+for a program"
++HOMEPAGE = "https://github.com/pixelb/ps_mem"
++LICENSE = "LGPLv2"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=c05fdef0c0d05f619748e9bb0fb41b21"
++
++PR = "r0"
++
++SRC_URI = "git://github.com/pixelb/ps_mem.git;branch=master;protocol=git"
++SRCREV = "702b461d16062f14a9f4191bc731adcf48b51489"
++
++S = "${WORKDIR}/git"
++
++do_compile () {
++ echo "No compile needed"
++}
++
++do_install () {
++ install -d ${D}${bindir}
++ install -m 0755 ${S}/ps_mem.py ${D}${bindir}/ps_mem
++}
++
++FILES_${PN} += "/*"
++FILES_${PN}-dbg += "/www/pages/.debug"
 -- 
-Maciej Borzęcki
-Senior Software Developer at Open-RnD Sp. z o.o., Poland
-www.open-rnd.pl
-mobile: +48 889 117 365, fax: +48 42 657 9079
-
-Niniejsza wiadomość wraz z załącznikami może zawierać chronione prawem
-lub poufne informacje i została wysłana wyłącznie do wiadomości i
-użytku osób, do których została zaadresowana. Jeśli wiadomość została
-otrzymana przypadkowo zabrania się jej kopiowania lub rozsyłania do
-osób trzecich. W takim przypadku uprasza się o natychmiastowe
-zniszczenie wiadomości oraz poinformowanie nadawcy o zaistniałej
-sytuacji za pomocą wiadomości zwrotnej. Dziękujemy.
-
-This message, including any attachments hereto, may contain privileged
-or confidential information and is sent solely for the attention and
-use of the intended addressee(s). If you are not an intended addressee,
-you may neither use this message nor copy or deliver it to anyone. In
-such case, you should immediately destroy this message and kindly notify
-the sender by reply email. Thank you.
-
-
+1.7.9.5
 
