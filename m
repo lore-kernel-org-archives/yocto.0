@@ -1,42 +1,61 @@
-Return-Path: <Neil.Wu@Emerson.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1752CE006EF; Thu, 11 Dec 2014 01:35:46 -0800 (PST)
+	id D7728E0072A; Thu, 11 Dec 2014 02:04:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.176 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [144.191.128.190 listed in list.dnswl.org]
-Received: from USSTLZ-PINFEZ06.extemr.org (usstlz-pinfez06.extemr.org
-	[144.191.128.190])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D52AE002F9
-	for <yocto@yoctoproject.org>; Thu, 11 Dec 2014 01:35:40 -0800 (PST)
-Received: from USSTLZ-PMSG004.emrsn.org (10.16.72.186) by
-	USSTLZ-PINFEZ06.extemr.org (10.16.8.79) with Microsoft SMTP Server
-	(TLS) id 14.3.158.1; Thu, 11 Dec 2014 09:35:39 +0000
-Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.25]) by
-	USSTLZ-PMSG004.emrsn.org ([169.254.8.199]) with mapi id 14.03.0158.001;
-	Thu, 11 Dec 2014 09:35:39 +0000
-From: <Neil.Wu@Emerson.com>
-To: <yocto@yoctoproject.org>
-Thread-Topic: add files to dirctory in packages-split 
-Thread-Index: AQHQFRM5gTV0wiwU10CyeEmwiRVbQJyKIA2w
-Date: Thu, 11 Dec 2014 09:35:38 +0000
-Message-ID: <3204FE6663E1F14CAF4CA6928E60C8521E22093F@USSTLZ-PMSG012.emrsn.org>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A513E002F9
+	for <yocto@yoctoproject.org>; Thu, 11 Dec 2014 02:04:37 -0800 (PST)
+Received: by mail-ig0-f176.google.com with SMTP id l13so8578573iga.15
+	for <yocto@yoctoproject.org>; Thu, 11 Dec 2014 02:04:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=/yiZYaQN5l+OvrrYQYRAEzibaA3ZQ5C/zWL/XqnIdU0=;
+	b=edAkC7Bih0egmLPu1pe8x9PxHLBlU2Jg+iHTijND1ehHVg6V20N5pKfjVRcCchHoUs
+	xOPMmXGa8sFxqVgPAwhx1UOdvVgfNWuMwcveHbIPRf3LLIGVqHhtw0WrpKG9unLlQ4tE
+	nOmyMIcu7d18YxhJQkP0+HPdpBSM6DTZ+48Mav9qjyuGWGw1xzw/eZ4mPikcxDpdbHy8
+	9XvUAKVOtqxk5Mz9Hfr4I29sDWAKyz3zTK9g8zDlHfM2nwRr9VT4F3LVpx3l8V24oah7
+	G+JqziYEMlz85Yq5ULR7LD+o+f/WFqm1eBq6NBOAFYLV6UdKQun7DTVpHZgB6hpWPE8C
+	hefw==
+X-Received: by 10.107.138.5 with SMTP id m5mr8643837iod.85.1418292276518;
+	Thu, 11 Dec 2014 02:04:36 -0800 (PST)
+Received: from 10.168.189.219-ra01.englewood.co.denver.comcast.net
+	(fw01.aurora.co.denver.comcast.net. [198.178.8.81])
+	by mx.google.com with ESMTPSA id n4sm267997igr.15.2014.12.11.02.04.35
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 11 Dec 2014 02:04:35 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 8.1 \(1993\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <3204FE6663E1F14CAF4CA6928E60C8521E22093F@USSTLZ-PMSG012.emrsn.org>
+Date: Thu, 11 Dec 2014 02:04:34 -0800
+Message-Id: <F9A75476-0E0A-4908-B047-2FB8028ACB8A@gmail.com>
 References: <20141211004713.GC4102@mentor.com>
 	<1077253035.5058800.1418282511482.JavaMail.yahoo@jws10079.mail.ne1.yahoo.com>
-In-Reply-To: <1077253035.5058800.1418282511482.JavaMail.yahoo@jws10079.mail.ne1.yahoo.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.75.1]
-MIME-Version: 1.0
-Subject: add files to dirctory in packages-split
+	<3204FE6663E1F14CAF4CA6928E60C8521E22093F@USSTLZ-PMSG012.emrsn.org>
+To: Neil.Wu@Emerson.com
+X-Mailer: Apple Mail (2.1993)
+Cc: yocto@yoctoproject.org
+Subject: Re: add files to dirctory in packages-split
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,77 +67,153 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Dec 2014 09:35:46 -0000
-Content-Language: en-US
+X-List-Received-Date: Thu, 11 Dec 2014 10:04:49 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_3204FE6663E1F14CAF4CA6928E60C8521E22093FUSSTLZPMSG012em_"
+	boundary="Apple-Mail=_8397414F-A3E9-442A-9BC5-20244FE8CB26"
 
---_000_3204FE6663E1F14CAF4CA6928E60C8521E22093FUSSTLZPMSG012em_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--Apple-Mail=_8397414F-A3E9-442A-9BC5-20244FE8CB26
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-SGkgYWxsLA0KSSB3YW50IHRvIGFkZCBzb21lIGZpbGVzIHRvIHRoZSBzcGVjaWZpZWQgIGRpcmVj
-dG9yeSB3aGF0IGluIHBhY2thZ2VzLXNwbGl0Lg0KDQpIb3cgdG8gZG8gaXQgPw0KDQpUaGFuayB5
-b3UNCk5laWwNCg0K
 
---_000_3204FE6663E1F14CAF4CA6928E60C8521E22093FUSSTLZPMSG012em_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> On Dec 11, 2014, at 1:35 AM, Neil.Wu@Emerson.com wrote:
+>=20
+> Hi all,
+> I want to add some files to the specified  directory what in =
+packages-split.
+> =20
+> How to do it ?
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTIgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-Pg0KPCEtLQ0KIC8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCiBAZm9udC1mYWNlDQoJe2ZvbnQtZmFt
-aWx5OlNpbVN1bjsNCglwYW5vc2UtMToyIDEgNiAwIDMgMSAxIDEgMSAxO30NCkBmb250LWZhY2UN
-Cgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAz
-IDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAx
-NSA1IDIgMiAyIDQgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiXEBTaW1TdW4i
-Ow0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KIC8qIFN0eWxlIERlZmluaXRpb25z
-ICovDQogcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46
-MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQt
-ZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVy
-bGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29y
-YXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0K
-CXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3JhdGlv
-bjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29u
-YWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5zLXNlcmlmIjsNCgljb2xvcjoj
-MUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0K
-CWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47
-DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5TZWN0aW9uMQ0KCXtwYWdl
-OlNlY3Rpb24xO30NCi0tPg0KPC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCiA8bzpz
-aGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5k
-aWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQogPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVk
-aXQiPg0KICA8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCiA8L286c2hhcGVsYXlv
-dXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0i
-Ymx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJTZWN0aW9uMSI+DQo8ZGl2Pg0KPGRp
-dj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7
-c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPkhpIGFsbCw8bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
-DQpjb2xvcjojMUY0OTdEIj5JIHdhbnQgdG8gYWRkIHNvbWUgZmlsZXMgdG8gdGhlIHNwZWNpZmll
-ZCAmbmJzcDtkaXJlY3Rvcnkgd2hhdCBpbiBwYWNrYWdlcy1zcGxpdC4NCjxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
-OzsNCmNvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
-dW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0Qi
-PkhvdyB0byBkbyBpdCA/DQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
-YnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj48bzpwPiZu
-YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
-bnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj5UaGFuayB5b3UNCjxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
-OzsNCmNvbG9yOiMxRjQ5N0QiPk5laWw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
-dDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj48
-bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rp
-dj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+FILES_<name-of-package> +=3D =E2=80=9C/path/to/file"
 
---_000_3204FE6663E1F14CAF4CA6928E60C8521E22093FUSSTLZPMSG012em_--
+> =20
+> Thank you
+> Neil
+> =20
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+> https://lists.yoctoproject.org/listinfo/yocto =
+<https://lists.yoctoproject.org/listinfo/yocto>
+
+--Apple-Mail=_8397414F-A3E9-442A-9BC5-20244FE8CB26
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Dec 11, 2014, at 1:35 AM, <a =
+href=3D"mailto:Neil.Wu@Emerson.com" class=3D"">Neil.Wu@Emerson.com</a> =
+wrote:</div><br class=3D"Apple-interchange-newline"><div class=3D""><div =
+class=3D"Section1" style=3D"page: Section1; font-family: Verdana; =
+font-size: 12px; font-style: normal; font-variant: normal; font-weight: =
+normal; letter-spacing: normal; line-height: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
+0px;"><div class=3D""><div class=3D""><div class=3D""><div class=3D""><div=
+ class=3D""><div style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; =
+font-family: 'Times New Roman', serif;" class=3D""><span =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif; color: =
+rgb(31, 73, 125);" class=3D"">Hi all,<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 12pt; font-family: 'Times New Roman', serif;" class=3D""><span =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif; color: =
+rgb(31, 73, 125);" class=3D"">I want to add some files to the specified =
+&nbsp;directory what in packages-split.<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 12pt; font-family: 'Times New Roman', serif;" class=3D""><span =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif; color: =
+rgb(31, 73, 125);" class=3D"">&nbsp;</span></div><div style=3D"margin: =
+0in 0in 0.0001pt; font-size: 12pt; font-family: 'Times New Roman', =
+serif;" class=3D""><span style=3D"font-size: 11pt; font-family: Calibri, =
+sans-serif; color: rgb(31, 73, 125);" class=3D"">How to do it =
+?</span></div></div></div></div></div></div></div></div></blockquote><div>=
+<br class=3D""></div><div>FILES_&lt;name-of-package&gt; +=3D =
+=E2=80=9C/path/to/file"</div><br class=3D""><blockquote type=3D"cite" =
+class=3D""><div class=3D""><div class=3D"Section1" style=3D"page: =
+Section1; font-family: Verdana; font-size: 12px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-stroke-width: 0px;"><div class=3D""><div class=3D""><div=
+ class=3D""><div class=3D""><div class=3D""><div style=3D"margin: 0in =
+0in 0.0001pt; font-size: 12pt; font-family: 'Times New Roman', serif;" =
+class=3D""><span style=3D"font-size: 11pt; font-family: Calibri, =
+sans-serif; color: rgb(31, 73, 125);" class=3D""><o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 12pt; font-family: 'Times New Roman', serif;" class=3D""><span =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif; color: =
+rgb(31, 73, 125);" class=3D"">&nbsp;</span></div><div style=3D"margin: =
+0in 0in 0.0001pt; font-size: 12pt; font-family: 'Times New Roman', =
+serif;" class=3D""><span style=3D"font-size: 11pt; font-family: Calibri, =
+sans-serif; color: rgb(31, 73, 125);" class=3D"">Thank you<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 12pt; font-family: 'Times New Roman', serif;" class=3D""><span =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif; color: =
+rgb(31, 73, 125);" class=3D"">Neil<o:p class=3D""></o:p></span></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; font-family: 'Times =
+New Roman', serif;" class=3D""><span style=3D"font-size: 11pt; =
+font-family: Calibri, sans-serif; color: rgb(31, 73, 125);" =
+class=3D"">&nbsp;</span></div></div></div></div></div></div></div><span =
+style=3D"font-family: Verdana; font-size: 12px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-stroke-width: 0px; float: none; display: inline =
+!important;" class=3D"">--<span =
+class=3D"Apple-converted-space">&nbsp;</span></span><br =
+style=3D"font-family: Verdana; font-size: 12px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-stroke-width: 0px;" class=3D""><span =
+style=3D"font-family: Verdana; font-size: 12px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-stroke-width: 0px; float: none; display: inline =
+!important;" =
+class=3D"">_______________________________________________</span><br =
+style=3D"font-family: Verdana; font-size: 12px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-stroke-width: 0px;" class=3D""><span =
+style=3D"font-family: Verdana; font-size: 12px; font-style: normal; =
+font-variant: normal; font-weight: normal; letter-spacing: normal; =
+line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-stroke-width: 0px; float: none; display: inline =
+!important;" class=3D"">yocto mailing list</span><br style=3D"font-family:=
+ Verdana; font-size: 12px; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; line-height: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" class=3D""><a =
+href=3D"mailto:yocto@yoctoproject.org" style=3D"color: purple; =
+text-decoration: underline; font-family: Verdana; font-size: 12px; =
+font-style: normal; font-variant: normal; font-weight: normal; =
+letter-spacing: normal; line-height: normal; orphans: auto; text-align: =
+start; text-indent: 0px; text-transform: none; white-space: normal; =
+widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
+class=3D"">yocto@yoctoproject.org</a><br style=3D"font-family: Verdana; =
+font-size: 12px; font-style: normal; font-variant: normal; font-weight: =
+normal; letter-spacing: normal; line-height: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
+0px;" class=3D""><a href=3D"https://lists.yoctoproject.org/listinfo/yocto"=
+ style=3D"color: purple; text-decoration: underline; font-family: =
+Verdana; font-size: 12px; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; line-height: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;" =
+class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
+uote></div><br class=3D""></body></html>=
+
+--Apple-Mail=_8397414F-A3E9-442A-9BC5-20244FE8CB26--
