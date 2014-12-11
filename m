@@ -1,78 +1,39 @@
-Return-Path: <gmane@reliableembeddedsystems.com>
+Return-Path: <californialsullivan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B42EBE0083A; Thu, 11 Dec 2014 12:13:24 -0800 (PST)
+	id E53E6E00874; Thu, 11 Dec 2014 13:06:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0075]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 1357 seconds by postgrey-1.32 at yocto-www;
-	Thu, 11 Dec 2014 12:13:11 PST
-Received: from delivery.mailspamprotection.com
-	(delivery.mailspamprotection.com [108.178.24.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CF0CE00521
-	for <yocto@yoctoproject.org>; Thu, 11 Dec 2014 12:13:11 -0800 (PST)
-Received: from ns1.siteground282.com ([184.154.233.8]
-	helo=serv01.siteground282.com)
-	by se1.mailspamprotection.com with esmtps
-	(TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256) (Exim 4.84)
-	(envelope-from <gmane@reliableembeddedsystems.com>)
-	id 1Xz9kf-0005Hw-Qw
-	for yocto@yoctoproject.org; Thu, 11 Dec 2014 13:50:28 -0600
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=reliableembeddedsystems.com; s=dkim; 
-	h=Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version;
-	bh=P870egdAL1TnNmktqQkMbgH2/A15ZMqtElV17KA72Gs=; 
-	b=1ZdfQgbxyjf+zANBYJbwDupzHwIzL6hwwbUnXPzh+Hmfyb14+TnIWTLvCIPerDMeFZOlfp8m4HBHCVyN+LA8BG5gucYERCwheDLEAyXrkH01+Sw4h3hq6a4417rxqHDdMSfPvPKjJGPoJH5iFa/PJYwxYeRt50IMcJfbgKU8FkA=;
-Received: from [127.0.0.1] (port=49232 helo=secure282.sgcpanel.com)
-	by serv01.siteground282.com with esmtpa (Exim 4.80.1)
-	(envelope-from <gmane@reliableembeddedsystems.com>)
-	id 1Xz9kZ-0002Oo-Rg; Thu, 11 Dec 2014 13:50:11 -0600
-MIME-Version: 1.0
-Date: Thu, 11 Dec 2014 13:50:11 -0600
-From: gmane@reliableembeddedsystems.com
+X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
+	FREEMAIL_FROM, NML_ADSP_CUSTOM_MED,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (californialsullivan[at]gmail.com)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
+	*      CUSTOM_MED
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
+	and not from a mailing list
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50FA9E007C1
+	for <yocto@yoctoproject.org>; Thu, 11 Dec 2014 13:06:03 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga103.jf.intel.com with ESMTP; 11 Dec 2014 13:03:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.04,691,1406617200"; d="scan'208";a="497463733"
+Received: from unknown (HELO localhost.jf.intel.com) ([10.7.198.57])
+	by orsmga003.jf.intel.com with ESMTP; 11 Dec 2014 13:01:32 -0800
+From: californialsullivan@gmail.com
 To: yocto@yoctoproject.org
-Message-ID: <0160729e4beba1b0cedec21a9c640e0f@reliableembeddedsystems.com>
-X-Sender: gmane@reliableembeddedsystems.com
-User-Agent: Roundcube Webmail/0.9.5
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - serv01.siteground282.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - reliableembeddedsystems.com
-X-Filter-ID: s0sct1PQhAABKnZB5plbIWEcM0d9a2K3OcfFeaASvaIT05e+4t99MpEggFbXzbnhttgCKkcBtGCa
-	+yWmGXl+/0OdHUzGyIWSzveO/M+HlaVWShQ0+uJXiDSCp280tJFsbX/3TQnYbqlNHxpi9XBHG8Jz
-	8WfReHqUOdh1n/PPcFxYrgVtmNkRjS7WSS96w3hMIe+NidcPxIRk/KxFMCED1Fz1pRXWhjh9fdbl
-	44I0Df1bDJmuEytGOjhN7+VkHzjLSbBIxrv0tc9XqsVkeAX6S4rjo9pjU2jwGeOCxBY5D4UaYsqX
-	q41MoOtzweKQlohrFyrtVW4KaRSURqFyxA+5hz/fZ77l9WrLiw3jbC6gJt3PWdnJQeN5cgRmGf5G
-	X0xwhXsBjV/r0cSqC1xhIwVnc0ks5uz+SxUE4e8QCBKvyQCW/0SRYQ0ROxX2dwaCJb79Jwd/Ie5B
-	ug3IiAebyObbQrbRF0J+AL6gRRwFcty0/RFX0QIjIjCn1zvQuUxCBw4J+4fateCeFsLSBPBEabXV
-	ietQy3uAkh2klY0pFWVKuKSFewGNX+vRxKoLXGEjBWdzGfxNlhQyZmS3TgLw2A6IYsGaojZTebwW
-	bZmtd3gd80Tpd66zq7t8jrxsZWFJWZQXcxw3qqhc+N6cuEg4XWh5FjqmfqyRyoWtIXjFMS828Jd7
-	qm5RO6fQya3VRDVJSCo656Dn5RwX9m/yl7fqKmGjdDVR1n0X04As1se9YpRQfwk=
-X-Report-Abuse-To: spam@quarantine.mailspamprotection.com
-X-Filter-Fingerprint: IFrWXGses7OKB5S5G8/dJb0kolOUiviGeQyDsBgQ6PBA3cTUQ1R++keuE7RDJ8Kg3RbMLUalw1oC
-	mj99/u+Poh38tEMU4IgC4sNz49qn3HHnhRv/ZJ3kEy8bfiAr+Fb/UpndEJ0YoaLytXXo8BMTaX2p
-	Mk7LBarWD9Fj4R3eIu5amSKkALoA6KDzkQ8jq89Qglr+eUaqsXi6ilYykBRNmy1w3rhXI7ypWHcC
-	zReLskSoC1jzfYuYzO5TaopJL1l0EkXKTCB9mgAH2nNvM1GFDcH5C2MO7hTENZJE35bUvwA=
-X-Originating-IP: 184.154.233.8
-X-SpamExperts-Domain: siteground282.com
-X-SpamExperts-Username: 184.154.233.8
-Authentication-Results: mailspamprotection.com;
-	auth=pass smtp.auth=184.154.233.8
-X-SpamExperts-Outgoing-Class: unsure
-X-SpamExperts-Outgoing-Evidence: Combined (0.58)
-X-Recommended-Action: accept
-Cc: robert.berger@reliableembeddedsystems.com
-Subject: How to properly add new qemu target + testimage support?
+Date: Thu, 11 Dec 2014 13:02:14 -0500
+Message-Id: <1418320935-2913-1-git-send-email-californialsullivan@gmail.com>
+X-Mailer: git-send-email 1.9.3
+Cc: California Sullivan <california.l.sullivan@intel.com>
+Subject: [Yocto Autobuilder][PATCH 1/2] Autobuilder: fix SingleBranchScheduler to look at any repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -84,30 +45,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Dec 2014 20:13:24 -0000
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 11 Dec 2014 21:06:07 -0000
 
-Hi,
+From: California Sullivan <california.l.sullivan@intel.com>
 
-I hacked together a qemu target which supports vexpress-a9.
+Previously, it could only look at the repo at the zero index, which was
+usually poky. If the scheduler's 'repository' field did not match this,
+the scheduler would immediately exit without being added. This change
+makes it looks through all listed repos for a match.
 
-In order to get
+Signed-off-by: California Sullivan <california.l.sullivan@intel.com>
+---
+ lib/python2.7/site-packages/autobuilder/Autobuilder.py | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
 
-core-image-minimal -c testimage
+diff --git a/lib/python2.7/site-packages/autobuilder/Autobuilder.py b/lib/python2.7/site-packages/autobuilder/Autobuilder.py
+index 7febfae..32c6128 100644
+--- a/lib/python2.7/site-packages/autobuilder/Autobuilder.py
++++ b/lib/python2.7/site-packages/autobuilder/Autobuilder.py
+@@ -202,8 +202,16 @@ class Autobuilder:
+                             continue
+ 
+                         reponame = value['repository']
+-                        repos = dict(ast.literal_eval(self.configdict[key]['repos'])[0])
+-                        if not repos.has_key(reponame):
++                        repos=None
++                        repo=None
++
++                        for x in ast.literal_eval(self.configdict[key]['repos']):
++                            if dict(x).has_key(reponame):
++                                repos=x
++                                repo=repos[reponame]
++                                break
++
++                        if repo is None:
+                             log.msg("No repo %s found" % reponame)
+                             continue
+ 
+-- 
+1.9.3
 
-to work as well I had to cook
-
-meta/lib/oeqa/utils/qemurunner.py
-scripts/runqemu
-scripts/runqemu-internal
-
-This does not seem to be a generic way to do such a thing.
-
-What's the proper way to do it?
-
-Regards,
-
-Robert
 
