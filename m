@@ -1,61 +1,47 @@
-Return-Path: <yuq825@gmail.com>
+Return-Path: <Neil.Wu@Emerson.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 317F7E00992; Thu, 11 Dec 2014 22:57:52 -0800 (PST)
+	id 37E1CE00993; Thu, 11 Dec 2014 23:41:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW,TRACKER_ID autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (yuq825[at]gmail.com)
-	*  1.3 TRACKER_ID BODY: Incorporates a tracking ID number
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.173 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [144.191.128.189 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-ie0-f173.google.com (mail-ie0-f173.google.com
-	[209.85.223.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9CB3E0083A
-	for <yocto@yoctoproject.org>; Thu, 11 Dec 2014 22:57:38 -0800 (PST)
-Received: by mail-ie0-f173.google.com with SMTP id y20so6378014ier.32
-	for <yocto@yoctoproject.org>; Thu, 11 Dec 2014 22:57:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=OoCfsP7N6D4oAF6oEf3LakeyE+afrBKbwUt2glOOJpo=;
-	b=nasu136jUdwkc9iLJC1CpLeMy1tNfdpbE3fjFC8mNnJKrzHUTGRuc3CezMIuRGwFv7
-	ogRWvm//LNH7WjPmRkISdSZfQe7UAx/X3xreZB4Vfd6MiDqka3cu5pkw68nlM1RHVFa/
-	c+tm5FLOznwEHG6q8vjGYEFTbpKA9ncUSG+gY0Zch9HHnzjyxB4dj6tSMWGyGY0ge+ch
-	WnzxizYUdFS8VBSpRFkC4Sk9gvhcq5x6bS5bK+CPbg6F1JvKsnSjxW4zVY3pylYvxu03
-	nbFI9okbOG5taU8uGQzov5m2iBrGz94V+R3QajJ/49yO8tpBRk6dj6bVERKMSoSymhEp
-	1H9w==
+Received: from USSTLZ-PINFEZ05.extemr.org (usstlz-pinfez05.extemr.org
+	[144.191.128.189])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86813E0083A
+	for <yocto@yoctoproject.org>; Thu, 11 Dec 2014 23:41:23 -0800 (PST)
+Received: from USSTLZ-PMSG005.emrsn.org (10.16.72.187) by
+	USSTLZ-PINFEZ05.extemr.org (10.16.8.78) with Microsoft SMTP Server
+	(TLS) id 14.3.158.1; Fri, 12 Dec 2014 07:41:22 +0000
+Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.25]) by
+	USSTLZ-PMSG005.emrsn.org ([169.254.8.39]) with mapi id 14.03.0158.001;
+	Fri, 12 Dec 2014 07:41:20 +0000
+From: <Neil.Wu@Emerson.com>
+To: <raj.khem@gmail.com>
+Thread-Topic: [yocto] add files to dirctory in packages-split
+Thread-Index: AQHQFbYpLGGWMYqRckmEJ5R4cOZUWZyLkjSg
+Date: Fri, 12 Dec 2014 07:41:20 +0000
+Message-ID: <3204FE6663E1F14CAF4CA6928E60C8521E220A91@USSTLZ-PMSG012.emrsn.org>
+References: <20141211004713.GC4102@mentor.com>
+	<1077253035.5058800.1418282511482.JavaMail.yahoo@jws10079.mail.ne1.yahoo.com>
+	<3204FE6663E1F14CAF4CA6928E60C8521E22093F@USSTLZ-PMSG012.emrsn.org>
+	<F9A75476-0E0A-4908-B047-2FB8028ACB8A@gmail.com>
+	<3204FE6663E1F14CAF4CA6928E60C8521E220A16@USSTLZ-PMSG012.emrsn.org>
+	<848A7AA8-A1E5-433E-BC26-C1CA7CED6814@gmail.com>
+In-Reply-To: <848A7AA8-A1E5-433E-BC26-C1CA7CED6814@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.75.1]
 MIME-Version: 1.0
-X-Received: by 10.42.96.195 with SMTP id k3mr2483818icn.7.1418367458106; Thu,
-	11 Dec 2014 22:57:38 -0800 (PST)
-Received: by 10.107.10.7 with HTTP; Thu, 11 Dec 2014 22:57:38 -0800 (PST)
-In-Reply-To: <5488D2C4.4040704@windriver.com>
-References: <CAKGbVbu0YsX18JUF89ec-6M8yUCHnfAM5B7ERQNiAYHTALJ8Bw@mail.gmail.com>
-	<CAAA4K6J_MjbyeL7Js1hw5C=7BqKFger1sanOtxjCe6tLBaQhvQ@mail.gmail.com>
-	<CAKGbVbuRpjsk2TViL=yhLOnp9Sguw3f29HHLaXE-xtt9Pud5HA@mail.gmail.com>
-	<CAAA4K6+dayiFaCo07ynMjefPkLjg5_54m2G16VExdUe-TpUYCg@mail.gmail.com>
-	<54871A7E.1050806@windriver.com>
-	<CAKGbVbv4-orudnvHJYBUZy25MX96Rx2=DEahEDUFxToPOwediQ@mail.gmail.com>
-	<5487B76E.7010708@windriver.com> <5488D2C4.4040704@windriver.com>
-Date: Fri, 12 Dec 2014 14:57:38 +0800
-Message-ID: <CAKGbVbs63PKWSdOk4B53M3iAO4tz1o9wbUQU2ip8tcTphLGJ9A@mail.gmail.com>
-From: Qiang Yu <yuq825@gmail.com>
-To: Mark Hatle <mark.hatle@windriver.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: prelink & mklibs problem
+Cc: yocto@yoctoproject.org
+Subject: Re: add files to dirctory in packages-split
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,771 +53,242 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Dec 2014 06:57:52 -0000
-Content-Type: multipart/alternative; boundary=20cf303ea6008064d10509ff6865
+X-List-Received-Date: Fri, 12 Dec 2014 07:41:33 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_3204FE6663E1F14CAF4CA6928E60C8521E220A91USSTLZPMSG012em_"
 
---20cf303ea6008064d10509ff6865
-Content-Type: text/plain; charset=UTF-8
+--_000_3204FE6663E1F14CAF4CA6928E60C8521E220A91USSTLZPMSG012em_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Mark,
+SGVsbG8gUmFqLA0KVGhhbmsgeW91IGZvciB5b3VyIGhlbHAuIFRoZSBwcm9ibGVtIGhhdmUgc29s
+dmVkLg0KTmVpbA0KDQpGcm9tOiBLaGVtIFJhaiBbbWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbV0N
+ClNlbnQ6IEZyaWRheSwgRGVjZW1iZXIgMTIsIDIwMTQgMTA6NDggQU0NClRvOiBXdSwgTmVpbCBb
+Q0xJTUFURS9SUy9DTl0NCkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTog
+W3lvY3RvXSBhZGQgZmlsZXMgdG8gZGlyY3RvcnkgaW4gcGFja2FnZXMtc3BsaXQNCg0KDQpPbiBE
+ZWMgMTEsIDIwMTQsIGF0IDU6NTkgUE0sIE5laWwuV3VARW1lcnNvbi5jb208bWFpbHRvOk5laWwu
+V3VARW1lcnNvbi5jb20+IHdyb3RlOg0KDQpIaSBSYWosDQpUaGFuayB5b3UgdmVyeSBtdWNoIGZv
+ciB5b3VyIHJlcGx5LiBJIGhhdmUgdHJ5IHRvIGRvIGxpa2UgIHlvdSBzYXkuDQpJ4oCZbSBjb21w
+aWxpbmcgdGhlIGdsaWItMi4wLCAgbmVlZCB0byAgYWRkIHRoZSBsaW5rIGZpbGUgb2Ygb25lIGxp
+YnJhcnkgdG8gZ2xpYi0yLjAgcGFja2FnZS4NClNvIEkgYWRkIHRoZSBjb21tYW5kIGxpa2UgZm9s
+bG93aW5nIDoNCkZJTEVTXyR7UE59ICs9IOKAnCR7bGliZGlyfS9saWJnaW8tMi4wLnNv4oCdDQpC
+dXQgLCBpdCBjYW7igJl0IHN1Y2Nlc3MuDQoNCi5zbyBhcmUgdXN1YWxseSB0cmVhdGVkIHRvIGJl
+IGluY2x1ZGVzIGluIC1kZXYgcGFja2FnZXMgYnkgZGVmYXVsdA0KZmlyc3QgeW91IG5lZWQgdG8g
+ZmlndXJlIG91dCBpZiB5b3UgcmVhbGx5IG5lZWQgLnNvIG9uIHRhcmdldCwgbWFueSB0aW1lcyB5
+b3UgZG9u4oCZdA0KDQpzb21lIHBhY2thZ2VzIHN0aWxsIGRvICggZG9u4oCZdCB1c2UgLnNvIHZl
+cnNpb25pbmcgKSB0aGVuIHlvdSB3b3VsZCBuZWVkIHNvbWV0aGluZyBsaWtlDQoNCkZJTEVTX1NP
+TElCU0RFViA9ICIiDQpTT0xJQlMgPSAiLnNvIg0KSU5TQU5FX1NLSVBfJHtQTn0gKz0gImRldi1z
+byINCg0KDQpEbyB5b3Uga25vdyB3aGV0aGVyIG5lZWQgdG8gZG8gb3RoZXIgdGhpbmc/DQoNCk5l
+aWwNCg0KRnJvbTogS2hlbSBSYWogW21haWx0bzpyYWoua2hlbUBnbWFpbC5jb21dDQpTZW50OiBU
+aHVyc2RheSwgRGVjZW1iZXIgMTEsIDIwMTQgNjowNSBQTQ0KVG86IFd1LCBOZWlsIFtDTElNQVRF
+L1JTL0NOXQ0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQHlvY3RvcHJv
+amVjdC5vcmc+DQpTdWJqZWN0OiBSZTogW3lvY3RvXSBhZGQgZmlsZXMgdG8gZGlyY3RvcnkgaW4g
+cGFja2FnZXMtc3BsaXQNCg0KDQpPbiBEZWMgMTEsIDIwMTQsIGF0IDE6MzUgQU0sIE5laWwuV3VA
+RW1lcnNvbi5jb208bWFpbHRvOk5laWwuV3VARW1lcnNvbi5jb20+IHdyb3RlOg0KDQpIaSBhbGws
+DQpJIHdhbnQgdG8gYWRkIHNvbWUgZmlsZXMgdG8gdGhlIHNwZWNpZmllZCAgZGlyZWN0b3J5IHdo
+YXQgaW4gcGFja2FnZXMtc3BsaXQuDQoNCkhvdyB0byBkbyBpdCA/DQoNCkZJTEVTXzxuYW1lLW9m
+LXBhY2thZ2U+ICs9IOKAnC9wYXRoL3RvL2ZpbGUiDQoNCg0KDQoNClRoYW5rIHlvdQ0KTmVpbA0K
+DQotLQ0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCnlv
+Y3RvIG1haWxpbmcgbGlzdA0KeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AeW9j
+dG9wcm9qZWN0Lm9yZz4NCmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95
+b2N0bw0KDQo=
 
-I have used the 81bab23a4661fdaaa859325d6d3603811ecf1849 version prelink to
-build my image.
-Prelink run smoothly without output like before, the image is also
-modified, so the prelink works.
-My application also run correctly. But how can I make sure the prelink take
-effect when I start an
-executable?
+--_000_3204FE6663E1F14CAF4CA6928E60C8521E220A91USSTLZPMSG012em_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Here attaches the do_rootfs log:
-NOTE: ###### Generate images #######
-NOTE: Executing mklibs_optimize_image ...
-DEBUG: Executing shell function mklibs_optimize_image
-DEBUG: Shell function mklibs_optimize_image finished
-NOTE: Executing prelink_image ...
-DEBUG: Executing shell function prelink_image
-Size before prelinking 49340.
-Size after prelinking 49592.
-DEBUG: Shell function prelink_image finished
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTIgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+Pg0KPCEtLQ0KIC8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCiBAZm9udC1mYWNlDQoJe2ZvbnQtZmFt
+aWx5OlNpbVN1bjsNCglwYW5vc2UtMToyIDEgNiAwIDMgMSAxIDEgMSAxO30NCkBmb250LWZhY2UN
+Cgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAz
+IDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAx
+NSA1IDIgMiAyIDQgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJ
+cGFub3NlLTE6MiAxMSA2IDQgMyA1IDQgNCAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWls
+eToiXEBTaW1TdW4iOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseTpWZXJkYW5hOw0KCXBhbm9zZS0xOjIgMTEgNiA0IDMgNSA0IDQgMiA0
+O30NCiAvKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KIHAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIiwic2VyaWYi
+O30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0K
+CWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNw
+YW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9y
+OnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uYXBwbGUtY29udmVy
+dGVkLXNwYWNlDQoJe21zby1zdHlsZS1uYW1lOmFwcGxlLWNvbnZlcnRlZC1zcGFjZTt9DQpzcGFu
+LkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZh
+bWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERl
+ZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDt9
+DQpAcGFnZSBTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4w
+aW4gMS4waW4gMS4waW47fQ0KZGl2LlNlY3Rpb24xDQoJe3BhZ2U6U2VjdGlvbjE7fQ0KLS0+DQo8
+L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KIDxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9
+ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBt
+c28gOV0+PHhtbD4NCiA8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQogIDxvOmlkbWFwIHY6
+ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KIDwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0t
+LT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxl
+IiBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOw0KLXdlYmtpdC1uYnNwLW1vZGU6IHNwYWNl
+Oy13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2UiPg0KPGRpdiBjbGFzcz0iU2Vj
+dGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
+Ow0KY29sb3I6IzFGNDk3RCI+SGVsbG8gUmFqLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
+OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5
+N0QiPlRoYW5rIHlvdSBmb3IgeW91ciBoZWxwLiBUaGUgcHJvYmxlbSBoYXZlIHNvbHZlZC48bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
+c2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj5OZWlsPG86cD48L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
+YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ow0KY29sb3I6
+IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxkaXYgc3R5bGU9
+ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0I1QzRERiAxLjBwdDtwYWRkaW5nOjMuMHB0
+IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNl
+cmlmJnF1b3Q7Ij5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7
+Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBL
+aGVtIFJhaiBbbWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbV0NCjxicj4NCjxiPlNlbnQ6PC9iPiBG
+cmlkYXksIERlY2VtYmVyIDEyLCAyMDE0IDEwOjQ4IEFNPGJyPg0KPGI+VG86PC9iPiBXdSwgTmVp
+bCBbQ0xJTUFURS9SUy9DTl08YnI+DQo8Yj5DYzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8
+YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFt5b2N0b10gYWRkIGZpbGVzIHRvIGRpcmN0b3J5IGlu
+IHBhY2thZ2VzLXNwbGl0PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1h
+cmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+T24gRGVjIDExLCAyMDE0LCBhdCA1OjU5IFBNLCA8YSBocmVmPSJtYWlsdG86TmVp
+bC5XdUBFbWVyc29uLmNvbSI+DQpOZWlsLld1QEVtZXJzb24uY29tPC9hPiB3cm90ZTo8bzpwPjwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48
+L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1z
+ZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPkhpIFJhaiw8L3NwYW4+PG86cD48L286cD48L3A+
+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
+aWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj5UaGFuayB5b3UgdmVyeSBtdWNoIGZvciB5b3VyIHJl
+cGx5LiBJIGhhdmUgdHJ5IHRvIGRvIGxpa2UgJm5ic3A7eW91IHNheS48L3NwYW4+PG86cD48L286
+cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
+bnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj5J4oCZbSBjb21waWxpbmcgdGhlIGdsaWIt
+Mi4wLCZuYnNwOyBuZWVkIHRvICZuYnNwO2FkZCB0aGUgbGluayBmaWxlIG9mIG9uZSBsaWJyYXJ5
+IHRvIGdsaWItMi4wIHBhY2thZ2UuPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
+dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ow0KY29s
+b3I6IzFGNDk3RCI+U28gSSBhZGQgdGhlIGNvbW1hbmQgbGlrZSBmb2xsb3dpbmcgOjwvc3Bhbj48
+bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+JnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPkZJTEVTXyR7UE59ICYjNDM7
+PSDigJwke2xpYmRpcn0vbGliZ2lvLTIuMC5zb+KAnTwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwv
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
+dW90OzsNCmNvbG9yOiMxRjQ5N0QiPkJ1dCAsIGl0IGNhbuKAmXQgc3VjY2Vzcy48L3NwYW4+PG86
+cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0KPGRpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+LnNvIGFyZSB1c3VhbGx5IHRyZWF0ZWQgdG8gYmUgaW5jbHVkZXMg
+aW4gLWRldiBwYWNrYWdlcyBieSBkZWZhdWx0PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5maXJzdCB5b3UgbmVlZCB0byBmaWd1cmUgb3V0IGlmIHlv
+dSByZWFsbHkgbmVlZCAuc28gb24gdGFyZ2V0LCBtYW55IHRpbWVzIHlvdSBkb27igJl0PG86cD48
+L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNw
+OzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPnNvbWUgcGFj
+a2FnZXMgc3RpbGwgZG8gKCBkb27igJl0IHVzZSAuc28gdmVyc2lvbmluZyApIHRoZW4geW91IHdv
+dWxkIG5lZWQgc29tZXRoaW5nIGxpa2U8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij5GSUxFU19T
+T0xJQlNERVYmbmJzcDs9Jm5ic3A7JnF1b3Q7JnF1b3Q7PGJyPg0KU09MSUJTJm5ic3A7PSZuYnNw
+OyZxdW90Oy5zbyZxdW90Ozxicj4NCklOU0FORV9TS0lQXyR7UE59Jm5ic3A7JiM0Mzs9Jm5ic3A7
+JnF1b3Q7ZGV2LXNvJnF1b3Q7PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxicj4NCjxicj4NCjxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
+cXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdE
+Ij5EbyB5b3Uga25vdyB3aGV0aGVyIG5lZWQgdG8gZG8gb3RoZXIgdGhpbmc/PC9zcGFuPjxvOnA+
+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVv
+dDtzYW5zLXNlcmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9v
+OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtz
+YW5zLXNlcmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+TmVpbDwvc3Bhbj48bzpwPjwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1z
+ZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQg
+I0I1QzRERiAxLjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxkaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWls
+eTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+
+PC9iPjxzcGFuIGNsYXNzPSJhcHBsZS1jb252ZXJ0ZWQtc3BhY2UiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNl
+cmlmJnF1b3Q7Ij4mbmJzcDs8L3NwYW4+PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
+Ij5LaGVtDQogUmFqIFs8YSBocmVmPSJtYWlsdG86cmFqLmtoZW1AZ21haWwuY29tIj5tYWlsdG86
+cmFqLmtoZW1AZ21haWwuY29tPC9hPl08c3BhbiBjbGFzcz0iYXBwbGUtY29udmVydGVkLXNwYWNl
+Ij4mbmJzcDs8L3NwYW4+PGJyPg0KPGI+U2VudDo8L2I+PHNwYW4gY2xhc3M9ImFwcGxlLWNvbnZl
+cnRlZC1zcGFjZSI+Jm5ic3A7PC9zcGFuPlRodXJzZGF5LCBEZWNlbWJlciAxMSwgMjAxNCA2OjA1
+IFBNPGJyPg0KPGI+VG86PC9iPjxzcGFuIGNsYXNzPSJhcHBsZS1jb252ZXJ0ZWQtc3BhY2UiPiZu
+YnNwOzwvc3Bhbj5XdSwgTmVpbCBbQ0xJTUFURS9SUy9DTl08YnI+DQo8Yj5DYzo8L2I+PHNwYW4g
+Y2xhc3M9ImFwcGxlLWNvbnZlcnRlZC1zcGFjZSI+Jm5ic3A7PC9zcGFuPjxhIGhyZWY9Im1haWx0
+bzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnIj55b2N0b0B5b2N0b3Byb2plY3Qub3JnPC9hPjxicj4N
+CjxiPlN1YmplY3Q6PC9iPjxzcGFuIGNsYXNzPSJhcHBsZS1jb252ZXJ0ZWQtc3BhY2UiPiZuYnNw
+Ozwvc3Bhbj5SZTogW3lvY3RvXSBhZGQgZmlsZXMgdG8gZGlyY3RvcnkgaW4gcGFja2FnZXMtc3Bs
+aXQ8L3NwYW4+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRp
+dj4NCjxibG9ja3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4w
+cHQiPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBEZWMgMTEsIDIwMTQs
+IGF0IDE6MzUgQU0sPHNwYW4gY2xhc3M9ImFwcGxlLWNvbnZlcnRlZC1zcGFjZSI+Jm5ic3A7PC9z
+cGFuPjxhIGhyZWY9Im1haWx0bzpOZWlsLld1QEVtZXJzb24uY29tIj48c3BhbiBzdHlsZT0iY29s
+b3I6cHVycGxlIj5OZWlsLld1QEVtZXJzb24uY29tPC9zcGFuPjwvYT48c3BhbiBjbGFzcz0iYXBw
+bGUtY29udmVydGVkLXNwYWNlIj4mbmJzcDs8L3NwYW4+d3JvdGU6PG86cD48L286cD48L3A+DQo8
+L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9v
+OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+
+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJp
+ZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPkhpIGFsbCw8L3NwYW4+PG86cD48L286cD48L3A+DQo8
+L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZx
+dW90O3NhbnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj5JIHdhbnQgdG8gYWRkIHNvbWUg
+ZmlsZXMgdG8gdGhlIHNwZWNpZmllZCAmbmJzcDtkaXJlY3Rvcnkgd2hhdCBpbiBwYWNrYWdlcy1z
+cGxpdC48L3NwYW4+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
+LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7DQpjb2xv
+cjojMUY0OTdEIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
+cXVvdDs7DQpjb2xvcjojMUY0OTdEIj5Ib3cgdG8gZG8gaXQgPzwvc3Bhbj48bzpwPjwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2
+Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+RklMRVNfJmx0O25hbWUtb2YtcGFja2FnZSZndDsgJiM0Mzs9
+IOKAnC9wYXRoL3RvL2ZpbGUmcXVvdDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGJyPg0KPGJyPg0KPGJyPg0KPG86cD48L286cD48
+L3A+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxk
+aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1
+b3Q7Ow0KY29sb3I6IzFGNDk3RCI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+
+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtz
+YW5zLXNlcmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+VGhhbmsgeW91PC9zcGFuPjxvOnA+PC9v
+OnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+TmVpbDwvc3Bh
+bj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0Qi
+PiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwv
+ZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZx
+dW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4tLTxzcGFuIGNsYXNzPSJhcHBsZS1jb252ZXJ0
+ZWQtc3BhY2UiPiZuYnNwOzwvc3Bhbj48YnI+DQpfX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXzxicj4NCnlvY3RvIG1haWxpbmcgbGlzdDxicj4NCjwvc3Bhbj48
+YSBocmVmPSJtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZTo5LjBwdDsNCmZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssJnF1b3Q7c2Fucy1z
+ZXJpZiZxdW90Oztjb2xvcjpwdXJwbGUiPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L3NwYW4+PC9h
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZx
+dW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij48YnI+DQo8L3NwYW4+PGEgaHJlZj0iaHR0cHM6
+Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjkuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssJnF1b3Q7c2Fucy1z
+ZXJpZiZxdW90Oztjb2xvcjpwdXJwbGUiPmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9s
+aXN0aW5mby95b2N0bzwvc3Bhbj48L2E+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8
+L286cD48L3A+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-Regards,
-Qiang
-
-
-
-
-On Thu, Dec 11, 2014 at 7:09 AM, Mark Hatle <mark.hatle@windriver.com>
-wrote:
-
-> On 12/9/14, 9:01 PM, Mark Hatle wrote:
->
->> On 12/9/14, 8:41 PM, Qiang Yu wrote:
->>
->>> I have submitted a bug here:
->>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=7056
->>>
->>
->> (Responded in the bug as well...)  I have a test version of the cross
->> prelink
->> with the ARM HF patch available, as commit:
->>
->> 2cde4ff118b5244f5577d9bc585c1ee521740af0
->>
->> To enable it, use the following in your local.conf:
->>
->> SRCREV_pn-prelink = "2cde4ff118b5244f5577d9bc585c1ee521740af0"
->>
->
-> That link breaks regular arm prelink, it also missed a patch for the
-> prelink-rtld.
->
-> Got a new one:
->
-> SRCREV_pn-prelink = "81bab23a4661fdaaa859325d6d3603811ecf1849"
->
-> --Mark
->
->
->  If this works for you, I'll finish the patch and submit the changes.
->>
->> --Mark
->>
->>  Regards,
->>> Qiang
->>>
->>> On Tue, Dec 9, 2014 at 11:51 PM, Mark Hatle <mark.hatle@windriver.com
->>> <mailto:mark.hatle@windriver.com>> wrote:
->>>
->>>      On 12/8/14, 3:55 AM, Jegan Chandru wrote:
->>>
->>>          I recommend you to file a bug here
->>> https://bugzilla.yoctoproject.__org/
->>>          <https://bugzilla.yoctoproject.org/> if not
->>>          done already. You may get a proper answer on armhf support
->>> there. From
->>>          what I
->>>          see, (someone please correct me if I am wrong), there is no
->>> prelink
->>>          dynamic link
->>>          armhf patch. You can also create and submit the patch for
->>> review. AFAIK,
->>>          you are
->>>          gonna need to something like below,
->>>
->>>          .dynamic_linker = "/lib/ld-linux-armhf.so.3" in arch-arm.c.
->>>
->>>          This is not tested though. Please do a test yourselves.
->>>
->>>
->>>      See: http://marc.info/?l=fedora-__arm&m=135417053128837&w=2
->>>      <http://marc.info/?l=fedora-arm&m=135417053128837&w=2>
->>>
->>>      Nobody had requested prelink support for armhf up to this point.
->>>
->>>      Open an enhancement / bug and assign it to me.  I'll do what I can
->>> to
->>>      integrate the patch officially.
->>>
->>>      I had been waiting for the prelink upstream to merge this, but they
->>> never
->>>      bothered to, so I'll have to make it a Yocto Project 'cross-prelink'
->>>      specific path.
->>>
->>>      --Mark
->>>
->>>          -JC
->>>
->>>          On Mon, Dec 8, 2014 at 1:52 PM, Qiang Yu <yuq825@gmail.com
->>>          <mailto:yuq825@gmail.com>
->>>          <mailto:yuq825@gmail.com <mailto:yuq825@gmail.com>>> wrote:
->>>
->>>               Thanks for your reply. I almost give up.
->>>
->>>               You mean that current yocto build doesn't support hard
->>> float ABI
->>>          prelink,
->>>               and the prelink source code needs to
->>>               be modified to use ld-linux-armhf.so.3?
->>>
->>>               So this problem affect all armhf build of yocto, in other
->>> words prelink
->>>               doesn't work for yocto armhf at all now?
->>>
->>>               Regards,
->>>               Qiang
->>>
->>>               On Mon, Dec 8, 2014 at 3:28 PM, Jegan Chandru <
->>> pcjegan@gmail.com
->>>          <mailto:pcjegan@gmail.com>
->>>               <mailto:pcjegan@gmail.com <mailto:pcjegan@gmail.com>>>
->>> wrote:
->>>
->>>                   Hi,
->>>
->>>                   I think it has to do with the ld-linux-armhf.so.3. May
->>> be you
->>>          should
->>>                   tell prelink that you have hard float ARM ABI to
->>> prelink for, than
->>>                   ld-linux.so.3 . It means you need to add
->>> ld-linux-armhf.so.3 as a
->>>                   dynamic linker.
->>>                   You should patch the prelink source to get this done.
->>>
->>>                   HTH.
->>>
->>>                   -JC
->>>
->>>
->>>
->>>                   On Fri, Dec 5, 2014 at 7:41 AM, Qiang Yu <
->>> yuq825@gmail.com
->>>          <mailto:yuq825@gmail.com>
->>>                   <mailto:yuq825@gmail.com <mailto:yuq825@gmail.com>>>
->>> wrote:
->>>
->>>                       Hi all,
->>>
->>>                       I'm building a image with local.conf:
->>>                       USER_CLASSES ?= "buildstats image-mklibs
->>> image-prelink"
->>>
->>>                       but I think prelink does nothing on my image,
->>> because the
->>>          MD5SUM is
->>>                       the same before and after
->>>                       the prelink stage. The mklibs stage is also
->>> strange not print
->>>                       anything. How to make prelink and
->>>                       mklibs really work?
->>>
->>>                       Here is the log of log.do_rootfs:
->>>
->>>                       NOTE: ###### Generate images #######
->>>                       NOTE: Executing mklibs_optimize_image ...
->>>                       DEBUG: Executing shell function
->>> mklibs_optimize_image
->>>                       DEBUG: Shell function mklibs_optimize_image
->>> finished
->>>                       NOTE: Executing prelink_image ...
->>>                       DEBUG: Executing shell function prelink_image
->>>                       Size before prelinking 49304.
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /sbin/fstab-decode: Using
->>> /lib/ld-linux-armhf.so.3, not
->>>                       /lib/ld-linux.so.3 as dynamic linker
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /sbin/bootlogd: Using /lib/ld-linux-armhf.so.3, not
->>>                       /lib/ld-linux.so.3 as dynamic linker
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /sbin/killall5: Using /lib/ld-linux-armhf.so.3, not
->>>                       /lib/ld-linux.so.3 as dynamic linker
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /sbin/init.sysvinit: Using
->>> /lib/ld-linux-armhf.so.3, not
->>>                       /lib/ld-linux.so.3 as dynamic linker
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /sbin/halt.sysvinit: Using
->>> /lib/ld-linux-armhf.so.3, not
->>>                       /lib/ld-linux.so.3 as dynamic linker
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /sbin/shutdown.sysvinit: Using
->>> /lib/ld-linux-armhf.so.3, not
->>>                       /lib/ld-linux.so.3 as dynamic linker
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /sbin/runlevel.sysvinit: Using
->>> /lib/ld-linux-armhf.so.3, not
->>>                       /lib/ld-linux.so.3 as dynamic linker
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /usr/sbin/dropbearmulti: Using
->>> /lib/ld-linux-armhf.so.3, not
->>>                       /lib/ld-linux.so.3 as dynamic linker
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /bin/mountpoint.sysvinit: Using
->>> /lib/ld-linux-armhf.so.3, not
->>>                       /lib/ld-linux.so.3 as dynamic linker
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /bin/busybox.suid: Using /lib/ld-linux-armhf.so.3,
->>> not
->>>                       /lib/ld-linux.so.3 as dynamic linker
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /bin/busybox.nosuid: Using
->>> /lib/ld-linux-armhf.so.3, not
->>>                       /lib/ld-linux.so.3 as dynamic linker
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /usr/bin/utmpdump.sysvinit: Using
->>> /lib/ld-linux-armhf.so.3, not
->>>                       /lib/ld-linux.so.3 as dynamic linker
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /usr/bin/mesg.sysvinit: Using
->>> /lib/ld-linux-armhf.so.3, not
->>>                       /lib/ld-linux.so.3 as dynamic linker
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /usr/bin/last.sysvinit: Using
->>> /lib/ld-linux-armhf.so.3, not
->>>                       /lib/ld-linux.so.3 as dynamic linker
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /usr/bin/opkg-cl: Using /lib/ld-linux-armhf.so.3,
->>> not
->>>                       /lib/ld-linux.so.3 as dynamic linker
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /usr/bin/bmw: Using /lib/ld-linux-armhf.so.3, not
->>>          /lib/ld-linux.so.3
->>>                       as dynamic linker
->>>
->>>          /opt/yocto/rootfs/tmp/__sysroots/x86_64-linux/usr/__
->>> sbin/prelink:
->>>                       /usr/bin/wall.sysvinit: Using
->>> /lib/ld-linux-armhf.so.3, not
->>>                       /lib/ld-linux.so.3 as dynamic linker
->>>                       Size after prelinking 49304.
->>>                       DEBUG: Shell function prelink_image finished
->>>
->>>                       Regards,
->>>                       Qiang
->>>
->>>
->>>                       --
->>>                       _________________________________________________
->>>                       yocto mailing list
->>>          yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->>>          <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org
->>> >__>
->>>          https://lists.yoctoproject.__org/listinfo/yocto
->>>          <https://lists.yoctoproject.org/listinfo/yocto>
->>>
->>>
->>>
->>>
->>>                   --
->>>                   JCP
->>>
->>>
->>>
->>>
->>>
->>>          --
->>>          JCP
->>>
->>>
->>>
->>>      --
->>>      _________________________________________________
->>>      yocto mailing list
->>>      yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->>>      https://lists.yoctoproject.__org/listinfo/yocto
->>>      <https://lists.yoctoproject.org/listinfo/yocto>
->>>
->>>
->>>
->>
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---20cf303ea6008064d10509ff6865
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Mark,<div><br></div><div>I have used the=C2=A0<span sty=
-le=3D"font-size:13px;font-family:arial,sans-serif">81bab23a4661fdaaa859325d=
-6d360</span><span style=3D"font-size:13px;font-family:arial,sans-serif">3</=
-span><u style=3D"font-size:13px;font-family:arial,sans-serif"></u><span sty=
-le=3D"font-size:13px;font-family:arial,sans-serif">811ecf1849 version preli=
-nk to build my image.</span></div><div><font face=3D"arial, sans-serif">Pre=
-link run smoothly without output like before, the image is also modified, s=
-o the prelink works.</font></div><div><font face=3D"arial, sans-serif">My a=
-pplication also run correctly. But how can I make sure the prelink take eff=
-ect when I start an</font></div><div><font face=3D"arial, sans-serif">execu=
-table?</font></div><div><font face=3D"arial, sans-serif"><br></font></div><=
-div><font face=3D"arial, sans-serif">Here attaches the do_rootfs log:</font=
-></div><div><font face=3D"arial, sans-serif"><div>NOTE: ###### Generate ima=
-ges #######</div><div>NOTE: Executing mklibs_optimize_image ...</div><div>D=
-EBUG: Executing shell function mklibs_optimize_image</div><div>DEBUG: Shell=
- function mklibs_optimize_image finished</div><div>NOTE: Executing prelink_=
-image ...</div><div>DEBUG: Executing shell function prelink_image</div><div=
->Size before prelinking 49340.</div><div>Size after prelinking 49592.</div>=
-<div>DEBUG: Shell function prelink_image finished</div><div><br></div><div>=
-Regards,</div><div>Qiang</div></font></div><div><br></div><div><br></div><d=
-iv><br></div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote=
-">On Thu, Dec 11, 2014 at 7:09 AM, Mark Hatle <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:mark.hatle@windriver.com" target=3D"_blank">mark.hatle@windriver=
-.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D=
-"">On 12/9/14, 9:01 PM, Mark Hatle wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-On 12/9/14, 8:41 PM, Qiang Yu wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-I have submitted a bug here:<br>
-<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7056" target=
-=3D"_blank">https://bugzilla.yoctoproject.<u></u>org/show_bug.cgi?id=3D7056=
-</a><br>
-</blockquote>
-<br>
-(Responded in the bug as well...)=C2=A0 I have a test version of the cross =
-prelink<br>
-with the ARM HF patch available, as commit:<br>
-<br>
-2cde4ff118b5244f5577d9bc585c1e<u></u>e521740af0<br>
-<br>
-To enable it, use the following in your local.conf:<br>
-<br>
-SRCREV_pn-prelink =3D &quot;<u></u>2cde4ff118b5244f5577d9bc585c1e<u></u>e52=
-1740af0&quot;<br>
-</blockquote>
-<br></span>
-That link breaks regular arm prelink, it also missed a patch for the prelin=
-k-rtld.<br>
-<br>
-Got a new one:<br>
-<br>
-SRCREV_pn-prelink =3D &quot;<u></u>81bab23a4661fdaaa859325d6d3603<u></u>811=
-ecf1849&quot;<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-<br>
---Mark</font></span><div class=3D"HOEnZb"><div class=3D"h5"><br>
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-If this works for you, I&#39;ll finish the patch and submit the changes.<br=
->
-<br>
---Mark<br>
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-Regards,<br>
-Qiang<br>
-<br>
-On Tue, Dec 9, 2014 at 11:51 PM, Mark Hatle &lt;<a href=3D"mailto:mark.hatl=
-e@windriver.com" target=3D"_blank">mark.hatle@windriver.com</a><br>
-&lt;mailto:<a href=3D"mailto:mark.hatle@windriver.com" target=3D"_blank">ma=
-rk.hatle@windriver.<u></u>com</a>&gt;&gt; wrote:<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0On 12/8/14, 3:55 AM, Jegan Chandru wrote:<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0I recommend you to file a bug here <a hre=
-f=3D"https://bugzilla.yoctoproject." target=3D"_blank">https://bugzilla.yoc=
-toproject.</a><u></u>__org/<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;<a href=3D"https://bugzilla.yoctoproj=
-ect.org/" target=3D"_blank">https://bugzilla.<u></u>yoctoproject.org/</a>&g=
-t; if not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0done already. You may get a proper answer=
- on armhf support there. From<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0what I<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0see, (someone please correct me if I am w=
-rong), there is no prelink<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0dynamic link<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0armhf patch. You can also create and subm=
-it the patch for review. AFAIK,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0you are<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0gonna need to something like below,<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0.dynamic_linker =3D &quot;/lib/ld-linux-a=
-rmhf.so.3&quot; in arch-arm.c.<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0This is not tested though. Please do a te=
-st yourselves.<br>
-<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0See: <a href=3D"http://marc.info/?l=3Dfedora-__arm&amp;=
-m=3D135417053128837&amp;w=3D2" target=3D"_blank">http://marc.info/?l=3Dfedo=
-ra-__<u></u>arm&amp;m=3D135417053128837&amp;w=3D2</a><br>
-=C2=A0 =C2=A0 =C2=A0&lt;<a href=3D"http://marc.info/?l=3Dfedora-arm&amp;m=
-=3D135417053128837&amp;w=3D2" target=3D"_blank">http://marc.info/?l=3Dfedor=
-a-<u></u>arm&amp;m=3D135417053128837&amp;w=3D2</a>&gt;<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0Nobody had requested prelink support for armhf up to th=
-is point.<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0Open an enhancement / bug and assign it to me.=C2=A0 I&=
-#39;ll do what I can to<br>
-=C2=A0 =C2=A0 =C2=A0integrate the patch officially.<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0I had been waiting for the prelink upstream to merge th=
-is, but they never<br>
-=C2=A0 =C2=A0 =C2=A0bothered to, so I&#39;ll have to make it a Yocto Projec=
-t &#39;cross-prelink&#39;<br>
-=C2=A0 =C2=A0 =C2=A0specific path.<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0--Mark<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0-JC<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0On Mon, Dec 8, 2014 at 1:52 PM, Qiang Yu =
-&lt;<a href=3D"mailto:yuq825@gmail.com" target=3D"_blank">yuq825@gmail.com<=
-/a><br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:yuq825@gmail=
-.com" target=3D"_blank">yuq825@gmail.com</a>&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:yuq825@gmail=
-.com" target=3D"_blank">yuq825@gmail.com</a> &lt;mailto:<a href=3D"mailto:y=
-uq825@gmail.com" target=3D"_blank">yuq825@gmail.com</a>&gt;&gt;&gt; wrote:<=
-br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Thanks for your reply. I a=
-lmost give up.<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 You mean that current yoct=
-o build doesn&#39;t support hard float ABI<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0prelink,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 and the prelink source cod=
-e needs to<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 be modified to use ld-linu=
-x-armhf.so.3?<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 So this problem affect all=
- armhf build of yocto, in other words prelink<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 doesn&#39;t work for yocto=
- armhf at all now?<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Regards,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Qiang<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 On Mon, Dec 8, 2014 at 3:2=
-8 PM, Jegan Chandru &lt;<a href=3D"mailto:pcjegan@gmail.com" target=3D"_bla=
-nk">pcjegan@gmail.com</a><br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:pcjegan@gmai=
-l.com" target=3D"_blank">pcjegan@gmail.com</a>&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;mailto:<a href=3D"mail=
-to:pcjegan@gmail.com" target=3D"_blank">pcjegan@gmail.com</a> &lt;mailto:<a=
- href=3D"mailto:pcjegan@gmail.com" target=3D"_blank">pcjegan@gmail.com</a>&=
-gt;&gt;&gt; wrote:<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Hi,<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 I think it h=
-as to do with the ld-linux-armhf.so.3. May be you<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0should<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 tell prelink=
- that you have hard float ARM ABI to prelink for, than<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ld-linux.so.=
-3 . It means you need to add ld-linux-armhf.so.3 as a<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 dynamic link=
-er.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 You should p=
-atch the prelink source to get this done.<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 HTH.<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 -JC<br>
-<br>
-<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 On Fri, Dec =
-5, 2014 at 7:41 AM, Qiang Yu &lt;<a href=3D"mailto:yuq825@gmail.com" target=
-=3D"_blank">yuq825@gmail.com</a><br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:yuq825@gmail=
-.com" target=3D"_blank">yuq825@gmail.com</a>&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &lt;mailto:<=
-a href=3D"mailto:yuq825@gmail.com" target=3D"_blank">yuq825@gmail.com</a> &=
-lt;mailto:<a href=3D"mailto:yuq825@gmail.com" target=3D"_blank">yuq825@gmai=
-l.com</a>&gt;&gt;&gt; wrote:<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 Hi all,<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 I&#39;m building a image with local.conf:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 USER_CLASSES ?=3D &quot;buildstats image-mklibs image-prelink&quot;<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 but I think prelink does nothing on my image, because the<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0MD5SUM is<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 the same before and after<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 the prelink stage. The mklibs stage is also strange not print<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 anything. How to make prelink and<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 mklibs really work?<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 Here is the log of log.do_rootfs:<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 NOTE: ###### Generate images #######<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 NOTE: Executing mklibs_optimize_image ...<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 DEBUG: Executing shell function mklibs_optimize_image<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 DEBUG: Shell function mklibs_optimize_image finished<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 NOTE: Executing prelink_image ...<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 DEBUG: Executing shell function prelink_image<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 Size before prelinking 49304.<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /sbin/fstab-decode: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /lib/ld-linux.so.3 as dynamic linker<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /sbin/bootlogd: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /lib/ld-linux.so.3 as dynamic linker<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /sbin/killall5: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /lib/ld-linux.so.3 as dynamic linker<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /sbin/init.sysvinit: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /lib/ld-linux.so.3 as dynamic linker<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /sbin/halt.sysvinit: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /lib/ld-linux.so.3 as dynamic linker<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /sbin/shutdown.sysvinit: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /lib/ld-linux.so.3 as dynamic linker<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /sbin/runlevel.sysvinit: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /lib/ld-linux.so.3 as dynamic linker<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /usr/sbin/dropbearmulti: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /lib/ld-linux.so.3 as dynamic linker<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /bin/mountpoint.sysvinit: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /lib/ld-linux.so.3 as dynamic linker<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /bin/busybox.suid: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /lib/ld-linux.so.3 as dynamic linker<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /bin/busybox.nosuid: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /lib/ld-linux.so.3 as dynamic linker<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /usr/bin/utmpdump.sysvinit: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /lib/ld-linux.so.3 as dynamic linker<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /usr/bin/mesg.sysvinit: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /lib/ld-linux.so.3 as dynamic linker<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /usr/bin/last.sysvinit: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /lib/ld-linux.so.3 as dynamic linker<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /usr/bin/opkg-cl: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /lib/ld-linux.so.3 as dynamic linker<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /usr/bin/bmw: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/lib/ld-linux.so.3<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 as dynamic linker<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/opt/yocto/rootfs/tmp/__<u></u>sysroots/x=
-86_64-linux/usr/__<u></u>sbin/prelink:<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /usr/bin/wall.sysvinit: Using /lib/ld-linux-armhf.so.3, not<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 /lib/ld-linux.so.3 as dynamic linker<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 Size after prelinking 49304.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 DEBUG: Shell function prelink_image finished<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 Regards,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 Qiang<br>
-<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 --<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 ______________________________<u></u>___________________<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 yocto mailing list<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:yocto@yoctoproject.org"=
- target=3D"_blank">yocto@yoctoproject.org</a> &lt;mailto:<a href=3D"mailto:=
-yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproject.org</a><u></u>=
-&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:yocto@yoctop=
-roject.org" target=3D"_blank">yocto@yoctoproject.org</a> &lt;mailto:<a href=
-=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproject.org=
-</a><u></u>&gt;__&gt;<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"https://lists.yoctoproject." t=
-arget=3D"_blank">https://lists.yoctoproject.</a>__<u></u>org/listinfo/yocto=
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;<a href=3D"https://lists.yoctoproject=
-.org/listinfo/yocto" target=3D"_blank">https://lists.yoctoproject.<u></u>or=
-g/listinfo/yocto</a>&gt;<br>
-<br>
-<br>
-<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 --<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 JCP<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0--<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0JCP<br>
-<br>
-<br>
-<br>
-=C2=A0 =C2=A0 =C2=A0--<br>
-=C2=A0 =C2=A0 =C2=A0______________________________<u></u>__________________=
-_<br>
-=C2=A0 =C2=A0 =C2=A0yocto mailing list<br>
-=C2=A0 =C2=A0 =C2=A0<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_bl=
-ank">yocto@yoctoproject.org</a> &lt;mailto:<a href=3D"mailto:yocto@yoctopro=
-ject.org" target=3D"_blank">yocto@yoctoproject.org</a><u></u>&gt;<br>
-=C2=A0 =C2=A0 =C2=A0<a href=3D"https://lists.yoctoproject." target=3D"_blan=
-k">https://lists.yoctoproject.</a>__<u></u>org/listinfo/yocto<br>
-=C2=A0 =C2=A0 =C2=A0&lt;<a href=3D"https://lists.yoctoproject.org/listinfo/=
-yocto" target=3D"_blank">https://lists.yoctoproject.<u></u>org/listinfo/yoc=
-to</a>&gt;<br>
-<br>
-<br>
-</blockquote>
-<br>
-</blockquote>
-<br></div></div><div class=3D"HOEnZb"><div class=3D"h5">
--- <br>
-______________________________<u></u>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
-</div></div></blockquote></div><br></div>
-
---20cf303ea6008064d10509ff6865--
+--_000_3204FE6663E1F14CAF4CA6928E60C8521E220A91USSTLZPMSG012em_--
