@@ -1,41 +1,45 @@
-Return-Path: <californialsullivan@gmail.com>
+Return-Path: <Neil.Wu@Emerson.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F1C5BE00873; Thu, 11 Dec 2014 13:06:06 -0800 (PST)
+	id 92942E00874; Thu, 11 Dec 2014 17:59:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.0 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
-	FREEMAIL_FROM, NML_ADSP_CUSTOM_MED,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (californialsullivan[at]gmail.com)
-	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
-	*      CUSTOM_MED
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
-	and not from a mailing list
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63651E0083A
-	for <yocto@yoctoproject.org>; Thu, 11 Dec 2014 13:06:06 -0800 (PST)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga103.jf.intel.com with ESMTP; 11 Dec 2014 13:03:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,691,1406617200"; d="scan'208";a="497463800"
-Received: from unknown (HELO localhost.jf.intel.com) ([10.7.198.57])
-	by orsmga003.jf.intel.com with ESMTP; 11 Dec 2014 13:01:41 -0800
-From: californialsullivan@gmail.com
-To: yocto@yoctoproject.org
-Date: Thu, 11 Dec 2014 13:02:15 -0500
-Message-Id: <1418320935-2913-2-git-send-email-californialsullivan@gmail.com>
-X-Mailer: git-send-email 1.9.3
-In-Reply-To: <1418320935-2913-1-git-send-email-californialsullivan@gmail.com>
-References: <1418320935-2913-1-git-send-email-californialsullivan@gmail.com>
-Cc: California Sullivan <california.l.sullivan@intel.com>
-Subject: [Yocto Autobuilder][PATCH 2/2] Autobuilder: add GitPoller ChangeSource for SingleBranchScheduler
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [144.191.128.190 listed in list.dnswl.org]
+Received: from USSTLZ-PINFEZ06.extemr.org (usstlz-pinfez06.extemr.org
+	[144.191.128.190])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DFEBE0083A
+	for <yocto@yoctoproject.org>; Thu, 11 Dec 2014 17:59:48 -0800 (PST)
+Received: from USSTLZ-PMSG001.emrsn.org (10.16.72.26) by
+	USSTLZ-PINFEZ06.extemr.org (10.16.8.79) with Microsoft SMTP Server
+	(TLS) id 14.3.158.1; Fri, 12 Dec 2014 01:59:47 +0000
+Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.25]) by
+	USSTLZ-PMSG001.emrsn.org ([169.254.1.145]) with mapi id 14.03.0158.001;
+	Fri, 12 Dec 2014 01:59:47 +0000
+From: <Neil.Wu@Emerson.com>
+To: <raj.khem@gmail.com>
+Thread-Topic: [yocto] add files to dirctory in packages-split
+Thread-Index: AQHQFSniQKTuZ54uHEq3x5rxtZoHT5yLMiNQ
+Date: Fri, 12 Dec 2014 01:59:46 +0000
+Message-ID: <3204FE6663E1F14CAF4CA6928E60C8521E220A16@USSTLZ-PMSG012.emrsn.org>
+References: <20141211004713.GC4102@mentor.com>
+	<1077253035.5058800.1418282511482.JavaMail.yahoo@jws10079.mail.ne1.yahoo.com>
+	<3204FE6663E1F14CAF4CA6928E60C8521E22093F@USSTLZ-PMSG012.emrsn.org>
+	<F9A75476-0E0A-4908-B047-2FB8028ACB8A@gmail.com>
+In-Reply-To: <F9A75476-0E0A-4908-B047-2FB8028ACB8A@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.75.1]
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: add files to dirctory in packages-split
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,54 +51,168 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Dec 2014 21:06:07 -0000
+X-List-Received-Date: Fri, 12 Dec 2014 01:59:53 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_3204FE6663E1F14CAF4CA6928E60C8521E220A16USSTLZPMSG012em_"
 
-From: California Sullivan <california.l.sullivan@intel.com>
+--_000_3204FE6663E1F14CAF4CA6928E60C8521E220A16USSTLZPMSG012em_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Previously, PBChangeSource was the only option for changesources.
-PBChangeSource was not always suitable since the remote repository had
-to be able to run custom hooks, which isn't always available. This
-commit adds GitPoller as an option.
+SGkgUmFqLA0KVGhhbmsgeW91IHZlcnkgbXVjaCBmb3IgeW91ciByZXBseS4gSSBoYXZlIHRyeSB0
+byBkbyBsaWtlICB5b3Ugc2F5Lg0KSeKAmW0gY29tcGlsaW5nIHRoZSBnbGliLTIuMCwgIG5lZWQg
+dG8gIGFkZCB0aGUgbGluayBmaWxlIG9mIG9uZSBsaWJyYXJ5IHRvIGdsaWItMi4wIHBhY2thZ2Uu
+DQpTbyBJIGFkZCB0aGUgY29tbWFuZCBsaWtlIGZvbGxvd2luZyA6DQpGSUxFU18ke1BOfSArPSDi
+gJwke2xpYmRpcn0vbGliZ2lvLTIuMC5zb+KAnQ0KQnV0ICwgaXQgY2Fu4oCZdCBzdWNjZXNzLg0K
+RG8geW91IGtub3cgd2hldGhlciBuZWVkIHRvIGRvIG90aGVyIHRoaW5nPw0KDQpOZWlsDQoNCkZy
+b206IEtoZW0gUmFqIFttYWlsdG86cmFqLmtoZW1AZ21haWwuY29tXQ0KU2VudDogVGh1cnNkYXks
+IERlY2VtYmVyIDExLCAyMDE0IDY6MDUgUE0NClRvOiBXdSwgTmVpbCBbQ0xJTUFURS9SUy9DTl0N
+CkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBhZGQgZmls
+ZXMgdG8gZGlyY3RvcnkgaW4gcGFja2FnZXMtc3BsaXQNCg0KDQpPbiBEZWMgMTEsIDIwMTQsIGF0
+IDE6MzUgQU0sIE5laWwuV3VARW1lcnNvbi5jb208bWFpbHRvOk5laWwuV3VARW1lcnNvbi5jb20+
+IHdyb3RlOg0KDQpIaSBhbGwsDQpJIHdhbnQgdG8gYWRkIHNvbWUgZmlsZXMgdG8gdGhlIHNwZWNp
+ZmllZCAgZGlyZWN0b3J5IHdoYXQgaW4gcGFja2FnZXMtc3BsaXQuDQoNCkhvdyB0byBkbyBpdCA/
+DQoNCkZJTEVTXzxuYW1lLW9mLXBhY2thZ2U+ICs9IOKAnC9wYXRoL3RvL2ZpbGUiDQoNCg0KDQpU
+aGFuayB5b3UNCk5laWwNCg0KLS0NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fDQp5b2N0byBtYWlsaW5nIGxpc3QNCnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8
+bWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpodHRwczovL2xpc3RzLnlvY3RvcHJvamVj
+dC5vcmcvbGlzdGluZm8veW9jdG8NCg0K
 
-Signed-off-by: California Sullivan <california.l.sullivan@intel.com>
----
- lib/python2.7/site-packages/autobuilder/Autobuilder.py | 16 ++++++++++++++--
- 1 file changed, 14 insertions(+), 2 deletions(-)
+--_000_3204FE6663E1F14CAF4CA6928E60C8521E220A16USSTLZPMSG012em_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-diff --git a/lib/python2.7/site-packages/autobuilder/Autobuilder.py b/lib/python2.7/site-packages/autobuilder/Autobuilder.py
-index 32c6128..0dae5dc 100644
---- a/lib/python2.7/site-packages/autobuilder/Autobuilder.py
-+++ b/lib/python2.7/site-packages/autobuilder/Autobuilder.py
-@@ -230,14 +230,26 @@ class Autobuilder:
-                         if value.has_key('change-password'):
-                             passwd=value['change-password']
- 
--                        self.yocto_sources.append(PBChangeSource(user=user, passwd=passwd))
--
-                         branch="master"
-                         stabletimer=60
-                         if repo.has_key('branch'):
-                             branch = repo['branch']
-                         if value.has_key('stable-timer'):
-                             stabletimer = value['stable-timer']
-+
-+                        if value.has_key('changesource') and value['changesource'] == 'GitPoller':
-+                            if value.has_key('interval'):
-+                                interval = int(value['interval'])
-+                            else:
-+                                # default to 5 minutes poll intervals
-+                                interval = 60*5
-+                            self.yocto_sources.append(GitPoller(repourl=repo['repourl'], branch=branch, pollInterval=interval))
-+                            log.msg("Adding GitPoller as changesource for " + reponame)
-+                        else:
-+                            # default to use PBChangeSource as the changesource
-+                            self.yocto_sources.append(PBChangeSource(user=user, passwd=passwd))
-+                            log.msg("Adding PBChangeSource as changesource for " + reponame)
-+
-                         self.yocto_sched.append(SingleBranchScheduler(name=str(name),
-                                                                       builderNames=['%s' % key],
-                                                                       properties=checkoutprops,
--- 
-1.9.3
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTIgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+Pg0KPCEtLQ0KIC8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCiBAZm9udC1mYWNlDQoJe2ZvbnQtZmFt
+aWx5OlNpbVN1bjsNCglwYW5vc2UtMToyIDEgNiAwIDMgMSAxIDEgMSAxO30NCkBmb250LWZhY2UN
+Cgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAz
+IDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAx
+NSA1IDIgMiAyIDQgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJ
+cGFub3NlLTE6MiAxMSA2IDQgMyA1IDQgNCAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWls
+eToiXEBTaW1TdW4iOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFj
+ZQ0KCXtmb250LWZhbWlseTpWZXJkYW5hOw0KCXBhbm9zZS0xOjIgMTEgNiA0IDMgNSA0IDQgMiA0
+O30NCiAvKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KIHAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIiwic2VyaWYi
+O30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0K
+CWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNw
+YW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9y
+OnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uYXBwbGUtY29udmVy
+dGVkLXNwYWNlDQoJe21zby1zdHlsZS1uYW1lOmFwcGxlLWNvbnZlcnRlZC1zcGFjZTt9DQpzcGFu
+LkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZh
+bWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERl
+ZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDt9
+DQpAcGFnZSBTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4w
+aW4gMS4waW4gMS4waW47fQ0KZGl2LlNlY3Rpb24xDQoJe3BhZ2U6U2VjdGlvbjE7fQ0KLS0+DQo8
+L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KIDxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9
+ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBt
+c28gOV0+PHhtbD4NCiA8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQogIDxvOmlkbWFwIHY6
+ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KIDwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0t
+LT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxl
+IiBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOw0KLXdlYmtpdC1uYnNwLW1vZGU6IHNwYWNl
+Oy13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2UiPg0KPGRpdiBjbGFzcz0iU2Vj
+dGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
+Ow0KY29sb3I6IzFGNDk3RCI+SGkgUmFqLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0Qi
+PlRoYW5rIHlvdSB2ZXJ5IG11Y2ggZm9yIHlvdXIgcmVwbHkuIEkgaGF2ZSB0cnkgdG8gZG8gbGlr
+ZSAmbmJzcDt5b3Ugc2F5LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
+cmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPknigJltIGNv
+bXBpbGluZyB0aGUgZ2xpYi0yLjAsJm5ic3A7IG5lZWQgdG8gJm5ic3A7YWRkIHRoZSBsaW5rIGZp
+bGUgb2Ygb25lIGxpYnJhcnkgdG8gZ2xpYi0yLjAgcGFja2FnZS48bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
+b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7DQpj
+b2xvcjojMUY0OTdEIj5TbyBJIGFkZCB0aGUgY29tbWFuZCBsaWtlIGZvbGxvd2luZyA6PG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNl
+cmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+RklMRVNfJHtQTn0gJiM0Mzs9IOKAnCR7bGliZGly
+fS9saWJnaW8tMi4wLnNv4oCdPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
+aWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+QnV0ICwg
+aXQgY2Fu4oCZdCBzdWNjZXNzLg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+RG8g
+eW91IGtub3cgd2hldGhlciBuZWVkIHRvIGRvIG90aGVyIHRoaW5nPzxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsN
+CmNvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPk5l
+aWw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90
+O3NhbnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
+bj48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAj
+QjVDNERGIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFuPjwvYj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDss
+JnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+IEtoZW0gUmFqIFttYWlsdG86cmFqLmtoZW1AZ21haWwu
+Y29tXQ0KPGJyPg0KPGI+U2VudDo8L2I+IFRodXJzZGF5LCBEZWNlbWJlciAxMSwgMjAxNCA2OjA1
+IFBNPGJyPg0KPGI+VG86PC9iPiBXdSwgTmVpbCBbQ0xJTUFURS9SUy9DTl08YnI+DQo8Yj5DYzo8
+L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFt5b2N0
+b10gYWRkIGZpbGVzIHRvIGRpcmN0b3J5IGluIHBhY2thZ2VzLXNwbGl0PG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
+ZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1
+LjBwdCI+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gRGVjIDExLCAyMDE0LCBhdCAx
+OjM1IEFNLCA8YSBocmVmPSJtYWlsdG86TmVpbC5XdUBFbWVyc29uLmNvbSI+DQpOZWlsLld1QEVt
+ZXJzb24uY29tPC9hPiB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2
+Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtz
+YW5zLXNlcmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+SGkgYWxsLDwvc3Bhbj48bzpwPjwvbzpw
+PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fu
+cy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPkkgd2FudCB0byBhZGQgc29tZSBmaWxlcyB0
+byB0aGUgc3BlY2lmaWVkICZuYnNwO2RpcmVjdG9yeSB3aGF0IGluIHBhY2thZ2VzLXNwbGl0Ljwv
+c3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPiZuYnNwOzwvc3Bh
+bj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
+dDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPkhvdyB0byBkbyBpdCA/
+PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8
+L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj5GSUxFU18mbHQ7bmFtZS1vZi1wYWNrYWdlJmd0OyAmIzQzOz0g4oCcL3BhdGgv
+dG8vZmlsZSZxdW90OzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48YnI+DQo8YnI+DQo8bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+
+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
+bnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48
+L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
+c2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj5UaGFuayB5b3U8L3NwYW4+PG86cD48L286cD48
+L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
+c2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj5OZWlsPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0K
+PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlm
+JnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC9k
+aXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjBwdDtmb250LWZhbWlseTomcXVvdDtW
+ZXJkYW5hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPi0tPHNwYW4gY2xhc3M9ImFwcGxl
+LWNvbnZlcnRlZC1zcGFjZSI+Jm5ic3A7PC9zcGFuPjxicj4NCl9fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KeW9jdG8gbWFpbGluZyBsaXN0PGJyPg0K
+PC9zcGFuPjxhIGhyZWY9Im1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjkuMHB0Ow0KZm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OywmcXVv
+dDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOnB1cnBsZSI+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzwv
+c3Bhbj48L2E+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjBwdDtmb250LWZhbWlseTomcXVvdDtW
+ZXJkYW5hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPjxicj4NCjwvc3Bhbj48YSBocmVm
+PSJodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8iPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OywmcXVv
+dDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOnB1cnBsZSI+aHR0cHM6Ly9saXN0cy55b2N0b3Byb2pl
+Y3Qub3JnL2xpc3RpbmZvL3lvY3RvPC9zcGFuPjwvYT48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
+PC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2
+Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-
+--_000_3204FE6663E1F14CAF4CA6928E60C8521E220A16USSTLZPMSG012em_--
