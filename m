@@ -1,43 +1,61 @@
-Return-Path: <Neil.Wu@Emerson.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 92942E00874; Thu, 11 Dec 2014 17:59:53 -0800 (PST)
+	id 585D0E00874; Thu, 11 Dec 2014 18:48:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.47 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [144.191.128.190 listed in list.dnswl.org]
-Received: from USSTLZ-PINFEZ06.extemr.org (usstlz-pinfez06.extemr.org
-	[144.191.128.190])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DFEBE0083A
-	for <yocto@yoctoproject.org>; Thu, 11 Dec 2014 17:59:48 -0800 (PST)
-Received: from USSTLZ-PMSG001.emrsn.org (10.16.72.26) by
-	USSTLZ-PINFEZ06.extemr.org (10.16.8.79) with Microsoft SMTP Server
-	(TLS) id 14.3.158.1; Fri, 12 Dec 2014 01:59:47 +0000
-Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.25]) by
-	USSTLZ-PMSG001.emrsn.org ([169.254.1.145]) with mapi id 14.03.0158.001;
-	Fri, 12 Dec 2014 01:59:47 +0000
-From: <Neil.Wu@Emerson.com>
-To: <raj.khem@gmail.com>
-Thread-Topic: [yocto] add files to dirctory in packages-split
-Thread-Index: AQHQFSniQKTuZ54uHEq3x5rxtZoHT5yLMiNQ
-Date: Fri, 12 Dec 2014 01:59:46 +0000
-Message-ID: <3204FE6663E1F14CAF4CA6928E60C8521E220A16@USSTLZ-PMSG012.emrsn.org>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f47.google.com (mail-pa0-f47.google.com
+	[209.85.220.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9CBEE0083A
+	for <yocto@yoctoproject.org>; Thu, 11 Dec 2014 18:48:25 -0800 (PST)
+Received: by mail-pa0-f47.google.com with SMTP id kq14so6317954pab.20
+	for <yocto@yoctoproject.org>; Thu, 11 Dec 2014 18:48:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=WwkucgW20CpKMcP9cSqghlgXOuvujSENgSB4cfQVIas=;
+	b=lJgSqxxIaO4aNPsmWlvktFGMIEweJjB1pnutKGefYKV7THjN6Eq70oSKzYk1YBH5Md
+	TsXZjucJSzmoamglbF7au9bwov8XvQsuIiO5v5ZqSeITNAOi35o52qXm3t1fJRpJeXvV
+	XhiSPlguw8EZBkDu+Tvm3FoQxSUgPpzQ7VYcBWALqM1QcnY2WY7sjxELHYRv+Kt1SoiM
+	fhCesibf5l2ii+Kqf4pa4HIvYJZJhrLUNi60bA4l5UYdfCsozpCaMUEsU7tAHD7EbvkE
+	VysSNJtCa+ztw4hAvtCCF16+7csJcxsdLs/JYwBok49ujqGC1/8Vls/WgjCEJtwT6X3W
+	hSyQ==
+X-Received: by 10.68.232.104 with SMTP id tn8mr22559533pbc.31.1418352504739;
+	Thu, 11 Dec 2014 18:48:24 -0800 (PST)
+Received: from [192.168.0.27] (c-76-103-142-85.hsd1.ca.comcast.net.
+	[76.103.142.85])
+	by mx.google.com with ESMTPSA id ay4sm27796pbb.29.2014.12.11.18.48.23
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 11 Dec 2014 18:48:24 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 8.1 \(1993\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <3204FE6663E1F14CAF4CA6928E60C8521E220A16@USSTLZ-PMSG012.emrsn.org>
+Date: Thu, 11 Dec 2014 18:48:22 -0800
+Message-Id: <848A7AA8-A1E5-433E-BC26-C1CA7CED6814@gmail.com>
 References: <20141211004713.GC4102@mentor.com>
 	<1077253035.5058800.1418282511482.JavaMail.yahoo@jws10079.mail.ne1.yahoo.com>
 	<3204FE6663E1F14CAF4CA6928E60C8521E22093F@USSTLZ-PMSG012.emrsn.org>
 	<F9A75476-0E0A-4908-B047-2FB8028ACB8A@gmail.com>
-In-Reply-To: <F9A75476-0E0A-4908-B047-2FB8028ACB8A@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.75.1]
-MIME-Version: 1.0
+	<3204FE6663E1F14CAF4CA6928E60C8521E220A16@USSTLZ-PMSG012.emrsn.org>
+To: Neil.Wu@Emerson.com
+X-Mailer: Apple Mail (2.1993)
 Cc: yocto@yoctoproject.org
 Subject: Re: add files to dirctory in packages-split
 X-BeenThere: yocto@yoctoproject.org
@@ -51,168 +69,250 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Dec 2014 01:59:53 -0000
-Content-Language: en-US
+X-List-Received-Date: Fri, 12 Dec 2014 02:48:27 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_3204FE6663E1F14CAF4CA6928E60C8521E220A16USSTLZPMSG012em_"
+	boundary="Apple-Mail=_D5C9FC60-5882-477E-845A-355A76229F51"
 
---_000_3204FE6663E1F14CAF4CA6928E60C8521E220A16USSTLZPMSG012em_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--Apple-Mail=_D5C9FC60-5882-477E-845A-355A76229F51
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-SGkgUmFqLA0KVGhhbmsgeW91IHZlcnkgbXVjaCBmb3IgeW91ciByZXBseS4gSSBoYXZlIHRyeSB0
-byBkbyBsaWtlICB5b3Ugc2F5Lg0KSeKAmW0gY29tcGlsaW5nIHRoZSBnbGliLTIuMCwgIG5lZWQg
-dG8gIGFkZCB0aGUgbGluayBmaWxlIG9mIG9uZSBsaWJyYXJ5IHRvIGdsaWItMi4wIHBhY2thZ2Uu
-DQpTbyBJIGFkZCB0aGUgY29tbWFuZCBsaWtlIGZvbGxvd2luZyA6DQpGSUxFU18ke1BOfSArPSDi
-gJwke2xpYmRpcn0vbGliZ2lvLTIuMC5zb+KAnQ0KQnV0ICwgaXQgY2Fu4oCZdCBzdWNjZXNzLg0K
-RG8geW91IGtub3cgd2hldGhlciBuZWVkIHRvIGRvIG90aGVyIHRoaW5nPw0KDQpOZWlsDQoNCkZy
-b206IEtoZW0gUmFqIFttYWlsdG86cmFqLmtoZW1AZ21haWwuY29tXQ0KU2VudDogVGh1cnNkYXks
-IERlY2VtYmVyIDExLCAyMDE0IDY6MDUgUE0NClRvOiBXdSwgTmVpbCBbQ0xJTUFURS9SUy9DTl0N
-CkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBhZGQgZmls
-ZXMgdG8gZGlyY3RvcnkgaW4gcGFja2FnZXMtc3BsaXQNCg0KDQpPbiBEZWMgMTEsIDIwMTQsIGF0
-IDE6MzUgQU0sIE5laWwuV3VARW1lcnNvbi5jb208bWFpbHRvOk5laWwuV3VARW1lcnNvbi5jb20+
-IHdyb3RlOg0KDQpIaSBhbGwsDQpJIHdhbnQgdG8gYWRkIHNvbWUgZmlsZXMgdG8gdGhlIHNwZWNp
-ZmllZCAgZGlyZWN0b3J5IHdoYXQgaW4gcGFja2FnZXMtc3BsaXQuDQoNCkhvdyB0byBkbyBpdCA/
-DQoNCkZJTEVTXzxuYW1lLW9mLXBhY2thZ2U+ICs9IOKAnC9wYXRoL3RvL2ZpbGUiDQoNCg0KDQpU
-aGFuayB5b3UNCk5laWwNCg0KLS0NCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fDQp5b2N0byBtYWlsaW5nIGxpc3QNCnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8
-bWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpodHRwczovL2xpc3RzLnlvY3RvcHJvamVj
-dC5vcmcvbGlzdGluZm8veW9jdG8NCg0K
 
---_000_3204FE6663E1F14CAF4CA6928E60C8521E220A16USSTLZPMSG012em_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> On Dec 11, 2014, at 5:59 PM, Neil.Wu@Emerson.com wrote:
+>=20
+> Hi Raj,
+> Thank you very much for your reply. I have try to do like  you say.
+> I=E2=80=99m compiling the glib-2.0,  need to  add the link file of one =
+library to glib-2.0 package.
+> So I add the command like following :
+> FILES_${PN} +=3D =E2=80=9C${libdir}/libgio-2.0.so=E2=80=9D
+> But , it can=E2=80=99t success.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTIgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-Pg0KPCEtLQ0KIC8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCiBAZm9udC1mYWNlDQoJe2ZvbnQtZmFt
-aWx5OlNpbVN1bjsNCglwYW5vc2UtMToyIDEgNiAwIDMgMSAxIDEgMSAxO30NCkBmb250LWZhY2UN
-Cgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAz
-IDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAx
-NSA1IDIgMiAyIDQgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJ
-cGFub3NlLTE6MiAxMSA2IDQgMyA1IDQgNCAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWls
-eToiXEBTaW1TdW4iOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFj
-ZQ0KCXtmb250LWZhbWlseTpWZXJkYW5hOw0KCXBhbm9zZS0xOjIgMTEgNiA0IDMgNSA0IDQgMiA0
-O30NCiAvKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KIHAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIiwic2VyaWYi
-O30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0K
-CWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNw
-YW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9y
-OnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uYXBwbGUtY29udmVy
-dGVkLXNwYWNlDQoJe21zby1zdHlsZS1uYW1lOmFwcGxlLWNvbnZlcnRlZC1zcGFjZTt9DQpzcGFu
-LkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZh
-bWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERl
-ZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDt9
-DQpAcGFnZSBTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4w
-aW4gMS4waW4gMS4waW47fQ0KZGl2LlNlY3Rpb24xDQoJe3BhZ2U6U2VjdGlvbjE7fQ0KLS0+DQo8
-L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KIDxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9
-ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBt
-c28gOV0+PHhtbD4NCiA8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQogIDxvOmlkbWFwIHY6
-ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KIDwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0t
-LT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxl
-IiBzdHlsZT0id29yZC13cmFwOiBicmVhay13b3JkOw0KLXdlYmtpdC1uYnNwLW1vZGU6IHNwYWNl
-Oy13ZWJraXQtbGluZS1icmVhazogYWZ0ZXItd2hpdGUtc3BhY2UiPg0KPGRpdiBjbGFzcz0iU2Vj
-dGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
-cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
-Ow0KY29sb3I6IzFGNDk3RCI+SGkgUmFqLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
-dW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0Qi
-PlRoYW5rIHlvdSB2ZXJ5IG11Y2ggZm9yIHlvdXIgcmVwbHkuIEkgaGF2ZSB0cnkgdG8gZG8gbGlr
-ZSAmbmJzcDt5b3Ugc2F5LjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
-cmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPknigJltIGNv
-bXBpbGluZyB0aGUgZ2xpYi0yLjAsJm5ic3A7IG5lZWQgdG8gJm5ic3A7YWRkIHRoZSBsaW5rIGZp
-bGUgb2Ygb25lIGxpYnJhcnkgdG8gZ2xpYi0yLjAgcGFja2FnZS48bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7DQpj
-b2xvcjojMUY0OTdEIj5TbyBJIGFkZCB0aGUgY29tbWFuZCBsaWtlIGZvbGxvd2luZyA6PG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNl
-cmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+RklMRVNfJHtQTn0gJiM0Mzs9IOKAnCR7bGliZGly
-fS9saWJnaW8tMi4wLnNv4oCdPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
-aWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+QnV0ICwg
-aXQgY2Fu4oCZdCBzdWNjZXNzLg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
-Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+RG8g
-eW91IGtub3cgd2hldGhlciBuZWVkIHRvIGRvIG90aGVyIHRoaW5nPzxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsN
-CmNvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPk5l
-aWw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90
-O3NhbnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
-bj48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAj
-QjVDNERGIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
-VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFuPjwvYj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDss
-JnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+IEtoZW0gUmFqIFttYWlsdG86cmFqLmtoZW1AZ21haWwu
-Y29tXQ0KPGJyPg0KPGI+U2VudDo8L2I+IFRodXJzZGF5LCBEZWNlbWJlciAxMSwgMjAxNCA2OjA1
-IFBNPGJyPg0KPGI+VG86PC9iPiBXdSwgTmVpbCBbQ0xJTUFURS9SUy9DTl08YnI+DQo8Yj5DYzo8
-L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFt5b2N0
-b10gYWRkIGZpbGVzIHRvIGRpcmN0b3J5IGluIHBhY2thZ2VzLXNwbGl0PG86cD48L286cD48L3Nw
-YW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
-ZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1
-LjBwdCI+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gRGVjIDExLCAyMDE0LCBhdCAx
-OjM1IEFNLCA8YSBocmVmPSJtYWlsdG86TmVpbC5XdUBFbWVyc29uLmNvbSI+DQpOZWlsLld1QEVt
-ZXJzb24uY29tPC9hPiB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2
-Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtz
-YW5zLXNlcmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+SGkgYWxsLDwvc3Bhbj48bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fu
-cy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPkkgd2FudCB0byBhZGQgc29tZSBmaWxlcyB0
-byB0aGUgc3BlY2lmaWVkICZuYnNwO2RpcmVjdG9yeSB3aGF0IGluIHBhY2thZ2VzLXNwbGl0Ljwv
-c3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPiZuYnNwOzwvc3Bh
-bj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
-cGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
-dDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPkhvdyB0byBkbyBpdCA/
-PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8
-L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj5GSUxFU18mbHQ7bmFtZS1vZi1wYWNrYWdlJmd0OyAmIzQzOz0g4oCcL3BhdGgv
-dG8vZmlsZSZxdW90OzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48YnI+DQo8YnI+DQo8bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+
-DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
-bnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48
-L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
-c2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj5UaGFuayB5b3U8L3NwYW4+PG86cD48L286cD48
-L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
-c2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj5OZWlsPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0K
-PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlm
-JnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC9k
-aXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjBwdDtmb250LWZhbWlseTomcXVvdDtW
-ZXJkYW5hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPi0tPHNwYW4gY2xhc3M9ImFwcGxl
-LWNvbnZlcnRlZC1zcGFjZSI+Jm5ic3A7PC9zcGFuPjxicj4NCl9fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KeW9jdG8gbWFpbGluZyBsaXN0PGJyPg0K
-PC9zcGFuPjxhIGhyZWY9Im1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjkuMHB0Ow0KZm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OywmcXVv
-dDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOnB1cnBsZSI+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzwv
-c3Bhbj48L2E+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjBwdDtmb250LWZhbWlseTomcXVvdDtW
-ZXJkYW5hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPjxicj4NCjwvc3Bhbj48YSBocmVm
-PSJodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8iPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OywmcXVv
-dDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOnB1cnBsZSI+aHR0cHM6Ly9saXN0cy55b2N0b3Byb2pl
-Y3Qub3JnL2xpc3RpbmZvL3lvY3RvPC9zcGFuPjwvYT48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
-PC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2
-Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+.so are usually treated to be includes in -dev packages by default
+first you need to figure out if you really need .so on target, many =
+times you don=E2=80=99t
 
---_000_3204FE6663E1F14CAF4CA6928E60C8521E220A16USSTLZPMSG012em_--
+some packages still do ( don=E2=80=99t use .so versioning ) then you =
+would need something like
+
+FILES_SOLIBSDEV =3D ""
+SOLIBS =3D ".so"
+INSANE_SKIP_${PN} +=3D "dev-so"
+
+
+> Do you know whether need to do other thing?
+> =20
+> Neil
+> =20
+> From: Khem Raj [mailto:raj.khem@gmail.com]=20
+> Sent: Thursday, December 11, 2014 6:05 PM
+> To: Wu, Neil [CLIMATE/RS/CN]
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] add files to dirctory in packages-split
+> =20
+> =20
+> On Dec 11, 2014, at 1:35 AM, Neil.Wu@Emerson.com =
+<mailto:Neil.Wu@Emerson.com> wrote:
+> =20
+> Hi all,
+> I want to add some files to the specified  directory what in =
+packages-split.
+> =20
+> How to do it ?
+> =20
+> FILES_<name-of-package> +=3D =E2=80=9C/path/to/file"
+>=20
+>=20
+> =20
+> Thank you
+> Neil
+> =20
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+> https://lists.yoctoproject.org/listinfo/yocto =
+<https://lists.yoctoproject.org/listinfo/yocto>
+
+--Apple-Mail=_D5C9FC60-5882-477E-845A-355A76229F51
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
+class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
+class=3D"">On Dec 11, 2014, at 5:59 PM, <a =
+href=3D"mailto:Neil.Wu@Emerson.com" class=3D"">Neil.Wu@Emerson.com</a> =
+wrote:</div><br class=3D"Apple-interchange-newline"><div class=3D""><div =
+class=3D"Section1" style=3D"page: Section1; font-family: Verdana; =
+font-size: 12px; font-style: normal; font-variant: normal; font-weight: =
+normal; letter-spacing: normal; line-height: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
+0px;"><div style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; =
+font-family: 'Times New Roman', serif;" class=3D""><span =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif; color: =
+rgb(31, 73, 125);" class=3D"">Hi Raj,<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 12pt; font-family: 'Times New Roman', serif;" class=3D""><span =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif; color: =
+rgb(31, 73, 125);" class=3D"">Thank you very much for your reply. I have =
+try to do like &nbsp;you say.<o:p class=3D""></o:p></span></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; font-family: 'Times =
+New Roman', serif;" class=3D""><span style=3D"font-size: 11pt; =
+font-family: Calibri, sans-serif; color: rgb(31, 73, 125);" =
+class=3D"">I=E2=80=99m compiling the glib-2.0,&nbsp; need to &nbsp;add =
+the link file of one library to glib-2.0 package.<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 12pt; font-family: 'Times New Roman', serif;" class=3D""><span =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif; color: =
+rgb(31, 73, 125);" class=3D"">So I add the command like following :<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 12pt; font-family: 'Times New Roman', serif;" class=3D""><span =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif; color: =
+rgb(31, 73, 125);" class=3D"">FILES_${PN} +=3D =
+=E2=80=9C${libdir}/libgio-2.0.so=E2=80=9D<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 12pt; font-family: 'Times New Roman', serif;" class=3D""><span =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif; color: =
+rgb(31, 73, 125);" class=3D"">But , it can=E2=80=99t =
+success.</span></div></div></div></blockquote><div><br =
+class=3D""></div><div>.so are usually treated to be includes in -dev =
+packages by default</div><div>first you need to figure out if you really =
+need .so on target, many times you don=E2=80=99t</div><div><br =
+class=3D""></div><div>some packages still do ( don=E2=80=99t use .so =
+versioning ) then you would need something like</div><div><br =
+class=3D""></div><div>FILES_SOLIBSDEV&nbsp;=3D&nbsp;""<br =
+class=3D"">SOLIBS&nbsp;=3D&nbsp;".so"<br =
+class=3D"">INSANE_SKIP_${PN}&nbsp;+=3D&nbsp;"dev-so"<br class=3D""><br =
+class=3D""></div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
+class=3D""><div class=3D"Section1" style=3D"page: Section1; font-family: =
+Verdana; font-size: 12px; font-style: normal; font-variant: normal; =
+font-weight: normal; letter-spacing: normal; line-height: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px;"><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 12pt; font-family: 'Times New Roman', serif;" class=3D""><span =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif; color: =
+rgb(31, 73, 125);" class=3D""><o:p class=3D""></o:p></span></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; font-family: 'Times =
+New Roman', serif;" class=3D""><span style=3D"font-size: 11pt; =
+font-family: Calibri, sans-serif; color: rgb(31, 73, 125);" class=3D"">Do =
+you know whether need to do other thing?<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 12pt; font-family: 'Times New Roman', serif;" class=3D""><span =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif; color: =
+rgb(31, 73, 125);" class=3D"">&nbsp;</span></div><div style=3D"margin: =
+0in 0in 0.0001pt; font-size: 12pt; font-family: 'Times New Roman', =
+serif;" class=3D""><span style=3D"font-size: 11pt; font-family: Calibri, =
+sans-serif; color: rgb(31, 73, 125);" class=3D"">Neil<o:p =
+class=3D""></o:p></span></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 12pt; font-family: 'Times New Roman', serif;" class=3D""><span =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif; color: =
+rgb(31, 73, 125);" class=3D"">&nbsp;</span></div><div class=3D""><div =
+style=3D"border-style: solid none none; border-top-color: rgb(181, 196, =
+223); border-top-width: 1pt; padding: 3pt 0in 0in;" class=3D""><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; font-family: 'Times =
+New Roman', serif;" class=3D""><b class=3D""><span style=3D"font-size: =
+10pt; font-family: Tahoma, sans-serif;" class=3D"">From:</span></b><span =
+style=3D"font-size: 10pt; font-family: Tahoma, sans-serif;" =
+class=3D""><span class=3D"Apple-converted-space">&nbsp;</span>Khem Raj =
+[<a href=3D"mailto:raj.khem@gmail.com" =
+class=3D"">mailto:raj.khem@gmail.com</a>]<span =
+class=3D"Apple-converted-space">&nbsp;</span><br class=3D""><b =
+class=3D"">Sent:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span>Thursday, December 11, 2014 =
+6:05 PM<br class=3D""><b class=3D"">To:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span>Wu, Neil [CLIMATE/RS/CN]<br =
+class=3D""><b class=3D"">Cc:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:yocto@yoctoproject.org" =
+class=3D"">yocto@yoctoproject.org</a><br class=3D""><b =
+class=3D"">Subject:</b><span =
+class=3D"Apple-converted-space">&nbsp;</span>Re: [yocto] add files to =
+dirctory in packages-split<o:p =
+class=3D""></o:p></span></div></div></div><div style=3D"margin: 0in 0in =
+0.0001pt; font-size: 12pt; font-family: 'Times New Roman', serif;" =
+class=3D""><o:p class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0in =
+0in 0.0001pt; font-size: 12pt; font-family: 'Times New Roman', serif;" =
+class=3D""><o:p class=3D"">&nbsp;</o:p></div><div class=3D""><blockquote =
+style=3D"margin-top: 5pt; margin-bottom: 5pt;" class=3D""><div =
+class=3D""><div style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; =
+font-family: 'Times New Roman', serif;" class=3D"">On Dec 11, 2014, at =
+1:35 AM,<span class=3D"Apple-converted-space">&nbsp;</span><a =
+href=3D"mailto:Neil.Wu@Emerson.com" style=3D"color: purple; =
+text-decoration: underline;" class=3D"">Neil.Wu@Emerson.com</a><span =
+class=3D"Apple-converted-space">&nbsp;</span>wrote:<o:p =
+class=3D""></o:p></div></div><div style=3D"margin: 0in 0in 0.0001pt; =
+font-size: 12pt; font-family: 'Times New Roman', serif;" class=3D""><o:p =
+class=3D"">&nbsp;</o:p></div><div class=3D""><div class=3D""><div =
+class=3D""><div class=3D""><div class=3D""><div class=3D""><div =
+class=3D""><div style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; =
+font-family: 'Times New Roman', serif;" class=3D""><span =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif; color: =
+rgb(31, 73, 125);" class=3D"">Hi all,</span><o:p =
+class=3D""></o:p></div></div><div class=3D""><div style=3D"margin: 0in =
+0in 0.0001pt; font-size: 12pt; font-family: 'Times New Roman', serif;" =
+class=3D""><span style=3D"font-size: 11pt; font-family: Calibri, =
+sans-serif; color: rgb(31, 73, 125);" class=3D"">I want to add some =
+files to the specified &nbsp;directory what in =
+packages-split.</span><o:p class=3D""></o:p></div></div><div =
+class=3D""><div style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; =
+font-family: 'Times New Roman', serif;" class=3D""><span =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif; color: =
+rgb(31, 73, 125);" class=3D"">&nbsp;</span><o:p =
+class=3D""></o:p></div></div><div class=3D""><div style=3D"margin: 0in =
+0in 0.0001pt; font-size: 12pt; font-family: 'Times New Roman', serif;" =
+class=3D""><span style=3D"font-size: 11pt; font-family: Calibri, =
+sans-serif; color: rgb(31, 73, 125);" class=3D"">How to do it =
+?</span><o:p =
+class=3D""></o:p></div></div></div></div></div></div></div></div></blockqu=
+ote><div class=3D""><div style=3D"margin: 0in 0in 0.0001pt; font-size: =
+12pt; font-family: 'Times New Roman', serif;" class=3D""><o:p =
+class=3D"">&nbsp;</o:p></div></div><div class=3D""><div style=3D"margin: =
+0in 0in 0.0001pt; font-size: 12pt; font-family: 'Times New Roman', =
+serif;" class=3D"">FILES_&lt;name-of-package&gt; +=3D =
+=E2=80=9C/path/to/file"<o:p class=3D""></o:p></div></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; font-family: 'Times =
+New Roman', serif;" class=3D""><br class=3D""><br class=3D""><o:p =
+class=3D""></o:p></div><div class=3D""><div class=3D""><div =
+class=3D""><div class=3D""><div class=3D""><div class=3D""><div =
+class=3D""><div style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; =
+font-family: 'Times New Roman', serif;" class=3D""><span =
+style=3D"font-size: 11pt; font-family: Calibri, sans-serif; color: =
+rgb(31, 73, 125);" class=3D"">&nbsp;</span><o:p =
+class=3D""></o:p></div></div><div class=3D""><div style=3D"margin: 0in =
+0in 0.0001pt; font-size: 12pt; font-family: 'Times New Roman', serif;" =
+class=3D""><span style=3D"font-size: 11pt; font-family: Calibri, =
+sans-serif; color: rgb(31, 73, 125);" class=3D"">Thank you</span><o:p =
+class=3D""></o:p></div></div><div class=3D""><div style=3D"margin: 0in =
+0in 0.0001pt; font-size: 12pt; font-family: 'Times New Roman', serif;" =
+class=3D""><span style=3D"font-size: 11pt; font-family: Calibri, =
+sans-serif; color: rgb(31, 73, 125);" class=3D"">Neil</span><o:p =
+class=3D""></o:p></div></div><div class=3D""><div style=3D"margin: 0in =
+0in 0.0001pt; font-size: 12pt; font-family: 'Times New Roman', serif;" =
+class=3D""><span style=3D"font-size: 11pt; font-family: Calibri, =
+sans-serif; color: rgb(31, 73, 125);" class=3D"">&nbsp;</span><o:p =
+class=3D""></o:p></div></div></div></div></div></div></div><div =
+style=3D"margin: 0in 0in 0.0001pt; font-size: 12pt; font-family: 'Times =
+New Roman', serif;" class=3D""><span style=3D"font-size: 9pt; =
+font-family: Verdana, sans-serif;" class=3D"">--<span =
+class=3D"apple-converted-space">&nbsp;</span><br =
+class=3D"">_______________________________________________<br =
+class=3D"">yocto mailing list<br class=3D""></span><a =
+href=3D"mailto:yocto@yoctoproject.org" style=3D"color: purple; =
+text-decoration: underline;" class=3D""><span style=3D"font-size: 9pt; =
+font-family: Verdana, sans-serif; color: purple;" =
+class=3D"">yocto@yoctoproject.org</span></a><span style=3D"font-size: =
+9pt; font-family: Verdana, sans-serif;" class=3D""><br =
+class=3D""></span><a =
+href=3D"https://lists.yoctoproject.org/listinfo/yocto" style=3D"color: =
+purple; text-decoration: underline;" class=3D""><span style=3D"font-size: =
+9pt; font-family: Verdana, sans-serif; color: purple;" =
+class=3D"">https://lists.yoctoproject.org/listinfo/yocto</span></a></div><=
+/div></div></div></div></blockquote></div><br class=3D""></body></html>=
+
+--Apple-Mail=_D5C9FC60-5882-477E-845A-355A76229F51--
