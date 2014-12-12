@@ -1,44 +1,61 @@
-Return-Path: <yannick.koehler@hp.com>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AE9B2E0085D; Fri, 12 Dec 2014 07:05:29 -0800 (PST)
+	id 1D05BE0085D; Fri, 12 Dec 2014 07:19:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.215.52 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [15.217.128.51 listed in list.dnswl.org]
-Received: from g2t2352.austin.hp.com (g2t2352.austin.hp.com [15.217.128.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E7EEE0084D
-	for <yocto@yoctoproject.org>; Fri, 12 Dec 2014 07:05:17 -0800 (PST)
-Received: from G2W4316.americas.hpqcorp.net (g2w4316.austin.hp.com
-	[16.197.9.73]) (using TLSv1 with cipher AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by g2t2352.austin.hp.com (Postfix) with ESMTPS id C9EFE248
-	for <yocto@yoctoproject.org>; Fri, 12 Dec 2014 15:05:16 +0000 (UTC)
-Received: from G2W4314.americas.hpqcorp.net (16.197.24.50) by
-	G2W4316.americas.hpqcorp.net (16.197.9.73) with Microsoft SMTP Server
-	(TLS) id 14.3.169.1; Fri, 12 Dec 2014 15:03:32 +0000
-Received: from G1W3650.americas.hpqcorp.net ([169.254.8.62]) by
-	G2W4314.americas.hpqcorp.net ([16.197.24.50]) with mapi id
-	14.03.0169.001; Fri, 12 Dec 2014 15:03:31 +0000
-From: "Koehler, Yannick (HP Networking)" <yannick.koehler@hp.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Package Feature compile/runtime dependency
-Thread-Index: AQHQFhvPlSIJhs8RjkWUDUaVwptfa5yMC5Mg
-Date: Fri, 12 Dec 2014 15:03:31 +0000
-Message-ID: <95CF81BBD42FB348A182716C4D4310A80548C51C@G1W3650.americas.hpqcorp.net>
+Received: from mail-la0-f52.google.com (mail-la0-f52.google.com
+	[209.85.215.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F284E002A6
+	for <yocto@yoctoproject.org>; Fri, 12 Dec 2014 07:19:33 -0800 (PST)
+Received: by mail-la0-f52.google.com with SMTP id hs14so6158045lab.25
+	for <yocto@yoctoproject.org>; Fri, 12 Dec 2014 07:19:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id
+	:mail-followup-to:references:mime-version:content-type
+	:content-disposition:in-reply-to:organization:user-agent;
+	bh=whkgGUpqnGfBDqAvTzkERiDd9KIP0RehIP1u/+Brbug=;
+	b=B9A1HAhGtxjGh1pWYg2w/av76pNX36509pj/B0OcUZp6D8V65b1TWyaZcUc3F8PxeI
+	OKOqDTRIJazLMLIXB/YS87TFpnfLxFOcb/EnLI1pvjSG5hYoAnJkyH7g+f0Cm3g+JRlI
+	q6V926s12ojBlyQ/q2wo/FsJkWaaUSZa58e7OUVQQtQGQkyNDEjLOk03vHdV0+e/FZuP
+	l6aQglw2MWMguP3Aq5RcOhs7V5VEjMfxLxEa7269HX8mOD9xgaYbQovDRYGsAw0jOjML
+	M8S+Nqnu1KEwNJrPPgiE9V1uhYu9eu0lVkGrcfrWQeY+a892h+D50ILm9WOZJibzs5IU
+	gaKA==
+X-Gm-Message-State: ALoCoQkFpmUJRdtSeVabgpT0skcC9145fQHwhpkpX5QVgNHN5g4vzO86oybfHpxUbK3tADPWOCjD
+X-Received: by 10.152.20.7 with SMTP id j7mr5301665lae.37.1418397572227;
+	Fri, 12 Dec 2014 07:19:32 -0800 (PST)
+Received: from ad.chargestorm.se (c-83-233-19-145.cust.bredband2.com.
+	[83.233.19.145])
+	by mx.google.com with ESMTPSA id w8sm472708lad.17.2014.12.12.07.19.30
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 12 Dec 2014 07:19:31 -0800 (PST)
+Date: Fri, 12 Dec 2014 16:18:44 +0100
+From: Anders Darander <anders@chargestorm.se>
+To: "Koehler, Yannick (HP Networking)" <yannick.koehler@hp.com>
+Message-ID: <20141212151844.GF18879@ad.chargestorm.se>
+Mail-Followup-To: "Koehler, Yannick (HP Networking)" <yannick.koehler@hp.com>, 
+	"Burton, Ross" <ross.burton@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 References: <95CF81BBD42FB348A182716C4D4310A80548C44C@G1W3650.americas.hpqcorp.net>
 	<CAJTo0LZwnFS6h51KRMfXECzftLq8N1CdYx4c2ZPnUWnVbZECdA@mail.gmail.com>
-In-Reply-To: <CAJTo0LZwnFS6h51KRMfXECzftLq8N1CdYx4c2ZPnUWnVbZECdA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [16.193.232.25]
+	<95CF81BBD42FB348A182716C4D4310A80548C51C@G1W3650.americas.hpqcorp.net>
 MIME-Version: 1.0
+In-Reply-To: <95CF81BBD42FB348A182716C4D4310A80548C51C@G1W3650.americas.hpqcorp.net>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Package Feature compile/runtime dependency
 X-BeenThere: yocto@yoctoproject.org
@@ -52,29 +69,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Dec 2014 15:05:29 -0000
-Content-Language: fr-FR
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 12 Dec 2014 15:19:37 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-SXQgd291bGQgZGVmaW5pdGVseSBtYWtlIHNlbnNlIHRvIGhhdmUgYSBkaXN0cm8gbGV2ZWwgZmVh
-dHVyZSBjYWxsZWQgaW5pdC1idXN5Ym94aW5pdC9pbml0LXN5c3Zpbml0L2luaXQtc3lzdGVtZC9p
-bml0LXVwc3RhcnQgb3Igc29tZXRoaW5nIGFsb25nIHRob3NlIGxpbmUuICBJcyB0aGlzIGFscmVh
-ZHkgaW4gcGxhY2U/DQoNCkl0IHdvdWxkIHRoZW4gaGF2ZSB0byBwdWxsIHRoZSBwYWNrYWdlIGFu
-ZCB0aGVpciBhcHByb3ByaWF0ZSBwYWNrYWdlIGZlYXR1cmUgc2V0IHRvIGdldCB0aGVyZS4NCg0K
-WWFubmljayBLb2VobGVyDQpIUCBOZXR3b3JraW5nIE1vYmlsaXR5DQoNCkRlwqA6IEJ1cnRvbiwg
-Um9zcyBbbWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbV0gDQpFbnZvecOpwqA6IERlY2VtYmVy
-LTEyLTE0IDk6NTYgQU0NCsOAwqA6IEtvZWhsZXIsIFlhbm5pY2sgKEhQIE5ldHdvcmtpbmcpDQpD
-Y8KgOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpPYmpldMKgOiBSZTogW3lvY3RvXSBQYWNrYWdl
-IEZlYXR1cmUgY29tcGlsZS9ydW50aW1lIGRlcGVuZGVuY3kNCg0KDQpPbiAxMiBEZWNlbWJlciAy
-MDE0IGF0IDE0OjEzLCBLb2VobGVyLCBZYW5uaWNrIChIUCBOZXR3b3JraW5nKSA8eWFubmljay5r
-b2VobGVyQGhwLmNvbT4gd3JvdGU6DQrCoCDCoCDCoCDCoCBERVBFTkRTPSJsaW51eC15b2N0by10
-aW55OmZoYW5kbGUsYXV0b2ZzNCxpcHY2PyxkZXZ0bXBmcyxsaWJjOmZ0cmF2ZXJzZSxwb3NpeC1j
-bGFuZy13Y2hhcixzcGF3bix1dG1weCINCg0KRXRjLi4uwqAgRGlzcmVnYXJkIHRoZSBzeW50YXgg
-YXMgaXQgaXMgc2ltcGx5IGFuIGlkZWEvZXhhbXBsZSBhbmQgbm90IGludGVuZGVkIGFzIGEgc3Bl
-Y2lmaWNhdGlvbi4NCg0KQSBsb3Qgb2YgdGhvc2UgZmVhdHVyZXMgYXJlIERJU1RST19GRUFUVVJF
-Uywgc28gdGhlcmUgc2hvdWxkIGJlIGhlYXZpZXIgdXNlciBvZiB0aGUgZGlzdHJvX2ZlYXR1cmVz
-X2NoZWNrIGNsYXNzLsKgIEZvciBleGFtcGxlLCB0aGVyZSBhcmUgcmVjaXBlcyB0aGF0IHJlcXVp
-cmUgc3lzdGVtZCB0byBiZSB1c2VkLCBzbyB0aGV5IHNldCBSRVFVSVJFRF9ESVNUUk9fRkVBVFVS
-RVM9c3lzdGVtZC4NCg0KUm9zcw0K
+* Koehler, Yannick (HP Networking) <yannick.koehler@hp.com> [141212 16:11]:
+
+> It would definitely make sense to have a distro level feature called
+> init-busyboxinit/init-sysvinit/init-systemd/init-upstart or something
+> along those line.  Is this already in place?
+
+We have sysvinit and systemd as distro features today.
+
+Cheers,
+Anders
+
+-- 
+Anders Darander
+ChargeStorm AB / eStorm AB
 
