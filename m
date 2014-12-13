@@ -1,44 +1,58 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2111E0084E; Fri, 12 Dec 2014 15:45:32 -0800 (PST)
+	id 10BF5E00753; Sat, 13 Dec 2014 10:15:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.170 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-vc0-f170.google.com (mail-vc0-f170.google.com
-	[209.85.220.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB683E002A6
-	for <yocto@yoctoproject.org>; Fri, 12 Dec 2014 15:45:29 -0800 (PST)
-Received: by mail-vc0-f170.google.com with SMTP id hy4so4119897vcb.15
-	for <yocto@yoctoproject.org>; Fri, 12 Dec 2014 15:45:28 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=2NWBE2kRXXDTf1G8oRnl77TqYUaWb42tdV2Q6x7j0eE=;
-	b=D1KgBw53UnNzIF9nJ9MtP1rmZ7xzYK1C/fQef8cChECNNAYdnJFuwNOZktLR0sIc0q
-	rIcpsO0ZuJgXcdbKY1UDwNUuMBgakYhLH8DeA7jXOb3PcpsHpkRpbDL8R2HhDkV6s3KL
-	cN5azeMTFjGbXaAFK1JdeOtpLu6DfD6rdztrdXmaxNcE5ZW2aP2KmI7W8uicyozCSawi
-	Jl/GlReyF2JdhLx6D/23MAsAr6brGu02TAowmwIDf/MCRm3M5voShlk8ow/cSgaMwIzX
-	yerQOrC9uXgNB8Ca+eDploYb7Amckw20wgIltrvnxB000d9RcAH0lF9luw1jrQ6wlY91
-	z9Gw==
-X-Gm-Message-State: ALoCoQnMMmmWfbG/nPMq3aIkglnvefuNVqsYm6193NiCwVvB3D9UxE+GTmSn5sJNK/Rc5yysQLq5
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pd0-f180.google.com (mail-pd0-f180.google.com
+	[209.85.192.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E279FE00751
+	for <yocto@yoctoproject.org>; Sat, 13 Dec 2014 10:15:14 -0800 (PST)
+Received: by mail-pd0-f180.google.com with SMTP id w10so9132883pde.39
+	for <yocto@yoctoproject.org>; Sat, 13 Dec 2014 10:15:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=ZIKRc/Z//hXAqrPvMnPEAhZBK/4qUXHrHMKBbAhTrF4=;
+	b=NSR5wfcQENqjJ25zhDMKF2RxT+cS7xrjE4Hds8T0IRqGQRuFVEmXLAJISMcNnpH/bi
+	Im6TRPGAOhfC+HPrH8YFaQhIJf0fjbZZhOf0fTfk5VzsMaOg4nLts5/YXmxd3RIBxKJv
+	/f//dgzR6V/2bwGkmMUlV13EF/az935AGRx+PVmQnwN3RbIa6pfVBfrpQHhcnLVZhNfM
+	4OJTB2h+vYLE2wUfW1yijXCnxKoZoMy3uqvA4qGUED3QtUhlRFlgLew90VdKS7E9cAzt
+	LJoG5A9ZoLFc7fiYCZO0F8nGy6HMCsdoPBBQOk4s1z8QfK41HCDeSSgDmbZrzIGm5aE9
+	qsJw==
+X-Received: by 10.68.194.227 with SMTP id hz3mr36748304pbc.52.1418494512807;
+	Sat, 13 Dec 2014 10:15:12 -0800 (PST)
+Received: from ?IPv6:2601:c:9380:601:8d0c:d29c:4b71:4aab?
+	([2601:c:9380:601:8d0c:d29c:4b71:4aab])
+	by mx.google.com with ESMTPSA id w5sm4819018pdj.13.2014.12.13.10.15.10
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 13 Dec 2014 10:15:11 -0800 (PST)
+Message-ID: <548C822B.6090008@gmail.com>
+Date: Sat, 13 Dec 2014 10:15:07 -0800
+From: akuster808 <akuster808@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
-X-Received: by 10.221.3.195 with SMTP id nz3mr11787676vcb.43.1418427928629;
-	Fri, 12 Dec 2014 15:45:28 -0800 (PST)
-Received: by 10.52.244.44 with HTTP; Fri, 12 Dec 2014 15:45:28 -0800 (PST)
-Date: Fri, 12 Dec 2014 23:45:28 +0000
-Message-ID: <CAPhnLPDcQs8HOeC+9nF627AzQKnGnjiJ19Ubh+Kv=RHCUnwt6g@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	yocto-announce@yoctoproject.org
-Subject: [ANNOUNCEMENT] Yocto Project 1.5.4 (dora 10.0.4) now available.
+To: Li xin <lixin.fnst@cn.fujitsu.com>, yocto@yoctoproject.org
+References: <1418200430-2173-1-git-send-email-lixin.fnst@cn.fujitsu.com>
+In-Reply-To: <1418200430-2173-1-git-send-email-lixin.fnst@cn.fujitsu.com>
+Subject: Re: [meta-cgl][PATCH] samhain: add new recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,108 +64,142 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Dec 2014 23:45:32 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sat, 13 Dec 2014 18:15:24 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-All,
 
-I am pleased to announce the next point release for the dora branch,
-Yocto Project 1.5.4 (dora 10.0.4). A full pass test report is
-available at:
+The current version in Meta-security is 3.1.3. Please check and send any 
+changes to this list with [meta-security] in the subject.
 
-https://wiki.yoctoproject.org/wiki/WW48_-_2014-11-25_
-_Full_Pass_Release_Dora_1.5.4
 
-Several fixes for CVE-2014-3566 (the SSL Poodle vulnerability) have
-been applied to OpenSSL in this release; however, due to the nature of
-the vulnerability you will need to ensure that SSL 3.0 support is
-either disabled, or alternatively that TLS_FALLBACK_SCSV is
-implemented in both clients and servers that use TLS/SSL.
+- Armin
 
-For more information, check with the upstream provider of TLS/SSL
-client / server software that you are using.
-
-https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
-https://www.us-cert.gov/ncas/alerts/TA14-290A
-
-Downloads are available at:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.4/poky-dora-10.0.4.tar.bz2
-
---------
-
-Release Name: poky-dora-10.0.4
-Branch: dora
-Tag: dora-10.0.4
-Hash: e035c59d7d331ddaeff19b069169567af5e6f8ac
-md5sum: e3d2250514c68b038640c65c19d9038c
-Download: http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.4/poky-dora-10.0.4.tar.bz2
-
-Release Name: eclipse-poky-juno-dora-10.0.4
-Branch: dora
-Tag: dora-10.0.4
-Hash: 79cd3c6ff119526f3f85567253450d2e857afed0
-md5sum: 01c3e68daa8e337d3aa70b0512cff79d
-Download: http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.4/eclipse-poky-juno-dora-10.0.4.tar.bz2
-
-Release Name: eclipse-poky-kepler-dora-10.0.4
-Branch: dora
-Tag: dora-10.0.4
-Hash: e2cc15b1549d197ab15073f52274401d0fd86686
-md5sum: 99f144fbee42289c7cfd7283d8be3a9e
-Download: http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.4/eclipse-poky-kepler-dora-10.0.4.tar.bz2
-
-Release Name: meta-qt3-dora-10.0.4
-Branch: dora
-Tag: dora-10.0.4
-Hash: 4772424ab69908d4e3b9d6d4717ca889468e6acd
-md5sum: 7843a578d15202d6e4603d3cea09392d
-Download: http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.4/meta-qt3-dora-10.0.4.tar.bz2
-
-Security Fixes
----------
-openssl: Fix for CVE-2014-3568
-openssl: Fix for CVE-2014-3567
-openssl: Fix for CVE-2014-3513
-openssl: Fix for CVE-2014-3566
-bash: Fix-for-CVE-2014-6278
-bash: Fix for CVE-2014-6277
-bash: Fix for CVE-2014-7186 and CVE-2014-7187
-bash: add missing patch for CVE-2014-7169 to 4.2 recipe
-bash: add missing patch for CVE-2014-6271 to 4.2 recipe
-bash: Fix CVE-2014-7169
-bash: fix CVE-2014-6271
-
-Bug Fixes
----------
-documentation: Updated the date in Manual Revision History table
-yocto-bsp: Update qemu inclusion lists
-build-appliance-image: Update to dora head revision
-poky: Update version to 1.5.4
-build-appliance-image: Update to dora head revision
-systemtap: fix do_compile failed on fedora21
-ltp: Added zip-native as a DEPENDS
-package.bbclass: Add CONFFILES to list of package specific variables
-profile-manual: Updates to the LTTng Documentation section.
-build-appliance-image: Update to dora head revision
-build-appliance-image: Update to daisy head revision
-poky.ent: Updated the YOCTO_RELEASE_NOTES variable.
-bash: Fix for exported function namespace change
-apmd.service: Fix typo (not mandatory EnvironmentFile prefix)
-documentation: Steps to prepare for 1.5.4 YP doc set.
-qt4: Fix Qt 4.8.5 source to new location
-gcc-4.8: backport fix for ICE when building opus
-cairo: explicitly disable LTO support by backporting patch which removes it
-binutils: Fix building nativesdk binutils with gcc 4.9
-ref-manual: Updated note in the "CentOS Packages" section.
-dev-manual: Fixed broken link to MACHINE variable.
-dev-manual: Updates to the "Creating Partitioned Images" section.
-
-Notes
----------
-- The source archiver code is not functional.
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+On 12/10/2014 12:33 AM, Li xin wrote:
+> Samhain is an open source file integrity and intrusion detection
+> system for Unix that uses cryptographic checksums of files to
+> detect modifications, and allows you to trace: what changes have
+> occured in your system, when these changes have occured, and who
+> was logged into the system at the respective time.
+>
+> Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
+> ---
+>   .../samhain/0001-Makefile.in-error-fix.patch       | 31 ++++++++++++
+>   .../samhain/samhain/config-site.samhain-3.1.3      |  2 +
+>   .../recipes-cgl/samhain/samhain_3.1.3.bb           | 58 ++++++++++++++++++++++
+>   3 files changed, 91 insertions(+)
+>   create mode 100644 meta-cgl-common/recipes-cgl/samhain/samhain/0001-Makefile.in-error-fix.patch
+>   create mode 100644 meta-cgl-common/recipes-cgl/samhain/samhain/config-site.samhain-3.1.3
+>   create mode 100644 meta-cgl-common/recipes-cgl/samhain/samhain_3.1.3.bb
+>
+> diff --git a/meta-cgl-common/recipes-cgl/samhain/samhain/0001-Makefile.in-error-fix.patch b/meta-cgl-common/recipes-cgl/samhain/samhain/0001-Makefile.in-error-fix.patch
+> new file mode 100644
+> index 0000000..cd646f6
+> --- /dev/null
+> +++ b/meta-cgl-common/recipes-cgl/samhain/samhain/0001-Makefile.in-error-fix.patch
+> @@ -0,0 +1,31 @@
+> +From a9ce38c56bf7072f292d685a48b912e6e59260a6 Mon Sep 17 00:00:00 2001
+> +From: Li xin <lixin.fnst@cn.fujitsu.com>
+> +Date: Wed, 10 Dec 2014 14:45:28 +0900
+> +Subject: [PATCH] Makefile.in: error fix
+> +
+> +error:File '/usr/sbin/samhain' from samhain was already stripped,
+> +this will prevent future debugging!
+> +
+> +Upstream-Status: pending
+> +
+> +Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
+> +---
+> + Makefile.in | 2 +-
+> + 1 file changed, 1 insertion(+), 1 deletion(-)
+> +
+> +diff --git a/Makefile.in b/Makefile.in
+> +index b1904d9..000de49 100644
+> +--- a/Makefile.in
+> ++++ b/Makefile.in
+> +@@ -54,7 +54,7 @@ selectconfig = @selectconfig@
+> + top_builddir = .
+> +
+> + INSTALL = @INSTALL@
+> +-INSTALL_PROGRAM = @INSTALL@ -s -m 700
+> ++INSTALL_PROGRAM = @INSTALL@ -m 700
+> + INSTALL_SHELL = @INSTALL@ -m 700
+> + INSTALL_DATA = @INSTALL@ -m 600
+> + INSTALL_MAN = @INSTALL@ -m 644
+> +--
+> +1.8.4.2
+> +
+> diff --git a/meta-cgl-common/recipes-cgl/samhain/samhain/config-site.samhain-3.1.3 b/meta-cgl-common/recipes-cgl/samhain/samhain/config-site.samhain-3.1.3
+> new file mode 100644
+> index 0000000..2ce3769
+> --- /dev/null
+> +++ b/meta-cgl-common/recipes-cgl/samhain/samhain/config-site.samhain-3.1.3
+> @@ -0,0 +1,2 @@
+> +ssp_cv_lib=no
+> +sh_cv_va_copy=yes
+> diff --git a/meta-cgl-common/recipes-cgl/samhain/samhain_3.1.3.bb b/meta-cgl-common/recipes-cgl/samhain/samhain_3.1.3.bb
+> new file mode 100644
+> index 0000000..22c8577
+> --- /dev/null
+> +++ b/meta-cgl-common/recipes-cgl/samhain/samhain_3.1.3.bb
+> @@ -0,0 +1,58 @@
+> +SUMMARY = "File Integrity and Intrusion Detection System"
+> +DESCRIPTION = "Samhain is an open source file integrity and intrusion detection \
+> +system for Unix that uses cryptographic checksums of files to \
+> +detect modifications, and allows you to trace: what changes have \
+> +occured in your system, when these changes have occured, and who \
+> +was logged into the system at the respective time."
+> +
+> +HOMEPAGE = "http://la-samhna.de/samhain/"
+> +SECTION = "Filesystem"
+> +
+> +SRC_URI = "http://la-samhna.de/samhain/samhain-current.tar.gz;extract=samhain-3.1.3.tar.gz \
+> +   file://0001-Makefile.in-error-fix.patch"
+> +SRC_URI[md5sum] = "64572a4dbfdc8065d6e9f7ca0eab0a34"
+> +SRC_URI[sha256sum] = "c234afaf9ba3c6b7d240858b74423f935185de66e996405b3016ec4a288a7e1e"
+> +LICENSE = "GPLv2"
+> +LIC_FILES_CHKSUM = "file://LICENSE;md5=8ca43cbc842c2336e835926c2166c28b"
+> +
+> +DEPENDS = "libpthread-stubs acl zlib attr"
+> +inherit autotools-brokensep pkgconfig
+> +
+> +do_unpack2() {
+> +    cd ${WORKDIR}
+> +    tar zxvf ${PN}-${PV}.tar.gz
+> +}
+> +
+> +S = "${WORKDIR}/${BP}"
+> +
+> +addtask unpack2 after do_unpack before do_patch
+> +do_configure() {
+> +    export CONFIG_SITE=./config-site.${BP}
+> +    ./configure \
+> +        --host=${HOST_SYS} \
+> +        --build=${BUILD_SYS} \
+> +        --prefix=${prefix} \
+> +        --sbindir=${sbindir} \
+> +        --mandir=${mandir} \
+> +        --sysconfdir=${sysconfdir} \
+> +        --localstatedir=${localstatedir} \
+> +        --with-config-file=/etc/samhain/samhainrc \
+> +        --with-state-dir=/var/samhain \
+> +        --with-html-file=/var/samhain/samhain.html \
+> +        --with-data-file=/var/samhain/samhain.data \
+> +        --with-pid-file=/var/samhain/samhain.pid \
+> +        --with-log-file=/var/samhain/samhain.log \
+> +        --enable-login-watch \
+> +        --disable-khide \
+> +        --enable-suidcheck \
+> +        --with-trusted=0
+> +}
+> +
+> +do_install() {
+> +    install -d -m 755 ${D}/var/samhain
+> +    install -d  ${D}/${mandir}
+> +    oe_runmake DESTDIR=${D} install-program install-man install-data
+> +    chmod -R a+r ${D}/${mandir}
+> +    install -d ${D}/etc/samhain
+> +    install -c -m 644  samhainrc.linux ${D}/etc/samhain/samhainrc
+> +}
+>
 
