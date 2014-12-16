@@ -1,46 +1,51 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5C3A5E0082B; Tue, 16 Dec 2014 12:37:29 -0800 (PST)
+	id 582B8E0082B; Tue, 16 Dec 2014 12:42:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.169 listed in list.dnswl.org]
+	*      [209.85.216.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-vc0-f169.google.com (mail-vc0-f169.google.com
-	[209.85.220.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E20CBE003AB
-	for <yocto@yoctoproject.org>; Tue, 16 Dec 2014 12:37:26 -0800 (PST)
-Received: by mail-vc0-f169.google.com with SMTP id hy10so6898461vcb.0
-	for <yocto@yoctoproject.org>; Tue, 16 Dec 2014 12:37:26 -0800 (PST)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-qc0-f174.google.com (mail-qc0-f174.google.com
+	[209.85.216.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB4CBE003AB
+	for <yocto@yoctoproject.org>; Tue, 16 Dec 2014 12:42:11 -0800 (PST)
+Received: by mail-qc0-f174.google.com with SMTP id c9so10900148qcz.19
+	for <yocto@yoctoproject.org>; Tue, 16 Dec 2014 12:42:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=lUIQ4P4uoSAfxSOs0T6HGUX+fFN/DWqOO+nzP9UjNrQ=;
-	b=BhkZlMBog/tPrUZjlsxB5gwtwa+HkFYH9op6KV8ZiPajJ07GzhqNgVQGtKutgK1Rq5
-	8UYups2NusCLckG+lIat6uV4Cr9fGZ4tBCRqXmEEO9Bu9H2KG3+nVXK2wxtlkL1BTOLZ
-	F2hwCzWPy0XxzBEFJbJYGKGv9VirH4ZjaREb/UcFz/Fqt2cvdLoZRIT0zIg3xjyKgNed
-	Rbb1GF3EW9T+KuNo7WdJalue/yEMu0l0mh+QV8+PcOaiI9GoYnf3gl82mCbR93sjCrcu
-	1qf6EbzgEF6+03AIM2zo+3HwctA72pN8bce7buR3Tin/pQBOvNVFvMPwBDUfhoBU/Hd3
-	AgTw==
-X-Gm-Message-State: ALoCoQlq0jQmihTN6W38xszwNsFHQxHzVeQEUaa8dInQVQaXHtMM88OPQsv90HQmo9qZEgSeiq+G
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=Aq2uiufanNhokoxuoXxKMOki1GaM5vk2K78zx/bYlQo=;
+	b=X0Uf+2wcOnKZk76Crig81nutjOdVKnVqz2Iu7XAqDP+YH3MOeccNxVj3EHuoJyn5dF
+	pa64IpoakIJs9AAJhRHkw/64BOZ6LUBlfcElgMi/3gIGE6nmSf8enjb/D850rAbKEt8i
+	q6sCpcApSG/BscBtcrc4duMq/QzwvqeNgAHPWJV7obrlStv8UKLaqIk0qhMi15v4mVye
+	ThldJyfxIb2uowHpaTUisT2SKZ4zBP5YMDBHai4Ffqjq7utcDAjnMvD6Dzi0YFYGXPWz
+	b02NLMCuCa8TWi3VHgS5udE3fI1cL5M5t8w5IWzRSSjhuwVug2xizrhz37Ibc91KTxHZ
+	D10Q==
+X-Gm-Message-State: ALoCoQnjNzixMhNbKLgl3miTOQ9uxO6BJ1cD7YYMyWWv3YhA3y9hYHK+13cRJZDqvC731eEVXzGq
+X-Received: by 10.140.94.229 with SMTP id g92mr66685905qge.77.1418762530430;
+	Tue, 16 Dec 2014 12:42:10 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.52.135.43 with SMTP id pp11mr20287945vdb.11.1418762246348;
-	Tue, 16 Dec 2014 12:37:26 -0800 (PST)
-Received: by 10.52.29.146 with HTTP; Tue, 16 Dec 2014 12:37:26 -0800 (PST)
-In-Reply-To: <BLUPR05MB037FA0F1CAC302C613E98F3BB630@BLUPR05MB037.namprd05.prod.outlook.com>
-References: <BLUPR05MB037FA0F1CAC302C613E98F3BB630@BLUPR05MB037.namprd05.prod.outlook.com>
-Date: Tue, 16 Dec 2014 20:37:26 +0000
-Message-ID: <CAPhnLPD9Dg6VYwQDJP-N5t3h_LC+z8O7Occ_Wr4teOnVvz-HDg@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Bryan Evenson <bevenson@melinkcorp.com>
+Received: by 10.140.96.166 with HTTP; Tue, 16 Dec 2014 12:41:50 -0800 (PST)
+In-Reply-To: <95CF81BBD42FB348A182716C4D4310A80548C63D@G1W3650.americas.hpqcorp.net>
+References: <95CF81BBD42FB348A182716C4D4310A80548C44C@G1W3650.americas.hpqcorp.net>
+	<CAJTo0LZwnFS6h51KRMfXECzftLq8N1CdYx4c2ZPnUWnVbZECdA@mail.gmail.com>
+	<95CF81BBD42FB348A182716C4D4310A80548C51C@G1W3650.americas.hpqcorp.net>
+	<20141212151844.GF18879@ad.chargestorm.se>
+	<95CF81BBD42FB348A182716C4D4310A80548C63D@G1W3650.americas.hpqcorp.net>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 16 Dec 2014 20:41:50 +0000
+Message-ID: <CAJTo0Lb5Kk_B-BkZXM0mmAtazjoWXA15sbJfVNAJJM2Q_h6+7w@mail.gmail.com>
+To: "Koehler, Yannick (HP Networking)" <yannick.koehler@hp.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [yocto-autobuilder][GIT PULL] autobuilder: Build history modifications
+Subject: Re: Package Feature compile/runtime dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,51 +57,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Dec 2014 20:37:29 -0000
+X-List-Received-Date: Tue, 16 Dec 2014 20:42:13 -0000
+Content-Type: multipart/alternative; boundary=001a113a0e8ea5c5d5050a5b640b
+
+--001a113a0e8ea5c5d5050a5b640b
 Content-Type: text/plain; charset=UTF-8
 
-Pulled into master, thanks!
+On 12 December 2014 at 15:44, Koehler, Yannick (HP Networking) <
+yannick.koehler@hp.com> wrote:
+>
+> My hope, was that somehow, adding systemd to DISTRO_FEATURE would not only
+> add the packages I need, but also add feature to some package like the
+> kernel/libc that are required by such addition.
+>
 
--b
+No, DISTRO_FEATURES don't change how eg libc and the kernel are built.
+That said if you're building systemd, why are you using poky-tiny?  I doubt
+you'll see much gain from poky-tiny + all the pieces to make systemd work
+and plain poky (or the default distro configuration).
 
-On 11 December 2014 at 16:55, Bryan Evenson <bevenson@melinkcorp.com> wrote:
-> Below is a pull request for some fixes in enabling build history in the autobuilder.
-> I'm using a pull request this time as one line in the second commit is long enough
-> that it might get truncated in e-mail.
->
-> The first commit was needed in my testing to enable build history.  Before this
-> commit, the buildset needed to be using poky/master to enable build history for
-> that buildset.  The second patch adds documentation on how to setup build
-> history.
->
-> Regards,
-> Bryan
->
-> The following changes since commit e8183de6ff71db23a3b04cddde5ae4212ae4e677:
->
->   Documentation: Document GitPoller changesource (2014-12-08 15:45:18 -0800)
->
-> are available in the git repository at:
->
->   https://github.com/evensonbryan/yocto-autobuilder.git evensonbryan/contrib
->
-> for you to fetch changes up to ff16eacb4407d54c8818c9baecc000bfdf680aad:
->
->   Documentation: Add build history documentation (2014-12-11 10:37:58 -0500)
->
-> ----------------------------------------------------------------
-> Bryan Evenson (2):
->       CreateAutoConf.py: Modify build history inclusion
->       Documentation: Add build history documentation
->
->  docs/YoctoAutobuilderDevelopersDocument.html       |    6 ++++--
->  .../autobuilder/buildsteps/CreateAutoConf.py       |    2 +-
->  2 files changed, 5 insertions(+), 3 deletions(-)
+Ross
 
+--001a113a0e8ea5c5d5050a5b640b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 12 December 2014 at 15:44, Koehler, Yannick (HP Networking) <span dir=3D=
+"ltr">&lt;<a href=3D"mailto:yannick.koehler@hp.com" target=3D"_blank">yanni=
+ck.koehler@hp.com</a>&gt;</span> wrote:<blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div =
+id=3D":124" class=3D"a3s" style=3D"overflow:hidden">My hope, was that someh=
+ow, adding systemd to DISTRO_FEATURE would not only add the packages I need=
+, but also add feature to some package like the kernel/libc that are requir=
+ed by such addition.<br></div></blockquote></div><br>No, DISTRO_FEATURES do=
+n&#39;t change how eg libc and the kernel are built.=C2=A0 That said if you=
+&#39;re building systemd, why are you using poky-tiny?=C2=A0 I doubt you&#3=
+9;ll see much gain from poky-tiny + all the pieces to make systemd work and=
+ plain poky (or the default distro configuration).</div><div class=3D"gmail=
+_extra"><br></div><div class=3D"gmail_extra">Ross<br></div></div>
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
-
+--001a113a0e8ea5c5d5050a5b640b--
