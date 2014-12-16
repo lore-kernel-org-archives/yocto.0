@@ -1,60 +1,49 @@
-Return-Path: <festevam@gmail.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2E122E00A99; Tue, 16 Dec 2014 08:06:37 -0800 (PST)
+	id 3CD42E00752; Tue, 16 Dec 2014 12:14:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (festevam[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.217.177 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f177.google.com (mail-lb0-f177.google.com
-	[209.85.217.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5829EE008FB;
-	Tue, 16 Dec 2014 08:06:29 -0800 (PST)
-Received: by mail-lb0-f177.google.com with SMTP id b6so10728531lbj.8
-	for <multiple recipients>; Tue, 16 Dec 2014 08:06:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=hHxHLQGbEhT6ZTx7ZN5v+JDkxrsGlCvvL2JScolERWw=;
-	b=0FBO8SCpbk+AUsvQfxG8KDhJIYcxrOaL1ZVnBdGTBgMSNhelIBjS+ElQP+sirlnO16
-	Ponmipp2CuERuFZOIy3dV7jc+oTpcrEUQh6Zt6s1JR4kCAqAtMnLIu3ezseuyTn64sHf
-	bNO+fV71qMaZ2CjdcmFE4Atgv6HV97z0gI/LkdtNFgcheT6RS745m74aS/xeuaRtMrDJ
-	UNpdga5No4txYbhos67NVdLRZGuvvH1AlhAyeF4PeMNu8LvB+xrAFyaRVDSF6VZO3yY6
-	OR17KsqX/whP3VuY55q2hUmyAVHRk5+x7oc46qeCOXPwZwnlQAUY+OKIf6H68qbH8PeB
-	LXLw==
+	*      [209.85.220.175 listed in list.dnswl.org]
+Received: from mail-vc0-f175.google.com (mail-vc0-f175.google.com
+	[209.85.220.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09B21E003AB
+	for <yocto@yoctoproject.org>; Tue, 16 Dec 2014 12:14:24 -0800 (PST)
+Received: by mail-vc0-f175.google.com with SMTP id hy10so6773180vcb.34
+	for <yocto@yoctoproject.org>; Tue, 16 Dec 2014 12:14:23 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type
+	:content-transfer-encoding;
+	bh=sigf3ywxvRht+t0mSRl3jSKaWsBXic9bLFD9SlfT9B4=;
+	b=JSzZC9eyfVVM60RWd9MC1KF5XT3THsYp2Loiay1q2mz2h8zFJM8gybRyWK6fC0ezFQ
+	TBrGkx14SpdRPFPLtqVH9f8x5bNZWWmAo7QEkhJuq8anJWYS3o5BDhaoK1xiqvyRSTi1
+	X1Uslhgdmw1XcyN/tpWEDxk5xLDKAjCne6UY/FhLfSYgE1EBgZC1K/IR81zUKbzUAmt0
+	LIYj2sUn6GM1htroNEYKV0Ov6bRg4HEGuyf5nlsQNwldqjGwFiTQrqltbfZuEhlXaPQf
+	im/jgnCF0W11vwXS0xFLNqEaXexcjBapNz2aTOumblD67pF3i9tPM7zDM7Vhm482N7ho
+	6EQw==
+X-Gm-Message-State: ALoCoQkiXvnsdd/NfXm6XGWmTJmxA7XKadSt/jYvhZstXybD14Lh5GykCSTI5ZBu7c17fFsesR6b
 MIME-Version: 1.0
-X-Received: by 10.112.38.4 with SMTP id c4mr36765779lbk.46.1418745988509; Tue,
-	16 Dec 2014 08:06:28 -0800 (PST)
-Received: by 10.152.179.137 with HTTP; Tue, 16 Dec 2014 08:06:28 -0800 (PST)
-In-Reply-To: <7fefff1d862f4e9d8039fe81909a2de2@KCHJEXMBX02.kpit.com>
-References: <3230301C09DEF9499B442BBE162C5E48257EA92F@SESTOEX04.enea.se>
-	<CAP9ODKq2d-rOH3Ud5MXNuxxZPjKKwpZ295j8be+_WHV6GomhCw@mail.gmail.com>
-	<3230301C09DEF9499B442BBE162C5E48257EAAEC@SESTOEX04.enea.se>
-	<7fefff1d862f4e9d8039fe81909a2de2@KCHJEXMBX02.kpit.com>
-Date: Tue, 16 Dec 2014 14:06:28 -0200
-Message-ID: <CAOMZO5AS26p6MFm3vcVDs66QWpfUv=zgcZ0tbFRPWC_2U5xrxQ@mail.gmail.com>
-From: Fabio Estevam <festevam@gmail.com>
-To: VIVEK VERMA <VIVEK.VERMA@kpit.com>
-X-Mailman-Approved-At: Tue, 16 Dec 2014 08:53:38 -0800
-Cc: Otavio Salvador <otavio@ossystems.com.br>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"Paul Eggleton \(paul.eggleton@linux.intel.com\)"
-	<paul.eggleton@linux.intel.com>,
-	"meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>
-Subject: Re: [meta-freescale] meta-fsl-ppc uses Openssl 1.0.1g in master
+X-Received: by 10.52.135.43 with SMTP id pp11mr20258651vdb.11.1418760863840;
+	Tue, 16 Dec 2014 12:14:23 -0800 (PST)
+Received: by 10.52.29.146 with HTTP; Tue, 16 Dec 2014 12:14:23 -0800 (PST)
+In-Reply-To: <7686657984f84a938af3bdb15ef65992@BY2PR05MB048.namprd05.prod.outlook.com>
+References: <7383172b808e4ec3a8e2550c04cc9e91@BLUPR05MB037.namprd05.prod.outlook.com>
+	<40cfd0ca83f94c9eb826ab2573d41453@BLUPR05MB037.namprd05.prod.outlook.com>
+	<7686657984f84a938af3bdb15ef65992@BY2PR05MB048.namprd05.prod.outlook.com>
+Date: Tue, 16 Dec 2014 20:14:23 +0000
+Message-ID: <CAPhnLPDmOXvFJzwPri-p0DY1iwWZPBqb-WdD4qmAH+GRmcB5tg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Bryan Evenson <bevenson@melinkcorp.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: autobuilder: How to set PREMIRRORS?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,30 +55,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Dec 2014 16:06:37 -0000
+X-List-Received-Date: Tue, 16 Dec 2014 20:14:35 -0000
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Dec 16, 2014 at 1:21 PM, VIVEK VERMA <VIVEK.VERMA@kpit.com> wrote:
-> Hi All,
+2014-11-19 15:12 GMT+00:00 Bryan Evenson <bevenson@melinkcorp.com>:
+> All,
 >
-> I am using gstreamer to play wma files but  I am getting the error as follows.
+> I'm getting close to implementing this feature, but I'm having some issue=
+s getting auto.conf formatted correctly.  See below.
+>
+>> -----Original Message-----
+>> From: Bryan Evenson
+>> Sent: Monday, November 17, 2014 9:08 AM
+>> To: Bryan Evenson; yocto@yoctoproject.org; elizabeth.flanagan@intel.com
+>> Subject: RE: autobuilder: How to set PREMIRRORS?
+>>
+>> All,
+>>
+>> After looking through the autobuilder code, I don't see anywhere in whic=
+h
+>> PREMIRRORS can be set and used.  I see in CreateAutoConf.py that
+>> PREMIRRORS is always set to "".  I don't think it'd be that difficult to=
+ add
+>> PREMIRRORS as a CreateAutoConf parameter for the buildsets.  I can work
+>> on the change and submit the patch.  But before I start I have a few
+>> questions:
+>>
+>> 1. I plan on implementing the PREMIRRORS parameter as an array, similar =
+to
+>> 'layerdirs' for CreateBBLayersConf.  For example:
+>>
+>> {'CreateAutoConf' : {'PREMIRRORS' : ['git://.*/.*
+>> http://our/local/mirror/path/mirror/sources/ ',
+>>       'ftp://.*/.* http://our/local/mirror/path /mirror/sources/ ',
+>>       'http://.*/.* http://our/local/mirror/path/mirror/sources/ ',
+>>       'https://.*/.* http://our/local/mirror/path/mirror/sources/ ']}
+>>
+>> would add the following to auto.conf:
+>>
+>>  PREMIRRORS =3D 'git://.*/.* http://our/local/mirror/path/mirror/sources=
+/  \
+>>       ftp://.*/.* http://our/local/mirror/path /mirror/sources/  \
+>>       http://.*/.* http://our/local/mirror/path/mirror/sources/  \
+>>       https://.*/.* http://our/local/mirror/path/mirror/sources/ '
+>>
+>> Does this sound reasonable, or would a different parameter format be
+>> preferred?
+>
 
-You should have created a new thread about this issue.
+I would actually do this similar to how we have DEVKERNEL_MUT_REPO.
 
+PREMIRRORS =3D ['git://.*/.*
+http://our/local/mirror/path/mirror/sources/', 'ftp://.*/.*
+http://our/local/mirror/path /mirror/sources/', 'http://.*/.*
+http://our/local/mirror/path/mirror/sources/', 'https://.*/.*
+http://our/local/mirror/path/mirror/sources/']
 
-> root@imx6dlsabresd:~# gst-launch -v playbin2 uri=file:///ano.wma
-> Setting pipeline to PAUSED ...
-> /GstPlayBin2:playbin20/GstURIDecodeBin:uridecodebin0: ring-buffer-max-size = 0
-> /GstPlayBin2:playbin20/GstURIDecodeBin:uridecodebin0: buffer-size = -1
-> /GstPlayBin2:playbin20/GstURIDecodeBin:uridecodebin0: buffer-duration = -1
-> /GstPlayBin2:playbin20/GstURIDecodeBin:uridecodebin0: use-buffering = FALSE
-> /GstPlayBin2:playbin20/GstURIDecodeBin:uridecodebin0: download = FALSE
-> /GstPlayBin2:playbin20/GstURIDecodeBin:uridecodebin0: uri = "file:///ano.wma"
-> /GstPlayBin2:playbin20/GstURIDecodeBin:uridecodebin0: connection-speed = 0
-> /GstPlayBin2:playbin20/GstURIDecodeBin:uridecodebin0: source = (GstFileSrc) source
-> ERROR: Pipeline doesn't want to pause.
-> ERROR: from element /GstURIDecodeBin:uridecodebin0/GstFileSrc:source: Resource not found.
+> I am trying to add a single PREMIRROR using the syntax I specified above.=
+  At this time it is getting inserted in auto.conf.  However, the system is=
+ going into an infinite loop building the PREMIRROR path.  The added conten=
+t to auto.conf at this time looks like:
+>
+> PREMIRRORS =3D " \
+> http://.*.* http://server.repo.local/mirror/sources/ \n \
+> "
+>
+> And from looking at log.do_fetch for the package that attempts to use the=
+ PREMIRROR, the log is filled with "server.repo.localserver.repo.localserve=
+r.repo.local" repeating.  Any tips on how PREMIRRORS should be built?
+>
+> Here's what I have so far in CreateAutoConf.py:
+>
+>             self.PREMIRRORS=3D""
+>             fout =3D fout + 'PREMIRRORS =3D " \ \n'
+>             if list(self.PREMIRRORS):
+>                 for premirror in self.PREMIRRORS:
+>                     fout =3D fout + premirror + ' \\\\n \ \n'
+>             fout =3D fout + '" \n'
+>
+> Any tips on how to change things so PREMIRRORS is correctly parsed?
+>
 
-It can not find the file. You need to pass the full path, such as
-uri=file:///home/user/ano.wma
+#make sure you add
+#
+#export PREMIRRORS=3D""
+# to yocto-autobuilder-setup
+
+if os.environ.get('PREMIRRORS') is not None:
+    premirrors=3Dast.liternal_eval(os.environ.get('PREMIRRORS').encode('utf=
+-8')
+    fout =3D+ 'PREMIRRORS =3D "\ \n'
+    for mirror in premirrors:.....
+
+I think this should do what you're looking for.
+
+> Thanks,
+> Bryan
+>
+
+--=20
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
