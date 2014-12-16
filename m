@@ -1,49 +1,37 @@
-Return-Path: <fabriciolelis@gmail.com>
+Return-Path: <matt.schuckmann@planar.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1F9A1E009A0; Mon, 15 Dec 2014 12:23:58 -0800 (PST)
+	id 54D6DE009B9; Mon, 15 Dec 2014 16:09:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (fabriciolelis[at]gmail.com)
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [63.128.21.105 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.177 listed in list.dnswl.org]
-Received: from mail-ig0-f177.google.com (mail-ig0-f177.google.com
-	[209.85.213.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1E69E0093F
-	for <yocto@yoctoproject.org>; Mon, 15 Dec 2014 12:23:55 -0800 (PST)
-Received: by mail-ig0-f177.google.com with SMTP id z20so5764082igj.10
-	for <yocto@yoctoproject.org>; Mon, 15 Dec 2014 12:23:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=XT20WConNlAW/dg26tUghy0SYYNQKDSbRwNiYVWE4zA=;
-	b=n1qNHmBvTXSehZX4kiY6luNblHdhs/OZnQJtNF1mde8Y37HThkpjukkWrZzHI109d6
-	4C3csVrlIAWp3olY8jgKwAGmUJaXGJt+SdZDjoN8lRg3Gyhxc54/+iFuVmUb+4QNQSyH
-	X4zZD4WuNpfdqIEt5MBSdptDLmKdxYxSSyP/W0MawBezTjjVqnyjIss06ReG9sgSPSQ+
-	50ItpTNkLFFBv5O2JPktgl6530y5C2tXxZEF1hRC2Z6CoOmqb59YrzVuY1KhnQk4+8OK
-	9cCd3tEFhpcxWapE/awb62UdaLay7NBknVLyiRnl/d7RsddmdSUte3fH9xoPxvjRmf5f
-	RzTw==
-X-Received: by 10.50.154.74 with SMTP id vm10mr15931166igb.1.1418675035058;
-	Mon, 15 Dec 2014 12:23:55 -0800 (PST)
+Received: from us-smtp-delivery-105.mimecast.com
+	(us-smtp-delivery-105.mimecast.com [63.128.21.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 065C1E009B2
+	for <yocto@yoctoproject.org>; Mon, 15 Dec 2014 16:09:02 -0800 (PST)
+Received: from msxbvt03.planar.net (199.244.171.48 [199.244.171.48]) by
+	us-mta-13.us.mimecast.lan; Mon, 15 Dec 2014 19:07:51 -0500
+Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
+	with mapi; Mon, 15 Dec 2014 16:07:50 -0800
+From: Matt Schuckmann <Matt.Schuckmann@planar.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Mon, 15 Dec 2014 16:07:49 -0800
+Thread-Topic: PHP recipe do_install() function
+Thread-Index: AdAYxFQpG2SaS6JXSMKThvORlqIZAQ==
+Message-ID: <4B07ADD556F70043925DA2E9C5D4346D2FDB5E697E@MSXBEBVT12.planar.net>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-Received: by 10.50.31.227 with HTTP; Mon, 15 Dec 2014 12:23:14 -0800 (PST)
-From: =?UTF-8?B?RmFicsOtY2lvIEzDqWxpcw==?= <fabriciolelis@gmail.com>
-Date: Mon, 15 Dec 2014 17:23:14 -0300
-Message-ID: <CAFpUbKh9m1KwFaZwAhO3g7wy5pvMKRgiG-2ewpN1sdHzC-cB0g@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: (No subject)
+X-MC-Unique: 5gkt0ARxQVKTthhUKpY9Gg-1
+Subject: PHP recipe do_install() function
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,42 +43,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Dec 2014 20:23:58 -0000
-Content-Type: multipart/alternative; boundary=047d7bd6af408443c8050a4705a0
-
---047d7bd6af408443c8050a4705a0
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 16 Dec 2014 00:09:04 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset=WINDOWS-1252
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+I I'm trying to understand this snippet from the php recipe
+do_install_append_class-target() {
+    install -d ${D}/${sysconfdir}/
+    if [ -d ${D}/${STAGING_DIR_NATIVE}/${sysconfdir} ];then
+         mv ${D}/${STAGING_DIR_NATIVE}/${sysconfdir}/* ${D}/${sysconfdir}/
+    fi
+    rm -rf ${D}/${TMPDIR}
+    rm -rf ${D}/.registry
+    rm -rf ${D}/.channels
+    rm -rf ${D}/.[a-z]*
+    rm -rf ${D}/var
+    rm -f  ${D}/${sysconfdir}/php-fpm.conf.default
+    sed -i 's:${STAGING_DIR_NATIVE}::g' ${D}/${sysconfdir}/pear.conf
+    install -m 0644 ${WORKDIR}/php-fpm.conf ${D}/${sysconfdir}/php-fpm.conf
+    install -d ${D}/${sysconfdir}/apache2/conf.d
+    install -m 0644 ${WORKDIR}/php-fpm-apache.conf ${D}/${sysconfdir}/apach=
+e2/conf.d/php-fpm.conf
+    install -d ${D}${sysconfdir}/init.d
+    sed -i 's:=3D/usr/sbin:=3D${sbindir}:g' ${B}/sapi/fpm/init.d.php-fpm
+    sed -i 's:=3D/etc:=3D${sysconfdir}:g' ${B}/sapi/fpm/init.d.php-fpm
+    sed -i 's:=3D/var:=3D${localstatedir}:g' ${B}/sapi/fpm/init.d.php-fpm
+    install -m 0755 ${B}/sapi/fpm/init.d.php-fpm ${D}${sysconfdir}/init.d/p=
+hp-fpm
+    TMP=3D`dirname ${D}/${TMPDIR}`
+    while test ${TMP} !=3D ${D}; do
+        rmdir ${TMP}
+        TMP=3D`dirname ${TMP}`;
+    done
+}
 
-I have this problem:
+I've written a bbappend for php that removes some of the options that I don=
+'t need and I'm having a problem with the "rmdir ${TMP}" line failing sayin=
+g that the file or directory doesn't exist. Reading this function in its en=
+tirety ${TMP} shouldn't exist and this recipe shouldn't ever work because $=
+{D}/${TMPDIR} has already been forcefully and recursively removed up at the=
+ top of the function.=20
 
-Assuming /home/fabricio/qemuarm-sato is an nfs rootfs
-Error: conflicting FSTYPE types [/home/fabricio/qemuarm-sato] and nfs
+Am I missing something here?=20
 
-Anybody can help me?
+Thanks,=20
+Matt S.=20
 
-Thanks in advance!
 
---=20
-Fabr=C3=ADcio Gutemberg L=C3=A9lis de Melo
-Master in Computer Science at UFCG
-http://fabriciolelis.googlepages.com/
-
---047d7bd6af408443c8050a4705a0
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>I have this problem:</div><div><br>=
-</div><div>Assuming /home/fabricio/qemuarm-sato is an nfs rootfs</div><div>=
-Error: conflicting FSTYPE types [/home/fabricio/qemuarm-sato] and nfs</div>=
-<div><br></div><div>Anybody can help me?</div><div><br></div><div>Thanks in=
- advance!<br clear=3D"all"><div><br></div>-- <br><div class=3D"gmail_signat=
-ure"><div dir=3D"ltr">Fabr=C3=ADcio Gutemberg L=C3=A9lis de Melo<br>Master =
-in Computer Science at UFCG<br><a href=3D"http://fabriciolelis.googlepages.=
-com/" target=3D"_blank">http://fabriciolelis.googlepages.com/</a><br></div>=
-</div>
-</div></div>
-
---047d7bd6af408443c8050a4705a0--
