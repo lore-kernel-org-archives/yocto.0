@@ -1,47 +1,49 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C75CE00A99; Tue, 16 Dec 2014 07:57:36 -0800 (PST)
+	id B66D7E00A9A; Tue, 16 Dec 2014 08:16:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.46 listed in list.dnswl.org]
-Received: from mail-qg0-f46.google.com (mail-qg0-f46.google.com
-	[209.85.192.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D55F5E008FB
-	for <yocto@yoctoproject.org>; Tue, 16 Dec 2014 07:57:24 -0800 (PST)
-Received: by mail-qg0-f46.google.com with SMTP id q107so8253389qgd.33
-	for <yocto@yoctoproject.org>; Tue, 16 Dec 2014 07:57:24 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=Ts+XheenGVoH960THIFYtRn+U0qr62NkclpLFN7/o6M=;
-	b=AouyqWqIDNt6MGmSxI2RFuPhF5P3mUNUDVD/kTKTzzvkP+E4oqPh2RPY1vMuHzqDzj
-	+u4TdR/6OUn+bF0XPNmN4Xmo5BZqZgcz3RgIDh221iVJpCQyL9a3+8aiD+/S59MLrCsZ
-	7cySM4BOxsftrIZy+QrGhcgT4+7ey1vZtmfZAqXsE/qq0AAr5rHMlBzE+GyQz67spcM9
-	kSVU1Yw0k392yPvwqRVAIV0FF3b6BI2S5OvIDcvy6VPVb4tDKuSW9goFq290TNFNijzr
-	S7gVH2aegeX6UC+pwneYycBbN2CvgDA5DJfBX0YHthfVP3iywLPo8wWxDzYSTn0vAnCy
-	eNug==
-X-Gm-Message-State: ALoCoQmxmn6deW4ih29gTuveA/a6oWOC3jAMG/MJBVj2Yk0gv03acVZJvvKkz+ZFBXzsD6AjpDmD
-X-Received: by 10.229.61.5 with SMTP id r5mr7716869qch.28.1418745443607; Tue,
-	16 Dec 2014 07:57:23 -0800 (PST)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EB51E008FB
+	for <yocto@yoctoproject.org>; Tue, 16 Dec 2014 08:15:56 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 16 Dec 2014 08:12:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.07,587,1413270000"; 
+	d="scan'208,217";a="648542289"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by fmsmga002.fm.intel.com with ESMTP; 16 Dec 2014 08:12:41 -0800
+Received: from orsmsx113.amr.corp.intel.com (10.22.240.9) by
+	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
+	(TLS) id 14.3.195.1; Tue, 16 Dec 2014 08:12:41 -0800
+Received: from fmsmsx115.amr.corp.intel.com (10.18.116.19) by
+	ORSMSX113.amr.corp.intel.com (10.22.240.9) with Microsoft SMTP Server
+	(TLS) id 14.3.195.1; Tue, 16 Dec 2014 08:12:41 -0800
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.106]) by
+	fmsmsx115.amr.corp.intel.com ([169.254.4.149]) with mapi id
+	14.03.0195.001; Tue, 16 Dec 2014 08:12:41 -0800
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, Dec.
+	2, 2014 8:00 AM US Pacific Time
+Thread-Index: AdAZSx0y4JF4VlkwQOu0V8hWd2QDPg==
+Date: Tue, 16 Dec 2014 16:12:39 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E553663C3@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.106]
 MIME-Version: 1.0
-Received: by 10.140.96.166 with HTTP; Tue, 16 Dec 2014 07:57:03 -0800 (PST)
-In-Reply-To: <m6cst1$i29$1@ger.gmane.org>
-References: <m6cst1$i29$1@ger.gmane.org>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 16 Dec 2014 15:57:03 +0000
-Message-ID: <CAJTo0LY1GVKLXUcQ76NN8iikaCz3z8ct60OL+cgw-WtikKvpxA@mail.gmail.com>
-To: Robert Berger <gmane@reliableembeddedsystems.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to properly add new qemu target + testimage support?
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, Dec. 2, 2014 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,65 +55,318 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Dec 2014 15:57:36 -0000
-Content-Type: multipart/alternative; boundary=001a1132e4b43198ac050a576a1d
+X-List-Received-Date: Tue, 16 Dec 2014 16:16:01 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E553663C3fmsmsx111amrcor_"
 
---001a1132e4b43198ac050a576a1d
-Content-Type: text/plain; charset=UTF-8
-
-On 11 December 2014 at 19:56, Robert Berger <
-gmane@reliableembeddedsystems.com> wrote:
->
-> I hacked together a qemu target which supports vexpress-a9.
->
-> In order to get
->
-> core-image-minimal -c testimage
->
-> to work as well I had to cook
->
-> meta/lib/oeqa/utils/qemurunner.py
-> scripts/runqemu
-> scripts/runqemu-internal
->
-> This does not seem to be a generic way to do such a thing.
->
-
-You're right.  We've got a bug for this (
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=4827) but it's not been
-done yet.  For now, hacking the scripts is the only way to do this.
-
-Ross
-
---001a1132e4b43198ac050a576a1d
-Content-Type: text/html; charset=UTF-8
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E553663C3fmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 11 December 2014 at 19:56, Robert Berger <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:gmane@reliableembeddedsystems.com" target=3D"_blank">gmane@relia=
-bleembeddedsystems.com</a>&gt;</span> wrote:<blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-colo=
-r:rgb(204,204,204);border-left-style:solid;padding-left:1ex"><div id=3D":1b=
-d" class=3D"" style=3D"overflow:hidden">I hacked together a qemu target whi=
-ch supports vexpress-a9.<br>
-<br>
-In order to get<br>
-<br>
-core-image-minimal -c testimage<br>
-<br>
-to work as well I had to cook<br>
-<br>
-meta/lib/oeqa/utils/qemurunner.py<br>
-scripts/runqemu<br>
-scripts/runqemu-internal<br>
-<br>
-This does not seem to be a generic way to do such a thing.<br></div></block=
-quote></div><div class=3D"gmail_extra"><br></div>You&#39;re right.=C2=A0 We=
-&#39;ve got a bug for this (<a href=3D"https://bugzilla.yoctoproject.org/sh=
-ow_bug.cgi?id=3D4827">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D4=
-827</a>) but it&#39;s not been done yet.=C2=A0 For now, hacking the scripts=
- is the only way to do this.<br></div><div class=3D"gmail_extra"><br></div>=
-<div class=3D"gmail_extra">Ross</div></div>
+Attendees: Richard, Stephen, Saul, Benjamin, Armin, Tom, Sona, Alex G, Joe,=
+ Denys, Bruce, Alimon, Ross
 
---001a1132e4b43198ac050a576a1d--
+
+
+* Opens collection - 5 min (Stephen)
+
+* Yocto Project status - 5 min (Stephen/team)
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.8_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_1.8_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_1.8_Features
+
+YP 1.8 M1 is out of QA and looks good for release this week.
+
+YP 1.7.1 is targeted for Jan. 5-6, 2015
+
+YP 1.8 M2 is targeted to be built on Jan. 13-14, 2015
+
+YP 1.6.3 is collecting patches but no target date yet.
+
+YP 1.5.4 was released last week.
+
+* SWAT team rotation: Nitin -> Beth
+
+https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+
+* Opens - 10 min
+
+Stephen - No meeting planned for the 30th.  Next regular meeting is Jan. 13=
+th.
+
+* Team Sharing - 10 min
+
+Richard - A major change in the build process has been proposed and this co=
+uld cause some issues, but it should improve the speed and efficiency of th=
+e build process.   This will be in YP 1.8 M2.   If you find issues please r=
+eport them quickly.
+
+Armin - If you have any patches for 1.7.1 insure they are into Armin and on=
+ the mailing list ASAP.
+
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:          (503) 712-0534
+*    Cell:                                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E553663C3fmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
+icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
+:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
+uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
+t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
+m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
+t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
+:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
+soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
+icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
+schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
+point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
+/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
+=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
+schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
+.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
+/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
+://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
+repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
+ xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
+schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
+/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
+ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
+p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
+/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
+mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
+crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
+s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
+ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
+om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
+ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
+partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
+06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
+6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
+deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
+Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
+st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-language:ZH-CN;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Attendees: Richard, Stephen, Saul, Benjamin, Armin=
+, Tom, Sona, Alex G, Joe, Denys, Bruce, Alimon, Ross<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
+pan></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_Project_v1.8_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+8_Status</a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_1.8_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.8_Schedule</a><o=
+:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_1.8_Features">https://wiki.yoctoproject.org/wiki/Yocto_1.8_Features</a><o=
+:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">YP 1.8 M1 is out of QA and looks good for release =
+this week.<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">YP 1.7.1 is targeted for Jan. 5-6, 2015<o:p></o:p>=
+</span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">YP 1.8 M2 is targeted to be built on Jan. 13-14, 2=
+015<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">YP 1.6.3 is collecting patches but no target date =
+yet.<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">YP 1.5.4 was released last week.<o:p></o:p></span>=
+</p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* SWAT team rotation: Nitin -&gt; Beth<o:p></o:p><=
+/span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_Build_Failure_Swat_Team">https://wiki.yoctoproject.org/wiki/Yocto_Build_F=
+ailure_Swat_Team</a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens - 10 min
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Stephen &#8211; No meeting planned for the 30<sup>=
+th</sup>.&nbsp; Next regular meeting is Jan. 13<sup>th</sup>.
+<o:p></o:p></span></p>
+<div style=3D"border:none;border-bottom:solid windowtext 1.0pt;padding:0in =
+0in 1.0pt 0in">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Richard &#8211; A major change in the build proces=
+s has been proposed and this could cause some issues, but it should improve=
+ the speed and efficiency of the build process.&nbsp;&nbsp;
+ This will be in YP 1.8 M2.&nbsp;&nbsp; If you find issues please report th=
+em quickly.<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Armin &#8211; If you have any patches for 1.7.1 in=
+sure they are into Armin and on the mailing list ASAP.
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
+span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
+rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
+uot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E553663C3fmsmsx111amrcor_--
