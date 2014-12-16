@@ -1,49 +1,38 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <sona.sarmadi@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C5467E009B0; Mon, 15 Dec 2014 23:07:12 -0800 (PST)
+	id 8E29EE00A10; Tue, 16 Dec 2014 05:58:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00, HTML_IMAGE_ONLY_28, 
+	HTML_MESSAGE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41FA3E00905
-	for <yocto@yoctoproject.org>; Mon, 15 Dec 2014 23:06:59 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 15 Dec 2014 23:06:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,584,1413270000"; 
-	d="scan'208,217";a="648277253"
-Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
-	by fmsmga002.fm.intel.com with ESMTP; 15 Dec 2014 23:06:58 -0800
-Received: from orsmsx113.amr.corp.intel.com (10.22.240.9) by
-	ORSMSX109.amr.corp.intel.com (10.22.240.7) with Microsoft SMTP Server
-	(TLS) id 14.3.195.1; Mon, 15 Dec 2014 23:06:58 -0800
-Received: from fmsmsx112.amr.corp.intel.com (10.18.116.6) by
-	ORSMSX113.amr.corp.intel.com (10.22.240.9) with Microsoft SMTP Server
-	(TLS) id 14.3.195.1; Mon, 15 Dec 2014 23:06:57 -0800
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.106]) by
-	FMSMSX112.amr.corp.intel.com ([10.18.116.6]) with mapi id
-	14.03.0195.001; Mon, 15 Dec 2014 23:06:56 -0800
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, Dec.
-	2, 2014 8:00 AM US Pacific Time
-Thread-Index: AdAY/uAfOVtsEEwxSvKP2edpRSvmZA==
-Date: Tue, 16 Dec 2014 07:06:55 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E55365D77@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
+	* 1.4 HTML_IMAGE_ONLY_28 BODY: HTML: images with 2400-2800 bytes of
+	words *  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 8AFF5E009E2;
+	Tue, 16 Dec 2014 05:58:09 -0800 (PST)
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
+	14.03.0158.001; Tue, 16 Dec 2014 14:58:04 +0100
+From: Sona Sarmadi <sona.sarmadi@enea.com>
+To: "meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>,
+	"zhenhua.luo@freescale.com" <zhenhua.luo@freescale.com>, Otavio Salvador
+	<otavio@ossystems.com.br>
+Thread-Topic: meta-fsl-ppc uses Openssl 1.0.1g in master
+Thread-Index: AdAZN1Z4a+Q6OnPDSp63F686y6cGpg==
+Date: Tue, 16 Dec 2014 13:58:03 +0000
+Message-ID: <3230301C09DEF9499B442BBE162C5E48257EA92F@SESTOEX04.enea.se>
+Accept-Language: sv-SE, en-US
+X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.106]
+x-originating-ip: [172.16.142.231]
 MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, Dec. 2, 2014 8:00 AM US Pacific Time
+Cc: "Paul Eggleton
+	\(paul.eggleton@linux.intel.com\)" <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: meta-fsl-ppc uses Openssl 1.0.1g in master
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,330 +44,175 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Dec 2014 07:07:12 -0000
+X-List-Received-Date: Tue, 16 Dec 2014 13:58:16 -0000
+X-Groupsio-MsgNum: 22640
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55365D77fmsmsx111amrcor_"
+Content-Type: multipart/related;
+	boundary="_004_3230301C09DEF9499B442BBE162C5E48257EA92FSESTOEX04enease_";
+	type="multipart/alternative"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55365D77fmsmsx111amrcor_
+--_004_3230301C09DEF9499B442BBE162C5E48257EA92FSESTOEX04enease_
+Content-Type: multipart/alternative;
+	boundary="_000_3230301C09DEF9499B442BBE162C5E48257EA92FSESTOEX04enease_"
+
+--_000_3230301C09DEF9499B442BBE162C5E48257EA92FSESTOEX04enease_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Tuesday, December 16, 2014 8:00 AM US Pacific Time
+Hi guys,
+
+Is there any specific reason why openssl 1.0.1g is used by default? Yocto i=
+s using 1.0.1j in master to address some security issues (SSLv3 protocol vu=
+lnerability). If there is a strong reason to stay on 1.0.1g, I suggest we a=
+pply sslv3 patches  otherwise we just remove this line.
+
+https://git.yoctoproject.org/cgit/cgit.cgi/meta-fsl-ppc/tree/conf/machine/i=
+nclude/qoriq-default-versions.inc
+
+PREFERRED_VERSION_openssl =3D "1.0.1g"
+
+Cheers
+Sona
+
+Sona Sarmadi
+Software Engineer/Security Responsible for Enea Linux
+Enea
+Jan Stenbecks torg 17,
+Box 1033, SE-164 21 Kista, Sweden
+Direct: +46 8 5071  4475
+Mobile: +46 70 971 4475
+sona.sarmadi@enea.com<mailto:sona.sarmadi@enea.com>
+www.enea.com<http://www.enea.com/>
+
+ [cid:image002.jpg@01CFDC00.44AA35B0]
+
+This message, including attachments, is CONFIDENTIAL. It may also be privil=
+eged or otherwise protected by law. If you received this email by mistake p=
+lease let us know by reply and then delete it from your system; you should =
+not copy it or disclose its contents to anyone.
 
 
 
-Agenda:
 
-
-
-* Opens collection - 5 min (Stephen)
-
-* Yocto Project status - 5 min (Stephen/team)
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.8_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.8_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.8_Features
-
-* SWAT team rotation: Cristian -> Nitin
-
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-* Opens - 10 min
-
-* Team Sharing - 10 min
-
-
-
-
-
-We encourage people attending the meeting to logon the Yocto Project IRC ch=
-ancel during the meeting (optional):
-
-
-
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
-
-
-
-Conference Details:
-
-Company:           WIND RIVER SYS
-
-Ready-Access Number: 8007302996/9139049836
-
-Access Code:     2705751
-
-
-For International numbers see: https://www.yoctoproject.org/tools-resources=
-/community/weekly-technical-call
-
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55365D77fmsmsx111amrcor_
+--_000_3230301C09DEF9499B442BBE162C5E48257EA92FSESTOEX04enease_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<html>
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";
-	mso-fareast-language:ZH-CN;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
 </head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Tuesday, December 16, 2014 8:00 AM US Pacific Time=
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Project_v1.8_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-8_Status</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.8_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.8_Schedule</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.8_Features">https://wiki.yoctoproject.org/wiki/Yocto_1.8_Features</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* SWAT team rotation: Cristian -&gt; Nitin<o:p></o=
-:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Build_Failure_Swat_Team">https://wiki.yoctoproject.org/wiki/Yocto_Build_F=
-ailure_Swat_Team</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens - 10 min
-<o:p></o:p></span></p>
-<div style=3D"border:none;border-bottom:solid windowtext 1.0pt;padding:0in =
-0in 1.0pt 0in">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-</div>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">We encourage people attending the meeting to logo=
-n the Yocto Project IRC chancel during the meeting (optional):<o:p></o:p></=
-p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Yocto IRC: <a href=3D"http://webchat.freenode.net=
-/?channels=3D#yocto">
-http://webchat.freenode.net/?channels=3D#yocto</a><o:p></o:p></p>
-<p class=3D"MsoPlainText">IRC Tutorial: <a href=3D"http://www.irchelp.org/i=
-rchelp/irctutorial.html">
-http://www.irchelp.org/irchelp/irctutorial.html</a> <o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Conference Details:<o:p></o:p></p>
-<p class=3D"MsoPlainText">Company:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; WIND RIVER SYS<o:p></o:p></p>
-<p class=3D"MsoPlainText">Ready-Access Number: 8007302996/9139049836<o:p></=
-o:p></p>
-<p class=3D"MsoPlainText">Access Code:&nbsp;&nbsp;&nbsp;&nbsp; 2705751<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
-Verdana&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span><=
-/b></p>
-<p class=3D"MsoPlainText">For International numbers see: <a href=3D"https:/=
-/www.yoctoproject.org/tools-resources/community/weekly-technical-call">
-https://www.yoctoproject.org/tools-resources/community/weekly-technical-cal=
-l</a><o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
+<body>
+<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
+<div>Hi guys,</div>
+<div>&nbsp;</div>
+<div>Is there any specific reason why openssl 1.0.1g is used by default? Yo=
+cto is using 1.0.1j in master to address some security issues (SSLv3 protoc=
+ol vulnerability). If there is a strong reason to stay on 1.0.1g, I suggest=
+ we apply sslv3 patches&nbsp; otherwise
+we just remove this line.</div>
+<div>&nbsp;</div>
+<div><a href=3D"https://git.yoctoproject.org/cgit/cgit.cgi/meta-fsl-ppc/tre=
+e/conf/machine/include/qoriq-default-versions.inc"><font color=3D"#0563C1">=
+<u>https://git.yoctoproject.org/cgit/cgit.cgi/meta-fsl-ppc/tree/conf/machin=
+e/include/qoriq-default-versions.inc</u></font></a></div>
+<div>&nbsp;</div>
+<div><font face=3D"Courier New" size=3D"2"><span style=3D"font-size:10pt;">=
+PREFERRED_VERSION_openssl =3D &quot;1.0.1g&quot;</span></font></div>
+<div>&nbsp;</div>
+<div>Cheers</div>
+<div>Sona</div>
+<div>&nbsp;</div>
+<div><font face=3D"Arial" size=3D"2"><span style=3D"font-size:10pt;">Sona S=
+armadi<br>
+
+<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">Software =
+Engineer/Security Responsible for Enea Linux<br>
+
+</span></font>Enea<br>
+
+Jan Stenbecks torg 17,<br>
+
+Box 1033, SE-164 21&nbsp;Kista,&nbsp;Sweden<br>
+
+Direct: &#43;46 8 5071&nbsp; 4475<br>
+
+Mobile: &#43;46 70 971 4475</span></font></div>
+<div><a href=3D"mailto:sona.sarmadi@enea.com"><font face=3D"Arial" size=3D"=
+2" color=3D"blue"><span style=3D"font-size:10pt;"><u>sona.sarmadi@enea.com<=
+/u></span></font></a><br>
+
+<a href=3D"http://www.enea.com/"><font face=3D"Arial" size=3D"2" color=3D"b=
+lue"><span style=3D"font-size:10pt;"><u>www.enea.com</u></span></font></a><=
+font face=3D"Arial" size=3D"2"><span style=3D"font-size:10pt;">
+<br>
+
+<br>
+
+</span></font><img src=3D"cid:image002.jpg@01CFDC00.44AA35B0"><img src=3D"c=
+id:F6FBF3EE362AD348B7FB00A79B5F6CEB@local"><br>
+
+<br>
+
+<font face=3D"Arial" size=3D"1"><span style=3D"font-size:7.5pt;">This messa=
+ge, includin</span></font><font face=3D"Arial" size=3D"1"><span style=3D"fo=
+nt-size:7.5pt;">g attachments, is CONFIDENTIAL. It may also be privileged o=
+r otherwise protected by law. If you received
+this email by mistake please let us know by reply and then delete it from y=
+our system; you should not copy it or disclose its contents to anyone.</spa=
+n></font></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+</span></font>
 </body>
 </html>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55365D77fmsmsx111amrcor_--
+--_000_3230301C09DEF9499B442BBE162C5E48257EA92FSESTOEX04enease_--
+
+--_004_3230301C09DEF9499B442BBE162C5E48257EA92FSESTOEX04enease_
+Content-Type: image/jpeg; name="Picture (Device Independent Bitmap) 1.jpg"
+Content-Description: Picture (Device Independent Bitmap) 1.jpg
+Content-Disposition: inline;
+	filename="Picture (Device Independent Bitmap) 1.jpg";
+	creation-date="Tue, 16 Dec 2014 13:58:03 GMT";
+	modification-date="Tue, 16 Dec 2014 13:58:03 GMT"
+Content-ID: <F6FBF3EE362AD348B7FB00A79B5F6CEB@local>
+Content-Transfer-Encoding: base64
+
+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
+
+--_004_3230301C09DEF9499B442BBE162C5E48257EA92FSESTOEX04enease_--
