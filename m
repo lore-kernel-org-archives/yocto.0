@@ -1,38 +1,30 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <pbarker@betafive.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9C66E00521; Wed, 17 Dec 2014 10:08:11 -0800 (PST)
+	id 2969AE00521; Wed, 17 Dec 2014 10:37:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F275BE002F9
-	for <yocto@yoctoproject.org>; Wed, 17 Dec 2014 10:08:09 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id sBHI82Yc019705
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL);
-	Wed, 17 Dec 2014 10:08:02 -0800 (PST)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 17 Dec 2014 10:08:02 -0800
-Message-ID: <5491C67B.7030901@windriver.com>
-Date: Wed, 17 Dec 2014 13:07:55 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+X-Greylist: delayed 546 seconds by postgrey-1.32 at yocto-www;
+	Wed, 17 Dec 2014 10:37:06 PST
+Received: from crash.betafive.co.uk (crash.betafive.co.uk [37.187.124.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0616AE002F9
+	for <yocto@yoctoproject.org>; Wed, 17 Dec 2014 10:37:06 -0800 (PST)
+Received: by crash.betafive.co.uk (Postfix, from userid 1000)
+	id 142AC3E1E82; Wed, 17 Dec 2014 18:28:40 +0000 (GMT)
+Date: Wed, 17 Dec 2014 18:28:40 +0000
+From: Paul Barker <paul@paulbarker.me.uk>
+To: Matt Schuckmann <Matt.Schuckmann@planar.com>
+Message-ID: <20141217182839.GA5250@crash.betafive.co.uk>
+References: <4B07ADD556F70043925DA2E9C5D4346D2FDB5625DA@MSXBEBVT12.planar.net>
 MIME-Version: 1.0
-To: Cody P Schafer <dev@codyps.com>
-References: <CAPoQQ-3eq6N6j2R=0b6q0k0DXQqh_vN7EZ6jD_4mxPXU61eNgA@mail.gmail.com>
-In-Reply-To: <CAPoQQ-3eq6N6j2R=0b6q0k0DXQqh_vN7EZ6jD_4mxPXU61eNgA@mail.gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: bump linux-yocto-dev to 3.18?
+In-Reply-To: <4B07ADD556F70043925DA2E9C5D4346D2FDB5625DA@MSXBEBVT12.planar.net>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Debugging opkg installs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,39 +36,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Dec 2014 18:08:11 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 17 Dec 2014 18:37:19 -0000
+X-Groupsio-MsgNum: 22666
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="YiEDa0DAkWCtVeE4"
+Content-Disposition: inline
 
-On 14-12-17 01:02 PM, Cody P Schafer wrote:
-> It looks like http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-dev/
-> is still sitting at 3.17.6, are their plans to merge the 3.18 changes?
->
-> Or does linux-yocto-dev wait on stable kernel releases?
-> Or is this blocked on something else I'm unaware of?
+--YiEDa0DAkWCtVeE4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I'm actually waiting for 3.19 at this point. If you look at the patch
-series I sent out last week, we were busy working on developer
-experience patches and integrating LTSI content.
+On Mon, Dec 08, 2014 at 10:17:37AM -0800, Matt Schuckmann wrote:
+> I'm looking for some tips on debugging package install problems.=20
+> Recently I've had a problem where edits to a pkg_postinst function in one=
+ of my recipes was not getting run when rebuilding my image. The only way I=
+ could get the pkg_postinst() function to run was to wipe out my complete o=
+penembedded build/tmp directory and let it rebuild everything from scratch =
+(and the sstate cache). I'd really like to understand what was going on her=
+e. My guess is there was some sort of flag somewhere that was telling the o=
+pkg to not run the postinst script for that package because it had already =
+been done once.=20
+>=20
+> It would also be nice to know how to run opkg installs locally on my dev =
+system to test out recipes but I haven't quite worked out the right tools i=
+n place on my dev system and or what the right commands are.
 
-There's also another activity to get linux-yocto-dev glued fully into
-the autobuilder to shake out bugs before I push the changes to the
-the main repositories.
+Hi Matt,
 
-Generally speaking, I don't merge each and every korg kernel into the
-development branches, with a one kernel jump after we do a release
-with a kernel (which in this case 3.17 comes with Yocto 1.8). And
-that is simply to allow the existing set of three kernels to settle
-before refreshing features, moving into another round of development
-and preparation for the next release kernel.
+I'm currently the maintainer of opkg so I can probably answer your question=
+s.
+I'm pretty busy at the minute though so sorry for the late reply.
+
+If you want to run opkg with more verbosity you can add the '-V4' argument =
+to
+the opkg invocation to run at the highest verbosity level. Within OpenEmbed=
+ded I
+think you need to append this to self.opkg_args in OpkgPM::__init__ in
+meta/lib/oe/package_manager.py to ensure the argument is passed when opkg is
+invoked to install packages into the rootfs. There is an OPKG_ARGS variable
+which can be set in local.conf and is referenced by the code which invokes =
+opkg,
+but arguments I've specified in OPKG_ARGS have not been correctly passed to=
+ opkg
+when I've ran builds. I've not had chance to debug why that variable doesn't
+work though.
+
+To install packages on your dev system you should be able to use the opkg b=
+inary
+created by the build of opkg-native. That should reside in
+tmp-glibc/sysroots/x86_64-linux/usr/bin/ within your build directory, thoug=
+h the
+exact path may change depending on the libc used and the host architecture.=
+ The
+opkg binary may be called 'opkg-cl'. You'll need to setup an opkg configura=
+tion
+file for use on the dev system and I'd suggest you do this by copying the
+contents of /etc/opkg/*.conf from your target system into a single conf fil=
+e on
+your dev system. You can pass '-f <path to opkg.conf>' to opkg to instruct =
+it to
+read from this new configuration file.
+
+That should get you started, any further questions just ask.
+
+>=20
+> Thanks,
+> Matt S.=20
+>=20
 
 Cheers,
 
-Bruce
+--=20
+Paul Barker
 
->
-> --
-> Cody
->
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
+--YiEDa0DAkWCtVeE4
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iQEcBAEBAgAGBQJUkctXAAoJEBwoJlo7UPQDuBQH/16BTN+ZM+Mi0MiC+J9Zclpo
+U+uyrVQjfVQterLi8qi0JsCeLoXJz8veJoqFPDbXrn83JZbE6j2CbICsEccf1mBO
+ZUjXRnQZd7a/owcFygn0KomG4GKWZnDVJbfN6aorPomFf7i4yHysae864S9bq8HP
+Jabg9IZhXcbTByKdiIrX0smxh1WEN/2vhYCA2WyfDU5p3nk0XyAUlPTJRiGv+6VV
+NtlgSfoGvnn6LLBVwDlEciZ9LtBFybEDVPkXaXnXSu693MbUhl8fGS9AVwjSoGvK
+uOE9rl4zrKlhRlId4aGb/p9bjXlw12c7zX3NmNZM1iUOOUQHcl2i28rFpDHI7kA=
+=1Dpw
+-----END PGP SIGNATURE-----
+
+--YiEDa0DAkWCtVeE4--
