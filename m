@@ -1,70 +1,41 @@
-Return-Path: <zhenhua.luo@freescale.com>
+Return-Path: <Neil.Wu@Emerson.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 08C43E00B5D; Tue, 16 Dec 2014 18:52:04 -0800 (PST)
+	id 53197E0089B; Wed, 17 Dec 2014 01:30:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [65.55.169.143 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [144.191.128.188 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from na01-bl2-obe.outbound.protection.outlook.com
-	(mail-bl2on0143.outbound.protection.outlook.com [65.55.169.143])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81529E00ABE;
-	Tue, 16 Dec 2014 18:51:53 -0800 (PST)
-Received: from CY1PR0301MB0617.namprd03.prod.outlook.com (25.160.142.24) by
-	CY1PR0301MB0844.namprd03.prod.outlook.com (25.160.163.150) with
-	Microsoft
-	SMTP Server (TLS) id 15.1.31.17; Wed, 17 Dec 2014 02:51:50 +0000
-Received: from CY1PR0301MB0715.namprd03.prod.outlook.com (25.160.159.145) by
-	CY1PR0301MB0617.namprd03.prod.outlook.com (25.160.142.24) with
-	Microsoft SMTP
-	Server (TLS) id 15.1.31.17; Wed, 17 Dec 2014 02:51:49 +0000
-Received: from CY1PR0301MB0715.namprd03.prod.outlook.com ([25.160.159.145]) by
-	CY1PR0301MB0715.namprd03.prod.outlook.com ([25.160.159.145]) with
-	mapi id 15.01.0031.000; Wed, 17 Dec 2014 02:51:49 +0000
-From: "zhenhua.luo@freescale.com" <zhenhua.luo@freescale.com>
-To: Fabio Estevam <festevam@gmail.com>, VIVEK VERMA <VIVEK.VERMA@kpit.com>
-Thread-Topic: [meta-freescale] meta-fsl-ppc uses Openssl 1.0.1g in master
-Thread-Index: AdAZN1Z4a+Q6OnPDSp63F686y6cGpgAAkGqAAAIgfYAAAHiNAAABkNgAABZm8qA=
-Date: Wed, 17 Dec 2014 02:51:48 +0000
-Message-ID: <CY1PR0301MB071586D90FD095452F5EE653E46D0@CY1PR0301MB0715.namprd03.prod.outlook.com>
-References: <3230301C09DEF9499B442BBE162C5E48257EA92F@SESTOEX04.enea.se>
-	<CAP9ODKq2d-rOH3Ud5MXNuxxZPjKKwpZ295j8be+_WHV6GomhCw@mail.gmail.com>
-	<3230301C09DEF9499B442BBE162C5E48257EAAEC@SESTOEX04.enea.se>
-	<7fefff1d862f4e9d8039fe81909a2de2@KCHJEXMBX02.kpit.com>
-	<CAOMZO5AS26p6MFm3vcVDs66QWpfUv=zgcZ0tbFRPWC_2U5xrxQ@mail.gmail.com>
-In-Reply-To: <CAOMZO5AS26p6MFm3vcVDs66QWpfUv=zgcZ0tbFRPWC_2U5xrxQ@mail.gmail.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from USSTLZ-PINFEZ04.extemr.org (usstlz-pinfez04.extemr.org
+	[144.191.128.188])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3FF6E003AB
+	for <yocto@yoctoproject.org>; Wed, 17 Dec 2014 01:30:26 -0800 (PST)
+Received: from USSTLZ-PMSG007.emrsn.org (10.16.72.189) by
+	USSTLZ-PINFEZ04.extemr.org (10.16.8.77) with Microsoft SMTP Server
+	(TLS) id 14.3.158.1; Wed, 17 Dec 2014 09:30:25 +0000
+Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.25]) by
+	USSTLZ-PMSG007.emrsn.org ([169.254.2.236]) with mapi id 14.03.0158.001;
+	Wed, 17 Dec 2014 09:30:25 +0000
+From: <Neil.Wu@Emerson.com>
+To: <yocto@yoctoproject.org>
+Thread-Topic: problem of toolchain install directrory
+Thread-Index: AQHQFRM5gTV0wiwU10CyeEmwiRVbQJyKIA2wgAlqp4A=
+Date: Wed, 17 Dec 2014 09:30:24 +0000
+Message-ID: <3204FE6663E1F14CAF4CA6928E60C8521E220F69@USSTLZ-PMSG012.emrsn.org>
+References: <20141211004713.GC4102@mentor.com>
+	<1077253035.5058800.1418282511482.JavaMail.yahoo@jws10079.mail.ne1.yahoo.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [192.88.158.211]
-authentication-results: gmail.com; dkim=none (message not signed)
-	header.d=none; gmail.com; dkim=none (message not signed) header.d=none; 
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:;SRVR:CY1PR0301MB0617;UriScan:;
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:;
-	SRVR:CY1PR0301MB0617; 
-x-forefront-prvs: 042857DBB5
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(199003)(13464003)(288314003)(189002)(24454002)(377454003)(53754006)(51704005)(2656002)(101416001)(120916001)(50986999)(40100003)(122556002)(54356999)(76176999)(74316001)(102836002)(66066001)(99286002)(20776003)(21056001)(2950100001)(62966003)(105586002)(2900100001)(54606007)(77156002)(230783001)(99396003)(64706001)(97736003)(93886004)(68736005)(19580405001)(92566001)(19580395003)(46102003)(87936001)(106356001)(33656002)(86362001)(4396001)(107046002)(15975445007)(54206007)(76576001)(31966008)(7059030);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:CY1PR0301MB0617;
-	H:CY1PR0301MB0715.namprd03.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+x-originating-ip: [10.16.75.1]
 MIME-Version: 1.0
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:;SRVR:CY1PR0301MB0844;
-X-OriginatorOrg: freescale.com
-Cc: Otavio Salvador <otavio@ossystems.com.br>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"Paul Eggleton \(paul.eggleton@linux.intel.com\)"
-	<paul.eggleton@linux.intel.com>,
-	"meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>,
-	"B18196@freescale.com" <B18196@freescale.com>
-Subject: Re: [meta-freescale] meta-fsl-ppc uses Openssl 1.0.1g in master
+Subject: problem of toolchain install directrory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,78 +47,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Dec 2014 02:52:04 -0000
+X-List-Received-Date: Wed, 17 Dec 2014 09:30:34 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/alternative;
+	boundary="_000_3204FE6663E1F14CAF4CA6928E60C8521E220F69USSTLZPMSG012em_"
 
-Hi all,=20
+--_000_3204FE6663E1F14CAF4CA6928E60C8521E220F69USSTLZPMSG012em_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Regarding the openssl version in fsl-ppc layer, as I commented in another e=
-mail, the openssl recipes in current master branch of fsl-ppc layer include=
-s some FSL specific patches, to ensure the package works on FSL PPC targets=
-, the recipes should be reserved currently. The FSL QorIQ SDK 1.7 will be r=
-eleased soon, openssl will be upgraded to 1.0.1i, the update of recipes wil=
-l be upstreamed to fsl-ppc layer after the SDK 1.7 release.  If there are s=
-ecurity fixes in 1.0.1j, but not in 1.0.1i, those patches should be backpor=
-ted to fsl-ppc layer.
+SGVsbG8gLGFsbA0KSSBidWlsZCB0aGUgdG9vbGNoYWluIHZpYSAgYml0YmFrZSBjb3JlLWltYWdl
+LW1pbmltYWwg4oCTYyBwb3B1bGF0ZV9zZGsuIFRoZW4gSSBpbnN0YWxsIHRoZSB0b29sY2hhaW4u
+DQoNCklmIEkgaW5zdGFsbCB0aGUgdG9vbGNoYWluIGluIGRlZmF1bHQgZGlyZWN0b3J5KGRlZmF1
+bHQ6IC9vcHQvcG9reS8xLjcuMSksIGV2ZXJ5dGhpbmcgaXMgb2suDQoNCkJ1dCwgICBpZiBJIG5v
+dCBpbnN0YWxsIGluIHRoZSBkZWZhdWx0IGRpcmVjdG9yeSwgaXQgd2lsbCBhcHBlYXJzIHRoZSBw
+cm9ibGVtIHRoYXQgY2Fu4oCZdCBmaW5kIHRoZSBzeXN0ZW0gaGVhZGVyIGZpbGVzLg0KRXhhbXBs
+ZTogc3RkaW8uaA0KDQpXaHkgaXMgdGhpcyA/IFdoZXRoZXIgSSBuZWVkIHRvIGRvIHNvbWUgb3Ro
+ZXIgb3BlcmF0aW9uLiAgSWYgeW91IGtub3cgcGxlYXNlIGhlbHAgbWUgISBUaGFuayB5b3UgdmVy
+eSBtdWNoLg0KDQpCZXN0IHdpc2hlcw0KTmVpbA0KDQo=
 
-With regard to the gstreamer usage for imx platforms, I don't know how the =
-openssl in fsl-ppc layer has influence for it? Since the PREFERRED_VERSION_=
-openssl =3D "1.0.1g" is defined for FSL QorIQ PPC targets only.=20
+--_000_3204FE6663E1F14CAF4CA6928E60C8521E220F69USSTLZPMSG012em_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTIgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+Pg0KPCEtLQ0KIC8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCiBAZm9udC1mYWNlDQoJe2ZvbnQtZmFt
+aWx5OlNpbVN1bjsNCglwYW5vc2UtMToyIDEgNiAwIDMgMSAxIDEgMSAxO30NCkBmb250LWZhY2UN
+Cgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAz
+IDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAx
+NSA1IDIgMiAyIDQgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJ
+cGFub3NlLTE6MiAxMSA2IDQgMyA1IDQgNCAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWls
+eToiXEBTaW1TdW4iOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KIC8qIFN0eWxl
+IERlZmluaXRpb25zICovDQogcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1h
+bA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIu
+MHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTpsaW5rLCBz
+cGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsN
+Cgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxp
+bmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxlOw0KCXRl
+eHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNvLXN0eWxl
+LXR5cGU6cGVyc29uYWw7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5zLXNlcmlmIjsNCglj
+b2xvcjojMUY0OTdEO30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNv
+bmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6
+IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsN
+Cglmb250LXNpemU6MTAuMHB0O30NCkBwYWdlIFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGlu
+Ow0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuU2VjdGlvbjENCgl7cGFn
+ZTpTZWN0aW9uMTt9DQotLT4NCjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQogPG86
+c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2Vu
+ZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KIDxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJl
+ZGl0Ij4NCiAgPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQogPC9vOnNoYXBlbGF5
+b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9
+ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iU2VjdGlvbjEiPg0KPGRpdj4NCjxk
+aXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1
+b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPkhlbGxvICxhbGw8bzpwPjwvbzpw
+Pjwvc3Bhbj48L2I+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNl
+cmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+SSBidWlsZCB0aGUgdG9vbGNoYWluIHZpYSZuYnNw
+OyBiaXRiYWtlIGNvcmUtaW1hZ2UtbWluaW1hbCDigJNjIHBvcHVsYXRlX3Nkay4gVGhlbiBJIGlu
+c3RhbGwgdGhlIHRvb2xjaGFpbi48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
+YWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj48bzpw
+PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90
+O3NhbnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj5JZiBJIGluc3RhbGwgdGhlIHRvb2xj
+aGFpbiBpbiBkZWZhdWx0IGRpcmVjdG9yeSg8L3NwYW4+PGk+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZTo5LjBwdDtmb250LWZhbWlseTomcXVvdDtDb3VyaWVyIE5ldyZxdW90OyI+ZGVmYXVsdDogL29w
+dC9wb2t5LzEuNy4xPC9zcGFuPjwvaT48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
+LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6
+IzFGNDk3RCI+KSwNCiBldmVyeXRoaW5nIGlzIG9rLiA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
+bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7DQpjb2xvcjoj
+MUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
+JnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj5CdXQsICZuYnNw
+OyZuYnNwO2lmIEkgbm90IGluc3RhbGwgaW4gdGhlIGRlZmF1bHQgZGlyZWN0b3J5LCBpdCB3aWxs
+IGFwcGVhcnMgdGhlIHByb2JsZW0gdGhhdCBjYW7igJl0IGZpbmQgdGhlIHN5c3RlbSBoZWFkZXIg
+ZmlsZXMuDQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
+LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj5FeGFtcGxlOiBzdGRpby5o
+DQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90
+O3NhbnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
+DQpjb2xvcjojMUY0OTdEIj5XaHkgaXMgdGhpcyA/IFdoZXRoZXIgSSBuZWVkIHRvIGRvIHNvbWUg
+b3RoZXIgb3BlcmF0aW9uLiAmbmJzcDtJZiB5b3Uga25vdyBwbGVhc2UgaGVscCBtZSAhIFRoYW5r
+IHlvdSB2ZXJ5IG11Y2guPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+PG86cD4mbmJz
+cDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5z
+LXNlcmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+QmVzdCB3aXNoZXM8bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
+DQpjb2xvcjojMUY0OTdEIj5OZWlsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+PG86
+cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+
+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-Best Regards,
-
-Zhenhua
-
-> -----Original Message-----
-> From: meta-freescale-bounces@yoctoproject.org [mailto:meta-freescale-
-> bounces@yoctoproject.org] On Behalf Of Fabio Estevam
-> Sent: Wednesday, December 17, 2014 12:06 AM
-> To: VIVEK VERMA
-> Cc: Otavio Salvador; yocto@yoctoproject.org; Paul Eggleton
-> (paul.eggleton@linux.intel.com); Saul Wold (sgw@linux.intel.com); meta-
-> freescale@yoctoproject.org
-> Subject: Re: [meta-freescale] meta-fsl-ppc uses Openssl 1.0.1g in master
->=20
-> On Tue, Dec 16, 2014 at 1:21 PM, VIVEK VERMA <VIVEK.VERMA@kpit.com>
-> wrote:
-> > Hi All,
-> >
-> > I am using gstreamer to play wma files but  I am getting the error as f=
-ollows.
->=20
-> You should have created a new thread about this issue.
->=20
->=20
-> > root@imx6dlsabresd:~# gst-launch -v playbin2 uri=3Dfile:///ano.wma
-> > Setting pipeline to PAUSED ...
-> > /GstPlayBin2:playbin20/GstURIDecodeBin:uridecodebin0:
-> > ring-buffer-max-size =3D 0
-> > /GstPlayBin2:playbin20/GstURIDecodeBin:uridecodebin0: buffer-size =3D -=
-1
-> > /GstPlayBin2:playbin20/GstURIDecodeBin:uridecodebin0: buffer-duration
-> > =3D -1
-> > /GstPlayBin2:playbin20/GstURIDecodeBin:uridecodebin0: use-buffering =3D
-> > FALSE
-> > /GstPlayBin2:playbin20/GstURIDecodeBin:uridecodebin0: download =3D FALS=
-E
-> > /GstPlayBin2:playbin20/GstURIDecodeBin:uridecodebin0: uri =3D
-> "file:///ano.wma"
-> > /GstPlayBin2:playbin20/GstURIDecodeBin:uridecodebin0: connection-speed
-> > =3D 0
-> > /GstPlayBin2:playbin20/GstURIDecodeBin:uridecodebin0: source =3D
-> > (GstFileSrc) source
-> > ERROR: Pipeline doesn't want to pause.
-> > ERROR: from element /GstURIDecodeBin:uridecodebin0/GstFileSrc:source:
-> Resource not found.
->=20
-> It can not find the file. You need to pass the full path, such as
-> uri=3Dfile:///home/user/ano.wma
-> --
-> _______________________________________________
-> meta-freescale mailing list
-> meta-freescale@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/meta-freescale
-
+--_000_3204FE6663E1F14CAF4CA6928E60C8521E220F69USSTLZPMSG012em_--
