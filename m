@@ -1,44 +1,56 @@
-Return-Path: <costin.c.constantin@intel.com>
+Return-Path: <dev@codyps.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 66BCEE0072A; Wed, 17 Dec 2014 07:38:31 -0800 (PST)
+	id 140CDE0072A; Wed, 17 Dec 2014 10:02:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.217.181 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09E58E00344
-	for <yocto@yoctoproject.org>; Wed, 17 Dec 2014 07:38:28 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 17 Dec 2014 07:38:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,594,1413270000"; d="scan'208";a="649185667"
-Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
-	by fmsmga002.fm.intel.com with ESMTP; 17 Dec 2014 07:38:26 -0800
-Received: from irsmsx101.ger.corp.intel.com ([169.254.1.126]) by
-	IRSMSX104.ger.corp.intel.com ([169.254.5.209]) with mapi id
-	14.03.0195.001; Wed, 17 Dec 2014 15:38:25 +0000
-From: "Constantin, Costin C" <costin.c.constantin@intel.com>
-To: Philip Balister <philip@balister.org>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] how to set static ip in linux
-Thread-Index: AQHQGgtJolPXa2ISvU+FI+HwyU1bXpyT5ysu
-Date: Wed, 17 Dec 2014 15:38:24 +0000
-Message-ID: <2B8B4B6BB45F5242AFEC714E022A4B4A27685170@IRSMSX101.ger.corp.intel.com>
-References: <2B8B4B6BB45F5242AFEC714E022A4B4A27680D8A@IRSMSX101.ger.corp.intel.com>,
-	<54919BEB.7070909@balister.org>
-In-Reply-To: <54919BEB.7070909@balister.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.3.86.135]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f181.google.com (mail-lb0-f181.google.com
+	[209.85.217.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EBAFE002F9
+	for <yocto@yoctoproject.org>; Wed, 17 Dec 2014 10:02:25 -0800 (PST)
+Received: by mail-lb0-f181.google.com with SMTP id l4so13446660lbv.12
+	for <yocto@yoctoproject.org>; Wed, 17 Dec 2014 10:02:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codyps.com; s=google;
+	h=mime-version:date:message-id:subject:from:to:cc:content-type;
+	bh=pDySNZuVPreDwQDFfLaaHzKXiyz0fZIcSF2+S7+etcU=;
+	b=C3xI/wofERt5ndF//3bWUoa/Sp4lXjuTCXouD6oW2DeByr1k1lzrJL8hO3OmtuqBbx
+	rWxBGGCnf+JSD3uWzTyazgOOCPcIZny9rH+cX9GegxZW4lg1+JHK68+mPLnIz6Rf5aeD
+	sSJschf1Tzx1SD0n1DxZT8pocaTZNOC1CG+KQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to:cc
+	:content-type;
+	bh=pDySNZuVPreDwQDFfLaaHzKXiyz0fZIcSF2+S7+etcU=;
+	b=RBEe3tnd9WjY+fmFcIgdYOPK82NLAePbsbRYizt8OXqBs/iJAVmE29/MHpsvAesbPS
+	BTCf6BYLa0JIsjk/nnIcODiF1hoWNn+rAweDLZKtlRWTK19+3aL8pi68CASihAu7JEH8
+	5sHFz56pmZNRyElSuHIoyhMyJ5UdT0fa0h3eLt8uV5vwIRmQdo6HcWFVGJmMYy2OFz1C
+	JIHtMbmbkKu7rvT+Py9XrNV8jG+bWgM77UH95dTJ3LDmv9zb05jEic3QEkuO7YiCPYDz
+	rZBLmAizm1KHMer9dtPQ11tU2ynI/L8dB7oo5LSUuD0CNBsWjiim4waMnW8IcFU+yYZ9
+	OwqQ==
+X-Gm-Message-State: ALoCoQnHJoew2n1pK6rrOi2bEkK89XrvKRiJYYL4hB3fPOE1GLr1speFBw/fGA97SVQyOxjWeCiv
 MIME-Version: 1.0
-Subject: Re: how to set static ip in linux
+X-Received: by 10.112.132.2 with SMTP id oq2mr42549325lbb.11.1418839344869;
+	Wed, 17 Dec 2014 10:02:24 -0800 (PST)
+Received: by 10.112.150.2 with HTTP; Wed, 17 Dec 2014 10:02:24 -0800 (PST)
+X-Originating-IP: [72.74.84.52]
+Date: Wed, 17 Dec 2014 13:02:24 -0500
+Message-ID: <CAPoQQ-3eq6N6j2R=0b6q0k0DXQqh_vN7EZ6jD_4mxPXU61eNgA@mail.gmail.com>
+From: Cody P Schafer <dev@codyps.com>
+To: bruce.ashfield@windriver.com
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: bump linux-yocto-dev to 3.18?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,70 +62,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Dec 2014 15:38:31 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 17 Dec 2014 18:02:29 -0000
+Content-Type: text/plain; charset=UTF-8
 
-... or easier, you can directly use the poky_dir/meta/recipes-core/init-ifu=
-pdown/init-ifupdown-1.0/interfaces to=0A=
-set up interfaces. An eg. would be:=0A=
-=0A=
-auto eth0=0A=
-iface eth0 inet static=0A=
-        address 192.168.1.100=0A=
-        netmask 255.255.255.0=0A=
-        network 192.168.1.0=0A=
-        gateway 192.168.1.1=0A=
-=0A=
-I personally used the already mentioned method for convenience, because i h=
-ad a lot to work with install script=0A=
-lately ... =0A=
-=0A=
-Costin Constantin=0A=
-Yocto QA team=0A=
-=0A=
-________________________________________=0A=
-From: Philip Balister [philip@balister.org]=0A=
-Sent: Wednesday, December 17, 2014 5:06 PM=0A=
-To: Constantin, Costin C; yocto@yoctoproject.org=0A=
-Subject: Re: [yocto] how to set static ip in linux=0A=
-=0A=
-I'd install a custom /etc/network/interfaces file via a bbappend or=0A=
-similar method. There is numerous examples in google of how to set up  a=0A=
-static Ip via the interfaces file.=0A=
-=0A=
-Philip=0A=
-=0A=
-On 12/16/2014 05:08 AM, Constantin, Costin C wrote:=0A=
-> Hello Sachin=0A=
->=0A=
-> The easiest way to do this is by modifying the install script. Here is ho=
-w:=0A=
-> Suppose you cloned poky into a local dir. on your HDD drive. I use Ubuntu=
- for this but you can use whatever certified OS (Fedora, Centos, OpenSuse) =
-just:=0A=
->=0A=
-> $ cd your_local_poky_dir=0A=
-> $ gedit meta/recipes-core/initrdscripts/files/init-install.sh=0A=
-> ...=0A=
-> #before the line containing "umount /tgt_root"   add the following=0A=
-> # interface=3D$(ls /sys/class/net | grep eth)=0A=
-> # echo "ifconfig $interface your_desired_ip netmask 255.255.255.0 up" >> =
-/tgt_root/etc/profile=0A=
-> #eg.:=0A=
-> interface=3D$(ls /sys/class/net | grep eth)=0A=
-> echo "ifconfig $interface 10.10.10.10 netmask 255.255.255.0 up" >> /tgt_r=
-oot/etc/profile=0A=
-> #after this comes=0A=
-> umount /tgt_root=0A=
-> ...=0A=
->=0A=
-> Regards,=0A=
->=0A=
-> Costin Constantin=0A=
-> Yocto QA team=0A=
->=0A=
->=0A=
->=0A=
+It looks like http://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto-dev/
+is still sitting at 3.17.6, are their plans to merge the 3.18 changes?
+
+Or does linux-yocto-dev wait on stable kernel releases?
+Or is this blocked on something else I'm unaware of?
+
+--
+Cody
 
