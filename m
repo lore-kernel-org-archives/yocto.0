@@ -1,69 +1,80 @@
-Return-Path: <just_abhi22@yahoo.co.in>
+Return-Path: <dwatkins@sierrawireless.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 156C7E003AB; Thu, 18 Dec 2014 11:13:38 -0800 (PST)
+	id 970BBE00521; Thu, 18 Dec 2014 11:44:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,
-	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (just_abhi22[at]yahoo.co.in)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [98.138.229.161 listed in list.dnswl.org]
-	* 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-	digit
-	*      (abhishek srivastava <just_abhi22[at]yahoo.co.in> )
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-	*      [score: 0.4603]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm39-vm1.bullet.mail.ne1.yahoo.com
-	(nm39-vm1.bullet.mail.ne1.yahoo.com [98.138.229.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5B48E002F9
-	for <yocto@yoctoproject.org>; Thu, 18 Dec 2014 11:13:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.co.in; s=s2048;
-	t=1418930014; bh=y9KpD/Pf7snc6WnGzdH/GorbSqReN3/i5VKPPa4ByNo=;
-	h=Date:From:Reply-To:To:Subject:From:Subject;
-	b=oyssuJ8xSS5MOOVy5+/CN1+3JCZaVMf0ChTRf1CuNjbc2t68I2jz79J/ptLQhgsgEHfvNJ4pKm91JIA7Cwvn1cCyTNfgzQ8wcD31V856VWBNjUcXtE7nmt4lrdqjPkWOAkl/lwb/hTtCESyi0k/5qIRyllojyw5PQsia+zJpOVblL+r7dfdczRoZcXLwK5IVOiZSF0wwrJOkIM+0EbUSMUvdMB//n5KVT9+Fj01oJilUfdJ68hFxbQFO8/5hG3aGwphAtnFbMBF/2q16i80AaXF9hryqqTooDNh/OkzS36URPkdPERRARp5YliZhzmAa3fve1si3sPkvs4pUqrg8Mw==
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s2048; d=yahoo.co.in;
-	b=CGXYczJ4BCC1UbKSMSR6p6Xsr4BGDPgGk+9fW0HwajQyB9Fuxz+FKzrcB//PyuPLXBbnE4uuGAxgeJ5AXXCrVGXRGXBCWqwGSbja7LJx5yRe+cOldhTWagWOJ3TtOsGhZtOl6mwUQD0LBd8wWG/BKWwKFbffi2Z9rmiLJganOPXUDGirt0aYqT4XyDA4w0tE0Lln07e0dsDtppLYLpy96FrUBx3v4r7eLDF6tSDksZ8r1JQgW2ZQvXZYlAB75NM+eiIyAMOV/78wkqg3a+biecQhUTZoATmPMgpbaSkOl9Tm+Mqpsgl2RqL/KfnqhLfoUiv+/q8UX5i3CqZFwj8Dbw==;
-Received: from [127.0.0.1] by nm39.bullet.mail.ne1.yahoo.com with NNFMP;
-	18 Dec 2014 19:13:34 -0000
-Received: from [98.138.100.112] by nm39.bullet.mail.ne1.yahoo.com with NNFMP;
-	18 Dec 2014 19:10:34 -0000
-Received: from [106.10.166.61] by tm103.bullet.mail.ne1.yahoo.com with NNFMP;
-	18 Dec 2014 19:10:34 -0000
-Received: from [106.10.150.23] by tm18.bullet.mail.sg3.yahoo.com with NNFMP;
-	18 Dec 2014 19:10:34 -0000
-Received: from [127.0.0.1] by omp1024.mail.sg3.yahoo.com with NNFMP;
-	18 Dec 2014 19:10:34 -0000
-X-Yahoo-Newman-Property: ymail-4
-X-Yahoo-Newman-Id: 107671.93033.bm@omp1024.mail.sg3.yahoo.com
-X-YMail-OSG: O02UdnkVM1nyvD.exwotC5GolHwBZB9pbVT8tqxUqr.7qkmBdJQc1r.l0SqT5ol
-	6f2vd1F7MNxy6onxCkdakJ4VZNmfab5bXOFIZfGoSS3.w_EmFdPyif1ZKYC0LwHvFfCyHnl7KQQ5
-	.ryJIF8Wy5iNstJgrKySkwXoEVE3ajcVAUHl.MxPTgcaIv_ZHZ88w4mW.nfL37WaYZgSqRUczgT.
-	DIuxUh9fRP2U8WLsGl5hKIM4C3sA9__tErwJSWmOcAlxtlp5VfY7pYUIy48dLgVbsdMmZKkXA.97
-	2tPxnApFvCk2fImbtCKtSoBaO8fm8xa.bH6g9xrQthYipZGuuVQTC4SLlonTTcPE1rAW9QtsLPRD
-	4DfXTnEEy6CfFt8Uo2MJsc0._Z0f19lAZQ2xfz7Hjdq3LsfgRFPDvn67iRRHvfTvJymACehtse0x
-	WEZ4t_6XX_fWXRoqmrA4Y7romVxlUkrQNJwwsyGsVVmrt1Oiw7dYXBM04KUBtw03tWNARzrP5Yye
-	pr5UhaAWGIV4U
-Received: by 106.10.196.90; Thu, 18 Dec 2014 19:10:33 +0000 
-Date: Thu, 18 Dec 2014 19:10:33 +0000 (UTC)
-From: abhishek srivastava <just_abhi22@yahoo.co.in>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [157.56.111.58 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+X-Greylist: delayed 2091 seconds by postgrey-1.32 at yocto-www;
+	Thu, 18 Dec 2014 11:44:07 PST
+Received: from na01-bn1-obe.outbound.protection.outlook.com
+	(mail-bn1bon0058.outbound.protection.outlook.com [157.56.111.58])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30C91E002F9
+	for <yocto@yoctoproject.org>; Thu, 18 Dec 2014 11:44:07 -0800 (PST)
+Received: from BLUPR02CA027.namprd02.prod.outlook.com (25.160.23.145) by
+	BLUPR02MB472.namprd02.prod.outlook.com (10.141.82.23) with Microsoft
+	SMTP Server (TLS) id 15.1.49.12; Thu, 18 Dec 2014 19:09:14 +0000
+Received: from BY2FFO11FD002.protection.gbl (2a01:111:f400:7c0c::177) by
+	BLUPR02CA027.outlook.office365.com (2a01:111:e400:8ad::17) with
+	Microsoft
+	SMTP Server (TLS) id 15.1.49.12 via Frontend Transport; Thu, 18 Dec 2014
+	19:09:14 +0000
+Received: from mail.sierrawireless.com (208.81.121.47) by
+	BY2FFO11FD002.mail.protection.outlook.com (10.1.14.124) with Microsoft
+	SMTP Server (TLS) id 15.1.26.17 via Frontend Transport;
+	Thu, 18 Dec 2014 19:09:13 +0000
+Received: from carmd-exchmb01.sierrawireless.local ([10.0.6.3]) by
+	carmd-exchhub02.sierrawireless.local ([::1]) with mapi; Thu, 18 Dec 2014
+	11:09:13 -0800
+From: Darcy Watkins <dwatkins@sierrawireless.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <1078450525.611902.1418929833293.JavaMail.yahoo@jws10942.mail.sg3.yahoo.com>
+Date: Thu, 18 Dec 2014 11:09:11 -0800
+Thread-Topic: Microcontroller Cross Compiler
+Thread-Index: AdAa8/1qejz+qCcXQDa3EoMqNt5lWQ==
+Message-ID: <8F90F944E50427428C60E12A34A309D239F6DB0EE8@carmd-exchmb01.sierrawireless.local>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-Subject: basic questions on LINUX costomization for raspberrypi
+X-EOPAttributedMessage: 0
+Received-SPF: Pass (protection.outlook.com: domain of sierrawireless.com
+	designates 208.81.121.47 as permitted sender)
+	receiver=protection.outlook.com; client-ip=208.81.121.47;
+	helo=mail.sierrawireless.com;
+Authentication-Results: spf=pass (sender IP is 208.81.121.47)
+	smtp.mailfrom=dwatkins@sierrawireless.com; 
+X-Forefront-Antispam-Report: CIP:208.81.121.47; CTRY:CA; IPV:NLI; EFV:NLI;
+	SFV:NSPM;
+	SFS:(10009020)(6009001)(438002)(189002)(51874003)(199003)(98436002)(23756003)(99396003)(106466001)(120916001)(110136001)(107046002)(229853001)(107886001)(2351001)(31966008)(33656002)(21056001)(92566001)(2656002)(86362001)(19580395003)(87936001)(19580405001)(6806004)(50466002)(47776003)(64706001)(20776003)(54356999)(15974865002)(50986999)(450100001)(2900100001)(104016003)(62966003)(2920100001)(2930100002)(77156002)(102836002)(2501002)(77096005)(46102003)(55846006)(4396001)(7099022)(18886075002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR02MB472;
+	H:mail.sierrawireless.com; FPR:; SPF:Pass; MLV:ovrnspm;
+	PTR:spf.sierrawireless.com; MX:1; A:1; LANG:en; 
+X-Microsoft-Antispam: UriScan:;
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:;SRVR:BLUPR02MB472;
+X-Exchange-Antispam-Report-Test: UriScan:;
+X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0; RULEID:(601004);
+	SRVR:BLUPR02MB472; 
+X-Forefront-PRVS: 042957ACD7
+X-Exchange-Antispam-Report-CFA-Test: BCL:0;PCL:0;RULEID:;SRVR:BLUPR02MB472;
+X-OriginatorOrg: SierraWirelessInc.onmicrosoft.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2014 19:09:13.5782 (UTC)
+X-MS-Exchange-CrossTenant-Id: 08059a4c-2486-43dd-89e3-3a747e0dcbe8
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=08059a4c-2486-43dd-89e3-3a747e0dcbe8;
+	Ip=[208.81.121.47]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLUPR02MB472
+Subject: Microcontroller Cross Compiler
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: abhishek srivastava <just_abhi22@yahoo.co.in>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -72,52 +83,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Dec 2014 19:13:38 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_611901_2101305080.1418929833289"
-
-------=_Part_611901_2101305080.1418929833289
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 18 Dec 2014 19:44:19 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi allPlease answer to these questions regarding LINUX kernel image build u=
-sing yocto project:
-1) What basic LINUX packages needed for raspberrypi ? any list for referenc=
-e ?=20
-2) What if I want to add any package after my image is build ? Do i need to=
- repeat the complete process again?=20
-3) How can i add any driver (ex: TFT driver) to the build kernel image?=20
-4) How to add any desired applications to packages?
-Thank you for your help
-regards
-=C2=A0Abhishek
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=20
+Hello,
 
-------=_Part_611901_2101305080.1418929833289
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+In my target system I have a microcontroller (MCU) that handles some I/O, p=
+ower supplies and system boot up to the point of taking the main CPU out of=
+ reset.  At present, we build the MCU firmware from source and then the bin=
+ary file is packaged to be used as payload with an MCU firmware update util=
+ity.
 
-<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
-lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, Sans-Serif;fo=
-nt-size:14px"><div id=3D"yui_3_16_0_1_1418883295260_32963">Hi allPlease ans=
-wer to these questions regarding LINUX kernel image build using yocto proje=
-ct:<br style=3D"" class=3D"">1) What basic LINUX packages needed for raspbe=
-rrypi ? any list for reference ? <br style=3D"" class=3D"">2) What if I wan=
-t to add any package after my image is build ? Do i need to repeat the comp=
-lete process again? <br style=3D"" class=3D"">3) How can i add any driver (=
-ex: TFT driver) to the build kernel image? <br style=3D"" class=3D"">4) How=
- to add any desired applications to packages?</div><div id=3D"yui_3_16_0_1_=
-1418883295260_33227"><br></div><div id=3D"yui_3_16_0_1_1418883295260_33228"=
- dir=3D"ltr">Thank you for your help</div><div id=3D"yui_3_16_0_1_141888329=
-5260_33229" dir=3D"ltr"><br></div><div id=3D"yui_3_16_0_1_1418883295260_332=
-30" dir=3D"ltr">regards<br></div><div id=3D"yui_3_16_0_1_1418883295260_3314=
-6">&nbsp;</div><div id=3D"yui_3_16_0_1_1418883295260_33148" class=3D"signat=
-ure"><div id=3D"yui_3_16_0_1_1418883295260_33147"><span id=3D"yui_3_16_0_1_=
-1418883295260_33151" style=3D"font-size:16px;"><span id=3D"yui_3_16_0_1_141=
-8883295260_33150" style=3D"font-family:garamond, new york, times, serif;"><=
-span id=3D"yui_3_16_0_1_1418883295260_33149" style=3D"font-weight:bold;">Ab=
-hishek<br><span class=3D"tab">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp; </span><span class=3D"tab"><br></span></span></span></span></div></div>=
-</div></body></html>
+Now my main question...  does anyone have suggestions (or is there a 'yocto=
+' way) to build such a cross compiler for the MCU so that it can be invoked=
+ to build MCU firmware from source as part of the bitbake build for the Lin=
+ux target's image.  The idea would be to build MCU firmware image from sour=
+ce using the MCU cross compiler, but obviously to build drivers and utiliti=
+es that run on the main CPU using the normal cross-compiler toolchains buil=
+t under yocto.  Then I could package the payload firmware image along with =
+utilities all as part of the same RPM package.
 
-------=_Part_611901_2101305080.1418929833289--
+The MCU cross compiler we use was originally generated using crosstool-ng, =
+and is essentially a gcc cross compiler for 'bare metal' MCU target.
+
+Does anyone who has gone down this road have suggestions?
+
+Thanks in advance!
+
+
+Regards,
+
+Darcy
+
+Darcy Watkins ::=A0=A0Staff Engineer, Firmware
+
+SIERRA WIRELESS
+Direct=A0 +1 604 233 7989=A0 =A0::=A0 Fax=A0 +1 604 231 1109  ::  Main  +1 =
+604 231 1100
+13811 Wireless Way=A0 ::=A0Richmond, BC Canada V6V 3A4
+[P2]
+dwatkins@sierrawireless.com :: www.sierrawireless.com :: www.inmotiontechno=
+logy.com=20
+
+
