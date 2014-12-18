@@ -1,38 +1,29 @@
-Return-Path: <Kai.Kang@windriver.com>
+Return-Path: <maciej.borzecki@open-rnd.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F2993E00944; Thu, 18 Dec 2014 01:00:47 -0800 (PST)
+	id 896BDE00944; Thu, 18 Dec 2014 01:12:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E671CE008B4
-	for <yocto@yoctoproject.org>; Thu, 18 Dec 2014 01:00:42 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id sBI90ePj022774
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL);
-	Thu, 18 Dec 2014 01:00:40 -0800 (PST)
-Received: from pek-hostel-deb02.wrs.com (128.224.153.152) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server
-	(TLS) id 14.3.174.1; Thu, 18 Dec 2014 01:00:40 -0800
-From: Kai Kang <kai.kang@windriver.com>
-To: <ross.burton@intel.com>
-Date: Thu, 18 Dec 2014 16:58:15 +0800
-Message-ID: <1418893095-30224-2-git-send-email-kai.kang@windriver.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1418893095-30224-1-git-send-email-kai.kang@windriver.com>
-References: <1418893095-30224-1-git-send-email-kai.kang@windriver.com>
+Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 300D5E00897
+	for <yocto@yoctoproject.org>; Thu, 18 Dec 2014 01:12:31 -0800 (PST)
+Received: from localhost (unknown [78.10.193.111])
+	by open-rnd.nazwa.pl (Postfix) with ESMTP id 9DE2F2DB045;
+	Thu, 18 Dec 2014 10:12:28 +0100 (CET)
+Date: Thu, 18 Dec 2014 10:12:28 +0100
+From: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
+To: Petter Gustad <yocto@gustad.com>
+Message-ID: <20141218091228.GA10057@localhost.localdomain>
+References: <20141218.082256.838554820950505606.petter@gustad.com>
 MIME-Version: 1.0
-X-Originating-IP: [128.224.153.152]
-Cc: yocto@yoctoproject.org
-Subject: [PATCH 2/2] poky.conf: Add support for aarch64 to QEMU
+In-Reply-To: <20141218.082256.838554820950505606.petter@gustad.com>
+User-Agent: Mutt/1.5.23.1-rc1 (2014-03-12)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] Image will halt soon after boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,30 +35,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Dec 2014 09:00:48 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 18 Dec 2014 09:12:42 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-From: Mark Hatle <mark.hatle@windriver.com>
+On 12/18 08:22, Petter Gustad wrote:
+>
+> I've run "bitbake rpi-hwup-image" using the daisy branch:
+>
+> meta-yocto-bsp    = "daisy:1e668ccf1a05c5d730de9747bc1c2b0446bda556"
+> meta-raspberrypi.git = "daisy:946b69299737cc2f1378c864f1b9075280db1b53"
+>
+> However, whenever I boot the created sdimage it will lock up during
+> boot. Typically I will see some garbage on the serial console.
+> Sometimes I'm able to log in, but then then I get no response (as in
+> the below session). Putting a pre-compiled distribution on the same
+> sdcard will boot just fine.
+>
+> Does anybody else observe this behavior?
 
-Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
----
- meta-yocto/conf/distro/poky.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Have you seen the same on 1.7 or current master? I'm using a number of
+Yocto built images (sone on 1.7.x, other mostly follow poky +
+meta-raspberrypi master branches) and things seem to work just fine.
 
-diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
-index 72db36d..df49fbd 100644
---- a/meta-yocto/conf/distro/poky.conf
-+++ b/meta-yocto/conf/distro/poky.conf
-@@ -44,7 +44,7 @@ DISTRO_EXTRA_RDEPENDS_append_qemux86-64 = " ${POKYQEMUDEPS}"
- 
- TCLIBCAPPEND = ""
- 
--QEMU_TARGETS ?= "arm i386 mips mipsel ppc x86_64"
-+QEMU_TARGETS ?= "arm aarch64 i386 mips mipsel ppc x86_64"
- # Other QEMU_TARGETS "mips64 mips64el sh4"
- 
- PREMIRRORS ??= "\
--- 
-1.9.1
+--
+Maciej Borzęcki
+Senior Software Developer at Open-RnD Sp. z o.o., Poland
+www.open-rnd.pl
+mobile: +48 889 117 365, fax: +48 42 657 9079
 
+
+Niniejsza wiadomość wraz z załącznikami może
+zawierać chronione prawem lub poufne informacje i została
+wysłana wyłącznie do wiadomości i użytku osób, do których
+została zaadresowana. Jeśli wiadomość została otrzymana
+przypadkowo zabrania się jej kopiowania lub rozsyłania do osób
+trzecich. W takim przypadku uprasza się o natychmiastowe
+zniszczenie wiadomości oraz poinformowanie nadawcy o
+zaistniałej sytuacji za pomocą wiadomości zwrotnej.
+Dziękujemy.
+
+This message, including any attachments hereto,
+may contain privileged or confidential information and is sent
+solely for the attention and use of the intended addressee(s).
+If you are not an intended addressee, you may neither use this
+message nor copy or deliver it to anyone. In such case, you
+should immediately destroy this message and kindly notify the
+sender by reply email. Thank you.
 
