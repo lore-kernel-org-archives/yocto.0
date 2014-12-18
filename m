@@ -1,31 +1,46 @@
-Return-Path: <maciej.borzecki@open-rnd.pl>
+Return-Path: <lchristina26@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 14535E00930; Thu, 18 Dec 2014 07:46:04 -0800 (PST)
+	id 40681E00B49; Thu, 18 Dec 2014 10:17:22 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.174 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9E2CE00837
-	for <yocto@yoctoproject.org>; Thu, 18 Dec 2014 07:45:59 -0800 (PST)
-Received: from localhost (unknown [46.170.72.194])
-	by open-rnd.nazwa.pl (Postfix) with ESMTP id D752723816E;
-	Thu, 18 Dec 2014 16:45:56 +0100 (CET)
-Date: Thu, 18 Dec 2014 16:45:55 +0100
-From: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
-To: Petter Gustad <yocto@gustad.com>
-Message-ID: <20141218154555.GE10057@localhost.localdomain>
-References: <20141218.082256.838554820950505606.petter@gustad.com>
-	<20141218091228.GA10057@localhost.localdomain>
-	<20141218.164239.741521888848437712.petter@gustad.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ie0-f174.google.com (mail-ie0-f174.google.com
+	[209.85.223.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3625E009B3
+	for <yocto@yoctoproject.org>; Thu, 18 Dec 2014 10:17:18 -0800 (PST)
+Received: by mail-ie0-f174.google.com with SMTP id rl12so1614053iec.33
+	for <yocto@yoctoproject.org>; Thu, 18 Dec 2014 10:17:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:date:message-id:subject:from:to:content-type;
+	bh=n56wr7hLZUdyhPb6FDPI2X9vswkaI2VWrGhNqwDqPXc=;
+	b=o6aDwwDTv8zvMqFYU/+6g2CXJu20u42ZRwFgVibCrPeM0ckpvbyZ/kpneFWnhGxqy4
+	0Zh+0XctcPvBimIQ4T9IzrYyrcwkQMRypjg0GlagEi1wCfS6j5yZhv9/FltJu29lqwDM
+	nF344+Bwgbyjv38oxDC6kpAiEtzye3BwR/CvAiBGVwwwitX+39GNwyVVNWKS8pSk0Fgx
+	O0F3FLBjE6fLGv/6XTqsIPEHihAN8WYdaXq3/1e7YjfJcO4utt8iedHpRQVrqsfinvTf
+	nnLKiGKzD0cAQcox4fI6GJNtx6zxXgc0xj4RaA9Dlx0MJ1HpyNUUMED3faDzHh3FxvKv
+	nyMA==
 MIME-Version: 1.0
-In-Reply-To: <20141218.164239.741521888848437712.petter@gustad.com>
-User-Agent: Mutt/1.5.23.1-rc1 (2014-03-12)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi] Image will halt soon after boot
+X-Received: by 10.50.148.101 with SMTP id tr5mr3810689igb.12.1418926637446;
+	Thu, 18 Dec 2014 10:17:17 -0800 (PST)
+Sender: lchristina26@gmail.com
+Received: by 10.64.8.200 with HTTP; Thu, 18 Dec 2014 10:17:17 -0800 (PST)
+Date: Thu, 18 Dec 2014 11:17:17 -0700
+X-Google-Sender-Auth: J728s1LXU9enyuqEFIX8yPgnuqs
+Message-ID: <CAL0pqZ01ZSMrQ0F7ga4mOBrM1iPABh4=nZi2fVA3LKN7CdgwFg@mail.gmail.com>
+From: Leah <leah@wolfssl.com>
+To: yocto@yoctoproject.org
+Subject: CyaSSL compatible with Yocto Project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,49 +52,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Dec 2014 15:46:04 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 18 Dec 2014 18:17:22 -0000
+Content-Type: multipart/alternative; boundary=001a1134c7bc2ff94f050a819a12
 
-On 12/18 16:42, Petter Gustad wrote:
-> From: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
-> Subject: Re: [yocto] [meta-raspberrypi] Image will halt soon after boot
-> Date: Thu, 18 Dec 2014 10:12:28 +0100
->
-> > Have you seen the same on 1.7 or current master? I'm using a number of
-> > Yocto built images (sone on 1.7.x, other mostly follow poky +
-> > meta-raspberrypi master branches) and things seem to work just fine.
->
-> Thanks! I just tried the master branch as given below and it works
-> fine. I will switch to a more recent release. However, I can't seem to
-> find a dizzy branch in meta-raspberrypi?
+--001a1134c7bc2ff94f050a819a12
+Content-Type: text/plain; charset=UTF-8
 
-It seems that thee is no dizzy branch at all in meta-raspberrypi. You
-might want to ping the layer's maintainers about that.
+CyaSSL if now compatible with the Yocto Project. If you have a
+server/client project and would like to use CyaSSL for securing your
+connections, please check it out at:
+http://www.yassl.com/yaSSL/Blog/Entries/2014/7/11_meta-wolfssl_Layer_for_Yocto_and_OpenEmbedded.html.
+We also have a bbappend file for cURL with the Yocto Project:
+http://www.wolfssl.com/files/partners/cyassl_yocto_openembedded.pdf. For
+questions or information please contact us at info@wolfssl.com.
 
---
-Maciej Borzęcki
-Senior Software Developer at Open-RnD Sp. z o.o., Poland
-www.open-rnd.pl
-mobile: +48 889 117 365, fax: +48 42 657 9079
+--001a1134c7bc2ff94f050a819a12
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">CyaSSL if now compatible with the Yocto Project. If you ha=
+ve a server/client project and would like to use CyaSSL for securing your c=
+onnections, please check it out at:=C2=A0<a href=3D"http://www.yassl.com/ya=
+SSL/Blog/Entries/2014/7/11_meta-wolfssl_Layer_for_Yocto_and_OpenEmbedded.ht=
+ml">http://www.yassl.com/yaSSL/Blog/Entries/2014/7/11_meta-wolfssl_Layer_fo=
+r_Yocto_and_OpenEmbedded.html</a>. We also have a bbappend file for cURL wi=
+th the Yocto Project:=C2=A0<a href=3D"http://www.wolfssl.com/files/partners=
+/cyassl_yocto_openembedded.pdf">http://www.wolfssl.com/files/partners/cyass=
+l_yocto_openembedded.pdf</a>. For questions or information please contact u=
+s at <a href=3D"mailto:info@wolfssl.com">info@wolfssl.com</a>.<br><br clear=
+=3D"all"><div><br></div><div class=3D"gmail_signature"><div dir=3D"ltr"><di=
+v><div><br></div></div></div></div></div>
 
-Niniejsza wiadomość wraz z załącznikami może
-zawierać chronione prawem lub poufne informacje i została
-wysłana wyłącznie do wiadomości i użytku osób, do których
-została zaadresowana. Jeśli wiadomość została otrzymana
-przypadkowo zabrania się jej kopiowania lub rozsyłania do osób
-trzecich. W takim przypadku uprasza się o natychmiastowe
-zniszczenie wiadomości oraz poinformowanie nadawcy o
-zaistniałej sytuacji za pomocą wiadomości zwrotnej.
-Dziękujemy.
-
-This message, including any attachments hereto,
-may contain privileged or confidential information and is sent
-solely for the attention and use of the intended addressee(s).
-If you are not an intended addressee, you may neither use this
-message nor copy or deliver it to anyone. In such case, you
-should immediately destroy this message and kindly notify the
-sender by reply email. Thank you.
-
+--001a1134c7bc2ff94f050a819a12--
