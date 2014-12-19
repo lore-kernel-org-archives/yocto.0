@@ -1,77 +1,52 @@
-Return-Path: <dwatkins@sierrawireless.com>
+Return-Path: <andrea.adami@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 970BBE00521; Thu, 18 Dec 2014 11:44:19 -0800 (PST)
+	id 2F38BE00BF3; Fri, 19 Dec 2014 05:21:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [157.56.111.58 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (andrea.adami[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 2091 seconds by postgrey-1.32 at yocto-www;
-	Thu, 18 Dec 2014 11:44:07 PST
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1bon0058.outbound.protection.outlook.com [157.56.111.58])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30C91E002F9
-	for <yocto@yoctoproject.org>; Thu, 18 Dec 2014 11:44:07 -0800 (PST)
-Received: from BLUPR02CA027.namprd02.prod.outlook.com (25.160.23.145) by
-	BLUPR02MB472.namprd02.prod.outlook.com (10.141.82.23) with Microsoft
-	SMTP Server (TLS) id 15.1.49.12; Thu, 18 Dec 2014 19:09:14 +0000
-Received: from BY2FFO11FD002.protection.gbl (2a01:111:f400:7c0c::177) by
-	BLUPR02CA027.outlook.office365.com (2a01:111:e400:8ad::17) with
-	Microsoft
-	SMTP Server (TLS) id 15.1.49.12 via Frontend Transport; Thu, 18 Dec 2014
-	19:09:14 +0000
-Received: from mail.sierrawireless.com (208.81.121.47) by
-	BY2FFO11FD002.mail.protection.outlook.com (10.1.14.124) with Microsoft
-	SMTP Server (TLS) id 15.1.26.17 via Frontend Transport;
-	Thu, 18 Dec 2014 19:09:13 +0000
-Received: from carmd-exchmb01.sierrawireless.local ([10.0.6.3]) by
-	carmd-exchhub02.sierrawireless.local ([::1]) with mapi; Thu, 18 Dec 2014
-	11:09:13 -0800
-From: Darcy Watkins <dwatkins@sierrawireless.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 18 Dec 2014 11:09:11 -0800
-Thread-Topic: Microcontroller Cross Compiler
-Thread-Index: AdAa8/1qejz+qCcXQDa3EoMqNt5lWQ==
-Message-ID: <8F90F944E50427428C60E12A34A309D239F6DB0EE8@carmd-exchmb01.sierrawireless.local>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.178 listed in list.dnswl.org]
+Received: from mail-lb0-f178.google.com (mail-lb0-f178.google.com
+	[209.85.217.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCE2CE00BC3
+	for <yocto@yoctoproject.org>; Fri, 19 Dec 2014 05:21:10 -0800 (PST)
+Received: by mail-lb0-f178.google.com with SMTP id f15so893962lbj.9
+	for <yocto@yoctoproject.org>; Fri, 19 Dec 2014 05:21:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=hUelDHNA/5jqF6yaFSIb1BDMxncLAHOvLwBBKVRvCgw=;
+	b=LaO8imzuLUtVGLG1E4k9b+E4FuBg63Y1ASYIWUqMgbC7TjMxqeOdb6H5gxsmOBs79Q
+	L69PnmzFgLSJCjXgyuSoochY/wG94dHnZ5VKTH7VnMKjqbGQvCtvEWeoSQPVq2I1VYk6
+	nOexmsCisJm79BKcEY9Mwy1mEDa15XFRFsNbAUwbjhUrZOrf4HWhI2TkdMyhL8V0Xo4C
+	B9wFpW3CKCYAYCFdoi0Ik3aN8jWhvB2SVEYsRqN2BnGck3CdWItuiXvMjfXudSou0qb9
+	fTgrvPnYDNfxa/4H4sJ8UPBSzoWgCEqERTi+YxOESjkiYNHDgyPeRTvSrRCXCZQWS9DQ
+	d9Ig==
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-Received-SPF: Pass (protection.outlook.com: domain of sierrawireless.com
-	designates 208.81.121.47 as permitted sender)
-	receiver=protection.outlook.com; client-ip=208.81.121.47;
-	helo=mail.sierrawireless.com;
-Authentication-Results: spf=pass (sender IP is 208.81.121.47)
-	smtp.mailfrom=dwatkins@sierrawireless.com; 
-X-Forefront-Antispam-Report: CIP:208.81.121.47; CTRY:CA; IPV:NLI; EFV:NLI;
-	SFV:NSPM;
-	SFS:(10009020)(6009001)(438002)(189002)(51874003)(199003)(98436002)(23756003)(99396003)(106466001)(120916001)(110136001)(107046002)(229853001)(107886001)(2351001)(31966008)(33656002)(21056001)(92566001)(2656002)(86362001)(19580395003)(87936001)(19580405001)(6806004)(50466002)(47776003)(64706001)(20776003)(54356999)(15974865002)(50986999)(450100001)(2900100001)(104016003)(62966003)(2920100001)(2930100002)(77156002)(102836002)(2501002)(77096005)(46102003)(55846006)(4396001)(7099022)(18886075002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR02MB472;
-	H:mail.sierrawireless.com; FPR:; SPF:Pass; MLV:ovrnspm;
-	PTR:spf.sierrawireless.com; MX:1; A:1; LANG:en; 
-X-Microsoft-Antispam: UriScan:;
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:;SRVR:BLUPR02MB472;
-X-Exchange-Antispam-Report-Test: UriScan:;
-X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0; RULEID:(601004);
-	SRVR:BLUPR02MB472; 
-X-Forefront-PRVS: 042957ACD7
-X-Exchange-Antispam-Report-CFA-Test: BCL:0;PCL:0;RULEID:;SRVR:BLUPR02MB472;
-X-OriginatorOrg: SierraWirelessInc.onmicrosoft.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2014 19:09:13.5782 (UTC)
-X-MS-Exchange-CrossTenant-Id: 08059a4c-2486-43dd-89e3-3a747e0dcbe8
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=08059a4c-2486-43dd-89e3-3a747e0dcbe8;
-	Ip=[208.81.121.47]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLUPR02MB472
-Subject: Microcontroller Cross Compiler
+X-Received: by 10.112.130.65 with SMTP id oc1mr7853694lbb.7.1418995268933;
+	Fri, 19 Dec 2014 05:21:08 -0800 (PST)
+Received: by 10.112.52.231 with HTTP; Fri, 19 Dec 2014 05:21:08 -0800 (PST)
+In-Reply-To: <8F90F944E50427428C60E12A34A309D239F6DB0EE8@carmd-exchmb01.sierrawireless.local>
+References: <8F90F944E50427428C60E12A34A309D239F6DB0EE8@carmd-exchmb01.sierrawireless.local>
+Date: Fri, 19 Dec 2014 14:21:08 +0100
+Message-ID: <CAAQYJAsgCWS+yoL7CusmKpPeVH5paAevOY8Jbo0JzzNgapFGJA@mail.gmail.com>
+From: Andrea Adami <andrea.adami@gmail.com>
+To: Darcy Watkins <dwatkins@sierrawireless.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Microcontroller Cross Compiler
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,48 +58,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Dec 2014 19:44:19 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Fri, 19 Dec 2014 13:21:24 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+On Thu, Dec 18, 2014 at 8:09 PM, Darcy Watkins
+<dwatkins@sierrawireless.com> wrote:
+> Hello,
+>
+> In my target system I have a microcontroller (MCU) that handles some I/O,=
+ power supplies and system boot up to the point of taking the main CPU out =
+of reset.  At present, we build the MCU firmware from source and then the b=
+inary file is packaged to be used as payload with an MCU firmware update ut=
+ility.
+>
+> Now my main question...  does anyone have suggestions (or is there a 'yoc=
+to' way) to build such a cross compiler for the MCU so that it can be invok=
+ed to build MCU firmware from source as part of the bitbake build for the L=
+inux target's image.  The idea would be to build MCU firmware image from so=
+urce using the MCU cross compiler, but obviously to build drivers and utili=
+ties that run on the main CPU using the normal cross-compiler toolchains bu=
+ilt under yocto.  Then I could package the payload firmware image along wit=
+h utilities all as part of the same RPM package.
+>
+> The MCU cross compiler we use was originally generated using crosstool-ng=
+, and is essentially a gcc cross compiler for 'bare metal' MCU target.
+>
+> Does anyone who has gone down this road have suggestions?
+>
+> Thanks in advance!
+>
+>
+> Regards,
+>
+> Darcy
+>
+> Darcy Watkins ::  Staff Engineer, Firmware
+>
+> SIERRA WIRELESS
+> Direct  +1 604 233 7989   ::  Fax  +1 604 231 1109  ::  Main  +1 604 231 =
+1100
+> 13811 Wireless Way  :: Richmond, BC Canada V6V 3A4
+> [P2]
+> dwatkins@sierrawireless.com :: www.sierrawireless.com :: www.inmotiontech=
+nology.com
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-In my target system I have a microcontroller (MCU) that handles some I/O, p=
-ower supplies and system boot up to the point of taking the main CPU out of=
- reset.  At present, we build the MCU firmware from source and then the bin=
-ary file is packaged to be used as payload with an MCU firmware update util=
-ity.
+Hi Darcy,
 
-Now my main question...  does anyone have suggestions (or is there a 'yocto=
-' way) to build such a cross compiler for the MCU so that it can be invoked=
- to build MCU firmware from source as part of the bitbake build for the Lin=
-ux target's image.  The idea would be to build MCU firmware image from sour=
-ce using the MCU cross compiler, but obviously to build drivers and utiliti=
-es that run on the main CPU using the normal cross-compiler toolchains buil=
-t under yocto.  Then I could package the payload firmware image along with =
-utilities all as part of the same RPM package.
+if I understand correctly you use the standard toolchain for the
+target image and a custom $CC to build one custom binary.
 
-The MCU cross compiler we use was originally generated using crosstool-ng, =
-and is essentially a gcc cross compiler for 'bare metal' MCU target.
+We use klcc for a couple of klibc-static-recipes thus we created a
+.bbclass to be inherited.
+See http://cgit.openembedded.org/meta-openembedded/tree/meta-initramfs/clas=
+ses/klibc.bbclass
 
-Does anyone who has gone down this road have suggestions?
+Regards
 
-Thanks in advance!
-
-
-Regards,
-
-Darcy
-
-Darcy Watkins ::=A0=A0Staff Engineer, Firmware
-
-SIERRA WIRELESS
-Direct=A0 +1 604 233 7989=A0 =A0::=A0 Fax=A0 +1 604 231 1109  ::  Main  +1 =
-604 231 1100
-13811 Wireless Way=A0 ::=A0Richmond, BC Canada V6V 3A4
-[P2]
-dwatkins@sierrawireless.com :: www.sierrawireless.com :: www.inmotiontechno=
-logy.com=20
-
+Andrea
 
