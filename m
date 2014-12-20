@@ -1,31 +1,56 @@
-Return-Path: <flihp@twobit.us>
+Return-Path: <peteasa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8486CE00853; Fri, 19 Dec 2014 16:31:49 -0800 (PST)
+	id 3643AE00823; Sat, 20 Dec 2014 06:43:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (peteasa[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B945DE0084D
-	for <yocto@yoctoproject.org>; Fri, 19 Dec 2014 16:31:47 -0800 (PST)
-Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
-	helo=scrapper.twobit.us)
-	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256)
-	(Exim 4.80) (envelope-from <flihp@twobit.us>)
-	id 1Y27FV-0002dR-Si; Fri, 19 Dec 2014 23:46:30 +0000
-From: flihp@twobit.us
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.179 listed in list.dnswl.org]
+Received: from mail-wi0-f179.google.com (mail-wi0-f179.google.com
+	[209.85.212.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B44AE003E3
+	for <yocto@yoctoproject.org>; Sat, 20 Dec 2014 06:43:53 -0800 (PST)
+Received: by mail-wi0-f179.google.com with SMTP id ex7so4354256wid.12
+	for <yocto@yoctoproject.org>; Sat, 20 Dec 2014 06:43:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=lN/02yDhFsRlj49N/rIVTWKPnyEVx6ooIT4diKHgCIQ=;
+	b=C0W+5HPw7pu2BQtIkwOV9jCaGWQoJDUq5drZWCg+M3en6YANJ12q52LbUFuHy8jXdj
+	ohzaHMAOsU8xRP2D59NjWd9476FIrZEJdNch1ezvEYwdtOUqbOjmFxbIUQFUo6Fi5r+5
+	YnZLH0EkinScxTluffYXpq2LoYXQg9uWIX6889D3xLXfYejw2B7L3Lk7DCgaXadzU3jP
+	XP6RN5GQe8n3JqFg+rqFelp9k7gIXnZjskEXaEL0fAln36T6G6FLXnkpwCo7EwniTsL2
+	aUhc7zUG2uZ0m6yaZck54TQB071LG8tP9k1sIUQrg3w/C3tDdvK6+bkrYdQuTTXOn1et
+	OwHw==
+X-Received: by 10.180.38.98 with SMTP id f2mr14957992wik.55.1419086632235;
+	Sat, 20 Dec 2014 06:43:52 -0800 (PST)
+Received: from [192.169.0.118] (cpc18-heme10-2-0-cust113.9-1.cable.virginm.net.
+	[81.96.152.114])
+	by mx.google.com with ESMTPSA id e7sm16555370wjf.18.2014.12.20.06.43.50
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 20 Dec 2014 06:43:51 -0800 (PST)
+Message-ID: <54958B25.8080505@gmail.com>
+Date: Sat, 20 Dec 2014 14:43:49 +0000
+From: Peter Saunderson <peteasa@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+MIME-Version: 1.0
 To: yocto@yoctoproject.org
-Date: Fri, 19 Dec 2014 23:47:34 +0000
-Message-Id: <1419032854-29911-1-git-send-email-flihp@twobit.us>
-X-Mailer: git-send-email 1.7.10.4
-X-SA-Exim-Connect-IP: 50.185.54.102
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
-X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Subject: [PATCH][meta-selinux] cronie: Use wildcard for version number in bbappend.
+Subject: Cross compiler which runs on the target architecture.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,37 +62,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 20 Dec 2014 00:31:49 -0000
+X-List-Received-Date: Sat, 20 Dec 2014 14:43:59 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Philip Tricca <flihp@twobit.us>
+Hi,
 
-Signed-off-by: Philip Tricca <flihp@twobit.us>
----
- recipes-extended/cronie/cronie_%.bbappend      |    3 +++
- recipes-extended/cronie/cronie_1.4.11.bbappend |    3 ---
- 2 files changed, 3 insertions(+), 3 deletions(-)
- create mode 100644 recipes-extended/cronie/cronie_%.bbappend
- delete mode 100644 recipes-extended/cronie/cronie_1.4.11.bbappend
+I have seen a brief IRC chat 
+(https://www.yoctoproject.org/irc/%23yocto.2013-09-23.log.html talking 
+about https://github.com/nathanrossi/meta-parallella) about this 
+question but nothing much else so this is an attempt to get more public 
+feedback on this request.
 
-diff --git a/recipes-extended/cronie/cronie_%.bbappend b/recipes-extended/cronie/cronie_%.bbappend
-new file mode 100644
-index 0000000..a398bec
---- /dev/null
-+++ b/recipes-extended/cronie/cronie_%.bbappend
-@@ -0,0 +1,3 @@
-+PR .= ".2"
-+
-+inherit with-selinux with-audit
-diff --git a/recipes-extended/cronie/cronie_1.4.11.bbappend b/recipes-extended/cronie/cronie_1.4.11.bbappend
-deleted file mode 100644
-index a398bec..0000000
---- a/recipes-extended/cronie/cronie_1.4.11.bbappend
-+++ /dev/null
-@@ -1,3 +0,0 @@
--PR .= ".2"
--
--inherit with-selinux with-audit
--- 
-1.7.10.4
+I am trying to build a cross compiler that runs on the target processor 
+and a cross compiler that runs on the host processor so that I can build 
+code for a third processor (Epiphany).  If you want examples of the 
+traditional way to build this compiler look at 
+https://github.com/adapteva/epiphany-sdk epiphany-gcc epiphany-newlib 
+epiphany-binutils... The end result would be a set of recipes that run 
+on a pc build machine that build both arm code for the interim target 
+and epiphany code for the final target and provides an SDK for the pc 
+that enables you to cross compile for both arm and epiphany.
 
+As I am just starting to look at this I would like to know what size of 
+task I am up against!  My initial efforts based on review of 
+poky/meta/recipes-devtools/binutils etc seem to suggest that I have to 
+modify at least ${HOST_PREFIX}, ${TARGET_PREFIX}, ${TARGET_ARCH} etc for 
+my epiphany-??? recipes so that the I can install the compiler in a 
+suitable location with a suitable prefix, the IRC chat indicates that 
+there are more things to consider also.
+
+The question I have is about how easy it will be to use existing recipes 
+for existing compiler / binutils etc... or is this likely to end up as a 
+completely new set of recipes from the ground up because the existing 
+recipes cant cope with building cross / cross compilers where there are 
+three processors to consider (host (intel based pc), interim target 
+(arm) and final target (epiphany)), or at least a lot of changes in the 
+existing recipes to cope with something like TARGET_TARGET_ARCH = 
+${TARGET_ARCH}_${FINAL_TARGET_ARCH}??
+
+Thanks in advance for any comments.
+
+Peter.
 
