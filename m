@@ -1,35 +1,58 @@
-Return-Path: <fabian@opencode.eu>
+Return-Path: <joaohf@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 553E9E0085E; Sun, 21 Dec 2014 09:56:57 -0800 (PST)
+	id ABAB2E0083A; Sun, 21 Dec 2014 14:57:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (joaohf[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from vs248254.vserver.de (vs248254.vserver.de [62.75.248.254])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D24FAE004F2
-	for <yocto@yoctoproject.org>; Sun, 21 Dec 2014 09:56:51 -0800 (PST)
-X-No-Relay: not in my network
-Received: from [192.168.1.19] (brsg-d9beffb9.pool.mediaWays.net
-	[217.190.255.185])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: fabian@opencode.eu)
-	by vs248254.vserver.de (Postfix) with ESMTPSA id A44858B385D8
-	for <yocto@yoctoproject.org>; Sun, 21 Dec 2014 18:56:49 +0100 (CET)
-Message-ID: <549709E1.6060305@opencode.eu>
-Date: Sun, 21 Dec 2014 18:56:49 +0100
-From: Fabian Schwartau <fabian@opencode.eu>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.170 listed in list.dnswl.org]
+Received: from mail-vc0-f170.google.com (mail-vc0-f170.google.com
+	[209.85.220.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0D72E004F2
+	for <yocto@yoctoproject.org>; Sun, 21 Dec 2014 14:57:45 -0800 (PST)
+Received: by mail-vc0-f170.google.com with SMTP id hy4so1357868vcb.29
+	for <yocto@yoctoproject.org>; Sun, 21 Dec 2014 14:57:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=LZOl+X7vZurdGCcBghFLuIX73+Fq4G84BnrjpG0HvdY=;
+	b=UzwCxs8yrbCgvz0Gqf2KARuMqOD/fMA4AXHC/fKP1Slj+sukjokQMykXpdvUKUmlqN
+	9ogwLUMAbTSNSaO48D5VGlA6qEleXawm5wtMS9Zf8VfkMi+Qr6o6dl7itK0vxGIdkqDj
+	JCw0Os3gPcEWrr4vIVQLetjVwI3WCAFlsKARZMYfytgZw5ayP7JI9fnvGY5QvOO7wpvm
+	tv6U8II/L+hDWO3uTW3OnP4LGK/7wmyNmkCAYO9kbtFpHGZdYByKhviWjVdzPgkrFTUQ
+	vkOHftIsJe0kzdWhG7O2BvuVR2ob4YCHwYNmyRLNX1fz/1T9MtOTuJVWo7JfBCFR6GEP
+	145g==
+X-Received: by 10.52.36.144 with SMTP id q16mr663186vdj.0.1419202665072;
+	Sun, 21 Dec 2014 14:57:45 -0800 (PST)
+Received: from [192.168.0.16] ([187.106.5.186])
+	by mx.google.com with ESMTPSA id
+	at12sm3558627vdc.15.2014.12.21.14.57.43 for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 21 Dec 2014 14:57:44 -0800 (PST)
+Message-ID: <54975065.1070704@gmail.com>
+Date: Sun, 21 Dec 2014 20:57:41 -0200
+From: =?windows-1252?Q?Jo=E3o_Henrique_Ferreira_de_Freitas?= <joaohf@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-References: <5496E802.1050904@opencode.eu>
-	<20141221170839.GA2259@localhost.localdomain>
-In-Reply-To: <20141221170839.GA2259@localhost.localdomain>
-Subject: Re: Board files vs. device tree
+References: <8F90F944E50427428C60E12A34A309D239F6DB0EE8@carmd-exchmb01.sierrawireless.local>
+	<CAAQYJAsgCWS+yoL7CusmKpPeVH5paAevOY8Jbo0JzzNgapFGJA@mail.gmail.com>
+In-Reply-To: <CAAQYJAsgCWS+yoL7CusmKpPeVH5paAevOY8Jbo0JzzNgapFGJA@mail.gmail.com>
+Subject: Re: Microcontroller Cross Compiler
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,100 +64,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 21 Dec 2014 17:56:57 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sun, 21 Dec 2014 22:57:51 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-Am 21.12.2014 um 18:08 schrieb Maciek Borzecki:
- > On 12/21 16:32, Fabian Schwartau wrote:
- >> Hi,
- >>
- >> I am building a system with yocto for a board which is similar to
- >> Beagleboard-xM. So I used beagleboard as a starter. However, the 
-kernel is
- >> not booting. Uboot just tells me that he is starting the kernel and then
- >> nothing happens any more.
- >> So I guess there is something wrong with the pin muxing as my board is a
- >> little different from Beagleboard.
- >> At the moment I am using the device tree file for beagleboard-xm by 
-passing
- >> it with the uboot command
- >> bootm ${loadaddr} - ${dtbaddr}
- >> I looked around in the kernel and had to notice that there are still 
-several
- >> board  files build in the kernel.
- >> When there are several board files compiled into the kernel, how 
-does the
- >> kernel determine the right one at boot time?
- >
- > U-boot does that, based on what is found at runtime. Typically this
- > would employ checks for CPU IDs, EEPROM contents, GPIO line states
- > etc. then at some point the could would set board_name to some
- > value. IIRC the exact model of Beagle Bone is determined based on system
- > EEPROM contents. Then the default uboot script would check board_name
- > and pick proper *.dtb based on some hardcoded names.
-OK, but there he is only creating the default configuration I guess. As 
-I am using my own uboot configuration file, this does not matter to me 
-and I will load the dtb file my own using the mentioned uboot command. 
-Is that correct?
- >
- > The actual checks are here:
- > 
-http://git.denx.de/?p=u-boot.git;a=blob;f=include/configs/am335x_evm.h;h=560e3bf7755d55d37c1e5e9fb5de162568d9cc9f;hb=HEAD#l176
- >
- > Board checks here:
- > http://git.denx.de/?p=u-boot.git;a=blob;f=board/ti/am335x/board.h
- >
- >> What does the kernel do if there are board files activated and I am also
- >> passing a device tree?
- >
- > What do you mean by activated?
-Well, they are activated in the kernel configuration by default. So 
-there are several board files compiled into the kernel. I was wondering 
-how the kernel will pick the correct one at boot time.
-So if I choose the dtb manually, how is the kernel supposed to know 
-which board file to use?
- >
- >> Why are there still board files when the specific board has already 
-a device
- >> tree file?
- >
- > Because DTB defines what things are in the system and now how to operate
- > them. There still has to be some code that brings the system up for you
- > based on the board config. It's just that if you have a DTB, there's no
- > longer need to hardcode things such as CPU count, amount of RAM, flash
- > layout and so on. Off the top of my head, low level init or system reset
- > might be one of the things that end up in board specific code within the
- > kernel.
- >
- > Also, IIRC dts is mandatory for all new ARM board being added to the
- > kernel. It has not always been like this, there's still a bunch of older
- > or obscure boards that do not have a dts at all.
- >
- > --
- > Maciej Borzęcki
- > Senior Software Developer at Open-RnD Sp. z o.o., Poland
- > www.open-rnd.pl
- > mobile: +48 889 117 365, fax: +48 42 657 9079
- >
- >
- > Niniejsza wiadomość wraz z załącznikami może
- > zawierać chronione prawem lub poufne informacje i została
- > wysłana wyłącznie do wiadomości i użytku osób, do których
- > została zaadresowana. Jeśli wiadomość została otrzymana
- > przypadkowo zabrania się jej kopiowania lub rozsyłania do osób
- > trzecich. W takim przypadku uprasza się o natychmiastowe
- > zniszczenie wiadomości oraz poinformowanie nadawcy o
- > zaistniałej sytuacji za pomocą wiadomości zwrotnej.
- > Dziękujemy.
- >
- > This message, including any attachments hereto,
- > may contain privileged or confidential information and is sent
- > solely for the attention and use of the intended addressee(s).
- > If you are not an intended addressee, you may neither use this
- > message nor copy or deliver it to anyone. In such case, you
- > should immediately destroy this message and kindly notify the
- > sender by reply email. Thank you.
- >
+Hi,
+
+I have the same requirement.
+
+I will try it. But in my case I need to use this 
+https://launchpad.net/gcc-arm-embedded.
+
+There are some way to yocto creates the gcc-arm-embedded SDK? Instead of 
+use the gcc-arm-embedded packages. Is it feasibly?
+
+Thanks.
+
+
+On 19/12/2014 11:21, Andrea Adami wrote:
+> On Thu, Dec 18, 2014 at 8:09 PM, Darcy Watkins
+> <dwatkins@sierrawireless.com> wrote:
+>> Hello,
+>>
+>> In my target system I have a microcontroller (MCU) that handles some I/O, power supplies and system boot up to the point of taking the main CPU out of reset.  At present, we build the MCU firmware from source and then the binary file is packaged to be used as payload with an MCU firmware update utility.
+>>
+>> Now my main question...  does anyone have suggestions (or is there a 'yocto' way) to build such a cross compiler for the MCU so that it can be invoked to build MCU firmware from source as part of the bitbake build for the Linux target's image.  The idea would be to build MCU firmware image from source using the MCU cross compiler, but obviously to build drivers and utilities that run on the main CPU using the normal cross-compiler toolchains built under yocto.  Then I could package the payload firmware image along with utilities all as part of the same RPM package.
+>>
+>> The MCU cross compiler we use was originally generated using crosstool-ng, and is essentially a gcc cross compiler for 'bare metal' MCU target.
+>>
+>> Does anyone who has gone down this road have suggestions?
+>>
+>> Thanks in advance!
+>>
+>>
+>> Regards,
+>>
+>> Darcy
+>>
+>> Darcy Watkins ::  Staff Engineer, Firmware
+>>
+>> SIERRA WIRELESS
+>> Direct  +1 604 233 7989   ::  Fax  +1 604 231 1109  ::  Main  +1 604 231 1100
+>> 13811 Wireless Way  :: Richmond, BC Canada V6V 3A4
+>> [P2]
+>> dwatkins@sierrawireless.com :: www.sierrawireless.com :: www.inmotiontechnology.com
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+> Hi Darcy,
+>
+> if I understand correctly you use the standard toolchain for the
+> target image and a custom $CC to build one custom binary.
+>
+> We use klcc for a couple of klibc-static-recipes thus we created a
+> .bbclass to be inherited.
+> See http://cgit.openembedded.org/meta-openembedded/tree/meta-initramfs/classes/klibc.bbclass
+>
+> Regards
+>
+> Andrea
+
 
