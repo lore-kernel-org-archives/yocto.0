@@ -1,34 +1,43 @@
-Return-Path: <peterengcomau001@adam.com.au>
+Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2702CE009E2; Sun, 21 Dec 2014 06:54:44 -0800 (PST)
+	id AF544E0085E; Sun, 21 Dec 2014 07:19:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [202.136.110.237 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from webmail3.adam.net.au (webmail3.adam.net.au [202.136.110.237])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DEB0E00830
-	for <yocto@yoctoproject.org>; Sun, 21 Dec 2014 06:54:40 -0800 (PST)
-Received: from localhost (webmail3.adam.net.au [127.0.0.1])
-	by webmail3.adam.net.au (8.13.8/8.13.8) with ESMTP id sBLEsdVJ013278
-	for <yocto@yoctoproject.org>; Mon, 22 Dec 2014 01:24:39 +1030
-Message-Id: <e1395fc26b87e519e6a5f7dfcd95b8c51a3f6874@webmail.adam.com.au>
-From: peterengcomau001@adam.com.au
-To: yocto@yoctoproject.org
-X-Mailer: Atmail 6.3.5.8698
-Date: Mon, 22 Dec 2014 01:24:39 +1030
-MIME-Version: 1.0
-Subject: runqemu-extract-sdk does not provide all required libraries in rootfs
+Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28B40E004F2;
+	Sun, 21 Dec 2014 07:19:32 -0800 (PST)
+Received: from durham.keylevel.com ([88.97.63.243]:53530
+	helo=macbook-pro.durham.keylevel.com)
+	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.84)
+	(envelope-from <opensource@keylevel.com>)
+	id 1Y2iI0-003dJo-4O; Sun, 21 Dec 2014 15:19:28 +0000
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <F8B8BFD4-CD6C-4716-9916-101BCE9AF412@keylevel.com>
+Date: Sun, 21 Dec 2014 15:19:25 +0000
+Message-Id: <3609D6CB-72A4-403D-99A4-63E675EE2AB3@keylevel.com>
+References: <F8B8BFD4-CD6C-4716-9916-101BCE9AF412@keylevel.com>
+To: meta-intel@yoctoproject.org,
+ Yocto Project <yocto@yoctoproject.org>
+X-Mailer: Apple Mail (2.1878.6)
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - a180.4uh.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
+	chris.tapp@keylevel.com
+Subject: Re: Sound over HDMI for ASrock IMB-151 (valleyisland)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: peterengcomau001@adam.com.au
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -37,48 +46,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 21 Dec 2014 14:54:44 -0000
-Content-Type: multipart/alternative;
-	boundary="=_87c93e16f987f45fb7b48f7717fc9242"
-
---=_87c93e16f987f45fb7b48f7717fc9242
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 21 Dec 2014 15:19:34 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-=0A=0A=09I am using poky 1.6.2.=C2=A0 If I create a rootfs using ADT I c=
-an Use=0AEclipse to test against qemu all OK but this is not the traget=
- rootfs=0Aso its use is limited If I create a rootfs using $ bitbake ima=
-ge -c=0Apopulate_sdk then run the shell script, the rootfs created has a=
-ll=0Athe required libraries, but it does not create a directory called=
-=0Apseudo_state, and qemu fails to work because of this. If I create a=
-=0Arootfs with runqemu-extract-sdk on the image I created using $=0Abita=
-bke image, the resulting rootfs has the required pseudo_state=0Adirector=
-y but is missing crucial libraries. =0A The missing libraries are crt1.o=
-, crti.o, ctrn.o, crtbegin.o,=0Acrtend.o, crtn.o, libc.so, libc_nonshare=
-d.a, libgcc.a, libgcc_s.so,=0Alibgcc_s.so.1.=C2=A0 =0A I can import thes=
-e libraries from the rootfs created by running teh=0Apopulate_sdk script=
-, but I get an error: =C2=A0compatibility issue----=0AMessage sent via A=
-dam Internet WebMail - http://www.adam.com.au/
+I think I've worked this one out. It looks as if the kernel patch at =
+http://mailman.alsa-project.org/pipermail/alsa-devel/2013-October/067530.h=
+tml needs to be included so that the ValleyView HDMI codec is detected.
 
---=_87c93e16f987f45fb7b48f7717fc9242
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Adding it manually before compiling the kernel gives me audio over HDMI.
 
-<html><body><p>I am using poky 1.6.2.=C2=A0</p>=0A<div>If I create a roo=
-tfs using ADT I can Use Eclipse to test against qemu all OK but this is=
- not the traget rootfs so its use is limited</div>=0A<div>If I create a=
- rootfs using $ bitbake image -c populate_sdk then run the shell script,=
- the rootfs created has all the required libraries, but it does not crea=
-te a directory called pseudo_state, and qemu fails to work because of th=
-is.</div>=0A<div>If I create a rootfs with runqemu-extract-sdk on the im=
-age I created using $ bitabke image, the resulting rootfs has the requir=
-ed pseudo_state directory but is missing crucial libraries.</div>=0A<div=
-><br /></div>=0A<div>The missing libraries are</div>=0A<div>crt1.o, crti=
-o, ctrn.o, crtbegin.o, crtend.o, crtn.o, libc.so, libc_nonshared.a, lib=
-gcc.a, libgcc_s.so, libgcc_s.so.1.=C2=A0</div>=0A<div><br /></div>=0A<di=
-v>I can import these libraries from the rootfs created by running teh po=
-pulate_sdk script, but I get an error: =C2=A0compatibility issue</div>--=
--- Message sent via Adam Internet WebMail  - http://www.adam.com.au/</bo=
-dy></html>
+Chris
 
---=_87c93e16f987f45fb7b48f7717fc9242--
+On 14 Dec 2014, at 13:04, Chris Tapp <opensource@keylevel.com> wrote:
+
+> I'm having trouble getting audio out of the HDMI connector on an =
+ASrock IMB-151 board.
+>=20
+> aplay -l reports:
+>=20
+> **** List of PLAYBACK Hardware Devices ****
+> card 0: PCH [HDA Intel PCH], device 0: ALC662 rev1 Analog [ALC662 rev1 =
+Analog]
+>  Subdevices: 1/1
+>  Subdevice #0: subdevice #0
+> card 0: PCH [HDA Intel PCH], device 1: ALC662 rev1 Digital [ALC662 =
+rev1 Digital]
+>  Subdevices: 1/1
+>  Subdevice #0: subdevice #0
+> card 0: PCH [HDA Intel PCH], device 3: ID 2882 Digital [ID 2882 =
+Digital]
+>  Subdevices: 1/1
+>  Subdevice #0: subdevice #0
+>=20
+> and aplay -L gives:
+>=20
+> null
+>    Discard all samples (playback) or generate zero samples (capture)
+> sysdefault:CARD=3DPCH
+>    HDA Intel PCH, ALC662 rev1 Analog
+>    Default Audio Device
+> front:CARD=3DPCH,DEV=3D0
+>    HDA Intel PCH, ALC662 rev1 Analog
+>    Front speakers
+> surround40:CARD=3DPCH,DEV=3D0
+>    HDA Intel PCH, ALC662 rev1 Analog
+>    4.0 Surround output to Front and Rear speakers
+> surround41:CARD=3DPCH,DEV=3D0
+>    HDA Intel PCH, ALC662 rev1 Analog
+>    4.1 Surround output to Front, Rear and Subwoofer speakers
+> surround50:CARD=3DPCH,DEV=3D0
+>    HDA Intel PCH, ALC662 rev1 Analog
+>    5.0 Surround output to Front, Center and Rear speakers
+> surround51:CARD=3DPCH,DEV=3D0
+>    HDA Intel PCH, ALC662 rev1 Analog
+>    5.1 Surround output to Front, Center, Rear and Subwoofer speakers
+> surround71:CARD=3DPCH,DEV=3D0
+>    HDA Intel PCH, ALC662 rev1 Analog
+>    7.1 Surround output to Front, Center, Side, Rear and Woofer =
+speakers
+> iec958:CARD=3DPCH,DEV=3D0
+>    HDA Intel PCH, ALC662 rev1 Digital
+>    IEC958 (S/PDIF) Digital Audio Output
+> hdmi:CARD=3DPCH,DEV=3D0
+>    HDA Intel PCH, ID 2882 Digital
+>    HDMI Audio Output
+>=20
+> Running
+>=20
+>  aplay -D plug:hdmi /usr/share/sounds/alsa/Front_Center.wav
+>=20
+> gives nothing out of the hdmi. And
+>=20
+>  speaker-test -D hdmi
+>=20
+> gives:
+>=20
+> speaker-test 1.0.27.2
+>=20
+> Playback device is hdmi
+> Stream parameters are 48000Hz, S16_LE, 1 channels
+> Using 16 octaves of pink noise
+> Channels count (1) not available for playbacks: Invalid argument
+> Setting of hwparams failed: Invalid argument
+>=20
+> I've not been able to find anything on the internet that gives me a =
+clue to what's wrong, and alsa is not an area I'm familiar with!
+>=20
+> Anyone got an idea where I need to look?
+>=20
+> --
+>=20
+> Chris Tapp
+> opensource@keylevel.com
+> www.keylevel.com
+>=20
+> ----
+> You can tell you're getting older when your car insurance gets real =
+cheap!
+>=20
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+--
+
+Chris Tapp
+opensource@keylevel.com
+www.keylevel.com
+
+----
+You can tell you're getting older when your car insurance gets real =
+cheap!
+
+
