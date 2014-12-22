@@ -1,6 +1,6 @@
 Return-Path: <jimr@spectralogic.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 377E4E00902; Mon, 22 Dec 2014 09:11:00 -0800 (PST)
+	id B1226E008E5; Mon, 22 Dec 2014 09:41:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,20 +10,21 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 Received: from mail5.spectralogic.com (mail5.spectralogic.com [192.30.190.19])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6CA8E008DC
-	for <yocto@yoctoproject.org>; Mon, 22 Dec 2014 09:10:45 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E761CE006EF
+	for <yocto@yoctoproject.org>; Mon, 22 Dec 2014 09:40:57 -0800 (PST)
 From: Jim Rafert <jimr@spectralogic.com>
 To: "Matthias.Heise@atlas-elektronik.com"
 	<Matthias.Heise@atlas-elektronik.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
 Thread-Topic: [yocto] nfs-boot problem
-Thread-Index: AQHQE6slOAsCEEQPeke18gw6ldjA95yHcYsjgAD5lZCAE4Dfcg==
-Date: Mon, 22 Dec 2014 17:10:44 +0000
-Message-ID: <86196249137E0843B2E0673D4F731E0C0108E29AF9@reactor.sldomain.com>
+Thread-Index: AQHQE6slOAsCEEQPeke18gw6ldjA95yHcYsjgAD5lZCAE4DfcoAACIha
+Date: Mon, 22 Dec 2014 17:40:56 +0000
+Message-ID: <86196249137E0843B2E0673D4F731E0C0108E29B29@reactor.sldomain.com>
 References: <4009F04F5925CD4C95FBD9BE756381FE02848F2A77@MSSRVS5.atlas.de>
 	<86196249137E0843B2E0673D4F731E0C0108E2916C@reactor.sldomain.com>,
-	<4009F04F5925CD4C95FBD9BE756381FE02848F2A78@MSSRVS5.atlas.de>
-In-Reply-To: <4009F04F5925CD4C95FBD9BE756381FE02848F2A78@MSSRVS5.atlas.de>
+	<4009F04F5925CD4C95FBD9BE756381FE02848F2A78@MSSRVS5.atlas.de>,
+	<86196249137E0843B2E0673D4F731E0C0108E29AF9@reactor.sldomain.com>
+In-Reply-To: <86196249137E0843B2E0673D4F731E0C0108E29AF9@reactor.sldomain.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -41,14 +42,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Dec 2014 17:11:00 -0000
+X-List-Received-Date: Mon, 22 Dec 2014 17:41:06 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_86196249137E0843B2E0673D4F731E0C0108E29AF9reactorsldoma_"
+	boundary="_000_86196249137E0843B2E0673D4F731E0C0108E29B29reactorsldoma_"
 
---_000_86196249137E0843B2E0673D4F731E0C0108E29AF9reactorsldoma_
+--_000_86196249137E0843B2E0673D4F731E0C0108E29B29reactorsldoma_
 Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
+
+Hi Matthias,
+
+I'm still catching up.  The latest I see from you is that the nfs mount is =
+mostly working now, but still with some permission problems.  Is it possibl=
+e that you did not specify no_root_squash in your /etc/exports on the nfs s=
+erver?  Without this option, requests from the root user on the client are =
+mapped to the anonymous nfs user, which would cause the kind of errors you =
+are seeing.
+
+
+________________________________
+From: Jim Rafert [jimr@spectralogic.com]
+Sent: Monday, December 22, 2014 10:10 AM
+To: Matthias.Heise@atlas-elektronik.com; yocto@yoctoproject.org
+Subject: Re: [yocto] nfs-boot problem
 
 Hi Matthias,
 
@@ -277,7 +294,7 @@ Regards,
 Mat
 
 
---_000_86196249137E0843B2E0673D4F731E0C0108E29AF9reactorsldoma_
+--_000_86196249137E0843B2E0673D4F731E0C0108E29B29reactorsldoma_
 Content-Type: text/html; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
@@ -331,12 +348,43 @@ span.SprechblasentextZchn=0A=
 @page WordSection1=0A=
 	{margin:70.85pt 70.85pt 2.0cm 70.85pt}=0A=
 -->=0A=
-</style><style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin=
--bottom:0;}</style>
+</style><style id=3D"owaParaStyle" type=3D"text/css">=0A=
+<!--=0A=
+p=0A=
+	{margin-top:0;=0A=
+	margin-bottom:0}=0A=
+-->=0A=
+P {margin-top:0;margin-bottom:0;}</style>
 </head>
 <body ocsi=3D"0" fpstyle=3D"1" lang=3D"DE" link=3D"blue" vlink=3D"purple">
 <div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
 10pt;">Hi Matthias,<br>
+<br>
+I'm still catching up.&nbsp; The latest I see from you is that the nfs moun=
+t is mostly working now, but still with some permission problems.&nbsp; Is =
+it possible that you did not specify no_root_squash in your /etc/exports on=
+ the nfs server?&nbsp; Without this option, requests
+ from the root user on the client are mapped to the anonymous nfs user, whi=
+ch would cause the kind of errors you are seeing.<br>
+<div><br>
+<div style=3D"font-family:Tahoma; font-size:13px"><br>
+</div>
+</div>
+<div style=3D"font-family: Times New Roman; color: #000000; font-size: 16px=
+">
+<hr tabindex=3D"-1">
+<div style=3D"direction: ltr;" id=3D"divRpF828162"><font face=3D"Tahoma" si=
+ze=3D"2" color=3D"#000000"><b>From:</b> Jim Rafert [jimr@spectralogic.com]<=
+br>
+<b>Sent:</b> Monday, December 22, 2014 10:10 AM<br>
+<b>To:</b> Matthias.Heise@atlas-elektronik.com; yocto@yoctoproject.org<br>
+<b>Subject:</b> Re: [yocto] nfs-boot problem<br>
+</font><br>
+</div>
+<div></div>
+<div>
+<div style=3D"direction:ltr; font-family:Tahoma; color:#000000; font-size:1=
+0pt">Hi Matthias,<br>
 <br>
 I'm sorry if I have seemed to be ignoring you, but I just today returned fr=
 om recovering from some surgery.<br>
@@ -352,12 +400,11 @@ p; You should test that by mounting the root file system share from another=
 <div style=3D"font-family:Tahoma; font-size:13px"><br>
 </div>
 </div>
-<div style=3D"font-family: Times New Roman; color: #000000; font-size: 16px=
-">
+<div style=3D"font-family:Times New Roman; color:#000000; font-size:16px">
 <hr tabindex=3D"-1">
-<div style=3D"direction: ltr;" id=3D"divRpF82061"><font face=3D"Tahoma" siz=
-e=3D"2" color=3D"#000000"><b>From:</b> Matthias.Heise@atlas-elektronik.com =
-[Matthias.Heise@atlas-elektronik.com]<br>
+<div id=3D"divRpF82061" style=3D"direction:ltr"><font face=3D"Tahoma" size=
+=3D"2" color=3D"#000000"><b>From:</b> Matthias.Heise@atlas-elektronik.com [=
+Matthias.Heise@atlas-elektronik.com]<br>
 <b>Sent:</b> Wednesday, December 10, 2014 1:31 AM<br>
 <b>To:</b> Jim Rafert; yocto@yoctoproject.org<br>
 <b>Subject:</b> Re: [yocto] nfs-boot problem<br>
@@ -891,7 +938,10 @@ pan><span style=3D"color:black"></span></p>
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 </body>
 </html>
 
---_000_86196249137E0843B2E0673D4F731E0C0108E29AF9reactorsldoma_--
+--_000_86196249137E0843B2E0673D4F731E0C0108E29B29reactorsldoma_--
