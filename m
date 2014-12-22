@@ -1,49 +1,37 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BA151E00874; Mon, 22 Dec 2014 04:51:45 -0800 (PST)
+	id 213A5E00903; Mon, 22 Dec 2014 06:54:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.50 listed in list.dnswl.org]
-Received: from mail-qa0-f50.google.com (mail-qa0-f50.google.com
-	[209.85.216.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2EF8AE00575
-	for <yocto@yoctoproject.org>; Mon, 22 Dec 2014 04:51:34 -0800 (PST)
-Received: by mail-qa0-f50.google.com with SMTP id dc16so3100406qab.23
-	for <yocto@yoctoproject.org>; Mon, 22 Dec 2014 04:51:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=SL+lRRrDaiH0en6Rs05jqOkxjV09kWwtdgtYnsmz30E=;
-	b=Ip6lUMUcdeReupx9FB1K+CclWfpF4WVnaKrx5KSOKN9x5BzwS4TzRDboFkkKeCJRER
-	ycuWsKYW7vkdZkbb4CUAXErh/veXguPF2ZKrld7q7sPdQjEDnZXrdmHVmSiB507uYO/m
-	QyuZOYbzJuBKYCk2+LSj5pI7l7ZIiVjdocgSmGgx/3lryq5ongFt6yj2kLDaMiRkYntA
-	yGSZjwYcQK7Qzhfw0l+rzH0uXWTbR2YWGCYPeoxNkEqNDf+6pCyalA0xS8d5xB62Xfod
-	M0V1V39SQkTcUgS11wb5VarSAHd8d+dDm2gkNwfv6uWCYtiD/JwfPjw4IRotayBkivcE
-	rkkw==
-X-Gm-Message-State: ALoCoQk3sCE/rJAJOUYmznACjUiwSRHchsRzC7RzwmQ/phjhciDtAmyTqQcw+Ctc+z2GxtWfTPN4
-X-Received: by 10.224.3.137 with SMTP id 9mr36763135qan.64.1419252694139; Mon,
-	22 Dec 2014 04:51:34 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.140.96.166 with HTTP; Mon, 22 Dec 2014 04:51:13 -0800 (PST)
-In-Reply-To: <54975065.1070704@gmail.com>
-References: <8F90F944E50427428C60E12A34A309D239F6DB0EE8@carmd-exchmb01.sierrawireless.local>
-	<CAAQYJAsgCWS+yoL7CusmKpPeVH5paAevOY8Jbo0JzzNgapFGJA@mail.gmail.com>
-	<54975065.1070704@gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 22 Dec 2014 12:51:13 +0000
-Message-ID: <CAJTo0LZzik-EiZJAp0AM1FQOAmjzs8q8LeEEM+AC+qORL3_D1Q@mail.gmail.com>
-To: =?UTF-8?Q?Jo=C3=A3o_Henrique_Ferreira_de_Freitas?= <joaohf@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Microcontroller Cross Compiler
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3268DE008E5
+	for <yocto@yoctoproject.org>; Mon, 22 Dec 2014 06:53:54 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	sBMErEPI010819; Mon, 22 Dec 2014 14:53:14 GMT
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id XkuVohtnVVjK; Mon, 22 Dec 2014 14:53:14 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	sBMEr3RH010814
+	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+	Mon, 22 Dec 2014 14:53:14 GMT
+Message-ID: <1419260020.13316.78.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Peter Saunderson <peteasa@gmail.com>
+Date: Mon, 22 Dec 2014 14:53:40 +0000
+In-Reply-To: <54958B25.8080505@gmail.com>
+References: <54958B25.8080505@gmail.com>
+X-Mailer: Evolution 3.12.7-0ubuntu1 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: Cross compiler which runs on the target architecture.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,53 +43,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Dec 2014 12:51:45 -0000
-Content-Type: multipart/alternative; boundary=001a11c2480aae6824050acd84d2
+X-List-Received-Date: Mon, 22 Dec 2014 14:54:04 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---001a11c2480aae6824050acd84d2
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-On 21 December 2014 at 22:57, Jo=C3=A3o Henrique Ferreira de Freitas <
-joaohf@gmail.com> wrote:
->
-> I will try it. But in my case I need to use this
-> https://launchpad.net/gcc-arm-embedded.
->
-> There are some way to yocto creates the gcc-arm-embedded SDK? Instead of
-> use the gcc-arm-embedded packages. Is it feasibly?
->
+On Sat, 2014-12-20 at 14:43 +0000, Peter Saunderson wrote:
+> I have seen a brief IRC chat 
+> (https://www.yoctoproject.org/irc/%23yocto.2013-09-23.log.html talking 
+> about https://github.com/nathanrossi/meta-parallella) about this 
+> question but nothing much else so this is an attempt to get more public 
+> feedback on this request.
+> 
+> I am trying to build a cross compiler that runs on the target processor 
+> and a cross compiler that runs on the host processor so that I can build 
+> code for a third processor (Epiphany).  If you want examples of the 
+> traditional way to build this compiler look at 
+> https://github.com/adapteva/epiphany-sdk epiphany-gcc epiphany-newlib 
+> epiphany-binutils... The end result would be a set of recipes that run 
+> on a pc build machine that build both arm code for the interim target 
+> and epiphany code for the final target and provides an SDK for the pc 
+> that enables you to cross compile for both arm and epiphany.
+> 
+> As I am just starting to look at this I would like to know what size of 
+> task I am up against!  My initial efforts based on review of 
+> poky/meta/recipes-devtools/binutils etc seem to suggest that I have to 
+> modify at least ${HOST_PREFIX}, ${TARGET_PREFIX}, ${TARGET_ARCH} etc for 
+> my epiphany-??? recipes so that the I can install the compiler in a 
+> suitable location with a suitable prefix, the IRC chat indicates that 
+> there are more things to consider also.
+> 
+> The question I have is about how easy it will be to use existing recipes 
+> for existing compiler / binutils etc... or is this likely to end up as a 
+> completely new set of recipes from the ground up because the existing 
+> recipes cant cope with building cross / cross compilers where there are 
+> three processors to consider (host (intel based pc), interim target 
+> (arm) and final target (epiphany)), or at least a lot of changes in the 
+> existing recipes to cope with something like TARGET_TARGET_ARCH = 
+> ${TARGET_ARCH}_${FINAL_TARGET_ARCH}??
 
-Yes, you "just" need to write a recipe to build the cross compilers,
-install them into the sysroot, and then use those compilers when building
-the MCU binaries.
+Funnily enough I've a similar need to do something like this for a
+personal project but targeting AVR.
 
-Building a toolchain isn't trivial but if it's actually a specific GCC
-combination then you may be able to re-use the gcc-cross recipes.
+Certainly OE has the power and capability to do something like this, I'm
+not sure its straightforward though, at least generically, and I say
+that as one of the people with pretty intimate knowledge of the
+toolchain recipes.
 
-Ross
+The easy parts are creating recipes for binutils and gcc to run on the
+target, targeting a third arch. This is like cross-canadian but built to
+run on MACHINE instead of SDKMACHINE and taretting a new arch (probably
+'target-cross-canadian'). The massively harder part is the libc for gcc
+to build against and any other libs for the system.
 
---001a11c2480aae6824050acd84d2
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+The issue is that bitbake.conf locks the choice of MACHINE early in the
+configuration stage. We added SDKMACHINE as a way of letting us build
+SDKs and we have multilib and BBCLASSEXTEND but these all only target a
+single arch.
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 21 December 2014 at 22:57, Jo=C3=A3o Henrique Ferreira de Freitas <span =
-dir=3D"ltr">&lt;<a href=3D"mailto:joaohf@gmail.com" target=3D"_blank">joaoh=
-f@gmail.com</a>&gt;</span> wrote:<blockquote class=3D"gmail_quote" style=3D=
-"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D"=
-:85m" class=3D"a3s" style=3D"overflow:hidden">I will try it. But in my case=
- I need to use this <a href=3D"https://launchpad.net/gcc-arm-embedded" targ=
-et=3D"_blank">https://launchpad.net/gcc-arm-<u></u>embedded</a>.<br>
-<br>
-There are some way to yocto creates the gcc-arm-embedded SDK? Instead of us=
-e the gcc-arm-embedded packages. Is it feasibly?</div></blockquote></div><b=
-r>Yes, you &quot;just&quot; need to write a recipe to build the cross compi=
-lers, install them into the sysroot, and then use those compilers when buil=
-ding the MCU binaries.</div><div class=3D"gmail_extra"><br></div><div class=
-=3D"gmail_extra">Building a toolchain isn&#39;t trivial but if it&#39;s act=
-ually a specific GCC combination then you may be able to re-use the gcc-cro=
-ss recipes.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_e=
-xtra">Ross</div></div>
+Part of me tries to ensure whatever solution we come up with can scale.
+This means I'd like my arm target to be able to build compilers
+targetting x86, mips and ppc as well as arm, all in one build. The
+question then comes to libc and whether you'd rebuild libc each time,
+whether you'd reuse the same libc package as a standard build or whether
+you'd have a special version of the libc for the 'target-cross-canadian'
+toolchain.
 
---001a11c2480aae6824050acd84d2--
+Stepping back from that craziness, I suspect some specialist recipes for
+avr/epiphany would probably be easiest right now, albeit less
+satisfying.
+
+Cheers,
+
+Richard
+
+
+
+
