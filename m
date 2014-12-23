@@ -1,66 +1,50 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <alexandru.damian@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 42AA5E00916; Tue, 23 Dec 2014 05:45:08 -0800 (PST)
+	id 6D1BDE008A7; Tue, 23 Dec 2014 07:20:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [157.56.110.104 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1bn0104.outbound.protection.outlook.com [157.56.110.104])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8CC2E002A6
-	for <yocto@yoctoproject.org>; Tue, 23 Dec 2014 05:45:01 -0800 (PST)
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com (25.160.113.12) by
-	BN3PR0501MB1092.namprd05.prod.outlook.com (25.160.113.139) with
-	Microsoft
-	SMTP Server (TLS) id 15.1.49.12; Tue, 23 Dec 2014 13:11:56 +0000
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com ([25.160.113.12]) by
-	BN3PR0501MB1090.namprd05.prod.outlook.com ([25.160.113.12]) with
-	mapi id 15.01.0036.010; Tue, 23 Dec 2014 13:11:56 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Thread-Topic: autobuilder: How to set PREMIRRORS?
-Thread-Index: Ac//SnMU4cyS3XABQce6M1Hid22YVgDIzViQAGcGIQAFWMg4gAFROidQ
-Date: Tue, 23 Dec 2014 13:11:56 +0000
-Message-ID: <BN3PR0501MB1090693B1158F9012F72D4C1BB570@BN3PR0501MB1090.namprd05.prod.outlook.com>
-References: <7383172b808e4ec3a8e2550c04cc9e91@BLUPR05MB037.namprd05.prod.outlook.com>
-	<40cfd0ca83f94c9eb826ab2573d41453@BLUPR05MB037.namprd05.prod.outlook.com>
-	<7686657984f84a938af3bdb15ef65992@BY2PR05MB048.namprd05.prod.outlook.com>
-	<CAPhnLPDmOXvFJzwPri-p0DY1iwWZPBqb-WdD4qmAH+GRmcB5tg@mail.gmail.com>
-In-Reply-To: <CAPhnLPDmOXvFJzwPri-p0DY1iwWZPBqb-WdD4qmAH+GRmcB5tg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-vipre-scanned: 00211F05008CAA00212052
-x-originating-ip: [98.100.91.242]
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=bevenson@melinkcorp.com; 
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:;SRVR:BN3PR0501MB1092;
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:;
-	SRVR:BN3PR0501MB1092; 
-x-forefront-prvs: 04347F8039
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(164054003)(189002)(51704005)(377424004)(377454003)(199003)(51914003)(13464003)(74316001)(99396003)(120916001)(66066001)(4396001)(107046002)(54206007)(86362001)(19580405001)(46102003)(19580395003)(21056001)(64706001)(76576001)(97736003)(122556002)(77156002)(101416001)(110136001)(105586002)(68736005)(54356999)(15975445007)(106356001)(92566001)(2656002)(102836002)(87936001)(99286002)(50986999)(40100003)(2950100001)(20776003)(33656002)(62966003)(2900100001)(31966008)(54606007)(76176999);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR0501MB1092;
-	H:BN3PR0501MB1090.namprd05.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-received-spf: None (protection.outlook.com: melinkcorp.com does not designate
-	permitted sender hosts)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-ob0-f172.google.com (mail-ob0-f172.google.com
+	[209.85.214.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADCCDE00872
+	for <yocto@yoctoproject.org>; Tue, 23 Dec 2014 07:20:43 -0800 (PST)
+Received: by mail-ob0-f172.google.com with SMTP id va8so25642867obc.3
+	for <yocto@yoctoproject.org>; Tue, 23 Dec 2014 07:20:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=UpBi61GF2X47S/1wIVJsAVWlovoIo4Kpv5DWeNNKWMY=;
+	b=I/34nnFyzZSYA565xmLULz+dg69gYwQ9gGPCVMnDk1TVanjWPhZTvBhocS+VgZnYSD
+	dX1yMtUb7ZaYmCTUVVwJxR9y37wig0zNXS6EO+5sMiH8DWwTV2Ze/h1E1ciSac+vsviC
+	sQa6NUMgSIjFMn5mHTLYOPsaPXsiMSrvQbz2vmF86DABVRNYdkmE+fpsPW2WfbS1DuGj
+	H4aY5n/o4U/XqTPin13y4pyrg8yx2RplsLGNlwSTii3IDSqi5LLVQ7+HNP4bib4TxVj6
+	6exXj94xI4YPK4dJpbWBt4sgcCrlKXJZ6hV24pROcc2rLE3KGhjbQvWSc2s8SUt61XIu
+	Vl4Q==
+X-Gm-Message-State: ALoCoQnp9ecdo78jfUVEE/ZYgXWLabEI34W6liqvCaqzpcRAR/NaI8MJyGtILN6iBqtzUVsbATIu
+X-Received: by 10.60.125.37 with SMTP id mn5mr3504914oeb.45.1419348042776;
+	Tue, 23 Dec 2014 07:20:42 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Dec 2014 13:11:56.0343 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR0501MB1092
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: autobuilder: How to set PREMIRRORS?
+Received: by 10.76.62.109 with HTTP; Tue, 23 Dec 2014 07:20:22 -0800 (PST)
+In-Reply-To: <CAJ2CSBsau7yx2LCnw4nOu5c0vTRayJgZcfNEiMXKqm6U59anEg@mail.gmail.com>
+References: <CAJ2CSBtOSTYuXDyn885Z2o-h05Rob-R2Q6CB85BEJVbXhtcdjw@mail.gmail.com>
+	<CAPhnLPAJhemtHnbRQcfQrJc--xjgqS47MkA96YPKFwaBueYM0w@mail.gmail.com>
+	<CAJ2CSBsau7yx2LCnw4nOu5c0vTRayJgZcfNEiMXKqm6U59anEg@mail.gmail.com>
+From: "Damian, Alexandru" <alexandru.damian@intel.com>
+Date: Tue, 23 Dec 2014 15:20:22 +0000
+Message-ID: <CAJ2CSBsA1D0aDWpmHgjkhwYxkY8G-FVY61b9Z-kuRoy9h6eaGA@mail.gmail.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
+	Paul Eggleton <paul.eggleton@linux.intel.com>
+Subject: Re: RFC - enable toaster on the autobuilder
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,82 +56,232 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Dec 2014 13:45:08 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 23 Dec 2014 15:20:56 -0000
+Content-Type: multipart/alternative; boundary=047d7b343dfee71890050ae3b738
 
-RWxpemFiZXRoLA0KDQpUaGFua3MgZm9yIHRoZSB0aXBzLiAgSSB0aGluayBJIGhhdmUgc29tZXRo
-aW5nIGNsb3NlIHRvIHdvcmtpbmcsIGp1c3QgbmVlZCB0byBmaW5pc2ggdGVzdGluZy4gIEkgc2hv
-dWxkIGhhdmUgYSBwYXRjaCBmb3IgeW91IHRoZSBmaXJzdCB3ZWVrIG9mIEphbnVhcnkuDQoNClRo
-YW5rcywNCkJyeWFuIEUuDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTog
-RmxhbmFnYW4sIEVsaXphYmV0aCBbbWFpbHRvOmVsaXphYmV0aC5mbGFuYWdhbkBpbnRlbC5jb21d
-DQo+IFNlbnQ6IFR1ZXNkYXksIERlY2VtYmVyIDE2LCAyMDE0IDM6MTQgUE0NCj4gVG86IEJyeWFu
-IEV2ZW5zb24NCj4gQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogUmU6IGF1
-dG9idWlsZGVyOiBIb3cgdG8gc2V0IFBSRU1JUlJPUlM/DQo+IA0KPiAyMDE0LTExLTE5IDE1OjEy
-IEdNVCswMDowMCBCcnlhbiBFdmVuc29uIDxiZXZlbnNvbkBtZWxpbmtjb3JwLmNvbT46DQo+ID4g
-QWxsLA0KPiA+DQo+ID4gSSdtIGdldHRpbmcgY2xvc2UgdG8gaW1wbGVtZW50aW5nIHRoaXMgZmVh
-dHVyZSwgYnV0IEknbSBoYXZpbmcgc29tZSBpc3N1ZXMNCj4gZ2V0dGluZyBhdXRvLmNvbmYgZm9y
-bWF0dGVkIGNvcnJlY3RseS4gIFNlZSBiZWxvdy4NCj4gPg0KPiA+PiAtLS0tLU9yaWdpbmFsIE1l
-c3NhZ2UtLS0tLQ0KPiA+PiBGcm9tOiBCcnlhbiBFdmVuc29uDQo+ID4+IFNlbnQ6IE1vbmRheSwg
-Tm92ZW1iZXIgMTcsIDIwMTQgOTowOCBBTQ0KPiA+PiBUbzogQnJ5YW4gRXZlbnNvbjsgeW9jdG9A
-eW9jdG9wcm9qZWN0Lm9yZzsNCj4gZWxpemFiZXRoLmZsYW5hZ2FuQGludGVsLmNvbQ0KPiA+PiBT
-dWJqZWN0OiBSRTogYXV0b2J1aWxkZXI6IEhvdyB0byBzZXQgUFJFTUlSUk9SUz8NCj4gPj4NCj4g
-Pj4gQWxsLA0KPiA+Pg0KPiA+PiBBZnRlciBsb29raW5nIHRocm91Z2ggdGhlIGF1dG9idWlsZGVy
-IGNvZGUsIEkgZG9uJ3Qgc2VlIGFueXdoZXJlIGluIHdoaWNoDQo+ID4+IFBSRU1JUlJPUlMgY2Fu
-IGJlIHNldCBhbmQgdXNlZC4gIEkgc2VlIGluIENyZWF0ZUF1dG9Db25mLnB5IHRoYXQNCj4gPj4g
-UFJFTUlSUk9SUyBpcyBhbHdheXMgc2V0IHRvICIiLiAgSSBkb24ndCB0aGluayBpdCdkIGJlIHRo
-YXQgZGlmZmljdWx0IHRvIGFkZA0KPiA+PiBQUkVNSVJST1JTIGFzIGEgQ3JlYXRlQXV0b0NvbmYg
-cGFyYW1ldGVyIGZvciB0aGUgYnVpbGRzZXRzLiAgSSBjYW4NCj4gd29yaw0KPiA+PiBvbiB0aGUg
-Y2hhbmdlIGFuZCBzdWJtaXQgdGhlIHBhdGNoLiAgQnV0IGJlZm9yZSBJIHN0YXJ0IEkgaGF2ZSBh
-IGZldw0KPiA+PiBxdWVzdGlvbnM6DQo+ID4+DQo+ID4+IDEuIEkgcGxhbiBvbiBpbXBsZW1lbnRp
-bmcgdGhlIFBSRU1JUlJPUlMgcGFyYW1ldGVyIGFzIGFuIGFycmF5LCBzaW1pbGFyDQo+IHRvDQo+
-ID4+ICdsYXllcmRpcnMnIGZvciBDcmVhdGVCQkxheWVyc0NvbmYuICBGb3IgZXhhbXBsZToNCj4g
-Pj4NCj4gPj4geydDcmVhdGVBdXRvQ29uZicgOiB7J1BSRU1JUlJPUlMnIDogWydnaXQ6Ly8uKi8u
-Kg0KPiA+PiBodHRwOi8vb3VyL2xvY2FsL21pcnJvci9wYXRoL21pcnJvci9zb3VyY2VzLyAnLA0K
-PiA+PiAgICAgICAnZnRwOi8vLiovLiogaHR0cDovL291ci9sb2NhbC9taXJyb3IvcGF0aCAvbWly
-cm9yL3NvdXJjZXMvICcsDQo+ID4+ICAgICAgICdodHRwOi8vLiovLiogaHR0cDovL291ci9sb2Nh
-bC9taXJyb3IvcGF0aC9taXJyb3Ivc291cmNlcy8gJywNCj4gPj4gICAgICAgJ2h0dHBzOi8vLiov
-LiogaHR0cDovL291ci9sb2NhbC9taXJyb3IvcGF0aC9taXJyb3Ivc291cmNlcy8gJ119DQo+ID4+
-DQo+ID4+IHdvdWxkIGFkZCB0aGUgZm9sbG93aW5nIHRvIGF1dG8uY29uZjoNCj4gPj4NCj4gPj4g
-IFBSRU1JUlJPUlMgPSAnZ2l0Oi8vLiovLiogaHR0cDovL291ci9sb2NhbC9taXJyb3IvcGF0aC9t
-aXJyb3Ivc291cmNlcy8NCj4gXA0KPiA+PiAgICAgICBmdHA6Ly8uKi8uKiBodHRwOi8vb3VyL2xv
-Y2FsL21pcnJvci9wYXRoIC9taXJyb3Ivc291cmNlcy8gIFwNCj4gPj4gICAgICAgaHR0cDovLy4q
-Ly4qIGh0dHA6Ly9vdXIvbG9jYWwvbWlycm9yL3BhdGgvbWlycm9yL3NvdXJjZXMvICBcDQo+ID4+
-ICAgICAgIGh0dHBzOi8vLiovLiogaHR0cDovL291ci9sb2NhbC9taXJyb3IvcGF0aC9taXJyb3Iv
-c291cmNlcy8gJw0KPiA+Pg0KPiA+PiBEb2VzIHRoaXMgc291bmQgcmVhc29uYWJsZSwgb3Igd291
-bGQgYSBkaWZmZXJlbnQgcGFyYW1ldGVyIGZvcm1hdCBiZQ0KPiA+PiBwcmVmZXJyZWQ/DQo+ID4N
-Cj4gDQo+IEkgd291bGQgYWN0dWFsbHkgZG8gdGhpcyBzaW1pbGFyIHRvIGhvdyB3ZSBoYXZlIERF
-VktFUk5FTF9NVVRfUkVQTy4NCj4gDQo+IFBSRU1JUlJPUlMgPSBbJ2dpdDovLy4qLy4qDQo+IGh0
-dHA6Ly9vdXIvbG9jYWwvbWlycm9yL3BhdGgvbWlycm9yL3NvdXJjZXMvJywgJ2Z0cDovLy4qLy4q
-DQo+IGh0dHA6Ly9vdXIvbG9jYWwvbWlycm9yL3BhdGggL21pcnJvci9zb3VyY2VzLycsICdodHRw
-Oi8vLiovLioNCj4gaHR0cDovL291ci9sb2NhbC9taXJyb3IvcGF0aC9taXJyb3Ivc291cmNlcy8n
-LCAnaHR0cHM6Ly8uKi8uKg0KPiBodHRwOi8vb3VyL2xvY2FsL21pcnJvci9wYXRoL21pcnJvci9z
-b3VyY2VzLyddDQo+IA0KPiA+IEkgYW0gdHJ5aW5nIHRvIGFkZCBhIHNpbmdsZSBQUkVNSVJST1Ig
-dXNpbmcgdGhlIHN5bnRheCBJIHNwZWNpZmllZCBhYm92ZS4NCj4gQXQgdGhpcyB0aW1lIGl0IGlz
-IGdldHRpbmcgaW5zZXJ0ZWQgaW4gYXV0by5jb25mLiAgSG93ZXZlciwgdGhlIHN5c3RlbSBpcyBn
-b2luZw0KPiBpbnRvIGFuIGluZmluaXRlIGxvb3AgYnVpbGRpbmcgdGhlIFBSRU1JUlJPUiBwYXRo
-LiAgVGhlIGFkZGVkIGNvbnRlbnQgdG8NCj4gYXV0by5jb25mIGF0IHRoaXMgdGltZSBsb29rcyBs
-aWtlOg0KPiA+DQo+ID4gUFJFTUlSUk9SUyA9ICIgXA0KPiA+IGh0dHA6Ly8uKi4qIGh0dHA6Ly9z
-ZXJ2ZXIucmVwby5sb2NhbC9taXJyb3Ivc291cmNlcy8gXG4gXA0KPiA+ICINCj4gPg0KPiA+IEFu
-ZCBmcm9tIGxvb2tpbmcgYXQgbG9nLmRvX2ZldGNoIGZvciB0aGUgcGFja2FnZSB0aGF0IGF0dGVt
-cHRzIHRvIHVzZSB0aGUNCj4gUFJFTUlSUk9SLCB0aGUgbG9nIGlzIGZpbGxlZCB3aXRoDQo+ICJz
-ZXJ2ZXIucmVwby5sb2NhbHNlcnZlci5yZXBvLmxvY2Fsc2VydmVyLnJlcG8ubG9jYWwiIHJlcGVh
-dGluZy4gIEFueSB0aXBzIG9uDQo+IGhvdyBQUkVNSVJST1JTIHNob3VsZCBiZSBidWlsdD8NCj4g
-Pg0KPiA+IEhlcmUncyB3aGF0IEkgaGF2ZSBzbyBmYXIgaW4gQ3JlYXRlQXV0b0NvbmYucHk6DQo+
-ID4NCj4gPiAgICAgICAgICAgICBzZWxmLlBSRU1JUlJPUlM9IiINCj4gPiAgICAgICAgICAgICBm
-b3V0ID0gZm91dCArICdQUkVNSVJST1JTID0gIiBcIFxuJw0KPiA+ICAgICAgICAgICAgIGlmIGxp
-c3Qoc2VsZi5QUkVNSVJST1JTKToNCj4gPiAgICAgICAgICAgICAgICAgZm9yIHByZW1pcnJvciBp
-biBzZWxmLlBSRU1JUlJPUlM6DQo+ID4gICAgICAgICAgICAgICAgICAgICBmb3V0ID0gZm91dCAr
-IHByZW1pcnJvciArICcgXFxcXG4gXCBcbicNCj4gPiAgICAgICAgICAgICBmb3V0ID0gZm91dCAr
-ICciIFxuJw0KPiA+DQo+ID4gQW55IHRpcHMgb24gaG93IHRvIGNoYW5nZSB0aGluZ3Mgc28gUFJF
-TUlSUk9SUyBpcyBjb3JyZWN0bHkgcGFyc2VkPw0KPiA+DQo+IA0KPiAjbWFrZSBzdXJlIHlvdSBh
-ZGQNCj4gIw0KPiAjZXhwb3J0IFBSRU1JUlJPUlM9IiINCj4gIyB0byB5b2N0by1hdXRvYnVpbGRl
-ci1zZXR1cA0KPiANCj4gaWYgb3MuZW52aXJvbi5nZXQoJ1BSRU1JUlJPUlMnKSBpcyBub3QgTm9u
-ZToNCj4gICAgIHByZW1pcnJvcnM9YXN0LmxpdGVybmFsX2V2YWwob3MuZW52aXJvbi5nZXQoJ1BS
-RU1JUlJPUlMnKS5lbmNvZGUoJ3V0Zi04JykNCj4gICAgIGZvdXQgPSsgJ1BSRU1JUlJPUlMgPSAi
-XCBcbicNCj4gICAgIGZvciBtaXJyb3IgaW4gcHJlbWlycm9yczouLi4uLg0KPiANCj4gSSB0aGlu
-ayB0aGlzIHNob3VsZCBkbyB3aGF0IHlvdSdyZSBsb29raW5nIGZvci4NCj4gDQo+ID4gVGhhbmtz
-LA0KPiA+IEJyeWFuDQo+ID4NCj4gDQo+IC0tDQo+IEVsaXphYmV0aCBGbGFuYWdhbg0KPiBZb2N0
-byBQcm9qZWN0DQo+IEJ1aWxkIGFuZCBSZWxlYXNlDQo=
+--047d7b343dfee71890050ae3b738
+Content-Type: text/plain; charset=UTF-8
 
+Hi Beth,
+
+The bitbake patchset was merged last week, and I've made the requested
+changes to the autobuilder patchset.
+
+Can you please review and pull *poky-contrib:
+adamian/autobuilder-enable-toaster *at your convenience ?
+
+Thanks,
+Alex
+
+On Wed, Dec 10, 2014 at 11:13 AM, Damian, Alexandru <
+alexandru.damian@intel.com> wrote:
+
+> Hi,
+>
+> Thanks for the quick reply -
+>
+> yes, Toaster needs buildhistory; it also needs the "toaster" bbclass in
+> the INHERIT list.
+>
+> I'll make the changes and re-submit.
+>
+> Cheers,
+> Alex
+>
+> On Tue, Dec 9, 2014 at 6:07 PM, Flanagan, Elizabeth <
+> elizabeth.flanagan@intel.com> wrote:
+>
+>> A few initial comments.
+>>
+>> TOASTER_UPLOADURL needs to be added to
+>> config/autobuilder.conf.example. It would also be nice if it was added
+>> to docs. Please set it to a localhost URL and comment it out for the
+>> time being.
+>>
+>> Also, can we make it TOASTER_UPLOAD_URL. It matches my naming
+>> convention for config strings a bit closer.
+>>
+>> If toaster needs buildhistory, I'm going to have to do some work on
+>> getting buildhistory to setup automatically on an autobuilder install
+>> (or at least document how to do it).
+>>
+>> -b
+>>
+>> On Tue, Dec 9, 2014 at 8:42 AM, Damian, Alexandru
+>> <alexandru.damian@intel.com> wrote:
+>> > Hello,
+>> >
+>> > I'm sending a patchset to enable Toaster logging for the autobuilder -
+>> can
+>> > you please review and comment ?
+>> >
+>> > I have pending Bitbake patchset (poky-contrib:adamian/devel-settings)
+>> > Bitbake that adds two toaster-on-autobuilder related features:
+>> > 1. build event logging flag (-w) will write an UI event log file
+>> > 2. toaster end point that receives a log file over a HTTP POST request
+>> and
+>> > loads the data in the toaster database
+>> >
+>> > Based on this approach, I've created an autobuilder patchset that
+>> enables 1.
+>> > at all times, and 2. uploads the data to a Toaster server if such
+>> server is
+>> > specified in the build configuration
+>> >
+>> > Can you please review:
+>> >
+>> > poky-contrib: adamian/autobuilder-enable-toaster
+>> >
+>> >
+>> > Thanks,
+>> > Alex
+>> >
+>> > --
+>> > Alex Damian
+>> > Yocto Project
+>> > SSG / OTC
+>> >
+>> > ---------------------------------------------------------------------
+>> > Intel Corporation (UK) Limited
+>> > Registered No. 1134945 (England)
+>> > Registered Office: Pipers Way, Swindon SN3 1RJ
+>> > VAT No: 860 2173 47
+>> >
+>> > This e-mail and any attachments may contain confidential material for
+>> > the sole use of the intended recipient(s). Any review or distribution
+>> > by others is strictly prohibited. If you are not the intended
+>> > recipient, please contact the sender and delete all copies.
+>>
+>>
+>>
+>> --
+>> Elizabeth Flanagan
+>> Yocto Project
+>> Build and Release
+>>
+>
+>
+>
+> --
+> Alex Damian
+> Yocto Project
+> SSG / OTC
+>
+
+
+
+-- 
+Alex Damian
+Yocto Project
+SSG / OTC
+
+--047d7b343dfee71890050ae3b738
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,s=
+ans-serif">Hi Beth,<br><br></div><div class=3D"gmail_default" style=3D"font=
+-family:tahoma,sans-serif">The bitbake patchset was merged last week, and I=
+&#39;ve made the requested changes to the autobuilder patchset.<br><br>Can =
+you please review and pull <b>poky-contrib: adamian/autobuilder-enable-toas=
+ter </b>at your convenience ?<br><br></div><div class=3D"gmail_default" sty=
+le=3D"font-family:tahoma,sans-serif">Thanks,<br></div><div class=3D"gmail_d=
+efault" style=3D"font-family:tahoma,sans-serif">Alex<br></div></div><div cl=
+ass=3D"gmail_extra"><br><div class=3D"gmail_quote">On Wed, Dec 10, 2014 at =
+11:13 AM, Damian, Alexandru <span dir=3D"ltr">&lt;<a href=3D"mailto:alexand=
+ru.damian@intel.com" target=3D"_blank">alexandru.damian@intel.com</a>&gt;</=
+span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8e=
+x;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div class=
+=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Hi,<br><br>Thank=
+s for the quick reply -<br><br>yes, Toaster needs buildhistory; it also nee=
+ds the &quot;toaster&quot; bbclass in the INHERIT list.<br><br></div><div c=
+lass=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">I&#39;ll mak=
+e the changes and re-submit.<br></div><div class=3D"gmail_default" style=3D=
+"font-family:tahoma,sans-serif"><br>Cheers,<br>Alex<br></div></div><div cla=
+ss=3D"HOEnZb"><div class=3D"h5"><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On Tue, Dec 9, 2014 at 6:07 PM, Flanagan, Elizabeth <span =
+dir=3D"ltr">&lt;<a href=3D"mailto:elizabeth.flanagan@intel.com" target=3D"_=
+blank">elizabeth.flanagan@intel.com</a>&gt;</span> wrote:<br><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
+adding-left:1ex">A few initial comments.<br>
+<br>
+TOASTER_UPLOADURL needs to be added to<br>
+config/autobuilder.conf.example. It would also be nice if it was added<br>
+to docs. Please set it to a localhost URL and comment it out for the<br>
+time being.<br>
+<br>
+Also, can we make it TOASTER_UPLOAD_URL. It matches my naming<br>
+convention for config strings a bit closer.<br>
+<br>
+If toaster needs buildhistory, I&#39;m going to have to do some work on<br>
+getting buildhistory to setup automatically on an autobuilder install<br>
+(or at least document how to do it).<br>
+<br>
+-b<br>
+<div><div><br>
+On Tue, Dec 9, 2014 at 8:42 AM, Damian, Alexandru<br>
+&lt;<a href=3D"mailto:alexandru.damian@intel.com" target=3D"_blank">alexand=
+ru.damian@intel.com</a>&gt; wrote:<br>
+&gt; Hello,<br>
+&gt;<br>
+&gt; I&#39;m sending a patchset to enable Toaster logging for the autobuild=
+er - can<br>
+&gt; you please review and comment ?<br>
+&gt;<br>
+&gt; I have pending Bitbake patchset (poky-contrib:adamian/devel-settings)<=
+br>
+&gt; Bitbake that adds two toaster-on-autobuilder related features:<br>
+&gt; 1. build event logging flag (-w) will write an UI event log file<br>
+&gt; 2. toaster end point that receives a log file over a HTTP POST request=
+ and<br>
+&gt; loads the data in the toaster database<br>
+&gt;<br>
+&gt; Based on this approach, I&#39;ve created an autobuilder patchset that =
+enables 1.<br>
+&gt; at all times, and 2. uploads the data to a Toaster server if such serv=
+er is<br>
+&gt; specified in the build configuration<br>
+&gt;<br>
+&gt; Can you please review:<br>
+&gt;<br>
+&gt; poky-contrib: adamian/autobuilder-enable-toaster<br>
+&gt;<br>
+&gt;<br>
+&gt; Thanks,<br>
+&gt; Alex<br>
+&gt;<br>
+&gt; --<br>
+&gt; Alex Damian<br>
+&gt; Yocto Project<br>
+&gt; SSG / OTC<br>
+&gt;<br>
+</div></div>&gt; ----------------------------------------------------------=
+-----------<br>
+&gt; Intel Corporation (UK) Limited<br>
+&gt; Registered No. 1134945 (England)<br>
+&gt; Registered Office: Pipers Way, Swindon SN3 1RJ<br>
+&gt; VAT No: 860 2173 47<br>
+&gt;<br>
+&gt; This e-mail and any attachments may contain confidential material for<=
+br>
+&gt; the sole use of the intended recipient(s). Any review or distribution<=
+br>
+&gt; by others is strictly prohibited. If you are not the intended<br>
+&gt; recipient, please contact the sender and delete all copies.<br>
+<span><font color=3D"#888888"><br>
+<br>
+<br>
+--<br>
+Elizabeth Flanagan<br>
+Yocto Project<br>
+Build and Release<br>
+</font></span></blockquote></div><br><br clear=3D"all"><br>-- <br><div><div=
+ dir=3D"ltr">Alex Damian<div>Yocto Project<br></div><div>SSG / OTC=C2=A0</d=
+iv></div></div>
+</div>
+</div></div></blockquote></div><br><br clear=3D"all"><br>-- <br><div class=
+=3D"gmail_signature"><div dir=3D"ltr">Alex Damian<div>Yocto Project<br></di=
+v><div>SSG / OTC=C2=A0</div></div></div>
+</div>
+
+--047d7b343dfee71890050ae3b738--
