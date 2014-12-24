@@ -1,6 +1,6 @@
 Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A565E00837; Tue, 23 Dec 2014 16:45:47 -0800 (PST)
+	id 695D8E00521; Tue, 23 Dec 2014 17:12:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,43 +8,37 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.181 listed in list.dnswl.org]
+	*      [209.85.220.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-vc0-f181.google.com (mail-vc0-f181.google.com
-	[209.85.220.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04EDDE003AB
-	for <yocto@yoctoproject.org>; Tue, 23 Dec 2014 16:45:46 -0800 (PST)
-Received: by mail-vc0-f181.google.com with SMTP id le20so2757164vcb.12
-	for <yocto@yoctoproject.org>; Tue, 23 Dec 2014 16:45:46 -0800 (PST)
+Received: from mail-vc0-f174.google.com (mail-vc0-f174.google.com
+	[209.85.220.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73637E003AB
+	for <yocto@yoctoproject.org>; Tue, 23 Dec 2014 17:12:15 -0800 (PST)
+Received: by mail-vc0-f174.google.com with SMTP id id10so2647104vcb.5
+	for <yocto@yoctoproject.org>; Tue, 23 Dec 2014 17:12:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=Oh8iHTTaLLdNQrRpfEdFlvt0unzWt7KW2oQv6MVh1D0=;
-	b=VPmlzZyNXj5qDU5TupsH7VRXVmEUOhFY6Heze0W7Sdu9iIKOfi8WUUmN4YppbOaAvO
-	XA3h2L65no0tPWQ9rhitGB09gcgL3ohI9MigXJS6HTSl5ttA0j2Kx7u2Me4Rgip8G/xT
-	TnnaBlhGdAa0QBqWanDaOH8MwsNCRs7w4UEjie5gsdT/ySk7Z036XjN5q1ypR1z92Tru
-	SiGkZ8YLTX51xfiJbdknqZeqTlh9FKwj/Z0PYmh3frGXXYQynlKOAS1KuQw7ppuJJAsv
-	Nka/GBvvgeICeDq7N6Beo4JaXzJigw78jF5f1+DPk6rOSf2floxJgbKIh8neYHK9pg8H
-	jsAQ==
-X-Gm-Message-State: ALoCoQn1s8IqcNrfOOcwXOJHJED5B4jY8WL06ZcdZRh4Xfon2SwiPFDouhbX54br4ad1qyREgUJP
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type:content-transfer-encoding;
+	bh=88t2yIHjABLj5cxC6wqWewVCFcUgvQ3QY/427mUzFeY=;
+	b=m+7GdMCNuBVegpa8hw8uyMpkSa6nOAYO1JDmMdqx/bg5mqNsfZxHLL80Y3+jmMyho0
+	hY1q3v8zr1gTx+rjy/lvHu7NDGbrMApwGG7IMhimKjHsujDCCUv/o2IO5qWw9NVQCcma
+	oWmGqnrnq2uyz//yl/MWXrCMB0qUJzg2X3+CPH6yiWP7qhHSHY83VQccWOPewXJ6mGfT
+	/pR/iL/QQ3tvC712S0PH2h/8FpcfGvmiXeiiOlMh5JzaIFtt8uaWDY3WNMneCQ9e3wdZ
+	UxV5MFxFZZCHk1cyk6UJh+mTG0RNURdib7Z8X2vbZuduZjAYOp2eqmRcKBrNXwyCbdFT
+	nAzw==
+X-Gm-Message-State: ALoCoQmBJfXXrVW2ZEA9AfxANjFperpsLiL14xR+OvxQZ9FFj/NHiDG1oK+cLBZP50+UUGrnOQVV
 MIME-Version: 1.0
-X-Received: by 10.220.9.81 with SMTP id k17mr12181211vck.9.1419381946088; Tue,
-	23 Dec 2014 16:45:46 -0800 (PST)
-Received: by 10.52.29.146 with HTTP; Tue, 23 Dec 2014 16:45:46 -0800 (PST)
-In-Reply-To: <CAJ2CSBsA1D0aDWpmHgjkhwYxkY8G-FVY61b9Z-kuRoy9h6eaGA@mail.gmail.com>
-References: <CAJ2CSBtOSTYuXDyn885Z2o-h05Rob-R2Q6CB85BEJVbXhtcdjw@mail.gmail.com>
-	<CAPhnLPAJhemtHnbRQcfQrJc--xjgqS47MkA96YPKFwaBueYM0w@mail.gmail.com>
-	<CAJ2CSBsau7yx2LCnw4nOu5c0vTRayJgZcfNEiMXKqm6U59anEg@mail.gmail.com>
-	<CAJ2CSBsA1D0aDWpmHgjkhwYxkY8G-FVY61b9Z-kuRoy9h6eaGA@mail.gmail.com>
-Date: Tue, 23 Dec 2014 16:45:46 -0800
-Message-ID: <CAPhnLPC3Uf2jnc4jkB7rWHLqiZbw0CffEoeD2TbzMBoRz6iVXA@mail.gmail.com>
+X-Received: by 10.220.181.1 with SMTP id bw1mr12191984vcb.66.1419383534863;
+	Tue, 23 Dec 2014 17:12:14 -0800 (PST)
+Received: by 10.52.29.146 with HTTP; Tue, 23 Dec 2014 17:12:14 -0800 (PST)
+Date: Tue, 23 Dec 2014 17:12:14 -0800
+Message-ID: <CAPhnLPCGGEt8GeezpBF4y1fXFaKLRWxOJcDrqyUhdNOAim1rZw@mail.gmail.com>
 From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "Damian, Alexandru" <alexandru.damian@intel.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>
-Subject: Re: RFC - enable toaster on the autobuilder
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	yocto-announce@yoctoproject.org
+Subject: [ANNOUNCEMENT] Intel(R) Valley Island BSP for Yocto 1.6.2 "dizzy"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,142 +50,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Dec 2014 00:45:47 -0000
+X-List-Received-Date: Wed, 24 Dec 2014 01:12:17 -0000
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 23 December 2014 at 07:20, Damian, Alexandru
-<alexandru.damian@intel.com> wrote:
-> Hi Beth,
->
-> The bitbake patchset was merged last week, and I've made the requested
-> changes to the autobuilder patchset.
+All,
 
-Sure, this will probably not be until during the holidays (26thish or so).
+We are pleased to announce the updated release of the Intel=C2=AE Valley
+Island BSP for the Yocto Project "daisy" 1.6.2 release.
 
->
-> Can you please review and pull poky-contrib:
-> adamian/autobuilder-enable-toaster at your convenience ?
->
-> Thanks,
-> Alex
->
-> On Wed, Dec 10, 2014 at 11:13 AM, Damian, Alexandru
-> <alexandru.damian@intel.com> wrote:
->>
->> Hi,
->>
->> Thanks for the quick reply -
->>
->> yes, Toaster needs buildhistory; it also needs the "toaster" bbclass in
->> the INHERIT list.
->>
->> I'll make the changes and re-submit.
->>
->> Cheers,
->> Alex
->>
->> On Tue, Dec 9, 2014 at 6:07 PM, Flanagan, Elizabeth
->> <elizabeth.flanagan@intel.com> wrote:
->>>
->>> A few initial comments.
->>>
->>> TOASTER_UPLOADURL needs to be added to
->>> config/autobuilder.conf.example. It would also be nice if it was added
->>> to docs. Please set it to a localhost URL and comment it out for the
->>> time being.
->>>
->>> Also, can we make it TOASTER_UPLOAD_URL. It matches my naming
->>> convention for config strings a bit closer.
->>>
->>> If toaster needs buildhistory, I'm going to have to do some work on
->>> getting buildhistory to setup automatically on an autobuilder install
->>> (or at least document how to do it).
->>>
->>> -b
->>>
->>> On Tue, Dec 9, 2014 at 8:42 AM, Damian, Alexandru
->>> <alexandru.damian@intel.com> wrote:
->>> > Hello,
->>> >
->>> > I'm sending a patchset to enable Toaster logging for the autobuilder -
->>> > can
->>> > you please review and comment ?
->>> >
->>> > I have pending Bitbake patchset (poky-contrib:adamian/devel-settings)
->>> > Bitbake that adds two toaster-on-autobuilder related features:
->>> > 1. build event logging flag (-w) will write an UI event log file
->>> > 2. toaster end point that receives a log file over a HTTP POST request
->>> > and
->>> > loads the data in the toaster database
->>> >
->>> > Based on this approach, I've created an autobuilder patchset that
->>> > enables 1.
->>> > at all times, and 2. uploads the data to a Toaster server if such
->>> > server is
->>> > specified in the build configuration
->>> >
->>> > Can you please review:
->>> >
->>> > poky-contrib: adamian/autobuilder-enable-toaster
->>> >
->>> >
->>> > Thanks,
->>> > Alex
->>> >
->>> > --
->>> > Alex Damian
->>> > Yocto Project
->>> > SSG / OTC
->>> >
->>> > ---------------------------------------------------------------------
->>> > Intel Corporation (UK) Limited
->>> > Registered No. 1134945 (England)
->>> > Registered Office: Pipers Way, Swindon SN3 1RJ
->>> > VAT No: 860 2173 47
->>> >
->>> > This e-mail and any attachments may contain confidential material for
->>> > the sole use of the intended recipient(s). Any review or distribution
->>> > by others is strictly prohibited. If you are not the intended
->>> > recipient, please contact the sender and delete all copies.
->>>
->>>
->>>
->>> --
->>> Elizabeth Flanagan
->>> Yocto Project
->>> Build and Release
->>
->>
->>
->>
->> --
->> Alex Damian
->> Yocto Project
->> SSG / OTC
->
->
->
->
-> --
-> Alex Damian
-> Yocto Project
-> SSG / OTC
->
-> ---------------------------------------------------------------------
-> Intel Corporation (UK) Limited
-> Registered No. 1134945 (England)
-> Registered Office: Pipers Way, Swindon SN3 1RJ
-> VAT No: 860 2173 47
->
-> This e-mail and any attachments may contain confidential material for
-> the sole use of the intended recipient(s). Any review or distribution
-> by others is strictly prohibited. If you are not the intended
-> recipient, please contact the sender and delete all copies.
+https://www.yoctoproject.org/downloads/bsps/daisy162/valley-island-64-bit
 
+Supported Platforms:
+--------------------
+- Bayley Bay CRB
+- Bakersport CRB
+- Valley Island Development Kit
+- MinnowBoard Max
 
+Features Supported in this Release:
+-----------------------------------
+- Linux kernel version 3.10-LTSI
+- Support integrated graphics (i915)
+- Support SATA, USB v2.0 & v3.0 Host, USB device mode (Bakersport
+only), eMMC and SD Host Controller, GbE, HD Audio, APIC, RTC.
+- Support LPSS I/O devices - SPI, HSUART, I2C, GPIO, SMBus i801,
+Serial 8250, PWM
+- Support LPSS device enumeration in both PCI and ACPI mode.
 
--- 
+Miscellaneous
+-------------
+This BSP was built with the following commit id for valleyisland machine:
+poky/daisy: e3dd621197548b4cf64988e757e9bc926082db73
+meta-intel/daisy: 39cdd2fa13bc387388bcf5f07b8ee4c45f3f2135
+
+32-bit image was built with the following commit id for valleyisland machin=
+e:
+linux-yocto ver3.10 machine branch: standard/base:
+747e1cbd12b15db8bc2ae86e2359c1b113f120d6
+linux-yocto ver3.10 meta branch : meta: 8f05306a8e6f5ee422d50c3317acce0cf9e=
+6aada
+linux-yocto ver3.10 feature branch:
+valleyisland-io-3.0:0992d01f5f382f6da60004ef87f67ebd3ca13732
+
+64-bit image was built with the following commit id for valleyisland machin=
+e:
+linux-yocto ver3.10 machine branch: standard/base:standard/base:
+747e1cbd12b15db8bc2ae86e2359c1b113f120d6
+linux-yocto ver3.10 meta branch : meta: 8f05306a8e6f5ee422d50c3317acce0cf9e=
+6aada
+linux-yocto ver3.10 feature branch:
+valleyisland-io-3.0:0992d01f5f382f6da60004ef87f67ebd3ca13732
+
+--=20
 Elizabeth Flanagan
-Yocto Project
-Build and Release
+Intel Corp.
 
