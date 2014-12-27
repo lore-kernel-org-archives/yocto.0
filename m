@@ -1,42 +1,55 @@
-Return-Path: <Neil.Wu@Emerson.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21865E008DC; Wed, 24 Dec 2014 23:01:31 -0800 (PST)
+	id 675E1E00830; Fri, 26 Dec 2014 18:48:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [144.191.128.188 listed in list.dnswl.org]
-Received: from USSTLZ-PINFEZ04.extemr.org (usstlz-pinfez04.extemr.org
-	[144.191.128.188])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46062E00344
-	for <yocto@yoctoproject.org>; Wed, 24 Dec 2014 23:01:26 -0800 (PST)
-Received: from USSTLZ-PMSG003.emrsn.org (10.16.72.185) by
-	USSTLZ-PINFEZ04.extemr.org (10.16.8.77) with Microsoft SMTP Server
-	(TLS) id 14.3.158.1; Thu, 25 Dec 2014 07:01:24 +0000
-Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.46]) by
-	USSTLZ-PMSG003.emrsn.org ([169.254.7.205]) with mapi id 14.03.0158.001;
-	Thu, 25 Dec 2014 07:01:15 +0000
-From: <Neil.Wu@Emerson.com>
-To: <raj.khem@gmail.com>
-Thread-Topic: [yocto] problem of install kernel module(*.ko) to rootfs folder
-Thread-Index: AQHQH/KS3uZ7JFVgO0yksUPrZqVfBZyf4Jbw
-Date: Thu, 25 Dec 2014 07:01:16 +0000
-Message-ID: <3204FE6663E1F14CAF4CA6928E60C8522035867E@USSTLZ-PMSG012.emrsn.org>
-References: <3204FE6663E1F14CAF4CA6928E60C8522035764B@USSTLZ-PMSG012.emrsn.org>
-	<CAMKF1spkVua7kS-Ac9Mk4iU56sHj8Jf66x_=QFsMZtkjnX9EuQ@mail.gmail.com>
-In-Reply-To: <CAMKF1spkVua7kS-Ac9Mk4iU56sHj8Jf66x_=QFsMZtkjnX9EuQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.75.1]
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: problem of install kernel module(*.ko) to rootfs folder
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.42 listed in list.dnswl.org]
+Received: from mail-pa0-f42.google.com (mail-pa0-f42.google.com
+	[209.85.220.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33E11E00571
+	for <yocto@yoctoproject.org>; Fri, 26 Dec 2014 18:48:24 -0800 (PST)
+Received: by mail-pa0-f42.google.com with SMTP id et14so14060052pad.1
+	for <yocto@yoctoproject.org>; Fri, 26 Dec 2014 18:48:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id:in-reply-to:references;
+	bh=1OXweuqxXiNkKRs/NAor0jvNPUNG2zkWctmT1glG0s4=;
+	b=bhb08z7vFNcgznxWmBTSvkaAkstDn80SHsCGn/D0fhd59N5rKQqcF5cE72MObriDj5
+	kg/w3fQuDC8GiR2S4yWq5joZU45mNTabWXyPpH0TVNiLl5WlVjjfCpc+n1MPKmJ37DJq
+	umn8r2YVD6ScZDLRTwHYH2bAudGr7wbIFkyo6e9PKjKqAGnx++nRKe2QdtJcEw6ytw+i
+	b9mqTKmnO9e8yl+dojiaBwiRkj7+i922jouALSi8j6J+IbpLrUOWSFbshHTgoZi9yK9/
+	3CXKvLTnugT7afDu6HnOZySRweHkNreoBSyG3P9Q0/EYDNvsIbQwLuTaLAS1jEzkvOTo
+	veZQ==
+X-Received: by 10.68.211.193 with SMTP id ne1mr73114661pbc.49.1419648504220;
+	Fri, 26 Dec 2014 18:48:24 -0800 (PST)
+Received: from Pahoa2.mvista.com (c-76-20-92-207.hsd1.ca.comcast.net.
+	[76.20.92.207])
+	by mx.google.com with ESMTPSA id s3sm26212811pdg.28.2014.12.26.18.48.22
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 26 Dec 2014 18:48:22 -0800 (PST)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Fri, 26 Dec 2014 18:48:16 -0800
+Message-Id: <1419648497-10738-2-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1419648497-10738-1-git-send-email-akuster808@gmail.com>
+References: <1419648497-10738-1-git-send-email-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/3] perl: reorg recipes to match meta-perl.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,44 +61,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Dec 2014 07:01:31 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Sat, 27 Dec 2014 02:48:27 -0000
 
-SGkgUmFqLA0KDQpUaGFuayB5b3UgZm9yIHlvdXIgcmVwbHkuIEkgaGF2ZSByZXNvbHZlZCB0aGUg
-cHJvYmxlbS4gVGhhbmsgeW91ISENCg0KTmVpbA0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0t
-LQ0KRnJvbTogS2hlbSBSYWogW21haWx0bzpyYWoua2hlbUBnbWFpbC5jb21dIA0KU2VudDogVGh1
-cnNkYXksIERlY2VtYmVyIDI1LCAyMDE0IDExOjI2IEFNDQpUbzogV3UsIE5laWwgW0NMSU1BVEUv
-UlMvQ05dDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10g
-cHJvYmxlbSBvZiBpbnN0YWxsIGtlcm5lbCBtb2R1bGUoKi5rbykgdG8gcm9vdGZzIGZvbGRlcg0K
-DQpPbiBXZWQsIERlYyAyNCwgMjAxNCBhdCA3OjA4IFBNLCAgPE5laWwuV3VAZW1lcnNvbi5jb20+
-IHdyb3RlOg0KPiBIaSBhbGwsDQo+DQo+DQo+DQo+IEZpcnN0IG9mIGFsbCAsIG1lcnJ5IENocmlz
-dG1hcy4NCj4NCj4NCj4NCj4gSSBydW4gbWVudWNvbmZpZyBhbmQgc2F2ZSB0aGUgLmNvbmZpZyBh
-cyBmb2xsb3dpbmc6DQo+DQo+DQo+DQo+IENPTkZJR19TUElfREVWX0lOVEVSRkFDRT1tDQo+DQo+
-IENPTkZJR19QQUNLQUdFX2ttb2QtdXNiLWNvcmU9bQ0KPg0KPg0KPg0KPiBUaGVuIEkgYnVpbGQg
-dGhlIGxpbnV4LXlvY3RvIGFuZCBjb3JlLWltYWdlLW1pbmltYWwgOg0KPg0KPiBCaXRiYWtlIGxp
-bnV4LXlvY3RvDQo+DQo+IEJpdGJha2UgY29yZS1pbWFnZS1taW5pbWFsDQo+DQo+DQo+DQo+IEkg
-ZXhwZWN0ZWQgYWxsIHRoZSBrZXJuZWwgbW9kdWxlIHdpbGwgaW5zdGFsbCBpbiBjb3JlLWltYWdl
-LW1pbmltYWwgcm9vdGZzLA0KPiBidXQgLCBpbiB0aGUgLi9saWIvbW9kdWxlcy8zLjQuNDQtRzQg
-LCBJIGp1c3QgZmluZA0KPg0KPg0KPg0KPiBtb2R1bGVzLmFsaWFzLCAgbW9kdWxlcy5hbGlhcy5i
-aW4gLCBtb2R1bGVzLmJ1aWx0aW4uYmluLCAgbW9kdWxlcy5kZXAg4oCmDQo+DQo+DQo+DQo+IEl0
-IGhhdmUgbm90aGluZyBrZXJuZWwgbW9kdWxlcyAoKi5rbykgZmlsZSBpbiAuL2xpYi9tb2R1bGVz
-Ly4gSG93IHRvIGluc3RhbGwNCj4gdGhlICoua28gdG8gcm9vdGZzICBhdXRvbWF0aWNhbGx5ID8N
-Cj4NCj4NCj4NCj4gU29tZW9uZSB0ZWxsIG1lIHRvIGNoYW5nZSB0aGUgLmNvbmZpZyBmaWxlIGFz
-IHRoZXNlIDoNCj4NCj4gQ09ORklHX1NQSV9ERVZfSU5URVJGQUNFPXkNCj4NCj4gQ09ORklHX1BB
-Q0tBR0Vfa21vZC11c2ItY29yZT15DQo+DQo+IEkgaGF2ZSB0ZXN0IGl0IHdoYXQgd2lsbCBidWls
-ZCB0aGUga2VybmVsIG1vZHVsZXMgKCoua28gKSB0byBrZXJuZWwgaW1hZ2UsDQo+IHRoYXTigJlz
-IG5vdCB3aGF0IEkgbmVlZC4NCj4NCj4NCj4NCj4NCj4NCj4gc28gLCAgIEkganVzdCB3YW50IHRv
-IGtub3cgLiBob3cgdG8gaW5zdGFsbCB0aGUga2VybmVsIG1vZHVsZXMgKCoua28pIHRvDQo+IGNv
-cmUtaW1hZ2UtbWluaW1hbCByb290ZnMgPyAgSWYgeW91IGtub3cgaXQgLCBwbGVhc2UgaGVscCBt
-ZSAuDQoNCndlbGwgaXRzIGEgbWluaW1hbC1pbWFnZSBzbyBhbGwgbW9kdWxlcyBhcmUgZXhjbHVk
-ZWQuIFlvdSBjYW4gYnVpbGQNCmNvcmUtaW1hZ2UtYmFzaWMgYW5kIGl0IHNob3VsZCBoYXZlIGl0
-DQpvciB5b3UgY2FuIGRvIHNvbWV0aGluZyBsaWtlDQoNCk1BQ0hJTkVfRVhUUkFfUlJFQ09NTUVO
-RFMgPSAiIGtlcm5lbC1tb2R1bGVzIg0KDQppbiB5b3VyIG1hY2hpbmUuY29uZg0KDQoNCj4NCj4g
-VGhhbmsgeW91IHZlcnkgbXVjaC4NCj4NCj4NCj4NCj4gTmVpbA0KPg0KPg0KPg0KPg0KPg0KPg0K
-Pg0KPg0KPg0KPg0KPg0KPg0KPg0KPg0KPg0KPg0KPiAtLQ0KPiBfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiB5b2N0byBtYWlsaW5nIGxpc3QNCj4geW9j
-dG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlz
-dGluZm8veW9jdG8NCj4NCg==
+move security perl recipes to a more standardized
+recipes-perl layout.
+
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ {recipes-security => recipes-perl}/perl/files/libwhisker2.patch     | 0
+ {recipes-security => recipes-perl}/perl/lib-perl_0.63.bb            | 0
+ {recipes-security => recipes-perl}/perl/libnetaddr-ip-perl_4.069.bb | 0
+ {recipes-security => recipes-perl}/perl/libwhisker2-perl_2.5.bb     | 0
+ 4 files changed, 0 insertions(+), 0 deletions(-)
+ rename {recipes-security => recipes-perl}/perl/files/libwhisker2.patch (100%)
+ rename {recipes-security => recipes-perl}/perl/lib-perl_0.63.bb (100%)
+ rename {recipes-security => recipes-perl}/perl/libnetaddr-ip-perl_4.069.bb (100%)
+ rename {recipes-security => recipes-perl}/perl/libwhisker2-perl_2.5.bb (100%)
+
+diff --git a/recipes-security/perl/files/libwhisker2.patch b/recipes-perl/perl/files/libwhisker2.patch
+similarity index 100%
+rename from recipes-security/perl/files/libwhisker2.patch
+rename to recipes-perl/perl/files/libwhisker2.patch
+diff --git a/recipes-security/perl/lib-perl_0.63.bb b/recipes-perl/perl/lib-perl_0.63.bb
+similarity index 100%
+rename from recipes-security/perl/lib-perl_0.63.bb
+rename to recipes-perl/perl/lib-perl_0.63.bb
+diff --git a/recipes-security/perl/libnetaddr-ip-perl_4.069.bb b/recipes-perl/perl/libnetaddr-ip-perl_4.069.bb
+similarity index 100%
+rename from recipes-security/perl/libnetaddr-ip-perl_4.069.bb
+rename to recipes-perl/perl/libnetaddr-ip-perl_4.069.bb
+diff --git a/recipes-security/perl/libwhisker2-perl_2.5.bb b/recipes-perl/perl/libwhisker2-perl_2.5.bb
+similarity index 100%
+rename from recipes-security/perl/libwhisker2-perl_2.5.bb
+rename to recipes-perl/perl/libwhisker2-perl_2.5.bb
+-- 
+1.9.1
+
 
