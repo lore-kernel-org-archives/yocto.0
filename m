@@ -1,42 +1,34 @@
-Return-Path: <Qi.Chen@windriver.com>
+Return-Path: <peterengcomau001@adam.com.au>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F15EFE0084E; Sun, 28 Dec 2014 18:36:12 -0800 (PST)
+	id 1B956E0080C; Mon, 29 Dec 2014 00:19:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [202.136.110.236 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BE68E00751
-	for <yocto@yoctoproject.org>; Sun, 28 Dec 2014 18:36:10 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id sBT2a93L002397
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Sun, 28 Dec 2014 18:36:09 -0800 (PST)
-Received: from [128.224.162.226] (128.224.162.226) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.174.1;
-	Sun, 28 Dec 2014 18:36:09 -0800
-Message-ID: <54A0BE1C.3010306@windriver.com>
-Date: Mon, 29 Dec 2014 10:36:12 +0800
-From: ChenQi <Qi.Chen@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+Received: from webmail4.adam.net.au (webmail4.adam.net.au [202.136.110.236])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81B17E00751
+	for <yocto@yoctoproject.org>; Mon, 29 Dec 2014 00:19:35 -0800 (PST)
+Received: from localhost (webmail4.adam.net.au [127.0.0.1])
+	by webmail4.adam.net.au (8.13.8/8.13.8) with ESMTP id sBT8JW7T031472
+	for <yocto@yoctoproject.org>; Mon, 29 Dec 2014 18:49:32 +1030
+Message-Id: <8259271acb6bd38296ecada4340f7316717b3691@webmail.adam.com.au>
+From: peterengcomau001@adam.com.au
+To: yocto@yoctoproject.org
+X-Mailer: Atmail 6.3.5.8698
+Date: Mon, 29 Dec 2014 18:49:32 +1030
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <CA+mjNq=0aqi5Gd1938CV855U+5qpg48Ac-RWRo5b_s=zMm56zA@mail.gmail.com>
-In-Reply-To: <CA+mjNq=0aqi5Gd1938CV855U+5qpg48Ac-RWRo5b_s=zMm56zA@mail.gmail.com>
-X-Originating-IP: [128.224.162.226]
-Subject: Re: changing grub.cfg per image
+Subject: bitbake cannot locate source file from recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: peterengcomau001@adam.com.au
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -45,114 +37,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Dec 2014 02:36:13 -0000
+X-List-Received-Date: Mon, 29 Dec 2014 08:19:40 -0000
 Content-Type: multipart/alternative;
-	boundary="------------060601020109020107060100"
+	boundary="=_5ab7d85dfcaf5d98ff9ea856088adc2f"
 
---------------060601020109020107060100
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+--=_5ab7d85dfcaf5d98ff9ea856088adc2f
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 12/24/2014 01:14 AM, Stuart Weaver wrote:
-> Hi All,
->
-> I've currently got two yocto images. I would like to have different 
-> grub.cfg files for each image and therefore was wondering what would 
-> be the best way to achieve this?
->
-> Currently I am playing with the idea of just changing the APPEND 
-> variable within the machine conf file, however there doesn't seem to 
-> be a way of making this image dependant. Hence, would I have to create 
-> two different machines and change which machine I'm building for 
-> everytime I build each image?
->
-> Another idea would be to create my own version of grub-efi.bbclass 
-> however I'm currently unsure of how to choose my custom version within 
-> a image file.
->
+I am trying to modify my device tree build to include a slightly=0Amodif=
+ed version.=0A=0AI have created the recipe linux-yocto-custom_3.10.bbapp=
+end that=0Acontains the following:=0A=0APR =3D "r5"=0AFILESEXTRAPATHS_pr=
+epend :=3D "${THISDIR}/files/sama5d3xek: "=0ASRC_URI +=3D " file://sama5=
+d3xek_lsp.dts "=0AKERNEL_DEVICETREE +=3D " sama5d3xek_lsp.dtb"=0A=0Ado_i=
+nstall_prepend () {=0A=C2=A0=C2=A0=C2=A0 cp ${WORKDIR}/sama5d3xek_lsp.dt=
+s=0A${WORKDIR}/linux/arch/${ARCH}/boot/dts=0A}=0A=0AI fget the error fro=
+m bitbake as follows:=0A=0ALog data follows:=0A| DEBUG: Executing shell=
+ function do_install=0A| cp: cannot stat=0A'/home/lachlan/poky/build-atm=
+el/tmp/work/sama5d3xek-poky-linux-gnueabi/linux-yocto-custom/3.10+AUTOIN=
+C+35158dd80a-r5/sama5d3xek/sama5d3xek_lsp.dts':=0ANo such file or direct=
+ory=0A=0AThe source file is located in the append recipes subdirectory=
+=0Afiles/sama5d3xek/=0A=0ACan anyone suggest why the source dts file is=
+ not being made=0Aavailable ? I am sure it is a simple mistake!=0A=0ATha=
+nks for any pointers.=0ALachlan=0A=0A---- Message sent via Adam Internet=
+ WebMail - http://www.adam.com.au/
 
-meta/classes/bootimg.bbclass:EFI_PROVIDER ?= "grub-efi"
+--=_5ab7d85dfcaf5d98ff9ea856088adc2f
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-How about setting the above variable?
+<html><body>I am trying to modify my device tree build to include a slig=
+htly modifed version.<br /><br />I have created the recipe linux-yocto-c=
+ustom_3.10.bbappend that contains the following:<br /><br />PR =3D "r5"<=
+br />FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files/sama5d3xek: "<br />S=
+RC_URI +=3D " file://sama5d3xek_lsp.dts "<br />KERNEL_DEVICETREE +=3D "=
+ sama5d3xek_lsp.dtb"<br /><br />do_install_prepend () {<br />=C2=A0=C2=
+=A0=C2=A0 cp ${WORKDIR}/sama5d3xek_lsp.dts ${WORKDIR}/linux/arch/${ARCH}=
+/boot/dts<br />}<br /><br />I fget the error from bitbake as follows:<br=
+ /><br />Log data follows:<br />| DEBUG: Executing shell function do_ins=
+tall<br />| cp: cannot stat '/home/lachlan/poky/build-atmel/tmp/work/sam=
+a5d3xek-poky-linux-gnueabi/linux-yocto-custom/3.10+AUTOINC+35158dd80a-r5=
+/sama5d3xek/sama5d3xek_lsp.dts': No such file or directory<br /><br />Th=
+e source file is located in the append recipes subdirectory files/sama5d=
+3xek/<br /><br /><br />Can anyone suggest why the source dts file is not=
+ being made available ? I am sure it is a simple mistake!<br /><br />Tha=
+nks for any pointers.<br />Lachlan<br /><br />---- Message sent via Adam=
+ Internet WebMail  - http://www.adam.com.au/</body></html>
 
-Regards,
-Chen Qi
-
-> If anyone has any suggestions on the best way forward, it would be 
-> very much appreciated!
->
-> Regards,
-> Stuart
->
->
-
-
---------------060601020109020107060100
-Content-Type: text/html; charset="windows-1252"
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 12/24/2014 01:14 AM, Stuart Weaver
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CA+mjNq=0aqi5Gd1938CV855U+5qpg48Ac-RWRo5b_s=zMm56zA@mail.gmail.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <div dir="ltr">Hi All,
-        <div><br>
-        </div>
-        <div>I've currently got two yocto images. I would like to have
-          different grub.cfg files for each image and therefore was
-          wondering what would be the best way to achieve this?</div>
-        <div><br>
-        </div>
-        <div>Currently I am playing with the idea of just changing the
-          APPEND variable within the machine conf file, however there
-          doesn't seem to be a way of making this image dependant.
-          Hence, would I have to create two different machines and
-          change which machine I'm building for everytime I build each
-          image?</div>
-        <div><br>
-        </div>
-        <div>Another idea would be to create my own version of
-          grub-efi.bbclass however I'm currently unsure of how to choose
-          my custom version within a image file.</div>
-        <div><br>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-    meta/classes/bootimg.bbclass:EFI_PROVIDER ?= "grub-efi"<br>
-    <br>
-    How about setting the above variable?<br>
-    <br>
-    Regards,<br>
-    Chen Qi<br>
-    <br>
-    <blockquote
-cite="mid:CA+mjNq=0aqi5Gd1938CV855U+5qpg48Ac-RWRo5b_s=zMm56zA@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div>If anyone has any suggestions on the best way forward, it
-          would be very much appreciated!</div>
-        <div><br>
-        </div>
-        <div>Regards,</div>
-        <div>Stuart</div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------060601020109020107060100--
+--=_5ab7d85dfcaf5d98ff9ea856088adc2f--
