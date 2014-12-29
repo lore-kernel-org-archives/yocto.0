@@ -1,59 +1,39 @@
-Return-Path: <xerofoify@gmail.com>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52CAFE0084E; Sun, 28 Dec 2014 18:34:30 -0800 (PST)
+	id F15EFE0084E; Sun, 28 Dec 2014 18:36:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (xerofoify[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.170 listed in list.dnswl.org]
-Received: from mail-ig0-f170.google.com (mail-ig0-f170.google.com
-	[209.85.213.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F37D7E00751
-	for <yocto@yoctoproject.org>; Sun, 28 Dec 2014 18:34:24 -0800 (PST)
-Received: by mail-ig0-f170.google.com with SMTP id r2so11879436igi.1
-	for <yocto@yoctoproject.org>; Sun, 28 Dec 2014 18:34:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=K7PaJipfwnGtVq9IcvnQsSXRhAo1/e9Z5qcy9eYfjK8=;
-	b=yj5itqRGFzF3XMKonfiU34xeFisxWjfDiu54/fdpi+eGbpc5AzHkhkrgAHcyx+8qho
-	rQ41N5aBkIOx5kdNACndH48sHr3dc+1FlTbKTVvXz/fd2p9OXeM9QD5SGMq5GyjdX3Tp
-	rt95yZ0fYW8M8w2Twyhens7GS8uQg8KmvorldMsDtSHO2d5//qX58Q6r7l190LDl+QaU
-	VnvBclfb/b0JqUizfbsIG5P5pZvb1gzM0caUf5axiNu414I1qD7QQ0/YwgWSsuz2EDml
-	87C2mL+8FUdQqE42tOTqRkODzxstCPigFP6GGU6BjJ7i/SFtu7wm137aQrnXR2LHAGeT
-	JyeA==
-X-Received: by 10.107.136.146 with SMTP id s18mr47037873ioi.36.1419820464405; 
-	Sun, 28 Dec 2014 18:34:24 -0800 (PST)
-Received: from [192.168.0.50]
-	(CPE0026f3330aca-CM0026f3330ac6.cpe.net.cable.rogers.com.
-	[99.231.92.7])
-	by mx.google.com with ESMTPSA id n2sm13776072igp.16.2014.12.28.18.34.22
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 28 Dec 2014 18:34:23 -0800 (PST)
-Message-ID: <54A0BDAD.2020607@gmail.com>
-Date: Sun, 28 Dec 2014 21:34:21 -0500
-From: nick <xerofoify@gmail.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BE68E00751
+	for <yocto@yoctoproject.org>; Sun, 28 Dec 2014 18:36:10 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id sBT2a93L002397
+	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL)
+	for <yocto@yoctoproject.org>; Sun, 28 Dec 2014 18:36:09 -0800 (PST)
+Received: from [128.224.162.226] (128.224.162.226) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.174.1;
+	Sun, 28 Dec 2014 18:36:09 -0800
+Message-ID: <54A0BE1C.3010306@windriver.com>
+Date: Mon, 29 Dec 2014 10:36:12 +0800
+From: ChenQi <Qi.Chen@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
-To: ChenQi <Qi.Chen@windriver.com>, yocto@yoctoproject.org
-References: <CALb2248jSjqK9ALwTsNfgeLkhmF2Ka+mhe5s6N1U51emFEbJVQ@mail.gmail.com>
-	<54A0BB38.3000008@windriver.com>
-In-Reply-To: <54A0BB38.3000008@windriver.com>
-Subject: Re: Distro vs. Image
+To: <yocto@yoctoproject.org>
+References: <CA+mjNq=0aqi5Gd1938CV855U+5qpg48Ac-RWRo5b_s=zMm56zA@mail.gmail.com>
+In-Reply-To: <CA+mjNq=0aqi5Gd1938CV855U+5qpg48Ac-RWRo5b_s=zMm56zA@mail.gmail.com>
+X-Originating-IP: [128.224.162.226]
+Subject: Re: changing grub.cfg per image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,59 +45,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Dec 2014 02:34:30 -0000
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Mon, 29 Dec 2014 02:36:13 -0000
+Content-Type: multipart/alternative;
+	boundary="------------060601020109020107060100"
+
+--------------060601020109020107060100
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Schwab,
-You asked about an building an installable image, if you have Hob there is a way.
-https://www.yoctoproject.org/documentation/hob-manual-16#run-deploy
-This is a link to the page explaining it, scroll down to the section on deploying
-or running  your image and it should explain how to do it. 
-Cheers Nick
+On 12/24/2014 01:14 AM, Stuart Weaver wrote:
+> Hi All,
+>
+> I've currently got two yocto images. I would like to have different 
+> grub.cfg files for each image and therefore was wondering what would 
+> be the best way to achieve this?
+>
+> Currently I am playing with the idea of just changing the APPEND 
+> variable within the machine conf file, however there doesn't seem to 
+> be a way of making this image dependant. Hence, would I have to create 
+> two different machines and change which machine I'm building for 
+> everytime I build each image?
+>
+> Another idea would be to create my own version of grub-efi.bbclass 
+> however I'm currently unsure of how to choose my custom version within 
+> a image file.
+>
 
-On 2014-12-28 09:23 PM, ChenQi wrote:
-> Hi Schwab,
-> 
-> What do you mean by "distro recipe"?
-> 
-> I can see your initial problem is that you want different config details for the same image recipe (maybe for different HW, I guess?).
-> 
-> Now we would like to create an "installer" image, i.e. a bootable
-> image whose job is to install a release(-candidate) image to the HW.
-> Naturally, some config details in the resulting image will be
-> different.
-> 
-> Can this be done via bbappend file in different layers?
-> Can this be done via different distro config files?
-> 
+meta/classes/bootimg.bbclass:EFI_PROVIDER ?= "grub-efi"
+
+How about setting the above variable?
+
+Regards,
+Chen Qi
+
+> If anyone has any suggestions on the best way forward, it would be 
+> very much appreciated!
+>
 > Regards,
-> Chen Qi
-> 
-> 
-> On 12/23/2014 11:09 AM, Leo Schwab wrote:
->> Up to this point, all our builds for our prototypes have been "image"
->> builds, i.e. we built an image recipe starting with
->> packagegroup-core-boot, and it's accreted from there.  We write the
->> resulting .sdcard image file to an SD card and boot from that.
->>
->> Now we would like to create an "installer" image, i.e. a bootable
->> image whose job is to install a release(-candidate) image to the HW.
->> Naturally, some config details in the resulting image will be
->> different.  The more I read, it feels like this wants to be a
->> "distro," rather than just another image recipe.  Recipes searching
->> for files will automagically generate subdirectory search paths based
->> on current distro name, which would allow us to substitute different
->> config files based on what's being built.  (Extra Credit for this
->> build would be to incorporate a copy of the release image into the
->> installer image.)
->>
->> Trouble is, none of the docs I've read describe very clearly how to
->> make the leap from cobbling image recipes together to creating a
->> functionally equivalent distro recipe.  Could someone point out some
->> resources and examples on how this is meant to be conceptualized and
->> used?  Thanks in advance for all suggestions.
->>
->> Schwab
-> 
+> Stuart
+>
+>
 
+
+--------------060601020109020107060100
+Content-Type: text/html; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 12/24/2014 01:14 AM, Stuart Weaver
+      wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CA+mjNq=0aqi5Gd1938CV855U+5qpg48Ac-RWRo5b_s=zMm56zA@mail.gmail.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <div dir="ltr">Hi All,
+        <div><br>
+        </div>
+        <div>I've currently got two yocto images. I would like to have
+          different grub.cfg files for each image and therefore was
+          wondering what would be the best way to achieve this?</div>
+        <div><br>
+        </div>
+        <div>Currently I am playing with the idea of just changing the
+          APPEND variable within the machine conf file, however there
+          doesn't seem to be a way of making this image dependant.
+          Hence, would I have to create two different machines and
+          change which machine I'm building for everytime I build each
+          image?</div>
+        <div><br>
+        </div>
+        <div>Another idea would be to create my own version of
+          grub-efi.bbclass however I'm currently unsure of how to choose
+          my custom version within a image file.</div>
+        <div><br>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+    meta/classes/bootimg.bbclass:EFI_PROVIDER ?= "grub-efi"<br>
+    <br>
+    How about setting the above variable?<br>
+    <br>
+    Regards,<br>
+    Chen Qi<br>
+    <br>
+    <blockquote
+cite="mid:CA+mjNq=0aqi5Gd1938CV855U+5qpg48Ac-RWRo5b_s=zMm56zA@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>If anyone has any suggestions on the best way forward, it
+          would be very much appreciated!</div>
+        <div><br>
+        </div>
+        <div>Regards,</div>
+        <div>Stuart</div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------060601020109020107060100--
