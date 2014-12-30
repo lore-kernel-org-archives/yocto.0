@@ -1,6 +1,6 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4E2C0E0084D; Tue, 30 Dec 2014 11:24:46 -0800 (PST)
+	id 27451E00873; Tue, 30 Dec 2014 11:31:50 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,19 +10,18 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6653E003E3
-	for <yocto@yoctoproject.org>; Tue, 30 Dec 2014 11:24:40 -0800 (PST)
-Received: from [99.240.204.5] (port=49337 helo=crashcourse.ca)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC5AAE003E3
+	for <yocto@yoctoproject.org>; Tue, 30 Dec 2014 11:31:36 -0800 (PST)
+Received: from [99.240.204.5] (port=49379 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Y62PG-0004pZ-10; Tue, 30 Dec 2014 14:24:38 -0500
-Date: Tue, 30 Dec 2014 14:24:36 -0500 (EST)
+	id 1Y62Vz-0005SJ-JU
+	for yocto@yoctoproject.org; Tue, 30 Dec 2014 14:31:35 -0500
+Date: Tue, 30 Dec 2014 14:31:34 -0500 (EST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@localhost
-To: peterengcomau001@adam.com.au
-In-Reply-To: <547988affb54758502fe31b4a9613e00d927d5c0@webmail.adam.com.au>
-Message-ID: <alpine.LFD.2.11.1412301423040.11537@localhost>
-References: <547988affb54758502fe31b4a9613e00d927d5c0@webmail.adam.com.au>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.11.1412301427370.12620@localhost>
 User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -34,8 +33,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: is it not a *requirement* that layers start with "meta-"?
+Subject: more BSP Guide pedantry involving customizing a recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,19 +45,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Dec 2014 19:24:46 -0000
+X-List-Received-Date: Tue, 30 Dec 2014 19:31:50 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Wed, 31 Dec 2014, peterengcomau001@adam.com.au wrote:
 
-> If you use the yocto scripts for setting up a new layer, it
-> automatically prepends 'meta-'. That may be why there is no
-> requirement
+  (you can tell i'm bored and want to get back up to speed on stuff
+...)
 
-  but that still doesn't address that (from memory) some OE
-scripts/utils seem to *require* layers start with the prefix "meta-".
-i guess i can just grep the OE layer and look for build scripts that
-contain that string and see which ones have that requirement.
+  section 1.4 in BSP Guide, "Customizing a Recipe for a BSP", appears
+to discuss a new layer, "meta-xyz", then suggests the new "interfaces"
+file for this machine needs to go at the location:
+
+meta-xyz/recipes-core/init-ifupdown/files/xyz/interfaces
+                                          ^^^ ???
+
+  but the files/ subdirectory of "xyz/" would appear to be necessary
+(as we all know) only if this was a more general layer that
+represented several machines (say, meta-ti) for which we *needed* to
+distinguish between machines.
+
+  so while the above might be technically correct, it might mislead
+readers to think they *needed* to create a "xyz/" subdirectory for
+that overriding interfaces file.
 
 rday
 
