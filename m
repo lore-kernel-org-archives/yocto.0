@@ -1,39 +1,55 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <incnews@jenslucius.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 16E78E005B4; Wed, 31 Dec 2014 03:55:27 -0800 (PST)
+	id 6FB73E005B4; Wed, 31 Dec 2014 06:27:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,HDRS_LCASE
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 HDRS_LCASE Odd capitalization of message header
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A807E002F9
-	for <yocto@yoctoproject.org>; Wed, 31 Dec 2014 03:55:21 -0800 (PST)
-Received: from [99.240.204.5] (port=39626 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Y6Hrx-00071y-79; Wed, 31 Dec 2014 06:55:17 -0500
-Date: Wed, 31 Dec 2014 06:55:15 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1412310652250.5582@localhost>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [81.169.146.163 listed in list.dnswl.org]
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
+	[81.169.146.163])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E082CE002F9
+	for <yocto@yoctoproject.org>; Wed, 31 Dec 2014 06:27:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; t=1420036042; l=4569;
+	s=domk; d=jenslucius.de;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:
+	Subject:To:MIME-Version:From:Date;
+	bh=r/cxHBYi8SevSub5bvZdHKrgoD4=;
+	b=mVvz9p2j06IQ011pnarb/qjF7c1Aj4yNm//11HTMx89c8L3OQHShQZlqUbSluM4IvKu
+	/6cuhFqMZTIuNKrnQX3xYFrC+Ga0aKQ7/+wUceURWA01nqJ4ORBjUlW7kUS1axPBp6KTi
+	i1krn0nCrqXXsDuD5bLyQr6NGFB3Gi6fJco=
+X-RZG-AUTH: :JWIHe0W/aN/Hg12BLSzL3z7LlaxFnIKmofguyxtBBEzwL1PfgREHsiFrwgHms97X5Q==
+X-RZG-CLASS-ID: mo00
+Received: from [192.168.2.12] (p5B0E3C70.dip0.t-ipconnect.de [91.14.60.112])
+	by smtp.strato.de (RZmta 36.3 DYNA|AUTH)
+	with ESMTPSA id f06d96qBVERH9Wp
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client did not present a certificate);
+	Wed, 31 Dec 2014 15:27:17 +0100 (CET)
+Message-ID: <54A407C8.1090408@jenslucius.de>
+Date: Wed, 31 Dec 2014 15:27:20 +0100
+From: Jens Lucius <incnews@jenslucius.de>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: [PATCH][yocto-docs] Update "yocto-bsp" section of BSP Guide.
+To: akuster808 <akuster808@gmail.com>, 
+	atulkumar singh <atul.singh008@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <SIXPR03MB304909CFBAC30A54D4EF6EFEA5E0@SIXPR03MB304.apcprd03.prod.outlook.com>	<CAH21_vEQd3=qBOb7sLqo8Kw+UxaW004HSfOfHFnRzi9BJZPq2w@mail.gmail.com>
+	<54A36E5E.2010103@gmail.com>
+In-Reply-To: <54A36E5E.2010103@gmail.com>
+Subject: Re: GCC plugin missing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,95 +61,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Dec 2014 11:55:27 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 31 Dec 2014 14:27:31 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Hi
 
-Update the choices and version numbers of the "yocto-bsp" section of
-the BSP guide to match the current development utilities.
+I had the same problem, here is an example .bbapend:
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+gcc-cross_%.bbappend
 
----
+EXTRA_OECONF += "--enable-plugin"
 
-  not sure whether anyone was already doing this ...
+You also need a very recent gcc on the host, I think it was at least 4.9.
 
-diff --git a/documentation/bsp-guide/bsp.xml b/documentation/bsp-guide/bsp.xml
-index d485023..f3cc112 100644
---- a/documentation/bsp-guide/bsp.xml
-+++ b/documentation/bsp-guide/bsp.xml
-@@ -1242,12 +1242,13 @@
-                     <literallayout class='monospaced'>
-      $ yocto-bsp list karch
-      Architectures available:
--         powerpc
--         i386
--         x86_64
--         arm
-          qemu
-+         arm
-          mips
-+         x86_64
-+         i386
-+         powerpc
-+         mips64
-                     </literallayout>
-                 </para>
+Regards,
 
-@@ -1288,26 +1289,25 @@
- 	     3) ARM     (32-bit)
- 	     4) PowerPC (32-bit)
- 	     5) MIPS    (32-bit)
-+	     6) MIPS64  (64-bit)
-      3
--     Would you like to use the default (3.10) kernel? (y/n) [default: y] y
-+     Would you like to use the default (3.17) kernel? (y/n) [default: y] y
-      Do you need a new machine branch for this BSP (the alternative is to re-use an existing branch)? [y/n] [default: y]
--     Getting branches from remote repo git://git.yoctoproject.org/linux-yocto-3.10.git...
-+     Getting branches from remote repo git://git.yoctoproject.org/linux-yocto-3.17.git...
-      Please choose a machine branch to base your new BSP branch on: [default: standard/base]
- 	     1) standard/arm-versatile-926ejs
- 	     2) standard/base
- 	     3) standard/beagleboard
- 	     4) standard/beaglebone
- 	     5) standard/ck
--	     6) standard/crownbay
--	     7) standard/edgerouter
--             8) standard/emenlow
--	     9) standard/fri2
--	     10) standard/fsl-mpc8315e-rdb
--	     11) standard/mti-malta32
--	     12) standard/mti-malta64
-+	     6) standard/common-pc
-+	     7) standard/crownbay
-+	     8) standard/edgerouter
-+	     9) standard/fsl-mpc8315e-rdb
-+	     10) standard/mti-malta32
-+	     11) standard/mti-malta64
-+	     12) standard/qemuarm64
- 	     13) standard/qemuppc
--	     14) standard/routerstationpro
--	     15) standard/sys940x
-      1
-      Would you like SMP support? (y/n) [default: y]
-      Does your BSP have a touchscreen? (y/n) [default: n]
-@@ -1322,7 +1322,7 @@
-                             In the example, we use the ARM architecture.
-                             </para></listitem>
-                         <listitem><para>The script then prompts you for the kernel.
--                            The default 3.14 kernel is acceptable.
-+                            The default 3.17 kernel is acceptable.
-                             So, the example accepts the default.
-                             If you enter 'n', the script prompts you to further enter the kernel
-                             you do want to use.</para></listitem>
+Jens
 
--- 
+Am 31.12.2014 um 04:32 schrieb akuster808:
+> Atul.
+>
+> I believe you need to add
+> EXTRA_OECONF += "--enable-plugin"
+>
+> in  a bbappend file for the gcc you need the support it.
+>
+> That wont solve your problem.  The kernel Makefile is hard coded to 
+> use your 'HOST' gcc. It is trying to build 'HOST' tools.
+>
+> Look at the kernel Makefile.
+>
+> You might need to install gcc-<ver>-plugin-dev or something equivalent 
+> you your host, but that might not solve all the issues.
+>
+> - Armin
+>
+>
+>
+> On 12/30/2014 06:34 PM, atulkumar singh wrote:
+>> Hi All,
+>>
+>> I have built the toolchin using meta-toolchain.
+>>
+>> But while building the kernel using the same toolchain,we are getting
+>> error message as below:-
+>>
+>> Makefile:635: *** Your gcc installation does not support plugins.  If
+>> the necessary headers for plugin support are missing, they should be
+>> installed.  On Debian, apt-get install gcc-<ver>-plugin-dev.  If you
+>> choose to ignore this error and lessen the improvements provided by this
+>> patch, re-run make with the DISABLE_PAX_PLUGINS=y argument.. Stop.
+>>
+>>
+>> Please let me know what need to be added to have the missing headers for
+>> GCC plugins.
+>>
+>>
+>> Output of bash ./scripts/gcc-plugin.sh:
+>>
+>> bash ./scripts/gcc-plugin.sh arm-pokymllibv5te-linux-gnueabi-gcc
+>>
+>> ./scripts/gcc-plugin.sh: line 3: -print-file-name=plugin: command not 
+>> found
+>>
+>>
+>> And our GCC is not configure with plugin support(--enable-plugin):
+>> [atulk@localhost linux-3.2.65]$ arm-pokymllibv5te-linux-gnueabi-gcc -v
+>>
+>> gcc-4.9.1/configure --build=x86_64-linux --host=i686-pokysdk-linux
+>> --target=arm-pokymllibv5te-linux-gnueabi
+>> --prefix=/usr/local/windriver/sysroots/i686-pokysdk-linux/usr
+>> --exec_prefix=/usr/local/windriver/sysroots/i686-pokysdk-linux/usr
+>> --bindir=/usr/local/windriver/sysroots/i686-pokysdk-linux/usr/bin/arm-pokymllibv5te-linux-gnueabi 
+>>
+>> --sbindir=/usr/local/windriver/sysroots/i686-pokysdk-linux/usr/bin/arm-pokymllibv5te-linux-gnueabi 
+>>
+>> --libexecdir=/usr/local/windriver/sysroots/i686-pokysdk-linux/usr/libexec/arm-pokymllibv5te-linux-gnueabi 
+>>
+>> --datadir=/usr/local/windriver/sysroots/i686-pokysdk-linux/usr/share
+>> --sysconfdir=/usr/local/windriver/sysroots/i686-pokysdk-linux/etc
+>> --sharedstatedir=/usr/local/windriver/sysroots/i686-pokysdk-linux/com
+>> --localstatedir=/usr/local/windriver/sysroots/i686-pokysdk-linux/var
+>> --libdir=/usr/local/windriver/sysroots/i686-pokysdk-linux/usr/lib/arm-pokymllibv5te-linux-gnueabi 
+>>
+>> --includedir=/usr/local/windriver/sysroots/i686-pokysdk-linux/usr/include 
+>> --oldincludedir=/usr/local/windriver/sysroots/i686-pokysdk-linux/usr/include 
+>>
+>> --infodir=/usr/local/windriver/sysroots/i686-pokysdk-linux/usr/share/info 
+>> --mandir=/usr/local/windriver/sysroots/i686-pokysdk-linux/usr/share/man
+>> --disable-silent-rules --disable-dependency-tracking
+>> --with-libtool-sysroot=/data/home/ppurohit/Fresh_Build/poky/build_arm/tmp/sysroots/i686-nativesdk-pokysdk-linux 
+>>
+>> --with-gnu-ld --enable-shared --enable-languages=c,c++
+>> --enable-threads=posix --enable-multilib --enable-c99 --enable-long-long
+>> --enable-symvers=gnu --enable-libstdcxx-pch
+>> --program-prefix=arm-pokymllibv5te-linux-gnueabi- --without-local-prefix
+>> --enable-target-optspace --enable-lto --enable-libssp
+>> --disable-bootstrap --disable-libmudflap --with-system-zlib
+>> --with-linker-hash-style=gnu --enable-linker-build-id --with-ppl=no
+>> --with-cloog=no --enable-checking=release --enable-cheaders=c_global
+>> --with-gxx-include-dir=/usr/local/windriver/sysroots/armv5te-pokymllibv5te-linux-gnueabi/usr/include/c++/4.9.1 
+>>
+>> --with-build-time-tools=/data/home/ppurohit/Fresh_Build/poky/build_arm/tmp/sysroots/x86_64-linux/usr/arm-pokymllibv5te-linux-gnueabi/bin 
+>>
+>> --with-sysroot=/usr/local/windriver/sysroots/armv5te-pokymllibv5te-linux-gnueabi 
+>>
+>> --with-build-sysroot=/data/home/ppurohit/Fresh_Build/poky/build_arm/tmp/sysroots/libv5te-arm-sdk 
+>>
+>> --enable-poison-system-directories
+>> --with-mpfr=/data/home/ppurohit/Fresh_Build/poky/build_arm/tmp/sysroots/i686-nativesdk-pokysdk-linux 
+>>
+>> --with-mpc=/data/home/ppurohit/Fresh_Build/poky/build_arm/tmp/sysroots/i686-nativesdk-pokysdk-linux 
+>>
+>> --enable-nls
+>>
+>>
+>> Regards,
+>> Atul
+>>
+>>
+>>
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
