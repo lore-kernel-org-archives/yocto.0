@@ -1,6 +1,6 @@
 Return-Path: <atul.singh008@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 262F1E00571; Tue, 30 Dec 2014 17:49:09 -0800 (PST)
+	id D2935E005B4; Tue, 30 Dec 2014 18:34:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (atul.singh008[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.213.181 listed in list.dnswl.org]
+	*      [209.85.213.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,33 +20,33 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f181.google.com (mail-ig0-f181.google.com
-	[209.85.213.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD233E002F9
-	for <yocto@yoctoproject.org>; Tue, 30 Dec 2014 17:48:57 -0800 (PST)
-Received: by mail-ig0-f181.google.com with SMTP id l13so14149269iga.8
-	for <yocto@yoctoproject.org>; Tue, 30 Dec 2014 17:48:55 -0800 (PST)
+Received: from mail-ig0-f182.google.com (mail-ig0-f182.google.com
+	[209.85.213.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92125E002F9
+	for <yocto@yoctoproject.org>; Tue, 30 Dec 2014 18:34:10 -0800 (PST)
+Received: by mail-ig0-f182.google.com with SMTP id hn15so13340927igb.15
+	for <yocto@yoctoproject.org>; Tue, 30 Dec 2014 18:34:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=+GSvFhwigGXwLa9rGZn9zM4OaxwjwZL6HZKhxs2gSxI=;
-	b=HM213N/261pzY5pSPHofmKhbOGIApeIZPqFvnbY3dqEXR7ZXLxSpc3LaKKzeAlxmb4
-	GJcb5VN5m4Yq0e8xZgiDvYqPesbDAR7icDIKZ6nhOTg7t9Jb2HYB201m9qMA/BgVdyQG
-	Dq0VedxV982HCwNI90zdV2Pl+fX5e7f6Tah1qQcCGXDyVgUbo42iz9IBW0CxXap8Ct8e
-	dOPpQ5WZVXOvWCwDrOlbpVdW8NBbw7fLPT7IDqi6QllC0H3kjCOrhSfUWEGAtJjQmDht
-	S35hAC8L8QhDiyf7076Rklr7qfKgUAc1j97oZtsUXUe7P9KfT3pUxkCNY1OuB/B3j2ji
-	3TTQ==
+	:content-type; bh=o/1fyzou+c7rbqy5ZE5BJ3NCuSWsma+qbhSvrk1vPOs=;
+	b=raSwfWE6faZHSiEVQK8WFN0QMfQ9YlrFBCtxZyH6oyZeh5E2kCRT/GtHNpjc5IPEFX
+	mhvTJ3yXokGi8//yzF5f2neQULcGEOxPl+ft8nJjQCZ8v5uFJVIAoa4pkZqmTxImCuQC
+	ACtoafC/Ie/KI9xUUnGYE4ogMOJvXoM8xjUIZVqahM3loiTfWcnNns93/JA+c0iaaOdw
+	Fm0oUN/LncxNUZ/lSD5zhI6BxScWpQ6feI8hcEsNMq5sDAHDfeLT7Tf7oMEUQogh+ZYJ
+	B5tKGpsgtg7dV//sIzpQJxjuez8QQ426NC/EPYlO91BH4txO8l+mIRxoUrIiQ+TD3AuE
+	uOwA==
 MIME-Version: 1.0
-X-Received: by 10.50.66.198 with SMTP id h6mr24427271igt.22.1419990535406;
-	Tue, 30 Dec 2014 17:48:55 -0800 (PST)
-Received: by 10.64.57.163 with HTTP; Tue, 30 Dec 2014 17:48:54 -0800 (PST)
-Received: by 10.64.57.163 with HTTP; Tue, 30 Dec 2014 17:48:54 -0800 (PST)
+X-Received: by 10.107.168.18 with SMTP id r18mr57507197ioe.76.1419993248939;
+	Tue, 30 Dec 2014 18:34:08 -0800 (PST)
+Received: by 10.64.57.163 with HTTP; Tue, 30 Dec 2014 18:34:08 -0800 (PST)
+Received: by 10.64.57.163 with HTTP; Tue, 30 Dec 2014 18:34:08 -0800 (PST)
 In-Reply-To: <SIXPR03MB304909CFBAC30A54D4EF6EFEA5E0@SIXPR03MB304.apcprd03.prod.outlook.com>
 References: <SIXPR03MB304909CFBAC30A54D4EF6EFEA5E0@SIXPR03MB304.apcprd03.prod.outlook.com>
-Date: Wed, 31 Dec 2014 07:18:54 +0530
-Message-ID: <CAH21_vGJcyktaxkW4e53fxUiH+04=2tTmhYdMwu6_9JTFfmEqQ@mail.gmail.com>
+Date: Wed, 31 Dec 2014 08:04:08 +0530
+Message-ID: <CAH21_vEQd3=qBOb7sLqo8Kw+UxaW004HSfOfHFnRzi9BJZPq2w@mail.gmail.com>
 From: atulkumar singh <atul.singh008@gmail.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: GCC plugin missing
+Subject: GCC plugin missing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,21 +58,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Dec 2014 01:49:09 -0000
-Content-Type: multipart/alternative; boundary=047d7bdc131a72db4d050b794fd7
+X-List-Received-Date: Wed, 31 Dec 2014 02:34:15 -0000
+Content-Type: multipart/alternative; boundary=001a1140f88e2fc92a050b79f1eb
 
---047d7bdc131a72db4d050b794fd7
+--001a1140f88e2fc92a050b79f1eb
 Content-Type: text/plain; charset=UTF-8
 
 Hi All,
-
 
 I have built the toolchin using meta-toolchain.
 
 But while building the kernel using the same toolchain,we are getting error
 message as below:-
-
-
 
 Makefile:635: *** Your gcc installation does not support plugins.  If the
 necessary headers for plugin support are missing, they should be
@@ -81,10 +78,8 @@ to ignore this error and lessen the improvements provided by this patch,
 re-run make with the DISABLE_PAX_PLUGINS=y argument..  Stop.
 
 
-
 Please let me know what need to be added to have the missing headers for
 GCC plugins.
-
 
 
 Output of bash ./scripts/gcc-plugin.sh:
@@ -94,11 +89,8 @@ bash ./scripts/gcc-plugin.sh arm-pokymllibv5te-linux-gnueabi-gcc
 ./scripts/gcc-plugin.sh: line 3: -print-file-name=plugin: command not found
 
 
-
 And our GCC is not configure with plugin support(--enable-plugin):
 [atulk@localhost linux-3.2.65]$ arm-pokymllibv5te-linux-gnueabi-gcc -v
-
-
 
 gcc-4.9.1/configure --build=x86_64-linux --host=i686-pokysdk-linux
 --target=arm-pokymllibv5te-linux-gnueabi
@@ -136,38 +128,34 @@ gcc-4.9.1/configure --build=x86_64-linux --host=i686-pokysdk-linux
 --enable-nls
 
 
-
 Regards,
 Atul
 
---047d7bdc131a72db4d050b794fd7
+--001a1140f88e2fc92a050b79f1eb
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<p>Hi All,</p>
-<p>=C2=A0<br>
-I have built the toolchin using meta-toolchain.</p>
+<p>Hi All,<br></p>
+<p>I have built the toolchin using meta-toolchain.</p>
 <p>But while building the kernel using the same toolchain,we are getting er=
 ror message as below:-</p>
-<p>=C2=A0</p>
 <p>Makefile:635: *** Your gcc installation does not support plugins.=C2=A0 =
 If the necessary headers for plugin support are missing, they should be ins=
 talled.=C2=A0 On Debian, apt-get install gcc-&lt;ver&gt;-plugin-dev.=C2=A0 =
 If you choose to ignore this error and lessen the improvements provided by =
 this patch, re-run make with the DISABLE_PAX_PLUGINS=3Dy argument..=C2=A0 S=
 top.</p>
-<p>=C2=A0</p>
-<p>Please let me know what need to be added to have the missing headers for=
- GCC plugins.</p>
-<p>=C2=A0</p>
-<p>Output of bash ./scripts/gcc-plugin.sh:</p>
+<p>=C2=A0<br>
+Please let me know what need to be added to have the missing headers for GC=
+C plugins.</p>
+<p>=C2=A0<br>
+Output of bash ./scripts/gcc-plugin.sh:</p>
 <p>bash ./scripts/gcc-plugin.sh arm-pokymllibv5te-linux-gnueabi-gcc</p>
 <p>./scripts/gcc-plugin.sh: line 3: -print-file-name=3Dplugin: command not =
 found</p>
-<p>=C2=A0</p>
-<p>And our GCC is not configure with plugin support(--enable-plugin):<br>
+<p>=C2=A0<br>
+And our GCC is not configure with plugin support(--enable-plugin):<br>
 [atulk@localhost linux-3.2.65]$ arm-pokymllibv5te-linux-gnueabi-gcc -v</p>
-<p>=C2=A0</p>
 <p>gcc-4.9.1/configure --build=3Dx86_64-linux --host=3Di686-pokysdk-linux -=
 -target=3Darm-pokymllibv5te-linux-gnueabi --prefix=3D/usr/local/windriver/s=
 ysroots/i686-pokysdk-linux/usr --exec_prefix=3D/usr/local/windriver/sysroot=
@@ -203,8 +191,8 @@ ild_arm/tmp/sysroots/libv5te-arm-sdk --enable-poison-system-directories --w=
 ith-mpfr=3D/data/home/ppurohit/Fresh_Build/poky/build_arm/tmp/sysroots/i686=
 -nativesdk-pokysdk-linux --with-mpc=3D/data/home/ppurohit/Fresh_Build/poky/=
 build_arm/tmp/sysroots/i686-nativesdk-pokysdk-linux --enable-nls</p>
-<p>=C2=A0</p>
-<p>Regards,<br>
+<p>=C2=A0<br>
+Regards,<br>
 Atul</p>
 
---047d7bdc131a72db4d050b794fd7--
+--001a1140f88e2fc92a050b79f1eb--
