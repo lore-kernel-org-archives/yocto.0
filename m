@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0BAD7E00823; Thu,  1 Jan 2015 14:56:20 -0800 (PST)
+	id 78D66E007E7; Thu,  1 Jan 2015 14:56:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,36 +18,38 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.44 listed in list.dnswl.org]
-Received: from mail-pa0-f44.google.com (mail-pa0-f44.google.com
-	[209.85.220.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0B55E00757
-	for <yocto@yoctoproject.org>; Thu,  1 Jan 2015 14:56:15 -0800 (PST)
-Received: by mail-pa0-f44.google.com with SMTP id et14so23198089pad.17
-	for <yocto@yoctoproject.org>; Thu, 01 Jan 2015 14:56:14 -0800 (PST)
+	*      [209.85.192.174 listed in list.dnswl.org]
+Received: from mail-pd0-f174.google.com (mail-pd0-f174.google.com
+	[209.85.192.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5E22E006EF
+	for <yocto@yoctoproject.org>; Thu,  1 Jan 2015 14:56:16 -0800 (PST)
+Received: by mail-pd0-f174.google.com with SMTP id fp1so22813847pdb.33
+	for <yocto@yoctoproject.org>; Thu, 01 Jan 2015 14:56:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id;
-	bh=fPTbRR4smC8dF7ZC1l7OWI1PNSdwXsk0eURP6/IOe1k=;
-	b=fEOsGn9w6L397XBM0f+87UAzJPsB3jYqJWxViWcXAQxsazcdpnaWWdLFuBZ0/Gw2Lo
-	AEOjzi6dkcvhC4kB3ZwlQ/+tmTJQiJ9hgcLr3rYB2Ar9tHqgnfKbpFadf/GOKHDa6QrP
-	p8NXdRjiSz24GZ7BZdRNbRzMkJ5ZpfAlcqFR6N/qQZVJS9ITxGWBx96OSy3ufWeEGj15
-	EyEeJYG5IEBpa94yeelxsEBXNoX6RsnoY6iv8rmbdnW9MjiL+D+FZuzGBX8/rl15gbVN
-	tmP6HF7SntNAk8KlRhUfvMceFSErMx2IkWfcXOGMGhnLrxEwirNras10YuDOCkHZb+4i
-	BvEw==
-X-Received: by 10.66.226.167 with SMTP id rt7mr116570323pac.12.1420152974647; 
-	Thu, 01 Jan 2015 14:56:14 -0800 (PST)
+	h=from:to:subject:date:message-id:in-reply-to:references;
+	bh=EkaaSTJNXszZURQK6FWEqWpLZHxAV8uFyMZ0STRzzIw=;
+	b=uIJJzl66aYrw473rcNq6xDIVpUr10tbQABDmGL+G2PM/6xsF/6XeEE32+4vdzAkBki
+	lsae68KrdXIn8pQuvlhHOnoz4vM8+PqlfNRqwkAUNX6CWONoxgXFtzpPI9KCPztdMGl3
+	OpQfWYXGENYENFnKKOAQg1rHXY7p3TXMbmeZPlnsUnCjNTcKGfA04RmBvRsfKu54Bad9
+	GcXpfhP4OV9+y0JBOk9h7IWjzsy7sbUOXNLkfEIW7Wr58hydjV79ncdQyZsLCZr3HeWk
+	xnl0IsSDrp6NVB7Bfz/I0B3FlRHuGgmhkvONfu9kKxdBtYmM22fvvP+BfeYWNvksJj/R
+	Hv7w==
+X-Received: by 10.67.11.16 with SMTP id ee16mr59437312pad.128.1420152976585;
+	Thu, 01 Jan 2015 14:56:16 -0800 (PST)
 Received: from Pahoa2.mvista.com (c-76-20-92-207.hsd1.ca.comcast.net.
 	[76.20.92.207])
-	by mx.google.com with ESMTPSA id 3sm13261146pdt.93.2015.01.01.14.56.12
+	by mx.google.com with ESMTPSA id 3sm13261146pdt.93.2015.01.01.14.56.14
 	for <yocto@yoctoproject.org>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 01 Jan 2015 14:56:13 -0800 (PST)
+	Thu, 01 Jan 2015 14:56:15 -0800 (PST)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Thu,  1 Jan 2015 14:55:58 -0800
-Message-Id: <1420152959-15336-1-git-send-email-akuster808@gmail.com>
+Date: Thu,  1 Jan 2015 14:55:59 -0800
+Message-Id: <1420152959-15336-2-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 1.9.1
-Subject: [meta-security][PATCH 1/2] libwhisker2-perl: fix build issue
+In-Reply-To: <1420152959-15336-1-git-send-email-akuster808@gmail.com>
+References: <1420152959-15336-1-git-send-email-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/2] nikto: fix launching errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,51 +63,37 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Thu, 01 Jan 2015 22:56:20 -0000
 
-minor formating clean ups.
-add "ssl" depend packageconf option
-
-Change inherit perlnative to BBCLASSEXTEND = "native" to fix build issue
-
-error: Can't install libwhisker2-perl-2.5-r0@i586: no package provides /home/akuster/oss/maint/security/poky/build/tmp/sysroots/x86_64-linux/usr/bin/perl-native/perl.real
+add several missing perl package depends so app can launch
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-perl/perl/libwhisker2-perl_2.5.bb | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+ recipes-security/nikto/nikto_2.1.5.bb | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/recipes-perl/perl/libwhisker2-perl_2.5.bb b/recipes-perl/perl/libwhisker2-perl_2.5.bb
-index a98bde0..d9af430 100644
---- a/recipes-perl/perl/libwhisker2-perl_2.5.bb
-+++ b/recipes-perl/perl/libwhisker2-perl_2.5.bb
-@@ -5,8 +5,6 @@ LICENSE = "Artistic-1.0 | GPL-1.0+"
- 
- LIC_FILES_CHKSUM = "file://LICENSE;md5=254b8e29606fce6d1c1a4c9e32354573"
- 
--DEPENDS = "perl"
--
- SRC_URI = "http://sourceforge.net/projects/whisker/files/libwhisker/${PV}/libwhisker2-${PV}.tar.gz \
-            file://libwhisker2.patch"
- 
-@@ -15,10 +13,15 @@ SRC_URI[sha256sum] = "f45a1cf2ad2637b29dd1b13d7221ea12e3923ea09d107ced446400f190
- 
- S = "${WORKDIR}/libwhisker2-2.5"
- 
--inherit cpan-base perlnative
-+inherit cpan-base
+diff --git a/recipes-security/nikto/nikto_2.1.5.bb b/recipes-security/nikto/nikto_2.1.5.bb
+index 4708191..40b5b72 100644
+--- a/recipes-security/nikto/nikto_2.1.5.bb
++++ b/recipes-security/nikto/nikto_2.1.5.bb
+@@ -3,8 +3,8 @@ DESCRIPTION = "Nikto is an Open Source (GPL) web server scanner which performs c
+                files/CGIs, checks for outdated versions of over 1250 servers, and version specific problems on over 270 servers."
+ SECTION = "security"
+ LICENSE = "GPLv2"
 +
-+PACKAGEGROUP ??=""
-+PACKAGEGROUP[ssl] = ", , libnet-ssleay-perl, libnet-ssleay-perl"
+ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+-RDEPENDS_${PN} = "perl libnet-ssleay-perl libwhisker2-perl perl-module-getopt-long perl-module-time-local perl-module-io-socket nikto-doc"
  
- do_install() {
--	install -d 755 ${D}${PERLLIBDIRS}/vendor_perl/${PERLVERSION}
--	install -d 755 ${D}${datadir}/perl/${PERLVERSION}
--	oe_runmake install DESTDIR=${D} INSTALLDIR=${PERLLIBDIRS}/vendor_perl/${PERLVERSION} MANDIR=${datadir}/perl/${PERLVERSION}
-+    install -d 755 ${D}${PERLLIBDIRS}/vendor_perl/${PERLVERSION}
-+    install -d 755 ${D}${datadir}/perl/${PERLVERSION}
-+    oe_runmake install DESTDIR=${D} INSTALLDIR=${PERLLIBDIRS}/vendor_perl/${PERLVERSION} MANDIR=${datadir}/perl/${PERLVERSION}
+ SRC_URI = "http://cirt.net/nikto/${PN}-${PV}.tar.gz \
+            file://location.patch"
+@@ -99,3 +99,9 @@ do_install() {
+ 	install -m 0644 docs/nikto.dtd    ${D}${datadir}/doc/nikto
+ 	install -m 0644 docs/nikto_manual.html    ${D}${datadir}/doc/nikto
  }
 +
-+BBCLASSEXTEND = "native"
++RDEPENDS_${PN} = "perl libnet-ssleay-perl libwhisker2-perl \
++                perl-module-getopt-long perl-module-time-local \
++                perl-module-io-socket perl-module-overloading \
++                perl-module-base perl-module-b perl-module-bytes \
++                nikto-doc"
 -- 
 1.9.1
 
