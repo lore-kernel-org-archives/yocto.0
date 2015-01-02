@@ -1,55 +1,39 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78D66E007E7; Thu,  1 Jan 2015 14:56:20 -0800 (PST)
+	id 71F8CE008EA; Fri,  2 Jan 2015 02:17:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.174 listed in list.dnswl.org]
-Received: from mail-pd0-f174.google.com (mail-pd0-f174.google.com
-	[209.85.192.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5E22E006EF
-	for <yocto@yoctoproject.org>; Thu,  1 Jan 2015 14:56:16 -0800 (PST)
-Received: by mail-pd0-f174.google.com with SMTP id fp1so22813847pdb.33
-	for <yocto@yoctoproject.org>; Thu, 01 Jan 2015 14:56:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=EkaaSTJNXszZURQK6FWEqWpLZHxAV8uFyMZ0STRzzIw=;
-	b=uIJJzl66aYrw473rcNq6xDIVpUr10tbQABDmGL+G2PM/6xsF/6XeEE32+4vdzAkBki
-	lsae68KrdXIn8pQuvlhHOnoz4vM8+PqlfNRqwkAUNX6CWONoxgXFtzpPI9KCPztdMGl3
-	OpQfWYXGENYENFnKKOAQg1rHXY7p3TXMbmeZPlnsUnCjNTcKGfA04RmBvRsfKu54Bad9
-	GcXpfhP4OV9+y0JBOk9h7IWjzsy7sbUOXNLkfEIW7Wr58hydjV79ncdQyZsLCZr3HeWk
-	xnl0IsSDrp6NVB7Bfz/I0B3FlRHuGgmhkvONfu9kKxdBtYmM22fvvP+BfeYWNvksJj/R
-	Hv7w==
-X-Received: by 10.67.11.16 with SMTP id ee16mr59437312pad.128.1420152976585;
-	Thu, 01 Jan 2015 14:56:16 -0800 (PST)
-Received: from Pahoa2.mvista.com (c-76-20-92-207.hsd1.ca.comcast.net.
-	[76.20.92.207])
-	by mx.google.com with ESMTPSA id 3sm13261146pdt.93.2015.01.01.14.56.14
-	for <yocto@yoctoproject.org>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 01 Jan 2015 14:56:15 -0800 (PST)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu,  1 Jan 2015 14:55:59 -0800
-Message-Id: <1420152959-15336-2-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1420152959-15336-1-git-send-email-akuster808@gmail.com>
-References: <1420152959-15336-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 2/2] nikto: fix launching errors
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6150BE006EF
+	for <yocto@yoctoproject.org>; Fri,  2 Jan 2015 02:16:55 -0800 (PST)
+Received: from [99.240.204.5] (port=49615 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Y6zHp-0000Lz-Iv
+	for yocto@yoctoproject.org; Fri, 02 Jan 2015 05:16:53 -0500
+Date: Fri, 2 Jan 2015 05:16:51 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.11.1501020510460.8468@localhost>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: having yocto-docs take advantage of more docbook tags
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,40 +45,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Jan 2015 22:56:20 -0000
+X-List-Received-Date: Fri, 02 Jan 2015 10:17:00 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-add several missing perl package depends so app can launch
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/nikto/nikto_2.1.5.bb | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+  i mentioned this once upon a time but i figure it's worth bringing
+up again ... i think it would be useful to drag at least a few more
+relevant docbook tags into the yocto-docs documents.
 
-diff --git a/recipes-security/nikto/nikto_2.1.5.bb b/recipes-security/nikto/nikto_2.1.5.bb
-index 4708191..40b5b72 100644
---- a/recipes-security/nikto/nikto_2.1.5.bb
-+++ b/recipes-security/nikto/nikto_2.1.5.bb
-@@ -3,8 +3,8 @@ DESCRIPTION = "Nikto is an Open Source (GPL) web server scanner which performs c
-                files/CGIs, checks for outdated versions of over 1250 servers, and version specific problems on over 270 servers."
- SECTION = "security"
- LICENSE = "GPLv2"
-+
- LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
--RDEPENDS_${PN} = "perl libnet-ssleay-perl libwhisker2-perl perl-module-getopt-long perl-module-time-local perl-module-io-socket nikto-doc"
- 
- SRC_URI = "http://cirt.net/nikto/${PN}-${PV}.tar.gz \
-            file://location.patch"
-@@ -99,3 +99,9 @@ do_install() {
- 	install -m 0644 docs/nikto.dtd    ${D}${datadir}/doc/nikto
- 	install -m 0644 docs/nikto_manual.html    ${D}${datadir}/doc/nikto
- }
-+
-+RDEPENDS_${PN} = "perl libnet-ssleay-perl libwhisker2-perl \
-+                perl-module-getopt-long perl-module-time-local \
-+                perl-module-io-socket perl-module-overloading \
-+                perl-module-base perl-module-b perl-module-bytes \
-+                nikto-doc"
+  case in point: the most common way right now to render something in
+monospaced font is to just tag it as a <filename>, but that really
+shouldn't be used for things that aren't filenames, such as, you know,
+variables. for variables like, say, SRC_URI, there is the <varname>
+tag, which for HTML renders the variable name not just in monospaced
+but slightly smaller font size, which i think looks *way* nicer.
+
+  one other tag that i like using in other places is <firstterm>,
+which is used to emphasize that this is the first time a term/phrase
+is being used. and while that is typically rendered just in italics,
+it's still useful semantic markup for the purpose of building indices.
+
+  anyway, apologies if all this is already underway.
+
+rday
+
 -- 
-1.9.1
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
