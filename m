@@ -1,41 +1,44 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <wmills@ti.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 690BBE008CF; Mon,  5 Jan 2015 07:50:20 -0800 (PST)
+	id 27E0DE00521; Mon,  5 Jan 2015 08:32:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.8 required=5.0 tests=BAYES_00,TVD_SPACE_RATIO,
-	TVD_SPACE_RATIO_MINFP autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [198.47.26.153 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
-	*  2.7 TVD_SPACE_RATIO_MINFP TVD_SPACE_RATIO_MINFP
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44B0DE00751
-	for <yocto@yoctoproject.org>; Mon,  5 Jan 2015 07:50:13 -0800 (PST)
-Received: from [70.30.87.145] (port=60943 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Y89v0-0005dF-KD
-	for yocto@yoctoproject.org; Mon, 05 Jan 2015 10:50:10 -0500
-Date: Mon, 5 Jan 2015 10:50:07 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1501051048230.20527@localhost>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+Received: from devils.ext.ti.com (devils.ext.ti.com [198.47.26.153])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E868EE00344
+	for <yocto@yoctoproject.org>; Mon,  5 Jan 2015 08:32:15 -0800 (PST)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by devils.ext.ti.com (8.13.7/8.13.7) with ESMTP id t05GWBsL018279;
+	Mon, 5 Jan 2015 10:32:11 -0600
+Received: from DFLE72.ent.ti.com (dfle72.ent.ti.com [128.247.5.109])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t05GWBCl026809;
+	Mon, 5 Jan 2015 10:32:11 -0600
+Received: from dflp32.itg.ti.com (10.64.6.15) by DFLE72.ent.ti.com
+	(128.247.5.109) with Microsoft SMTP Server id 14.3.174.1;
+	Mon, 5 Jan 2015 10:32:11 -0600
+Received: from [172.22.145.215] (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t05GWB7u023983;
+	Mon, 5 Jan 2015 10:32:11 -0600
+Message-ID: <54AABC8B.4000604@ti.com>
+Date: Mon, 5 Jan 2015 11:32:11 -0500
+From: William Mills <wmills@ti.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: [PATCH][yocto-docs] Mention yocto-layer subcommands add-layer, remove-layer.
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <EC0CC42105A97F4A81EA36CDF61DDAD45CA40387@DLEE11.ent.ti.com>
+	<549EFEF1.1040604@ti.com>
+	<D0D07A4A.50C55%belen.barros.pena@intel.com>
+In-Reply-To: <D0D07A4A.50C55%belen.barros.pena@intel.com>
+Subject: Re: My config got stuck in the toaster
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,39 +50,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Jan 2015 15:50:20 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 05 Jan 2015 16:32:21 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+On 01/05/2015 06:59 AM, Barros Pena, Belen wrote:
+> On 28/12/2014 00:18, "William Mills" <wmills@ti.com> wrote:
+>
+>>
+>> On 12/27/2014 10:40 AM, Mills, William wrote:
+>>> OK, you are not going to believe me but I swear this really happened ...
+>
+> We do believe you :)
+>
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=6935
+>
 
----
-
-diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
-index 0085cef..adaf602 100644
---- a/documentation/dev-manual/dev-manual-common-tasks.xml
-+++ b/documentation/dev-manual/dev-manual-common-tasks.xml
-@@ -705,6 +705,12 @@
-                         Lists dependency relationships between recipes that
-                         cross layer boundaries.
-                         </para></listitem>
-+                    <listitem><para><filename><emphasis>add-layer:</emphasis></filename>
-+                        Adds a layer to bblayers.conf.
-+                        </para></listitem>
-+                    <listitem><para><filename><emphasis>remove-layer:</emphasis></filename>
-+                        Removes a layer from bblayers.conf.
-+                        </para></listitem>
-                     <listitem><para><filename><emphasis>flatten:</emphasis></filename>
-                         Flattens the layer configuration into a separate output
-                         directory.
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Yep that sounds like another symptom of the same issue.
+Thanks.
 
