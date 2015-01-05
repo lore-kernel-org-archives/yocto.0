@@ -1,6 +1,6 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <wmills@ti.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7B353E00751; Mon,  5 Jan 2015 08:42:23 -0800 (PST)
+	id D5BF8E00751; Mon,  5 Jan 2015 08:54:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,38 +8,37 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+	*      [192.94.94.40 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1DBCE00344
-	for <yocto@yoctoproject.org>; Mon,  5 Jan 2015 08:42:21 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga103.jf.intel.com with ESMTP; 05 Jan 2015 08:39:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,700,1413270000"; d="scan'208";a="632710208"
-Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
-	by orsmga001.jf.intel.com with ESMTP; 05 Jan 2015 08:42:19 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.116]) by
-	ORSMSX109.amr.corp.intel.com ([169.254.2.57]) with mapi id
-	14.03.0195.001; Mon, 5 Jan 2015 08:42:19 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, "peterengcomau001@adam.com.au"
-	<peterengcomau001@adam.com.au>
-Thread-Topic: [yocto] is it not a *requirement* that layers start with "meta-"?
-Thread-Index: AQHQJGZn+jP9YgrwdE+jr6b/rLVAApyxxBdw
-Date: Mon, 5 Jan 2015 16:42:19 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988E9070A@ORSMSX101.amr.corp.intel.com>
-References: <547988affb54758502fe31b4a9613e00d927d5c0@webmail.adam.com.au>
-	<alpine.LFD.2.11.1412301423040.11537@localhost>
-In-Reply-To: <alpine.LFD.2.11.1412301423040.11537@localhost>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Received: from arroyo.ext.ti.com (arroyo.ext.ti.com [192.94.94.40])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1C49E00344
+	for <yocto@yoctoproject.org>; Mon,  5 Jan 2015 08:53:55 -0800 (PST)
+Received: from dlelxv90.itg.ti.com ([172.17.2.17])
+	by arroyo.ext.ti.com (8.13.7/8.13.7) with ESMTP id t05Grfdb006966;
+	Mon, 5 Jan 2015 10:53:41 -0600
+Received: from DFLE73.ent.ti.com (dfle73.ent.ti.com [128.247.5.110])
+	by dlelxv90.itg.ti.com (8.14.3/8.13.8) with ESMTP id t05GrfSC010168;
+	Mon, 5 Jan 2015 10:53:41 -0600
+Received: from dlep32.itg.ti.com (157.170.170.100) by DFLE73.ent.ti.com
+	(128.247.5.110) with Microsoft SMTP Server id 14.3.174.1;
+	Mon, 5 Jan 2015 10:53:40 -0600
+Received: from [172.22.145.215] (ileax41-snat.itg.ti.com [10.172.224.153])	by
+	dlep32.itg.ti.com (8.14.3/8.13.8) with ESMTP id t05GremS001095;
+	Mon, 5 Jan 2015 10:53:40 -0600
+Message-ID: <54AAC194.7050002@ti.com>
+Date: Mon, 5 Jan 2015 11:53:40 -0500
+From: William Mills <wmills@ti.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: is it not a *requirement* that layers start with "meta-"?
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <EC0CC42105A97F4A81EA36CDF61DDAD45CA40387@DLEE11.ent.ti.com>
+	<549EFEF1.1040604@ti.com>
+	<D0C5AB88.50A09%belen.barros.pena@intel.com>
+In-Reply-To: <D0C5AB88.50A09%belen.barros.pena@intel.com>
+Subject: Re: My config got stuck in the toaster
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,59 +50,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Jan 2015 16:42:23 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 05 Jan 2015 16:54:00 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-If anyone can locate some scripts or something that actually does require "=
-meta-" to be prepended please let me know.  That changes how we describe th=
-is.
 
-Scott
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
->Sent: Tuesday, December 30, 2014 11:25 AM
->To: peterengcomau001@adam.com.au
->Cc: Yocto discussion list
->Subject: Re: [yocto] is it not a *requirement* that layers start with "met=
-a-"?
+On 12/28/2014 02:16 AM, Barros Pena, Belen wrote:
+> On 28/12/2014 00:18, "William Mills" <wmills@ti.com> wrote:
 >
->On Wed, 31 Dec 2014, peterengcomau001@adam.com.au wrote:
+>> BTW: Building "world" does not look nice in toaster.  It list 100s of
+>> build targets instead of just "world".
 >
->> If you use the yocto scripts for setting up a new layer, it
->> automatically prepends 'meta-'. That may be why there is no
->> requirement
+> Anything with "does not look nice in toaster" is probably my problem.
 >
->  but that still doesn't address that (from memory) some OE scripts/utils =
-seem
->to *require* layers start with the prefix "meta-".
->i guess i can just grep the OE layer and look for build scripts that conta=
-in that
->string and see which ones have that requirement.
+> Can I ask you to open an issue in Bugzilla for this, so that we can put
+> some thought into how to present 'world' builds?
 >
->rday
->
->--
->
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->--
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+
+Done.
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=7110
+
+Thanks.
+
+I also noticed that the "toaster manual" link in the upper corner of the 
+UI links to the Hob manual not the toaster manual.
+
+I am running 1.7 code but the URL in templates/base.html looks OK to me.
+The website seems to be redirecting this to the hob manual.
+
+I filed the following bug against infrastructure with you in CC.
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=7111
+
+-- Bill
+
+
 
