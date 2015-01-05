@@ -1,6 +1,6 @@
-Return-Path: <sgw@linux.intel.com>
+Return-Path: <scott.m.rifenbark@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2783CE004F2; Mon,  5 Jan 2015 10:44:33 -0800 (PST)
+	id 9C416E00751; Mon,  5 Jan 2015 13:34:50 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,26 +8,39 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3B43E00344
-	for <yocto@yoctoproject.org>; Mon,  5 Jan 2015 10:44:21 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga103.jf.intel.com with ESMTP; 05 Jan 2015 10:40:54 -0800
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5119FE003E3
+	for <yocto@yoctoproject.org>; Mon,  5 Jan 2015 13:34:42 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga102.fm.intel.com with ESMTP; 05 Jan 2015 13:34:41 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.07,701,1413270000"; d="scan'208";a="657087665"
-Received: from unknown (HELO localhost.localdomain) ([10.252.252.96])
-	by fmsmga002.fm.intel.com with ESMTP; 05 Jan 2015 10:44:05 -0800
-Message-ID: <54AADB74.4070203@linux.intel.com>
-Date: Mon, 05 Jan 2015 10:44:04 -0800
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+X-IronPort-AV: E=Sophos;i="5.07,702,1413270000"; d="scan'208";a="632851970"
+Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
+	by orsmga001.jf.intel.com with ESMTP; 05 Jan 2015 13:34:41 -0800
+Received: from orsmsx115.amr.corp.intel.com (10.22.240.11) by
+	ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server
+	(TLS) id 14.3.195.1; Mon, 5 Jan 2015 13:34:41 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.116]) by
+	ORSMSX115.amr.corp.intel.com ([169.254.10.66]) with mapi id
+	14.03.0195.001; Mon, 5 Jan 2015 13:34:41 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [PATCH] yocto-docs: Tidy up documentation Makefile.
+Thread-Index: AQHQJDA001+DzQ6UK02dsXCtu0lJHJyyFl5Q
+Date: Mon, 5 Jan 2015 21:34:40 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988E9088F@ORSMSX101.amr.corp.intel.com>
+References: <alpine.LFD.2.11.1412300753001.10446@localhost>
+In-Reply-To: <alpine.LFD.2.11.1412300753001.10446@localhost>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-To: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Subject: Re: [PATCH] yocto-docs: Tidy up documentation Makefile.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,249 +52,464 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Jan 2015 18:44:33 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 05 Jan 2015 21:34:50 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-This mail was sent out by Recipe reporting system.
+Applied.  Thanks Robert.
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade this time, they can fill in
-RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
-recipe remainder until newer upstream version was detected.
-
-Example:
-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
-
-You can check the detail information at:
-
-http://packages.yoctoproject.org/upgradepkgname
-
-Package               Version        Upstream version      Maintainer 
-         NoUpgradeReason
---------------------  -------------  -------------------- 
--------------------  ------------------------------
-gnome-icon-theme      2.31.0         3.7.4                 Alejandro 
-Hernandez  waiting for the sato gtk3 port
-midori                0.5.8          0.5.9                 Alejandro 
-Hernandez
-dpkg                  1.17.21        1.17.23               Aníbal Limón
-screen                4.0.3          4.2.1                 Aníbal Limón
-apt                   0.9.9.4        1.0.9.5               Aníbal Limón
-jpeg                  8d             9                     Aníbal Limón 
-         webkit-gtk 1.8.3 doesn't wo...
-nettle                2.7.1          3.0                   Armin Kuster 
-         3.0.0 breaks gnutls, api ch...
-linux-libc-headers    3.17.7         3.18.1                Bruce Ashfield
-grep                  2.5.1a         2.21                  Chen Qi
-sysklogd              1.5            1.5.1                 Chen Qi
-sysstat               10.2.1         11.1.2                Chen Qi
-curl                  7.38.0         7.39.0                Chen Qi
-cpio                  2.8            2.11                  Chen Qi
-util-linux            2.24.2         2.25.2                Chen Qi
-coreutils             8.22           8.23                  Chen Qi
-console-tools         0.3.2          1999.03.02            Chen Qi
-bison                 2.7.1          3.0.2                 Chong Lu
-dbus                  1.8.10         1.9.6                 Chong Lu 
-         D-BUS 1.9.x is the developm...
-quota                 4.01           4.02                  Cristian Iorga
-libical               1.0.0          1.0.1                 Cristian Iorga
-neon                  0.30.0         0.30.1                Cristian Iorga
-pulseaudio            5.0            5.99.2                Cristian Iorga
-libatomics-ops        7.2            7.4.0                 Cristian Iorga
-speex                 1.2rc1         1.2rc2                Cristian Iorga
-gst-fluendo-mpegd...  0.10.72        0.10.85               Cristian Iorga
-db                    6.0.30         6.1.19                Cristian 
-Iorga       API compatibility issue
-gst-fluendo-mp3       0.10.19        0.10.31               Cristian Iorga
-flac                  1.3.0          1.3.1                 Cristian Iorga
-connman               1.26           1.27                  Cristian Iorga
-bluez5                5.25           5.27                  Cristian Iorga
-gst-plugin-bluetooth  4.101          5.27                  Cristian Iorga
-bluez4                4.101          5.27                  Cristian 
-Iorga       BlueZ 5.x is not backward-c...
-iproute2              3.17.0         3.18.0                Cristian Iorga
-ofono                 1.15           1.16                  Cristian Iorga
-neard                 0.14           0.15                  Cristian Iorga
-syslinux              6.01           6.03                  Darren Hart 
-         Waiting for 4.06 for 3.3 ke...
-linux-yocto-rt        3.14.24+gitX   3.14.26+gitAUTOIN...  Darren Hart
-kernelshark           1.2+gitX       2.4+gitAUTOINC+29...  Darren Hart 
-         0.2 is the latest version.
-trace-cmd             2.3.2+gitX     2.4+gitAUTOINC+79...  Darren Hart
-perl                  5.20.0         5.21.7                Hongxu Jia
-libxml-parser-perl    2.41           2.43                  Hongxu Jia
-elfutils              0.160          0.161                 Hongxu Jia
-xmlto                 0.0.25         0.0.26                Hongxu Jia
-bash                  4.3            4.3.30                Hongxu Jia
-groff                 1.22.2         1.22.3                Hongxu Jia 
-         1.18.1.4 is latest GPLv2 Ve...
-rpcbind               0.2.1          0.2.2                 Hongxu Jia
-man                   1.6g           2.5a6                 Hongxu Jia
-createrepo            0.4.11         0.10.3                Hongxu Jia 
-         Versions after 0.9.* use YU...
-gnupg                 2.0.26         2.1.1                 Hongxu Jia
-man-pages             3.75           3.76                  Hongxu Jia
-dhcp                  4.3.0          4.3.1                 Hongxu Jia
-directfb              1.7.4          1.7.6                 Hongxu Jia
-adt-installer         0.2.0          1.1                   Jessica Zhang
-bind                  9.9.5          11                    Kai Kang
-libsdl                1.2.15         1.2.15-1              Kai Kang
-python-nose           1.2.1          1.3.4                 Khem Raj
-python-numpy          1.7.0          1.9.1                 Khem Raj
-python3-distribute    0.6.32         0.7.3                 Khem Raj
-python-mako           0.9.1          1.0.0                 Khem Raj
-rpm                   5.4.14         5.4.15-0.20140824     Mark Hatle
-libgfortran           4.9.1          4.9.2                 No Maintainer
-gcc-source            4.9.1          4.9.2                 No Maintainer
-json-c                0.11           0.12                  No Maintainer
-python-git            0.3.2.RC1      0.3.3                 No Maintainer
-u-boot                v2014.07+gitX  v2014.10+gitAUTOI...  No Maintainer
-python-async          0.6.1          0.6.2                 No Maintainer
-gnu-efi               3.0u           3.0w                  No Maintainer
-python-smmap          0.8.2          0.8.3                 No Maintainer
-python-gitdb          0.5.4          0.6.1                 No Maintainer
-linux-yocto-dev       3.17++gitX     3.17.6++5ff54d8fb...  No Maintainer
-libpfm4               4.3.0          4.6.0                 No Maintainer
-uclibc                0.9.33+gitX    0.9.33.2+gitAUTOI...  No Maintainer
-ca-certificates       20140325       20141019              No Maintainer
-dbus-test             1.8.10         1.9.6                 No Maintainer
-libxshmfence          1.1            1.2                   No Maintainer
-systemd               216+gitX       218+gitAUTOINC+9c...  No Maintainer
-waffle                1.3.0          1.5.0                 No Maintainer
-mesa-gl               10.3.4         10.4.1                No Maintainer
-dropbear              2014.63        2014.66               Paul Eggleton
-ethtool               3.16           3.18                  Paul Eggleton
-qt-mobility-x11       1.2.0          1.2.2-20120224        Paul Eggleton
-cmake                 2.8.12.2       3.1.0                 Paul Eggleton
-augeas                1.2.0          1.3.0                 Paul Eggleton
-yasm                  1.2.0          1.3.0                 Paul Eggleton
-dosfstools            2.11           3.0.26                Paul Eggleton
-unfs3                 0.9.22.r490    0.9.22.r494           Paul Eggleton
-gpgme                 1.4.3          1.5.3                 Paul Eggleton
-libav                 9.16           11.1                  Paul Eggleton
-libgpg-error          1.12           1.17                  Paul Eggleton
-libevdev              1.2.2          1.3.2                 Paul Eggleton
-x264                  r2265+gitX     r2491                 Paul Eggleton
-openssh               6.6p1          6.7p1                 Paul Eggleton
-qt-mobility-embedded  1.2.0          1.2.2-20120224        Paul Eggleton
-gcc                   4.9.1          4.9.2                 Richard Purdie
-subversion            1.8.10         1.8.11                Richard Purdie
-python-distribute     0.6.32         0.7.3                 Richard 
-Purdie       0.7.3 only upgrades 0.6.32,...
-python-gst            0.10.22        1.4.0                 Richard Purdie
-python-scons          2.3.2          2.3.4                 Richard Purdie
-python-pygobject      2.28.3         3.13.3                Richard 
-Purdie       Newer versions of python-py...
-python                2.7.3          3.4.2rc1              Richard Purdie
-python3               3.3.3          3.4.2rc1              Richard Purdie
-btrfs-tools           3.14.2+gitX    3.18+gitAUTOINC+1...  Richard Purdie
-tcf-agent             0.4.0+gitX     8.0+gitAUTOINC+3d...  Richard Purdie
-bdwgc                 7.4.2          gc-7.2d               Richard Purdie
-file                  5.21           5.22                  Robert Yang
-binutils              2.24           2.25                  Robert Yang
-git                   2.2.0          2.2.1                 Robert Yang
-e2fsprogs             1.42.9         1.42.12               Robert Yang
-libtool               2.4.2          2.4.4                 Robert Yang
-m4                    1.4.9          1.4.17                Robert Yang
-gmp                   6.0.0          6.0.0a                Robert Yang
-glib-2.0              2.42.1         2.43.2                Robert Yang
-json-glib             1.0.0          1.0.2                 Ross Burton
-gdk-pixbuf            2.30.8         2.31.2                Ross Burton
-gtk+                  2.24.25        3.15.3                Ross Burton 
-         Do not upgrade to version: ...
-gtk+3                 3.12.2         3.15.3                Ross Burton
-gtk-engines           2.20.2         2.91.1                Ross Burton 
-         2.91.1 is a 3.0 beta release
-hicolor-icon-theme    0.13           0.14                  Ross Burton
-librsvg               2.40.2         2.40.6                Ross Burton
-libnotify             0.6.0          0.7.6                 Ross Burton
-webkit-gtk            1.8.3          1.10.2                Ross Burton 
-         >= 1.10.2 needs ruby
-puzzles               r10116         r10286                Ross Burton
-libtasn1              4.0            4.2                   Ross Burton
-icu                   53.1           55                    Ross Burton
-libpam                1.1.6          1.1.8                 Ross Burton
-libpng12              1.2.51         1.2.52                Ross Burton
-libfm                 1.1.2.2        1.2.3                 Ross Burton
-vte                   0.28.2         0.39.1                Ross Burton 
-         Pending Glib-2.0 Update
-at-spi2-core          2.14.1         2.15.3                Ross Burton
-atk                   2.14.0         2.15.3                Ross Burton
-at-spi2-atk           2.14.1         2.15.3                Ross Burton
-libpng                1.6.13         1.6.16                Ross Burton
-x11-common            0.1            1:7.6                 Ross Burton
-glib-networking       2.38.0         2.43.1                Ross Burton 
-         Pending Glib-2.0 Update
-liberation-fonts      1.04           2.00.1                Ross Burton 
-         2.00.0 - fontforge package ...
-xkeyboard-config      2.12           2.13                  Ross Burton
-freetype              2.5.3          2.5.5                 Ross Burton
-xf86-video-intel      2.99.912       2.99.917              Ross Burton
-xf86-video-omap       0.4.2+gitrX    0.4.3+gitrAUTOINC...  Ross Burton
-xf86-video-modese...  0.8.1          0.9.0                 Ross Burton
-xf86-input-evdev      2.9.0          2.9.1                 Ross Burton
-xf86-input-synaptics  1.8.0          1.8.1                 Ross Burton
-xserver-xorg          1.16.2         1.16.99.901           Ross Burton
-xkbcomp               1.2.4          1.3.0                 Ross Burton
-xinit                 1.3.3          1.3.4                 Ross Burton
-cairo                 1.12.18        5c-1.5                Ross Burton
-xcb-proto             1.2+gitrX      1.11+gitrAUTOINC+...  Ross Burton
-libsoup-2.4           2.46.0         2.49.1                Ross Burton
-xproto                7.0.26         7.0.27                Ross Burton
-mesa                  10.3.4+gitX    10.4.1+gitAUTOINC...  Ross Burton
-clutter-gtk-1.0       1.4.4          1.6.0                 Ross Burton
-clutter-gst-1.0       1.6.0          3.0.0                 Ross Burton
-clutter-1.0           1.20.0         1.21.2                Ross Burton
-fontconfig            2.11.1         2.11.91               Ross Burton
-libffi                3.1            3.2.1                 Saul Wold
-libunique             1.1.6          3.0.2                 Saul Wold 
-         Do not upgrade to version: ...
-rxvt-unicode          9.20           9.21                  Saul Wold
-gcc-runtime           4.9.1          4.9.2                 Saul Wold
-libgcc                4.9.1          4.9.2                 Saul Wold
-u-boot-mkimage        v2014.07+gitX  v2014.10+gitAUTOI...  Saul Wold
-msmtp                 1.4.32         1.6.1                 Saul Wold
-lsbinitscripts        9.56.1         9.60                  Saul Wold
-libaio                0.3.109        0.3.110               Saul Wold
-dtc                   1.4.0+gitX     1.4.1+gitAUTOINC+...  Saul Wold
-gdbm                  1.8.3          1.11                  Saul Wold
-linux-yocto-tiny      3.17.6+gitX    2012+gitAUTOINC+5...  Saul Wold
-libassuan             2.1.2          2.2.0                 Saul Wold
-liburcu               0.8.5          0.8.6                 Saul Wold
-initscripts           1.0            9.40                  Saul Wold
-base-passwd           3.5.29         3.5.37                Saul Wold
-build-appliance-i...  8.0            12.0.0                Saul Wold
-usbutils              007            008                   Saul Wold
-rgb                   1.0.5          1.0.6                 Saul Wold
-u-boot-fw-utils       v2014.07+gitX  v2014.10+gitAUTOI...  Saul Wold
-libksba               1.3.1          1.3.2                 Saul Wold
-mx-1.0                1.4.7+gitX     1.99.4+gitAUTOINC...  Saul Wold 
-         PRS 1.99 is dev version
-blktrace              1.0.5+gitX     1.1.0+gitAUTOINC+...  Tom Zanussi
-chkconfig             1.3.58         1.3.63                Wenzong Fan
-ccache                3.1.9          3.2.1                 Wenzong Fan
-gettext               0.18.3.2       0.19.4                Wenzong Fan
-
-Upgradable count: 160
-Upgradable total count: 180
-
-The based commit is:
-
-commit 24f19fedb40d0af84beb8e9a6595ea06f09d4615
-Author: Awais Belal <awais_belal@mentor.com>
-Date:   Mon Dec 29 14:46:48 2014 +0500
-
-     gstreamer1.0-omx: use mulitple SCMs to fetch submodules
-         The gstreamer omx package uses a submodule 'common' which
-     is fetched by the configure script. This approach fails
-     on non-network builds as the fetcher tries to look upstream
-     for the submodule.
-     We now use multiple SCMs, one for the main omx package and
-     the other for the 'common' submodule so it is available in
-     the downloads_dir for later use.
-         Signed-off-by: Awais Belal <awais_belal@mentor.com>
-     Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Saul Wold <sgw@linux.intel.com>
+>-----Original Message-----
+>From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
+>Sent: Tuesday, December 30, 2014 4:57 AM
+>To: Yocto discussion list
+>Cc: Rifenbark, Scott M
+>Subject: [PATCH] yocto-docs: Tidy up documentation Makefile.
+>
+>
+>Some aesthetic fixes to yocto-docs Makefile, none of which should affect t=
+he
+>documentation builds:
+>
+>  * small number of typos fixed
+>  * documentation corrected in a couple places
+>  * for most part, reduce line lengths to 80 for printing
+>
+>Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+>
+>---
+>
+>  was going to fix just a couple typos, then figured that while i was ther=
+e, might
+>as well do some cleanup, mostly in the area of reducing line lengths to 80
+>where possible for printing. feel free to comment on any other possible
+>aesthetic fixes, i can add them and resubmit.
+>
+>diff --git a/documentation/Makefile b/documentation/Makefile index
+>3bc9a21..78a2e8e 100644
+>--- a/documentation/Makefile
+>+++ b/documentation/Makefile
+>@@ -1,22 +1,22 @@
+> # This is a single Makefile to handle all generated Yocto Project documen=
+ts.
+>-# The Makefile needs to live in the documents directory and all figures u=
+sed -
+># in any manuals must be .PNG files and live in the individual book's figu=
+res -#
+>directory as well as in the figures directory for the mega-manual.
+>+# The Makefile needs to live in the documentation/ directory and all
+>+figures # used in any manuals must be .PNG files and live in the
+>+individual book's # figures/ directory as well as in the figures/ directo=
+ry for
+>the mega-manual.
+> # Note that the figures for the Yocto Project Development Manual  # diffe=
+r
+>depending on the BRANCH being built.
+> #
+> # The Makefile has these targets:
+> #
+>-#    pdf:      generates a PDF version of a manual.  Not valid for the Qu=
+ick Start
+>-#              or the mega-manual (single, large HTML file comprised of a=
+ll
+>-#              Yocto Project manuals).
+>-#    html:     generates an HTML version of a manual.
+>-#    eclipse:  generates an HTML version of a manual that can be used as
+>-#              eclipse help (including necessary metadata files).
+>-#    tarball:  creates a tarball for the doc files.
+>-#    validate: validates
+>-#    publish:  pushes generated files to the Yocto Project website
+>-#    clean:    removes files
+>+#    pdf:	generates a PDF version of a manual.  Not valid for the
+>+#		Quick Start or the mega-manual (single, large HTML file
+>+#		comprised of all Yocto Project manuals).
+>+#    html:	generates an HTML version of a manual.
+>+#    eclipse:	generates an HTML version of a manual that can be used as
+>+#		eclipse help (including necessary metadata files).
+>+#    tarball:	creates a tarball for the doc files.
+>+#    validate:	validates
+>+#    publish:	pushes generated files to the Yocto Project website
+>+#    clean:	removes files
+> #
+> # The Makefile generates an HTML and PDF version of every document
+>except the  # Yocto Project Quick Start and the single, HTML mega-manual,
+>which is comprised @@ -33,7 +33,7 @@  # To build a manual, you must invoke
+>Makefile with the DOC argument.  If you  # are going to publish the manual=
+,
+>then you must invoke Makefile with both the  # DOC and the VER argument.
+>Furthermore, if you are building or publishing -# the edison or denzil ver=
+sions
+>of the Yocto Poject Development Manual or
+>+# the edison or denzil versions of the Yocto Project Development Manual
+>+or
+> # the mega-manual, you must also use the BRANCH argument.
+> #
+> # Examples:
+>@@ -45,18 +45,19 @@
+> #     make DOC=3Dmega-manual BRANCH=3Ddenzil
+> #
+> # The first example generates the HTML and PDF versions of the BSP Guide.
+>-# The second example generates the HTML version only of the Quick Start.
+>Note that -# the Quick Start only has an HTML version available.  The thir=
+d
+>example generates -# both the PDF and HTML versions of the Yocto Project
+>Reference Manual. The -# fourth example generates both the PDF and HTML
+>'edison' versions of the YP -# Development Manual.  The last exmample
+>generates the HTML version of the -# mega-manual and uses the 'denzil'
+>branch when choosing figures for the
+>+# The second example generates the HTML version only of the Quick
+>+Start.  Note # that the Quick Start only has an HTML version available.
+>+The third example # generates just the PDF version of the Yocto Project
+>Reference Manual.
+>+# The fourth example generates both the PDF and HTML 'edison' versions
+>+# of the YP Development Manual.  The last example generates the HTML
+>+version # of the mega-manual and uses the 'denzil' branch when choosing
+>+figures for the
+> # tarball of figures.  Any example that does not use the BRANCH argument =
+ #
+>builds the current version of the manual set.
+> #
+> # Use the publish target to push the generated manuals to the Yocto Proje=
+ct -
+># website.  All files needed for the manual's HTML form are pushed as well=
+ as
+>the -# PDF version (if applicable).
+>+# website.  All files needed for the manual's HTML form are pushed as
+>+well as # the PDF version (if applicable).
+>+#
+> # Examples:
+> #
+> #    make publish DOC=3Dbsp-guide VER=3D1.3
+>@@ -64,11 +65,11 @@
+> #    make publish DOC=3Ddev-manual VER=3D1.1.1 BRANCH=3Dedison
+> #    make publish DOC=3Ddev-manual VER=3D1.2 BRANCH=3Ddenzil
+> #
+>-# The first example publishes the 1.3 version of both the PDF and HTML
+>versions of -# the BSP Guide.  The second example publishes the 1.3 versio=
+n
+>of both the PDF and -# HTML versions of the ADT Manual. The third example
+>publishes the PDF and HTML -# 'edison' versions of the YP Development
+>Manual.  The fourth example publishes -# the PDF and HTML 'denzil' version=
+s
+>of the YP Development Manual.
+>+# The first example publishes the 1.3 version of both the PDF and HTML
+>+versions # of the BSP Guide.  The second example publishes the 1.3
+>+version of both the # PDF and HTML versions of the ADT Manual. The
+>+third example publishes the PDF # and HTML 'edison' versions of the YP
+>+Development Manual.  The fourth example # publishes the PDF and HTML
+>'denzil' versions of the YP Development Manual.
+> #
+>
+> ifeq ($(DOC),bsp-guide)
+>@@ -86,16 +87,18 @@ ifeq ($(DOC),dev-manual)  XSLTOPTS =3D --xinclude
+>ALLPREQ =3D html pdf eclipse tarball  # -# Note that the tarfile might pro=
+duce
+>the "Cannot stat: No such file or directory" error -# message for .PNG fil=
+es
+>that are not present when building a particular branch.  The -# list of fi=
+les is all-
+>inclusive for all branches.  Note, if you don't provide a BRANCH -# option=
+, it
+>defaults to the latest stuff.  This would be appropriate for "master" bran=
+ch.
+>+# Note that the tarfile might produce the "Cannot stat: No such file or
+>+# directory" error message for .PNG files that are not present when
+>+building # a particular branch.  The list of files is all-inclusive for a=
+ll branches.
+>+# Note, if you don't provide a BRANCH option, it defaults to the latest s=
+tuff.
+>+# This would be appropriate for "master" branch.
+> #
+>
+> 	ifeq ($(BRANCH),edison)
+> TARFILES =3D dev-style.css dev-manual.html dev-manual.pdf \
+>-           figures/app-dev-flow.png figures/bsp-dev-flow.png figures/dev-
+>title.png \
+>-           figures/git-workflow.png figures/index-downloads.png figures/k=
+ernel-
+>dev-flow.png \
+>+           figures/app-dev-flow.png figures/bsp-dev-flow.png \
+>+           figures/dev-title.png figures/git-workflow.png \
+>+           figures/index-downloads.png figures/kernel-dev-flow.png \
+>            figures/kernel-example-repos-edison.png \
+>            figures/kernel-overview-1.png figures/kernel-overview-2.png \
+>            figures/kernel-overview-3-edison.png \ @@ -103,8 +106,9 @@
+>TARFILES =3D dev-style.css dev-manual.html dev-manual.pdf \
+>            figures/wip.png
+> 	else ifeq ($(BRANCH),denzil)
+> TARFILES =3D dev-style.css dev-manual.html dev-manual.pdf \
+>-           figures/app-dev-flow.png figures/bsp-dev-flow.png figures/dev-
+>title.png \
+>-           figures/git-workflow.png figures/index-downloads.png figures/k=
+ernel-
+>dev-flow.png \
+>+           figures/app-dev-flow.png figures/bsp-dev-flow.png \
+>+           figures/dev-title.png figures/git-workflow.png \
+>+           figures/index-downloads.png figures/kernel-dev-flow.png \
+>            figures/kernel-example-repos-denzil.png \
+>            figures/kernel-overview-1.png figures/kernel-overview-2.png \
+>            figures/kernel-overview-3-denzil.png \ @@ -112,10 +116,12 @@
+>TARFILES =3D dev-style.css dev-manual.html dev-manual.pdf \
+>            figures/wip.png
+>         else
+> TARFILES =3D dev-style.css dev-manual.html dev-manual.pdf \
+>-           figures/app-dev-flow.png figures/bsp-dev-flow.png figures/dev-
+>title.png \
+>-           figures/git-workflow.png figures/index-downloads.png figures/k=
+ernel-
+>dev-flow.png \
+>+           figures/app-dev-flow.png figures/bsp-dev-flow.png \
+>+           figures/dev-title.png figures/git-workflow.png \
+>+           figures/index-downloads.png figures/kernel-dev-flow.png \
+>            figures/kernel-overview-1.png figures/kernel-overview-2-generi=
+c.png \
+>-           figures/source-repos.png figures/yp-download.png figures/recip=
+e-
+>workflow.png \
+>+           figures/source-repos.png figures/yp-download.png \
+>+           figures/recipe-workflow.png \
+>            eclipse
+> 	endif
+>
+>@@ -146,61 +152,82 @@ XSLTOPTS =3D --stringparam html.stylesheet mega-
+>style.css \  ALLPREQ =3D html tarball
+>
+> 	ifeq ($(BRANCH),edison)
+>-TARFILES =3D mega-manual.html mega-style.css figures/yocto-
+>environment.png figures/building-an-image.png  \
+>+TARFILES =3D mega-manual.html mega-style.css figures/yocto-
+>environment.png \
+>+        figures/building-an-image.png  \
+> 	figures/using-a-pre-built-image.png \
+> 	figures/poky-title.png \
+> 	figures/adt-title.png figures/bsp-title.png \
+> 	figures/kernel-title.png figures/kernel-architecture-overview.png \
+>-	figures/app-dev-flow.png figures/bsp-dev-flow.png figures/dev-
+>title.png \
+>-	figures/git-workflow.png figures/index-downloads.png
+>figures/kernel-dev-flow.png \
+>+	figures/app-dev-flow.png figures/bsp-dev-flow.png \
+>+        figures/dev-title.png figures/git-workflow.png \
+>+        figures/index-downloads.png figures/kernel-dev-flow.png \
+> 	figures/kernel-example-repos-edison.png \
+> 	figures/kernel-overview-1.png figures/kernel-overview-2.png \
+> 	figures/kernel-overview-3-edison.png \
+> 	figures/source-repos.png figures/yp-download.png \
+> 	figures/wip.png
+> 	else ifeq ($(BRANCH),denzil)
+>-TARFILES =3D mega-manual.html mega-style.css figures/yocto-
+>environment.png figures/building-an-image.png  \
+>+TARFILES =3D mega-manual.html mega-style.css figures/yocto-
+>environment.png \
+>+        figures/building-an-image.png  \
+> 	figures/using-a-pre-built-image.png \
+> 	figures/poky-title.png \
+> 	figures/adt-title.png figures/bsp-title.png \
+> 	figures/kernel-title.png figures/kernel-architecture-overview.png \
+>-	figures/app-dev-flow.png figures/bsp-dev-flow.png figures/dev-
+>title.png \
+>-	figures/git-workflow.png figures/index-downloads.png
+>figures/kernel-dev-flow.png \
+>+	figures/app-dev-flow.png figures/bsp-dev-flow.png \
+>+        figures/dev-title.png figures/git-workflow.png \
+>+        figures/index-downloads.png figures/kernel-dev-flow.png \
+> 	figures/kernel-example-repos-denzil.png \
+> 	figures/kernel-overview-1.png figures/kernel-overview-2.png \
+> 	figures/kernel-overview-3-denzil.png \
+> 	figures/source-repos.png figures/yp-download.png \
+> 	figures/wip.png
+>         else
+>-TARFILES =3D mega-manual.html mega-style.css figures/yocto-
+>environment.png figures/building-an-image.png  \
+>+TARFILES =3D mega-manual.html mega-style.css figures/yocto-
+>environment.png \
+>+        figures/building-an-image.png  \
+> 	figures/using-a-pre-built-image.png \
+>-	figures/poky-title.png figures/buildhistory.png figures/buildhistory-
+>web.png \
+>+	figures/poky-title.png figures/buildhistory.png \
+>+        figures/buildhistory-web.png \
+> 	figures/adt-title.png figures/bsp-title.png \
+> 	figures/kernel-dev-title.png figures/kernel-architecture-
+>overview.png \
+>-	figures/app-dev-flow.png figures/bsp-dev-flow.png figures/dev-
+>title.png \
+>-	figures/git-workflow.png figures/index-downloads.png
+>figures/kernel-dev-flow.png \
+>+	figures/app-dev-flow.png figures/bsp-dev-flow.png \
+>+        figures/dev-title.png \
+>+	figures/git-workflow.png figures/index-downloads.png \
+>+        figures/kernel-dev-flow.png \
+> 	figures/kernel-overview-1.png figures/kernel-overview-2-
+>generic.png \
+> 	figures/source-repos.png figures/yp-download.png \
+>         figures/profile-title.png figures/kernelshark-all.png \
+>-        figures/kernelshark-choose-events.png figures/kernelshark-i915-
+>display.png \
+>+        figures/kernelshark-choose-events.png \
+>+        figures/kernelshark-i915-display.png \
+>         figures/kernelshark-output-display.png figures/lttngmain0.png \
+>         figures/oprofileui-busybox.png figures/oprofileui-copy-to-user.pn=
+g \
+>         figures/oprofileui-downloading.png figures/oprofileui-processes.p=
+ng \
+>-        figures/perf-probe-do_fork-profile.png figures/perf-report-cycles=
+-u.png
+>\
+>+        figures/perf-probe-do_fork-profile.png \
+>+        figures/perf-report-cycles-u.png \
+>         figures/perf-systemwide.png figures/perf-systemwide-libc.png \
+>-        figures/perf-wget-busybox-annotate-menu.png figures/perf-wget-
+>busybox-annotate-udhcpc.png \
+>-        figures/perf-wget-busybox-debuginfo.png figures/perf-wget-busybox=
+-
+>dso-zoom.png \
+>-        figures/perf-wget-busybox-dso-zoom-menu.png figures/perf-wget-
+>busybox-expanded-stripped.png \
+>-        figures/perf-wget-flat-stripped.png figures/perf-wget-g-copy-from=
+-
+>user-expanded-stripped.png \
+>-        figures/perf-wget-g-copy-to-user-expanded-debuginfo.png
+>figures/perf-wget-g-copy-to-user-expanded-stripped.png \
+>-        figures/perf-wget-g-copy-to-user-expanded-stripped-unresolved-
+>hidden.png figures/pybootchartgui-linux-yocto.png \
+>-        figures/pychart-linux-yocto-rpm.png figures/pychart-linux-yocto-r=
+pm-
+>nostrip.png \
+>+        figures/perf-wget-busybox-annotate-menu.png \
+>+        figures/perf-wget-busybox-annotate-udhcpc.png \
+>+        figures/perf-wget-busybox-debuginfo.png \
+>+        figures/perf-wget-busybox-dso-zoom.png \
+>+        figures/perf-wget-busybox-dso-zoom-menu.png \
+>+        figures/perf-wget-busybox-expanded-stripped.png \
+>+        figures/perf-wget-flat-stripped.png \
+>+        figures/perf-wget-g-copy-from-user-expanded-stripped.png \
+>+        figures/perf-wget-g-copy-to-user-expanded-debuginfo.png \
+>+        figures/perf-wget-g-copy-to-user-expanded-stripped.png \
+>+        figures/perf-wget-g-copy-to-user-expanded-stripped-unresolved-
+>hidden.png \
+>+        figures/pybootchartgui-linux-yocto.png \
+>+        figures/pychart-linux-yocto-rpm.png \
+>+        figures/pychart-linux-yocto-rpm-nostrip.png \
+>         figures/sched-wakeup-profile.png figures/sysprof-callers.png \
+>-        figures/sysprof-copy-from-user.png figures/sysprof-copy-to-user.p=
+ng
+>figures/cross-development-toolchains.png \
+>-	figures/yocto-environment-ref.png figures/user-configuration.png
+>figures/source-input.png \
+>-	figures/package-feeds.png figures/layer-input.png
+>figures/images.png figures/sdk.png \
+>-	figures/source-fetching.png figures/patching.png
+>figures/configuration-compile-autoreconf.png \
+>-	figures/analysis-for-package-splitting.png figures/image-
+>generation.png \
+>+        figures/sysprof-copy-from-user.png figures/sysprof-copy-to-user.p=
+ng \
+>+        figures/cross-development-toolchains.png \
+>+	figures/yocto-environment-ref.png figures/user-configuration.png \
+>+        figures/source-input.png figures/package-feeds.png \
+>+        figures/layer-input.png figures/images.png figures/sdk.png \
+>+	figures/source-fetching.png figures/patching.png \
+>+        figures/configuration-compile-autoreconf.png \
+>+	figures/analysis-for-package-splitting.png \
+>+        figures/image-generation.png \
+> 	figures/sdk-generation.png figures/recipe-workflow.png
+> 	endif
+>
+>@@ -243,19 +270,28 @@ XSLTOPTS =3D --xinclude  ALLPREQ =3D html pdf eclips=
+e
+>tarball  TARFILES =3D profile-manual.html profile-manual.pdf profile-manua=
+l-
+>style.css \
+>            figures/profile-title.png figures/kernelshark-all.png \
+>-           figures/kernelshark-choose-events.png figures/kernelshark-i915=
+-
+>display.png \
+>+           figures/kernelshark-choose-events.png \
+>+           figures/kernelshark-i915-display.png \
+>            figures/kernelshark-output-display.png figures/lttngmain0.png =
+\
+>            figures/oprofileui-busybox.png figures/oprofileui-copy-to-user=
+.png \
+>            figures/oprofileui-downloading.png figures/oprofileui-processe=
+s.png \
+>-           figures/perf-probe-do_fork-profile.png figures/perf-report-cyc=
+les-
+>u.png \
+>+           figures/perf-probe-do_fork-profile.png \
+>+           figures/perf-report-cycles-u.png \
+>            figures/perf-systemwide.png figures/perf-systemwide-libc.png \
+>-           figures/perf-wget-busybox-annotate-menu.png figures/perf-wget-
+>busybox-annotate-udhcpc.png \
+>-           figures/perf-wget-busybox-debuginfo.png figures/perf-wget-busy=
+box-
+>dso-zoom.png \
+>-           figures/perf-wget-busybox-dso-zoom-menu.png figures/perf-wget-
+>busybox-expanded-stripped.png \
+>-           figures/perf-wget-flat-stripped.png figures/perf-wget-g-copy-f=
+rom-
+>user-expanded-stripped.png \
+>-           figures/perf-wget-g-copy-to-user-expanded-debuginfo.png
+>figures/perf-wget-g-copy-to-user-expanded-stripped.png \
+>-           figures/perf-wget-g-copy-to-user-expanded-stripped-unresolved-
+>hidden.png figures/pybootchartgui-linux-yocto.png \
+>-           figures/pychart-linux-yocto-rpm.png figures/pychart-linux-yoct=
+o-rpm-
+>nostrip.png \
+>+           figures/perf-wget-busybox-annotate-menu.png \
+>+           figures/perf-wget-busybox-annotate-udhcpc.png \
+>+           figures/perf-wget-busybox-debuginfo.png \
+>+           figures/perf-wget-busybox-dso-zoom.png \
+>+           figures/perf-wget-busybox-dso-zoom-menu.png \
+>+           figures/perf-wget-busybox-expanded-stripped.png \
+>+           figures/perf-wget-flat-stripped.png \
+>+           figures/perf-wget-g-copy-from-user-expanded-stripped.png \
+>+           figures/perf-wget-g-copy-to-user-expanded-debuginfo.png \
+>+           figures/perf-wget-g-copy-to-user-expanded-stripped.png \
+>+           figures/perf-wget-g-copy-to-user-expanded-stripped-unresolved-
+>hidden.png \
+>+           figures/pybootchartgui-linux-yocto.png \
+>+           figures/pychart-linux-yocto-rpm.png \
+>+           figures/pychart-linux-yocto-rpm-nostrip.png \
+>            figures/sched-wakeup-profile.png figures/sysprof-callers.png \
+>            figures/sysprof-copy-from-user.png figures/sysprof-copy-to-use=
+r.png \
+>            eclipse
+>@@ -267,7 +303,8 @@ endif
+> ifeq ($(DOC),kernel-dev)
+> XSLTOPTS =3D --xinclude
+> ALLPREQ =3D html pdf eclipse tarball
+>-TARFILES =3D kernel-dev.html kernel-dev.pdf kernel-dev-style.css
+>figures/kernel-dev-title.png \
+>+TARFILES =3D kernel-dev.html kernel-dev.pdf kernel-dev-style.css \
+>+           figures/kernel-dev-title.png \
+>            figures/kernel-architecture-overview.png \
+>            eclipse
+> MANUALS =3D $(DOC)/$(DOC).html $(DOC)/$(DOC).pdf $(DOC)/eclipse @@ -
+>278,7 +315,7 @@ endif
+>
+> ##
+> # These URI should be rewritten by your distribution's xml catalog to -# =
+match
+>your localy installed XSL stylesheets.
+>+# match your locally installed XSL stylesheets.
+> XSL_BASE_URI  =3D http://docbook.sourceforge.net/release/xsl/current
+> XSL_XHTML_URI =3D $(XSL_BASE_URI)/xhtml/docbook.xsl
+>
+>
+>--
+>
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                        http://crashcourse.ca
+>
+>Twitter:                                       http://twitter.com/rpjday
+>LinkedIn:                               http://ca.linkedin.com/in/rpjday
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 
