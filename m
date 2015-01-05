@@ -1,17 +1,17 @@
 Return-Path: <bobadeshrikant@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EDD44E00942; Mon,  5 Jan 2015 03:43:35 -0800 (PST)
+	id 89EE7E00971; Mon,  5 Jan 2015 03:44:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bobadeshrikant[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.173 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.178 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (bobadeshrikant[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,34 +20,34 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ie0-f173.google.com (mail-ie0-f173.google.com
-	[209.85.223.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99180E008A6
-	for <yocto@yoctoproject.org>; Mon,  5 Jan 2015 03:43:31 -0800 (PST)
-Received: by mail-ie0-f173.google.com with SMTP id y20so19399251ier.32
-	for <yocto@yoctoproject.org>; Mon, 05 Jan 2015 03:43:30 -0800 (PST)
+Received: from mail-ig0-f178.google.com (mail-ig0-f178.google.com
+	[209.85.213.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76A76E0096D
+	for <yocto@yoctoproject.org>; Mon,  5 Jan 2015 03:43:56 -0800 (PST)
+Received: by mail-ig0-f178.google.com with SMTP id b16so1543333igk.11
+	for <yocto@yoctoproject.org>; Mon, 05 Jan 2015 03:43:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=m55wtpdwQPpBPgOdSEM90rm0CYz4a2N3/fmTYQcEsmY=;
-	b=SOTBjZf4rQCql2Wk0HxHloB3wwrif+iSZO//3zTBcWfBQyX3awgjO/1nOZ7x83pN2j
-	gtJk0VKbXRPMEIN8Isr6f4TmdK+oSDcpGEFrjUpYx8kQ89JNtG/QSKEk8EQnFF88g0C2
-	J7jbtNrxqWO+0p2Ic8BYMooZpoR97ks8n3sHLkAPkhmYWn+VCI9ns2Cj8jvsmSa2uPjI
-	FiUymXAlM4Z3uHuXe1hVUoVe8iyxay2xSWTzvsOaOYclEgmf006KMd+M8ffYyF4UFhNC
-	GckzAYpdlEkBYnm64jwTXR0rsy1ywPedwqrajsIIs2uYsVsopJq7dLBjN/xBdPv3/Zu8
-	ndTg==
+	bh=F5xYUpXX2lalaTt96mfdb3vdmxV0zjmntcjfaK6nteg=;
+	b=JnuMnIIzHfqpgKun7YnrpuQUQRpD5SQSJQrlJDIESpMm/SNR0CVXLghgHlPl+Sq4jS
+	722NaHZATFIPLTnIwrAw05zjLWH4bgN8G6ePocylB6w2Sft2nCduwFM/vCwrCfap4GJ+
+	JnuY76G9ppXyN54Mzca8WpseZ0Bp9JUofyRHhuL08o8VwVbJ9HCAFdMpBkqELz2Vg4A8
+	SHbFFx1vFiZthVkbtzmBEGnk/cWCwxg+TOPzRBkf7eQ84vuowfssvvVt1Av3aLmo85bO
+	zbr8DKX8DfXgU9F1Iy7U3Vs/xoPK96z6OkbLCduQXqUQOA7Vd3/zPSIaDDHP4gI112ny
+	o6ig==
 MIME-Version: 1.0
-X-Received: by 10.42.150.70 with SMTP id z6mr24101794icv.42.1420458210848;
-	Mon, 05 Jan 2015 03:43:30 -0800 (PST)
-Received: by 10.50.88.3 with HTTP; Mon, 5 Jan 2015 03:43:30 -0800 (PST)
-In-Reply-To: <1416384818-18472-1-git-send-email-bobadeshrikant@gmail.com>
-References: <1416384818-18472-1-git-send-email-bobadeshrikant@gmail.com>
-Date: Mon, 5 Jan 2015 17:13:30 +0530
-Message-ID: <CALwQEroR-DBTowPXN1c0_9zuAYbuGZpoZgbP5zQ-6AYQvGaK=A@mail.gmail.com>
+X-Received: by 10.42.214.212 with SMTP id hb20mr23072800icb.19.1420458236045; 
+	Mon, 05 Jan 2015 03:43:56 -0800 (PST)
+Received: by 10.50.88.3 with HTTP; Mon, 5 Jan 2015 03:43:55 -0800 (PST)
+In-Reply-To: <1416384981-18501-1-git-send-email-bobadeshrikant@gmail.com>
+References: <1416384981-18501-1-git-send-email-bobadeshrikant@gmail.com>
+Date: Mon, 5 Jan 2015 17:13:55 +0530
+Message-ID: <CALwQEroKvLnX11SCHRJX7q3SALFvBV4dVZzdT=qF7+HqRV=X+A@mail.gmail.com>
 From: Shrikant Bobade <bobadeshrikant@gmail.com>
 To: yocto@yoctoproject.org
 Cc: Shrikant Bobade <Shrikant_Bobade@mentor.com>
-Subject: Re: [meta-selinux][PATCH 2/3] selinux-init: update for systemd
+Subject: Re: [meta-selinux][PATCH 3/3] pkggrp-core-selinux: coreutils addition
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,10 +59,10 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 Jan 2015 11:43:36 -0000
-Content-Type: multipart/alternative; boundary=90e6ba6e8d861375db050be6334f
+X-List-Received-Date: Mon, 05 Jan 2015 11:44:07 -0000
+Content-Type: multipart/alternative; boundary=20cf301d3f8a93ed92050be6341a
 
---90e6ba6e8d861375db050be6334f
+--20cf301d3f8a93ed92050be6341a
 Content-Type: text/plain; charset=UTF-8
 
 Hello,
@@ -74,58 +74,43 @@ help.
 Thanks
 Shrikant
 
-On Wed, Nov 19, 2014 at 1:43 PM, Shrikant Bobade <bobadeshrikant@gmail.com>
+On Wed, Nov 19, 2014 at 1:46 PM, Shrikant Bobade <bobadeshrikant@gmail.com>
 wrote:
 
 > From: Shrikant Bobade <Shrikant_Bobade@mentor.com>
 >
-> selinux-init.sh updated to reboot system
-> normally to fix the labelling during systemd
-> execution. Due to force reboot labelling won't
-> be proper and system continuously reboot to
-> label it like first time boot.
+> To add coreutils to packagegroup-core-selinux
+> inorder to get chcon avaibility.
 >
 > Signed-off-by: Shrikant Bobade <Shrikant_Bobade@mentor.com>
 > ---
->  .../selinux/selinux-config/selinux-init.sh         |    4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  .../packagegroups/packagegroup-core-selinux.bb     |    1 +
+>  1 file changed, 1 insertion(+)
 >
-> diff --git a/recipes-security/selinux/selinux-config/selinux-init.sh
-> b/recipes-security/selinux/selinux-config/selinux-init.sh
-> index 9aaf454..f9f0914 100644
-> --- a/recipes-security/selinux/selinux-config/selinux-init.sh
-> +++ b/recipes-security/selinux/selinux-config/selinux-init.sh
-> @@ -48,7 +48,7 @@ if [ -f /.autorelabel ]; then
->         ${FIXFILES} -F -f relabel
->         /bin/rm -f /.autorelabel
->         echo " * Relabel done, rebooting the system."
-> -       /sbin/reboot -f
-> +       /sbin/reboot
->  fi
->
->  # If first booting, the security context type of init would be
-> @@ -62,7 +62,7 @@ if [ "`${SECON} -t --pid 1`" = "kernel_t" ]; then
->         ${RESTORECON} -RF /
->         ${RESTORECON} -F /
->         echo " * Relabel done, rebooting the system."
-> -       /sbin/reboot -f
-> +       /sbin/reboot
->  fi
->
->  # Now, we should relabel /dev for most services.
+> diff --git a/recipes-security/packagegroups/packagegroup-core-selinux.bb
+> b/recipes-security/packagegroups/packagegroup-core-selinux.bb
+> index 1852aba..40b35d1 100644
+> --- a/recipes-security/packagegroups/packagegroup-core-selinux.bb
+> +++ b/recipes-security/packagegroups/packagegroup-core-selinux.bb
+> @@ -25,4 +25,5 @@ RDEPENDS_${PN} = " \
+>         selinux-config \
+>         refpolicy-standard \
+>         refpolicy-mls \
+> +       coreutils \
+>         "
 > --
 > 1.7.9.5
 >
 >
 
---90e6ba6e8d861375db050be6334f
+--20cf301d3f8a93ed92050be6341a
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><div><div><div><div>Hello,<br><br></div>Please provide rev=
 iew comments or feedback if any, It will be a great help.=C2=A0 <br></div>@=
 Ping. <br><br></div>Thanks<br></div>Shrikant<div class=3D"gmail_extra"><br>=
-<div class=3D"gmail_quote">On Wed, Nov 19, 2014 at 1:43 PM, Shrikant Bobade=
+<div class=3D"gmail_quote">On Wed, Nov 19, 2014 at 1:46 PM, Shrikant Bobade=
  <span dir=3D"ltr">&lt;<a href=3D"mailto:bobadeshrikant@gmail.com" target=
 =3D"_blank">bobadeshrikant@gmail.com</a>&gt;</span> wrote:<br><blockquote c=
 lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
@@ -133,48 +118,35 @@ padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">From: Shrikant Bo=
 bade &lt;<a href=3D"mailto:Shrikant_Bobade@mentor.com">Shrikant_Bobade@ment=
 or.com</a>&gt;<br>
 <br>
-selinux-init.sh updated to reboot system<br>
-normally to fix the labelling during systemd<br>
-execution. Due to force reboot labelling won&#39;t<br>
-be proper and system continuously reboot to<br>
-label it like first time boot.<br>
+To add coreutils to packagegroup-core-selinux<br>
+inorder to get chcon avaibility.<br>
 <br>
 Signed-off-by: Shrikant Bobade &lt;<a href=3D"mailto:Shrikant_Bobade@mentor=
 .com">Shrikant_Bobade@mentor.com</a>&gt;<br>
 ---<br>
-=C2=A0.../selinux/selinux-config/selinux-init.sh=C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0|=C2=A0 =C2=A0 4 ++--<br>
-=C2=A01 file changed, 2 insertions(+), 2 deletions(-)<br>
+=C2=A0.../packagegroups/<a href=3D"http://packagegroup-core-selinux.bb" tar=
+get=3D"_blank">packagegroup-core-selinux.bb</a>=C2=A0 =C2=A0 =C2=A0|=C2=A0 =
+=C2=A0 1 +<br>
+=C2=A01 file changed, 1 insertion(+)<br>
 <br>
-diff --git a/recipes-security/selinux/selinux-config/selinux-init.sh b/reci=
-pes-security/selinux/selinux-config/selinux-init.sh<br>
-index 9aaf454..f9f0914 100644<br>
---- a/recipes-security/selinux/selinux-config/selinux-init.sh<br>
-+++ b/recipes-security/selinux/selinux-config/selinux-init.sh<br>
-@@ -48,7 +48,7 @@ if [ -f /.autorelabel ]; then<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 ${FIXFILES} -F -f relabel<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 /bin/rm -f /.autorelabel<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 echo &quot; * Relabel done, rebooting the syste=
-m.&quot;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0/sbin/reboot -f<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/sbin/reboot<br>
-=C2=A0fi<br>
-<br>
-=C2=A0# If first booting, the security context type of init would be<br>
-@@ -62,7 +62,7 @@ if [ &quot;`${SECON} -t --pid 1`&quot; =3D &quot;kernel_t=
-&quot; ]; then<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 ${RESTORECON} -RF /<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 ${RESTORECON} -F /<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 echo &quot; * Relabel done, rebooting the syste=
-m.&quot;<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0/sbin/reboot -f<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0/sbin/reboot<br>
-=C2=A0fi<br>
-<br>
-=C2=A0# Now, we should relabel /dev for most services.<br>
+diff --git a/recipes-security/packagegroups/<a href=3D"http://packagegroup-=
+core-selinux.bb" target=3D"_blank">packagegroup-core-selinux.bb</a> b/recip=
+es-security/packagegroups/<a href=3D"http://packagegroup-core-selinux.bb" t=
+arget=3D"_blank">packagegroup-core-selinux.bb</a><br>
+index 1852aba..40b35d1 100644<br>
+--- a/recipes-security/packagegroups/<a href=3D"http://packagegroup-core-se=
+linux.bb" target=3D"_blank">packagegroup-core-selinux.bb</a><br>
++++ b/recipes-security/packagegroups/<a href=3D"http://packagegroup-core-se=
+linux.bb" target=3D"_blank">packagegroup-core-selinux.bb</a><br>
+@@ -25,4 +25,5 @@ RDEPENDS_${PN} =3D &quot; \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 selinux-config \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 refpolicy-standard \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 refpolicy-mls \<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0coreutils \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;<br>
 --<br>
 1.7.9.5<br>
 <br>
 </div></div></blockquote></div><br></div></div>
 
---90e6ba6e8d861375db050be6334f--
+--20cf301d3f8a93ed92050be6341a--
