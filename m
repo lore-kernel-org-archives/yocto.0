@@ -1,40 +1,47 @@
-Return-Path: <Thomas.Moore2@atk.com>
+Return-Path: <scott.m.rifenbark@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DAA30E005B4; Tue,  6 Jan 2015 07:05:52 -0800 (PST)
+	id 1F098E005B4; Tue,  6 Jan 2015 07:15:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mx-ut.atk.com (mx-ut.atk.com [192.107.250.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1345CE002F9
-	for <yocto@yoctoproject.org>; Tue,  6 Jan 2015 07:05:46 -0800 (PST)
-Received: from unknown (HELO UT40SVEH3.atk.com) ([146.168.70.140])
-	by mx-ut.atk.com with ESMTP; 06 Jan 2015 09:01:08 -0600
-Received: from UT40SVCWEM001.atk.com ([169.254.4.43]) by UT40SVEH3.atk.com
-	([146.168.78.8]) with mapi id 14.03.0174.001;
-	Tue, 6 Jan 2015 08:05:45 -0700
-From: "Moore, Thomas (FtWorth)" <Thomas.Moore2@ATK.COM>
-To: Andre Marschalek <andre.marschalek@outlook.com>, "yocto@yoctoproject.org"
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4FE93E002F9
+	for <yocto@yoctoproject.org>; Tue,  6 Jan 2015 07:15:34 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga101.jf.intel.com with ESMTP; 06 Jan 2015 07:15:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.07,708,1413270000"; d="scan'208";a="647038048"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by fmsmga001.fm.intel.com with ESMTP; 06 Jan 2015 07:15:32 -0800
+Received: from orsmsx111.amr.corp.intel.com (10.22.240.12) by
+	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
+	(TLS) id 14.3.195.1; Tue, 6 Jan 2015 07:15:31 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.116]) by
+	ORSMSX111.amr.corp.intel.com ([169.254.11.27]) with mapi id
+	14.03.0195.001; Tue, 6 Jan 2015 07:15:31 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
 	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] separate partition support
-Thread-Index: AdApP8G+rsewRxeURAur5KbHU7yLogAAu8LgAC1u5AAADZ4nQA==
-Date: Tue, 6 Jan 2015 15:05:44 +0000
-Message-ID: <7B6FE55CD594D7478CED8A39DF3BFC0A5E70ED9C@UT40SVCWEM001.atk.com>
-References: <BLU406-EAS388E30ADBB7B8ABF5E862C58B580@phx.gbl>
-	<7B6FE55CD594D7478CED8A39DF3BFC0A5E70EBD9@UT40SVCWEM001.atk.com>
-	<BLU406-EAS2048C24D52F9E36403A1FAB8B590@phx.gbl>
-In-Reply-To: <BLU406-EAS2048C24D52F9E36403A1FAB8B590@phx.gbl>
+Thread-Topic: [yocto] current dev manual possibly links to out-of-date wiki
+	page(s)
+Thread-Index: AQHQKOJzMckCWMtiPUa6J34CH6hyzZyzNIRw
+Date: Tue, 6 Jan 2015 15:15:30 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988E91CAB@ORSMSX101.amr.corp.intel.com>
+References: <alpine.LFD.2.11.1501050718160.7372@localhost>
+In-Reply-To: <alpine.LFD.2.11.1501050718160.7372@localhost>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.99.32.35]
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Subject: Re: separate partition support
+Subject: Re: current dev manual possibly links to out-of-date wiki	page(s)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,372 +53,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Jan 2015 15:05:52 -0000
+X-List-Received-Date: Tue, 06 Jan 2015 15:15:40 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E70ED9CUT40SVCWEM001at_"
-
---_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E70ED9CUT40SVCWEM001at_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Andre,
+I updated the wording in the manual to indicate that the target wiki pages =
+have helpful but possibly dated information. =20
 
-I spent some time trying to determine how to generate multiple images as yo=
-u've mentioned. However, the process used to generate the rootfs image appe=
-ars to be buried deep in the Open Embedded core and I wasn't able to figure=
- out how it works. Maybe someone else can chime in on how that might be acc=
-omplished.
-
-Thomas Moore
-
-From: Andre Marschalek [mailto:andre.marschalek@outlook.com]
-Sent: Tuesday, January 06, 2015 8:34 AM
-To: Moore, Thomas (FtWorth); yocto@yoctoproject.org
-Subject: RE: [yocto] separate partition support
-
-Hi Thomas,
-
-what I need is to have one image per partition
-
-for example if i need to have /opt on a different partition i would need 2 =
-image files at the end
-
-one containing the root partition but without /opt and one with the content=
-s of /opt (without /opt itself because this image will be mounted as /opt a=
-t the end)
-
-br
-Andre
-
-From: Moore, Thomas (FtWorth) [mailto:Thomas.Moore2@ATK.COM]
-Sent: Tuesday, January 6, 2015 1:01 AM
-To: Andre Marschalek; yocto@yoctoproject.org
-Subject: RE: [yocto] separate partition support
-
-I'm actually experimenting with this today.
-
-Per the Development Manual, my first attempt was to use wic. While I was ab=
-le to create an image with multiple partitions, there appears to be no way =
-to split up the rootfs image that is created amongst the multiple partition=
-s. Below is the wks file I created for my test:
-
-part /boot --source bootimg-pcbios --ondisk sda --label boot --active --ali=
-gn 1024
-part / --source rootfs --ondisk sda --fstype=3Dext3 --label platform --alig=
-n 1024
-part /var --source rootfs --ondisk sda --fstype=3Dext3 --label data --align=
- 1024
-
-bootloader  --timeout=3D0  --append=3D"rootwait rootfstype=3Dext3 video=3Dv=
-esafb vga=3D0x318 console=3Dtty0"
-
-After running wic, I was able to examine the resulting image and there were=
- three partitions. However, the second and third partitions (/ and /var) bo=
-th contained the entire rootfs. In this case, I was hoping that wic would r=
-ealize that I only wanted the contents /var in the third partition and to a=
-lso not be included in the second partition.
-
-While it may be possible to create a new plugin for wic to achieve my desir=
-ed result, I'm not sure if it would be possible for the instance of the plu=
-gin creating the / partition to be aware of the other partitions and their =
-mount points to be able to exclude those folders from the / partition. Does=
- anyone have any thoughts on this?
-
-Thanks,
-
-Thomas Moore
-
-From: yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.org>=
- [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Andre Marschalek
-Sent: Monday, January 05, 2015 5:50 PM
-To: yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-Subject: [yocto] separate partition support
-
-hi,
-
-splitting the root file filesystem into different partitions is a common ta=
-sk and supported from every operating system during install and should be a=
-lso supported from yocto's build system
-based on the current available documentation it seems impossible to accompl=
-ish this task, the only available result is one full blown image containing=
- the root partition
-
-currently the only idea i had is to run bitbake which will generate the roo=
-t image containing everything
-create afterwards my own images with the desired size (also a new root imag=
-e because in this case IMAGE_ROOTFS_SIZE does not reflect the ending image =
-size)
-mount every image and move the directories from the bitbake produced image =
-into this new images
-and finally flash that images to my devices
-
-what do you mean?
-should this basic core functionality part of yocto's build process without =
-an overhead for everyone to create isolated solutions?
-do you see a better workaround as to create new images and movements after =
-the build process?
-
-thank you in advance
-
-br
-Andre
-
---_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E70ED9CUT40SVCWEM001at_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
+>Sent: Monday, January 05, 2015 4:23 AM
+>To: Yocto discussion list
+>Subject: [yocto] current dev manual possibly links to out-of-date wiki pag=
+e(s)
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle19
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Andre,<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I spent some time tryi=
-ng to determine how to generate multiple images as you&#8217;ve mentioned. =
-However, the process used to generate the rootfs image appears to be buried=
- deep in the Open Embedded core and I wasn&#8217;t
- able to figure out how it works. Maybe someone else can chime in on how th=
-at might be accomplished.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<p class=3D"MsoNormal"><b><span style=3D"color:#1F497D">Thomas Moore</span>=
-</b><span style=3D"color:#1F497D"><o:p></o:p></span></p>
-</div>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Andre Ma=
-rschalek [mailto:andre.marschalek@outlook.com]
-<br>
-<b>Sent:</b> Tuesday, January 06, 2015 8:34 AM<br>
-<b>To:</b> Moore, Thomas (FtWorth); yocto@yoctoproject.org<br>
-<b>Subject:</b> RE: [yocto] separate partition support<o:p></o:p></span></p=
 >
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Hi Thomas,<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">what I need is to have=
- one image per partition<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">for example if i need =
-to have /opt on a different partition i would need 2 image files at the end=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">one containing the roo=
-t partition but without /opt and one with the contents of /opt (without /op=
-t itself because this image will be mounted as /opt at the end)<o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">br<o:p></o:p></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Andre<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><a name=3D"_MailEndCompose"></a><span style=3D"color=
-:#1F497D"><o:p>&nbsp;</o:p></span></p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b>From:</b> Moore, Thomas (FtWorth) [mailto:Thomas.=
-Moore2@ATK.COM]
-<br>
-<b>Sent:</b> Tuesday, January 6, 2015 1:01 AM<br>
-<b>To:</b> Andre Marschalek; yocto@yoctoproject.org<br>
-<b>Subject:</b> RE: [yocto] separate partition support<o:p></o:p></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I&#8217;m actually exp=
-erimenting with this today.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Per the Development Ma=
-nual, my first attempt was to use wic. While I was able to create an image =
-with multiple partitions, there appears to be no way to split up the rootfs=
- image that is created amongst the multiple
- partitions. Below is the wks file I created for my test:<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"color:#1F4=
-97D">part /boot --source bootimg-pcbios --ondisk sda --label boot --active =
---align 1024<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"color:#1F4=
-97D">part / --source rootfs --ondisk sda --fstype=3Dext3 --label platform -=
--align 1024<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"color:#1F4=
-97D">part /var --source rootfs --ondisk sda --fstype=3Dext3 --label data --=
-align 1024<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"color:#1F4=
-97D">bootloader&nbsp; --timeout=3D0&nbsp; --append=3D&quot;rootwait rootfst=
-ype=3Dext3 video=3Dvesafb vga=3D0x318 console=3Dtty0&quot;<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">After running wic, I w=
-as able to examine the resulting image and there were three partitions. How=
-ever, the second and third partitions (/ and /var) both contained the entir=
-e rootfs. In this case, I was hoping
- that wic would realize that I only wanted the contents /var in the third p=
-artition and to also not be included in the second partition.<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">While it may be possib=
-le to create a new plugin for wic to achieve my desired result, I&#8217;m n=
-ot sure if it would be possible for the instance of the plugin creating the=
- / partition to be aware of the other partitions
- and their mount points to be able to exclude those folders from the / part=
-ition. Does anyone have any thoughts on this?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Thanks,<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<p class=3D"MsoNormal"><b><span style=3D"color:#1F497D">Thomas Moore</span>=
-</b><span style=3D"color:#1F497D"><o:p></o:p></span></p>
-</div>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">
-<a href=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bounces@yoctoprojec=
-t.org</a> [<a href=3D"mailto:yocto-bounces@yoctoproject.org">mailto:yocto-b=
-ounces@yoctoproject.org</a>]
-<b>On Behalf Of </b>Andre Marschalek<br>
-<b>Sent:</b> Monday, January 05, 2015 5:50 PM<br>
-<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org=
-</a><br>
-<b>Subject:</b> [yocto] separate partition support<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">splitting the root file filesystem into different pa=
-rtitions is a common task and supported from every operating system during =
-install and should be also supported from yocto&#8217;s build system<o:p></=
-o:p></p>
-<p class=3D"MsoNormal">based on the current available documentation it seem=
-s impossible to accomplish this task, the only available result is one full=
- blown image containing the root partition<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">currently the only idea i had is to run bitbake whic=
-h will generate the root image containing everything<o:p></o:p></p>
-<p class=3D"MsoNormal">create afterwards my own images with the desired siz=
-e (also a new root image because in this case IMAGE_ROOTFS_SIZE does not re=
-flect the ending image size)<o:p></o:p></p>
-<p class=3D"MsoNormal">mount every image and move the directories from the =
-bitbake produced image into this new images<o:p></o:p></p>
-<p class=3D"MsoNormal">and finally flash that images to my devices<o:p></o:=
-p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">what do you mean?<o:p></o:p></p>
-<p class=3D"MsoNormal">should this basic core functionality part of yocto&#=
-8217;s build process without an overhead for everyone to create isolated so=
-lutions?<o:p></o:p></p>
-<p class=3D"MsoNormal">do you see a better workaround as to create new imag=
-es and movements after the build process?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">thank you in advance<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">br<o:p></o:p></p>
-<p class=3D"MsoNormal">Andre<o:p></o:p></p>
-</div>
-</body>
-</html>
+>  section 4.1.1, dev manual:
+>
+>"Finally, there is a wiki page write up of the example also located here t=
+hat
+>you might find helpful."
+>^^^^
+>
+>  that link takes one here:
+>
+>https://wiki.yoctoproject.org/wiki/Transcript:_creating_one_generic_Atom_
+>BSP_from_another
+>
+>and while it's not fatal to link to older wiki material, it does read as o=
+dd to link
+>to a wiki page that, in its very opening, admits that its content might no=
+t be
+>current.
+>
+>  in addition, *that* wiki page quickly links here:
+>
+>https://wiki.yoctoproject.org/wiki/Yocto_BSP_Tools_Documentation
+>
+>which again admits that its content is to be obsoleted by the official BSP
+>Guide.
+>
+>  in any event, i'll leave it to someone else to decide on the efficacy of=
+ having
+>official docs link to potentially transient wiki pages.
+>
+>rday
+>
+>--
+>
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                        http://crashcourse.ca
+>
+>Twitter:                                       http://twitter.com/rpjday
+>LinkedIn:                               http://ca.linkedin.com/in/rpjday
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>--
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
---_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E70ED9CUT40SVCWEM001at_--
