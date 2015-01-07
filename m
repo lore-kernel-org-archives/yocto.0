@@ -1,37 +1,36 @@
-Return-Path: <pascal.bach@siemens.com>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 25485E0089B; Wed,  7 Jan 2015 07:24:21 -0800 (PST)
+	id D6470E00571; Wed,  7 Jan 2015 08:59:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.35.17.14 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from david.siemens.de (david.siemens.de [192.35.17.14])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 964EEE0087C
-	for <yocto@yoctoproject.org>; Wed,  7 Jan 2015 07:24:13 -0800 (PST)
-Received: from mail3.siemens.de (localhost [127.0.0.1])
-	by david.siemens.de (8.14.3/8.14.3) with ESMTP id t07FOCQX028469
-	for <yocto@yoctoproject.org>; Wed, 7 Jan 2015 16:24:12 +0100
-Received: from localhost.localdomain (MD159NTC.ww002.siemens.net
-	[139.16.79.114])
-	by mail3.siemens.de (8.14.3/8.14.3) with ESMTP id t07FOBWv006679;
-	Wed, 7 Jan 2015 16:24:12 +0100
-From: Pascal Bach <pascal.bach@siemens.com>
-To: yocto@yoctoproject.org
-Date: Wed,  7 Jan 2015 16:24:07 +0100
-Message-Id: <1420644247-2077-2-git-send-email-pascal.bach@siemens.com>
-X-Mailer: git-send-email 1.7.10.4
-In-Reply-To: <1420644247-2077-1-git-send-email-pascal.bach@siemens.com>
-References: <1420644247-2077-1-git-send-email-pascal.bach@siemens.com>
-Subject: [yocto-docs][PATCHv2 2/2] dev-manual: Add section about /dev population
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 78B53E002F9
+	for <yocto@yoctoproject.org>; Wed,  7 Jan 2015 08:59:31 -0800 (PST)
+Received: (qmail 2783 invoked by uid 1003); 7 Jan 2015 16:59:29 -0000
+Received: from unknown (HELO ?192.168.1.124?) (philip@opensdr.com@108.44.89.75)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	7 Jan 2015 16:59:29 -0000
+Message-ID: <54AD65F0.3010707@balister.org>
+Date: Wed, 07 Jan 2015 11:59:28 -0500
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+MIME-Version: 1.0
+To: "openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>, 
+	openembedded-core <openembedded-core@lists.openembedded.org>, 
+	Yocto Project <yocto@yoctoproject.org>
+Subject: OpenEmbedded at FOSDEM
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: "openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -40,129 +39,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Jan 2015 15:24:21 -0000
+X-List-Received-Date: Wed, 07 Jan 2015 16:59:34 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Pascal Bach <pascal.bach@siemens.com>
----
- .../dev-manual/dev-manual-common-tasks.xml         |  104 ++++++++++++++++++++
- 1 file changed, 104 insertions(+)
+It is that time of the year again.
 
-diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
-index 17d725b..e494f5a 100644
---- a/documentation/dev-manual/dev-manual-common-tasks.xml
-+++ b/documentation/dev-manual/dev-manual-common-tasks.xml
-@@ -7582,6 +7582,110 @@ Gateways via their Web Interfaces</ulink>"</emphasis>
-         </section>
-     </section>
- 
-+    <section id="selecting-dev-manager">
-+        <title>Selecting a Device Manager</title>
-+
-+        <para>
-+            Yocto provides multiple ways to manage <filename>/dev</filename>:
-+            <itemizedlist>
-+                <listitem><para>
-+                <emphasis>Persistent and pre-populated <filename>/dev</filename>:</emphasis>
-+                in this case the <filename>/dev</filename> directory is persistent
-+                and the required device nodes are created at build time.
-+                </para></listitem>
-+
-+                <listitem><para>
-+                <emphasis>Use <filename>devtmpfs</filename> with a device manager:</emphasis>
-+                in this case the <filename>/dev</filename> directory is provided
-+                by the kernel as an in-memory file system and is automatically
-+                populated by the kernel at runtime. Additional configuration of
-+                device nodes is done in user space by a device manager like
-+                <filename>udev</filename> or <filename>busybox-mdev</filename>.
-+                </para></listitem>
-+            </itemizedlist>
-+        </para>
-+
-+        <section id="static-dev-management">
-+            <title>Use Persistent and pre-populated <filename>/dev</filename></title>
-+
-+            <para>
-+                To use the static method for device population the variable
-+                <ulink url='&YOCTO_DOCS_REF_URL;#var-USE_DEVFS'><filename>USE_DEVFS</filename></ulink>
-+                needs to be set to 0.
-+
-+                <literallayout class='monospaced'>
-+     USE_DEVFS = "0"
-+                </literallayout>
-+            </para>
-+
-+            <para>
-+                The content of the resulting <filename>/dev</filename> directory
-+                is defined in a Device Table file. The device table to use is defined by the variable
-+                <ulink url='&YOCTO_DOCS_REF_URL;#var-IMAGE_DEVICE_TABLES'><filename>IMAGE_DEVICE_TABLES</filename></ulink> and should be set
-+                in the <ulink url='&YOCTO_DOCS_REF_URL;#var-MACHINE'><filename>MACHINE</filename></ulink>,
-+                <ulink url='&YOCTO_DOCS_REF_URL;#var-DISTRO'><filename>DISTRO</filename></ulink>
-+                or <filename>local.conf</filename> configuration file.
-+            </para>
-+
-+            <para>
-+                If nothing is defined the default <filename>device_table-minimal.txt</filename> is used.
-+            </para>
-+
-+            <para>
-+                The population is handled by the <filename>makedevs</filename> utility
-+                during image creation.
-+
-+                <literallayout class='monospaced'>
-+     IMAGE_DEVICE_TABLES = "device_table-mymachine.txt"
-+                </literallayout>
-+
-+            </para>
-+        </section>
-+
-+        <section id="devtmpfs-dev-management">
-+            <title>Use <filename>devtmpfs</filename> and a device manager</title>
-+
-+            <para>
-+                To use the dynamic method for device population the variable
-+                <ulink url='&YOCTO_DOCS_REF_URL;#var-USE_DEVFS'><filename>USE_DEVFS</filename></ulink>
-+                needs to be set to 1. This is the default.
-+
-+                <literallayout class='monospaced'>
-+     USE_DEVFS = "1"
-+                </literallayout>
-+
-+                This way the resulting <filename>/dev</filename> directory is populated by the kernel
-+                using <filename>devtmpfs</filename>. Make sure the corresponding
-+                kernel configuration variable <filename>CONFIG_DEVTMPFS</filename> is set
-+                when building a Linux kernel.
-+
-+            </para>
-+            <para>
-+                All devices created by <filename>devtmpfs</filename> will be
-+                owned by <filename>root</filename> and have permissions <filename>0600</filename>.
-+
-+                To have more control over the device nodes a device manager like
-+                <filename>udev</filename> or <filename>busybox-mdev</filename>
-+                can be used.
-+
-+                The device manager to use is defined by the variable
-+                <filename>VIRTUAL-RUNTIME_dev_manager</filename> and should be set
-+                in the <ulink url='&YOCTO_DOCS_REF_URL;#var-MACHINE'><filename>MACHINE</filename></ulink>,
-+                <ulink url='&YOCTO_DOCS_REF_URL;#var-DISTRO'><filename>DISTRO</filename></ulink>
-+                or <filename>local.conf</filename> configuration file.
-+
-+                <literallayout class='monospaced'>
-+
-+     VIRTUAL-RUNTIME_dev_manager = "udev"
-+
-+     # Some alternative values
-+     # VIRTUAL-RUNTIME_dev_manager = "busybox-mdev"
-+     # VIRTUAL-RUNTIME_dev_manager = "systemd"
-+                </literallayout>
-+            </para>
-+        </section>
-+    </section>
-+
-     <section id="platdev-appdev-srcrev">
-         <title>Using an External SCM</title>
- 
--- 
-1.7.10.4
+FOSDEM 2015 is Jan 31/ Feb 1 in Brussels.
 
+https://fosdem.org/2015/
+
+OpenEmbedded will have a stand again this year and we would like some
+help manning it.
+
+I've done a quick copy from the 2014 page on the wiki:
+
+http://openembedded.org/wiki/FOSDEM_2015
+
+We need to get some interesting demos that use OpenEmbedded for the
+stand. I should be able to bring the latest USRP with a USB screen.
+
+I'd also like to thank Paul Eggleton for arranging the stand.
+
+The ev board has approved two travel grants of 200 euros (not to exceed,
+actual expenses only) for people willing to help at FOSDEM. These should
+go to people who cannot get support from their employers and you need to
+be prepared to contirbute a significant amount of time manning the stand.
+
+Philip
 
