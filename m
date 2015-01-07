@@ -1,36 +1,34 @@
 Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A8B59E005A9; Wed,  7 Jan 2015 12:31:39 -0800 (PST)
+	id 16A88E002F9; Wed,  7 Jan 2015 12:31:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16F07E003E3
-	for <yocto@yoctoproject.org>; Wed,  7 Jan 2015 12:31:35 -0800 (PST)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DECFEE002F9
+	for <yocto@yoctoproject.org>; Wed,  7 Jan 2015 12:31:34 -0800 (PST)
 Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
 	[147.11.189.41])
-	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id t07KVYM9006999
+	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id t07KVXo3018852
 	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 7 Jan 2015 12:31:34 -0800 (PST)
+	for <yocto@yoctoproject.org>; Wed, 7 Jan 2015 12:31:33 -0800 (PST)
 Received: from msp-dhcp23.wrs.com (172.25.34.23) by ALA-HCB.corp.ad.wrs.com
 	(147.11.189.41) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 7 Jan 2015 12:31:33 -0800
+	Wed, 7 Jan 2015 12:31:32 -0800
 From: Mark Hatle <mark.hatle@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Wed, 7 Jan 2015 14:31:31 -0600
-Message-ID: <1420662691-241726-2-git-send-email-mark.hatle@windriver.com>
+Date: Wed, 7 Jan 2015 14:31:30 -0600
+Message-ID: <1420662691-241726-1-git-send-email-mark.hatle@windriver.com>
 X-Mailer: git-send-email 1.9.3
-In-Reply-To: <1420662691-241726-1-git-send-email-mark.hatle@windriver.com>
-References: <1420662691-241726-1-git-send-email-mark.hatle@windriver.com>
 MIME-Version: 1.0
-Subject: [meta-mingw][PATCH] meta-environment: Update environment files to batch files
+Subject: [meta-mingw] Patch to replace .sh with Win style batch files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,133 +40,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Jan 2015 20:31:39 -0000
+X-List-Received-Date: Wed, 07 Jan 2015 20:31:41 -0000
 Content-Type: text/plain
 
-Since the environment .sh files can't be used on a normal windows machine,
-change to providing .bat files instead.  The same mechanisms normally used
-can be used on the Windows command line. i.e.
+When using meta-mingw to build a Windows compatible SDK, we should be 
+generating .bat files instead of .sh files to setup the environment.
 
-Unix way:
-$ source environment-setup-armv5te-wrs-linux-gnueabi.sh
-$ $CC hello.c
+We also want to make sure the resulting files are in windows format,
+i.e. contain the \r.
 
-Win32 way:
-C:\Users\mhatle\win-sdk>environment-setup-armv5te-wrs-linux-gnueabi.bat
+Mark Hatle (1):
+  meta-environment: Update environment files to batch files
 
-C:\Users\mhatle\win-sdk>%CC% hello.c
-
-Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
----
  classes/toolchain-scripts-mingw32.bbclass   | 87 +++++++++++++++++++++++++++++
  recipes-core/meta/meta-environment.bbappend |  4 ++
  2 files changed, 91 insertions(+)
  create mode 100644 classes/toolchain-scripts-mingw32.bbclass
  create mode 100644 recipes-core/meta/meta-environment.bbappend
 
-diff --git a/classes/toolchain-scripts-mingw32.bbclass b/classes/toolchain-scripts-mingw32.bbclass
-new file mode 100644
-index 0000000..5ac69a1
---- /dev/null
-+++ b/classes/toolchain-scripts-mingw32.bbclass
-@@ -0,0 +1,87 @@
-+# Based off of the oe-core meta/classes/toolchain-scripts.bbclass version
-+toolchain_create_sdk_env_script_sdkmingw32 () {
-+	# Create environment setup script
-+	libdir=${4:-${libdir}}
-+	sysroot=${3:-${SDKTARGETSYSROOT}}
-+	sysroot=${sysroot##${SDKPATH}}
-+	pathnative=${SDKPATHNATIVE}
-+	pathnative=${pathnative##${SDKPATH}}
-+	multimach_target_sys=${2:-${REAL_MULTIMACH_TARGET_SYS}}
-+	script=${1:-${SDK_OUTPUT}/${SDKPATH}/environment-setup-$multimach_target_sys}.bat
-+	rm -f $script
-+	touch $script
-+	echo 'set SDKROOT=%~dp0%' >> $script
-+	echo 'set SDKTARGETSYSROOT=%SDKROOT%'"$sysroot" >> $script
-+	EXTRAPATH=""
-+	for i in ${CANADIANEXTRAOS}; do
-+		EXTRAPATH="$EXTRAPATH;%~\$PATH:0%$pathnative${bindir_nativesdk}/${TARGET_ARCH}${TARGET_VENDOR}-$i"
-+	done
-+	echo 'set PATH=%SDKROOT%'"$pathnative"'${bindir_nativesdk};%SDKROOT%'"$pathnative"'${bindir_nativesdk}/${TARGET_SYS}'"$EXTRAPATH"';%PATH%' >> $script
-+	echo 'set PKG_CONFIG_SYSROOT_DIR=%SDKTARGETSYSROOT%' >> $script
-+	echo 'set PKG_CONFIG_PATH=%SDKTARGETSYSROOT%'"$libdir"'/pkgconfig' >> $script
-+	echo 'set CONFIG_SITE=%SDKROOT%/site-config-'"${multimach_target_sys}" >> $script
-+	echo 'set OECORE_NATIVE_SYSROOT=%SDKROOT%'"$pathnative" >> $script
-+	echo 'set OECORE_TARGET_SYSROOT=%SDKTARGETSYSROOT%' >> $script
-+	echo 'set OECORE_ACLOCAL_OPTS=-I %SDKROOT%'"$pathnative"'/usr/share/aclocal' >> $script
-+	echo 'set PYTHONHOME=%SDKROOT%'"$pathnative"'${prefix_nativesdk}' >> $script
-+
-+	toolchain_shared_env_script
-+
-+	# Change unix '/' to Win32 '\'
-+	sed -e 's,/,\\,g' -i $script
-+
-+	# Make the file windows friendly...
-+	awk 'sub("$", "\r")' $script > $script.new
-+	mv $script.new $script
-+}
-+
-+toolchain_shared_env_script_sdkmingw32 () {
-+	echo 'set CC=${TARGET_PREFIX}gcc ${TARGET_CC_ARCH} --sysroot=%SDKTARGETSYSROOT%' >> $script
-+	echo 'set CXX=${TARGET_PREFIX}g++ ${TARGET_CC_ARCH} --sysroot=%SDKTARGETSYSROOT%' >> $script
-+	echo 'set CPP=${TARGET_PREFIX}gcc -E ${TARGET_CC_ARCH} --sysroot=%SDKTARGETSYSROOT%' >> $script
-+	echo 'set AS=${TARGET_PREFIX}as ${TARGET_AS_ARCH}' >> $script
-+	echo 'set LD=${TARGET_PREFIX}ld ${TARGET_LD_ARCH} --sysroot=%SDKTARGETSYSROOT%' >> $script
-+	echo 'set GDB=${TARGET_PREFIX}gdb' >> $script
-+	echo 'set STRIP=${TARGET_PREFIX}strip' >> $script
-+	echo 'set RANLIB=${TARGET_PREFIX}ranlib' >> $script
-+	echo 'set OBJCOPY=${TARGET_PREFIX}objcopy' >> $script
-+	echo 'set OBJDUMP=${TARGET_PREFIX}objdump' >> $script
-+	echo 'set AR=${TARGET_PREFIX}ar' >> $script
-+	echo 'set NM=${TARGET_PREFIX}nm' >> $script
-+	echo 'set M4=m4' >> $script
-+	echo 'set TARGET_PREFIX=${TARGET_PREFIX}' >> $script
-+	echo 'set CONFIGURE_FLAGS=--target=${TARGET_SYS} --host=${TARGET_SYS} --build=${SDK_ARCH}-linux --with-libtool-sysroot=%SDKTARGETSYSROOT%' >> $script
-+	echo 'set CFLAGS=${TARGET_CFLAGS}' >> $script
-+	echo 'set CXXFLAGS=${TARGET_CXXFLAGS}' >> $script
-+	echo 'set LDFLAGS=${TARGET_LDFLAGS}' >> $script
-+	echo 'set CPPFLAGS=${TARGET_CPPFLAGS}' >> $script
-+	echo 'set OECORE_DISTRO_VERSION=${DISTRO_VERSION}' >> $script
-+	echo 'set OECORE_SDK_VERSION=${SDK_VERSION}' >> $script
-+	echo 'set ARCH=${ARCH}' >> $script
-+	echo 'set CROSS_COMPILE=${TARGET_PREFIX}' >> $script
-+
-+	cat >> $script <<EOF
-+
-+@REM Append environment subscripts
-+
-+@IF EXIST %OECORE_TARGET_SYSROOT%\\environment-setup.d (
-+   FOR %%x IN (%OECORE_TARGET_SYSROOT%\\environment-setup.d\\*.bat) DO call "%%x"
-+)
-+
-+@IF EXIST %OECORE_NATIVE_SYSROOT%\\environment-setup.d (
-+   FOR %%x IN (%OECORE_NATIVE_SYSROOT%\\environment-setup.d\\*.bat) DO call "%%x"
-+)
-+EOF
-+}
-+
-+toolchain_create_sdk_siteconfig_append_sdkmingw32 () {
-+        # Make the file windows friendly...
-+        awk 'sub("$", "\r")' $siteconfig > $siteconfig.new
-+        mv $siteconfig.new $siteconfig
-+}
-+
-+toolchain_create_sdk_version_append_sdkmingw32 () {
-+        # Make the file windows friendly...
-+        awk 'sub("$", "\r")' $versionfile > $versionfile.new
-+        mv $versionfile.new $versionfile
-+}
-diff --git a/recipes-core/meta/meta-environment.bbappend b/recipes-core/meta/meta-environment.bbappend
-new file mode 100644
-index 0000000..93f6ff0
---- /dev/null
-+++ b/recipes-core/meta/meta-environment.bbappend
-@@ -0,0 +1,4 @@
-+TCSCRIPTS ?= ""
-+TCSCRIPTS_sdkmingw32 = "toolchain-scripts-mingw32"
-+
-+inherit ${TCSCRIPTS_sdkmingw32}
 -- 
 1.9.3
 
