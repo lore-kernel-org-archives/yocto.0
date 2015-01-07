@@ -1,30 +1,49 @@
-Return-Path: <maciej.borzecki@open-rnd.pl>
+Return-Path: <gmshastri@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 99BDAE00874; Wed,  7 Jan 2015 03:26:27 -0800 (PST)
+	id B48F2E0087C; Wed,  7 Jan 2015 06:57:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (gmshastri[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D80C9E00823
-	for <yocto@yoctoproject.org>; Wed,  7 Jan 2015 03:26:22 -0800 (PST)
-Received: from localhost (unknown [46.170.72.194])
-	by open-rnd.nazwa.pl (Postfix) with ESMTP id 8896A2D6B05;
-	Wed,  7 Jan 2015 12:26:19 +0100 (CET)
-Date: Wed, 7 Jan 2015 12:26:18 +0100
-From: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
-To: yocto@yoctoproject.org, Andrei Gherzan <andrei@gherzan.ro>,
-	Dan McGregor <dan.mcgregor@usask.ca>, Paul Barker <paul@paulbarker.me.uk>
-Message-ID: <20150107112618.GC4631@localhost.localdomain>
-References: <1418213525-1202-1-git-send-email-maciej.borzecki@open-rnd.pl>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.47 listed in list.dnswl.org]
+Received: from mail-oi0-f47.google.com (mail-oi0-f47.google.com
+	[209.85.218.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69787E0059E
+	for <yocto@yoctoproject.org>; Wed,  7 Jan 2015 06:57:11 -0800 (PST)
+Received: by mail-oi0-f47.google.com with SMTP id v63so3147804oia.6
+	for <yocto@yoctoproject.org>; Wed, 07 Jan 2015 06:57:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=MssemOuHsbMEaQWSsYxIbjIi7RjcfRMb18lDQYYLrak=;
+	b=mb6CFSGV02+Nqk9yDKYZZaDtJWnHkEvIT4lWtYQoLtACSQNvk265uYXT504FqSSGyj
+	D/dEl6Oh5kpllTb36frihSIvFkCeMQGPVqPYHckESTzlzEIcTXg+0QBb3x/++f+ujsCt
+	LsDvLX6nvo9NKTjfht9fHEYAZ1hgpc+HYy4rEYX4kTWSHlEdcm6P9hyzfBhb1LmL2L0l
+	ZBUn/lHZlEUhWMadatUpWNhUukhqtM0/bvPb4AsKWVpWee+6Ji5rIh2ZVE5nbf/4EVwa
+	rCOafQxjjMwQYSKXDNh4kBNDH/avBPY3P6htYRAdKazLHeBOljIaY/jqymznQXKfgi/n
+	2WKw==
 MIME-Version: 1.0
-In-Reply-To: <1418213525-1202-1-git-send-email-maciej.borzecki@open-rnd.pl>
-User-Agent: Mutt/1.5.23.1-rc1 (2014-03-12)
-Cc: Maciek Borzecki <maciek.borzecki@gmail.com>
-Subject: Re: [meta-raspberrypi][PATCH 0/2] wic support
+X-Received: by 10.182.19.167 with SMTP id g7mr2230982obe.75.1420642630456;
+	Wed, 07 Jan 2015 06:57:10 -0800 (PST)
+Received: by 10.202.104.194 with HTTP; Wed, 7 Jan 2015 06:57:10 -0800 (PST)
+Date: Wed, 7 Jan 2015 20:27:10 +0530
+Message-ID: <CAE_REAuUO358xnPwCcaApwwcz_vb3sW60bouATcV4xBu_riAOg@mail.gmail.com>
+From: Gaurang Shastri <gmshastri@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Want to add native-gcc in SDK tar ball
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,66 +55,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Jan 2015 11:26:27 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 07 Jan 2015 14:57:14 -0000
+Content-Type: multipart/alternative; boundary=001a11c2ea20575f1e050c112390
 
-ping
+--001a11c2ea20575f1e050c112390
+Content-Type: text/plain; charset=UTF-8
 
-On 12/10 13:12, Maciej Borzecki wrote:
-> The patch series adds support for wic image build tool. The patches allow for a
-> bootable SD card image to be built with wic, without any additional changes.
->
-> The first patch defines an IMAGE_BOOT_FILES variable that will pick up all of
-> bcm2835 boot files and the kernel file (renaming it to kernel.img). The patch
-> uses glob pattern and thus depends on a patch series posted here:
-> http://lists.openembedded.org/pipermail/openembedded-core/2014-December/099732.html
->
-> The second patch adds a kickstart file that mirrors the layout defined in
-> sdcard_image-rpi.bbclass. Note that this patch is mainly for reference, as the
-> default sdimage-bootpart.wks from Poky will also produce a bootable image.
->
-> Maciej Borzecki (2):
->   raspberrypi.conf: add IMAGE_BOOT_FILES
->   sdimage-raspberrypi.wks: kickstart image definition
->
->  conf/machine/raspberrypi.conf                        | 2 ++
->  scripts/lib/image/canned-wks/sdimage-raspberrypi.wks | 6 ++++++
->  2 files changed, 8 insertions(+)
->  create mode 100644 scripts/lib/image/canned-wks/sdimage-raspberrypi.wks
->
-> --
-> 1.9.3
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Hi,
 
---
-Maciej Borzęcki
-Senior Software Developer at Open-RnD Sp. z o.o., Poland
-www.open-rnd.pl
-mobile: +48 889 117 365, fax: +48 42 657 9079
+Has anyone try to add native-gcc as part of SDK tarball ? Is it possible ?
 
+My aim is to have "gcc" (along with cross-gcc) as part of SDK.
 
-Niniejsza wiadomość wraz z załącznikami może
-zawierać chronione prawem lub poufne informacje i została
-wysłana wyłącznie do wiadomości i użytku osób, do których
-została zaadresowana. Jeśli wiadomość została otrzymana
-przypadkowo zabrania się jej kopiowania lub rozsyłania do osób
-trzecich. W takim przypadku uprasza się o natychmiastowe
-zniszczenie wiadomości oraz poinformowanie nadawcy o
-zaistniałej sytuacji za pomocą wiadomości zwrotnej.
-Dziękujemy.
+Any pointer is appreciable.
 
-This message, including any attachments hereto,
-may contain privileged or confidential information and is sent
-solely for the attention and use of the intended addressee(s).
-If you are not an intended addressee, you may neither use this
-message nor copy or deliver it to anyone. In such case, you
-should immediately destroy this message and kindly notify the
-sender by reply email. Thank you.
+Regards,
+Gaurang Shastri
 
+--001a11c2ea20575f1e050c112390
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div>Hi,<br><br></div>Has anyone try to add nati=
+ve-gcc as part of SDK tarball ? Is it possible ?<br><br></div>My aim is to =
+have &quot;gcc&quot; (along with cross-gcc) as part of SDK. <br><br>Any poi=
+nter is appreciable.<br><br></div>Regards,<br>Gaurang Shastri<br></div>
+
+--001a11c2ea20575f1e050c112390--
