@@ -1,57 +1,37 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B211E005A9; Wed,  7 Jan 2015 16:36:47 -0800 (PST)
+	id 416F7E008EA; Thu,  8 Jan 2015 02:02:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.49 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qg0-f49.google.com (mail-qg0-f49.google.com
-	[209.85.192.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9D36E003E3
-	for <yocto@yoctoproject.org>; Wed,  7 Jan 2015 16:36:40 -0800 (PST)
-Received: by mail-qg0-f49.google.com with SMTP id f51so60596qge.8
-	for <yocto@yoctoproject.org>; Wed, 07 Jan 2015 16:36:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=/efBB1m78KBASgXDmPgfmajRRwFAL5j9MUH4ZTxHbcE=;
-	b=JB3IKJQ70NQ3vmOcfQJGVj0Dl59MsRhEqbdbV60TZzhIoyAP1CZtC0O5ayEvcyf69u
-	cFSK+SF+gGOCpOtBSEUntvUTLD1HzmNU8ftITCcXXhHJGI5N9IGlFzhNq2F3fM29vj/s
-	kfuun3/Emblfgdz7JIVEbN1wBgmgQzQTiUFL5RJ9oHwPI3IJ6Xd1rvsFTucvTf1DROgj
-	lQNukzTx2oUennV4fM1c/QZdCa+Q0bWFJAlgJvtpAuOtCU8rMpHsRKB/6NVsLAwX6SjA
-	G/HH3NqX/cuvR5xlR2v2jXGjMxBANfilpNHkgkf7x4LxMznosfrZ+1YpXLDYkscqA1lO
-	d/ig==
-X-Received: by 10.224.137.65 with SMTP id v1mr9783810qat.95.1420677400279;
-	Wed, 07 Jan 2015 16:36:40 -0800 (PST)
-Received: from ?IPv6:2601:9:3580:84c:309d:3246:9ece:a635?
-	([2601:9:3580:84c:309d:3246:9ece:a635])
-	by mx.google.com with ESMTPSA id h6sm2606098qgh.32.2015.01.07.16.36.38
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 07 Jan 2015 16:36:39 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 8.1 \(1993\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <1420622709.25779.60.camel@linuxfoundation.org>
-Date: Wed, 7 Jan 2015 16:36:37 -0800
-Message-Id: <1D92EEB7-710A-4923-9AB0-FEC6A3D884FB@gmail.com>
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFCA1E0089B
+	for <yocto@yoctoproject.org>; Thu,  8 Jan 2015 02:02:00 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga103.jf.intel.com with ESMTP; 08 Jan 2015 01:58:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.04,691,1406617200"; d="scan'208";a="509227892"
+Received: from ybaig-mobl1.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.0.208])
+	by orsmga003.jf.intel.com with ESMTP; 08 Jan 2015 01:56:01 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 08 Jan 2015 10:01:46 +0000
+Message-ID: <56832778.XUIYBB79do@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.3 (Linux/3.17.7-200.fc20.x86_64; KDE/4.14.3; x86_64; ; )
+In-Reply-To: <1D92EEB7-710A-4923-9AB0-FEC6A3D884FB@gmail.com>
 References: <1420622709.25779.60.camel@linuxfoundation.org>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-X-Mailer: Apple Mail (2.1993)
-Cc: yocto <yocto@yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
+	<1D92EEB7-710A-4923-9AB0-FEC6A3D884FB@gmail.com>
+MIME-Version: 1.0
+Cc: yocto <yocto@yoctoproject.org>, openembedded-core@lists.openembedded.org
 Subject: Re: [OE-core] Bug reporting and good bug reports
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -64,88 +44,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Jan 2015 00:36:47 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Thu, 08 Jan 2015 10:02:03 -0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
+On Wednesday 07 January 2015 16:36:37 Khem Raj wrote:
+> > On Jan 7, 2015, at 1:25 AM, Richard Purdie
+> > <richard.purdie@linuxfoundation.org> wrote:
+> >=20
+> > I was informed on irc yesterday that bug reports are hard and that
+> > debugging via irc is easier. I think I need to remind people why go=
+od
+> > bug reports are important and how they do actually help immensely.
+> >=20
+> > I do actually believe that not everything has to have bug report. I=
+f you
+> > mention an issue, someone says "hey, I know how to fix that" and se=
+nds a
+> > patch out, a bug report is wasted overhead IMO. I know some program=
+me
+> > managers who disagree strongly with me and would suggest *every* bu=
+gfix
+> > commit should have a defect tracking item. We're not going there I
+> > understand the idea, its not practical.
+> >=20
+> > That said, if its not immediately clear what the problem is, it sho=
+uld
+> > become a bug report. Why?
+> >=20
+> > Firstly, the random selection of people on irc at the time probably=
 
-> On Jan 7, 2015, at 1:25 AM, Richard Purdie =
-<richard.purdie@linuxfoundation.org> wrote:
->=20
-> I was informed on irc yesterday that bug reports are hard and that
-> debugging via irc is easier. I think I need to remind people why good
-> bug reports are important and how they do actually help immensely.
->=20
-> I do actually believe that not everything has to have bug report. If =
-you
-> mention an issue, someone says "hey, I know how to fix that" and sends =
-a
-> patch out, a bug report is wasted overhead IMO. I know some programme
-> managers who disagree strongly with me and would suggest *every* =
-bugfix
-> commit should have a defect tracking item. We're not going there I
-> understand the idea, its not practical.
->=20
-> That said, if its not immediately clear what the problem is, it should
-> become a bug report. Why?
->=20
-> Firstly, the random selection of people on irc at the time probably
-> aren't the right people to fix it. Telling those people to read 48 =
+> > aren't the right people to fix it. Telling those people to read 48 =
 hours
-> of irc log for the details is disrespectful of their time.
->=20
-> It also happens that the first people referred to a bug may not be the
-> person who actually can fix it. If someone else needs to come to a =
+> > of irc log for the details is disrespectful of their time.
+> >=20
+> > It also happens that the first people referred to a bug may not be =
+the
+> > person who actually can fix it. If someone else needs to come to a =
 bug,
-> having a summary of the issue, the salient facts and the current =
-status
-> is immensley useful for handover.
->=20
-> As a case in point, I tried to debug a qt4 build failure yesterday for
-> which there is no bug report. I lost hours building the wrong things,
-> experimenting to try and find the reproducer steps and generally =
-chasing
-> my tail, losing the autobuilder log of the failure, the name of the =
-qt4
-> recipe that was failing (which task was it again?) and so on.
->=20
-> I do now have a set of reproducer steps, its quite simple:
->=20
-> MACHINE=3Dimx53qsb bitbake virtual/kernel
-> MACHINE=3Dimx53qsb bitbake virtual/kernel -c clean
-> MACHINE=3Dimx53qsb bitbake qt4-x11-free
->=20
-> I also have a patch. Where should I share them? How do I ensure =
-everyone
-> with an interest in this defect actually gets the patch? Sure I can
-> create email and send to the people who I think need to know. The
-> bugzilla lets interested parties add themselves to bugs though.
->=20
-> I should also note that QA actually go through bugs in the bugzilla,
-> including closed ones, looking for test cases. We're not great at this
-> yet but it does happen. If there is a well documented test case like
-> that above, we might write an automated QA test for it. Having it
-> documented is therefore a good thing.
->=20
-> I do appreciate writing a bug report is hard, especially if you don't
-> know where the problem is, or how to reproduce it exactly. It takes =
-time
-> and effort. You can however document what you know and discussion can
-> happen in a common place to figure out how to reproduce it. I do =
-except
-> the submitters to fully understand the bug, if they did they'd =
-probably
-> write a patch instead.
->=20
-> So fair warning, I am going to start ignoring things on irc and ask =
+> > having a summary of the issue, the salient facts and the current st=
+atus
+> > is immensley useful for handover.
+> >=20
+> > As a case in point, I tried to debug a qt4 build failure yesterday =
 for
-> bug numbers in future, assuming something isn't a 5 minute fix with an
-> immediate patch. I will back and encourage anyone else doing this too.
+> > which there is no bug report. I lost hours building the wrong thing=
+s,
+> > experimenting to try and find the reproducer steps and generally ch=
+asing
+> > my tail, losing the autobuilder log of the failure, the name of the=
+ qt4
+> > recipe that was failing (which task was it again?) and so on.
+> >=20
+> > I do now have a set of reproducer steps, its quite simple:
+> >=20
+> > MACHINE=3Dimx53qsb bitbake virtual/kernel
+> > MACHINE=3Dimx53qsb bitbake virtual/kernel -c clean
+> > MACHINE=3Dimx53qsb bitbake qt4-x11-free
+> >=20
+> > I also have a patch. Where should I share them? How do I ensure eve=
+ryone
+> > with an interest in this defect actually gets the patch? Sure I can=
 
-What about developer mailing lists ?. isn=E2=80=99t it also a way to =
-report problems via emails after all
-we use emails for patch work flow. Not all people working with OE-Core =
-e.g. might be following yocto bugzilla
+> > create email and send to the people who I think need to know. The
+> > bugzilla lets interested parties add themselves to bugs though.
+> >=20
+> > I should also note that QA actually go through bugs in the bugzilla=
+,
+> > including closed ones, looking for test cases. We're not great at t=
+his
+> > yet but it does happen. If there is a well documented test case lik=
+e
+> > that above, we might write an automated QA test for it. Having it
+> > documented is therefore a good thing.
+> >=20
+> > I do appreciate writing a bug report is hard, especially if you don=
+'t
+> > know where the problem is, or how to reproduce it exactly. It takes=
+ time
+> > and effort. You can however document what you know and discussion c=
+an
+> > happen in a common place to figure out how to reproduce it. I do ex=
+cept
+> > the submitters to fully understand the bug, if they did they'd prob=
+ably
+> > write a patch instead.
+> >=20
+> > So fair warning, I am going to start ignoring things on irc and ask=
+ for
+> > bug numbers in future, assuming something isn't a 5 minute fix with=
+ an
+> > immediate patch. I will back and encourage anyone else doing this t=
+oo.
+>=20
+> What about developer mailing lists ?. isn=E2=80=99t it also a way to =
+report problems
+> via emails after all we use emails for patch work flow. Not all peopl=
+e
+> working with OE-Core e.g. might be following yocto bugzilla
 
+Mailing lists are great for discussion (e.g. "I have this problem but I=
+'m not=20
+sure of the right way to solve it") but a terrible way to track actual =
+bugs,=20
+because mailing lists tend to concentrate on the latest postings; older=
+ issues=20
+that haven't been resolved rapidly disappear with the tide of new posti=
+ngs. Of=20
+course old issues can build up in a bug tracker, but at least it's triv=
+ially=20
+easy to find open issues where it's much more difficult to find unresol=
+ved issues=20
+on a mailing list.
 
+The point is, the best way to ensure that an issue gets solved at least=
+ for=20
+OE-Core is to file a bug in the YP bugzilla. There is then a triage pro=
+cess and=20
+in most cases someone to actually assign the issue to so that it can be=
+ dealt=20
+with. There is no such process on the mailing lists.
+
+Cheers,
+Paul
+
+--=20
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
