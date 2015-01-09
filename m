@@ -1,39 +1,35 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <sgw@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 49F94E008CD; Fri,  9 Jan 2015 06:51:11 -0800 (PST)
+	id 0F157E00828; Fri,  9 Jan 2015 08:08:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40364E0080C
-	for <yocto@yoctoproject.org>; Fri,  9 Jan 2015 06:51:06 -0800 (PST)
-Received: from [70.30.87.145] (port=57365 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Y9atz-0001P0-AD
-	for yocto@yoctoproject.org; Fri, 09 Jan 2015 09:51:03 -0500
-Date: Fri, 9 Jan 2015 09:50:56 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1501090949050.17900@localhost>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BADAE0070B
+	for <yocto@yoctoproject.org>; Fri,  9 Jan 2015 08:08:20 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 09 Jan 2015 08:08:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.07,731,1413270000"; d="scan'208";a="648803301"
+Received: from unknown (HELO swold-mobl5.amr.corp.intel.com) ([10.252.248.119])
+	by fmsmga001.fm.intel.com with ESMTP; 09 Jan 2015 08:08:19 -0800
+Message-ID: <54AFFCF2.5020501@linux.intel.com>
+Date: Fri, 09 Jan 2015 08:08:18 -0800
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: [PATCH][yocto-docs] Update a couple recipes in dev manual.
+To: Matthias.Heise@atlas-elektronik.com, yocto@yoctoproject.org
+References: <4009F04F5925CD4C95FBD9BE756381FE02929D60BA@MSSRVS5.atlas.de>
+In-Reply-To: <4009F04F5925CD4C95FBD9BE756381FE02929D60BA@MSSRVS5.atlas.de>
+Subject: Re: can't pull any sources anymore
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,52 +41,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Jan 2015 14:51:11 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 09 Jan 2015 16:08:23 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 01/09/2015 06:10 AM, Matthias.Heise@atlas-elektronik.com wrote:
+> Hi,
+>
+> I'm not able to pull any sources for a little time now. As test I re-tried an already working setup by again following some tutorial and trying to setup a fresh repo. The repo init works but the sync fails. I should mention that due to network limitations I replace git:// urls with https:// . Is it possible that this doesn't work anymore (I mean it is replaced but maybe the online repos don't support it anymore seamlessly)?
 
-Update listings of a couple recipes in section 5.3 to match current
-source.
+Can you be more specific, are you talking about the git repos at 
+git.yoctoproject.org or some other git source?
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+You say a "repo init works", does that mean an initial clone or ?  What 
+commands are you running?
 
----
+I think a little more information is needed here.
 
-diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
-index 17d725b..611bb74 100644
---- a/documentation/dev-manual/dev-manual-common-tasks.xml
-+++ b/documentation/dev-manual/dev-manual-common-tasks.xml
-@@ -2867,6 +2867,7 @@
-      SRCREV = "9f107132a6a073cce37434ca9cda6917dd8d866b"
-      SRC_URI = "git://git.infradead.org/mtd-utils.git \
-                      file://add-exclusion-to-mkfs-jffs2-git-2.patch \
-+                     file://fix-armv7-neon-alignment.patch \
-      "
+Sau!
 
-      PV = "1.5.1+git${SRCPV}"
-@@ -2910,11 +2911,10 @@
-                     <literallayout class='monospaced'>
-      require xorg-lib-common.inc
-
--     SUMMARY = "X11 Pixmap library"
--     LICENSE = "X-BSD"
--     LIC_FILES_CHKSUM = "file://COPYING;md5=3e07763d16963c3af12db271a31abaa5"
-+     SUMMARY = "Xpm: X Pixmap extension library"
-+     LICENSE = "BSD"
-+     LIC_FILES_CHKSUM = "file://COPYING;md5=51f4270b012ecd4ab1a164f5f4ed6cf7"
-      DEPENDS += "libxext libsm libxt"
--     PR = "r3"
-      PE = "1"
-
-      XORG_PN = "libXpm"
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+> Thanks
+>
+> Mat
+>
+>
+>
+>
 
