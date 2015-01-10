@@ -1,6 +1,6 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2A3ABE0084E; Sat, 10 Jan 2015 03:37:47 -0800 (PST)
+	id 82CA7E0084E; Sat, 10 Jan 2015 03:51:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,20 +10,18 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 779EFE0070B
-	for <yocto@yoctoproject.org>; Sat, 10 Jan 2015 03:37:46 -0800 (PST)
-Received: from [70.30.87.145] (port=33234 helo=crashcourse.ca)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDFADE0070B
+	for <yocto@yoctoproject.org>; Sat, 10 Jan 2015 03:51:44 -0800 (PST)
+Received: from [70.30.87.145] (port=33290 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Y9uMS-0007VH-Hm
-	for yocto@yoctoproject.org; Sat, 10 Jan 2015 06:37:44 -0500
-Date: Sat, 10 Jan 2015 06:37:45 -0500 (EST)
+	id 1Y9uZy-000079-Em
+	for yocto@yoctoproject.org; Sat, 10 Jan 2015 06:51:42 -0500
+Date: Sat, 10 Jan 2015 06:51:33 -0500 (EST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@localhost
 To: Yocto discussion list <yocto@yoctoproject.org>
-In-Reply-To: <alpine.LFD.2.11.1501100632070.6353@localhost>
-Message-ID: <alpine.LFD.2.11.1501100636400.6353@localhost>
-References: <alpine.LFD.2.11.1501100632070.6353@localhost>
+Message-ID: <alpine.LFD.2.11.1501100644110.7019@localhost>
 User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -35,7 +33,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Subject: Re: unnecessary build of bzip2 when it's "required" for a dev host
+Subject: distinguish between HTML vs PDF doc generation packages?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,30 +45,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 10 Jan 2015 11:37:47 -0000
+X-List-Received-Date: Sat, 10 Jan 2015 11:51:48 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Sat, 10 Jan 2015, Robert P. J. Day wrote:
 
->
->   more nitpicking pedantry, but i just noticed that on the quick start
-> page, there is the standard list of what the developer must install
-> beforehand:
->
-> http://www.yoctoproject.org/docs/1.8/yocto-project-qs/yocto-project-qs.html#yp-resources
->
-> and for both fedora and centos, the reader is instructed to install
-> (among other things) bzip2. but i'm pretty sure bzip2 is compiled as
-> part of the build tools as part of a standard build, no?
->
->   certainly, as part of my poky-based BBB, i can see
-> tmp/work/x86_64-linux/bzip2-native/. not a big deal, of course, but
-> apparently redundant. didn't bother checking if this is the case for
-> anything else.
+  ref manual, section 1.3.2, breaks out the packages required to build
+the documentation. first, i think it would be useful to distinguish
+between the (much shorter) list of packages needed for HTML versus the
+much longer list for PDF, since that second list is typically way
+longer and some folks may have no need for it. (from memory, the list
+of packages for PDF generation on fedora is ridiculous.)
 
-  whoops, should have mentioned that the same observation holds for
-the first chapter of the reference manual, section 1.3.2, "Required
-Packages for the Host Development System."
+  also, the package list for PDF generation (at least for my fedora
+rawhide system) seems out of date. the ref manual claims i need to:
+
+$ sudo yum install make docbook-style-dsssl docbook-style-xsl \
+     docbook-dtds docbook-utils fop libxslt dblatex xmlto
+
+however, i can build PDF just fine but a quick query shows i don't
+have some of the allegedly essential packages:
+
+$ rpm -q make docbook-style-dsssl docbook-style-xsl \
+> docbook-dtds docbook-utils fop libxslt dblatex xmlto
+make-4.0-3.1.fc22.x86_64
+package docbook-style-dsssl is not installed
+docbook-style-xsl-1.78.1-3.fc21.noarch
+docbook-dtds-1.0-63.fc21.noarch
+package docbook-utils is not installed
+fop-1.1-8.fc21.noarch
+libxslt-1.1.28-8.fc22.x86_64
+libxslt-1.1.28-8.fc22.i686
+package dblatex is not installed
+xmlto-0.0.26-3.fc22.x86_64
+$
+
+so it seems i certainly don't need everything suggested by the ref
+manual.  again, this is on my fedora *rawhide* system so i don't know
+if this has changed since the last supported fedora release.
 
 rday
 
