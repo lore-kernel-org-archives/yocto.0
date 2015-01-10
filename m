@@ -1,54 +1,42 @@
-Return-Path: <dsonone@gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 41B67E0090F; Fri,  9 Jan 2015 19:59:45 -0800 (PST)
+	id 6422FE0083A; Sat, 10 Jan 2015 03:21:05 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (dsonone[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.173 listed in list.dnswl.org]
-Received: from mail-pd0-f173.google.com (mail-pd0-f173.google.com
-	[209.85.192.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0190E0080C
-	for <yocto@yoctoproject.org>; Fri,  9 Jan 2015 19:59:41 -0800 (PST)
-Received: by mail-pd0-f173.google.com with SMTP id ft15so20878667pdb.4
-	for <yocto@yoctoproject.org>; Fri, 09 Jan 2015 19:59:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:from:content-type:message-id:date:to
-	:content-transfer-encoding:mime-version;
-	bh=6OgKDmGMUTn9QgWXLaawjS16lrVkQTq3gzRxVp/d5Ds=;
-	b=loaqfcKsTQYqCX1IcM7eDyUZaGJP4gdXMLn3FxKM/pVyAURqV7Qm/nL1oNRFOMzN42
-	R2bzVal/kmAJ01C5euJBLl4cFHPVIT2ZSnKJJznD0AtqoaUQiANS608Xk5H6m/gMPuyv
-	SG2oo98wFF/rgUNekjk4aDqQcN/VadD+7Ed/bJFxUrTiwok2dqqofsUPFl/jj+iruHnl
-	ecOQFPLdv4hPiJmP8Pe+ybRKgQ83MHyQJaMlj1JEzGATRWOkkpX8ZPrZgesFNhSeLd7R
-	o3h7mwEsCFYMfn2Nh1owXVf87fL1S1r7R6B2KNgO3W5gyq8hViRiaTrTz5vFpT3kSA5v
-	a4hg==
-X-Received: by 10.66.249.99 with SMTP id yt3mr28154305pac.59.1420862381220;
-	Fri, 09 Jan 2015 19:59:41 -0800 (PST)
-Received: from [10.37.36.189] ([1.39.15.224])
-	by mx.google.com with ESMTPSA id du16sm8395029pdb.8.2015.01.09.19.59.38
-	for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Fri, 09 Jan 2015 19:59:39 -0800 (PST)
-From: Damodar <dsonone@gmail.com>
-X-Mailer: iPhone Mail (11D257)
-Message-Id: <47734A9D-1D2F-46DC-A752-71C3295B2ACF@gmail.com>
-Date: Sat, 10 Jan 2015 09:29:30 +0530
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Mime-Version: 1.0 (1.0)
-Subject: yocto mailing list
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0716E0070B
+	for <yocto@yoctoproject.org>; Sat, 10 Jan 2015 03:20:45 -0800 (PST)
+Received: from [70.30.87.145] (port=33034 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Y9u5x-0006R1-9r; Sat, 10 Jan 2015 06:20:41 -0500
+Date: Sat, 10 Jan 2015 06:20:34 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <1504189.z9eEVMXmIC@peggleto-mobl5.ger.corp.intel.com>
+Message-ID: <alpine.LFD.2.11.1501100618590.5533@localhost>
+References: <alpine.LFD.2.11.1501091212080.30702@localhost>
+	<1504189.z9eEVMXmIC@peggleto-mobl5.ger.corp.intel.com>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org, Scott Rifenbark <srifenbark@gmail.com>
+Subject: Re: admittedly simple questions about DISTRO_PN_ALIAS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,10 +48,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 10 Jan 2015 03:59:45 -0000
-Content-Type: text/plain;
-	charset=us-ascii
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 10 Jan 2015 11:21:05 -0000
+Content-Type: MULTIPART/MIXED; BOUNDARY="8323328-1128656029-1420888842=:5533"
 
+--8323328-1128656029-1420888842=:5533
+Content-Type: TEXT/PLAIN; charset=iso-8859-1
+Content-Transfer-Encoding: 8BIT
 
-pls subscribe me to the mailing list 
+On Fri, 9 Jan 2015, Paul Eggleton wrote:
+
+... my original confusion and whining about DISTRO_PN_ALIAS
+section in dev manual snipped ...
+
+> I'm not entirely sure how that section came to be written on its
+> own, because it isn't at all useful and should probably be removed
+> to save people confusion. DISTRO_PN_ALIAS is related to the mostly
+> undocumented distrodata.bbclass that is supposed to help with
+> managing recipe updates; I think the idea was to make a comparison
+> with packages available in mainstream Linux distros but what it
+> actually does for you in practice based on the code I can find
+> doesn't seem to be very much.
+>
+> FYI, the reason distrodata has remained mostly undocumented is that
+> we've had a plan to try to refactor and improve it for several years
+> now, but it hasn't been as high a priority as we would have liked.
+> There has been some renewed activity lately however - Aníbal Limón
+> is working on the Recipe Reporting Service to replace what is up at
+> packages.yoctoproject.org, and it should make it easier for people
+> whose job it is to maintain recipes to track the current status with
+> respect to upstream releases. It's being built on top of the
+> OpenEmbedded Layer Index application.
+
+  ok, so i'm just going to ignore this variable for the time being and
+let the higher powers deal with it. thanks.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
+--8323328-1128656029-1420888842=:5533--
