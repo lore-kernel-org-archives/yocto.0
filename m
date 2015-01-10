@@ -1,6 +1,6 @@
 Return-Path: <yocto@mindchasers.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F288DE007CD; Sat, 10 Jan 2015 14:10:26 -0800 (PST)
+	id E645CE007CD; Sat, 10 Jan 2015 14:37:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,14 +9,14 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D2E2E00521
-	for <yocto@yoctoproject.org>; Sat, 10 Jan 2015 14:10:23 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74CB7E00521
+	for <yocto@yoctoproject.org>; Sat, 10 Jan 2015 14:37:42 -0800 (PST)
 Received: from [192.168.1.10] (c-73-194-208-34.hsd1.nj.comcast.net
 	[73.194.208.34])
-	by smtp.webfaction.com (Postfix) with ESMTP id 0490A20ACEDB;
-	Sat, 10 Jan 2015 22:10:20 +0000 (UTC)
-Message-ID: <54B1A34B.8010109@mindchasers.com>
-Date: Sat, 10 Jan 2015 17:10:19 -0500
+	by smtp.webfaction.com (Postfix) with ESMTP id 061CB20AA552;
+	Sat, 10 Jan 2015 22:37:41 +0000 (UTC)
+Message-ID: <54B1A9B4.4070207@mindchasers.com>
+Date: Sat, 10 Jan 2015 17:37:40 -0500
 From: Bob Cochran <yocto@mindchasers.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
@@ -38,7 +38,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 10 Jan 2015 22:10:27 -0000
+X-List-Received-Date: Sat, 10 Jan 2015 22:37:48 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
@@ -81,16 +81,25 @@ On 01/10/2015 02:45 PM, Bruce Ashfield wrote:
 >
 >
 > These are due to some changes that we merged at the end of December to
-> improve kernel build times. We have bugs open for this issue, and set of
+> improve kernel build times. We have bugs open for this issue
+
+
+BTW, I'm browsing bugzilla but not seeing a bug entry that obviously 
+covers these issues.
+
+I'm looking at kernel-configuration, kernel-tooling, and linux-yocto.
+
+Perhaps it's covered somewhere else?  Can you please let me know the bug 
+id?
+
+Thanks again,
+
+Bob
+
+
+
+, and set of
 > changes nearly ready that addresses this, and a few other pending issues.
-
-
-Thanks Bruce for letting me know.  It's easy to work around - just 
-delete .config & include/config from sysroot.
-
-
-
-
 >
 > Bruce
 >
