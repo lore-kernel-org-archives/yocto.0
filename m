@@ -1,54 +1,61 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <csmiley@icontrol.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D092AE008FF; Sun, 11 Jan 2015 11:55:33 -0800 (PST)
+	id C7BADE008FF; Sun, 11 Jan 2015 15:15:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bruce.ashfield[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.45 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [207.46.100.113 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-la0-f45.google.com (mail-la0-f45.google.com
-	[209.85.215.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48335E008A6
-	for <yocto@yoctoproject.org>; Sun, 11 Jan 2015 11:55:23 -0800 (PST)
-Received: by mail-la0-f45.google.com with SMTP id gq15so21340944lab.4
-	for <yocto@yoctoproject.org>; Sun, 11 Jan 2015 11:55:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=WJBdpvp32qdDMB2YwN3qfIov/pdRnw4U73lQyVJc864=;
-	b=vwCE2T89/IxsSCgiMCLFccJJzMlAqzH7GDZvY40nZzG4hmS+19vDUbCG6uHoc6VLaz
-	3sxp8HZ+v4rLRTzULJ7ehDEofeUDOqkFxgzeFzGl/pYnUe7b0zNnmbINy23nEebg7+VA
-	aFmWSy9h7SFKLcNKalbyod2RfOrriCR6e8Ye7nJ6QGAA4SqDK+Vt42gcQOJxv2r7SYcD
-	zn900hIMzfDXCikUuxZYZD0wjzcrr39daIoGxvMavdjlWXRty8Kzj41w3OYGl3vcx7FE
-	l9tWGe/zQqXkzJmnUA0+gj6McT2NQH0BZEPIwLI0ZS8aEomfdM8K8ymQNYEVDebE4g6v
-	kvbA==
+X-Greylist: delayed 4822 seconds by postgrey-1.32 at yocto-www;
+	Sun, 11 Jan 2015 15:15:26 PST
+Received: from na01-by2-obe.outbound.protection.outlook.com
+	(mail-by2on0113.outbound.protection.outlook.com [207.46.100.113])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51C32E008A6
+	for <yocto@yoctoproject.org>; Sun, 11 Jan 2015 15:15:26 -0800 (PST)
+Received: from BL2PR05MB034.namprd05.prod.outlook.com (10.255.228.147) by
+	BL2PR05MB033.namprd05.prod.outlook.com (10.255.228.139) with Microsoft
+	SMTP Server (TLS) id 15.1.53.17; Sun, 11 Jan 2015 21:39:39 +0000
+Received: from BL2PR05MB034.namprd05.prod.outlook.com ([169.254.15.119]) by
+	BL2PR05MB034.namprd05.prod.outlook.com ([169.254.15.119]) with mapi id
+	15.01.0053.000; Sun, 11 Jan 2015 21:39:39 +0000
+From: Colin Smiley <csmiley@icontrol.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: meta-java: Problems creating image inside VM? openjdk-6 build
+	gets killed by host OOM killer.
+Thread-Index: AQHQLecZtejot/Drokehcb6GA2srTg==
+Date: Sun, 11 Jan 2015 21:39:39 +0000
+Message-ID: <D0D849B8.8909%csmiley@icontrol.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [70.114.229.189]
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=csmiley@icontrol.com; 
+x-dmarcaction-test: None
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(3005003);SRVR:BL2PR05MB033;
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa: BCL:0;PCL:0;RULEID:;SRVR:BL2PR05MB033;
+x-forefront-prvs: 045315E1EE
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6009001)(164054003)(479174004)(189002)(199003)(110136001)(122556002)(450100001)(77156002)(62966003)(40100003)(36756003)(87936001)(2656002)(229853001)(66066001)(106356001)(99286002)(101416001)(106116001)(2351001)(107886001)(19273905006)(68736005)(97736003)(2501002)(2900100001)(86362001)(15975445007)(1720100001)(102836002)(551544002)(46102003)(54356999)(92566002)(19580395003)(64706001)(50986999)(94096001)(563064011);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BL2PR05MB033;
+	H:BL2PR05MB034.namprd05.prod.outlook.com; FPR:; SPF:None;
+	MLV:sfv; PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (protection.outlook.com: icontrol.com does not designate
+	permitted sender hosts)
 MIME-Version: 1.0
-X-Received: by 10.112.134.74 with SMTP id pi10mr32612528lbb.67.1421006122232; 
-	Sun, 11 Jan 2015 11:55:22 -0800 (PST)
-Received: by 10.112.48.41 with HTTP; Sun, 11 Jan 2015 11:55:22 -0800 (PST)
-In-Reply-To: <54B1A9B4.4070207@mindchasers.com>
-References: <54B0028D.2000503@mindchasers.com>
-	<CADkTA4NvLdwTnknRvg83B1FNQgOSQg5x66kYo437+mszf=dWrQ@mail.gmail.com>
-	<54B1A9B4.4070207@mindchasers.com>
-Date: Sun, 11 Jan 2015 14:55:22 -0500
-Message-ID: <CADkTA4Noanc6T9j=kcohkZYhTESDFkSv4bxYwoFNQAkSy6nQdw@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Bob Cochran <yocto@mindchasers.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: linux: having problems forcing a kernel recompile...
+X-OriginatorOrg: icontrol.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Jan 2015 21:39:39.1413 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 56af53c7-f954-4c24-b63a-3d793c349485
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL2PR05MB033
+Subject: meta-java: Problems creating image inside VM? openjdk-6 build gets killed by host OOM killer.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,146 +67,226 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 11 Jan 2015 19:55:33 -0000
-Content-Type: text/plain; charset=UTF-8
-
-On Sat, Jan 10, 2015 at 5:37 PM, Bob Cochran <yocto@mindchasers.com> wrote:
-> On 01/10/2015 02:45 PM, Bruce Ashfield wrote:
->>
->> On Fri, Jan 9, 2015 at 11:32 AM, Bob Cochran <yocto@mindchasers.com>
->> wrote:
->>>
->>> Hi,
->>>
->>> I'm working with the latest poky master branch (as of this morning:
->>> 876370419a), and I can't force a recompile of the kernel:
->>>
->>> $ bitbake virtual/kernel -c compile -f
->>>
->>> fails with
->>>
->>> | make[2]: *** [prepare3] Error 1
->>>
->>> I have seen this with both linux-qoriq and my own derived linux-yocto
->>> recipe.
->>>
->>> I believe it's due to my sysroots kernel source directory not being
->>> clean.
->>>
->>> When I initially bake my kernel, I can see that the do_populate_sysroot
->>> task
->>> is run and it copies a .config into sysroots/<machine>/usr/src/kernel.
->>>
->>> When I try to force the recompile, MAKE sees that my source directory
->>> isn't
->>> clean and quits ( throws the prepare3 error ).
->>>
->>> Somewhat related, I also notice that neither a
->>>
->>> $ bitbake virtual/kernel -c cleansstate
->>>
->>> nor a
->>>
->>> $ bitbake virtual/kernel -c cleanall
->>>
->>> actually cleans my kernel source directory.  Should it?
->>>
->>>
->>> If these are legitimate bugs, I'll be happy to file a bugzilla report.
->>
->>
->>
->> These are due to some changes that we merged at the end of December to
->> improve kernel build times. We have bugs open for this issue
->
->
->
-> BTW, I'm browsing bugzilla but not seeing a bug entry that obviously covers
-> these issues.
->
-> I'm looking at kernel-configuration, kernel-tooling, and linux-yocto.
->
-> Perhaps it's covered somewhere else?  Can you please let me know the bug id?
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=7121
-
-Covers the same root cause.
-
-Bruce
-
->
-> Thanks again,
->
-> Bob
->
->
->
->
-> , and set of
->>
->> changes nearly ready that addresses this, and a few other pending issues.
->>
->> Bruce
->>
->>>
->>>
->>> Thanks
->>>
->>> Bob
->>>
->>>
->>>
->>>
->>>
->>> Error Log from running "bitbake virtual/kernel -c compile -f":
->>>
->>>
->>> | DEBUG: Executing shell function do_compile
->>> | NOTE: make -j 4 uImage CC=powerpc64-poky-linux-gcc
->>> --sysroot=/build/yocto/t1040_1/tmp/sysroots/t1040rdb-64b
->>> LD=powerpc64-poky-linux-ld.bfd
->>> --sysroot=/build/yocto/t1040_1/tmp/sysroots/t1040rdb-64b
->>> |   CHK     include/config/kernel.release
->>> |   GEN
->>>
->>> /build/yocto/t1040_1/tmp/work/t1040rdb_64b-poky-linux/linux-qoriq/3.12-r0/build/Makefile
->>> |   CHK     include/generated/uapi/linux/version.h
->>> |   Using /build/yocto/t1040_1/tmp/sysroots/t1040rdb-64b/usr/src/kernel
->>> as
->>> source for kernel
->>> |   /build/yocto/t1040_1/tmp/sysroots/t1040rdb-64b/usr/src/kernel is not
->>> clean, please run 'make mrproper'
->>> |   in the
->>> '/build/yocto/t1040_1/tmp/sysroots/t1040rdb-64b/usr/src/kernel'
->>> directory.
->>> |   CHK     include/generated/utsrelease.h
->>> | make[2]: *** [prepare3] Error 1
->>> | make[2]: *** Waiting for unfinished jobs....
->>> |   CC      scripts/mod/empty.o
->>> |   CC      scripts/mod/devicetable-offsets.s
->>> |   MKELF   scripts/mod/elfconfig.h
->>> |   HOSTCC  scripts/mod/modpost.o
->>> |   HOSTCC  scripts/mod/sumversion.o
->>> |   GEN     scripts/mod/devicetable-offsets.h
->>> |   HOSTCC  scripts/mod/file2alias.o
->>> |   HOSTLD  scripts/mod/modpost
->>> | make[1]: *** [sub-make] Error 2
->>> | make: *** [all] Error 2
->>> | ERROR: oe_runmake failed
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
->>
->>
->
+X-List-Received-Date: Sun, 11 Jan 2015 23:15:38 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <51BB5720855C324B96A7989ADEE6296C@namprd05.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 
 
+I need help.
 
--- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
+I am trying to use yocto and bitbake to create a QEMU-x86 image containing
+the openjdk-6 jvm. I am using open-embedded and meta-java for this.
+
+Since I am running on a Mac, I am attempting creation from inside a VMWare
+VM (similar to the Yocto Build Appliance). I have tried using Ubuntu 14.04
+Server, Fedora Core 18, 19, & 20 and met with the same results. My VM has
+4 cores, and 8GB of RAM, and with the OOM killer involved I=B9ve tried
+giving it 10GB and 12GB as well.
+
+With all VMs, the failure is the same. OOM killer kills the qemu-i386 when
+running the following:
+
+GENERATING=20
+/home/csmiley/yocto/poky/build/tmp/work/i586-poky-linux/openjdk-6-jre/6b24-
+1.11.9-r22.1/icedtea6-1.11.9/build/generated.build/sun/awt/X11/generator/si
+zes.32
+
+
+Here are the steps and configuration I follow:
+
+1) Create a VM with either Ubuntu or Fedora (failure has been same for
+all). VM has 50GB of disk and 8GB of RAM (although have tried increasing
+to 10GB and 12GB with same result).
+
+2) Perform os updates per yocto page here:
+http://www.yoctoproject.org/docs/1.7/ref-manual/ref-manual.html#required-pa
+ckages-for-the-host-development-system
+
+3) Check out appropriate version and branches, per meta-java readme.
+$ git clone http://git.yoctoproject.org/git/poky
+$ cd poky
+$ git checkout -b daisy origin/daisy
+$ git clone git://git.openembedded.org/meta-openembedded
+$ cd meta-openembedded
+$ git checkout -b daisy origin/daisy
+$ cd ..
+$ git clone git://git.yoctoproject.org/meta-java
+
+4) Since I only want java 6, copy meta-java=B9s java-test-image.bb recipe,
+calling it java-6-test-image.bb. It reads:
+
+LICENSE =3D "MIT"
+inherit core-image
+IMAGE_LINGUAS =3D " "
+IMAGE_INSTALL =3D "busybox modutils-initscripts initscripts opkg udev
+sysvinit netbase base-files base-passwd busybox-hwclock \
+                 ${ROOTFS_PKGMANAGE_BOOTSTRAP} ${CORE_IMAGE_EXTRA_INSTALL}
+\
+openjdk-6-jre openjdk-6-vm-zero openjdk-6-vm-jamvm openjdk-6-vm-cacao \
+                 strace dropbear binutils \
+                 classpath \
+                 classpath-common \
+                 classpath-examples \
+                 classpath-tools \
+                 jamvm \
+                 cacao \
+"
+
+5) Set up environment with `. ./oe-init-build-env`
+
+
+6) Modify build/conf/local.conf and add (I have tried setting threads and
+parallel_make to 1, 2, 4, and 8 with the same results):
+# Added for OpenJDK6
+PREFERRED_PROVIDER_virtual/java-initial =3D "cacao-initial"
+PREFERRED_PROVIDER_virtual/java-native =3D "jamvm-native"
+PREFERRED_PROVIDER_virtual/javac-native =3D "ecj-bootstrap-native"
+PREFERRED_VERSION_openjdk-6-jre =3D "6b24-1.11.9"
+PREFERRED_PROVIDER_openjdk-6-jre =3D "openjdk-6-jre"
+PREFERRED_VERSION_icedtea6-native =3D "1.8.11"
+# The maximum number of tasks BitBake should run in parallel at any one
+time
+BB_NUMBER_THREADS =3D "8"
+# Extra options passed to the make command during the do_compile task in
+order to specify parallel compilation on the local build host.
+PARALLEL_MAKE =3D "-j 8"
+
+7) Modify build/conf/bblayers.conf
+
+# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
+# changes incompatibly
+LCONF_VERSION =3D "6"
+
+BBPATH =3D "${TOPDIR}"
+BBFILES ?=3D ""
+
+BBLAYERS ?=3D " \
+  /home/csmiley/yocto/poky/meta \
+  /home/csmiley/yocto/poky/meta-yocto \
+  /home/csmiley/yocto/poky/meta-yocto-bsp \
+  /home/csmiley/yocto/poky/meta-openembedded/meta-oe \
+  /home/csmiley/yocto/poky/meta-java \
+  "
+BBLAYERS_NON_REMOVABLE ?=3D " \
+  /home/csmiley/yocto/poky/meta \
+  /home/csmiley/yocto/poky/meta-yocto \
+  "
+
+8) Run `bitbake java-6-test-image`. This runs until compilation failure,
+due to a date bug introduced in meta-java on 12/31/14, with:
+
+/home/csmiley/yacto/poky/build/tmp/work/i586-poky-linux/openjdk-6-jre/6b24-
+1.11.9-r22.1/build/bootstrap/jdk1.6.0/bin/java  -client -Xmx896m -Xms128m
+-XX:PermSize=3D32m -XX:MaxPermSize=3D160m -jar
+/home/csmiley/yacto/poky/build/tmp/work/i586-poky-linux/openjdk-6-jre/6b24-
+1.11.9-r22.1/build/openjdk.build-ecj/btjars/generatecurrencydata.jar -o
+/home/csmiley/yacto/poky/build/tmp/work/i586-poky-linux/openjdk-6-jre/6b24-
+1.11.9-r22.1/build/openjdk.build-ecj/lib/currency.data.temp \
+| 	< ../../../src/share/classes/java/util/CurrencyData.properties
+| Error: time is more than 10 years from present: 1104530400000
+| java.lang.RuntimeException: time is more than 10 years from present:
+1104530400000
+| 	at=20
+build.tools.generatecurrencydata.GenerateCurrencyData.makeSpecialCaseEntry(
+GenerateCurrencyData.java:285)
+| 	at=20
+build.tools.generatecurrencydata.GenerateCurrencyData.buildMainAndSpecialCa
+seTables(GenerateCurrencyData.java:225)
+| 	at=20
+build.tools.generatecurrencydata.GenerateCurrencyData.main(GenerateCurrency
+Data.java:154)
+
+9) Fix above problem by editing all instances of
+build/tmp/work/work/=8A/CurrencyData.properties to get rid of Turkish
+Currency Issue.
+
+
+10) Restart by running `bitbake java-6-test-image`. This now fails when
+doing the generation on Sizes.32 with:
+| i586-poky-linux-gcc  -m32 -march=3Di586
+--sysroot=3D/home/csmiley/yocto/poky/build/tmp/sysroots/qemux86  -O2 -pipe
+-g -feliminate-unused-debug-types   -fno-strict-aliasing -fPIC -W -Wall
+-Wno-unused -Wno-parentheses -m32 -D_LITTLE_ENDIAN -g   -DARCH=3D'"i586"'
+-Di586 -DLINUX -DRELEASE=3D'"1.6.0_24"' -D_LARGEFILE64_SOURCE -D_GNU_SOURCE
+-D_REENTRANT -I.=20
+-I/home/csmiley/yocto/poky/build/tmp/work/i586-poky-linux/openjdk-6-jre/6b2
+4-1.11.9-r22.1/icedtea6-1.11.9/build/openjdk.build-ecj/tmp/sun/sun.awt.X11/
+xawt/CClassHeaders -I../../../src/solaris/javavm/export
+-I../../../src/share/javavm/export -I../../../src/share/javavm/include
+-I../../../src/solaris/javavm/include -I../../../src/share/native/common
+-I../../../src/solaris/native/common
+-I../../../src/share/native/sun/awt/X11
+-I../../../src/solaris/native/sun/awt/X11
+-I/home/csmiley/yocto/poky/build/tmp/sysroots/qemux86/usr/include -DXAWT
+-DXAWT_HACK=20
+-I/home/csmiley/yocto/poky/build/tmp/work/i586-poky-linux/openjdk-6-jre/6b2
+4-1.11.9-r22.1/icedtea6-1.11.9/build/openjdk.build-ecj/tmp/sun/sun.awt.X11/
+xawt/../../sun.awt/awt/CClassHeaders -I../../../src/solaris/native/sun/awt
+-I../../../src/solaris/native/sun/xawt
+-I../../../src/solaris/native/sun/jdga
+-I../../../src/share/native/sun/awt/debug
+-I../../../src/share/native/sun/awt/image/cvutils
+-I../../../src/share/native/sun/java2d
+-I../../../src/share/native/sun/java2d/loops
+-I../../../src/share/native/sun/awt/image/cvutils
+-I../../../src/share/native/sun/awt/image
+-I../../../src/share/native/sun/font
+-I../../../src/solaris/native/sun/java2d
+-I../../../src/share/native/sun/java2d/pipe
+-I../../../src/share/native/sun/java2d/opengl
+-I../../../src/solaris/native/sun/java2d/opengl
+-I../../../src/solaris/native/sun/java2d/x11
+-I../../../src/share/native/sun/dc/path
+-I../../../src/share/native/sun/dc/doe
+-I../../../src/share/native/sun/awt/alphacomposite
+-I../../../src/share/native/sun/awt/medialib
+-I../../../src/solaris/native/sun/awt/medialib
+-I../../../src/solaris/native/sun/font -I../../../src/share/native/sun/awt
+-I../../../src/solaris/native/sun/awt -o
+/home/csmiley/yocto/poky/build/tmp/work/i586-poky-linux/openjdk-6-jre/6b24-
+1.11.9-r22.1/icedtea6-1.11.9/build/generated.build/sun/awt/X11/generator/si
+zer.32=20
+/home/csmiley/yocto/poky/build/tmp/work/i586-poky-linux/openjdk-6-jre/6b24-
+1.11.9-r22.1/icedtea6-1.11.9/build/generated.build/sun/awt/X11/generator/si
+zer.32.c
+| GENERATING=20
+/home/csmiley/yocto/poky/build/tmp/work/i586-poky-linux/openjdk-6-jre/6b24-
+1.11.9-r22.1/icedtea6-1.11.9/build/generated.build/sun/awt/X11/generator/si
+zes.32
+| Killed
+| make[5]: ***=20
+[/home/csmiley/yocto/poky/build/tmp/work/i586-poky-linux/openjdk-6-jre/6b24
+-1.11.9-r22.1/icedtea6-1.11.9/build/generated.build/sun/awt/X11/generator/s
+izes.32] Error 137
+
+
+
+System console has the message:
+Jan 11 02:00:47 yoctomatic kernel: [59600.572556] Out of memory: Kill
+process 69268 (qemu-i386) score 944 or sacrifice child
+Jan 11 02:00:47 yoctomatic kernel: [59600.573756] Killed process 69268
+(qemu-i386) total-vm:15519392kB, anon-rss:7674264kB, file-rss:32kB
+
+
+
+I have tried the following while diagnosing:
+
+* Build core-image-minimal (works)
+* Build java-6-test-image without java/jdk portions (dependencies only)
+(works)
+* Builds varying number of threads/parallel make, memory of VM, OS of VM
+(all break in same place).
+
+I would like some help diagnosing this. Please help!
+
+
+Thanks,
+
+
+Colin
+
+
+
 
