@@ -1,31 +1,47 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <jefro.net@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1D334E004F2; Tue, 13 Jan 2015 09:48:08 -0800 (PST)
+	id 42B7EE004F2; Tue, 13 Jan 2015 14:07:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.217.178 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BC8DE002F9
-	for <yocto@yoctoproject.org>; Tue, 13 Jan 2015 09:47:48 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 3D1C3F811E4; Tue, 13 Jan 2015 10:47:46 -0700 (MST)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 98DE0F811DE;
-	Tue, 13 Jan 2015 10:47:45 -0700 (MST)
-Message-ID: <54B55A43.1090701@mlbassoc.com>
-Date: Tue, 13 Jan 2015 10:47:47 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f178.google.com (mail-lb0-f178.google.com
+	[209.85.217.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48CD1E002F9
+	for <yocto@yoctoproject.org>; Tue, 13 Jan 2015 14:07:46 -0800 (PST)
+Received: by mail-lb0-f178.google.com with SMTP id u14so4967738lbd.9
+	for <yocto@yoctoproject.org>; Tue, 13 Jan 2015 14:07:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:date:message-id:subject:from:to:content-type;
+	bh=JDlnbxnkTGiPxhVvIcq0Hj4xCSGI8/sBIqleNb67JeQ=;
+	b=Ds3RpK61bImICvStknMjgw8NJQLPSK/WIYoXEzq1T8uLh7WFn8Q7K/rn1FNkJR8Njv
+	XRfVkrbf/6vjrYomRJJSHTVwx+qYMEKX6r6cMF3TPlj3pn0gAlbmdO7EsytbzUvzOma9
+	0kvlDLmuiKF8fbBR+6T/JC5ogS00LGCKSXRC6TRS33tmxCjzSzbI3z1JlSOk4YBXZdWY
+	WJ7Etg1NagS4kcVZ5ayun8ZnEOuF0fMNYsOxzFQSRnlbxOQagL2lxNXtqymvO9qDLenE
+	CZRW7GbZ0/0c8wbo3WuvUw3NQogmlrx5louIhVv7xgj6eioRhD6aPbzCB+CDM4BsjFoU
+	4dcQ==
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <BY1PR0301MB0903960DEDEACE9D2470CC5DFC400@BY1PR0301MB0903.namprd03.prod.outlook.com>
-In-Reply-To: <BY1PR0301MB0903960DEDEACE9D2470CC5DFC400@BY1PR0301MB0903.namprd03.prod.outlook.com>
-Subject: Re: [BBB] RTL8188EE not mounting
+X-Received: by 10.152.7.180 with SMTP id k20mr723230laa.4.1421186865399; Tue,
+	13 Jan 2015 14:07:45 -0800 (PST)
+Sender: jefro.net@gmail.com
+Received: by 10.112.5.39 with HTTP; Tue, 13 Jan 2015 14:07:45 -0800 (PST)
+Received: by 10.112.5.39 with HTTP; Tue, 13 Jan 2015 14:07:45 -0800 (PST)
+Date: Tue, 13 Jan 2015 14:07:45 -0800
+X-Google-Sender-Auth: -b1UIe20Ta_026aTFAJKadFM3IY
+Message-ID: <CA+YB3raLOWq-n2aws_xWrfCtfUnR8vbM_dM+7ntur+YyBLr6Sw@mail.gmail.com>
+From: Jeff Osier-Mixon <jefro@jefro.net>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Potential Yocto Project developer day at ELC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,37 +53,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Jan 2015 17:48:08 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 13 Jan 2015 22:07:48 -0000
+Content-Type: multipart/alternative; boundary=001a11c217d245900b050c8fda8d
 
-On 2015-01-13 10:00, Cameron B Skinner wrote:
-> Let me start by apologizing if the outcome is very obvious to everyone but me. I’m VERY new to Linux and newer to Yocto.
->
-> I have an RTL8188EE wifi board that I’m connecting to a Beaglebone Black via USB. If I do an ‘lsusb’ I can see that there is a Realtek device out there somewhere. Even though the
-> driver for this exact device appears in the kernel drivers, the device doesn’t mount. I’m running the dizzy version and have tried building the Sato, Full Command Line and Basic
-> versions hoping that one of them would include whatever it is that I need to recognize this device.
->
-> For the non-Sato versions I did copy the uImage and Modules to the SD card thinking they might help.
->
-> Any help would be great.
+--001a11c217d245900b050c8fda8d
+Content-Type: text/plain; charset=UTF-8
 
-For this device to work you need both a kernel driver and
-firmware.  The kernel driver is probably being built, but
-the firmware is probably not installed.
+Hi all - we are assessing the viability of hosting a developer day at ELC
+in march in San Jose. This day would offer hands on Yocto Project training,
+advanced presentations, and one on one contact with YP developers. The cost
+would be about $200. The most recent dev day trained over 120 people in
+Duesseldorf at ELCE last fall.
 
-Make sure your image includes the appropriate firmware for
-the device.  In your case I think this would be linux-firmware-rtl8192ce
+Please respond if you are interested in an event like this. We need a
+certain minimum number of interested folks before we can justify the
+expense.
 
-Does the appropriate driver get loaded into the kernel?  What
-does 'lsmod' show?
+Thanks
 
-If you still have trouble, send the output of 'lsmod' and 'dmesg'
-after you plug in the device.
+--001a11c217d245900b050c8fda8d
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+<p dir=3D"ltr">Hi all - we are assessing the viability of hosting a develop=
+er day at ELC in march in San Jose. This day would offer hands on Yocto Pro=
+ject training, advanced presentations, and one on one contact with YP devel=
+opers. The cost would be about $200. The most recent dev day trained over 1=
+20 people in Duesseldorf at ELCE last fall. </p>
+<p dir=3D"ltr">Please respond if you are interested in an event like this. =
+We need a certain minimum number of interested folks before we can justify =
+the expense. </p>
+<p dir=3D"ltr">Thanks</p>
 
+--001a11c217d245900b050c8fda8d--
