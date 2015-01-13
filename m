@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 219BDE004F2; Tue, 13 Jan 2015 08:42:17 -0800 (PST)
+	id 2D86EE003F9; Tue, 13 Jan 2015 08:42:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,32 +18,33 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.216.46 listed in list.dnswl.org]
-Received: from mail-qa0-f46.google.com (mail-qa0-f46.google.com
-	[209.85.216.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDB68E002F9
-	for <yocto@yoctoproject.org>; Tue, 13 Jan 2015 08:42:03 -0800 (PST)
-Received: by mail-qa0-f46.google.com with SMTP id j7so2845826qaq.5
-	for <yocto@yoctoproject.org>; Tue, 13 Jan 2015 08:42:03 -0800 (PST)
+	*      [209.85.216.48 listed in list.dnswl.org]
+Received: from mail-qa0-f48.google.com (mail-qa0-f48.google.com
+	[209.85.216.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4779E003E3
+	for <yocto@yoctoproject.org>; Tue, 13 Jan 2015 08:42:12 -0800 (PST)
+Received: by mail-qa0-f48.google.com with SMTP id v8so2839692qal.7
+	for <yocto@yoctoproject.org>; Tue, 13 Jan 2015 08:42:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=message-id:date:from:user-agent:mime-version:to:subject:references
 	:in-reply-to:content-type:content-transfer-encoding;
-	bh=pi8rEEPCvOGrkqE2Ip+TwdDUdI3RqcIQo3Ns94/4QY0=;
-	b=IDX+YZOB7AtyJGiSDNPl0ZTfgearbppJRZ9X0Nm3jfRy2K/sXGk0Kp4zGUJBqyIKLJ
-	hdHcyxGU1AWjce+y8H5QNMRjgsJ+0pSmoyNVKAKVWPgI7Iw+EuRR/PA/BswT2WD7jwyS
-	9J1KJdNkbGH5QSVGAWO4t4/c9MM8cKkJ+faPW3ZlxffAS7vXvpEBx9hKxQyDVCSP8GQy
-	0eZm7TbHItFgJcRPWO5Nud7klvJaKg6mzBu7190rybah8RwWmsNFOlzGAvb3NgpvaOdO
-	pOxVTn9nIwh7sdm2aJl9ZCbB8kdu1XimOEUPVNtD/rTSqimsWBYZVx42oB6BX8GrCxYA
-	kxgw==
-X-Received: by 10.140.23.84 with SMTP id 78mr56860230qgo.93.1421167323138;
-	Tue, 13 Jan 2015 08:42:03 -0800 (PST)
+	bh=dsiv4NWyWb/nGF05Z6+1b2fYcaT96c8aegBnruRVCyE=;
+	b=neXEJR7bk9CI06uXL518F8LqS9MzSSfKcPJzekm5atl5lEIak80U4qqmB4wjBi+9t1
+	ZmT29PFZEnf7S9hraGHOxEmMTrx/91Kkd0SOUosmO2BflwdtUYCR1DFmLzVJIyOwcS+m
+	r9G+A3Cd/jI8Id5ObcA75RdGSoXbnkOgHVxnS3gqtOc72xf02hmFYyJ6yngZQb60dijN
+	MmmQ1d5OdOQqCY6BCJ+o87FTLdfBArzuprJukPs+0RRIFYg4thY/QZt18i7SuIsJsMY/
+	Ay2RHPruTGbMLxHWo2zLxKO1E6dTMvUWectJZJipe85SUfRzRjC6yIvkeSUlYWhELcmH
+	elLg==
+X-Received: by 10.140.85.100 with SMTP id m91mr56795486qgd.7.1421167332546;
+	Tue, 13 Jan 2015 08:42:12 -0800 (PST)
 Received: from ?IPv6:2601:c:a700:272f:8862:ec43:da6e:7aef?
 	([2601:c:a700:272f:8862:ec43:da6e:7aef])
-	by mx.google.com with ESMTPSA id 43sm18061250qgb.17.2015.01.13.08.42.00
+	by mx.google.com with ESMTPSA id
+	y20sm18047421qgd.35.2015.01.13.08.42.10
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 13 Jan 2015 08:42:01 -0800 (PST)
-Message-ID: <54B54ACF.5010401@gmail.com>
-Date: Tue, 13 Jan 2015 08:41:51 -0800
+	Tue, 13 Jan 2015 08:42:11 -0800 (PST)
+Message-ID: <54B54AE1.2000008@gmail.com>
+Date: Tue, 13 Jan 2015 08:42:09 -0800
 From: akuster808 <akuster808@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
@@ -51,9 +52,8 @@ MIME-Version: 1.0
 To: Paul Eggleton <paul.eggleton@linux.intel.com>, 
  yocto@yoctoproject.org
 References: <1421141130-10354-1-git-send-email-paul.eggleton@linux.intel.com>
-	<1421141130-10354-2-git-send-email-paul.eggleton@linux.intel.com>
-In-Reply-To: <1421141130-10354-2-git-send-email-paul.eggleton@linux.intel.com>
-Subject: Re: [meta-security][PATCH 2/2] nikto: fix SRC_URI for multilib
+In-Reply-To: <1421141130-10354-1-git-send-email-paul.eggleton@linux.intel.com>
+Subject: Re: [meta-security][PATCH 1/2] libseccomp: fix SRC_URI for multilib
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,10 +69,9 @@ X-List-Received-Date: Tue, 13 Jan 2015 16:42:17 -0000
 Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
+merged.
 
-merged .
-
-thanks,
+Thanks,
 Armin
 
 On 01/13/2015 01:25 AM, Paul Eggleton wrote:
@@ -81,21 +80,21 @@ On 01/13/2015 01:25 AM, Paul Eggleton wrote:
 >
 > Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 > ---
->   recipes-security/nikto/nikto_2.1.5.bb | 2 +-
+>   recipes-security/libseccomp/libseccomp_2.1.1.bb | 2 +-
 >   1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/recipes-security/nikto/nikto_2.1.5.bb b/recipes-security/nikto/nikto_2.1.5.bb
-> index 40b5b72..8080d4a 100644
-> --- a/recipes-security/nikto/nikto_2.1.5.bb
-> +++ b/recipes-security/nikto/nikto_2.1.5.bb
-> @@ -6,7 +6,7 @@ LICENSE = "GPLv2"
->
+> diff --git a/recipes-security/libseccomp/libseccomp_2.1.1.bb b/recipes-security/libseccomp/libseccomp_2.1.1.bb
+> index 5e0b962..0663656 100644
+> --- a/recipes-security/libseccomp/libseccomp_2.1.1.bb
+> +++ b/recipes-security/libseccomp/libseccomp_2.1.1.bb
+> @@ -4,7 +4,7 @@ SECTION = "security"
+>   LICENSE = "GPL-2.0"
 >   LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 >
-> -SRC_URI = "http://cirt.net/nikto/${PN}-${PV}.tar.gz \
-> +SRC_URI = "http://cirt.net/nikto/${BP}.tar.gz \
->              file://location.patch"
->
->   SRC_URI[md5sum] = "efcc98a918becb77471ee9a5df0a7b1e"
+> -SRC_URI = "http://sourceforge.net/projects/libseccomp/files/${PN}-${PV}.tar.gz \
+> +SRC_URI = "http://sourceforge.net/projects/libseccomp/files/${BP}.tar.gz \
+>              file://compiler.patch \
+>              file://0001-tests-create-install-tests-target.patch \
+>              file://0002-tests-install-python-tests-if-appropriate.patch \
 >
 
