@@ -1,63 +1,31 @@
-Return-Path: <csmiley@icontrol.com>
+Return-Path: <flihp@twobit.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CA25BE00837; Mon, 12 Jan 2015 16:09:00 -0800 (PST)
+	id 39A24E00945; Mon, 12 Jan 2015 19:50:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [207.46.100.143 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from na01-by2-obe.outbound.protection.outlook.com
-	(mail-by2on0143.outbound.protection.outlook.com [207.46.100.143])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E23DE00752
-	for <yocto@yoctoproject.org>; Mon, 12 Jan 2015 16:08:53 -0800 (PST)
-Received: from BL2PR05MB034.namprd05.prod.outlook.com (10.255.228.147) by
-	BL2PR05MB035.namprd05.prod.outlook.com (10.255.228.154) with Microsoft
-	SMTP Server (TLS) id 15.1.53.17; Tue, 13 Jan 2015 00:08:50 +0000
-Received: from BL2PR05MB034.namprd05.prod.outlook.com ([169.254.15.119]) by
-	BL2PR05MB034.namprd05.prod.outlook.com ([169.254.15.119]) with mapi id
-	15.01.0053.000; Tue, 13 Jan 2015 00:08:50 +0000
-From: Colin Smiley <csmiley@icontrol.com>
-To: Colin Smiley <csmiley@icontrol.com>, Mark Hatle <mark.hatle@windriver.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] meta-java: Problems creating image inside VM? openjdk-6
-	build gets killed by host OOM killer.
-Thread-Index: AQHQLecZtejot/Drokehcb6GA2srTpy82zOA///Zu4CAABTjAA==
-Date: Tue, 13 Jan 2015 00:08:50 +0000
-Message-ID: <D0D9BD3B.8B01%csmiley@icontrol.com>
-References: <D0D849B8.8909%csmiley@icontrol.com>
-	<54B41C45.2010605@windriver.com> <D0D98207.89C2%csmiley@icontrol.com>
-In-Reply-To: <D0D98207.89C2%csmiley@icontrol.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [70.114.229.189]
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=csmiley@icontrol.com; 
-x-dmarcaction-test: None
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(3005003);SRVR:BL2PR05MB035;
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0;PCL:0;RULEID:;SRVR:BL2PR05MB035;
-x-forefront-prvs: 045584D28C
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(189002)(164054003)(199003)(377454003)(51704005)(51914003)(24454002)(479174004)(46102003)(107886001)(86362001)(15975445007)(50986999)(102836002)(105586002)(54356999)(106356001)(76176999)(106116001)(36756003)(97736003)(68736005)(2950100001)(2501002)(2900100001)(99286002)(101416001)(66066001)(92566002)(2656002)(62966003)(77156002)(40100003)(64706001)(87936001)(19580395003)(122556002)(19580405001)(7059030);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BL2PR05MB035;
-	H:BL2PR05MB034.namprd05.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-received-spf: None (protection.outlook.com: icontrol.com does not designate
-	permitted sender hosts)
-MIME-Version: 1.0
-X-OriginatorOrg: icontrol.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Jan 2015 00:08:50.2534 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 56af53c7-f954-4c24-b63a-3d793c349485
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL2PR05MB035
-Subject: Re: meta-java: Problems creating image inside VM? openjdk-6 build gets killed by host OOM killer.
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C643E00837
+	for <yocto@yoctoproject.org>; Mon, 12 Jan 2015 19:50:16 -0800 (PST)
+Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
+	helo=scrapper.twobit.us)
+	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1YAsTC-0001jA-OY; Tue, 13 Jan 2015 03:48:43 +0000
+From: Philip Tricca <flihp@twobit.us>
+To: yocto@yoctoproject.org
+Date: Tue, 13 Jan 2015 03:50:01 +0000
+Message-Id: <1421121004-8592-1-git-send-email-flihp@twobit.us>
+X-Mailer: git-send-email 1.7.10.4
+X-SA-Exim-Connect-IP: 50.185.54.102
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Subject: [meta-selinux][ 0/3] More recipe updates.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,148 +37,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Jan 2015 00:09:00 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <4F010DED1DEC7C4EACD7A67F339B363A@namprd05.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 13 Jan 2015 03:50:29 -0000
 
-DQpXZWxsLCBhZGRpbmcgbW9yZSBTV0FQIHRvIHRoZSBWTSBkaWRu4oCZdCB3b3JrLiBRZW11LWkz
-ODYgdXNlZCBpdCBhbGwhDQoNCkphbiAxMiAxNzo1NzowOSB5b2N0b21hdGljIGtlcm5lbDogWyA1
-NDc0LjEzMTIxM10gT3V0IG9mIG1lbW9yeTogS2lsbA0KcHJvY2VzcyAxMjM2MjEgKHFlbXUtaTM4
-Nikgc2NvcmUgOTgzIG9yIHNhY3JpZmljZSBjaGlsZA0KSmFuIDEyIDE3OjU3OjA5IHlvY3RvbWF0
-aWMga2VybmVsOiBbIDU0NzQuMTMxNjk4XSBLaWxsZWQgcHJvY2VzcyAxMjM2MjENCihxZW11LWkz
-ODYpIHRvdGFsLXZtOjQ5MDU2MTA4a0IsIGFub24tcnNzOjc0Nzk3MTZrQiwgZmlsZS1yc3M6NGtC
-DQoNCkkgYWRkZWQgMzJHQiBvZiBzd2FwIHRvIG15IGV4aXN0aW5nIFZNLCBmb3IgYSB0b3RhbCBv
-ZiA0MTg0MDYzMiBrYi4NCg0KDQpZb3XigJlsbCBzZWUsIGFib3ZlLCB0aGF0IHFlbXUtaTM4NiB1
-c2VkIGl0IGFsbCwgcGx1cyB0aGUgcGh5c2ljYWwuIEZhaWx1cmUNCmhhcHBlbnMgaW4gdGhlIHNh
-bWUgcGxhY2UsIGFzIHdlbGwuDQoNCg0KQ29saW4NCg0KDQpPbiAxLzEyLzE1LCA0OjU0IFBNLCAi
-Q29saW4gU21pbGV5IiA8Y3NtaWxleUBpY29udHJvbC5jb20+IHdyb3RlOg0KDQo+DQo+TWFyaywg
-dGhhbmtzIGZvciB0aGUgcmVwbHkuIENvbW1lbnRzIGluLWxpbmUuDQo+DQo+T24gMS8xMi8xNSwg
-MToxMSBQTSwgIk1hcmsgSGF0bGUiIDxtYXJrLmhhdGxlQHdpbmRyaXZlci5jb20+IHdyb3RlOg0K
-Pg0KPj5PbiAxLzExLzE1IDM6MzkgUE0sIENvbGluIFNtaWxleSB3cm90ZToNCj4+PiANCj4+PiBJ
-IG5lZWQgaGVscC4NCj4+PiANCj4+DQo+Pi4uLiBjb21tZW50aW5nIG9uIHRoZSBvbmUgcGllY2Ug
-SSdtIGF3YXJlIG9mIC4uLg0KPj4NCj4+PiA4KSBSdW4gYGJpdGJha2UgamF2YS02LXRlc3QtaW1h
-Z2VgLiBUaGlzIHJ1bnMgdW50aWwgY29tcGlsYXRpb24NCj4+PmZhaWx1cmUsDQo+Pj4gZHVlIHRv
-IGEgZGF0ZSBidWcgaW50cm9kdWNlZCBpbiBtZXRhLWphdmEgb24gMTIvMzEvMTQsIHdpdGg6DQo+
-Pj4gDQo+Pj4gDQo+Pj4vaG9tZS9jc21pbGV5L3lhY3RvL3Bva3kvYnVpbGQvdG1wL3dvcmsvaTU4
-Ni1wb2t5LWxpbnV4L29wZW5qZGstNi1qcmUvNmINCj4+PjINCj4+PjQtDQo+Pj4gMS4xMS45LXIy
-Mi4xL2J1aWxkL2Jvb3RzdHJhcC9qZGsxLjYuMC9iaW4vamF2YSAgLWNsaWVudCAtWG14ODk2bQ0K
-Pj4+LVhtczEyOG0NCj4+PiAtWFg6UGVybVNpemU9MzJtIC1YWDpNYXhQZXJtU2l6ZT0xNjBtIC1q
-YXINCj4+PiANCj4+Pi9ob21lL2NzbWlsZXkveWFjdG8vcG9reS9idWlsZC90bXAvd29yay9pNTg2
-LXBva3ktbGludXgvb3Blbmpkay02LWpyZS82Yg0KPj4+Mg0KPj4+NC0NCj4+PiAxLjExLjktcjIy
-LjEvYnVpbGQvb3Blbmpkay5idWlsZC1lY2ovYnRqYXJzL2dlbmVyYXRlY3VycmVuY3lkYXRhLmph
-ciAtbw0KPj4+IA0KPj4+L2hvbWUvY3NtaWxleS95YWN0by9wb2t5L2J1aWxkL3RtcC93b3JrL2k1
-ODYtcG9reS1saW51eC9vcGVuamRrLTYtanJlLzZiDQo+Pj4yDQo+Pj40LQ0KPj4+IDEuMTEuOS1y
-MjIuMS9idWlsZC9vcGVuamRrLmJ1aWxkLWVjai9saWIvY3VycmVuY3kuZGF0YS50ZW1wIFwNCj4+
-PiB8IAk8IC4uLy4uLy4uL3NyYy9zaGFyZS9jbGFzc2VzL2phdmEvdXRpbC9DdXJyZW5jeURhdGEu
-cHJvcGVydGllcw0KPj4+IHwgRXJyb3I6IHRpbWUgaXMgbW9yZSB0aGFuIDEwIHllYXJzIGZyb20g
-cHJlc2VudDogMTEwNDUzMDQwMDAwMA0KPj4+IHwgamF2YS5sYW5nLlJ1bnRpbWVFeGNlcHRpb246
-IHRpbWUgaXMgbW9yZSB0aGFuIDEwIHllYXJzIGZyb20gcHJlc2VudDoNCj4+PiAxMTA0NTMwNDAw
-MDAwDQo+Pj4gfCAJYXQgDQo+Pj4gDQo+Pj5idWlsZC50b29scy5nZW5lcmF0ZWN1cnJlbmN5ZGF0
-YS5HZW5lcmF0ZUN1cnJlbmN5RGF0YS5tYWtlU3BlY2lhbENhc2VFbnQNCj4+PnINCj4+PnkoDQo+
-Pj4gR2VuZXJhdGVDdXJyZW5jeURhdGEuamF2YToyODUpDQo+Pj4gfCAJYXQgDQo+Pj4gDQo+Pj5i
-dWlsZC50b29scy5nZW5lcmF0ZWN1cnJlbmN5ZGF0YS5HZW5lcmF0ZUN1cnJlbmN5RGF0YS5idWls
-ZE1haW5BbmRTcGVjaWENCj4+PmwNCj4+PkNhDQo+Pj4gc2VUYWJsZXMoR2VuZXJhdGVDdXJyZW5j
-eURhdGEuamF2YToyMjUpDQo+Pj4gfCAJYXQgDQo+Pj4gDQo+Pj5idWlsZC50b29scy5nZW5lcmF0
-ZWN1cnJlbmN5ZGF0YS5HZW5lcmF0ZUN1cnJlbmN5RGF0YS5tYWluKEdlbmVyYXRlQ3VycmUNCj4+
-Pm4NCj4+PmN5DQo+Pj4gRGF0YS5qYXZhOjE1NCkNCj4+PiANCj4+PiA5KSBGaXggYWJvdmUgcHJv
-YmxlbSBieSBlZGl0aW5nIGFsbCBpbnN0YW5jZXMgb2YNCj4+PiBidWlsZC90bXAvd29yay93b3Jr
-L8WgL0N1cnJlbmN5RGF0YS5wcm9wZXJ0aWVzIHRvIGdldCByaWQgb2YgVHVya2lzaA0KPj4+IEN1
-cnJlbmN5IElzc3VlLg0KPj4NCj4+VGhhdCBpcyByaWdodCBhbnN3ZXIgKHdlbGwga2luZCBvZiku
-ICBSZWFsbHkgYSBwYXRjaCBuZWVkcyB0byBiZQ0KPj5zdWJtaXR0ZWQgZm9yDQo+PnRoaXMgbGl0
-dGxlIGJpdCBvZiBpbnNhbml0eS4NCj4NCj5BY2NvcmRpbmcgdG8gYW4gT3BlbkpESyBib2FyZC9t
-YWlsaW5nIGxpc3QgSSBzYXcgaW4gbXkgZ29vZ2xpbmctYWJvdXQsDQo+dGhleeKAmXJlIGxvb2tp
-bmcgdG93YXJkcyBiYWNrLXBvcnRpbmcgc29tZSBvZiB0aGUgY3VycmVuY3kgY2hhbmdlcyBmcm9t
-DQo+T3BlbkpESyA3LiANCj4NCj5NeSBpbmNsaW5hdGlvbiBpcyB0byBzdXBwbHkgYSBwYXRjaCBp
-bnRvIHRoZSByZWNpcGUgdGhhdCB3aWxsIHBhdGNoDQo+Q3VycmVuY3lEYXRhIHBvc3Qgc291cmNl
-IGNoZWNrb3V0LCBidXQgcHJlLWJ1aWxkLiBJIGFtIG5ldyB0byBob3cgeW9jdG8NCj53b3Jrcywg
-aG93ZXZlciwgc28gSeKAmW0gbm90IHN1cmUgaWYgdGhhdOKAmXMgdGhlIHJpZ2h0IHdheSB0byBk
-byBpdC4NCj4NCj4NCj4NCj4+DQo+Pj4gMTApIFJlc3RhcnQgYnkgcnVubmluZyBgYml0YmFrZSBq
-YXZhLTYtdGVzdC1pbWFnZWAuIFRoaXMgbm93IGZhaWxzIHdoZW4NCj4+PiBkb2luZyB0aGUgZ2Vu
-ZXJhdGlvbiBvbiBTaXplcy4zMiB3aXRoOg0KPj4+IHwgaTU4Ni1wb2t5LWxpbnV4LWdjYyAgLW0z
-MiAtbWFyY2g9aTU4Ng0KPj4+IC0tc3lzcm9vdD0vaG9tZS9jc21pbGV5L3lvY3RvL3Bva3kvYnVp
-bGQvdG1wL3N5c3Jvb3RzL3FlbXV4ODYgIC1PMg0KPj4+LXBpcGUNCj4+PiAtZyAtZmVsaW1pbmF0
-ZS11bnVzZWQtZGVidWctdHlwZXMgICAtZm5vLXN0cmljdC1hbGlhc2luZyAtZlBJQyAtVyAtV2Fs
-bA0KPj4+IC1Xbm8tdW51c2VkIC1Xbm8tcGFyZW50aGVzZXMgLW0zMiAtRF9MSVRUTEVfRU5ESUFO
-IC1nICAgLURBUkNIPSciaTU4NiInDQo+Pj4gLURpNTg2IC1ETElOVVggLURSRUxFQVNFPSciMS42
-LjBfMjQiJyAtRF9MQVJHRUZJTEU2NF9TT1VSQ0UNCj4+Pi1EX0dOVV9TT1VSQ0UNCj4+PiAtRF9S
-RUVOVFJBTlQgLUkuDQo+Pj4gDQo+Pj4tSS9ob21lL2NzbWlsZXkveW9jdG8vcG9reS9idWlsZC90
-bXAvd29yay9pNTg2LXBva3ktbGludXgvb3Blbmpkay02LWpyZS8NCj4+PjYNCj4+PmIyDQo+Pj4g
-DQo+Pj40LTEuMTEuOS1yMjIuMS9pY2VkdGVhNi0xLjExLjkvYnVpbGQvb3Blbmpkay5idWlsZC1l
-Y2ovdG1wL3N1bi9zdW4uYXd0LlgNCj4+PjENCj4+PjEvDQo+Pj4geGF3dC9DQ2xhc3NIZWFkZXJz
-IC1JLi4vLi4vLi4vc3JjL3NvbGFyaXMvamF2YXZtL2V4cG9ydA0KPj4+IC1JLi4vLi4vLi4vc3Jj
-L3NoYXJlL2phdmF2bS9leHBvcnQgLUkuLi8uLi8uLi9zcmMvc2hhcmUvamF2YXZtL2luY2x1ZGUN
-Cj4+PiAtSS4uLy4uLy4uL3NyYy9zb2xhcmlzL2phdmF2bS9pbmNsdWRlDQo+Pj4tSS4uLy4uLy4u
-L3NyYy9zaGFyZS9uYXRpdmUvY29tbW9uDQo+Pj4gLUkuLi8uLi8uLi9zcmMvc29sYXJpcy9uYXRp
-dmUvY29tbW9uDQo+Pj4gLUkuLi8uLi8uLi9zcmMvc2hhcmUvbmF0aXZlL3N1bi9hd3QvWDExDQo+
-Pj4gLUkuLi8uLi8uLi9zcmMvc29sYXJpcy9uYXRpdmUvc3VuL2F3dC9YMTENCj4+PiAtSS9ob21l
-L2NzbWlsZXkveW9jdG8vcG9reS9idWlsZC90bXAvc3lzcm9vdHMvcWVtdXg4Ni91c3IvaW5jbHVk
-ZQ0KPj4+LURYQVdUDQo+Pj4gLURYQVdUX0hBQ0sgDQo+Pj4gDQo+Pj4tSS9ob21lL2NzbWlsZXkv
-eW9jdG8vcG9reS9idWlsZC90bXAvd29yay9pNTg2LXBva3ktbGludXgvb3Blbmpkay02LWpyZS8N
-Cj4+PjYNCj4+PmIyDQo+Pj4gDQo+Pj40LTEuMTEuOS1yMjIuMS9pY2VkdGVhNi0xLjExLjkvYnVp
-bGQvb3Blbmpkay5idWlsZC1lY2ovdG1wL3N1bi9zdW4uYXd0LlgNCj4+PjENCj4+PjEvDQo+Pj4g
-eGF3dC8uLi8uLi9zdW4uYXd0L2F3dC9DQ2xhc3NIZWFkZXJzDQo+Pj4tSS4uLy4uLy4uL3NyYy9z
-b2xhcmlzL25hdGl2ZS9zdW4vYXd0DQo+Pj4gLUkuLi8uLi8uLi9zcmMvc29sYXJpcy9uYXRpdmUv
-c3VuL3hhd3QNCj4+PiAtSS4uLy4uLy4uL3NyYy9zb2xhcmlzL25hdGl2ZS9zdW4vamRnYQ0KPj4+
-IC1JLi4vLi4vLi4vc3JjL3NoYXJlL25hdGl2ZS9zdW4vYXd0L2RlYnVnDQo+Pj4gLUkuLi8uLi8u
-Li9zcmMvc2hhcmUvbmF0aXZlL3N1bi9hd3QvaW1hZ2UvY3Z1dGlscw0KPj4+IC1JLi4vLi4vLi4v
-c3JjL3NoYXJlL25hdGl2ZS9zdW4vamF2YTJkDQo+Pj4gLUkuLi8uLi8uLi9zcmMvc2hhcmUvbmF0
-aXZlL3N1bi9qYXZhMmQvbG9vcHMNCj4+PiAtSS4uLy4uLy4uL3NyYy9zaGFyZS9uYXRpdmUvc3Vu
-L2F3dC9pbWFnZS9jdnV0aWxzDQo+Pj4gLUkuLi8uLi8uLi9zcmMvc2hhcmUvbmF0aXZlL3N1bi9h
-d3QvaW1hZ2UNCj4+PiAtSS4uLy4uLy4uL3NyYy9zaGFyZS9uYXRpdmUvc3VuL2ZvbnQNCj4+PiAt
-SS4uLy4uLy4uL3NyYy9zb2xhcmlzL25hdGl2ZS9zdW4vamF2YTJkDQo+Pj4gLUkuLi8uLi8uLi9z
-cmMvc2hhcmUvbmF0aXZlL3N1bi9qYXZhMmQvcGlwZQ0KPj4+IC1JLi4vLi4vLi4vc3JjL3NoYXJl
-L25hdGl2ZS9zdW4vamF2YTJkL29wZW5nbA0KPj4+IC1JLi4vLi4vLi4vc3JjL3NvbGFyaXMvbmF0
-aXZlL3N1bi9qYXZhMmQvb3BlbmdsDQo+Pj4gLUkuLi8uLi8uLi9zcmMvc29sYXJpcy9uYXRpdmUv
-c3VuL2phdmEyZC94MTENCj4+PiAtSS4uLy4uLy4uL3NyYy9zaGFyZS9uYXRpdmUvc3VuL2RjL3Bh
-dGgNCj4+PiAtSS4uLy4uLy4uL3NyYy9zaGFyZS9uYXRpdmUvc3VuL2RjL2RvZQ0KPj4+IC1JLi4v
-Li4vLi4vc3JjL3NoYXJlL25hdGl2ZS9zdW4vYXd0L2FscGhhY29tcG9zaXRlDQo+Pj4gLUkuLi8u
-Li8uLi9zcmMvc2hhcmUvbmF0aXZlL3N1bi9hd3QvbWVkaWFsaWINCj4+PiAtSS4uLy4uLy4uL3Ny
-Yy9zb2xhcmlzL25hdGl2ZS9zdW4vYXd0L21lZGlhbGliDQo+Pj4gLUkuLi8uLi8uLi9zcmMvc29s
-YXJpcy9uYXRpdmUvc3VuL2ZvbnQNCj4+Pi1JLi4vLi4vLi4vc3JjL3NoYXJlL25hdGl2ZS9zdW4v
-YXd0DQo+Pj4gLUkuLi8uLi8uLi9zcmMvc29sYXJpcy9uYXRpdmUvc3VuL2F3dCAtbw0KPj4+IA0K
-Pj4+L2hvbWUvY3NtaWxleS95b2N0by9wb2t5L2J1aWxkL3RtcC93b3JrL2k1ODYtcG9reS1saW51
-eC9vcGVuamRrLTYtanJlLzZiDQo+Pj4yDQo+Pj40LQ0KPj4+IA0KPj4+MS4xMS45LXIyMi4xL2lj
-ZWR0ZWE2LTEuMTEuOS9idWlsZC9nZW5lcmF0ZWQuYnVpbGQvc3VuL2F3dC9YMTEvZ2VuZXJhdG9y
-DQo+Pj4vDQo+Pj5zaQ0KPj4+IHplci4zMiANCj4+PiANCj4+Pi9ob21lL2NzbWlsZXkveW9jdG8v
-cG9reS9idWlsZC90bXAvd29yay9pNTg2LXBva3ktbGludXgvb3Blbmpkay02LWpyZS82Yg0KPj4+
-Mg0KPj4+NC0NCj4+PiANCj4+PjEuMTEuOS1yMjIuMS9pY2VkdGVhNi0xLjExLjkvYnVpbGQvZ2Vu
-ZXJhdGVkLmJ1aWxkL3N1bi9hd3QvWDExL2dlbmVyYXRvcg0KPj4+Lw0KPj4+c2kNCj4+PiB6ZXIu
-MzIuYw0KPj4+IHwgR0VORVJBVElORyANCj4+PiANCj4+Pi9ob21lL2NzbWlsZXkveW9jdG8vcG9r
-eS9idWlsZC90bXAvd29yay9pNTg2LXBva3ktbGludXgvb3Blbmpkay02LWpyZS82Yg0KPj4+Mg0K
-Pj4+NC0NCj4+PiANCj4+PjEuMTEuOS1yMjIuMS9pY2VkdGVhNi0xLjExLjkvYnVpbGQvZ2VuZXJh
-dGVkLmJ1aWxkL3N1bi9hd3QvWDExL2dlbmVyYXRvcg0KPj4+Lw0KPj4+c2kNCj4+PiB6ZXMuMzIN
-Cj4+PiB8IEtpbGxlZA0KPj4+IHwgbWFrZVs1XTogKioqIA0KPj4+IA0KPj4+Wy9ob21lL2NzbWls
-ZXkveW9jdG8vcG9reS9idWlsZC90bXAvd29yay9pNTg2LXBva3ktbGludXgvb3Blbmpkay02LWpy
-ZS82DQo+Pj5iDQo+Pj4yNA0KPj4+IA0KPj4+LTEuMTEuOS1yMjIuMS9pY2VkdGVhNi0xLjExLjkv
-YnVpbGQvZ2VuZXJhdGVkLmJ1aWxkL3N1bi9hd3QvWDExL2dlbmVyYXRvDQo+Pj5yDQo+Pj4vcw0K
-Pj4+IGl6ZXMuMzJdIEVycm9yIDEzNw0KPj4+IA0KPj4+IA0KPj4+IA0KPj4+IFN5c3RlbSBjb25z
-b2xlIGhhcyB0aGUgbWVzc2FnZToNCj4+PiBKYW4gMTEgMDI6MDA6NDcgeW9jdG9tYXRpYyBrZXJu
-ZWw6IFs1OTYwMC41NzI1NTZdIE91dCBvZiBtZW1vcnk6IEtpbGwNCj4+PiBwcm9jZXNzIDY5MjY4
-IChxZW11LWkzODYpIHNjb3JlIDk0NCBvciBzYWNyaWZpY2UgY2hpbGQNCj4+PiBKYW4gMTEgMDI6
-MDA6NDcgeW9jdG9tYXRpYyBrZXJuZWw6IFs1OTYwMC41NzM3NTZdIEtpbGxlZCBwcm9jZXNzIDY5
-MjY4DQo+Pj4gKHFlbXUtaTM4NikgdG90YWwtdm06MTU1MTkzOTJrQiwgYW5vbi1yc3M6NzY3NDI2
-NGtCLCBmaWxlLXJzczozMmtCDQo+Pg0KPj5UaGUgYWJvdmUgc2VlbXMgdG8gaW5kaWNhdGUgeW91
-IGhvc3Qgc3lzdGVtIHJhbiBvdXQgb2YgbWVtb3J5IG9yIHlvdXINCj4+bG9jYWwNCj4+cmVzb3Vy
-Y2Ugc3BhY2Ugd2FzIGhpdC4NCj4+DQo+PlNvbWUgb2YgdGhlIGdlbmVyYXRvcnMgY2FuIHRha2Ug
-Z2lnYWJ5dGVzIG9mIG1lbW9yeSBhbmQgd2hlbiBhIHBhcmFsbGVsDQo+PmJ1aWxkIGlzDQo+PmF0
-dGVtcHRlZCBzbWFsbGVyIHN5c3RlbXMganVzdCBhcmUgbm90IGVub3VnaC4gIChZZXMsIDE2IEdC
-IG9mIGFjdHVhbCByYW0NCj4+aXMNCj4+c3RhcnRpbmcgdG8gYmUgY29uc2lkZXJlZCAic21hbGwi
-IGZvciBzb21lIG9mIHRoZXNlIGtpbmRzIG9mIGJ1aWxkcy4pDQo+Pg0KPj5JJ2QgcmVjb21tZW5k
-IGNoZWNraW5nIHlvdSBsb2NhbCBlbnZpcm9ubWVudCBzZXR0aW5ncyAodWxpbWl0KSwgdmVyaWZ5
-aW5nDQo+PnRoYXQNCj4+eW91IGhhdmUgcGxlbnR5IG9mIHN3YW1wLi4gYW5kIGlmIHlvdSBhcmUg
-c3RpbGwgaGF2aW5nIHByb2JsZW1zIGxpbWl0IHRoZQ0KPj5udW1iZXINCj4+b2YgcGFyYWxsZWwg
-am9icy4gIChQYXJhbGxlbCB0YXNrcyBzaG91bGQgc3RpbGwgYmUgZmluZS4pDQo+Pg0KPj4oQlRX
-IG1vc3Qgb2YgbXkgYnVpbGRlcnMgaGF2ZSAxNi0yNCBjb3JlcywgMzItNjQgR0Igb2YgcmFtLCBh
-bmQgMjU2KyBHQg0KPj5vZg0KPj5zd2FwLi4uICBJJ3ZlIG5vdCBydW4gaW50byB0aGVzZSBteXNl
-bGYsIGJ1dCBJJ20gbm90IGJ1aWxkaW5nIGphdmEgb24gYQ0KPj5yZWd1bGFyDQo+PmJhc2lzIGVp
-dGhlci4pDQo+DQo+Rmlyc3Qgb2ZmLCB0aGF04oCZcyBhIGhlY2sgb2YgYSBidWlsZCBtYWNoaW5l
-IHNldHVwLiBJIHRoaW5rIG91ciBJVCBndXkganVzdA0KPmZhaW50ZWQuDQo+DQo+U2Vjb25kLCBJ
-IGhhdmUgdHJpZWQgYnVpbGRpbmcgd2l0aCBqdXN0IDEgcGFyYWxsZWwgam9iIHdpdGggdGhlIHNh
-bWUNCj5yZXN1bHRzLiBJ4oCZbSBhZGRpbmcgYSAzMkdCIHN3YXAgZGlzayB0byBteSBWTS4gSeKA
-mWxsIHNlZSBpZiB0aGF0IHdvcmtzLg0KPg0KPlRoYW5rcywNCj4NCj4NCj5Db2xpbg0KPg0KPi0t
-IA0KPl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+eW9j
-dG8gbWFpbGluZyBsaXN0DQo+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPmh0dHBzOi8vbGlzdHMu
-eW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KDQo=
+Greetings,
+
+Three more recipe udpates to get meta-selinux building with oe-core master
+again. These are mostly mundane though the move from findutils from 4.4.x
+to 4.5.x removes the need for patches that have since gone upstream (w00t!).
+
+Best,
+Philip
+
+Philip Tricca (3):
+  findutils: Upgrade recipe to 4.5 and use wildcard for pico version.
+  logrotate: Use wildcard for version number.
+  tar: Use wildcard for version number in bbappend.
+
+ .../findutils-with-selinux-gnulib.patch            |   55 --
+ .../findutils-4.4.2/findutils-with-selinux.patch   |  528 --------------------
+ .../findutils/findutils_4.4.2.bbappend             |   14 -
+ .../findutils/findutils_4.5.%.bbappend             |    4 +
+ recipes-extended/logrotate/logrotate_%.bbappend    |    7 +
+ .../logrotate/logrotate_3.8.7.bbappend             |    7 -
+ recipes-extended/tar/tar_%.bbappend                |   13 +
+ recipes-extended/tar/tar_1.27.1.bbappend           |   13 -
+ 8 files changed, 24 insertions(+), 617 deletions(-)
+ delete mode 100644 recipes-extended/findutils/findutils-4.4.2/findutils-with-selinux-gnulib.patch
+ delete mode 100644 recipes-extended/findutils/findutils-4.4.2/findutils-with-selinux.patch
+ delete mode 100644 recipes-extended/findutils/findutils_4.4.2.bbappend
+ create mode 100644 recipes-extended/findutils/findutils_4.5.%.bbappend
+ create mode 100644 recipes-extended/logrotate/logrotate_%.bbappend
+ delete mode 100644 recipes-extended/logrotate/logrotate_3.8.7.bbappend
+ create mode 100644 recipes-extended/tar/tar_%.bbappend
+ delete mode 100644 recipes-extended/tar/tar_1.27.1.bbappend
+
+-- 
+1.7.10.4
+
 
