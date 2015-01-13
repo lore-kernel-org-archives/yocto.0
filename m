@@ -1,45 +1,50 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <challinan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AA604E006EF; Tue, 13 Jan 2015 15:35:32 -0800 (PST)
+	id A7662E006EF; Tue, 13 Jan 2015 15:51:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.173 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (challinan[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-we0-f173.google.com (mail-we0-f173.google.com
-	[74.125.82.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15629E003E3
-	for <yocto@yoctoproject.org>; Tue, 13 Jan 2015 15:35:19 -0800 (PST)
-Received: by mail-we0-f173.google.com with SMTP id q58so5819352wes.4
-	for <yocto@yoctoproject.org>; Tue, 13 Jan 2015 15:35:18 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=DFBky7r+JJFoCXdlQwCh8CMbpcB+VTiVaIAwClag3LM=;
-	b=lp+y8ylaTf29PFz6dflRy5/zedXXd1z3psHfD7sUTIM9qsT5fSJ/X75Jf+/WSH4/LG
-	RuXSf9oiO1nuCqPjGdJkM2iOaJCSC0gPU2nDRgzin3xdL4edJTzqieMY6lIfO8gfAGJl
-	iaB2UAGunG0ioORsFOwOiXwiuLGJuGheLFPe/0ZYVr9sd0H9HhEX8hPTVyPXOnvdraja
-	/xjLS3fDdMaxa1O964x/++UVYZzYduOGSy9ZSUwhvXltVL7T0yiMeWFEo3ioGv0Mh6AR
-	DUxzil9mw6jzmMj5ubhMCFp0PC8QMDH7ftN8GKjdZBCBbHqx16G+kjNy8eN06cAVplML
-	I9MA==
-X-Gm-Message-State: ALoCoQnHPizZwgRBdlzzPRNrbpCqFAQbNW9wf3UbWYFXypo5M+pRpQdJ7cljFvqB+sfHJEM+ojzC
-X-Received: by 10.194.93.194 with SMTP id cw2mr1542339wjb.21.1421192118021;
-	Tue, 13 Jan 2015 15:35:18 -0800 (PST)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f53.google.com (mail-oi0-f53.google.com
+	[209.85.218.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F38ADE003E3
+	for <yocto@yoctoproject.org>; Tue, 13 Jan 2015 15:51:30 -0800 (PST)
+Received: by mail-oi0-f53.google.com with SMTP id g201so4904428oib.12
+	for <yocto@yoctoproject.org>; Tue, 13 Jan 2015 15:51:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=ageRSWepNxuiLIWYxdG/xt5TSNfIaG7BdrozVFSGnLI=;
+	b=Il7lbODO5MR2w25FHouy5weeT9BfYpPb4zv8QI4el+savtoc8OlEndUKQZ/tSgvDGu
+	uApoSMZIIQftV0682N5LOPPMWK9oXxMl2ZVO1HpkFwHiDe+PAsv+6jCRXoPRd8vW4b1w
+	p640nb7cpe3/RnDXgf8pFcyp2k4R3rjIcZf+gwkpKnmPpQeHR0XDYspcMFjucIKSBLxj
+	WLKBLlqevszILADlNDoNgOfpbVuMenk9ReApiD7b+SFmg2u1iyZf36FdONkf4vfChixw
+	0W4NaPu//6Ey3m+JuJOZzKlt8DTikWpyNUCOWNtY09h+fvzxAdzUh8rIVZVizm015/41
+	d4hA==
 MIME-Version: 1.0
-Received: by 10.216.107.132 with HTTP; Tue, 13 Jan 2015 15:34:57 -0800 (PST)
-X-Originating-IP: [195.249.186.165]
+X-Received: by 10.202.97.9 with SMTP id v9mr661975oib.34.1421193089797; Tue,
+	13 Jan 2015 15:51:29 -0800 (PST)
+Received: by 10.202.196.134 with HTTP; Tue, 13 Jan 2015 15:51:29 -0800 (PST)
 In-Reply-To: <CA+YB3raLOWq-n2aws_xWrfCtfUnR8vbM_dM+7ntur+YyBLr6Sw@mail.gmail.com>
 References: <CA+YB3raLOWq-n2aws_xWrfCtfUnR8vbM_dM+7ntur+YyBLr6Sw@mail.gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Wed, 14 Jan 2015 00:34:57 +0100
-Message-ID: <CAK18fxGkOXR8tGr-R9MR68TMs4Nx7MpPmz2YeZmuzQNZv2XR7A@mail.gmail.com>
+Date: Tue, 13 Jan 2015 18:51:29 -0500
+Message-ID: <CAME0jBSKpEgVk7_QCK7cQuboQZHPg47T6YnJKpYHN66b-Sj37A@mail.gmail.com>
+From: Chris Hallinan <challinan@gmail.com>
 To: Jeff Osier-Mixon <jefro@jefro.net>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Potential Yocto Project developer day at ELC
@@ -54,15 +59,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Jan 2015 23:35:32 -0000
-Content-Type: multipart/alternative; boundary=047d7bb04c185a4bb0050c911346
+X-List-Received-Date: Tue, 13 Jan 2015 23:51:36 -0000
+Content-Type: multipart/alternative; boundary=001a113d4438465400050c914d17
 
---047d7bb04c185a4bb0050c911346
-Content-Type: text/plain; charset=UTF-8
+--001a113d4438465400050c914d17
+Content-Type: text/plain; charset=ISO-8859-1
 
-I can help too. I'm planning of attending the conference.
+I'd be willing to help out.
 
-On Tue, Jan 13, 2015 at 11:07 PM, Jeff Osier-Mixon <jefro@jefro.net> wrote:
+On Tue, Jan 13, 2015 at 5:07 PM, Jeff Osier-Mixon <jefro@jefro.net> wrote:
 
 > Hi all - we are assessing the viability of hosting a developer day at ELC
 > in march in San Jose. This day would offer hands on Yocto Project training,
@@ -86,23 +91,22 @@ On Tue, Jan 13, 2015 at 11:07 PM, Jeff Osier-Mixon <jefro@jefro.net> wrote:
 
 
 -- 
-*Andrei Gherzan*
+Life is like Linux - it never stands still.
 
---047d7bb04c185a4bb0050c911346
-Content-Type: text/html; charset=UTF-8
+--001a113d4438465400050c914d17
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I can help too. I&#39;m planning of attending the conferen=
-ce.=C2=A0</div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On=
- Tue, Jan 13, 2015 at 11:07 PM, Jeff Osier-Mixon <span dir=3D"ltr">&lt;<a h=
-ref=3D"mailto:jefro@jefro.net" target=3D"_blank">jefro@jefro.net</a>&gt;</s=
-pan> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex=
-;border-left:1px #ccc solid;padding-left:1ex"><p dir=3D"ltr">Hi all - we ar=
-e assessing the viability of hosting a developer day at ELC in march in San=
- Jose. This day would offer hands on Yocto Project training, advanced prese=
-ntations, and one on one contact with YP developers. The cost would be abou=
-t $200. The most recent dev day trained over 120 people in Duesseldorf at E=
-LCE last fall. </p>
+<div dir=3D"ltr">I&#39;d be willing to help out.</div><div class=3D"gmail_e=
+xtra"><br><div class=3D"gmail_quote">On Tue, Jan 13, 2015 at 5:07 PM, Jeff =
+Osier-Mixon <span dir=3D"ltr">&lt;<a href=3D"mailto:jefro@jefro.net" target=
+=3D"_blank">jefro@jefro.net</a>&gt;</span> wrote:<br><blockquote class=3D"g=
+mail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-l=
+eft:1ex"><p dir=3D"ltr">Hi all - we are assessing the viability of hosting =
+a developer day at ELC in march in San Jose. This day would offer hands on =
+Yocto Project training, advanced presentations, and one on one contact with=
+ YP developers. The cost would be about $200. The most recent dev day train=
+ed over 120 people in Duesseldorf at ELCE last fall. </p>
 <p dir=3D"ltr">Please respond if you are interested in an event like this. =
 We need a certain minimum number of interested folks before we can justify =
 the expense. </p>
@@ -114,10 +118,8 @@ yocto mailing list<br>
 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
 >https://lists.yoctoproject.org/listinfo/yocto</a><br>
 <br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div cla=
-ss=3D"gmail_signature"><div dir=3D"ltr"><div style=3D"text-align:center"></=
-div><div style=3D"text-align:center"><div align=3D"left"><b style=3D"font-f=
-amily:Arial;font-size:small;color:rgb(51,51,51);text-align:center">Andrei G=
-herzan</b><br></div></div></div></div>
+ss=3D"gmail_signature">Life is like Linux - it never stands still.<br><br><=
+/div>
 </div>
 
---047d7bb04c185a4bb0050c911346--
+--001a113d4438465400050c914d17--
