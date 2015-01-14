@@ -1,34 +1,37 @@
-Return-Path: <adm.dizon@pciltd.com.sg>
+Return-Path: <Alexandru.Vaduva@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E18CAE00824; Wed, 14 Jan 2015 00:02:18 -0800 (PST)
+	id 2DABEE00860; Wed, 14 Jan 2015 04:55:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [192.36.1.252 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
-	Wed, 14 Jan 2015 00:02:16 PST
-Received: from webmail.pciltd.com.sg (webmail.pciltd.com.sg [119.73.250.69])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EF67E004FF
-	for <yocto@yoctoproject.org>; Wed, 14 Jan 2015 00:02:16 -0800 (PST)
-Received: from PCISGEX.pciltd.com.sg ([192.168.0.147]) by
-	PCISGEX.pciltd.com.sg ([192.168.0.147]) with mapi id 14.03.0123.003;
-	Wed, 14 Jan 2015 16:01:10 +0800
-From: "Alvin D.M. DIZON" <adm.dizon@pciltd.com.sg>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: bitbake freezes at recipe qt4-x11-free-1_4.8.5-r0: task
-	do_compile: Started
-Thread-Index: AdAvz7otxoUTQWAqTWKyDhI8XRekOQ==
-Date: Wed, 14 Jan 2015 08:01:09 +0000
-Message-ID: <46557CEF4ABDB54B92C59390D2741FD1BCB5D6@PCISGEX.pciltd.com.sg>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 74758E004FF
+	for <yocto@yoctoproject.org>; Wed, 14 Jan 2015 04:55:14 -0800 (PST)
+Received: from SESTOEX09.enea.se ([fe80::94d8:372f:210c:b4da]) by
+	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
+	14.03.0224.002; Wed, 14 Jan 2015 13:55:10 +0100
+From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
+To: Lei Maohui <leimaohui@cn.fujitsu.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [meta-cgl][PATCH] cluster: add new recipe
+Thread-Index: AQHQLh1ywhcYw2H6VEGLMJyKuSdNhJy/llLQ
+Date: Wed, 14 Jan 2015 12:55:09 +0000
+Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D76C63D@sestoex09.enea.se>
+References: <1421035558-50846-1-git-send-email-leimaohui@cn.fujitsu.com>
+In-Reply-To: <1421035558-50846-1-git-send-email-leimaohui@cn.fujitsu.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [116.50.213.202]
+x-originating-ip: [192.168.14.189]
 MIME-Version: 1.0
-Subject: bitbake freezes at recipe qt4-x11-free-1_4.8.5-r0: task do_compile: Started
+Subject: Re: [meta-cgl][PATCH] cluster: add new recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,131 +43,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Jan 2015 08:02:19 -0000
+X-List-Received-Date: Wed, 14 Jan 2015 12:55:31 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Merged the patch upstream.
 
-I am building an image using the "bitbake fsl-image-x11" command. Bitbake s=
-eems to run through all the tasks but the output freezes at "recipe qt4-x11=
--free-1_4.8.5-r0: task do_compile: Started". I have tried stopping bitbake =
-and rebuilding, but it always stops at the same task. I am using a Ubuntu 1=
-2.04 LTS VM running on Oracle Virtualbox. Here is my local.conf:
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Lei Maohui
+Sent: Monday, January 12, 2015 6:06 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] [meta-cgl][PATCH] cluster: add new recipe
 
-MACHINE ??=3D 'imx6qsabresd'
-DISTRO ?=3D 'poky'
-PACKAGE_CLASSES ?=3D "package_rpm"
-EXTRA_IMAGE_FEATURES =3D "debug-tweaks"
-USER_CLASSES ?=3D "buildstats image-mklibs image-prelink"
-PATCHRESOLVE =3D "noop"
-BB_DISKMON_DIRS =3D "\
-    STOPTASKS,${TMPDIR},1G,100K \
-    STOPTASKS,${DL_DIR},1G,100K \
-    STOPTASKS,${SSTATE_DIR},1G,100K \
-    ABORT,${TMPDIR},100M,1K \
-    ABORT,${DL_DIR},100M,1K \
-    ABORT,${SSTATE_DIR},100M,1K"
-CONF_VERSION =3D "1"
+This is the development site for several related linux clustering component=
+s.
 
-BB_NUMBER_THREADS =3D '16'
-PARALLEL_MAKE =3D '-j 16'
+Signed-off-by: Lei Maohui <leimaohui@cn.fujitsu.com>
+---
+ .../recipes-cgl/cluster/cluster_3.2.0.bb           | 63 ++++++++++++++++++=
+++++
+ 1 file changed, 63 insertions(+)
+ create mode 100644 meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb
 
-DL_DIR ?=3D "${BSPDIR}/downloads/"
-ACCEPT_FSL_EULA =3D ""
-INHERIT +=3D "rm_work"
+diff --git a/meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb b/meta-cg=
+l-common/recipes-cgl/cluster/cluster_3.2.0.bb
+new file mode 100644
+index 0000000..2d6b49c
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb
+@@ -0,0 +1,63 @@
++Summanry =3D "Red Hat Cluster"
++DESCRIPTION =3D "Red Hat Cluster"
++SECTION =3D "libs"
++HOMEPAGE =3D "https://fedorahosted.org/cluster/wiki/HomePage"
++
++SRC_URI =3D "https://fedorahosted.org/releases/c/l/cluster/${BP}.tar.xz"
++
++SRC_URI[md5sum] =3D "3f496dbecaea367af5a5e81d2e8dcab8"
++
++LICENSE =3D "GPL-2.0 LGPL-2.0"=20
++LIC_FILES_CHKSUM =3D "file://doc/README.licence;md5=3Dee8ae43af5ea09f12ca7=
+f7a649764cb0"=20
++
++PR =3D "r1"=20
++
++DEPENDS =3D "corosync dbus openldap openais libxml2 ncurses perl zlib"
++
++FILES_${PN} +=3D "/lib/udev/rules.d/51-dlm.rules \
++    ${localstatedir}/run "
++FILES_${PN}-doc +=3D "/usr/share/man3/* /usr/share/man8/*"
++
++do_configure () {
++    CFLAGS=3D"${TARGET_CFLAGS}"       \
++    CCFLAGS=3D"${TARGET_CFLAGS}"      \
++    CXXFLAGS=3D"${TARGET_CFLAGS}"     \
++    ./configure \
++        --without_rgmanager \
++        --disable_kernel_check \
++        --without_cman \
++        --without_fence \
++        --without_bindings \
++        --without_group \
++        --without_config \
++        2>&1
++}
++
++do_compile () {
++    pwd
++    CFLAGS=3D"${TARGET_CFLAGS}" \
++    make libdir=3D${STAGING_LIBDIR} incdir=3D${STAGING_INCDIR}          \
++    CC=3D${TARGET_SYS}-gcc
++}
++do_install () {
++    rm -rf ${D}
++    make install DESTDIR=3D${D} libdir=3D${D}/usr/lib sbindir=3D${D}/usr/s=
+bin \
++                 mandir=3D${D}/usr/share docdir=3D${D}/usr/share/doc
++
++    ## tree fix up
++    # /etc/sysconfig/cman
++    mkdir -p ${D}/etc/sysconfig
++
++    # logrotate name
++    mv ${D}/etc/logrotate.d/cluster ${D}/etc/logrotate.d/cman
++    # fix library permissions or strip helpers won't work.
++    find ${D} -name "lib*.so.*" -exec chmod 0755 {} \;
++    # fix lcrso permissions or strip helpers won't work.
++    find ${D} -name "*.lcrso" -exec chmod 0755 {} \;
++    # remove docs
++    rm -rf ${D}${datadir}/doc/cluster
++    rm -rf ${D}${localstatedir}/run
++    rm -rf ${D}${localstatedir}/lib
++    rm -rf ${D}${localstatedir}/log
++    rmdir --ignore-fail-on-non-empty ${D}${localstatedir} }
+--
+1.8.4.2
 
-This is my build configuration:
-
-Build Configuration:
-BB_VERSION        =3D "1.20.0"
-BUILD_SYS         =3D "x86_64-linux"
-NATIVELSBSTRING   =3D "Ubuntu-12.04"
-TARGET_SYS        =3D "arm-poky-linux-gnueabi"
-MACHINE           =3D "imx6qsabresd"
-DISTRO            =3D "poky"
-DISTRO_VERSION    =3D "1.5.3"
-TUNE_FEATURES     =3D "armv7a vfp neon callconvention-hard cortexa9"
-TARGET_FPU        =3D "vfp-neon"
-meta
-meta-yocto
-meta-oe
-meta-fsl-arm
-meta-fsl-arm-extra
-meta-fsl-demos
-meta-fsl-arm
-meta-fsl-demos
-meta-browser
-meta-gnome
-meta-networking   =3D "branch:e9f640dce8c13e99ab4d6eecb574d34e26dda958"
-
-
-I also viewed the log.do_compile for Qt, and saw lots of errors like these:
-
-
-In file included from ../JavaScriptCore/wtf/PossiblyNull.h:29:0,
-                 from ../JavaScriptCore/wtf/FastMalloc.h:25,
-                 from ./config.h:153,
-                 from dom/DOMStringMap.cpp:26:
-../JavaScriptCore/wtf/StdLibExtras.h: In function 'TO WTF::bitwise_cast(FRO=
-M)':
-../JavaScriptCore/wtf/Assertions.h:326:47: warning: typedef 'dummyWTF_bitwi=
-se_cast_sizeof_casted_types_is_equal' locally defined but not used [-Wunuse=
-d-local-typedefs]
- #define COMPILE_ASSERT(exp, name) typedef int dummy##name [(exp) ? 1 : -1]
-                                               ^
-../JavaScriptCore/wtf/StdLibExtras.h:96:5: note: in expansion of macro 'COM=
-PILE_ASSERT'
-     COMPILE_ASSERT(sizeof(TO) =3D=3D sizeof(FROM), WTF_bitwise_cast_sizeof=
-_casted_types_is_equal);
-     ^
-../JavaScriptCore/wtf/StdLibExtras.h: In function 'size_t WTF::roundUpToMul=
-tipleOf(size_t)':
-../JavaScriptCore/wtf/Assertions.h:326:47: warning: typedef 'dummydivisor_i=
-s_a_power_of_two' locally defined but not used [-Wunused-local-typedefs]
- #define COMPILE_ASSERT(exp, name) typedef int dummy##name [(exp) ? 1 : -1]
-                                               ^
-../JavaScriptCore/wtf/StdLibExtras.h:120:5: note: in expansion of macro 'CO=
-MPILE_ASSERT'
-     COMPILE_ASSERT(divisor && !(divisor & (divisor - 1)), divisor_is_a_pow=
-er_of_two);
-     ^
-
-
-I also saw these last lines which seem to point to the Qt Webkit library:
-
-
-make[2]: Leaving directory `/home/alvin/yocto_branch/build-x11/tmp/work/imx=
-6qsabresd-poky-linux-gnueabi/qt4-x11-free/1_4.8.5-r0/qt-everywhere-opensour=
-ce-src-4.8.5/src/3rdparty/webkit/Source/WebCore'
-make[1]: *** [sub-WebCore-make_default-ordered] Error 2
-make[1]: Leaving directory `/home/alvin/yocto_branch/build-x11/tmp/work/imx=
-6qsabresd-poky-linux-gnueabi/qt4-x11-free/1_4.8.5-r0/qt-everywhere-opensour=
-ce-src-4.8.5/src/3rdparty/webkit/Source'
-make: *** [sub-webkit-make_default-ordered] Error 2
-ERROR: oe_runmake failed
-WARNING: exit code 1 from a shell command.
-
-
-I am new to Linux and the Yocto Project, and have been trying to resolve th=
-is for days now, so any help would be appreciated.
-
-Thanks,
-Alvin
-[PCI]
-
-  Innovative Manufacturing Solutions. Professionally Delivered!
-
-The information contained in this email is confidential and is intended for=
- addressee(s) only. If you have received this email in error, please notify=
- the originator immediately. Nothing in this email shall constitute an offe=
-r or acceptance leading to a legally binding contract which shall only aris=
-e from a formal written agreement between yourselves and ourselves in the f=
-orm of a Purchase Order issued by us and accepted by you in writing. For th=
-e avoidance of doubt, this email shall not be construed in any way as a for=
-mal written agreement. We accept no liability for any damage arising from a=
-lteration of the contents of this message by a third party or as a result o=
-f any virus being passed on. Please consider your environmental responsibil=
-ity before printing this e-mail.
+--
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
