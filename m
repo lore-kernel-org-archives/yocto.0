@@ -1,54 +1,30 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <andreas@galauner.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A309BE008DE; Wed, 14 Jan 2015 07:12:53 -0800 (PST)
+	id B1742E00853; Wed, 14 Jan 2015 07:30:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.171 listed in list.dnswl.org]
-Received: from mail-pd0-f171.google.com (mail-pd0-f171.google.com
-	[209.85.192.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C979CE00853
-	for <yocto@yoctoproject.org>; Wed, 14 Jan 2015 07:12:45 -0800 (PST)
-Received: by mail-pd0-f171.google.com with SMTP id y13so10300424pdi.2
-	for <yocto@yoctoproject.org>; Wed, 14 Jan 2015 07:12:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=/9Z60oSBqkqLt/dM2mLpqqJz2L++6M1PnfWki9PwxN4=;
-	b=JV6QXnCyPFxZaN0ZTydb7ZrICdLq4QnzeCqQME8yL0rhadKryW3BMwdTnKGWlJZulx
-	iITIoZYgalN41DYR6cQstnHGOwsmSOf4wxVE+2qtmy2oQNDmKPnAw4AYtCXnFwobOZtb
-	yTgxdTktgWSTUXezsMYvjoHM7wOZGPaA0GESK/oTkaBHK+rwNr88IVf4bnjSaVnu+REa
-	Kw1wvZt3ZDvovJVdHPqKuA2ljgpxwAgkabrPLV1xFeHB7T+fHvGqe0WNMmDYwwi6hlJC
-	D1GGaausXGMWrEaJWnOoZAk9L5/loNK2LvwvLhOZCSQxy+32xV6kK5E+sQ45v4+d6Cn5
-	mLeg==
-X-Received: by 10.70.1.8 with SMTP id 8mr6675999pdi.26.1421248365521;
-	Wed, 14 Jan 2015 07:12:45 -0800 (PST)
-Received: from Pahoa2.mvista.com (c-107-3-174-189.hsd1.ca.comcast.net.
-	[107.3.174.189]) by mx.google.com with ESMTPSA id
-	re13sm2094690pdb.28.2015.01.14.07.12.43 for <yocto@yoctoproject.org>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 14 Jan 2015 07:12:44 -0800 (PST)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Wed, 14 Jan 2015 07:12:35 -0800
-Message-Id: <1421248358-14391-2-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1421248358-14391-1-git-send-email-akuster808@gmail.com>
-References: <1421248358-14391-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 2/5] ccs-tools: remove unused variable.
+X-Greylist: delayed 328 seconds by postgrey-1.32 at yocto-www;
+	Wed, 14 Jan 2015 07:29:46 PST
+Received: from server.galauner.de (server.galauner.de [144.76.20.253])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61101E0083C
+	for <yocto@yoctoproject.org>; Wed, 14 Jan 2015 07:29:46 -0800 (PST)
+Received: from [172.23.22.75] (static-87-79-236-180.netcologne.de
+	[87.79.236.180])
+	by server.galauner.de (Postfix) with ESMTPSA id 096CF400E2
+	for <yocto@yoctoproject.org>; Wed, 14 Jan 2015 16:24:16 +0100 (CET)
+Message-ID: <54B68A1F.7010709@galauner.de>
+Date: Wed, 14 Jan 2015 16:24:15 +0100
+From: Andreas Galauner <andreas@galauner.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+MIME-Version: 1.0
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Symlinks in kernel-tree break in kernel-dev package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,25 +36,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Jan 2015 15:12:53 -0000
+X-List-Received-Date: Wed, 14 Jan 2015 15:30:03 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-There was a ref to  DEPEND  with is meaningless so remove it.
+Hi all,
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/ccs-tools/ccs-tools_1.8.3.bb | 1 -
- 1 file changed, 1 deletion(-)
+I'm building a xenomai-based project with Yocto and I want to compile
+kernel modules on the target system for development and testing
+purposes. It's easier then running bitbake all the time.
 
-diff --git a/recipes-security/ccs-tools/ccs-tools_1.8.3.bb b/recipes-security/ccs-tools/ccs-tools_1.8.3.bb
-index 92f82ef..a47cafe 100644
---- a/recipes-security/ccs-tools/ccs-tools_1.8.3.bb
-+++ b/recipes-security/ccs-tools/ccs-tools_1.8.3.bb
-@@ -47,4 +47,3 @@ FILES_${PN}-dbg = "\
- "
- 
- REQUIRED_DISTRO_FEATURES ?=" tomoyo"
--RDEPEND += "systemd"
--- 
-1.9.1
+Now in order to build kernel modules on the target, I included
+kernel-dev in my packages and the kernel headers and build scripts are
+copied as expected into /usr/src/kernel.
 
+The problem is, that xenomai adds kernel code with a script called
+"prepare-kernel.sh" before building the kernel. It does that by creating
+a bunch of symlinks in the kernel tree pointing to the actual code. I
+run this script in my own kernel recipe before configuration.
+
+When yocto now creates the kernel-dev pakcage, it doesn't follow the
+symlinks but copies the symlinks instead of the files itself which of
+course break in the target rootfs.
+
+Any idea how I could approach to fix this?
+
+Thanks,
+- Andy
+
+
+Here is an example of how it looks:
+> root@copter-microzed-xenomai:~# ls -l /usr/src/kernel/arch/arm/xenomai
+> total 16
+> lrwxrwxrwx 1 root root 217 Jan 13 14:03 Kconfig -> /home/andy/Desktop/Autocopter/work/yocto/build/tmp-eglibc/work/copter_microzed_xenomai-oe-linux-gnueabi/linux-xenomai-xlnx/3.14-xilinx+gitc0292a5c3919cf777f9d21202e022c99ce255b8f-r0/xenomai-2.6.4/ksrc/arch/arm/Kconfig
+> lrwxrwxrwx 1 root root 218 Jan 13 14:03 Makefile -> /home/andy/Desktop/Autocopter/work/yocto/build/tmp-eglibc/work/copter_microzed_xenomai-oe-linux-gnueabi/linux-xenomai-xlnx/3.14-xilinx+gitc0292a5c3919cf777f9d21202e022c99ce255b8f-r0/xenomai-2.6.4/ksrc/arch/arm/Makefile
+> lrwxrwxrwx 1 root root 215 Jan 13 14:03 hal.c -> /home/andy/Desktop/Autocopter/work/yocto/build/tmp-eglibc/work/copter_microzed_xenomai-oe-linux-gnueabi/linux-xenomai-xlnx/3.14-xilinx+gitc0292a5c3919cf777f9d21202e022c99ce255b8f-r0/xenomai-2.6.4/ksrc/arch/arm/hal.c
+> lrwxrwxrwx 1 root root 218 Jan 13 14:03 switch.S -> /home/andy/Desktop/Autocopter/work/yocto/build/tmp-eglibc/work/copter_microzed_xenomai-oe-linux-gnueabi/linux-xenomai-xlnx/3.14-xilinx+gitc0292a5c3919cf777f9d21202e022c99ce255b8f-r0/xenomai-2.6.4/ksrc/arch/arm/switch.S
 
