@@ -1,54 +1,49 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <scott.m.rifenbark@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0ACB3E0083C; Wed, 14 Jan 2015 12:50:21 -0800 (PST)
+	id AF280E0083C; Wed, 14 Jan 2015 13:33:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,FSL_HELO_FAKE,
-	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
-X-Spam-HAM-Report: *  2.7 FSL_HELO_FAKE FSL_HELO_FAKE
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.43 listed in list.dnswl.org]
-Received: from mail-la0-f43.google.com (mail-la0-f43.google.com
-	[209.85.215.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6580E002F9
-	for <yocto@yoctoproject.org>; Wed, 14 Jan 2015 12:50:08 -0800 (PST)
-Received: by mail-la0-f43.google.com with SMTP id s18so10304036lam.2
-	for <yocto@yoctoproject.org>; Wed, 14 Jan 2015 12:50:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition
-	:content-transfer-encoding:in-reply-to:user-agent;
-	bh=tQDmTzl+z7V/F4ezvzY9JCDIqLWozYKiUBJeFUteICY=;
-	b=VHItesBg5VQaVuu1Wyb+VALwfPBPKBpBun7Y/O/IUqvSEFRH80i2yN4Q5393Fl+xTD
-	xd2uBH/gnDDbWMWdk5auCcOuqRD6U9KR8hMqGia5RlUb7x8CioQAqWeCbXtYvvNq9t0i
-	EbZHU4VL0i6xEerHdQuASye4WMkPmcDcfqrF4H6BxrScT8ZviVxN3rbt/zOgEjLvDnVq
-	12rxDPyxeng0JjubUpIQNTqgwo2LMDKgRGkmUl8dzgT+Q5z5bzFN9a3qgjhUhv2KwiLr
-	W0KxO/rcsKS4qEI8tBXUrTL9AfmK9UcBmUKmYPI7RKGL7uEW7r1cz8JL9cDSwgctnZ9p
-	QFIw==
-X-Gm-Message-State: ALoCoQkWkcozokpS/NFlHnUICNc9BmOETc7O4sVj11LtXlW5o83eQvJo0lFZtb+lr7Qy2u87ChL8
-X-Received: by 10.112.12.65 with SMTP id w1mr6097329lbb.68.1421268607011;
-	Wed, 14 Jan 2015 12:50:07 -0800 (PST)
-Received: from gmail.com ([192.36.80.8]) by mx.google.com with ESMTPSA id
-	jq14sm2094934lab.14.2015.01.14.12.50.05
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 14 Jan 2015 12:50:06 -0800 (PST)
-Date: Wed, 14 Jan 2015 21:50:04 +0100
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
-Message-ID: <20150114205004.GC4735@gmail.com>
-References: <1418213525-1202-1-git-send-email-maciej.borzecki@open-rnd.pl>
-	<20150107112618.GC4631@localhost.localdomain>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83F6AE002F9
+	for <yocto@yoctoproject.org>; Wed, 14 Jan 2015 13:33:48 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga103.jf.intel.com with ESMTP; 14 Jan 2015 13:30:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.09,758,1418112000"; d="scan'208";a="637395660"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by orsmga001.jf.intel.com with ESMTP; 14 Jan 2015 13:33:48 -0800
+Received: from orsmsx158.amr.corp.intel.com (10.22.240.20) by
+	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
+	(TLS) id 14.3.195.1; Wed, 14 Jan 2015 13:33:48 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.192]) by
+	ORSMSX158.amr.corp.intel.com ([169.254.10.150]) with mapi id
+	14.03.0195.001; Wed, 14 Jan 2015 13:33:47 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Zanussi, Tom" <tom.zanussi@intel.com>
+Thread-Topic: [yocto] BSP guide refers to meta-fri2 as example for binary/
+	data, it has none
+Thread-Index: AQHQJF1nW83ytnDKJkqA9TfN+wertZyyF3rwgACPuICADZOI0A==
+Date: Wed, 14 Jan 2015 21:33:47 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988E99F0A@ORSMSX101.amr.corp.intel.com>
+References: <alpine.LFD.2.11.1412301317080.7369@localhost>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237988E908CE@ORSMSX101.amr.corp.intel.com>
+	<1420496041.8591.17.camel@picadillo>
+In-Reply-To: <1420496041.8591.17.camel@picadillo>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-In-Reply-To: <20150107112618.GC4631@localhost.localdomain>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: yocto@yoctoproject.org, Maciek Borzecki <maciek.borzecki@gmail.com>,
-	Dan McGregor <dan.mcgregor@usask.ca>
-Subject: Re: [meta-raspberrypi][PATCH 0/2] wic support
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: BSP guide refers to meta-fri2 as example for binary/ data, it has none
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,73 +55,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Jan 2015 20:50:21 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 14 Jan 2015 21:33:55 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Wed, Jan 07, 2015 at 12:26:18PM +0100, Maciej Borzecki wrote:
-> ping
->
-
-Reviewing this now. Thanks for reminding me.
-
-> On 12/10 13:12, Maciej Borzecki wrote:
-> > The patch series adds support for wic image build tool. The patches allow for a
-> > bootable SD card image to be built with wic, without any additional changes.
-> >
-> > The first patch defines an IMAGE_BOOT_FILES variable that will pick up all of
-> > bcm2835 boot files and the kernel file (renaming it to kernel.img). The patch
-> > uses glob pattern and thus depends on a patch series posted here:
-> > http://lists.openembedded.org/pipermail/openembedded-core/2014-December/099732.html
-> >
-> > The second patch adds a kickstart file that mirrors the layout defined in
-> > sdcard_image-rpi.bbclass. Note that this patch is mainly for reference, as the
-> > default sdimage-bootpart.wks from Poky will also produce a bootable image.
-> >
-> > Maciej Borzecki (2):
-> >   raspberrypi.conf: add IMAGE_BOOT_FILES
-> >   sdimage-raspberrypi.wks: kickstart image definition
-> >
-> >  conf/machine/raspberrypi.conf                        | 2 ++
-> >  scripts/lib/image/canned-wks/sdimage-raspberrypi.wks | 6 ++++++
-> >  2 files changed, 8 insertions(+)
-> >  create mode 100644 scripts/lib/image/canned-wks/sdimage-raspberrypi.wks
-> >
-> > --
-> > 1.9.3
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
->
-> --
-> Maciej Borzęcki
-> Senior Software Developer at Open-RnD Sp. z o.o., Poland
-> www.open-rnd.pl
-> mobile: +48 889 117 365, fax: +48 42 657 9079
->
->
-> Niniejsza wiadomość wraz z załącznikami może
-> zawierać chronione prawem lub poufne informacje i została
-> wysłana wyłącznie do wiadomości i użytku osób, do których
-> została zaadresowana. Jeśli wiadomość została otrzymana
-> przypadkowo zabrania się jej kopiowania lub rozsyłania do osób
-> trzecich. W takim przypadku uprasza się o natychmiastowe
-> zniszczenie wiadomości oraz poinformowanie nadawcy o
-> zaistniałej sytuacji za pomocą wiadomości zwrotnej.
-> Dziękujemy.
->
-> This message, including any attachments hereto,
-> may contain privileged or confidential information and is sent
-> solely for the attention and use of the intended addressee(s).
-> If you are not an intended addressee, you may neither use this
-> message nor copy or deliver it to anyone. In such case, you
-> should immediately destroy this message and kindly notify the
-> sender by reply email. Thank you.
-
---
-Andrei Gherzan
+SSBmaXhlZCB0aGlzIHVwIGEgYml0Lg0KDQpTY290dA0KDQo+LS0tLS1PcmlnaW5hbCBNZXNzYWdl
+LS0tLS0NCj5Gcm9tOiBaYW51c3NpLCBUb20NCj5TZW50OiBNb25kYXksIEphbnVhcnkgMDUsIDIw
+MTUgMjoxNCBQTQ0KPlRvOiBSaWZlbmJhcmssIFNjb3R0IE0NCj5DYzogUm9iZXJ0IFAuIEouIERh
+eTsgWW9jdG8gZGlzY3Vzc2lvbiBsaXN0DQo+U3ViamVjdDogUmU6IFt5b2N0b10gQlNQIGd1aWRl
+IHJlZmVycyB0byBtZXRhLWZyaTIgYXMgZXhhbXBsZSBmb3IgYmluYXJ5LyBkYXRhLA0KPml0IGhh
+cyBub25lDQo+DQo+T24gTW9uLCAyMDE1LTAxLTA1IGF0IDIxOjQ0ICswMDAwLCBSaWZlbmJhcmss
+IFNjb3R0IE0gd3JvdGU6DQo+Pg0KPj4gPi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+PiA+
+RnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tDQo+PiA+
+Ym91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgUm9iZXJ0IFAuIEouIERheQ0K
+Pj4gPlNlbnQ6IFR1ZXNkYXksIERlY2VtYmVyIDMwLCAyMDE0IDEwOjIwIEFNDQo+PiA+VG86IFlv
+Y3RvIGRpc2N1c3Npb24gbGlzdA0KPj4gPlN1YmplY3Q6IFt5b2N0b10gQlNQIGd1aWRlIHJlZmVy
+cyB0byBtZXRhLWZyaTIgYXMgZXhhbXBsZSBmb3IgYmluYXJ5Lw0KPj4gPmRhdGEsIGl0IGhhcyBu
+b25lDQo+PiA+DQo+PiA+DQo+PiA+ICBpbiBzZWMgMS4zLjEgb2YgQlNQIGd1aWRlLCB0aGVyZSBp
+cyBhbiBleHBsYW5hdGlvbiBvZiB0aGUgUkVBRE1FLnNvdXJjZXMNCj5maWxlLg0KPj4gPmZpcnN0
+LCB0aGUgdGV4dCBzdWdnZXN0cyB0aGF0IGZpbGUgaXMgbWFuZGF0b3J5Og0KPj4gPg0KPj4gPiJZ
+b3UgbXVzdCBpbmNsdWRlIGEgUkVBRE1FLnNvdXJjZXMgaW4gdGhlIG1ldGEtYnNwX25hbWUgZGly
+ZWN0b3J5LiINCj4+DQo+PiBJIHVuZGVyc3Rvb2QgdGhhdCBmb3IgYSByZWxlYXNlZCBCU1AgdG8g
+YmUgY29uc2lkZXJlZCBZb2N0by1jb21wbGlhbnQsDQo+PiB0aGUgUkVBRE1FLnNvdXJjZXMgZmls
+ZXMgaXMgYSByZXF1aXJlbWVudC4NCj4+ID4NCj4NCj5SaWdodCwgUkVBRE1FLnNvdXJjZXMgcmVm
+ZXJzIHRvIHRoZSBzb3VyY2VzIHVzZWQgdG8gZ2VuZXJhdGUgdGhlIGJpbmFyaWVzIGluDQo+YSBy
+ZWxlYXNlZCBCU1AgZS5nLiB0aGUgcmVsZWFzZSB0YXJiYWxscyBvbiB0aGUgWW9jdG8gQlNQIERv
+d25sb2FkcyBwYWdlKHMpLg0KPg0KPj4gPmhvd2V2ZXIsIGFzIGkgcmVhZCBpdCwgaXQncyByZWFs
+bHkgb25seSBuZWNlc3Nhcnkgd2hlbiBhIGxheWVyDQo+PiA+cHJvdmlkZXMgc29tZSBiaW5hcnkg
+Y29udGVudCBpbiB0aGUgYmluYXJ5LyBzdWJkaXJlY3RvcnkuIHRoZSBndWlkZQ0KPj4gPnRoZW4g
+Z29lcyBvbiB0byBjbGFpbSB0aGF0IHRoZSBtZXRhLWZyaTIgbGF5ZXIgZG9lcyBqdXN0IHRoYXQs
+IGJ1dCBpDQo+PiA+c2VlIG5vIGJpbmFyeSBjb250ZW50IGluIHRoYXQgbGF5ZXINCj4+ID4tLSBp
+biBmYWN0LCBub25lIG9mIHRoZSBtZXRhLWludGVsIHN1YmxheWVycyBhcHBlYXIgdG8gY29tZSB3
+aXRoDQo+PiA+YmluYXJ5IGNvbnRlbnQuIHNvIHBlcmhhcHMgdGhhdCBwYXJ0IG9mIHRoZSBndWlk
+ZSBjYW4gYmUgdXBkYXRlZCB0bw0KPj4gPnJlZmVyIHRvIGFuIGFwcHJvcHJpYXRlIGxheWVyLg0K
+Pj4NCj4+IFRoZSB3b3JkaW5nIGhlcmUgZG9lcyBpbXBseSB0aGF0IHRoZSBzb3VyY2VzIGFyZSB0
+aGUgb25lcyB1c2VkIHRvDQo+PiBnZW5lcmF0ZSB0aGUgaW1hZ2VzIHRoYXQgd291bGQgYmUgaW4g
+dGhlICJiaW5hcnkvIiBkaXJlY3RvcnkuICBDYW4NCj4+IHNvbWVvbmUgdGVsbCBtZSBpZiBpdCB3
+b3VsZCBiZSBtb3JlIGFjY3VyYXRlIHRvIHN0YXRlIHRoYXQgdGhlDQo+PiBSRUFETUUuc291cmNl
+cyBmaWxlIHNpbXBseSBpbmRpY2F0ZXMgd2hlcmUgdGhlIHNvdXJjZXMgdG8gYnVpbGQgdGhlDQo+
+PiBCU1AgYXJlIHBlcmlvZC4uLiByZWdhcmRsZXNzIG9mIHdoZXRoZXIgb3Igbm90IGFueSBiaW5h
+cmllcyBhcmUNCj4+IGluY2x1ZGVkIGluIHRoYXQgZGlyZWN0b3J5PyAgS25vd2luZyB0aGF0IHdv
+dWxkIGhlbHAgbWUgbWFrZSBzdXJlIHRoaXMNCj4+IHNlY3Rpb24gaXMgbm90IG1pcy1sZWFkaW5n
+LiAgQWxzbywga25vd2luZyB0aGF0IHdvdWxkIGhlbHAgbWUgY2hvb3NlDQo+PiBhbiBhcHByb3By
+aWF0ZSBleGFtcGxlIHRvIHBvaW50IHRvIGZvciB0aGUgUkVBRE1FLnNvdXJjZXMgZmlsZS4NCj4+
+DQo+DQo+Tm8uIHRoZSBSRUFETUUuc291cmNlcyBpbmRpY2F0ZSB3aGF0IHdhcyBhY3R1YWxseSB1
+c2VkIHRvIGJ1aWxkIHRoZSBpbWFnZXMsDQo+d2hpY2ggY2FuIGFuZCBkbyBjb250YWluIG11Y2gg
+bW9yZSB0aGFuIHdoYXQgaXMgc3BlY2lmaWVkIGJ5IHRoZSByZWNpcGVzIGluDQo+dGhlIEJTUCBs
+YXllci4NCj4NCj5TbyBSRUFETUUuc291cmNlcyBpcyBtZWFuaW5nbGVzcyBpZiB0aGVyZSBhcmUg
+bm8gYmluYXJpZXMgaW4gL2JpbmFyeSwgYW5kIHRoZQ0KPmxheWVyIGl0c2VsZiBtYXkgaGF2ZSBu
+byAvYmluYXJ5IGRpcmVjdG9yeSBvciBSRUFETUUuc291cmNlcyB1bnRpbCBhIHRhcmJhbGwgaXMN
+Cj5nZW5lcmF0ZWQgZm9yIHJlbGVhc2UsIHdoaWNoIGdlbmVyYXRpb24gbWlnaHQgYmUgZG9uZSBi
+eSB0aGUgcmVsZWFzZQ0KPnByb2Nlc3MgaW5zdGVhZC4NCj4NCj5BZ2FpbiwgdGhpcyBhbGwgcmVm
+ZXJzIHRvIHJlbGVhc2VkIEJTUHMsIGFuZCBpZiBlLmcuIG1ldGEtZnJpMiBkb2Vzbid0IGhhdmUg
+dGhlc2UNCj5pbiB0aGUgbWV0YS1pbnRlbCBnaXQgcmVwbywgYW55IG1ldGEtZnJpMiByZWxlYXNl
+ZCBCU1AgY2VydGFpbmx5IGRvZXMuDQo+DQo+aHRoLA0KPg0KPlRvbQ0KPg0KPg0KPg0KPj4gPg0K
+Pj4gPnJkYXkNCj4+ID4NCj4+ID4tLQ0KPj4gPg0KPj4NCj4+PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KPj0NCj4+ID49PT09PT09PT09
+PT09DQo+PiA+Um9iZXJ0IFAuIEouIERheSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IE90dGF3YSwgT250YXJpbywgQ0FOQURBDQo+PiA+ICAgICAgICAgICAgICAgICAgICAgICAgaHR0
+cDovL2NyYXNoY291cnNlLmNhDQo+PiA+DQo+PiA+VHdpdHRlcjogICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICBodHRwOi8vdHdpdHRlci5jb20vcnBqZGF5DQo+PiA+TGlua2Vk
+SW46ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGh0dHA6Ly9jYS5saW5rZWRpbi5jb20v
+aW4vcnBqZGF5DQo+Pg0KPj49PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09DQo+PQ0KPj4gPj09PT09PT09PT09PT0NCj4+ID4tLQ0KPj4gPl9f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+PiA+eW9jdG8g
+bWFpbGluZyBsaXN0DQo+PiA+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPj4gPmh0dHBzOi8vbGlz
+dHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KPg0KDQo=
 
