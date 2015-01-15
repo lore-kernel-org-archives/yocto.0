@@ -1,6 +1,6 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <yocto@mindchasers.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2C60AE0090F; Thu, 15 Jan 2015 05:52:08 -0800 (PST)
+	id 65A32E0086E; Thu, 15 Jan 2015 07:47:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,34 +8,26 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 432 seconds by postgrey-1.32 at yocto-www;
-	Thu, 15 Jan 2015 05:51:58 PST
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92C90E00906
-	for <yocto@yoctoproject.org>; Thu, 15 Jan 2015 05:51:58 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 5996227E140
-	for <yocto@yoctoproject.org>; Thu, 15 Jan 2015 13:44:45 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id cimJp47O_pmR for <yocto@yoctoproject.org>;
-	Thu, 15 Jan 2015 13:44:44 +0000 (UTC)
-Received: from [192.168.1.39] (AMarseille-651-1-181-130.w92-153.abo.wanadoo.fr
-	[92.153.76.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 9395D27E135
-	for <yocto@yoctoproject.org>; Thu, 15 Jan 2015 13:44:44 +0000 (UTC)
-Message-ID: <54B7C407.5050201@dynamicdevices.co.uk>
-Date: Thu, 15 Jan 2015 14:43:35 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4ACCBE004D6
+	for <yocto@yoctoproject.org>; Thu, 15 Jan 2015 07:47:07 -0800 (PST)
+Received: from [192.168.1.10] (c-73-194-208-34.hsd1.nj.comcast.net
+	[73.194.208.34])
+	by smtp.webfaction.com (Postfix) with ESMTP id 8898D20D0C1C;
+	Thu, 15 Jan 2015 15:47:05 +0000 (UTC)
+Message-ID: <54B7E0F8.4010501@mindchasers.com>
+Date: Thu, 15 Jan 2015 10:47:04 -0500
+From: Bob Cochran <yocto@mindchasers.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
-To: Yocto <yocto@yoctoproject.org>
-Subject: [meta-mono] Mono updated to 3.12.0
+To: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>, 
+	"Robert P. J. Day" <rpjday@crashcourse.ca>,
+	Yocto discussion list <yocto@yoctoproject.org>
+References: <alpine.LFD.2.11.1407311737480.19552@localhost>
+	<D001254A.72DD%alexandru.c.georgescu@intel.com>
+In-Reply-To: <D001254A.72DD%alexandru.c.georgescu@intel.com>
+Subject: Re: will yocto 1.7 work with eclipse luna?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,28 +39,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Jan 2015 13:52:08 -0000
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Thu, 15 Jan 2015 15:47:16 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
+On 08/01/2014 04:09 AM, Georgescu, Alexandru C wrote:
+> Hi Robert,
+>
+> The upgrade to Luna is expected to happen during the 1.7 timeframe as
+> shown here: https://bugzilla.yoctoproject.org/show_bug.cgi?id=6251.
+> After the upgrade will happen, it will merge into our QA flow to make sure
+> that the core functionality exist.
 
-I've updated support for Mono build in meta-mono master to 3.12.0 (the
-current release).
 
-I've performed basic build testing on an qemux86 build of
-core-image-mono, based on core-image-sato, running a "Hello World"
-console application and a "Hello World" Windows Forms application.
+Hi,
 
-There has been feedback that issues with armhf support are addressed in
-3.10.0/3.12.0 but I have not yet had time to investigate.
+I'm looking for feedback on whether it's a good idea to try working with 
+the Eclipse plugin on Luna with the Luna patch applied, which can be 
+found in the 6251 bug report.   Are users / developers already using it?
 
-ref: https://bugzilla.xamarin.com/show_bug.cgi?id=20239
+I'm also wrestling with Luna in general being sluggish on my Ubuntu 
+Linux boxes.  I have seen various reports of this by others with 
+suggestions on trying alternate JVM (e.g., Oracle) - so far, I'm having 
+the best results with Oracle jdk1.8.
 
-All feedback on testing and/or issues appreciated.
+Any guidance on moving to Luna (on Linux) at this point will be greatly 
+appreciated.
 
-Regards,
+Bob
 
-Alex
 
+>
+> Regards,
+> --
+> Alexandru Georgescu
+> Yocto QA Engineer
+> SSG/SSD Open Source Technology Center Romania
+>
+>
+>
+>
+> On 01/08/14 00:41, "Robert P. J. Day" <rpjday@crashcourse.ca> wrote:
+>
+>>
+>>   already dropped scott rifenbark a note about this, but current dev
+>> manual recommends eclipse kepler, while eclipse luna is out, and
+>> fedora 22 appears to use that as the yum-installable version. so any
+>> issues with eclipse luna?
+>>
+>> rday
+>>
+>> --
+>>
+>> ========================================================================
+>> Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>>                         http://crashcourse.ca
+>>
+>> Twitter:                                       http://twitter.com/rpjday
+>> LinkedIn:                               http://ca.linkedin.com/in/rpjday
+>> ========================================================================
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
 
 
