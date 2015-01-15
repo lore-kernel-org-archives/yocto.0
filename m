@@ -1,33 +1,48 @@
-Return-Path: <yocto@mindchasers.com>
+Return-Path: <gschmottlach@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65A32E0086E; Thu, 15 Jan 2015 07:47:16 -0800 (PST)
+	id 19423E00894; Thu, 15 Jan 2015 13:51:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (gschmottlach[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.42 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4ACCBE004D6
-	for <yocto@yoctoproject.org>; Thu, 15 Jan 2015 07:47:07 -0800 (PST)
-Received: from [192.168.1.10] (c-73-194-208-34.hsd1.nj.comcast.net
-	[73.194.208.34])
-	by smtp.webfaction.com (Postfix) with ESMTP id 8898D20D0C1C;
-	Thu, 15 Jan 2015 15:47:05 +0000 (UTC)
-Message-ID: <54B7E0F8.4010501@mindchasers.com>
-Date: Thu, 15 Jan 2015 10:47:04 -0500
-From: Bob Cochran <yocto@mindchasers.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qg0-f42.google.com (mail-qg0-f42.google.com
+	[209.85.192.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBEA5E00757
+	for <yocto@yoctoproject.org>; Thu, 15 Jan 2015 13:51:31 -0800 (PST)
+Received: by mail-qg0-f42.google.com with SMTP id q107so326207qgd.1
+	for <yocto@yoctoproject.org>; Thu, 15 Jan 2015 13:51:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=56ZLw+lRjkYSYrcLH4RsnWnFthz9nBvfI5rWKb1sCKk=;
+	b=l9XW6vTDKJPreHThKEHkNurTgtbRjz3ytY7TUKlEe2eXzeqiCyEt5jSgcAKEW9QsP1
+	eEOQHT5Qyr0HOQYH07yWLo3qbYI+0B518ryqp0yFEEnkMW5bAJatJzui6C7tclYRn53j
+	YndT052BfkrYlJgT41McULgaZhzS5bHr++7e0nhVsnYe0U/auZiH+8PhGibkEhqtQcm8
+	9r9ftfNszXMV/rmZjh+3vUIPZYmC50jwku4q42B1nnK+lnaBWb77sOemhWJYWpheYLKC
+	SfdO8aRYlTMINFswTMKIIW7AAzP0AwCFbCwRfk0GDxEm4ihS4j+WDHoAbh5wx+bCBTRw
+	mAug==
 MIME-Version: 1.0
-To: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>, 
-	"Robert P. J. Day" <rpjday@crashcourse.ca>,
-	Yocto discussion list <yocto@yoctoproject.org>
-References: <alpine.LFD.2.11.1407311737480.19552@localhost>
-	<D001254A.72DD%alexandru.c.georgescu@intel.com>
-In-Reply-To: <D001254A.72DD%alexandru.c.georgescu@intel.com>
-Subject: Re: will yocto 1.7 work with eclipse luna?
+X-Received: by 10.224.79.82 with SMTP id o18mr574284qak.3.1421358691310; Thu,
+	15 Jan 2015 13:51:31 -0800 (PST)
+Received: by 10.140.83.112 with HTTP; Thu, 15 Jan 2015 13:51:31 -0800 (PST)
+Date: Thu, 15 Jan 2015 16:51:31 -0500
+Message-ID: <CAMS2kBF4yfpHaa=WGuYJmq6_c3ApmH-p65b_=ozgwVwU3PT-jA@mail.gmail.com>
+From: Glenn Schmottlach <gschmottlach@gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Yocto Kernel Module Workflow Question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,71 +54,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Jan 2015 15:47:16 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 15 Jan 2015 21:51:35 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 08/01/2014 04:09 AM, Georgescu, Alexandru C wrote:
-> Hi Robert,
->
-> The upgrade to Luna is expected to happen during the 1.7 timeframe as
-> shown here: https://bugzilla.yoctoproject.org/show_bug.cgi?id=6251.
-> After the upgrade will happen, it will merge into our QA flow to make sure
-> that the core functionality exist.
+I am developing a codec kernel driver/module for the BeagleBone Black
+and have a question about the recommended work-flow for developing
+this module in the context of the Yocto/poky environment. Currently
+I'm working with the Daisy release using the meta-ti layer and the
+linux-ti-staging_3.14 kernel sources.
 
+The codec driver, at this point, is just an very minimal
+implementation. It follows closely the instructions described here:
 
-Hi,
+http://processors.wiki.ti.com/index.php/Sitara_Linux_SDK_Audio_DAC_Example
 
-I'm looking for feedback on whether it's a good idea to try working with 
-the Eclipse plugin on Luna with the Luna patch applied, which can be 
-found in the 6251 bug report.   Are users / developers already using it?
+The work involves a dummy (platform independent) ALSA driver for the
+DAC and then code modifications to the ALSA machine layer driver
+(sound/soc/davinci/davinci-evm) and the BeagleBone Black device tree
+to knit all of these pieces together.
 
-I'm also wrestling with Luna in general being sluggish on my Ubuntu 
-Linux boxes.  I have seen various reports of this by others with 
-suggestions on trying alternate JVM (e.g., Oracle) - so far, I'm having 
-the best results with Oracle jdk1.8.
+There seems to be two approaches for developing the codec driver. The
+first approach is to build the codec driver externally from the kernel
+sources (e.g. as described in working with "out-of-tree" modules in
+the Yocto Kernel Development Guide). With this model I can represent
+the codec driver as a separate Yocto/Bitbake recipe and simply include
+the resulting package in my target image.
 
-Any guidance on moving to Luna (on Linux) at this point will be greatly 
-appreciated.
+Unfortunately, the codec driver also requires changes to the kernel
+sources in the ALSA machine layer driver and device tree. My approach
+here is the create a linux-ti-staging_3.14.bbappend file that contains
+a series of patches to the kernel for the machine layer driver and
+device tree. In this scenario, the kernel sources do *not* explicitly
+know about this new codec since there are no changes to the
+sound/soc/codec Makefile and associated Kconfig's that describe the
+dependencies of the codec driver. This means of course that menuconfig
+won't show the codec as a build-able option. So the ALSA machine
+driver (davinci-evm) knows the name of the codec driver but nothing
+more other than it's association with a particular device tree
+configuration node (e.g. dtc_id). This may not be ideal for someone
+configuring the kernel since this codec doesn't appear as an option
+and the dependencies (as described in the Kconfig) are not clear.
 
-Bob
+The work-around, albeit clumsy, is to bundle the changes to the
+Makefile/Kconfig's and the codec source itself as a set of patches
+referenced from the linux-ti-staging_3.14.bbappend file. Now building
+the kernel modules also builds the codec (e.g. no separate codec
+Bitbake recipe is required).  This works but now my codec sources
+exist as a "patch" and stored directly in the recipe. Assuming I want
+to do iterative development with this module, every change to the
+codec sources require me to update the codec "patch". Also, the codec
+source must then effectively be version-controlled within the
+*.bbappend recipe itself (as a *.patch file or possibly as a naked
+codec.c that is copied into the destination kernel sources during the
+patch step of bitbake).
 
+Ideally, I'd like to maintain my codec driver outside of the kernel
+tree (since it is not dependent on the BeagleBone Black) and just
+maintain the *.bbappend to make the necessary platform-specific
+machine-layer/device-tree patches. I want the codec to be built with
+the kernel sources but not treated as a Yocto "out-of-tree" module. Is
+there a way for the *.bbappend to fetch the codec sources from another
+repo and place them in the kernel sound/soc/codecs directory before
+the kernel is built? Can anyone suggest a better/alternative work-flow
+that accommodates keeping the codec sources in a separate repo (much
+like the "out-of-tree" modules) while allowing seamless integration
+into the kernel sources. Fundamentally, I don't want the codec sources
+to be version controlled directly *inside* the *.bbappend recipe as
+either a patch or as a raw source file. Is there an alternative
+work-flow that works better with Yocto?
 
->
-> Regards,
-> --
-> Alexandru Georgescu
-> Yocto QA Engineer
-> SSG/SSD Open Source Technology Center Romania
->
->
->
->
-> On 01/08/14 00:41, "Robert P. J. Day" <rpjday@crashcourse.ca> wrote:
->
->>
->>   already dropped scott rifenbark a note about this, but current dev
->> manual recommends eclipse kepler, while eclipse luna is out, and
->> fedora 22 appears to use that as the yum-installable version. so any
->> issues with eclipse luna?
->>
->> rday
->>
->> --
->>
->> ========================================================================
->> Robert P. J. Day                                 Ottawa, Ontario, CANADA
->>                         http://crashcourse.ca
->>
->> Twitter:                                       http://twitter.com/rpjday
->> LinkedIn:                               http://ca.linkedin.com/in/rpjday
->> ========================================================================
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
-
+Any feedback would be appreciated . . . thanks!
 
