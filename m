@@ -1,6 +1,6 @@
-Return-Path: <tang@jtang.org>
+Return-Path: <flihp@twobit.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AFF5CE0084D; Wed, 14 Jan 2015 16:11:58 -0800 (PST)
+	id A5483E0090E; Wed, 14 Jan 2015 19:00:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,24 +8,24 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from highcastle.jtang.org (mail.jtang.org [173.10.136.73])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A75EE003E3
-	for <yocto@yoctoproject.org>; Wed, 14 Jan 2015 16:11:52 -0800 (PST)
-Received: from silden.isles (silden.isles [192.168.1.4])
-	(Authenticated sender: tang)
-	by highcastle.jtang.org (Postfix) with ESMTPSA id 9D7E6BEE9A;
-	Wed, 14 Jan 2015 19:11:51 -0500 (EST)
-Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
-From: "J. Tang" <tang@jtang.org>
-In-Reply-To: <20150114203610.GB4735@gmail.com>
-Date: Wed, 14 Jan 2015 19:11:51 -0500
-Message-Id: <B16CA82B-7834-419F-9E84-669E8F9B6779@jtang.org>
-References: <11564A1C-1D09-4BDA-8CCB-3045DF82EFD2@jtang.org>
-	<20150114203610.GB4735@gmail.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-X-Mailer: Apple Mail (2.1878.6)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi] Why not enable hard floating point?
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65C52E00828
+	for <yocto@yoctoproject.org>; Wed, 14 Jan 2015 19:00:01 -0800 (PST)
+Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
+	helo=scrapper.twobit.us)
+	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1YBadb-0003cv-FQ; Thu, 15 Jan 2015 02:58:24 +0000
+From: Philip Tricca <flihp@twobit.us>
+To: yocto@yoctoproject.org
+Date: Thu, 15 Jan 2015 02:59:35 +0000
+Message-Id: <1421290778-11490-1-git-send-email-flihp@twobit.us>
+X-Mailer: git-send-email 1.7.10.4
+X-SA-Exim-Connect-IP: 50.185.54.102
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Subject: [meta-selinux][ 0/3] v2 More recipe updates.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,34 +37,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Jan 2015 00:11:58 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 15 Jan 2015 03:00:17 -0000
 
+Greetings,
 
-On Jan 14, 2015, at 15:36 , Andrei Gherzan <andrei@gherzan.ro> wrote:
+Three more recipe udpates to get meta-selinux building with oe-core master
+again. These are mostly mundane though the move from findutils from 4.4.x
+to 4.5.x removes the need for patches that have since gone upstream. This
+v2 patch set takes into account comments from Mark w/r to removing PRs due
+to the uprev.
 
-> On Sat, Jan 10, 2015 at 10:38:50AM -0500, J. Tang wrote:
->> The upstream meta-raspberrypi recipe builds an arm6 toolchain with =
-only soft floating point. As an experiment, I enabled hard floating =
-point by setting my DEFAULTTUNE to =93armv6hf=94. My code still ran =
-correctly. Is there a reason why the meta-raspberrypi layer does not =
-enable hard floating point?
->>=20
->=20
-> Well we played a little with this in the past. And we realised that, =
-at that
-> time at least, switching to hf didn't add any performace improvements. =
-Did you
-> test anything that proves the contrary?
+Best,
+Philip
 
-In my case, I was re-compiling MAME for the Raspberry Pi. The code has a =
-dependency on hf. Furthermore, Rasbian is built with hf.
+Philip Tricca (3):
+  findutils: Upgrade recipe to 4.5 and use wildcard for pico version.
+  logrotate: Use wildcard for version number.
+  tar: Use wildcard for version number in bbappend.
 
---=20
-Jason Tang  /  tang@jtang.org
+ .../findutils-with-selinux-gnulib.patch            |   55 --
+ .../findutils-4.4.2/findutils-with-selinux.patch   |  528 --------------------
+ .../findutils/findutils_4.4.2.bbappend             |   14 -
+ .../findutils/findutils_4.5.%.bbappend             |    2 +
+ recipes-extended/logrotate/logrotate_%.bbappend    |    5 +
+ .../logrotate/logrotate_3.8.7.bbappend             |    7 -
+ recipes-extended/tar/tar_%.bbappend                |   11 +
+ recipes-extended/tar/tar_1.27.1.bbappend           |   13 -
+ 8 files changed, 18 insertions(+), 617 deletions(-)
+ delete mode 100644 recipes-extended/findutils/findutils-4.4.2/findutils-with-selinux-gnulib.patch
+ delete mode 100644 recipes-extended/findutils/findutils-4.4.2/findutils-with-selinux.patch
+ delete mode 100644 recipes-extended/findutils/findutils_4.4.2.bbappend
+ create mode 100644 recipes-extended/findutils/findutils_4.5.%.bbappend
+ create mode 100644 recipes-extended/logrotate/logrotate_%.bbappend
+ delete mode 100644 recipes-extended/logrotate/logrotate_3.8.7.bbappend
+ create mode 100644 recipes-extended/tar/tar_%.bbappend
+ delete mode 100644 recipes-extended/tar/tar_1.27.1.bbappend
 
-
-
+-- 
+1.7.10.4
 
 
