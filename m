@@ -1,6 +1,6 @@
-Return-Path: <andreas@galauner.de>
+Return-Path: <tang@jtang.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 814BCE0083C; Wed, 14 Jan 2015 14:59:59 -0800 (PST)
+	id AFF5CE0084D; Wed, 14 Jan 2015 16:11:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,23 +8,24 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from server.galauner.de (server.galauner.de [144.76.20.253])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BFC0E002F9
-	for <yocto@yoctoproject.org>; Wed, 14 Jan 2015 14:59:56 -0800 (PST)
-Received: from [172.23.22.231] (static-87-79-236-180.netcologne.de
-	[87.79.236.180])
-	by server.galauner.de (Postfix) with ESMTPSA id E0B85400E2
-	for <yocto@yoctoproject.org>; Wed, 14 Jan 2015 23:59:54 +0100 (CET)
-Message-ID: <54B6F4EA.9080406@galauner.de>
-Date: Wed, 14 Jan 2015 23:59:54 +0100
-From: Andreas Galauner <andreas@galauner.de>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <54B68A1F.7010709@galauner.de>
-In-Reply-To: <54B68A1F.7010709@galauner.de>
-Subject: Re: Symlinks in kernel-tree break in kernel-dev package
+Received: from highcastle.jtang.org (mail.jtang.org [173.10.136.73])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A75EE003E3
+	for <yocto@yoctoproject.org>; Wed, 14 Jan 2015 16:11:52 -0800 (PST)
+Received: from silden.isles (silden.isles [192.168.1.4])
+	(Authenticated sender: tang)
+	by highcastle.jtang.org (Postfix) with ESMTPSA id 9D7E6BEE9A;
+	Wed, 14 Jan 2015 19:11:51 -0500 (EST)
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+From: "J. Tang" <tang@jtang.org>
+In-Reply-To: <20150114203610.GB4735@gmail.com>
+Date: Wed, 14 Jan 2015 19:11:51 -0500
+Message-Id: <B16CA82B-7834-419F-9E84-669E8F9B6779@jtang.org>
+References: <11564A1C-1D09-4BDA-8CCB-3045DF82EFD2@jtang.org>
+	<20150114203610.GB4735@gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+X-Mailer: Apple Mail (2.1878.6)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi] Why not enable hard floating point?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,22 +37,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Jan 2015 22:59:59 -0000
+X-List-Received-Date: Thu, 15 Jan 2015 00:11:58 -0000
 Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On 14.01.2015 16:24, Andreas Galauner wrote:
-> The problem is, that xenomai adds kernel code with a script called
-> "prepare-kernel.sh" before building the kernel. It does that by creating
-> a bunch of symlinks in the kernel tree pointing to the actual code. I
-> run this script in my own kernel recipe before configuration.
 
-Nevermind guys,
-I just found out that the prepare_kernel script from xenomai offers the
-possibility to create a patch using the --outpatch parameter instead of
-modifying the kernel tree. That should solve all my problems.
+On Jan 14, 2015, at 15:36 , Andrei Gherzan <andrei@gherzan.ro> wrote:
 
-Thx anyway!
-- Andy
+> On Sat, Jan 10, 2015 at 10:38:50AM -0500, J. Tang wrote:
+>> The upstream meta-raspberrypi recipe builds an arm6 toolchain with =
+only soft floating point. As an experiment, I enabled hard floating =
+point by setting my DEFAULTTUNE to =93armv6hf=94. My code still ran =
+correctly. Is there a reason why the meta-raspberrypi layer does not =
+enable hard floating point?
+>>=20
+>=20
+> Well we played a little with this in the past. And we realised that, =
+at that
+> time at least, switching to hf didn't add any performace improvements. =
+Did you
+> test anything that proves the contrary?
+
+In my case, I was re-compiling MAME for the Raspberry Pi. The code has a =
+dependency on hf. Furthermore, Rasbian is built with hf.
+
+--=20
+Jason Tang  /  tang@jtang.org
+
+
+
 
 
