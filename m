@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F1485E00949; Sat, 17 Jan 2015 16:24:34 -0800 (PST)
+	id 4501FE00949; Sat, 17 Jan 2015 16:30:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,41 +8,45 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.44 listed in list.dnswl.org]
+	*      [209.85.212.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-wg0-f44.google.com (mail-wg0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53E36E0076F
-	for <yocto@yoctoproject.org>; Sat, 17 Jan 2015 16:24:25 -0800 (PST)
-Received: by mail-wg0-f44.google.com with SMTP id y19so26172444wgg.3
-	for <yocto@yoctoproject.org>; Sat, 17 Jan 2015 16:24:24 -0800 (PST)
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EBB4E0076F
+	for <yocto@yoctoproject.org>; Sat, 17 Jan 2015 16:30:15 -0800 (PST)
+Received: by mail-wi0-f176.google.com with SMTP id z2so7059482wiv.3
+	for <yocto@yoctoproject.org>; Sat, 17 Jan 2015 16:30:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-type;
-	bh=AKmMkYCzUfYytALvD34A4FSOjbr7ub69cJCb5t0RpgA=;
-	b=FGk94TAf2rCIv1wbDKK+y6ytNuV0Sn7SsGnXbFfN2p1D1C5yQxAOm5cuTI8XjwA37y
-	OLLTGFQCmkSsn3a8jamlOTTlkx0kUuWUGCfpSpRrUx4wIa3cwMv7VekLinOi2bIu4O3b
-	2lG9dg1S7OOh+3qvcrNxt7z5zy7+ersoC64hG9YQJKm3rpWR8F0JU9XHp/GpA65v6R6r
-	fRLmwvAVd1bXzO5+6PqQkzL/o4hvH4PZPbGDgxYhSEleB5X6lcqq3DofJ43dTgUhbvWw
-	xm8gZNbMeOHCaiitYuJ6Ez0fGCOSQ0eRGx5/cDuPxB35z5GWU9NiWHTpdWS8h2YN+6wq
-	bGcw==
-X-Gm-Message-State: ALoCoQlQEUFUXPAC6TDOkkj/61ItAbnZFlHdDcJGsaGyh17FRLJrA1b7B10tYBaG1hhYaGTlQG4k
-X-Received: by 10.180.95.4 with SMTP id dg4mr20035144wib.61.1421540663960;
-	Sat, 17 Jan 2015 16:24:23 -0800 (PST)
+	bh=gd7WuIqLkoZ0Q1QGezSGZskQmR5gx5kBqRZBM4YOOO0=;
+	b=E0kDb9ZIHI77rMuIVQ6fJonUuYzO8gwGmrk/NH3n/qMXHM/lxLQNbyoEsQPWtjYco6
+	qmAg2dzUkxNo4okYi+epqczI9t6zdt4Hse/PRtgDvyTxXMqnNi+RnmTomN8uFV7pyZGR
+	4ap2JoU/fh+2Zd0P8ZNylHTblhtZ9f7+V0LZx4uy0phWNyIVlu7VdL3qYgCd4/WaUPvO
+	O3JyCgbFnSkRqiTLqS/J7xrv4qUMVoDlV9xbJ9TuXut8OtZqyov3vYqSD8GLHL4vfhzL
+	ymqSsrsqBG+LTZL/OB+YJ+82Xeolw/p4W6E4HO37eL0j0ZZptvvQekHvMN6vrJ038XHe
+	MG4g==
+X-Gm-Message-State: ALoCoQkzRAO4XFd6XYKQO3rxVEWd3cu0a+XZbPnzwoInLObTQ2/Shcw285j6/exNn8Acxsf15CvO
+X-Received: by 10.180.93.1 with SMTP id cq1mr20163975wib.2.1421541014719; Sat,
+	17 Jan 2015 16:30:14 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.216.107.132 with HTTP; Sat, 17 Jan 2015 16:24:03 -0800 (PST)
+Received: by 10.216.107.132 with HTTP; Sat, 17 Jan 2015 16:29:54 -0800 (PST)
 X-Originating-IP: [109.100.140.128]
-In-Reply-To: <54BAABF4.8000300@jenslucius.de>
-References: <CAOrUntbLEeYVK18nbsnt5Dyiz6wYVJc5GKimwwL1qeD65=tD8w@mail.gmail.com>
-	<54BAABF4.8000300@jenslucius.de>
+In-Reply-To: <6C0F4B49-EDA6-4059-9BE7-6BD47A918073@jtang.org>
+References: <11564A1C-1D09-4BDA-8CCB-3045DF82EFD2@jtang.org>
+	<20150114203610.GB4735@gmail.com>
+	<B16CA82B-7834-419F-9E84-669E8F9B6779@jtang.org>
+	<54B782FA.9040109@topic.nl>
+	<6C0F4B49-EDA6-4059-9BE7-6BD47A918073@jtang.org>
 From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Sun, 18 Jan 2015 01:24:03 +0100
-Message-ID: <CAK18fxEN7pVqNTTrbvybTdcOUhvRknxMwj1ge0R5wWnxJkQv3A@mail.gmail.com>
-To: Jens Lucius <incnews@jenslucius.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: armhf support for meta-raspberrypi
+Date: Sun, 18 Jan 2015 01:29:54 +0100
+Message-ID: <CAK18fxE91QTiCotpwsq03bozy8KjAsSQxgtt-hTHh6VrPAMmYg@mail.gmail.com>
+To: "J. Tang" <tang@jtang.org>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] Why not enable hard floating point?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,106 +58,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 18 Jan 2015 00:24:35 -0000
-Content-Type: multipart/alternative; boundary=f46d0444028e4f3c82050ce23a5c
+X-List-Received-Date: Sun, 18 Jan 2015 00:30:19 -0000
+Content-Type: multipart/alternative; boundary=f46d043c818e376909050ce24f95
 
---f46d0444028e4f3c82050ce23a5c
+--f46d043c818e376909050ce24f95
 Content-Type: text/plain; charset=UTF-8
 
-Let's keep this discussion in one thread but thanks Jens for this extensive
-explanation. Indeed, DEFAILTTUNE is the way to switch to hf.
+Hello,
 
-On Sat, Jan 17, 2015 at 7:37 PM, Jens Lucius <incnews@jenslucius.de> wrote:
+On Fri, Jan 16, 2015 at 3:05 AM, J. Tang <tang@jtang.org> wrote:
 
 >
-> Am 17.01.2015 um 16:55 schrieb Andrea Benini:
+> On 2015-01-15, at 04:06, Mike Looijmans <mike.looijmans@topic.nl> wrote:
 >
->>
->> Is there someone using armhf on it ?
->>
->>
-> Hello,
+> > -2- The CPU doesn't actually have floating point support and the kernel
+> is emulating it for you. This allows the platform to run "hf" binaries, at
+> a minor performance cost compared to completely doing the emulation in user
+> space (libc).
 >
-> This option can be set by using the variable "DEFAULTTUNE", which is
-> normally set within the machine configuration.
+> From my understanding, the Raspberry Pi (at least the model B, which is
+> what I have) has an FPU.
 >
-> In case of the raspberrypi layer this is located in ./conf/machine.
+> Would it hurt to at least mention in the top-level README of the
+> meta-raspberrypi layer that a user could enable hard FP by setting the
+> DEFAULTTUNE?
 >
-> The DEFAULTTUNE is set in the subdirectory "include" in the file
-> tune-arm1176jzf-s.inc and is set to "armv6" by default. There is a
-> discussion going on at the moment if this should be set to "armv6hf" by
-> default, maybe you could read the mail archive of the last few days.
 >
-> There are also special tune options available for the raspberrypi in this
-> file which fits the processor architecture. I am using "arm1176jzfshf" so
-> far without any problems but I did not do any speed tests.
->
-> Regards,
->
-> Jens
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+Definitely it wouldn't. But right now we have two options:
+We can just throw a README line and that's it.
+Or we can  investigate a little to see if in our current setup we actually
+use FPU instructions or not. Following Mike's answer I would definitely
+think that we are in case 1 where the compile based on the CPU
+configuration figures out that we can use FPU instruction on this CPU
+architecture. Right now, as being on vacation, I can really test on
+binaries by dissembling code and check it by hand. Anybody who can do it
+and provide some feedback? As well, some bench-marking would really make
+sense here.
 
-
+Thanks guys.
 
 -- 
 *Andrei Gherzan*
 
---f46d0444028e4f3c82050ce23a5c
+--f46d043c818e376909050ce24f95
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Let&#39;s keep this discussion in one thread but thanks Je=
-ns for this extensive explanation. Indeed, DEFAILTTUNE is the way to switch=
- to hf.</div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On S=
-at, Jan 17, 2015 at 7:37 PM, Jens Lucius <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:incnews@jenslucius.de" target=3D"_blank">incnews@jenslucius.de</a>&gt=
-;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
-.8ex;border-left:1px #ccc solid;padding-left:1ex"><br>
-Am 17.01.2015 um 16:55 schrieb Andrea Benini:<span class=3D""><br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
+<div dir=3D"ltr">Hello,<br><div class=3D"gmail_extra"><br><div class=3D"gma=
+il_quote">On Fri, Jan 16, 2015 at 3:05 AM, J. Tang <span dir=3D"ltr">&lt;<a=
+ href=3D"mailto:tang@jtang.org" target=3D"_blank">tang@jtang.org</a>&gt;</s=
+pan> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex=
+;border-left:1px #ccc solid;padding-left:1ex"><span class=3D""><br>
+On 2015-01-15, at 04:06, Mike Looijmans &lt;<a href=3D"mailto:mike.looijman=
+s@topic.nl">mike.looijmans@topic.nl</a>&gt; wrote:<br>
 <br>
-Is there someone using armhf on it ?<br>
+&gt; -2- The CPU doesn&#39;t actually have floating point support and the k=
+ernel is emulating it for you. This allows the platform to run &quot;hf&quo=
+t; binaries, at a minor performance cost compared to completely doing the e=
+mulation in user space (libc).<br>
 <br>
-</blockquote>
-<br></span>
-Hello,<br>
+</span>From my understanding, the Raspberry Pi (at least the model B, which=
+ is what I have) has an FPU.<br>
 <br>
-This option can be set by using the variable &quot;DEFAULTTUNE&quot;, which=
- is normally set within the machine configuration.<br>
-<br>
-In case of the raspberrypi layer this is located in ./conf/machine.<br>
-<br>
-The DEFAULTTUNE is set in the subdirectory &quot;include&quot; in the file =
-tune-arm1176jzf-s.inc and is set to &quot;armv6&quot; by default. There is =
-a discussion going on at the moment if this should be set to &quot;armv6hf&=
-quot; by default, maybe you could read the mail archive of the last few day=
-s.<br>
-<br>
-There are also special tune options available for the raspberrypi in this f=
-ile which fits the processor architecture. I am using &quot;arm1176jzfshf&q=
-uot; so far without any problems but I did not do any speed tests.<br>
-<br>
-Regards,<br>
-<br>
-Jens<span class=3D"HOEnZb"><font color=3D"#888888"><br>
--- <br>
-______________________________<u></u>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
-</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
-r><div class=3D"gmail_signature"><div dir=3D"ltr"><div style=3D"text-align:=
-center"></div><div style=3D"text-align:center"><div align=3D"left"><b style=
-=3D"font-family:Arial;font-size:small;color:rgb(51,51,51);text-align:center=
-">Andrei Gherzan</b><br></div></div></div></div>
-</div>
+Would it hurt to at least mention in the top-level README of the meta-raspb=
+errypi layer that a user could enable hard FP by setting the DEFAULTTUNE?<b=
+r>
+<span class=3D"im HOEnZb"><br></span></blockquote><div><br></div><div>Defin=
+itely it wouldn&#39;t. But right now we have two options:</div><div>We can =
+just throw a README line and that&#39;s it.</div><div>Or we can =C2=A0inves=
+tigate a little to see if in our current setup we actually use FPU instruct=
+ions or not. Following Mike&#39;s answer I would definitely think that we a=
+re in case 1 where the compile based on the CPU configuration figures out t=
+hat we can use FPU instruction on this CPU architecture. Right now, as bein=
+g on vacation, I can really test on binaries by dissembling code and check =
+it by hand. Anybody who can do it and provide some feedback? As well, some =
+bench-marking would really make sense here.<br></div></div><div class=3D"gm=
+ail_extra"><br></div>Thanks guys.<br clear=3D"all"><div><br></div>-- <br><d=
+iv class=3D"gmail_signature"><div dir=3D"ltr"><div style=3D"text-align:cent=
+er"></div><div style=3D"text-align:center"><div align=3D"left"><b style=3D"=
+font-family:Arial;font-size:small;color:rgb(51,51,51);text-align:center">An=
+drei Gherzan</b><br></div></div></div></div>
+</div></div>
 
---f46d0444028e4f3c82050ce23a5c--
+--f46d043c818e376909050ce24f95--
