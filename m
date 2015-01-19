@@ -1,38 +1,35 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <qianl.fnst@cn.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ECCE9E007BA; Mon, 19 Jan 2015 01:47:06 -0800 (PST)
+	id DA529E00872; Mon, 19 Jan 2015 02:08:22 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90775E00970
-	for <yocto@yoctoproject.org>; Mon, 19 Jan 2015 01:47:02 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga103.fm.intel.com with ESMTP; 19 Jan 2015 01:41:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,425,1418112000"; d="scan'208";a="672145112"
-Received: from rleitch-mobl.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.23.131])
-	by orsmga002.jf.intel.com with ESMTP; 19 Jan 2015 01:47:00 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: akuster808 <akuster808@gmail.com>, Andrei Gherzan <andrei@gherzan.ro>
-Date: Mon, 19 Jan 2015 09:46:59 +0000
-Message-ID: <5451173.uiUEmT6qcz@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.3 (Linux/3.17.8-200.fc20.x86_64; KDE/4.14.3; x86_64; ; )
-In-Reply-To: <54BC54FD.5030305@gmail.com>
-References: <CAK18fxFQRXRJioWfxZKO6Zwh=u2B21X3iX-Diz4h7Ms_jh-TFQ@mail.gmail.com>
-	<54BC54FD.5030305@gmail.com>
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BFD4E002F9
+	for <yocto@yoctoproject.org>; Mon, 19 Jan 2015 02:08:19 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.04,848,1406563200"; d="scan'208";a="56263702"
+Received: from unknown (HELO edo.cn.fujitsu.com) ([10.167.33.5])
+	by heian.cn.fujitsu.com with ESMTP; 19 Jan 2015 18:04:48 +0800
+Received: from G08CNEXCHPEKD01.g08.fujitsu.local (localhost.localdomain
+	[127.0.0.1])
+	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id t0JA7c2a004822
+	for <yocto@yoctoproject.org>; Mon, 19 Jan 2015 18:07:38 +0800
+Received: from Fedora.g08.fujitsu.local (10.167.226.40) by
+	G08CNEXCHPEKD01.g08.fujitsu.local (10.167.33.89) with Microsoft SMTP
+	Server (TLS) id 14.3.181.6; Mon, 19 Jan 2015 18:08:20 +0800
+From: Qian Lei <qianl.fnst@cn.fujitsu.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 19 Jan 2015 18:07:34 +0800
+Message-ID: <1421662056-1389-1-git-send-email-qianl.fnst@cn.fujitsu.com>
+X-Mailer: git-send-email 1.8.3.1
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Benchmark layer available
+X-Originating-IP: [10.167.226.40]
+Subject: [meta-cgl][PATCH 0/2] cluster: Fix some error and format
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,41 +41,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Jan 2015 09:47:07 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 19 Jan 2015 10:08:22 -0000
+Content-Type: text/plain
 
-On Sunday 18 January 2015 16:51:09 akuster808 wrote:
-> On 01/17/2015 05:02 PM, Andrei Gherzan wrote:
-> > Is there any benchmarking layer available? I was interested in LINPACK
-> > and I think it would make sense to have a benchmarking layer which will
-> > include stuff like: LINPACK, ioquake3, Whetstone etc.
->
-> there are bench mark recipes in meta-openembedded
-> 
-> meta-oe/recipes-benchmark
-> 
-> http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-benchmar
-> k
-> 
-> I don't know what the threshold is for making a layer from a set of recipes.
+Use KERNEL_SRC instead of hardcode path in configure. Also fix 
+license format.
 
-I would say:
+*** BLURB HERE ***
 
-1) Most importantly, there is someone to step up and maintain the new layer 
-who has the time and interest in doing so.
+Qian Lei (2):
+  cluster: Fix license format
+  cluster: Add a patch to fix the path of kernel source
 
-2) There is a logical grouping for the recipes and there are more than one or 
-two of them
-
-3) Dependencies between existing layers don't become too much of a problem 
-with the creation of the layer
-
-Cheers,
-Paul
+ .../cluster/0001-Fix-the-kernel-source-patch.patch | 38 ++++++++++++++++++++++
+ .../recipes-cgl/cluster/cluster_3.2.0.bb           |  5 +--
+ 2 files changed, 41 insertions(+), 2 deletions(-)
+ create mode 100644 meta-cgl-common/recipes-cgl/cluster/cluster/0001-Fix-the-kernel-source-patch.patch
 
 -- 
+1.8.3.1
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
