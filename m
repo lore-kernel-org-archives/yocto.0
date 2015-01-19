@@ -1,6 +1,6 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <scott.m.rifenbark@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 13970E0083A; Mon, 19 Jan 2015 08:16:30 -0800 (PST)
+	id 05CFDE0083A; Mon, 19 Jan 2015 08:22:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,21 +12,39 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6BA8E00571
-	for <yocto@yoctoproject.org>; Mon, 19 Jan 2015 08:16:25 -0800 (PST)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga101.jf.intel.com with ESMTP; 19 Jan 2015 08:14:46 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 385A8E00752
+	for <yocto@yoctoproject.org>; Mon, 19 Jan 2015 08:22:16 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga101.jf.intel.com with ESMTP; 19 Jan 2015 08:22:16 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,427,1418112000"; d="scan'208";a="514348318"
-Received: from alimon-thinkpad-w540.zpn.intel.com (HELO alimon-ThinkPad-W540)
-	([10.219.4.161])
-	by orsmga003.jf.intel.com with ESMTP; 19 Jan 2015 08:08:12 -0800
+X-IronPort-AV: E=Sophos;i="5.09,427,1418112000"; d="scan'208";a="664119248"
+Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
+	by fmsmga002.fm.intel.com with ESMTP; 19 Jan 2015 08:22:15 -0800
+Received: from orsmsx156.amr.corp.intel.com (10.22.240.22) by
+	ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server
+	(TLS) id 14.3.195.1; Mon, 19 Jan 2015 08:22:15 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.192]) by
+	ORSMSX156.amr.corp.intel.com ([169.254.8.173]) with mapi id
+	14.03.0195.001; Mon, 19 Jan 2015 08:22:15 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Bach, Pascal" <pascal.bach@siemens.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [yocto-docs][PATCH 2/2] dev-manual: Add section about
+	/dev	population
+Thread-Index: AQHQKoqtLm9QkZvLRku/KVMMKSynbZzDfQoggAQ4WYD///vn4A==
+Date: Mon, 19 Jan 2015 16:22:15 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988E9CE89@ORSMSX101.amr.corp.intel.com>
+References: <1420642704-1482-1-git-send-email-pascal.bach@siemens.com>
+	<1420642704-1482-2-git-send-email-pascal.bach@siemens.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237988E9CA05@ORSMSX101.amr.corp.intel.com>
+	<355BE46A91031048906B695426A8D8E616B32751@DEFTHW99EH4MSX.ww902.siemens.net>
+In-Reply-To: <355BE46A91031048906B695426A8D8E616B32751@DEFTHW99EH4MSX.ww902.siemens.net>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-From: anibal.limon@linux.intel.com
-To: yocto@yoctoproject.org
-Date: Mon, 19 Jan 2015 16:14:50 -0000
-Message-ID: <20150119161450.10055.73717@alimon-ThinkPad-W540>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Subject: Re: [yocto-docs][PATCH 2/2] dev-manual: Add section about /dev	population
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,190 +56,239 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Jan 2015 16:16:30 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 19 Jan 2015 16:22:21 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-This mail was sent out by Recipe reporting system.
+Pascal,=20
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade this time, they can fill in
-RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
-recipe remainder until newer upstream version was detected.
+Thanks for catching this.  This was a result of cutting-and-pasting text in=
+ from the patch.  I did not apply the patch in an automated fashion as ther=
+e was some rewriting to do.  So my hand-transposing missed those characters=
+ that were present in the email from which I was referencing.  I removed th=
+em out and will republish the text later today.  The commit to get them out=
+ is http://git.yoctoproject.org/cgit/cgit.cgi/yocto-docs/commit/?id=3D3ffbe=
+bd6c638e9f5b334dfef1d4e0bcc698ae810.
 
-Example:
-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
+Thanks,
+Scott
 
-You can check the detail information at:
-
-http://packages.yoctoproject.org/upgradepkgname
-
-Package               Version        Upstream version      Maintainer           NoUpgradeReason
---------------------  -------------  --------------------  -------------------  ------------------------------
-gnome-icon-theme      2.31.0         3.7.4                 Alejandro Hernandez  waiting for the sato gtk3 port
-midori                0.5.8          0.5.9                 Alejandro Hernandez
-dpkg                  1.17.21        1.17.23               Aníbal Limón
-screen                4.0.3          4.2.1                 Aníbal Limón
-apt                   0.9.9.4        1.0.9.6               Aníbal Limón
-jpeg                  8d             9                     Aníbal Limón         webkit-gtk 1.8.3 doesn't wo...
-nettle                2.7.1          3.0                   Armin Kuster         3.0.0 breaks gnutls, api ch...
-linux-libc-headers    3.17.7         3.18.3                Bruce Ashfield
-sysstat               11.0.2         11.1.2                Chen Qi
-busybox               1.22.1         1.23.0                Chen Qi
-console-tools         0.3.2          1999.03.02            Chen Qi
-bison                 2.7.1          3.0.3                 Chong Lu
-dbus                  1.8.10         1.9.6                 Chong Lu             D-BUS 1.9.x is the developm...
-quota                 4.01           4.02                  Cristian Iorga
-libical               1.0.0          1.0.1                 Cristian Iorga
-pulseaudio            5.0            5.99.2                Cristian Iorga
-libatomics-ops        7.2            7.4.0                 Cristian Iorga
-neon                  0.30.0         0.30.1                Cristian Iorga
-speex                 1.2rc1         1.2rc2                Cristian Iorga
-gst-fluendo-mpegd...  0.10.72        0.10.85               Cristian Iorga
-db                    6.0.30         6.1.19                Cristian Iorga       API compatibility issue
-flac                  1.3.0          1.3.1                 Cristian Iorga
-connman               1.26           1.27                  Cristian Iorga
-gst-plugin-bluetooth  4.101          5.27                  Cristian Iorga
-bluez4                4.101          5.27                  Cristian Iorga       BlueZ 5.x is not backward-c...
-iproute2              3.17.0         3.18.0                Cristian Iorga
-ofono                 1.15           1.16                  Cristian Iorga
-neard                 0.14           0.15                  Cristian Iorga
-linux-yocto           3.14.24+gitX   3.14.26+gitAUTOIN...  Darren Hart
-kernelshark           1.2+gitX       2.5.1+gitAUTOINC+...  Darren Hart          0.2 is the latest version.
-trace-cmd             2.3.2+gitX     2.5.1+gitAUTOINC+...  Darren Hart
-qmmp                  0.7.7          0.8.3                 Hongxu Jia
-man                   1.6g           2.5a6                 Hongxu Jia
-perl                  5.20.0         5.21.7                Hongxu Jia
-libxml-parser-perl    2.41           2.44                  Hongxu Jia
-groff                 1.22.2         1.22.3                Hongxu Jia           1.18.1.4 is latest GPLv2 Ve...
-elfutils              0.160          0.161                 Hongxu Jia
-xmlto                 0.0.25         0.0.26                Hongxu Jia
-bash                  4.3            4.3.30                Hongxu Jia
-gnupg                 2.1.0          2.1.1                 Hongxu Jia
-dhcp                  4.3.0          4.3.1                 Hongxu Jia
-man-pages             3.75           3.77                  Hongxu Jia
-rpcbind               0.2.1          0.2.2                 Hongxu Jia
-adt-installer         0.2.0          1.1                   Jessica Zhang
-bind                  9.9.5          11                    Kai Kang
-libsdl                1.2.15         1.2.15-1              Kai Kang
-python-nose           1.2.1          1.3.4                 Khem Raj
-python-numpy          1.7.0          1.9.1                 Khem Raj
-python3-distribute    0.6.32         0.7.3                 Khem Raj
-python-mako           0.9.1          1.0.0                 Khem Raj
-rpm                   5.4.14         5.4.15-0.20140824     Mark Hatle
-libinput              0.7.0          0.8.0                 No Maintainer
-libgfortran           4.9.1          4.9.2                 No Maintainer
-gcc-source            4.9.1          4.9.2                 No Maintainer
-python-gitdb          0.6.1          0.6.4                 No Maintainer
-python-async          0.6.1          0.6.2                 No Maintainer
-python-smmap          0.8.2          0.9.0                 No Maintainer
-python-git            0.3.3          0.3.5                 No Maintainer
-linux-yocto-dev       3.17++gitX     3.17.6++5ff54d8fb...  No Maintainer
-ca-certificates       20140325       20141019              No Maintainer
-libpfm4               4.3.0          4.6.0                 No Maintainer
-dbus-test             1.8.10         1.9.6                 No Maintainer
-uclibc                0.9.33+gitX    0.9.33.2+gitAUTOI...  No Maintainer
-libxshmfence          1.1            1.2                   No Maintainer
-systemd               216+gitX       218+gitAUTOINC+a2...  No Maintainer
-u-boot                v2014.07+gitX  v2015.01+gitAUTOI...  No Maintainer
-waffle                1.3.0          1.5.0                 No Maintainer
-mesa-gl               10.3.4         10.4.2                No Maintainer
-qt-mobility-x11       1.2.0          1.2.2-20120224        Paul Eggleton
-qt-mobility-embedded  1.2.0          1.2.2-20120224        Paul Eggleton
-ethtool               3.16           3.18                  Paul Eggleton
-cmake                 2.8.12.2       3.1.0                 Paul Eggleton
-augeas                1.2.0          1.3.0                 Paul Eggleton
-yasm                  1.2.0          1.3.0                 Paul Eggleton
-dosfstools            2.11           3.0.26                Paul Eggleton
-unfs3                 0.9.22.r490    0.9.22.r494           Paul Eggleton
-gpgme                 1.4.3          1.5.3                 Paul Eggleton
-libevent              2.0.21         2.0.22                Paul Eggleton
-libav                 9.16           11.2                  Paul Eggleton
-libevdev              1.3            1.3.2                 Paul Eggleton
-x264                  r2265+gitX     r2491                 Paul Eggleton
-gcc                   4.9.1          4.9.2                 Richard Purdie
-subversion            1.8.10         1.8.11                Richard Purdie
-python-distribute     0.6.32         0.7.3                 Richard Purdie       0.7.3 only upgrades 0.6.32,...
-python-gst            0.10.22        1.4.0                 Richard Purdie
-python-scons          2.3.2          2.3.4                 Richard Purdie
-python-pygobject      2.28.3         3.13.3                Richard Purdie       Newer versions of python-py...
-python                2.7.3          3.4.2rc1              Richard Purdie
-python3               3.3.3          3.4.2rc1              Richard Purdie
-btrfs-tools           3.14.2+gitX    3.18.1+gitAUTOINC...  Richard Purdie
-tcf-agent             0.4.0+gitX     8.0+gitAUTOINC+3e...  Richard Purdie
-gdb                   7.8.1          7.8.2                 Richard Purdie
-bdwgc                 7.4.2          gc-7.2d               Richard Purdie
-automake              1.14.1         1.15                  Robert Yang
-binutils              2.24           2.25                  Robert Yang
-ltp                   20140828       20150119              Robert Yang
-git                   2.2.1          2.2.2                 Robert Yang
-e2fsprogs             1.42.9         1.42.12               Robert Yang
-libtool               2.4.2          2.4.4                 Robert Yang
-glib-2.0              2.42.1         2.43.2                Robert Yang
-gmp                   6.0.0          6.0.0a                Robert Yang
-wayland               1.6.0          1.6.91                Ross Burton
-gdk-pixbuf            2.30.8         2.31.2                Ross Burton
-gtk+                  2.24.25        3.15.3                Ross Burton          Do not upgrade to version: ...
-gtk+3                 3.12.2         3.15.3                Ross Burton
-gtk-engines           2.20.2         2.91.1                Ross Burton          2.91.1 is a 3.0 beta release
-libnotify             0.6.0          0.7.6                 Ross Burton
-webkit-gtk            1.8.3          1.10.2                Ross Burton          >= 1.10.2 needs ruby
-puzzles               r10116         r10286                Ross Burton
-libpam                1.1.6          1.1.8                 Ross Burton
-vala                  0.26.1         0.27.1                Ross Burton
-vte                   0.28.2         0.39.1                Ross Burton          Pending Glib-2.0 Update
-libsoup-2.4           2.46.0         2.49.1                Ross Burton
-icu                   53.1           55                    Ross Burton
-libtasn1              4.0            4.2                   Ross Burton
-gnutls                3.3.11         3.3.12                Ross Burton
-at-spi2-core          2.14.1         2.15.3                Ross Burton
-atk                   2.14.0         2.15.3                Ross Burton
-at-spi2-atk           2.14.1         2.15.3                Ross Burton
-libpng                1.6.13         1.6.16                Ross Burton
-x11-common            0.1            1:7.6                 Ross Burton
-liberation-fonts      1.04           2.00.1                Ross Burton          2.00.0 - fontforge package ...
-glib-networking       2.38.0         2.43.1                Ross Burton          Pending Glib-2.0 Update
-freetype              2.5.4          2.5.5                 Ross Burton
-xf86-video-omap       0.4.2+gitrX    0.4.3+gitrAUTOINC...  Ross Burton
-xf86-video-vmware     13.0.2         13.1.0                Ross Burton
-xserver-xorg          1.16.2         1.16.99.901           Ross Burton
-cairo                 1.12.18        5c-1.5                Ross Burton
-xproto                7.0.26         7.0.27                Ross Burton
-mesa                  10.3.4         10.4.2                Ross Burton
-clutter-gtk-1.0       1.4.4          1.6.0                 Ross Burton
-clutter-gst-1.0       1.6.0          3.0.2                 Ross Burton
-clutter-1.0           1.20.0         1.21.2                Ross Burton
-fontconfig            2.11.1         2.11.92               Ross Burton
-weston                1.6.0          1.6.91                Ross Burton
-libunique             1.1.6          3.0.2                 Saul Wold            Do not upgrade to version: ...
-gcc-runtime           4.9.1          4.9.2                 Saul Wold
-libgcc                4.9.1          4.9.2                 Saul Wold
-linux-yocto-tiny      3.17.6+gitX    2012+gitAUTOINC+5...  Saul Wold
-initscripts           1.0            9.40                  Saul Wold
-openssl               1.0.1j         1.0.1l                Saul Wold
-base-passwd           3.5.29         3.5.37                Saul Wold
-build-appliance-i...  8.0            12.0.1                Saul Wold
-mkfontscale           1.1.1          1.1.2                 Saul Wold
-u-boot-fw-utils       v2014.07+gitX  v2015.01+gitAUTOI...  Saul Wold
-u-boot-mkimage        v2014.07+gitX  v2015.01+gitAUTOI...  Saul Wold
-mx-1.0                1.4.7+gitX     1.99.4+gitAUTOINC...  Saul Wold            PRS 1.99 is dev version
-blktrace              1.0.5+gitX     1.1.0+gitAUTOINC+...  Tom Zanussi
-chkconfig             1.3.58         1.3.63                Wenzong Fan
-ccache                3.1.9          3.2.1                 Wenzong Fan
-gettext               0.18.3.2       0.19.4                Wenzong Fan
-
-Upgradable count: 133
-Upgradable total count: 151
-
-The based commit is:
-
-commit eaea05c88661a88a89fa6b139f7e6b243155d492
-Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date:   Sat Jan 17 17:04:35 2015 +0000
-
-    depmodwrapper-cross: Update to use STAGING_KERNEL_BUILDDIR
-    
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+>-----Original Message-----
+>From: Bach, Pascal [mailto:pascal.bach@siemens.com]
+>Sent: Monday, January 19, 2015 12:30 AM
+>To: Rifenbark, Scott M; yocto@yoctoproject.org
+>Subject: RE: [yocto] [yocto-docs][PATCH 2/2] dev-manual: Add section about
+>/dev population
+>
+>Hi Scott
+>
+>Thanks. I had a look at the commits and it looks like commit
+>7c6c7ac573f92bfc844977e0d7a97ca4aac9bc70 also introduced a strange change
+>on line 946 of dev-manual-common-tasks.xml.
+>
+>See: https://git.yoctoproject.org/cgit/cgit.cgi/yocto-
+>docs/commit/?id=3D7c6c7ac573f92bfc844977e0d7a97ca4aac9bc70
+>
+>Pascal
+>
+>> -----Original Message-----
+>> From: Rifenbark, Scott M [mailto:scott.m.rifenbark@intel.com]
+>> Sent: Samstag, 17. Januar 2015 01:05
+>> To: Bach, Pascal; yocto@yoctoproject.org
+>> Subject: RE: [yocto] [yocto-docs][PATCH 2/2] dev-manual: Add section
+>> about /dev population
+>>
+>> Pascal,
+>>
+>> I have applied this patch with some editing.  Also, applied the patch
+>> that added the USE_DEVFS variable to the ref-manual.
+>>
+>> Thanks,
+>> Scott
+>>
+>> >-----Original Message-----
+>> >From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>> >bounces@yoctoproject.org] On Behalf Of Pascal Bach
+>> >Sent: Wednesday, January 07, 2015 6:58 AM
+>> >To: yocto@yoctoproject.org
+>> >Subject: [yocto] [yocto-docs][PATCH 2/2] dev-manual: Add section
+>> >about /dev population
+>> >
+>> >Signed-off-by: Pascal Bach <pascal.bach@siemens.com>
+>> >---
+>> > .../dev-manual/dev-manual-common-tasks.xml         |  104
+>> >++++++++++++++++++++
+>> > 1 file changed, 104 insertions(+)
+>> >
+>> >diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml
+>> >b/documentation/dev-manual/dev-manual-common-tasks.xml
+>> >index 17d725b..9072586 100644
+>> >--- a/documentation/dev-manual/dev-manual-common-tasks.xml
+>> >+++ b/documentation/dev-manual/dev-manual-common-tasks.xml
+>> >@@ -7582,6 +7582,110 @@ Gateways via their Web
+>> >Interfaces</ulink>"</emphasis>
+>> >         </section>
+>> >     </section>
+>> >
+>> >+    <section id=3D"selecting-dev-manager">
+>> >+        <title>Selecting a Device Manager</title>
+>> >+
+>> >+        <para>
+>> >+            Yocto provides multiple ways to manage
+>> <filename>/dev</filename>
+>> >+            <itemizedlist>
+>> >+                <listitem><para>
+>> >+                <emphasis>Persistent and pre populated
+>> ><filename>/dev</filename>:</emphasis>
+>> >+                in this case the <filename>/dev</filename> directory
+>> is persistent
+>> >+                and the required device nodes are created at build
+>> time.
+>> >+                </para></listitem>
+>> >+
+>> >+                <listitem><para>
+>> >+                <emphasis>Use <filename>devtmps</filename> with a
+>> device
+>> >manager:</emphasis>
+>> >+                in this case the <filename>/dev</filename> directory
+>> is provided
+>> >+                by the kernel as an in memory file system and is
+>> automatically
+>> >+                populated by the kernel at runtime. Additional
+>> configuration of
+>> >+                device nodes is done in user space by a device
+>> >+ manager
+>> like
+>> >+                <filename>udev</filename> or <filename>busybox-
+>> >mdev</filename>.
+>> >+                </para></listitem>
+>> >+            </itemizedlist>
+>> >+        </para>
+>> >+
+>> >+        <section id=3D"static-dev-management">
+>> >+            <title>Use Persistent and pre-populated
+>> ><filename>/dev</filename></title>
+>> >+
+>> >+            <para>
+>> >+                To use the static method for device population the
+>> variable
+>> >+                <ulink url=3D'&YOCTO_DOCS_REF_URL;#var-
+>> >USE_DEVFS'><filename>USE_DEVFS</filename></ulink>
+>> >+                needs to be set to 0.
+>> >+
+>> >+                <literallayout class=3D'monospaced'>
+>> >+     USE_DEVFS =3D "0"
+>> >+                </literallayout>
+>> >+            </para>
+>> >+
+>> >+            <para>
+>> >+                The content of the resulting
+>> >+ <filename>/dev</filename>
+>> directory
+>> >+                is defined in a Device Table file. The device table
+>> >+ to
+>> use is defined by
+>> >the variable
+>> >+                <ulink url=3D'&YOCTO_DOCS_REF_URL;#var-
+>>
+>>IMAGE_DEVICE_TABLES'><filename>IMAGE_DEVICE_TABLES</filename></
+>ul
+>> >ink> and should be set
+>> >+                in the <ulink url=3D'&YOCTO_DOCS_REF_URL;#var-
+>> >MACHINE'><filename>MACHINE</filename></ulink>,
+>> >+                <ulink url=3D'&YOCTO_DOCS_REF_URL;#var-
+>> >DISTRO'><filename>DISTRO</filename></ulink>
+>> >+                or <filename>local.conf</filename> configuration file.
+>> >+            </para>
+>> >+
+>> >+            <para>
+>> >+                If nothing is defined the default
+>> <filename>device_table-
+>> >minimal.txt</filename> is used.
+>> >+            </para>
+>> >+
+>> >+            <para>
+>> >+                The population is handled by the
+>> <filename>makedevs</filename>
+>> >utility
+>> >+                during image creation.
+>> >+
+>> >+                <literallayout class=3D'monospaced'>
+>> >+     IMAGE_DEVICE_TABLES =3D "device_table-mymachine.txt"
+>> >+                </literallayout>
+>> >+
+>> >+            </para>
+>> >+        </section>
+>> >+
+>> >+        <section id=3D"devtmps-dev-management">
+>> >+            <title>Use <filename>devtmpfs</filename> and a device
+>> >manager</title>
+>> >+
+>> >+            <para>
+>> >+                To use the dynamic method for device population the
+>> variable
+>> >+                <ulink url=3D'&YOCTO_DOCS_REF_URL;#var-
+>> >USE_DEVFS'><filename>USE_DEVFS</filename></ulink>
+>> >+                needs to be set to 1. This is the default.
+>> >+
+>> >+                <literallayout class=3D'monospaced'>
+>> >+     USE_DEVFS =3D "1"
+>> >+                </literallayout>
+>> >+
+>> >+                This way the resulting <filename>/dev</filename> is
+>> populated by
+>> >the kernel
+>> >+                using <filename>devtmpfs</filename>. Make sure the
+>> >corresponding
+>> >+                kernel configuration variable
+>> ><filename>CONFIG_DEVTMPFS</filename> is set
+>> >+                when building a linux kernel.
+>> >+
+>> >+            </para>
+>> >+            <para>
+>> >+                All devices created by <filename>devtmpfs</filename>
+>> will be
+>> >+                owned by <filename>root</filename> and have
+>> permissions
+>> ><filename>0600</filename>.
+>> >+
+>> >+                To have more control over the device nodes a device
+>> manager like
+>> >+                <filename>udev</filename> or <filename>busybox-
+>> >mdev</filename>
+>> >+                can be used.
+>> >+
+>> >+                The device manager to use is defined by the variable
+>> >+                <filename>VIRTUAL-RUNTIME_dev_manager</filename> and
+>> >should be set
+>> >+                in the <ulink url=3D'&YOCTO_DOCS_REF_URL;#var-
+>> >MACHINE'><filename>MACHINE</filename></ulink>,
+>> >+                <ulink url=3D'&YOCTO_DOCS_REF_URL;#var-
+>> >DISTRO'><filename>DISTRO</filename></ulink>
+>> >+                or <filename>local.conf</filename> configuration file.
+>> >+
+>> >+                <literallayout class=3D'monospaced'>
+>> >+
+>> >+     VIRTUAL-RUNTIME_dev_manager =3D "udev"
+>> >+
+>> >+     # Some alternative values
+>> >+     # VIRTUAL-RUNTIME_dev_manager =3D "busybox-mdev"
+>> >+     # VIRTUAL-RUNTIME_dev_manager =3D "systemd"
+>> >+                </literallayout>
+>> >+            </para>
+>> >+        </section>
+>> >+    </section>
+>> >+
+>> >     <section id=3D"platdev-appdev-srcrev">
+>> >         <title>Using an External SCM</title>
+>> >
+>> >--
+>> >1.7.10.4
+>> >
+>> >--
+>> >_______________________________________________
+>> >yocto mailing list
+>> >yocto@yoctoproject.org
+>> >https://lists.yoctoproject.org/listinfo/yocto
 
