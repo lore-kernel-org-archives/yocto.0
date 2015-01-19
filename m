@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CA7EFE00546; Sun, 18 Jan 2015 16:51:16 -0800 (PST)
+	id DA21DE00546; Sun, 18 Jan 2015 23:30:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,40 +18,39 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.177 listed in list.dnswl.org]
-Received: from mail-pd0-f177.google.com (mail-pd0-f177.google.com
-	[209.85.192.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 733FAE002F9
-	for <yocto@yoctoproject.org>; Sun, 18 Jan 2015 16:51:13 -0800 (PST)
-Received: by mail-pd0-f177.google.com with SMTP id y13so8381000pdi.8
-	for <yocto@yoctoproject.org>; Sun, 18 Jan 2015 16:51:13 -0800 (PST)
+	*      [209.85.220.44 listed in list.dnswl.org]
+Received: from mail-pa0-f44.google.com (mail-pa0-f44.google.com
+	[209.85.220.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1421DE002F9
+	for <yocto@yoctoproject.org>; Sun, 18 Jan 2015 23:30:16 -0800 (PST)
+Received: by mail-pa0-f44.google.com with SMTP id et14so37107433pad.3
+	for <yocto@yoctoproject.org>; Sun, 18 Jan 2015 23:30:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=U8QGSq3zMBKBG193jGHjmsbLkWyO64BXHXAEIenc2Uo=;
-	b=VcK+4ejMzLQdvEb5TTiqhy6mdfzH9kOkqjbEW4vjrsbxMaTwA+w8TjCqOGLajdYTNI
-	IWy84sTqfB3VMiNsemO4ZDvYfvBQMMC3T23bxI9p+CoazabhmU3A/hG8Us+u0wzhHpud
-	DN6MlDi2dEyqFy8W2GvgdIDs5jPphluzAUQ3vsnAYowOMrF4ys89yM9C1UbLmHgTtUVZ
-	/5bFwFTqEx5smOv1kTf+rSlkFhmklp4uHC3i3N8hHMSCCQCgdU1apSgqJ7uW9zptPf66
-	w0s4mKlOEuD/u5rYqLVv0ab+EsSg2i6TPe1SBBcAiFwpE/y/RP/G2nGKQeEvTpG7CWPj
-	GRvw==
-X-Received: by 10.66.148.161 with SMTP id tt1mr34183992pab.85.1421628673506;
-	Sun, 18 Jan 2015 16:51:13 -0800 (PST)
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=ZhGGm4Wyu0CG2tjYSJ5AUhmEQZcesYvPJ4bySjnJz/g=;
+	b=ebEEy5UpTg4x/iAi5n/cjTdrpe62sS4p90yjfOOsYgTZto0WB0oMBPHvcvR80I/4eg
+	QAt5cn5lXTgWeu5rH2ab19i6ZMJAApW+jvuGTkAlrPnOnev16qBC5LF0/W74BtNdughA
+	uNX2x3LlY2HuGo3M3izit7MxKx9IuvnT0kgyMtTT3FT82c2B2YoIhiaDxC5RyiDfqwus
+	HNIsBJ5AHVqavT+ytz/p1pG61J7waUVu0bH94MduJxFi+lOZ0TwbHltbRIYNkhe3lLdo
+	c7pIRwQhibFGXX+Z2fordG9Xl8SWcGocYAlDJJTUSuKP/9OvzFqcqfp+N0SrxwXGXXqE
+	/Ppg==
+X-Received: by 10.66.159.233 with SMTP id xf9mr14619757pab.78.1421652616112;
+	Sun, 18 Jan 2015 23:30:16 -0800 (PST)
 Received: from ?IPv6:2601:c:a700:272f:4433:82a5:f445:1a48?
 	([2601:c:a700:272f:4433:82a5:f445:1a48])
-	by mx.google.com with ESMTPSA id x16sm1460114pbt.66.2015.01.18.16.51.11
+	by mx.google.com with ESMTPSA id in3sm2930524pbb.12.2015.01.18.23.30.13
+	for <yocto@yoctoproject.org>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 18 Jan 2015 16:51:12 -0800 (PST)
-Message-ID: <54BC54FD.5030305@gmail.com>
-Date: Sun, 18 Jan 2015 16:51:09 -0800
+	Sun, 18 Jan 2015 23:30:14 -0800 (PST)
+Message-ID: <54BCB283.4080801@gmail.com>
+Date: Sun, 18 Jan 2015 23:30:11 -0800
 From: akuster808 <akuster808@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
-To: Andrei Gherzan <andrei@gherzan.ro>, Yocto Project <yocto@yoctoproject.org>
-References: <CAK18fxFQRXRJioWfxZKO6Zwh=u2B21X3iX-Diz4h7Ms_jh-TFQ@mail.gmail.com>
-In-Reply-To: <CAK18fxFQRXRJioWfxZKO6Zwh=u2B21X3iX-Diz4h7Ms_jh-TFQ@mail.gmail.com>
-Subject: Re: Benchmark layer available
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: [meta-security] apparmor
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,33 +62,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Jan 2015 00:51:16 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Mon, 19 Jan 2015 07:30:19 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Andrei,
-
-there are bench mark recipes in meta-openembedded
-
-meta-oe/recipes-benchmark
-
-http://cgit.openembedded.org/meta-openembedded/tree/meta-oe/recipes-benchmark
-
-I don't know what the threshold is for making a layer from a set of recipes.
+Anybody working in adding Apparmor? if not,
+I will be adding it some time week.
 
 - Armin
-
-On 01/17/2015 05:02 PM, Andrei Gherzan wrote:
-> Hello guys,
->
-> Is there any benchmarking layer available? I was interested in LINPACK
-> and I think it would make sense to have a benchmarking layer which will
-> include stuff like: LINPACK, ioquake3, Whetstone etc.
->
-> Regards,
->
-> --
-> *Andrei Gherzan*
->
->
 
