@@ -1,35 +1,51 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <rapphil@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 82CFAE00853; Tue, 20 Jan 2015 04:23:21 -0800 (PST)
+	id 0EB99E00860; Tue, 20 Jan 2015 06:39:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rapphil[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0905CE0082D
-	for <yocto@yoctoproject.org>; Tue, 20 Jan 2015 04:23:11 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga103.jf.intel.com with ESMTP; 20 Jan 2015 04:19:15 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,433,1418112000"; d="scan'208";a="664598500"
-Received: from jkan1-mobl3.gar.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.1.52])
-	by fmsmga002.fm.intel.com with ESMTP; 20 Jan 2015 04:23:10 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Raphael Philipe <rapphil@gmail.com>
-Date: Tue, 20 Jan 2015 12:23:09 +0000
-Message-ID: <5100308.QAtzWr7jXK@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.3 (Linux/3.17.8-200.fc20.x86_64; KDE/4.14.3; x86_64; ; )
-In-Reply-To: <CAENGNhcVmxW2xD4d4TDjTtLu2zCvCJ6sEOF8ek80hWz4kxKf6A@mail.gmail.com>
-References: <CAENGNhcVmxW2xD4d4TDjTtLu2zCvCJ6sEOF8ek80hWz4kxKf6A@mail.gmail.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.45 listed in list.dnswl.org]
+Received: from mail-qg0-f45.google.com (mail-qg0-f45.google.com
+	[209.85.192.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40664E004FF
+	for <yocto@yoctoproject.org>; Tue, 20 Jan 2015 06:39:17 -0800 (PST)
+Received: by mail-qg0-f45.google.com with SMTP id q107so10376448qgd.4
+	for <yocto@yoctoproject.org>; Tue, 20 Jan 2015 06:39:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=nqM+0WhYWW+fnyCnbtwFg4NLBXBwy3bMP8TOoEtjbqQ=;
+	b=HYop87Ikg4HP77uaUmXj70AV1ILYIpGGzeFqVCH3ZtZzSmITWJujhP3OM2PuGAXC8s
+	Y+vQuFvsQM1ZIS5RJX8N7tXYcwl+9f8sQijkiqZ1WDD8G58w7Goe4vc2eW97IFS1J++S
+	MhsPjvyWAmr8MY7s6RT5Y8NqgH5GLrIyqrO+H0NubxpOf9n+v/nnAdWE96rXJWWhaYCo
+	EgAIUGoGGbYWb35Ov9OG+uwvZ0WqEqSAaJ9dIhcqSuYCMNCPB+zTw+Z+wp0RzoaaiCtI
+	F3mVI1WJzOFSA3JcWXqZMSdqFr6YOTRnFmKx8+vB5155DY0nTYp7I8i4MOnWHKkZnQBq
+	uDng==
 MIME-Version: 1.0
+X-Received: by 10.224.2.9 with SMTP id 9mr21147222qah.66.1421764756784; Tue,
+	20 Jan 2015 06:39:16 -0800 (PST)
+Received: by 10.140.240.67 with HTTP; Tue, 20 Jan 2015 06:39:16 -0800 (PST)
+In-Reply-To: <5100308.QAtzWr7jXK@peggleto-mobl5.ger.corp.intel.com>
+References: <CAENGNhcVmxW2xD4d4TDjTtLu2zCvCJ6sEOF8ek80hWz4kxKf6A@mail.gmail.com>
+	<5100308.QAtzWr7jXK@peggleto-mobl5.ger.corp.intel.com>
+Date: Tue, 20 Jan 2015 12:39:16 -0200
+Message-ID: <CAENGNhff5-CZRSJaD1t1ppPOOQNrWipF01hAdatWqSkjGVmnVA@mail.gmail.com>
+From: Raphael Philipe <rapphil@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: Difference between target, cross, native and nativesdk.
 X-BeenThere: yocto@yoctoproject.org
@@ -43,61 +59,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Jan 2015 12:23:21 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 20 Jan 2015 14:39:21 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi Raphael,
+Thank you Paul,
 
-On Tuesday 20 January 2015 09:17:49 Raphael Philipe wrote:
-> I'm working on a set of recipes that must be configurable to be baked
-> in native, nativesdk, cross and target.
-> 
-> I have a bunch of questions concerning this terms. I searched the
-> documentation and wasn't able to find a definitive explanation for
-> these terms.
-> 
-> I will write some statements bellow about my understanding on these
-> terms, and I will ask you to please correct me if I'm wrong or add any
-> additional information:
-> 
-> - By default, recipes bake binaries for the target architecture that
-> is described in the MACHINE variable in the local.conf
+On Tue, Jan 20, 2015 at 10:23 AM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> Hi Raphael,
+>
+> On Tuesday 20 January 2015 09:17:49 Raphael Philipe wrote:
+>> I'm working on a set of recipes that must be configurable to be baked
+>> in native, nativesdk, cross and target.
+>>
+>> I have a bunch of questions concerning this terms. I searched the
+>> documentation and wasn't able to find a definitive explanation for
+>> these terms.
+>>
+>> I will write some statements bellow about my understanding on these
+>> terms, and I will ask you to please correct me if I'm wrong or add any
+>> additional information:
+>>
+>> - By default, recipes bake binaries for the target architecture that
+>> is described in the MACHINE variable in the local.conf
+>
+> Correct.
+>
+>> - One can use BBCLASSEXTEND = "native nativesdk" to bake binaries for
+>> the host architecture (native) and for target sdk architecture. The
+>> target sdk architecture is described in the SDKMACHINE variable and
+>> the host architecture is the architecture of the machine executing
+>> bitbake. BBCLASSEXTEND = "native nativesdk" will alow you to bake
+>> recipes that are "virtual" using the suffix native ( so ${PN}-native)
+>> and the prefix nativesdk (so nativesdk-${PN}).
+>
+> Correct. FYI alternatively you can also "inherit native" or "inherit
+> nativesdk" to make a recipe specific to either of those classes (in which case
+> the recipe itself should be named <something>-native or nativesdk-
+> <something>), however BBCLASSEXTEND is preferred these days.
+>
+>> - Recipes that are cross need to inherit cross.bbclass. They are used for
+>> ????
+>
+> Cross tools, i.e. tools that need to run in the native context and produce
+> some binary output for the target.
 
-Correct.
+For u-boot-fw-utils-cross, the binary that you refer is the enviroment
+variables file of u-boot? In this case, the difference between cross
+and native is not clear for me.
 
-> - One can use BBCLASSEXTEND = "native nativesdk" to bake binaries for
-> the host architecture (native) and for target sdk architecture. The
-> target sdk architecture is described in the SDKMACHINE variable and
-> the host architecture is the architecture of the machine executing
-> bitbake. BBCLASSEXTEND = "native nativesdk" will alow you to bake
-> recipes that are "virtual" using the suffix native ( so ${PN}-native)
-> and the prefix nativesdk (so nativesdk-${PN}).
-
-Correct. FYI alternatively you can also "inherit native" or "inherit
-nativesdk" to make a recipe specific to either of those classes (in which case
-the recipe itself should be named <something>-native or nativesdk-
-<something>), however BBCLASSEXTEND is preferred these days.
-
-> - Recipes that are cross need to inherit cross.bbclass. They are used for 
-> ????
-
-Cross tools, i.e. tools that need to run in the native context and produce
-some binary output for the target.
- 
-> I'm looking for the reason why there is a u-boot-fw-utils and a
-> u-boot-fw-utils-cross. One produces a binary for the target and the
-> other for???
-
-Here's the start of the discussion that precipitated this move:
-
-  http://lists.openembedded.org/pipermail/openembedded-core/2013-September/084280.html
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+>
+>> I'm looking for the reason why there is a u-boot-fw-utils and a
+>> u-boot-fw-utils-cross. One produces a binary for the target and the
+>> other for???
+>
+> Here's the start of the discussion that precipitated this move:
+>
+>   http://lists.openembedded.org/pipermail/openembedded-core/2013-September/084280.html
+>
+> Cheers,
+> Paul
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
