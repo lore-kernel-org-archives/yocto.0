@@ -1,40 +1,50 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <simon.bolek@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7DF0DE00860; Tue, 20 Jan 2015 06:45:24 -0800 (PST)
+	id DCC99E00860; Tue, 20 Jan 2015 07:51:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (simon.bolek[at]googlemail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55727E004FF
-	for <yocto@yoctoproject.org>; Tue, 20 Jan 2015 06:45:13 -0800 (PST)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga101.fm.intel.com with ESMTP; 20 Jan 2015 06:44:35 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,434,1418112000"; d="scan'208";a="514858645"
-Received: from jkan1-mobl3.gar.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.1.52])
-	by orsmga003.jf.intel.com with ESMTP; 20 Jan 2015 06:37:57 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Raphael Philipe <rapphil@gmail.com>
-Date: Tue, 20 Jan 2015 14:44:33 +0000
-Message-ID: <2632438.D1xOHJKf9V@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.3 (Linux/3.17.8-200.fc20.x86_64; KDE/4.14.3; x86_64; ; )
-In-Reply-To: <CAENGNhff5-CZRSJaD1t1ppPOOQNrWipF01hAdatWqSkjGVmnVA@mail.gmail.com>
-References: <CAENGNhcVmxW2xD4d4TDjTtLu2zCvCJ6sEOF8ek80hWz4kxKf6A@mail.gmail.com>
-	<5100308.QAtzWr7jXK@peggleto-mobl5.ger.corp.intel.com>
-	<CAENGNhff5-CZRSJaD1t1ppPOOQNrWipF01hAdatWqSkjGVmnVA@mail.gmail.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.169 listed in list.dnswl.org]
+Received: from mail-we0-f169.google.com (mail-we0-f169.google.com
+	[74.125.82.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 916BCE004FF
+	for <yocto@yoctoproject.org>; Tue, 20 Jan 2015 07:51:55 -0800 (PST)
+Received: by mail-we0-f169.google.com with SMTP id p10so14944999wes.0
+	for <yocto@yoctoproject.org>; Tue, 20 Jan 2015 07:51:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=CrgcCccVo3ppE0kzR89jhsnbP1mvqN0rLOD2ZxKLD5c=;
+	b=WJyOfr5z0jTzexiDdIic5I03uSg/7+p6YdlWcBuPUtSyEXA2ml1f9I2IgJBDl8ZTZi
+	V2OnxY10OBUM53dCUuE95Rveom0dZbsXSSwNWqA0fvPG62H6sPM+PeZH0FL2IzPTViMt
+	XweAzST60kFlRC2nTllCjM+m+HhyTT7z2TE5ugqhZjlhvck6KlW4T4vBndp7+EuJm50z
+	TmWnbatkHXiw+if/p/eJTnzITk5MqiuZIouV/oz8bi+wfx2heFWOW1vIQxDnzLEDbtjr
+	HblSDYy9jPHxkuhjJMZd9YJ9rNaAeWHulqFRLcOmgUBgLszRCkWDp2vKxYmYQEAWFecu
+	MxnQ==
+X-Received: by 10.194.76.73 with SMTP id i9mr17465056wjw.93.1421769114333;
+	Tue, 20 Jan 2015 07:51:54 -0800 (PST)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, Otavio Salvador <otavio@ossystems.com.br>,
-	Denys Dmytriyenko <denys@ti.com>
-Subject: Re: Difference between target, cross, native and nativesdk.
+Received: by 10.27.32.85 with HTTP; Tue, 20 Jan 2015 07:51:34 -0800 (PST)
+From: Simon Bolek <simon.bolek@googlemail.com>
+Date: Tue, 20 Jan 2015 16:51:34 +0100
+Message-ID: <CAEfap_BzExHr+4kmaf9U1c1BSu5SZj6MtCy9PET893FG6jbpCg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: QT: libssl.so: undefined reference to `EVP_idea_cbc@OPENSSL_1.0.0' - QQuickView problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,61 +56,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Jan 2015 14:45:24 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 20 Jan 2015 15:51:58 -0000
+Content-Type: multipart/alternative; boundary=047d7bb03bda033932050d176bce
 
-On Tuesday 20 January 2015 12:39:16 Raphael Philipe wrote:
-> On Tue, Jan 20, 2015 at 10:23 AM, Paul Eggleton
-> <paul.eggleton@linux.intel.com> wrote:
-> > On Tuesday 20 January 2015 09:17:49 Raphael Philipe wrote:
-> >> I'm working on a set of recipes that must be configurable to be baked
-> >> in native, nativesdk, cross and target.
-> >> 
-> >> I have a bunch of questions concerning this terms. I searched the
-> >> documentation and wasn't able to find a definitive explanation for
-> >> these terms.
-> >> 
-> >> I will write some statements bellow about my understanding on these
-> >> terms, and I will ask you to please correct me if I'm wrong or add any
-> >> additional information:
-> >> 
-> >> - By default, recipes bake binaries for the target architecture that
-> >> is described in the MACHINE variable in the local.conf
-> > 
-> > Correct.
-> > 
-> >> - One can use BBCLASSEXTEND = "native nativesdk" to bake binaries for
-> >> the host architecture (native) and for target sdk architecture. The
-> >> target sdk architecture is described in the SDKMACHINE variable and
-> >> the host architecture is the architecture of the machine executing
-> >> bitbake. BBCLASSEXTEND = "native nativesdk" will alow you to bake
-> >> recipes that are "virtual" using the suffix native ( so ${PN}-native)
-> >> and the prefix nativesdk (so nativesdk-${PN}).
-> > 
-> > Correct. FYI alternatively you can also "inherit native" or "inherit
-> > nativesdk" to make a recipe specific to either of those classes (in which
-> > case the recipe itself should be named <something>-native or nativesdk-
-> > <something>), however BBCLASSEXTEND is preferred these days.
-> > 
-> >> - Recipes that are cross need to inherit cross.bbclass. They are used for
-> >> ????
-> > 
-> > Cross tools, i.e. tools that need to run in the native context and produce
-> > some binary output for the target.
-> 
-> For u-boot-fw-utils-cross, the binary that you refer is the enviroment
-> variables file of u-boot? In this case, the difference between cross
-> and native is not clear for me.
+--047d7bb03bda033932050d176bce
+Content-Type: text/plain; charset=UTF-8
 
-I'm not sure of the details for this recipe specifically. Perhaps one of the 
-people on CC can answer.
+Hi *,
 
-Cheers,
-Paul
+I hope someone can help me with that.
+Working under ubuntu 14.10 using qtcreator 3.2.2 trying to compile qt 5.2
+code - very simple UI application - against poky 1.6.1 sysroot. So
+basically nothing strange/hard in that. But once I subclass QQuickView
+anywhere in the application i get this linker error:
 
--- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+*/opt/poky/1.6.1/sysroots/i586-poky-linux/usr/lib/libssl.so: undefined
+reference to `EVP_idea_cbc@OPENSSL_1.0.0'*
 
+If I use QWidget instead of QQuickView in the same class as public
+subclass, it compiles fine.
+
+I have no idea how to get this fixed :(
+
+-lssl -lcrypto are already linked in .pro file like that:
+LIBS += -lssl -lcrypto
+
+Internet search did not bring anything up. Any hints would be more than
+welcome!
+
+thank you and best regards
+simon :-)
+
+--047d7bb03bda033932050d176bce
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div>Hi *, <br><br>I hope someone can help me with th=
+at. <br>Working under ubuntu 14.10 using qtcreator 3.2.2 trying to compile =
+qt 5.2 code - very simple UI application - against poky 1.6.1 sysroot. So b=
+asically nothing strange/hard in that. But once I subclass QQuickView anywh=
+ere in the application i get this linker error:<br><br><b>/opt/poky/1.6.1/s=
+ysroots/i586-poky-linux/usr/lib/libssl.so: undefined reference to `EVP_idea=
+_cbc@OPENSSL_1.0.0&#39;<br></b></div><div><br></div><div>If I use QWidget i=
+nstead of QQuickView in the same class as public subclass, it compiles fine=
+.<br></div><div><br>I have no idea how to get this fixed :(<br></div><div><=
+br>-lssl -lcrypto are already linked in .pro file like that:<br>LIBS +=3D -=
+lssl -lcrypto<br><br></div><div>Internet search did not bring anything up. =
+Any hints would be more than welcome!<br></div><div><br></div>thank you and=
+ best regards<br></div>simon :-)<br></div>
+
+--047d7bb03bda033932050d176bce--
