@@ -1,49 +1,43 @@
 Return-Path: <Neil.Wu@emerson.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8AD64E0084D; Mon, 19 Jan 2015 17:50:01 -0800 (PST)
+	id 963F0E00853; Mon, 19 Jan 2015 19:12:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 77 seconds by postgrey-1.32 at yocto-www;
-	Mon, 19 Jan 2015 17:49:56 PST
-Received: from esa1.emerson-outbound.iphmx.com
-	(esa1.emerson-outbound.iphmx.com [68.232.130.217])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BAA6E00571
-	for <yocto@yoctoproject.org>; Mon, 19 Jan 2015 17:49:56 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.09,430,1418061600"; 
-   d="scan'208";a="605254"
-Received: from usstlz-pinfez08.extemr.org ([144.191.128.192])
-	by esa1.emerson-outbound.iphmx.com with ESMTP/TLS/AES128-SHA;
-	20 Jan 2015 07:48:36 +0600
-Received: from USSTLZ-PMSG016.emrsn.org (10.16.72.198) by
-	USSTLZ-PINFEZ08.extemr.org (10.16.8.81) with Microsoft SMTP Server
-	(TLS) id 14.3.158.1; Tue, 20 Jan 2015 01:48:12 +0000
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from esa2.emerson-outbound.iphmx.com
+	(esa2.emerson-outbound.iphmx.com [68.232.130.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3123BE0083A
+	for <yocto@yoctoproject.org>; Mon, 19 Jan 2015 19:12:33 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.09,431,1418061600"; d="scan'208,217";a="559873"
+Received: from usstlz-pinfez04.extemr.org ([144.191.128.188])
+	by esa2.emerson-outbound.iphmx.com with ESMTP/TLS/AES128-SHA;
+	20 Jan 2015 09:12:32 +0600
+Received: from USSTLZ-PMSG015.emrsn.org (10.16.72.197) by
+	USSTLZ-PINFEZ04.extemr.org (10.16.8.77) with Microsoft SMTP Server
+	(TLS) id 14.3.158.1; Tue, 20 Jan 2015 03:12:31 +0000
 Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.242]) by
-	USSTLZ-PMSG016.emrsn.org ([169.254.8.186]) with mapi id 14.03.0158.001;
-	Tue, 20 Jan 2015 01:48:12 +0000
+	USSTLZ-PMSG015.emrsn.org ([169.254.7.20]) with mapi id 14.03.0158.001;
+	Tue, 20 Jan 2015 03:12:31 +0000
 From: <Neil.Wu@Emerson.com>
-To: <bruce.ashfield@windriver.com>, <yocto@yoctoproject.org>
-Thread-Topic: [yocto] can't find the source code of kernel
-Thread-Index: AQHQMUXeaZ0XjZ6yWECmO8exklK2n5zIQfBg
-Date: Tue, 20 Jan 2015 01:48:11 +0000
-Message-ID: <3204FE6663E1F14CAF4CA6928E60C8522763CF32@USSTLZ-PMSG012.emrsn.org>
+To: <yocto@yoctoproject.org>
+Thread-Topic: dependency eglibc resulted in conflicting PREFERRED_PROVIDER
+	entries being found
+Thread-Index: AQHQFRM5gTV0wiwU10CyeEmwiRVbQJyKIA2wgAlqp4CALZ8F8IAHaPGw
+Date: Tue, 20 Jan 2015 03:12:30 +0000
+Message-ID: <3204FE6663E1F14CAF4CA6928E60C8522763CF4E@USSTLZ-PMSG012.emrsn.org>
 References: <20141211004713.GC4102@mentor.com>
 	<1077253035.5058800.1418282511482.JavaMail.yahoo@jws10079.mail.ne1.yahoo.com>
-	<3204FE6663E1F14CAF4CA6928E60C8522763CB6C@USSTLZ-PMSG012.emrsn.org>
-	<54B7BAE5.7020700@windriver.com>
-	<3204FE6663E1F14CAF4CA6928E60C8522763CBF5@USSTLZ-PMSG012.emrsn.org>
-	<54B89513.70103@windriver.com>
-In-Reply-To: <54B89513.70103@windriver.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.16.75.1]
 MIME-Version: 1.0
-Subject: Re: can't find the source code of kernel
+Subject: dependency eglibc resulted in conflicting PREFERRED_PROVIDER entries being found
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,100 +49,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Jan 2015 01:50:01 -0000
+X-List-Received-Date: Tue, 20 Jan 2015 03:12:40 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/alternative;
+	boundary="_000_3204FE6663E1F14CAF4CA6928E60C8522763CF4EUSSTLZPMSG012em_"
 
-Hi, Bruce
-Thank you very much for your help. My problem have solved. Before, I was wo=
-rking  in "master" branch.
-Switch to a new branch, I find the "source" directory ,what included the ke=
-rnel source code, in linux-qemuarm-standard-build.
+--_000_3204FE6663E1F14CAF4CA6928E60C8522763CF4EUSSTLZPMSG012em_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Neil
+SGkgLGFsbA0KSSB0cnkgdG8gYnVpbGQgbXkgY3VzdG9tIGltYWdlICwgVGhlIHByb2JsZW0gYXBw
+ZWFycyBhcyBmb2xsb3dzOg0KDQpFUlJPUjogVHJ5aW5nIHRvIHJlc29sdmUgcnVudGltZSBkZXBl
+bmRlbmN5IGVnbGliYyByZXN1bHRlZCBpbiBjb25mbGljdGluZyBQUkVGRVJSRURfUFJPVklERVIg
+ZW50cmllcyBiZWluZyBmb3VuZC4NClRoZSBwcm92aWRlcnMgZm91bmQgd2VyZTogWycvaG9tZS9l
+Y3Rycy9wb2t5L21ldGEvcmVjaXBlcy1jb3JlL2dsaWJjL2dsaWJjLWluaXRpYWxfMi4yMC5iYics
+ICd2aXJ0dWFsOm5hdGl2ZXNkazovaG9tZS9lY3Rycy9wb2t5L21ldGEvcmVjaXBlcy1jb3JlL2ds
+aWJjL2dsaWJjLWluaXRpYWxfMi4yMC5iYiddDQpUaGUgUFJFRkVSUkVEX1BST1ZJREVSIGVudHJp
+ZXMgcmVzdWx0aW5nIGluIHRoaXMgY29uZmxpY3Qgd2VyZTogWydQUkVGRVJSRURfUFJPVklERVJf
+dmlydHVhbC9hcm0tcG9reS1saW51eC1nbnVlYWJpLWxpYmMtaW5pdGlhbCA9IGdsaWJjLWluaXRp
+YWwnLCAnUFJFRkVSUkVEX1BST1ZJREVSX3ZpcnR1YWwvbmF0aXZlc2RrLWk2ODYtcG9reXNkay1s
+aW51eC1saWJjLWluaXRpYWwgPSBuYXRpdmVzZGstZ2xpYmMtaW5pdGlhbCddDQoNCkRvIHlvdSBr
+bm93IGhvdyB0byByZXNvbHZlIGl0ID8gUGxlYXNlIGhlbHAgbWUgLg0KVGhhbmsgeW91IHZlcnkg
+bXVjaC4NCg0KQmVzdCB3aXNoZXMNCk5laWwNCg0K
 
------Original Message-----
-From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
-Sent: Friday, January 16, 2015 12:36 PM
-To: Wu, Neil [CLIMATE/RS/CN]; yocto@yoctoproject.org
-Subject: Re: [yocto] can't find the source code of kernel
+--_000_3204FE6663E1F14CAF4CA6928E60C8522763CF4EUSSTLZPMSG012em_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 2015-01-15 8:13 PM, Neil.Wu@Emerson.com wrote:
-> Hi, Bruce
-> Thank you for your reply.
-> In the WORKDIR , it just has "linux-qemuarm-standard-build" and not have =
-the "linux".
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6eD0idXJuOnNjaGVtYXMtbWljcm9z
+b2Z0LWNvbTpvZmZpY2U6ZXhjZWwiIHhtbG5zOm09Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5j
+b20vb2ZmaWNlLzIwMDQvMTIvb21tbCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnL1RSL1JFQy1o
+dG1sNDAiPg0KPGhlYWQ+DQo8bWV0YSBodHRwLWVxdWl2PSJDb250ZW50LVR5cGUiIGNvbnRlbnQ9
+InRleHQvaHRtbDsgY2hhcnNldD11dGYtOCI+DQo8bWV0YSBuYW1lPSJHZW5lcmF0b3IiIGNvbnRl
+bnQ9Ik1pY3Jvc29mdCBXb3JkIDEyIChmaWx0ZXJlZCBtZWRpdW0pIj4NCjxzdHlsZT4NCjwhLS0N
+CiAvKiBGb250IERlZmluaXRpb25zICovDQogQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpTaW1T
+dW47DQoJcGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQpAZm9udC1mYWNlDQoJe2ZvbnQt
+ZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYgMyAyIDQ7fQ0K
+QGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIgMTUgNSAyIDIg
+MiA0IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IlxAU2ltU3VuIjsNCglwYW5v
+c2UtMToyIDEgNiAwIDMgMSAxIDEgMSAxO30NCiAvKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KIHAu
+TXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglt
+YXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToi
+VGltZXMgTmV3IFJvbWFuIiwic2VyaWYiO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7
+bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVu
+ZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0
+eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJs
+aW5lO30NCnNwYW4uRW1haWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZv
+bnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQpzcGFu
+LkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsNCglmb250LWZhbWlseToi
+Q2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0Kc3Bhbi5FbWFpbFN0eWxl
+MTkNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWw7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJz
+YW5zLXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1z
+dHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1z
+ZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlw
+ZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0O30NCkBwYWdlIFNlY3Rpb24xDQoJe3Np
+emU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYu
+U2VjdGlvbjENCgl7cGFnZTpTZWN0aW9uMTt9DQotLT4NCjwvc3R5bGU+PCEtLVtpZiBndGUgbXNv
+IDldPjx4bWw+DQogPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIg
+Lz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KIDxvOnNoYXBl
+bGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCiAgPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+
+DQogPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFu
+Zz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iU2VjdGlv
+bjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
+Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ow0K
+Y29sb3I6IzFGNDk3RCI+SGkgLGFsbDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPkkg
+dHJ5IHRvIGJ1aWxkIG15IGN1c3RvbSBpbWFnZSAsIFRoZSBwcm9ibGVtIGFwcGVhcnMgYXMgZm9s
+bG93czo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZx
+dW90O3NhbnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj4mbmJzcDs8bzpwPjwvbzpwPjwv
+c3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPkVS
+Uk9SOiBUcnlpbmcgdG8gcmVzb2x2ZSBydW50aW1lIGRlcGVuZGVuY3kgZWdsaWJjIHJlc3VsdGVk
+IGluIGNvbmZsaWN0aW5nIFBSRUZFUlJFRF9QUk9WSURFUiBlbnRyaWVzIGJlaW5nIGZvdW5kLjxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fu
+cy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPlRoZSBwcm92aWRlcnMgZm91bmQgd2VyZTog
+WycvaG9tZS9lY3Rycy9wb2t5L21ldGEvcmVjaXBlcy1jb3JlL2dsaWJjL2dsaWJjLWluaXRpYWxf
+Mi4yMC5iYicsICd2aXJ0dWFsOm5hdGl2ZXNkazovaG9tZS9lY3Rycy9wb2t5L21ldGEvcmVjaXBl
+cy1jb3JlL2dsaWJjL2dsaWJjLWluaXRpYWxfMi4yMC5iYiddPG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
+dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ow0KY29s
+b3I6IzFGNDk3RCI+VGhlIFBSRUZFUlJFRF9QUk9WSURFUiBlbnRyaWVzIHJlc3VsdGluZyBpbiB0
+aGlzIGNvbmZsaWN0IHdlcmU6IFsnUFJFRkVSUkVEX1BST1ZJREVSX3ZpcnR1YWwvYXJtLXBva3kt
+bGludXgtZ251ZWFiaS1saWJjLWluaXRpYWwgPSBnbGliYy1pbml0aWFsJywgJ1BSRUZFUlJFRF9Q
+Uk9WSURFUl92aXJ0dWFsL25hdGl2ZXNkay1pNjg2LXBva3lzZGstbGludXgtbGliYy1pbml0aWFs
+DQogPSBuYXRpdmVzZGstZ2xpYmMtaW5pdGlhbCddPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ow0KY29sb3I6IzFG
+NDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+RG8geW91IGtub3cg
+aG93IHRvIHJlc29sdmUgaXQgPyBQbGVhc2UgaGVscCBtZSAuDQo8bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
+b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7DQpj
+b2xvcjojMUY0OTdEIj5UaGFuayB5b3UgdmVyeSBtdWNoLjxicj4NCjxicj4NCjxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
+dW90OzsNCmNvbG9yOiMxRjQ5N0QiPkJlc3Qgd2lzaGVzPG86cD48L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
+YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ow0KY29sb3I6
+IzFGNDk3RCI+TmVpbDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+
+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-Are you sure you are building Yocto 1.7 and not the master branch ?
-
-Until about a month ago, every build had the source along side the
-split build directory .. in a directory called linux. But as I
-mentioned, we are working to move the kernel to build out of the
-sysroot/shared working directory.
-
->
-> My WORKDIR directory is "~/poky/build/tmp/work/qemuarm-poky-linux-gnueabi=
-/linux-yocto/3.14.24+gitAUTOINC+a227f20eff_6166316d47-r0", but I don't find=
- the tarball of "linux-14.24"
-> in download directory. It has tarball "linux-17.7.tar.xz".
->
-> Do you think whether these is the reason?
-
-They shouldn't be related. But that tar.xz you reference above is
-clearly from some other kernel build than the linux yocto variant.
-
->
-> I don't know how to set the version of linux when the project  building t=
-he image.
-> Maybe, I set the linux to 17.7 version, the problem can solve.
-
-I'm not sure how you are getting a 17.7 tarball, but the linux-yocto
-tree builds from a git repository, not a tarball.
-
-In that directory where you see the qemuarm build you should also see a
-git.indirectionsymlink that points to the git tree in downloads/git2/
-
-Cheers,
-
-Bruce
-
->
-> Do you have any other better suggestion? Thank you very much.
->
-> Neil
->
->
-> -----Original Message-----
-> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
-> Sent: Thursday, January 15, 2015 9:05 PM
-> To: Wu, Neil [CLIMATE/RS/CN]; yocto@yoctoproject.org
-> Subject: Re: [yocto] can't find the source code of kernel
->
-> On 2015-01-15 5:03 AM, Neil.Wu@Emerson.com wrote:
->> Hi ,all
->>
->> The version of poky is 1.7. I build the linux-yocto is  successful .
->>
->> bitbake linux-yocto
->>
->> But, why I can't find the source code of linux  in ${WORKDIR}.
->
-> It should be there (note: it is about to move in master, but not in 1.7.1=
-).
->
-> In WORKDIR, you have "linux" (the source) and linux-$MACHINE-build (the
-> build).
->
-> Bruce
->
->>
->> Best wishes
->>
->> Neil
->>
->>
->>
->
-
-
+--_000_3204FE6663E1F14CAF4CA6928E60C8522763CF4EUSSTLZPMSG012em_--
