@@ -1,39 +1,48 @@
-Return-Path: <Alexandru.Vaduva@enea.com>
+Return-Path: <rapphil@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 50171E0083A; Tue, 20 Jan 2015 03:10:19 -0800 (PST)
+	id AB6B4E00853; Tue, 20 Jan 2015 03:18:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rapphil[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 8FC85E00872
-	for <yocto@yoctoproject.org>; Tue, 20 Jan 2015 03:10:11 -0800 (PST)
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
-	14.03.0224.002; Tue, 20 Jan 2015 12:10:07 +0100
-From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
-To: Qian Lei <qianl.fnst@cn.fujitsu.com>
-Thread-Topic: [yocto] [meta-cgl][PATCH 0/2] cluster: Fix some error and format
-Thread-Index: AQHQM8/zpcWNqbZFuke4vfyRzUT95JzHTvjwgAAHvQCAAYNzQA==
-Date: Tue, 20 Jan 2015 11:10:07 +0000
-Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D782E91@SESTOEX04.enea.se>
-References: <1421662056-1389-1-git-send-email-qianl.fnst@cn.fujitsu.com>
-	<DDB0C57E45663A458C5CACB7B5688BC21D77B0BA@SESTOEX04.enea.se>
-	<20150119205758.1ff97d78@Fedora>
-In-Reply-To: <20150119205758.1ff97d78@Fedora>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.14.189]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.179 listed in list.dnswl.org]
+Received: from mail-qc0-f179.google.com (mail-qc0-f179.google.com
+	[209.85.216.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47444E0082D
+	for <yocto@yoctoproject.org>; Tue, 20 Jan 2015 03:17:50 -0800 (PST)
+Received: by mail-qc0-f179.google.com with SMTP id w7so9841464qcr.10
+	for <yocto@yoctoproject.org>; Tue, 20 Jan 2015 03:17:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=HE8Pp/W/nVNq85qOX70uTPHMP7dNPutn74EEW7HZBSw=;
+	b=gJp7D4IaIe7ToH4MOIs9xvG5M08jhPZpszXUenwd4kz/IX6AXPx4K9HUzvABGWYzvs
+	hO9QnZznDLZBystCfm695xqRXvtOXZx7LSMGGPzkWhF0jvwqbkAFJW+5H8stUgK4DKbi
+	M3zKspkoC1H5rqKBvdR5LaKO5qCnJ366HtHKd2Z3DgGzCObxYwe9eHU9N9X/VFAQIJFM
+	n3An2tT+M5/bv7t0IoioC+D0t3n+39XDd+505SbMcuRoRpnJjZgfPFfgEjIVO4vMP9DQ
+	6DjgB5Vz211LXHqFmvjBPY+L5tqayvWf378j5QfZn/H0zdhThUYuk46wuFMG5r4GY4P4
+	Tc3g==
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-cgl][PATCH 0/2] cluster: Fix some error and format
+X-Received: by 10.140.21.229 with SMTP id 92mr43695826qgl.33.1421752669270;
+	Tue, 20 Jan 2015 03:17:49 -0800 (PST)
+Received: by 10.140.240.67 with HTTP; Tue, 20 Jan 2015 03:17:49 -0800 (PST)
+Date: Tue, 20 Jan 2015 09:17:49 -0200
+Message-ID: <CAENGNhcVmxW2xD4d4TDjTtLu2zCvCJ6sEOF8ek80hWz4kxKf6A@mail.gmail.com>
+From: Raphael Philipe <rapphil@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Difference between target, cross, native and nativesdk.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,79 +54,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 Jan 2015 11:10:19 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 20 Jan 2015 11:18:01 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Yes but openldap is a dependency brought up by the cluster recipe.
-Proof:
-DEPENDS =3D "corosync dbus openldap openais libxml2 ncurses perl zlib"
+Hi,
 
-Lei Maohui did you experience this error when you tested the recipe?
+I'm working on a set of recipes that must be configurable to be baked
+in native, nativesdk, cross and target.
 
+I have a bunch of questions concerning this terms. I searched the
+documentation and wasn't able to find a definitive explanation for
+these terms.
 
-Alex Vaduva
+I will write some statements bellow about my understanding on these
+terms, and I will ask you to please correct me if I'm wrong or add any
+additional information:
 
------Original Message-----
-From: Qian Lei [mailto:qianl.fnst@cn.fujitsu.com]=20
-Sent: Monday, January 19, 2015 2:58 PM
-To: Alexandru Vaduva
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] [meta-cgl][PATCH 0/2] cluster: Fix some error and form=
-at
+- By default, recipes bake binaries for the target architecture that
+is described in the MACHINE variable in the local.conf
 
-On Mon, 19 Jan 2015 11:32:35 +0000
-Alexandru Vaduva <Alexandru.Vaduva@enea.com> wrote:
+- One can use BBCLASSEXTEND = "native nativesdk" to bake binaries for
+the host architecture (native) and for target sdk architecture. The
+target sdk architecture is described in the SDKMACHINE variable and
+the host architecture is the architecture of the machine executing
+bitbake. BBCLASSEXTEND = "native nativesdk" will alow you to bake
+recipes that are "virtual" using the suffix native ( so ${PN}-native)
+and the prefix nativesdk (so nativesdk-${PN}).
 
-> Does this fix the error I encounter when building the package.
-> The log is attached to this email and is also available in the=20
-> bugzilla
-> issue: https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7176
+- Recipes that are cross need to inherit cross.bbclass. They are used for  ????
 
-Actually no. This patch use the kernel source in bitbake world instead of t=
-hat on the host. This error only appeared on my build enviroment.=20
+I'm looking for the reason why there is a u-boot-fw-utils and a
+u-boot-fw-utils-cross. One produces a binary for the target and the
+other for???
 
-But your error is to build openldap, not cluster.
-
-
-
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org=20
-> [mailto:yocto-bounces@yoctoproject.org]
-> On Behalf Of Qian Lei Sent: Monday, January 19, 2015 12:08 PM
-> To: yocto@yoctoproject.org
-> Subject: [yocto] [meta-cgl][PATCH 0/2] cluster: Fix some error and=20
-> format
->=20
-> Use KERNEL_SRC instead of hardcode path in configure. Also fix license fo=
-rmat.
->=20
-> *** BLURB HERE ***
->=20
-> Qian Lei (2):
->   cluster: Fix license format
->   cluster: Add a patch to fix the path of kernel source
->=20
->  .../cluster/0001-Fix-the-kernel-source-patch.patch | 38
-> ++++++++++++++++++++++ .../recipes-cgl/cluster/cluster_3.2.0.bb          =
- |
-> 5 +-- 2 files changed, 41 insertions(+), 2 deletions(-)  create mode=20
-> 100644=20
-> meta-cgl-common/recipes-cgl/cluster/cluster/0001-Fix-the-kernel-source
-> -patch.patch
->=20
-> --
-> 1.8.3.1
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
-
---
-Qian Lei
+thank you.
 
