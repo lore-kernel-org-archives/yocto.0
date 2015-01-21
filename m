@@ -1,49 +1,44 @@
-Return-Path: <sm0ketst@gmail.com>
+Return-Path: <Neil.Wu@emerson.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6D3BBE008CD; Tue, 20 Jan 2015 22:47:11 -0800 (PST)
+	id E0325E008CD; Tue, 20 Jan 2015 22:59:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (sm0ketst[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.51 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yh0-f51.google.com (mail-yh0-f51.google.com
-	[209.85.213.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CDCEE0086E
-	for <yocto@yoctoproject.org>; Tue, 20 Jan 2015 22:47:02 -0800 (PST)
-Received: by mail-yh0-f51.google.com with SMTP id z6so7344412yhz.10
-	for <yocto@yoctoproject.org>; Tue, 20 Jan 2015 22:47:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=aKGd+sGWNZUXUzOKMi5kO9UUPM+NdNCmWfdcCpWd6TE=;
-	b=b6v/5TTE4YLs5MqoJgnU//R8UpVQnfdEWNVZKqfAz3iz8NF4mgntpElJVff3UweMH+
-	8t+zxIQgzXw3hT4V2EQDRWLp2WkDEtoMiMsFqYKhQUAXi0pQvO65BDbeXlg4LMnD1zkr
-	V8lqPSwxikiiasGl6Bx5MPkhfY8WfPz4B6mzGjCMLyFJ41fLrBHQ5rrQrqo04FnRns3Q
-	pH//uABLgit5Rtw4e+498fXFeNG28HakGAw3Ugdx/23mF+lbsA0PdXTL0nre6k0RM/dV
-	BWthSFP/Mzjul2Jr2sAGy0aYGwx/33jl/uO1JSjsBlODVaBQNbyIZ/tYIn3IKvr8aoXw
-	7mJg==
+Received: from esa1.emerson-outbound.iphmx.com
+	(esa1.emerson-outbound.iphmx.com [68.232.130.217])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25E36E0086E
+	for <yocto@yoctoproject.org>; Tue, 20 Jan 2015 22:59:23 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.09,440,1418061600"; d="scan'208,217";a="738658"
+Received: from usstlz-pinfez04.extemr.org ([144.191.128.188])
+	by esa1.emerson-outbound.iphmx.com with ESMTP/TLS/AES128-SHA;
+	21 Jan 2015 12:59:22 +0600
+Received: from USSTLZ-PMSG006.emrsn.org (10.16.72.188) by
+	USSTLZ-PINFEZ04.extemr.org (10.16.8.77) with Microsoft SMTP Server
+	(TLS) id 14.3.158.1; Wed, 21 Jan 2015 06:59:20 +0000
+Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.242]) by
+	USSTLZ-PMSG006.emrsn.org ([169.254.1.21]) with mapi id 14.03.0158.001;
+	Wed, 21 Jan 2015 06:59:20 +0000
+From: <Neil.Wu@Emerson.com>
+To: <yocto@yoctoproject.org>
+Thread-Topic: the problem of poky 1.7 when building the custom rootfs
+Thread-Index: AQHQFRM5gTV0wiwU10CyeEmwiRVbQJyKIA2wgAlqp4CALZ8F8IAHaPGwgAHSY8A=
+Date: Wed, 21 Jan 2015 06:59:20 +0000
+Message-ID: <3204FE6663E1F14CAF4CA6928E60C8522763D08F@USSTLZ-PMSG012.emrsn.org>
+References: <20141211004713.GC4102@mentor.com>
+	<1077253035.5058800.1418282511482.JavaMail.yahoo@jws10079.mail.ne1.yahoo.com>
+	<3204FE6663E1F14CAF4CA6928E60C8522763CF4E@USSTLZ-PMSG012.emrsn.org>
+In-Reply-To: <3204FE6663E1F14CAF4CA6928E60C8522763CF4E@USSTLZ-PMSG012.emrsn.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.75.1]
 MIME-Version: 1.0
-X-Received: by 10.170.120.195 with SMTP id m186mr14195763ykb.27.1421822820975; 
-	Tue, 20 Jan 2015 22:47:00 -0800 (PST)
-Received: by 10.170.166.87 with HTTP; Tue, 20 Jan 2015 22:47:00 -0800 (PST)
-Date: Wed, 21 Jan 2015 07:47:00 +0100
-Message-ID: <CABMtxuy5YRTZyu1Ksyu645TXPYuoVH_VBS4tySLUCyJxV4Np1Q@mail.gmail.com>
-From: "J.J. Garcia" <sm0ketst@gmail.com>
-To: yocto@yoctoproject.org
-Subject: [eclipse-plugin] Exception Eclipse Plugin 1.7 / kepler Windows using MinGW can x-comp. No options are stored after configuration.
+Subject: the problem of poky 1.7 when building the custom rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,234 +50,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Jan 2015 06:47:11 -0000
-Content-Type: multipart/alternative; boundary=001a1138e3182d881f050d23ec67
+X-List-Received-Date: Wed, 21 Jan 2015 06:59:31 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_3204FE6663E1F14CAF4CA6928E60C8522763D08FUSSTLZPMSG012em_"
 
---001a1138e3182d881f050d23ec67
-Content-Type: text/plain; charset=UTF-8
+--_000_3204FE6663E1F14CAF4CA6928E60C8522763D08FUSSTLZPMSG012em_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi all,
+SGkgLGFsbA0KSSB0cnkgdG8gYnVpbGQgbXkgY3VzdG9tIGltYWdlICwgVGhlIHByb2JsZW0gYXBw
+ZWFycyBhcyBmb2xsb3dzOg0KDQpFUlJPUjogVHJ5aW5nIHRvIHJlc29sdmUgcnVudGltZSBkZXBl
+bmRlbmN5IGVnbGliYyByZXN1bHRlZCBpbiBjb25mbGljdGluZyBQUkVGRVJSRURfUFJPVklERVIg
+ZW50cmllcyBiZWluZyBmb3VuZC4NClRoZSBwcm92aWRlcnMgZm91bmQgd2VyZTogWycvaG9tZS9l
+Y3Rycy9wb2t5L21ldGEvcmVjaXBlcy1jb3JlL2dsaWJjL2dsaWJjLWluaXRpYWxfMi4yMC5iYics
+ICd2aXJ0dWFsOm5hdGl2ZXNkazovaG9tZS9lY3Rycy9wb2t5L21ldGEvcmVjaXBlcy1jb3JlL2ds
+aWJjL2dsaWJjLWluaXRpYWxfMi4yMC5iYiddDQpUaGUgUFJFRkVSUkVEX1BST1ZJREVSIGVudHJp
+ZXMgcmVzdWx0aW5nIGluIHRoaXMgY29uZmxpY3Qgd2VyZTogWydQUkVGRVJSRURfUFJPVklERVJf
+dmlydHVhbC9hcm0tcG9reS1saW51eC1nbnVlYWJpLWxpYmMtaW5pdGlhbCA9IGdsaWJjLWluaXRp
+YWwnLCAnUFJFRkVSUkVEX1BST1ZJREVSX3ZpcnR1YWwvbmF0aXZlc2RrLWk2ODYtcG9reXNkay1s
+aW51eC1saWJjLWluaXRpYWwgPSBuYXRpdmVzZGstZ2xpYmMtaW5pdGlhbCddDQoNCkRvIHlvdSBr
+bm93IGhvdyB0byByZXNvbHZlIGl0ID8gUGxlYXNlIGhlbHAgbWUgLg0KVGhhbmsgeW91IHZlcnkg
+bXVjaC4NCkJlc3Qgd2lzaGVzDQpOZWlsDQoNCg==
 
-When using the Yocto plugin in Kepler/Windos/X86_64 and MinGW/Toolchain
-deployed in /opt/poky/1.7, after setting up the options as:
-- Standard pre-built toolchain
-- Toolchain Root Location: C:\MinGW\msys\1.0\opt\poky\1.7
-- Sysroot
-Location: C:\MinGW\msys\1.0\opt\poky\1.7\sysroots\i686-pokysdk-mingw32
-and
-- Target options set to "External HW"
+--_000_3204FE6663E1F14CAF4CA6928E60C8522763D08FUSSTLZPMSG012em_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I'm able to see how the Target Architecture is preset automatically to
-"core2-32-poky-linux" but when I apply the changes an error message is
-raised and the changes are lost if i come back to the plug propierties.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6eD0idXJuOnNjaGVtYXMtbWljcm9z
+b2Z0LWNvbTpvZmZpY2U6ZXhjZWwiIHhtbG5zOm09Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5j
+b20vb2ZmaWNlLzIwMDQvMTIvb21tbCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnL1RSL1JFQy1o
+dG1sNDAiPg0KPGhlYWQ+DQo8bWV0YSBodHRwLWVxdWl2PSJDb250ZW50LVR5cGUiIGNvbnRlbnQ9
+InRleHQvaHRtbDsgY2hhcnNldD11dGYtOCI+DQo8bWV0YSBuYW1lPSJHZW5lcmF0b3IiIGNvbnRl
+bnQ9Ik1pY3Jvc29mdCBXb3JkIDEyIChmaWx0ZXJlZCBtZWRpdW0pIj4NCjxzdHlsZT4NCjwhLS0N
+CiAvKiBGb250IERlZmluaXRpb25zICovDQogQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpTaW1T
+dW47DQoJcGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQpAZm9udC1mYWNlDQoJe2ZvbnQt
+ZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYgMyAyIDQ7fQ0K
+QGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIgMTUgNSAyIDIg
+MiA0IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IlxAU2ltU3VuIjsNCglwYW5v
+c2UtMToyIDEgNiAwIDMgMSAxIDEgMSAxO30NCiAvKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KIHAu
+TXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCglt
+YXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToi
+VGltZXMgTmV3IFJvbWFuIiwic2VyaWYiO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7
+bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVu
+ZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0
+eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJs
+aW5lO30NCnNwYW4uRW1haWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZv
+bnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQpzcGFu
+LkVtYWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsNCglmb250LWZhbWlseToi
+Q2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0Kc3Bhbi5FbWFpbFN0eWxl
+MTkNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWw7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJz
+YW5zLXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1z
+dHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7
+DQoJY29sb3I6IzFGNDk3RDt9DQpzcGFuLkVtYWlsU3R5bGUyMQ0KCXttc28tc3R5bGUtdHlwZTpw
+ZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNv
+bG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9u
+bHk7DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBTZWN0aW9uMQ0KCXtzaXplOjguNWluIDEx
+LjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LlNlY3Rpb24xDQoJ
+e3BhZ2U6U2VjdGlvbjE7fQ0KLS0+DQo8L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0K
+IDxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48
+IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCiA8bzpzaGFwZWxheW91dCB2OmV4
+dD0iZWRpdCI+DQogIDxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KIDwvbzpzaGFw
+ZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBs
+aW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9IlNlY3Rpb24xIj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
+OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5
+N0QiPkhpICxhbGw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
+b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj5JIHRyeSB0byBidWls
+ZCBteSBjdXN0b20gaW1hZ2UgLCBUaGUgcHJvYmxlbSBhcHBlYXJzIGFzIGZvbGxvd3M6PG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNl
+cmlmJnF1b3Q7Ow0KY29sb3I6IzFGNDk3RCI+Jm5ic3A7PG86cD48L286cD48L3NwYW4+PC9wPg0K
+PGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
+b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7DQpjb2xvcjojMUY0OTdEIj5FUlJPUjogVHJ5aW5n
+IHRvIHJlc29sdmUgcnVudGltZSBkZXBlbmRlbmN5IGVnbGliYyByZXN1bHRlZCBpbiBjb25mbGlj
+dGluZyBQUkVGRVJSRURfUFJPVklERVIgZW50cmllcyBiZWluZyBmb3VuZC48bzpwPjwvbzpwPjwv
+c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
+LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVv
+dDs7DQpjb2xvcjojMUY0OTdEIj5UaGUgcHJvdmlkZXJzIGZvdW5kIHdlcmU6IFsnL2hvbWUvZWN0
+cnMvcG9reS9tZXRhL3JlY2lwZXMtY29yZS9nbGliYy9nbGliYy1pbml0aWFsXzIuMjAuYmInLCAn
+dmlydHVhbDpuYXRpdmVzZGs6L2hvbWUvZWN0cnMvcG9reS9tZXRhL3JlY2lwZXMtY29yZS9nbGli
+Yy9nbGliYy1pbml0aWFsXzIuMjAuYmInXTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0Qi
+PlRoZSBQUkVGRVJSRURfUFJPVklERVIgZW50cmllcyByZXN1bHRpbmcgaW4gdGhpcyBjb25mbGlj
+dCB3ZXJlOiBbJ1BSRUZFUlJFRF9QUk9WSURFUl92aXJ0dWFsL2FybS1wb2t5LWxpbnV4LWdudWVh
+YmktbGliYy1pbml0aWFsID0gZ2xpYmMtaW5pdGlhbCcsICdQUkVGRVJSRURfUFJPVklERVJfdmly
+dHVhbC9uYXRpdmVzZGstaTY4Ni1wb2t5c2RrLWxpbnV4LWxpYmMtaW5pdGlhbA0KID0gbmF0aXZl
+c2RrLWdsaWJjLWluaXRpYWwnXTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
+bGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7
+c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPkRvIHlvdSBrbm93IGhvdyB0byByZXNv
+bHZlIGl0ID8gUGxlYXNlIGhlbHAgbWUgLg0KPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExLjBwdDsNCmZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7
+c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5UaGFuayB5b3UgdmVyeSBtdWNoLjxvOnA+
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1z
+ZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPkJlc3Qgd2lzaGVzPG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
+Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ow0K
+Y29sb3I6IzFGNDk3RCI+TmVpbDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
+bGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OzsNCmNvbG9yOiMxRjQ5N0QiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-The error log shows the following details:
-===============================================================================================
-- Messsage: Unhandled event loop exception
-===============================================================================================
-- Exception Stack Trace:
-java.lang.NullPointerException
-at org.yocto.sdk.ide.YoctoSDKChecker.checkYoctoSDK(Unknown Source)
-at org.yocto.sdk.ide.YoctoUISetting.validateInput(Unknown Source)
-at org.yocto.sdk.ide.preferences.YoctoSDKPreferencePage.performOk(Unknown
-Source)
-at
-org.eclipse.jface.preference.PreferencePage.performApply(PreferencePage.java:432)
-at
-org.eclipse.jface.preference.PreferencePage$2.widgetSelected(PreferencePage.java:281)
-at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:248)
-at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
-at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1057)
-at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4170)
-at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3759)
-at org.eclipse.jface.window.Window.runEventLoop(Window.java:826)
-at org.eclipse.jface.window.Window.open(Window.java:802)
-at
-org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog.open(WorkbenchPreferenceDialog.java:215)
-at
-org.eclipse.ui.internal.OpenPreferencesAction.run(OpenPreferencesAction.java:65)
-at org.eclipse.jface.action.Action.runWithEvent(Action.java:499)
-at
-org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:584)
-at
-org.eclipse.jface.action.ActionContributionItem.access$2(ActionContributionItem.java:501)
-at
-org.eclipse.jface.action.ActionContributionItem$5.handleEvent(ActionContributionItem.java:411)
-at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
-at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1057)
-at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4170)
-at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3759)
-at
-org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1113)
-at
-org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
-at
-org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:997)
-at
-org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:140)
-at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:611)
-at
-org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
-at
-org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:567)
-at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
-at
-org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
-at
-org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
-at
-org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
-at
-org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
-at
-org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:354)
-at
-org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:181)
-at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-at java.lang.reflect.Method.invoke(Unknown Source)
-at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:636)
-at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
-at org.eclipse.equinox.launcher.Main.run(Main.java:1450)
-at org.eclipse.equinox.launcher.Main.main(Main.java:1426)
-===============================================================================================
-- Session Data:
-eclipse.buildId=4.3.2.M20140221-1700
-java.version=1.6.0_29
-java.vendor=Sun Microsystems Inc.
-BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
-Framework arguments:  -product org.eclipse.epp.package.standard.product
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product
-org.eclipse.epp.package.standard.product
-===============================================================================================
-
-Thanks in advance,
-
-Regards
-
-JJ
-
---001a1138e3182d881f050d23ec67
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi all,<div><br></div><div>When using the Yocto plugin in =
-Kepler/Windos/X86_64 and MinGW/Toolchain deployed in /opt/poky/1.7, after s=
-etting up the options as:</div><div>- Standard pre-built toolchain</div><di=
-v>- Toolchain Root Location: C:\MinGW\msys\1.0\opt\poky\1.7</div><div>- Sys=
-root Location:=C2=A0C:\MinGW\msys\1.0\opt\poky\1.7\sysroots\i686-pokysdk-mi=
-ngw32</div><div>and</div><div>- Target options set to &quot;External HW&quo=
-t;</div><div><br></div><div>I&#39;m able to see how the Target Architecture=
- is preset automatically to &quot;core2-32-poky-linux&quot; but when I appl=
-y the changes an error message is raised and the changes are lost if i come=
- back to the plug propierties.</div><div><br></div><div>The error log shows=
- the following details:<br><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D<br></div><div>- Messsage: Unhandled event loop exception=
-</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br=
-></div><div>- Exception Stack Trace:</div><div><div>java.lang.NullPointerEx=
-ception</div><div><span class=3D"" style=3D"white-space:pre">	</span>at org=
-.yocto.sdk.ide.YoctoSDKChecker.checkYoctoSDK(Unknown Source)</div><div><spa=
-n class=3D"" style=3D"white-space:pre">	</span>at org.yocto.sdk.ide.YoctoUI=
-Setting.validateInput(Unknown Source)</div><div><span class=3D"" style=3D"w=
-hite-space:pre">	</span>at org.yocto.sdk.ide.preferences.YoctoSDKPreference=
-Page.performOk(Unknown Source)</div><div><span class=3D"" style=3D"white-sp=
-ace:pre">	</span>at org.eclipse.jface.preference.PreferencePage.performAppl=
-y(PreferencePage.java:432)</div><div><span class=3D"" style=3D"white-space:=
-pre">	</span>at org.eclipse.jface.preference.PreferencePage$2.widgetSelecte=
-d(PreferencePage.java:281)</div><div><span class=3D"" style=3D"white-space:=
-pre">	</span>at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedList=
-ener.java:248)</div><div><span class=3D"" style=3D"white-space:pre">	</span=
->at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)</div><=
-div><span class=3D"" style=3D"white-space:pre">	</span>at org.eclipse.swt.w=
-idgets.Widget.sendEvent(Widget.java:1057)</div><div><span class=3D"" style=
-=3D"white-space:pre">	</span>at org.eclipse.swt.widgets.Display.runDeferred=
-Events(Display.java:4170)</div><div><span class=3D"" style=3D"white-space:p=
-re">	</span>at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java=
-:3759)</div><div><span class=3D"" style=3D"white-space:pre">	</span>at org.=
-eclipse.jface.window.Window.runEventLoop(Window.java:826)</div><div><span c=
-lass=3D"" style=3D"white-space:pre">	</span>at org.eclipse.jface.window.Win=
-dow.open(Window.java:802)</div><div><span class=3D"" style=3D"white-space:p=
-re">	</span>at org.eclipse.ui.internal.dialogs.WorkbenchPreferenceDialog.op=
-en(WorkbenchPreferenceDialog.java:215)</div><div><span class=3D"" style=3D"=
-white-space:pre">	</span>at org.eclipse.ui.internal.OpenPreferencesAction.r=
-un(OpenPreferencesAction.java:65)</div><div><span class=3D"" style=3D"white=
--space:pre">	</span>at org.eclipse.jface.action.Action.runWithEvent(Action.=
-java:499)</div><div><span class=3D"" style=3D"white-space:pre">	</span>at o=
-rg.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(Action=
-ContributionItem.java:584)</div><div><span class=3D"" style=3D"white-space:=
-pre">	</span>at org.eclipse.jface.action.ActionContributionItem.access$2(Ac=
-tionContributionItem.java:501)</div><div><span class=3D"" style=3D"white-sp=
-ace:pre">	</span>at org.eclipse.jface.action.ActionContributionItem$5.handl=
-eEvent(ActionContributionItem.java:411)</div><div><span class=3D"" style=3D=
-"white-space:pre">	</span>at org.eclipse.swt.widgets.EventTable.sendEvent(E=
-ventTable.java:84)</div><div><span class=3D"" style=3D"white-space:pre">	</=
-span>at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1057)</div><di=
-v><span class=3D"" style=3D"white-space:pre">	</span>at org.eclipse.swt.wid=
-gets.Display.runDeferredEvents(Display.java:4170)</div><div><span class=3D"=
-" style=3D"white-space:pre">	</span>at org.eclipse.swt.widgets.Display.read=
-AndDispatch(Display.java:3759)</div><div><span class=3D"" style=3D"white-sp=
-ace:pre">	</span>at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingE=
-ngine$9.run(PartRenderingEngine.java:1113)</div><div><span class=3D"" style=
-=3D"white-space:pre">	</span>at org.eclipse.core.databinding.observable.Rea=
-lm.runWithDefault(Realm.java:332)</div><div><span class=3D"" style=3D"white=
--space:pre">	</span>at org.eclipse.e4.ui.internal.workbench.swt.PartRenderi=
-ngEngine.run(PartRenderingEngine.java:997)</div><div><span class=3D"" style=
-=3D"white-space:pre">	</span>at org.eclipse.e4.ui.internal.workbench.E4Work=
-bench.createAndRunUI(E4Workbench.java:140)</div><div><span class=3D"" style=
-=3D"white-space:pre">	</span>at org.eclipse.ui.internal.Workbench$5.run(Wor=
-kbench.java:611)</div><div><span class=3D"" style=3D"white-space:pre">	</sp=
-an>at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.ja=
-va:332)</div><div><span class=3D"" style=3D"white-space:pre">	</span>at org=
-.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:567)</d=
-iv><div><span class=3D"" style=3D"white-space:pre">	</span>at org.eclipse.u=
-i.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)</div><div><span cla=
-ss=3D"" style=3D"white-space:pre">	</span>at org.eclipse.ui.internal.ide.ap=
-plication.IDEApplication.start(IDEApplication.java:124)</div><div><span cla=
-ss=3D"" style=3D"white-space:pre">	</span>at org.eclipse.equinox.internal.a=
-pp.EclipseAppHandle.run(EclipseAppHandle.java:196)</div><div><span class=3D=
-"" style=3D"white-space:pre">	</span>at org.eclipse.core.runtime.internal.a=
-daptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)</div>=
-<div><span class=3D"" style=3D"white-space:pre">	</span>at org.eclipse.core=
-.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:=
-79)</div><div><span class=3D"" style=3D"white-space:pre">	</span>at org.ecl=
-ipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:354)</div>=
-<div><span class=3D"" style=3D"white-space:pre">	</span>at org.eclipse.core=
-.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:181)</div><div><spa=
-n class=3D"" style=3D"white-space:pre">	</span>at sun.reflect.NativeMethodA=
-ccessorImpl.invoke0(Native Method)</div><div><span class=3D"" style=3D"whit=
-e-space:pre">	</span>at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown=
- Source)</div><div><span class=3D"" style=3D"white-space:pre">	</span>at su=
-n.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)</div><div><sp=
-an class=3D"" style=3D"white-space:pre">	</span>at java.lang.reflect.Method=
-.invoke(Unknown Source)</div><div><span class=3D"" style=3D"white-space:pre=
-">	</span>at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:63=
-6)</div><div><span class=3D"" style=3D"white-space:pre">	</span>at org.ecli=
-pse.equinox.launcher.Main.basicRun(Main.java:591)</div><div><span class=3D"=
-" style=3D"white-space:pre">	</span>at org.eclipse.equinox.launcher.Main.ru=
-n(Main.java:1450)</div><div><span class=3D"" style=3D"white-space:pre">	</s=
-pan>at org.eclipse.equinox.launcher.Main.main(Main.java:1426)</div></div><d=
-iv>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br></div><d=
-iv>- Session Data:</div><div><div>eclipse.buildId=3D4.3.2.M20140221-1700</d=
-iv><div>java.version=3D1.6.0_29</div><div>java.vendor=3DSun Microsystems In=
-c.</div><div>BootLoader constants: OS=3Dwin32, ARCH=3Dx86_64, WS=3Dwin32, N=
-L=3Den_US</div><div>Framework arguments: =C2=A0-product org.eclipse.epp.pac=
-kage.standard.product</div><div>Command-line arguments: =C2=A0-os win32 -ws=
- win32 -arch x86_64 -product org.eclipse.epp.package.standard.product</div>=
-</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</d=
-iv></div><div><br></div><div>Thanks in advance,</div><div><br></div><div>Re=
-gards</div><div><br></div><div>JJ</div></div>
-
---001a1138e3182d881f050d23ec67--
+--_000_3204FE6663E1F14CAF4CA6928E60C8522763D08FUSSTLZPMSG012em_--
