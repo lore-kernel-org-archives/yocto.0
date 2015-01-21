@@ -1,37 +1,56 @@
-Return-Path: <alexander.haenel-baas@sieb-meyer.de>
+Return-Path: <rapphil@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2B658E008E5; Wed, 21 Jan 2015 04:32:10 -0800 (PST)
+	id CCE7DE00894; Wed, 21 Jan 2015 05:23:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rapphil[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 70 seconds by postgrey-1.32 at yocto-www;
-	Wed, 21 Jan 2015 04:32:06 PST
-Received: from mail.sieb-meyer.de (smnotes1.sieb-meyer.de [213.252.170.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A096E00894
-	for <yocto@yoctoproject.org>; Wed, 21 Jan 2015 04:32:06 -0800 (PST)
-Received: from SMEXCHANGE01.siebmeyer.org ([::1]) by
-	SMExchange01.siebmeyer.org ([::1]) with mapi id 14.02.0387.000;
-	Wed, 21 Jan 2015 13:30:48 +0100
-From: =?iso-8859-1?Q?H=E4nel-Baas=2C_Alexander?=
-	<alexander.haenel-baas@sieb-meyer.de>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Ls1021a how i include nfs-utils correcty
-Thread-Index: AdA1dfJ/H2aszlLzTiOKAJL+/s+rew==
-Date: Wed, 21 Jan 2015 12:30:47 +0000
-Message-ID: <9BA84827B30CBE4996725F98F7DC9123428FB05D@SMExchange01.siebmeyer.org>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.11.207]
-x-kse-antivirus-interceptor-info: scan successful
-x-kse-antivirus-info: Clean
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.44 listed in list.dnswl.org]
+Received: from mail-qa0-f44.google.com (mail-qa0-f44.google.com
+	[209.85.216.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1184E0086E
+	for <yocto@yoctoproject.org>; Wed, 21 Jan 2015 05:23:38 -0800 (PST)
+Received: by mail-qa0-f44.google.com with SMTP id w8so32869801qac.3
+	for <yocto@yoctoproject.org>; Wed, 21 Jan 2015 05:23:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=gQF0KVYZlcWxJ/wIZ8TCw/ebkQfB/y7yzGrgEZGxnBg=;
+	b=nkqpIbGyBeRIwRu6qZuraCiSLdWguBxpkMGL0XzVzwlBAQijVpADteIByVlQgNQvRO
+	/D3Me34bxRBNXomXyMN+CczdkoUAiWqqMh2gWZnB4nzZdLAm83Qc81Rq4AtGsaKHV2oE
+	PLei4eHo1iH8xeff4MlXnSn4FD8Md/BAlcEEo/uFtE/jOx0mcwmHYyY5u1KQKXayaYbf
+	l/wZpYYabhdYkXNzHy/fs4KiJGe+KENtut6q6JLRpt4X4n/i1GR6Udpdcy4TcRgmaU9Q
+	1kxrSE4fGE6dlQKyMn0IsA1qq7/Cux3PbuK6A93Gf3MIRaAHdIJAUvPo7K0RMooZY/rO
+	kuNg==
 MIME-Version: 1.0
-Subject: Ls1021a how i include nfs-utils correcty
+X-Received: by 10.140.21.229 with SMTP id 92mr54079437qgl.33.1421846618087;
+	Wed, 21 Jan 2015 05:23:38 -0800 (PST)
+Received: by 10.140.240.67 with HTTP; Wed, 21 Jan 2015 05:23:38 -0800 (PST)
+In-Reply-To: <2632438.D1xOHJKf9V@peggleto-mobl5.ger.corp.intel.com>
+References: <CAENGNhcVmxW2xD4d4TDjTtLu2zCvCJ6sEOF8ek80hWz4kxKf6A@mail.gmail.com>
+	<5100308.QAtzWr7jXK@peggleto-mobl5.ger.corp.intel.com>
+	<CAENGNhff5-CZRSJaD1t1ppPOOQNrWipF01hAdatWqSkjGVmnVA@mail.gmail.com>
+	<2632438.D1xOHJKf9V@peggleto-mobl5.ger.corp.intel.com>
+Date: Wed, 21 Jan 2015 11:23:38 -0200
+Message-ID: <CAENGNhe7Uv1PQv=J3QYhPAX3dj9p0pakAg5x9oGQ0V3pxfbHUw@mail.gmail.com>
+From: Raphael Philipe <rapphil@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: yocto@yoctoproject.org, Otavio Salvador <otavio@ossystems.com.br>,
+	Denys Dmytriyenko <denys@ti.com>
+Subject: Re: Difference between target, cross, native and nativesdk.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,200 +62,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Jan 2015 12:32:10 -0000
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_9BA84827B30CBE4996725F98F7DC9123428FB05DSMExchange01sie_"
+X-List-Received-Date: Wed, 21 Jan 2015 13:23:44 -0000
+Content-Type: text/plain; charset=UTF-8
 
---_000_9BA84827B30CBE4996725F98F7DC9123428FB05DSMExchange01sie_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+I was explained about the difference in a different way.
 
-Hi
+cross generates binary for the host architecture. But the way this
+binary is generated depends of the target architecture. Native
+generated binaries that do not depend of the target architecture.
 
-I work with the Layerscape 1021a ,that comes with yocto, i can create the i=
-mage, dtb und rootfs and start my target.
-But I cannot mount a nfs directory via "mount -t nfs".
-
-The Error message say:
-"mount: wrong fs type, bad option, bad superblock on 172.16.17.63:/home/sm/=
-myExport,
-       missing codepage or helper program, or other error
-       (for several filesystems (e.g. nfs, cifs) you might
-       need a /sbin/mount.<type> helper program)
-       In some cases useful info is found in syslog - try
-       dmesg | tail or so."
-
-And right in /sbin are no nfs helper.
-
-So i start yocto select my machine (ls1021atwr), the image recipes (lsl-ima=
-ge-core) press the "edit image recipe" button, the "All recipes" button
-And search for nfs and then I included the nfs-utils manually by activate t=
-he checkbox. Then I press the "Build packages" button.
-Then yocto print "Building packages..." then shows "Step 2 of 2"
-and I'm wondering because in the Included Packages  nfs-utils are not shown=
-!!!
-
-So I go to the "all package tab" an include the nfs-utils again.
-And finally I build the image.
-Yocto creates a new image, that can boot, but it has no changes. No nfs-uti=
-ls are included!
-
-The I press the edit recipes button and look under includet recipies/all re=
-cipies and my before selected nfs-utils are NOT included.
+Regards,
 
 
-My question are:
-What is going wrong?
-How I added the nfs-utils correctly?
 
-Best regards
-                Alexander
+On Tue, Jan 20, 2015 at 12:44 PM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> On Tuesday 20 January 2015 12:39:16 Raphael Philipe wrote:
+>> On Tue, Jan 20, 2015 at 10:23 AM, Paul Eggleton
+>> <paul.eggleton@linux.intel.com> wrote:
+>> > On Tuesday 20 January 2015 09:17:49 Raphael Philipe wrote:
+>> >> I'm working on a set of recipes that must be configurable to be baked
+>> >> in native, nativesdk, cross and target.
+>> >>
+>> >> I have a bunch of questions concerning this terms. I searched the
+>> >> documentation and wasn't able to find a definitive explanation for
+>> >> these terms.
+>> >>
+>> >> I will write some statements bellow about my understanding on these
+>> >> terms, and I will ask you to please correct me if I'm wrong or add any
+>> >> additional information:
+>> >>
+>> >> - By default, recipes bake binaries for the target architecture that
+>> >> is described in the MACHINE variable in the local.conf
+>> >
+>> > Correct.
+>> >
+>> >> - One can use BBCLASSEXTEND = "native nativesdk" to bake binaries for
+>> >> the host architecture (native) and for target sdk architecture. The
+>> >> target sdk architecture is described in the SDKMACHINE variable and
+>> >> the host architecture is the architecture of the machine executing
+>> >> bitbake. BBCLASSEXTEND = "native nativesdk" will alow you to bake
+>> >> recipes that are "virtual" using the suffix native ( so ${PN}-native)
+>> >> and the prefix nativesdk (so nativesdk-${PN}).
+>> >
+>> > Correct. FYI alternatively you can also "inherit native" or "inherit
+>> > nativesdk" to make a recipe specific to either of those classes (in which
+>> > case the recipe itself should be named <something>-native or nativesdk-
+>> > <something>), however BBCLASSEXTEND is preferred these days.
+>> >
+>> >> - Recipes that are cross need to inherit cross.bbclass. They are used for
+>> >> ????
+>> >
+>> > Cross tools, i.e. tools that need to run in the native context and produce
+>> > some binary output for the target.
+>>
+>> For u-boot-fw-utils-cross, the binary that you refer is the enviroment
+>> variables file of u-boot? In this case, the difference between cross
+>> and native is not clear for me.
+>
+> I'm not sure of the details for this recipe specifically. Perhaps one of the
+> people on CC can answer.
+>
+> Cheers,
+> Paul
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
-
---_000_9BA84827B30CBE4996725F98F7DC9123428FB05DSMExchange01sie_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Sprechblasentext Zchn";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";
-	mso-fareast-language:EN-US;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.SprechblasentextZchn
-	{mso-style-name:"Sprechblasentext Zchn";
-	mso-style-priority:99;
-	mso-style-link:Sprechblasentext;
-	font-family:"Tahoma","sans-serif";}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I work with the Layerscape 1021=
-a ,that comes with yocto, i can create the image, dtb und rootfs and start =
-my target.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">But I cannot mount a nfs direct=
-ory via &#8220;mount -t nfs&#8221;.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">The Error message say:<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&#8220;mount: wrong fs type, ba=
-d option, bad superblock on 172.16.17.63:/home/sm/myExport,<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; missing codepage or helper program, or other error<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; (for several filesystems (e.g. nfs, cifs) you might<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; need a /sbin/mount.&lt;type&gt; helper program)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; In some cases useful info is found in syslog - try<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; dmesg | tail or so.&#8221; <o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">And right in /sbin are no nfs h=
-elper.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">So i start yocto select my mach=
-ine (ls1021atwr), the image recipes (lsl-image-core) press the &#8220;edit =
-image recipe&#8221; button, the &#8220;All recipes&#8221; button<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">And search for nfs and then I i=
-ncluded the nfs-utils manually by activate the checkbox. Then I press the &=
-#8220;Build packages&#8221; button.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Then yocto print &#8220;Buildin=
-g packages&#8230;&#8221; then shows &#8220;Step 2 of 2&#8221;<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">and I&#8217;m wondering because=
- in the Included Packages &nbsp;nfs-utils are not shown!!!
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">So I go to the &#8220;all packa=
-ge tab&#8221; an include the nfs-utils again.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">And finally I build the image.<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Yocto creates a new image, that=
- can boot, but it has no changes. No nfs-utils are included!<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">The I press the edit recipes bu=
-tton and look under includet recipies/all recipies and my before selected n=
-fs-utils are NOT included.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">My question are:<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">What is going wrong?<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">How I added the nfs-utils corre=
-ctly?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Best regards<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Alexander</span=
-><span style=3D"mso-fareast-language:DE"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9BA84827B30CBE4996725F98F7DC9123428FB05DSMExchange01sie_--
