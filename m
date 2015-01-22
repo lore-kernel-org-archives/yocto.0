@@ -1,53 +1,42 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <Neil.Wu@emerson.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1A71CE00902; Thu, 22 Jan 2015 00:03:32 -0800 (PST)
+	id 9209BE00932; Thu, 22 Jan 2015 00:13:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BASE64_LENGTH_79_INF, BAYES_00,
-	DKIM_ADSP_CUSTOM_MED, FREEMAIL_FROM, NML_ADSP_CUSTOM_MED,
-	RCVD_IN_DNSWL_LOW, SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (sm0ketst[at]gmail.com)
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
-	*      CUSTOM_MED
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  1.5 BASE64_LENGTH_79_INF BODY: base64 encoded email part uses line
-	*      length greater than 79 characters
-	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
-	and not from a mailing list
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EAF18E008EC
-	for <yocto@yoctoproject.org>; Thu, 22 Jan 2015 00:03:18 -0800 (PST)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1YECjU-00043V-TZ
-	for yocto@yoctoproject.org; Thu, 22 Jan 2015 09:03:16 +0100
-Received: from uu194-7-161-147.unknown.uunet.be ([194.7.161.147])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Thu, 22 Jan 2015 09:03:16 +0100
-Received: from sm0ketst by uu194-7-161-147.unknown.uunet.be with local (Gmexim
-	0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Thu, 22 Jan 2015 09:03:16 +0100
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: J.J. Garcia <sm0ketst@gmail.com>
-Date: Thu, 22 Jan 2015 08:03:09 +0000 (UTC)
-Message-ID: <loom.20150122T085901-283@post.gmane.org>
-References: <CABMtxuy5YRTZyu1Ksyu645TXPYuoVH_VBS4tySLUCyJxV4Np1Q@mail.gmail.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: sea.gmane.org
-User-Agent: Loom/3.14 (http://gmane.org/)
-X-Loom-IP: 194.7.161.147 (Mozilla/5.0 (Windows NT 6.1;
-	WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.99
-	Safari/537.36)
-Subject: Re: [eclipse-plugin] Exception Eclipse Plugin 1.7 / kepler Windows using MinGW can x-comp. No options are stored after configuration.
+Received: from esa4.emerson-outbound.iphmx.com
+	(esa4.emerson-outbound.iphmx.com [68.232.143.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEA95E00902
+	for <yocto@yoctoproject.org>; Thu, 22 Jan 2015 00:13:25 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.09,447,1418061600"; 
+   d="scan'208";a="891184"
+Received: from usstlz-pinfez08.extemr.org ([144.191.128.192])
+	by esa4.emerson-outbound.iphmx.com with ESMTP/TLS/AES128-SHA;
+	22 Jan 2015 14:13:22 +0600
+Received: from USSTLZ-PMSG007.emrsn.org (10.16.72.189) by
+	USSTLZ-PINFEZ08.extemr.org (10.16.8.81) with Microsoft SMTP Server
+	(TLS) id 14.3.158.1; Thu, 22 Jan 2015 08:13:19 +0000
+Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.242]) by
+	USSTLZ-PMSG007.emrsn.org ([169.254.2.95]) with mapi id 14.03.0158.001;
+	Thu, 22 Jan 2015 08:13:18 +0000
+From: <Neil.Wu@Emerson.com>
+To: <yocto@yoctoproject.org>
+Thread-Topic: The problem of do_rootfs_append
+Thread-Index: AQHQH/KS3uZ7JFVgO0yksUPrZqVfBZyf4JbwgCwT+iA=
+Date: Thu, 22 Jan 2015 08:13:18 +0000
+Message-ID: <3204FE6663E1F14CAF4CA6928E60C8522763E282@USSTLZ-PMSG012.emrsn.org>
+References: <3204FE6663E1F14CAF4CA6928E60C8522035764B@USSTLZ-PMSG012.emrsn.org>
+	<CAMKF1spkVua7kS-Ac9Mk4iU56sHj8Jf66x_=QFsMZtkjnX9EuQ@mail.gmail.com> 
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.75.1]
+MIME-Version: 1.0
+Subject: The problem of do_rootfs_append
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,10 +48,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Jan 2015 08:03:32 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Thu, 22 Jan 2015 08:13:38 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 
-Si5KLiBHYXJjaWEgPHNtMGtldHN0QC4uLj4gd3JpdGVzOgoKPiAKPiBIaSBhbGwsCj4gV2hlbiB1c2luZyB0aGUgWW9jdG8gcGx1Z2luIGluIEtlcGxlci9XaW5kb3MvWDg2XzY0IGFuZCAKTWluR1cvVG9vbGNoYWluIGRlcGxveWVkIGluIC9vcHQvcG9reS8xLjcsIGFmdGVyIHNldHRpbmcgdXAgdGhlIG9wdGlvbnMgCmFzOgo+IC0gU3RhbmRhcmQgcHJlLWJ1aWx0IHRvb2xjaGFpbgo+IC0gVG9vbGNoYWluIFJvb3QgTG9jYXRpb246IEM6XE1pbkdXXG1zeXNcMS4wXG9wdFxwb2t5XDEuNwo+IC0gU3lzcm9vdCBMb2NhdGlvbjrCoEM6XE1pbkdXXG1zeXNcMS4wXG9wdFxwb2t5XDEuN1xzeXNyb290c1xpNjg2LQpwb2t5c2RrLW1pbmd3MzIKPiBhbmQKPiAtIFRhcmdldCBvcHRpb25zIHNldCB0byAiRXh0ZXJuYWwgSFciCj4gCj4gSSdtIGFibGUgdG8gc2VlIGhvdyB0aGUgVGFyZ2V0IEFyY2hpdGVjdHVyZSBpcyBwcmVzZXQgYXV0b21hdGljYWxseSB0byAKImNvcmUyLTMyLXBva3ktbGludXgiIGJ1dCB3aGVuIEkgYXBwbHkgdGhlIGNoYW5nZXMgYW4gZXJyb3IgbWVzc2FnZSBpcyAKcmFpc2VkIGFuZCB0aGUgY2hhbmdlcyBhcmUgbG9zdCBpZiBpIGNvbWUgYmFjayB0byB0aGUgcGx1ZyBwcm9waWVydGllcy4KPiAKPiBUaGUgZXJyb3IgbG9nIHNob3dzIHRoZSBmb2xsb3dpbmcgCmRldGFpbHM6PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQo9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cj4gCj4gLSBNZXNzc2FnZTogVW5oYW5kbGVkIGV2ZW50IGxvb3AgZXhjZXB0aW9uCj4gCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQo9PT09PT09PT09PT09PT09PT09PT09PQo+IAo+IC0gRXhjZXB0aW9uIFN0YWNrIFRyYWNlOgo+IAo+IGphdmEubGFuZy5OdWxsUG9pbnRlckV4Y2VwdGlvbgo+IAo+IAlhdCBvcmcueW9jdG8uc2RrLmlkZS5Zb2N0b1NES0NoZWNrZXIuY2hlY2tZb2N0b1NESyhVbmtub3duIApTb3VyY2UpCj4gCj4gCWF0IG9yZy55b2N0by5zZGsuaWRlLllvY3RvVUlTZXR0aW5nLnZhbGlkYXRlSW5wdXQoVW5rbm93biAKU291cmNlKQo+IAo+IAlhdCAKb3JnLnlvY3RvLnNkay5pZGUucHJlZmVyZW5jZXMuWW9jdG9TREtQcmVmZXJlbmNlUGFnZS5wZXJmb3JtT2soVW5rbm93biAKU291cmNlKQo+IAo+IAlhdCAKb3JnLmVjbGlwc2UuamZhY2UucHJlZmVyZW5jZS5QcmVmZXJlbmNlUGFnZS5wZXJmb3JtQXBwbHkoUHJlZmVyZW5jZVBhZ2UuCmphdmE6NDMyKQo+IAo+IAlhdCAKb3JnLmVjbGlwc2UuamZhY2UucHJlZmVyZW5jZS5QcmVmZXJlbmNlUGFnZSQyLndpZGdldFNlbGVjdGVkKFByZWZlcmVuY2VQCmFnZS5qYXZhOjI4MSkKPiAKPiAJYXQgCm9yZy5lY2xpcHNlLnN3dC53aWRnZXRzLlR5cGVkTGlzdGVuZXIuaGFuZGxlRXZlbnQoVHlwZWRMaXN0ZW5lci5qYXZhOjI0OAopCj4gCj4gCWF0IApvcmcuZWNsaXBzZS5zd3Qud2lkZ2V0cy5FdmVudFRhYmxlLnNlbmRFdmVudChFdmVudFRhYmxlLmphdmE6ODQpCj4gCj4gCWF0IG9yZy5lY2xpcHNlLnN3dC53aWRnZXRzLldpZGdldC5zZW5kRXZlbnQoV2lkZ2V0LmphdmE6MTA1NykKPiAKPiAJYXQgCm9yZy5lY2xpcHNlLnN3dC53aWRnZXRzLkRpc3BsYXkucnVuRGVmZXJyZWRFdmVudHMoRGlzcGxheS5qYXZhOjQxNzApCj4gCj4gCWF0IApvcmcuZWNsaXBzZS5zd3Qud2lkZ2V0cy5EaXNwbGF5LnJlYWRBbmREaXNwYXRjaChEaXNwbGF5LmphdmE6Mzc1OSkKPiAKPiAJYXQgb3JnLmVjbGlwc2UuamZhY2Uud2luZG93LldpbmRvdy5ydW5FdmVudExvb3AoV2luZG93LmphdmE6ODI2KQo+IAo+IAlhdCBvcmcuZWNsaXBzZS5qZmFjZS53aW5kb3cuV2luZG93Lm9wZW4oV2luZG93LmphdmE6ODAyKQo+IAo+IAlhdCAKb3JnLmVjbGlwc2UudWkuaW50ZXJuYWwuZGlhbG9ncy5Xb3JrYmVuY2hQcmVmZXJlbmNlRGlhbG9nLm9wZW4oV29ya2JlbmNoClByZWZlcmVuY2VEaWFsb2cuamF2YToyMTUpCj4gCj4gCWF0IApvcmcuZWNsaXBzZS51aS5pbnRlcm5hbC5PcGVuUHJlZmVyZW5jZXNBY3Rpb24ucnVuKE9wZW5QcmVmZXJlbmNlc0FjdGlvbi4KamF2YTo2NSkKPiAKPiAJYXQgb3JnLmVjbGlwc2UuamZhY2UuYWN0aW9uLkFjdGlvbi5ydW5XaXRoRXZlbnQoQWN0aW9uLmphdmE6NDk5KQo+IAo+IAlhdCAKb3JnLmVjbGlwc2UuamZhY2UuYWN0aW9uLkFjdGlvbkNvbnRyaWJ1dGlvbkl0ZW0uaGFuZGxlV2lkZ2V0U2VsZWN0aW9uKEFjCnRpb25Db250cmlidXRpb25JdGVtLmphdmE6NTg0KQo+IAo+IAlhdCAKb3JnLmVjbGlwc2UuamZhY2UuYWN0aW9uLkFjdGlvbkNvbnRyaWJ1dGlvbkl0ZW0uYWNjZXNzJDIoQWN0aW9uQ29udHJpYnV0Cmlvbkl0ZW0uamF2YTo1MDEpCj4gCj4gCWF0IApvcmcuZWNsaXBzZS5qZmFjZS5hY3Rpb24uQWN0aW9uQ29udHJpYnV0aW9uSXRlbSQ1LmhhbmRsZUV2ZW50KEFjdGlvbkNvbnQKcmlidXRpb25JdGVtLmphdmE6NDExKQo+IAo+IAlhdCAKb3JnLmVjbGlwc2Uuc3d0LndpZGdldHMuRXZlbnRUYWJsZS5zZW5kRXZlbnQoRXZlbnRUYWJsZS5qYXZhOjg0KQo+IAo+IAlhdCBvcmcuZWNsaXBzZS5zd3Qud2lkZ2V0cy5XaWRnZXQuc2VuZEV2ZW50KFdpZGdldC5qYXZhOjEwNTcpCj4gCj4gCWF0IApvcmcuZWNsaXBzZS5zd3Qud2lkZ2V0cy5EaXNwbGF5LnJ1bkRlZmVycmVkRXZlbnRzKERpc3BsYXkuamF2YTo0MTcwKQo+IAo+IAlhdCAKb3JnLmVjbGlwc2Uuc3d0LndpZGdldHMuRGlzcGxheS5yZWFkQW5kRGlzcGF0Y2goRGlzcGxheS5qYXZhOjM3NTkpCj4gCj4gCWF0IApvcmcuZWNsaXBzZS5lNC51aS5pbnRlcm5hbC53b3JrYmVuY2guc3d0LlBhcnRSZW5kZXJpbmdFbmdpbmUkOS5ydW4oUGFydFIKZW5kZXJpbmdFbmdpbmUuamF2YToxMTEzKQo+IAo+IAlhdCAKb3JnLmVjbGlwc2UuY29yZS5kYXRhYmluZGluZy5vYnNlcnZhYmxlLlJlYWxtLnJ1bldpdGhEZWZhdWx0KFJlYWxtLmphdmE6CjMzMikKPiAKPiAJYXQgCm9yZy5lY2xpcHNlLmU0LnVpLmludGVybmFsLndvcmtiZW5jaC5zd3QuUGFydFJlbmRlcmluZ0VuZ2luZS5ydW4oUGFydFJlbgpkZXJpbmdFbmdpbmUuamF2YTo5OTcpCj4gCj4gCWF0IApvcmcuZWNsaXBzZS5lNC51aS5pbnRlcm5hbC53b3JrYmVuY2guRTRXb3JrYmVuY2guY3JlYXRlQW5kUnVuVUkoRTRXb3JrYmUKbmNoLmphdmE6MTQwKQo+IAo+IAlhdCBvcmcuZWNsaXBzZS51aS5pbnRlcm5hbC5Xb3JrYmVuY2gkNS5ydW4oV29ya2JlbmNoLmphdmE6NjExKQo+IAo+IAlhdCAKb3JnLmVjbGlwc2UuY29yZS5kYXRhYmluZGluZy5vYnNlcnZhYmxlLlJlYWxtLnJ1bldpdGhEZWZhdWx0KFJlYWxtLmphdmE6CjMzMikKPiAKPiAJYXQgCm9yZy5lY2xpcHNlLnVpLmludGVybmFsLldvcmtiZW5jaC5jcmVhdGVBbmRSdW5Xb3JrYmVuY2goV29ya2JlbmNoLmphdmE6NQo2NykKPiAKPiAJYXQgCm9yZy5lY2xpcHNlLnVpLlBsYXRmb3JtVUkuY3JlYXRlQW5kUnVuV29ya2JlbmNoKFBsYXRmb3JtVUkuamF2YToxNTApCj4gCj4gCWF0IApvcmcuZWNsaXBzZS51aS5pbnRlcm5hbC5pZGUuYXBwbGljYXRpb24uSURFQXBwbGljYXRpb24uc3RhcnQoSURFQXBwbGljYXQKaW9uLmphdmE6MTI0KQo+IAo+IAlhdCAKb3JnLmVjbGlwc2UuZXF1aW5veC5pbnRlcm5hbC5hcHAuRWNsaXBzZUFwcEhhbmRsZS5ydW4oRWNsaXBzZUFwcEhhbmRsZS5qCmF2YToxOTYpCj4gCj4gCWF0IApvcmcuZWNsaXBzZS5jb3JlLnJ1bnRpbWUuaW50ZXJuYWwuYWRhcHRvci5FY2xpcHNlQXBwTGF1bmNoZXIucnVuQXBwbGljYXQKaW9uKEVjbGlwc2VBcHBMYXVuY2hlci5qYXZhOjExMCkKPiAKPiAJYXQgCm9yZy5lY2xpcHNlLmNvcmUucnVudGltZS5pbnRlcm5hbC5hZGFwdG9yLkVjbGlwc2VBcHBMYXVuY2hlci5zdGFydChFY2xpcApzZUFwcExhdW5jaGVyLmphdmE6NzkpCj4gCj4gCWF0IApvcmcuZWNsaXBzZS5jb3JlLnJ1bnRpbWUuYWRhcHRvci5FY2xpcHNlU3RhcnRlci5ydW4oRWNsaXBzZVN0YXJ0ZXIuamF2YToKMzU0KQo+IAo+IAlhdCAKb3JnLmVjbGlwc2UuY29yZS5ydW50aW1lLmFkYXB0b3IuRWNsaXBzZVN0YXJ0ZXIucnVuKEVjbGlwc2VTdGFydGVyLmphdmE6CjE4MSkKPiAKPiAJYXQgc3VuLnJlZmxlY3QuTmF0aXZlTWV0aG9kQWNjZXNzb3JJbXBsLmludm9rZTAoTmF0aXZlIE1ldGhvZCkKPiAKPiAJYXQgc3VuLnJlZmxlY3QuTmF0aXZlTWV0aG9kQWNjZXNzb3JJbXBsLmludm9rZShVbmtub3duIFNvdXJjZSkKPiAKPiAJYXQgc3VuLnJlZmxlY3QuRGVsZWdhdGluZ01ldGhvZEFjY2Vzc29ySW1wbC5pbnZva2UoVW5rbm93biAKU291cmNlKQo+IAo+IAlhdCBqYXZhLmxhbmcucmVmbGVjdC5NZXRob2QuaW52b2tlKFVua25vd24gU291cmNlKQo+IAo+IAlhdCAKb3JnLmVjbGlwc2UuZXF1aW5veC5sYXVuY2hlci5NYWluLmludm9rZUZyYW1ld29yayhNYWluLmphdmE6NjM2KQo+IAo+IAlhdCBvcmcuZWNsaXBzZS5lcXVpbm94LmxhdW5jaGVyLk1haW4uYmFzaWNSdW4oTWFpbi5qYXZhOjU5MSkKPiAKPiAJYXQgb3JnLmVjbGlwc2UuZXF1aW5veC5sYXVuY2hlci5NYWluLnJ1bihNYWluLmphdmE6MTQ1MCkKPiAKPiAJYXQgb3JnLmVjbGlwc2UuZXF1aW5veC5sYXVuY2hlci5NYWluLm1haW4oTWFpbi5qYXZhOjE0MjYpCj4gCj4gCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQo9PT09PT09PT09PT09PT09PT09PT09PQo+IAo+IC0gU2Vzc2lvbiBEYXRhOgo+IAo+IGVjbGlwc2UuYnVpbGRJZD00LjMuMi5NMjAxNDAyMjEtMTcwMAo+IGphdmEudmVyc2lvbj0xLjYuMF8yOQo+IGphdmEudmVuZG9yPVN1biBNaWNyb3N5c3RlbXMgSW5jLgo+IEJvb3RMb2FkZXIgY29uc3RhbnRzOiBPUz13aW4zMiwgQVJDSD14ODZfNjQsIFdTPXdpbjMyLCBOTD1lbl9VUwo+IEZyYW1ld29yayBhcmd1bWVudHM6IMKgLXByb2R1Y3QgCm9yZy5lY2xpcHNlLmVwcC5wYWNrYWdlLnN0YW5kYXJkLnByb2R1Y3QKPiBDb21tYW5kLWxpbmUgYXJndW1lbnRzOiDCoC1vcyB3aW4zMiAtd3Mgd2luMzIgLWFyY2ggeDg2XzY0IC1wcm9kdWN0IApvcmcuZWNsaXBzZS5lcHAucGFja2FnZS5zdGFuZGFyZC5wcm9kdWN0Cj4gCj4gCj09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQo9PT09PT09PT09PT09PT09PT09PT09PQo+IAo+IAo+IFRoYW5rcyBpbiBhZHZhbmNlLAo+IAo+IFJlZ2FyZHMKPiAKPiBKSgo+IAo+IAoKQXNzaWduZWQ6Cmh0dHBzOi8vYnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NzIxMQoKQnkgdGhlIG1lYW50aW1lIEknbSBzZXR0aW5nIHVwIHRoZSBlY2xpcHNlIHdpdGggdGhlIApjb21waWxlci9saW5rZXIvZGVidWcgb3B0aW9ucyBmcm9tICIkQ0MgLXYgLi4uIiBvdXQgb2YgcGx1Z2luLgoKU2VlbXMgdG8gd29yay4KClRoYW5rcyBhbmQgYWxsIHRoZSBiZXN0IGZvciB0aGUgcHJvamVjdCEhCgpKSgoK
-
+DQpIaSwgYWxsDQpJJ20gYnVpbGRpbmcgc3BlY2lmaWMgcm9vdGZzIGltYWdlLiBBZGQgdGhlIGRv
+X3Jvb3Rmc19hcHBlbmQoKSB0YXNrICBpbiBjb3JlLWltYWdlLXNwZWNpZmljLmJiLA0KY29yZS1p
+bWFnZS1zcGVjaWZpYy5iYjoNCg0KU1VNTUFSWSA9ICJjcmVhZXQgdGhlIGN1c3RvbWVyIHJvb3Rm
+cyINCnJlcXVpcmUgJHtUT1BESVJ9Ly4uL21ldGEvcmVjaXBlcy1jb3JlL2ltYWdlcy9jb3JlLWlt
+YWdlLW1pbmltYWwuYmINCklNQUdFX0lOU1RBTEwgPSAicmVhZGxpbmUtZGV2IGxpbnV4LWxpYmMt
+aGVhZGVycy1kZXYganNvbi1nbGliIGJ1c3lib3gtdWRoY3BjICINCmRvX3Jvb3Rmc19hcHBlbmQo
+KSB7DQogICAgICAgIGNwIC1yZiAke0lNQUdFX1JPT1RGU30vZGF0YS9ldGMvICR7SU1BR0VfUk9P
+VEZTfS9ldGMvDQogICAgICAgIHJtIC1yZiAke0lNQUdFX1JPT1RGU30vZGF0YS9ldGMvDQp9DQoN
+Ckl0IGFsd2F5cyBtZWV0IHRoZSBlcnJvciBhcyBmb2xsb3dzOg0KRVJST1I6IEV4cGFuc2lvbkVy
+cm9yIGR1cmluZyBwYXJzaW5nIC9ob21lL2VjdHJzL3Bva3kvbWV0YS1lbWVyc29uLWVjb3N5cy9y
+ZWNpcGVzLWNvcmUvaW1hZ2VzL2NvcmUtaW1hZ2UtZWNvc3lzLmJiOiBGYWlsdXJlIGV4cGFuZGlu
+ZyB2YXJpYWJsZSBkb19yb290ZnM6IEluZGVudGF0aW9uRXJyb3I6IHVuZXhwZWN0ZWQgaW5kZW50
+ICg8c3RyaW5nPiwgbGluZSAxNCkNCg0KSSdtIHBsZWFzYW50IHJlY2VpdmUgeW91ciByZXBseS4g
+SWYgeW91IGtub3cgaG93IHRvIHNvbHZlIGl0ICwgcGxlYXNlIGhlbHAgbWUgLg0KVGhhbmsgeW91
+IHZlcnkgbXVjaC4NCg0KTmVpbA0K
 
