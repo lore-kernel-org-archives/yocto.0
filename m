@@ -1,50 +1,35 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <alexander.haenel-baas@sieb-meyer.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BFD6BE008F6; Thu, 22 Jan 2015 00:41:22 -0800 (PST)
+	id 32C3DE00902; Thu, 22 Jan 2015 01:37:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.171 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-ob0-f171.google.com (mail-ob0-f171.google.com
-	[209.85.214.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5482CE0089B
-	for <yocto@yoctoproject.org>; Thu, 22 Jan 2015 00:41:07 -0800 (PST)
-Received: by mail-ob0-f171.google.com with SMTP id va2so294498obc.2
-	for <yocto@yoctoproject.org>; Thu, 22 Jan 2015 00:41:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=PVmPrRqO5rBS0oxIm+UWcljFRq8E/RpFzOdvGfOEF2c=;
-	b=KZM4KwX3K3B6Dx10VCH8aw+gJ9s4O67o7/IpUY5z4teAsYdVqxuoCsjqtpJo3/wLZ6
-	l4pc0JWpQQ79bbB2AOIlqR/Har/0IU8w3wiinbtjF+PTA2LycY3Q6OtdlEzO7QFoJ8q1
-	yo19idfhds92D1Ib5bRBULTu4SloCjb+teaxXNht1tgEQr3cOuoCDamFjEU1wvtvt5jQ
-	TMdM/48wKGX98+NTI1xe0eipI8DLe9W6tPrV1cVtp50LVG+bWZIJ2eSCWzVKbkG7wYeT
-	5mFjGS/TXX1EGI/+7DAyafnPt/VDIGykLjopbIuiaJBO0otbV4PPxinSj6fMENuaGUxN
-	YaBw==
-X-Gm-Message-State: ALoCoQlq5ytqYIW81GZEJ2Mv/eqD+dwRoLpB2Pxok4uLjqYNS+mSU0KtlsmRuzC6Tmgd+vezZ/Fi
-X-Received: by 10.60.145.167 with SMTP id sv7mr175450oeb.38.1421916067102;
-	Thu, 22 Jan 2015 00:41:07 -0800 (PST)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail.sieb-meyer.de (smnotes1.sieb-meyer.de [213.252.170.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D203AE0089B
+	for <yocto@yoctoproject.org>; Thu, 22 Jan 2015 01:37:40 -0800 (PST)
+Received: from SMEXCHANGE01.siebmeyer.org ([::1]) by
+	SMExchange01.siebmeyer.org ([::1]) with mapi id 14.02.0387.000;
+	Thu, 22 Jan 2015 10:37:33 +0100
+From: =?iso-8859-1?Q?H=E4nel-Baas=2C_Alexander?=
+	<alexander.haenel-baas@sieb-meyer.de>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: mount.nfs -> how i include nfs-utils
+Thread-Index: AdA2JWepMhOfgrrkSM+VeELOQaX4Nw==
+Date: Thu, 22 Jan 2015 09:37:32 +0000
+Message-ID: <9BA84827B30CBE4996725F98F7DC9123428FB241@SMExchange01.siebmeyer.org>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.11.207]
+x-kse-antivirus-interceptor-info: scan successful
+x-kse-antivirus-info: Clean
 MIME-Version: 1.0
-Received: by 10.76.79.1 with HTTP; Thu, 22 Jan 2015 00:40:46 -0800 (PST)
-In-Reply-To: <3204FE6663E1F14CAF4CA6928E60C8522763E2A4@USSTLZ-PMSG012.emrsn.org>
-References: <3204FE6663E1F14CAF4CA6928E60C8522035764B@USSTLZ-PMSG012.emrsn.org>
-	<CAMKF1spkVua7kS-Ac9Mk4iU56sHj8Jf66x_=QFsMZtkjnX9EuQ@mail.gmail.com>
-	<3204FE6663E1F14CAF4CA6928E60C8522763E282@USSTLZ-PMSG012.emrsn.org>
-	<CAP71Wjw4VgvQH0rZt6q7BmG_Gs5MFO8+KeB87=VeTCt3E2xvGw@mail.gmail.com>
-	<3204FE6663E1F14CAF4CA6928E60C8522763E2A4@USSTLZ-PMSG012.emrsn.org>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Thu, 22 Jan 2015 09:40:46 +0100
-Message-ID: <CAP71WjwcAye27jhr8KiE43PHf0_ZT5jbCBTdwJ3MhiFJikuv0w@mail.gmail.com>
-To: Neil.Wu@emerson.com
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: The problem of do_rootfs_append
+Subject: mount.nfs -> how i include nfs-utils
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,19 +41,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Jan 2015 08:41:22 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 22 Jan 2015 09:37:44 -0000
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_9BA84827B30CBE4996725F98F7DC9123428FB241SMExchange01sie_"
 
-On Thu, Jan 22, 2015 at 9:31 AM,  <Neil.Wu@emerson.com> wrote:
-> Thank you for your reply.
-> But I found that there are others use do_rootfs_append() when searching on the Internet.
-> If I want to remove the directory in do_rootfs() task, how can I to do it ?
+--_000_9BA84827B30CBE4996725F98F7DC9123428FB241SMExchange01sie_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-do_rootfs was a Shell function in the past, it was changed to Python
-last year or so.
+Hi
 
-if you want to post process an image, you can use
-IMAGE_POSTPROCESS_COMMAND variable and add your own functions there.
+In terms of my question "how i include nfs-utils" i saw that the nfs-utils =
+was compiled correctly.
+But there was no mount.nfs in /sbin on the target or in the rootfs image.
 
-cheers
+What is the step to get this files in the do_rootfs process?
 
+With best regards,
+Alexander
+
+
+--_000_9BA84827B30CBE4996725F98F7DC9123428FB241SMExchange01sie_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Sprechblasentext Zchn";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-fareast-language:EN-US;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.SprechblasentextZchn
+	{mso-style-name:"Sprechblasentext Zchn";
+	mso-style-priority:99;
+	mso-style-link:Sprechblasentext;
+	font-family:"Tahoma","sans-serif";}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">In terms of my question &#8222;=
+how i include nfs-utils&#8220; i saw that the nfs-utils was compiled correc=
+tly.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">But there was no mount.nfs in /=
+sbin on the target or in the rootfs image.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">What is the step to get this fi=
+les in the do_rootfs process?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:DE">With best re=
+gards,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"mso-fareast-language:DE">Alexander<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9BA84827B30CBE4996725F98F7DC9123428FB241SMExchange01sie_--
