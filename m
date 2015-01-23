@@ -1,56 +1,47 @@
-Return-Path: <otavio.salvador@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 766F4E00942; Fri, 23 Jan 2015 04:54:43 -0800 (PST)
+	id 34FF5E008E0; Fri, 23 Jan 2015 06:53:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.44 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yh0-f44.google.com (mail-yh0-f44.google.com
-	[209.85.213.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D61BE00944
-	for <yocto@yoctoproject.org>; Fri, 23 Jan 2015 04:54:40 -0800 (PST)
-Received: by mail-yh0-f44.google.com with SMTP id i57so3251944yha.3
-	for <yocto@yoctoproject.org>; Fri, 23 Jan 2015 04:54:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date:message-id:subject
-	:from:to:cc:content-type:content-transfer-encoding;
-	bh=ByZ5P8F4cxwJTuPOhFYB1HOnDzG1KGZrSPeSzGpeMoM=;
-	b=0EOk1kcvJyfjDHIlsbXkoA/y55N3445Uf7QDdr5/1hg7D44zV+C2Nw8UwBlMBIljxa
-	RJ9ME5WvZ3wt/EjHyFkFgNeKvd7zCtHp9AdF7qE/ezbytVV7qF9Ji8GPdFoYqTXWnP7u
-	N8QbJxd/YM1MNMYHZVb0FIdBAp6jdMD1kjFFsEDpOX0MlS6FWQytLLvZBqUKVQh+u1uC
-	4PCrpkOUn07I6sFg8t6nN9GosjoDpytZsshTTLTrt/ANMRW4Y3Ca+7o2+gYab+PXuJZZ
-	Xk/22S3ZaOejQ0lJ2rQKnkjD0dUM7uxo96SxGffc1HFGoqLWhTJa7r9SgdVrDlIiPWoI
-	HBGw==
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.49 listed in list.dnswl.org]
+Received: from mail-qg0-f49.google.com (mail-qg0-f49.google.com
+	[209.85.192.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD435E005A9
+	for <yocto@yoctoproject.org>; Fri, 23 Jan 2015 06:53:15 -0800 (PST)
+Received: by mail-qg0-f49.google.com with SMTP id i50so6316891qgf.8
+	for <yocto@yoctoproject.org>; Fri, 23 Jan 2015 06:53:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=Xjowe3c6iOjRUgn+ZE23Ra9wHwCgahRkNedch+ZXmSo=;
+	b=hU7wZPNbmh4oWJs5z00qD9RMdMhMBkPEf2G6+6zXmZEXjnMWnfUvpw1zsbZzxrsM+Y
+	e0js/dCi9lsE+M/V5N+z8KCaKEigGa166chxA7IG6tGdBsQqMDDtievM7rfq7tpokvkk
+	2YRZJzeg2OnQbiOGjM6vvtp/cu096/r4CoK7GHLg1tjV+UfMgErwaHzkOqawp3cnr4J3
+	6iJOG/dOdUH0nt/og2Y7o8Wh1rP0aPeesizx3Eauboc+RhXW4iVqLxtggSoPpIztMWQ0
+	/ZHiPHD5bORRoAXyKRzbvk+9QxOwFsHN0sILcTOAZ5naULdVsUh/aXEhVOhAF5iqA050
+	7CpQ==
+X-Gm-Message-State: ALoCoQkfT3zO7jS5u/Vvl1corfAfLLNHszM3SL97hA0uc/28oJ1SAK/gIBECJJnls9oFi2H7be39
+X-Received: by 10.224.93.6 with SMTP id t6mr8718026qam.93.1422024794987; Fri,
+	23 Jan 2015 06:53:14 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.170.99.6 with SMTP id q6mr3367630yka.105.1422017679829; Fri,
-	23 Jan 2015 04:54:39 -0800 (PST)
-Sender: otavio.salvador@gmail.com
-Received: by 10.170.123.143 with HTTP; Fri, 23 Jan 2015 04:54:39 -0800 (PST)
-In-Reply-To: <54C17A37.9040104@gmx.de>
-References: <CAENGNhcVmxW2xD4d4TDjTtLu2zCvCJ6sEOF8ek80hWz4kxKf6A@mail.gmail.com>
-	<5100308.QAtzWr7jXK@peggleto-mobl5.ger.corp.intel.com>
-	<CAENGNhff5-CZRSJaD1t1ppPOOQNrWipF01hAdatWqSkjGVmnVA@mail.gmail.com>
-	<2632438.D1xOHJKf9V@peggleto-mobl5.ger.corp.intel.com>
-	<CAENGNhe7Uv1PQv=J3QYhPAX3dj9p0pakAg5x9oGQ0V3pxfbHUw@mail.gmail.com>
-	<CAP9ODKq85m2Cb_DoVgh9+Wi=zjAJc-MmrGAo58h347zd+UUOgQ@mail.gmail.com>
-	<54C17A37.9040104@gmx.de>
-Date: Fri, 23 Jan 2015 10:54:39 -0200
-X-Google-Sender-Auth: 7l9dir1-ATCY5o2B86OBEEOFsvo
-Message-ID: <CAP9ODKr7+TXUaimhEv0kPRFh7CwkuXk5OaD+s6iZCF9VzOBS0g@mail.gmail.com>
-From: Otavio Salvador <otavio@ossystems.com.br>
-To: =?UTF-8?Q?Dominic_Sacr=C3=A9?= <dominic.sacre@gmx.de>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	Denys Dmytriyenko <denys@ti.com>, yocto <yocto@yoctoproject.org>
-Subject: Re: Difference between target, cross, native and nativesdk.
+Received: by 10.140.96.166 with HTTP; Fri, 23 Jan 2015 06:52:54 -0800 (PST)
+In-Reply-To: <1421986511-44679-1-git-send-email-leimaohui@cn.fujitsu.com>
+References: <1421986511-44679-1-git-send-email-leimaohui@cn.fujitsu.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 23 Jan 2015 14:52:54 +0000
+Message-ID: <CAJTo0LaPunQcZWf+XE+8yNkN2hGK6FgKF4i+0shGbOb+rgEW9g@mail.gmail.com>
+To: Lei Maohui <leimaohui@cn.fujitsu.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH] libidn_0.6.14: fix the QA Issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,38 +53,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Jan 2015 12:54:43 -0000
+X-List-Received-Date: Fri, 23 Jan 2015 14:53:21 -0000
+Content-Type: multipart/alternative; boundary=089e01495028c4ae68050d52f25d
+
+--089e01495028c4ae68050d52f25d
 Content-Type: text/plain; charset=UTF-8
+
+Hi Lei,
+
+Patches for oe-core should go to the openembedded-core@ mailing list, not
+yocto@.  But thanks, I've queued this for master.
+
+Ross
+
+On 23 January 2015 at 04:15, Lei Maohui <leimaohui@cn.fujitsu.com> wrote:
+
+> To fix the QA Issue as following:
+> ERROR: QA Issue: libidn: Files/directories were installed but not shipped
+>   /usr/share/emacs
+>   /usr/share/emacs/site-lisp
+>   /usr/share/emacs/site-lisp/punycode.el
+>   /usr/share/emacs/site-lisp/idna.el [installed-vs-shipped]
+>
+> Signed-off-by: Lei Maohui <leimaohui@cn.fujitsu.com>
+> ---
+>  meta/recipes-extended/libidn/libidn_0.6.14.bb | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/meta/recipes-extended/libidn/libidn_0.6.14.bb
+> b/meta/recipes-extended/libidn/libidn_0.6.14.bb
+> index ff8d345..4df1d08 100644
+> --- a/meta/recipes-extended/libidn/libidn_0.6.14.bb
+> +++ b/meta/recipes-extended/libidn/libidn_0.6.14.bb
+> @@ -29,4 +29,5 @@ do_configure_prepend() {
+>
+>  do_install_append() {
+>         rm -rf ${D}${libdir}/Libidn.dll
+> +       rm -rf ${D}${datadir}/emacs
+>  }
+> --
+> 1.8.4.2
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--089e01495028c4ae68050d52f25d
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 22, 2015 at 8:31 PM, Dominic Sacr=C3=A9 <dominic.sacre@gmx.de> =
-wrote:
-> On 2015-01-21 14:37, Otavio Salvador wrote:
->> The fw tools inside of U-Boot qualifies for both target and cross use
->> cases. When used in cross or crosssdk, it can be used to change things
->> in the generated image (sdcard for example) while in the target case
->> it can be used in the runtime system.
+<div dir=3D"ltr">Hi Lei,<div><br></div><div>Patches for oe-core should go t=
+o the openembedded-core@ mailing list, not yocto@.=C2=A0 But thanks, I&#39;=
+ve queued this for master.</div><div><br></div><div>Ross</div></div><div cl=
+ass=3D"gmail_extra"><br><div class=3D"gmail_quote">On 23 January 2015 at 04=
+:15, Lei Maohui <span dir=3D"ltr">&lt;<a href=3D"mailto:leimaohui@cn.fujits=
+u.com" target=3D"_blank">leimaohui@cn.fujitsu.com</a>&gt;</span> wrote:<br>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">To fix the QA Issue as following:<br>
+ERROR: QA Issue: libidn: Files/directories were installed but not shipped<b=
+r>
+=C2=A0 /usr/share/emacs<br>
+=C2=A0 /usr/share/emacs/site-lisp<br>
+=C2=A0 /usr/share/emacs/site-lisp/punycode.el<br>
+=C2=A0 /usr/share/emacs/site-lisp/idna.el [installed-vs-shipped]<br>
+<br>
+Signed-off-by: Lei Maohui &lt;<a href=3D"mailto:leimaohui@cn.fujitsu.com">l=
+eimaohui@cn.fujitsu.com</a>&gt;<br>
+---<br>
+=C2=A0meta/recipes-extended/libidn/<a href=3D"http://libidn_0.6.14.bb" targ=
+et=3D"_blank">libidn_0.6.14.bb</a> | 1 +<br>
+=C2=A01 file changed, 1 insertion(+)<br>
+<br>
+diff --git a/meta/recipes-extended/libidn/<a href=3D"http://libidn_0.6.14.b=
+b" target=3D"_blank">libidn_0.6.14.bb</a> b/meta/recipes-extended/libidn/<a=
+ href=3D"http://libidn_0.6.14.bb" target=3D"_blank">libidn_0.6.14.bb</a><br=
 >
-> I've been wondering about the "u-boot-fw-utils-cross" recipe myself.
-> When I build the recipe I get what appear to be the correct binaries for
-> the host architecture, located in the target-specific work directory
-> (e.g. tmp/work/imx6qsabresd-poky-linux-gnueabi/u-boot-fw-utils-cross).
-> However, these binaries don't get installed anywhere other recipes (like
-> my sdcard image) would be able to find them.
->
-> My workaround so far has been to build a native package instead (by
-> simply adding BBCLASSEXTEND =3D "native" to the regular "u-boot-fw-utils"
-> recipe).
-> This way the binaries get installed to the host's sysroot and are found
-> just fine, but I feel like I'm missing something about how the cross
-> recipe should be used properly for this purpose.
->
-> Can anyone shed some light on this?
+index ff8d345..4df1d08 100644<br>
+--- a/meta/recipes-extended/libidn/<a href=3D"http://libidn_0.6.14.bb" targ=
+et=3D"_blank">libidn_0.6.14.bb</a><br>
++++ b/meta/recipes-extended/libidn/<a href=3D"http://libidn_0.6.14.bb" targ=
+et=3D"_blank">libidn_0.6.14.bb</a><br>
+@@ -29,4 +29,5 @@ do_configure_prepend() {<br>
+<br>
+=C2=A0do_install_append() {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 rm -rf ${D}${libdir}/Libidn.dll<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0rm -rf ${D}${datadir}/emacs<br>
+=C2=A0}<br>
+<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+1.8.4.2<br>
+<br>
+--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</font></span></blockquote></div><br></div>
 
-I sent a patch and seems to do the right thing. Can you test it?
-
---=20
-Otavio Salvador                             O.S. Systems
-http://www.ossystems.com.br        http://code.ossystems.com.br
-Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
-
+--089e01495028c4ae68050d52f25d--
