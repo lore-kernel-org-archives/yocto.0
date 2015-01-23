@@ -1,53 +1,39 @@
-Return-Path: <pcjegan@gmail.com>
+Return-Path: <alexander.haenel-baas@sieb-meyer.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 051CDE0090E; Thu, 22 Jan 2015 22:38:51 -0800 (PST)
+	id 4128FE0090E; Thu, 22 Jan 2015 23:14:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (pcjegan[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.41 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wg0-f41.google.com (mail-wg0-f41.google.com [74.125.82.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26B5EE00782
-	for <yocto@yoctoproject.org>; Thu, 22 Jan 2015 22:38:41 -0800 (PST)
-Received: by mail-wg0-f41.google.com with SMTP id a1so5734174wgh.0
-	for <yocto@yoctoproject.org>; Thu, 22 Jan 2015 22:38:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=ANmx18ISdbdVWmpQRD3WsCLLx2a2KilCp74hceBpbNY=;
-	b=qmpGfsB8VsJF8AezbZunnGHpk0WtYyyLWJw/uMIVvAtZLN5h7sR8M2N9pnItHiwq3U
-	faHPdx7slEBcxDsNI1szGXKzbWdqLNbJa61TazoIFv6XsTW372KST0ZDNPc+g81gOSNh
-	N/TgYnzmS3RiP5WNsIGJRbRgV9uLZcfEFI30Xo/PB+1A1PcSP2qbBHnlq3OiVn3CLa9i
-	6Lm5rVmEmcH0HVdf4nwuf8GgAgdngHCmoolC3M5eoolSWY3+Qu+P4eB5+zQgbsesB9h+
-	gOSOTOmPvRzNUTvmd3V1Y6PKFddmOsWpr2Ic64PgTQu21aCQpz+pNLz1F+yIYlibfYrK
-	OTLA==
-X-Received: by 10.194.237.202 with SMTP id ve10mr10893299wjc.36.1421995120355; 
-	Thu, 22 Jan 2015 22:38:40 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.180.86.35 with HTTP; Thu, 22 Jan 2015 22:38:20 -0800 (PST)
-In-Reply-To: <9BA84827B30CBE4996725F98F7DC9123428FB401@SMExchange01.siebmeyer.org>
+Received: from mail.sieb-meyer.de (smnotes1.sieb-meyer.de [213.252.170.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27FB4E00782
+	for <yocto@yoctoproject.org>; Thu, 22 Jan 2015 23:14:24 -0800 (PST)
+Received: from SMEXCHANGE01.siebmeyer.org ([::1]) by
+	SMExchange01.siebmeyer.org ([::1]) with mapi id 14.02.0387.000;
+	Fri, 23 Jan 2015 08:14:19 +0100
+From: =?utf-8?B?SMOkbmVsLUJhYXMsIEFsZXhhbmRlcg==?=
+	<alexander.haenel-baas@sieb-meyer.de>
+To: Jegan Chandru <pcjegan@gmail.com>
+Thread-Topic: [yocto] mount.nfs -> how i include nfs-utils
+Thread-Index: AdA2JWepMhOfgrrkSM+VeELOQaX4NwAixvLAAAjJZTD///ZFAP//6JHw
+Date: Fri, 23 Jan 2015 07:14:18 +0000
+Message-ID: <9BA84827B30CBE4996725F98F7DC9123428FB42C@SMExchange01.siebmeyer.org>
 References: <9BA84827B30CBE4996725F98F7DC9123428FB241@SMExchange01.siebmeyer.org>
 	<CY1PR0301MB11947FC2B060F6E507B3539793360@CY1PR0301MB1194.namprd03.prod.outlook.com>
 	<9BA84827B30CBE4996725F98F7DC9123428FB401@SMExchange01.siebmeyer.org>
-From: Jegan Chandru <pcjegan@gmail.com>
-Date: Fri, 23 Jan 2015 12:08:20 +0530
-Message-ID: <CAAA4K6LtR+G7G5sbByg+ZKE3+e_Kb2T-HBOdkAOrMp5t24PzPA@mail.gmail.com>
-To: =?UTF-8?Q?H=C3=A4nel=2DBaas=2C_Alexander?=
-	<alexander.haenel-baas@sieb-meyer.de>
+	<CAAA4K6LtR+G7G5sbByg+ZKE3+e_Kb2T-HBOdkAOrMp5t24PzPA@mail.gmail.com>
+In-Reply-To: <CAAA4K6LtR+G7G5sbByg+ZKE3+e_Kb2T-HBOdkAOrMp5t24PzPA@mail.gmail.com>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.11.207]
+x-kse-antivirus-interceptor-info: scan successful
+x-kse-antivirus-info: Clean
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	"ting.liu@freescale.com" <ting.liu@freescale.com>
 Subject: Re: mount.nfs -> how i include nfs-utils
@@ -62,239 +48,292 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Jan 2015 06:38:51 -0000
-Content-Type: multipart/alternative; boundary=089e01493f06057072050d4c0a58
+X-List-Received-Date: Fri, 23 Jan 2015 07:14:33 -0000
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_9BA84827B30CBE4996725F98F7DC9123428FB42CSMExchange01sie_"
 
---089e01493f06057072050d4c0a58
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--_000_9BA84827B30CBE4996725F98F7DC9123428FB42CSMExchange01sie_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-IMAGE_INSTALL_append =3D "nfs-util-client"  in local.conf is what you
-are looking for. You need to bitbake the image again.
+SGkgSmVnYW4NCg0KVGhhbmsgeW91IGZvciB5b3VyIHJlcGx5Lg0KDQpJIGhhdmUgYWRkZWQgdGhl
+IGxpbmUgSU1BR0VfSU5TVEFMTF9hcHBlbmQ94oCdbmZzLXV0aWxz4oCdIGluIHRoZSBsb2NhbC5j
+b25mIGZpbGUgYW5kIG5vdyBuZnMgd29yayBvbiB0aGUgdGFyZ2V0Lg0KDQpNYW55IHRoYW5rcy4N
+Cg0KQWxleA0KDQoNClZvbjogSmVnYW4gQ2hhbmRydSBbbWFpbHRvOnBjamVnYW5AZ21haWwuY29t
+XQ0KR2VzZW5kZXQ6IEZyZWl0YWcsIDIzLiBKYW51YXIgMjAxNSAwNzozOA0KQW46IEjDpG5lbC1C
+YWFzLCBBbGV4YW5kZXINCkNjOiB0aW5nLmxpdUBmcmVlc2NhbGUuY29tOyB5b2N0b0B5b2N0b3By
+b2plY3Qub3JnDQpCZXRyZWZmOiBSZTogW3lvY3RvXSBtb3VudC5uZnMgLT4gaG93IGkgaW5jbHVk
+ZSBuZnMtdXRpbHMNCg0KDQpJTUFHRV9JTlNUQUxMX2FwcGVuZCA9ICJuZnMtdXRpbC1jbGllbnQi
+ICBpbiBsb2NhbC5jb25mIGlzIHdoYXQgeW91IGFyZSBsb29raW5nIGZvci4gWW91IG5lZWQgdG8g
+Yml0YmFrZSB0aGUgaW1hZ2UgYWdhaW4uDQoNCg0KDQpTbyBpZiBzb21lIHBhY2thZ2VzIGFyZSBu
+b3QgYXZhaWxhYmxlIGluIHJvb3RmcyBieSBkZWZhdWx0LCB5b3UgY291bGQgZm9sbG93IHRoaXMg
+bWV0aG9kLg0KDQpDaGVjayBoZXJlIGZvciB5b3VyIHF1aWNrIHJlZmVyZW5jZSwNCg0KaHR0cHM6
+Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9GQVENCg0K4oCLUGxlYXNlIHJlYWQgaGVyZSBp
+biBkZXRhaWwsDQoNCmh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLzEuNy4xL2Rldi1t
+YW51YWwvZGV2LW1hbnVhbC5odG1sI3VzaW5ncG9reS1leHRlbmQtY3VzdG9taW1hZ2UNCg0K4oCL
+LeKAiw0KDQpKQ+KAiw0KDQpPbiBGcmksIEphbiAyMywgMjAxNSBhdCAxMTo1MCBBTSwgSMOkbmVs
+LUJhYXMsIEFsZXhhbmRlciA8YWxleGFuZGVyLmhhZW5lbC1iYWFzQHNpZWItbWV5ZXIuZGU8bWFp
+bHRvOmFsZXhhbmRlci5oYWVuZWwtYmFhc0BzaWViLW1leWVyLmRlPj4gd3JvdGU6DQpIaQ0KWWVz
+IGkga25vdyB0aGF0Lg0KDQpCVVQgdGhpcyBmaWxlIHdhcyBub3QgY29waWVkIHRvIHRoZSByb290
+ZnMgZHVyaW5nICB0aGUgZG9fcm9vdGZzIHByb2Nlc3MuDQpJdCBpcyBub3QgaW5jbHVkZSBpbiB0
+aGUgcm9vdF9mcy4NCkJ1dCBpdCB3YXMgYWxyZWFkeSBjb21waWxlZC4NCg0KQWxleGFuZGVyDQoN
+ClZvbjogdGluZy5saXVAZnJlZXNjYWxlLmNvbTxtYWlsdG86dGluZy5saXVAZnJlZXNjYWxlLmNv
+bT4gW21haWx0bzp0aW5nLmxpdUBmcmVlc2NhbGUuY29tPG1haWx0bzp0aW5nLmxpdUBmcmVlc2Nh
+bGUuY29tPl0NCkdlc2VuZGV0OiBGcmVpdGFnLCAyMy4gSmFudWFyIDIwMTUgMDM6MDINCkFuOiBI
+w6RuZWwtQmFhcywgQWxleGFuZGVyOyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5b2N0
+b0B5b2N0b3Byb2plY3Qub3JnPg0KQmV0cmVmZjogUkU6IG1vdW50Lm5mcyAtPiBob3cgaSBpbmNs
+dWRlIG5mcy11dGlscw0KDQptb3VudC5uZnMgaXMgcGFja2FnZWQgaW4gbmZzLXV0aWxzLWNsaWVu
+dC4NCg0KRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5b2N0by1i
+b3VuY2VzQHlvY3RvcHJvamVjdC5vcmc+IFttYWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2pl
+Y3Qub3JnXSBPbiBCZWhhbGYgT2YgSD9uZWwtQmFhcywgQWxleGFuZGVyDQpTZW50OiBUaHVyc2Rh
+eSwgSmFudWFyeSAyMiwgMjAxNSA1OjM4IFBNDQpUbzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxt
+YWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NClN1YmplY3Q6IFt5b2N0b10gbW91bnQubmZz
+IC0+IGhvdyBpIGluY2x1ZGUgbmZzLXV0aWxzDQoNCkhpDQoNCkluIHRlcm1zIG9mIG15IHF1ZXN0
+aW9uIOKAnmhvdyBpIGluY2x1ZGUgbmZzLXV0aWxz4oCcIGkgc2F3IHRoYXQgdGhlIG5mcy11dGls
+cyB3YXMgY29tcGlsZWQgY29ycmVjdGx5Lg0KQnV0IHRoZXJlIHdhcyBubyBtb3VudC5uZnMgaW4g
+L3NiaW4gb24gdGhlIHRhcmdldCBvciBpbiB0aGUgcm9vdGZzIGltYWdlLg0KDQpXaGF0IGlzIHRo
+ZSBzdGVwIHRvIGdldCB0aGlzIGZpbGVzIGluIHRoZSBkb19yb290ZnMgcHJvY2Vzcz8NCg0KV2l0
+aCBiZXN0IHJlZ2FyZHMsDQpBbGV4YW5kZXINCg0KDQotLQ0KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18NCnlvY3RvIG1haWxpbmcgbGlzdA0KeW9jdG9AeW9j
+dG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NCmh0dHBzOi8vbGlz
+dHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KDQoNCg0KLS0NCkpDUA0K
 
-So if some packages are not available in rootfs by default, you could
-follow this method.
+--_000_9BA84827B30CBE4996725F98F7DC9123428FB42CSMExchange01sie_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Check here for your quick reference,
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQpA
+Zm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNvbnNvbGFzOw0KCXBhbm9zZS0xOjIgMTEgNiA5IDIg
+MiA0IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IlRyZWJ1Y2hldCBNUyI7DQoJ
+cGFub3NlLTE6MiAxMSA2IDMgMiAyIDIgMiAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8N
+CnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsN
+CgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWls
+eToiVGltZXMgTmV3IFJvbWFuIiwic2VyaWYiO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsN
+Cgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9u
+OnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNv
+LXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5k
+ZXJsaW5lO30NCnByZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6
+IkhUTUwgVm9yZm9ybWF0aWVydCBaY2huIjsNCgltYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206
+LjAwMDFwdDsNCglmb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7
+fQ0KcC5Nc29BY2V0YXRlLCBsaS5Nc29BY2V0YXRlLCBkaXYuTXNvQWNldGF0ZQ0KCXttc28tc3R5
+bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IlNwcmVjaGJsYXNlbnRleHQgWmNobiI7
+DQoJbWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjguMHB0
+Ow0KCWZvbnQtZmFtaWx5OiJUYWhvbWEiLCJzYW5zLXNlcmlmIjt9DQpzcGFuLkhUTUxWb3Jmb3Jt
+YXRpZXJ0WmNobg0KCXttc28tc3R5bGUtbmFtZToiSFRNTCBWb3Jmb3JtYXRpZXJ0IFpjaG4iOw0K
+CW1zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiSFRNTCBWb3Jmb3JtYXRp
+ZXJ0IjsNCglmb250LWZhbWlseToiQ29uc29sYXMiLCJzZXJpZiI7DQoJbXNvLWZhcmVhc3QtbGFu
+Z3VhZ2U6REU7fQ0Kc3Bhbi5FLU1haWxGb3JtYXR2b3JsYWdlMTkNCgl7bXNvLXN0eWxlLXR5cGU6
+cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5zLXNlcmlmIjsNCglj
+b2xvcjojMUY0OTdEO30NCnNwYW4uU3ByZWNoYmxhc2VudGV4dFpjaG4NCgl7bXNvLXN0eWxlLW5h
+bWU6IlNwcmVjaGJsYXNlbnRleHQgWmNobiI7DQoJbXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1z
+by1zdHlsZS1saW5rOlNwcmVjaGJsYXNlbnRleHQ7DQoJZm9udC1mYW1pbHk6IlRhaG9tYSIsInNh
+bnMtc2VyaWYiOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkRFO30NCi5Nc29DaHBEZWZhdWx0DQoJ
+e21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fu
+cy1zZXJpZiI7DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rp
+b24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDcwLjg1cHQgMi4w
+Y20gNzAuODVwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0t
+Pjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0
+PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUg
+bXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4
+dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4N
+CjwvaGVhZD4NCjxib2R5IGxhbmc9IkRFIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxk
+aXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90
+O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+SGkgSmVnYW48bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
+Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjoj
+MUY0OTdEIj5UaGFuayB5b3UgZm9yIHlvdXIgcmVwbHkuPG86cD48L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
+dW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
+Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2Nv
+bG9yOiMxRjQ5N0QiPkkgaGF2ZSBhZGRlZCB0aGUgbGluZSBJTUFHRV9JTlNUQUxMX2FwcGVuZD3i
+gJ1uZnMtdXRpbHPigJ0gaW4gdGhlIGxvY2FsLmNvbmYgZmlsZSBhbmQgbm93IG5mcyB3b3JrIG9u
+IHRoZSB0YXJnZXQuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
+dW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48
+bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBs
+YW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
+aWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPk1hbnkgdGhh
+bmtzLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxh
+bmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
+YnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJz
+cDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
+VVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
+dDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5BbGV4PG86cD48L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxl
+PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7
+c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMt
+c2VyaWYmcXVvdDsiPlZvbjo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4g
+SmVnYW4gQ2hhbmRydSBbbWFpbHRvOnBjamVnYW5AZ21haWwuY29tXQ0KPGJyPg0KPGI+R2VzZW5k
+ZXQ6PC9iPiBGcmVpdGFnLCAyMy4gSmFudWFyIDIwMTUgMDc6Mzg8YnI+DQo8Yj5Bbjo8L2I+IEjD
+pG5lbC1CYWFzLCBBbGV4YW5kZXI8YnI+DQo8Yj5DYzo8L2I+IHRpbmcubGl1QGZyZWVzY2FsZS5j
+b207IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5CZXRyZWZmOjwvYj4gUmU6IFt5b2N0
+b10gbW91bnQubmZzIC0mZ3Q7IGhvdyBpIGluY2x1ZGUgbmZzLXV0aWxzPG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2
+Pg0KPGRpdj4NCjxwcmU+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O1RyZWJ1Y2hldCBN
+UyZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOmJsYWNrIj5JTUFHRV9JTlNUQUxM
+X2FwcGVuZCA9ICZxdW90O25mcy11dGlsLWNsaWVudCZxdW90OyZuYnNwOyBpbiBsb2NhbC5jb25m
+IGlzIHdoYXQgeW91IGFyZSBsb29raW5nIGZvci4gWW91IG5lZWQgdG8gYml0YmFrZSB0aGUgaW1h
+Z2UgYWdhaW4uPG86cD48L286cD48L3NwYW4+PC9wcmU+DQo8L2Rpdj4NCjxwcmU+PHNwYW4gc3R5
+bGU9ImNvbG9yOmJsYWNrIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3ByZT4NCjxkaXY+DQo8
+cHJlIHN0eWxlPSJ3aGl0ZS1zcGFjZTpwcmUtd3JhcCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5
+OiZxdW90O1RyZWJ1Y2hldCBNUyZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOmJs
+YWNrIj5TbyBpZiBzb21lIHBhY2thZ2VzIGFyZSBub3QgYXZhaWxhYmxlIGluIHJvb3RmcyBieSBk
+ZWZhdWx0LCB5b3UgY291bGQgZm9sbG93IHRoaXMgbWV0aG9kLiA8bzpwPjwvbzpwPjwvc3Bhbj48
+L3ByZT4NCjwvZGl2Pg0KPGRpdj4NCjxwcmUgc3R5bGU9IndoaXRlLXNwYWNlOnByZS13cmFwIj48
+c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7VHJlYnVjaGV0IE1TJnF1b3Q7LCZxdW90O3Nh
+bnMtc2VyaWYmcXVvdDs7Y29sb3I6YmxhY2siPkNoZWNrIGhlcmUgZm9yIHlvdXIgcXVpY2sgcmVm
+ZXJlbmNlLDxvOnA+PC9vOnA+PC9zcGFuPjwvcHJlPg0KPC9kaXY+DQo8ZGl2Pg0KPHByZT48c3Bh
+biBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7VHJlYnVjaGV0IE1TJnF1b3Q7LCZxdW90O3NhbnMt
+c2VyaWYmcXVvdDs7Y29sb3I6YmxhY2siPjxhIGhyZWY9Imh0dHBzOi8vd2lraS55b2N0b3Byb2pl
+Y3Qub3JnL3dpa2kvRkFRIj5odHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL0ZBUTwv
+YT48L3NwYW4+PG86cD48L286cD48L3ByZT4NCjwvZGl2Pg0KPGRpdj4NCjxwcmU+PHNwYW4gc3R5
+bGU9ImZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsi
+PuKAizwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7VHJlYnVjaGV0IE1TJnF1
+b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPlBsZWFzZSByZWFkIGhlcmUgaW4gZGV0YWlsLDxv
+OnA+PC9vOnA+PC9zcGFuPjwvcHJlPg0KPC9kaXY+DQo8ZGl2Pg0KPHByZT48c3BhbiBzdHlsZT0i
+Zm9udC1mYW1pbHk6JnF1b3Q7VHJlYnVjaGV0IE1TJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVv
+dDsiPjxhIGhyZWY9Imh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLzEuNy4xL2Rldi1t
+YW51YWwvZGV2LW1hbnVhbC5odG1sI3VzaW5ncG9reS1leHRlbmQtY3VzdG9taW1hZ2UiPmh0dHA6
+Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzLzEuNy4xL2Rldi1tYW51YWwvZGV2LW1hbnVhbC5o
+dG1sI3VzaW5ncG9reS1leHRlbmQtY3VzdG9taW1hZ2U8L2E+PG86cD48L286cD48L3NwYW4+PC9w
+cmU+DQo8L2Rpdj4NCjxkaXY+DQo8cHJlPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtB
+cmlhbCZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij7igIs8L3NwYW4+PHNwYW4gc3R5bGU9
+ImZvbnQtZmFtaWx5OiZxdW90O1RyZWJ1Y2hldCBNUyZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1
+b3Q7Ij4tPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90Oywm
+cXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij7igIs8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5
+OiZxdW90O1RyZWJ1Y2hldCBNUyZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij48bzpwPjwv
+bzpwPjwvc3Bhbj48L3ByZT4NCjwvZGl2Pg0KPHByZT48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6
+JnF1b3Q7VHJlYnVjaGV0IE1TJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkpDPC9zcGFu
+PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OywmcXVvdDtzYW5zLXNl
+cmlmJnF1b3Q7Ij7igIs8L3NwYW4+PG86cD48L286cD48L3ByZT4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPk9uIEZyaSwgSmFuIDIzLCAyMDE1IGF0IDExOjUwIEFNLCBIw6RuZWwtQmFh
+cywgQWxleGFuZGVyICZsdDs8YSBocmVmPSJtYWlsdG86YWxleGFuZGVyLmhhZW5lbC1iYWFzQHNp
+ZWItbWV5ZXIuZGUiIHRhcmdldD0iX2JsYW5rIj5hbGV4YW5kZXIuaGFlbmVsLWJhYXNAc2llYi1t
+ZXllci5kZTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdp
+bi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iY29sb3I6IzFGNDk3
+RCI+SGk8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0i
+bXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFu
+IGxhbmc9IkVOLVVTIiBzdHlsZT0iY29sb3I6IzFGNDk3RCI+WWVzIGkga25vdyB0aGF0Ljwvc3Bh
+bj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
+LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFuZz0iRU4t
+VVMiIHN0eWxlPSJjb2xvcjojMUY0OTdEIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1h
+cmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iY29sb3I6IzFG
+NDk3RCI+QlVUIHRoaXMgZmlsZSB3YXMgbm90IGNvcGllZCB0byB0aGUgcm9vdGZzIGR1cmluZyAm
+bmJzcDt0aGUgZG9fcm9vdGZzIHByb2Nlc3MuPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4t
+Ym90dG9tLWFsdDphdXRvIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImNvbG9yOiMxRjQ5N0Qi
+Pkl0IGlzIG5vdCBpbmNsdWRlIGluIHRoZSByb290X2ZzLjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28t
+bWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjoj
+MUY0OTdEIj5CdXQgaXQgd2FzIGFscmVhZHkgY29tcGlsZWQuDQo8L3NwYW4+PG86cD48L286cD48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87
+bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iY29s
+b3I6IzFGNDk3RCI+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFs
+dDphdXRvIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPkFsZXhhbmRl
+cjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28t
+bWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFu
+Zz0iRU4tVVMiPiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2IHN0eWxl
+PSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0REYgMS4wcHQ7cGFkZGluZzozLjBw
+dCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10
+b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5z
+LXNlcmlmJnF1b3Q7Ij5Wb246PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBw
+dDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+
+DQo8YSBocmVmPSJtYWlsdG86dGluZy5saXVAZnJlZXNjYWxlLmNvbSIgdGFyZ2V0PSJfYmxhbmsi
+PnRpbmcubGl1QGZyZWVzY2FsZS5jb208L2E+IFttYWlsdG86PGEgaHJlZj0ibWFpbHRvOnRpbmcu
+bGl1QGZyZWVzY2FsZS5jb20iIHRhcmdldD0iX2JsYW5rIj50aW5nLmxpdUBmcmVlc2NhbGUuY29t
+PC9hPl0NCjxicj4NCjxiPkdlc2VuZGV0OjwvYj4gRnJlaXRhZywgMjMuIEphbnVhciAyMDE1IDAz
+OjAyPGJyPg0KPGI+QW46PC9iPiBIw6RuZWwtQmFhcywgQWxleGFuZGVyOyA8YSBocmVmPSJtYWls
+dG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyIgdGFyZ2V0PSJfYmxhbmsiPg0KeW9jdG9AeW9jdG9w
+cm9qZWN0Lm9yZzwvYT48YnI+DQo8Yj5CZXRyZWZmOjwvYj4gUkU6IG1vdW50Lm5mcyAtJmd0OyBo
+b3cgaSBpbmNsdWRlIG5mcy11dGlsczwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9k
+aXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
+LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286
+cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1
+dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0i
+Y29sb3I6IzFGNDk3RCI+bW91bnQubmZzIGlzIHBhY2thZ2VkIGluIG5mcy11dGlscy1jbGllbnQu
+PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1t
+YXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBsYW5n
+PSJFTi1VUyIgc3R5bGU9ImNvbG9yOiMxRjQ5N0QiPiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwv
+cD4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkIGJsdWUgMS41cHQ7
+cGFkZGluZzowY20gMGNtIDBjbSA0LjBwdCI+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5v
+bmU7Ym9yZGVyLXRvcDpzb2xpZCAjQjVDNERGIDEuMHB0O3BhZGRpbmc6My4wcHQgMGNtIDBjbSAw
+Y20iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRv
+O21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
+ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3Nh
+bnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
+ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3Nh
+bnMtc2VyaWYmcXVvdDsiPg0KPGEgaHJlZj0ibWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9q
+ZWN0Lm9yZyIgdGFyZ2V0PSJfYmxhbmsiPnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZzwv
+YT4gWzxhIGhyZWY9Im1haWx0bzp5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmciIHRhcmdl
+dD0iX2JsYW5rIj5tYWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnPC9hPl0NCjxi
+Pk9uIEJlaGFsZiBPZiA8L2I+SD9uZWwtQmFhcywgQWxleGFuZGVyPGJyPg0KPGI+U2VudDo8L2I+
+IFRodXJzZGF5LCBKYW51YXJ5IDIyLCAyMDE1IDU6MzggUE08YnI+DQo8Yj5Ubzo8L2I+IDxhIGhy
+ZWY9Im1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnIiB0YXJnZXQ9Il9ibGFuayI+eW9jdG9A
+eW9jdG9wcm9qZWN0Lm9yZzwvYT48YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW3lvY3RvXSBtb3VudC5u
+ZnMgLSZndDsgaG93IGkgaW5jbHVkZSBuZnMtdXRpbHM8L3NwYW4+PG86cD48L286cD48L3A+DQo8
+L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9w
+LWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBsYW5nPSJFTi1VUyI+
+Jm5ic3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
+Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5IaTxv
+OnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9w
+LWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bztt
+c28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMiPkluIHRlcm1zIG9m
+IG15IHF1ZXN0aW9uIOKAnmhvdyBpIGluY2x1ZGUgbmZzLXV0aWxz4oCcIGkgc2F3IHRoYXQgdGhl
+IG5mcy11dGlscyB3YXMgY29tcGlsZWQgY29ycmVjdGx5Ljwvc3Bhbj48bzpwPjwvbzpwPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28t
+bWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMiPkJ1dCB0aGVyZSB3YXMg
+bm8gbW91bnQubmZzIGluIC9zYmluIG9uIHRoZSB0YXJnZXQgb3IgaW4gdGhlIHJvb3RmcyBpbWFn
+ZS48L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNv
+LW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxh
+bmc9IkVOLVVTIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0
+OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIj5XaGF0IGlzIHRoZSBzdGVwIHRvIGdldCB0aGlzIGZp
+bGVzIGluIHRoZSBkb19yb290ZnMgcHJvY2Vzcz88L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdp
+bi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDs8L3NwYW4+PG86cD48
+L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0
+OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPldpdGggYmVzdCByZWdhcmRzLDxvOnA+
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFs
+dDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5BbGV4YW5kZXI8bzpwPjwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bztt
+c28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8L2Rpdj4N
+CjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
+bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij48YnI+DQotLTxicj4NCl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KeW9jdG8gbWFpbGluZyBsaXN0PGJy
+Pg0KPGEgaHJlZj0ibWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmciPnlvY3RvQHlvY3RvcHJv
+amVjdC5vcmc8L2E+PGJyPg0KPGEgaHJlZj0iaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3Jn
+L2xpc3RpbmZvL3lvY3RvIiB0YXJnZXQ9Il9ibGFuayI+aHR0cHM6Ly9saXN0cy55b2N0b3Byb2pl
+Y3Qub3JnL2xpc3RpbmZvL3lvY3RvPC9hPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48YnI+DQo8YnIgY2xlYXI9ImFsbCI+DQo8bzpwPjwvbzpwPjwvcD4NCjxk
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+LS0gPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+SkNQPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8
+L2JvZHk+DQo8L2h0bWw+DQo=
 
-https://wiki.yoctoproject.org/wiki/FAQ
-
-=E2=80=8BPlease read here in detail,
-
-http://www.yoctoproject.org/docs/1.7.1/dev-manual/dev-manual.html#usingpoky=
--extend-customimage
-
-=E2=80=8B-=E2=80=8B
-JC=E2=80=8B
-
-
-On Fri, Jan 23, 2015 at 11:50 AM, H=C3=A4nel-Baas, Alexander <
-alexander.haenel-baas@sieb-meyer.de> wrote:
-
->  Hi
->
-> Yes i know that.
->
->
->
-> BUT this file was not copied to the rootfs during  the do_rootfs process.
->
-> It is not include in the root_fs.
->
-> But it was already compiled.
->
->
->
-> Alexander
->
->
->
-> *Von:* ting.liu@freescale.com [mailto:ting.liu@freescale.com]
-> *Gesendet:* Freitag, 23. Januar 2015 03:02
-> *An:* H=C3=A4nel-Baas, Alexander; yocto@yoctoproject.org
-> *Betreff:* RE: mount.nfs -> how i include nfs-utils
->
->
->
-> mount.nfs is packaged in nfs-utils-client.
->
->
->
-> *From:* yocto-bounces@yoctoproject.org [
-> mailto:yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org>] *=
-On
-> Behalf Of *H?nel-Baas, Alexander
-> *Sent:* Thursday, January 22, 2015 5:38 PM
-> *To:* yocto@yoctoproject.org
-> *Subject:* [yocto] mount.nfs -> how i include nfs-utils
->
->
->
-> Hi
->
->
->
-> In terms of my question =E2=80=9Ehow i include nfs-utils=E2=80=9C i saw t=
-hat the nfs-utils
-> was compiled correctly.
->
-> But there was no mount.nfs in /sbin on the target or in the rootfs image.
->
->
->
-> What is the step to get this files in the do_rootfs process?
->
->
->
-> With best regards,
->
-> Alexander
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-
-
---=20
-JCP
-
---089e01493f06057072050d4c0a58
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><pre style=3D"white-space:pre-wrap;color:rgb(0,0,0)"><div =
-class=3D"gmail_default" style=3D"font-family:&#39;trebuchet ms&#39;,sans-se=
-rif;display:inline">IMAGE_INSTALL_append =3D &quot;nfs-util-client&quot;  i=
-n local.conf is what you are looking for. You need to bitbake the image aga=
-in.</div><br></pre><pre style=3D"white-space:pre-wrap;color:rgb(0,0,0)"><di=
-v class=3D"gmail_default" style=3D"font-family:&#39;trebuchet ms&#39;,sans-=
-serif;display:inline">So if some packages are not available in rootfs by de=
-fault, you could follow this method. </div></pre><pre style=3D"white-space:=
-pre-wrap;color:rgb(0,0,0)"><div class=3D"gmail_default" style=3D"font-famil=
-y:&#39;trebuchet ms&#39;,sans-serif;display:inline">Check here for your qui=
-ck reference,</div></pre><pre style><div class=3D"gmail_default" style=3D"d=
-isplay:inline"><font color=3D"#000000" face=3D"trebuchet ms, sans-serif"><s=
-pan style=3D"white-space:pre-wrap"><a href=3D"https://wiki.yoctoproject.org=
-/wiki/FAQ">https://wiki.yoctoproject.org/wiki/FAQ</a><br></span></font></di=
-v></pre><pre style><div class=3D"gmail_default" style=3D"font-family:&#39;t=
-rebuchet ms&#39;,sans-serif;display:inline">=E2=80=8BPlease read here in de=
-tail,</div></pre><pre style><div class=3D"gmail_default" style=3D"font-fami=
-ly:&#39;trebuchet ms&#39;,sans-serif;display:inline"><a href=3D"http://www.=
-yoctoproject.org/docs/1.7.1/dev-manual/dev-manual.html#usingpoky-extend-cus=
-tomimage">http://www.yoctoproject.org/docs/1.7.1/dev-manual/dev-manual.html=
-#usingpoky-extend-customimage</a></div></pre><pre style><span style=3D"font=
--family:&#39;trebuchet ms&#39;,sans-serif"><div class=3D"gmail_default" sty=
-le=3D"font-family:&#39;trebuchet ms&#39;,sans-serif;display:inline">=E2=80=
-=8B-=E2=80=8B</div>JC=E2=80=8B</span><br></pre></div><div class=3D"gmail_ex=
-tra"><br><div class=3D"gmail_quote">On Fri, Jan 23, 2015 at 11:50 AM, H=C3=
-=A4nel-Baas, Alexander <span dir=3D"ltr">&lt;<a href=3D"mailto:alexander.ha=
-enel-baas@sieb-meyer.de" target=3D"_blank">alexander.haenel-baas@sieb-meyer=
-.de</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-
-
-
-
-
-<div lang=3D"DE" link=3D"blue" vlink=3D"purple">
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1f497d">Hi<u></=
-u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1f497d">Yes i k=
-now that.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1f497d"><u></u>=
-=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1f497d">BUT thi=
-s file was not copied to the rootfs during =C2=A0the do_rootfs process.<u><=
-/u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1f497d">It is n=
-ot include in the root_fs.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1f497d">But it =
-was already compiled.
-<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1f497d"><u></u>=
-=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1f497d">Alexand=
-er<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=C2=A0<u></u></span></p>
-<div>
-<div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0pt 0cm =
-0cm 0cm">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">Von:</span></b><span style=3D"font-si=
-ze:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> <a href=
-=3D"mailto:ting.liu@freescale.com" target=3D"_blank">ting.liu@freescale.com=
-</a> [mailto:<a href=3D"mailto:ting.liu@freescale.com" target=3D"_blank">ti=
-ng.liu@freescale.com</a>]
-<br>
-<b>Gesendet:</b> Freitag, 23. Januar 2015 03:02<br>
-<b>An:</b> H=C3=A4nel-Baas, Alexander; <a href=3D"mailto:yocto@yoctoproject=
-.org" target=3D"_blank">yocto@yoctoproject.org</a><br>
-<b>Betreff:</b> RE: mount.nfs -&gt; how i include nfs-utils<u></u><u></u></=
-span></p>
-</div>
-</div><div><div class=3D"h5">
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1f497d">mount.n=
-fs is packaged in nfs-utils-client.</span><span lang=3D"EN-US"><u></u><u></=
-u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:#1f497d">=C2=A0<=
-/span><span lang=3D"EN-US"><u></u><u></u></span></p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0cm 0cm 0cm =
-4.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0pt 0cm =
-0cm 0cm">
-<p class=3D"MsoNormal"><b><span lang=3D"EN-US" style=3D"font-size:10.0pt;fo=
-nt-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span =
-lang=3D"EN-US" style=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,&qu=
-ot;sans-serif&quot;">
-<a href=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-b=
-ounces@yoctoproject.org</a> [<a href=3D"mailto:yocto-bounces@yoctoproject.o=
-rg" target=3D"_blank">mailto:yocto-bounces@yoctoproject.org</a>]
-<b>On Behalf Of </b>H?nel-Baas, Alexander<br>
-<b>Sent:</b> Thursday, January 22, 2015 5:38 PM<br>
-<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
-o@yoctoproject.org</a><br>
-<b>Subject:</b> [yocto] mount.nfs -&gt; how i include nfs-utils</span><span=
- lang=3D"EN-US"><u></u><u></u></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u></u><u></u></span></p>
-<p class=3D"MsoNormal">Hi<span lang=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal">=C2=A0<span lang=3D"EN-US"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">In terms of my question =E2=80=
-=9Ehow i include nfs-utils=E2=80=9C i saw that the nfs-utils was compiled c=
-orrectly.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">But there was no mount.nfs in /=
-sbin on the target or in the rootfs image.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">What is the step to get this fi=
-les in the do_rootfs process?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">=C2=A0<u></u><u></u></span></p>
-<p class=3D"MsoNormal">With best regards,<span lang=3D"EN-US"><u></u><u></u=
-></span></p>
-<p class=3D"MsoNormal">Alexander<span lang=3D"EN-US"><u></u><u></u></span><=
-/p>
-<p class=3D"MsoNormal">=C2=A0<span lang=3D"EN-US"><u></u><u></u></span></p>
-</div>
-</div></div></div>
-</div>
-
-<br>--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div cla=
-ss=3D"gmail_signature">JCP</div>
-</div>
-
---089e01493f06057072050d4c0a58--
+--_000_9BA84827B30CBE4996725F98F7DC9123428FB42CSMExchange01sie_--
