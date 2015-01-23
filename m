@@ -1,51 +1,56 @@
-Return-Path: <jdelapena@lexmark.com>
+Return-Path: <otavio.salvador@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9D79BE0090E; Fri, 23 Jan 2015 03:12:24 -0800 (PST)
+	id 766F4E00942; Fri, 23 Jan 2015 04:54:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [64.18.3.84 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 469 seconds by postgrey-1.32 at yocto-www;
-	Fri, 23 Jan 2015 03:12:22 PST
-Received: from exprod8og102.obsmtp.com (exprod8og102.obsmtp.com [64.18.3.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3F8EE00782
-	for <yocto@yoctoproject.org>; Fri, 23 Jan 2015 03:12:22 -0800 (PST)
-Received: from mail-qg0-f48.google.com ([209.85.192.48]) (using TLSv1) by
-	exprod8ob102.postini.com ([64.18.7.12]) with SMTP
-	ID DSNKVMIslj5KiJOvfJvtGepylmm+kO1FeJfH@postini.com;
-	Fri, 23 Jan 2015 03:12:23 PST
-Received: by mail-qg0-f48.google.com with SMTP id z60so84971qgd.7
-	for <yocto@yoctoproject.org>; Fri, 23 Jan 2015 03:12:21 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=mgagYGzFXM2JmOsDO69ybjR7ESjXgdCTw8o7/uNGRc4=;
-	b=VEdQG5S32A90X7l85XlJSqY29SSZ77J3/JBLvIEprEnUS4cczJ+EDC3g9VYlW8X6ql
-	gSLMHLejdsx0wMMKs/aEr4bCRDXkzx0fqqX1CSBe0nGcpyo0Pm8wmgYX779FJwSvMJAW
-	jRCMCOyOetY68p7ktK1AXc4maN63a7o4XCEWz3vXFTsTOOZSYCT7KNg+Lt7WjQzAH2HJ
-	Mv6ZpIIZvl+ubsYWdCG4g0fJ7d/5BsRsDs3o9cXutfHP9CCOEPF6MIMZl/2hNKq+2FM3
-	13Iq4ErNy3Y1Xt2hDHsy2eFTFyVvsb+IbsE3KASNu0Wsj7F0n5kxRxIX2+aXURn4abbW
-	HQQQ==
-X-Received: by 10.224.136.7 with SMTP id p7mr12480289qat.65.1422011072297;
-	Fri, 23 Jan 2015 03:04:32 -0800 (PST)
-X-Gm-Message-State: ALoCoQmzwzo9rrjbbrsC20MKRsn4r/2mo/8YUtkMzMdN6zKt/creDSdVvwCWz9tJKTQZJDekxCMRI00kuaNI/B67J00Wl4QU+Pw+iELvazhBFFDZjNQvRh3wSaBaNNbcIz9zYkEhCUVfKO6c3IxGISfXthHQRkIgrQ==
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-yh0-f44.google.com (mail-yh0-f44.google.com
+	[209.85.213.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D61BE00944
+	for <yocto@yoctoproject.org>; Fri, 23 Jan 2015 04:54:40 -0800 (PST)
+Received: by mail-yh0-f44.google.com with SMTP id i57so3251944yha.3
+	for <yocto@yoctoproject.org>; Fri, 23 Jan 2015 04:54:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:cc:content-type:content-transfer-encoding;
+	bh=ByZ5P8F4cxwJTuPOhFYB1HOnDzG1KGZrSPeSzGpeMoM=;
+	b=0EOk1kcvJyfjDHIlsbXkoA/y55N3445Uf7QDdr5/1hg7D44zV+C2Nw8UwBlMBIljxa
+	RJ9ME5WvZ3wt/EjHyFkFgNeKvd7zCtHp9AdF7qE/ezbytVV7qF9Ji8GPdFoYqTXWnP7u
+	N8QbJxd/YM1MNMYHZVb0FIdBAp6jdMD1kjFFsEDpOX0MlS6FWQytLLvZBqUKVQh+u1uC
+	4PCrpkOUn07I6sFg8t6nN9GosjoDpytZsshTTLTrt/ANMRW4Y3Ca+7o2+gYab+PXuJZZ
+	Xk/22S3ZaOejQ0lJ2rQKnkjD0dUM7uxo96SxGffc1HFGoqLWhTJa7r9SgdVrDlIiPWoI
+	HBGw==
 MIME-Version: 1.0
-X-Received: by 10.224.136.7 with SMTP id p7mr12480269qat.65.1422011072138;
-	Fri, 23 Jan 2015 03:04:32 -0800 (PST)
-Received: by 10.96.71.97 with HTTP; Fri, 23 Jan 2015 03:04:32 -0800 (PST)
-Date: Fri, 23 Jan 2015 19:04:32 +0800
-Message-ID: <CAJrRHk6-Ap_3d=rvJwJfAanujDNokqTWrwTA1pYEo4xMAadFRQ@mail.gmail.com>
-From: =?UTF-8?Q?Joseph_Andrew_de_la_Pe=C3=B1a?= <jdelapena@lexmark.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: ALTERNATIVE_* problem
+X-Received: by 10.170.99.6 with SMTP id q6mr3367630yka.105.1422017679829; Fri,
+	23 Jan 2015 04:54:39 -0800 (PST)
+Sender: otavio.salvador@gmail.com
+Received: by 10.170.123.143 with HTTP; Fri, 23 Jan 2015 04:54:39 -0800 (PST)
+In-Reply-To: <54C17A37.9040104@gmx.de>
+References: <CAENGNhcVmxW2xD4d4TDjTtLu2zCvCJ6sEOF8ek80hWz4kxKf6A@mail.gmail.com>
+	<5100308.QAtzWr7jXK@peggleto-mobl5.ger.corp.intel.com>
+	<CAENGNhff5-CZRSJaD1t1ppPOOQNrWipF01hAdatWqSkjGVmnVA@mail.gmail.com>
+	<2632438.D1xOHJKf9V@peggleto-mobl5.ger.corp.intel.com>
+	<CAENGNhe7Uv1PQv=J3QYhPAX3dj9p0pakAg5x9oGQ0V3pxfbHUw@mail.gmail.com>
+	<CAP9ODKq85m2Cb_DoVgh9+Wi=zjAJc-MmrGAo58h347zd+UUOgQ@mail.gmail.com>
+	<54C17A37.9040104@gmx.de>
+Date: Fri, 23 Jan 2015 10:54:39 -0200
+X-Google-Sender-Auth: 7l9dir1-ATCY5o2B86OBEEOFsvo
+Message-ID: <CAP9ODKr7+TXUaimhEv0kPRFh7CwkuXk5OaD+s6iZCF9VzOBS0g@mail.gmail.com>
+From: Otavio Salvador <otavio@ossystems.com.br>
+To: =?UTF-8?Q?Dominic_Sacr=C3=A9?= <dominic.sacre@gmx.de>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	Denys Dmytriyenko <denys@ti.com>, yocto <yocto@yoctoproject.org>
+Subject: Re: Difference between target, cross, native and nativesdk.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,84 +62,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Jan 2015 11:12:24 -0000
-Content-Type: multipart/alternative; boundary=001a11c299a4d26426050d4fc0f2
-
---001a11c299a4d26426050d4fc0f2
+X-List-Received-Date: Fri, 23 Jan 2015 12:54:43 -0000
 Content-Type: text/plain; charset=UTF-8
-
-Good day Yocto Community,
-
-I would like to ask what's wrong with my implementation with ALTERNATIVE_*:
-
-=================
-
-*bar_git.bb <http://bar_git.bb>:*
-
-PACKAGES =+ "${PN}-bar1 ${PN}-bar2 ${PN}-bar3"
-RPROVIDES_${PN}-bar1 = "bar"
-RPROVIDES_${PN}-bar2 = "bar"
-RPROVIDES_${PN}-bar3 = "bar"
-
-ALTERNATIVE_LINK_NAME[bar] = "${datadir}/foo/bar"
-
-ALTERNATIVE_${PN}-bar1 = "bar"
-ALTERNATIVE_TARGET_${PN}-bar1 = "${datadir}/foo/bar1"
-ALTERNATIVE_PRIORITY_${PN}-bar1 = "99"
-
-ALTERNATIVE_${PN}-bar2 = "bar"
-ALTERNATIVE_TARGET_${PN}-bar2 = "${datadir}/foo/bar2"
-ALTERNATIVE_PRIORITY_${PN}-bar2 = "98"
-
-ALTERNATIVE_${PN}-bar3 = "bar"
-ALTERNATIVE_TARGET_${PN}-bar3 = "${datadir}/foo/bar3"
-ALTERNATIVE_PRIORITY_${PN}-bar3 = "97"
-
-*packagegroup-foobar.bb <http://packagegroup-foobar.bb>:*
-
-RDEPENDS_foobar = "bar"
-
-=================
-
-The end result is always bar3 is present and bar is pointing to bar3. I
-never get bar1 being present.
-Please do recommend how will I properly use ALTERNATIVE.
-
-Thanks,
-Joseph
-
---001a11c299a4d26426050d4fc0f2
-Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Good day Yocto Community,<div><br></div><div>I would like =
-to ask what&#39;s wrong with my implementation with ALTERNATIVE_*:</div><di=
-v><br></div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><=
-div><br></div><div><b><a href=3D"http://bar_git.bb">bar_git.bb</a>:</b></di=
-v><div><br></div><div>PACKAGES =3D+ &quot;<span style=3D"font-size:13px">${=
-PN}-</span>bar1=C2=A0<span style=3D"font-size:13px">${PN}-</span>bar2=C2=A0=
-<span style=3D"font-size:13px">${PN}-</span>bar3&quot;</div><div>RPROVIDES_=
-${PN}-bar1 =3D &quot;bar&quot;</div><div>RPROVIDES_${PN}-bar2 =3D &quot;bar=
-&quot;<br></div><div>RPROVIDES_${PN}-bar3 =3D &quot;bar&quot;<br></div><div=
-><br></div><div><div style=3D"font-size:13px">ALTERNATIVE_LINK_NAME[bar] =
-=3D &quot;${datadir}/foo/bar&quot;<br><br></div><div style=3D"font-size:13p=
-x">ALTERNATIVE_${PN}-bar1 =3D &quot;bar&quot;<br>ALTERNATIVE_TARGET_${PN}-b=
-ar1=C2=A0=3D &quot;${datadir}/foo/bar1&quot;</div><div style=3D"font-size:1=
-3px">ALTERNATIVE_PRIORITY_${PN}-bar1=C2=A0=3D &quot;99&quot;</div><div styl=
-e=3D"font-size:13px"><br>ALTERNATIVE_${PN}-bar2=C2=A0=3D &quot;bar&quot;</d=
-iv><div style=3D"font-size:13px"></div><div style=3D"font-size:13px">ALTERN=
-ATIVE_TARGET_${PN}-bar2=C2=A0=3D &quot;${datadir}/foo/bar2&quot;</div><div =
-style=3D"font-size:13px">ALTERNATIVE_PRIORITY_${PN}-bar2=C2=A0=3D &quot;98&=
-quot;</div></div><div style=3D"font-size:13px"><br></div><div style=3D"font=
--size:13px"><div>ALTERNATIVE_${PN}-bar3=C2=A0=3D &quot;bar&quot;</div><div>=
-</div><div>ALTERNATIVE_TARGET_${PN}-bar3=C2=A0=3D &quot;${datadir}/foo/bar3=
-&quot;</div><div>ALTERNATIVE_PRIORITY_${PN}-bar3=C2=A0=3D &quot;97&quot;</d=
-iv><div><br></div><div><b><a href=3D"http://packagegroup-foobar.bb">package=
-group-foobar.bb</a>:</b></div><div><br></div><div>RDEPENDS_foobar =3D &quot=
-;bar&quot;</div><div><br></div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D</div><div><br></div><div>The end result is always bar3 is pres=
-ent and bar is pointing to bar3. I never get bar1 being present.=C2=A0</div=
-><div>Please do recommend how will I properly use ALTERNATIVE.</div><div><b=
-r></div><div>Thanks,</div><div>Joseph</div></div></div>
+On Thu, Jan 22, 2015 at 8:31 PM, Dominic Sacr=C3=A9 <dominic.sacre@gmx.de> =
+wrote:
+> On 2015-01-21 14:37, Otavio Salvador wrote:
+>> The fw tools inside of U-Boot qualifies for both target and cross use
+>> cases. When used in cross or crosssdk, it can be used to change things
+>> in the generated image (sdcard for example) while in the target case
+>> it can be used in the runtime system.
+>
+> I've been wondering about the "u-boot-fw-utils-cross" recipe myself.
+> When I build the recipe I get what appear to be the correct binaries for
+> the host architecture, located in the target-specific work directory
+> (e.g. tmp/work/imx6qsabresd-poky-linux-gnueabi/u-boot-fw-utils-cross).
+> However, these binaries don't get installed anywhere other recipes (like
+> my sdcard image) would be able to find them.
+>
+> My workaround so far has been to build a native package instead (by
+> simply adding BBCLASSEXTEND =3D "native" to the regular "u-boot-fw-utils"
+> recipe).
+> This way the binaries get installed to the host's sysroot and are found
+> just fine, but I feel like I'm missing something about how the cross
+> recipe should be used properly for this purpose.
+>
+> Can anyone shed some light on this?
 
---001a11c299a4d26426050d4fc0f2--
+I sent a patch and seems to do the right thing. Can you test it?
+
+--=20
+Otavio Salvador                             O.S. Systems
+http://www.ossystems.com.br        http://code.ossystems.com.br
+Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
+
