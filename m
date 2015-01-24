@@ -1,54 +1,42 @@
-Return-Path: <kalle@zapdevelopment.com>
+Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B709E00932; Sat, 24 Jan 2015 00:36:10 -0800 (PST)
+	id CE77FE0086F; Sat, 24 Jan 2015 01:22:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_05,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, MIME_QP_LONG_LINE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [195.47.247.78 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
-	*      [score: 0.0201]
-	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
-	Sat, 24 Jan 2015 00:36:07 PST
-Received: from mailrelay10.public.one.com (mailrelay10.public.one.com
-	[195.47.247.78])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67D47E002F9
-	for <yocto@yoctoproject.org>; Sat, 24 Jan 2015 00:36:06 -0800 (PST)
-X-HalOne-Cookie: c745a3065b937e7c6ff46cfc17803f506ed7102c
-X-HalOne-ID: e04fa844-a3a3-11e4-9705-b82a72d06996
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-	d=zapdevelopment.com; s=20140924;
-	h=from:reply-to:subject:date:message-id:to:mime-version:content-type;
-	bh=2jL776UZPLEiBJ1MqIgAXLsBWVXuI3Tdkp0t2t0s5CM=;
-	b=D44IYi4gEXqH0G4uXwWvB/AbnIZIJfE5qiaf+BXE8x2YzMWGLQbWjpucFTZI1/aITv7Q4XJketFaw
-	zuj9EV6aUwPpQYboLbfnXz15ZWCg6B+UDLrn70zrlYM8uWqcTar9i63cBMuM4Eqv/0C6JypPV+c0iB
-	2sw5d+GoGxmSPg1c=
-Received: from webmail7 (unknown [10.246.6.7])
-	by smtpfilter3.public.one.com (Halon Mail Gateway) with SMTP
-	for <yocto@yoctoproject.org>; Sat, 24 Jan 2015 08:34:56 +0000 (GMT)
-X-Originating-IP: 10.246.4.242
-User-Agent: One.com webmail 10.3.0
+	*      [195.74.38.225 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from bin-vsp-out-04.atm.binero.net (vsp-unauthed01.binero.net
+	[195.74.38.225])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75285E002F9
+	for <yocto@yoctoproject.org>; Sat, 24 Jan 2015 01:22:38 -0800 (PST)
+X-Halon-ID: 87e7ceb1-a3aa-11e4-9ec3-005056917c0c
+Authorized-sender: petter@technux.se
+Received: from webmail.binero.se (unknown [195.74.38.9])
+	by bin-vsp-out-04.atm.binero.net (Halon Mail Gateway) with ESMTPA;
+	Sat, 24 Jan 2015 10:22:34 +0100 (CET)
 MIME-Version: 1.0
-Message-ID: <1422088496154.91079.4854@webmail7>
-Date: Sat, 24 Jan 2015 08:34:56 GMT
-To: <yocto@yoctoproject.org>
-From: "Kalle Komierowski" <kalle@zapdevelopment.com>
-Subject: One recipe, two gits with destsuffix, how to patch?
+Date: Sat, 24 Jan 2015 10:22:35 +0100
+From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
+To: Sgw <sgw@linux.intel.com>
+Organization: Technux
+Mail-Reply-To: <petter@technux.se>
+In-Reply-To: <cover.1420901279.git.petter@technux.se>
+References: <cover.1420901279.git.petter@technux.se>
+Message-ID: <b07e28e49bae2d77641358279a82e920@technux.se>
+X-Sender: petter@technux.se
+User-Agent: Binero Webmail/0.8.4
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-yocto] [PATCH 0/1] tiny-init: set proper S value
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: kalle@zapdevelopment.com
+Reply-To: petter@technux.se
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -57,62 +45,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 24 Jan 2015 08:36:10 -0000
-Content-Type: multipart/alternative; boundary="----------4852-1422088496154-1"
+X-List-Received-Date: Sat, 24 Jan 2015 09:22:42 -0000
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-------------4852-1422088496154-1
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+Hi Saul,
 
-Hi,
+Since bug [5627] has reached poky repo, can you please consider propose 
+merging of below change to meta-yocto, to avoid the warning about 'S' 
+not set to a proper value?
 
-This is my first post to this list.
+BR,
+Petter
 
-I'm working with the ti-compat-wireless recipe.
-It contains two gits like this:
+2015-01-10 16:43 skrev Petter Mabäcker:
 
-SRC_URI =3D "git://git.ti.com/wilink8-wlan/wl18xx.git;branch=3D${BRANCH_wl1=
-8xx};destsuffix=3Dwl18xx;name=3Dwl18xx \
-git://git.ti.com/wilink8-wlan/backports.git;branch=3D${BRANCH_backports};de=
-stsuffix=3Dbackports;name=3Dbackports \
-file://wl18xx.patch \
+> From: Peter Mabacker <petter@technux.se>
+>
+> The following changes since commit
+> 876370419a50264a28feb4278f8c465b0019e709:
+>
+> bitbake: toaster: implementation of project page (2015-01-08 22:34:38
+> +0000)
+>
+> are available in the git repository at:
+>
+> git://git.yoctoproject.org/poky-contrib petmab/bug5627_m-y
+>
+http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=petmab/bug5627_m-y
+> [1]
+>
+> Petter Mabäcker (1):
+> tiny-init: set proper S value
+>
+> meta-yocto/recipes-core/tiny-init/tiny-init.bb | 2 ++
+> 1 file changed, 2 insertions(+)
+>
+> --
+> 1.9.1
 
-Now I want to add the wl18xx.patch file, and this file ends up in the S and=
- applying it fails since the git it should be applied to is under S/backpor=
-ts due to the destsuffix.
 
-I tried to use the quilt and create new patches from the S but they fail to=
-.
+Links:
+------
+[1] 
+http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=petmab/bug5627_m-y
 
-What would be the correct way of adding a patch so it applies to backports?=
-
-
-Thanks
-BR
--Kalle Komierowski
-
-
-------------4852-1422088496154-1
-Content-Type: multipart/related; boundary="----------4852-1422088496154-2"
-
-------------4852-1422088496154-2
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
-
-Hi, <br /><br />This is my first post to this list.<br /><br />I'm working =
-with the ti-compat-wireless recipe.<br />It contains two gits like this:<br=
- /><br />SRC_URI =3D "git://git.ti.com/wilink8-wlan/wl18xx.git;branch=3D${B=
-RANCH_wl18xx};destsuffix=3Dwl18xx;name=3Dwl18xx \<br />=C2=A0=C2=A0=C2=A0 =
-=C2=A0=C2=A0 git://git.ti.com/wilink8-wlan/backports.git;branch=3D${BRANCH_bac=
-kports};destsuffix=3Dbackports;name=3Dbackports \<br />=C2=A0=C2=A0=C2=A0 =
-=C2=A0=C2=A0 file://wl18xx.patch=C2=A0=C2=A0=C2=A0 \<br /><br />Now I want to =
-add the wl18xx.patch file, and this file ends up in the S and applying it f=
-ails since the git it should be applied to is under S/backports due to the =
-destsuffix.<br /><br />I tried to use the quilt and create new patches from=
- the S but they fail to.<br /><br />What would be the correct way of adding=
- a patch so it applies to backports?<br /><br />Thanks<br />BR<br />-Kalle =
-Komierowski<br />
-
-------------4852-1422088496154-2--
-
-------------4852-1422088496154-1--
