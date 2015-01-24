@@ -1,66 +1,28 @@
-Return-Path: <fed@spad.cc>
+Return-Path: <mahdis@nimakco.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 59ADAE008FF; Fri, 23 Jan 2015 11:24:19 -0800 (PST)
+	id 822B6E0084E; Fri, 23 Jan 2015 23:36:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.177 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+X-Spam-Status: No, score=0.8 required=5.0 tests=BAYES_40,HTML_MESSAGE,
+	RDNS_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 BAYES_40 BODY: Bayes spam probability is 20 to 40%
+	*      [score: 0.3254]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f177.google.com (mail-ig0-f177.google.com
-	[209.85.213.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3F72E0086F
-	for <yocto@yoctoproject.org>; Fri, 23 Jan 2015 11:24:03 -0800 (PST)
-Received: by mail-ig0-f177.google.com with SMTP id z20so3665809igj.4
-	for <yocto@yoctoproject.org>; Fri, 23 Jan 2015 11:24:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=spad.cc; s=googs;
-	h=mime-version:sender:date:message-id:subject:from:to:content-type;
-	bh=vi8Mr5kuQ878jOTqFNezk0geExwA3SfJxOnTV8pByyw=;
-	b=d6T3Za1R/ys/iaQLAQazUoTfPYxmCHax6tpfKFIO+2VBreIhHNwG9RZskuZE7F/hAg
-	b26KKRad2FcLBcU7TlQVcOFYknck8M6uhCPi37sCPazpu9mPdGROzS4gSgu7NNY5k4wO
-	KroNSDAVoLwY8lxMT845CEfeOuN1Baeu/68Js=
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=o-nigiri.me; s=google-o-nigiri;
-	h=mime-version:sender:date:message-id:subject:from:to:content-type;
-	bh=vi8Mr5kuQ878jOTqFNezk0geExwA3SfJxOnTV8pByyw=;
-	b=ZlQua3sNkxtyukGiurJitlX+61WCIDQSxGBuutr9LAusi/pQyL1FR2xSDQ3H+Ur3mH
-	ugn1Cq8z46pr/KTZzlgSIRZDdaOr5g24Ovmos0cR14fbHZmGSIGYIz3+wPsARwvC6eD4
-	IifjWtlbcwu6ijdpK2tRJDnyqYf9UOkuSn3v4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:date:message-id:subject:from
-	:to:content-type;
-	bh=vi8Mr5kuQ878jOTqFNezk0geExwA3SfJxOnTV8pByyw=;
-	b=TSnxl12drpnPZ1KyConvTLKEcw9SKmWabJtewrpd102+WTsOhtkNapfss7EzNDpT1O
-	sZEwL6IjHqFTTDBp3Vs+0Z+vtP+sMoHdjuxy7DUsrylce0XXic+dakLHHrjOoRHwq9ug
-	xCj7g1x0AY+NnQrUbyksMZFjyVOGKoWfsyQn2B3vAVjsIwHadkHnz7MSYHSSPb7n+1Iv
-	Jvl3XwsSfT0+Du+ydtLTwUI4HZS5cBv5Mikt2qYrR1/jzOKNGLsH7edK39v7sRY6nDQG
-	qGlyDYvnivMk5doORA6cRDxyVSoh/zFnYekgHyJlJKsTvdkCwlgDHQxPI5Mde4ItpYDn
-	A1HQ==
-X-Gm-Message-State: ALoCoQmplV+hSqdMTkYE6TLD761CWCuivVLw4KKky0WoryNQVLa9mqqYfOiK5IDo7Zb3C6HxIn/G
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from mail83.nedahosting.com (unknown [198.55.48.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 295C5E002F9
+	for <yocto@yoctoproject.org>; Fri, 23 Jan 2015 23:36:01 -0800 (PST)
+Received: from UnknownHost [2.190.134.1] by mail.nedahosting.com with SMTP;
+	Sat, 24 Jan 2015 02:35:45 -0500
+From: "Mahdi Saadat" <MahdiS@nimakco.net>
+To: <yocto@yoctoproject.org>
+Date: Sat, 24 Jan 2015 11:05:45 +0330
+Message-ID: <005e01d037a8$61d3d390$257b7ab0$@nimakco.net>
 MIME-Version: 1.0
-X-Received: by 10.50.254.4 with SMTP id ae4mr3683863igd.10.1422041043175; Fri,
-	23 Jan 2015 11:24:03 -0800 (PST)
-Sender: fed@spad.cc
-Received: by 10.50.245.143 with HTTP; Fri, 23 Jan 2015 11:24:03 -0800 (PST)
-X-Originating-IP: [50.196.160.108]
-Date: Fri, 23 Jan 2015 11:24:03 -0800
-X-Google-Sender-Auth: r8yiBdZnx9YYxukL3quV9KAH1ck
-Message-ID: <CAJ-FT2X0TdWcgL1z6=hOdhduVCrt66ne93DE6ZP8Ood+5pjCHA@mail.gmail.com>
-From: Ma O-Nigiri <ma@o-nigiri.me>
-To: yocto@yoctoproject.org
-Subject: RPM Installation to Host Sysroot
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AdA3qApZZykh5lqxTKW6EED9owzeQQ==
+Subject: dansguardian
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,29 +34,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Jan 2015 19:24:19 -0000
-Content-Type: multipart/alternative; boundary=001a11343b923c437a050d56bbd4
+X-List-Received-Date: Sat, 24 Jan 2015 07:36:06 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_005F_01D037C5.B809CF40"
+Content-Language: fa
 
---001a11343b923c437a050d56bbd4
-Content-Type: text/plain; charset=UTF-8
+------=_NextPart_000_005F_01D037C5.B809CF40
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-I am on yocto 1.3.2 and need to add a few libraries to my sysroot for cross
-compilation.
+HI
+Does anyone knows about how put dansguardian on core-image-minimal?
+I Did some steps on creating the recipe but had some errors on config stage.
 
-I have built the libsigc++-2.0 library with bitbake and have the resulting
-RPM. What is the appropriate method for installing the rpm to
-/opt/poky/1.3/sysroots ?
 
-Cheers
+---------------
+Regards
+Mahdi 
 
---001a11343b923c437a050d56bbd4
-Content-Type: text/html; charset=UTF-8
+
+
+------=_NextPart_000_005F_01D037C5.B809CF40
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I am on yocto 1.3.2 and need to add a few libraries to my =
-sysroot for cross compilation.<div><br></div><div>I have built the libsigc+=
-+-2.0 library with bitbake and have the resulting RPM. What is the appropri=
-ate method for installing the rpm to /opt/poky/1.3/sysroots ?</div><div><br=
-></div><div>Cheers</div></div>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii">
+<META NAME=3D"Generator" CONTENT=3D"MS Exchange Server version =
+rmj.rmm.rup.rpr">
+<TITLE>dansguardian</TITLE>
+</HEAD>
+<BODY>
+<!-- Converted from text/rtf format -->
 
---001a11343b923c437a050d56bbd4--
+<P DIR=3DLTR><SPAN LANG=3D"en-us"><FONT =
+FACE=3D"Calibri">HI</FONT></SPAN></P>
+
+<P DIR=3DLTR><SPAN LANG=3D"en-us"><FONT FACE=3D"Calibri">Does anyone =
+knows about</FONT></SPAN><SPAN LANG=3D"en-us"> <FONT =
+FACE=3D"Calibri">how put</FONT></SPAN><SPAN LANG=3D"en-us"> <FONT =
+FACE=3D"Calibri">dansguardian</FONT></SPAN><SPAN LANG=3D"en-us"> <FONT =
+FACE=3D"Calibri">on core-image-minimal?</FONT></SPAN></P>
+
+<P DIR=3DLTR><SPAN LANG=3D"en-us"><FONT FACE=3D"Calibri">I Did some =
+steps on creating the recipe but had some errors on config =
+stage</FONT></SPAN><SPAN LANG=3D"en-us"><FONT =
+FACE=3D"Calibri">.</FONT></SPAN></P>
+
+<P DIR=3DLTR><SPAN LANG=3D"en-us"></SPAN></P>
+
+<P DIR=3DRTL><SPAN LANG=3D"en-us"></SPAN></P>
+
+<P DIR=3DLTR><SPAN LANG=3D"en-us"></SPAN><SPAN LANG=3D"fa-ir"><FONT =
+FACE=3D"Calibri">---------------</FONT></SPAN></P>
+
+<P DIR=3DLTR><SPAN LANG=3D"en-us"></SPAN><SPAN =
+LANG=3D"en-us"></SPAN><SPAN LANG=3D"fa-ir"></SPAN><SPAN =
+LANG=3D"fa-ir"><FONT FACE=3D"Arial Rounded MT =
+Bold">Regards</FONT></SPAN></P>
+
+<P DIR=3DLTR><SPAN LANG=3D"fa-ir"><FONT FACE=3D"Arial Rounded MT =
+Bold">Mahdi</FONT></SPAN><SPAN LANG=3D"en-us"></SPAN><SPAN =
+LANG=3D"en-us"></SPAN><SPAN LANG=3D"fa"> </SPAN></P>
+
+<P DIR=3DRTL><SPAN LANG=3D"en-us"></SPAN></P>
+
+</BODY>
+</HTML>
+
+------=_NextPart_000_005F_01D037C5.B809CF40--
