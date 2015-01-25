@@ -1,51 +1,52 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52F79E00827; Sun, 25 Jan 2015 13:24:54 -0800 (PST)
+	id 21D1BE00D88; Sun, 25 Jan 2015 14:04:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,FSL_HELO_FAKE,
 	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
 X-Spam-HAM-Report: *  3.6 FSL_HELO_FAKE FSL_HELO_FAKE
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-wg0-f50.google.com (mail-wg0-f50.google.com [74.125.82.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02EB9E003AB
-	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 13:24:39 -0800 (PST)
-Received: by mail-wg0-f50.google.com with SMTP id b13so5988676wgh.9
-	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 13:24:37 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.46 listed in list.dnswl.org]
+Received: from mail-wg0-f46.google.com (mail-wg0-f46.google.com [74.125.82.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C322CE003AB
+	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 14:04:15 -0800 (PST)
+Received: by mail-wg0-f46.google.com with SMTP id l2so6110563wgh.5
+	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 14:04:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition
-	:content-transfer-encoding:in-reply-to:user-agent;
-	bh=B4VP6DDNvNOkL7hzAocO0qSgEuIkFrNUmyWeCJiIR1U=;
-	b=UzcfjF5tPLnW7p21xJKvaWXtcYg63fEDepP2oxeC9zHIh40f3r0RscJB0CA+n6x9Fc
-	tTiWg6aS8vYlTYaAOwDm3RYNc5mcTqpaEdzuZAQMUZnIwRDI24qy+GQVqyg+eMds30C2
-	E+uajSaY3DAQi5kpOZ1Z8mqZhPVguVmzCWtkCHIVYTCyolAUPSMPLMj/JJ6DLk4r5bux
-	o5GNz+XvVcPh22HuspaM0lY51Yqr6MEEMM2j34/hxjQY9MVqaib8bZfg7GEWY4eQRIH8
-	MZB8tSZvPp0/3EBhLTzqSkCL32mxNUQU2n1mzzre6IY0ZSp4tTOaWB2oKXnSEyO+dkUm
-	3e/w==
-X-Gm-Message-State: ALoCoQm259GVfj1vWk3YJTNz7bK5xKZ9v35+VXQAb+A8Jw0Plv616Snlf3dhv5aOiPLMnYOvkqiq
-X-Received: by 10.180.82.10 with SMTP id e10mr16198919wiy.18.1422221077797;
-	Sun, 25 Jan 2015 13:24:37 -0800 (PST)
-Received: from gmail.com ([109.100.140.128])
-	by mx.google.com with ESMTPSA id n6sm11646723wjy.8.2015.01.25.13.24.36
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=MOylU+EwXiJzGSvraEBj+vpDfo5dq25reg0DwvZBjVk=;
+	b=X8alOOI3CH81ZR0kYR5pdfzPsqH35VCVv2qhLsjypyMI+1hogelLpcZtH1JSn842Zo
+	vGawjkgfWTmdDhrHOplaJFmlft1CBVsA3lsUuyAnbBk3d8mddkezWf9/5QVkcj2BA0Fm
+	QbF8FMp5scuvu6dRcUC35U6f57zDQXsaHpnsg2cjT7HmCjOLMd/u3VcHVRa398yIGiSZ
+	s7je2CNr9JwJZFXJ8yJxUis2lfOrhL14IxfnV2hqKVMzyA4OTRfqB5R/bku/8N/VcXrp
+	YTIhuCfcD+ByMTkzh0W5IwPZ+Ztchss4jWobWA7dm91KBvK/mkEpfnjvgBf7z1RSHJ7X
+	g3GQ==
+X-Gm-Message-State: ALoCoQnAVpUeDNVnvZDaAqsWK2VIZlmPcoshpVvKygal+3EOyDQfPTUE9thE535G5y1uE5fm2vxZ
+X-Received: by 10.194.110.69 with SMTP id hy5mr38166209wjb.121.1422223455032; 
+	Sun, 25 Jan 2015 14:04:15 -0800 (PST)
+Received: from gmail.com ([109.100.140.128]) by mx.google.com with ESMTPSA id
+	cx3sm11371595wib.10.2015.01.25.14.04.13
 	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sun, 25 Jan 2015 13:24:37 -0800 (PST)
-Date: Sun, 25 Jan 2015 23:24:30 +0200
+	Sun, 25 Jan 2015 14:04:14 -0800 (PST)
+Date: Mon, 26 Jan 2015 00:04:05 +0200
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Petter =?iso-8859-1?Q?Mab=E4cker?= <petter@technux.se>
-Message-ID: <20150125212430.GA10452@gmail.com>
-References: <cover.1421360572.git.petter@technux.se>
+To: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
+Message-ID: <20150125220405.GA22204@gmail.com>
+References: <1418213525-1202-1-git-send-email-maciej.borzecki@open-rnd.pl>
 MIME-Version: 1.0
-In-Reply-To: <cover.1421360572.git.petter@technux.se>
+In-Reply-To: <1418213525-1202-1-git-send-email-maciej.borzecki@open-rnd.pl>
 User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 0/2] linux-raspberrypi fixes
+Cc: yocto@yoctoproject.org, Maciek Borzecki <maciek.borzecki@gmail.com>,
+	Dan McGregor <dan.mcgregor@usask.ca>
+Subject: Re: [meta-raspberrypi][PATCH 0/2] wic support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,26 +58,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 25 Jan 2015 21:24:54 -0000
-Content-Type: text/plain; charset=iso-8859-1
+X-List-Received-Date: Sun, 25 Jan 2015 22:04:34 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
 
-On Thu, Jan 15, 2015 at 11:32:51PM +0100, Petter Mabäcker wrote:
-> The following changes since commit 6c6f44136f7e1c97bc45be118a48bd9b1fef1072:
+On Wed, Dec 10, 2014 at 01:12:03PM +0100, Maciej Borzecki wrote:
+> The patch series adds support for wic image build tool. The patches allow for a
+> bootable SD card image to be built with wic, without any additional changes.
 >
->   gstreamer1.0-plugins-bad: Making bbappend version independent (2014-11-20 12:32:36 +0100)
+> The first patch defines an IMAGE_BOOT_FILES variable that will pick up all of
+> bcm2835 boot files and the kernel file (renaming it to kernel.img). The patch
+> uses glob pattern and thus depends on a patch series posted here:
+> http://lists.openembedded.org/pipermail/openembedded-core/2014-December/099732.html
 >
-> are available in the git repository at:
+> The second patch adds a kickstart file that mirrors the layout defined in
+> sdcard_image-rpi.bbclass. Note that this patch is mainly for reference, as the
+> default sdimage-bootpart.wks from Poky will also produce a bootable image.
 >
->   git://git.yoctoproject.org/poky-contrib petmab/rpi_fixes
->   http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=petmab/rpi_fixes
+> Maciej Borzecki (2):
+>   raspberrypi.conf: add IMAGE_BOOT_FILES
+>   sdimage-raspberrypi.wks: kickstart image definition
 >
-> Petter Mabäcker (2):
->   linux-raspberrypi: fix do_configure failure
->   linux-raspberrypi: faulty branch and srcrev for 3.16
+>  conf/machine/raspberrypi.conf                        | 2 ++
+>  scripts/lib/image/canned-wks/sdimage-raspberrypi.wks | 6 ++++++
+>  2 files changed, 8 insertions(+)
+>  create mode 100644 scripts/lib/image/canned-wks/sdimage-raspberrypi.wks
+>
+> --
+> 1.9.3
+>
 
-Merged to master. Thanks.
+Merged. Thanks.
 
 --
 Andrei Gherzan
