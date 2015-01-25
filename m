@@ -1,46 +1,51 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D2D45E00827; Sun, 25 Jan 2015 10:36:56 -0800 (PST)
+	id 52F79E00827; Sun, 25 Jan 2015 13:24:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_00,FSL_HELO_FAKE,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: *  3.6 FSL_HELO_FAKE FSL_HELO_FAKE
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [74.125.82.44 listed in list.dnswl.org]
-Received: from mail-wg0-f44.google.com (mail-wg0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 008B6E003AB
-	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 10:36:49 -0800 (PST)
-Received: by mail-wg0-f44.google.com with SMTP id z12so5641369wgg.3
-	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 10:36:48 -0800 (PST)
+	*      [74.125.82.50 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from mail-wg0-f50.google.com (mail-wg0-f50.google.com [74.125.82.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02EB9E003AB
+	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 13:24:39 -0800 (PST)
+Received: by mail-wg0-f50.google.com with SMTP id b13so5988676wgh.9
+	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 13:24:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:content-type;
-	bh=VdtyAhJSu2ttTskB003GYdO9wWAw0cNwIsLuhUugeIU=;
-	b=U5OwLGYG1ei2RJg9vHFeUhDBJTiPBCRqQ1vdhdaZ8/P6Nn8f+FjvrG0hIPnvfO5/Br
-	BGv3J/qTyqmVm4rGT0Nh1pNuk9OmG/y244RQ48vCDDcQgylF9a2vB6s86rRnlLbeKqZi
-	jokHCLvDDITmQGak4ZXwuAKRxGpslgfKTRe6RqLpF/Tpcc7fz+gcvlumDaxzKzeU1awp
-	uYxKueOp+N/2IhXKiaRXzUdnBeQaD2FKmKSQ3ha8Bx37zotZb/tUqrCCUMbGQ4T88fQu
-	sjAIZ8M4oA8thC3veZBfavsAPONibosdqP7bHqrs7aWmaDmpzaCVl6teGFiR03hmt7he
-	K+1Q==
-X-Gm-Message-State: ALoCoQnewRM70x2ZGifCEdpw62jfljB1wZWmDJLcv2VZOqHy8a3HIs6NvMGoUAr3VciQ8NSI3FRC
-X-Received: by 10.181.13.136 with SMTP id ey8mr25107242wid.50.1422211008544;
-	Sun, 25 Jan 2015 10:36:48 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.216.107.132 with HTTP; Sun, 25 Jan 2015 10:36:28 -0800 (PST)
-X-Originating-IP: [109.100.140.128]
-In-Reply-To: <1422210706-8050-1-git-send-email-andrei@gherzan.ro>
-References: <1422210706-8050-1-git-send-email-andrei@gherzan.ro>
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition
+	:content-transfer-encoding:in-reply-to:user-agent;
+	bh=B4VP6DDNvNOkL7hzAocO0qSgEuIkFrNUmyWeCJiIR1U=;
+	b=UzcfjF5tPLnW7p21xJKvaWXtcYg63fEDepP2oxeC9zHIh40f3r0RscJB0CA+n6x9Fc
+	tTiWg6aS8vYlTYaAOwDm3RYNc5mcTqpaEdzuZAQMUZnIwRDI24qy+GQVqyg+eMds30C2
+	E+uajSaY3DAQi5kpOZ1Z8mqZhPVguVmzCWtkCHIVYTCyolAUPSMPLMj/JJ6DLk4r5bux
+	o5GNz+XvVcPh22HuspaM0lY51Yqr6MEEMM2j34/hxjQY9MVqaib8bZfg7GEWY4eQRIH8
+	MZB8tSZvPp0/3EBhLTzqSkCL32mxNUQU2n1mzzre6IY0ZSp4tTOaWB2oKXnSEyO+dkUm
+	3e/w==
+X-Gm-Message-State: ALoCoQm259GVfj1vWk3YJTNz7bK5xKZ9v35+VXQAb+A8Jw0Plv616Snlf3dhv5aOiPLMnYOvkqiq
+X-Received: by 10.180.82.10 with SMTP id e10mr16198919wiy.18.1422221077797;
+	Sun, 25 Jan 2015 13:24:37 -0800 (PST)
+Received: from gmail.com ([109.100.140.128])
+	by mx.google.com with ESMTPSA id n6sm11646723wjy.8.2015.01.25.13.24.36
+	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Sun, 25 Jan 2015 13:24:37 -0800 (PST)
+Date: Sun, 25 Jan 2015 23:24:30 +0200
 From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Sun, 25 Jan 2015 20:36:28 +0200
-Message-ID: <CAK18fxEkoP3iUigOY8qqMSmpiEoWhrQpWqb-w2Ovdxr9=c3jpw@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 1/2] omxplayer: Add patch to fix lflags and cflags
+To: Petter =?iso-8859-1?Q?Mab=E4cker?= <petter@technux.se>
+Message-ID: <20150125212430.GA10452@gmail.com>
+References: <cover.1421360572.git.petter@technux.se>
+MIME-Version: 1.0
+In-Reply-To: <cover.1421360572.git.petter@technux.se>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH 0/2] linux-raspberrypi fixes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,42 +57,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 25 Jan 2015 18:36:56 -0000
-Content-Type: multipart/alternative; boundary=f46d04388fcbf5d889050d7e4d8f
+X-List-Received-Date: Sun, 25 Jan 2015 21:24:54 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
---f46d04388fcbf5d889050d7e4d8f
-Content-Type: text/plain; charset=UTF-8
+On Thu, Jan 15, 2015 at 11:32:51PM +0100, Petter Mabäcker wrote:
+> The following changes since commit 6c6f44136f7e1c97bc45be118a48bd9b1fef1072:
+>
+>   gstreamer1.0-plugins-bad: Making bbappend version independent (2014-11-20 12:32:36 +0100)
+>
+> are available in the git repository at:
+>
+>   git://git.yoctoproject.org/poky-contrib petmab/rpi_fixes
+>   http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=petmab/rpi_fixes
+>
+> Petter Mabäcker (2):
+>   linux-raspberrypi: fix do_configure failure
+>   linux-raspberrypi: faulty branch and srcrev for 3.16
 
-On Sun, Jan 25, 2015 at 8:31 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+Merged to master. Thanks.
 
-> This patch fixes the following package build break:
-> | arm-poky-linux-gnueabi-gcc is unable to create an executable file.
-> | C compiler test failed.
+--
+Andrei Gherzan
 
-
-Both patches merged.
-
-
--- 
-*Andrei Gherzan*
-
---f46d04388fcbf5d889050d7e4d8f
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">On Sun, Jan 25, 2015 at 8:31 PM, Andrei Gherzan <span dir=3D"ltr">&lt;<=
-a href=3D"mailto:andrei@gherzan.ro" target=3D"_blank">andrei@gherzan.ro</a>=
-&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
- 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">This patch fixes the f=
-ollowing package build break:<br>
-| arm-poky-linux-gnueabi-gcc is unable to create an executable file.<br>
-| C compiler test failed.</blockquote><div><br></div><div>Both patches merg=
-ed.=C2=A0</div></div><br clear=3D"all"><div><br></div>-- <br><div class=3D"=
-gmail_signature"><div dir=3D"ltr"><div style=3D"text-align:center"></div><d=
-iv style=3D"text-align:center"><div align=3D"left"><b style=3D"font-family:=
-Arial;font-size:small;color:rgb(51,51,51);text-align:center">Andrei Gherzan=
-</b><br></div></div></div></div>
-</div></div>
-
---f46d04388fcbf5d889050d7e4d8f--
