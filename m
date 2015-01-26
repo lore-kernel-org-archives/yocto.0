@@ -1,52 +1,44 @@
-Return-Path: <jdelapena@lexmark.com>
+Return-Path: <leimaohui@cn.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B64F3E00827; Sun, 25 Jan 2015 17:59:25 -0800 (PST)
+	id 3D816E00827; Sun, 25 Jan 2015 20:04:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [64.18.3.82 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RDNS_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from exprod8og101.obsmtp.com (exprod8og101.obsmtp.com [64.18.3.82])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5310E003AB
-	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 17:59:18 -0800 (PST)
-Received: from mail-qc0-f181.google.com ([209.85.216.181]) (using TLSv1) by
-	exprod8ob101.postini.com ([64.18.7.12]) with SMTP
-	ID DSNKVMWfdmwx3SLcUJjAGriww6MvDbHuycpT@postini.com;
-	Sun, 25 Jan 2015 17:59:23 PST
-Received: by mail-qc0-f181.google.com with SMTP id l6so5154113qcy.12
-	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 17:59:18 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=uoAVvXMbPQXpABwBRvRGBjNqoxlnrziXSmI26hPSUu0=;
-	b=dZ/6fWHGU4e3XaA2PZly+mZNydafuYFwUCqA9kltK4/1IJS6mRoaGZNj6a1qdtAGtu
-	gJajzhz+5+x7usWFI0f20kfVrRoM7X1bb6/jLLNCpzLUvEoAlwPukuBq9N8TyV3+W2w+
-	4E9NxoJqW5T1nz7cS27kjg52+a52aDezBQQbRDq0wnFJMGxUOt9NH5vlre76143u6ftw
-	7ek5NaMUHBzcYeGlURiAGVrYwhIErMRqXDHUYNRNQInTbEPYdHJWrCVOgrcbRF3okcBq
-	Y//K2FW4xkeBt+NdVh6pFBLe2GsRLeFqxcsJMGEOh6NQORqJDafK7cCMxeLX4XCEdPCg
-	jgGA==
-X-Gm-Message-State: ALoCoQkfiyQKn099Oo2GUhidkln2qRnf3Lh+NVQKOjQ+TUAOcQ5d1ozHcqgZp02z3QrKhM3Z/P05GwKEolUoXqSjdNlIpmQZKHZuPr7DciDc0A1lZEt75jlVPWeq2GbPRV8eJfZAXf+kCPl/us6jl5kgkjYY7qmpPg==
-X-Received: by 10.229.80.3 with SMTP id r3mr6992742qck.23.1422237558024;
-	Sun, 25 Jan 2015 17:59:18 -0800 (PST)
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B223CE003AB
+	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 20:04:45 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.04,848,1406563200"; d="scan'208,217";a="56607411"
+Received: from unknown (HELO edo.cn.fujitsu.com) ([10.167.33.5])
+	by heian.cn.fujitsu.com with ESMTP; 26 Jan 2015 12:00:44 +0800
+Received: from G08CNEXCHPEKD01.g08.fujitsu.local (localhost.localdomain
+	[127.0.0.1])
+	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id t0Q43Y4T007099;
+	Mon, 26 Jan 2015 12:03:34 +0800
+Received: from G08CNEXMBPEKD01.g08.fujitsu.local ([10.167.33.81]) by
+	G08CNEXCHPEKD01.g08.fujitsu.local ([10.167.33.80]) with mapi id
+	14.03.0181.006; Mon, 26 Jan 2015 12:04:20 +0800
+From: "Lei, Maohui" <leimaohui@cn.fujitsu.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] [PATCH] libidn_0.6.14: fix the QA Issue
+Thread-Index: AQHQNxxU1drLyYBF+0q0lonzQRaUDpzRy7Og
+Date: Mon, 26 Jan 2015 04:04:19 +0000
+Message-ID: <1B56A49860EB2D45ADE3731B15C959FDAE6EF8@G08CNEXMBPEKD01.g08.fujitsu.local>
+References: <1421986511-44679-1-git-send-email-leimaohui@cn.fujitsu.com>
+	<CAJTo0LaPunQcZWf+XE+8yNkN2hGK6FgKF4i+0shGbOb+rgEW9g@mail.gmail.com>
+In-Reply-To: <CAJTo0LaPunQcZWf+XE+8yNkN2hGK6FgKF4i+0shGbOb+rgEW9g@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.167.226.48]
 MIME-Version: 1.0
-X-Received: by 10.229.80.3 with SMTP id r3mr6992735qck.23.1422237557902; Sun,
-	25 Jan 2015 17:59:17 -0800 (PST)
-Received: by 10.96.71.97 with HTTP; Sun, 25 Jan 2015 17:59:17 -0800 (PST)
-In-Reply-To: <CAJrRHk6-Ap_3d=rvJwJfAanujDNokqTWrwTA1pYEo4xMAadFRQ@mail.gmail.com>
-References: <CAJrRHk6-Ap_3d=rvJwJfAanujDNokqTWrwTA1pYEo4xMAadFRQ@mail.gmail.com>
-Date: Mon, 26 Jan 2015 09:59:17 +0800
-Message-ID: <CAJrRHk46aHQHnsBFGsFA4PeMkbcpN6JXnhr+BDdXzQT-yJQYtw@mail.gmail.com>
-From: =?UTF-8?Q?Joseph_Andrew_de_la_Pe=C3=B1a?= <jdelapena@lexmark.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>
-Subject: Re: ALTERNATIVE_* problem
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH] libidn_0.6.14: fix the QA Issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,110 +50,229 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Jan 2015 01:59:25 -0000
-Content-Type: multipart/alternative; boundary=001a1133cb786cf9a4050d847c21
+X-List-Received-Date: Mon, 26 Jan 2015 04:04:52 -0000
+Content-Language: zh-CN
+Content-Type: multipart/alternative;
+	boundary="_000_1B56A49860EB2D45ADE3731B15C959FDAE6EF8G08CNEXMBPEKD01g0_"
 
---001a1133cb786cf9a4050d847c21
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--_000_1B56A49860EB2D45ADE3731B15C959FDAE6EF8G08CNEXMBPEKD01g0_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Good day Ross, Paul,
+SGkgUm9zcw0KDQo+IFBhdGNoZXMgZm9yIG9lLWNvcmUgc2hvdWxkIGdvIHRvIHRoZSBvcGVuZW1i
+ZWRkZWQtY29yZUAgbWFpbGluZyBsaXN0LCBub3QgeW9jdG9ALiAgQnV0IHRoYW5rcywgSSd2ZSBx
+dWV1ZWQgdGhpcyBmb3IgbWFzdGVyLg0KDQpJIGdvdCBpdC4gVGhhbmsgeW91IC4NCg0KTGVpDQoN
+Cg0KDQpGcm9tOiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dDQpT
+ZW50OiBGcmlkYXksIEphbnVhcnkgMjMsIDIwMTUgMTA6NTMgUE0NClRvOiBMZWksIE1hb2h1aS/p
+m7cg6IyC5oWnDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0
+b10gW1BBVENIXSBsaWJpZG5fMC42LjE0OiBmaXggdGhlIFFBIElzc3VlDQoNCkhpIExlaSwNCg0K
+UGF0Y2hlcyBmb3Igb2UtY29yZSBzaG91bGQgZ28gdG8gdGhlIG9wZW5lbWJlZGRlZC1jb3JlQCBt
+YWlsaW5nIGxpc3QsIG5vdCB5b2N0b0AuICBCdXQgdGhhbmtzLCBJJ3ZlIHF1ZXVlZCB0aGlzIGZv
+ciBtYXN0ZXIuDQoNClJvc3MNCg0KT24gMjMgSmFudWFyeSAyMDE1IGF0IDA0OjE1LCBMZWkgTWFv
+aHVpIDxsZWltYW9odWlAY24uZnVqaXRzdS5jb208bWFpbHRvOmxlaW1hb2h1aUBjbi5mdWppdHN1
+LmNvbT4+IHdyb3RlOg0KVG8gZml4IHRoZSBRQSBJc3N1ZSBhcyBmb2xsb3dpbmc6DQpFUlJPUjog
+UUEgSXNzdWU6IGxpYmlkbjogRmlsZXMvZGlyZWN0b3JpZXMgd2VyZSBpbnN0YWxsZWQgYnV0IG5v
+dCBzaGlwcGVkDQogIC91c3Ivc2hhcmUvZW1hY3MNCiAgL3Vzci9zaGFyZS9lbWFjcy9zaXRlLWxp
+c3ANCiAgL3Vzci9zaGFyZS9lbWFjcy9zaXRlLWxpc3AvcHVueWNvZGUuZWwNCiAgL3Vzci9zaGFy
+ZS9lbWFjcy9zaXRlLWxpc3AvaWRuYS5lbCBbaW5zdGFsbGVkLXZzLXNoaXBwZWRdDQoNClNpZ25l
+ZC1vZmYtYnk6IExlaSBNYW9odWkgPGxlaW1hb2h1aUBjbi5mdWppdHN1LmNvbTxtYWlsdG86bGVp
+bWFvaHVpQGNuLmZ1aml0c3UuY29tPj4NCi0tLQ0KIG1ldGEvcmVjaXBlcy1leHRlbmRlZC9saWJp
+ZG4vbGliaWRuXzAuNi4xNC5iYjxodHRwOi8vbGliaWRuXzAuNi4xNC5iYj4gfCAxICsNCiAxIGZp
+bGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykNCg0KZGlmZiAtLWdpdCBhL21ldGEvcmVjaXBlcy1l
+eHRlbmRlZC9saWJpZG4vbGliaWRuXzAuNi4xNC5iYjxodHRwOi8vbGliaWRuXzAuNi4xNC5iYj4g
+Yi9tZXRhL3JlY2lwZXMtZXh0ZW5kZWQvbGliaWRuL2xpYmlkbl8wLjYuMTQuYmI8aHR0cDovL2xp
+Ymlkbl8wLjYuMTQuYmI+DQppbmRleCBmZjhkMzQ1Li40ZGYxZDA4IDEwMDY0NA0KLS0tIGEvbWV0
+YS9yZWNpcGVzLWV4dGVuZGVkL2xpYmlkbi9saWJpZG5fMC42LjE0LmJiPGh0dHA6Ly9saWJpZG5f
+MC42LjE0LmJiPg0KKysrIGIvbWV0YS9yZWNpcGVzLWV4dGVuZGVkL2xpYmlkbi9saWJpZG5fMC42
+LjE0LmJiPGh0dHA6Ly9saWJpZG5fMC42LjE0LmJiPg0KQEAgLTI5LDQgKzI5LDUgQEAgZG9fY29u
+ZmlndXJlX3ByZXBlbmQoKSB7DQoNCiBkb19pbnN0YWxsX2FwcGVuZCgpIHsNCiAgICAgICAgcm0g
+LXJmICR7RH0ke2xpYmRpcn0vTGliaWRuLmRsbA0KKyAgICAgICBybSAtcmYgJHtEfSR7ZGF0YWRp
+cn0vZW1hY3MNCiB9DQotLQ0KMS44LjQuMg0KDQotLQ0KX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18NCnlvY3RvIG1haWxpbmcgbGlzdA0KeW9jdG9AeW9jdG9w
+cm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NCmh0dHBzOi8vbGlzdHMu
+eW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KDQo=
 
-Maybe you have an idea how to implement better my recipe with
-ALTERNATIVES_*?
+--_000_1B56A49860EB2D45ADE3731B15C959FDAE6EF8G08CNEXMBPEKD01g0_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Looking forward to your response.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
+CXtmb250LWZhbWlseTrlrovkvZM7DQoJcGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQpA
+Zm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJNUyBHb3RoaWMiOw0KCXBhbm9zZS0xOjIgMTEgNiA5
+IDcgMiA1IDggMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7
+DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFt
+aWx5OiJNUyBQR290aGljIjsNCglwYW5vc2UtMToyIDExIDYgMCA3IDIgNSA4IDIgNDt9DQpAZm9u
+dC1mYWNlDQoJe2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0
+IDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJcQOWui+S9kyI7DQoJcGFub3NlLTE6
+MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJcQE1TIEdv
+dGhpYyI7DQoJcGFub3NlLTE6MiAxMSA2IDkgNyAyIDUgOCAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtm
+b250LWZhbWlseToiXEBNUyBQR290aGljIjsNCglwYW5vc2UtMToyIDExIDYgMCA3IDIgNSA4IDIg
+NDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwg
+ZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MG1tOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglm
+b250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJNUyBQR290aGljIiwic2Fucy1zZXJpZiI7
+fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJ
+Y29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bh
+bi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
+cHVycGxlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcC5Nc29MaXN0UGFyYWdyYXBo
+LCBsaS5Nc29MaXN0UGFyYWdyYXBoLCBkaXYuTXNvTGlzdFBhcmFncmFwaA0KCXttc28tc3R5bGUt
+cHJpb3JpdHk6MzQ7DQoJbWFyZ2luLXRvcDowbW07DQoJbWFyZ2luLXJpZ2h0OjBtbTsNCgltYXJn
+aW4tYm90dG9tOjBtbTsNCgltYXJnaW4tbGVmdDo0Mi4wcHQ7DQoJbWFyZ2luLWJvdHRvbTouMDAw
+MXB0Ow0KCW1zby1wYXJhLW1hcmdpbi10b3A6MG1tOw0KCW1zby1wYXJhLW1hcmdpbi1yaWdodDow
+bW07DQoJbXNvLXBhcmEtbWFyZ2luLWJvdHRvbTowbW07DQoJbXNvLXBhcmEtbWFyZ2luLWxlZnQ6
+NC4wZ2Q7DQoJbXNvLXBhcmEtbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMi4w
+cHQ7DQoJZm9udC1mYW1pbHk6Ik1TIFBHb3RoaWMiLCJzYW5zLXNlcmlmIjt9DQpzcGFuLmhvZW56
+Yg0KCXttc28tc3R5bGUtbmFtZTpob2VuemI7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTgNCgl7bXNvLXN0
+eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkFyaWFsIiwic2Fucy1zZXJp
+ZiI7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpl
+eHBvcnQtb25seTsNCglmb250LWZhbWlseToiQXJpYWwiLCJzYW5zLXNlcmlmIjt9DQpAcGFnZSBX
+b3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcyLjBwdCA5MC4w
+cHQgNzIuMHB0IDkwLjBwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24x
+O30NCi8qIExpc3QgRGVmaW5pdGlvbnMgKi8NCkBsaXN0IGwwDQoJe21zby1saXN0LWlkOjE4MTY3
+OTY4MTc7DQoJbXNvLWxpc3QtdHlwZTpoeWJyaWQ7DQoJbXNvLWxpc3QtdGVtcGxhdGUtaWRzOjU1
+NDc0MTgyMCAxMDgyODA2ODMwIDY3Njk4Njk5IDY3Njk4NzAxIDY3Njk4Njg5IDY3Njk4Njk5IDY3
+Njk4NzAxIDY3Njk4Njg5IDY3Njk4Njk5IDY3Njk4NzAxO30NCkBsaXN0IGwwOmxldmVsMQ0KCXtt
+c28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674OYOw0KCW1z
+by1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsN
+CgltYXJnaW4tbGVmdDoxOC4wcHQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCglmb250LWZhbWls
+eTpXaW5nZGluZ3M7DQoJbXNvLWZhcmVhc3QtZm9udC1mYW1pbHk65a6L5L2TOw0KCW1zby1iaWRp
+LWZvbnQtZmFtaWx5OiJNUyBQR290aGljIjt9DQpAbGlzdCBsMDpsZXZlbDINCgl7bXNvLWxldmVs
+LW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+DmDsNCgltc28tbGV2ZWwt
+dGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJbWFyZ2lu
+LWxlZnQ6NDIuMHB0Ow0KCXRleHQtaW5kZW50Oi0yMS4wcHQ7DQoJZm9udC1mYW1pbHk6V2luZ2Rp
+bmdzO30NCkBsaXN0IGwwOmxldmVsMw0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7
+DQoJbXNvLWxldmVsLXRleHQ674KyOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1s
+ZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgltYXJnaW4tbGVmdDo2My4wcHQ7DQoJdGV4dC1p
+bmRlbnQ6LTIxLjBwdDsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0KQGxpc3QgbDA6bGV2ZWw0
+DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgaw7
+DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjps
+ZWZ0Ow0KCW1hcmdpbi1sZWZ0Ojg0LjBwdDsNCgl0ZXh0LWluZGVudDotMjEuMHB0Ow0KCWZvbnQt
+ZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDUNCgl7bXNvLWxldmVsLW51bWJlci1m
+b3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+DmDsNCgltc28tbGV2ZWwtdGFiLXN0b3A6
+bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJbWFyZ2luLWxlZnQ6MTA1
+LjBwdDsNCgl0ZXh0LWluZGVudDotMjEuMHB0Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpA
+bGlzdCBsMDpsZXZlbDYNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1s
+ZXZlbC10ZXh0Ou+CsjsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVt
+YmVyLXBvc2l0aW9uOmxlZnQ7DQoJbWFyZ2luLWxlZnQ6MTI2LjBwdDsNCgl0ZXh0LWluZGVudDot
+MjEuMHB0Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDcNCgl7bXNv
+LWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+BrDsNCgltc28t
+bGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJ
+bWFyZ2luLWxlZnQ6MTQ3LjBwdDsNCgl0ZXh0LWluZGVudDotMjEuMHB0Ow0KCWZvbnQtZmFtaWx5
+OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDgNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6
+YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+DmDsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsN
+Cgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJbWFyZ2luLWxlZnQ6MTY4LjBwdDsN
+Cgl0ZXh0LWluZGVudDotMjEuMHB0Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBs
+MDpsZXZlbDkNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10
+ZXh0Ou+CsjsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBv
+c2l0aW9uOmxlZnQ7DQoJbWFyZ2luLWxlZnQ6MTg5LjBwdDsNCgl0ZXh0LWluZGVudDotMjEuMHB0
+Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpvbA0KCXttYXJnaW4tYm90dG9tOjBtbTt9DQp1
+bA0KCXttYXJnaW4tYm90dG9tOjBtbTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48
+eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiI+DQo8djp0
+ZXh0Ym94IGluc2V0PSI1Ljg1cHQsLjdwdCw1Ljg1cHQsLjdwdCIgLz4NCjwvbzpzaGFwZWRlZmF1
+bHRzPjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVs
+YXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8
+L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJK
+QSIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEi
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkhpIFJvc3M8bzpwPjwv
+bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+
+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+bGFuZz0iRU4tVVMiPiZndDsgUGF0Y2hlcyBmb3Igb2UtY29yZSBzaG91bGQgZ28gdG8gdGhlIG9w
+ZW5lbWJlZGRlZC1jb3JlQCBtYWlsaW5nIGxpc3QsIG5vdCB5b2N0b0AuJm5ic3A7IEJ1dCB0aGFu
+a3MsIEkndmUgcXVldWVkIHRoaXMgZm9yIG1hc3Rlci48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkkgZ290
+IGl0LiBUaGFuayB5b3UgLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+TGVpPG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250
+LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
+aWYmcXVvdDs7Y29sb3I6IzFGNDk3RDttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+PG86cD4m
+bmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0i
+RU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1
+b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RDttc28tZmFyZWFzdC1sYW5n
+dWFnZTpaSC1DTiI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0FyaWFsJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3
+RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7
+Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBtbSAwbW0gMG1tIDQuMHB0Ij4N
+CjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0REYg
+MS4wcHQ7cGFkZGluZzozLjBwdCAwbW0gMG1tIDBtbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7bXNvLWZhcmVhc3QtbGFu
+Z3VhZ2U6WkgtQ04iPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZv
+bnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMt
+c2VyaWYmcXVvdDs7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPiBCdXJ0b24sDQogUm9zcyBb
+bWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbV0gPGJyPg0KPGI+U2VudDo8L2I+IEZyaWRheSwg
+SmFudWFyeSAyMywgMjAxNSAxMDo1MyBQTTxicj4NCjxiPlRvOjwvYj4gTGVpLCBNYW9odWkvPC9z
+cGFuPjxzcGFuIGxhbmc9IlpILUNOIiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDttc28tZmFyZWFz
+dC1sYW5ndWFnZTpaSC1DTiI+6Zu3PC9zcGFuPjxzcGFuIGxhbmc9IlpILUNOIiBzdHlsZT0iZm9u
+dC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1z
+ZXJpZiZxdW90Ozttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+DQo8L3NwYW4+PHNwYW4gbGFu
+Zz0iWkgtQ04iIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O21zby1mYXJlYXN0LWxhbmd1YWdlOlpI
+LUNOIj7ojILmhac8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
+O21zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj48YnI+DQo8Yj5DYzo8L2I+IHlvY3RvQHlvY3Rv
+cHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFt5b2N0b10gW1BBVENIXSBsaWJp
+ZG5fMC42LjE0OiBmaXggdGhlIFFBIElzc3VlPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+
+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZu
+YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+bGFuZz0iRU4tVVMiPkhpIExlaSw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVO
+LVVTIj5QYXRjaGVzIGZvciBvZS1jb3JlIHNob3VsZCBnbyB0byB0aGUgb3BlbmVtYmVkZGVkLWNv
+cmVAIG1haWxpbmcgbGlzdCwgbm90IHlvY3RvQC4mbmJzcDsgQnV0IHRoYW5rcywgSSd2ZSBxdWV1
+ZWQgdGhpcyBmb3IgbWFzdGVyLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpw
+Pjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBs
+YW5nPSJFTi1VUyI+Um9zczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5n
+PSJFTi1VUyI+T24gMjMgSmFudWFyeSAyMDE1IGF0IDA0OjE1LCBMZWkgTWFvaHVpICZsdDs8YSBo
+cmVmPSJtYWlsdG86bGVpbWFvaHVpQGNuLmZ1aml0c3UuY29tIiB0YXJnZXQ9Il9ibGFuayI+bGVp
+bWFvaHVpQGNuLmZ1aml0c3UuY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlRvIGZpeCB0aGUgUUEg
+SXNzdWUgYXMgZm9sbG93aW5nOjxicj4NCkVSUk9SOiBRQSBJc3N1ZTogbGliaWRuOiBGaWxlcy9k
+aXJlY3RvcmllcyB3ZXJlIGluc3RhbGxlZCBidXQgbm90IHNoaXBwZWQ8YnI+DQombmJzcDsgL3Vz
+ci9zaGFyZS9lbWFjczxicj4NCiZuYnNwOyAvdXNyL3NoYXJlL2VtYWNzL3NpdGUtbGlzcDxicj4N
+CiZuYnNwOyAvdXNyL3NoYXJlL2VtYWNzL3NpdGUtbGlzcC9wdW55Y29kZS5lbDxicj4NCiZuYnNw
+OyAvdXNyL3NoYXJlL2VtYWNzL3NpdGUtbGlzcC9pZG5hLmVsIFtpbnN0YWxsZWQtdnMtc2hpcHBl
+ZF08YnI+DQo8YnI+DQpTaWduZWQtb2ZmLWJ5OiBMZWkgTWFvaHVpICZsdDs8YSBocmVmPSJtYWls
+dG86bGVpbWFvaHVpQGNuLmZ1aml0c3UuY29tIj5sZWltYW9odWlAY24uZnVqaXRzdS5jb208L2E+
+Jmd0Ozxicj4NCi0tLTxicj4NCiZuYnNwO21ldGEvcmVjaXBlcy1leHRlbmRlZC9saWJpZG4vPGEg
+aHJlZj0iaHR0cDovL2xpYmlkbl8wLjYuMTQuYmIiIHRhcmdldD0iX2JsYW5rIj5saWJpZG5fMC42
+LjE0LmJiPC9hPiB8IDEgJiM0Mzs8YnI+DQombmJzcDsxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRp
+b24oJiM0MzspPGJyPg0KPGJyPg0KZGlmZiAtLWdpdCBhL21ldGEvcmVjaXBlcy1leHRlbmRlZC9s
+aWJpZG4vPGEgaHJlZj0iaHR0cDovL2xpYmlkbl8wLjYuMTQuYmIiIHRhcmdldD0iX2JsYW5rIj5s
+aWJpZG5fMC42LjE0LmJiPC9hPiBiL21ldGEvcmVjaXBlcy1leHRlbmRlZC9saWJpZG4vPGEgaHJl
+Zj0iaHR0cDovL2xpYmlkbl8wLjYuMTQuYmIiIHRhcmdldD0iX2JsYW5rIj5saWJpZG5fMC42LjE0
+LmJiPC9hPjxicj4NCmluZGV4IGZmOGQzNDUuLjRkZjFkMDggMTAwNjQ0PGJyPg0KLS0tIGEvbWV0
+YS9yZWNpcGVzLWV4dGVuZGVkL2xpYmlkbi88YSBocmVmPSJodHRwOi8vbGliaWRuXzAuNi4xNC5i
+YiIgdGFyZ2V0PSJfYmxhbmsiPmxpYmlkbl8wLjYuMTQuYmI8L2E+PGJyPg0KJiM0MzsmIzQzOyYj
+NDM7IGIvbWV0YS9yZWNpcGVzLWV4dGVuZGVkL2xpYmlkbi88YSBocmVmPSJodHRwOi8vbGliaWRu
+XzAuNi4xNC5iYiIgdGFyZ2V0PSJfYmxhbmsiPmxpYmlkbl8wLjYuMTQuYmI8L2E+PGJyPg0KQEAg
+LTI5LDQgJiM0MzsyOSw1IEBAIGRvX2NvbmZpZ3VyZV9wcmVwZW5kKCkgezxicj4NCjxicj4NCiZu
+YnNwO2RvX2luc3RhbGxfYXBwZW5kKCkgezxicj4NCiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
+OyBybSAtcmYgJHtEfSR7bGliZGlyfS9MaWJpZG4uZGxsPGJyPg0KJiM0MzsmbmJzcDsgJm5ic3A7
+ICZuYnNwOyAmbmJzcDtybSAtcmYgJHtEfSR7ZGF0YWRpcn0vZW1hY3M8YnI+DQombmJzcDt9PGJy
+Pg0KPHNwYW4gY2xhc3M9ImhvZW56YiI+PHNwYW4gc3R5bGU9ImNvbG9yOiM4ODg4ODgiPi0tPC9z
+cGFuPjwvc3Bhbj48c3BhbiBzdHlsZT0iY29sb3I6Izg4ODg4OCI+PGJyPg0KPHNwYW4gY2xhc3M9
+ImhvZW56YiI+MS44LjQuMjwvc3Bhbj48YnI+DQo8YnI+DQo8c3BhbiBjbGFzcz0iaG9lbnpiIj4t
+LTwvc3Bhbj48YnI+DQo8c3BhbiBjbGFzcz0iaG9lbnpiIj5fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXzwvc3Bhbj48YnI+DQo8c3BhbiBjbGFzcz0iaG9lbnpi
+Ij55b2N0byBtYWlsaW5nIGxpc3Q8L3NwYW4+PGJyPg0KPHNwYW4gY2xhc3M9ImhvZW56YiI+PGEg
+aHJlZj0ibWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmciPnlvY3RvQHlvY3RvcHJvamVjdC5v
+cmc8L2E+PC9zcGFuPjxicj4NCjxzcGFuIGNsYXNzPSJob2VuemIiPjxhIGhyZWY9Imh0dHBzOi8v
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0byIgdGFyZ2V0PSJfYmxhbmsiPmh0
+dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bzwvYT48L3NwYW4+PC9z
+cGFuPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0K
+PC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-Thanks,
-Joseph
-
-On Fri, Jan 23, 2015 at 7:04 PM, Joseph Andrew de la Pe=C3=B1a <
-jdelapena@lexmark.com> wrote:
-
-> Good day Yocto Community,
->
-> I would like to ask what's wrong with my implementation with ALTERNATIVE_=
-*:
->
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->
-> *bar_git.bb <http://bar_git.bb>:*
->
-> PACKAGES =3D+ "${PN}-bar1 ${PN}-bar2 ${PN}-bar3"
-> RPROVIDES_${PN}-bar1 =3D "bar"
-> RPROVIDES_${PN}-bar2 =3D "bar"
-> RPROVIDES_${PN}-bar3 =3D "bar"
->
-> ALTERNATIVE_LINK_NAME[bar] =3D "${datadir}/foo/bar"
->
-> ALTERNATIVE_${PN}-bar1 =3D "bar"
-> ALTERNATIVE_TARGET_${PN}-bar1 =3D "${datadir}/foo/bar1"
-> ALTERNATIVE_PRIORITY_${PN}-bar1 =3D "99"
->
-> ALTERNATIVE_${PN}-bar2 =3D "bar"
-> ALTERNATIVE_TARGET_${PN}-bar2 =3D "${datadir}/foo/bar2"
-> ALTERNATIVE_PRIORITY_${PN}-bar2 =3D "98"
->
-> ALTERNATIVE_${PN}-bar3 =3D "bar"
-> ALTERNATIVE_TARGET_${PN}-bar3 =3D "${datadir}/foo/bar3"
-> ALTERNATIVE_PRIORITY_${PN}-bar3 =3D "97"
->
-> *packagegroup-foobar.bb <http://packagegroup-foobar.bb>:*
->
-> RDEPENDS_foobar =3D "bar"
->
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->
-> The end result is always bar3 is present and bar is pointing to bar3. I
-> never get bar1 being present.
-> Please do recommend how will I properly use ALTERNATIVE.
->
-> Thanks,
-> Joseph
->
-
---001a1133cb786cf9a4050d847c21
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Good day Ross, Paul,<div><br></div><div>Maybe you have an =
-idea how to implement better my recipe with ALTERNATIVES_*?</div><div><br><=
-/div><div>Looking forward to your response.</div><div><br></div><div>Thanks=
-,</div><div>Joseph</div></div><div class=3D"gmail_extra"><br><div class=3D"=
-gmail_quote">On Fri, Jan 23, 2015 at 7:04 PM, Joseph Andrew de la Pe=C3=B1a=
- <span dir=3D"ltr">&lt;<a href=3D"mailto:jdelapena@lexmark.com" target=3D"_=
-blank">jdelapena@lexmark.com</a>&gt;</span> wrote:<br><blockquote class=3D"=
-gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-=
-left:1ex"><div dir=3D"ltr">Good day Yocto Community,<div><br></div><div>I w=
-ould like to ask what&#39;s wrong with my implementation with ALTERNATIVE_*=
-:</div><div><br></div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D</div><div><br></div><div><b><a href=3D"http://bar_git.bb" target=3D"_bl=
-ank">bar_git.bb</a>:</b></div><div><br></div><div>PACKAGES =3D+ &quot;<span=
- style=3D"font-size:13px">${PN}-</span>bar1=C2=A0<span style=3D"font-size:1=
-3px">${PN}-</span>bar2=C2=A0<span style=3D"font-size:13px">${PN}-</span>bar=
-3&quot;</div><div>RPROVIDES_${PN}-bar1 =3D &quot;bar&quot;</div><div>RPROVI=
-DES_${PN}-bar2 =3D &quot;bar&quot;<br></div><div>RPROVIDES_${PN}-bar3 =3D &=
-quot;bar&quot;<br></div><div><br></div><div><div style=3D"font-size:13px">A=
-LTERNATIVE_LINK_NAME[bar] =3D &quot;${datadir}/foo/bar&quot;<br><br></div><=
-div style=3D"font-size:13px">ALTERNATIVE_${PN}-bar1 =3D &quot;bar&quot;<br>=
-ALTERNATIVE_TARGET_${PN}-bar1=C2=A0=3D &quot;${datadir}/foo/bar1&quot;</div=
-><div style=3D"font-size:13px">ALTERNATIVE_PRIORITY_${PN}-bar1=C2=A0=3D &qu=
-ot;99&quot;</div><div style=3D"font-size:13px"><br>ALTERNATIVE_${PN}-bar2=
-=C2=A0=3D &quot;bar&quot;</div><div style=3D"font-size:13px"></div><div sty=
-le=3D"font-size:13px">ALTERNATIVE_TARGET_${PN}-bar2=C2=A0=3D &quot;${datadi=
-r}/foo/bar2&quot;</div><div style=3D"font-size:13px">ALTERNATIVE_PRIORITY_$=
-{PN}-bar2=C2=A0=3D &quot;98&quot;</div></div><div style=3D"font-size:13px">=
-<br></div><div style=3D"font-size:13px"><div>ALTERNATIVE_${PN}-bar3=C2=A0=
-=3D &quot;bar&quot;</div><div></div><div>ALTERNATIVE_TARGET_${PN}-bar3=C2=
-=A0=3D &quot;${datadir}/foo/bar3&quot;</div><div>ALTERNATIVE_PRIORITY_${PN}=
--bar3=C2=A0=3D &quot;97&quot;</div><div><br></div><div><b><a href=3D"http:/=
-/packagegroup-foobar.bb" target=3D"_blank">packagegroup-foobar.bb</a>:</b><=
-/div><div><br></div><div>RDEPENDS_foobar =3D &quot;bar&quot;</div><div><br>=
-</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div><b=
-r></div><div>The end result is always bar3 is present and bar is pointing t=
-o bar3. I never get bar1 being present.=C2=A0</div><div>Please do recommend=
- how will I properly use ALTERNATIVE.</div><div><br></div><div>Thanks,</div=
-><div>Joseph</div></div></div>
-</blockquote></div><br></div>
-
---001a1133cb786cf9a4050d847c21--
+--_000_1B56A49860EB2D45ADE3731B15C959FDAE6EF8G08CNEXMBPEKD01g0_--
