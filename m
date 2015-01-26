@@ -1,34 +1,52 @@
-Return-Path: <Rongqing.Li@windriver.com>
+Return-Path: <errordeveloper@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4C729E00827; Sun, 25 Jan 2015 23:38:52 -0800 (PST)
+	id 4D420E0076F; Mon, 26 Jan 2015 02:41:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (errordeveloper[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6367E003AB
-	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 23:38:42 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id t0Q7cfNX028084
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 23:38:41 -0800 (PST)
-Received: from lirq-OptiPlex-780.corp.ad.wrs.com (128.224.162.136) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.174.1; Sun, 25 Jan 2015 23:38:40 -0800
-From: <rongqing.li@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Mon, 26 Jan 2015 15:38:39 +0800
-Message-ID: <1422257919-5468-1-git-send-email-rongqing.li@windriver.com>
-X-Mailer: git-send-email 2.1.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.176 listed in list.dnswl.org]
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8BFCE003AB
+	for <yocto@yoctoproject.org>; Mon, 26 Jan 2015 02:40:48 -0800 (PST)
+Received: by mail-lb0-f176.google.com with SMTP id z12so6807132lbi.7
+	for <yocto@yoctoproject.org>; Mon, 26 Jan 2015 02:40:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:references:from:date:message-id:subject:to:cc
+	:content-type; bh=fcBCg071F5BQZJyGS90Sf4Jn8Iq8TUChgJ8zFiWjViQ=;
+	b=VlJK4uV1R8DbZYHm7b7U7LEkfJkjkaURpY9AI0nRkj9GhddYQmiXaH0yeiwNqa2B1w
+	GrUKeQzrbNyP40U6KrfCElnQmJhY6Wc1LBDM0p3fYT2ZsVuQsCQOl3KMjyUthHs5GN90
+	YDXX4gQ0/fj0bSQdbEGO8p6P8D6JgFq+6X2WmApOu53QcJL2lcWvQ3R08sOlkBO1AN/J
+	ABAnZ2O+MiHYnU2kvxaOlmPY/fYV7IKfgThGYcpulJfdS1oBuYZdM0SCvCRg9rmS5ZL5
+	RZ0raNmHTPN/KbXa0w1KhADs+cygZTctxurYLwYXzlZdQRx/ACu5IyfC+fblvrh85d7S
+	qJpg==
+X-Received: by 10.112.8.41 with SMTP id o9mr20196070lba.40.1422268846370; Mon,
+	26 Jan 2015 02:40:46 -0800 (PST)
 MIME-Version: 1.0
-Subject: [PATCH][meta-selinux] policycoreutils: enable mcstransd
+References: <CAPhDKbHip+UWSpfckRBo+=QBWGnMg+Bq55DcUS77zkxNmZHd2A@mail.gmail.com>
+	<CAPhDKbHJ9uXeuJ0O3Eg2v2zHGS5AZvL4cTYVoJFbd6VOkZQ8jA@mail.gmail.com>
+From: Ilya Dmitrichenko <errordeveloper@gmail.com>
+Date: Mon, 26 Jan 2015 10:40:45 +0000
+Message-ID: <CAPhDKbGwKytLhAhCUYRJQLuPkE0ZyAJCv0Hx0T0-METC1N4CMg@mail.gmail.com>
+To: yocto <yocto@yoctoproject.org>
+Cc: =?UTF-8?B?4oCccm9iZXJ0LmJlcmdlckByZWxpYWJsZWVtYmVkZGVkc3lzdGVtcy5jb23igJ0=?=
+	<robert.berger@reliableembeddedsystems.com>
+Subject: Re: Build appliance
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,236 +58,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Jan 2015 07:38:52 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 26 Jan 2015 10:41:01 -0000
+Content-Type: multipart/alternative; boundary=001a1134cf285cf70a050d8bc57c
 
-From: Roy Li <rongqing.li@windriver.com>
+--001a1134cf285cf70a050d8bc57c
+Content-Type: text/plain; charset=UTF-8
 
-mcstransd is a daemon to translate SELinux MCS/MLS sensitivity labels,
-policycoreutils includes mcstransd whose version is newer than that
-from http://mcstrans.sourcearchive.com/
+I have made some progress, and found out that it's `
+*virtual/fakeroot-native*` that had to be in `*ASSUME_PROVIDED`.* But now I
+find there are quite a few more assumptions of the path to native tools.
+I'll see what I can patch locally and send out an update if get something
+working.
+On Sat Jan 24 2015 at 11:00:47 PM Ilya Dmitrichenko <
+errordeveloper@gmail.com> wrote:
 
-Signed-off-by: Roy Li <rongqing.li@windriver.com>
----
- recipes-security/selinux/policycoreutils.inc       | 82 ++++++++++++++++++++--
- .../0001-mcstrans-fix-the-init-script.patch        | 27 +++++++
- .../selinux/policycoreutils/enable-mcstrans.patch  | 17 +++++
- recipes-security/selinux/policycoreutils_2.3.bb    |  2 +
- recipes-security/selinux/policycoreutils_git.bb    |  2 +
- 5 files changed, 126 insertions(+), 4 deletions(-)
- create mode 100644 recipes-security/selinux/policycoreutils/0001-mcstrans-fix-the-init-script.patch
- create mode 100644 recipes-security/selinux/policycoreutils/enable-mcstrans.patch
+> Adding Robert to CC list...
+>
+> On Sat Jan 24 2015 at 9:53:32 PM Ilya Dmitrichenko <
+> errordeveloper@gmail.com> wrote:
+>
+>> Hi List,
+>>
+>> I have attempted to define a custom build appliance image, with some
+>> degree of success. The only problem is that I have noticed is there is
+>> still a whole lot of `*-native` packages being pulled in when trying to
+>> build something. So I have attempted adding all of those to my image and
+>> set `ASSUME_PROVIDED` accordingly, it was still trying to build
+>> pseudo-native and sqlite3-native for some reason... Ideally, I'd like to
+>> have all of the `*-native` deps pre-installed on my build appliance's base
+>> filesystem, I believe this should work and I shouldn't have to bootstrap
+>> `tmp/work/sysroots/` and use the sysroot in `/usr` instead.
+>>
+>> More specifically, I am trying to build a container image that would
+>> cover the purpose of the build appliance and SDKs/ADTs, I think container
+>> could simplify a lot for Yocto... I haven't fully figured it out yet, still
+>> exploring the options, so hope the idea makes sense overall.
+>>
+>> Cheers,
+>> Ilya
+>>
+>
 
-diff --git a/recipes-security/selinux/policycoreutils.inc b/recipes-security/selinux/policycoreutils.inc
-index 44a5861..fa0b601 100644
---- a/recipes-security/selinux/policycoreutils.inc
-+++ b/recipes-security/selinux/policycoreutils.inc
-@@ -13,11 +13,14 @@ PAM_SRC_URI = "file://pam.d/newrole \
-                file://pam.d/run_init \
- "
- 
--DEPENDS += "libsepol libselinux libsemanage"
-+DEPENDS += "libsepol libselinux libsemanage libcap"
- EXTRA_DEPENDS = "libcap-ng libcgroup setools"
- DEPENDS += "${@['', '${EXTRA_DEPENDS}']['${PN}' != '${BPN}-native']}"
- 
--inherit selinux
-+inherit selinux systemd pythonnative update-rc.d
-+
-+PROVIDES += "mcstrans"
-+
- DEPENDS += "${@target_selinux(d, 'libpam audit')}"
- 
- RDEPENDS_${BPN}-audit2allow = "\
-@@ -113,7 +116,6 @@ RDEPENDS_${BPN} += "setools setools-libs ${BPN}-python"
- WARN_QA := "${@oe_filter_out('unsafe-references-in-scripts', '${WARN_QA}', d)}"
- ERROR_QA := "${@oe_filter_out('unsafe-references-in-scripts', '${ERROR_QA}', d)}"
- 
--inherit pythonnative
- 
- PACKAGES =+ "\
- 	${PN}-audit2allow \
-@@ -137,8 +139,31 @@ PACKAGES =+ "\
- 	${PN}-sestatus \
- 	${PN}-setfiles \
- 	${PN}-setsebool \
-+	mcstrans \
-+	mcstrans-doc \
- 	system-config-selinux \
- "
-+PKGV_mcstrans = "0.3.2"
-+PKGV_mcstrans-doc = "0.3.2"
-+SUMMARY_mcstrans = "Daemon to translate SELinux MCS/MLS sensitivity labels"
-+DESCRIPTION_mcstrans = "\
-+        Security-enhanced Linux is a feature of the Linux kernel and a number \
-+        of utilities with enhanced security functionality designed to add \
-+        mandatory access controls to Linux.  The Security-enhanced Linux \
-+        kernel contains new architectural components originally developed to \
-+        improve the security of the Flask operating system. These \
-+        architectural components provide general support for the enforcement \
-+        of many kinds of mandatory access control policies, including those \
-+        based on the concepts of Type Enforcement®, Role-based Access \
-+        Control, and Multi-level Security. \
-+         \
-+        mcstrans provides an translation daemon to translate SELinux categories \
-+        from internal representations to user defined representation. \
-+        "
-+SUMMARY_mcstrans-doc = "${SUMMARY_mcstrans} man pages and examples"
-+DESCRIPTION_mcstrans-doc = "${DESCRIPTION_mcstrans} \
-+        This package contains man pages and examples. \
-+        "
- FILES_${PN}-audit2allow = "\
- 	${bindir}/audit2allow \
- 	${bindir}/audit2why \
-@@ -208,6 +233,23 @@ FILES_${PN}-setsebool += "\
- 	${sbindir}/setsebool \
- 	${datadir}/bash-completion/completions/setsebool \
- "
-+FILES_mcstrans = "\
-+	${base_sbindir}/mcstransd \
-+	${sbindir}/untranscon \
-+	${sbindir}/transcon \
-+	${sysconfdir}/init.d/mcstrans \
-+	${systemd_unitdir}/system/mcstrans.service \
-+	${sysconfdir}/default/volatiles/volatiles.80_mcstrans \
-+	${sysconfdir}/tmpfiles.d/setrans.conf \
-+"
-+
-+FILES_mcstrans-doc = "\
-+    /usr/share/man/man8/mcstransd.8 \
-+    /usr/share/man/man8/mcs.8 \
-+    /usr/share/man/man8/setrans.conf.8 \
-+    ${datadir}/mcstrans \
-+"
-+
- FILES_system-config-selinux = " \
-     ${bindir}/sepolgen \
-     ${datadir}/system-config-selinux/* \
-@@ -248,7 +290,24 @@ do_compile_prepend() {
- 
- do_install_prepend() {
- 	export PYTHON=python
--	export SEMODULE_PATH=${sbindir}
-+	export SEMODULE_PATH=${sbindir} SYSTEMDDIR=${D}/${systemd_unitdir}
-+}
-+
-+do_install_append_class-target() {
-+	install -m 755 mcstrans/utils/untranscon ${D}${sbindir}/
-+	install -m 755 mcstrans/utils/transcon ${D}${sbindir}/
-+
-+	if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
-+		install -d ${D}${sysconfdir}/tmpfiles.d
-+		echo "d ${localstatedir}/run/setrans - - - -" \
-+		    > ${D}${sysconfdir}/tmpfiles.d/setrans.conf
-+	else
-+		install -d ${D}${sysconfdir}/default/volatiles
-+		echo "d root root 0755 /var/run/setrans none" \
-+			>${D}${sysconfdir}/default/volatiles/volatiles.80_mcstrans
-+	fi
-+	install -d ${D}${datadir}/mcstrans
-+	cp -r mcstrans/share/* ${D}${datadir}/mcstrans/.
- }
- 
- do_install_virtclass-native() {
-@@ -266,3 +325,18 @@ do_install_append_class-target() {
- 		install -m 0644 ${WORKDIR}/pam.d/* ${D}${sysconfdir}/pam.d/
- 	fi
- }
-+
-+SYSTEMD_SERVICE_mcstrans = "mcstrans.service"
-+INITSCRIPT_PACKAGES = "mcstrans"
-+INITSCRIPT_NAME_mcstrans = "mcstrans"
-+INITSCRIPT_PARAMS_mcstrans = "defaults"
-+
-+pkg_postinst_mcstrans () {
-+    if [ -z "$D" ]; then
-+        if command -v systemd-tmpfiles >/dev/null; then
-+            systemd-tmpfiles --create ${sysconfdir}/tmpfiles.d/setrans.conf
-+        elif [ -e ${sysconfdir}/init.d/populate-volatile.sh ]; then
-+            ${sysconfdir}/init.d/populate-volatile.sh update
-+        fi
-+    fi
-+}
-diff --git a/recipes-security/selinux/policycoreutils/0001-mcstrans-fix-the-init-script.patch b/recipes-security/selinux/policycoreutils/0001-mcstrans-fix-the-init-script.patch
-new file mode 100644
-index 0000000..39be80a
---- /dev/null
-+++ b/recipes-security/selinux/policycoreutils/0001-mcstrans-fix-the-init-script.patch
-@@ -0,0 +1,27 @@
-+[PATCH] mcstrans: fix the init script
-+
-+Upstream-Status: Inappropriate [embedded specific]
-+
-+replace daemon with start-stop-daemon, due to not daemon functions
-+
-+Signed-off-by: Roy Li <rongqing.li@windriver.com>
-+---
-+ mcstrans/src/mcstrans.init | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/mcstrans/src/mcstrans.init b/mcstrans/src/mcstrans.init
-+index 2804ec0..c660290 100644
-+--- a/mcstrans/src/mcstrans.init
-++++ b/mcstrans/src/mcstrans.init
-+@@ -51,7 +51,7 @@ start(){
-+ 	fi
-+ 
-+ 	unset HOME MAIL USER USERNAME
-+-	daemon $prog "$EXTRAOPTIONS"
-++	start-stop-daemon --start --quiet --exec $prog -- "$EXTRAOPTIONS"
-+ 	RETVAL=$?
-+ 	echo
-+ 	if test $RETVAL = 0 ; then
-+-- 
-+1.9.1
-+
-diff --git a/recipes-security/selinux/policycoreutils/enable-mcstrans.patch b/recipes-security/selinux/policycoreutils/enable-mcstrans.patch
-new file mode 100644
-index 0000000..e923903
---- /dev/null
-+++ b/recipes-security/selinux/policycoreutils/enable-mcstrans.patch
-@@ -0,0 +1,17 @@
-+Add the "mcstrans" subdir so it gets built too.
-+
-+Upstream-Status: Inappropriate [embedded specific]
-+
-+Signed-off-by: Roy Li <rongqing.li@windriver.com>
-+diff --git a/Makefile b/Makefile
-+index 83ebd45..3ae784f 100644
-+--- a/Makefile
-++++ b/Makefile
-+@@ -1,5 +1,7 @@
-+ SUBDIRS = sepolicy setfiles semanage load_policy newrole run_init sandbox secon audit2allow sestatus semodule_package semodule semodule_link semodule_expand semodule_deps sepolgen-ifgen setsebool scripts po man gui
-+ 
-++SUBDIRS += mcstrans
-++
-+ INOTIFYH = $(shell ls /usr/include/sys/inotify.h 2>/dev/null)
-+ 
-+ ifeq (${INOTIFYH}, /usr/include/sys/inotify.h)
-diff --git a/recipes-security/selinux/policycoreutils_2.3.bb b/recipes-security/selinux/policycoreutils_2.3.bb
-index 447e6c9..c837266 100644
---- a/recipes-security/selinux/policycoreutils_2.3.bb
-+++ b/recipes-security/selinux/policycoreutils_2.3.bb
-@@ -13,4 +13,6 @@ SRC_URI += "\
- 	file://policycoreutils-semanage-edit-user.patch \
- 	file://policycoreutils-process-ValueError-for-sepolicy-seobject.patch \
- 	file://policycoreutils-fix-TypeError-for-seobject.py.patch \
-+	file://0001-mcstrans-fix-the-init-script.patch \
-+	file://enable-mcstrans.patch \
- 	"
-diff --git a/recipes-security/selinux/policycoreutils_git.bb b/recipes-security/selinux/policycoreutils_git.bb
-index 823edb2..b630797 100644
---- a/recipes-security/selinux/policycoreutils_git.bb
-+++ b/recipes-security/selinux/policycoreutils_git.bb
-@@ -9,4 +9,6 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
- SRC_URI += "\
- 	file://policycoreutils-fix-sepolicy-install-path.patch \
- 	file://policycoreutils-make-O_CLOEXEC-optional.patch \
-+	file://0001-mcstrans-fix-the-init-script.patch \
-+	file://enable-mcstrans.patch \
- 	"
--- 
-2.1.0
+--001a1134cf285cf70a050d8bc57c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+I have made some progress, and found out that it&#39;s `<i style=3D"line-he=
+ight:1.5">virtual/fakeroot-native</i>` that had to be in `<i style=3D"line-=
+height:1.5">ASSUME_PROVIDED`.</i><span style=3D"line-height:1.5">=C2=A0But =
+now I find there are quite a few more assumptions of the path to native too=
+ls. I&#39;ll see what I can patch locally and send out an update if get som=
+ething working.</span><br><div class=3D"gmail_quote">On Sat Jan 24 2015 at =
+11:00:47 PM Ilya Dmitrichenko &lt;<a href=3D"mailto:errordeveloper@gmail.co=
+m">errordeveloper@gmail.com</a>&gt; wrote:<br><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
+">Adding Robert to CC list...<br><br><div class=3D"gmail_quote">On Sat Jan =
+24 2015 at 9:53:32 PM Ilya Dmitrichenko &lt;<a href=3D"mailto:errordevelope=
+r@gmail.com" target=3D"_blank">errordeveloper@gmail.com</a>&gt; wrote:<br><=
+blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
+ #ccc solid;padding-left:1ex">Hi List,<div><br></div><div>I have attempted =
+to define a custom build appliance image, with some degree of success. The =
+only problem is that I have noticed is there is still a whole lot of `*-nat=
+ive` packages being pulled in when trying to build something. So I have att=
+empted adding all of those to my image and set `ASSUME_PROVIDED` accordingl=
+y, it was still trying to build pseudo-native and sqlite3-native for some r=
+eason... Ideally, I&#39;d like to have all of the `*-native` deps pre-insta=
+lled on my build appliance&#39;s base filesystem, I believe this should wor=
+k and I shouldn&#39;t have to bootstrap `tmp/work/sysroots/` and use the sy=
+sroot in `/usr` instead.</div><div><br></div><div>More specifically, I am t=
+rying to build a container image that would cover the purpose of the build =
+appliance and SDKs/ADTs, I think container could simplify a lot for Yocto..=
+. I haven&#39;t fully figured it out yet, still exploring the options, so h=
+ope the idea makes sense overall.</div><div><br></div><div>Cheers,</div><di=
+v>Ilya=C2=A0</div></blockquote></div></blockquote></div>
 
+--001a1134cf285cf70a050d8bc57c--
