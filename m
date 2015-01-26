@@ -1,33 +1,27 @@
-Return-Path: <jfabernathy@outlook.com>
+Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 54036E00836; Mon, 26 Jan 2015 11:32:04 -0800 (PST)
+	id 45F69E00837; Mon, 26 Jan 2015 12:28:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jfabernathy[at]outlook.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [65.55.111.92 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from BLU004-OMC2S17.hotmail.com (blu004-omc2s17.hotmail.com
-	[65.55.111.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AEF2E006AF
-	for <yocto@yoctoproject.org>; Mon, 26 Jan 2015 11:31:54 -0800 (PST)
-Received: from BLU437-SMTP87 ([65.55.111.73]) by BLU004-OMC2S17.hotmail.com
-	over TLS secured channel with Microsoft SMTPSVC(7.5.7601.22751);
-	Mon, 26 Jan 2015 11:31:53 -0800
-X-TMN: [9fnlKpuITtp2lH462UNEm1m8Mqi41QNH]
-X-Originating-Email: [jfabernathy@outlook.com]
-Message-ID: <BLU437-SMTP87D0A5E6ADCA0CE3EDCE83AE350@phx.gbl>
-MIME-Version: 1.0 (Mac OS X Mail 8.1 \(1993\))
-From: James Abernathy <jfabernathy@outlook.com>
-In-Reply-To: <BLU436-SMTP2158922E8CB275AC5BEC8FDAE350@phx.gbl>
-Date: Mon, 26 Jan 2015 14:31:49 -0500
+Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDDBCE0082D
+	for <yocto@yoctoproject.org>; Mon, 26 Jan 2015 12:28:20 -0800 (PST)
+Received: from durham.keylevel.com ([88.97.63.243]:12980
+	helo=macbook-pro.durham.keylevel.com)
+	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.84)
+	(envelope-from <opensource@keylevel.com>)
+	id 1YFqGZ-000Tvf-VM; Mon, 26 Jan 2015 20:28:17 +0000
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <BLU437-SMTP87D0A5E6ADCA0CE3EDCE83AE350@phx.gbl>
+Date: Mon, 26 Jan 2015 20:28:06 +0000
+Message-Id: <B99A39DA-A006-4E48-BDFF-9E9FB49CF11F@keylevel.com>
 References: <BAY169-W3CF94A018FE9CEDCFDA90AE360@phx.gbl>
 	<54C286DC.2030708@mlbassoc.com>
 	<BLU436-SMTP223FC22BD6C5BBA26D4AC67AE350@phx.gbl>
@@ -35,11 +29,19 @@ References: <BAY169-W3CF94A018FE9CEDCFDA90AE360@phx.gbl>
 	<BLU436-SMTP61151140DD0DF27EB64FC4AE350@phx.gbl>
 	<54C662AD.5070209@mlbassoc.com>
 	<BLU436-SMTP2158922E8CB275AC5BEC8FDAE350@phx.gbl>
-To: Gary Thomas <gary@mlbassoc.com>
-X-Mailer: Apple Mail (2.1993)
-X-OriginalArrivalTime: 26 Jan 2015 19:31:51.0298 (UTC)
-	FILETIME=[BBD9E620:01D0399E]
-Cc: yocto@yoctoproject.org
+	<BLU437-SMTP87D0A5E6ADCA0CE3EDCE83AE350@phx.gbl>
+To: James Abernathy <jfabernathy@outlook.com>
+X-Mailer: Apple Mail (2.1878.6)
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - a180.4uh.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
+	chris.tapp@keylevel.com
+Cc: yocto@yoctoproject.org, Gary Thomas <gary@mlbassoc.com>
 Subject: Re: adding all the pieces of WiFi to core-image-minimal
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -52,135 +54,173 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Jan 2015 19:32:04 -0000
+X-List-Received-Date: Mon, 26 Jan 2015 20:28:26 -0000
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_DB16A5A7-C7B2-4AE1-B547-78CC4A513E07"
+	boundary="Apple-Mail=_95480C4B-0E1A-48E4-9A00-1A6C63D875E7"
 
---Apple-Mail=_DB16A5A7-C7B2-4AE1-B547-78CC4A513E07
+--Apple-Mail=_95480C4B-0E1A-48E4-9A00-1A6C63D875E7
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="windows-1252"
+Content-Type: text/plain;
+	charset=windows-1252
 
-I get a clean build when I add: CORE_IMAGE_EXTRA_INSTALL +=3D " =
+
+On 26 Jan 2015, at 19:31, James Abernathy <jfabernathy@outlook.com> =
+wrote:
+
+> I get a clean build when I add: CORE_IMAGE_EXTRA_INSTALL +=3D " =
 packagegroup-base-wifi=94
-
-However, I have no wireless drivers.  I must have to add something to =
+>=20
+> However, I have no wireless drivers.  I must have to add something to =
 add the drivers and firmware to the kernel.  Not sure what though.
 
-Jim A
+I'm not an expert here, but I think that adding kernel-modules and =
+linux-firmware to your extra_install should give you what you need.
 
-> On Jan 26, 2015, at 11:09 AM, James Abernathy =
-<jfabernathy@outlook.com> wrote:
 >=20
+> Jim A
+>=20
+>> On Jan 26, 2015, at 11:09 AM, James Abernathy =
+<jfabernathy@outlook.com> wrote:
 >>=20
->> On Jan 26, 2015, at 10:52 AM, Gary Thomas <gary@mlbassoc.com> wrote:
->>=20
->> On 2015-01-26 08:26, James Abernathy wrote:
 >>>=20
->>>> On Jan 26, 2015, at 8:49 AM, Gary Thomas <gary@mlbassoc.com =
-<mailto:gary@mlbassoc.com>> wrote:
+>>> On Jan 26, 2015, at 10:52 AM, Gary Thomas <gary@mlbassoc.com> wrote:
+>>>=20
+>>> On 2015-01-26 08:26, James Abernathy wrote:
 >>>>=20
->>>> On 2015-01-26 06:29, James Abernathy wrote:
->>>>>=20
->>>>>> On Jan 23, 2015, at 12:37 PM, Gary Thomas <gary@mlbassoc.com =
+>>>>> On Jan 26, 2015, at 8:49 AM, Gary Thomas <gary@mlbassoc.com =
 <mailto:gary@mlbassoc.com>> wrote:
+>>>>>=20
+>>>>> On 2015-01-26 06:29, James Abernathy wrote:
 >>>>>>=20
->>>>>> On 2015-01-23 10:24, Jim Abernathy wrote:
->>>>>>> I'm starting a project mostly for self-education.  I have =
+>>>>>>> On Jan 23, 2015, at 12:37 PM, Gary Thomas <gary@mlbassoc.com =
+<mailto:gary@mlbassoc.com>> wrote:
+>>>>>>>=20
+>>>>>>> On 2015-01-23 10:24, Jim Abernathy wrote:
+>>>>>>>> I'm starting a project mostly for self-education.  I have =
 already done the project using Ubuntu Server 14.04 using a Intel NUC and =
 a Pandaboard as targets.  Now I want to see how
->>>>>>> easy it is to move it to Yocto.
->>>>>>>=20
->>>>>>> Starting with the NUC, I can boot Dizzy 1.7.1 core-image-minimal =
-and core-image-sato, both built with bitbake and not the prebuilt =
-images. However, core-image-minimal doesn't have
->>>>>>> WiFi and core-image-sato does, but I don't need all the GUI =
+>>>>>>>> easy it is to move it to Yocto.
+>>>>>>>>=20
+>>>>>>>> Starting with the NUC, I can boot Dizzy 1.7.1 =
+core-image-minimal and core-image-sato, both built with bitbake and not =
+the prebuilt images. However, core-image-minimal doesn't have
+>>>>>>>> WiFi and core-image-sato does, but I don't need all the GUI =
 stuff.  It's a headless application.
->>>>>>>=20
->>>>>>> So what is recommended; eliminating the GUI from sato or adding =
+>>>>>>>>=20
+>>>>>>>> So what is recommended; eliminating the GUI from sato or adding =
 wifi and wpa-supplicant, etc to minimal??  Also any pointers to how to =
 do the adding/subtracting would be most
->>>>>>> helpful.
->>>>>>>=20
->>>>>>> Once this is working all I have to do is put apache-tomcat, and =
+>>>>>>>> helpful.
+>>>>>>>>=20
+>>>>>>>> Once this is working all I have to do is put apache-tomcat, and =
 openjdk-7-jre, then my application.
+>>>>>>>=20
+>>>>>>> We use just iw & wpa-supplicant and set up the configuration
+>>>>>>> files manually (e.g. the wpa-supplicant configurations).
 >>>>>>=20
->>>>>> We use just iw & wpa-supplicant and set up the configuration
->>>>>> files manually (e.g. the wpa-supplicant configurations).
->>>>>=20
->>>>> Could you help with a little more details.  What I envision is =
+>>>>>> Could you help with a little more details.  What I envision is =
 adding an append statement of some kind to local.conf to load in the =
 wireless related files to core-image-minimal,
->>>>> same with openjdk-7-jre and tomcat7, but my first efforts have =
+>>>>>> same with openjdk-7-jre and tomcat7, but my first efforts have =
 generated some unintelligible error for me.  So that=92s why I=92m =
 looking for direction on where to start with this.
->>>>=20
->>>> What was the error you got?  I'll bet it was for 'iw' which
->>>> is a package from meta-oe, so you'll need to add that layer
->>>>=20
->>>> Once you've added the meta-oe layer, you should be able to
->>>> put this line in your local.conf:
->>>> CORE_IMAGE_EXTRA_INSTALL +=3D " iw wpa-supplicant=94
->>>>=20
->>> Okay, what I don=92t get is the fact that without any additional =
+>>>>>=20
+>>>>> What was the error you got?  I'll bet it was for 'iw' which
+>>>>> is a package from meta-oe, so you'll need to add that layer
+>>>>>=20
+>>>>> Once you've added the meta-oe layer, you should be able to
+>>>>> put this line in your local.conf:
+>>>>> CORE_IMAGE_EXTRA_INSTALL +=3D " iw wpa-supplicant=94
+>>>>>=20
+>>>> Okay, what I don=92t get is the fact that without any additional =
 layers, bitbake core-image-sato builds all the WiFi features I need.  =
 bitbake core-image-minimal does not.  So I=92m
->>> thinking that there is some CORE_IMAGE_EXTRA_INSTALL statement that =
+>>>> thinking that there is some CORE_IMAGE_EXTRA_INSTALL statement that =
 can just add what is needed without extra layers.
+>>>>=20
+>>>> I guess it just doesn=92t make sense to me right now.
 >>>=20
->>> I guess it just doesn=92t make sense to me right now.
->>=20
->> Try using
->> CORE_IMAGE_EXTRA_INSTALL +=3D " packagegroup-base-wifi"
->> which will bring in 'wireless-tools' and 'wpa-supplicant'.
->>=20
->> I prefer 'iw' to 'wireless-tools' as it is newer and [IMO]
->> simpler to use.
->>=20
-> Thanks, I found that I can clean build with just the wpa-supplicant =
+>>> Try using
+>>> CORE_IMAGE_EXTRA_INSTALL +=3D " packagegroup-base-wifi"
+>>> which will bring in 'wireless-tools' and 'wpa-supplicant'.
+>>>=20
+>>> I prefer 'iw' to 'wireless-tools' as it is newer and [IMO]
+>>> simpler to use.
+>>>=20
+>> Thanks, I found that I can clean build with just the wpa-supplicant =
 added and I=92m hoping that will bring in the wifi drivers.  If it does, =
 all I want to do is edit the /etc/interfaces file with the Static IP of =
 the wlan0, the static IP of the eth0 and the wpa-xxx for the WKPA2_PSK =
 information. =20
->=20
-> Do I really need the tools?  I don=92t need CLI commands to change any =
-network parameters later.
->=20
-> Jim A
->=20
->> --=20
->> ------------------------------------------------------------
->> Gary Thomas                 |  Consulting for the
->> MLB Associates              |    Embedded world
->> ------------------------------------------------------------
+>>=20
+>> Do I really need the tools?  I don=92t need CLI commands to change =
+any network parameters later.
+>>=20
+>> Jim A
+>>=20
+>>> --=20
+>>> ------------------------------------------------------------
+>>> Gary Thomas                 |  Consulting for the
+>>> MLB Associates              |    Embedded world
+>>> ------------------------------------------------------------
+>>> --=20
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>=20
 >> --=20
 >> _______________________________________________
 >> yocto mailing list
->> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->> https://lists.yoctoproject.org/listinfo/yocto =
-<https://lists.yoctoproject.org/listinfo/yocto>
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 >=20
 > --=20
 > _______________________________________________
 > yocto mailing list
-> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
-> https://lists.yoctoproject.org/listinfo/yocto =
-<https://lists.yoctoproject.org/listinfo/yocto>
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
---Apple-Mail=_DB16A5A7-C7B2-4AE1-B547-78CC4A513E07
+--
+
+Chris Tapp
+opensource@keylevel.com
+www.keylevel.com
+
+----
+You can tell you're getting older when your car insurance gets real =
+cheap!
+
+
+--Apple-Mail=_95480C4B-0E1A-48E4-9A00-1A6C63D875E7
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset="windows-1252"
+Content-Type: text/html;
+	charset=windows-1252
 
 <html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
 charset=3Dwindows-1252"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: =
+after-white-space;"><br><div><div>On 26 Jan 2015, at 19:31, James =
+Abernathy &lt;<a =
+href=3D"mailto:jfabernathy@outlook.com">jfabernathy@outlook.com</a>&gt; =
+wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
+type=3D"cite"><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dwindows-1252"><div style=3D"word-wrap: break-word; =
 -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
 class=3D"">I get a clean build when I add:&nbsp;CORE_IMAGE_EXTRA_INSTALL =
 +=3D " packagegroup-base-wifi=94<div class=3D""><br class=3D""></div><div =
 class=3D"">However, I have no wireless drivers. &nbsp;I must have to add =
 something to add the drivers and firmware to the kernel. &nbsp;Not sure =
-what though.</div><div class=3D""><br class=3D""></div><div class=3D"">Jim=
- A</div><div class=3D""><br class=3D""><div><blockquote type=3D"cite" =
-class=3D""><div class=3D"">On Jan 26, 2015, at 11:09 AM, James Abernathy =
-&lt;<a href=3D"mailto:jfabernathy@outlook.com" =
+what though.</div></div></blockquote><div><br></div><div>I'm not an =
+expert here, but I think that adding kernel-modules and linux-firmware =
+to your extra_install should give you what you =
+need.</div><div><br></div><blockquote type=3D"cite"><div =
+style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+-webkit-line-break: after-white-space;" class=3D""><div class=3D""><br =
+class=3D""></div><div class=3D"">Jim A</div><div class=3D""><br =
+class=3D""><div><blockquote type=3D"cite" class=3D""><div class=3D"">On =
+Jan 26, 2015, at 11:09 AM, James Abernathy &lt;<a =
+href=3D"mailto:jfabernathy@outlook.com" =
 class=3D"">jfabernathy@outlook.com</a>&gt; wrote:</div><br =
 class=3D"Apple-interchange-newline"><div class=3D""><blockquote =
 type=3D"cite" style=3D"font-family: Helvetica; font-size: 12px; =
@@ -376,6 +416,42 @@ line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
 text-transform: none; white-space: normal; widows: auto; word-spacing: =
 0px; -webkit-text-stroke-width: 0px;" =
 class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
-uote></div><br class=3D""></div></body></html>=
+uote></div><br class=3D""></div></div>-- =
+<br>_______________________________________________<br>yocto mailing =
+list<br><a =
+href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>https=
+://lists.yoctoproject.org/listinfo/yocto<br></blockquote></div><br><div =
+apple-content-edited=3D"true">
+<div style=3D"color: rgb(0, 0, 0); letter-spacing: normal; orphans: =
+auto; text-align: start; text-indent: 0px; text-transform: none; =
+white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><div =
+style=3D"color: rgb(0, 0, 0); letter-spacing: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: =
+after-white-space;"><div style=3D"color: rgb(0, 0, 0); letter-spacing: =
+normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-stroke-width: 0px; word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><div =
+style=3D"color: rgb(0, 0, 0); letter-spacing: normal; orphans: auto; =
+text-align: start; text-indent: 0px; text-transform: none; white-space: =
+normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
+word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: =
+after-white-space;"><span class=3D"Apple-style-span" =
+style=3D"border-collapse: separate; border-spacing: 0px;"><div =
+style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; =
+-webkit-line-break: =
+after-white-space;"><div>--</div><div><br></div><div>Chris =
+Tapp</div><div><a =
+href=3D"mailto:opensource@keylevel.com">opensource@keylevel.com</a></div><=
+div><a =
+href=3D"http://www.keylevel.com">www.keylevel.com</a></div><div><br></div>=
+<div>----</div><div>You can tell you're getting older when your car =
+insurance gets real cheap!</div></div></span></div></div></div></div>
+</div>
+<br></body></html>=
 
---Apple-Mail=_DB16A5A7-C7B2-4AE1-B547-78CC4A513E07--
+--Apple-Mail=_95480C4B-0E1A-48E4-9A00-1A6C63D875E7--
