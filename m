@@ -1,47 +1,52 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <jdelapena@lexmark.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 435B3E00827; Sun, 25 Jan 2015 15:15:48 -0800 (PST)
+	id B64F3E00827; Sun, 25 Jan 2015 17:59:25 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [64.18.3.82 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.41 listed in list.dnswl.org]
-Received: from mail-wg0-f41.google.com (mail-wg0-f41.google.com [74.125.82.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0472EE003AB
-	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 15:15:38 -0800 (PST)
-Received: by mail-wg0-f41.google.com with SMTP id a1so6278293wgh.0
-	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 15:15:37 -0800 (PST)
+Received: from exprod8og101.obsmtp.com (exprod8og101.obsmtp.com [64.18.3.82])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5310E003AB
+	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 17:59:18 -0800 (PST)
+Received: from mail-qc0-f181.google.com ([209.85.216.181]) (using TLSv1) by
+	exprod8ob101.postini.com ([64.18.7.12]) with SMTP
+	ID DSNKVMWfdmwx3SLcUJjAGriww6MvDbHuycpT@postini.com;
+	Sun, 25 Jan 2015 17:59:23 PST
+Received: by mail-qc0-f181.google.com with SMTP id l6so5154113qcy.12
+	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 17:59:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=ZPyPoHQRImhfKN2m2TXSGvXPz6ELS55+w0tWqAWG7H0=;
-	b=UbZZzZ8teVaR8e5RztrO8dp3elrPfGdcVvIW+LyO+/tmjqhNEHDPdjMOF2a6YuCbru
-	j2UxUnSSaLv/5Pxx/s2jwGsjCv5RJcDFqHA6o6qRc/3rMZERNJuyQe2iqApMCCx/tVzN
-	SNOhs4ecBQ6bKE7Jp6GIP9oKeeTM7IknUQDPu0eoEh8aSUTBVIkzNoWt9BOQ9ENeKjn6
-	xOD4h0EeBr0NhvZGBtZVCfCA0FaRh8BDkMfHrs06eEkNkyj9RZE+TGr35bCp345OMKo4
-	IvUWy0lUUzbAbIaCbYmtpjOLM09MeqHyMrjk537Wk/v9Ftc0+TK/K+5T7qs+2Z77cwrC
-	6j9Q==
-X-Gm-Message-State: ALoCoQlmDK0xPFS9Y6HW5I4r9QtJv8/AgZgvSmnkDi+bUTAqjmNUNJ2p0JyqH2HH92GImKcrow23
-X-Received: by 10.194.48.11 with SMTP id h11mr38399145wjn.23.1422227737191;
-	Sun, 25 Jan 2015 15:15:37 -0800 (PST)
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=uoAVvXMbPQXpABwBRvRGBjNqoxlnrziXSmI26hPSUu0=;
+	b=dZ/6fWHGU4e3XaA2PZly+mZNydafuYFwUCqA9kltK4/1IJS6mRoaGZNj6a1qdtAGtu
+	gJajzhz+5+x7usWFI0f20kfVrRoM7X1bb6/jLLNCpzLUvEoAlwPukuBq9N8TyV3+W2w+
+	4E9NxoJqW5T1nz7cS27kjg52+a52aDezBQQbRDq0wnFJMGxUOt9NH5vlre76143u6ftw
+	7ek5NaMUHBzcYeGlURiAGVrYwhIErMRqXDHUYNRNQInTbEPYdHJWrCVOgrcbRF3okcBq
+	Y//K2FW4xkeBt+NdVh6pFBLe2GsRLeFqxcsJMGEOh6NQORqJDafK7cCMxeLX4XCEdPCg
+	jgGA==
+X-Gm-Message-State: ALoCoQkfiyQKn099Oo2GUhidkln2qRnf3Lh+NVQKOjQ+TUAOcQ5d1ozHcqgZp02z3QrKhM3Z/P05GwKEolUoXqSjdNlIpmQZKHZuPr7DciDc0A1lZEt75jlVPWeq2GbPRV8eJfZAXf+kCPl/us6jl5kgkjYY7qmpPg==
+X-Received: by 10.229.80.3 with SMTP id r3mr6992742qck.23.1422237558024;
+	Sun, 25 Jan 2015 17:59:18 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.216.107.132 with HTTP; Sun, 25 Jan 2015 15:15:16 -0800 (PST)
-X-Originating-IP: [109.100.140.128]
-In-Reply-To: <CAAkv465A4n-xaP6McmAHsRLkDQNpuKyGAuAiX7ifwgqkgMiqeQ@mail.gmail.com>
-References: <CAAkv465A4n-xaP6McmAHsRLkDQNpuKyGAuAiX7ifwgqkgMiqeQ@mail.gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Mon, 26 Jan 2015 01:15:16 +0200
-Message-ID: <CAK18fxHqY_O3+TWJ8vNt3h-U5d7XtuGjhJBMqqdvhmTm_2ijgw@mail.gmail.com>
-To: Tran TriTin <tritini@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Meta-Raspberry and Meta-Oracle-Java: ERROR
+X-Received: by 10.229.80.3 with SMTP id r3mr6992735qck.23.1422237557902; Sun,
+	25 Jan 2015 17:59:17 -0800 (PST)
+Received: by 10.96.71.97 with HTTP; Sun, 25 Jan 2015 17:59:17 -0800 (PST)
+In-Reply-To: <CAJrRHk6-Ap_3d=rvJwJfAanujDNokqTWrwTA1pYEo4xMAadFRQ@mail.gmail.com>
+References: <CAJrRHk6-Ap_3d=rvJwJfAanujDNokqTWrwTA1pYEo4xMAadFRQ@mail.gmail.com>
+Date: Mon, 26 Jan 2015 09:59:17 +0800
+Message-ID: <CAJrRHk46aHQHnsBFGsFA4PeMkbcpN6JXnhr+BDdXzQT-yJQYtw@mail.gmail.com>
+From: =?UTF-8?Q?Joseph_Andrew_de_la_Pe=C3=B1a?= <jdelapena@lexmark.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>
+Subject: Re: ALTERNATIVE_* problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,53 +58,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 25 Jan 2015 23:15:48 -0000
-Content-Type: multipart/alternative; boundary=047d7bacbd8210c226050d823349
+X-List-Received-Date: Mon, 26 Jan 2015 01:59:25 -0000
+Content-Type: multipart/alternative; boundary=001a1133cb786cf9a4050d847c21
 
---047d7bacbd8210c226050d823349
+--001a1133cb786cf9a4050d847c21
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Tran,
+Good day Ross, Paul,
 
-On Tue, Nov 25, 2014 at 5:52 PM, Tran TriTin <tritini@gmail.com> wrote:
+Maybe you have an idea how to implement better my recipe with
+ALTERNATIVES_*?
 
-> Hi all,
+Looking forward to your response.
+
+Thanks,
+Joseph
+
+On Fri, Jan 23, 2015 at 7:04 PM, Joseph Andrew de la Pe=C3=B1a <
+jdelapena@lexmark.com> wrote:
+
+> Good day Yocto Community,
 >
-> i am newbie to Yocto. Last days i tried to build an image for my
-> RaspberryPi with Meta-Raspberry and Meta-Oracle-Java but it did not work.
-> This is error i received. Can anyone help me?
-> Thanks in advance.
+> I would like to ask what's wrong with my implementation with ALTERNATIVE_=
+*:
 >
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 >
-Did you manage to fix this in the meanwhile? I realized you got no answer
-because most probably nobody is actually using java on rpi :) and that
-includes me too. Maybe we can check this out and work in fixing rpi with
-meta-oracle-java  too.
+> *bar_git.bb <http://bar_git.bb>:*
+>
+> PACKAGES =3D+ "${PN}-bar1 ${PN}-bar2 ${PN}-bar3"
+> RPROVIDES_${PN}-bar1 =3D "bar"
+> RPROVIDES_${PN}-bar2 =3D "bar"
+> RPROVIDES_${PN}-bar3 =3D "bar"
+>
+> ALTERNATIVE_LINK_NAME[bar] =3D "${datadir}/foo/bar"
+>
+> ALTERNATIVE_${PN}-bar1 =3D "bar"
+> ALTERNATIVE_TARGET_${PN}-bar1 =3D "${datadir}/foo/bar1"
+> ALTERNATIVE_PRIORITY_${PN}-bar1 =3D "99"
+>
+> ALTERNATIVE_${PN}-bar2 =3D "bar"
+> ALTERNATIVE_TARGET_${PN}-bar2 =3D "${datadir}/foo/bar2"
+> ALTERNATIVE_PRIORITY_${PN}-bar2 =3D "98"
+>
+> ALTERNATIVE_${PN}-bar3 =3D "bar"
+> ALTERNATIVE_TARGET_${PN}-bar3 =3D "${datadir}/foo/bar3"
+> ALTERNATIVE_PRIORITY_${PN}-bar3 =3D "97"
+>
+> *packagegroup-foobar.bb <http://packagegroup-foobar.bb>:*
+>
+> RDEPENDS_foobar =3D "bar"
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>
+> The end result is always bar3 is present and bar is pointing to bar3. I
+> never get bar1 being present.
+> Please do recommend how will I properly use ALTERNATIVE.
+>
+> Thanks,
+> Joseph
+>
 
--- 
-*Andrei Gherzan*
-
---047d7bacbd8210c226050d823349
+--001a1133cb786cf9a4050d847c21
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Tran,<br><div class=3D"gmail_extra"><br><div class=3D"g=
-mail_quote">On Tue, Nov 25, 2014 at 5:52 PM, Tran TriTin <span dir=3D"ltr">=
-&lt;<a href=3D"mailto:tritini@gmail.com" target=3D"_blank">tritini@gmail.co=
-m</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">=
-<div><div>Hi all,<br><br></div>i am newbie to Yocto. Last days i tried to b=
-uild an image for my RaspberryPi with Meta-Raspberry and Meta-Oracle-Java b=
-ut it did not work. This is error i received. Can anyone help me?<br></div>=
-Thanks in advance.<br><div><br></div></div></blockquote><div><br></div><div=
->Did you manage to fix this in the meanwhile? I realized you got no answer =
-because most probably nobody is actually using java on rpi :) and that incl=
-udes me too. Maybe we can check this out and work in fixing rpi with meta-o=
-racle-java =C2=A0too.</div></div><div><br></div>-- <br><div class=3D"gmail_=
-signature"><div dir=3D"ltr"><div style=3D"text-align:center"></div><div sty=
-le=3D"text-align:center"><div align=3D"left"><b style=3D"font-family:Arial;=
-font-size:small;color:rgb(51,51,51);text-align:center">Andrei Gherzan</b><b=
-r></div></div></div></div>
-</div></div>
+<div dir=3D"ltr">Good day Ross, Paul,<div><br></div><div>Maybe you have an =
+idea how to implement better my recipe with ALTERNATIVES_*?</div><div><br><=
+/div><div>Looking forward to your response.</div><div><br></div><div>Thanks=
+,</div><div>Joseph</div></div><div class=3D"gmail_extra"><br><div class=3D"=
+gmail_quote">On Fri, Jan 23, 2015 at 7:04 PM, Joseph Andrew de la Pe=C3=B1a=
+ <span dir=3D"ltr">&lt;<a href=3D"mailto:jdelapena@lexmark.com" target=3D"_=
+blank">jdelapena@lexmark.com</a>&gt;</span> wrote:<br><blockquote class=3D"=
+gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-=
+left:1ex"><div dir=3D"ltr">Good day Yocto Community,<div><br></div><div>I w=
+ould like to ask what&#39;s wrong with my implementation with ALTERNATIVE_*=
+:</div><div><br></div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D</div><div><br></div><div><b><a href=3D"http://bar_git.bb" target=3D"_bl=
+ank">bar_git.bb</a>:</b></div><div><br></div><div>PACKAGES =3D+ &quot;<span=
+ style=3D"font-size:13px">${PN}-</span>bar1=C2=A0<span style=3D"font-size:1=
+3px">${PN}-</span>bar2=C2=A0<span style=3D"font-size:13px">${PN}-</span>bar=
+3&quot;</div><div>RPROVIDES_${PN}-bar1 =3D &quot;bar&quot;</div><div>RPROVI=
+DES_${PN}-bar2 =3D &quot;bar&quot;<br></div><div>RPROVIDES_${PN}-bar3 =3D &=
+quot;bar&quot;<br></div><div><br></div><div><div style=3D"font-size:13px">A=
+LTERNATIVE_LINK_NAME[bar] =3D &quot;${datadir}/foo/bar&quot;<br><br></div><=
+div style=3D"font-size:13px">ALTERNATIVE_${PN}-bar1 =3D &quot;bar&quot;<br>=
+ALTERNATIVE_TARGET_${PN}-bar1=C2=A0=3D &quot;${datadir}/foo/bar1&quot;</div=
+><div style=3D"font-size:13px">ALTERNATIVE_PRIORITY_${PN}-bar1=C2=A0=3D &qu=
+ot;99&quot;</div><div style=3D"font-size:13px"><br>ALTERNATIVE_${PN}-bar2=
+=C2=A0=3D &quot;bar&quot;</div><div style=3D"font-size:13px"></div><div sty=
+le=3D"font-size:13px">ALTERNATIVE_TARGET_${PN}-bar2=C2=A0=3D &quot;${datadi=
+r}/foo/bar2&quot;</div><div style=3D"font-size:13px">ALTERNATIVE_PRIORITY_$=
+{PN}-bar2=C2=A0=3D &quot;98&quot;</div></div><div style=3D"font-size:13px">=
+<br></div><div style=3D"font-size:13px"><div>ALTERNATIVE_${PN}-bar3=C2=A0=
+=3D &quot;bar&quot;</div><div></div><div>ALTERNATIVE_TARGET_${PN}-bar3=C2=
+=A0=3D &quot;${datadir}/foo/bar3&quot;</div><div>ALTERNATIVE_PRIORITY_${PN}=
+-bar3=C2=A0=3D &quot;97&quot;</div><div><br></div><div><b><a href=3D"http:/=
+/packagegroup-foobar.bb" target=3D"_blank">packagegroup-foobar.bb</a>:</b><=
+/div><div><br></div><div>RDEPENDS_foobar =3D &quot;bar&quot;</div><div><br>=
+</div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div><b=
+r></div><div>The end result is always bar3 is present and bar is pointing t=
+o bar3. I never get bar1 being present.=C2=A0</div><div>Please do recommend=
+ how will I properly use ALTERNATIVE.</div><div><br></div><div>Thanks,</div=
+><div>Joseph</div></div></div>
+</blockquote></div><br></div>
 
---047d7bacbd8210c226050d823349--
+--001a1133cb786cf9a4050d847c21--
