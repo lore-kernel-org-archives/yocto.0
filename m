@@ -1,44 +1,34 @@
-Return-Path: <leimaohui@cn.fujitsu.com>
+Return-Path: <Rongqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3D816E00827; Sun, 25 Jan 2015 20:04:52 -0800 (PST)
+	id 4C729E00827; Sun, 25 Jan 2015 23:38:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RDNS_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B223CE003AB
-	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 20:04:45 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.04,848,1406563200"; d="scan'208,217";a="56607411"
-Received: from unknown (HELO edo.cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 26 Jan 2015 12:00:44 +0800
-Received: from G08CNEXCHPEKD01.g08.fujitsu.local (localhost.localdomain
-	[127.0.0.1])
-	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id t0Q43Y4T007099;
-	Mon, 26 Jan 2015 12:03:34 +0800
-Received: from G08CNEXMBPEKD01.g08.fujitsu.local ([10.167.33.81]) by
-	G08CNEXCHPEKD01.g08.fujitsu.local ([10.167.33.80]) with mapi id
-	14.03.0181.006; Mon, 26 Jan 2015 12:04:20 +0800
-From: "Lei, Maohui" <leimaohui@cn.fujitsu.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] [PATCH] libidn_0.6.14: fix the QA Issue
-Thread-Index: AQHQNxxU1drLyYBF+0q0lonzQRaUDpzRy7Og
-Date: Mon, 26 Jan 2015 04:04:19 +0000
-Message-ID: <1B56A49860EB2D45ADE3731B15C959FDAE6EF8@G08CNEXMBPEKD01.g08.fujitsu.local>
-References: <1421986511-44679-1-git-send-email-leimaohui@cn.fujitsu.com>
-	<CAJTo0LaPunQcZWf+XE+8yNkN2hGK6FgKF4i+0shGbOb+rgEW9g@mail.gmail.com>
-In-Reply-To: <CAJTo0LaPunQcZWf+XE+8yNkN2hGK6FgKF4i+0shGbOb+rgEW9g@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.167.226.48]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6367E003AB
+	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 23:38:42 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id t0Q7cfNX028084
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Sun, 25 Jan 2015 23:38:41 -0800 (PST)
+Received: from lirq-OptiPlex-780.corp.ad.wrs.com (128.224.162.136) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.174.1; Sun, 25 Jan 2015 23:38:40 -0800
+From: <rongqing.li@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 26 Jan 2015 15:38:39 +0800
+Message-ID: <1422257919-5468-1-git-send-email-rongqing.li@windriver.com>
+X-Mailer: git-send-email 2.1.0
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] libidn_0.6.14: fix the QA Issue
+Subject: [PATCH][meta-selinux] policycoreutils: enable mcstransd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,229 +40,236 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Jan 2015 04:04:52 -0000
-Content-Language: zh-CN
-Content-Type: multipart/alternative;
-	boundary="_000_1B56A49860EB2D45ADE3731B15C959FDAE6EF8G08CNEXMBPEKD01g0_"
+X-List-Received-Date: Mon, 26 Jan 2015 07:38:52 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
---_000_1B56A49860EB2D45ADE3731B15C959FDAE6EF8G08CNEXMBPEKD01g0_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Roy Li <rongqing.li@windriver.com>
 
-SGkgUm9zcw0KDQo+IFBhdGNoZXMgZm9yIG9lLWNvcmUgc2hvdWxkIGdvIHRvIHRoZSBvcGVuZW1i
-ZWRkZWQtY29yZUAgbWFpbGluZyBsaXN0LCBub3QgeW9jdG9ALiAgQnV0IHRoYW5rcywgSSd2ZSBx
-dWV1ZWQgdGhpcyBmb3IgbWFzdGVyLg0KDQpJIGdvdCBpdC4gVGhhbmsgeW91IC4NCg0KTGVpDQoN
-Cg0KDQpGcm9tOiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dDQpT
-ZW50OiBGcmlkYXksIEphbnVhcnkgMjMsIDIwMTUgMTA6NTMgUE0NClRvOiBMZWksIE1hb2h1aS/p
-m7cg6IyC5oWnDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0
-b10gW1BBVENIXSBsaWJpZG5fMC42LjE0OiBmaXggdGhlIFFBIElzc3VlDQoNCkhpIExlaSwNCg0K
-UGF0Y2hlcyBmb3Igb2UtY29yZSBzaG91bGQgZ28gdG8gdGhlIG9wZW5lbWJlZGRlZC1jb3JlQCBt
-YWlsaW5nIGxpc3QsIG5vdCB5b2N0b0AuICBCdXQgdGhhbmtzLCBJJ3ZlIHF1ZXVlZCB0aGlzIGZv
-ciBtYXN0ZXIuDQoNClJvc3MNCg0KT24gMjMgSmFudWFyeSAyMDE1IGF0IDA0OjE1LCBMZWkgTWFv
-aHVpIDxsZWltYW9odWlAY24uZnVqaXRzdS5jb208bWFpbHRvOmxlaW1hb2h1aUBjbi5mdWppdHN1
-LmNvbT4+IHdyb3RlOg0KVG8gZml4IHRoZSBRQSBJc3N1ZSBhcyBmb2xsb3dpbmc6DQpFUlJPUjog
-UUEgSXNzdWU6IGxpYmlkbjogRmlsZXMvZGlyZWN0b3JpZXMgd2VyZSBpbnN0YWxsZWQgYnV0IG5v
-dCBzaGlwcGVkDQogIC91c3Ivc2hhcmUvZW1hY3MNCiAgL3Vzci9zaGFyZS9lbWFjcy9zaXRlLWxp
-c3ANCiAgL3Vzci9zaGFyZS9lbWFjcy9zaXRlLWxpc3AvcHVueWNvZGUuZWwNCiAgL3Vzci9zaGFy
-ZS9lbWFjcy9zaXRlLWxpc3AvaWRuYS5lbCBbaW5zdGFsbGVkLXZzLXNoaXBwZWRdDQoNClNpZ25l
-ZC1vZmYtYnk6IExlaSBNYW9odWkgPGxlaW1hb2h1aUBjbi5mdWppdHN1LmNvbTxtYWlsdG86bGVp
-bWFvaHVpQGNuLmZ1aml0c3UuY29tPj4NCi0tLQ0KIG1ldGEvcmVjaXBlcy1leHRlbmRlZC9saWJp
-ZG4vbGliaWRuXzAuNi4xNC5iYjxodHRwOi8vbGliaWRuXzAuNi4xNC5iYj4gfCAxICsNCiAxIGZp
-bGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKykNCg0KZGlmZiAtLWdpdCBhL21ldGEvcmVjaXBlcy1l
-eHRlbmRlZC9saWJpZG4vbGliaWRuXzAuNi4xNC5iYjxodHRwOi8vbGliaWRuXzAuNi4xNC5iYj4g
-Yi9tZXRhL3JlY2lwZXMtZXh0ZW5kZWQvbGliaWRuL2xpYmlkbl8wLjYuMTQuYmI8aHR0cDovL2xp
-Ymlkbl8wLjYuMTQuYmI+DQppbmRleCBmZjhkMzQ1Li40ZGYxZDA4IDEwMDY0NA0KLS0tIGEvbWV0
-YS9yZWNpcGVzLWV4dGVuZGVkL2xpYmlkbi9saWJpZG5fMC42LjE0LmJiPGh0dHA6Ly9saWJpZG5f
-MC42LjE0LmJiPg0KKysrIGIvbWV0YS9yZWNpcGVzLWV4dGVuZGVkL2xpYmlkbi9saWJpZG5fMC42
-LjE0LmJiPGh0dHA6Ly9saWJpZG5fMC42LjE0LmJiPg0KQEAgLTI5LDQgKzI5LDUgQEAgZG9fY29u
-ZmlndXJlX3ByZXBlbmQoKSB7DQoNCiBkb19pbnN0YWxsX2FwcGVuZCgpIHsNCiAgICAgICAgcm0g
-LXJmICR7RH0ke2xpYmRpcn0vTGliaWRuLmRsbA0KKyAgICAgICBybSAtcmYgJHtEfSR7ZGF0YWRp
-cn0vZW1hY3MNCiB9DQotLQ0KMS44LjQuMg0KDQotLQ0KX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18NCnlvY3RvIG1haWxpbmcgbGlzdA0KeW9jdG9AeW9jdG9w
-cm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NCmh0dHBzOi8vbGlzdHMu
-eW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KDQo=
+mcstransd is a daemon to translate SELinux MCS/MLS sensitivity labels,
+policycoreutils includes mcstransd whose version is newer than that
+from http://mcstrans.sourcearchive.com/
 
---_000_1B56A49860EB2D45ADE3731B15C959FDAE6EF8G08CNEXMBPEKD01g0_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Signed-off-by: Roy Li <rongqing.li@windriver.com>
+---
+ recipes-security/selinux/policycoreutils.inc       | 82 ++++++++++++++++++++--
+ .../0001-mcstrans-fix-the-init-script.patch        | 27 +++++++
+ .../selinux/policycoreutils/enable-mcstrans.patch  | 17 +++++
+ recipes-security/selinux/policycoreutils_2.3.bb    |  2 +
+ recipes-security/selinux/policycoreutils_git.bb    |  2 +
+ 5 files changed, 126 insertions(+), 4 deletions(-)
+ create mode 100644 recipes-security/selinux/policycoreutils/0001-mcstrans-fix-the-init-script.patch
+ create mode 100644 recipes-security/selinux/policycoreutils/enable-mcstrans.patch
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
-CXtmb250LWZhbWlseTrlrovkvZM7DQoJcGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQpA
-Zm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJNUyBHb3RoaWMiOw0KCXBhbm9zZS0xOjIgMTEgNiA5
-IDcgMiA1IDggMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7
-DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFt
-aWx5OiJNUyBQR290aGljIjsNCglwYW5vc2UtMToyIDExIDYgMCA3IDIgNSA4IDIgNDt9DQpAZm9u
-dC1mYWNlDQoJe2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0
-IDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJcQOWui+S9kyI7DQoJcGFub3NlLTE6
-MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJcQE1TIEdv
-dGhpYyI7DQoJcGFub3NlLTE6MiAxMSA2IDkgNyAyIDUgOCAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtm
-b250LWZhbWlseToiXEBNUyBQR290aGljIjsNCglwYW5vc2UtMToyIDExIDYgMCA3IDIgNSA4IDIg
-NDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwg
-ZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MG1tOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglm
-b250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJNUyBQR290aGljIiwic2Fucy1zZXJpZiI7
-fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJ
-Y29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bh
-bi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
-cHVycGxlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcC5Nc29MaXN0UGFyYWdyYXBo
-LCBsaS5Nc29MaXN0UGFyYWdyYXBoLCBkaXYuTXNvTGlzdFBhcmFncmFwaA0KCXttc28tc3R5bGUt
-cHJpb3JpdHk6MzQ7DQoJbWFyZ2luLXRvcDowbW07DQoJbWFyZ2luLXJpZ2h0OjBtbTsNCgltYXJn
-aW4tYm90dG9tOjBtbTsNCgltYXJnaW4tbGVmdDo0Mi4wcHQ7DQoJbWFyZ2luLWJvdHRvbTouMDAw
-MXB0Ow0KCW1zby1wYXJhLW1hcmdpbi10b3A6MG1tOw0KCW1zby1wYXJhLW1hcmdpbi1yaWdodDow
-bW07DQoJbXNvLXBhcmEtbWFyZ2luLWJvdHRvbTowbW07DQoJbXNvLXBhcmEtbWFyZ2luLWxlZnQ6
-NC4wZ2Q7DQoJbXNvLXBhcmEtbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMi4w
-cHQ7DQoJZm9udC1mYW1pbHk6Ik1TIFBHb3RoaWMiLCJzYW5zLXNlcmlmIjt9DQpzcGFuLmhvZW56
-Yg0KCXttc28tc3R5bGUtbmFtZTpob2VuemI7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTgNCgl7bXNvLXN0
-eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkFyaWFsIiwic2Fucy1zZXJp
-ZiI7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpl
-eHBvcnQtb25seTsNCglmb250LWZhbWlseToiQXJpYWwiLCJzYW5zLXNlcmlmIjt9DQpAcGFnZSBX
-b3JkU2VjdGlvbjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcyLjBwdCA5MC4w
-cHQgNzIuMHB0IDkwLjBwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24x
-O30NCi8qIExpc3QgRGVmaW5pdGlvbnMgKi8NCkBsaXN0IGwwDQoJe21zby1saXN0LWlkOjE4MTY3
-OTY4MTc7DQoJbXNvLWxpc3QtdHlwZTpoeWJyaWQ7DQoJbXNvLWxpc3QtdGVtcGxhdGUtaWRzOjU1
-NDc0MTgyMCAxMDgyODA2ODMwIDY3Njk4Njk5IDY3Njk4NzAxIDY3Njk4Njg5IDY3Njk4Njk5IDY3
-Njk4NzAxIDY3Njk4Njg5IDY3Njk4Njk5IDY3Njk4NzAxO30NCkBsaXN0IGwwOmxldmVsMQ0KCXtt
-c28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674OYOw0KCW1z
-by1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsN
-CgltYXJnaW4tbGVmdDoxOC4wcHQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCglmb250LWZhbWls
-eTpXaW5nZGluZ3M7DQoJbXNvLWZhcmVhc3QtZm9udC1mYW1pbHk65a6L5L2TOw0KCW1zby1iaWRp
-LWZvbnQtZmFtaWx5OiJNUyBQR290aGljIjt9DQpAbGlzdCBsMDpsZXZlbDINCgl7bXNvLWxldmVs
-LW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+DmDsNCgltc28tbGV2ZWwt
-dGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJbWFyZ2lu
-LWxlZnQ6NDIuMHB0Ow0KCXRleHQtaW5kZW50Oi0yMS4wcHQ7DQoJZm9udC1mYW1pbHk6V2luZ2Rp
-bmdzO30NCkBsaXN0IGwwOmxldmVsMw0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7
-DQoJbXNvLWxldmVsLXRleHQ674KyOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1s
-ZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgltYXJnaW4tbGVmdDo2My4wcHQ7DQoJdGV4dC1p
-bmRlbnQ6LTIxLjBwdDsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0KQGxpc3QgbDA6bGV2ZWw0
-DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgaw7
-DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjps
-ZWZ0Ow0KCW1hcmdpbi1sZWZ0Ojg0LjBwdDsNCgl0ZXh0LWluZGVudDotMjEuMHB0Ow0KCWZvbnQt
-ZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDUNCgl7bXNvLWxldmVsLW51bWJlci1m
-b3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+DmDsNCgltc28tbGV2ZWwtdGFiLXN0b3A6
-bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJbWFyZ2luLWxlZnQ6MTA1
-LjBwdDsNCgl0ZXh0LWluZGVudDotMjEuMHB0Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpA
-bGlzdCBsMDpsZXZlbDYNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1s
-ZXZlbC10ZXh0Ou+CsjsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVt
-YmVyLXBvc2l0aW9uOmxlZnQ7DQoJbWFyZ2luLWxlZnQ6MTI2LjBwdDsNCgl0ZXh0LWluZGVudDot
-MjEuMHB0Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDcNCgl7bXNv
-LWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+BrDsNCgltc28t
-bGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJ
-bWFyZ2luLWxlZnQ6MTQ3LjBwdDsNCgl0ZXh0LWluZGVudDotMjEuMHB0Ow0KCWZvbnQtZmFtaWx5
-OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDgNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6
-YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+DmDsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsN
-Cgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJbWFyZ2luLWxlZnQ6MTY4LjBwdDsN
-Cgl0ZXh0LWluZGVudDotMjEuMHB0Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBs
-MDpsZXZlbDkNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10
-ZXh0Ou+CsjsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBv
-c2l0aW9uOmxlZnQ7DQoJbWFyZ2luLWxlZnQ6MTg5LjBwdDsNCgl0ZXh0LWluZGVudDotMjEuMHB0
-Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpvbA0KCXttYXJnaW4tYm90dG9tOjBtbTt9DQp1
-bA0KCXttYXJnaW4tYm90dG9tOjBtbTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48
-eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiI+DQo8djp0
-ZXh0Ym94IGluc2V0PSI1Ljg1cHQsLjdwdCw1Ljg1cHQsLjdwdCIgLz4NCjwvbzpzaGFwZWRlZmF1
-bHRzPjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVs
-YXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8
-L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJK
-QSIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEi
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkhpIFJvc3M8bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+
-PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-bGFuZz0iRU4tVVMiPiZndDsgUGF0Y2hlcyBmb3Igb2UtY29yZSBzaG91bGQgZ28gdG8gdGhlIG9w
-ZW5lbWJlZGRlZC1jb3JlQCBtYWlsaW5nIGxpc3QsIG5vdCB5b2N0b0AuJm5ic3A7IEJ1dCB0aGFu
-a3MsIEkndmUgcXVldWVkIHRoaXMgZm9yIG1hc3Rlci48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkkgZ290
-IGl0LiBUaGFuayB5b3UgLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+TGVpPG86cD48L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250
-LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
-aWYmcXVvdDs7Y29sb3I6IzFGNDk3RDttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+PG86cD4m
-bmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0i
-RU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1
-b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RDttc28tZmFyZWFzdC1sYW5n
-dWFnZTpaSC1DTiI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O0FyaWFsJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3
-RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7
-Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBtbSAwbW0gMG1tIDQuMHB0Ij4N
-CjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0REYg
-MS4wcHQ7cGFkZGluZzozLjBwdCAwbW0gMG1tIDBtbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7bXNvLWZhcmVhc3QtbGFu
-Z3VhZ2U6WkgtQ04iPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZv
-bnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMt
-c2VyaWYmcXVvdDs7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPiBCdXJ0b24sDQogUm9zcyBb
-bWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbV0gPGJyPg0KPGI+U2VudDo8L2I+IEZyaWRheSwg
-SmFudWFyeSAyMywgMjAxNSAxMDo1MyBQTTxicj4NCjxiPlRvOjwvYj4gTGVpLCBNYW9odWkvPC9z
-cGFuPjxzcGFuIGxhbmc9IlpILUNOIiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDttc28tZmFyZWFz
-dC1sYW5ndWFnZTpaSC1DTiI+6Zu3PC9zcGFuPjxzcGFuIGxhbmc9IlpILUNOIiBzdHlsZT0iZm9u
-dC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1z
-ZXJpZiZxdW90Ozttc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+DQo8L3NwYW4+PHNwYW4gbGFu
-Zz0iWkgtQ04iIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O21zby1mYXJlYXN0LWxhbmd1YWdlOlpI
-LUNOIj7ojILmhac8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
-O21zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj48YnI+DQo8Yj5DYzo8L2I+IHlvY3RvQHlvY3Rv
-cHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFt5b2N0b10gW1BBVENIXSBsaWJp
-ZG5fMC42LjE0OiBmaXggdGhlIFFBIElzc3VlPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+
-DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZu
-YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-bGFuZz0iRU4tVVMiPkhpIExlaSw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVO
-LVVTIj5QYXRjaGVzIGZvciBvZS1jb3JlIHNob3VsZCBnbyB0byB0aGUgb3BlbmVtYmVkZGVkLWNv
-cmVAIG1haWxpbmcgbGlzdCwgbm90IHlvY3RvQC4mbmJzcDsgQnV0IHRoYW5rcywgSSd2ZSBxdWV1
-ZWQgdGhpcyBmb3IgbWFzdGVyLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpw
-Pjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBs
-YW5nPSJFTi1VUyI+Um9zczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8
-ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5n
-PSJFTi1VUyI+T24gMjMgSmFudWFyeSAyMDE1IGF0IDA0OjE1LCBMZWkgTWFvaHVpICZsdDs8YSBo
-cmVmPSJtYWlsdG86bGVpbWFvaHVpQGNuLmZ1aml0c3UuY29tIiB0YXJnZXQ9Il9ibGFuayI+bGVp
-bWFvaHVpQGNuLmZ1aml0c3UuY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlRvIGZpeCB0aGUgUUEg
-SXNzdWUgYXMgZm9sbG93aW5nOjxicj4NCkVSUk9SOiBRQSBJc3N1ZTogbGliaWRuOiBGaWxlcy9k
-aXJlY3RvcmllcyB3ZXJlIGluc3RhbGxlZCBidXQgbm90IHNoaXBwZWQ8YnI+DQombmJzcDsgL3Vz
-ci9zaGFyZS9lbWFjczxicj4NCiZuYnNwOyAvdXNyL3NoYXJlL2VtYWNzL3NpdGUtbGlzcDxicj4N
-CiZuYnNwOyAvdXNyL3NoYXJlL2VtYWNzL3NpdGUtbGlzcC9wdW55Y29kZS5lbDxicj4NCiZuYnNw
-OyAvdXNyL3NoYXJlL2VtYWNzL3NpdGUtbGlzcC9pZG5hLmVsIFtpbnN0YWxsZWQtdnMtc2hpcHBl
-ZF08YnI+DQo8YnI+DQpTaWduZWQtb2ZmLWJ5OiBMZWkgTWFvaHVpICZsdDs8YSBocmVmPSJtYWls
-dG86bGVpbWFvaHVpQGNuLmZ1aml0c3UuY29tIj5sZWltYW9odWlAY24uZnVqaXRzdS5jb208L2E+
-Jmd0Ozxicj4NCi0tLTxicj4NCiZuYnNwO21ldGEvcmVjaXBlcy1leHRlbmRlZC9saWJpZG4vPGEg
-aHJlZj0iaHR0cDovL2xpYmlkbl8wLjYuMTQuYmIiIHRhcmdldD0iX2JsYW5rIj5saWJpZG5fMC42
-LjE0LmJiPC9hPiB8IDEgJiM0Mzs8YnI+DQombmJzcDsxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRp
-b24oJiM0MzspPGJyPg0KPGJyPg0KZGlmZiAtLWdpdCBhL21ldGEvcmVjaXBlcy1leHRlbmRlZC9s
-aWJpZG4vPGEgaHJlZj0iaHR0cDovL2xpYmlkbl8wLjYuMTQuYmIiIHRhcmdldD0iX2JsYW5rIj5s
-aWJpZG5fMC42LjE0LmJiPC9hPiBiL21ldGEvcmVjaXBlcy1leHRlbmRlZC9saWJpZG4vPGEgaHJl
-Zj0iaHR0cDovL2xpYmlkbl8wLjYuMTQuYmIiIHRhcmdldD0iX2JsYW5rIj5saWJpZG5fMC42LjE0
-LmJiPC9hPjxicj4NCmluZGV4IGZmOGQzNDUuLjRkZjFkMDggMTAwNjQ0PGJyPg0KLS0tIGEvbWV0
-YS9yZWNpcGVzLWV4dGVuZGVkL2xpYmlkbi88YSBocmVmPSJodHRwOi8vbGliaWRuXzAuNi4xNC5i
-YiIgdGFyZ2V0PSJfYmxhbmsiPmxpYmlkbl8wLjYuMTQuYmI8L2E+PGJyPg0KJiM0MzsmIzQzOyYj
-NDM7IGIvbWV0YS9yZWNpcGVzLWV4dGVuZGVkL2xpYmlkbi88YSBocmVmPSJodHRwOi8vbGliaWRu
-XzAuNi4xNC5iYiIgdGFyZ2V0PSJfYmxhbmsiPmxpYmlkbl8wLjYuMTQuYmI8L2E+PGJyPg0KQEAg
-LTI5LDQgJiM0MzsyOSw1IEBAIGRvX2NvbmZpZ3VyZV9wcmVwZW5kKCkgezxicj4NCjxicj4NCiZu
-YnNwO2RvX2luc3RhbGxfYXBwZW5kKCkgezxicj4NCiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
-OyBybSAtcmYgJHtEfSR7bGliZGlyfS9MaWJpZG4uZGxsPGJyPg0KJiM0MzsmbmJzcDsgJm5ic3A7
-ICZuYnNwOyAmbmJzcDtybSAtcmYgJHtEfSR7ZGF0YWRpcn0vZW1hY3M8YnI+DQombmJzcDt9PGJy
-Pg0KPHNwYW4gY2xhc3M9ImhvZW56YiI+PHNwYW4gc3R5bGU9ImNvbG9yOiM4ODg4ODgiPi0tPC9z
-cGFuPjwvc3Bhbj48c3BhbiBzdHlsZT0iY29sb3I6Izg4ODg4OCI+PGJyPg0KPHNwYW4gY2xhc3M9
-ImhvZW56YiI+MS44LjQuMjwvc3Bhbj48YnI+DQo8YnI+DQo8c3BhbiBjbGFzcz0iaG9lbnpiIj4t
-LTwvc3Bhbj48YnI+DQo8c3BhbiBjbGFzcz0iaG9lbnpiIj5fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fXzwvc3Bhbj48YnI+DQo8c3BhbiBjbGFzcz0iaG9lbnpi
-Ij55b2N0byBtYWlsaW5nIGxpc3Q8L3NwYW4+PGJyPg0KPHNwYW4gY2xhc3M9ImhvZW56YiI+PGEg
-aHJlZj0ibWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmciPnlvY3RvQHlvY3RvcHJvamVjdC5v
-cmc8L2E+PC9zcGFuPjxicj4NCjxzcGFuIGNsYXNzPSJob2VuemIiPjxhIGhyZWY9Imh0dHBzOi8v
-bGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0byIgdGFyZ2V0PSJfYmxhbmsiPmh0
-dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bzwvYT48L3NwYW4+PC9z
-cGFuPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0K
-PC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+diff --git a/recipes-security/selinux/policycoreutils.inc b/recipes-security/selinux/policycoreutils.inc
+index 44a5861..fa0b601 100644
+--- a/recipes-security/selinux/policycoreutils.inc
++++ b/recipes-security/selinux/policycoreutils.inc
+@@ -13,11 +13,14 @@ PAM_SRC_URI = "file://pam.d/newrole \
+                file://pam.d/run_init \
+ "
+ 
+-DEPENDS += "libsepol libselinux libsemanage"
++DEPENDS += "libsepol libselinux libsemanage libcap"
+ EXTRA_DEPENDS = "libcap-ng libcgroup setools"
+ DEPENDS += "${@['', '${EXTRA_DEPENDS}']['${PN}' != '${BPN}-native']}"
+ 
+-inherit selinux
++inherit selinux systemd pythonnative update-rc.d
++
++PROVIDES += "mcstrans"
++
+ DEPENDS += "${@target_selinux(d, 'libpam audit')}"
+ 
+ RDEPENDS_${BPN}-audit2allow = "\
+@@ -113,7 +116,6 @@ RDEPENDS_${BPN} += "setools setools-libs ${BPN}-python"
+ WARN_QA := "${@oe_filter_out('unsafe-references-in-scripts', '${WARN_QA}', d)}"
+ ERROR_QA := "${@oe_filter_out('unsafe-references-in-scripts', '${ERROR_QA}', d)}"
+ 
+-inherit pythonnative
+ 
+ PACKAGES =+ "\
+ 	${PN}-audit2allow \
+@@ -137,8 +139,31 @@ PACKAGES =+ "\
+ 	${PN}-sestatus \
+ 	${PN}-setfiles \
+ 	${PN}-setsebool \
++	mcstrans \
++	mcstrans-doc \
+ 	system-config-selinux \
+ "
++PKGV_mcstrans = "0.3.2"
++PKGV_mcstrans-doc = "0.3.2"
++SUMMARY_mcstrans = "Daemon to translate SELinux MCS/MLS sensitivity labels"
++DESCRIPTION_mcstrans = "\
++        Security-enhanced Linux is a feature of the Linux kernel and a number \
++        of utilities with enhanced security functionality designed to add \
++        mandatory access controls to Linux.  The Security-enhanced Linux \
++        kernel contains new architectural components originally developed to \
++        improve the security of the Flask operating system. These \
++        architectural components provide general support for the enforcement \
++        of many kinds of mandatory access control policies, including those \
++        based on the concepts of Type Enforcement®, Role-based Access \
++        Control, and Multi-level Security. \
++         \
++        mcstrans provides an translation daemon to translate SELinux categories \
++        from internal representations to user defined representation. \
++        "
++SUMMARY_mcstrans-doc = "${SUMMARY_mcstrans} man pages and examples"
++DESCRIPTION_mcstrans-doc = "${DESCRIPTION_mcstrans} \
++        This package contains man pages and examples. \
++        "
+ FILES_${PN}-audit2allow = "\
+ 	${bindir}/audit2allow \
+ 	${bindir}/audit2why \
+@@ -208,6 +233,23 @@ FILES_${PN}-setsebool += "\
+ 	${sbindir}/setsebool \
+ 	${datadir}/bash-completion/completions/setsebool \
+ "
++FILES_mcstrans = "\
++	${base_sbindir}/mcstransd \
++	${sbindir}/untranscon \
++	${sbindir}/transcon \
++	${sysconfdir}/init.d/mcstrans \
++	${systemd_unitdir}/system/mcstrans.service \
++	${sysconfdir}/default/volatiles/volatiles.80_mcstrans \
++	${sysconfdir}/tmpfiles.d/setrans.conf \
++"
++
++FILES_mcstrans-doc = "\
++    /usr/share/man/man8/mcstransd.8 \
++    /usr/share/man/man8/mcs.8 \
++    /usr/share/man/man8/setrans.conf.8 \
++    ${datadir}/mcstrans \
++"
++
+ FILES_system-config-selinux = " \
+     ${bindir}/sepolgen \
+     ${datadir}/system-config-selinux/* \
+@@ -248,7 +290,24 @@ do_compile_prepend() {
+ 
+ do_install_prepend() {
+ 	export PYTHON=python
+-	export SEMODULE_PATH=${sbindir}
++	export SEMODULE_PATH=${sbindir} SYSTEMDDIR=${D}/${systemd_unitdir}
++}
++
++do_install_append_class-target() {
++	install -m 755 mcstrans/utils/untranscon ${D}${sbindir}/
++	install -m 755 mcstrans/utils/transcon ${D}${sbindir}/
++
++	if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
++		install -d ${D}${sysconfdir}/tmpfiles.d
++		echo "d ${localstatedir}/run/setrans - - - -" \
++		    > ${D}${sysconfdir}/tmpfiles.d/setrans.conf
++	else
++		install -d ${D}${sysconfdir}/default/volatiles
++		echo "d root root 0755 /var/run/setrans none" \
++			>${D}${sysconfdir}/default/volatiles/volatiles.80_mcstrans
++	fi
++	install -d ${D}${datadir}/mcstrans
++	cp -r mcstrans/share/* ${D}${datadir}/mcstrans/.
+ }
+ 
+ do_install_virtclass-native() {
+@@ -266,3 +325,18 @@ do_install_append_class-target() {
+ 		install -m 0644 ${WORKDIR}/pam.d/* ${D}${sysconfdir}/pam.d/
+ 	fi
+ }
++
++SYSTEMD_SERVICE_mcstrans = "mcstrans.service"
++INITSCRIPT_PACKAGES = "mcstrans"
++INITSCRIPT_NAME_mcstrans = "mcstrans"
++INITSCRIPT_PARAMS_mcstrans = "defaults"
++
++pkg_postinst_mcstrans () {
++    if [ -z "$D" ]; then
++        if command -v systemd-tmpfiles >/dev/null; then
++            systemd-tmpfiles --create ${sysconfdir}/tmpfiles.d/setrans.conf
++        elif [ -e ${sysconfdir}/init.d/populate-volatile.sh ]; then
++            ${sysconfdir}/init.d/populate-volatile.sh update
++        fi
++    fi
++}
+diff --git a/recipes-security/selinux/policycoreutils/0001-mcstrans-fix-the-init-script.patch b/recipes-security/selinux/policycoreutils/0001-mcstrans-fix-the-init-script.patch
+new file mode 100644
+index 0000000..39be80a
+--- /dev/null
++++ b/recipes-security/selinux/policycoreutils/0001-mcstrans-fix-the-init-script.patch
+@@ -0,0 +1,27 @@
++[PATCH] mcstrans: fix the init script
++
++Upstream-Status: Inappropriate [embedded specific]
++
++replace daemon with start-stop-daemon, due to not daemon functions
++
++Signed-off-by: Roy Li <rongqing.li@windriver.com>
++---
++ mcstrans/src/mcstrans.init | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/mcstrans/src/mcstrans.init b/mcstrans/src/mcstrans.init
++index 2804ec0..c660290 100644
++--- a/mcstrans/src/mcstrans.init
+++++ b/mcstrans/src/mcstrans.init
++@@ -51,7 +51,7 @@ start(){
++ 	fi
++ 
++ 	unset HOME MAIL USER USERNAME
++-	daemon $prog "$EXTRAOPTIONS"
+++	start-stop-daemon --start --quiet --exec $prog -- "$EXTRAOPTIONS"
++ 	RETVAL=$?
++ 	echo
++ 	if test $RETVAL = 0 ; then
++-- 
++1.9.1
++
+diff --git a/recipes-security/selinux/policycoreutils/enable-mcstrans.patch b/recipes-security/selinux/policycoreutils/enable-mcstrans.patch
+new file mode 100644
+index 0000000..e923903
+--- /dev/null
++++ b/recipes-security/selinux/policycoreutils/enable-mcstrans.patch
+@@ -0,0 +1,17 @@
++Add the "mcstrans" subdir so it gets built too.
++
++Upstream-Status: Inappropriate [embedded specific]
++
++Signed-off-by: Roy Li <rongqing.li@windriver.com>
++diff --git a/Makefile b/Makefile
++index 83ebd45..3ae784f 100644
++--- a/Makefile
+++++ b/Makefile
++@@ -1,5 +1,7 @@
++ SUBDIRS = sepolicy setfiles semanage load_policy newrole run_init sandbox secon audit2allow sestatus semodule_package semodule semodule_link semodule_expand semodule_deps sepolgen-ifgen setsebool scripts po man gui
++ 
+++SUBDIRS += mcstrans
+++
++ INOTIFYH = $(shell ls /usr/include/sys/inotify.h 2>/dev/null)
++ 
++ ifeq (${INOTIFYH}, /usr/include/sys/inotify.h)
+diff --git a/recipes-security/selinux/policycoreutils_2.3.bb b/recipes-security/selinux/policycoreutils_2.3.bb
+index 447e6c9..c837266 100644
+--- a/recipes-security/selinux/policycoreutils_2.3.bb
++++ b/recipes-security/selinux/policycoreutils_2.3.bb
+@@ -13,4 +13,6 @@ SRC_URI += "\
+ 	file://policycoreutils-semanage-edit-user.patch \
+ 	file://policycoreutils-process-ValueError-for-sepolicy-seobject.patch \
+ 	file://policycoreutils-fix-TypeError-for-seobject.py.patch \
++	file://0001-mcstrans-fix-the-init-script.patch \
++	file://enable-mcstrans.patch \
+ 	"
+diff --git a/recipes-security/selinux/policycoreutils_git.bb b/recipes-security/selinux/policycoreutils_git.bb
+index 823edb2..b630797 100644
+--- a/recipes-security/selinux/policycoreutils_git.bb
++++ b/recipes-security/selinux/policycoreutils_git.bb
+@@ -9,4 +9,6 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
+ SRC_URI += "\
+ 	file://policycoreutils-fix-sepolicy-install-path.patch \
+ 	file://policycoreutils-make-O_CLOEXEC-optional.patch \
++	file://0001-mcstrans-fix-the-init-script.patch \
++	file://enable-mcstrans.patch \
+ 	"
+-- 
+2.1.0
 
---_000_1B56A49860EB2D45ADE3731B15C959FDAE6EF8G08CNEXMBPEKD01g0_--
+
