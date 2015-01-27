@@ -1,51 +1,37 @@
-Return-Path: <cleitonblaster@gmail.com>
+Return-Path: <sgw@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EE4E5E00815; Tue, 27 Jan 2015 12:55:38 -0800 (PST)
+	id 4F70EE00815; Tue, 27 Jan 2015 13:14:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (cleitonrbueno[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.175 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f175.google.com (mail-lb0-f175.google.com
-	[209.85.217.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F225AE00753
-	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 12:55:25 -0800 (PST)
-Received: by mail-lb0-f175.google.com with SMTP id 10so15263515lbg.6
-	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 12:55:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:date:message-id:subject:from:to:content-type;
-	bh=L0SIm4V1ytyhlOxOkTZHn/xioIlBiZrXhSt8/alGGzg=;
-	b=IbMj0sk1rffp3OFSsvwkT/j7OWYFSYAxKCfjb68Da78vvHFI8W0H0x1CwcR+9lDqma
-	fpcgg2z2chx0tzK+h/kiJXzs/ukyUsuqevnXPAxjPDIT2ccuHCF5MYGhZ+uP2latWd+g
-	nNVTIEztewLYVKbUz1iA1fDU2fTfS3X3ry9sW8IRMO6RSW35hudJnEaf5Usxg1OkQ2R1
-	wlsCr1mtP1CkAJn2U49cjYJZVPmxnrLXuYZB3jGO0BsHNU6H01x5P7bLgPC2+v+Bhpj7
-	XrMHDyaWzqRMea/WiwYYej/GfWXsRMbBMEQdDE4UjK8k7XAhgeCehicNwlElLySCZzdd
-	ziMQ==
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C0A9E00753
+	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 13:14:12 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga103.fm.intel.com with ESMTP; 27 Jan 2015 13:08:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.09,476,1418112000"; d="scan'208";a="657547783"
+Received: from cmfiguer-mobl.amr.corp.intel.com (HELO
+	swold-mobl5.amr.corp.intel.com) ([10.252.248.194])
+	by fmsmga001.fm.intel.com with ESMTP; 27 Jan 2015 13:14:10 -0800
+Message-ID: <54C7FFA2.3010407@linux.intel.com>
+Date: Tue, 27 Jan 2015 13:14:10 -0800
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
-X-Received: by 10.152.5.38 with SMTP id p6mr4002642lap.91.1422392122972; Tue,
-	27 Jan 2015 12:55:22 -0800 (PST)
-Sender: cleitonblaster@gmail.com
-Received: by 10.25.24.12 with HTTP; Tue, 27 Jan 2015 12:55:22 -0800 (PST)
-Date: Tue, 27 Jan 2015 18:55:22 -0200
-X-Google-Sender-Auth: a1yItkfq6Q1WPlZv7Lu7ldc_SFU
-Message-ID: <CABKVDBD3Rft23qHpj=zt9qvnemxPUcTfETxSMGaYVgvNTB56UA@mail.gmail.com>
-From: Cleiton Bueno <cleitonrbueno@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Install package in deploy/deb
+To: Ash Charles <ashcharles@gmail.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <CAK8F28mUrgh3nXrOu0Mdb0zrWEgvtnjX-bD2UebzGskA4y4taA@mail.gmail.com>
+In-Reply-To: <CAK8F28mUrgh3nXrOu0Mdb0zrWEgvtnjX-bD2UebzGskA4y4taA@mail.gmail.com>
+Subject: Re: 'screen' MACHINE_FEATURE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,54 +43,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Jan 2015 20:55:39 -0000
-Content-Type: multipart/alternative; boundary=089e01419ace38a0f9050da8798d
+X-List-Received-Date: Tue, 27 Jan 2015 21:14:17 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
---089e01419ace38a0f9050da8798d
-Content-Type: text/plain; charset=UTF-8
+On 01/27/2015 11:01 AM, Ash Charles wrote:
+> Hi,
+>
+> Based on the yocto manual [1], it looks like "screen" is a valid
+> MACHINE_FEATURE and, in fact, it looks like some machines actually
+> call out this feature.  That said, I can't actually see that this
+> MACHINE_FEATURE is used.  I checked with buildhistory and some
+> grepping but maybe I missed something?
+> Should I be keeping this in my machines or is the deprecated?
+>
+It seems to be deprecated, looking back in history shows 
+task-base-screen which is included in older releases has been empty, 
+although that allows BSPs to override it, but since it's not even 
+included in newer versions.
 
-My package is in tmp/deploy/deb/ {in all directories}
+See: ca8f7ecca7c19933ffcf1a9f080a39a84318ebb4
 
-I've tried with
-CORE_IMAGE_EXTRA_INSTALL  -> failed
+git log -p (great option).
 
-This package is private and contains data and structure to be unpacked and
-attached to tmp /work/.../rootf /    that is generated
+Sau!
 
-I tried several settings and documentation without success, to have tried
-using ROOTFS_POSTPROCESS_COMMAND
+> Thanks for any insight,
+> --Ash
+>
+> [1] http://www.yoctoproject.org/docs/1.7.1/mega-manual/mega-manual.html#ref-features-machine
+>
 
--- 
-
-*Att,Cleiton Bueno*
-
---089e01419ace38a0f9050da8798d
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><span id=3D"result_box" class=3D"" lang=3D"en"><span class=
-=3D"">My package</span> <span class=3D"">is in</span> <span class=3D"">tmp<=
-/span><span class=3D"">/</span><span class=3D"">deploy/</span><span class=
-=3D"">deb</span><span class=3D"">/</span> {<span class=3D"">in all</span> <=
-span class=3D"">directories</span><span>}</span><br><br> <span class=3D"">I=
-&#39;ve tried</span> <span class=3D"">with</span><br> <span class=3D"">CORE=
-_IMAGE_EXTRA_INSTALL</span>=C2=A0 <span class=3D"">-&gt; failed</span><br><=
-br> <span class=3D"">This package</span> <span class=3D"">is private</span>=
- <span class=3D"">and contains</span> <span class=3D"">data</span> <span cl=
-ass=3D"">and structure</span> <span class=3D"">to be</span> <span class=3D"=
-">unpacked</span> <span class=3D"">and attached to</span> <span class=3D"">=
-tmp</span> <span class=3D"">/work</span><span class=3D"">/.../</span><span =
-class=3D"">rootf</span> <span class=3D"">/</span>=C2=A0=C2=A0=C2=A0 <span c=
-lass=3D"">that is generated</span><br><br> <span class=3D"">I tried</span> =
-<span class=3D"">several</span> <span class=3D"">settings</span> <span clas=
-s=3D"">and</span> <span class=3D"">documentation</span> <span class=3D"">wi=
-thout</span> <span class=3D"">success</span><span>,</span> <span class=3D""=
->to</span> <span class=3D"">have tried</span> <span class=3D"">using</span>=
- <span class=3D"">ROOTFS_POSTPROCESS_COMMAND</span></span><br clear=3D"all"=
-><br>-- <br><div class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=
-=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">=
-<i><b>Att,<br>Cleiton Bueno</b></i><br><br></div></div></div></div></div></=
-div></div></div></div></div>
-</div>
-
---089e01419ace38a0f9050da8798d--
