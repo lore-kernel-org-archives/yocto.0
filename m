@@ -1,35 +1,37 @@
-Return-Path: <Thomas.Moore2@atk.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E38E5E00815; Tue, 27 Jan 2015 09:57:23 -0800 (PST)
+	id 4783AE00906; Tue, 27 Jan 2015 10:36:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mx-mn.atk.com (mx-mn.atk.com [192.107.248.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D2A9E00753
-	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 09:57:18 -0800 (PST)
-Received: from unknown (HELO UT40SVEH3.atk.com) ([146.168.70.140])
-	by mx-mn.atk.com with ESMTP; 27 Jan 2015 11:49:09 -0600
-Received: from UT40SVCWEM001.atk.com ([169.254.4.192]) by UT40SVEH3.atk.com
-	([146.168.78.8]) with mapi id 14.03.0174.001;
-	Tue, 27 Jan 2015 10:57:16 -0700
-From: "Moore, Thomas (FtWorth)" <Thomas.Moore2@ATK.COM>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Patch runqemu-internal in nativesdk
-Thread-Index: AdA6WE7U1KyXuDROTWKbKYGRQDgGmQ==
-Date: Tue, 27 Jan 2015 17:57:15 +0000
-Message-ID: <7B6FE55CD594D7478CED8A39DF3BFC0A5E7401B0@UT40SVCWEM001.atk.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.99.32.35]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D547E008FF
+	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 10:36:39 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga103.fm.intel.com with ESMTP; 27 Jan 2015 10:30:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.09,476,1418112000"; d="scan'208";a="518496343"
+Received: from krogon-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.16.44])
+	by orsmga003.jf.intel.com with ESMTP; 27 Jan 2015 10:29:30 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: ezekiel@sanborndeasis.net
+Date: Tue, 27 Jan 2015 18:36:36 +0000
+Message-ID: <474132244.EHUv1zaDLv@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.3 (Linux/3.17.8-200.fc20.x86_64; KDE/4.14.3; x86_64; ; )
+In-Reply-To: <20150127105003.8c4e4b9406b77e1e78d5069819454ed7.4ff308449e.wbe@email14.secureserver.net>
+References: <20150127105003.8c4e4b9406b77e1e78d5069819454ed7.4ff308449e.wbe@email14.secureserver.net>
 MIME-Version: 1.0
-Subject: Patch runqemu-internal in nativesdk
+Cc: yocto@yoctoproject.org
+Subject: Re: force flag and taint logging
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,122 +43,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Jan 2015 17:57:24 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E7401B0UT40SVCWEM001at_"
-
---_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E7401B0UT40SVCWEM001at_
+X-List-Received-Date: Tue, 27 Jan 2015 18:36:42 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-My system has an Intel Core processor based on the Haswell architecture, an=
-d I'm using the corei7 tuning in my image. As it's currently implemented, t=
-he runqemu-internal script utilizes the core2dup cpu option when running th=
-e qemux86-64 QEMUARCH. However, in order to run my image with QEMU, I need =
-to use the Haswell cpu option. While it's possible to run my image by addin=
-g 'qemuparams=3D"-cpu Haswell"' to the runqemu command, I would like to cha=
-nge the cpu option in the runqemu-internal script as part of the nativesdk =
-build so that users of the SDK don't have to mess with anything. I think th=
-is can be accomplished by appending the nativesdk-qemu-helper recipe to inc=
-lude a patch to make the simple change. However, it gets a little strange b=
-ecause the recipe includes the runqemu-internal script from the ${COREBASE}=
- as such:
+Hi Ezekiel,
 
-SRC_URI =3D "file://${COREBASE}/scripts/runqemu-internal"
+On Tuesday 27 January 2015 10:50:03 ezekiel@sanborndeasis.net wrote:
+> Since picking up Dizzy I have noticed 
+> 
+> "... is tainted from a forced run"
+> 
+> log line appears to stick forever once I have forced a fetch or compile on a
+> component. The change to bring this in is here:
+> 
+> https://code.amazon.com/packages/Zeus-poky/commits/60c40e5db57da094ab5ecfadf
+> 8e07dc6251bec66 
+> 
+> It appears to me that the resultant taint file for a component, once made,
+> never goes away.  It only effectively forces a fetch or recompile once, but
+> the file itself remains. So in effect, with the new log message, once I
+> taint a task I will forever see this log message even though it does not
+> appear to actually do anything.
+> 
+> In other words, from core image-minimal
+> 
+> $ bitbake zlib -f -c fetch
+> $ bitbake zlib
+> 
+> ---> at this stage I see the log and I see all the dependent tasks of fetch
+> rerun as expected. WARNING:  .../meta/recipes-core/zlib_1.2.8.bb.do_fetch
+> is tainted from a forced run
+> 
+> ---> but if I bitbake zlib again, zlib has already been built post the force
+> fetch, so I dont see bitbake actually rebuild anything. BUT I still get the
+> warning message. The warning message fires based on the presence of the
+> taint file and it is still there in he component folder within stamps. $
+> bitbake zlib
+> 
+> WARNING:  .../meta/recipes-core/zlib_1.2.8.bb.do_fetch is tainted from a
+> forced run
+> 
+> Is there something I am missing here? It appears to be a misleading log
+> message.
 
-Because of the dynamic nature of ${COREBASE}, I'm not exactly sure how to p=
-repare my patch since the file will be located in some arbitrary folder wit=
-hin the ${WORKDIR}. I'm assuming I can do something creative in do_patch(),=
- but I'm not sure where to start. Any suggestions?
+When you force a task, the means by which we do that is adjusting (tainting) 
+the task's signature; this is so that other tasks that depend upon that tasks 
+also get forced to re-execute, which is almost always what you want. However, 
+unless you want those other tasks to just spring back to the previous output 
+on the next build, that tainted state needs to be preserved across builds, so 
+it doesn't go away, no. The only way to get rid of it is to do a clean on the 
+recipe e.g. bitbake -c clean zlib. I'll grant you that this is not obvious and 
+it's arguable that the tainted state should possibly go away if the task re-
+executes by itself. (The idea of this being a "taint" and the need for a 
+warning stems from the usage where you're modifying some intermediate state of 
+the build e.g. temporary source code in the workdir, and then re-running the 
+task with -f, in which case the result of the build is potentially not 
+reproducible from the metadata).
 
-Thanks,
+The question I would have is, why do you feel the need to force the task in 
+this case, particularly with a task like do_fetch? In general I view -f (and 
+also -C) as something you use when the system's normal ability to figure out 
+task dependencies hasn't worked, and thus it ought to be viewed more as a 
+debugging tool, but I may be missing what you're trying to do.
 
-Thomas
+Cheers,
+Paul
 
+-- 
 
---_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E7401B0UT40SVCWEM001at_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Paul Eggleton
+Intel Open Source Technology Centre
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">My system has an Intel Core processor based on the H=
-aswell architecture, and I&#8217;m using the corei7 tuning in my image. As =
-it&#8217;s currently implemented, the runqemu-internal script utilizes the =
-core2dup cpu option when running the qemux86-64
- QEMUARCH. However, in order to run my image with QEMU, I need to use the H=
-aswell cpu option. While it&#8217;s possible to run my image by adding &#82=
-16;qemuparams=3D&#8221;-cpu Haswell&#8221;&#8217; to the runqemu command, I=
- would like to change the cpu option in the runqemu-internal script
- as part of the nativesdk build so that users of the SDK don&#8217;t have t=
-o mess with anything. I think this can be accomplished by appending the nat=
-ivesdk-qemu-helper recipe to include a patch to make the simple change. How=
-ever, it gets a little strange because
- the recipe includes the runqemu-internal script from the ${COREBASE} as su=
-ch:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">SRC_URI =3D &quot;file://${COREBASE}/scripts/runqemu=
--internal&#8221;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Because of the dynamic nature of ${COREBASE}, I&#821=
-7;m not exactly sure how to prepare my patch since the file will be located=
- in some arbitrary folder within the ${WORKDIR}. I&#8217;m assuming I can d=
-o something creative in do_patch(), but I&#8217;m not
- sure where to start. Any suggestions?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thomas<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E7401B0UT40SVCWEM001at_--
