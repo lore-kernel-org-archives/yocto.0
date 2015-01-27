@@ -1,33 +1,37 @@
-Return-Path: <mahdis@nimakco.net>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B449E008EC; Tue, 27 Jan 2015 04:11:07 -0800 (PST)
+	id A663BE008DD; Tue, 27 Jan 2015 04:15:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail82.nedahosting.com (unknown [198.55.48.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25AD0E008DC
-	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 04:10:57 -0800 (PST)
-Received: from UnknownHost [2.190.181.23] by mail.nedahosting.com with SMTP;
-	Tue, 27 Jan 2015 07:10:47 -0500
-From: "Mahdi Saadat" <MahdiS@nimakco.net>
-To: "'Paul Eggleton'" <paul.eggleton@linux.intel.com>
-References: <005e01d037a8$61d3d390$257b7ab0$@nimakco.net>
-	<3420625.Ca7nvJBmSj@peggleto-mobl5.ger.corp.intel.com>
-	<009901d03a04$7a2e4fc0$6e8aef40$@nimakco.net>
-	<1955411.sRnOWoEka7@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <1955411.sRnOWoEka7@peggleto-mobl5.ger.corp.intel.com>
-Date: Tue, 27 Jan 2015 15:40:43 +0330
-Message-ID: <00d101d03a2a$49fa6b10$ddef4130$@nimakco.net>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80599E008BC
+	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 04:15:13 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 27 Jan 2015 04:15:09 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.09,474,1418112000"; d="scan'208";a="657278286"
+Received: from krogon-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.16.44])
+	by fmsmga001.fm.intel.com with ESMTP; 27 Jan 2015 04:15:09 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Lei, Maohui" <leimaohui@cn.fujitsu.com>
+Date: Tue, 27 Jan 2015 12:15:08 +0000
+Message-ID: <474124614.TO7y8lYJLD@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.3 (Linux/3.17.8-200.fc20.x86_64; KDE/4.14.3; x86_64; ; )
+In-Reply-To: <1B56A49860EB2D45ADE3731B15C959FDAE6AD2@G08CNEXMBPEKD01.g08.fujitsu.local>
+References: <1B56A49860EB2D45ADE3731B15C959FDAE6AD2@G08CNEXMBPEKD01.g08.fujitsu.local>
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQG02yph8e5oUF8QM+FX0mxlqpCeKQJJ8mlKAry/BCQB4rbRJpzTUqVg
 Cc: yocto@yoctoproject.org
-Subject: Re: dansguardian
+Subject: Re: When I build kernel with toolchain comes from yocto, I met an issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,75 +43,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Jan 2015 12:11:07 -0000
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-Content-Language: fa
+X-List-Received-Date: Tue, 27 Jan 2015 12:15:26 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-After I used inherit autotools in my recipe the .configure steps stop on
-this error:
+On Friday 23 January 2015 02:36:30 Lei, Maohui wrote:
+> I compiled my kernel by toolchain that supported by yocto 1.7.
+> The following is my steps:
+> 1. Run the following command to install the toolchain.
+>    # ./poky-lsb-glibc-x86_64-meta-toolchain-ppce500v2-toolchain-1.7.sh
+> 
+> 2. Set up the cross-development environment:
+>    # . /opt/poky-lsb/1.7/environment-setup-ppce500v2-poky-linux-gnuspe
+> 
+> And then, I compiled the kernel source. But an error occurred:
+> ----------------------------------------------------------------------------
+> powerpc-poky-linux-gnuspe-ld: unrecognized option '-Wl,-O1'
+> powerpc-poky-linux-gnuspe-ld: use the --help option for usage information
+> make[1]: *** [init/mounts.o] Error 1
+> make: *** [init] Error 2
+> ----------------------------------------------------------------------------
+> 
+> I have to unset "LDFLAGS" to continue the build.
+> 
+> Is there some wrong with my step? Is there some good method to build a
+> kernel source by the toolchain?
 
-line 6455: PKG_PROG_PKG_CONFIG: command not found
-line 6482: syntax error near unexpected token `PCRE,libpcre'---------------
-
-
-Regards
-Mahdi 
-
------Original Message-----
-From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com] 
-Sent: Tuesday, January 27, 2015 1:11 PM
-To: Mahdi Saadat
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] dansguardian
-
-On Tuesday 27 January 2015 11:10:03 Mahdi Saadat wrote:
-> Thanks for your response the log file is as below:
-> DEBUG: Executing python function rootfs_process_ignore
-> DEBUG: Python function rootfs_process_ignore finished
-> DEBUG: Executing python function rootfs_runtime_mapping
-> DEBUG: Python function rootfs_runtime_mapping finished
-> DEBUG: Executing python function do_rootfs
-> NOTE: configuring RPM platform settings
-> NOTE: configuring RPM system provides
-> NOTE: configuring RPM DB settings
-> NOTE: configuring Smart settings
-> NOTE: Note: adding Smart channel nimak (45)
-> NOTE: Note: adding Smart channel core2_32 (40)
-> NOTE: Note: adding Smart channel all (35)
-> NOTE: adding Smart RPM DB channel
-> NOTE: Note: configuring RPM cross-install scriptlet_wrapper
-> NOTE: ###### Generate rootfs #######
-> NOTE: Executing
-> '/home/nimak/poky/build/tmp/sysroots/x86_64-linux/usr/bin/createrepo
-> --update -q /home/nimak/poky/build/tmp/deploy/rpm/all' ...
-> NOTE: Executing
-> '/home/nimak/poky/build/tmp/sysroots/x86_64-linux/usr/bin/createrepo
-> --update -q /home/nimak/poky/build/tmp/deploy/rpm/nimak' ...
-> NOTE: Executing
-> '/home/nimak/poky/build/tmp/sysroots/x86_64-linux/usr/bin/createrepo
-> --update -q /home/nimak/poky/build/tmp/deploy/rpm/core2_32' .$
-> NOTE: Installing the following packages: iptables run-postinsts 
-> dansguardian squid clamav snort packagegroup-core-boot
-> ERROR: dansguardian not found in the base feeds (nimak 
-> core2-32-intel-common
-> core2-32 i586 x86 noarch any all).
-> acl-2.2.52-r0@core2_32 acl-dbg-2.2.52-r0@core2_32 
-> acl-dev-2.2.52-r0@core2_32
-> acl-doc-2.2.52-r0@core2_32 acl-locale-de-2.2.52-r0@core2_32 acl-local$
-> DEBUG: Python function do_rootfs finished
-> ERROR: Function failed: do_rootfs
-
-This suggests that the main package is empty, which likely means that
-do_install didn't install anything to ${D} (or less likely, none of the
-files that it did install matched that the value of FILES_${PN} for the
-recipe).
-See this section of the manual for a bit more detail:
-
- 
-http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#new-reci
-pe-installing
+We generally expect the linker to be gcc rather than ld, hence our default 
+value of LDFLAGS, so I think for building those bits of software that use ld 
+directly (such as the kernel) it is expected that you need to either unset 
+LDFLAGS or set it to a value that is appropriate for passing directly to ld 
+(i.e. by removing -Wl, prefixes from all options).
 
 Cheers,
 Paul
@@ -116,6 +82,4 @@ Paul
 
 Paul Eggleton
 Intel Open Source Technology Centre
-
-
 
