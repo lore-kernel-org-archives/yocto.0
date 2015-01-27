@@ -1,38 +1,37 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <ezekiel@sanborndeasis.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D3C35E00815; Tue, 27 Jan 2015 08:53:17 -0800 (PST)
+	id 55796E00815; Tue, 27 Jan 2015 09:52:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	MIME_HTML_ONLY,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [173.201.192.188 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A95B7E00753
-	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 08:53:13 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id t0RGrCQt002874
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 08:53:13 -0800 (PST)
-Received: from msp-dhcp46.wrs.com (172.25.34.46) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 27 Jan 2015 08:53:12 -0800
-Message-ID: <54C7C278.6020606@windriver.com>
-Date: Tue, 27 Jan 2015 10:53:12 -0600
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
-	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
-MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <CAJrRHk5GoTZAB9hxOtEkjBP3fQoBB2u+H7Z5eD9Jy4hqwvmfTg@mail.gmail.com>
-In-Reply-To: <CAJrRHk5GoTZAB9hxOtEkjBP3fQoBB2u+H7Z5eD9Jy4hqwvmfTg@mail.gmail.com>
-Subject: Re: ALTERNATIVE_TARGET, ALTERNATIVE_PRIORITY problem
+	*      [score: 0.0001]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
+X-Greylist: delayed 128 seconds by postgrey-1.32 at yocto-www;
+	Tue, 27 Jan 2015 09:52:15 PST
+Received: from p3plwbeout14-04.prod.phx3.secureserver.net
+	(p3plsmtp14-04-2.prod.phx3.secureserver.net [173.201.192.188])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 277A8E00753
+	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 09:52:15 -0800 (PST)
+Received: from localhost ([173.201.192.246])
+	by p3plwbeout14-04.prod.phx3.secureserver.net with bizsmtp
+	id l5q51p0015KRshH015q58D; Tue, 27 Jan 2015 10:50:05 -0700
+X-SID: l5q51p0015KRshH01
+Received: (qmail 19458 invoked by uid 99); 27 Jan 2015 17:50:05 -0000
+X-Originating-IP: 54.240.196.169
+User-Agent: Workspace Webmail 5.7.10
+Message-Id: <20150127105003.8c4e4b9406b77e1e78d5069819454ed7.4ff308449e.wbe@email14.secureserver.net>
+From: <ezekiel@sanborndeasis.net>
+To: yocto@yoctoproject.org
+Date: Tue, 27 Jan 2015 10:50:03 -0700
+Mime-Version: 1.0
+Subject: force flag and taint logging
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,143 +43,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Jan 2015 16:53:17 -0000
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 27 Jan 2015 17:52:29 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
 
-On 1/27/15 9:37 AM, Joseph Andrew de la Peña wrote:
-> Good day Yocto Community,
-> 
-> I would like to ask what's wrong with my implementation with update-alternatives:
-
-I think that you have some of the variables confused below.  I've quoted bits of
-the class's header (internal documentation):
-
-# List all of the alternatives needed by a package:
-# ALTERNATIVE_<pkg> = "name1 name2 name3 ..."
-
-# The pathname of the link
-# ALTERNATIVE_LINK_NAME[name] = "target"
-
-# NOTE: If ALTERNATIVE_LINK_NAME is not defined, it defaults to ${bindir}/name
-
-
-# The default link to create for all targets
-# ALTERNATIVE_TARGET = "target"
-
-or
-
-# A non-default link to create for a target
-# ALTERNATIVE_TARGET[name] = "target"
-
-# A package specific link for a target
-# ALTERNATIVE_TARGET_<pkg>[name] = "target"
-#
-#   This is useful when a recipe provides multiple alternatives for the
-#   same item.
-
-
-So if you have a single binary called 'bar', and want it to show up as bar1,
-bar2 and bar3 using the alternatives you would do:
-
-PACKAGES =+ "${PN}-bar1 ${PN}-bar2 ${PN}-bar3"
-ALTERNATIVE_${PN}-bar1 = "bar1"
-ALTERNATIVE_${PN}-bar2 = "bar2"
-ALTERNATIVE_${PN}-bar3 = "bar3"
-
-ALTERNATIVE_TARGET = "/bin/bar"
-
-ALTERNATIVE_LINK_NAME[bar1] = "/bin/bar1"
-ALTERNATIVE_LINK_NAME[bar2] = "/bin/bar2"
-ALTERNATIVE_LINK_NAME[bar3] = "/bin/bar3"
-
-FILES_${PN} = "/bin/bar"
-
-The result would be:
-
-package ${PN} contains /bin/bar
-
-package ${PN}-bar1 would create a link /bin/bar1 -> /bin/bar
-package ${PN}-bar2 would create a link /bin/bar2 -> /bin/bar
-package ${PN}-bar3 would create a link /bin/bar3 -> /bin/bar
-
-
-If you want to do the other way around, have three packages that all provide
-'bar'.  You would do:
-
-PACKAGES =+ "${PN}-bar1 ${PN}-bar2 ${PN}-bar3"
-ALTERNATIVE_${PN}-bar1 = "bar"
-ALTERNATIVE_${PN}-bar2 = "bar"
-ALTERNATIVE_${PN}-bar3 = "bar"
-
-ALTERNATIVE_LINK_NAME[bar] = "/bin/bar"
-
-ALTERNATIVE_TARGET_${PN}-bar1 = "/bin/bar1"
-ALTERNATIVE_TARGET_${PN}-bar2 = "/bin/bar2"
-ALTERNATIVE_TARGET_${PN}-bar3 = "/bin/bar3"
-
-FILES_${PN}-bar1 = "/bin/bar1"
-FILES_${PN}-bar2 = "/bin/bar2"
-FILES_${PN}-bar3 = "/bin/bar3"
-
-
-package ${PN}-bar1 would own a file /bin/bar1 and link it to /bin/bar
-package ${PN}-bar2 would own a file /bin/bar2 and link it to /bin/bar
-package ${PN}-bar3 would own a file /bin/bar3 and link it to /bin/bar
-
-
-(You can verify the above by looking at the package data, if using RPM, rpm -qp
-<package> --scripts will show you the logic for adding the alternative.)
-
-
-As for the install time, the packaging system will "choose" to install a package
-that meets the dependency you select.  If you don't specifically name ${PN}-bar1
-in your install, it may not be selected in favor of one of the other providers.
- The PRIORITY only affects if multiple packages are installed, which one takes
-priority over the others.
-
---Mark
-
-> =================
-> 
-> *bar_git.bb <http://bar_git.bb/>:*
-> 
-> PACKAGES =+ "${PN}-bar1 ${PN}-bar2 ${PN}-bar3"
-> RPROVIDES_${PN}-bar1 = "bar"
-> RPROVIDES_${PN}-bar2 = "bar"
-> RPROVIDES_${PN}-bar3 = "bar"
-> 
-> ALTERNATIVE_LINK_NAME[bar] = "${datadir}/foo/bar"
-> 
-> ALTERNATIVE_${PN}-bar1 = "bar"
-> ALTERNATIVE_TARGET_${PN}-bar1 = "${datadir}/foo/bar1"
-> ALTERNATIVE_PRIORITY_${PN}-bar1 = "99"
-> 
-> ALTERNATIVE_${PN}-bar2 = "bar"
-> ALTERNATIVE_TARGET_${PN}-bar2 = "${datadir}/foo/bar2"
-> ALTERNATIVE_PRIORITY_${PN}-bar2 = "98"
-> 
-> ALTERNATIVE_${PN}-bar3 = "bar"
-> ALTERNATIVE_TARGET_${PN}-bar3 = "${datadir}/foo/bar3"
-> ALTERNATIVE_PRIORITY_${PN}-bar3 = "97"
-> 
-> inherit update-alternatives
-> 
-> *packagegroup-foobar.bb <http://packagegroup-foobar.bb/>:*
-> 
-> RDEPENDS_foobar = "bar"
-> 
-> =================
-> 
-> The end result is always bar3 is present and bar is pointing to bar3. I never
-> get bar1 being present which is the result I want.
-> 
-> Please do recommend how will I properly use ALTERNATIVE_TARGET and
-> ALTERNATIVE_PRIORITY.
-> 
-> Thanks,
-> Joseph
-> 
-> 
-
+<html><body><span style=3D"font-family:Verdana; color:#000000; font-size:10=
+pt;"><div>Since picking up Dizzy I have noticed&nbsp;</div><div><br></div><=
+div>"... is tainted from a forced run"<br></div><div><br></div><div> log li=
+ne appears to stick forever once I have forced a fetch or compile on a comp=
+onent. The change to bring this in is here:<br></div><div><br></div><div><a=
+ href=3D"https://code.amazon.com/packages/Zeus-poky/commits/60c40e5db57da09=
+4ab5ecfadf8e07dc6251bec66">https://code.amazon.com/packages/Zeus-poky/commi=
+ts/60c40e5db57da094ab5ecfadf8e07dc6251bec66</a>&nbsp; <br></div><div><br></=
+div><div>It appears to me that the resultant taint file for a component, on=
+ce made, never goes away.&nbsp; It only effectively forces a fetch or recom=
+pile once, but the file itself remains. So in effect, with the new log mess=
+age, once I taint a task I will forever see this log message even though it=
+ does not appear to actually do anything.</div><div><br></div><div>In other=
+ words, from core image-minimal</div><div><br></div><div>$ bitbake zlib -f =
+-c fetch</div><div>$ bitbake zlib</div><div><br></div><div>---&gt; at this =
+stage I see the log and I see all the dependent tasks of fetch rerun as exp=
+ected.<br></div><div>WARNING:&nbsp; .../meta/recipes-core/<a href=3D"http:/=
+/zlib_1.2.8.bb">zlib_1.2.8.bb</a>.do_fetch is tainted from a forced run</di=
+v><div><br></div><div>---&gt; but if I bitbake zlib again, zlib has already=
+ been built post the force fetch, so I dont see bitbake =0Aactually rebuild=
+ anything. BUT I still get the warning message. The warning message fires b=
+ased on the presence of the taint file and it is still there in he componen=
+t folder within stamps. </div><div>$ bitbake zlib</div><div><br></div><div>=
+WARNING:&nbsp; .../meta/recipes-core/<a href=3D"http://zlib_1.2.8.bb">zlib_=
+1.2.8.bb</a>.do_fetch is tainted from a forced run</div><div><br></div><div=
+>Is there something I am missing here? It appears to be a misleading log me=
+ssage.</div><div><br></div><div>-Ezekiel<br></div><div><br></div></span></b=
+ody></html>
 
