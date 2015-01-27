@@ -1,49 +1,49 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <jdelapena@lexmark.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 63EAAE00823; Tue, 27 Jan 2015 07:33:09 -0800 (PST)
+	id 64509E00823; Tue, 27 Jan 2015 07:38:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7448E007BA
-	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 07:33:07 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga103.fm.intel.com with ESMTP; 27 Jan 2015 07:26:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,862,1389772800"; 
-	d="scan'208,217";a="445883906"
-Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
-	by FMSMGA003.fm.intel.com with ESMTP; 27 Jan 2015 07:19:22 -0800
-Received: from orsmsx115.amr.corp.intel.com (10.22.240.11) by
-	ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server
-	(TLS) id 14.3.195.1; Tue, 27 Jan 2015 07:33:03 -0800
-Received: from fmsmsx158.amr.corp.intel.com (10.18.116.75) by
-	ORSMSX115.amr.corp.intel.com (10.22.240.11) with Microsoft SMTP Server
-	(TLS) id 14.3.195.1; Tue, 27 Jan 2015 07:33:03 -0800
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.42]) by
-	fmsmsx158.amr.corp.intel.com ([169.254.15.122]) with mapi id
-	14.03.0195.001; Tue, 27 Jan 2015 07:33:03 -0800
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, Jan.
-	27, 2015 8:00 AM US Pacific Time - Updated
-Thread-Index: AdA6Rol+SA0Hn/WNTlCQ6vwNX4FuVQ==
-Date: Tue, 27 Jan 2015 15:33:02 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E553AD7D7@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.106]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [64.18.3.34 listed in list.dnswl.org]
+Received: from exprod8og117.obsmtp.com (exprod8og117.obsmtp.com [64.18.3.34])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CCC4CE007BA
+	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 07:37:53 -0800 (PST)
+Received: from mail-qg0-f45.google.com ([209.85.192.45]) (using TLSv1) by
+	exprod8ob117.postini.com ([64.18.7.12]) with SMTP
+	ID DSNKVMew0QUOrkEr6IUwvTFe8o4CBB72e80x@postini.com;
+	Tue, 27 Jan 2015 07:37:58 PST
+Received: by mail-qg0-f45.google.com with SMTP id q107so12190208qgd.4
+	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 07:37:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=3kTeppYp+yYFg514esk6yxCw1W95PdXGWYyPlCMwjYk=;
+	b=GIk+8MzRTUZFALLkkE/Xf1tago/655Bog+vRxdbOhkA9hKJszwq8ZjvR3eA3nbD2u2
+	Z5afsZJPTgNQZ9QAG8qCLtn5qvga2PkcV5tmiq7sj4iwT1ZtkTmwmqyVcLqW6PZALqKD
+	7/CTFJkD00Jky8MiBZVkxveUejdPI94FI5bHzOfsH9GnT2aCB3CBH7O5/6hYIkocSaqb
+	/UJO0mkk0+UgYNYRHrbzF0un8Gp0ylqM40+eYCEPWPW1mFpU+eZ69dZYjb2C+eiAlfxq
+	HFbgUKGgeMH7WJDUAvGD6CpsQSlX+uEQvakcxrMKY6TKB0tXQ+YNfAj6hxqNmAUFwlez
+	Xx5g==
+X-Gm-Message-State: ALoCoQmVvKxBErTReCrn+CyBxDF1tL36uDoE7cNOSPeS7LHKdRnm919C3Sb06tx6EC8vUroX+LG87Hnm7WbCNp7/sjc4EW40ky26Gzb6NVhYqlmbgY/VjeWFi3cSTfq1OAspA1Hnn7sN6hcAglbSEkkw1o8GerD8qA==
+X-Received: by 10.224.80.202 with SMTP id u10mr2994592qak.60.1422373073011;
+	Tue, 27 Jan 2015 07:37:53 -0800 (PST)
 MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, Jan. 27, 2015 8:00 AM US Pacific Time - Updated
+X-Received: by 10.224.80.202 with SMTP id u10mr2994580qak.60.1422373072883;
+	Tue, 27 Jan 2015 07:37:52 -0800 (PST)
+Received: by 10.96.71.97 with HTTP; Tue, 27 Jan 2015 07:37:52 -0800 (PST)
+Date: Tue, 27 Jan 2015 23:37:52 +0800
+Message-ID: <CAJrRHk5GoTZAB9hxOtEkjBP3fQoBB2u+H7Z5eD9Jy4hqwvmfTg@mail.gmail.com>
+From: =?UTF-8?Q?Joseph_Andrew_de_la_Pe=C3=B1a?= <jdelapena@lexmark.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: ALTERNATIVE_TARGET, ALTERNATIVE_PRIORITY problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,329 +55,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Jan 2015 15:33:09 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E553AD7D7fmsmsx111amrcor_"
+X-List-Received-Date: Tue, 27 Jan 2015 15:38:01 -0000
+Content-Type: multipart/alternative; boundary=001a11c3cf1abf6758050da4096a
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E553AD7D7fmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--001a11c3cf1abf6758050da4096a
+Content-Type: text/plain; charset=UTF-8
 
-Tuesday, January 27, 2015 8:00 AM US Pacific Time
+Good day Yocto Community,
 
+I would like to ask what's wrong with my implementation with
+update-alternatives:
 
+=================
 
-Agenda:
+*bar_git.bb <http://bar_git.bb/>:*
 
+PACKAGES =+ "${PN}-bar1 ${PN}-bar2 ${PN}-bar3"
+RPROVIDES_${PN}-bar1 = "bar"
+RPROVIDES_${PN}-bar2 = "bar"
+RPROVIDES_${PN}-bar3 = "bar"
 
+ALTERNATIVE_LINK_NAME[bar] = "${datadir}/foo/bar"
 
-* Opens collection - 5 min (Stephen)
+ALTERNATIVE_${PN}-bar1 = "bar"
+ALTERNATIVE_TARGET_${PN}-bar1 = "${datadir}/foo/bar1"
+ALTERNATIVE_PRIORITY_${PN}-bar1 = "99"
 
-* Yocto Project status - 5 min (Stephen/team)
+ALTERNATIVE_${PN}-bar2 = "bar"
+ALTERNATIVE_TARGET_${PN}-bar2 = "${datadir}/foo/bar2"
+ALTERNATIVE_PRIORITY_${PN}-bar2 = "98"
 
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.8_Status
+ALTERNATIVE_${PN}-bar3 = "bar"
+ALTERNATIVE_TARGET_${PN}-bar3 = "${datadir}/foo/bar3"
+ALTERNATIVE_PRIORITY_${PN}-bar3 = "97"
 
-https://wiki.yoctoproject.org/wiki/Yocto_1.8_Schedule
+inherit update-alternatives
 
-https://wiki.yoctoproject.org/wiki/Yocto_1.8_Features
+*packagegroup-foobar.bb <http://packagegroup-foobar.bb/>:*
 
-* SWAT team rotation: Ross -> Cristian
+RDEPENDS_foobar = "bar"
 
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+=================
 
-* Opens - 10 min
+The end result is always bar3 is present and bar is pointing to bar3. I
+never get bar1 being present which is the result I want.
 
-* Team Sharing - 10 min
-
-
-
-
-
-We encourage people attending the meeting to logon the Yocto Project IRC ch=
-ancel during the meeting (optional):
-
-
-
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
-
-
-
-Conference Details:
-
-Company:           WIND RIVER SYS
-
-Ready-Access Number: 8007302996/9139049836
-
-Access Code:     2705751
-
-
-For International numbers see: https://www.yoctoproject.org/tools-resources=
-/community/weekly-technical-call
-
+Please do recommend how will I properly use ALTERNATIVE_TARGET and
+ALTERNATIVE_PRIORITY.
 
 Thanks,
+Joseph
 
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E553AD7D7fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
+--001a11c3cf1abf6758050da4096a
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";
-	mso-fareast-language:ZH-CN;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Tuesday, January 27, 2015 8:00 AM US Pacific Time<=
-o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Project_v1.8_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-8_Status</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.8_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.8_Schedule</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.8_Features">https://wiki.yoctoproject.org/wiki/Yocto_1.8_Features</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* SWAT team rotation: Ross -&gt; Cristian<o:p></o:=
-p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Build_Failure_Swat_Team">https://wiki.yoctoproject.org/wiki/Yocto_Build_F=
-ailure_Swat_Team</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens - 10 min
-<o:p></o:p></span></p>
-<div style=3D"border:none;border-bottom:solid windowtext 1.0pt;padding:0in =
-0in 1.0pt 0in">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-</div>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">We encourage people attending the meeting to logo=
-n the Yocto Project IRC chancel during the meeting (optional):<o:p></o:p></=
-p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Yocto IRC: <a href=3D"http://webchat.freenode.net=
-/?channels=3D#yocto">
-http://webchat.freenode.net/?channels=3D#yocto</a><o:p></o:p></p>
-<p class=3D"MsoPlainText">IRC Tutorial: <a href=3D"http://www.irchelp.org/i=
-rchelp/irctutorial.html">
-http://www.irchelp.org/irchelp/irctutorial.html</a> <o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Conference Details:<o:p></o:p></p>
-<p class=3D"MsoPlainText">Company:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; WIND RIVER SYS<o:p></o:p></p>
-<p class=3D"MsoPlainText">Ready-Access Number: 8007302996/9139049836<o:p></=
-o:p></p>
-<p class=3D"MsoPlainText">Access Code:&nbsp;&nbsp;&nbsp;&nbsp; 2705751<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
-Verdana&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span><=
-/b></p>
-<p class=3D"MsoPlainText">For International numbers see: <a href=3D"https:/=
-/www.yoctoproject.org/tools-resources/community/weekly-technical-call">
-https://www.yoctoproject.org/tools-resources/community/weekly-technical-cal=
-l</a><o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+<div dir=3D"ltr"><span style=3D"font-size:12.8000001907349px">Good day Yoct=
+o Community,</span><div style=3D"font-size:12.8000001907349px"><br></div><d=
+iv style=3D"font-size:12.8000001907349px">I would like to ask what&#39;s wr=
+ong with my implementation with update-alternatives:</div><div style=3D"fon=
+t-size:12.8000001907349px"><br></div><div style=3D"font-size:12.80000019073=
+49px">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><div style=
+=3D"font-size:12.8000001907349px"><br></div><div style=3D"font-size:12.8000=
+001907349px"><b><a href=3D"http://bar_git.bb/" target=3D"_blank">bar_git.bb=
+</a>:</b></div><div style=3D"font-size:12.8000001907349px"><br></div><div s=
+tyle=3D"font-size:12.8000001907349px">PACKAGES =3D+ &quot;<span style=3D"fo=
+nt-size:13px">${PN}-</span>bar1=C2=A0<span style=3D"font-size:13px">${PN}-<=
+/span>bar2=C2=A0<span style=3D"font-size:13px">${PN}-</span>bar3&quot;</div=
+><div style=3D"font-size:12.8000001907349px">RPROVIDES_${PN}-bar1 =3D &quot=
+;bar&quot;</div><div style=3D"font-size:12.8000001907349px">RPROVIDES_${PN}=
+-bar2 =3D &quot;bar&quot;<br></div><div style=3D"font-size:12.8000001907349=
+px">RPROVIDES_${PN}-bar3 =3D &quot;bar&quot;<br></div><div style=3D"font-si=
+ze:12.8000001907349px"><br></div><div style=3D"font-size:12.8000001907349px=
+"><div style=3D"font-size:13px">ALTERNATIVE_LINK_NAME[bar] =3D &quot;${data=
+dir}/foo/bar&quot;<br><br></div><div style=3D"font-size:13px">ALTERNATIVE_$=
+{PN}-bar1 =3D &quot;bar&quot;<br>ALTERNATIVE_TARGET_${PN}-bar1=C2=A0=3D &qu=
+ot;${datadir}/foo/bar1&quot;</div><div style=3D"font-size:13px">ALTERNATIVE=
+_PRIORITY_${PN}-bar1=C2=A0=3D &quot;99&quot;</div><div style=3D"font-size:1=
+3px"><br>ALTERNATIVE_${PN}-bar2=C2=A0=3D &quot;bar&quot;</div><div style=3D=
+"font-size:13px"></div><div style=3D"font-size:13px">ALTERNATIVE_TARGET_${P=
+N}-bar2=C2=A0=3D &quot;${datadir}/foo/bar2&quot;</div><div style=3D"font-si=
+ze:13px">ALTERNATIVE_PRIORITY_${PN}-bar2=C2=A0=3D &quot;98&quot;</div></div=
+><div style=3D"font-size:13px"><br></div><div style=3D"font-size:13px"><div=
+>ALTERNATIVE_${PN}-bar3=C2=A0=3D &quot;bar&quot;</div><div></div><div>ALTER=
+NATIVE_TARGET_${PN}-bar3=C2=A0=3D &quot;${datadir}/foo/bar3&quot;</div><div=
+>ALTERNATIVE_PRIORITY_${PN}-bar3=C2=A0=3D &quot;97&quot;</div><div><br></di=
+v><div>inherit update-alternatives</div><div><br></div><div><b><a href=3D"h=
+ttp://packagegroup-foobar.bb/" target=3D"_blank">packagegroup-foobar.bb</a>=
+:</b></div><div><br></div><div>RDEPENDS_foobar =3D &quot;bar&quot;</div><di=
+v><br></div><div>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div><=
+div><br></div><div>The end result is always bar3 is present and bar is poin=
+ting to bar3. I never get bar1 being present which is the result I want.</d=
+iv><div><br></div><div>Please do recommend how will I properly use ALTERNAT=
+IVE_TARGET and ALTERNATIVE_PRIORITY.</div><div><br></div><div>Thanks,</div>=
+<div>Joseph</div></div></div>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E553AD7D7fmsmsx111amrcor_--
+--001a11c3cf1abf6758050da4096a--
