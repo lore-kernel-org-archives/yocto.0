@@ -1,37 +1,48 @@
-Return-Path: <Thomas.Moore2@atk.com>
+Return-Path: <yani.dubin@taitradio.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BCD47E00949; Tue, 27 Jan 2015 13:41:53 -0800 (PST)
+	id 41796E007BA; Tue, 27 Jan 2015 15:19:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mx-mn.atk.com (mx-mn.atk.com [192.107.248.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69919E00947
-	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 13:41:41 -0800 (PST)
-Received: from unknown (HELO UT40SVEH3.atk.com) ([146.168.70.140])
-	by mx-mn.atk.com with ESMTP; 27 Jan 2015 15:33:31 -0600
-Received: from UT40SVCWEM001.atk.com ([169.254.4.192]) by UT40SVEH3.atk.com
-	([146.168.78.8]) with mapi id 14.03.0174.001;
-	Tue, 27 Jan 2015 14:41:39 -0700
-From: "Moore, Thomas (FtWorth)" <Thomas.Moore2@ATK.COM>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Patch runqemu-internal in nativesdk
-Thread-Index: AdA6WE7U1KyXuDROTWKbKYGRQDgGmQAIUvlw
-Date: Tue, 27 Jan 2015 21:41:39 +0000
-Message-ID: <7B6FE55CD594D7478CED8A39DF3BFC0A5E741289@UT40SVCWEM001.atk.com>
-References: <7B6FE55CD594D7478CED8A39DF3BFC0A5E7401B0@UT40SVCWEM001.atk.com>
-In-Reply-To: <7B6FE55CD594D7478CED8A39DF3BFC0A5E7401B0@UT40SVCWEM001.atk.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.99.32.35]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.53 listed in list.dnswl.org]
+Received: from mail-oi0-f53.google.com (mail-oi0-f53.google.com
+	[209.85.218.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAA2FE007BA
+	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 15:19:08 -0800 (PST)
+Received: by mail-oi0-f53.google.com with SMTP id i138so14908382oig.12
+	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 15:19:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=YSkmy+KSNcYwH+pO4ZB5FkfWVvKlmliy4CVuE0Issl8=;
+	b=Kf/jHIOuihPyIiEZi3zvH+C57fz6XRfLhg8/E8fPw8wPWRK3VwMP5MOzu6YKFpuZZc
+	VD0Tn3GBCn3lediQbow8WYL+FCb4+PzjUHLf7ElEJrKcGsoFq/WPzWqG2wZ3VehSak1w
+	74fnWpsdIUUCAXC0PYLKsmmGWG/MC6JaLIskKWbVWmeG3FX9qx+2XVBgvv2HamicxQJH
+	dRN/4nufWj6GN3T2ohq5nD0bGt5168w28NOpHSI3TjN9xnvoM5xunsmQEJuwzgDK0Vw6
+	YpV24u9EgbunLSwZ2+abky5zj4jRo2yrZkds2dphDOYEOQDiaXW1od1/kalLh39gLg1b
+	TIpg==
+X-Gm-Message-State: ALoCoQkFd2GGIdmnkQptMTr2KixSagtkqBsfJqSAhblvkK2/qSmOhcgjiH9T50xVpUt07pf/W4P2nFERRmzNvB6DdajKxRNwrWskIX/fv5UOERNdeHBqC7I=
 MIME-Version: 1.0
-Subject: Re: Patch runqemu-internal in nativesdk
+X-Received: by 10.182.119.232 with SMTP id kx8mr293098obb.37.1422400747381;
+	Tue, 27 Jan 2015 15:19:07 -0800 (PST)
+Received: by 10.202.228.7 with HTTP; Tue, 27 Jan 2015 15:19:07 -0800 (PST)
+In-Reply-To: <54C7A9EA.7000306@windriver.com>
+References: <CAHSWo-jFj5Wk1xBvaaY7UegFjQ2XJn_PK0YFcy+pNeLW2ThMpQ@mail.gmail.com>
+	<54C7A9EA.7000306@windriver.com>
+Date: Wed, 28 Jan 2015 12:19:07 +1300
+Message-ID: <CAHSWo-j2kOvKG11=KOCKPkxCY6=43cpedmGtQghyuA5Npg3h=g@mail.gmail.com>
+From: Yani Dubin <yani.dubin@taitradio.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: (IIO) ADC freeze on am335x processor on 3.14.26ltsi kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,174 +54,159 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Jan 2015 21:41:53 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E741289UT40SVCWEM001at_"
+X-List-Received-Date: Tue, 27 Jan 2015 23:19:11 -0000
+Content-Type: multipart/alternative; boundary=001a11c2f43a46bdd8050daa7bae
 
---_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E741289UT40SVCWEM001at_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--001a11c2f43a46bdd8050daa7bae
+Content-Type: text/plain; charset=UTF-8
 
-Got it working. If anyone was curious, I utilized the patchdir flag:
+Hi Bruce,
 
-SRC_URI_append =3D "file://runqemu_change_cpu_to_haswell.patch;patchdir=3D$=
-{WORKDIR}${COREBASE}"
+On 28 January 2015 at 04:08, Bruce Ashfield <bruce.ashfield@windriver.com>
+wrote:
 
-Thomas
-
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Moore, Thomas (FtWorth)
-Sent: Tuesday, January 27, 2015 11:57 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] Patch runqemu-internal in nativesdk
-
-My system has an Intel Core processor based on the Haswell architecture, an=
-d I'm using the corei7 tuning in my image. As it's currently implemented, t=
-he runqemu-internal script utilizes the core2dup cpu option when running th=
-e qemux86-64 QEMUARCH. However, in order to run my image with QEMU, I need =
-to use the Haswell cpu option. While it's possible to run my image by addin=
-g 'qemuparams=3D"-cpu Haswell"' to the runqemu command, I would like to cha=
-nge the cpu option in the runqemu-internal script as part of the nativesdk =
-build so that users of the SDK don't have to mess with anything. I think th=
-is can be accomplished by appending the nativesdk-qemu-helper recipe to inc=
-lude a patch to make the simple change. However, it gets a little strange b=
-ecause the recipe includes the runqemu-internal script from the ${COREBASE}=
- as such:
-
-SRC_URI =3D "file://${COREBASE}/scripts/runqemu-internal<file:///\\$%7bCORE=
-BASE%7d\scripts\runqemu-internal>"
-
-Because of the dynamic nature of ${COREBASE}, I'm not exactly sure how to p=
-repare my patch since the file will be located in some arbitrary folder wit=
-hin the ${WORKDIR}. I'm assuming I can do something creative in do_patch(),=
- but I'm not sure where to start. Any suggestions?
-
-Thanks,
-
-Thomas
-
-
---_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E741289UT40SVCWEM001at_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>  On 15-01-26 11:54 PM, Yani Dubin wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Got it working. If any=
-one was curious, I utilized the patchdir flag:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">SRC_URI_append =3D &qu=
-ot;file://runqemu_change_cpu_to_haswell.patch;patchdir=3D${WORKDIR}${COREBA=
-SE}&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<p class=3D"MsoNormal"><b><span style=3D"color:#1F497D">Thomas</span></b><s=
-pan style=3D"color:#1F497D"><o:p></o:p></span></p>
-</div>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
-unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-<b>On Behalf Of </b>Moore, Thomas (FtWorth)<br>
-<b>Sent:</b> Tuesday, January 27, 2015 11:57 AM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] Patch runqemu-internal in nativesdk<o:p></o:p></spa=
-n></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">My system has an Intel Core processor based on the H=
-aswell architecture, and I&#8217;m using the corei7 tuning in my image. As =
-it&#8217;s currently implemented, the runqemu-internal script utilizes the =
-core2dup cpu option when running the qemux86-64
- QEMUARCH. However, in order to run my image with QEMU, I need to use the H=
-aswell cpu option. While it&#8217;s possible to run my image by adding &#82=
-16;qemuparams=3D&#8221;-cpu Haswell&#8221;&#8217; to the runqemu command, I=
- would like to change the cpu option in the runqemu-internal script
- as part of the nativesdk build so that users of the SDK don&#8217;t have t=
-o mess with anything. I think this can be accomplished by appending the nat=
-ivesdk-qemu-helper recipe to include a patch to make the simple change. How=
-ever, it gets a little strange because
- the recipe includes the runqemu-internal script from the ${COREBASE} as su=
-ch:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">SRC_URI =3D &quot;<a href=3D"file:///\\$%7bCOREBASE%=
-7d\scripts\runqemu-internal">file://${COREBASE}/scripts/runqemu-internal</a=
->&#8221;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Because of the dynamic nature of ${COREBASE}, I&#821=
-7;m not exactly sure how to prepare my patch since the file will be located=
- in some arbitrary folder within the ${WORKDIR}. I&#8217;m assuming I can d=
-o something creative in do_patch(), but I&#8217;m not
- sure where to start. Any suggestions?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thomas<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+> These are 3 adjacent changesets on the dizzy branch - I gather that is as
+> much as I can narrow it down?
+>
+>  We may need to get your help in tracking the problem down, since without
+> the h/w on hand, it will be difficult to figure out what changed between
+> the
+> working and non-working revisions.
+>
+> I have some additional 3.14 updates queued, and they may fix the issue ..
+> but again, I can't say for sure.
+>
+> Are you able to bisect the kernel directly ? I only submit SRCREV updates
+> to
+> the linux-yocto recipes at particular milestones, but within the kernel we
+> obviously have more granularity.
+>
+> After you've built the kernel the first time, you can head into devshell
+> and
+> then use the unpacked and patched src tree and do a normal git bisect/build
+> workflow. You'd need to copy the resulting kernels out to your target, but
+> that
+> would narrow down the bad commit/merge pretty quickly.
+>
 
---_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E741289UT40SVCWEM001at_--
+Bisecting the 1800+ changesets between these points yielded a culprit:
+[bb01842184bc89666819ee7dceb78c61505036ed] mfd: ti_am335x_tscadc: Fix TSC
+operation after ADC continouous mode
+
+This is a two line changeset. I have confirmed that reverting the second
+change against the previously broken version fixes it for me. So I now have
+a patch I can apply locally until such time as this is fixed upstream.
+
+Since this is my first time reporting a kernel bug, and I now know exactly
+what I am looking for can you give me any pointers on where/how to search
+to see if an upstream fix exists already?
+
+Thank you for your help, and a welcome introduction to both devshell (I
+used to do kernel reconfigure/compile the hard way) and git bisect - I can
+see these are going to be very handy in the future.
+
+Thanks again,
+Yani.
+
+-- 
+
+------------------------------
+This email, including any attachments, is only for the intended recipient. 
+It is subject to copyright, is confidential and may be the subject of legal 
+or other privilege, none of which is waived or lost by reason of this 
+transmission.
+If you are not an intended recipient, you may not use, disseminate, 
+distribute or reproduce such email, any attachments, or any part thereof. 
+If you have received a message in error, please notify the sender 
+immediately and erase all copies of the message and any attachments.
+Unfortunately, we cannot warrant that the email has not been altered or 
+corrupted during transmission nor can we guarantee that any email or any 
+attachments are free from computer viruses or other conditions which may 
+damage or interfere with recipient data, hardware or software. The 
+recipient relies upon its own procedures and assumes all risk of use and of 
+opening any attachments.
+------------------------------
+
+--001a11c2f43a46bdd8050daa7bae
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Bruce,<br><div class=3D"gmail_extra"><br><div class=3D"=
+gmail_quote">On 28 January 2015 at 04:08, Bruce Ashfield <span dir=3D"ltr">=
+&lt;<a href=3D"mailto:bruce.ashfield@windriver.com" target=3D"_blank">bruce=
+.ashfield@windriver.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex">
+ =20
+   =20
+ =20
+  <div><span class=3D"">
+    <div>On 15-01-26 11:54 PM, Yani Dubin wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">These are 3 adjacent changesets on the dizzy branch =
+- I gather
+          that is as much as I can narrow it down?<br>
+      </div>
+    </blockquote>
+    </span>
+    We may need to get your help in tracking the problem down, since
+    without<br>
+    the h/w on hand, it will be difficult to figure out what changed
+    between the<br>
+    working and non-working revisions.<br>
+    <br>
+    I have some additional 3.14 updates queued, and they may fix the
+    issue .. <br>
+    but again, I can&#39;t say for sure.<br>
+    <br>
+    Are you able to bisect the kernel directly ? I only submit SRCREV
+    updates to<br>
+    the linux-yocto recipes at particular milestones, but within the
+    kernel we <br>
+    obviously have more granularity.<br>
+    <br>
+    After you&#39;ve built the kernel the first time, you can head into
+    devshell and <br>
+    then use the unpacked and patched src tree and do a normal git
+    bisect/build<br>
+    workflow. You&#39;d need to copy the resulting kernels out to your
+    target, but that<br>
+    would narrow down the bad commit/merge pretty quickly.<br></div></block=
+quote><div><br></div><div>Bisecting the 1800+ changesets between these poin=
+ts yielded a culprit: <br>[bb01842184bc89666819ee7dceb78c61505036ed] mfd: t=
+i_am335x_tscadc: Fix TSC operation after ADC continouous mode<br><br></div>=
+<div>This is a two line changeset. I have confirmed that reverting the seco=
+nd change against the previously broken version fixes it for me. So I now h=
+ave a patch I can apply locally until such time as this is fixed upstream.<=
+br><br></div><div>Since this is my first time reporting a kernel bug, and I=
+ now know exactly what I am looking for can you give me any pointers on whe=
+re/how to search to see if an upstream fix exists already?<br><br></div><di=
+v>Thank you for your help, and a welcome introduction to both devshell (I u=
+sed to do kernel reconfigure/compile the hard way) and git bisect - I can s=
+ee these are going to be very handy in the future.<br clear=3D"all"></div><=
+/div><br></div><div class=3D"gmail_extra">Thanks again,<br>Yani.<br></div><=
+/div>
+
+<br>
+<hr><font color=3D"#808080">This email, including any attachments, is only
+ for the intended recipient. It is subject to copyright, is confidential
+ and may be the subject of legal or other privilege, none of which is=20
+waived or lost by reason of this transmission.</font><div><font color=3D"#8=
+08080">If
+ you are not an intended recipient, you may not use, disseminate,=20
+distribute or reproduce such email, any attachments, or any part=20
+thereof. If you have received a message in error, please notify the=20
+sender immediately and erase all copies of the message and any=20
+attachments.</font></div><div><font color=3D"#808080">Unfortunately, we=20
+cannot warrant that the email has not been altered or corrupted during=20
+transmission nor can we guarantee that any email or any attachments are=20
+free from computer viruses or other conditions which may damage or=20
+interfere with recipient data, hardware or software. The recipient=20
+relies upon its own procedures and assumes all risk of use and of=20
+opening any attachments.</font></div><div><hr></div>
+
+--001a11c2f43a46bdd8050daa7bae--
