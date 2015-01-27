@@ -1,57 +1,47 @@
-Return-Path: <timo.j.pulkkinen@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5D3B3E00815; Tue, 27 Jan 2015 11:19:23 -0800 (PST)
+	id BAF84E00815; Tue, 27 Jan 2015 11:50:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (timo.j.pulkkinen[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [74.125.82.175 listed in list.dnswl.org]
-Received: from mail-we0-f175.google.com (mail-we0-f175.google.com
-	[74.125.82.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22594E00753
-	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 11:19:15 -0800 (PST)
-Received: by mail-we0-f175.google.com with SMTP id p10so16773958wes.6
-	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 11:19:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=iFxCSqlGqtCCFxhUg32PmuEdSMsmHvxDXETS1+TCjhU=;
-	b=P6gOiAjVV8se9R9Zn1x6xmVq2G91fo8yCUvnjaEvF6HubmJRzTWJYY1WB6M+TpY2J4
-	GU574MpCa7Ri4GRn83zkBpWS1QxIYJQNPO1IE5vQqZ3DCpEMEQj/pwBz7nmMmp+aOxvR
-	DpeRDumrnzL/8utm2G1bTMzi8h0HiF9KMg1j4fKPX4POO37mJpa7sKf6n11t2d3mQnLo
-	+cSZ2w1hLghcfzw3AeaCMW5VMvi2qtmaEHrB5uhEjuM2PmTc5tbT/DfCLsaOYNnDZdYb
-	biI5ZNmPE4na/NQzvET0Of4EJTyoGmf8YUZ3mjI7TmC4SdybmCAmXGN8vxoSK7WyjrSj
-	McKg==
-X-Received: by 10.180.208.74 with SMTP id mc10mr8918665wic.51.1422386354028;
-	Tue, 27 Jan 2015 11:19:14 -0800 (PST)
-Received: from [192.168.1.3] (mobile-internet-2e84bc-7.dhcp.inet.fi.
-	[46.132.188.7])
-	by mx.google.com with ESMTPSA id g10sm19346486wic.7.2015.01.27.11.19.12
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 27 Jan 2015 11:19:13 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 8.1 \(1993\))
-From: Timo Pulkkinen <timo.j.pulkkinen@gmail.com>
-In-Reply-To: <CAJTo0LbHT2Pksxog-aaHravsy9sqyK1pdqz+rhsDWUGkX_7FTQ@mail.gmail.com>
-Date: Tue, 27 Jan 2015 21:19:01 +0200
-X-Mao-Original-Outgoing-Id: 444079141.277728-f72bf8e6160a77ce9c15b6dd50b3cecc
-Message-Id: <E690085A-252E-472B-8683-4E4590CDB2AA@gmail.com>
+	*      [209.85.192.50 listed in list.dnswl.org]
+Received: from mail-qg0-f50.google.com (mail-qg0-f50.google.com
+	[209.85.192.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79D28E00753
+	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 11:49:50 -0800 (PST)
+Received: by mail-qg0-f50.google.com with SMTP id f51so13407745qge.9
+	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 11:49:49 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=qGUDCv5aCB37tC8Iav4l6and3ZFWc4CHEPyaJs5JyDY=;
+	b=bvoMfIV/wf4hNphGnzPsNsbakVuCdEEtysvFSEBWSLHkt0SgnjgcCSg2D5tIdZ9Zsu
+	D5wvOa+vu87baQTxF2oBzyZUXqHe++ZJRM82IeAJW160q0jGlQBTCRwM058DLlt9lJ0S
+	gyQACq/AfFBNZaGy3imQoUEOKn2CSNmq+V+f5/ByyVF8LbK88YggwbCEZb91FUjZnxHo
+	R66zPHl/RYJkXRghMoNgw3F26wAgdGAf+tOUaFXYRhBVp6jRB+pGQTEJcV4TXkiRDhZO
+	D2LupfSwj9mQmjuIA5JLd/EWfO0gxcqsf7+aSspk3IB7Etcn+ZQrM9DCbC7bEyXSLmDw
+	8IaQ==
+X-Gm-Message-State: ALoCoQlRfh43ix6ArDJrvpWA2t14KgDFgDfh2AhRHVDwjQoleH4ZmU8Z+sTV4kdw/eRWHFtHs2LX
+X-Received: by 10.224.12.19 with SMTP id v19mr5235472qav.22.1422388189610;
+	Tue, 27 Jan 2015 11:49:49 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.140.96.166 with HTTP; Tue, 27 Jan 2015 11:49:29 -0800 (PST)
+In-Reply-To: <E690085A-252E-472B-8683-4E4590CDB2AA@gmail.com>
 References: <23F077AC-43FF-472B-B9D0-A30785E7557A@gmail.com>
 	<CAJTo0LbHT2Pksxog-aaHravsy9sqyK1pdqz+rhsDWUGkX_7FTQ@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-X-Mailer: Apple Mail (2.1993)
+	<E690085A-252E-472B-8683-4E4590CDB2AA@gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 27 Jan 2015 19:49:29 +0000
+Message-ID: <CAJTo0LaoE+8LS4DJgaULMdOze8gr3D+5Tn4jhPS-ctFyMKXbKA@mail.gmail.com>
+To: Timo Pulkkinen <timo.j.pulkkinen@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Google Chrome recipe and systemd => how to satisfy runtime requirement for libudev.so.0?
 X-BeenThere: yocto@yoctoproject.org
@@ -65,49 +55,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Jan 2015 19:19:23 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Tue, 27 Jan 2015 19:50:03 -0000
+Content-Type: multipart/alternative; boundary=089e0149cadcc65a5a050da78ee6
+
+--089e0149cadcc65a5a050da78ee6
+Content-Type: text/plain; charset=UTF-8
+
+On 27 January 2015 at 19:19, Timo Pulkkinen <timo.j.pulkkinen@gmail.com>
+wrote:
+
+> tried this (I wasn't sure if I had done -ccleanstate for google-chrome
+> before together after removing the tmp), but it doesn't help. Sysroot
+> correctly contains /lib/libudev.so.1 (libudev.so.1.6.0, systemd).
+> tmp/deploy/rpm/ contains udev rpms also - is this a problem, or do they
+> just get built before systemd preference takes over?
+>
+> I looked more closely on my google-chrome recipe build (bitbake -v) and it
+> warns about missing library already on (i think) qa task:
+> NOTE: Couldn't find shared library provider for libudev.so.0, used by
+> files:
+> /.../poky/nuc/tmp/work/x86_64-poky-linux/google-chrome/40.0.2214.91-1-r0/packages-split/google-chrome/opt/google/chrome/chrome
+>
+> Is there really a provider for libudev.so.0 when using systemd?
+>
+
+There really isn't - systemd has a newer udev that had an ABI change, so
+the version was increased.
+
+There's no way that your tmp/deploy/rpms can contain both systemd and udev
+packages (specifically, libudev1 and libudev0) unless you don't delete it
+when enabling the systemd DISTRO_FEATURE.  The systemd and udev packages
+conflict with each other and they both can't be built at the same time.
+
+A copy of the cooker log for the image would be useful after you've deleted
+tmp and -ccleansstate's google-chrome if you are certain that this is what
+has happened.
+
+Ross
+
+--089e0149cadcc65a5a050da78ee6
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 27 January 2015 at 19:19, Timo Pulkkinen <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:timo.j.pulkkinen@gmail.com" target=3D"_blank">timo.j.pulkkinen@g=
+mail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=
+=3D":2a0" class=3D"a3s" style=3D"overflow:hidden">tried this (I wasn&#39;t =
+sure if I had done -ccleanstate for google-chrome before together after rem=
+oving the tmp), but it doesn&#39;t help. Sysroot correctly contains /lib/li=
+budev.so.1 (libudev.so.1.6.0, systemd).<br>
+tmp/deploy/rpm/ contains udev rpms also - is this a problem, or do they jus=
+t get built before systemd preference takes over?<br>
+<br>
+I looked more closely on my google-chrome recipe build (bitbake -v) and it =
+warns about missing library already on (i think) qa task:<br>
+NOTE: Couldn&#39;t find shared library provider for libudev.so.0, used by f=
+iles: /.../poky/nuc/tmp/work/x86_64-poky-linux/google-chrome/40.0.2214.91-1=
+-r0/packages-split/google-chrome/opt/google/chrome/chrome<br>
+<br>
+Is there really a provider for libudev.so.0 when using systemd?</div></bloc=
+kquote><div><br></div><div>There really isn&#39;t - systemd has a newer ude=
+v that had an ABI change, so the version was increased.</div><div><br></div=
+><div>There&#39;s no way that your tmp/deploy/rpms can contain both systemd=
+ and udev packages (specifically, libudev1 and libudev0) unless you don&#39=
+;t delete it when enabling the systemd DISTRO_FEATURE.=C2=A0 The systemd an=
+d udev packages conflict with each other and they both can&#39;t be built a=
+t the same time.</div><div><br></div><div>A copy of the cooker log for the =
+image would be useful after you&#39;ve deleted tmp and -ccleansstate&#39;s =
+google-chrome if you are certain that this is what has happened.</div><div>=
+<br></div><div>Ross</div></div></div></div>
 
-> On 27.1.2015, at 14.32, Burton, Ross <ross.burton@intel.com> wrote:
->=20
->>=20
->> On 27 January 2015 at 11:46, Timo Pulkkinen =
-<timo.j.pulkkinen@gmail.com> wrote:
->>=20
->> error: Can't install google-chrome-40.0.2214.91+1-r0@x86_64: no =
-package provides libudev.so.0()(64bit)
->=20
-> My guess is that you didn't wipe away your tmp when changing =
-DISTRO_FEATURES, which leads to the sysroot and package deploy =
-directories having both udev and systemd in.
->=20
-> Try deleting your tmp/ directory (sstate-cache will be used to rebuild =
-everything quickly) and then cleaning Chrome (bitbake -ccleansstate =
-google-chrome) before building the image again.
->=20
-Hello,
-
-tried this (I wasn't sure if I had done -ccleanstate for google-chrome =
-before together after removing the tmp), but it doesn't help. Sysroot =
-correctly contains /lib/libudev.so.1 (libudev.so.1.6.0, systemd).
-tmp/deploy/rpm/ contains udev rpms also - is this a problem, or do they =
-just get built before systemd preference takes over?
-
-I looked more closely on my google-chrome recipe build (bitbake -v) and =
-it warns about missing library already on (i think) qa task:=20
-NOTE: Couldn't find shared library provider for libudev.so.0, used by =
-files: =
-/.../poky/nuc/tmp/work/x86_64-poky-linux/google-chrome/40.0.2214.91-1-r0/p=
-ackages-split/google-chrome/opt/google/chrome/chrome
-
-Is there really a provider for libudev.so.0 when using systemd?
-
-
-
-Timo
-
-
-
-
+--089e0149cadcc65a5a050da78ee6--
