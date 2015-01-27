@@ -1,38 +1,51 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <cleitonblaster@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65D14E008A6; Tue, 27 Jan 2015 12:26:35 -0800 (PST)
+	id EE4E5E00815; Tue, 27 Jan 2015 12:55:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (cleitonrbueno[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.175 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C327EE00815
-	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 12:26:27 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 27 Jan 2015 12:26:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,476,1418112000"; 
-	d="scan'208,217";a="668568185"
-Received: from alimon-thinkpad-w540.zpn.intel.com (HELO [10.219.4.57])
-	([10.219.4.57])
-	by fmsmga002.fm.intel.com with ESMTP; 27 Jan 2015 12:26:06 -0800
-Message-ID: <54C7F463.4030203@linux.intel.com>
-Date: Tue, 27 Jan 2015 14:26:11 -0600
-From: =?windows-1252?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f175.google.com (mail-lb0-f175.google.com
+	[209.85.217.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F225AE00753
+	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 12:55:25 -0800 (PST)
+Received: by mail-lb0-f175.google.com with SMTP id 10so15263515lbg.6
+	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 12:55:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:date:message-id:subject:from:to:content-type;
+	bh=L0SIm4V1ytyhlOxOkTZHn/xioIlBiZrXhSt8/alGGzg=;
+	b=IbMj0sk1rffp3OFSsvwkT/j7OWYFSYAxKCfjb68Da78vvHFI8W0H0x1CwcR+9lDqma
+	fpcgg2z2chx0tzK+h/kiJXzs/ukyUsuqevnXPAxjPDIT2ccuHCF5MYGhZ+uP2latWd+g
+	nNVTIEztewLYVKbUz1iA1fDU2fTfS3X3ry9sW8IRMO6RSW35hudJnEaf5Usxg1OkQ2R1
+	wlsCr1mtP1CkAJn2U49cjYJZVPmxnrLXuYZB3jGO0BsHNU6H01x5P7bLgPC2+v+Bhpj7
+	XrMHDyaWzqRMea/WiwYYej/GfWXsRMbBMEQdDE4UjK8k7XAhgeCehicNwlElLySCZzdd
+	ziMQ==
 MIME-Version: 1.0
+X-Received: by 10.152.5.38 with SMTP id p6mr4002642lap.91.1422392122972; Tue,
+	27 Jan 2015 12:55:22 -0800 (PST)
+Sender: cleitonblaster@gmail.com
+Received: by 10.25.24.12 with HTTP; Tue, 27 Jan 2015 12:55:22 -0800 (PST)
+Date: Tue, 27 Jan 2015 18:55:22 -0200
+X-Google-Sender-Auth: a1yItkfq6Q1WPlZv7Lu7ldc_SFU
+Message-ID: <CABKVDBD3Rft23qHpj=zt9qvnemxPUcTfETxSMGaYVgvNTB56UA@mail.gmail.com>
+From: Cleiton Bueno <cleitonrbueno@gmail.com>
 To: yocto@yoctoproject.org
-References: <CABKVDBBhtFuQrZCRY+tHUXT5bt65VeSwkJDY2hqU-X3kD+E6=g@mail.gmail.com>
-In-Reply-To: <CABKVDBBhtFuQrZCRY+tHUXT5bt65VeSwkJDY2hqU-X3kD+E6=g@mail.gmail.com>
-Subject: Re: Install package in deploy/deb
+Subject: Install package in deploy/deb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,77 +57,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Jan 2015 20:26:35 -0000
-Content-Type: multipart/alternative;
-	boundary="------------040301010109080409070501"
+X-List-Received-Date: Tue, 27 Jan 2015 20:55:39 -0000
+Content-Type: multipart/alternative; boundary=089e01419ace38a0f9050da8798d
 
---------------040301010109080409070501
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--089e01419ace38a0f9050da8798d
+Content-Type: text/plain; charset=UTF-8
 
-Hi Cleiton,
+My package is in tmp/deploy/deb/ {in all directories}
 
-If you are buildling core-image-{sato, minimal}, for install you need to 
-add into local.conf:
+I've tried with
+CORE_IMAGE_EXTRA_INSTALL  -> failed
 
-CORE_IMAGE_EXTRA_INSTALL += "xyz"
+This package is private and contains data and structure to be unpacked and
+attached to tmp /work/.../rootf /    that is generated
 
-Please read the documentation,
+I tried several settings and documentation without success, to have tried
+using ROOTFS_POSTPROCESS_COMMAND
 
-http://www.yoctoproject.org/docs/1.7.1/dev-manual/dev-manual.html#usingpoky-extend-customimage
+-- 
 
-Kind regards,
+*Att,Cleiton Bueno*
 
-     alimon
+--089e01419ace38a0f9050da8798d
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 27/01/15 13:10, Cleiton Bueno wrote:
-> I have a package .deb in deploy/deb/all/xyz.deb is possible to install it
-> with ROOTFS_POSTPROCESS_COMMAND?
->
->
->
+<div dir=3D"ltr"><span id=3D"result_box" class=3D"" lang=3D"en"><span class=
+=3D"">My package</span> <span class=3D"">is in</span> <span class=3D"">tmp<=
+/span><span class=3D"">/</span><span class=3D"">deploy/</span><span class=
+=3D"">deb</span><span class=3D"">/</span> {<span class=3D"">in all</span> <=
+span class=3D"">directories</span><span>}</span><br><br> <span class=3D"">I=
+&#39;ve tried</span> <span class=3D"">with</span><br> <span class=3D"">CORE=
+_IMAGE_EXTRA_INSTALL</span>=C2=A0 <span class=3D"">-&gt; failed</span><br><=
+br> <span class=3D"">This package</span> <span class=3D"">is private</span>=
+ <span class=3D"">and contains</span> <span class=3D"">data</span> <span cl=
+ass=3D"">and structure</span> <span class=3D"">to be</span> <span class=3D"=
+">unpacked</span> <span class=3D"">and attached to</span> <span class=3D"">=
+tmp</span> <span class=3D"">/work</span><span class=3D"">/.../</span><span =
+class=3D"">rootf</span> <span class=3D"">/</span>=C2=A0=C2=A0=C2=A0 <span c=
+lass=3D"">that is generated</span><br><br> <span class=3D"">I tried</span> =
+<span class=3D"">several</span> <span class=3D"">settings</span> <span clas=
+s=3D"">and</span> <span class=3D"">documentation</span> <span class=3D"">wi=
+thout</span> <span class=3D"">success</span><span>,</span> <span class=3D""=
+>to</span> <span class=3D"">have tried</span> <span class=3D"">using</span>=
+ <span class=3D"">ROOTFS_POSTPROCESS_COMMAND</span></span><br clear=3D"all"=
+><br>-- <br><div class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">=
+<i><b>Att,<br>Cleiton Bueno</b></i><br><br></div></div></div></div></div></=
+div></div></div></div></div>
+</div>
 
-
---------------040301010109080409070501
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    Hi Cleiton,<br>
-    <br>
-    If you are buildling core-image-{sato, minimal}, for install you
-    need to add into local.conf:<br>
-    <br>
-    CORE_IMAGE_EXTRA_INSTALL += "xyz"<br>
-    <br>
-    Please read the documentation,<br>
-    <br>
-<a class="moz-txt-link-freetext" href="http://www.yoctoproject.org/docs/1.7.1/dev-manual/dev-manual.html#usingpoky-extend-customimage">http://www.yoctoproject.org/docs/1.7.1/dev-manual/dev-manual.html#usingpoky-extend-customimage</a><br>
-    <br>
-    Kind regards,<br>
-    <br>
-        alimon<br>
-    <br>
-    <div class="moz-cite-prefix">On 27/01/15 13:10, Cleiton Bueno wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CABKVDBBhtFuQrZCRY+tHUXT5bt65VeSwkJDY2hqU-X3kD+E6=g@mail.gmail.com"
-      type="cite">
-      <pre wrap="">I have a package .deb in deploy/deb/all/xyz.deb is possible to install it
-with ROOTFS_POSTPROCESS_COMMAND?
-
-</pre>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------040301010109080409070501--
+--089e01419ace38a0f9050da8798d--
