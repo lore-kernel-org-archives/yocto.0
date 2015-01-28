@@ -1,33 +1,54 @@
-Return-Path: <flihp@twobit.us>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 396B2E0087C; Wed, 28 Jan 2015 07:36:35 -0800 (PST)
+	id 89A66E0087C; Wed, 28 Jan 2015 08:03:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CCA2E0087C
-	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 07:36:25 -0800 (PST)
-Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
-	helo=scrapper.twobit.us)
-	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256)
-	(Exim 4.80) (envelope-from <flihp@twobit.us>)
-	id 1YGUdV-0006AH-IQ; Wed, 28 Jan 2015 15:34:34 +0000
-From: Philip Tricca <flihp@twobit.us>
-To: yocto@yoctoproject.org
-Date: Wed, 28 Jan 2015 15:36:05 +0000
-Message-Id: <1422459365-22900-5-git-send-email-flihp@twobit.us>
-X-Mailer: git-send-email 1.7.10.4
-In-Reply-To: <1422459365-22900-1-git-send-email-flihp@twobit.us>
-References: <1422459365-22900-1-git-send-email-flihp@twobit.us>
-X-SA-Exim-Connect-IP: 50.185.54.102
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
-X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Subject: [meta-selinux][ 4/4] ustr: Fix use of bad variable in SRC_URI.
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.53 listed in list.dnswl.org]
+Received: from mail-pa0-f53.google.com (mail-pa0-f53.google.com
+	[209.85.220.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C60EE00858
+	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 08:03:38 -0800 (PST)
+Received: by mail-pa0-f53.google.com with SMTP id kx10so26792552pab.12
+	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 08:03:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+	:subject:references:in-reply-to:content-type
+	:content-transfer-encoding;
+	bh=kFn14ceUR0JGlZnqA3R9llAqmGTNl8WewrSjKLI4BaQ=;
+	b=bJ2w6c3s8kKv86F3WoAg3AtugWNfID7AUyn1M20lEOWDHEM6hDTiHktD7Z2LsulpAI
+	AROY7PmxDPxF73RYJi6rmGSXkrienGtHli9NKCmoQhBnMPpzXTmu39lfYJmO6j49/wFP
+	fxP4/rOBVaHqAZFc3HpTzs0FpdHVvXtg4IvNMW6u7l/H4Y/MdAukXFUaglkLj3p4cTFK
+	r7bbeMd/QhyjGMLtYVEezgRHXjRM8QsmxkzTIBQEobpTS2NTAIvm1ZZ05fH2+XosU6aq
+	EeJbb/MTZy8NFxAK2SbrylfplWf+mn8KlzyEwLcDBG1liq1N4Dp9DVJBBajRfzuPgCjC
+	nUjQ==
+X-Gm-Message-State: ALoCoQkRnKLc/veQKS6GMludyr78UyPw8TwQRdflfOE3wthN+5cIujQVxxP43svHwZVpcY+Mnsbg
+X-Received: by 10.66.192.194 with SMTP id hi2mr6765661pac.57.1422461017382;
+	Wed, 28 Jan 2015 08:03:37 -0800 (PST)
+Received: from ?IPv6:2601:c:a700:272f:dc2d:babe:fe57:d615?
+	([2601:c:a700:272f:dc2d:babe:fe57:d615])
+	by mx.google.com with ESMTPSA id
+	ex11sm5202834pac.19.2015.01.28.08.03.36
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 28 Jan 2015 08:03:36 -0800 (PST)
+Message-ID: <54C9084F.30609@mvista.com>
+Date: Wed, 28 Jan 2015 08:03:27 -0800
+From: akuster <akuster@mvista.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
+MIME-Version: 1.0
+To: "Damian, Alexandru" <alexandru.damian@intel.com>, 
+	Yocto Project Discussion <yocto@yoctoproject.org>
+References: <CAJ2CSBtmYoA+z-hWpUR=-99CTWssLjY74MUh1hm5+Oi70nG7sw@mail.gmail.com>
+In-Reply-To: <CAJ2CSBtmYoA+z-hWpUR=-99CTWssLjY74MUh1hm5+Oi70nG7sw@mail.gmail.com>
+Subject: Re: HEADSUP - CVE 2015-023 remote code execution in glibc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,27 +60,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Jan 2015 15:36:35 -0000
+X-List-Received-Date: Wed, 28 Jan 2015 16:03:47 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Philip Tricca <flihp@twobit.us>
----
- recipes-extended/ustr/ustr_1.0.4.bb |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-extended/ustr/ustr_1.0.4.bb b/recipes-extended/ustr/ustr_1.0.4.bb
-index a0a1e41..cdb78ad 100644
---- a/recipes-extended/ustr/ustr_1.0.4.bb
-+++ b/recipes-extended/ustr/ustr_1.0.4.bb
-@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=c79c6e2ae13418d16d7dc82df960a1e7 \
- 		    file://LICENSE_MIT;md5=c61e779b782608472bd87593c3c3916f"
- 
- SRC_URI = "\
--    http://www.and.org/ustr/${BPV}/${BPN}-${PV}.tar.bz2 \
-+    http://www.and.org/ustr/${PV}/${BPN}-${PV}.tar.bz2 \
-     file://ustr-makefile-fix.patch;patch=1 \
-     file://ustr-fix__va_copy-not-defined.patch;patch=2 \
-     file://ustr-c99-inline.patch;patch=3"
--- 
-1.7.10.4
+Alexandr,
 
+
+On 01/28/2015 03:17 AM, Damian, Alexandru wrote:
+> More details
+>
+> http://www.openwall.com/lists/oss-security/2015/01/27/9
+>
+> redhat bug and patch
+>
+> https://bugzilla.redhat.com/show_bug.cgi?id=CVE-2015-0235
+>
+> Do we need to open a bug to track this ?
+
+  I am working on patches already. if you opened a bug, please send me 
+the #.
+
+- Armin
+>
+>
+> --
+> Alex Damian
+> Yocto Project
+> SSG / OTC
+>
+>
 
