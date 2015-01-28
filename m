@@ -1,37 +1,37 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 71BD7E00815; Wed, 28 Jan 2015 01:07:32 -0800 (PST)
+	id 04641E00815; Wed, 28 Jan 2015 01:25:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15640E00753
-	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 01:07:22 -0800 (PST)
-Received: from durham.keylevel.com ([88.97.63.243]:28254
-	helo=macbook-pro.durham.keylevel.com)
-	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.84)
-	(envelope-from <opensource@keylevel.com>) id 1YGOaj-000m7n-B2
-	for yocto@yoctoproject.org; Wed, 28 Jan 2015 09:07:19 +0000
-From: Chris Tapp <opensource@keylevel.com>
-Message-Id: <E1DAF5EB-8BE7-4EB5-8AD9-B7F2B8A7AB95@keylevel.com>
-Date: Wed, 28 Jan 2015 09:07:15 +0000
-To: Yocto Project <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
-X-Mailer: Apple Mail (2.1878.6)
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - a180.4uh.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
-	chris.tapp@keylevel.com
-Subject: Configuring static/dhcp IP at boot time
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97FAAE00753
+	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 01:25:09 -0800 (PST)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga103.fm.intel.com with ESMTP; 28 Jan 2015 01:18:59 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,862,1389772800"; d="scan'208";a="446282277"
+Received: from jkaplinx-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.3.113])
+	by FMSMGA003.fm.intel.com with ESMTP; 28 Jan 2015 01:11:22 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: James Abernathy <jfabernathy@outlook.com>
+Date: Wed, 28 Jan 2015 09:25:07 +0000
+Message-ID: <1422441531.Lu0tPXzC8A@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.3 (Linux/3.17.8-200.fc20.x86_64; KDE/4.14.3; x86_64; ; )
+In-Reply-To: <BLU436-SMTP194E8A8B18DB6A3ADDA00AFAE320@phx.gbl>
+References: <BLU436-SMTP194E8A8B18DB6A3ADDA00AFAE320@phx.gbl>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: adding meta-oracle-java
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,24 +43,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Jan 2015 09:07:32 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Wed, 28 Jan 2015 09:25:12 -0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-I'm trying to get an image to optionally use a static IP when it boots =
-(i.e. static or dhcp depending on kernel command line parameters).
+Hi Jim,
 
-When a static allocation is being used, a script within the init of an =
-initramfs edits /etc/network/interface to add a static entry for eth0 =
-and to add an 'up' command to set the nameserver in /etc/resolv.conf (in =
-the final rootfs) before switch_root is called.
+On Tuesday 27 January 2015 15:24:09 James Abernathy wrote:
+> In looking at the meta-oracle-java README, I see the notes about addi=
+ng the
+> License statement and switching to .deb packaging.  With that done, I=
+ get a
+> clean build, but my image boots and I can=E2=80=99t see any evidence =
+that java was
+> included.
+>=20
+> What am I missing.
+>=20
+> I have a web app server that in all inclusive and can be setup just b=
+y
+> running =E2=80=9Cjava -jar xxxx.jar=E2=80=9D.  But can=E2=80=99t run =
+it without java installed.
 
-Is there a better way to do this (I'm sure there is!)?
+I assume you've just added the layer to your bblayers.conf - if so you'=
+ve=20
+missed the next step of actually adding additional packages produced by=
+=20
+recipes in the layer to your image. I haven't tried it but I assume the=
+=20
+package to add would be "oracle-jse-jre".
 
---
+Cheers,
+Paul
 
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
+--=20
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
