@@ -1,39 +1,54 @@
-Return-Path: <clemens.lang@bmw-carit.de>
+Return-Path: <maxin@maxinbjohn.info>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7240FE00815; Wed, 28 Jan 2015 05:39:48 -0800 (PST)
+	id 53C6AE00815; Wed, 28 Jan 2015 06:26:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [62.245.222.98 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B2E6E00753
-	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 05:39:41 -0800 (PST)
-Received: from exchange2010.bmw-carit.intra ([192.168.100.28]:61166
-	helo=mail.bmw-carit.de)
-	by mail.bmw-carit.de with esmtps (TLSv1:AES128-SHA:128)
-	(Exim 4.82_1-5b7a7c0-XX) (envelope-from <Clemens.Lang@bmw-carit.de>)
-	id 1YGSqG-0003Bg-2u; Wed, 28 Jan 2015 14:39:37 +0100
-Received: from localhost (172.20.20.163) by Exchange2010.bmw-carit.intra
-	(192.168.100.28) with Microsoft SMTP Server (TLS) id 14.1.218.12;
-	Wed, 28 Jan 2015 14:39:36 +0100
-Date: Wed, 28 Jan 2015 14:39:36 +0100
-From: Clemens Lang <clemens.lang@bmw-carit.de>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Message-ID: <20150128133936.GD30548@ulm-bmuc496424.bmw-carit.de>
-References: <20150128085214.GC30548@ulm-bmuc496424.bmw-carit.de>
-	<8731054.dVFh4y5ell@peggleto-mobl5.ger.corp.intel.com>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.170 listed in list.dnswl.org]
+Received: from mail-ie0-f170.google.com (mail-ie0-f170.google.com
+	[209.85.223.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 287AEE00753
+	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 06:26:25 -0800 (PST)
+Received: by mail-ie0-f170.google.com with SMTP id y20so21998214ier.1
+	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 06:26:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=bJ+c5PxcS9iyHDcp3m+U5O2ZTr9AFeu3+L8acbwMJMk=;
+	b=mzJgEdq7R7aFfY6cIouIO9teWhB4LEX6zU+woPIk+2hWGSWZcPQ96xiufzMmwOoxoG
+	zFUMdI4KK4JjObxXkmneCC9oebzrSIW1wbxtd5lZTIoUv3W+u5QsHomcVgi+d7PuCTWU
+	3cwKnDbMRjxkOqLfZvWx4Js4iBCkQWNrZVHHOUJLmBtQ6As5q9B0Ij/lRTTBQWbYydZ8
+	H9yO1Y1Snj+g1Nn/4pBexzWWi3Zbhb/aX/ICGNvdyPgibXJDRymrpJlPd3ezq2ZCmIV7
+	czJj2WT7gzDLcPq5yVbmquBvzwCfISKTwigvPQadFCFsfDbnjI4BWZYE2H7W7923fYrV
+	+5TQ==
+X-Gm-Message-State: ALoCoQmFS/hcmVDdcfXU2j5RL5jmxCqiEeqAAtgTkjf8BDadrqgphQ3DFUKYH3rB40QdBkVi2Vvc
 MIME-Version: 1.0
-In-Reply-To: <8731054.dVFh4y5ell@peggleto-mobl5.ger.corp.intel.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-X-Originating-IP: [172.20.20.163]
-Cc: yocto@yoctoproject.org
-Subject: Re: Automated license incompatibility checks
+X-Received: by 10.107.7.94 with SMTP id 91mr2868921ioh.69.1422455184973; Wed,
+	28 Jan 2015 06:26:24 -0800 (PST)
+Received: by 10.36.124.210 with HTTP; Wed, 28 Jan 2015 06:26:24 -0800 (PST)
+X-Originating-IP: [192.36.1.252]
+In-Reply-To: <BAY169-W1323FBA1846821F1C7654FDAE330@phx.gbl>
+References: <BLU436-SMTP194E8A8B18DB6A3ADDA00AFAE320@phx.gbl>
+	<CAFicg85waXXFmZsr4+fbAByoB-a_xUN23EHJD0scqisNunP2vQ@mail.gmail.com>
+	<BAY169-W55C7EBD601DFB42F2CA8ADAE330@phx.gbl>
+	<3859281.CPjbAClMcV@peggleto-mobl5.ger.corp.intel.com>
+	<BAY169-W68A99F2815567D9CCB628AE330@phx.gbl>
+	<CAFicg857GKOgixieHfk36wXBmdnaLFhcaQzFLZGeMuTWZnkR0g@mail.gmail.com>
+	<BAY169-W1323FBA1846821F1C7654FDAE330@phx.gbl>
+Date: Wed, 28 Jan 2015 15:26:24 +0100
+Message-ID: <CAFicg87v1F5LZ-a9N8=VtO=tt5ZyR+h98nxt8hLc+X1V2VJS7A@mail.gmail.com>
+From: Maxin John <maxin@maxinbjohn.info>
+To: Jim Abernathy <jfabernathy@outlook.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	yocto <yocto@yoctoproject.org>
+Subject: Re: adding meta-oracle-java
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,52 +60,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Jan 2015 13:39:48 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 28 Jan 2015 14:26:37 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi Paul,
+Hi,
 
-On Wed, Jan 28, 2015 at 10:25:29AM +0000, Paul Eggleton wrote:
-> This sounds like something we should be handling in our
-> INCOMPATIBLE_LICENSE check code, although it's not clear that we
-> currently handle where alternatives to an incompatible license are
-> available for a recipe/package, so that looks like it would be new
-> functionality. You haven't mentioned INCOMPATIBLE_LICENSE - does your
-> solution build on that, or replace it?
+On Wed, Jan 28, 2015 at 1:10 PM, Jim Abernathy <jfabernathy@outlook.com> wrote:
+>
+<snip>
 
-Some of this duplicates what INCOMPATIBLE_LICENSE does, so it should
-probably replace or use it. However, INCOMPATIBLE_LICENSE is a
-blacklist, and I'm using a whitelist approach, because in our use case
-we really only want to distribute under licenses we have explicitly
-reviewed.
+> well the file command does not run on the target machine same as java, not
+> found error.  as to the local.conf file.  The only changes are as follows:
+>
+> MACHINE ?= "nuc"
+> IMAGE_INSTALL_append = " oracle-jse-jre dropbear"
+> LICENSE_FLAGS_WHITELIST += "oracle_java"
+> #
+> DL_DIR ?= "/work/downloads"
+> #PACKAGE_CLASSES ?= "package_rpm"
+> PACKAGE_CLASSES = "package_deb"
+>
+> I build with bitbake core-image-base.
 
-I'd like to solve the problem of shipping an image that contains, for
-example, GPL-2 code that links against BSD-4-Clause code, which are
-incompatible licenses[1]. Despite its name, the INCOMPATIBLE_LICENSE
-code does not check for this situation. It is merely a blacklist for
-licenses that should not be packaged at all, regardless of their
-dependency context.
+From the "nuc" image on qemu, I get this output for file command:
 
-Our use case includes configuring the license whitelist separately for
-each image we build, because we have different requirements for
-development and production images (but that has been possible with
-INCOMPATIBLE_LICENSE before).
+# file bin/busybox.nosuid
+bin/busybox.nosuid: ELF 64-bit LSB executable, x86-64, version 1
+(SYSV), dynamically linked, interpreter /lib/ld-linux-x86-64.so.2, for
+GNU/Linux 2.6.32,
+BuildID[sha1]=d87821503ef9cc2a5bed4a284cac138211a649ff, stripped
 
-Does that shed some light on what I'm trying to achieve?
+# file /usr/share/jre1.7.0_67/bin/java
+/usr/share/jre1.7.0_67/bin/java: ELF 64-bit LSB executable, x86-64,
+version 1 (SYSV), dynamically linked, interpreter
+/lib64/ld-linux-x86-64.so.2, for GNU/Linux 2.6.9,
+BuildID[sha1]=b82a586842f6da3df8a61093daadf0
 
+/ #  java
+/bin/sh: java: not found
 
-Cheers,
-Clemens
+Could be related to the library path. Continuing with investigation.
 
-[1] https://www.gnu.org/licenses/license-list.html#OriginalBSD
--- 
-Clemens Lang • Development Specialist
-BMW Car IT GmbH • Lise-Meitner-Str. 14 • 89081 Ulm • http://bmw-carit.com
--------------------------------------------------------------------------
-BMW Car IT GmbH
-Geschäftsführer: Michael Würtenberger und Reinhard Stolle
-Sitz und Registergericht: München HRB 134810
--------------------------------------------------------------------------
+Best Regards,
+Maxin
 
