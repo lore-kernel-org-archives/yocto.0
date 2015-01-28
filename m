@@ -1,6 +1,6 @@
 Return-Path: <yani.dubin@taitradio.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 41796E007BA; Tue, 27 Jan 2015 15:19:11 -0800 (PST)
+	id 7BB76E00823; Tue, 27 Jan 2015 18:13:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,34 +11,35 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.218.53 listed in list.dnswl.org]
-Received: from mail-oi0-f53.google.com (mail-oi0-f53.google.com
-	[209.85.218.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAA2FE007BA
-	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 15:19:08 -0800 (PST)
-Received: by mail-oi0-f53.google.com with SMTP id i138so14908382oig.12
-	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 15:19:07 -0800 (PST)
+	*      [209.85.218.46 listed in list.dnswl.org]
+Received: from mail-oi0-f46.google.com (mail-oi0-f46.google.com
+	[209.85.218.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B3BCE007BA
+	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 18:13:15 -0800 (PST)
+Received: by mail-oi0-f46.google.com with SMTP id a141so15479927oig.5
+	for <yocto@yoctoproject.org>; Tue, 27 Jan 2015 18:13:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:date
 	:message-id:subject:from:to:cc:content-type;
-	bh=YSkmy+KSNcYwH+pO4ZB5FkfWVvKlmliy4CVuE0Issl8=;
-	b=Kf/jHIOuihPyIiEZi3zvH+C57fz6XRfLhg8/E8fPw8wPWRK3VwMP5MOzu6YKFpuZZc
-	VD0Tn3GBCn3lediQbow8WYL+FCb4+PzjUHLf7ElEJrKcGsoFq/WPzWqG2wZ3VehSak1w
-	74fnWpsdIUUCAXC0PYLKsmmGWG/MC6JaLIskKWbVWmeG3FX9qx+2XVBgvv2HamicxQJH
-	dRN/4nufWj6GN3T2ohq5nD0bGt5168w28NOpHSI3TjN9xnvoM5xunsmQEJuwzgDK0Vw6
-	YpV24u9EgbunLSwZ2+abky5zj4jRo2yrZkds2dphDOYEOQDiaXW1od1/kalLh39gLg1b
-	TIpg==
-X-Gm-Message-State: ALoCoQkFd2GGIdmnkQptMTr2KixSagtkqBsfJqSAhblvkK2/qSmOhcgjiH9T50xVpUt07pf/W4P2nFERRmzNvB6DdajKxRNwrWskIX/fv5UOERNdeHBqC7I=
+	bh=3mClLKTLUQOqqB3lwWMqhnsJcZlGpdKNoQ3gpy/ClgM=;
+	b=XaIntryk4FL6nrU+PkQ4BGdonCVanDPFh2TeMQG9AUOw1hWrGG/AubreLN83pKURQ8
+	/8dPriOSw20lWdoRMOfJeATJM6TYNqWHoD3FyQLYrZJuz5kFK1lanePn65BsBABfxqq/
+	ZbhOmsM0L8eaogg50sdTz99wEuiWv9BuC9h2JN+sqseSo/NTz10mhVRobMuG5CRmy/UQ
+	sr/Wis9QTALLstp458PV6Af1HtXK2IFAfBQe+MRL2J8R3W2h95Z6bHOV7LjoHpExLHSH
+	tmeW1nv64dZ2jvKsPPAJEsy8/MkixB1fk/Qpf95f+YK8aCunewhhw2bG6donEriFlGZ4
+	dNbw==
+X-Gm-Message-State: ALoCoQnROBRsDVOOXeYaeUinqU4yIWpdzYnGeqeSk3uHkZkDbm9nm6eklqbXwLerb5vjjgzOCBcChexi0YDvgsaPFfkPAoIIuQjztv54sAoY848MqPHirHs=
 MIME-Version: 1.0
-X-Received: by 10.182.119.232 with SMTP id kx8mr293098obb.37.1422400747381;
-	Tue, 27 Jan 2015 15:19:07 -0800 (PST)
-Received: by 10.202.228.7 with HTTP; Tue, 27 Jan 2015 15:19:07 -0800 (PST)
-In-Reply-To: <54C7A9EA.7000306@windriver.com>
+X-Received: by 10.202.188.66 with SMTP id m63mr73011oif.14.1422411194470; Tue,
+	27 Jan 2015 18:13:14 -0800 (PST)
+Received: by 10.202.228.7 with HTTP; Tue, 27 Jan 2015 18:13:14 -0800 (PST)
+In-Reply-To: <CAHSWo-j2kOvKG11=KOCKPkxCY6=43cpedmGtQghyuA5Npg3h=g@mail.gmail.com>
 References: <CAHSWo-jFj5Wk1xBvaaY7UegFjQ2XJn_PK0YFcy+pNeLW2ThMpQ@mail.gmail.com>
 	<54C7A9EA.7000306@windriver.com>
-Date: Wed, 28 Jan 2015 12:19:07 +1300
-Message-ID: <CAHSWo-j2kOvKG11=KOCKPkxCY6=43cpedmGtQghyuA5Npg3h=g@mail.gmail.com>
+	<CAHSWo-j2kOvKG11=KOCKPkxCY6=43cpedmGtQghyuA5Npg3h=g@mail.gmail.com>
+Date: Wed, 28 Jan 2015 15:13:14 +1300
+Message-ID: <CAHSWo-jaoxkR_rtOXt2R8boV_rQQCF2FwddCoB+Ke0GTQaOnKA@mail.gmail.com>
 From: Yani Dubin <yani.dubin@taitradio.com>
 To: Bruce Ashfield <bruce.ashfield@windriver.com>
 Cc: yocto@yoctoproject.org
@@ -54,60 +55,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 27 Jan 2015 23:19:11 -0000
-Content-Type: multipart/alternative; boundary=001a11c2f43a46bdd8050daa7bae
+X-List-Received-Date: Wed, 28 Jan 2015 02:13:23 -0000
+Content-Type: multipart/alternative; boundary=001a113dd688f8b5a2050dace984
 
---001a11c2f43a46bdd8050daa7bae
+--001a113dd688f8b5a2050dace984
 Content-Type: text/plain; charset=UTF-8
 
-Hi Bruce,
+On 28 January 2015 at 12:19, Yani Dubin <yani.dubin@taitradio.com> wrote:
 
-On 28 January 2015 at 04:08, Bruce Ashfield <bruce.ashfield@windriver.com>
-wrote:
-
->  On 15-01-26 11:54 PM, Yani Dubin wrote:
->
-> These are 3 adjacent changesets on the dizzy branch - I gather that is as
-> much as I can narrow it down?
->
->  We may need to get your help in tracking the problem down, since without
-> the h/w on hand, it will be difficult to figure out what changed between
-> the
-> working and non-working revisions.
->
-> I have some additional 3.14 updates queued, and they may fix the issue ..
-> but again, I can't say for sure.
->
-> Are you able to bisect the kernel directly ? I only submit SRCREV updates
-> to
-> the linux-yocto recipes at particular milestones, but within the kernel we
-> obviously have more granularity.
->
-> After you've built the kernel the first time, you can head into devshell
-> and
-> then use the unpacked and patched src tree and do a normal git bisect/build
-> workflow. You'd need to copy the resulting kernels out to your target, but
-> that
-> would narrow down the bad commit/merge pretty quickly.
+> Since this is my first time reporting a kernel bug, and I now know exactly
+> what I am looking for can you give me any pointers on where/how to search
+> to see if an upstream fix exists already?
 >
 
-Bisecting the 1800+ changesets between these points yielded a culprit:
-[bb01842184bc89666819ee7dceb78c61505036ed] mfd: ti_am335x_tscadc: Fix TSC
-operation after ADC continouous mode
+I fetched the latest 3.14.y from linux-stable at git.kernel.org and saw no
+further changes to this driver, nor anything relevant on the 3.18.y branch
+(git log on affected file). I haven't looked outside the stable source tree.
 
-This is a two line changeset. I have confirmed that reverting the second
-change against the previously broken version fixes it for me. So I now have
-a patch I can apply locally until such time as this is fixed upstream.
+I have assumed that a fix would touch the driver itself. I do not know what
+a proper fix would actually look like - presumably my workaround would
+break whatever the changeset was fixing for those using the TSC part of the
+driver, much the way their fix broke my use of the driver.
 
-Since this is my first time reporting a kernel bug, and I now know exactly
-what I am looking for can you give me any pointers on where/how to search
-to see if an upstream fix exists already?
+bugzilla.kernel.org states that it is for submitting issues with mainline
+rather than distribution kernels. Would they consider linux-yocto a
+distribution kernel, and I should leave this with you?
 
-Thank you for your help, and a welcome introduction to both devshell (I
-used to do kernel reconfigure/compile the hard way) and git bisect - I can
-see these are going to be very handy in the future.
-
-Thanks again,
+Regards,
 Yani.
 
 -- 
@@ -129,67 +103,31 @@ recipient relies upon its own procedures and assumes all risk of use and of
 opening any attachments.
 ------------------------------
 
---001a11c2f43a46bdd8050daa7bae
+--001a113dd688f8b5a2050dace984
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Bruce,<br><div class=3D"gmail_extra"><br><div class=3D"=
-gmail_quote">On 28 January 2015 at 04:08, Bruce Ashfield <span dir=3D"ltr">=
-&lt;<a href=3D"mailto:bruce.ashfield@windriver.com" target=3D"_blank">bruce=
-.ashfield@windriver.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex">
- =20
-   =20
- =20
-  <div><span class=3D"">
-    <div>On 15-01-26 11:54 PM, Yani Dubin wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">These are 3 adjacent changesets on the dizzy branch =
-- I gather
-          that is as much as I can narrow it down?<br>
-      </div>
-    </blockquote>
-    </span>
-    We may need to get your help in tracking the problem down, since
-    without<br>
-    the h/w on hand, it will be difficult to figure out what changed
-    between the<br>
-    working and non-working revisions.<br>
-    <br>
-    I have some additional 3.14 updates queued, and they may fix the
-    issue .. <br>
-    but again, I can&#39;t say for sure.<br>
-    <br>
-    Are you able to bisect the kernel directly ? I only submit SRCREV
-    updates to<br>
-    the linux-yocto recipes at particular milestones, but within the
-    kernel we <br>
-    obviously have more granularity.<br>
-    <br>
-    After you&#39;ve built the kernel the first time, you can head into
-    devshell and <br>
-    then use the unpacked and patched src tree and do a normal git
-    bisect/build<br>
-    workflow. You&#39;d need to copy the resulting kernels out to your
-    target, but that<br>
-    would narrow down the bad commit/merge pretty quickly.<br></div></block=
-quote><div><br></div><div>Bisecting the 1800+ changesets between these poin=
-ts yielded a culprit: <br>[bb01842184bc89666819ee7dceb78c61505036ed] mfd: t=
-i_am335x_tscadc: Fix TSC operation after ADC continouous mode<br><br></div>=
-<div>This is a two line changeset. I have confirmed that reverting the seco=
-nd change against the previously broken version fixes it for me. So I now h=
-ave a patch I can apply locally until such time as this is fixed upstream.<=
-br><br></div><div>Since this is my first time reporting a kernel bug, and I=
- now know exactly what I am looking for can you give me any pointers on whe=
-re/how to search to see if an upstream fix exists already?<br><br></div><di=
-v>Thank you for your help, and a welcome introduction to both devshell (I u=
-sed to do kernel reconfigure/compile the hard way) and git bisect - I can s=
-ee these are going to be very handy in the future.<br clear=3D"all"></div><=
-/div><br></div><div class=3D"gmail_extra">Thanks again,<br>Yani.<br></div><=
-/div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On 2=
+8 January 2015 at 12:19, Yani Dubin <span dir=3D"ltr">&lt;<a href=3D"mailto=
+:yani.dubin@taitradio.com" target=3D"_blank">yani.dubin@taitradio.com</a>&g=
+t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div =
+dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote"><div>Sinc=
+e this is my first time reporting a kernel bug, and I now know exactly what=
+ I am looking for can you give me any pointers on where/how to search to se=
+e if an upstream fix exists already?</div></div></div></div></blockquote><d=
+iv><br></div><div>I fetched the latest 3.14.y from linux-stable at <a href=
+=3D"http://git.kernel.org">git.kernel.org</a> and saw no further changes to=
+ this driver, nor anything relevant on the 3.18.y branch (git log on affect=
+ed file). I haven&#39;t looked outside the stable source tree.<br><br>I hav=
+e assumed that a fix would touch the driver itself. I do not know what a pr=
+oper fix would actually look like - presumably my workaround would break wh=
+atever the changeset was fixing for those using the TSC part of the driver,=
+ much the way their fix broke my use of the driver.<br><br><a href=3D"http:=
+//bugzilla.kernel.org">bugzilla.kernel.org</a> states that it is for submit=
+ting issues with mainline rather than distribution kernels. Would they cons=
+ider linux-yocto a distribution kernel, and I should leave this with you?<b=
+r><br></div><div>Regards,<br>Yani.<br></div></div></div></div>
 
 <br>
 <hr><font color=3D"#808080">This email, including any attachments, is only
@@ -209,4 +147,4 @@ interfere with recipient data, hardware or software. The recipient=20
 relies upon its own procedures and assumes all risk of use and of=20
 opening any attachments.</font></div><div><hr></div>
 
---001a11c2f43a46bdd8050daa7bae--
+--001a113dd688f8b5a2050dace984--
