@@ -1,49 +1,34 @@
-Return-Path: <maxin@maxinbjohn.info>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 426E6E0086E; Wed, 28 Jan 2015 02:20:35 -0800 (PST)
+	id F061DE0086E; Wed, 28 Jan 2015 02:25:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.175 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-ig0-f175.google.com (mail-ig0-f175.google.com
-	[209.85.213.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11BAAE00757
-	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 02:20:22 -0800 (PST)
-Received: by mail-ig0-f175.google.com with SMTP id hn18so9754312igb.2
-	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 02:20:21 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=69JCDHgKjykEaeUEKIspO+FqYUR6nOLp+3+B56SgjXY=;
-	b=UWQq9rBiznXWoPmVPpdgoUry7eSWA3t10QB93uul8ZMtue3t68EUIcnw1xw3ayPPIK
-	JGK+Ho5Pxmr0QeEhCzd4hV0EDf785kKqjjTkm0RcwRG9ZcWuBFU/tdPACbfLFmRXZqKg
-	NShdAIB0g9PGJo+DaM8kaKA/yzZB+bxvJk54bZy6ymDCAlJpliGPRIz7/Kgc/7lJPxgW
-	mYgxBUhItTqw0dWcfZGiYXZqeSg19Y8AeVJt9G+RLs1XWNWHRhRcU/Ed33mRqwAcH7WI
-	b9huL/jOa+BjOdvyxM9OhYaTJb7aK62ITDvDFWK/A46pT/GF4TH5Wfqv0lZjcGeTxsMG
-	pAug==
-X-Gm-Message-State: ALoCoQkpO5ks4Z4m6lNgNJUELfWg3Vkiri1qK/yYcfKztIhpeCY918nuJ7iV6WJshwFmzVITG9Vd
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9A7CE00757
+	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 02:25:49 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 28 Jan 2015 02:25:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.09,480,1418112000"; d="scan'208";a="668905769"
+Received: from nnodonog-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.3.113])
+	by fmsmga002.fm.intel.com with ESMTP; 28 Jan 2015 02:25:29 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Clemens Lang <clemens.lang@bmw-carit.de>
+Date: Wed, 28 Jan 2015 10:25:29 +0000
+Message-ID: <8731054.dVFh4y5ell@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.3 (Linux/3.17.8-200.fc20.x86_64; KDE/4.14.3; x86_64; ; )
+In-Reply-To: <20150128085214.GC30548@ulm-bmuc496424.bmw-carit.de>
+References: <20150128085214.GC30548@ulm-bmuc496424.bmw-carit.de>
 MIME-Version: 1.0
-X-Received: by 10.107.137.206 with SMTP id t75mr2916233ioi.78.1422440421408;
-	Wed, 28 Jan 2015 02:20:21 -0800 (PST)
-Received: by 10.36.124.210 with HTTP; Wed, 28 Jan 2015 02:20:21 -0800 (PST)
-X-Originating-IP: [192.36.1.252]
-In-Reply-To: <1422441531.Lu0tPXzC8A@peggleto-mobl5.ger.corp.intel.com>
-References: <BLU436-SMTP194E8A8B18DB6A3ADDA00AFAE320@phx.gbl>
-	<1422441531.Lu0tPXzC8A@peggleto-mobl5.ger.corp.intel.com>
-Date: Wed, 28 Jan 2015 11:20:21 +0100
-Message-ID: <CAFicg85waXXFmZsr4+fbAByoB-a_xUN23EHJD0scqisNunP2vQ@mail.gmail.com>
-From: Maxin John <maxin@maxinbjohn.info>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: adding meta-oracle-java
+Cc: yocto@yoctoproject.org
+Subject: Re: Automated license incompatibility checks
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,52 +40,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Jan 2015 10:20:35 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 28 Jan 2015 10:25:55 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Jim,
+Hi Clemens,
 
-On Wed, Jan 28, 2015 at 10:25 AM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
-> Hi Jim,
->
-> On Tuesday 27 January 2015 15:24:09 James Abernathy wrote:
->> In looking at the meta-oracle-java README, I see the notes about adding =
-the
->> License statement and switching to .deb packaging.  With that done, I ge=
-t a
->> clean build, but my image boots and I can=E2=80=99t see any evidence tha=
-t java was
->> included.
->>
->> What am I missing.
->
->> I have a web app server that in all inclusive and can be setup just by
->> running =E2=80=9Cjava -jar xxxx.jar=E2=80=9D.  But can=E2=80=99t run it =
-without java installed.
->
-> I assume you've just added the layer to your bblayers.conf - if so you've
-> missed the next step of actually adding additional packages produced by
-> recipes in the layer to your image. I haven't tried it but I assume the
-> package to add would be "oracle-jse-jre".
+On Wednesday 28 January 2015 09:52:14 Clemens Lang wrote:
+> I have written a bbclass that does license conflict checking before
+> building images for distribution. I am wondering if that is something
+> you as a project would be interested in integrating, e.g. into poky.
+> 
+> I am also looking for feedback to my approach and ideas on how to handle
+> corner cases, such as the OpenSSL exception. To give you a short and
+> rough overview and to avoid wasting your time with a code review before
+> we discussed the general approach, here's the commit message for my
+> 
+> local change implementing this:
+> > Implement automatic license conflict checking as QA check. This check
+> > adds a hook to the do_rootfs task, gathers a list of packages to be
+> > installed into the root file system, their licenses and dependency
+> > relations. It then walks this list and removes all licenses or part of
+> > license expressions that are not satisfiable using licenses from a
+> > configurable whitelist. For example,
+> > 
+> >   (GPL-3.0 & LGPL-3.0+) | GPL-2.0
+> > 
+> > with a whitelist of "GPL-2.0" will be transformed to
+> > 
+> >   GPL-2.0
+> > 
+> > before running license conflict checking. This ensures none of the
+> > licenses you don't want to distribute in your image is required to
+> > fulfill all license constraints.
+> > 
+> > Afterwards, each package's license is checked against those of its
+> > dependencies one by one. To detect conflicts, the two license
+> > expressions are converted into conjunctive normal form, concatenated
+> > with all relevant license conflicts read from a configuration file and
+> > handed over to a SAT solver (currently minisat via the satispy python
+> > library). If the solver indicates the expression is satisfiable, there
+> > is no license conflict. If the expression cannot be solved, the
+> > licenses conflict.
 
-As mentioned here, if you include "oracle-jse-jre" in the image, things
-should work as expected (IMAGE_INSTALL_append =3D " oracle-jse-jre")
+This sounds like something we should be handling in our INCOMPATIBLE_LICENSE 
+check code, although it's not clear that we currently handle where 
+alternatives to an incompatible license are available for a recipe/package, so 
+that looks like it would be new functionality. You haven't mentioned 
+INCOMPATIBLE_LICENSE - does your solution build on that, or replace it?
 
-root@qemux86:~# ls -la /usr/bin/java
-lrwxrwxrwx    1 root     root            31 Jan 28 10:11 /usr/bin/java
--> /usr/share/jre1.7.0_67/bin/java
+Cheers,
+Paul
 
-root@qemux86:~# java -version
-java version "1.7.0_67"
-Java(TM) SE Runtime Environment (build 1.7.0_67-b01)
-Java HotSpot(TM) Client VM (build 24.65-b04, mixed mode)
+-- 
 
-
-> Cheers,
-> Paul
-
-Best Regards,
-Maxin
+Paul Eggleton
+Intel Open Source Technology Centre
 
