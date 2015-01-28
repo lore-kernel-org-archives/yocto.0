@@ -1,50 +1,50 @@
-Return-Path: <jfabernathy@outlook.com>
+Return-Path: <simon.bolek@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D06E5E0087C; Wed, 28 Jan 2015 08:50:53 -0800 (PST)
+	id D2381E00872; Wed, 28 Jan 2015 09:15:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jfabernathy[at]outlook.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [65.54.190.139 listed in list.dnswl.org]
+	mail provider *      (simon.bolek[at]googlemail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from BAY004-OMC3S1.hotmail.com (bay004-omc3s1.hotmail.com
-	[65.54.190.139])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18D74E00858
-	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 08:50:50 -0800 (PST)
-Received: from BAY169-W85 ([65.54.190.188]) by BAY004-OMC3S1.hotmail.com over
-	TLS secured channel with Microsoft SMTPSVC(7.5.7601.22751); 
-	Wed, 28 Jan 2015 08:50:49 -0800
-X-TMN: [gbxNyO55MkGan53HMqZDAOfeBRNt2Z5u]
-X-Originating-Email: [jfabernathy@outlook.com]
-Message-ID: <BAY169-W8550E7060D659E708255D4AE330@phx.gbl>
-From: Jim Abernathy <jfabernathy@outlook.com>
-To: Maxin John <maxin@maxinbjohn.info>
-Date: Wed, 28 Jan 2015 11:50:49 -0500
-Importance: Normal
-In-Reply-To: <CAFicg87D6g6Qyh7Zy+qsSxbk8gQmFCTcvE86DgyE1_J5oX_5ow@mail.gmail.com>
-References: <BLU436-SMTP194E8A8B18DB6A3ADDA00AFAE320@phx.gbl>,
-	<CAFicg85waXXFmZsr4+fbAByoB-a_xUN23EHJD0scqisNunP2vQ@mail.gmail.com>,
-	<BAY169-W55C7EBD601DFB42F2CA8ADAE330@phx.gbl>,
-	<3859281.CPjbAClMcV@peggleto-mobl5.ger.corp.intel.com>,
-	<BAY169-W68A99F2815567D9CCB628AE330@phx.gbl>,
-	<CAFicg857GKOgixieHfk36wXBmdnaLFhcaQzFLZGeMuTWZnkR0g@mail.gmail.com>,
-	<BAY169-W1323FBA1846821F1C7654FDAE330@phx.gbl>,
-	<CAFicg87v1F5LZ-a9N8=VtO=tt5ZyR+h98nxt8hLc+X1V2VJS7A@mail.gmail.com>,
-	<BAY169-W545814E4CA44C6EAC0EC20AE330@phx.gbl>,
-	<CAFicg87D6g6Qyh7Zy+qsSxbk8gQmFCTcvE86DgyE1_J5oX_5ow@mail.gmail.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wi0-f174.google.com (mail-wi0-f174.google.com
+	[209.85.212.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91DFCE00827
+	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 09:15:34 -0800 (PST)
+Received: by mail-wi0-f174.google.com with SMTP id n3so13529829wiv.1
+	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 09:15:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:cc:content-type;
+	bh=oFVL1O82p+jnuZEHorS0dlO3XimE9dBjsYGC8mXtNmA=;
+	b=K4LDbAIkPP9LNjd6cQ3TvR8x35W4Xz/E1uxEV8fVovr2MNtTVr+A7ml/Vb/xujAIvu
+	cxZFigqNwzQdXJclHXRjzm4mWvGru+yfPGl8qKErC7H7/c/WMIgM4mOJ/rRwxNPRUK7V
+	zF0QiiVqZo7SsFGKhRmkZKeC2vWWLhURSM9MpgV3Rk9XDAP8dSuE/W1CFZvRLPm3wr0d
+	AKHJ7k1t+PEMTVxmxBlNq2vGpScEINVM7p3kAq8rWXjpWqBNl6P7FfoupY4z/YyUgEub
+	rdxcYIHQnKejdXhm4LvWGcqiOeTqoyTu/J0F5EYLS83HZAqkawtwG2OxIrsY7r9gPps4
+	waTg==
+X-Received: by 10.194.62.19 with SMTP id u19mr10038031wjr.0.1422465332877;
+	Wed, 28 Jan 2015 09:15:32 -0800 (PST)
 MIME-Version: 1.0
-X-OriginalArrivalTime: 28 Jan 2015 16:50:49.0697 (UTC)
-	FILETIME=[91EA1510:01D03B1A]
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	yocto <yocto@yoctoproject.org>
-Subject: Re: adding meta-oracle-java
+Received: by 10.27.32.85 with HTTP; Wed, 28 Jan 2015 09:15:11 -0800 (PST)
+From: Simon Bolek <simon.bolek@googlemail.com>
+Date: Wed, 28 Jan 2015 18:15:11 +0100
+Message-ID: <CAEfap_Ab0Le_sXyjZUJ3Yh-kVDQQ9sQi0sGHcB1HQx-5xQ5mnw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: [meta-toolchain-qt5] Can't install qtwebkit-dev-5.3.2-r0@i586: no package provides qtwebkit = 5.3.2-r0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,96 +56,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Jan 2015 16:50:53 -0000
-Content-Type: multipart/alternative;
-	boundary="_d180a1d1-3322-430a-bf44-4b8ba5bc452e_"
+X-List-Received-Date: Wed, 28 Jan 2015 17:15:41 -0000
+Content-Type: multipart/alternative; boundary=047d7ba97cd4df225c050db984b4
 
---_d180a1d1-3322-430a-bf44-4b8ba5bc452e_
-Content-Type: text/plain; charset="iso-8859-1"
+--047d7ba97cd4df225c050db984b4
+Content-Type: text/plain; charset=UTF-8
+
+hello group!
+
+working with dizzy trying to
+*bitbake meta-toolchain-qt5*
+it fails at the step
+
+*do_populate_sdk*
+
+with the error(see below). So if i read the error correctly, qtwebkit-dev
+is missing qtwebkit.
+There is no such package as qtwebkit beeing generated :( So is this a bug?
+Or maybe I am doing sth wrong?
+HELP please :) Any hint would be more than welcome.
+*BTW: Working with daisy did not produce such an error.*
+
++++
+
+
+
+
+
+
+*ERROR: Unable to install packages. Command
+'/home/simon/poky-dizzy/build/tmp/sysroots/i686-linux/usr/bin/smart --quiet
+--data-dir=/home/simon/poky-dizzy/build/tmp/work/i586-poky-linux/meta-toolchain-qt5/1.0-r0/sdk/image/opt/poky/1.7/sysroots/i586-poky-linux/var/lib/smart
+install -y packagegroup-core-standalone-sdk-target-dbg@all
+packagegroup-core-standalone-sdk-target@all
+packagegroup-qt5-toolchain-target@all' returned 1:error: Can't install
+qtwebkit-dev-5.3.2-r0@i586: no package provides qtwebkit = 5.3.2-r0ERROR:
+Function failed: do_populate_sdkERROR: Logfile of failure stored in:
+/home/simon/poky-dizzy/build/tmp/work/i586-poky-linux/meta-toolchain-qt5/1.0-r0/temp/log.do_populate_sdk.20827ERROR:
+Task 7
+(/home/simon/poky-dizzy/sources/meta-qt5/recipes-qt/meta/meta-toolchain-qt5.bb
+<http://meta-toolchain-qt5.bb>, do_populate_sdk) failed with exit code '1'*
++++
+
+thank you and br
+simon:)
+
+--047d7ba97cd4df225c050db984b4
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div>hello group!<br><br></div><div>working with dizzy try=
+ing to <br><i><b>bitbake meta-toolchain-qt5</b></i><br></div><div>it fails =
+at the step <br></div><div><br><i><b>do_populate_sdk</b></i><br><br></div><=
+div>with the error(see below). So if i read the error correctly, qtwebkit-d=
+ev is missing qtwebkit.<br></div><div>There is no such package as qtwebkit =
+beeing generated :( So is this a bug? Or maybe I am doing sth wrong?<br></d=
+iv><div>HELP please :) Any hint would be more than welcome.<br></div><div><=
+i><b>BTW:</b> Working with daisy did not produce such an error.</i><br></di=
+v><div><br>+++<br><i>ERROR: Unable to install packages. Command=20
+&#39;/home/simon/poky-dizzy/build/tmp/sysroots/i686-linux/usr/bin/smart=20
+--quiet=20
+--data-dir=3D/home/simon/poky-dizzy/build/tmp/work/i586-poky-linux/meta-too=
+lchain-qt5/1.0-r0/sdk/image/opt/poky/1.7/sysroots/i586-poky-linux/var/lib/s=
+mart
+ install -y packagegroup-core-standalone-sdk-target-dbg@all=20
+packagegroup-core-standalone-sdk-target@all=20
+packagegroup-qt5-toolchain-target@all&#39; returned 1:<br>error: Can&#39;t =
+install qtwebkit-dev-5.3.2-r0@i586: no package provides qtwebkit =3D 5.3.2-=
+r0<br><br><br>ERROR: Function failed: do_populate_sdk<br>ERROR:
+ Logfile of failure stored in:=20
+/home/simon/poky-dizzy/build/tmp/work/i586-poky-linux/meta-toolchain-qt5/1.=
+0-r0/temp/log.do_populate_sdk.20827<br>ERROR:
+ Task 7=20
+(/home/simon/poky-dizzy/sources/meta-qt5/recipes-qt/meta/<a href=3D"http://=
+meta-toolchain-qt5.bb">meta-toolchain-qt5.bb</a>,
+ do_populate_sdk) failed with exit code &#39;1&#39;</i><br></div><div>+++<b=
+r><br></div>thank you and br<br>simon:)<br><br></div>
 
-
-> Date: Wed=2C 28 Jan 2015 17:36:14 +0100
-> Subject: Re: [yocto] adding meta-oracle-java
-> From: maxin@maxinbjohn.info
-> To: jfabernathy@outlook.com
-> CC: paul.eggleton@linux.intel.com=3B yocto@yoctoproject.org
->=20
-> Hi Jim=2C
->=20
-> On Wed=2C Jan 28=2C 2015 at 3:58 PM=2C Jim Abernathy <jfabernathy@outlook=
-.com> wrote:
-> >
-> <snip>
->=20
-> >
-> > I just created a qemux86 image for core-image-base with meta-java in it=
- and
-> > after booting in the emulator=2C it=2C of course=2C gives the proper re=
-sponse to
-> > java -version.  I'm going to try building a qemux86-64 to see if there'=
-s any
-> > difference.  On real NUC hardware it will not=2C as mentioned=2C work c=
-orrectly.
->=20
-> In  NUC=2C please execute these commands:
->=20
-> # ln -s /lib /lib64
-> # export PATH=3D/usr/share/jre1.7.0_67/bin:$PATH
-> # java
->=20
-> > Jim A
->=20
-> Best Regards=2C
-> Maxin
-
-Good=2C that fixes it.  BTW=2C I found it also fails on qemux86-64=2C so th=
-is makes sense. =20
-
-Is this something that can be made part of the meta-java recipe??
-
-Jim A
-
- 		 	   		  =
-
---_d180a1d1-3322-430a-bf44-4b8ba5bc452e_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<style><!--
-.hmmessage P
-{
-margin:0px=3B
-padding:0px
-}
-body.hmmessage
-{
-font-size: 12pt=3B
-font-family:Calibri
-}
---></style></head>
-<body class=3D'hmmessage'><div dir=3D'ltr'><br><br><div>&gt=3B Date: Wed=2C=
- 28 Jan 2015 17:36:14 +0100<br>&gt=3B Subject: Re: [yocto] adding meta-orac=
-le-java<br>&gt=3B From: maxin@maxinbjohn.info<br>&gt=3B To: jfabernathy@out=
-look.com<br>&gt=3B CC: paul.eggleton@linux.intel.com=3B yocto@yoctoproject.=
-org<br>&gt=3B <br>&gt=3B Hi Jim=2C<br>&gt=3B <br>&gt=3B On Wed=2C Jan 28=2C=
- 2015 at 3:58 PM=2C Jim Abernathy &lt=3Bjfabernathy@outlook.com&gt=3B wrote=
-:<br>&gt=3B &gt=3B<br>&gt=3B &lt=3Bsnip&gt=3B<br>&gt=3B <br>&gt=3B &gt=3B<b=
-r>&gt=3B &gt=3B I just created a qemux86 image for core-image-base with met=
-a-java in it and<br>&gt=3B &gt=3B after booting in the emulator=2C it=2C of=
- course=2C gives the proper response to<br>&gt=3B &gt=3B java -version.  I'=
-m going to try building a qemux86-64 to see if there's any<br>&gt=3B &gt=3B=
- difference.  On real NUC hardware it will not=2C as mentioned=2C work corr=
-ectly.<br>&gt=3B <br>&gt=3B In  NUC=2C please execute these commands:<br>&g=
-t=3B <br>&gt=3B # ln -s /lib /lib64<br>&gt=3B # export PATH=3D/usr/share/jr=
-e1.7.0_67/bin:$PATH<br>&gt=3B # java<br>&gt=3B <br>&gt=3B &gt=3B Jim A<br>&=
-gt=3B <br>&gt=3B Best Regards=2C<br>&gt=3B Maxin<br><br>Good=2C that fixes =
-it.&nbsp=3B BTW=2C I found it also fails on qemux86-64=2C so this makes sen=
-se.&nbsp=3B <br><br>Is this something that can be made part of the meta-jav=
-a recipe??<br><br>Jim A<br><br></div> 		 	   		  </div></body>
-</html>=
-
---_d180a1d1-3322-430a-bf44-4b8ba5bc452e_--
+--047d7ba97cd4df225c050db984b4--
