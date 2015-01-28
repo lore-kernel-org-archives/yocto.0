@@ -1,45 +1,39 @@
-Return-Path: <timo.j.pulkkinen@gmail.com>
+Return-Path: <Kexin.Hao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D9416E0086E; Wed, 28 Jan 2015 00:02:54 -0800 (PST)
+	id D99B6E00A48; Wed, 28 Jan 2015 00:16:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
-	FREEMAIL_FROM, NML_ADSP_CUSTOM_MED,
-	SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (timo.j.pulkkinen[at]gmail.com)
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
-	*      CUSTOM_MED
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
-	and not from a mailing list
-X-Greylist: delayed 606 seconds by postgrey-1.32 at yocto-www;
-	Wed, 28 Jan 2015 00:02:39 PST
-Received: from mail.cemron.com (mx.cemron.com [178.63.111.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D3E7E00757
-	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 00:02:38 -0800 (PST)
-X-Footer: Y2Vtcm9uLmNvbQ==
-Received: from [10.10.0.209] ([81.19.126.210])
-	(authenticated user timo.pulkkinen@cemron.com)
-	by mail.cemron.com (Kerio Connect 8.3.4 patch 1)
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256 bits))
-	for yocto@yoctoproject.org; Wed, 28 Jan 2015 09:52:31 +0200
-Mime-Version: 1.0 (Mac OS X Mail 8.1 \(1993\))
-From: Timo Pulkkinen <timo.j.pulkkinen@gmail.com>
-In-Reply-To: <CAJTo0LaoE+8LS4DJgaULMdOze8gr3D+5Tn4jhPS-ctFyMKXbKA@mail.gmail.com>
-Date: Wed, 28 Jan 2015 09:52:33 +0200
-X-Mao-Original-Outgoing-Id: 444124353.106679-43479dee4c41bce2d478d560c11cfb7b
-Message-Id: <97841E09-0D55-4BC8-A141-841A4A937FD8@gmail.com>
-References: <23F077AC-43FF-472B-B9D0-A30785E7557A@gmail.com>
-	<CAJTo0LbHT2Pksxog-aaHravsy9sqyK1pdqz+rhsDWUGkX_7FTQ@mail.gmail.com>
-	<E690085A-252E-472B-8683-4E4590CDB2AA@gmail.com>
-	<CAJTo0LaoE+8LS4DJgaULMdOze8gr3D+5Tn4jhPS-ctFyMKXbKA@mail.gmail.com>
-To: yocto@yoctoproject.org
-X-Mailer: Apple Mail (2.1993)
-Subject: Re: Google Chrome recipe and systemd => how to satisfy runtime requirement for libudev.so.0?
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0FCAE00A44
+	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 00:16:16 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id t0S8GEYO001679
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 28 Jan 2015 00:16:14 -0800 (PST)
+Received: from pek-khao-d1.corp.ad.wrs.com (128.224.162.196) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server
+	(TLS) id 14.3.174.1; Wed, 28 Jan 2015 00:16:13 -0800
+Date: Wed, 28 Jan 2015 16:16:10 +0800
+From: Kevin Hao <kexin.hao@windriver.com>
+To: Christian Schultz <xxultz@gmail.com>
+Message-ID: <20150128081610.GB1471@pek-khao-d1.corp.ad.wrs.com>
+References: <CAMkbQegMCbT_PsfgtkL9AT3vBH=c0iXgNAkfBnUvZPUjjdn4fQ@mail.gmail.com>
+	<20150123020046.GB5908@pek-khao-d1.corp.ad.wrs.com>
+	<CAMkbQehGh6s0bKNvejKMCdKSOi=HmtCBc--9=_Dz8JG_=w+Ohg@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CAMkbQehGh6s0bKNvejKMCdKSOi=HmtCBc--9=_Dz8JG_=w+Ohg@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: Installing a Yocto image on BeagleBone Black MMC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,43 +45,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Jan 2015 08:02:54 -0000
+X-List-Received-Date: Wed, 28 Jan 2015 08:16:24 -0000
+X-Groupsio-MsgNum: 23222
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="Y7xTucakfITjPcLV"
+Content-Disposition: inline
+
+--Y7xTucakfITjPcLV
 Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
+On Mon, Jan 26, 2015 at 10:53:33AM -0200, Christian Schultz wrote:
+> I looked at the doc, and it gives the instructions to write the image to =
+othe
+> SD Card and run from the card. I didn't find yet instructions about how to
+> write the images to the MMC.=20
 
-> On 27.1.2015, at 21.49, Burton, Ross <ross.burton@intel.com> wrote:
->=20
-> There really isn't - systemd has a newer udev that had an ABI change, =
-so the version was increased.
->=20
-> There's no way that your tmp/deploy/rpms can contain both systemd and =
-udev packages (specifically, libudev1 and libudev0) unless you don't =
-delete it when enabling the systemd DISTRO_FEATURE.  The systemd and =
-udev packages conflict with each other and they both can't be built at =
-the same time.
->=20
-> A copy of the cooker log for the image would be useful after you've =
-deleted tmp and -ccleansstate's google-chrome if you are certain that =
-this is what has happened.
->=20
-Ross,
+The same commands for writing MMC. You just need to change the mmc block de=
+vice
+to mmcblk1 when you run these commands on target.
 
-yeah, you were right - I mistook the existing libudev and udev rpms not =
-to be from systemd before I checked the contents (they DO contain only =
-udevstuff "generated" by systemd). So the image build itself was ok all =
-the time, but libudev.so.0 just doesn't exist when using systemd.
+>For example, I made an image with Yocto, and from
+> the system, I should create the partitions (for boot and rootfs), format =
+them,
+> and copy the contents, but my image lacks the mkfs.vfat and mkfs.ext3, so=
+ I
+> didn't figure how to setup the MMC memory to receive the files.=20
 
-However, about my actual problem: I managed to package Google Chrome =
-successfully by adding SKIP_FILEDEPS_${PN} =3D "1" and by creating a =
-symlink /opt/google/chrome/libudev.so.0 -> ../../../lib/libudev.so.1 in =
-do_install. A bit dirty, but this is what the official deb from Google =
-seems to do to manage the different versions. Also skipping file deps =
-inspection is not clearly an optimal solution, but works for me in this =
-case.
+Add the following to your local.conf:
+	IMAGE_INSTALL_append =3D " dosfstools e2fsprogs-mke2fs"
 
-Thanks for your help,=20
+Thanks,
+Kevin
 
-Timo=
+--Y7xTucakfITjPcLV
+Content-Type: application/pgp-signature
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
 
+iQEcBAEBAgAGBQJUyJrKAAoJEJNY7TDerrFx5XYIALKD/xnHhSWdVep0L4moAoMh
+AYkqa8giyAyHOzk+EeuCzT/b6Aws7zuDSF9cyVEQSXVgG5dpP23rsU8P0qJ+akkN
+sLXLCkww7op377S2kQwG3t61ml8S1pF5hFIjYQGr63Doz3NeO3RrQzwWRufd7MxT
+2UPfr1OT49ofzxrPLC1WqmqTSD99xr9PPp2DwZagTak2Bo3HQCAXQ6TqsCoIBSmY
+dQGEYmO4joxLcbfZOjMi3BgKXx5JSxkx+7Hh6K1dIIkyhTddj0mAg9utcD3yVE/g
+mqY9za6JMqga38r0RvjizriOr0huo5CEONMmKLS2NlmgNVfWywYr0lisPVzhxAY=
+=gzmA
+-----END PGP SIGNATURE-----
+
+--Y7xTucakfITjPcLV--
