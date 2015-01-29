@@ -1,37 +1,36 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <benoit.rapidel+yocto@exmachina.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 03C3BE0080C; Thu, 29 Jan 2015 05:37:34 -0800 (PST)
+	id 325FAE00824; Thu, 29 Jan 2015 09:37:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7396E006EF
-	for <yocto@yoctoproject.org>; Thu, 29 Jan 2015 05:37:22 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by orsmga102.jf.intel.com with ESMTP; 29 Jan 2015 05:34:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,862,1389772800"; d="scan'208";a="447000745"
-Received: from jamiewei-mobl.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.23.125])
-	by FMSMGA003.fm.intel.com with ESMTP; 29 Jan 2015 05:23:31 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Parthiban Kandasamy <parthiban@ulivesystems.com>
-Date: Thu, 29 Jan 2015 13:37:19 +0000
-Message-ID: <1829750.FRYgRRlTT7@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.3 (Linux/3.17.8-200.fc20.x86_64; KDE/4.14.3; x86_64; ; )
-In-Reply-To: <CABNKipLBqieNV0h=be5W=E=8FBmMg0_we=M=H=ZqeH3LEJnzYA@mail.gmail.com>
-References: <CABNKipLBqieNV0h=be5W=E=8FBmMg0_we=M=H=ZqeH3LEJnzYA@mail.gmail.com>
+Received: from galat.willykaze.org (galat.willykaze.org [91.121.12.57])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6291E006EF
+	for <yocto@yoctoproject.org>; Thu, 29 Jan 2015 09:37:13 -0800 (PST)
+Received: from [127.0.0.1] (mne69-4-82-227-115-93.fbx.proxad.net
+	[82.227.115.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by galat.willykaze.org (Postfix) with ESMTPSA id AE42F706FB
+	for <yocto@yoctoproject.org>; Thu, 29 Jan 2015 18:37:12 +0100 (CET)
+Message-ID: <54CA6FBA.50907@exmachina.fr>
+Date: Thu, 29 Jan 2015 18:36:58 +0100
+From: Benoit Rapidel <benoit.rapidel+yocto@exmachina.fr>
+Organization: ExMachina
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Python task error
+To: yocto@yoctoproject.org
+References: <54CA6B3E.2010909@exmachina.fr>
+In-Reply-To: <54CA6B3E.2010909@exmachina.fr>
+X-Forwarded-Message-Id: <54CA6B3E.2010909@exmachina.fr>
+X-Antivirus: avast! (VPS 150129-0, 01/29/2015), Outbound message
+X-Antivirus-Status: Clean
+Subject: Unable to get python3-multiprocessing working
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,33 +42,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Jan 2015 13:37:34 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 29 Jan 2015 17:37:26 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Parthiban,
+Hello,
 
-On Thursday 29 January 2015 18:05:11 Parthiban Kandasamy wrote:
-> i build yocto for beagleboard XM, while building tar --same-order error
-> shown.
-> i am using x86_64 processor and Opensuse 13.2.
-> please tell me to overcome to this problem.
+I have build a custom recipe with
+RDEPENDS_${PN} = "python3 python3-multiprocessing python3-subprocess
+python3-threading"
+Everything builds fine but at runtime I get
+"ImportError: No module named 'atexit'"
 
-This is a very sparse description of the actual error you are receiving, 
-normally we would ask for more details. You don't mention what version of the 
-build system you are using, but at a guess, is it the problem referred to in 
-the following bug report?
+I tried to add python3-lang package to RDEPENDS which seems to provide
+/usr/lib/python3.3/atexit.py.
+This doesn't work and I can't find atexit.py in my rootfs.
 
-  https://bugzilla.yoctoproject.org/show_bug.cgi?id=5342
+Did I miss something ?
 
-If so, either apply the patch mentioned in the bug, or upgrade to a more 
-recent release that includes it (1.5.1 or later).
-
-Cheers,
-Paul
+Regards
 
 -- 
+Benoit Rapidel
 
-Paul Eggleton
-Intel Open Source Technology Centre
+
+
 
