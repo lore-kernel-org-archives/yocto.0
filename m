@@ -1,39 +1,43 @@
-Return-Path: <Thomas.Moore2@atk.com>
+Return-Path: <leimaohui@cn.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D3DF1E00827; Wed, 28 Jan 2015 19:01:52 -0800 (PST)
+	id A6062E00827; Wed, 28 Jan 2015 19:11:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mx-mn.atk.com (mx-mn.atk.com [192.107.248.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8295BE00753
-	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 19:01:46 -0800 (PST)
-Received: from unknown (HELO UT40SVCWEC0001.atk.com) ([146.168.70.142])
-	by mx-mn.atk.com with ESMTP; 28 Jan 2015 20:53:31 -0600
-Received: from UT40SVCWEM001.atk.com ([169.254.4.192]) by
-	UT40SVCWEC0001.atk.com ([146.168.70.142]) with mapi id 14.03.0174.001;
-	Wed, 28 Jan 2015 20:01:45 -0700
-From: "Moore, Thomas (FtWorth)" <Thomas.Moore2@ATK.COM>
-To: ChenQi <Qi.Chen@windriver.com>, "yocto@yoctoproject.org"
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DAE0E00753
+	for <yocto@yoctoproject.org>; Wed, 28 Jan 2015 19:10:56 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.04,848,1406563200"; d="scan'208";a="56795887"
+Received: from unknown (HELO edo.cn.fujitsu.com) ([10.167.33.5])
+	by heian.cn.fujitsu.com with ESMTP; 29 Jan 2015 11:07:21 +0800
+Received: from G08CNEXCHPEKD01.g08.fujitsu.local (localhost.localdomain
+	[127.0.0.1])
+	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id t0T3AAmO030895;
+	Thu, 29 Jan 2015 11:10:10 +0800
+Received: from G08CNEXMBPEKD01.g08.fujitsu.local ([10.167.33.81]) by
+	G08CNEXCHPEKD01.g08.fujitsu.local ([10.167.33.80]) with mapi id
+	14.03.0181.006; Thu, 29 Jan 2015 11:11:00 +0800
+From: "Lei, Maohui" <leimaohui@cn.fujitsu.com>
+To: Yi Zhao <yi.zhao@windriver.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Shell not processing color escape codes
-Thread-Index: AdA7RN4B0XDa1KMrRzKoHECUhWqgmQAYWGCAAA2fW6A=
-Date: Thu, 29 Jan 2015 03:01:44 +0000
-Message-ID: <7B6FE55CD594D7478CED8A39DF3BFC0A5E741769@UT40SVCWEM001.atk.com>
-References: <7B6FE55CD594D7478CED8A39DF3BFC0A5E7416E7@UT40SVCWEM001.atk.com>
-	<54C99B51.2050600@windriver.com>
-In-Reply-To: <54C99B51.2050600@windriver.com>
+Thread-Topic: [yocto] Help -- Where can I get the LSB test log
+Thread-Index: AdA7ZzGsiXXhU73MQaKLa0hwYEWPEv//g6GA//9xFPA=
+Date: Thu, 29 Jan 2015 03:11:00 +0000
+Message-ID: <1B56A49860EB2D45ADE3731B15C959FDAE79E2@G08CNEXMBPEKD01.g08.fujitsu.local>
+References: <1B56A49860EB2D45ADE3731B15C959FDAE7982@G08CNEXMBPEKD01.g08.fujitsu.local>
+	<54C99C23.5060706@windriver.com>
+In-Reply-To: <54C99C23.5060706@windriver.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.99.32.35]
+x-originating-ip: [10.167.226.48]
 MIME-Version: 1.0
-Subject: Re: Shell not processing color escape codes
+Subject: Re: Help -- Where can I get the LSB test log
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,183 +49,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Jan 2015 03:01:52 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E741769UT40SVCWEM001at_"
-
---_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E741769UT40SVCWEM001at_
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 29 Jan 2015 03:11:01 -0000
+Content-Language: zh-CN
+Content-Type: text/plain; charset="iso-2022-jp"
 Content-Transfer-Encoding: quoted-printable
 
-I added less to my IMAGE_INSTALL, but it looks like I still have the busybo=
-x version in my image. How might I go about forcing the use of the standard=
- less?
+Hi Yi
 
-Thomas
-
-From: ChenQi [mailto:Qi.Chen@windriver.com]
-Sent: Wednesday, January 28, 2015 8:31 PM
-To: Moore, Thomas (FtWorth); yocto@yoctoproject.org
-Subject: Re: [yocto] Shell not processing color escape codes
-
-On 01/29/2015 05:56 AM, Moore, Thomas (FtWorth) wrote:
-Hello,
-
-In my image, I've included systemd. I've noticed that when running the syst=
-emctl command, the shell (/bin/sh) is not processing the color escape codes=
-. Here's an example of what it looks like:
-
-[[1;39m82 loaded units listed.[[0m Pass -all to see loaded but inactive uni=
-ts, too.
-
-Any suggestions on how I can either get the shell to process the escape cod=
-es or prevent systemctl from generating them?
-
-Thanks,
-
-Thomas
-
-
-
-
-1. Install 'less'
-2. append '--no-pager' to commands
-
-There's related a bug on bugzilla.
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5723
-
-Regards,
-Chen Qi
-
---_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E741769UT40SVCWEM001at_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> The log should be in /var/opt/lsb/test/manager/results/
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	color:black;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body bgcolor=3D"white" lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">I added less to my IMA=
-GE_INSTALL, but it looks like I still have the busybox version in my image.=
- How might I go about forcing the use of the standard less?<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<p class=3D"MsoNormal"><b><span style=3D"color:#1F497D">Thomas </span></b><=
-span style=3D"color:#1F497D"><o:p></o:p></span></p>
-</div>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<div>
-<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
-;Tahoma&quot;,&quot;sans-serif&quot;;color:windowtext">From:</span></b><spa=
-n style=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif=
-&quot;;color:windowtext"> ChenQi [mailto:Qi.Chen@windriver.com]
-<br>
-<b>Sent:</b> Wednesday, January 28, 2015 8:31 PM<br>
-<b>To:</b> Moore, Thomas (FtWorth); yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] Shell not processing color escape codes<o:p></o=
-:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal">On 01/29/2015 05:56 AM, Moore, Thomas (FtWorth) wrot=
-e:<o:p></o:p></p>
-</div>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal">In my image, I&#8217;ve included systemd. I&#8217;ve=
- noticed that when running the systemctl command, the shell (/bin/sh) is no=
-t processing the color escape codes. Here&#8217;s an example of what it loo=
-ks like:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal">[[1;39m82 loaded units listed.[[0m Pass &#8211;all t=
-o see loaded but inactive units, too.<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal">Any suggestions on how I can either get the shell to=
- process the escape codes or prevent systemctl from generating them?<o:p></=
-o:p></p>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal"><b>Thomas</b><o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><br>
-<br>
-<o:p></o:p></span></p>
-</blockquote>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><br>
-1. Install 'less'<br>
-2. append '--no-pager' to commands<br>
-<br>
-There's related a bug on bugzilla.<br>
-<a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5723">https:=
-//bugzilla.yoctoproject.org/show_bug.cgi?id=3D5723</a><br>
-<br>
-Regards,<br>
-Chen Qi<o:p></o:p></span></p>
-</div>
-</body>
-</html>
 
---_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E741769UT40SVCWEM001at_--
+sorry=1B$B!$=1B(Bmy expression is not very clear=1B$B!#=1B(B
+
+From https://wiki.yoctoproject.org/wiki/Yocto_1.7_Overall_Test_Plan , I kne=
+w LSB test was executed on target that made by yocto 1.7.1 release.
+
+So , I want to get the LSB test history of the yocto 1.7.1 release.
+
+Lei=20
+
+
+> -----Original Message-----
+> From: Yi Zhao [mailto:yi.zhao@windriver.com]
+> Sent: Thursday, January 29, 2015 10:34 AM
+> To: Lei, Maohui/=1B$BMk=1B(B =1B$BLP7E=1B(B; yocto@yoctoproject.org
+> Subject: Re: [yocto] Help -- Where can I get the LSB test log
+>=20
+> The log should be in /var/opt/lsb/test/manager/results/
+>=20
+> Yi
+>=20
+> =1B$B:_=1B(B 2015=1B$BG/=1B(B01=1B$B7n=1B(B29=1B$BF|=1B(B 10:04, Lei, Mao=
+hui =1B$B<LF;=1B(B:
+> > Hi all
+> >
+> > Was LSB test executed  in yocto 1.7.1 release=1B$B!)=1B(B Where can I g=
+et the LSB test
+> log and result?
+> >
+> > Best Regards,
+> > Lei Maohui
+
+
