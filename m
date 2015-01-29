@@ -1,39 +1,44 @@
-Return-Path: <sona.sarmadi@enea.com>
+Return-Path: <parthiban@ulivesystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 30D09E00827; Thu, 29 Jan 2015 02:06:57 -0800 (PST)
+	id 623FFE0080C; Thu, 29 Jan 2015 04:35:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 1D25FE006EF
-	for <yocto@yoctoproject.org>; Thu, 29 Jan 2015 02:06:52 -0800 (PST)
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
-	14.03.0224.002; Thu, 29 Jan 2015 11:06:46 +0100
-From: Sona Sarmadi <sona.sarmadi@enea.com>
-To: akuster <akuster@mvista.com>, "Damian, Alexandru"
-	<alexandru.damian@intel.com>
-Thread-Topic: [yocto] HEADSUP - CVE 2015-023 remote code execution in glibc
-Thread-Index: AQHQOuw8q9XqIn5r00ajvNHhnjlpAZzVoUuAgAE7ebA=
-Date: Thu, 29 Jan 2015 10:06:46 +0000
-Message-ID: <3230301C09DEF9499B442BBE162C5E48258537D9@SESTOEX04.enea.se>
-References: <CAJ2CSBtmYoA+z-hWpUR=-99CTWssLjY74MUh1hm5+Oi70nG7sw@mail.gmail.com>
-	<54C9084F.30609@mvista.com>
-In-Reply-To: <54C9084F.30609@mvista.com>
-Accept-Language: sv-SE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.142.231]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.44 listed in list.dnswl.org]
+Received: from mail-oi0-f44.google.com (mail-oi0-f44.google.com
+	[209.85.218.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28402E006EF
+	for <yocto@yoctoproject.org>; Thu, 29 Jan 2015 04:35:12 -0800 (PST)
+Received: by mail-oi0-f44.google.com with SMTP id a3so26049025oib.3
+	for <yocto@yoctoproject.org>; Thu, 29 Jan 2015 04:35:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=52MNv6mTGUQotZErOU4PCrlWtfMN4kTmBMr6Tv/BsDs=;
+	b=KdbuFxRGRi8tCgnGQ4XBttteemNLbrUHYozKZ+O4rk2rHUZUQPncJPM9qHus6ZCBBh
+	4YHkEDyLjNw8h2sc949KxF/adRyfXHEXf5hAl4RPIVvcjBNUzPNMjxWe0bKJarf+FFbz
+	RzgnjDTUy8nAhFqLfKiyCUlZqmnbxnStUIfjR0sTx8tzt/TLx+JpAdEBO1Kdcsj7mGaf
+	sD55eUXHM6/zqn1p4y9fDhk3UACv5oGosY0Vglj8HAdhc5cys4kVyhDM0JFrBoEdkE0R
+	a7jAcZYQtalGmTdqxRcp47laUu1LhRqZXfs0op1UZHjL6xTpNphKQLaTz98mJMLGYtbh
+	OBlg==
+X-Gm-Message-State: ALoCoQkFWpNWMa7HZL8tM1CfdqlDfvFRVa8A+J9ISuGQqnlokSTs4tDHgNorNA8TmaWXikmQIJ1e
 MIME-Version: 1.0
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: HEADSUP - CVE 2015-023 remote code execution in glibc
+X-Received: by 10.202.102.207 with SMTP id m76mr87347oik.127.1422534911914;
+	Thu, 29 Jan 2015 04:35:11 -0800 (PST)
+Received: by 10.60.61.39 with HTTP; Thu, 29 Jan 2015 04:35:11 -0800 (PST)
+Date: Thu, 29 Jan 2015 18:05:11 +0530
+Message-ID: <CABNKipLBqieNV0h=be5W=E=8FBmMg0_we=M=H=ZqeH3LEJnzYA@mail.gmail.com>
+From: Parthiban Kandasamy <parthiban@ulivesystems.com>
+To: yocto@yoctoproject.org
+Subject: Python task error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,41 +50,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Jan 2015 10:06:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 29 Jan 2015 12:35:29 -0000
+Content-Type: multipart/alternative; boundary=001a1140add81b4c95050dc9b8c4
+
+--001a1140add81b4c95050dc9b8c4
+Content-Type: text/plain; charset=UTF-8
+
+i build yocto for beagleboard XM, while building tar --same-order error
+shown.
+i am using x86_64 processor and Opensuse 13.2.
+please tell me to overcome to this problem.
+
+-- 
+thanks and regards,
+parthiban
+      +919790329795
+
+--001a1140add81b4c95050dc9b8c4
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><div>i build yocto for beagleboard XM, while building=
+ tar --same-order error shown.<br></div>i am using x86_64 processor and Ope=
+nsuse 13.2.<br></div>please tell me to overcome to this problem.<br clear=
+=3D"all"><div><div><div><br>-- <br><div class=3D"gmail_signature"><div styl=
+e=3D"text-align:right">thanks and regards,<br>parthiban =C2=A0 =C2=A0 =C2=
+=A0 <br><div style=3D"text-align:right">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +919=
+790329795=C2=A0=C2=A0 <br></div></div></div>
+</div></div></div></div>
 
-> Subject: Re: [yocto] HEADSUP - CVE 2015-023 remote code execution in glib=
-c
-> Alexandr,
-> On 01/28/2015 03:17 AM, Damian, Alexandru wrote:
->> More details
->>
->>http://www.openwall.com/lists/oss-security/2015/01/27/9
->>
->> redhat bug and patch
->>
->>https://bugzilla.redhat.com/show_bug.cgi?id=3DCVE-2015-0235
->>
->> Do we need to open a bug to track this ?
->    I am working on patches already. if you opened a bug, please send me t=
-he #.
-> - Armin
-
-Hi guys,
-
-I opened a bug for this yesterday, (Bug 7258 - glibc: __nss_hostname_digits=
-_dots() heap-based buffer overflow (CVE-2015-0235)) but closed it since thi=
-s doesn't affect us.
-=20
-There is another glibc issue (CVE-2013-7423?) being discussed,  I think thi=
-s is also fixed in 2.20.
-
-<solardiz> glibc "getaddrinfo() writes DNS queries to random file descripto=
-rs under high load" https://sourceware.org/bugzilla/show_bug.cgi?id=3D15946=
- "Fixed in 2.20"
-
-//Sona
-
+--001a1140add81b4c95050dc9b8c4--
