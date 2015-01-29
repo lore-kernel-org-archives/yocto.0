@@ -1,51 +1,37 @@
-Return-Path: <cleitonblaster@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 82840E0080C; Thu, 29 Jan 2015 05:04:35 -0800 (PST)
+	id 03C3BE0080C; Thu, 29 Jan 2015 05:37:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (cleitonrbueno[at]gmail.com)
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.176 listed in list.dnswl.org]
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0C65E006EF
-	for <yocto@yoctoproject.org>; Thu, 29 Jan 2015 05:04:30 -0800 (PST)
-Received: by mail-lb0-f176.google.com with SMTP id z12so27719932lbi.7
-	for <yocto@yoctoproject.org>; Thu, 29 Jan 2015 05:04:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:date:message-id:subject:from:to:content-type;
-	bh=1tw+EumbXK9Cc7wkkIfQdaZloCyRIJ5n45mrcWaNOOw=;
-	b=EacNW6cCeHe6UeM47IhMZoIxu3KXe4fl68Zu8Kb63+M9Ar6gQcynQ5Luquc/5UFTyi
-	JeUe6BHi0Ex/LqSE7ipjPW+sCYBIkdj+WkcpKTBOcjBBYM7yTSRiy88rq4J1kFseKdOU
-	1wvh3wwRNKCP0DHznE1fbyp4I/oav5Qs2BBVuAa5zOUeTJoeaNi1B2aqXDsrHQ5AoCd9
-	KM+2WAFzkE5k05cB7yXlvYzIkJoKIn5fSNNMu8oXMj51RHOlmVnd30gC+lEmBgL6PL2X
-	Upf6ebR9CB7u5qYwmmrKimF6pyM6LcWbgYU0effr4/p8Hd9HOw9Q09aJ51srvEva0H8g
-	bQCg==
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7396E006EF
+	for <yocto@yoctoproject.org>; Thu, 29 Jan 2015 05:37:22 -0800 (PST)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga102.jf.intel.com with ESMTP; 29 Jan 2015 05:34:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,862,1389772800"; d="scan'208";a="447000745"
+Received: from jamiewei-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.23.125])
+	by FMSMGA003.fm.intel.com with ESMTP; 29 Jan 2015 05:23:31 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Parthiban Kandasamy <parthiban@ulivesystems.com>
+Date: Thu, 29 Jan 2015 13:37:19 +0000
+Message-ID: <1829750.FRYgRRlTT7@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.3 (Linux/3.17.8-200.fc20.x86_64; KDE/4.14.3; x86_64; ; )
+In-Reply-To: <CABNKipLBqieNV0h=be5W=E=8FBmMg0_we=M=H=ZqeH3LEJnzYA@mail.gmail.com>
+References: <CABNKipLBqieNV0h=be5W=E=8FBmMg0_we=M=H=ZqeH3LEJnzYA@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.152.183.196 with SMTP id eo4mr689572lac.0.1422536668672;
-	Thu, 29 Jan 2015 05:04:28 -0800 (PST)
-Sender: cleitonblaster@gmail.com
-Received: by 10.25.24.12 with HTTP; Thu, 29 Jan 2015 05:04:28 -0800 (PST)
-Date: Thu, 29 Jan 2015 11:04:28 -0200
-X-Google-Sender-Auth: SdWE_iq2X8HGIQaOumkZ6skDyXU
-Message-ID: <CABKVDBBtdxVsPibnytKQUmBJ0wot2hwyQ75mkxMW6=FAnx5vEw@mail.gmail.com>
-From: Cleiton Bueno <cleitonrbueno@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: Not create directory in /
+Cc: yocto@yoctoproject.org
+Subject: Re: Python task error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,28 +43,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Jan 2015 13:04:35 -0000
-Content-Type: multipart/alternative; boundary=001a113456d4d0f86e050dca2040
+X-List-Received-Date: Thu, 29 Jan 2015 13:37:34 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---001a113456d4d0f86e050dca2040
-Content-Type: text/plain; charset=UTF-8
+Hi Parthiban,
 
-Very many thanks Gary, it worked!
+On Thursday 29 January 2015 18:05:11 Parthiban Kandasamy wrote:
+> i build yocto for beagleboard XM, while building tar --same-order error
+> shown.
+> i am using x86_64 processor and Opensuse 13.2.
+> please tell me to overcome to this problem.
 
+This is a very sparse description of the actual error you are receiving, 
+normally we would ask for more details. You don't mention what version of the 
+build system you are using, but at a guess, is it the problem referred to in 
+the following bug report?
+
+  https://bugzilla.yoctoproject.org/show_bug.cgi?id=5342
+
+If so, either apply the patch mentioned in the bug, or upgrade to a more 
+recent release that includes it (1.5.1 or later).
+
+Cheers,
+Paul
 
 -- 
 
-*Att,Cleiton Bueno*
+Paul Eggleton
+Intel Open Source Technology Centre
 
---001a113456d4d0f86e050dca2040
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Very many thanks Gary, it worked!<br clear=3D"all"><br><br=
->-- <br><div class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"lt=
-r"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><i><b>=
-Att,<br>Cleiton Bueno</b></i><br><b><font color=3D"#cc0000"></font></b></di=
-v></div></div></div></div></div></div></div></div></div>
-</div>
-
---001a113456d4d0f86e050dca2040--
