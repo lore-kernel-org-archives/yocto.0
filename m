@@ -1,29 +1,50 @@
-Return-Path: <pbarker@betafive.co.uk>
+Return-Path: <amusghatge@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 55394E00873; Fri, 30 Jan 2015 02:14:08 -0800 (PST)
+	id C8139E00873; Fri, 30 Jan 2015 03:20:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (amusghatge[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.196 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 605 seconds by postgrey-1.32 at yocto-www;
-	Fri, 30 Jan 2015 02:14:04 PST
-Received: from crash.betafive.co.uk (crash.betafive.co.uk [37.187.124.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F360FE00824
-	for <yocto@yoctoproject.org>; Fri, 30 Jan 2015 02:14:04 -0800 (PST)
-Received: by crash.betafive.co.uk (Postfix, from userid 1000)
-	id 1D7773E137B; Fri, 30 Jan 2015 10:05:15 +0000 (GMT)
-Date: Fri, 30 Jan 2015 10:05:15 +0000
-From: Paul Barker <paul@paulbarker.me.uk>
-To: Yocto discussion list <yocto@yoctoproject.org>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>,
-	Philip Balister <philip@balister.org>
-Message-ID: <20150130100514.GB3593@crash.betafive.co.uk>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f196.google.com (mail-lb0-f196.google.com
+	[209.85.217.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 318B7E00824
+	for <yocto@yoctoproject.org>; Fri, 30 Jan 2015 03:20:04 -0800 (PST)
+Received: by mail-lb0-f196.google.com with SMTP id 10so7038255lbg.3
+	for <yocto@yoctoproject.org>; Fri, 30 Jan 2015 03:20:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=oAsNGC8Cen1K/pqUDyaHIAsk3Z9uHoKBPxLMn2cQjRg=;
+	b=ErnNtTBKH2r0vRAmGlTIvhgCZAqUC72CISpqcAxML0SiHbOuchxXmjeBQA7kc0uOgv
+	FyotIZJ6oMvBBZkElq0EcYhFcfFqJaMZpE8dSevZ+K7vac0SFedh6LEXuJ62IjWgiwYW
+	56nN7hW993Do6SIOGUHQldPcJkQ/rVdDuvrqhMqwXyOQZLcsK2MA6uNAf6BrDCJKJjHk
+	tJLDuVBjBsR9J+wPFgDzobQqUXZeJ5B23BHp6dBgSgOEC11o3ZgFTg9Lka8w9jVOezt4
+	QEgYiRy/AgrfOnCzjgkdR0bWLi6rb7uyd83h/5U4OL7GeQp7MiTRq9H3IeBleS6GPMHZ
+	nkGA==
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: Meeting at FOSDEM
+X-Received: by 10.152.87.106 with SMTP id w10mr5893729laz.41.1422616802458;
+	Fri, 30 Jan 2015 03:20:02 -0800 (PST)
+Received: by 10.112.4.67 with HTTP; Fri, 30 Jan 2015 03:20:02 -0800 (PST)
+Received: by 10.112.4.67 with HTTP; Fri, 30 Jan 2015 03:20:02 -0800 (PST)
+Date: Fri, 30 Jan 2015 16:50:02 +0530
+Message-ID: <CA+dzM_QFCqJLce1eOfNXGhE1M8AedrsWa00CZue7n1Zxw010Mg@mail.gmail.com>
+From: amruuta ghatge <amusghatge@gmail.com>
+To: yocto@yoctoproject.org
+Subject: SPR issue while booting qemu for POWER PC ppce500v2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,66 +56,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Jan 2015 10:14:08 -0000
-X-Groupsio-MsgNum: 23276
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="eJnRUKwClWJh1Khz"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 30 Jan 2015 11:20:07 -0000
+Content-Type: multipart/alternative; boundary=001a11c354fa2982fb050ddcc91b
 
---eJnRUKwClWJh1Khz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--001a11c354fa2982fb050ddcc91b
+Content-Type: text/plain; charset=UTF-8
+
+Hello,
+
+I am trying to perform LTP testing for POWER ppce500v2.
+
+I used the following rfs and kernel image for testing the LTP test prefix
+[cross build for ppce500ve using ppce500v2 custom toolchain] in QEMU system
+mode.
+
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.7/machines/qemu/qemuppc/core-image-sato-sdk-qemuppc.ext3
+
+
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.7/machines/qemu/qemuppc/vmlinux--3.14.19+git0+fb6271a942_73e2411cdd-r0-qemuppc-20141016220152.bin
+
+When configured for '-M ppce500 -cpu e500v2' it gave me the following error,
+
+$ <path-sysroots>qemu-system-ppc -kernel
+vmlinux--3.14.19+git0+fb6271a942_73e2411cdd-r0-qemuppc-20141016220152.bin
+-net nic,model=pcnet -net tap,vlan=0,ifname=tap0,script=no,downscript=no
+-cpu e500v2 -M ppce500 -hda
+<path-qemuppc>core-image-base-qemuppc-20150112233527.rootfs.ext3 -no-reboot
+-show-cursor -no-reboot -nographic -m 512 --append "root=/dev/hda rw
+console=ttyS0 console=tty ip=192.168.7.2::192.168.7.1:255.255.255.0
+mem=512M console=ttyS0"
+
+Trying to write invalid spr 536 (0x218) 000034c0
+
+Any pointers or inputs/suggestions will be highly appreciated.
+
+Regards,
+
+Amruta!!!
+
+--001a11c354fa2982fb050ddcc91b
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+<p dir=3D"ltr"><br>
+Hello,<br></p>
+<p dir=3D"ltr">I am trying to perform LTP testing for POWER ppce500v2.</p>
+<p dir=3D"ltr">I used the following rfs and kernel image for testing the LT=
+P test prefix [cross build for ppce500ve using ppce500v2 custom toolchain] =
+in QEMU system mode.<br><br></p>
+<p dir=3D"ltr"><a href=3D"http://downloads.yoctoproject.org/releases/yocto/=
+yocto-1.7/machines/qemu/qemuppc/core-image-sato-sdk-qemuppc.ext3">http://do=
+wnloads.yoctoproject.org/releases/yocto/yocto-1.7/machines/qemu/qemuppc/cor=
+e-image-sato-sdk-qemuppc.ext3</a>=C2=A0=C2=A0=C2=A0</p>
+<p dir=3D"ltr"><a href=3D"http://downloads.yoctoproject.org/releases/yocto/=
+yocto-1.7/machines/qemu/qemuppc/vmlinux--3.14.19+git0+fb6271a942_73e2411cdd=
+-r0-qemuppc-20141016220152.bin">http://downloads.yoctoproject.org/releases/=
+yocto/yocto-1.7/machines/qemu/qemuppc/vmlinux--3.14.19+git0+fb6271a942_73e2=
+411cdd-r0-qemuppc-20141016220152.bin</a><br><br></p>
+<p dir=3D"ltr">When configured for &#39;-M ppce500 -cpu e500v2&#39; it gave=
+ me the following error,<br><br></p>
+<p dir=3D"ltr">$ &lt;path-sysroots&gt;qemu-system-ppc -kernel vmlinux--3.14=
+.19+git0+fb6271a942_73e2411cdd-r0-qemuppc-20141016220152.bin -net nic,model=
+=3Dpcnet -net tap,vlan=3D0,ifname=3Dtap0,script=3Dno,downscript=3Dno -cpu e=
+500v2 -M ppce500 -hda &lt;path-qemuppc&gt;core-image-base-qemuppc-201501122=
+33527.rootfs.ext3 -no-reboot -show-cursor -no-reboot -nographic -m 512 --ap=
+pend &quot;root=3D/dev/hda rw console=3DttyS0 console=3Dtty ip=3D192.168.7.=
+2::192.168.7.1:255.255.255.0 mem=3D512M console=3DttyS0&quot;</p>
+<p dir=3D"ltr">Trying to write invalid spr 536 (0x218) 000034c0<br><br></p>
+<p dir=3D"ltr">Any pointers or inputs/suggestions will be highly appreciate=
+d.<br></p>
+<p dir=3D"ltr">Regards,</p>
+<p dir=3D"ltr">Amruta!!!<br>
+</p>
 
-Last year was my first trip to FOSDEM and I'm sending this for anyone invol=
-ved
-with or interested in Yocto Project/OpenEmbedded who's in the same situation
-this year. Whilst it's easy to find people on Saturday/Sunday as they'll be=
- at
-the OpenEmbedded/Yocto Project stall, it can be difficult to find people on=
- the
-Friday evening if you've only spoke to them online and don't know what they=
- look
-like in person.
-
-I'll be at the beer event this evening at the Delirium Cafe from around 7pm=
- if
-travel goes to plan. I'd suggest any Yocto/OE folk gather just inside and t=
-o the
-left of the main doors into the Delirium Cafe at 8pm so that anyone new can=
- find
-us easily.
-
-I'll try to keep up with my emails depending on wifi and mobile network qua=
-lity.
-Drop me a message off the list if you'd like my mobile number to arrange me=
-eting
-up.
-
-Many thanks,
-
---=20
-Paul Barker
-
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
-
---eJnRUKwClWJh1Khz
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iQEcBAEBAgAGBQJUy1daAAoJEBwoJlo7UPQDsxUH/RTsAvKGhLqg8x8cVmefz2Wg
-EgdlKqQE0zemjigjJDb6Sudlefy3fVxnoCDkF71EVoeF1JsY2Ry/YFK4ef4yNste
-5hHdObnsVMnmR3RUHAF8SJS+Y/dWtTIDJlx7lua7FYLinQTe6Fi6P1td3Yh53DrD
-/Lx5YMs68GxtpC5aZ/LvqQi25X2TTdS/JNbj7/Sp5GGUyNWUyCFXISSC3vV7Oo9/
-SERgbwts4/exm9s84I4GsI81L+btlSKGDuAO5mPVEo6sT51cafpV7iKBNmb0gO5G
-Ok6X6+wu+icYaQIphAOPaMBWRelascVoL0KXEhn+yN0oZc/41a/iocjQWWcHz8Y=
-=bvNK
------END PGP SIGNATURE-----
-
---eJnRUKwClWJh1Khz--
+--001a11c354fa2982fb050ddcc91b--
