@@ -1,50 +1,49 @@
-Return-Path: <simon.bolek@googlemail.com>
+Return-Path: <raghavendra.kakarla@inedasystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5CA38E0086F; Fri, 30 Jan 2015 08:00:01 -0800 (PST)
+	id A60C8E0086F; Fri, 30 Jan 2015 08:31:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (simon.bolek[at]googlemail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.172 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-we0-f172.google.com (mail-we0-f172.google.com
-	[74.125.82.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7402FE002F9
-	for <yocto@yoctoproject.org>; Fri, 30 Jan 2015 07:59:52 -0800 (PST)
-Received: by mail-we0-f172.google.com with SMTP id q59so27899556wes.3
-	for <yocto@yoctoproject.org>; Fri, 30 Jan 2015 07:59:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=0qvVH9ZIMlYlyk+8xhpVREvTMqyM+yhNmtQtlpDGveo=;
-	b=XamHrd/UY5X16ghwwuZKR2QZ8LqFodePz2wY8gUo/QdqsS3xwV7/9PPI1Wz5A3OgAM
-	gQ/wCYc2CCQ9VQixSS1BdmhdVNXD9AOaamEp0K4mZMiNah87ZrLg/epvsuLB78Q2qAee
-	oCJJ6hNEeu2D7TCp8tUcts5Pvsg24dEVFZvTeNGcnrVDUm/KRWP7qqOdzJrrqNFUa7dv
-	oG+kR3o8m6MO7uYHTwOv7Sw/nXd7zlCLrzKp0JyMV/oiqqx7CUBimo84nmbPZOaGLVnE
-	QAGgILaL8orkoH2hNc3k74zi2d1xdylu2v26YNrIUYvpvwK7yl5//KgRdH9+j/E9ya1X
-	SyRg==
-X-Received: by 10.194.190.39 with SMTP id gn7mr13743411wjc.30.1422633591834;
-	Fri, 30 Jan 2015 07:59:51 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.27.32.85 with HTTP; Fri, 30 Jan 2015 07:59:31 -0800 (PST)
-From: Simon Bolek <simon.bolek@googlemail.com>
-Date: Fri, 30 Jan 2015 16:59:31 +0100
-Message-ID: <CAEfap_BwbJG8SZ_btNZAAKouS=JAWByJxkMB95n52qV7C=0PqQ@mail.gmail.com>
+X-Greylist: delayed 472 seconds by postgrey-1.32 at yocto-www;
+	Fri, 30 Jan 2015 08:31:43 PST
+Received: from mail.inedasystems.com (mail.inedasystems.com [202.153.34.26])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0253E002F9
+	for <yocto@yoctoproject.org>; Fri, 30 Jan 2015 08:31:43 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.inedasystems.com (Postfix) with ESMTP id 752113E66B7
+	for <yocto@yoctoproject.org>; Fri, 30 Jan 2015 21:53:46 +0530 (IST)
+Received: from mail.inedasystems.com ([127.0.0.1])
+	by localhost (mail.inedasystems.com [127.0.0.1]) (amavisd-new,
+	port 10032)
+	with ESMTP id eBZCMPRhQInT; Fri, 30 Jan 2015 21:53:45 +0530 (IST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.inedasystems.com (Postfix) with ESMTP id 8555A3E6C26;
+	Fri, 30 Jan 2015 21:52:32 +0530 (IST)
+X-Virus-Scanned: amavisd-new at inedasystems.com
+Received: from mail.inedasystems.com ([127.0.0.1])
+	by localhost (mail.inedasystems.com [127.0.0.1]) (amavisd-new,
+	port 10026)
+	with ESMTP id 5wE0GfrKTQUA; Fri, 30 Jan 2015 21:52:32 +0530 (IST)
+Received: from mail.inedasystems.com (mail.inedasystems.com [192.168.24.225])
+	by mail.inedasystems.com (Postfix) with ESMTP id 4DE033E7376
+	for <yocto@yoctoproject.org>; Fri, 30 Jan 2015 19:38:04 +0530 (IST)
+Date: Fri, 30 Jan 2015 19:38:04 +0530 (IST)
+From: Raghavendra Kakarla <raghavendra.kakarla@inedasystems.com>
 To: yocto@yoctoproject.org
-Subject: 1.7 - QtCreator ERROR while linking- /usr/bin/ld: cannot find /lib/libpthread.so.0 inside
+Message-ID: <1451676.12.1422626878778.JavaMail.kraghavendra@Raghavendra>
+In-Reply-To: <10286402.11.1422626774586.JavaMail.kraghavendra@Raghavendra>
+MIME-Version: 1.0
+X-Originating-IP: [192.168.42.55]
+X-Mailer: Zimbra 8.0.3_GA_5664 (Zimbra Desktop/7.2.5_12038_Linux)
+Thread-Topic: Yocto-custom kernel build issue
+Thread-Index: DArOLqsKgWUXYXYwmh6LoT+JxD4IlA==
+X-Cyberoam-smtpxy-version: 1.0.6.3
+X-Cyberoam-AV-Policy: default
+Subject: Yocto-custom kernel build issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,93 +55,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Jan 2015 16:00:01 -0000
-Content-Type: multipart/alternative; boundary=047d7bb0406ee3156d050de0b144
+X-List-Received-Date: Fri, 30 Jan 2015 16:31:51 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---047d7bb0406ee3156d050de0b144
-Content-Type: text/plain; charset=UTF-8
+Hi,
 
-hello!
+I am new to yocto project build system. I downloaded the yocto project build system from git. I built for the all qemu architectures(MIPS,ARM,PPC,X86) and ran on qemu.
 
-So after successfully bitbaking and installing meta-toolchain-st5 I set up
-QtCreator 3.2.2 and tried to compile an app against SDK of qt5. However I
-get an error:
+all are working fine.
 
-/usr/bin/ld: cannot find /lib/libpthread.so.0 inside
-/usr/bin/ld: cannot find /usr/lib/libpthread_nonshared.a inside
+Now I need to create a bsp layer for my board which has the mips processor core.
 
-libpthread.so is available alright, but the linker is not finding it
-somehow.
+I created the bsp layer with using the yocto-bsp create command.
 
-LD variable is set to:
-i586-poky-linux-ld --sysroot=/opt/poky/1.7/sysroots/i586-poky-linux
+here I use the my own kernel which is reside at our local git repositery. I gave this path while creating the bsplayer.
 
-Maybe this is a pure QtCreator bug, but where would I set(override) the
-linker correctly? Any suggestions?
+After adding my bsp layer to bblayers and my mechine to local.conf i built the kernel using bitbake -k core-image-minimal command.
 
-If i run(from console ):
-i586-poky-linux-ld --sysroot=/opt/poky/1.7/sysroots/i586-poky-linux
-/opt/poky/1.7/sysroots/i586-poky-linux/usr/lib/libpthread.so
-it is fine(it gives me some warning, but no errors).
-
-Here are the QtCreator settings for Qt5 Kit:
-GCC Compiler:
-path:
-/opt/poky/1.7/sysroots/i686-pokysdk-linux/usr/bin/i586-poky-linux/i586-poky-linux-gcc
-
-Qt Version:
-qmake location: /opt/poky/1.7/sysroots/i686-pokysdk-linux/usr/bin/qt5/qmake
-
-Qt Kit:
-sysroot: /opt/poky/1.7/sysroots/i586-poky-linux
-compiler: set to above gcc compiler
-qt version: set to above qt version
-
-even manually setting LIBS to
-LIBS += -L//opt/poky/1.7/sysroots/i586-poky-linux/lib
-or
-LIBS += -L//opt/poky/1.7/sysroots/i586-poky-linux/usr/lib
-does not help(but i really do not think this is the problem).
-
-So you have any hints for me?
-I compared the settings of 1.6.1, and there is no difference as far as my
-eye can catch.
+While building i got the following errors:
 
 
-PS. I switched from 1.6.1 to 1.7, becasue of gclib not beeing available in
-1.6.1.
+Log data follows:
+| DEBUG: Executing python function sysroot_cleansstate
+| DEBUG: Python function sysroot_cleansstate finished
+| DEBUG: Executing shell function do_configure
+| NOTE: make oldnoconfig
+| make: *** No rule to make target `oldnoconfig'.  Stop.
+| NOTE: make oldconfig
+| make: *** No rule to make target `oldconfig'.  Stop.
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+| ERROR: Function failed: do_configure (log file is located at /home/testuser/poky/build/tmp/work/mydhanush-poky-linux/linux-yocto-custom/3.10.14+gitAUTOINC+12bbf6468e-r0/temp/log.do_configure.14044)
 
-cheers
-simon :-)
+And also i did not got "src" folder in the following path for my mechine which is there for the qemu mips.
+/home/testuser/poky/build/tmp/sysroots/mydhanush/usr
 
---047d7bb0406ee3156d050de0b144
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+could you please help for resolving this issue.
 
-<div dir=3D"ltr"><div><div><div>hello!<br><br>So after successfully bitbaki=
-ng and installing meta-toolchain-st5 I set up QtCreator 3.2.2 and tried to =
-compile an app against SDK of qt5. However I get an error: <br><br>/usr/bin=
-/ld: cannot find /lib/libpthread.so.0 inside <br>/usr/bin/ld: cannot find /=
-usr/lib/libpthread_nonshared.a inside <br><br>libpthread.so is available al=
-right, but the linker is not finding it somehow. <br><br>LD variable is set=
- to: <br>i586-poky-linux-ld --sysroot=3D/opt/poky/1.7/sysroots/i586-poky-li=
-nux<br><br></div>Maybe this is a pure QtCreator bug, but where would I set(=
-override) the linker correctly? Any suggestions?<br></div><br>If i run(from=
- console ):<br>i586-poky-linux-ld --sysroot=3D/opt/poky/1.7/sysroots/i586-p=
-oky-linux /opt/poky/1.7/sysroots/i586-poky-linux/usr/lib/libpthread.so<br><=
-/div>it is fine(it gives me some warning, but no errors).<br><div><div><div=
-><br>Here are the QtCreator settings for Qt5 Kit:<br>GCC Compiler: <br>path=
-: /opt/poky/1.7/sysroots/i686-pokysdk-linux/usr/bin/i586-poky-linux/i586-po=
-ky-linux-gcc<br><br>Qt Version: <br>qmake location: /opt/poky/1.7/sysroots/=
-i686-pokysdk-linux/usr/bin/qt5/qmake<br><br>Qt Kit:<br>sysroot: /opt/poky/1=
-.7/sysroots/i586-poky-linux<br>compiler: set to above gcc compiler<br>qt ve=
-rsion: set to above qt version<br><br>even manually setting LIBS to<br>LIBS=
- +=3D -L//opt/poky/1.7/sysroots/i586-poky-linux/lib<br>or <br>LIBS +=3D -L/=
-/opt/poky/1.7/sysroots/i586-poky-linux/usr/lib<br>does not help(but i reall=
-y do not think this is the problem). <br><br>So you have any hints for me?<=
-br>I compared the settings of 1.6.1, and there is no difference as far as m=
-y eye can catch.<br><br><br>PS. I switched from 1.6.1 to 1.7, becasue of gc=
-lib not beeing available in 1.6.1.<br><br>cheers<br>simon :-)<br></div></di=
-v></div></div>
+thanks in advance.
 
---047d7bb0406ee3156d050de0b144--
+
+ 
+
+Thanks & Regards,
+Raghavendra K.
+
+
