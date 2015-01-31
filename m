@@ -1,48 +1,51 @@
-Return-Path: <ashcharles@gmail.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5812EE00873; Fri, 30 Jan 2015 10:28:57 -0800 (PST)
+	id CF7B9E00873; Fri, 30 Jan 2015 16:35:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ashcharles[at]gmail.com)
+X-Spam-Status: No, score=0.2 required=5.0 tests=BAYES_00,FSL_HELO_FAKE,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: *  2.8 FSL_HELO_FAKE FSL_HELO_FAKE
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.223.176 listed in list.dnswl.org]
+	*      [74.125.82.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3991EE00546
-	for <yocto@yoctoproject.org>; Fri, 30 Jan 2015 10:28:51 -0800 (PST)
-Received: by mail-ie0-f176.google.com with SMTP id at20so5262057iec.7
-	for <yocto@yoctoproject.org>; Fri, 30 Jan 2015 10:28:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=GR6NKoL2+JhHtYeNLxXAtnj2dUIgwVGQPsX0ZmqRLXU=;
-	b=NCRianDCefBdk5UXIoAIDsrEjYau8Wrrz9Jhh0a2xhBWi6v7baC9MfliFLtzX0NTH6
-	zgFB3wof9yeNH4mjlIsJ3UiXV/Xpo2OHvrZ/WyyPXVKBrkoajb9sOedFALiefyUJJXHg
-	LUeBvRAeyUia56G3kVp2UV6xU1u743lVT9OHuR2moA5DhUsn7U9tgt7oXnDRfZX+O8V5
-	RSHzj6cpyKmGFGfNbyCTKeb5lJHBMWYjACguYUvs4/WMZdcmk5rnxxEAbTDuHdy9z5px
-	vM2Hd0MPkjqi2p7qow/fn3f0eniqZ65CW4EU0gRh3FcsnxRPVp2wlptNtU9XcUqlz/mq
-	EQ4g==
-X-Received: by 10.50.222.44 with SMTP id qj12mr81869igc.48.1422642531204; Fri,
-	30 Jan 2015 10:28:51 -0800 (PST)
+Received: from mail-wg0-f52.google.com (mail-wg0-f52.google.com [74.125.82.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AEF4E00546
+	for <yocto@yoctoproject.org>; Fri, 30 Jan 2015 16:35:17 -0800 (PST)
+Received: by mail-wg0-f52.google.com with SMTP id y19so29612395wgg.11
+	for <yocto@yoctoproject.org>; Fri, 30 Jan 2015 16:35:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=ZaHeMiZ0RwCBfzj8ce7RfkT9RLoXEH38ARZdclEMdjA=;
+	b=O5L5x0B1EURkTqCVp7KQPAg//zhx0hv3ju2tHCN4WFK1OzDJ+IbaLSTFIiQ0g6VhpF
+	+ZsEABhxlK1j7oDmsKkeqg/18l7FF0G7KFkBg9aNuSblqLYE0OZ5irbQaOXNWTb255xU
+	swOhOyUXJU1n22iOiyIK1jmNREN+74JaVAKUBU4kNgQ0KkCfw9uk30I/DH2M1sbtQ0bq
+	/WUxgx0rjlxCP9q7etCSPvp5BWCa7S+rGf88aMEn/hVan5BFPM9YwRQyy/aHWtyI9ECi
+	dmBLHa9DkYaIjPBULDY395b8fpg/Xddcwrk2isEz/KwpRAG0qzQF3gWrlEI3bYU7arP3
+	6VCA==
+X-Gm-Message-State: ALoCoQnOPYy0QdY9aAuKk/GGqgT/JFILU3/Vy0sXHk9BOKuzVi0aT7TtkmvkptMDRMfiKEL2YJuz
+X-Received: by 10.194.179.166 with SMTP id dh6mr17491553wjc.87.1422664516419; 
+	Fri, 30 Jan 2015 16:35:16 -0800 (PST)
+Received: from gmail.com (dhcp-186-165.gjk.dk. [195.249.186.165])
+	by mx.google.com with ESMTPSA id l6sm17073192wjx.33.2015.01.30.16.35.15
+	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 30 Jan 2015 16:35:15 -0800 (PST)
+Date: Sat, 31 Jan 2015 02:35:09 +0200
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Yen-Chin Lee <coldnew.tw@gmail.com>
+Message-ID: <20150131003509.GA9471@gmail.com>
+References: <1422340015-44159-1-git-send-email-coldnew.tw@gmail.com>
 MIME-Version: 1.0
-Received: by 10.107.8.196 with HTTP; Fri, 30 Jan 2015 10:28:21 -0800 (PST)
-From: Ash Charles <ashcharles@gmail.com>
-Date: Fri, 30 Jan 2015 10:28:21 -0800
-Message-ID: <CAK8F28nZxY06hxRokjJVNOvWPLwwdgp86qu11QJa8_bOFGKw-g@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Adding 'sbin' to default path
+In-Reply-To: <1422340015-44159-1-git-send-email-coldnew.tw@gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [oe] [meta-raspberrypi][PATCH v2] qtbase: Add basic Qt5 building support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,30 +57,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Jan 2015 18:28:57 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sat, 31 Jan 2015 00:35:20 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Hi,
+Hello,
 
-Why does the PATH variable in the dot.bashrc shipped by the base-files
-not include 'sbin' paths?  It seems like any interactive user should
-be able to call e.g. 'ifconfig' informationally---they should, and
-would still be, blocked from calling 'ifconfig eth0 up'
+On Tue, Jan 27, 2015 at 02:26:55PM +0800, Yen-Chin Lee wrote:
+> To build raspberrypi with Qt5, we need to add extra QT_CONFIG_FLAGS to
+> indicate device config.
+>
+> Signed-off-by: Yen-Chin Lee <coldnew.tw@gmail.com>
+> ---
+>  qt5-layer/recipes-qt/qt5/qtbase_%.bbappend | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>  create mode 100644 qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
+>
+> diff --git a/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend b/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
+> new file mode 100644
+> index 0000000..384df9f
+> --- /dev/null
+> +++ b/qt5-layer/recipes-qt/qt5/qtbase_%.bbappend
+> @@ -0,0 +1,7 @@
+> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> +
+> +QT_CONFIG_FLAGS_append_raspberrypi = " \
+> +    -device linux-rasp-pi-g++ \
+> +    -device-option CROSS_COMPILE=${TARGET_PREFIX} \
+> +    -I${STAGING_DIR_TARGET}${includedir}/interface/vcos/pthreads \
+> +"
+> --
+> 1.9.3 (Apple Git-50)
+>
+> --
+> _______________________________________________
+> Openembedded-devel mailing list
+> Openembedded-devel@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/openembedded-devel
 
-After looking at the PATH for a generic user on my local Ubuntu
-system, I just added a patch to my meta layer to add the following
-line to the dot.bashrc:
+First of all please send patches to meta-raspberrypi mailing list (yocto).
+Use README for additional information.
 
-export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
+For whatever reason I can't bake qtbase:
+pulse/pulseaudio.h: No such file or directory
+|  #include <pulse/pulseaudio.h>
+|                               ^
+| compilation terminated.
+| Makefile:206: recipe for target 'pulseaudio.o' failed
+| make: *** [pulseaudio.o] Error 1
+| PulseAudio disabled.
+| PulseAudio support cannot be enabled due to functionality tests!
 
-It seems to work well---users created with the extrauser class pull
-this default from the skel.
+Any idea why? Didn't you encounter this issue?
 
-As this is security related though, I wanted to ask the question to
-make sure I'm not doing something silly, dangerous or otherwise
-idiotic.
-
-Thanks,
-
---Ash
+--
+Andrei Gherzan
 
