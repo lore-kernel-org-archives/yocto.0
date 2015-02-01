@@ -1,39 +1,43 @@
-Return-Path: <jfabernathy@outlook.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 10088E0070B; Sun,  1 Feb 2015 07:58:09 -0800 (PST)
+	id 431F8E00717; Sun,  1 Feb 2015 09:12:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jfabernathy[at]outlook.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [65.54.190.142 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from BAY004-OMC3S4.hotmail.com (bay004-omc3s4.hotmail.com
-	[65.54.190.142])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCB9BE00596
-	for <yocto@yoctoproject.org>; Sun,  1 Feb 2015 07:58:03 -0800 (PST)
-Received: from BAY169-W85 ([65.54.190.188]) by BAY004-OMC3S4.hotmail.com over
-	TLS secured channel with Microsoft SMTPSVC(7.5.7601.22751); 
-	Sun, 1 Feb 2015 07:58:02 -0800
-X-TMN: [yJeOFqhs3fZR0S36IkBG6TpL0rq3wvhy]
-X-Originating-Email: [jfabernathy@outlook.com]
-Message-ID: <BAY169-W8554ED0435BE93C2A8F54EAE3F0@phx.gbl>
-From: Jim Abernathy <jfabernathy@outlook.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Sun, 1 Feb 2015 10:58:02 -0500
-Importance: Normal
-In-Reply-To: <BAY169-W1362E3C1DC8377B4CE66D2DAE3F0@phx.gbl>
-References: <BAY169-W1362E3C1DC8377B4CE66D2DAE3F0@phx.gbl>
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A1D4E00596
+	for <yocto@yoctoproject.org>; Sun,  1 Feb 2015 09:12:30 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id E990427E157;
+	Sun,  1 Feb 2015 17:12:27 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id Wyp5bZwoCJvL; Sun,  1 Feb 2015 17:12:02 +0000 (UTC)
+Received: from [192.168.1.39] (AMarseille-651-1-264-196.w90-8.abo.wanadoo.fr
+	[90.8.255.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 8CE2B27E152;
+	Sun,  1 Feb 2015 17:12:02 +0000 (UTC)
+Message-ID: <54CE5E14.3020500@dynamicdevices.co.uk>
+Date: Sun, 01 Feb 2015 18:10:44 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
 MIME-Version: 1.0
-X-OriginalArrivalTime: 01 Feb 2015 15:58:02.0919 (UTC)
-	FILETIME=[DC051B70:01D03E37]
-Subject: Re: Checksum failure encountered Java
+To: peterengcomau001@adam.com.au, Martin Jansa <martin.jansa@gmail.com>, 
+	Simon Bolek <simon.bolek@googlemail.com>
+References: <dd6db0bfa347b43e563b4d948b0ae128f94f1c16@webmail.adam.com.au>
+In-Reply-To: <dd6db0bfa347b43e563b4d948b0ae128f94f1c16@webmail.adam.com.au>
+Cc: yocto@yoctoproject.org
+Subject: Re: meta-qt5 problem in yocto 1.7
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,162 +49,147 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 01 Feb 2015 15:58:09 -0000
-Content-Type: multipart/alternative;
-	boundary="_6585f085-d346-44e4-9a89-e23693c805a5_"
-
---_6585f085-d346-44e4-9a89-e23693c805a5_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-after I posted this issues=2C I tried to click on the link at the Oracle si=
-te and there is something about accepting a License.  I have the LICENSE_FL=
-AGS_WHITELIST +=3D "oracle_java" which worked on the NUC build.  I'm guessi=
-ng that's not the issue.
-
-Jim A
+X-List-Received-Date: Sun, 01 Feb 2015 17:12:51 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
 
-From: jfabernathy@outlook.com
-To: yocto@yoctoproject.org
-Date: Sun=2C 1 Feb 2015 10:53:28 -0500
-Subject: [yocto] Checksum failure encountered Java
-
-=0A=
-=0A=
-=0A=
-I tried to move a build from NUC to Pandaboard and the core-image-sato work=
-ed fine=2C well except the README.HARDWARE for arm didn't mention coping th=
-e uImage to /boot. Figured that out easy enough.
-
-But when I tried to add oracle-jse-jre that worked fine on NUC got the foll=
-owing errors:
-
-WARNING: Checksum failure encountered with download of http://download.orac=
-le.com/otn/java/ejre/7u60-b19/ejre-7u60-fcs-b19-linux-arm-vfp-hflt-client_h=
-eadless-07_may_2014.tar.gz - will attempt other sources if available
-WARNING: Renaming /work/downloads/ejre-7u60-fcs-b19-linux-arm-vfp-hflt-clie=
-nt_headless-07_may_2014.tar.gz to /work/downloads/ejre-7u60-fcs-b19-linux-a=
-rm-vfp-hflt-client_headless-07_may_2014.tar.gz_bad-checksum_b72400960629e74=
-03c4b579dada2a804
-ERROR: Fetcher failure for URL: 'http://download.oracle.com/otn/java/ejre/7=
-u60-b19/ejre-7u60-fcs-b19-linux-arm-vfp-hflt-client_headless-07_may_2014.ta=
-r.gz'. Checksum mismatch!
-File: '/work/downloads/ejre-7u60-fcs-b19-linux-arm-vfp-hflt-client_headless=
--07_may_2014.tar.gz' has md5 checksum b72400960629e7403c4b579dada2a804 when=
- b9b8f598b0a7f49e4d221f16ba25c6c0 was expected
-File: '/work/downloads/ejre-7u60-fcs-b19-linux-arm-vfp-hflt-client_headless=
--07_may_2014.tar.gz' has sha256 checksum c4a64be693e0e27ca95ffe3036c56156e3=
-d75e07f620fd913308eb03cdf86779 when ed061060011d88efe5563c2949c00993db85db1=
-7ab94f18a78713007a2b90faf was expected
-If this change is expected (e.g. you have upgraded to a new version without=
- updating the checksums) then you can use these lines within the recipe:
-SRC_URI[md5sum] =3D "b72400960629e7403c4b579dada2a804"
-SRC_URI[sha256sum] =3D "c4a64be693e0e27ca95ffe3036c56156e3d75e07f620fd91330=
-8eb03cdf86779"
-Otherwise you should retry the download and/or check with upstream to deter=
-mine if the file has become corrupted or otherwise unexpectedly modified.
-
-ERROR: Function failed: Fetcher failure for URL: 'http://download.oracle.co=
-m/otn/java/ejre/7u60-b19/ejre-7u60-fcs-b19-linux-arm-vfp-hflt-client_headle=
-ss-07_may_2014.tar.gz'. Unable to fetch URL from any source.
-ERROR: Logfile of failure stored in: /work/pandaboard/tmp/work/cortexa9t2hf=
--vfp-neon-poky-linux-gnueabi/oracle-jse-jre/1.7.0-u60r0/temp/log.do_fetch.3=
-1677
-ERROR: Task 231 (/home/jim/poky/meta-oracle-java/recipes-devtools/oracle-ja=
-va/oracle-jse-jre_1.7.0.bb=2C do_fetch) failed with exit code '1'
-
-Should I just change the checksum locally or what???
-
-Jim A
-
-
- 		 	   		  =0A=
-
--- =0A=
-_______________________________________________=0A=
-yocto mailing list=0A=
-yocto@yoctoproject.org=0A=
-https://lists.yoctoproject.org/listinfo/yocto 		 	   		  =
-
---_6585f085-d346-44e4-9a89-e23693c805a5_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<style><!--
-.hmmessage P
-{
-margin:0px=3B
-padding:0px
-}
-body.hmmessage
-{
-font-size: 12pt=3B
-font-family:Calibri
-}
---></style></head>
-<body class=3D'hmmessage'><div dir=3D'ltr'>after I posted this issues=2C I =
-tried to click on the link at the Oracle site and there is something about =
-accepting a License.&nbsp=3B I have the LICENSE_FLAGS_WHITELIST +=3D "oracl=
-e_java" which worked on the NUC build.&nbsp=3B I'm guessing that's not the =
-issue.<br><br>Jim A<br><br><br><div><hr id=3D"stopSpelling">From: jfabernat=
-hy@outlook.com<br>To: yocto@yoctoproject.org<br>Date: Sun=2C 1 Feb 2015 10:=
-53:28 -0500<br>Subject: [yocto] Checksum failure encountered Java<br><br>=
-=0A=
-=0A=
-<style><!--=0A=
-.ExternalClass .ecxhmmessage P {=0A=
-padding:0px=3B=0A=
-}=0A=
-=0A=
-.ExternalClass body.ecxhmmessage {=0A=
-font-size:12pt=3B=0A=
-font-family:Calibri=3B=0A=
-}=0A=
-=0A=
---></style>=0A=
-<div dir=3D"ltr">I tried to move a build from NUC to Pandaboard and the cor=
-e-image-sato worked fine=2C well except the README.HARDWARE for arm didn't =
-mention coping the uImage to /boot. Figured that out easy enough.<br><br>Bu=
-t when I tried to add oracle-jse-jre that worked fine on NUC got the follow=
-ing errors:<br><br>WARNING: Checksum failure encountered with download of h=
-ttp://download.oracle.com/otn/java/ejre/7u60-b19/ejre-7u60-fcs-b19-linux-ar=
-m-vfp-hflt-client_headless-07_may_2014.tar.gz - will attempt other sources =
-if available<br>WARNING: Renaming /work/downloads/ejre-7u60-fcs-b19-linux-a=
-rm-vfp-hflt-client_headless-07_may_2014.tar.gz to /work/downloads/ejre-7u60=
--fcs-b19-linux-arm-vfp-hflt-client_headless-07_may_2014.tar.gz_bad-checksum=
-_b72400960629e7403c4b579dada2a804<br>ERROR: Fetcher failure for URL: 'http:=
-//download.oracle.com/otn/java/ejre/7u60-b19/ejre-7u60-fcs-b19-linux-arm-vf=
-p-hflt-client_headless-07_may_2014.tar.gz'. Checksum mismatch!<br>File: '/w=
-ork/downloads/ejre-7u60-fcs-b19-linux-arm-vfp-hflt-client_headless-07_may_2=
-014.tar.gz' has md5 checksum b72400960629e7403c4b579dada2a804 when b9b8f598=
-b0a7f49e4d221f16ba25c6c0 was expected<br>File: '/work/downloads/ejre-7u60-f=
-cs-b19-linux-arm-vfp-hflt-client_headless-07_may_2014.tar.gz' has sha256 ch=
-ecksum c4a64be693e0e27ca95ffe3036c56156e3d75e07f620fd913308eb03cdf86779 whe=
-n ed061060011d88efe5563c2949c00993db85db17ab94f18a78713007a2b90faf was expe=
-cted<br>If this change is expected (e.g. you have upgraded to a new version=
- without updating the checksums) then you can use these lines within the re=
-cipe:<br>SRC_URI[md5sum] =3D "b72400960629e7403c4b579dada2a804"<br>SRC_URI[=
-sha256sum] =3D "c4a64be693e0e27ca95ffe3036c56156e3d75e07f620fd913308eb03cdf=
-86779"<br>Otherwise you should retry the download and/or check with upstrea=
-m to determine if the file has become corrupted or otherwise unexpectedly m=
-odified.<br><br>ERROR: Function failed: Fetcher failure for URL: 'http://do=
-wnload.oracle.com/otn/java/ejre/7u60-b19/ejre-7u60-fcs-b19-linux-arm-vfp-hf=
-lt-client_headless-07_may_2014.tar.gz'. Unable to fetch URL from any source=
-.<br>ERROR: Logfile of failure stored in: /work/pandaboard/tmp/work/cortexa=
-9t2hf-vfp-neon-poky-linux-gnueabi/oracle-jse-jre/1.7.0-u60r0/temp/log.do_fe=
-tch.31677<br>ERROR: Task 231 (/home/jim/poky/meta-oracle-java/recipes-devto=
-ols/oracle-java/oracle-jse-jre_1.7.0.bb=2C do_fetch) failed with exit code =
-'1'<br><br>Should I just change the checksum locally or what???<br><br>Jim =
-A<br><br><br> 		 	   		  </div>=0A=
-<br>-- =0A=
-_______________________________________________=0A=
-yocto mailing list=0A=
-yocto@yoctoproject.org=0A=
-https://lists.yoctoproject.org/listinfo/yocto</div> 		 	   		  </div></body=
+On 31/01/2015 19:10, peterengcomau001@adam.com.au wrote:
 >
-</html>=
+> Hi Alex,
+>
+> Thanks for confirming the problem exists.
+> I set QT_MODULE_BRANCH ?= "dev" in
+> meta-qt5/recipes-qt/qt5/qt5-git.inc, but still get the same problem. 
+> Do I have the correct file ?
 
---_6585f085-d346-44e4-9a89-e23693c805a5_--
+Lachlan,
+
+So I have been building for qemux86 with dizzy,
+
+Build Configuration:
+BB_VERSION        = "1.24.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Ubuntu-14.04"
+TARGET_SYS        = "i586-poky-linux"
+MACHINE           = "qemux86"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.7.1"
+TUNE_FEATURES     = "m32 i586"
+TARGET_FPU        = ""
+meta
+meta-yocto        = "dizzy:9fc095a439c36014c73b3a8f240afba09fe0e4d7"
+meta-oe
+meta-efl
+meta-webserver
+meta-networking   = "dizzy:200f6cafc878d4c26871fc56d21ecc8eaa9aa61b"
+meta-mono         = "master:b73fc7c525cc0068b2ed84fc26b5d2d4d87c6c12"
+meta-gnome
+meta-efl          = "dizzy:200f6cafc878d4c26871fc56d21ecc8eaa9aa61b"
+meta-browser.master = "master:14e4829d716db416f62403ddd0941ab97491d707"
+meta-ruby
+meta-python       = "dizzy:200f6cafc878d4c26871fc56d21ecc8eaa9aa61b"
+meta-qt5.dizzy    = "dizzy:8b0ffbd849203d07164ccfad2535bdb107eecd08"
+
+local.conf is here http://pastebin.com/0t2GFWhu
+bblayers.conf is here http://pastebin.com/CK6dF9f5
+
+Build command is
+
+bitbake -k core-image-minimal
+
+So this fails a few times building, which seems to be related to gcc
+issues, and I've seen on and off for some time.
+
+Afer a few restarts I get to the point where most of it is built and I have
+
+ERROR: Function failed: do_configure (log file is located at
+/data_drive/imx6/rootfs_builder/qemux86.dizzy/tmp/work/i586-poky-linux/qtwebkit-examples/5.3.2-r0/temp/log.do_configure.26328)
+ERROR: Logfile of failure stored in:
+/data_drive/imx6/rootfs_builder/qemux86.dizzy/tmp/work/i586-poky-linux/qtwebkit-examples/5.3.2-r0/temp/log.do_configure.26328
+
+ERROR: Task 842
+(/data_drive/imx6/rootfs_builder/sources/meta-qt5.dizzy/recipes-qt/qt5/qtwebkit-examples_5.3.2.bb,
+do_configure) failed with exit code '1'
+WARNING: Failed to fetch URL
+git://qt.gitorious.org/qt/qtsystems.git;branch=5.3, attempting MIRRORS
+if available
+ERROR: Fetcher failure: Unable to find revision
+aa651c73bf7bc57c1b6b1bfcfa9afe901884a102 in branch 5.3 even from upstream
+ERROR: Function failed: Fetcher failure for URL:
+'git://qt.gitorious.org/qt/qtsystems.git;branch=5.3'. Unable to fetch
+URL from any source.
+ERROR: Logfile of failure stored in:
+/data_drive/imx6/rootfs_builder/qemux86.dizzy/tmp/work/i586-poky-linux/qtsystems/5.3.99+5.4.0-beta1+gitAUTOINC+aa651c73bf-r0/temp/log.do_fetch.26325
+ERROR: Task 756
+(/data_drive/imx6/rootfs_builder/sources/meta-qt5.dizzy/recipes-qt/qt5/qtsystems_git.bb,
+do_fetch) failed with exit code '1'
+
+...
+
+Note from the above that qtbase has built ok without modifications to
+meta-qt5
+
+To double check the qtbase and also to get qtwebkit building I
+
+bitbake -f -c cleansstate qtbase
+bitbake qtbase
+
+This builds OK
+
+...
+
+Then
+
+bitbake -k core-image-minimal
+
+Gives
+
+ERROR: Task 843
+(/data_drive/imx6/rootfs_builder/sources/meta-qt5.dizzy/recipes-qt/qt5/qtwebkit-examples_5.3.2.bb,
+do_compile) failed with exit code '1'
+WARNING: Failed to fetch URL
+git://qt.gitorious.org/qt/qtsystems.git;branch=5.3, attempting MIRRORS
+if available
+ERROR: Fetcher failure: Unable to find revision
+aa651c73bf7bc57c1b6b1bfcfa9afe901884a102 in branch 5.3 even from upstream
+ERROR: Function failed: Fetcher failure for URL:
+'git://qt.gitorious.org/qt/qtsystems.git;branch=5.3'. Unable to fetch
+URL from any source.
+ERROR: Logfile of failure stored in:
+/data_drive/imx6/rootfs_builder/qemux86.dizzy/tmp/work/i586-poky-linux/qtsystems/5.3.99+5.4.0-beta1+gitAUTOINC+aa651c73bf-r0/temp/log.do_fetch.21451
+ERROR: Task 756
+(/data_drive/imx6/rootfs_builder/sources/meta-qt5.dizzy/recipes-qt/qt5/qtsystems_git.bb,
+do_fetch) failed with exit code '1'
+
+...
+
+Changing the branch in qtsystems_git gets qtsystems building
+
+#QT_MODULE_BRANCH = "5.3"
+QT_MODULE_BRANCH = "dev"
+
+...
+
+I then removed the qtwebkit examples from local.conf as there's some
+strange linker problem there
+
+#    qtwebkit-examples-examples \
+
+I then had to remove the qt examples packages as for some reason they
+aren't getting built at all
+
+# qtbase-examples \
+
+...
+
+That gets me to the point I get a dizzy root filesystem built. Next I
+need to understand why I am not getting the examples packages built.
+
+Hope that helps somewhat.
+
+Cheers,
+
+Alex
+
+
