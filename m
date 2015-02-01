@@ -1,43 +1,53 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 515E8E0096F; Sun,  1 Feb 2015 12:00:09 -0800 (PST)
+	id 5F102E00717; Sun,  1 Feb 2015 13:46:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC836E00961
-	for <yocto@yoctoproject.org>; Sun,  1 Feb 2015 12:00:01 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 0281B27E159;
-	Sun,  1 Feb 2015 20:00:00 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 2-SOIT5OoJqj; Sun,  1 Feb 2015 19:59:27 +0000 (UTC)
-Received: from [192.168.1.39] (AMarseille-651-1-264-196.w90-8.abo.wanadoo.fr
-	[90.8.255.196])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 2883027E152;
-	Sun,  1 Feb 2015 19:59:27 +0000 (UTC)
-Message-ID: <54CE8551.9090306@dynamicdevices.co.uk>
-Date: Sun, 01 Feb 2015 20:58:09 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
-MIME-Version: 1.0
-To: peterengcomau001@adam.com.au, Martin Jansa <martin.jansa@gmail.com>, 
-	Simon Bolek <simon.bolek@googlemail.com>
-References: <b35cd8c63423d3c2fdccbdc99a2a45e5d5221898@webmail.adam.com.au>
-In-Reply-To: <b35cd8c63423d3c2fdccbdc99a2a45e5d5221898@webmail.adam.com.au>
-Cc: yocto@yoctoproject.org
-Subject: Re: meta-qt5 problem in yocto 1.7
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.48 listed in list.dnswl.org]
+Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
+	[209.85.220.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 455F3E00596
+	for <yocto@yoctoproject.org>; Sun,  1 Feb 2015 13:46:32 -0800 (PST)
+Received: by mail-pa0-f48.google.com with SMTP id ey11so74162734pad.7
+	for <yocto@yoctoproject.org>; Sun, 01 Feb 2015 13:46:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id;
+	bh=x/WM05vq5eojuSSDCk3Vhxs16yrivrE7WW5lmEJugvU=;
+	b=aiQ8pvT1ScgewLCF5TYkBwkZFzyRRy4Gw2rYJQcekZpcvASnJbEGibDyd2w2pqrFTL
+	VSkVCs/KxtEjqgaAcNg8gPQ4UGJatK19OP/SwLcAgisU3pc+25EnjTwGIswYlI2nMa8C
+	+2VbtBbNYn5xB/zrWUPVcOevUasULlVzgjoogY5SAUjjP8O/7woq4zVQ01UIMQXglZmT
+	9SN1+9MpZNMPYlvgDh6wMaqtIDM3jLeKoMS1AS99ncFcjjoUz5HtUkDKEBIRIs9LGPPX
+	8woBeO6FApwmvjdaNith7w1H84cPOHZ1xMjxTk3wRUexaK6BTYrFK/r1hocxrGqBqshI
+	XImw==
+X-Received: by 10.70.132.129 with SMTP id ou1mr24772209pdb.11.1422827192163;
+	Sun, 01 Feb 2015 13:46:32 -0800 (PST)
+Received: from Pahoa2.mvista.com (c-76-20-92-207.hsd1.ca.comcast.net.
+	[76.20.92.207])
+	by mx.google.com with ESMTPSA id p2sm4459534pdm.57.2015.02.01.13.46.30
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Sun, 01 Feb 2015 13:46:31 -0800 (PST)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Sun,  1 Feb 2015 13:46:24 -0800
+Message-Id: <1422827185-28563-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [meta-security][PATCH 1/2] libseccomp: add COMPATIBLE_HOST
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,64 +59,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 01 Feb 2015 20:00:09 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 01 Feb 2015 21:46:40 -0000
 
+don't build for ppc, ppc64, mips or aarch64
 
-On 01/02/2015 20:38, peterengcomau001@adam.com.au wrote:
-> Hi Alex,
-> I have no problem with qt5 with daisy and have been using it fine for
-> over 6 months. During that time I have cleaned my tmp file multiple
-> times which would force a new reload of the sources.
-> Also I dont have a problem with Dizzy when building
-> core-image-mininal, core-image-full-cmdline and core-image-sato.
->
-> If i bitbake my recipe using the -k option, I only get 3 failed recipes
-> 0: qtbase-native-5.4.0-r0 do_fetch (pid 13279)
-> 1: qtbase-5.4.0-r0 do_fetch (pid 13280)
-> 2: qtdeclarative-5.4.0-r0 do_fetch (pid 13283)
->
-> and these relate two 2 failed fetchs:
-> ERROR: Function failed: Fetcher failure for URL:
-> 'http://download.qt-project.org/official_releases/qt/5.4/5.4.0/submodules/qtdeclarative-opensource-src-5.4.0.tar.xz'.
-> Unable to fetch URL from any source.
-> ERROR: Function failed: Fetcher failure for URL:
-> 'http://download.qt-project.org/official_releases/qt/5.4/5.4.0/submodules/qtbase-opensource-src-5.4.0.tar.xz'.
-> Unable to fetch URL from any source.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/libseccomp/libseccomp_2.1.1.bb | 3 +++
+ 1 file changed, 3 insertions(+)
 
-OK, well I'm not sure but I am going to make some guesses here...
-
-You're building Yocto daisy release/branch which you got from somewhere
-then you cloned the meta-qt5 repository or otherwise obtained meta-qt5
-meta-data?
-
-You then added that into your bblayers.conf ?
-
-Now the latest meta-qt5 (i.e. master branch) has recipes to build QT
-5.4.0 I see
-
-I'm not sure what best practice is here but I tend to try to use the
-same branches across the meta-data.
-
-So for example when I am building with Yocto daisy/dizzy I am using the
-appropriate branch of meta-qt5 as you saw in my earlier email
-
-For Yocto dizzy, meta-qt5.dizzy =
-"dizzy:8b0ffbd849203d07164ccfad2535bdb107eecd08"
-
-If you want to build the meta-qt5 daisy branch then you would go into
-the meta-qt5 folder you cloned from the git repo something like this
-
-cd sources/meta-qt5
-git branch (to check, probably shows master)
-git checkout daisy
-
-Then rebuild. That should be building QT 5.2.1 which is what I am seeing
-here
-
-Cheers,
-
-Alex
+diff --git a/recipes-security/libseccomp/libseccomp_2.1.1.bb b/recipes-security/libseccomp/libseccomp_2.1.1.bb
+index f15c6b0..2d93479 100644
+--- a/recipes-security/libseccomp/libseccomp_2.1.1.bb
++++ b/recipes-security/libseccomp/libseccomp_2.1.1.bb
+@@ -27,6 +27,9 @@ do_install() {
+     oe_runmake  DESTDIR=${D} install-tests
+ }
+ 
++# MIPS, aarch64, and PowerPC are not supported in this version.
++COMPATIBLE_HOST = '(x86_64|i.86|arm).*-linux'
++
+ PACKAGES += "${PN}-tests "
+ FILES_${PN}-tests = "${libdir}/${BPN}/tests/*"
+ FILES_${PN}-dbg += "${libdir}/${BPN}/tests/.debug/*"
+-- 
+1.9.1
 
 
