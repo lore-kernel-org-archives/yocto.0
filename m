@@ -1,66 +1,37 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36A18E008A6; Mon,  2 Feb 2015 10:33:44 -0800 (PST)
+	id 4639FE008A6; Mon,  2 Feb 2015 10:40:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.47 listed in list.dnswl.org]
-Received: from mail-pa0-f47.google.com (mail-pa0-f47.google.com
-	[209.85.220.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1793AE00824
-	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 10:33:39 -0800 (PST)
-Received: by mail-pa0-f47.google.com with SMTP id lj1so85426551pab.6
-	for <yocto@yoctoproject.org>; Mon, 02 Feb 2015 10:33:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=GivLn0cFX8myKpTiyttXcgweEEyy7mLSkJnyrKKxzic=;
-	b=b03Ih1JgqbyMWkMgUOGccP+7Al63eY/eofn7W4PSXc212PSrTGvvC9rmfl7KEw5bt6
-	zxPUllb9x8PNdfh3iBL3u4uN29hwXZHQa9zkNcE+6fJREDtSEUQFulzweBlx4OU8xzsl
-	h7jeMiJamSGwf2/gEUISn4NyPZ6miPunWLCLW8xjI4aUbxFXYEp3GsMYOSkgtg2gROFW
-	ukEuaNUDFVaNWDu1q6wCsTcaJrbb1e4oZfDmLSJetNcj9fmZB/1e1S1xW+BCQFmPRWbQ
-	j1BRuJP4gOP/qRLCu12DBDcEe+0nHt+hQAzBv8OMhEG5y0NLt2wVoxkyrvBmZeexjETI
-	MlBw==
-X-Received: by 10.68.69.5 with SMTP id a5mr31620547pbu.57.1422902019091;
-	Mon, 02 Feb 2015 10:33:39 -0800 (PST)
-Received: from ?IPv6:2601:9:3580:84c:55be:bb2b:a02a:e844?
-	([2601:9:3580:84c:55be:bb2b:a02a:e844])
-	by mx.google.com with ESMTPSA id po4sm4859158pdb.85.2015.02.02.10.33.38
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 02 Feb 2015 10:33:38 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2070.6\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CAJTo0LbSFesauhA_H39Znd07SR5JCs45izy2us=cFWVGXtW8hg@mail.gmail.com>
-Date: Mon, 2 Feb 2015 10:33:37 -0800
-Message-Id: <80920FD0-CA08-45D7-9A41-3971FB2D58D7@gmail.com>
-References: <CAMKF1souj1-FLTjkQb0y8myTiKMJyNeAa7wiM5-pW1fz0EtheA@mail.gmail.com>
-	<CAJTo0LaN3HMhjrpii2pPbJw5zWbywgr1keZe=iQmuKFMFFf=gQ@mail.gmail.com>
-	<CAMKF1sq8NsuNYZDQRPtXruBeRndOP+0qwBuTO2ahb6q-fS8XGw@mail.gmail.com>
-	<CAJTo0LYpKbwOHg-DBMJycy+KNayTCsnhToJR8K-REKZ2jxhnhw@mail.gmail.com>
-	<EA0C9DE9-9E5F-4B74-8464-138895268F2F@gmail.com>
-	<CAJTo0LbSFesauhA_H39Znd07SR5JCs45izy2us=cFWVGXtW8hg@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-X-Mailer: Apple Mail (2.2070.6)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [RFT] upcoming glibc 2.21 and gcc 4.9 upgrade
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63FCCE00824
+	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 10:40:07 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga102.jf.intel.com with ESMTP; 02 Feb 2015 10:36:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.09,507,1418112000"; d="scan'208";a="660449157"
+Received: from bbodonog-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.3.158])
+	by fmsmga001.fm.intel.com with ESMTP; 02 Feb 2015 10:40:03 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Date: Mon, 02 Feb 2015 18:40:04 +0000
+Message-ID: <3024113.u8sIRSU3WC@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.4 (Linux/3.17.8-200.fc20.x86_64; KDE/4.14.4; x86_64; ; )
+In-Reply-To: <54CFA6DA.60103@mlbassoc.com>
+References: <54CFA6DA.60103@mlbassoc.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: bitbake-whatchanged error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,74 +43,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Feb 2015 18:33:44 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_C5DCE33F-5C49-4D12-88C7-0D87D8A23BAB"
+X-List-Received-Date: Mon, 02 Feb 2015 18:40:11 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---Apple-Mail=_C5DCE33F-5C49-4D12-88C7-0D87D8A23BAB
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+Hi Gary,
 
+On Monday 02 February 2015 09:33:30 Gary Thomas wrote:
+> Every time I run the 'bitbake-whatchanged' script, I get an
+> error like this:
+>    ERROR: Bitbake's cached basehash does not match the one we just generated
+> (/home/local/poky-cutting-edge/meta-imx6/packages/images/imx6-demo-image.bb
+> .do_rootfs)! ERROR: The mismatched hashes were
+> e48dfde9772b0a567b5327087c9e2d44 and 3c3447f08ef4da61b814bff5fb909bff
+> 
+> What causes this and should I be worried?  Does it affect
+> the actual results which are shown?
 
-> On Feb 2, 2015, at 9:50 AM, Burton, Ross <ross.burton@intel.com> =
-wrote:
->=20
->=20
-> On 2 February 2015 at 17:40, Khem Raj <raj.khem@gmail.com =
-<mailto:raj.khem@gmail.com>> wrote:
-> Yeah, you must be using a weirdly compiled gcc on your host which is =
-defaulting to -std  < c99 and hence the problem. I have fix for that =
-issue already locally.
->=20
-> $ gcc --version
-> gcc (Debian 4.7.2-5) 4.7.2
->=20
-> This is the default gcc in current Debian stable.
+I don't think you should necessarily be worried, but this is definitely a bug 
+and we should fix it. It affects bitbake -S printdiff as well. If you have a 
+chance it would be great if you could file a bug about it.
 
-Yeah, I am on archlinux (the other end of spectrum). Nevertheless, I =
-have updated the contrib tree which fixes cross-localedef-native compile =
-time issue. So you should be good
-to go now.
+Thanks,
+Paul
 
->=20
-> Ross
+-- 
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
---Apple-Mail=_C5DCE33F-5C49-4D12-88C7-0D87D8A23BAB
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Feb 2, 2015, at 9:50 AM, Burton, Ross &lt;<a =
-href=3D"mailto:ross.burton@intel.com" =
-class=3D"">ross.burton@intel.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div dir=3D"ltr" =
-class=3D""><div class=3D"gmail_extra"><br class=3D""><div =
-class=3D"gmail_quote">On 2 February 2015 at 17:40, Khem Raj <span =
-dir=3D"ltr" class=3D"">&lt;<a href=3D"mailto:raj.khem@gmail.com" =
-target=3D"_blank" class=3D"">raj.khem@gmail.com</a>&gt;</span> wrote:<br =
-class=3D""><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left=
--style:solid;padding-left:1ex">Yeah, you must be using a weirdly =
-compiled gcc on your host which is defaulting to -std &nbsp;&lt; c99 and =
-hence the problem. I have fix for that issue already =
-locally.</blockquote></div><br class=3D""><div class=3D"gmail_extra">$ =
-gcc --version</div><div class=3D"gmail_extra">gcc (Debian 4.7.2-5) =
-4.7.2</div><div class=3D"gmail_extra"><br class=3D""></div><div =
-class=3D"gmail_extra">This is the default gcc in current Debian =
-stable.</div></div></div></div></blockquote><div><br =
-class=3D""></div><div>Yeah, I am on archlinux (the other end of =
-spectrum). Nevertheless, I have updated the contrib tree which fixes =
-cross-localedef-native compile time issue. So you should be =
-good</div><div>to go now.</div><br class=3D""><blockquote type=3D"cite" =
-class=3D""><div class=3D""><div dir=3D"ltr" class=3D""><div =
-class=3D"gmail_extra"><div class=3D"gmail_extra"><br class=3D""></div><div=
- class=3D"gmail_extra">Ross</div></div></div>
-</div></blockquote></div><br class=3D""></body></html>=
-
---Apple-Mail=_C5DCE33F-5C49-4D12-88C7-0D87D8A23BAB--
