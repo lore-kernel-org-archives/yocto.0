@@ -1,51 +1,60 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C13AE008A6; Mon,  2 Feb 2015 10:05:17 -0800 (PST)
+	id 60CBDE008A6; Mon,  2 Feb 2015 10:24:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 064F0E00824
-	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 10:05:16 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga103.fm.intel.com with ESMTP; 02 Feb 2015 09:58:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,507,1418112000"; d="scan'208";a="660430585"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by fmsmga001.fm.intel.com with ESMTP; 02 Feb 2015 10:05:13 -0800
-Received: from orsmsx157.amr.corp.intel.com (10.22.240.23) by
-	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
-	(TLS) id 14.3.195.1; Mon, 2 Feb 2015 10:05:13 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.77]) by
-	ORSMSX157.amr.corp.intel.com ([169.254.9.139]) with mapi id
-	14.03.0195.001; Mon, 2 Feb 2015 10:05:13 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, "Burton, Ross"
-	<ross.burton@intel.com>, Christopher Larson <clarson@kergoth.com>, "Gary
-	Thomas" <gary@mlbassoc.com>
-Thread-Topic: [yocto] sstate management
-Thread-Index: AQHQPwdbkFRHcu7K90StvDBfmKPEo5zeGC4AgAAMj4CAAAKwAP//f62g
-Date: Mon, 2 Feb 2015 18:05:13 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988EA2C71@ORSMSX101.amr.corp.intel.com>
-References: <54CFA908.7010507@mlbassoc.com>
-	<CABcZANmY5-_wgSZp2xb=20Og27mcDJ_e7_QFZHGnHV67L1vr_g@mail.gmail.com>
-	<CAJTo0La5PVoaE=Qyyje3Jqy6i2f15djUYyGwOAks8KG-71NMbA@mail.gmail.com>
-	<1497730.Ya5ZGJxmZb@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <1497730.Ya5ZGJxmZb@peggleto-mobl5.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f49.google.com (mail-pa0-f49.google.com
+	[209.85.220.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3547BE00824
+	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 10:24:28 -0800 (PST)
+Received: by mail-pa0-f49.google.com with SMTP id fa1so85437976pad.8
+	for <yocto@yoctoproject.org>; Mon, 02 Feb 2015 10:24:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=EeV8O3o9vkO0Jae6Z9hdIiKInKuZ2QYvqNxtF2zP4qI=;
+	b=YLBzftev+r6RXGycKgmyeAe0fqtYtoLX11ynnaVZNzwaSkZeRoC6/nsxSFSNvxlrT8
+	EpuDxvhaNbz9FHRSTvcWLgNhUvFoKFaLg3HOBtYyFUev7GI/ExulIFhmne55pzh9GS1+
+	mUZ687Ow5OXn1RCWb6zMSAVRdGe9w2uJ6fhy0P0zntGEBoHGpyT3WyGdLg1qPEc3IQil
+	Pwgf4wbeKNUMLtqO5GA5JQVFR/ENa2l3fSn+FauAdW8V03+K8SgWNDnKQTDdgFV5uNHk
+	CJJqStAy2Xp2JutU6JvOgVrnrzqTZ046/ISBgxPMQqdRV0O1pyFZznaAOdK5INzBy82j
+	chHA==
+X-Received: by 10.66.194.102 with SMTP id hv6mr32072253pac.138.1422901468379; 
+	Mon, 02 Feb 2015 10:24:28 -0800 (PST)
+Received: from ?IPv6:2601:c:a700:272f:c42b:9a19:c8d3:f701?
+	([2601:c:a700:272f:c42b:9a19:c8d3:f701])
+	by mx.google.com with ESMTPSA id po4sm4844390pdb.85.2015.02.02.10.24.25
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 02 Feb 2015 10:24:26 -0800 (PST)
+Message-ID: <54CFC0D5.7050703@gmail.com>
+Date: Mon, 02 Feb 2015 10:24:21 -0800
+From: akuster808 <akuster808@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: sstate management
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, 
+	Armin Kuster <akuster808@gmail.com>
+References: <1422891351-17215-1-git-send-email-akuster808@gmail.com>
+	<101638424.af5YciAOUL@peggleto-mobl5.ger.corp.intel.com>
+In-Reply-To: <101638424.af5YciAOUL@peggleto-mobl5.ger.corp.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-security][PATCH] layer conf: update to include meta-networking
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,58 +66,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Feb 2015 18:05:17 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 02 Feb 2015 18:24:39 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-You might want to quickly look through http://www.yoctoproject.org/docs/1.8=
-/ref-manual/ref-manual.html#shared-state-cache in the ref-manual before sup=
-plying raw documentation information.  This section is our current discours=
-e on sstate.
+Paul,
 
-Scott
+Is the idea to include all layers required including the cascaded ones?
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Paul Eggleton
->Sent: Monday, February 02, 2015 9:43 AM
->To: Burton, Ross; Christopher Larson; Gary Thomas
->Cc: yocto@yoctoproject.org
->Subject: Re: [yocto] sstate management
->
->On Monday 02 February 2015 17:33:23 Burton, Ross wrote:
->> On 2 February 2015 at 16:48, Christopher Larson <clarson@kergoth.com>
->wrote:
->> >   Is there some maintenance to be done on the sstate-cache?
->> >
->> >>   I'm thinking I want to set up a shared cache which might
->> >>   last for a long time and I would like to only keep the bits
->> >>   that are really needed.
->> >
->> > In the past i've either used sstate-cache-management.sh or ensured
->> > that SSTATE_DIR is on a mount with atime enabled and just
->> > periodically wiped anything that hasn't been accessed in over a week.
+i.e: meta-networking requires mete-python, should I include that one too?
+
+On 02/02/2015 08:31 AM, Paul Eggleton wrote:
+> On Monday 02 February 2015 07:35:51 Armin Kuster wrote:
+>> suricata needs a package in meta-networking
 >>
->> Seconded on this - after doing lots of builds in the last few weeks
->> involving five machines and new eglibc/gcc patches my sstate was
->> 1.2TB.  A quick find -atime -delete did the job.
+>> Signed-off-by: Armin Kuster <akuster808@gmail.com>
+>> ---
+>>   conf/layer.conf | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/conf/layer.conf b/conf/layer.conf
+>> index c5a717b..650e6ed 100644
+>> --- a/conf/layer.conf
+>> +++ b/conf/layer.conf
+>> @@ -9,4 +9,4 @@ BBFILE_COLLECTIONS += "security"
+>>   BBFILE_PATTERN_security = "^${LAYERDIR}/"
+>>   BBFILE_PRIORITY_security = "6"
+>>
+>> -LAYERDEPENDS_security = "openembedded-layer perl-layer"
+>> +LAYERDEPENDS_security = "openembedded-layer perl-layer networking-layer"
 >
->I don't suppose I can talk one or more of you into writing up some
->documentation for this to add to the manual? (As usual, something raw in t=
-he
->form of a wiki page that Scott can then adapt would be ideal.)
+> Can you please also update the OE layer index?
+
+Do I do that manually or is it picked up from the README?
+
+- armin
+
 >
->Cheers,
->Paul
+> http://layers.openembedded.org/layerindex/branch/master/layer/meta-security/
 >
->--
+> I added meta-perl and meta-oe this morning based on the meta-security README -
+> the latter isn't represented in your LAYERDEPENDS value though, so all three
+> places ought to be made consistent with whatever the actual set of
+> requirements is.
 >
->Paul Eggleton
->Intel Open Source Technology Centre
->--
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+> (If people are starting to use LAYERDEPENDS a bit more it might make sense for
+> us to add some code to the layer index update script to try to update its
+> dependency list based upon LAYERDEPENDS and BBFILE_COLLECTIONS; up to now it
+> hasn't seen a huge amount of use hence I hadn't done that.)
+>
+> Thanks,
+> Paul
+>
 
