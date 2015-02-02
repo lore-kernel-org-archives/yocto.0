@@ -1,45 +1,51 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 46E24E008A6; Mon,  2 Feb 2015 02:41:11 -0800 (PST)
+	id F2289E00809; Mon,  2 Feb 2015 02:54:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.175 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qc0-f175.google.com (mail-qc0-f175.google.com
-	[209.85.216.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D7DBE0070B
-	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 02:41:05 -0800 (PST)
-Received: by mail-qc0-f175.google.com with SMTP id c9so29394319qcz.6
-	for <yocto@yoctoproject.org>; Mon, 02 Feb 2015 02:41:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=hKJ9hIawLv/lmLnG0jHzZS1JmBoENGW3a2gDSBu2DT4=;
-	b=nOR8Z5zUFukQWWnsP+6DpFbidsldgOHg51bQf5B1+ULYUeNOJYu8NLRubhU1/prUOD
-	ZCuZHriAMmPACPe6hLhP3x1lfR3U6z6FM/ycUtQkifk2FGsyTR+nYqsA+/UGRWeDN0ef
-	+O5+87UDec1LkybvqGmDXtEWkISCmhhjz3eVpD8iJO283u1T9XmdyFS9lvuwWgpql+x+
-	XfxuPIdyoJbl4ux5wtylMA1yUoNt46mX28d88Yji2GnrHQxGPZhq0XKbFTOhtr6p8UiI
-	AnzRRgBCpsUvDAisR0mIFxYr/doQiJQii5yVZkPpFZQ97oXptMYXmxwC7dCqLOtN0M7r
-	fnmA==
-X-Gm-Message-State: ALoCoQk5aT/krFFVeIfSic8a7b/mHcqoHbqENgf5Pan3O7LS+NJj7dPynMmGvICdXD7bNPeQ+vz6
-X-Received: by 10.224.103.129 with SMTP id k1mr39954411qao.93.1422873664553;
-	Mon, 02 Feb 2015 02:41:04 -0800 (PST)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ie0-f179.google.com (mail-ie0-f179.google.com
+	[209.85.223.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAE12E0070B
+	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 02:53:58 -0800 (PST)
+Received: by mail-ie0-f179.google.com with SMTP id x19so16622853ier.10
+	for <yocto@yoctoproject.org>; Mon, 02 Feb 2015 02:53:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=oD0GB+EKJseNotxg5QhfyRyWLlVheG0ec78iMeCBGSM=;
+	b=J1R7R+9c4YPNZ7YK4kfp/1THBJujM1UPZsqZxLAZkU4dkMbsj+P7L4+D0TmhZgqLDG
+	+euX6tHDN2CdB8r1p2tJmmn0chZO9b4MxSAESrCkqzGm79vgJuUlxAkovCRGJ+hXLc+U
+	qdK8756Ey09k2z0V3El77TZDPDw+yyku4PlQUlR58hkDqMcD9Nd9YLEsO8oLwtRt9ZJS
+	iHXM/7vsK1fO5NkeO7csObSveLrZGN8zkuTT1DIu0VX/trvre2aibCMbi9zMU18vWely
+	lUgWjhcth1K5VadnCQqJP9woKRkTImX3qMEe2vgbtmqvvEYI/dcFvcsvmjCHd2uikkye
+	mVZQ==
+X-Received: by 10.50.29.68 with SMTP id i4mr11009020igh.4.1422874437924; Mon,
+	02 Feb 2015 02:53:57 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.140.96.166 with HTTP; Mon, 2 Feb 2015 02:40:44 -0800 (PST)
-In-Reply-To: <CAMKF1souj1-FLTjkQb0y8myTiKMJyNeAa7wiM5-pW1fz0EtheA@mail.gmail.com>
+Received: by 10.50.117.7 with HTTP; Mon, 2 Feb 2015 02:53:27 -0800 (PST)
+In-Reply-To: <CAJTo0LaN3HMhjrpii2pPbJw5zWbywgr1keZe=iQmuKFMFFf=gQ@mail.gmail.com>
 References: <CAMKF1souj1-FLTjkQb0y8myTiKMJyNeAa7wiM5-pW1fz0EtheA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 2 Feb 2015 10:40:44 +0000
-Message-ID: <CAJTo0LaN3HMhjrpii2pPbJw5zWbywgr1keZe=iQmuKFMFFf=gQ@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
+	<CAJTo0LaN3HMhjrpii2pPbJw5zWbywgr1keZe=iQmuKFMFFf=gQ@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 2 Feb 2015 02:53:27 -0800
+Message-ID: <CAMKF1sqb5dCMmMfN1rh5jBPoFVAXAdiwqW8tvgXr4S4yODjdZA@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
 	Patches and discussions about the oe-core layer
@@ -56,81 +62,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Feb 2015 10:41:11 -0000
-Content-Type: multipart/alternative; boundary=047d7b66f74b5641bd050e1897e9
-
---047d7b66f74b5641bd050e1897e9
+X-List-Received-Date: Mon, 02 Feb 2015 10:54:05 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Hi Khem,
+Hi Ross
 
-On 2 February 2015 at 10:02, Khem Raj <raj.khem@gmail.com> wrote:
+Please repull. I did not push from right machine first time. Now it
+should be good.
+Thanks for quick turnaround
 
-> I have put together upgrade to gcc 4.9.2 as well as glibc 2.21 (
-> upcoming ) on  a contrib branch ( top 2 patches) its has not got much
-> testing besides x86 qemu thus far.
+Thanks
+-Khem
+
+On Mon, Feb 2, 2015 at 2:40 AM, Burton, Ross <ross.burton@intel.com> wrote:
+> Hi Khem,
 >
+> On 2 February 2015 at 10:02, Khem Raj <raj.khem@gmail.com> wrote:
+>>
+>> I have put together upgrade to gcc 4.9.2 as well as glibc 2.21 (
+>> upcoming ) on  a contrib branch ( top 2 patches) its has not got much
+>> testing besides x86 qemu thus far.
+>
+>
+> I'm seeing these failures when cherry-picking the top two commits to current
+> poky/master.
+>
+> gcc-cross-initial:
+>
+> | /data/poky-master/tmp/work-shared/gcc-4.9.2-r0/gcc-4.9.2/gcc/dwarf2cfi.c:
+> In function 'void expand_builtin_init_dwarf_reg_sizes(tree)':
+> |
+> /data/poky-master/tmp/work-shared/gcc-4.9.2-r0/gcc-4.9.2/gcc/dwarf2cfi.c:334:27:
+> error: 'struct gcc_target' has no member named 'dwarf_frame_reg_mode'
+>
+> cross-localdef-native:
+>
+> | In file included from glibc/locale/programs/locarchive.c:696:0:
+> | glibc/locale/programs/../../intl/l10nflist.c: In function
+> '_nl_normalize_codeset':
+> | glibc/locale/programs/../../intl/l10nflist.c:306:12: error: missing binary
+> operator before token "("
+> | glibc/locale/programs/../../intl/l10nflist.c:313:9: error:
+> '_nl_C_locobj_ptr' undeclared (first use in this function)
+> | glibc/locale/programs/../../intl/l10nflist.c:313:9: note: each undeclared
+> identifier is reported only once for each function it appears in
+>
+> Ross
 
-I'm seeing these failures when cherry-picking the top two commits to
-current poky/master.
-
-gcc-cross-initial:
-
-| /data/poky-master/tmp/work-shared/gcc-4.9.2-r0/gcc-4.9.2/gcc/dwarf2cfi.c:
-In function 'void expand_builtin_init_dwarf_reg_sizes(tree)':
-|
-/data/poky-master/tmp/work-shared/gcc-4.9.2-r0/gcc-4.9.2/gcc/dwarf2cfi.c:334:27:
-error: 'struct gcc_target' has no member named 'dwarf_frame_reg_mode'
-
-cross-localdef-native:
-
-| In file included from glibc/locale/programs/locarchive.c:696:0:
-| glibc/locale/programs/../../intl/l10nflist.c: In function
-'_nl_normalize_codeset':
-| glibc/locale/programs/../../intl/l10nflist.c:306:12: error: missing
-binary operator before token "("
-| glibc/locale/programs/../../intl/l10nflist.c:313:9: error:
-'_nl_C_locobj_ptr' undeclared (first use in this function)
-| glibc/locale/programs/../../intl/l10nflist.c:313:9: note: each undeclared
-identifier is reported only once for each function it appears in
-
-Ross
-
---047d7b66f74b5641bd050e1897e9
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra">Hi Khem,</div><div class=3D"gma=
-il_extra"><br><div class=3D"gmail_quote">On 2 February 2015 at 10:02, Khem =
-Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_=
-blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-le=
-ft-color:rgb(204,204,204);border-left-style:solid;padding-left:1ex"><div id=
-=3D":1al" class=3D"" style=3D"overflow:hidden">I have put together upgrade =
-to gcc 4.9.2 as well as glibc 2.21 (<br>
-upcoming ) on=C2=A0 a contrib branch ( top 2 patches) its has not got much<=
-br>
-testing besides x86 qemu thus far.</div></blockquote></div><div class=3D"gm=
-ail_extra"><br></div><div class=3D"gmail_extra">I&#39;m seeing these failur=
-es when cherry-picking the top two commits to current poky/master.</div><di=
-v class=3D"gmail_extra"><br></div>gcc-cross-initial:</div><div class=3D"gma=
-il_extra"><br><div class=3D"gmail_extra">| /data/poky-master/tmp/work-share=
-d/gcc-4.9.2-r0/gcc-4.9.2/gcc/dwarf2cfi.c: In function &#39;void expand_buil=
-tin_init_dwarf_reg_sizes(tree)&#39;:</div><div class=3D"gmail_extra">| /dat=
-a/poky-master/tmp/work-shared/gcc-4.9.2-r0/gcc-4.9.2/gcc/dwarf2cfi.c:334:27=
-: error: &#39;struct gcc_target&#39; has no member named &#39;dwarf_frame_r=
-eg_mode&#39;</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_=
-extra">cross-localdef-native:</div><div class=3D"gmail_extra"><br></div><di=
-v class=3D"gmail_extra"><div class=3D"gmail_extra">| In file included from =
-glibc/locale/programs/locarchive.c:696:0:</div><div class=3D"gmail_extra">|=
- glibc/locale/programs/../../intl/l10nflist.c: In function &#39;_nl_normali=
-ze_codeset&#39;:</div><div class=3D"gmail_extra">| glibc/locale/programs/..=
-/../intl/l10nflist.c:306:12: error: missing binary operator before token &q=
-uot;(&quot;</div><div class=3D"gmail_extra">| glibc/locale/programs/../../i=
-ntl/l10nflist.c:313:9: error: &#39;_nl_C_locobj_ptr&#39; undeclared (first =
-use in this function)</div><div class=3D"gmail_extra">| glibc/locale/progra=
-ms/../../intl/l10nflist.c:313:9: note: each undeclared identifier is report=
-ed only once for each function it appears in</div><div class=3D"gmail_extra=
-"><br></div><div class=3D"gmail_extra">Ross</div></div></div></div>
-
---047d7b66f74b5641bd050e1897e9--
