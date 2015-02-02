@@ -1,80 +1,54 @@
-Return-Path: <dwatkins@sierrawireless.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D91A7E008A6; Mon,  2 Feb 2015 09:48:29 -0800 (PST)
+	id A4DEDE008BC; Mon,  2 Feb 2015 09:51:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [207.46.100.83 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.192.43 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 943 seconds by postgrey-1.32 at yocto-www;
-	Mon, 02 Feb 2015 09:48:23 PST
-Received: from na01-by2-obe.outbound.protection.outlook.com
-	(mail-by2on0083.outbound.protection.outlook.com [207.46.100.83])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50986E00824
-	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 09:48:23 -0800 (PST)
-Received: from BY2PR02CA0035.namprd02.prod.outlook.com (10.141.216.25) by
-	DM2PR02MB477.namprd02.prod.outlook.com (10.141.84.143) with Microsoft
-	SMTP Server (TLS) id 15.1.65.19; Mon, 2 Feb 2015 17:32:36 +0000
-Received: from BY2FFO11FD052.protection.gbl (2a01:111:f400:7c0c::123) by
-	BY2PR02CA0035.outlook.office365.com (2a01:111:e400:2c40::25) with
-	Microsoft
-	SMTP Server (TLS) id 15.1.75.20 via Frontend Transport; Mon, 2 Feb 2015
-	17:32:36 +0000
-Received: from mail.sierrawireless.com (208.81.121.47) by
-	BY2FFO11FD052.mail.protection.outlook.com (10.1.15.189) with Microsoft
-	SMTP Server (TLS) id 15.1.75.11 via Frontend Transport;
-	Mon, 2 Feb 2015 17:32:35 +0000
-Received: from carmd-exchmb01.sierrawireless.local ([10.0.6.3]) by
-	carmd-exchhub02.sierrawireless.local ([::1]) with mapi; Mon, 2 Feb 2015
-	09:32:35 -0800
-From: Darcy Watkins <dwatkins@sierrawireless.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Mon, 2 Feb 2015 09:32:40 -0800
-Thread-Topic: Two Stage Package Recipe
-Thread-Index: AdA/Djqn0HOXIPBrSoGcPq81WDsmDw==
-Message-ID: <1422898360.3754.1.camel@caimt-galileo.sierrawireless.local>
-References: <8F90F944E50427428C60E12A34A309D239F653D8D1@carmd-exchmb01.sierrawireless.local>
-In-Reply-To: <8F90F944E50427428C60E12A34A309D239F653D8D1@carmd-exchmb01.sierrawireless.local>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-qg0-f43.google.com (mail-qg0-f43.google.com
+	[209.85.192.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1EFBE0086F
+	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 09:51:09 -0800 (PST)
+Received: by mail-qg0-f43.google.com with SMTP id e89so48593734qgf.2
+	for <yocto@yoctoproject.org>; Mon, 02 Feb 2015 09:51:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=TtsCqboOVxoCcvJ+3OEysKFuRTgOSWNbH/oesMbJP7g=;
+	b=hwbkmGs9idfNAPJHJL4Bl8cyr797MY88j5vUVLtVdCzohkJbq2GOBP3+S6672o0UaG
+	XfwHH5vBg5IknomGlNbotW0W8YlUTZYSSiujexMF0V2rTda+4hQ8llVEg3hsa7BpD19w
+	K9KLxKk1yHnTSnB83OtOnfisWp++cSGjwaJG3/QDJupoqHEuYK2o49Wa1FEN/fkjUmxD
+	A5GmF1lgMblP7G0TU40Ze8J29yujDZB2iLq1nJ882MsGe7VJqW/OUDpGOAQmnbOYk/7q
+	Z0ucex+vK7Xhb3ZhT1WoRFDSbWtAfkRGpop3PQd5sp+BLMXtkYbf/ca1QCaAvNTkD13H
+	rR1w==
+X-Gm-Message-State: ALoCoQn+2wo2O/TTqeYZLk2B06gHs/CAkOYoWaO9x9PNq8fHhNGYkIhtLEezP25JVMe5ozDvQdO0
+X-Received: by 10.229.80.3 with SMTP id r3mr510379qck.23.1422899468596; Mon,
+	02 Feb 2015 09:51:08 -0800 (PST)
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-Received-SPF: Pass (protection.outlook.com: domain of sierrawireless.com
-	designates 208.81.121.47 as permitted sender)
-	receiver=protection.outlook.com; client-ip=208.81.121.47;
-	helo=mail.sierrawireless.com;
-Authentication-Results: spf=pass (sender IP is 208.81.121.47)
-	smtp.mailfrom=dwatkins@sierrawireless.com; yoctoproject.org; dkim=none
-	(message not signed) header.d=none;
-X-Forefront-Antispam-Report: CIP:208.81.121.47; CTRY:CA; IPV:NLI; EFV:NLI;
-	SFV:NSPM;
-	SFS:(10009020)(6009001)(377424004)(51704005)(24454002)(19580395003)(6806004)(450100001)(77156002)(23676002)(87936001)(50466002)(47776003)(2656002)(15974865002)(107886001)(86362001)(62966003)(102836002)(2950100001)(2900100001)(92566002)(50986999)(33646002)(110136001)(98436002)(106466001)(77096005)(2501002)(54356999)(46102003)(103116003)(104016003)(19580405001)(76176999)(2351001)(7099025);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:DM2PR02MB477;
-	H:mail.sierrawireless.com; FPR:; SPF:Pass; MLV:ovrnspm;
-	PTR:spf.sierrawireless.com; LANG:en; 
-X-Microsoft-Antispam: UriScan:;
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:;SRVR:DM2PR02MB477;
-X-Exchange-Antispam-Report-Test: UriScan:;
-X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0; RULEID:(601004);
-	SRVR:DM2PR02MB477; 
-X-Forefront-PRVS: 0475418F50
-X-Exchange-Antispam-Report-CFA-Test: BCL:0;PCL:0;RULEID:;SRVR:DM2PR02MB477;
-X-OriginatorOrg: SierraWirelessInc.onmicrosoft.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2015 17:32:35.7947 (UTC)
-X-MS-Exchange-CrossTenant-Id: 08059a4c-2486-43dd-89e3-3a747e0dcbe8
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=08059a4c-2486-43dd-89e3-3a747e0dcbe8;
-	Ip=[208.81.121.47]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM2PR02MB477
-Subject: Re: Two Stage Package Recipe
+Received: by 10.140.96.166 with HTTP; Mon, 2 Feb 2015 09:50:48 -0800 (PST)
+In-Reply-To: <EA0C9DE9-9E5F-4B74-8464-138895268F2F@gmail.com>
+References: <CAMKF1souj1-FLTjkQb0y8myTiKMJyNeAa7wiM5-pW1fz0EtheA@mail.gmail.com>
+	<CAJTo0LaN3HMhjrpii2pPbJw5zWbywgr1keZe=iQmuKFMFFf=gQ@mail.gmail.com>
+	<CAMKF1sq8NsuNYZDQRPtXruBeRndOP+0qwBuTO2ahb6q-fS8XGw@mail.gmail.com>
+	<CAJTo0LYpKbwOHg-DBMJycy+KNayTCsnhToJR8K-REKZ2jxhnhw@mail.gmail.com>
+	<EA0C9DE9-9E5F-4B74-8464-138895268F2F@gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 2 Feb 2015 17:50:48 +0000
+Message-ID: <CAJTo0LbSFesauhA_H39Znd07SR5JCs45izy2us=cFWVGXtW8hg@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [RFT] upcoming glibc 2.21 and gcc 4.9 upgrade
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -86,76 +60,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Feb 2015 17:48:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 02 Feb 2015 17:51:14 -0000
+Content-Type: multipart/alternative; boundary=001a1133cb7860aa73050e1e99ec
 
-SSB0b29rIGEgc3RhYiBhdCB0aGlzIGFuZCBmb3VuZCB0aGF0IHRoZSBvbmx5IHdheSBJIGNvdWxk
-IGhhbmRsZSB0aGlzIGlzDQp0byBzcGxpdCB0aGUgcGFja2FnZSB1cC4NCg0KU2VlIGludGVyc3Bl
-cnNlZCB3aXRoIG15IG9yaWdpbmFsIGVtYWlsLg0KDQpUaGUgc2hvcnQgYW5zd2VyIGlzIHRoYXQg
-SSBoYWQgdG8gc3BsaXQgaXQgaW50byB0aHJlZSBwYWNrYWdlLCBlYWNoIHdpdGgNCml0cyBvd24g
-cmVjaXBlLg0KDQooSSBtYXkgcmV2aXNpdCB0aGlzIGRvd24gdGhlIHJvYWQgdXNpbmcgY2xhc3Nl
-cyBzdWNoIGFzIHRob3NlIHRoYXQgYXJlDQp1c2VkIGZvciBoYXZpbmcgYSBzaW5nbGUgcGFja2Fn
-ZSBidWlsZCBmb3IgdGFyZ2V0LCBidWlsZCBhICctbmF0aXZlJyBmb3INCnRoZSBidWlsZCBob3N0
-IGFuZCBpbiBzb21lIGNhc2VzLCBmb3IgdGhlIFNESykuDQoNCg0KDQotLSANCg0KUmVnYXJkcywN
-Cg0KRGFyY3kNCg0KRGFyY3kgV2F0a2lucyA6OiAgU3RhZmYgRW5naW5lZXIsIEZpcm13YXJlDQoN
-ClNJRVJSQSBXSVJFTEVTUw0KRGlyZWN0ICsxIDYwNCAyMzMgNzk4OSA6OiBGYXggKzEgNjA0IDIz
-MSAxMTA5IDo6IE1haW4gKzEgNjA0IDIzMSAxMTAwDQoxMzgxMSBXaXJlbGVzcyBXYXkgIDo6IFJp
-Y2htb25kLCBCQyBDYW5hZGEgVjZWIDNBNA0KW1A0XQ0KZHdhdGtpbnNAc2llcnJhd2lyZWxlc3Mu
-Y29tIDo6IHd3dy5zaWVycmF3aXJlbGVzcy5jb20gOjogd3d3LmlubW90aW9udGVjaG5vbG9neS5j
-b20NCg0KDQoNCg0KT24gU2F0LCAyMDE1LTAxLTI0IGF0IDA4OjU2IC0wODAwLCBEYXJjeSBXYXRr
-aW5zIHdyb3RlOg0KPiBIZWxsbywNCj4gDQo+IA0KPiBJIGhhdmUgYSBwYWNrYWdlIGluIG15IEJT
-UCBsYXllciwgbGV04oCZcyBqdXN0IGNhbGwgaXQg4oCcbXktcGxhdGZvcm3igJ0uDQo+IEF0IHBy
-ZXNlbnQsIGl0IGJ1aWxkcyBsaWJyYXJpZXMgdG8gaW1wbGVtZW50IGEgSFcgYWNjZXNzIEFQSSBh
-bG9uZw0KPiB3aXRoIGNvbW1hbmQgbGluZSB1dGlsaXRpZXMgdXNlZnVsIGZvciB0ZXN0aW5nIGFu
-ZCBkaWFnbm9zdGljcyAoYW5kDQo+IHVzaW5nIHRoZSBBUEkgZnJvbSBzaGVsbCBzY3JpcHRzKS4g
-IEF0IHByZXNlbnQsIGl0IGFsc28gdXNlcyB0aGUNCj4gaG9zdC1zd2lnIHRvIGdlbmVyYXRlIGlu
-dGVyZmFjZSBsaWJyYXJpZXMgZm9yIHB5dGhvbiBiaW5kaW5ncyBhbmQgamF2YQ0KPiBiaW5kaW5n
-cyB0byBhY2Nlc3MgdGhlIEhXIEFQSS4NCj4gDQo+IA0KPiBUaGlzIG1lYW5zIHRoYXQg4oCYbXkt
-cGxhdGZvcm3igJkgaGFzIHRvIGRlcGVuZCBib3RoIG9uIOKAmHB5dGhvbuKAmSBhbmQNCj4gb24g
-4oCYb3Blbmpkay03LWpyZeKAmSB0byBidWlsZC4NCj4gDQoNClRoZSBpc3N1ZSB0aGF0IHRyaWdn
-ZXJlZCB0aGUgbmVlZCBpcyB0aGF0IG9wZW5qZGstNy1qcmUgaGFzIGJlZW4gYnJva2VuDQpkdWUg
-dG8gc29tZXRoaW5nIHRoYXQgY2hhbmdlZCBpbiBRRU1VIHNvIEkgd2FudCB0byBiZSBhYmxlIHRv
-IGJ1aWxkIHRoZQ0KYmFzZSBwYWNrYWdlLCB0aGVuIGEgcGFja2FnZSBmb3IgdGhlIHB5dGhvbiBi
-aW5kaW5ncyBhbmQgdGhlbiBhIHBhY2thZ2UNCmZvciB0aGUgamF2YSBiaW5kaW5ncyAodGhhdCBJ
-IGNhbiBkaXNhYmxlIHVudGlsIEkgaGF2ZSB0aGUgamF2YSBidWlsZA0KYmFjayB1cCBhZ2Fpbiku
-DQoNClRoZSBvYmplY3RpdmUgaXMgdG8gaGF2ZSB0aGVzZSBoYW5kbGVkIHVzaW5nIGRlcGVuZGVu
-Y2llcyBiYXNlZCBvbiB3aGF0DQppbWFnZXMgYW5kL29yIGRpc3RybyBsYXllcnMgY2FsbCB1cC4N
-Cg0KRm9yIGV4YW1wbGUsIG15LWltYWdlLWZ1bGwgYnVpbGQgZXZlcnl0aGluZ3MgYnV0IG15LWlt
-YWdlLW5vamF2YQ0KZXhjbHVkZXMgdGhlIGphdmEgY29tcG9uZW50cy4NCg0KPiANCj4gV2hhdCBJ
-IHdvdWxkIGxpa2UgdG8gZG8gaXMgdG8gaGF2ZSB0aGUgZGVmYXVsdCBidWlsZCB0byB0aGUgcmVj
-aXBlIHRvDQo+IGJ1aWxkIGl0IGFsbCBFWENFUFQgZm9yIHRoZSBqYXZhIGJpbmRpbmdzLiAgU28g
-SSB3b3VsZCB3YW50IHRvIGJ1aWxkDQo+IGFsbCB0aGUgdXN1YWwgbGlicmFyaWVzIGFuZCB1dGls
-aXRpZXMgYW5kIGhhdmUgdGhpcyBOT1QgaGF2ZQ0KPiBkZXBlbmRlbmN5IG9uIOKAmG9wZW5qZGst
-Ny1qcmXigJkuDQo+IA0KDQpJIHRyaWVkIHRvIHBsYWNlIHRoZXNlIGludG8gc2VwYXJhdGUgUEFD
-S0FHRXMgKGkuZS4gc2VwYXJhdGUgUlBNDQpvdXRwdXRzKS4gIFRoYXQgd29ya3MgZ3JlYXQsIGhv
-d2V2ZXIgSSB3YXMgbm90IGFibGUgdG8gaGF2ZSBvdXRzaWRlDQpkZXBlbmRlbmNpZXMgc2VsZWN0
-IHRoZXNlIG9uIGluZGl2aWR1YWwgYmFzaXMuICBUaGUgYnVpbGQgc2VlbXMgdG8gYmUNCmZvciBh
-bGwgb3Igbm9uZS4gIEl0IGlzIGxpa2UgSSBuZWVkIHRvIGJlIGFibGUgdG8gaGF2ZSBkb19jb21w
-aWxlLA0KZG9faW5zdGFsbCBldGMuIHBoYXNlcyBmb3IgbXVsdGlwbGUgaXRlbXMgaW5zaWRlIHRo
-ZSBwYWNrYWdlLCB3aXRoIGVhY2gNCmNoYWluIGFjY2Vzc2libGUgZm9yIGRlcGVuZGVuY3kgcnVs
-ZXMuDQoNCj4gDQo+IFRoZW4gd2l0aG91dCBoYXZpbmcgdG8gdHJlYXQgaXQgYXMgYSBkaWZmZXJl
-bnQgcGFja2FnZSwgSSB3b3VsZCBsaWtlDQo+IHRvIGJlIGFibGUgdG8gcmUtaW52b2tlIHRoZSBi
-dWlsZCB0byBidWlsZCB0aGUgamF2YSBiaW5kaW5ncy4gIFRoaXMNCj4gcGFydGljdWxhciBzdGVw
-IHdpbGwgbmVlZCB0byBiZSBkZXBlbmRlbnQgb24g4oCYb3Blbmpkay03LWpyZeKAmSB3aXRob3V0
-DQo+IG1ha2luZyBlYXJsaWVyIHN0ZXBzIHRvIGJlIGRlcGVuZGVudCBvbiDigJhvcGVuamRrLTct
-anJl4oCZLg0KPiANCg0KSGFkIHRvIG1ha2Ugc2VwYXJhdGUgcGFja2FnZXM6DQoNCiAgbXktcGxh
-dGZvcm0gICAgICAgICAgLSBmb3IgYmFzZSBpdGVtcw0KICBweXRob24tbXktcGxhdGZvcm0gICAt
-IGZvciBweXRob24gYmluZGluZ3MgdG8gdGhlIGxpYnJhcmllcw0KICBteS1wbGF0Zm9ybS1qYXZh
-ICAgICAtIGZvciBqYXZhIGJpbmRpbmdzIHRvIHRoZSBsaWJyYXJpZXMNCg0KVGhlIG9uZS10by1t
-YW55IHJlbGF0aW9uc2hpcCBmcm9tIHNvdXJjZSB0byBnZW5lcmF0ZWQgb3V0cHV0cyBpcyBoYW5k
-bGVkDQpieSBhbGwgdGhyZWUgcmVjaXBlcyByZXRyaWV2aW5nIGNvbW1vbiBzb3VyY2UuDQoNCj4g
-DQo+IEkgZW52aXNpb24gdGhhdCB0aGlzIHNob3VsZCByZXN1bHQgaW4gb25lIFJQTSBvdXRwdXQg
-d2l0aCB0aGUgZmlyc3QNCj4gYnVpbGQgcHJvZHVjdHMsIGFuZCB0aGUgc2Vjb25kIFJQTSBvdXRw
-dXQgd2l0aCB0aGUgamF2YSBiaW5kaW5ncw0KPiAoYWRkb25zKS4NCj4gDQoNCkkgaGFkIGhvcGVk
-IHRoYXQgdGhpcyBjb3VsZCBiZSBoYW5kbGVkIHVzaW5nIGEgc2luZ2xlIHJlY2lwZSBiYXNlZCBv
-bg0Kb25lIHNvdXJjZSByZXRyaWV2YWwgYW5kIHRocmVlIGdlbmVyYXRlZCBvdXRwdXRzLCBidXQg
-aXQgYXBwZWFycyBJIG5lZWQNCnRvIGltcGxlbWVudCBpdCBhcyB0aHJlZSByZWNpcGVzLg0KDQo+
-IA0KPiBJbiB0aGUgZW5kLCBJIHdpbGwgd2FudCB0byBiZSBhYmxlIHRvIGhhdmUgYSBtaW5pbWFs
-aXN0aWMgaW1hZ2UNCj4gaW5jbHVkZSBhbmQgZGVwZW5kIG9uIOKAmG15LXBhY2thZ2XigJkgd2l0
-aG91dCBqYXZhIGJpbmRpbmdzLCBhbmQgdGhlbg0KPiBoYXZlIGEgZnVsbCBmZWF0dXJlIGltYWdl
-IHRoYXQgaW5jbHVkZXMgYW5kIGRlcGVuZHMgb24gdGhlIGphdmENCj4gYmluZGluZ3MuDQo+IA0K
-DQpBbHRob3VnaCBub3QgYXMgZWxlZ2FudCBhcyBJIGhvcGVkLCBJIHdhcyBhYmxlIHRvIGdldCB0
-aGlzIHRvIGhhcHBlbi4NCg0K
+--001a1133cb7860aa73050e1e99ec
+Content-Type: text/plain; charset=UTF-8
 
+On 2 February 2015 at 17:40, Khem Raj <raj.khem@gmail.com> wrote:
+
+> Yeah, you must be using a weirdly compiled gcc on your host which is
+> defaulting to -std  < c99 and hence the problem. I have fix for that issue
+> already locally.
+
+
+$ gcc --version
+gcc (Debian 4.7.2-5) 4.7.2
+
+This is the default gcc in current Debian stable.
+
+Ross
+
+--001a1133cb7860aa73050e1e99ec
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 2 February 2015 at 17:40, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mail=
+to:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> =
+wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-sty=
+le:solid;padding-left:1ex">Yeah, you must be using a weirdly compiled gcc o=
+n your host which is defaulting to -std =C2=A0&lt; c99 and hence the proble=
+m. I have fix for that issue already locally.</blockquote></div><br><div cl=
+ass=3D"gmail_extra">$ gcc --version</div><div class=3D"gmail_extra">gcc (De=
+bian 4.7.2-5) 4.7.2</div><div class=3D"gmail_extra"><br></div><div class=3D=
+"gmail_extra">This is the default gcc in current Debian stable.</div><div c=
+lass=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div><=
+/div>
+
+--001a1133cb7860aa73050e1e99ec--
