@@ -1,37 +1,29 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2A51BE008BC; Mon,  2 Feb 2015 08:42:06 -0800 (PST)
+	id 9A078E008A6; Mon,  2 Feb 2015 08:42:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41D4EE008CC
-	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 08:41:57 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 02 Feb 2015 08:38:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,507,1418112000"; d="scan'208";a="679751089"
-Received: from bbodonog-mobl.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.3.158])
-	by orsmga002.jf.intel.com with ESMTP; 02 Feb 2015 08:41:56 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
-Date: Mon, 02 Feb 2015 16:41:55 +0000
-Message-ID: <1549714.p2uxOlTH7e@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.4 (Linux/3.17.8-200.fc20.x86_64; KDE/4.14.4; x86_64; ; )
-In-Reply-To: <F38A866CD026F746A3BF0928A84397BE3A33DC69@AZ-FFEXMB01.global.avaya.com>
-References: <F38A866CD026F746A3BF0928A84397BE3A33DC69@AZ-FFEXMB01.global.avaya.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19E49E0091D
+	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 08:42:49 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 42FDBF811D7; Mon,  2 Feb 2015 09:42:49 -0700 (MST)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id BE0FCF811D7;
+	Mon,  2 Feb 2015 09:42:48 -0700 (MST)
+Message-ID: <54CFA908.7010507@mlbassoc.com>
+Date: Mon, 02 Feb 2015 09:42:48 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Need help for custom recipe
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: sstate management
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,54 +35,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Feb 2015 16:42:06 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 02 Feb 2015 16:42:54 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Abhinav,
+I'm looking into using sstate more and in particular sharing
+it amongst a number of builds.  I have a couple of questions
+which I didn't find much info about.
 
-On Monday 02 February 2015 14:04:49 Bipnesh, Abhinav wrote:
-> I am trying to write an custom recipe for one of the application. In the
-> do_install() I am using an external script for creating rpm of the
-> application. Below is the recipe file which I have written.
-> 
-> SUMMARY = "Hello World"
-> DESCRIPTION = "A recipe for HelloWorld"
-> 
-> LICENSE = "MIT"
-> LIC_FILES_CHKSUM =
-> file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302<file:
-> ///\\$%7bCOMMON_LICENSE_DIR%7d\MIT;md5=0835ade698e0bcf8506ecda2f7b4f302>
-> 
-> # Upstream names releases after SVN revs
-> #SRCREV = "100"
-> SRCREV = "${AUTOREV}"
-> PV = "r${SRCREV}"
-> DEPENDS = "boost util-linux curl"
-> 
-> SRC_URI = "file://helloworld.c"
-> S = "${WORKDIR}
-> 
-> do_install () {
->     sh ${WORKDIR}/ build.sh
-> 
-> }
-> 
-> Now as this is a makefile based project. Now when I fire bitbake helloworld
-> I am able to build the RPM of the package using build.sh file.
-> 
-> But when I try to check these RPM under <build_dir>/tmp/deploy it is not
-> found.
+* The sstate-cache for a given build/target seems to grow
+   without bounds.  I have one build which I've been reusing
+   since last November has grown to 62GB.  A very similar
+   build which hasn't see quite so many 'bakes' is only 27GB.
 
-My first question is why do you need to create the RPMs in a custom manner like 
-this? By doing so you are bypassing quite a lot of well-tested logic that we 
-have written around packaging.
+   Is there some maintenance to be done on the sstate-cache?
+   I'm thinking I want to set up a shared cache which might
+   last for a long time and I would like to only keep the bits
+   that are really needed.
 
-Cheers,
-Paul
+* The second operational question I have is if I have a shared
+   sstate cache and I make some sort of build, what is the best
+   way (if any) to share any newly created objects so that my
+   other builds can make use of them?
+
+I've not actually tried to share any caches yet, so these
+questions are just based on my rough understanding of the
+use of sstate.  Please feel free to correct me if I've got
+it [totally] wrong.
+
+Thanks
 
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
