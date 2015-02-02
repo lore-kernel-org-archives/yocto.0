@@ -1,51 +1,35 @@
-Return-Path: <Erwin.Rieger.ext@rohde-schwarz.com>
+Return-Path: <peterengcomau001@adam.com.au>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C0701E00596; Mon,  2 Feb 2015 05:36:36 -0800 (PST)
+	id 576ACE00546; Mon,  2 Feb 2015 05:44:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [80.246.32.97 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [202.136.110.236 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 911 seconds by postgrey-1.32 at yocto-www;
-	Mon, 02 Feb 2015 05:36:25 PST
-Received: from mail02.rohde-schwarz.com (mail02.rohde-schwarz.com
-	[80.246.32.97])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A53E1E002F9
-	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 05:36:25 -0800 (PST)
-Received: from amu315.rsint.net ([10.0.26.64]) by mail02.rohde-schwarz.com
-	with ESMTP id 2015020214211078-209916 ;
-	Mon, 2 Feb 2015 14:21:10 +0100 
-Received: from rus19.rsint.net ([10.0.33.19])
-	by amu315.rsint.net (Totemo SMTP Server) with SMTP ID 869
-	for <yocto@yoctoproject.org>; Mon, 2 Feb 2015 14:21:10 +0100 (CET)
-X-Disclaimed: 1
+Received: from webmail4.adam.net.au (webmail4.adam.net.au [202.136.110.236])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82774E002F9
+	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 05:44:01 -0800 (PST)
+Received: from localhost (webmail4.adam.net.au [127.0.0.1])
+	by webmail4.adam.net.au (8.13.8/8.13.8) with ESMTP id t12DhOiW004951;
+	Tue, 3 Feb 2015 00:13:24 +1030
+Message-Id: <cca6453b61260980bb36aab5f3ccb7924dd04e6f@webmail.adam.com.au>
+From: peterengcomau001@adam.com.au
+To: "Pavan Kumar B" <u2bpavankumar@gmail.com>, yocto@yoctoproject.org
+X-Mailer: Atmail 6.3.5.8698
+in-reply-to: <CAM8Mu=W=CyHbj44vGJqVKvFW47mrmf1-eKdc-GYHQ9YMEFLmLw@mail.gmail.com>
+Date: Tue, 03 Feb 2015 00:13:24 +1030
 MIME-Version: 1.0
-Importance: Normal
-X-Priority: 3 (Normal)
-In-Reply-To: 
-References: 
-From: Erwin.Rieger.ext@rohde-schwarz.com
-To: yocto@yoctoproject.org
-Message-ID: <OFE9FE701D.62B0AD26-ONC1257DE0.004958B3-C1257DE0.004958B5@rohde-schwarz.com>
-Date: Mon, 2 Feb 2015 14:21:08 +0100
-X-Mailer: Lotus Domino Web Server Release 8.5.3FP6 HF1218 December 12, 2014
-X-KeepSent: E9FE701D:62B0AD26-C1257DE0:004958B3;
-	type=4; flags=0; name=$KeepSent
-X-RUS_SENSITIVITY: 10
-X-Sign: 0
-X-MIMETrack: Itemize by SMTP Server on RSSMTP02/RSSMTP at 02.02.2015 14:21:10, 
-	Serialize by Router on RSSMTP02/RSSMTP at 02.02.2015 14:36:34,
-	Serialize complete at 02.02.2015 14:36:34
-Subject: How to use different busybox defconfig's in the initramfs and rootfs image
+Subject: Re: need help to add local kernel to yocto build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: peterengcomau001@adam.com.au
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -54,95 +38,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Feb 2015 13:36:36 -0000
+X-List-Received-Date: Mon, 02 Feb 2015 13:44:10 -0000
 Content-Type: multipart/alternative;
-	boundary="=_alternative 004958B3C1257DE0_="
+	boundary="=_dd8e1a3f82762b68c6a0ea0bccf6b431"
 
---=_alternative 004958B3C1257DE0_=
-Content-Transfer-Encoding: quoted-printable
+--=_dd8e1a3f82762b68c6a0ea0bccf6b431
 Content-Type: text/plain; charset=UTF-8
-
-Hello list,
-
-i have used Yocto to create a initramfs linux kernel and a corresponding ro=
-otfs for a embedded linux system.
-
-Things are working as expected, so far.
-
-Now i want to fine-tune my setup and want to use a different busybox config=
-uration in the initramfs as the one in the rootfs image.
-For example, the initramfs busybox should contain support for switch-root a=
-nd that is not needed in the rootfs.
-On the other hand, the rootfs should contain a=C2=A0"full-fledged" busybox =
-(with inetd enabled, for example).
-
-So the question is: How can i build/install a package two times with differ=
-ing configurations in one bitbake run?.
-
-How can this be done the Yocto-way without copying busybox.bb and hacking i=
-t the way i need it?
-
-I've tried various combinations, e.g. bb-appending busybox, inheriting from=
- busybox and so on - but to no avail.
-
-Maybe someone have an idea on how to do that?
-
-
-PS:
-* The kernel recipe is derived (bbappend) from=C2=A0core-image-minimal-init=
-ramfs.
-* Rootfs recipe is derived from=C2=A0core-image-minimal.bb.
-
-
---=C2=A0
-Erwin Rieger
---=C2=A0
-
---=_alternative 004958B3C1257DE0_=
 Content-Transfer-Encoding: quoted-printable
+
+=C2=A0try using=C2=A0SOURCE_MIRROR_URL ?=3D "file:///home/mykernel/" - t=
+hree=0A'///' assuming that /home is in your root directoryLachlan=0A=0A-=
+---- Original Message -----=0AFrom: "Pavan Kumar B" =0ATo:=0ACc:=0ASent:=
+Sun, 1 Feb 2015 19:58:35 +0530=0ASubject:[yocto] need help to add local=
+ kernel to yocto build=0A=0AHi,=0A=0AI am new to yocto and trying to cre=
+ate bsp for my wandboard-quad. As=0Aa starting point I have followed the=
+=0Ahttp://wiki.wandboard.org/Getting_started_with_Yocto_on_Wandboard [1]=
+=0Aand finally gave the command "bitbake core-image-minimal"=0A=0ASo far=
+ so good.., I can see the generated images at=0A/fsl-community-bsp/build=
+/tmp/deploy/images//=0A=0ANow I don't want build yocto with my own kerne=
+l instead of=0Adownloading from repository. It was 3.0.35 base kernel wi=
+th lot of=0Amodifications being done to it. I have been working to achei=
+ve this=0Asince last week and was no success to acheive this.=0A=0AI hav=
+e read yocto user manual and other stuff and came to know that I=0Aneed=
+ to set the SOURCE_MIRROR_URL in bit bake file. So I have tried to=0Aset=
+ the following in the bit bake file located at $=0A/fsl-community-bsp/so=
+urces/meta-fsl-arm-extra/recipes-kernel/linux/linux-wandboard_3.0.35.bb=
+=0A=0ASOURCE_MIRROR_URL ?=3D "file://home/mykernel/"=0AINHERIT +=3D "own=
+-mirrors" =0ABB_GENERATE_MIRROR_TARBALLS =3D "1" =0ABB_NO_NETWORK =3D "1=
+"=0A=0ABut it was not working.=0A=0ASome one must have already tried to=
+ acheive this. Please let me know=0Alike how do I set the path to my loc=
+al kernel folder and with what=0Aname do I need to store it. Modifying l=
+inux-wandboard_3.0.35.bb is=0Asufficient or do I need to modify any othe=
+r files as well=0A=0ARegards,=0APavan=0A ---- Message sent via Adam Inte=
+rnet WebMail -=0Ahttp://www.adam.com.au/=0A=0ALinks:=0A------=0A[1] http=
+://wiki.wandboard.org/Getting_started_with_Yocto_on_Wandboard=0A
+
+--=_dd8e1a3f82762b68c6a0ea0bccf6b431
 Content-Type: text/html; charset=UTF-8
-Content-ID: <>
+Content-Transfer-Encoding: quoted-printable
 
-<font face=3D"Default Sans Serif,Verdana,Arial,Helvetica,sans-serif" size=
-=3D"2"><font face=3D"Verdana, Arial, Helvetica, sans-serif">Hello list,</fo=
-nt><div style=3D"font-family: Verdana, Arial, Helvetica, sans-serif;"><br><=
-/div><div style=3D"font-family: Verdana, Arial, Helvetica, sans-serif;">i h=
-ave used Yocto to create a initramfs linux kernel and a corresponding rootf=
-s for a embedded linux system.</div><div style=3D"font-family: Verdana, Ari=
-al, Helvetica, sans-serif;"><br></div><div style=3D"font-family: Verdana, A=
-rial, Helvetica, sans-serif;">Things are working as expected, so far.</div>=
-<div style=3D"font-family: Verdana, Arial, Helvetica, sans-serif;"><br></di=
-v><div style=3D"font-family: Verdana, Arial, Helvetica, sans-serif;">Now i =
-want to fine-tune my setup and want to use a different busybox configuratio=
-n in the initramfs as the one in the rootfs image.</div><div style=3D"font-=
-family: Verdana, Arial, Helvetica, sans-serif;">For example, the initramfs =
-busybox should contain support for switch-root and that is not needed in th=
-e rootfs.</div><div style=3D"font-family: Verdana, Arial, Helvetica, sans-s=
-erif;">On the other hand, the rootfs should contain a&nbsp;"full-fledged" b=
-usybox (with inetd enabled, for example).</div><div style=3D"font-family: V=
-erdana, Arial, Helvetica, sans-serif;"><br></div><div style=3D"font-family:=
- Verdana, Arial, Helvetica, sans-serif;">So the question is: How can i buil=
-d/install a package two times with differing configurations in one bitbake =
-run?.</div><div style=3D"font-family: Verdana, Arial, Helvetica, sans-serif=
-;"><br></div><div style=3D"font-family: Verdana, Arial, Helvetica, sans-ser=
-if;">How can this be done the Yocto-way without copying busybox.bb and hack=
-ing it the way i need it?</div><div style=3D"font-family: Verdana, Arial, H=
-elvetica, sans-serif;"><br></div><div style=3D"font-family: Verdana, Arial,=
- Helvetica, sans-serif;">I've tried various combinations, e.g. bb-appending=
- busybox, inheriting from busybox and so on - but to no avail.</div><div st=
-yle=3D"font-family: Verdana, Arial, Helvetica, sans-serif;"><br></div><div>=
-<font face=3D"Verdana, Arial, Helvetica, sans-serif">Maybe someone have an =
-idea on how to do that?</font></div><div><font face=3D"Verdana, Arial, Helv=
-etica, sans-serif"><br></font></div><div><font face=3D"Verdana, Arial, Helv=
-etica, sans-serif"><br></font></div><div><font face=3D"Verdana, Arial, Helv=
-etica, sans-serif">PS:</font></div><div><font face=3D"Verdana, Arial, Helve=
-tica, sans-serif">* The kernel recipe is derived (bbappend) from&nbsp;core-=
-image-minimal-initramfs.</font></div><div><font face=3D"Verdana, Arial, Hel=
-vetica, sans-serif">* Rootfs recipe is derived from&nbsp;core-image-minimal=
-.bb.</font></div><div><font face=3D"Verdana, Arial, Helvetica, sans-serif">=
-<br></font></div><div><font face=3D"Verdana, Arial, Helvetica, sans-serif">=
-<br></font></div><div><font face=3D"Verdana, Arial, Helvetica, sans-serif">=
-<div>--&nbsp;</div><div>Erwin Rieger</div><div>--&nbsp;</div></font></div><=
-div></div></font>
+<html><body>=C2=A0try using=C2=A0SOURCE_MIRROR_URL ?=3D "file:///home/my=
+kernel/" - three '///' assuming that /home is in your root directory<div=
+>Lachlan<br /><br /><blockquote><br />----- Original Message -----<br />=
+<div style=3D"width:100%;background:rgb(228,228,228);"><div style=3D"fon=
+t-weight:bold;">From:</div> "Pavan Kumar B" &lt;u2bpavankumar@gmail.com&=
+gt;</div><br /><div style=3D"font-weight:bold;">To:</div>&lt;yocto@yocto=
+project.org&gt;<br /><div style=3D"font-weight:bold;">Cc:</div><br /><di=
+v style=3D"font-weight:bold;">Sent:</div>Sun, 1 Feb 2015 19:58:35 +0530<=
+br /><div style=3D"font-weight:bold;">Subject:</div>[yocto] need help to=
+ add local kernel to yocto build<br /><br /><br /><div dir=3D"ltr">=0A<b=
+r />Hi,<br /><br />I am new to yocto and trying to create bsp for my wan=
+dboard-quad. As a starting point I have followed the <a href=3D"http://w=
+iki.wandboard.org/Getting_started_with_Yocto_on_Wandboard">http://wiki.w=
+andboard.org/Getting_started_with_Yocto_on_Wandboard</a> and finally gav=
+e the command "bitbake core-image-minimal"<br /><br />So far so good..,=
+ I can see the generated images at /fsl-community-bsp/build/tmp/deploy/i=
+mages/&lt;myboard&gt;/<br /><br />Now I don't want build yocto with my o=
+wn kernel instead of downloading from repository. It was 3.0.35 base ker=
+nel with lot of modifications being done to it. I have been working to a=
+cheive this since last week and was no success to acheive this.<br /><br=
+ />I have read yocto user manual and other stuff and came to know that I=
+ need to set the SOURCE_MIRROR_URL in bit bake file. So I have tried to=
+ set the following in the bit bake file located at $ /fsl-community-bsp/=
+sources/meta-fsl-arm-extra/recipes-kernel/linux/<a href=3D"">linux-wandb=
+oard_3.0.35.bb</a><br /><br /><br />SOURCE_MIRROR_URL ?=3D "file://home/=
+mykernel/"<br />INHERIT +=3D "own-mirrors" <br />BB_GENERATE_MIRROR_TARB=
+ALLS =3D "1" <br />BB_NO_NETWORK =3D "1"<br /><br />But it was not worki=
+ng.<br /><br />Some one must have already tried to acheive this. Please=
+ let me know like how do I set the path to my local kernel folder and wi=
+th what name do I need to store it. Modifying <a href=3D"">linux-wandboa=
+rd_3.0.35.bb</a> is sufficient or do I need to modify any other files as=
+ well<br /><br />Regards,<br />Pavan<br /></div>=0A=0A</blockquote></div=
+>---- Message sent via Adam Internet WebMail  - http://www.adam.com.au/<=
+/body></html>
 
---=_alternative 004958B3C1257DE0_=--
+--=_dd8e1a3f82762b68c6a0ea0bccf6b431--
