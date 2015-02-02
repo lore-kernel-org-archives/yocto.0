@@ -1,50 +1,52 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 81F08E008BC; Mon,  2 Feb 2015 09:15:27 -0800 (PST)
+	id 04DAFE008BC; Mon,  2 Feb 2015 09:26:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.53 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.178 listed in list.dnswl.org]
-Received: from mail-qc0-f178.google.com (mail-qc0-f178.google.com
-	[209.85.216.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57C3AE0086F
-	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 09:15:16 -0800 (PST)
-Received: by mail-qc0-f178.google.com with SMTP id b13so31254160qcw.9
-	for <yocto@yoctoproject.org>; Mon, 02 Feb 2015 09:15:15 -0800 (PST)
+Received: from mail-qa0-f53.google.com (mail-qa0-f53.google.com
+	[209.85.216.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8EC8E00824
+	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 09:26:05 -0800 (PST)
+Received: by mail-qa0-f53.google.com with SMTP id n4so30133729qaq.12
+	for <yocto@yoctoproject.org>; Mon, 02 Feb 2015 09:26:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-type;
-	bh=bI6YtD409n0AXyJRmPkHmaZYEjTt8oYtebdLuhoPQ/M=;
-	b=gnuYZjT4KG6iQiJ6dUpYWlgx6lXSYNo0L/L+vPs3+hcFs2Bq8VRNifSuwX2znKb00B
-	+HFRsjeX9qnGG8pjwGE7S8B4YnFjynsJiRxhX1djcpyS9HxJWn3Kj8k3xLYW8mKWvLAy
-	fN/b/xlqAKgHHHvuLMfUjG2/x0WWhq5o/NY/UoJDr/CX23lceN4MfF8kW5MWTGCvK252
-	rzP812oc1RG3RZP21r7frc6JCazJVHBjIXGXf8EMaaqFsjYnVs+3aV/Y24KBghkckvNG
-	MyJc9c0y6nsh5Z9MhPOatCiCTafd8O/KL2/JrFBIycGitgkEWQQz9JPUFuEhCOb8ATKN
-	ELXw==
-X-Gm-Message-State: ALoCoQl7eEsUQKRt3fM6z/joEkH00u7k+QxumN9EMzSSRKx4A+6ckbmZnotwrQZ9xr9YWOZM/PMO
-X-Received: by 10.224.97.72 with SMTP id k8mr44018237qan.52.1422897315469;
-	Mon, 02 Feb 2015 09:15:15 -0800 (PST)
+	bh=fSoDQ5P6XGJQIb9tl/oNhweVDEGLKO+C1YRHP3eYrzo=;
+	b=l2N/huX76s96FwT/nT33nxsaqhK7toFkGjja652UnSM30f6/w0oA6LL7+O/qNWwajU
+	K3o78Fz+ZCXprqY6vP3TX2SfEB1LhFtpcDBurcGYbq3qnSh8RLtSd1qt9NQa4bdLQpox
+	qFzkJar+8ieFpTZxsXrBEw/paJbYEHjrj4iBUranNyVbUsFsVVtOt1sqdeanBb0mX9sp
+	lnZmalqv6jm/qSlI+3OCSBnkYPQPI343P0xKZJVOnMTr/FMd8WstrjPuJRBhc7rO5ULN
+	LtsOSc+nlDcYZ1ms3CTsWNcDVHPEBANq6duKkfFECoIctuUAwnjS5O1wUIy7TyiPn7dV
+	FPdQ==
+X-Gm-Message-State: ALoCoQkTuTO6wrFhCjY4FgH5Hjg53wKLiUznp2ZqZFir9i2to2DH+ewyFouXzl0BJbf2j+Er9scS
+X-Received: by 10.224.103.129 with SMTP id k1mr43596598qao.93.1422897964838;
+	Mon, 02 Feb 2015 09:26:04 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.140.96.166 with HTTP; Mon, 2 Feb 2015 09:14:55 -0800 (PST)
-In-Reply-To: <2901044.jggIWX4TSM@peggleto-mobl5.ger.corp.intel.com>
-References: <F38A866CD026F746A3BF0928A84397BE3A33DC69@AZ-FFEXMB01.global.avaya.com>
-	<1549714.p2uxOlTH7e@peggleto-mobl5.ger.corp.intel.com>
-	<F38A866CD026F746A3BF0928A84397BE3A33DDE8@AZ-FFEXMB01.global.avaya.com>
-	<2901044.jggIWX4TSM@peggleto-mobl5.ger.corp.intel.com>
+Received: by 10.140.96.166 with HTTP; Mon, 2 Feb 2015 09:25:44 -0800 (PST)
+In-Reply-To: <CAMKF1sq8NsuNYZDQRPtXruBeRndOP+0qwBuTO2ahb6q-fS8XGw@mail.gmail.com>
+References: <CAMKF1souj1-FLTjkQb0y8myTiKMJyNeAa7wiM5-pW1fz0EtheA@mail.gmail.com>
+	<CAJTo0LaN3HMhjrpii2pPbJw5zWbywgr1keZe=iQmuKFMFFf=gQ@mail.gmail.com>
+	<CAMKF1sq8NsuNYZDQRPtXruBeRndOP+0qwBuTO2ahb6q-fS8XGw@mail.gmail.com>
 From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 2 Feb 2015 17:14:55 +0000
-Message-ID: <CAJTo0LZwp_hAjjSw3Lae+3jHuEdh_Oz_XQH6FnCVd_ASNy7U_w@mail.gmail.com>
-To: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Need help for custom recipe
+Date: Mon, 2 Feb 2015 17:25:44 +0000
+Message-ID: <CAJTo0LYpKbwOHg-DBMJycy+KNayTCsnhToJR8K-REKZ2jxhnhw@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [RFT] upcoming glibc 2.21 and gcc 4.9 upgrade
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,57 +58,217 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Feb 2015 17:15:27 -0000
-Content-Type: multipart/alternative; boundary=001a11c2cb5a0a867e050e1e19fc
+X-List-Received-Date: Mon, 02 Feb 2015 17:26:18 -0000
+Content-Type: multipart/alternative; boundary=047d7b66f74bbf11c3050e1e3f8d
 
---001a11c2cb5a0a867e050e1e19fc
+--047d7b66f74bbf11c3050e1e3f8d
 Content-Type: text/plain; charset=UTF-8
 
-On 2 February 2015 at 16:54, Paul Eggleton <paul.eggleton@linux.intel.com>
-wrote:
+On 2 February 2015 at 10:54, Khem Raj <raj.khem@gmail.com> wrote:
 
-> I'd have to say this is something we don't support. If you want to do this
-> you
-> would need to disable the current packaging tasks and stage the package
-> files
-> yourself, but that's going to take almost as much work as converting over
-> your
-> postinstall scripts to be specified within the recipe. You would also lose
-> all
-> of the package QA checks that we currently run.
+> On Mon, Feb 2, 2015 at 2:40 AM, Burton, Ross <ross.burton@intel.com>
+> wrote:
+> > cross-localdef-native:
+> >
+> > | In file included from glibc/locale/programs/locarchive.c:696:0:
+> > | glibc/locale/programs/../../intl/l10nflist.c: In function
+> > '_nl_normalize_codeset':
+> > | glibc/locale/programs/../../intl/l10nflist.c:306:12: error: missing
+> binary
+> > operator before token "("
+> > | glibc/locale/programs/../../intl/l10nflist.c:313:9: error:
+> > '_nl_C_locobj_ptr' undeclared (first use in this function)
+> > | glibc/locale/programs/../../intl/l10nflist.c:313:9: note: each
+> undeclared
+> > identifier is reported only once for each function it appears in
 >
+>
+> gcc would work with latest tree but I did not run into this error. So
+> wait a while until I get to it.
 
-If you *really* want to do this then you'll probably need a custom
-do_package to put the RPMs you've generated in the place that bitbake
-expects them, or maybe a custom do_deploy.  At this point you're subverting
-the system so you'll have to look at the default tasks to work out how they
-operate and how to replace them.
+
+I can confirm that the current branch builds gcc (and everything else in a
+minimal image) apart from cross-localdef-native, with a long set of errors
+for me now:
+
+| In file included from glibc/locale/programs/locarchive.c:696:0:
+| glibc/locale/programs/../../intl/l10nflist.c: In function
+'_nl_normalize_codeset':
+| glibc/locale/programs/../../intl/l10nflist.c:306:12: error: missing
+binary operator before token "("
+| glibc/locale/programs/../../intl/l10nflist.c:313:9: error:
+'_nl_C_locobj_ptr' undeclared (first use in this function)
+| glibc/locale/programs/../../intl/l10nflist.c:313:9: note: each undeclared
+identifier is reported only once for each function it appears in
+| glibc/locale/programs/locarchive.c: In function 'add_locales_to_archive':
+| glibc/locale/programs/locarchive.c:1517:7: warning: passing argument 1 of
+'__xpg_basename' discards 'const' qualifier from pointer target type
+[enabled by default]
+| In file included from
+/data/poky-master/tmp/work/x86_64-linux/cross-localedef-native/2.21-r0/git/localedef/include/string.h:4:0,
+|                  from glibc/locale/programs/locarchive.c:34:
+| /usr/include/libgen.h:35:14: note: expected 'char *' but argument is of
+type 'const char *'
+| glibc/locale/programs/ld-ctype.c: In function 'set_class_defaults':
+| glibc/locale/programs/ld-ctype.c:3012:7: error: 'for' loop initial
+declarations are only allowed in C99 mode
+| glibc/locale/programs/ld-ctype.c:3012:7: note: use option -std=c99 or
+-std=gnu99 to compile your code
+| glibc/locale/programs/ld-ctype.c:3016:19: error: redefinition of 'cnt'
+| glibc/locale/programs/ld-ctype.c:3012:19: note: previous definition of
+'cnt' was here
+| glibc/locale/programs/ld-ctype.c:3016:7: error: 'for' loop initial
+declarations are only allowed in C99 mode
+| glibc/locale/programs/ld-ctype.c:3034:5: error: 'for' loop initial
+declarations are only allowed in C99 mode
+| glibc/locale/programs/ld-ctype.c:3038:17: error: redefinition of 'cnt'
+| glibc/locale/programs/ld-ctype.c:3034:17: note: previous definition of
+'cnt' was here
+| glibc/locale/programs/ld-ctype.c:3038:5: error: 'for' loop initial
+declarations are only allowed in C99 mode
+| glibc/locale/programs/ld-ctype.c:3250:7: error: 'for' loop initial
+declarations are only allowed in C99 mode
+| glibc/locale/programs/ld-ctype.c:3254:19: error: redefinition of 'cnt'
+| glibc/locale/programs/ld-ctype.c:3250:19: note: previous definition of
+'cnt' was here
+| glibc/locale/programs/ld-ctype.c:3254:7: error: 'for' loop initial
+declarations are only allowed in C99 mode
+| glibc/locale/programs/ld-ctype.c:3272:7: error: 'for' loop initial
+declarations are only allowed in C99 mode
+| glibc/locale/programs/ld-ctype.c:3276:19: error: redefinition of 'cnt'
+| glibc/locale/programs/ld-ctype.c:3272:19: note: previous definition of
+'cnt' was here
+| glibc/locale/programs/ld-ctype.c:3276:7: error: 'for' loop initial
+declarations are only allowed in C99 mode
+| glibc/locale/programs/ld-ctype.c:3383:7: error: 'for' loop initial
+declarations are only allowed in C99 mode
+| glibc/locale/programs/ld-ctype.c:3389:19: error: redefinition of 'cnt'
+| glibc/locale/programs/ld-ctype.c:3383:19: note: previous definition of
+'cnt' was here
+| glibc/locale/programs/ld-ctype.c:3389:7: error: 'for' loop initial
+declarations are only allowed in C99 mode
+| glibc/locale/programs/ld-ctype.c:3401:7: error: 'for' loop initial
+declarations are only allowed in C99 mode
+| glibc/locale/programs/ld-ctype.c: In function 'allocate_arrays':
+| glibc/locale/programs/ld-ctype.c:3887:7: error: 'for' loop initial
+declarations are only allowed in C99 mode
+| glibc/locale/programs/ld-ctype.c:4039:7: error: 'for' loop initial
+declarations are only allowed in C99 mode
+| glibc/locale/programs/ld-ctype.c:4062:19: error: redefinition of 'cnt'
+| glibc/locale/programs/ld-ctype.c:4039:19: note: previous definition of
+'cnt' was here
+| glibc/locale/programs/ld-ctype.c:4062:7: error: 'for' loop initial
+declarations are only allowed in C99 mode
+| make: *** [locarchive.o] Error 1
 
 Ross
 
---001a11c2cb5a0a867e050e1e19fc
+--047d7b66f74bbf11c3050e1e3f8d
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 2 February 2015 at 16:54, Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D=
-"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleton@linu=
-x.intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=
-=3D":39u" class=3D"a3s" style=3D"overflow:hidden">I&#39;d have to say this =
-is something we don&#39;t support. If you want to do this you<br>
-would need to disable the current packaging tasks and stage the package fil=
-es<br>
-yourself, but that&#39;s going to take almost as much work as converting ov=
-er your<br>
-postinstall scripts to be specified within the recipe. You would also lose =
-all<br>
-of the package QA checks that we currently run.</div></blockquote></div><br=
->If you *really* want to do this then you&#39;ll probably need a custom do_=
-package to put the RPMs you&#39;ve generated in the place that bitbake expe=
-cts them, or maybe a custom do_deploy.=C2=A0 At this point you&#39;re subve=
-rting the system so you&#39;ll have to look at the default tasks to work ou=
-t how they operate and how to replace them.</div><div class=3D"gmail_extra"=
-><br></div><div class=3D"gmail_extra">Ross</div></div>
+On 2 February 2015 at 10:54, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mail=
+to:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> =
+wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-sty=
+le:solid;padding-left:1ex"><span class=3D"">On Mon, Feb 2, 2015 at 2:40 AM,=
+ Burton, Ross &lt;<a href=3D"mailto:ross.burton@intel.com">ross.burton@inte=
+l.com</a>&gt; wrote:<br>
+</span><span class=3D"">&gt; cross-localdef-native:<br>
+&gt;<br>
+&gt; | In file included from glibc/locale/programs/locarchive.c:696:0:<br>
+&gt; | glibc/locale/programs/../../intl/l10nflist.c: In function<br>
+&gt; &#39;_nl_normalize_codeset&#39;:<br>
+&gt; | glibc/locale/programs/../../intl/l10nflist.c:306:12: error: missing =
+binary<br>
+&gt; operator before token &quot;(&quot;<br>
+&gt; | glibc/locale/programs/../../intl/l10nflist.c:313:9: error:<br>
+&gt; &#39;_nl_C_locobj_ptr&#39; undeclared (first use in this function)<br>
+&gt; | glibc/locale/programs/../../intl/l10nflist.c:313:9: note: each undec=
+lared<br>
+&gt; identifier is reported only once for each function it appears in<br>
+<br>
+<br>
+</span>gcc would work with latest tree but I did not run into this error. S=
+o<br>
+wait a while until I get to it.</blockquote></div><br>I can confirm that th=
+e current branch builds gcc (and everything else in a minimal image) apart =
+from cross-localdef-native, with a long set of errors for me now:</div><div=
+ class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><div class=3D"g=
+mail_extra">| In file included from glibc/locale/programs/locarchive.c:696:=
+0:</div><div class=3D"gmail_extra">| glibc/locale/programs/../../intl/l10nf=
+list.c: In function &#39;_nl_normalize_codeset&#39;:</div><div class=3D"gma=
+il_extra">| glibc/locale/programs/../../intl/l10nflist.c:306:12: error: mis=
+sing binary operator before token &quot;(&quot;</div><div class=3D"gmail_ex=
+tra">| glibc/locale/programs/../../intl/l10nflist.c:313:9: error: &#39;_nl_=
+C_locobj_ptr&#39; undeclared (first use in this function)</div><div class=
+=3D"gmail_extra">| glibc/locale/programs/../../intl/l10nflist.c:313:9: note=
+: each undeclared identifier is reported only once for each function it app=
+ears in</div><div class=3D"gmail_extra">| glibc/locale/programs/locarchive.=
+c: In function &#39;add_locales_to_archive&#39;:</div><div class=3D"gmail_e=
+xtra">| glibc/locale/programs/locarchive.c:1517:7: warning: passing argumen=
+t 1 of &#39;__xpg_basename&#39; discards &#39;const&#39; qualifier from poi=
+nter target type [enabled by default]</div><div class=3D"gmail_extra">| In =
+file included from /data/poky-master/tmp/work/x86_64-linux/cross-localedef-=
+native/2.21-r0/git/localedef/include/string.h:4:0,</div><div class=3D"gmail=
+_extra">| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fro=
+m glibc/locale/programs/locarchive.c:34:</div><div class=3D"gmail_extra">| =
+/usr/include/libgen.h:35:14: note: expected &#39;char *&#39; but argument i=
+s of type &#39;const char *&#39;</div><div class=3D"gmail_extra">| glibc/lo=
+cale/programs/ld-ctype.c: In function &#39;set_class_defaults&#39;:</div><d=
+iv class=3D"gmail_extra">| glibc/locale/programs/ld-ctype.c:3012:7: error: =
+&#39;for&#39; loop initial declarations are only allowed in C99 mode</div><=
+div class=3D"gmail_extra">| glibc/locale/programs/ld-ctype.c:3012:7: note: =
+use option -std=3Dc99 or -std=3Dgnu99 to compile your code</div><div class=
+=3D"gmail_extra">| glibc/locale/programs/ld-ctype.c:3016:19: error: redefin=
+ition of &#39;cnt&#39;</div><div class=3D"gmail_extra">| glibc/locale/progr=
+ams/ld-ctype.c:3012:19: note: previous definition of &#39;cnt&#39; was here=
+</div><div class=3D"gmail_extra">| glibc/locale/programs/ld-ctype.c:3016:7:=
+ error: &#39;for&#39; loop initial declarations are only allowed in C99 mod=
+e</div><div class=3D"gmail_extra">| glibc/locale/programs/ld-ctype.c:3034:5=
+: error: &#39;for&#39; loop initial declarations are only allowed in C99 mo=
+de</div><div class=3D"gmail_extra">| glibc/locale/programs/ld-ctype.c:3038:=
+17: error: redefinition of &#39;cnt&#39;</div><div class=3D"gmail_extra">| =
+glibc/locale/programs/ld-ctype.c:3034:17: note: previous definition of &#39=
+;cnt&#39; was here</div><div class=3D"gmail_extra">| glibc/locale/programs/=
+ld-ctype.c:3038:5: error: &#39;for&#39; loop initial declarations are only =
+allowed in C99 mode</div><div class=3D"gmail_extra">| glibc/locale/programs=
+/ld-ctype.c:3250:7: error: &#39;for&#39; loop initial declarations are only=
+ allowed in C99 mode</div><div class=3D"gmail_extra">| glibc/locale/program=
+s/ld-ctype.c:3254:19: error: redefinition of &#39;cnt&#39;</div><div class=
+=3D"gmail_extra">| glibc/locale/programs/ld-ctype.c:3250:19: note: previous=
+ definition of &#39;cnt&#39; was here</div><div class=3D"gmail_extra">| gli=
+bc/locale/programs/ld-ctype.c:3254:7: error: &#39;for&#39; loop initial dec=
+larations are only allowed in C99 mode</div><div class=3D"gmail_extra">| gl=
+ibc/locale/programs/ld-ctype.c:3272:7: error: &#39;for&#39; loop initial de=
+clarations are only allowed in C99 mode</div><div class=3D"gmail_extra">| g=
+libc/locale/programs/ld-ctype.c:3276:19: error: redefinition of &#39;cnt&#3=
+9;</div><div class=3D"gmail_extra">| glibc/locale/programs/ld-ctype.c:3272:=
+19: note: previous definition of &#39;cnt&#39; was here</div><div class=3D"=
+gmail_extra">| glibc/locale/programs/ld-ctype.c:3276:7: error: &#39;for&#39=
+; loop initial declarations are only allowed in C99 mode</div><div class=3D=
+"gmail_extra">| glibc/locale/programs/ld-ctype.c:3383:7: error: &#39;for&#3=
+9; loop initial declarations are only allowed in C99 mode</div><div class=
+=3D"gmail_extra">| glibc/locale/programs/ld-ctype.c:3389:19: error: redefin=
+ition of &#39;cnt&#39;</div><div class=3D"gmail_extra">| glibc/locale/progr=
+ams/ld-ctype.c:3383:19: note: previous definition of &#39;cnt&#39; was here=
+</div><div class=3D"gmail_extra">| glibc/locale/programs/ld-ctype.c:3389:7:=
+ error: &#39;for&#39; loop initial declarations are only allowed in C99 mod=
+e</div><div class=3D"gmail_extra">| glibc/locale/programs/ld-ctype.c:3401:7=
+: error: &#39;for&#39; loop initial declarations are only allowed in C99 mo=
+de</div><div class=3D"gmail_extra">| glibc/locale/programs/ld-ctype.c: In f=
+unction &#39;allocate_arrays&#39;:</div><div class=3D"gmail_extra">| glibc/=
+locale/programs/ld-ctype.c:3887:7: error: &#39;for&#39; loop initial declar=
+ations are only allowed in C99 mode</div><div class=3D"gmail_extra">| glibc=
+/locale/programs/ld-ctype.c:4039:7: error: &#39;for&#39; loop initial decla=
+rations are only allowed in C99 mode</div><div class=3D"gmail_extra">| glib=
+c/locale/programs/ld-ctype.c:4062:19: error: redefinition of &#39;cnt&#39;<=
+/div><div class=3D"gmail_extra">| glibc/locale/programs/ld-ctype.c:4039:19:=
+ note: previous definition of &#39;cnt&#39; was here</div><div class=3D"gma=
+il_extra">| glibc/locale/programs/ld-ctype.c:4062:7: error: &#39;for&#39; l=
+oop initial declarations are only allowed in C99 mode</div><div class=3D"gm=
+ail_extra">| make: *** [locarchive.o] Error 1</div><div class=3D"gmail_extr=
+a"><br></div><div class=3D"gmail_extra">Ross</div></div></div>
 
---001a11c2cb5a0a867e050e1e19fc--
+--047d7b66f74bbf11c3050e1e3f8d--
