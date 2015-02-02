@@ -1,37 +1,48 @@
-Return-Path: <jfabernathy@outlook.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BC6D5E008BC; Mon,  2 Feb 2015 09:30:39 -0800 (PST)
+	id EDBD2E008BC; Mon,  2 Feb 2015 09:33:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jfabernathy[at]outlook.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.192.50 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [65.54.190.144 listed in list.dnswl.org]
-Received: from BAY004-OMC3S6.hotmail.com (bay004-omc3s6.hotmail.com
-	[65.54.190.144])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4099EE00824
-	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 09:30:33 -0800 (PST)
-Received: from BAY169-W77 ([65.54.190.188]) by BAY004-OMC3S6.hotmail.com over
-	TLS secured channel with Microsoft SMTPSVC(7.5.7601.22751); 
-	Mon, 2 Feb 2015 09:30:33 -0800
-X-TMN: [5LiqqCyCB+ceRlagIqI2n3PDqnsdy3NJ]
-X-Originating-Email: [jfabernathy@outlook.com]
-Message-ID: <BAY169-W7748F94D52BC0458B7A0AEAE3C0@phx.gbl>
-From: Jim Abernathy <jfabernathy@outlook.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Mon, 2 Feb 2015 12:30:32 -0500
-Importance: Normal
+Received: from mail-qg0-f50.google.com (mail-qg0-f50.google.com
+	[209.85.192.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A89D1E00824
+	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 09:33:44 -0800 (PST)
+Received: by mail-qg0-f50.google.com with SMTP id f51so48495565qge.9
+	for <yocto@yoctoproject.org>; Mon, 02 Feb 2015 09:33:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=Qq78zeJar3vTOtho7qMp3uiUT50OPzV+T+ZrNHXOQUw=;
+	b=ENdhykeZY+Cq3CWyMLxICPL4rShjKYMNbMUTEb540jxNXM8X6hMZ5DgZdHazeTh7O8
+	LOyU7pYDos6kRMiYcfqopqmnBfMpOD1TMCcP9JwWlfo85NJtrmaOnxfoyWjDeE2aXcXh
+	jdERHb1nR4IQLiST+MzfXe4i4BH1jLIthEYzBwnK8WnXGeEH+w7bkQVbcK3UAj3O3zzW
+	Rvo1CW1jIvp+DHEkaWFYrrUZCoangNUQ4EkJ5r9RCKQFCHy9MEcTKruORR4vUCSDPQcZ
+	6LRFQByjZaiEKjL6pOcddgIAJluucJMMAL2W6D8TAwwgfJTTxBc+ZPAnHeKTzsERbDk1
+	Eflw==
+X-Gm-Message-State: ALoCoQnyfLbax9Mh37VT+5U4OvgjfXLEq8VdsdvMSMmgstW4aWrXAblFHOIr+e102JmOArGRGNfF
+X-Received: by 10.140.49.5 with SMTP id p5mr38279698qga.15.1422898423891; Mon,
+	02 Feb 2015 09:33:43 -0800 (PST)
 MIME-Version: 1.0
-X-OriginalArrivalTime: 02 Feb 2015 17:30:33.0355 (UTC)
-	FILETIME=[F2C02DB0:01D03F0D]
-Subject: meta-ti/pandaboard
+Received: by 10.140.96.166 with HTTP; Mon, 2 Feb 2015 09:33:23 -0800 (PST)
+In-Reply-To: <CABcZANmY5-_wgSZp2xb=20Og27mcDJ_e7_QFZHGnHV67L1vr_g@mail.gmail.com>
+References: <54CFA908.7010507@mlbassoc.com>
+	<CABcZANmY5-_wgSZp2xb=20Og27mcDJ_e7_QFZHGnHV67L1vr_g@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 2 Feb 2015 17:33:23 +0000
+Message-ID: <CAJTo0La5PVoaE=Qyyje3Jqy6i2f15djUYyGwOAks8KG-71NMbA@mail.gmail.com>
+To: Christopher Larson <clarson@kergoth.com>
+Cc: Yocto Project <yocto@yoctoproject.org>, Gary Thomas <gary@mlbassoc.com>
+Subject: Re: sstate management
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,79 +54,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Feb 2015 17:30:39 -0000
-Content-Type: multipart/alternative;
-	boundary="_ec466c12-781a-4d98-bbd9-0ba274a59aa8_"
+X-List-Received-Date: Mon, 02 Feb 2015 17:33:55 -0000
+Content-Type: multipart/alternative; boundary=001a113519441bbb68050e1e5b52
 
---_ec466c12-781a-4d98-bbd9-0ba274a59aa8_
-Content-Type: text/plain; charset="iso-8859-1"
+--001a113519441bbb68050e1e5b52
+Content-Type: text/plain; charset=UTF-8
+
+On 2 February 2015 at 16:48, Christopher Larson <clarson@kergoth.com> wrote:
+
+>   Is there some maintenance to be done on the sstate-cache?
+>>   I'm thinking I want to set up a shared cache which might
+>>   last for a long time and I would like to only keep the bits
+>>   that are really needed.
+>>
+>
+> In the past i've either used sstate-cache-management.sh or ensured that
+> SSTATE_DIR is on a mount with atime enabled and just periodically wiped
+> anything that hasn't been accessed in over a week.
+>
+
+Seconded on this - after doing lots of builds in the last few weeks
+involving five machines and new eglibc/gcc patches my sstate was 1.2TB.  A
+quick find -atime -delete did the job.
+
+Ross
+
+--001a113519441bbb68050e1e5b52
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-I've noticed a few issues with the pandaboard image that builds.=20
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 2 February 2015 at 16:48, Christopher Larson <span dir=3D"ltr">&lt;<a hr=
+ef=3D"mailto:clarson@kergoth.com" target=3D"_blank">clarson@kergoth.com</a>=
+&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
+ 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D""><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #cc=
+c solid;padding-left:1ex"><div style=3D"overflow:hidden">=C2=A0 Is there so=
+me maintenance to be done on the sstate-cache?<br>
+=C2=A0 I&#39;m thinking I want to set up a shared cache which might<br>
+=C2=A0 last for a long time and I would like to only keep the bits<br>
+=C2=A0 that are really needed.<br></div></blockquote><div><br></div></span>=
+<div>In the past i&#39;ve either used sstate-cache-management.sh or ensured=
+ that SSTATE_DIR is on a mount with atime enabled and just periodically wip=
+ed anything that hasn&#39;t been accessed in over a week.</div></blockquote=
+><div><br></div><div>Seconded on this - after doing lots of builds in the l=
+ast few weeks involving five machines and new eglibc/gcc patches my sstate =
+was 1.2TB.=C2=A0 A quick find -atime -delete did the job.</div><div><br></d=
+iv><div>Ross</div></div></div></div>
 
-1. core-image-sato does not have WiFi capability. I think it's missing firm=
-ware.
-
-2. core-image-base is missing the linux-firmware.  I added:=20
-IMAGE_INSTALL_append =3D " linux-firmware".  Now I have the necessary firmw=
-are to bring up the WiFi.
-
-3. There is some delay cause in booting that affect the ability to have WiF=
-i active after boot.  I have to wait a few minutes until I see the error an=
-d recovery before doing the ifup wlan0.
-
-dmesg | grep wl12     gives me the following output:
-
-[    0.396392] vwl1271: 1800 mV=20
-[   67.167297] wl12xx: ERROR could not get nvs file ti-connectivity/wl1271-=
-nvs.bin: -2
-[   67.181457] wl12xx: loaded
-
-(once I see the message above I can ifup wlan0 which produces this output b=
-elow and WiFi now is working:
-
-[  135.964355] wl12xx: firmware booted (Rev 6.3.5.0.98)
-[  137.979522] wl12xx: Association completed.
-
-Jim A
-
-
- 		 	   		  =
-
---_ec466c12-781a-4d98-bbd9-0ba274a59aa8_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<style><!--
-.hmmessage P
-{
-margin:0px=3B
-padding:0px
-}
-body.hmmessage
-{
-font-size: 12pt=3B
-font-family:Calibri
-}
---></style></head>
-<body class=3D'hmmessage'><div dir=3D'ltr'>I've noticed a few issues with t=
-he pandaboard image that builds. <br><br>1. core-image-sato does not have W=
-iFi capability. I think it's missing firmware.<br><br>2. core-image-base is=
- missing the linux-firmware.&nbsp=3B I added: <br>IMAGE_INSTALL_append =3D =
-" linux-firmware".&nbsp=3B Now I have the necessary firmware to bring up th=
-e WiFi.<br><br>3. There is some delay cause in booting that affect the abil=
-ity to have WiFi active after boot.&nbsp=3B I have to wait a few minutes un=
-til I see the error and recovery before doing the ifup wlan0.<br><br>dmesg =
-| grep wl12&nbsp=3B&nbsp=3B&nbsp=3B&nbsp=3B gives me the following output:<=
-br><br>[&nbsp=3B&nbsp=3B&nbsp=3B 0.396392] vwl1271: 1800 mV <br>[&nbsp=3B&n=
-bsp=3B 67.167297] wl12xx: ERROR could not get nvs file ti-connectivity/wl12=
-71-nvs.bin: -2<br>[&nbsp=3B&nbsp=3B 67.181457] wl12xx: loaded<br><br>(once =
-I see the message above I can ifup wlan0 which produces this output below a=
-nd WiFi now is working:<br><br>[&nbsp=3B 135.964355] wl12xx: firmware boote=
-d (Rev 6.3.5.0.98)<br>[&nbsp=3B 137.979522] wl12xx: Association completed.<=
-br><br>Jim A<br><br><br> 		 	   		  </div></body>
-</html>=
-
---_ec466c12-781a-4d98-bbd9-0ba274a59aa8_--
+--001a113519441bbb68050e1e5b52--
