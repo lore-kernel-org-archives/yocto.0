@@ -1,38 +1,33 @@
-Return-Path: <Thomas.Moore2@atk.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9A48E0086F; Mon,  2 Feb 2015 07:31:18 -0800 (PST)
+	id D286AE0092E; Mon,  2 Feb 2015 07:32:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mx-mn.atk.com (mx-mn.atk.com [192.107.248.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC9BCE00809
-	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 07:31:12 -0800 (PST)
-Received: from unknown (HELO UT40SVEH4.atk.com) ([146.168.70.141])
-	by mx-mn.atk.com with ESMTP; 02 Feb 2015 09:22:36 -0600
-Received: from UT40SVCWEM001.atk.com ([169.254.4.192]) by UT40SVEH4.atk.com
-	([146.168.70.141]) with mapi id 14.03.0174.001; Mon, 2 Feb 2015 08:31:11
-	-0700
-From: "Moore, Thomas (FtWorth)" <Thomas.Moore2@ATK.COM>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] COMPATIBLE_HOST
-Thread-Index: AdA++upFfaCsBP/ZQvyvk/0qfkk8LwAO6sQAAA5cKkA=
-Date: Mon, 2 Feb 2015 15:31:10 +0000
-Message-ID: <7B6FE55CD594D7478CED8A39DF3BFC0A5E7442E1@UT40SVCWEM001.atk.com>
-References: <7B6FE55CD594D7478CED8A39DF3BFC0A5E74429D@UT40SVCWEM001.atk.com>
-	<CAJTo0La6u6w7mK3wLNZ4N+w2S-0rQmxP6HJceJr=bkUWq1-quA@mail.gmail.com>
-In-Reply-To: <CAJTo0La6u6w7mK3wLNZ4N+w2S-0rQmxP6HJceJr=bkUWq1-quA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.99.32.35]
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC725E00824
+	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 07:32:09 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 64638F811E0; Mon,  2 Feb 2015 08:32:08 -0700 (MST)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 402A7F811DB;
+	Mon,  2 Feb 2015 08:32:07 -0700 (MST)
+Message-ID: <54CF9877.8070607@mlbassoc.com>
+Date: Mon, 02 Feb 2015 08:32:07 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+To: "Moore, Thomas (FtWorth)" <Thomas.Moore2@ATK.COM>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <7B6FE55CD594D7478CED8A39DF3BFC0A5E74429D@UT40SVCWEM001.atk.com>
+	<54CF9646.8030103@mlbassoc.com>
+	<7B6FE55CD594D7478CED8A39DF3BFC0A5E7442CE@UT40SVCWEM001.atk.com>
+In-Reply-To: <7B6FE55CD594D7478CED8A39DF3BFC0A5E7442CE@UT40SVCWEM001.atk.com>
 Subject: Re: COMPATIBLE_HOST
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -45,127 +40,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Feb 2015 15:31:18 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E7442E1UT40SVCWEM001at_"
+X-List-Received-Date: Mon, 02 Feb 2015 15:32:27 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E7442E1UT40SVCWEM001at_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On 2015-02-02 08:28, Moore, Thomas (FtWorth) wrote:
+> Gary,
+>
+> It seems like COMPATIBLE_MACHINE would have values such as genericx86, qemux86-64, or beaglebone. If that's true, I don't think I want to use COMPATIBLE_MACHINE as my recipes are only dependent on the architecture.
 
-Um9zcywNCg0KUGVyZmVjdC4gRm9yIHdoYXRldmVyIHJlYXNvbiwgdGhlIG1hbnVhbCBkb2VzbuKA
-mXQgY29tZSB1cCB3aGVuIEkgZ29vZ2xlIENPTVBBVElCTEVfSE9TVC4gTG9va3MgbGlrZSBJ4oCZ
-bGwgbmVlZCB0byBib29rbWFyayB0aGUgbWVnYSBtYW51YWwuDQoNClRoYW5rcywNCg0KVGhvbWFz
-DQoNCkZyb206IEJ1cnRvbiwgUm9zcyBbbWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbV0NClNl
-bnQ6IE1vbmRheSwgRmVicnVhcnkgMDIsIDIwMTUgOToyMSBBTQ0KVG86IE1vb3JlLCBUaG9tYXMg
-KEZ0V29ydGgpDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0
-b10gQ09NUEFUSUJMRV9IT1NUDQoNCkhpIFRob21hcywNCg0KT24gMiBGZWJydWFyeSAyMDE1IGF0
-IDE1OjE3LCBNb29yZSwgVGhvbWFzIChGdFdvcnRoKSA8VGhvbWFzLk1vb3JlMkBhdGsuY29tPG1h
-aWx0bzpUaG9tYXMuTW9vcmUyQGF0ay5jb20+PiB3cm90ZToNCkkgaGF2ZSBhIGJpbmFyeSByZWNp
-cGUgdGhhdCBpcyBvbmx5IGNvbXBhdGlibGUgd2l0aCB4ODYgYW5kIHg4Nl82NCBzeXN0ZW1zLiBJ
-ICp0aGluayogc3BlY2lmeWluZyB0aGUgQ09NUEFUSUJMRV9IT1NUIGluIG15IHJlY2lwZSB3b3Vs
-ZCBiZSBhIGdvb2QgaWRlYS4gSG93ZXZlciwgSSd2ZSBiZWVuIHVuYWJsZSB0byBmaW5kIGFueSBk
-b2N1bWVudGF0aW9uLCBvciBldmVuIGEgZ29vZCBkZXNjcmlwdGlvbiwgb2YgdGhpcyB2YXJpYWJs
-ZS4gQ2FuIHNvbWVvbmUgaGVscCBtZSBvdXQgaGVyZT8NCg0KVGhlIG1hbnVhbCBoYXMgYSBzZWN0
-aW9uIGluIHRoZSBnbG9zc2FyeToNCg0KaHR0cDovL3d3dy55b2N0b3Byb2plY3Qub3JnL2RvY3Mv
-MS43LjEvbWVnYS1tYW51YWwvbWVnYS1tYW51YWwuaHRtbCN2YXItQ09NUEFUSUJMRV9IT1NUDQoN
-CkFuZCB5ZXMsIHRoaXMgaXMgdGhlIGlkaW9tLiAgTG90cyBvZiBtZXRhLWludGVsIGZvciBleGFt
-cGxlIHVzZXMgQ09NUEFUSUJMRV9IT1NUID0gJyhpLjg2fHg4Nl82NCkuKi1saW51eCcuDQoNClJv
-c3MNCg0K
+You can also use architecture here - basically anything that is an override can be used.
+Similar to Ross' answer, I think this should work:
+   COMPATIBLE_MACHINE = '(i.86|x86_64)'
 
---_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E7442E1UT40SVCWEM001at_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Gary Thomas
+> Sent: Monday, February 02, 2015 9:23 AM
+> To: yocto@yoctoproject.org
+> Subject: Re: [yocto] COMPATIBLE_HOST
+>
+> On 2015-02-02 08:17, Moore, Thomas (FtWorth) wrote:
+>> I have a binary recipe that is only compatible with x86 and x86_64 systems. I *think* specifying the COMPATIBLE_HOST in my recipe would be a good idea. However, I've been unable to find any documentation, or even a good description, of this variable. Can someone help me out here?
+>
+> I think you really need to use COMPATIBLE_MACHINE instead.
+>
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
-e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
-KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
-b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
-emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
-aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
-Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
-eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
-Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNv
-LXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5z
-LXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10
-eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7fQ0K
-QHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAx
-LjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24x
-O30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRz
-IHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtp
-ZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1h
-cCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRp
-Zl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVy
-cGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
-b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+Um9zcyw8bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
-OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
-cXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0Qi
-PlBlcmZlY3QuIEZvciB3aGF0ZXZlciByZWFzb24sIHRoZSBtYW51YWwgZG9lc27igJl0IGNvbWUg
-dXAgd2hlbiBJIGdvb2dsZSBDT01QQVRJQkxFX0hPU1QuIExvb2tzIGxpa2UgSeKAmWxsIG5lZWQg
-dG8gYm9va21hcmsgdGhlIG1lZ2EgbWFudWFsLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdE
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
-LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+VGhhbmtzLDxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
-dW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
-cXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+
-VGhvbWFzPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZx
-dW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
-bnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7
-Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkZy
-b206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTom
-cXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+IEJ1cnRvbiwgUm9zcyBb
-bWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbV0NCjxicj4NCjxiPlNlbnQ6PC9iPiBNb25kYXks
-IEZlYnJ1YXJ5IDAyLCAyMDE1IDk6MjEgQU08YnI+DQo8Yj5Ubzo8L2I+IE1vb3JlLCBUaG9tYXMg
-KEZ0V29ydGgpPGJyPg0KPGI+Q2M6PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+
-U3ViamVjdDo8L2I+IFJlOiBbeW9jdG9dIENPTVBBVElCTEVfSE9TVDxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4N
-CjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGkgVGhvbWFzLDxvOnA+PC9vOnA+
-PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
-cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiAyIEZlYnJ1YXJ5
-IDIwMTUgYXQgMTU6MTcsIE1vb3JlLCBUaG9tYXMgKEZ0V29ydGgpICZsdDs8YSBocmVmPSJtYWls
-dG86VGhvbWFzLk1vb3JlMkBhdGsuY29tIiB0YXJnZXQ9Il9ibGFuayI+VGhvbWFzLk1vb3JlMkBh
-dGsuY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij5JIGhhdmUgYSBiaW5hcnkgcmVjaXBlIHRoYXQgaXMgb25seSBjb21wYXRpYmxlIHdpdGggeDg2
-IGFuZCB4ODZfNjQgc3lzdGVtcy4gSSAqdGhpbmsqIHNwZWNpZnlpbmcgdGhlIENPTVBBVElCTEVf
-SE9TVCBpbiBteSByZWNpcGUgd291bGQgYmUgYSBnb29kIGlkZWEuIEhvd2V2ZXIsIEkndmUgYmVl
-biB1bmFibGUgdG8gZmluZCBhbnkgZG9jdW1lbnRhdGlvbiwgb3IgZXZlbiBhIGdvb2QgZGVzY3Jp
-cHRpb24sIG9mDQogdGhpcyB2YXJpYWJsZS4gQ2FuIHNvbWVvbmUgaGVscCBtZSBvdXQgaGVyZT88
-bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoZSBtYW51YWwg
-aGFzIGEgc2VjdGlvbiBpbiB0aGUgZ2xvc3Nhcnk6PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0K
-PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxhIGhyZWY9Imh0dHA6Ly93d3cueW9jdG9wcm9q
-ZWN0Lm9yZy9kb2NzLzEuNy4xL21lZ2EtbWFudWFsL21lZ2EtbWFudWFsLmh0bWwjdmFyLUNPTVBB
-VElCTEVfSE9TVCI+aHR0cDovL3d3dy55b2N0b3Byb2plY3Qub3JnL2RvY3MvMS43LjEvbWVnYS1t
-YW51YWwvbWVnYS1tYW51YWwuaHRtbCN2YXItQ09NUEFUSUJMRV9IT1NUPC9hPjxvOnA+PC9vOnA+
-PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
-cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5BbmQgeWVzLCB0aGlz
-IGlzIHRoZSBpZGlvbS4mbmJzcDsgTG90cyBvZiBtZXRhLWludGVsIGZvciBleGFtcGxlIHVzZXMg
-Q09NUEFUSUJMRV9IT1NUID0gJyhpLjg2fHg4Nl82NCkuKi1saW51eCcuPG86cD48L286cD48L3A+
-DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
-cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlJvc3MmbmJzcDs8bzpwPjwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNw
-OzwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
---_000_7B6FE55CD594D7478CED8A39DF3BFC0A5E7442E1UT40SVCWEM001at_--
