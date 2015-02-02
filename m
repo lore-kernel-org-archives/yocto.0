@@ -1,37 +1,50 @@
-Return-Path: <Maxin.John@enea.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3E41FE008A6; Mon,  2 Feb 2015 02:07:13 -0800 (PST)
+	id 46E24E008A6; Mon,  2 Feb 2015 02:41:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
+	*      [209.85.216.175 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 8225FE0070B
-	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 02:07:07 -0800 (PST)
-Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.208) with Microsoft SMTP Server id 14.3.224.2; Mon, 2 Feb 2015
-	11:07:05 +0100
-Received: by sestofb10.enea.se (Postfix, from userid 4454)	id 34C192800CB;
-	Mon,  2 Feb 2015 11:07:05 +0100 (CET)
-Date: Mon, 2 Feb 2015 11:07:05 +0100
-From: "Maxin B. John" <maxin.john@enea.com>
-To: Jim Abernathy <jfabernathy@outlook.com>
-Message-ID: <20150202100705.GA17981@sestofb10.enea.se>
-References: <BAY169-W1362E3C1DC8377B4CE66D2DAE3F0@phx.gbl>
-	<BAY169-W8554ED0435BE93C2A8F54EAE3F0@phx.gbl>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-qc0-f175.google.com (mail-qc0-f175.google.com
+	[209.85.216.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D7DBE0070B
+	for <yocto@yoctoproject.org>; Mon,  2 Feb 2015 02:41:05 -0800 (PST)
+Received: by mail-qc0-f175.google.com with SMTP id c9so29394319qcz.6
+	for <yocto@yoctoproject.org>; Mon, 02 Feb 2015 02:41:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=hKJ9hIawLv/lmLnG0jHzZS1JmBoENGW3a2gDSBu2DT4=;
+	b=nOR8Z5zUFukQWWnsP+6DpFbidsldgOHg51bQf5B1+ULYUeNOJYu8NLRubhU1/prUOD
+	ZCuZHriAMmPACPe6hLhP3x1lfR3U6z6FM/ycUtQkifk2FGsyTR+nYqsA+/UGRWeDN0ef
+	+O5+87UDec1LkybvqGmDXtEWkISCmhhjz3eVpD8iJO283u1T9XmdyFS9lvuwWgpql+x+
+	XfxuPIdyoJbl4ux5wtylMA1yUoNt46mX28d88Yji2GnrHQxGPZhq0XKbFTOhtr6p8UiI
+	AnzRRgBCpsUvDAisR0mIFxYr/doQiJQii5yVZkPpFZQ97oXptMYXmxwC7dCqLOtN0M7r
+	fnmA==
+X-Gm-Message-State: ALoCoQk5aT/krFFVeIfSic8a7b/mHcqoHbqENgf5Pan3O7LS+NJj7dPynMmGvICdXD7bNPeQ+vz6
+X-Received: by 10.224.103.129 with SMTP id k1mr39954411qao.93.1422873664553;
+	Mon, 02 Feb 2015 02:41:04 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <BAY169-W8554ED0435BE93C2A8F54EAE3F0@phx.gbl>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Received-SPF: None (SESTOEX08.enea.se: maxin.john@enea.com does not
-	designate permitted sender hosts)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Checksum failure encountered Java
+Received: by 10.140.96.166 with HTTP; Mon, 2 Feb 2015 02:40:44 -0800 (PST)
+In-Reply-To: <CAMKF1souj1-FLTjkQb0y8myTiKMJyNeAa7wiM5-pW1fz0EtheA@mail.gmail.com>
+References: <CAMKF1souj1-FLTjkQb0y8myTiKMJyNeAa7wiM5-pW1fz0EtheA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 2 Feb 2015 10:40:44 +0000
+Message-ID: <CAJTo0LaN3HMhjrpii2pPbJw5zWbywgr1keZe=iQmuKFMFFf=gQ@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [RFT] upcoming glibc 2.21 and gcc 4.9 upgrade
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,127 +56,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Feb 2015 10:07:13 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 02 Feb 2015 10:41:11 -0000
+Content-Type: multipart/alternative; boundary=047d7b66f74b5641bd050e1897e9
+
+--047d7b66f74b5641bd050e1897e9
+Content-Type: text/plain; charset=UTF-8
+
+Hi Khem,
+
+On 2 February 2015 at 10:02, Khem Raj <raj.khem@gmail.com> wrote:
+
+> I have put together upgrade to gcc 4.9.2 as well as glibc 2.21 (
+> upcoming ) on  a contrib branch ( top 2 patches) its has not got much
+> testing besides x86 qemu thus far.
+>
+
+I'm seeing these failures when cherry-picking the top two commits to
+current poky/master.
+
+gcc-cross-initial:
+
+| /data/poky-master/tmp/work-shared/gcc-4.9.2-r0/gcc-4.9.2/gcc/dwarf2cfi.c:
+In function 'void expand_builtin_init_dwarf_reg_sizes(tree)':
+|
+/data/poky-master/tmp/work-shared/gcc-4.9.2-r0/gcc-4.9.2/gcc/dwarf2cfi.c:334:27:
+error: 'struct gcc_target' has no member named 'dwarf_frame_reg_mode'
+
+cross-localdef-native:
+
+| In file included from glibc/locale/programs/locarchive.c:696:0:
+| glibc/locale/programs/../../intl/l10nflist.c: In function
+'_nl_normalize_codeset':
+| glibc/locale/programs/../../intl/l10nflist.c:306:12: error: missing
+binary operator before token "("
+| glibc/locale/programs/../../intl/l10nflist.c:313:9: error:
+'_nl_C_locobj_ptr' undeclared (first use in this function)
+| glibc/locale/programs/../../intl/l10nflist.c:313:9: note: each undeclared
+identifier is reported only once for each function it appears in
+
+Ross
+
+--047d7b66f74b5641bd050e1897e9
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Jim,
+<div dir=3D"ltr"><div class=3D"gmail_extra">Hi Khem,</div><div class=3D"gma=
+il_extra"><br><div class=3D"gmail_quote">On 2 February 2015 at 10:02, Khem =
+Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_=
+blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-le=
+ft-color:rgb(204,204,204);border-left-style:solid;padding-left:1ex"><div id=
+=3D":1al" class=3D"" style=3D"overflow:hidden">I have put together upgrade =
+to gcc 4.9.2 as well as glibc 2.21 (<br>
+upcoming ) on=C2=A0 a contrib branch ( top 2 patches) its has not got much<=
+br>
+testing besides x86 qemu thus far.</div></blockquote></div><div class=3D"gm=
+ail_extra"><br></div><div class=3D"gmail_extra">I&#39;m seeing these failur=
+es when cherry-picking the top two commits to current poky/master.</div><di=
+v class=3D"gmail_extra"><br></div>gcc-cross-initial:</div><div class=3D"gma=
+il_extra"><br><div class=3D"gmail_extra">| /data/poky-master/tmp/work-share=
+d/gcc-4.9.2-r0/gcc-4.9.2/gcc/dwarf2cfi.c: In function &#39;void expand_buil=
+tin_init_dwarf_reg_sizes(tree)&#39;:</div><div class=3D"gmail_extra">| /dat=
+a/poky-master/tmp/work-shared/gcc-4.9.2-r0/gcc-4.9.2/gcc/dwarf2cfi.c:334:27=
+: error: &#39;struct gcc_target&#39; has no member named &#39;dwarf_frame_r=
+eg_mode&#39;</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_=
+extra">cross-localdef-native:</div><div class=3D"gmail_extra"><br></div><di=
+v class=3D"gmail_extra"><div class=3D"gmail_extra">| In file included from =
+glibc/locale/programs/locarchive.c:696:0:</div><div class=3D"gmail_extra">|=
+ glibc/locale/programs/../../intl/l10nflist.c: In function &#39;_nl_normali=
+ze_codeset&#39;:</div><div class=3D"gmail_extra">| glibc/locale/programs/..=
+/../intl/l10nflist.c:306:12: error: missing binary operator before token &q=
+uot;(&quot;</div><div class=3D"gmail_extra">| glibc/locale/programs/../../i=
+ntl/l10nflist.c:313:9: error: &#39;_nl_C_locobj_ptr&#39; undeclared (first =
+use in this function)</div><div class=3D"gmail_extra">| glibc/locale/progra=
+ms/../../intl/l10nflist.c:313:9: note: each undeclared identifier is report=
+ed only once for each function it appears in</div><div class=3D"gmail_extra=
+"><br></div><div class=3D"gmail_extra">Ross</div></div></div></div>
 
-On Sun, Feb 01, 2015 at 10:58:02AM -0500, Jim Abernathy wrote:
-> after I posted this issues, I tried to click on the link at the Oracle si=
-te and
-> there is something about accepting a License.  I have the
-> LICENSE_FLAGS_WHITELIST +=3D "oracle_java" which worked on the NUC build.=
-  I'm
-> guessing that's not the issue.
-
-Since Oracle download webpage has an "accept license" button, the
-downloading process is on a "best effort" basis one. If the download
-fails for a particular binary, please go to the oracle download
-webpage and download the tarball. Move that binary to the bitbake download
-location as mentioned in local.conf file and build again.
-
-Sorry for the trouble and I think, we should update the README to
-reflect this process (again).
-
-Please note that the arm binary is pre-built for vfp-hflt (hard-float)
-and it may have troubles with root-filesystem built with soft-float
-support.
-
-> Jim A
-
-Best Regards,
-Maxin
-
->=20
-> =E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=
-=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=
-=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=
-=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=
-=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=
-=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=
-=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=
-=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=
-=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81=E2=94=
-=81=E2=94=81=E2=94=81=E2=94=81=E2=94=81
-> From: jfabernathy@outlook.com
-> To: yocto@yoctoproject.org
-> Date: Sun, 1 Feb 2015 10:53:28 -0500
-> Subject: [yocto] Checksum failure encountered Java
->=20
-> I tried to move a build from NUC to Pandaboard and the core-image-sato wo=
-rked
-> fine, well except the README.HARDWARE for arm didn't mention coping the u=
-Image
-> to /boot. Figured that out easy enough.
->=20
-> But when I tried to add oracle-jse-jre that worked fine on NUC got the
-> following errors:
->=20
-> WARNING: Checksum failure encountered with download of http://
-> download.oracle.com/otn/java/ejre/7u60-b19/
-> ejre-7u60-fcs-b19-linux-arm-vfp-hflt-client_headless-07_may_2014.tar.gz -=
- will
-> attempt other sources if available
-> WARNING: Renaming /work/downloads/
-> ejre-7u60-fcs-b19-linux-arm-vfp-hflt-client_headless-07_may_2014.tar.gz t=
-o /
-> work/downloads/
-> ejre-7u60-fcs-b19-linux-arm-vfp-hflt-client_headless-07_may_2014.tar.gz_b=
-ad-checksum_b72400960629e7403c4b579dada2a804
-> ERROR: Fetcher failure for URL: 'http://download.oracle.com/otn/java/ejre=
-/
-> 7u60-b19/
-> ejre-7u60-fcs-b19-linux-arm-vfp-hflt-client_headless-07_may_2014.tar.gz'.
-> Checksum mismatch!
-> File: '/work/downloads/
-> ejre-7u60-fcs-b19-linux-arm-vfp-hflt-client_headless-07_may_2014.tar.gz' =
-has
-> md5 checksum b72400960629e7403c4b579dada2a804 when
-> b9b8f598b0a7f49e4d221f16ba25c6c0 was expected
-> File: '/work/downloads/
-> ejre-7u60-fcs-b19-linux-arm-vfp-hflt-client_headless-07_may_2014.tar.gz' =
-has
-> sha256 checksum
-> c4a64be693e0e27ca95ffe3036c56156e3d75e07f620fd913308eb03cdf86779 when
-> ed061060011d88efe5563c2949c00993db85db17ab94f18a78713007a2b90faf was expe=
-cted
-> If this change is expected (e.g. you have upgraded to a new version witho=
-ut
-> updating the checksums) then you can use these lines within the recipe:
-> SRC_URI[md5sum] =3D "b72400960629e7403c4b579dada2a804"
-> SRC_URI[sha256sum] =3D
-> "c4a64be693e0e27ca95ffe3036c56156e3d75e07f620fd913308eb03cdf86779"
-> Otherwise you should retry the download and/or check with upstream to det=
-ermine
-> if the file has become corrupted or otherwise unexpectedly modified.
->=20
-> ERROR: Function failed: Fetcher failure for URL: 'http://download.oracle.=
-com/
-> otn/java/ejre/7u60-b19/
-> ejre-7u60-fcs-b19-linux-arm-vfp-hflt-client_headless-07_may_2014.tar.gz'.
-> Unable to fetch URL from any source.
-> ERROR: Logfile of failure stored in: /work/pandaboard/tmp/work/
-> cortexa9t2hf-vfp-neon-poky-linux-gnueabi/oracle-jse-jre/1.7.0-u60r0/temp/
-> log.do_fetch.31677
-> ERROR: Task 231 (/home/jim/poky/meta-oracle-java/recipes-devtools/oracle-=
-java/
-> oracle-jse-jre_1.7.0.bb, do_fetch) failed with exit code '1'
->=20
-> Should I just change the checksum locally or what???
->=20
-> Jim A
->=20
->=20
->=20
-> -- _______________________________________________ yocto mailing list
-> yocto@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto
-
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
+--047d7b66f74b5641bd050e1897e9--
