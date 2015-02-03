@@ -1,52 +1,38 @@
-Return-Path: <vm.rod25@gmail.com>
+Return-Path: <Thomas.Moore2@atk.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5D552E00828; Tue,  3 Feb 2015 14:21:31 -0800 (PST)
+	id 77EB3E00828; Tue,  3 Feb 2015 14:26:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vm.rod25[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.47 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wg0-f47.google.com (mail-wg0-f47.google.com [74.125.82.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F1A1E00757
-	for <yocto@yoctoproject.org>; Tue,  3 Feb 2015 14:21:26 -0800 (PST)
-Received: by mail-wg0-f47.google.com with SMTP id n12so47253075wgh.6
-	for <yocto@yoctoproject.org>; Tue, 03 Feb 2015 14:21:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=95cWcORDMJSJEkFlA6XShg5cuLLHLzUxE+FA6PWXlQI=;
-	b=iwINyuOF0PZxLK8bE/VqtXT4c0fy3kckbbj3E25NS3hCHnspl3zVR38CbXhtyf0/EX
-	qqb1dA4Wrg3vgvIcW4hDetki9H5zn9vw02d8hFA0r7qZMeUuqQF6Fyb5iVoSJlhiknNX
-	Pu0HDo4c8OyEyPhDW4V3LrIFA2hfNTMV6UeeK0IyVMgtGcoPu/duSc2MABYYriqPxqxc
-	QILP9ocrtE8gtqGnUEwzpolLaH/fxO7az2hd6Ve/9N1HEqi1aQPQVqkFZ/wBFP3RVi3F
-	H8f2MtjB0WQiMibJtXRJUuABvg3QB+jEtpFVcSgVlS/r9tihWxoCjYW2/XNLPl2HFYMn
-	5YZg==
+Received: from mx-ut.atk.com (mx-ut.atk.com [192.107.250.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2F09E00757
+	for <yocto@yoctoproject.org>; Tue,  3 Feb 2015 14:25:58 -0800 (PST)
+Received: from unknown (HELO UT40SVEH3.atk.com) ([146.168.70.140])
+	by mx-ut.atk.com with ESMTP; 03 Feb 2015 16:19:28 -0600
+Received: from UT40SVCWEM001.atk.com ([169.254.4.192]) by UT40SVEH3.atk.com
+	([146.168.78.8]) with mapi id 14.03.0174.001;
+	Tue, 3 Feb 2015 15:25:57 -0700
+From: "Moore, Thomas (FtWorth)" <Thomas.Moore2@ATK.COM>
+To: Randy Witt <randy.e.witt@linux.intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Identifying image in os-release
+Thread-Index: AdA/6KMO8umNP6amR1usyg4OeValOAAROtQAAAtcTTA=
+Date: Tue, 3 Feb 2015 22:25:56 +0000
+Message-ID: <7B6FE55CD594D7478CED8A39DF3BFC0A5E7447DB@UT40SVCWEM001.atk.com>
+References: <7B6FE55CD594D7478CED8A39DF3BFC0A5E7446EF@UT40SVCWEM001.atk.com>
+	<54D13450.4040208@linux.intel.com>
+In-Reply-To: <54D13450.4040208@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.99.32.35]
 MIME-Version: 1.0
-X-Received: by 10.180.83.129 with SMTP id q1mr38790175wiy.8.1423002085040;
-	Tue, 03 Feb 2015 14:21:25 -0800 (PST)
-Received: by 10.216.253.1 with HTTP; Tue, 3 Feb 2015 14:21:24 -0800 (PST)
-In-Reply-To: <589519159.1002526.1422987266318.JavaMail.yahoo@mail.yahoo.com>
-References: <CAK5mtex_6VYORqocsd3A6H44h_=jn2+BjE2GeVhh8nfhMgLzBQ@mail.gmail.com>
-	<589519159.1002526.1422987266318.JavaMail.yahoo@mail.yahoo.com>
-Date: Tue, 3 Feb 2015 16:21:24 -0600
-Message-ID: <CAK5mtewiDEH9eg8BovSiLuZK14vOyTLsZ48k08FheX8=+pZ42Q@mail.gmail.com>
-From: Victor Rodriguez <vm.rod25@gmail.com>
-To: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: MPI support on Yocto
+Subject: Re: Identifying image in os-release
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,47 +44,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Feb 2015 22:21:31 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 03 Feb 2015 22:26:06 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Feb 3, 2015 at 12:14 PM, Alexandru Vaduva
-<vaduvajanalexandru@yahoo.com> wrote:
-> I will be more then happy to help you with this.
+Randy,
+
+Thanks for the tip. Here's what I ended up with:
+
+add_releaseinfo () {
+    sed -i "/NAME=3D/s/${DISTRO_NAME}/${DISTRO_NAME} (Debug)/" ${IMAGE_ROOT=
+FS}/${sysconfdir}/os-release
+}
+
+ROOTFS_POSTPROCESS_COMMAND +=3D " add_releaseinfo ; "
+
+Thomas=20
+
+
+-----Original Message-----
+From: Randy Witt [mailto:randy.e.witt@linux.intel.com]=20
+Sent: Tuesday, February 03, 2015 2:49 PM
+To: Moore, Thomas (FtWorth); yocto@yoctoproject.org
+Subject: Re: [yocto] Identifying image in os-release
+
+On 02/03/2015 11:42 AM, Moore, Thomas (FtWorth) wrote:
+> For my system, we are generating two images: a release image and a debug =
+image. The debug image simply adds the debug image features (tools-debug, e=
+clipse-debug, and dbg-pkgs). This approach looks like it is going to work w=
+ell for our needs. However, the one issue that I have is that there doesn't=
+ appear to be a way to easily tell which image is running. My current plan =
+for version identification is to make use of the /etc/os-release file that =
+is generated during the build, which is suitable for determining the versio=
+n of the base distribution. However, I can't find a way to influence any of=
+ those values from within my image recipes, which I image is by design.
 >
+> It would seem to me that having a way to assign a version, or some other =
+identifying information, to a final image would be very important. The DIST=
+RO_VERSION is nice, but it doesn't seem like it's enough considering that y=
+ou can write an image recipe to add any number of additional packages.
 >
-> Alex Vaduva
+> Any suggestions on how I can achieve this?
+
+If you are willing to use a file other than os-release, I've often seen thi=
+s done using a function in ROOTFS_POSTPROCESS_COMMAND https://www.yoctoproj=
+ect.org/docs/1.7/ref-manual/ref-manual.html#var-ROOTFS_POSTPROCESS_COMMAND.=
+=20
+For example:
+
+add_releaseinfo () {
+     echo "foo: ${FOOVAR}" > ${IMAGE_ROOTFS}/${sysconfdir}/somefile
+     echo "bar: ${BARVAR}" >> ${IMAGE_ROOTFS}/${sysconfdir}/somefile
+}
+
+ROOTFS_POSTPROCESS_COMMAND +=3D " add_releaseinfo ; "
+> Thanks,
 >
->
-> On Tuesday, February 3, 2015 5:41 PM, Victor Rodriguez <vm.rod25@gmail.com>
-> wrote:
->
->
-> HI team
->
-> I wonder if there is any project or efforts to implement Message
-> Passing Interface (MPICH ) support on Yocto ?
->
-> If no I am more than happy to work on it , I just will need a little
-> bit of guidance
->
-> Thanks a lot
->
-> Regards
->
-> Victor Rodriguez
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Thomas
 >
 >
 
-Thanks Alex
-
-Does anybody knows under which meta - list should we send the patch to review?
-
-Regards
-
-Victor Rodriguez
 
