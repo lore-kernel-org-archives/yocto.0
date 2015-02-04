@@ -1,55 +1,45 @@
-Return-Path: <jefro.net@gmail.com>
+Return-Path: <jfabernathy@outlook.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8720DE00942; Wed,  4 Feb 2015 11:47:21 -0800 (PST)
+	id 20328E00948; Wed,  4 Feb 2015 12:17:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.177 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jfabernathy[at]outlook.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pd0-f177.google.com (mail-pd0-f177.google.com
-	[209.85.192.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 823C4E00753
-	for <yocto@yoctoproject.org>; Wed,  4 Feb 2015 11:47:15 -0800 (PST)
-Received: by pdev10 with SMTP id v10so2683850pde.3
-	for <yocto@yoctoproject.org>; Wed, 04 Feb 2015 11:47:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:subject:date:message-id:reply-to:user-agent
-	:mime-version:content-type:content-transfer-encoding;
-	bh=xb4umd3mWQmN7JoVCMhccucDEEjURu2b8haYMOHUgRo=;
-	b=UlME+wz4nW26ubfq7Lw+AEt1kXu3JJHmGMT7tIcNvPOo9G/47mRZCEVIDazJATGSQN
-	7XabDDK6bIcuti3NhlxKcihADN6z/npjp/66OD8dPdbTF7OClOFuT/SzbJ8GTgV6fJlc
-	bEmQUbKGZHptenHy4FbrG2Hj3BKOukWbxrYQ5oFuk2IkqDwP7I7QfNvhYPiM/cQRm54S
-	M2UY8WezCBtJTiOIAkiUeN71hlsWiCrWeojqaO4aq78x6QwQUWecHR5d+U0hwaMYGx+m
-	sEtaRxSm/3a6FkqnqO0qLFP+5i0HG8anOZ6aTJhVhHdhY5zlVEhVvc3gYpmcfZT/VKqe
-	SIsA==
-X-Received: by 10.68.68.201 with SMTP id y9mr14606756pbt.110.1423079235249;
-	Wed, 04 Feb 2015 11:47:15 -0800 (PST)
-Received: from [192.168.0.112] (50-0-152-82.dedicated.static.sonic.net.
-	[50.0.152.82])
-	by mx.google.com with ESMTPSA id f12sm2841847pat.43.2015.02.04.11.47.13
-	(version=TLSv1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 04 Feb 2015 11:47:13 -0800 (PST)
-Sender: Jeff Osier-Mixon <jefro.net@gmail.com>
-From: "Jeff Osier-Mixon" <jefro@jefro.net>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Patches and discussions
-	about the oe-core layer" <openembedded-core@lists.openembedded.org>
-Date: Wed, 04 Feb 2015 19:47:11 +0000
-Message-Id: <em8d266901-b405-46e1-a34a-b44c332996d2@io>
-User-Agent: eM_Client/6.0.21372.0
-Mime-Version: 1.0
-Subject: Fw: ELC schedule and invitation to tech. showcase
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [65.54.190.81 listed in list.dnswl.org]
+Received: from BAY004-OMC2S6.hotmail.com (bay004-omc2s6.hotmail.com
+	[65.54.190.81])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAC75E00753
+	for <yocto@yoctoproject.org>; Wed,  4 Feb 2015 12:17:34 -0800 (PST)
+Received: from BAY169-W106 ([65.54.190.124]) by BAY004-OMC2S6.hotmail.com over
+	TLS secured channel with Microsoft SMTPSVC(7.5.7601.22751); 
+	Wed, 4 Feb 2015 12:17:34 -0800
+X-TMN: [KBG0CmpcJIzZynOck5U7k1VoQWJtXAUt]
+X-Originating-Email: [jfabernathy@outlook.com]
+Message-ID: <BAY169-W1064765206DCA2D9A5302CCAE3A0@phx.gbl>
+From: Jim Abernathy <jfabernathy@outlook.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 4 Feb 2015 15:17:34 -0500
+Importance: Normal
+In-Reply-To: <BLU437-SMTP718143271D06CCD988046BAE3A0@phx.gbl>
+References: <BAY169-W106583E852FA55C530E914CAE3D0@phx.gbl>,
+	<CAJTo0Lb5rbHBHm6hKtzQW1Xq2V5Y8sxGV=FkatkDF3FsL=C8HA@mail.gmail.com>,
+	<BLU437-SMTP718143271D06CCD988046BAE3A0@phx.gbl>
+MIME-Version: 1.0
+X-OriginalArrivalTime: 04 Feb 2015 20:17:34.0529 (UTC)
+	FILETIME=[9CA97B10:01D040B7]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: ACPI powerbtn
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Jeff Osier-Mixon <jefro@jefro.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -58,63 +48,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Feb 2015 19:47:21 -0000
-Content-Type: text/plain; format=flowed; charset=utf-8
+X-List-Received-Date: Wed, 04 Feb 2015 20:17:40 -0000
+Content-Type: multipart/alternative;
+	boundary="_93893430-b454-4d22-bc22-3a2c181fea2f_"
+
+--_93893430-b454-4d22-bc22-3a2c181fea2f_
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
 
-This is a note from Tim about the tech showcase that happens every year=20
-at the Embedded Linux Conference in San Jose, CA. It is going on at the=20
-end of March this year. If you have a project that you would like to=20
-demo at ELC, get in touch with Frank as shown below.
+Okay=2C I found a solution that works for core-image-base for NUC.
 
---
-Jeffrey Osier-Mixon, Intel Corporation
-Yocto Project Community Manager | https://www.yoctoproject.org
+1. create /etc/acpi/events/powerbtn
 
+event=3Dbutton[ /]power
+action=3D/etc/acpi/powerbtn.sh
 
-Hi everyone,
+2. create /etc/acpi/powerbtn.sh
 
-The schedule for Embedded Linux Conference is now available at:
-http://events.linuxfoundation.org/events/embedded-linux-conference/schedule
+#!/bin/sh
+# /etc/acpi/powerbtn.sh
+# Initiates a shutdown when the power putton has been
+# pressed.
+/sbin/shutdown -h now "Power button pressed"
 
-ELC is March 23-24 in San Jose, California. You'll find a variety of
-very interesting and useful topics on the schedule. I hope you can=20
-attend.
-
-If you're coming, and would like to demo something (with a table and=20
-poster)
-at our technical showcase, please send an e-mail to our showcase=20
-organizer
-this year - Frank Rowand. Frank's e-mail address is on the wiki page=20
-below.
-
-The technical showcase is an informal "poster/demo session", with
-an evening reception, planned for Tuesday, March 24 at ELC.
-
-Full details about the technical showcase and instructions for
-reserving a spot are here:
-http://elinux.org/ELC_2015_Technical_Showcase
-
-I'm looking forward to another great event, and hope to see
-you there!
-  -- Tim
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D
-Tim Bird
-Architecture Group Chair, CE Workgroup of the Linux Foundation
-Senior Staff Engineer, Sony Mobile Communications
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D
-
---
-You received this message because you are subscribed to the Google=20
-Groups "elc-pc" group.
-To unsubscribe from this group and stop receiving emails from it, send=20
-an email to elc-pc+unsubscribe@googlegroups.com.
-To post to this group, send email to elc-pc@googlegroups.com.
-To view this discussion on the web visit=20
-https://groups.google.com/d/msgid/elc-pc/54D27667.8030309%40sonymobile.com.
-For more options, visit https://groups.google.com/d/optout.
+3. reboot
 
 
+From: jfabernathy@outlook.com
+Date: Wed=2C 4 Feb 2015 07:36:27 -0500
+To: ross.burton@intel.com
+CC: yocto@yoctoproject.org
+Subject: Re: [yocto] ACPI powerbtn
+
+
+On Feb 3=2C 2015=2C at 4:34 PM=2C Burton=2C Ross <ross.burton@intel.com> wr=
+ote:
+On 3 February 2015 at 21:30=2C Jim Abernathy <jfabernathy@outlook.com> wrot=
+e:
+I need to add something that will 'shutdown -h now' when the power button i=
+s pressed.  I would figure that ACPI is already included in the core-image-=
+base of the NUC bsp.
+
+Do I need to include a new file in /etc/acpi/events or do I need to include=
+ some package?
+I'm literally signing off for the day but for what it's worth core-image-sa=
+to does that already on my NUC=2C so there must be something in that image =
+that makes it work...  maybe acpid or acpi-support isn't part of core-image=
+-base?
+Ross=0A=
+
+I went back and built core-image-sato and the power button does nothing.  I=
+ don=92t see anything in the /etc/acpi/events directory.  Same as core-imag=
+e-base.
+Jim A
+
+-- =0A=
+_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto 		 	   		  =
+
+--_93893430-b454-4d22-bc22-3a2c181fea2f_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<style><!--
+.hmmessage P
+{
+margin:0px=3B
+padding:0px
+}
+body.hmmessage
+{
+font-size: 12pt=3B
+font-family:Calibri
+}
+--></style></head>
+<body class=3D'hmmessage'><div dir=3D'ltr'>Okay=2C I found a solution that =
+works for core-image-base for NUC.<br><br>1. create /etc/acpi/events/powerb=
+tn<br><br>event=3Dbutton[ /]power<br>action=3D/etc/acpi/powerbtn.sh<br><br>=
+2. create /etc/acpi/powerbtn.sh<br><br>#!/bin/sh<br># /etc/acpi/powerbtn.sh=
+<br># Initiates a shutdown when the power putton has been<br># pressed.<br>=
+/sbin/shutdown -h now "Power button pressed"<br><br>3. reboot<br><br><br><d=
+iv><hr id=3D"stopSpelling">From: jfabernathy@outlook.com<br>Date: Wed=2C 4 =
+Feb 2015 07:36:27 -0500<br>To: ross.burton@intel.com<br>CC: yocto@yoctoproj=
+ect.org<br>Subject: Re: [yocto] ACPI powerbtn<br><br><br><div><blockquote><=
+div>On Feb 3=2C 2015=2C at 4:34 PM=2C Burton=2C Ross &lt=3B<a href=3D"mailt=
+o:ross.burton@intel.com">ross.burton@intel.com</a>&gt=3B wrote:</div><br cl=
+ass=3D"ecxApple-interchange-newline"><div><div dir=3D"ltr"><div class=3D"ec=
+xgmail_extra"><br><div class=3D"ecxgmail_quote">On 3 February 2015 at 21:30=
+=2C Jim Abernathy <span dir=3D"ltr">&lt=3B<a href=3D"mailto:jfabernathy@out=
+look.com" target=3D"_blank">jfabernathy@outlook.com</a>&gt=3B</span> wrote:=
+<br><blockquote class=3D"ecxgmail_quote" style=3D"border-left:1px #ccc soli=
+d=3Bpadding-left:1ex=3B"><div dir=3D"ltr">I need to add something that will=
+ 'shutdown -h now' when the power button is pressed.&nbsp=3B I would figure=
+ that ACPI is already included in the core-image-base of the NUC bsp.<br><b=
+r>Do I need to include a new file in /etc/acpi/events or do I need to inclu=
+de some package?</div></blockquote></div><div class=3D"ecxgmail_extra"><br>=
+</div>I'm literally signing off for the day but for what it's worth core-im=
+age-sato does that already on my NUC=2C so there must be something in that =
+image that makes it work... &nbsp=3Bmaybe acpid or acpi-support isn't part =
+of core-image-base?</div><div class=3D"ecxgmail_extra"><br></div><div class=
+=3D"ecxgmail_extra">Ross</div></div>=0A=
+</div></blockquote></div><br><div>I went back and built core-image-sato and=
+ the power button does nothing. &nbsp=3BI don=92t see anything in the /etc/=
+acpi/events directory. &nbsp=3BSame as core-image-base.</div><div><br></div=
+><div>Jim A</div><div><br></div><br>-- =0A=
+_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto</div> 		 	   		  </div></body=
+>
+</html>=
+
+--_93893430-b454-4d22-bc22-3a2c181fea2f_--
