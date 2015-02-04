@@ -1,6 +1,6 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <flihp@twobit.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9FC3BE00827; Wed,  4 Feb 2015 08:20:32 -0800 (PST)
+	id 2D28EE0082D; Wed,  4 Feb 2015 10:17:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,22 +8,29 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33577E00753
-	for <yocto@yoctoproject.org>; Wed,  4 Feb 2015 08:20:21 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 3232DF8119A; Wed,  4 Feb 2015 09:20:19 -0700 (MST)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 37389F8119A;
-	Wed,  4 Feb 2015 09:20:19 -0700 (MST)
-Message-ID: <54D246C6.8080100@mlbassoc.com>
-Date: Wed, 04 Feb 2015 09:20:22 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C90F5E00753
+	for <yocto@yoctoproject.org>; Wed,  4 Feb 2015 10:17:27 -0800 (PST)
+Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
+	helo=[172.16.1.11])
+	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1YJ4U2-0003KI-0G; Wed, 04 Feb 2015 18:15:26 +0000
+Message-ID: <54D2622E.9050708@twobit.us>
+Date: Wed, 04 Feb 2015 13:17:18 -0500
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:31.0) Gecko/20100101 Icedove/31.3.0
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: package-index error
+To: Armin Kuster <akuster808@gmail.com>
+References: <1422673355-29535-1-git-send-email-akuster808@gmail.com>
+In-Reply-To: <1422673355-29535-1-git-send-email-akuster808@gmail.com>
+X-SA-Exim-Connect-IP: 50.185.54.102
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH] ustr: fix typo in SRC_URI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,63 +42,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Feb 2015 16:20:32 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Wed, 04 Feb 2015 18:17:36 -0000
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: 7bit
 
-As part of developing a new package for my system,
-I've been doing a number of repeated builds like this:
-   $ bitbake some-package && bitbake package-index
+Hello Armin,
 
-Over the past two days, I probably ran this command sequence
-50 times (lots of iterative development).  On two occasions,
-it failed with an error like this:
-==============================================================
-Build Configuration:
-BB_VERSION        = "1.25.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Ubuntu-13.10"
-TARGET_SYS        = "arm-amltd-linux-gnueabi"
-MACHINE           = "teton-p0381"
-DISTRO            = "amltd"
-DISTRO_VERSION    = "1.7+snapshot-20150204"
-TUNE_FEATURES     = "arm armv7a vfp neon callconvention-hard cortexa7"
-TARGET_FPU        = "vfp-neon"
-meta              = "master:22c38e2d8a058619e3d05534b5e830b750aa4241"
-meta-oe           = "cutting-edge:3e0992a4ff1cabb30c2ab416bdfc82cf0b7745e3"
-meta-amltd        = "cutting-edge:180686ee3a8d1d94dd368af05a025b0efbba07ba"
-meta-fsl-arm      = "master:2d9b23e7ca473eaf33b8a96839686a331339e43a"
-meta-fsl-arm-extra = "master:6054ad663ae2067607b1bb207dace45a447a0a74"
-meta-teton-ls1-p0381 = "cutting-edge:ab89731bb0fed2f9fac53f499644b3522016f4b1"
+I've submitted a very similar patch a few days earlier. This was bundled
+up into a larger series that *should* get meta-selinux master building
+again. See:
+https://lists.yoctoproject.org/pipermail/yocto/2015-January/023314.html
 
-NOTE: Preparing RunQueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-ERROR: Index creation command '/local/p0381-cutting-edge_2014-11-12/tmp/sysroots/x86_64-linux/usr/bin/opkg-make-index -r 
-/local/p0381-cutting-edge_2014-11-12/tmp/deploy/ipk/all/Packages -p /local/p0381-cutting-edge_2014-11-12/tmp/deploy/ipk/all/Packages -m 
-/local/p0381-cutting-edge_2014-11-12/tmp/deploy/ipk/all' failed with return code 1:
-Traceback (most recent call last):
-   File "/local/p0381-cutting-edge_2014-11-12/tmp/sysroots/x86_64-linux/usr/bin/opkg-make-index", line 87, in <module>
-     s, f = l.split(" ", 1)
-ValueError: need more than 1 value to unpack
+Philip
 
-ERROR: Function failed: do_package_index
-ERROR: Logfile of failure stored in: /local/p0381-cutting-edge_2014-11-12/tmp/work/cortexa7hf-vfp-neon-amltd-linux-gnueabi/package-index/1.0-r0/temp/log.do_package_index.31738
-ERROR: Task 7 (/local/poky-cutting-edge/meta/recipes-core/meta/package-index.bb, do_package_index) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 118 tasks of which 117 didn't need to be rerun and 1 failed.
-No currently running tasks (117 of 119)
-==============================================================
+On 01/30/2015 10:02 PM, Armin Kuster wrote:
+> From: Armin Kuster <akuster@mvista.com>
+> 
+> This fixes
+> ERROR: Fetcher failure: Fetch command failed with exit code 8, output:
+> http://www.and.org/ustr/$%7BBPV%7D/ustr-1.0.4.tar.bz2:
+> 2015-01-30 18:26:38 ERROR 404: Not Found.
+> 
+> Changed "BPV" to "PV"
+> 
+> Signed-off-by: Armin Kuster <akuster@mvista.com>
+> ---
+>  recipes-extended/ustr/ustr_1.0.4.bb | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/recipes-extended/ustr/ustr_1.0.4.bb b/recipes-extended/ustr/ustr_1.0.4.bb
+> index a0a1e41..cdb78ad 100644
+> --- a/recipes-extended/ustr/ustr_1.0.4.bb
+> +++ b/recipes-extended/ustr/ustr_1.0.4.bb
+> @@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=c79c6e2ae13418d16d7dc82df960a1e7 \
+>  		    file://LICENSE_MIT;md5=c61e779b782608472bd87593c3c3916f"
+>  
+>  SRC_URI = "\
+> -    http://www.and.org/ustr/${BPV}/${BPN}-${PV}.tar.bz2 \
+> +    http://www.and.org/ustr/${PV}/${BPN}-${PV}.tar.bz2 \
+>      file://ustr-makefile-fix.patch;patch=1 \
+>      file://ustr-fix__va_copy-not-defined.patch;patch=2 \
+>      file://ustr-c99-inline.patch;patch=3"
+> 
 
-I've no idea what the error means, nor how I might track it
-down.  As mentioned, it's very sporadic and certainly not
-stochastically repeatable.  If I immediately rerun the
-'bitbake package-index' it works just fine.
-
-Any ideas what this might be?
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
