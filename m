@@ -1,57 +1,55 @@
-Return-Path: <akuster@mvista.com>
+Return-Path: <jefro.net@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A5195E0082D; Wed,  4 Feb 2015 10:20:38 -0800 (PST)
+	id 8720DE00942; Wed,  4 Feb 2015 11:47:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.42 listed in list.dnswl.org]
+	*      [209.85.192.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-pa0-f42.google.com (mail-pa0-f42.google.com
-	[209.85.220.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F6EDE00753
-	for <yocto@yoctoproject.org>; Wed,  4 Feb 2015 10:20:36 -0800 (PST)
-Received: by mail-pa0-f42.google.com with SMTP id bj1so4425901pad.1
-	for <yocto@yoctoproject.org>; Wed, 04 Feb 2015 10:20:36 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-	:cc:subject:references:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=zskWUlxtrO3uMI1TJcC3thrcVE5mbhYb+D/BYZNDPUM=;
-	b=W/b/TVnzMk7Au3SMaX5n3iAvf/lNqU6Xhk2FkHotDpji15vW929LLPRkPbdh+VCVKg
-	2Mqqg6X3hanS04fKuBMgjpZZaLF7B0Mh3pvN6gWUULo8Kj4PEbBnIdKYwaKgfv+dpysj
-	62+sP9H4Pf/WzWTcSy//P0/vPAISGEp73CSs7bZRlRCYtEpT7KhqYeS3RgDgST4WbZ3W
-	Zk18eQ8BBN9Tna+tCPUe1p19fBHi/3E4kiS6HoyMZ8bV5QE7xrNW5kmLltw8NWvt0415
-	DkRhDeJg7YA1QjrDHWHr1xmNyLzIIt9SHVpTbvfXb+k258kvi8ZYw042Cvu61s/fCQYF
-	eP7A==
-X-Gm-Message-State: ALoCoQmxEc1IkzzwJJeSHgkMREwLvOfIPebtkfMBi/AvooW8lcbs3Cq6KUzSEg1Z4Tm/Uk+SwcYr
-X-Received: by 10.68.164.3 with SMTP id ym3mr14548444pbb.100.1423074035937;
-	Wed, 04 Feb 2015 10:20:35 -0800 (PST)
-Received: from ?IPv6:2601:c:a700:272f:d9bf:657b:6f90:1a86?
-	([2601:c:a700:272f:d9bf:657b:6f90:1a86])
-	by mx.google.com with ESMTPSA id v6sm979516pdp.50.2015.02.04.10.20.34
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 04 Feb 2015 10:20:35 -0800 (PST)
-Message-ID: <54D262F0.9050406@mvista.com>
-Date: Wed, 04 Feb 2015 10:20:32 -0800
-From: akuster <akuster@mvista.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
-MIME-Version: 1.0
-To: Philip Tricca <flihp@twobit.us>, Armin Kuster <akuster808@gmail.com>
-References: <1422673355-29535-1-git-send-email-akuster808@gmail.com>
-	<54D2622E.9050708@twobit.us>
-In-Reply-To: <54D2622E.9050708@twobit.us>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH] ustr: fix typo in SRC_URI
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pd0-f177.google.com (mail-pd0-f177.google.com
+	[209.85.192.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 823C4E00753
+	for <yocto@yoctoproject.org>; Wed,  4 Feb 2015 11:47:15 -0800 (PST)
+Received: by pdev10 with SMTP id v10so2683850pde.3
+	for <yocto@yoctoproject.org>; Wed, 04 Feb 2015 11:47:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:subject:date:message-id:reply-to:user-agent
+	:mime-version:content-type:content-transfer-encoding;
+	bh=xb4umd3mWQmN7JoVCMhccucDEEjURu2b8haYMOHUgRo=;
+	b=UlME+wz4nW26ubfq7Lw+AEt1kXu3JJHmGMT7tIcNvPOo9G/47mRZCEVIDazJATGSQN
+	7XabDDK6bIcuti3NhlxKcihADN6z/npjp/66OD8dPdbTF7OClOFuT/SzbJ8GTgV6fJlc
+	bEmQUbKGZHptenHy4FbrG2Hj3BKOukWbxrYQ5oFuk2IkqDwP7I7QfNvhYPiM/cQRm54S
+	M2UY8WezCBtJTiOIAkiUeN71hlsWiCrWeojqaO4aq78x6QwQUWecHR5d+U0hwaMYGx+m
+	sEtaRxSm/3a6FkqnqO0qLFP+5i0HG8anOZ6aTJhVhHdhY5zlVEhVvc3gYpmcfZT/VKqe
+	SIsA==
+X-Received: by 10.68.68.201 with SMTP id y9mr14606756pbt.110.1423079235249;
+	Wed, 04 Feb 2015 11:47:15 -0800 (PST)
+Received: from [192.168.0.112] (50-0-152-82.dedicated.static.sonic.net.
+	[50.0.152.82])
+	by mx.google.com with ESMTPSA id f12sm2841847pat.43.2015.02.04.11.47.13
+	(version=TLSv1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Wed, 04 Feb 2015 11:47:13 -0800 (PST)
+Sender: Jeff Osier-Mixon <jefro.net@gmail.com>
+From: "Jeff Osier-Mixon" <jefro@jefro.net>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Patches and discussions
+	about the oe-core layer" <openembedded-core@lists.openembedded.org>
+Date: Wed, 04 Feb 2015 19:47:11 +0000
+Message-Id: <em8d266901-b405-46e1-a34a-b44c332996d2@io>
+User-Agent: eM_Client/6.0.21372.0
+Mime-Version: 1.0
+Subject: Fw: ELC schedule and invitation to tech. showcase
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Jeff Osier-Mixon <jefro@jefro.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -60,55 +58,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Feb 2015 18:20:38 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 04 Feb 2015 19:47:21 -0000
+Content-Type: text/plain; format=flowed; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+This is a note from Tim about the tech showcase that happens every year=20
+at the Embedded Linux Conference in San Jose, CA. It is going on at the=20
+end of March this year. If you have a project that you would like to=20
+demo at ELC, get in touch with Frank as shown below.
+
+--
+Jeffrey Osier-Mixon, Intel Corporation
+Yocto Project Community Manager | https://www.yoctoproject.org
 
 
-Phillip,
+Hi everyone,
 
-thanks.
+The schedule for Embedded Linux Conference is now available at:
+http://events.linuxfoundation.org/events/embedded-linux-conference/schedule
 
-- armin
+ELC is March 23-24 in San Jose, California. You'll find a variety of
+very interesting and useful topics on the schedule. I hope you can=20
+attend.
 
-On 02/04/2015 10:17 AM, Philip Tricca wrote:
-> Hello Armin,
->
-> I've submitted a very similar patch a few days earlier. This was bundled
-> up into a larger series that *should* get meta-selinux master building
-> again. See:
-> https://lists.yoctoproject.org/pipermail/yocto/2015-January/023314.html
->
-> Philip
->
-> On 01/30/2015 10:02 PM, Armin Kuster wrote:
->> From: Armin Kuster <akuster@mvista.com>
->>
->> This fixes
->> ERROR: Fetcher failure: Fetch command failed with exit code 8, output:
->> http://www.and.org/ustr/$%7BBPV%7D/ustr-1.0.4.tar.bz2:
->> 2015-01-30 18:26:38 ERROR 404: Not Found.
->>
->> Changed "BPV" to "PV"
->>
->> Signed-off-by: Armin Kuster <akuster@mvista.com>
->> ---
->>   recipes-extended/ustr/ustr_1.0.4.bb | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/recipes-extended/ustr/ustr_1.0.4.bb b/recipes-extended/ustr/ustr_1.0.4.bb
->> index a0a1e41..cdb78ad 100644
->> --- a/recipes-extended/ustr/ustr_1.0.4.bb
->> +++ b/recipes-extended/ustr/ustr_1.0.4.bb
->> @@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=c79c6e2ae13418d16d7dc82df960a1e7 \
->>   		    file://LICENSE_MIT;md5=c61e779b782608472bd87593c3c3916f"
->>
->>   SRC_URI = "\
->> -    http://www.and.org/ustr/${BPV}/${BPN}-${PV}.tar.bz2 \
->> +    http://www.and.org/ustr/${PV}/${BPN}-${PV}.tar.bz2 \
->>       file://ustr-makefile-fix.patch;patch=1 \
->>       file://ustr-fix__va_copy-not-defined.patch;patch=2 \
->>       file://ustr-c99-inline.patch;patch=3"
->>
->
+If you're coming, and would like to demo something (with a table and=20
+poster)
+at our technical showcase, please send an e-mail to our showcase=20
+organizer
+this year - Frank Rowand. Frank's e-mail address is on the wiki page=20
+below.
+
+The technical showcase is an informal "poster/demo session", with
+an evening reception, planned for Tuesday, March 24 at ELC.
+
+Full details about the technical showcase and instructions for
+reserving a spot are here:
+http://elinux.org/ELC_2015_Technical_Showcase
+
+I'm looking forward to another great event, and hope to see
+you there!
+  -- Tim
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D
+Tim Bird
+Architecture Group Chair, CE Workgroup of the Linux Foundation
+Senior Staff Engineer, Sony Mobile Communications
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D
+
+--
+You received this message because you are subscribed to the Google=20
+Groups "elc-pc" group.
+To unsubscribe from this group and stop receiving emails from it, send=20
+an email to elc-pc+unsubscribe@googlegroups.com.
+To post to this group, send email to elc-pc@googlegroups.com.
+To view this discussion on the web visit=20
+https://groups.google.com/d/msgid/elc-pc/54D27667.8030309%40sonymobile.com.
+For more options, visit https://groups.google.com/d/optout.
+
 
