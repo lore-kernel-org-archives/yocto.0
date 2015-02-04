@@ -1,62 +1,55 @@
-Return-Path: <Gary.Pollington@tvone.com>
+Return-Path: <amusghatge@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 48128E00985; Wed,  4 Feb 2015 04:36:35 -0800 (PST)
+	id D4891E00985; Wed,  4 Feb 2015 04:51:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [157.56.112.63 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (amusghatge[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 2158 seconds by postgrey-1.32 at yocto-www;
-	Wed, 04 Feb 2015 04:36:28 PST
-Received: from emea01-am1-obe.outbound.protection.outlook.com
-	(mail-am1on0063.outbound.protection.outlook.com [157.56.112.63])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E795E00984
-	for <yocto@yoctoproject.org>; Wed,  4 Feb 2015 04:36:28 -0800 (PST)
-Received: from DB3PR07MB0684.eurprd07.prod.outlook.com (25.160.51.148) by
-	DB3PR07MB107.eurprd07.prod.outlook.com (10.242.147.146) with Microsoft
-	SMTP Server (TLS) id 15.1.75.20; Wed, 4 Feb 2015 11:59:01 +0000
-Received: from DB3PR07MB0681.eurprd07.prod.outlook.com (25.160.51.145) by
-	DB3PR07MB0684.eurprd07.prod.outlook.com (25.160.51.148) with Microsoft
-	SMTP Server (TLS) id 15.1.75.20; Wed, 4 Feb 2015 11:58:59 +0000
-Received: from DB3PR07MB0681.eurprd07.prod.outlook.com ([25.160.51.145]) by
-	DB3PR07MB0681.eurprd07.prod.outlook.com ([25.160.51.145]) with mapi id
-	15.01.0075.002; Wed, 4 Feb 2015 11:59:00 +0000
-From: Gary Pollington <Gary.Pollington@tvone.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Re: [yocto] [meta-raspberrypi] Nothing RPROVIDES 'liborc-0.4'
-Thread-Index: AdBAcUge5qjNFYmwRsKmf60WloVpHw==
-Date: Wed, 4 Feb 2015 11:58:59 +0000
-Message-ID: <DB3PR07MB0681D85C8ACA0DB7A86BE092FA3A0@DB3PR07MB0681.eurprd07.prod.outlook.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [5.148.140.100]
-authentication-results: yoctoproject.org; dkim=none (message not signed)
-	header.d=none;
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:;SRVR:DB3PR07MB0684;UriScan:;
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0;PCL:0;RULEID:;SRVR:DB3PR07MB0684;
-x-forefront-prvs: 04772EA191
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(6009001)(164054003)(46102003)(50986999)(19300405004)(54356999)(2656002)(110136001)(2351001)(107886001)(76576001)(74316001)(450100001)(77156002)(62966003)(71446004)(122556002)(40100003)(2501002)(33656002)(19625215002)(19580395003)(87936001)(92566002)(15975445007)(102836002)(2900100001)(66066001)(86362001)(16236675004);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:DB3PR07MB0684;
-	H:DB3PR07MB0681.eurprd07.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; LANG:en; 
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.52 listed in list.dnswl.org]
+Received: from mail-la0-f52.google.com (mail-la0-f52.google.com
+	[209.85.215.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 593D5E0097F
+	for <yocto@yoctoproject.org>; Wed,  4 Feb 2015 04:51:41 -0800 (PST)
+Received: by mail-la0-f52.google.com with SMTP id gd6so76981lab.11
+	for <yocto@yoctoproject.org>; Wed, 04 Feb 2015 04:51:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=t7RN3qu5GMb17nikZlUvl5t1sdfDgV30CqRhycYmsLw=;
+	b=x/1mCxDBCNmHjOtiTwAYolnVZB50OnjwaFekSN1n8GZWJrHZLQjhbUFNFoCe9zlAqV
+	UFAN7uh0c/YeQnrlUCjvNwilgQObw5kF/nwLv/tjrWTgfp5ZyIzNSu+XomDxo9c70fs+
+	s9p9WPvXT4qEoFFK3UYEiYrWMjL5NlkKhuK0R5YHoNfpIG+VviKGMFnFvZ4gSZ5wHQ32
+	Q1OONUqHyga1+2MDVgiHOJDY8RTZi4H1pbNbx6C8X3AghRwuryytqHKlWWwiiMrlttZW
+	MKjwzZoYz1UgzzScrdqxC/re2tOCHaApXSi4OtgXs2pbaWMbSj6DK3jtLVVLExLwrknr
+	qYHg==
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Feb 2015 11:58:59.7429 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: de000c38-193a-4a3b-89ac-e65dfa775454
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR07MB0684
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:;SRVR:DB3PR07MB107;
-X-OriginatorOrg: tvone.com
-Subject: Re: [meta-raspberrypi] Nothing RPROVIDES 'liborc-0.4'
+X-Received: by 10.152.45.1 with SMTP id i1mr12811263lam.41.1423054300002; Wed,
+	04 Feb 2015 04:51:40 -0800 (PST)
+Received: by 10.112.4.105 with HTTP; Wed, 4 Feb 2015 04:51:39 -0800 (PST)
+Received: by 10.112.4.105 with HTTP; Wed, 4 Feb 2015 04:51:39 -0800 (PST)
+In-Reply-To: <54CBA848.6080102@mindchasers.com>
+References: <CA+dzM_QFCqJLce1eOfNXGhE1M8AedrsWa00CZue7n1Zxw010Mg@mail.gmail.com>
+	<54CBA848.6080102@mindchasers.com>
+Date: Wed, 4 Feb 2015 18:21:39 +0530
+Message-ID: <CA+dzM_QYA4b4MgjQhuLvzVGX9XXAoACAHAwe1vnjeTn6c2Rd9g@mail.gmail.com>
+From: amruuta ghatge <amusghatge@gmail.com>
+To: Bob Cochran <yocto@mindchasers.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: SPR issue while booting qemu for POWER PC ppce500v2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,125 +61,151 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Feb 2015 12:36:35 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DB3PR07MB0681D85C8ACA0DB7A86BE092FA3A0DB3PR07MB0681eurp_"
+X-List-Received-Date: Wed, 04 Feb 2015 12:51:53 -0000
+Content-Type: multipart/alternative; boundary=001a11c27c840c3f42050e42a6a5
 
---_000_DB3PR07MB0681D85C8ACA0DB7A86BE092FA3A0DB3PR07MB0681eurp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--001a11c27c840c3f42050e42a6a5
+Content-Type: text/plain; charset=UTF-8
 
->>Thank you! Replacing liborc-0.4 and liborc-test-0.4 with "orc" fixed
->>the problem and it's now built and running nicely :)
-
-Hi,
-
-First time here..
-
-I have the same problem with liborc whilst trying to pull in gstreamer_vaap=
-i into yocto.  Please can you expand on where to change liborc to orc. ?
-
-Thanks,
-Gary
-
-
-
---_000_DB3PR07MB0681D85C8ACA0DB7A86BE092FA3A0DB3PR07MB0681eurp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 30-Jan-2015 9:20 pm, "Bob Cochran" <yocto@mindchasers.com> wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;;color:black;mso-fareast-language:EN-GB">&gt;&gt;Thank you! =
-Replacing liborc-0.4 and liborc-test-0.4 with &quot;orc&quot; fixed<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;;color:black;mso-fareast-language:EN-GB">&gt;&gt;the problem=
- and it's now built and running nicely :)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;;color:black;mso-fareast-language:EN-GB"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;;color:black;mso-fareast-language:EN-GB">Hi,
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;;color:black;mso-fareast-language:EN-GB"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;;color:black;mso-fareast-language:EN-GB">First time here..<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;;color:black;mso-fareast-language:EN-GB"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;;color:black;mso-fareast-language:EN-GB">I have the same pro=
-blem with liborc whilst trying to pull in gstreamer_vaapi into yocto.&nbsp;=
- Please can you expand on where to change liborc to
- orc. ?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;;color:black;mso-fareast-language:EN-GB"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;;color:black;mso-fareast-language:EN-GB">Thanks,
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal">Gary<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+> On 01/30/2015 06:20 AM, amruuta ghatge wrote:
+>>
+>>
+>> Hello,
+>>
+>> I am trying to perform LTP testing for POWER ppce500v2.
+>>
+>> I used the following rfs and kernel image for testing the LTP test
+>> prefix [cross build for ppce500ve using ppce500v2 custom toolchain] in
+>> QEMU system mode.
+>>
+>>
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.7/machines/qemu/qemuppc/core-image-sato-sdk-qemuppc.ext3
+>>
+>>
+>>
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.7/machines/qemu/qemuppc/vmlinux--3.14.19+git0+fb6271a942_73e2411cdd-r0-qemuppc-20141016220152.bin
+>>
+>> When configured for '-M ppce500 -cpu e500v2' it gave me the following
+error,
+>>
+>> $ <path-sysroots>qemu-system-ppc -kernel
+>>
+vmlinux--3.14.19+git0+fb6271a942_73e2411cdd-r0-qemuppc-20141016220152.bin
+-net
+>> nic,model=pcnet -net tap,vlan=0,ifname=tap0,script=no,downscript=no -cpu
+>> e500v2 -M ppce500 -hda
+>> <path-qemuppc>core-image-base-qemuppc-20150112233527.rootfs.ext3
+>> -no-reboot -show-cursor -no-reboot -nographic -m 512 --append
+>> "root=/dev/hda rw console=ttyS0 console=tty
+>> ip=192.168.7.2::192.168.7.1:255.255.255.0 mem=512M console=ttyS0"
+>>
+>> Trying to write invalid spr 536 (0x218) 000034c0
+>
+>
+>
+> Maybe this will help - I just looked at both the E500 (includes V2) and
+E5500 reference manuals.  I couldn't find the definition of an SPR 536.
+Could SPR 536 be specific to a particular SOC, or maybe it's just a typo in
+the code somewhere?
 
---_000_DB3PR07MB0681D85C8ACA0DB7A86BE092FA3A0DB3PR07MB0681eurp_--
+Thank you for the inputs.
+The kernel was configured for 'altivec' support and I guess that was
+causing the invalid SPR issue.
+On reconfiguring the kernel for ppc e500 it did not give ' invalid SPR'
+error but gave a blank QEMU console and failed to load the kernel and root
+file system.
+
+Using qemu version 2.1.0
+
+Please suggest in case of any missing configurations.
+>>
+>> Any pointers or inputs/suggestions will be highly appreciated.
+>>
+>> Regards,
+>>
+>> Amruta!!!
+>>
+>>
+>>
+>
+
+--001a11c27c840c3f42050e42a6a5
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p dir=3D"ltr"><br>
+On 30-Jan-2015 9:20 pm, &quot;Bob Cochran&quot; &lt;<a href=3D"mailto:yocto=
+@mindchasers.com">yocto@mindchasers.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; On 01/30/2015 06:20 AM, amruuta ghatge wrote:<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; Hello,<br>
+&gt;&gt;<br>
+&gt;&gt; I am trying to perform LTP testing for POWER ppce500v2.<br>
+&gt;&gt;<br>
+&gt;&gt; I used the following rfs and kernel image for testing the LTP test=
+<br>
+&gt;&gt; prefix [cross build for ppce500ve using ppce500v2 custom toolchain=
+] in<br>
+&gt;&gt; QEMU system mode.<br>
+&gt;&gt;<br>
+&gt;&gt; <a href=3D"http://downloads.yoctoproject.org/releases/yocto/yocto-=
+1.7/machines/qemu/qemuppc/core-image-sato-sdk-qemuppc.ext3">http://download=
+s.yoctoproject.org/releases/yocto/yocto-1.7/machines/qemu/qemuppc/core-imag=
+e-sato-sdk-qemuppc.ext3</a><br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; <a href=3D"http://downloads.yoctoproject.org/releases/yocto/yocto-=
+1.7/machines/qemu/qemuppc/vmlinux--3.14.19+git0+fb6271a942_73e2411cdd-r0-qe=
+muppc-20141016220152.bin">http://downloads.yoctoproject.org/releases/yocto/=
+yocto-1.7/machines/qemu/qemuppc/vmlinux--3.14.19+git0+fb6271a942_73e2411cdd=
+-r0-qemuppc-20141016220152.bin</a><br>
+&gt;&gt;<br>
+&gt;&gt; When configured for &#39;-M ppce500 -cpu e500v2&#39; it gave me th=
+e following error,<br>
+&gt;&gt;<br>
+&gt;&gt; $ &lt;path-sysroots&gt;qemu-system-ppc -kernel<br>
+&gt;&gt; vmlinux--3.14.19+git0+fb6271a942_73e2411cdd-r0-qemuppc-20141016220=
+152.bin -net<br>
+&gt;&gt; nic,model=3Dpcnet -net tap,vlan=3D0,ifname=3Dtap0,script=3Dno,down=
+script=3Dno -cpu<br>
+&gt;&gt; e500v2 -M ppce500 -hda<br>
+&gt;&gt; &lt;path-qemuppc&gt;core-image-base-qemuppc-20150112233527.rootfs.=
+ext3<br>
+&gt;&gt; -no-reboot -show-cursor -no-reboot -nographic -m 512 --append<br>
+&gt;&gt; &quot;root=3D/dev/hda rw console=3DttyS0 console=3Dtty<br>
+&gt;&gt; ip=3D192.168.7.2::192.168.7.1:255.255.255.0 mem=3D512M console=3Dt=
+tyS0&quot;<br>
+&gt;&gt;<br>
+&gt;&gt; Trying to write invalid spr 536 (0x218) 000034c0<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; Maybe this will help - I just looked at both the E500 (includes V2) an=
+d E5500 reference manuals.=C2=A0 I couldn&#39;t find the definition of an S=
+PR 536.=C2=A0 Could SPR 536 be specific to a particular SOC, or maybe it&#3=
+9;s just a typo in the code somewhere?</p>
+<p dir=3D"ltr">Thank you for the inputs.<br>
+The kernel was configured for &#39;altivec&#39; support and I guess that wa=
+s causing the invalid SPR issue.<br>
+On reconfiguring the kernel for ppc e500 it did not give &#39; invalid SPR&=
+#39; error but gave a blank QEMU console and failed to load the kernel and =
+root file system.</p>
+<p dir=3D"ltr">Using qemu version 2.1.0</p>
+<p dir=3D"ltr">Please suggest in case of any missing configurations.<br>
+&gt;&gt;<br>
+&gt;&gt; Any pointers or inputs/suggestions will be highly appreciated.<br>
+&gt;&gt;<br>
+&gt;&gt; Regards,<br>
+&gt;&gt;<br>
+&gt;&gt; Amruta!!!<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;<br>
+</p>
+
+--001a11c27c840c3f42050e42a6a5--
