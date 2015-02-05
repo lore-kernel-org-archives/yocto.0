@@ -1,53 +1,31 @@
-Return-Path: <yuq825@gmail.com>
+Return-Path: <adm.dizon@pciltd.com.sg>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 09D4BE00942; Wed,  4 Feb 2015 19:04:35 -0800 (PST)
+	id 7A0F1E00993; Wed,  4 Feb 2015 21:43:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (yuq825[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.172 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f172.google.com (mail-ig0-f172.google.com
-	[209.85.213.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C9A4E0080C
-	for <yocto@yoctoproject.org>; Wed,  4 Feb 2015 19:04:29 -0800 (PST)
-Received: by mail-ig0-f172.google.com with SMTP id l13so39334072iga.5
-	for <yocto@yoctoproject.org>; Wed, 04 Feb 2015 19:04:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=VflVKmhEX8KbV6fJyGLFCn34t3q41Y0Eh4XFAlePeO8=;
-	b=Ja4g4MvCvx+3fyPY7wawO5Vi5YUnb7y38rz9oP1GBbZQBrEjfH0oJbhD95kXT8odoK
-	3zBicfrx18BJ3fUkjkXGJ9mBXJsvYeZw+339MJhW/WtAYASvDcP/ww3BJq8VEfasNDMc
-	2ikRPrO4B5RXilFX6J6DyXcyjixw6ipJQDLQSEddmvQqHC/TokoqIL3nnA6i/b7aQEFT
-	7/pwV9BrZNJaMepXXBoccVDR3Qp5Sr5dhYJG6IDTns4DCxGFs2jf8mjfMO5dwLGnyzJg
-	LwM/tv7N6IXCUPamECmayHOKFRfH3MOjZhOqVBpxZQs2xREUVmgFWs7ev8si8Dg/CviS
-	vM+Q==
-MIME-Version: 1.0
-X-Received: by 10.107.7.129 with SMTP id g1mr1050022ioi.52.1423105468255; Wed,
-	04 Feb 2015 19:04:28 -0800 (PST)
-Received: by 10.36.51.145 with HTTP; Wed, 4 Feb 2015 19:04:28 -0800 (PST)
-In-Reply-To: <CAKGbVbuXvDEirTo9jcM+aGHszcjgwgKvKaJQAYU6wE1M5W1u_A@mail.gmail.com>
-References: <CAKGbVbuXvDEirTo9jcM+aGHszcjgwgKvKaJQAYU6wE1M5W1u_A@mail.gmail.com>
-Date: Thu, 5 Feb 2015 11:04:28 +0800
-Message-ID: <CAKGbVbuUbQ970__5EGF+1Z3wcqD6rQsqUjLTmg20swqf53UAVA@mail.gmail.com>
-From: Qiang Yu <yuq825@gmail.com>
+Received: from webmail.pciltd.com.sg (webmail.pciltd.com.sg [119.73.250.69])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B645EE00948
+	for <yocto@yoctoproject.org>; Wed,  4 Feb 2015 21:43:10 -0800 (PST)
+Received: from PCISGEX.pciltd.com.sg ([192.168.0.147]) by
+	PCISGEX.pciltd.com.sg ([192.168.0.147]) with mapi id 14.03.0123.003;
+	Thu, 5 Feb 2015 13:43:09 +0800
+From: "Alvin D.M. DIZON" <adm.dizon@pciltd.com.sg>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Cc: otavio@ossystems.com.br
-Subject: Re: [meta-qt5] static link plugin lib path problem
+Thread-Topic: Confused with adding drivers to kernel via bitbake -c menuconfig
+Thread-Index: AdBBBp72pUpF/D8hRIC++Qu4bx8STA==
+Date: Thu, 5 Feb 2015 05:43:08 +0000
+Message-ID: <46557CEF4ABDB54B92C59390D2741FD1BD8C09@PCISGEX.pciltd.com.sg>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [116.50.213.202]
+MIME-Version: 1.0
+Subject: Confused with adding drivers to kernel via bitbake -c menuconfig
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,89 +37,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Feb 2015 03:04:35 -0000
-Content-Type: multipart/alternative; boundary=001a113ea55ee9eec1050e4e8f09
-
---001a113ea55ee9eec1050e4e8f09
-Content-Type: text/plain; charset=UTF-8
-
-the share link version of the same Makefile's LIBS has no plugin link:
-LIBS          = $(SUBLIBS)
--L/opt/yocto/build/sunxi/linda-a20navi-base/tmp/work/cortexa7hf-vfp-vfpv4-neon-linda-linux-gnueabi/qtxmlpatterns/5.3.2-r0/build/lib
--lQt5XmlPatterns -lQt5Network -lQt5Core -lpthread
-
-On Thu, Feb 5, 2015 at 10:53 AM, Qiang Yu <yuq825@gmail.com> wrote:
-
-> Hi all,
->
-> I use meta-qt5 for QT5 support. But I need static link the application so
-> I remove the -share from configure args and add -static.
->
-> The "bitbake qtbase" is fine, but "bitbake qtxmlpatterns" do_compile fail:
-> | linking ../../bin/xmlpatterns
-> |
-> /opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/sysroots/x86_64-linux/usr/libexec/arm-linda-linux-gnueabi/gcc/arm-linda-linux-gnueabi/4.9.1/ld:
-> warning: library search path "/usr/lib/qt5/plugins/bearer" is unsafe for
-> cross-compilation
-> |
-> /opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/sysroots/x86_64-linux/usr/libexec/arm-linda-linux-gnueabi/gcc/arm-linda-linux-gnueabi/4.9.1/ld:
-> cannot find -lqgenericbearer
-> | collect2: error: ld returned 1 exit status
-> | make[2]: *** [../../bin/xmlpatterns] Error 1
-> | make[2]: Leaving directory
-> `/opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/work/cortexa7hf-vfp-vfpv4-neon-linda-linux-gnueabi/qtxmlpatterns/5.3.2-r0/build/tools/xmlpatterns'
->
-> I find the Makefile generated by qmake for tools/xmlpatterns has the wrong
-> LIBS:
-> LIBS          = $(SUBLIBS)
-> -L/opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/work/cortexa7hf-vfp-vfpv4-neon-linda-linux-gnueabi/qtxmlpatterns/5.3.2-r0/build/lib
-> -lQt5XmlPatterns -lQt5Network -lQt5Core -lz -lm -ldl -lrt
-> -L/usr/lib/qt5/plugins/bearer -lqgenericbearer -lpthread
->
-> It seems the plugin lib dir doesn't have a cross compile prefix. Any one
-> meet this problem before or know how to fix static link plugin lib path?
->
-> Thanks,
-> Qiang
->
-
---001a113ea55ee9eec1050e4e8f09
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Thu, 05 Feb 2015 05:43:18 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">the share link version of the same Makefile&#39;s LIBS has=
- no plugin link:<div><div>LIBS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D $(SUBL=
-IBS) -L/opt/yocto/build/sunxi/linda-a20navi-base/tmp/work/cortexa7hf-vfp-vf=
-pv4-neon-linda-linux-gnueabi/qtxmlpatterns/5.3.2-r0/build/lib -lQt5XmlPatte=
-rns -lQt5Network -lQt5Core -lpthread</div></div></div><div class=3D"gmail_e=
-xtra"><br><div class=3D"gmail_quote">On Thu, Feb 5, 2015 at 10:53 AM, Qiang=
- Yu <span dir=3D"ltr">&lt;<a href=3D"mailto:yuq825@gmail.com" target=3D"_bl=
-ank">yuq825@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1e=
-x"><div dir=3D"ltr">Hi all,<div><br></div><div>I use meta-qt5 for QT5 suppo=
-rt. But I need static link the application so I remove the -share from conf=
-igure args and add -static.</div><div><br></div><div>The &quot;bitbake qtba=
-se&quot; is fine, but &quot;bitbake qtxmlpatterns&quot; do_compile fail:</d=
-iv><div><div>| linking ../../bin/xmlpatterns</div><div>| /opt/yocto-rel/yoc=
-to/0.1/build/linda-a20navi/tmp/sysroots/x86_64-linux/usr/libexec/arm-linda-=
-linux-gnueabi/gcc/arm-linda-linux-gnueabi/4.9.1/ld: warning: library search=
- path &quot;/usr/lib/qt5/plugins/bearer&quot; is unsafe for cross-compilati=
-on</div><div>| /opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/sysroots/x8=
-6_64-linux/usr/libexec/arm-linda-linux-gnueabi/gcc/arm-linda-linux-gnueabi/=
-4.9.1/ld: cannot find -lqgenericbearer</div><div>| collect2: error: ld retu=
-rned 1 exit status</div><div>| make[2]: *** [../../bin/xmlpatterns] Error 1=
-</div><div>| make[2]: Leaving directory `/opt/yocto-rel/yocto/0.1/build/lin=
-da-a20navi/tmp/work/cortexa7hf-vfp-vfpv4-neon-linda-linux-gnueabi/qtxmlpatt=
-erns/5.3.2-r0/build/tools/xmlpatterns&#39;</div></div><div><br></div><div>I=
- find the Makefile generated by qmake for tools/xmlpatterns has the wrong L=
-IBS:</div><div><div>LIBS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D $(SUBLIBS) -=
-L/opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/work/cortexa7hf-vfp-vfpv4=
--neon-linda-linux-gnueabi/qtxmlpatterns/5.3.2-r0/build/lib -lQt5XmlPatterns=
- -lQt5Network -lQt5Core -lz -lm -ldl -lrt -L/usr/lib/qt5/plugins/bearer -lq=
-genericbearer -lpthread</div></div><div><br></div><div>It seems the plugin =
-lib dir doesn&#39;t have a cross compile prefix. Any one meet this problem =
-before or know how to fix static link plugin lib path?</div><div><br></div>=
-<div>Thanks,</div><div>Qiang</div></div>
-</blockquote></div><br></div>
+Hello,
 
---001a113ea55ee9eec1050e4e8f09--
+I would like to the generic USB bluetooth driver "btusb" to my i.MX6Q SABRE=
+ SD, so that my USB Bluetooth dongle(Cambridge Silicon Radio). Upon reading=
+ https://community.freescale.com/docs/DOC-100847 I enabled the Bluetooth su=
+bsystem support, RFCOMM, BNEP, and HIDP, as well as the HCI USB driver. I s=
+aved the .config file and copied it to the directory where my Linux recipe =
+is (linux-imx_3.10.17.bb). I then renamed my .config file into defconfig, m=
+ade a new folder called "files" and placed the defconfig in it. I also made=
+ a .bbappend file that contained
+
+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+SRC_URI +=3D "file://defconfig"
+
+I then ran "bitbake -c cleansstate linux-imx", after that I ran "bitbake fs=
+l-image-x11". I flashed the resulting .sdcard file to an SD card, booted up=
+ my board, but found no trace of btusb. I tried doing "bitbake -f -c compil=
+e linux-imx" and then "bitbake -f -c deploy linux-imx", and copied the resu=
+lting uImage to my SD card's /media/Boot folder, but still no trace of btus=
+b. I checked the tar archive for the kernel modules found in the /tmp/deplo=
+y/images/imx6qsabresd folder, and found two files called modules.order and =
+modules.builtin, the btusb driver is listed in the modules.builtin file, bu=
+t not mentioned in the modules.order file, I have also tried compiling the =
+driver as module, and then ran the same commands as listed in the said link=
+, but could not find the module. What am I doing wrong here? Any help will =
+be will be appreciated, since I am new to Linux and the Yocto Project.
+
+Thanks,
+Alvin
+[PCI]
+
+  Innovative Manufacturing Solutions. Professionally Delivered!
+
+The information contained in this email is confidential and is intended for=
+ addressee(s) only. If you have received this email in error, please notify=
+ the originator immediately. Nothing in this email shall constitute an offe=
+r or acceptance leading to a legally binding contract which shall only aris=
+e from a formal written agreement between yourselves and ourselves in the f=
+orm of a Purchase Order issued by us and accepted by you in writing. For th=
+e avoidance of doubt, this email shall not be construed in any way as a for=
+mal written agreement. We accept no liability for any damage arising from a=
+lteration of the contents of this message by a third party or as a result o=
+f any virus being passed on. Please consider your environmental responsibil=
+ity before printing this e-mail.
+
