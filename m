@@ -1,6 +1,6 @@
 Return-Path: <yuq825@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4AA66E0082D; Wed,  4 Feb 2015 18:53:16 -0800 (PST)
+	id 09D4BE00942; Wed,  4 Feb 2015 19:04:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,6 +9,9 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (yuq825[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -17,34 +20,34 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.180 listed in list.dnswl.org]
-Received: from mail-ig0-f180.google.com (mail-ig0-f180.google.com
-	[209.85.213.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A484E00753
-	for <yocto@yoctoproject.org>; Wed,  4 Feb 2015 18:53:12 -0800 (PST)
-Received: by mail-ig0-f180.google.com with SMTP id b16so8745558igk.1
-	for <yocto@yoctoproject.org>; Wed, 04 Feb 2015 18:53:12 -0800 (PST)
+Received: from mail-ig0-f172.google.com (mail-ig0-f172.google.com
+	[209.85.213.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C9A4E0080C
+	for <yocto@yoctoproject.org>; Wed,  4 Feb 2015 19:04:29 -0800 (PST)
+Received: by mail-ig0-f172.google.com with SMTP id l13so39334072iga.5
+	for <yocto@yoctoproject.org>; Wed, 04 Feb 2015 19:04:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:cc:content-type;
-	bh=NO/lg8rpn0r15/EMWjnDODGuA4cgxda0+W/BdHMyYJs=;
-	b=qHm8WrWMPSShCFJE7wE4I3RxWihWktfBurl7jtJGPsViJ6dixVYAOQfnzteFXAnlnq
-	e9qXNF1HDWd/2e6YWdeUCa2Z60JeEYvceA2W4nDe+6KeSiq2JSj6nRhwhunXPf6NvSU7
-	Iq+T1o89n59KmeEmqKlHBrwEbj9is7mtvLI8MClEKjQReZIlo5Qv5av+0H374kiHjvnS
-	n9tK49aVUXlN08BPh6/05IoXHkVCW57jr9vQRfauN8FpHIyOUzN2NcRrrxgrxlhzGn/f
-	XHXLa3XVyg6ciQqI3vP7lZ3RtWThPlXlpLyJHrZwsmE8c7lsAoymS2Sy9sKvzxM8bf88
-	DWWw==
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=VflVKmhEX8KbV6fJyGLFCn34t3q41Y0Eh4XFAlePeO8=;
+	b=Ja4g4MvCvx+3fyPY7wawO5Vi5YUnb7y38rz9oP1GBbZQBrEjfH0oJbhD95kXT8odoK
+	3zBicfrx18BJ3fUkjkXGJ9mBXJsvYeZw+339MJhW/WtAYASvDcP/ww3BJq8VEfasNDMc
+	2ikRPrO4B5RXilFX6J6DyXcyjixw6ipJQDLQSEddmvQqHC/TokoqIL3nnA6i/b7aQEFT
+	7/pwV9BrZNJaMepXXBoccVDR3Qp5Sr5dhYJG6IDTns4DCxGFs2jf8mjfMO5dwLGnyzJg
+	LwM/tv7N6IXCUPamECmayHOKFRfH3MOjZhOqVBpxZQs2xREUVmgFWs7ev8si8Dg/CviS
+	vM+Q==
 MIME-Version: 1.0
-X-Received: by 10.42.251.65 with SMTP id mr1mr5175636icb.76.1423104792192;
-	Wed, 04 Feb 2015 18:53:12 -0800 (PST)
-Received: by 10.36.51.145 with HTTP; Wed, 4 Feb 2015 18:53:12 -0800 (PST)
-Date: Thu, 5 Feb 2015 10:53:12 +0800
-Message-ID: <CAKGbVbuXvDEirTo9jcM+aGHszcjgwgKvKaJQAYU6wE1M5W1u_A@mail.gmail.com>
+X-Received: by 10.107.7.129 with SMTP id g1mr1050022ioi.52.1423105468255; Wed,
+	04 Feb 2015 19:04:28 -0800 (PST)
+Received: by 10.36.51.145 with HTTP; Wed, 4 Feb 2015 19:04:28 -0800 (PST)
+In-Reply-To: <CAKGbVbuXvDEirTo9jcM+aGHszcjgwgKvKaJQAYU6wE1M5W1u_A@mail.gmail.com>
+References: <CAKGbVbuXvDEirTo9jcM+aGHszcjgwgKvKaJQAYU6wE1M5W1u_A@mail.gmail.com>
+Date: Thu, 5 Feb 2015 11:04:28 +0800
+Message-ID: <CAKGbVbuUbQ970__5EGF+1Z3wcqD6rQsqUjLTmg20swqf53UAVA@mail.gmail.com>
 From: Qiang Yu <yuq825@gmail.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Cc: otavio@ossystems.com.br
-Subject: [meta-qt5] static link plugin lib path problem
+Subject: Re: [meta-qt5] static link plugin lib path problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,71 +59,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Feb 2015 02:53:16 -0000
-Content-Type: multipart/alternative; boundary=20cf3010ec0b9defea050e4e6728
+X-List-Received-Date: Thu, 05 Feb 2015 03:04:35 -0000
+Content-Type: multipart/alternative; boundary=001a113ea55ee9eec1050e4e8f09
 
---20cf3010ec0b9defea050e4e6728
+--001a113ea55ee9eec1050e4e8f09
 Content-Type: text/plain; charset=UTF-8
 
-Hi all,
-
-I use meta-qt5 for QT5 support. But I need static link the application so I
-remove the -share from configure args and add -static.
-
-The "bitbake qtbase" is fine, but "bitbake qtxmlpatterns" do_compile fail:
-| linking ../../bin/xmlpatterns
-|
-/opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/sysroots/x86_64-linux/usr/libexec/arm-linda-linux-gnueabi/gcc/arm-linda-linux-gnueabi/4.9.1/ld:
-warning: library search path "/usr/lib/qt5/plugins/bearer" is unsafe for
-cross-compilation
-|
-/opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/sysroots/x86_64-linux/usr/libexec/arm-linda-linux-gnueabi/gcc/arm-linda-linux-gnueabi/4.9.1/ld:
-cannot find -lqgenericbearer
-| collect2: error: ld returned 1 exit status
-| make[2]: *** [../../bin/xmlpatterns] Error 1
-| make[2]: Leaving directory
-`/opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/work/cortexa7hf-vfp-vfpv4-neon-linda-linux-gnueabi/qtxmlpatterns/5.3.2-r0/build/tools/xmlpatterns'
-
-I find the Makefile generated by qmake for tools/xmlpatterns has the wrong
-LIBS:
+the share link version of the same Makefile's LIBS has no plugin link:
 LIBS          = $(SUBLIBS)
--L/opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/work/cortexa7hf-vfp-vfpv4-neon-linda-linux-gnueabi/qtxmlpatterns/5.3.2-r0/build/lib
--lQt5XmlPatterns -lQt5Network -lQt5Core -lz -lm -ldl -lrt
--L/usr/lib/qt5/plugins/bearer -lqgenericbearer -lpthread
+-L/opt/yocto/build/sunxi/linda-a20navi-base/tmp/work/cortexa7hf-vfp-vfpv4-neon-linda-linux-gnueabi/qtxmlpatterns/5.3.2-r0/build/lib
+-lQt5XmlPatterns -lQt5Network -lQt5Core -lpthread
 
-It seems the plugin lib dir doesn't have a cross compile prefix. Any one
-meet this problem before or know how to fix static link plugin lib path?
+On Thu, Feb 5, 2015 at 10:53 AM, Qiang Yu <yuq825@gmail.com> wrote:
 
-Thanks,
-Qiang
+> Hi all,
+>
+> I use meta-qt5 for QT5 support. But I need static link the application so
+> I remove the -share from configure args and add -static.
+>
+> The "bitbake qtbase" is fine, but "bitbake qtxmlpatterns" do_compile fail:
+> | linking ../../bin/xmlpatterns
+> |
+> /opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/sysroots/x86_64-linux/usr/libexec/arm-linda-linux-gnueabi/gcc/arm-linda-linux-gnueabi/4.9.1/ld:
+> warning: library search path "/usr/lib/qt5/plugins/bearer" is unsafe for
+> cross-compilation
+> |
+> /opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/sysroots/x86_64-linux/usr/libexec/arm-linda-linux-gnueabi/gcc/arm-linda-linux-gnueabi/4.9.1/ld:
+> cannot find -lqgenericbearer
+> | collect2: error: ld returned 1 exit status
+> | make[2]: *** [../../bin/xmlpatterns] Error 1
+> | make[2]: Leaving directory
+> `/opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/work/cortexa7hf-vfp-vfpv4-neon-linda-linux-gnueabi/qtxmlpatterns/5.3.2-r0/build/tools/xmlpatterns'
+>
+> I find the Makefile generated by qmake for tools/xmlpatterns has the wrong
+> LIBS:
+> LIBS          = $(SUBLIBS)
+> -L/opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/work/cortexa7hf-vfp-vfpv4-neon-linda-linux-gnueabi/qtxmlpatterns/5.3.2-r0/build/lib
+> -lQt5XmlPatterns -lQt5Network -lQt5Core -lz -lm -ldl -lrt
+> -L/usr/lib/qt5/plugins/bearer -lqgenericbearer -lpthread
+>
+> It seems the plugin lib dir doesn't have a cross compile prefix. Any one
+> meet this problem before or know how to fix static link plugin lib path?
+>
+> Thanks,
+> Qiang
+>
 
---20cf3010ec0b9defea050e4e6728
+--001a113ea55ee9eec1050e4e8f09
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi all,<div><br></div><div>I use meta-qt5 for QT5 support.=
- But I need static link the application so I remove the -share from configu=
-re args and add -static.</div><div><br></div><div>The &quot;bitbake qtbase&=
-quot; is fine, but &quot;bitbake qtxmlpatterns&quot; do_compile fail:</div>=
-<div><div>| linking ../../bin/xmlpatterns</div><div>| /opt/yocto-rel/yocto/=
-0.1/build/linda-a20navi/tmp/sysroots/x86_64-linux/usr/libexec/arm-linda-lin=
-ux-gnueabi/gcc/arm-linda-linux-gnueabi/4.9.1/ld: warning: library search pa=
-th &quot;/usr/lib/qt5/plugins/bearer&quot; is unsafe for cross-compilation<=
-/div><div>| /opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/sysroots/x86_6=
-4-linux/usr/libexec/arm-linda-linux-gnueabi/gcc/arm-linda-linux-gnueabi/4.9=
-.1/ld: cannot find -lqgenericbearer</div><div>| collect2: error: ld returne=
-d 1 exit status</div><div>| make[2]: *** [../../bin/xmlpatterns] Error 1</d=
-iv><div>| make[2]: Leaving directory `/opt/yocto-rel/yocto/0.1/build/linda-=
-a20navi/tmp/work/cortexa7hf-vfp-vfpv4-neon-linda-linux-gnueabi/qtxmlpattern=
-s/5.3.2-r0/build/tools/xmlpatterns&#39;</div></div><div><br></div><div>I fi=
-nd the Makefile generated by qmake for tools/xmlpatterns has the wrong LIBS=
-:</div><div><div>LIBS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D $(SUBLIBS) -L/o=
-pt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/work/cortexa7hf-vfp-vfpv4-ne=
-on-linda-linux-gnueabi/qtxmlpatterns/5.3.2-r0/build/lib -lQt5XmlPatterns -l=
-Qt5Network -lQt5Core -lz -lm -ldl -lrt -L/usr/lib/qt5/plugins/bearer -lqgen=
-ericbearer -lpthread</div></div><div><br></div><div>It seems the plugin lib=
- dir doesn&#39;t have a cross compile prefix. Any one meet this problem bef=
-ore or know how to fix static link plugin lib path?</div><div><br></div><di=
-v>Thanks,</div><div>Qiang</div></div>
+<div dir=3D"ltr">the share link version of the same Makefile&#39;s LIBS has=
+ no plugin link:<div><div>LIBS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D $(SUBL=
+IBS) -L/opt/yocto/build/sunxi/linda-a20navi-base/tmp/work/cortexa7hf-vfp-vf=
+pv4-neon-linda-linux-gnueabi/qtxmlpatterns/5.3.2-r0/build/lib -lQt5XmlPatte=
+rns -lQt5Network -lQt5Core -lpthread</div></div></div><div class=3D"gmail_e=
+xtra"><br><div class=3D"gmail_quote">On Thu, Feb 5, 2015 at 10:53 AM, Qiang=
+ Yu <span dir=3D"ltr">&lt;<a href=3D"mailto:yuq825@gmail.com" target=3D"_bl=
+ank">yuq825@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1e=
+x"><div dir=3D"ltr">Hi all,<div><br></div><div>I use meta-qt5 for QT5 suppo=
+rt. But I need static link the application so I remove the -share from conf=
+igure args and add -static.</div><div><br></div><div>The &quot;bitbake qtba=
+se&quot; is fine, but &quot;bitbake qtxmlpatterns&quot; do_compile fail:</d=
+iv><div><div>| linking ../../bin/xmlpatterns</div><div>| /opt/yocto-rel/yoc=
+to/0.1/build/linda-a20navi/tmp/sysroots/x86_64-linux/usr/libexec/arm-linda-=
+linux-gnueabi/gcc/arm-linda-linux-gnueabi/4.9.1/ld: warning: library search=
+ path &quot;/usr/lib/qt5/plugins/bearer&quot; is unsafe for cross-compilati=
+on</div><div>| /opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/sysroots/x8=
+6_64-linux/usr/libexec/arm-linda-linux-gnueabi/gcc/arm-linda-linux-gnueabi/=
+4.9.1/ld: cannot find -lqgenericbearer</div><div>| collect2: error: ld retu=
+rned 1 exit status</div><div>| make[2]: *** [../../bin/xmlpatterns] Error 1=
+</div><div>| make[2]: Leaving directory `/opt/yocto-rel/yocto/0.1/build/lin=
+da-a20navi/tmp/work/cortexa7hf-vfp-vfpv4-neon-linda-linux-gnueabi/qtxmlpatt=
+erns/5.3.2-r0/build/tools/xmlpatterns&#39;</div></div><div><br></div><div>I=
+ find the Makefile generated by qmake for tools/xmlpatterns has the wrong L=
+IBS:</div><div><div>LIBS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D $(SUBLIBS) -=
+L/opt/yocto-rel/yocto/0.1/build/linda-a20navi/tmp/work/cortexa7hf-vfp-vfpv4=
+-neon-linda-linux-gnueabi/qtxmlpatterns/5.3.2-r0/build/lib -lQt5XmlPatterns=
+ -lQt5Network -lQt5Core -lz -lm -ldl -lrt -L/usr/lib/qt5/plugins/bearer -lq=
+genericbearer -lpthread</div></div><div><br></div><div>It seems the plugin =
+lib dir doesn&#39;t have a cross compile prefix. Any one meet this problem =
+before or know how to fix static link plugin lib path?</div><div><br></div>=
+<div>Thanks,</div><div>Qiang</div></div>
+</blockquote></div><br></div>
 
---20cf3010ec0b9defea050e4e6728--
+--001a113ea55ee9eec1050e4e8f09--
