@@ -1,47 +1,51 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1E9FFE00873; Fri,  6 Feb 2015 08:12:14 -0800 (PST)
+	id CD904E00873; Fri,  6 Feb 2015 08:12:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	TVD_SPACE_RATIO autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.212.169 listed in list.dnswl.org]
+	*      [74.125.82.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
-	[209.85.212.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95157E007AB
-	for <yocto@yoctoproject.org>; Fri,  6 Feb 2015 08:12:09 -0800 (PST)
-Received: by mail-wi0-f169.google.com with SMTP id h11so3607402wiw.0
-	for <yocto@yoctoproject.org>; Fri, 06 Feb 2015 08:12:08 -0800 (PST)
+	*  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
+Received: from mail-we0-f177.google.com (mail-we0-f177.google.com
+	[74.125.82.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63196E00757
+	for <yocto@yoctoproject.org>; Fri,  6 Feb 2015 08:12:10 -0800 (PST)
+Received: by mail-we0-f177.google.com with SMTP id l61so14592750wev.8
+	for <yocto@yoctoproject.org>; Fri, 06 Feb 2015 08:12:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=h7vBrGfJE1F81E05YBuXAArZURiFwkkJ/k0/wzNBMLw=;
-	b=CG8HxhH9opJUyo/D/EBDJM6p3qBNr9zHIMgd5GHCKiDi+qKgICYqmwXuIrANmzSGah
-	JSlf4TQF8MECUCB4hUASY4sWvm+d7vvJWWyXRyAWWoXfYAzDyreT33aLc9LlZWc2mEN0
-	p/D/JafzY/qc860LzPJQkZtjThmTDH7vaNWxEb7QCnZZLaHeJhBF6vk8DBzeRE6WJg2R
-	s1GuIqmql4AUU3mMebgpHgy52orzoEy+Ku38tHaeGW6j6XagaN6qI15Vm0R+aXrL7Lap
-	eV5z4l5CbQWx9N52SCrJgAelA99X5A/QK9SUmOsgMkJB2/0U19mwZL2+9gaw/O1HKOVr
-	nIbA==
-X-Gm-Message-State: ALoCoQk3mtvxbnS7S+rhk2R2VOANMefnTSAkln/I9WwqjEnhjtBKAZyET63VKcg/PRsV5tADOvo+
-X-Received: by 10.194.177.195 with SMTP id cs3mr9157786wjc.141.1423239128275; 
-	Fri, 06 Feb 2015 08:12:08 -0800 (PST)
+	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+	:references;
+	bh=I7CM+BwDXLy6yzhl11zd6uJpIzzTGhY1+o3NGkNdtOs=;
+	b=U6YFeK9ve5hvhLz9OtDUvo4uR224weL8UW0Lv41KmXP5+H2/6M3dEXIsFapw+eTdN+
+	F0AcnVv9KLIDiIHR//aXoBsRz2SXeG9YQm7xva2Mxo7eY/4KxTIFYtaUL6/L8lV8Co2d
+	/D2OE3x3dOCEGmp9OypCTg5xdjZBwSNHlTFnEJJ2sMMC0uAE2mpXXp+xKCGduhZ+G7Zc
+	JH/aN1McNnhE8UZHiXEc0g2cdullZok2ZIC5Tyddr0F7wMjZIc0syPxNkeQs62HEngPK
+	sRWLE9A2f/RL7T68kEUY1U3v4qcFMRsxCijx6g9fXmf+VKqPGk2xOxHZWjyXrREG0fJp
+	DrRg==
+X-Gm-Message-State: ALoCoQkdQgCMaK9wGVfKpimz1C5RLxXBLWet9b7Dkvl+k3/lsyzHc2ru3UM5Qdx4R1pw5+0BRw9H
+X-Received: by 10.180.103.40 with SMTP id ft8mr4799484wib.68.1423239129733;
+	Fri, 06 Feb 2015 08:12:09 -0800 (PST)
 Received: from otp-agherzan-l1.corp.ad.wrs.com (dhcp-186-165.gjk.dk.
 	[195.249.186.165])
-	by mx.google.com with ESMTPSA id jg3sm2088556wid.0.2015.02.06.08.12.07
+	by mx.google.com with ESMTPSA id jg3sm2088556wid.0.2015.02.06.08.12.09
 	for <yocto@yoctoproject.org>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 06 Feb 2015 08:12:07 -0800 (PST)
+	Fri, 06 Feb 2015 08:12:09 -0800 (PST)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Fri,  6 Feb 2015 18:11:55 +0200
-Message-Id: <1423239119-21918-1-git-send-email-andrei@gherzan.ro>
+Date: Fri,  6 Feb 2015 18:11:57 +0200
+Message-Id: <1423239119-21918-3-git-send-email-andrei@gherzan.ro>
 X-Mailer: git-send-email 2.1.0
-Subject: [meta-raspberrypi][PATCH 1/5] linux-raspberrypi: Refactor kernel recipes
+In-Reply-To: <1423239119-21918-1-git-send-email-andrei@gherzan.ro>
+References: <1423239119-21918-1-git-send-email-andrei@gherzan.ro>
+Subject: [meta-raspberrypi][PATCH 3/5] rpi-gpio: Update to v0.5.9
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,213 +59,65 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Fri, 06 Feb 2015 16:12:14 -0000
 
-We use this to simplify the update process. Updating a kernel version will not
-require renaming the recipe but only tweaking LINUX_VERSION.
-
-Update kernel version:
-        - bump SRCREV
-        - bump LINUX_VERSION if needed
-
-[Support #26]
-
-Change-Id: I7565ddd1f03cc34c34aa5da92664a0057b415c9a
+Change-Id: Ifc455b9106f07583ccaf3fe82723baaeb5e04d2e
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- recipes-kernel/linux/linux-raspberrypi.inc        | 2 +-
- recipes-kernel/linux/linux-raspberrypi_3.10.38.bb | 6 ------
- recipes-kernel/linux/linux-raspberrypi_3.10.bb    | 8 ++++++++
- recipes-kernel/linux/linux-raspberrypi_3.12.36.bb | 6 ------
- recipes-kernel/linux/linux-raspberrypi_3.12.bb    | 8 ++++++++
- recipes-kernel/linux/linux-raspberrypi_3.16.5.bb  | 6 ------
- recipes-kernel/linux/linux-raspberrypi_3.16.bb    | 8 ++++++++
- recipes-kernel/linux/linux-raspberrypi_3.18.5.bb  | 5 -----
- recipes-kernel/linux/linux-raspberrypi_3.18.bb    | 8 ++++++++
- recipes-kernel/linux/linux-raspberrypi_3.6.11.bb  | 6 ------
- recipes-kernel/linux/linux-raspberrypi_3.6.bb     | 8 ++++++++
- recipes-kernel/linux/linux-raspberrypi_3.8.13.bb  | 6 ------
- recipes-kernel/linux/linux-raspberrypi_3.8.bb     | 8 ++++++++
- 13 files changed, 49 insertions(+), 36 deletions(-)
- delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.10.38.bb
- create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.10.bb
- delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.12.36.bb
- create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.12.bb
- delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.16.5.bb
- create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.16.bb
- delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.18.5.bb
- create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.18.bb
- delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.6.11.bb
- create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.6.bb
- delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.8.13.bb
- create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.8.bb
+ recipes-devtools/python/rpi-gpio_0.5.6.bb | 19 -------------------
+ recipes-devtools/python/rpi-gpio_0.5.9.bb | 19 +++++++++++++++++++
+ 2 files changed, 19 insertions(+), 19 deletions(-)
+ delete mode 100644 recipes-devtools/python/rpi-gpio_0.5.6.bb
+ create mode 100644 recipes-devtools/python/rpi-gpio_0.5.9.bb
 
-diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
-index ff0c5ce..c00128d 100644
---- a/recipes-kernel/linux/linux-raspberrypi.inc
-+++ b/recipes-kernel/linux/linux-raspberrypi.inc
-@@ -11,7 +11,7 @@ SRC_URI += " \
- 
- COMPATIBLE_MACHINE = "raspberrypi"
- 
--PV_append = "+git${SRCREV}"
-+PV = "${LINUX_VERSION}+git${SRCREV}"
- 
- # NOTE: For now we pull in the default config from the RPi kernel GIT tree.
- KERNEL_DEFCONFIG = "bcmrpi_defconfig"
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.10.38.bb b/recipes-kernel/linux/linux-raspberrypi_3.10.38.bb
+diff --git a/recipes-devtools/python/rpi-gpio_0.5.6.bb b/recipes-devtools/python/rpi-gpio_0.5.6.bb
 deleted file mode 100644
-index a0c5012..0000000
---- a/recipes-kernel/linux/linux-raspberrypi_3.10.38.bb
+index eff22d0..0000000
+--- a/recipes-devtools/python/rpi-gpio_0.5.6.bb
 +++ /dev/null
-@@ -1,6 +0,0 @@
--SRCREV = "1b49b450222df26e4abf7abb6d9302f72b2ed386"
--SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.10.y \
--           file://sl030raspberrypii2ckernel.patch \
--          "
+@@ -1,19 +0,0 @@
+-DESCRIPTION = "A module to control Raspberry Pi GPIO channels"
+-HOMEPAGE = "http://code.google.com/p/raspberry-gpio-python/"
+-SECTION = "devel/python"
+-LICENSE = "MIT"
+-LIC_FILES_CHKSUM = "file://LICENCE.txt;md5=35af90ff2a10e8bdc967653b9dfcb22a"
 -
--require linux-raspberrypi.inc
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.10.bb b/recipes-kernel/linux/linux-raspberrypi_3.10.bb
-new file mode 100644
-index 0000000..e5d5bf2
---- /dev/null
-+++ b/recipes-kernel/linux/linux-raspberrypi_3.10.bb
-@@ -0,0 +1,8 @@
-+LINUX_VERSION ?= "3.10.38"
-+
-+SRCREV = "1b49b450222df26e4abf7abb6d9302f72b2ed386"
-+SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.10.y \
-+           file://sl030raspberrypii2ckernel.patch \
-+          "
-+
-+require linux-raspberrypi.inc
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.12.36.bb b/recipes-kernel/linux/linux-raspberrypi_3.12.36.bb
-deleted file mode 100644
-index e9e9ad7..0000000
---- a/recipes-kernel/linux/linux-raspberrypi_3.12.36.bb
-+++ /dev/null
-@@ -1,6 +0,0 @@
--SRCREV = "90fa5df724d147564149c7b79cb1ffc571a345ec"
--SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.12.y \
--           file://sl030raspberrypii2ckernel.patch \
--          "
+-SRCNAME = "RPi.GPIO"
 -
--require linux-raspberrypi.inc
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.12.bb b/recipes-kernel/linux/linux-raspberrypi_3.12.bb
-new file mode 100644
-index 0000000..08be83e
---- /dev/null
-+++ b/recipes-kernel/linux/linux-raspberrypi_3.12.bb
-@@ -0,0 +1,8 @@
-+LINUX_VERSION ?= "3.12.26"
-+
-+SRCREV = "90fa5df724d147564149c7b79cb1ffc571a345ec"
-+SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.12.y \
-+           file://sl030raspberrypii2ckernel.patch \
-+          "
-+
-+require linux-raspberrypi.inc
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.16.5.bb b/recipes-kernel/linux/linux-raspberrypi_3.16.5.bb
-deleted file mode 100644
-index 97947c2..0000000
---- a/recipes-kernel/linux/linux-raspberrypi_3.16.5.bb
-+++ /dev/null
-@@ -1,6 +0,0 @@
--SRCREV = "377c82aa1d31b37f1096096b0e4c65beb0bc5c49"
--SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.16.y \
--           file://sl030raspberrypii2ckernel.patch \
+-SRC_URI = "\
+-          http://pypi.python.org/packages/source/R/RPi.GPIO/${SRCNAME}-${PV}.tar.gz \
 -          "
+-S = "${WORKDIR}/${SRCNAME}-${PV}"
 -
--require linux-raspberrypi.inc
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.16.bb b/recipes-kernel/linux/linux-raspberrypi_3.16.bb
-new file mode 100644
-index 0000000..ccc414f
---- /dev/null
-+++ b/recipes-kernel/linux/linux-raspberrypi_3.16.bb
-@@ -0,0 +1,8 @@
-+LINUX_VERSION ?= "3.16.5"
-+
-+SRCREV = "377c82aa1d31b37f1096096b0e4c65beb0bc5c49"
-+SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.16.y \
-+           file://sl030raspberrypii2ckernel.patch \
-+          "
-+
-+require linux-raspberrypi.inc
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.18.5.bb b/recipes-kernel/linux/linux-raspberrypi_3.18.5.bb
-deleted file mode 100644
-index 663522e..0000000
---- a/recipes-kernel/linux/linux-raspberrypi_3.18.5.bb
-+++ /dev/null
-@@ -1,5 +0,0 @@
--SRCREV = "a6cf3c99bc89e2c010c2f78fbf9e3ed478ccfd46"
--SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y \
--           file://sl030raspberrypii2ckernel.patch \
--          "
--require linux-raspberrypi.inc
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.18.bb b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
-new file mode 100644
-index 0000000..921e702
---- /dev/null
-+++ b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
-@@ -0,0 +1,8 @@
-+LINUX_VERSION ?= "3.18.5"
-+
-+SRCREV = "a6cf3c99bc89e2c010c2f78fbf9e3ed478ccfd46"
-+SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y \
-+           file://sl030raspberrypii2ckernel.patch \
-+          "
-+
-+require linux-raspberrypi.inc
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.6.11.bb b/recipes-kernel/linux/linux-raspberrypi_3.6.11.bb
-deleted file mode 100644
-index a154bcf..0000000
---- a/recipes-kernel/linux/linux-raspberrypi_3.6.11.bb
-+++ /dev/null
-@@ -1,6 +0,0 @@
--SRCREV = "2a8d45ec0883e3cbdce920855b3461ac77308a5f"
--SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.6.y \
--           file://sl030raspberrypii2ckernel.patch \
--          "
+-inherit distutils
 -
--require linux-raspberrypi.inc
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.6.bb b/recipes-kernel/linux/linux-raspberrypi_3.6.bb
-new file mode 100644
-index 0000000..fc9ac89
---- /dev/null
-+++ b/recipes-kernel/linux/linux-raspberrypi_3.6.bb
-@@ -0,0 +1,8 @@
-+LINUX_VERSION ?= "3.6.11"
-+
-+SRCREV = "2a8d45ec0883e3cbdce920855b3461ac77308a5f"
-+SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.6.y \
-+           file://sl030raspberrypii2ckernel.patch \
-+          "
-+
-+require linux-raspberrypi.inc
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.8.13.bb b/recipes-kernel/linux/linux-raspberrypi_3.8.13.bb
-deleted file mode 100644
-index dc8cf0a..0000000
---- a/recipes-kernel/linux/linux-raspberrypi_3.8.13.bb
-+++ /dev/null
-@@ -1,6 +0,0 @@
--SRCREV = "d996a1b91b2bf3dc06f4f4f822a56f4496457aa1"
--SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.8.y \
--           file://sl030raspberrypii2ckernel.patch \
--          "
+-COMPATIBLE_MACHINE = "raspberrypi"
 -
--require linux-raspberrypi.inc
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.8.bb b/recipes-kernel/linux/linux-raspberrypi_3.8.bb
+-SRC_URI[md5sum] = "cbdff15871230ceef29bb407d31da485"
+-SRC_URI[sha256sum] = "36b64a9485d6a0dc8f24cfca6af45759ee367ce412b952ebcf0409364e05813a"
+diff --git a/recipes-devtools/python/rpi-gpio_0.5.9.bb b/recipes-devtools/python/rpi-gpio_0.5.9.bb
 new file mode 100644
-index 0000000..ae0dc99
+index 0000000..9394fd8
 --- /dev/null
-+++ b/recipes-kernel/linux/linux-raspberrypi_3.8.bb
-@@ -0,0 +1,8 @@
-+LINUX_VERSION ?= "3.8.13"
++++ b/recipes-devtools/python/rpi-gpio_0.5.9.bb
+@@ -0,0 +1,19 @@
++DESCRIPTION = "A module to control Raspberry Pi GPIO channels"
++HOMEPAGE = "http://code.google.com/p/raspberry-gpio-python/"
++SECTION = "devel/python"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "file://LICENCE.txt;md5=9b95630a648966b142f1a0dcea001cb7"
 +
-+SRCREV = "d996a1b91b2bf3dc06f4f4f822a56f4496457aa1"
-+SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.8.y \
-+           file://sl030raspberrypii2ckernel.patch \
++SRCNAME = "RPi.GPIO"
++
++SRC_URI = "\
++          http://pypi.python.org/packages/source/R/RPi.GPIO/${SRCNAME}-${PV}.tar.gz \
 +          "
++S = "${WORKDIR}/${SRCNAME}-${PV}"
 +
-+require linux-raspberrypi.inc
++inherit distutils
++
++COMPATIBLE_MACHINE = "raspberrypi"
++
++SRC_URI[md5sum] = "54ea6ef33502d43e3a89713593315e5a"
++SRC_URI[sha256sum] = "167fab1861093677af69db135ce815729dd4fbfb8f8e2eb830eab6324bc89152"
 -- 
 2.1.0
 
