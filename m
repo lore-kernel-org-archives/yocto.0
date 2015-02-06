@@ -1,37 +1,58 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <yuq825@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5FD7EE0080C; Fri,  6 Feb 2015 05:11:04 -0800 (PST)
+	id 4DF89E0080C; Fri,  6 Feb 2015 05:36:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (yuq825[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2E81E00757
-	for <yocto@yoctoproject.org>; Fri,  6 Feb 2015 05:10:58 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id t16DAujX007126
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 6 Feb 2015 05:10:56 -0800 (PST)
-Received: from server.local (128.224.22.169) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.174.1;
-	Fri, 6 Feb 2015 05:10:56 -0800
-Message-ID: <54D4BD5F.2090903@windriver.com>
-Date: Fri, 6 Feb 2015 08:10:55 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
-	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.180 listed in list.dnswl.org]
+Received: from mail-ie0-f180.google.com (mail-ie0-f180.google.com
+	[209.85.223.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25C64E00757
+	for <yocto@yoctoproject.org>; Fri,  6 Feb 2015 05:36:14 -0800 (PST)
+Received: by iecat20 with SMTP id at20so1234928iec.3
+	for <yocto@yoctoproject.org>; Fri, 06 Feb 2015 05:36:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=HSOhC6jf0dzc2aKNpJKxoh9RBXiXEVDhmJymsXDnRgk=;
+	b=T8LaAoLpBrMd8yMG9khb23TPzXmqT748ARR1waUrCdbSQ/Zl2myj8lGMJeZYu50RVP
+	ZB09Fz+57evoG9xhrF8b4iTrNnhTHyTWWWwhyTC+R6FLPRzzJ7DuU854BW4U2nZc2mN5
+	biczx2UCEE1/lwfxeLORmM/JB519PCMJnky6ZBqE7ukayh/bsuDU0WAC7iB7kp05Cyhi
+	SS9rieb/TJxa+pzgkl527FNTiCOs9A+bJ3uzZ+el+jvTFME1rMtz6HB5cPdOyuSHlmhN
+	dcoe6KoA5ADxvHLNAEjoct3A8ISt5r6EOBQBlH0no+Y0YU4KsxYM9zS+a/gpHsXMsoMQ
+	ZMwA==
 MIME-Version: 1.0
-To: Timo Pulkkinen <timo.j.pulkkinen@gmail.com>, <yocto@yoctoproject.org>
-References: <E23391EC-9A66-4657-8E7B-B14FC4A1A03D@gmail.com>
-In-Reply-To: <E23391EC-9A66-4657-8E7B-B14FC4A1A03D@gmail.com>
-Subject: Re: [meta-selinux] Kernel bbappend missing for 3.17 ?
+X-Received: by 10.50.62.83 with SMTP id w19mr1686955igr.26.1423229773724; Fri,
+	06 Feb 2015 05:36:13 -0800 (PST)
+Received: by 10.36.51.145 with HTTP; Fri, 6 Feb 2015 05:36:13 -0800 (PST)
+In-Reply-To: <CAP9ODKrxvf0_AoXjK+bK+_YSZWeUAS+9uqLqYJbGcYhJ+c9weA@mail.gmail.com>
+References: <CAKGbVbuXvDEirTo9jcM+aGHszcjgwgKvKaJQAYU6wE1M5W1u_A@mail.gmail.com>
+	<CAKGbVbuUbQ970__5EGF+1Z3wcqD6rQsqUjLTmg20swqf53UAVA@mail.gmail.com>
+	<CAKGbVbtRMJyMRQtjDaVZaWYCXOn4hGTfpP8j+8GM0ADGjUTmZA@mail.gmail.com>
+	<CAKGbVbup5y5suRGUhyDxdmC-j-5XKzNER81qFc_WBqWbCWO=8g@mail.gmail.com>
+	<CAP9ODKrxvf0_AoXjK+bK+_YSZWeUAS+9uqLqYJbGcYhJ+c9weA@mail.gmail.com>
+Date: Fri, 6 Feb 2015 21:36:13 +0800
+Message-ID: <CAKGbVbvZka91yHhiPqfkj=ddobCZg4n+AjRxTCncQ-aDm1z9xQ@mail.gmail.com>
+From: Qiang Yu <yuq825@gmail.com>
+To: Otavio Salvador <otavio@ossystems.com.br>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Xie Chengyong <chengyong.xie@theqtcompany.com>
+Subject: Re: [meta-qt5] static link plugin lib path problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,29 +64,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Feb 2015 13:11:04 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 06 Feb 2015 13:36:20 -0000
+Content-Type: multipart/alternative; boundary=047d7bdc10d018c20c050e6b815b
 
-On 2015-02-06 7:37 AM, Timo Pulkkinen wrote:
-> Hello,
+--047d7bdc10d018c20c050e6b815b
+Content-Type: text/plain; charset=UTF-8
+
+Notice in the wiki and patch using -external-hostbindir option to use host
+tools generated by qtbase-native.
+Why must do this?
+
+What if I just use tools generated by qtbase? Is it possible? For example
+by copying ${D}/bin files to ${STAGING_DIR_NATIVE}/usr in
+do_populate_sysroot?
+
+On Fri, Feb 6, 2015 at 7:04 PM, Otavio Salvador <otavio@ossystems.com.br>
+wrote:
+
+> On Fri, Feb 6, 2015 at 3:32 AM, Qiang Yu <yuq825@gmail.com> wrote:
+> ...
+> > Another question, from the wiki I saw quit some work on the QT5 build
+> path.
+> > Now that QT5 is enhancing its cross-compile
+> > support, will meta-qt5 switch to the native, less-patch and clean method?
+> ...
 >
-> it seems that there is no bbappend -file for kernel 3.17 which causes selinux not to be enabled in the kernel.
-> The repository contains only recipe/bbappend file for kernel 3.14 (linux-yocto_3.14.bbappend). Is this correct?
+> If you take a look on the amount of changes we end doing on top of Qt5
+> you see that OE-Core has some specific needs which are not fully
+> covered by the Qt5 pristine build system.
+>
+> The less we need to change it, the better, however so far some changes
+> are still needed.
+>
+> Any step done in merging those changes on upstream are a step on the
+> right direction. :)
+>
+> --
+> Otavio Salvador                             O.S. Systems
+> http://www.ossystems.com.br        http://code.ossystems.com.br
+> Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
 >
 
-If we wait a few days, I'll have a 3.19 kernel available, and 3.17
-will be removed.
+--047d7bdc10d018c20c050e6b815b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-3.17 had a few issues when it was introduced, and hence the 3.14 LTSI
-kernel stayed the default for many cases, which probably explains why
-the bbappend isn't around.
+<div dir=3D"ltr">Notice in the wiki and patch using -external-hostbindir op=
+tion to use host tools generated by qtbase-native.<div>Why must do this?</d=
+iv><div><br></div><div>What if I just use tools generated by qtbase? Is it =
+possible? For example by copying ${D}/bin files to ${STAGING_DIR_NATIVE}/us=
+r in do_populate_sysroot?</div></div><div class=3D"gmail_extra"><br><div cl=
+ass=3D"gmail_quote">On Fri, Feb 6, 2015 at 7:04 PM, Otavio Salvador <span d=
+ir=3D"ltr">&lt;<a href=3D"mailto:otavio@ossystems.com.br" target=3D"_blank"=
+>otavio@ossystems.com.br</a>&gt;</span> wrote:<br><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
+:1ex">On Fri, Feb 6, 2015 at 3:32 AM, Qiang Yu &lt;<a href=3D"mailto:yuq825=
+@gmail.com">yuq825@gmail.com</a>&gt; wrote:<br>
+...<br>
+<span class=3D"">&gt; Another question, from the wiki I saw quit some work =
+on the QT5 build path.<br>
+&gt; Now that QT5 is enhancing its cross-compile<br>
+&gt; support, will meta-qt5 switch to the native, less-patch and clean meth=
+od?<br>
+</span>...<br>
+<br>
+If you take a look on the amount of changes we end doing on top of Qt5<br>
+you see that OE-Core has some specific needs which are not fully<br>
+covered by the Qt5 pristine build system.<br>
+<br>
+The less we need to change it, the better, however so far some changes<br>
+are still needed.<br>
+<br>
+Any step done in merging those changes on upstream are a step on the<br>
+right direction. :)<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+--<br>
+Otavio Salvador=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0O.S. Systems<br>
+<a href=3D"http://www.ossystems.com.br" target=3D"_blank">http://www.ossyst=
+ems.com.br</a>=C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"http://code.ossystems.=
+com.br" target=3D"_blank">http://code.ossystems.com.br</a><br>
+Mobile: +55 (53) 9981-7854=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Mobile:=
+ +1 (347) 903-9750<br>
+</font></span></blockquote></div><br></div>
 
-Bruce
-
-
-> br,
-> Timo
->
-
-
+--047d7bdc10d018c20c050e6b815b--
