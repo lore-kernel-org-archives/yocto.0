@@ -1,45 +1,36 @@
-Return-Path: <parthiban@ulivesystems.com>
+Return-Path: <adm.dizon@pciltd.com.sg>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BEE28E00948; Thu,  5 Feb 2015 04:13:41 -0800 (PST)
+	id 92447E007AB; Thu,  5 Feb 2015 17:36:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.218.54 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-oi0-f54.google.com (mail-oi0-f54.google.com
-	[209.85.218.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8823EE0082D
-	for <yocto@yoctoproject.org>; Thu,  5 Feb 2015 04:13:31 -0800 (PST)
-Received: by mail-oi0-f54.google.com with SMTP id v63so874669oia.13
-	for <yocto@yoctoproject.org>; Thu, 05 Feb 2015 04:13:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=91vjT8Qjlgm9bXRSi1i2IVf+Bu7AGVWFaaG9FwCBfo8=;
-	b=E2k0SHYltppn098jab7od6D7+wu8IoH+FB3oLDN8ZPq/IAtW6HRexPdDtGhjF+3lxX
-	1mm4m/KF85IEiLaY9oMVZzsYUmCInggO8rwVZ/sucyUcPYn/tnxSVQcCc8SS9+wlK3CV
-	wMFP/93xNg1GHh1X2LozhfVK3kW1W//rRSuOw6wGS3YwYwJEboRv7ABMfXrceeKMTyIz
-	osatPIkjx208y2NsNTXU+vdlrbHCaD2uVQssblII6TFKlY1eJqHXY89Pfb7RsbVAPykn
-	hEdO9uHqwQhrAh8BdSqLYJ3kvJluHllmbwsRQa7v45b3bVuz6vzzLQHy2SZ+nQwuPQB/
-	i95w==
-X-Gm-Message-State: ALoCoQmF33KoRGAltiL12bijjODQk9dVzHAIX+OKIdeR7GQpDB0xn3aDTOv7GpAN2B6GygeGZRrk
+Received: from webmail.pciltd.com.sg (webmail.pciltd.com.sg [119.73.250.69])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C34A9E00753
+	for <yocto@yoctoproject.org>; Thu,  5 Feb 2015 17:35:55 -0800 (PST)
+Received: from PCISGEX.pciltd.com.sg ([192.168.0.147]) by
+	PCISGEX.pciltd.com.sg ([192.168.0.147]) with mapi id 14.03.0123.003;
+	Fri, 6 Feb 2015 09:35:53 +0800
+From: "Alvin D.M. DIZON" <adm.dizon@pciltd.com.sg>
+To: =?iso-8859-1?Q?Kevyn-Alexandre_Par=E9?= <kapare@rogue-research.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Confused with adding drivers to kernel via bitbake -c
+	menuconfig
+Thread-Index: AdBBBp72pUpF/D8hRIC++Qu4bx8STAAGzwsAACKqnvo=
+Date: Fri, 6 Feb 2015 01:35:51 +0000
+Message-ID: <46557CEF4ABDB54B92C59390D2741FD1BD8C70@PCISGEX.pciltd.com.sg>
+References: <46557CEF4ABDB54B92C59390D2741FD1BD8C09@PCISGEX.pciltd.com.sg>,
+	<CACgAsMev7C2tTpHTYdQEr=Lb5mXJsi6nAHuJd-fR-4bqkreU2A@mail.gmail.com>
+In-Reply-To: <CACgAsMev7C2tTpHTYdQEr=Lb5mXJsi6nAHuJd-fR-4bqkreU2A@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [116.50.213.202]
 MIME-Version: 1.0
-X-Received: by 10.60.118.74 with SMTP id kk10mr2175332oeb.20.1423138411342;
-	Thu, 05 Feb 2015 04:13:31 -0800 (PST)
-Received: by 10.60.61.39 with HTTP; Thu, 5 Feb 2015 04:13:31 -0800 (PST)
-Date: Thu, 5 Feb 2015 17:43:31 +0530
-Message-ID: <CABNKipLeXK-jMOnwkyVhjD2PBSANTj5AtikTC2pOzmu93FuFsA@mail.gmail.com>
-From: Parthiban Kandasamy <parthiban@ulivesystems.com>
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Thu, 05 Feb 2015 11:02:28 -0800
-Subject: SDKMACHINE settings
+Subject: Re: Confused with adding drivers to kernel via bitbake -c menuconfig
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,36 +42,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Feb 2015 12:13:41 -0000
-Content-Type: multipart/alternative; boundary=047d7b3a9b0a798101050e563b9f
-
---047d7b3a9b0a798101050e563b9f
-Content-Type: text/plain; charset=UTF-8
-
-entirely i am new to embedded linux. first i did bitbake of
-core-image-minimal it came out very well. then again i tried sdk toolchain
-development using bitbake -k meta-toolchain-qte. it gives so many error. so
-could you provide details for how do i start to develop BSP for
-beagleboard-XM. i am entirely confused to understand yocto online document.
-
--- 
-thanks and regards,
-parthiban
-      +919790329795
-
---047d7b3a9b0a798101050e563b9f
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Fri, 06 Feb 2015 01:36:04 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">entirely i am new to embedded linux. first i did bitbake o=
-f core-image-minimal it came out very well. then again i tried sdk toolchai=
-n development using bitbake -k meta-toolchain-qte. it gives so many error. =
-so could you provide details for how do i start to develop BSP for beaglebo=
-ard-XM. i am entirely confused to understand yocto online document.<br clea=
-r=3D"all"><div><br>-- <br><div class=3D"gmail_signature"><div style=3D"text=
--align:right">thanks and regards,<br>parthiban =C2=A0 =C2=A0 =C2=A0 <br><di=
-v style=3D"text-align:right">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +919790329795=
-=C2=A0=C2=A0 <br></div></div></div>
-</div></div>
+Hello Kevyn,=0A=
+=0A=
+Thanks for your help. Do I still have to run bitbake -c cleansstate after c=
+reating the configuration fragment? Or do I go straight to bitbake linux-im=
+x or bitbake fsl-image-x11?=0A=
+=0A=
+Thanks=0A=
+________________________________________=0A=
+From: Kevyn-Alexandre Par=E9 [kapare@rogue-research.com]=0A=
+Sent: Friday, February 06, 2015 12:58 AM=0A=
+To: Alvin D.M. DIZON=0A=
+Subject: Re: [yocto] Confused with adding drivers to kernel via bitbake -c =
+menuconfig=0A=
+=0A=
+Hi Alvin,=0A=
+=0A=
+On Thu, Feb 5, 2015 at 12:43 AM, Alvin D.M. DIZON=0A=
+<adm.dizon@pciltd.com.sg> wrote:=0A=
+> Hello,=0A=
+>=0A=
+> I would like to the generic USB bluetooth driver "btusb" to my i.MX6Q SAB=
+RE SD, so that my USB Bluetooth dongle(Cambridge Silicon Radio). Upon readi=
+ng https://community.freescale.com/docs/DOC-100847 I enabled the Bluetooth =
+subsystem support, RFCOMM, BNEP, and HIDP, as well as the HCI USB driver. I=
+ saved the .config file and copied it to the directory where my Linux recip=
+e is (linux-imx_3.10.17.bb). I then renamed my .config file into defconfig,=
+ made a new folder called "files" and placed the defconfig in it. I also ma=
+de a .bbappend file that contained=0A=
+=0A=
+I personally prefer this approach:=0A=
+http://www.yoctoproject.org/docs/1.6.1/kernel-dev/kernel-dev.html#changing-=
+the-configuration=0A=
+second part with the .cfg=0A=
+=0A=
+Doing this you can then validate it:=0A=
+bitbake linux-imx -c configure -f=0A=
+=0A=
+cat tmp/work/<PATH>/linux-imx/<VERSION>/build/.config | grep CONFIG_BT=0A=
+=0A=
+>=0A=
+> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"=0A=
+> SRC_URI +=3D "file://defconfig"=0A=
+>=0A=
+> I then ran "bitbake -c cleansstate linux-imx", after that I ran "bitbake =
+fsl-image-x11". I flashed the resulting .sdcard file to an SD card, booted =
+up my board, but found no trace of btusb. I tried doing "bitbake -f -c comp=
+ile linux-imx" and then "bitbake -f -c deploy linux-imx", and copied the re=
+sulting uImage to my SD card's /media/Boot folder, but still no trace of bt=
+usb. I checked the tar archive for the kernel modules found in the /tmp/dep=
+loy/images/imx6qsabresd folder, and found two files called modules.order an=
+d modules.builtin, the btusb driver is listed in the modules.builtin file, =
+but not mentioned in the modules.order file, I have also tried compiling th=
+e driver as module, and then ran the same commands as listed in the said li=
+nk, but could not find the module. What am I doing wrong here? Any help wil=
+l be will be appreciated, since I am new to Linux and the Yocto Project.=0A=
+>=0A=
+=0A=
+Before putting it on your SD you could validate that btusb is in=0A=
+tmp/work/<PATH>/linux-imx/<VERSION>/image=0A=
+=0A=
+Or=0A=
+=0A=
+grep btusb tmp/work/<PATH>/linux-imx/<VERSION>/temp/*=0A=
+=0A=
+Hope it could help,=0A=
+=0A=
+-KA=0A=
+=0A=
+> Thanks,=0A=
+> Alvin=0A=
+> [PCI]=0A=
+>=0A=
+>   Innovative Manufacturing Solutions. Professionally Delivered!=0A=
+>=0A=
+> The information contained in this email is confidential and is intended f=
+or addressee(s) only. If you have received this email in error, please noti=
+fy the originator immediately. Nothing in this email shall constitute an of=
+fer or acceptance leading to a legally binding contract which shall only ar=
+ise from a formal written agreement between yourselves and ourselves in the=
+ form of a Purchase Order issued by us and accepted by you in writing. For =
+the avoidance of doubt, this email shall not be construed in any way as a f=
+ormal written agreement. We accept no liability for any damage arising from=
+ alteration of the contents of this message by a third party or as a result=
+ of any virus being passed on. Please consider your environmental responsib=
+ility before printing this e-mail.=0A=
+> --=0A=
+> _______________________________________________=0A=
+> yocto mailing list=0A=
+> yocto@yoctoproject.org=0A=
+> https://lists.yoctoproject.org/listinfo/yocto=0A=
 
---047d7b3a9b0a798101050e563b9f--
