@@ -1,54 +1,64 @@
-Return-Path: <otavio.salvador@gmail.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 28578E0080C; Fri,  6 Feb 2015 05:48:21 -0800 (PST)
+	id 4940CE00757; Fri,  6 Feb 2015 05:55:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.54 listed in list.dnswl.org]
+	*      [74.125.82.172 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (martin.jansa[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yh0-f54.google.com (mail-yh0-f54.google.com
-	[209.85.213.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF272E00757
-	for <yocto@yoctoproject.org>; Fri,  6 Feb 2015 05:48:17 -0800 (PST)
-Received: by mail-yh0-f54.google.com with SMTP id 29so6208061yhl.13
-	for <yocto@yoctoproject.org>; Fri, 06 Feb 2015 05:48:17 -0800 (PST)
+Received: from mail-we0-f172.google.com (mail-we0-f172.google.com
+	[74.125.82.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAF0FE00757
+	for <yocto@yoctoproject.org>; Fri,  6 Feb 2015 05:55:46 -0800 (PST)
+Received: by mail-we0-f172.google.com with SMTP id x3so8274549wes.3
+	for <yocto@yoctoproject.org>; Fri, 06 Feb 2015 05:55:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date:message-id:subject
-	:from:to:cc:content-type;
-	bh=ybB9Oz6AzEUIRYW9bO45NDM7fgHfTRNjhy4RcKtpKDk=;
-	b=rfBzkbj3WbrW8Yr87JH18be6SKhwvHNidWATYGtkWvX7hx2lj9wLMktrVdpCKWY0Hn
-	BIKQKOmhtUBKPu28gH6VUNwnbRD3I2A/lekvNcvgE+yXesq+93P5cCz/JyPC4ggNJKXn
-	tJb6R/XaQeGMClh2dRs6pNmnlep1cJiYlk2iavbwIIEkyviP1Bl5XGuVEsAPFidVOMrl
-	raKXfZ+Rce1BiEwZXOVPBy5ltTDVp19VFzMQ/+z1jXXl1hzGZwi8Z9AD/DmNzfz5GVEQ
-	R+jP+bqPjP++cNNP7hEkc8/BaSKQPvQbL0rNgmOS73do7KB2N17fySXEMD+3KeStDhkj
-	v3eA==
-MIME-Version: 1.0
-X-Received: by 10.236.229.200 with SMTP id h68mr1280346yhq.90.1423230496935;
-	Fri, 06 Feb 2015 05:48:16 -0800 (PST)
-Sender: otavio.salvador@gmail.com
-Received: by 10.170.123.143 with HTTP; Fri, 6 Feb 2015 05:48:16 -0800 (PST)
-In-Reply-To: <CAKGbVbvZka91yHhiPqfkj=ddobCZg4n+AjRxTCncQ-aDm1z9xQ@mail.gmail.com>
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=UswoLVipjRkXeM4C+0MFyZlOQDW6eKGycN1ZnnKH7vQ=;
+	b=cKeQ0OSGikXUrMDV/+Es0s3eojVITNbyeABMRTrQkJwrxI42NKtqA6ylMAvDMb4a20
+	VOhdqBXmL8H4Hhywd37X7fPogu+ti/83uYPH3lFm+yKvKJvScdnPab1MzoWteyDPpx8S
+	5AEUcUV68Gw79Kmav6cNujOFzrAaOoWr8dUa0AE8wt4LJd2tr4mXLjp0TninYkHI5Ape
+	nMIwkN/l3WcSYJwkfrfaQ0lvDnzh7ZokG0OUIAc87C6fjhyw3WDwhKtNc3atAEIAztoS
+	jDBSvJLIkwvlbFmxQzJaC3OwjQpg4TksZrN0iHBFnLZK7PTLduFtRwvZYrOfFPnHINLY
+	z8vg==
+X-Received: by 10.180.205.142 with SMTP id lg14mr3687788wic.82.1423230939222; 
+	Fri, 06 Feb 2015 05:55:39 -0800 (PST)
+Received: from localhost (ip-89-176-104-3.net.upcbroadband.cz. [89.176.104.3])
+	by mx.google.com with ESMTPSA id
+	fq10sm1608783wib.3.2015.02.06.05.55.38
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 06 Feb 2015 05:55:38 -0800 (PST)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Fri, 6 Feb 2015 14:55:56 +0100
+To: Qiang Yu <yuq825@gmail.com>
+Message-ID: <20150206135556.GC2287@jama>
 References: <CAKGbVbuXvDEirTo9jcM+aGHszcjgwgKvKaJQAYU6wE1M5W1u_A@mail.gmail.com>
 	<CAKGbVbuUbQ970__5EGF+1Z3wcqD6rQsqUjLTmg20swqf53UAVA@mail.gmail.com>
 	<CAKGbVbtRMJyMRQtjDaVZaWYCXOn4hGTfpP8j+8GM0ADGjUTmZA@mail.gmail.com>
 	<CAKGbVbup5y5suRGUhyDxdmC-j-5XKzNER81qFc_WBqWbCWO=8g@mail.gmail.com>
 	<CAP9ODKrxvf0_AoXjK+bK+_YSZWeUAS+9uqLqYJbGcYhJ+c9weA@mail.gmail.com>
 	<CAKGbVbvZka91yHhiPqfkj=ddobCZg4n+AjRxTCncQ-aDm1z9xQ@mail.gmail.com>
-Date: Fri, 6 Feb 2015 11:48:16 -0200
-X-Google-Sender-Auth: q2_eTyedu6WJ1TJoFSUv8CIU3Kg
-Message-ID: <CAP9ODKq+fgi9a3r9gv8igwAu90CJ7eXzbXn5QR0M=Wr44X1ZqQ@mail.gmail.com>
-From: Otavio Salvador <otavio@ossystems.com.br>
-To: Qiang Yu <yuq825@gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CAKGbVbvZka91yHhiPqfkj=ddobCZg4n+AjRxTCncQ-aDm1z9xQ@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Xie Chengyong <chengyong.xie@theqtcompany.com>
+	Xie Chengyong <chengyong.xie@theqtcompany.com>,
+	Otavio Salvador <otavio@ossystems.com.br>
 Subject: Re: [meta-qt5] static link plugin lib path problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -61,22 +71,355 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Feb 2015 13:48:21 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 06 Feb 2015 13:55:56 -0000
+X-Groupsio-MsgNum: 23433
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="9UV9rz0O2dU/yYYn"
+Content-Disposition: inline
 
-On Fri, Feb 6, 2015 at 11:36 AM, Qiang Yu <yuq825@gmail.com> wrote:
+--9UV9rz0O2dU/yYYn
+Content-Type: multipart/mixed; boundary="+xNpyl7Qekk2NvDX"
+Content-Disposition: inline
+
+--+xNpyl7Qekk2NvDX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Feb 06, 2015 at 09:36:13PM +0800, Qiang Yu wrote:
 > Notice in the wiki and patch using -external-hostbindir option to use host
 > tools generated by qtbase-native.
 > Why must do this?
->
-> What if I just use tools generated by qtbase? Is it possible? For example by
-> copying ${D}/bin files to ${STAGING_DIR_NATIVE}/usr in do_populate_sysroot?
+>=20
+> What if I just use tools generated by qtbase? Is it possible? For example
+> by copying ${D}/bin files to ${STAGING_DIR_NATIVE}/usr in
+> do_populate_sysroot?
 
-This does not always work as for example we might be building on a x86
-host binaries to run on ARM.
+OE and QT have different view how to cross-compile, see attached IRC
+log for details, in short in OE we want to build native tools in completely
+separate build and then use the same tools (sstate) for all MACHINEs.
+And then separate build for target machines which builds only binaries
+for target (so that we have another qmake binary which can be used on
+target device).
 
--- 
-Otavio Salvador                             O.S. Systems
-http://www.ossystems.com.br        http://code.ossystems.com.br
-Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
+QT even with recent improvements still tries to build native tools in
+the same build as the target libraries and binaries.
 
+Regards,
+
+> On Fri, Feb 6, 2015 at 7:04 PM, Otavio Salvador <otavio@ossystems.com.br>
+> wrote:
+>=20
+> > On Fri, Feb 6, 2015 at 3:32 AM, Qiang Yu <yuq825@gmail.com> wrote:
+> > ...
+> > > Another question, from the wiki I saw quit some work on the QT5 build
+> > path.
+> > > Now that QT5 is enhancing its cross-compile
+> > > support, will meta-qt5 switch to the native, less-patch and clean met=
+hod?
+> > ...
+> >
+> > If you take a look on the amount of changes we end doing on top of Qt5
+> > you see that OE-Core has some specific needs which are not fully
+> > covered by the Qt5 pristine build system.
+> >
+> > The less we need to change it, the better, however so far some changes
+> > are still needed.
+> >
+> > Any step done in merging those changes on upstream are a step on the
+> > right direction. :)
+> >
+> > --
+> > Otavio Salvador                             O.S. Systems
+> > http://www.ossystems.com.br        http://code.ossystems.com.br
+> > Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
+> >
+
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--+xNpyl7Qekk2NvDX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="2013-04-06.log"
+Content-Transfer-Encoding: quoted-printable
+
+--- Log opened Sat Apr 06 11:17:46 2013
+11:17 -!- JaMa [~martin@ip-62-24-80-7.net.upcbroadband.cz] has joined #qt-l=
+abs
+11:17 -!- Irssi: #qt-labs: Total of 235 nicks [1 ops, 0 halfops, 19 voices,=
+ 215 normal]
+11:17 -!- Irssi: Join to #qt-labs was synced in 2 secs
+11:18 -!- nizeguy [~methusela@po-217-129-154-42.netvisao.pt] has joined #qt=
+-labs
+11:18 < JaMa> Hi, in OpenEmbedded we have special way to cross-compile qtba=
+se, first native tools are built with qtbase-native and staged to separate =
+directory structure, then target qtbase should be configured to reuse alrea=
+dy built native tools (like qmake, moc, uic, rcc) and build the same set of=
+ tools but this times for target (without these 2 sets of tools conflicting=
+), how to configure qtbase correctly?
+11:18 < JaMa> When I set HostBinaries or -hostbindir then it uses native to=
+ols correctly in stuff which is using qt_tool_moc.pri, but some parts of bu=
+ild are using features/moc.prf which finds first bin/moc built for target a=
+nd builing fails because it tries to run arm binary on x86
+11:18 < JaMa> and when I configure it for cross-build (different platform a=
+nd xplatform) then it will build native tools again (but I already have tho=
+se)
+11:18 < JaMa> I've seen some interesting changes in stable branch to preven=
+t bootstraping if it's not needed, but I need to fix this for 5.0.1 or 5.0.=
+2
+11:18 < jakepetroules> go configure. my app's animations run smoother in a =
+windows VM than on my bare-metal OS X. explain that lol
+11:19 < jakepetroules> go figure* lol, clearly the computers are starting t=
+o get to me
+11:19 -!- darktears [~darktears@kde/developer/menard] has quit [Remote host=
+ closed the connection]
+11:20 < lpapp> JaMa: what are you trying to achieve?
+11:20 < lpapp> what is the end goal?
+11:20 < JaMa> ossi: you're probably best guy to ask about ^^^ as those comm=
+its were from you :)
+11:20 < JaMa> lpapp: build qt for arm on x86 without building qt tools twic=
+e
+11:21 < lpapp> also, you cannot fix that for 5.0.1, and not sure if 5.0.2 e=
+ven if there is any issue.
+11:21 -!- lbt_away is now known as lbt
+11:21 < lpapp> JaMa: why don't you just use -xplatform with a proper mkspec=
+ like others?
+11:21 < JaMa> lpapp: do you know OpenEmbedded?
+11:21 < JaMa> lpapp: my end goal is to fix https://github.com/meta-qt5/meta=
+-qt5
+11:21 < lpapp> nope, but it should not matter.
+11:23 < JaMa> we had a lot of patches for qt 4*, so I don't mind patching 5=
+.0.* in meta-qt5 if it makes cross build cleaner for OE
+11:23 < lpapp> JaMa: what board do you use, and which embedded toolchain?
+11:23 < jakepetroules> lpapp: do certain functionalities or groups of class=
+es have maintainers, or is the module level the lowest grau=08nularity?
+11:23 < lpapp> jakepetroules: it is based on sanity, I would say. See QtCor=
+e, thiago is the maintainer, and lots of submaintainers.
+11:23 < JaMa> lpapp: OpenEmbedded is generic, it allows to use any combinat=
+ion of target machine and toolchain
+11:24 < lpapp> and even there is a separate maintainer for qtbase, includin=
+g core, so someone on top of thiago.
+11:24 < lpapp> JaMa: ok, so you have bigger trouble than thought. ;)
+11:24 < jakepetroules> lpapp: ah ok. i was just wondering because during th=
+e mailing list discussions of QIosStyle it was stated someone would need to=
+ "maintain" it
+11:24 < lpapp> first, solve one use case, and then you can go for extending=
+ the system.
+11:24 <+ossi> JaMa: what you are asking is not really supported. you'd need=
+ to make a significant contribution to have that properly sorted out
+11:24 < JaMa> lpapp: so qtbase recipe there also needs to support building =
+x86 on x86 but also x86 on mips and ARMs and powerpcs etc :)
+11:25 < jakepetroules> lpapp: I didn't know if that meant maintain as in th=
+e word maintain or maintain as in Maintainer
+11:25 < lpapp> jakepetroules: the term does not matter really, just the con=
+tribution. :)
+11:25 < lpapp> JaMa: what you would like to do (the use case mention above)=
+ is possible, and I have been doing that for several embedded systems.
+11:25 < lpapp> mentioned*
+11:26 < JaMa> ossi: OK and does it sound useful to you to have it in upstre=
+am or should we continue to hack it around to build it like this only in OE=
+?
+11:26 < jakepetroules> lpapp: I just love any excuse to type 'QIosStyle' lo=
+l
+11:26 < JaMa> lpapp: we're doing that already with qt4 and also with qtbase=
+ but only with quite a lot of hacks
+11:26 < lpapp> building for embedded arm on x86 should be possible unless y=
+ou use a not yet supported target toolchain, or weird OS.
+11:27 < JaMa> well it's "our" toolchain also built with OE, that's why we p=
+rovide own qmake.conf as one of first steps
+11:27 < lpapp> JaMa: so can you tell me what target toolchain you used for =
+this build?
+11:27 < jakepetroules> wow. crypto code runs a *lot* slower in debug mode
+11:27 < lpapp> is it simply gcc or a wrapper around it like qcc?
+11:27 <+ossi> JaMa: it basically boils down to a) being able to use tools f=
+rom an existing (desktop) build to make a second build and b) skipping the =
+bootstrapping from *all* tools
+11:28 < JaMa> lpapp: not really, because toolchain is configured outside (d=
+ifferent OpenEmbedded users use different toolchains)
+11:28 -!- eijk [~eijk@e178206032.adsl.alicedsl.de] has quit [Ping timeout: =
+256 seconds]
+11:28 <+ossi> JaMa: it would be worthy to have that upstream. but you're no=
+t going to have fun if you are the quick'n'dirty type of guy
+11:29 <+sahumada|home> lpapp: qtmacextras and qtwinextras wont be part of 5=
+.1
+11:29 < lpapp> JaMa: you have to compile qt with a toolchain, no matter wha=
+t.
+11:29 < JaMa> lpapp: and?
+11:29 < lpapp> sahumada|home: good thanks. I wished that.
+11:29 < lpapp> JaMa: and that is supported if it is a supported toolchain.
+11:29 < lpapp> so let me ask again: what toolchain did you use for this bui=
+ld?
+11:30 < JaMa> the one configured and built with in OE
+11:30 < JaMa> so different one for each build
+11:30 < lpapp> does it have a name?
+11:30 < lpapp> it is a continuously behavior and interface changing dynamic=
+ toolchain?
+11:30 <+ossi> JaMa: fwiw, i think it was zecke who asked about this issue q=
+uite some months ago. you know him?
+11:30 < JaMa> you can call it oecore-i686-armv4t-toolchain
+11:31 < JaMa> ossi: yes I know him, he is also working with OE
+11:31 < lpapp> JaMa: so it is some weird toolchain not used by anyone else,=
+ but a rewrite from scratch?
+11:31 < JaMa> ossi: fwiw I'm maintainer of meta-qt5 layer and I also mainta=
+in qt4 recipes in oe-core a bit
+11:33 < JaMa> lpapp: it's not rewriten from scratch but composed from compo=
+nents OE user wants, some people ask for gcc-4.7+eglibc+binutils, someone e=
+lse will have uclibc, someone else will have llvm
+11:33 < lpapp> right, so it is gcc basd.
+11:33 < lpapp> or llvm.
+11:33 < lpapp> etc, generic stuff which are already supported.
+11:34 -!- larsgk [~lgk@0x3ec7257f.inet.dsl.telianet.dk] has quit [Ping time=
+out: 245 seconds]
+11:34 < lpapp> so IMO, the best would be to upstream the fixes for arm buil=
+ds on x86.
+11:34 < lpapp> as people will use powerful x86 PCs for embedded builds anyh=
+ow.
+11:34 < lpapp> it is not like you will build qt5 on an embedded board.
+11:36 < JaMa> that's what OE is for
+11:36 -!- vkrause [~vkrause@kde/vkrause] has joined #qt-labs
+11:36 <+ossi> yeah, crazy shit ^^
+11:36 < JaMa> ossi: good that you understand me :)
+11:38 < JaMa> ossi: I'll check how dirty my solution will be and submit it =
+if it doesn't get so bad
+11:38 < lpapp> I am not sure it is a good idea to waste the resources, but =
+perhaps I miss something.
+11:38 < JaMa> ossi: the main reason why I asked here was to be sure I'm not=
+ overlooking some hidden option to support this, so thanks for confirmation
+11:40 < lpapp> my few years experience shows that people do not wanna build=
+ on a highly limited board.
+11:40 < JaMa> lpapp: yes I think you missed why I want separate build for n=
+ative tools and then reuse them in target build
+11:40 < lpapp> because PCs are just so much more powerful.
+11:40 -!- drdanz [~quassel@5.87.198.139] has quit [Remote host closed the c=
+onnection]
+11:41 -!- fawzi [~fawzi@e182222080.adsl.alicedsl.de] has joined #qt-labs
+11:41 <+ossi> JaMa: you'll need: a) a configure switch -external-host-prefi=
+x <path> b) patch qt_tool.prf so that it "skips itself" conditionally and c=
+) make sure that qtPrepareTool() works with the external tools
+11:41 < JaMa> ossi: btw with qt4 it was a bit easier because we were just o=
+verwritting those MOC/UIC/RCC variables to "inject" already built tools
+11:42 < JaMa> ossi: with switch to HostBinaries it's a bit more complicated
+11:43 < JaMa> ossi: this description doesn't look that complicated, -extern=
+al-host-prefix sounds good
+11:43 <+ossi> actually, b) needs to skip only the qt_tool_*.pri creation, s=
+o the tools are not "announced", and force_bootstrap needs to be removed
+11:43 <+ossi> yeah, it should be fairly easy in principle
+11:45 < lpapp> JaMa: anyway, good luck. :)
+11:46 < lpapp> perhaps it will make sense for a few people to build the sma=
+ll add-ons at least on the board.
+11:48 < JaMa> ossi: thanks for help, I'll ping you when I have something fo=
+r review
+11:49 -!- lqi [~lqi@ti0018a380-dhcp2407.bb.online.no] has joined #qt-labs
+11:50 -!- mabrand [~brand@x.xs4all.nl] has joined #qt-labs
+11:57 -!- fawzi [~fawzi@e182222080.adsl.alicedsl.de] has quit [Quit: fawzi]
+12:11 -!- drdanz [~quassel@5.87.198.139] has joined #qt-labs
+12:17 -!- aholza [~Andy@91-65-68-183-dynip.superkabel.de] has quit [Quit: L=
+eaving.]
+12:26 -!- swex [~quassel@178.17.205.69] has joined #qt-labs
+12:31 -!- hamid [~nithp@unaffiliated/hamid] has quit [Ping timeout: 256 sec=
+onds]
+12:32 -!- ucomesdag_mobile [~ucomesdag@ACayenne-551-1-78-110.w90-31.abo.wan=
+adoo.fr] has joined #qt-labs
+12:36 -!- ucomesdag_mobile [~ucomesdag@ACayenne-551-1-78-110.w90-31.abo.wan=
+adoo.fr] has quit [Remote host closed the connection]
+12:37 -!- ucomesdag_mobile [~ucomesdag@ACayenne-551-1-78-110.w90-31.abo.wan=
+adoo.fr] has joined #qt-labs
+12:39 -!- hamid [~nithp@unaffiliated/hamid] has joined #qt-labs
+12:43 -!- baba [~fire@unaffiliated/security] has quit [Quit: WeeChat 0.4.0]
+12:47 -!- RoyBellingan [~roy@ppp-90-201.25-151.libero.it] has joined #qt-la=
+bs
+13:01 -!- tapout_ [~tapout@2607:5300:60:225b::1] has quit [Excess Flood]
+13:04 -!- aholza [~Andy@91-65-68-183-dynip.superkabel.de] has joined #qt-la=
+bs
+13:05 -!- tapout [~tapout@unaffiliated/tapout] has joined #qt-labs
+13:07 -!- rittk [ritt.ks@46.231.227.244] has joined #qt-labs
+13:08 -!- mode/#qt-labs [+v rittk] by ChanServ
+13:10 -!- drdanz_ [~quassel@93-63-15-64.ip25.fastwebnet.it] has joined #qt-=
+labs
+13:10 -!- Venemo [~venemo@fedora/Venemo] has joined #qt-labs
+13:10 -!- drdanz [~quassel@5.87.198.139] has quit [Ping timeout: 252 second=
+s]
+13:11 -!- _chakie_ [~chakie@dsl-tkubrasgw1-54fa1f-110.dhcp.inet.fi] has qui=
+t [Read error: Operation timed out]
+13:12 -!- _chakie_ [~chakie@dsl-tkubrasgw1-54fa1f-110.dhcp.inet.fi] has joi=
+ned #qt-labs
+13:13 -!- fire [~fire@unaffiliated/security] has joined #qt-labs
+13:21 -!- lqi [~lqi@ti0018a380-dhcp2407.bb.online.no] has quit [Remote host=
+ closed the connection]
+13:27 -!- saidi [~saidi@105.133.19.98] has joined #qt-labs
+13:27 -!- saidi [~saidi@105.133.19.98] has quit [Changing host]
+13:27 -!- saidi [~saidi@unaffiliated/saidi] has joined #qt-labs
+13:28 -!- Stuk88 [~quassel@host193-217-static.106-82-b.business.telecomital=
+ia.it] has quit [Remote host closed the connection]
+13:32 -!- buscher [~buscher@konversation/developer/buscher] has joined #qt-=
+labs
+13:39 -!- cptG [~sabayonus@g231037180.adsl.alicedsl.de] has joined #qt-labs
+13:41 -!- zhxt [~zhxt@218.11.179.160] has joined #qt-labs
+13:42 -!- saidi [~saidi@unaffiliated/saidi] has quit [Ping timeout: 256 sec=
+onds]
+13:42 -!- jbarron [~jbarron@cm-84.209.87.70.getinternet.no] has joined #qt-=
+labs
+13:42 -!- mode/#qt-labs [+v jbarron] by ChanServ
+13:51 -!- luc4 [~luca@host79-174-dynamic.2-87-r.retail.telecomitalia.it] ha=
+s joined #qt-labs
+13:54 -!- plfiorini [~plfiorini@93-39-206-197.ip77.fastwebnet.it] has joine=
+d #qt-labs
+14:03 -!- saidi [~saidi@unaffiliated/saidi] has joined #qt-labs
+14:04 -!- aholza [~Andy@91-65-68-183-dynip.superkabel.de] has quit [Quit: L=
+eaving.]
+14:12 -!- fbeutel [~Thunderbi@ip-109-91-209-236.unitymediagroup.de] has joi=
+ned #qt-labs
+14:14 -!- eijk [~eijk@e178206032.adsl.alicedsl.de] has joined #qt-labs
+14:15 -!- noirr [~noirrr@host143-2-dynamic.21-87-r.retail.telecomitalia.it]=
+ has quit [Quit: ChatZilla 0.9.90 [Firefox 20.0/20130326150557]]
+14:21 -!- tapout [~tapout@unaffiliated/tapout] has quit [Excess Flood]
+14:26 -!- tapout [~tapout@unaffiliated/tapout] has joined #qt-labs
+14:27 -!- aholza [~Andy@91-65-68-183-dynip.superkabel.de] has joined #qt-la=
+bs
+14:37 -!- swex [~quassel@178.17.205.69] has quit [Remote host closed the co=
+nnection]
+14:38 -!- swex [~quassel@178.17.205.69] has joined #qt-labs
+14:47 -!- vocodork [~vocoder@94-227-99-249.access.telenet.be] has joined #q=
+t-labs
+14:47 -!- starter [~starter@c-24-6-31-157.hsd1.ca.comcast.net] has quit [Re=
+mote host closed the connection]
+14:56 -!- swex [~quassel@178.17.205.69] has quit [Remote host closed the co=
+nnection]
+14:59 -!- swex [~quassel@178.17.205.69] has joined #qt-labs
+15:00 -!- ucomesdag_mobile [~ucomesdag@ACayenne-551-1-78-110.w90-31.abo.wan=
+adoo.fr] has quit [Remote host closed the connection]
+15:02 -!- ucomesdag_mobile [~ucomesdag@ACayenne-551-1-78-110.w90-31.abo.wan=
+adoo.fr] has joined #qt-labs
+15:03 -!- nizeguy [~methusela@po-217-129-154-42.netvisao.pt] has quit [Read=
+ error: Connection reset by peer]
+15:04 -!- Nura [quassel@nat/digia/x-junzrtusdxktvqzt] has joined #qt-labs
+15:04 -!- nardev [~nardev@46.36.160.73] has quit [Quit: Ex-Chat]
+15:06 -!- pcpa [~pcpa@177.16.177.110] has joined #qt-labs
+15:12 -!- mabrand [~brand@x.xs4all.nl] has quit [Quit: Konversation termina=
+ted!]
+15:14 -!- Nura [quassel@nat/digia/x-junzrtusdxktvqzt] has quit [Quit: http:=
+//quassel-irc.org - Chat comfortably. Anywhere.]
+15:14 -!- Nura [quassel@nat/digia/x-pjrzbisoctyjjwbz] has joined #qt-labs
+15:16 -!- Nura_ [quassel@nat/digia/x-gzlwqpofwpdauatv] has joined #qt-labs
+15:17 -!- Nura [quassel@nat/digia/x-pjrzbisoctyjjwbz] has quit [Remote host=
+ closed the connection]
+15:18 -!- Nura_ [quassel@nat/digia/x-gzlwqpofwpdauatv] has quit [Read error=
+: Connection reset by peer]
+15:18 -!- Nura [quassel@nat/digia/x-gfykfqnvzaukethk] has joined #qt-labs
+--- Log closed Sat Apr 06 15:18:49 2013
+
+--+xNpyl7Qekk2NvDX--
+
+--9UV9rz0O2dU/yYYn
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iEYEARECAAYFAlTUx+wACgkQN1Ujt2V2gBysagCgos9IblylWoFibH6x+Tv7IOJM
+N6sAn0fjsOeRIaSjwFXK0Or4st2Pi1/P
+=vtmI
+-----END PGP SIGNATURE-----
+
+--9UV9rz0O2dU/yYYn--
