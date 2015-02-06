@@ -1,44 +1,63 @@
-Return-Path: <kapare@rogue-research.com>
+Return-Path: <bevenson@melinkcorp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5A168E007AB; Fri,  6 Feb 2015 11:29:58 -0800 (PST)
+	id 7A023E007AB; Fri,  6 Feb 2015 11:54:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [207.46.100.143 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.rogue-research.com (mail.rogue-research.com [68.67.54.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBDB9E00753
-	for <yocto@yoctoproject.org>; Fri,  6 Feb 2015 11:29:45 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rogue-research.com (Postfix) with ESMTP id CBA974259AA
-	for <yocto@yoctoproject.org>; Fri,  6 Feb 2015 14:21:32 -0500 (EST)
-X-Virus-Scanned: amavisd-new at rogue-research.com
-Received: from mail.rogue-research.com ([127.0.0.1])
-	by localhost (kingu.rogue-research.com [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id s6sFY-3LN3X1 for <yocto@yoctoproject.org>;
-	Fri,  6 Feb 2015 14:21:32 -0500 (EST)
-Received: from mail-qg0-f43.google.com (mail-qg0-f43.google.com
-	[209.85.192.43])
-	by mail.rogue-research.com (Postfix) with ESMTPSA id 66FC94259A0
-	for <yocto@yoctoproject.org>; Fri,  6 Feb 2015 14:21:32 -0500 (EST)
-Received: by mail-qg0-f43.google.com with SMTP id i50so1752171qgf.2
-	for <yocto@yoctoproject.org>; Fri, 06 Feb 2015 11:21:31 -0800 (PST)
+X-Greylist: delayed 929 seconds by postgrey-1.32 at yocto-www;
+	Fri, 06 Feb 2015 11:54:29 PST
+Received: from na01-by2-obe.outbound.protection.outlook.com
+	(mail-by2on0143.outbound.protection.outlook.com [207.46.100.143])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BFCEE00753
+	for <yocto@yoctoproject.org>; Fri,  6 Feb 2015 11:54:29 -0800 (PST)
+Received: from BN3PR0501MB1090.namprd05.prod.outlook.com (25.160.113.12) by
+	BN3PR0501MB1091.namprd05.prod.outlook.com (25.160.113.13) with
+	Microsoft SMTP
+	Server (TLS) id 15.1.81.19; Fri, 6 Feb 2015 19:38:58 +0000
+Received: from BN3PR0501MB1090.namprd05.prod.outlook.com ([25.160.113.12]) by
+	BN3PR0501MB1090.namprd05.prod.outlook.com ([25.160.113.12]) with
+	mapi id 15.01.0081.018; Fri, 6 Feb 2015 19:38:58 +0000
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: Aurele Traynard <aurele.traynard@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] replace etc/network/interfaces with symbolic link
+Thread-Index: AQHQQiVqxGi9Q2+6j0GOBMJfmqHiF5zkAE1w
+Date: Fri, 6 Feb 2015 19:38:58 +0000
+Message-ID: <BN3PR0501MB109039E595DA8504659AE114BB380@BN3PR0501MB1090.namprd05.prod.outlook.com>
+References: <CAKdxkf8Hz0p__1UpZ9+v9nedE7uNb7ajQ+ykUpaZ-_1mc6BhyA@mail.gmail.com>
+In-Reply-To: <CAKdxkf8Hz0p__1UpZ9+v9nedE7uNb7ajQ+ykUpaZ-_1mc6BhyA@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-vipre-scanned: 016E8E410091C6016E8F8E
+x-originating-ip: [98.100.91.242]
+authentication-results: gmail.com; dkim=none (message not signed)
+	header.d=none;
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:;SRVR:BN3PR0501MB1091;
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:;
+	SRVR:BN3PR0501MB1091; 
+x-forefront-prvs: 047999FF16
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6009001)(13464003)(377454003)(51704005)(2900100001)(2950100001)(50986999)(66066001)(102836002)(54356999)(76576001)(74316001)(2501002)(46102003)(99286002)(19580395003)(92566002)(87936001)(2656002)(62966003)(122556002)(33656002)(106116001)(77156002)(76176999)(107886001)(19580405001)(40100003)(86362001);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR0501MB1091;
+	H:BN3PR0501MB1090.namprd05.prod.outlook.com; FPR:; SPF:None;
+	MLV:sfv; LANG:en; 
 MIME-Version: 1.0
-X-Received: by 10.140.49.5 with SMTP id p5mr11004697qga.15.1423250491836; Fri,
-	06 Feb 2015 11:21:31 -0800 (PST)
-Received: by 10.96.87.38 with HTTP; Fri, 6 Feb 2015 11:21:31 -0800 (PST)
-In-Reply-To: <46557CEF4ABDB54B92C59390D2741FD1BD8C70@PCISGEX.pciltd.com.sg>
-References: <46557CEF4ABDB54B92C59390D2741FD1BD8C09@PCISGEX.pciltd.com.sg>
-	<CACgAsMev7C2tTpHTYdQEr=Lb5mXJsi6nAHuJd-fR-4bqkreU2A@mail.gmail.com>
-	<46557CEF4ABDB54B92C59390D2741FD1BD8C70@PCISGEX.pciltd.com.sg>
-Date: Fri, 6 Feb 2015 14:21:31 -0500
-Message-ID: <CACgAsMc_Oa=PGLR2tsLNfwTEBabZRfg1h09Tqi9Pa4m+oRZGqg@mail.gmail.com>
-From: =?UTF-8?Q?Kevyn=2DAlexandre_Par=C3=A9?= <kapare@rogue-research.com>
-To: "Alvin D.M. DIZON" <adm.dizon@pciltd.com.sg>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Confused with adding drivers to kernel via bitbake -c menuconfig
+X-OriginatorOrg: melinkcorp.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Feb 2015 19:38:58.5309 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR0501MB1091
+Subject: Re: replace etc/network/interfaces with symbolic link
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,120 +69,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Feb 2015 19:29:58 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 06 Feb 2015 19:54:40 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Alvin,,
-
-On Thu, Feb 5, 2015 at 8:35 PM, Alvin D.M. DIZON
-<adm.dizon@pciltd.com.sg> wrote:
-> Hello Kevyn,
->
-> Thanks for your help. Do I still have to run bitbake -c cleansstate after=
- creating the configuration fragment? Or do I go straight to bitbake linux-=
-imx or bitbake fsl-image-x11?
-
-Look into ${WORKDIR}/temp for what's happening
-http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-WOR=
-KDIR
-http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#usingpo=
-ky-debugging-taskfailures
-
-It depends what you want to do.
-
--KA
-
-On Thu, Feb 5, 2015 at 8:35 PM, Alvin D.M. DIZON
-<adm.dizon@pciltd.com.sg> wrote:
-> Hello Kevyn,
->
-> Thanks for your help. Do I still have to run bitbake -c cleansstate after=
- creating the configuration fragment? Or do I go straight to bitbake linux-=
-imx or bitbake fsl-image-x11?
->
-> Thanks
-> ________________________________________
-> From: Kevyn-Alexandre Par=C3=A9 [kapare@rogue-research.com]
-> Sent: Friday, February 06, 2015 12:58 AM
-> To: Alvin D.M. DIZON
-> Subject: Re: [yocto] Confused with adding drivers to kernel via bitbake -=
-c menuconfig
->
-> Hi Alvin,
->
-> On Thu, Feb 5, 2015 at 12:43 AM, Alvin D.M. DIZON
-> <adm.dizon@pciltd.com.sg> wrote:
->> Hello,
->>
->> I would like to the generic USB bluetooth driver "btusb" to my i.MX6Q SA=
-BRE SD, so that my USB Bluetooth dongle(Cambridge Silicon Radio). Upon read=
-ing https://community.freescale.com/docs/DOC-100847 I enabled the Bluetooth=
- subsystem support, RFCOMM, BNEP, and HIDP, as well as the HCI USB driver. =
-I saved the .config file and copied it to the directory where my Linux reci=
-pe is (linux-imx_3.10.17.bb). I then renamed my .config file into defconfig=
-, made a new folder called "files" and placed the defconfig in it. I also m=
-ade a .bbappend file that contained
->
-> I personally prefer this approach:
-> http://www.yoctoproject.org/docs/1.6.1/kernel-dev/kernel-dev.html#changin=
-g-the-configuration
-> second part with the .cfg
->
-> Doing this you can then validate it:
-> bitbake linux-imx -c configure -f
->
-> cat tmp/work/<PATH>/linux-imx/<VERSION>/build/.config | grep CONFIG_BT
->
->>
->> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
->> SRC_URI +=3D "file://defconfig"
->>
->> I then ran "bitbake -c cleansstate linux-imx", after that I ran "bitbake=
- fsl-image-x11". I flashed the resulting .sdcard file to an SD card, booted=
- up my board, but found no trace of btusb. I tried doing "bitbake -f -c com=
-pile linux-imx" and then "bitbake -f -c deploy linux-imx", and copied the r=
-esulting uImage to my SD card's /media/Boot folder, but still no trace of b=
-tusb. I checked the tar archive for the kernel modules found in the /tmp/de=
-ploy/images/imx6qsabresd folder, and found two files called modules.order a=
-nd modules.builtin, the btusb driver is listed in the modules.builtin file,=
- but not mentioned in the modules.order file, I have also tried compiling t=
-he driver as module, and then ran the same commands as listed in the said l=
-ink, but could not find the module. What am I doing wrong here? Any help wi=
-ll be will be appreciated, since I am new to Linux and the Yocto Project.
->>
->
-> Before putting it on your SD you could validate that btusb is in
-> tmp/work/<PATH>/linux-imx/<VERSION>/image
->
-> Or
->
-> grep btusb tmp/work/<PATH>/linux-imx/<VERSION>/temp/*
->
-> Hope it could help,
->
-> -KA
->
->> Thanks,
->> Alvin
->> [PCI]
->>
->>   Innovative Manufacturing Solutions. Professionally Delivered!
->>
->> The information contained in this email is confidential and is intended =
-for addressee(s) only. If you have received this email in error, please not=
-ify the originator immediately. Nothing in this email shall constitute an o=
-ffer or acceptance leading to a legally binding contract which shall only a=
-rise from a formal written agreement between yourselves and ourselves in th=
-e form of a Purchase Order issued by us and accepted by you in writing. For=
- the avoidance of doubt, this email shall not be construed in any way as a =
-formal written agreement. We accept no liability for any damage arising fro=
-m alteration of the contents of this message by a third party or as a resul=
-t of any virus being passed on. Please consider your environmental responsi=
-bility before printing this e-mail.
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+QXVyZWxlLA0KDQpPbmUgcG9zc2libGUgaXNzdWUgaXMgJHtzeXNjb25mZGlyfS9uZXR3b3JrL2lu
+dGVyZmFjZXMgaXMgbGlzdGVkIGluIHRoZSBDT05GRklMRVMgaW4gdGhlIG9yaWdpbmFsIHJlY2lw
+ZS4gIEl0IG1heSBzdGlsbCBiZSBpbnN0YWxsaW5nIHRoaXMgZmlsZSBiZWNhdXNlIGl0IGlzIGxp
+c3RlZCB1bmRlciBDT05GRklMRVMuICBUcnkgYWRkaW5nOg0KDQpDT05GRklMRVNfJHtQTn0gPSAi
+Ig0KDQpUbyB5b3VyIGJiYXBwZW5kLg0KDQpSZWdhcmRzLA0KQnJ5YW4NCg0KPiAtLS0tLU9yaWdp
+bmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcg
+W21haWx0bzp5b2N0by0NCj4gYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2Yg
+QXVyZWxlIFRyYXluYXJkDQo+IFNlbnQ6IEZyaWRheSwgRmVicnVhcnkgMDYsIDIwMTUgMTA6NTUg
+QU0NCj4gVG86IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogW3lvY3RvXSByZXBs
+YWNlIGV0Yy9uZXR3b3JrL2ludGVyZmFjZXMgd2l0aCBzeW1ib2xpYyBsaW5rDQo+IA0KPiBIaSwN
+Cj4gDQo+IA0KPiBJJ20gdHJ5aW5nIHRvIGZpbmQgYSBjbGVhbiB3YXkgdG8gcmVwbGFjZSAvZXRj
+L25ldHdvcmsvaW50ZXJmYWNlcyB3aXRoIGENCj4gc3ltYm9saWMgbGluay4gKGl0IGNvbWVzIHdp
+dGggaW5pdC1pZnVwZG93biByZWNpcGUpIEkgdHJpZWQgd2l0aCAgYSBiYmFwcGVuZA0KPiBidXQg
+bm90aGluZyBhcHBlYXIgaW4gZmluYWwgZmlsZXN5c3RlbSBhbmQgL2V0Yy9uZXR3b3JrL2ludGVy
+ZmFjZXMgc3RpbGwNCj4gZXhpc3RzLi4uDQo+IA0KPiANCj4gSSdtIHN1cmUgdGhlIGZvbGxvd2lu
+ZyBjb2RlIGlzIGNvbXBsZXRlbHkgd3JvbmcsIGJ1dCBJIGRvbid0IGtub3cgaG93IHRvIGRvDQo+
+IHRoaXMgd2l0aCB0aGUgcmlnaHQgd2F5Li4uDQo+IGRvX2luc3RhbGxfYXBwZW5kICgpIHsNCj4g
+ICAgIG1rZGlyIC1wIGRhdGFzL25ldHdvcmsNCj4gDQo+ICAgICBpbnN0YWxsIC1kIDA3NTUgJHtE
+fS9kYXRhcw0KPiAgICAgaW5zdGFsbCAtZCAwNzU1ICR7RH0vZGF0YXMvbmV0d29yaw0KPiAgICAg
+aW5zdGFsbCAtbSAwNzU1ICR7RH0ke3N5c2NvbmZkaXJ9L25ldHdvcmsvaW50ZXJmYWNlcyAke0R9
+L2RhdGFzL25ldHdvcmsNCj4gICAgICNtdiAke0R9JHtzeXNjb25mZGlyfS9uZXR3b3JrL2ludGVy
+ZmFjZXMgJHtEfS9kYXRhcy9uZXR3b3JrDQo+ICAgICBybSAke0R9JHtzeXNjb25mZGlyfS9uZXR3
+b3JrL2ludGVyZmFjZXMNCj4gICAgIGxuIC1zZiAvZGF0YXMvbmV0d29yay9pbnRlcmZhY2VzICR7
+RH0ke3N5c2NvbmZkaXJ9L25ldHdvcmsvaW50ZXJmYWNlcw0KPiANCj4gfQ0KPiBGSUxFU18ke1BO
+fSArPSAiL2RhdGFzLyAvZGF0YXMvbmV0d29yay9pbnRlcmZhY2VzIg0KPiANCj4gDQo+IHRoYW5r
+cyBmb3IgYW55IGhlbHANCj4gDQoNCg==
 
