@@ -1,50 +1,50 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E924CE00985; Fri,  6 Feb 2015 08:12:16 -0800 (PST)
+	id E94F0E00960; Fri,  6 Feb 2015 08:12:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.212.173 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-wi0-f173.google.com (mail-wi0-f173.google.com
-	[209.85.212.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC079E0080C
-	for <yocto@yoctoproject.org>; Fri,  6 Feb 2015 08:12:09 -0800 (PST)
-Received: by mail-wi0-f173.google.com with SMTP id r20so3644767wiv.0
-	for <yocto@yoctoproject.org>; Fri, 06 Feb 2015 08:12:09 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.171 listed in list.dnswl.org]
+Received: from mail-we0-f171.google.com (mail-we0-f171.google.com
+	[74.125.82.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B387E007AB
+	for <yocto@yoctoproject.org>; Fri,  6 Feb 2015 08:12:12 -0800 (PST)
+Received: by mail-we0-f171.google.com with SMTP id k11so14647516wes.2
+	for <yocto@yoctoproject.org>; Fri, 06 Feb 2015 08:12:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references;
-	bh=+dUKW9H4gqM9a3pThzDZ7gEoqjx6QXnzQ8cgtnzNRd4=;
-	b=fjZhqeRcwUJd8skGsZ3fA9zG9gM1s6cXh2SDIW998nn2xs+Kjj6yO18KEpz7JHHRFn
-	Vklk9MS8MsgpGfon3MrDQtuh/NlfsUaRRS9EnalOOv4BY9Te6OoC0f5pv03LQkUcG6fL
-	bP+iJMSUJ4gOmBxiRWMHdTVfKdZrn0YjUR5tL+dq/54ZJeMvPs+8uzXI4MbJDbGSV6wK
-	jlR8TSEenMYaISFA6IsysbcOmgHHLoMDEfmOc5WVrUBoRyliy2FzkkSP0I3WUle94i1O
-	fcpTcYQotujfUDK+OU2VY3SvFg6NWGVdLCedDHGS+dPustLtV1O6wrc7w/a/xITAUmwz
-	n2Gg==
-X-Gm-Message-State: ALoCoQkppkmjt6Y+g1qtyYftwucodGvGSQpuwrI3cNn6BYN8a7IRejPptHmc7ELlEndqLejvc/is
-X-Received: by 10.180.37.197 with SMTP id a5mr4908804wik.2.1423239129063;
-	Fri, 06 Feb 2015 08:12:09 -0800 (PST)
+	bh=IxbhVoqDfaqKg99QdR/me3beJDxkX/r1drUOAuD/UyQ=;
+	b=KofLverHRFpJPkIHnLb1Zs0U2qdv+xFsnZAx6v/Ki5YtjXbqrce/1r6UE+HbXUluKE
+	gBQzvtrcWIypc0CeN8lYbyA4B32G0RqAdlzGkp+yxZTL4yf083S0li22LBajejSLNBuq
+	mrVzjlO5N/Ytm2jKOSMDkrwYxRsGEPSN2kjk6PPltw/hhabp6opNU0BNIkH6cN5tCsCb
+	KSDT8PoNVvxPT1dxI1ZzqRCZJpb6fSGwv4qup2KM/FeZTgbn1FJzfddQ/f4Z4Xcsnj6B
+	zTv1b/vufYf7CJO1tRJcnkLYk4YIQ5OZP1Xl0eT7u4nefBALMncJK+1pVTINSFgaYYaT
+	ERlg==
+X-Gm-Message-State: ALoCoQlRK88NVcOwxU0d8KSlMSTnycsjVca5gaxrWVPPoOhSBtEhGO7J4qWsX3Lso5Y43IPZPJ7S
+X-Received: by 10.194.81.161 with SMTP id b1mr9468887wjy.2.1423239131250;
+	Fri, 06 Feb 2015 08:12:11 -0800 (PST)
 Received: from otp-agherzan-l1.corp.ad.wrs.com (dhcp-186-165.gjk.dk.
 	[195.249.186.165])
-	by mx.google.com with ESMTPSA id jg3sm2088556wid.0.2015.02.06.08.12.08
+	by mx.google.com with ESMTPSA id jg3sm2088556wid.0.2015.02.06.08.12.10
 	for <yocto@yoctoproject.org>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 06 Feb 2015 08:12:08 -0800 (PST)
+	Fri, 06 Feb 2015 08:12:10 -0800 (PST)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Fri,  6 Feb 2015 18:11:56 +0200
-Message-Id: <1423239119-21918-2-git-send-email-andrei@gherzan.ro>
+Date: Fri,  6 Feb 2015 18:11:59 +0200
+Message-Id: <1423239119-21918-5-git-send-email-andrei@gherzan.ro>
 X-Mailer: git-send-email 2.1.0
 In-Reply-To: <1423239119-21918-1-git-send-email-andrei@gherzan.ro>
 References: <1423239119-21918-1-git-send-email-andrei@gherzan.ro>
-Subject: [meta-raspberrypi][PATCH 2/5] omxplayer: Bump SRCREV
+Subject: [meta-raspberrypi][PATCH 5/5] userland: Bump SRCREV
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,72 +58,40 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Fri, 06 Feb 2015 16:12:17 -0000
 
-Add a patch to fix the pkg-config mechanism in ffmpeg.
-
-Change-Id: Ib506bb4e26a8a0c5c294ed55da0a0da8dc67a2d7
+Change-Id: If1d2608322749db4baa445ba94bc471a0ac86a5c
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- .../omxplayer/omxplayer/use-native-pkg-config.patch   | 19 +++++++++++++++++++
- recipes-multimedia/omxplayer/omxplayer_git.bb         |  7 ++++---
- 2 files changed, 23 insertions(+), 3 deletions(-)
- create mode 100644 recipes-multimedia/omxplayer/omxplayer/use-native-pkg-config.patch
+ recipes-graphics/userland/userland_git.bb | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/recipes-multimedia/omxplayer/omxplayer/use-native-pkg-config.patch b/recipes-multimedia/omxplayer/omxplayer/use-native-pkg-config.patch
-new file mode 100644
-index 0000000..ed81999
---- /dev/null
-+++ b/recipes-multimedia/omxplayer/omxplayer/use-native-pkg-config.patch
-@@ -0,0 +1,19 @@
-+Force the pkg-config native tool. Strangely ffmpeg prepends cross_prefix
-+to the default value which obviously is wrong.
-+
-+Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
-+
-+Index: git/Makefile.ffmpeg
-+===================================================================
-+--- git.orig/Makefile.ffmpeg
-++++ git/Makefile.ffmpeg
-+@@ -245,7 +245,8 @@ configure:
-+ 			--disable-decoder=idf \
-+ 			--enable-decoder=opus \
-+ 			--cross-prefix=$(HOST)- \
-+-			--disable-stripping
-++			--disable-stripping \
-++			--pkg-config=pkg-config
-+ 
-+ .PHONY : clean
-+ clean:
-diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bb b/recipes-multimedia/omxplayer/omxplayer_git.bb
-index 41ef339..c71a743 100644
---- a/recipes-multimedia/omxplayer/omxplayer_git.bb
-+++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
-@@ -7,22 +7,23 @@ SECTION = "console/utils"
- LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
+diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
+index 77c98d7..1e60ea8 100644
+--- a/recipes-graphics/userland/userland_git.bb
++++ b/recipes-graphics/userland/userland_git.bb
+@@ -13,7 +13,7 @@ COMPATIBLE_MACHINE = "raspberrypi"
  
--DEPENDS = "libpcre libav virtual/egl boost freetype dbus openssl"
-+DEPENDS = "libpcre libav virtual/egl boost freetype dbus openssl samba libssh"
- PR = "r3"
+ SRCBRANCH = "master"
+ SRCFORK = "raspberrypi"
+-SRCREV = "85441185e653347e6b3c2bbc7494f5e29a6ca4a2"
++SRCREV = "3b81b91c18ff19f97033e146a9f3262ca631f0e9"
  
--SRCREV = "1817503430b8f195bef12bd7a3542bdd251f8389"
-+SRCREV = "18f051d64d9c837edbf718bc4935204583cfa030"
- SRC_URI = "git://github.com/popcornmix/omxplayer.git;protocol=git;branch=master \
-            file://0001-Remove-Makefile.include-which-includes-hardcoded.patch \
-            file://0002-Libraries-and-headers-from-ffmpeg-are-installed-in-u.patch \
-            file://0003-Remove-strip-step-in-Makefile.patch \
-            file://0004-Add-FFMPEG_EXTRA_CFLAGS-and-FFMPEG_EXTRA_LDFLAGS.patch \
-            file://fix-tar-command-with-DIST.patch \
-+           file://use-native-pkg-config.patch \
-            "
- S = "${WORKDIR}/git"
+ SRC_URI = "git://github.com/${SRCFORK}/userland.git;protocol=git;branch=${SRCBRANCH} \
+           "
+@@ -32,10 +32,13 @@ do_install_append() {
+     rm -rf ${D}/opt
+ }
  
- COMPATIBLE_MACHINE = "raspberrypi"
+-FILES_${PN} += "${libdir}/*${SOLIBS}"
++FILES_${PN} += " \
++    ${libdir}/*${SOLIBS} \
++    ${libdir}/plugins"
+ FILES_${PN}-dev = "${includedir} \
+                    ${prefix}/src"
+ FILES_${PN}-doc += "${datadir}/install"
++FILES_${PN}-dbg += "${libdir}/plugins/.debug"
  
--inherit autotools-brokensep
-+inherit autotools-brokensep pkgconfig
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
  
- # Needed in ffmpeg configure
- export TEMPDIR = "${S}/tmp"
 -- 
 2.1.0
 
