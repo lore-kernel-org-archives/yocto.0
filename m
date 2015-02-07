@@ -1,63 +1,48 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <vmartin@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7A023E007AB; Fri,  6 Feb 2015 11:54:40 -0800 (PST)
+	id ED237E00825; Sat,  7 Feb 2015 08:03:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [207.46.100.143 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [198.152.71.100 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 929 seconds by postgrey-1.32 at yocto-www;
-	Fri, 06 Feb 2015 11:54:29 PST
-Received: from na01-by2-obe.outbound.protection.outlook.com
-	(mail-by2on0143.outbound.protection.outlook.com [207.46.100.143])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BFCEE00753
-	for <yocto@yoctoproject.org>; Fri,  6 Feb 2015 11:54:29 -0800 (PST)
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com (25.160.113.12) by
-	BN3PR0501MB1091.namprd05.prod.outlook.com (25.160.113.13) with
-	Microsoft SMTP
-	Server (TLS) id 15.1.81.19; Fri, 6 Feb 2015 19:38:58 +0000
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com ([25.160.113.12]) by
-	BN3PR0501MB1090.namprd05.prod.outlook.com ([25.160.113.12]) with
-	mapi id 15.01.0081.018; Fri, 6 Feb 2015 19:38:58 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: Aurele Traynard <aurele.traynard@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] replace etc/network/interfaces with symbolic link
-Thread-Index: AQHQQiVqxGi9Q2+6j0GOBMJfmqHiF5zkAE1w
-Date: Fri, 6 Feb 2015 19:38:58 +0000
-Message-ID: <BN3PR0501MB109039E595DA8504659AE114BB380@BN3PR0501MB1090.namprd05.prod.outlook.com>
-References: <CAKdxkf8Hz0p__1UpZ9+v9nedE7uNb7ajQ+ykUpaZ-_1mc6BhyA@mail.gmail.com>
-In-Reply-To: <CAKdxkf8Hz0p__1UpZ9+v9nedE7uNb7ajQ+ykUpaZ-_1mc6BhyA@mail.gmail.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Sat, 07 Feb 2015 08:03:54 PST
+Received: from de307622-de-outbound.net.avaya.com
+	(de307622-de-outbound.net.avaya.com [198.152.71.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F25B8E00477
+	for <yocto@yoctoproject.org>; Sat,  7 Feb 2015 08:03:54 -0800 (PST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AhAFAOI11lSHCzIm/2dsb2JhbABbgkMhIiIwXsJTHwGFegKBD0MBAQEBAQF8hA4BAQMMBhteARUVViYBBBsaiAsBqVqEf6BcDCCPRw2CWAxAHYEUBY8bkAKMGiKDboIzfgEBAQ
+X-IronPort-AV: E=Sophos;i="5.09,535,1418101200"; d="scan'208,217";a="90521893"
+Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
+	([135.11.50.38]) by de307622-de-outbound.net.avaya.com with ESMTP;
+	07 Feb 2015 11:02:49 -0500
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-US1EXHC02.global.avaya.com) ([135.11.85.13])
+	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/AES128-SHA;
+	07 Feb 2015 11:02:48 -0500
+Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
+	AZ-US1EXHC02.global.avaya.com ([::1]) with mapi id 14.03.0174.001;
+	Sat, 7 Feb 2015 11:02:47 -0500
+From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Question about fetching git URI with protocol=https
+Thread-Index: AdBC7iTI6NFzs1PaS/K2/HzGdJWr9w==
+Date: Sat, 7 Feb 2015 16:02:47 +0000
+Message-ID: <30C2D590D16A5C46ADFE652191037798411B02C3@AZ-US1EXMB03.global.avaya.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-vipre-scanned: 016E8E410091C6016E8F8E
-x-originating-ip: [98.100.91.242]
-authentication-results: gmail.com; dkim=none (message not signed)
-	header.d=none;
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:;SRVR:BN3PR0501MB1091;
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:;
-	SRVR:BN3PR0501MB1091; 
-x-forefront-prvs: 047999FF16
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(13464003)(377454003)(51704005)(2900100001)(2950100001)(50986999)(66066001)(102836002)(54356999)(76576001)(74316001)(2501002)(46102003)(99286002)(19580395003)(92566002)(87936001)(2656002)(62966003)(122556002)(33656002)(106116001)(77156002)(76176999)(107886001)(19580405001)(40100003)(86362001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR0501MB1091;
-	H:BN3PR0501MB1090.namprd05.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; LANG:en; 
+x-originating-ip: [135.11.85.49]
 MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Feb 2015 19:38:58.5309 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR0501MB1091
-Subject: Re: replace etc/network/interfaces with symbolic link
+Subject: Question about fetching git URI with protocol=https
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,35 +54,156 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Feb 2015 19:54:40 -0000
+X-List-Received-Date: Sat, 07 Feb 2015 16:03:58 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/alternative;
+	boundary="_000_30C2D590D16A5C46ADFE652191037798411B02C3AZUS1EXMB03glob_"
 
-QXVyZWxlLA0KDQpPbmUgcG9zc2libGUgaXNzdWUgaXMgJHtzeXNjb25mZGlyfS9uZXR3b3JrL2lu
-dGVyZmFjZXMgaXMgbGlzdGVkIGluIHRoZSBDT05GRklMRVMgaW4gdGhlIG9yaWdpbmFsIHJlY2lw
-ZS4gIEl0IG1heSBzdGlsbCBiZSBpbnN0YWxsaW5nIHRoaXMgZmlsZSBiZWNhdXNlIGl0IGlzIGxp
-c3RlZCB1bmRlciBDT05GRklMRVMuICBUcnkgYWRkaW5nOg0KDQpDT05GRklMRVNfJHtQTn0gPSAi
-Ig0KDQpUbyB5b3VyIGJiYXBwZW5kLg0KDQpSZWdhcmRzLA0KQnJ5YW4NCg0KPiAtLS0tLU9yaWdp
-bmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcg
-W21haWx0bzp5b2N0by0NCj4gYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2Yg
-QXVyZWxlIFRyYXluYXJkDQo+IFNlbnQ6IEZyaWRheSwgRmVicnVhcnkgMDYsIDIwMTUgMTA6NTUg
-QU0NCj4gVG86IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogW3lvY3RvXSByZXBs
-YWNlIGV0Yy9uZXR3b3JrL2ludGVyZmFjZXMgd2l0aCBzeW1ib2xpYyBsaW5rDQo+IA0KPiBIaSwN
-Cj4gDQo+IA0KPiBJJ20gdHJ5aW5nIHRvIGZpbmQgYSBjbGVhbiB3YXkgdG8gcmVwbGFjZSAvZXRj
-L25ldHdvcmsvaW50ZXJmYWNlcyB3aXRoIGENCj4gc3ltYm9saWMgbGluay4gKGl0IGNvbWVzIHdp
-dGggaW5pdC1pZnVwZG93biByZWNpcGUpIEkgdHJpZWQgd2l0aCAgYSBiYmFwcGVuZA0KPiBidXQg
-bm90aGluZyBhcHBlYXIgaW4gZmluYWwgZmlsZXN5c3RlbSBhbmQgL2V0Yy9uZXR3b3JrL2ludGVy
-ZmFjZXMgc3RpbGwNCj4gZXhpc3RzLi4uDQo+IA0KPiANCj4gSSdtIHN1cmUgdGhlIGZvbGxvd2lu
-ZyBjb2RlIGlzIGNvbXBsZXRlbHkgd3JvbmcsIGJ1dCBJIGRvbid0IGtub3cgaG93IHRvIGRvDQo+
-IHRoaXMgd2l0aCB0aGUgcmlnaHQgd2F5Li4uDQo+IGRvX2luc3RhbGxfYXBwZW5kICgpIHsNCj4g
-ICAgIG1rZGlyIC1wIGRhdGFzL25ldHdvcmsNCj4gDQo+ICAgICBpbnN0YWxsIC1kIDA3NTUgJHtE
-fS9kYXRhcw0KPiAgICAgaW5zdGFsbCAtZCAwNzU1ICR7RH0vZGF0YXMvbmV0d29yaw0KPiAgICAg
-aW5zdGFsbCAtbSAwNzU1ICR7RH0ke3N5c2NvbmZkaXJ9L25ldHdvcmsvaW50ZXJmYWNlcyAke0R9
-L2RhdGFzL25ldHdvcmsNCj4gICAgICNtdiAke0R9JHtzeXNjb25mZGlyfS9uZXR3b3JrL2ludGVy
-ZmFjZXMgJHtEfS9kYXRhcy9uZXR3b3JrDQo+ICAgICBybSAke0R9JHtzeXNjb25mZGlyfS9uZXR3
-b3JrL2ludGVyZmFjZXMNCj4gICAgIGxuIC1zZiAvZGF0YXMvbmV0d29yay9pbnRlcmZhY2VzICR7
-RH0ke3N5c2NvbmZkaXJ9L25ldHdvcmsvaW50ZXJmYWNlcw0KPiANCj4gfQ0KPiBGSUxFU18ke1BO
-fSArPSAiL2RhdGFzLyAvZGF0YXMvbmV0d29yay9pbnRlcmZhY2VzIg0KPiANCj4gDQo+IHRoYW5r
-cyBmb3IgYW55IGhlbHANCj4gDQoNCg==
+--_000_30C2D590D16A5C46ADFE652191037798411B02C3AZUS1EXMB03glob_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+Poky Daisy 1.6.1
+
+I have a recipe that must fetch from a git repo using https. I have specifi=
+ed
+";protocol=3Dhttps" in the SRC_URI.
+
+The fetch task for this recipe is failing with:
+
+                ERROR: Fetcher failure: Fetch command failed with exit code=
+ 128, output:
+                Cloning into bare repository '<path>'...
+                fatal: unable to access '<URL>': error setting certificate =
+verify locations:
+                  CAfile: <path>/poky/build/tmp/sysroots/x86_64-linux/etc/s=
+sl/certs/ca-certificates.crt
+                  CApath: none
+
+which I understand to be a curl error and, indeed, there is no such file.
+
+It is my understanding that this file should be created by building the ca-=
+certificates package.
+
+The build is running on Ubuntu 12.04, so a git-native was built in the
+development tools, as well as a curl-native. The curl recipe has an RRECOMM=
+ENDS
+for ca-certificates, but that package does not show up in "bitbake -g" and =
+is
+not being built. Hence the file not being present in the sysroot.
+
+I would appreciate some guidance as to what is missing/how I can resolve
+this issue. I don't want these certificates to show up in the target images=
+ or
+in the SDK, I only need them to fetch for building.
+
+Regards,
+MV
+
+--_000_30C2D590D16A5C46ADFE652191037798411B02C3AZUS1EXMB03glob_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Poky Daisy 1.6.1<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have a recipe that must fetch from a git repo usin=
+g https. I have specified<o:p></o:p></p>
+<p class=3D"MsoNormal">&#8220;;protocol=3Dhttps&#8221; in the SRC_URI.<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The fetch task for this recipe is failing with:<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ERROR: Fetcher failure: Fetch comman=
+d failed with exit code 128, output:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cloning into bare repository '&lt;pa=
+th&gt;'...<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fatal: unable to access '&lt;URL&gt;=
+': error setting certificate verify locations:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; CAfile: &lt;path&gt;/poky/bui=
+ld/tmp/sysroots/x86_64-linux/etc/ssl/certs/ca-certificates.crt<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; CApath: none<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">which I understand to be a curl error and, indeed, t=
+here is no such file.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">It is my understanding that this file should be crea=
+ted by building the ca-certificates package.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The build is running on Ubuntu 12.04, so a git-nativ=
+e was built in the<o:p></o:p></p>
+<p class=3D"MsoNormal">development tools, as well as a curl-native. The cur=
+l recipe has an RRECOMMENDS<o:p></o:p></p>
+<p class=3D"MsoNormal">for ca-certificates, but that package does not show =
+up in &#8220;bitbake &#8211;g&#8221; and is<o:p></o:p></p>
+<p class=3D"MsoNormal">not being built. Hence the file not being present in=
+ the sysroot.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I would appreciate some guidance as to what is missi=
+ng/how I can resolve<o:p></o:p></p>
+<p class=3D"MsoNormal">this issue. I don&#8217;t want these certificates to=
+ show up in the target images or<o:p></o:p></p>
+<p class=3D"MsoNormal">in the SDK, I only need them to fetch for building.<=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">MV<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_30C2D590D16A5C46ADFE652191037798411B02C3AZUS1EXMB03glob_--
