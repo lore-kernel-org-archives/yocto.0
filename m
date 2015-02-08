@@ -1,48 +1,49 @@
-Return-Path: <vmartin@avaya.com>
+Return-Path: <yuq825@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ED237E00825; Sat,  7 Feb 2015 08:03:57 -0800 (PST)
+	id 5E95DE00848; Sat,  7 Feb 2015 19:21:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.152.71.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (yuq825[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Sat, 07 Feb 2015 08:03:54 PST
-Received: from de307622-de-outbound.net.avaya.com
-	(de307622-de-outbound.net.avaya.com [198.152.71.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F25B8E00477
-	for <yocto@yoctoproject.org>; Sat,  7 Feb 2015 08:03:54 -0800 (PST)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AhAFAOI11lSHCzIm/2dsb2JhbABbgkMhIiIwXsJTHwGFegKBD0MBAQEBAQF8hA4BAQMMBhteARUVViYBBBsaiAsBqVqEf6BcDCCPRw2CWAxAHYEUBY8bkAKMGiKDboIzfgEBAQ
-X-IronPort-AV: E=Sophos;i="5.09,535,1418101200"; d="scan'208,217";a="90521893"
-Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
-	([135.11.50.38]) by de307622-de-outbound.net.avaya.com with ESMTP;
-	07 Feb 2015 11:02:49 -0500
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC02.global.avaya.com) ([135.11.85.13])
-	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/AES128-SHA;
-	07 Feb 2015 11:02:48 -0500
-Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
-	AZ-US1EXHC02.global.avaya.com ([::1]) with mapi id 14.03.0174.001;
-	Sat, 7 Feb 2015 11:02:47 -0500
-From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Question about fetching git URI with protocol=https
-Thread-Index: AdBC7iTI6NFzs1PaS/K2/HzGdJWr9w==
-Date: Sat, 7 Feb 2015 16:02:47 +0000
-Message-ID: <30C2D590D16A5C46ADFE652191037798411B02C3@AZ-US1EXMB03.global.avaya.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.11.85.49]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.175 listed in list.dnswl.org]
+Received: from mail-ie0-f175.google.com (mail-ie0-f175.google.com
+	[209.85.223.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2641EE00825
+	for <yocto@yoctoproject.org>; Sat,  7 Feb 2015 19:21:08 -0800 (PST)
+Received: by iecrp18 with SMTP id rp18so3321732iec.7
+	for <yocto@yoctoproject.org>; Sat, 07 Feb 2015 19:21:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=HXwx9PVjdLAo1LeLVDFsVEs6sNs6o5bPQZbil7N1EPA=;
+	b=J1Qt3+jivvZwc6u1Vi5yB/pIpjDkCBbcvobJDxTRfeErWJGKwQnhIa3Db9jivLVZO9
+	whkg4TZ8DW5/BbAfrcdR8csdNV8iW60gLOTIzvrM/Jyrfa8G/Teti3+5qcg9xmd8x65v
+	focr2QdHJCZPPNYUqgKmTKoZYHNDHqS2UiPuX004USaZbpfJI6apPv7+Cl2lzcw/AesA
+	uzt8kJmJbz89jjQuAflveoX8OqiPn1e7OwUlfBYLMWyoSYDabEbPNjOoVDZC11AOoMWc
+	c/hjJoabSgecULhUTrMxUdWjnABciIJjry8KgG7aQbWSs1bxu303Cob6lBYgKgqs87C/
+	341g==
 MIME-Version: 1.0
-Subject: Question about fetching git URI with protocol=https
+X-Received: by 10.50.44.43 with SMTP id b11mr10071285igm.30.1423365666829;
+	Sat, 07 Feb 2015 19:21:06 -0800 (PST)
+Received: by 10.36.51.145 with HTTP; Sat, 7 Feb 2015 19:21:06 -0800 (PST)
+Date: Sun, 8 Feb 2015 11:21:06 +0800
+Message-ID: <CAKGbVbshQj1zUrYERA0eb9Ua6fVMdO9VfazEPNmxX_eqvNjDtA@mail.gmail.com>
+From: Qiang Yu <yuq825@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: How to write a recipe whose source code will generate host and target output at the same build?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,156 +55,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Feb 2015 16:03:58 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_30C2D590D16A5C46ADFE652191037798411B02C3AZUS1EXMB03glob_"
+X-List-Received-Date: Sun, 08 Feb 2015 03:21:10 -0000
+Content-Type: multipart/alternative; boundary=047d7bdc79e4f4f9e2050e8b247a
 
---_000_30C2D590D16A5C46ADFE652191037798411B02C3AZUS1EXMB03glob_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--047d7bdc79e4f4f9e2050e8b247a
+Content-Type: text/plain; charset=UTF-8
 
-Poky Daisy 1.6.1
+Hi all,
 
-I have a recipe that must fetch from a git repo using https. I have specifi=
-ed
-";protocol=3Dhttps" in the SRC_URI.
+I'm writing a recipe for QT5 which will generate both host tools and target
+lib at the same build. How can I handle this situation? It doesn't fix
+either target or native class.
 
-The fetch task for this recipe is failing with:
+Can cross class solve this problem? Can cross generate target lib package
+and populate both target and host sysroot all at once?
 
-                ERROR: Fetcher failure: Fetch command failed with exit code=
- 128, output:
-                Cloning into bare repository '<path>'...
-                fatal: unable to access '<URL>': error setting certificate =
-verify locations:
-                  CAfile: <path>/poky/build/tmp/sysroots/x86_64-linux/etc/s=
-sl/certs/ca-certificates.crt
-                  CApath: none
-
-which I understand to be a curl error and, indeed, there is no such file.
-
-It is my understanding that this file should be created by building the ca-=
-certificates package.
-
-The build is running on Ubuntu 12.04, so a git-native was built in the
-development tools, as well as a curl-native. The curl recipe has an RRECOMM=
-ENDS
-for ca-certificates, but that package does not show up in "bitbake -g" and =
-is
-not being built. Hence the file not being present in the sysroot.
-
-I would appreciate some guidance as to what is missing/how I can resolve
-this issue. I don't want these certificates to show up in the target images=
- or
-in the SDK, I only need them to fetch for building.
+Or I notice a tmp/work-shared dir which can be shared by multi recipes. So
+maybe I can write two recipes, one for target lib, one for host tool, which
+share the same work dir at tmp/work-shared. Only one build is needed. If
+this is possible, how can I use the tmp/work-shared, inherit some special
+class?
 
 Regards,
-MV
+Qiang
 
---_000_30C2D590D16A5C46ADFE652191037798411B02C3AZUS1EXMB03glob_
-Content-Type: text/html; charset="us-ascii"
+--047d7bdc79e4f4f9e2050e8b247a
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Poky Daisy 1.6.1<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I have a recipe that must fetch from a git repo usin=
-g https. I have specified<o:p></o:p></p>
-<p class=3D"MsoNormal">&#8220;;protocol=3Dhttps&#8221; in the SRC_URI.<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The fetch task for this recipe is failing with:<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ERROR: Fetcher failure: Fetch comman=
-d failed with exit code 128, output:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cloning into bare repository '&lt;pa=
-th&gt;'...<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fatal: unable to access '&lt;URL&gt;=
-': error setting certificate verify locations:<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; CAfile: &lt;path&gt;/poky/bui=
-ld/tmp/sysroots/x86_64-linux/etc/ssl/certs/ca-certificates.crt<o:p></o:p></=
-p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; CApath: none<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">which I understand to be a curl error and, indeed, t=
-here is no such file.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">It is my understanding that this file should be crea=
-ted by building the ca-certificates package.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The build is running on Ubuntu 12.04, so a git-nativ=
-e was built in the<o:p></o:p></p>
-<p class=3D"MsoNormal">development tools, as well as a curl-native. The cur=
-l recipe has an RRECOMMENDS<o:p></o:p></p>
-<p class=3D"MsoNormal">for ca-certificates, but that package does not show =
-up in &#8220;bitbake &#8211;g&#8221; and is<o:p></o:p></p>
-<p class=3D"MsoNormal">not being built. Hence the file not being present in=
- the sysroot.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I would appreciate some guidance as to what is missi=
-ng/how I can resolve<o:p></o:p></p>
-<p class=3D"MsoNormal">this issue. I don&#8217;t want these certificates to=
- show up in the target images or<o:p></o:p></p>
-<p class=3D"MsoNormal">in the SDK, I only need them to fetch for building.<=
-o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">MV<o:p></o:p></p>
-</div>
-</body>
-</html>
+<div dir=3D"ltr">Hi all,<div><br></div><div>I&#39;m writing a recipe for QT=
+5 which will generate both host tools and target lib at the same build. How=
+ can I handle this situation? It doesn&#39;t fix either target or native cl=
+ass.</div><div><br></div><div>Can cross class solve this problem? Can cross=
+ generate target lib package and populate both target and host sysroot all =
+at once?</div><div><br></div><div>Or I notice a tmp/work-shared dir which c=
+an be shared by multi recipes. So maybe I can write two recipes, one for ta=
+rget lib, one for host tool, which share the same work dir at tmp/work-shar=
+ed. Only one build is needed. If this is possible, how can I use the tmp/wo=
+rk-shared, inherit some special class?</div><div><br></div><div>Regards,</d=
+iv><div>Qiang=C2=A0</div></div>
 
---_000_30C2D590D16A5C46ADFE652191037798411B02C3AZUS1EXMB03glob_--
+--047d7bdc79e4f4f9e2050e8b247a--
