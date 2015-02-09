@@ -1,61 +1,54 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <aurele.traynard@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D0EF4E008CD; Mon,  9 Feb 2015 06:16:12 -0800 (PST)
+	id B7AE8E00825; Mon,  9 Feb 2015 06:26:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [207.46.100.114 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (aurele.traynard[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from na01-by2-obe.outbound.protection.outlook.com
-	(mail-by2on0114.outbound.protection.outlook.com [207.46.100.114])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE5E7E00960
-	for <yocto@yoctoproject.org>; Mon,  9 Feb 2015 06:15:49 -0800 (PST)
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com (25.160.113.12) by
-	BN3PR0501MB1090.namprd05.prod.outlook.com (25.160.113.12) with
-	Microsoft SMTP
-	Server (TLS) id 15.1.81.19; Mon, 9 Feb 2015 14:01:28 +0000
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com ([25.160.113.12]) by
-	BN3PR0501MB1090.namprd05.prod.outlook.com ([25.160.113.12]) with
-	mapi id 15.01.0081.018; Mon, 9 Feb 2015 14:01:28 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: Aurele Traynard <aurele.traynard@gmail.com>
-Thread-Topic: [yocto] replace etc/network/interfaces with symbolic link
-Thread-Index: AQHQQiVqxGi9Q2+6j0GOBMJfmqHiF5zkAE1wgAQZaQCAADnxAA==
-Date: Mon, 9 Feb 2015 14:01:28 +0000
-Message-ID: <BN3PR0501MB10906E7628BC59896E0CE778BB270@BN3PR0501MB1090.namprd05.prod.outlook.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wi0-f171.google.com (mail-wi0-f171.google.com
+	[209.85.212.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4B4BE00342
+	for <yocto@yoctoproject.org>; Mon,  9 Feb 2015 06:26:25 -0800 (PST)
+Received: by mail-wi0-f171.google.com with SMTP id l15so17922765wiw.4
+	for <yocto@yoctoproject.org>; Mon, 09 Feb 2015 06:26:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=QDYW7n5DmhRpis5KCNtBxmkmMKNjb0kFGNwtyqHC+So=;
+	b=PhbTZofbPZByfuewaff6fzn45g3tTrh8gcFJ8CARR+sxDSzZfWT64ZAe0RD+FUS/Ah
+	hrbZeqhcZDd+P4rFYmXboiVo3IxSSlVVvvGqTTPAxzWN4tKotDJj4KK1Gw8cACefHyKf
+	lu57OX+iJ+tZdsUKS/Ym9j1CkOoA/+AKFz8GwK2zNRiCfX6XWyBU8cauVAnqPmph0MIQ
+	S6fkS6NkdWcUZ1g+qgWedwJLDy7Mc84BDAPLIpeQlsfCK1a5vuLVYnAEOhxcXvIEfDc9
+	Sg2JpnlpldkFcdYoF725MsrCZm084fS9QpIclunxqgXmBM95BRhBDkgjO0Er12cp6y/L
+	02YQ==
+MIME-Version: 1.0
+X-Received: by 10.181.13.148 with SMTP id ey20mr19039601wid.79.1423491984253; 
+	Mon, 09 Feb 2015 06:26:24 -0800 (PST)
+Received: by 10.216.227.129 with HTTP; Mon, 9 Feb 2015 06:26:24 -0800 (PST)
+In-Reply-To: <BN3PR0501MB10906E7628BC59896E0CE778BB270@BN3PR0501MB1090.namprd05.prod.outlook.com>
 References: <CAKdxkf8Hz0p__1UpZ9+v9nedE7uNb7ajQ+ykUpaZ-_1mc6BhyA@mail.gmail.com>
 	<BN3PR0501MB109039E595DA8504659AE114BB380@BN3PR0501MB1090.namprd05.prod.outlook.com>
 	<CAKdxkf-jp73wpRi19a7C8PKGqcnKL8aKarPM6Jerdy4MSD544Q@mail.gmail.com>
-In-Reply-To: <CAKdxkf-jp73wpRi19a7C8PKGqcnKL8aKarPM6Jerdy4MSD544Q@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-vipre-scanned: 0042B4520092100042B59F
-x-originating-ip: [98.100.91.242]
-authentication-results: gmail.com; dkim=none (message not signed)
-	header.d=none;
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:;SRVR:BN3PR0501MB1090;
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0; RULEID:;
-	SRVR:BN3PR0501MB1090; 
-x-forefront-prvs: 04825EA361
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(377454003)(377424004)(13464003)(46102003)(110136001)(86362001)(76576001)(87936001)(2656002)(92566002)(77156002)(106116001)(62966003)(74316001)(99286002)(19580405001)(19580395003)(2950100001)(76176999)(50986999)(54356999)(33656002)(15975445007)(66066001)(40100003)(102836002)(122556002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR0501MB1090;
-	H:BN3PR0501MB1090.namprd05.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; LANG:en; 
-MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Feb 2015 14:01:28.3785 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR0501MB1090
+	<BN3PR0501MB10906E7628BC59896E0CE778BB270@BN3PR0501MB1090.namprd05.prod.outlook.com>
+Date: Mon, 9 Feb 2015 15:26:24 +0100
+Message-ID: <CAKdxkf8gd65wxGUKjti+TQvqvbi-boRvdsrV2Xfft5nVJca8ZA@mail.gmail.com>
+From: Aurele Traynard <aurele.traynard@gmail.com>
+To: Bryan Evenson <bevenson@melinkcorp.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: replace etc/network/interfaces with symbolic link
 X-BeenThere: yocto@yoctoproject.org
@@ -69,93 +62,355 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Feb 2015 14:16:12 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 09 Feb 2015 14:26:28 -0000
+Content-Type: multipart/alternative; boundary=f46d043c82680fe862050ea88ee3
 
-QXVyw6hsZSwNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBBdXJlbGUg
-VHJheW5hcmQgW21haWx0bzphdXJlbGUudHJheW5hcmRAZ21haWwuY29tXQ0KPiBTZW50OiBNb25k
-YXksIEZlYnJ1YXJ5IDA5LCAyMDE1IDQ6NTkgQU0NCj4gVG86IEJyeWFuIEV2ZW5zb24NCj4gQ2M6
-IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogUmU6IFt5b2N0b10gcmVwbGFjZSBl
-dGMvbmV0d29yay9pbnRlcmZhY2VzIHdpdGggc3ltYm9saWMgbGluaw0KPiANCj4gVGhhbmsgeW91
-IGZvciBhbGwgYW5zd2VycywgSSBsb29rZWQNCj4gDQo+IA0KPiBJbiBmYWN0IEkgZm91bmQgYW5v
-dGhlciBwcm9ibGVtLCBldmVuIGlmIEkgbW9kaWZ5IHRoZSBvcmlnaW5hbCByZWNpcGUgSSBjYW4n
-dCBnZXQNCj4gYSBtb2RpZmllZCBycG0sIG9yIHJvb3Rmcy4uLg0KPiBJIGNvbW1lbnRlZCBsaW5l
-cyBjb25jZXJuaW5nIGludGVyZmFjZXMgZmlsZXMgYnV0IGl0IHNlZW1zIHRoYXQgbm90aGluZyBp
-cw0KPiBtb2RpZmllZCBpbiB0aGUgcm9vdGZzIGFuZCBpbiB0aGUgcnBtLi4uDQo+IGlmIHNvbWVv
-bmUgdW5kZXJzdGFuZHMgd2hhdCBJIG1pc3NlZC4uLg0KPiANCj4gdGhlIGJpdGJha2UgZmlsZSA6
-DQo+IGh0dHA6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9jZ2l0LmNnaS9wb2t5L3BsYWluL21ldGEv
-cmVjaXBlcy1jb3JlL2luaXQtDQo+IGlmdXBkb3duL2luaXQtaWZ1cGRvd25fMS4wLmJiDQo+IGFu
-ZCBJIGNvbW1lbnRlZCBvdXQgOg0KPiAjaW5zdGFsbCAtbSAwNjQ0ICR7V09SS0RJUn0vaW50ZXJm
-YWNlcw0KPiAke0R9JHtzeXNjb25mZGlyfS9uZXR3b3JrL2ludGVyZmFjZXMNCj4gI0NPTkZGSUxF
-U18ke1BOfSA9ICIke3N5c2NvbmZkaXJ9L25ldHdvcmsvaW50ZXJmYWNlcyINCj4gDQo+IA0KDQpJ
-ZiB5b3UgY29tbWVudCB0aG9zZSBsaW5lcyBvdXQsIHRoZW4gJHtzeXNjb25mZGlyfS9uZXR3b3Jr
-L2ludGVyZmFjZXMgc2hvdWxkIG5vdCBiZSBpbiB0aGUgYnVpbHQgUlBNLiAgU28gZWl0aGVyIHRo
-ZXJlIGlzIGEgLmJiYXBwZW5kIHRoYXQgaXMgYWRkaW5nIHRoZSBmaWxlIGJhY2sgaW4sIG9yIHRo
-ZSBwYWNrYWdlIGlzbid0IGJlaW5nIHJlYnVpbHQuICBUcnkgY2hlY2tpbmcgdGhlIGZvbGxvd2lu
-ZyB0byBzZWUgd2hhdCBtYXkgYmUgaGFwcGVuaW5nOg0KDQoxLiAgQ2hlY2sgdGhlIGNyZWF0aW9u
-IGRhdGUgb24gdGhlIGluaXQtaWZ1cGRvd24gUlBNLiAgSWYgdGhlIFJQTSBoYXMgbm90IGJlZW4g
-cmUtY3JlYXRlZCBzaW5jZSB0aGUgbGFzdCB0aW1lIHlvdSBtb2RpZmllZCB0aGUgcmVjaXBlLCB0
-aGVuIHRoZSBSUE0gaXMgbm90IGJlaW5nIHJlYnVpbHQgd2l0aCB5b3VyIGNoYW5nZXMuICBJZiB5
-b3UgYXJlIG5vdCBydW5uaW5nIGEgUFIgc2VydmVyLCB0aGVuIHlvdSBuZWVkIHRvIGluY3JlbWVu
-dCB0aGUgUFIgdmVyc2lvbiBpbiB5b3VyIC5iYmFwcGVuZC4gIFNlZSBodHRwOi8vd3d3LnlvY3Rv
-cHJvamVjdC5vcmcvZG9jcy8xLjcuMS9kZXYtbWFudWFsL2Rldi1tYW51YWwuaHRtbCN3b3JraW5n
-LXdpdGgtYS1wci1zZXJ2aWNlIGZvciBkZXRhaWxzIG9uIHRoZSBQUiBzZXJ2aWNlIGFuZCBob3cg
-dG8gaGFuZGxlIFBScyB3aXRob3V0IHRoZSBQUiBzZXJ2aWNlLiAgTm90ZSB0aGF0IGlmIHlvdSBh
-cmUgb24gYW4gb2xkZXIgcG9reSBicmFuY2ggdGhhdCB0aGUgc3RlcHMgZm9yIGhhbmRsaW5nIHRo
-ZSBQUiBzZXJ2aWNlIG1heSBiZSBzbGlnaHRseSBkaWZmZXJlbnQuICBSZWFkIHRoZSB2ZXJzaW9u
-IG9mIGRvY3VtZW50YXRpb24gdGhhdCBtYXRjaGVzIHlvdXIgY3VycmVudCBicmFuY2guDQoyLiBJ
-ZiB0aGUgUlBNIGlzIGJlaW5nIHJlYnVpbHQsIGV4dHJhY3QgdGhlIFJQTSBvbiB5b3VyIGJ1aWxk
-IG1hY2hpbmUgdG8gbG9vayBhdCBpdHMgY29udGVudHMuICBJZiB0aGUgaW50ZXJmYWNlcyBmaWxl
-IGlzIHN0aWxsIHRoZXJlLCB0aGVuIHRoZXJlIGlzIHN0aWxsIHNvbWV0aGluZyBub3Qgd29ya2lu
-ZyByaWdodCB3aXRoIHRoZSBkb19pbnN0YWxsIHN0ZXAuICBVbmRlciB0bXAvd29yay88TUFDSElO
-RT4vaW5pdC1pZnVwZG93bi88UFYtUFI+L3RlbXAvLCBvcGVuIHRoZSBmaWxlIHJ1bi5kb19pbnN0
-YWxsICh0aGUgZmlsZW5hbWUgd2lsbCBoYXZlIGEgUElEIGFwcGVuZGVkIHRvIHRoZSBlbmQsIHNv
-IGl0J2xsIGJlIG5hbWVkIHNvbWV0aGluZyBsaWtlIHJ1bi5kb19pbnN0YWxsLjE1NjEyLiAgSWYg
-dGhlcmUgYXJlIG11bHRpcGxlIGluIHRoZSB0ZW1wIGRpcmVjdG9yeSwgbWFrZSBzdXJlIHlvdSBs
-b29rIGF0IHRoZSBsYXRlc3Qgb25lKS4gIEluIHRoaXMgZmlsZSBpcyB0aGUgZmluYWwgZG9faW5z
-dGFsbCBzY3JpcHQgdGhhdCBpcyBydW4gd2hlbiBwZXJmb3JtaW5nIHRoZSBpbnN0YWxsIHN0ZXAg
-Zm9yIHRoZSByZWNpcGUuICBJZiB0aGlzIGRvZXMgbm90IGxvb2sgbGlrZSB3aGF0IHlvdSB3YW50
-LCB0aGVuIHNvbWV0aGluZyBiZXR3ZWVuIHRoZSBtYWluIHJlY2lwZSBhbmQgdGhlIC5iYmFwcGVu
-ZHMgYXJlIGJ1aWxkaW5nIHRoZSBkb19pbnN0YWxsIHN0ZXAgaW5jb3JyZWN0bHkuDQoNClNpbmNl
-IHlvdSBhcmUgcmVtb3ZpbmcgZmlsZXMgdGhhdCB0aGUgb3JpZ2luYWwgcmVjaXBlIGFkZHMsIHRo
-ZSBjbGVhbmVzdCBhcHByb2FjaCBtYXkgYmUgdG8gbGVhdmUgdGhlIG9yaWdpbmFsIHJlY2lwZSB1
-bnRvdWNoZWQgYW5kIHRvIHJlcGxhY2UgdGhlIGRvX2luc3RhbGwgc3RlcCBpbiB5b3VyIC5iYmFw
-cGVuZC4gIElmIHlvdSBtb2RpZnkgdGhlIG1haW4gcmVjaXBlLCBsYXRlciBvbiBpZiB5b3Ugc3dp
-dGNoIHRvIGEgZGlmZmVyZW50IHBva3kgYnJhbmNoIHlvdSdsbCBsb3NlIHlvdXIgY2hhbmdlcy4N
-Cg0KUmVnYXJkcywNCkJyeWFuDQoNCj4gQXVyw6hsZQ0KPiANCj4gDQo+IDIwMTUtMDItMDYgMjA6
-MzggR01UKzAxOjAwIEJyeWFuIEV2ZW5zb24gPGJldmVuc29uQG1lbGlua2NvcnAuY29tDQo+IDxt
-YWlsdG86YmV2ZW5zb25AbWVsaW5rY29ycC5jb20+ID46DQo+IA0KPiANCj4gCUF1cmVsZSwNCj4g
-DQo+IAlPbmUgcG9zc2libGUgaXNzdWUgaXMgJHtzeXNjb25mZGlyfS9uZXR3b3JrL2ludGVyZmFj
-ZXMgaXMgbGlzdGVkIGluIHRoZQ0KPiBDT05GRklMRVMgaW4gdGhlIG9yaWdpbmFsIHJlY2lwZS4g
-IEl0IG1heSBzdGlsbCBiZSBpbnN0YWxsaW5nIHRoaXMgZmlsZSBiZWNhdXNlIGl0IGlzDQo+IGxp
-c3RlZCB1bmRlciBDT05GRklMRVMuICBUcnkgYWRkaW5nOg0KPiANCj4gCUNPTkZGSUxFU18ke1BO
-fSA9ICIiDQo+IA0KPiAJVG8geW91ciBiYmFwcGVuZC4NCj4gDQo+IAlSZWdhcmRzLA0KPiAJQnJ5
-YW4NCj4gDQo+IA0KPiAJPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiAJPiBGcm9tOiB5
-b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgPG1haWx0bzp5b2N0by0NCj4gYm91bmNlc0B5
-b2N0b3Byb2plY3Qub3JnPiAgW21haWx0bzp5b2N0by0gPG1haWx0bzp5b2N0by0+DQo+IAk+IGJv
-dW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyA8bWFpbHRvOmJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZz4g
-XQ0KPiBPbiBCZWhhbGYgT2YgQXVyZWxlIFRyYXluYXJkDQo+IAk+IFNlbnQ6IEZyaWRheSwgRmVi
-cnVhcnkgMDYsIDIwMTUgMTA6NTUgQU0NCj4gCT4gVG86IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcg
-PG1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnPg0KPiAJPiBTdWJqZWN0OiBbeW9jdG9dIHJl
-cGxhY2UgZXRjL25ldHdvcmsvaW50ZXJmYWNlcyB3aXRoIHN5bWJvbGljIGxpbmsNCj4gCT4NCj4g
-CT4gSGksDQo+IAk+DQo+IAk+DQo+IAk+IEknbSB0cnlpbmcgdG8gZmluZCBhIGNsZWFuIHdheSB0
-byByZXBsYWNlIC9ldGMvbmV0d29yay9pbnRlcmZhY2VzDQo+IHdpdGggYQ0KPiAJPiBzeW1ib2xp
-YyBsaW5rLiAoaXQgY29tZXMgd2l0aCBpbml0LWlmdXBkb3duIHJlY2lwZSkgSSB0cmllZCB3aXRo
-ICBhDQo+IGJiYXBwZW5kDQo+IAk+IGJ1dCBub3RoaW5nIGFwcGVhciBpbiBmaW5hbCBmaWxlc3lz
-dGVtIGFuZCAvZXRjL25ldHdvcmsvaW50ZXJmYWNlcw0KPiBzdGlsbA0KPiAJPiBleGlzdHMuLi4N
-Cj4gCT4NCj4gCT4NCj4gCT4gSSdtIHN1cmUgdGhlIGZvbGxvd2luZyBjb2RlIGlzIGNvbXBsZXRl
-bHkgd3JvbmcsIGJ1dCBJIGRvbid0IGtub3cNCj4gaG93IHRvIGRvDQo+IAk+IHRoaXMgd2l0aCB0
-aGUgcmlnaHQgd2F5Li4uDQo+IAk+IGRvX2luc3RhbGxfYXBwZW5kICgpIHsNCj4gCT4gICAgIG1r
-ZGlyIC1wIGRhdGFzL25ldHdvcmsNCj4gCT4NCj4gCT4gICAgIGluc3RhbGwgLWQgMDc1NSAke0R9
-L2RhdGFzDQo+IAk+ICAgICBpbnN0YWxsIC1kIDA3NTUgJHtEfS9kYXRhcy9uZXR3b3JrDQo+IAk+
-ICAgICBpbnN0YWxsIC1tIDA3NTUgJHtEfSR7c3lzY29uZmRpcn0vbmV0d29yay9pbnRlcmZhY2Vz
-DQo+ICR7RH0vZGF0YXMvbmV0d29yaw0KPiAJPiAgICAgI212ICR7RH0ke3N5c2NvbmZkaXJ9L25l
-dHdvcmsvaW50ZXJmYWNlcyAke0R9L2RhdGFzL25ldHdvcmsNCj4gCT4gICAgIHJtICR7RH0ke3N5
-c2NvbmZkaXJ9L25ldHdvcmsvaW50ZXJmYWNlcw0KPiAJPiAgICAgbG4gLXNmIC9kYXRhcy9uZXR3
-b3JrL2ludGVyZmFjZXMNCj4gJHtEfSR7c3lzY29uZmRpcn0vbmV0d29yay9pbnRlcmZhY2VzDQo+
-IAk+DQo+IAk+IH0NCj4gCT4gRklMRVNfJHtQTn0gKz0gIi9kYXRhcy8gL2RhdGFzL25ldHdvcmsv
-aW50ZXJmYWNlcyINCj4gCT4NCj4gCT4NCj4gCT4gdGhhbmtzIGZvciBhbnkgaGVscA0KPiAJPg0K
-PiANCj4gDQo+IA0KDQo=
+--f46d043c82680fe862050ea88ee3
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+many thanks for your concern, I finaly found my issue... there was no error=
+.
+I'm using a new distro since friday, this resulted in a new "tmp-glibc"
+directory instead of my old "tmp" directory created by poky... I was
+looking in the wrong directory. As you said in your first point I should
+check the creation date!.
+
+
+thanks
+Aur=C3=A8le
+
+2015-02-09 15:01 GMT+01:00 Bryan Evenson <bevenson@melinkcorp.com>:
+
+> Aur=C3=A8le,
+>
+> > -----Original Message-----
+> > From: Aurele Traynard [mailto:aurele.traynard@gmail.com]
+> > Sent: Monday, February 09, 2015 4:59 AM
+> > To: Bryan Evenson
+> > Cc: yocto@yoctoproject.org
+> > Subject: Re: [yocto] replace etc/network/interfaces with symbolic link
+> >
+> > Thank you for all answers, I looked
+> >
+> >
+> > In fact I found another problem, even if I modify the original recipe I
+> can't get
+> > a modified rpm, or rootfs...
+> > I commented lines concerning interfaces files but it seems that nothing
+> is
+> > modified in the rootfs and in the rpm...
+> > if someone understands what I missed...
+> >
+> > the bitbake file :
+> > http://git.yoctoproject.org/cgit.cgi/poky/plain/meta/recipes-core/init-
+> > ifupdown/init-ifupdown_1.0.bb
+> > and I commented out :
+> > #install -m 0644 ${WORKDIR}/interfaces
+> > ${D}${sysconfdir}/network/interfaces
+> > #CONFFILES_${PN} =3D "${sysconfdir}/network/interfaces"
+> >
+> >
+>
+> If you comment those lines out, then ${sysconfdir}/network/interfaces
+> should not be in the built RPM.  So either there is a .bbappend that is
+> adding the file back in, or the package isn't being rebuilt.  Try checkin=
+g
+> the following to see what may be happening:
+>
+> 1.  Check the creation date on the init-ifupdown RPM.  If the RPM has not
+> been re-created since the last time you modified the recipe, then the RPM
+> is not being rebuilt with your changes.  If you are not running a PR
+> server, then you need to increment the PR version in your .bbappend.  See
+> http://www.yoctoproject.org/docs/1.7.1/dev-manual/dev-manual.html#working=
+-with-a-pr-service
+> for details on the PR service and how to handle PRs without the PR
+> service.  Note that if you are on an older poky branch that the steps for
+> handling the PR service may be slightly different.  Read the version of
+> documentation that matches your current branch.
+> 2. If the RPM is being rebuilt, extract the RPM on your build machine to
+> look at its contents.  If the interfaces file is still there, then there =
+is
+> still something not working right with the do_install step.  Under
+> tmp/work/<MACHINE>/init-ifupdown/<PV-PR>/temp/, open the file
+> run.do_install (the filename will have a PID appended to the end, so it'l=
+l
+> be named something like run.do_install.15612.  If there are multiple in t=
+he
+> temp directory, make sure you look at the latest one).  In this file is t=
+he
+> final do_install script that is run when performing the install step for
+> the recipe.  If this does not look like what you want, then something
+> between the main recipe and the .bbappends are building the do_install st=
+ep
+> incorrectly.
+>
+> Since you are removing files that the original recipe adds, the cleanest
+> approach may be to leave the original recipe untouched and to replace the
+> do_install step in your .bbappend.  If you modify the main recipe, later =
+on
+> if you switch to a different poky branch you'll lose your changes.
+>
+> Regards,
+> Bryan
+>
+> > Aur=C3=A8le
+> >
+> >
+> > 2015-02-06 20:38 GMT+01:00 Bryan Evenson <bevenson@melinkcorp.com
+> > <mailto:bevenson@melinkcorp.com> >:
+> >
+> >
+> >       Aurele,
+> >
+> >       One possible issue is ${sysconfdir}/network/interfaces is listed
+> in the
+> > CONFFILES in the original recipe.  It may still be installing this file
+> because it is
+> > listed under CONFFILES.  Try adding:
+> >
+> >       CONFFILES_${PN} =3D ""
+> >
+> >       To your bbappend.
+> >
+> >       Regards,
+> >       Bryan
+> >
+> >
+> >       > -----Original Message-----
+> >       > From: yocto-bounces@yoctoproject.org <mailto:yocto-
+> > bounces@yoctoproject.org>  [mailto:yocto- <mailto:yocto->
+> >       > bounces@yoctoproject.org <mailto:bounces@yoctoproject.org> ]
+> > On Behalf Of Aurele Traynard
+> >       > Sent: Friday, February 06, 2015 10:55 AM
+> >       > To: yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+> >       > Subject: [yocto] replace etc/network/interfaces with symbolic
+> link
+> >       >
+> >       > Hi,
+> >       >
+> >       >
+> >       > I'm trying to find a clean way to replace /etc/network/interfac=
+es
+> > with a
+> >       > symbolic link. (it comes with init-ifupdown recipe) I tried
+> with  a
+> > bbappend
+> >       > but nothing appear in final filesystem and
+> /etc/network/interfaces
+> > still
+> >       > exists...
+> >       >
+> >       >
+> >       > I'm sure the following code is completely wrong, but I don't kn=
+ow
+> > how to do
+> >       > this with the right way...
+> >       > do_install_append () {
+> >       >     mkdir -p datas/network
+> >       >
+> >       >     install -d 0755 ${D}/datas
+> >       >     install -d 0755 ${D}/datas/network
+> >       >     install -m 0755 ${D}${sysconfdir}/network/interfaces
+> > ${D}/datas/network
+> >       >     #mv ${D}${sysconfdir}/network/interfaces ${D}/datas/network
+> >       >     rm ${D}${sysconfdir}/network/interfaces
+> >       >     ln -sf /datas/network/interfaces
+> > ${D}${sysconfdir}/network/interfaces
+> >       >
+> >       > }
+> >       > FILES_${PN} +=3D "/datas/ /datas/network/interfaces"
+> >       >
+> >       >
+> >       > thanks for any help
+> >       >
+> >
+> >
+> >
+>
+>
+
+--f46d043c82680fe862050ea88ee3
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div>many thanks for your concern, I finaly found my =
+issue... there was no error.<br></div>I&#39;m using a new distro since frid=
+ay, this resulted in a new &quot;tmp-glibc&quot; directory instead of my ol=
+d &quot;tmp&quot; directory created by poky... I was looking in the wrong d=
+irectory. As you said in your first point I should check the creation date!=
+.<br><br><br></div><div>thanks<br></div><div>Aur=C3=A8le<br></div></div><di=
+v class=3D"gmail_extra"><br><div class=3D"gmail_quote">2015-02-09 15:01 GMT=
++01:00 Bryan Evenson <span dir=3D"ltr">&lt;<a href=3D"mailto:bevenson@melin=
+kcorp.com" target=3D"_blank">bevenson@melinkcorp.com</a>&gt;</span>:<br><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
+ccc solid;padding-left:1ex">Aur=C3=A8le,<br>
+<span class=3D""><br>
+&gt; -----Original Message-----<br>
+&gt; From: Aurele Traynard [mailto:<a href=3D"mailto:aurele.traynard@gmail.=
+com">aurele.traynard@gmail.com</a>]<br>
+&gt; Sent: Monday, February 09, 2015 4:59 AM<br>
+&gt; To: Bryan Evenson<br>
+&gt; Cc: <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</=
+a><br>
+&gt; Subject: Re: [yocto] replace etc/network/interfaces with symbolic link=
+<br>
+&gt;<br>
+&gt; Thank you for all answers, I looked<br>
+&gt;<br>
+&gt;<br>
+&gt; In fact I found another problem, even if I modify the original recipe =
+I can&#39;t get<br>
+&gt; a modified rpm, or rootfs...<br>
+&gt; I commented lines concerning interfaces files but it seems that nothin=
+g is<br>
+&gt; modified in the rootfs and in the rpm...<br>
+&gt; if someone understands what I missed...<br>
+&gt;<br>
+&gt; the bitbake file :<br>
+&gt; <a href=3D"http://git.yoctoproject.org/cgit.cgi/poky/plain/meta/recipe=
+s-core/init-" target=3D"_blank">http://git.yoctoproject.org/cgit.cgi/poky/p=
+lain/meta/recipes-core/init-</a><br>
+&gt; ifupdown/<a href=3D"http://init-ifupdown_1.0.bb" target=3D"_blank">ini=
+t-ifupdown_1.0.bb</a><br>
+&gt; and I commented out :<br>
+&gt; #install -m 0644 ${WORKDIR}/interfaces<br>
+&gt; ${D}${sysconfdir}/network/interfaces<br>
+&gt; #CONFFILES_${PN} =3D &quot;${sysconfdir}/network/interfaces&quot;<br>
+&gt;<br>
+&gt;<br>
+<br>
+</span>If you comment those lines out, then ${sysconfdir}/network/interface=
+s should not be in the built RPM.=C2=A0 So either there is a .bbappend that=
+ is adding the file back in, or the package isn&#39;t being rebuilt.=C2=A0 =
+Try checking the following to see what may be happening:<br>
+<br>
+1.=C2=A0 Check the creation date on the init-ifupdown RPM.=C2=A0 If the RPM=
+ has not been re-created since the last time you modified the recipe, then =
+the RPM is not being rebuilt with your changes.=C2=A0 If you are not runnin=
+g a PR server, then you need to increment the PR version in your .bbappend.=
+=C2=A0 See <a href=3D"http://www.yoctoproject.org/docs/1.7.1/dev-manual/dev=
+-manual.html#working-with-a-pr-service" target=3D"_blank">http://www.yoctop=
+roject.org/docs/1.7.1/dev-manual/dev-manual.html#working-with-a-pr-service<=
+/a> for details on the PR service and how to handle PRs without the PR serv=
+ice.=C2=A0 Note that if you are on an older poky branch that the steps for =
+handling the PR service may be slightly different.=C2=A0 Read the version o=
+f documentation that matches your current branch.<br>
+2. If the RPM is being rebuilt, extract the RPM on your build machine to lo=
+ok at its contents.=C2=A0 If the interfaces file is still there, then there=
+ is still something not working right with the do_install step.=C2=A0 Under=
+ tmp/work/&lt;MACHINE&gt;/init-ifupdown/&lt;PV-PR&gt;/temp/, open the file =
+run.do_install (the filename will have a PID appended to the end, so it&#39=
+;ll be named something like run.do_install.15612.=C2=A0 If there are multip=
+le in the temp directory, make sure you look at the latest one).=C2=A0 In t=
+his file is the final do_install script that is run when performing the ins=
+tall step for the recipe.=C2=A0 If this does not look like what you want, t=
+hen something between the main recipe and the .bbappends are building the d=
+o_install step incorrectly.<br>
+<br>
+Since you are removing files that the original recipe adds, the cleanest ap=
+proach may be to leave the original recipe untouched and to replace the do_=
+install step in your .bbappend.=C2=A0 If you modify the main recipe, later =
+on if you switch to a different poky branch you&#39;ll lose your changes.<b=
+r>
+<br>
+Regards,<br>
+Bryan<br>
+<span class=3D""><br>
+&gt; Aur=C3=A8le<br>
+&gt;<br>
+&gt;<br>
+&gt; 2015-02-06 20:38 GMT+01:00 Bryan Evenson &lt;<a href=3D"mailto:bevenso=
+n@melinkcorp.com">bevenson@melinkcorp.com</a><br>
+</span>&gt; &lt;mailto:<a href=3D"mailto:bevenson@melinkcorp.com">bevenson@=
+melinkcorp.com</a>&gt; &gt;:<br>
+<span class=3D"im HOEnZb">&gt;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0Aurele,<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0One possible issue is ${sysconfdir}/network/=
+interfaces is listed in the<br>
+&gt; CONFFILES in the original recipe.=C2=A0 It may still be installing thi=
+s file because it is<br>
+&gt; listed under CONFFILES.=C2=A0 Try adding:<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0CONFFILES_${PN} =3D &quot;&quot;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0To your bbappend.<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0Regards,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0Bryan<br>
+&gt;<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; -----Original Message-----<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; From: <a href=3D"mailto:yocto-bounces@y=
+octoproject.org">yocto-bounces@yoctoproject.org</a> &lt;mailto:<a href=3D"m=
+ailto:yocto-">yocto-</a><br>
+</span><span class=3D"im HOEnZb">&gt; <a href=3D"mailto:bounces@yoctoprojec=
+t.org">bounces@yoctoproject.org</a>&gt;=C2=A0 [mailto:<a href=3D"mailto:yoc=
+to-">yocto-</a> &lt;mailto:<a href=3D"mailto:yocto-">yocto-</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; <a href=3D"mailto:bounces@yoctoproject.=
+org">bounces@yoctoproject.org</a> &lt;mailto:<a href=3D"mailto:bounces@yoct=
+oproject.org">bounces@yoctoproject.org</a>&gt; ]<br>
+&gt; On Behalf Of Aurele Traynard<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; Sent: Friday, February 06, 2015 10:55 A=
+M<br>
+</span><div class=3D"HOEnZb"><div class=3D"h5">&gt;=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0&gt; To: <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.or=
+g</a> &lt;mailto:<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproje=
+ct.org</a>&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; Subject: [yocto] replace etc/network/in=
+terfaces with symbolic link<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; Hi,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; I&#39;m trying to find a clean way to r=
+eplace /etc/network/interfaces<br>
+&gt; with a<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; symbolic link. (it comes with init-ifup=
+down recipe) I tried with=C2=A0 a<br>
+&gt; bbappend<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; but nothing appear in final filesystem =
+and /etc/network/interfaces<br>
+&gt; still<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; exists...<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; I&#39;m sure the following code is comp=
+letely wrong, but I don&#39;t know<br>
+&gt; how to do<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; this with the right way...<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; do_install_append () {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0mkdir -p datas/netwo=
+rk<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0install -d 0755 ${D}=
+/datas<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0install -d 0755 ${D}=
+/datas/network<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0install -m 0755 ${D}=
+${sysconfdir}/network/interfaces<br>
+&gt; ${D}/datas/network<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0#mv ${D}${sysconfdir=
+}/network/interfaces ${D}/datas/network<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0rm ${D}${sysconfdir}=
+/network/interfaces<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=A0ln -sf /datas/networ=
+k/interfaces<br>
+&gt; ${D}${sysconfdir}/network/interfaces<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; }<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; FILES_${PN} +=3D &quot;/datas/ /datas/n=
+etwork/interfaces&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; thanks for any help<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+<br>
+</div></div></blockquote></div><br></div>
+
+--f46d043c82680fe862050ea88ee3--
