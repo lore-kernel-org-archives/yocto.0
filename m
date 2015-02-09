@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 48AA0E00990; Mon,  9 Feb 2015 15:52:40 -0800 (PST)
+	id 22112E0097F; Mon,  9 Feb 2015 15:52:41 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,42 +8,42 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.215.42 listed in list.dnswl.org]
+	*      [209.85.215.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-la0-f42.google.com (mail-la0-f42.google.com
-	[209.85.215.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1AF3E00945
-	for <yocto@yoctoproject.org>; Mon,  9 Feb 2015 15:52:29 -0800 (PST)
-Received: by labge10 with SMTP id ge10so16907050lab.12
-	for <yocto@yoctoproject.org>; Mon, 09 Feb 2015 15:52:28 -0800 (PST)
+Received: from mail-la0-f46.google.com (mail-la0-f46.google.com
+	[209.85.215.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E48BEE0094C
+	for <yocto@yoctoproject.org>; Mon,  9 Feb 2015 15:52:31 -0800 (PST)
+Received: by labge10 with SMTP id ge10so16907137lab.12
+	for <yocto@yoctoproject.org>; Mon, 09 Feb 2015 15:52:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references;
-	bh=I7CM+BwDXLy6yzhl11zd6uJpIzzTGhY1+o3NGkNdtOs=;
-	b=eeYifxaWJ+Z5FMiE6csI1M5yZVxNWOvPi54VMPuqRRDQSBVcuaDcdU0K1f7fIceWqu
-	cEux7Vjj2HTCxWx2pzMEFhmowIxNtqKTWFD/xcZxKNOHmL5yYWDYuNu6VQAA6kOH1cM+
-	lOPGZL2rqWyw2+YFWUvKjOiL9bsRol/Xb9W/GEQa16ZXP5Ii8CQLU6WVqAMQ0PDXwUE/
-	OuGu1W59a5k9zvLZZw5tjrjYb3os9PcXZ4RtPVR/ng4/9MGMHK4NGTiVta9N+WU5HfDn
-	LEYtVMqtV4+Rkw10x1ywyZyR5vKt92DTcFVMjCVENQ/PVu91QS3q9ElPUnDUb31DFhMX
-	rgvA==
-X-Gm-Message-State: ALoCoQkxEKWa51uPFK5KheOeChauW2kkUhp6aKPN6tu+Ura72FyARXDxEKLwLzHqCRERDrhRCv2g
-X-Received: by 10.112.198.1 with SMTP id iy1mr8385388lbc.13.1423525948853;
-	Mon, 09 Feb 2015 15:52:28 -0800 (PST)
+	bh=IxbhVoqDfaqKg99QdR/me3beJDxkX/r1drUOAuD/UyQ=;
+	b=WSACKFFJ7a1EaKK1R8VyvGjo7H0H9NbePLXoi0kofzxesk62/QZGQ4DBfCARA/0pUh
+	Gm6nS9L+HREvTYzrj4pai8VN2N+UVIdM2PlGEoUxlWwCVyQF6lsavFQYU/Vhag7i8r9r
+	pa+qXwCuenSFtiUiAczV4RoES04rlCpp/2OQUHYl1dt90lrsryBESJavKaly+9rLEBaS
+	U+/7mndMK7RazN+qUwPcNkqVPgIXj1gIXrZ0r0mhUPURoRSAUxm5yRfl5xwCQyWh/cgO
+	Z4P6FrAcFsnnf6sGjY9+7e5RBOFgS9MQVQC5gEZgoJiyWTX5FUsHmjMAxrzXnOBfHarM
+	qLLw==
+X-Gm-Message-State: ALoCoQkBPNedEcaWza3ApTD/moLt2KH6qpuOeAB0+ICoJ3pq+KHf2RPn1LKxJsjS0dyzW3lFv527
+X-Received: by 10.112.130.34 with SMTP id ob2mr20797375lbb.78.1423525950551;
+	Mon, 09 Feb 2015 15:52:30 -0800 (PST)
 Received: from otp-agherzan-l1.gjk.dk (dhcp-186-165.gjk.dk. [195.249.186.165])
 	by mx.google.com with ESMTPSA id
-	lk6sm2380189lac.1.2015.02.09.15.52.28 for <yocto@yoctoproject.org>
+	lk6sm2380189lac.1.2015.02.09.15.52.29 for <yocto@yoctoproject.org>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 09 Feb 2015 15:52:28 -0800 (PST)
+	Mon, 09 Feb 2015 15:52:29 -0800 (PST)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Tue, 10 Feb 2015 00:52:19 +0100
-Message-Id: <1423525941-19710-3-git-send-email-andrei@gherzan.ro>
+Date: Tue, 10 Feb 2015 00:52:21 +0100
+Message-Id: <1423525941-19710-5-git-send-email-andrei@gherzan.ro>
 X-Mailer: git-send-email 2.1.0
 In-Reply-To: <1423525941-19710-1-git-send-email-andrei@gherzan.ro>
 References: <1423525941-19710-1-git-send-email-andrei@gherzan.ro>
-Subject: [meta-raspberrypi][PATCH V2 3/5] rpi-gpio: Update to v0.5.9
+Subject: [meta-raspberrypi][PATCH V2 5/5] userland: Bump SRCREV
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,67 +55,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Feb 2015 23:52:40 -0000
+X-List-Received-Date: Mon, 09 Feb 2015 23:52:41 -0000
 
-Change-Id: Ifc455b9106f07583ccaf3fe82723baaeb5e04d2e
+Change-Id: If1d2608322749db4baa445ba94bc471a0ac86a5c
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- recipes-devtools/python/rpi-gpio_0.5.6.bb | 19 -------------------
- recipes-devtools/python/rpi-gpio_0.5.9.bb | 19 +++++++++++++++++++
- 2 files changed, 19 insertions(+), 19 deletions(-)
- delete mode 100644 recipes-devtools/python/rpi-gpio_0.5.6.bb
- create mode 100644 recipes-devtools/python/rpi-gpio_0.5.9.bb
+ recipes-graphics/userland/userland_git.bb | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/recipes-devtools/python/rpi-gpio_0.5.6.bb b/recipes-devtools/python/rpi-gpio_0.5.6.bb
-deleted file mode 100644
-index eff22d0..0000000
---- a/recipes-devtools/python/rpi-gpio_0.5.6.bb
-+++ /dev/null
-@@ -1,19 +0,0 @@
--DESCRIPTION = "A module to control Raspberry Pi GPIO channels"
--HOMEPAGE = "http://code.google.com/p/raspberry-gpio-python/"
--SECTION = "devel/python"
--LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://LICENCE.txt;md5=35af90ff2a10e8bdc967653b9dfcb22a"
--
--SRCNAME = "RPi.GPIO"
--
--SRC_URI = "\
--          http://pypi.python.org/packages/source/R/RPi.GPIO/${SRCNAME}-${PV}.tar.gz \
--          "
--S = "${WORKDIR}/${SRCNAME}-${PV}"
--
--inherit distutils
--
--COMPATIBLE_MACHINE = "raspberrypi"
--
--SRC_URI[md5sum] = "cbdff15871230ceef29bb407d31da485"
--SRC_URI[sha256sum] = "36b64a9485d6a0dc8f24cfca6af45759ee367ce412b952ebcf0409364e05813a"
-diff --git a/recipes-devtools/python/rpi-gpio_0.5.9.bb b/recipes-devtools/python/rpi-gpio_0.5.9.bb
-new file mode 100644
-index 0000000..9394fd8
---- /dev/null
-+++ b/recipes-devtools/python/rpi-gpio_0.5.9.bb
-@@ -0,0 +1,19 @@
-+DESCRIPTION = "A module to control Raspberry Pi GPIO channels"
-+HOMEPAGE = "http://code.google.com/p/raspberry-gpio-python/"
-+SECTION = "devel/python"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://LICENCE.txt;md5=9b95630a648966b142f1a0dcea001cb7"
-+
-+SRCNAME = "RPi.GPIO"
-+
-+SRC_URI = "\
-+          http://pypi.python.org/packages/source/R/RPi.GPIO/${SRCNAME}-${PV}.tar.gz \
-+          "
-+S = "${WORKDIR}/${SRCNAME}-${PV}"
-+
-+inherit distutils
-+
-+COMPATIBLE_MACHINE = "raspberrypi"
-+
-+SRC_URI[md5sum] = "54ea6ef33502d43e3a89713593315e5a"
-+SRC_URI[sha256sum] = "167fab1861093677af69db135ce815729dd4fbfb8f8e2eb830eab6324bc89152"
+diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
+index 77c98d7..1e60ea8 100644
+--- a/recipes-graphics/userland/userland_git.bb
++++ b/recipes-graphics/userland/userland_git.bb
+@@ -13,7 +13,7 @@ COMPATIBLE_MACHINE = "raspberrypi"
+ 
+ SRCBRANCH = "master"
+ SRCFORK = "raspberrypi"
+-SRCREV = "85441185e653347e6b3c2bbc7494f5e29a6ca4a2"
++SRCREV = "3b81b91c18ff19f97033e146a9f3262ca631f0e9"
+ 
+ SRC_URI = "git://github.com/${SRCFORK}/userland.git;protocol=git;branch=${SRCBRANCH} \
+           "
+@@ -32,10 +32,13 @@ do_install_append() {
+     rm -rf ${D}/opt
+ }
+ 
+-FILES_${PN} += "${libdir}/*${SOLIBS}"
++FILES_${PN} += " \
++    ${libdir}/*${SOLIBS} \
++    ${libdir}/plugins"
+ FILES_${PN}-dev = "${includedir} \
+                    ${prefix}/src"
+ FILES_${PN}-doc += "${datadir}/install"
++FILES_${PN}-dbg += "${libdir}/plugins/.debug"
+ 
+ PACKAGE_ARCH = "${MACHINE_ARCH}"
+ 
 -- 
 2.1.0
 
