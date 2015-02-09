@@ -1,14 +1,17 @@
-Return-Path: <vaduvajanalexandru@yahoo.com>
+Return-Path: <aurele.traynard@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1571AE00945; Sun,  8 Feb 2015 22:45:18 -0800 (PST)
+	id 42C5DE00945; Mon,  9 Feb 2015 01:58:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vaduvajanalexandru[at]yahoo.com)
+	mail provider *      (aurele.traynard[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -17,49 +20,38 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [98.138.91.182 listed in list.dnswl.org]
-Received: from nm22-vm4.bullet.mail.ne1.yahoo.com
-	(nm22-vm4.bullet.mail.ne1.yahoo.com [98.138.91.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90D10E00596
-	for <yocto@yoctoproject.org>; Sun,  8 Feb 2015 22:45:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1423464303; bh=pUATXVJLgxXwTa5mherry8DNUms3dhXkBZ0t9zs/Ies=;
-	h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject;
-	b=BGAuqG9TrOuTFbRNhk48SEmsigDmZ+ln85TgFSdiLhbI4qa5WKxjxii4uYB8SA0dLnV8AOsl+gLi5TlytrjEVbq7AQ5EB2pA2G9uSKJhAYDAFlSo63Y2jjX3YQ3uA0Pfao+Fke9/lWjeCeQMl3Va2ULpO+oUu3clfH0fPKPxfRO9TfK4HZqkGyNIaLLUJn4nGWS/hk96georCkgvXIZGWIV/XkFNUORLFcYl2OqjX3J9sgLjKuXc00xKUcg5fFmQOObOgU6MKMXqESVDZqwSH0InWw3pQm+1p3f2foXDeYe+1AKYJYWDgi2XxEWCWxZyvQNmn00coeEf3O32OvRkaw==
-Received: from [98.138.100.116] by nm22.bullet.mail.ne1.yahoo.com with NNFMP;
-	09 Feb 2015 06:45:03 -0000
-Received: from [98.138.87.9] by tm107.bullet.mail.ne1.yahoo.com with NNFMP;
-	09 Feb 2015 06:45:03 -0000
-Received: from [127.0.0.1] by omp1009.mail.ne1.yahoo.com with NNFMP;
-	09 Feb 2015 06:45:03 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 235838.3277.bm@omp1009.mail.ne1.yahoo.com
-X-YMail-OSG: sYbFFqsVM1lKLd1nn7NRQBKEWjBtRd0E1gwxCh5zJLoB8cd4VXBo_YOolPpCnGf
-	_4jUegnyo5aRVrEH5vjRvohS6yyEl1huUOs5SpPKGleknqOpdcwR7l1hjzvvvWN7NmraQy95YoQC
-	wuOaSLGwv.l1yKqV_ti8l8bRUrh1wboUw_QUuevle4Lb0ukOvGLR1kPLTpdBdCdlWOgb2h8RBBgR
-	9vHOpdAusg5qfGkR0pex0jb2cJDLU.MSZHaDcbERmhyhTLea0RUSmyCNUQHlJB3GE3t2rsZt9bCp
-	I_ctuUw36XCnREAdHCTXmuwLFiPbsOPLz2qquasMB0QobwSg5fVtMkBLXYRuOqne3ibsSskQJaJz
-	fG.0smOX4oQ8eIImKFmlDR5dH5blbmRhRvfurlTOFOso5yuYZn4V_YvwuEA9z0aVED_AA4c4S1n9
-	.uGodgpaSJTTx3QwqJwahPZANn86xwqiEy4S.Pr4r5GD2GSrdYvEFZ.V7YaajmXKyJWDCpmU7FWE
-	vPqo2PH.HxGOS3DO1DfnXl2IHyLftVFu4d0pD8mU14mRuz.ANgrdTI3AZm4wqfx1GSpflITl.L4Z
-	idAqlalbevJ8ywxFUcrpIpgbpGhS8Pnif94IlA_ZQebTlM_.D5_834O3R9ESwdiwC66y7UHFvbvN
-	OZAQmyybuRYt4vYg-
-Received: by 98.138.101.163; Mon, 09 Feb 2015 06:45:02 +0000 
-Date: Mon, 9 Feb 2015 06:45:02 +0000 (UTC)
-From: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
-To: Victor Rodriguez <vm.rod25@gmail.com>
-Message-ID: <2134770160.1079054.1423464302468.JavaMail.yahoo@mail.yahoo.com>
-In-Reply-To: <CAK5mtezKvzhbZ-Hf9WNqFLyzaQTsnq3siR-p2BFBcmijQ-4F6Q@mail.gmail.com>
-References: <CAK5mtezKvzhbZ-Hf9WNqFLyzaQTsnq3siR-p2BFBcmijQ-4F6Q@mail.gmail.com>
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1BFFE00596
+	for <yocto@yoctoproject.org>; Mon,  9 Feb 2015 01:58:51 -0800 (PST)
+Received: by mail-wi0-f176.google.com with SMTP id hm9so4728692wib.3
+	for <yocto@yoctoproject.org>; Mon, 09 Feb 2015 01:58:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=TdqkRNULcz/QH6aC37IQvuUPYX+DCB2ZtqFqiOP7YHM=;
+	b=Ij+QgpLAXz8QSEOkps+xlG11UyQXaRsij6Ks156f4kp8ruYPqdmmSY3+mkCXhUtBO1
+	+NKHOa+2UffXkUkcxtFh6uPQHrnwiDO5qc8nu+XR2kuYr4q+X0lRog0X+u0JRDJTmE8N
+	Hc9DKB6LBrSi+MpEnx4BrMjY/5FuGCiBvFPLXC6FWCkPlKpstmeK7gwifud2hF0TZmfo
+	qPkyuFUZW+ec+M7Q/i7s4GrtbAWPw11ZrGJWyyeqXTRw56yKT0S9sfzwf+xtldL62wWC
+	G7F1XHwnXItgrps0FkIFQucx2v+BOZkyc1x/b7Kwq3Pu4RPy7vMEPkWEzkaTonUiGaK6
+	1uqw==
 MIME-Version: 1.0
+X-Received: by 10.194.82.136 with SMTP id i8mr20067939wjy.99.1423475930927;
+	Mon, 09 Feb 2015 01:58:50 -0800 (PST)
+Received: by 10.216.227.129 with HTTP; Mon, 9 Feb 2015 01:58:50 -0800 (PST)
+In-Reply-To: <BN3PR0501MB109039E595DA8504659AE114BB380@BN3PR0501MB1090.namprd05.prod.outlook.com>
+References: <CAKdxkf8Hz0p__1UpZ9+v9nedE7uNb7ajQ+ykUpaZ-_1mc6BhyA@mail.gmail.com>
+	<BN3PR0501MB109039E595DA8504659AE114BB380@BN3PR0501MB1090.namprd05.prod.outlook.com>
+Date: Mon, 9 Feb 2015 10:58:50 +0100
+Message-ID: <CAKdxkf-jp73wpRi19a7C8PKGqcnKL8aKarPM6Jerdy4MSD544Q@mail.gmail.com>
+From: Aurele Traynard <aurele.traynard@gmail.com>
+To: Bryan Evenson <bevenson@melinkcorp.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: MPI support on Yocto
+Subject: Re: replace etc/network/interfaces with symbolic link
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -68,235 +60,166 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Feb 2015 06:45:18 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_1079053_865680454.1423464302464"
+X-List-Received-Date: Mon, 09 Feb 2015 09:58:55 -0000
+Content-Type: multipart/alternative; boundary=047d7bb03978359839050ea4d178
 
-------=_Part_1079053_865680454.1423464302464
+--047d7bb03978359839050ea4d178
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-I will try to take a look at it ;)
-=20
+Thank you for all answers, I looked
 
-     On Monday, February 9, 2015 7:13 AM, Victor Rodriguez <vm.rod25@gmail.=
-com> wrote:
-  =20
+In fact I found another problem, even if I modify the original recipe I
+can't get a modified rpm, or rootfs...
+I commented lines concerning interfaces files but it seems that nothing is
+modified in the rootfs and in the rpm...
+if someone understands what I missed...
 
- On Tue, Feb 3, 2015 at 4:57 PM, Alexandru Vaduva
-<vaduvajanalexandru@yahoo.com> wrote:
-> I would suggest a layer under meta-openembeded:
-> meta-openembedded/meta-oe/recipes-devtools/ caould be a start.
+the bitbake file :
+http://git.yoctoproject.org/cgit.cgi/poky/plain/meta/recipes-core/init-ifup=
+down/init-ifupdown_1.0.bb
+and I commented out :
+#install -m 0644 ${WORKDIR}/interfaces ${D}${sysconfdir}/network/interfaces
+#CONFFILES_${PN} =3D "${sysconfdir}/network/interfaces"
 
-Hi Alex
+Aur=C3=A8le
 
-This is the first version that I have:
+2015-02-06 20:38 GMT+01:00 Bryan Evenson <bevenson@melinkcorp.com>:
 
-diff --git a/meta-oe/recipes-devtools/mpich/mpich_3.1.1.bb
-b/meta-oe/recipes-devtools/mpich/mpich_3.1.1.bb
-new file mode 100644
-index 0000000..bf94714
---- /dev/null
-+++ b/meta-oe/recipes-devtools/mpich/mpich_3.1.1.bb
-@@ -0,0 +1,18 @@
-+SUMMARY =3D "Message Passing Interface(MPI) implementation"
-+HOMEPAGE =3D "http://git.mpich.org/mpich.git/"
-+SECTION =3D "devel"
-+LICENSE =3D "BSD-2-Clause"
-+LIC_FILES_CHKSUM =3D "file://COPYRIGHT;md5=3D673935943"
-+SRC_URI =3D "http://www.mpich.org/static/downloads/${PV}/mpich-${PV}.tar.g=
-z"
-+SRC_URI[md5sum] =3D "40dc408b1e03cc36d80209baaa2d32b7"
-+
-+
-+EXTRA_OECONF =3D "--enable-debuginfo \
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 --enable-fast \
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 --enable-shared=C2=
-=A0 \
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 --disable-f77 \
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 --disable-fc \
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 --disable-fortran =
-\
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 --disable-cxx"
-+
-+inherit autotools gettext
-
-However is failing in do_configure
-
-autoreconf: configure.ac: tracing
-autoreconf: configure.ac: adding subdirectory test/mpi to autoreconf
-autoreconf: Entering directory `test/mpi'
-aclocal: error:
-/home/vrodri3/poky/build/tmp/work/i586-poky-linux/mpich/3.1.1-r0/mpich-3.1.=
-1/subsys_include.m4:5:
-file 'src/mpid/pamid/subconfigure.m4' does not exist
-autoreconf: aclocal failed with exit status: 1
-ERROR: autoreconf execution failed.
-
-Any idea ?
-
-BTW. I am adding those extra configures from upstream spec files
-
-All the help is more than welcome
-
-Regards
-
-Victor Rodriguez
-
-
-
+> Aurele,
 >
-> Alex Vaduva
+> One possible issue is ${sysconfdir}/network/interfaces is listed in the
+> CONFFILES in the original recipe.  It may still be installing this file
+> because it is listed under CONFFILES.  Try adding:
 >
+> CONFFILES_${PN} =3D ""
 >
-> On Wednesday, February 4, 2015 12:21 AM, Victor Rodriguez
-> <vm.rod25@gmail.com> wrote:
+> To your bbappend.
 >
+> Regards,
+> Bryan
 >
-> On Tue, Feb 3, 2015 at 12:14 PM, Alexandru Vaduva
-> <vaduvajanalexandru@yahoo.com> wrote:
->> I will be more then happy to help you with this.
->>
->>
->> Alex Vaduva
->>
->>
->> On Tuesday, February 3, 2015 5:41 PM, Victor Rodriguez
->> <vm.rod25@gmail.com>
->> wrote:
->>
->>
->> HI team
->>
->> I wonder if there is any project or efforts to implement Message
->> Passing Interface (MPICH ) support on Yocto ?
->>
->> If no I am more than happy to work on it , I just will need a little
->> bit of guidance
->>
->> Thanks a lot
->>
->> Regards
->>
->> Victor Rodriguez
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
->
-> Thanks Alex
->
-> Does anybody knows under which meta - list should we send the patch to
-> review?
->
->
-> Regards
->
-> Victor Rodriguez
+> > -----Original Message-----
+> > From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> > bounces@yoctoproject.org] On Behalf Of Aurele Traynard
+> > Sent: Friday, February 06, 2015 10:55 AM
+> > To: yocto@yoctoproject.org
+> > Subject: [yocto] replace etc/network/interfaces with symbolic link
+> >
+> > Hi,
+> >
+> >
+> > I'm trying to find a clean way to replace /etc/network/interfaces with =
+a
+> > symbolic link. (it comes with init-ifupdown recipe) I tried with  a
+> bbappend
+> > but nothing appear in final filesystem and /etc/network/interfaces stil=
+l
+> > exists...
+> >
+> >
+> > I'm sure the following code is completely wrong, but I don't know how t=
+o
+> do
+> > this with the right way...
+> > do_install_append () {
+> >     mkdir -p datas/network
+> >
+> >     install -d 0755 ${D}/datas
+> >     install -d 0755 ${D}/datas/network
+> >     install -m 0755 ${D}${sysconfdir}/network/interfaces
+> ${D}/datas/network
+> >     #mv ${D}${sysconfdir}/network/interfaces ${D}/datas/network
+> >     rm ${D}${sysconfdir}/network/interfaces
+> >     ln -sf /datas/network/interfaces ${D}${sysconfdir}/network/interfac=
+es
+> >
+> > }
+> > FILES_${PN} +=3D "/datas/ /datas/network/interfaces"
+> >
+> >
+> > thanks for any help
+> >
 >
 >
 
-
-   
-
-------=_Part_1079053_865680454.1423464302464
+--047d7bb03978359839050ea4d178
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
-lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
-nt-size:12px">I will try to take a look at it ;)<br><div><span></span></div=
-> <div class=3D"qtdSeparateBR"><br><br></div><div style=3D"display: block;"=
- class=3D"yahoo_quoted"> <div style=3D"font-family: HelveticaNeue, Helvetic=
-a Neue, Helvetica, Arial, Lucida Grande, sans-serif; font-size: 12px;"> <di=
-v style=3D"font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lu=
-cida Grande, sans-serif; font-size: 16px;"> <div dir=3D"ltr"> <font size=3D=
-"2" face=3D"Arial"> On Monday, February 9, 2015 7:13 AM, Victor Rodriguez &=
-lt;vm.rod25@gmail.com&gt; wrote:<br> </font> </div>  <br><br> <div class=3D=
-"y_msg_container">On Tue, Feb 3, 2015 at 4:57 PM, Alexandru Vaduva<br clear=
-=3D"none">&lt;<a shape=3D"rect" ymailto=3D"mailto:vaduvajanalexandru@yahoo.=
-com" href=3D"mailto:vaduvajanalexandru@yahoo.com">vaduvajanalexandru@yahoo.=
-com</a>&gt; wrote:<br clear=3D"none">&gt; I would suggest a layer under met=
-a-openembeded:<br clear=3D"none">&gt; meta-openembedded/meta-oe/recipes-dev=
-tools/ caould be a start.<br clear=3D"none"><br clear=3D"none">Hi Alex<br c=
-lear=3D"none"><br clear=3D"none">This is the first version that I have:<br =
-clear=3D"none"><br clear=3D"none">diff --git a/meta-oe/recipes-devtools/mpi=
-ch/mpich_3.1.1.bb<br clear=3D"none">b/meta-oe/recipes-devtools/mpich/mpich_=
-3.1.1.bb<br clear=3D"none">new file mode 100644<br clear=3D"none">index 000=
-0000..bf94714<br clear=3D"none">--- /dev/null<br clear=3D"none">+++ b/meta-=
-oe/recipes-devtools/mpich/mpich_3.1.1.bb<br clear=3D"none">@@ -0,0 +1,18 @@=
-<br clear=3D"none">+SUMMARY =3D "Message Passing Interface(MPI) implementat=
-ion"<br clear=3D"none">+HOMEPAGE =3D "<a shape=3D"rect" href=3D"http://git.=
-mpich.org/mpich.git/" target=3D"_blank">http://git.mpich.org/mpich.git/</a>=
-"<br clear=3D"none">+SECTION =3D "devel"<br clear=3D"none">+LICENSE =3D "BS=
-D-2-Clause"<br clear=3D"none">+LIC_FILES_CHKSUM =3D "file://COPYRIGHT;md5=
-=3D673935943"<br clear=3D"none">+SRC_URI =3D "<a shape=3D"rect" href=3D"htt=
-p://www.mpich.org/static/downloads/$" target=3D"_blank">http://www.mpich.or=
-g/static/downloads/$</a>{PV}/mpich-${PV}.tar.gz"<br clear=3D"none">+SRC_URI=
-[md5sum] =3D "40dc408b1e03cc36d80209baaa2d32b7"<br clear=3D"none">+<br clea=
-r=3D"none">+<br clear=3D"none">+EXTRA_OECONF =3D "--enable-debuginfo \<br c=
-lear=3D"none">+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --en=
-able-fast \<br clear=3D"none">+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; --enable-shared&nbsp; \<br clear=3D"none">+&nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --disable-f77 \<br clear=3D"none">+&nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --disable-fc \<br clear=
-=3D"none">+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; --disabl=
-e-fortran \<br clear=3D"none">+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; --disable-cxx"<br clear=3D"none">+<br clear=3D"none">+inherit a=
-utotools gettext<br clear=3D"none"><br clear=3D"none">However is failing in=
- do_configure<br clear=3D"none"><br clear=3D"none">autoreconf: configure.ac=
-: tracing<br clear=3D"none">autoreconf: configure.ac: adding subdirectory t=
-est/mpi to autoreconf<br clear=3D"none">autoreconf: Entering directory `tes=
-t/mpi'<br clear=3D"none">aclocal: error:<br clear=3D"none">/home/vrodri3/po=
-ky/build/tmp/work/i586-poky-linux/mpich/3.1.1-r0/mpich-3.1.1/subsys_include=
-.m4:5:<br clear=3D"none">file 'src/mpid/pamid/subconfigure.m4' does not exi=
-st<br clear=3D"none">autoreconf: aclocal failed with exit status: 1<br clea=
-r=3D"none">ERROR: autoreconf execution failed.<br clear=3D"none"><br clear=
-=3D"none">Any idea ?<br clear=3D"none"><br clear=3D"none">BTW. I am adding =
-those extra configures from upstream spec files<br clear=3D"none"><br clear=
-=3D"none">All the help is more than welcome<br clear=3D"none"><br clear=3D"=
-none">Regards<br clear=3D"none"><br clear=3D"none">Victor Rodriguez<div cla=
-ss=3D"yqt4966916041" id=3D"yqtfd32442"><br clear=3D"none"><br clear=3D"none=
-"><br clear=3D"none"><br clear=3D"none">&gt;<br clear=3D"none">&gt; Alex Va=
-duva<br clear=3D"none">&gt;<br clear=3D"none">&gt;<br clear=3D"none">&gt; O=
-n Wednesday, February 4, 2015 12:21 AM, Victor Rodriguez<br clear=3D"none">=
-&gt; &lt;<a shape=3D"rect" ymailto=3D"mailto:vm.rod25@gmail.com" href=3D"ma=
-ilto:vm.rod25@gmail.com">vm.rod25@gmail.com</a>&gt; wrote:<br clear=3D"none=
-">&gt;<br clear=3D"none">&gt;<br clear=3D"none">&gt; On Tue, Feb 3, 2015 at=
- 12:14 PM, Alexandru Vaduva<br clear=3D"none">&gt; &lt;<a shape=3D"rect" ym=
-ailto=3D"mailto:vaduvajanalexandru@yahoo.com" href=3D"mailto:vaduvajanalexa=
-ndru@yahoo.com">vaduvajanalexandru@yahoo.com</a>&gt; wrote:<br clear=3D"non=
-e">&gt;&gt; I will be more then happy to help you with this.<br clear=3D"no=
-ne">&gt;&gt;<br clear=3D"none">&gt;&gt;<br clear=3D"none">&gt;&gt; Alex Vad=
-uva<br clear=3D"none">&gt;&gt;<br clear=3D"none">&gt;&gt;<br clear=3D"none"=
->&gt;&gt; On Tuesday, February 3, 2015 5:41 PM, Victor Rodriguez<br clear=
-=3D"none">&gt;&gt; &lt;<a shape=3D"rect" ymailto=3D"mailto:vm.rod25@gmail.c=
-om" href=3D"mailto:vm.rod25@gmail.com">vm.rod25@gmail.com</a>&gt;<br clear=
-=3D"none">&gt;&gt; wrote:<br clear=3D"none">&gt;&gt;<br clear=3D"none">&gt;=
-&gt;<br clear=3D"none">&gt;&gt; HI team<br clear=3D"none">&gt;&gt;<br clear=
-=3D"none">&gt;&gt; I wonder if there is any project or efforts to implement=
- Message<br clear=3D"none">&gt;&gt; Passing Interface (MPICH ) support on Y=
-octo ?<br clear=3D"none">&gt;&gt;<br clear=3D"none">&gt;&gt; If no I am mor=
-e than happy to work on it , I just will need a little<br clear=3D"none">&g=
-t;&gt; bit of guidance<br clear=3D"none">&gt;&gt;<br clear=3D"none">&gt;&gt=
-; Thanks a lot<br clear=3D"none">&gt;&gt;<br clear=3D"none">&gt;&gt; Regard=
-s<br clear=3D"none">&gt;&gt;<br clear=3D"none">&gt;&gt; Victor Rodriguez<br=
- clear=3D"none">&gt;&gt; --<br clear=3D"none">&gt;&gt; ____________________=
-___________________________<br clear=3D"none">&gt;&gt; yocto mailing list<b=
-r clear=3D"none">&gt;&gt; <a shape=3D"rect" ymailto=3D"mailto:yocto@yoctopr=
-oject.org" href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a=
-><br clear=3D"none">&gt;&gt; <a shape=3D"rect" href=3D"https://lists.yoctop=
-roject.org/listinfo/yocto" target=3D"_blank">https://lists.yoctoproject.org=
-/listinfo/yocto</a><br clear=3D"none">&gt;&gt;<br clear=3D"none">&gt;&gt;<b=
-r clear=3D"none">&gt;<br clear=3D"none">&gt; Thanks Alex<br clear=3D"none">=
-&gt;<br clear=3D"none">&gt; Does anybody knows under which meta - list shou=
-ld we send the patch to<br clear=3D"none">&gt; review?<br clear=3D"none">&g=
-t;<br clear=3D"none">&gt;<br clear=3D"none">&gt; Regards<br clear=3D"none">=
-&gt;<br clear=3D"none">&gt; Victor Rodriguez<br clear=3D"none">&gt;<br clea=
-r=3D"none">&gt;<br clear=3D"none"></div><br><br></div>  </div> </div>  </di=
-v> </div></body></html>
+<div dir=3D"ltr"><div><div>Thank you for all answers, I looked <br><br></di=
+v>In fact I found another problem, even if I modify the original recipe I c=
+an&#39;t get a modified rpm, or rootfs...<br>I commented lines concerning i=
+nterfaces files but it seems that nothing is modified in the rootfs and in =
+the rpm...<br>if someone understands what I missed...<br><br>the bitbake fi=
+le : <a href=3D"http://git.yoctoproject.org/cgit.cgi/poky/plain/meta/recipe=
+s-core/init-ifupdown/init-ifupdown_1.0.bb">http://git.yoctoproject.org/cgit=
+.cgi/poky/plain/meta/recipes-core/init-ifupdown/init-ifupdown_1.0.bb</a><br=
+>and I commented out : <br>#install -m 0644 ${WORKDIR}/interfaces ${D}${sys=
+confdir}/network/interfaces<br>#CONFFILES_${PN} =3D &quot;${sysconfdir}/net=
+work/interfaces&quot;<br><br></div>Aur=C3=A8le<br></div><div class=3D"gmail=
+_extra"><br><div class=3D"gmail_quote">2015-02-06 20:38 GMT+01:00 Bryan Eve=
+nson <span dir=3D"ltr">&lt;<a href=3D"mailto:bevenson@melinkcorp.com" targe=
+t=3D"_blank">bevenson@melinkcorp.com</a>&gt;</span>:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex">Aurele,<br>
+<br>
+One possible issue is ${sysconfdir}/network/interfaces is listed in the CON=
+FFILES in the original recipe.=C2=A0 It may still be installing this file b=
+ecause it is listed under CONFFILES.=C2=A0 Try adding:<br>
+<br>
+CONFFILES_${PN} =3D &quot;&quot;<br>
+<br>
+To your bbappend.<br>
+<br>
+Regards,<br>
+Bryan<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+&gt; -----Original Message-----<br>
+&gt; From: <a href=3D"mailto:yocto-bounces@yoctoproject.org">yocto-bounces@=
+yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-">yocto-</a><br>
+&gt; <a href=3D"mailto:bounces@yoctoproject.org">bounces@yoctoproject.org</=
+a>] On Behalf Of Aurele Traynard<br>
+&gt; Sent: Friday, February 06, 2015 10:55 AM<br>
+&gt; To: <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</=
+a><br>
+&gt; Subject: [yocto] replace etc/network/interfaces with symbolic link<br>
+&gt;<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt;<br>
+&gt; I&#39;m trying to find a clean way to replace /etc/network/interfaces =
+with a<br>
+&gt; symbolic link. (it comes with init-ifupdown recipe) I tried with=C2=A0=
+ a bbappend<br>
+&gt; but nothing appear in final filesystem and /etc/network/interfaces sti=
+ll<br>
+&gt; exists...<br>
+&gt;<br>
+&gt;<br>
+&gt; I&#39;m sure the following code is completely wrong, but I don&#39;t k=
+now how to do<br>
+&gt; this with the right way...<br>
+&gt; do_install_append () {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0mkdir -p datas/network<br>
+&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0install -d 0755 ${D}/datas<br>
+&gt;=C2=A0 =C2=A0 =C2=A0install -d 0755 ${D}/datas/network<br>
+&gt;=C2=A0 =C2=A0 =C2=A0install -m 0755 ${D}${sysconfdir}/network/interface=
+s ${D}/datas/network<br>
+&gt;=C2=A0 =C2=A0 =C2=A0#mv ${D}${sysconfdir}/network/interfaces ${D}/datas=
+/network<br>
+&gt;=C2=A0 =C2=A0 =C2=A0rm ${D}${sysconfdir}/network/interfaces<br>
+&gt;=C2=A0 =C2=A0 =C2=A0ln -sf /datas/network/interfaces ${D}${sysconfdir}/=
+network/interfaces<br>
+&gt;<br>
+&gt; }<br>
+&gt; FILES_${PN} +=3D &quot;/datas/ /datas/network/interfaces&quot;<br>
+&gt;<br>
+&gt;<br>
+&gt; thanks for any help<br>
+&gt;<br>
+<br>
+</div></div></blockquote></div><br></div>
 
-------=_Part_1079053_865680454.1423464302464--
+--047d7bb03978359839050ea4d178--
