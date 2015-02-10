@@ -1,37 +1,49 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <michael.g.wood@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 53818E0095F; Tue, 10 Feb 2015 06:17:12 -0800 (PST)
+	id 19986E0095F; Tue, 10 Feb 2015 06:26:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38DABE0094C
-	for <yocto@yoctoproject.org>; Tue, 10 Feb 2015 06:17:10 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id t1AEH7Fa017419
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 10 Feb 2015 06:17:07 -0800 (PST)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.174.1;
-	Tue, 10 Feb 2015 06:17:07 -0800
-Message-ID: <54DA12C7.8000000@windriver.com>
-Date: Tue, 10 Feb 2015 09:16:39 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.179 listed in list.dnswl.org]
+Received: from mail-wi0-f179.google.com (mail-wi0-f179.google.com
+	[209.85.212.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7B0DE0094C
+	for <yocto@yoctoproject.org>; Tue, 10 Feb 2015 06:26:39 -0800 (PST)
+Received: by mail-wi0-f179.google.com with SMTP id hi2so4313346wib.0
+	for <yocto@yoctoproject.org>; Tue, 10 Feb 2015 06:26:38 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+	:subject:content-type:content-transfer-encoding;
+	bh=a0bZMp+A/uG73bPQik55wxUVwil6mdyeNNVUdJ5eUlY=;
+	b=j5phkzsmrR0CF/xuC1qjPNhIeUf9iosoZ5SLB2ZOOd9BAgy0N3nwOm/9mHepJH5VZW
+	rIWXFfliz0xj6Cr8JhhP8P3cMPw9cAmbPvf/eKkzKzgTGm6Y3x+zb1ZLdqzAO/Eb+FI5
+	bPTJquiDEAhiJSgETx1P/uhj9fVXLkCQASrRgPh3OCaLeq3llwRT5oZI8GZpqhCZvqDs
+	871DfWV1Tvov24LV92/9a67J/PWqonNVIyiWXn6Ammjbm7wUW6bucJsHlesyePJBpUv1
+	tYwUYHoPLjuJMbI8P0fa3XEYkSmvhC6L5jCcfJqkyDfisspGhRdblP2kRRmYB5YJxl3g
+	kNIQ==
+X-Gm-Message-State: ALoCoQn58vZOkHe9T0h8ekabrfme0J/SoYA+DEZS9H24qEspiNaFu9KM7xrBavK4B5U4RoeE8RH8
+X-Received: by 10.180.35.42 with SMTP id e10mr37391542wij.11.1423578398248;
+	Tue, 10 Feb 2015 06:26:38 -0800 (PST)
+Received: from [192.168.2.171] ([83.217.123.106])
+	by mx.google.com with ESMTPSA id n1sm19025289wib.11.2015.02.10.06.26.37
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 10 Feb 2015 06:26:37 -0800 (PST)
+Message-ID: <54DA151D.4080500@intel.com>
+Date: Tue, 10 Feb 2015 14:26:37 +0000
+From: Michael Wood <michael.g.wood@intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
-To: Stephen Flowers <sflowers1@gmail.com>, <yocto@yoctoproject.org>
-References: <54DA0258.9070108@gmail.com>
-In-Reply-To: <54DA0258.9070108@gmail.com>
-Subject: Re: Yocto Realtime tests on beaglebone black
+To: yocto@yoctoproject.org
+Subject: [error-report-web] New errors-report-web
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,245 +55,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Feb 2015 14:17:12 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 10 Feb 2015 14:26:44 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 15-02-10 08:06 AM, Stephen Flowers wrote:
-> Hi All,
->
-> I have built the realtime kernel using Yocto and deployed on the
-> beaglebone black (specifically core-image-rt-sdk).  I have written a
-> program to test the timer latency and interrupt latency of userspace
-> applications.  For this I'm using a simple timerfd to generate a
-> periodic 10ms gpio toggle which itself acts as a gpio interrupt on
-> another gpio pin.
-> I find the latency is much worse on the preempt_rt kernel than the
-> standard one.  RT kernel gives around 220us average with the standard
-> kernel about 80us.  Testing with Xenomai gives about 60us. The response
-> times are measured with an external logic analyser, and taken with no
-> other load on the system.  Kernel version is 3.14.
->
-> The difference between standard and RT kernel configs:
-> Preemption model: desktop vs. realtime kernel
-> Timer: 100Hz vs 1000Hz
-> High resolution timers disabled
+Hi,
 
-Can you share the full .config for both configurations ? That should
-shed a bit more light on what might be misconfigured.
+I've updated the errors.yoctoproject.org site with the latest version of 
+error-report-web [1] that myself and Belén have been working on.
 
-I haven't run tests on the beaglebone black myself, but on similar
-ARM boards, performance has been as expected.
+error-report-web is a project to provide a web service that can be used 
+to collect and display build error reports. Error report generation can 
+be enabled in your build's local.conf [2]
 
-You are talking about average latency above, what about the max
-latency ? We expect that the preempt-rt kernel will have a higher
-minimum, and often average latency .. but will be significantly
-better in maximum latency.
+Here are some of the highlights for the latest version:
 
-It would also be useful to grab cyclictest results for the standard
-and preempt-rt kernel as a baseline performance measure.
+     - Option to have a JSON response on error report submission
+     - Optional "Special submitter" allowing an extra tab in the UI for 
+quick access to a defined submitter (e.g "autobuilder")
+     - Filtering and ordering on columns
+     - Searching improved to allow search of the contents of error 
+reports and other useful fields
+     - Improved page loading speed
+     - Non blocking graph generation
+     - Unit tests
+     - Update to Django 1.7
+     - Add support for Django migrations
+     - View errors by build
+     - Many UI tweaks
+     - Better error handling
+     - Simpler url structure
 
-Bruce
+Thanks,
 
->
-> I'm having a hard time figuring out why the RT kernel gives worse
-> latency.  Anyone have any insight into this?
-> Included the source code below.
->
-> Thanks & Regards,
-> Steve
->
-> #include<sys/time.h>
-> #include<time.h>
-> #include<sys/types.h>
-> #include <signal.h>
-> #include <stdlib.h>
-> #include <stdio.h>
-> #include <sched.h>
-> #include <sys/mman.h>
-> #include "poll.h"
-> #include "fcntl.h"
-> #include "string.h"
-> #include "errno.h"
-> #include <sys/timerfd.h>
->
-> #define TIMER_OUT_PATH     "/sys/class/gpio/gpio47"
-> #define LED_OUT_PATH     "/sys/class/gpio/gpio26"
-> #define IRQ_IN_PATH     "/sys/class/gpio/gpio46"
->
-> static int timer_toggle = 0;
-> static int output_toggle = 0;
->
-> void stack_prefault(void)
-> {
->      unsigned char dummy[8192];
->      memset(dummy, 0, 8192);
-> }
->
->
-> int main(int argc, char* argv[])
-> {
->     struct itimerspec itv;
->     unsigned long long timer_increment = 0;
->
->     clock_t prevClock;
->     int sigCnt = 0;
->     struct sigaction sa;
->     struct sched_param sp;
->
->     struct pollfd fdset[2];
->     int fd_in;
->     int action;
->     int fd_led;
->     int fd_timer_out;
->     int fd_timer_in;
->
->     char buf[2];
->     int len;
->
->     // setup gpio
->     if(system("echo 46 > /sys/class/gpio/export") == -1)
->          perror("unable to export gpio 46");
->
->     if(system("echo 47 > /sys/class/gpio/export") == -1)
->          perror("unable to export gpio 47");
->
->     if(system("echo 26 > /sys/class/gpio/export") == -1)
->          perror("unable to export gpio 26");
->
->     // timer out
->     if(system("echo out > /sys/class/gpio/gpio47/direction") == -1)
->          perror("unable to set 47 to output");
->
->      // led out
->      if(system("echo out > /sys/class/gpio/gpio26/direction") == -1)
->          perror("unable to set 26 to output");
->
->      // irq in
->      if(system("echo in > /sys/class/gpio/gpio46/direction") == -1)
->          perror("unable to set 46 to input");
->
->      if(system("echo both > /sys/class/gpio/gpio46/edge") == -1)
->          perror("unable to set 46 edge");
->
->      // set scheduling parameters
->      sp.sched_priority = sched_get_priority_max(SCHED_FIFO);
->      if(sched_setscheduler(0, SCHED_FIFO, &sp) == -1)
->      {
->          perror("setscheduler");
->          exit(-1);
->      }
->
->      // lock memory
->      if(mlockall(MCL_CURRENT|MCL_FUTURE) == -1)
->          perror("mlockall");
->
->      stack_prefault();
->
->     // Set up timer
->      fd_timer_in = timerfd_create(CLOCK_MONOTONIC, TFD_NONBLOCK);
->      printf("fd_timer:%d\n",fd_timer_in);
->
->      if(fd_timer_in < 0)
->      {
->          perror("timerfd_create()");
->      }
->
->     itv.it_value.tv_sec = 0;
->     itv.it_value.tv_nsec = 10000000;
->     itv.it_interval.tv_sec = 0;
->     itv.it_interval.tv_nsec = 10000000;
->     if(-1 == timerfd_settime(fd_timer_in, 0, &itv, NULL))
->     {
->         perror("settime()");
->     }
->
->     // setup file descriptor for poll()
->     fd_in = open(IRQ_IN_PATH "/value", O_RDONLY | O_NONBLOCK);
->     printf("fd irq input:%d\n",fd_in);
->
->     if(fd_in < 0)
->     {
->         perror("file open problem");
->         exit(0);
->     }
->
->     while(1)
->     {
->          memset((void*)fdset, 0, sizeof(fdset));
->          fdset[0].fd = fd_in;
->          fdset[0].events = POLLPRI | POLLERR;
->          fdset[0].revents = 0;
->
->          fdset[1].fd = fd_timer_in;
->          fdset[1].events = POLLIN | POLLERR;
->          fdset[1].revents = 0;
->          action = poll(fdset, 2, -1);
->
->          if(action < 0)
->          {
->              if(errno == EINTR)
->              {
->                  // when signal interrupts poll, we poll again
->                  continue;
->              }
->              else
->              {
->                  perror("poll failed");
->                  exit(0);
->              }
->          }
->
->          if(fdset[1].revents & POLLIN)
->          {
->              //len = read(fdset[1].fd, 0, SEEK_SET);
->              len = read(fdset[1].fd, &timer_increment,
-> sizeof(timer_increment));
->
->              fd_timer_out = open( TIMER_OUT_PATH "/value", O_WRONLY);
->
->             if(timer_toggle ^= 1)
->             {
->                 write(fd_timer_out, "1", 2);
->             }
->             else
->             {
->                 write(fd_timer_out, "0", 2);
->             }
->
->             close(fd_timer_out);
->          }
->
->          if(fdset[0].revents & POLLPRI)
->          {
->              lseek(fdset[0].fd, 0, SEEK_SET);    // read from start of file
->              len = read(fdset[0].fd, buf, sizeof(buf));
->
->              fd_led = open( LED_OUT_PATH "/value", O_WRONLY | O_NONBLOCK);
->
->              if(buf[0] == '1')
->              {
->                  write(fd_led, "1", 2);
->              }
->              else
->              {
->                  write(fd_led, "0", 2);
->              }
->
->              close(fd_led);
->          }
->      }
->
->     close(fd_in);
->     close(fd_timer_in);
->     close(fd_led);
->     printf("finished\n");
->     return 0;
-> }
->
->
->
->
->
+Michael
+
+[1] http://git.yoctoproject.org/cgit/cgit.cgi/error-report-web/
+[2] 
+http://www.yoctoproject.org/docs/1.7.1/dev-manual/dev-manual.html#using-the-error-reporting-tool
+
 
 
