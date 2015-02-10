@@ -1,64 +1,48 @@
-Return-Path: <anders@chargestorm.se>
+Return-Path: <abhinavbipnesh@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4BF54E0094C; Tue, 10 Feb 2015 01:15:08 -0800 (PST)
+	id BF0F0E0095D; Tue, 10 Feb 2015 02:25:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [135.11.29.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.50 listed in list.dnswl.org]
-Received: from mail-la0-f50.google.com (mail-la0-f50.google.com
-	[209.85.215.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C423E00945
-	for <yocto@yoctoproject.org>; Tue, 10 Feb 2015 01:15:04 -0800 (PST)
-Received: by labgq15 with SMTP id gq15so18872817lab.6
-	for <yocto@yoctoproject.org>; Tue, 10 Feb 2015 01:15:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id
-	:mail-followup-to:references:mime-version:content-type
-	:content-disposition:in-reply-to:organization:user-agent;
-	bh=nfuGtu4W9k12t3wNRxK6CljrHPR5pcDvVc9o/GgGNAE=;
-	b=YACbvy1ZOQV+5aDHiUT3WPcIAAhcR+MZatM5Mxr16PQcp+KVB/o12SNHfS7iIqtzG7
-	bfOIEyf0OIJRnaUjV4jDUtT0+NQTuQwx8ZKuWSr6qXJdeiYu+uzb6wI/lXobEJEzP2V4
-	j2hW/DR91/mBuCIyAc6L0AU/KGGhMCMGf7xX6E7ZyBFBKl7VavniBiDyXcZRwLHX7G7V
-	/KghLUtz4k5vMU4eFqoXBonNrk8m/KknMcFdYubSPZHLeXhhM0bGkxju0ioisaI2vjSP
-	0XZmtH82LnYibS35V88QzAHplRx7HIBonkXLPtbCP4L8JXxZvtVRIPyLX3hrAe3iOZBj
-	1f5Q==
-X-Gm-Message-State: ALoCoQlcsIAVJKy+8C6GAzO1c6uboT1YpIRsykkXHpopRQTtIiZRRYjZeata2qJGZeO6gRpIRMMH
-X-Received: by 10.112.78.39 with SMTP id y7mr22326089lbw.58.1423559702376;
-	Tue, 10 Feb 2015 01:15:02 -0800 (PST)
-Received: from ad.chargestorm.se (c-83-233-221-90.cust.bredband2.com.
-	[83.233.221.90])
-	by mx.google.com with ESMTPSA id c9sm2583562lae.21.2015.02.10.01.15.01
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 10 Feb 2015 01:15:01 -0800 (PST)
-Date: Tue, 10 Feb 2015 10:14:59 +0100
-From: Anders Darander <anders@chargestorm.se>
-To: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
-Message-ID: <20150210091459.GA8081@ad.chargestorm.se>
-Mail-Followup-To: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>,
-	Victor Rodriguez <vm.rod25@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <F38A866CD026F746A3BF0928A84397BE3A34C510@AZ-FFEXMB01.global.avaya.com>
-	<CAK5mtew20WE6O2rAuNNTqMpFU2jydOBoHYVnqzRxODD5EAGvAw@mail.gmail.com>
-	<F38A866CD026F746A3BF0928A84397BE3A34C5C7@AZ-FFEXMB01.global.avaya.com>
-	<20150209141335.GC12554@ad.chargestorm.se>
-	<F38A866CD026F746A3BF0928A84397BE3A34C71F@AZ-FFEXMB01.global.avaya.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from p-us1-iereast-outbound.us1.avaya.com
+	(p-us1-iereast-outbound.us1.avaya.com [135.11.29.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85144E00949
+	for <yocto@yoctoproject.org>; Tue, 10 Feb 2015 02:24:49 -0800 (PST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AqEFAFfb2VSHCzIm/2dsb2JhbABcgkMhIiIwXsBpgX8dAYV6AoEhQwEBAQEBAXyEDgEBAxIbXgEVFVYmAQQbGogLAadMhH+hSQwBH49GgmUMQB2BFAWPIIpGhT8LjBQig26CM34BAQE
+X-IronPort-AV: E=Sophos;i="5.09,549,1418101200"; 
+	d="scan'208,217";a="106184406"
+Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
+	([135.11.50.38]) by p-us1-iereast-outbound.us1.avaya.com with ESMTP;
+	10 Feb 2015 05:24:47 -0500
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-FFEXHC04.global.avaya.com) ([135.64.58.14])
+	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/AES128-SHA;
+	10 Feb 2015 05:24:47 -0500
+Received: from AZ-FFEXMB01.global.avaya.com ([fe80::39ee:75fe:e67a:cf4a]) by
+	AZ-FFEXHC04.global.avaya.com ([135.64.58.14]) with mapi id
+	14.03.0174.001; Tue, 10 Feb 2015 11:24:45 +0100
+From: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Error while trying to read environment variable from a recipe
+	file
+Thread-Index: AdBFG8WI5RcA4wepTKWsjLXXqcUs2g==
+Date: Tue, 10 Feb 2015 10:24:45 +0000
+Message-ID: <F38A866CD026F746A3BF0928A84397BE3A34CACD@AZ-FFEXMB01.global.avaya.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [135.64.58.48]
 MIME-Version: 1.0
-In-Reply-To: <F38A866CD026F746A3BF0928A84397BE3A34C71F@AZ-FFEXMB01.global.avaya.com>
-X-Accept-Language: sv, en, de
-X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
-X-GPG-Key-Id: 0x920E938C
-X-GPG-Keyserver: hkp://keys.gnupg.net
-Organization: ChargeStorm AB
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Multiple packages from single recipe file
+Subject: Error while trying to read environment variable from a recipe file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,59 +54,199 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Feb 2015 09:15:08 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Tue, 10 Feb 2015 10:25:00 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_F38A866CD026F746A3BF0928A84397BE3A34CACDAZFFEXMB01globa_"
 
-Hi,
+--_000_F38A866CD026F746A3BF0928A84397BE3A34CACDAZFFEXMB01globa_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-I'm not really following what you'd like to learn...
+Hi All,
 
-* Bipnesh, Abhinav (Abhinav) <abhinavbipnesh@avaya.com> [150209 17:43]:
-> We have done on similar line for one of the package. We have to write
-> another recipe for a package in which we need to just create packages
-> and delivery it.  But we need to do it for couple of directories i.e.
-> let say 10 directories.  Previously we have an script which perform
-> some conversion and then create package in loop i.e. creating RPM in
-> loop for such package.  Now we want to achieve the same using a
-> recipe.  One of the solution is to write 10 such recipe and creating a
-> package, But it means we need to check-out 10 times the code and then
-> create the package.  But we are looking for some optimize way to do so
-> as below
+I was trying to read some of the environment variables from a recipe file u=
+sing below python code
 
-> 1. Check out all 10 directories in one shot.
+PACKAGES =3D "{TEST_PACKAGE}"
+python __anonymous () {
+    packages =3D []
+    buildScriptVersion =3D os.environ['MajorVersion'] + "." + os.environ['M=
+inorVersion']
+    buildID =3D os.environ['BuildID']
+    buildOffSet =3D os.environ['BuildOffsetNum']
+    buildNum =3D int(buildID) - int(buildOffSet)
+    if buildNum <=3D 0:
+        buildNum =3D 1
+    Num =3D os.environ['Num']
+    version =3D buildScriptVersion + "." + sprintNum + "." + str(buildNum)
+    packageName =3D "test-" + version
+    d.setVar("TEST_PACKAGE", " ".join(packages))
+}
 
-Are these in different repositories or tarball? Or what do you mean with
-"check out"?
+But while running I am getting below error
 
-> 2. Write small shell script code and call do_install() passing ${S}
-> and ${D} as argument to create the package. Here we are also looking
-> for package name for each such call different say package-1-ro.rpm
-> package-2.r0.rpm etc.
+0001:def __anon_29__test_bb(d):
+     0002:    packages =3D []
+*** 0003:    buildScriptVersion =3D os.environ['MajorVersion'] + "." + os.e=
+nviron['MinorVersion']
+     0004:    buildID =3D os.environ['BuildID']
+     0005:    buildOffSet =3D os.environ['BuildOffsetNum']
+     0006:    buildNum =3D int(buildID) - int(buildOffSet)
+     0007:    if buildNum <=3D 0:
+File: '/usr/lib64/python2.7/UserDict.py', lineno: 23, function: __getitem__
+     0019:        if key in self.data:
+     0020:            return self.data[key]
+     0021:        if hasattr(self.__class__, "__missing__"):
+     0022:            return self.__class__.__missing__(self, key)
+*** 0023:        raise KeyError(key)
+     0024:    def __setitem__(self, key, item): self.data[key] =3D item
+     0025:    def __delitem__(self, key): del self.data[key]
+     0026:    def clear(self): self.data.clear()
+     0027:    def copy(self):
+Exception: KeyError: 'MajorVersion'
 
-Just write a do_install(), that installs all the files from your above
-list in it's correct place.
+So any thoughts to fix this issue. As we need to have a package name with s=
+uch variable which will be set in the environment at run time.
 
-Make sure that FILES_${PN} includes all the locations where you want to
-pick-up files.
+Thanks,
+Abhinav
 
-If you're creating multiple packages, just ensure that
-FILES_${PN}-pkg1 = "..."
-FILES_${PN}-pkg2 = "..."
-etc
-points to which files you want packaged in which package. 
+--_000_F38A866CD026F746A3BF0928A84397BE3A34CACDAZFFEXMB01globa_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-> 3. Also avoid calling do_compile() as there is no makefile its plain
-> file repo which need to be packaged.
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi All,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I was trying to read some of the environment variabl=
+es from a recipe file using below python code<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">PACKAGES =3D &quot;{TEST_PACKAGE}&quot;<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">python __anonymous () {<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; packages =3D []<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; buildScriptVersion =3D os.environ=
+['MajorVersion'] &#43; &quot;.&quot; &#43; os.environ['MinorVersion']<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; buildID =3D os.environ['BuildID']=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; buildOffSet =3D os.environ['Build=
+OffsetNum']<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; buildNum =3D int(buildID) - int(b=
+uildOffSet)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; if buildNum &lt;=3D 0:<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; buildNum =
+=3D 1<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; Num =3D os.environ['Num']<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; version =3D buildScriptVersion &#=
+43; &quot;.&quot; &#43; sprintNum &#43; &quot;.&quot; &#43; str(buildNum)<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; packageName =3D &quot;test-&quot;=
+ &#43; version<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; d.setVar(&quot;TEST_PACKAGE&quot;=
+, &quot; &quot;.join(packages))<o:p></o:p></p>
+<p class=3D"MsoNormal">}<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">But while running I am getting below error<o:p></o:p=
+></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">0001:def __anon_29__test_bb(d):<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0002:&nbsp;&nbsp;&nbsp; pac=
+kages =3D []<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0003:&nbsp;&nbsp;&nbsp; buildScriptVersion =3D o=
+s.environ['MajorVersion'] &#43; &quot;.&quot; &#43; os.environ['MinorVersio=
+n']<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0004:&nbsp;&nbsp;&nbsp; bui=
+ldID =3D os.environ['BuildID']<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0005:&nbsp;&nbsp;&nbsp; bui=
+ldOffSet =3D os.environ['BuildOffsetNum']<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0006:&nbsp;&nbsp;&nbsp; bui=
+ldNum =3D int(buildID) - int(buildOffSet)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0007:&nbsp;&nbsp;&nbsp; if =
+buildNum &lt;=3D 0:<o:p></o:p></p>
+<p class=3D"MsoNormal">File: '/usr/lib64/python2.7/UserDict.py', lineno: 23=
+, function: __getitem__<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0019:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; if key in self.data:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0020:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return self.data[key]<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0021:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; if hasattr(self.__class__, &quot;__missing__&quot;):<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0022:&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return self.__class__.__missin=
+g__(self, key)<o:p></o:p></p>
+<p class=3D"MsoNormal">*** 0023:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+raise KeyError(key)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0024:&nbsp;&nbsp;&nbsp; def=
+ __setitem__(self, key, item): self.data[key] =3D item<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0025:&nbsp;&nbsp;&nbsp; def=
+ __delitem__(self, key): del self.data[key]<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0026:&nbsp;&nbsp;&nbsp; def=
+ clear(self): self.data.clear()<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp; 0027:&nbsp;&nbsp;&nbsp; def=
+ copy(self):<o:p></o:p></p>
+<p class=3D"MsoNormal">Exception: KeyError: 'MajorVersion'<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">So any thoughts to fix this issue. As we need to hav=
+e a package name with such variable which will be set in the environment at=
+ run time.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Abhinav<o:p></o:p></p>
+</div>
+</body>
+</html>
 
-Just create an empty do_compile(). Or you could remove do_package() from
-the task list for this recipe, though, it's slightly easier to just
-provide an empty do_compile().
-
-Cheers,
-Anders
-
--- 
-Anders Darander
-ChargeStorm AB / eStorm AB
-
+--_000_F38A866CD026F746A3BF0928A84397BE3A34CACDAZFFEXMB01globa_--
