@@ -1,14 +1,17 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F38D5E00945; Mon,  9 Feb 2015 17:00:56 -0800 (PST)
+	id 4042EE0093B; Mon,  9 Feb 2015 17:00:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
+	TVD_SPACE_RATIO autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (akuster808[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,40 +19,38 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.45 listed in list.dnswl.org]
-Received: from mail-pa0-f45.google.com (mail-pa0-f45.google.com
-	[209.85.220.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6996E00596
-	for <yocto@yoctoproject.org>; Mon,  9 Feb 2015 17:00:50 -0800 (PST)
-Received: by mail-pa0-f45.google.com with SMTP id et14so37325942pad.4
-	for <yocto@yoctoproject.org>; Mon, 09 Feb 2015 17:00:50 -0800 (PST)
+	*  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
+Received: from mail-pd0-f172.google.com (mail-pd0-f172.google.com
+	[209.85.192.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28B25E00949
+	for <yocto@yoctoproject.org>; Mon,  9 Feb 2015 17:00:54 -0800 (PST)
+Received: by pdev10 with SMTP id v10so12613358pde.10
+	for <yocto@yoctoproject.org>; Mon, 09 Feb 2015 17:00:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=8DarGRBZ08QYTtrygKma/ta8+0/68qPRmE+bpgvXInw=;
-	b=lxZvh+IsRO8DAZpXKb4FgR9cKtcC2/wfdchyveXuePtCkmzoJui/VYo9t4VF/Fp3A2
-	Lb2HA79cC+dP0o2/2upm13aYg38epWLhixwfyLMont9Ob7aulDPnYT4ntLkVkMwtIR3B
-	xc/Jt1ua/Ie4HC++U/37A6aTd1oMUi2EsIx9TjnyY3RLN85yUzeNw5Cq8PEfDs27uT4y
-	DA94TxChn6jITfJ1bXL3rcPXH0INDckqHQujpBdgBzdYqGqJsu+E44tZoRDJa6OHKO+H
-	BgPigZOv3CUj3Gqkat5ax+gjWsQubv57+j0qGbATz7YOzK8+5jdu5kuIA4RkL+GPdtau
-	LgGg==
-X-Received: by 10.66.146.193 with SMTP id te1mr33457733pab.109.1423530049918; 
-	Mon, 09 Feb 2015 17:00:49 -0800 (PST)
+	bh=lN+a/mJyg8BvZpmQE4S0RNC7mJjMlkVJgiveyqKiLXk=;
+	b=uXBze824bOpCPy8txfOvi0oseT9+qfMNC1NI64GU8Y24O8A+rqxiIb9x62ImKOmWDW
+	KDqTkJwz75csIMsButcpIZUHOZaaZGBokF2fdMZr0VSj3GVI/ZqHokdlrwNkWgqhqY6L
+	bpRSVV2zPipudwOp4DXGbCIrBFg6AKNyUZSyF0RqJj5CkMtu2k/3fuiI4TCNh4g9o/wL
+	VvSTXgRlC1AlRCYSAW5qiQJK0C/X2hItn2AfwhY2/oN+a/MOcpZD8HsQxeMIMj+aBPsS
+	T2BPJW5krMxMGQrslOJEBRiXEcZHCNun05TLYI8W6C7ND/8W7GrYRp+4u900sjwI76eF
+	DV/w==
+X-Received: by 10.68.141.204 with SMTP id rq12mr33050285pbb.7.1423530053947;
+	Mon, 09 Feb 2015 17:00:53 -0800 (PST)
 Received: from Pahoa2.mvista.com (c-76-20-92-207.hsd1.ca.comcast.net.
 	[76.20.92.207])
-	by mx.google.com with ESMTPSA id df7sm7231473pdb.14.2015.02.09.17.00.47
+	by mx.google.com with ESMTPSA id df7sm7231473pdb.14.2015.02.09.17.00.52
 	for <yocto@yoctoproject.org>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 09 Feb 2015 17:00:48 -0800 (PST)
+	Mon, 09 Feb 2015 17:00:52 -0800 (PST)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon,  9 Feb 2015 17:00:38 -0800
-Message-Id: <1423530040-20457-2-git-send-email-akuster808@gmail.com>
+Date: Mon,  9 Feb 2015 17:00:40 -0800
+Message-Id: <1423530040-20457-4-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1423530040-20457-1-git-send-email-akuster808@gmail.com>
 References: <1423530040-20457-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 1/3] afflib: new package
+Subject: [meta-security][PATCH 3/3] sleuth: add sleuthkit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,72 +66,75 @@ X-List-Received-Date: Tue, 10 Feb 2015 01:00:57 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-forensic/afflib/afflib_3.6.6.bb            | 30 ++++++++++++++++++++++
- .../afflib/files/configure_rm_ms_flags.patch       | 18 +++++++++++++
- 2 files changed, 48 insertions(+)
- create mode 100644 recipes-forensic/afflib/afflib_3.6.6.bb
- create mode 100644 recipes-forensic/afflib/files/configure_rm_ms_flags.patch
+ .../sleuth/files/fix_host_poison.patch             | 23 ++++++++++++++++++
+ recipes-forensic/sleuth/sleuthkit_4.1.3.bb         | 28 ++++++++++++++++++++++
+ 2 files changed, 51 insertions(+)
+ create mode 100644 recipes-forensic/sleuth/files/fix_host_poison.patch
+ create mode 100644 recipes-forensic/sleuth/sleuthkit_4.1.3.bb
 
-diff --git a/recipes-forensic/afflib/afflib_3.6.6.bb b/recipes-forensic/afflib/afflib_3.6.6.bb
+diff --git a/recipes-forensic/sleuth/files/fix_host_poison.patch b/recipes-forensic/sleuth/files/fix_host_poison.patch
 new file mode 100644
-index 0000000..5fb6e21
+index 0000000..03b1fb9
 --- /dev/null
-+++ b/recipes-forensic/afflib/afflib_3.6.6.bb
-@@ -0,0 +1,30 @@
-+SUMMARY = "The Advanced Forensic Format (AFF) is on-disk format for storing computer forensic information."
-+HOMEPAGE = "http://www.afflib.org/"
-+LICENSE = " BSD-4-Clause  & CPL-1.0"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=d1b2c6d0d6908f45d143ef6380727828"
-+
-+DEPENDS = " zlib ncurses readline openssl libgcrypt"
-+
-+SRC_URI = "http://archive.ubuntu.com/ubuntu/pool/universe/a/${BPN}/${BPN}_${PV}.orig.tar.gz;name=orig \
-+        http://archive.ubuntu.com/ubuntu/pool/universe/a/${BPN}/${BPN}_${PV}-1.1.diff.gz;name=dpatch \
-+        file://configure_rm_ms_flags.patch \
-+        "
-+
-+SRC_URI[orig.md5sum] = "b7ff4d2945882018eb1536cad182ad01"
-+SRC_URI[orig.sha256sum] = "19cacfd558dc00e11975e820e3c4383b52aabbd5ca081d27bb7994a035d2f4ad"
-+SRC_URI[dpatch.md5sum] = "171e871024545b487589e6c85290576f"
-+SRC_URI[dpatch.sha256sum] = "db632e254ee51a1e4328cd4449d414eff4795053d4e36bfa8e0020fcb4085cdd"
-+
-+inherit autotools-brokensep
-+
-+CPPFLAGS = "-I${STAGING_INCDIR}"
-+LDFLAGS = "-L${STAGING_LIBDIR}"
-+
-+PACKAGECONFIG ??= ""
-+PACKAGECONFIG[curl] = "--with-curl=PATH, --without-curl, curl"
-+PACKAGECONFIG[expat] = "--with-expat=PATH, --without-expat, expat"
-+PACKAGECONFIG[fuse] = "--enable-fuse=yes, --enable-fuse=no, fuse"
-+PACKAGECONFIG[python] = "--enable-python=yes, --enable-python=no, python"
-+
-+EXTRA_OECONF += "--enable-s3=no CPPFLAGS=-I${STAGING_INCDIR} LDFLAGS=-L${STAGING_LIBDIR}"
-+EXTRA_OEMAKE += "CPPFLAGS='${CPPFLAGS}' LDFLAGS='-L${STAGING_LIBDIR}'"
-diff --git a/recipes-forensic/afflib/files/configure_rm_ms_flags.patch b/recipes-forensic/afflib/files/configure_rm_ms_flags.patch
-new file mode 100644
-index 0000000..ac33500
---- /dev/null
-+++ b/recipes-forensic/afflib/files/configure_rm_ms_flags.patch
-@@ -0,0 +1,18 @@
++++ b/recipes-forensic/sleuth/files/fix_host_poison.patch
+@@ -0,0 +1,23 @@
 +Upstream-Status: Inappropriate [configuration]
 +
-+remove ms lib options when cross compiling
++Don't use host include or lib paths in *FLAGS
 +
-+Signed-Off-By: Armin Kuster <akuster808@gmail.com>
++Signed-off-by: Armin Kuster <akuster808@gmail.com>
 +
 +Index: configure.ac
 +===================================================================
-+--- a.orig/configure.ac
-++++ a/configure.ac
-+@@ -47,7 +47,6 @@ if test x"${cross_compiling}" = "xno" ;
-+   AC_MSG_NOTICE([ LDFLAGS = ${LDFLAGS} ])
-+ else
-+   AC_MSG_NOTICE([Cross Compiling --- will not update CPPFALGS or LDFLAGS with /usr/local, /opt/local or /sw])
-+-  LIBS="$LIBS -lws2_32 -lgdi32"
-+ fi
++--- a/configure.ac
+++++ b/configure.ac
++@@ -84,12 +84,6 @@ AX_PTHREAD([
++     LDFLAGS="$LDFLAGS $PTHREAD_CFLAGS"
++     CC="$PTHREAD_CC"],[])
 + 
-+ if test -r /bin/uname.exe ; then
++-dnl Not all compilers include /usr/local in the include and link path
++-if test -d /usr/local/include; then
++-    CPPFLAGS="$CPPFLAGS -I/usr/local/include"
++-    LDFLAGS="$LDFLAGS -L/usr/local/lib"
++-fi
++-
++ dnl Add enable/disable option
++ AC_ARG_ENABLE([java],
++     [AS_HELP_STRING([--disable-java], [Do not build the java bindings or jar file])])
+diff --git a/recipes-forensic/sleuth/sleuthkit_4.1.3.bb b/recipes-forensic/sleuth/sleuthkit_4.1.3.bb
+new file mode 100644
+index 0000000..4b82616
+--- /dev/null
++++ b/recipes-forensic/sleuth/sleuthkit_4.1.3.bb
+@@ -0,0 +1,28 @@
++SUMMARY = "The Sleuth Kit (TSK) is a library and collection of command line tools that allow you to investigate disk images."
++HOMEPAGE = "http://www.sleuthkit.org/sleuthkit/"
++LICENSE = "IPL-1.0 & GPLv2 & CPL-1.0"
++LIC_FILES_CHKSUM = "file://licenses/GNU-COPYING;startline=4;endline=5;md5=475b4784903850b579dc6e6310bd5f08\
++    file://licenses/IBM-LICENSE;startline=1;endline=2;md5=1fc3300388b0d6e6216825dd89c2e3a2\
++    file://licenses/cpl1.0.txt;startline=1;endline=2;md5=9e58c878202c73a4e3ed4be72598fb92"
++
++DEPENDS = "libtool"
++
++SRC_URI = "http://archive.ubuntu.com/ubuntu/pool/universe/s/${BPN}/${BPN}_${PV}.orig.tar.gz;name=orig \
++            file://fix_host_poison.patch \
++        "
++SRC_URI[orig.md5sum] = "139a12f06952d8a40bbe07884994cf5d"
++SRC_URI[orig.sha256sum] = "67f9d2a31a8884d58698d6122fc1a1bfa9bf238582bde2b49228ec9b899f0327"
++
++inherit autotools-brokensep pkgconfig gettext
++
++PACKAGECONFIG ??= "aff zlib ewf"
++PACKAGECONFIG[aff] = "--with-afflib=${STAGING_DIR_HOST}/usr, --without-afflib, afflib"
++PACKAGECONFIG[zlib] = "--with-zlib=${STAGING_DIR_HOST}/usr, --without-zlib, zlib"
++PACKAGECONFIG[ewf] = "--with-libewf=${STAGING_DIR_HOST}/usr, --without-libewf, libewf"
++
++#--with-gnu-ld
++EXTRA_OECONF += "--enable-static=no --disable-java LIBS='-L${STAGING_LIBDIR}' LDFLAGS='-L${STAGING_LIBDIR}' CPPFLAGS='-I${STAGING_INCDIR}'"
++
++FILES_${PN} += " ${datadir}/tsk"
++
++RDEPENDS_${PN} += " perl"
 -- 
 1.9.1
 
