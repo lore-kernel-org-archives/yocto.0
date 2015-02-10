@@ -1,6 +1,6 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 06D6CE00815; Tue, 10 Feb 2015 10:35:29 -0800 (PST)
+	id 25DB3E008CC; Tue, 10 Feb 2015 12:27:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,25 +8,28 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDB2FE005A9
-	for <yocto@yoctoproject.org>; Tue, 10 Feb 2015 10:35:16 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 37EC9F811E5; Tue, 10 Feb 2015 11:35:14 -0700 (MST)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 6C078F811E4;
-	Tue, 10 Feb 2015 11:35:14 -0700 (MST)
-Message-ID: <54DA4F70.7030702@mlbassoc.com>
-Date: Tue, 10 Feb 2015 11:35:28 -0700
-From: Gary Thomas <gary@mlbassoc.com>
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id B3CBAE00717
+	for <yocto@yoctoproject.org>; Tue, 10 Feb 2015 12:27:28 -0800 (PST)
+Received: (qmail 12108 invoked by uid 1003); 10 Feb 2015 20:27:26 -0000
+Received: from unknown (HELO ?192.168.11.101?)
+	(philip@opensdr.com@108.44.84.240)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	10 Feb 2015 20:27:26 -0000
+Message-ID: <54DA69AB.1020204@balister.org>
+Date: Tue, 10 Feb 2015 15:27:23 -0500
+From: Philip Balister <philip@balister.org>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <54DA3FBD.2000503@mlbassoc.com>
-	<CABcZAN=2uiE8=fmTJOxvq3zsbaL5W9BwS+r7zxN2bMtChQL7vA@mail.gmail.com>
-In-Reply-To: <CABcZAN=2uiE8=fmTJOxvq3zsbaL5W9BwS+r7zxN2bMtChQL7vA@mail.gmail.com>
-Subject: Re: [meta-freescale] tmp/work-shared and sstate
+To: "openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>, 
+	openembedded-core <openembedded-core@lists.openembedded.org>, 
+	"openembedded-members@lists.openembedded.org"
+	<openembedded-members@lists.openembedded.org>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: OpenEmbedded Developer America's Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,54 +41,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Feb 2015 18:35:29 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Tue, 10 Feb 2015 20:27:31 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
-On 2015-02-10 11:13, Christopher Larson wrote:
->
-> On Tue, Feb 10, 2015 at 10:28 AM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
->
->     If I run a build where the kernel package is brought in via
->     sstate, tmp/work-shared (in particular the kernel-source tree)
->     is not populated.  This will break at least these recipes:
->        meta-fsl-arm/recipes-__multimedia/gstreamer/gst-fsl-__plugin_4.0.2.bb <http://gst-fsl-plugin_4.0.2.bb>
->        meta-fsl-arm/recipes-__multimedia/alsa/fsl-alsa-__plugins_1.0.25.bb <http://fsl-alsa-plugins_1.0.25.bb>
->
->     These programs reference the kernel includes directly for some
->     ARM/i.MX specific headers (e.g. <linux/mxcfb.h>).  These headers
->     are not part of the mainline kernel which is used to create the
->     kernel headers that populates tmp/sysroots, so the build fails.
->     Note: I'm not sure of the mechanism that lets these programs
->     peek into the kernel build (I looked at them but nothing jumped
->     out), but they do build find if the kernel is actually built
->     and not just brought in by sstate.
->
->     Is this an error & if so, which recipe is at fault?  The FSL
->     recipes, or the new kernel build/classes?
->
->
-> Per commit 46cdaf1c7bc597735d926af6a46f9483f7e57ce5 (oe-core 6a1ff0e7eacef595738f2fed086986fd622ec32a), you need to add this if you depend on the sources:
->
->      do_configure[depends] += "virtual/kernel:do_shared_workdir"
-> --
+We've scheduled a meeting in San Jose at a Monte Vista facility for
+March 27-28. This is after ELC (also in San Jose). There is a Yocto
+Project developer Day the day after ELC.
 
-Thanks, I'm checking now to see if this fixes the problem.
+I've made a page on the wiki to start collecting information:
 
-One thing I noted is I added that line to the two recipes in
-question.  When I [re]built my target image with these changes
-in a tree that I had just built using only sstate, it kicked
-off a ton of tasks (~6000!), and it seems that it's now rebuilding
-everything from scratch, not just unpacking the kernel.  Once this
-finishes, I'll try another rebuild from sstate to see how that works,
-but it sure looks like it's doing a lot more than necessary.
+http://openembedded.org/wiki/OEDAM_2015
 
-Is this to be expected?
+To get an idea of what we cover, see the page from the prior year:
 
+http://openembedded.org/wiki/OEDAM_2014
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+I apologize for the late notice. There were issues that led to a delay
+with dates due to the YP Dev day.
+
+Philip
 
