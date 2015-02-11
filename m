@@ -1,6 +1,6 @@
 Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D2E01E008EA; Wed, 11 Feb 2015 13:31:20 -0800 (PST)
+	id 10F75E0097F; Wed, 11 Feb 2015 13:40:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,32 +12,31 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A92FE00546
-	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 13:31:12 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5D65E00815
+	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 13:39:56 -0800 (PST)
 Received: from svr-orw-fem-02x.mgc.mentorg.com ([147.34.96.206]
 	helo=SVR-ORW-FEM-02.mgc.mentorg.com)
 	by relay1.mentorg.com with esmtp 
-	id 1YLesJ-0006HS-91 from Joe_MacDonald@mentor.com ;
-	Wed, 11 Feb 2015 13:31:11 -0800
+	id 1YLf0m-0000qA-5Z from Joe_MacDonald@mentor.com ;
+	Wed, 11 Feb 2015 13:39:56 -0800
 Received: from burninator (147.34.91.1) by svr-orw-fem-02.mgc.mentorg.com
 	(147.34.96.168) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 11 Feb 2015 13:31:10 -0800
-Received: by burninator (Postfix, from userid 1000)	id 04F0A581332; Wed, 11
-	Feb 2015 16:31:09 -0500 (EST)
-Date: Wed, 11 Feb 2015 16:31:09 -0500
+	Wed, 11 Feb 2015 13:39:55 -0800
+Received: by burninator (Postfix, from userid 1000)	id AE32B581332; Wed, 11
+	Feb 2015 16:39:54 -0500 (EST)
+Date: Wed, 11 Feb 2015 16:39:54 -0500
 From: Joe MacDonald <Joe_MacDonald@mentor.com>
 To: <openembedded-devel@lists.openembedded.org>
-Message-ID: <20150211213109.GH30457@mentor.com>
+Message-ID: <20150211213954.GI30457@mentor.com>
 References: <1423669983.23617.78.camel@tycho.nsa.gov>
 	<6445648.XiRzhvmYHl@peggleto-mobl5.ger.corp.intel.com>
-	<1423673755.1873.5.camel@tycho.nsa.gov>
 MIME-Version: 1.0
-In-Reply-To: <1423673755.1873.5.camel@tycho.nsa.gov>
+In-Reply-To: <6445648.XiRzhvmYHl@peggleto-mobl5.ger.corp.intel.com>
 X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
 X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
 X-Editor: Vim-704 http://www.vim.org
 User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Cc: yocto@yoctoproject.org, dpquigl <dpquigl@tycho.nsa.gov>
 Subject: Re: [oe] meta-selinux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -50,128 +49,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Feb 2015 21:31:20 -0000
-X-Groupsio-MsgNum: 23549
+X-List-Received-Date: Wed, 11 Feb 2015 21:40:49 -0000
+X-Groupsio-MsgNum: 23550
 Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="+PbGPm1eXpwOoWkI"
+	protocol="application/pgp-signature"; boundary="5me2qT3T17SWzdxI"
 Content-Disposition: inline
 
---+PbGPm1eXpwOoWkI
+--5me2qT3T17SWzdxI
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-[Re: [oe] meta-selinux] On 15.02.11 (Wed 11:55) dpquigl wrote:
+[Re: [oe] meta-selinux] On 15.02.11 (Wed 16:29) Paul Eggleton wrote:
 
-> On Wed, 2015-02-11 at 16:29 +0000, Paul Eggleton wrote:
-> > (Adding yocto@yoctoproject.org to CC since that is where meta-selinux p=
-atches=20
-> > tend to go at least)
-> >=20
-> > On Wednesday 11 February 2015 10:53:03 dpquigl wrote:
-> > > I'm working on OpenXT and it makes use of the meta-selinux repo hosted
-> > > by the yocto project. I'm trying to use it with a base openembedded c=
-ore
-> > > and its not in sync with oe-core because its based on pokey.=20
-> >=20
-> > To be clear, poky and OE-Core are in lock-step. No patch to core recipe=
-s goes=20
-> > into Poky directly, they are applied to OE-Core and then they flow into=
- Poky=20
-> > immediately thereafter (Richard, who does the merging of patches into O=
-E-Core,=20
-> > does the sync to Poky immediately afterwards.)
-> >=20
-> > What's more likely happening I suspect is that you are on a newer=20
-> > branch/revision of OE-Core/Poky than the meta-selinux maintainers have =
-tested.=20
-> > I can't speak to the maintenance schedule for meta-selinux but maybe ot=
-hers=20
-> > with knowledge there can chime in.
+> (Adding yocto@yoctoproject.org to CC since that is where meta-selinux pat=
+ches=20
+> tend to go at least)
 >=20
+> On Wednesday 11 February 2015 10:53:03 dpquigl wrote:
+> > I'm working on OpenXT and it makes use of the meta-selinux repo hosted
+> > by the yocto project. I'm trying to use it with a base openembedded core
+> > and its not in sync with oe-core because its based on pokey.=20
 >=20
-> I think this makes the most sense. 3 of the problems were bbappend files
-> trying to append the wrong version of a recipe (although with these
-> changes I should move them over to a wildcard) and the last one was with
-> LXC. After that I encountered a typo in one of the recipes where it
-> wasn't able to pull the sources down.=20
+> To be clear, poky and OE-Core are in lock-step. No patch to core recipes =
+goes=20
+> into Poky directly, they are applied to OE-Core and then they flow into P=
+oky=20
+> immediately thereafter (Richard, who does the merging of patches into OE-=
+Core,=20
+> does the sync to Poky immediately afterwards.)
+>=20
+> What's more likely happening I suspect is that you are on a newer=20
+> branch/revision of OE-Core/Poky than the meta-selinux maintainers have te=
+sted.=20
+> I can't speak to the maintenance schedule for meta-selinux but maybe othe=
+rs=20
+> with knowledge there can chime in.
 
-I merged a set of patches just in the last couple of days that addresses
-a SRC_URI issue and wildcards for bbappends that I hope resolves all of
-the current crop of these.  If you update your tree now you will likely
-see those go away.  If not, please let me know.
+Our master tends to lag behind oe-core's master for a few reasons, but
+none of them are really insurmountable.  Certainly the intent is that
+meta-selinux/master will build successfully with oe-core/master at any
+given time.
 
-Alternatively, I'm not aware of any issues in 1.7 of that sort (though
-now that I think about it, I need to check the SRC_URI one, I bet that's
-there), so using the latest released Yocto with a like-named branch in
-meta-selinux should always be safe.
-
--J.
-
-> > > This made me think of two questions. 1) Why is this not in OE core si=
-nce so
-> > > many packages in core can potentially have SELinux support enabled an=
-d 2) if
-> > > its not supposed to be in core where should turning on SELinux support
-> > > in a recipe go? For example coreutils can have SELinux support enable=
-d.
-> > > Currently this is in meta-selinux as a bbappend to the coreutils
-> > > package. This works out because its always going to be there. However
-> > > there is also a bbappend for an LXC recipe. LXC isn't in core which
-> > > means it has a dependency on a layer not in core.
-> > >=20
-> > > Ideally I would put the recipes needed for SELinux support in core and
-> > > have a distro feature which is checked in the recipes in core for
-> > > whether or not to add --with-selinux to the build flags. Then LXC cou=
-ld
-> > > check a core distro feature and enable SELinux if it wants to.
+> > This made me think of two questions. 1) Why is this not in OE core sinc=
+e so
+> > many packages in core can potentially have SELinux support enabled and =
+2) if
+> > its not supposed to be in core where should turning on SELinux support
+> > in a recipe go? For example coreutils can have SELinux support enabled.
+> > Currently this is in meta-selinux as a bbappend to the coreutils
+> > package. This works out because its always going to be there. However
+> > there is also a bbappend for an LXC recipe. LXC isn't in core which
+> > means it has a dependency on a layer not in core.
 > >=20
-> > We have to draw the line somewhere for what to include in OE-Core, and =
-at the=20
-> > moment I guess we have considered SELinux to be outside its scope. Obvi=
-ously=20
-> > these things get re-evaluated from time to time, and SELinux is a littl=
-e bit=20
-> > painful for this because of how many recipes it has to touch. Ultimatel=
-y it=20
-> > depends on how many people in the embedded space want to enable and use=
+> > Ideally I would put the recipes needed for SELinux support in core and
+> > have a distro feature which is checked in the recipes in core for
+> > whether or not to add --with-selinux to the build flags. Then LXC could
+> > check a core distro feature and enable SELinux if it wants to.
+>=20
+> We have to draw the line somewhere for what to include in OE-Core, and at=
+ the=20
+> moment I guess we have considered SELinux to be outside its scope. Obviou=
+sly=20
+> these things get re-evaluated from time to time, and SELinux is a little =
+bit=20
+> painful for this because of how many recipes it has to touch. Ultimately =
+it=20
+> depends on how many people in the embedded space want to enable and use=
 =20
-> > SELinux.
-> >=20
-> > Thoughts from others?
-> >=20
+> SELinux.
 >=20
-> In OpenXT we're using OE to generate images for dom0, a user interface
-> domain, a network driver domain, and various other service domains for
-> isolating tasks in the platform. In addition to that we're using
-> openembedded for building on various embedded research platforms. I'm
-> assuming yocto is using SELinux to some extent since they are
-> maintaining the repository for it and there are quite a few developers
-> using SELiunx on embedded products in Japan.
+> Thoughts from others?
+
+I've been doing SELinux stuff for rather a long time and it's generally
+been my experience that there's a set of developers / vendors that
+*really* want it and know what they're doing, there's another set that
+*really* want nothing to do with it and a group that say they want
+SELinux support but then immediately start needing to turn stuff off
+because it causes their system to behave too differently.
+
+Taken as a simple maintenance thing, I think it's easier to have SELinux
+be part of OE-Core.  Given, though, it's really not possible to divorce
+much of SELinux functionality from python on the target, so then I don't
+know if it really makes sense for something like that to be part of
+oe-core, proper.  I would think no.
+
 >=20
+> Cheers,
+> Paul
 >=20
-> Dave
+> --=20
 >=20
->=20
->=20
+> Paul Eggleton
+> Intel Open Source Technology Centre
 --=20
 -Joe MacDonald.
 :wq
 
---+PbGPm1eXpwOoWkI
+--5me2qT3T17SWzdxI
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.12 (GNU/Linux)
 
-iQEcBAEBAgAGBQJU28odAAoJEEn8ffcsOfaWoYYH/2olELkUmvPQ6ZLQCwhk6uKW
-i3GETf07eRXmGFXftVePUMdiJO7q69JvWOVpM4k7oMmc4lbJ4KmaMziIAFhBPIPq
-0gZq1cw62RITZXNDqmwrpUL0s4v6RKbHohOHhOzLYImIDXqsLrYhPFEJabzYYSf4
-7rBI31ah+FTZYt7GiN0zrOQCwruQjcZu3LqZnadLOuv+HRB/0rQR3vCMMOBDFckO
-ARI/RyccchVv2PM7ShKYLyTtJ9TOob8bRaApYBPC8WUX5w2Og6kg9v2lWGDX1qIZ
-hM+A/mdabjOAQj+QxtJhfepwnZLQt42ZZVyAs9dCFlnFdhPCI2NsS4EvUdPTzC4=
-=/+fm
+iQEcBAEBAgAGBQJU28wqAAoJEEn8ffcsOfaWmlMH/28WZjhwBxDhAYQCa8fPCn/n
++3mw9CC7wTJWPSSPnT2U9KxtXdj8tgqWLctg3dHyYRc5uprfvdAomgmqULCBWH9t
+9o3Yxfct9fxw2/wXi1PgqNO1b/795QXxWPREMhbrkLMcHRECjgHIsb0gF3Pb6MUh
+2+sLnFfoOC8dFWxAcjCKoBszC6xWSY2bAsK9SWCHFZoCQe6/PmEzW1c+lA8VkGcG
+1BxX+tjMnmwpBOadvvvYt57p1SDZSR3yqKdXostskDM726qsL5BWC/4UciLcpvXD
+f+M7QijWZTEJrzojn+fD4HNqtR0Z3iJeUqZjNsjM54QUFmHXLX9TbChb03gg5gI=
+=PCXs
 -----END PGP SIGNATURE-----
 
---+PbGPm1eXpwOoWkI--
+--5me2qT3T17SWzdxI--
