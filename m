@@ -1,38 +1,49 @@
-Return-Path: <flihp@twobit.us>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5CA5CE00815; Wed, 11 Feb 2015 11:44:20 -0800 (PST)
+	id C8CC0E00942; Wed, 11 Feb 2015 12:35:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.215.54 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20DB6E003D4
-	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 11:44:11 -0800 (PST)
-Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
-	helo=[172.16.1.11])
-	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
-	(Exim 4.80) (envelope-from <flihp@twobit.us>)
-	id 1YLdAe-00010g-Ul; Wed, 11 Feb 2015 19:42:01 +0000
-Message-ID: <54DBB0FF.6090305@twobit.us>
-Date: Wed, 11 Feb 2015 14:43:59 -0500
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:31.0) Gecko/20100101 Icedove/31.3.0
-MIME-Version: 1.0
-To: openembedded-devel@lists.openembedded.org, 
-	Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <1423669983.23617.78.camel@tycho.nsa.gov>	<6445648.XiRzhvmYHl@peggleto-mobl5.ger.corp.intel.com>
-	<1423673755.1873.5.camel@tycho.nsa.gov>
-In-Reply-To: <1423673755.1873.5.camel@tycho.nsa.gov>
-X-SA-Exim-Connect-IP: 50.185.54.102
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
-X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Cc: yocto@yoctoproject.org
-Subject: Re: [oe] meta-selinux
+Received: from mail-la0-f54.google.com (mail-la0-f54.google.com
+	[209.85.215.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76158E003D4
+	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 12:35:06 -0800 (PST)
+Received: by labgd6 with SMTP id gd6so5924457lab.7
+	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 12:35:05 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+	:references;
+	bh=MBgydfAbvUWsaKrByBDIPGnRya2bCryBxqlifw+kLjo=;
+	b=EF6WEDQEREq745RV5Va0qx6XzowmafpVU2oU7vtHBJKOA/MEd9g6M5TFNhEYowuPkq
+	4Oc+hvt45HIYrgXTW2OEv0eJ/phe92rs3qRfXU2bdkaHxb7EbSX8QGYdSBRjGuYEYHlQ
+	dS4J2+C1iSKk/pvZVMlZf5crzSU2kNkfbHQppEvVpKWXQH6dvJ/6Bsel9nNOlcO6r+x/
+	a52J4V2pyiP1p2cHyhhdvI18wjpeUYymK73CTWKV3ad1QXOweCyK+9QhpcdTpMqZePaA
+	fJx73Mq8GSUoKmkDjXiS62eXZUJ/URsfMs3wknNaY8XQdKsjC49QFFikPOmbbuZRIGw+
+	oLfg==
+X-Gm-Message-State: ALoCoQnT2GkR9ax5pe8qE8cdWh+Q6xm5uT5QA9RTgcppWBLnVgbC74P5ZqJ+qGO+vJ2hQOWz5e0c
+X-Received: by 10.152.204.73 with SMTP id kw9mr448704lac.16.1423686904872;
+	Wed, 11 Feb 2015 12:35:04 -0800 (PST)
+Received: from otp-agherzan-l1.gjk.dk (dhcp-186-165.gjk.dk. [195.249.186.165])
+	by mx.google.com with ESMTPSA id
+	rv1sm361520lbb.25.2015.02.11.12.35.04 for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 11 Feb 2015 12:35:04 -0800 (PST)
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: yocto@yoctoproject.org
+Date: Wed, 11 Feb 2015 21:34:57 +0100
+Message-Id: <1423686898-23144-2-git-send-email-andrei@gherzan.ro>
+X-Mailer: git-send-email 2.1.0
+In-Reply-To: <1423686898-23144-1-git-send-email-andrei@gherzan.ro>
+References: <1423686898-23144-1-git-send-email-andrei@gherzan.ro>
+Subject: [meta-raspberrypi][PATCH 2/3] rpi-base.inc: Use KERNEL_DEVICETREE by default
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,92 +55,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Feb 2015 19:44:20 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 11 Feb 2015 20:35:12 -0000
 
-On 02/11/2015 11:55 AM, dpquigl wrote:
-> On Wed, 2015-02-11 at 16:29 +0000, Paul Eggleton wrote:
->> (Adding yocto@yoctoproject.org to CC since that is where meta-selinux patches 
->> tend to go at least)
->>
->> On Wednesday 11 February 2015 10:53:03 dpquigl wrote:
->>> I'm working on OpenXT and it makes use of the meta-selinux repo hosted
->>> by the yocto project. I'm trying to use it with a base openembedded core
->>> and its not in sync with oe-core because its based on pokey. 
->>
->> To be clear, poky and OE-Core are in lock-step. No patch to core recipes goes 
->> into Poky directly, they are applied to OE-Core and then they flow into Poky 
->> immediately thereafter (Richard, who does the merging of patches into OE-Core, 
->> does the sync to Poky immediately afterwards.)
->>
->> What's more likely happening I suspect is that you are on a newer 
->> branch/revision of OE-Core/Poky than the meta-selinux maintainers have tested. 
->> I can't speak to the maintenance schedule for meta-selinux but maybe others 
->> with knowledge there can chime in.
-> 
-> 
-> I think this makes the most sense. 3 of the problems were bbappend files
-> trying to append the wrong version of a recipe (although with these
-> changes I should move them over to a wildcard) and the last one was with
-> LXC. After that I encountered a typo in one of the recipes where it
-> wasn't able to pull the sources down. 
+We already switched to kernel v3.18 by default so we can activate
+KERNEL_DEVICETREE by default too.
 
-I sent out patches to fix these 4 issues to the list a week or so back.
-Reviewing these things and getting them merged takes time though. AFAIK
-the meta-selinux master branch hasn't built for months now mostly
-because of bbappends trailing behind versions in oe-core. I've been
-playing whack-a-mole on this but by the time patches get merged a new
-version has changed elsewhere. I've been using wild-cards as much as
-possible on account of this.
+Change-Id: I69612be72f8254d462421112cf851e17a1ef24f8
+Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+---
+ conf/machine/include/rpi-base.inc | 32 ++++++++++++++++----------------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
 
->>> This made me think of two questions. 1) Why is this not in OE core since so
->>> many packages in core can potentially have SELinux support enabled and 2) if
->>> its not supposed to be in core where should turning on SELinux support
->>> in a recipe go? For example coreutils can have SELinux support enabled.
->>> Currently this is in meta-selinux as a bbappend to the coreutils
->>> package. This works out because its always going to be there. However
->>> there is also a bbappend for an LXC recipe. LXC isn't in core which
->>> means it has a dependency on a layer not in core.
->>>
->>> Ideally I would put the recipes needed for SELinux support in core and
->>> have a distro feature which is checked in the recipes in core for
->>> whether or not to add --with-selinux to the build flags. Then LXC could
->>> check a core distro feature and enable SELinux if it wants to.
->>
->> We have to draw the line somewhere for what to include in OE-Core, and at the 
->> moment I guess we have considered SELinux to be outside its scope. Obviously 
->> these things get re-evaluated from time to time, and SELinux is a little bit 
->> painful for this because of how many recipes it has to touch. Ultimately it 
->> depends on how many people in the embedded space want to enable and use 
->> SELinux.
->>
->> Thoughts from others?
+diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
+index f1c404d..102f9d8 100644
+--- a/conf/machine/include/rpi-base.inc
++++ b/conf/machine/include/rpi-base.inc
+@@ -18,22 +18,22 @@ XSERVER = " \
+     "
+ 
+ # Really supported starting from linux-raspberrypi 3.18.y only
+-#KERNEL_DEVICETREE ?= " \
+-#    bcm2708-rpi-b.dtb \
+-#    bcm2708-rpi-b-plus.dtb \
+-#    ds1307-rtc-overlay.dtb \
+-#    hifiberry-amp-overlay.dtb \
+-#    hifiberry-dac-overlay.dtb \
+-#    hifiberry-dacplus-overlay.dtb \
+-#    hifiberry-digi-overlay.dtb \
+-#    iqaudio-dac-overlay.dtb \
+-#    iqaudio-dacplus-overlay.dtb \
+-#    lirc-rpi-overlay.dtb \
+-#    pcf8523-rtc-overlay.dtb \
+-#    pps-gpio-overlay.dtb \
+-#    w1-gpio-overlay.dtb \
+-#    w1-gpio-pullup-overlay.dtb \
+-#    "
++KERNEL_DEVICETREE ?= " \
++    bcm2708-rpi-b.dtb \
++    bcm2708-rpi-b-plus.dtb \
++    ds1307-rtc-overlay.dtb \
++    hifiberry-amp-overlay.dtb \
++    hifiberry-dac-overlay.dtb \
++    hifiberry-dacplus-overlay.dtb \
++    hifiberry-digi-overlay.dtb \
++    iqaudio-dac-overlay.dtb \
++    iqaudio-dacplus-overlay.dtb \
++    lirc-rpi-overlay.dtb \
++    pcf8523-rtc-overlay.dtb \
++    pps-gpio-overlay.dtb \
++    w1-gpio-overlay.dtb \
++    w1-gpio-pullup-overlay.dtb \
++    "
+ KERNEL_IMAGETYPE ?= "Image"
+ 
+ MACHINE_FEATURES = "kernel26 apm usbhost keyboard vfat ext2 screen touchscreen alsa bluetooth wifi sdio"
+-- 
+2.1.0
 
-If SELinux support were to be integrated into oe-core directly this
-would force similar support into other layers too no? The reach of
-meta-selinux has expanded and the layers that must be pulled in to get
-it to build has expanded from just oe-core to meta-virtualization (for
-LXC) as well as a few layers in meta-oe.
-
-I don't know much about the process here but these cross layer
-dependencies would complicate things. I guess this would mean
-integrating SELinux support as a distro feature (or whatever is
-appropriate) into all of these layers directly. Not impossible but
-getting buy-in from the relevant maintainers is necessary.
-
-> In OpenXT we're using OE to generate images for dom0, a user interface
-> domain, a network driver domain, and various other service domains for
-> isolating tasks in the platform. In addition to that we're using
-> openembedded for building on various embedded research platforms. I'm
-> assuming yocto is using SELinux to some extent since they are
-> maintaining the repository for it and there are quite a few developers
-> using SELiunx on embedded products in Japan.
-
-I guess I've been wondering the same thing. For OpenXT we had
-implemented our own SELinux support on top of OE (we weren't OSS at the
-time). Now that we are OSS we've re-based on meta-selinux but I don't
-know of anyone else using this layer or at least discussing it publicly.
-
-Philip
 
