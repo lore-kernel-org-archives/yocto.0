@@ -1,43 +1,46 @@
-Return-Path: <belen.barros.pena@intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BB517E008CC; Wed, 11 Feb 2015 02:48:36 -0800 (PST)
+	id 93D04E008CC; Wed, 11 Feb 2015 02:50:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.172 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A050EE00815
-	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 02:48:28 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga101.jf.intel.com with ESMTP; 11 Feb 2015 02:48:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,558,1418112000"; d="scan'208";a="676269629"
-Received: from irsmsx151.ger.corp.intel.com ([163.33.192.59])
-	by fmsmga002.fm.intel.com with ESMTP; 11 Feb 2015 02:48:26 -0800
-Received: from irsmsx110.ger.corp.intel.com ([169.254.15.8]) by
-	IRSMSX151.ger.corp.intel.com ([169.254.4.84]) with mapi id
-	14.03.0195.001; Wed, 11 Feb 2015 10:48:25 +0000
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: "Wood, Michael G" <michael.g.wood@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [error-report-web] New errors-report-web
-Thread-Index: AQHQRehCy2Zl39mRuUO6d2WhgTY/xQ==
-Date: Wed, 11 Feb 2015 10:48:24 +0000
-Message-ID: <D100E3D2.53F21%belen.barros.pena@intel.com>
-References: <54DA151D.4080500@intel.com>
-In-Reply-To: <54DA151D.4080500@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.4.7.141117
-x-originating-ip: [10.237.224.33]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-qc0-f172.google.com (mail-qc0-f172.google.com
+	[209.85.216.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF2E5E00815
+	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 02:50:35 -0800 (PST)
+Received: by mail-qc0-f172.google.com with SMTP id x3so2063746qcv.3
+	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 02:50:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=JwA13yxN1ngeb60AurmVC2qO2BEJvlmBcc76rdSuXUQ=;
+	b=mmheFh2XKucwaIuZmhQ2YkCVfNReqT/4f3Oog7mkfpdnPmtvjoX65VceV/DN7VOc8S
+	NM3jFVwpXk+Umq4XX8VWnFhAOU05IMggvz/501pG4i1nWJj4RJcGGgrBUG5wxjJpH2O5
+	Lv2mtSTVwunmfJin5rFZ0TO8tmjG27MXObIy1rX+10yTsOWds/L3wXRpQRf5VQCEa7Nw
+	mckCeGqjZc1xqslmKkz92BB84mCE57wY8ZR27+G7t6jgcAaF53tZQ90aEmGk0YVnX86X
+	ZbcOM6e13qfRx5PIFII/MbZ2IPpWOsANj5vktKZmLFGDL4g+JtpyrbHu14K4KO3r3nTl
+	t3YA==
+X-Gm-Message-State: ALoCoQndZIM+gsnal1A08G0oroLTFNDoV8OkJE+Zc3nV7PIub/o2kKhNwQ2O7N3r0OGYN8+lmKw2
+X-Received: by 10.224.103.129 with SMTP id k1mr10915721qao.93.1423651835139;
+	Wed, 11 Feb 2015 02:50:35 -0800 (PST)
 MIME-Version: 1.0
+Received: by 10.140.96.166 with HTTP; Wed, 11 Feb 2015 02:50:13 -0800 (PST)
+In-Reply-To: <54DA151D.4080500@intel.com>
+References: <54DA151D.4080500@intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 11 Feb 2015 10:50:13 +0000
+Message-ID: <CAJTo0LYAr7DkvbNc-cuV0-O=aFY4gQw4e=1BMydyuyHK+8-cfw@mail.gmail.com>
+To: Michael Wood <michael.g.wood@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [error-report-web] New errors-report-web
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -50,59 +53,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Feb 2015 10:48:36 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <62F0E0C819E6F44490E7517B7AF4B5A8@intel.com>
+X-List-Received-Date: Wed, 11 Feb 2015 10:50:45 -0000
+Content-Type: multipart/alternative; boundary=047d7b66f74beaecfc050ecdc512
+
+--047d7b66f74beaecfc050ecdc512
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Thanks for all the work on this, Michael!
+On 10 February 2015 at 14:26, Michael Wood <michael.g.wood@intel.com> wrote=
+:
 
-Bel=E9n
+> I've updated the errors.yoctoproject.org site with the latest version of
+> error-report-web [1] that myself and Bel=C3=A9n have been working on.
+>
 
-On 10/02/2015 14:26, "Michael Wood" <michael.g.wood@intel.com> wrote:
+\o/
 
->Hi,
->
->I've updated the errors.yoctoproject.org site with the latest version of
->error-report-web [1] that myself and Bel=E9n have been working on.
->
->error-report-web is a project to provide a web service that can be used
->to collect and display build error reports. Error report generation can
->be enabled in your build's local.conf [2]
->
->Here are some of the highlights for the latest version:
->
->     - Option to have a JSON response on error report submission
->     - Optional "Special submitter" allowing an extra tab in the UI for
->quick access to a defined submitter (e.g "autobuilder")
->     - Filtering and ordering on columns
->     - Searching improved to allow search of the contents of error
->reports and other useful fields
->     - Improved page loading speed
->     - Non blocking graph generation
->     - Unit tests
->     - Update to Django 1.7
->     - Add support for Django migrations
->     - View errors by build
->     - Many UI tweaks
->     - Better error handling
->     - Simpler url structure
->
->Thanks,
->
->Michael
->
->[1] http://git.yoctoproject.org/cgit/cgit.cgi/error-report-web/
->[2]=20
->http://www.yoctoproject.org/docs/1.7.1/dev-manual/dev-manual.html#using-th
->e-error-reporting-tool
->
->
->--=20
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+Ross
 
+--047d7b66f74beaecfc050ecdc512
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 10 February 2015 at 14:26, Michael Wood <span dir=3D"ltr">&lt;<a href=3D=
+"mailto:michael.g.wood@intel.com" target=3D"_blank">michael.g.wood@intel.co=
+m</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":29m" =
+class=3D"a3s" style=3D"overflow:hidden">I&#39;ve updated the <a href=3D"htt=
+p://errors.yoctoproject.org" target=3D"_blank">errors.yoctoproject.org</a> =
+site with the latest version of error-report-web [1] that myself and Bel=C3=
+=A9n have been working on.</div></blockquote></div><br>\o/</div><div class=
+=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+
+--047d7b66f74beaecfc050ecdc512--
