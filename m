@@ -1,46 +1,44 @@
-Return-Path: <kapare@rogue-research.com>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7D040E00815; Wed, 11 Feb 2015 13:00:48 -0800 (PST)
+	id D2E01E008EA; Wed, 11 Feb 2015 13:31:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [192.94.38.131 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.rogue-research.com (mail.rogue-research.com [68.67.54.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3D01E003D4
-	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 13:00:43 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rogue-research.com (Postfix) with ESMTP id 27335446D41
-	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 16:00:42 -0500 (EST)
-X-Virus-Scanned: amavisd-new at rogue-research.com
-Received: from mail.rogue-research.com ([127.0.0.1])
-	by localhost (kingu.rogue-research.com [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id 3vs-cDn2eEUC for <yocto@yoctoproject.org>;
-	Wed, 11 Feb 2015 16:00:40 -0500 (EST)
-Received: from mail-qa0-f46.google.com (mail-qa0-f46.google.com
-	[209.85.216.46])
-	by mail.rogue-research.com (Postfix) with ESMTPSA id BADE5446D33
-	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 16:00:40 -0500 (EST)
-Received: by mail-qa0-f46.google.com with SMTP id n4so4723012qaq.5
-	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 13:00:40 -0800 (PST)
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A92FE00546
+	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 13:31:12 -0800 (PST)
+Received: from svr-orw-fem-02x.mgc.mentorg.com ([147.34.96.206]
+	helo=SVR-ORW-FEM-02.mgc.mentorg.com)
+	by relay1.mentorg.com with esmtp 
+	id 1YLesJ-0006HS-91 from Joe_MacDonald@mentor.com ;
+	Wed, 11 Feb 2015 13:31:11 -0800
+Received: from burninator (147.34.91.1) by svr-orw-fem-02.mgc.mentorg.com
+	(147.34.96.168) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 11 Feb 2015 13:31:10 -0800
+Received: by burninator (Postfix, from userid 1000)	id 04F0A581332; Wed, 11
+	Feb 2015 16:31:09 -0500 (EST)
+Date: Wed, 11 Feb 2015 16:31:09 -0500
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: <openembedded-devel@lists.openembedded.org>
+Message-ID: <20150211213109.GH30457@mentor.com>
+References: <1423669983.23617.78.camel@tycho.nsa.gov>
+	<6445648.XiRzhvmYHl@peggleto-mobl5.ger.corp.intel.com>
+	<1423673755.1873.5.camel@tycho.nsa.gov>
 MIME-Version: 1.0
-X-Received: by 10.140.49.5 with SMTP id p5mr1138059qga.15.1423688439999; Wed,
-	11 Feb 2015 13:00:39 -0800 (PST)
-Received: by 10.96.87.38 with HTTP; Wed, 11 Feb 2015 13:00:39 -0800 (PST)
-In-Reply-To: <46557CEF4ABDB54B92C59390D2741FD1BD8D87@PCISGEX.pciltd.com.sg>
-References: <46557CEF4ABDB54B92C59390D2741FD1BD8C09@PCISGEX.pciltd.com.sg>
-	<CACgAsMev7C2tTpHTYdQEr=Lb5mXJsi6nAHuJd-fR-4bqkreU2A@mail.gmail.com>
-	<46557CEF4ABDB54B92C59390D2741FD1BD8C70@PCISGEX.pciltd.com.sg>
-	<CACgAsMc_Oa=PGLR2tsLNfwTEBabZRfg1h09Tqi9Pa4m+oRZGqg@mail.gmail.com>
-	<46557CEF4ABDB54B92C59390D2741FD1BD8D87@PCISGEX.pciltd.com.sg>
-Date: Wed, 11 Feb 2015 16:00:39 -0500
-Message-ID: <CACgAsMecMgA1w-HWxQuGTnO1z07eW=WCns+1mZ3rPbK1f2_dww@mail.gmail.com>
-From: =?UTF-8?Q?Kevyn=2DAlexandre_Par=C3=A9?= <kapare@rogue-research.com>
-To: "Alvin D.M. DIZON" <adm.dizon@pciltd.com.sg>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Confused with adding drivers to kernel via bitbake -c menuconfig
+In-Reply-To: <1423673755.1873.5.camel@tycho.nsa.gov>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-704 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: [oe] meta-selinux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,161 +50,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Feb 2015 21:00:48 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 11 Feb 2015 21:31:20 -0000
+X-Groupsio-MsgNum: 23549
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="+PbGPm1eXpwOoWkI"
+Content-Disposition: inline
+
+--+PbGPm1eXpwOoWkI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+[Re: [oe] meta-selinux] On 15.02.11 (Wed 11:55) dpquigl wrote:
 
-On Mon, Feb 9, 2015 at 9:03 PM, Alvin D.M. DIZON
-<adm.dizon@pciltd.com.sg> wrote:
-> From my understanding bitbake -c cleansstate deletes sstate-cache and $(W=
-ORKDIR), so if I want to replace the previous kernel configuration with a n=
-ew one, I should run cleansstate right?
+> On Wed, 2015-02-11 at 16:29 +0000, Paul Eggleton wrote:
+> > (Adding yocto@yoctoproject.org to CC since that is where meta-selinux p=
+atches=20
+> > tend to go at least)
+> >=20
+> > On Wednesday 11 February 2015 10:53:03 dpquigl wrote:
+> > > I'm working on OpenXT and it makes use of the meta-selinux repo hosted
+> > > by the yocto project. I'm trying to use it with a base openembedded c=
+ore
+> > > and its not in sync with oe-core because its based on pokey.=20
+> >=20
+> > To be clear, poky and OE-Core are in lock-step. No patch to core recipe=
+s goes=20
+> > into Poky directly, they are applied to OE-Core and then they flow into=
+ Poky=20
+> > immediately thereafter (Richard, who does the merging of patches into O=
+E-Core,=20
+> > does the sync to Poky immediately afterwards.)
+> >=20
+> > What's more likely happening I suspect is that you are on a newer=20
+> > branch/revision of OE-Core/Poky than the meta-selinux maintainers have =
+tested.=20
+> > I can't speak to the maintenance schedule for meta-selinux but maybe ot=
+hers=20
+> > with knowledge there can chime in.
+>=20
+>=20
+> I think this makes the most sense. 3 of the problems were bbappend files
+> trying to append the wrong version of a recipe (although with these
+> changes I should move them over to a wildcard) and the last one was with
+> LXC. After that I encountered a typo in one of the recipes where it
+> wasn't able to pull the sources down.=20
 
-Yes bitbake <packagename> -c cleansstate will delete package cache & WORKDI=
-R .
+I merged a set of patches just in the last couple of days that addresses
+a SRC_URI issue and wildcards for bbappends that I hope resolves all of
+the current crop of these.  If you update your tree now you will likely
+see those go away.  If not, please let me know.
 
-After you create you layer, add your bbappend file and add config in
-defconfig.cfg simply bitbake <packagename> and it will detect changes
-and process all tasks required by the package.
+Alternatively, I'm not aware of any issues in 1.7 of that sort (though
+now that I think about it, I need to check the SRC_URI one, I bet that's
+there), so using the latest released Yocto with a like-named branch in
+meta-selinux should always be safe.
 
-You can validate in your WORKDIR to validate the change
+-J.
 
+> > > This made me think of two questions. 1) Why is this not in OE core si=
+nce so
+> > > many packages in core can potentially have SELinux support enabled an=
+d 2) if
+> > > its not supposed to be in core where should turning on SELinux support
+> > > in a recipe go? For example coreutils can have SELinux support enable=
+d.
+> > > Currently this is in meta-selinux as a bbappend to the coreutils
+> > > package. This works out because its always going to be there. However
+> > > there is also a bbappend for an LXC recipe. LXC isn't in core which
+> > > means it has a dependency on a layer not in core.
+> > >=20
+> > > Ideally I would put the recipes needed for SELinux support in core and
+> > > have a distro feature which is checked in the recipes in core for
+> > > whether or not to add --with-selinux to the build flags. Then LXC cou=
+ld
+> > > check a core distro feature and enable SELinux if it wants to.
+> >=20
+> > We have to draw the line somewhere for what to include in OE-Core, and =
+at the=20
+> > moment I guess we have considered SELinux to be outside its scope. Obvi=
+ously=20
+> > these things get re-evaluated from time to time, and SELinux is a littl=
+e bit=20
+> > painful for this because of how many recipes it has to touch. Ultimatel=
+y it=20
+> > depends on how many people in the embedded space want to enable and use=
+=20
+> > SELinux.
+> >=20
+> > Thoughts from others?
+> >=20
+>=20
+> In OpenXT we're using OE to generate images for dom0, a user interface
+> domain, a network driver domain, and various other service domains for
+> isolating tasks in the platform. In addition to that we're using
+> openembedded for building on various embedded research platforms. I'm
+> assuming yocto is using SELinux to some extent since they are
+> maintaining the repository for it and there are quite a few developers
+> using SELiunx on embedded products in Japan.
+>=20
+>=20
+> Dave
+>=20
+>=20
+>=20
+--=20
+-Joe MacDonald.
+:wq
 
-hmm I just notice that adding CONFIG_BT=3Dm, when it was =3Dy, in
-defconfig.cfg didn't change it even tried cleansstate. But it worked
-if I copy the original .config to my bbappend and change it inside...
+--+PbGPm1eXpwOoWkI
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-I'm with yocto 1.7.1
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
 
-NATIVELSBSTRING   =3D "Ubuntu-14.04"
-TARGET_SYS        =3D "arm-poky-linux-gnueabi"
-MACHINE           =3D "wandboard-quad"
-DISTRO            =3D "poky"
-DISTRO_VERSION    =3D "1.7.1"
+iQEcBAEBAgAGBQJU28odAAoJEEn8ffcsOfaWoYYH/2olELkUmvPQ6ZLQCwhk6uKW
+i3GETf07eRXmGFXftVePUMdiJO7q69JvWOVpM4k7oMmc4lbJ4KmaMziIAFhBPIPq
+0gZq1cw62RITZXNDqmwrpUL0s4v6RKbHohOHhOzLYImIDXqsLrYhPFEJabzYYSf4
+7rBI31ah+FTZYt7GiN0zrOQCwruQjcZu3LqZnadLOuv+HRB/0rQR3vCMMOBDFckO
+ARI/RyccchVv2PM7ShKYLyTtJ9TOob8bRaApYBPC8WUX5w2Og6kg9v2lWGDX1qIZ
+hM+A/mdabjOAQj+QxtJhfepwnZLQt42ZZVyAs9dCFlnFdhPCI2NsS4EvUdPTzC4=
+=/+fm
+-----END PGP SIGNATURE-----
 
- -KA
-
-
-> ________________________________________
-> From: Kevyn-Alexandre Par=C3=A9 [kapare@rogue-research.com]
-> Sent: Saturday, February 07, 2015 3:21 AM
-> To: Alvin D.M. DIZON
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Confused with adding drivers to kernel via bitbake -=
-c menuconfig
->
-> Alvin,,
->
-> On Thu, Feb 5, 2015 at 8:35 PM, Alvin D.M. DIZON
-> <adm.dizon@pciltd.com.sg> wrote:
->> Hello Kevyn,
->>
->> Thanks for your help. Do I still have to run bitbake -c cleansstate afte=
-r creating the configuration fragment? Or do I go straight to bitbake linux=
--imx or bitbake fsl-image-x11?
->
-> Look into ${WORKDIR}/temp for what's happening
-> http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-W=
-ORKDIR
-> http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#using=
-poky-debugging-taskfailures
->
-> It depends what you want to do.
->
-> -KA
->
-> On Thu, Feb 5, 2015 at 8:35 PM, Alvin D.M. DIZON
-> <adm.dizon@pciltd.com.sg> wrote:
->> Hello Kevyn,
->>
->> Thanks for your help. Do I still have to run bitbake -c cleansstate afte=
-r creating the configuration fragment? Or do I go straight to bitbake linux=
--imx or bitbake fsl-image-x11?
->>
->> Thanks
->> ________________________________________
->> From: Kevyn-Alexandre Par=C3=A9 [kapare@rogue-research.com]
->> Sent: Friday, February 06, 2015 12:58 AM
->> To: Alvin D.M. DIZON
->> Subject: Re: [yocto] Confused with adding drivers to kernel via bitbake =
--c menuconfig
->>
->> Hi Alvin,
->>
->> On Thu, Feb 5, 2015 at 12:43 AM, Alvin D.M. DIZON
->> <adm.dizon@pciltd.com.sg> wrote:
->>> Hello,
->>>
->>> I would like to the generic USB bluetooth driver "btusb" to my i.MX6Q S=
-ABRE SD, so that my USB Bluetooth dongle(Cambridge Silicon Radio). Upon rea=
-ding https://community.freescale.com/docs/DOC-100847 I enabled the Bluetoot=
-h subsystem support, RFCOMM, BNEP, and HIDP, as well as the HCI USB driver.=
- I saved the .config file and copied it to the directory where my Linux rec=
-ipe is (linux-imx_3.10.17.bb). I then renamed my .config file into defconfi=
-g, made a new folder called "files" and placed the defconfig in it. I also =
-made a .bbappend file that contained
->>
->> I personally prefer this approach:
->> http://www.yoctoproject.org/docs/1.6.1/kernel-dev/kernel-dev.html#changi=
-ng-the-configuration
->> second part with the .cfg
->>
->> Doing this you can then validate it:
->> bitbake linux-imx -c configure -f
->>
->> cat tmp/work/<PATH>/linux-imx/<VERSION>/build/.config | grep CONFIG_BT
->>
->>>
->>> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
->>> SRC_URI +=3D "file://defconfig"
->>>
->>> I then ran "bitbake -c cleansstate linux-imx", after that I ran "bitbak=
-e fsl-image-x11". I flashed the resulting .sdcard file to an SD card, boote=
-d up my board, but found no trace of btusb. I tried doing "bitbake -f -c co=
-mpile linux-imx" and then "bitbake -f -c deploy linux-imx", and copied the =
-resulting uImage to my SD card's /media/Boot folder, but still no trace of =
-btusb. I checked the tar archive for the kernel modules found in the /tmp/d=
-eploy/images/imx6qsabresd folder, and found two files called modules.order =
-and modules.builtin, the btusb driver is listed in the modules.builtin file=
-, but not mentioned in the modules.order file, I have also tried compiling =
-the driver as module, and then ran the same commands as listed in the said =
-link, but could not find the module. What am I doing wrong here? Any help w=
-ill be will be appreciated, since I am new to Linux and the Yocto Project.
->>>
->>
->> Before putting it on your SD you could validate that btusb is in
->> tmp/work/<PATH>/linux-imx/<VERSION>/image
->>
->> Or
->>
->> grep btusb tmp/work/<PATH>/linux-imx/<VERSION>/temp/*
->>
->> Hope it could help,
->>
->> -KA
->>
->>> Thanks,
->>> Alvin
->>> [PCI]
->>>
->>>   Innovative Manufacturing Solutions. Professionally Delivered!
->>>
->>> The information contained in this email is confidential and is intended=
- for addressee(s) only. If you have received this email in error, please no=
-tify the originator immediately. Nothing in this email shall constitute an =
-offer or acceptance leading to a legally binding contract which shall only =
-arise from a formal written agreement between yourselves and ourselves in t=
-he form of a Purchase Order issued by us and accepted by you in writing. Fo=
-r the avoidance of doubt, this email shall not be construed in any way as a=
- formal written agreement. We accept no liability for any damage arising fr=
-om alteration of the contents of this message by a third party or as a resu=
-lt of any virus being passed on. Please consider your environmental respons=
-ibility before printing this e-mail.
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
-
+--+PbGPm1eXpwOoWkI--
