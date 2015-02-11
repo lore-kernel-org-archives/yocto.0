@@ -1,50 +1,40 @@
-Return-Path: <maxin@maxinbjohn.info>
+Return-Path: <dpquigl@tycho.nsa.gov>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F2F54E0089B; Thu, 12 Feb 2015 06:56:01 -0800 (PST)
+	id C02BBE00546; Wed, 11 Feb 2015 09:08:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [63.239.67.10 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.177 listed in list.dnswl.org]
-Received: from mail-ig0-f177.google.com (mail-ig0-f177.google.com
-	[209.85.213.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52A38E007CF
-	for <yocto@yoctoproject.org>; Thu, 12 Feb 2015 06:55:59 -0800 (PST)
-Received: by mail-ig0-f177.google.com with SMTP id z20so4097316igj.4
-	for <yocto@yoctoproject.org>; Thu, 12 Feb 2015 06:55:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=Cjz46L4r64jOFAP9fLli/LOHeU/RMj8HLpxkzzI6WYk=;
-	b=hHH/pQFap/ZkEtLfY+PZ7EkgFyQcy6Y8p7KJp3wJJVCvoG2PKUKbp+UaeIMWX+/4uE
-	EtKue7SQQRPvlidFMoS2LHgSdjc+bpRlUaKj3kWOnY2vJ18sGbGSrB1zL+nZOShf66sw
-	3XO3r5KagowHIDvvsbqq+Aqj5YK47ymtRJoEAdZPc6MDd2sgH3swQOnhiQAt4Ows2kOs
-	eGyDf+ZJkJcEROlc2ebsy97xgdyu9QjgtCo24DX+mqx6NK72yrbjR2nm5FpW7xGjTNMR
-	8Z+suFpkrWvcwtMTplr+lvTajbBK9Xlo1rLR8nT9k7HZ9oJ1JuEZm8ibeKOc/X+irJaN
-	RNDg==
-X-Gm-Message-State: ALoCoQkYMqnw2ENDHU8qLy+hFE3slq2xqnlyVB/rCaNQehnlTrzUSQV4LHA/65vh6J08V+abj65g
-MIME-Version: 1.0
-X-Received: by 10.42.170.200 with SMTP id g8mr8823875icz.5.1423752958989; Thu,
-	12 Feb 2015 06:55:58 -0800 (PST)
-Received: by 10.36.57.206 with HTTP; Thu, 12 Feb 2015 06:55:58 -0800 (PST)
-X-Originating-IP: [192.36.1.252]
-In-Reply-To: <CAJTo0LYRUUC6ErtyC2E6kB70bnVQVoeVro9ajwBZ52-NNgTUBQ@mail.gmail.com>
+X-Greylist: delayed 856 seconds by postgrey-1.32 at yocto-www;
+	Wed, 11 Feb 2015 09:08:25 PST
+Received: from emvm-gh1-uea09.nsa.gov (emvm-gh1-uea09.nsa.gov [63.239.67.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CCD33E002F9
+	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 09:08:25 -0800 (PST)
+X-TM-IMSS-Message-ID: <8025d0c700109633@nsa.gov>
+Received: from tarius.tycho.ncsc.mil ([144.51.242.1]) by nsa.gov
+	([63.239.67.10]) with ESMTP (TREND IMSS SMTP Service 7.1;
+	TLSv1/SSLv3 DHE-RSA-AES256-SHA (256/256)) id 8025d0c700109633 ;
+	Wed, 11 Feb 2015 11:55:43 -0500
+Received: from moss-clam.infosec.tycho.ncsc.mil (moss-clam [192.168.25.42])
+	by tarius.tycho.ncsc.mil (8.14.4/8.14.4) with ESMTP id t1BGrcXY024195; 
+	Wed, 11 Feb 2015 11:53:48 -0500
+Message-ID: <1423673755.1873.5.camel@tycho.nsa.gov>
+From: dpquigl <dpquigl@tycho.nsa.gov>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Date: Wed, 11 Feb 2015 11:55:55 -0500
+In-Reply-To: <6445648.XiRzhvmYHl@peggleto-mobl5.ger.corp.intel.com>
 References: <1423669983.23617.78.camel@tycho.nsa.gov>
 	<6445648.XiRzhvmYHl@peggleto-mobl5.ger.corp.intel.com>
-	<20150211213954.GI30457@mentor.com>
-	<CAJTo0LYRUUC6ErtyC2E6kB70bnVQVoeVro9ajwBZ52-NNgTUBQ@mail.gmail.com>
-Date: Thu, 12 Feb 2015 15:55:58 +0100
-Message-ID: <CAFicg87Y=4UmvCpRwYKP6SoOZtnCiVOJB_Uq-JhM1b6Qb8xZFw@mail.gmail.com>
-From: Maxin John <maxin@maxinbjohn.info>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	OE-devel <openembedded-devel@lists.openembedded.org>
+X-Mailer: Evolution 3.12.10 (3.12.10-1.fc21) 
+Mime-Version: 1.0
+X-Mailman-Approved-At: Thu, 12 Feb 2015 08:12:59 -0800
+Cc: yocto@yoctoproject.org, openembedded-devel@lists.openembedded.org
 Subject: Re: [oe] meta-selinux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -57,47 +47,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Feb 2015 14:56:02 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 11 Feb 2015 17:08:29 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi Ross,
+On Wed, 2015-02-11 at 16:29 +0000, Paul Eggleton wrote:
+> (Adding yocto@yoctoproject.org to CC since that is where meta-selinux patches 
+> tend to go at least)
+> 
+> On Wednesday 11 February 2015 10:53:03 dpquigl wrote:
+> > I'm working on OpenXT and it makes use of the meta-selinux repo hosted
+> > by the yocto project. I'm trying to use it with a base openembedded core
+> > and its not in sync with oe-core because its based on pokey. 
+> 
+> To be clear, poky and OE-Core are in lock-step. No patch to core recipes goes 
+> into Poky directly, they are applied to OE-Core and then they flow into Poky 
+> immediately thereafter (Richard, who does the merging of patches into OE-Core, 
+> does the sync to Poky immediately afterwards.)
+> 
+> What's more likely happening I suspect is that you are on a newer 
+> branch/revision of OE-Core/Poky than the meta-selinux maintainers have tested. 
+> I can't speak to the maintenance schedule for meta-selinux but maybe others 
+> with knowledge there can chime in.
 
-On Thu, Feb 12, 2015 at 12:19 PM, Burton, Ross <ross.burton@intel.com> wrote:
->
-> On 11 February 2015 at 21:39, Joe MacDonald <Joe_MacDonald@mentor.com>
-> wrote:
->>
->> > What's more likely happening I suspect is that you are on a newer
->> > branch/revision of OE-Core/Poky than the meta-selinux maintainers have
->> > tested.
->> > I can't speak to the maintenance schedule for meta-selinux but maybe
->> > others
->> > with knowledge there can chime in.
->>
->> Our master tends to lag behind oe-core's master for a few reasons, but
->> none of them are really insurmountable.  Certainly the intent is that
->> meta-selinux/master will build successfully with oe-core/master at any
->> given time.
->
->
-> The yocto-autobuilder software is in git and I heartily recommend it (or
-> similar, if you've a buildbot allergy) for anyone maintaining layers.  Just
-> the simple act of running a build every night to verify that the layer works
-> with the latest master branch (and stable branches for bonus points) means
-> that problems like stale bbappends are rapidly found and resolved.  For even
-> more bonus points, also do builds against master-next if that branch exists
-> so you can get notification of changes that are in review.
 
-While I don't have anything against the autobuilder, the images built with
-meta-selinux like "core-image-selinux" had a "labeling" phase which requires
-it to boot - twice
-Once for labeling and later for booting like any other normal image.
+I think this makes the most sense. 3 of the problems were bbappend files
+trying to append the wrong version of a recipe (although with these
+changes I should move them over to a wildcard) and the last one was with
+LXC. After that I encountered a typo in one of the recipes where it
+wasn't able to pull the sources down. 
 
-Do anyone care to share a way around this "difficulty" in automatically testing
-selinux or am I wrong here ?
+> 
+> > This made me think of two questions. 1) Why is this not in OE core since so
+> > many packages in core can potentially have SELinux support enabled and 2) if
+> > its not supposed to be in core where should turning on SELinux support
+> > in a recipe go? For example coreutils can have SELinux support enabled.
+> > Currently this is in meta-selinux as a bbappend to the coreutils
+> > package. This works out because its always going to be there. However
+> > there is also a bbappend for an LXC recipe. LXC isn't in core which
+> > means it has a dependency on a layer not in core.
+> > 
+> > Ideally I would put the recipes needed for SELinux support in core and
+> > have a distro feature which is checked in the recipes in core for
+> > whether or not to add --with-selinux to the build flags. Then LXC could
+> > check a core distro feature and enable SELinux if it wants to.
+> 
+> We have to draw the line somewhere for what to include in OE-Core, and at the 
+> moment I guess we have considered SELinux to be outside its scope. Obviously 
+> these things get re-evaluated from time to time, and SELinux is a little bit 
+> painful for this because of how many recipes it has to touch. Ultimately it 
+> depends on how many people in the embedded space want to enable and use 
+> SELinux.
+> 
+> Thoughts from others?
+> 
 
-> Ross
+In OpenXT we're using OE to generate images for dom0, a user interface
+domain, a network driver domain, and various other service domains for
+isolating tasks in the platform. In addition to that we're using
+openembedded for building on various embedded research platforms. I'm
+assuming yocto is using SELinux to some extent since they are
+maintaining the repository for it and there are quite a few developers
+using SELiunx on embedded products in Japan.
 
-Best Regards,
-Maxin
+
+Dave
+
+
+
 
