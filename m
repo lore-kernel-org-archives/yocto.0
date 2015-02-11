@@ -1,56 +1,38 @@
-Return-Path: <jefro.net@gmail.com>
+Return-Path: <yocto@mindchasers.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB712E00815; Wed, 11 Feb 2015 09:36:50 -0800 (PST)
+	id 48ECDE00815; Wed, 11 Feb 2015 10:35:21 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.47 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,UC_GIBBERISH_OBFU
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f47.google.com (mail-pa0-f47.google.com
-	[209.85.220.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E2FFE003D4
-	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 09:36:45 -0800 (PST)
-Received: by mail-pa0-f47.google.com with SMTP id lf10so5402497pab.6
-	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 09:36:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:subject:date:message-id:reply-to:user-agent
-	:mime-version:content-type;
-	bh=LO+rXxPSgAkSUKlHJLXpqyURrNRAW+yNZsVbzed5Sxw=;
-	b=T8gws0AVJddr1OoHuWRp+RizicsO9sMhcHJEy+4ewSFh8xYUl7DPCw3R8Tx4uITqpD
-	mtl8Z2QdlgEY8Z3c+7xHFF7iZLcMdlGb9PHEl2hwvA4OeTbWBhgyzjua4hzrd4BLQbAe
-	ATz82GciGFAZyJLrPBL0y1m0qA7n1FMM+zPRnz1RY9+Uh65+uYeEfrjkbomdBIj3cVRY
-	TeiD3hprVTNHYfQQG1r8BV84sIhnCMRZQSvpKMxucXWJD6NYJ6GeEVYlQ7Ko07f8bLYQ
-	qAhMfOGD+H4dIU9VRwccp4Hyp+chfqM+vHAK2aqZiNuwrLgA/dup1OdS9oXAiblar8lP
-	c24g==
-X-Received: by 10.68.197.133 with SMTP id iu5mr48340426pbc.131.1423676205089; 
-	Wed, 11 Feb 2015 09:36:45 -0800 (PST)
-Received: from [192.168.0.4] (50-0-152-82.dedicated.static.sonic.net.
-	[50.0.152.82])
-	by mx.google.com with ESMTPSA id po4sm1411979pdb.85.2015.02.11.09.36.42
-	for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 11 Feb 2015 09:36:43 -0800 (PST)
-Sender: Jeff Osier-Mixon <jefro.net@gmail.com>
-From: "Jeff Osier-Mixon" <jefro@jefro.net>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Wed, 11 Feb 2015 17:36:41 +0000
-Message-Id: <em6fcf2af0-cb82-4c7c-a862-e26e00efd412@io>
-User-Agent: eM_Client/6.0.21372.0
-Mime-Version: 1.0
-Subject: Yocto Project Developer Day US 2015
+	* 1.0 UC_GIBBERISH_OBFU Multiple instances of "word VERYLONGGIBBERISH
+	*      word"
+Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7BAEE003D4
+	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 10:35:16 -0800 (PST)
+Received: from [192.168.1.10] (c-73-194-208-34.hsd1.nj.comcast.net
+	[73.194.208.34])
+	by smtp.webfaction.com (Postfix) with ESMTP id 262B720BD385;
+	Wed, 11 Feb 2015 18:35:15 +0000 (UTC)
+Message-ID: <54DBA0E1.6020608@mindchasers.com>
+Date: Wed, 11 Feb 2015 13:35:13 -0500
+From: Bob Cochran <yocto@mindchasers.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
+MIME-Version: 1.0
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>, 
+	William Mills <wmills@ti.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <EC0CC42105A97F4A81EA36CDF61DDAD45CA40387@DLEE11.ent.ti.com>	<549EFEF1.1040604@ti.com>
+	<D0D07A4A.50C55%belen.barros.pena@intel.com>
+In-Reply-To: <D0D07A4A.50C55%belen.barros.pena@intel.com>
+Subject: Re: My config got stuck in the toaster
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Jeff Osier-Mixon <jefro@jefro.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -59,82 +41,139 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Feb 2015 17:36:51 -0000
-Content-Type: multipart/alternative;
-	boundary="------=_MB75CF6404-49B0-49B7-957C-F9F5D2832BDA"
+X-List-Received-Date: Wed, 11 Feb 2015 18:35:21 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
---------=_MB75CF6404-49B0-49B7-957C-F9F5D2832BDA
-Content-Type: text/plain; format=flowed; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+On 01/05/2015 06:59 AM, Barros Pena, Belen wrote:
+> On 28/12/2014 00:18, "William Mills" <wmills@ti.com> wrote:
+>
+>>
+>> On 12/27/2014 10:40 AM, Mills, William wrote:
+>>> OK, you are not going to believe me but I swear this really happened ...
+>
+> We do believe you :)
+>
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=6935
 
-The Yocto Project is happy to announce Yocto Project Developer Day on=20
-March 26, 2015, in Fremont, California USA. This is just down the street=
-=20
-from the Embedded Linux Conference on the day after ELC, so make your=20
-plans to stay for a day and play with actual hardware with the Yocto=20
-Project maintainers. Learn about the project with hands-on labs and=20
-advanced talks, and take home the development board of your choice,=20
-which you will work with in the classroom.
 
-A limited number of early bird registration is available until March 1:=20
-only $149, board included! It'll be $199 after March 1, so register soon=
-=20
-at
-http://www.eventbrite.com/e/2015-yocto-project-developer-day-us-registratio=
-n-15441475870
+Looks like this was patched & closed, but I'm seeing similar behavior 
+working with poky master (commit: 870323cac1e40).
 
-Initial schedule here: https://2015yoctodeveloperdayus.sched.org/
+I was modifying the MACHINEOVERRIDES settings in some of the conf files. 
+  I noticed that the values weren't picked up during a build until I 
+stopped toaster (source toaster stop).  However, bitbake did seem to 
+pick up each prepend and append modification ( =. and .=) while toaster 
+was running (but not the change in the variable's value).
 
-Many thanks to Mentor Graphics for sponsoring the venue and food for=20
-this event.
+In summary:
 
---
-Jeffrey Osier-Mixon, Intel Corporation
-Yocto Project Community Manager | https://www.yoctoproject.org
+i) source toaster start
+ii) make changes to MACHINEOVERRIDES in meta-fsl-ppc layer conf files
+iii) bitbake init-ifupdown
+iv) changes aren't accurately reflected in the build
+v) source toaster stop
+vi) bitbake init-ifupdown  # all is OK
 
---------=_MB75CF6404-49B0-49B7-957C-F9F5D2832BDA
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Bob
 
-<HTML><HEAD>
-<STYLE id=3DeMClientCss>
-blockquote.cite { margin-left: 5px; margin-right: 0px; padding-left: 10px;=
- padding-right:0px; border-left: 1px solid #cccccc }
-blockquote.cite2 {margin-left: 5px; margin-right: 0px; padding-left: 10px;=
- padding-right:0px; border-left: 1px solid #cccccc; margin-top: 3px; paddin=
-g-top: 0px; }
-.plain pre, .plain tt { font-family: monospace; font-size: 100%; font-weigh=
-t: normal; font-style: normal; }
-a img { border: 0px; }body {font-family: Tahoma;font-size: 12pt;}
-.plain pre, .plain tt {font-family: Tahoma;font-size: 12pt;}</STYLE>
-</HEAD>
-<BODY>
-<DIV>The Yocto Project is happy to announce Yocto Project Developer Day =
-on March 26, 2015, in Fremont, California USA. This is just down the street=
- from the Embedded Linux Conference on the day after ELC, so make your plan=
-s to stay for a day and play with actual hardware with the Yocto Project=
- maintainers. Learn about the project with hands-on labs and advanced talks=
-, and take home the development board of your choice, which you will work=
- with in the classroom.</DIV>
-<DIV>&nbsp;</DIV>
-<DIV>A limited number of early bird registration is available until March=
- 1: only $149, board included! It'll be $199 after March 1, so register =
-soon at<BR><A href=3D"http://www.eventbrite.com/e/2015-yocto-project-develo=
-per-day-us-registration-15441475870">http://www.eventbrite.com/e/2015-yocto=
--project-developer-day-us-registration-15441475870</A></DIV>
-<DIV>&nbsp;</DIV>
-<DIV>Initial schedule here: <A href=3D"https://2015yoctodeveloperdayus.sche=
-d.org/">https://2015yoctodeveloperdayus.sched.org/</A></DIV>
-<DIV>&nbsp;</DIV>
-<DIV>Many thanks to Mentor Graphics for sponsoring the venue and food for=
- this event.</DIV>
-<DIV>&nbsp;</DIV>
-<DIV id=3Dsignature_old>
-<DIV style=3D"FONT-SIZE: 12pt; FONT-FAMILY: Tahoma">
-<DIV>--</DIV>
-<DIV>Jeffrey Osier-Mixon, Intel Corporation</DIV>
-<DIV>Yocto Project Community Manager | https://www.yoctoproject.org</DIV></=
-DIV></DIV>
-<DIV>&nbsp;</DIV></BODY></HTML>
 
---------=_MB75CF6404-49B0-49B7-957C-F9F5D2832BDA--
+
+
+
+>
+>
+> Hopefully to be fixed soon.
+>
+> Cheers
+>
+> Belén
+>
+>>>
+>>> I have been playing with YP 1.7 over the break.
+>>> I thought I would give toaster a try so I had it running in the
+>>> background as I tried various builds.
+>>> Somehow I got into a state where changes to my conf/local.conf file
+>>> were being ignored.
+>>> I fixed it by stopping toaster.
+>>>
+>>> Here is the sequence as I remember:
+>>>
+>>> I was doing builds for qemuarm.
+>>> At some point I started toaster "source toaster start"
+>>> It could have been from a clean build dir but probably I had done a
+>>> couple of test builds first.
+>>> For qemuarm I built:
+>>>       core-image-minimal, meta-toolchain, core-image-sato,
+>>> core-image-sato-sdk, world
+>>> I definitely poked around the toaster UI at some of those builds.
+>>> Next in the same build dir (and the same screen session) I edited
+>>> conf/local.conf to
+>>> MACHINE = qemux86
+>>> I then did core-image-sato again
+>>> It built for qemuarm
+>>> I double check conf/* and ENV settings.
+>>> I rm -rf cache
+>>> still builds for qemuarm
+>>> I stopped toaster with "source toaster stop"
+>>> I rm -rf cache again for safe keeping
+>>> I tried core-image-sato again and it started building for qemux86.
+>>>
+>>> I tried to reproduce this with a clean build dir and a trivial target
+>>> "bitbake -c clean ed"
+>>> With or without toaster running it always detects the config change and
+>>> rebuilds the cache.
+>>> In the process I have now learned that removing the cache dir does not
+>>> cause a reparse as I expected.
+>>> However a config change does.
+>>>
+>>> I thought I had a theory w/ persistent bitbake process and files being
+>>> kept open
+>>> but I can't connect the dots and I can't reproduce it.
+>>>
+>>
+>> Actually it is easy to reproduce.
+>>
+>> The first time I tried I don't think toaster was starting as port 8000
+>> was busy. I thought I had stopped the other instance but I guess not.
+>>
+>> To reproduce this I did this:
+>>
+>> yocto$ $ . poky/oe-init-build-env toasted-build
+>> yocto/toasted-build$ source toaster start
+>> yocto/toasted-build$ bitbake -c clean ed
+>> 	runs with MACHINE = "qemux86"
+>> yocto/toasted-build$ mcedit conf/local.conf
+>> 	change to MACHINE ??= "qemuarm"
+>> yocto/toasted-build$ bitbake -c clean ed
+>> 	still runs for qemux86
+>> yocto/toasted-build$ source toaster stop
+>> yocto/toasted-build$ bitbake -c clean ed
+>> 	runs for qemuarm
+>>
+>> Am I starting toaster in the wrong way to be just an observer?
+>> I learned how to start toaster this way from:
+>> https://www.yoctoproject.org/documentation/toaster-manual-17  ->
+>> 	First link is "How to install and run Toaster locally" ->
+>> https://wiki.yoctoproject.org/wiki/Setting_up_a_local_instance_of_Toaster
+>>
+>> The Yocto Project Dev guide say the same thing:
+>> https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#exami
+>> ning-builds-using-toaster
+>>
+>>> Any Ideas?
+>>>
+>>> BTW: Building "world" does not look nice in toaster.  It list 100s of
+>>> build targets instead of just "world".
+>>>
+>>> Thanks,
+>>> Bill
+>>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+
