@@ -1,35 +1,38 @@
-Return-Path: <yocto@mindchasers.com>
+Return-Path: <flihp@twobit.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 48ECDE00815; Wed, 11 Feb 2015 10:35:21 -0800 (PST)
+	id 5CA5CE00815; Wed, 11 Feb 2015 11:44:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,UC_GIBBERISH_OBFU
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 1.0 UC_GIBBERISH_OBFU Multiple instances of "word VERYLONGGIBBERISH
-	*      word"
-Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7BAEE003D4
-	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 10:35:16 -0800 (PST)
-Received: from [192.168.1.10] (c-73-194-208-34.hsd1.nj.comcast.net
-	[73.194.208.34])
-	by smtp.webfaction.com (Postfix) with ESMTP id 262B720BD385;
-	Wed, 11 Feb 2015 18:35:15 +0000 (UTC)
-Message-ID: <54DBA0E1.6020608@mindchasers.com>
-Date: Wed, 11 Feb 2015 13:35:13 -0500
-From: Bob Cochran <yocto@mindchasers.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20DB6E003D4
+	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 11:44:11 -0800 (PST)
+Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
+	helo=[172.16.1.11])
+	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1YLdAe-00010g-Ul; Wed, 11 Feb 2015 19:42:01 +0000
+Message-ID: <54DBB0FF.6090305@twobit.us>
+Date: Wed, 11 Feb 2015 14:43:59 -0500
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:31.0) Gecko/20100101 Icedove/31.3.0
 MIME-Version: 1.0
-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>, 
-	William Mills <wmills@ti.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <EC0CC42105A97F4A81EA36CDF61DDAD45CA40387@DLEE11.ent.ti.com>	<549EFEF1.1040604@ti.com>
-	<D0D07A4A.50C55%belen.barros.pena@intel.com>
-In-Reply-To: <D0D07A4A.50C55%belen.barros.pena@intel.com>
-Subject: Re: My config got stuck in the toaster
+To: openembedded-devel@lists.openembedded.org, 
+	Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <1423669983.23617.78.camel@tycho.nsa.gov>	<6445648.XiRzhvmYHl@peggleto-mobl5.ger.corp.intel.com>
+	<1423673755.1873.5.camel@tycho.nsa.gov>
+In-Reply-To: <1423673755.1873.5.camel@tycho.nsa.gov>
+X-SA-Exim-Connect-IP: 50.185.54.102
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Cc: yocto@yoctoproject.org
+Subject: Re: [oe] meta-selinux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,139 +44,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Feb 2015 18:35:21 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Wed, 11 Feb 2015 19:44:20 -0000
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: 8bit
 
-On 01/05/2015 06:59 AM, Barros Pena, Belen wrote:
-> On 28/12/2014 00:18, "William Mills" <wmills@ti.com> wrote:
->
+On 02/11/2015 11:55 AM, dpquigl wrote:
+> On Wed, 2015-02-11 at 16:29 +0000, Paul Eggleton wrote:
+>> (Adding yocto@yoctoproject.org to CC since that is where meta-selinux patches 
+>> tend to go at least)
 >>
->> On 12/27/2014 10:40 AM, Mills, William wrote:
->>> OK, you are not going to believe me but I swear this really happened ...
->
-> We do believe you :)
->
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=6935
-
-
-Looks like this was patched & closed, but I'm seeing similar behavior 
-working with poky master (commit: 870323cac1e40).
-
-I was modifying the MACHINEOVERRIDES settings in some of the conf files. 
-  I noticed that the values weren't picked up during a build until I 
-stopped toaster (source toaster stop).  However, bitbake did seem to 
-pick up each prepend and append modification ( =. and .=) while toaster 
-was running (but not the change in the variable's value).
-
-In summary:
-
-i) source toaster start
-ii) make changes to MACHINEOVERRIDES in meta-fsl-ppc layer conf files
-iii) bitbake init-ifupdown
-iv) changes aren't accurately reflected in the build
-v) source toaster stop
-vi) bitbake init-ifupdown  # all is OK
-
-Bob
-
-
-
-
-
->
->
-> Hopefully to be fixed soon.
->
-> Cheers
->
-> Belén
->
->>>
->>> I have been playing with YP 1.7 over the break.
->>> I thought I would give toaster a try so I had it running in the
->>> background as I tried various builds.
->>> Somehow I got into a state where changes to my conf/local.conf file
->>> were being ignored.
->>> I fixed it by stopping toaster.
->>>
->>> Here is the sequence as I remember:
->>>
->>> I was doing builds for qemuarm.
->>> At some point I started toaster "source toaster start"
->>> It could have been from a clean build dir but probably I had done a
->>> couple of test builds first.
->>> For qemuarm I built:
->>>       core-image-minimal, meta-toolchain, core-image-sato,
->>> core-image-sato-sdk, world
->>> I definitely poked around the toaster UI at some of those builds.
->>> Next in the same build dir (and the same screen session) I edited
->>> conf/local.conf to
->>> MACHINE = qemux86
->>> I then did core-image-sato again
->>> It built for qemuarm
->>> I double check conf/* and ENV settings.
->>> I rm -rf cache
->>> still builds for qemuarm
->>> I stopped toaster with "source toaster stop"
->>> I rm -rf cache again for safe keeping
->>> I tried core-image-sato again and it started building for qemux86.
->>>
->>> I tried to reproduce this with a clean build dir and a trivial target
->>> "bitbake -c clean ed"
->>> With or without toaster running it always detects the config change and
->>> rebuilds the cache.
->>> In the process I have now learned that removing the cache dir does not
->>> cause a reparse as I expected.
->>> However a config change does.
->>>
->>> I thought I had a theory w/ persistent bitbake process and files being
->>> kept open
->>> but I can't connect the dots and I can't reproduce it.
->>>
+>> On Wednesday 11 February 2015 10:53:03 dpquigl wrote:
+>>> I'm working on OpenXT and it makes use of the meta-selinux repo hosted
+>>> by the yocto project. I'm trying to use it with a base openembedded core
+>>> and its not in sync with oe-core because its based on pokey. 
 >>
->> Actually it is easy to reproduce.
+>> To be clear, poky and OE-Core are in lock-step. No patch to core recipes goes 
+>> into Poky directly, they are applied to OE-Core and then they flow into Poky 
+>> immediately thereafter (Richard, who does the merging of patches into OE-Core, 
+>> does the sync to Poky immediately afterwards.)
 >>
->> The first time I tried I don't think toaster was starting as port 8000
->> was busy. I thought I had stopped the other instance but I guess not.
->>
->> To reproduce this I did this:
->>
->> yocto$ $ . poky/oe-init-build-env toasted-build
->> yocto/toasted-build$ source toaster start
->> yocto/toasted-build$ bitbake -c clean ed
->> 	runs with MACHINE = "qemux86"
->> yocto/toasted-build$ mcedit conf/local.conf
->> 	change to MACHINE ??= "qemuarm"
->> yocto/toasted-build$ bitbake -c clean ed
->> 	still runs for qemux86
->> yocto/toasted-build$ source toaster stop
->> yocto/toasted-build$ bitbake -c clean ed
->> 	runs for qemuarm
->>
->> Am I starting toaster in the wrong way to be just an observer?
->> I learned how to start toaster this way from:
->> https://www.yoctoproject.org/documentation/toaster-manual-17  ->
->> 	First link is "How to install and run Toaster locally" ->
->> https://wiki.yoctoproject.org/wiki/Setting_up_a_local_instance_of_Toaster
->>
->> The Yocto Project Dev guide say the same thing:
->> https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#exami
->> ning-builds-using-toaster
->>
->>> Any Ideas?
->>>
->>> BTW: Building "world" does not look nice in toaster.  It list 100s of
->>> build targets instead of just "world".
->>>
->>> Thanks,
->>> Bill
->>>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
+>> What's more likely happening I suspect is that you are on a newer 
+>> branch/revision of OE-Core/Poky than the meta-selinux maintainers have tested. 
+>> I can't speak to the maintenance schedule for meta-selinux but maybe others 
+>> with knowledge there can chime in.
+> 
+> 
+> I think this makes the most sense. 3 of the problems were bbappend files
+> trying to append the wrong version of a recipe (although with these
+> changes I should move them over to a wildcard) and the last one was with
+> LXC. After that I encountered a typo in one of the recipes where it
+> wasn't able to pull the sources down. 
 
+I sent out patches to fix these 4 issues to the list a week or so back.
+Reviewing these things and getting them merged takes time though. AFAIK
+the meta-selinux master branch hasn't built for months now mostly
+because of bbappends trailing behind versions in oe-core. I've been
+playing whack-a-mole on this but by the time patches get merged a new
+version has changed elsewhere. I've been using wild-cards as much as
+possible on account of this.
+
+>>> This made me think of two questions. 1) Why is this not in OE core since so
+>>> many packages in core can potentially have SELinux support enabled and 2) if
+>>> its not supposed to be in core where should turning on SELinux support
+>>> in a recipe go? For example coreutils can have SELinux support enabled.
+>>> Currently this is in meta-selinux as a bbappend to the coreutils
+>>> package. This works out because its always going to be there. However
+>>> there is also a bbappend for an LXC recipe. LXC isn't in core which
+>>> means it has a dependency on a layer not in core.
+>>>
+>>> Ideally I would put the recipes needed for SELinux support in core and
+>>> have a distro feature which is checked in the recipes in core for
+>>> whether or not to add --with-selinux to the build flags. Then LXC could
+>>> check a core distro feature and enable SELinux if it wants to.
+>>
+>> We have to draw the line somewhere for what to include in OE-Core, and at the 
+>> moment I guess we have considered SELinux to be outside its scope. Obviously 
+>> these things get re-evaluated from time to time, and SELinux is a little bit 
+>> painful for this because of how many recipes it has to touch. Ultimately it 
+>> depends on how many people in the embedded space want to enable and use 
+>> SELinux.
+>>
+>> Thoughts from others?
+
+If SELinux support were to be integrated into oe-core directly this
+would force similar support into other layers too no? The reach of
+meta-selinux has expanded and the layers that must be pulled in to get
+it to build has expanded from just oe-core to meta-virtualization (for
+LXC) as well as a few layers in meta-oe.
+
+I don't know much about the process here but these cross layer
+dependencies would complicate things. I guess this would mean
+integrating SELinux support as a distro feature (or whatever is
+appropriate) into all of these layers directly. Not impossible but
+getting buy-in from the relevant maintainers is necessary.
+
+> In OpenXT we're using OE to generate images for dom0, a user interface
+> domain, a network driver domain, and various other service domains for
+> isolating tasks in the platform. In addition to that we're using
+> openembedded for building on various embedded research platforms. I'm
+> assuming yocto is using SELinux to some extent since they are
+> maintaining the repository for it and there are quite a few developers
+> using SELiunx on embedded products in Japan.
+
+I guess I've been wondering the same thing. For OpenXT we had
+implemented our own SELinux support on top of OE (we weren't OSS at the
+time). Now that we are OSS we've re-based on meta-selinux but I don't
+know of anyone else using this layer or at least discussing it publicly.
+
+Philip
 
