@@ -1,37 +1,39 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4AAD9E00546; Wed, 11 Feb 2015 08:29:31 -0800 (PST)
+	id CE3BCE00815; Wed, 11 Feb 2015 09:27:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11D3AE002F9
-	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 08:29:27 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga101.jf.intel.com with ESMTP; 11 Feb 2015 08:29:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,559,1418112000"; d="scan'208";a="676406153"
-Received: from jjurski-mobl3.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.24.180])
-	by fmsmga002.fm.intel.com with ESMTP; 11 Feb 2015 08:29:04 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: dpquigl <dpquigl@tycho.nsa.gov>
-Date: Wed, 11 Feb 2015 16:29:03 +0000
-Message-ID: <6445648.XiRzhvmYHl@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.4 (Linux/3.17.8-200.fc20.x86_64; KDE/4.14.4; x86_64; ; )
-In-Reply-To: <1423669983.23617.78.camel@tycho.nsa.gov>
-References: <1423669983.23617.78.camel@tycho.nsa.gov>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91F9CE003D4
+	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 09:27:24 -0800 (PST)
+Received: from [99.240.204.5] (port=34171 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1YLb4I-0001YX-TA
+	for yocto@yoctoproject.org; Wed, 11 Feb 2015 12:27:19 -0500
+Date: Wed, 11 Feb 2015 12:27:18 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.11.1502111225140.5138@localhost>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, openembedded-devel@lists.openembedded.org
-Subject: Re: [oe] meta-selinux
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: anyone else seeing a "ncurses-native" build error?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,56 +45,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Feb 2015 16:29:31 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 11 Feb 2015 17:27:35 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-(Adding yocto@yoctoproject.org to CC since that is where meta-selinux patches 
-tend to go at least)
 
-On Wednesday 11 February 2015 10:53:03 dpquigl wrote:
-> I'm working on OpenXT and it makes use of the meta-selinux repo hosted
-> by the yocto project. I'm trying to use it with a base openembedded core
-> and its not in sync with oe-core because its based on pokey. 
+  building for a MIPS target on a fully-updated 64-bit fedora rawhide
+system:
 
-To be clear, poky and OE-Core are in lock-step. No patch to core recipes goes 
-into Poky directly, they are applied to OE-Core and then they flow into Poky 
-immediately thereafter (Richard, who does the merging of patches into OE-Core, 
-does the sync to Poky immediately afterwards.)
+| gcc  -DHAVE_CONFIG_H -I../ncurses
+-I/home/rpjday/oe/builds/vtss/minimal/tmp/work/x86_64-linux/ncurses-native/5.9-r15.1/ncurses-5.9/ncurses
+-isystem/home/rpjday/oe/builds/vtss/minimal/tmp/sysroots/x86_64-linux/usr/include
+-D_GNU_SOURCE -DNDEBUG -I. -I../include
+-I/home/rpjday/oe/builds/vtss/minimal/tmp/work/x86_64-linux/ncurses-native/5.9-r15.1/ncurses-5.9/ncurses/../include
+-I/home/rpjday/oe/builds/vtss/minimal/tmp/sysroots/x86_64-linux/usr/include
+-isystem/home/rpjday/oe/builds/vtss/minimal/tmp/sysroots/x86_64-linux/usr/include
+-D_GNU_SOURCE -O2 -pipe  --param max-inline-insns-single=1200 -fPIC -c
+/home/rpjday/oe/builds/vtss/minimal/tmp/work/x86_64-linux/ncurses-native/5.9-r15.1/ncurses-5.9/ncurses/base/lib_initscr.c
+-o ../obj_s/lib_initscr.o
+| In file included from
+/home/rpjday/oe/builds/vtss/minimal/tmp/work/x86_64-linux/ncurses-native/5.9-r15.1/ncurses-5.9/ncurses/curses.priv.h:283:0,
+|                  from ../ncurses/lib_gen.c:19:
+| _744.c:835:15: error: expected ')' before 'int'
+| ../include/curses.h:1594:56: note: in definition of macro 'mouse_trafo'
+|  #define mouse_trafo(y,x,to_screen) wmouse_trafo(stdscr,y,x,to_screen)
+|                                                         ^
+| Makefile:1682: recipe for target '../obj_s/lib_gen.o' failed
+| make[1]: *** [../obj_s/lib_gen.o] Error 1
+| make[1]: *** Waiting for unfinished jobs....
+| make[1]: Leaving directory
+'/home/rpjday/oe/builds/vtss/minimal/tmp/work/x86_64-linux/ncurses-native/5.9-r15.1/build/narrowc/ncurses'
+| Makefile:134: recipe for target 'libs' failed
+| make: *** [libs] Error 2
 
-What's more likely happening I suspect is that you are on a newer 
-branch/revision of OE-Core/Poky than the meta-selinux maintainers have tested. 
-I can't speak to the maintenance schedule for meta-selinux but maybe others 
-with knowledge there can chime in.
+  totally new to me, about to dig in ...
 
-> This made me think of two questions. 1) Why is this not in OE core since so
-> many packages in core can potentially have SELinux support enabled and 2) if
-> its not supposed to be in core where should turning on SELinux support
-> in a recipe go? For example coreutils can have SELinux support enabled.
-> Currently this is in meta-selinux as a bbappend to the coreutils
-> package. This works out because its always going to be there. However
-> there is also a bbappend for an LXC recipe. LXC isn't in core which
-> means it has a dependency on a layer not in core.
-> 
-> Ideally I would put the recipes needed for SELinux support in core and
-> have a distro feature which is checked in the recipes in core for
-> whether or not to add --with-selinux to the build flags. Then LXC could
-> check a core distro feature and enable SELinux if it wants to.
-
-We have to draw the line somewhere for what to include in OE-Core, and at the 
-moment I guess we have considered SELinux to be outside its scope. Obviously 
-these things get re-evaluated from time to time, and SELinux is a little bit 
-painful for this because of how many recipes it has to touch. Ultimately it 
-depends on how many people in the embedded space want to enable and use 
-SELinux.
-
-Thoughts from others?
-
-Cheers,
-Paul
+rday
 
 -- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
