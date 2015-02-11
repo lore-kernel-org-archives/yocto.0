@@ -1,49 +1,50 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C8CC0E00942; Wed, 11 Feb 2015 12:35:12 -0800 (PST)
+	id D90B1E0093B; Wed, 11 Feb 2015 12:35:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.215.54 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	TVD_SPACE_RATIO autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-la0-f54.google.com (mail-la0-f54.google.com
-	[209.85.215.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76158E003D4
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.169 listed in list.dnswl.org]
+	*  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
+Received: from mail-lb0-f169.google.com (mail-lb0-f169.google.com
+	[209.85.217.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DBF6E00815
+	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 12:35:07 -0800 (PST)
+Received: by mail-lb0-f169.google.com with SMTP id p9so5606936lbv.0
 	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 12:35:06 -0800 (PST)
-Received: by labgd6 with SMTP id gd6so5924457lab.7
-	for <yocto@yoctoproject.org>; Wed, 11 Feb 2015 12:35:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references;
-	bh=MBgydfAbvUWsaKrByBDIPGnRya2bCryBxqlifw+kLjo=;
-	b=EF6WEDQEREq745RV5Va0qx6XzowmafpVU2oU7vtHBJKOA/MEd9g6M5TFNhEYowuPkq
-	4Oc+hvt45HIYrgXTW2OEv0eJ/phe92rs3qRfXU2bdkaHxb7EbSX8QGYdSBRjGuYEYHlQ
-	dS4J2+C1iSKk/pvZVMlZf5crzSU2kNkfbHQppEvVpKWXQH6dvJ/6Bsel9nNOlcO6r+x/
-	a52J4V2pyiP1p2cHyhhdvI18wjpeUYymK73CTWKV3ad1QXOweCyK+9QhpcdTpMqZePaA
-	fJx73Mq8GSUoKmkDjXiS62eXZUJ/URsfMs3wknNaY8XQdKsjC49QFFikPOmbbuZRIGw+
-	oLfg==
-X-Gm-Message-State: ALoCoQnT2GkR9ax5pe8qE8cdWh+Q6xm5uT5QA9RTgcppWBLnVgbC74P5ZqJ+qGO+vJ2hQOWz5e0c
-X-Received: by 10.152.204.73 with SMTP id kw9mr448704lac.16.1423686904872;
-	Wed, 11 Feb 2015 12:35:04 -0800 (PST)
+	bh=/o8jAan+XVpP+UF9mqi9+OZydzMLAcSaRzipadLJQFc=;
+	b=XFEXoM5yevm4eIqCAKmZFxDEygeUaeEeueaHrUUWdCRhrWVxoH9H/Bv4o7maZzuaiu
+	AgYmkzI4aeH2PqAlz9pZ1m1CDLNNYviqgvaXTnPTnKs7kt22W7UgKcb4emhNiaGgiQyZ
+	xoGjim6BpliuTdJZpm3zFhHtmqZdxmU6JJ+TZ4vDKh7PzMBC/7fQQTaG5zycP4TqRcHi
+	BBB/a4zFJq9SLkT8neEzNDMROCv1zUuzbVnOU7oNKcMHI9Xwolqx7xWlN5ekLjRcuk2W
+	LLOth/Slj1MjpfhptFtKOQ9WbWcqWLShwP2qyfgrZ1H5wz4eKar9LzLcveJyk3xbF/kH
+	hP3w==
+X-Gm-Message-State: ALoCoQkRCmnVlrZ4R8vwa5QyUZ69pVHIcQvft23UKw5M9Jf00DemoaupjlP3MMEQPDvNuXcHzVKi
+X-Received: by 10.152.22.39 with SMTP id a7mr238377laf.119.1423686905664;
+	Wed, 11 Feb 2015 12:35:05 -0800 (PST)
 Received: from otp-agherzan-l1.gjk.dk (dhcp-186-165.gjk.dk. [195.249.186.165])
 	by mx.google.com with ESMTPSA id
 	rv1sm361520lbb.25.2015.02.11.12.35.04 for <yocto@yoctoproject.org>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 11 Feb 2015 12:35:04 -0800 (PST)
+	Wed, 11 Feb 2015 12:35:05 -0800 (PST)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Wed, 11 Feb 2015 21:34:57 +0100
-Message-Id: <1423686898-23144-2-git-send-email-andrei@gherzan.ro>
+Date: Wed, 11 Feb 2015 21:34:58 +0100
+Message-Id: <1423686898-23144-3-git-send-email-andrei@gherzan.ro>
 X-Mailer: git-send-email 2.1.0
 In-Reply-To: <1423686898-23144-1-git-send-email-andrei@gherzan.ro>
 References: <1423686898-23144-1-git-send-email-andrei@gherzan.ro>
-Subject: [meta-raspberrypi][PATCH 2/3] rpi-base.inc: Use KERNEL_DEVICETREE by default
+Subject: [meta-raspberrypi][PATCH 3/3] raspberrypi.conf: Use arm1176jzfshf as default tune
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,58 +58,52 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Wed, 11 Feb 2015 20:35:12 -0000
 
-We already switched to kernel v3.18 by default so we can activate
-KERNEL_DEVICETREE by default too.
+Reformat the tune-arm1176jzf-s.inc file.
+There is not 'PACKAGE_EXTRA_ARCHS_tune-armv6hf-vfp'. Replace it by
+'PACKAGE_EXTRA_ARCHS_tune-armv6hf'.
 
-Change-Id: I69612be72f8254d462421112cf851e17a1ef24f8
+Change-Id: I0dd63b1dd3e1ebc7fe0600e93fb9d27a6a833cd9
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- conf/machine/include/rpi-base.inc | 32 ++++++++++++++++----------------
- 1 file changed, 16 insertions(+), 16 deletions(-)
+ conf/machine/include/tune-arm1176jzf-s.inc | 13 +++++--------
+ conf/machine/raspberrypi.conf              |  2 ++
+ 2 files changed, 7 insertions(+), 8 deletions(-)
 
-diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
-index f1c404d..102f9d8 100644
---- a/conf/machine/include/rpi-base.inc
-+++ b/conf/machine/include/rpi-base.inc
-@@ -18,22 +18,22 @@ XSERVER = " \
-     "
+diff --git a/conf/machine/include/tune-arm1176jzf-s.inc b/conf/machine/include/tune-arm1176jzf-s.inc
+index a5368a3..b6fcc59 100644
+--- a/conf/machine/include/tune-arm1176jzf-s.inc
++++ b/conf/machine/include/tune-arm1176jzf-s.inc
+@@ -6,13 +6,10 @@ TUNEVALID[arm1176jzfs] = "Enable arm1176jzfs specific processor optimizations"
+ TUNE_CCARGS += "${@bb.utils.contains("TUNE_FEATURES", "arm1176jzfs", "-mtune=arm1176jzf-s", "", d)}"
+ TUNE_CCARGS += "${@bb.utils.contains("TUNE_FEATURES", "vfp", "-mfpu=vfp", "", d)}"
  
- # Really supported starting from linux-raspberrypi 3.18.y only
--#KERNEL_DEVICETREE ?= " \
--#    bcm2708-rpi-b.dtb \
--#    bcm2708-rpi-b-plus.dtb \
--#    ds1307-rtc-overlay.dtb \
--#    hifiberry-amp-overlay.dtb \
--#    hifiberry-dac-overlay.dtb \
--#    hifiberry-dacplus-overlay.dtb \
--#    hifiberry-digi-overlay.dtb \
--#    iqaudio-dac-overlay.dtb \
--#    iqaudio-dacplus-overlay.dtb \
--#    lirc-rpi-overlay.dtb \
--#    pcf8523-rtc-overlay.dtb \
--#    pps-gpio-overlay.dtb \
--#    w1-gpio-overlay.dtb \
--#    w1-gpio-pullup-overlay.dtb \
--#    "
-+KERNEL_DEVICETREE ?= " \
-+    bcm2708-rpi-b.dtb \
-+    bcm2708-rpi-b-plus.dtb \
-+    ds1307-rtc-overlay.dtb \
-+    hifiberry-amp-overlay.dtb \
-+    hifiberry-dac-overlay.dtb \
-+    hifiberry-dacplus-overlay.dtb \
-+    hifiberry-digi-overlay.dtb \
-+    iqaudio-dac-overlay.dtb \
-+    iqaudio-dacplus-overlay.dtb \
-+    lirc-rpi-overlay.dtb \
-+    pcf8523-rtc-overlay.dtb \
-+    pps-gpio-overlay.dtb \
-+    w1-gpio-overlay.dtb \
-+    w1-gpio-pullup-overlay.dtb \
-+    "
- KERNEL_IMAGETYPE ?= "Image"
+-AVAILTUNES += "arm1176jzfs"
+-TUNE_FEATURES_tune-arm1176jzfs = "${TUNE_FEATURES_tune-armv6} arm1176jzfs"
++AVAILTUNES += "arm1176jzfs arm1176jzfshf"
+ ARMPKGARCH_tune-arm1176jzfs = "arm1176jzfs"
+-PACKAGE_EXTRA_ARCHS_tune-arm1176jzfs = "${PACKAGE_EXTRA_ARCHS_tune-armv6}"
+-
+-AVAILTUNES += "arm1176jzfshf"
+-TUNE_FEATURES_tune-arm1176jzfshf = "${TUNE_FEATURES_tune-arm1176jzfs} callconvention-hard"
+ ARMPKGARCH_tune-arm1176jzfshf = "arm1176jzfs"
+-PACKAGE_EXTRA_ARCHS_tune-arm1176jzfshf = "${PACKAGE_EXTRA_ARCHS_tune-armv6hf-vfp} arm1176jzfshf-vfp"
+-
++TUNE_FEATURES_tune-arm1176jzfs = "${TUNE_FEATURES_tune-armv6} arm1176jzfs"
++TUNE_FEATURES_tune-arm1176jzfshf = "${TUNE_FEATURES_tune-arm1176jzfs} callconvention-hard"
++PACKAGE_EXTRA_ARCHS_tune-arm1176jzfs = "${PACKAGE_EXTRA_ARCHS_tune-armv6}"
++PACKAGE_EXTRA_ARCHS_tune-arm1176jzfshf = "${PACKAGE_EXTRA_ARCHS_tune-armv6hf} arm1176jzfshf-vfp"
+diff --git a/conf/machine/raspberrypi.conf b/conf/machine/raspberrypi.conf
+index 4e887b3..e8516e7 100644
+--- a/conf/machine/raspberrypi.conf
++++ b/conf/machine/raspberrypi.conf
+@@ -2,5 +2,7 @@
+ #@NAME: RaspberryPi Development Board
+ #@DESCRIPTION: Machine configuration for the RaspberryPi http://www.raspberrypi.org/ Board
  
- MACHINE_FEATURES = "kernel26 apm usbhost keyboard vfat ext2 screen touchscreen alsa bluetooth wifi sdio"
++DEFAULTTUNE ?= "arm1176jzfshf"
++
+ require conf/machine/include/tune-arm1176jzf-s.inc
+ include conf/machine/include/rpi-base.inc
 -- 
 2.1.0
 
