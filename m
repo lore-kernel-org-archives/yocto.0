@@ -1,48 +1,49 @@
-Return-Path: <belen.barros.pena@intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ADC5BE00942; Thu, 12 Feb 2015 02:42:57 -0800 (PST)
+	id D9B65E00945; Thu, 12 Feb 2015 03:19:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-	UC_GIBBERISH_OBFU autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.192.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 1.0 UC_GIBBERISH_OBFU Multiple instances of "word VERYLONGGIBBERISH
-	*      word"
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B370E008EA
-	for <yocto@yoctoproject.org>; Thu, 12 Feb 2015 02:42:50 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 12 Feb 2015 02:42:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,564,1418112000"; d="scan'208";a="665336488"
-Received: from irsmsx108.ger.corp.intel.com ([163.33.3.3])
-	by fmsmga001.fm.intel.com with ESMTP; 12 Feb 2015 02:42:48 -0800
-Received: from irsmsx110.ger.corp.intel.com ([169.254.15.8]) by
-	IRSMSX108.ger.corp.intel.com ([169.254.11.64]) with mapi id
-	14.03.0195.001; Thu, 12 Feb 2015 10:42:46 +0000
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Bob Cochran <yocto@mindchasers.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] My config got stuck in the toaster
-Thread-Index: AQHQRrCjxn2+saPQ4kmXzoY5t6ZPdw==
-Date: Thu, 12 Feb 2015 10:42:46 +0000
-Message-ID: <D10233EF.54165%belen.barros.pena@intel.com>
-References: <EC0CC42105A97F4A81EA36CDF61DDAD45CA40387@DLEE11.ent.ti.com>
-	<549EFEF1.1040604@ti.com> <D0D07A4A.50C55%belen.barros.pena@intel.com>
-	<54DBA0E1.6020608@mindchasers.com>
-In-Reply-To: <54DBA0E1.6020608@mindchasers.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.4.7.141117
-x-originating-ip: [10.237.224.33]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-qg0-f52.google.com (mail-qg0-f52.google.com
+	[209.85.192.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38007E0093B
+	for <yocto@yoctoproject.org>; Thu, 12 Feb 2015 03:19:46 -0800 (PST)
+Received: by mail-qg0-f52.google.com with SMTP id h3so7286129qgf.11
+	for <yocto@yoctoproject.org>; Thu, 12 Feb 2015 03:19:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=KGx8owgXw34hMPavFl0rUbu/LqBtCZq4j9SPZUExi4k=;
+	b=KsSpWIC3iGsBVGVjOJE2+THJwOnLcOtShiPbscUD+DYO9sahSR0BWQSr+P7BYbIdYb
+	XSo/DTU7tmA5WJnRtPnHCFM46fP9Tou1tqUpv0q90pXBTcny41gp79ZAtyLBgvXJ2Juk
+	cglL47bZsDDw9F79aqxHIH+XgAxc/olM+7rQoJVb4Bqt30T6ie4YGoHsXtJR/K04yeze
+	0DO1pNw+zrMZujrRraGIbiJLQ02LwjOrlMN3WHzCXEwJuRhxSxR3utwxWOwgWL9HX7Tj
+	cdGPIUOfmA+2EGV6v2DC/abI67Me58H/g0ykLfPXsFQUEY7uO+sJUD8yjukW4MO6kJnt
+	NghQ==
+X-Gm-Message-State: ALoCoQkXf9nu4MPttcHq15o1nqtZ0Y2S+jv3c7zXNZ7cVs5s5OSkF5q8Z5Qa42o4ShgLkkkAtiVt
+X-Received: by 10.140.92.161 with SMTP id b30mr8840136qge.59.1423739986003;
+	Thu, 12 Feb 2015 03:19:46 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: My config got stuck in the toaster
+Received: by 10.140.96.166 with HTTP; Thu, 12 Feb 2015 03:19:25 -0800 (PST)
+In-Reply-To: <20150211213954.GI30457@mentor.com>
+References: <1423669983.23617.78.camel@tycho.nsa.gov>
+	<6445648.XiRzhvmYHl@peggleto-mobl5.ger.corp.intel.com>
+	<20150211213954.GI30457@mentor.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 12 Feb 2015 11:19:25 +0000
+Message-ID: <CAJTo0LYRUUC6ErtyC2E6kB70bnVQVoeVro9ajwBZ52-NNgTUBQ@mail.gmail.com>
+To: OE-devel <openembedded-devel@lists.openembedded.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [oe] meta-selinux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,162 +55,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Feb 2015 10:42:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <59F2CDD20CB3B54B95D9D022E0FD6967@intel.com>
+X-List-Received-Date: Thu, 12 Feb 2015 11:19:47 -0000
+Content-Type: multipart/alternative; boundary=001a1139baf01e5ee7050ee24c13
+
+--001a1139baf01e5ee7050ee24c13
+Content-Type: text/plain; charset=UTF-8
+
+On 11 February 2015 at 21:39, Joe MacDonald <Joe_MacDonald@mentor.com>
+wrote:
+
+> > What's more likely happening I suspect is that you are on a newer
+> > branch/revision of OE-Core/Poky than the meta-selinux maintainers have
+> tested.
+> > I can't speak to the maintenance schedule for meta-selinux but maybe
+> others
+> > with knowledge there can chime in.
+>
+> Our master tends to lag behind oe-core's master for a few reasons, but
+> none of them are really insurmountable.  Certainly the intent is that
+> meta-selinux/master will build successfully with oe-core/master at any
+> given time.
+
+
+The yocto-autobuilder software is in git and I heartily recommend it (or
+similar, if you've a buildbot allergy) for anyone maintaining layers.  Just
+the simple act of running a build every night to verify that the layer
+works with the latest master branch (and stable branches for bonus points)
+means that problems like stale bbappends are rapidly found and resolved.
+For even more bonus points, also do builds against master-next if that
+branch exists so you can get notification of changes that are in review.
+
+Ross
+
+--001a1139baf01e5ee7050ee24c13
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 11 February 2015 at 21:39, Joe MacDonald <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:Joe_MacDonald@mentor.com" target=3D"_blank">Joe_MacDonald@mentor=
+.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span class=3D=
+"">&gt; What&#39;s more likely happening I suspect is that you are on a new=
+er<br>
+&gt; branch/revision of OE-Core/Poky than the meta-selinux maintainers have=
+ tested.<br>
+&gt; I can&#39;t speak to the maintenance schedule for meta-selinux but may=
+be others<br>
+&gt; with knowledge there can chime in.<br>
+<br>
+</span>Our master tends to lag behind oe-core&#39;s master for a few reason=
+s, but<br>
+none of them are really insurmountable.=C2=A0 Certainly the intent is that<=
+br>
+meta-selinux/master will build successfully with oe-core/master at any<br>
+given time.</blockquote></div><br>The yocto-autobuilder software is in git =
+and I heartily recommend it (or similar, if you&#39;ve a buildbot allergy) =
+for anyone maintaining layers.=C2=A0 Just the simple act of running a build=
+ every night to verify that the layer works with the latest master branch (=
+and stable branches for bonus points) means that problems like stale bbappe=
+nds are rapidly found and resolved.=C2=A0 For even more bonus points, also =
+do builds against master-next if that branch exists so you can get notifica=
+tion of changes that are in review.</div><div class=3D"gmail_extra"><br></d=
+iv><div class=3D"gmail_extra">Ross</div></div>
 
-
-On 11/02/2015 18:35, "Bob Cochran" <yocto@mindchasers.com> wrote:
-
->On 01/05/2015 06:59 AM, Barros Pena, Belen wrote:
->> On 28/12/2014 00:18, "William Mills" <wmills@ti.com> wrote:
->>
->>>
->>> On 12/27/2014 10:40 AM, Mills, William wrote:
->>>> OK, you are not going to believe me but I swear this really happened
->>>>...
->>
->> We do believe you :)
->>
->> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D6935
->
->
->Looks like this was patched & closed, but I'm seeing similar behavior
->working with poky master (commit: 870323cac1e40).
->
->I was modifying the MACHINEOVERRIDES settings in some of the conf files.
->  I noticed that the values weren't picked up during a build until I
->stopped toaster (source toaster stop).  However, bitbake did seem to
->pick up each prepend and append modification ( =3D. and .=3D) while toaste=
-r
->was running (but not the change in the variable's value).
->
->In summary:
->
->i) source toaster start
->ii) make changes to MACHINEOVERRIDES in meta-fsl-ppc layer conf files
->iii) bitbake init-ifupdown
->iv) changes aren't accurately reflected in the build
->v) source toaster stop
->vi) bitbake init-ifupdown  # all is OK
-
-Thanks for reporting this, Bob.
-
-We'll look into it to see what's going on.
-
-Cheers
-
-Bel=E9n
-
->
->Bob
->
->
->
->
->
->>
->>
->> Hopefully to be fixed soon.
->>
->> Cheers
->>
->> Bel=E9n
->>
->>>>
->>>> I have been playing with YP 1.7 over the break.
->>>> I thought I would give toaster a try so I had it running in the
->>>> background as I tried various builds.
->>>> Somehow I got into a state where changes to my conf/local.conf file
->>>> were being ignored.
->>>> I fixed it by stopping toaster.
->>>>
->>>> Here is the sequence as I remember:
->>>>
->>>> I was doing builds for qemuarm.
->>>> At some point I started toaster "source toaster start"
->>>> It could have been from a clean build dir but probably I had done a
->>>> couple of test builds first.
->>>> For qemuarm I built:
->>>>       core-image-minimal, meta-toolchain, core-image-sato,
->>>> core-image-sato-sdk, world
->>>> I definitely poked around the toaster UI at some of those builds.
->>>> Next in the same build dir (and the same screen session) I edited
->>>> conf/local.conf to
->>>> MACHINE =3D qemux86
->>>> I then did core-image-sato again
->>>> It built for qemuarm
->>>> I double check conf/* and ENV settings.
->>>> I rm -rf cache
->>>> still builds for qemuarm
->>>> I stopped toaster with "source toaster stop"
->>>> I rm -rf cache again for safe keeping
->>>> I tried core-image-sato again and it started building for qemux86.
->>>>
->>>> I tried to reproduce this with a clean build dir and a trivial target
->>>> "bitbake -c clean ed"
->>>> With or without toaster running it always detects the config change
->>>>and
->>>> rebuilds the cache.
->>>> In the process I have now learned that removing the cache dir does not
->>>> cause a reparse as I expected.
->>>> However a config change does.
->>>>
->>>> I thought I had a theory w/ persistent bitbake process and files being
->>>> kept open
->>>> but I can't connect the dots and I can't reproduce it.
->>>>
->>>
->>> Actually it is easy to reproduce.
->>>
->>> The first time I tried I don't think toaster was starting as port 8000
->>> was busy. I thought I had stopped the other instance but I guess not.
->>>
->>> To reproduce this I did this:
->>>
->>> yocto$ $ . poky/oe-init-build-env toasted-build
->>> yocto/toasted-build$ source toaster start
->>> yocto/toasted-build$ bitbake -c clean ed
->>> 	runs with MACHINE =3D "qemux86"
->>> yocto/toasted-build$ mcedit conf/local.conf
->>> 	change to MACHINE ??=3D "qemuarm"
->>> yocto/toasted-build$ bitbake -c clean ed
->>> 	still runs for qemux86
->>> yocto/toasted-build$ source toaster stop
->>> yocto/toasted-build$ bitbake -c clean ed
->>> 	runs for qemuarm
->>>
->>> Am I starting toaster in the wrong way to be just an observer?
->>> I learned how to start toaster this way from:
->>> https://www.yoctoproject.org/documentation/toaster-manual-17  ->
->>> 	First link is "How to install and run Toaster locally" ->
->>>=20
->>>https://wiki.yoctoproject.org/wiki/Setting_up_a_local_instance_of_Toaste
->>>r
->>>
->>> The Yocto Project Dev guide say the same thing:
->>>=20
->>>https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#exa
->>>mi
->>> ning-builds-using-toaster
->>>
->>>> Any Ideas?
->>>>
->>>> BTW: Building "world" does not look nice in toaster.  It list 100s of
->>>> build targets instead of just "world".
->>>>
->>>> Thanks,
->>>> Bill
->>>>
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
->
-
-
+--001a1139baf01e5ee7050ee24c13--
