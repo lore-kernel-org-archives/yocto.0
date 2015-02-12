@@ -1,39 +1,51 @@
-Return-Path: <Joe_MacDonald@mentor.com>
+Return-Path: <maxin@maxinbjohn.info>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 56768E0097F; Thu, 12 Feb 2015 05:35:11 -0800 (PST)
+	id F2F54E0089B; Thu, 12 Feb 2015 06:56:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [192.94.38.131 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD20AE0093B
-	for <yocto@yoctoproject.org>; Thu, 12 Feb 2015 05:35:09 -0800 (PST)
-Received: from svr-orw-fem-02x.mgc.mentorg.com ([147.34.96.206]
-	helo=SVR-ORW-FEM-02.mgc.mentorg.com)
-	by relay1.mentorg.com with esmtp 
-	id 1YLtvB-0004Nc-7Z from Joe_MacDonald@mentor.com ;
-	Thu, 12 Feb 2015 05:35:09 -0800
-Received: from burninator (147.34.91.1) by svr-orw-fem-02.mgc.mentorg.com
-	(147.34.96.168) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 12 Feb 2015 05:35:08 -0800
-Received: by burninator (Postfix, from userid 1000)	id 83787580C3B; Thu, 12
-	Feb 2015 08:35:08 -0500 (EST)
-Date: Thu, 12 Feb 2015 08:35:08 -0500
-From: Joe MacDonald <Joe_MacDonald@mentor.com>
-To: <yocto@yoctoproject.org>
-Message-ID: <20150212133508.GA21267@mentor.com>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.177 listed in list.dnswl.org]
+Received: from mail-ig0-f177.google.com (mail-ig0-f177.google.com
+	[209.85.213.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52A38E007CF
+	for <yocto@yoctoproject.org>; Thu, 12 Feb 2015 06:55:59 -0800 (PST)
+Received: by mail-ig0-f177.google.com with SMTP id z20so4097316igj.4
+	for <yocto@yoctoproject.org>; Thu, 12 Feb 2015 06:55:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=Cjz46L4r64jOFAP9fLli/LOHeU/RMj8HLpxkzzI6WYk=;
+	b=hHH/pQFap/ZkEtLfY+PZ7EkgFyQcy6Y8p7KJp3wJJVCvoG2PKUKbp+UaeIMWX+/4uE
+	EtKue7SQQRPvlidFMoS2LHgSdjc+bpRlUaKj3kWOnY2vJ18sGbGSrB1zL+nZOShf66sw
+	3XO3r5KagowHIDvvsbqq+Aqj5YK47ymtRJoEAdZPc6MDd2sgH3swQOnhiQAt4Ows2kOs
+	eGyDf+ZJkJcEROlc2ebsy97xgdyu9QjgtCo24DX+mqx6NK72yrbjR2nm5FpW7xGjTNMR
+	8Z+suFpkrWvcwtMTplr+lvTajbBK9Xlo1rLR8nT9k7HZ9oJ1JuEZm8ibeKOc/X+irJaN
+	RNDg==
+X-Gm-Message-State: ALoCoQkYMqnw2ENDHU8qLy+hFE3slq2xqnlyVB/rCaNQehnlTrzUSQV4LHA/65vh6J08V+abj65g
 MIME-Version: 1.0
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-704 http://www.vim.org
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: "New" Dependencies (was: Re: [meta-selinux][PATCH] Add explicit dependency on layers with recipes we bbappend.)
+X-Received: by 10.42.170.200 with SMTP id g8mr8823875icz.5.1423752958989; Thu,
+	12 Feb 2015 06:55:58 -0800 (PST)
+Received: by 10.36.57.206 with HTTP; Thu, 12 Feb 2015 06:55:58 -0800 (PST)
+X-Originating-IP: [192.36.1.252]
+In-Reply-To: <CAJTo0LYRUUC6ErtyC2E6kB70bnVQVoeVro9ajwBZ52-NNgTUBQ@mail.gmail.com>
+References: <1423669983.23617.78.camel@tycho.nsa.gov>
+	<6445648.XiRzhvmYHl@peggleto-mobl5.ger.corp.intel.com>
+	<20150211213954.GI30457@mentor.com>
+	<CAJTo0LYRUUC6ErtyC2E6kB70bnVQVoeVro9ajwBZ52-NNgTUBQ@mail.gmail.com>
+Date: Thu, 12 Feb 2015 15:55:58 +0100
+Message-ID: <CAFicg87Y=4UmvCpRwYKP6SoOZtnCiVOJB_Uq-JhM1b6Qb8xZFw@mail.gmail.com>
+From: Maxin John <maxin@maxinbjohn.info>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	OE-devel <openembedded-devel@lists.openembedded.org>
+Subject: Re: [oe] meta-selinux
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,98 +57,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Feb 2015 13:35:11 -0000
-X-Groupsio-MsgNum: 23562
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="WIyZ46R2i8wDzkSu"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 12 Feb 2015 14:56:02 -0000
+Content-Type: text/plain; charset=UTF-8
 
---WIyZ46R2i8wDzkSu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Ross,
 
-I thought I'd better follow this up with a semi-separate thread for
-anyone who is using meta-selinux and isn't really interested in the
-direct follow-ups when I just indicate a patch has been merged.
+On Thu, Feb 12, 2015 at 12:19 PM, Burton, Ross <ross.burton@intel.com> wrote:
+>
+> On 11 February 2015 at 21:39, Joe MacDonald <Joe_MacDonald@mentor.com>
+> wrote:
+>>
+>> > What's more likely happening I suspect is that you are on a newer
+>> > branch/revision of OE-Core/Poky than the meta-selinux maintainers have
+>> > tested.
+>> > I can't speak to the maintenance schedule for meta-selinux but maybe
+>> > others
+>> > with knowledge there can chime in.
+>>
+>> Our master tends to lag behind oe-core's master for a few reasons, but
+>> none of them are really insurmountable.  Certainly the intent is that
+>> meta-selinux/master will build successfully with oe-core/master at any
+>> given time.
+>
+>
+> The yocto-autobuilder software is in git and I heartily recommend it (or
+> similar, if you've a buildbot allergy) for anyone maintaining layers.  Just
+> the simple act of running a build every night to verify that the layer works
+> with the latest master branch (and stable branches for bonus points) means
+> that problems like stale bbappends are rapidly found and resolved.  For even
+> more bonus points, also do builds against master-next if that branch exists
+> so you can get notification of changes that are in review.
 
-This went into master and it captures, I think, the implicit
-dependencies in the layer right now.  It actually casts a wider net than
-is required if you're building core-image-selinux, but it does describe
-what's currently included in the layer in terms of appends, so it's the
-right thing to do.
+While I don't have anything against the autobuilder, the images built with
+meta-selinux like "core-image-selinux" had a "labeling" phase which requires
+it to boot - twice
+Once for labeling and later for booting like any other normal image.
 
-If you've been working with a smaller set of selinux layers before,
-you'll probably see an error like this:
+Do anyone care to share a way around this "difficulty" in automatically testing
+selinux or am I wrong here ?
 
-ERROR: Layer 'selinux' depends on layer 'meta-python', but this layer is no=
-t enabled in your configuration
-ERROR: Layer 'selinux' depends on layer 'networking-layer', but this layer =
-is not enabled in your configuration
-ERROR: Layer 'selinux' depends on layer 'openembedded-layer', but this laye=
-r is not enabled in your configuration
-ERROR: Layer 'selinux' depends on layer 'virtualization-layer', but this la=
-yer is not enabled in your configuration
+> Ross
 
-If you don't want to bring in all of these additional layers, my advice
-for the short term is to stick with either the 1.7 branch or if you know
-you need to work on master, stick with commit 0d270cbd.
+Best Regards,
+Maxin
 
--J.
-
-[Re: [meta-selinux][PATCH] Add explicit dependency on layers with recipes w=
-e bbappend.] On 15.02.12 (Thu 08:16) Joe MacDonald wrote:
-
-> [[meta-selinux][PATCH] Add explicit dependency on layers with recipes we =
-bbappend.] On 15.02.12 (Thu 04:39) Philip Tricca wrote:
->=20
-> > This is a stop-gap to get meaningful error messages to folks till we get
-> > per-layer bbappends implemented.
-> >=20
-> > Signed-off-by: Philip Tricca <flihp@twobit.us>
->=20
-> Merged.  Thanks Phil.
->=20
-> -J.
->=20
-> > ---
-> >  conf/layer.conf |    8 +++++++-
-> >  1 file changed, 7 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/conf/layer.conf b/conf/layer.conf
-> > index 7af76a1..723f5a8 100644
-> > --- a/conf/layer.conf
-> > +++ b/conf/layer.conf
-> > @@ -13,4 +13,10 @@ BBFILE_PRIORITY_selinux =3D "5"
-> >  # cause compatibility issues with other layers
-> >  LAYERVERSION_selinux =3D "1"
-> > =20
-> > -LAYERDEPENDS_selinux =3D "core"
-> > +LAYERDEPENDS_selinux =3D " \
-> > +    core \
-> > +    meta-python \
-> > +    networking-layer \
-> > +    openembedded-layer \
-> > +    virtualization-layer \
-> > +"
---=20
--Joe MacDonald.
-:wq
-
---WIyZ46R2i8wDzkSu
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iQEcBAEBAgAGBQJU3KwMAAoJEEn8ffcsOfaWC1wH/jhhutroJMKXBPYJGN0S+zwp
-yv/68+JlE3JPMmbNH00jAwWISd6zKIdmh9vuvbKblwCucVAtCP7rK75/LGB5vyZU
-AkWo34LFVRHZFu/X5fgP+TojhepjoZoN3i1leaabjCivm6G44/X4A3Uhb7qee+8A
-BCtCrPGy1fFgqz5iYspQ/PjUBA2gHtnsZ6Ux3b0IUaZDT0ZYVuoxC3P6A1GVka4T
-o4R3tppvGGW+K4cCDZpMekNkIQ0Bivi/kOg3M8St8e+wtwkh/+spk1ZqYPrvi0Cf
-rs0CL2CKroqLluSSzMwyAwLHaIr875gEHKmt0iGNikPX7iYaqzf7OECiCqmy1KE=
-=usQv
------END PGP SIGNATURE-----
-
---WIyZ46R2i8wDzkSu--
