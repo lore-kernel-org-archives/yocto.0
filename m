@@ -1,34 +1,48 @@
-Return-Path: <Alexandru.Vaduva@enea.com>
+Return-Path: <belen.barros.pena@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 428ABE008DD; Fri, 13 Feb 2015 01:40:28 -0800 (PST)
+	id BBE71E008DD; Fri, 13 Feb 2015 03:08:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+	UC_GIBBERISH_OBFU autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 60807E0089B
-	for <yocto@yoctoproject.org>; Fri, 13 Feb 2015 01:40:27 -0800 (PST)
-Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 13 Feb 2015 10:40:26 +0100
-Received: by sestofb10.enea.se (Postfix, from userid 4470)	id 42B3D2800CB;
-	Fri, 13 Feb 2015 10:40:26 +0100 (CET)
-From: Alexandru.Vaduva <Alexandru.Vaduva@enea.com>
-To: <linux-maintainers@enea.com>, <yocto@yoctoproject.org>
-Date: Fri, 13 Feb 2015 10:40:11 +0100
-Message-ID: <1423820411-20102-1-git-send-email-Alexandru.Vaduva@enea.com>
-X-Mailer: git-send-email 1.9.1
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	* 1.0 UC_GIBBERISH_OBFU Multiple instances of "word VERYLONGGIBBERISH
+	*      word"
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FC0EE0089B
+	for <yocto@yoctoproject.org>; Fri, 13 Feb 2015 03:08:40 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 13 Feb 2015 03:08:39 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.09,570,1418112000"; d="scan'208";a="677458255"
+Received: from irsmsx154.ger.corp.intel.com ([163.33.192.96])
+	by fmsmga002.fm.intel.com with ESMTP; 13 Feb 2015 03:08:38 -0800
+Received: from irsmsx109.ger.corp.intel.com ([169.254.13.103]) by
+	IRSMSX154.ger.corp.intel.com ([169.254.12.111]) with mapi id
+	14.03.0195.001; Fri, 13 Feb 2015 11:08:36 +0000
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: Bob Cochran <yocto@mindchasers.com>, William Mills <wmills@ti.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] My config got stuck in the toaster
+Thread-Index: AQHQR31pxn2+saPQ4kmXzoY5t6ZPdw==
+Date: Fri, 13 Feb 2015 11:08:36 +0000
+Message-ID: <D1038B74.5442F%belen.barros.pena@intel.com>
+References: <EC0CC42105A97F4A81EA36CDF61DDAD45CA40387@DLEE11.ent.ti.com>
+	<549EFEF1.1040604@ti.com> <D0D07A4A.50C55%belen.barros.pena@intel.com>
+	<54DBA0E1.6020608@mindchasers.com>
+In-Reply-To: <54DBA0E1.6020608@mindchasers.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.4.7.141117
+x-originating-ip: [10.237.224.32]
 MIME-Version: 1.0
-Received-SPF: None (SESTOEX03.enea.se: Alexandru.Vaduva@enea.com does not
-	designate permitted sender hosts)
-Cc: alexey_firago@mentor.com, gary@mlbassoc.com
-Subject: [PATCH] cgl: Updated the structure for the layers and layers definition
+Subject: Re: My config got stuck in the toaster
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,56 +54,162 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Feb 2015 09:40:28 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 13 Feb 2015 11:08:42 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <C5AD22F39D7B2648AF0871785E95C84C@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Alexandru.Vaduva <Alexandru.Vaduva@enea.com>
----
- meta-cgl-common/conf/layer.conf                                   | 6 +++---
- {meta-fsl-ppc => meta-cgl-fsl-ppc}/conf/layer.conf                | 8 +++++---
- .../recipes-kernel/linux/linux-qoriq_3.12.bbappend                | 0
- 3 files changed, 8 insertions(+), 6 deletions(-)
- rename {meta-fsl-ppc => meta-cgl-fsl-ppc}/conf/layer.conf (54%)
- rename {meta-fsl-ppc => meta-cgl-fsl-ppc}/recipes-kernel/linux/linux-qoriq_3.12.bbappend (100%)
 
-diff --git a/meta-cgl-common/conf/layer.conf b/meta-cgl-common/conf/layer.conf
-index 6844549..41b2768 100644
---- a/meta-cgl-common/conf/layer.conf
-+++ b/meta-cgl-common/conf/layer.conf
-@@ -7,6 +7,6 @@ BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
- 	${LAYERDIR}/packagegroups/* \
- 	${LAYERDIR}/recipes-*/*/*.bbappend"
 
--BBFILE_COLLECTIONS += "cgl"
--BBFILE_PATTERN_cgl = "^${LAYERDIR}/"
--BBFILE_PRIORITY_cgl = "7"
-+BBFILE_COLLECTIONS += "meta-cgl-common"
-+BBFILE_PATTERN_meta-cgl-common = "^${LAYERDIR}/"
-+BBFILE_PRIORITY_meta-cgl-common = "7"
-diff --git a/meta-fsl-ppc/conf/layer.conf b/meta-cgl-fsl-ppc/conf/layer.conf
-similarity index 54%
-rename from meta-fsl-ppc/conf/layer.conf
-rename to meta-cgl-fsl-ppc/conf/layer.conf
-index 6818475..31eee43 100644
---- a/meta-fsl-ppc/conf/layer.conf
-+++ b/meta-cgl-fsl-ppc/conf/layer.conf
-@@ -5,6 +5,8 @@ BBPATH .= ":${LAYERDIR}"
- BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
- 	${LAYERDIR}/recipes-*/*/*.bbappend"
+On 11/02/2015 18:35, "Bob Cochran" <yocto@mindchasers.com> wrote:
 
--BBFILE_COLLECTIONS += "cgl"
--BBFILE_PATTERN_cgl = "^${LAYERDIR}/"
--BBFILE_PRIORITY_cgl = "7"
-+BBFILE_COLLECTIONS += "meta-cgl-fsl-ppc"
-+BBFILE_PATTERN_meta-cgl-fsl-ppc = "^${LAYERDIR}/"
-+BBFILE_PRIORITY_meta-cgl-fsl-ppc = "7"
-+
-+LAYERDEPENDS_crystalforest = "cgl-common"
-diff --git a/meta-fsl-ppc/recipes-kernel/linux/linux-qoriq_3.12.bbappend b/meta-cgl-fsl-ppc/recipes-kernel/linux/linux-qoriq_3.12.bbappend
-similarity index 100%
-rename from meta-fsl-ppc/recipes-kernel/linux/linux-qoriq_3.12.bbappend
-rename to meta-cgl-fsl-ppc/recipes-kernel/linux/linux-qoriq_3.12.bbappend
---
-1.9.1
+>On 01/05/2015 06:59 AM, Barros Pena, Belen wrote:
+>> On 28/12/2014 00:18, "William Mills" <wmills@ti.com> wrote:
+>>
+>>>
+>>> On 12/27/2014 10:40 AM, Mills, William wrote:
+>>>> OK, you are not going to believe me but I swear this really happened
+>>>>...
+>>
+>> We do believe you :)
+>>
+>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D6935
+>
+>
+>Looks like this was patched & closed, but I'm seeing similar behavior
+>working with poky master (commit: 870323cac1e40).
+
+Indeed we have some kind of problem there. We've opened this
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7316
+
+Cheers
+
+Bel=E9n
+
+>
+>I was modifying the MACHINEOVERRIDES settings in some of the conf files.
+>  I noticed that the values weren't picked up during a build until I
+>stopped toaster (source toaster stop).  However, bitbake did seem to
+>pick up each prepend and append modification ( =3D. and .=3D) while toaste=
+r
+>was running (but not the change in the variable's value).
+>
+>In summary:
+>
+>i) source toaster start
+>ii) make changes to MACHINEOVERRIDES in meta-fsl-ppc layer conf files
+>iii) bitbake init-ifupdown
+>iv) changes aren't accurately reflected in the build
+>v) source toaster stop
+>vi) bitbake init-ifupdown  # all is OK
+>
+>Bob
+>
+>
+>
+>
+>
+>>
+>>
+>> Hopefully to be fixed soon.
+>>
+>> Cheers
+>>
+>> Bel=E9n
+>>
+>>>>
+>>>> I have been playing with YP 1.7 over the break.
+>>>> I thought I would give toaster a try so I had it running in the
+>>>> background as I tried various builds.
+>>>> Somehow I got into a state where changes to my conf/local.conf file
+>>>> were being ignored.
+>>>> I fixed it by stopping toaster.
+>>>>
+>>>> Here is the sequence as I remember:
+>>>>
+>>>> I was doing builds for qemuarm.
+>>>> At some point I started toaster "source toaster start"
+>>>> It could have been from a clean build dir but probably I had done a
+>>>> couple of test builds first.
+>>>> For qemuarm I built:
+>>>>       core-image-minimal, meta-toolchain, core-image-sato,
+>>>> core-image-sato-sdk, world
+>>>> I definitely poked around the toaster UI at some of those builds.
+>>>> Next in the same build dir (and the same screen session) I edited
+>>>> conf/local.conf to
+>>>> MACHINE =3D qemux86
+>>>> I then did core-image-sato again
+>>>> It built for qemuarm
+>>>> I double check conf/* and ENV settings.
+>>>> I rm -rf cache
+>>>> still builds for qemuarm
+>>>> I stopped toaster with "source toaster stop"
+>>>> I rm -rf cache again for safe keeping
+>>>> I tried core-image-sato again and it started building for qemux86.
+>>>>
+>>>> I tried to reproduce this with a clean build dir and a trivial target
+>>>> "bitbake -c clean ed"
+>>>> With or without toaster running it always detects the config change
+>>>>and
+>>>> rebuilds the cache.
+>>>> In the process I have now learned that removing the cache dir does not
+>>>> cause a reparse as I expected.
+>>>> However a config change does.
+>>>>
+>>>> I thought I had a theory w/ persistent bitbake process and files being
+>>>> kept open
+>>>> but I can't connect the dots and I can't reproduce it.
+>>>>
+>>>
+>>> Actually it is easy to reproduce.
+>>>
+>>> The first time I tried I don't think toaster was starting as port 8000
+>>> was busy. I thought I had stopped the other instance but I guess not.
+>>>
+>>> To reproduce this I did this:
+>>>
+>>> yocto$ $ . poky/oe-init-build-env toasted-build
+>>> yocto/toasted-build$ source toaster start
+>>> yocto/toasted-build$ bitbake -c clean ed
+>>> 	runs with MACHINE =3D "qemux86"
+>>> yocto/toasted-build$ mcedit conf/local.conf
+>>> 	change to MACHINE ??=3D "qemuarm"
+>>> yocto/toasted-build$ bitbake -c clean ed
+>>> 	still runs for qemux86
+>>> yocto/toasted-build$ source toaster stop
+>>> yocto/toasted-build$ bitbake -c clean ed
+>>> 	runs for qemuarm
+>>>
+>>> Am I starting toaster in the wrong way to be just an observer?
+>>> I learned how to start toaster this way from:
+>>> https://www.yoctoproject.org/documentation/toaster-manual-17  ->
+>>> 	First link is "How to install and run Toaster locally" ->
+>>>=20
+>>>https://wiki.yoctoproject.org/wiki/Setting_up_a_local_instance_of_Toaste
+>>>r
+>>>
+>>> The Yocto Project Dev guide say the same thing:
+>>>=20
+>>>https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#exa
+>>>mi
+>>> ning-builds-using-toaster
+>>>
+>>>> Any Ideas?
+>>>>
+>>>> BTW: Building "world" does not look nice in toaster.  It list 100s of
+>>>> build targets instead of just "world".
+>>>>
+>>>> Thanks,
+>>>> Bill
+>>>>
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
 
 
