@@ -1,43 +1,34 @@
-Return-Path: <belen.barros.pena@intel.com>
+Return-Path: <Alexandru.Vaduva@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78208E008DD; Fri, 13 Feb 2015 03:18:39 -0800 (PST)
+	id E17BEE008F6; Fri, 13 Feb 2015 04:18:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [192.36.1.252 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A1EEE0089B
-	for <yocto@yoctoproject.org>; Fri, 13 Feb 2015 03:18:38 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga101.fm.intel.com with ESMTP; 13 Feb 2015 03:18:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,570,1418112000"; d="scan'208";a="651707787"
-Received: from irsmsx153.ger.corp.intel.com ([163.33.192.75])
-	by orsmga001.jf.intel.com with ESMTP; 13 Feb 2015 03:18:26 -0800
-Received: from irsmsx109.ger.corp.intel.com ([169.254.13.103]) by
-	IRSMSX153.ger.corp.intel.com ([169.254.9.2]) with mapi id
-	14.03.0195.001; Fri, 13 Feb 2015 11:18:24 +0000
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Gary Thomas <gary@mlbassoc.com>, Yocto Project <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Why did my build need to redo so many tasks?
-Thread-Index: AQHQR37I7fCM3xmO90mafmj/c1NMNg==
-Date: Fri, 13 Feb 2015 11:18:24 +0000
-Message-ID: <D1038CAC.54442%belen.barros.pena@intel.com>
-References: <54DD1A4C.60004@mlbassoc.com> <20150212221946.GH2272@jama>
-In-Reply-To: <20150212221946.GH2272@jama>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.4.7.141117
-x-originating-ip: [10.237.224.32]
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 6BC63E008BC
+	for <yocto@yoctoproject.org>; Fri, 13 Feb 2015 04:18:35 -0800 (PST)
+Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
+	(172.21.1.208) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 13 Feb 2015 13:18:33 +0100
+Received: by sestofb10.enea.se (Postfix, from userid 4470)	id 7C6202800CB;
+	Fri, 13 Feb 2015 13:18:33 +0100 (CET)
+From: Alexandru.Vaduva <Alexandru.Vaduva@enea.com>
+To: <linux-maintainers@enea.com>, <yocto@yoctoproject.org>
+Date: Fri, 13 Feb 2015 13:18:28 +0100
+Message-ID: <1423829908-57597-1-git-send-email-Alexandru.Vaduva@enea.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: Re: Why did my build need to redo so many tasks?
+Received-SPF: None (SESTOEX08.enea.se: Alexandru.Vaduva@enea.com does not
+	designate permitted sender hosts)
+Cc: qianl.fnst@cn.fujitsu.com
+Subject: [PATCH] [meta-cgl][PATCH 1_2] cluster: Fix license format
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,48 +40,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Feb 2015 11:18:39 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <65FE58A67F5A264CB5B201126D31E394@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 13 Feb 2015 12:18:40 -0000
+Content-Type: text/plain
 
+The patch from Qian Lei was redone since the SRC_URI checksum
+change ws done previous to this change by me.
 
+Signed-off-by: Qian Lei <qianl.fnst@cn.fujitsu.com>
+Signed-off-by: Alexandru.Vaduva <Alexandru.Vaduva@enea.com>
+---
+ meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On 12/02/2015 22:19, "Martin Jansa" <martin.jansa@gmail.com> wrote:
-
->On Thu, Feb 12, 2015 at 02:25:32PM -0700, Gary Thomas wrote:
->> Yesterday, I built a large image using Poky/Yocto 870323cac1e
->> Today I updated my Poky repo to 231d4a9d3
->>=20
->> When I rebuilt the same image, bitbake kicked off more than
->> 5200 tasks, building virtually every package from scratch.
->>=20
->> How can I tell why this happened?  I don't have buildhistory
->> enabled, but I do still have the tmp & sstate-cache trees
->> from the process.  Is there enough info laying around that
->> I can tell, e.g. why the GCC toolchain had to be rebuilt
->> completely?
->>=20
->> Am I correct in assuming that bitbake-whatchanged is really
->> a Quija board and can only tell me [in advance] what will need
->> to be done if my layers change?  When I ran it after the long
->> build above, it didn't really tell me much :-(
->
->I'm using
->openembedded-core/scripts/sstate-diff-machines.sh
->to create sstate signature snaphosts for interesting builds, then
->when I'm surprised by number of re-executions, I create another snapshot
->and compare them.
-
-And there is Toaster, which also reports on sstate use, although after the
-build is done and it might not give you the same granularity as the other
-suggestions. It looks nice, though ;)
-
-Bel=E9n
-
->
->--=20
->Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+diff --git a/meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb b/meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb
+index a28ec59..2610236 100644
+--- a/meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb
++++ b/meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb
+@@ -8,7 +8,7 @@ SRC_URI = "https://fedorahosted.org/releases/c/l/cluster/${BP}.tar.xz"
+ SRC_URI[md5sum] = "300d83dbbc525c3da21c2e961271c84b"
+ SRC_URI[sha256sum] = "4d340338c2376d369cb223469fa1a3356cce9ab5b2a0a0a33256ade2dbbe02d1"
+ 
+-LICENSE = "GPL-2.0 LGPL-2.0"
++LICENSE = "GPL-2.0 & LGPL-2.0"
+ LIC_FILES_CHKSUM = "file://doc/README.licence;md5=ee8ae43af5ea09f12ca7f7a649764cb0"
+ 
+ PR = "r1"
+-- 
+1.9.1
 
 
