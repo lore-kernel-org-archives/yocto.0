@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 085C2E002AC; Fri, 13 Feb 2015 09:02:45 -0800 (PST)
+	id 033D4E002AC; Fri, 13 Feb 2015 15:57:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (akuster808[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.51 listed in list.dnswl.org]
+	*      [209.85.192.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,34 +19,35 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f51.google.com (mail-pa0-f51.google.com
-	[209.85.220.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FAF1E00283
-	for <yocto@yoctoproject.org>; Fri, 13 Feb 2015 09:02:41 -0800 (PST)
-Received: by mail-pa0-f51.google.com with SMTP id eu11so20015164pac.10
-	for <yocto@yoctoproject.org>; Fri, 13 Feb 2015 09:02:41 -0800 (PST)
+Received: from mail-pd0-f171.google.com (mail-pd0-f171.google.com
+	[209.85.192.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3865E00288
+	for <yocto@yoctoproject.org>; Fri, 13 Feb 2015 15:57:00 -0800 (PST)
+Received: by pdbfl12 with SMTP id fl12so22467516pdb.4
+	for <yocto@yoctoproject.org>; Fri, 13 Feb 2015 15:56:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:subject:date:message-id;
-	bh=eJlqIwUEjKELhDgL3JXpWvm1I4lnwmUuYjVwUy1QqAU=;
-	b=veh5SDu56/4/iIUeJH5OLdXBK6y+raI+/7kYLQKFF4ZC7DyuivQIdNjLQwARuWHY4b
-	ZfvH3CWxai7khylElgUiW74u8dMFWrEJQlG5UpQFL4zn9C6plXEFELAg4hFaGzZ1VVN2
-	m6P/vvzLi6g/dZhNpY8d4TR1Bef5M43tyyEbkHVyC36Wmo4g4jjMpqcCrjNdcoahkdNC
-	HMf9PgtvqEtUddo85nkmKzYnOqeyHv9hjl3HD3FqyUJnWrINLUv5sh/8MfOe1Rhc99S1
-	2g1UbBBtGgvwTcltPfOZK+NaQ+NDbwGNX9uAg6v3g+2noCu85lXSXYmiFqkQZ5Jw7Nht
-	sHXw==
-X-Received: by 10.68.191.2 with SMTP id gu2mr16312897pbc.149.1423846961104;
-	Fri, 13 Feb 2015 09:02:41 -0800 (PST)
+	bh=3AR/3cQBh6bjGpZD8sQb5DlvaE2TJ50dwlWhd5e9GAA=;
+	b=pcxRlL/pyH5hOiSpWErHwsv8y1swe8GN6Mq6yeJ19Ce0H8IlJ+qa6hq+qbD+1XcHNH
+	wHwS/X52lJsqBO73cQS+q1AkY9y0Fk9DSMXpDd5ZZdscXL7BwMWIs+ecp/LWq3S9kWpJ
+	ZuzJQFetwAbLKY5EnEunMIuLBP2gs1xcdrZ1mVYmuhpmPThHNwCxNLo0Gk1c+J9/3pMt
+	1WevSkGlYR4hfsNJU8ZeJS/46iOs89wZktiXkg1iZ6+XOHY56LnlhNTNECLDDpEM5dCS
+	3TP84D7olAzFP8jaiNDxlRdjAp7JJ7Gsjk0IDrI9N2dWi7e9HzkunE2sDd7ERjTKLQzJ
+	6qJQ==
+X-Received: by 10.68.189.105 with SMTP id gh9mr19129940pbc.142.1423871819748; 
+	Fri, 13 Feb 2015 15:56:59 -0800 (PST)
 Received: from Pahoa2.mvista.com (c-76-20-92-207.hsd1.ca.comcast.net.
-	[76.20.92.207]) by mx.google.com with ESMTPSA id
-	di10sm7269498pad.41.2015.02.13.09.02.38 for <yocto@yoctoproject.org>
+	[76.20.92.207])
+	by mx.google.com with ESMTPSA id h14sm7751593pdm.60.2015.02.13.15.56.57
+	for <yocto@yoctoproject.org>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 13 Feb 2015 09:02:40 -0800 (PST)
+	Fri, 13 Feb 2015 15:56:58 -0800 (PST)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Fri, 13 Feb 2015 09:02:36 -0800
-Message-Id: <1423846956-10462-1-git-send-email-akuster808@gmail.com>
+Date: Fri, 13 Feb 2015 15:56:47 -0800
+Message-Id: <1423871807-20760-1-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 1.9.1
-Subject: [meta-security][PATCH] libcap-ng: remove from layer
+Subject: [meta-security][PATCH] nmap: add aarch64 config support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,106 +59,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Feb 2015 17:02:45 -0000
+X-List-Received-Date: Fri, 13 Feb 2015 23:57:04 -0000
 
-this package is not in meta-oe
+allow nmap to build for arm64 qemu machine.
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-security/libcap-ng/libcap-ng/python.patch | 39 -----------------------
- recipes-security/libcap-ng/libcap-ng_0.7.4.bb     | 37 ---------------------
- 2 files changed, 76 deletions(-)
- delete mode 100644 recipes-security/libcap-ng/libcap-ng/python.patch
- delete mode 100644 recipes-security/libcap-ng/libcap-ng_0.7.4.bb
+ .../nmap/files/add_aarch64_to_configure.patch      | 28 ++++++++++++++++++++++
+ recipes-security/nmap/nmap_6.47.bb                 |  3 ++-
+ 2 files changed, 30 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-security/nmap/files/add_aarch64_to_configure.patch
 
-diff --git a/recipes-security/libcap-ng/libcap-ng/python.patch b/recipes-security/libcap-ng/libcap-ng/python.patch
-deleted file mode 100644
-index d82ceb4..0000000
---- a/recipes-security/libcap-ng/libcap-ng/python.patch
-+++ /dev/null
-@@ -1,39 +0,0 @@
--configure.ac - Avoid an incorrect check for python.
--Makefile.am - avoid hard coded host include paths.
--
--Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
--
----- libcap-ng-0.6.5/configure.ac.orig	2012-01-17 13:59:03.645898989 -0600
--+++ libcap-ng-0.6.5/configure.ac	2012-01-17 13:59:46.353959252 -0600
--@@ -120,17 +120,8 @@
-- else
-- AC_MSG_RESULT(testing)
-- AM_PATH_PYTHON
---if test -f /usr/include/python${am_cv_python_version}/Python.h ; then
---	python_found="yes"
---	AC_MSG_NOTICE(Python bindings will be built)
---else
---	python_found="no"
---	if test x$use_python = xyes ; then
---		AC_MSG_ERROR([Python explicitly required and python headers found])
---	else
---		AC_MSG_WARN("Python headers not found - python bindings will not be made")
---	fi
---fi
--+python_found="yes"
--+AC_MSG_NOTICE(Python bindings will be built)
-- fi
-- AM_CONDITIONAL(HAVE_PYTHON, test ${python_found} = "yes")
-- 
----- libcap-ng-0.6.5/bindings/python/Makefile.am.orig	2010-11-03 12:31:59.000000000 -0500
--+++ libcap-ng-0.6.5/bindings/python/Makefile.am	2012-01-17 14:05:50.199834467 -0600
--@@ -24,7 +24,8 @@
-- CONFIG_CLEAN_FILES = *.loT *.rej *.orig
-- AM_CFLAGS = -fPIC -DPIC
-- PYLIBVER ?= python$(PYTHON_VERSION)
---INCLUDES = -I. -I$(top_builddir) -I/usr/include/$(PYLIBVER)
--+PYINC ?= /usr/include/$(PYLIBVER)
--+INCLUDES = -I. -I$(top_builddir) -I$(PYINC)
-- LIBS = $(top_builddir)/src/libcap-ng.la
-- pyexec_PYTHON = capng.py
-- pyexec_LTLIBRARIES = _capng.la
-diff --git a/recipes-security/libcap-ng/libcap-ng_0.7.4.bb b/recipes-security/libcap-ng/libcap-ng_0.7.4.bb
-deleted file mode 100644
-index 8823dad..0000000
---- a/recipes-security/libcap-ng/libcap-ng_0.7.4.bb
-+++ /dev/null
-@@ -1,37 +0,0 @@
--SUMMARY = "An alternate posix capabilities library"
--DESCRIPTION = "The libcap-ng library is intended to make programming \
--with POSIX capabilities much easier than the traditional libcap library."
--HOMEPAGE = "http://freecode.com/projects/libcap-ng"
--SECTION = "base"
--LICENSE = "GPLv2+ & LGPLv2.1+"
--LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f \
--		    file://COPYING.LIB;md5=e3eda01d9815f8d24aae2dbd89b68b06"
--
--SRC_URI = "http://people.redhat.com/sgrubb/libcap-ng/libcap-ng-${PV}.tar.gz \
--	   file://python.patch"
--
--inherit lib_package autotools pythonnative
--
--SRC_URI[md5sum] = "55c57c0673b944ea1a755bcb2636dabd"
--SRC_URI[sha256sum] = "48a2083276f9820cb92dcb05d001b30733bcbf48c14c230303cac3cd08b45b6b"
--
--DEPENDS += "swig-native python"
--
--EXTRA_OEMAKE += "PYLIBVER='python${PYTHON_BASEVERSION}' PYINC='${STAGING_INCDIR}/${PYLIBVER}'"
--
--PACKAGES += "${PN}-python"
--
--FILES_${PN}-dbg += "${libdir}/python${PYTHON_BASEVERSION}/*/.debug"
--FILES_${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}"
--
--BBCLASSEXTEND = "native"
--
--do_install_append() {
--	# Moving libcap-ng to base_libdir
--	if [ ! ${D}${libdir} -ef ${D}${base_libdir} ]; then
--		mkdir -p ${D}/${base_libdir}/
--		mv -f ${D}${libdir}/libcap-ng.so.* ${D}${base_libdir}/
--		relpath=${@os.path.relpath("${base_libdir}", "${libdir}")}
--		ln -sf ${relpath}/libcap-ng.so.0.0.0 ${D}${libdir}/libcap-ng.so
--	fi
--}
+diff --git a/recipes-security/nmap/files/add_aarch64_to_configure.patch b/recipes-security/nmap/files/add_aarch64_to_configure.patch
+new file mode 100644
+index 0000000..27b3d76
+--- /dev/null
++++ b/recipes-security/nmap/files/add_aarch64_to_configure.patch
+@@ -0,0 +1,28 @@
++nmap: Add support for aarch64* builds
++
++Upstream-Status: Submitted to nmap-dev
++
++Signed-off-by: Armin Kuster <akuster@mvista.com>
++
++Index: config.sub
++===================================================================
++--- a/config.sub
+++++ b/config.sub
++@@ -249,7 +249,7 @@ case $basic_machine in
++ 	| a29k \
++ 	| alpha | alphaev[4-8] | alphaev56 | alphaev6[78] | alphapca5[67] \
++ 	| alpha64 | alpha64ev[4-8] | alpha64ev56 | alpha64ev6[78] | alpha64pca5[67] \
++-	| am33_2.0 \
+++	| am33_2.0 | aarch64 | aarch64be \
++ 	| arc | arm | arm[bl]e | arme[lb] | armv[2345] | armv[345][lb] | avr | avr32 \
++ 	| bfin \
++ 	| c4x | clipper \
++@@ -343,7 +343,7 @@ case $basic_machine in
++ 	| alpha64-* | alpha64ev[4-8]-* | alpha64ev56-* | alpha64ev6[78]-* \
++ 	| alphapca5[67]-* | alpha64pca5[67]-* | arc-* \
++ 	| arm-*  | armbe-* | armle-* | armeb-* | armv*-* \
++-	| avr-* | avr32-* \
+++	| avr-* | avr32-* | aarch64-* | aarch64be-*\
++ 	| bfin-* | bs2000-* \
++ 	| c[123]* | c30-* | [cjt]90-* | c4x-* \
++ 	| clipper-* | craynv-* | cydra-* \
+diff --git a/recipes-security/nmap/nmap_6.47.bb b/recipes-security/nmap/nmap_6.47.bb
+index 2c43bf7..c0b0650 100644
+--- a/recipes-security/nmap/nmap_6.47.bb
++++ b/recipes-security/nmap/nmap_6.47.bb
+@@ -5,7 +5,8 @@ LICENSE = "GPL-2.0"
+ 
+ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+ 
+-SRC_URI = "http://nmap.org/dist/${BP}.tar.bz2"
++SRC_URI = "http://nmap.org/dist/${BP}.tar.bz2 \
++            file://add_aarch64_to_configure.patch"
+ 
+ SRC_URI[md5sum] = "edfe81f6763223c0a29bfa15a8526e2a"
+ SRC_URI[sha256sum] = "8fa11e9e203ce2d81a207db5ca4f110a525f6c01c1dd0018325a7112a51aa591"
 -- 
 1.9.1
 
