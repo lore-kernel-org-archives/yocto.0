@@ -1,48 +1,43 @@
 Return-Path: <belen.barros.pena@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BBE71E008DD; Fri, 13 Feb 2015 03:08:42 -0800 (PST)
+	id 78208E008DD; Fri, 13 Feb 2015 03:18:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-	UC_GIBBERISH_OBFU autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
 	*      [192.55.52.88 listed in list.dnswl.org]
-	* 1.0 UC_GIBBERISH_OBFU Multiple instances of "word VERYLONGGIBBERISH
-	*      word"
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FC0EE0089B
-	for <yocto@yoctoproject.org>; Fri, 13 Feb 2015 03:08:40 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 13 Feb 2015 03:08:39 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A1EEE0089B
+	for <yocto@yoctoproject.org>; Fri, 13 Feb 2015 03:18:38 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga101.fm.intel.com with ESMTP; 13 Feb 2015 03:18:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,570,1418112000"; d="scan'208";a="677458255"
-Received: from irsmsx154.ger.corp.intel.com ([163.33.192.96])
-	by fmsmga002.fm.intel.com with ESMTP; 13 Feb 2015 03:08:38 -0800
+X-IronPort-AV: E=Sophos;i="5.09,570,1418112000"; d="scan'208";a="651707787"
+Received: from irsmsx153.ger.corp.intel.com ([163.33.192.75])
+	by orsmga001.jf.intel.com with ESMTP; 13 Feb 2015 03:18:26 -0800
 Received: from irsmsx109.ger.corp.intel.com ([169.254.13.103]) by
-	IRSMSX154.ger.corp.intel.com ([169.254.12.111]) with mapi id
-	14.03.0195.001; Fri, 13 Feb 2015 11:08:36 +0000
+	IRSMSX153.ger.corp.intel.com ([169.254.9.2]) with mapi id
+	14.03.0195.001; Fri, 13 Feb 2015 11:18:24 +0000
 From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Bob Cochran <yocto@mindchasers.com>, William Mills <wmills@ti.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] My config got stuck in the toaster
-Thread-Index: AQHQR31pxn2+saPQ4kmXzoY5t6ZPdw==
-Date: Fri, 13 Feb 2015 11:08:36 +0000
-Message-ID: <D1038B74.5442F%belen.barros.pena@intel.com>
-References: <EC0CC42105A97F4A81EA36CDF61DDAD45CA40387@DLEE11.ent.ti.com>
-	<549EFEF1.1040604@ti.com> <D0D07A4A.50C55%belen.barros.pena@intel.com>
-	<54DBA0E1.6020608@mindchasers.com>
-In-Reply-To: <54DBA0E1.6020608@mindchasers.com>
+To: Gary Thomas <gary@mlbassoc.com>, Yocto Project <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Why did my build need to redo so many tasks?
+Thread-Index: AQHQR37I7fCM3xmO90mafmj/c1NMNg==
+Date: Fri, 13 Feb 2015 11:18:24 +0000
+Message-ID: <D1038CAC.54442%belen.barros.pena@intel.com>
+References: <54DD1A4C.60004@mlbassoc.com> <20150212221946.GH2272@jama>
+In-Reply-To: <20150212221946.GH2272@jama>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 user-agent: Microsoft-MacOutlook/14.4.7.141117
 x-originating-ip: [10.237.224.32]
 MIME-Version: 1.0
-Subject: Re: My config got stuck in the toaster
+Subject: Re: Why did my build need to redo so many tasks?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,162 +49,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Feb 2015 11:08:42 -0000
+X-List-Received-Date: Fri, 13 Feb 2015 11:18:39 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <C5AD22F39D7B2648AF0871785E95C84C@intel.com>
+Content-ID: <65FE58A67F5A264CB5B201126D31E394@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
 
 
-On 11/02/2015 18:35, "Bob Cochran" <yocto@mindchasers.com> wrote:
+On 12/02/2015 22:19, "Martin Jansa" <martin.jansa@gmail.com> wrote:
 
->On 01/05/2015 06:59 AM, Barros Pena, Belen wrote:
->> On 28/12/2014 00:18, "William Mills" <wmills@ti.com> wrote:
->>
->>>
->>> On 12/27/2014 10:40 AM, Mills, William wrote:
->>>> OK, you are not going to believe me but I swear this really happened
->>>>...
->>
->> We do believe you :)
->>
->> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D6935
+>On Thu, Feb 12, 2015 at 02:25:32PM -0700, Gary Thomas wrote:
+>> Yesterday, I built a large image using Poky/Yocto 870323cac1e
+>> Today I updated my Poky repo to 231d4a9d3
+>>=20
+>> When I rebuilt the same image, bitbake kicked off more than
+>> 5200 tasks, building virtually every package from scratch.
+>>=20
+>> How can I tell why this happened?  I don't have buildhistory
+>> enabled, but I do still have the tmp & sstate-cache trees
+>> from the process.  Is there enough info laying around that
+>> I can tell, e.g. why the GCC toolchain had to be rebuilt
+>> completely?
+>>=20
+>> Am I correct in assuming that bitbake-whatchanged is really
+>> a Quija board and can only tell me [in advance] what will need
+>> to be done if my layers change?  When I ran it after the long
+>> build above, it didn't really tell me much :-(
 >
->
->Looks like this was patched & closed, but I'm seeing similar behavior
->working with poky master (commit: 870323cac1e40).
+>I'm using
+>openembedded-core/scripts/sstate-diff-machines.sh
+>to create sstate signature snaphosts for interesting builds, then
+>when I'm surprised by number of re-executions, I create another snapshot
+>and compare them.
 
-Indeed we have some kind of problem there. We've opened this
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7316
-
-Cheers
+And there is Toaster, which also reports on sstate use, although after the
+build is done and it might not give you the same granularity as the other
+suggestions. It looks nice, though ;)
 
 Bel=E9n
 
 >
->I was modifying the MACHINEOVERRIDES settings in some of the conf files.
->  I noticed that the values weren't picked up during a build until I
->stopped toaster (source toaster stop).  However, bitbake did seem to
->pick up each prepend and append modification ( =3D. and .=3D) while toaste=
-r
->was running (but not the change in the variable's value).
->
->In summary:
->
->i) source toaster start
->ii) make changes to MACHINEOVERRIDES in meta-fsl-ppc layer conf files
->iii) bitbake init-ifupdown
->iv) changes aren't accurately reflected in the build
->v) source toaster stop
->vi) bitbake init-ifupdown  # all is OK
->
->Bob
->
->
->
->
->
->>
->>
->> Hopefully to be fixed soon.
->>
->> Cheers
->>
->> Bel=E9n
->>
->>>>
->>>> I have been playing with YP 1.7 over the break.
->>>> I thought I would give toaster a try so I had it running in the
->>>> background as I tried various builds.
->>>> Somehow I got into a state where changes to my conf/local.conf file
->>>> were being ignored.
->>>> I fixed it by stopping toaster.
->>>>
->>>> Here is the sequence as I remember:
->>>>
->>>> I was doing builds for qemuarm.
->>>> At some point I started toaster "source toaster start"
->>>> It could have been from a clean build dir but probably I had done a
->>>> couple of test builds first.
->>>> For qemuarm I built:
->>>>       core-image-minimal, meta-toolchain, core-image-sato,
->>>> core-image-sato-sdk, world
->>>> I definitely poked around the toaster UI at some of those builds.
->>>> Next in the same build dir (and the same screen session) I edited
->>>> conf/local.conf to
->>>> MACHINE =3D qemux86
->>>> I then did core-image-sato again
->>>> It built for qemuarm
->>>> I double check conf/* and ENV settings.
->>>> I rm -rf cache
->>>> still builds for qemuarm
->>>> I stopped toaster with "source toaster stop"
->>>> I rm -rf cache again for safe keeping
->>>> I tried core-image-sato again and it started building for qemux86.
->>>>
->>>> I tried to reproduce this with a clean build dir and a trivial target
->>>> "bitbake -c clean ed"
->>>> With or without toaster running it always detects the config change
->>>>and
->>>> rebuilds the cache.
->>>> In the process I have now learned that removing the cache dir does not
->>>> cause a reparse as I expected.
->>>> However a config change does.
->>>>
->>>> I thought I had a theory w/ persistent bitbake process and files being
->>>> kept open
->>>> but I can't connect the dots and I can't reproduce it.
->>>>
->>>
->>> Actually it is easy to reproduce.
->>>
->>> The first time I tried I don't think toaster was starting as port 8000
->>> was busy. I thought I had stopped the other instance but I guess not.
->>>
->>> To reproduce this I did this:
->>>
->>> yocto$ $ . poky/oe-init-build-env toasted-build
->>> yocto/toasted-build$ source toaster start
->>> yocto/toasted-build$ bitbake -c clean ed
->>> 	runs with MACHINE =3D "qemux86"
->>> yocto/toasted-build$ mcedit conf/local.conf
->>> 	change to MACHINE ??=3D "qemuarm"
->>> yocto/toasted-build$ bitbake -c clean ed
->>> 	still runs for qemux86
->>> yocto/toasted-build$ source toaster stop
->>> yocto/toasted-build$ bitbake -c clean ed
->>> 	runs for qemuarm
->>>
->>> Am I starting toaster in the wrong way to be just an observer?
->>> I learned how to start toaster this way from:
->>> https://www.yoctoproject.org/documentation/toaster-manual-17  ->
->>> 	First link is "How to install and run Toaster locally" ->
->>>=20
->>>https://wiki.yoctoproject.org/wiki/Setting_up_a_local_instance_of_Toaste
->>>r
->>>
->>> The Yocto Project Dev guide say the same thing:
->>>=20
->>>https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#exa
->>>mi
->>> ning-builds-using-toaster
->>>
->>>> Any Ideas?
->>>>
->>>> BTW: Building "world" does not look nice in toaster.  It list 100s of
->>>> build targets instead of just "world".
->>>>
->>>> Thanks,
->>>> Bill
->>>>
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
->
+>--=20
+>Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
 
