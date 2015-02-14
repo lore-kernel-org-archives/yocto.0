@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5403DE002F9; Fri, 13 Feb 2015 20:44:59 -0800 (PST)
+	id EDD1BE002F9; Fri, 13 Feb 2015 21:00:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,35 +18,35 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.54 listed in list.dnswl.org]
-Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
-	[209.85.220.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C7F2E00289
-	for <yocto@yoctoproject.org>; Fri, 13 Feb 2015 20:44:54 -0800 (PST)
-Received: by mail-pa0-f54.google.com with SMTP id kx10so23042444pab.13
-	for <yocto@yoctoproject.org>; Fri, 13 Feb 2015 20:44:53 -0800 (PST)
+	*      [209.85.220.47 listed in list.dnswl.org]
+Received: from mail-pa0-f47.google.com (mail-pa0-f47.google.com
+	[209.85.220.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EBC5E00289
+	for <yocto@yoctoproject.org>; Fri, 13 Feb 2015 21:00:36 -0800 (PST)
+Received: by mail-pa0-f47.google.com with SMTP id lf10so23167533pab.6
+	for <yocto@yoctoproject.org>; Fri, 13 Feb 2015 21:00:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id;
-	bh=GSlP6BcX79qzqnYTByhF75UC4g8o62ey/Odehz9BLm0=;
-	b=hiCHAgZzz2YFUGnaP0rXFS+cKyA9LO/rMJpNz1IUOVjzaRu/Dof+RGS0Xf/UymL0gZ
-	FrWG0E0okEA0G8u7w8RvdV9SkjYmmRoZRCEi/md7Pq+rPSZVrVBAI3CVoIm7q4xve4Er
-	M6YB/sJ6NqcDkxo2OKbLPy1irMam0QcsZzNAmlk1q8X3GyhKlIdy0Qqu/kYEB2De/LFV
-	hipk1pP/xYX14jmjNDympXK90QEr0vqbiMHJKg1VmIq46RobsNSjif5v50aaalJAEpqN
-	gyhAKwqAGQwzItdFBm+uwEbhzJ82KtExewRhYAgrS+vyn/H5oRH3EzwWZ4QJJoaKN395
-	JwDw==
-X-Received: by 10.70.53.65 with SMTP id z1mr21310180pdo.38.1423889093494;
-	Fri, 13 Feb 2015 20:44:53 -0800 (PST)
+	bh=O4QSBLwEc30T2wU5+5qYGQNaw0EEsvO6QamsySRr9yE=;
+	b=yRfD3ba4ml6kv+fRL77O+SGSE2c6Ok79jHhaJMR+ceqX3x0SW8Legrn2lkTG2yudpa
+	9MzVhmY7/R7lTkLY//iCtM94tk9WG0YkeIAVIVqB5PQzoN+niTZ7b8ADx/eH0eHe5r3u
+	8NV3dmOCn0odbD++DmpJEMcgcJBp2V5yuEi7RRi+O+mciL8iak6S7bYhwrXbd2gjhSGZ
+	Z7oWQCWmlBOR8+mYS2p7WPJQnvCFxqA4kklrIEnZWbR7xuM/tc1iww0yxz1NJplKvB+W
+	uI+dRBKKLnvBNNcTVw34+zxIgIaaf5bgR5d0Tf5b6YSATiBfz2PlilF+a+z7nhZU6AfA
+	UfYQ==
+X-Received: by 10.70.136.66 with SMTP id py2mr10617746pdb.100.1423890036319;
+	Fri, 13 Feb 2015 21:00:36 -0800 (PST)
 Received: from Pahoa2.mvista.com (c-76-20-92-207.hsd1.ca.comcast.net.
 	[76.20.92.207])
-	by mx.google.com with ESMTPSA id dq4sm8107190pdb.96.2015.02.13.20.44.49
+	by mx.google.com with ESMTPSA id gk1sm8171837pbb.61.2015.02.13.21.00.34
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 13 Feb 2015 20:44:52 -0800 (PST)
+	Fri, 13 Feb 2015 21:00:35 -0800 (PST)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Fri, 13 Feb 2015 20:44:46 -0800
-Message-Id: <1423889086-23673-1-git-send-email-akuster808@gmail.com>
+Date: Fri, 13 Feb 2015 21:00:31 -0800
+Message-Id: <1423890031-5704-1-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 1.9.1
-Subject: [PATCH][meta-cgl] cluster-glue: fix build issues
+Subject: [meta-cgl][PATCH] heartbeat: fix license issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,64 +58,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 14 Feb 2015 04:44:59 -0000
+X-List-Received-Date: Sat, 14 Feb 2015 05:00:41 -0000
 
 From: Armin Kuster <akuster@mvista.com>
 
-WARNING: QA Issue: cluster-glue requires /usr/bin/perl, but no providers in its RDEPENDS [file-rdeps]
-WARNING: QA Issue: cluster-glue-plugin-stonith2 requires /bin/bash, but no providers in its RDEPENDS [file-rdeps]
-WARNING: QA Issue: cluster-glue-plugin-stonith-external requires /usr/bin/python, /usr/bin/perl, /bin/bash, but no providers in its RDEPENDS [file-rdeps]
-
-and
-
-checking for special libxml2 includes... --should-not-have-used-/usr/bin/xml2-config
-
-Dropped PR.
+WARNING: heartbeat: LICENSE value "GPLv2 LGPLv2+" has an invalid format - license names must be separated by the following characters to indicate the license selection: &|()
 
 Signed-off-by: Armin Kuster <akuster@mvista.com>
 ---
- meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.5.bb | 10 +++++++---
- 1 file changed, 7 insertions(+), 3 deletions(-)
+ meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.5.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.5.bb b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.5.bb
-index 93ebf38..de348e8 100644
---- a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.5.bb
-+++ b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.5.bb
-@@ -6,8 +6,6 @@ is not the cluster messaging layer (Heartbeat), nor the cluster resource manager
- LICENSE = "GPLv2"
- DEPENDS = "libxml2 libtool glib-2.0 bzip2 util-linux"
- 
--PR = "r3"
--
- SRC_URI = " \
- 	http://hg.linux-ha.org/glue/archive/glue-${PV}.tar.bz2 \
-     file://glue-repair-libxml-support.patch \
-@@ -28,6 +26,8 @@ S = "${WORKDIR}/Reusable-Cluster-Components-glue--glue-${PV}"
- 
- EXTRA_OECONF = "--with-daemon-user=hacluster --with-daemon-group=haclient --disable-fatal-warnings"
- 
-+CACHED_CONFIGUREVARS="ac_cv_path_XML2CONFIG=0"
-+
- do_configure_prepend() {
-     ln -sf ${PKG_CONFIG_SYSROOT_DIR}/usr/include/libxml2/libxml ${PKG_CONFIG_SYSROOT_DIR}/usr/include/libxml
- }
-@@ -83,7 +83,6 @@ FILES_${PN}-plugin-stonith2 = " \
- 	/usr/lib/stonith/plugins/stonith2/*.so \
- 	"
- FILES_${PN}-plugin-stonith2-ribcl = "/usr/lib/stonith/plugins/stonith2/ribcl.py"
--RDEPENDS_${PN}-plugin-stonith2-ribcl += "python"
- 
- FILES_${PN}-plugin-stonith2-dbg = "/usr/lib/stonith/plugins/stonith2/.debug/"
- FILES_${PN}-plugin-stonith2-staticdev = "/usr/lib/stonith/plugins/stonith2/*.*a"
-@@ -98,3 +97,8 @@ FILES_${PN}-plugin-interfacemgr-staticdev = "/usr/lib/heartbeat/plugins/Interfac
- FILES_${PN}-plugin-interfacemgr-dbg = "/usr/lib/heartbeat/plugins/InterfaceMgr/.debug/"
- 
- FILES_${PN}-lrmtest = "/usr/share/cluster-glue/lrmtest/"
-+
-+RDEPENDS_${PN} += "perl"
-+RDEPENDS_${PN}-plugin-stonith2 += "bash"
-+RDEPENDS_${PN}-plugin-stonith-external += "bash python perl"
-+RDEPENDS_${PN}-plugin-stonith2-ribcl += "python"
+diff --git a/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.5.bb b/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.5.bb
+index a866f0f..7ec7c5d 100644
+--- a/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.5.bb
++++ b/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.5.bb
+@@ -22,7 +22,7 @@ It implements the following kinds of heartbeats: \
+ "
+ HOMEPAGE = "http://linux-ha.org/"
+ SECTION = "System Environment/Daemons"
+-LICENSE = "GPLv2 LGPLv2+"
++LICENSE = "GPLv2 | LGPLv2+"
+ LIC_FILES_CHKSUM = " \
+     file://doc/COPYING;md5=c93c0550bd3173f4504b2cbd8991e50b \
+     file://doc/COPYING.LGPL;md5=d8045f3b8f929c1cb29a1e3fd737b499 \
 -- 
 1.9.1
 
