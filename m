@@ -1,64 +1,64 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <vaduvajanalexandru@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0B09E002AC; Fri, 13 Feb 2015 23:53:46 -0800 (PST)
+	id 9F543E002AC; Sat, 14 Feb 2015 00:30:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.174 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (vaduvajanalexandru[at]yahoo.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [216.109.114.62 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qc0-f174.google.com (mail-qc0-f174.google.com
-	[209.85.216.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE902E00288
-	for <yocto@yoctoproject.org>; Fri, 13 Feb 2015 23:53:42 -0800 (PST)
-Received: by mail-qc0-f174.google.com with SMTP id c9so5870412qcz.5
-	for <yocto@yoctoproject.org>; Fri, 13 Feb 2015 23:53:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=N4mkZUifiLaefQIlK7kBjwXvDSJ8y4L9cQlTKRJ2430=;
-	b=EcapvYdkDdFOu2LTYmotK0uv7+tXZSbh53IHkMMEzJlD1QIsEJYlSJUFD+/z36aKun
-	O8cyUAAb57IwUKTZg3/Q03SlTR0atj+2d2NtVlnD4WHVMBG5j/eA1FYBUwJWrf/NeesU
-	5O+XKL2xNwnWJkOvbKpBq62MFAdjizrPNGXQeqzz2fqW+eUvIr2roF7fCwt0BOAgFSrG
-	UYb4Ght9VjBVRU8MzOQu3QROjhYAHB2tGhYdrYvxfZFzCA5g/kKyu1VMVa5bxUlUXcqB
-	eHO3urtQuJzc6uA/HZudh5dyHK0lBiUlVYQT4cg0Uv5dJlz/jQbOXtx+vQwGBhg3286a
-	6yeQ==
-X-Gm-Message-State: ALoCoQk8/9xiRMZIwiC2iZkzCFp7VBezMo10F2TrMyFgmz6cTRZhrAMeit5lgTBuUJF4J/Vthz8K
-X-Received: by 10.140.133.69 with SMTP id 66mr4249090qhf.17.1423900422440;
-	Fri, 13 Feb 2015 23:53:42 -0800 (PST)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm46.bullet.mail.bf1.yahoo.com (nm46.bullet.mail.bf1.yahoo.com
+	[216.109.114.62])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91272E00288
+	for <yocto@yoctoproject.org>; Sat, 14 Feb 2015 00:30:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1423902607; bh=nMEx5+iq3hO45t/PNisA2o83GGp643Ft1J9qBFawOg4=;
+	h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject;
+	b=NIZvmFAP37TVSMeYkYrLaDhXBY3T8WscqgHkMokNr61n6jd7ao5OV9qR2uS1i/rUdCqR7eCrHuIeDGTJcfKcRE1B5q30/J3k/jT7Erkkb+nJx+n6LI3npK3OJo0R96kI8LXAieTbBGjKJ8WU4FxnLKDyyuMYBHgzuVLULXewAeQsQzhgNwlTze5w5CKB+K+zPfRej7Q88TQt92UBBBakxklFHQi7yW5/v6AiciOMX3RacixPaj2h/aeF1+WBjrSbGdRzLXlqsHdbERc1BljWDhAtZdermRa028MiGq5FE0hlvtvQYqU4z0McF3po6J2KXJpAI1RaE9QmCDGXIq8zNA==
+Received: from [66.196.81.172] by nm46.bullet.mail.bf1.yahoo.com with NNFMP;
+	14 Feb 2015 08:30:07 -0000
+Received: from [98.139.212.228] by tm18.bullet.mail.bf1.yahoo.com with NNFMP;
+	14 Feb 2015 08:30:07 -0000
+Received: from [127.0.0.1] by omp1037.mail.bf1.yahoo.com with NNFMP;
+	14 Feb 2015 08:30:07 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 631526.39879.bm@omp1037.mail.bf1.yahoo.com
+X-YMail-OSG: l5RY.2kVM1mj1WCo3rozuQiVHxJn9I864fBlb0zF645ozriYGRazlG6crDhgFOe
+	9YmctKxdenUK7_LLJqiZhg9LNibK.7fayjZQdWyhZvFEokeLPFGiEbqmYHgnbdjgFBJn3A1GPVJy
+	TZ6_UGoSdtXGYO_NN1yl68JB9AVJ3wyF7wjSV8OKqRxql.ttS3Xftvr6br2cfWARo9oB.QXmmqzV
+	paFRgaNjOLFn6kq2LtC.DNZO0mFZZt6Zk3x_dllBaZE36cO.hKjCrm8BxdLAcRzmrl0HGUl4VG10
+	gcEm6CuprRFLEoxlto.VkubhIV1k370nN86mYSlwaXE5tj8eco52Xs6OKlY_3R9UjYCEcqab2_C3
+	DKMl6dM3zdeZBeEApdwLWh3xzP.WoRiF5pKbOQfdHwELVelUmpunaiGvs4VJXb8Z75ZJRJawhdxN
+	lJFbPM3_SZNyrMgIv9Vj25oEbCoyISqPmISkugH9WAc.tLePpNZDWP6ZM0U_Gu5Ojp5l5T8YGUYm
+	3DamOvx5coyO7RT.RLLsRiCguncUAD7c.edLZDgr6ZMibiG2zcgUE43bZf1Y182esh_l4v8HoGl1
+	.1ucEtSPgNnIr2Alr218CMsv58zFXTgVmvbsUvQbGjg--
+Received: by 98.138.105.208; Sat, 14 Feb 2015 08:30:04 +0000 
+Date: Sat, 14 Feb 2015 08:30:03 +0000 (UTC)
+From: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
+To: Armin Kuster <akuster808@gmail.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <712586993.2994951.1423902603883.JavaMail.yahoo@mail.yahoo.com>
+In-Reply-To: <1423890031-5704-1-git-send-email-akuster808@gmail.com>
+References: <1423890031-5704-1-git-send-email-akuster808@gmail.com>
 MIME-Version: 1.0
-Received: by 10.140.96.166 with HTTP; Fri, 13 Feb 2015 23:53:22 -0800 (PST)
-In-Reply-To: <CAMKF1sqjQm+n5xKfS0utm9B9h_S+RYWrgnGUCboRNCk5XSUmzg@mail.gmail.com>
-References: <CAMKF1souj1-FLTjkQb0y8myTiKMJyNeAa7wiM5-pW1fz0EtheA@mail.gmail.com>
-	<CAJTo0LaN3HMhjrpii2pPbJw5zWbywgr1keZe=iQmuKFMFFf=gQ@mail.gmail.com>
-	<CAMKF1sq8NsuNYZDQRPtXruBeRndOP+0qwBuTO2ahb6q-fS8XGw@mail.gmail.com>
-	<CAJTo0LYpKbwOHg-DBMJycy+KNayTCsnhToJR8K-REKZ2jxhnhw@mail.gmail.com>
-	<EA0C9DE9-9E5F-4B74-8464-138895268F2F@gmail.com>
-	<CAJTo0LbSFesauhA_H39Znd07SR5JCs45izy2us=cFWVGXtW8hg@mail.gmail.com>
-	<80920FD0-CA08-45D7-9A41-3971FB2D58D7@gmail.com>
-	<CAJTo0LbqTrQzk0KeHDxYnmtZrrFdZD12DWrjA=Y4RtbQzwM0ow@mail.gmail.com>
-	<CAMKF1sr7bYpKqzTmvX5rCuYc-Rb2se7Vsrr4aYA43E_b1Z=vWA@mail.gmail.com>
-	<CACS+7ZRNm2Y0SJn76imF6DNoEsL2+ppC1zG45iGspOmL0EN0BQ@mail.gmail.com>
-	<CAMKF1sqjQm+n5xKfS0utm9B9h_S+RYWrgnGUCboRNCk5XSUmzg@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Sat, 14 Feb 2015 07:53:22 +0000
-Message-ID: <CAJTo0LZDh+nk6_JBbE7HEzqa8YVtorBXPvXMw+ne_fVekSbymg@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
-	Dan McGregor <danismostlikely@gmail.com>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [RFT] upcoming glibc 2.21 and gcc 4.9 upgrade
+Subject: Re: [meta-cgl][PATCH] heartbeat: fix license issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -67,44 +67,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 14 Feb 2015 07:53:47 -0000
-Content-Type: multipart/alternative; boundary=001a1136fdeee02452050f07a697
+X-List-Received-Date: Sat, 14 Feb 2015 08:30:12 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2994950_2120186918.1423902603879"
 
---001a1136fdeee02452050f07a697
+------=_Part_2994950_2120186918.1423902603879
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Khem,
+Thank you for the patch.Applied and merged it upstream.
+=20
 
-On 12 February 2015 at 07:35, Khem Raj <raj.khem@gmail.com> wrote:
+     On Saturday, February 14, 2015 7:00 AM, Armin Kuster <akuster808@gmail=
+.com> wrote:
+  =20
 
-> I have refreshed the branch to include the patch which moves the src
-> uri to use the newly released glibc 2.21 branch
-> and please run it via autobuilder ( top 5 commits )
->
+ From: Armin Kuster <akuster@mvista.com>
 
-I did a preliminary test on my local build machines (core-image-sato-sdk on
-all arches), and valgrind fails with "unsupported version 2.21, Valgrind
-requires glibc 2.2 - 2.19".
+WARNING: heartbeat: LICENSE value "GPLv2 LGPLv2+" has an invalid format - l=
+icense names must be separated by the following characters to indicate the =
+license selection: &|()
 
-Ross
+Signed-off-by: Armin Kuster <akuster@mvista.com>
+---
+ meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.5.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---001a1136fdeee02452050f07a697
+diff --git a/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.5.bb b/met=
+a-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.5.bb
+index a866f0f..7ec7c5d 100644
+--- a/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.5.bb
++++ b/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.5.bb
+@@ -22,7 +22,7 @@ It implements the following kinds of heartbeats: \
+ "
+ HOMEPAGE =3D "http://linux-ha.org/"
+ SECTION =3D "System Environment/Daemons"
+-LICENSE =3D "GPLv2 LGPLv2+"
++LICENSE =3D "GPLv2 | LGPLv2+"
+ LIC_FILES_CHKSUM =3D " \
+=C2=A0 =C2=A0 file://doc/COPYING;md5=3Dc93c0550bd3173f4504b2cbd8991e50b \
+=C2=A0 =C2=A0 file://doc/COPYING.LGPL;md5=3Dd8045f3b8f929c1cb29a1e3fd737b49=
+9 \
+--=20
+1.9.1
+
+--=20
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
+
+   
+
+------=_Part_2994950_2120186918.1423902603879
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra">Hi Khem,</div><div class=3D"gma=
-il_extra"><br><div class=3D"gmail_quote">On 12 February 2015 at 07:35, Khem=
- Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"=
-_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-le=
-ft:1ex"><div id=3D":p57" class=3D"a3s" style=3D"overflow:hidden">I have ref=
-reshed the branch to include the patch which moves the src<br>
-uri to use the newly released <span class=3D"il">glibc</span> 2.21 branch<b=
-r>
-and please run it via autobuilder ( top 5 commits )</div></blockquote></div=
-><br>I did a preliminary test on my local build machines (core-image-sato-s=
-dk on all arches), and valgrind fails with &quot;unsupported version 2.21, =
-Valgrind requires glibc 2.2 - 2.19&quot;.</div><div class=3D"gmail_extra"><=
-br></div><div class=3D"gmail_extra">Ross</div></div>
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
+nt-size:12px"><div id=3D"yui_3_16_0_1_1423899825543_25238">Thank you for th=
+e patch.</div><div id=3D"yui_3_16_0_1_1423899825543_25240" dir=3D"ltr">Appl=
+ied and merged it upstream.<br></div><div id=3D"yui_3_16_0_1_1423899825543_=
+25241"><span></span></div> <div class=3D"qtdSeparateBR"><br><br></div><div =
+style=3D"display: block;" class=3D"yahoo_quoted"> <div style=3D"font-family=
+: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-seri=
+f; font-size: 12px;"> <div style=3D"font-family: HelveticaNeue, Helvetica N=
+eue, Helvetica, Arial, Lucida Grande, sans-serif; font-size: 16px;"> <div d=
+ir=3D"ltr"> <font size=3D"2" face=3D"Arial"> On Saturday, February 14, 2015=
+ 7:00 AM, Armin Kuster &lt;akuster808@gmail.com&gt; wrote:<br> </font> </di=
+v>  <br><br> <div class=3D"y_msg_container">From: Armin Kuster &lt;<a ymail=
+to=3D"mailto:akuster@mvista.com" href=3D"mailto:akuster@mvista.com">akuster=
+@mvista.com</a>&gt;<br><br>WARNING: heartbeat: LICENSE value "GPLv2 LGPLv2+=
+" has an invalid format - license names must be separated by the following =
+characters to indicate the license selection: &amp;|()<br><br>Signed-off-by=
+: Armin Kuster &lt;<a ymailto=3D"mailto:akuster@mvista.com" href=3D"mailto:=
+akuster@mvista.com">akuster@mvista.com</a>&gt;<br>---<br> meta-cgl-common/r=
+ecipes-cgl/heartbeat/heartbeat_3.0.5.bb | 2 +-<br> 1 file changed, 1 insert=
+ion(+), 1 deletion(-)<br><br>diff --git a/meta-cgl-common/recipes-cgl/heart=
+beat/heartbeat_3.0.5.bb b/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3=
+.0.5.bb<br>index a866f0f..7ec7c5d 100644<br>--- a/meta-cgl-common/recipes-c=
+gl/heartbeat/heartbeat_3.0.5.bb<br>+++ b/meta-cgl-common/recipes-cgl/heartb=
+eat/heartbeat_3.0.5.bb<br>@@ -22,7 +22,7 @@ It implements the following kin=
+ds of heartbeats: \<br> "<br> HOMEPAGE =3D "<a href=3D"http://linux-ha.org/=
+" target=3D"_blank">http://linux-ha.org/</a>"<br> SECTION =3D "System Envir=
+onment/Daemons"<br>-LICENSE =3D "GPLv2 LGPLv2+"<br>+LICENSE =3D "GPLv2 | LG=
+PLv2+"<br> LIC_FILES_CHKSUM =3D " \<br>&nbsp; &nbsp;  file://doc/COPYING;md=
+5=3Dc93c0550bd3173f4504b2cbd8991e50b \<br>&nbsp; &nbsp;  file://doc/COPYING=
+.LGPL;md5=3Dd8045f3b8f929c1cb29a1e3fd737b499 \<br>-- <br>1.9.1<br><br>-- <b=
+r>_______________________________________________<br>yocto mailing list<br>=
+<a ymailto=3D"mailto:yocto@yoctoproject.org" href=3D"mailto:yocto@yoctoproj=
+ect.org">yocto@yoctoproject.org</a><br><a href=3D"https://lists.yoctoprojec=
+t.org/listinfo/yocto" target=3D"_blank">https://lists.yoctoproject.org/list=
+info/yocto</a><br><br><br></div>  </div> </div>  </div> </div></body></html=
+>
 
---001a1136fdeee02452050f07a697--
+------=_Part_2994950_2120186918.1423902603879--
