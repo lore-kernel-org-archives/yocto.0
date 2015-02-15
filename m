@@ -1,50 +1,51 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7C7D6E0048B; Sun, 15 Feb 2015 06:01:30 -0800 (PST)
+	id A3461E00746; Sun, 15 Feb 2015 13:59:38 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.50 listed in list.dnswl.org]
-Received: from mail-yh0-f50.google.com (mail-yh0-f50.google.com
-	[209.85.213.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 357E9E0043F
-	for <yocto@yoctoproject.org>; Sun, 15 Feb 2015 06:01:24 -0800 (PST)
-Received: by mail-yh0-f50.google.com with SMTP id a41so11954895yho.9
-	for <yocto@yoctoproject.org>; Sun, 15 Feb 2015 06:01:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=qnldDcGBfcFWSFCGuaVntkimOlKt4lXK5TBCIAybPlE=;
-	b=BGWzNlcobIuCGU/od9EbUlu153zsgCi5FNwoHk5dXCj5j6dHgOoWtRiYCj2ON0iCKN
-	PAWWvG1+ZlOsYRaargyvurzDdihqNTmerV7mw+XJn4imZtbHtFEtO47nDsl99FoHKmys
-	75NcAh45rtdd56BGjJgCJTCN8CJWh4PrGz8Ig0FBCHI8B8d1G/jBHZFKjccdOk26/PWl
-	aNFICBYbbGG++yvLx1HcXs7YNCvLO9H4GwDhCmzHDlceO3NOhn3226mfUhg3ACWmRpjl
-	tmO+7ORVsW6hqZXqShVR7nLxpA6gyMPLSLso+RwlZlxsf2C6jduJkPTDXDFzZIHoBw6Q
-	4YTA==
-X-Received: by 10.236.227.166 with SMTP id d36mr8239733yhq.185.1424008883473; 
-	Sun, 15 Feb 2015 06:01:23 -0800 (PST)
-MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.170.120.4 with HTTP; Sun, 15 Feb 2015 06:01:03 -0800 (PST)
-In-Reply-To: <1423890031-5704-1-git-send-email-akuster808@gmail.com>
-References: <1423890031-5704-1-git-send-email-akuster808@gmail.com>
-From: Christopher Larson <clarson@kergoth.com>
-Date: Sun, 15 Feb 2015 07:01:03 -0700
-X-Google-Sender-Auth: XsHwDqpEGxM8hzPGeIkOwz05oyc
-Message-ID: <CABcZANnOS=DoQspvKv1P5YVPv4Z_woTqJP4H9QENbb5Q+Z+2hA@mail.gmail.com>
-To: Armin Kuster <akuster808@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: [meta-cgl][PATCH] heartbeat: fix license issue
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E9B7E00734
+	for <yocto@yoctoproject.org>; Sun, 15 Feb 2015 13:59:32 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	t1FLxHGo023005; Sun, 15 Feb 2015 21:59:26 GMT
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id 5vu3h50iRxsU; Sun, 15 Feb 2015 21:59:26 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	t1FLxBK3022909
+	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+	Sun, 15 Feb 2015 21:59:23 GMT
+Message-ID: <1424037551.20217.103.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 15 Feb 2015 21:59:11 +0000
+In-Reply-To: <1423908404.20217.100.camel@linuxfoundation.org>
+References: <CAMKF1souj1-FLTjkQb0y8myTiKMJyNeAa7wiM5-pW1fz0EtheA@mail.gmail.com>
+	<CAJTo0LaN3HMhjrpii2pPbJw5zWbywgr1keZe=iQmuKFMFFf=gQ@mail.gmail.com>
+	<CAMKF1sq8NsuNYZDQRPtXruBeRndOP+0qwBuTO2ahb6q-fS8XGw@mail.gmail.com>
+	<CAJTo0LYpKbwOHg-DBMJycy+KNayTCsnhToJR8K-REKZ2jxhnhw@mail.gmail.com>
+	<EA0C9DE9-9E5F-4B74-8464-138895268F2F@gmail.com>
+	<CAJTo0LbSFesauhA_H39Znd07SR5JCs45izy2us=cFWVGXtW8hg@mail.gmail.com>
+	<80920FD0-CA08-45D7-9A41-3971FB2D58D7@gmail.com>
+	<CAJTo0LbqTrQzk0KeHDxYnmtZrrFdZD12DWrjA=Y4RtbQzwM0ow@mail.gmail.com>
+	<CAMKF1sr7bYpKqzTmvX5rCuYc-Rb2se7Vsrr4aYA43E_b1Z=vWA@mail.gmail.com>
+	<CACS+7ZRNm2Y0SJn76imF6DNoEsL2+ppC1zG45iGspOmL0EN0BQ@mail.gmail.com>
+	<CAMKF1sqjQm+n5xKfS0utm9B9h_S+RYWrgnGUCboRNCk5XSUmzg@mail.gmail.com>
+	<1423908404.20217.100.camel@linuxfoundation.org>
+X-Mailer: Evolution 3.12.7-0ubuntu1 
+Mime-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] upcoming glibc 2.21 and gcc 4.9 upgrade
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,47 +57,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 15 Feb 2015 14:01:30 -0000
-Content-Type: multipart/alternative; boundary=001a11c2ccc8a81295050f20e7f5
+X-List-Received-Date: Sun, 15 Feb 2015 21:59:38 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---001a11c2ccc8a81295050f20e7f5
-Content-Type: text/plain; charset=UTF-8
+On Sat, 2015-02-14 at 10:06 +0000, Richard Purdie wrote:
+> Hi Khem,
+> 
+> On Thu, 2015-02-12 at 15:35 +0800, Khem Raj wrote:
+> > I have refreshed the branch to include the patch which moves the src
+> > uri to use the newly released glibc 2.21 branch
+> > and please run it via autobuilder ( top 5 commits )
+> 
+> Its running on the autobuilder at the moment. Errors will be reported to
+> the error reporting system and can be seen at:
+> 
+> http://errors.yoctoproject.org/Errors/Search/?items=10&query=be29d13a847d458efaf542ed302e48050f67a655
+> 
+> Right now, poky-tiny failed due to warning are errors and unused
+> symbols. Minnow failed due to SSE instruction issues. Full build logs
+> are also available on the autobuilder:
+> 
+> https://autobuilder.yoctoproject.org/main/tgrid
+> 
+> as ross/mut-next. We do have other changes in the branch but the above
+> are pretty clearly glibc.
+> 
+> Other errors will go to the places above as the builds complete/fail.
 
-On Fri, Feb 13, 2015 at 10:00 PM, Armin Kuster <akuster808@gmail.com> wrote:
+FWIW I tested the gcc upgrade without glibc and that seems ok so I've
+merged that whilst we work out the issues with glibc.
 
-> -LICENSE = "GPLv2 LGPLv2+"
-> +LICENSE = "GPLv2 | LGPLv2+"
->
+Cheers,
 
-Are you sure this is correct? Afaict this is wrong, as there are parts of
-the source tree under the GPL, and parts under LGPL, which means it's an
-AND relationship -- both apply, not an OR relationship, where you can
-choose which to use.
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
+Richard
 
---001a11c2ccc8a81295050f20e7f5
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Fri, Feb 13, 2015 at 10:00 PM, Armin Kuster <span dir=3D"ltr">&lt;<a hre=
-f=3D"mailto:akuster808@gmail.com" target=3D"_blank">akuster808@gmail.com</a=
->&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 =
-0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":2m4" clas=
-s=3D"a3s" style=3D"overflow:hidden">-LICENSE =3D &quot;GPLv2 LGPLv2+&quot;<=
-br>
-+LICENSE =3D &quot;GPLv2 | LGPLv2+&quot;</div></blockquote></div><br>Are yo=
-u sure this is correct? Afaict this is wrong, as there are parts of the sou=
-rce tree under the GPL, and parts under LGPL, which means it&#39;s an AND r=
-elationship -- both apply, not an OR relationship, where you can choose whi=
-ch to use.<br>-- <br><div class=3D"gmail_signature">Christopher Larson<br>c=
-larson at kergoth dot com<br>Founder - BitBake, OpenEmbedded, OpenZaurus<br=
->Maintainer - Tslib<br>Senior Software Engineer, Mentor Graphics</div>
-</div></div>
-
---001a11c2ccc8a81295050f20e7f5--
