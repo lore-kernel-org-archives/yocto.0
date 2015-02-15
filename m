@@ -1,49 +1,50 @@
-Return-Path: <picmaster@mail.bg>
+Return-Path: <kergoth@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 94288E0048B; Sun, 15 Feb 2015 05:43:16 -0800 (PST)
+	id 7C7D6E0048B; Sun, 15 Feb 2015 06:01:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [193.201.172.118 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (picmaster[at]mail.bg)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 326 seconds by postgrey-1.32 at yocto-www;
-	Sun, 15 Feb 2015 05:43:12 PST
-Received: from mx2.mail.bg (mx2.mail.bg [193.201.172.118])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45CE9E0043F
-	for <yocto@yoctoproject.org>; Sun, 15 Feb 2015 05:43:12 -0800 (PST)
-Received: from [192.168.0.40] (unknown [93.152.143.60])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by mx2.mail.bg (Postfix) with ESMTPSA id 28861600059F
-	for <yocto@yoctoproject.org>; Sun, 15 Feb 2015 15:37:45 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mail.bg; s=default;
-	t=1424007465; bh=ftu+KZ++WFPQyPB0p+P9DctwXEs0s4G8iGfBIWBpWVo=;
-	h=Message-ID:Date:From:MIME-Version:To:Subject:Content-Type:
-	Content-Transfer-Encoding;
-	b=IgVnhHe8Na7NQ29d7qEXZMF3+P01L2zymhhL2sY4SWHzHqarZftcDjl+1UJzuhSJN
-	4n8W0EVitKnrhdz/jZC0/wGE8Pa0pPwOwsAhA9T5xEdsnAeiZhucI4jZ3hzyRTpM3j
-	290Yx88g8y49uHZQruwDipu5RdemkRi2xF9//BbE=
-Message-ID: <54E0A128.3040307@mail.bg>
-Date: Sun, 15 Feb 2015 15:37:44 +0200
-From: Nikolay Dimitrov <picmaster@mail.bg>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Icedove/31.4.0
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.50 listed in list.dnswl.org]
+Received: from mail-yh0-f50.google.com (mail-yh0-f50.google.com
+	[209.85.213.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 357E9E0043F
+	for <yocto@yoctoproject.org>; Sun, 15 Feb 2015 06:01:24 -0800 (PST)
+Received: by mail-yh0-f50.google.com with SMTP id a41so11954895yho.9
+	for <yocto@yoctoproject.org>; Sun, 15 Feb 2015 06:01:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=qnldDcGBfcFWSFCGuaVntkimOlKt4lXK5TBCIAybPlE=;
+	b=BGWzNlcobIuCGU/od9EbUlu153zsgCi5FNwoHk5dXCj5j6dHgOoWtRiYCj2ON0iCKN
+	PAWWvG1+ZlOsYRaargyvurzDdihqNTmerV7mw+XJn4imZtbHtFEtO47nDsl99FoHKmys
+	75NcAh45rtdd56BGjJgCJTCN8CJWh4PrGz8Ig0FBCHI8B8d1G/jBHZFKjccdOk26/PWl
+	aNFICBYbbGG++yvLx1HcXs7YNCvLO9H4GwDhCmzHDlceO3NOhn3226mfUhg3ACWmRpjl
+	tmO+7ORVsW6hqZXqShVR7nLxpA6gyMPLSLso+RwlZlxsf2C6jduJkPTDXDFzZIHoBw6Q
+	4YTA==
+X-Received: by 10.236.227.166 with SMTP id d36mr8239733yhq.185.1424008883473; 
+	Sun, 15 Feb 2015 06:01:23 -0800 (PST)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: Yocto patch tracking
+Sender: kergoth@gmail.com
+Received: by 10.170.120.4 with HTTP; Sun, 15 Feb 2015 06:01:03 -0800 (PST)
+In-Reply-To: <1423890031-5704-1-git-send-email-akuster808@gmail.com>
+References: <1423890031-5704-1-git-send-email-akuster808@gmail.com>
+From: Christopher Larson <clarson@kergoth.com>
+Date: Sun, 15 Feb 2015 07:01:03 -0700
+X-Google-Sender-Auth: XsHwDqpEGxM8hzPGeIkOwz05oyc
+Message-ID: <CABcZANnOS=DoQspvKv1P5YVPv4Z_woTqJP4H9QENbb5Q+Z+2hA@mail.gmail.com>
+To: Armin Kuster <akuster808@gmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: [meta-cgl][PATCH] heartbeat: fix license issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,17 +56,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 15 Feb 2015 13:43:16 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 15 Feb 2015 14:01:30 -0000
+Content-Type: multipart/alternative; boundary=001a11c2ccc8a81295050f20e7f5
 
-Hi guys,
+--001a11c2ccc8a81295050f20e7f5
+Content-Type: text/plain; charset=UTF-8
 
-Is there a web-based staging area where Yocto project holds all the
-submitted and pending patches until they're merged, something like
-Patchwork? Or is it up to each Yocto layer maintainer to define his own
-work-flow?
+On Fri, Feb 13, 2015 at 10:00 PM, Armin Kuster <akuster808@gmail.com> wrote:
 
-Kind regards,
-Nikolay
+> -LICENSE = "GPLv2 LGPLv2+"
+> +LICENSE = "GPLv2 | LGPLv2+"
+>
 
+Are you sure this is correct? Afaict this is wrong, as there are parts of
+the source tree under the GPL, and parts under LGPL, which means it's an
+AND relationship -- both apply, not an OR relationship, where you can
+choose which to use.
+-- 
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
+
+--001a11c2ccc8a81295050f20e7f5
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Fri, Feb 13, 2015 at 10:00 PM, Armin Kuster <span dir=3D"ltr">&lt;<a hre=
+f=3D"mailto:akuster808@gmail.com" target=3D"_blank">akuster808@gmail.com</a=
+>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 =
+0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":2m4" clas=
+s=3D"a3s" style=3D"overflow:hidden">-LICENSE =3D &quot;GPLv2 LGPLv2+&quot;<=
+br>
++LICENSE =3D &quot;GPLv2 | LGPLv2+&quot;</div></blockquote></div><br>Are yo=
+u sure this is correct? Afaict this is wrong, as there are parts of the sou=
+rce tree under the GPL, and parts under LGPL, which means it&#39;s an AND r=
+elationship -- both apply, not an OR relationship, where you can choose whi=
+ch to use.<br>-- <br><div class=3D"gmail_signature">Christopher Larson<br>c=
+larson at kergoth dot com<br>Founder - BitBake, OpenEmbedded, OpenZaurus<br=
+>Maintainer - Tslib<br>Senior Software Engineer, Mentor Graphics</div>
+</div></div>
+
+--001a11c2ccc8a81295050f20e7f5--
