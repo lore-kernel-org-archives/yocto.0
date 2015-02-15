@@ -1,51 +1,58 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A3461E00746; Sun, 15 Feb 2015 13:59:38 -0800 (PST)
+	id 30364E00746; Sun, 15 Feb 2015 14:04:06 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.174 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E9B7E00734
-	for <yocto@yoctoproject.org>; Sun, 15 Feb 2015 13:59:32 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	t1FLxHGo023005; Sun, 15 Feb 2015 21:59:26 GMT
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id 5vu3h50iRxsU; Sun, 15 Feb 2015 21:59:26 +0000 (GMT)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	t1FLxBK3022909
-	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-	Sun, 15 Feb 2015 21:59:23 GMT
-Message-ID: <1424037551.20217.103.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Khem Raj <raj.khem@gmail.com>
-Date: Sun, 15 Feb 2015 21:59:11 +0000
-In-Reply-To: <1423908404.20217.100.camel@linuxfoundation.org>
-References: <CAMKF1souj1-FLTjkQb0y8myTiKMJyNeAa7wiM5-pW1fz0EtheA@mail.gmail.com>
-	<CAJTo0LaN3HMhjrpii2pPbJw5zWbywgr1keZe=iQmuKFMFFf=gQ@mail.gmail.com>
-	<CAMKF1sq8NsuNYZDQRPtXruBeRndOP+0qwBuTO2ahb6q-fS8XGw@mail.gmail.com>
-	<CAJTo0LYpKbwOHg-DBMJycy+KNayTCsnhToJR8K-REKZ2jxhnhw@mail.gmail.com>
-	<EA0C9DE9-9E5F-4B74-8464-138895268F2F@gmail.com>
-	<CAJTo0LbSFesauhA_H39Znd07SR5JCs45izy2us=cFWVGXtW8hg@mail.gmail.com>
-	<80920FD0-CA08-45D7-9A41-3971FB2D58D7@gmail.com>
-	<CAJTo0LbqTrQzk0KeHDxYnmtZrrFdZD12DWrjA=Y4RtbQzwM0ow@mail.gmail.com>
-	<CAMKF1sr7bYpKqzTmvX5rCuYc-Rb2se7Vsrr4aYA43E_b1Z=vWA@mail.gmail.com>
-	<CACS+7ZRNm2Y0SJn76imF6DNoEsL2+ppC1zG45iGspOmL0EN0BQ@mail.gmail.com>
-	<CAMKF1sqjQm+n5xKfS0utm9B9h_S+RYWrgnGUCboRNCk5XSUmzg@mail.gmail.com>
-	<1423908404.20217.100.camel@linuxfoundation.org>
-X-Mailer: Evolution 3.12.7-0ubuntu1 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [RFT] upcoming glibc 2.21 and gcc 4.9 upgrade
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wi0-f174.google.com (mail-wi0-f174.google.com
+	[209.85.212.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49C8AE00734
+	for <yocto@yoctoproject.org>; Sun, 15 Feb 2015 14:04:02 -0800 (PST)
+Received: by mail-wi0-f174.google.com with SMTP id em10so22476540wid.1
+	for <yocto@yoctoproject.org>; Sun, 15 Feb 2015 14:04:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=v3MLAC7RtHuJdcHT75WaodycdZ/rOFM9zMXrElciyCo=;
+	b=BMaPh0M+LlH5XTi3+JESvCRH0fub7v9LHvsPoWnInk4ay9n/QbUElLzbOgmUYC5MBo
+	xnWvZiTTXB7x/EnznRaZX7ffY1T0ZrcD8deXjfslRe/tlXv0knmFWNO60N97t6kc9QWU
+	z/6xN95fsUe14MY9yIbUG/+ols4hcM131qsU2GqMy9CKMt5t6E6YwCLYCx3H3N87fW11
+	GOF/aK7GpQqH10tx/GHXf2VBxdWn2k33MCUMC0ELQ+uEgWDpoi5HYeeVE5wxYAMSkmDv
+	I0Rt3QmdRW3aDgkd/WQtNLBfdblDnJgI8EF7/M6CTiOl75d25zJC0k3NBuhG5YU9AbYV
+	jygg==
+X-Received: by 10.180.8.65 with SMTP id p1mr17677319wia.42.1424037841303;
+	Sun, 15 Feb 2015 14:04:01 -0800 (PST)
+Received: from localhost (ip-89-176-104-3.net.upcbroadband.cz. [89.176.104.3])
+	by mx.google.com with ESMTPSA id
+	qb8sm13894833wjc.4.2015.02.15.14.04.00
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 15 Feb 2015 14:04:00 -0800 (PST)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Sun, 15 Feb 2015 23:04:08 +0100
+To: Nikolay Dimitrov <picmaster@mail.bg>
+Message-ID: <20150215220408.GC2297@jama>
+References: <54E0A128.3040307@mail.bg>
+MIME-Version: 1.0
+In-Reply-To: <54E0A128.3040307@mail.bg>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: Yocto patch tracking
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,39 +64,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 15 Feb 2015 21:59:38 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 15 Feb 2015 22:04:06 -0000
+X-Groupsio-MsgNum: 23589
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="da4uJneut+ArUgXk"
+Content-Disposition: inline
 
-On Sat, 2015-02-14 at 10:06 +0000, Richard Purdie wrote:
-> Hi Khem,
-> 
-> On Thu, 2015-02-12 at 15:35 +0800, Khem Raj wrote:
-> > I have refreshed the branch to include the patch which moves the src
-> > uri to use the newly released glibc 2.21 branch
-> > and please run it via autobuilder ( top 5 commits )
-> 
-> Its running on the autobuilder at the moment. Errors will be reported to
-> the error reporting system and can be seen at:
-> 
-> http://errors.yoctoproject.org/Errors/Search/?items=10&query=be29d13a847d458efaf542ed302e48050f67a655
-> 
-> Right now, poky-tiny failed due to warning are errors and unused
-> symbols. Minnow failed due to SSE instruction issues. Full build logs
-> are also available on the autobuilder:
-> 
-> https://autobuilder.yoctoproject.org/main/tgrid
-> 
-> as ross/mut-next. We do have other changes in the branch but the above
-> are pretty clearly glibc.
-> 
-> Other errors will go to the places above as the builds complete/fail.
+--da4uJneut+ArUgXk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-FWIW I tested the gcc upgrade without glibc and that seems ok so I've
-merged that whilst we work out the issues with glibc.
+On Sun, Feb 15, 2015 at 03:37:44PM +0200, Nikolay Dimitrov wrote:
+> Hi guys,
+>=20
+> Is there a web-based staging area where Yocto project holds all the
+> submitted and pending patches until they're merged, something like
+> Patchwork? Or is it up to each Yocto layer maintainer to define his own
+> work-flow?
 
-Cheers,
+layers from meta-openembedded respository and meta-qt5 are tracked in
+patchwork:
+http://patches.openembedded.org/
 
-Richard
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
+--da4uJneut+ArUgXk
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iEYEARECAAYFAlThF9gACgkQN1Ujt2V2gByWwACeOF6ZKy32G9y7kxjNLkRAuSAB
+Sw8An2Zo6WYPuKTbj9IzkNqZwDpX1ndh
+=yWsX
+-----END PGP SIGNATURE-----
+
+--da4uJneut+ArUgXk--
