@@ -1,39 +1,62 @@
-Return-Path: <joa_rodrigues@hotmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B37BEE00777; Mon, 16 Feb 2015 13:40:33 -0800 (PST)
+	id C7A7FE00779; Mon, 16 Feb 2015 15:13:07 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (joa_rodrigues[at]hotmail.com)
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [157.55.2.39 listed in list.dnswl.org]
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Mon, 16 Feb 2015 13:40:31 PST
-Received: from DUB004-OMC3S30.hotmail.com (dub004-omc3s30.hotmail.com
-	[157.55.2.39])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0875E00769
-	for <yocto@yoctoproject.org>; Mon, 16 Feb 2015 13:40:31 -0800 (PST)
-Received: from DUB117-W139 ([157.55.2.7]) by DUB004-OMC3S30.hotmail.com over
-	TLS secured channel with Microsoft SMTPSVC(7.5.7601.22751); 
-	Mon, 16 Feb 2015 13:39:26 -0800
-X-TMN: [MjoipJ4Squ1yinBlj86BOCrM/ScWDKKc]
-X-Originating-Email: [joa_rodrigues@hotmail.com]
-Message-ID: <DUB117-W139C9921C5259D684A39848922E0@phx.gbl>
-From: joachim rodrigues <joa_rodrigues@hotmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Mon, 16 Feb 2015 21:39:26 +0000
-Importance: Normal
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pd0-f170.google.com (mail-pd0-f170.google.com
+	[209.85.192.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E15AE0076B
+	for <yocto@yoctoproject.org>; Mon, 16 Feb 2015 15:13:02 -0800 (PST)
+Received: by pdjz10 with SMTP id z10so39328685pdj.12
+	for <yocto@yoctoproject.org>; Mon, 16 Feb 2015 15:13:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=47ygOFiA0qafurIeVAvFheFM+kvvNJWPNl/EhG71uRY=;
+	b=VxQbZV9Qx9gsflRqcSYcaQmcHTxIOg07nz0vzmQ0Q8O5Ks3oC6ekCcdhcWFXJPaTRI
+	UZ22k9Z0uRgyo7j8q8vujJfXLNBxxn1qY3GGtwcHeSsKLMB+mOzB/lq/XICt7B6dgv28
+	bJ4blcHW1EagKNaPTxA+9ur970lEjRIe0XTllyW/h1A2JGT6pCRdEahYcEgPRNarMPnb
+	A+S7Mda4ep87T1tadFX3kfgLTZfJX2nHPO2p4c7ZIuQyAjRhxqF7FCb4Mv3nAD6T+/pO
+	TEnhoXMDdu3EcANYJh4Y+Jzv96d4ZLVIzB/kPgZKOiVWbOCiJQGP56PPBroELCE7bRVw
+	hP7w==
+X-Received: by 10.66.233.74 with SMTP id tu10mr43986582pac.135.1424128381695; 
+	Mon, 16 Feb 2015 15:13:01 -0800 (PST)
+Received: from [172.26.37.58] ([76.14.1.153]) by mx.google.com with ESMTPSA id
+	mm9sm15647862pbc.76.2015.02.16.15.12.59
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 16 Feb 2015 15:13:00 -0800 (PST)
+Message-ID: <54E27979.2050806@gmail.com>
+Date: Mon, 16 Feb 2015 15:12:57 -0800
+From: akuster808 <akuster808@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
 MIME-Version: 1.0
-X-OriginalArrivalTime: 16 Feb 2015 21:39:26.0766 (UTC)
-	FILETIME=[098A5CE0:01D04A31]
-Subject: Missing packages on image target
+To: Lars Ellenberg <lars@linbit.com>, 
+	Alexandru Vaduva <Alexandru.Vaduva@enea.com>,
+	Christopher Larson <clarson@kergoth.com>
+References: <1423890031-5704-1-git-send-email-akuster808@gmail.com>
+	<CABcZANnOS=DoQspvKv1P5YVPv4Z_woTqJP4H9QENbb5Q+Z+2hA@mail.gmail.com>
+	<DDB0C57E45663A458C5CACB7B5688BC21D7B2084@SESTOEX04.enea.se>
+	<60DDAC69-DBB2-481A-B72A-74D5496FA6D5@linbit.com>
+In-Reply-To: <60DDAC69-DBB2-481A-B72A-74D5496FA6D5@linbit.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: [meta-cgl][PATCH] heartbeat: fix license issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,79 +68,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Feb 2015 21:40:33 -0000
-Content-Type: multipart/alternative;
-	boundary="_2042a7e1-e405-42ab-84c7-4ac9e62f614f_"
+X-List-Received-Date: Mon, 16 Feb 2015 23:13:07 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
---_2042a7e1-e405-42ab-84c7-4ac9e62f614f_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+It should be an ""&" (and).  I will send a updated patch soon.
 
-Hi=2C i installed successfully a linux on my raspberry following this tutor=
-ial :https://delog.wordpress.com/2014/09/16/embedded-linux-system-for-raspb=
-erry-pi-with-yocto-project/
-But once installed in my board=2C crosswalk is not installed although it is=
- included in the recipes-multimediawich are loaded this way :
-build-rpi/conf/bblayers.conf : BBLAYERS ?=3D " \  /home/jj/dev/yocto/poky/m=
-eta \  /home/jj/dev/yocto/poky/meta-yocto \  /home/jj/dev/yocto/poky/meta-y=
-octo-bsp \  /home/jj/dev/yocto/poky/meta-gstreamer1.0 \  /home/jj/dev/yocto=
-/poky/meta-raspberrypi \  "
-  /home/jj/dev/yocto/poky/meta-raspberrypi/conf/layer.conf : BBFILES +=3D "=
-${LAYERDIR}/recipes*/*/*.bb \            ${LAYERDIR}/recipes*/*/*.bbappend"
-And i have   /home/jj/dev/yocto/poky/meta-raspberrypi/resipes-multimedia/gs=
-treamer/gstreamer1.0-plugins-bad_%.bbappendand   /home/jj/dev/yocto/poky/me=
-ta-gstreamer1.0/resipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.4.0=
-.bb
-in my understanding as the recipe is included in the path it should be incl=
-uded in the board once the image installed
-Thanks =20
-Joachim 		 	   		  =
+- armin
 
---_2042a7e1-e405-42ab-84c7-4ac9e62f614f_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+On 02/16/2015 09:24 AM, Lars Ellenberg wrote:
+> Am 16. Februar 2015 10:18:29 MEZ, schrieb Alexandru Vaduva
+> <Alexandru.Vaduva@enea.com>:
+>
+>     Hello Christopher,
+>
+>     Your observation is very accurate.
+>
+>     After a quick inspection I observed the following:
+>
+>                          Inside heartbeat-suse.spec the next information:License:        GPL v2 only; LGPL v2.1 or later
+>
+>     Link here:
+>     http://hg.linux-ha.org/heartbeat-STABLE_3_0/file/545554f6fc0a/heartbeat-suse.spec
+>
+>                          Inside heartbeat-fedora.spec the next information:License:          GPLv2 and LGPLv2+
+>
+>     Link here:
+>     http://hg.linux-ha.org/heartbeat-STABLE_3_0/file/545554f6fc0a/heartbeat-fedora.spec
+>
+>     I added Lars Ellenberg one of the authors behind heartbeat or drbd
+>     to the discussion.
+>
+>     Hello Lars, sorry for disturbing you but maybe you could help us
+>     with our little problem.
+>
+>     If anyone from the Yocto Project community has any input on this
+>     matter please help.
+>
+>     For me at least this problem is not clear. Should the “|”sign remain
+>     or should it be replaced with the “&”one between the licenses.
+>
+>     Thanks guys,
+>
+>     Alex Vaduva
+>
+>     *From:*yocto-bounces@yoctoproject.org
+>     [mailto:yocto-bounces@yoctoproject.org] *On Behalf Of *Christopher
+>     Larson
+>     *Sent:* Sunday, February 15, 2015 4:01 PM
+>     *To:* Armin Kuster
+>     *Cc:* yocto
+>     *Subject:* Re: [yocto] [meta-cgl][PATCH] heartbeat: fix license issue
+>
+>     On Fri, Feb 13, 2015 at 10:00 PM, Armin Kuster <akuster808@gmail.com
+>     <mailto:akuster808@gmail.com>> wrote:
+>
+>     -LICENSE = "GPLv2 LGPLv2+"
+>     +LICENSE = "GPLv2 | LGPLv2+"
+>
+>
+>     Are you sure this is correct? Afaict this is wrong, as there are
+>     parts of the source tree under the GPL, and parts under LGPL, which
+>     means it's an AND relationship -- both apply, not an OR
+>     relationship, where you can choose which to use.
+>     --
+>
+>     Christopher Larson
+>     clarson at kergoth dot com
+>     Founder - BitBake, OpenEmbedded, OpenZaurus
+>     Maintainer - Tslib
+>     Senior Software Engineer, Mentor Graphics
+>
+>
+> It is an "and".
+> Some parts have been taken from LGPL or dual license whatever/LGPL
+> origin. Some GPL. So it is both, not an option or choice. Which parts
+> are what however I do not know from the top of my head, I'd have to
+> check, if it is relevant to you.
+>
+> Thanks,
+> Lars
 
-<html>
-<head>
-<style><!--
-.hmmessage P
-{
-margin:0px=3B
-padding:0px
-}
-body.hmmessage
-{
-font-size: 12pt=3B
-font-family:Calibri
-}
---></style></head>
-<body class=3D'hmmessage'><div dir=3D'ltr'><div><span style=3D"font-family:=
- 'Times New Roman'=3B font-size: 12pt=3B">Hi=2C&nbsp=3B</span></div><div><f=
-ont face=3D"Times New Roman">i installed successfully a linux on my raspber=
-ry following this tutorial :</font></div><div><a href=3D"https://delog.word=
-press.com/2014/09/16/embedded-linux-system-for-raspberry-pi-with-yocto-proj=
-ect/" target=3D"_blank">https://delog.wordpress.com/2014/09/16/embedded-lin=
-ux-system-for-raspberry-pi-with-yocto-project/</a></div><div><br></div><div=
->But once installed in my board=2C crosswalk is not installed although it i=
-s included in the recipes-multimedia</div><div>wich are loaded this way :</=
-div><div><br></div><div>build-rpi/conf/bblayers.conf :&nbsp=3B</div><div><d=
-iv>BBLAYERS ?=3D " \</div><div>&nbsp=3B /home/jj/dev/yocto/poky/meta \</div=
-><div>&nbsp=3B /home/jj/dev/yocto/poky/meta-yocto \</div><div>&nbsp=3B /hom=
-e/jj/dev/yocto/poky/meta-yocto-bsp \</div><div>&nbsp=3B /home/jj/dev/yocto/=
-poky/meta-gstreamer1.0 \</div><div>&nbsp=3B /home/jj/dev/yocto/poky/meta-ra=
-spberrypi \</div><div>&nbsp=3B "</div></div><div><br></div><div>&nbsp=3B /h=
-ome/jj/dev/yocto/poky/meta-raspberrypi/conf/layer.conf :&nbsp=3B</div><div>=
-<div>BBFILES +=3D "${LAYERDIR}/recipes*/*/*.bb \</div><div>&nbsp=3B &nbsp=
-=3B &nbsp=3B &nbsp=3B &nbsp=3B &nbsp=3B ${LAYERDIR}/recipes*/*/*.bbappend"<=
-/div></div><div><br></div><div>And i have&nbsp=3B</div><div>&nbsp=3B /home/=
-jj/dev/yocto/poky/meta-raspberrypi/resipes-multimedia/gstreamer/gstreamer1.=
-0-plugins-bad_%.bbappend</div><div>and&nbsp=3B</div><div>&nbsp=3B /home/jj/=
-dev/yocto/poky/meta-gstreamer1.0/<span style=3D"font-size: 12pt=3B">resipes=
--multimedia/gstreamer/</span>gstreamer1.0-plugins-bad_1.4.0.bb</div><div><b=
-r></div><div>in my understanding as the recipe is included in the path it s=
-hould be included in the board once the image installed</div><div><br></div=
-><div>Thanks &nbsp=3B</div><div><br></div><div>Joachim</div> 		 	   		  </d=
-iv></body>
-</html>=
-
---_2042a7e1-e405-42ab-84c7-4ac9e62f614f_--
