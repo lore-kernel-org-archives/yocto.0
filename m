@@ -1,39 +1,40 @@
-Return-Path: <Alexandru.Vaduva@enea.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 642E7E00750; Mon, 16 Feb 2015 04:59:53 -0800 (PST)
+	id B6C84E00769; Mon, 16 Feb 2015 08:30:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 62500E00746
-	for <yocto@yoctoproject.org>; Mon, 16 Feb 2015 04:59:48 -0800 (PST)
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
-	14.03.0224.002; Mon, 16 Feb 2015 13:59:46 +0100
-From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
-To: "kaiu@gmx.de" <kaiu@gmx.de>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] recipe with optional dependency and configuration.
-Thread-Index: AQHQSdQhV5yQaf7q+kq9S4OCCAuEW5zzPItg
-Date: Mon, 16 Feb 2015 12:59:45 +0000
-Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D7B849D@SESTOEX04.enea.se>
-References: <CAAKMwiqNP=rQqmDQkdNRiAx2jT1pA1s6Z2GNgSVr6zDzGdp-uQ@mail.gmail.com>
-In-Reply-To: <CAAKMwiqNP=rQqmDQkdNRiAx2jT1pA1s6Z2GNgSVr6zDzGdp-uQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.14.234]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 634C5E00754
+	for <yocto@yoctoproject.org>; Mon, 16 Feb 2015 08:30:49 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 16 Feb 2015 08:30:43 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.09,588,1418112000"; d="scan'208";a="678718024"
+Received: from mmettala-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.7.57])
+	by fmsmga002.fm.intel.com with ESMTP; 16 Feb 2015 08:30:40 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
+Date: Mon, 16 Feb 2015 16:30:40 +0000
+Message-ID: <2922360.nUjqgNe86s@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.4 (Linux/3.18.5-101.fc20.x86_64; KDE/4.14.4; x86_64; ; )
+In-Reply-To: <DDB0C57E45663A458C5CACB7B5688BC21D7B2084@SESTOEX04.enea.se>
+References: <1423890031-5704-1-git-send-email-akuster808@gmail.com>
+	<CABcZANnOS=DoQspvKv1P5YVPv4Z_woTqJP4H9QENbb5Q+Z+2hA@mail.gmail.com>
+	<DDB0C57E45663A458C5CACB7B5688BC21D7B2084@SESTOEX04.enea.se>
 MIME-Version: 1.0
-Cc: "hynek.petrak@gmail.com" <hynek.petrak@gmail.com>
-Subject: Re: recipe with optional dependency and configuration.
+Cc: "lars@linbit.com" <lars@linbit.com>,
+	Christopher Larson <clarson@kergoth.com>, yocto@yoctoproject.org
+Subject: Re: [meta-cgl][PATCH] heartbeat: fix license issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,132 +46,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Feb 2015 12:59:53 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DDB0C57E45663A458C5CACB7B5688BC21D7B849DSESTOEX04enease_"
-
---_000_DDB0C57E45663A458C5CACB7B5688BC21D7B849DSESTOEX04enease_
+X-List-Received-Date: Mon, 16 Feb 2015 16:30:52 -0000
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 
-SXQgc2VlbXMgSHluZWsgUGV0cmFrIGhhZCBzb21lIHByb2dyZXNzIG9uIHRoaXMgb25lIGEgd2hp
-bGUgYmFjay4gTWF5YmUgdGhlIHBhY2thZ2VzIGhlIHBvc3RlZCBhbmQgYXJlIG5vd2hlcmUgdG8g
-YmUgZm91bmQgbm93IGNvdWxkIGJlIHJldml2ZWQuDQoNCkFsZXggVmFkdXZhDQoNCkZyb206IHlv
-Y3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9w
-cm9qZWN0Lm9yZ10gT24gQmVoYWxmIE9mIEthaSBVbHJpY2gNClNlbnQ6IE1vbmRheSwgRmVicnVh
-cnkgMTYsIDIwMTUgMTI6MzMgUE0NClRvOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0
-OiBbeW9jdG9dIHJlY2lwZSB3aXRoIG9wdGlvbmFsIGRlcGVuZGVuY3kgYW5kIGNvbmZpZ3VyYXRp
-b24uDQoNCkhpLA0KSSdtIG5ldyBpbnRvIHlvY3RvIGNyZWF0aW5nIHJlY2lwZXMuDQpBZnRlciBy
-ZWFkaW5nIHRoZSBEb2N1IEkgZmVlbCBjb25maWRlbnQgd2l0aCB0aGUgYmFzaWNzLg0KU28gaGVy
-ZSBteSBxdWVzdGlvbnMuDQoNCkkgd2FudCB0byBjcmVhdGUgYSByZWNpcGUgb2Ygc21zdG9vbHMu
-DQoxLiBUaGVyZSBpcyBubyByZXBvc2l0b3J5IChnaXQgLyBzdm4gLyBjdnMpLiBUaGVyZSBhcmUg
-c291cmNlcyB0byBkb3dubG9hZC4NCmh0dHA6Ly9zbXN0b29sczMua2VrZWthc3ZpLmNvbS9pbmRl
-eC5waHA/cD1wYWNrYWdlcw0KUTogSW4gdGhlIHBoaWxvc29waHkgb2YgeW9jdG8gLyBvcGVuZW1i
-ZWRkZWQsIGlzIGl0IGJldHRlciB0byBjcmVhdGUgYSBvd24gZ2l0IG9yIHVzZSB0aGUgb3JpZ2lu
-YWwgc291cmNlIHBhY2thZ2UuDQoyLiBGb3IgT1BUSU9OQUwgc3RhdGlzdGljcyB5b3UgY2FuIGFk
-ZCB0aGlzIGZlYXR1cmUNCi0gYnkgZW5hYmxlIGl0IGluIHRoZSBzcmMvTWFrZWZpbGUNCi0gSW5z
-dGFsbCAgT1NTUCBtbSBTaGFyZWQgTWVtb3J5IExpYnJhcnk8aHR0cDovL3d3dy5vc3NwLm9yZy8+
-DQotIG1tbGliIGlzIG5vdCBwYXJ0IG9mIHRoZSB5b2N0byAvIG9wZW5lbWJlZGRlZC4gU28gaXQg
-aGFzIHRvIGJlIGFkZGVkIHRvby4NCg0KUTogSG93IGNhbiBJIHN0cnVjdHVyZSB0aGUgcmVjaXBl
-cyB0byBhZGQgdGhlIHNtc3Rvb2xzIGVhc3kuDQpROiBIb3cgY2FuIHByb3ZpZGUgdGhlIG9wdGlv
-bmFsIHN0YXRpc3RpY3MgZmVhdHVyZS4NCg0KRnJpZW5kbHkgcmVncmFkZXMNCkthaQ0K
+On Monday 16 February 2015 09:18:29 Alexandru Vaduva wrote:
+> After a quick inspection I observed the following:
+>=20
+>                     Inside heartbeat-suse.spec the next information:
+> License:        GPL v2 only; LGPL v2.1 or later Link here:
+> http://hg.linux-ha.org/heartbeat-STABLE_3_0/file/545554f6fc0a/heartbe=
+at-sus
+> e.spec=20
+>                     Inside heartbeat-fedora.spec the next information=
+:
+> License:          GPLv2 and LGPLv2+ =20
+> Link here:
+> http://hg.linux-ha.org/heartbeat-STABLE_3_0/file/545554f6fc0a/heartbe=
+at-fed
+> ora.spec=20
+> I added Lars Ellenberg one of the authors behind heartbeat or drbd to=
+ the
+> discussion.
+> Hello Lars, sorry for disturbing you but maybe you could help
+> us with our little problem.=20
+> If anyone from the Yocto Project community has any input on this matt=
+er
+> please help.
+> For me at least this problem is not clear. Should the =E2=80=9C|=E2=80=
+=9D
+> sign remain or should it be replaced with the =E2=80=9C&=E2=80=9D one=
+ between the licenses.
 
---_000_DDB0C57E45663A458C5CACB7B5688BC21D7B849DSESTOEX04enease_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+What you have found above correlates with what Chris was saying - both=20=
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
-e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
-KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
-b05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
-emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
-aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
-Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
-eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
-Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNv
-LXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5z
-LXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10
-eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJ
-bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6
-NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDcwLjg1cHQgNzAuODVwdCA3MC44NXB0
-O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48
-IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNw
-aWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHht
-bD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBk
-YXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0K
-PGJvZHkgbGFuZz0iUk8iIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0i
-V29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBz
-dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZx
-dW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+SXQgc2VlbXMgSHluZWsgUGV0cmFr
-IGhhZCBzb21lIHByb2dyZXNzIG9uIHRoaXMgb25lIGEgd2hpbGUgYmFjay4gTWF5YmUgdGhlIHBh
-Y2thZ2VzIGhlIHBvc3RlZCBhbmQgYXJlIG5vd2hlcmUgdG8gYmUgZm91bmQgbm93IGNvdWxkIGJl
-IHJldml2ZWQuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpw
-PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5n
-PSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
-aSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPkFsZXggVmFkdXZh
-DQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5n
-PSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
-aSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9IkVO
-LVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVv
-dDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVO
-LVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVv
-dDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9y
-ZyBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10NCjxiPk9uIEJlaGFsZiBP
-ZiA8L2I+S2FpIFVscmljaDxicj4NCjxiPlNlbnQ6PC9iPiBNb25kYXksIEZlYnJ1YXJ5IDE2LCAy
-MDE1IDEyOjMzIFBNPGJyPg0KPGI+VG86PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0K
-PGI+U3ViamVjdDo8L2I+IFt5b2N0b10gcmVjaXBlIHdpdGggb3B0aW9uYWwgZGVwZW5kZW5jeSBh
-bmQgY29uZmlndXJhdGlvbi48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRp
-dj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJn
-aW4tYm90dG9tOjEyLjBwdCI+PHNwYW4gbGFuZz0iRU4tVVMiPkhpLDxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkkn
-bSBuZXcgaW50byB5b2N0byBjcmVhdGluZyByZWNpcGVzLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0
-Ij48c3BhbiBsYW5nPSJFTi1VUyI+QWZ0ZXIgcmVhZGluZyB0aGUgRG9jdSBJIGZlZWwgY29uZmlk
-ZW50IHdpdGggdGhlIGJhc2ljcy48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5TbyBoZXJlIG15IHF1ZXN0aW9ucy48
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-bGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPjxzcGFuIGxhbmc9IkVO
-LVVTIj5JIHdhbnQgdG8gY3JlYXRlIGEgcmVjaXBlIG9mIHNtc3Rvb2xzLg0KPG86cD48L286cD48
-L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFu
-Zz0iRU4tVVMiPjEuIFRoZXJlIGlzIG5vIHJlcG9zaXRvcnkgKGdpdCAvIHN2biAvIGN2cykuIFRo
-ZXJlIGFyZSBzb3VyY2VzIHRvIGRvd25sb2FkLg0KPGJyPg0KPGEgaHJlZj0iaHR0cDovL3Ntc3Rv
-b2xzMy5rZWtla2FzdmkuY29tL2luZGV4LnBocD9wPXBhY2thZ2VzIiB0YXJnZXQ9Il9ibGFuayI+
-aHR0cDovL3Ntc3Rvb2xzMy5rZWtla2FzdmkuY29tL2luZGV4LnBocD9wPXBhY2thZ2VzPC9hPjxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-IHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+PHNwYW4gbGFuZz0iRU4tVVMiPlE6IEluIHRo
-ZSBwaGlsb3NvcGh5IG9mIHlvY3RvIC8gb3BlbmVtYmVkZGVkLCBpcyBpdCBiZXR0ZXIgdG8gY3Jl
-YXRlIGEgb3duIGdpdCBvciB1c2UgdGhlIG9yaWdpbmFsIHNvdXJjZSBwYWNrYWdlLjxvOnA+PC9v
-OnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IGxhbmc9IkVOLVVTIj4yLiBGb3IgT1BUSU9OQUwgc3RhdGlzdGljcyB5b3UgY2FuIGFkZCB0aGlz
-IGZlYXR1cmUNCjxicj4NCi0gYnkgZW5hYmxlIGl0IGluIHRoZSBzcmMvTWFrZWZpbGU8YnI+DQot
-IEluc3RhbGwmbmJzcDsgPGEgaHJlZj0iaHR0cDovL3d3dy5vc3NwLm9yZy8iIHRhcmdldD0iX2Js
-YW5rIj5PU1NQIG1tIFNoYXJlZCBNZW1vcnkgTGlicmFyeTwvYT48bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1V
-UyI+LSBtbWxpYiBpcyBub3QgcGFydCBvZiB0aGUgeW9jdG8gLyBvcGVuZW1iZWRkZWQuIFNvIGl0
-IGhhcyB0byBiZSBhZGRlZCB0b28uDQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PGJyPg0KUTogSG93
-IGNhbiBJIHN0cnVjdHVyZSB0aGUgcmVjaXBlcyB0byBhZGQgdGhlIHNtc3Rvb2xzIGVhc3kuIDxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-IHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+PHNwYW4gbGFuZz0iRU4tVVMiPlE6IEhvdyBj
-YW4gcHJvdmlkZSB0aGUgb3B0aW9uYWwgc3RhdGlzdGljcyBmZWF0dXJlLjxicj4NCjxicj4NCjxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIGxhbmc9IkVOLVVTIj5GcmllbmRseSByZWdyYWRlczxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
-Ij5LYWkgPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9k
-aXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+licenses apply, therefore you must use &.
+=20
+Cheers,
+Paul
+=20
 
---_000_DDB0C57E45663A458C5CACB7B5688BC21D7B849DSESTOEX04enease_--
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproje=
+ct.org]
+> On Behalf Of Christopher Larson
+> Sent: Sunday, February 15, 2015 4:01 PM
+> To: Armin Kuster
+> Cc: yocto
+> Subject: Re: [yocto] [meta-cgl][PATCH] heartbeat: fix license issue
+>=20
+>=20
+> On Fri, Feb 13, 2015 at 10:00 PM, Armin Kuster
+> <akuster808@gmail.com<mailto:akuster808@gmail.com>> wrote:
+> -LICENSE =3D "GPLv2 LGPLv2+"
+> +LICENSE =3D "GPLv2 | LGPLv2+"
+>=20
+> Are you sure this is correct? Afaict this is wrong, as there are part=
+s of
+> the source tree under the GPL, and parts under LGPL, which means it's=
+ an
+> AND relationship -- both apply, not an OR relationship, where you can=
+
+> choose which to use.
+
+--=20
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
