@@ -1,46 +1,37 @@
-Return-Path: <abhinavbipnesh@avaya.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D6C6AE00769; Mon, 16 Feb 2015 09:05:46 -0800 (PST)
+	id 19860E0076B; Mon, 16 Feb 2015 09:39:43 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [198.152.71.100 listed in list.dnswl.org]
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from de307622-de-outbound.net.avaya.com
-	(de307622-de-outbound.net.avaya.com [198.152.71.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC7C6E00754
-	for <yocto@yoctoproject.org>; Mon, 16 Feb 2015 09:05:37 -0800 (PST)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AskFAM0i4lTGmAcV/2dsb2JhbABcgkMhIoEwwA+IGwKBFkMBAQEBAQF8hAMLAQEDEnkBCwEJFVYmAQQbGogLAadQhH+hMiCPSINOgRQFigyFLJAcjCgig26CM38BAQE
-X-IronPort-AV: E=Sophos;i="5.09,588,1418101200"; d="scan'208,217";a="91560760"
-Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
-	([198.152.7.21]) by de307622-de-outbound.net.avaya.com with ESMTP;
-	16 Feb 2015 12:05:35 -0500
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-FFEXHC03.global.avaya.com) ([135.64.58.13])
-	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
-	16 Feb 2015 12:05:34 -0500
-Received: from AZ-FFEXMB01.global.avaya.com ([fe80::39ee:75fe:e67a:cf4a]) by
-	AZ-FFEXHC03.global.avaya.com ([135.64.58.13]) with mapi id
-	14.03.0174.001; Mon, 16 Feb 2015 12:05:33 -0500
-From: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Graceful continue if some recipe has error
-Thread-Index: AdBKCsYf2pTmpt72RK6Iy4QiqLwCcg==
-Date: Mon, 16 Feb 2015 17:05:32 +0000
-Message-ID: <F38A866CD026F746A3BF0928A84397BE3A351435@AZ-FFEXMB01.global.avaya.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.64.58.47]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0179E00757
+	for <yocto@yoctoproject.org>; Mon, 16 Feb 2015 09:39:42 -0800 (PST)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga101.fm.intel.com with ESMTP; 16 Feb 2015 09:39:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.09,589,1418112000"; d="scan'208";a="455358459"
+Received: from mmettala-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.7.57])
+	by FMSMGA003.fm.intel.com with ESMTP; 16 Feb 2015 09:24:42 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
+Date: Mon, 16 Feb 2015 17:39:39 +0000
+Message-ID: <1793194.PUJNIAFybC@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.4 (Linux/3.18.5-101.fc20.x86_64; KDE/4.14.4; x86_64; ; )
+In-Reply-To: <F38A866CD026F746A3BF0928A84397BE3A351435@AZ-FFEXMB01.global.avaya.com>
+References: <F38A866CD026F746A3BF0928A84397BE3A351435@AZ-FFEXMB01.global.avaya.com>
 MIME-Version: 1.0
-Subject: Graceful continue if some recipe has error
+Cc: yocto@yoctoproject.org
+Subject: Re: Graceful continue if some recipe has error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,55 +43,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Feb 2015 17:05:46 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_F38A866CD026F746A3BF0928A84397BE3A351435AZFFEXMB01globa_"
+X-List-Received-Date: Mon, 16 Feb 2015 17:39:43 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---_000_F38A866CD026F746A3BF0928A84397BE3A351435AZFFEXMB01globa_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Hi Abhinav,
 
-Hi,
+On Monday 16 February 2015 17:05:32 Bipnesh, Abhinav wrote:
+> We have written recipe for our application which reads some environment
+> variables and follow a path. But if these variables are not set then recipe
+> parsing results into error. So I was looking if we can have some way for a
+> graceful continuation. As we want if those variables are set then it
+> bitbake should continue with rest of building. So is there way we can
+> achieve the same.
 
-We have written recipe for our application which reads some environment var=
-iables and follow a path. But if these variables are not set then recipe pa=
-rsing results into error.
-So I was looking if we can have some way for a graceful continuation. As we=
- want if those variables are set then it bitbake should continue with rest =
-of building.
-So is there way we can achieve the same.
+Depends, how are you reading the variables? From python or shell?
 
-Thanks,
-Abhinav
+Cheers,
+Paul
 
---_000_F38A866CD026F746A3BF0928A84397BE3A351435AZFFEXMB01globa_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+-- 
 
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
-0;}</style>
-</head>
-<body ocsi=3D"0" fpstyle=3D"1">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">Hi,<br>
-<br>
-We have written recipe for our application which reads some environment var=
-iables and follow a path. But if these variables are not set then recipe pa=
-rsing results into error.<br>
-So I was looking if we can have some way for a graceful continuation. As we=
- want if those variables are set then it bitbake should continue with rest =
-of building.<br>
-So is there way we can achieve the same.<br>
-<br>
-Thanks,<br>
-Abhinav<br>
-</div>
-</body>
-</html>
+Paul Eggleton
+Intel Open Source Technology Centre
 
---_000_F38A866CD026F746A3BF0928A84397BE3A351435AZFFEXMB01globa_--
