@@ -1,26 +1,39 @@
-Return-Path: <recipe-report@packages.yoctoproject.org>
+Return-Path: <Alexandru.Vaduva@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1D82FE0074C; Mon, 16 Feb 2015 04:44:54 -0800 (PST)
+	id 642E7E00750; Mon, 16 Feb 2015 04:59:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [192.36.1.252 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EC0AE00746
-	for <yocto@yoctoproject.org>; Mon, 16 Feb 2015 04:44:49 -0800 (PST)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 58EF48488F63
-	for <yocto@yoctoproject.org>; Mon, 16 Feb 2015 07:44:48 -0500 (EST)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 62500E00746
+	for <yocto@yoctoproject.org>; Mon, 16 Feb 2015 04:59:48 -0800 (PST)
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
+	14.03.0224.002; Mon, 16 Feb 2015 13:59:46 +0100
+From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
+To: "kaiu@gmx.de" <kaiu@gmx.de>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] recipe with optional dependency and configuration.
+Thread-Index: AQHQSdQhV5yQaf7q+kq9S4OCCAuEW5zzPItg
+Date: Mon, 16 Feb 2015 12:59:45 +0000
+Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D7B849D@SESTOEX04.enea.se>
+References: <CAAKMwiqNP=rQqmDQkdNRiAx2jT1pA1s6Z2GNgSVr6zDzGdp-uQ@mail.gmail.com>
+In-Reply-To: <CAAKMwiqNP=rQqmDQkdNRiAx2jT1pA1s6Z2GNgSVr6zDzGdp-uQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.14.234]
 MIME-Version: 1.0
-From: recipe-report@packages.yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 16 Feb 2015 12:44:48 -0000
-Message-ID: <20150216124448.11036.61962@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Cc: "hynek.petrak@gmail.com" <hynek.petrak@gmail.com>
+Subject: Re: recipe with optional dependency and configuration.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,196 +45,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Feb 2015 12:44:54 -0000
+X-List-Received-Date: Mon, 16 Feb 2015 12:59:53 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DDB0C57E45663A458C5CACB7B5688BC21D7B849DSESTOEX04enease_"
+
+--_000_DDB0C57E45663A458C5CACB7B5688BC21D7B849DSESTOEX04enease_
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: base64
 
-This mail was sent out by Recipe reporting system.
+SXQgc2VlbXMgSHluZWsgUGV0cmFrIGhhZCBzb21lIHByb2dyZXNzIG9uIHRoaXMgb25lIGEgd2hp
+bGUgYmFjay4gTWF5YmUgdGhlIHBhY2thZ2VzIGhlIHBvc3RlZCBhbmQgYXJlIG5vd2hlcmUgdG8g
+YmUgZm91bmQgbm93IGNvdWxkIGJlIHJldml2ZWQuDQoNCkFsZXggVmFkdXZhDQoNCkZyb206IHlv
+Y3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9w
+cm9qZWN0Lm9yZ10gT24gQmVoYWxmIE9mIEthaSBVbHJpY2gNClNlbnQ6IE1vbmRheSwgRmVicnVh
+cnkgMTYsIDIwMTUgMTI6MzMgUE0NClRvOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0
+OiBbeW9jdG9dIHJlY2lwZSB3aXRoIG9wdGlvbmFsIGRlcGVuZGVuY3kgYW5kIGNvbmZpZ3VyYXRp
+b24uDQoNCkhpLA0KSSdtIG5ldyBpbnRvIHlvY3RvIGNyZWF0aW5nIHJlY2lwZXMuDQpBZnRlciBy
+ZWFkaW5nIHRoZSBEb2N1IEkgZmVlbCBjb25maWRlbnQgd2l0aCB0aGUgYmFzaWNzLg0KU28gaGVy
+ZSBteSBxdWVzdGlvbnMuDQoNCkkgd2FudCB0byBjcmVhdGUgYSByZWNpcGUgb2Ygc21zdG9vbHMu
+DQoxLiBUaGVyZSBpcyBubyByZXBvc2l0b3J5IChnaXQgLyBzdm4gLyBjdnMpLiBUaGVyZSBhcmUg
+c291cmNlcyB0byBkb3dubG9hZC4NCmh0dHA6Ly9zbXN0b29sczMua2VrZWthc3ZpLmNvbS9pbmRl
+eC5waHA/cD1wYWNrYWdlcw0KUTogSW4gdGhlIHBoaWxvc29waHkgb2YgeW9jdG8gLyBvcGVuZW1i
+ZWRkZWQsIGlzIGl0IGJldHRlciB0byBjcmVhdGUgYSBvd24gZ2l0IG9yIHVzZSB0aGUgb3JpZ2lu
+YWwgc291cmNlIHBhY2thZ2UuDQoyLiBGb3IgT1BUSU9OQUwgc3RhdGlzdGljcyB5b3UgY2FuIGFk
+ZCB0aGlzIGZlYXR1cmUNCi0gYnkgZW5hYmxlIGl0IGluIHRoZSBzcmMvTWFrZWZpbGUNCi0gSW5z
+dGFsbCAgT1NTUCBtbSBTaGFyZWQgTWVtb3J5IExpYnJhcnk8aHR0cDovL3d3dy5vc3NwLm9yZy8+
+DQotIG1tbGliIGlzIG5vdCBwYXJ0IG9mIHRoZSB5b2N0byAvIG9wZW5lbWJlZGRlZC4gU28gaXQg
+aGFzIHRvIGJlIGFkZGVkIHRvby4NCg0KUTogSG93IGNhbiBJIHN0cnVjdHVyZSB0aGUgcmVjaXBl
+cyB0byBhZGQgdGhlIHNtc3Rvb2xzIGVhc3kuDQpROiBIb3cgY2FuIHByb3ZpZGUgdGhlIG9wdGlv
+bmFsIHN0YXRpc3RpY3MgZmVhdHVyZS4NCg0KRnJpZW5kbHkgcmVncmFkZXMNCkthaQ0K
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade this time, they can fill in
-RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
-recipe remainder until newer upstream version was detected.
+--_000_DDB0C57E45663A458C5CACB7B5688BC21D7B849DSESTOEX04enease_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Example:
-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
+aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
+Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
+eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
+Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNv
+LXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5z
+LXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10
+eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJ
+bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6
+NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDcwLjg1cHQgNzAuODVwdCA3MC44NXB0
+O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48
+IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNw
+aWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHht
+bD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBk
+YXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0K
+PGJvZHkgbGFuZz0iUk8iIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0i
+V29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZx
+dW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+SXQgc2VlbXMgSHluZWsgUGV0cmFr
+IGhhZCBzb21lIHByb2dyZXNzIG9uIHRoaXMgb25lIGEgd2hpbGUgYmFjay4gTWF5YmUgdGhlIHBh
+Y2thZ2VzIGhlIHBvc3RlZCBhbmQgYXJlIG5vd2hlcmUgdG8gYmUgZm91bmQgbm93IGNvdWxkIGJl
+IHJldml2ZWQuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpw
+PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5n
+PSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPkFsZXggVmFkdXZh
+DQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5n
+PSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9IkVO
+LVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVv
+dDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVO
+LVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVv
+dDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9y
+ZyBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10NCjxiPk9uIEJlaGFsZiBP
+ZiA8L2I+S2FpIFVscmljaDxicj4NCjxiPlNlbnQ6PC9iPiBNb25kYXksIEZlYnJ1YXJ5IDE2LCAy
+MDE1IDEyOjMzIFBNPGJyPg0KPGI+VG86PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0K
+PGI+U3ViamVjdDo8L2I+IFt5b2N0b10gcmVjaXBlIHdpdGggb3B0aW9uYWwgZGVwZW5kZW5jeSBh
+bmQgY29uZmlndXJhdGlvbi48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRp
+dj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJn
+aW4tYm90dG9tOjEyLjBwdCI+PHNwYW4gbGFuZz0iRU4tVVMiPkhpLDxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkkn
+bSBuZXcgaW50byB5b2N0byBjcmVhdGluZyByZWNpcGVzLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0
+Ij48c3BhbiBsYW5nPSJFTi1VUyI+QWZ0ZXIgcmVhZGluZyB0aGUgRG9jdSBJIGZlZWwgY29uZmlk
+ZW50IHdpdGggdGhlIGJhc2ljcy48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5TbyBoZXJlIG15IHF1ZXN0aW9ucy48
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+bGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPjxzcGFuIGxhbmc9IkVO
+LVVTIj5JIHdhbnQgdG8gY3JlYXRlIGEgcmVjaXBlIG9mIHNtc3Rvb2xzLg0KPG86cD48L286cD48
+L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFu
+Zz0iRU4tVVMiPjEuIFRoZXJlIGlzIG5vIHJlcG9zaXRvcnkgKGdpdCAvIHN2biAvIGN2cykuIFRo
+ZXJlIGFyZSBzb3VyY2VzIHRvIGRvd25sb2FkLg0KPGJyPg0KPGEgaHJlZj0iaHR0cDovL3Ntc3Rv
+b2xzMy5rZWtla2FzdmkuY29tL2luZGV4LnBocD9wPXBhY2thZ2VzIiB0YXJnZXQ9Il9ibGFuayI+
+aHR0cDovL3Ntc3Rvb2xzMy5rZWtla2FzdmkuY29tL2luZGV4LnBocD9wPXBhY2thZ2VzPC9hPjxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+IHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+PHNwYW4gbGFuZz0iRU4tVVMiPlE6IEluIHRo
+ZSBwaGlsb3NvcGh5IG9mIHlvY3RvIC8gb3BlbmVtYmVkZGVkLCBpcyBpdCBiZXR0ZXIgdG8gY3Jl
+YXRlIGEgb3duIGdpdCBvciB1c2UgdGhlIG9yaWdpbmFsIHNvdXJjZSBwYWNrYWdlLjxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IGxhbmc9IkVOLVVTIj4yLiBGb3IgT1BUSU9OQUwgc3RhdGlzdGljcyB5b3UgY2FuIGFkZCB0aGlz
+IGZlYXR1cmUNCjxicj4NCi0gYnkgZW5hYmxlIGl0IGluIHRoZSBzcmMvTWFrZWZpbGU8YnI+DQot
+IEluc3RhbGwmbmJzcDsgPGEgaHJlZj0iaHR0cDovL3d3dy5vc3NwLm9yZy8iIHRhcmdldD0iX2Js
+YW5rIj5PU1NQIG1tIFNoYXJlZCBNZW1vcnkgTGlicmFyeTwvYT48bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1V
+UyI+LSBtbWxpYiBpcyBub3QgcGFydCBvZiB0aGUgeW9jdG8gLyBvcGVuZW1iZWRkZWQuIFNvIGl0
+IGhhcyB0byBiZSBhZGRlZCB0b28uDQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxk
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PGJyPg0KUTogSG93
+IGNhbiBJIHN0cnVjdHVyZSB0aGUgcmVjaXBlcyB0byBhZGQgdGhlIHNtc3Rvb2xzIGVhc3kuIDxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+IHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+PHNwYW4gbGFuZz0iRU4tVVMiPlE6IEhvdyBj
+YW4gcHJvdmlkZSB0aGUgb3B0aW9uYWwgc3RhdGlzdGljcyBmZWF0dXJlLjxicj4NCjxicj4NCjxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIGxhbmc9IkVOLVVTIj5GcmllbmRseSByZWdyYWRlczxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
+Ij5LYWkgPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9k
+aXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-You can check the detail information at:
-
-http://packages.yoctoproject.org/upgradepkgname
-
-Package               Version      Upstream version      Maintainer           NoUpgradeReason
---------------------  -----------  --------------------  -------------------  ------------------------------
-python-smmap          0.8.2        0.9.0                 Alejandro Hernandez
-gnome-icon-theme      2.31.0       3.12.0                Alejandro Hernandez  waiting for the sato gtk3 port
-nfs-utils             1.3.1        1.3.2                 Alejandro Hernandez
-midori                0.5.8        0.5.9                 Alejandro Hernandez
-sqlite3               3.8.7.4      3.8.8.2.              Aníbal Limón
-screen                4.0.3        4.2.1                 Aníbal Limón
-jpeg                  8d           9a                    Aníbal Limón         webkit-gtk 1.8.3 doesn't wo...
-dpkg                  1.17.21      1.17.23               Aníbal Limón
-nettle                2.7.1        3.0                   Armin Kuster         3.0.0 breaks gnutls, api ch...
-linux-libc-headers    3.17.7       3.19                  Bruce Ashfield
-sudo                  1.8.11p2     1.8.12                Chen Qi
-sysstat               11.0.2       11.1.3                Chen Qi
-resolvconf            1.76         1.76.1                Chen Qi
-busybox               1.22.1       1.23.1                Chen Qi
-console-tools         0.3.2        1999.03.02            Chen Qi
-systemd               216+gitX     218+gitAUTOINC+38...  Chen Qi
-quilt                 0.63         0.64                  Chong Lu
-cups                  2.0.1        2.0.2                 Chong Lu
-dbus-glib             0.102        0.104                 Chong Lu
-dbus-test             1.8.10       1.9.10                Chong Lu
-dbus                  1.8.10       1.9.10                Chong Lu             D-BUS 1.9.x is the developm...
-bison                 2.7.1        3.0.4                 Chong Lu
-libatomics-ops        7.2          7.4.0                 Cristian Iorga
-pulseaudio            5.0          6.0                   Cristian Iorga
-speex                 1.2rc1       1.2rc2                Cristian Iorga
-db                    6.0.30       6.1.19.NC             Cristian Iorga       API compatibility issue
-libical               1.0.0        1.0.1                 Cristian Iorga
-neon                  0.30.0       0.30.1                Cristian Iorga
-quota                 4.01         4.02                  Cristian Iorga
-bluez4                4.101        5.28                  Cristian Iorga       BlueZ 5.x is not backward-c...
-gst-plugin-bluetooth  4.101        5.28                  Cristian Iorga
-iproute2              3.17.0       3.19.0                Cristian Iorga
-gst-ffmpeg            0.10.13      0.11.2                Cristian Iorga
-gst-fluendo-mp3       0.10.31      0.10.32               Cristian Iorga
-gst-plugins-bad       0.10.23      1.4.5                 Cristian Iorga       not compatible with gst-flu...
-gst-plugins-base      0.10.36      1.4.5                 Cristian Iorga       not compatible with gst-flu...
-gst-plugins-good      0.10.31      1.4.5                 Cristian Iorga       not compatible with gst-flu...
-gst-plugins-ugly      0.10.19      1.4.5                 Cristian Iorga
-gstreamer             0.10.36      1.4.5                 Cristian Iorga       not compatible with gst-fl...
-hwlatdetect           0.89         0.90                  Darren Hart
-rt-tests              0.89         0.90                  Darren Hart
-kernelshark           1.2+gitX     2.5.3+gitAUTOINC+...  Darren Hart          0.2 is the latest version.
-trace-cmd             2.3.2+gitX   2.5.3+gitAUTOINC+...  Darren Hart
-qmmp                  0.7.7        0.8.3                 Hongxu Jia
-patch                 2.7.1        2.7.4                 Hongxu Jia
-perl                  5.20.0       5.21.8                Hongxu Jia
-createrepo            0.4.11       0.10.3                Hongxu Jia           Versions after 0.9.* use YU...
-gnupg                 2.1.1        2.1.2                 Hongxu Jia
-bash                  4.3          4.3.30                Hongxu Jia           The latest version in yocto...
-groff                 1.22.2       1.22.3                Hongxu Jia           1.18.1.4 is latest GPLv2 Ve...
-man-pages             3.76         3.79                  Hongxu Jia
-directfb              1.7.6        1.7.7                 Hongxu Jia
-dhcp                  4.3.1        4.3.2                 Hongxu Jia
-socat                 1.7.2.4      1.7.3.0               Hongxu Jia
-distcc                3.1          3.2rc1                Hongxu Jia
-python-mako           0.9.1        1.0.1                 Khem Raj
-python-nose           1.2.1        1.3.4                 Khem Raj
-python-numpy          1.7.0        1.9.1                 Khem Raj
-python3-distribute    0.6.32       0.7.3                 Khem Raj
-rpm                   5.4.14       5.4.15                Mark Hatle
-libpfm4               4.3.0        4.6.0                 Matthew McClintock
-liberror-perl         0.17022      0.17023               No Maintainer
-cryptodev-linux       1.6          1.7                   No Maintainer
-cryptodev-module      1.6          1.7                   No Maintainer
-cryptodev-tests       1.6          1.7                   No Maintainer
-libav                 9.16         11.2                  Paul Eggleton
-x264                  r2265+gitX   r2491                 Paul Eggleton
-qt4-embedded          4.8.6        5.4.0                 Paul Eggleton
-qt4-x11-free          4.8.6        5.4.0                 Paul Eggleton
-gpgme                 1.4.3        1.5.3                 Paul Eggleton
-yasm                  1.2.0        1.3.0                 Paul Eggleton
-augeas                1.2.0        1.3.0                 Paul Eggleton
-libevdev              1.3          1.3.2                 Paul Eggleton
-libevent              2.0.21       2.0.22                Paul Eggleton
-dropbear              2014.66      2015.67               Paul Eggleton
-cmake                 2.8.12.2     3.1.3                 Paul Eggleton
-dosfstools            2.11         3.0.27                Paul Eggleton
-python-async          0.6.1        0.6.2                 Randy Witt
-tcf-agent             0.4.0+gitX   8.0+gitAUTOINC+8f...  Randy Witt
-unfs3                 0.9.22.r490  0.9.22.r494           Randy Witt
-libtasn1              4.0          4.2                   Randy Witt
-ethtool               3.16         3.18                  Randy Witt
-libunistring          0.9.4        0.9.5                 Randy Witt
-libpam                1.1.6        1.1.8                 Randy Witt
-libpng12              1.2.52       1.6.16                Randy Witt
-python-distribute     0.6.32       0.7.3                 Richard Purdie       0.7.3 only upgrades 0.6.32,...
-python-gst            0.10.22      1.4.0                 Richard Purdie
-python-pygobject      2.28.3       3.14.0                Richard Purdie       Newer versions of python-py...
-python3               3.3.3        3.5.0a1               Richard Purdie
-python                2.7.3        3.5.0a1               Richard Purdie
-gdb                   7.8.1        7.8.2                 Richard Purdie
-libtool               2.4.5        2.4.6                 Robert Yang
-python-git            0.3.3        0.3/                  Robert Yang
-python-gitdb          0.6.1        0.6.4                 Robert Yang
-logrotate             3.8.8        3.8.9                 Robert Yang
-glib-2.0              2.42.1       2.43.4                Robert Yang
-gmp                   6.0.0        6.0.0a                Robert Yang
-binutils              2.24         2.25                  Robert Yang
-e2fsprogs             1.42.9       1.42.11               Robert Yang
-git                   2.2.1        2.3.0                 Robert Yang
-puzzles               r10116       r10286                Ross Burton
-webkit-gtk            1.8.3        1.9.92                Ross Burton          >= 1.10.2 needs ruby
-at-spi2-atk           2.14.1       2.15.4                Ross Burton
-atk                   2.14.0       2.15.4                Ross Burton
-vala                  0.26.1       0.27.1                Ross Burton
-libsoup-2.4           2.46.0       2.49.1                Ross Burton
-shared-mime-info      1.3          1.4                   Ross Burton
-vte                   0.28.2       0.39.1                Ross Burton          Pending Glib-2.0 Update
-gdk-pixbuf            2.30.8       2.31.2                Ross Burton
-gtk+3                 3.12.2       3.15.6                Ross Burton
-gtk+                  2.24.25      3.15.6                Ross Burton          Do not upgrade to version: ...
-gtk-engines           2.20.2       2.91.1                Ross Burton          2.91.1 is a 3.0 beta release
-libnotify             0.6.0        0.7.6                 Ross Burton
-cairo                 1.12.18      1.14.1                Ross Burton
-clutter-1.0           1.20.0       1.21.4                Ross Burton
-clutter-gst-1.0       1.6.0        3.0.4                 Ross Burton
-clutter-gtk-1.0       1.4.4        1.6.0                 Ross Burton
-fontconfig            2.11.1       2.11.92               Ross Burton
-freetype              2.5.4        2.5.5                 Ross Burton
-liberation-fonts      1.04         2.00.1                Ross Burton          2.00.0 - fontforge package ...
-waffle                1.3.0        1.5.1                 Ross Burton
-libinput              0.7.0        0.10.0                Ross Burton
-wayland               1.6.0        1.7.0                 Ross Burton
-weston                1.6.0        1.7.0                 Ross Burton
-xf86-video-vmware     13.0.2       13.1.0                Ross Burton
-glib-networking       2.38.0       2.43.1                Ross Burton          Pending Glib-2.0 Update
-libxshmfence          1.1          1.2                   Ross Burton
-xkeyboard-config      2.13         2.14                  Ross Burton
-xserver-xorg          1.16.3       1.17.1                Ross Burton
-at-spi2-core          2.14.1       2.15.4                Ross Burton
-xproto                7.0.26       7.0.27                Ross Burton
-xf86-video-omap       0.4.2+gitrX  0.4.3+gitrAUTOINC...  Ross Burton
-libtheora             1.1.1        1.2.0alpha1           Saul Wold
-tiff                  4.0.3        4.0.4beta             Saul Wold
-lzo                   2.08         2.09                  Saul Wold
-libunique             1.1.6        3.0.2                 Saul Wold            Do not upgrade to version: ...
-mx-1.0                1.4.7+gitX   1.99.4+gitAUTOINC...  Saul Wold            PRS 1.99 is dev version
-openssl               1.0.1k       1.0.2                 Saul Wold
-uclibc                0.9.33+gitX  0.9.33.2+gitAUTOI...  Saul Wold
-blktrace              1.0.5+gitX   1.1.0+gitAUTOINC+...  Tom Zanussi
-chkconfig             1.3.58       1.3.63                Wenzong Fan
-ccache                3.1.9        3.2.1                 Wenzong Fan
-
-Upgradable count: 118
-Upgradable total count: 142
-
-The based commit is:
-
-commit d5af8539c0a1718a7254bcdcfa973e3c887dfbd6
-Author: Robert Yang <liezhi.yang@windriver.com>
-Date:   Fri Feb 13 00:59:08 2015 -0800
-
-    syslinux: support ext2/3/4 device
-    
-    * Support ext2/3/4 deivce.
-    * The open_ext2_fs() checks whether it is an ext2/3/4 device,
-      do the ext2/3/4 installation (install_to_ext2()) if yes, otherwise go
-      on to the fat/ntfs.
-    * The ext2/3/4 support doesn't require root privileges since it doesn't need
-      mount (but write permission is required).
-    
-    Next:
-    * Get rid of fat filesystem from the boot image.
-    
-    These patches have been sent to upstream, we may adjust them (maybe put
-    the extX support to syslinux-mtools), I will go on working with the
-    upstream.
-    
-    Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
-    Signed-off-by: Ross Burton <ross.burton@intel.com>
-
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
-
+--_000_DDB0C57E45663A458C5CACB7B5688BC21D7B849DSESTOEX04enease_--
