@@ -1,56 +1,77 @@
-Return-Path: <valentin.lebescond@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 25080E00825; Wed, 18 Feb 2015 09:37:05 -0800 (PST)
+	id 35710E00546; Wed, 18 Feb 2015 10:38:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (valentin.lebescond[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.46 listed in list.dnswl.org]
+	*      [209.85.220.41 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qg0-f46.google.com (mail-qg0-f46.google.com
-	[209.85.192.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 570EAE00815
-	for <yocto@yoctoproject.org>; Wed, 18 Feb 2015 09:37:02 -0800 (PST)
-Received: by mail-qg0-f46.google.com with SMTP id z107so2114253qgd.5
-	for <yocto@yoctoproject.org>; Wed, 18 Feb 2015 09:37:02 -0800 (PST)
+Received: from mail-pa0-f41.google.com (mail-pa0-f41.google.com
+	[209.85.220.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB46AE00283
+	for <yocto@yoctoproject.org>; Wed, 18 Feb 2015 10:38:15 -0800 (PST)
+Received: by pablf10 with SMTP id lf10so3128909pab.6
+	for <yocto@yoctoproject.org>; Wed, 18 Feb 2015 10:38:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=mH7LecojWoksa8qfc9JycxUQ2KJ/TRtT7+iQOErtbb4=;
-	b=jx1KWZaWIWg27jXAeR/CGwfKUslBnvyBFeavqtrdt/Xx6KeSulsY93eG61ePEKTau2
-	9VVJCXkAZHZ4UWLaZPFi+ZNIdmWetbGzVU3mu4IrEI781ngnHsgCRISiuY/G2EEajo4B
-	0/NujBrmo8XWze6kWdV6et2RvY8TUCamBb2/mwHnrqlktyfblmVvyyB5xW05avJ/8gtY
-	yFBa9KzXyLcIZ0WrjdbIT9+SdxsUc27PwJHcczW8aEtSV1N6ov1D/mySgHdbg97S12sq
-	7NYRukooHk70KbAH+vlzqFrB7BpqqMDZd+6zchih+dueoDShPHcCod4jy/pUlx10qQd3
-	t92g==
-X-Received: by 10.140.194.204 with SMTP id p195mr2356307qha.21.1424281022066; 
-	Wed, 18 Feb 2015 09:37:02 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.140.91.165 with HTTP; Wed, 18 Feb 2015 09:36:41 -0800 (PST)
-In-Reply-To: <1749798.L7mbWZ0yKU@peggleto-mobl5.ger.corp.intel.com>
-References: <CAP2S6e5oBGTDWNJ1eT9YsnWAV+xeDEBKKbCE2h3_34rmJu7ycg@mail.gmail.com>
-	<2971571.L9pmXd2OeC@peggleto-mobl5.ger.corp.intel.com>
-	<CAP2S6e51cy-ZB9uq9-frL6WDB8EWyYmaCxd0y5uHHUD_+H-gxw@mail.gmail.com>
-	<1749798.L7mbWZ0yKU@peggleto-mobl5.ger.corp.intel.com>
-From: Valentin Le bescond <valentin.lebescond@gmail.com>
-Date: Wed, 18 Feb 2015 18:36:41 +0100
-Message-ID: <CAP2S6e6OWXX5HAes-C+YF09fHGsr=NQ=qSTJWKouhRRY6yiGKw@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to switch kernel version without touching PREFERED VERSION
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=Kn0sMdFmzmVeNGT4OzyYRi+3yHSBvF1sm5JhZxYKviw=;
+	b=0zEZ3y1NEWxeoQfdn+w8TEXhxHlYe+EvB6l/cF1Setor1wJPg3Zgph6seq06mdn8ZC
+	Use8/OGBxtsMqMpLhYcvfzPgjLOcI4/gIcTRdETZGPo9b/EZaISb3U2FJg6ldWBsVlZH
+	wAdmjG462GIEyNl/dn6RjFvEpFS/iSZ0X7x3BblmLP+Fv770qXNx4NGcM7yygHxjfHgU
+	7DH7eVbrwDfHO++jEbDO5BLO+1m/ChN7xfggtKZDTG6DXPBq7N3vRwyNsami9CDITHyR
+	EwdxQZbJVWweEIKNToiaUt3nxvxb6X1vjEQU8vfP8kSEYUBKHhZnCCniLfQXnZBP/6sg
+	rmlw==
+X-Received: by 10.70.134.163 with SMTP id pl3mr873143pdb.45.1424284694297;
+	Wed, 18 Feb 2015 10:38:14 -0800 (PST)
+Received: from ?IPv6:2601:9:3580:84c:ac05:bc97:a5e3:53c?
+	([2601:9:3580:84c:ac05:bc97:a5e3:53c])
+	by mx.google.com with ESMTPSA id g2sm17155147pbw.37.2015.02.18.10.38.13
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 18 Feb 2015 10:38:13 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2070.6\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <1424264807.11836.1.camel@linuxfoundation.org>
+Date: Wed, 18 Feb 2015 10:38:12 -0800
+Message-Id: <3F6EFBD4-AC35-4CE0-B52C-0ABDA0D17838@gmail.com>
+References: <CAMKF1souj1-FLTjkQb0y8myTiKMJyNeAa7wiM5-pW1fz0EtheA@mail.gmail.com>
+	<CAJTo0LaN3HMhjrpii2pPbJw5zWbywgr1keZe=iQmuKFMFFf=gQ@mail.gmail.com>
+	<CAMKF1sq8NsuNYZDQRPtXruBeRndOP+0qwBuTO2ahb6q-fS8XGw@mail.gmail.com>
+	<CAJTo0LYpKbwOHg-DBMJycy+KNayTCsnhToJR8K-REKZ2jxhnhw@mail.gmail.com>
+	<EA0C9DE9-9E5F-4B74-8464-138895268F2F@gmail.com>
+	<CAJTo0LbSFesauhA_H39Znd07SR5JCs45izy2us=cFWVGXtW8hg@mail.gmail.com>
+	<80920FD0-CA08-45D7-9A41-3971FB2D58D7@gmail.com>
+	<CAJTo0LbqTrQzk0KeHDxYnmtZrrFdZD12DWrjA=Y4RtbQzwM0ow@mail.gmail.com>
+	<CAMKF1sr7bYpKqzTmvX5rCuYc-Rb2se7Vsrr4aYA43E_b1Z=vWA@mail.gmail.com>
+	<CACS+7ZRNm2Y0SJn76imF6DNoEsL2+ppC1zG45iGspOmL0EN0BQ@mail.gmail.com>
+	<CAMKF1sqjQm+n5xKfS0utm9B9h_S+RYWrgnGUCboRNCk5XSUmzg@mail.gmail.com>
+	<1423908404.20217.100.camel@linuxfoundation.org>
+	<CAMKF1sofS7MteZnPsTYRNAcMwrrh=T3FP+ASmAOGDMhcwyXB4g@mail.gmail.com>
+	<1424245575.25541.19.camel@linuxfoundation.org>
+	<BCB8524E-91CB-41F6-83C0-7B90E60BC82D@gmail.com>
+	<1424260309.25541.23.camel@linuxfoundation.org>
+	<1424264807.11836.1.camel@linuxfoundation.org>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+X-Mailer: Apple Mail (2.2070.6)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
+	Dan McGregor <danismostlikely@gmail.com>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] upcoming glibc 2.21 and gcc 4.9 upgrade
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,141 +83,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Feb 2015 17:37:05 -0000
-Content-Type: multipart/alternative; boundary=001a1143245e617bcd050f60445c
-
---001a1143245e617bcd050f60445c
-Content-Type: text/plain; charset=UTF-8
-
-@Gary, you were right on the spelling. It always works best without
-spelling mistakes (inside "meta-wolfson/conf/layer.conf")
-
-I did indeed meant local.conf, not layer.conf in the build dir.
-
-I wanted to use an older kernel because the wolfson audio card for the rpi
-is distributed as a set of patch dedicated to the 3.10 kernel.
-
-But then I tried the build and even with the right kernel, the patch list
-threw errors.
-
-Anyway, I found that cirrus logic just bought wolfson and created a new
-audio extension for the rpi.
-So I dumped the idea of the meta-wolfson layer and will start with
-meta-cirrus.
-
-This time the bbappend will have to change the github source directly as
-cirrus provides the whole kernel (3.12 amongst others...).
-
-Well thank you all very much !
-
-Valentin
-
-
-
-
-
-
-2015-02-18 17:48 GMT+01:00 Paul Eggleton <paul.eggleton@linux.intel.com>:
-
-> On Wednesday 18 February 2015 17:33:26 Valentin Le bescond wrote:
-> > I tryed editing /meta-wolfson/conf/layer.conf or /build/conf/layer.conf,
-> > adding :
-> > PREFERED_VERSION_linux-raspberrypi = "3.10.%"
-> >
-> > but neither worked (still using 3.12)
->
-> I assume you tried build/conf/local.conf not build/conf/layer.conf?
->
-> If so, that should have worked. You can run bitbake -e | less and look
-> through
-> the history to see what is overriding it if it doesn't work.
->
-> > I endded up editing meta-raspberrypi's machine configuration and it works
-> > fine.
-> >
-> > It's good, but that means I will need to apply this change to every
-> > building machine I will use, or fork the meta-raspberrypi repo, witch is
-> > another story.
-> > I was hoping to keep everything inside my wolfson layer. too bad.
->
-> FWIW, in general forcing a particular kernel version from a layer.conf like
-> this isn't very good practice. People who use your layer may not expect to
-> have the kernel version switched just by adding it to their bblayers.conf.
-> (There may perhaps be mitigating circumstances in this case.)
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
->
-
---001a1143245e617bcd050f60445c
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Wed, 18 Feb 2015 18:38:18 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div><div>@Gary, you were right on the spel=
-ling. It always works best without spelling mistakes (inside &quot;meta-wol=
-fson/conf/layer.conf&quot;)<br><br></div>I did indeed meant local.conf, not=
- layer.conf in the build dir.<br><br></div>I wanted to use an older kernel =
-because the wolfson audio card for the rpi is distributed as a set of patch=
- dedicated to the 3.10 kernel.<br><br></div>But then I tried the build and =
-even with the right kernel, the patch list threw errors.</div><div><br></di=
-v>Anyway, I found that cirrus logic just bought wolfson and created a new a=
-udio extension for the rpi.<br>So I dumped the idea of the meta-wolfson lay=
-er and will start with meta-cirrus.<br></div><div><br></div><div>This time =
-the bbappend will have to change the github source directly as cirrus provi=
-des the whole kernel (3.12 amongst others...).<br><br></div><div>Well thank=
- you all very much ! <br></div><div><br></div>Valentin<br><div><div><div><d=
-iv><div><br><br><br><div><br><br></div></div></div></div></div></div></div>=
-<div class=3D"gmail_extra"><br><div class=3D"gmail_quote">2015-02-18 17:48 =
-GMT+01:00 Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"mailto:paul.egglet=
-on@linux.intel.com" target=3D"_blank">paul.eggleton@linux.intel.com</a>&gt;=
-</span>:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
-rder-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On Wednesday 18=
- February 2015 17:33:26 Valentin Le bescond wrote:<br>
-&gt; I tryed editing /meta-wolfson/conf/layer.conf or /build/conf/layer.con=
-f,<br>
-&gt; adding :<br>
-&gt; PREFERED_VERSION_linux-raspberrypi =3D &quot;3.10.%&quot;<br>
-&gt;<br>
-&gt; but neither worked (still using 3.12)<br>
-<br>
-</span>I assume you tried build/conf/local.conf not build/conf/layer.conf?<=
-br>
-<br>
-If so, that should have worked. You can run bitbake -e | less and look thro=
-ugh<br>
-the history to see what is overriding it if it doesn&#39;t work.<br>
-<span class=3D""><br>
-&gt; I endded up editing meta-raspberrypi&#39;s machine configuration and i=
-t works<br>
-&gt; fine.<br>
-&gt;<br>
-&gt; It&#39;s good, but that means I will need to apply this change to ever=
-y<br>
-&gt; building machine I will use, or fork the meta-raspberrypi repo, witch =
-is<br>
-&gt; another story.<br>
-&gt; I was hoping to keep everything inside my wolfson layer. too bad.<br>
-<br>
-</span>FWIW, in general forcing a particular kernel version from a layer.co=
-nf like<br>
-this isn&#39;t very good practice. People who use your layer may not expect=
- to<br>
-have the kernel version switched just by adding it to their bblayers.conf.<=
-br>
-(There may perhaps be mitigating circumstances in this case.)<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-Cheers,<br>
-Paul<br>
-<br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</div></div></blockquote></div><br></div>
 
---001a1143245e617bcd050f60445c--
+> On Feb 18, 2015, at 5:06 AM, Richard Purdie =
+<richard.purdie@linuxfoundation.org> wrote:
+>=20
+> On Wed, 2015-02-18 at 11:51 +0000, Richard Purdie wrote:
+>> On Wed, 2015-02-18 at 01:01 -0800, Khem Raj wrote:
+>>> OK thats why I am not seeing it on my qemux86 build.=20
+>>>=20
+>>> this leaves us with only one problem - glibc/qemuarm issue
+>>>=20
+>>> http://errors.yoctoproject.org/Errors/Details/8679/
+>>>=20
+>>> I have seen this error with eglibc-2.19 and glibc 2.20 as well on =
+x86 and arm as well in cases when using
+>>> toolchain from sstate and rebuilding glibc with that. I assume this =
+could be  unrelated to glibc upgrade
+>>> and may be a latent problem. Could be missing dependency on a native =
+tool or some such. I have been attributing it to gold
+>>> but that just might have been a red herring.
+>>>=20
+>>> I will see if I can get to reproduce it.
+>>=20
+>> I tried another build with the three patches from your oe-core =
+contrib
+>> branch applied. Error report out is:
+>>=20
+>> =
+http://errors.yoctoproject.org/Errors/Search/?items=3D10&query=3Db75fed99f=
+2aa86b49844dd0cf06991767f6f26d3
+>>=20
+>> i.e. we're still seeing SSE errors in glibc builds. Am I missing some
+>> patches or something?
+>=20
+> The series needs:
+>=20
+> TUNE_CCARGS_x86 :=3D "${@oe_filter_out('-mfpmath=3Dsse', =
+'${TUNE_CCARGS}', d)}"
+> +TUNE_CCARGS_x86-64 :=3D "${@oe_filter_out('-mfpmath=3Dsse', =
+'${TUNE_CCARGS}', d)}=E2=80=9D
+>=20
+
+hmmm I assumed x86 was common across 32bit and 64bit x86 but seems not =
+so I replaced the old patch instead of appending it=20
+
+
+> since the x86 override doesn't cover x86_64. I'll queue that and run =
+yet
+> another build. We do have another poky-tiny issue too:
+>=20
+> =
+https://autobuilder.yoctoproject.org/main/builders/poky-tiny/builds/204
+>=20
+
+OK. I am creating a local config to use tiny config for libc and weed =
+out remaining build issues for tiny config=20
+
+> Cheers,
+>=20
+> RIchard
+
+
