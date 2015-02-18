@@ -1,77 +1,44 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 35710E00546; Wed, 18 Feb 2015 10:38:18 -0800 (PST)
+	id 3088EE00546; Wed, 18 Feb 2015 10:44:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.41 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f41.google.com (mail-pa0-f41.google.com
-	[209.85.220.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB46AE00283
-	for <yocto@yoctoproject.org>; Wed, 18 Feb 2015 10:38:15 -0800 (PST)
-Received: by pablf10 with SMTP id lf10so3128909pab.6
-	for <yocto@yoctoproject.org>; Wed, 18 Feb 2015 10:38:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=Kn0sMdFmzmVeNGT4OzyYRi+3yHSBvF1sm5JhZxYKviw=;
-	b=0zEZ3y1NEWxeoQfdn+w8TEXhxHlYe+EvB6l/cF1Setor1wJPg3Zgph6seq06mdn8ZC
-	Use8/OGBxtsMqMpLhYcvfzPgjLOcI4/gIcTRdETZGPo9b/EZaISb3U2FJg6ldWBsVlZH
-	wAdmjG462GIEyNl/dn6RjFvEpFS/iSZ0X7x3BblmLP+Fv770qXNx4NGcM7yygHxjfHgU
-	7DH7eVbrwDfHO++jEbDO5BLO+1m/ChN7xfggtKZDTG6DXPBq7N3vRwyNsami9CDITHyR
-	EwdxQZbJVWweEIKNToiaUt3nxvxb6X1vjEQU8vfP8kSEYUBKHhZnCCniLfQXnZBP/6sg
-	rmlw==
-X-Received: by 10.70.134.163 with SMTP id pl3mr873143pdb.45.1424284694297;
-	Wed, 18 Feb 2015 10:38:14 -0800 (PST)
-Received: from ?IPv6:2601:9:3580:84c:ac05:bc97:a5e3:53c?
-	([2601:9:3580:84c:ac05:bc97:a5e3:53c])
-	by mx.google.com with ESMTPSA id g2sm17155147pbw.37.2015.02.18.10.38.13
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 18 Feb 2015 10:38:13 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2070.6\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <1424264807.11836.1.camel@linuxfoundation.org>
-Date: Wed, 18 Feb 2015 10:38:12 -0800
-Message-Id: <3F6EFBD4-AC35-4CE0-B52C-0ABDA0D17838@gmail.com>
-References: <CAMKF1souj1-FLTjkQb0y8myTiKMJyNeAa7wiM5-pW1fz0EtheA@mail.gmail.com>
-	<CAJTo0LaN3HMhjrpii2pPbJw5zWbywgr1keZe=iQmuKFMFFf=gQ@mail.gmail.com>
-	<CAMKF1sq8NsuNYZDQRPtXruBeRndOP+0qwBuTO2ahb6q-fS8XGw@mail.gmail.com>
-	<CAJTo0LYpKbwOHg-DBMJycy+KNayTCsnhToJR8K-REKZ2jxhnhw@mail.gmail.com>
-	<EA0C9DE9-9E5F-4B74-8464-138895268F2F@gmail.com>
-	<CAJTo0LbSFesauhA_H39Znd07SR5JCs45izy2us=cFWVGXtW8hg@mail.gmail.com>
-	<80920FD0-CA08-45D7-9A41-3971FB2D58D7@gmail.com>
-	<CAJTo0LbqTrQzk0KeHDxYnmtZrrFdZD12DWrjA=Y4RtbQzwM0ow@mail.gmail.com>
-	<CAMKF1sr7bYpKqzTmvX5rCuYc-Rb2se7Vsrr4aYA43E_b1Z=vWA@mail.gmail.com>
-	<CACS+7ZRNm2Y0SJn76imF6DNoEsL2+ppC1zG45iGspOmL0EN0BQ@mail.gmail.com>
-	<CAMKF1sqjQm+n5xKfS0utm9B9h_S+RYWrgnGUCboRNCk5XSUmzg@mail.gmail.com>
-	<1423908404.20217.100.camel@linuxfoundation.org>
-	<CAMKF1sofS7MteZnPsTYRNAcMwrrh=T3FP+ASmAOGDMhcwyXB4g@mail.gmail.com>
-	<1424245575.25541.19.camel@linuxfoundation.org>
-	<BCB8524E-91CB-41F6-83C0-7B90E60BC82D@gmail.com>
-	<1424260309.25541.23.camel@linuxfoundation.org>
-	<1424264807.11836.1.camel@linuxfoundation.org>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-X-Mailer: Apple Mail (2.2070.6)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
-	Dan McGregor <danismostlikely@gmail.com>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [RFT] upcoming glibc 2.21 and gcc 4.9 upgrade
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02213E00283;
+	Wed, 18 Feb 2015 10:44:27 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id t1IIiORS018374
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 18 Feb 2015 10:44:24 -0800 (PST)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.174.1;
+	Wed, 18 Feb 2015 10:44:24 -0800
+Message-ID: <54E4DD68.3050504@windriver.com>
+Date: Wed, 18 Feb 2015 13:43:52 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+MIME-Version: 1.0
+To: Stephen Flowers <sflowers1@gmail.com>, William Mills <wmills@ti.com>,
+	<yocto@yoctoproject.org>, <meta-ti@yoctoproject.org>
+References: <54DA0258.9070108@gmail.com>
+	<54DA12C7.8000000@windriver.com>	<54DA84F1.1080109@gmail.com>
+	<54DADD75.5000809@windriver.com>	<54DB17E7.8070308@gmail.com>
+	<54DB7455.4020402@windriver.com> <54DBF55D.3020001@ti.com>
+	<54DD2396.4000909@gmail.com> <54DD433E.2010703@ti.com>
+	<54DD86D9.5010007@windriver.com> <54E3C751.8030104@gmail.com>
+	<54E4A853.9000606@windriver.com> <54E4AD82.40405@gmail.com>
+In-Reply-To: <54E4AD82.40405@gmail.com>
+Subject: Re: Yocto Realtime tests on beaglebone black
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -83,68 +50,280 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Feb 2015 18:38:18 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 18 Feb 2015 18:44:31 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 15-02-18 10:19 AM, Stephen Flowers wrote:
+>
+> The device is just a gpio pin registered at /sys/class/gpio/gpioxx/value
+> Can you link to where I can read about the "well known" latency issues
+> running -rt with USB and flash? The rootfs is located on flash so could
+> this explain the cause?
 
-> On Feb 18, 2015, at 5:06 AM, Richard Purdie =
-<richard.purdie@linuxfoundation.org> wrote:
->=20
-> On Wed, 2015-02-18 at 11:51 +0000, Richard Purdie wrote:
->> On Wed, 2015-02-18 at 01:01 -0800, Khem Raj wrote:
->>> OK thats why I am not seeing it on my qemux86 build.=20
->>>=20
->>> this leaves us with only one problem - glibc/qemuarm issue
->>>=20
->>> http://errors.yoctoproject.org/Errors/Details/8679/
->>>=20
->>> I have seen this error with eglibc-2.19 and glibc 2.20 as well on =
-x86 and arm as well in cases when using
->>> toolchain from sstate and rebuilding glibc with that. I assume this =
-could be  unrelated to glibc upgrade
->>> and may be a latent problem. Could be missing dependency on a native =
-tool or some such. I have been attributing it to gold
->>> but that just might have been a red herring.
->>>=20
->>> I will see if I can get to reproduce it.
->>=20
->> I tried another build with the three patches from your oe-core =
-contrib
->> branch applied. Error report out is:
->>=20
->> =
-http://errors.yoctoproject.org/Errors/Search/?items=3D10&query=3Db75fed99f=
-2aa86b49844dd0cf06991767f6f26d3
->>=20
->> i.e. we're still seeing SSE errors in glibc builds. Am I missing some
->> patches or something?
->=20
-> The series needs:
->=20
-> TUNE_CCARGS_x86 :=3D "${@oe_filter_out('-mfpmath=3Dsse', =
-'${TUNE_CCARGS}', d)}"
-> +TUNE_CCARGS_x86-64 :=3D "${@oe_filter_out('-mfpmath=3Dsse', =
-'${TUNE_CCARGS}', d)}=E2=80=9D
->=20
+I should have qualified well known as well known to anyone that has debugged
+latency spikes with USB and flash in the past.
 
-hmmm I assumed x86 was common across 32bit and 64bit x86 but seems not =
-so I replaced the old patch instead of appending it=20
+I've been integrating and working with -rt since 2.6.10, so we've run
+into latency issues with flash and usb over the years. You'll also
+find references to it on the rt-users mailing list.
 
+It's the locking, timeouts and the software layering that are part of
+usb and flash filesystems that cause the problems. Changing the
+interrupts to all be threaded, and/or use RCU is challenging and I've
+never seen a full conversion. That being said, newer kernels are
+definitely better on this front than the older ones.
 
-> since the x86 override doesn't cover x86_64. I'll queue that and run =
-yet
-> another build. We do have another poky-tiny issue too:
->=20
-> =
-https://autobuilder.yoctoproject.org/main/builders/poky-tiny/builds/204
->=20
+The rootfs being on flash would be ok, as long as frequent writes
+weren't happening, or if they were happening, from a sufficiently
+low priority thread.
 
-OK. I am creating a local config to use tiny config for libc and weed =
-out remaining build issues for tiny config=20
+On that thought, have you looked at the processes running on your
+system ? Are there any high priority tasks that might be starving
+the handling of your interrupts ?
 
-> Cheers,
->=20
-> RIchard
+Bruce
+
+>
+> Steve
+>
+> On 18/02/2015 14:57, Bruce Ashfield wrote:
+>> On 15-02-17 05:57 PM, Stephen Flowers wrote:
+>>>
+>>> I loaded the system effectively and also changed my rt application to
+>>> use asynchronous IO - I find the rt kernel is much tighter at periodic
+>>> latency yet seems to be worse in the latency measurements. I'm asuming
+>>> the non-deteministic nature of userland file IO operations is causing
+>>> the additional latency, even when using aio. Setting the IO scheduler
+>>> did not have an effect.
+>>>
+>>> Results show periodic timer latency in microseconds & interrupt latency
+>>> in microseconds.
+>>
+>> The results are still puzzling, since that max value really shouldn't
+>> be higher in the -rt kernel.
+>>
+>> What sort of device is backing the filesystem and IO ?  There are some
+>> well known latency issues with USB and flash .. so that very well could
+>> be causing some issues with -rt, and why you are getting what we expect
+>> with the cyclictest results, but not in this run.
+>>
+>> Consider running cyclictest at the same time, and enabling the latency
+>> tracing .. that will allow you to peek under the covers and see if
+>> there's an obvious latency issue being triggered.
+>>
+>> Bruce
+>>
+>>
+>>>
+>>> Realtime
+>>> Min        -324.0833333    159.75
+>>> Max        367.8333333        526.4166667
+>>> Avg        0.587306337        206.8056595
+>>>
+>>> Standard
+>>> Min        -608.6666667    123.75
+>>> Max        612                448.0833333
+>>> Avg        0.5557039        153.5281784
+>>>
+>>> All help appreciated,
+>>> Steve
+>>>
+>>> On 13/02/2015 05:08, Bruce Ashfield wrote:
+>>>> On 2015-02-12 7:20 PM, William Mills wrote:
+>>>>>
+>>>>>
+>>>>> On 02/12/2015 05:05 PM, Stephen Flowers wrote:
+>>>>>>
+>>>>>> So I ran cyclictest with an idle system and loaded with multiple
+>>>>>> instances of cat /dev/zero > /dev/null &
+>>>>>>
+>>>>>
+>>>>> When I suggested filesystem activity I was suggesting getting a kernel
+>>>>> filesystem and a physical I/O device to be active.
+>>>>> The load above is just two character devices so not a ton of kernel
+>>>>> code is active.
+>>>>>
+>>>>> If you are interested in pursuing this further I would write a script
+>>>>> that writes multiple files to MMC and then deletes them and do this in
+>>>>> a loop.
+>>>>
+>>>> The mmc/flash/usb are definitely hot paths for any -rt kernel
+>>>> and will really show any lurking latency issues.
+>>>>
+>>>>>
+>>>>> Perhaps Bruce knows if there is already a test like this in the
+>>>>> rt-tests.
+>>>>
+>>>> It seems like everyone has their own set of scripts that load
+>>>> cpu, io and memory. I now that we have a few @ Wind River that
+>>>> really kick the crap out of a system.
+>>>>
+>>>> rt-tests itself doesn't have any packaged, but it really sounds
+>>>> like something we should pull together.
+>>>>
+>>>> In the meantime, using a combo of lmbench, an application that
+>>>> allocates and frees memory and a "find /" will generate a pretty
+>>>> good load on the system.
+>>>>
+>>>>>
+>>>>>> #cyclictest -a 0 -p 99 -m -n -l 100000 -q
+>>>>>>
+>>>>>> I ran this command as shown by Toyoka at the 2014 Linuxcon Japan
+>>>>>> [http://events.linuxfoundation.org/sites/events/files/slides/toyooka_LCJ2014_v10.pdf]
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>> to compare against his results for the BBB.  I also threw in xenomai
+>>>>>> with kernel 3.8 for comparison.  For the standard kernel HR timers
+>>>>>> were
+>>>>>> disabled.
+>>>>>
+>>>>> I believe cyclictest requires HR timers for proper operation.
+>>>>
+>>>> You are correct.
+>>>>
+>>>>> This may explain the very strange numbers for standard kernel below.
+>>>>>
+>>>>>>
+>>>>>> [idle]
+>>>>>> preempt_rt: min 12 avg: 20 max: 59
+>>>>>> standard: min: 8005 avg: 309985,955 max: 619963985
+>>>>>> xenomai: min: 8 avg: 16: max 803
+>>>>>>
+>>>>>> [loaded]
+>>>>>> preempt_rt: min 16 avg: 21 max: 47
+>>>>>> standard: min: 15059 avg: 67769851 max: 135530885
+>>>>>> xenomai: min: 10 avg: 15: max 839
+>>>>>>
+>>>>>
+>>>>> Yes, the RT numbers now look reasonable.
+>>>>>
+>>>>> The standard kernel numbers are way out.  I can't believe the average
+>>>>> latency on an idle system was 5 minutes. Perhaps the dependency on HR
+>>>>> timers is more than I expect and without it the numbers are just
+>>>>> bonkers. I would have expected the numbers to have a floor near the
+>>>>> tick
+>>>>> rate w/o HR.
+>>>>> Bruce: Is that really what that number means??
+>>>>
+>>>> Without hrtimers, the results really can get out of whack.
+>>>> cyclictest should be yelling when it starts if they aren't found in
+>>>> the system. While I would expect them to be worse (i.e. jiffies
+>>>> granularity ~ 10ms without HRT), I wouldn't expect them to be that
+>>>> bad .. it more smells like cyclic test is using uninitialized variable
+>>>> when high res timers aren't in play.
+>>>>
+>>>>>
+>>>>> The loaded numbers are smaller for RT and std.  Strange.
+>>>>> It might be that the "load" is not very significant.
+>>>>
+>>>> Or the cache is staying hot, and hence -mm is staying out of the way.
+>>>> We've seen variants of this as well, keeping a close cpu in a tight
+>>>> loop, and then measuring interrupt latency to a second cpu results
+>>>> in better latencies.
+>>>>
+>>>>> Its not really the CPU load that were after.  Instead we are trying to
+>>>>> activate code paths that have premtption disabled due to critical
+>>>>> sections and locks.
+>>>>>
+>>>>> I don't know if your are interested in taking this to ground, but
+>>>>> if so
+>>>>> I would enable HR in std and try a load as I suggest above or is
+>>>>> already included in the rt-tests.
+>>>>> Bruce certainly knows more about this than I do and might suggest a
+>>>>> load script.
+>>>>
+>>>> See above.
+>>>>
+>>>> Also, let cyclictest trigger ftrace you your behalf, and the
+>>>> pathological
+>>>> case triggering the biggest spikes will be caught.
+>>>>
+>>>> Cheers,
+>>>>
+>>>> Bruce
+>>>>
+>>>>>
+>>>>>> Actually the preempt_rt results tie up pretty well with Toyooka
+>>>>>> above,
+>>>>>> leading me to conclude theres something off in my code that could be
+>>>>>> optimised - what do you guys think.
+>>>>>
+>>>>> Is your test code userspace or kernel space?
+>>>>> You can look at cyclictest to see if you missed something.
+>>>>> The RT wiki also has some examples for RT apps.
+>>>>>
+>>>>> https://rt.wiki.kernel.org/index.php/HOWTO:_Build_an_RT-application
+>>>>>
+>>>>>> Also, I ran a test with preempt_rt at 100Hz and there was maybe 10%
+>>>>>> improvement in latency.
+>>>>>>
+>>>>> That sounds reasonable to me.
+>>>>>
+>>>>>
+>>>>>> Steve
+>>>>>>
+>>>>>> On 12/02/2015 00:35, William Mills wrote:
+>>>>>>> + meta-ti
+>>>>>>> Please keep meta-ti in the loop.
+>>>>>>>
+>>>>>>> [Sorry for the shorting.  Thunderbird keep locking up when I tried
+>>>>>>> replay all in plain text to this message.]
+>>>>>>>
+>>>>>>> ~ 15-02-11, Stephen Flowers wrote:
+>>>>>>> > Thanks for your input.  Here are results of 1000 samples over a
+>>>>>>> > 10 second period:
+>>>>>>> >
+>>>>>>> > Interrupt response (microseconds)
+>>>>>>> > standard: min: 81, max:118, average: 84
+>>>>>>> > rt: min: 224, max: 289, average: 231
+>>>>>>> >
+>>>>>>> >Will share the .config later once I get on that machine.
+>>>>>>>
+>>>>>>> Steve I agree the numbers look strange.
+>>>>>>> There may well be something funny for RT going on for BBB.
+>>>>>>> TI is just starting to look into RT for BBB.
+>>>>>>>
+>>>>>>> I would like to see the cyclictest results under heavy system
+>>>>>>> load for
+>>>>>>> standard and RT kernels.  The whole point of RT is to limit the max
+>>>>>>> latency when the system is doing *anything*.
+>>>>>>>
+>>>>>>> I am not surprised that the standard kernel has good latency when
+>>>>>>> idle.
+>>>>>>> As you add load (filessystem is usually a good load) you should see
+>>>>>>> that max goes up a lot.
+>>>>>>>
+>>>>>>> Also, as Bruce says, some degradation of min and average and also
+>>>>>>> general system throughput is expected for RT.  That is the
+>>>>>>> trade-off.
+>>>>>>> I still think the number you are getting for RT seem high but I
+>>>>>>> don't
+>>>>>>> know what your test is doing in detail.  (I did read your
+>>>>>>> explanation.)
+>>>>>>> cyclictest should give us a standard baseline.
+>>>>>>>
+>>>>>>>
+>>>>>>> On 02/11/2015 10:25 AM, Bruce Ashfield wrote:
+>>>>>>>> On 15-02-11 03:50 AM, Stephen Flowers wrote:
+>>>>>>>>>
+>>>>>>>>> my bad, here is the patch set.
+>>>>>>>>> As for load, only system idle load for the results I posted
+>>>>>>>>> previously.
+>>>>>>>>> Will run some cyclic test next.
+>>>>>>>>
+>>>>>>>> One thing that did jump out was the difference in config_hz, you
+>>>>>>>> are taking a lot more ticks in the preempt-rt configuration. If
+>>>>>>>> you run both at the same hz, or with no_hz enabled, it would be
+>>>>>>>> interesting to see if there's a difference.
+>>>>>>>>
+>>>>>>>> Bruce
+>>>>>>
+>>>>
+>>>
+>>
+>
 
 
