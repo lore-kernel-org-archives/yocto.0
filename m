@@ -1,44 +1,29 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <jimr@spectralogic.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3088EE00546; Wed, 18 Feb 2015 10:44:31 -0800 (PST)
+	id A2DCAE00546; Wed, 18 Feb 2015 12:33:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02213E00283;
-	Wed, 18 Feb 2015 10:44:27 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id t1IIiORS018374
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 18 Feb 2015 10:44:24 -0800 (PST)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.174.1;
-	Wed, 18 Feb 2015 10:44:24 -0800
-Message-ID: <54E4DD68.3050504@windriver.com>
-Date: Wed, 18 Feb 2015 13:43:52 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail5.spectralogic.com (mail5.spectralogic.com [192.30.190.19])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D465E0033D
+	for <yocto@yoctoproject.org>; Wed, 18 Feb 2015 12:33:46 -0800 (PST)
+From: Jim Rafert <jimr@spectralogic.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Simple recipe quit working in dizzy
+Thread-Index: AdBLt6+7luzrg/VxQdSZuQrlFAPr+A==
+Date: Wed, 18 Feb 2015 20:33:43 +0000
+Message-ID: <86196249137E0843B2E0673D4F731E0C0108E3D34E@reactor.sldomain.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.200.15]
 MIME-Version: 1.0
-To: Stephen Flowers <sflowers1@gmail.com>, William Mills <wmills@ti.com>,
-	<yocto@yoctoproject.org>, <meta-ti@yoctoproject.org>
-References: <54DA0258.9070108@gmail.com>
-	<54DA12C7.8000000@windriver.com>	<54DA84F1.1080109@gmail.com>
-	<54DADD75.5000809@windriver.com>	<54DB17E7.8070308@gmail.com>
-	<54DB7455.4020402@windriver.com> <54DBF55D.3020001@ti.com>
-	<54DD2396.4000909@gmail.com> <54DD433E.2010703@ti.com>
-	<54DD86D9.5010007@windriver.com> <54E3C751.8030104@gmail.com>
-	<54E4A853.9000606@windriver.com> <54E4AD82.40405@gmail.com>
-In-Reply-To: <54E4AD82.40405@gmail.com>
-Subject: Re: Yocto Realtime tests on beaglebone black
+Subject: Simple recipe quit working in dizzy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,280 +35,262 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Feb 2015 18:44:31 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 18 Feb 2015 20:33:52 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_86196249137E0843B2E0673D4F731E0C0108E3D34Ereactorsldoma_"
 
-On 15-02-18 10:19 AM, Stephen Flowers wrote:
->
-> The device is just a gpio pin registered at /sys/class/gpio/gpioxx/value
-> Can you link to where I can read about the "well known" latency issues
-> running -rt with USB and flash? The rootfs is located on flash so could
-> this explain the cause?
+--_000_86196249137E0843B2E0673D4F731E0C0108E3D34Ereactorsldoma_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-I should have qualified well known as well known to anyone that has debugged
-latency spikes with USB and flash in the past.
+Hi all,
 
-I've been integrating and working with -rt since 2.6.10, so we've run
-into latency issues with flash and usb over the years. You'll also
-find references to it on the rt-users mailing list.
+The following recipe, spectra-postbuild_0.1.bb, quit working when I ported =
+from 1.6 daisy to 1.7.1 dizzy.  I include the recipe in my image by adding =
+it at the end of of the IMAGE_INSTALL_append variable in my local.conf file=
+.  The purpose of the recipe is simply to lay down some files that will lat=
+er be used by an installer script.  Two if the files are deposited in the r=
+oot directory, and the rest are placed in the /install/spectra directory, w=
+hich is created by the recipe.  Nothing is compiled or transformed in any w=
+ay.
 
-It's the locking, timeouts and the software layering that are part of
-usb and flash filesystems that cause the problems. Changing the
-interrupts to all be threaded, and/or use RCU is challenging and I've
-never seen a full conversion. That being said, newer kernels are
-definitely better on this front than the older ones.
+When I bitbake the recipe, then bitbake core-image-full-cmdline, both compl=
+ete without errors.
+When I look at the contents of the rpm file produced by the recipe, all the=
+ files and directories are listed.
+However, when I examine the file system images created, only the two files =
+that I place in the root directory (/) are there, and the entire /install d=
+irectory hierarchy is missing.
+If I modify the recipe such that the missing files are placed in a director=
+y that is already created by other recipes (/home/root), all the files are =
+deposited as expected.
 
-The rootfs being on flash would be ok, as long as frequent writes
-weren't happening, or if they were happening, from a sufficiently
-low priority thread.
+I have looked at section 5.6 of the Yocto reference manual, "Moving to the =
+Yocto Project 1.7 Release", but did not see anything that was obviously rel=
+evant.
 
-On that thought, have you looked at the processes running on your
-system ? Are there any high priority tasks that might be starving
-the handling of your interrupts ?
+Can someone tell me how to fix this for dizzy?
 
-Bruce
+######################################################
+# spectra-postbuild_0.1.bb
+######################################################
 
->
-> Steve
->
-> On 18/02/2015 14:57, Bruce Ashfield wrote:
->> On 15-02-17 05:57 PM, Stephen Flowers wrote:
->>>
->>> I loaded the system effectively and also changed my rt application to
->>> use asynchronous IO - I find the rt kernel is much tighter at periodic
->>> latency yet seems to be worse in the latency measurements. I'm asuming
->>> the non-deteministic nature of userland file IO operations is causing
->>> the additional latency, even when using aio. Setting the IO scheduler
->>> did not have an effect.
->>>
->>> Results show periodic timer latency in microseconds & interrupt latency
->>> in microseconds.
->>
->> The results are still puzzling, since that max value really shouldn't
->> be higher in the -rt kernel.
->>
->> What sort of device is backing the filesystem and IO ?  There are some
->> well known latency issues with USB and flash .. so that very well could
->> be causing some issues with -rt, and why you are getting what we expect
->> with the cyclictest results, but not in this run.
->>
->> Consider running cyclictest at the same time, and enabling the latency
->> tracing .. that will allow you to peek under the covers and see if
->> there's an obvious latency issue being triggered.
->>
->> Bruce
->>
->>
->>>
->>> Realtime
->>> Min        -324.0833333    159.75
->>> Max        367.8333333        526.4166667
->>> Avg        0.587306337        206.8056595
->>>
->>> Standard
->>> Min        -608.6666667    123.75
->>> Max        612                448.0833333
->>> Avg        0.5557039        153.5281784
->>>
->>> All help appreciated,
->>> Steve
->>>
->>> On 13/02/2015 05:08, Bruce Ashfield wrote:
->>>> On 2015-02-12 7:20 PM, William Mills wrote:
->>>>>
->>>>>
->>>>> On 02/12/2015 05:05 PM, Stephen Flowers wrote:
->>>>>>
->>>>>> So I ran cyclictest with an idle system and loaded with multiple
->>>>>> instances of cat /dev/zero > /dev/null &
->>>>>>
->>>>>
->>>>> When I suggested filesystem activity I was suggesting getting a kernel
->>>>> filesystem and a physical I/O device to be active.
->>>>> The load above is just two character devices so not a ton of kernel
->>>>> code is active.
->>>>>
->>>>> If you are interested in pursuing this further I would write a script
->>>>> that writes multiple files to MMC and then deletes them and do this in
->>>>> a loop.
->>>>
->>>> The mmc/flash/usb are definitely hot paths for any -rt kernel
->>>> and will really show any lurking latency issues.
->>>>
->>>>>
->>>>> Perhaps Bruce knows if there is already a test like this in the
->>>>> rt-tests.
->>>>
->>>> It seems like everyone has their own set of scripts that load
->>>> cpu, io and memory. I now that we have a few @ Wind River that
->>>> really kick the crap out of a system.
->>>>
->>>> rt-tests itself doesn't have any packaged, but it really sounds
->>>> like something we should pull together.
->>>>
->>>> In the meantime, using a combo of lmbench, an application that
->>>> allocates and frees memory and a "find /" will generate a pretty
->>>> good load on the system.
->>>>
->>>>>
->>>>>> #cyclictest -a 0 -p 99 -m -n -l 100000 -q
->>>>>>
->>>>>> I ran this command as shown by Toyoka at the 2014 Linuxcon Japan
->>>>>> [http://events.linuxfoundation.org/sites/events/files/slides/toyooka_LCJ2014_v10.pdf]
->>>>>>
->>>>>>
->>>>>>
->>>>>>
->>>>>> to compare against his results for the BBB.  I also threw in xenomai
->>>>>> with kernel 3.8 for comparison.  For the standard kernel HR timers
->>>>>> were
->>>>>> disabled.
->>>>>
->>>>> I believe cyclictest requires HR timers for proper operation.
->>>>
->>>> You are correct.
->>>>
->>>>> This may explain the very strange numbers for standard kernel below.
->>>>>
->>>>>>
->>>>>> [idle]
->>>>>> preempt_rt: min 12 avg: 20 max: 59
->>>>>> standard: min: 8005 avg: 309985,955 max: 619963985
->>>>>> xenomai: min: 8 avg: 16: max 803
->>>>>>
->>>>>> [loaded]
->>>>>> preempt_rt: min 16 avg: 21 max: 47
->>>>>> standard: min: 15059 avg: 67769851 max: 135530885
->>>>>> xenomai: min: 10 avg: 15: max 839
->>>>>>
->>>>>
->>>>> Yes, the RT numbers now look reasonable.
->>>>>
->>>>> The standard kernel numbers are way out.  I can't believe the average
->>>>> latency on an idle system was 5 minutes. Perhaps the dependency on HR
->>>>> timers is more than I expect and without it the numbers are just
->>>>> bonkers. I would have expected the numbers to have a floor near the
->>>>> tick
->>>>> rate w/o HR.
->>>>> Bruce: Is that really what that number means??
->>>>
->>>> Without hrtimers, the results really can get out of whack.
->>>> cyclictest should be yelling when it starts if they aren't found in
->>>> the system. While I would expect them to be worse (i.e. jiffies
->>>> granularity ~ 10ms without HRT), I wouldn't expect them to be that
->>>> bad .. it more smells like cyclic test is using uninitialized variable
->>>> when high res timers aren't in play.
->>>>
->>>>>
->>>>> The loaded numbers are smaller for RT and std.  Strange.
->>>>> It might be that the "load" is not very significant.
->>>>
->>>> Or the cache is staying hot, and hence -mm is staying out of the way.
->>>> We've seen variants of this as well, keeping a close cpu in a tight
->>>> loop, and then measuring interrupt latency to a second cpu results
->>>> in better latencies.
->>>>
->>>>> Its not really the CPU load that were after.  Instead we are trying to
->>>>> activate code paths that have premtption disabled due to critical
->>>>> sections and locks.
->>>>>
->>>>> I don't know if your are interested in taking this to ground, but
->>>>> if so
->>>>> I would enable HR in std and try a load as I suggest above or is
->>>>> already included in the rt-tests.
->>>>> Bruce certainly knows more about this than I do and might suggest a
->>>>> load script.
->>>>
->>>> See above.
->>>>
->>>> Also, let cyclictest trigger ftrace you your behalf, and the
->>>> pathological
->>>> case triggering the biggest spikes will be caught.
->>>>
->>>> Cheers,
->>>>
->>>> Bruce
->>>>
->>>>>
->>>>>> Actually the preempt_rt results tie up pretty well with Toyooka
->>>>>> above,
->>>>>> leading me to conclude theres something off in my code that could be
->>>>>> optimised - what do you guys think.
->>>>>
->>>>> Is your test code userspace or kernel space?
->>>>> You can look at cyclictest to see if you missed something.
->>>>> The RT wiki also has some examples for RT apps.
->>>>>
->>>>> https://rt.wiki.kernel.org/index.php/HOWTO:_Build_an_RT-application
->>>>>
->>>>>> Also, I ran a test with preempt_rt at 100Hz and there was maybe 10%
->>>>>> improvement in latency.
->>>>>>
->>>>> That sounds reasonable to me.
->>>>>
->>>>>
->>>>>> Steve
->>>>>>
->>>>>> On 12/02/2015 00:35, William Mills wrote:
->>>>>>> + meta-ti
->>>>>>> Please keep meta-ti in the loop.
->>>>>>>
->>>>>>> [Sorry for the shorting.  Thunderbird keep locking up when I tried
->>>>>>> replay all in plain text to this message.]
->>>>>>>
->>>>>>> ~ 15-02-11, Stephen Flowers wrote:
->>>>>>> > Thanks for your input.  Here are results of 1000 samples over a
->>>>>>> > 10 second period:
->>>>>>> >
->>>>>>> > Interrupt response (microseconds)
->>>>>>> > standard: min: 81, max:118, average: 84
->>>>>>> > rt: min: 224, max: 289, average: 231
->>>>>>> >
->>>>>>> >Will share the .config later once I get on that machine.
->>>>>>>
->>>>>>> Steve I agree the numbers look strange.
->>>>>>> There may well be something funny for RT going on for BBB.
->>>>>>> TI is just starting to look into RT for BBB.
->>>>>>>
->>>>>>> I would like to see the cyclictest results under heavy system
->>>>>>> load for
->>>>>>> standard and RT kernels.  The whole point of RT is to limit the max
->>>>>>> latency when the system is doing *anything*.
->>>>>>>
->>>>>>> I am not surprised that the standard kernel has good latency when
->>>>>>> idle.
->>>>>>> As you add load (filessystem is usually a good load) you should see
->>>>>>> that max goes up a lot.
->>>>>>>
->>>>>>> Also, as Bruce says, some degradation of min and average and also
->>>>>>> general system throughput is expected for RT.  That is the
->>>>>>> trade-off.
->>>>>>> I still think the number you are getting for RT seem high but I
->>>>>>> don't
->>>>>>> know what your test is doing in detail.  (I did read your
->>>>>>> explanation.)
->>>>>>> cyclictest should give us a standard baseline.
->>>>>>>
->>>>>>>
->>>>>>> On 02/11/2015 10:25 AM, Bruce Ashfield wrote:
->>>>>>>> On 15-02-11 03:50 AM, Stephen Flowers wrote:
->>>>>>>>>
->>>>>>>>> my bad, here is the patch set.
->>>>>>>>> As for load, only system idle load for the results I posted
->>>>>>>>> previously.
->>>>>>>>> Will run some cyclic test next.
->>>>>>>>
->>>>>>>> One thing that did jump out was the difference in config_hz, you
->>>>>>>> are taking a lot more ticks in the preempt-rt configuration. If
->>>>>>>> you run both at the same hz, or with no_hz enabled, it would be
->>>>>>>> interesting to see if there's a difference.
->>>>>>>>
->>>>>>>> Bruce
->>>>>>
->>>>
->>>
->>
->
+SUMMARY =3D "Post processing of configuration files for SpectraOS"
+SECTION =3D "base"
+LICENSE =3D "GPLv2"
+LIC_FILES_CHKSUM =3D "file://${WORKDIR}/COPYRIGHT;md5=3D349c872e0066155e181=
+8b786938876a4"
+PR =3D "r0"
+
+SRC_URI =3D "file://inittab \
+       file://fstab \
+       file://rsyslog.conf \
+           file://profile \
+       file://grub.cfg \
+       file://mount.sh \
+       file://RELEASE-NOTES.txt \
+       file://Spectra-OS-Version \
+       file://initializeCustomKernelModules \
+       file://firewall \
+       file://sysctl.conf \
+           file://InstallOS.sh \
+       file://COPYRIGHT \
+           file://WinCE_LCM.tar.bz \
+       "
+
+FILES_${PN} =3D  "/RELEASE-NOTES.txt \
+                /Spectra-OS-Version \
+                /install \
+                /install/spectra \
+                /install/spectra/InstallOS.sh \
+                /install/spectra/fstab \
+                /install/spectra/mount.sh \
+                /install/spectra/grub.cfg \
+                /install/spectra/rsyslog.conf \
+                /install/spectra/profile \
+                /install/spectra/inittab \
+                /install/spectra/WinCE_LCM.tar.bz \
+                /install/spectra/sysctl.conf \
+                /install/spectra/init.d \
+                /install/spectra/rc5.d \
+                /install/spectra/init.d/initializeCustomKernelModules \
+                /install/spectra/init.d/firewall \
+                "
+
+do_install () {
+    install -m 755 ${WORKDIR}/RELEASE-NOTES.txt ${D}
+    install -m 755 ${WORKDIR}/Spectra-OS-Version ${D}
+        install -d ${D}/install
+        install -d ${D}/install/spectra
+        install -m 544 ${WORKDIR}/inittab ${D}/install/spectra
+        install -m 755 ${WORKDIR}/fstab ${D}/install/spectra
+        install -m 755 ${WORKDIR}/rsyslog.conf ${D}/install/spectra
+        install -m 755 ${WORKDIR}/profile ${D}/install/spectra
+        install -m 755 ${WORKDIR}/grub.cfg ${D}/install/spectra
+        install -m 755 ${WORKDIR}/mount.sh ${D}/install/spectra
+        install -m 755 ${WORKDIR}/InstallOS.sh ${D}/install/spectra
+        install -m 755 ${WORKDIR}/sysctl.conf ${D}/install/spectra
+        install -m 644 ${WORKDIR}/WinCE_LCM.tar.bz ${D}/install/spectra
+        install -m 755 ${WORKDIR}/firewall ${D}/install/spectra
+        install -m 755 ${WORKDIR}/initializeCustomKernelModules ${D}/instal=
+l/spectra
+
+}
 
 
+
+
+
+
+--_000_86196249137E0843B2E0673D4F731E0C0108E3D34Ereactorsldoma_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
+0;}</style>
+</head>
+<body ocsi=3D"0" fpstyle=3D"1">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">Hi all,<br>
+<br>
+The following recipe, spectra-postbuild_0.1.bb, quit working when I ported =
+from 1.6 daisy to 1.7.1 dizzy.&nbsp; I include the recipe in my image by ad=
+ding it at the end of of the IMAGE_INSTALL_append variable in my local.conf=
+ file.&nbsp; The purpose of the recipe is
+ simply to lay down some files that will later be used by an installer scri=
+pt.&nbsp; Two if the files are deposited in the root directory, and the res=
+t are placed in the /install/spectra directory, which is created by the rec=
+ipe.&nbsp; Nothing is compiled or transformed
+ in any way.<br>
+<br>
+When I bitbake the recipe, then bitbake core-image-full-cmdline, both compl=
+ete without errors.<br>
+When I look at the contents of the rpm file produced by the recipe, all the=
+ files and directories are listed.<br>
+However, when I examine the file system images created, only the two files =
+that I place in the root directory (/) are there, and the entire /install d=
+irectory hierarchy is missing.<br>
+If I modify the recipe such that the missing files are placed in a director=
+y that is already created by other recipes (/home/root), all the files are =
+deposited as expected.<br>
+<br>
+I have looked at section 5.6 of the Yocto reference manual, &quot;Moving to=
+ the Yocto Project 1.7 Release&quot;, but did not see anything that was obv=
+iously relevant.<br>
+<br>
+Can someone tell me how to fix this for dizzy?<br>
+<br>
+######################################################<br>
+# spectra-postbuild_0.1.bb<br>
+######################################################<br>
+<br>
+SUMMARY =3D &quot;Post processing of configuration files for SpectraOS&quot=
+;<br>
+SECTION =3D &quot;base&quot;<br>
+LICENSE =3D &quot;GPLv2&quot;<br>
+LIC_FILES_CHKSUM =3D &quot;file://${WORKDIR}/COPYRIGHT;md5=3D349c872e006615=
+5e1818b786938876a4&quot;<br>
+PR =3D &quot;r0&quot;<br>
+<br>
+SRC_URI =3D &quot;file://inittab \<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://fstab \<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://rsyslog.conf \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; file://profile=
+ \<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://grub.cfg \<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://mount.sh \<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://RELEASE-NOTES.txt \<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://Spectra-OS-Version \<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://initializeCustomKernelModules \<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://firewall \<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://sysctl.conf \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; file://Install=
+OS.sh \<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://COPYRIGHT \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; file://WinCE_L=
+CM.tar.bz \<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &quot;<br>
+<br>
+FILES_${PN} =3D&nbsp; &quot;/RELEASE-NOTES.txt \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /Spectra-OS-Version \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /install \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /install/spectra \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /install/spectra/InstallOS.sh \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /install/spectra/fstab \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /install/spectra/mount.sh \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /install/spectra/grub.cfg \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /install/spectra/rsyslog.conf \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /install/spectra/profile \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /install/spectra/inittab \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /install/spectra/WinCE_LCM.tar.bz \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /install/spectra/sysctl.conf \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /install/spectra/init.d \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /install/spectra/rc5.d \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /install/spectra/init.d/initializeCustomKernelModules \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; /install/spectra/init.d/firewall \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; &quot;<br>
+<br>
+do_install () {<br>
+&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/RELEASE-NOTES.txt ${D}<br>
+&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/Spectra-OS-Version ${D}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -d ${D}/install<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -d ${D}/install/spectra<=
+br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -m 544 ${WORKDIR}/initta=
+b ${D}/install/spectra<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/fstab =
+${D}/install/spectra<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/rsyslo=
+g.conf ${D}/install/spectra<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/profil=
+e ${D}/install/spectra<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/grub.c=
+fg ${D}/install/spectra<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/mount.=
+sh ${D}/install/spectra<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/Instal=
+lOS.sh ${D}/install/spectra<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/sysctl=
+.conf ${D}/install/spectra<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -m 644 ${WORKDIR}/WinCE_=
+LCM.tar.bz ${D}/install/spectra<br>
+&nbsp; &nbsp; &nbsp; &nbsp; install -m 755 ${WORKDIR}/firewall ${D}/install=
+/spectra<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/initia=
+lizeCustomKernelModules ${D}/install/spectra<br>
+<br>
+}<br>
+<br>
+<br>
+<br>
+<div><br>
+<div style=3D"font-family:Tahoma; font-size:13px"><br>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_86196249137E0843B2E0673D4F731E0C0108E3D34Ereactorsldoma_--
