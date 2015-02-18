@@ -1,46 +1,43 @@
-Return-Path: <abhinavbipnesh@avaya.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9268AE00757; Wed, 18 Feb 2015 05:55:03 -0800 (PST)
+	id C890CE0081E; Wed, 18 Feb 2015 06:58:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.152.71.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from de307622-de-outbound.net.avaya.com
-	(de307622-de-outbound.net.avaya.com [198.152.71.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6EC4E0034E
-	for <yocto@yoctoproject.org>; Wed, 18 Feb 2015 05:55:00 -0800 (PST)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AjgFAESZ5FSHCzIm/2dsb2JhbABbgkMhIlJewC6FTIJPAoEdQwEBAQEBAXyEDgEBAxIbXgEVFVYmAQQbGogNAaoUhH+idwEKAQEBAR2PTINOgRQFhV6JZZAkg36ILCKCAR2BUIIzfwEBAQ
-X-IronPort-AV: E=Sophos;i="5.09,602,1418101200"; d="scan'208,217";a="91782008"
-Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
-	([135.11.50.38]) by de307622-de-outbound.net.avaya.com with ESMTP;
-	18 Feb 2015 08:54:58 -0500
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-FFEXHC02.global.avaya.com) ([135.64.58.12])
-	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/AES128-SHA;
-	18 Feb 2015 08:54:57 -0500
-Received: from AZ-FFEXMB01.global.avaya.com ([fe80::39ee:75fe:e67a:cf4a]) by
-	AZ-FFEXHC02.global.avaya.com ([135.64.58.12]) with mapi id
-	14.03.0174.001; Wed, 18 Feb 2015 14:54:55 +0100
-From: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Error while building x264 for FreeScale 
-Thread-Index: AdBLgngdb19kw5arQOSzbwaRHm7M2A==
-Date: Wed, 18 Feb 2015 13:54:55 +0000
-Message-ID: <F38A866CD026F746A3BF0928A84397BE3A353B60@AZ-FFEXMB01.global.avaya.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.64.58.45]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B777E0080C;
+	Wed, 18 Feb 2015 06:57:59 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id t1IEvt64015793
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 18 Feb 2015 06:57:55 -0800 (PST)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.174.1;
+	Wed, 18 Feb 2015 06:57:55 -0800
+Message-ID: <54E4A853.9000606@windriver.com>
+Date: Wed, 18 Feb 2015 09:57:23 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
-Subject: Error while building x264 for FreeScale
+To: Stephen Flowers <sflowers1@gmail.com>, William Mills <wmills@ti.com>,
+	<yocto@yoctoproject.org>, <meta-ti@yoctoproject.org>
+References: <54DA0258.9070108@gmail.com>
+	<54DA12C7.8000000@windriver.com>	<54DA84F1.1080109@gmail.com>
+	<54DADD75.5000809@windriver.com>	<54DB17E7.8070308@gmail.com>
+	<54DB7455.4020402@windriver.com> <54DBF55D.3020001@ti.com>
+	<54DD2396.4000909@gmail.com> <54DD433E.2010703@ti.com>
+	<54DD86D9.5010007@windriver.com> <54E3C751.8030104@gmail.com>
+In-Reply-To: <54E3C751.8030104@gmail.com>
+Subject: Re: Yocto Realtime tests on beaglebone black
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,153 +49,235 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Feb 2015 13:55:03 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_F38A866CD026F746A3BF0928A84397BE3A353B60AZFFEXMB01globa_"
+X-List-Received-Date: Wed, 18 Feb 2015 14:58:00 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_F38A866CD026F746A3BF0928A84397BE3A353B60AZFFEXMB01globa_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hi All,
-
-I was trying to build x264 for FreeScale PowerPc and it getting failed with=
- below error log
-
-Log data follows:
-| DEBUG: Executing python function sysroot_cleansstate
-| DEBUG: Python function sysroot_cleansstate finished
-| DEBUG: Executing shell function do_configure
-| No working C compiler found.
-
-When I check the config.log file it reports below error
-
-Failed commandline was:
---------------------------------------------------
-powerpc-fsl-linux-gcc  -m32 -mhard-float -mcpu=3De5500 --sysroot=3D<sysroot=
- dir> conftest.c  -  O2 -pipe -g -feliminate-unused-debug-types -Wall -I. -=
-I$(SRCPATH) -sysroot=3D<sysroot dir>  - maltivec -mabi=3Daltivec   -Wl,-O1 =
--Wl,--hash-style=3Dgnu -Wl,--as-needed --sysroot=3D/home/vmprodev/QorIQ-SDK=
--V1.7-20141218-yocto/build_t1040rdb_release/tmp/sysroots/       t1040rdb -l=
-m -o conftest
-conftest.c:1:0: error: AltiVec not supported in this target
-  int main () {  return 0; }
-  ^
---------------------------------------------------
-Failed program was:
---------------------------------------------------
-int main () {  return 0; }
---------------------------------------------------
-DIED: No working C compiler found.
-
-So any thoughts how to fix this issue.
-
-Thanks,
-Abhinav
-
---_000_F38A866CD026F746A3BF0928A84397BE3A353B60AZFFEXMB01globa_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 15-02-17 05:57 PM, Stephen Flowers wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi All,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I was trying to build x264 for FreeScale PowerPc and=
- it getting failed with below error log<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Log data follows:<o:p></o:p></p>
-<p class=3D"MsoNormal">| DEBUG: Executing python function sysroot_cleanssta=
-te<o:p></o:p></p>
-<p class=3D"MsoNormal">| DEBUG: Python function sysroot_cleansstate finishe=
-d<o:p></o:p></p>
-<p class=3D"MsoNormal">| DEBUG: Executing shell function do_configure<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal">| No working C compiler found.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">When I check the config.log file it reports below er=
-ror<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Failed commandline was:<o:p></o:p></p>
-<p class=3D"MsoNormal">--------------------------------------------------<o=
-:p></o:p></p>
-<p class=3D"MsoNormal">powerpc-fsl-linux-gcc&nbsp; -m32 -mhard-float -mcpu=
-=3De5500 --sysroot=3D&lt;sysroot dir&gt; conftest.c&nbsp; -&nbsp; O2 -pipe =
--g -feliminate-unused-debug-types -Wall -I. -I$(SRCPATH) &#8211;sysroot=3D&=
-lt;sysroot dir&gt; &nbsp;- maltivec -mabi=3Daltivec&nbsp;&nbsp; -Wl,-O1 -Wl=
-,--hash-style=3Dgnu
- -Wl,--as-needed --sysroot=3D/home/vmprodev/QorIQ-SDK-V1.7-20141218-yocto/b=
-uild_t1040rdb_release/tmp/sysroots/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; t10=
-40rdb -lm -o conftest<o:p></o:p></p>
-<p class=3D"MsoNormal">conftest.c:1:0: error: AltiVec not supported in this=
- target<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp; int main () {&nbsp; return 0; }<o:p></o:p></p=
+> I loaded the system effectively and also changed my rt application to
+> use asynchronous IO - I find the rt kernel is much tighter at periodic
+> latency yet seems to be worse in the latency measurements. I'm asuming
+> the non-deteministic nature of userland file IO operations is causing
+> the additional latency, even when using aio. Setting the IO scheduler
+> did not have an effect.
 >
-<p class=3D"MsoNormal">&nbsp; ^<o:p></o:p></p>
-<p class=3D"MsoNormal">--------------------------------------------------<o=
-:p></o:p></p>
-<p class=3D"MsoNormal">Failed program was:<o:p></o:p></p>
-<p class=3D"MsoNormal">--------------------------------------------------<o=
-:p></o:p></p>
-<p class=3D"MsoNormal">int main () {&nbsp; return 0; }<o:p></o:p></p>
-<p class=3D"MsoNormal">--------------------------------------------------<o=
-:p></o:p></p>
-<p class=3D"MsoNormal">DIED: No working C compiler found.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">So any thoughts how to fix this issue.<o:p></o:p></p=
->
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Abhinav<o:p></o:p></p>
-</div>
-</body>
-</html>
+> Results show periodic timer latency in microseconds & interrupt latency
+> in microseconds.
 
---_000_F38A866CD026F746A3BF0928A84397BE3A353B60AZFFEXMB01globa_--
+The results are still puzzling, since that max value really shouldn't
+be higher in the -rt kernel.
+
+What sort of device is backing the filesystem and IO ?  There are some
+well known latency issues with USB and flash .. so that very well could
+be causing some issues with -rt, and why you are getting what we expect
+with the cyclictest results, but not in this run.
+
+Consider running cyclictest at the same time, and enabling the latency
+tracing .. that will allow you to peek under the covers and see if
+there's an obvious latency issue being triggered.
+
+Bruce
+
+
+>
+> Realtime
+> Min        -324.0833333    159.75
+> Max        367.8333333        526.4166667
+> Avg        0.587306337        206.8056595
+>
+> Standard
+> Min        -608.6666667    123.75
+> Max        612                448.0833333
+> Avg        0.5557039        153.5281784
+>
+> All help appreciated,
+> Steve
+>
+> On 13/02/2015 05:08, Bruce Ashfield wrote:
+>> On 2015-02-12 7:20 PM, William Mills wrote:
+>>>
+>>>
+>>> On 02/12/2015 05:05 PM, Stephen Flowers wrote:
+>>>>
+>>>> So I ran cyclictest with an idle system and loaded with multiple
+>>>> instances of cat /dev/zero > /dev/null &
+>>>>
+>>>
+>>> When I suggested filesystem activity I was suggesting getting a kernel
+>>> filesystem and a physical I/O device to be active.
+>>> The load above is just two character devices so not a ton of kernel
+>>> code is active.
+>>>
+>>> If you are interested in pursuing this further I would write a script
+>>> that writes multiple files to MMC and then deletes them and do this in
+>>> a loop.
+>>
+>> The mmc/flash/usb are definitely hot paths for any -rt kernel
+>> and will really show any lurking latency issues.
+>>
+>>>
+>>> Perhaps Bruce knows if there is already a test like this in the
+>>> rt-tests.
+>>
+>> It seems like everyone has their own set of scripts that load
+>> cpu, io and memory. I now that we have a few @ Wind River that
+>> really kick the crap out of a system.
+>>
+>> rt-tests itself doesn't have any packaged, but it really sounds
+>> like something we should pull together.
+>>
+>> In the meantime, using a combo of lmbench, an application that
+>> allocates and frees memory and a "find /" will generate a pretty
+>> good load on the system.
+>>
+>>>
+>>>> #cyclictest -a 0 -p 99 -m -n -l 100000 -q
+>>>>
+>>>> I ran this command as shown by Toyoka at the 2014 Linuxcon Japan
+>>>> [http://events.linuxfoundation.org/sites/events/files/slides/toyooka_LCJ2014_v10.pdf]
+>>>>
+>>>>
+>>>>
+>>>> to compare against his results for the BBB.  I also threw in xenomai
+>>>> with kernel 3.8 for comparison.  For the standard kernel HR timers were
+>>>> disabled.
+>>>
+>>> I believe cyclictest requires HR timers for proper operation.
+>>
+>> You are correct.
+>>
+>>> This may explain the very strange numbers for standard kernel below.
+>>>
+>>>>
+>>>> [idle]
+>>>> preempt_rt: min 12 avg: 20 max: 59
+>>>> standard: min: 8005 avg: 309985,955 max: 619963985
+>>>> xenomai: min: 8 avg: 16: max 803
+>>>>
+>>>> [loaded]
+>>>> preempt_rt: min 16 avg: 21 max: 47
+>>>> standard: min: 15059 avg: 67769851 max: 135530885
+>>>> xenomai: min: 10 avg: 15: max 839
+>>>>
+>>>
+>>> Yes, the RT numbers now look reasonable.
+>>>
+>>> The standard kernel numbers are way out.  I can't believe the average
+>>> latency on an idle system was 5 minutes. Perhaps the dependency on HR
+>>> timers is more than I expect and without it the numbers are just
+>>> bonkers. I would have expected the numbers to have a floor near the tick
+>>> rate w/o HR.
+>>> Bruce: Is that really what that number means??
+>>
+>> Without hrtimers, the results really can get out of whack.
+>> cyclictest should be yelling when it starts if they aren't found in
+>> the system. While I would expect them to be worse (i.e. jiffies
+>> granularity ~ 10ms without HRT), I wouldn't expect them to be that
+>> bad .. it more smells like cyclic test is using uninitialized variable
+>> when high res timers aren't in play.
+>>
+>>>
+>>> The loaded numbers are smaller for RT and std.  Strange.
+>>> It might be that the "load" is not very significant.
+>>
+>> Or the cache is staying hot, and hence -mm is staying out of the way.
+>> We've seen variants of this as well, keeping a close cpu in a tight
+>> loop, and then measuring interrupt latency to a second cpu results
+>> in better latencies.
+>>
+>>> Its not really the CPU load that were after.  Instead we are trying to
+>>> activate code paths that have premtption disabled due to critical
+>>> sections and locks.
+>>>
+>>> I don't know if your are interested in taking this to ground, but if so
+>>> I would enable HR in std and try a load as I suggest above or is
+>>> already included in the rt-tests.
+>>> Bruce certainly knows more about this than I do and might suggest a
+>>> load script.
+>>
+>> See above.
+>>
+>> Also, let cyclictest trigger ftrace you your behalf, and the pathological
+>> case triggering the biggest spikes will be caught.
+>>
+>> Cheers,
+>>
+>> Bruce
+>>
+>>>
+>>>> Actually the preempt_rt results tie up pretty well with Toyooka above,
+>>>> leading me to conclude theres something off in my code that could be
+>>>> optimised - what do you guys think.
+>>>
+>>> Is your test code userspace or kernel space?
+>>> You can look at cyclictest to see if you missed something.
+>>> The RT wiki also has some examples for RT apps.
+>>>
+>>> https://rt.wiki.kernel.org/index.php/HOWTO:_Build_an_RT-application
+>>>
+>>>> Also, I ran a test with preempt_rt at 100Hz and there was maybe 10%
+>>>> improvement in latency.
+>>>>
+>>> That sounds reasonable to me.
+>>>
+>>>
+>>>> Steve
+>>>>
+>>>> On 12/02/2015 00:35, William Mills wrote:
+>>>>> + meta-ti
+>>>>> Please keep meta-ti in the loop.
+>>>>>
+>>>>> [Sorry for the shorting.  Thunderbird keep locking up when I tried
+>>>>> replay all in plain text to this message.]
+>>>>>
+>>>>> ~ 15-02-11, Stephen Flowers wrote:
+>>>>> > Thanks for your input.  Here are results of 1000 samples over a
+>>>>> > 10 second period:
+>>>>> >
+>>>>> > Interrupt response (microseconds)
+>>>>> > standard: min: 81, max:118, average: 84
+>>>>> > rt: min: 224, max: 289, average: 231
+>>>>> >
+>>>>> >Will share the .config later once I get on that machine.
+>>>>>
+>>>>> Steve I agree the numbers look strange.
+>>>>> There may well be something funny for RT going on for BBB.
+>>>>> TI is just starting to look into RT for BBB.
+>>>>>
+>>>>> I would like to see the cyclictest results under heavy system load for
+>>>>> standard and RT kernels.  The whole point of RT is to limit the max
+>>>>> latency when the system is doing *anything*.
+>>>>>
+>>>>> I am not surprised that the standard kernel has good latency when
+>>>>> idle.
+>>>>> As you add load (filessystem is usually a good load) you should see
+>>>>> that max goes up a lot.
+>>>>>
+>>>>> Also, as Bruce says, some degradation of min and average and also
+>>>>> general system throughput is expected for RT.  That is the trade-off.
+>>>>> I still think the number you are getting for RT seem high but I don't
+>>>>> know what your test is doing in detail.  (I did read your
+>>>>> explanation.)
+>>>>> cyclictest should give us a standard baseline.
+>>>>>
+>>>>>
+>>>>> On 02/11/2015 10:25 AM, Bruce Ashfield wrote:
+>>>>>> On 15-02-11 03:50 AM, Stephen Flowers wrote:
+>>>>>>>
+>>>>>>> my bad, here is the patch set.
+>>>>>>> As for load, only system idle load for the results I posted
+>>>>>>> previously.
+>>>>>>> Will run some cyclic test next.
+>>>>>>
+>>>>>> One thing that did jump out was the difference in config_hz, you
+>>>>>> are taking a lot more ticks in the preempt-rt configuration. If
+>>>>>> you run both at the same hz, or with no_hz enabled, it would be
+>>>>>> interesting to see if there's a difference.
+>>>>>>
+>>>>>> Bruce
+>>>>
+>>
+>
+
+
