@@ -1,53 +1,55 @@
-Return-Path: <gmshastri@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB60EE00757; Wed, 18 Feb 2015 03:43:37 -0800 (PST)
+	id 4203EE003A8; Wed, 18 Feb 2015 03:52:10 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gmshastri[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.178 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ob0-f178.google.com (mail-ob0-f178.google.com
-	[209.85.214.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52EE0E0034A
-	for <yocto@yoctoproject.org>; Wed, 18 Feb 2015 03:43:36 -0800 (PST)
-Received: by mail-ob0-f178.google.com with SMTP id uz6so843221obc.9
-	for <yocto@yoctoproject.org>; Wed, 18 Feb 2015 03:43:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=lVkuflspkfxA75d68SqNZYgCpHdHF92g+k+4wm41g4s=;
-	b=nL1t9JW37xnrrCm7x5zd9n05zkFl91DUN9Zp2qmP3cHyfLYGFQ84RgLM3sgKLQOKCb
-	4+B89g6P0GlZz8WXkiZtOhyH3cHmJQ7eYFUVJjvg5+eAYE/bJED7DG2ptkonDRIWNZIe
-	clkOKVgZ0zrRF5D8x2F5xF3MHJc6ATvggoupYifGYrrEQkE4o4Zi458ZCx7/Mh4MhrvU
-	goMq2goMCp3XPRCdCkX9qGmQQcdShTpQN13cftcmMOQgXfn9GqbLxWv4bKGY8m2QYASl
-	rGKvPXvP9NOicK28QGE3YoQs2rxrxWeXc2ccztbL8OTeCdPYC20fh6ea2u1o57M8EwcP
-	vSzw==
-MIME-Version: 1.0
-X-Received: by 10.182.249.102 with SMTP id yt6mr13964360obc.30.1424259815916; 
-	Wed, 18 Feb 2015 03:43:35 -0800 (PST)
-Received: by 10.202.104.144 with HTTP; Wed, 18 Feb 2015 03:43:35 -0800 (PST)
-In-Reply-To: <CAP2S6e5oBGTDWNJ1eT9YsnWAV+xeDEBKKbCE2h3_34rmJu7ycg@mail.gmail.com>
-References: <CAP2S6e5oBGTDWNJ1eT9YsnWAV+xeDEBKKbCE2h3_34rmJu7ycg@mail.gmail.com>
-Date: Wed, 18 Feb 2015 17:13:35 +0530
-Message-ID: <CAE_REAtVw=g-6Xb+PVt9gA3xmXVxN=+UUtjfTONYS4+i_wozAA@mail.gmail.com>
-From: Gaurang Shastri <gmshastri@gmail.com>
-To: Valentin Le bescond <valentin.lebescond@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to switch kernel version without touching PREFERED VERSION
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20D9AE0034A
+	for <yocto@yoctoproject.org>; Wed, 18 Feb 2015 03:52:08 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	t1IBq39e023709; Wed, 18 Feb 2015 11:52:03 GMT
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id NkZ7QESWTrew; Wed, 18 Feb 2015 11:52:03 +0000 (GMT)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	t1IBpn7q023689
+	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+	Wed, 18 Feb 2015 11:52:00 GMT
+Message-ID: <1424260309.25541.23.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 18 Feb 2015 11:51:49 +0000
+In-Reply-To: <BCB8524E-91CB-41F6-83C0-7B90E60BC82D@gmail.com>
+References: <CAMKF1souj1-FLTjkQb0y8myTiKMJyNeAa7wiM5-pW1fz0EtheA@mail.gmail.com>
+	<CAJTo0LaN3HMhjrpii2pPbJw5zWbywgr1keZe=iQmuKFMFFf=gQ@mail.gmail.com>
+	<CAMKF1sq8NsuNYZDQRPtXruBeRndOP+0qwBuTO2ahb6q-fS8XGw@mail.gmail.com>
+	<CAJTo0LYpKbwOHg-DBMJycy+KNayTCsnhToJR8K-REKZ2jxhnhw@mail.gmail.com>
+	<EA0C9DE9-9E5F-4B74-8464-138895268F2F@gmail.com>
+	<CAJTo0LbSFesauhA_H39Znd07SR5JCs45izy2us=cFWVGXtW8hg@mail.gmail.com>
+	<80920FD0-CA08-45D7-9A41-3971FB2D58D7@gmail.com>
+	<CAJTo0LbqTrQzk0KeHDxYnmtZrrFdZD12DWrjA=Y4RtbQzwM0ow@mail.gmail.com>
+	<CAMKF1sr7bYpKqzTmvX5rCuYc-Rb2se7Vsrr4aYA43E_b1Z=vWA@mail.gmail.com>
+	<CACS+7ZRNm2Y0SJn76imF6DNoEsL2+ppC1zG45iGspOmL0EN0BQ@mail.gmail.com>
+	<CAMKF1sqjQm+n5xKfS0utm9B9h_S+RYWrgnGUCboRNCk5XSUmzg@mail.gmail.com>
+	<1423908404.20217.100.camel@linuxfoundation.org>
+	<CAMKF1sofS7MteZnPsTYRNAcMwrrh=T3FP+ASmAOGDMhcwyXB4g@mail.gmail.com>
+	<1424245575.25541.19.camel@linuxfoundation.org>
+	<BCB8524E-91CB-41F6-83C0-7B90E60BC82D@gmail.com>
+X-Mailer: Evolution 3.12.7-0ubuntu1 
+Mime-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
+	Dan McGregor <danismostlikely@gmail.com>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] upcoming glibc 2.21 and gcc 4.9 upgrade
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,91 +61,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Feb 2015 11:43:38 -0000
-Content-Type: multipart/alternative; boundary=e89a8f64392c654b05050f5b54f7
+X-List-Received-Date: Wed, 18 Feb 2015 11:52:10 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---e89a8f64392c654b05050f5b54f7
-Content-Type: text/plain; charset=UTF-8
+On Wed, 2015-02-18 at 01:01 -0800, Khem Raj wrote:
+> OK thats why I am not seeing it on my qemux86 build. 
+> 
+> this leaves us with only one problem - glibc/qemuarm issue
+> 
+> http://errors.yoctoproject.org/Errors/Details/8679/
+> 
+> I have seen this error with eglibc-2.19 and glibc 2.20 as well on x86 and arm as well in cases when using
+> toolchain from sstate and rebuilding glibc with that. I assume this could be  unrelated to glibc upgrade
+> and may be a latent problem. Could be missing dependency on a native tool or some such. I have been attributing it to gold
+> but that just might have been a red herring.
+> 
+> I will see if I can get to reproduce it.
 
-Well, if you want to use your own kernel source, you can use something like
-this:
-==
-inherit kernel externalsrc
-EXTERNALSRC = "/home/xyz/linux-stable"
-S = "${EXTERNALSRC}"
-...
-==
+I tried another build with the three patches from your oe-core contrib
+branch applied. Error report out is:
 
-//Gaurang Shastri
+http://errors.yoctoproject.org/Errors/Search/?items=10&query=b75fed99f2aa86b49844dd0cf06991767f6f26d3
+
+i.e. we're still seeing SSE errors in glibc builds. Am I missing some
+patches or something?
+
+Cheers,
+
+Richard
 
 
-On Wed, Feb 18, 2015 at 4:23 PM, Valentin Le bescond <
-valentin.lebescond@gmail.com> wrote:
 
-> Hi all,
->
-> I'm working an a meta-wolfson layer to add the wolfson audio card support
-> to the meta-raspberrypi layer.
->
-> It's a very simple set of patche, but they apply to linux kernel 3.10.*
->
-> And the PREFERED_VERSION of the machine configuration (raspberrypi.conf)
-> is  :
-> PREFERRED_VERSION_linux-raspberrypi ?= "3.12.%"
->
-> I would like to build my images using
-> linux-raspberrypi_3.10.38.bb
-> instead of
-> linux-raspberrypi_3.12.26.bb
->
-> What is the most "best practice" whay to achive this ?
->
-> Best regards
->
-> Valentin
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
 
---e89a8f64392c654b05050f5b54f7
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Well, if you want to use your own kernel source, you =
-can use something like this:<br>=3D=3D<br>inherit kernel externalsrc<br>EXT=
-ERNALSRC =3D &quot;/home/xyz/linux-stable&quot;<br>S =3D &quot;${EXTERNALSR=
-C}&quot;<br>...<br>=3D=3D<br><br></div>//Gaurang Shastri<br><div><br></div>=
-</div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Wed, Feb=
- 18, 2015 at 4:23 PM, Valentin Le bescond <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:valentin.lebescond@gmail.com" target=3D"_blank">valentin.lebescond@g=
-mail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=
-=3D"ltr"><div><div><div><div><div><div>Hi all,<br><br></div>I&#39;m working=
- an a meta-wolfson layer to add the wolfson audio card support to the meta-=
-raspberrypi layer.<br><br></div>It&#39;s a very simple set of patche, but t=
-hey apply to linux kernel 3.10.*<br><br></div>And the PREFERED_VERSION of t=
-he machine configuration (raspberrypi.conf) is=C2=A0 :<br>PREFERRED_VERSION=
-_linux-raspberrypi ?=3D &quot;3.12.%&quot;<br></div><br></div>I would like =
-to build my images using <br><a href=3D"http://linux-raspberrypi_3.10.38.bb=
-" target=3D"_blank">linux-raspberrypi_3.10.38.bb</a><br></div>instead of <b=
-r><a href=3D"http://linux-raspberrypi_3.12.26.bb" target=3D"_blank">linux-r=
-aspberrypi_3.12.26.bb</a><br><div><div><br></div><div>What is the most &quo=
-t;best practice&quot; whay to achive this ?<br><br></div><div>Best regards<=
-span class=3D"HOEnZb"><font color=3D"#888888"><br><br></font></span></div><=
-span class=3D"HOEnZb"><font color=3D"#888888"><div>Valentin<br></div><div><=
-div><br></div></div></font></span></div></div>
-<br>--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div>
-
---e89a8f64392c654b05050f5b54f7--
