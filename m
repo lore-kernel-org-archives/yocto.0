@@ -1,6 +1,6 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BC324E00546; Thu, 19 Feb 2015 01:39:44 -0800 (PST)
+	id 4FB94E00546; Thu, 19 Feb 2015 02:11:56 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,18 +10,18 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A889BE00345
-	for <yocto@yoctoproject.org>; Thu, 19 Feb 2015 01:39:40 -0800 (PST)
-Received: from [99.240.204.5] (port=55965 helo=crashcourse.ca)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4A3DE00345
+	for <yocto@yoctoproject.org>; Thu, 19 Feb 2015 02:11:53 -0800 (PST)
+Received: from [99.240.204.5] (port=56124 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1YONa3-0002xL-ND
-	for yocto@yoctoproject.org; Thu, 19 Feb 2015 04:39:35 -0500
-Date: Thu, 19 Feb 2015 04:39:35 -0500 (EST)
+	id 1YOO5F-0005Ig-6f
+	for yocto@yoctoproject.org; Thu, 19 Feb 2015 05:11:49 -0500
+Date: Thu, 19 Feb 2015 05:11:49 -0500 (EST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@localhost
 To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1502190435010.20590@localhost>
+Message-ID: <alpine.LFD.2.11.1502190508290.29947@localhost>
 User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -33,7 +33,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Subject: solve gcc-5.0.0 build errors with "-P" option to cpp?
+Subject: "cross-localedef-native" build error (with gcc-5.0.0)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,27 +45,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Feb 2015 09:39:44 -0000
+X-List-Received-Date: Thu, 19 Feb 2015 10:11:56 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-  as i mentioned recently, using fedora rawhide and having recently
-upgraded to gcc-5.0.0, some packages (eg., ncurses-native) failed to
-build for this reason:
+  didn't see any mention of this in YP's bugzilla:
 
- https://gcc.gnu.org/bugzilla/show_bug.cgi?id=60723
+gcc  -o localedef charmap.o charmap-dir.o ld-address.o ld-collate.o ld-ctype.o ld-identification.o ld-measurement.o ld-messages.o ld-monetary.o ld-name.o ld-numeric.o ld-paper.o ld-telephone.o ld-time.o linereader.o localedef.o locarchive.o locfile.o repertoire.o simple-hash.o xmalloc.o xstrdup.o argp-ba.o argp-eexst.o argp-fmtstream.o argp-help.o argp-parse.o argp-pv.o argp-xinl.o error.o getopt.o getopt1.o md5.o obstack.o asprintf.o getdelim.o localedef_extra.o obstack_printf.o vasprintf.o
+argp-help.o: In function `argp_fmtstream_write':
+argp-help.c:(.text+0x1da0): multiple definition of `argp_fmtstream_write'
+argp-fmtstream.o:argp-fmtstream.c:(.text+0x7a0): first defined here
+argp-help.o: In function `argp_fmtstream_puts':
+argp-help.c:(.text+0x1df0): multiple definition of `argp_fmtstream_puts'
+argp-fmtstream.o:argp-fmtstream.c:(.text+0x860): first defined here
+argp-help.o: In function `argp_fmtstream_putc':
+argp-help.c:(.text+0x1e60): multiple definition of `argp_fmtstream_putc'
+argp-fmtstream.o:argp-fmtstream.c:(.text+0x800): first defined here
+argp-help.o: In function `argp_fmtstream_set_lmargin':
+argp-help.c:(.text+0x1eb0): multiple definition of `argp_fmtstream_set_lmargin'
+argp-fmtstream.o:argp-fmtstream.c:(.text+0x5e0): first defined here
+argp-help.o: In function `argp_fmtstream_set_rmargin':
+argp-help.c:(.text+0x1ee0): multiple definition of `argp_fmtstream_set_rmargin'
+argp-fmtstream.o:argp-fmtstream.c:(.text+0x610): first defined here
+argp-help.o: In function `argp_fmtstream_set_wmargin':
+argp-help.c:(.text+0x1f10): multiple definition of `argp_fmtstream_set_wmargin'
+argp-fmtstream.o:argp-fmtstream.c:(.text+0x640): first defined here
+argp-help.o: In function `argp_fmtstream_point':
+argp-help.c:(.text+0x1f40): multiple definition of `argp_fmtstream_point'
+argp-fmtstream.o:argp-fmtstream.c:(.text+0x670): first defined here
+collect2: error: ld returned 1 exit status
+Makefile:59: recipe for target 'localedef' failed
+make: *** [localedef] Error 1
+ERROR: oe_runmake failed
+WARNING: /home/rpjday/oe/builds/vtss/minimal/tmp/work/x86_64-linux/cross-localedef-native/2.20-r0/temp/run.do_compile.27985:1 exit 1 from
+  exit 1
+ERROR: Function failed: do_compile (log file is located at /home/rpjday/oe/builds/vtss/minimal/tmp/work/x86_64-linux/cross-localedef-native/2.20-r0/temp/log.do_compile.27985)
 
-toward the bottom (comment 27), jakub jelinek suggests the solution of
-simply telling people to preprocess with "-P", which inhibits the
-generation of line markers.
-
-  so i just added a wide-sweeping:
-
-CPPFLAGS_append = " -P"
-
-to my local.conf and, sure enough, that got around the build error(s).
-is that the best workaround for the time being until this weirdness
-with gcc-5.0.0 is fixed?
+  is this a known issue?
 
 rday
 
