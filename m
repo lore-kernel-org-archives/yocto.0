@@ -1,51 +1,49 @@
-Return-Path: <francisco.torres@ttcontrol.com>
+Return-Path: <daniel.pavel19@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 13BE6E00815; Thu, 19 Feb 2015 03:17:14 -0800 (PST)
+	id C3C09E00815; Thu, 19 Feb 2015 05:43:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [188.20.77.195 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (daniel.pavel19[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.tttech.com (mail.tttech.com [188.20.77.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F13BFE0034A
-	for <yocto@yoctoproject.org>; Thu, 19 Feb 2015 03:17:08 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.tttech.com (Postfix) with ESMTP id DF5923F429
-	for <yocto@yoctoproject.org>; Thu, 19 Feb 2015 12:17:06 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at tttech.com
-Received: from mail.tttech.com ([127.0.0.1])
-	by localhost (tttmaildmz.vie.at.tttech.ttt [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id aFDKVpveLTNV for <yocto@yoctoproject.org>;
-	Thu, 19 Feb 2015 12:17:06 +0100 (CET)
-Received: from TTTEX02.ds1.internal (unknown [10.100.10.136])
-	by mail.tttech.com (Postfix) with ESMTPS id C8DE03F427
-	for <yocto@yoctoproject.org>; Thu, 19 Feb 2015 12:17:06 +0100 (CET)
-Received: from TTTEX02.ds1.internal (10.100.10.136) by TTTEX02.ds1.internal
-	(10.100.10.136) with Microsoft SMTP Server (TLS) id 15.0.1044.25;
-	Thu, 19 Feb 2015 12:17:05 +0100
-Received: from TTTEX02.ds1.internal ([fe80::fd88:4379:bed4:8d08]) by
-	TTTEX02.ds1.internal ([fe80::fd88:4379:bed4:8d08%18]) with mapi id
-	15.00.1044.021; Thu, 19 Feb 2015 12:17:05 +0100
-From: Francisco Torres <francisco.torres@ttcontrol.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: usage of mingw as external toolchain
-Thread-Index: AdBMME6SE8vf4vLOSfqlsPmNAUiYCAABR1zQ
-Date: Thu, 19 Feb 2015 11:17:05 +0000
-Message-ID: <5f157473dedd4514823df75a34619bac@TTTEX02.ds1.internal>
-References: <c39bd7040ead4a968d842bd800023b9c@TTTEX02.ds1.internal>
-In-Reply-To: <c39bd7040ead4a968d842bd800023b9c@TTTEX02.ds1.internal>
-Accept-Language: de-AT, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.100.12.81]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.169 listed in list.dnswl.org]
+Received: from mail-ie0-f169.google.com (mail-ie0-f169.google.com
+	[209.85.223.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88E4DE0034A
+	for <yocto@yoctoproject.org>; Thu, 19 Feb 2015 05:43:39 -0800 (PST)
+Received: by iecar1 with SMTP id ar1so9568321iec.0
+	for <yocto@yoctoproject.org>; Thu, 19 Feb 2015 05:43:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=xrzayhS/Yzbl3HWEWfL5ITrEhAl6K2w4AGiD6ubSzfs=;
+	b=mbJd24pNg3bSwSMzXfgJCzTwARormzynRDriYrCokS7mwWbKbhWVymhH0rABJ2Bp9S
+	RrCbtPL34ZpecL5XN8OcVrJc+bW6u/u30Rvc7rb/SmEVrpBEhbcBf4Rm3t1vGSL6txLj
+	wgnTx537aSCN1esPmMlDhEhSkYLWylIla/U86VSwIAhasOBcorDc0WJPkrS9AmEri97k
+	iuueDAn9swjXD4fEOUD2uMK12VtSDmGV7SfSn97JQ+inWTdZpsOPCPBBJyl7jgj/LacN
+	9yi4gUheSLOjhi6Tn2T/r6/4IynmxbYdZJ18PiLLDSl+Awzha7cshJ1MezszrXYnRcKW
+	id7Q==
 MIME-Version: 1.0
-Subject: Re: usage of mingw as external toolchain
+X-Received: by 10.50.50.233 with SMTP id f9mr9839679igo.38.1424353418650; Thu,
+	19 Feb 2015 05:43:38 -0800 (PST)
+Received: by 10.36.127.20 with HTTP; Thu, 19 Feb 2015 05:43:38 -0800 (PST)
+Date: Thu, 19 Feb 2015 15:43:38 +0200
+Message-ID: <CAB1xj1Kv33y+pw4RhwFNB2HCQFdTMroR6yUVAe+VYe0nwAD=-A@mail.gmail.com>
+From: Pavel Daniel <daniel.pavel19@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Busybox error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,215 +55,177 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Feb 2015 11:17:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 19 Feb 2015 13:43:40 -0000
+Content-Type: multipart/alternative; boundary=047d7bd76b5a8df7f5050f711f1e
 
-Hello,
+--047d7bd76b5a8df7f5050f711f1e
+Content-Type: text/plain; charset=UTF-8
 
-I need to use mingw32 as external toolchain with yocto.
+Hi,
 
-I have successfully built a helloworld recipe (as explained in http://www.y=
-octoproject.org/docs/1.0/poky-ref-manual/poky-ref-manual.html#usingpoky-ext=
-end-addpkg, 3.1.1. Single .c File Package (Hello World!)) and it is success=
-fully generating a .exe that I can run on Windows.
+I'm trying to compile meta-ivi and I'm running through an error that I
+cannot figure it out.
 
-The problem is that when I try to compile an autotooled package (as explain=
-ed in same page in 3.1.2. Autotooled Package), there is a compilation probl=
-em.
-Please I need help to solve this problem.
+Here's the full log:
 
-I am adding in conf/local.conf
-
-EXTERNAL_TOOLCHAIN =3D "/path/to/your/mingw32-install"
-
-
-The log is:
-
-WARNING: Could not copy license file COPYING: [Errno 2] No such file or dir=
-ectory: '/data/fto/build_eldk553_externaltoolchain/tmp/work/x86_64-w64-ming=
-w32/hella1/2.2-r0/hella1-2.2/COPYING'
-ERROR: Function failed: do_configure (log file is located at /data/fto/buil=
-d_eldk553_externaltoolchain/tmp/work/x86_64-w64-mingw32/eglibc/2.18-r0/temp=
-/log.do_configure.18393)
-ERROR: Logfile of failure stored in: /data/fto/build_eldk553_externaltoolch=
-ain/tmp/work/x86_64-w64-mingw32/eglibc/2.18-r0/temp/log.do_configure.18393
+WARNING: busybox: alternative target (/etc/syslog.conf or
+/etc/syslog.conf.busybox) does not exist, skipping...
+WARNING: busybox: NOT adding alternative provide /etc/syslog.conf:
+/etc/syslog.conf.busybox does not exist
+*ERROR: Function failed: SYSTEMD_SERVICE_busybox-syslog value
+busybox-syslog.service does not exist*
+*ERROR: Logfile of failure stored in:
+/home/danielpavel/Karanka/yocto/poky/build/tmp/work/cortexa9t2hf-vfp-neon-poky-linux-gnueabi/busybox/1.22.1-r32/temp/log.do_package.6545*
 Log data follows:
-| DEBUG: Executing python function sysroot_cleansstate
-| DEBUG: Python function sysroot_cleansstate finished
-| DEBUG: SITE files ['endian-little', 'bit-32', 'x86_64-w64-mingw32', 'comm=
-on']
-| DEBUG: Executing shell function autotools_preconfigure
-| DEBUG: Shell function autotools_preconfigure finished
-| DEBUG: Executing shell function do_configure
-| aclocal.m4:5: error: Exactly version 2.68 of Autoconf is required but you=
- have 2.69
-| aclocal.m4:5: the top level
-| autom4te: m4 failed with exit status: 63
-| NOTE: Running /data/fto/build_eldk553_externaltoolchain/tmp/work/x86_64-w=
-64-mingw32/eglibc/2.18-r0/eglibc-2.18/libc/configure  --build=3Dx86_64-linu=
-x             --host=3Dx86_64-w64-mingw32   --target=3Dx86_64-w64-mingw32  =
-            --prefix=3D/usr                   --exec_prefix=3D/usr         =
-     --bindir=3D/usr/bin               --sbindir=3D/usr/sbin             --=
-libexecdir=3D/usr/lib/eglibc                 --datadir=3D/usr/share        =
-    --sysconfdir=3D/etc               --sharedstatedir=3D/com              =
-     --localstatedir=3D/var            --libdir=3D/usr/lib           --incl=
-udedir=3D/usr/include                --oldincludedir=3D/usr/include        =
-    --infodir=3D/usr/share/info               --mandir=3D/usr/share/man    =
-             --disable-silent-rules      --disable-dependency-tracking     =
-       --with-libtool-sysroot=3D/data/fto/build_eldk553_externaltoolchain/t=
-mp/sysroots/windows --enable-kernel=3D2.6.16                 --without-cvs =
---disable-profile                 --disable-debug --without-gd             =
-    --enable-clocale=3Dgnu                 --enable-add-ons                =
- --with-headers=3D/data/fto/build_eldk553_externaltoolchain/tmp/sysroots/wi=
-ndows/usr/include                 --without-selinux                 --enabl=
-e-obsolete-rpc                 --with-kconfig=3D/data/fto/build_eldk553_ext=
-ernaltoolchain/tmp/sysroots/x86_64-linux/usr/bin
-| checking build system type... x86_64-pc-linux-gnu
-| checking host system type... x86_64-w64-mingw32
-| checking for x86_64-w64-mingw32-gcc... x86_64-w64-mingw32-gcc  -m64 --sys=
-root=3D/data/fto/build_eldk553_externaltoolchain/tmp/sysroots/windows-tcboo=
-tstrap
-| checking for suffix of object files... configure: error: in `/data/fto/bu=
-ild_eldk553_externaltoolchain/tmp/work/x86_64-w64-mingw32/eglibc/2.18-r0/bu=
-ild-x86_64-w64-mingw32':
-| configure: error: cannot compute suffix of object files: cannot compile
-| See `config.log' for more details
-| Configure failed. The contents of all config.log files follows to aid deb=
-ugging
-| ERROR: oe_runconf failed
-| WARNING: exit code 1 from a shell command.
-| ERROR: Function failed: do_configure (log file is located at /data/fto/bu=
-ild_eldk553_externaltoolchain/tmp/work/x86_64-w64-mingw32/eglibc/2.18-r0/te=
-mp/log.do_configure.18393)
-ERROR: Task 348 (/data/fto/eldk553/meta/recipes-core/eglibc/eglibc_2.18.bb,=
- do_configure) failed with exit code '1'
-ERROR: Function failed: do_configure (log file is located at /data/fto/buil=
-d_eldk553_externaltoolchain/tmp/work/x86_64-w64-mingw32/expat/2.1.0-r0/temp=
-/log.do_configure.18397)
-ERROR: Logfile of failure stored in: /data/fto/build_eldk553_externaltoolch=
-ain/tmp/work/x86_64-w64-mingw32/expat/2.1.0-r0/temp/log.do_configure.18397
-Log data follows:
-| DEBUG: Executing python function sysroot_cleansstate
-| DEBUG: Python function sysroot_cleansstate finished
-| DEBUG: SITE files ['endian-little', 'bit-32', 'x86_64-w64-mingw32', 'comm=
-on']
-| DEBUG: Executing shell function autotools_preconfigure
-| DEBUG: Shell function autotools_preconfigure finished
-| DEBUG: Executing shell function do_configure
-| automake (GNU automake) 1.12.6
-| Copyright (C) 2012 Free Software Foundation, Inc.
-| License GPLv2+: GNU GPL version 2 or later <http://gnu.org/licenses/gpl-2=
-.0.html>
-| This is free software: you are free to change and redistribute it.
-| There is NO WARRANTY, to the extent permitted by law.
+| DEBUG: Executing python function sstate_task_prefunc
+| DEBUG: Python function sstate_task_prefunc finished
+| DEBUG: Executing python function do_package
+| DEBUG: Executing python function package_get_auto_pr
+| DEBUG: Python function package_get_auto_pr finished
+| DEBUG: Executing python function perform_packagecopy
+| WARNING: busybox: alternative target (/etc/syslog.conf or
+/etc/syslog.conf.busybox) does not exist, skipping...
+| DEBUG: Python function perform_packagecopy finished
+| DEBUG: Executing python function split_and_strip_files
+| DEBUG: runstrip: 'arm-poky-linux-gnueabi-strip' --remove-section=.comment
+--remove-section=.note
+'/home/danielpavel/Karanka/yocto/poky/build/tmp/work/cortexa9t2hf-vfp-neon-poky-linux-gnueabi/busybox/1.22.1-r32/package/bin/busybox.nosuid'
+| DEBUG: Python function split_and_strip_files finished
+| DEBUG: Executing python function fixup_perms
+| DEBUG: Python function fixup_perms finished
+| DEBUG: Executing python function populate_packages_updatealternatives
+| NOTE: alt_link == alt_target: /etc/syslog.conf == /etc/syslog.conf --
+correcting, this should not happen!
+| WARNING: busybox: NOT adding alternative provide /etc/syslog.conf:
+/etc/syslog.conf.busybox does not exist
+| NOTE: adding update-alternatives calls to postinst/postrm for busybox
+| NOTE: update-alternatives --install /bin/ping ping /bin/busybox.suid 50
+| update-alternatives --install /bin/ping6 ping6 /bin/busybox.suid 50
+| update-alternatives --install /bin/login login /bin/busybox.suid 50
+| update-alternatives --install /usr/bin/passwd passwd /bin/busybox.suid 50
+| update-alternatives --install /bin/su su /bin/busybox.suid 50
+| update-alternatives --install /usr/bin/traceroute traceroute
+/bin/busybox.suid 50
+| update-alternatives --install /usr/bin/vlock vlock /bin/busybox.suid 50
 |
-| Written by Tom Tromey <tromey@redhat.com>
-|        and Alexandre Duret-Lutz <adl@gnu.org>.
-| AUTOV is 1.12
-| NOTE: Executing ACLOCAL=3D"aclocal --system-acdir=3D/data/fto/build_eldk5=
-53_externaltoolchain/tmp/work/x86_64-w64-mingw32/expat/2.1.0-r0/build/acloc=
-al-copy/ --automake-acdir=3D/data/fto/build_eldk553_externaltoolchain/tmp/s=
-ysroots/x86_64-linux/usr/share/aclocal-1.12" autoreconf --verbose --install=
- --force --exclude=3Dautopoint -I /data/fto/build_eldk553_externaltoolchain=
-/tmp/work/x86_64-w64-mingw32/expat/2.1.0-r0/expat-2.1.0/conftools/ -I /data=
-/fto/build_eldk553_externaltoolchain/tmp/work/x86_64-w64-mingw32/expat/2.1.=
-0-r0/expat-2.1.0/m4/
-| autoreconf: Entering directory `.'
-| autoreconf: configure.in: not using Gettext
-| autoreconf: running: aclocal --system-acdir=3D/data/fto/build_eldk553_ext=
-ernaltoolchain/tmp/work/x86_64-w64-mingw32/expat/2.1.0-r0/build/aclocal-cop=
-y/ --automake-acdir=3D/data/fto/build_eldk553_externaltoolchain/tmp/sysroot=
-s/x86_64-linux/usr/share/aclocal-1.12 -I /data/fto/build_eldk553_externalto=
-olchain/tmp/work/x86_64-w64-mingw32/expat/2.1.0-r0/expat-2.1.0/conftools/ -=
-I /data/fto/build_eldk553_externaltoolchain/tmp/work/x86_64-w64-mingw32/exp=
-at/2.1.0-r0/expat-2.1.0/m4/ -I /data/fto/build_eldk553_externaltoolchain/tm=
-p/work/x86_64-w64-mingw32/expat/2.1.0-r0/expat-2.1.0/conftools/ -I /data/ft=
-o/build_eldk553_externaltoolchain/tmp/work/x86_64-w64-mingw32/expat/2.1.0-r=
-0/expat-2.1.0/m4/ --force
-| aclocal: warning: autoconf input should be named 'configure.ac', not 'con=
-figure.in'
-| autoreconf: configure.in: tracing
-| autoreconf: running: libtoolize --copy --force
-| libtoolize: putting auxiliary files in AC_CONFIG_AUX_DIR, `conftools'.
-| libtoolize: copying file `conftools/ltmain.sh'
-| libtoolize: putting macros in AC_CONFIG_MACRO_DIR, `m4'.
-| libtoolize: copying file `m4/libtool.m4'
-| libtoolize: copying file `m4/ltoptions.m4'
-| libtoolize: copying file `m4/ltsugar.m4'
-| libtoolize: copying file `m4/ltversion.m4'
-| libtoolize: copying file `m4/lt~obsolete.m4'
-| libtoolize: Consider adding `-I m4' to ACLOCAL_AMFLAGS in Makefile.am.
-| aclocal: warning: autoconf input should be named 'configure.ac', not 'con=
-figure.in'
-| autoreconf: running: /data/fto/build_eldk553_externaltoolchain/tmp/sysroo=
-ts/x86_64-linux/usr/bin/autoconf --include=3D/data/fto/build_eldk553_extern=
-altoolchain/tmp/work/x86_64-w64-mingw32/expat/2.1.0-r0/expat-2.1.0/conftool=
-s/ --include=3D/data/fto/build_eldk553_externaltoolchain/tmp/work/x86_64-w6=
-4-mingw32/expat/2.1.0-r0/expat-2.1.0/m4/ --force
-| autoreconf: running: /data/fto/build_eldk553_externaltoolchain/tmp/sysroo=
-ts/x86_64-linux/usr/bin/autoheader --include=3D/data/fto/build_eldk553_exte=
-rnaltoolchain/tmp/work/x86_64-w64-mingw32/expat/2.1.0-r0/expat-2.1.0/confto=
-ols/ --include=3D/data/fto/build_eldk553_externaltoolchain/tmp/work/x86_64-=
-w64-mingw32/expat/2.1.0-r0/expat-2.1.0/m4/ --force
-| autoreconf: configure.in: not using Automake
-| autoreconf: running: gnu-configize
-| autoreconf: Leaving directory `.'
-| NOTE: Running /data/fto/build_eldk553_externaltoolchain/tmp/work/x86_64-w=
-64-mingw32/expat/2.1.0-r0/expat-2.1.0/configure  --build=3Dx86_64-linux    =
-              --host=3Dx86_64-w64-mingw32   --target=3Dx86_64-w64-mingw32  =
-            --prefix=3D/usr                   --exec_prefix=3D/usr         =
-     --bindir=3D/usr/bin               --sbindir=3D/usr/sbin             --=
-libexecdir=3D/usr/lib/expat                  --datadir=3D/usr/share        =
-    --sysconfdir=3D/etc               --sharedstatedir=3D/com              =
-     --localstatedir=3D/var            --libdir=3D/usr/lib           --incl=
-udedir=3D/usr/include                --oldincludedir=3D/usr/include        =
-    --infodir=3D/usr/share/info               --mandir=3D/usr/share/man    =
-             --disable-silent-rules      --disable-dependency-tracking     =
-       --with-libtool-sysroot=3D/data/fto/build_eldk553_externaltoolchain/t=
-mp/sysroots/windows
-| configure: WARNING: unrecognized options: --disable-silent-rules, --disab=
-le-dependency-tracking
-| configure: loading site script /data/fto/eldk553/meta/site/endian-little
-| configure: loading site script /data/fto/eldk553/meta/site/common
-| checking build system type... x86_64-pc-linux-gnu
-| checking host system type... x86_64-w64-mingw32
-| checking for x86_64-w64-mingw32-as... x86_64-w64-mingw32-as
-| checking for x86_64-w64-mingw32-dlltool... x86_64-w64-mingw32-dlltool
-| checking for x86_64-w64-mingw32-objdump... x86_64-w64-mingw32-objdump
-| checking how to print strings... printf
-| checking for x86_64-w64-mingw32-gcc... x86_64-w64-mingw32-gcc  -m64 --sys=
-root=3D/data/fto/build_eldk553_externaltoolchain/tmp/sysroots/windows
-| checking whether the C compiler works... no
-| configure: error: in `/data/fto/build_eldk553_externaltoolchain/tmp/work/=
-x86_64-w64-mingw32/expat/2.1.0-r0/build':
-| configure: error: C compiler cannot create executables
-| See `config.log' for more details
-| Configure failed. The contents of all config.log files follows to aid deb=
-ugging
-| ERROR: oe_runconf failed
-| WARNING: exit code 1 from a shell command.
-| ERROR: Function failed: do_configure (log file is located at /data/fto/bu=
-ild_eldk553_externaltoolchain/tmp/work/x86_64-w64-mingw32/expat/2.1.0-r0/te=
-mp/log.do_configure.18397)
-ERROR: Task 360 (/data/fto/eldk553/meta/recipes-core/expat/expat_2.1.0.bb, =
-do_configure) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 447 tasks of which 399 didn't need to be rer=
-un and 2 failed.
+| NOTE: update-alternatives --remove  ping /bin/busybox.suid
+| update-alternatives --remove  ping6 /bin/busybox.suid
+| update-alternatives --remove  login /bin/busybox.suid
+| update-alternatives --remove  passwd /bin/busybox.suid
+| update-alternatives --remove  su /bin/busybox.suid
+| update-alternatives --remove  traceroute /bin/busybox.suid
+| update-alternatives --remove  vlock /bin/busybox.suid
+|
+| DEBUG: Python function populate_packages_updatealternatives finished
+| DEBUG: Executing python function populate_packages_updatercd
+| DEBUG: Python function populate_packages_updatercd finished
+| DEBUG: Executing python function systemd_populate_packages
+| DEBUG: adding systemd calls to postinst/postrm for busybox-syslog
+| DEBUG: Python function systemd_populate_packages finished
+| DEBUG: Python function do_package finished
+| ERROR: Function failed: SYSTEMD_SERVICE_busybox-syslog value
+busybox-syslog.service does not exist
+ERROR: Task 1140
+(/home/danielpavel/Karanka/yocto/poky/meta/recipes-core/busybox/
+busybox_1.22.1.bb, do_package) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 2031 tasks of which 2000 didn't need to be
+rerun and 1 failed.
 Waiting for 0 running tasks to finish:
 
-Summary: 2 tasks failed:
-  /data/fto/eldk553/meta/recipes-core/eglibc/eglibc_2.18.bb, do_configure
-  /data/fto/eldk553/meta/recipes-core/expat/expat_2.1.0.bb, do_configure
+Summary: 1 task failed:
+  /home/danielpavel/Karanka/yocto/poky/meta/recipes-core/busybox/
+busybox_1.22.1.bb, do_package
 Summary: There were 2 WARNING messages shown.
 Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-torres@ttc-visionbuilder:/data/fto/build_eldk553_externaltoolchain$
-CONFIDENTIALITY: The contents of this e-mail are confidential and intended =
-only for the above addressee(s). If you are not the intended recipient, or =
-the person responsible for delivering it to the intended recipient, copying=
- or delivering it to anyone else or using it in any unauthorized manner is =
-prohibited and may be unlawful. If you receive this e-mail by mistake, plea=
-se notify the sender and the systems administrator at straymail@tttech.com =
-immediately.
 
+
+I hope someone can help.
+Thank you in advance.
+
+Regards,
+Daniel.
+
+--047d7bd76b5a8df7f5050f711f1e
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>I&#39;m trying to compile meta-ivi =
+and I&#39;m running through an error that I cannot figure it out.</div><div=
+><br></div><div>Here&#39;s the full log:=C2=A0</div><div><br></div><div><di=
+v><font color=3D"#ff9900">WARNING: busybox: alternative target (/etc/syslog=
+.conf or /etc/syslog.conf.busybox) does not exist, skipping...</font></div>=
+<div><font color=3D"#ff9900">WARNING: busybox: NOT adding alternative provi=
+de /etc/syslog.conf: /etc/syslog.conf.busybox does not exist</font></div><d=
+iv><font color=3D"#ff0000"><b>ERROR: Function failed: SYSTEMD_SERVICE_busyb=
+ox-syslog value busybox-syslog.service does not exist</b></font></div><div>=
+<font color=3D"#ff0000"><b>ERROR: Logfile of failure stored in: /home/danie=
+lpavel/Karanka/yocto/poky/build/tmp/work/cortexa9t2hf-vfp-neon-poky-linux-g=
+nueabi/busybox/1.22.1-r32/temp/log.do_package.6545</b></font></div><div>Log=
+ data follows:</div><div>| DEBUG: Executing python function sstate_task_pre=
+func</div><div>| DEBUG: Python function sstate_task_prefunc finished</div><=
+div>| DEBUG: Executing python function do_package</div><div>| DEBUG: Execut=
+ing python function package_get_auto_pr</div><div>| DEBUG: Python function =
+package_get_auto_pr finished</div><div>| DEBUG: Executing python function p=
+erform_packagecopy</div><div>| WARNING: busybox: alternative target (/etc/s=
+yslog.conf or /etc/syslog.conf.busybox) does not exist, skipping...</div><d=
+iv>| DEBUG: Python function perform_packagecopy finished</div><div>| DEBUG:=
+ Executing python function split_and_strip_files</div><div>| DEBUG: runstri=
+p: &#39;arm-poky-linux-gnueabi-strip&#39; --remove-section=3D.comment --rem=
+ove-section=3D.note &#39;/home/danielpavel/Karanka/yocto/poky/build/tmp/wor=
+k/cortexa9t2hf-vfp-neon-poky-linux-gnueabi/busybox/1.22.1-r32/package/bin/b=
+usybox.nosuid&#39;</div><div>| DEBUG: Python function split_and_strip_files=
+ finished</div><div>| DEBUG: Executing python function fixup_perms</div><di=
+v>| DEBUG: Python function fixup_perms finished</div><div>| DEBUG: Executin=
+g python function populate_packages_updatealternatives</div><div>| NOTE: al=
+t_link =3D=3D alt_target: /etc/syslog.conf =3D=3D /etc/syslog.conf -- corre=
+cting, this should not happen!</div><div>| WARNING: busybox: NOT adding alt=
+ernative provide /etc/syslog.conf: /etc/syslog.conf.busybox does not exist<=
+/div><div>| NOTE: adding update-alternatives calls to postinst/postrm for b=
+usybox</div><div>| NOTE: <span class=3D"" style=3D"white-space:pre">	</span=
+>update-alternatives --install /bin/ping ping /bin/busybox.suid 50</div><di=
+v>| <span class=3D"" style=3D"white-space:pre">	</span>update-alternatives =
+--install /bin/ping6 ping6 /bin/busybox.suid 50</div><div>| <span class=3D"=
+" style=3D"white-space:pre">	</span>update-alternatives --install /bin/logi=
+n login /bin/busybox.suid 50</div><div>| <span class=3D"" style=3D"white-sp=
+ace:pre">	</span>update-alternatives --install /usr/bin/passwd passwd /bin/=
+busybox.suid 50</div><div>| <span class=3D"" style=3D"white-space:pre">	</s=
+pan>update-alternatives --install /bin/su su /bin/busybox.suid 50</div><div=
+>| <span class=3D"" style=3D"white-space:pre">	</span>update-alternatives -=
+-install /usr/bin/traceroute traceroute /bin/busybox.suid 50</div><div>| <s=
+pan class=3D"" style=3D"white-space:pre">	</span>update-alternatives --inst=
+all /usr/bin/vlock vlock /bin/busybox.suid 50</div><div>|=C2=A0</div><div>|=
+ NOTE: <span class=3D"" style=3D"white-space:pre">	</span>update-alternativ=
+es --remove =C2=A0ping /bin/busybox.suid</div><div>| <span class=3D"" style=
+=3D"white-space:pre">	</span>update-alternatives --remove =C2=A0ping6 /bin/=
+busybox.suid</div><div>| <span class=3D"" style=3D"white-space:pre">	</span=
+>update-alternatives --remove =C2=A0login /bin/busybox.suid</div><div>| <sp=
+an class=3D"" style=3D"white-space:pre">	</span>update-alternatives --remov=
+e =C2=A0passwd /bin/busybox.suid</div><div>| <span class=3D"" style=3D"whit=
+e-space:pre">	</span>update-alternatives --remove =C2=A0su /bin/busybox.sui=
+d</div><div>| <span class=3D"" style=3D"white-space:pre">	</span>update-alt=
+ernatives --remove =C2=A0traceroute /bin/busybox.suid</div><div>| <span cla=
+ss=3D"" style=3D"white-space:pre">	</span>update-alternatives --remove =C2=
+=A0vlock /bin/busybox.suid</div><div>|=C2=A0</div><div>| DEBUG: Python func=
+tion populate_packages_updatealternatives finished</div><div>| DEBUG: Execu=
+ting python function populate_packages_updatercd</div><div>| DEBUG: Python =
+function populate_packages_updatercd finished</div><div>| DEBUG: Executing =
+python function systemd_populate_packages</div><div>| DEBUG: adding systemd=
+ calls to postinst/postrm for busybox-syslog</div><div>| DEBUG: Python func=
+tion systemd_populate_packages finished</div><div>| DEBUG: Python function =
+do_package finished</div><div>| ERROR: Function failed: SYSTEMD_SERVICE_bus=
+ybox-syslog value busybox-syslog.service does not exist</div><div>ERROR: Ta=
+sk 1140 (/home/danielpavel/Karanka/yocto/poky/meta/recipes-core/busybox/<a =
+href=3D"http://busybox_1.22.1.bb">busybox_1.22.1.bb</a>, do_package) failed=
+ with exit code &#39;1&#39;</div><div><font color=3D"#ff0000">NOTE: Tasks S=
+ummary: Attempted 2031 tasks of which 2000 didn&#39;t need to be rerun and =
+1 failed.</font></div><div>Waiting for 0 running tasks to finish:</div><div=
+><br></div><div>Summary: 1 task failed:</div><div>=C2=A0 /home/danielpavel/=
+Karanka/yocto/poky/meta/recipes-core/busybox/<a href=3D"http://busybox_1.22=
+.1.bb">busybox_1.22.1.bb</a>, do_package</div><div>Summary: There were 2 WA=
+RNING messages shown.</div><div>Summary: There were 2 ERROR messages shown,=
+ returning a non-zero exit code.</div></div><div><br></div><div><br></div><=
+div>I hope someone can help.</div><div>Thank you in advance.</div><div><br>=
+</div><div>Regards,</div><div>Daniel.</div><div><br></div><div><br></div></=
+div>
+
+--047d7bd76b5a8df7f5050f711f1e--
