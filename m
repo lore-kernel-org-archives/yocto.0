@@ -1,82 +1,48 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <joe@deserted.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0036BE00546; Wed, 18 Feb 2015 19:36:59 -0800 (PST)
+	id A8B02E00546; Wed, 18 Feb 2015 19:45:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.179 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pd0-f179.google.com (mail-pd0-f179.google.com
-	[209.85.192.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18093E00345
-	for <yocto@yoctoproject.org>; Wed, 18 Feb 2015 19:36:56 -0800 (PST)
-Received: by pdjy10 with SMTP id y10so5789692pdj.13
-	for <yocto@yoctoproject.org>; Wed, 18 Feb 2015 19:36:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=3mKpZQ3MNlkOYWULTZrfiLOiMOLQR+NiU4a5TWqh97Q=;
-	b=XmFFQQRG6hWapwG9uqWVsmpqluMDGT6cSkAh4+OpPitH1BmZmqBP/SF9EgKAypXmJ8
-	ROAgLbhQ6z0yr9vXiMJ0ZKSTkdyd7HwG4QD/oRdBu99030BdYw0TTSrT68mNxVwQSYWC
-	ixNsMnfEs55QSQr7IR2r2suwN/aE3Pr4ZQLEhdxYkhalwyqZBxyMGrxcMoP7kTsulkYH
-	QktBggah7B6z+WNb83RC7l7CvrZFxACB8WM19PaxLG6eZ+7lY8VGj2mSkc0xGcxCY5C+
-	S0k54NxXu7E9EOZm2JrKpNE8oExy1+XrPN9qlRWmFRi5wAEIuk8nyWS7NY/Z0YhsDM1L
-	qYIQ==
-X-Received: by 10.70.88.39 with SMTP id bd7mr3883196pdb.83.1424317016055;
-	Wed, 18 Feb 2015 19:36:56 -0800 (PST)
-Received: from [192.168.0.13] (c-76-103-142-85.hsd1.ca.comcast.net.
-	[76.103.142.85]) by mx.google.com with ESMTPSA id
-	mt4sm22115376pdb.55.2015.02.18.19.36.54
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 18 Feb 2015 19:36:55 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2070.6\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <3BF3C6CD-6241-4E56-B10F-20A733FE5B2B@gmail.com>
-Date: Wed, 18 Feb 2015 19:36:54 -0800
-Message-Id: <6CAA4038-63CD-4D66-BF68-211901C10329@gmail.com>
-References: <CAMKF1souj1-FLTjkQb0y8myTiKMJyNeAa7wiM5-pW1fz0EtheA@mail.gmail.com>
-	<CAJTo0LaN3HMhjrpii2pPbJw5zWbywgr1keZe=iQmuKFMFFf=gQ@mail.gmail.com>
-	<CAMKF1sq8NsuNYZDQRPtXruBeRndOP+0qwBuTO2ahb6q-fS8XGw@mail.gmail.com>
-	<CAJTo0LYpKbwOHg-DBMJycy+KNayTCsnhToJR8K-REKZ2jxhnhw@mail.gmail.com>
-	<EA0C9DE9-9E5F-4B74-8464-138895268F2F@gmail.com>
-	<CAJTo0LbSFesauhA_H39Znd07SR5JCs45izy2us=cFWVGXtW8hg@mail.gmail.com>
-	<80920FD0-CA08-45D7-9A41-3971FB2D58D7@gmail.com>
-	<CAJTo0LbqTrQzk0KeHDxYnmtZrrFdZD12DWrjA=Y4RtbQzwM0ow@mail.gmail.com>
-	<CAMKF1sr7bYpKqzTmvX5rCuYc-Rb2se7Vsrr4aYA43E_b1Z=vWA@mail.gmail.com>
-	<CACS+7ZRNm2Y0SJn76imF6DNoEsL2+ppC1zG45iGspOmL0EN0BQ@mail.gmail.com>
-	<CAMKF1sqjQm+n5xKfS0utm9B9h_S+RYWrgnGUCboRNCk5XSUmzg@mail.gmail.com>
-	<1423908404.20217.100.camel@linuxfoundation.org>
-	<CAMKF1sofS7MteZnPsTYRNAcMwrrh=T3FP+ASmAOGDMhcwyXB4g@mail.gmail.com>
-	<1424245575.25541.19.camel@linuxfoundation.org>
-	<BCB8524E-91CB-41F6-83C0-7B90E60BC82D@gmail.com>
-	<1424260309.25541.23.camel@linuxfoundation.org>
-	<1424264807.11836.1.camel@linuxfoundation.org>
-	<3F6EFBD4-AC35-4CE0-B52C-0ABDA0D17838@gmail.com>
-	<1424295668.11836.19.camel@linuxfoundation.org>
-	<E5ADEF30-DBC9-4250-ACA4-F889D8CFDA89@gmail.com>
-	<AA599D04-C5B2-49A8-96FB-F9074D59EB03@gmail.com>
-	<3BF3C6CD-6241-4E56-B10F-20A733FE5B2B@gmail.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-X-Mailer: Apple Mail (2.2070.6)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
-	Dan McGregor <danismostlikely@gmail.com>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [RFT] upcoming glibc 2.21 and gcc 4.9 upgrade
+Received: from mail-ig0-f178.google.com (mail-ig0-f178.google.com
+	[209.85.213.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C2EEE00345
+	for <yocto@yoctoproject.org>; Wed, 18 Feb 2015 19:44:55 -0800 (PST)
+Received: by mail-ig0-f178.google.com with SMTP id hl2so6632182igb.5
+	for <yocto@yoctoproject.org>; Wed, 18 Feb 2015 19:44:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:sender:from:to:subject:date:message-id;
+	bh=2VJbJdPM2nmNvN77HE74kL/xa41RvJyY2LwxDY7ppqc=;
+	b=V9VvgK8o/pDkRvuRQAqmia47z0fqCuSYCFN6IGa166ZFBKOJZqAv4siF16PrBuDZWS
+	M9SesrPOMMeqdNKOBNjPcpdecIB4dEoZPJgjYDDp3qYNDZhp1gXZ5MzyCvU2QvA7vDEH
+	RN01O5i2V/5fUy0xkZ87P+8jvNqIFBCw+sjacRyiMIpJNRJsYtSVOU6H2voikCx4lXc+
+	OG7AD7nWq0UXSvBeV/fJfgvykwdSDj2oWJ+75lCz68BtvcpsKUUucHivSUMWuDevFRXj
+	f7k0WtC9SmALOgkooeAiroW7DNEWo2M7XYZwQkzE5qAWfdsEbtoJ8yuqs2LYgZOmXlQg
+	6VKg==
+X-Gm-Message-State: ALoCoQnx9DtRVXeqlDyz+RWv1+RjE1fU6ZuQz+O2LERNJs3+3IzLhDHzs32ka7awhbDiQV2SR4bj
+X-Received: by 10.107.169.42 with SMTP id s42mr3573545ioe.46.1424317494653;
+	Wed, 18 Feb 2015 19:44:54 -0800 (PST)
+Received: from mir.deserted.net (24-246-4-250.cable.teksavvy.com.
+	[24.246.4.250])
+	by mx.google.com with ESMTPSA id nv8sm13221286igb.6.2015.02.18.19.44.53
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Wed, 18 Feb 2015 19:44:54 -0800 (PST)
+Sender: Joe MacDonald <joe@deserted.net>
+From: Joe MacDonald <joe_macdonald@mentor.com>
+To: yocto@yoctoproject.org
+Date: Wed, 18 Feb 2015 22:45:47 -0500
+Message-Id: <1424317547-24831-1-git-send-email-joe_macdonald@mentor.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [meta-selinux][PATCH] layer: update configuration and dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -88,145 +54,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Feb 2015 03:37:00 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 19 Feb 2015 03:45:04 -0000
 
+Add in support for optional bbappends based on the presence of other
+layers in the project and move the lxc recipe to a meta-virtualization
+location.
 
-> On Feb 18, 2015, at 4:31 PM, Khem Raj <raj.khem@gmail.com> wrote:
->=20
->=20
->> On Feb 18, 2015, at 4:28 PM, Khem Raj <raj.khem@gmail.com> wrote:
->>=20
->>=20
->>> On Feb 18, 2015, at 4:23 PM, Khem Raj <raj.khem@gmail.com> wrote:
->>>=20
->>>=20
->>>> On Feb 18, 2015, at 1:41 PM, Richard Purdie =
-<richard.purdie@linuxfoundation.org> wrote:
->>>>=20
->>>> On Wed, 2015-02-18 at 10:38 -0800, Khem Raj wrote:
->>>>>> On Feb 18, 2015, at 5:06 AM, Richard Purdie =
-<richard.purdie@linuxfoundation.org> wrote:
->>>>>> On Wed, 2015-02-18 at 11:51 +0000, Richard Purdie wrote:
->>>>>>> On Wed, 2015-02-18 at 01:01 -0800, Khem Raj wrote:
->>>>>> The series needs:
->>>>>>=20
->>>>>> TUNE_CCARGS_x86 :=3D "${@oe_filter_out('-mfpmath=3Dsse', =
-'${TUNE_CCARGS}', d)}"
->>>>>> +TUNE_CCARGS_x86-64 :=3D "${@oe_filter_out('-mfpmath=3Dsse', =
-'${TUNE_CCARGS}', d)}=E2=80=9D
->>>>>>=20
->>>>>=20
->>>>> hmmm I assumed x86 was common across 32bit and 64bit x86 but seems =
-not so I replaced the old patch instead of appending it=20
->>>>=20
->>>> Thanks, I'll update the patch for the next round.
->>>>=20
->>>>>=20
->>>>>> since the x86 override doesn't cover x86_64. I'll queue that and =
-run yet
->>>>>> another build. We do have another poky-tiny issue too:
->>>>>>=20
->>>>>> =
-https://autobuilder.yoctoproject.org/main/builders/poky-tiny/builds/204
->>>>>>=20
->>>>>=20
->>>>> OK. I am creating a local config to use tiny config for libc and =
-weed out remaining build issues for tiny config=20
->>>>=20
->>>> Cool, thanks.
->>>>=20
->>>> The next build is in progress and looking greener than the last. =
-Next up
->>>> it appears we still have multilib issues:
->>>=20
->>> I have pushed a new patchset to same branch. That should fix the =
-tiny build issues.
->>>=20
->>>>=20
->>>> =
-https://autobuilder.yoctoproject.org/main/builders/nightly-multilib/builds=
-/201
->>>=20
->>>=20
->>> | dcigettext.c: In function '__dcigettext':
->>> | dcigettext.c:856:30: error: '__libc_setlocale_lock' undeclared =
-(first use in this function)
->>> |         __libc_rwlock_unlock (__libc_setlocale_lock);
->>>=20
->>> is what I see.
->>>=20
->>> I have fixed this in the latest patchset. So lets start with the new =
-patchset.
->>>=20
->>=20
->> in =
-https://autobuilder.yoctoproject.org/main/builders/nightly-multilib/builds=
-/201/steps/BuildImages/logs/stdio
->>=20
->> | make: *** =
-[/home/pokybuild/yocto-autobuilder/yocto-worker/nightly-multilib/build/bui=
-ld/tmp/work/core2-64-poky-linux/glibc-locale/2.21-r0/locale-tree/usr/lib64=
-/locale/es_HN] Aborted (core dumped)
->>=20
->> thats new its probably a crash in localedef.
->>=20
->=20
->=20
-> | checking for i586-pokymllib32-linux-gcc... =
-i586-pokymllib32-linux-gcc -m64 -march=3Dcore2 -mtune=3Dcore2 -msse3 =
---sysroot=3D/home/pokybuild/yocto-autobuilder/yocto-worker/nightly-multili=
-b/build/build/tmp/sysroots/lib32-qemux86-64-tcbootstrap
-> | checking for suffix of object files... configure: error: in =
-`/home/pokybuild/yocto-autobuilder/yocto-worker/nightly-multilib/build/bui=
-ld/tmp/work/x86-pokymllib32-linux/lib32-glibc-initial/2.21-r0/build-i586-p=
-okymllib32-linux':
-> | configure: error: cannot compute suffix of object files: cannot =
-compile
-> | See `config.log' for more details
-> | WARNING: =
-/home/pokybuild/yocto-autobuilder/yocto-worker/nightly-multilib/build/buil=
-d/tmp/work/x86-pokymllib32-linux/lib32-glibc-initial/2.21-r0/temp/run.do_c=
-onfigure.1095:1 exit 1 from
-> |   =
-/home/pokybuild/yocto-autobuilder/yocto-worker/nightly-multilib/build/buil=
-d/tmp/work/x86-pokymllib32-linux/lib32-glibc-initial/2.21-r0/git/configure=
- --host=3Di586-pokymllib32-linux --build=3Dx86_64-linux --prefix=3D/usr =
---without-cvs --disable-sanity-checks =
---with-headers=3D/home/pokybuild/yocto-autobuilder/yocto-worker/nightly-mu=
-ltilib/build/build/tmp/sysroots/lib32-qemux86-64/usr/include =
---with-kconfig=3D/home/pokybuild/yocto-autobuilder/yocto-worker/nightly-mu=
-ltilib/build/build/tmp/sysroots/x86_64-linux/usr/bin =
---enable-hacker-mode --enable-addons
-> | ERROR: Function failed: do_configure (log file is located at =
-/home/pokybuild/yocto-autobuilder/yocto-worker/nightly-multilib/build/buil=
-d/tmp/work/x86-pokymllib32-linux/lib32-glibc-initial/2.21-r0/temp/log.do_c=
-onfigure.1095)
-> NOTE: recipe lib32-glibc-initial-2.21-r0: task do_configure: Failed
->=20
->=20
-> Can you post config.log ? here
->=20
-> I don=E2=80=99t have multilib setup so hard to reproduce it here
->=20
+Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
+---
+ README                                                      | 13 +++++++++++++
+ conf/layer.conf                                             |  9 +++++----
+ .../recipes-containers}/lxc/lxc_%.bbappend                  |  0
+ 3 files changed, 18 insertions(+), 4 deletions(-)
+ rename {recipes-containers => meta-virtualization/recipes-containers}/lxc/lxc_%.bbappend (100%)
 
+diff --git a/README b/README
+index 926d880..3fe8af4 100644
+--- a/README
++++ b/README
+@@ -34,6 +34,19 @@ the Yocto Project website:
+ 
+ http://www.yoctoproject.org
+ 
++This layer also optionally depends on the following layers:
++
++URI: git://github.com/openembedded/meta-oe.git
++branch: master
++revision: HEAD
++layers: meta-oe
++        meta-networking
++        meta-python
++
++URI: git://git.yoctoproject.org/meta-virtualization
++branch: master
++revision: HEAD
++
+ 
+ Maintenance
+ -----------
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 723f5a8..39ae7bf 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -5,6 +5,11 @@ BBPATH .= ":${LAYERDIR}"
+ BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+             ${LAYERDIR}/recipes-*/*/*.bbappend"
+ 
++# Let us add layer-specific bbappends which are only applied when that
++# layer is included in our configuration
++BBFILES += "${@' '.join('${LAYERDIR}/%s/recipes*/*/*.bbappend' % layer \
++               for layer in BBFILE_COLLECTIONS.split())}"
++
+ BBFILE_COLLECTIONS += "selinux"
+ BBFILE_PATTERN_selinux = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_selinux = "5"
+@@ -15,8 +20,4 @@ LAYERVERSION_selinux = "1"
+ 
+ LAYERDEPENDS_selinux = " \
+     core \
+-    meta-python \
+-    networking-layer \
+-    openembedded-layer \
+-    virtualization-layer \
+ "
+diff --git a/recipes-containers/lxc/lxc_%.bbappend b/meta-virtualization/recipes-containers/lxc/lxc_%.bbappend
+similarity index 100%
+rename from recipes-containers/lxc/lxc_%.bbappend
+rename to meta-virtualization/recipes-containers/lxc/lxc_%.bbappend
+-- 
+1.9.1
 
-Nevermind. I think I understood the problem. This tweaking of =
-TUNE_CCARGS is resulting in premature evaluation in case of multilib and =
-we are ending up with 64bit options when using 32bit gcc
-Now, I have fixed this by patching glibc itself. see
-
-=
-http://git.openembedded.org/openembedded-core-contrib/tree/meta/recipes-co=
-re/glibc/glibc/0001-When-disabling-SSE-also-make-sure-that-fpmath-is-not.p=
-atch?h=3Dkraj/gcc-glibc-upgrade
-
-as a result all CCARGS patches aren=E2=80=99t needed any longer.
-
-This should be good with multilib now. Please try the latest patchset.
-
-Thinking of TUNE_CCARGS pruning, I think mips multilib will have similar =
-issues, probably that flag should also move into glibc build system but =
-I will leave that for another day=
 
