@@ -1,49 +1,42 @@
-Return-Path: <yannick.koehler@hp.com>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 560AEE00831; Thu, 19 Feb 2015 11:27:04 -0800 (PST)
+	id BA28BE00831; Thu, 19 Feb 2015 11:30:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [15.240.0.71 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [192.94.38.131 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 532 seconds by postgrey-1.32 at yocto-www;
-	Thu, 19 Feb 2015 11:27:02 PST
-Received: from g9t1613g.houston.hp.com (g9t1613g.houston.hp.com [15.240.0.71])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F09F8E00827
-	for <yocto@yoctoproject.org>; Thu, 19 Feb 2015 11:27:02 -0800 (PST)
-Received: from g2t2352.austin.hp.com (g2t2352.austin.hp.com [15.217.128.51])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by g9t1613g.houston.hp.com (Postfix) with ESMTPS id 89E0F60F71
-	for <yocto@yoctoproject.org>; Thu, 19 Feb 2015 19:18:09 +0000 (UTC)
-Received: from G2W4316.americas.hpqcorp.net (g2w4316.austin.hp.com
-	[16.197.9.73]) (using TLSv1 with cipher AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by g2t2352.austin.hp.com (Postfix) with ESMTPS id 3EBA0A5
-	for <yocto@yoctoproject.org>; Thu, 19 Feb 2015 19:18:05 +0000 (UTC)
-Received: from G1W5781.americas.hpqcorp.net (16.193.25.255) by
-	G2W4316.americas.hpqcorp.net (16.197.9.73) with Microsoft SMTP Server
-	(TLS) id 14.3.169.1; Thu, 19 Feb 2015 19:17:12 +0000
-Received: from G1W3650.americas.hpqcorp.net ([169.254.8.167]) by
-	G1W5781.americas.hpqcorp.net ([16.193.25.255]) with mapi id
-	14.03.0169.001; Thu, 19 Feb 2015 19:17:12 +0000
-From: "Koehler, Yannick (HP Networking)" <yannick.koehler@hp.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: The kernel *.cfg system
-Thread-Index: AdBMd+UNvqNiw7oKQeCWaqmMRf9dLA==
-Date: Thu, 19 Feb 2015 19:17:12 +0000
-Message-ID: <95CF81BBD42FB348A182716C4D4310A8054C2850@G1W3650.americas.hpqcorp.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [16.193.232.29]
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D59DE00827
+	for <yocto@yoctoproject.org>; Thu, 19 Feb 2015 11:30:07 -0800 (PST)
+Received: from svr-orw-fem-06.mgc.mentorg.com ([147.34.97.120])
+	by relay1.mentorg.com with esmtp 
+	id 1YOWnV-0007HC-Vz from Joe_MacDonald@mentor.com ;
+	Thu, 19 Feb 2015 11:30:06 -0800
+Received: from burninator (147.34.91.1) by SVR-ORW-FEM-06.mgc.mentorg.com
+	(147.34.97.120) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 19 Feb 2015 11:30:05 -0800
+Received: by burninator (Postfix, from userid 1000)	id D13355809D0; Thu, 19
+	Feb 2015 14:30:07 -0500 (EST)
+Date: Thu, 19 Feb 2015 14:30:07 -0500
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Message-ID: <20150219193007.GO5134@mentor.com>
+References: <1424209275-12304-1-git-send-email-joe_macdonald@mentor.com>
+	<CAPhnLPAS1i0YV_rHqdjPkq9uCegc4Y1sQ=-USZoAeNwGF79QFw@mail.gmail.com>
 MIME-Version: 1.0
-Subject: The kernel *.cfg system
+In-Reply-To: <CAPhnLPAS1i0YV_rHqdjPkq9uCegc4Y1sQ=-USZoAeNwGF79QFw@mail.gmail.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-704 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [autobuilder][PATCH 1/4] README: update filenames and locations
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,33 +48,177 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Feb 2015 19:27:04 -0000
-Content-Language: fr-FR
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 19 Feb 2015 19:30:12 -0000
+X-Groupsio-MsgNum: 23671
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="+wSiqF7c0ySQ2tNi"
+Content-Disposition: inline
+
+--+wSiqF7c0ySQ2tNi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+[Re: [yocto] [autobuilder][PATCH 1/4] README: update filenames and location=
+s] On 15.02.19 (Thu 16:54) Flanagan, Elizabeth wrote:
 
-  I recently was playing with the FreeScale community layer meta-fsl-ppc.  =
-They are using their own kernel package linux-qoriq-sdk.  I attempted to al=
-ter the configuration file using a systemd.cfg for the pleasure, to my surp=
-rise, the .cfg didn't change anything at all.  Is FreeScale playing Yocto r=
-ules properly or is it me that missed something ?  I did the same as with l=
-inux-yocto:
+> Pulled to master. Production this evening. Thanks!
 
-  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-  KERNEL_FEATURES =3D "ext2 cgroups ipv6"
-  SRC_URI +=3D "file://systemd.cfg"
+Cool, thanks.  If you haven't already, please drop my 'templates' patch
+=66rom consideration, I figure I'll send out the completed version,
+including external configuration support, for consideration soon.  It
+works well for me and I don't know that the half-step is really worth
+it.
 
-  Yet, the kernel .config didn't contained my changes like the linux-yocto =
-did.  I was wondering if it was because the Qoriq Kernel didn't include spe=
-cific Yocto recipe instructions or class and it was something that I could =
-easily add or if this needed to come from FreeScale itself, or if it was re=
-ally just my setup having a problem.  Note that I did copy the systemd.cfg =
-file at a proper location and bitbake did find it, even thought the final c=
-onfig under the /tmp/work/... didn't contain the changes.
+FWIW, it'll still be two separate patches, if you opt to pick the first
+and not the second, I'll just include both in a single thread.
 
-  Any help on this welcome.
+-J.
 
-Yannick Koehler
+>=20
+> On 17 February 2015 at 21:41, Joe MacDonald <joe_macdonald@mentor.com> wr=
+ote:
+> > The main README points at conf/autobuilder.conf and conf/yoctoAB.conf,
+> > both of which aren't the current places where the autobuilder looks for
+> > these files anymore.
+> >
+> > README-NEW-AUTOBUILDER has a bit of whitespace damage, in the text and =
+in
+> > the examples, so clean that up to make it more paste-friendly.
+> >
+> > Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
+> > ---
+> >  README                 |  6 +++---
+> >  README-NEW-AUTOBUILDER | 14 +++++++-------
+> >  2 files changed, 10 insertions(+), 10 deletions(-)
+> >
+> > diff --git a/README b/README
+> > index 94dae28..06b9cbc 100644
+> > --- a/README
+> > +++ b/README
+> > @@ -97,13 +97,13 @@ Setting up build history requires the following ste=
+ps:
+> >  Files used for Yocto-Autobuilder Configuration
+> >  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >
+> > -Name: conf/autobuilder.conf
+> > +Name: config/autobuilder.conf
+> >  Purpose:
+> >  This file is used to set autobuilder wide parameters, like where vario=
+us build
+> >  artifacts are published to, DL_DIR, SSTATE_DIR or if build artifacts s=
+hould be
+> >  published (needed for production autobuilders, not needed for desktop =
+builders)
+> >
+> > -Name: conf/yoctoAB.conf
+> > +Name: buildset-config/yoctoAB.conf
+> >  Purpose:
+> >  This is the main yocto autobuilder config. Documentation for this and =
+associated
+> > -format is in README_CONFIG
+> > +format is in README-NEW-AUTOBUILDER
+> > diff --git a/README-NEW-AUTOBUILDER b/README-NEW-AUTOBUILDER
+> > index 97bbe61..73be208 100644
+> > --- a/README-NEW-AUTOBUILDER
+> > +++ b/README-NEW-AUTOBUILDER
+> > @@ -170,12 +170,12 @@ scheduler: A list of dicts. Each item defines a s=
+cheduler associated with this
+> >                      This defaults to '*', meaning every month.
+> >                 dayOfWeek: The day of the week in which to start the bu=
+ild, with
+> >                      Monday =3D 1.  This defaults to '*', meaning every=
+ day.
+> > -              hour: The hour of the day in which to start the build, w=
+ith
+> > +               hour: The hour of the day in which to start the build, =
+with
+> >                      12:00 AM =3D 0.  This must be set by the user.
+> > -              minute: The minute of the hour in which to start the bui=
+ld, with
+> > +               minute: The minute of the hour in which to start the bu=
+ild, with
+> >                      0 to 59 as valid values.  This must be set by the =
+user.
+> >
+> > -         SingleBranchScheduler properties:
+> > +       SingleBranchScheduler properties:
+> >                 repository: the repository to attach the scheduler to; =
+this
+> >                      is the repo name from the 'repos' section; the bra=
+nch which
+> >                      the scheduler is attached to matches that in the r=
+epo
+> > @@ -185,7 +185,7 @@ scheduler: A list of dicts. Each item defines a sch=
+eduler associated with this
+> >                      triggering build to allow for changes to settle.  =
+Defaults
+> >                      to 60 seconds.
+> >
+> > -              change-user: the user name which the remote hook will us=
+e; the
+> > +               change-user: the user name which the remote hook will u=
+se; the
+> >                      default value is the repository name as per the 'r=
+epository'
+> >                      property.
+> >
+> > @@ -209,7 +209,7 @@ scheduler: A list of dicts. Each item defines a sch=
+eduler associated with this
+> >             Extra Notes on SingleBranchScheduler setup
+> >             ------------------------------------------
+> >
+> > -          There is one SBS scheduler for each repository in the builds=
+et, i.e.,
+> > +           There is one SBS scheduler for each repository in the build=
+set, i.e.,
+> >             if your buildset contains more repositories, and you want b=
+uild
+> >             triggered by changes to any of them, you need to define a s=
+cheduler
+> >             for each. This also means that you can mix and match, e.g.,=
+ only
+> > @@ -272,8 +272,8 @@ steps: [{'SetDest':{}},
+> >          {'PublishArtifacts': {'artifacts': ['qemux86', 'atom-pc']}}]
+> >  scheduler: [{'dev-branch-scheduler' :
+> >                  {'type':'SingleBranchScheduler',
+> > -                'repository':'poky',
+> > -                'stable-timer':30,
+> > +                 'repository':'poky',
+> > +                 'stable-timer':30,
+> >                   'change-password':'secret_change_password'}}]
+> >
+> >  Adding Buildsteps
+> > --
+> > 1.9.1
+> >
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+>=20
+>=20
+>=20
+--=20
+-Joe MacDonald.
+:wq
 
+--+wSiqF7c0ySQ2tNi
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iQEcBAEBAgAGBQJU5jm/AAoJEEn8ffcsOfaWeSEIAL9lDXaATP5tM0dHAhIJCFBE
+mBQjz9HhFuRxEKgMl+VhXm66wmkybOOkChdFunKWIEo7HRz3cQzQGL9U+qhsFboP
+Ce8/f6juo6je+YLEmQyGDsbRir09O0GFZtzwjp/VVHXMYYdT+asRq6TZ41Q2aIyb
+79TTTgLWNqIBWVxEUd4nXeWfj+1C/76YRfKkrl7CiCKSXQHE6HHNPVuXbhYC9Ni2
+kpTmHfK8VGvuTrCYUsUIBxuVT759YMqnNeLaOg9JbE//URu9jXXfgn99+FNpWQOd
+j1P+/O5FYs3tJsaAwVl6nIiV3+Uan2OhpP9AhXTNYIuwh2POs7fxSWT3Dzw+tQU=
+=kj9J
+-----END PGP SIGNATURE-----
+
+--+wSiqF7c0ySQ2tNi--
