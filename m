@@ -1,37 +1,56 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 16899E0084F; Fri, 20 Feb 2015 01:51:19 -0800 (PST)
+	id ACE55E0084F; Fri, 20 Feb 2015 02:55:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC425E00831
-	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 01:51:09 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga101.fm.intel.com with ESMTP; 20 Feb 2015 01:51:05 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,613,1418112000"; d="scan'208";a="654758797"
-Received: from marazel-mobl2.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.23.180])
-	by orsmga001.jf.intel.com with ESMTP; 20 Feb 2015 01:51:05 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Jim Rafert <jimr@spectralogic.com>
-Date: Fri, 20 Feb 2015 09:51:04 +0000
-Message-ID: <1674116.AmgqaYKJqr@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.4 (Linux/3.18.6-100.fc20.x86_64; KDE/4.14.4; x86_64; ; )
-In-Reply-To: <86196249137E0843B2E0673D4F731E0C0108E3D34E@reactor.sldomain.com>
-References: <86196249137E0843B2E0673D4F731E0C0108E3D34E@reactor.sldomain.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Simple recipe quit working in dizzy
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.43 listed in list.dnswl.org]
+Received: from mail-pa0-f43.google.com (mail-pa0-f43.google.com
+	[209.85.220.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73717E00831
+	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 02:55:52 -0800 (PST)
+Received: by pabrd3 with SMTP id rd3so7277819pab.1
+	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 02:55:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:content-transfer-encoding:subject:message-id:date
+	:to:mime-version;
+	bh=OVVZDWEMA1IPbHcxuN7rvwt33KkiXlEo8gGZoyUWwao=;
+	b=FSu3AkJQn27JKautdlEEFn/Uc+Qu0OR+pRq/1ZlZ2Pq3CIpcy4lEVQbPKPOgyMKZXr
+	FHgfwISIUUcj3Azp6uMOUtPMwRNHIVOvrVFHkxiVZ8ivcZHHa4yam1ZD6W253CFZ3qC8
+	dNGfPIZ6V1qk13HZhnKUSmyg1l51z9olBWinj2HzfwJ+BwYRHVWzzuU4SiXlMZcmkMHe
+	8IyZYWN1jMmfdbc0kzIZBV4kOx82A21wCicWhIWTiK9pYs1bujmAT8FnQOXmMTYx2mig
+	oo/R8lC/f9jwhfcqgIvnaCfubZxrHf3IfYmZWbCOH4QdtD65lAbMm3p3+579SK+4uMxX
+	KbjA==
+X-Received: by 10.68.115.196 with SMTP id jq4mr15892487pbb.150.1424429751790; 
+	Fri, 20 Feb 2015 02:55:51 -0800 (PST)
+Received: from ?IPv6:2601:9:3580:84c:852e:3540:d404:25e3?
+	([2601:9:3580:84c:852e:3540:d404:25e3])
+	by mx.google.com with ESMTPSA id
+	je2sm26457318pbd.44.2015.02.20.02.55.50
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 20 Feb 2015 02:55:51 -0800 (PST)
+From: Khem Raj <raj.khem@gmail.com>
+Message-Id: <BB19F3C7-2950-4E41-BF62-70BFE4FB9C9B@gmail.com>
+Date: Fri, 20 Feb 2015 02:55:48 -0800
+To: openembeded-devel <openembedded-devel@lists.openembedded.org>,
+	openembedded-core@lists.openemebedded.org, yocto <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2070.6\))
+X-Mailer: Apple Mail (2.2070.6)
+Subject: [RFT] gcc 5.0 recipes available for testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,114 +62,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Feb 2015 09:51:19 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 20 Feb 2015 10:55:55 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Hi Jim,
+Hi All
 
-On Wednesday 18 February 2015 20:33:43 Jim Rafert wrote:
-> The following recipe, spectra-postbuild_0.1.bb, quit working when I ported
-> from 1.6 daisy to 1.7.1 dizzy.  I include the recipe in my image by adding
-> it at the end of of the IMAGE_INSTALL_append variable in my local.conf
-> file.  The purpose of the recipe is simply to lay down some files that will
-> later be used by an installer script.  Two if the files are deposited in
-> the root directory, and the rest are placed in the /install/spectra
-> directory, which is created by the recipe.  Nothing is compiled or
-> transformed in any way.
-> 
-> When I bitbake the recipe, then bitbake core-image-full-cmdline, both
-> complete without errors. When I look at the contents of the rpm file
-> produced by the recipe, all the files and directories are listed. However,
-> when I examine the file system images created, only the two files that I
-> place in the root directory (/) are there, and the entire /install
-> directory hierarchy is missing. If I modify the recipe such that the
-> missing files are placed in a directory that is already created by other
-> recipes (/home/root), all the files are deposited as expected.
-> 
-> I have looked at section 5.6 of the Yocto reference manual, "Moving to the
-> Yocto Project 1.7 Release", but did not see anything that was obviously
-> relevant.
-> 
-> Can someone tell me how to fix this for dizzy?
-> 
-> ######################################################
-> # spectra-postbuild_0.1.bb
-> ######################################################
-> 
-> SUMMARY = "Post processing of configuration files for SpectraOS"
-> SECTION = "base"
-> LICENSE = "GPLv2"
-> LIC_FILES_CHKSUM =
-> "file://${WORKDIR}/COPYRIGHT;md5=349c872e0066155e1818b786938876a4" 
-> PR = "r0"
-> 
-> SRC_URI = "file://inittab \
->        file://fstab \
->        file://rsyslog.conf \
->            file://profile \
->        file://grub.cfg \
->        file://mount.sh \
->        file://RELEASE-NOTES.txt \
->        file://Spectra-OS-Version \
->        file://initializeCustomKernelModules \
->        file://firewall \
->        file://sysctl.conf \
->            file://InstallOS.sh \
->        file://COPYRIGHT \
->            file://WinCE_LCM.tar.bz \
->        "
-> 
-> FILES_${PN} =  "/RELEASE-NOTES.txt \
->                 /Spectra-OS-Version \
->                 /install \
->                 /install/spectra \
->                 /install/spectra/InstallOS.sh \
->                 /install/spectra/fstab \
->                 /install/spectra/mount.sh \
->                 /install/spectra/grub.cfg \
->                 /install/spectra/rsyslog.conf \
->                 /install/spectra/profile \
->                 /install/spectra/inittab \
->                 /install/spectra/WinCE_LCM.tar.bz \
->                 /install/spectra/sysctl.conf \
->                 /install/spectra/init.d \
->                 /install/spectra/rc5.d \
->                 /install/spectra/init.d/initializeCustomKernelModules \
->                 /install/spectra/init.d/firewall \
->                 "
-> 
-> do_install () {
->     install -m 755 ${WORKDIR}/RELEASE-NOTES.txt ${D}
->     install -m 755 ${WORKDIR}/Spectra-OS-Version ${D}
->         install -d ${D}/install
->         install -d ${D}/install/spectra
->         install -m 544 ${WORKDIR}/inittab ${D}/install/spectra
->         install -m 755 ${WORKDIR}/fstab ${D}/install/spectra
->         install -m 755 ${WORKDIR}/rsyslog.conf ${D}/install/spectra
->         install -m 755 ${WORKDIR}/profile ${D}/install/spectra
->         install -m 755 ${WORKDIR}/grub.cfg ${D}/install/spectra
->         install -m 755 ${WORKDIR}/mount.sh ${D}/install/spectra
->         install -m 755 ${WORKDIR}/InstallOS.sh ${D}/install/spectra
->         install -m 755 ${WORKDIR}/sysctl.conf ${D}/install/spectra
->         install -m 644 ${WORKDIR}/WinCE_LCM.tar.bz ${D}/install/spectra
->         install -m 755 ${WORKDIR}/firewall ${D}/install/spectra
->         install -m 755 ${WORKDIR}/initializeCustomKernelModules
-> ${D}/install/spectra
-> 
-> }
+Encouraged by help received on testing out glibc 2.21, now  I have put =
+together OE recipes for gcc-5
 
-Hmm, so I can't see anything immediately wrong with the recipe that would lead 
-to a problem such as what you describe, so rather than something expected 
-change between releases this looks more like a bug. Is there anything in the 
-log.do_rootfs for the image that might indicate something going wrong? Perhaps 
-an uncaught error?
+GCC 5.0 is in prerelease stage 4 ( open for regression and doc fixes =
+only)=20
 
-Cheers,
-Paul
+https://gcc.gnu.org/ml/gcc/2015-01/msg00156.html
 
--- 
+The recipes are available here
 
-Paul Eggleton
-Intel Open Source Technology Centre
+=
+http://git.openembedded.org/openembedded-core-contrib/log/?h=3Dkraj/gcc-5.=
+0
+
+you just need the topmost commit and then set=20
+
+GCCVERSION =3D "5.0"
+SDKGCCVERSION =3D "5.0"
+
+in local.conf
+
+It has been lightly tested thus far but try it out and report issues you =
+observe in your build setups, we will bake it there
+until 5.0 release
+
+Thanks for helping out
+
+-Khem
+
 
