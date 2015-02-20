@@ -1,55 +1,45 @@
-Return-Path: <challinan@gmail.com>
+Return-Path: <kaiu@gmx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 13CA3E00853; Fri, 20 Feb 2015 06:31:48 -0800 (PST)
+	id 33A7CE002AC; Fri, 20 Feb 2015 06:44:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.218.52 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (challinan[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (kaiu[at]gmx.de)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f52.google.com (mail-oi0-f52.google.com
-	[209.85.218.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C50DE00837
-	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 06:31:46 -0800 (PST)
-Received: by mail-oi0-f52.google.com with SMTP id u20so2789219oif.11
-	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 06:31:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=rodyB3QI/kPAC8ZGK88x4MNXmRpNQBFzz+DSP7p2RIM=;
-	b=vWRcWUTixiy4zO9hhfR35yVuK3TzqHHR/AwehD04jJLpuV19S94InnIQZ33nqSH1Pw
-	GbGJlLztZLUEkAc1eDUHUtYckmeGNxUwXRsvH2Lp0eS7496yOUxjRLCA9xF/EcRdOf9/
-	UkhNOG3pIKWxcDnIxrCs94nHLy+SHC2hn5F/1fk2kB4FxCweQb2ux4tg689VBUKvs326
-	AMs3Clei8odlrlT+pZBNxwi3JTYpBeFw25kD4xWI8UpLCrLIV10GWgJzn4ZlZU57CFm1
-	w6/aw/dZyqYP40hyAYnw4js8zlCCOoCgZeJUuGIATrkSqm5FBO3ktlU6oCMOOUSByRqo
-	EdGg==
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [212.227.15.19 listed in list.dnswl.org]
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91EE3E00288
+	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 06:44:26 -0800 (PST)
+Received: from mail-we0-f169.google.com ([74.125.82.169]) by mail.gmx.com
+	(mrgmx002) with ESMTPSA (Nemesis) id 0LomJ1-1XvXsI0HUJ-00grXV for
+	<yocto@yoctoproject.org>; Fri, 20 Feb 2015 15:44:25 +0100
+Received: by wesw55 with SMTP id w55so5988841wes.5
+	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 06:44:24 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.202.93.134 with SMTP id r128mr6349894oib.95.1424442705583;
-	Fri, 20 Feb 2015 06:31:45 -0800 (PST)
-Received: by 10.202.49.129 with HTTP; Fri, 20 Feb 2015 06:31:45 -0800 (PST)
-In-Reply-To: <CAAKMwipcazbOT9_u=Y88fbw5UHEBaCDTPMJb56Jvi0anem1RcQ@mail.gmail.com>
-References: <CAAKMwipcazbOT9_u=Y88fbw5UHEBaCDTPMJb56Jvi0anem1RcQ@mail.gmail.com>
-Date: Fri, 20 Feb 2015 09:31:45 -0500
-Message-ID: <CAME0jBTQ1ERsSrS+W1EVu5-8ZuHkYRX8wnezuAFSr_GJ_t-fEw@mail.gmail.com>
-From: Chris Hallinan <challinan@gmail.com>
-To: kaiu@gmx.de
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Edit project specific config files of other recipe like /etc/ssh/ssh_config from openssh
+X-Received: by 10.180.171.35 with SMTP id ar3mr20767718wic.24.1424443464286;
+	Fri, 20 Feb 2015 06:44:24 -0800 (PST)
+Received: by 10.194.39.169 with HTTP; Fri, 20 Feb 2015 06:44:24 -0800 (PST)
+Date: Fri, 20 Feb 2015 15:44:24 +0100
+Message-ID: <CAAKMwiqm0iwzPjUsX127nk==hgQ0OcrrXFnG6brfhAF+DbO5Xg@mail.gmail.com>
+From: Kai Ulrich <kaiu@gmx.de>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-Provags-ID: V03:K0:8SX08AiFLp+ccyIyyItReUekR0MzpjaSAbTPTuOx8QVZgFQrml4
+	WRCEwAzU4sZ+0BwseruCfdAlX5Q1FhQ2BxyNcX5B6/vE9bRHJMdNkc2pK/g0bukMYSFJ/S4
+	enB7VJ0fAol1S4o1kkNHTAgIIvDN67B6WE3nCRp1tHhPGQTaarXDep2HOFmtWpcUqGWQO61
+	pj1WbopwutQ068Z5rYaXA==
+X-UI-Out-Filterresults: notjunk:1;
+Subject: WARNING: Could not copy license file LICENSE -> Downloaded archive structure?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: kaiu@gmx.de
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -58,63 +48,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Feb 2015 14:31:48 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 20 Feb 2015 14:44:29 -0000
+Content-Type: multipart/alternative; boundary=001a1135e78eb10b94050f8616d5
 
-Hi Kai,
+--001a1135e78eb10b94050f8616d5
+Content-Type: text/plain; charset=UTF-8
 
-In your layer, create a .bbappend matching the basename of the package
-you want to change. Using your example, create
-recipes-connectivity/openssh/openssh_6.6p1.bbappend (make sure
-versions match).
+Hi,
 
-Then you can either replace or patch ssh_config. I would patch it.
-Create your patch, put it in recipes-connectivity/openssh/files, and
-name your patch file, ending in .patch in SRC_URI in your .bbappend
-file.
+I working on a smstools3 recipe.
 
-Your .bbappend file might look something like this:
+after running bitbake smstools3
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-SRC_URI += "file://myssh_config.patch"
+I got following
+WARNING: Could not copy license file LICENSE: [Errno 2] No such file or
+directory:
+'/home/kulrich/Develpment/yocto/dizzy/poky/build_test/tmp/work/i586-poky-linux/smstools3/3.1.15-r0/smstools3-3.1.15/LICENSE'
+Function failed: smstools3: LIC_FILES_CHKSUM points to an invalid file:
+.../yocto/dizzy/poky/build_test/tmp/work/i586-poky-linux/smstools3/3.1.15-r0/smstools3-3.1.15/LICENSE
 
-The first line instructs bitbake where to search for your patch file.
-The second line will cause the file to be fetched into your ${WORKDIR}
-for openssh, and because it has a .patch extension, it will
-automatically be applied.
+After looking for the LICENSE found it under
+.../yocto/dizzy/poky/build_test/tmp/work/i586-poky-linux/smstools3/3.1.15-r0/smstools/LICENSE
 
-The excellent Yocto Project Developer Manual has an example of a
-.bbappend file, although its slightly outdated.  You no longer need PR
-field, and SRC_URI should be += instead of "=".
+It seams the reason is the Package structure of the smstools3-3.1.15.tar.gz.
+it is
 
-http://www.yoctoproject.org/docs/1.7.1/dev-manual/dev-manual.html#using-bbappend-files
+smstools3-3.1.15.tar.gz.
+---smstools3
+-------src
+-------scripts
+-------examples
+-------doc
+-------uninstall.sh
+-------README
+-------package.sh
+-------Makefile
+-------LICENSE
 
-Yocto Project is gifted with some of the best documentation in the
-open source world.
+with a struktur (2) like
 
-Good luck!
+smstools3-3.1.15.tar.gz.
+---smstools3-3.1.15
+-------src
+-------scripts
+-------examples
+-------doc
+-------uninstall.sh
+-------README
+-------package.sh
+-------Makefile
+-------LICENSE
 
-On Fri, Feb 20, 2015 at 7:18 AM, Kai Ulrich <kaiu@gmx.de> wrote:
-> Hi,
->
-> I create a layer for my project.
-> How can I edit (patch?)  project specific config files of other recipe for
-> the rootfs without touching the original recipe.
-> Project specific config files could by /etc/ssh/ssh_config (do not touch
-> recipe openssh )
->
-> Friendly regrades
-> Kai Ulrich
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+it works fine.
 
+Any idea how I can configure my recipe that that it works with the original
+package structure?
 
+Kai Ulrich
 
--- 
-Life is like Linux - it never stands still.
+--001a1135e78eb10b94050f8616d5
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><div>Hi,<br><br></div>I working on a smstools3 recipe=
+.<br><br>after running bitbake smstools3<br><br>I got following <br>WARNING=
+: Could not copy license file LICENSE: [Errno 2] No such file or directory:=
+ &#39;/home/kulrich/Develpment/yocto/dizzy/poky/build_test/tmp/work/i586-po=
+ky-linux/smstools3/3.1.15-r0/smstools3-3.1.15/LICENSE&#39;<br>Function fail=
+ed: smstools3: LIC_FILES_CHKSUM points to an invalid file: .../yocto/dizzy/=
+poky/build_test/tmp/work/i586-poky-linux/smstools3/3.1.15-r0/smstools3-3.1.=
+15/LICENSE<br><br></div><div>After looking for the LICENSE found it under .=
+../yocto/dizzy/poky/build_test/tmp/work/i586-poky-linux/smstools3/3.1.15-r0=
+/smstools/LICENSE</div><div><br></div><div>It seams the reason is the Packa=
+ge structure of the smstools3-3.1.15.tar.gz.<br></div><div>it is<br><br></d=
+iv><div>smstools3-3.1.15.tar.gz.<br>---smstools3<br>-------src<br>-------sc=
+ripts<br>-------examples<br>-------doc<br>-------uninstall.sh<br>-------REA=
+DME<br>-------package.sh<br>-------Makefile<br>-------LICENSE<br><br></div>=
+<div>with a struktur (2) like <br><br>smstools3-3.1.15.tar.gz.<br>---smstoo=
+ls3-3.1.15<br>-------src<br>-------scripts<br>-------examples<br>-------doc=
+<br>-------uninstall.sh<br>-------README<br>-------package.sh<br>-------Mak=
+efile<br>-------LICENSE<br><br></div><div>it works fine.<br></div><div><br>=
+</div><div>Any idea how I can configure my recipe that that it works with t=
+he original package structure?<br></div><div><br>Kai Ulrich<br></div><div><=
+br><br></div></div>
+
+--001a1135e78eb10b94050f8616d5--
