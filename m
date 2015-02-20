@@ -1,49 +1,52 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <challinan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BB836E00853; Fri, 20 Feb 2015 05:24:43 -0800 (PST)
+	id 13CA3E00853; Fri, 20 Feb 2015 06:31:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.173 listed in list.dnswl.org]
+	*      [209.85.218.52 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (challinan[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qc0-f173.google.com (mail-qc0-f173.google.com
-	[209.85.216.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6738FE00837
-	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 05:24:36 -0800 (PST)
-Received: by qcyl6 with SMTP id l6so550260qcy.2
-	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 05:24:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=xpmuA9y3Nxm2lWvpeDOEbxUo9i2x/RA/P6ALsQ4M38U=;
-	b=TsHUWQ3GPZt8FGtAPS2NNpLjz99BOXJ6ERKZ9u24mU6ks2m8kGgBgui2XboYucCGjE
-	dW0erfpP68zNMpQvt3U0e+2RBL/Bn1Q6cdHLvl7QodFGNHTXNdlfu3MYOhsgSFF9N+j3
-	mMaxAOYhB7pHlB4ZPSurm/J1HR67JjMKfiIzNVl8HUVXvXtuu4sZ/OOBO4RzZX1/Z7Ob
-	scKs4WpZ0/JUHQ2hvlXlKhf8ZB1wBdRbvTrH5joMZvLXFQ4pZxDlgObZ3kt/Sq3daqai
-	yVI+MXwi/hw5a9Ik/aZceTyNTqj5lhNwmXk3Emfxi8x5JWiDTynGIiU2ushHPhHxPYm8
-	8jiA==
-X-Gm-Message-State: ALoCoQm6DjQHwNL4ag8V3/9qQi/ZpSYnJ279498o3AVOftj2TFZTPnTgkI8yfEqMM8LfqyzaUWRq
-X-Received: by 10.140.92.161 with SMTP id b30mr6275029qge.59.1424438675742;
-	Fri, 20 Feb 2015 05:24:35 -0800 (PST)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f52.google.com (mail-oi0-f52.google.com
+	[209.85.218.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C50DE00837
+	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 06:31:46 -0800 (PST)
+Received: by mail-oi0-f52.google.com with SMTP id u20so2789219oif.11
+	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 06:31:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=rodyB3QI/kPAC8ZGK88x4MNXmRpNQBFzz+DSP7p2RIM=;
+	b=vWRcWUTixiy4zO9hhfR35yVuK3TzqHHR/AwehD04jJLpuV19S94InnIQZ33nqSH1Pw
+	GbGJlLztZLUEkAc1eDUHUtYckmeGNxUwXRsvH2Lp0eS7496yOUxjRLCA9xF/EcRdOf9/
+	UkhNOG3pIKWxcDnIxrCs94nHLy+SHC2hn5F/1fk2kB4FxCweQb2ux4tg689VBUKvs326
+	AMs3Clei8odlrlT+pZBNxwi3JTYpBeFw25kD4xWI8UpLCrLIV10GWgJzn4ZlZU57CFm1
+	w6/aw/dZyqYP40hyAYnw4js8zlCCOoCgZeJUuGIATrkSqm5FBO3ktlU6oCMOOUSByRqo
+	EdGg==
 MIME-Version: 1.0
-Received: by 10.140.102.203 with HTTP; Fri, 20 Feb 2015 05:24:15 -0800 (PST)
-In-Reply-To: <54E7347B.8070801@mlbassoc.com>
-References: <54E72D96.9040504@mlbassoc.com>
-	<CAJTo0La_Ky_1voaDaCt=m_XZMFnTCD__JpvMmDBF+dC+ynpcaA@mail.gmail.com>
-	<54E7347B.8070801@mlbassoc.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 20 Feb 2015 13:24:15 +0000
-Message-ID: <CAJTo0LZfLPYEeB13yXHW-4im=W7Zyym01OTv364pZ5E-inBMwg@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: glibc fetching problems
+X-Received: by 10.202.93.134 with SMTP id r128mr6349894oib.95.1424442705583;
+	Fri, 20 Feb 2015 06:31:45 -0800 (PST)
+Received: by 10.202.49.129 with HTTP; Fri, 20 Feb 2015 06:31:45 -0800 (PST)
+In-Reply-To: <CAAKMwipcazbOT9_u=Y88fbw5UHEBaCDTPMJb56Jvi0anem1RcQ@mail.gmail.com>
+References: <CAAKMwipcazbOT9_u=Y88fbw5UHEBaCDTPMJb56Jvi0anem1RcQ@mail.gmail.com>
+Date: Fri, 20 Feb 2015 09:31:45 -0500
+Message-ID: <CAME0jBTQ1ERsSrS+W1EVu5-8ZuHkYRX8wnezuAFSr_GJ_t-fEw@mail.gmail.com>
+From: Chris Hallinan <challinan@gmail.com>
+To: kaiu@gmx.de
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Edit project specific config files of other recipe like /etc/ssh/ssh_config from openssh
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,39 +58,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Feb 2015 13:24:43 -0000
-Content-Type: multipart/alternative; boundary=001a1139baf045bb43050f84f96b
+X-List-Received-Date: Fri, 20 Feb 2015 14:31:48 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---001a1139baf045bb43050f84f96b
-Content-Type: text/plain; charset=UTF-8
+Hi Kai,
 
-On 20 February 2015 at 13:19, Gary Thomas <gary@mlbassoc.com> wrote:
+In your layer, create a .bbappend matching the basename of the package
+you want to change. Using your example, create
+recipes-connectivity/openssh/openssh_6.6p1.bbappend (make sure
+versions match).
 
-> Transient error?
->>
+Then you can either replace or patch ssh_config. I would patch it.
+Create your patch, put it in recipes-connectivity/openssh/files, and
+name your patch file, ending in .patch in SRC_URI in your .bbappend
+file.
+
+Your .bbappend file might look something like this:
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+SRC_URI += "file://myssh_config.patch"
+
+The first line instructs bitbake where to search for your patch file.
+The second line will cause the file to be fetched into your ${WORKDIR}
+for openssh, and because it has a .patch extension, it will
+automatically be applied.
+
+The excellent Yocto Project Developer Manual has an example of a
+.bbappend file, although its slightly outdated.  You no longer need PR
+field, and SRC_URI should be += instead of "=".
+
+http://www.yoctoproject.org/docs/1.7.1/dev-manual/dev-manual.html#using-bbappend-files
+
+Yocto Project is gifted with some of the best documentation in the
+open source world.
+
+Good luck!
+
+On Fri, Feb 20, 2015 at 7:18 AM, Kai Ulrich <kaiu@gmx.de> wrote:
+> Hi,
 >
-> Must have been, it's working for me now as well.
+> I create a layer for my project.
+> How can I edit (patch?)  project specific config files of other recipe for
+> the rootfs without touching the original recipe.
+> Project specific config files could by /etc/ssh/ssh_config (do not touch
+> recipe openssh )
+>
+> Friendly regrades
+> Kai Ulrich
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
 
-My magic touch. ;)
 
-Ross
+-- 
+Life is like Linux - it never stands still.
 
---001a1139baf045bb43050f84f96b
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 20 February 2015 at 13:19, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span=
-> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
-rder-left:1px #ccc solid;padding-left:1ex"><blockquote class=3D"gmail_quote=
-" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><=
-span class=3D"">Transient error?<br>
-</span></blockquote>
-<br>
-Must have been, it&#39;s working for me now as well.</blockquote><div><br><=
-/div><div>My magic touch. ;)</div><div><br></div><div>Ross=C2=A0</div></div=
-></div></div>
-
---001a1139baf045bb43050f84f96b--
