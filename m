@@ -1,47 +1,32 @@
-Return-Path: <kaiu@gmx.de>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 55F22E0084F; Fri, 20 Feb 2015 04:23:55 -0800 (PST)
+	id A547FE00853; Fri, 20 Feb 2015 04:50:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (kaiu[at]gmx.de)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [212.227.15.18 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0012]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 304 seconds by postgrey-1.32 at yocto-www;
-	Fri, 20 Feb 2015 04:23:51 PST
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 740CBE00831
-	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 04:23:51 -0800 (PST)
-Received: from mail-wg0-f45.google.com ([74.125.82.45]) by mail.gmx.com
-	(mrgmx002) with ESMTPSA (Nemesis) id 0MdKgV-1Y6QTd27LX-00IUMI for
-	<yocto@yoctoproject.org>; Fri, 20 Feb 2015 13:18:46 +0100
-Received: by mail-wg0-f45.google.com with SMTP id k14so12854943wgh.4
-	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 04:18:45 -0800 (PST)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9BC4E00837
+	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 04:50:28 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id B2A06F811EB; Fri, 20 Feb 2015 05:50:27 -0700 (MST)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 6A074F811E9;
+	Fri, 20 Feb 2015 05:50:27 -0700 (MST)
+Message-ID: <54E72D96.9040504@mlbassoc.com>
+Date: Fri, 20 Feb 2015 05:50:30 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
 MIME-Version: 1.0
-X-Received: by 10.180.98.105 with SMTP id eh9mr15632533wib.51.1424434725940;
-	Fri, 20 Feb 2015 04:18:45 -0800 (PST)
-Received: by 10.194.39.169 with HTTP; Fri, 20 Feb 2015 04:18:45 -0800 (PST)
-Date: Fri, 20 Feb 2015 13:18:45 +0100
-Message-ID: <CAAKMwipcazbOT9_u=Y88fbw5UHEBaCDTPMJb56Jvi0anem1RcQ@mail.gmail.com>
-From: Kai Ulrich <kaiu@gmx.de>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-Provags-ID: V03:K0:xrPExMpd8rcADzrfGgRsbqZzNAcKfwbgAXanBcSY9DgVBF5oUVP
-	eanKsF5NCxO0TScF9cYTcpELd0CGJs9U2AL3ANFf8yxTVWGBeUT0VVxDo9gVaWSWQ1mYeeF
-	cpojjkAZVt+R352QYo42S+Yozj3cMtZQxYNxLRvXgDcVLBCzh9rocgrS6RV+apd0wHFLPEg
-	WaVdqE1iwKUgBsQwq6J7g==
-X-UI-Out-Filterresults: notjunk:1;
-Subject: Edit project specific config files of other recipe like /etc/ssh/ssh_config from openssh
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: glibc fetching problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: kaiu@gmx.de
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -50,31 +35,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Feb 2015 12:23:55 -0000
-Content-Type: multipart/alternative; boundary=089e0115fba8d878a5050f840d4d
+X-List-Received-Date: Fri, 20 Feb 2015 12:50:33 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---089e0115fba8d878a5050f840d4d
-Content-Type: text/plain; charset=UTF-8
+I just updated Poky/Yocto to the latest master and now I get
+this failure:
+ERROR: Function failed: Fetcher failure for URL: 'git://sourceware.org/git/glibc.git;branch=release/2.21/master'. Unable to fetch URL from any source.
 
-Hi,
+This is because any attempt to clone that repo breaks:
+   $ git clone git://sourceware.org/git/glibc.git
+   Cloning into 'glibc'...
+   fatal: read error: Connection reset by peer
 
-I create a layer for my project.
-How can I edit (patch?)  project specific config files of other recipe for
-the rootfs without touching the original recipe.
-Project specific config files could by /etc/ssh/ssh_config (do not touch
-recipe openssh )
+It's not a local networking issue - I tried it on both sides
+of the pond.
 
-Friendly regrades
-Kai Ulrich
+Sadly, the yocto mirrors don't have this file either - the latest
+tarball in http://downloads.yoctoproject.org/mirror/sources/
+only goes up to 2.20
 
---089e0115fba8d878a5050f840d4d
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Any ideas, given that the 2.20 recipes have been replaced?
 
-<div dir=3D"ltr">Hi,<br><br>I create a layer for my project.<br>How can I e=
-dit (patch?) =C2=A0project specific config files of other recipe for the ro=
-otfs without touching the original recipe.<br>Project specific config files=
- could by /etc/ssh/ssh_config (do not touch recipe openssh )<br><br>Friendl=
-y regrades<br>Kai Ulrich<i class=3D""><br></i></div>
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
---089e0115fba8d878a5050f840d4d--
