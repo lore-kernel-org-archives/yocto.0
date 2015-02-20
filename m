@@ -1,45 +1,43 @@
-Return-Path: <kaiu@gmx.de>
+Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 33A7CE002AC; Fri, 20 Feb 2015 06:44:29 -0800 (PST)
+	id D3FEEE002F9; Fri, 20 Feb 2015 08:34:25 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (kaiu[at]gmx.de)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [195.74.38.224 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [212.227.15.19 listed in list.dnswl.org]
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91EE3E00288
-	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 06:44:26 -0800 (PST)
-Received: from mail-we0-f169.google.com ([74.125.82.169]) by mail.gmx.com
-	(mrgmx002) with ESMTPSA (Nemesis) id 0LomJ1-1XvXsI0HUJ-00grXV for
-	<yocto@yoctoproject.org>; Fri, 20 Feb 2015 15:44:25 +0100
-Received: by wesw55 with SMTP id w55so5988841wes.5
-	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 06:44:24 -0800 (PST)
+Received: from bin-vsp-out-05.atm.binero.net (vsp-authed01.binero.net
+	[195.74.38.224])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DCF3E00289
+	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 08:34:18 -0800 (PST)
+X-Halon-ID: 62cd90b0-b91e-11e4-a613-005056916f53
+Authorized-sender: petter@technux.se
+Received: from webmail.binero.se (unknown [195.74.38.9])
+	by bin-vsp-out-05.atm.binero.net (Halon Mail Gateway) with ESMTPA
+	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 17:34:48 +0100 (CET)
 MIME-Version: 1.0
-X-Received: by 10.180.171.35 with SMTP id ar3mr20767718wic.24.1424443464286;
-	Fri, 20 Feb 2015 06:44:24 -0800 (PST)
-Received: by 10.194.39.169 with HTTP; Fri, 20 Feb 2015 06:44:24 -0800 (PST)
-Date: Fri, 20 Feb 2015 15:44:24 +0100
-Message-ID: <CAAKMwiqm0iwzPjUsX127nk==hgQ0OcrrXFnG6brfhAF+DbO5Xg@mail.gmail.com>
-From: Kai Ulrich <kaiu@gmx.de>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-Provags-ID: V03:K0:8SX08AiFLp+ccyIyyItReUekR0MzpjaSAbTPTuOx8QVZgFQrml4
-	WRCEwAzU4sZ+0BwseruCfdAlX5Q1FhQ2BxyNcX5B6/vE9bRHJMdNkc2pK/g0bukMYSFJ/S4
-	enB7VJ0fAol1S4o1kkNHTAgIIvDN67B6WE3nCRp1tHhPGQTaarXDep2HOFmtWpcUqGWQO61
-	pj1WbopwutQ068Z5rYaXA==
-X-UI-Out-Filterresults: notjunk:1;
-Subject: WARNING: Could not copy license file LICENSE -> Downloaded archive structure?
+Date: Fri, 20 Feb 2015 17:34:14 +0100
+From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
+To: <yocto@yoctoproject.org>
+Organization: Technux
+Mail-Reply-To: <petter@technux.se>
+In-Reply-To: <3b09ff30524d7e45240fa256eb7ac865ef082f22.1423607636.git.petter@technux.se>
+References: <cover.1423607636.git.petter@technux.se>
+	<3b09ff30524d7e45240fa256eb7ac865ef082f22.1423607636.git.petter@technux.se>
+Message-ID: <ddc1d259a2c9fbac2e047561b7bcf4b1@technux.se>
+X-Sender: petter@technux.se
+User-Agent: Binero Webmail/0.8.4
+Subject: Re: [meta-raspberrypi][PATCH 1/1] layer.conf: set layer depends
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: kaiu@gmx.de
+Reply-To: petter@technux.se
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -48,88 +46,175 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Feb 2015 14:44:29 -0000
-Content-Type: multipart/alternative; boundary=001a1135e78eb10b94050f8616d5
+X-List-Received-Date: Fri, 20 Feb 2015 16:34:25 -0000
+Content-Type: multipart/alternative;
+	boundary="=_f6c8a36b8850cec52305b08d7ea35dde"
 
---001a1135e78eb10b94050f8616d5
+--=_f6c8a36b8850cec52305b08d7ea35dde
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain; charset=UTF-8
 
-Hi,
+ 
 
-I working on a smstools3 recipe.
+After discussions with meta-raspberrypi maintainers we have come to
+the conclusion that we will not set any layer depends. We shouldn't
+break most of the builds which don't use the test image and therefore
+don't need the multimedia layer. So will instead break out the 'layer
+prio' part and send out in a separate review. 
 
-after running bitbake smstools3
+/Petter 
 
-I got following
-WARNING: Could not copy license file LICENSE: [Errno 2] No such file or
-directory:
-'/home/kulrich/Develpment/yocto/dizzy/poky/build_test/tmp/work/i586-poky-linux/smstools3/3.1.15-r0/smstools3-3.1.15/LICENSE'
-Function failed: smstools3: LIC_FILES_CHKSUM points to an invalid file:
-.../yocto/dizzy/poky/build_test/tmp/work/i586-poky-linux/smstools3/3.1.15-r0/smstools3-3.1.15/LICENSE
+2015-02-10
+23:39 skrev Petter Mabäcker: 
 
-After looking for the LICENSE found it under
-.../yocto/dizzy/poky/build_test/tmp/work/i586-poky-linux/smstools3/3.1.15-r0/smstools/LICENSE
+> Ensure that build fails in a
+informative way if not all layer
+> requirements are fulfilled.
+> 
+> To
+disable strict layer depend set 'LAYERDEPENDS_raspberrypi = ""'
+> in
+local.conf.
+> 
+> Also set a high layer prio to ensure that
+meta-raspberrypi addons
+> are always prioritized above the depended
+layers.
+> 
+> [Feature #46]
+> 
+> Change-Id:
+I8df772a59975ae379c3a1e93e2770e83be752bfd
+> Signed-off-by: Petter
+Mabäcker <petter@technux.se>
+> ---
+> README | 4 ++++
+> conf/layer.conf |
+3 ++-
+> 2 files changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git
+a/README b/README
+> index bb2f4be..3dad1ea 100644
+> --- a/README
+> +++
+b/README
+> @@ -143,6 +143,10 @@ See:
+http://wayland.freedesktop.org/raspberrypi.html [1]
+> 
+> 2.H. Images
+>
+===========
+> +Note: 'rpi-hwup-image' and 'rpi-basic-image' can be build
+without
+> + meta-multimedia. Set 'LAYERDEPENDS_raspberrypi = ""' in
+local.conf
+> + to enable build without 'meta-multimedia'.
+> +
+> *
+rpi-hwup-image
+> Hardware up image
+> * rpi-basic-image
+> diff --git
+a/conf/layer.conf b/conf/layer.conf
+> index 7bffd4b..b5ab695 100644
+>
+--- a/conf/layer.conf
+> +++ b/conf/layer.conf
+> @@ -7,7 +7,8 @@ BBFILES
++= "${LAYERDIR}/recipes*/*/*.bb 
+> 
+> BBFILE_COLLECTIONS +=
+"raspberrypi"
+> BBFILE_PATTERN_raspberrypi := "^${LAYERDIR}/"
+>
+-BBFILE_PRIORITY_raspberrypi = "6"
+> +BBFILE_PRIORITY_raspberrypi =
+"9"
+> +LAYERDEPENDS_raspberrypi = "multimedia-layer"
+> 
+> # Additional
+license directories.
+> LICENSE_PATH +=
+"${LAYERDIR}/files/custom-licenses"
+> -- 
+> 1.9.1
+ 
 
-It seams the reason is the Package structure of the smstools3-3.1.15.tar.gz.
-it is
+Links:
+------
+[1]
+http://wayland.freedesktop.org/raspberrypi.html
 
-smstools3-3.1.15.tar.gz.
----smstools3
--------src
--------scripts
--------examples
--------doc
--------uninstall.sh
--------README
--------package.sh
--------Makefile
--------LICENSE
-
-with a struktur (2) like
-
-smstools3-3.1.15.tar.gz.
----smstools3-3.1.15
--------src
--------scripts
--------examples
--------doc
--------uninstall.sh
--------README
--------package.sh
--------Makefile
--------LICENSE
-
-it works fine.
-
-Any idea how I can configure my recipe that that it works with the original
-package structure?
-
-Kai Ulrich
-
---001a1135e78eb10b94050f8616d5
-Content-Type: text/html; charset=UTF-8
+--=_f6c8a36b8850cec52305b08d7ea35dde
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
 
-<div dir=3D"ltr"><div><div>Hi,<br><br></div>I working on a smstools3 recipe=
-.<br><br>after running bitbake smstools3<br><br>I got following <br>WARNING=
-: Could not copy license file LICENSE: [Errno 2] No such file or directory:=
- &#39;/home/kulrich/Develpment/yocto/dizzy/poky/build_test/tmp/work/i586-po=
-ky-linux/smstools3/3.1.15-r0/smstools3-3.1.15/LICENSE&#39;<br>Function fail=
-ed: smstools3: LIC_FILES_CHKSUM points to an invalid file: .../yocto/dizzy/=
-poky/build_test/tmp/work/i586-poky-linux/smstools3/3.1.15-r0/smstools3-3.1.=
-15/LICENSE<br><br></div><div>After looking for the LICENSE found it under .=
-../yocto/dizzy/poky/build_test/tmp/work/i586-poky-linux/smstools3/3.1.15-r0=
-/smstools/LICENSE</div><div><br></div><div>It seams the reason is the Packa=
-ge structure of the smstools3-3.1.15.tar.gz.<br></div><div>it is<br><br></d=
-iv><div>smstools3-3.1.15.tar.gz.<br>---smstools3<br>-------src<br>-------sc=
-ripts<br>-------examples<br>-------doc<br>-------uninstall.sh<br>-------REA=
-DME<br>-------package.sh<br>-------Makefile<br>-------LICENSE<br><br></div>=
-<div>with a struktur (2) like <br><br>smstools3-3.1.15.tar.gz.<br>---smstoo=
-ls3-3.1.15<br>-------src<br>-------scripts<br>-------examples<br>-------doc=
-<br>-------uninstall.sh<br>-------README<br>-------package.sh<br>-------Mak=
-efile<br>-------LICENSE<br><br></div><div>it works fine.<br></div><div><br>=
-</div><div>Any idea how I can configure my recipe that that it works with t=
-he original package structure?<br></div><div><br>Kai Ulrich<br></div><div><=
-br><br></div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
+<p>After discussions with meta-raspberrypi maintainers we have come to the =
+conclusion that we will not set any layer depends. We shouldn't break most =
+of the builds which don't use the test image and therefore don't need the m=
+ultimedia layer. So will instead break out the 'layer prio' part and send o=
+ut in a separate review. </p>
+<p>/Petter</p>
+<p>2015-02-10 23:39 skrev Petter Mab&auml;cker:</p>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
+d --><!-- meta ignored -->
+<pre>Ensure that build fails in a informative way if not all layer
+requirements are fulfilled.
 
---001a1135e78eb10b94050f8616d5--
+To disable strict layer depend set 'LAYERDEPENDS_raspberrypi =3D ""'
+in local.conf.
+
+Also set a high layer prio to ensure that meta-raspberrypi addons
+are always prioritized above the depended layers.
+
+[Feature #46]
+
+Change-Id: I8df772a59975ae379c3a1e93e2770e83be752bfd
+Signed-off-by: Petter Mab&auml;cker &lt;<a href=3D"mailto:petter@technux.se=
+">petter@technux.se</a>&gt;
+---
+ README          | 4 ++++
+ conf/layer.conf | 3 ++-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/README b/README
+index bb2f4be..3dad1ea 100644
+--- a/README
++++ b/README
+@@ -143,6 +143,10 @@ See: <a href=3D"http://wayland.freedesktop.org/raspber=
+rypi.html">http://wayland.freedesktop.org/raspberrypi.html</a>
+=20
+ 2.H. Images
+ =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++Note: 'rpi-hwup-image' and 'rpi-basic-image' can be build without
++      meta-multimedia. Set 'LAYERDEPENDS_raspberrypi =3D ""' in local.conf
++      to enable build without 'meta-multimedia'.
++
+ * rpi-hwup-image
+     Hardware up image
+ * rpi-basic-image
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 7bffd4b..b5ab695 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -7,7 +7,8 @@ BBFILES +=3D "${LAYERDIR}/recipes*/*/*.bb \
+=20
+ BBFILE_COLLECTIONS +=3D "raspberrypi"
+ BBFILE_PATTERN_raspberrypi :=3D "^${LAYERDIR}/"
+-BBFILE_PRIORITY_raspberrypi =3D "6"
++BBFILE_PRIORITY_raspberrypi =3D "9"
++LAYERDEPENDS_raspberrypi =3D "multimedia-layer"
+=20
+ # Additional license directories.
+ LICENSE_PATH +=3D "${LAYERDIR}/files/custom-licenses"
+<span class=3D"sig">--=20
+1.9.1
+</span></pre>
+</blockquote>
+</body></html>
+
+--=_f6c8a36b8850cec52305b08d7ea35dde--
