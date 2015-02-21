@@ -1,52 +1,50 @@
-Return-Path: <openembedded-devel@urbanec.net>
+Return-Path: <sachindhiman123@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E9F6FE00837; Fri, 20 Feb 2015 16:40:08 -0800 (PST)
+	id 704EFE0087C; Sat, 21 Feb 2015 06:04:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=unavailable version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [220.244.226.126 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (sachindhiman123[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 658 seconds by postgrey-1.32 at yocto-www;
-	Fri, 20 Feb 2015 16:40:06 PST
-Received: from mail16.tpgi.com.au (smtp-out16.tpgi.com.au [220.244.226.126])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51595E002F9
-	for <yocto@yoctoproject.org>; Fri, 20 Feb 2015 16:40:05 -0800 (PST)
-X-TPG-Junk-Status: Message not scanned
-X-TPG-Antivirus: Passed
-X-TPG-Abuse: host=60-242-171-118.static.tpgi.com.au; ip=60.242.171.118;
-	date=Sat, 21 Feb 2015 11:27:07 +1100
-Received: from gw.urbanec.net (60-242-171-118.static.tpgi.com.au
-	[60.242.171.118])
-	by mail16.tpgi.com.au (envelope-from openembedded-devel@urbanec.net)
-	(8.14.3/8.14.3) with ESMTP id t1L0R44X028262
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=NO);
-	Sat, 21 Feb 2015 11:27:07 +1100
-Received: from beep.urbanec.net ([192.168.42.2]) by gw.urbanec.net with esmtpsa
-	(TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128) (Exim 4.84)
-	(envelope-from <openembedded-devel@urbanec.net>)
-	id 1YOxuS-0007mk-9V; Sat, 21 Feb 2015 11:27:04 +1100
-Message-ID: <54E7D0D8.2060900@urbanec.net>
-Date: Sat, 21 Feb 2015 11:27:04 +1100
-From: Peter Urbanec <openembedded-devel@urbanec.net>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ie0-f171.google.com (mail-ie0-f171.google.com
+	[209.85.223.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45415E0078E
+	for <yocto@yoctoproject.org>; Sat, 21 Feb 2015 06:04:31 -0800 (PST)
+Received: by iecrp18 with SMTP id rp18so14089226iec.9
+	for <yocto@yoctoproject.org>; Sat, 21 Feb 2015 06:04:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=n3AlObd89DVSb7GqoGHUhsH2WR9d7n2E8KqEACBpZc4=;
+	b=a9fTwJNxRqBn2YNZpQpv38fwMBqTElL6mrFzkqGf1TguPAJ3Zg9J8KzjupGi14rj7l
+	bNzeVgwKai9lULN7zB25bYwK8RQpxEw2B1w2fsxV2ZDDSentCsA1j0FWx6UvAIWZKsUa
+	jChyb9qsWqVPkGW7Yef0QQhFK5Kdd1Um4zbrkF2A5E/xDUdggZ13CSd6jHJXn3H26BiO
+	gOzMbZn/qkgzBY2GABtRICsq5T4xpyjiSxLGC2CVgHWEdH1j3netSZlRnIHu7l89YQVg
+	hEH33S44yDOGh6hm/wCPgcW5WVrScsvn/5x1gGFx6oHws2qIGJbOdgd/+Y04d2SvPzyf
+	Upuw==
 MIME-Version: 1.0
-To: Richard Purdie <richard.purdie@linuxfoundation.org>,
-	Khem Raj <raj.khem@gmail.com>
-References: <CAMKF1souj1-FLTjkQb0y8myTiKMJyNeAa7wiM5-pW1fz0EtheA@mail.gmail.com>
-	<1424455387.11836.57.camel@linuxfoundation.org>
-In-Reply-To: <1424455387.11836.57.camel@linuxfoundation.org>
+X-Received: by 10.107.34.210 with SMTP id i201mr3526415ioi.1.1424527471107;
+	Sat, 21 Feb 2015 06:04:31 -0800 (PST)
+Received: by 10.36.9.201 with HTTP; Sat, 21 Feb 2015 06:04:31 -0800 (PST)
+Date: Sat, 21 Feb 2015 19:34:31 +0530
+Message-ID: <CAPtbEGtZAUfU2cij7=iGv0-yfjHy05oY9vuFKVB6qcv0uOk1Lg@mail.gmail.com>
+From: sachin dhiman <sachindhiman123@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 X-Mailman-Approved-At: Sat, 21 Feb 2015 16:59:29 -0800
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [RFT] upcoming glibc 2.21 and gcc 4.9 upgrade
+Subject: OSError: [Errno 12] Cannot allocate memory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,32 +56,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 21 Feb 2015 00:40:09 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 21 Feb 2015 14:04:37 -0000
+Content-Type: multipart/alternative; boundary=001a114031a0e398d1050f99a57a
 
-On 21/02/15 05:03, Richard Purdie wrote:
-> On Mon, 2015-02-02 at 02:02 -0800, Khem Raj wrote:
->> I have put together upgrade to gcc 4.9.2 as well as glibc 2.21 (
-...
-> For info, I've now merged the glibc part of this change now too.
+--001a114031a0e398d1050f99a57a
+Content-Type: text/plain; charset=UTF-8
 
-It looks like the new glibc turns all gcc warnings into errors. That does not seem to work too well in all cases:
+i am trying to build image for beaglebone board, every thing goes fine
+building fail with following message
 
-| mipsel-oe-linux-gcc -mel -mabi=32 -mhard-float --sysroot=/home/peteru/Source/T3/build-enviroment-core-24/builds/beyonwiz/inihdp/tmp-glibc/sysroots/inihdp-tcbootstrap pthread_equal.c -c -std=gnu99 -fgnu89-inline  -Os -Wall -Werror -Winline -Wno-error=undef -Wundef -Wwrite-strings -feliminate-unused-debug-types -fmerge-all-constants -frounding-math -g -pipe -Wstrict-prototypes   -fPIC        -I../include -I/home/peteru/Source/T3/build-enviroment-core-24/builds/beyonwiz/inihdp/tmp-glibc/work/mips32el-oe-linux/glibc/glibc-2.21-r0/build-mipsel-oe-linux/nptl  -I/home/peteru/Source/T3/build-enviroment-core-24/builds/beyonwiz/inihdp/tmp-glibc/work/mips32el-oe-linux/glibc/glibc-2.21-r0/build-mipsel-oe-linux  -I../sysdeps/unix/sysv/linux/mips/mips32/fpu  -I../sysdeps/unix/sysv/linux/mips/mips32  -I../sysdeps/unix/sysv/linux/mips  -I../sysdeps/mips/nptl  -I../sysdeps/unix/sysv/linux/include -I../sysdeps/unix/sysv/linux  -I../sysdeps/nptl  -I../sysdeps/pthread  -I../sysdeps/gnu  -I../!
- sysdeps/un
-ix/inet  -I../sysdeps/unix/sysv  -I../sysdeps/unix/mips/mips32  -I../sysdeps/unix/mips  -I../sysdeps/unix  -I../sysdeps/posix  -I../sysdeps/mips/mips32/fpu  -I../sysdeps/mips/mips32  -I../sysdeps/mips/ieee754  -I../sysdeps/mips/soft-fp  -I../sysdeps/mips/include -I../sysdeps/mips  -I../sysdeps/ieee754/flt-32  -I../sysdeps/ieee754/dbl-64  -I../sysdeps/wordsize-32  -I../sysdeps/mips/fpu  -I../sysdeps/ieee754  -I../sysdeps/generic  -I.. -I../libio -I. -nostdinc -isystem /home/peteru/Source/T3/build-enviroment-core-24/builds/beyonwiz/inihdp/tmp-glibc/sysroots/x86_64-linux/usr/lib/mipsel-oe-linux.gcc-cross-initial-mipsel/gcc/mipsel-oe-linux/4.9.2/include -isystem /home/peteru/Source/T3/build-enviroment-core-24/builds/beyonwiz/inihdp/tmp-glibc/sysroots/x86_64-linux/usr/lib/mipsel-oe-linux.gcc-cross-initial-mipsel/gcc/mipsel-oe-linux/4.9.2/include-fixed -isystem /home/peteru/Source/T3/build-enviroment-core-24/builds/beyonwiz/inihdp/tmp-glibc/sysroots/inihdp/usr/include  -D_LIBC_REE!
- NTRANT -in
-clude /home/peteru/Source/T3/build-enviroment-core-24/builds/beyonwiz/inihdp/tmp-glibc/work/mips32el-oe-linux/glibc/glibc-2.21-r0/build-mipsel-oe-linux/libc-modules.h -DMODULE_NAME=libpthread -include ../include/libc-symbols.h  -DPIC -DSHARED     -o /home/peteru/Source/T3/build-enviroment-core-24/builds/beyonwiz/inihdp/tmp-glibc/work/mips32el-oe-linux/glibc/glibc-2.21-r0/build-mipsel-oe-linux/nptl/pthread_equal.os -MD -MP -MF /home/peteru/Source/T3/build-enviroment-core-24/builds/beyonwiz/inihdp/tmp-glibc/work/mips32el-oe-linux/glibc/glibc-2.21-r0/build-mipsel-oe-linux/nptl/pthread_equal.os.dt -MT /home/peteru/Source/T3/build-enviroment-core-24/builds/beyonwiz/inihdp/tmp-glibc/work/mips32el-oe-linux/glibc/glibc-2.21-r0/build-mipsel-oe-linux/nptl/pthread_equal.os
-| In file included from allocatestack.c:30:0,
-|                  from pthread_create.c:55:
-| allocatestack.c: In function 'stack_list_add':
-| ../include/list.h:58:1: error: inlining failed in call to 'list_add': call is unlikely and code size would grow [-Werror=inline]
-|  list_add (list_t *newp, list_t *head)
-|  ^
-| In file included from pthread_create.c:55:0:
-| allocatestack.c:159:3: error: called from here [-Werror=inline]
-|    list_add (elem, list);
-|    ^
+NOTE: Error during finalise of
+/home/sachin/yocto-labs/poky-dora-10.0.1/meta/recipes-sato/images/
+core-image-sato-sdk.bb
+NOTE: Error during finalise of
+/home/sachin/yocto-labs/poky-dora-10.0.1/meta/recipes-sato/images/
+core-image-sato.bb
+ERROR: ExpansionError during parsing
+/home/sachin/yocto-labs/poky-dora-10.0.1/meta/recipes-sato/images/
+core-image-sato-sdk.bb: Failure expanding variable
+toolchain_create_sdk_version: ExpansionError: Failure expanding variable
+METADATA_REVISION, expression was ${@base_detect_revision(d)} which
+triggered exception OSError: [Errno 12] Cannot allocate memory
+
+Summary: There were 6 WARNING messages shown.
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
 
 
+please suggest to fix this issue.
+
+
+
+-- 
+Best Regards
+Sachin Dhiman
+
+--001a114031a0e398d1050f99a57a
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">i am trying to build image for beaglebone board, every thi=
+ng goes fine building fail with following message<div><br></div><div><div>N=
+OTE: Error during finalise of /home/sachin/yocto-labs/poky-dora-10.0.1/meta=
+/recipes-sato/images/<a href=3D"http://core-image-sato-sdk.bb">core-image-s=
+ato-sdk.bb</a></div><div>NOTE: Error during finalise of /home/sachin/yocto-=
+labs/poky-dora-10.0.1/meta/recipes-sato/images/<a href=3D"http://core-image=
+-sato.bb">core-image-sato.bb</a></div><div>ERROR: ExpansionError during par=
+sing /home/sachin/yocto-labs/poky-dora-10.0.1/meta/recipes-sato/images/<a h=
+ref=3D"http://core-image-sato-sdk.bb">core-image-sato-sdk.bb</a>: Failure e=
+xpanding variable toolchain_create_sdk_version: <span style=3D"background-c=
+olor:rgb(255,0,0)">ExpansionError: Failure expanding variable METADATA_REVI=
+SION, expression was ${@base_detect_revision(d)} which triggered exception =
+OSError: [Errno 12] Cannot allocate memory</span></div><div><br></div><div>=
+Summary: There were 6 WARNING messages shown.</div><div>Summary: There was =
+1 ERROR message shown, returning a non-zero exit code.</div><div><br></div>=
+<div><br></div><div>please suggest to fix this issue.</div><div><br></div><=
+div><br></div><div><br></div>-- <br><div class=3D"gmail_signature"><div>Bes=
+t Regards</div><div>Sachin Dhiman</div></div>
+</div></div>
+
+--001a114031a0e398d1050f99a57a--
