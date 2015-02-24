@@ -1,6 +1,6 @@
 Return-Path: <yannick.koehler@hp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3C134E0074C; Tue, 24 Feb 2015 08:31:36 -0800 (PST)
+	id 864E6E0076F; Tue, 24 Feb 2015 08:32:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,37 +8,42 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [15.217.128.51 listed in list.dnswl.org]
+	*      [15.217.136.92 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 588 seconds by postgrey-1.32 at yocto-www;
-	Tue, 24 Feb 2015 08:31:30 PST
+X-Greylist: delayed 587 seconds by postgrey-1.32 at yocto-www;
+	Tue, 24 Feb 2015 08:32:20 PST
+Received: from g2t1383g.austin.hp.com (g2t1383g.austin.hp.com [15.217.136.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24BDFE00828
+	for <yocto@yoctoproject.org>; Tue, 24 Feb 2015 08:32:20 -0800 (PST)
 Received: from g2t2352.austin.hp.com (g2t2352.austin.hp.com [15.217.128.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0F1BE00404
-	for <yocto@yoctoproject.org>; Tue, 24 Feb 2015 08:31:30 -0800 (PST)
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by g2t1383g.austin.hp.com (Postfix) with ESMTPS id 59287949
+	for <yocto@yoctoproject.org>; Tue, 24 Feb 2015 16:21:46 +0000 (UTC)
 Received: from G2W4316.americas.hpqcorp.net (g2w4316.austin.hp.com
 	[16.197.9.73]) (using TLSv1 with cipher AES128-SHA (128/128 bits))
 	(No client certificate requested)
-	by g2t2352.austin.hp.com (Postfix) with ESMTPS id 6CB03144
-	for <yocto@yoctoproject.org>; Tue, 24 Feb 2015 16:31:30 +0000 (UTC)
-Received: from G1W5784.americas.hpqcorp.net (16.193.26.2) by
+	by g2t2352.austin.hp.com (Postfix) with ESMTPS id 34BEC114
+	for <yocto@yoctoproject.org>; Tue, 24 Feb 2015 16:21:41 +0000 (UTC)
+Received: from G2W4312.americas.hpqcorp.net (16.197.24.214) by
 	G2W4316.americas.hpqcorp.net (16.197.9.73) with Microsoft SMTP Server
-	(TLS) id 14.3.169.1; Tue, 24 Feb 2015 16:30:47 +0000
+	(TLS) id 14.3.169.1; Tue, 24 Feb 2015 16:21:09 +0000
 Received: from G2W2533.americas.hpqcorp.net ([169.254.6.112]) by
-	G1W5784.americas.hpqcorp.net ([16.193.26.2]) with mapi id
-	14.03.0169.001; Tue, 24 Feb 2015 16:30:47 +0000
+	G2W4312.americas.hpqcorp.net ([16.197.24.214]) with mapi id
+	14.03.0169.001; Tue, 24 Feb 2015 16:21:09 +0000
 From: "Koehler, Yannick (HP Networking)" <yannick.koehler@hp.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Thread-Topic: squashfs-tools-native 4.2-r2 fails, missing lzma.h
-Thread-Index: AdBQTOPzgRlsbFQmRr+oC3HCU+akMAAAhPcQ
-Date: Tue, 24 Feb 2015 16:30:47 +0000
-Message-ID: <95CF81BBD42FB348A182716C4D4310A806900BBC@G2W2533.americas.hpqcorp.net>
+Thread-Index: AdBQTOPzgRlsbFQmRr+oC3HCU+akMA==
+Date: Tue, 24 Feb 2015 16:21:09 +0000
+Message-ID: <95CF81BBD42FB348A182716C4D4310A806900B8D@G2W2533.americas.hpqcorp.net>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [16.193.232.29]
 MIME-Version: 1.0
-Subject: Re: squashfs-tools-native 4.2-r2 fails, missing lzma.h
+Subject: squashfs-tools-native 4.2-r2 fails, missing lzma.h
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,39 +55,10 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Feb 2015 16:31:36 -0000
+X-List-Received-Date: Tue, 24 Feb 2015 16:32:39 -0000
 Content-Language: fr-FR
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-
-I found the reason...
-
-	$ bitbake xz-native
-	Loading cache: 100% 	|####################################################=
-###########################################################################=
-########################################################################	##=
-#################################| ETA:  00:00:00
-	Loaded 1869 entries from dependency cache.
-	***WARNING: Explicit target "xz-native" is in ASSUME_PROVIDED, ignoring***
-
-My conf/local.conf changed recently and I put
-
-	SSTATE_PKG_TARZIPPROG =3D "xz"
-
-Which appears to be assume to already be in the system
-
-	meta/classes/sstate.bbclass:ASSUME_PROVIDED +=3D "${SSTATE_PKG_TARZIPPROG}=
--native"
-
-Very clever, I will fix that, sorry about this message.
-
-Yannick Koehler
-
------Message d'origine-----
-De=A0: Koehler, Yannick (HP Networking)=20
-Envoy=E9=A0: February-24-15 11:21 AM
-=C0=A0: 'yocto@yoctoproject.org'
-Objet=A0: squashfs-tools-native 4.2-r2 fails, missing lzma.h
 
 I recently set my rootfs image fstype to squashfs-xz, and then got this err=
 or:
