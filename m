@@ -1,40 +1,44 @@
-Return-Path: <kapare@rogue-research.com>
+Return-Path: <yannick.koehler@hp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E4906E0076F; Tue, 24 Feb 2015 08:58:12 -0800 (PST)
+	id AF7CDE00750; Tue, 24 Feb 2015 11:09:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [15.217.128.52 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.rogue-research.com (mail.rogue-research.com [68.67.54.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5C1AE00404
-	for <yocto@yoctoproject.org>; Tue, 24 Feb 2015 08:58:11 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rogue-research.com (Postfix) with ESMTP id B069A496D4F
-	for <yocto@yoctoproject.org>; Tue, 24 Feb 2015 11:58:10 -0500 (EST)
-X-Virus-Scanned: amavisd-new at rogue-research.com
-Received: from mail.rogue-research.com ([127.0.0.1])
-	by localhost (kingu.rogue-research.com [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id ffv+GDi+l25v for <yocto@yoctoproject.org>;
-	Tue, 24 Feb 2015 11:58:09 -0500 (EST)
-Received: from mail-qc0-f178.google.com (mail-qc0-f178.google.com
-	[209.85.216.178])
-	by mail.rogue-research.com (Postfix) with ESMTPSA id B6931496D41
-	for <yocto@yoctoproject.org>; Tue, 24 Feb 2015 11:58:09 -0500 (EST)
-Received: by qcrw7 with SMTP id w7so17467801qcr.4
-	for <yocto@yoctoproject.org>; Tue, 24 Feb 2015 08:58:09 -0800 (PST)
-MIME-Version: 1.0
-X-Received: by 10.140.146.13 with SMTP id 13mr38718144qhs.101.1424797089038;
-	Tue, 24 Feb 2015 08:58:09 -0800 (PST)
-Received: by 10.96.87.38 with HTTP; Tue, 24 Feb 2015 08:58:08 -0800 (PST)
-In-Reply-To: <95CF81BBD42FB348A182716C4D4310A8054C2850@G1W3650.americas.hpqcorp.net>
+Received: from g2t2353.austin.hp.com (g2t2353.austin.hp.com [15.217.128.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 534D0E00404
+	for <yocto@yoctoproject.org>; Tue, 24 Feb 2015 11:09:11 -0800 (PST)
+Received: from G2W4316.americas.hpqcorp.net (g2w4316.austin.hp.com
+	[16.197.9.73]) (using TLSv1 with cipher AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by g2t2353.austin.hp.com (Postfix) with ESMTPS id EDBAC188;
+	Tue, 24 Feb 2015 19:09:10 +0000 (UTC)
+Received: from G2W4313.americas.hpqcorp.net (16.197.24.255) by
+	G2W4316.americas.hpqcorp.net (16.197.9.73) with Microsoft SMTP Server
+	(TLS) id 14.3.169.1; Tue, 24 Feb 2015 19:08:26 +0000
+Received: from G2W2533.americas.hpqcorp.net ([169.254.6.112]) by
+	G2W4313.americas.hpqcorp.net ([16.197.24.255]) with mapi id
+	14.03.0169.001; Tue, 24 Feb 2015 19:08:26 +0000
+From: "Koehler, Yannick (HP Networking)" <yannick.koehler@hp.com>
+To: =?utf-8?B?S2V2eW4tQWxleGFuZHJlIFBhcsOp?= <kapare@rogue-research.com>
+Thread-Topic: [yocto] The kernel *.cfg system
+Thread-Index: AQHQUFMVxA5WDNZ62kS5fME3+ketbZ0AKXJw
+Date: Tue, 24 Feb 2015 19:08:26 +0000
+Message-ID: <95CF81BBD42FB348A182716C4D4310A806900C24@G2W2533.americas.hpqcorp.net>
 References: <95CF81BBD42FB348A182716C4D4310A8054C2850@G1W3650.americas.hpqcorp.net>
-Date: Tue, 24 Feb 2015 11:58:08 -0500
-Message-ID: <CACgAsMddAf-Rp-fs7htQWXwT2bwZ6g_ccex2BJhzo+9BRpKEJg@mail.gmail.com>
-From: =?UTF-8?Q?Kevyn=2DAlexandre_Par=C3=A9?= <kapare@rogue-research.com>
-To: "Koehler, Yannick (HP Networking)" <yannick.koehler@hp.com>
+	<CACgAsMddAf-Rp-fs7htQWXwT2bwZ6g_ccex2BJhzo+9BRpKEJg@mail.gmail.com>
+In-Reply-To: <CACgAsMddAf-Rp-fs7htQWXwT2bwZ6g_ccex2BJhzo+9BRpKEJg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [16.193.232.29]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: The kernel *.cfg system
 X-BeenThere: yocto@yoctoproject.org
@@ -48,69 +52,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Feb 2015 16:58:13 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 24 Feb 2015 19:09:13 -0000
+Content-Language: fr-FR
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Yannick,
-
-I don't know if this could be related but was playing with kernel .cfg
-with meta-fsl and changing cfg didn't change I had to change the
-entire .config?
-
-
-From:
-https://lists.yoctoproject.org/pipermail/yocto/2015-February/023616.html
-
-hmm I just notice that adding CONFIG_BT=3Dm, when it was =3Dy, in
-defconfig.cfg didn't change it even tried cleansstate. But it worked
-if I copy the original .config to my bbappend and change it inside...
-
-I'm with yocto 1.7.1
-
-NATIVELSBSTRING   =3D "Ubuntu-14.04"
-TARGET_SYS        =3D "arm-poky-linux-gnueabi"
-MACHINE           =3D "wandboard-quad"
-DISTRO            =3D "poky"
-DISTRO_VERSION    =3D "1.7.1"
-
-
-Which version of yocto are you using by curiosity?
-
-thx,
-
--KA
-
-
-On Thu, Feb 19, 2015 at 2:17 PM, Koehler, Yannick (HP Networking)
-<yannick.koehler@hp.com> wrote:
-> Hi,
->
->   I recently was playing with the FreeScale community layer meta-fsl-ppc.=
-  They are using their own kernel package linux-qoriq-sdk.  I attempted to =
-alter the configuration file using a systemd.cfg for the pleasure, to my su=
-rprise, the .cfg didn't change anything at all.  Is FreeScale playing Yocto=
- rules properly or is it me that missed something ?  I did the same as with=
- linux-yocto:
->
->   FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
->   KERNEL_FEATURES =3D "ext2 cgroups ipv6"
->   SRC_URI +=3D "file://systemd.cfg"
->
->   Yet, the kernel .config didn't contained my changes like the linux-yoct=
-o did.  I was wondering if it was because the Qoriq Kernel didn't include s=
-pecific Yocto recipe instructions or class and it was something that I coul=
-d easily add or if this needed to come from FreeScale itself, or if it was =
-really just my setup having a problem.  Note that I did copy the systemd.cf=
-g file at a proper location and bitbake did find it, even thought the final=
- config under the /tmp/work/... didn't contain the changes.
->
->   Any help on this welcome.
->
-> Yannick Koehler
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+SSBhbSBjdXJyZW50bHkgdXNpbmcgWW9jdG8gRGFpc3kgKGFuZCBkYWlzeSBhbHNvIGZvciBtZXRh
+LWZzbC1wcGMpLg0KDQpOb3RlIHRoYXQgSSBub3RpY2VkIGluIHJlY2VudCBmcmVlc2NhbGUgbWV0
+YSBsYXllciB0aGV5IGFkZGVkIGNvZGUgdG8gaW5oZXJpdCBrZXJuZWwgYW5kIHRvIGhhbmRsZSBw
+YXJ0aWFsIGNmZy4gIFNvIEkgdGhpbmsgdGhlIGlzc3VlIHdhcyB3aXRoIHRoZSBsaW51eC1xb3Jp
+ay1zZGsgcGFja2FnZSByZWNpcGUgYW5kIG5vdCB5b2N0byBpdHNlbGYuICBTaW5jZSB0aGV5IGhh
+dmUgbm90IGJhc2VkIHRoZW1zZWx2ZWQgb24geW9jdG8tbGludXggdGhleSBkbyBub3Qgb2ZmZXIg
+ZnJhZ21lbnQgY29uZmlnIHN1cHBvcnQuDQoNCkJ1dCBpbiBtb3JlIHJlY2VudCBvZiB0aGUgbGlu
+dXgtcW9yaWsgSSBub3cgc2VlIHJlZmVyZW5jZSB0byBwYXJ0aWFsIGNmZy4NCg0KWWFubmljayBL
+b2VobGVyDQoNCi0tLS0tTWVzc2FnZSBkJ29yaWdpbmUtLS0tLQ0KRGXCoDogS2V2eW4tQWxleGFu
+ZHJlIFBhcsOpIFttYWlsdG86a2FwYXJlQHJvZ3VlLXJlc2VhcmNoLmNvbV0gDQpFbnZvecOpwqA6
+IEZlYnJ1YXJ5LTI0LTE1IDExOjU4IEFNDQrDgMKgOiBLb2VobGVyLCBZYW5uaWNrIChIUCBOZXR3
+b3JraW5nKQ0KQ2PCoDogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KT2JqZXTCoDogUmU6IFt5b2N0
+b10gVGhlIGtlcm5lbCAqLmNmZyBzeXN0ZW0NCg0KSGkgWWFubmljaywNCg0KSSBkb24ndCBrbm93
+IGlmIHRoaXMgY291bGQgYmUgcmVsYXRlZCBidXQgd2FzIHBsYXlpbmcgd2l0aCBrZXJuZWwgLmNm
+ZyB3aXRoIG1ldGEtZnNsIGFuZCBjaGFuZ2luZyBjZmcgZGlkbid0IGNoYW5nZSBJIGhhZCB0byBj
+aGFuZ2UgdGhlIGVudGlyZSAuY29uZmlnPw0KDQoNCkZyb206DQpodHRwczovL2xpc3RzLnlvY3Rv
+cHJvamVjdC5vcmcvcGlwZXJtYWlsL3lvY3RvLzIwMTUtRmVicnVhcnkvMDIzNjE2Lmh0bWwNCg0K
+aG1tIEkganVzdCBub3RpY2UgdGhhdCBhZGRpbmcgQ09ORklHX0JUPW0sIHdoZW4gaXQgd2FzID15
+LCBpbiBkZWZjb25maWcuY2ZnIGRpZG4ndCBjaGFuZ2UgaXQgZXZlbiB0cmllZCBjbGVhbnNzdGF0
+ZS4gQnV0IGl0IHdvcmtlZCBpZiBJIGNvcHkgdGhlIG9yaWdpbmFsIC5jb25maWcgdG8gbXkgYmJh
+cHBlbmQgYW5kIGNoYW5nZSBpdCBpbnNpZGUuLi4NCg0KSSdtIHdpdGggeW9jdG8gMS43LjENCg0K
+TkFUSVZFTFNCU1RSSU5HICAgPSAiVWJ1bnR1LTE0LjA0Ig0KVEFSR0VUX1NZUyAgICAgICAgPSAi
+YXJtLXBva3ktbGludXgtZ251ZWFiaSINCk1BQ0hJTkUgICAgICAgICAgID0gIndhbmRib2FyZC1x
+dWFkIg0KRElTVFJPICAgICAgICAgICAgPSAicG9reSINCkRJU1RST19WRVJTSU9OICAgID0gIjEu
+Ny4xIg0KDQoNCldoaWNoIHZlcnNpb24gb2YgeW9jdG8gYXJlIHlvdSB1c2luZyBieSBjdXJpb3Np
+dHk/DQoNCnRoeCwNCg0KLUtBDQoNCg0KT24gVGh1LCBGZWIgMTksIDIwMTUgYXQgMjoxNyBQTSwg
+S29laGxlciwgWWFubmljayAoSFAgTmV0d29ya2luZykgPHlhbm5pY2sua29laGxlckBocC5jb20+
+IHdyb3RlOg0KPiBIaSwNCj4NCj4gICBJIHJlY2VudGx5IHdhcyBwbGF5aW5nIHdpdGggdGhlIEZy
+ZWVTY2FsZSBjb21tdW5pdHkgbGF5ZXIgbWV0YS1mc2wtcHBjLiAgVGhleSBhcmUgdXNpbmcgdGhl
+aXIgb3duIGtlcm5lbCBwYWNrYWdlIGxpbnV4LXFvcmlxLXNkay4gIEkgYXR0ZW1wdGVkIHRvIGFs
+dGVyIHRoZSBjb25maWd1cmF0aW9uIGZpbGUgdXNpbmcgYSBzeXN0ZW1kLmNmZyBmb3IgdGhlIHBs
+ZWFzdXJlLCB0byBteSBzdXJwcmlzZSwgdGhlIC5jZmcgZGlkbid0IGNoYW5nZSBhbnl0aGluZyBh
+dCBhbGwuICBJcyBGcmVlU2NhbGUgcGxheWluZyBZb2N0byBydWxlcyBwcm9wZXJseSBvciBpcyBp
+dCBtZSB0aGF0IG1pc3NlZCBzb21ldGhpbmcgPyAgSSBkaWQgdGhlIHNhbWUgYXMgd2l0aCBsaW51
+eC15b2N0bzoNCj4NCj4gICBGSUxFU0VYVFJBUEFUSFNfcHJlcGVuZCA6PSAiJHtUSElTRElSfS8k
+e1BOfToiDQo+ICAgS0VSTkVMX0ZFQVRVUkVTID0gImV4dDIgY2dyb3VwcyBpcHY2Ig0KPiAgIFNS
+Q19VUkkgKz0gImZpbGU6Ly9zeXN0ZW1kLmNmZyINCj4NCj4gICBZZXQsIHRoZSBrZXJuZWwgLmNv
+bmZpZyBkaWRuJ3QgY29udGFpbmVkIG15IGNoYW5nZXMgbGlrZSB0aGUgbGludXgteW9jdG8gZGlk
+LiAgSSB3YXMgd29uZGVyaW5nIGlmIGl0IHdhcyBiZWNhdXNlIHRoZSBRb3JpcSBLZXJuZWwgZGlk
+bid0IGluY2x1ZGUgc3BlY2lmaWMgWW9jdG8gcmVjaXBlIGluc3RydWN0aW9ucyBvciBjbGFzcyBh
+bmQgaXQgd2FzIHNvbWV0aGluZyB0aGF0IEkgY291bGQgZWFzaWx5IGFkZCBvciBpZiB0aGlzIG5l
+ZWRlZCB0byBjb21lIGZyb20gRnJlZVNjYWxlIGl0c2VsZiwgb3IgaWYgaXQgd2FzIHJlYWxseSBq
+dXN0IG15IHNldHVwIGhhdmluZyBhIHByb2JsZW0uICBOb3RlIHRoYXQgSSBkaWQgY29weSB0aGUg
+c3lzdGVtZC5jZmcgZmlsZSBhdCBhIHByb3BlciBsb2NhdGlvbiBhbmQgYml0YmFrZSBkaWQgZmlu
+ZCBpdCwgZXZlbiB0aG91Z2h0IHRoZSBmaW5hbCBjb25maWcgdW5kZXIgdGhlIC90bXAvd29yay8u
+Li4gZGlkbid0IGNvbnRhaW4gdGhlIGNoYW5nZXMuDQo+DQo+ICAgQW55IGhlbHAgb24gdGhpcyB3
+ZWxjb21lLg0KPg0KPiBZYW5uaWNrIEtvZWhsZXINCj4gLS0NCj4gX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4geW9jdG8gbWFpbGluZyBsaXN0DQo+IHlv
+Y3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xp
+c3RpbmZvL3lvY3RvDQo=
 
