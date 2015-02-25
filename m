@@ -1,39 +1,52 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 39270E0076F; Wed, 25 Feb 2015 02:52:27 -0800 (PST)
+	id 83354E0076F; Wed, 25 Feb 2015 02:55:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,T_HDRS_LCASE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.51 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 T_HDRS_LCASE Odd capitalization of message header
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0522E0074C
-	for <yocto@yoctoproject.org>; Wed, 25 Feb 2015 02:52:24 -0800 (PST)
-Received: from [99.240.204.5] (port=37612 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1YQZZe-0000HC-JT; Wed, 25 Feb 2015 05:52:15 -0500
-Date: Wed, 25 Feb 2015 05:52:11 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1502250517500.32394@localhost>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: more observations on kernel dev manual
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f51.google.com (mail-pa0-f51.google.com
+	[209.85.220.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4D7FE0074C
+	for <yocto@yoctoproject.org>; Wed, 25 Feb 2015 02:55:22 -0800 (PST)
+Received: by padfb1 with SMTP id fb1so4397357pad.8
+	for <yocto@yoctoproject.org>; Wed, 25 Feb 2015 02:55:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id;
+	bh=mGfZzDToibFSzjqk0Ej9qhUu0gRwfJPIl8YNxOzVA6c=;
+	b=xP91BcVvRE3DYDlY5D1YCKAsg25fatRseJgBt/vMtJT/Vs6ceM43pH0CspyHFw4oBR
+	BZbRy83m3Tx59agurB/SeMMscwTFo3dnai6OEXPkv2yyrDLJ88Sv1dMDuiEgteIytz/5
+	WcGFOU3zmPf+d9Mhts/gcO7B+stnMqGP6aCYr4/rcrgGW8u7t5fWVwRIjKFc0rJIAzwY
+	qoqbSVP68CK/nfMReGkWouuU56wjmEkbrvyASX3gvOkQ1C29Iz1L/xKiRPFFlFqmUfFP
+	qUha44LWetOAclVOMF/NBhtD61JG7S2c2WCGb1LEEqCDg3t+pe/WbdfzkQxjxqZfzwkB
+	ehqg==
+X-Received: by 10.68.109.195 with SMTP id hu3mr4548796pbb.84.1424861722019;
+	Wed, 25 Feb 2015 02:55:22 -0800 (PST)
+Received: from Pahoa2.mvista.com ([192.165.183.201])
+	by mx.google.com with ESMTPSA id
+	ng17sm20027494pdb.91.2015.02.25.02.55.19 for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Wed, 25 Feb 2015 02:55:20 -0800 (PST)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Wed, 25 Feb 2015 02:55:14 -0800
+Message-Id: <1424861714-11559-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [meta-security][PATCH] tomoyo: fix typos in scc file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,54 +58,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Feb 2015 10:52:27 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 25 Feb 2015 10:55:23 -0000
 
+thanks to rday for pointing it out.
 
-  been a while since i went through this manual so some probably
-simple observations -- based on in-progress manual. if scott rifenbark
-wants to process any of this, he has my blessing.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-kernel/linux/linux-yocto/tomoyo.scc | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-  section 2.2.2: i'm assuming that list of SRC_URIs should actually
-read?
-
-   ... first-change...
-   ... second-change ...
-   ... third-change ...
-
-  section 2.2.3: should that note not refer to the "defconfig" file
-and not the ".config" file? as in, the defconfig file is used as the
-*basis* for the eventual .config file, no? so the note should be
-discussing applying the changes from the "defconfig" file, should it
-not?
-
-  section 2.3.2: hang on ...
-
-   "Complete a build at least through the kernel configuration task as follows:
-
-     $ bitbake linux-yocto -c kernel_configme -f"
-
-but i thought that "-c <command>" would run *only* that bitbake task
-... the wording suggests that that command will run everything *up to*
-that task.
-
-  also in that section, "are not't" should just say "aren't" in sample
-warning output.
-
-  section 2.3.3: again, first para suggests that that command should
-process the kernel all the way "through" the kernel configuration.
-
-  that's it for chapter 2 ... more later.
-
-rday
-
+diff --git a/recipes-kernel/linux/linux-yocto/tomoyo.scc b/recipes-kernel/linux/linux-yocto/tomoyo.scc
+index 9080934..588864c 100644
+--- a/recipes-kernel/linux/linux-yocto/tomoyo.scc
++++ b/recipes-kernel/linux/linux-yocto/tomoyo.scc
+@@ -1,4 +1,4 @@
+-define KFEATURE_DESCRIPTION "Toyomo Kernel Support"
++define KFEATURE_DESCRIPTION "Tomoyo Kernel Support"
+ define KFEATURE_COMPATIBILITY arch
+ 
+-kconf non-hardware toyomo.cfg
++kconf non-hardware tomoyo.cfg
 -- 
+1.9.1
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
