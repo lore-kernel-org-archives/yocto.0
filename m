@@ -1,44 +1,33 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B7FFE003AB; Wed, 25 Feb 2015 13:09:17 -0800 (PST)
+	id BE361E003FA; Wed, 25 Feb 2015 15:45:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D72E4E002F9
-	for <yocto@yoctoproject.org>; Wed, 25 Feb 2015 13:09:13 -0800 (PST)
-Received: from [99.240.204.5] (port=33432 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1YQjCe-0008A5-UH; Wed, 25 Feb 2015 16:09:09 -0500
-Date: Wed, 25 Feb 2015 16:09:08 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237988EB0DBE@ORSMSX101.amr.corp.intel.com>
-Message-ID: <alpine.LFD.2.11.1502251608430.4058@localhost>
-References: <alpine.LFD.2.11.1502250618570.4099@localhost>
-	<D1133CA2.BEE3B%dvhart@linux.intel.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237988EB0DBE@ORSMSX101.amr.corp.intel.com>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BCD9E003A8
+	for <yocto@yoctoproject.org>; Wed, 25 Feb 2015 15:45:41 -0800 (PST)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga102.jf.intel.com with ESMTP; 25 Feb 2015 15:41:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.09,648,1418112000"; d="scan'208";a="459608370"
+Received: from unknown (HELO [10.219.4.171]) ([10.219.4.171])
+	by FMSMGA003.fm.intel.com with ESMTP; 25 Feb 2015 15:30:08 -0800
+Message-ID: <54EE5EAC.6050901@linux.intel.com>
+Date: Wed, 25 Feb 2015 17:45:48 -0600
+From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>
-Subject: Re: kernel dev manual: KBRANCH_DEFAULT is dead, jim.
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Recipe reporting system Announcement
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,25 +39,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Feb 2015 21:09:17 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 25 Feb 2015 23:45:46 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, 25 Feb 2015, Rifenbark, Scott M wrote:
+Hi All,
 
-> Don't worry about the patch Robert... I need to scrub the set to fix
-> this up.
+I'm glad to announce the available of the Recipe reporting system 
+(a.k.a, RRS) [1].
 
-  *i* wasn't about to patch it. :-)
+The RRS publish the status of Recipes for Openembedded-core (meta) 
+layer, the status means:
+who maintains the Recipe?, what other Linux distribution contains the 
+Package, list of upgrades
+of a Recipe, upstream version of the Recipe and Milestone statics about 
+package upgrades, details [2].
 
-rday
 
--- 
+The RRS design specification can be found at Bugzilla [3] and the source 
+code is available [4].
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+Special mention to,
+     Belen Barros Pena for did the design of the RRS [3].
+     Saul Wold for supporting the development direction.
+     Michael Halstead for help in production setup.
+     Paul Eggleton for make the Layerindex app that servers as base of RRS.
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Contact me for any issue.
+
+Best regards,
+     alimon
+
+[1] http://packages.yoctoproject.org/
+[2] http://packages.yoctoproject.org/rrs/about/
+[3] https://bugzilla.yoctoproject.org/show_bug.cgi?id=6273
+[4] 
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=alimon/RRS
 
