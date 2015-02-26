@@ -1,36 +1,39 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <biannm@cn.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 41AEFE006E9; Thu, 26 Feb 2015 04:13:01 -0800 (PST)
+	id 6D50EE00718; Thu, 26 Feb 2015 05:41:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DB80E003AB
-	for <yocto@yoctoproject.org>; Thu, 26 Feb 2015 04:12:58 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 26 Feb 2015 04:12:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,652,1418112000"; d="scan'208";a="657510700"
-Received: from jwatso2-mobl2.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.2.13])
-	by orsmga001.jf.intel.com with ESMTP; 26 Feb 2015 04:12:56 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 26 Feb 2015 12:12:55 +0000
-Message-ID: <1560120.onCEMgK5eA@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.4 (Linux/3.18.7-100.fc20.x86_64; KDE/4.14.4; x86_64; ; )
-In-Reply-To: <54EE5EAC.6050901@linux.intel.com>
-References: <54EE5EAC.6050901@linux.intel.com>
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 826B7E00546
+	for <yocto@yoctoproject.org>; Thu, 26 Feb 2015 05:41:31 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.04,848,1406563200"; d="scan'208";a="58429856"
+Received: from unknown (HELO edo.cn.fujitsu.com) ([10.167.33.5])
+	by heian.cn.fujitsu.com with ESMTP; 26 Feb 2015 21:37:46 +0800
+Received: from G08CNEXCHPEKD02.g08.fujitsu.local (localhost.localdomain
+	[127.0.0.1])
+	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id t1QDeWXa031993
+	for <yocto@yoctoproject.org>; Thu, 26 Feb 2015 21:40:32 +0800
+Received: from G08CNEXMBPEKD02.g08.fujitsu.local ([10.167.33.84]) by
+	G08CNEXCHPEKD02.g08.fujitsu.local ([10.167.33.83]) with mapi id
+	14.03.0181.006; Thu, 26 Feb 2015 21:41:23 +0800
+From: "Bian, Naimeng" <biannm@cn.fujitsu.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [Question] How to walkaround this build warning
+Thread-Index: AdBRydF/DqsNAhq+QViRFqAccUHTvg==
+Date: Thu, 26 Feb 2015 13:41:22 +0000
+Message-ID: <30DC4EDFD798C94083F3E083754532CC73DF4A22@G08CNEXMBPEKD02.g08.fujitsu.local>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.167.226.31]
 MIME-Version: 1.0
-Subject: Re: Recipe reporting system Announcement
+Subject: [Question] How to walkaround this build warning
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,68 +45,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Feb 2015 12:13:01 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Thu, 26 Feb 2015 13:41:34 -0000
+Content-Language: zh-CN
+Content-Type: text/plain; charset="shift_jis"
+Content-Transfer-Encoding: base64
 
-On Wednesday 25 February 2015 17:45:48 An=EDbal Lim=F3n wrote:
-> I'm glad to announce the available of the Recipe reporting system
-> (a.k.a, RRS) [1].
->=20
-> The RRS publish the status of Recipes for Openembedded-core (meta)
-> layer, the status means:
-> who maintains the Recipe?, what other Linux distribution contains the=
-
-> Package, list of upgrades
-> of a Recipe, upstream version of the Recipe and Milestone statics abo=
-ut
-> package upgrades, details [2].
->=20
->=20
-> The RRS design specification can be found at Bugzilla [3] and the sou=
-rce
-> code is available [4].
->=20
-> Special mention to,
->      Belen Barros Pena for did the design of the RRS [3].
->      Saul Wold for supporting the development direction.
->      Michael Halstead for help in production setup.
->      Paul Eggleton for make the Layerindex app that servers as base o=
-f RRS.
->=20
-> Contact me for any issue.
->=20
-> Best regards,
->      alimon
->=20
-> [1] http://packages.yoctoproject.org/
-> [2] http://packages.yoctoproject.org/rrs/about/
-> [3] https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D6273
-> [4]
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=3Dalimo=
-n/RRS
-
-Great work An=EDbal, and thanks!
-
-Just to clear up any confusion, at the moment this is effectively a for=
-k of the=20
-OE layer index code, and I still have the task to try to help get the R=
-RS =20
-changes merged into the OE layer index master branch, which I fully int=
-end to=20
-do. Unfortunately I haven't had a chance to do that yet but luckily the=
- code=20
-for the OE layer index isn't changing very much at all at the moment, s=
-o the=20
-two codebases are unlikely to diverge much while we are waiting for tha=
-t to be=20
-done.
-
-Cheers,
-Paul
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
+SGkgZm9sa3MNCg0KSSBidWlsdCBteSBpbWFnZSBhbmQgZ290IHRoZSBmb2xsb3dpbmcgd2Fybmlu
+ZyBtZXNzYWdlIGluIGRvX3Jvb3Rmcy4NCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCk91dHB1dCBmcm9tIGdkay1w
+aXhidWYtbG9hZGVyLXBuZy0yLjMwLjgtcjBAY29yZTJfNjQ6DQpzZWQ6IHdhcm5pbmc6IGZhaWxl
+ZCB0byBnZXQgc2VjdXJpdHkgY29udGV4dCBvZiAveW9jdG8vYnVpbGQveDg2XzY0L3RtcC93b3Jr
+L3h4eHgvaW50ZXJjZXB0X3NjcmlwdHMvdXBkYXRlX3BpeGJ1Zl9jYWNoZTogTm8gZGF0YSBhdmFp
+bGFibGUNCk91dHB1dCBmcm9tIGdkay1waXhidWYtbG9hZGVyLWdpZi0yLjMwLjgtcjBAY29yZTJf
+NjQ6DQpzZWQ6IHdhcm5pbmc6IGZhaWxlZCB0byBnZXQgc2VjdXJpdHkgY29udGV4dCBvZiAveW9j
+dG8vYnVpbGQveDg2XzY0L3RtcC93b3JrL3h4eHgvaW50ZXJjZXB0X3NjcmlwdHMgL3VwZGF0ZV9w
+aXhidWZfY2FjaGU6IE5vIGRhdGEgYXZhaWxhYmxlDQotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCk15IHBva3kg
+aXMgMS43LjEgYXMgYmVsb3cNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkRJU1RSTyA9ICJwb2t5Ig0KRElTVFJP
+X05BTUUgPSAiUG9reSAoWW9jdG8gUHJvamVjdCBSZWZlcmVuY2UgRGlzdHJvKSINCkRJU1RST19W
+RVJTSU9OID0gIjEuNy4xIg0KRElTVFJPX0NPREVOQU1FID0gImRpenp5Ig0KLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+DQoNCkFueSBzdWdnZXN0aW9uLCB0aGFua3MuDQoNCkNoZWVycw0KIEJpYW4NCg==
 
