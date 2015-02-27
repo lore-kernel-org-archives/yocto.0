@@ -1,37 +1,26 @@
-Return-Path: <alejandro.hernandez@linux.intel.com>
+Return-Path: <pokybuild@ubuntu1204.osl.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 05FC2E00779; Thu, 26 Feb 2015 14:17:26 -0800 (PST)
+	id 49765E008D4; Thu, 26 Feb 2015 19:29:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
+	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66C71E0074C
-	for <yocto@yoctoproject.org>; Thu, 26 Feb 2015 14:17:24 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga103.jf.intel.com with ESMTP; 26 Feb 2015 14:11:37 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,655,1418112000"; d="scan'208";a="691350513"
-Received: from gaponcec-mobl2.amr.corp.intel.com (HELO [10.219.4.48])
-	([10.219.4.48])
-	by orsmga002.jf.intel.com with ESMTP; 26 Feb 2015 14:17:23 -0800
-Message-ID: <54EF9B73.3050905@linux.intel.com>
-Date: Thu, 26 Feb 2015 16:17:23 -0600
-From: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
-MIME-Version: 1.0
+Received: from ubuntu1204.osl.yoctoproject.org
+	(ubuntu1204.osl.yoctoproject.org [10.0.10.110])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22A37E0084F;
+	Thu, 26 Feb 2015 19:29:55 -0800 (PST)
+Received: by ubuntu1204.osl.yoctoproject.org (Postfix, from userid 1006)
+	id C74C02C0215; Fri, 27 Feb 2015 03:29:54 +0000 (UTC)
 To: yocto@yoctoproject.org
-References: <20150223142243.GB11425@ulm-bmuc496424.bmw-carit.de>
-	<20150226144237.GP11425@ulm-bmuc496424.bmw-carit.de>
-In-Reply-To: <20150226144237.GP11425@ulm-bmuc496424.bmw-carit.de>
-Subject: Re: [PATCH] bitbake: fetch2: Revalidate checksums, YOCTO #5571
+Message-Id: <20150227032954.C74C02C0215@ubuntu1204.osl.yoctoproject.org>
+Date: Fri, 27 Feb 2015 03:29:54 +0000 (UTC)
+From: pokybuild@ubuntu1204.osl.yoctoproject.org (Poky Build User)
+Cc: otavio@ossystems.com.br
+Subject: Release Candidate Build for yocto-1.8_M3.rc2 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,41 +32,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Feb 2015 22:17:26 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 27 Feb 2015 03:29:57 -0000
 
-Hi Clemens,
+-e 
+A release candidate build for yocto-1.8_M3.rc2 is now available at:
 
-On 23/02/15 08:22, Clemens Lang wrote:
+ 
+http://autobuilder.yoctoproject.org/pub/releases/yocto-1.8_M3.rc2
 
-This is the problem I see, I am not sure we want to import extra 
-libraries here, as you state the use of pickle might be ok since it 
-avoids the overhead of calculating the checksums each time, but I don't 
-know if it is actually worth it, since checksums are calculated fairly 
-quick anyway, this is my personal opinion, you may still submit it for 
-review.
->   
-> +try:
-> +    import cPickle as pickle
-> +except ImportError:
-> +    import pickle
-> +    logger.info("Importing cPickle failed. "
-> +                "Falling back to a very slow implementation.")
-> +
->
-On 26/02/15 08:42, Clemens Lang wrote:
-> Hi,
->
-> On Mon, Feb 23, 2015 at 03:22:43PM +0100, Clemens Lang wrote:
->> [YOCTO #5571] -- https://bugzilla.yoctoproject.org/show_bug.cgi?id=5571
-> Can somebody review this? Is there anything I need to do to get this
-> considered for merging?
-And perhaps the reason it hasn't been reviewed is that I believe this 
-patch should go to bitbake-devel@lists.openembedded.org instead.
 
-I also had this WIP branch on contrib, its from a couple of months back 
-its "dirty" but in case you'd like to look around.
+Please begin QA on this build as soon as possible.
 
-http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/commit/?h=hsalejandro/5571&id=2f59e26e534dc6b6d4c5bb8d78c574042e0fe7a7
+
+Build hash information: 
+meta-intel : 367fd4758d23318b3adab8021d7bdc8b56e04917 
+meta-fsl-arm : c5dde2d3e1c89e11b9a4920ca328648664457b7c 
+meta-minnow : 13a5f2ab84c7284647a3e067a33109c11dae0568 
+meta-qt3 : 3016129d90b7ac8517a5227d819f10ad417b5b45 
+meta-fsl-ppc : 5eeeb3ad74b72d904f805bc6e248e93e722b45c4 
+poky : 6d7cf8e9dd00bdff882311fecbadfadc46e9cc03 
+
+
+This is an automated message from
+The Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder
+Email: elizabeth.flanagan@intel.com 
 
