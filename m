@@ -1,47 +1,37 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A630E008DC; Fri, 27 Feb 2015 02:35:44 -0800 (PST)
+	id A027CE008DC; Fri, 27 Feb 2015 03:16:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qa0-f43.google.com (mail-qa0-f43.google.com
-	[209.85.216.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1ABD4E0077E
-	for <yocto@yoctoproject.org>; Fri, 27 Feb 2015 02:35:41 -0800 (PST)
-Received: by mail-qa0-f43.google.com with SMTP id bm13so12083333qab.2
-	for <yocto@yoctoproject.org>; Fri, 27 Feb 2015 02:35:41 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=YV07YBm8dlZ4RYU8C9ftWDmfLzATBt+bvXCFJLNQ0Ik=;
-	b=AXDwm1eNGsevB1sT/9RWcU+KGS7pICeWnFL5jacX9qWeU0D1siUG4G/67gMX5xQvN6
-	OEeQsxQsikcDBud7A+LKzPR75aOVi/hUtsJLcwxtiyz/ORVnna2WQ4H1990Aj1Sd7Z4K
-	M7zsL2cuR2iZ11sPJll9j9Dgcf6+HElY5468L7o4XDHX74Fe3cuQ1MhiqUvKRqxzezri
-	ZoPk4+BUhwLmeSnMESHHa5mxJcm4QfqqaLJ3dW6AqHJjGZfGB8cB47Ul5STQargeRSWP
-	6/UOQfxRMOTK+NaCEQ+GuYV/2VcaxE8yOHoPOqbkWrc2XUM+BsqbzaOY2tevrmTNd+4M
-	0kuQ==
-X-Gm-Message-State: ALoCoQkSZEfLbpMorRdfnrELXyBVGtIX9r5mKdg2t7R4UH+WdS/yb0QkflyURzG7i150Uf5zb2EF
-X-Received: by 10.55.21.12 with SMTP id f12mr160700qkh.40.1425033341149; Fri,
-	27 Feb 2015 02:35:41 -0800 (PST)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3CB7E0077E
+	for <yocto@yoctoproject.org>; Fri, 27 Feb 2015 03:16:22 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga101.jf.intel.com with ESMTP; 27 Feb 2015 03:16:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.09,659,1418112000"; d="scan'208";a="533668875"
+Received: from unknown (HELO peggleto-mobl5.ger.corp.intel.com)
+	([10.252.23.236])
+	by orsmga003.jf.intel.com with ESMTP; 27 Feb 2015 03:07:05 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Parthiban Kandasamy <parthiban@ulivesystems.com>
+Date: Fri, 27 Feb 2015 11:16:20 +0000
+Message-ID: <4901065.LHkspso1sB@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.4 (Linux/3.18.7-100.fc20.x86_64; KDE/4.14.4; x86_64; ; )
+In-Reply-To: <CABNKipJm7PKH1r534M1aJ_d8WhvdeFMc-7-5EpWhs+BVAqKd4g@mail.gmail.com>
+References: <CABNKipJm7PKH1r534M1aJ_d8WhvdeFMc-7-5EpWhs+BVAqKd4g@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.140.102.203 with HTTP; Fri, 27 Feb 2015 02:35:20 -0800 (PST)
-In-Reply-To: <E0AAEDF37958A64591322A370796C7897B5D7A@post>
-References: <E0AAEDF37958A64591322A370796C7897B5D7A@post>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 27 Feb 2015 10:35:20 +0000
-Message-ID: <CAJTo0LaF-sML4iWw23=XTJ=SjABT=eZQx8shVMqdfWKy52tycQ@mail.gmail.com>
-To: Rickard Bremer <rickard.bremer@tritech.se>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: meta-lxcbench
+Cc: yocto@yoctoproject.org
+Subject: Re: Native version conflict with yocto version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,80 +43,199 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Feb 2015 10:35:44 -0000
-Content-Type: multipart/alternative; boundary=001a1147f3f417d2d705100f6efe
+X-List-Received-Date: Fri, 27 Feb 2015 11:16:28 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---001a1147f3f417d2d705100f6efe
-Content-Type: text/plain; charset=UTF-8
+On Friday 27 February 2015 13:20:28 Parthiban Kandasamy wrote:
+> i run yocto build on opensuse 12.3 which have version of make is 4.0 but my
+> yocto project has version of 3.82.so it shows "checking version of make...
+> 4.0, bad".
+> 
+> and other error logs are:
+> 
+> ERROR: Function failed: do_configure (log file is located at
+> /home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-1
+> 0.0.0/BeagleBuild/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/eglibc-initial
+> /2.18-r0/temp/log.do_configure.9059) ERROR: Logfile of failure stored in:
+> /home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-1
+> 0.0.0/BeagleBuild/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/eglibc-initial
+> /2.18-r0/temp/log.do_configure.9059
+> Log data follows:
+> | DEBUG: Executing python function sysroot_cleansstate
+> | DEBUG: Python function sysroot_cleansstate finished
+> | DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
+> 
+> 'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi', 'common']
+> 
+> | DEBUG: Executing shell function autotools_preconfigure
+> | DEBUG: Shell function autotools_preconfigure finished
+> | DEBUG: Executing shell function do_configure
+> | checking build system type... x86_64-pc-linux-gnu
+> | checking host system type... arm-poky-linux-gnueabi
+> | checking for arm-poky-linux-gnueabi-gcc... arm-poky-linux-gnueabi-gcc
+> 
+> -march=armv7-a -mthumb-interwork -mfloat-abi=softfp -mfpu=neon
+> --sysroot=/home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beaglebo
+> ard-dora-10.0.0/BeagleBuild/tmp/sysroots/beagleboard
+> | checking for suffix of object files... o
+> | checking whether we are using the GNU C compiler... yes
+> | checking whether arm-poky-linux-gnueabi-gcc  -march=armv7-a
+> 
+> -mthumb-interwork -mfloat-abi=softfp -mfpu=neon
+> --sysroot=/home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beaglebo
+> ard-dora-10.0.0/BeagleBuild/tmp/sysroots/beagleboard accepts -g... yes
+> 
+> | checking for gcc... gcc
+> | checking whether we are using the GNU C++ compiler... no
+> | checking whether arm-poky-linux-gnueabi-g++  -march=armv7-a
+> 
+> -mthumb-interwork -mfloat-abi=softfp -mfpu=neon
+> --sysroot=/home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beaglebo
+> ard-dora-10.0.0/BeagleBuild/tmp/sysroots/beagleboard accepts -g... no
+> 
+> | checking for arm-poky-linux-gnueabi-readelf...
+> 
+> arm-poky-linux-gnueabi-readelf
+> 
+> | checking for sysdeps preconfigure fragments... x86_64
+> | configure: running configure fragment for add-on libidn
+> | configure: running configure fragment for add-on nptl
+> | checking add-on ports for preconfigure fragments... aarch64 alpha am33
+> 
+> arm configure: Found compiler is configured for armv7
+> 
+> | hppa ia64 m68k microblaze mips powerpc tile
+> | checking for assembler and linker STT_GNU_IFUNC support... yes
+> | checking whether .text pseudo-op must be used... yes
+> | checking sysdep dirs... ports/sysdeps/unix/sysv/linux/arm/nptl
+> 
+> ports/sysdeps/unix/sysv/linux/arm nptl/sysdeps/unix/sysv/linux
+> nptl/sysdeps/pthread sysdeps/pthread ports/sysdeps/unix/sysv/linux
+> sysdeps/unix/sysv/linux sysdeps/gnu sysdeps/unix/inet
+> nptl/sysdeps/unix/sysv ports/sysdeps/unix/sysv sysdeps/unix/sysv
+> ports/sysdeps/unix/arm nptl/sysdeps/unix ports/sysdeps/unix sysdeps/unix
+> sysdeps/posix ports/sysdeps/arm/armv7/multiarch ports/sysdeps/arm/armv7
+> ports/sysdeps/arm/armv6t2 ports/sysdeps/arm/armv6 ports/sysdeps/arm/nptl
+> ports/sysdeps/arm ports/sysdeps/arm/soft-fp sysdeps/wordsize-32
+> sysdeps/ieee754/flt-32 sysdeps/ieee754/dbl-64 sysdeps/ieee754
+> sysdeps/generic
+> 
+> | checking for a BSD-compatible install... /usr/bin/install -c
+> | checking whether ln -s works... yes
+> | checking whether
+> 
+> /home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-1
+> 0.0.0/BeagleBuild/tmp/sysroots/x86_64-linux/usr/libexec/armv7a-vfp-neon-poky
+> -linux-gnueabi.gcc-cross-initial/gcc/arm-poky-linux-gnueabi/4.8.1/as is GNU
+> as... yes
+> 
+> | checking whether
+> 
+> /home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-1
+> 0.0.0/BeagleBuild/tmp/sysroots/x86_64-linux/usr/libexec/armv7a-vfp-neon-poky
+> -linux-gnueabi.gcc-cross-initial/gcc/arm-poky-linux-gnueabi/4.8.1/ld is GNU
+> ld... yes
+> 
+> | checking for
+> 
+> /home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-1
+> 0.0.0/BeagleBuild/tmp/sysroots/x86_64-linux/usr/libexec/armv7a-vfp-neon-poky
+> -linux-gnueabi.gcc-cross-initial/gcc/arm-poky-linux-gnueabi/4.8.1/as...
+> /home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-
+> 10.0.0/BeagleBuild/tmp/sysroots/x86_64-linux/usr/libexec/armv7a-vfp-neon-pok
+> y-linux-gnueabi.gcc-cross-initial/gcc/arm-poky-linux-gnueabi/4.8.1/as
+> | checking version of
+> 
+> /home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-1
+> 0.0.0/BeagleBuild/tmp/sysroots/x86_64-linux/usr/libexec/armv7a-vfp-neon-poky
+> -linux-gnueabi.gcc-cross-initial/gcc/arm-poky-linux-gnueabi/4.8.1/as...
+> 2.23.2, ok
+> 
+> | checking for
+> 
+> /home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-1
+> 0.0.0/BeagleBuild/tmp/sysroots/x86_64-linux/usr/libexec/armv7a-vfp-neon-poky
+> -linux-gnueabi.gcc-cross-initial/gcc/arm-poky-linux-gnueabi/4.8.1/ld...
+> /home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-
+> 10.0.0/BeagleBuild/tmp/sysroots/x86_64-linux/usr/libexec/armv7a-vfp-neon-pok
+> y-linux-gnueabi.gcc-cross-initial/gcc/arm-poky-linux-gnueabi/4.8.1/ld
+> | checking version of
+> 
+> /home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-1
+> 0.0.0/BeagleBuild/tmp/sysroots/x86_64-linux/usr/libexec/armv7a-vfp-neon-poky
+> -linux-gnueabi.gcc-cross-initial/gcc/arm-poky-linux-gnueabi/4.8.1/ld...
+> 2.23.2, ok
+> 
+> | checking for arm-poky-linux-gnueabi-gcc... (cached)
+> 
+> arm-poky-linux-gnueabi-gcc  -march=armv7-a -mthumb-interwork
+> -mfloat-abi=softfp -mfpu=neon
+> --sysroot=/home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beaglebo
+> ard-dora-10.0.0/BeagleBuild/tmp/sysroots/beagleboard
+> | checking version of arm-poky-linux-gnueabi-gcc  -march=armv7-a
+> 
+> -mthumb-interwork -mfloat-abi=softfp -mfpu=neon
+> --sysroot=/home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beaglebo
+> ard-dora-10.0.0/BeagleBuild/tmp/sysroots/beagleboard... 4.8.1, ok
+> 
+> | checking for gnumake... make
+> | checking version of make... 4.0, bad
+> | checking for gnumsgfmt... no
+> | checking for gmsgfmt... no
+> | checking for msgfmt... msgfmt
+> | checking version of msgfmt... 0.18.3, ok
+> | checking for makeinfo... makeinfo
+> | checking version of makeinfo... 4.13, ok
+> | checking for sed... sed
+> | checking version of sed... 4.2.2, ok
+> | checking for gawk... gawk
+> | checking version of gawk... 4.1.1, ok
+> | checking for arm-poky-linux-gnueabi-nm... arm-poky-linux-gnueabi-nm
+> | checking for autoconf... autoconf
+> | checking whether autoconf works... yes
+> | configure: error:
+> | *** These critical programs are missing or too old: make
+> | *** Check the INSTALL file for required versions.
+> 
+> | WARNING:
+> /home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-1
+> 0.0.0/BeagleBuild/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/eglibc-initial
+> /2.18-r0/temp/run.do_configure.9059:1 exit 1 from
+> 
+> /home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-1
+> 0.0.0/BeagleBuild/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/eglibc-initial
+> /2.18-r0/eglibc-2.18/libc/configure --host=arm-poky-linux-gnueabi
+> --build=x86_64-linux --prefix=/usr
+> --without-cvs --disable-sanity-checks
+> --with-headers=/home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/bea
+> gleboard-dora-10.0.0/BeagleBuild/tmp/sysroots/beagleboard/usr/include
+> --with-kconfig=/home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/be
+> agleboard-dora-10.0.0/BeagleBuild/tmp/sysroots/x86_64-linux/usr/bin
+> --enable-hacker-mode --enable-addons
+> 
+> | ERROR: Function failed: do_configure (log file is located at
+> 
+> /home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-1
+> 0.0.0/BeagleBuild/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/eglibc-initial
+> /2.18-r0/temp/log.do_configure.9059) ERROR: Task 568
+> (/home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-
+> 10.0.0/meta/recipes-core/eglibc/ eglibc-initial_2.18.bb, do_configure)
+> failed with exit code '1'
+> 
+> how do i configure yocto project to overcome this error?
 
-Hi Rickard,
+No configuration will help you fix this. However you can install the buildtools 
+as described in the manual if your host tools aren't compatible.
 
-This must be a very old layer, these syntax changes were made a long time
-ago...
+As always, we strongly recommend a newer release since this one is no longer 
+officially supported.
 
-On 27 February 2015 at 09:22, Rickard Bremer <rickard.bremer@tritech.se>
-wrote:
+Cheers,
+Paul
 
-> ERROR: There is a confusing multiline, partially commented expression on
-> line 27 of file /home/rickardb/poky/lxcbench/meta-lxcbench/recipes-misc/lxc/
-> lxc_0.8.0-rc1.bb ().
->
-> Please clarify whether this is all a comment or should be parsed.
->
->
-You've a line that looks like this
+-- 
 
-# This is a comment \
-Is this?
+Paul Eggleton
+Intel Open Source Technology Centre
 
-As you can see that's ambiguous so the parser takes the hardline approach
-of banning that syntax.  The solution here is to delete the trailing
-backslash.
-
-ERROR: QA Issue:
-> /home/rickardb/poky/lxcbench/meta-lxcbench/recipes-misc/lxcbench-test/
-> lxcbench-test.bb: Variable RDEPENDS is set as not being package specific,
-> please fix this. [pkgvarcheck]
->
-
-RDEPENDS without specifying a package means that all packages have the
-RDEPENDS, which is 99.9% of the time the wrong thing to do.  Change to
-RDEPENDS_${PN}.
-
-Ross
-
---001a1147f3f417d2d705100f6efe
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra">Hi Rickard,</div><div class=3D"=
-gmail_extra"><br></div><div class=3D"gmail_extra">This must be a very old l=
-ayer, these syntax changes were made a long time ago...</div><div class=3D"=
-gmail_extra"><br><div class=3D"gmail_quote">On 27 February 2015 at 09:22, R=
-ickard Bremer <span dir=3D"ltr">&lt;<a href=3D"mailto:rickard.bremer@tritec=
-h.se" target=3D"_blank">rickard.bremer@tritech.se</a>&gt;</span> wrote:<br>=
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><p class=3D"MsoNormal"><span lang=3D"EN-US">=
-ERROR: There is a confusing multiline, partially commented expression on li=
-ne 27 of file /home/rickardb/poky/lxcbench/meta-lxcbench/recipes-misc/lxc/<=
-a href=3D"http://lxc_0.8.0-rc1.bb" target=3D"_blank">lxc_0.8.0-rc1.bb</a> (=
-).<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Please clarify whether this is =
-all a comment or should be parsed.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"></span></p></blockquote><div><b=
-r></div><div>You&#39;ve a line that looks like this</div><div><br></div><di=
-v># This is a comment \</div><div>Is this?</div><div><br></div><div>As you =
-can see that&#39;s ambiguous so the parser takes the hardline approach of b=
-anning that syntax.=C2=A0 The solution here is to delete the trailing backs=
-lash.</div><div><br></div><blockquote class=3D"gmail_quote" style=3D"margin=
-:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNor=
-mal"><span lang=3D"EN-US">ERROR: QA Issue: /home/rickardb/poky/lxcbench/met=
-a-lxcbench/recipes-misc/lxcbench-test/<a href=3D"http://lxcbench-test.bb" t=
-arget=3D"_blank">lxcbench-test.bb</a>: Variable RDEPENDS is set as not bein=
-g package specific, please fix this. [pkgvarcheck]</span></p></blockquote><=
-/div><br>RDEPENDS without specifying a package means that all packages have=
- the RDEPENDS, which is 99.9% of the time the wrong thing to do.=C2=A0 Chan=
-ge to RDEPENDS_${PN}.</div><div class=3D"gmail_extra"><br></div><div class=
-=3D"gmail_extra">Ross</div></div>
-
---001a1147f3f417d2d705100f6efe--
