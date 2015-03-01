@@ -1,52 +1,52 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 15182E00522; Sat, 28 Feb 2015 15:53:46 -0800 (PST)
+	id 25734E00522; Sat, 28 Feb 2015 16:11:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,FSL_HELO_FAKE,
 	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
 X-Spam-HAM-Report: *  3.1 FSL_HELO_FAKE FSL_HELO_FAKE
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-lb0-f178.google.com (mail-lb0-f178.google.com
-	[209.85.217.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E92FE0043B
-	for <yocto@yoctoproject.org>; Sat, 28 Feb 2015 15:53:41 -0800 (PST)
-Received: by lbiz12 with SMTP id z12so819094lbi.5
-	for <yocto@yoctoproject.org>; Sat, 28 Feb 2015 15:53:39 -0800 (PST)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.47 listed in list.dnswl.org]
+Received: from mail-la0-f47.google.com (mail-la0-f47.google.com
+	[209.85.215.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 780B6E0043B
+	for <yocto@yoctoproject.org>; Sat, 28 Feb 2015 16:11:56 -0800 (PST)
+Received: by lamq1 with SMTP id q1so858637lam.9
+	for <yocto@yoctoproject.org>; Sat, 28 Feb 2015 16:11:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:subject:message-id:references
 	:mime-version:content-type:content-disposition:in-reply-to
 	:user-agent;
-	bh=TWkRfw3CVLJa7kdo2Py+CanoXkRc2qI5iokI1wVCY8c=;
-	b=SpUsuf0A63+i2J3rPy4Hjur8DFIpeRQwz8l+DTDPCkHA+hG89EY/SVdIKS7rim+TEx
-	r1uax5gpidIP47ns0OPAEH3XomIV6gqyMqW90y4yC3YNmkioFWJZnFZG5Z4U2vJBoYji
-	fN26rX6za9eCtg2lPUl8idWBTgGhkVNzu/Vqk92DXr7fshC640raQfCe6yUfSmzTFv6w
-	4LN6SdK6kJnCuBd2mahYJ5B4iCd4Oh3i2CPX5chyCjeuyt3XvnCZqUlG5otEM9K+LSH5
-	tSHh4xepHrXLQYe7YSFiRVhwiCVKSIyUq1z36C8P2vaRI43I/vEgMEPP0HFYg0mbNCsf
-	Rmiw==
-X-Gm-Message-State: ALoCoQkxNL15TDtNOPx2phvEhGOTTVtj61z24nk1gVnu1Sxh5d5lbIm3qZcWiIHSQXvSW/NuOF1L
-X-Received: by 10.112.173.41 with SMTP id bh9mr7238084lbc.107.1425167618791;
-	Sat, 28 Feb 2015 15:53:38 -0800 (PST)
+	bh=6hHoRbniE9dq+7qXjn9jZZEl2i6NAXqoNyBFz7FJ0JQ=;
+	b=gRwSMxRvvs1KfxZGKgVbg+8Ny8CkjSWeRQ23dLv5m+bGn9XHJWBcL/+0UbipYjtWln
+	gK1V59DxIouWIAB/BgdAnRdwxJizsMlCmRQI4EI2BOcnkzHH2NUVbdthe0lCbzCjUiAa
+	5Dgk2AqKltdSj6+LhR6BcvENIy5XvLN0+JI5ZrxQz8YxtOt3BAravZF4dMhTuGtoKdv1
+	ibOuGrSuIrQpkRsKKDQ7ucvT5CzzlTKL4ggigQDKhGdqsvBjwjefwb0s27mRMN3jiXkN
+	ZP+Ql7+1lJ6gnTURdsKvxDq4M/ZDosB/kN1Gi6G5UER6D2cCNgC6xMa3uzprnV3QNW96
+	vLsg==
+X-Gm-Message-State: ALoCoQkaFgGtnW9HRHXPrXPq77HuwFrMKAk4mPkCJjjU5meCn5Zb4L3w2+9mOFUNpw9bAAku2MXx
+X-Received: by 10.152.246.41 with SMTP id xt9mr12529419lac.110.1425168714333; 
+	Sat, 28 Feb 2015 16:11:54 -0800 (PST)
 Received: from gmail.com (dhcp-186-165.gjk.dk. [195.249.186.165])
-	by mx.google.com with ESMTPSA id wp8sm1553926lbb.30.2015.02.28.15.53.37
+	by mx.google.com with ESMTPSA id jv9sm1711297lab.4.2015.02.28.16.11.53
 	for <yocto@yoctoproject.org>
 	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sat, 28 Feb 2015 15:53:38 -0800 (PST)
-Date: Sun, 1 Mar 2015 00:53:32 +0100
+	Sat, 28 Feb 2015 16:11:53 -0800 (PST)
+Date: Sun, 1 Mar 2015 01:11:50 +0100
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Message-ID: <20150228235332.GA22308@gmail.com>
-References: <1423525941-19710-1-git-send-email-andrei@gherzan.ro>
+Message-ID: <20150301001150.GB22308@gmail.com>
+References: <1423686898-23144-1-git-send-email-andrei@gherzan.ro>
 MIME-Version: 1.0
-In-Reply-To: <1423525941-19710-1-git-send-email-andrei@gherzan.ro>
+In-Reply-To: <1423686898-23144-1-git-send-email-andrei@gherzan.ro>
 User-Agent: Mutt/1.5.23 (2014-03-12)
-Subject: Re: [meta-raspberrypi][PATCH V2 1/5] linux-raspberrypi: Refactor kernel recipes
+Subject: Re: [meta-raspberrypi][PATCH 1/3] userland: Fix build for armv7
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,223 +58,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 28 Feb 2015 23:53:46 -0000
+X-List-Received-Date: Sun, 01 Mar 2015 00:11:58 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Tue, Feb 10, 2015 at 12:52:17AM +0100, Andrei Gherzan wrote:
-> We use this to simplify the update process. Updating a kernel version will not
-> require renaming the recipe but only tweaking LINUX_VERSION.
+On Wed, Feb 11, 2015 at 09:34:56PM +0100, Andrei Gherzan wrote:
+> [Bug #49]
 >
-> Update kernel version:
->         - bump SRCREV
->         - bump LINUX_VERSION if needed
->
-> [Support #26]
->
-> Change-Id: I7565ddd1f03cc34c34aa5da92664a0057b415c9a
+> Change-Id: I340b4134ae4227f315c1c3df1345b04ebd4b874b
 > Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 > ---
->  recipes-kernel/linux/linux-raspberrypi.inc        | 2 +-
->  recipes-kernel/linux/linux-raspberrypi_3.10.38.bb | 6 ------
->  recipes-kernel/linux/linux-raspberrypi_3.10.bb    | 8 ++++++++
->  recipes-kernel/linux/linux-raspberrypi_3.12.36.bb | 6 ------
->  recipes-kernel/linux/linux-raspberrypi_3.12.bb    | 8 ++++++++
->  recipes-kernel/linux/linux-raspberrypi_3.16.5.bb  | 6 ------
->  recipes-kernel/linux/linux-raspberrypi_3.16.bb    | 8 ++++++++
->  recipes-kernel/linux/linux-raspberrypi_3.18.5.bb  | 5 -----
->  recipes-kernel/linux/linux-raspberrypi_3.18.bb    | 8 ++++++++
->  recipes-kernel/linux/linux-raspberrypi_3.6.11.bb  | 6 ------
->  recipes-kernel/linux/linux-raspberrypi_3.6.bb     | 8 ++++++++
->  recipes-kernel/linux/linux-raspberrypi_3.8.13.bb  | 6 ------
->  recipes-kernel/linux/linux-raspberrypi_3.8.bb     | 8 ++++++++
->  13 files changed, 49 insertions(+), 36 deletions(-)
->  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.10.38.bb
->  create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.10.bb
->  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.12.36.bb
->  create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.12.bb
->  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.16.5.bb
->  create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.16.bb
->  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.18.5.bb
->  create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.18.bb
->  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.6.11.bb
->  create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.6.bb
->  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.8.13.bb
->  create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.8.bb
+>  conf/machine/raspberrypi2.conf            | 5 -----
+>  recipes-graphics/userland/userland_git.bb | 1 +
+>  2 files changed, 1 insertion(+), 5 deletions(-)
 >
-> diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
-> index ff0c5ce..c00128d 100644
-> --- a/recipes-kernel/linux/linux-raspberrypi.inc
-> +++ b/recipes-kernel/linux/linux-raspberrypi.inc
-> @@ -11,7 +11,7 @@ SRC_URI += " \
+> diff --git a/conf/machine/raspberrypi2.conf b/conf/machine/raspberrypi2.conf
+> index 778f5a6..30edae3 100644
+> --- a/conf/machine/raspberrypi2.conf
+> +++ b/conf/machine/raspberrypi2.conf
+> @@ -2,11 +2,6 @@
+>  #@NAME: RaspberryPi 2 Development Board
+>  #@DESCRIPTION: Machine configuration for the RaspberryPi 2
 >
->  COMPATIBLE_MACHINE = "raspberrypi"
+> -# userland is not compiling on RPI 2
+> -# https://github.com/raspberrypi/userland/issues/214
+> -PREFERRED_PROVIDER_virtual/egl ?= "vc-graphics-hardfp"
+> -PREFERRED_PROVIDER_virtual/libgles2 ?= "vc-graphics-hardfp"
+> -
+>  DEFAULTTUNE ?= "cortexa7thf-neon-vfpv4"
 >
-> -PV_append = "+git${SRCREV}"
-> +PV = "${LINUX_VERSION}+git${SRCREV}"
+>  require conf/machine/include/tune-cortexa7.inc
+> diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
+> index 77c98d7..ddca36e 100644
+> --- a/recipes-graphics/userland/userland_git.bb
+> +++ b/recipes-graphics/userland/userland_git.bb
+> @@ -22,6 +22,7 @@ S = "${WORKDIR}/git"
+>  inherit cmake
 >
->  # NOTE: For now we pull in the default config from the RPi kernel GIT tree.
->  KERNEL_DEFCONFIG = "bcmrpi_defconfig"
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.10.38.bb b/recipes-kernel/linux/linux-raspberrypi_3.10.38.bb
-> deleted file mode 100644
-> index a0c5012..0000000
-> --- a/recipes-kernel/linux/linux-raspberrypi_3.10.38.bb
-> +++ /dev/null
-> @@ -1,6 +0,0 @@
-> -SRCREV = "1b49b450222df26e4abf7abb6d9302f72b2ed386"
-> -SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.10.y \
-> -           file://sl030raspberrypii2ckernel.patch \
-> -          "
-> -
-> -require linux-raspberrypi.inc
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.10.bb b/recipes-kernel/linux/linux-raspberrypi_3.10.bb
-> new file mode 100644
-> index 0000000..e5d5bf2
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-raspberrypi_3.10.bb
-> @@ -0,0 +1,8 @@
-> +LINUX_VERSION ?= "3.10.38"
-> +
-> +SRCREV = "1b49b450222df26e4abf7abb6d9302f72b2ed386"
-> +SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.10.y \
-> +           file://sl030raspberrypii2ckernel.patch \
-> +          "
-> +
-> +require linux-raspberrypi.inc
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.12.36.bb b/recipes-kernel/linux/linux-raspberrypi_3.12.36.bb
-> deleted file mode 100644
-> index e9e9ad7..0000000
-> --- a/recipes-kernel/linux/linux-raspberrypi_3.12.36.bb
-> +++ /dev/null
-> @@ -1,6 +0,0 @@
-> -SRCREV = "90fa5df724d147564149c7b79cb1ffc571a345ec"
-> -SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.12.y \
-> -           file://sl030raspberrypii2ckernel.patch \
-> -          "
-> -
-> -require linux-raspberrypi.inc
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.12.bb b/recipes-kernel/linux/linux-raspberrypi_3.12.bb
-> new file mode 100644
-> index 0000000..2952778
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-raspberrypi_3.12.bb
-> @@ -0,0 +1,8 @@
-> +LINUX_VERSION ?= "3.12.36"
-> +
-> +SRCREV = "90fa5df724d147564149c7b79cb1ffc571a345ec"
-> +SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.12.y \
-> +           file://sl030raspberrypii2ckernel.patch \
-> +          "
-> +
-> +require linux-raspberrypi.inc
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.16.5.bb b/recipes-kernel/linux/linux-raspberrypi_3.16.5.bb
-> deleted file mode 100644
-> index 97947c2..0000000
-> --- a/recipes-kernel/linux/linux-raspberrypi_3.16.5.bb
-> +++ /dev/null
-> @@ -1,6 +0,0 @@
-> -SRCREV = "377c82aa1d31b37f1096096b0e4c65beb0bc5c49"
-> -SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.16.y \
-> -           file://sl030raspberrypii2ckernel.patch \
-> -          "
-> -
-> -require linux-raspberrypi.inc
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.16.bb b/recipes-kernel/linux/linux-raspberrypi_3.16.bb
-> new file mode 100644
-> index 0000000..ccc414f
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-raspberrypi_3.16.bb
-> @@ -0,0 +1,8 @@
-> +LINUX_VERSION ?= "3.16.5"
-> +
-> +SRCREV = "377c82aa1d31b37f1096096b0e4c65beb0bc5c49"
-> +SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.16.y \
-> +           file://sl030raspberrypii2ckernel.patch \
-> +          "
-> +
-> +require linux-raspberrypi.inc
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.18.5.bb b/recipes-kernel/linux/linux-raspberrypi_3.18.5.bb
-> deleted file mode 100644
-> index 663522e..0000000
-> --- a/recipes-kernel/linux/linux-raspberrypi_3.18.5.bb
-> +++ /dev/null
-> @@ -1,5 +0,0 @@
-> -SRCREV = "a6cf3c99bc89e2c010c2f78fbf9e3ed478ccfd46"
-> -SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y \
-> -           file://sl030raspberrypii2ckernel.patch \
-> -          "
-> -require linux-raspberrypi.inc
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.18.bb b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
-> new file mode 100644
-> index 0000000..921e702
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
-> @@ -0,0 +1,8 @@
-> +LINUX_VERSION ?= "3.18.5"
-> +
-> +SRCREV = "a6cf3c99bc89e2c010c2f78fbf9e3ed478ccfd46"
-> +SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y \
-> +           file://sl030raspberrypii2ckernel.patch \
-> +          "
-> +
-> +require linux-raspberrypi.inc
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.6.11.bb b/recipes-kernel/linux/linux-raspberrypi_3.6.11.bb
-> deleted file mode 100644
-> index a154bcf..0000000
-> --- a/recipes-kernel/linux/linux-raspberrypi_3.6.11.bb
-> +++ /dev/null
-> @@ -1,6 +0,0 @@
-> -SRCREV = "2a8d45ec0883e3cbdce920855b3461ac77308a5f"
-> -SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.6.y \
-> -           file://sl030raspberrypii2ckernel.patch \
-> -          "
-> -
-> -require linux-raspberrypi.inc
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.6.bb b/recipes-kernel/linux/linux-raspberrypi_3.6.bb
-> new file mode 100644
-> index 0000000..fc9ac89
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-raspberrypi_3.6.bb
-> @@ -0,0 +1,8 @@
-> +LINUX_VERSION ?= "3.6.11"
-> +
-> +SRCREV = "2a8d45ec0883e3cbdce920855b3461ac77308a5f"
-> +SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.6.y \
-> +           file://sl030raspberrypii2ckernel.patch \
-> +          "
-> +
-> +require linux-raspberrypi.inc
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.8.13.bb b/recipes-kernel/linux/linux-raspberrypi_3.8.13.bb
-> deleted file mode 100644
-> index dc8cf0a..0000000
-> --- a/recipes-kernel/linux/linux-raspberrypi_3.8.13.bb
-> +++ /dev/null
-> @@ -1,6 +0,0 @@
-> -SRCREV = "d996a1b91b2bf3dc06f4f4f822a56f4496457aa1"
-> -SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.8.y \
-> -           file://sl030raspberrypii2ckernel.patch \
-> -          "
-> -
-> -require linux-raspberrypi.inc
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.8.bb b/recipes-kernel/linux/linux-raspberrypi_3.8.bb
-> new file mode 100644
-> index 0000000..ae0dc99
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-raspberrypi_3.8.bb
-> @@ -0,0 +1,8 @@
-> +LINUX_VERSION ?= "3.8.13"
-> +
-> +SRCREV = "d996a1b91b2bf3dc06f4f4f822a56f4496457aa1"
-> +SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.8.y \
-> +           file://sl030raspberrypii2ckernel.patch \
-> +          "
-> +
-> +require linux-raspberrypi.inc
+>  EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release -DCMAKE_EXE_LINKER_FLAGS='-Wl,--no-as-needed'"
+> +CFLAGS_append = " -fPIC"
+>
+>  # The compiled binaries don't provide sonames.
+>  SOLIBS = "${SOLIBSDEV}"
 > --
 > 2.1.0
 >
 
-Merged along with the entire series.
+Merged to master along with the entire series.
 
 --
 Andrei Gherzan
