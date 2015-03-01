@@ -1,52 +1,39 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A6C18E00522; Sat, 28 Feb 2015 16:14:55 -0800 (PST)
+	id C9BADE00519; Sun,  1 Mar 2015 04:19:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,FSL_HELO_FAKE,
-	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
-X-Spam-HAM-Report: *  3.1 FSL_HELO_FAKE FSL_HELO_FAKE
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.46 listed in list.dnswl.org]
-Received: from mail-la0-f46.google.com (mail-la0-f46.google.com
-	[209.85.215.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EA07E0043B
-	for <yocto@yoctoproject.org>; Sat, 28 Feb 2015 16:14:54 -0800 (PST)
-Received: by labge10 with SMTP id ge10so23969217lab.12
-	for <yocto@yoctoproject.org>; Sat, 28 Feb 2015 16:14:53 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition
-	:content-transfer-encoding:in-reply-to:user-agent;
-	bh=bBXFiEzrG4OGOExGiBFvvKQ/Cn9lF3UlR6+nXwdWX+g=;
-	b=R4gXckVdAGdlF8eXed/Lc0LlslSb2VH1HQxFr7IbYaJFWTghfYrsGS6GasER/LNnps
-	aEygsAm/XVc1LyaKflMkb1yB/j8jxVFofgeQH5zAzxVco47IaQnh4KpdT+/d3CN8V5dG
-	dYJbxePkpfDk7unx/ZMwjlSVKpc7KUykHBoZ+0qugKWyADSWtWLdO9xuhYYOiEfjgUFw
-	fE5PxNSrULL7rHBA4xKqT3D52D/mJmZ+oeKerLmxWvH3Wt/0e4ri7lctSXl5kD9s4obw
-	N4xWty11nQvOhZl94721hh29kbg0TEz9hVFIbu54r2coR/XpQZTN7kVq/CtEraMXWbec
-	6+0g==
-X-Gm-Message-State: ALoCoQkQmn8L8W7pJnhp9dWItZgFHnJA1ZUpeoB0VoNiBmc53fq1LQV2bQx87LGMBhIxxD+zKuPY
-X-Received: by 10.112.155.98 with SMTP id vv2mr18732202lbb.121.1425168893600; 
-	Sat, 28 Feb 2015 16:14:53 -0800 (PST)
-Received: from gmail.com (dhcp-186-165.gjk.dk. [195.249.186.165])
-	by mx.google.com with ESMTPSA id ba1sm1701674lab.34.2015.02.28.16.14.51
-	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sat, 28 Feb 2015 16:14:51 -0800 (PST)
-Date: Sun, 1 Mar 2015 01:14:50 +0100
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Petter =?iso-8859-1?Q?Mab=E4cker?= <petter@technux.se>
-Message-ID: <20150301001450.GC22308@gmail.com>
-References: <cover.1424450237.git.petter@technux.se>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84840E0034A
+	for <yocto@yoctoproject.org>; Sun,  1 Mar 2015 04:19:07 -0800 (PST)
+Received: from [99.240.204.5] (port=38047 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1YS2ps-0002QD-Mx
+	for yocto@yoctoproject.org; Sun, 01 Mar 2015 07:19:04 -0500
+Date: Sun, 1 Mar 2015 07:19:03 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.11.1503010717001.27578@localhost>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-In-Reply-To: <cover.1424450237.git.petter@technux.se>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 0/1] layer.conf: set high layer priority
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: [PATCH] Documentation: Add link for Yocto LTSI page to kernel manual.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,31 +45,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 01 Mar 2015 00:14:55 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sun, 01 Mar 2015 12:19:15 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Hello,
 
-On Fri, Feb 20, 2015 at 05:40:21PM +0100, Petter Mabäcker wrote:
-> The following changes since commit d8bf60ce6c4a6c6371527c6df2e3243d2771c0cc:
->
->   README: Github repo changed (2015-02-14 02:00:57 +0100)
->
-> are available in the git repository at:
->
->   git://git.yoctoproject.org/poky-contrib petmab/rpi_layer_prio
->   http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=petmab/rpi_layer_prio
->
-> Petter Mabäcker (1):
->   layer.conf: set high layer priority
->
->  conf/layer.conf | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Might as well point the reference to LTSI to the Yocto page for it.
 
-Patch merged to master. Thanks Petter.
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
---
-Andrei Gherzan
+---
+
+  and throw in a hyphen while i'm there.
+
+diff --git a/documentation/kernel-dev/kernel-dev-intro.xml b/documentation/kernel-dev/kernel-dev-intro.xml
+index 1e5043c..a18e797 100644
+--- a/documentation/kernel-dev/kernel-dev-intro.xml
++++ b/documentation/kernel-dev/kernel-dev-intro.xml
+@@ -47,11 +47,13 @@
+             <ulink url='&YOCTO_GIT_URL;'>Source Repositories</ulink> under
+             the "Yocto Linux Kernel" heading.
+             New recipes for the release track the latest upstream developments
+-            and introduce newly supported platforms.
++            and introduce newly-supported platforms.
+             Previous recipes in the release are refreshed and supported for at
+             least one additional release.
+             As they align, these previous releases are updated to include the
+-            latest from the Long Term Support Initiative (LTSI) project.
++            latest from the
++            <ulink url='https://www.yoctoproject.org/organization/long-term-support-initiative-ltsi'>
++            Long Term Support Initiative</ulink> (LTSI) project.
+             Also included is a linux-yocto development recipe
+             (<filename>linux-yocto-dev.bb</filename>) should you want to work
+             with the very latest in upstream Linux kernel development and
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
