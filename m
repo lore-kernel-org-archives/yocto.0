@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EEDD3E008CF; Sun,  1 Mar 2015 15:06:38 -0800 (PST)
+	id 069E1E0086D; Sun,  1 Mar 2015 15:06:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,39 +13,39 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*      [score: 0.0000]
 Received: from mail-la0-f41.google.com (mail-la0-f41.google.com
 	[209.85.215.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD125E00905
-	for <yocto@yoctoproject.org>; Sun,  1 Mar 2015 15:06:31 -0800 (PST)
-Received: by labhs14 with SMTP id hs14so26907416lab.1
-	for <yocto@yoctoproject.org>; Sun, 01 Mar 2015 15:06:30 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBC1DE008E3
+	for <yocto@yoctoproject.org>; Sun,  1 Mar 2015 15:06:32 -0800 (PST)
+Received: by labge10 with SMTP id ge10so26895757lab.12
+	for <yocto@yoctoproject.org>; Sun, 01 Mar 2015 15:06:31 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references:in-reply-to:references;
-	bh=0btNfj9uQJ6Vf0T38LLypcKc5GY9LSxrAPCh+GoAQXg=;
-	b=IBEhRVgTDQNA+ae9u6RBW7Ix31YKuNChog3S8jt2Q1ds6J1ksYSYzsBw3y4p7FvXLo
-	bI2UjcvvmzU28IGhhsC2gBrpAkbTWGRs3ew0ibkRWtcQOmpuNKMamP8ly+eHfxdWINMY
-	NKwqXINlTwPqrtxvVethBPuK85mqfTSq2masK7nCX1/C1uxn0iIW0EGO80S+TuZRE4fR
-	2sN2zbvaC2lLRb+3He8mCQ+S5KvGWexiSC/jtWbg2nA3TkHw0NMYNcHgCf4vIPfur6Nv
-	o+1PjWITWVRPsgZ4sOLwedu9ZOKu15TOnay523gOF5B2jYci7phAvM3+j28OCO6hMhYH
-	8l1Q==
-X-Gm-Message-State: ALoCoQnwFMsNjhfnYGnXS8v60dsfUPUfhcIvLreogkPb8ZqmWJXkftUysL21lc/D93AbcSwvGX1F
-X-Received: by 10.152.19.9 with SMTP id a9mr22049822lae.80.1425251190123;
-	Sun, 01 Mar 2015 15:06:30 -0800 (PST)
+	bh=9bTn4arKViNSqFA80QCuRVyzw1W2y6ZGPPLLKv83sh4=;
+	b=VPUM3QDmXFnFKgj0uB/5ZwglnSlPSXCtzykWfswuSEjSa+RuRsmjrx18cuFaCNRaNi
+	GN8ab7fXM3AGmew6gFfgM2sMJWfJ6in/xL8U2RIQTrJS3+y5YyWdYGWqZt/1jVp1UORg
+	0GyQ2mxajaH0Yqf67Ox7eP6Z96kXdpKnyt4ar0+9qB8hYB9pjUX6aOCQIg6YPIAJzjDK
+	p41FwTA9mV6/cBNrChRWsGPZwsZWREenaG+Y+q+LyGuGL2Mb0ZnKuyUJtEezrlr7Ny7R
+	ReFkTzrKLsvg6cCl7e/tCt7s2tGnbugO+2kRjFY8p9wSnFQGPnznJrc3mwZzUHT239bH
+	anwQ==
+X-Gm-Message-State: ALoCoQlVIFfyZhGSAdmw8ejJ/wHvYDqzkEA0Sis3oc/fCpTssUTgakPpXnqbo9UuyyI59dbb95Bu
+X-Received: by 10.152.1.135 with SMTP id 7mr3997313lam.41.1425251191834;
+	Sun, 01 Mar 2015 15:06:31 -0800 (PST)
 Received: from otp-agherzan-l1.gjk.dk (dhcp-186-165.gjk.dk. [195.249.186.165])
 	by mx.google.com with ESMTPSA id
-	n12sm2148284lbg.31.2015.03.01.15.06.29 for <yocto@yoctoproject.org>
+	n12sm2148284lbg.31.2015.03.01.15.06.30 for <yocto@yoctoproject.org>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 01 Mar 2015 15:06:29 -0800 (PST)
+	Sun, 01 Mar 2015 15:06:31 -0800 (PST)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Mon,  2 Mar 2015 00:06:19 +0100
-Message-Id: <87907fe9c822456036379cfb7349a62938897fb6.1425251029.git.andrei@gherzan.ro>
+Date: Mon,  2 Mar 2015 00:06:21 +0100
+Message-Id: <139e7ffff6c7b0dec91b2190542539aaae1b06c0.1425251029.git.andrei@gherzan.ro>
 X-Mailer: git-send-email 2.1.0
 In-Reply-To: <d8cb69b8fa4668be6719b7a100ccb1fedf8b2aa1.1425251029.git.andrei@gherzan.ro>
 References: <d8cb69b8fa4668be6719b7a100ccb1fedf8b2aa1.1425251029.git.andrei@gherzan.ro>
 In-Reply-To: <cover.1425251029.git.andrei@gherzan.ro>
 References: <cover.1425251029.git.andrei@gherzan.ro>
-Subject: [meta-raspberrypi][PATCH 4/6] vc-graphics: Move to recipes-graphics
+Subject: [meta-raspberrypi][PATCH 6/6] .gitignore: Ignore some stuff
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,50 +61,18 @@ X-List-Received-Date: Sun, 01 Mar 2015 23:06:39 -0000
 
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- {recipes-bcm => recipes-graphics}/vc-graphics/files/egl.pc          | 0
- {recipes-bcm => recipes-graphics}/vc-graphics/files/vchiq.sh        | 0
- {recipes-bcm => recipes-graphics}/vc-graphics/vc-graphics-hardfp.bb | 0
- {recipes-bcm => recipes-graphics}/vc-graphics/vc-graphics.bb        | 0
- {recipes-bcm => recipes-graphics}/vc-graphics/vc-graphics.inc       | 2 +-
- 5 files changed, 1 insertion(+), 1 deletion(-)
- rename {recipes-bcm => recipes-graphics}/vc-graphics/files/egl.pc (100%)
- rename {recipes-bcm => recipes-graphics}/vc-graphics/files/vchiq.sh (100%)
- rename {recipes-bcm => recipes-graphics}/vc-graphics/vc-graphics-hardfp.bb (100%)
- rename {recipes-bcm => recipes-graphics}/vc-graphics/vc-graphics.bb (100%)
- rename {recipes-bcm => recipes-graphics}/vc-graphics/vc-graphics.inc (97%)
+ .gitignore | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 .gitignore
 
-diff --git a/recipes-bcm/vc-graphics/files/egl.pc b/recipes-graphics/vc-graphics/files/egl.pc
-similarity index 100%
-rename from recipes-bcm/vc-graphics/files/egl.pc
-rename to recipes-graphics/vc-graphics/files/egl.pc
-diff --git a/recipes-bcm/vc-graphics/files/vchiq.sh b/recipes-graphics/vc-graphics/files/vchiq.sh
-similarity index 100%
-rename from recipes-bcm/vc-graphics/files/vchiq.sh
-rename to recipes-graphics/vc-graphics/files/vchiq.sh
-diff --git a/recipes-bcm/vc-graphics/vc-graphics-hardfp.bb b/recipes-graphics/vc-graphics/vc-graphics-hardfp.bb
-similarity index 100%
-rename from recipes-bcm/vc-graphics/vc-graphics-hardfp.bb
-rename to recipes-graphics/vc-graphics/vc-graphics-hardfp.bb
-diff --git a/recipes-bcm/vc-graphics/vc-graphics.bb b/recipes-graphics/vc-graphics/vc-graphics.bb
-similarity index 100%
-rename from recipes-bcm/vc-graphics/vc-graphics.bb
-rename to recipes-graphics/vc-graphics/vc-graphics.bb
-diff --git a/recipes-bcm/vc-graphics/vc-graphics.inc b/recipes-graphics/vc-graphics/vc-graphics.inc
-similarity index 97%
-rename from recipes-bcm/vc-graphics/vc-graphics.inc
-rename to recipes-graphics/vc-graphics/vc-graphics.inc
-index 1dee53e..a1c8d29 100644
---- a/recipes-bcm/vc-graphics/vc-graphics.inc
-+++ b/recipes-graphics/vc-graphics/vc-graphics.inc
-@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENCE;md5=86e53f5f5909ee66900418028de11780"
- PROVIDES = "virtual/libgles2 virtual/egl"
- COMPATIBLE_MACHINE = "raspberrypi"
- 
--include ../common/firmware.inc
-+include recipes-bsp/common/firmware.inc
- 
- SRC_URI += " \
-     file://egl.pc \
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..1677b58
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,2 @@
++build*
++*~
 -- 
 2.1.0
 
