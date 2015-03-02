@@ -1,47 +1,26 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <pokybuild@ubuntu1204.osl.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 57F38E0077E; Mon,  2 Mar 2015 13:41:14 -0800 (PST)
+	id 6295FE00810; Mon,  2 Mar 2015 14:34:52 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
+	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46A9FE003FA
-	for <yocto@yoctoproject.org>; Mon,  2 Mar 2015 13:41:09 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 02 Mar 2015 13:40:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,677,1418112000"; d="scan'208";a="674120690"
-Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
-	by fmsmga001.fm.intel.com with ESMTP; 02 Mar 2015 13:40:59 -0800
-Received: from orsmsx155.amr.corp.intel.com (10.22.240.21) by
-	ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server
-	(TLS) id 14.3.195.1; Mon, 2 Mar 2015 13:40:58 -0800
-Received: from orsmsx106.amr.corp.intel.com ([169.254.5.137]) by
-	ORSMSX155.amr.corp.intel.com ([169.254.7.16]) with mapi id
-	14.03.0195.001; Mon, 2 Mar 2015 13:40:58 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH] Documentation: Add link for Yocto LTSI page to
-	kernel manual.
-Thread-Index: AQHQVBoILm8tU6GcaUq3HSqfWvlLup0Jutqw
-Date: Mon, 2 Mar 2015 21:40:58 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988EB9CF7@ORSMSX106.amr.corp.intel.com>
-References: <alpine.LFD.2.11.1503010717001.27578@localhost>
-In-Reply-To: <alpine.LFD.2.11.1503010717001.27578@localhost>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
-Subject: Re: [PATCH] Documentation: Add link for Yocto LTSI page to kernel manual.
+Received: from ubuntu1204.osl.yoctoproject.org
+	(ubuntu1204.osl.yoctoproject.org [10.0.10.110])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50555E003FA;
+	Mon,  2 Mar 2015 14:34:50 -0800 (PST)
+Received: by ubuntu1204.osl.yoctoproject.org (Postfix, from userid 1006)
+	id 091432C0A91; Mon,  2 Mar 2015 22:34:49 +0000 (UTC)
+To: yocto@yoctoproject.org
+Message-Id: <20150302223450.091432C0A91@ubuntu1204.osl.yoctoproject.org>
+Date: Mon,  2 Mar 2015 22:34:49 +0000 (UTC)
+From: pokybuild@ubuntu1204.osl.yoctoproject.org (Poky Build User)
+Cc: otavio@ossystems.com.br
+Subject: Release Candidate Build for yocto-1.8_M3.rc2 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,77 +32,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Mar 2015 21:41:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 02 Mar 2015 22:34:52 -0000
 
-Patch applied... thanks.
+-e 
+A release candidate build for yocto-1.8_M3.rc2 is now available at:
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
->Sent: Sunday, March 01, 2015 4:19 AM
->To: Yocto discussion list
->Subject: [yocto] [PATCH] Documentation: Add link for Yocto LTSI page to
->kernel manual.
->
->
->Might as well point the reference to LTSI to the Yocto page for it.
->
->Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
->
->---
->
->  and throw in a hyphen while i'm there.
->
->diff --git a/documentation/kernel-dev/kernel-dev-intro.xml
->b/documentation/kernel-dev/kernel-dev-intro.xml
->index 1e5043c..a18e797 100644
->--- a/documentation/kernel-dev/kernel-dev-intro.xml
->+++ b/documentation/kernel-dev/kernel-dev-intro.xml
->@@ -47,11 +47,13 @@
->             <ulink url=3D'&YOCTO_GIT_URL;'>Source Repositories</ulink> un=
-der
->             the "Yocto Linux Kernel" heading.
->             New recipes for the release track the latest upstream develop=
-ments
->-            and introduce newly supported platforms.
->+            and introduce newly-supported platforms.
->             Previous recipes in the release are refreshed and supported f=
-or at
->             least one additional release.
->             As they align, these previous releases are updated to include=
- the
->-            latest from the Long Term Support Initiative (LTSI) project.
->+            latest from the
->+            <ulink url=3D'https://www.yoctoproject.org/organization/long-=
-term-
->support-initiative-ltsi'>
->+            Long Term Support Initiative</ulink> (LTSI) project.
->             Also included is a linux-yocto development recipe
->             (<filename>linux-yocto-dev.bb</filename>) should you want to =
-work
->             with the very latest in upstream Linux kernel development and
->
->--
->
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->--
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+ 
+http://autobuilder.yoctoproject.org/pub/releases/yocto-1.8_M3.rc2
+
+
+Please begin QA on this build as soon as possible.
+
+
+Build hash information: 
+meta-intel : 367fd4758d23318b3adab8021d7bdc8b56e04917 
+meta-fsl-arm : c5dde2d3e1c89e11b9a4920ca328648664457b7c 
+meta-minnow : 13a5f2ab84c7284647a3e067a33109c11dae0568 
+meta-qt3 : 3016129d90b7ac8517a5227d819f10ad417b5b45 
+meta-fsl-ppc : 5eeeb3ad74b72d904f805bc6e248e93e722b45c4 
+poky : 4a2632695eb10017abda3e7b3d904699e6db12b5 
+
+
+This is an automated message from
+The Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder
+Email: elizabeth.flanagan@intel.com 
 
