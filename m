@@ -1,48 +1,44 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <Raghavendra.Kakarla@inedasystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1042FE0077E; Mon,  2 Mar 2015 15:02:51 -0800 (PST)
+	id 10FCBE00810; Mon,  2 Mar 2015 21:41:53 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80936E003FA
-	for <yocto@yoctoproject.org>; Mon,  2 Mar 2015 15:02:47 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 02 Mar 2015 15:01:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,678,1418112000"; d="scan'208";a="692968422"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by orsmga002.jf.intel.com with ESMTP; 02 Mar 2015 15:02:28 -0800
-Received: from orsmsx114.amr.corp.intel.com (10.22.240.10) by
-	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
-	(TLS) id 14.3.195.1; Mon, 2 Mar 2015 15:02:26 -0800
-Received: from orsmsx106.amr.corp.intel.com ([169.254.5.137]) by
-	ORSMSX114.amr.corp.intel.com ([169.254.8.194]) with mapi id
-	14.03.0195.001; Mon, 2 Mar 2015 15:02:26 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] assuming someone will update kernel versions in kernel
-	dev	manual?
-Thread-Index: AQHQVB/dgtzZEXOX+0eg/HnsKDwBOp0J0Tpg
-Date: Mon, 2 Mar 2015 23:02:25 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988EB9D39@ORSMSX106.amr.corp.intel.com>
-References: <alpine.LFD.2.11.1503010759040.29306@localhost>
-In-Reply-To: <alpine.LFD.2.11.1503010759040.29306@localhost>
-Accept-Language: en-US
+Received: from mail.invecas.com (mx1.invecas.com [112.133.222.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92C59E00404
+	for <yocto@yoctoproject.org>; Mon,  2 Mar 2015 21:41:49 -0800 (PST)
+Received: from SOC-EXCH-01.invecas.local (10.0.30.8) by
+	SOC-EDGE-01.invecas.local (10.0.30.131) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 3 Mar 2015 11:12:57 +0530
+Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
+	SOC-EXCH-01.invecas.local (10.0.30.8) with Microsoft SMTP Server (TLS)
+	id 15.0.995.29; Tue, 3 Mar 2015 11:11:43 +0530
+Received: from SOC-EXCH-02.invecas.local ([fe80::99f5:2524:170c:1d9e]) by
+	SOC-EXCH-02.invecas.local ([fe80::99f5:2524:170c:1d9e%17]) with mapi id
+	15.00.0995.028; Tue, 3 Mar 2015 11:11:43 +0530
+From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Thread-Topic: SDK generation issue
+Thread-Index: AQHQVXSZgocaVcDLukOF35msQZrD1w==
+Date: Tue, 3 Mar 2015 05:41:43 +0000
+Message-ID: <1425361303765.315@inedasystems.com>
+References: <18041737.50.1422871220143.JavaMail.kraghavendra@Raghavendra>
+	<1968954.yQ8YLUUWUl@peggleto-mobl5.ger.corp.intel.com>
+	<26096207.41.1423630551583.JavaMail.kraghavendra@Raghavendra>
+	<74932485.zASdODCka1@peggleto-mobl5.ger.corp.intel.com>,
+	<26169231.54.1423648818817.JavaMail.kraghavendra@Raghavendra>
+In-Reply-To: <26169231.54.1423648818817.JavaMail.kraghavendra@Raghavendra>
+Accept-Language: en-US, en-IN
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+x-originating-ip: [192.168.42.55]
 MIME-Version: 1.0
-Cc: "Hart, Darren" <darren.hart@intel.com>
-Subject: Re: assuming someone will update kernel versions in kernel dev	manual?
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: SDK generation issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,53 +50,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Mar 2015 23:02:51 -0000
+X-List-Received-Date: Tue, 03 Mar 2015 05:41:53 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-I scrubbed out the old examples and references.  There were quite a few.  Y=
-ou might want to take a look and be sure that everything is good.  See http=
-://www.yoctoproject.org/docs/1.8/kernel-dev/kernel-dev.html.
-
-Scott
-
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
->Sent: Sunday, March 01, 2015 5:01 AM
->To: Yocto discussion list
->Subject: [yocto] assuming someone will update kernel versions in kernel de=
-v
->manual?
->
->
->  still perusing kernel dev manual and there are references to version 3.4=
-,
->which doesn't even exist anymore as a recipe in OE. should i assume that
->someone will be doing a sweeping update of the KDM and bringing it up to,
->say, 3.19?
->
->rday
->
->--
->
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->--
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+Hi Paul Eggleton,=0A=
+Thanks for your help in the solving the issue for adding the bsp to yocto.=
+=0A=
+Now I am working on the yocto sdk generation.=0A=
+=0A=
+I am generated the yocto SDK using the yocto sdk script "bitbake core-image=
+-minimal -c populate_sdk" command. With this command I am able to generte t=
+he installation script file and .manifest file.=0A=
+=0A=
+I run the installation script file. After running installation script file =
+it propts that following message:=0A=
+=0A=
+Extracting SDK...done=0A=
+Setting it up...done=0A=
+SDK has been successfully set up and is ready to be used.=0A=
+=0A=
+=0A=
+After this i run the ". /opt/poky/1.7/environment-setup-mips32rel-poky-linu=
+x" and echo $PATH i got the correct path.=0A=
+=0A=
+After this i built wrote a small example and try to build with the sdk gene=
+rated toolchain by running following command:=0A=
+=0A=
+mipsel-poky-linux-gcc test.c=0A=
+=0A=
+but i got the following errors:=0A=
+***************************************************************************=
+***********************************************************************=0A=
+/opt/poky/1.7/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/g=
+cc/mipsel-poky-linux/4.9.1/ld: cannot find crt1.o: No such file or director=
+y=0A=
+/opt/poky/1.7/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/g=
+cc/mipsel-poky-linux/4.9.1/ld: cannot find crti.o: No such file or director=
+y=0A=
+/opt/poky/1.7/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/g=
+cc/mipsel-poky-linux/4.9.1/ld: cannot find crtbegin.o: No such file or dire=
+ctory=0A=
+/opt/poky/1.7/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/g=
+cc/mipsel-poky-linux/4.9.1/ld: cannot find -lgcc=0A=
+/opt/poky/1.7/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/g=
+cc/mipsel-poky-linux/4.9.1/ld: cannot find -lgcc_s=0A=
+/opt/poky/1.7/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/g=
+cc/mipsel-poky-linux/4.9.1/ld: cannot find -lc=0A=
+/opt/poky/1.7/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/g=
+cc/mipsel-poky-linux/4.9.1/ld: cannot find -lgcc=0A=
+/opt/poky/1.7/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/g=
+cc/mipsel-poky-linux/4.9.1/ld: cannot find -lgcc_s=0A=
+/opt/poky/1.7/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/g=
+cc/mipsel-poky-linux/4.9.1/ld: cannot find crtend.o: No such file or direct=
+ory=0A=
+/opt/poky/1.7/sysroots/x86_64-pokysdk-linux/usr/libexec/mipsel-poky-linux/g=
+cc/mipsel-poky-linux/4.9.1/ld: cannot find crtn.o: No such file or director=
+y=0A=
+collect2: error: ld returned 1 exit status=0A=
+=0A=
+***************************************************************************=
+***************************************************************************=
+*****=0A=
+Please help me to resolving this issue.=0A=
+=0A=
+Thanks in advance.=0A=
+=0A=
+Cheers,=0A=
+=0A=
+Raghavendra Kakarla.=
 
