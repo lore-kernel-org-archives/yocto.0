@@ -1,40 +1,36 @@
-Return-Path: <Raghavendra.Kakarla@inedasystems.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A741FE00810; Tue,  3 Mar 2015 02:26:57 -0800 (PST)
+	id 7AF5EE00810; Tue,  3 Mar 2015 02:31:11 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.invecas.com (mx2.invecas.com [112.133.222.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7CB9E003FA
-	for <yocto@yoctoproject.org>; Tue,  3 Mar 2015 02:26:55 -0800 (PST)
-Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
-	SOC-EDGE-02.invecas.local (10.0.30.132) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 3 Mar 2015 15:57:38 +0530
-Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
-	SOC-EXCH-02.invecas.local (10.0.30.9) with Microsoft SMTP Server (TLS)
-	id 15.0.995.29; Tue, 3 Mar 2015 15:56:47 +0530
-Received: from SOC-EXCH-02.invecas.local ([fe80::99f5:2524:170c:1d9e]) by
-	SOC-EXCH-02.invecas.local ([fe80::99f5:2524:170c:1d9e%17]) with mapi id
-	15.00.0995.028; Tue, 3 Mar 2015 15:56:47 +0530
-From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: SDK generation issue
-Thread-Index: AQHQVXSZgocaVcDLukOF35msQZrD150KJEcAgABhW5I=
-Date: Tue, 3 Mar 2015 10:26:46 +0000
-Message-ID: <1425378406649.37693@inedasystems.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D279E003FA
+	for <yocto@yoctoproject.org>; Tue,  3 Mar 2015 02:31:08 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 03 Mar 2015 02:31:03 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.09,681,1418112000"; d="scan'208";a="674377285"
+Received: from tmlemanx-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.7.97])
+	by fmsmga001.fm.intel.com with ESMTP; 03 Mar 2015 02:31:02 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+Date: Tue, 03 Mar 2015 10:31 +0000
+Message-ID: <15841264.1L6EKTFQW9@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.4 (Linux/3.18.7-100.fc20.x86_64; KDE/4.14.4; x86_64; ; )
+In-Reply-To: <1425378406649.37693@inedasystems.com>
 References: <18041737.50.1422871220143.JavaMail.kraghavendra@Raghavendra>
-	<26169231.54.1423648818817.JavaMail.kraghavendra@Raghavendra>
-	<1425361303765.315@inedasystems.com>,
 	<23759981.tJ0jcZThOh@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <23759981.tJ0jcZThOh@peggleto-mobl5.ger.corp.intel.com>
-Accept-Language: en-US, en-IN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.42.55]
+	<1425378406649.37693@inedasystems.com>
 MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: SDK generation issue
@@ -49,69 +45,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Mar 2015 10:26:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 03 Mar 2015 10:31:11 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Paul Eggleton,=0A=
-=0A=
-Thank you for your response.=0A=
-=0A=
-Now my issue is resolved.=0A=
-=0A=
-I have some doubts on yocto-sdk. Can you please clarify them.=0A=
-=0A=
-When i Built SDK for YOCTO, I am getting a cross compilation tool chain. Wi=
-th which i am able to build the applications for my platform. I wanted to c=
-onfirm, whether SDK means  a toolchain to build the applications or is ther=
-e something more (such as documentation, libraries, etc generated for our p=
-latform) =0A=
-=0A=
-Regards,=0A=
-Raghavendra.=0A=
-=0A=
-From: Paul Eggleton <paul.eggleton@linux.intel.com>=0A=
-Sent: Tuesday, March 3, 2015 3:07 PM=0A=
-To: Raghavendra Kakarla=0A=
-Cc: yocto@yoctoproject.org=0A=
-Subject: Re: SDK generation issue=0A=
-=0A=
-On Tuesday 03 March 2015 05:41:43 Raghavendra Kakarla wrote:=0A=
-> I am generated the yocto SDK using the yocto sdk script "bitbake=0A=
-> core-image-minimal -c populate_sdk" command. With this command I am able =
-to=0A=
-> generte the installation script file and .manifest file.=0A=
->=0A=
-> I run the installation script file. After running installation script fil=
-e=0A=
-> it propts that following message:=0A=
->=0A=
-> Extracting SDK...done=0A=
-> Setting it up...done=0A=
-> SDK has been successfully set up and is ready to be used.=0A=
->=0A=
->=0A=
-> After this i run the ".=0A=
-> /opt/poky/1.7/environment-setup-mips32rel-poky-linux" and echo $PATH i go=
-t=0A=
-> the correct path.=0A=
->=0A=
-> After this i built wrote a small example and try to build with the sdk=0A=
-> generated toolchain by running following command:=0A=
->=0A=
-> mipsel-poky-linux-gcc test.c=0A=
-=0A=
-Use $CC instead of running the compiler directly so that you get the correc=
-t=0A=
-options.=0A=
-=0A=
-Cheers,=0A=
-Paul=0A=
-=0A=
-=0A=
---=0A=
-=0A=
-Paul Eggleton=0A=
-Intel Open Source Technology Centre=0A=
+On Tuesday 03 March 2015 10:26:46 Raghavendra Kakarla wrote:
+> When i Built SDK for YOCTO, I am getting a cross compilation tool chain.
+> With which i am able to build the applications for my platform. I wanted to
+> confirm, whether SDK means  a toolchain to build the applications or is
+> there something more (such as documentation, libraries, etc generated for
+> our platform)
+
+The SDK will contain all libraries, headers and debugging symbols for the 
+contents of the image specified with -c populate_sdk. It won't contain any 
+documentation by default, though you could add it by setting SDKIMAGE_FEATURES 
+e.g. 
+
+SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs doc-pkgs"
+
+(the default value set with ??= is "dev-pkgs dbg-pkgs")
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
