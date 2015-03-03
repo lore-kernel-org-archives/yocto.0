@@ -1,42 +1,53 @@
-Return-Path: <chan.kitx.yu@intel.com>
+Return-Path: <mburtin@connected-labs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BFE87E0077E; Tue,  3 Mar 2015 00:23:09 -0800 (PST)
+	id 524A7E00810; Tue,  3 Mar 2015 00:55:45 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.215.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36B7AE003FA
-	for <yocto@yoctoproject.org>; Tue,  3 Mar 2015 00:23:00 -0800 (PST)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga103.jf.intel.com with ESMTP; 03 Mar 2015 00:20:35 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,680,1418112000"; 
-	d="scan'208,217";a="535284588"
-Received: from pgsmsx107.gar.corp.intel.com ([10.221.44.105])
-	by orsmga003.jf.intel.com with ESMTP; 03 Mar 2015 00:22:18 -0800
-Received: from pgsmsx101.gar.corp.intel.com ([169.254.1.85]) by
-	PGSMSX107.gar.corp.intel.com ([169.254.7.160]) with mapi id
-	14.03.0195.001; Tue, 3 Mar 2015 16:22:15 +0800
-From: "Yu, Chan KitX" <chan.kitx.yu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: LLVM/CLang only works in Multilib x64
-Thread-Index: AdBVhmoJhuWdmAJHRnOaJXUkgg4gfg==
-Date: Tue, 3 Mar 2015 08:22:14 +0000
-Message-ID: <0E4D391FE2BDEC45AA0B4E32D6BD598A26D5E5@PGSMSX101.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.30.20.205]
+Received: from mail-la0-f52.google.com (mail-la0-f52.google.com
+	[209.85.215.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 569DFE003FA
+	for <yocto@yoctoproject.org>; Tue,  3 Mar 2015 00:55:38 -0800 (PST)
+Received: by labgd6 with SMTP id gd6so35970291lab.7
+	for <yocto@yoctoproject.org>; Tue, 03 Mar 2015 00:55:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:sender:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=9WM67Cpemq0sEHle+0PSzR1GkQBnjR4ZOtZJ6G6//3E=;
+	b=eFjiVoJawimzfZoPtyI1Or0S0ps4QuFKJgQcf2EvaloioFetHxKNtUhinTLMVK2Zkg
+	7fAjFmVExuHTbLxRgpt/IlsxybXvpV7iK1jmYi9BQG8OwazKt1soHhN+vKaGUV9+9NNN
+	DBwbpTnT3XSab0/c0LcCutdjRP/dzohKe9FHv4if58dOwkVW8DnaaGQQHKCFxRAaiIbY
+	ioDQor7HGdxnTGuWy9sczumLgCR0127RHi/eONNZM1FXapfEWy13rJ7n9ABvQIbBmDZr
+	ou3o6i5SDIJIp/iNv8MfFKSoPJN4Hv+hbj+TcRVfqoW21KMwoAVclT2KT4aid7FLR4xB
+	zpCg==
+X-Gm-Message-State: ALoCoQkYpDwweqruk1oO1IWpP2KTS2nSb1CRwEYO3loHy5j1v+HngzHxqiQPTESKTnXnfJySSMBx
 MIME-Version: 1.0
-Subject: LLVM/CLang only works in Multilib x64
+X-Received: by 10.152.219.2 with SMTP id pk2mr27624517lac.107.1425372935435;
+	Tue, 03 Mar 2015 00:55:35 -0800 (PST)
+Sender: mburtin@connected-labs.com
+Received: by 10.114.193.35 with HTTP; Tue, 3 Mar 2015 00:55:35 -0800 (PST)
+X-Originating-IP: [94.103.137.126]
+In-Reply-To: <CA+-BmJYjqrJzZ_qBhg4iwq29KvUwJvR4XaaGhb93NHwjYbAgVQ@mail.gmail.com>
+References: <CA+-BmJZ=8TOkq0onBPwf1RALNf5iqbqy8+BHPhogrqCJ4ZJO=g@mail.gmail.com>
+	<54F425B7.2070002@gmail.com>
+	<CA+-BmJba+CbvNE4Y=FQOhxuvWV7-4ko8SsMNQ=83H71urGXbJg@mail.gmail.com>
+	<CA+-BmJYjqrJzZ_qBhg4iwq29KvUwJvR4XaaGhb93NHwjYbAgVQ@mail.gmail.com>
+Date: Tue, 3 Mar 2015 09:55:35 +0100
+X-Google-Sender-Auth: Zcs5rHiuqweyICLXgacbmdG9XAs
+Message-ID: <CAP7FSrgijqQDJdF-OyZiZw8bZpVr2evjKzFbEsADhSn25p_4AA@mail.gmail.com>
+From: =?UTF-8?Q?Micha=C3=ABl_Burtin?= <mburtin@voxtok.com>
+To: Ayoub Zaki <ayoub.zaki@googlemail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: dizzy 1.7 udev automount misbehaviour
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,369 +59,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Mar 2015 08:23:09 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_0E4D391FE2BDEC45AA0B4E32D6BD598A26D5E5PGSMSX101garcorpi_"
+X-List-Received-Date: Tue, 03 Mar 2015 08:55:45 -0000
+Content-Type: multipart/alternative; boundary=001a1134188c7d63fd05105e7fd7
 
---_000_0E4D391FE2BDEC45AA0B4E32D6BD598A26D5E5PGSMSX101garcorpi_
-Content-Type: text/plain; charset="us-ascii"
+--001a1134188c7d63fd05105e7fd7
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
+Hi Yocto,
 
-As some of you might know through IRC and the mailing list itself, I'm tryi=
-ng to get LLVM/CLang to work in Yocto in platforms other than x64 multilib.=
- To set the purpose of this email clear, I am only trying to get LLVM to wo=
-rk as host-only compiler. As much as I want to get LLVM cross compiler work=
-ing, I will sideline that task for now :(.
+For the record the issue is in current dizzy branch and occurs when using
+systemd and udev along with udev-extraconf mount scripts.
+By default, systemd-udevd.service has the option MountFlags=3Dslave,
+which means that mounts are only seen by udevd process.
+This explains some weird behavior. I'll file a bug for that.
 
-After some time of meddling, I finally got LLVM to work in multilib x64 Yoc=
-to setup. However, LLVM doesn't really work if I compile Yocto to run on an=
-y platform other than x64 multilib. Not even x64 non multilib works. The CL=
-ang compiler works and compiles my hello world C code like a charm; however=
-, I could not execute the resulting binary file. ./a.out will return "./a.o=
-ut: No such file or directory" error and I'm pretty sure a.out exists. Surp=
-risingly, the binary runs on my build machine which is 64 bit Ubuntu machin=
-e with multilib setup. I suspect that the binary could run in any x64 machi=
-ne that has multilib setup. Here I attach the output of readelf -h of binar=
-y generated by both CLang and GCC. Both binaries were compiled from the sam=
-e source code. llvm is binary generated by the CLang compiler and gcc is bi=
-nary generated by the GCC compiler.
+One solution is to change MountFlags to shared, so that mounts become
+available for all the system.
 
-root@valleyisland-64:~# readelf -h llvm
-ELF Header:
-  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00
-  Class:                             ELF64
-  Data:                              2's complement, little endian
-  Version:                           1 (current)
-  OS/ABI:                            UNIX - System V
-  ABI Version:                       0
-  Type:                              EXEC (Executable file)
-  Machine:                           Advanced Micro Devices X86-64
-  Version:                           0x1
-  Entry point address:               0x4003a0
-  Start of program headers:          64 (bytes into file)
-  Start of section headers:          5888 (bytes into file)
-  Flags:                             0x0
-  Size of this header:               64 (bytes)
-  Size of program headers:           56 (bytes)
-  Number of program headers:         8
-  Size of section headers:           64 (bytes)
-  Number of section headers:         36
-  Section header string table index: 33
-root@valleyisland-64:~# readelf -h gcc
-ELF Header:
-  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00
-  Class:                             ELF64
-  Data:                              2's complement, little endian
-  Version:                           1 (current)
-  OS/ABI:                            UNIX - System V
-  ABI Version:                       0
-  Type:                              EXEC (Executable file)
-  Machine:                           Advanced Micro Devices X86-64
-  Version:                           0x1
-  Entry point address:               0x4003d0
-  Start of program headers:          64 (bytes into file)
-  Start of section headers:          5864 (bytes into file)
-  Flags:                             0x0
-  Size of this header:               64 (bytes)
-  Size of program headers:           56 (bytes)
-  Number of program headers:         8
-  Size of section headers:           64 (bytes)
-  Number of section headers:         37
-  Section header string table index: 34
-root@valleyisland-64:~#
+Regards,
+Micha=C3=ABl
 
 
-Here's the ldd output of the binary from the CLang compiler (I did this fro=
-m a multilib setup since I couldn't do it from the host):
+On Mon, Mar 2, 2015 at 10:25 AM, Ayoub Zaki <ayoub.zaki@googlemail.com>
+wrote:
 
-root@valleyisland-64 # ldd ~/a.out
-        linux-vdso.so.1 (0x00007fffe5dea000)
-        libc.so.6 =3D> /lib64/libc.so.6 (0x0000003385c00000)
-        /lib64/ld-linux-x86-64.so.2 (0x0000003385400000)
-
-
-I feel that the fact that it links to /lib64 might be the actual reason why=
- I can't run the binary. I couldn't however, find the reason why it links t=
-o /lib64 and the solution to this issue.The thing that stumbles me is it on=
-ly works with multilib but not others. I tried hard to find the reason behi=
-nd that but it seemed like it is out of my expertise.
-
-I have also attached my LLVM build recipe at http://pastebin.com/Q6svTaj7  =
-. It would be my pleasure to provide more information and logs if you need =
-me to.
-
-Thanks,
-Chan Kit
-
---_000_0E4D391FE2BDEC45AA0B4E32D6BD598A26D5E5PGSMSX101garcorpi_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">As some of you might know through IRC and the mailin=
-g list itself, I&#8217;m trying to get LLVM/CLang to work in Yocto in platf=
-orms other than x64 multilib. To set the purpose of this email clear, I am =
-only trying to get LLVM to work as host-only
- compiler. As much as I want to get LLVM cross compiler working, I will sid=
-eline that task for now
-<span style=3D"font-family:Wingdings">L</span>.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">After some time of meddling, I finally got LLVM to w=
-ork in multilib x64 Yocto setup. However, LLVM doesn&#8217;t really work if=
- I compile Yocto to run on any platform other than x64 multilib. Not even x=
-64 non multilib works. The CLang compiler
- works and compiles my hello world C code like a charm; however, I could no=
-t execute the resulting binary file. ./a.out will return &#8220;./a.out: No=
- such file or directory&#8221; error and I&#8217;m pretty sure a.out exists=
-. Surprisingly, the binary runs on my build machine
- which is 64 bit Ubuntu machine with multilib setup. I suspect that the bin=
-ary could run in any x64 machine that has multilib setup. Here I attach the=
- output of readelf &#8211;h of binary generated by both CLang and GCC. Both=
- binaries were compiled from the same
- source code. llvm is binary generated by the CLang compiler and gcc is bin=
-ary generated by the GCC compiler.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-root@valleyisland-64:~# readelf -h llvm<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-ELF Header:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Magic:&nbsp;&nbsp; 7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Class:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ELF64<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Data:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2's complement, little endian<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 1 (current)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; OS/ABI:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; UNIX - System V<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; ABI Version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-; 0<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EXEC (Executable file)<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Machine:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; Advanced Micro Devices X86-64<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 0x1<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Entry point address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x4003a0<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Start of program headers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; 64 (bytes into file)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Start of section headers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; 5888 (bytes into file)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Flags:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Size of this header:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 64 (bytes)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Size of program headers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; 56 (bytes)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Number of program headers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; 8<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Size of section headers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; 64 (bytes)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Number of section headers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; 36<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Section header string table index: 33<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-root@valleyisland-64:~# readelf -h gcc<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-ELF Header:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Magic:&nbsp;&nbsp; 7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Class:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ELF64<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Data:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2's complement, little endian<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 1 (current)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; OS/ABI:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; UNIX - System V<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; ABI Version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-; 0<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EXEC (Executable file)<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Machine:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;Advanced Micro Devices X86-64<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Version:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; 0x1<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Entry point address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x4003d0<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Start of program headers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; 64 (bytes into file)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Start of section headers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; 5864 (bytes into file)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Flags:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x0<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Size of this header:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 64 (bytes)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Size of program headers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; 56 (bytes)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Number of program headers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; 8<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Size of section headers:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp; 64 (bytes)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Number of section headers:&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;37<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp; Section header string table index: 34<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-root@valleyisland-64:~#<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-<o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-<o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal">Here&#8217;s the ldd output of the binary from the C=
-Lang compiler (I did this from a multilib setup since I couldn&#8217;t do i=
-t from the host):<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-root@valleyisland-64 # ldd ~/a.out<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; linux-vdso.so.1 (0x00007fffe5dea=
-000)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; libc.so.6 =3D&gt; /lib64/libc.so=
-.6 (0x0000003385c00000)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /lib64/ld-linux-x86-64.so.2 (0x0=
-000003385400000)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-<o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I feel that the fact that it links to /lib64 might b=
-e the actual reason why I can&#8217;t run the binary. I couldn&#8217;t howe=
-ver, find the reason why it links to /lib64 and the solution to this issue.=
-The thing that stumbles me is it only works with
- multilib but not others. I tried hard to find the reason behind that but i=
-t seemed like it is out of my expertise.<o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
-<o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal">I have also attached my LLVM build recipe at http://=
-pastebin.com/Q6svTaj7&nbsp; . It would be my pleasure to provide more infor=
-mation and logs if you need me to.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Chan Kit<o:p></o:p></p>
-</div>
-</body>
-</html>
+> ---------- Forwarded message ----------
+> From: Ayoub Zaki <ayoub.zaki@googlemail.com>
+> Date: 2015-03-02 10:24 GMT+01:00
+> Subject: Re: [yocto] dizzy 1.7 udev automount misbehaviour
+> To: scerveau <scerveau@gmail.com>
+>
+>
+> Hello Stephane,
+>
+> Yes please read this :
+>
+> http://www.volkerschatz.com/unix/advmount.html
+>
+> Regards
+>
+> 2015-03-02 9:56 GMT+01:00 scerveau <scerveau@gmail.com>:
+>
+>> Hello,
+>>
+>> Did you have a chance to understand the problem concerning the automount
+>> failure ?
+>>
+>> Best regards.
+>>
+>> St=C3=A9phane
+>>
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
---_000_0E4D391FE2BDEC45AA0B4E32D6BD598A26D5E5PGSMSX101garcorpi_--
+--001a1134188c7d63fd05105e7fd7
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Yocto,<div><br></div><div>For the record the issue is i=
+n current dizzy branch and occurs when using</div><div>systemd and udev alo=
+ng with udev-extraconf mount scripts.</div><div>By default, systemd-udevd.s=
+ervice has the option=C2=A0MountFlags=3Dslave,</div><div>which means that m=
+ounts are only seen by udevd process.</div><div>This explains some weird be=
+havior. I&#39;ll file a bug for that.</div><div><br></div><div>One solution=
+ is to change MountFlags to shared, so that mounts become</div><div>availab=
+le for all the system.</div><div><br></div><div>Regards,</div><div>Micha=C3=
+=ABl</div><div><br></div></div><div class=3D"gmail_extra"><br><div class=3D=
+"gmail_quote">On Mon, Mar 2, 2015 at 10:25 AM, Ayoub Zaki <span dir=3D"ltr"=
+>&lt;<a href=3D"mailto:ayoub.zaki@googlemail.com" target=3D"_blank">ayoub.z=
+aki@googlemail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">=
+<div dir=3D"ltr"><br><div class=3D"gmail_quote">---------- Forwarded messag=
+e ----------<br>From: <b class=3D"gmail_sendername">Ayoub Zaki</b> <span di=
+r=3D"ltr">&lt;<a href=3D"mailto:ayoub.zaki@googlemail.com" target=3D"_blank=
+">ayoub.zaki@googlemail.com</a>&gt;</span><br>Date: 2015-03-02 10:24 GMT+01=
+:00<br>Subject: Re: [yocto] dizzy 1.7 udev automount misbehaviour<br>To: sc=
+erveau &lt;<a href=3D"mailto:scerveau@gmail.com" target=3D"_blank">scerveau=
+@gmail.com</a>&gt;<br><br><br><div dir=3D"ltr"><div><div>Hello Stephane,<br=
+><br></div>Yes please read this :<br><br><a href=3D"http://www.volkerschatz=
+.com/unix/advmount.html" target=3D"_blank">http://www.volkerschatz.com/unix=
+/advmount.html</a><br><br></div>Regards<br></div><span class=3D""><div><div=
+><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">2015-03-02 9:56 =
+GMT+01:00 scerveau <span dir=3D"ltr">&lt;<a href=3D"mailto:scerveau@gmail.c=
+om" target=3D"_blank">scerveau@gmail.com</a>&gt;</span>:<br><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
+dding-left:1ex">Hello,<br>
+<br>
+Did you have a chance to understand the problem concerning the automount fa=
+ilure ?<br>
+<br>
+Best regards.<br>
+<br>
+St=C3=A9phane<br>
+</blockquote></div><br></div>
+</div></div></span></div><br></div>
+<br>--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div>
+
+--001a1134188c7d63fd05105e7fd7--
