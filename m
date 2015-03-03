@@ -1,44 +1,28 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <pokybuild@opensuse131.osl.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E2E0CE0076F; Tue,  3 Mar 2015 10:24:31 -0800 (PST)
+	id B55B0E00777; Tue,  3 Mar 2015 10:39:50 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
+	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A41F0E00750
-	for <yocto@yoctoproject.org>; Tue,  3 Mar 2015 10:24:24 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga103.fm.intel.com with ESMTP; 03 Mar 2015 10:19:28 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,682,1418112000"; d="scan'208";a="693417876"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by orsmga002.jf.intel.com with ESMTP; 03 Mar 2015 10:24:25 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.181]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.137]) with mapi id
-	14.03.0195.001; Tue, 3 Mar 2015 10:24:22 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH] Documentation: Ref Manual, fill out missing
-	machines for MACHINE variable
-Thread-Index: AQHQVYY5c9DL4AvOlUmfZ0i0ySDRK50LE3GA
-Date: Tue, 3 Mar 2015 18:24:22 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988EC029F@ORSMSX101.amr.corp.intel.com>
-References: <alpine.LFD.2.11.1503030244130.11201@localhost>
-In-Reply-To: <alpine.LFD.2.11.1503030244130.11201@localhost>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Received: from opensuse131.osl.yoctoproject.org
+	(opensuse131.osl.yoctoproject.org [10.0.10.112])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52854E00753
+	for <yocto@yoctoproject.org>; Tue,  3 Mar 2015 10:39:50 -0800 (PST)
+Received: by opensuse131.osl.yoctoproject.org (Postfix, from userid 1006)
+	id 8AB8AE3205; Tue,  3 Mar 2015 18:39:09 +0000 (GMT)
+Date: Tue, 03 Mar 2015 18:39:09 +0000
+To: yocto@yoctoproject.org
+User-Agent: Heirloom mailx 12.5 7/5/10
 MIME-Version: 1.0
-Subject: Re: [PATCH] Documentation: Ref Manual, fill out missing machines for MACHINE variable
+Message-Id: <20150303183909.8AB8AE3205@opensuse131.osl.yoctoproject.org>
+From: pokybuild@opensuse131.osl.yoctoproject.org (Poky Build User)
+Cc: otavio@ossystems.com.br
+Subject: Release Candidate Build for yocto-1.8_M3.rc3 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,62 +34,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Mar 2015 18:24:32 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 03 Mar 2015 18:39:50 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-Applied... thanks.
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
->Sent: Monday, March 02, 2015 11:46 PM
->To: Yocto discussion list
->Subject: [yocto] [PATCH] Documentation: Ref Manual, fill out missing
->machines for MACHINE variable
->
->
->Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
->
->---
->
->diff --git a/documentation/ref-manual/ref-variables.xml
->b/documentation/ref-manual/ref-variables.xml
->index 0346092..fc84605 100644
->--- a/documentation/ref-manual/ref-variables.xml
->+++ b/documentation/ref-manual/ref-variables.xml
->@@ -6668,7 +6668,9 @@ recipes-graphics/xorg-font/font-alias_1.0.3.bb:PR =
-=3D
->"${INC_PR}.3"
->                     shipped include the following:
->                     <literallayout class=3D'monospaced'>
->      MACHINE ?=3D "qemuarm"
->+     MACHINE ?=3D "qemuarm64"
->      MACHINE ?=3D "qemumips"
->+     MACHINE ?=3D "qemumips64"
->      MACHINE ?=3D "qemuppc"
->      MACHINE ?=3D "qemux86"
->      MACHINE ?=3D "qemux86-64"
->
->--
->
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->--
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+A release candidate build for yocto-1.8_M3.rc3 is now available at:
+
+ 
+http://autobuilder.yoctoproject.org/pub/releases/yocto-1.8_M3.rc3
+
+
+Please begin QA on this build as soon as possible.
+
+
+Build hash information: 
+meta-intel : 367fd4758d23318b3adab8021d7bdc8b56e04917 
+meta-fsl-arm : 5d8185213b3f15c5814e089d3ca464fedc46ef5d 
+meta-minnow : 13a5f2ab84c7284647a3e067a33109c11dae0568 
+meta-qt3 : 3016129d90b7ac8517a5227d819f10ad417b5b45 
+meta-fsl-ppc : 5eeeb3ad74b72d904f805bc6e248e93e722b45c4 
+poky : 5c1c8af083ca7b57cc339d16ce0513b27c5dac90 
+
+
+This is an automated message from
+The Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder
+Email: elizabeth.flanagan@intel.com 
 
