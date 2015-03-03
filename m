@@ -1,39 +1,41 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7AF5EE00810; Tue,  3 Mar 2015 02:31:11 -0800 (PST)
+	id 9E813E00810; Tue,  3 Mar 2015 02:40:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D279E003FA
-	for <yocto@yoctoproject.org>; Tue,  3 Mar 2015 02:31:08 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 03 Mar 2015 02:31:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.09,681,1418112000"; d="scan'208";a="674377285"
-Received: from tmlemanx-mobl.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.7.97])
-	by fmsmga001.fm.intel.com with ESMTP; 03 Mar 2015 02:31:02 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
-Date: Tue, 03 Mar 2015 10:31 +0000
-Message-ID: <15841264.1L6EKTFQW9@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.4 (Linux/3.18.7-100.fc20.x86_64; KDE/4.14.4; x86_64; ; )
-In-Reply-To: <1425378406649.37693@inedasystems.com>
-References: <18041737.50.1422871220143.JavaMail.kraghavendra@Raghavendra>
-	<23759981.tJ0jcZThOh@peggleto-mobl5.ger.corp.intel.com>
-	<1425378406649.37693@inedasystems.com>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3566E003FA
+	for <yocto@yoctoproject.org>; Tue,  3 Mar 2015 02:39:56 -0800 (PST)
+Received: from [99.240.204.5] (port=39836 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1YSkF0-0000KH-Lj
+	for yocto@yoctoproject.org; Tue, 03 Mar 2015 05:39:54 -0500
+Date: Tue, 3 Mar 2015 05:39:51 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Yocto discussion list <yocto@yoctoproject.org>
+In-Reply-To: <alpine.LFD.2.11.1503030407310.18866@localhost>
+Message-ID: <alpine.LFD.2.11.1503030537270.24261@localhost>
+References: <alpine.LFD.2.11.1503030407310.18866@localhost>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: SDK generation issue
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: Re: preferred KERNEL_FEATURES format: netfilter or netfilter.scc?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,31 +47,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Mar 2015 10:31:11 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 03 Mar 2015 10:40:01 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Tuesday 03 March 2015 10:26:46 Raghavendra Kakarla wrote:
-> When i Built SDK for YOCTO, I am getting a cross compilation tool chain.
-> With which i am able to build the applications for my platform. I wanted to
-> confirm, whether SDK means  a toolchain to build the applications or is
-> there something more (such as documentation, libraries, etc generated for
-> our platform)
+On Tue, 3 Mar 2015, Robert P. J. Day wrote:
 
-The SDK will contain all libraries, headers and debugging symbols for the 
-contents of the image specified with -c populate_sdk. It won't contain any 
-documentation by default, though you could add it by setting SDKIMAGE_FEATURES 
-e.g. 
+>
+>   kernel dev manual uses the KERNEL_FEATURES format of:
+>
+>      KERNEL_FEATURES += "features/netfilter.scc"
+>
+> while ref manual variable glossary uses
+>
+>      KERNEL_FEATURES="features/netfilter"
+>
+> is there a preference for the usage of the .scc suffix? (i'm assuming
+> they're both valid, i didn't actually check that. maybe i should check
+> that ...)
 
-SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs doc-pkgs"
+  hang on, i think there's an error in the docs ... if i check the
+meta branch, i see that the actual structure for the netfilter feature
+is "features/netfilter/netfilter.scc", so "features/netfilter.scc"
+shouldn't even work, should it? historical remnant?
 
-(the default value set with ??= is "dev-pkgs dbg-pkgs")
-
-Cheers,
-Paul
+rday
 
 -- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
