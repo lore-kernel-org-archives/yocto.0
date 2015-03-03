@@ -1,39 +1,39 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F3183E00810; Tue,  3 Mar 2015 01:12:38 -0800 (PST)
+	id 39345E00810; Tue,  3 Mar 2015 01:37:47 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32661E003FA
-	for <yocto@yoctoproject.org>; Tue,  3 Mar 2015 01:12:31 -0800 (PST)
-Received: from [99.240.204.5] (port=39165 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1YSisQ-0003A5-Fb
-	for yocto@yoctoproject.org; Tue, 03 Mar 2015 04:12:30 -0500
-Date: Tue, 3 Mar 2015 04:12:27 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1503030407310.18866@localhost>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79D69E003FA
+	for <yocto@yoctoproject.org>; Tue,  3 Mar 2015 01:37:45 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 03 Mar 2015 01:37:43 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.09,681,1418112000"; d="scan'208";a="674360449"
+Received: from tmlemanx-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.7.97])
+	by fmsmga001.fm.intel.com with ESMTP; 03 Mar 2015 01:37:42 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+Date: Tue, 03 Mar 2015 09:37:42 +0000
+Message-ID: <23759981.tJ0jcZThOh@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.4 (Linux/3.18.7-100.fc20.x86_64; KDE/4.14.4; x86_64; ; )
+In-Reply-To: <1425361303765.315@inedasystems.com>
+References: <18041737.50.1422871220143.JavaMail.kraghavendra@Raghavendra>
+	<26169231.54.1423648818817.JavaMail.kraghavendra@Raghavendra>
+	<1425361303765.315@inedasystems.com>
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: preferred KERNEL_FEATURES format: netfilter or netfilter.scc?
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: SDK generation issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,51 +45,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Mar 2015 09:12:39 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 03 Mar 2015 09:37:47 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
+On Tuesday 03 March 2015 05:41:43 Raghavendra Kakarla wrote:
+> I am generated the yocto SDK using the yocto sdk script "bitbake
+> core-image-minimal -c populate_sdk" command. With this command I am able to
+> generte the installation script file and .manifest file.
+> 
+> I run the installation script file. After running installation script file
+> it propts that following message:
+> 
+> Extracting SDK...done
+> Setting it up...done
+> SDK has been successfully set up and is ready to be used.
+> 
+> 
+> After this i run the ".
+> /opt/poky/1.7/environment-setup-mips32rel-poky-linux" and echo $PATH i got
+> the correct path.
+> 
+> After this i built wrote a small example and try to build with the sdk
+> generated toolchain by running following command:
+> 
+> mipsel-poky-linux-gcc test.c
 
-  kernel dev manual uses the KERNEL_FEATURES format of:
+Use $CC instead of running the compiler directly so that you get the correct 
+options.
 
-     KERNEL_FEATURES += "features/netfilter.scc"
+Cheers,
+Paul
 
-while ref manual variable glossary uses
-
-     KERNEL_FEATURES="features/netfilter"
-
-is there a preference for the usage of the .scc suffix? (i'm assuming
-they're both valid, i didn't actually check that. maybe i should check
-that ...)
-
-  oh, wait, here's something from kernel-yocto.bbclass that seems to
-require the presence of the .scc suffix:
-
-# returns all the elements from the src uri that are .scc files
-def find_sccs(d):
-    sources=src_patches(d, True)
-    sources_list=[]
-    for s in sources:
-        base, ext = os.path.splitext(os.path.basename(s))
-        if ext and ext in [".scc", ".cfg"]:
-            sources_list.append(s)
-        elif base and base in 'defconfig':
-            sources_list.append(s)
-
-    return sources_list
-
-i should note that the introductory comment is incorrect since that
-function clearly does not just find "sccs", it finds .cfg and
-defconfig files as well, no?
-
-rday
 
 -- 
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Paul Eggleton
+Intel Open Source Technology Centre
 
