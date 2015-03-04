@@ -1,39 +1,55 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <scerveau@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E6FE7E00718; Wed,  4 Mar 2015 07:10:14 -0800 (PST)
+	id 60867E00754; Wed,  4 Mar 2015 08:48:31 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.171 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (scerveau[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 857ACE006E9
-	for <yocto@yoctoproject.org>; Wed,  4 Mar 2015 07:10:11 -0800 (PST)
-Received: from [99.240.204.5] (port=45980 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1YTAw6-0005ut-Ck
-	for yocto@yoctoproject.org; Wed, 04 Mar 2015 10:10:10 -0500
-Date: Wed, 4 Mar 2015 10:10:07 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@Device-040570
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1503041007020.13143@Device-040570>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-we0-f171.google.com (mail-we0-f171.google.com
+	[74.125.82.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2605E006EF
+	for <yocto@yoctoproject.org>; Wed,  4 Mar 2015 08:48:28 -0800 (PST)
+Received: by wesu56 with SMTP id u56so47586256wes.10
+	for <yocto@yoctoproject.org>; Wed, 04 Mar 2015 08:48:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type; bh=4Vk4b3P9Ag8q/FjP/T5GMyE4I9Sg4lNw0LtmyDTPcso=;
+	b=ytATFtsNx5TfXeVkwGcbbOsA9vQsgpP9T/Qitq/ZeeBzH9Y8xxzUYbdZGm+wzEf0l5
+	p2zgQ/A/myY/l2HNxZhFkCxRCT5RUH5N6GnJbooKIWbfmnKG2thYoHp4l8rUEyS32xsP
+	BHLBlfF/cdYiXpUjgaCDCeUXU8L1NeNX7VPeJT0lLCKtJHqVWvx+JCLzuFiiVEG9AIBx
+	+Sj4oQ5b80BD+YmGBVjI1zlxghXgLCg8bHzmpusi36ZgkDmual1ZYDFUSMKpjuaYIDp+
+	+ZbJYevT7nA5SKZmbU5In5u9aW6KcLlsA4yhWj+hR4p4bbpuC9tym7xyOqq0q77KFLIk
+	Q2pA==
+X-Received: by 10.180.105.131 with SMTP id gm3mr58154227wib.11.1425487707854; 
+	Wed, 04 Mar 2015 08:48:27 -0800 (PST)
+Received: from [172.24.63.26]
+	(connected-labs-gw1.ter2.neodc.mpl.cust.as8218.eu. [94.103.137.126])
+	by mx.google.com with ESMTPSA id hw7sm2820261wjb.24.2015.03.04.08.48.25
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 04 Mar 2015 08:48:27 -0800 (PST)
+Message-ID: <54F73757.9070702@gmail.com>
+Date: Wed, 04 Mar 2015 17:48:23 +0100
+From: scerveau <scerveau@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: should YP docs explain "type=kmeta" and "destsuffix="?
+To: yocto@yoctoproject.org
+Subject: gstreamer1.0-plugins-good: Fix qt with alac
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,50 +61,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Mar 2015 15:10:15 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 04 Mar 2015 16:48:31 -0000
+X-Groupsio-MsgNum: 23848
+Content-Type: multipart/mixed; boundary="------------030607050305060603010508"
 
+--------------030607050305060603010508
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-  i see that the meta-xilinx layer takes advantage of extending the
-search path for features directories with things like:
+Hello,
 
-SRC_URI = " \
-git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git;protocol=https;branch=${KBRANCH} \
-                file://xilinx-base;type=kmeta;destsuffix=xilinx-base \
-                file://0001-ARM64-Add-new-Xilinx-ZynqMP-SoC.patch \
-  ... etc etc ...
+Here is a patch for alac encoding with qtmux.
+Someone could be interested.
 
-and the above is processed from kernel-yocto.bbclass with:
+https://www.marc.info/?l=gstreamer-cvs&m=141954352317221&w=2
 
-# check the SRC_URI for "kmeta" type'd git repositories. Return the name of
-# the repository as it will be found in WORKDIR
-def find_kernel_feature_dirs(d):
-    feature_dirs=[]
-    fetch = bb.fetch2.Fetch([], d)
-    for url in fetch.urls:
-        urldata = fetch.ud[url]
-        parm = urldata.parm
-        if "type" in parm:
-            type = parm["type"]
-        if "destsuffix" in parm:
-            destdir = parm["destsuffix"]
-            if type == "kmeta":
-                feature_dirs.append(destdir)
+Best regards.
 
-    return feature_dirs
+Stéphane
 
-i see no mention of this feature in any of the YP docs ... is it meant
-to be used by normal developers, so that it should be explained?
+--------------030607050305060603010508
+Content-Type: text/x-patch;
+ name="qtmux_fix_alac_muxing.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="qtmux_fix_alac_muxing.patch"
 
-rday
+diff --git a/gst/isomp4/gstqtmux.c b/gst/isomp4/gstqtmux.c
+index fc747ed..6614ba4 100644
+--- a/gst/isomp4/gstqtmux.c
++++ b/gst/isomp4/gstqtmux.c
+@@ -2870,7 +2870,8 @@ gst_qt_mux_audio_sink_set_caps (GstQTPad * qtpad, GstCaps * caps)
+     if (GST_READ_UINT32_LE (map.data + 4) == FOURCC_alac) {
+       len -= 8;
+       codec_config =
+-          gst_buffer_copy_region ((GstBuffer *) codec_data, 0, 8, len);
++          gst_buffer_copy_region ((GstBuffer *) codec_data,
++          GST_BUFFER_COPY_MEMORY, 8, len);
+     } else {
+       codec_config = gst_buffer_ref ((GstBuffer *) codec_data);
+     }
 
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+--------------030607050305060603010508--
