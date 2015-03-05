@@ -1,37 +1,46 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <nathan@nathanrossi.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2F82BE008CC; Thu,  5 Mar 2015 05:44:20 -0800 (PST)
+	id 66C87E008CC; Thu,  5 Mar 2015 05:48:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.215.50 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8478E00718
-	for <yocto@yoctoproject.org>; Thu,  5 Mar 2015 05:44:17 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id BD273F811E0; Thu,  5 Mar 2015 06:44:16 -0700 (MST)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 36196F811E0;
-	Thu,  5 Mar 2015 06:44:16 -0700 (MST)
-Message-ID: <54F85DB5.4000901@mlbassoc.com>
-Date: Thu, 05 Mar 2015 06:44:21 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+Received: from mail-la0-f50.google.com (mail-la0-f50.google.com
+	[209.85.215.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA7A5E00718
+	for <yocto@yoctoproject.org>; Thu,  5 Mar 2015 05:48:02 -0800 (PST)
+Received: by labge10 with SMTP id ge10so51432912lab.12
+	for <yocto@yoctoproject.org>; Thu, 05 Mar 2015 05:48:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=U0ABsD/2hoXam/X4czLU0bcIexBh+bf2i46Nn+wRpcU=;
+	b=Z7P+7UgUohAyqHnWchgqqrwFzkQ6aqa145ayLj9zPjv5+hTlWs9NzLDEkpP/3/TuPu
+	2SWY+uwrnT7oke6+RR/8S9tl1mFkqouL2gelUFI3KNBHNIN+MaFhS23Pg+zWoDxHjd0w
+	S3H3cYsruu1z4Inz5wN/hVcMRQBR+dgyHJ+V7QjOqAPdN6lXNtkNcdxDYIu99VOCdm+n
+	E/1YPjqeMTIyMi8XmmPI7YnhNq00HfLJrMOeCIrKQTC79nShaBKzt+GIrIBFTHlbU9WZ
+	kl8zhRBgOLZNKVRyDuBnGqrrrwxr++bzdu4ehOTjR3TdZfOiekTYf9X0NHFvueL/kOTJ
+	MUMQ==
+X-Gm-Message-State: ALoCoQlgfNrEBkFD9Fx9M9UgIZQIIyUzw+QQvrDy9Ps5Eio4v15PQB2yCv7Ho2npBelhH46WBQwM
 MIME-Version: 1.0
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-References: <54F798FD.4090200@mlbassoc.com>
-	<CAJTo0Lb+8aUN8Ufgx-5W6zfs=V_CK=eY2DgeeGeGJUyz0u22gA@mail.gmail.com>
-	<54F8492B.2010205@mlbassoc.com>
-	<CAJTo0LbHPUc7Xrmx06o3w4Yaf7xynR1Pb33U75ONzvziC0Wuww@mail.gmail.com>
-	<54F851F5.8070409@mlbassoc.com> <54F85B4C.4040403@mlbassoc.com>
-	<CAP71Wjz4H2c971qGEZCgW2_pbP-Vs2rpQhiDNy_OWOhQqpz7MA@mail.gmail.com>
-In-Reply-To: <CAP71Wjz4H2c971qGEZCgW2_pbP-Vs2rpQhiDNy_OWOhQqpz7MA@mail.gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: New gst-player
+X-Received: by 10.152.178.197 with SMTP id da5mr8196071lac.56.1425563280708;
+	Thu, 05 Mar 2015 05:48:00 -0800 (PST)
+Received: by 10.25.126.212 with HTTP; Thu, 5 Mar 2015 05:48:00 -0800 (PST)
+In-Reply-To: <alpine.LFD.2.11.1503050659220.9386@Device-040570>
+References: <alpine.LFD.2.11.1503050659220.9386@Device-040570>
+Date: Thu, 5 Mar 2015 23:48:00 +1000
+Message-ID: <CA+aJhH2D52jskGJ+Ah7+VpDV5xe3RRx766Z2WJdANCXwts_Wrg@mail.gmail.com>
+From: Nathan Rossi <nathan@nathanrossi.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: in kernel manual, should pick another example for KMACHINE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,31 +52,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Mar 2015 13:44:20 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 05 Mar 2015 13:48:04 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 2015-03-05 06:40, Nicolas Dechesne wrote:
-> On Thu, Mar 5, 2015 at 2:34 PM, Gary Thomas <gary@mlbassoc.com> wrote:
->> Sadly, it doesn't build with the libav we have in OE-core :-(
->>
->> BTW, I measured the current used by my board (i.MX6Q)
->>    mplayer2 => 1.8A
->>    gst-play => 2.1A
->> Given that I normally run my board with a 2.0A wall brick,
->> it's no wonder that it dies when I run gst-play.
+On Thu, Mar 5, 2015 at 10:03 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
 >
-> ouch. that's quite a difference. when you play video this is no just
-> about the decoders, but also how video is rendered. can you
-> check/compare what's the overall pipeline, including any processing
-> done on the video buffers (YUV) after the decoder (including up/down
-> scaling, color conversion, ...).
+>   in section 3.2 of the kernel dev manual, there is a discussion of
+> KMACHINE and how it is *typically* set to the same value as MACHINE,
+> but there are cases where that might not be true; however, the example
+> used to demonstrate this -- emenlow and emenlow-noemgd -- doesn't seem
+> appropriate as there is no "emenlow" machine definition file anymore
+> in meta-intel. AFAICT, all of those non-noemgd machine definitions are
+> gone.
+>
+>   in all the layers i have checked out, the only layer where i see
+> KMACHINE covering a number of MACHINE values is meta-xilinx
+> (zynq-based machines). it sounds picky but, when demonstrating some
+> concept, i think it's important that examples used actually exist in
+> the code base in case people want to check.
 
-How would I get that info (short of hacking the library)?
+It comes around a bit due to the nature of different types of
+hardware. You will find that amongst most of the meta-* bsp layers
+there exists two types of MACHINE. You have the layers like
+meta-xilinx, meta-ti, etc which have machines for each board. And then
+there are the layers like meta-intel which have machines for each
+platform or SoC. There are a number of reasons for each way.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+At least for Zynq, the kernel can (if you ignore that it has FPGA
+logic) be configured and built the same way for all the boards with
+device trees handling the differences. And as such the configuration
+is setup for the SoC instead of the board. The reason that you
+actually see KMACHINE differences in meta-xilinx is that the layer
+uses the linux-yocto build flow as well as providing an in layer
+config cache for its targeted KMACHINE's. Which I believe is rarely
+done in bsp layers that inherit linux-yocto for their kernels (or
+bbappend to linux-yocto).
+
+You could re-word the documentation to cover this case with something like:
+"This variable is typically set to the same value as the MACHINE
+variable however in some cases may instead refer to the underlying
+platform of the MACHINE."
+
+Regards,
+Nathan
+
+>
+> rday
+>
+> --
+>
+> ========================================================================
+> Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                         http://crashcourse.ca
+>
+> Twitter:                                       http://twitter.com/rpjday
+> LinkedIn:                               http://ca.linkedin.com/in/rpjday
+> ========================================================================
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
