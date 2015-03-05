@@ -1,6 +1,6 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 66424E008CC; Wed,  4 Mar 2015 23:02:43 -0800 (PST)
+	id E8D41E008CC; Wed,  4 Mar 2015 23:53:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,18 +10,18 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E61FFE00718
-	for <yocto@yoctoproject.org>; Wed,  4 Mar 2015 23:02:39 -0800 (PST)
-Received: from [99.240.204.5] (port=51203 helo=crashcourse.ca)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85338E00718
+	for <yocto@yoctoproject.org>; Wed,  4 Mar 2015 23:53:48 -0800 (PST)
+Received: from [99.240.204.5] (port=51802 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1YTPnq-00072a-6q; Thu, 05 Mar 2015 02:02:38 -0500
-Date: Thu, 5 Mar 2015 02:02:34 -0500 (EST)
+	id 1YTQbL-0001ZT-Kn; Thu, 05 Mar 2015 02:53:47 -0500
+Date: Thu, 5 Mar 2015 02:53:43 -0500 (EST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@Device-040570
 To: Bruce Ashfield <bruce.ashfield@windriver.com>
 In-Reply-To: <54F77A6C.2090901@windriver.com>
-Message-ID: <alpine.LFD.2.11.1503050155570.13662@Device-040570>
+Message-ID: <alpine.LFD.2.11.1503050250590.19909@Device-040570>
 References: <alpine.LFD.2.11.1503041007020.13143@Device-040570>
 	<54F77A6C.2090901@windriver.com>
 User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
@@ -48,45 +48,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Mar 2015 07:02:43 -0000
+X-List-Received-Date: Thu, 05 Mar 2015 07:53:50 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
+
 
 On Wed, 4 Mar 2015, Bruce Ashfield wrote:
 
-> On 15-03-04 10:10 AM, Robert P. J. Day wrote:
-> >
-> >    i see that the meta-xilinx layer takes advantage of extending the
-> > search path for features directories with things like:
-> >
-> > SRC_URI = " \
-> > git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git;protocol=https;branch=${KBRANCH}
-> > \
-> > file://xilinx-base;type=kmeta;destsuffix=xilinx-base \
-> > file://0001-ARM64-Add-new-Xilinx-ZynqMP-SoC.patch \
-> >    ... etc etc ...
-> >
-> > and the above is processed from kernel-yocto.bbclass with:
-> >
-> > # check the SRC_URI for "kmeta" type'd git repositories. Return the name of
-> > # the repository as it will be found in WORKDIR
-> > def find_kernel_feature_dirs(d):
-> >      feature_dirs=[]
-> >      fetch = bb.fetch2.Fetch([], d)
-> >      for url in fetch.urls:
-> >          urldata = fetch.ud[url]
-> >          parm = urldata.parm
-> >          if "type" in parm:
-> >              type = parm["type"]
-> >          if "destsuffix" in parm:
-> >              destdir = parm["destsuffix"]
-> >              if type == "kmeta":
-> >                  feature_dirs.append(destdir)
-> >
-> >      return feature_dirs
-> >
-> > i see no mention of this feature in any of the YP docs ... is it meant
-> > to be used by normal developers, so that it should be explained?
->
+... snip my stuff ...
+
 > It's not really a typical developer option. It is for maintaining a
 > separate repository of meta-data, and then allowing the tools and
 > kernel to use that meta data as part of the build.
@@ -97,24 +66,16 @@ On Wed, 4 Mar 2015, Bruce Ashfield wrote:
 > So I'm on the fence if it is worth documenting, but lean towards at
 > least mentioning it and offering a simple use case.
 
-  if it's not a normal developer option, then i wouldn't want it to be
-presented as *regular* kernel dev content, so as not to break up the
-flow of presentation -- one of my pet peeves in documentation is
-distraction from normal content with a topic that's obscure or meant
-for only 1 per cent of the readership, that just throws off the rhythm
-of the presentation.
+  just FYI, of all the layers i have checked out and try to keep up
+with, the meta-xilinx layer is the only one that takes advantage of
+that "type=kmeta" feature and nathan rossi on that list suggested that
+he did that just to get something working and out the door, so it's
+entirely possible that that really *isn't* a normal developer option
+that needs to be documented.
 
-  however, it might fit in a section on, say, "advanced kernel
-workflow concepts", or something like that. appendix, perhaps?
-
-  also, i only ask about this as i tripped across it perusing the
-meta-xilinx layer, and thought, "wait a minute, what's this?" but
-nothing says that it's being used properly in the meta-xilinx layer
-... i think it's worth documenting but only if it's accompanied by a
-use case that clearly shows its value over the standard technique
-involving regular .cfg and .scc files.
-
-  anyway, movin' on ...
+  so i'll leave this with people higher up the food chain ... perhaps
+it really is something that needs explanation only in an advanced
+kernel workflow section or something like that.
 
 rday
 
