@@ -1,6 +1,6 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <tang@jtang.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DBDFAE00754; Wed,  4 Mar 2015 15:45:06 -0800 (PST)
+	id 7AECCE0076F; Wed,  4 Mar 2015 18:43:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,22 +8,24 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 913FCE006EF
-	for <yocto@yoctoproject.org>; Wed,  4 Mar 2015 15:44:58 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id C5927F811DA; Wed,  4 Mar 2015 16:44:57 -0700 (MST)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 4FFC6F811DA;
-	Wed,  4 Mar 2015 16:44:57 -0700 (MST)
-Message-ID: <54F798FD.4090200@mlbassoc.com>
-Date: Wed, 04 Mar 2015 16:45:01 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
-MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: New gst-player
+X-Greylist: delayed 308 seconds by postgrey-1.32 at yocto-www;
+	Wed, 04 Mar 2015 18:43:21 PST
+Received: from highcastle.jtang.org (mail.jtang.org [173.10.136.73])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFE45E00718
+	for <yocto@yoctoproject.org>; Wed,  4 Mar 2015 18:43:21 -0800 (PST)
+Received: from [10.0.0.193] (unknown [10.0.0.193]) (Authenticated sender: tang)
+	by highcastle.jtang.org (Postfix) with ESMTPSA id DB3E6BEEFC;
+	Wed,  4 Mar 2015 21:38:12 -0500 (EST)
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+From: "J. Tang" <tang@jtang.org>
+In-Reply-To: <54F779F8.8010709@dynamicdevices.co.uk>
+Date: Wed, 4 Mar 2015 21:38:12 -0500
+Message-Id: <C3B68278-FF0B-4733-8140-C783C57BEF6A@jtang.org>
+References: <54F779F8.8010709@dynamicdevices.co.uk>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+X-Mailer: Apple Mail (2.1878.6)
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: Re: Resizing root flash partition/filesystem on first boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,29 +37,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Mar 2015 23:45:06 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 05 Mar 2015 02:43:26 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-I like that owl has been replaced by gst-player, but I need
-some help figuring out how to get it working :-(  If you ask
-it to play something and it doesn't have the appropriate
-plugins available, it just sits there and acts stupid (no
-error popup, nothing...).  For example, I tried to play a
-MP4 file downloaded from YouTube and it complained:
-   Now playing /home/root/Vlad+Louise.mp4
-   Missing plugin: H.264 decoder
-       ...
-   Missing plugin: MPEG-4 AAC decoder
-       ...
-(those are only the relevant lines which I got by running it
-by hand in a terminal window).
 
-Any idea what I need to get installed to play this file?
+On Mar 4, 2015, at 16:32 , Alex J Lennon <ajlennon@dynamicdevices.co.uk> =
+wrote:
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+> I'd like to be able to build an SD card image, deploy to a system and
+> have it automatically resize on first boot. I haven't seen =
+functionality
+> that would do this in Yocto. If there is a setting for this could
+> anybody let me know where that is?
+
+I wrote a startup script that does exactly this. If you are interested, =
+I can publish the code + BitBake recipe.
+
+--=20
+Jason Tang  /  tang@jtang.org
+
+
+
+
 
