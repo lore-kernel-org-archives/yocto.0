@@ -1,6 +1,6 @@
-Return-Path: <ed.bartosh@linux.intel.com>
+Return-Path: <scott.m.rifenbark@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC690E00712; Fri,  6 Mar 2015 07:35:49 -0800 (PST)
+	id 5E162E0074C; Fri,  6 Mar 2015 08:43:16 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,23 +12,32 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32B03E00321
-	for <yocto@yoctoproject.org>; Fri,  6 Mar 2015 07:35:48 -0800 (PST)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga103.fm.intel.com with ESMTP; 06 Mar 2015 07:30:40 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7019E00477
+	for <yocto@yoctoproject.org>; Fri,  6 Mar 2015 08:43:14 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga103.fm.intel.com with ESMTP; 06 Mar 2015 08:37:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,353,1422950400"; d="scan'208";a="463496594"
-Received: from linux.intel.com ([10.23.219.25])
-	by FMSMGA003.fm.intel.com with ESMTP; 06 Mar 2015 07:29:23 -0800
-Received: from ed.fi.intel.com (ed.fi.intel.com [10.237.72.59])
-	by linux.intel.com (Postfix) with ESMTP id 0942C300001;
-	Fri,  6 Mar 2015 07:35:31 -0800 (PST)
-From: Ed Bartosh <ed.bartosh@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Fri,  6 Mar 2015 17:35:43 +0200
-Message-Id: <1425656143-19157-1-git-send-email-ed.bartosh@linux.intel.com>
-X-Mailer: git-send-email 1.8.4.5
-Subject: [PATCH] yocto-project-qs: update OpenSUSE essentials
+X-IronPort-AV: E=Sophos;i="5.11,353,1422950400"; d="scan'208";a="661512061"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by orsmga001.jf.intel.com with ESMTP; 06 Mar 2015 08:42:55 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.181]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.238]) with mapi id
+	14.03.0195.001; Fri, 6 Mar 2015 08:42:55 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] defunct cedartrail BSP still mentioned in ref manual
+Thread-Index: AQHQVk/MWWNYU936V0aSyJZq/pJINp0PrGcA
+Date: Fri, 6 Mar 2015 16:42:55 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988EC2061@ORSMSX101.amr.corp.intel.com>
+References: <alpine.LFD.2.11.1503040246300.25193@Device-040570>
+In-Reply-To: <alpine.LFD.2.11.1503040246300.25193@Device-040570>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
+MIME-Version: 1.0
+Subject: Re: defunct cedartrail BSP still mentioned in ref manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,37 +49,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Mar 2015 15:35:49 -0000
+X-List-Received-Date: Fri, 06 Mar 2015 16:43:16 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Replaced texinfo -> makeinfo in the list of essential packages for
-OpenSUSE.
+See http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#var-KMA=
+CHINE for updated description.
 
-texinfo was in the essentials to only provide makeinfo utility.
-/usr/bin/makeinfo is provided by makeinfo package on OpenSUSE distro, so
-it's enough to install makeinfo to be able to build poky.
-
-This change reduces number of packages installed on the host system as
-installing texinfo causes installation of around 1500 texlive-*
-packages and requires around 1Gb of additional disk space on OpenSUSE.
-
-Signed-off-by: Ed Bartosh <ed.bartosh@linux.intel.com>
----
- documentation/poky.ent | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/documentation/poky.ent b/documentation/poky.ent
-index 2d5bd38..7b44d24 100644
---- a/documentation/poky.ent
-+++ b/documentation/poky.ent
-@@ -63,6 +63,6 @@
-      diffutils diffstat git cpp gcc gcc-c++ glibc-devel texinfo chrpath \
-      ccache perl-Data-Dumper perl-Text-ParseWords perl-Thread-Queue socat">
- <!ENTITY OPENSUSE_HOST_PACKAGES_ESSENTIAL "python gcc gcc-c++ git chrpath make wget python-xml \
--     diffstat texinfo python-curses patch socat">
-+     diffstat makeinfo python-curses patch socat">
- <!ENTITY CENTOS_HOST_PACKAGES_ESSENTIAL "gawk make wget tar bzip2 gzip python unzip perl patch \
-      diffutils diffstat git cpp gcc gcc-c++ glibc-devel texinfo chrpath socat">
--- 
-1.8.4.5
-
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
+>Sent: Tuesday, March 03, 2015 11:49 PM
+>To: Yocto discussion list
+>Subject: [yocto] defunct cedartrail BSP still mentioned in ref manual
+>
+>
+>  while intel's cedartrail BSP was removed back in 2013, it's still used a=
+s an
+>example in the explanation of the KMACHINE variable in the variable glossa=
+ry:
+>
+>http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-
+>KMACHINE
+>
+>someone might want to swap in a current example for that.
+>
+>rday
+>
+>--
+>
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                        http://crashcourse.ca
+>
+>Twitter:                                       http://twitter.com/rpjday
+>LinkedIn:                               http://ca.linkedin.com/in/rpjday
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>--
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
