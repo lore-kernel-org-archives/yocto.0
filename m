@@ -1,43 +1,42 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5E162E0074C; Fri,  6 Mar 2015 08:43:16 -0800 (PST)
+	id 673BFE008DD; Fri,  6 Mar 2015 09:40:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7019E00477
-	for <yocto@yoctoproject.org>; Fri,  6 Mar 2015 08:43:14 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga103.fm.intel.com with ESMTP; 06 Mar 2015 08:37:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,353,1422950400"; d="scan'208";a="661512061"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by orsmga001.jf.intel.com with ESMTP; 06 Mar 2015 08:42:55 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.181]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.238]) with mapi id
-	14.03.0195.001; Fri, 6 Mar 2015 08:42:55 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] defunct cedartrail BSP still mentioned in ref manual
-Thread-Index: AQHQVk/MWWNYU936V0aSyJZq/pJINp0PrGcA
-Date: Fri, 6 Mar 2015 16:42:55 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988EC2061@ORSMSX101.amr.corp.intel.com>
-References: <alpine.LFD.2.11.1503040246300.25193@Device-040570>
-In-Reply-To: <alpine.LFD.2.11.1503040246300.25193@Device-040570>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DE5FE00712
+	for <yocto@yoctoproject.org>; Fri,  6 Mar 2015 09:40:45 -0800 (PST)
+Received: from [99.240.204.5] (port=36153 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1YTwEv-0007ML-FW; Fri, 06 Mar 2015 12:40:45 -0500
+Date: Fri, 6 Mar 2015 12:40:41 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@Device-040570
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
+In-Reply-To: <CADkTA4Ovqp+CC=jB=SFeWRgEajtKX4eF1TyU9YJYMZockzwjsg@mail.gmail.com>
+Message-ID: <alpine.LFD.2.11.1503061240130.17658@Device-040570>
+References: <alpine.LFD.2.11.1503060726450.26362@Device-040570>
+	<CADkTA4Ovqp+CC=jB=SFeWRgEajtKX4eF1TyU9YJYMZockzwjsg@mail.gmail.com>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-Subject: Re: defunct cedartrail BSP still mentioned in ref manual
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: "unused"/uninstalled tools in yocto-kernel-tools?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,52 +48,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Mar 2015 16:43:16 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 06 Mar 2015 17:40:51 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-See http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#var-KMA=
-CHINE for updated description.
+On Fri, 6 Mar 2015, Bruce Ashfield wrote:
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
->Sent: Tuesday, March 03, 2015 11:49 PM
->To: Yocto discussion list
->Subject: [yocto] defunct cedartrail BSP still mentioned in ref manual
+> On Fri, Mar 6, 2015 at 7:36 AM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+> >
+> >   continuing my voyage of discovery through the various yocto kernel
+> > tools, and i see the Makefile which lists the kern_tools:
+> >
+> > kern_tools_LIST = kgit kgit-init kgit-meta \
+> >                   kgit-checkpoint kgit-clean \
+> >                   kconf_check configme \
+> >                   createme updateme patchme get_defconfig scc \
+> >                   pre_config merge_config.sh spp kgit-s2q
+> >
+> > but i also notice that there are a few utilities in the tools/
+> > directory not in that list:
+> >
+> >  * kgit-config-cleaner
+> >  * kgit-feature
+> >  * kgit-publish
+> >  * kgit-scc
+> >
+> > how do those utilities come into play? nothing else in that directory
+> > seems to refer to them. how and where are they used?
 >
->
->  while intel's cedartrail BSP was removed back in 2013, it's still used a=
-s an
->example in the explanation of the KMACHINE variable in the variable glossa=
-ry:
->
->http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-
->KMACHINE
->
->someone might want to swap in a current example for that.
->
->rday
->
->--
->
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->--
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+> They are used during the creation / generation of a tree from scratch. Which
+> isn't part of the build process.
+
+  ah, thanks, i'll make a note of that.
+
+rday
+
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
