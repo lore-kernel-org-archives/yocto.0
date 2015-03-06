@@ -1,42 +1,50 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <scott.m.rifenbark@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 673BFE008DD; Fri,  6 Mar 2015 09:40:51 -0800 (PST)
+	id C8A55E008DD; Fri,  6 Mar 2015 10:49:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DE5FE00712
-	for <yocto@yoctoproject.org>; Fri,  6 Mar 2015 09:40:45 -0800 (PST)
-Received: from [99.240.204.5] (port=36153 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1YTwEv-0007ML-FW; Fri, 06 Mar 2015 12:40:45 -0500
-Date: Fri, 6 Mar 2015 12:40:41 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@Device-040570
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-In-Reply-To: <CADkTA4Ovqp+CC=jB=SFeWRgEajtKX4eF1TyU9YJYMZockzwjsg@mail.gmail.com>
-Message-ID: <alpine.LFD.2.11.1503061240130.17658@Device-040570>
-References: <alpine.LFD.2.11.1503060726450.26362@Device-040570>
-	<CADkTA4Ovqp+CC=jB=SFeWRgEajtKX4eF1TyU9YJYMZockzwjsg@mail.gmail.com>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 230C3E00712
+	for <yocto@yoctoproject.org>; Fri,  6 Mar 2015 10:49:07 -0800 (PST)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga101.jf.intel.com with ESMTP; 06 Mar 2015 10:49:06 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,354,1422950400"; d="scan'208";a="537183953"
+Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
+	by orsmga003.jf.intel.com with ESMTP; 06 Mar 2015 10:48:51 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.181]) by
+	ORSMSX108.amr.corp.intel.com ([169.254.4.124]) with mapi id
+	14.03.0195.001; Fri, 6 Mar 2015 10:49:06 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, "Robert P. J. Day"
+	<rpjday@crashcourse.ca>
+Thread-Topic: [yocto] in kernel manual, should pick another example for
+	KMACHINE
+Thread-Index: AQHQV2gDWDi778pSbUe38c9y/uk5rp0OKZ+QgAGjbgA=
+Date: Fri, 6 Mar 2015 18:49:05 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988EC3194@ORSMSX101.amr.corp.intel.com>
+References: <alpine.LFD.2.11.1503050659220.9386@Device-040570>
+	<CA+aJhH2D52jskGJ+Ah7+VpDV5xe3RRx766Z2WJdANCXwts_Wrg@mail.gmail.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237988EC1B3F@ORSMSX101.amr.corp.intel.com>
+	<alpine.LFD.2.11.1503051212440.32669@Device-040570>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237988EC1B86@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237988EC1B86@ORSMSX101.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: "unused"/uninstalled tools in yocto-kernel-tools?
+Cc: Yocto discussion list <yocto@yoctoproject.org>, "Hart,
+	Darren" <darren.hart@intel.com>
+Subject: Re: in kernel manual, should pick another example for KMACHINE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,48 +56,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Mar 2015 17:40:51 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 06 Mar 2015 18:49:12 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 6 Mar 2015, Bruce Ashfield wrote:
+Probably worth looking over the "Using Kernel Metadata in a Recipe" section=
+ (http://www.yoctoproject.org/docs/1.8/kernel-dev/kernel.dev.html#using-ker=
+nel-metadata-in-a-recipe).  There have been several small areas touched tha=
+t have affected what sample code is being talked about, etc. =20
 
-> On Fri, Mar 6, 2015 at 7:36 AM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
-> >
-> >   continuing my voyage of discovery through the various yocto kernel
-> > tools, and i see the Makefile which lists the kern_tools:
-> >
-> > kern_tools_LIST = kgit kgit-init kgit-meta \
-> >                   kgit-checkpoint kgit-clean \
-> >                   kconf_check configme \
-> >                   createme updateme patchme get_defconfig scc \
-> >                   pre_config merge_config.sh spp kgit-s2q
-> >
-> > but i also notice that there are a few utilities in the tools/
-> > directory not in that list:
-> >
-> >  * kgit-config-cleaner
-> >  * kgit-feature
-> >  * kgit-publish
-> >  * kgit-scc
-> >
-> > how do those utilities come into play? nothing else in that directory
-> > seems to refer to them. how and where are they used?
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Rifenbark, Scott M
+>Sent: Thursday, March 05, 2015 9:48 AM
+>To: Robert P. J. Day
+>Cc: Yocto discussion list
+>Subject: Re: [yocto] in kernel manual, should pick another example for
+>KMACHINE
 >
-> They are used during the creation / generation of a tree from scratch. Which
-> isn't part of the build process.
-
-  ah, thanks, i'll make a note of that.
-
-rday
-
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+>So I was digging in the meta-xilinx layer and down in recipes-
+>kernel/linux/linux-zynqmp-mainline_3.19.bb there are two KMACHINE lines:
+>
+>  KMACHINE_ep108-zynqmp ?=3D "zynqmp"
+>  KMACHINE_qemuzynqmp ?=3D "zynqmp"
+>
+>Given these two lines, this is a good example that shows two machines
+>mapping to the same KMACHINE value?
+>
+>Scott
+>
+>>-----Original Message-----
+>>From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
+>>Sent: Thursday, March 05, 2015 9:15 AM
+>>To: Rifenbark, Scott M
+>>Cc: Nathan Rossi; Yocto discussion list
+>>Subject: RE: [yocto] in kernel manual, should pick another example for
+>>KMACHINE
+>>
+>>On Thu, 5 Mar 2015, Rifenbark, Scott M wrote:
+>>
+>>> I like Nathan's suggestion for the text.  Can someone explain to me
+>>> though why emenlow is not a good example here?  In the
+>>> linux-yocto_3.14.bbappend file, KMACHINE_emenlow-noemgd is set
+>equal
+>>> to "emenlow".  Isn't this equating emenlow-noemgd and emenlow?  I am
+>>> probably mis-understanding it so I could use some further explanation.
+>>
+>>  normally, yes, but there *is* only the emenlow-noemgd machine, there
+>>is no longer an emenlow machine. AIUI, there *used* to be both
+>>machines, both using the same KMACHINE value, and that would have been
+>>a perfect example.
+>>
+>>  personally, i think it would be more informative if you had two or
+>>more actual machines mapping to the same KMACHINE value, but that's just
+>me.
+>>
+>>rday
+>>
+>>--
+>>
+>>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D
+>>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>>Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>>                        http://crashcourse.ca
+>>
+>>Twitter:                                       http://twitter.com/rpjday
+>>LinkedIn:                               http://ca.linkedin.com/in/rpjday
+>>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D
+>>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>--
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
