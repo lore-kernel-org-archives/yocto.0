@@ -1,6 +1,6 @@
 Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7880DE00750; Mon,  9 Mar 2015 11:23:05 -0700 (PDT)
+	id 15F42E00750; Mon,  9 Mar 2015 11:31:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -15,29 +15,30 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FC57E003FA
-	for <yocto@yoctoproject.org>; Mon,  9 Mar 2015 11:23:02 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4686BE003FA
+	for <yocto@yoctoproject.org>; Mon,  9 Mar 2015 11:31:09 -0700 (PDT)
 Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1YV2KQ-0007cU-2v
-	for yocto@yoctoproject.org; Mon, 09 Mar 2015 19:22:58 +0100
-Received: from LCaen-656-1-152-146.w217-128.abo.wanadoo.fr ([217.128.82.146])
+	(envelope-from <gley-yocto@m.gmane.org>) id 1YV2SJ-0007lb-N6
+	for yocto@yoctoproject.org; Mon, 09 Mar 2015 19:31:07 +0100
+Received: from rng31-2-88-169-200-32.fbx.proxad.net ([88.169.200.32])
 	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
 	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 09 Mar 2015 19:22:58 +0100
-Received: from snoopp.5.20 by LCaen-656-1-152-146.w217-128.abo.wanadoo.fr with
-	local (Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 09 Mar 2015 19:22:58 +0100
+	for <yocto@yoctoproject.org>; Mon, 09 Mar 2015 19:31:07 +0100
+Received: from snoopp.5.20 by rng31-2-88-169-200-32.fbx.proxad.net with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Mon, 09 Mar 2015 19:31:07 +0100
 X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
 From: Kfrell <snoopp.5.20@hotmail.fr>
-Date: Mon, 9 Mar 2015 18:22:46 +0000 (UTC)
-Message-ID: <loom.20150309T192227-801@post.gmane.org>
+Date: Mon, 9 Mar 2015 18:30:59 +0000 (UTC)
+Message-ID: <loom.20150309T192445-878@post.gmane.org>
 References: <loom.20150309T171019-54@post.gmane.org>
+	<CAJTo0LZSqxRZ7uyQ42rtuuqfrzjn2wr8+5Fvb2paxa5WhA9fvg@mail.gmail.com>
 Mime-Version: 1.0
 X-Complaints-To: usenet@ger.gmane.org
 X-Gmane-NNTP-Posting-Host: sea.gmane.org
 User-Agent: Loom/3.14 (http://gmane.org/)
-X-Loom-IP: 217.128.82.146 (Mozilla/5.0 (X11; Ubuntu; Linux x86_64;
+X-Loom-IP: 88.169.200.32 (Mozilla/5.0 (X11; Ubuntu; Linux x86_64;
 	rv:35.0) Gecko/20100101 Firefox/35.0)
 Subject: Re: Adding new library to yocto project
 X-BeenThere: yocto@yoctoproject.org
@@ -51,61 +52,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Mar 2015 18:23:05 -0000
+X-List-Received-Date: Mon, 09 Mar 2015 18:31:12 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
 
-Kfrell <snoopp.5.20@...> writes:
+Burton, Ross <ross.burton@...> writes:
 
 > 
-> I am using Yocto and I just would like to integrate a new library 
-> in my project.
 > 
-> I create a new recipe named "libxerces" which contains a file
-> "libxerces-3.1.1.bb". The bb file is quite simple and it is based 
-> on autotools : 
 > 
-> DESCRIPTION = "Xerces-c is a validating xml parser written in C++"
-> HOMEPAGE = "http://xerces.apache.org/xerces-c/"
-> PRIORITY = "optional"
-> LICENSE = "MIT"
-> LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
-> 
-> PR = "r1"
-> 
-> SRC_URI =
->
-"http://mirror.serversupportforum.de/apache/xerces/c/3/sources/xerces-c-${PV}.tar.gz"
-> 
-> SRC_URI[md5sum] = "6a8ec45d83c8cfb1584c5a5345cb51ae"
-> SRC_URI[sha256sum] =
-> "a42785f71e0b91d5fd273831c87410ce60a73ccfdd207de1b805d26d44968736"
-> 
-> s="${WORKDIR}/xerces-c-${PV}"
-> 
-> inherit autotools pkgconfig
-> 
-> BBCLASSEXTEND += "native"
-> 
-> I added "libxerces" to my bb image by using IMAGE_INSTALL += " libxerces".
+> On 9 March 2015 at 16:50, Kfrell
+<snoopp.5.20@hotmail.fr> wrote:I added
+"libxerces" to my bb image by using IMAGE_INSTALL += " libxerces".
 > Then, I try to build my image thru bitbake my-image-test and eveything is
 > done correctly but libxerces returns some errors :
 > 
-> I just would like to create the .ipk package named libxerces in 
-> which .so files should be available.
+> Packages containing libraries get renamed (by default) depending on the
+library name, so just because you called the recipe "libxerces" doesn't mean
+the resulting package is called that.
+> 
+> Have a look in tmp/work/[machine]/libxerces/deploy-* for the packages that
+were actually generated, it's probably something like libxerces-c.
+> 
+> Ross
+> 
 > 
 
-I read almost all your example but nothing help me about my issues. 
+I had a look in this directory but under
+tmp/work/[machine]/libxerces/3.1.1-r1 there is only three folders named
+xerces-c-3.1.1, licence-destdir and temp. I checked under
+tmp/work/deploy/ipk and nothing is actually created.
 
-The actuel returned errors are :
+I have the following errors :
 
-ERROR: This autoconf log indicates errors it looked at host include and/or
-library paths while determining system capabilities. Rerun configure task
-after fixing this.The path was
-/build/tmp/work/oe-linux-gnueabi/libxerces/3.1.1-r1/xerces-c-3.1.1
-ERROR: Function failed: do_qa_configure
-ERROR: Logfile of failure stored in:
-build/tmp/work/oe-linux-gnueabi/libxerces/3.1.1-r1/templog.do_configure.21943
+ERROR: This autoconf log indicates errors, it looked at host include and/or
+library paths while determining system capabilities.
+Rerun configure task after fixing this.
+build/tmp/work/oe-linux-gnueabi/libxerces/3.1.1-r1/xerces-c-3.1.1'
+ERROR: Function failed: do_qa_configure 
+ERROR: Logfile of failure stored
+in:build/tmp/work/oe-linux-gnueabi/libxerces/3.1.1-r1/temp/log.do_configure.21943
 ERROR: Task 541
+
+
 
 
