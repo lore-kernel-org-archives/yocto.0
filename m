@@ -1,49 +1,26 @@
-Return-Path: <chungyehwang@gmail.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4B0FDE0086D; Mon,  9 Mar 2015 01:36:12 -0700 (PDT)
+	id 37F1AE00712; Mon,  9 Mar 2015 03:14:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (chungyehwang[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.176 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F257E0076B
-	for <yocto@yoctoproject.org>; Mon,  9 Mar 2015 01:36:09 -0700 (PDT)
-Received: by igdh15 with SMTP id h15so18679480igd.4
-	for <yocto@yoctoproject.org>; Mon, 09 Mar 2015 01:36:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=YOevsPLeokHpulqf7nPmbzqwGUIKDeX7ceYIa9ReTpQ=;
-	b=FtXoFWzs7hVyjRdbghvK+UOfIY+8uWb5iRnSDtt0DLOzzM1Ki1PoNBGze6bFU3HiD5
-	bVItPPxtOIapXu3uuUNXtRzaEf8lY0RJKeZ5O5ToevOgi5VSm8YjOr5SyKugrC7TiEkv
-	1Lp7vNvWBR+71usQA+dSyWe+lzFkfroKoBKQQ8vG6CUDZHANPwK6w0Ze3lmTGc29hpxs
-	miOePejAbleXLA7fQ+s0QRb+GTiAuJfQBrievtQp58Vjvg3tpnoC3HIrEMvNuwM9pyNN
-	OktZNGnvSI2eO1Bp+/T3M07T1VzaBDcjlok9mpurV9cwfefuLy6hZXf/akqGpBiraYmE
-	k9Jw==
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 368A5E00477
+	for <yocto@yoctoproject.org>; Mon,  9 Mar 2015 03:14:46 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 92A8C84821C2
+	for <yocto@yoctoproject.org>; Mon,  9 Mar 2015 06:14:44 -0400 (EDT)
 MIME-Version: 1.0
-X-Received: by 10.50.253.12 with SMTP id zw12mr70789702igc.24.1425890168807;
-	Mon, 09 Mar 2015 01:36:08 -0700 (PDT)
-Received: by 10.64.116.39 with HTTP; Mon, 9 Mar 2015 01:36:08 -0700 (PDT)
-Date: Mon, 9 Mar 2015 16:36:08 +0800
-Message-ID: <CANBg2hKqzN6kR4=7rpA3O+Ar=Y0rEOMWYgEYXsu78hfq1ZwbdQ@mail.gmail.com>
-From: Chung-Yeh Wang <chungyehwang@gmail.com>
+From: recipe-report@yoctoproject.org
 To: yocto@yoctoproject.org
-Subject: Question: Yocto 1.7.1 kernel config defconfig will not be used?
+Date: Mon, 09 Mar 2015 10:14:44 -0000
+Message-ID: <20150309101444.6544.48975@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,70 +32,192 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Mar 2015 08:36:12 -0000
-Content-Type: multipart/alternative; boundary=001a11346e3c0025e30510d6ed86
+X-List-Received-Date: Mon, 09 Mar 2015 10:14:50 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
---001a11346e3c0025e30510d6ed86
-Content-Type: text/plain; charset=UTF-8
+This mail was sent out by Recipe reporting system.
 
-Hi List,
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade this time, they can fill in
+RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
+recipe remainder until newer upstream version was detected.
 
-I am using Yocto 1.7.1 to build linux-mainline. I found defconfig will not
-be used when using linux-yocto-custom.bb (maybe also happens on
-linux-yocto).
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
 
-I think below is the reason,
+You can check the detail information at:
 
-1. kernel_do_configure is run after do_kernel_configme.The last line of
-do_kernel_configme is echo
-"CONFIG_LOCALVERSION="\"${LINUX_VERSION_EXTENSION}\" >> ${B}/.config
+http://packages.yoctoproject.org/
 
-2. Following are the code to use defconfig,
+Package               Version      Upstream version      Maintainer           NoUpgradeReason
+--------------------  -----------  --------------------  -------------------  ------------------------------
+nfs-utils             1.3.1        1.3.2                 Alejandro Hernandez
+midori                0.5.8        0.5.9                 Alejandro Hernandez
+python-smmap          0.8.2        0.9.0                 Alejandro Hernandez
+gnome-icon-theme      2.31.0       3.12.0                Alejandro Hernandez  waiting for the sato gtk3 port
+jpeg                  8d           9a                    Aníbal Limón         webkit-gtk 1.8.3 doesn't wo...
+apt                   0.9.9.4      1.0.9.7               Aníbal Limón
+dpkg                  1.17.21      1.17.24               Aníbal Limón
+sqlite3               3.8.7.4      3.8.8.3.              Aníbal Limón
+screen                4.0.3        4.2.1                 Aníbal Limón
+nettle                2.7.1        3.0                   Armin Kuster         3.0.0 breaks gnutls, api ch...
+linux-libc-headers    3.19         3.19.1                Bruce Ashfield
+resolvconf            1.76         1.76.1                Chen Qi
+console-tools         0.3.2        1999.03.02            Chen Qi
+util-linux            2.25.2       2.26                  Chen Qi
+kmod                  19+gitX      20+gitAUTOINC+037...  Chen Qi
+curl                  7.40.0       7.41.0                Chen Qi
+sudo                  1.8.11p2     1.8.12                Chen Qi
+sysstat               11.0.2       11.1.3                Chen Qi
+xz                    5.2.0        5.2.1                 Chen Qi
+dbus-glib             0.102        0.104                 Chong Lu
+dbus-test             1.8.10       1.9.14                Chong Lu
+dbus                  1.8.10       1.9.14                Chong Lu             D-BUS 1.9.x is the developm...
+bison                 2.7.1        3.0.4                 Chong Lu
+strace                4.9          4.10                  Chong Lu
+bluez4                4.101        5.28                  Cristian Iorga       BlueZ 5.x is not backward-c...
+gst-plugin-bluetooth  4.101        5.28                  Cristian Iorga
+iproute2              3.17.0       3.19.0                Cristian Iorga
+alsa-lib              1.0.28       1.0.29                Cristian Iorga
+alsa-utils-alsaconf   1.0.28       1.0.29                Cristian Iorga
+alsa-utils            1.0.28       1.0.29                Cristian Iorga
+gst-ffmpeg            0.10.13      0.11.2                Cristian Iorga
+gst-fluendo-mp3       0.10.31      0.10.32               Cristian Iorga
+gst-plugins-bad       0.10.23      1.4.5                 Cristian Iorga       not compatible with gst-flu...
+gst-plugins-base      0.10.36      1.4.5                 Cristian Iorga       not compatible with gst-flu...
+gst-plugins-good      0.10.31      1.4.5                 Cristian Iorga       not compatible with gst-flu...
+gst-plugins-ugly      0.10.19      1.4.5                 Cristian Iorga
+gstreamer             0.10.36      1.4.5                 Cristian Iorga       not compatible with gst-fl...
+libvorbis             1.3.4        1.3.5                 Cristian Iorga
+libatomics-ops        7.2          7.4.0                 Cristian Iorga
+speex                 1.2rc1       1.2rc2                Cristian Iorga
+db                    6.0.30       6.1.23.NC             Cristian Iorga       API compatibility issue
+libical               1.0.0        1.0.1                 Cristian Iorga
+quota                 4.01         4.02                  Cristian Iorga
+harfbuzz              0.9.38       0.9.39                Cristian Iorga
+hwlatdetect           0.89         0.91                  Darren Hart
+rt-tests              0.89         0.91                  Darren Hart
+dhcp                  4.3.1        4.3.2                 Hongxu Jia
+socat                 1.7.2.4      1.7.3.0               Hongxu Jia
+distcc                3.1          3.2rc1                Hongxu Jia
+qmmp                  0.7.7        0.8.3                 Hongxu Jia
+patch                 2.7.1        2.7.5                 Hongxu Jia
+perl                  5.20.0       5.21.9                Hongxu Jia
+createrepo            0.4.11       0.10.3                Hongxu Jia           Versions after 0.9.* use YU...
+bash                  4.3          4.3.30                Hongxu Jia           The latest version in yocto...
+groff                 1.22.2       1.22.3                Hongxu Jia           1.18.1.4 is latest GPLv2 Ve...
+man-pages             3.76         3.81                  Hongxu Jia
+directfb              1.7.6        1.7.7                 Hongxu Jia
+alsa-tools            1.0.28       1.0.29                Kai Kang
+python-mako           0.9.1        1.0.1                 Khem Raj
+python-nose           1.2.1        1.3.4                 Khem Raj
+python-numpy          1.7.0        1.9.2                 Khem Raj
+python3-distribute    0.6.32       0.7.3                 Khem Raj
+rpm                   5.4.14       5.4.15                Mark Hatle
+libpfm4               4.3.0        4.6.0                 Matthew McClintock
+cryptodev-module      1.6          1.7                   No maintainer
+cryptodev-tests       1.6          1.7                   No maintainer
+liberror-perl         0.17022      0.17023               No maintainer
+cryptodev-linux       1.6          1.7                   No maintainer
+qt4-embedded          4.8.6        5.4.1                 Paul Eggleton
+dropbear              2014.66      2015.67               Paul Eggleton
+dosfstools            2.11         3.0.27                Paul Eggleton
+libav                 9.16         11.2                  Paul Eggleton
+x264                  r2265+gitX   r2491                 Paul Eggleton
+qt4-x11-free          4.8.6        5.4.1                 Paul Eggleton
+gpgme                 1.4.3        1.5.3                 Paul Eggleton
+yasm                  1.2.0        1.3.0                 Paul Eggleton
+libevent              2.0.21       2.0.22                Paul Eggleton
+augeas                1.2.0        1.3.0                 Paul Eggleton
+libevdev              1.3          1.4                   Paul Eggleton
+libpng12              1.2.52       1.6.16                Randy Witt
+python-async          0.6.1        0.6.2                 Randy Witt
+libtasn1              4.0          4.2                   Randy Witt
+tcf-agent             0.4.0+gitX   8.0+gitAUTOINC+bb...  Randy Witt
+unfs3                 0.9.22.r490  0.9.22.r494           Randy Witt
+libunistring          0.9.4        0.9.5                 Randy Witt
+ethtool               3.16         3.18                  Randy Witt
+libpam                1.1.6        1.1.8                 Randy Witt
+gdb                   7.8.1        7.9                   Richard Purdie
+intltool              0.50.2       0.51.0                Richard Purdie
+nasm                  2.11.06      2.11.08               Richard Purdie
+python-distribute     0.6.32       0.7.3                 Richard Purdie       0.7.3 only upgrades 0.6.32,...
+python-gst            0.10.22      1.4.0                 Richard Purdie
+python-pygobject      2.28.3       3.15.91               Richard Purdie       Newer versions of python-py...
+python3               3.3.3        3.5.0a1               Richard Purdie
+python                2.7.9        3.5.0a1               Richard Purdie
+libmpc                1.0.2        1.0.3                 Richard Purdie
+glib-2.0              2.42.1       2.43.91               Robert Yang
+binutils              2.24         2.25                  Robert Yang
+e2fsprogs             1.42.9       1.42.11               Robert Yang
+git                   2.3.0        2.3.2                 Robert Yang
+python-git            0.3.6        0.3/                  Robert Yang
+gmp                   6.0.0        6.0.0a                Robert Yang
+logrotate             3.8.8        3.8.9                 Robert Yang
+wget                  1.16.1       1.16.3                Robert Yang
+liberation-fonts      1.04         2.00.1                Ross Burton          2.00.0 - fontforge package ...
+waffle                1.3.0        1.5.1                 Ross Burton
+libinput              0.7.0        0.12.0                Ross Burton
+wayland               1.6.0        1.7.0                 Ross Burton
+weston                1.6.0        1.7.0                 Ross Burton
+xf86-video-omap       0.4.2+gitrX  0.4.3+gitrAUTOINC...  Ross Burton
+xf86-video-vmware     13.0.2       13.1.0                Ross Burton
+glib-networking       2.38.0       2.43.91               Ross Burton          Pending Glib-2.0 Update
+libxshmfence          1.1          1.2                   Ross Burton
+libxxf86vm            1.1.3        1.1.4                 Ross Burton
+xkeyboard-config      2.13         2.14                  Ross Burton
+xproto                7.0.26       7.0.27                Ross Burton
+xserver-xorg          1.16.3       1.17.1                Ross Burton
+at-spi2-atk           2.14.1       2.15.90               Ross Burton
+at-spi2-core          2.14.1       2.15.90               Ross Burton
+puzzles               r10116       r10286                Ross Burton
+webkit-gtk            1.8.3        1.9.92                Ross Burton          >= 1.10.2 needs ruby
+atk                   2.14.0       2.15.91               Ross Burton
+vala                  0.26.1       0.27.1                Ross Burton
+libsoup-2.4           2.46.0       2.49.91.1             Ross Burton
+shared-mime-info      1.3          1.4                   Ross Burton
+vte                   0.28.2       0.39.90               Ross Burton          Pending Glib-2.0 Update
+gdk-pixbuf            2.30.8       2.31.3                Ross Burton
+gtk+3                 3.12.2       3.15.10               Ross Burton
+gtk+                  2.24.25      3.15.10               Ross Burton          Do not upgrade to version: ...
+gtk-engines           2.20.2       2.91.1                Ross Burton          2.91.1 is a 3.0 beta release
+libnotify             0.6.0        0.7.6                 Ross Burton
+librsvg               2.40.6       2.40.8                Ross Burton
+cairo                 1.12.18      1.14.1                Ross Burton
+clutter-1.0           1.20.0       1.21.6                Ross Burton
+clutter-gst-1.0       1.6.0        3.0.4                 Ross Burton
+clutter-gtk-1.0       1.4.4        1.6.0                 Ross Burton
+cogl-1.0              1.18.2       1.20.0                Ross Burton
+fontconfig            2.11.1       2.11.93               Ross Burton
+freetype              2.5.4        2.5.5                 Ross Burton
+mesa-gl               10.4.4       10.4.6                Ross Burton
+mesa                  10.4.4       10.4.6                Ross Burton
+openssl               1.0.1k       1.0.2                 Saul Wold
+uclibc                0.9.33+gitX  0.9.33.2+gitAUTOI...  Saul Wold
+systemtap             2.6+gitX     2.7+gitAUTOINC+39...  Saul Wold
+libtheora             1.1.1        1.2.0alpha1           Saul Wold
+tiff                  4.0.3        4.0.4beta             Saul Wold
+libidn                1.29         1.30                  Saul Wold
+libunique             1.1.6        3.0.2                 Saul Wold            Do not upgrade to version: ...
+mx-1.0                1.4.7+gitX   1.99.4+gitAUTOINC...  Saul Wold            PRS 1.99 is dev version
+blktrace              1.0.5+gitX   1.1.0+gitAUTOINC+...  Tom Zanussi
+systemtap-uprobes     2.6+gitX     2.7+gitAUTOINC+39...  Tom Zanussi
+ccache                3.1.9        3.2.1                 Wenzong Fan
+chkconfig             1.3.58       1.3.63                Wenzong Fan
 
-# Copy defconfig to .config if .config does not exist. This allows
-# recipes to manage the .config themselves in do_configure_prepend().
-if [ -f "${WORKDIR}/defconfig" ] && [ ! -f "${B}/.config" ]; then
-cp "${WORKDIR}/defconfig" "${B}/.config"
+Upgradable count: 130
+Upgradable total count: 153
 
-The condition '[ ! -f "${B}/.config"]' will not be true, so
-recepe-kernel/linux/linux-yocto-custom/defconfig will nerver be used.
+The based commit is:
 
+commit 3c78468f12296abd02abce6eeac0f69bc7509958
+Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date:   Tue Mar 3 13:12:50 2015 +0000
 
-To use defconfig is one of the method suggested in Kernel developer manual.
+    build-appliance-image: Update to master head revision
+    
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-Thanks and Regards,
-Chungyeh
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
---001a11346e3c0025e30510d6ed86
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div style=3D"font-size:14px">Hi List,</div><div style=3D"=
-font-size:14px"><br></div><div style=3D"font-size:14px">I am using Yocto 1.=
-7.1 to build linux-mainline. I found defconfig will not be used when using=
-=C2=A0<a href=3D"http://linux-yocto-custom.bb/" target=3D"_blank">linux-yoc=
-to-custom.bb</a>=C2=A0(maybe also happens on linux-yocto).<br></div><div st=
-yle=3D"font-size:14px"><br></div><div style=3D"font-size:14px">I think belo=
-w is the reason,</div><div style=3D"font-size:14px"><br></div><div style=3D=
-"font-size:14px">1. kernel_do_configure is run after do_kernel_configme.The=
- last line of do_kernel_configme is echo &quot;CONFIG_LOCALVERSION=3D&quot;=
-\&quot;${LINUX_VERSION_EXTENSION}\&quot; &gt;&gt; ${B}/.config</div><div st=
-yle=3D"font-size:14px"><br></div><div style=3D"font-size:14px">2. Following=
- are the code to use defconfig,</div><div style=3D"font-size:14px"><br></di=
-v><div style=3D"font-size:14px"><div><span style=3D"white-space:pre-wrap">	=
-</span># Copy defconfig to .config if .config does not exist. This allows</=
-div><div><span style=3D"white-space:pre-wrap">	</span># recipes to manage t=
-he .config themselves in do_configure_prepend().</div><div><span style=3D"w=
-hite-space:pre-wrap">	</span>if [ -f &quot;${WORKDIR}/defconfig&quot; ] &am=
-p;&amp; [ ! -f &quot;${B}/.config&quot; ]; then</div><div><span style=3D"wh=
-ite-space:pre-wrap">		</span>cp &quot;${WORKDIR}/defconfig&quot; &quot;${B}=
-/.config&quot;</div></div><div style=3D"font-size:14px"><br></div><div styl=
-e=3D"font-size:14px">The condition &#39;[ ! -f &quot;${B}/.config&quot;]&#3=
-9; will not be true, so recepe-kernel/linux/linux-yocto-custom/defconfig wi=
-ll nerver be used.</div><div style=3D"font-size:14px"><br></div><div style=
-=3D"font-size:14px"><br></div><div style=3D"font-size:14px">To use defconfi=
-g is one of the method suggested in Kernel developer manual.</div><div styl=
-e=3D"font-size:14px"><br></div><div style=3D"font-size:14px">Thanks and Reg=
-ards,</div><div style=3D"font-size:14px">Chungyeh</div></div>
-
---001a11346e3c0025e30510d6ed86--
