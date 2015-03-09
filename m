@@ -1,41 +1,46 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 91382E00750; Mon,  9 Mar 2015 10:22:47 -0700 (PDT)
+	id 9B6A4E00750; Mon,  9 Mar 2015 10:35:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.175 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2ECFAE003FA
-	for <yocto@yoctoproject.org>; Mon,  9 Mar 2015 10:22:41 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 7A16A27E1B2;
-	Mon,  9 Mar 2015 17:22:40 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 95yh9mWlbJmi; Mon,  9 Mar 2015 17:22:36 +0000 (UTC)
-Received: from [192.168.1.39] (AMarseille-651-1-77-115.w109-208.abo.wanadoo.fr
-	[109.208.172.115])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id A3C7F27E19A;
-	Mon,  9 Mar 2015 17:22:34 +0000 (UTC)
-Message-ID: <54FDD677.5040606@dynamicdevices.co.uk>
-Date: Mon, 09 Mar 2015 18:20:55 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+Received: from mail-qc0-f175.google.com (mail-qc0-f175.google.com
+	[209.85.216.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AC83E003FA
+	for <yocto@yoctoproject.org>; Mon,  9 Mar 2015 10:35:13 -0700 (PDT)
+Received: by qcwb13 with SMTP id b13so30907620qcw.12
+	for <yocto@yoctoproject.org>; Mon, 09 Mar 2015 10:35:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=fe0DLouVi7kLOY4OMNfIhs+sZyDlTq9aPXRVFMBzMOc=;
+	b=j8qfGCNIBKPYi6iak5HepOrRj7C0bqj3N9Xk9d74uBfkQzkSjWlE0QillYMBnlCz1v
+	gzqAiCfjte9YWdoFSMNlvSwpiKFbp3x2ZsAcwLyTga7/6Vq2f7K78b8B4rUagGlcMZTc
+	2yYswpB8aOcB0pOP/79rGG+k+4hEADCLwEFFkNO7yqGgZB49U7MRHnZ+euC1O0CeO4o/
+	IWbOzWXoPbO9MTg0r1JU7e4pYb6yz6P5zZrF+hZXHr6cglEVYIYYjiEKt5iFGq/egcMH
+	d29fgNOwhETE55BoR8ST2Q1J5Jw6EQH4L/08zhG6ferobd1klqD4eRuokn+IdHEjp2M6
+	efOg==
+X-Gm-Message-State: ALoCoQlmPj9EQ5wxAfprfDoAFjjD07Y5PZ+TrFE8WBwNkceFtFyfIU6vZZeDk/92CJlQZxffykiu
+X-Received: by 10.55.26.222 with SMTP id l91mr31760179qkh.32.1425922512880;
+	Mon, 09 Mar 2015 10:35:12 -0700 (PDT)
 MIME-Version: 1.0
-To: Kfrell <snoopp.5.20@hotmail.fr>, yocto@yoctoproject.org
-References: <loom.20150309T171019-54@post.gmane.org>
+Received: by 10.140.102.203 with HTTP; Mon, 9 Mar 2015 10:34:52 -0700 (PDT)
 In-Reply-To: <loom.20150309T171019-54@post.gmane.org>
+References: <loom.20150309T171019-54@post.gmane.org>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 9 Mar 2015 17:34:52 +0000
+Message-ID: <CAJTo0LZSqxRZ7uyQ42rtuuqfrzjn2wr8+5Fvb2paxa5WhA9fvg@mail.gmail.com>
+To: Kfrell <snoopp.5.20@hotmail.fr>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Adding new library to yocto project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -48,130 +53,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Mar 2015 17:22:47 -0000
-Content-Type: multipart/alternative;
-	boundary="------------060409060801020900030609"
+X-List-Received-Date: Mon, 09 Mar 2015 17:35:18 -0000
+Content-Type: multipart/alternative; boundary=001a114662a4db9d7e0510de74c9
 
---------------060409060801020900030609
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+--001a114662a4db9d7e0510de74c9
+Content-Type: text/plain; charset=UTF-8
 
+On 9 March 2015 at 16:50, Kfrell <snoopp.5.20@hotmail.fr> wrote:
 
-
-On 09/03/2015 17:50, Kfrell wrote:
-> I am using Yocto and I just would like to integrate a new library 
-> in my project.
->
-> I create a new recipe named "libxerces" which contains a file
-> "libxerces-3.1.1.bb". The bb file is quite simple and it is based 
-> on autotools : 
->
-> DESCRIPTION = "Xerces-c is a validating xml parser written in C++"
-> HOMEPAGE = "http://xerces.apache.org/xerces-c/"
-> PRIORITY = "optional"
-> LICENSE = "MIT"
-> LIC_FILES_CHKSUM = "file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
->
-> PR = "r1"
->
-> SRC_URI =
-> "http://mirror.serversupportforum.de/apache/xerces/c/3/sources/xerces-c-${PV}.tar.gz"
->
-> SRC_URI[md5sum] = "6a8ec45d83c8cfb1584c5a5345cb51ae"
-> SRC_URI[sha256sum] =
-> "a42785f71e0b91d5fd273831c87410ce60a73ccfdd207de1b805d26d44968736"
->
-> s="${WORKDIR}/xerces-c-${PV}"
->
-> inherit autotools pkgconfig
->
-> BBCLASSEXTEND += "native"
->
 > I added "libxerces" to my bb image by using IMAGE_INSTALL += " libxerces".
 > Then, I try to build my image thru bitbake my-image-test and eveything is
 > done correctly but libxerces returns some errors :
 >
-> I just would like to create the .ipk package named libxerces in 
-> which .so files should be available.
->
 
-This might possibly help. The example I created shows how to build a
-package including an autotools generated library
+Packages containing libraries get renamed (by default) depending on the
+library name, so just because you called the recipe "libxerces" doesn't
+mean the resulting package is called that.
 
-https://wiki.yoctoproject.org/wiki/Building_your_own_recipes_from_first_principles
+Have a look in tmp/work/[machine]/libxerces/deploy-* for the packages that
+were actually generated, it's probably something like libxerces-c.
 
-Regards, Alex
+Ross
 
+--001a114662a4db9d7e0510de74c9
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---------------060409060801020900030609
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 9 March 2015 at 16:50, Kfrell <span dir=3D"ltr">&lt;<a href=3D"mailto:sn=
+oopp.5.20@hotmail.fr" target=3D"_blank">snoopp.5.20@hotmail.fr</a>&gt;</spa=
+n> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;b=
+order-left:1px #ccc solid;padding-left:1ex"><div id=3D":5u0" class=3D"a3s" =
+style=3D"overflow:hidden">I added &quot;libxerces&quot; to my bb image by u=
+sing IMAGE_INSTALL +=3D &quot; libxerces&quot;.<br>
+Then, I try to build my image thru bitbake my-image-test and eveything is<b=
+r>
+done correctly but libxerces returns some errors :</div></blockquote></div>=
+<br>Packages containing libraries get renamed (by default) depending on the=
+ library name, so just because you called the recipe &quot;libxerces&quot; =
+doesn&#39;t mean the resulting package is called that.</div><div class=3D"g=
+mail_extra"><br></div><div class=3D"gmail_extra">Have a look in tmp/work/[m=
+achine]/libxerces/deploy-* for the packages that were actually generated, i=
+t&#39;s probably something like libxerces-c.</div><div class=3D"gmail_extra=
+"><br></div><div class=3D"gmail_extra">Ross</div></div>
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-    <link href="chrome://translator/skin/floatingPanel.css"
-      type="text/css" rel="stylesheet">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 09/03/2015 17:50, Kfrell wrote:<br>
-    </div>
-    <blockquote cite="mid:loom.20150309T171019-54@post.gmane.org"
-      type="cite">
-      <pre wrap="">I am using Yocto and I just would like to integrate a new library 
-in my project.
-
-I create a new recipe named "libxerces" which contains a file
-"libxerces-3.1.1.bb". The bb file is quite simple and it is based 
-on autotools : 
-
-DESCRIPTION = "Xerces-c is a validating xml parser written in C++"
-HOMEPAGE = <a class="moz-txt-link-rfc2396E" href="http://xerces.apache.org/xerces-c/">"http://xerces.apache.org/xerces-c/"</a>
-PRIORITY = "optional"
-LICENSE = "MIT"
-LIC_FILES_CHKSUM = <a class="moz-txt-link-rfc2396E" href="file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57">"file://LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"</a>
-
-PR = "r1"
-
-SRC_URI =
-<a class="moz-txt-link-rfc2396E" href="http://mirror.serversupportforum.de/apache/xerces/c/3/sources/xerces-c-${PV}.tar.gz">"http://mirror.serversupportforum.de/apache/xerces/c/3/sources/xerces-c-${PV}.tar.gz"</a>
-
-SRC_URI[md5sum] = "6a8ec45d83c8cfb1584c5a5345cb51ae"
-SRC_URI[sha256sum] =
-"a42785f71e0b91d5fd273831c87410ce60a73ccfdd207de1b805d26d44968736"
-
-s="${WORKDIR}/xerces-c-${PV}"
-
-inherit autotools pkgconfig
-
-BBCLASSEXTEND += "native"
-
-I added "libxerces" to my bb image by using IMAGE_INSTALL += " libxerces".
-Then, I try to build my image thru bitbake my-image-test and eveything is
-done correctly but libxerces returns some errors :
-
-I just would like to create the .ipk package named libxerces in 
-which .so files should be available.
-
-</pre>
-    </blockquote>
-    <br>
-    This might possibly help. The example I created shows how to build a
-    package including an autotools generated library<br>
-    <br>
-<a class="moz-txt-link-freetext" href="https://wiki.yoctoproject.org/wiki/Building_your_own_recipes_from_first_principles">https://wiki.yoctoproject.org/wiki/Building_your_own_recipes_from_first_principles</a><br>
-    <br>
-    Regards, Alex<br>
-    <br>
-    <div style="bottom: auto; left: 287px; right: auto; top: 691px;"
-      class="translator-theme-default" id="translator-floating-panel">
-      <div title="Click to translate"
-        id="translator-floating-panel-button"></div>
-    </div>
-  </body>
-</html>
-
---------------060409060801020900030609--
+--001a114662a4db9d7e0510de74c9--
