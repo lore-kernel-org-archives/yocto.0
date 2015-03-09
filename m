@@ -1,52 +1,53 @@
-Return-Path: <xerofoify@gmail.com>
+Return-Path: <alejandro.delcastillo@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0DECBE00777; Tue, 10 Mar 2015 07:55:29 -0700 (PDT)
+	id 5245AE006E9; Mon,  9 Mar 2015 09:15:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (xerofoify[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [130.164.80.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.50 listed in list.dnswl.org]
-Received: from mail-la0-f50.google.com (mail-la0-f50.google.com
-	[209.85.215.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8CA8E00754
-	for <yocto@yoctoproject.org>; Tue, 10 Mar 2015 07:55:23 -0700 (PDT)
-Received: by lams18 with SMTP id s18so2310289lam.2
-	for <yocto@yoctoproject.org>; Tue, 10 Mar 2015 07:55:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=IC5xgNIxvyHatC9txtsKwCx6E05Nan3vnoUfn3M01AY=;
-	b=d5nsPiOL+FTGFyOiIQxVLnYHaRihGfKCdF8Rdee3y23qqq6yh9smBzpQhHM1nLvo4V
-	Rs3+EdlRKkpWstHdSU2dY9jHuYZB+D2jDn3spiIuVj+zVW8q/PS3TVsHi3PdQ6gDNG4w
-	fu272qG3rD3G0KiTNNdxKltAcrT62j9bxHgxDzqceVQVIpnDRH7qU0th5vjvuOFkkH2t
-	+S4j6JA+xhCUdhZ6HjVXMD3WDB0v+OjxqXPlR/NPuGP4JhH9gbwKmLyhS+4wHqC3u7w2
-	WNmRoVwjI7FwWcE4W1qp1fBdMhuJyycYNApWNzEw/AZvjIUpwJYUuq1s9AyGlYrYkm1Q
-	dZqQ==
+X-Greylist: delayed 1089 seconds by postgrey-1.32 at yocto-www;
+	Mon, 09 Mar 2015 09:14:59 PDT
+Received: from ni.com (skprod3.natinst.com [130.164.80.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CF8EE003A8
+	for <yocto@yoctoproject.org>; Mon,  9 Mar 2015 09:14:59 -0700 (PDT)
+Received: from us-aus-mgwout1.amer.corp.natinst.com (nb-chan1-1338.natinst.com
+	[130.164.19.134])
+	by us-aus-skprod3.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
+	t29Fula9010017; Mon, 9 Mar 2015 10:56:47 -0500
+Received: from us-aus-mail3.amer.corp.natinst.com ([130.164.14.198])
+	by us-aus-mgwout1.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6)
+	with ESMTP id 2015030910564727-178148 ;
+	Mon, 9 Mar 2015 10:56:47 -0500 
+In-Reply-To: <20150301151454.GA11398@bang.betafive.co.uk>
+References: <20150301151454.GA11398@bang.betafive.co.uk>
+To: opkg-devel@googlegroups.com,
+	Yocto discussion list <yocto@yoctoproject.org>,
+	OE Core <openembedded-core@lists.openembedded.org>
 MIME-Version: 1.0
-X-Received: by 10.152.170.199 with SMTP id ao7mr30201768lac.27.1425999320901; 
-	Tue, 10 Mar 2015 07:55:20 -0700 (PDT)
-Received: by 10.152.19.35 with HTTP; Tue, 10 Mar 2015 07:55:20 -0700 (PDT)
-In-Reply-To: <COL401-EAS4221E4C74DEDE692A6AB7A1871B0@phx.gbl>
-References: <COL401-EAS4221E4C74DEDE692A6AB7A1871B0@phx.gbl>
-Date: Tue, 10 Mar 2015 10:55:20 -0400
-Message-ID: <CAPDOMVis-eNkA95npgubrfO-bVBD+eNpKms7B_91LMe4gR32HA@mail.gmail.com>
-From: Nick Krause <xerofoify@gmail.com>
-To: Everhard Ros <everhard.ros@outlook.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Openembedded/yocto bitbake with gcc 4.8.2 crashes at do_compile elfutils
+X-KeepSent: 19E41FB5:FF382729-86257E03:00532957;
+	type=4; flags=0; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3FP3 Septem 15, 2011
+From: Alejandro del Castillo <alejandro.delcastillo@ni.com>
+Message-ID: <OF19E41FB5.FF382729-ON86257E03.00532957-86257E03.00579841@ni.com>
+Date: Mon, 9 Mar 2015 10:56:47 -0500
+X-MIMETrack: Serialize by Router on US-AUS-MAIL3/AUS/M/NIC(Release
+	8.5.3FP6|November 21, 2013) at 03/09/2015 10:56:47 AM,
+	Serialize complete at 03/09/2015 10:56:47 AM,
+	Itemize by SMTP Server on US-AUS-MGWOut1/AUS/H/NIC(Release
+	8.5.3FP6|November 21, 2013) at 03/09/2015 10:56:47 AM,
+	Serialize by Router on US-AUS-MGWOut1/AUS/H/NIC(Release
+	8.5.3FP6|November 21, 2013) at 03/09/2015 10:56:47 AM
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
+	definitions=2015-03-09_03:, , signatures=0
+X-Mailman-Approved-At: Tue, 10 Mar 2015 08:04:10 -0700
+Subject: Re: [opkg-devel] Stepping back from opkg maintenance
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,62 +59,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Mar 2015 14:55:29 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 09 Mar 2015 16:15:01 -0000
+Content-Type: text/plain; charset="US-ASCII"
 
-On Mon, Mar 9, 2015 at 4:35 AM, Everhard Ros <everhard.ros@outlook.com> wrote:
-> Hello guys,
->
-> I'm trying to run bitbake to get a linux image on an altera Cyclone 5
-> devboard(SoCrates). The end goal is to get a linux image that has the OpenCV
-> library installed. I'm using the altera version of the yocto project.
->
-> Currently everything is running fairly well on ubuntu 12.04.
-> When I try to run this bitbake process on CentOS 7, I get the following
-> error:
->
-> Error: argument to 'sizeof' in 'snprintf' call is the same expression as the
-> destination; did you mean to provide an explicit length?
-> [-Werror=sizeof-pointer-memaccess]
->
-> cc1: all warnings being treated as errors
->
-> After some googling here and there, I kind of found the 'bug'.(new gcc has
-> this new flag that older versions didn't have which causes a warning and an
-> error with -wall).
->
-> So now I'm looking for the place where flags are passed to the gcc compiler:
-> I tried doing this in the bitbake.conf file in the meta -layer;
-> TOOLCHAIN_OPTIONS, BUILD_CFLAGS and TARGET_CFLAGS are now empty.
-> In the manual they mention these flags are being sent to the compiler.
->
-> I also checked out the elfutils and gcc folders in yocto/meta/devtools/, but
-> couldn't find anything relevant there (I used find/grep and the GUI,
-> searching for the flags mentioned)
->
->
-> Changing the flags in the bitbake.conf file didn't help; do you guys happen
-> to have any idea where the compiler flags are being set when bitbake
-> executes the do_compile task for elfutils?
->
-> Thank you in advance.
->
-> cheers!
->
->
->
-> P.S: This is a cross-post from this thread I made at linuxquestions.org
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-Did you look for the bb recipe file for elfutils as I am pretty
-certain that you can put your gcc compiler flags to work around this
-issue inside
-that particular bitbake recipe file.
-Nick
+HI Paul,
+
+Thanks for leading the project during the past 18 months. You can tell 
+from the features/bug fixes that opkg improved a lot. Regarding the future 
+of opkg, I would like to put my name forward to step in and help maintain 
+the project. I am really interested in the continued success of it, and 
+will like to take a more active role on it. My employer agreed to let me 
+spend time maintaining it, which should give me bandwidth to continue the 
+work you have been doing. 
+
+I have been following the list for some time now, and have played with the 
+code on my own. However, I do need to ramp my knowledge up, which I intend 
+to do (probably start tackling some of the defects, and testing of 0.3).
+
+Thanks again for all your hard work,
+
+-Alejandro
+
+
+
+
+From:   Paul Barker <paul@paulbarker.me.uk>
+To:     opkg-devel <opkg-devel@googlegroups.com>, 
+Cc:     Yocto discussion list <yocto@yoctoproject.org>, OE Core 
+<openembedded-core@lists.openembedded.org>
+Date:   03/01/2015 09:14 AM
+Subject:        [opkg-devel] Stepping back from opkg maintenance
+Sent by:        opkg-devel@googlegroups.com
+
+
+
+Hi all,
+
+I had a change of circumstances at the beginning of January. Previously I 
+was a
+full-time PhD student and maintaining opkg was my side project. Now I'm a
+full-time software engineer and finishing up my PhD thesis is my side 
+project.
+I've been trying to find time to fit opkg in there as well but it's just 
+not
+happening. I had at least hoped that I could get opkg to a v0.3.0 release 
+before
+I had to step back from opkg development but as I haven't really made any
+commits to opkg in 2 months now I don't think it's reasonable to expect 
+that
+I'll get this done any time soon.
+
+I'll try to keep an eye on the opkg mailing list and contribute with 
+answers and
+suggestions when I can but I think someone else will have to take over as 
+the
+maintainer of opkg. I'll do whatever I can to ensure as smooth transition 
+if
+someone else wants to take up the job of moving opkg forward.
+
+I'd like to thank everyone that's contributed to opkg, whether by sending
+patches or just by reporting bugs or making suggestions. I've only been
+maintainer for around 18 months but I'd like to think we've made some good
+progress in that time and I hope that that can continue forwards under 
+someone
+else's leadership.
+
+Once I've submitted my PhD thesis I'll hopefully find some time to get 
+back
+involved with open source projects, whether that's further work on opkg or
+getting involved in a different project.
+
+Many thanks again,
+
+-- 
+Paul Barker
+
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
+
+-- 
+You received this message because you are subscribed to the Google Groups 
+"opkg-devel" group.
+To unsubscribe from this group and stop receiving emails from it, send an 
+email to opkg-devel+unsubscribe@googlegroups.com.
+For more options, visit https://groups.google.com/d/optout.
+[attachment "signature.asc" deleted by Alejandro del Castillo/AUS/NIC] 
+
 
