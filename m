@@ -1,37 +1,44 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <parthiban@ulivesystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AD801E00753; Mon,  9 Mar 2015 06:04:12 -0700 (PDT)
+	id 7689EE005B6; Mon,  9 Mar 2015 06:40:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.218.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 824E3E005B6
-	for <yocto@yoctoproject.org>; Mon,  9 Mar 2015 06:02:57 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id t29D2tvK027952
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 9 Mar 2015 06:02:55 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 9 Mar 2015 06:02:54 -0700
-Message-ID: <54FD99D7.4090708@windriver.com>
-Date: Mon, 9 Mar 2015 09:02:15 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-oi0-f52.google.com (mail-oi0-f52.google.com
+	[209.85.218.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21207E002F9
+	for <yocto@yoctoproject.org>; Mon,  9 Mar 2015 06:40:54 -0700 (PDT)
+Received: by oifu20 with SMTP id u20so29206006oif.12
+	for <yocto@yoctoproject.org>; Mon, 09 Mar 2015 06:40:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=FpGIlculN8s8dgYI+GazZl2VyWZB3npnMasfRnUV0lA=;
+	b=jHi+JqUOO7ouweotGl4Qj61gF9LMDnKCivTyMVdD4NhjjUBktoT4dLitoGoSagEvIX
+	kIsiFtBjHLvnAhJXzhXKMSvFPn7OHI3AP2TvBvWo1IeO0Y+maGZgPqN5U6dacfIV03mP
+	UA5dXzyJ+9ubDro4kU75hmudId66LEzmfkS6Vjc3CVkARSm4L01lkiVgWNhSxgYkwYYn
+	aN3IaV3T1q1v7HTCug3JOocDANftswjFj7kXt5OaBwaEXQYXdyxw4PFbDK0aIXh0aTw+
+	rsgiZjw5q+3J9TsIwv23yRqgJoTK6l1G4oCQ6cQlEQJZgXh8qebia06lHIM+WISNmUP7
+	Xj4A==
+X-Gm-Message-State: ALoCoQktBOu76gXjjVShWQSSDgigTBwsNWxdpyYixjh3t/6dL9KloWNJ31EMTF1YfCO9Hs10ArxC
 MIME-Version: 1.0
-To: Chung-Yeh Wang <chungyehwang@gmail.com>, <yocto@yoctoproject.org>
-References: <CANBg2hKqzN6kR4=7rpA3O+Ar=Y0rEOMWYgEYXsu78hfq1ZwbdQ@mail.gmail.com>
-In-Reply-To: <CANBg2hKqzN6kR4=7rpA3O+Ar=Y0rEOMWYgEYXsu78hfq1ZwbdQ@mail.gmail.com>
-Subject: Re: Question: Yocto 1.7.1 kernel config defconfig will not be used?
+X-Received: by 10.60.56.19 with SMTP id w19mr21675897oep.20.1425908453601;
+	Mon, 09 Mar 2015 06:40:53 -0700 (PDT)
+Received: by 10.60.102.106 with HTTP; Mon, 9 Mar 2015 06:40:53 -0700 (PDT)
+Date: Mon, 9 Mar 2015 19:10:53 +0530
+Message-ID: <CABNKipLemhk9hbPFm8JiGH-uoZbHbQQK1bqxeKuJ2HOYCVM4NA@mail.gmail.com>
+From: Parthiban Kandasamy <parthiban@ulivesystems.com>
+To: yocto@yoctoproject.org
+Subject: avoid kernel building
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,49 +50,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Mar 2015 13:04:12 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 09 Mar 2015 13:40:58 -0000
+Content-Type: multipart/alternative; boundary=001a11c20c9edc06cb0510db2e57
 
-On 15-03-09 04:36 AM, Chung-Yeh Wang wrote:
-> Hi List,
->
-> I am using Yocto 1.7.1 to build linux-mainline. I found defconfig will
-> not be used when using linux-yocto-custom.bb
-> <http://linux-yocto-custom.bb/> (maybe also happens on linux-yocto).
->
-> I think below is the reason,
->
-> 1. kernel_do_configure is run after do_kernel_configme.The last line of
-> do_kernel_configme is echo
-> "CONFIG_LOCALVERSION="\"${LINUX_VERSION_EXTENSION}\" >> ${B}/.config
->
-> 2. Following are the code to use defconfig,
+--001a11c20c9edc06cb0510db2e57
+Content-Type: text/plain; charset=UTF-8
 
-The linux-yocto kernel_configme task takes the defconfig into account,
-and uses it along with kernel configuration fragment processing.
+i am using beagle board-xm, for this board i don want to build kernel
+package. so how to exclude linux-yocto from build process. i tried
+following option
 
-The skipping of the blind defconfig copy is completely intentional.
+PACKAGE_EXCLUDE = "linux-yocto" -> it was not effect,
+BBMASK .= "|.*linux-yocto" -> it was not effect,
 
-Cheers,
+those statement not work, so what will be the correct option.
 
-Bruce
+-- 
+thanks and regards,
+parthiban
+      +919790329795
 
->
-> # Copy defconfig to .config if .config does not exist. This allows
-> # recipes to manage the .config themselves in do_configure_prepend().
-> if [ -f "${WORKDIR}/defconfig" ] && [ ! -f "${B}/.config" ]; then
-> cp "${WORKDIR}/defconfig" "${B}/.config"
->
-> The condition '[ ! -f "${B}/.config"]' will not be true, so
-> recepe-kernel/linux/linux-yocto-custom/defconfig will nerver be used.
->
->
-> To use defconfig is one of the method suggested in Kernel developer manual.
->
-> Thanks and Regards,
-> Chungyeh
->
->
+--001a11c20c9edc06cb0510db2e57
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><div><div>i am using beagle board-xm, for this board =
+i don want to build kernel package. so how to exclude linux-yocto from buil=
+d process. i tried following option<br><br></div>PACKAGE_EXCLUDE =3D &quot;=
+linux-yocto&quot; -&gt; it was not effect,<br></div>BBMASK .=3D &quot;|.*li=
+nux-yocto&quot; -&gt; it was not effect,<br><br></div>those statement not w=
+ork, so what will be the correct option.<br><div><div><div><div><br>-- <br>=
+<div class=3D"gmail_signature"><div style=3D"text-align:right">thanks and r=
+egards,<br>parthiban =C2=A0 =C2=A0 =C2=A0 <br><div style=3D"text-align:righ=
+t">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +919790329795=C2=A0=C2=A0 <br></div></div=
+></div>
+</div></div></div></div></div>
 
+--001a11c20c9edc06cb0510db2e57--
