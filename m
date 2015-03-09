@@ -1,59 +1,54 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <schnitzeltony@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C4FF9E00754; Mon,  9 Mar 2015 13:47:21 -0700 (PDT)
+	id B7B68E00754; Mon,  9 Mar 2015 13:50:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (schnitzeltony[at]googlemail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.48 listed in list.dnswl.org]
+	*      [209.85.220.46 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
-	[209.85.220.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFA26E006E9
-	for <yocto@yoctoproject.org>; Mon,  9 Mar 2015 13:47:20 -0700 (PDT)
-Received: by pabrd3 with SMTP id rd3so41831866pab.6
-	for <yocto@yoctoproject.org>; Mon, 09 Mar 2015 13:47:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=39zdfwbfgdWosidxn2utTta2gp1tioD31AQU1ZK0o5Q=;
-	b=vlRZB8vt4J7iQ6SL2qz0PjCtpmJdn4n8pwutIl6WFPg1Mho5HeZvxwQrWclUrySGke
-	5dZSlt9qGDC1RdAhjEwsi7fr752KXhHYSPMnaC6u6HQTRCGZAgQLVY3/QsMYJ7/yucut
-	CxG3rAAWKCsaYlIrD52UKSmdkUHdWo8ppu4Gp/p2y9NmNtzXXkyBLmjiMRUaquzdSogz
-	eiQRa7E7c03ClCEAsqUYD+vXfkYMPfo9nX3iTviUoB9JJ4Urr+ShghEGCqwXSh13fToS
-	wXH4JJduPr74u/OK5KVXRT0EBsK/tDzJ0Yl30PbzzAVkSEz9sFT0H0x3P3eR12rFgsgI
-	gUEQ==
-X-Received: by 10.66.219.233 with SMTP id pr9mr58186725pac.8.1425934039423;
-	Mon, 09 Mar 2015 13:47:19 -0700 (PDT)
-Received: from ?IPv6:2601:9:3580:84c:489f:26b4:52a3:63c4?
-	([2601:9:3580:84c:489f:26b4:52a3:63c4])
-	by mx.google.com with ESMTPSA id
-	bl2sm20754808pad.15.2015.03.09.13.47.18
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 09 Mar 2015 13:47:18 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2070.6\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <30C2D590D16A5C46ADFE652191037798538E45DA@AZ-US1EXMB03.global.avaya.com>
-Date: Mon, 9 Mar 2015 13:47:17 -0700
-Message-Id: <96459791-02BB-47CF-B2EA-6F43FDA359EB@gmail.com>
-References: <30C2D590D16A5C46ADFE652191037798538E45DA@AZ-US1EXMB03.global.avaya.com>
-To: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-X-Mailer: Apple Mail (2.2070.6)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto Daisy 1.6.1 on CentOS 6.5
+Received: from mail-pa0-f46.google.com (mail-pa0-f46.google.com
+	[209.85.220.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E963E006E9
+	for <yocto@yoctoproject.org>; Mon,  9 Mar 2015 13:50:02 -0700 (PDT)
+Received: by pabrd3 with SMTP id rd3so51476563pab.5
+	for <yocto@yoctoproject.org>; Mon, 09 Mar 2015 13:50:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=9MkGw875vHqTbSnu+QDLXFy48iHTeNiDH/YPM6vwS24=;
+	b=vnsasyUvB1meN706Up7Sr9J/HuZf7ha+X3BfXhQKaV6n5oUXINYlnL9Mgd8UHztK5W
+	xzhOUDeoCP21tdtLS95gAMSStlnFrJ8ZXFoUv5LwG0+c+6tgsTwVqZG1lOWYvgz90oe4
+	w34JyCVj4+1dXsF2/KkcVGsa7vowc0dJJA/OQMUghxrkR4XKvWCxe5XwSjs4KKVOsG+I
+	xhXCtJ1Sgz3tB3FlQ4b4rI1gUQK+JznvqS/sCjzIOOaefzFpWwFY9Um3la0C9hgIJloA
+	i4qL3imEXx8Brw6s8Cyd8MNmPcVutmWxNltw/lfsPd0lRHDac5SMOfcOcOAUIyHM1VSi
+	05aQ==
+MIME-Version: 1.0
+X-Received: by 10.66.119.238 with SMTP id kx14mr57883466pab.2.1425934202007;
+	Mon, 09 Mar 2015 13:50:02 -0700 (PDT)
+Received: by 10.70.38.9 with HTTP; Mon, 9 Mar 2015 13:50:01 -0700 (PDT)
+In-Reply-To: <20150301001450.GC22308@gmail.com>
+References: <cover.1424450237.git.petter@technux.se>
+	<20150301001450.GC22308@gmail.com>
+Date: Mon, 9 Mar 2015 21:50:01 +0100
+Message-ID: <CALbNGRSMJXxRsUM-Nbp1YJh1oqEE9V4-Lxib_9y6Ch77TtG=Cw@mail.gmail.com>
+From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 0/1] layer.conf: set high layer priority
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,158 +60,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Mar 2015 20:47:21 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_569A6348-6EE1-49C2-B1F6-55C7B1C7270F"
-
---Apple-Mail=_569A6348-6EE1-49C2-B1F6-55C7B1C7270F
+X-List-Received-Date: Mon, 09 Mar 2015 20:50:05 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
 
+On Sun, Mar 1, 2015 at 1:14 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> Hello,
+>
+> On Fri, Feb 20, 2015 at 05:40:21PM +0100, Petter Mab=C3=A4cker wrote:
+>> The following changes since commit d8bf60ce6c4a6c6371527c6df2e3243d2771c=
+0cc:
+>>
+>>   README: Github repo changed (2015-02-14 02:00:57 +0100)
+>>
+>> are available in the git repository at:
+>>
+>>   git://git.yoctoproject.org/poky-contrib petmab/rpi_layer_prio
+>>   http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=3Dpetmab/rpi_=
+layer_prio
+>>
+>> Petter Mab=C3=A4cker (1):
+>>   layer.conf: set high layer priority
+>>
+>>  conf/layer.conf | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> Patch merged to master. Thanks Petter.
+>
+> --
+> Andrei Gherzan
+> --
 
-> On Mar 9, 2015, at 1:36 PM, Vuille, Martin (Martin) =
-<vmartin@avaya.com> wrote:
->=20
-> The Yocto 1.6.1 Project Reference Manual states that it is supported =
-and tested
-> against CentOS release 6.5, but later states that Python 2.7.3 is =
-required, CentOS 6.5
-> seems to have an older version of Python (2.6.6).
-> =20
-> The build does not, in fact, work and complains that the version of =
-Python is too old.
-> =20
-> Is the information about supported/tested distros out of date? Is =
-there an expectation
-> that Python must be manually updated to the required version?
+This one breaks xserver-xf86-config for me
 
+| Function failed: Fetcher failure for URL:
+'file://xorg.conf.d/10-evdev.conf'. Unable to fetch URL from any
+source.
 
-https://wiki.yoctoproject.org/wiki/Poky/GettingStarted/Dependencies =
-<https://wiki.yoctoproject.org/wiki/Poky/GettingStarted/Dependencies>
+Andreas
 
-> =20
-> MV
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
-> https://lists.yoctoproject.org/listinfo/yocto =
-<https://lists.yoctoproject.org/listinfo/yocto>
-
---Apple-Mail=_569A6348-6EE1-49C2-B1F6-55C7B1C7270F
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Mar 9, 2015, at 1:36 PM, Vuille, Martin (Martin) &lt;<a =
-href=3D"mailto:vmartin@avaya.com" class=3D"">vmartin@avaya.com</a>&gt; =
-wrote:</div><br class=3D"Apple-interchange-newline"><div class=3D""><div =
-class=3D"WordSection1" style=3D"page: WordSection1; font-family: =
-LucidaGrande; font-size: 12px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;"><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">The Yocto =
-1.6.1 Project Reference Manual states that it is supported and =
-tested<o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in =
-0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">against CentOS release 6.5, but later states that Python =
-2.7.3 is required, CentOS 6.5<o:p class=3D""></o:p></div><div =
-style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D"">seems to have an older version of =
-Python (2.6.6).<o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in =
-0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D""><o:p class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0in =
-0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">The build does not, in fact, work and complains that the =
-version of Python is too old.<o:p class=3D""></o:p></div><div =
-style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D""><o:p class=3D"">&nbsp;</o:p></div><div =
-style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D"">Is the information about =
-supported/tested distros out of date? Is there an expectation<o:p =
-class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">that =
-Python must be manually updated to the required =
-version?</div></div></div></blockquote><div><br class=3D""></div><div><br =
-class=3D""></div><a =
-href=3D"https://wiki.yoctoproject.org/wiki/Poky/GettingStarted/Dependencie=
-s" =
-class=3D"">https://wiki.yoctoproject.org/wiki/Poky/GettingStarted/Dependen=
-cies</a></div><div><br class=3D""><blockquote type=3D"cite" =
-class=3D""><div class=3D""><div class=3D"WordSection1" style=3D"page: =
-WordSection1; font-family: LucidaGrande; font-size: 12px; font-style: =
-normal; font-variant: normal; font-weight: normal; letter-spacing: =
-normal; line-height: normal; orphans: auto; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; widows: =
-auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><div =
-style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D""><o:p class=3D""></o:p></div><div =
-style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D""><o:p class=3D"">&nbsp;</o:p></div><div =
-style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D"">MV<o:p class=3D""></o:p></div></div><span=
- style=3D"font-family: LucidaGrande; font-size: 12px; font-style: =
-normal; font-variant: normal; font-weight: normal; letter-spacing: =
-normal; line-height: normal; orphans: auto; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; widows: =
-auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: none; =
-display: inline !important;" class=3D"">--<span =
-class=3D"Apple-converted-space">&nbsp;</span></span><br =
-style=3D"font-family: LucidaGrande; font-size: 12px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px;" class=3D""><span =
-style=3D"font-family: LucidaGrande; font-size: 12px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px; float: none; display: inline =
-!important;" =
-class=3D"">_______________________________________________</span><br =
-style=3D"font-family: LucidaGrande; font-size: 12px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px;" class=3D""><span =
-style=3D"font-family: LucidaGrande; font-size: 12px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px; float: none; display: inline =
-!important;" class=3D"">yocto mailing list</span><br style=3D"font-family:=
- LucidaGrande; font-size: 12px; font-style: normal; font-variant: =
-normal; font-weight: normal; letter-spacing: normal; line-height: =
-normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" style=3D"color: purple; =
-text-decoration: underline; font-family: LucidaGrande; font-size: 12px; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
-class=3D"">yocto@yoctoproject.org</a><br style=3D"font-family: =
-LucidaGrande; font-size: 12px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"https://lists.yoctoproject.org/listinfo/yocto" style=3D"color: =
-purple; text-decoration: underline; font-family: LucidaGrande; =
-font-size: 12px; font-style: normal; font-variant: normal; font-weight: =
-normal; letter-spacing: normal; line-height: normal; orphans: auto; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
-0px;" =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
-uote></div><br class=3D""></body></html>=
-
---Apple-Mail=_569A6348-6EE1-49C2-B1F6-55C7B1C7270F--
