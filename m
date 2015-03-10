@@ -1,53 +1,50 @@
-Return-Path: <alejandro.delcastillo@ni.com>
+Return-Path: <prashantpurohit025@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5245AE006E9; Mon,  9 Mar 2015 09:15:01 -0700 (PDT)
+	id DE514E0076F; Tue, 10 Mar 2015 06:25:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=unavailable version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [130.164.80.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (prashantpurohit025[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 1089 seconds by postgrey-1.32 at yocto-www;
-	Mon, 09 Mar 2015 09:14:59 PDT
-Received: from ni.com (skprod3.natinst.com [130.164.80.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CF8EE003A8
-	for <yocto@yoctoproject.org>; Mon,  9 Mar 2015 09:14:59 -0700 (PDT)
-Received: from us-aus-mgwout1.amer.corp.natinst.com (nb-chan1-1338.natinst.com
-	[130.164.19.134])
-	by us-aus-skprod3.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
-	t29Fula9010017; Mon, 9 Mar 2015 10:56:47 -0500
-Received: from us-aus-mail3.amer.corp.natinst.com ([130.164.14.198])
-	by us-aus-mgwout1.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6)
-	with ESMTP id 2015030910564727-178148 ;
-	Mon, 9 Mar 2015 10:56:47 -0500 
-In-Reply-To: <20150301151454.GA11398@bang.betafive.co.uk>
-References: <20150301151454.GA11398@bang.betafive.co.uk>
-To: opkg-devel@googlegroups.com,
-	Yocto discussion list <yocto@yoctoproject.org>,
-	OE Core <openembedded-core@lists.openembedded.org>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pd0-f179.google.com (mail-pd0-f179.google.com
+	[209.85.192.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2C16E00750
+	for <yocto@yoctoproject.org>; Tue, 10 Mar 2015 06:24:58 -0700 (PDT)
+Received: by pdjp10 with SMTP id p10so1676485pdj.10
+	for <yocto@yoctoproject.org>; Tue, 10 Mar 2015 06:24:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Ccnz9e1MXfnu3FWZBVdSI9qjfGN4rKImfNliEO2KVh4=;
+	b=WSAfwtZKaFUQx+Y0AudO9HbMxn/fWAM+zCdsxPSo8fBZmbnhD/XOJJc97SJzM+AHoy
+	02zoK61gH7bfFFXB0/7fh7gBdgfHm29klifVS/kZn7I5xIVcey+CUUFIYhtjmpqOTIh9
+	sajsuAnSKFZYuGxZ/qgbFKC4dmxc4zNTB1XjplDB4Jb59/R6oPrSpGaym+/eB9dZ+hRk
+	1VxCXlOsAyCMxrtJ1liHpjEU272a85J15cAjW3wGMGrnnk7ZAs4wRvK7nHXqipw6kDFx
+	I0McsB5YLN71gsZQlGFyne4nHBvRd6la9KBqlWkvZzGHpIKlFMKHxVdMBvoyX3moY79Q
+	OP7w==
 MIME-Version: 1.0
-X-KeepSent: 19E41FB5:FF382729-86257E03:00532957;
-	type=4; flags=0; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.3FP3 Septem 15, 2011
-From: Alejandro del Castillo <alejandro.delcastillo@ni.com>
-Message-ID: <OF19E41FB5.FF382729-ON86257E03.00532957-86257E03.00579841@ni.com>
-Date: Mon, 9 Mar 2015 10:56:47 -0500
-X-MIMETrack: Serialize by Router on US-AUS-MAIL3/AUS/M/NIC(Release
-	8.5.3FP6|November 21, 2013) at 03/09/2015 10:56:47 AM,
-	Serialize complete at 03/09/2015 10:56:47 AM,
-	Itemize by SMTP Server on US-AUS-MGWOut1/AUS/H/NIC(Release
-	8.5.3FP6|November 21, 2013) at 03/09/2015 10:56:47 AM,
-	Serialize by Router on US-AUS-MGWOut1/AUS/H/NIC(Release
-	8.5.3FP6|November 21, 2013) at 03/09/2015 10:56:47 AM
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
-	definitions=2015-03-09_03:, , signatures=0
+X-Received: by 10.67.7.135 with SMTP id dc7mr66983738pad.140.1425993897975;
+	Tue, 10 Mar 2015 06:24:57 -0700 (PDT)
+Received: by 10.70.85.36 with HTTP; Tue, 10 Mar 2015 06:24:57 -0700 (PDT)
+Date: Tue, 10 Mar 2015 18:54:57 +0530
+Message-ID: <CACmjmcxNjHE0t+Qe23_z8y3kAa1gg4sgGd-g2qGLN+_6f9uuAg@mail.gmail.com>
+From: Prashant Purohit <prashantpurohit025@gmail.com>
+To: yocto@yoctoproject.org
 X-Mailman-Approved-At: Tue, 10 Mar 2015 08:04:10 -0700
-Subject: Re: [opkg-devel] Stepping back from opkg maintenance
+Subject: : Kernel panic issue for 'armv7athf-neon' target variant.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,90 +56,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Mar 2015 16:15:01 -0000
-Content-Type: text/plain; charset="US-ASCII"
+X-List-Received-Date: Tue, 10 Mar 2015 13:25:01 -0000
+X-Groupsio-MsgNum: 23941
+Content-Type: multipart/mixed; boundary=001a1133c5a0beecf50510ef1353
 
-HI Paul,
+--001a1133c5a0beecf50510ef1353
+Content-Type: multipart/alternative; boundary=001a1133c5a0beecf00510ef1351
 
-Thanks for leading the project during the past 18 months. You can tell 
-from the features/bug fixes that opkg improved a lot. Regarding the future 
-of opkg, I would like to put my name forward to step in and help maintain 
-the project. I am really interested in the continued success of it, and 
-will like to take a more active role on it. My employer agreed to let me 
-spend time maintaining it, which should give me bandwidth to continue the 
-work you have been doing. 
+--001a1133c5a0beecf00510ef1351
+Content-Type: text/plain; charset=UTF-8
 
-I have been following the list for some time now, and have played with the 
-code on my own. However, I do need to ramp my knowledge up, which I intend 
-to do (probably start tackling some of the defects, and testing of 0.3).
+Hi,
 
-Thanks again for all your hard work,
+I am trying to boot kernel image for 'armv7athf-neon' using QEMU.
 
--Alejandro
+To do the same, I have included the 'tune-arma7.inc'
+(/meta/conf/machine/include/arm/arch-armv7a.inc) and configured DEFAULTTUNE
+variable to 'armv7athf-neon'.
+I am successful in building the kernel image and QEMU for this variant but
+when I try to boot the image using runqemu, I am getting kernel panic error.
 
+The log for the same is attached with this mail.
+Has anyone faced the same issue previously or has any inputs for it?
 
+Regards,
+Prashant
 
+--001a1133c5a0beecf00510ef1351
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-From:   Paul Barker <paul@paulbarker.me.uk>
-To:     opkg-devel <opkg-devel@googlegroups.com>, 
-Cc:     Yocto discussion list <yocto@yoctoproject.org>, OE Core 
-<openembedded-core@lists.openembedded.org>
-Date:   03/01/2015 09:14 AM
-Subject:        [opkg-devel] Stepping back from opkg maintenance
-Sent by:        opkg-devel@googlegroups.com
+<div dir=3D"ltr"><div><div><div><div><div><div><div>Hi,<br><br></div>I am t=
+rying to boot kernel image for &#39;armv7athf-neon&#39; using QEMU.<br><br>=
+</div>To do the same, I have included the &#39;tune-arma7.inc&#39; (/meta/c=
+onf/machine/include/arm/arch-armv7a.inc) and configured DEFAULTTUNE variabl=
+e to &#39;armv7athf-neon&#39;.<br></div>I am successful in building the ker=
+nel image and QEMU for this variant but when I try to boot the image using =
+runqemu, I am getting kernel panic error.<br><br></div>The log for the same=
+ is attached with this mail.<br></div><div>Has anyone faced the same issue =
+previously or has any inputs for it?<br></div><br></div>Regards,<br></div>P=
+rashant<br></div>
 
+--001a1133c5a0beecf00510ef1351--
 
+--001a1133c5a0beecf50510ef1353
+Content-Type: text/x-log; charset=US-ASCII; name="error.log"
+Content-Disposition: attachment; filename="error.log"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: f_i73bu6uy0
 
-Hi all,
+RnJlZWluZyB1bnVzZWQga2VybmVsIG1lbW9yeTogMzMySyAoYzA3ODUwMDAgLSBjMDdkODAwMCkK
+Cktlcm5lbCBwYW5pYyAtIG5vdCBzeW5jaW5nOiBBdHRlbXB0ZWQgdG8ga2lsbCBpbml0ISBleGl0
+Y29kZT0weDAwMDAwMDA0CgogCgpDUFU6IDAgUElEOiAxIENvbW06IGluaXQgTm90IHRhaW50ZWQg
+My4xNC4yOWx0c2kteW9jdG8tc3RhbmRhcmQgIzEKCkJhY2t0cmFjZToKCls8YzAwMTFhNmM+XSAo
+ZHVtcF9iYWNrdHJhY2UpIGZyb20gWzxjMDAxMWNjYz5dIChzaG93X3N0YWNrKzB4MjAvMHgyNCkK
+CnI2OmM3ODcwMDAwIHI1OmMwODM0YWU4IHI0OmM3ODcwMDAwCgpbPGMwMDExY2FjPl0gKHNob3df
+c3RhY2spIGZyb20gWzxjMDVhMDBmMD5dIChkdW1wX3N0YWNrKzB4MjAvMHgyOCkKCls8YzA1YTAw
+ZDA+XSAoZHVtcF9zdGFjaykgZnJvbSBbPGMwNTljNGZjPl0gKHBhbmljKzB4OGMvMHgxZDQpCgpb
+PGMwNTljNDc0Pl0gKHBhbmljKSBmcm9tIFs8YzAwMWVlNjQ+XSAoZG9fZXhpdCsweDQ0Yy8weDg1
+MCkKCnIzOmM3ODc4MDAwIHIyOmM3ODcwMDAwIHIxOjAwMDAwMDA0IHIwOmMwNmYwNjQ1CgpyNzow
+MDAwMDAwMQoKWzxjMDAxZWExOD5dIChkb19leGl0KSBmcm9tIFs8YzAwMWYzMTA+XSAoZG9fZ3Jv
+dXBfZXhpdCsweDVjLzB4YmMpCgpyNzpjNzg2ZTAxOAoKWzxjMDAxZjJiND5dIChkb19ncm91cF9l
+eGl0KSBmcm9tIFs8YzAwMmJlNGM+XSAoZ2V0X3NpZ25hbF90b19kZWxpdmVyKzB4NGM0LzB4NTE4
+KQoKcjQ6MDAwMDAwMDQKCls8YzAwMmI5ODg+XSAoZ2V0X3NpZ25hbF90b19kZWxpdmVyKSBmcm9t
+IFs8YzAwMTEwMzg+XSAoZG9fc2lnbmFsKzB4YzQvMHgzZGMpCgpyMTA6Yzc4NmUwMDAgcjk6MDAw
+MDAwMDAgcjg6Yzc4NmUwMTAgcjc6MDAwMDAwMDAgcjY6MDAwMDAwMDAgcjU6Yzc4NmZmYjAKCnI0
+OjAwMDAwMDAwCgpbPGMwMDEwZjc0Pl0gKGRvX3NpZ25hbCkgZnJvbSBbPGMwMDExNGQwPl0gKGRv
+X3dvcmtfcGVuZGluZysweDZjLzB4ZjgpCgpyMTA6Yzc4NmUwMDAgcjk6Yzc4NmUwMDAgcjg6MDAw
+MDAwMDAgcjc6MDAwMDAwMDAgcjY6Yzc4NmZmYjAgcjU6Yzc4NmUwMDAKCnI0OjAwMDAwMDAwCgpb
+PGMwMDExNDY0Pl0gKGRvX3dvcmtfcGVuZGluZykgZnJvbSBbPGMwMDBlMzdjPl0gKHdvcmtfcGVu
+ZGluZysweGMvMHgyMCkKCnI2OmZmZmZmZmZmIHI1OjIwMDAwMDEwIHI0OmI2ZmJhZTQwCg==
 
-I had a change of circumstances at the beginning of January. Previously I 
-was a
-full-time PhD student and maintaining opkg was my side project. Now I'm a
-full-time software engineer and finishing up my PhD thesis is my side 
-project.
-I've been trying to find time to fit opkg in there as well but it's just 
-not
-happening. I had at least hoped that I could get opkg to a v0.3.0 release 
-before
-I had to step back from opkg development but as I haven't really made any
-commits to opkg in 2 months now I don't think it's reasonable to expect 
-that
-I'll get this done any time soon.
-
-I'll try to keep an eye on the opkg mailing list and contribute with 
-answers and
-suggestions when I can but I think someone else will have to take over as 
-the
-maintainer of opkg. I'll do whatever I can to ensure as smooth transition 
-if
-someone else wants to take up the job of moving opkg forward.
-
-I'd like to thank everyone that's contributed to opkg, whether by sending
-patches or just by reporting bugs or making suggestions. I've only been
-maintainer for around 18 months but I'd like to think we've made some good
-progress in that time and I hope that that can continue forwards under 
-someone
-else's leadership.
-
-Once I've submitted my PhD thesis I'll hopefully find some time to get 
-back
-involved with open source projects, whether that's further work on opkg or
-getting involved in a different project.
-
-Many thanks again,
-
--- 
-Paul Barker
-
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
-
--- 
-You received this message because you are subscribed to the Google Groups 
-"opkg-devel" group.
-To unsubscribe from this group and stop receiving emails from it, send an 
-email to opkg-devel+unsubscribe@googlegroups.com.
-For more options, visit https://groups.google.com/d/optout.
-[attachment "signature.asc" deleted by Alejandro del Castillo/AUS/NIC] 
-
-
+--001a1133c5a0beecf50510ef1353--
