@@ -1,39 +1,58 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <pallex@networkinstruments.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 385B5E00754; Tue, 10 Mar 2015 13:01:19 -0700 (PDT)
+	id 6C19BE00754; Tue, 10 Mar 2015 16:27:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [208.84.65.189 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1CA8E006E9
-	for <yocto@yoctoproject.org>; Tue, 10 Mar 2015 13:01:17 -0700 (PDT)
-Received: from [99.240.204.5] (port=34245 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1YVQL9-0005QX-Ny
-	for yocto@yoctoproject.org; Tue, 10 Mar 2015 16:01:19 -0400
-Date: Tue, 10 Mar 2015 16:01:13 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1503101253390.14541@localhost>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 1669 seconds by postgrey-1.32 at yocto-www;
+	Tue, 10 Mar 2015 16:27:33 PDT
+Received: from mx0a-00158d01.pphosted.com (mx0a-00158d01.pphosted.com
+	[208.84.65.189])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E622DE006E9
+	for <yocto@yoctoproject.org>; Tue, 10 Mar 2015 16:27:33 -0700 (PDT)
+Received: from pps.filterd (m0043267.ppops.net [127.0.0.1])
+	by mx0a-00158d01.pphosted.com (8.14.5/8.14.5) with SMTP id
+	t2AMto7U029402
+	for <yocto@yoctoproject.org>; Tue, 10 Mar 2015 15:59:44 -0700
+Received: from mx1.jdsu.com ([157.234.211.50])
+	by mx0a-00158d01.pphosted.com with ESMTP id 1t2073ae0p-2
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=NOT)
+	for <yocto@yoctoproject.org>; Tue, 10 Mar 2015 15:59:44 -0700
+Received: from AMEXHTCA02.ds.jdsu.net (10.239.69.12) by mx1.jdsu.com
+	(10.239.15.50) with Microsoft SMTP Server (TLS) id 14.3.210.2;
+	Tue, 10 Mar 2015 15:59:39 -0700
+Received: from AMEXMB02.ds.jdsu.net ([fe80::cc57:c331:881d:dfc6]) by
+	AMEXHTCA02.ds.jdsu.net ([fe80::843d:552:5f95:886d%15]) with mapi id
+	14.03.0210.002; Tue, 10 Mar 2015 15:59:42 -0700
+From: Paul Allex <pallex@networkinstruments.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Question about doing different builds: Release, Debug, Test, etc.
+Thread-Index: AdBbgw/Lwk2NZ/7sRrmBCnXeAhqepw==
+Date: Tue, 10 Mar 2015 22:59:42 +0000
+Message-ID: <2C8A90AD962B224C80575A6F3DDD510278CE6C18@AMEXMB02.ds.jdsu.net>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [157.234.234.5]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: observations on bitbake user manual, chapter 2
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.13.68, 1.0.33,
+	0.0.0000
+	definitions=2015-03-10_08:2015-03-10, 2015-03-10,
+	1970-01-01 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+	spamscore=0 suspectscore=0
+	phishscore=0 adultscore=0 bulkscore=0 classifier=spam adjust=0
+	reason=mlx
+	scancount=1 engine=7.0.1-1402240000 definitions=main-1503100235
+Subject: Question about doing different builds: Release, Debug, Test, etc.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,81 +64,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Mar 2015 20:01:19 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 10 Mar 2015 23:27:36 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_2C8A90AD962B224C80575A6F3DDD510278CE6C18AMEXMB02dsjdsun_"
 
+--_000_2C8A90AD962B224C80575A6F3DDD510278CE6C18AMEXMB02dsjdsun_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-  more random thoughts ...
+Hello,
 
-intro:
+I'm trying to get up to speed on Yocto and Poky, so please forgive me if I =
+don't get my terminology quite right.
 
- in the note: "Prior to executing BitBake, you should take advantage
-of available parallel thread execution on your build host by setting
-the BB_NUMBER_THREADS variable in your project's local.conf
-configuration file. "
+My basic question is, what is the preferred way to easily manage different =
+kinds of builds within the Yocto environment? In our case, we would like to=
+ have a debug build and a release build. The main difference between the tw=
+o being which custom preprocessor macros are enabled and which ROOTFS_POSTP=
+ROCESS_COMMANDs to run.
 
-  as in chapter 1, i think there will be some confusion since the
-bitbake manual seems to jump between what you will see WRT bitbake in
-a *direct* checkout, and what you will more likely see if you've
-checked out poky.  as you well know, in the poky checkout,
-bitbake.conf is considerably enhanced and already contains:
+We have played around with adding different layers and recipes, but seem to=
+ keep running into different issues. For example, we tried to make a debug =
+and release version of our layer and application recipe, but found issues w=
+ith two recipes trying to provide the same set of files. The forums and gui=
+des have very helpful, but we still can't find a really good solution.
 
-  # Default to setting automatically based on cpu count
-  BB_NUMBER_THREADS ?= "${@oe.utils.cpu_count()}"
+Our goal was to have a very simple process where we can execute something l=
+ike "bitbake our-image-debug" and "bitbake our-image-release".
 
-  # Default to setting automatically based on cpu count
-  PARALLEL_MAKE ?= "-j ${@oe.utils.cpu_count()}"
+Any help would be appreciated.
 
-and while i understand that the bitbake manual is meant to be build
-system agnostic, i think trying too hard to do that is going to make
-part of it unnecessarily confusing.
+Thanks,
 
-  oh, and that note mentions BB_NUMBER_THREADS while saying nothing
-about PARALLEL_MAKE, which seems odd.
+Paul
 
-2.3 Providers
+--_000_2C8A90AD962B224C80575A6F3DDD510278CE6C18AMEXMB02dsjdsun_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-  while this section describes how a recipe can *extend* the things it
-provides with "+=", it might be worth mentioning how it can simply
-override what it provides with
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Courier New";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+Hello,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+<o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+I'm trying to get up to speed on Yocto and Poky, so please forgive me if I =
+don't get my terminology quite right.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+<o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+My basic question is, what is the preferred way to easily manage different =
+kinds of builds within the Yocto environment? In our case, we would like to=
+ have a debug build and a release build. The main
+ difference between the two being which custom preprocessor macros are enab=
+led and which ROOTFS_POSTPROCESS_COMMANDs to run.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+<o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+We have played around with adding different layers and recipes, but seem to=
+ keep running into different issues. For example, we tried to make a debug =
+and release version of our layer and application
+ recipe, but found issues with two recipes trying to provide the same set o=
+f files. The forums and guides have very helpful, but we still can't find a=
+ really good solution.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+<o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+Our goal was to have a very simple process where we can execute something l=
+ike &quot;bitbake our-image-debug&quot; and &quot;bitbake our-image-release=
+&quot;.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+<o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+Any help would be appreciated.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+<o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+Thanks,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+<o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+Paul<o:p></o:p></span></p>
+</div>
+</body>
+</html>
 
-  PROVIDES = "..."
-
-  this is fairly common with libraries, as in:
-
-meta/recipes-graphics/xorg-lib/libxext_git.bb:PROVIDES = "xext"
-meta/recipes-graphics/xorg-lib/libxxf86misc_1.0.3.bb:PROVIDES = "xxf86misc"
-meta/recipes-graphics/xorg-lib/libx11.inc:PROVIDES = "virtual/libx11"
-meta/recipes-graphics/xorg-lib/libxmu_1.1.2.bb:PROVIDES = "xmu"
-meta/recipes-graphics/xorg-lib/libxext_1.3.3.bb:PROVIDES = "xext"
-meta/recipes-graphics/xorg-lib/libxdamage_1.1.4.bb:PROVIDES = "xdamage"
-meta/recipes-graphics/xorg-lib/libxdmcp_1.1.1.bb:PROVIDES = "xdmcp"
-
-2.4 Preferences
-
-  if i remember this correctly, there is nothing special about a
-preferred provider containing a slash, such as "virtual/kernel", is
-there? that might be worth mentioning here.
-
-  also, in note, busybox is now up to 1.23.1, not 1.22.1.
-
-2.7 Executing Tasks
-
-  with text like "${T}/log.do_taskname.pid", the "taskname" part
-should be tagged with something like <replaceable> to show that it is
-not verbatim.
-
-  that's it for chapter 2 ...
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+--_000_2C8A90AD962B224C80575A6F3DDD510278CE6C18AMEXMB02dsjdsun_--
