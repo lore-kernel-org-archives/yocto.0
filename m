@@ -1,54 +1,36 @@
-Return-Path: <picmaster@mail.bg>
+Return-Path: <tom.zanussi@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CAB1DE00777; Tue, 10 Mar 2015 06:30:07 -0700 (PDT)
+	id 9C55DE00754; Tue, 10 Mar 2015 06:32:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (picmaster[at]mail.bg)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [193.201.172.118 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mx2.mail.bg (mx2.mail.bg [193.201.172.118])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B823E00754
-	for <yocto@yoctoproject.org>; Tue, 10 Mar 2015 06:30:04 -0700 (PDT)
-Received: from [192.168.0.40] (unknown [93.152.143.60])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by mx2.mail.bg (Postfix) with ESMTPSA id 7FA1960004B9;
-	Tue, 10 Mar 2015 15:30:02 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mail.bg; s=default;
-	t=1425994202; bh=MJAjqaehV3QXHmxfANvtGLri06QQaNCexPzjgYnbZlU=;
-	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
-	In-Reply-To:Content-Type:Content-Transfer-Encoding;
-	b=LZFovlnJjnlrPIN8jx/cRbxQlIAnGNwLVLaGLJiSHZMbtP+yYIULfhKjmcpiTIcGs
-	cS4AOPctN1n7qxNUOwDGleLGmI15rMzfea4kSG6ohp7UsE9cz5amFQKFMsudPX6/QJ
-	hWihQ3mt7v/gaIyKAwiVGG1e0KJx5gRclbZCabS8=
-Message-ID: <54FEF1DA.4010402@mail.bg>
-Date: Tue, 10 Mar 2015 15:30:02 +0200
-From: Nikolay Dimitrov <picmaster@mail.bg>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Icedove/31.5.0
-MIME-Version: 1.0
-To: Francois Muller <francois@concept-embarque.fr>
-References: <54FDF2EE.6070509@mail.bg>	
-	<BD661189-005C-48AE-804D-31A33CB14583@gmail.com>
-	<54FDFAFE.7020707@mail.bg>	
-	<CAJTo0LY3N=QsDhweBuSU9UEPV0j9YU=O1gaX=Dw0rAtrf0cQJw@mail.gmail.com>
-	<1425931669.5166.45.camel@concept-embarque.fr>
-In-Reply-To: <1425931669.5166.45.camel@concept-embarque.fr>
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54E10E00810
+	for <yocto@yoctoproject.org>; Tue, 10 Mar 2015 06:31:10 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga103.fm.intel.com with ESMTP; 10 Mar 2015 06:25:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,374,1422950400"; d="scan'208";a="696518298"
+Received: from dpturley-mobl.amr.corp.intel.com (HELO [10.254.75.197])
+	([10.254.75.197])
+	by orsmga002.jf.intel.com with ESMTP; 10 Mar 2015 06:31:09 -0700
+Message-ID: <1425994268.31108.38.camel@picadillo>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Albert K <alberk@gmail.com>
+Date: Tue, 10 Mar 2015 08:31:08 -0500
+In-Reply-To: <CACjDgAN4pFt7Q-gm6dt-AMTryio_dsA8m_ARbssdc6QNktK8yQ@mail.gmail.com>
+References: <CACjDgAN4pFt7Q-gm6dt-AMTryio_dsA8m_ARbssdc6QNktK8yQ@mail.gmail.com>
+X-Mailer: Evolution 3.10.4 (3.10.4-4.fc20) 
+Mime-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: 2 images with single Bitbake recipe
+Subject: Re: Intel BSP for Rangeley
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,28 +42,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Mar 2015 13:30:07 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Tue, 10 Mar 2015 13:32:07 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-Hi Francois,
+On Tue, 2015-03-10 at 12:45 +0800, Albert K wrote:
+> Dear all,
+> 
+> May I know which BSP to use for Intel Atom C2000 Rangeley?  I do not
+> see that Intel BSP has the mohon peak bsp.  I am trying out the Dizzy
+> 1.7 branch.  Thanks.
+> 
 
-On 03/09/2015 10:07 PM, Francois Muller wrote:
-> Hi,
->
-> You may have a look at meta-intel-iot-devkit
-> <http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel-iot-devkit/> layer
-> that does what you expect, I think.
-> It produces:
->
->   * iot-devkit-image-quark.ext3
->   * core-image-minimal-initramfs-quark.cpio.gz
->   * bzImage
->
-> in the same run.
+There is a BSP for mohon peak in the meta-intel/dizzy branch:
 
-Thanks, I'll check this out.
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/meta-isg/meta-mohonpeak?h=dizzy
 
-Regards,
-Nikolay
+Tom
+
+> Regards,
+> Albert.
+
+
 
