@@ -1,45 +1,51 @@
-Return-Path: <kaiu@gmx.de>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 11CF2E0076F; Tue, 10 Mar 2015 02:38:24 -0700 (PDT)
+	id E4B40E0076F; Tue, 10 Mar 2015 03:48:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (kaiu[at]gmx.de)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.192.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [212.227.15.18 listed in list.dnswl.org]
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 371D7E00750
-	for <yocto@yoctoproject.org>; Tue, 10 Mar 2015 02:38:20 -0700 (PDT)
-Received: from mail-we0-f175.google.com ([74.125.82.175]) by mail.gmx.com
-	(mrgmx003) with ESMTPSA (Nemesis) id 0M0xbD-1XaoqK0Nd1-00v9Gh for
-	<yocto@yoctoproject.org>; Tue, 10 Mar 2015 10:38:19 +0100
-Received: by wevk48 with SMTP id k48so411711wev.5
-	for <yocto@yoctoproject.org>; Tue, 10 Mar 2015 02:38:18 -0700 (PDT)
+Received: from mail-qg0-f51.google.com (mail-qg0-f51.google.com
+	[209.85.192.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47E56E00750
+	for <yocto@yoctoproject.org>; Tue, 10 Mar 2015 03:48:43 -0700 (PDT)
+Received: by qgaj5 with SMTP id j5so582470qga.12
+	for <yocto@yoctoproject.org>; Tue, 10 Mar 2015 03:48:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=3reWUC2wvsxH+Mb6ywYDWeMZOUlPxf/14r9nf3c0Zw0=;
+	b=ar2YG+zRAFwlWgaKvkjvIoOLr4/aa3bMpqiTH6vdKuktj++JA0WUaGhE1szQs67uwT
+	Zj32OstKr2Rj7k44GmJUbKpPylx01JqW/2Dmag+CJmkA/cdEjHZk3wEkmkdpNzFa6ixv
+	3RLQJ02q7bgbQbR/lZw688lUCAhAa1NVfpFBZv/Pk4XwaHpc37NCvsuhsiSXVkhvQHu5
+	YFRHCGNJS2Yv+2xZScUmTtfgWuE0DmzLiVkNGMAXc8fXCYlGPKbPXSd/msH+7etMFu2z
+	YN+JRuZ2IdKpI+TA2qUSfFSCz8lQJpi8cUVLHDnaylEM99w3z9uu721rLY3ZazljyIkk
+	fnMQ==
+X-Gm-Message-State: ALoCoQnLz0SIz1OJE8lQFRKyAo1xHldmhcV/1v0NlX2SBdcu8mHmh2BMfJx01mQWWWBO0c6h759B
+X-Received: by 10.55.24.160 with SMTP id 32mr46327205qky.23.1425984522823;
+	Tue, 10 Mar 2015 03:48:42 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.194.184.148 with SMTP id eu20mr64937669wjc.77.1425980298405; 
-	Tue, 10 Mar 2015 02:38:18 -0700 (PDT)
-Received: by 10.194.1.67 with HTTP; Tue, 10 Mar 2015 02:38:18 -0700 (PDT)
-Date: Tue, 10 Mar 2015 10:38:18 +0100
-Message-ID: <CAAKMwiqF-Jok3qxmdxwDATVwRGopnvUzjgo5pG+dSHpqa=gKXA@mail.gmail.com>
-From: Kai Ulrich <kaiu@gmx.de>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-Provags-ID: V03:K0:uEGHFQOvsoO+RTgSd3EIU0Ux6ausjEHp1HPLvq3gw7Dr4WjPfGk
-	PcPervs45vkq+bLppJNstehLLibvZDvBDGmTaZKNnAIzJwvsv62HAEzleYQ+rNDpmxq10L0
-	Qdrq37x4fGcEPeIiA5sL3nQFg9KlQX9EphnqQObWJ3XjHk+fRnw7h+XlpeZyQ6X0cSRu+MT
-	khEIGiDagfTPmy10uh2zQ==
-X-UI-Out-Filterresults: notjunk:1;
-Subject: created layer smstools3.
+Received: by 10.140.102.203 with HTTP; Tue, 10 Mar 2015 03:48:22 -0700 (PDT)
+In-Reply-To: <2B8B4B6BB45F5242AFEC714E022A4B4A276D2A5F@IRSMSX101.ger.corp.intel.com>
+References: <CACjDgAN4pFt7Q-gm6dt-AMTryio_dsA8m_ARbssdc6QNktK8yQ@mail.gmail.com>
+	<2B8B4B6BB45F5242AFEC714E022A4B4A276D2A5F@IRSMSX101.ger.corp.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 10 Mar 2015 10:48:22 +0000
+Message-ID: <CAJTo0Lbj1cCRGZQYMwaB-uzO=gVthbK8LPYNho9g3RjEN=cM7g@mail.gmail.com>
+To: "Constantin, Costin C" <costin.c.constantin@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Intel BSP for Rangeley
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: kaiu@gmx.de
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -48,33 +54,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Mar 2015 09:38:24 -0000
-Content-Type: multipart/alternative; boundary=047d7bb70a2224da0d0510ebe9ff
+X-List-Received-Date: Tue, 10 Mar 2015 10:48:45 -0000
+Content-Type: multipart/alternative; boundary=001a11441462f03eff0510ece4e5
 
---047d7bb70a2224da0d0510ebe9ff
+--001a11441462f03eff0510ece4e5
 Content-Type: text/plain; charset=UTF-8
 
-Hi,
+On 10 March 2015 at 08:15, Constantin, Costin C <
+costin.c.constantin@intel.com> wrote:
 
-I created an layer with a recipe for smstools3.
-You can find it on https://github.com/kaiulrich/meta-smstools3
+> A good starting point would be the genericX86 or genericX86_64. We use
+> these BSP images to test on an Atom PC.
 
-If you have any comments to improve meta-smstools3,
-please tell me (It is my first layer / recipe :-) )
 
-Friendly regards
-Kai
+genericx86 is fine but better BSPs are intel-core2-32 and intel-corei7-64,
+in meta-intel.
 
---047d7bb70a2224da0d0510ebe9ff
+Ross
+
+--001a11441462f03eff0510ece4e5
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div><div><div>Hi,<br><br></div>I created a=
-n layer with a recipe for smstools3.<br></div>You can find it on <a href=3D=
-"https://github.com/kaiulrich/meta-smstools3">https://github.com/kaiulrich/=
-meta-smstools3</a><br></div><br></div>If you have any comments to improve m=
-eta-smstools3,<br>please tell me (It is my first layer / recipe :-) )<br><b=
-r></div>Friendly regards<br></div>Kai <br><div><div><br><div><div><div><div=
-><div><div><br><br></div></div></div></div></div></div></div></div></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 10 March 2015 at 08:15, Constantin, Costin C <span dir=3D"ltr">&lt;<a hr=
+ef=3D"mailto:costin.c.constantin@intel.com" target=3D"_blank">costin.c.cons=
+tantin@intel.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">A =
+good starting point would be the genericX86 or genericX86_64. We use these =
+BSP images to test on an Atom PC.</blockquote></div><br>genericx86 is fine =
+but better BSPs are intel-core2-32 and intel-corei7-64, in meta-intel.</div=
+><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div>=
+</div>
 
---047d7bb70a2224da0d0510ebe9ff--
+--001a11441462f03eff0510ece4e5--
