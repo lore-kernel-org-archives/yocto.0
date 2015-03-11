@@ -1,39 +1,50 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <erik.boto@pelagicore.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2A5B4E00810; Wed, 11 Mar 2015 03:33:04 -0700 (PDT)
+	id E9BF9E00810; Wed, 11 Mar 2015 04:11:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA78CE0076F
-	for <yocto@yoctoproject.org>; Wed, 11 Mar 2015 03:33:00 -0700 (PDT)
-Received: from [99.240.204.5] (port=37571 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1YVdwk-0002RI-59
-	for yocto@yoctoproject.org; Wed, 11 Mar 2015 06:33:02 -0400
-Date: Wed, 11 Mar 2015 06:32:55 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1503101623180.842@localhost>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.169 listed in list.dnswl.org]
+Received: from mail-qc0-f169.google.com (mail-qc0-f169.google.com
+	[209.85.216.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D99AE00777
+	for <yocto@yoctoproject.org>; Wed, 11 Mar 2015 04:11:41 -0700 (PDT)
+Received: by qcrw7 with SMTP id w7so9083404qcr.8
+	for <yocto@yoctoproject.org>; Wed, 11 Mar 2015 04:11:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type
+	:content-transfer-encoding;
+	bh=73qasJTnh5SSeQYkUKbz0brLJMtj0XMG3ukVt3mZAfg=;
+	b=N1o5LpV75/FS3VyezFwZ5eCkyCCIjZNKXsuBXooy6coMCciEJKcNtp5uPGMEkTFXYc
+	rlKyWs/xY319DutkIncncqz0IRZKrn6v4D714OA/LBpUWz8CBIm5ehn0pLERuore1kAY
+	mjjJHjHKNHYsEz+2k1LytAIXT+fZwUdEm7W01pl/FT8boTBWep6nGi+LCo9s81lOTfUt
+	gNe0CN9YBUp5ZavG4xeAYqpJk4Mce8kESJ9LlE7KICSaZL9k61TcrZGJ6b++H5pQxXxI
+	M2m4NpMzbZoMtEvKX7MvDwY+fkEb4Hebyjs2LdWAEgrpb4kZBbFo8Uqj7g6nQ2ab/QqA
+	vKNA==
+X-Gm-Message-State: ALoCoQkkt4NEwpijM7UuFLed50yvDp7wBD948lqueWC2Zo2BLKkHmtuZsA2XJ8SiKHZBF3ddI4lm
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: observations on bitbake user manual, first part of chapter 3
+X-Received: by 10.55.31.82 with SMTP id f79mr30606182qkf.31.1426072300669;
+	Wed, 11 Mar 2015 04:11:40 -0700 (PDT)
+Received: by 10.96.184.133 with HTTP; Wed, 11 Mar 2015 04:11:40 -0700 (PDT)
+In-Reply-To: <6369978.lMpxWLROeU@peggleto-mobl5.ger.corp.intel.com>
+References: <95CF81BBD42FB348A182716C4D4310A806904248@G2W2533.americas.hpqcorp.net>
+	<CA+AhUGxB1n2=gOkQ7Xdg+0i2V1c_eS-=G46QCnNzLy0kok8iQA@mail.gmail.com>
+	<6369978.lMpxWLROeU@peggleto-mobl5.ger.corp.intel.com>
+Date: Wed, 11 Mar 2015 12:11:40 +0100
+Message-ID: <CA+AhUGwJaoZ4=7hPBJgM6xhJs2-gL2RCgrqp8W7ShhdPcQ-m=Q@mail.gmail.com>
+From: =?UTF-8?Q?Erik_Bot=C3=B6?= <erik.boto@pelagicore.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Koehler,
+	Yannick \(HP Networking\)" <yannick.koehler@hp.com>
+Subject: Re: Building local sources
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,121 +56,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Mar 2015 10:33:04 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 11 Mar 2015 11:11:46 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Wed, Mar 11, 2015 at 10:42 AM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> I would advise against simply setting S as the build system normally thin=
+ks it
+> is in control of that directory and may under certain circumstances delet=
+e it,
+> which probably won't be what you want.
+>
+> We do have a proper mechanism for this kind of thing - the externalsrc cl=
+ass.
+> Here is a section of the manual that describes how to use it:
+>
+> http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#build=
+ing-software-from-an-external-source
+>
+> Generally though externalsrc is designed for temporary usage; long term
+> I'd recommend you keep your metadata and source code separate and
+> have the recipe(s) fetch the source in the normal manner.
+>
+
+I read the first email as that the problem was simple having multiple
+modules in the git-repo, I missed that the recipes and actual code was
+in the same git. You are right that setting S to point somewhere
+outside of ${WORKDIR} is unsafe.
+
+Cheers,
+Erik
+
+> Cheers,
+> Paul
+>
+> On Wednesday 11 March 2015 09:34:30 Erik Bot=C3=B6 wrote:
+>> I think you should set S to whatever directory that contains your
+>> source, it has a default to ${WORKDIR}/${PN}-${PV} if I remember
+>> correctly.
+>>
+>> So S =3D "${WORKDIR}/${PN}"  should work if the recipe is named the same
+>> as the subdir in git, otherwise just set it explicitly using e.g.  S =3D
+>> "${WORKDIR}/module_a"
+>>
+>> Side note: Your example uses an underscore, which means that a and b
+>> would be interpreted as versions, which is probably not intended. See
+>> http://www.yoctoproject.org/docs/1.6/dev-manual/dev-manual.html#new-reci=
+pe-s
+>> toring-and-naming-the-recipe
+>>
+>> Cheers,
+>> Erik
+>>
+>> On Mon, Mar 9, 2015 at 4:37 PM, Koehler, Yannick (HP Networking)
+>>
+>> <yannick.koehler@hp.com> wrote:
+>> > Hi,
+>> >
+>> >  I need some help regarding this since I cannot find out how to achiev=
+e this.  I have a git repo with a lot of code splitted in module, such as:
+>> >         /.git
+>> >         /module_a
+>> >         /module_b
+>> >
+>> >  Etc...
+>> >
+>> >   I want to compile those modules using a bitbake recipe within yocto =
+so I created the following tree structure:
+>> >         /.git
+>> >         /module_a
+>> >         /module_b
+>> >         /poky
+>> >
+>> >                 /meta-modules
+>> >
+>> >                         /recipes-<category>
+>> >
+>> >                                 /module_a
+>> >
+>> >                                         module_a.bb
+>> >
+>> >                         /recipes-<category>
+>> >
+>> >                                 /module_b
+>> >
+>> >                                         module_b.bb
+>> >
+>> >   So far so good, but now I am having issue with unpack/compile step, =
+my
+>> >   modules are make-based (not autotools and not CMake).  So I used
+>> >   EXTRA_OEMAKE to get them to use the proper target toolchain.  Proble=
+m
+>> >   lies with the SRC_URI, my files from module_a gets copied into $WORK=
+DIR
+>> >   and not into $S, as such the compile step failed.  I understand that
+>> >   SRC_URI is not really the proper usage in such situation, appears to=
+ be
+>> >   meant to retrieve external packages and some files here and there,
+>> >   mostly patches.  Even thought all my modules are within a git repo, =
+I
+>> >   do not want to extract the full repo for each modules either.
+>> >
+>> >   I am now looking into writing my own unpack function to move my code
+>> >   under S manually, but I was wondering if yocto had something to supp=
+ort
+>> >   this model and I simply missed it or if writing a custom unpack is t=
+he
+>> >   appropriate solution (likely I'll have to create a class so that all=
+ my
+>> >   modules use the same unpack behavior).>
+>> > Yannick Koehler
+>> > --
+>> > _______________________________________________
+>> > yocto mailing list
+>> > yocto@yoctoproject.org
+>> > https://lists.yoctoproject.org/listinfo/yocto
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
 
-  ... soldiering on, man this is a long chapter ...
 
-3.1.8 Appending and Prepending ...
+--=20
+Erik Bot=C3=B6
+M.Sc.E.E.
+SENIOR SOFTWARE ENGINEER
 
-  while this section is correct, it really doesn't explain why one
-would *want* to use _append and _prepend as opposed to the earlier
-operators. newer users might not appreciate the importance of the
-distinction, and will wonder when to use each variation.
+Pelagicore AB
+Ekelundsgatan 4, 6tr, SE-411 18 Gothenburg, Sweden
+Mobile: +46 (0)768 817 203
+E-Mail: erik.boto@pelagicore.com
 
-3.1.11 Inline Python Variable Expansion
-
-  never noticed this before ... won't the result of the examples used
-in this section depend on whether one uses "=" or ":="?
-
-  eg., in this case:
-
-    DATE = "${@time.strftime('%Y%m%d',time.gmtime())}"
-
-  that will be a delayed evaluation, correct? so that DATE will be
-assigned the date and time when it's referenced, as opposed to using
-
-    DATE := ...
-
-  that distinction isn't really made clear and i think it should be.
-similarly, the next couple lines of example:
-
-   PN = "${@bb.parse.BBHandler.vars_from_file(d.getVar('FILE'),d)[0] or 'defaultpkgname'}"
-   PV = "${@bb.parse.BBHandler.vars_from_file(d.getVar('FILE'),d)[1] or '1.0'}"
-
-  if that is also delayed evaluation, would it not make more sense to
-use ":=" for efficiency, rather than having to re-evaluate the Python
-call each time ${PN} and ${PV} are used (since they won't change in
-the context of a recipe)? or am i missing something here?
-
-3.2.1 Conditional metadata
-
-  example:
-
-     DEPENDS = "glibc ncurses"
-     OVERRIDES = "machine:local"
-     DEPENDS_append_machine = "libmad"
-
-nitpickery, but shouldn't that last line use " libmad"?  (leading
-space)
-
-3.2.3 Examples
-
-  i mentioned this recently, but that whole section just seems weird
-... i'm not sure what it means to say:
-
-  VAR_foo_append = "X"
-
-and how that affects VAR. can someone sanity check that section and
-see if it's right? at the very least, readers should be warned off
-using "_append" and "+=" in the same line, which is an example shown
-in that section.
-
-3.6 Variable Flags
-
-  with the "[dirs]" flag, as i recall, not only will the directories
-be created, but the task will be "cd"ed to the final directory in that
-list, no?
-
-  i'm looking at lib/bb/build.py in exec_func(), and there's this
-code:
-
-    if dirs is None:
-        dirs = flags.get('dirs')
-        if dirs:
-            dirs = d.expand(dirs).split()
-
-    if dirs:
-        for adir in dirs:
-            bb.utils.mkdirhier(adir)
-        adir = dirs[-1]
-    else:
-        adir = d.getVar('B', True)
-        bb.utils.mkdirhier(adir)
-
-and, finally, toward the bottom of that routine, one sees:
-
-    with bb.utils.fileslocked(lockfiles):
-        if ispython:
-            exec_func_python(func, d, runfile, cwd=adir)
-        else:
-            exec_func_shell(func, d, runfile, cwd=adir)
-
-which *seems* to suggest the final value of "adir" will be the
-subsequent current working directory. if that's true, it might be
-worth noting in the manual as some users will probably need to know
-that.
-
-  oh, and knowing this will make it clear why some classes prepend
-instead of append, as in ccache.bbclass:
-
-do_configure[dirs] =+ "${CCACHE_DIR}"
-
-  also, in that same section on task flags, there is no mention of the
-"recideptask" flag. should it be there?
-
-  that's all i have for now, more later ...
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+PELAGICORE Experience Change
 
