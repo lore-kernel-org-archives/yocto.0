@@ -1,50 +1,47 @@
-Return-Path: <erik.boto@pelagicore.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E9BF9E00810; Wed, 11 Mar 2015 04:11:45 -0700 (PDT)
+	id 49FB6E00779; Wed, 11 Mar 2015 04:54:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.216.169 listed in list.dnswl.org]
-Received: from mail-qc0-f169.google.com (mail-qc0-f169.google.com
-	[209.85.216.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D99AE00777
-	for <yocto@yoctoproject.org>; Wed, 11 Mar 2015 04:11:41 -0700 (PDT)
-Received: by qcrw7 with SMTP id w7so9083404qcr.8
-	for <yocto@yoctoproject.org>; Wed, 11 Mar 2015 04:11:40 -0700 (PDT)
+	*      [209.85.192.42 listed in list.dnswl.org]
+Received: from mail-qg0-f42.google.com (mail-qg0-f42.google.com
+	[209.85.192.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 057CEE0076F
+	for <yocto@yoctoproject.org>; Wed, 11 Mar 2015 04:54:00 -0700 (PDT)
+Received: by qgfl89 with SMTP id l89so9129594qgf.11
+	for <yocto@yoctoproject.org>; Wed, 11 Mar 2015 04:53:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=73qasJTnh5SSeQYkUKbz0brLJMtj0XMG3ukVt3mZAfg=;
-	b=N1o5LpV75/FS3VyezFwZ5eCkyCCIjZNKXsuBXooy6coMCciEJKcNtp5uPGMEkTFXYc
-	rlKyWs/xY319DutkIncncqz0IRZKrn6v4D714OA/LBpUWz8CBIm5ehn0pLERuore1kAY
-	mjjJHjHKNHYsEz+2k1LytAIXT+fZwUdEm7W01pl/FT8boTBWep6nGi+LCo9s81lOTfUt
-	gNe0CN9YBUp5ZavG4xeAYqpJk4Mce8kESJ9LlE7KICSaZL9k61TcrZGJ6b++H5pQxXxI
-	M2m4NpMzbZoMtEvKX7MvDwY+fkEb4Hebyjs2LdWAEgrpb4kZBbFo8Uqj7g6nQ2ab/QqA
-	vKNA==
-X-Gm-Message-State: ALoCoQkkt4NEwpijM7UuFLed50yvDp7wBD948lqueWC2Zo2BLKkHmtuZsA2XJ8SiKHZBF3ddI4lm
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=+zwkQLql04Z6Yjf+XxMy9O4bi6pX3VU7rUu39RGayNc=;
+	b=Zo7QA67xeUMyREClR4vik/JBQCUt8pvqf8y+w5Sbx/xnQTKIkeibleOQG95P+PVW2f
+	pEPWVn3Y/TX6i7ikylYmaXZzIec/szgrSlh7nu3sVmwo5kheOtlggxKdupHWWyCpf/eg
+	y7iR8YDLGQ/U9d4CZoCpP5/rsJauyYnnjm4EKJEOTFJvPToftLZjUvrTTiIGDUOgob2f
+	HaDSGjRZE69FMGHFxKki7g6jJroHm1XJurhRaMD1gZQhhCuWAQyTAF0kqGgbKq4y8B8I
+	ArujajcE0kb14NE1bVHUiNWdLACE3BZqoAdGB6SwaVtwGDevipldlUxYZMpuORIFWmAw
+	mPJw==
+X-Gm-Message-State: ALoCoQkjH3R//UkrQYnsr6RU25UimyjCtRNOnId7XIWeMR/EcoU1IoryeleKHUPtYLjfnKzrYsUN
+X-Received: by 10.140.147.66 with SMTP id 63mr46974241qht.35.1426074839578;
+	Wed, 11 Mar 2015 04:53:59 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.55.31.82 with SMTP id f79mr30606182qkf.31.1426072300669;
-	Wed, 11 Mar 2015 04:11:40 -0700 (PDT)
-Received: by 10.96.184.133 with HTTP; Wed, 11 Mar 2015 04:11:40 -0700 (PDT)
-In-Reply-To: <6369978.lMpxWLROeU@peggleto-mobl5.ger.corp.intel.com>
-References: <95CF81BBD42FB348A182716C4D4310A806904248@G2W2533.americas.hpqcorp.net>
-	<CA+AhUGxB1n2=gOkQ7Xdg+0i2V1c_eS-=G46QCnNzLy0kok8iQA@mail.gmail.com>
-	<6369978.lMpxWLROeU@peggleto-mobl5.ger.corp.intel.com>
-Date: Wed, 11 Mar 2015 12:11:40 +0100
-Message-ID: <CA+AhUGwJaoZ4=7hPBJgM6xhJs2-gL2RCgrqp8W7ShhdPcQ-m=Q@mail.gmail.com>
-From: =?UTF-8?Q?Erik_Bot=C3=B6?= <erik.boto@pelagicore.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Koehler,
-	Yannick \(HP Networking\)" <yannick.koehler@hp.com>
-Subject: Re: Building local sources
+Received: by 10.140.102.203 with HTTP; Wed, 11 Mar 2015 04:53:38 -0700 (PDT)
+In-Reply-To: <CABNKipJq35uppKzerqv=NtT_SJCCr_n1+nz+JjeUCZvJ6NaptQ@mail.gmail.com>
+References: <CABNKipJq35uppKzerqv=NtT_SJCCr_n1+nz+JjeUCZvJ6NaptQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 11 Mar 2015 11:53:38 +0000
+Message-ID: <CAJTo0LbwruA2TSgr3JsLoYzUifgo7k0zTTuCpdmmX=1v=CNd2w@mail.gmail.com>
+To: Parthiban Kandasamy <parthiban@ulivesystems.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Udev "unable to receive control connection"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,141 +53,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Mar 2015 11:11:46 -0000
+X-List-Received-Date: Wed, 11 Mar 2015 11:54:03 -0000
+Content-Type: multipart/alternative; boundary=001a1135547e3c9cd3051101ec4a
+
+--001a1135547e3c9cd3051101ec4a
 Content-Type: text/plain; charset=UTF-8
+
+On 11 March 2015 at 05:25, Parthiban Kandasamy <parthiban@ulivesystems.com>
+wrote:
+
+> this message shows udev version 182 but i built udev-164, so what can i do
+> to overcome this error?
+>
+
+You might want to remove the tmp directory in case the newer versions are
+still in deploy/.  Simply delete tmp/ and rebuild the image - assuming that
+your sstate-cache isn't inside tmp/ it will rebuild very quickly.
+
+Ross
+
+--001a1135547e3c9cd3051101ec4a
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 11 March 2015 at 05:25, Parthiban Kandasamy <span dir=3D"ltr">&lt;<a hre=
+f=3D"mailto:parthiban@ulivesystems.com" target=3D"_blank">parthiban@ulivesy=
+stems.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>thi=
+s message shows udev version 182 but i built udev-164, so what can i do to =
+overcome this error?</div></blockquote><div><br></div><div>You might want t=
+o remove the tmp directory in case the newer versions are still in deploy/.=
+=C2=A0 Simply delete tmp/ and rebuild the image - assuming that your sstate=
+-cache isn&#39;t inside tmp/ it will rebuild very quickly.</div><div><br></=
+div><div>Ross=C2=A0</div></div></div></div>
 
-On Wed, Mar 11, 2015 at 10:42 AM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
-> I would advise against simply setting S as the build system normally thin=
-ks it
-> is in control of that directory and may under certain circumstances delet=
-e it,
-> which probably won't be what you want.
->
-> We do have a proper mechanism for this kind of thing - the externalsrc cl=
-ass.
-> Here is a section of the manual that describes how to use it:
->
-> http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#build=
-ing-software-from-an-external-source
->
-> Generally though externalsrc is designed for temporary usage; long term
-> I'd recommend you keep your metadata and source code separate and
-> have the recipe(s) fetch the source in the normal manner.
->
-
-I read the first email as that the problem was simple having multiple
-modules in the git-repo, I missed that the recipes and actual code was
-in the same git. You are right that setting S to point somewhere
-outside of ${WORKDIR} is unsafe.
-
-Cheers,
-Erik
-
-> Cheers,
-> Paul
->
-> On Wednesday 11 March 2015 09:34:30 Erik Bot=C3=B6 wrote:
->> I think you should set S to whatever directory that contains your
->> source, it has a default to ${WORKDIR}/${PN}-${PV} if I remember
->> correctly.
->>
->> So S =3D "${WORKDIR}/${PN}"  should work if the recipe is named the same
->> as the subdir in git, otherwise just set it explicitly using e.g.  S =3D
->> "${WORKDIR}/module_a"
->>
->> Side note: Your example uses an underscore, which means that a and b
->> would be interpreted as versions, which is probably not intended. See
->> http://www.yoctoproject.org/docs/1.6/dev-manual/dev-manual.html#new-reci=
-pe-s
->> toring-and-naming-the-recipe
->>
->> Cheers,
->> Erik
->>
->> On Mon, Mar 9, 2015 at 4:37 PM, Koehler, Yannick (HP Networking)
->>
->> <yannick.koehler@hp.com> wrote:
->> > Hi,
->> >
->> >  I need some help regarding this since I cannot find out how to achiev=
-e this.  I have a git repo with a lot of code splitted in module, such as:
->> >         /.git
->> >         /module_a
->> >         /module_b
->> >
->> >  Etc...
->> >
->> >   I want to compile those modules using a bitbake recipe within yocto =
-so I created the following tree structure:
->> >         /.git
->> >         /module_a
->> >         /module_b
->> >         /poky
->> >
->> >                 /meta-modules
->> >
->> >                         /recipes-<category>
->> >
->> >                                 /module_a
->> >
->> >                                         module_a.bb
->> >
->> >                         /recipes-<category>
->> >
->> >                                 /module_b
->> >
->> >                                         module_b.bb
->> >
->> >   So far so good, but now I am having issue with unpack/compile step, =
-my
->> >   modules are make-based (not autotools and not CMake).  So I used
->> >   EXTRA_OEMAKE to get them to use the proper target toolchain.  Proble=
-m
->> >   lies with the SRC_URI, my files from module_a gets copied into $WORK=
-DIR
->> >   and not into $S, as such the compile step failed.  I understand that
->> >   SRC_URI is not really the proper usage in such situation, appears to=
- be
->> >   meant to retrieve external packages and some files here and there,
->> >   mostly patches.  Even thought all my modules are within a git repo, =
-I
->> >   do not want to extract the full repo for each modules either.
->> >
->> >   I am now looking into writing my own unpack function to move my code
->> >   under S manually, but I was wondering if yocto had something to supp=
-ort
->> >   this model and I simply missed it or if writing a custom unpack is t=
-he
->> >   appropriate solution (likely I'll have to create a class so that all=
- my
->> >   modules use the same unpack behavior).>
->> > Yannick Koehler
->> > --
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
-
-
-
---=20
-Erik Bot=C3=B6
-M.Sc.E.E.
-SENIOR SOFTWARE ENGINEER
-
-Pelagicore AB
-Ekelundsgatan 4, 6tr, SE-411 18 Gothenburg, Sweden
-Mobile: +46 (0)768 817 203
-E-Mail: erik.boto@pelagicore.com
-
-PELAGICORE Experience Change
-
+--001a1135547e3c9cd3051101ec4a--
