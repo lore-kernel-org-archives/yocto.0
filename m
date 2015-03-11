@@ -1,37 +1,64 @@
-Return-Path: <ed.bartosh@linux.intel.com>
+Return-Path: <vaduvajanalexandru@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 660A1E00754; Wed, 11 Mar 2015 14:28:38 -0700 (PDT)
+	id E8236E00810; Wed, 11 Mar 2015 16:28:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (vaduvajanalexandru[at]yahoo.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [98.136.218.207 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9CDEE0034E
-	for <yocto@yoctoproject.org>; Wed, 11 Mar 2015 14:28:36 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga101.fm.intel.com with ESMTP; 11 Mar 2015 14:28:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,384,1422950400"; d="scan'208";a="539583196"
-Received: from linux.intel.com ([10.23.219.25])
-	by orsmga003.jf.intel.com with ESMTP; 11 Mar 2015 14:27:57 -0700
-Received: from vmed.fi.intel.com (vmed.fi.intel.com [10.237.72.65])
-	by linux.intel.com (Postfix) with ESMTP id D0B63300001;
-	Wed, 11 Mar 2015 14:28:18 -0700 (PDT)
-From: Ed Bartosh <ed.bartosh@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 11 Mar 2015 23:28:13 +0200
-Message-Id: <1426109293-4970-1-git-send-email-ed.bartosh@linux.intel.com>
-X-Mailer: git-send-email 2.1.4
-Subject: [PATCH] Get rid of do_shared_workdir task
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm12-vm8.bullet.mail.gq1.yahoo.com
+	(nm12-vm8.bullet.mail.gq1.yahoo.com [98.136.218.207])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C607E0034E
+	for <yocto@yoctoproject.org>; Wed, 11 Mar 2015 16:28:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1426116489; bh=o902CMCs/5662sPjFwztVG2mqjlUTp6vAx+Muyiw2ro=;
+	h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject;
+	b=iK5VN24XaOG2rE6JbfeuQHHbaMEtZBXVRr/b+9DRNs1JzvI4645nCZL3PPigQ2ZFEJ/mV4oPBSwj8Xyi6CoKLVolUkZg0q8vVGiFe0ssn4eHl83mErz0WwMGfhbqrILcJ78Om6Rhu7GTKH2CBG6587LaqKE994EYOXMAzuoBEVaJFwhEvB6GuVET9/9cDXCIITMD+HIgfJWZWuLiqbYi3wKJqyomIAVgchZ/7ttLJUX3WsuOJD9D261a+sq9FxTv0f6SyLBHcIGHdWNhVJFBA40xvxwaVj3aTQkGwsoe+OyzV4PdvuUaa86CBY6JOyOea7gHe5DYT71Be7NeSw9gig==
+Received: from [98.137.12.175] by nm12.bullet.mail.gq1.yahoo.com with NNFMP;
+	11 Mar 2015 23:28:09 -0000
+Received: from [98.138.226.162] by tm14.bullet.mail.gq1.yahoo.com with NNFMP;
+	11 Mar 2015 23:28:09 -0000
+Received: from [127.0.0.1] by omp1063.mail.ne1.yahoo.com with NNFMP;
+	11 Mar 2015 23:28:08 -0000
+X-Yahoo-Newman-Property: ymail-5
+X-Yahoo-Newman-Id: 962576.82561.bm@omp1063.mail.ne1.yahoo.com
+X-YMail-OSG: HYMtukcVM1lbVSoP8mt1yzVgoRegMnp7kb_UrNNa5Gj_yaWBvh0gHCguu00GLJI
+	paF.4HzyH5CQpMmQFe9sfpQww5b67qSVcKoZW8HArhji8quD.iFyEoF.VnIoxr1LHte2u3mI.l3h
+	fM3heGAkbpWRKJ8XUxOj4BC7i6s_TE7qIf8ecTcN0i9FocrwyNIcOlu0vL2TMUW_hUKE_434ADWd
+	lwXKEO7qYPI8v0web2GYoQMEapnSRoA7yFHE2FFry2IKp6Dpq72AGU6L4FoVg4nd9i8w4_JVqqzH
+	3C5tAYWMskZYtsm3m9QaBsaALZxEWdt5MSZe11NWwCmlhcoNSXqaG_mrI7cTOMAcUtMv7HlnexFK
+	tgmtqIUxTDwCmiv_zoqtPim0u_SunmyOZlCqbq0sHrkJkvKoOFIvm_AVQAXE8cR5CO1adveRUGGO
+	tXEHHl_Ee9JxTGQ2.3zL9NbH9bkvTQVEnqMkwne9ZLwXECIzs5Ig.eGNJxnU.1VaUuVhKSS08j7U
+	R5tEOo3AQ8w--
+Received: by 98.138.105.253; Wed, 11 Mar 2015 23:28:08 +0000 
+Date: Wed, 11 Mar 2015 23:28:08 +0000 (UTC)
+From: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
+To: Sona Sarmadi <sona.sarmadi@enea.com>, 
+	"yocto-security@yoctoproject.org" <yocto-security@yoctoproject.org>
+Message-ID: <2131862827.2912188.1426116488072.JavaMail.yahoo@mail.yahoo.com>
+In-Reply-To: <3230301C09DEF9499B442BBE162C5E48258AD7F4@SESTOEX04.enea.se>
+References: <3230301C09DEF9499B442BBE162C5E48258AD7F4@SESTOEX04.enea.se>
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: bind: issue in trust anchor management can cause named to crash (CVE-2015-1349)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -40,142 +67,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Mar 2015 21:28:38 -0000
+X-List-Received-Date: Wed, 11 Mar 2015 23:28:14 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2912187_1378309314.1426116488070"
 
-Merged do_shared_workdir into kernel_do_compile
+------=_Part_2912187_1378309314.1426116488070
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-This change should fix race condition between do_compilemodules
-and do_shared_workdir. Race occurs when do_compilemodules changes
-include/generated/ directory content while do_shared_workdir
-tries to copy it.
+Wouldn`t it be better for the bugs to be only mentioned on the security list?It is my opinion that know about a risk before it is fixed could cause more harm then good.What do you thing about this?
 
-Fixes [YOCTO #7321]
+Alex Vaduva
+ 
 
-Signed-off-by: Ed Bartosh <ed.bartosh@linux.intel.com>
----
- meta/classes/kernel-yocto.bbclass                | 2 +-
- meta/classes/kernel.bbclass                      | 5 ++---
- meta/classes/module-base.bbclass                 | 2 +-
- meta/recipes-kernel/linux/kernel-devsrc.bb       | 2 +-
- meta/recipes-kernel/linux/linux-dummy.bb         | 5 -----
- meta/recipes-kernel/lttng/lttng-modules_2.6.0.bb | 2 +-
- meta/recipes-kernel/perf/perf.bb                 | 2 +-
- 7 files changed, 7 insertions(+), 13 deletions(-)
+     On Wednesday, March 11, 2015 10:06 AM, Sona Sarmadi <sona.sarmadi@enea.com> wrote:
+   
 
-diff --git a/meta/classes/kernel-yocto.bbclass b/meta/classes/kernel-yocto.bbclass
-index 8db4899..27a027d 100644
---- a/meta/classes/kernel-yocto.bbclass
-+++ b/meta/classes/kernel-yocto.bbclass
-@@ -1,5 +1,5 @@
- # remove tasks that modify the source tree in case externalsrc is inherited
--SRCTREECOVEREDTASKS += "do_kernel_link_vmlinux do_kernel_configme do_validate_branches do_kernel_configcheck do_kernel_checkout do_shared_workdir do_fetch do_unpack do_patch"
-+SRCTREECOVEREDTASKS += "do_kernel_link_vmlinux do_kernel_configme do_validate_branches do_kernel_configcheck do_kernel_checkout do_fetch do_unpack do_patch"
- 
- # returns local (absolute) path names for all valid patches in the
- # src_uri
-diff --git a/meta/classes/kernel.bbclass b/meta/classes/kernel.bbclass
-index 125ed88..7914242 100644
---- a/meta/classes/kernel.bbclass
-+++ b/meta/classes/kernel.bbclass
-@@ -192,6 +192,7 @@ kernel_do_compile() {
- 	if test "${KERNEL_IMAGETYPE_FOR_MAKE}.gz" = "${KERNEL_IMAGETYPE}"; then
- 		gzip -9c < "${KERNEL_IMAGETYPE_FOR_MAKE}" > "${KERNEL_OUTPUT}"
- 	fi
-+	shared_workdir
- }
- 
- do_compile_kernelmodules() {
-@@ -234,8 +235,6 @@ kernel_do_install() {
- }
- do_install[prefuncs] += "package_get_auto_pr"
- 
--addtask shared_workdir after do_compile before do_install
--
- emit_depmod_pkgdata() {
- 	# Stash data for depmod
- 	install -d ${PKGDESTWORK}/kernel-depmod/
-@@ -245,7 +244,7 @@ emit_depmod_pkgdata() {
- 
- PACKAGEFUNCS += "emit_depmod_pkgdata"
- 
--do_shared_workdir () {
-+shared_workdir () {
- 	cd ${B}
- 
- 	kerneldir=${STAGING_KERNEL_BUILDDIR}
-diff --git a/meta/classes/module-base.bbclass b/meta/classes/module-base.bbclass
-index 3eb2e92..31ab95f 100644
---- a/meta/classes/module-base.bbclass
-+++ b/meta/classes/module-base.bbclass
-@@ -15,7 +15,7 @@ KERNEL_OBJECT_SUFFIX = ".ko"
- # kernel modules are generally machine specific
- PACKAGE_ARCH = "${MACHINE_ARCH}"
- 
--do_configure[depends] += "virtual/kernel:do_shared_workdir"
-+do_configure[depends] += "virtual/kernel:kernel_do_compile"
- 
- # Function to ensure the kernel scripts are created. Expected to
- # be called before do_compile. See module.bbclass for an exmaple.
-diff --git a/meta/recipes-kernel/linux/kernel-devsrc.bb b/meta/recipes-kernel/linux/kernel-devsrc.bb
-index e36de1b..f2a1d7c 100644
---- a/meta/recipes-kernel/linux/kernel-devsrc.bb
-+++ b/meta/recipes-kernel/linux/kernel-devsrc.bb
-@@ -16,7 +16,7 @@ inherit module-base
- # We need the kernel to be staged (unpacked, patched and configured) before
- # we can grab the source and make the source package. We also need the bits from
- # ${B} not to change while we install, so virtual/kernel must finish do_compile.
--do_install[depends] += "virtual/kernel:do_shared_workdir"
-+do_install[depends] += "virtual/kernel:kernel_do_compile"
- # Need the source, not just the output of populate_sysroot
- do_install[depends] += "virtual/kernel:do_compile"
- 
-diff --git a/meta/recipes-kernel/linux/linux-dummy.bb b/meta/recipes-kernel/linux/linux-dummy.bb
-index cc0e4e6..8f4ddc4 100644
---- a/meta/recipes-kernel/linux/linux-dummy.bb
-+++ b/meta/recipes-kernel/linux/linux-dummy.bb
-@@ -33,10 +33,6 @@ do_compile () {
- 	:
- }
- 
--do_shared_workdir () {
--	:
--}
--
- do_install() {
- 	:
- }
-@@ -51,4 +47,3 @@ do_deploy() {
- 
- addtask bundle_initramfs after do_install before do_deploy
- addtask deploy after do_install
--addtask shared_workdir after do_compile before do_install
-diff --git a/meta/recipes-kernel/lttng/lttng-modules_2.6.0.bb b/meta/recipes-kernel/lttng/lttng-modules_2.6.0.bb
-index d0039b3..9d07ae4 100644
---- a/meta/recipes-kernel/lttng/lttng-modules_2.6.0.bb
-+++ b/meta/recipes-kernel/lttng/lttng-modules_2.6.0.bb
-@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=1412caf5a1aa90d6a48588a4794c0eac \
-                     file://lgpl-2.1.txt;md5=243b725d71bb5df4a1e5920b344b86ad"
- 
- DEPENDS = "virtual/kernel"
--do_configure[depends] += "virtual/kernel:do_shared_workdir"
-+do_configure[depends] += "virtual/kernel:kernel_do_compile"
- 
- inherit module
- 
-diff --git a/meta/recipes-kernel/perf/perf.bb b/meta/recipes-kernel/perf/perf.bb
-index f69d177..59d6be2 100644
---- a/meta/recipes-kernel/perf/perf.bb
-+++ b/meta/recipes-kernel/perf/perf.bb
-@@ -32,7 +32,7 @@ DEPENDS = " \
-     bison flex \
- "
- 
--do_configure[depends] += "virtual/kernel:do_shared_workdir"
-+do_configure[depends] += "virtual/kernel:kernel_do_compile"
- 
- PROVIDES = "virtual/perf"
- 
+ Affects version 9.7.0 - 9.10.1-P1. In master we use bind 9.9.5.
+
+
+// Sona 
 -- 
-2.1.4
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
 
+    
+
+------=_Part_2912187_1378309314.1426116488070
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
+nt-size:12px"><div id=3D"yui_3_16_0_1_1426109610777_9421">Wouldn`t it be be=
+tter for the bugs to be only mentioned on the security list?</div><div id=
+=3D"yui_3_16_0_1_1426109610777_9401" dir=3D"ltr">It is my opinion that know=
+ about a risk before it is fixed could cause more harm then good.</div><div=
+ id=3D"yui_3_16_0_1_1426109610777_9645" dir=3D"ltr">What do you thing about=
+ this?</div><div id=3D"yui_3_16_0_1_1426109610777_9850" dir=3D"ltr"><br></d=
+iv><div id=3D"yui_3_16_0_1_1426109610777_9842" dir=3D"ltr"><br></div><div i=
+d=3D"yui_3_16_0_1_1426109610777_9843" dir=3D"ltr">Alex Vaduva<br></div><div=
+ id=3D"yui_3_16_0_1_1426109610777_9398"><span></span></div> <div class=3D"q=
+tdSeparateBR"><br><br></div><div style=3D"display: block;" class=3D"yahoo_q=
+uoted"> <div style=3D"font-family: HelveticaNeue, Helvetica Neue, Helvetica=
+, Arial, Lucida Grande, sans-serif; font-size: 12px;"> <div style=3D"font-f=
+amily: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans=
+-serif; font-size: 16px;"> <div dir=3D"ltr"> <font size=3D"2" face=3D"Arial=
+"> On Wednesday, March 11, 2015 10:06 AM, Sona Sarmadi &lt;sona.sarmadi@ene=
+a.com&gt; wrote:<br> </font> </div>  <br><br> <div class=3D"y_msg_container=
+">Affects version 9.7.0 - 9.10.1-P1. In master we use bind 9.9.5.<br><br><b=
+r>// Sona <br>-- <br>_______________________________________________<br>yoc=
+to mailing list<br><a ymailto=3D"mailto:yocto@yoctoproject.org" href=3D"mai=
+lto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br><a href=3D"https:=
+//lists.yoctoproject.org/listinfo/yocto" target=3D"_blank">https://lists.yo=
+ctoproject.org/listinfo/yocto</a><br><br><br></div>  </div> </div>  </div> =
+</div></body></html>
+
+------=_Part_2912187_1378309314.1426116488070--
