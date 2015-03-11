@@ -1,47 +1,48 @@
-Return-Path: <erik.boto@pelagicore.com>
+Return-Path: <alberk@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1245CE00777; Wed, 11 Mar 2015 01:34:34 -0700 (PDT)
+	id 16A50E00777; Wed, 11 Mar 2015 01:47:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.46 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (alberk[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-qg0-f46.google.com (mail-qg0-f46.google.com
-	[209.85.192.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A54EE00754
-	for <yocto@yoctoproject.org>; Wed, 11 Mar 2015 01:34:31 -0700 (PDT)
-Received: by qgfh3 with SMTP id h3so8231928qgf.2
-	for <yocto@yoctoproject.org>; Wed, 11 Mar 2015 01:34:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=nr0YB5jbLhCaT2Zf5jnIK1R4pz5OE0GZQtRfHJASsSs=;
-	b=ArBr7u5cuw8IEVyNG3IXKDkkJZXfVqTT9b1uhO2X8apmM88+170+UFFFofcv8bmjOo
-	9RDTbNUAo4UvQ838qybHMB47ghIJaDBziAlr7A7rNQc6xDmI0MwX+M2wUnU6cv5SNb8h
-	wquZeI+dFg6Yt+qmPdlQ+SHAurhDG6Fhz5LvIP4a1zS4BnjYCwsU5uc6sICPNQ69gKbM
-	LK/3gSqseHcVLcTET+xMvxGzR1VAJRMjoLNspXO4ItPcrUpL4QJacxHvLU6pHwVYRqB1
-	fPksJ/wAAyeNKXfltjiFbbGakTYTqdFoxT2P29jtZdPBNxNO8ckToXKvRdt9qz5U9/nJ
-	I3vQ==
-X-Gm-Message-State: ALoCoQk/0xufPWTZFEWMhITpDwid5daVBIVqiPQqVawQ0sKjXscudEor4cZViilv2wV3aSddjyk1
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.169 listed in list.dnswl.org]
+Received: from mail-ig0-f169.google.com (mail-ig0-f169.google.com
+	[209.85.213.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86A74E00754
+	for <yocto@yoctoproject.org>; Wed, 11 Mar 2015 01:47:37 -0700 (PDT)
+Received: by igkb16 with SMTP id b16so37797042igk.1
+	for <yocto@yoctoproject.org>; Wed, 11 Mar 2015 01:47:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=+VFEYuCLxiUeNLR8qSiD2cRoxZjA+tfEAQQ/KxDfzuA=;
+	b=JzmkvI+EcFSpCn+UPGCgx7U1UziZhgFdc88N7l7CKK/3AzU/tLjIx3fFH8tQ9L95rF
+	24fcksOGs7VKMxBeFqyeQeMWuegtKuij7vjO2QpUioQTtroAhUTwCUkjGWesFKltLvg4
+	PqTuOD4MEjDrH4CvNIQ4GIY2HSBmWJfTRwe8M9Xsm3Esoow3I/N5w5jo4C4A5321V/wN
+	aZwiA1imfZAOJnG4whUOnz/nhOqdNEcpOLFgMwXjlQEiOEWftNt84KoYDZs13c5RwO/n
+	vQnRPYczQfngOMpvNWBSeC9FBppvNxmgqECPLNTATAW0N3Hfmx172+rqvvM5xthFyhOb
+	34qw==
 MIME-Version: 1.0
-X-Received: by 10.140.217.200 with SMTP id n191mr46418737qhb.29.1426062871034; 
-	Wed, 11 Mar 2015 01:34:31 -0700 (PDT)
-Received: by 10.96.184.133 with HTTP; Wed, 11 Mar 2015 01:34:30 -0700 (PDT)
-In-Reply-To: <95CF81BBD42FB348A182716C4D4310A806904248@G2W2533.americas.hpqcorp.net>
-References: <95CF81BBD42FB348A182716C4D4310A806904248@G2W2533.americas.hpqcorp.net>
-Date: Wed, 11 Mar 2015 09:34:30 +0100
-Message-ID: <CA+AhUGxB1n2=gOkQ7Xdg+0i2V1c_eS-=G46QCnNzLy0kok8iQA@mail.gmail.com>
-From: =?UTF-8?Q?Erik_Bot=C3=B6?= <erik.boto@pelagicore.com>
-To: "Koehler, Yannick (HP Networking)" <yannick.koehler@hp.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Building local sources
+X-Received: by 10.107.6.212 with SMTP id f81mr57865435ioi.37.1426063657408;
+	Wed, 11 Mar 2015 01:47:37 -0700 (PDT)
+Received: by 10.64.39.16 with HTTP; Wed, 11 Mar 2015 01:47:37 -0700 (PDT)
+Date: Wed, 11 Mar 2015 16:47:37 +0800
+Message-ID: <CACjDgAN7MoZyR8JY=Y8SFGBFCU7w4ogNimJOJFaoy+2Yx9JRbQ@mail.gmail.com>
+From: Albert K <alberk@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Set Default Kernel Version Q
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,90 +54,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Mar 2015 08:34:34 -0000
+X-List-Received-Date: Wed, 11 Mar 2015 08:47:44 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-I think you should set S to whatever directory that contains your
-source, it has a default to ${WORKDIR}/${PN}-${PV} if I remember
-correctly.
+I have set the PREFERRED_VERSION_linux-yocto = "3.17%"  in the
 
-So S =3D "${WORKDIR}/${PN}"  should work if the recipe is named the same
-as the subdir in git, otherwise just set it explicitly using e.g.  S =3D
-"${WORKDIR}/module_a"
+~/porky/build/conf/local.conf but it does not seem to be working.
+Where can I set so that the default kernel version is used (currently
+is compiling with kernel 3.14 with dizzy).   Thanks.
 
-Side note: Your example uses an underscore, which means that a and b
-would be interpreted as versions, which is probably not intended. See
-http://www.yoctoproject.org/docs/1.6/dev-manual/dev-manual.html#new-recipe-=
-storing-and-naming-the-recipe
-
-Cheers,
-Erik
-
-On Mon, Mar 9, 2015 at 4:37 PM, Koehler, Yannick (HP Networking)
-<yannick.koehler@hp.com> wrote:
-> Hi,
->
->  I need some help regarding this since I cannot find out how to achieve t=
-his.  I have a git repo with a lot of code splitted in module, such as:
->
->         /.git
->         /module_a
->         /module_b
->
->  Etc...
->
->   I want to compile those modules using a bitbake recipe within yocto so =
-I created the following tree structure:
->
->         /.git
->         /module_a
->         /module_b
->         /poky
->                 /meta-modules
->                         /recipes-<category>
->                                 /module_a
->                                         module_a.bb
->                         /recipes-<category>
->                                 /module_b
->                                         module_b.bb
->
->   So far so good, but now I am having issue with unpack/compile step, my =
-modules are make-based (not autotools and not CMake).  So I used EXTRA_OEMA=
-KE to get them to use the proper target toolchain.  Problem lies with the S=
-RC_URI, my files from module_a gets copied into $WORKDIR and not into $S, a=
-s such the compile step failed.  I understand that SRC_URI is not really th=
-e proper usage in such situation, appears to be meant to retrieve external =
-packages and some files here and there, mostly patches.  Even thought all m=
-y modules are within a git repo, I do not want to extract the full repo for=
- each modules either.
->
->   I am now looking into writing my own unpack function to move my code un=
-der S manually, but I was wondering if yocto had something to support this =
-model and I simply missed it or if writing a custom unpack is the appropria=
-te solution (likely I'll have to create a class so that all my modules use =
-the same unpack behavior).
->
-> Yannick Koehler
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
-
---=20
-Erik Bot=C3=B6
-M.Sc.E.E.
-SENIOR SOFTWARE ENGINEER
-
-Pelagicore AB
-Ekelundsgatan 4, 6tr, SE-411 18 Gothenburg, Sweden
-Mobile: +46 (0)768 817 203
-E-Mail: erik.boto@pelagicore.com
-
-PELAGICORE Experience Change
+Regards,
+Albert
 
