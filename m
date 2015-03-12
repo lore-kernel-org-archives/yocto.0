@@ -1,6 +1,6 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 90C35E00828; Thu, 12 Mar 2015 01:23:08 -0700 (PDT)
+	id 2A3A4E00832; Thu, 12 Mar 2015 03:58:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,18 +10,18 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 671CAE0034E
-	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 01:23:03 -0700 (PDT)
-Received: from [99.240.204.5] (port=46738 helo=crashcourse.ca)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37289E0034E
+	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 03:58:36 -0700 (PDT)
+Received: from [99.240.204.5] (port=48349 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1YVyOX-0002G6-By
-	for yocto@yoctoproject.org; Thu, 12 Mar 2015 04:23:05 -0400
-Date: Thu, 12 Mar 2015 04:22:58 -0400 (EDT)
+	id 1YW0p4-0002D6-C7
+	for yocto@yoctoproject.org; Thu, 12 Mar 2015 06:58:38 -0400
+Date: Thu, 12 Mar 2015 06:58:33 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@localhost
 To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1503120418370.17812@localhost>
+Message-ID: <alpine.LFD.2.11.1503120657300.874@localhost>
 User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -33,7 +33,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Subject: should bitbake manual mention other task flags like file-checksums, ...?
+Subject: is meta-yocto-kernel-extras still being used?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,24 +45,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 08:23:08 -0000
+X-List-Received-Date: Thu, 12 Mar 2015 10:58:40 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-  bitbake user manual, section 3.6, provides a list of task flags, but
-there are a few others that aren't mentioned there, is it worth adding
-them or are they adequately obscure that readers don't need to know
-about them?
-
-* [file-checksums]
-* [lockfiles]
-* [sstate-inputdirs]
-* [sstate-outputdirs]
-* [sstate-plaindirs]
-* [sstate-lockfile-shared]
-
-and i already mentioned that [recideptask] was missing from that list.
-are there any others?
+  current dev manual refers to this layer in section 2.2, but it
+doesn't look like much has happened with that repo in quite some time.
 
 rday
 
