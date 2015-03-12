@@ -1,74 +1,41 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <benjamin.esquivel@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0B142E00858; Thu, 12 Mar 2015 06:43:29 -0700 (PDT)
+	id 9DFB2E00858; Thu, 12 Mar 2015 08:53:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, SPF_HELO_PASS,
-	UC_GIBBERISH_OBFU autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [157.56.110.140 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* 1.0 UC_GIBBERISH_OBFU Multiple instances of "word VERYLONGGIBBERISH
-	*      word"
-X-Greylist: delayed 86281 seconds by postgrey-1.32 at yocto-www;
-	Thu, 12 Mar 2015 06:43:18 PDT
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1on0140.outbound.protection.outlook.com [157.56.110.140])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 732A9E0083A
-	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 06:43:18 -0700 (PDT)
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com (25.160.113.12) by
-	BN3PR0501MB1090.namprd05.prod.outlook.com (25.160.113.12) with
-	Microsoft SMTP
-	Server (TLS) id 15.1.106.15; Thu, 12 Mar 2015 13:43:15 +0000
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com ([25.160.113.12]) by
-	BN3PR0501MB1090.namprd05.prod.outlook.com ([25.160.113.12]) with
-	mapi id 15.01.0106.007; Thu, 12 Mar 2015 13:43:15 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "Minchev, Todor" <todor.minchev@intel.com>
-Thread-Topic: [yocto] eclipse-poky: Can't build from Eclipse, but command line
-	build works
-Thread-Index: AdBb/BnFUUT6HWWeSZuLla6w2kTN0wAuqBWAAAPbjNA=
-Date: Thu, 12 Mar 2015 13:43:14 +0000
-Message-ID: <BN3PR0501MB1090163B91C05C2E2CCFDB9CBB060@BN3PR0501MB1090.namprd05.prod.outlook.com>
-References: <BN3PR0501MB109035A8492F6EA261F15FE8BB190@BN3PR0501MB1090.namprd05.prod.outlook.com>
-	<1426159307.7680.18.camel@intel.com>
-In-Reply-To: <1426159307.7680.18.camel@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-vipre-scanned: 006707CE0095D80067091B
-x-originating-ip: [98.100.91.242]
-authentication-results: intel.com; dkim=none (message not signed)
-	header.d=none;
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BN3PR0501MB1090;
-x-forefront-antispam-report: BMV:1; SFV:NSPM;
-	SFS:(10019020)(6009001)(164054003)(174874002)(66066001)(2656002)(87936001)(33656002)(46102003)(92566002)(77156002)(74316001)(62966003)(40100003)(122556002)(15975445007)(102836002)(2900100001)(2950100001)(110136001)(86362001)(99286002)(50986999)(19580395003)(76176999)(54356999)(76576001)(50929005);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR0501MB1090;
-	H:BN3PR0501MB1090.namprd05.prod.outlook.com; FPR:; SPF:None;
-	MLV:nov; PTR:InfoNoRecords; LANG:en; 
-x-microsoft-antispam-prvs: <BN3PR0501MB1090E00CC28F68D6DA262AEFBB060@BN3PR0501MB1090.namprd05.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(44728458202952);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(5002009)(5005006)(2002001); SRVR:BN3PR0501MB1090;
-	BCL:0; PCL:0; RULEID:; SRVR:BN3PR0501MB1090; 
-x-forefront-prvs: 05134F8B4F
-MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Mar 2015 13:43:14.9916 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR0501MB1090
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: eclipse-poky: Can't build from Eclipse, but command line build works
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E8F7E0083A;
+	Thu, 12 Mar 2015 08:53:30 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga101.fm.intel.com with ESMTP; 12 Mar 2015 08:53:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,389,1422950400"; d="scan'208";a="539995709"
+Received: from besquive-mobl.zpn.intel.com (HELO [10.219.4.51]) ([10.219.4.51])
+	by orsmga003.jf.intel.com with ESMTP; 12 Mar 2015 08:52:46 -0700
+Message-ID: <1426175606.12716.5.camel@besquive-mobl.amr.corp.intel.com>
+From: Benjamin Esquivel <benjamin.esquivel@linux.intel.com>
+To: Priya Agarwal <priya_agarwal@students.iitmandi.ac.in>
+Date: Thu, 12 Mar 2015 09:53:26 -0600
+In-Reply-To: <CALTPfpHK3-q9Xdv-ff_vgP7suRXuSzXEQVNq2wnbPj6hrosvdg@mail.gmail.com>
+References: <CALTPfpHK3-q9Xdv-ff_vgP7suRXuSzXEQVNq2wnbPj6hrosvdg@mail.gmail.com>
+Organization: Intel OTC
+X-Mailer: Evolution 3.10.4 (3.10.4-4.fc20) 
+Mime-Version: 1.0
+Cc: "yocto-builds@yoctoproject.org" <yocto-builds@yoctoproject.org>,
+	yocto@yoctoproject.org
+Subject: Re: Linking of external libraries in the recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: benjamin.esquivel@linux.intel.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -77,255 +44,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 13:43:29 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN3PR0501MB1090163B91C05C2E2CCFDB9CBB060BN3PR0501MB1090_"
+X-List-Received-Date: Thu, 12 Mar 2015 15:53:32 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---_000_BN3PR0501MB1090163B91C05C2E2CCFDB9CBB060BN3PR0501MB1090_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Thu, 2015-03-12 at 18:00 +0530, Priya Agarwal wrote:
+> Hello,
+> 
+> 
+> I have taken a recipe for the package squid from OpenEmbedded.org and
+> have built it along with the kernel image. 
+> 
+> 
+> Now I want to edit its recipe so that it will include some external
+> libraries.
+> But these libraries are the ones that are generated during the build.
+> So how do I edit the recipe to include those libraries?
+> 
+Hi Priya, if you want to use a recipe and make some modifications to
+it's behavior it is recommended that you do it via a .bbappend file
 
-VG9kb3IsDQoNCj4gSXQgYXBwZWFycyB0aGF0IHlvdXIgdG9vbGNoYWluIGlzIGNvbmZpZ3VyZWQg
-cHJvcGVybHksIGhvd2V2ZXIgdGhlICBHTlUgbGlua2VyIChsZCkgY2Fubm90IGZpbmQgdGhlIGxp
-YnJhcmllcyBpdCBuZWVkcyB0byBsaW5rIHRoZSBiaW5hcnkuDQo+IEkgc3VzcGVjdCB0aGF0IHRo
-ZSBjdWxwcml0IGlzICItLXN5c3Jvb3Q9JFNES1RBUkdFVFNZU1JPT1QiDQo+IFRoZXJlIHNob3Vs
-ZCBiZSBhbiBlbnZpcm9ubWVudCBzZXR1cCBmaWxlDQo+DQo+IC88aG9tZV9wYXRoPi9wb2t5L3Bv
-a3ktYnVpbGQvdG1wL2Vudmlyb25tZW50LXNldHVwLVhYDQo+DQo+IElmIHlvdSBvcGVuIGl0IHlv
-dSB3aWxsIHNlZSBTREtUQVJHRVRTWVNST09UIGVudmlyb25tZW50IHZhcmlhYmxlLiBJdCBtb3N0
-IGxpa2VseSBwb2ludHMgdG8gYSBkaWZmZXJlbnQgc3lzcm9vdCBwYXRoLg0KPiBQbGVhc2UgY2hh
-bmdlIGl0IHRvIHBvaW50IHRvIHRoZSBkaXJlY3Rvcnkgd2hlcmUgeW91IGV4dHJhY3RlZCB5b3Vy
-IHN5c3Jvb3QgKC88aG9tZV9wYXRoPi9leHRyYWN0ZWRfc3lzcm9vdF8xLjYuMiksDQo+IGNyZWF0
-ZSBhIG5ldyBwcm9qZWN0IGFuZCBzZWUgaWYgdGhhdCBidWlsZHMgT0suDQoNCkkndmUgYmVlbiBo
-YXZpbmcgYSBmZXcgb3RoZXIgaXNzdWVzIHdpdGggRWNsaXBzZSAoSW5zdGFsbCBOZXcgU29mdHdh
-cmUgbWVudSBpdGVtIGRpc2FwcGVhcmluZywgb3RoZXIgcGx1Z2lucyBkaXNhcHBlYXJpbmcgYWZ0
-ZXIgcmVzdGFydGluZywgZXRjLiksIHNvIEkgdW5pbnN0YWxsZWQgZWNsaXBzZSwgZGVsZXRlZCBt
-eSB+Ly5lY2xpcHNlIGFuZCB3b3Jrc3BhY2UgZGlyZWN0b3JpZXMgYW5kIHJlLWluc3RhbGxlZCBF
-Y2xpcHNlLiAgSSBuZWVkIHRvIHJ1biBFY2xpcHNlIEtlcGxlciAoYW5vdGhlciBwbHVnaW4gSSdt
-IHVzaW5nIGlzbid0IHJlYWR5IGZvciBFY2xpcHNlIEx1bmEpLCBzbyBJIGZvbGxvd2VkIHRoZXNl
-IGluc3RydWN0aW9ucyBmb3IgaW5zdGFsbGluZyBFY2xpcHNlIGJ5IGhhbmQ6IGh0dHA6Ly93d3cu
-OTJ3aWtpLmNvbS9lbi9ibG9nL2RldGFpbC9pbnN0YWxsLWVjbGlwc2Uta2VwbGVyLW9uLWZlZG9y
-YS0xNy0xOC0xOS1jZW50b3MtcmVkLWhhdC1yaGVsLTUtNi4gICBJIGFsc28gZWRpdGVkIG15IGVu
-dmlyb25tZW50IHNldHVwIHNjcmlwdCBhcyBzdWdnZXN0ZWQuICBJIHRoZW4gcmVpbnN0YWxsZWQg
-YWxsIG5lY2Vzc2FyeSBwbHVnaW5zIGFzIGRlc2NyaWJlZCBpbiB0aGUgQURUIG1hbnVhbC4gIEkg
-cG9pbnRlZCB0aGUgdG9vbGNoYWluIHRvIG15IGJ1aWxkIGRpcmVjdG9yeSBhbmQgdGhlIHN5c3Jv
-b3QgbG9jYXRpb24gdG8gbXkgZXh0cmFjdGVkIHN5c3Jvb3QuICBJIHRoZW4gZm9sbG93ZWQgdGhl
-IHN0ZXBzIGluIHRoZSBBRFQgbWFudWFsIHRvIGNyZWF0ZSBhIG5ldyBIZWxsbyBXb3JsZCBZb2N0
-byBBRFQgcHJvamVjdC4gIEkgdmVyaWZpZWQgdGhlIFNES1RBUkdFVFNZU1JPT1QgZW52aXJvbm1l
-bnQgdmFyaWFibGUgaW4gdGhlIG5ldyBwcm9qZWN0IHBvaW50cyB0byBteSBleHRyYWN0ZWQgc3lz
-cm9vdC4gIFdoZW4gSSBhdHRlbXB0ZWQgdG8gYnVpbGQsIEkgZ2V0IHRoZSBmb2xsb3dpbmcgb3V0
-cHV0Og0KDQoNCkludm9raW5nIGF1dG9nZW4uc2ggaW4gYnVpbGQgZGlyZWN0b3J5OiAvPGhvbWVf
-cGF0aD4vd29ya3NwYWNlL2FkdF90ZXN0Lw0KDQpDb21tYW5kLWxpbmUgZW52aXJvbm1lbnQgdmFy
-aWFibGVzOg0KICAgICAgICAgQ0ZMQUdTPSIgLWcgLU8wICAtLXN5c3Jvb3Q9Lzxob21lX3BhdGg+
-L2V4dHJhY3RlZF9zeXNyb290XzEuNi4yIiBDWFhGTEFHUz0iIC1nIC1PMCAgLS1zeXNyb290PS88
-aG9tZV9wYXRoPi9leHRyYWN0ZWRfc3lzcm9vdF8xLjYuMiIgTERGTEFHUz0iIC0tc3lzcm9vdD0v
-PGhvbWVfcGF0aD4vZXh0cmFjdGVkX3N5c3Jvb3RfMS42LjIiIENQUEZMQUdTPSIgLS1zeXNyb290
-PS88aG9tZV9wYXRoPi9leHRyYWN0ZWRfc3lzcm9vdF8xLjYuMiINCg0Kc2ggLWMgIi88aG9tZV9w
-YXRoPi93b3Jrc3BhY2UvYWR0X3Rlc3QvYXV0b2dlbi5zaCAtLXdpdGgtbGlidG9vbC1zeXNyb290
-PS88aG9tZV9wYXRoPi9leHRyYWN0ZWRfc3lzcm9vdF8xLjYuMiAtLXRhcmdldD1hcm0tcG9reS1s
-aW51eC1nbnVlYWJpIC0taG9zdD1hcm0tcG9reS1saW51eC1nbnVlYWJpIC0tYnVpbGQ9eDg2XzY0
-LWxpbnV4IC0td2l0aC1saWJ0b29sLXN5c3Jvb3Q9Lzxob21lX3BhdGg+L2V4dHJhY3RlZF9zeXNy
-b290XzEuNi4yIg0KYWNsb2NhbDogd2FybmluZzogY291bGRuJ3Qgb3BlbiBkaXJlY3RvcnkgJy88
-aG9tZV9wYXRoPi9leHRyYWN0ZWRfc3lzcm9vdF8xLjYuMi91c3Ivc2hhcmUvYWNsb2NhbCc6IE5v
-IHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkNCmNvbmZpZ3VyZS5hYzoxNjogd2FybmluZzogQU1fSU5J
-VF9BVVRPTUFLRTogdHdvLSBhbmQgdGhyZWUtYXJndW1lbnRzIGZvcm1zIGFyZSBkZXByZWNhdGVk
-LiAgRm9yIG1vcmUgaW5mbywgc2VlOg0KY29uZmlndXJlLmFjOjE2OiBodHRwOi8vd3d3LmdudS5v
-cmcvc29mdHdhcmUvYXV0b21ha2UvbWFudWFsL2F1dG9tYWtlLmh0bWwjTW9kZXJuaXplLUFNXzAw
-NWZJTklUXzAwNWZBVVRPTUFLRS1pbnZvY2F0aW9uDQpjb25maWd1cmUuYWM6MjA6IGluc3RhbGxp
-bmcgJy4vY29tcGlsZScNCmNvbmZpZ3VyZS5hYzoyMDogaW5zdGFsbGluZyAnLi9jb25maWcuZ3Vl
-c3MnDQpjb25maWd1cmUuYWM6MjA6IGluc3RhbGxpbmcgJy4vY29uZmlnLnN1YicNCmNvbmZpZ3Vy
-ZS5hYzoxNjogaW5zdGFsbGluZyAnLi9pbnN0YWxsLXNoJw0KY29uZmlndXJlLmFjOjE2OiBpbnN0
-YWxsaW5nICcuL21pc3NpbmcnDQpzcmMvTWFrZWZpbGUuYW06IGluc3RhbGxpbmcgJy4vZGVwY29t
-cCcNCmNvbmZpZ3VyZTogbG9hZGluZyBzaXRlIHNjcmlwdCAvPGhvbWVfcGF0aD4vcG9reS9tZXRh
-L3NpdGUvZW5kaWFuLWxpdHRsZQ0KY29uZmlndXJlOiBsb2FkaW5nIHNpdGUgc2NyaXB0IC88aG9t
-ZV9wYXRoPi9wb2t5L21ldGEvc2l0ZS9hcm0tY29tbW9uDQpjb25maWd1cmU6IGxvYWRpbmcgc2l0
-ZSBzY3JpcHQgLzxob21lX3BhdGg+L3Bva3kvbWV0YS9zaXRlL2NvbW1vbi1saW51eA0KY29uZmln
-dXJlOiBsb2FkaW5nIHNpdGUgc2NyaXB0IC88aG9tZV9wYXRoPi9wb2t5L21ldGEvc2l0ZS9jb21t
-b24tZ2xpYmMNCmNvbmZpZ3VyZTogbG9hZGluZyBzaXRlIHNjcmlwdCAvPGhvbWVfcGF0aD4vcG9r
-eS9tZXRhL3NpdGUvYXJtLWxpbnV4DQpjb25maWd1cmU6IGxvYWRpbmcgc2l0ZSBzY3JpcHQgLzxo
-b21lX3BhdGg+L3Bva3kvbWV0YS9zaXRlL2NvbW1vbg0KY29uZmlndXJlOiBsb2FkaW5nIHNpdGUg
-c2NyaXB0IC88aG9tZV9wYXRoPi9wb2t5L21ldGEtb3BlbmVtYmVkZGVkL21ldGEtb2Uvc2l0ZS9l
-bmRpYW4tbGl0dGxlDQpjb25maWd1cmU6IGxvYWRpbmcgc2l0ZSBzY3JpcHQgLzxob21lX3BhdGg+
-L3Bva3kvcG9reS1idWlsZC90bXAvc3lzcm9vdHMvYXQ5MXNhbTl4NWVrL3Vzci9zaGFyZS9hcm0t
-cG9reS1saW51eC1nbnVlYWJpX2NvbmZpZ19zaXRlLmQvbmN1cnNlc19jb25maWcNCmNvbmZpZ3Vy
-ZTogbG9hZGluZyBzaXRlIHNjcmlwdCAvPGhvbWVfcGF0aD4vcG9reS9wb2t5LWJ1aWxkL3RtcC9z
-eXNyb290cy9hdDkxc2FtOXg1ZWsvdXNyL3NoYXJlL2FybS1wb2t5LWxpbnV4LWdudWVhYmlfY29u
-ZmlnX3NpdGUuZC9lZ2xpYmNfY29uZmlnDQpjaGVja2luZyBmb3IgYSBCU0QtY29tcGF0aWJsZSBp
-bnN0YWxsLi4uIC91c3IvYmluL2luc3RhbGwgLWMNCmNoZWNraW5nIHdoZXRoZXIgYnVpbGQgZW52
-aXJvbm1lbnQgaXMgc2FuZS4uLiB5ZXMNCmNoZWNraW5nIGZvciBhcm0tcG9reS1saW51eC1nbnVl
-YWJpLXN0cmlwLi4uIGFybS1wb2t5LWxpbnV4LWdudWVhYmktc3RyaXANCmNoZWNraW5nIGZvciBh
-IHRocmVhZC1zYWZlIG1rZGlyIC1wLi4uIC91c3IvYmluL21rZGlyIC1wDQpjaGVja2luZyBmb3Ig
-Z2F3ay4uLiBnYXdrDQpjaGVja2luZyB3aGV0aGVyIG1ha2Ugc2V0cyAkKE1BS0UpLi4uIHllcw0K
-Y2hlY2tpbmcgd2hldGhlciBtYWtlIHN1cHBvcnRzIG5lc3RlZCB2YXJpYWJsZXMuLi4geWVzDQpj
-aGVja2luZyBidWlsZCBzeXN0ZW0gdHlwZS4uLiB4ODZfNjQtcGMtbGludXgtZ251DQpjaGVja2lu
-ZyBob3N0IHN5c3RlbSB0eXBlLi4uIGFybS1wb2t5LWxpbnV4LWdudWVhYmkNCmNoZWNraW5nIGhv
-dyB0byBwcmludCBzdHJpbmdzLi4uIHByaW50Zg0KY2hlY2tpbmcgZm9yIHN0eWxlIG9mIGluY2x1
-ZGUgdXNlZCBieSBtYWtlLi4uIEdOVQ0KY2hlY2tpbmcgZm9yIGFybS1wb2t5LWxpbnV4LWdudWVh
-YmktZ2NjLi4uIGFybS1wb2t5LWxpbnV4LWdudWVhYmktZ2NjICAtbWFyY2g9YXJtdjV0ZSAtbWFy
-bSAtbXRodW1iLWludGVyd29yayAtbXR1bmU9YXJtOTI2ZWotcyAtLXN5c3Jvb3Q9JFNES1RBUkdF
-VFNZU1JPT1QNCmNoZWNraW5nIHdoZXRoZXIgdGhlIEMgY29tcGlsZXIgd29ya3MuLi4gbm8NCmNv
-bmZpZ3VyZTogZXJyb3I6IGluIGAvPGhvbWVfcGF0aD4vd29ya3NwYWNlL2FkdF90ZXN0JzoNCmNv
-bmZpZ3VyZTogZXJyb3I6IGluIGAvPGhvbWVfcGF0aD4vd29ya3NwYWNlL2FkdF90ZXN0JzoNCmNv
-bmZpZ3VyZTogZXJyb3I6IEMgY29tcGlsZXIgY2Fubm90IGNyZWF0ZSBleGVjdXRhYmxlcw0KY29u
-ZmlndXJlOiBlcnJvcjogQyBjb21waWxlciBjYW5ub3QgY3JlYXRlIGV4ZWN1dGFibGVzDQpTZWUg
-YGNvbmZpZy5sb2cnIGZvciBtb3JlIGRldGFpbHMNCg0KQ29uZmlndXJhdGlvbiBmYWlsZWQgd2l0
-aCBlcnJvcg0KDQpUaGUgYm9sZCBsaW5lcyBhcmUgb25lcyB0aGF0IEkgc2VlIGFzIGEgcG90ZW50
-aWFsIHByb2JsZW0uICBGaXJzdCwgdGhlIHN5c3RlbSBjb3VsZG4ndCBmaW5kIGFjbG9jYWwgaW4g
-bXkgZXh0cmFjdGVkIHN5c3Jvb3QuICBJIHRvb2sgYSBsb29rIGluIHRoZSBkaXJlY3RvcnkgbGlz
-dGVkLCBhbmQgYWNsb2NhbCBpcyBub3QgaW4gdGhlcmUuICBJIHRoaW5rIHRoZSBjb25maWd1cmUg
-c2NyaXB0IGFsc28gZm91bmQgdGhlIGJ1aWxkIHN5c3RlbSdzIGluc3RhbGwgYW5kIG1rZGlyICgv
-dXNyL2Jpbi9pbnN0YWxsIGFuZCAvdXNyL2Jpbi9ta2RpcikuICBJIGRvbid0IGtub3cgaWYgdGhl
-cmUgaXMgc3VwcG9zZWQgdG8gYmUgb25lIG9mIHRoZXNlIGluIHRoZSBleHRyYWN0ZWQgc3lzcm9v
-dCBvciBub3QsIGJ1dCBJIHRob3VnaHQgaXQgd2FzIHdvcnRoIG5vdGluZy4NCg0KT24gYSBwb3Nz
-aWJseSByZWxhdGVkIHRvcGljLCBJIG5vdGljZWQgdGhhdCB0aGUgRWNsaXBzZSBJbmRleGVyIGlz
-IHVzaW5nIHRoZSBidWlsZCBzeXN0ZW0ncyBoZWFkZXIgZmlsZXMuICBGb3IgZXhhbXBsZSwgaWYg
-SSBvcGVuIHRoZSBtYWluIHNvdXJjZSBmaWxlIGZyb20gdGhlIEhlbGxvdyBXb3JsZCBhcHBsaWNh
-dGlvbiwgcGxhY2UgbXkgY3Vyc29yIG9uIHRoZSBsaW5lICIjaW5jbHVkZSA8c3RkbGliLmg+IiBh
-bmQgaGl0IEYzLCAvdXNyL2luY2x1ZGUvc3RkbGliLmggb3BlbnMgdXAgaW5zdGVhZCBvZiBzdGRs
-aWIuaCBmcm9tIG15IHRvb2xjaGFpbi4gIFVuZGVyIHRoZSBFY2xpcHNlIHByb2plY3QsIGZvciB0
-aGUgbGlzdGVkIEluY2x1ZGVzIGRpcmVjdG9yaWVzIGl0IGhhcyB0aGUgZm9sbG93aW5nOg0KDQov
-dXNyL2luY2x1ZGUNCi91c3IvbGliL2djYy94ODZfNjQtcmVkaGF0LWxpbnV4LzQuOS4yL2luY2x1
-ZGUNCi91c3IvbG9jYWwvaW5jbHVkZQ0KDQpBbnkgdGhvdWdodHMgb24gaG93IHRvIGZpeCB0aGVz
-ZSBpc3N1ZXM/DQoNClRoYW5rcywNCkJyeWFuDQoNCg==
+http://www.yoctoproject.org/docs/1.7.1/dev-manual/dev-manual.html#using-bbappend-files
 
---_000_BN3PR0501MB1090163B91C05C2E2CCFDB9CBB060BN3PR0501MB1090_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+If the libraries are already generated during the build it might be a
+case where you just DEPENDS_append = " <libraryproviderpackage>" at
+the .bbappend file. When the dependiencies are resolved prior your
+recipe is built, the headers and libraries are placed in a special part
+of the working directory that the recipes know where to look for (if
+they don't deviate of the standard, of course). 
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
-dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
-LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
-ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
-PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExcHQ7Ij4NCjxkaXY+VG9kb3IsPC9kaXY+DQo8ZGl2PiZuYnNwOzwvZGl2
-Pg0KPGRpdj4mZ3Q7IEl0IGFwcGVhcnMgdGhhdCB5b3VyIHRvb2xjaGFpbiBpcyBjb25maWd1cmVk
-IHByb3Blcmx5LCBob3dldmVyIHRoZSZuYnNwOyBHTlUgbGlua2VyIChsZCkgY2Fubm90IGZpbmQg
-dGhlIGxpYnJhcmllcyBpdCBuZWVkcyB0byBsaW5rIHRoZSBiaW5hcnkuIDwvZGl2Pg0KPGRpdj4m
-Z3Q7IEkgc3VzcGVjdCB0aGF0IHRoZSBjdWxwcml0IGlzICZxdW90Oy0tc3lzcm9vdD0kU0RLVEFS
-R0VUU1lTUk9PVCZxdW90OzwvZGl2Pg0KPGRpdj4mZ3Q7IFRoZXJlIHNob3VsZCBiZSBhbiBlbnZp
-cm9ubWVudCBzZXR1cCBmaWxlPC9kaXY+DQo8ZGl2PiZndDsgPC9kaXY+DQo8ZGl2PiZndDsgLyZs
-dDtob21lX3BhdGgmZ3Q7L3Bva3kvcG9reS1idWlsZC90bXAvZW52aXJvbm1lbnQtc2V0dXAtWFg8
-L2Rpdj4NCjxkaXY+Jmd0OzwvZGl2Pg0KPGRpdj4mZ3Q7IElmIHlvdSBvcGVuIGl0IHlvdSB3aWxs
-IHNlZSBTREtUQVJHRVRTWVNST09UIGVudmlyb25tZW50IHZhcmlhYmxlLiBJdCBtb3N0IGxpa2Vs
-eSBwb2ludHMgdG8gYSBkaWZmZXJlbnQgc3lzcm9vdCBwYXRoLjwvZGl2Pg0KPGRpdj4mZ3Q7IFBs
-ZWFzZSBjaGFuZ2UgaXQgdG8gcG9pbnQgdG8gdGhlIGRpcmVjdG9yeSB3aGVyZSB5b3UgZXh0cmFj
-dGVkIHlvdXIgc3lzcm9vdCAoLyZsdDtob21lX3BhdGgmZ3Q7L2V4dHJhY3RlZF9zeXNyb290XzEu
-Ni4yKSw8L2Rpdj4NCjxkaXY+Jmd0OyBjcmVhdGUgYSBuZXcgcHJvamVjdCBhbmQgc2VlIGlmIHRo
-YXQgYnVpbGRzIE9LLjwvZGl2Pg0KPGRpdj4mbmJzcDs8L2Rpdj4NCjxkaXY+SSd2ZSBiZWVuIGhh
-dmluZyBhIGZldyBvdGhlciBpc3N1ZXMgd2l0aCBFY2xpcHNlIChJbnN0YWxsIE5ldyBTb2Z0d2Fy
-ZSBtZW51IGl0ZW0gZGlzYXBwZWFyaW5nLCBvdGhlciBwbHVnaW5zIGRpc2FwcGVhcmluZyBhZnRl
-ciByZXN0YXJ0aW5nLCBldGMuKSwgc28gSSB1bmluc3RhbGxlZCBlY2xpcHNlLCBkZWxldGVkIG15
-IH4vLmVjbGlwc2UgYW5kIHdvcmtzcGFjZSBkaXJlY3RvcmllcyBhbmQgcmUtaW5zdGFsbGVkIEVj
-bGlwc2UuJm5ic3A7IEkgbmVlZA0KdG8gcnVuIEVjbGlwc2UgS2VwbGVyIChhbm90aGVyIHBsdWdp
-biBJJ20gdXNpbmcgaXNuJ3QgcmVhZHkgZm9yIEVjbGlwc2UgTHVuYSksIHNvIEkgZm9sbG93ZWQg
-dGhlc2UgaW5zdHJ1Y3Rpb25zIGZvciBpbnN0YWxsaW5nIEVjbGlwc2UgYnkgaGFuZDogPGEgaHJl
-Zj0iaHR0cDovL3d3dy45Mndpa2kuY29tL2VuL2Jsb2cvZGV0YWlsL2luc3RhbGwtZWNsaXBzZS1r
-ZXBsZXItb24tZmVkb3JhLTE3LTE4LTE5LWNlbnRvcy1yZWQtaGF0LXJoZWwtNS02Ij48Zm9udCBj
-b2xvcj0iIzA1NjNDMSI+PHU+aHR0cDovL3d3dy45Mndpa2kuY29tL2VuL2Jsb2cvZGV0YWlsL2lu
-c3RhbGwtZWNsaXBzZS1rZXBsZXItb24tZmVkb3JhLTE3LTE4LTE5LWNlbnRvcy1yZWQtaGF0LXJo
-ZWwtNS02PC91PjwvZm9udD48L2E+LiZuYnNwOyZuYnNwOw0KSSBhbHNvIGVkaXRlZCBteSBlbnZp
-cm9ubWVudCBzZXR1cCBzY3JpcHQgYXMgc3VnZ2VzdGVkLiZuYnNwOyBJIHRoZW4gcmVpbnN0YWxs
-ZWQgYWxsIG5lY2Vzc2FyeSBwbHVnaW5zIGFzIGRlc2NyaWJlZCBpbiB0aGUgQURUIG1hbnVhbC4m
-bmJzcDsgSSBwb2ludGVkIHRoZSB0b29sY2hhaW4gdG8gbXkgYnVpbGQgZGlyZWN0b3J5IGFuZCB0
-aGUgc3lzcm9vdCBsb2NhdGlvbiB0byBteSBleHRyYWN0ZWQgc3lzcm9vdC4mbmJzcDsgSSB0aGVu
-IGZvbGxvd2VkIHRoZSBzdGVwcyBpbg0KdGhlIEFEVCBtYW51YWwgdG8gY3JlYXRlIGEgbmV3IEhl
-bGxvIFdvcmxkIFlvY3RvIEFEVCBwcm9qZWN0LiZuYnNwOyBJIHZlcmlmaWVkIHRoZSBTREtUQVJH
-RVRTWVNST09UIGVudmlyb25tZW50IHZhcmlhYmxlIGluIHRoZSBuZXcgcHJvamVjdCBwb2ludHMg
-dG8gbXkgZXh0cmFjdGVkIHN5c3Jvb3QuJm5ic3A7IFdoZW4gSSBhdHRlbXB0ZWQgdG8gYnVpbGQs
-IEkgZ2V0IHRoZSBmb2xsb3dpbmcgb3V0cHV0OjwvZGl2Pg0KPGRpdj4mbmJzcDs8L2Rpdj4NCjxk
-aXY+Jm5ic3A7PC9kaXY+DQo8ZGl2Pkludm9raW5nIGF1dG9nZW4uc2ggaW4gYnVpbGQgZGlyZWN0
-b3J5OiAvJmx0O2hvbWVfcGF0aCZndDsvd29ya3NwYWNlL2FkdF90ZXN0LzwvZGl2Pg0KPGRpdj4m
-bmJzcDs8L2Rpdj4NCjxkaXY+Q29tbWFuZC1saW5lIGVudmlyb25tZW50IHZhcmlhYmxlczo8L2Rp
-dj4NCjxkaXY+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7ICBDRkxB
-R1M9JnF1b3Q7IC1nIC1PMCZuYnNwOyAtLXN5c3Jvb3Q9LyZsdDtob21lX3BhdGgmZ3Q7L2V4dHJh
-Y3RlZF9zeXNyb290XzEuNi4yJnF1b3Q7IENYWEZMQUdTPSZxdW90OyAtZyAtTzAmbmJzcDsgLS1z
-eXNyb290PS8mbHQ7aG9tZV9wYXRoJmd0Oy9leHRyYWN0ZWRfc3lzcm9vdF8xLjYuMiZxdW90OyBM
-REZMQUdTPSZxdW90OyAtLXN5c3Jvb3Q9LyZsdDtob21lX3BhdGgmZ3Q7L2V4dHJhY3RlZF9zeXNy
-b290XzEuNi4yJnF1b3Q7IENQUEZMQUdTPSZxdW90OyAtLXN5c3Jvb3Q9LyZsdDtob21lX3BhdGgm
-Z3Q7L2V4dHJhY3RlZF9zeXNyb290XzEuNi4yJnF1b3Q7PC9kaXY+DQo8ZGl2PiZuYnNwOzwvZGl2
-Pg0KPGRpdj5zaCAtYyAmcXVvdDsvJmx0O2hvbWVfcGF0aCZndDsvd29ya3NwYWNlL2FkdF90ZXN0
-L2F1dG9nZW4uc2ggLS13aXRoLWxpYnRvb2wtc3lzcm9vdD0vJmx0O2hvbWVfcGF0aCZndDsvZXh0
-cmFjdGVkX3N5c3Jvb3RfMS42LjIgLS10YXJnZXQ9YXJtLXBva3ktbGludXgtZ251ZWFiaSAtLWhv
-c3Q9YXJtLXBva3ktbGludXgtZ251ZWFiaSAtLWJ1aWxkPXg4Nl82NC1saW51eCAtLXdpdGgtbGli
-dG9vbC1zeXNyb290PS8mbHQ7aG9tZV9wYXRoJmd0Oy9leHRyYWN0ZWRfc3lzcm9vdF8xLjYuMiZx
-dW90Ow0KPC9kaXY+DQo8ZGl2PjxiPmFjbG9jYWw6IHdhcm5pbmc6IGNvdWxkbid0IG9wZW4gZGly
-ZWN0b3J5ICcvPC9iPjxiPiZsdDtob21lX3BhdGgmZ3Q7PC9iPjxiPi9leHRyYWN0ZWRfc3lzcm9v
-dF8xLjYuMi91c3Ivc2hhcmUvYWNsb2NhbCc6IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3Rvcnk8L2I+
-PC9kaXY+DQo8ZGl2PmNvbmZpZ3VyZS5hYzoxNjogd2FybmluZzogQU1fSU5JVF9BVVRPTUFLRTog
-dHdvLSBhbmQgdGhyZWUtYXJndW1lbnRzIGZvcm1zIGFyZSBkZXByZWNhdGVkLiZuYnNwOyBGb3Ig
-bW9yZSBpbmZvLCBzZWU6PC9kaXY+DQo8ZGl2PmNvbmZpZ3VyZS5hYzoxNjogPGEgaHJlZj0iaHR0
-cDovL3d3dy5nbnUub3JnL3NvZnR3YXJlL2F1dG9tYWtlL21hbnVhbC9hdXRvbWFrZS5odG1sI01v
-ZGVybml6ZS1BTV8wMDVmSU5JVF8wMDVmQVVUT01BS0UtaW52b2NhdGlvbiI+DQpodHRwOi8vd3d3
-LmdudS5vcmcvc29mdHdhcmUvYXV0b21ha2UvbWFudWFsL2F1dG9tYWtlLmh0bWwjTW9kZXJuaXpl
-LUFNXzAwNWZJTklUXzAwNWZBVVRPTUFLRS1pbnZvY2F0aW9uPC9hPjwvZGl2Pg0KPGRpdj5jb25m
-aWd1cmUuYWM6MjA6IGluc3RhbGxpbmcgJy4vY29tcGlsZSc8L2Rpdj4NCjxkaXY+Y29uZmlndXJl
-LmFjOjIwOiBpbnN0YWxsaW5nICcuL2NvbmZpZy5ndWVzcyc8L2Rpdj4NCjxkaXY+Y29uZmlndXJl
-LmFjOjIwOiBpbnN0YWxsaW5nICcuL2NvbmZpZy5zdWInPC9kaXY+DQo8ZGl2PmNvbmZpZ3VyZS5h
-YzoxNjogaW5zdGFsbGluZyAnLi9pbnN0YWxsLXNoJzwvZGl2Pg0KPGRpdj5jb25maWd1cmUuYWM6
-MTY6IGluc3RhbGxpbmcgJy4vbWlzc2luZyc8L2Rpdj4NCjxkaXY+c3JjL01ha2VmaWxlLmFtOiBp
-bnN0YWxsaW5nICcuL2RlcGNvbXAnPC9kaXY+DQo8ZGl2PmNvbmZpZ3VyZTogbG9hZGluZyBzaXRl
-IHNjcmlwdCAvJmx0O2hvbWVfcGF0aCZndDsvcG9reS9tZXRhL3NpdGUvZW5kaWFuLWxpdHRsZTwv
-ZGl2Pg0KPGRpdj5jb25maWd1cmU6IGxvYWRpbmcgc2l0ZSBzY3JpcHQgLyZsdDtob21lX3BhdGgm
-Z3Q7L3Bva3kvbWV0YS9zaXRlL2FybS1jb21tb248L2Rpdj4NCjxkaXY+Y29uZmlndXJlOiBsb2Fk
-aW5nIHNpdGUgc2NyaXB0IC8mbHQ7aG9tZV9wYXRoJmd0Oy9wb2t5L21ldGEvc2l0ZS9jb21tb24t
-bGludXg8L2Rpdj4NCjxkaXY+Y29uZmlndXJlOiBsb2FkaW5nIHNpdGUgc2NyaXB0IC8mbHQ7aG9t
-ZV9wYXRoJmd0Oy9wb2t5L21ldGEvc2l0ZS9jb21tb24tZ2xpYmM8L2Rpdj4NCjxkaXY+Y29uZmln
-dXJlOiBsb2FkaW5nIHNpdGUgc2NyaXB0IC8mbHQ7aG9tZV9wYXRoJmd0Oy9wb2t5L21ldGEvc2l0
-ZS9hcm0tbGludXg8L2Rpdj4NCjxkaXY+Y29uZmlndXJlOiBsb2FkaW5nIHNpdGUgc2NyaXB0IC8m
-bHQ7aG9tZV9wYXRoJmd0Oy9wb2t5L21ldGEvc2l0ZS9jb21tb248L2Rpdj4NCjxkaXY+Y29uZmln
-dXJlOiBsb2FkaW5nIHNpdGUgc2NyaXB0IC8mbHQ7aG9tZV9wYXRoJmd0Oy9wb2t5L21ldGEtb3Bl
-bmVtYmVkZGVkL21ldGEtb2Uvc2l0ZS9lbmRpYW4tbGl0dGxlPC9kaXY+DQo8ZGl2PmNvbmZpZ3Vy
-ZTogbG9hZGluZyBzaXRlIHNjcmlwdCAvJmx0O2hvbWVfcGF0aCZndDsvcG9reS9wb2t5LWJ1aWxk
-L3RtcC9zeXNyb290cy9hdDkxc2FtOXg1ZWsvdXNyL3NoYXJlL2FybS1wb2t5LWxpbnV4LWdudWVh
-YmlfY29uZmlnX3NpdGUuZC9uY3Vyc2VzX2NvbmZpZzwvZGl2Pg0KPGRpdj5jb25maWd1cmU6IGxv
-YWRpbmcgc2l0ZSBzY3JpcHQgLyZsdDtob21lX3BhdGgmZ3Q7L3Bva3kvcG9reS1idWlsZC90bXAv
-c3lzcm9vdHMvYXQ5MXNhbTl4NWVrL3Vzci9zaGFyZS9hcm0tcG9reS1saW51eC1nbnVlYWJpX2Nv
-bmZpZ19zaXRlLmQvZWdsaWJjX2NvbmZpZzwvZGl2Pg0KPGRpdj48Yj5jaGVja2luZyBmb3IgYSBC
-U0QtY29tcGF0aWJsZSBpbnN0YWxsLi4uIC91c3IvYmluL2luc3RhbGwgLWM8L2I+PC9kaXY+DQo8
-ZGl2PmNoZWNraW5nIHdoZXRoZXIgYnVpbGQgZW52aXJvbm1lbnQgaXMgc2FuZS4uLiB5ZXM8L2Rp
-dj4NCjxkaXY+Y2hlY2tpbmcgZm9yIGFybS1wb2t5LWxpbnV4LWdudWVhYmktc3RyaXAuLi4gYXJt
-LXBva3ktbGludXgtZ251ZWFiaS1zdHJpcDwvZGl2Pg0KPGRpdj48Yj5jaGVja2luZyBmb3IgYSB0
-aHJlYWQtc2FmZSBta2RpciAtcC4uLiAvdXNyL2Jpbi9ta2RpciAtcDwvYj48L2Rpdj4NCjxkaXY+
-Y2hlY2tpbmcgZm9yIGdhd2suLi4gZ2F3azwvZGl2Pg0KPGRpdj5jaGVja2luZyB3aGV0aGVyIG1h
-a2Ugc2V0cyAkKE1BS0UpLi4uIHllczwvZGl2Pg0KPGRpdj5jaGVja2luZyB3aGV0aGVyIG1ha2Ug
-c3VwcG9ydHMgbmVzdGVkIHZhcmlhYmxlcy4uLiB5ZXM8L2Rpdj4NCjxkaXY+Y2hlY2tpbmcgYnVp
-bGQgc3lzdGVtIHR5cGUuLi4geDg2XzY0LXBjLWxpbnV4LWdudTwvZGl2Pg0KPGRpdj5jaGVja2lu
-ZyBob3N0IHN5c3RlbSB0eXBlLi4uIGFybS1wb2t5LWxpbnV4LWdudWVhYmk8L2Rpdj4NCjxkaXY+
-Y2hlY2tpbmcgaG93IHRvIHByaW50IHN0cmluZ3MuLi4gcHJpbnRmPC9kaXY+DQo8ZGl2PmNoZWNr
-aW5nIGZvciBzdHlsZSBvZiBpbmNsdWRlIHVzZWQgYnkgbWFrZS4uLiBHTlU8L2Rpdj4NCjxkaXY+
-Y2hlY2tpbmcgZm9yIGFybS1wb2t5LWxpbnV4LWdudWVhYmktZ2NjLi4uIGFybS1wb2t5LWxpbnV4
-LWdudWVhYmktZ2NjJm5ic3A7IC1tYXJjaD1hcm12NXRlIC1tYXJtIC1tdGh1bWItaW50ZXJ3b3Jr
-IC1tdHVuZT1hcm05MjZlai1zIC0tc3lzcm9vdD0kU0RLVEFSR0VUU1lTUk9PVDwvZGl2Pg0KPGRp
-dj5jaGVja2luZyB3aGV0aGVyIHRoZSBDIGNvbXBpbGVyIHdvcmtzLi4uIG5vPC9kaXY+DQo8ZGl2
-PmNvbmZpZ3VyZTogZXJyb3I6IGluIGAvJmx0O2hvbWVfcGF0aCZndDsvd29ya3NwYWNlL2FkdF90
-ZXN0Jzo8L2Rpdj4NCjxkaXY+Y29uZmlndXJlOiBlcnJvcjogaW4gYC8mbHQ7aG9tZV9wYXRoJmd0
-Oy93b3Jrc3BhY2UvYWR0X3Rlc3QnOjwvZGl2Pg0KPGRpdj5jb25maWd1cmU6IGVycm9yOiBDIGNv
-bXBpbGVyIGNhbm5vdCBjcmVhdGUgZXhlY3V0YWJsZXM8L2Rpdj4NCjxkaXY+Y29uZmlndXJlOiBl
-cnJvcjogQyBjb21waWxlciBjYW5ub3QgY3JlYXRlIGV4ZWN1dGFibGVzPC9kaXY+DQo8ZGl2PlNl
-ZSBgY29uZmlnLmxvZycgZm9yIG1vcmUgZGV0YWlsczwvZGl2Pg0KPGRpdj4mbmJzcDs8L2Rpdj4N
-CjxkaXY+Q29uZmlndXJhdGlvbiBmYWlsZWQgd2l0aCBlcnJvcjwvZGl2Pg0KPGRpdj4mbmJzcDs8
-L2Rpdj4NCjxkaXY+VGhlIGJvbGQgbGluZXMgYXJlIG9uZXMgdGhhdCBJIHNlZSBhcyBhIHBvdGVu
-dGlhbCBwcm9ibGVtLiZuYnNwOyBGaXJzdCwgdGhlIHN5c3RlbSBjb3VsZG4ndCBmaW5kIGFjbG9j
-YWwgaW4gbXkgZXh0cmFjdGVkIHN5c3Jvb3QuJm5ic3A7IEkgdG9vayBhIGxvb2sgaW4gdGhlIGRp
-cmVjdG9yeSBsaXN0ZWQsIGFuZCBhY2xvY2FsIGlzIG5vdCBpbiB0aGVyZS4mbmJzcDsgSSB0aGlu
-ayB0aGUgY29uZmlndXJlIHNjcmlwdCBhbHNvIGZvdW5kIHRoZSBidWlsZCBzeXN0ZW0ncw0KaW5z
-dGFsbCBhbmQgbWtkaXIgKC91c3IvYmluL2luc3RhbGwgYW5kIC91c3IvYmluL21rZGlyKS4mbmJz
-cDsgSSBkb24ndCBrbm93IGlmIHRoZXJlIGlzIHN1cHBvc2VkIHRvIGJlIG9uZSBvZiB0aGVzZSBp
-biB0aGUgZXh0cmFjdGVkIHN5c3Jvb3Qgb3Igbm90LCBidXQgSSB0aG91Z2h0IGl0IHdhcyB3b3J0
-aCBub3RpbmcuPC9kaXY+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPGRpdj5PbiBhIHBvc3NpYmx5IHJl
-bGF0ZWQgdG9waWMsIEkgbm90aWNlZCB0aGF0IHRoZSBFY2xpcHNlIEluZGV4ZXIgaXMgdXNpbmcg
-dGhlIGJ1aWxkIHN5c3RlbSdzIGhlYWRlciBmaWxlcy4mbmJzcDsgRm9yIGV4YW1wbGUsIGlmIEkg
-b3BlbiB0aGUgbWFpbiBzb3VyY2UgZmlsZSBmcm9tIHRoZSBIZWxsb3cgV29ybGQgYXBwbGljYXRp
-b24sIHBsYWNlIG15IGN1cnNvciBvbiB0aGUgbGluZSAmcXVvdDsjaW5jbHVkZSAmbHQ7c3RkbGli
-LmgmZ3Q7JnF1b3Q7IGFuZCBoaXQgRjMsIC91c3IvaW5jbHVkZS9zdGRsaWIuaA0Kb3BlbnMgdXAg
-aW5zdGVhZCBvZiBzdGRsaWIuaCBmcm9tIG15IHRvb2xjaGFpbi4mbmJzcDsgVW5kZXIgdGhlIEVj
-bGlwc2UgcHJvamVjdCwgZm9yIHRoZSBsaXN0ZWQgSW5jbHVkZXMgZGlyZWN0b3JpZXMgaXQgaGFz
-IHRoZSBmb2xsb3dpbmc6PC9kaXY+DQo8ZGl2PiZuYnNwOzwvZGl2Pg0KPGRpdj4vdXNyL2luY2x1
-ZGU8L2Rpdj4NCjxkaXY+L3Vzci9saWIvZ2NjL3g4Nl82NC1yZWRoYXQtbGludXgvNC45LjIvaW5j
-bHVkZTwvZGl2Pg0KPGRpdj4vdXNyL2xvY2FsL2luY2x1ZGU8L2Rpdj4NCjxkaXY+Jm5ic3A7PC9k
-aXY+DQo8ZGl2PkFueSB0aG91Z2h0cyBvbiBob3cgdG8gZml4IHRoZXNlIGlzc3Vlcz88L2Rpdj4N
-CjxkaXY+Jm5ic3A7PC9kaXY+DQo8ZGl2PlRoYW5rcyw8L2Rpdj4NCjxkaXY+QnJ5YW48L2Rpdj4N
-CjxkaXY+Jm5ic3A7PC9kaXY+DQo8L3NwYW4+PC9mb250Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+> 
+> Location of
+> library:  ../yocto/<build-directory>/............/libusdpaa.a
+> 
+> 
+> 
+> currently the do_compile task is failing as I have used an extra
+> function whose library I haven't included. Snippet of the error:
+> 
+> | main.cc: In function 'int SquidMainSafe(int, char**)':
+> | main.cc:1259:10: error: 'of_init' was not declared in this scope
+> | make[3]: *** [main.o] Error 1
+> | make[3]: *** Waiting for unfinished jobs....
+> | make[3]: Leaving directory
+> `/media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_networking-linux/squid/3.4.7-r0/squid-3.4.7/src'
+> | make[2]: *** [all-recursive] Error 1
+> | make[2]: Leaving directory
+> `/media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_networking-linux/squid/3.4.7-r0/squid-3.4.7/src'
+> | make[1]: *** [all] Error 2
+> | make[1]: Leaving directory
+> `/media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_networking-linux/squid/3.4.7-r0/squid-3.4.7/src'
+> | make: *** [all-recursive] Error 1
+> | ERROR: oe_runmake failed
+> | ERROR: Function failed: do_compile
+> (see /media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_networking-linux/squid/3.4.7-r0/temp/log.do_compile.28810 for further information)
+> ERROR: Task 799
+> (/media/NewVolume/yocto/meta-oe/meta-networking/recipes-daemons/squid/squid_3.4.7.bb, do_compile) failed with exit code '1'
+> 
+> 
+> I have attached my recipe.
+> 
+> 
+> 
 
---_000_BN3PR0501MB1090163B91C05C2E2CCFDB9CBB060BN3PR0501MB1090_--
+
+
