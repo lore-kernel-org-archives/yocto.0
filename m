@@ -1,57 +1,52 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <priyaiitmandi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6A762E0086D; Thu, 12 Mar 2015 09:27:59 -0700 (PDT)
+	id D5477E008CD; Thu, 12 Mar 2015 09:28:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.53 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f53.google.com (mail-pa0-f53.google.com
-	[209.85.220.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2938EE00858
-	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 09:27:57 -0700 (PDT)
-Received: by padfa1 with SMTP id fa1so21802271pad.3
-	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 09:27:56 -0700 (PDT)
+Received: from mail-ig0-f182.google.com (mail-ig0-f182.google.com
+	[209.85.213.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50FE4E0085D;
+	Thu, 12 Mar 2015 09:28:11 -0700 (PDT)
+Received: by igqa13 with SMTP id a13so45673610igq.0;
+	Thu, 12 Mar 2015 09:28:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:content-transfer-encoding:subject:message-id:date
-	:to:mime-version;
-	bh=NGz/StgNcF2gbIYY/chDoVeRYvZriMNxXXQROuyEswo=;
-	b=BQSv0uqnp7LQQXWhcURK8ldis5q5BamTaZoyxL9SM4MDF7ZtH52qD8dF7UfSsnRc7u
-	hyfrVJEe04ISfCosfeNBvHDYRg2K6jI72Wk4QnN6wmPy7ezYJxJV/ytlABaz8f1GpgN7
-	/m2mMLVLuNjJ3WMi4McVrsnAxM5VQg+bNWEIG6/X4OneTW+saKda/vm774PpAMBjBiHI
-	FZHx5ADyuBmisoss0/u482NqzbZzFapWHNojm4/t2D0Z6wcWJnUQeGgR1tGQ+/CQiA1X
-	38JqMi8iP2pJpCto3V/+BJ61+9QoZOd62tRUb2gLWeHJwuY805DFhaPk/Gds9JZqJVxT
-	1Qvw==
-X-Received: by 10.70.52.8 with SMTP id p8mr91692713pdo.27.1426177676859;
-	Thu, 12 Mar 2015 09:27:56 -0700 (PDT)
-Received: from [192.168.0.13] (c-76-103-142-85.hsd1.ca.comcast.net.
-	[76.103.142.85])
-	by mx.google.com with ESMTPSA id r8sm11819949pdp.10.2015.03.12.09.27.55
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 12 Mar 2015 09:27:55 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-Message-Id: <1C32BA8A-B6B1-4CD6-A980-72C07E978FA2@gmail.com>
-Date: Thu, 12 Mar 2015 09:27:53 -0700
-To: Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>, 
-	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
-	yocto <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2070.6\))
-X-Mailer: Apple Mail (2.2070.6)
-Subject: clang cross compiler for OE available in meta-clang
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:cc:content-type;
+	bh=euDDaydLq/A6igz4gAAMUMwvZDPP/7HuejL8MgGYbcw=;
+	b=rCxUIO7QMChCDHwET1HWpKEeYnG9c+/AcIupcoX3okTqsuzpGyuDhhoGf5HOEjhvv6
+	4hyItXcGZbC2plOUoYcr9RKu7rzVUNETRt8WynonW/fH85tiRn/jSXzdqtaofbXKkJuC
+	QntBOzQSf8WLOxn7vshK6Xs0Coi9lLvXGb0C57ei/OZ59pvTFHH7dYbWiCCUlHivHx+v
+	Rkd+BbkCLS1VUtqUXn72pvsD1+hodXbFsOlb5WJYXkGVBgK6tv6NgAiFVVH+hQffix3f
+	kHZG0vU7nt2gN/xHVz5PWwkof6/BB7Gp2tyD5CapRFYOGwrzbiT+uzPjRX5RXdieMGlS
+	cUMA==
+MIME-Version: 1.0
+X-Received: by 10.107.130.197 with SMTP id m66mr58647963ioi.19.1426177691339; 
+	Thu, 12 Mar 2015 09:28:11 -0700 (PDT)
+Sender: priyaiitmandi@gmail.com
+Received: by 10.107.16.139 with HTTP; Thu, 12 Mar 2015 09:28:11 -0700 (PDT)
+In-Reply-To: <1426175606.12716.5.camel@besquive-mobl.amr.corp.intel.com>
+References: <CALTPfpHK3-q9Xdv-ff_vgP7suRXuSzXEQVNq2wnbPj6hrosvdg@mail.gmail.com>
+	<1426175606.12716.5.camel@besquive-mobl.amr.corp.intel.com>
+Date: Thu, 12 Mar 2015 21:58:11 +0530
+X-Google-Sender-Auth: OoxhDbRbfmRPrIP5dyOJOIt4oiY
+Message-ID: <CALTPfpGvW3mkeMq0ncWot-8LiUyf+c3xbi2TPfkh0CJLCzfiAQ@mail.gmail.com>
+From: Priya Agarwal <priya_agarwal@students.iitmandi.ac.in>
+To: benjamin.esquivel@linux.intel.com
+Cc: "yocto-builds@yoctoproject.org" <yocto-builds@yoctoproject.org>,
+	yocto@yoctoproject.org
+Subject: Re: Linking of external libraries in the recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,45 +58,205 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 16:27:59 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Thu, 12 Mar 2015 16:28:13 -0000
+Content-Type: multipart/alternative; boundary=001a113ed0e2add305051119decd
+
+--001a113ed0e2add305051119decd
+Content-Type: text/plain; charset=UTF-8
+
+>
+> If the libraries are already generated during the build it might be a
+> case where you just DEPENDS_append = " <libraryproviderpackage>" at
+
+he .bbappend file
+
+
+I know where the libraries are but how do I make out which is the package.
+(The needed '.a' files are in ..../usdpaa/git-r5/git/lib_powerpc/*)
+
+
+
+
+
+On Thu, Mar 12, 2015 at 9:23 PM, Benjamin Esquivel <
+benjamin.esquivel@linux.intel.com> wrote:
+
+> On Thu, 2015-03-12 at 18:00 +0530, Priya Agarwal wrote:
+> > Hello,
+> >
+> >
+> > I have taken a recipe for the package squid from OpenEmbedded.org and
+> > have built it along with the kernel image.
+> >
+> >
+> > Now I want to edit its recipe so that it will include some external
+> > libraries.
+> > But these libraries are the ones that are generated during the build.
+> > So how do I edit the recipe to include those libraries?
+> >
+> Hi Priya, if you want to use a recipe and make some modifications to
+> it's behavior it is recommended that you do it via a .bbappend file
+>
+>
+> http://www.yoctoproject.org/docs/1.7.1/dev-manual/dev-manual.html#using-bbappend-files
+>
+> If the libraries are already generated during the build it might be a
+> case where you just DEPENDS_append = " <libraryproviderpackage>" at
+> the .bbappend file. When the dependiencies are resolved prior your
+> recipe is built, the headers and libraries are placed in a special part
+> of the working directory that the recipes know where to look for (if
+> they don't deviate of the standard, of course).
+>
+> >
+> > Location of
+> > library:  ../yocto/<build-directory>/............/libusdpaa.a
+> >
+> >
+> >
+> > currently the do_compile task is failing as I have used an extra
+> > function whose library I haven't included. Snippet of the error:
+> >
+> > | main.cc: In function 'int SquidMainSafe(int, char**)':
+> > | main.cc:1259:10: error: 'of_init' was not declared in this scope
+> > | make[3]: *** [main.o] Error 1
+> > | make[3]: *** Waiting for unfinished jobs....
+> > | make[3]: Leaving directory
+> >
+> `/media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_networking-linux/squid/3.4.7-r0/squid-3.4.7/src'
+> > | make[2]: *** [all-recursive] Error 1
+> > | make[2]: Leaving directory
+> >
+> `/media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_networking-linux/squid/3.4.7-r0/squid-3.4.7/src'
+> > | make[1]: *** [all] Error 2
+> > | make[1]: Leaving directory
+> >
+> `/media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_networking-linux/squid/3.4.7-r0/squid-3.4.7/src'
+> > | make: *** [all-recursive] Error 1
+> > | ERROR: oe_runmake failed
+> > | ERROR: Function failed: do_compile
+> > (see
+> /media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_networking-linux/squid/3.4.7-r0/temp/log.do_compile.28810
+> for further information)
+> > ERROR: Task 799
+> > (/media/NewVolume/yocto/meta-oe/meta-networking/recipes-daemons/squid/
+> squid_3.4.7.bb, do_compile) failed with exit code '1'
+> >
+> >
+> > I have attached my recipe.
+> >
+> >
+> >
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--001a113ed0e2add305051119decd
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi All,
+<div dir=3D"ltr"><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:=
+1px solid rgb(204,204,204);padding-left:1ex" class=3D"gmail_quote">If the l=
+ibraries are already generated during the build it might be a<br>
+case where you just DEPENDS_append =3D &quot; &lt;libraryproviderpackage&gt=
+;&quot; at=C2=A0</blockquote><blockquote style=3D"margin:0px 0px 0px 0.8ex;=
+border-left:1px solid rgb(204,204,204);padding-left:1ex" class=3D"gmail_quo=
+te">he .bbappend file</blockquote><div><br></div><div>I know where the libr=
+aries are but how do I make out which is the package. <br></div><div>(The n=
+eeded &#39;.a&#39; files are in ..../usdpaa/git-r5/git/lib_powerpc/*)<br></=
+div><div><br><br><br>=C2=A0<br></div></div><div class=3D"gmail_extra"><br><=
+div class=3D"gmail_quote">On Thu, Mar 12, 2015 at 9:23 PM, Benjamin Esquive=
+l <span dir=3D"ltr">&lt;<a href=3D"mailto:benjamin.esquivel@linux.intel.com=
+" target=3D"_blank">benjamin.esquivel@linux.intel.com</a>&gt;</span> wrote:=
+<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
+t:1px #ccc solid;padding-left:1ex"><span class=3D"">On Thu, 2015-03-12 at 1=
+8:00 +0530, Priya Agarwal wrote:<br>
+&gt; Hello,<br>
+&gt;<br>
+&gt;<br>
+&gt; I have taken a recipe for the package squid from OpenEmbedded.org and<=
+br>
+&gt; have built it along with the kernel image.<br>
+&gt;<br>
+&gt;<br>
+&gt; Now I want to edit its recipe so that it will include some external<br=
+>
+&gt; libraries.<br>
+&gt; But these libraries are the ones that are generated during the build.<=
+br>
+&gt; So how do I edit the recipe to include those libraries?<br>
+&gt;<br>
+</span>Hi Priya, if you want to use a recipe and make some modifications to=
+<br>
+it&#39;s behavior it is recommended that you do it via a .bbappend file<br>
+<br>
+<a href=3D"http://www.yoctoproject.org/docs/1.7.1/dev-manual/dev-manual.htm=
+l#using-bbappend-files" target=3D"_blank">http://www.yoctoproject.org/docs/=
+1.7.1/dev-manual/dev-manual.html#using-bbappend-files</a><br>
+<br>
+If the libraries are already generated during the build it might be a<br>
+case where you just DEPENDS_append =3D &quot; &lt;libraryproviderpackage&gt=
+;&quot; at<br>
+the .bbappend file. When the dependiencies are resolved prior your<br>
+recipe is built, the headers and libraries are placed in a special part<br>
+of the working directory that the recipes know where to look for (if<br>
+they don&#39;t deviate of the standard, of course).<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+&gt;<br>
+&gt; Location of<br>
+&gt; library:=C2=A0 ../yocto/&lt;build-directory&gt;/............/libusdpaa=
+.a<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; currently the do_compile task is failing as I have used an extra<br>
+&gt; function whose library I haven&#39;t included. Snippet of the error:<b=
+r>
+&gt;<br>
+&gt; | main.cc: In function &#39;int SquidMainSafe(int, char**)&#39;:<br>
+&gt; | main.cc:1259:10: error: &#39;of_init&#39; was not declared in this s=
+cope<br>
+&gt; | make[3]: *** [main.o] Error 1<br>
+&gt; | make[3]: *** Waiting for unfinished jobs....<br>
+&gt; | make[3]: Leaving directory<br>
+&gt; `/media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_n=
+etworking-linux/squid/3.4.7-r0/squid-3.4.7/src&#39;<br>
+&gt; | make[2]: *** [all-recursive] Error 1<br>
+&gt; | make[2]: Leaving directory<br>
+&gt; `/media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_n=
+etworking-linux/squid/3.4.7-r0/squid-3.4.7/src&#39;<br>
+&gt; | make[1]: *** [all] Error 2<br>
+&gt; | make[1]: Leaving directory<br>
+&gt; `/media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_n=
+etworking-linux/squid/3.4.7-r0/squid-3.4.7/src&#39;<br>
+&gt; | make: *** [all-recursive] Error 1<br>
+&gt; | ERROR: oe_runmake failed<br>
+&gt; | ERROR: Function failed: do_compile<br>
+&gt; (see /media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-f=
+sl_networking-linux/squid/3.4.7-r0/temp/log.do_compile.28810 for further in=
+formation)<br>
+&gt; ERROR: Task 799<br>
+&gt; (/media/NewVolume/yocto/meta-oe/meta-networking/recipes-daemons/squid/=
+<a href=3D"http://squid_3.4.7.bb" target=3D"_blank">squid_3.4.7.bb</a>, do_=
+compile) failed with exit code &#39;1&#39;<br>
+&gt;<br>
+&gt;<br>
+&gt; I have attached my recipe.<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+<br>
+<br>
+</div></div><span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</font></span></blockquote></div><br></div>
 
-Finally, clang/llvm is now in a working state as a cross compiler in =
-meta-clang layer
-
-https://github.com/kraj/meta-clang
-
-Currently, It will build clang and stage it along with gcc cross =
-compilers, default remains
-as it is. If you wish to compile an additional recipe using clang you =
-will add following two entries per recipe
-
-
-TOOLCHAIN_pn-<recipe> =3D "clang"
-DEPENDS_append_pn-<recipe> =3D " clang-cross "
-
-to conf/clang.conf=20
-
-and it will start using clang for that component. Right now it only has =
-one entry for =E2=80=98lzo=E2=80=99 :)
-I am hoping to have this list grow soon
-
-Right now, its only the cross compiler, which means compiler runtime is =
-still same from gcc
-and binutils are used in same way
-
-Eventually, I will add compiler-rt and libc++ as well and also add =
-cross-canadian builds of clang and make it cohabit in SDK
-along with gcc.
-
-If you would like to help trying/porting recipes to use clang/llvm or =
-improve the layer, please lend your hand
-
-Thanks for your time
-
--Khem
-
-
+--001a113ed0e2add305051119decd--
