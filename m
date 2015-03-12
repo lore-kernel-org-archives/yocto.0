@@ -1,53 +1,41 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <sona.sarmadi@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34328E00828; Wed, 11 Mar 2015 20:41:48 -0700 (PDT)
+	id 7BC83E00828; Thu, 12 Mar 2015 00:35:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bruce.ashfield[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.49 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [192.36.1.252 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-la0-f49.google.com (mail-la0-f49.google.com
-	[209.85.215.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 523E7E00810
-	for <yocto@yoctoproject.org>; Wed, 11 Mar 2015 20:41:46 -0700 (PDT)
-Received: by labgq15 with SMTP id gq15so13127171lab.1
-	for <yocto@yoctoproject.org>; Wed, 11 Mar 2015 20:41:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=RlzJH7hOwtxHqQUB/qbTtWLYrpg/Xec2OQR5dUqIqQU=;
-	b=uvwUpX0j9TPxqJso9dnXp5vHLkD3dwtxRa20PGrkIvJ5aMqvGvhyUYGcnLoZrtKFHN
-	uZTmjWkbrnCr7AoWjYXmoZpqOBVd3vt7ejaSAL9760YMGj2RrAw5JbHrNz0XcsMTcBS5
-	oPiySKlUDCtOOIbhx57TT8S60I6cjPI8hWuKaFqn74C+o/QeBaHO8PxDBsPUkfEU2vMU
-	QUGjBNt9XV0kYW3uxb3+lwvaqgl5xCxH2p3aKafdVCgZq4jfT7PaqQruMuVofSGzJ9B3
-	2Ltgwo3C0kOlptzVZrszCxKPqGoiX/T2erJ6kL6NxwmLfmEE0tbmdYnCLhA8IsMhG8I5
-	ayxA==
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 533C9E0034E;
+	Thu, 12 Mar 2015 00:35:28 -0700 (PDT)
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
+	14.03.0224.002; Thu, 12 Mar 2015 08:35:26 +0100
+From: Sona Sarmadi <sona.sarmadi@enea.com>
+To: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>,
+	"yocto-security@yoctoproject.org" <yocto-security@yoctoproject.org>
+Thread-Topic: [yocto] bind: issue in trust anchor management can cause named
+	to crash (CVE-2015-1349)
+Thread-Index: AQHQXFMMGlsTvvRwhkO3gFfy/9nO0p0YcVtw
+Date: Thu, 12 Mar 2015 07:35:25 +0000
+Message-ID: <3230301C09DEF9499B442BBE162C5E48258ADF48@SESTOEX04.enea.se>
+References: <3230301C09DEF9499B442BBE162C5E48258AD7F4@SESTOEX04.enea.se>
+	<2131862827.2912188.1426116488072.JavaMail.yahoo@mail.yahoo.com>
+In-Reply-To: <2131862827.2912188.1426116488072.JavaMail.yahoo@mail.yahoo.com>
+Accept-Language: sv-SE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.142.231]
 MIME-Version: 1.0
-X-Received: by 10.112.162.232 with SMTP id yd8mr36649436lbb.41.1426131704009; 
-	Wed, 11 Mar 2015 20:41:44 -0700 (PDT)
-Received: by 10.112.170.70 with HTTP; Wed, 11 Mar 2015 20:41:43 -0700 (PDT)
-In-Reply-To: <CADkTA4ON2PePe_DEebgnVL89CknrmXGnA1AyQ6uJRWhFueYxiw@mail.gmail.com>
-References: <1426109293-4970-1-git-send-email-ed.bartosh@linux.intel.com>
-	<CADkTA4ON2PePe_DEebgnVL89CknrmXGnA1AyQ6uJRWhFueYxiw@mail.gmail.com>
-Date: Wed, 11 Mar 2015 23:41:43 -0400
-Message-ID: <CADkTA4MGV7rEsr0W4mceSfd-1dSjkoCxL+gKgjP6NAU=cLLPAA@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Ed Bartosh <ed.bartosh@linux.intel.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: [PATCH] Get rid of do_shared_workdir task
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: bind: issue in trust anchor management can cause named to crash (CVE-2015-1349)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,187 +47,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 03:41:48 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 12 Mar 2015 07:35:33 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_3230301C09DEF9499B442BBE162C5E48258ADF48SESTOEX04enease_"
 
-On Wed, Mar 11, 2015 at 11:30 PM, Bruce Ashfield
-<bruce.ashfield@gmail.com> wrote:
-> On Wed, Mar 11, 2015 at 5:28 PM, Ed Bartosh <ed.bartosh@linux.intel.com> wrote:
->> Merged do_shared_workdir into kernel_do_compile
->>
->> This change should fix race condition between do_compilemodules
->> and do_shared_workdir. Race occurs when do_compilemodules changes
->> include/generated/ directory content while do_shared_workdir
->> tries to copy it.
->>
->> Fixes [YOCTO #7321]
->
-> Why would you be working on a bug, that is currently assigned to me .. without
-> even mentioning it ?
+--_000_3230301C09DEF9499B442BBE162C5E48258ADF48SESTOEX04enease_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Aha! I see the bug was updated right before the patch was sent. So assuming
-that you only started working on it right before that update and send .. we
-aren't too badly off.
+SGkgQWxleCwNCg0KWWVzIEkgYWdyZWUgd2l0aCB5b3UgYnV0IHRoaXMgaXMgYWxyZWFkeSBhIHB1
+YmxpYyBDVkUuIE1heWJlIGluIHRoZSBmdXR1cmUgd2Ugd2lsbC9zaG91bGQganVzdCBkaXNjdXNz
+IHNlY3VyaXR5IHJlbGF0ZWQgaXNzdWVzIGluIHRoZSB5b2N0by1zZWN1cml0eUB5b2N0b3Byb2pl
+Y3Qub3JnPG1haWx0bzp5b2N0by1zZWN1cml0eUB5b2N0b3Byb2plY3Qub3JnPiBtYWlsaW5nIGxp
+c3QsIGJ1dCByaWdodCBub3cgd2UgZG9u4oCZdCBoYXZlIG1hbnkgbWVtYmVycyBzbyBJIGNvcHkg
+dG8gdGhlIHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5v
+cmc+IGxpc3QgYXMgd2VsbC4NCg0KTXkgaW50ZW50aW9uIGlzIHRvIG1ha2UgdGhlIGxpc3QgYXdh
+cmUgb2Ygc2VjdXJpdHkgdnVsbmVyYWJpbGl0aWVzL0NWRXMgd2hpY2gga2VlcCBjb21pbmcgYWxs
+IHRoZSB0aW1lLiBJIGVuY291cmFnZSBldmVyeW9uZSB0byBkbyB0aGlzLiBXZSB3aWxsIHNvb24g
+b3IgbGF0ZXIgY3JlYXRlIGEgYnVnIGluIEJ1Z3ppbGxhIGlmIG5lZWRlZCBvciBqdXN0IGJhY2tw
+b3J0IHRoZSBDVkUgdG8gb3VyIHZlcnNpb24gb3IgdXBncmFkZSB0aGUgcmVjaXBlcyBpbiB0aGUg
+YWZmZWN0ZWQgcGFja2FnZSB0byB0aGUgdmVyc2lvbiB3aGljaCBpcyBub3QgdnVsbmVyYWJsZS4N
+Cg0KLy9Tb25hDQoNCkZyb206IEFsZXhhbmRydSBWYWR1dmEgW21haWx0bzp2YWR1dmFqYW5hbGV4
+YW5kcnVAeWFob28uY29tXQ0KU2VudDogZGVuIDEyIG1hcnMgMjAxNSAwMDoyOA0KVG86IFNvbmEg
+U2FybWFkaTsgeW9jdG8tc2VjdXJpdHlAeW9jdG9wcm9qZWN0Lm9yZw0KQ2M6IHlvY3RvQHlvY3Rv
+cHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIGJpbmQ6IGlzc3VlIGluIHRydXN0IGFu
+Y2hvciBtYW5hZ2VtZW50IGNhbiBjYXVzZSBuYW1lZCB0byBjcmFzaCAoQ1ZFLTIwMTUtMTM0OSkN
+Cg0KV291bGRuYHQgaXQgYmUgYmV0dGVyIGZvciB0aGUgYnVncyB0byBiZSBvbmx5IG1lbnRpb25l
+ZCBvbiB0aGUgc2VjdXJpdHkgbGlzdD8NCkl0IGlzIG15IG9waW5pb24gdGhhdCBrbm93IGFib3V0
+IGEgcmlzayBiZWZvcmUgaXQgaXMgZml4ZWQgY291bGQgY2F1c2UgbW9yZSBoYXJtIHRoZW4gZ29v
+ZC4NCldoYXQgZG8geW91IHRoaW5nIGFib3V0IHRoaXM/DQoNCg0KQWxleCBWYWR1dmENCg==
 
-I still could have provided my status and feedback before hand though :)
+--_000_3230301C09DEF9499B442BBE162C5E48258ADF48SESTOEX04enease_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Bruce
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+SGVsdmV0aWNhOw0KCXBhbm9zZS0xOjIgMTEgNiA0IDIgMiAyIDIgMiA0O30NCkBmb250LWZhY2UN
+Cgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAz
+IDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAx
+NSA1IDIgMiAyIDQgMyAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFs
+LCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90
+dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3
+IFJvbWFuIixzZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1w
+cmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0K
+YTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0
+eTo5OTsNCgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFu
+LkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZh
+bWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZh
+dWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0K
+QHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44
+NXB0IDcwLjg1cHQgNzAuODVwdCA3MC44NXB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpX
+b3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNo
+YXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRp
+Zl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0
+Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0Pjwv
+eG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUi
+IHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5IaSBBbGV4LDxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xv
+cjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
+YnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+WWVzIEkgYWdyZWUgd2l0aCB5b3Ug
+YnV0IHRoaXMgaXMgYWxyZWFkeSBhIHB1YmxpYyBDVkUuIE1heWJlIGluIHRoZSBmdXR1cmUgd2Ug
+d2lsbC9zaG91bGQganVzdCBkaXNjdXNzIHNlY3VyaXR5IHJlbGF0ZWQgaXNzdWVzIGluIHRoZQ0K
+PGEgaHJlZj0ibWFpbHRvOnlvY3RvLXNlY3VyaXR5QHlvY3RvcHJvamVjdC5vcmciPnlvY3RvLXNl
+Y3VyaXR5QHlvY3RvcHJvamVjdC5vcmc8L2E+IG1haWxpbmcgbGlzdCwgYnV0IHJpZ2h0IG5vdyB3
+ZSBkb27igJl0IGhhdmUgbWFueSBtZW1iZXJzIHNvIEkgY29weSB0byB0aGUNCjxhIGhyZWY9Im1h
+aWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnIj55b2N0b0B5b2N0b3Byb2plY3Qub3JnPC9hPiBs
+aXN0IGFzIHdlbGwuIDxvOnA+DQo8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdE
+Ij5NeSBpbnRlbnRpb24gaXMgdG8gbWFrZSB0aGUgbGlzdCBhd2FyZSBvZiBzZWN1cml0eSB2dWxu
+ZXJhYmlsaXRpZXMvQ1ZFcyB3aGljaCBrZWVwIGNvbWluZyBhbGwgdGhlIHRpbWUuIEkgZW5jb3Vy
+YWdlIGV2ZXJ5b25lIHRvIGRvIHRoaXMuIFdlIHdpbGwgc29vbiBvciBsYXRlcg0KIGNyZWF0ZSBh
+IGJ1ZyBpbiBCdWd6aWxsYSBpZiBuZWVkZWQgb3IganVzdCBiYWNrcG9ydCB0aGUgQ1ZFIHRvIG91
+ciB2ZXJzaW9uIG9yIHVwZ3JhZGUgdGhlIHJlY2lwZXMgaW4gdGhlIGFmZmVjdGVkIHBhY2thZ2Ug
+dG8gdGhlIHZlcnNpb24gd2hpY2ggaXMgbm90IHZ1bG5lcmFibGUuPG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
+Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Qi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+c2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj4vL1NvbmE8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
+bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4m
+bmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxl
+ZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBjbSAwY20gMGNtIDQuMHB0Ij4NCjxkaXY+DQo8
+ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFk
+ZGluZzozLjBwdCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
+bnMtc2VyaWYiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
+b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPiBBbGV4YW5kcnUgVmFk
+dXZhIFttYWlsdG86dmFkdXZhamFuYWxleGFuZHJ1QHlhaG9vLmNvbV0NCjxicj4NCjxiPlNlbnQ6
+PC9iPiBkZW4gMTIgbWFycyAyMDE1IDAwOjI4PGJyPg0KPGI+VG86PC9iPiBTb25hIFNhcm1hZGk7
+IHlvY3RvLXNlY3VyaXR5QHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5DYzo8L2I+IHlvY3RvQHlv
+Y3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFt5b2N0b10gYmluZDogaXNz
+dWUgaW4gdHJ1c3QgYW5jaG9yIG1hbmFnZW1lbnQgY2FuIGNhdXNlIG5hbWVkIHRvIGNyYXNoIChD
+VkUtMjAxNS0xMzQ5KTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2IGlkPSJ5
+dWlfM18xNl8wXzFfMTQyNjEwOTYxMDc3N185NDIxIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0
+eWxlPSJiYWNrZ3JvdW5kOndoaXRlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0hlbHZldGljYSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj5Xb3Vs
+ZG5gdCBpdCBiZSBiZXR0ZXIgZm9yIHRoZSBidWdzIHRvIGJlIG9ubHkgbWVudGlvbmVkIG9uIHRo
+ZSBzZWN1cml0eSBsaXN0PzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdiBpZD0i
+eXVpXzNfMTZfMF8xXzE0MjYxMDk2MTA3NzdfOTQwMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
+dHlsZT0iYmFja2dyb3VuZDp3aGl0ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTo5LjBwdDtmb250
+LWZhbWlseTomcXVvdDtIZWx2ZXRpY2EmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpibGFjayI+SXQg
+aXMgbXkgb3BpbmlvbiB0aGF0IGtub3cgYWJvdXQgYSByaXNrIGJlZm9yZSBpdCBpcyBmaXhlZCBj
+b3VsZCBjYXVzZSBtb3JlIGhhcm0gdGhlbiBnb29kLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwv
+ZGl2Pg0KPGRpdiBpZD0ieXVpXzNfMTZfMF8xXzE0MjYxMDk2MTA3NzdfOTY0NSI+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0ZSI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZTo5LjBwdDtmb250LWZhbWlseTomcXVvdDtIZWx2ZXRpY2EmcXVvdDssc2Fucy1zZXJpZjtj
+b2xvcjpibGFjayI+V2hhdCBkbyB5b3UgdGhpbmcgYWJvdXQgdGhpcz88bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8L2Rpdj4NCjxkaXYgaWQ9Inl1aV8zXzE2XzBfMV8xNDI2MTA5NjEwNzc3Xzk4NTAi
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9ImJhY2tncm91bmQ6d2hpdGUiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7SGVsdmV0aWNhJnF1b3Q7LHNh
+bnMtc2VyaWY7Y29sb3I6YmxhY2siPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2
+Pg0KPGRpdiBpZD0ieXVpXzNfMTZfMF8xXzE0MjYxMDk2MTA3NzdfOTg0MiI+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIiBzdHlsZT0iYmFja2dyb3VuZDp3aGl0ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
+ZTo5LjBwdDtmb250LWZhbWlseTomcXVvdDtIZWx2ZXRpY2EmcXVvdDssc2Fucy1zZXJpZjtjb2xv
+cjpibGFjayI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2IGlkPSJ5
+dWlfM18xNl8wXzFfMTQyNjEwOTYxMDc3N185ODQzIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0
+eWxlPSJiYWNrZ3JvdW5kOndoaXRlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0hlbHZldGljYSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOmJsYWNrIj5BbGV4
+IFZhZHV2YTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwv
+ZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
->
-> I have several patches in flight for this, but didn't want to bring
-> them into play
-> yet, since the risks of juggling this again .. are far greater than the shared
-> directory issues IMHO.
->
-> I actually have some uses of the shared workdir, that were nice to enable
-> without having to go through the whole compile again .. that is no longer
-> possible, and again, a reason to stop juggling this around.
->
-> Brue
->
->>
->> Signed-off-by: Ed Bartosh <ed.bartosh@linux.intel.com>
->> ---
->>  meta/classes/kernel-yocto.bbclass                | 2 +-
->>  meta/classes/kernel.bbclass                      | 5 ++---
->>  meta/classes/module-base.bbclass                 | 2 +-
->>  meta/recipes-kernel/linux/kernel-devsrc.bb       | 2 +-
->>  meta/recipes-kernel/linux/linux-dummy.bb         | 5 -----
->>  meta/recipes-kernel/lttng/lttng-modules_2.6.0.bb | 2 +-
->>  meta/recipes-kernel/perf/perf.bb                 | 2 +-
->>  7 files changed, 7 insertions(+), 13 deletions(-)
->>
->> diff --git a/meta/classes/kernel-yocto.bbclass b/meta/classes/kernel-yocto.bbclass
->> index 8db4899..27a027d 100644
->> --- a/meta/classes/kernel-yocto.bbclass
->> +++ b/meta/classes/kernel-yocto.bbclass
->> @@ -1,5 +1,5 @@
->>  # remove tasks that modify the source tree in case externalsrc is inherited
->> -SRCTREECOVEREDTASKS += "do_kernel_link_vmlinux do_kernel_configme do_validate_branches do_kernel_configcheck do_kernel_checkout do_shared_workdir do_fetch do_unpack do_patch"
->> +SRCTREECOVEREDTASKS += "do_kernel_link_vmlinux do_kernel_configme do_validate_branches do_kernel_configcheck do_kernel_checkout do_fetch do_unpack do_patch"
->>
->>  # returns local (absolute) path names for all valid patches in the
->>  # src_uri
->> diff --git a/meta/classes/kernel.bbclass b/meta/classes/kernel.bbclass
->> index 125ed88..7914242 100644
->> --- a/meta/classes/kernel.bbclass
->> +++ b/meta/classes/kernel.bbclass
->> @@ -192,6 +192,7 @@ kernel_do_compile() {
->>         if test "${KERNEL_IMAGETYPE_FOR_MAKE}.gz" = "${KERNEL_IMAGETYPE}"; then
->>                 gzip -9c < "${KERNEL_IMAGETYPE_FOR_MAKE}" > "${KERNEL_OUTPUT}"
->>         fi
->> +       shared_workdir
->>  }
->>
->>  do_compile_kernelmodules() {
->> @@ -234,8 +235,6 @@ kernel_do_install() {
->>  }
->>  do_install[prefuncs] += "package_get_auto_pr"
->>
->> -addtask shared_workdir after do_compile before do_install
->> -
->>  emit_depmod_pkgdata() {
->>         # Stash data for depmod
->>         install -d ${PKGDESTWORK}/kernel-depmod/
->> @@ -245,7 +244,7 @@ emit_depmod_pkgdata() {
->>
->>  PACKAGEFUNCS += "emit_depmod_pkgdata"
->>
->> -do_shared_workdir () {
->> +shared_workdir () {
->>         cd ${B}
->>
->>         kerneldir=${STAGING_KERNEL_BUILDDIR}
->> diff --git a/meta/classes/module-base.bbclass b/meta/classes/module-base.bbclass
->> index 3eb2e92..31ab95f 100644
->> --- a/meta/classes/module-base.bbclass
->> +++ b/meta/classes/module-base.bbclass
->> @@ -15,7 +15,7 @@ KERNEL_OBJECT_SUFFIX = ".ko"
->>  # kernel modules are generally machine specific
->>  PACKAGE_ARCH = "${MACHINE_ARCH}"
->>
->> -do_configure[depends] += "virtual/kernel:do_shared_workdir"
->> +do_configure[depends] += "virtual/kernel:kernel_do_compile"
->>
->>  # Function to ensure the kernel scripts are created. Expected to
->>  # be called before do_compile. See module.bbclass for an exmaple.
->> diff --git a/meta/recipes-kernel/linux/kernel-devsrc.bb b/meta/recipes-kernel/linux/kernel-devsrc.bb
->> index e36de1b..f2a1d7c 100644
->> --- a/meta/recipes-kernel/linux/kernel-devsrc.bb
->> +++ b/meta/recipes-kernel/linux/kernel-devsrc.bb
->> @@ -16,7 +16,7 @@ inherit module-base
->>  # We need the kernel to be staged (unpacked, patched and configured) before
->>  # we can grab the source and make the source package. We also need the bits from
->>  # ${B} not to change while we install, so virtual/kernel must finish do_compile.
->> -do_install[depends] += "virtual/kernel:do_shared_workdir"
->> +do_install[depends] += "virtual/kernel:kernel_do_compile"
->>  # Need the source, not just the output of populate_sysroot
->>  do_install[depends] += "virtual/kernel:do_compile"
->>
->> diff --git a/meta/recipes-kernel/linux/linux-dummy.bb b/meta/recipes-kernel/linux/linux-dummy.bb
->> index cc0e4e6..8f4ddc4 100644
->> --- a/meta/recipes-kernel/linux/linux-dummy.bb
->> +++ b/meta/recipes-kernel/linux/linux-dummy.bb
->> @@ -33,10 +33,6 @@ do_compile () {
->>         :
->>  }
->>
->> -do_shared_workdir () {
->> -       :
->> -}
->> -
->>  do_install() {
->>         :
->>  }
->> @@ -51,4 +47,3 @@ do_deploy() {
->>
->>  addtask bundle_initramfs after do_install before do_deploy
->>  addtask deploy after do_install
->> -addtask shared_workdir after do_compile before do_install
->> diff --git a/meta/recipes-kernel/lttng/lttng-modules_2.6.0.bb b/meta/recipes-kernel/lttng/lttng-modules_2.6.0.bb
->> index d0039b3..9d07ae4 100644
->> --- a/meta/recipes-kernel/lttng/lttng-modules_2.6.0.bb
->> +++ b/meta/recipes-kernel/lttng/lttng-modules_2.6.0.bb
->> @@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=1412caf5a1aa90d6a48588a4794c0eac \
->>                      file://lgpl-2.1.txt;md5=243b725d71bb5df4a1e5920b344b86ad"
->>
->>  DEPENDS = "virtual/kernel"
->> -do_configure[depends] += "virtual/kernel:do_shared_workdir"
->> +do_configure[depends] += "virtual/kernel:kernel_do_compile"
->>
->>  inherit module
->>
->> diff --git a/meta/recipes-kernel/perf/perf.bb b/meta/recipes-kernel/perf/perf.bb
->> index f69d177..59d6be2 100644
->> --- a/meta/recipes-kernel/perf/perf.bb
->> +++ b/meta/recipes-kernel/perf/perf.bb
->> @@ -32,7 +32,7 @@ DEPENDS = " \
->>      bison flex \
->>  "
->>
->> -do_configure[depends] += "virtual/kernel:do_shared_workdir"
->> +do_configure[depends] += "virtual/kernel:kernel_do_compile"
->>
->>  PROVIDES = "virtual/perf"
->>
->> --
->> 2.1.4
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
->
->
-> --
-> "Thou shalt not follow the NULL pointer, for chaos and madness await
-> thee at its end"
-
-
-
--- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
-
+--_000_3230301C09DEF9499B442BBE162C5E48258ADF48SESTOEX04enease_--
