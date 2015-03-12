@@ -1,71 +1,60 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <p_j_r_m@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5BCECE0086D; Thu, 12 Mar 2015 13:09:59 -0700 (PDT)
+	id 48A04E0085D; Thu, 12 Mar 2015 13:58:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS,UC_GIBBERISH_OBFU autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (p_j_r_m[at]yahoo.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [65.55.169.106 listed in list.dnswl.org]
+	*      [212.82.97.62 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 1.0 UC_GIBBERISH_OBFU Multiple instances of "word VERYLONGGIBBERISH
-	*      word"
-Received: from na01-bl2-obe.outbound.protection.outlook.com
-	(mail-bl2on0106.outbound.protection.outlook.com [65.55.169.106])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C217E00858
-	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 13:09:57 -0700 (PDT)
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com (25.160.113.12) by
-	BN3PR0501MB1090.namprd05.prod.outlook.com (25.160.113.12) with
-	Microsoft SMTP
-	Server (TLS) id 15.1.106.15; Thu, 12 Mar 2015 20:09:53 +0000
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com ([25.160.113.12]) by
-	BN3PR0501MB1090.namprd05.prod.outlook.com ([25.160.113.12]) with
-	mapi id 15.01.0106.007; Thu, 12 Mar 2015 20:09:53 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "Minchev, Todor" <todor.minchev@intel.com>
-Thread-Topic: [yocto] eclipse-poky: Can't build from Eclipse, but command line
-	build works
-Thread-Index: AdBb/BnFUUT6HWWeSZuLla6w2kTN0wAuqBWAAAPbjNAACbe0gAAEo/Mg
-Date: Thu, 12 Mar 2015 20:09:53 +0000
-Message-ID: <BN3PR0501MB109054B33836D4B641BE0EEBBB060@BN3PR0501MB1090.namprd05.prod.outlook.com>
-References: <BN3PR0501MB109035A8492F6EA261F15FE8BB190@BN3PR0501MB1090.namprd05.prod.outlook.com>
-	<1426159307.7680.18.camel@intel.com>
-	<BN3PR0501MB1090163B91C05C2E2CCFDB9CBB060@BN3PR0501MB1090.namprd05.prod.outlook.com>
-	<1426182629.7680.39.camel@intel.com>
-In-Reply-To: <1426182629.7680.39.camel@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [98.100.91.242]
-authentication-results: intel.com; dkim=none (message not signed)
-	header.d=none;
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BN3PR0501MB1090;
-x-forefront-antispam-report: BMV:1; SFV:NSPM;
-	SFS:(10019020)(6009001)(13464003)(51704005)(164054003)(24454002)(377454003)(174874002)(377424004)(2656002)(87936001)(19580405001)(66066001)(33656002)(46102003)(92566002)(77156002)(74316001)(62966003)(1720100001)(40100003)(110136001)(122556002)(15975445007)(102836002)(2950100001)(2900100001)(93886004)(86362001)(99286002)(19580395003)(76176999)(54356999)(50986999)(76576001)(50929005)(19627235001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR0501MB1090;
-	H:BN3PR0501MB1090.namprd05.prod.outlook.com; FPR:; SPF:None;
-	MLV:nov; PTR:InfoNoRecords; LANG:en; 
-x-microsoft-antispam-prvs: <BN3PR0501MB1090871B9D584AE398CE79FFBB060@BN3PR0501MB1090.namprd05.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(44728458202952);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(5002009)(5005006)(2002001); SRVR:BN3PR0501MB1090;
-	BCL:0; PCL:0; RULEID:; SRVR:BN3PR0501MB1090; 
-x-forefront-prvs: 05134F8B4F
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm28-vm2.bullet.mail.ir2.yahoo.com
+	(nm28-vm2.bullet.mail.ir2.yahoo.com [212.82.97.62])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96714E00854
+	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 13:58:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1426193926; bh=7yn9l4N/WAC6l1lyZyx6jF27w98C40JFdbGv3ayCWtw=;
+	h=Date:From:Reply-To:To:Subject:From:Subject;
+	b=owUrCXGVbOR96i9MrKpDhq/s14hLLIFUs32tr40P5MwzHAO+qndcjJ8fwE0KsuyyzyAMqtx5U8KRzIn/AnEfPBkdOFlD2Jej61R8lC6MjwEYv04PfGe1aDfjGFPWl+yBb57z8RXr2K121rgwg9ZiG1bNcZAtVX+Y5d9kmWTB+R+nD4R5bFm2eJlhPkuWC4s6Yc2N39NEEXjUjAQ2Cw8kLcnUz5V+QDv3e2sNed4mCQHxJ1NkoKfN3dMaFHKOtTa3dFtVt/nE4BA7B6fgnmzXOQHEJUjE6W8eVo2v6ESTHDSZCoqHqU5sHAr+NY8tgChpdqKWkZ4eQckl7fga8bjjnw==
+Received: from [212.82.98.125] by nm28.bullet.mail.ir2.yahoo.com with NNFMP;
+	12 Mar 2015 20:58:46 -0000
+Received: from [212.82.98.75] by tm18.bullet.mail.ir2.yahoo.com with NNFMP;
+	12 Mar 2015 20:58:46 -0000
+Received: from [127.0.0.1] by omp1012.mail.ir2.yahoo.com with NNFMP;
+	12 Mar 2015 20:58:46 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 392471.26737.bm@omp1012.mail.ir2.yahoo.com
+X-YMail-OSG: rOtuqokVM1kMSUYzx90snLnCIKlb480KNNU6gLIT5INwpZSet2.ithCCYvA6zQJ
+	ODVpSiD9195qw1Q3SScuuNpuUBgL0NXB__P7HI4qV.FsvsY6OgWdO1iRW6rIOF.pcjGSkH2j5y2g
+	dY.qdlH.GnW8kyUt_Q7_tlBsfXovNxLhmfbX5o5TgQ70oLs42tSRSOPQ0KOAhal0rWQT8OnrTUG5
+	oP.E4pwDWjsw87ExLodEuUlAuKxsDLLwha9E9teUILAkrP64SPu8zVmDOF0wLIvtMPDV98wPG.id
+	CMS3QRSn9f1aYPHkwgSasTHma3vJTtBcJ9isbaVOcJIhYTBFFWXiLMoEhgWTWv.oZ3dPewdn8RNV
+	ZWyommP79L4CJg63SLJX.Css1BBLkHBNBgje8Jxe3fJmGzPuu_f_l8XeFO8Rk18QZipVsHEyjzJS
+	2QGF5ub9tKh7SIxpY06tFoeYIdC201ZGSus0I9s0CuHFoZYGGchfdDGjcnWbh4xg.n4W64T_qZpQ
+	gK1cM.uDWJERfQnSr2atKec8AWav3zNy0nDCgFRFiKuEdqEdGi63j5iGTN9hCjA--
+Received: by 217.12.8.244; Thu, 12 Mar 2015 20:58:45 +0000 
+Date: Thu, 12 Mar 2015 20:58:45 +0000 (UTC)
+From: p_j_r_m <p_j_r_m@yahoo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <1971127177.6184446.1426193925543.JavaMail.yahoo@mail.yahoo.com>
 MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Mar 2015 20:09:53.0789 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR0501MB1090
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: eclipse-poky: Can't build from Eclipse, but command line build works
+Subject: File in append recipe not installed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: p_j_r_m <p_j_r_m@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -74,144 +63,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 20:09:59 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 12 Mar 2015 20:58:52 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_6184445_1291538183.1426193925540"
 
-VG9kb3IsDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTWluY2hldiwg
-VG9kb3IgW21haWx0bzp0b2Rvci5taW5jaGV2QGludGVsLmNvbV0NCj4gU2VudDogVGh1cnNkYXks
-IE1hcmNoIDEyLCAyMDE1IDE6NTAgUE0NCj4gVG86IEJyeWFuIEV2ZW5zb24NCj4gQ2M6IHlvY3Rv
-QHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogUmU6IFt5b2N0b10gZWNsaXBzZS1wb2t5OiBD
-YW4ndCBidWlsZCBmcm9tIEVjbGlwc2UsIGJ1dCBjb21tYW5kIGxpbmUNCj4gYnVpbGQgd29ya3MN
-Cj4gDQo+IE9uIFRodSwgMjAxNS0wMy0xMiBhdCAxMzo0MyArMDAwMCwgQnJ5YW4gRXZlbnNvbiB3
-cm90ZToNCj4gPiBUb2RvciwNCj4gPg0KPiA+ID4gSXQgYXBwZWFycyB0aGF0IHlvdXIgdG9vbGNo
-YWluIGlzIGNvbmZpZ3VyZWQgcHJvcGVybHksIGhvd2V2ZXIgdGhlDQo+ID4gR05VIGxpbmtlciAo
-bGQpIGNhbm5vdCBmaW5kIHRoZSBsaWJyYXJpZXMgaXQgbmVlZHMgdG8gbGluayB0aGUNCj4gPiBi
-aW5hcnkuDQo+ID4gPiBJIHN1c3BlY3QgdGhhdCB0aGUgY3VscHJpdCBpcyAiLS1zeXNyb290PSRT
-REtUQVJHRVRTWVNST09UIg0KPiA+ID4gVGhlcmUgc2hvdWxkIGJlIGFuIGVudmlyb25tZW50IHNl
-dHVwIGZpbGUNCj4gPiA+DQo+ID4gPiAvPGhvbWVfcGF0aD4vcG9reS9wb2t5LWJ1aWxkL3RtcC9l
-bnZpcm9ubWVudC1zZXR1cC1YWA0KPiA+ID4NCj4gPiA+IElmIHlvdSBvcGVuIGl0IHlvdSB3aWxs
-IHNlZSBTREtUQVJHRVRTWVNST09UIGVudmlyb25tZW50IHZhcmlhYmxlLg0KPiA+IEl0IG1vc3Qg
-bGlrZWx5IHBvaW50cyB0byBhIGRpZmZlcmVudCBzeXNyb290IHBhdGguDQo+ID4gPiBQbGVhc2Ug
-Y2hhbmdlIGl0IHRvIHBvaW50IHRvIHRoZSBkaXJlY3Rvcnkgd2hlcmUgeW91IGV4dHJhY3RlZCB5
-b3VyDQo+ID4gc3lzcm9vdCAoLzxob21lX3BhdGg+L2V4dHJhY3RlZF9zeXNyb290XzEuNi4yKSwN
-Cj4gPiA+IGNyZWF0ZSBhIG5ldyBwcm9qZWN0IGFuZCBzZWUgaWYgdGhhdCBidWlsZHMgT0suDQo+
-ID4NCj4gPiBJJ3ZlIGJlZW4gaGF2aW5nIGEgZmV3IG90aGVyIGlzc3VlcyB3aXRoIEVjbGlwc2Ug
-KEluc3RhbGwgTmV3IFNvZnR3YXJlDQo+ID4gbWVudSBpdGVtIGRpc2FwcGVhcmluZywgb3RoZXIg
-cGx1Z2lucyBkaXNhcHBlYXJpbmcgYWZ0ZXIgcmVzdGFydGluZywNCj4gPiBldGMuKSwgc28gSSB1
-bmluc3RhbGxlZCBlY2xpcHNlLCBkZWxldGVkIG15IH4vLmVjbGlwc2UgYW5kIHdvcmtzcGFjZQ0K
-PiA+IGRpcmVjdG9yaWVzIGFuZCByZS1pbnN0YWxsZWQgRWNsaXBzZS4gIEkgbmVlZCB0byBydW4g
-RWNsaXBzZSBLZXBsZXINCj4gPiAoYW5vdGhlciBwbHVnaW4gSSdtIHVzaW5nIGlzbid0IHJlYWR5
-IGZvciBFY2xpcHNlIEx1bmEpLCBzbyBJIGZvbGxvd2VkDQo+ID4gdGhlc2UgaW5zdHJ1Y3Rpb25z
-IGZvciBpbnN0YWxsaW5nIEVjbGlwc2UgYnkgaGFuZDoNCj4gPiBodHRwOi8vd3d3Ljkyd2lraS5j
-b20vZW4vYmxvZy9kZXRhaWwvaW5zdGFsbC1lY2xpcHNlLWtlcGxlci1vbi1mZWRvcmEtDQo+IDE3
-LTE4LTE5LWNlbnRvcy1yZWQtaGF0LXJoZWwtNS02LiAgIEkgYWxzbyBlZGl0ZWQgbXkgZW52aXJv
-bm1lbnQgc2V0dXAgc2NyaXB0DQo+IGFzIHN1Z2dlc3RlZC4gIEkgdGhlbiByZWluc3RhbGxlZCBh
-bGwgbmVjZXNzYXJ5IHBsdWdpbnMgYXMgZGVzY3JpYmVkIGluIHRoZSBBRFQNCj4gbWFudWFsLiAg
-SSBwb2ludGVkIHRoZSB0b29sY2hhaW4gdG8gbXkgYnVpbGQgZGlyZWN0b3J5IGFuZCB0aGUgc3lz
-cm9vdA0KPiBsb2NhdGlvbiB0byBteSBleHRyYWN0ZWQgc3lzcm9vdC4gIEkgdGhlbiBmb2xsb3dl
-ZCB0aGUgc3RlcHMgaW4gdGhlIEFEVA0KPiBtYW51YWwgdG8gY3JlYXRlIGEgbmV3IEhlbGxvIFdv
-cmxkIFlvY3RvIEFEVCBwcm9qZWN0LiAgSSB2ZXJpZmllZCB0aGUNCj4gU0RLVEFSR0VUU1lTUk9P
-VCBlbnZpcm9ubWVudCB2YXJpYWJsZSBpbiB0aGUgbmV3IHByb2plY3QgcG9pbnRzIHRvIG15DQo+
-IGV4dHJhY3RlZCBzeXNyb290LiAgV2hlbiBJIGF0dGVtcHRlZCB0byBidWlsZCwgSSBnZXQgdGhl
-IGZvbGxvd2luZyBvdXRwdXQ6DQo+ID4NCj4gPg0KPiA+IEludm9raW5nIGF1dG9nZW4uc2ggaW4g
-YnVpbGQNCj4gPiBkaXJlY3Rvcnk6IC88aG9tZV9wYXRoPi93b3Jrc3BhY2UvYWR0X3Rlc3QvDQo+
-ID4NCj4gPiBDb21tYW5kLWxpbmUgZW52aXJvbm1lbnQgdmFyaWFibGVzOg0KPiA+ICAgICAgICAg
-Q0ZMQUdTPSIgLWcgLU8wDQo+ID4gLS1zeXNyb290PS88aG9tZV9wYXRoPi9leHRyYWN0ZWRfc3lz
-cm9vdF8xLjYuMiIgQ1hYRkxBR1M9IiAtZyAtTzANCj4gPiAtLXN5c3Jvb3Q9Lzxob21lX3BhdGg+
-L2V4dHJhY3RlZF9zeXNyb290XzEuNi4yIiBMREZMQUdTPSINCj4gPiAtLXN5c3Jvb3Q9Lzxob21l
-X3BhdGg+L2V4dHJhY3RlZF9zeXNyb290XzEuNi4yIiBDUFBGTEFHUz0iDQo+ID4gLS1zeXNyb290
-PS88aG9tZV9wYXRoPi9leHRyYWN0ZWRfc3lzcm9vdF8xLjYuMiINCj4gPg0KPiA+IHNoIC1jICIv
-PGhvbWVfcGF0aD4vd29ya3NwYWNlL2FkdF90ZXN0L2F1dG9nZW4uc2gNCj4gPiAtLXdpdGgtbGli
-dG9vbC1zeXNyb290PS88aG9tZV9wYXRoPi9leHRyYWN0ZWRfc3lzcm9vdF8xLjYuMg0KPiA+IC0t
-dGFyZ2V0PWFybS1wb2t5LWxpbnV4LWdudWVhYmkgLS1ob3N0PWFybS1wb2t5LWxpbnV4LWdudWVh
-YmkNCj4gPiAtLWJ1aWxkPXg4Nl82NC1saW51eA0KPiA+IC0td2l0aC1saWJ0b29sLXN5c3Jvb3Q9
-Lzxob21lX3BhdGg+L2V4dHJhY3RlZF9zeXNyb290XzEuNi4yIg0KPiA+IGFjbG9jYWw6IHdhcm5p
-bmc6IGNvdWxkbid0IG9wZW4gZGlyZWN0b3J5DQo+ID4gJy88aG9tZV9wYXRoPi9leHRyYWN0ZWRf
-c3lzcm9vdF8xLjYuMi91c3Ivc2hhcmUvYWNsb2NhbCc6IE5vIHN1Y2ggZmlsZQ0KPiA+IG9yIGRp
-cmVjdG9yeQ0KPiA+IGNvbmZpZ3VyZS5hYzoxNjogd2FybmluZzogQU1fSU5JVF9BVVRPTUFLRTog
-dHdvLSBhbmQgdGhyZWUtDQo+IGFyZ3VtZW50cw0KPiA+IGZvcm1zIGFyZSBkZXByZWNhdGVkLiAg
-Rm9yIG1vcmUgaW5mbywgc2VlOg0KPiA+IGNvbmZpZ3VyZS5hYzoxNjoNCj4gPg0KPiBodHRwOi8v
-d3d3LmdudS5vcmcvc29mdHdhcmUvYXV0b21ha2UvbWFudWFsL2F1dG9tYWtlLmh0bWwjTW9kZXJu
-aQ0KPiB6ZS1BTV8wMDVmSU5JVF8wMDVmQVVUT01BS0UtaW52b2NhdGlvbg0KPiA+IGNvbmZpZ3Vy
-ZS5hYzoyMDogaW5zdGFsbGluZyAnLi9jb21waWxlJw0KPiA+IGNvbmZpZ3VyZS5hYzoyMDogaW5z
-dGFsbGluZyAnLi9jb25maWcuZ3Vlc3MnDQo+ID4gY29uZmlndXJlLmFjOjIwOiBpbnN0YWxsaW5n
-ICcuL2NvbmZpZy5zdWInDQo+ID4gY29uZmlndXJlLmFjOjE2OiBpbnN0YWxsaW5nICcuL2luc3Rh
-bGwtc2gnDQo+ID4gY29uZmlndXJlLmFjOjE2OiBpbnN0YWxsaW5nICcuL21pc3NpbmcnDQo+ID4g
-c3JjL01ha2VmaWxlLmFtOiBpbnN0YWxsaW5nICcuL2RlcGNvbXAnDQo+ID4gY29uZmlndXJlOiBs
-b2FkaW5nIHNpdGUNCj4gPiBzY3JpcHQgLzxob21lX3BhdGg+L3Bva3kvbWV0YS9zaXRlL2VuZGlh
-bi1saXR0bGUNCj4gPiBjb25maWd1cmU6IGxvYWRpbmcgc2l0ZSBzY3JpcHQgLzxob21lX3BhdGg+
-L3Bva3kvbWV0YS9zaXRlL2FybS1jb21tb24NCj4gPiBjb25maWd1cmU6IGxvYWRpbmcgc2l0ZQ0K
-PiA+IHNjcmlwdCAvPGhvbWVfcGF0aD4vcG9reS9tZXRhL3NpdGUvY29tbW9uLWxpbnV4DQo+ID4g
-Y29uZmlndXJlOiBsb2FkaW5nIHNpdGUNCj4gPiBzY3JpcHQgLzxob21lX3BhdGg+L3Bva3kvbWV0
-YS9zaXRlL2NvbW1vbi1nbGliYw0KPiA+IGNvbmZpZ3VyZTogbG9hZGluZyBzaXRlIHNjcmlwdCAv
-PGhvbWVfcGF0aD4vcG9reS9tZXRhL3NpdGUvYXJtLWxpbnV4DQo+ID4gY29uZmlndXJlOiBsb2Fk
-aW5nIHNpdGUgc2NyaXB0IC88aG9tZV9wYXRoPi9wb2t5L21ldGEvc2l0ZS9jb21tb24NCj4gPiBj
-b25maWd1cmU6IGxvYWRpbmcgc2l0ZQ0KPiA+IHNjcmlwdCAvPGhvbWVfcGF0aD4vcG9reS9tZXRh
-LW9wZW5lbWJlZGRlZC9tZXRhLW9lL3NpdGUvZW5kaWFuLQ0KPiBsaXR0bGUNCj4gPiBjb25maWd1
-cmU6IGxvYWRpbmcgc2l0ZQ0KPiA+IHNjcmlwdCAvPGhvbWVfcGF0aD4vcG9reS9wb2t5LQ0KPiBi
-dWlsZC90bXAvc3lzcm9vdHMvYXQ5MXNhbTl4NWVrL3Vzci9zaGFyZS9hcm0tcG9reS1saW51eC0N
-Cj4gZ251ZWFiaV9jb25maWdfc2l0ZS5kL25jdXJzZXNfY29uZmlnDQo+ID4gY29uZmlndXJlOiBs
-b2FkaW5nIHNpdGUNCj4gPiBzY3JpcHQgLzxob21lX3BhdGg+L3Bva3kvcG9reS0NCj4gYnVpbGQv
-dG1wL3N5c3Jvb3RzL2F0OTFzYW05eDVlay91c3Ivc2hhcmUvYXJtLXBva3ktbGludXgtDQo+IGdu
-dWVhYmlfY29uZmlnX3NpdGUuZC9lZ2xpYmNfY29uZmlnDQo+ID4gY2hlY2tpbmcgZm9yIGEgQlNE
-LWNvbXBhdGlibGUgaW5zdGFsbC4uLiAvdXNyL2Jpbi9pbnN0YWxsIC1jDQo+ID4gY2hlY2tpbmcg
-d2hldGhlciBidWlsZCBlbnZpcm9ubWVudCBpcyBzYW5lLi4uIHllcw0KPiA+IGNoZWNraW5nIGZv
-ciBhcm0tcG9reS1saW51eC1nbnVlYWJpLXN0cmlwLi4uDQo+ID4gYXJtLXBva3ktbGludXgtZ251
-ZWFiaS1zdHJpcA0KPiA+IGNoZWNraW5nIGZvciBhIHRocmVhZC1zYWZlIG1rZGlyIC1wLi4uIC91
-c3IvYmluL21rZGlyIC1wDQo+ID4gY2hlY2tpbmcgZm9yIGdhd2suLi4gZ2F3aw0KPiA+IGNoZWNr
-aW5nIHdoZXRoZXIgbWFrZSBzZXRzICQoTUFLRSkuLi4geWVzDQo+ID4gY2hlY2tpbmcgd2hldGhl
-ciBtYWtlIHN1cHBvcnRzIG5lc3RlZCB2YXJpYWJsZXMuLi4geWVzDQo+ID4gY2hlY2tpbmcgYnVp
-bGQgc3lzdGVtIHR5cGUuLi4geDg2XzY0LXBjLWxpbnV4LWdudQ0KPiA+IGNoZWNraW5nIGhvc3Qg
-c3lzdGVtIHR5cGUuLi4gYXJtLXBva3ktbGludXgtZ251ZWFiaQ0KPiA+IGNoZWNraW5nIGhvdyB0
-byBwcmludCBzdHJpbmdzLi4uIHByaW50Zg0KPiA+IGNoZWNraW5nIGZvciBzdHlsZSBvZiBpbmNs
-dWRlIHVzZWQgYnkgbWFrZS4uLiBHTlUNCj4gPiBjaGVja2luZyBmb3IgYXJtLXBva3ktbGludXgt
-Z251ZWFiaS1nY2MuLi4gYXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2MNCj4gPiAtbWFyY2g9YXJt
-djV0ZSAtbWFybSAtbXRodW1iLWludGVyd29yayAtbXR1bmU9YXJtOTI2ZWotcyAtLQ0KPiBzeXNy
-b290PQ0KPiA+ICRTREtUQVJHRVRTWVNST09UDQo+ID4gY2hlY2tpbmcgd2hldGhlciB0aGUgQyBj
-b21waWxlciB3b3Jrcy4uLiBubw0KPiA+IGNvbmZpZ3VyZTogZXJyb3I6IGluIGAvPGhvbWVfcGF0
-aD4vd29ya3NwYWNlL2FkdF90ZXN0JzoNCj4gPiBjb25maWd1cmU6IGVycm9yOiBpbiBgLzxob21l
-X3BhdGg+L3dvcmtzcGFjZS9hZHRfdGVzdCc6DQo+ID4gY29uZmlndXJlOiBlcnJvcjogQyBjb21w
-aWxlciBjYW5ub3QgY3JlYXRlIGV4ZWN1dGFibGVzDQo+ID4gY29uZmlndXJlOiBlcnJvcjogQyBj
-b21waWxlciBjYW5ub3QgY3JlYXRlIGV4ZWN1dGFibGVzDQo+ID4gU2VlIGBjb25maWcubG9nJyBm
-b3IgbW9yZSBkZXRhaWxzDQo+IA0KPiBUaGlzIGlzIGEgZGlmZmVyZW50IGVycm9yLiBUaGVyZSBz
-ZWVtcyB0byBiZSBhIG1pc21hdGNoIGJldHdlZW4geW91cg0KPiB0b29sY2hhaW4gYW5kIHJvb3Rm
-cy4gQ291bGQgeW91IHBsZWFzZSBzaGFyZSB0aGUgZnVsbCBuYW1lIG9mDQo+IA0KPiBteV9idWls
-dF9pbWFnZS50YXIuZ3ogZnJvbQ0KPiANCj4gcnVucWVtdS1leHRyYWN0LXNkayA8bXlfYnVpbHRf
-aW1hZ2UudGFyLmd6Pg0KPiA8c3lzcm9vdF9kZXN0aW5hdGlvbl9kaXJlY3Rvcnk+Ig0KPiANCg0K
-SSBoYXZlIGJlZW4gYWJsZSB0byBnZXQgdGhpbmdzIHRvIGJ1aWxkLCBidXQgbm90IGV4YWN0bHkg
-aW4gYSBzdWdnZXN0ZWQgbWFubmVyLiAgSSBjb3BpZWQgdGhlIGVudGlyZSB0YXJnZXQgc3lzcm9v
-dCBkaXJlY3RvcnkgKH4vcG9reS9wb2t5X2J1aWxkL3RtcC9zeXNyb290cy9hdDkxc2FtOXg1ZWsp
-IHRvIHRoZSBwcmV2aW91c2x5IG1lbnRpb25lZCBzeXNyb290IGRlc3RpbmF0aW9uIGRpcmVjdG9y
-eS4gIEkgcmUtcmFuICJiaXRiYWtlIG1ldGEtaWRlLXN1cHBvcnQiIGp1c3QgdG8gZW5zdXJlIEkg
-aGFkIGEgY2xlYW4gY29weS4gIEkgdGhlbiBtb2RpZmllZCB0aGUgU0RLVEFSR0VUU1lTUk9PVCB0
-byBwb2ludCB0byBteSBjb3BpZWQgc3lzcm9vdCBsb2NhdGlvbi4gIFdpdGggdGhpcyBzZXR1cCwg
-SSB3YXMgYWJsZSB0byBnZXQgdGhlIHByb2plY3QgdG8gYnVpbGQgZnJvbSBFY2xpcHNlLiAgSXQn
-cyB3b3JraW5nLCBidXQgaXQncyBhIGxpdHRsZSB1Z2x5IGdldHRpbmcgdGhlcmUuDQoNClNvIEkn
-bSBhc3N1bWluZyBJJ20gc3RhcnRpbmcgYXQgdGhlIHdyb25nIHBvaW50IGZvciB0aGUgc3lzcm9v
-dCB0byBleHRyYWN0LiAgV2hhdCBkbyBvdGhlciBwZW9wbGUgZG8/IA0KDQpUaGFua3MsDQpCcnlh
-bg0KDQo+ID4NCj4gPiBDb25maWd1cmF0aW9uIGZhaWxlZCB3aXRoIGVycm9yDQo+ID4NCj4gPiBU
-aGUgYm9sZCBsaW5lcyBhcmUgb25lcyB0aGF0IEkgc2VlIGFzIGEgcG90ZW50aWFsIHByb2JsZW0u
-ICBGaXJzdCwgdGhlDQo+ID4gc3lzdGVtIGNvdWxkbid0IGZpbmQgYWNsb2NhbCBpbiBteSBleHRy
-YWN0ZWQgc3lzcm9vdC4gIEkgdG9vayBhIGxvb2sNCj4gPiBpbiB0aGUgZGlyZWN0b3J5IGxpc3Rl
-ZCwgYW5kIGFjbG9jYWwgaXMgbm90IGluIHRoZXJlLiAgSSB0aGluayB0aGUNCj4gPiBjb25maWd1
-cmUgc2NyaXB0IGFsc28gZm91bmQgdGhlIGJ1aWxkIHN5c3RlbSdzIGluc3RhbGwgYW5kIG1rZGly
-DQo+ID4gKC91c3IvYmluL2luc3RhbGwgYW5kIC91c3IvYmluL21rZGlyKS4gIEkgZG9uJ3Qga25v
-dyBpZiB0aGVyZSBpcw0KPiA+IHN1cHBvc2VkIHRvIGJlIG9uZSBvZiB0aGVzZSBpbiB0aGUgZXh0
-cmFjdGVkIHN5c3Jvb3Qgb3Igbm90LCBidXQgSQ0KPiA+IHRob3VnaHQgaXQgd2FzIHdvcnRoIG5v
-dGluZy4NCj4gPg0KPiA+IE9uIGEgcG9zc2libHkgcmVsYXRlZCB0b3BpYywgSSBub3RpY2VkIHRo
-YXQgdGhlIEVjbGlwc2UgSW5kZXhlciBpcw0KPiA+IHVzaW5nIHRoZSBidWlsZCBzeXN0ZW0ncyBo
-ZWFkZXIgZmlsZXMuICBGb3IgZXhhbXBsZSwgaWYgSSBvcGVuIHRoZQ0KPiA+IG1haW4gc291cmNl
-IGZpbGUgZnJvbSB0aGUgSGVsbG93IFdvcmxkIGFwcGxpY2F0aW9uLCBwbGFjZSBteSBjdXJzb3Ig
-b24NCj4gPiB0aGUgbGluZSAiI2luY2x1ZGUgPHN0ZGxpYi5oPiIgYW5kIGhpdCBGMywgL3Vzci9p
-bmNsdWRlL3N0ZGxpYi5oIG9wZW5zDQo+ID4gdXAgaW5zdGVhZCBvZiBzdGRsaWIuaCBmcm9tIG15
-IHRvb2xjaGFpbi4gIFVuZGVyIHRoZSBFY2xpcHNlIHByb2plY3QsDQo+ID4gZm9yIHRoZSBsaXN0
-ZWQgSW5jbHVkZXMgZGlyZWN0b3JpZXMgaXQgaGFzIHRoZSBmb2xsb3dpbmc6DQo+ID4NCj4gPiAv
-dXNyL2luY2x1ZGUNCj4gPiAvdXNyL2xpYi9nY2MveDg2XzY0LXJlZGhhdC1saW51eC80LjkuMi9p
-bmNsdWRlDQo+ID4gL3Vzci9sb2NhbC9pbmNsdWRlDQo+IA0KPiBFY2xpcHNlIGlzIHNob3dpbmcg
-dGhlIGhvc3QgaGVhZGVycywgYnV0IGl0IHdpbGwgdXNlIHRoZSBoZWFkZXJzIGZyb20NCj4geW91
-ciBzeXNyb290IGR1cmluZyB0aGUgYWN0dWFsIGJ1aWxkLg0KPiANCj4gPg0KPiA+IEFueSB0aG91
-Z2h0cyBvbiBob3cgdG8gZml4IHRoZXNlIGlzc3Vlcz8NCj4gPg0KPiA+IFRoYW5rcywNCj4gPiBC
-cnlhbg0KPiA+DQoNCg==
+------=_Part_6184445_1291538183.1426193925540
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+Hello
+
+I'd like to add an append recipe for base-files in order to install a custo=
+m fstab.
+
+In my system I already have this base-files recipes:
+
+=C2=A0=C2=A0=C2=A0 layers/openembedded-core-1.4/meta/recipes-core/base-file=
+s/base-files_3.0.14.bb
+=C2=A0=C2=A0=C2=A0 layers/meta-montavista-1.4/recipes-core/base-files/base-=
+files_3.0.14.bbappend
+
+So I in my layer I have:
+
+layers/meta-mylayer/recipes/base-files
+=E2=94=9C=E2=94=80=E2=94=80 base-files_3.0.14.bbappend
+=E2=94=94=E2=94=80=E2=94=80 files
+=C2=A0=C2=A0=C2=A0 =E2=94=94=E2=94=80=E2=94=80 fstab
+
+and I add this base-files_3.0.14.bbappend content:
+
+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PV}:"
+
+SRC_URI_append =3D "file://fstab"
+
+do_install_append() {
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 echo "=3D=3D=3D=3D=3D=3D=3D ${PN=
+}-${PV} INSTALLING fstab =3D=3D=3D=3D=3D=3D=3D=3D"
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 install -m 644 ${WORKDIR}/fstab =
+${D}${sysconfdir}
+}
+
+but no matter how I put FILESEXTRAPATHS_prepend or how I name my bbappend w=
+hen I build the recipe with bitbake base-files it never gets called and my =
+fstab file is not installed.
+If the original recipe is base-files_3.0.14.bb, why append is base-files_3.=
+0.14.bbappend instead of base-files_3.bbappend only? How should i name and =
+put FILESEXTRAPATHS
+
+
+
+
+------=_Part_6184445_1291538183.1426193925540
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
+nt-size:12px"><div dir=3D"ltr" id=3D"yui_3_16_0_1_1426057378008_112449">Hel=
+lo<br style=3D"" class=3D""><br style=3D"" class=3D"">I'd like to add an ap=
+pend recipe for base-files in order to install a custom fstab.<br style=3D"=
+" class=3D""><br style=3D"" class=3D"">In my system I already have this bas=
+e-files recipes:<br style=3D"" class=3D""><br style=3D"" class=3D"">&nbsp;&=
+nbsp;&nbsp; layers/openembedded-core-1.4/meta/recipes-core/base-files/base-=
+files_3.0.14.bb<br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp; layers/meta-mon=
+tavista-1.4/recipes-core/base-files/base-files_3.0.14.bbappend<br style=3D"=
+" class=3D""><br style=3D"" class=3D"">So I in my layer I have:<br style=3D=
+"" class=3D""><br style=3D"" class=3D"">layers/meta-mylayer/recipes/base-fi=
+les<br style=3D"" class=3D"">=E2=94=9C=E2=94=80=E2=94=80 base-files_3.0.14.=
+bbappend<br style=3D"" class=3D"">=E2=94=94=E2=94=80=E2=94=80 files<br styl=
+e=3D"" class=3D"">&nbsp;&nbsp;&nbsp; =E2=94=94=E2=94=80=E2=94=80 fstab<br s=
+tyle=3D"" class=3D""><br style=3D"" class=3D"">and I add this base-files_3.=
+0.14.bbappend content:<br style=3D"" class=3D""><br style=3D"" class=3D"">F=
+ILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PV}:"<br style=3D"" class=
+=3D""><br style=3D"" class=3D"">SRC_URI_append =3D "file://fstab"<br style=
+=3D"" class=3D""><br style=3D"" class=3D"">do_install_append() {<br style=
+=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo "=3D=3D=3D=
+=3D=3D=3D=3D ${PN}-${PV} INSTALLING fstab =3D=3D=3D=3D=3D=3D=3D=3D"<br styl=
+e=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -m 644=
+ ${WORKDIR}/fstab ${D}${sysconfdir}<br style=3D"" class=3D"">}<br style=3D"=
+" class=3D""><br style=3D"" class=3D"">but no matter how I put FILESEXTRAPA=
+THS_prepend or how I name my bbappend when I build the recipe with bitbake =
+base-files it never gets called and my fstab file is not installed.<br styl=
+e=3D"" class=3D"">If the original recipe is base-files_3.0.14.bb, why appen=
+d is base-files_3.0.14.bbappend instead of base-files_3.bbappend only? How =
+should i name and put FILESEXTRAPATHS<br style=3D"" class=3D""><br style=3D=
+"" class=3D""><br></div><div style=3D"" class=3D"" dir=3D"ltr" id=3D"yui_3_=
+16_0_1_1426057378008_112449"><br style=3D"" class=3D""></div></div></body><=
+/html>
+
+------=_Part_6184445_1291538183.1426193925540--
