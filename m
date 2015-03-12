@@ -1,68 +1,54 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <daltonfury42@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6C779E0086D; Thu, 12 Mar 2015 11:29:50 -0700 (PDT)
+	id 70F58E0086D; Thu, 12 Mar 2015 11:55:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [65.55.169.120 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (daltonfury42[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 849 seconds by postgrey-1.32 at yocto-www;
-	Thu, 12 Mar 2015 11:29:47 PDT
-Received: from na01-bl2-obe.outbound.protection.outlook.com
-	(mail-bl2on0120.outbound.protection.outlook.com [65.55.169.120])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E88AE00858
-	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 11:29:47 -0700 (PDT)
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com (25.160.113.12) by
-	BN3PR0501MB1091.namprd05.prod.outlook.com (25.160.113.13) with
-	Microsoft SMTP
-	Server (TLS) id 15.1.106.15; Thu, 12 Mar 2015 18:15:35 +0000
-Received: from BN3PR0501MB1090.namprd05.prod.outlook.com ([25.160.113.12]) by
-	BN3PR0501MB1090.namprd05.prod.outlook.com ([25.160.113.12]) with
-	mapi id 15.01.0106.007; Thu, 12 Mar 2015 18:15:35 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "Minchev, Todor" <todor.minchev@intel.com>
-Thread-Topic: [yocto] eclipse-poky: Can't build from Eclipse, but command line
-	build works
-Thread-Index: AdBb/BnFUUT6HWWeSZuLla6w2kTN0wAuqBWAAAPbjNAACbe0gAAAodFw
-Date: Thu, 12 Mar 2015 18:15:35 +0000
-Message-ID: <BN3PR0501MB1090F6C8A0107BE5DC06ADAEBB060@BN3PR0501MB1090.namprd05.prod.outlook.com>
-References: <BN3PR0501MB109035A8492F6EA261F15FE8BB190@BN3PR0501MB1090.namprd05.prod.outlook.com>
-	<1426159307.7680.18.camel@intel.com>
-	<BN3PR0501MB1090163B91C05C2E2CCFDB9CBB060@BN3PR0501MB1090.namprd05.prod.outlook.com>
-	<1426182629.7680.39.camel@intel.com>
-In-Reply-To: <1426182629.7680.39.camel@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [98.100.91.242]
-authentication-results: intel.com; dkim=none (message not signed)
-	header.d=none;
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BN3PR0501MB1091;
-x-forefront-antispam-report: BMV:1; SFV:NSPM;
-	SFS:(10019020)(6009001)(377454003)(174874002)(51704005)(24454002)(377424004)(164054003)(13464003)(110136001)(46102003)(62966003)(77156002)(1720100001)(99286002)(2950100001)(92566002)(2900100001)(76576001)(50986999)(76176999)(54356999)(93886004)(74316001)(86362001)(66066001)(2656002)(87936001)(15975445007)(19580395003)(102836002)(19580405001)(122556002)(33656002)(40100003)(50929005)(19627235001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR0501MB1091;
-	H:BN3PR0501MB1090.namprd05.prod.outlook.com; FPR:; SPF:None;
-	MLV:nov; PTR:InfoNoRecords; LANG:en; 
-x-microsoft-antispam-prvs: <BN3PR0501MB10918299E2264EC08C68270FBB060@BN3PR0501MB1091.namprd05.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:(44728458202952);
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(5002009)(5005006)(2002001); SRVR:BN3PR0501MB1091;
-	BCL:0; PCL:0; RULEID:; SRVR:BN3PR0501MB1091; 
-x-forefront-prvs: 05134F8B4F
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ob0-f178.google.com (mail-ob0-f178.google.com
+	[209.85.214.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9ECBE00858
+	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 11:55:41 -0700 (PDT)
+Received: by obcva2 with SMTP id va2so16034342obc.3
+	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 11:55:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=pLwsp8OkoHUQhyXwPxQmKNS4jtPE7UWyyZLe6qtDFF0=;
+	b=xXXMCzDPWxhFc2ARum/DFx/EVabqL7EVi5L9fXG48Mu5N2CJxJuX2GAYJ9MGoJQjDi
+	V6fLG1IU7D2d40OV92UrCHwHLqg0wmCWeqC+I6qScjpRayUHDKtWaaDO0MEaoRNPlm6m
+	/eKxlhkC1TU4DDZBoUns9ElTcbiBIpuClI2t2fH6TlBJ3LrEFqnQQJljlaw++Ickelqi
+	FX/FmkOXMj5WLIUndYp2LHXKLUiZgFOsfndfR1VqQHmgtc2KH9W78CKCfMHr7lVHv5uN
+	t+XEXuFgoHEBOcWfEQrZyIBPMgO/KUFZjNLUfUfASy5HfUnORD8pRLf9+tayOrTCMreK
+	SURQ==
 MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Mar 2015 18:15:35.4128 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR0501MB1091
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: eclipse-poky: Can't build from Eclipse, but command line build works
+X-Received: by 10.202.82.136 with SMTP id g130mr9150307oib.73.1426186541519;
+	Thu, 12 Mar 2015 11:55:41 -0700 (PDT)
+Received: by 10.202.59.66 with HTTP; Thu, 12 Mar 2015 11:55:41 -0700 (PDT)
+Received: by 10.202.59.66 with HTTP; Thu, 12 Mar 2015 11:55:41 -0700 (PDT)
+In-Reply-To: <CALH0Xh=LdyU0MfiwOJiTkR4TmjErNsb11Q37M-noB78wjx_63g@mail.gmail.com>
+References: <CALH0XhnxvVq8aHnnpXGfhRdG+y2ym0wJzVtSUAMWWfkR30sTGA@mail.gmail.com>
+	<CALH0Xh=dDw5thoKebNN7kFbQ4hA=ztbAhaD6f0+ntsHdnqiBdw@mail.gmail.com>
+	<CALH0Xh=LdyU0MfiwOJiTkR4TmjErNsb11Q37M-noB78wjx_63g@mail.gmail.com>
+Date: Fri, 13 Mar 2015 00:25:41 +0530
+Message-ID: <CALH0Xh=sbN2SX3qNsY22Zb=RZ=+US3BP14sKicyZBQCz67T0Bw@mail.gmail.com>
+From: Dalton Fury <daltonfury42@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Cannot compile opencv with cmake.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,138 +60,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 18:29:50 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 12 Mar 2015 18:55:46 -0000
+Content-Type: multipart/alternative; boundary=001a11359ede30d97c05111bee07
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTWluY2hldiwgVG9kb3Ig
-W21haWx0bzp0b2Rvci5taW5jaGV2QGludGVsLmNvbV0NCj4gU2VudDogVGh1cnNkYXksIE1hcmNo
-IDEyLCAyMDE1IDE6NTAgUE0NCj4gVG86IEJyeWFuIEV2ZW5zb24NCj4gQ2M6IHlvY3RvQHlvY3Rv
-cHJvamVjdC5vcmcNCj4gU3ViamVjdDogUmU6IFt5b2N0b10gZWNsaXBzZS1wb2t5OiBDYW4ndCBi
-dWlsZCBmcm9tIEVjbGlwc2UsIGJ1dCBjb21tYW5kIGxpbmUNCj4gYnVpbGQgd29ya3MNCj4gDQo+
-IE9uIFRodSwgMjAxNS0wMy0xMiBhdCAxMzo0MyArMDAwMCwgQnJ5YW4gRXZlbnNvbiB3cm90ZToN
-Cj4gPiBUb2RvciwNCj4gPg0KPiA+ID4gSXQgYXBwZWFycyB0aGF0IHlvdXIgdG9vbGNoYWluIGlz
-IGNvbmZpZ3VyZWQgcHJvcGVybHksIGhvd2V2ZXIgdGhlDQo+ID4gR05VIGxpbmtlciAobGQpIGNh
-bm5vdCBmaW5kIHRoZSBsaWJyYXJpZXMgaXQgbmVlZHMgdG8gbGluayB0aGUNCj4gPiBiaW5hcnku
-DQo+ID4gPiBJIHN1c3BlY3QgdGhhdCB0aGUgY3VscHJpdCBpcyAiLS1zeXNyb290PSRTREtUQVJH
-RVRTWVNST09UIg0KPiA+ID4gVGhlcmUgc2hvdWxkIGJlIGFuIGVudmlyb25tZW50IHNldHVwIGZp
-bGUNCj4gPiA+DQo+ID4gPiAvPGhvbWVfcGF0aD4vcG9reS9wb2t5LWJ1aWxkL3RtcC9lbnZpcm9u
-bWVudC1zZXR1cC1YWA0KPiA+ID4NCj4gPiA+IElmIHlvdSBvcGVuIGl0IHlvdSB3aWxsIHNlZSBT
-REtUQVJHRVRTWVNST09UIGVudmlyb25tZW50IHZhcmlhYmxlLg0KPiA+IEl0IG1vc3QgbGlrZWx5
-IHBvaW50cyB0byBhIGRpZmZlcmVudCBzeXNyb290IHBhdGguDQo+ID4gPiBQbGVhc2UgY2hhbmdl
-IGl0IHRvIHBvaW50IHRvIHRoZSBkaXJlY3Rvcnkgd2hlcmUgeW91IGV4dHJhY3RlZCB5b3VyDQo+
-ID4gc3lzcm9vdCAoLzxob21lX3BhdGg+L2V4dHJhY3RlZF9zeXNyb290XzEuNi4yKSwNCj4gPiA+
-IGNyZWF0ZSBhIG5ldyBwcm9qZWN0IGFuZCBzZWUgaWYgdGhhdCBidWlsZHMgT0suDQo+ID4NCj4g
-PiBJJ3ZlIGJlZW4gaGF2aW5nIGEgZmV3IG90aGVyIGlzc3VlcyB3aXRoIEVjbGlwc2UgKEluc3Rh
-bGwgTmV3IFNvZnR3YXJlDQo+ID4gbWVudSBpdGVtIGRpc2FwcGVhcmluZywgb3RoZXIgcGx1Z2lu
-cyBkaXNhcHBlYXJpbmcgYWZ0ZXIgcmVzdGFydGluZywNCj4gPiBldGMuKSwgc28gSSB1bmluc3Rh
-bGxlZCBlY2xpcHNlLCBkZWxldGVkIG15IH4vLmVjbGlwc2UgYW5kIHdvcmtzcGFjZQ0KPiA+IGRp
-cmVjdG9yaWVzIGFuZCByZS1pbnN0YWxsZWQgRWNsaXBzZS4gIEkgbmVlZCB0byBydW4gRWNsaXBz
-ZSBLZXBsZXINCj4gPiAoYW5vdGhlciBwbHVnaW4gSSdtIHVzaW5nIGlzbid0IHJlYWR5IGZvciBF
-Y2xpcHNlIEx1bmEpLCBzbyBJIGZvbGxvd2VkDQo+ID4gdGhlc2UgaW5zdHJ1Y3Rpb25zIGZvciBp
-bnN0YWxsaW5nIEVjbGlwc2UgYnkgaGFuZDoNCj4gPiBodHRwOi8vd3d3Ljkyd2lraS5jb20vZW4v
-YmxvZy9kZXRhaWwvaW5zdGFsbC1lY2xpcHNlLWtlcGxlci1vbi1mZWRvcmEtDQo+IDE3LTE4LTE5
-LWNlbnRvcy1yZWQtaGF0LXJoZWwtNS02LiAgIEkgYWxzbyBlZGl0ZWQgbXkgZW52aXJvbm1lbnQg
-c2V0dXAgc2NyaXB0DQo+IGFzIHN1Z2dlc3RlZC4gIEkgdGhlbiByZWluc3RhbGxlZCBhbGwgbmVj
-ZXNzYXJ5IHBsdWdpbnMgYXMgZGVzY3JpYmVkIGluIHRoZSBBRFQNCj4gbWFudWFsLiAgSSBwb2lu
-dGVkIHRoZSB0b29sY2hhaW4gdG8gbXkgYnVpbGQgZGlyZWN0b3J5IGFuZCB0aGUgc3lzcm9vdA0K
-PiBsb2NhdGlvbiB0byBteSBleHRyYWN0ZWQgc3lzcm9vdC4gIEkgdGhlbiBmb2xsb3dlZCB0aGUg
-c3RlcHMgaW4gdGhlIEFEVA0KPiBtYW51YWwgdG8gY3JlYXRlIGEgbmV3IEhlbGxvIFdvcmxkIFlv
-Y3RvIEFEVCBwcm9qZWN0LiAgSSB2ZXJpZmllZCB0aGUNCj4gU0RLVEFSR0VUU1lTUk9PVCBlbnZp
-cm9ubWVudCB2YXJpYWJsZSBpbiB0aGUgbmV3IHByb2plY3QgcG9pbnRzIHRvIG15DQo+IGV4dHJh
-Y3RlZCBzeXNyb290LiAgV2hlbiBJIGF0dGVtcHRlZCB0byBidWlsZCwgSSBnZXQgdGhlIGZvbGxv
-d2luZyBvdXRwdXQ6DQo+ID4NCj4gPg0KPiA+IEludm9raW5nIGF1dG9nZW4uc2ggaW4gYnVpbGQN
-Cj4gPiBkaXJlY3Rvcnk6IC88aG9tZV9wYXRoPi93b3Jrc3BhY2UvYWR0X3Rlc3QvDQo+ID4NCj4g
-PiBDb21tYW5kLWxpbmUgZW52aXJvbm1lbnQgdmFyaWFibGVzOg0KPiA+ICAgICAgICAgQ0ZMQUdT
-PSIgLWcgLU8wDQo+ID4gLS1zeXNyb290PS88aG9tZV9wYXRoPi9leHRyYWN0ZWRfc3lzcm9vdF8x
-LjYuMiIgQ1hYRkxBR1M9IiAtZyAtTzANCj4gPiAtLXN5c3Jvb3Q9Lzxob21lX3BhdGg+L2V4dHJh
-Y3RlZF9zeXNyb290XzEuNi4yIiBMREZMQUdTPSINCj4gPiAtLXN5c3Jvb3Q9Lzxob21lX3BhdGg+
-L2V4dHJhY3RlZF9zeXNyb290XzEuNi4yIiBDUFBGTEFHUz0iDQo+ID4gLS1zeXNyb290PS88aG9t
-ZV9wYXRoPi9leHRyYWN0ZWRfc3lzcm9vdF8xLjYuMiINCj4gPg0KPiA+IHNoIC1jICIvPGhvbWVf
-cGF0aD4vd29ya3NwYWNlL2FkdF90ZXN0L2F1dG9nZW4uc2gNCj4gPiAtLXdpdGgtbGlidG9vbC1z
-eXNyb290PS88aG9tZV9wYXRoPi9leHRyYWN0ZWRfc3lzcm9vdF8xLjYuMg0KPiA+IC0tdGFyZ2V0
-PWFybS1wb2t5LWxpbnV4LWdudWVhYmkgLS1ob3N0PWFybS1wb2t5LWxpbnV4LWdudWVhYmkNCj4g
-PiAtLWJ1aWxkPXg4Nl82NC1saW51eA0KPiA+IC0td2l0aC1saWJ0b29sLXN5c3Jvb3Q9Lzxob21l
-X3BhdGg+L2V4dHJhY3RlZF9zeXNyb290XzEuNi4yIg0KPiA+IGFjbG9jYWw6IHdhcm5pbmc6IGNv
-dWxkbid0IG9wZW4gZGlyZWN0b3J5DQo+ID4gJy88aG9tZV9wYXRoPi9leHRyYWN0ZWRfc3lzcm9v
-dF8xLjYuMi91c3Ivc2hhcmUvYWNsb2NhbCc6IE5vIHN1Y2ggZmlsZQ0KPiA+IG9yIGRpcmVjdG9y
-eQ0KPiA+IGNvbmZpZ3VyZS5hYzoxNjogd2FybmluZzogQU1fSU5JVF9BVVRPTUFLRTogdHdvLSBh
-bmQgdGhyZWUtDQo+IGFyZ3VtZW50cw0KPiA+IGZvcm1zIGFyZSBkZXByZWNhdGVkLiAgRm9yIG1v
-cmUgaW5mbywgc2VlOg0KPiA+IGNvbmZpZ3VyZS5hYzoxNjoNCj4gPg0KPiBodHRwOi8vd3d3Lmdu
-dS5vcmcvc29mdHdhcmUvYXV0b21ha2UvbWFudWFsL2F1dG9tYWtlLmh0bWwjTW9kZXJuaQ0KPiB6
-ZS1BTV8wMDVmSU5JVF8wMDVmQVVUT01BS0UtaW52b2NhdGlvbg0KPiA+IGNvbmZpZ3VyZS5hYzoy
-MDogaW5zdGFsbGluZyAnLi9jb21waWxlJw0KPiA+IGNvbmZpZ3VyZS5hYzoyMDogaW5zdGFsbGlu
-ZyAnLi9jb25maWcuZ3Vlc3MnDQo+ID4gY29uZmlndXJlLmFjOjIwOiBpbnN0YWxsaW5nICcuL2Nv
-bmZpZy5zdWInDQo+ID4gY29uZmlndXJlLmFjOjE2OiBpbnN0YWxsaW5nICcuL2luc3RhbGwtc2gn
-DQo+ID4gY29uZmlndXJlLmFjOjE2OiBpbnN0YWxsaW5nICcuL21pc3NpbmcnDQo+ID4gc3JjL01h
-a2VmaWxlLmFtOiBpbnN0YWxsaW5nICcuL2RlcGNvbXAnDQo+ID4gY29uZmlndXJlOiBsb2FkaW5n
-IHNpdGUNCj4gPiBzY3JpcHQgLzxob21lX3BhdGg+L3Bva3kvbWV0YS9zaXRlL2VuZGlhbi1saXR0
-bGUNCj4gPiBjb25maWd1cmU6IGxvYWRpbmcgc2l0ZSBzY3JpcHQgLzxob21lX3BhdGg+L3Bva3kv
-bWV0YS9zaXRlL2FybS1jb21tb24NCj4gPiBjb25maWd1cmU6IGxvYWRpbmcgc2l0ZQ0KPiA+IHNj
-cmlwdCAvPGhvbWVfcGF0aD4vcG9reS9tZXRhL3NpdGUvY29tbW9uLWxpbnV4DQo+ID4gY29uZmln
-dXJlOiBsb2FkaW5nIHNpdGUNCj4gPiBzY3JpcHQgLzxob21lX3BhdGg+L3Bva3kvbWV0YS9zaXRl
-L2NvbW1vbi1nbGliYw0KPiA+IGNvbmZpZ3VyZTogbG9hZGluZyBzaXRlIHNjcmlwdCAvPGhvbWVf
-cGF0aD4vcG9reS9tZXRhL3NpdGUvYXJtLWxpbnV4DQo+ID4gY29uZmlndXJlOiBsb2FkaW5nIHNp
-dGUgc2NyaXB0IC88aG9tZV9wYXRoPi9wb2t5L21ldGEvc2l0ZS9jb21tb24NCj4gPiBjb25maWd1
-cmU6IGxvYWRpbmcgc2l0ZQ0KPiA+IHNjcmlwdCAvPGhvbWVfcGF0aD4vcG9reS9tZXRhLW9wZW5l
-bWJlZGRlZC9tZXRhLW9lL3NpdGUvZW5kaWFuLQ0KPiBsaXR0bGUNCj4gPiBjb25maWd1cmU6IGxv
-YWRpbmcgc2l0ZQ0KPiA+IHNjcmlwdCAvPGhvbWVfcGF0aD4vcG9reS9wb2t5LQ0KPiBidWlsZC90
-bXAvc3lzcm9vdHMvYXQ5MXNhbTl4NWVrL3Vzci9zaGFyZS9hcm0tcG9reS1saW51eC0NCj4gZ251
-ZWFiaV9jb25maWdfc2l0ZS5kL25jdXJzZXNfY29uZmlnDQo+ID4gY29uZmlndXJlOiBsb2FkaW5n
-IHNpdGUNCj4gPiBzY3JpcHQgLzxob21lX3BhdGg+L3Bva3kvcG9reS0NCj4gYnVpbGQvdG1wL3N5
-c3Jvb3RzL2F0OTFzYW05eDVlay91c3Ivc2hhcmUvYXJtLXBva3ktbGludXgtDQo+IGdudWVhYmlf
-Y29uZmlnX3NpdGUuZC9lZ2xpYmNfY29uZmlnDQo+ID4gY2hlY2tpbmcgZm9yIGEgQlNELWNvbXBh
-dGlibGUgaW5zdGFsbC4uLiAvdXNyL2Jpbi9pbnN0YWxsIC1jDQo+ID4gY2hlY2tpbmcgd2hldGhl
-ciBidWlsZCBlbnZpcm9ubWVudCBpcyBzYW5lLi4uIHllcw0KPiA+IGNoZWNraW5nIGZvciBhcm0t
-cG9reS1saW51eC1nbnVlYWJpLXN0cmlwLi4uDQo+ID4gYXJtLXBva3ktbGludXgtZ251ZWFiaS1z
-dHJpcA0KPiA+IGNoZWNraW5nIGZvciBhIHRocmVhZC1zYWZlIG1rZGlyIC1wLi4uIC91c3IvYmlu
-L21rZGlyIC1wDQo+ID4gY2hlY2tpbmcgZm9yIGdhd2suLi4gZ2F3aw0KPiA+IGNoZWNraW5nIHdo
-ZXRoZXIgbWFrZSBzZXRzICQoTUFLRSkuLi4geWVzDQo+ID4gY2hlY2tpbmcgd2hldGhlciBtYWtl
-IHN1cHBvcnRzIG5lc3RlZCB2YXJpYWJsZXMuLi4geWVzDQo+ID4gY2hlY2tpbmcgYnVpbGQgc3lz
-dGVtIHR5cGUuLi4geDg2XzY0LXBjLWxpbnV4LWdudQ0KPiA+IGNoZWNraW5nIGhvc3Qgc3lzdGVt
-IHR5cGUuLi4gYXJtLXBva3ktbGludXgtZ251ZWFiaQ0KPiA+IGNoZWNraW5nIGhvdyB0byBwcmlu
-dCBzdHJpbmdzLi4uIHByaW50Zg0KPiA+IGNoZWNraW5nIGZvciBzdHlsZSBvZiBpbmNsdWRlIHVz
-ZWQgYnkgbWFrZS4uLiBHTlUNCj4gPiBjaGVja2luZyBmb3IgYXJtLXBva3ktbGludXgtZ251ZWFi
-aS1nY2MuLi4gYXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2MNCj4gPiAtbWFyY2g9YXJtdjV0ZSAt
-bWFybSAtbXRodW1iLWludGVyd29yayAtbXR1bmU9YXJtOTI2ZWotcyAtLQ0KPiBzeXNyb290PQ0K
-PiA+ICRTREtUQVJHRVRTWVNST09UDQo+ID4gY2hlY2tpbmcgd2hldGhlciB0aGUgQyBjb21waWxl
-ciB3b3Jrcy4uLiBubw0KPiA+IGNvbmZpZ3VyZTogZXJyb3I6IGluIGAvPGhvbWVfcGF0aD4vd29y
-a3NwYWNlL2FkdF90ZXN0JzoNCj4gPiBjb25maWd1cmU6IGVycm9yOiBpbiBgLzxob21lX3BhdGg+
-L3dvcmtzcGFjZS9hZHRfdGVzdCc6DQo+ID4gY29uZmlndXJlOiBlcnJvcjogQyBjb21waWxlciBj
-YW5ub3QgY3JlYXRlIGV4ZWN1dGFibGVzDQo+ID4gY29uZmlndXJlOiBlcnJvcjogQyBjb21waWxl
-ciBjYW5ub3QgY3JlYXRlIGV4ZWN1dGFibGVzDQo+ID4gU2VlIGBjb25maWcubG9nJyBmb3IgbW9y
-ZSBkZXRhaWxzDQo+IA0KPiBUaGlzIGlzIGEgZGlmZmVyZW50IGVycm9yLiBUaGVyZSBzZWVtcyB0
-byBiZSBhIG1pc21hdGNoIGJldHdlZW4geW91cg0KPiB0b29sY2hhaW4gYW5kIHJvb3Rmcy4gQ291
-bGQgeW91IHBsZWFzZSBzaGFyZSB0aGUgZnVsbCBuYW1lIG9mDQo+IA0KPiBteV9idWlsdF9pbWFn
-ZS50YXIuZ3ogZnJvbQ0KPiANCj4gcnVucWVtdS1leHRyYWN0LXNkayA8bXlfYnVpbHRfaW1hZ2Uu
-dGFyLmd6Pg0KPiA8c3lzcm9vdF9kZXN0aW5hdGlvbl9kaXJlY3Rvcnk+Ig0KPiANCg0KY29yZS1p
-bWFnZS1teS1taW5pbWFsLWF0OTFzYW05eDVlay50YXIuZ3oNCg0KSXQncyB0aGUgcm9vdCBmaWxl
-c3lzdGVtIHRoYXQgSSBidWlsdCBhbmQgcnVucyBvbiBvdXIgdGFyZ2V0IGhhcmR3YXJlLiAgSXQn
-cyBiYXNlZCBvbiBjb3JlLWltYWdlLW1pbmltYWwgd2l0aCBhIGZldyBhZGRpdGlvbmFsIHBhY2th
-Z2VzLiAgQXJlIHRoZXJlIHNvbWUgYWRkaXRpb25hbCAob3Igc29tZSBzcGVjaWZpYykgcGFja2Fn
-ZXMgdGhhdCBhcmUgbmVlZGVkIGZvciBpdCB0byBiZSBhIHN1aXRhYmxlIHJvb3RmcyBmb3IgdGhp
-cyBwdXJwb3NlPw0KDQpUaGFua3MsDQpCcnlhbg0KDQo+ID4NCj4gPiBDb25maWd1cmF0aW9uIGZh
-aWxlZCB3aXRoIGVycm9yDQo+ID4NCj4gPiBUaGUgYm9sZCBsaW5lcyBhcmUgb25lcyB0aGF0IEkg
-c2VlIGFzIGEgcG90ZW50aWFsIHByb2JsZW0uICBGaXJzdCwgdGhlDQo+ID4gc3lzdGVtIGNvdWxk
-bid0IGZpbmQgYWNsb2NhbCBpbiBteSBleHRyYWN0ZWQgc3lzcm9vdC4gIEkgdG9vayBhIGxvb2sN
-Cj4gPiBpbiB0aGUgZGlyZWN0b3J5IGxpc3RlZCwgYW5kIGFjbG9jYWwgaXMgbm90IGluIHRoZXJl
-LiAgSSB0aGluayB0aGUNCj4gPiBjb25maWd1cmUgc2NyaXB0IGFsc28gZm91bmQgdGhlIGJ1aWxk
-IHN5c3RlbSdzIGluc3RhbGwgYW5kIG1rZGlyDQo+ID4gKC91c3IvYmluL2luc3RhbGwgYW5kIC91
-c3IvYmluL21rZGlyKS4gIEkgZG9uJ3Qga25vdyBpZiB0aGVyZSBpcw0KPiA+IHN1cHBvc2VkIHRv
-IGJlIG9uZSBvZiB0aGVzZSBpbiB0aGUgZXh0cmFjdGVkIHN5c3Jvb3Qgb3Igbm90LCBidXQgSQ0K
-PiA+IHRob3VnaHQgaXQgd2FzIHdvcnRoIG5vdGluZy4NCj4gPg0KPiA+IE9uIGEgcG9zc2libHkg
-cmVsYXRlZCB0b3BpYywgSSBub3RpY2VkIHRoYXQgdGhlIEVjbGlwc2UgSW5kZXhlciBpcw0KPiA+
-IHVzaW5nIHRoZSBidWlsZCBzeXN0ZW0ncyBoZWFkZXIgZmlsZXMuICBGb3IgZXhhbXBsZSwgaWYg
-SSBvcGVuIHRoZQ0KPiA+IG1haW4gc291cmNlIGZpbGUgZnJvbSB0aGUgSGVsbG93IFdvcmxkIGFw
-cGxpY2F0aW9uLCBwbGFjZSBteSBjdXJzb3Igb24NCj4gPiB0aGUgbGluZSAiI2luY2x1ZGUgPHN0
-ZGxpYi5oPiIgYW5kIGhpdCBGMywgL3Vzci9pbmNsdWRlL3N0ZGxpYi5oIG9wZW5zDQo+ID4gdXAg
-aW5zdGVhZCBvZiBzdGRsaWIuaCBmcm9tIG15IHRvb2xjaGFpbi4gIFVuZGVyIHRoZSBFY2xpcHNl
-IHByb2plY3QsDQo+ID4gZm9yIHRoZSBsaXN0ZWQgSW5jbHVkZXMgZGlyZWN0b3JpZXMgaXQgaGFz
-IHRoZSBmb2xsb3dpbmc6DQo+ID4NCj4gPiAvdXNyL2luY2x1ZGUNCj4gPiAvdXNyL2xpYi9nY2Mv
-eDg2XzY0LXJlZGhhdC1saW51eC80LjkuMi9pbmNsdWRlDQo+ID4gL3Vzci9sb2NhbC9pbmNsdWRl
-DQo+IA0KPiBFY2xpcHNlIGlzIHNob3dpbmcgdGhlIGhvc3QgaGVhZGVycywgYnV0IGl0IHdpbGwg
-dXNlIHRoZSBoZWFkZXJzIGZyb20NCj4geW91ciBzeXNyb290IGR1cmluZyB0aGUgYWN0dWFsIGJ1
-aWxkLg0KPiANCj4gPg0KPiA+IEFueSB0aG91Z2h0cyBvbiBob3cgdG8gZml4IHRoZXNlIGlzc3Vl
-cz8NCj4gPg0KPiA+IFRoYW5rcywNCj4gPiBCcnlhbg0KPiA+DQoNCg==
+--001a11359ede30d97c05111bee07
+Content-Type: text/plain; charset=UTF-8
 
+Hey,
+I am trying to compile a c++ program which uses opencv on pokey. These are
+the packages I have installed.
+CORE_IMAGE_EXTRA_INSTALL += "cmake"
+
+EXTRA_IMAGE_FEATURES += "tools-sdk"
+
+When I run cmake,, I get this error.
+http://pastebin.com/WifpRYXV
+
+I followed the instructions given in this post:
+http://stackoverflow.com/questions/8711109/could-not-find-module-findopencv-cmake-error-in-configuration-process
+But still I get trouble:
+http://pastebin.com/V7sSwP8r
+
+I am new to yocto, and really need your help to proceed with my task.
+Thankyou.
+
+--001a11359ede30d97c05111bee07
+Content-Type: text/html; charset=UTF-8
+
+<p dir="ltr">Hey, <br>
+I am trying to compile a c++ program which uses opencv on pokey. These are the packages I have installed. <br>
+CORE_IMAGE_EXTRA_INSTALL += &quot;cmake&quot;</p>
+<p dir="ltr">EXTRA_IMAGE_FEATURES += &quot;tools-sdk&quot;</p>
+<p dir="ltr">When I run cmake,, I get this error. <br>
+<a href="http://pastebin.com/WifpRYXV">http://pastebin.com/WifpRYXV</a></p>
+<p dir="ltr">I followed the instructions given in this post: <br>
+<a href="http://stackoverflow.com/questions/8711109/could-not-find-module-findopencv-cmake-error-in-configuration-process">http://stackoverflow.com/questions/8711109/could-not-find-module-findopencv-cmake-error-in-configuration-process</a><br>
+But still I get trouble: <br>
+<a href="http://pastebin.com/V7sSwP8r">http://pastebin.com/V7sSwP8r</a></p>
+<p dir="ltr">I am new to yocto, and really need your help to proceed with my task. <br>
+Thankyou.<br>
+</p>
+
+--001a11359ede30d97c05111bee07--
