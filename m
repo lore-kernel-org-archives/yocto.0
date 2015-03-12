@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CF9D1E0086D; Thu, 12 Mar 2015 15:24:51 -0700 (PDT)
+	id EB686E0086D; Thu, 12 Mar 2015 15:27:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
@@ -9,43 +9,44 @@ X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,FSL_HELO_FAKE,
 X-Spam-HAM-Report: *  3.7 FSL_HELO_FAKE FSL_HELO_FAKE
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [74.125.82.46 listed in list.dnswl.org]
+	*      [74.125.82.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-wg0-f46.google.com (mail-wg0-f46.google.com [74.125.82.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA7D3E00858
-	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 15:24:45 -0700 (PDT)
-Received: by wghl18 with SMTP id l18so19421265wgh.11
-	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 15:24:44 -0700 (PDT)
+Received: from mail-we0-f169.google.com (mail-we0-f169.google.com
+	[74.125.82.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 877C9E00858
+	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 15:27:38 -0700 (PDT)
+Received: by wesw62 with SMTP id w62so19500416wes.8
+	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 15:27:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition
-	:content-transfer-encoding:in-reply-to:user-agent;
-	bh=Nzb6CRqluXnngNJtDudHBrmg5GhN444NDtQNvYUq9eo=;
-	b=bQhnHb9VE5hyMFH9iuTugAKE4uyZ34ce+rTHeUPjW5tmAiDHfIIy/bVo5GesylRtAT
-	KYfm0MTiFOSHy8ueAB7161z95DyfpUYfUMDl9H+dpEam8jIvH+KqTzYbbjAQwmYVSTm8
-	r64oz5ORFyu+u5hgngjfLF8OIGzObC46KQMGYn9A8gzQ5CxI5OjtJMgjHJQs8+A8Tnw9
-	WIg4dTKdHQIxG2kG4VrxNXeFxCSxOFBi4D7nbNyxH5GDPfr8OB4ezW4S+s3i0qi0vHu+
-	zoI/TDldCiQSdedkgieZKgapAIgN2dtIXoo+q5k4GCmO4LXVWEHibn2uRTDl59gbD4rf
-	43Uw==
-X-Gm-Message-State: ALoCoQmRsCMZZ7BV6kE/Pjlf1mf3QAY86j6uU/pG47PFsAcx2fNqKbEPug+qER51aIR4Dhfh3wXS
-X-Received: by 10.180.73.9 with SMTP id h9mr27721277wiv.63.1426199084391;
-	Thu, 12 Mar 2015 15:24:44 -0700 (PDT)
+	h=x-gm-message-state:date:from:to:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=xyPO/OmTYJ/QXG0sBa2Iiqt7+CKbwR9f/slAp+z1aO4=;
+	b=Db7a/t3tCWJWJTl7M1zI6VYqZ2noncU7lNmI6ssClrQH9eXAVyeMz/tkRnPw6y0CTq
+	U6oKDt3DR61sZPAtKr0zPs+q4a6MamHkPV/POqdRy0XuKeYRx1Df0ZbpcKwptl11J2Dq
+	jBEcgapvjhDM/oEl7/pNYj80arw3h0YtF4xOfSpcqj7mHWG8ZtopV9WL37tfUb2YupKd
+	keAPx33tAJyMAUadGHp/fV1ZMj/dplgAdrxi2KodsUvIQgJ0AdrZF/0nv+gDEQqWuztl
+	2BYycU0sFk2AXrjP/RjPaQkYXuibzQgbxKlluptSMnpfT9/Jm9ncIIeJfxERldNHWkfD
+	iumA==
+X-Gm-Message-State: ALoCoQmMJ6IJnpFcZMcZzK0KNWPTmccy2IUzsDwT/20duxhU2o0pX2fhmTZ9Pb0UWfSMlsxL0hx3
+X-Received: by 10.180.87.165 with SMTP id az5mr134696126wib.29.1426199258119; 
+	Thu, 12 Mar 2015 15:27:38 -0700 (PDT)
 Received: from gmail.com (dhcp-186-165.gjk.dk. [195.249.186.165])
-	by mx.google.com with ESMTPSA id nd15sm245533wic.8.2015.03.12.15.24.43
+	by mx.google.com with ESMTPSA id v8sm320256wib.0.2015.03.12.15.27.37
+	for <yocto@yoctoproject.org>
 	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 12 Mar 2015 15:24:43 -0700 (PDT)
-Date: Thu, 12 Mar 2015 23:24:36 +0100
+	Thu, 12 Mar 2015 15:27:37 -0700 (PDT)
+Date: Thu, 12 Mar 2015 23:27:35 +0100
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: Petter =?iso-8859-1?Q?Mab=E4cker?= <petter@technux.se>
-Message-ID: <20150312222436.GA23855@gmail.com>
-References: <cover.1426101237.git.petter@technux.se>
+To: yocto@yoctoproject.org
+Message-ID: <20150312222735.GB23855@gmail.com>
+References: <cover.1425251029.git.andrei@gherzan.ro>
 MIME-Version: 1.0
-In-Reply-To: <cover.1426101237.git.petter@technux.se>
+In-Reply-To: <cover.1425251029.git.andrei@gherzan.ro>
 User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 0/1] xserver-xf86-config: add rpi2 awareness
+Subject: Re: [meta-raspberrypi][PATCH 0/6] Restructure some recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,31 +58,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 22:24:51 -0000
-Content-Type: text/plain; charset=iso-8859-1
+X-List-Received-Date: Thu, 12 Mar 2015 22:27:42 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
 
-On Wed, Mar 11, 2015 at 08:20:43PM +0100, Petter Mabäcker wrote:
+On Mon, Mar 02, 2015 at 12:05:21AM +0100, Andrei Gherzan wrote:
 > The following changes since commit 57c8e6bffbbef9b2331551093c3436303eb18386:
 >
 >   rpi-base.inc: Include the RPI2 DTB (2015-03-01 22:43:40 +0100)
 >
 > are available in the git repository at:
 >
->   git://git.yoctoproject.org/poky-contrib petmab/rpi2_xserver_fix
->   http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=petmab/rpi2_xserver_fix
+>   git://git.yoctoproject.org/meta-raspberrypi ag-dev
+>   http://git.yoctoproject.org/cgit.cgi/meta-raspberrypi/log/?h=ag-dev
 >
-> Petter Mabäcker (1):
->   xserver-xf86-config: add rpi2 awareness
+> Andrei Gherzan (6):
+>   bcm2835: More recipe to devtools
+>   bootfiles: Move to recipes-bsp
+>   firmware.inc: Move to recipes-bsp
+>   vc-graphics: Move to recipes-graphics
+>   rpi-basic-image: Define rpi SPLASH specific package
+>   .gitignore: Ignore some stuff
 >
->  .../xorg-xserver/xserver-xf86-config/{raspberrypi => rpi}/xorg.conf       | 0
->  .../xserver-xf86-config/{raspberrypi => rpi}/xorg.conf.d/10-evdev.conf    | 0
->  2 files changed, 0 insertions(+), 0 deletions(-)
->  rename recipes-graphics/xorg-xserver/xserver-xf86-config/{raspberrypi => rpi}/xorg.conf (100%)
->  rename recipes-graphics/xorg-xserver/xserver-xf86-config/{raspberrypi => rpi}/xorg.conf.d/10-evdev.conf (100%)
 
-Merged. Thanks Petter.
+Patch set merged to master.
+
 
 --
 Andrei Gherzan
