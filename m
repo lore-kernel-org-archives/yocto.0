@@ -1,31 +1,51 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 626D8E0085D; Thu, 12 Mar 2015 14:05:44 -0700 (PDT)
+	id CF9D1E0086D; Thu, 12 Mar 2015 15:24:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Level: *
+X-Spam-Status: No, score=1.1 required=5.0 tests=BAYES_00,FSL_HELO_FAKE,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: *  3.7 FSL_HELO_FAKE FSL_HELO_FAKE
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.46 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D45D2E00854
-	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 14:05:42 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 67CAAF811DA; Thu, 12 Mar 2015 15:05:41 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id F3A84F811DA;
-	Thu, 12 Mar 2015 15:05:40 -0600 (MDT)
-Message-ID: <5501FFB7.2010201@mlbassoc.com>
-Date: Thu, 12 Mar 2015 15:05:59 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+Received: from mail-wg0-f46.google.com (mail-wg0-f46.google.com [74.125.82.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA7D3E00858
+	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 15:24:45 -0700 (PDT)
+Received: by wghl18 with SMTP id l18so19421265wgh.11
+	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 15:24:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition
+	:content-transfer-encoding:in-reply-to:user-agent;
+	bh=Nzb6CRqluXnngNJtDudHBrmg5GhN444NDtQNvYUq9eo=;
+	b=bQhnHb9VE5hyMFH9iuTugAKE4uyZ34ce+rTHeUPjW5tmAiDHfIIy/bVo5GesylRtAT
+	KYfm0MTiFOSHy8ueAB7161z95DyfpUYfUMDl9H+dpEam8jIvH+KqTzYbbjAQwmYVSTm8
+	r64oz5ORFyu+u5hgngjfLF8OIGzObC46KQMGYn9A8gzQ5CxI5OjtJMgjHJQs8+A8Tnw9
+	WIg4dTKdHQIxG2kG4VrxNXeFxCSxOFBi4D7nbNyxH5GDPfr8OB4ezW4S+s3i0qi0vHu+
+	zoI/TDldCiQSdedkgieZKgapAIgN2dtIXoo+q5k4GCmO4LXVWEHibn2uRTDl59gbD4rf
+	43Uw==
+X-Gm-Message-State: ALoCoQmRsCMZZ7BV6kE/Pjlf1mf3QAY86j6uU/pG47PFsAcx2fNqKbEPug+qER51aIR4Dhfh3wXS
+X-Received: by 10.180.73.9 with SMTP id h9mr27721277wiv.63.1426199084391;
+	Thu, 12 Mar 2015 15:24:44 -0700 (PDT)
+Received: from gmail.com (dhcp-186-165.gjk.dk. [195.249.186.165])
+	by mx.google.com with ESMTPSA id nd15sm245533wic.8.2015.03.12.15.24.43
+	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 12 Mar 2015 15:24:43 -0700 (PDT)
+Date: Thu, 12 Mar 2015 23:24:36 +0100
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Petter =?iso-8859-1?Q?Mab=E4cker?= <petter@technux.se>
+Message-ID: <20150312222436.GA23855@gmail.com>
+References: <cover.1426101237.git.petter@technux.se>
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <1971127177.6184446.1426193925543.JavaMail.yahoo@mail.yahoo.com>
-In-Reply-To: <1971127177.6184446.1426193925543.JavaMail.yahoo@mail.yahoo.com>
-Subject: Re: File in append recipe not installed
+In-Reply-To: <cover.1426101237.git.petter@technux.se>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH 0/1] xserver-xf86-config: add rpi2 awareness
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,48 +57,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 21:05:44 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-List-Received-Date: Thu, 12 Mar 2015 22:24:51 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 
-On 2015-03-12 14:58, p_j_r_m wrote:
-> Hello
+On Wed, Mar 11, 2015 at 08:20:43PM +0100, Petter Mab�cker wrote:
+> The following changes since commit 57c8e6bffbbef9b2331551093c3436303eb18386:
 >
-> I'd like to add an append recipe for base-files in order to install a custom fstab.
+>   rpi-base.inc: Include the RPI2 DTB (2015-03-01 22:43:40 +0100)
 >
-> In my system I already have this base-files recipes:
+> are available in the git repository at:
 >
->      layers/openembedded-core-1.4/meta/recipes-core/base-files/base-files_3.0.14.bb
->      layers/meta-montavista-1.4/recipes-core/base-files/base-files_3.0.14.bbappend
+>   git://git.yoctoproject.org/poky-contrib petmab/rpi2_xserver_fix
+>   http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=petmab/rpi2_xserver_fix
 >
-> So I in my layer I have:
+> Petter Mab�cker (1):
+>   xserver-xf86-config: add rpi2 awareness
 >
-> layers/meta-mylayer/recipes/base-files
-> ├── base-files_3.0.14.bbappend
-> └── files
->      └── fstab
->
-> and I add this base-files_3.0.14.bbappend content:
->
-> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
->
-> SRC_URI_append = "file://fstab"
->
-> do_install_append() {
->          echo "======= ${PN}-${PV} INSTALLING fstab ========"
->          install -m 644 ${WORKDIR}/fstab ${D}${sysconfdir}
-> }
->
-> but no matter how I put FILESEXTRAPATHS_prepend or how I name my bbappend when I build the recipe with bitbake base-files it never gets called and my fstab file is not installed.
-> If the original recipe is base-files_3.0.14.bb, why append is base-files_3.0.14.bbappend instead of base-files_3.bbappend only? How should i name and put FILESEXTRAPATHS
+>  .../xorg-xserver/xserver-xf86-config/{raspberrypi => rpi}/xorg.conf       | 0
+>  .../xserver-xf86-config/{raspberrypi => rpi}/xorg.conf.d/10-evdev.conf    | 0
+>  2 files changed, 0 insertions(+), 0 deletions(-)
+>  rename recipes-graphics/xorg-xserver/xserver-xf86-config/{raspberrypi => rpi}/xorg.conf (100%)
+>  rename recipes-graphics/xorg-xserver/xserver-xf86-config/{raspberrypi => rpi}/xorg.conf.d/10-evdev.conf (100%)
 
-Instead of putting your fstab in 'files', put it in a directory
-called 'base-files-3.0.14' which is where your FILESEXTRAPATHS
-is looking.
+Merged. Thanks Petter.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+--
+Andrei Gherzan
 
