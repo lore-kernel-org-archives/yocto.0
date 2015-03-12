@@ -1,47 +1,66 @@
-Return-Path: <todor.minchev@intel.com>
+Return-Path: <bevenson@melinkcorp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BA457E0086D; Thu, 12 Mar 2015 10:50:35 -0700 (PDT)
+	id 6C779E0086D; Thu, 12 Mar 2015 11:29:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-	UC_GIBBERISH_OBFU autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [65.55.169.120 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 1.0 UC_GIBBERISH_OBFU Multiple instances of "word VERYLONGGIBBERISH
-	*      word"
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7053DE00858
-	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 10:50:33 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga101.jf.intel.com with ESMTP; 12 Mar 2015 10:50:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,390,1422950400"; 
-	d="p7s'?scan'208";a="540066972"
-Received: from irsmsx154.ger.corp.intel.com ([163.33.192.96])
-	by orsmga003.jf.intel.com with ESMTP; 12 Mar 2015 10:49:48 -0700
-Received: from irsmsx105.ger.corp.intel.com ([169.254.7.117]) by
-	IRSMSX154.ger.corp.intel.com ([169.254.12.237]) with mapi id
-	14.03.0195.001; Thu, 12 Mar 2015 17:50:30 +0000
-From: "Minchev, Todor" <todor.minchev@intel.com>
-To: "bevenson@melinkcorp.com" <bevenson@melinkcorp.com>
-Thread-Topic: [yocto] eclipse-poky: Can't build from Eclipse, but command
-	line build works
-Thread-Index: AQHQXLa6YS1OS/VB90WAiVceDlln950Y24wAgABFFIA=
-Date: Thu, 12 Mar 2015 17:50:29 +0000
-Message-ID: <1426182629.7680.39.camel@intel.com>
+X-Greylist: delayed 849 seconds by postgrey-1.32 at yocto-www;
+	Thu, 12 Mar 2015 11:29:47 PDT
+Received: from na01-bl2-obe.outbound.protection.outlook.com
+	(mail-bl2on0120.outbound.protection.outlook.com [65.55.169.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E88AE00858
+	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 11:29:47 -0700 (PDT)
+Received: from BN3PR0501MB1090.namprd05.prod.outlook.com (25.160.113.12) by
+	BN3PR0501MB1091.namprd05.prod.outlook.com (25.160.113.13) with
+	Microsoft SMTP
+	Server (TLS) id 15.1.106.15; Thu, 12 Mar 2015 18:15:35 +0000
+Received: from BN3PR0501MB1090.namprd05.prod.outlook.com ([25.160.113.12]) by
+	BN3PR0501MB1090.namprd05.prod.outlook.com ([25.160.113.12]) with
+	mapi id 15.01.0106.007; Thu, 12 Mar 2015 18:15:35 +0000
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: "Minchev, Todor" <todor.minchev@intel.com>
+Thread-Topic: [yocto] eclipse-poky: Can't build from Eclipse, but command line
+	build works
+Thread-Index: AdBb/BnFUUT6HWWeSZuLla6w2kTN0wAuqBWAAAPbjNAACbe0gAAAodFw
+Date: Thu, 12 Mar 2015 18:15:35 +0000
+Message-ID: <BN3PR0501MB1090F6C8A0107BE5DC06ADAEBB060@BN3PR0501MB1090.namprd05.prod.outlook.com>
 References: <BN3PR0501MB109035A8492F6EA261F15FE8BB190@BN3PR0501MB1090.namprd05.prod.outlook.com>
 	<1426159307.7680.18.camel@intel.com>
 	<BN3PR0501MB1090163B91C05C2E2CCFDB9CBB060@BN3PR0501MB1090.namprd05.prod.outlook.com>
-In-Reply-To: <BN3PR0501MB1090163B91C05C2E2CCFDB9CBB060@BN3PR0501MB1090.namprd05.prod.outlook.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: yes
+	<1426182629.7680.39.camel@intel.com>
+In-Reply-To: <1426182629.7680.39.camel@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.33.100]
+x-originating-ip: [98.100.91.242]
+authentication-results: intel.com; dkim=none (message not signed)
+	header.d=none;
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BN3PR0501MB1091;
+x-forefront-antispam-report: BMV:1; SFV:NSPM;
+	SFS:(10019020)(6009001)(377454003)(174874002)(51704005)(24454002)(377424004)(164054003)(13464003)(110136001)(46102003)(62966003)(77156002)(1720100001)(99286002)(2950100001)(92566002)(2900100001)(76576001)(50986999)(76176999)(54356999)(93886004)(74316001)(86362001)(66066001)(2656002)(87936001)(15975445007)(19580395003)(102836002)(19580405001)(122556002)(33656002)(40100003)(50929005)(19627235001);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR0501MB1091;
+	H:BN3PR0501MB1090.namprd05.prod.outlook.com; FPR:; SPF:None;
+	MLV:nov; PTR:InfoNoRecords; LANG:en; 
+x-microsoft-antispam-prvs: <BN3PR0501MB10918299E2264EC08C68270FBB060@BN3PR0501MB1091.namprd05.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(44728458202952);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(5002009)(5005006)(2002001); SRVR:BN3PR0501MB1091;
+	BCL:0; PCL:0; RULEID:; SRVR:BN3PR0501MB1091; 
+x-forefront-prvs: 05134F8B4F
 MIME-Version: 1.0
+X-OriginatorOrg: melinkcorp.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Mar 2015 18:15:35.4128 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR0501MB1091
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: eclipse-poky: Can't build from Eclipse, but command line build works
 X-BeenThere: yocto@yoctoproject.org
@@ -55,255 +74,138 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Mar 2015 17:50:35 -0000
-X-Groupsio-MsgNum: 23998
+X-List-Received-Date: Thu, 12 Mar 2015 18:29:50 -0000
 Content-Language: en-US
-Content-Type: multipart/signed; micalg=sha-1;
-	protocol="application/x-pkcs7-signature";
-	boundary="=-BGaxWjAFQaBal9Nm0qdB"
-
---=-BGaxWjAFQaBal9Nm0qdB
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, 2015-03-12 at 13:43 +0000, Bryan Evenson wrote:
-> Todor,
-> =20
-> > It appears that your toolchain is configured properly, however the
-> GNU linker (ld) cannot find the libraries it needs to link the
-> binary.=20
-> > I suspect that the culprit is "--sysroot=3D$SDKTARGETSYSROOT"
-> > There should be an environment setup file
-> >=20
-> > /<home_path>/poky/poky-build/tmp/environment-setup-XX
-> >
-> > If you open it you will see SDKTARGETSYSROOT environment variable.
-> It most likely points to a different sysroot path.
-> > Please change it to point to the directory where you extracted your
-> sysroot (/<home_path>/extracted_sysroot_1.6.2),
-> > create a new project and see if that builds OK.
-> =20
-> I've been having a few other issues with Eclipse (Install New Software
-> menu item disappearing, other plugins disappearing after restarting,
-> etc.), so I uninstalled eclipse, deleted my ~/.eclipse and workspace
-> directories and re-installed Eclipse.  I need to run Eclipse Kepler
-> (another plugin I'm using isn't ready for Eclipse Luna), so I followed
-> these instructions for installing Eclipse by hand:
-> http://www.92wiki.com/en/blog/detail/install-eclipse-kepler-on-fedora-17-=
-18-19-centos-red-hat-rhel-5-6.   I also edited my environment setup script =
-as suggested.  I then reinstalled all necessary plugins as described in the=
- ADT manual.  I pointed the toolchain to my build directory and the sysroot=
- location to my extracted sysroot.  I then followed the steps in the ADT ma=
-nual to create a new Hello World Yocto ADT project.  I verified the SDKTARG=
-ETSYSROOT environment variable in the new project points to my extracted sy=
-sroot.  When I attempted to build, I get the following output:
-> =20
-> =20
-> Invoking autogen.sh in build
-> directory: /<home_path>/workspace/adt_test/
-> =20
-> Command-line environment variables:
->         CFLAGS=3D" -g -O0
-> --sysroot=3D/<home_path>/extracted_sysroot_1.6.2" CXXFLAGS=3D" -g -O0
-> --sysroot=3D/<home_path>/extracted_sysroot_1.6.2" LDFLAGS=3D"
-> --sysroot=3D/<home_path>/extracted_sysroot_1.6.2" CPPFLAGS=3D"
-> --sysroot=3D/<home_path>/extracted_sysroot_1.6.2"
-> =20
-> sh -c "/<home_path>/workspace/adt_test/autogen.sh
-> --with-libtool-sysroot=3D/<home_path>/extracted_sysroot_1.6.2
-> --target=3Darm-poky-linux-gnueabi --host=3Darm-poky-linux-gnueabi
-> --build=3Dx86_64-linux
-> --with-libtool-sysroot=3D/<home_path>/extracted_sysroot_1.6.2"
-> aclocal: warning: couldn't open directory
-> '/<home_path>/extracted_sysroot_1.6.2/usr/share/aclocal': No such file
-> or directory
-> configure.ac:16: warning: AM_INIT_AUTOMAKE: two- and three-arguments
-> forms are deprecated.  For more info, see:
-> configure.ac:16:
-> http://www.gnu.org/software/automake/manual/automake.html#Modernize-AM_00=
-5fINIT_005fAUTOMAKE-invocation
-> configure.ac:20: installing './compile'
-> configure.ac:20: installing './config.guess'
-> configure.ac:20: installing './config.sub'
-> configure.ac:16: installing './install-sh'
-> configure.ac:16: installing './missing'
-> src/Makefile.am: installing './depcomp'
-> configure: loading site
-> script /<home_path>/poky/meta/site/endian-little
-> configure: loading site script /<home_path>/poky/meta/site/arm-common
-> configure: loading site
-> script /<home_path>/poky/meta/site/common-linux
-> configure: loading site
-> script /<home_path>/poky/meta/site/common-glibc
-> configure: loading site script /<home_path>/poky/meta/site/arm-linux
-> configure: loading site script /<home_path>/poky/meta/site/common
-> configure: loading site
-> script /<home_path>/poky/meta-openembedded/meta-oe/site/endian-little
-> configure: loading site
-> script /<home_path>/poky/poky-build/tmp/sysroots/at91sam9x5ek/usr/share/a=
-rm-poky-linux-gnueabi_config_site.d/ncurses_config
-> configure: loading site
-> script /<home_path>/poky/poky-build/tmp/sysroots/at91sam9x5ek/usr/share/a=
-rm-poky-linux-gnueabi_config_site.d/eglibc_config
-> checking for a BSD-compatible install... /usr/bin/install -c
-> checking whether build environment is sane... yes
-> checking for arm-poky-linux-gnueabi-strip...
-> arm-poky-linux-gnueabi-strip
-> checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
-> checking for gawk... gawk
-> checking whether make sets $(MAKE)... yes
-> checking whether make supports nested variables... yes
-> checking build system type... x86_64-pc-linux-gnu
-> checking host system type... arm-poky-linux-gnueabi
-> checking how to print strings... printf
-> checking for style of include used by make... GNU
-> checking for arm-poky-linux-gnueabi-gcc... arm-poky-linux-gnueabi-gcc
-> -march=3Darmv5te -marm -mthumb-interwork -mtune=3Darm926ej-s --sysroot=3D
-> $SDKTARGETSYSROOT
-> checking whether the C compiler works... no
-> configure: error: in `/<home_path>/workspace/adt_test':
-> configure: error: in `/<home_path>/workspace/adt_test':
-> configure: error: C compiler cannot create executables
-> configure: error: C compiler cannot create executables
-> See `config.log' for more details
-
-This is a different error. There seems to be a mismatch between your
-toolchain and rootfs. Could you please share the full name of=20
-
-my_built_image.tar.gz from
-
-runqemu-extract-sdk <my_built_image.tar.gz>
-<sysroot_destination_directory>"
-
-> =20
-> Configuration failed with error
-> =20
-> The bold lines are ones that I see as a potential problem.  First, the
-> system couldn't find aclocal in my extracted sysroot.  I took a look
-> in the directory listed, and aclocal is not in there.  I think the
-> configure script also found the build system's install and mkdir
-> (/usr/bin/install and /usr/bin/mkdir).  I don't know if there is
-> supposed to be one of these in the extracted sysroot or not, but I
-> thought it was worth noting.
-> =20
-> On a possibly related topic, I noticed that the Eclipse Indexer is
-> using the build system's header files.  For example, if I open the
-> main source file from the Hellow World application, place my cursor on
-> the line "#include <stdlib.h>" and hit F3, /usr/include/stdlib.h opens
-> up instead of stdlib.h from my toolchain.  Under the Eclipse project,
-> for the listed Includes directories it has the following:
-> =20
-> /usr/include
-> /usr/lib/gcc/x86_64-redhat-linux/4.9.2/include
-> /usr/local/include
-
-Eclipse is showing the host headers, but it will use the headers from
-your sysroot during the actual build.
-
-> =20
-> Any thoughts on how to fix these issues?
-> =20
-> Thanks,
-> Bryan
-> =20
-
-
---=-BGaxWjAFQaBal9Nm0qdB
-Content-Type: application/x-pkcs7-signature; name="smime.p7s"
-Content-Disposition: attachment; filename="smime.p7s"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 
-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
-qcETmP5WmZOyycq5cD8qO4qY4N1Va0KlO0MPnPlqCH1idu0Byo6e4f/CsWg2EvGDOT8vAgMBAAGj
-ggIxMIICLTALBgNVHQ8EBAMCB4AwPAYJKwYBBAGCNxUHBC8wLQYlKwYBBAGCNxUIhsOMdYSZ5VGD
-/YEohY6fU4KRwAlngd69OZXwQwIBZAIBCDAdBgNVHQ4EFgQUeijLELxE2SDhZHWre1zfj9+8kOMw
-HwYDVR0jBBgwFoAUHmkqtNwo/kcYTiELP7ysES/wmPUwZQYDVR0fBF4wXDBaoFigVoZUaHR0cDov
-L3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIw
-SXNzdWluZyUyMENBJTIwNEEuY3JsMIGfBggrBgEFBQcBAQSBkjCBjzBpBggrBgEFBQcwAoZdaHR0
-cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5h
-bCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwNEEuY3J0MCIGCCsGAQUFBzABhhZodHRwOi8vb2Nz
-cC5pbnRlbC5jb20vMB8GA1UdJQQYMBYGCCsGAQUFBwMEBgorBgEEAYI3CgMMMCkGCSsGAQQBgjcV
-CgQcMBowCgYIKwYBBQUHAwQwDAYKKwYBBAGCNwoDDDBLBgNVHREERDBCoCcGCisGAQQBgjcUAgOg
-GQwXdG9kb3IubWluY2hldkBpbnRlbC5jb22BF3RvZG9yLm1pbmNoZXZAaW50ZWwuY29tMA0GCSqG
-SIb3DQEBBQUAA4IBAQDVcbxsEX7Mupn3YJ5CF7JdeXczsAZ0zQefcq6IaNgda9aolT/4nSmGJI6l
-uJYF3VpEz++O1P/UfDINsjLBdN9FWURSHOlPggJyrqQ0kHRlULPtjuQVKlew1yGoYGKb2OTYb5hK
-m1ec2oXiWa/FFI1bynTDgWlrO88L58qK1QkIZzL8RwB/JpiJGUyukkPuT1e54ZG2PH78gKSz06Lt
-xRw3w6wRjaP8iwE8AVXry7QylN3dE8PyOgmjlmFUnDn1lRwo9ESaB/QAI5BxSYid/uk6unnm75sq
-P6bTec9bgl4dqJu+rRFJJj4fC4ffnp5GtqG9WTsyEoUfp5Y23pBGc/QaMIIGbTCCBVWgAwIBAgIK
-EWkQ2AAAAABIZTANBgkqhkiG9w0BAQUFADB5MQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDAS
-BgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMi
-SW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSA0QTAeFw0xNDAzMDExOTQ0MTNaFw0xNzAy
-MTMxOTQ0MTNaMEExFzAVBgNVBAMTDk1pbmNoZXYsIFRvZG9yMSYwJAYJKoZIhvcNAQkBFhd0b2Rv
-ci5taW5jaGV2QGludGVsLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAJHqnL6c
-snAM1wfTEDLYYi0hJKf8G7iWdFVXh0DGNaj6VozcDBlPZShviB6WDQjBxCeVU+zgnA8CMBQKXJ7o
-x3KHUiVcY7aYDl41Yl9RBvKzN61SfmFSA+mhKxC9BOuQvyTaWZoxVlm332MTa59gFon4jKVJfP7t
-OCK3uPETR/7ycuAjDHMmZmJzKOmhMrNyq7w75EsdLZJhUsGSmtMDv2wLDPkQk7qkkbEM+24qma5T
-1iIuV1+UUrip4+IWWehvKX1JEIT5bHG9Evnep9Uf/2Whg4l6neqsCuev8k+9r+uYYHMGoUBuTqM3
-Xh3uAu6vVOxtYNwuyzVO9C+lfVLXONUCAwEAAaOCAy0wggMpMAsGA1UdDwQEAwIEMDA9BgkrBgEE
-AYI3FQcEMDAuBiYrBgEEAYI3FQiGw4x1hJnlUYP9gSiFjp9TgpHACWeEudlBh4T/TgIBZAIBDTBE
-BgkqhkiG9w0BCQ8ENzA1MA4GCCqGSIb3DQMCAgIAgDAOBggqhkiG9w0DBAICAIAwBwYFKw4DAgcw
-CgYIKoZIhvcNAwcwHQYDVR0OBBYEFPK/Tetim9eBCuLKW5j5Z0aNlUK+MB8GA1UdIwQYMBaAFB5p
-KrTcKP5HGE4hCz+8rBEv8Jj1MIHJBgNVHR8EgcEwgb4wgbuggbiggbWGVGh0dHA6Ly93d3cuaW50
-ZWwuY29tL3JlcG9zaXRvcnkvQ1JML0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMElzc3Vpbmcl
-MjBDQSUyMDRBLmNybIZdaHR0cDovL2NlcnRpZmljYXRlcy5pbnRlbC5jb20vcmVwb3NpdG9yeS9D
-UkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwNEEuY3JsMIHvBggr
-BgEFBQcBAQSB4jCB3zBpBggrBgEFBQcwAoZdaHR0cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9y
-eS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIw
-NEEuY3J0MHIGCCsGAQUFBzAChmZodHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0
-b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0El
-MjA0QS5jcnQwHwYDVR0lBBgwFgYIKwYBBQUHAwQGCisGAQQBgjcKAwQwKQYJKwYBBAGCNxUKBBww
-GjAKBggrBgEFBQcDBDAMBgorBgEEAYI3CgMEMEsGA1UdEQREMEKgJwYKKwYBBAGCNxQCA6AZDBd0
-b2Rvci5taW5jaGV2QGludGVsLmNvbYEXdG9kb3IubWluY2hldkBpbnRlbC5jb20wDQYJKoZIhvcN
-AQEFBQADggEBAF0E0nNaQoDxgeNMLFImgnNUUryBCNdCuTpbg5jrla+Crqx82t64r5TXrlUtrBDY
-7bfb/ObgQnFlVhoRDYZ8hFo8S5LNihxHKPt7wEq2uN0rusTVzSRtS8Vf6MT7sO44nEKVuvmYAqeL
-TfwAUzHwjTWU8szdaTONfjEaIzC8qh5k4/lc/qCqxJD6aDIZyQYCKufppCtyyttBzVAgZ9LdG4Z9
-0p4PJSr7IxximJkGlGk/2GmOSkuYr4GCYfQAVmZLkQDBuF/qunedYnTXlnIKql7mc1CpPnS6YV4B
-AfFi5vLJk8TKntgrSsu8a97CBqYP4zL9qlIwM/sSzlcb93CrzoUxggNRMIIDTQIBATCBkDB5MQsw
-CQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDASBgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJ
-bnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBD
-QSA0QQITMwAAX2bO5Za1QeBu9QAAAABfZjAJBgUrDgMCGgUAoIIBlTAYBgkqhkiG9w0BCQMxCwYJ
-KoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xNTAzMTIxNzUwMjlaMCMGCSqGSIb3DQEJBDEWBBT1
-tFnZUQOMpEzxLSWEgbIqSKUGmjCBmAYJKwYBBAGCNxAEMYGKMIGHMHkxCzAJBgNVBAYTAlVTMQsw
-CQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAYBgNVBAoTEUludGVsIENvcnBvcmF0
-aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDRBAgoRaRDYAAAA
-AEhlMIGaBgsqhkiG9w0BCRACCzGBiqCBhzB5MQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDAS
-BgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMi
-SW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSA0QQIKEWkQ2AAAAABIZTANBgkqhkiG9w0B
-AQEFAASCAQBLteC43VXs7JXuBmCM58XT3FVsNiFBXoLmO0i8nXOYNrB07+O5ZS8btnRIVeCsSM87
-YheLm/8sbzwegMxjfJFzQEMnCZYnMNJvgA5QwTKTn/gnAUrceZ2wGybe098D5NohnNCTgLXP1No2
-iaN0lF2PTulM6n5oM2ViomXKmyXn2Jn4K39YVdB4i39za1zwCA7PyXrgP3172Un7bdvf4a0GwQwU
-538NKivS5bwV4y/NHEsO0PqBqX8WgiFGoSTQ1yRozJx+CwQn++VIUbhMITM7rSyRtMgxYaemvf6f
-3KmSIsqkinx7nB+y8/nE6UaEFWH8ZlyDN7COqHF9lbgaNUYlAAAAAAAA
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTWluY2hldiwgVG9kb3Ig
+W21haWx0bzp0b2Rvci5taW5jaGV2QGludGVsLmNvbV0NCj4gU2VudDogVGh1cnNkYXksIE1hcmNo
+IDEyLCAyMDE1IDE6NTAgUE0NCj4gVG86IEJyeWFuIEV2ZW5zb24NCj4gQ2M6IHlvY3RvQHlvY3Rv
+cHJvamVjdC5vcmcNCj4gU3ViamVjdDogUmU6IFt5b2N0b10gZWNsaXBzZS1wb2t5OiBDYW4ndCBi
+dWlsZCBmcm9tIEVjbGlwc2UsIGJ1dCBjb21tYW5kIGxpbmUNCj4gYnVpbGQgd29ya3MNCj4gDQo+
+IE9uIFRodSwgMjAxNS0wMy0xMiBhdCAxMzo0MyArMDAwMCwgQnJ5YW4gRXZlbnNvbiB3cm90ZToN
+Cj4gPiBUb2RvciwNCj4gPg0KPiA+ID4gSXQgYXBwZWFycyB0aGF0IHlvdXIgdG9vbGNoYWluIGlz
+IGNvbmZpZ3VyZWQgcHJvcGVybHksIGhvd2V2ZXIgdGhlDQo+ID4gR05VIGxpbmtlciAobGQpIGNh
+bm5vdCBmaW5kIHRoZSBsaWJyYXJpZXMgaXQgbmVlZHMgdG8gbGluayB0aGUNCj4gPiBiaW5hcnku
+DQo+ID4gPiBJIHN1c3BlY3QgdGhhdCB0aGUgY3VscHJpdCBpcyAiLS1zeXNyb290PSRTREtUQVJH
+RVRTWVNST09UIg0KPiA+ID4gVGhlcmUgc2hvdWxkIGJlIGFuIGVudmlyb25tZW50IHNldHVwIGZp
+bGUNCj4gPiA+DQo+ID4gPiAvPGhvbWVfcGF0aD4vcG9reS9wb2t5LWJ1aWxkL3RtcC9lbnZpcm9u
+bWVudC1zZXR1cC1YWA0KPiA+ID4NCj4gPiA+IElmIHlvdSBvcGVuIGl0IHlvdSB3aWxsIHNlZSBT
+REtUQVJHRVRTWVNST09UIGVudmlyb25tZW50IHZhcmlhYmxlLg0KPiA+IEl0IG1vc3QgbGlrZWx5
+IHBvaW50cyB0byBhIGRpZmZlcmVudCBzeXNyb290IHBhdGguDQo+ID4gPiBQbGVhc2UgY2hhbmdl
+IGl0IHRvIHBvaW50IHRvIHRoZSBkaXJlY3Rvcnkgd2hlcmUgeW91IGV4dHJhY3RlZCB5b3VyDQo+
+ID4gc3lzcm9vdCAoLzxob21lX3BhdGg+L2V4dHJhY3RlZF9zeXNyb290XzEuNi4yKSwNCj4gPiA+
+IGNyZWF0ZSBhIG5ldyBwcm9qZWN0IGFuZCBzZWUgaWYgdGhhdCBidWlsZHMgT0suDQo+ID4NCj4g
+PiBJJ3ZlIGJlZW4gaGF2aW5nIGEgZmV3IG90aGVyIGlzc3VlcyB3aXRoIEVjbGlwc2UgKEluc3Rh
+bGwgTmV3IFNvZnR3YXJlDQo+ID4gbWVudSBpdGVtIGRpc2FwcGVhcmluZywgb3RoZXIgcGx1Z2lu
+cyBkaXNhcHBlYXJpbmcgYWZ0ZXIgcmVzdGFydGluZywNCj4gPiBldGMuKSwgc28gSSB1bmluc3Rh
+bGxlZCBlY2xpcHNlLCBkZWxldGVkIG15IH4vLmVjbGlwc2UgYW5kIHdvcmtzcGFjZQ0KPiA+IGRp
+cmVjdG9yaWVzIGFuZCByZS1pbnN0YWxsZWQgRWNsaXBzZS4gIEkgbmVlZCB0byBydW4gRWNsaXBz
+ZSBLZXBsZXINCj4gPiAoYW5vdGhlciBwbHVnaW4gSSdtIHVzaW5nIGlzbid0IHJlYWR5IGZvciBF
+Y2xpcHNlIEx1bmEpLCBzbyBJIGZvbGxvd2VkDQo+ID4gdGhlc2UgaW5zdHJ1Y3Rpb25zIGZvciBp
+bnN0YWxsaW5nIEVjbGlwc2UgYnkgaGFuZDoNCj4gPiBodHRwOi8vd3d3Ljkyd2lraS5jb20vZW4v
+YmxvZy9kZXRhaWwvaW5zdGFsbC1lY2xpcHNlLWtlcGxlci1vbi1mZWRvcmEtDQo+IDE3LTE4LTE5
+LWNlbnRvcy1yZWQtaGF0LXJoZWwtNS02LiAgIEkgYWxzbyBlZGl0ZWQgbXkgZW52aXJvbm1lbnQg
+c2V0dXAgc2NyaXB0DQo+IGFzIHN1Z2dlc3RlZC4gIEkgdGhlbiByZWluc3RhbGxlZCBhbGwgbmVj
+ZXNzYXJ5IHBsdWdpbnMgYXMgZGVzY3JpYmVkIGluIHRoZSBBRFQNCj4gbWFudWFsLiAgSSBwb2lu
+dGVkIHRoZSB0b29sY2hhaW4gdG8gbXkgYnVpbGQgZGlyZWN0b3J5IGFuZCB0aGUgc3lzcm9vdA0K
+PiBsb2NhdGlvbiB0byBteSBleHRyYWN0ZWQgc3lzcm9vdC4gIEkgdGhlbiBmb2xsb3dlZCB0aGUg
+c3RlcHMgaW4gdGhlIEFEVA0KPiBtYW51YWwgdG8gY3JlYXRlIGEgbmV3IEhlbGxvIFdvcmxkIFlv
+Y3RvIEFEVCBwcm9qZWN0LiAgSSB2ZXJpZmllZCB0aGUNCj4gU0RLVEFSR0VUU1lTUk9PVCBlbnZp
+cm9ubWVudCB2YXJpYWJsZSBpbiB0aGUgbmV3IHByb2plY3QgcG9pbnRzIHRvIG15DQo+IGV4dHJh
+Y3RlZCBzeXNyb290LiAgV2hlbiBJIGF0dGVtcHRlZCB0byBidWlsZCwgSSBnZXQgdGhlIGZvbGxv
+d2luZyBvdXRwdXQ6DQo+ID4NCj4gPg0KPiA+IEludm9raW5nIGF1dG9nZW4uc2ggaW4gYnVpbGQN
+Cj4gPiBkaXJlY3Rvcnk6IC88aG9tZV9wYXRoPi93b3Jrc3BhY2UvYWR0X3Rlc3QvDQo+ID4NCj4g
+PiBDb21tYW5kLWxpbmUgZW52aXJvbm1lbnQgdmFyaWFibGVzOg0KPiA+ICAgICAgICAgQ0ZMQUdT
+PSIgLWcgLU8wDQo+ID4gLS1zeXNyb290PS88aG9tZV9wYXRoPi9leHRyYWN0ZWRfc3lzcm9vdF8x
+LjYuMiIgQ1hYRkxBR1M9IiAtZyAtTzANCj4gPiAtLXN5c3Jvb3Q9Lzxob21lX3BhdGg+L2V4dHJh
+Y3RlZF9zeXNyb290XzEuNi4yIiBMREZMQUdTPSINCj4gPiAtLXN5c3Jvb3Q9Lzxob21lX3BhdGg+
+L2V4dHJhY3RlZF9zeXNyb290XzEuNi4yIiBDUFBGTEFHUz0iDQo+ID4gLS1zeXNyb290PS88aG9t
+ZV9wYXRoPi9leHRyYWN0ZWRfc3lzcm9vdF8xLjYuMiINCj4gPg0KPiA+IHNoIC1jICIvPGhvbWVf
+cGF0aD4vd29ya3NwYWNlL2FkdF90ZXN0L2F1dG9nZW4uc2gNCj4gPiAtLXdpdGgtbGlidG9vbC1z
+eXNyb290PS88aG9tZV9wYXRoPi9leHRyYWN0ZWRfc3lzcm9vdF8xLjYuMg0KPiA+IC0tdGFyZ2V0
+PWFybS1wb2t5LWxpbnV4LWdudWVhYmkgLS1ob3N0PWFybS1wb2t5LWxpbnV4LWdudWVhYmkNCj4g
+PiAtLWJ1aWxkPXg4Nl82NC1saW51eA0KPiA+IC0td2l0aC1saWJ0b29sLXN5c3Jvb3Q9Lzxob21l
+X3BhdGg+L2V4dHJhY3RlZF9zeXNyb290XzEuNi4yIg0KPiA+IGFjbG9jYWw6IHdhcm5pbmc6IGNv
+dWxkbid0IG9wZW4gZGlyZWN0b3J5DQo+ID4gJy88aG9tZV9wYXRoPi9leHRyYWN0ZWRfc3lzcm9v
+dF8xLjYuMi91c3Ivc2hhcmUvYWNsb2NhbCc6IE5vIHN1Y2ggZmlsZQ0KPiA+IG9yIGRpcmVjdG9y
+eQ0KPiA+IGNvbmZpZ3VyZS5hYzoxNjogd2FybmluZzogQU1fSU5JVF9BVVRPTUFLRTogdHdvLSBh
+bmQgdGhyZWUtDQo+IGFyZ3VtZW50cw0KPiA+IGZvcm1zIGFyZSBkZXByZWNhdGVkLiAgRm9yIG1v
+cmUgaW5mbywgc2VlOg0KPiA+IGNvbmZpZ3VyZS5hYzoxNjoNCj4gPg0KPiBodHRwOi8vd3d3Lmdu
+dS5vcmcvc29mdHdhcmUvYXV0b21ha2UvbWFudWFsL2F1dG9tYWtlLmh0bWwjTW9kZXJuaQ0KPiB6
+ZS1BTV8wMDVmSU5JVF8wMDVmQVVUT01BS0UtaW52b2NhdGlvbg0KPiA+IGNvbmZpZ3VyZS5hYzoy
+MDogaW5zdGFsbGluZyAnLi9jb21waWxlJw0KPiA+IGNvbmZpZ3VyZS5hYzoyMDogaW5zdGFsbGlu
+ZyAnLi9jb25maWcuZ3Vlc3MnDQo+ID4gY29uZmlndXJlLmFjOjIwOiBpbnN0YWxsaW5nICcuL2Nv
+bmZpZy5zdWInDQo+ID4gY29uZmlndXJlLmFjOjE2OiBpbnN0YWxsaW5nICcuL2luc3RhbGwtc2gn
+DQo+ID4gY29uZmlndXJlLmFjOjE2OiBpbnN0YWxsaW5nICcuL21pc3NpbmcnDQo+ID4gc3JjL01h
+a2VmaWxlLmFtOiBpbnN0YWxsaW5nICcuL2RlcGNvbXAnDQo+ID4gY29uZmlndXJlOiBsb2FkaW5n
+IHNpdGUNCj4gPiBzY3JpcHQgLzxob21lX3BhdGg+L3Bva3kvbWV0YS9zaXRlL2VuZGlhbi1saXR0
+bGUNCj4gPiBjb25maWd1cmU6IGxvYWRpbmcgc2l0ZSBzY3JpcHQgLzxob21lX3BhdGg+L3Bva3kv
+bWV0YS9zaXRlL2FybS1jb21tb24NCj4gPiBjb25maWd1cmU6IGxvYWRpbmcgc2l0ZQ0KPiA+IHNj
+cmlwdCAvPGhvbWVfcGF0aD4vcG9reS9tZXRhL3NpdGUvY29tbW9uLWxpbnV4DQo+ID4gY29uZmln
+dXJlOiBsb2FkaW5nIHNpdGUNCj4gPiBzY3JpcHQgLzxob21lX3BhdGg+L3Bva3kvbWV0YS9zaXRl
+L2NvbW1vbi1nbGliYw0KPiA+IGNvbmZpZ3VyZTogbG9hZGluZyBzaXRlIHNjcmlwdCAvPGhvbWVf
+cGF0aD4vcG9reS9tZXRhL3NpdGUvYXJtLWxpbnV4DQo+ID4gY29uZmlndXJlOiBsb2FkaW5nIHNp
+dGUgc2NyaXB0IC88aG9tZV9wYXRoPi9wb2t5L21ldGEvc2l0ZS9jb21tb24NCj4gPiBjb25maWd1
+cmU6IGxvYWRpbmcgc2l0ZQ0KPiA+IHNjcmlwdCAvPGhvbWVfcGF0aD4vcG9reS9tZXRhLW9wZW5l
+bWJlZGRlZC9tZXRhLW9lL3NpdGUvZW5kaWFuLQ0KPiBsaXR0bGUNCj4gPiBjb25maWd1cmU6IGxv
+YWRpbmcgc2l0ZQ0KPiA+IHNjcmlwdCAvPGhvbWVfcGF0aD4vcG9reS9wb2t5LQ0KPiBidWlsZC90
+bXAvc3lzcm9vdHMvYXQ5MXNhbTl4NWVrL3Vzci9zaGFyZS9hcm0tcG9reS1saW51eC0NCj4gZ251
+ZWFiaV9jb25maWdfc2l0ZS5kL25jdXJzZXNfY29uZmlnDQo+ID4gY29uZmlndXJlOiBsb2FkaW5n
+IHNpdGUNCj4gPiBzY3JpcHQgLzxob21lX3BhdGg+L3Bva3kvcG9reS0NCj4gYnVpbGQvdG1wL3N5
+c3Jvb3RzL2F0OTFzYW05eDVlay91c3Ivc2hhcmUvYXJtLXBva3ktbGludXgtDQo+IGdudWVhYmlf
+Y29uZmlnX3NpdGUuZC9lZ2xpYmNfY29uZmlnDQo+ID4gY2hlY2tpbmcgZm9yIGEgQlNELWNvbXBh
+dGlibGUgaW5zdGFsbC4uLiAvdXNyL2Jpbi9pbnN0YWxsIC1jDQo+ID4gY2hlY2tpbmcgd2hldGhl
+ciBidWlsZCBlbnZpcm9ubWVudCBpcyBzYW5lLi4uIHllcw0KPiA+IGNoZWNraW5nIGZvciBhcm0t
+cG9reS1saW51eC1nbnVlYWJpLXN0cmlwLi4uDQo+ID4gYXJtLXBva3ktbGludXgtZ251ZWFiaS1z
+dHJpcA0KPiA+IGNoZWNraW5nIGZvciBhIHRocmVhZC1zYWZlIG1rZGlyIC1wLi4uIC91c3IvYmlu
+L21rZGlyIC1wDQo+ID4gY2hlY2tpbmcgZm9yIGdhd2suLi4gZ2F3aw0KPiA+IGNoZWNraW5nIHdo
+ZXRoZXIgbWFrZSBzZXRzICQoTUFLRSkuLi4geWVzDQo+ID4gY2hlY2tpbmcgd2hldGhlciBtYWtl
+IHN1cHBvcnRzIG5lc3RlZCB2YXJpYWJsZXMuLi4geWVzDQo+ID4gY2hlY2tpbmcgYnVpbGQgc3lz
+dGVtIHR5cGUuLi4geDg2XzY0LXBjLWxpbnV4LWdudQ0KPiA+IGNoZWNraW5nIGhvc3Qgc3lzdGVt
+IHR5cGUuLi4gYXJtLXBva3ktbGludXgtZ251ZWFiaQ0KPiA+IGNoZWNraW5nIGhvdyB0byBwcmlu
+dCBzdHJpbmdzLi4uIHByaW50Zg0KPiA+IGNoZWNraW5nIGZvciBzdHlsZSBvZiBpbmNsdWRlIHVz
+ZWQgYnkgbWFrZS4uLiBHTlUNCj4gPiBjaGVja2luZyBmb3IgYXJtLXBva3ktbGludXgtZ251ZWFi
+aS1nY2MuLi4gYXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2MNCj4gPiAtbWFyY2g9YXJtdjV0ZSAt
+bWFybSAtbXRodW1iLWludGVyd29yayAtbXR1bmU9YXJtOTI2ZWotcyAtLQ0KPiBzeXNyb290PQ0K
+PiA+ICRTREtUQVJHRVRTWVNST09UDQo+ID4gY2hlY2tpbmcgd2hldGhlciB0aGUgQyBjb21waWxl
+ciB3b3Jrcy4uLiBubw0KPiA+IGNvbmZpZ3VyZTogZXJyb3I6IGluIGAvPGhvbWVfcGF0aD4vd29y
+a3NwYWNlL2FkdF90ZXN0JzoNCj4gPiBjb25maWd1cmU6IGVycm9yOiBpbiBgLzxob21lX3BhdGg+
+L3dvcmtzcGFjZS9hZHRfdGVzdCc6DQo+ID4gY29uZmlndXJlOiBlcnJvcjogQyBjb21waWxlciBj
+YW5ub3QgY3JlYXRlIGV4ZWN1dGFibGVzDQo+ID4gY29uZmlndXJlOiBlcnJvcjogQyBjb21waWxl
+ciBjYW5ub3QgY3JlYXRlIGV4ZWN1dGFibGVzDQo+ID4gU2VlIGBjb25maWcubG9nJyBmb3IgbW9y
+ZSBkZXRhaWxzDQo+IA0KPiBUaGlzIGlzIGEgZGlmZmVyZW50IGVycm9yLiBUaGVyZSBzZWVtcyB0
+byBiZSBhIG1pc21hdGNoIGJldHdlZW4geW91cg0KPiB0b29sY2hhaW4gYW5kIHJvb3Rmcy4gQ291
+bGQgeW91IHBsZWFzZSBzaGFyZSB0aGUgZnVsbCBuYW1lIG9mDQo+IA0KPiBteV9idWlsdF9pbWFn
+ZS50YXIuZ3ogZnJvbQ0KPiANCj4gcnVucWVtdS1leHRyYWN0LXNkayA8bXlfYnVpbHRfaW1hZ2Uu
+dGFyLmd6Pg0KPiA8c3lzcm9vdF9kZXN0aW5hdGlvbl9kaXJlY3Rvcnk+Ig0KPiANCg0KY29yZS1p
+bWFnZS1teS1taW5pbWFsLWF0OTFzYW05eDVlay50YXIuZ3oNCg0KSXQncyB0aGUgcm9vdCBmaWxl
+c3lzdGVtIHRoYXQgSSBidWlsdCBhbmQgcnVucyBvbiBvdXIgdGFyZ2V0IGhhcmR3YXJlLiAgSXQn
+cyBiYXNlZCBvbiBjb3JlLWltYWdlLW1pbmltYWwgd2l0aCBhIGZldyBhZGRpdGlvbmFsIHBhY2th
+Z2VzLiAgQXJlIHRoZXJlIHNvbWUgYWRkaXRpb25hbCAob3Igc29tZSBzcGVjaWZpYykgcGFja2Fn
+ZXMgdGhhdCBhcmUgbmVlZGVkIGZvciBpdCB0byBiZSBhIHN1aXRhYmxlIHJvb3RmcyBmb3IgdGhp
+cyBwdXJwb3NlPw0KDQpUaGFua3MsDQpCcnlhbg0KDQo+ID4NCj4gPiBDb25maWd1cmF0aW9uIGZh
+aWxlZCB3aXRoIGVycm9yDQo+ID4NCj4gPiBUaGUgYm9sZCBsaW5lcyBhcmUgb25lcyB0aGF0IEkg
+c2VlIGFzIGEgcG90ZW50aWFsIHByb2JsZW0uICBGaXJzdCwgdGhlDQo+ID4gc3lzdGVtIGNvdWxk
+bid0IGZpbmQgYWNsb2NhbCBpbiBteSBleHRyYWN0ZWQgc3lzcm9vdC4gIEkgdG9vayBhIGxvb2sN
+Cj4gPiBpbiB0aGUgZGlyZWN0b3J5IGxpc3RlZCwgYW5kIGFjbG9jYWwgaXMgbm90IGluIHRoZXJl
+LiAgSSB0aGluayB0aGUNCj4gPiBjb25maWd1cmUgc2NyaXB0IGFsc28gZm91bmQgdGhlIGJ1aWxk
+IHN5c3RlbSdzIGluc3RhbGwgYW5kIG1rZGlyDQo+ID4gKC91c3IvYmluL2luc3RhbGwgYW5kIC91
+c3IvYmluL21rZGlyKS4gIEkgZG9uJ3Qga25vdyBpZiB0aGVyZSBpcw0KPiA+IHN1cHBvc2VkIHRv
+IGJlIG9uZSBvZiB0aGVzZSBpbiB0aGUgZXh0cmFjdGVkIHN5c3Jvb3Qgb3Igbm90LCBidXQgSQ0K
+PiA+IHRob3VnaHQgaXQgd2FzIHdvcnRoIG5vdGluZy4NCj4gPg0KPiA+IE9uIGEgcG9zc2libHkg
+cmVsYXRlZCB0b3BpYywgSSBub3RpY2VkIHRoYXQgdGhlIEVjbGlwc2UgSW5kZXhlciBpcw0KPiA+
+IHVzaW5nIHRoZSBidWlsZCBzeXN0ZW0ncyBoZWFkZXIgZmlsZXMuICBGb3IgZXhhbXBsZSwgaWYg
+SSBvcGVuIHRoZQ0KPiA+IG1haW4gc291cmNlIGZpbGUgZnJvbSB0aGUgSGVsbG93IFdvcmxkIGFw
+cGxpY2F0aW9uLCBwbGFjZSBteSBjdXJzb3Igb24NCj4gPiB0aGUgbGluZSAiI2luY2x1ZGUgPHN0
+ZGxpYi5oPiIgYW5kIGhpdCBGMywgL3Vzci9pbmNsdWRlL3N0ZGxpYi5oIG9wZW5zDQo+ID4gdXAg
+aW5zdGVhZCBvZiBzdGRsaWIuaCBmcm9tIG15IHRvb2xjaGFpbi4gIFVuZGVyIHRoZSBFY2xpcHNl
+IHByb2plY3QsDQo+ID4gZm9yIHRoZSBsaXN0ZWQgSW5jbHVkZXMgZGlyZWN0b3JpZXMgaXQgaGFz
+IHRoZSBmb2xsb3dpbmc6DQo+ID4NCj4gPiAvdXNyL2luY2x1ZGUNCj4gPiAvdXNyL2xpYi9nY2Mv
+eDg2XzY0LXJlZGhhdC1saW51eC80LjkuMi9pbmNsdWRlDQo+ID4gL3Vzci9sb2NhbC9pbmNsdWRl
+DQo+IA0KPiBFY2xpcHNlIGlzIHNob3dpbmcgdGhlIGhvc3QgaGVhZGVycywgYnV0IGl0IHdpbGwg
+dXNlIHRoZSBoZWFkZXJzIGZyb20NCj4geW91ciBzeXNyb290IGR1cmluZyB0aGUgYWN0dWFsIGJ1
+aWxkLg0KPiANCj4gPg0KPiA+IEFueSB0aG91Z2h0cyBvbiBob3cgdG8gZml4IHRoZXNlIGlzc3Vl
+cz8NCj4gPg0KPiA+IFRoYW5rcywNCj4gPiBCcnlhbg0KPiA+DQoNCg==
 
---=-BGaxWjAFQaBal9Nm0qdB--
