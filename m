@@ -1,58 +1,46 @@
-Return-Path: <p_j_r_m@yahoo.com>
+Return-Path: <sona.sarmadi@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C9489E0086D; Fri, 13 Mar 2015 00:28:42 -0700 (PDT)
+	id 79BE5E0086D; Fri, 13 Mar 2015 00:59:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (p_j_r_m[at]yahoo.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [72.30.238.75 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm35-vm3.bullet.mail.bf1.yahoo.com
-	(nm35-vm3.bullet.mail.bf1.yahoo.com [72.30.238.75])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1198DE00858
-	for <yocto@yoctoproject.org>; Fri, 13 Mar 2015 00:28:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1426231718; bh=p5zBU5EG8DRxNOFUfdu76VihwfPVVk44GnLRmuv7UaI=;
-	h=Date:From:Reply-To:To:Subject:From:Subject;
-	b=T8sX88hXml4AYzc2XW0+BlE6n7ooPZ5XQcVevbGP3WAgV0haNWR45rQ9Td4cT52I7ph9v+mc5xkXAn+QEOnn6kn4r7Fx8TDBsLhxoO8WvlcxXkaih4c9bmfcLNIocOHMRyCXmbubEMTAHUPiTXd4NBAY6zP5SCQ7SqlPc1sftS7lXenO9YV6wXCfQZwVnKkWswmdjex5dx4DdGIgRcWekb0mlvMcqROUTHRuX+B3v8cgcEkByr+MesmyMEp/uyr9xCXQeIM0fQCWNLnY2q5FyJOsA+IKYcuLyJpjf+++xTUD4m8u9DEUAdwVKK4YCMTdM5Fz6/rTcBOhqmsFrjB3yg==
-Received: from [66.196.81.173] by nm35.bullet.mail.bf1.yahoo.com with NNFMP;
-	13 Mar 2015 07:28:38 -0000
-Received: from [98.139.212.192] by tm19.bullet.mail.bf1.yahoo.com with NNFMP;
-	13 Mar 2015 07:28:38 -0000
-Received: from [127.0.0.1] by omp1001.mail.bf1.yahoo.com with NNFMP;
-	13 Mar 2015 07:28:38 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 646764.9068.bm@omp1001.mail.bf1.yahoo.com
-X-YMail-OSG: u5x_2ikVM1lCUqEbjg1_680gzdQ2ze2D1.33dsKMkxQzoGR9YliP4_FlCCsBIcp
-	6x8ZGnvlwOoIe1lfyKz761v5q2Y3yKlF2nfo_X.yU8svVmvWDfogtVz1kZsR.vnFHezKs33LxCeu
-	oKRXfq7GYSNR0liGn_D8ECiK0krhhq3mcG_uPnJ4FlsxkVFoP22qQdSe_mXklilnJhLThMcYVnAH
-	X4dhAzpXCoi5rVRyQDdHppR3ab1pQIS6Zr0lIgxuWfmUoSNb4Dbc2zf6nsDaK8tvvoXuXcJrESzy
-	v6Fozk9qrXNF9jBQDspaHsag4KdyfHyIC3u64fQyneJGlpyB9VE8roceVNrSaJ3CDQQsu.0GntYq
-	.OKqb5zAGAQoBQNWvkQyT33.5zzOlgDibHIjNjjfGKrFfEpF047_HKidwsDxN8VqsAfzJF2LowJB
-	7.Yqri31hIDu9Tse66SA.CFZxedWxfy5a50QyRh6RrscANrydBB8u7U0VWg.oWNvtNY5h74kowg--
-Received: by 217.12.8.244; Fri, 13 Mar 2015 07:28:37 +0000 
-Date: Fri, 13 Mar 2015 07:28:37 +0000 (UTC)
-From: p_j_r_m <p_j_r_m@yahoo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <595363600.2683179.1426231717269.JavaMail.yahoo@mail.yahoo.com>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [192.36.1.252 listed in list.dnswl.org]
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 971FDE00858;
+	Fri, 13 Mar 2015 00:59:21 -0700 (PDT)
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
+	14.03.0224.002; Fri, 13 Mar 2015 08:59:14 +0100
+From: Sona Sarmadi <sona.sarmadi@enea.com>
+To: "benjamin.esquivel@linux.intel.com" <benjamin.esquivel@linux.intel.com>
+Thread-Topic: [yocto] bind: issue in trust anchor management can cause named
+	to crash (CVE-2015-1349)
+Thread-Index: AQHQXFMMGlsTvvRwhkO3gFfy/9nO0p0YcVtwgAB/0gCAARkb8A==
+Date: Fri, 13 Mar 2015 07:59:14 +0000
+Message-ID: <3230301C09DEF9499B442BBE162C5E48258AE98F@SESTOEX04.enea.se>
+References: <3230301C09DEF9499B442BBE162C5E48258AD7F4@SESTOEX04.enea.se>
+	<2131862827.2912188.1426116488072.JavaMail.yahoo@mail.yahoo.com>
+	<3230301C09DEF9499B442BBE162C5E48258ADF48@SESTOEX04.enea.se>
+	<1426175872.12716.8.camel@besquive-mobl.amr.corp.intel.com>
+In-Reply-To: <1426175872.12716.8.camel@besquive-mobl.amr.corp.intel.com>
+Accept-Language: sv-SE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.142.231]
 MIME-Version: 1.0
-Subject: File in append recipe not installed
+Cc: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>,
+	"yocto-security@yoctoproject.org" <yocto-security@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: bind: issue in trust anchor management can cause named to crash (CVE-2015-1349)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: p_j_r_m <p_j_r_m@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -61,19 +49,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Mar 2015 07:28:42 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 13 Mar 2015 07:59:25 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Thanks Gary.
-I think is not called because I have echo lines in do_install_append() and =
-they don't appear when bitbake -v is used after the recipe is cleaned and r=
-ebuilt.
-
-This is my layer:
-
-releases/meta-mylayer
-=E2=94=9C=E2=94=80=E2=94=80 conf
-=E2=94=82  =E2=94=94=E2=94=80=E2=94=80 layer.conf
-=E2=94=9C=E2=94=80=E2=94=80 README
+SGkgQmVuamFtaW4sDQoNCj4gSSB0aGluayB0aGlzIGxpc3QgaXMgbm90IHB1Ymxpc2hlZCBpbiB0
+aGUgeW9jdG8gbGlzdHMgcGFnZToNCj4gaHR0cHM6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy90b29s
+cy1yZXNvdXJjZXMvY29tbXVuaXR5L21haWxpbmctbGlzdHMNCj4gQW5kLCB3aG8gd291bGQgYmUg
+YWJsZSB0byBzdWJzY3JpYmUgdG8gaXQ/IGludml0ZS1vbmx5PyBwdWJsaWM/DQoNClRoaXMgbWFp
+bGluZyBsaXN0IGlzIGFuIG9wZW4gbGlzdCB0byBkaXNjdXNzIHNlY3VyaXR5IHJlbGF0ZWQgYWN0
+aXZpdGllcyAobWFpbmx5IGZvciB0aG9zZSB3aG8gY29udHJpYnV0ZXMgdGhlIFlvY3RvIFByb2pl
+Y3Qgd2l0aCBzZWN1cml0eSB1cGRhdGVzL3BhdGNoZXMgZXRjKS4gIFdlIGhhdmUgc29tZSBpbmZv
+IGFib3V0IHRoaXMgbGlzdCBhdCBodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL1Nl
+Y3VyaXR5IHBhZ2UsIHdlIHNob3VsZCBhZGQgdGhpcyBtYWlsaW5nIGxpc3QgdG8gaHR0cHM6Ly93
+d3cueW9jdG9wcm9qZWN0Lm9yZy90b29scy1yZXNvdXJjZXMvY29tbXVuaXR5L21haWxpbmctbGlz
+dHMgYXMgd2VsbC4NCg0KVGhhbmsgeW91IGZvciBhZGRyZXNzaW5nIHRoaXMuDQoNCi8vU29uYSAN
+Cg==
 
