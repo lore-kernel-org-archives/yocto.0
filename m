@@ -1,49 +1,47 @@
-Return-Path: <yannick.koehler@hp.com>
+Return-Path: <maxin@maxinbjohn.info>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 06D09E0086D; Fri, 13 Mar 2015 05:49:36 -0700 (PDT)
+	id 81065E0087C; Fri, 13 Mar 2015 06:50:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [15.217.128.53 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from g2t2354.austin.hp.com (g2t2354.austin.hp.com [15.217.128.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60A74E00858
-	for <yocto@yoctoproject.org>; Fri, 13 Mar 2015 05:49:32 -0700 (PDT)
-Received: from G2W4316.americas.hpqcorp.net (g2w4316.austin.hp.com
-	[16.197.9.73]) (using TLSv1 with cipher AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by g2t2354.austin.hp.com (Postfix) with ESMTPS id E36DBB1;
-	Fri, 13 Mar 2015 12:49:31 +0000 (UTC)
-Received: from G2W4312.americas.hpqcorp.net (16.197.24.214) by
-	G2W4316.americas.hpqcorp.net (16.197.9.73) with Microsoft SMTP Server
-	(TLS) id 14.3.169.1; Fri, 13 Mar 2015 12:48:40 +0000
-Received: from G2W2533.americas.hpqcorp.net ([169.254.6.112]) by
-	G2W4312.americas.hpqcorp.net ([16.197.24.214]) with mapi id
-	14.03.0169.001; Fri, 13 Mar 2015 12:48:40 +0000
-From: "Koehler, Yannick (HP Networking)" <yannick.koehler@hp.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] running task only for native but not target?
-Thread-Index: AQHQXYQA+FZlLvuOWEG/RZGNBQ31G50aXDFg
-Date: Fri, 13 Mar 2015 12:48:40 +0000
-Message-ID: <95CF81BBD42FB348A182716C4D4310A8069053D9@G2W2533.americas.hpqcorp.net>
-References: <95CF81BBD42FB348A182716C4D4310A8069052BA@G2W2533.americas.hpqcorp.net>
-	<4649620.1oiO9F2Se0@peggleto-mobl5.ger.corp.intel.com>
-	<95CF81BBD42FB348A182716C4D4310A8069053A4@G2W2533.americas.hpqcorp.net>
-	<CAJTo0LZA64bXZd-KxdN7n43oOzhj9f4wUFVR_s9GtgSVCavgQg@mail.gmail.com>
-In-Reply-To: <CAJTo0LZA64bXZd-KxdN7n43oOzhj9f4wUFVR_s9GtgSVCavgQg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [16.193.232.25]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.178 listed in list.dnswl.org]
+Received: from mail-ie0-f178.google.com (mail-ie0-f178.google.com
+	[209.85.223.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CD45E00871
+	for <yocto@yoctoproject.org>; Fri, 13 Mar 2015 06:50:19 -0700 (PDT)
+Received: by iecsl2 with SMTP id sl2so105835690iec.1
+	for <yocto@yoctoproject.org>; Fri, 13 Mar 2015 06:50:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=hov8eomHEO7i3WfcdY8ELS6VS9SoJBPvmAZjXwF+FCU=;
+	b=cdftowf7lVXg4HgJgGsWzIsh78EO+YtfV//+8lunf1uIyVqhqKzMM4q9zQx62eH4wP
+	0HYPeIzA4HcnehMgRnfF+uoWD+CE2ikMSp7ffPdHSTQZQni5iZPgDjSY+PqlFZg/RBg8
+	9SAbj3CT6+aOHHYDg+CH5Fr0/IRzYuNtTm1SF7GlBi2lc4jjyAf3melRoc91Z6STqMaM
+	5MuPNU2v++FVuesrLOZxBq8WW326+WZ3e8T1xzFLHgzumMvutOretXdDXZ+J+XSjUyRj
+	LT+1bSaJZ4cm7z5ETiS32LlrAiUSQXGilSjWq2jpm+K3vpESTo7XV3ZiyxRXnQvxeO6p
+	taRg==
+X-Gm-Message-State: ALoCoQldvtnHQhle10LGRE/uPkySe2idNYCvpcW8wsB30jC4fiXGvoDDFW0KW+cFSJEUCeHXhITw
 MIME-Version: 1.0
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: running task only for native but not target?
+X-Received: by 10.50.79.166 with SMTP id k6mr85268271igx.27.1426254615646;
+	Fri, 13 Mar 2015 06:50:15 -0700 (PDT)
+Received: by 10.36.57.11 with HTTP; Fri, 13 Mar 2015 06:50:15 -0700 (PDT)
+X-Originating-IP: [192.36.1.252]
+In-Reply-To: <CAGKu3q+Ya040AHnfiRue03+OY9Yx4b4FXvPVYmgNLPCqMmDSxA@mail.gmail.com>
+References: <CAGKu3q+Ya040AHnfiRue03+OY9Yx4b4FXvPVYmgNLPCqMmDSxA@mail.gmail.com>
+Date: Fri, 13 Mar 2015 14:50:15 +0100
+Message-ID: <CAFicg85=XSAvYdmtfmnWRkMkpNPnvN19r_4kd2MKHnNJvrbhSQ@mail.gmail.com>
+From: Maxin John <maxin@maxinbjohn.info>
+To: Darshan Patel <darsh.jp@gmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: Using Pre Built Toolchain in Yocto Tree
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,31 +53,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Mar 2015 12:49:36 -0000
-Content-Language: fr-FR
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 13 Mar 2015 13:50:22 -0000
+Content-Type: text/plain; charset=UTF-8
 
-SSBiZWxpZXZlIHRoaXMgaXMgdGhlIGFjdHVhbCBzb2x1dGlvbiBJIGFtIHVzaW5nLCB0aGUgdGFz
-a3MgYXJlIGFsd2F5cyBleGVjdXRlZCBidXQgbXkgaW5zdGFsbCBzdGVwcyBkaWZmZXIgYW5kIG9u
-bHkgaW5zdGFsbCB0aGUgYXBwcm9wcmlhdGUgZmlsZSwgd2hpY2ggaW4gdHVybiBJIGJlbGlldmUg
-Z2VuZXJhdGUgYXBwcm9wcmlhdGUgcGFja2FnZXMuICBUaGF0IHdvcmtzIHRvbywgYnV0IEkgZG8g
-bm90IHdhbnQgdG8gZ2V0IGludG8gaXNzdWVzIHdoZXJlIHRoZSBidWlsZCBvbiB0aGUgdGFyZ2V0
-IGZhaWxzIGR1ZSB0byBhcmNoIGlzc3VlIGFuZCBoYXZpbmcgdG8gcHVsbCB1bm5lY2Vzc2FyeSBk
-ZXBlbmRlbmN5IHBhY2thZ2VzIG9uIG15IHRhcmdldCBhbmQgbG9zdCBjcHUgY3ljbGUuICBCdXQg
-aXQgd291bGQgc3RpbGwgd29yaywgd2hpY2ggaXMgd2h5IEkgYW0gdXNpbmcgaXQgYnV0IGxvb2tp
-bmcgZm9yIGFuIGFsdGVybmF0aXZlLg0KIA0KWWFubmljayBLb2VobGVyDQoNCkRlwqA6IEJ1cnRv
-biwgUm9zcyBbbWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbV0gDQpFbnZvecOpwqA6IE1hcmNo
-LTEzLTE1IDc6NTEgQU0NCsOAwqA6IEtvZWhsZXIsIFlhbm5pY2sgKEhQIE5ldHdvcmtpbmcpDQpD
-Y8KgOiBQYXVsIEVnZ2xldG9uOyB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpPYmpldMKgOiBSZTog
-W3lvY3RvXSBydW5uaW5nIHRhc2sgb25seSBmb3IgbmF0aXZlIGJ1dCBub3QgdGFyZ2V0Pw0KDQoN
-Ck9uIDEzIE1hcmNoIDIwMTUgYXQgMTE6NDYsIEtvZWhsZXIsIFlhbm5pY2sgKEhQIE5ldHdvcmtp
-bmcpIDx5YW5uaWNrLmtvZWhsZXJAaHAuY29tPiB3cm90ZToNCsKgIFRoYW5rcywgeWVzIHRoYXQg
-aXMgbGlrZWx5IHRvIHdvcmssIEkgd2lsbCB0cnkgaXQuwqAgSSB3YXMgbG9va2luZyBmb3IgYSBt
-b3JlIFlvY3RvLWxpa2Ugc29sdXRpb24gdXNpbmcgdGhlIG92ZXJyaWRpbmcgc3R1ZmYgYnV0IGl0
-IHNlZW1zIHRoZSBvdmVycmlkaW5nIGRvZXNuJ3QgYXBwbHkgaW4gdGhpcyBwYXJ0aWN1bGFyIHNp
-dHVhdGlvbi4NCg0KQW4gYWx0ZXJuYXRpdmUgc29sdXRpb24gd291bGQgYmUgdG8gYnVpbGQgZXZl
-cnl0aGluZyBhbGwgdGhlIHRpbWUsIGFuZCBwYWNrYWdlIGNvcnJlY3RseSBzbyB0aGF0IHlvdSBk
-b24ndCBpbnN0YWxsIHVucmVxdWlyZWQgYmluYXJpZXMgb24gdGhlIHRhcmdldC4NCg0KUm9zc8Kg
-DQo=
+Hi Darshan,
+
+On Fri, Mar 13, 2015 at 12:43 PM, Darshan Patel <darsh.jp@gmail.com> wrote:
+> Is there a way to configure Yocto to use Pre Built toolchain (like
+> downloaded from CodeSourcery, etc.). I want to avoid building toolchain
+> because it takes too much time and using new toolchain is not of my concern.
+>
+> I was using this feature in buildroot.
+
+Download the pre-built toolchain from here:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.7/toolchain/
+
+eg: armv7 toolchain for an x86_64 host machine  -
+
+# wget http://downloads.yoctoproject.org/releases/yocto/yocto-1.7/toolchain/x86_64/poky-glibc-x86_64-core-image-sato-armv7a-vfp-neon-toolchain-1.7.sh
+# sudo sh poky-glibc-x86_64-core-image-sato-armv7a-vfp-neon-toolchain-1.7.sh
+# source /opt/poky/1.7/environment-setup-armv7a-vfp-neon-poky-linux-gnueabi
+
+# arm-poky-linux-gnueabi-gcc hello.c
+
+> Thanks in Advance!!!
+>
+> Regards
+> Darshan
+
+Best Regards,
+Maxin
 
