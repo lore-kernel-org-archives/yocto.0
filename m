@@ -1,49 +1,46 @@
-Return-Path: <darsh.jp@gmail.com>
+Return-Path: <yannick.koehler@hp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 997FEE0086E; Fri, 13 Mar 2015 04:43:59 -0700 (PDT)
+	id B99D8E0086E; Fri, 13 Mar 2015 04:47:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (darsh.jp[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.212.179 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [15.217.128.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wi0-f179.google.com (mail-wi0-f179.google.com
-	[209.85.212.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1408E00858
-	for <yocto@yoctoproject.org>; Fri, 13 Mar 2015 04:43:57 -0700 (PDT)
-Received: by widfb4 with SMTP id fb4so11357537wid.0
-	for <yocto@yoctoproject.org>; Fri, 13 Mar 2015 04:43:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=bL0IEMe2TlgJaIvKfkjifYTKWWP/C3V4NoGOYIvvzx8=;
-	b=qnuTCNIp7B4MMQ8DQWRLCS07cumWgNM9RkEVtRSIVeD7vrdp85omVnLK82oXXvJ4eD
-	+eQ7MUjrqubgI7886b5l44oOvjpz1uAoJmVkSVOPXI2XQ0o1GXfktjgpxFrpLbHBEmJs
-	R5tyfvGMLrzVCaOjukYk/SvmvJlFmlUIQeK2QMBp+RIlGB/CajZE2ifbMl+35leNPgTf
-	WJejULY6CTz7uJmcGuZyk3wcF9dBRpcW9O5ejHspi+IwWS5Z4pp6xWDUCgiC/1pZl5ZA
-	f7/Y5jlHJynFH9tIb2BEmZ9g0uuY+Mdzp2PAYHfPNGoWLEC7lol9nJ0C2wd3TqhvzBJI
-	jvgA==
+Received: from g2t2353.austin.hp.com (g2t2353.austin.hp.com [15.217.128.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1AC98E00858
+	for <yocto@yoctoproject.org>; Fri, 13 Mar 2015 04:47:36 -0700 (PDT)
+Received: from G2W4316.americas.hpqcorp.net (g2w4316.austin.hp.com
+	[16.197.9.73]) (using TLSv1 with cipher AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by g2t2353.austin.hp.com (Postfix) with ESMTPS id 624FE9E;
+	Fri, 13 Mar 2015 11:47:35 +0000 (UTC)
+Received: from G1W5784.americas.hpqcorp.net (16.193.26.2) by
+	G2W4316.americas.hpqcorp.net (16.197.9.73) with Microsoft SMTP Server
+	(TLS) id 14.3.169.1; Fri, 13 Mar 2015 11:46:21 +0000
+Received: from G2W2533.americas.hpqcorp.net ([169.254.6.112]) by
+	G1W5784.americas.hpqcorp.net ([16.193.26.2]) with mapi id
+	14.03.0169.001; Fri, 13 Mar 2015 11:46:20 +0000
+From: "Koehler, Yannick (HP Networking)" <yannick.koehler@hp.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Thread-Topic: [yocto] running task only for native but not target?
+Thread-Index: AQHQXWxYbSwfmhTVJ0GqZos0A+42Bp0aS2mw
+Date: Fri, 13 Mar 2015 11:46:20 +0000
+Message-ID: <95CF81BBD42FB348A182716C4D4310A8069053A4@G2W2533.americas.hpqcorp.net>
+References: <95CF81BBD42FB348A182716C4D4310A8069052BA@G2W2533.americas.hpqcorp.net>
+	<4649620.1oiO9F2Se0@peggleto-mobl5.ger.corp.intel.com>
+In-Reply-To: <4649620.1oiO9F2Se0@peggleto-mobl5.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [16.196.64.186]
 MIME-Version: 1.0
-X-Received: by 10.194.60.77 with SMTP id f13mr97424868wjr.105.1426247036338;
-	Fri, 13 Mar 2015 04:43:56 -0700 (PDT)
-Received: by 10.27.204.6 with HTTP; Fri, 13 Mar 2015 04:43:56 -0700 (PDT)
-Date: Fri, 13 Mar 2015 17:13:56 +0530
-Message-ID: <CAGKu3q+Ya040AHnfiRue03+OY9Yx4b4FXvPVYmgNLPCqMmDSxA@mail.gmail.com>
-From: Darshan Patel <darsh.jp@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Using Pre Built Toolchain in Yocto Tree
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: running task only for native but not target?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,34 +52,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Mar 2015 11:43:59 -0000
-Content-Type: multipart/alternative; boundary=047d7b86db8af6865b05112a0383
-
---047d7b86db8af6865b05112a0383
-Content-Type: text/plain; charset=ISO-8859-1
-
-Is there a way to configure Yocto to use Pre Built toolchain (like
-downloaded from CodeSourcery, etc.). I want to avoid building toolchain
-because it takes too much time and using new toolchain is not of my concern.
-
-I was using this feature in buildroot.
-
-Thanks in Advance!!!
-
--- 
-Regards
-Darshan
-
---047d7b86db8af6865b05112a0383
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Fri, 13 Mar 2015 11:47:37 -0000
+Content-Language: fr-FR
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Is there a way to configure Yocto to use Pre Built toolcha=
-in (like downloaded from CodeSourcery, etc.). I want to avoid building tool=
-chain because it takes too much time and using new toolchain is not of my c=
-oncern.<br><br>I was using this feature in buildroot.<br><br>Thanks in Adva=
-nce!!!<div><br></div>-- <br><div class=3D"gmail_signature"><div dir=3D"ltr"=
->Regards<br>Darshan</div></div>
-</div>
+Hi Paul,
 
---047d7b86db8af6865b05112a0383--
+  Thanks, yes that is likely to work, I will try it.  I was looking for a m=
+ore Yocto-like solution using the overriding stuff but it seems the overrid=
+ing doesn't apply in this particular situation.
+
+Yannick Koehler
+
+-----Message d'origine-----
+De=A0: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]=20
+Envoy=E9=A0: March-13-15 5:02 AM
+=C0=A0: Koehler, Yannick (HP Networking)
+Cc=A0: yocto@yoctoproject.org
+Objet=A0: Re: [yocto] running task only for native but not target?
+
+Hi Yannick,
+
+On Thursday 12 March 2015 19:05:13 Koehler, Yannick wrote:
+> I have a package that produce a binary that I need for native, and an=20
+> C header file that I need for target.
+>=20
+> I put the following do_install function to install appropriately the=20
+> bin or header according to the class:
+>=20
+> 	do_install_append_class-target () {
+> 	        install -d ${D}${includedir}
+> 	        install -m 0755 ${S}/ifrpc.h ${D}${includedir}
+> 	}
+>=20
+> 	do_install_append_class-native() {
+> 	        install -d ${D}${bindir}
+> 	        install -m 0755 ${S}/ifrpcgen ${D}${bindir}
+> 	}
+>=20
+> but is there a way for me to disable do_patch/do_configure/do_compile=20
+> only when building for the target?  I have tried the following without su=
+ccess:
+>=20
+> 	do_configure_class-target[noexec] =3D "1"
+> 	do_patch_class-target[noexec] =3D "1"
+> 	do_compile_class-target[noexec] =3D "1"
+>=20
+> It appears the OVERRIDES do not apply here, any hint on how I can=20
+> achieve this?
+
+Probably the easiest way would be to just null out the tasks just for the t=
+arget class i.e.
+
+do_configure_class-target () {
+   :
+}
+
+Cheers,
+Paul
+
+--=20
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
