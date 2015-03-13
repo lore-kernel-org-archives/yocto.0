@@ -1,43 +1,45 @@
-Return-Path: <sona.sarmadi@enea.com>
+Return-Path: <Raghavendra.Kakarla@inedasystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 79BE5E0086D; Fri, 13 Mar 2015 00:59:25 -0700 (PDT)
+	id 54CF9E0086D; Fri, 13 Mar 2015 01:14:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 971FDE00858;
-	Fri, 13 Mar 2015 00:59:21 -0700 (PDT)
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
-	14.03.0224.002; Fri, 13 Mar 2015 08:59:14 +0100
-From: Sona Sarmadi <sona.sarmadi@enea.com>
-To: "benjamin.esquivel@linux.intel.com" <benjamin.esquivel@linux.intel.com>
-Thread-Topic: [yocto] bind: issue in trust anchor management can cause named
-	to crash (CVE-2015-1349)
-Thread-Index: AQHQXFMMGlsTvvRwhkO3gFfy/9nO0p0YcVtwgAB/0gCAARkb8A==
-Date: Fri, 13 Mar 2015 07:59:14 +0000
-Message-ID: <3230301C09DEF9499B442BBE162C5E48258AE98F@SESTOEX04.enea.se>
-References: <3230301C09DEF9499B442BBE162C5E48258AD7F4@SESTOEX04.enea.se>
-	<2131862827.2912188.1426116488072.JavaMail.yahoo@mail.yahoo.com>
-	<3230301C09DEF9499B442BBE162C5E48258ADF48@SESTOEX04.enea.se>
-	<1426175872.12716.8.camel@besquive-mobl.amr.corp.intel.com>
-In-Reply-To: <1426175872.12716.8.camel@besquive-mobl.amr.corp.intel.com>
-Accept-Language: sv-SE, en-US
+Received: from mail.invecas.com (mx2.invecas.com [112.133.222.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E502E00858
+	for <yocto@yoctoproject.org>; Fri, 13 Mar 2015 01:14:19 -0700 (PDT)
+Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
+	SOC-EDGE-02.invecas.local (10.0.30.132) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 13 Mar 2015 13:45:08 +0530
+Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
+	SOC-EXCH-02.invecas.local (10.0.30.9) with Microsoft SMTP Server (TLS)
+	id 15.0.995.29; Fri, 13 Mar 2015 13:44:13 +0530
+Received: from SOC-EXCH-02.invecas.local ([fe80::99f5:2524:170c:1d9e]) by
+	SOC-EXCH-02.invecas.local ([fe80::99f5:2524:170c:1d9e%17]) with mapi id
+	15.00.0995.028; Fri, 13 Mar 2015 13:44:13 +0530
+From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Thread-Topic: Difference b/w yocto kernels and normal linux.org kernels
+Thread-Index: AQHQWumtLWdXg6sbx0i8ugChGoeVpp0aECNO
+Date: Fri, 13 Mar 2015 08:14:13 +0000
+Message-ID: <1426234453004.44900@inedasystems.com>
+References: <18041737.50.1422871220143.JavaMail.kraghavendra@Raghavendra>
+	<1425378406649.37693@inedasystems.com>
+	<1425383722531.59484@inedasystems.com>,
+	<2658071.vtqoVpZjG8@peggleto-mobl5.ger.corp.intel.com>,
+	<1425385065999.46478@inedasystems.com>,
+	<1425961288367.52845@inedasystems.com>
+In-Reply-To: <1425961288367.52845@inedasystems.com>
+Accept-Language: en-US, en-IN
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.142.231]
+x-originating-ip: [192.168.42.55]
 MIME-Version: 1.0
-Cc: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>,
-	"yocto-security@yoctoproject.org" <yocto-security@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: bind: issue in trust anchor management can cause named to crash (CVE-2015-1349)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Difference b/w yocto kernels and normal linux.org kernels
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,21 +51,144 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Mar 2015 07:59:25 -0000
+X-List-Received-Date: Fri, 13 Mar 2015 08:14:24 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgQmVuamFtaW4sDQoNCj4gSSB0aGluayB0aGlzIGxpc3QgaXMgbm90IHB1Ymxpc2hlZCBpbiB0
-aGUgeW9jdG8gbGlzdHMgcGFnZToNCj4gaHR0cHM6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy90b29s
-cy1yZXNvdXJjZXMvY29tbXVuaXR5L21haWxpbmctbGlzdHMNCj4gQW5kLCB3aG8gd291bGQgYmUg
-YWJsZSB0byBzdWJzY3JpYmUgdG8gaXQ/IGludml0ZS1vbmx5PyBwdWJsaWM/DQoNClRoaXMgbWFp
-bGluZyBsaXN0IGlzIGFuIG9wZW4gbGlzdCB0byBkaXNjdXNzIHNlY3VyaXR5IHJlbGF0ZWQgYWN0
-aXZpdGllcyAobWFpbmx5IGZvciB0aG9zZSB3aG8gY29udHJpYnV0ZXMgdGhlIFlvY3RvIFByb2pl
-Y3Qgd2l0aCBzZWN1cml0eSB1cGRhdGVzL3BhdGNoZXMgZXRjKS4gIFdlIGhhdmUgc29tZSBpbmZv
-IGFib3V0IHRoaXMgbGlzdCBhdCBodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL1Nl
-Y3VyaXR5IHBhZ2UsIHdlIHNob3VsZCBhZGQgdGhpcyBtYWlsaW5nIGxpc3QgdG8gaHR0cHM6Ly93
-d3cueW9jdG9wcm9qZWN0Lm9yZy90b29scy1yZXNvdXJjZXMvY29tbXVuaXR5L21haWxpbmctbGlz
-dHMgYXMgd2VsbC4NCg0KVGhhbmsgeW91IGZvciBhZGRyZXNzaW5nIHRoaXMuDQoNCi8vU29uYSAN
-Cg==
+Hi Paul Eggleton,=0A=
+=0A=
+Is it kernel is must be a git repository code for building in the yocto?=0A=
+=0A=
+When i gave my custom kernel which is not a git repository code and it is i=
+n my development PC, i got invalid SRCREV number error.=0A=
+But when give the same kernel from the git repository it is working.=0A=
+Can you please help me in resolving this error.  =0A=
+=0A=
+Cheers,=0A=
+Raghavendra K.=0A=
+________________________________________=0A=
+From: Raghavendra Kakarla=0A=
+Sent: Tuesday, March 10, 2015 9:51 AM=0A=
+To: Paul Eggleton=0A=
+Cc: yocto@yoctoproject.org=0A=
+Subject: Difference b/w yocto kernels and normal linux.org kernels=0A=
+=0A=
+Hi Paul Eggleton,=0A=
+I have some doubt that is ,there is any difference between the linux kernel=
+s downloaded from the yocto and that are download from the kernel.org with =
+same version number?=0A=
+Can you please clarify the my doubt.=0A=
+=0A=
+Thanks and Regards,=0A=
+Raghavendra Kakarla__________________________________=0A=
+______=0A=
+From: Raghavendra Kakarla=0A=
+Sent: Tuesday, March 3, 2015 5:47 PM=0A=
+To: Paul Eggleton=0A=
+Cc: yocto@yoctoproject.org=0A=
+Subject: RE: SDK generation issue=0A=
+=0A=
+Hi Paul Eggleton,=0A=
+=0A=
+Shall i get any API information in the generated SDK documents.=0A=
+=0A=
+Regards,=0A=
+Raghavendra.=0A=
+________________________________________=0A=
+From: Paul Eggleton <paul.eggleton@linux.intel.com>=0A=
+Sent: Tuesday, March 3, 2015 5:40 PM=0A=
+To: Raghavendra Kakarla=0A=
+Cc: yocto@yoctoproject.org=0A=
+Subject: Re: SDK generation issue=0A=
+=0A=
+Assuming you built the SDK you had installed with "doc-pkgs" in=0A=
+SDKIMAGE_FEATURES, they would be in the target sysroot i.e.=0A=
+<sdk-install-dir>/sysroots/<your-machine-arch>/usr/share/doc/=0A=
+=0A=
+On Tuesday 03 March 2015 11:55:22 Raghavendra Kakarla wrote:=0A=
+> Hi Paul Eggleton,=0A=
+>=0A=
+> Where can i get the documents generated by the yocto sdk.=0A=
+>=0A=
+> Regards,=0A=
+> Raghavendra.=0A=
+> ________________________________________=0A=
+> From: Raghavendra Kakarla=0A=
+> Sent: Tuesday, March 3, 2015 3:56 PM=0A=
+> To: Paul Eggleton=0A=
+> Cc: yocto@yoctoproject.org=0A=
+> Subject: RE: SDK generation issue=0A=
+>=0A=
+> Hi Paul Eggleton,=0A=
+>=0A=
+> Thank you for your response.=0A=
+>=0A=
+> Now my issue is resolved.=0A=
+>=0A=
+> I have some doubts on yocto-sdk. Can you please clarify them.=0A=
+>=0A=
+> When i Built SDK for YOCTO, I am getting a cross compilation tool chain.=
+=0A=
+> With which i am able to build the applications for my platform. I wanted =
+to=0A=
+> confirm, whether SDK means  a toolchain to build the applications or is=
+=0A=
+> there something more (such as documentation, libraries, etc generated for=
+=0A=
+> our platform)=0A=
+>=0A=
+> Regards,=0A=
+> Raghavendra.=0A=
+>=0A=
+> From: Paul Eggleton <paul.eggleton@linux.intel.com>=0A=
+> Sent: Tuesday, March 3, 2015 3:07 PM=0A=
+> To: Raghavendra Kakarla=0A=
+> Cc: yocto@yoctoproject.org=0A=
+> Subject: Re: SDK generation issue=0A=
+>=0A=
+> On Tuesday 03 March 2015 05:41:43 Raghavendra Kakarla wrote:=0A=
+> > I am generated the yocto SDK using the yocto sdk script "bitbake=0A=
+> > core-image-minimal -c populate_sdk" command. With this command I am abl=
+e=0A=
+> > to=0A=
+> > generte the installation script file and .manifest file.=0A=
+> >=0A=
+> > I run the installation script file. After running installation script f=
+ile=0A=
+> > it propts that following message:=0A=
+> >=0A=
+> > Extracting SDK...done=0A=
+> > Setting it up...done=0A=
+> > SDK has been successfully set up and is ready to be used.=0A=
+> >=0A=
+> >=0A=
+> > After this i run the ".=0A=
+> > /opt/poky/1.7/environment-setup-mips32rel-poky-linux" and echo $PATH i =
+got=0A=
+> > the correct path.=0A=
+> >=0A=
+> > After this i built wrote a small example and try to build with the sdk=
+=0A=
+> > generated toolchain by running following command:=0A=
+> >=0A=
+> > mipsel-poky-linux-gcc test.c=0A=
+>=0A=
+> Use $CC instead of running the compiler directly so that you get the corr=
+ect=0A=
+> options.=0A=
+>=0A=
+> Cheers,=0A=
+> Paul=0A=
+>=0A=
+>=0A=
+> --=0A=
+>=0A=
+> Paul Eggleton=0A=
+> Intel Open Source Technology Centre=0A=
+=0A=
+--=0A=
+=0A=
+Paul Eggleton=0A=
+Intel Open Source Technology Centre=0A=
 
