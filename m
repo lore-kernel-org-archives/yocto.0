@@ -1,45 +1,39 @@
-Return-Path: <Raghavendra.Kakarla@inedasystems.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 54CF9E0086D; Fri, 13 Mar 2015 01:14:24 -0700 (PDT)
+	id 938D0E0086D; Fri, 13 Mar 2015 01:18:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.invecas.com (mx2.invecas.com [112.133.222.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E502E00858
-	for <yocto@yoctoproject.org>; Fri, 13 Mar 2015 01:14:19 -0700 (PDT)
-Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
-	SOC-EDGE-02.invecas.local (10.0.30.132) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Fri, 13 Mar 2015 13:45:08 +0530
-Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
-	SOC-EXCH-02.invecas.local (10.0.30.9) with Microsoft SMTP Server (TLS)
-	id 15.0.995.29; Fri, 13 Mar 2015 13:44:13 +0530
-Received: from SOC-EXCH-02.invecas.local ([fe80::99f5:2524:170c:1d9e]) by
-	SOC-EXCH-02.invecas.local ([fe80::99f5:2524:170c:1d9e%17]) with mapi id
-	15.00.0995.028; Fri, 13 Mar 2015 13:44:13 +0530
-From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: Difference b/w yocto kernels and normal linux.org kernels
-Thread-Index: AQHQWumtLWdXg6sbx0i8ugChGoeVpp0aECNO
-Date: Fri, 13 Mar 2015 08:14:13 +0000
-Message-ID: <1426234453004.44900@inedasystems.com>
-References: <18041737.50.1422871220143.JavaMail.kraghavendra@Raghavendra>
-	<1425378406649.37693@inedasystems.com>
-	<1425383722531.59484@inedasystems.com>,
-	<2658071.vtqoVpZjG8@peggleto-mobl5.ger.corp.intel.com>,
-	<1425385065999.46478@inedasystems.com>,
-	<1425961288367.52845@inedasystems.com>
-In-Reply-To: <1425961288367.52845@inedasystems.com>
-Accept-Language: en-US, en-IN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.42.55]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4621AE00858
+	for <yocto@yoctoproject.org>; Fri, 13 Mar 2015 01:17:58 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 13 Mar 2015 01:17:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,393,1422950400"; d="scan'208";a="698180971"
+Received: from bonchen-mobl1.gar.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.8.183])
+	by orsmga002.jf.intel.com with ESMTP; 13 Mar 2015 01:17:57 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: p_j_r_m <p_j_r_m@yahoo.com>
+Date: Fri, 13 Mar 2015 08:17:55 +0000
+Message-ID: <1637612.gAra2p1qXC@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.4 (Linux/3.18.7-100.fc20.x86_64; KDE/4.14.4; x86_64; ; )
+In-Reply-To: <550228CC.5010904@mlbassoc.com>
+References: <5501FFB7.2010201@mlbassoc.com>
+	<1012444838.6297307.1426202516188.JavaMail.yahoo@mail.yahoo.com>
+	<550228CC.5010904@mlbassoc.com>
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Difference b/w yocto kernels and normal linux.org kernels
+Cc: yocto@yoctoproject.org, Gary Thomas <gary@mlbassoc.com>
+Subject: Re: File in append recipe not installed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,144 +45,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Mar 2015 08:14:24 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 13 Mar 2015 08:18:02 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Paul Eggleton,=0A=
-=0A=
-Is it kernel is must be a git repository code for building in the yocto?=0A=
-=0A=
-When i gave my custom kernel which is not a git repository code and it is i=
-n my development PC, i got invalid SRCREV number error.=0A=
-But when give the same kernel from the git repository it is working.=0A=
-Can you please help me in resolving this error.  =0A=
-=0A=
-Cheers,=0A=
-Raghavendra K.=0A=
-________________________________________=0A=
-From: Raghavendra Kakarla=0A=
-Sent: Tuesday, March 10, 2015 9:51 AM=0A=
-To: Paul Eggleton=0A=
-Cc: yocto@yoctoproject.org=0A=
-Subject: Difference b/w yocto kernels and normal linux.org kernels=0A=
-=0A=
-Hi Paul Eggleton,=0A=
-I have some doubt that is ,there is any difference between the linux kernel=
-s downloaded from the yocto and that are download from the kernel.org with =
-same version number?=0A=
-Can you please clarify the my doubt.=0A=
-=0A=
-Thanks and Regards,=0A=
-Raghavendra Kakarla__________________________________=0A=
-______=0A=
-From: Raghavendra Kakarla=0A=
-Sent: Tuesday, March 3, 2015 5:47 PM=0A=
-To: Paul Eggleton=0A=
-Cc: yocto@yoctoproject.org=0A=
-Subject: RE: SDK generation issue=0A=
-=0A=
-Hi Paul Eggleton,=0A=
-=0A=
-Shall i get any API information in the generated SDK documents.=0A=
-=0A=
-Regards,=0A=
-Raghavendra.=0A=
-________________________________________=0A=
-From: Paul Eggleton <paul.eggleton@linux.intel.com>=0A=
-Sent: Tuesday, March 3, 2015 5:40 PM=0A=
-To: Raghavendra Kakarla=0A=
-Cc: yocto@yoctoproject.org=0A=
-Subject: Re: SDK generation issue=0A=
-=0A=
-Assuming you built the SDK you had installed with "doc-pkgs" in=0A=
-SDKIMAGE_FEATURES, they would be in the target sysroot i.e.=0A=
-<sdk-install-dir>/sysroots/<your-machine-arch>/usr/share/doc/=0A=
-=0A=
-On Tuesday 03 March 2015 11:55:22 Raghavendra Kakarla wrote:=0A=
-> Hi Paul Eggleton,=0A=
->=0A=
-> Where can i get the documents generated by the yocto sdk.=0A=
->=0A=
-> Regards,=0A=
-> Raghavendra.=0A=
-> ________________________________________=0A=
-> From: Raghavendra Kakarla=0A=
-> Sent: Tuesday, March 3, 2015 3:56 PM=0A=
-> To: Paul Eggleton=0A=
-> Cc: yocto@yoctoproject.org=0A=
-> Subject: RE: SDK generation issue=0A=
->=0A=
-> Hi Paul Eggleton,=0A=
->=0A=
-> Thank you for your response.=0A=
->=0A=
-> Now my issue is resolved.=0A=
->=0A=
-> I have some doubts on yocto-sdk. Can you please clarify them.=0A=
->=0A=
-> When i Built SDK for YOCTO, I am getting a cross compilation tool chain.=
-=0A=
-> With which i am able to build the applications for my platform. I wanted =
-to=0A=
-> confirm, whether SDK means  a toolchain to build the applications or is=
-=0A=
-> there something more (such as documentation, libraries, etc generated for=
-=0A=
-> our platform)=0A=
->=0A=
-> Regards,=0A=
-> Raghavendra.=0A=
->=0A=
-> From: Paul Eggleton <paul.eggleton@linux.intel.com>=0A=
-> Sent: Tuesday, March 3, 2015 3:07 PM=0A=
-> To: Raghavendra Kakarla=0A=
-> Cc: yocto@yoctoproject.org=0A=
-> Subject: Re: SDK generation issue=0A=
->=0A=
-> On Tuesday 03 March 2015 05:41:43 Raghavendra Kakarla wrote:=0A=
-> > I am generated the yocto SDK using the yocto sdk script "bitbake=0A=
-> > core-image-minimal -c populate_sdk" command. With this command I am abl=
-e=0A=
-> > to=0A=
-> > generte the installation script file and .manifest file.=0A=
-> >=0A=
-> > I run the installation script file. After running installation script f=
-ile=0A=
-> > it propts that following message:=0A=
-> >=0A=
-> > Extracting SDK...done=0A=
-> > Setting it up...done=0A=
-> > SDK has been successfully set up and is ready to be used.=0A=
-> >=0A=
-> >=0A=
-> > After this i run the ".=0A=
-> > /opt/poky/1.7/environment-setup-mips32rel-poky-linux" and echo $PATH i =
-got=0A=
-> > the correct path.=0A=
-> >=0A=
-> > After this i built wrote a small example and try to build with the sdk=
-=0A=
-> > generated toolchain by running following command:=0A=
-> >=0A=
-> > mipsel-poky-linux-gcc test.c=0A=
->=0A=
-> Use $CC instead of running the compiler directly so that you get the corr=
-ect=0A=
-> options.=0A=
->=0A=
-> Cheers,=0A=
-> Paul=0A=
->=0A=
->=0A=
-> --=0A=
->=0A=
-> Paul Eggleton=0A=
-> Intel Open Source Technology Centre=0A=
-=0A=
---=0A=
-=0A=
-Paul Eggleton=0A=
-Intel Open Source Technology Centre=0A=
+On Thursday 12 March 2015 18:01:16 Gary Thomas wrote:
+> On 2015-03-12 17:21, p_j_r_m wrote:
+> > I've tested it, but the problem is the same.
+> > My bbappend recipe is not even called ,so it does not matter what i put in
+> > it. Why is not called?
+>
+> Please don't top-post :-(
+> 
+> How do you know that your bbappend isn't being used/called?  If you name it
+> incorrectly, e.g. base-files_3.0.99.bbappend, you should get an error
+> telling you that there is no base-files_3.0.99.bb which matches.  Hence if
+> it's named base-files_3.0.14.bbappend and you get no error, it *is* being
+> used.
+> 
+> Please show exactly what is now in your layer (as below).  It's really easy
+> to make a mistake with a '_' instead of '-'.
+
+Also, one way to tell for sure whether it is being parsed is to use:
+
+  bitbake-layers show-appends 
+
+If it's not listed there, check that the layer shows up in:
+
+  bitbake-layers show-layers
+
+If the layer doesn't show there, check if it has been correctly added to 
+bblayers.conf. If it is, check that your layer.conf is setting BBFILES such 
+that bbappends in the directory you placed the bbappend in will be picked up.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
