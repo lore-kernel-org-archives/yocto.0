@@ -1,6 +1,6 @@
-Return-Path: <alberk@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 33B11E00871; Thu, 12 Mar 2015 21:21:55 -0700 (PDT)
+	id 134DEE00871; Thu, 12 Mar 2015 21:43:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,10 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (alberk[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,33 +19,39 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.171 listed in list.dnswl.org]
-Received: from mail-ie0-f171.google.com (mail-ie0-f171.google.com
-	[209.85.223.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 044FDE0085D
-	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 21:21:51 -0700 (PDT)
-Received: by iecsl2 with SMTP id sl2so80578747iec.1
-	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 21:21:50 -0700 (PDT)
+Received: from mail-qc0-f178.google.com (mail-qc0-f178.google.com
+	[209.85.216.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9042E0085D
+	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 21:43:11 -0700 (PDT)
+Received: by qcvx3 with SMTP id x3so24082733qcv.0
+	for <yocto@yoctoproject.org>; Thu, 12 Mar 2015 21:43:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=YmHUiQio0KvKxWZ2MFv4JQD22LHR91edIPphZh9gzRw=;
-	b=TB5m7922DVaavnDs2A3+Glxh857UMiAns+GdQIFV/o+mOxem4ks2M36F/pCNXVg98T
-	0dIy2fi8DhkkudQ87q+VCOPK6frMQrmZLFbXTRh+HJdjRi22UJSsvSDseKV9YSUjxKZG
-	H37hBw4umDiGxdQFAC7MgcklSupL292s7WqTeZy4SBbM6FEHrbelIokObHZrezRCB7iA
-	fabBsPt8XT3GSVsNUDw394BRtqdYtBPJZA7iFhL7rZHsHPLbTtbxItNwRX+iwEacAhzg
-	T2iKO8IDCf+52O1xunF39BRJpSPfWRGcjciZMv7VSHmo4UsV2JP9KvMmwJT+SfFiBdTd
-	xXPw==
-MIME-Version: 1.0
-X-Received: by 10.42.166.73 with SMTP id n9mr53080224icy.19.1426220510217;
-	Thu, 12 Mar 2015 21:21:50 -0700 (PDT)
-Received: by 10.64.39.16 with HTTP; Thu, 12 Mar 2015 21:21:50 -0700 (PDT)
-Date: Fri, 13 Mar 2015 12:21:50 +0800
-Message-ID: <CACjDgAMTi_5Jk-p4n8F80XaZzaZ637q+5pvErr=ZfsSb2n5D2w@mail.gmail.com>
-From: Albert K <alberk@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Yocto Dizzy branch with Linux Kernel 3.19
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=ZIsme6fvG6kUfjHUb4flzymJUT8rqQusvAcr4acdNpI=;
+	b=0Mkyb6Sx8JINgoYGofxPcVLQ+jhuJsYmqD9WQZKGJnc9VHzMqvOXbyTCyXWwzW5Zos
+	KrzmiBzQuAZTA+UOYc3YhS9eq7rG7XdDZFFLVtPtwdL16LFY4gvmdcqpOUy1qv42p3iX
+	qGnhAE76EETdLFUanS8z6KmO+3UvYWfcdGUWvKDawP6DW9RqNL/WYJzuJ1w6Q2UWj4oQ
+	lkjbdpll9W8I/1BZSnsfPNNyAv2OEMMZ6XRh3I2hHsqvT8lGmfGpaROdUPnGUvVwV6E+
+	l90ZLKpiHe0YrN9iJNoh5oXT9P2vQU50vj9FHBfoesYCG17sIUWu0dbsy7VOW9koBGO1
+	DzZg==
+X-Received: by 10.229.213.73 with SMTP id gv9mr21139814qcb.18.1426221790579;
+	Thu, 12 Mar 2015 21:43:10 -0700 (PDT)
+Received: from 10.25.240.109-ra01.westchester.pa.bo.comcast.net
+	([68.87.42.115])
+	by mx.google.com with ESMTPSA id k47sm711962qgd.2.2015.03.12.21.43.08
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 12 Mar 2015 21:43:09 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2070.6\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <CACjDgAMTi_5Jk-p4n8F80XaZzaZ637q+5pvErr=ZfsSb2n5D2w@mail.gmail.com>
+Date: Thu, 12 Mar 2015 21:43:06 -0700
+Message-Id: <A01D920D-DAC8-44A6-9FD4-82B54C4B8E55@gmail.com>
+References: <CACjDgAMTi_5Jk-p4n8F80XaZzaZ637q+5pvErr=ZfsSb2n5D2w@mail.gmail.com>
+To: Albert K <alberk@gmail.com>
+X-Mailer: Apple Mail (2.2070.6)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto Dizzy branch with Linux Kernel 3.19
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,17 +63,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Mar 2015 04:21:55 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 13 Mar 2015 04:43:16 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-Dear all,
 
-I would like to know if it is possible to do a compile with Linux
-Kernel 3.19.  I have tried the  PREFERRED_VERSION_linux-yocto_qemux86
-= "3.19%"  in the local.conf and it does not work.
+> On Mar 12, 2015, at 9:21 PM, Albert K <alberk@gmail.com> wrote:
+> 
+> Dear all,
+> 
+> I would like to know if it is possible to do a compile with Linux
+> Kernel 3.19.  I have tried the  PREFERRED_VERSION_linux-yocto_qemux86
+> = "3.19%"  in the local.conf and it does not work.
+> 
+> If possible, what need to be done to the this going.  Thanks.
+> 
 
-If possible, what need to be done to the this going.  Thanks.
 
-Regards,
-Albert.
+you need to back port or write recipes for 3.19 kernel first
+
+> Regards,
+> Albert.
+> -- 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
 
