@@ -1,39 +1,44 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <parthiban@ulivesystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 35575E00854; Sat, 14 Mar 2015 05:25:16 -0700 (PDT)
+	id 89D95E00854; Sat, 14 Mar 2015 05:53:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2F65E003FA
-	for <yocto@yoctoproject.org>; Sat, 14 Mar 2015 05:25:14 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga101.fm.intel.com with ESMTP; 14 Mar 2015 05:25:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,400,1422950400"; d="scan'208";a="665224604"
-Received: from plaws-mobl.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.24.36])
-	by orsmga001.jf.intel.com with ESMTP; 14 Mar 2015 05:25:13 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
-Date: Sat, 14 Mar 2015 12:25:11 +0000
-Message-ID: <3223905.orkmv4beBJ@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.4 (Linux/3.18.7-100.fc20.x86_64; KDE/4.14.6; x86_64; ; )
-In-Reply-To: <F38A866CD026F746A3BF0928A84397BE3A36DBD4@AZ-FFEXMB01.global.avaya.com>
-References: <F38A866CD026F746A3BF0928A84397BE3A36BB88@AZ-FFEXMB01.global.avaya.com>
-	<4517896.19BxCWa6S7@peggleto-mobl5.ger.corp.intel.com>
-	<F38A866CD026F746A3BF0928A84397BE3A36DBD4@AZ-FFEXMB01.global.avaya.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.180 listed in list.dnswl.org]
+Received: from mail-ob0-f180.google.com (mail-ob0-f180.google.com
+	[209.85.214.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BABDE003FA
+	for <yocto@yoctoproject.org>; Sat, 14 Mar 2015 05:53:14 -0700 (PDT)
+Received: by obcxo2 with SMTP id xo2so7608334obc.0
+	for <yocto@yoctoproject.org>; Sat, 14 Mar 2015 05:53:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=ASMhOlTp9hyMYFWQdW4SRynyYndP4+st2MvvucUxgks=;
+	b=fc9BoqNhApTf9bobGH8KzYQIeuBn1ERewNf6k2nS6A7ndRugvVNhFpr6jWOf1vW7LF
+	889Kmq8zus+yBOI+s78EjjxkNh6LmYrgImkP2cUUm6K4nLI2E9MqEH04dLcDTnv2LKQS
+	Sm/Aw2ImlGxxOK+v+srmX/W+Xf9VxCquTGslAeZpMZlv6NI+xkVsXR5OviwEdQR1kYMu
+	wFq242nWQeDXZMctI/rTvBMiu6MEaemdZFWX+p/jzU00N2DtAyjUrmVoe+yYXVFvjJV+
+	IGftBPJZxyW+vn8wA17CA5wgP+REWOiKdp3TpJTqZHfiqkd3MFouMESSYp1b/O4BEKSr
+	rhXw==
+X-Gm-Message-State: ALoCoQmCIz0iLS8iBcDsObZ/NoPOlEI3ILZa9wqwx9zlI64To2//DZzY7b5E7TT4edL5E73CT26d
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Bitbake recipe Post install script not executed once the package is installed
+X-Received: by 10.60.115.99 with SMTP id jn3mr41948549oeb.68.1426337594393;
+	Sat, 14 Mar 2015 05:53:14 -0700 (PDT)
+Received: by 10.60.102.104 with HTTP; Sat, 14 Mar 2015 05:53:14 -0700 (PDT)
+Date: Sat, 14 Mar 2015 18:23:14 +0530
+Message-ID: <CABNKip+YOMUvYR3qQtpb2Fk9iWpXjOQo29ktF_WtdQxwsEotdQ@mail.gmail.com>
+From: Parthiban Kandasamy <parthiban@ulivesystems.com>
+To: yocto@yoctoproject.org
+Subject: Qt with X11 server
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,75 +50,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 14 Mar 2015 12:25:16 -0000
+X-List-Received-Date: Sat, 14 Mar 2015 12:53:17 -0000
+Content-Type: multipart/alternative; boundary=089e0116126ea4dfcd05113f19e3
+
+--089e0116126ea4dfcd05113f19e3
+Content-Type: text/plain; charset=UTF-8
+
+i built qt4e-demo-image without x11 server, i choose to build qt4 with x11,
+so what are modifications have to do for this build?
+
+-- 
+thanks and regards,
+parthiban
+      +919790329795
+
+--089e0116126ea4dfcd05113f19e3
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
 
-On Saturday 14 March 2015 11:37:51 Bipnesh, Abhinav wrote:
-> Paul Eggleton wrote:
-> > On Saturday 14 March 2015 10:39:59 Bipnesh, Abhinav wrote:
-> > > I was trying to perform a post install activity as part of the re=
-cipe
-> > > using pkg_postinst_PACKAGENAME() but seems it=E2=80=99s not worki=
-ng. Below is
-> > > the sample function we have written as part of the recipe
-> > >=20
-> > > pkg_postinst_test (){
-> > >=20
-> > >     #!/bin/sh -xe
-> > >     echo " we are calling post install for test"
-> > >     mkdir -p /test/logs/1
-> > >     touch /test/test1/test2/test3/sample.txt
-> > >=20
-> > > }
-> > > testX directory exists as they are created as part of the install=
+<div dir=3D"ltr">i built qt4e-demo-image without x11 server, i choose to bu=
+ild qt4 with x11, so what are modifications have to do for this build?<br c=
+lear=3D"all"><div><br>-- <br><div class=3D"gmail_signature"><div style=3D"t=
+ext-align:right">thanks and regards,<br>parthiban =C2=A0 =C2=A0 =C2=A0 <br>=
+<div style=3D"text-align:right">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +91979032979=
+5=C2=A0=C2=A0 <br></div></div></div>
+</div></div>
 
-> > > activity.
-> > > When we verify the post install we did find the file being create=
-d as
-> > > below is the output
-> > >=20
-> > > ls /test/test1/test2/test3/.txt ls: cannot access
-> > > /test/test1/test2/test3/.txt: No such file or directory
-> >=20
-> > I assume you meant *.txt as .txt wouldn't exist even if the postins=
-tall
-> > script had run.
-> >=20
-> > > Also didn't see the echo output on the console when the package i=
-s being
-> > > installed or post installation activity is being performed.
-> >=20
-> > Is the output package that you are installing actually called "test=
-"?
->
-> Yes, Basically I did install manually using below command
-> rpm -i test.rpm
-
-I meant at the build system end. Is there a "test" directory under pack=
-ages-
-split under the workdir for the recipe? You can find the workdir by run=
-ning:
-
- bitbake -e recipename | grep ^WORKDIR=3D
-
-Just checking, is DISTRO or MACHINE set to "test"? Does "test" appear a=
-nywhere=20
-in the value of OVERRIDES? You can check by running:
-
- bitbake -e | grep ^OVERRIDES=3D
-
-> One thing to add here is we are running Busybox on which I am trying =
-to
-> perform the installation.
-
-That shouldn't matter.
-
-Cheers,
-Paul
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
-
+--089e0116126ea4dfcd05113f19e3--
