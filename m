@@ -1,49 +1,54 @@
-Return-Path: <caiortp@gmail.com>
+Return-Path: <priyaiitmandi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5AD49E0056E; Sat, 14 Mar 2015 11:35:48 -0700 (PDT)
+	id 2B958E0056E; Sat, 14 Mar 2015 23:23:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (caiortp[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.45 listed in list.dnswl.org]
-Received: from mail-la0-f45.google.com (mail-la0-f45.google.com
-	[209.85.215.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF12FE0052B
-	for <yocto@yoctoproject.org>; Sat, 14 Mar 2015 11:35:43 -0700 (PDT)
-Received: by lamx15 with SMTP id x15so12198958lam.3
-	for <yocto@yoctoproject.org>; Sat, 14 Mar 2015 11:35:41 -0700 (PDT)
+Received: from mail-ig0-f171.google.com (mail-ig0-f171.google.com
+	[209.85.213.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81F6DE0052B;
+	Sat, 14 Mar 2015 23:23:01 -0700 (PDT)
+Received: by igad1 with SMTP id d1so17376436iga.0;
+	Sat, 14 Mar 2015 23:23:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=2nbLqxOCSJizsEKEuoEXDD8ByR3ueC26i5QztErpYQg=;
-	b=QI/WOiBGie6y5wV5gFllAwYu2UBQyHKVJERlQo+FHxf/7PJJ7R8gYfGitgRXJNRwZL
-	PxtUNJSRPQy57K/9oV0RUwVh3g6CnJ7h5hyklSUFqPYT5Ybrtgk2/SvO5vuHAbt60M96
-	K0oB6lLovJFurVYUWOIqjNd96P1gH1mtxqclzitQxRHUWJU8vPRFCGtwQSgIypgSeose
-	QDjP8cfX7jg5kFT2Xh2GTH2M0erhR0yf70+wFGi+xCj0P4NBk5VqWQwbUcAvnqceGtTK
-	6hMfbKnSSG0AK2ME0jZ9BvKdvGrNpwnSvonpyGWZf2i45Cp1YhOssLCRMtZ25CjuZ+RM
-	Edtg==
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:cc:content-type;
+	bh=bzA2bT6HCeRK1EuV2yOQ9fBtVLVzz8eAmg4VgqSlZAA=;
+	b=HsnTqpVjkh2K/k67oNdmHPJJcowsRFY9P/MnRC/sF6D9dXOdM3Yc/QdtvTh7ncper4
+	xFpPZ4PdMiEKNSLzn7f02O8rCSFRLqC1XFfU42H9NF6UyHPghrE02Fd5yVX4Jtq1UY0O
+	dEsY5iFOf7lamswMXkMT+7K+fm1HbR3BN5qjhm5/flHBhKdE+d9lgQ2ru9PMR2RsCkGt
+	4EGS+EUqMBJIZDP+tJfalxTIgepIwdRNNL0w/PHuqSpXhdyyZ5VjfPWtRArsDzuJ98Jj
+	2ujVA0OlPTj1fiqc/ghqV5ZvvIgIjG0PO9WO1FG5424RCgRBbRizOw08s3DN2NNeDGpu
+	nkOg==
 MIME-Version: 1.0
-X-Received: by 10.152.28.5 with SMTP id x5mr47411265lag.112.1426358141009;
-	Sat, 14 Mar 2015 11:35:41 -0700 (PDT)
-Received: by 10.112.105.40 with HTTP; Sat, 14 Mar 2015 11:35:40 -0700 (PDT)
-Date: Sat, 14 Mar 2015 15:35:40 -0300
-Message-ID: <CAJqtCybFU9G7v71bgjTpJGpWqJ5AC-DMp7+yxr3n86jYVEjrHA@mail.gmail.com>
-From: Caio <caiortp@gmail.com>
-To: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: node-serialport recipe help
+X-Received: by 10.107.148.198 with SMTP id w189mr9484292iod.14.1426400580520; 
+	Sat, 14 Mar 2015 23:23:00 -0700 (PDT)
+Sender: priyaiitmandi@gmail.com
+Received: by 10.107.16.139 with HTTP; Sat, 14 Mar 2015 23:23:00 -0700 (PDT)
+In-Reply-To: <CALTPfpHo8gStEcBYzjTe_+x1ihxJ7HPDyDBe_ZyLh5GyvH9U-g@mail.gmail.com>
+References: <CALTPfpHK3-q9Xdv-ff_vgP7suRXuSzXEQVNq2wnbPj6hrosvdg@mail.gmail.com>
+	<1426175606.12716.5.camel@besquive-mobl.amr.corp.intel.com>
+	<CALTPfpGvW3mkeMq0ncWot-8LiUyf+c3xbi2TPfkh0CJLCzfiAQ@mail.gmail.com>
+	<CALTPfpHo8gStEcBYzjTe_+x1ihxJ7HPDyDBe_ZyLh5GyvH9U-g@mail.gmail.com>
+Date: Sun, 15 Mar 2015 11:53:00 +0530
+X-Google-Sender-Auth: C6WyEhFWDIYr0f_NAao_LxHA1vY
+Message-ID: <CALTPfpGB_fJPEiXvBzhV+QqzVhMRxuQFfRDoXJntfSjfQcTXPA@mail.gmail.com>
+From: Priya Agarwal <priya_agarwal@students.iitmandi.ac.in>
+To: benjamin.esquivel@linux.intel.com
+Cc: "yocto-builds@yoctoproject.org" <yocto-builds@yoctoproject.org>,
+	yocto@yoctoproject.org
+Subject: Re: Linking of external libraries in the recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,229 +60,276 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 14 Mar 2015 18:35:48 -0000
-Content-Type: multipart/alternative; boundary=089e0160a7085144c7051143e2ae
+X-List-Received-Date: Sun, 15 Mar 2015 06:23:04 -0000
+Content-Type: multipart/alternative; boundary=001a113ff6d8e8cf2805114dc3f9
 
---089e0160a7085144c7051143e2ae
+--001a113ff6d8e8cf2805114dc3f9
 Content-Type: text/plain; charset=UTF-8
 
-Hi folks!
+I wrote the following in squid_3.4.7.bbappend:
 
-I'm writing a recipe to build the nodejs with node-serialport, but i'm
-having problem in the QA and in the do_package.
+DPENDS_append = "usdpaa"
+EXTRA_OECONF_append = "
+LDFLAGS=-L/media/NewVolume/yocto/build_t4240qds_release/tmp/sysroots/t4240qds/usr/lib/
+\
+            LIBS=-lusdpaa_dma -lusdpaa_dma_mem -lusdpaa_of -lusdpaa_fman
+-lusdpaa_qbman -lusdpaa_syscfg \
 
-This problem occurs when I try to copy all the npm packets to target path
-using the command "cp -r".
+CXXFLAGS=-I/media/NewVolume/yocto/build_t4240qds_release/tmp/sysroots/t4240qds/usr/include/"
 
-     cp -r  ${S}/build/* ${D}${libdir}/node_modules/serialport/build/
-     cp -r  ${S}/node_modules/*  ${D}${libdir}/node_modules
+So the error is that it is not able to recognize the option
+-lusdpaa_dma_mem. ( I tried linking only 1 linrary, then it worked but when
+I link more than 1 the 2nd one is unrecognized). oe_runconf is failing
+basically. How to link all the libraries successfully?
 
-When I use the cp , the bitbake display the following message:
-
-WARNING: QA Issue: node-serialport requires /bin/bash, /bin/zsh, but no
-providers in its RDEPENDS [file-rdeps]
-
-I try to add RDEPENDS += "bash" but this is not enough, and the bitbake ask
-for the /bin/zsh and the zsh is blacklisted.
-
-*I'm not a "Yocto expert" so I need improve my recipes (there's some
-workarounds in my recipes)
-
-I'm using as model the Recipes from webOS :
-https://github.com/openwebos/meta-webos/tree/master/recipes-upstreamable/node-gyp
-
-
-node-serialport_git.bb
-
-SUMMARY = "node-serial is a Serial Port binding for Node.js"
-SECTION = "nodejs/module"
-LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://README.md;md5=b9a59a0fefe195d10be82cf7f0a99788"
-
-DEPENDS = "node-pre-gyp-native"
-
-PV = "1.6.1+gitr${SRCPV}"
-
-RDEPENDS = "bash"
-
-SRC_URI = "git://
-github.com/voodootikigod/node-serialport.git;branch=master;protocol=git"
-SRCREV = "94b7bdcc087b820e10913c483bab3e2c54d103f2"
-S = "${WORKDIR}/git"
-
-
-do_configure() {
-    export LD="${CXX}"
-    export GYP_DEFINES="sysroot=${STAGING_DIR_HOST}"
-    node-pre-gyp --target_arch=${TARGET_ARCH} --target_platform=linux
-configure
-}
-
-do_compile() {
-    export LD="${CXX}"
-    export GYP_DEFINES="sysroot=${STAGING_DIR_HOST}"
-    node-pre-gyp --target_arch=${TARGET_ARCH} --target_platform=linux
-build
-}
-
-do_install() {
-
-    npm install --no-cache
-    install -d ${D}${libdir}/node_modules
-    install -d ${D}${libdir}/node_modules/serialport/
-    install -d ${D}${libdir}/node_modules/serialport/build
-    install -d ${D}${libdir}/node_modules/serialport/bin
-    install -d ${S}/build/Release/
-${D}${libdir}/node_modules/serialport/build/
-    install -m 0664 ${S}/bin/serialportList.js
-${D}${libdir}/node_modules/serialport/bin/
-    install -m 0664 ${S}/bin/serialportTerminal.js
-${D}${libdir}/node_modules/serialport/bin/
-    install -m 0664 ${S}/package.json ${D}${libdir}/node_modules/serialport/
-    install -m 0664 ${S}/parsers.js   ${D}${libdir}/node_modules/serialport/
-    install -m 0664 ${S}/serialport.js
-${D}${libdir}/node_modules/serialport/
-#problematic line if the cp lines are uncommented the bitbake displayed to
-add RDEPEND /bin/bash and /bin/zsh
-    cp -r  ${S}/build/* ${D}${libdir}/node_modules/serialport/build/
-    cp -r  ${S}/node_modules/*  ${D}${libdir}/node_modules
-}
-
-
-FILES_${PN} += "${libdir}/node_modules \
-        ${libdir}/node_modules/serialport \
-        ${libdir}/node_modules/serialport/build \
-"
-
-FILES_${PN}-dbg += "${libdir}/node_modules/.debug \
-        ${libdir}/node_modules/serialport/.debug \
-        ${libdir}/node_modules/serialport/build/.debug \
-        ${libdir/node_modules/serialport/build/Release/.debug \
-"
-#workaround to avoid QA's problems, must be fixed in the second round
-INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
-INHIBIT_PACKAGE_STRIP = "1"
-
-
-}
+Basically I have many static libraries in
+/media/NewVolume/yocto/build_t4240qds_release/tmp/sysroots/t4240qds/usr/lib/
+and I want to link all of them while building squid code. To do that I need
+to run ./configure with these extra parameters LDFLAGS,LIBS,CXXFLAGS.
 
 
 
-node_pre-gyp-native.bb
+On Thu, Mar 12, 2015 at 10:39 PM, Priya Agarwal <
+priya_agarwal@students.iitmandi.ac.in> wrote:
 
-DESCRIPTION = "Node.js tool for easy binary deployment of C++ addons"
-HOMEPAGE = "https://github.com/mapbox/node-pre-gyp.git"
-LICENSE = "BSD"
-SECTION = "nodejs/module"
+> Okay I think I understood. It has to be DEPENDS = "usdpaa" . Basically the
+> recipe which is building the libraries is
+> /meta-fsl-ppc/recipe-tools/usdpaa/usdpaa_git.bb.
+> Thanks.
+>
+> On Thu, Mar 12, 2015 at 9:58 PM, Priya Agarwal <
+> priya_agarwal@students.iitmandi.ac.in> wrote:
+>
+>> If the libraries are already generated during the build it might be a
+>>> case where you just DEPENDS_append = " <libraryproviderpackage>" at
+>>
+>> he .bbappend file
+>>
+>>
+>> I know where the libraries are but how do I make out which is the
+>> package.
+>> (The needed '.a' files are in ..../usdpaa/git-r5/git/lib_powerpc/*)
+>>
+>>
+>>
+>>
+>>
+>> On Thu, Mar 12, 2015 at 9:23 PM, Benjamin Esquivel <
+>> benjamin.esquivel@linux.intel.com> wrote:
+>>
+>>> On Thu, 2015-03-12 at 18:00 +0530, Priya Agarwal wrote:
+>>> > Hello,
+>>> >
+>>> >
+>>> > I have taken a recipe for the package squid from OpenEmbedded.org and
+>>> > have built it along with the kernel image.
+>>> >
+>>> >
+>>> > Now I want to edit its recipe so that it will include some external
+>>> > libraries.
+>>> > But these libraries are the ones that are generated during the build.
+>>> > So how do I edit the recipe to include those libraries?
+>>> >
+>>> Hi Priya, if you want to use a recipe and make some modifications to
+>>> it's behavior it is recommended that you do it via a .bbappend file
+>>>
+>>>
+>>> http://www.yoctoproject.org/docs/1.7.1/dev-manual/dev-manual.html#using-bbappend-files
+>>>
+>>> If the libraries are already generated during the build it might be a
+>>> case where you just DEPENDS_append = " <libraryproviderpackage>" at
+>>> the .bbappend file. When the dependiencies are resolved prior your
+>>> recipe is built, the headers and libraries are placed in a special part
+>>> of the working directory that the recipes know where to look for (if
+>>> they don't deviate of the standard, of course).
+>>>
+>>> >
+>>> > Location of
+>>> > library:  ../yocto/<build-directory>/............/libusdpaa.a
+>>> >
+>>> >
+>>> >
+>>> > currently the do_compile task is failing as I have used an extra
+>>> > function whose library I haven't included. Snippet of the error:
+>>> >
+>>> > | main.cc: In function 'int SquidMainSafe(int, char**)':
+>>> > | main.cc:1259:10: error: 'of_init' was not declared in this scope
+>>> > | make[3]: *** [main.o] Error 1
+>>> > | make[3]: *** Waiting for unfinished jobs....
+>>> > | make[3]: Leaving directory
+>>> >
+>>> `/media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_networking-linux/squid/3.4.7-r0/squid-3.4.7/src'
+>>> > | make[2]: *** [all-recursive] Error 1
+>>> > | make[2]: Leaving directory
+>>> >
+>>> `/media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_networking-linux/squid/3.4.7-r0/squid-3.4.7/src'
+>>> > | make[1]: *** [all] Error 2
+>>> > | make[1]: Leaving directory
+>>> >
+>>> `/media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_networking-linux/squid/3.4.7-r0/squid-3.4.7/src'
+>>> > | make: *** [all-recursive] Error 1
+>>> > | ERROR: oe_runmake failed
+>>> > | ERROR: Function failed: do_compile
+>>> > (see
+>>> /media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_networking-linux/squid/3.4.7-r0/temp/log.do_compile.28810
+>>> for further information)
+>>> > ERROR: Task 799
+>>> > (/media/NewVolume/yocto/meta-oe/meta-networking/recipes-daemons/squid/
+>>> squid_3.4.7.bb, do_compile) failed with exit code '1'
+>>> >
+>>> >
+>>> > I have attached my recipe.
+>>> >
+>>> >
+>>> >
+>>>
+>>>
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>
+>>
+>
 
-LIC_FILES_CHKSUM = "file://LICENSE;md5=7e13c3cf883a44ebcc74a8f568c0f6fb"
-
-SRC_URI = "git://
-github.com/mapbox/node-pre-gyp.git;branch=master;protocol=git"
-SRCREV = "332b8b123e3aa91718fad763cf1fc11c4cfb49b7"
-DEPENDS = "nodejs-native node-gyp-native"
-
-S = "${WORKDIR}/git"
-
-inherit native
-
-do_install () {
-  #woraround to install the node-pre-gyp
-  npm install -g --force
-}
-
-If someone could help me I will be grateful.
-Thanks !
-
-Regards,
-
--- 
-----------------------------------------------
-Caio Pereira
-
---089e0160a7085144c7051143e2ae
+--001a113ff6d8e8cf2805114dc3f9
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div>Hi folks!<br><br></div>I&#39;m writing a re=
-cipe to build the nodejs with node-serialport, but i&#39;m having problem i=
-n the QA and in the do_package.<br><br></div>This problem occurs when I try=
- to copy all the npm packets to target path using the command &quot;cp -r&q=
-uot;.<br><br>=C2=A0=C2=A0=C2=A0=C2=A0 cp -r=C2=A0 ${S}/build/* ${D}${libdir=
-}/node_modules/serialport/build/<br>=C2=A0=C2=A0=C2=A0=C2=A0 cp -r=C2=A0 ${=
-S}/node_modules/*=C2=A0 ${D}${libdir}/node_modules<br><br></div>When I use =
-the cp , the bitbake display the following message:<br><br>WARNING: QA Issu=
-e: node-serialport requires /bin/bash, /bin/zsh, but no providers in its RD=
-EPENDS [file-rdeps]<br><div><br></div><div>I try to add RDEPENDS +=3D &quot=
-;bash&quot; but this is not enough, and the bitbake ask for the /bin/zsh an=
-d the zsh is blacklisted.<br><br></div><div>*I&#39;m not a &quot;Yocto expe=
-rt&quot; so I need improve my recipes (there&#39;s some workarounds in my r=
-ecipes)<br><br>I&#39;m using as model the Recipes from webOS : <a href=3D"h=
-ttps://github.com/openwebos/meta-webos/tree/master/recipes-upstreamable/nod=
-e-gyp">https://github.com/openwebos/meta-webos/tree/master/recipes-upstream=
-able/node-gyp</a><br><br><br><a href=3D"http://node-serialport_git.bb">node=
--serialport_git.bb</a><br><br>SUMMARY =3D &quot;node-serial is a Serial Por=
-t binding for Node.js&quot;<br>SECTION =3D &quot;nodejs/module&quot;<br>LIC=
-ENSE =3D &quot;MIT&quot;<br>LIC_FILES_CHKSUM =3D &quot;file://README.md;md5=
-=3Db9a59a0fefe195d10be82cf7f0a99788&quot;<br><br>DEPENDS =3D &quot;node-pre=
--gyp-native&quot;<br><br>PV =3D &quot;1.6.1+gitr${SRCPV}&quot;<br><br>RDEPE=
-NDS =3D &quot;bash&quot;<br><br>SRC_URI =3D &quot;git://<a href=3D"http://g=
-ithub.com/voodootikigod/node-serialport.git;branch=3Dmaster;protocol=3Dgit"=
->github.com/voodootikigod/node-serialport.git;branch=3Dmaster;protocol=3Dgi=
-t</a>&quot;<br>SRCREV =3D &quot;94b7bdcc087b820e10913c483bab3e2c54d103f2&qu=
-ot;<br>S =3D &quot;${WORKDIR}/git&quot;<br><br><br>do_configure() {<br>=C2=
-=A0=C2=A0=C2=A0 export LD=3D&quot;${CXX}&quot;<br>=C2=A0=C2=A0=C2=A0 export=
- GYP_DEFINES=3D&quot;sysroot=3D${STAGING_DIR_HOST}&quot;<br>=C2=A0=C2=A0=C2=
-=A0 node-pre-gyp --target_arch=3D${TARGET_ARCH} --target_platform=3Dlinux c=
-onfigure<br>}<br><br>do_compile() {<br>=C2=A0=C2=A0=C2=A0 export LD=3D&quot=
-;${CXX}&quot;<br>=C2=A0=C2=A0=C2=A0 export GYP_DEFINES=3D&quot;sysroot=3D${=
-STAGING_DIR_HOST}&quot;<br>=C2=A0=C2=A0=C2=A0 node-pre-gyp --target_arch=3D=
-${TARGET_ARCH} --target_platform=3Dlinux=C2=A0 build=C2=A0=C2=A0=C2=A0 <br>=
-}<br><br>do_install() {<br><br>=C2=A0=C2=A0=C2=A0 npm install --no-cache<br=
->=C2=A0=C2=A0=C2=A0 install -d ${D}${libdir}/node_modules<br>=C2=A0=C2=A0=
-=C2=A0 install -d ${D}${libdir}/node_modules/serialport/<br>=C2=A0=C2=A0=C2=
-=A0 install -d ${D}${libdir}/node_modules/serialport/build<br>=C2=A0=C2=A0=
-=C2=A0 install -d ${D}${libdir}/node_modules/serialport/bin<br>=C2=A0=C2=A0=
-=C2=A0 install -d ${S}/build/Release/=C2=A0=C2=A0=C2=A0 ${D}${libdir}/node_=
-modules/serialport/build/<br>=C2=A0=C2=A0=C2=A0 install -m 0664 ${S}/bin/se=
-rialportList.js ${D}${libdir}/node_modules/serialport/bin/<br>=C2=A0=C2=A0=
-=C2=A0 install -m 0664 ${S}/bin/serialportTerminal.js ${D}${libdir}/node_mo=
-dules/serialport/bin/<br>=C2=A0=C2=A0=C2=A0 install -m 0664 ${S}/package.js=
-on ${D}${libdir}/node_modules/serialport/<br>=C2=A0=C2=A0=C2=A0 install -m =
-0664 ${S}/parsers.js=C2=A0=C2=A0 ${D}${libdir}/node_modules/serialport/<br>=
-=C2=A0=C2=A0=C2=A0 install -m 0664 ${S}/serialport.js ${D}${libdir}/node_mo=
-dules/serialport/<br></div><div>#problematic line if the cp lines are uncom=
-mented the bitbake displayed to add RDEPEND /bin/bash and /bin/zsh<br></div=
-><div>=C2=A0=C2=A0=C2=A0 cp -r=C2=A0 ${S}/build/* ${D}${libdir}/node_module=
-s/serialport/build/<br>=C2=A0=C2=A0=C2=A0 cp -r=C2=A0 ${S}/node_modules/*=
-=C2=A0 ${D}${libdir}/node_modules<br>}<br><br><br>FILES_${PN} +=3D &quot;${=
-libdir}/node_modules \<br>=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 ${libdir}/n=
-ode_modules/serialport \ <br>=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 ${libdir=
-}/node_modules/serialport/build \<br>&quot;<br><br>FILES_${PN}-dbg +=3D &qu=
-ot;${libdir}/node_modules/.debug \<br>=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=
- ${libdir}/node_modules/serialport/.debug \ <br>=C2=A0=C2=A0=C2=A0 =C2=A0=
-=C2=A0=C2=A0 ${libdir}/node_modules/serialport/build/.debug \<br>=C2=A0=C2=
-=A0=C2=A0 =C2=A0=C2=A0=C2=A0 ${libdir/node_modules/serialport/build/Release=
-/.debug \<br>&quot;<br></div><div>#workaround to avoid QA&#39;s problems, m=
-ust be fixed in the second round<br></div><div>INHIBIT_PACKAGE_DEBUG_SPLIT =
-=3D &quot;1&quot;<br>INHIBIT_PACKAGE_STRIP =3D &quot;1&quot;<br><br><br>}<b=
-r><br><br><br></div><div><a href=3D"http://node_pre-gyp-native.bb">node_pre=
--gyp-native.bb</a><br><br>DESCRIPTION =3D &quot;Node.js tool for easy binar=
-y deployment of C++ addons&quot;<br>HOMEPAGE =3D &quot;<a href=3D"https://g=
-ithub.com/mapbox/node-pre-gyp.git">https://github.com/mapbox/node-pre-gyp.g=
-it</a>&quot;<br>LICENSE =3D &quot;BSD&quot;<br>SECTION =3D &quot;nodejs/mod=
-ule&quot;<br><br>LIC_FILES_CHKSUM =3D &quot;file://LICENSE;md5=3D7e13c3cf88=
-3a44ebcc74a8f568c0f6fb&quot;<br><br>SRC_URI =3D &quot;git://<a href=3D"http=
-://github.com/mapbox/node-pre-gyp.git;branch=3Dmaster;protocol=3Dgit">githu=
-b.com/mapbox/node-pre-gyp.git;branch=3Dmaster;protocol=3Dgit</a>&quot;<br>S=
-RCREV =3D &quot;332b8b123e3aa91718fad763cf1fc11c4cfb49b7&quot;<br>DEPENDS =
-=3D &quot;nodejs-native node-gyp-native&quot;<br><br>S =3D &quot;${WORKDIR}=
-/git&quot;<br><br>inherit native<br><br>do_install () {<br></div><div>=C2=
-=A0 #woraround to install the node-pre-gyp<br></div><div>=C2=A0 npm install=
- -g --force<br>}<br></div><div><br>If someone could help me I will be grate=
-ful.<br></div><div>Thanks !<br><br></div><div>Regards,<div><div><br>-- <br>=
-<div class=3D"gmail_signature">--------------------------------------------=
---<br>Caio Pereira</div>
-</div></div></div></div>
+<div dir=3D"ltr"><div><div><div>I wrote the following in squid_3.4.7.bbappe=
+nd:<br><br>DPENDS_append =3D &quot;usdpaa&quot;<br>EXTRA_OECONF_append =3D =
+&quot;=C2=A0=C2=A0=C2=A0 LDFLAGS=3D-L/media/NewVolume/yocto/build_t4240qds_=
+release/tmp/sysroots/t4240qds/usr/lib/ \<br>=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=
+=C2=A0 =C2=A0=C2=A0=C2=A0 LIBS=3D-lusdpaa_dma -lusdpaa_dma_mem -lusdpaa_of =
+-lusdpaa_fman -lusdpaa_qbman -lusdpaa_syscfg \<br>=C2=A0=C2=A0=C2=A0 =C2=A0=
+=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0 CXXFLAGS=3D-I/media/NewVolume/yocto/build_t=
+4240qds_release/tmp/sysroots/t4240qds/usr/include/&quot;<br></div><br></div=
+>So the error is that it is not able to recognize the option -lusdpaa_dma_m=
+em. ( I tried linking only 1 linrary, then it worked but when I link more t=
+han 1 the 2nd one is unrecognized). oe_runconf is failing basically. How to=
+ link all the libraries successfully?<br><br></div>Basically I have many st=
+atic libraries in /media/NewVolume/yocto/build_t4240qds_release/tmp/sysroot=
+s/t4240qds/usr/lib/ and I want to link all of them while building squid cod=
+e. To do that I need to run ./configure with these extra parameters LDFLAGS=
+,LIBS,CXXFLAGS.<br><div><div><div><br><br></div></div></div></div><div clas=
+s=3D"gmail_extra"><br><div class=3D"gmail_quote">On Thu, Mar 12, 2015 at 10=
+:39 PM, Priya Agarwal <span dir=3D"ltr">&lt;<a href=3D"mailto:priya_agarwal=
+@students.iitmandi.ac.in" target=3D"_blank">priya_agarwal@students.iitmandi=
+.ac.in</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"=
+margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"=
+ltr"><div>Okay I think I understood. It has to be DEPENDS =3D &quot;usdpaa&=
+quot; . Basically the recipe which is building the libraries is=C2=A0 /meta=
+-fsl-ppc/recipe-tools/usdpaa/<a href=3D"http://usdpaa_git.bb" target=3D"_bl=
+ank">usdpaa_git.bb</a>.<br></div>Thanks.<br></div><div class=3D"HOEnZb"><di=
+v class=3D"h5"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On=
+ Thu, Mar 12, 2015 at 9:58 PM, Priya Agarwal <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:priya_agarwal@students.iitmandi.ac.in" target=3D"_blank">priya_a=
+garwal@students.iitmandi.ac.in</a>&gt;</span> wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div dir=3D"ltr"><span><blockquote style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex" class=3D"g=
+mail_quote">If the libraries are already generated during the build it migh=
+t be a<br>
+case where you just DEPENDS_append =3D &quot; &lt;libraryproviderpackage&gt=
+;&quot; at=C2=A0</blockquote></span><blockquote style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex" class=3D"gm=
+ail_quote">he .bbappend file</blockquote><div><br></div><div>I know where t=
+he libraries are but how do I make out which is the package. <br></div><div=
+>(The needed &#39;.a&#39; files are in ..../usdpaa/git-r5/git/lib_powerpc/*=
+)<br></div><div><br><br><br>=C2=A0<br></div></div><div><div><div class=3D"g=
+mail_extra"><br><div class=3D"gmail_quote">On Thu, Mar 12, 2015 at 9:23 PM,=
+ Benjamin Esquivel <span dir=3D"ltr">&lt;<a href=3D"mailto:benjamin.esquive=
+l@linux.intel.com" target=3D"_blank">benjamin.esquivel@linux.intel.com</a>&=
+gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
+0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span>On Thu, 2015-03-1=
+2 at 18:00 +0530, Priya Agarwal wrote:<br>
+&gt; Hello,<br>
+&gt;<br>
+&gt;<br>
+&gt; I have taken a recipe for the package squid from OpenEmbedded.org and<=
+br>
+&gt; have built it along with the kernel image.<br>
+&gt;<br>
+&gt;<br>
+&gt; Now I want to edit its recipe so that it will include some external<br=
+>
+&gt; libraries.<br>
+&gt; But these libraries are the ones that are generated during the build.<=
+br>
+&gt; So how do I edit the recipe to include those libraries?<br>
+&gt;<br>
+</span>Hi Priya, if you want to use a recipe and make some modifications to=
+<br>
+it&#39;s behavior it is recommended that you do it via a .bbappend file<br>
+<br>
+<a href=3D"http://www.yoctoproject.org/docs/1.7.1/dev-manual/dev-manual.htm=
+l#using-bbappend-files" target=3D"_blank">http://www.yoctoproject.org/docs/=
+1.7.1/dev-manual/dev-manual.html#using-bbappend-files</a><br>
+<br>
+If the libraries are already generated during the build it might be a<br>
+case where you just DEPENDS_append =3D &quot; &lt;libraryproviderpackage&gt=
+;&quot; at<br>
+the .bbappend file. When the dependiencies are resolved prior your<br>
+recipe is built, the headers and libraries are placed in a special part<br>
+of the working directory that the recipes know where to look for (if<br>
+they don&#39;t deviate of the standard, of course).<br>
+<div><div><br>
+&gt;<br>
+&gt; Location of<br>
+&gt; library:=C2=A0 ../yocto/&lt;build-directory&gt;/............/libusdpaa=
+.a<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; currently the do_compile task is failing as I have used an extra<br>
+&gt; function whose library I haven&#39;t included. Snippet of the error:<b=
+r>
+&gt;<br>
+&gt; | main.cc: In function &#39;int SquidMainSafe(int, char**)&#39;:<br>
+&gt; | main.cc:1259:10: error: &#39;of_init&#39; was not declared in this s=
+cope<br>
+&gt; | make[3]: *** [main.o] Error 1<br>
+&gt; | make[3]: *** Waiting for unfinished jobs....<br>
+&gt; | make[3]: Leaving directory<br>
+&gt; `/media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_n=
+etworking-linux/squid/3.4.7-r0/squid-3.4.7/src&#39;<br>
+&gt; | make[2]: *** [all-recursive] Error 1<br>
+&gt; | make[2]: Leaving directory<br>
+&gt; `/media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_n=
+etworking-linux/squid/3.4.7-r0/squid-3.4.7/src&#39;<br>
+&gt; | make[1]: *** [all] Error 2<br>
+&gt; | make[1]: Leaving directory<br>
+&gt; `/media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-fsl_n=
+etworking-linux/squid/3.4.7-r0/squid-3.4.7/src&#39;<br>
+&gt; | make: *** [all-recursive] Error 1<br>
+&gt; | ERROR: oe_runmake failed<br>
+&gt; | ERROR: Function failed: do_compile<br>
+&gt; (see /media/NewVolume/yocto/build_t4240qds_release/tmp/work/ppce6500-f=
+sl_networking-linux/squid/3.4.7-r0/temp/log.do_compile.28810 for further in=
+formation)<br>
+&gt; ERROR: Task 799<br>
+&gt; (/media/NewVolume/yocto/meta-oe/meta-networking/recipes-daemons/squid/=
+<a href=3D"http://squid_3.4.7.bb" target=3D"_blank">squid_3.4.7.bb</a>, do_=
+compile) failed with exit code &#39;1&#39;<br>
+&gt;<br>
+&gt;<br>
+&gt; I have attached my recipe.<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+<br>
+<br>
+</div></div><span><font color=3D"#888888">--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</font></span></blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
+</div></div></blockquote></div><br></div>
 
---089e0160a7085144c7051143e2ae--
+--001a113ff6d8e8cf2805114dc3f9--
