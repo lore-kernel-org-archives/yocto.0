@@ -1,62 +1,65 @@
 Return-Path: <EBolton@agjunction.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B3C20E00828; Wed, 18 Mar 2015 13:19:52 -0700 (PDT)
+	id ED59DE00828; Wed, 18 Mar 2015 13:29:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [157.56.110.143 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [157.56.111.137 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 488 seconds by postgrey-1.32 at yocto-www;
-	Wed, 18 Mar 2015 13:19:46 PDT
+X-Greylist: delayed 2027 seconds by postgrey-1.32 at yocto-www;
+	Wed, 18 Mar 2015 13:29:28 PDT
 Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1on0143.outbound.protection.outlook.com [157.56.110.143])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24251E0034E
-	for <yocto@yoctoproject.org>; Wed, 18 Mar 2015 13:19:46 -0700 (PDT)
+	(mail-bn1bon0137.outbound.protection.outlook.com [157.56.111.137])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85014E0034E
+	for <yocto@yoctoproject.org>; Wed, 18 Mar 2015 13:29:28 -0700 (PDT)
 Received: from DM2PR0201MB1087.namprd02.prod.outlook.com (25.160.221.144) by
-	DM2PR0201MB1087.namprd02.prod.outlook.com (25.160.221.144) with
+	DM2PR0201MB1088.namprd02.prod.outlook.com (25.160.221.145) with
 	Microsoft
-	SMTP Server (TLS) id 15.1.125.14; Wed, 18 Mar 2015 20:19:41 +0000
+	SMTP Server (TLS) id 15.1.125.14; Wed, 18 Mar 2015 19:55:38 +0000
 Received: from DM2PR0201MB1087.namprd02.prod.outlook.com ([25.160.221.144]) by
 	DM2PR0201MB1087.namprd02.prod.outlook.com ([25.160.221.144]) with
-	mapi id 15.01.0125.002; Wed, 18 Mar 2015 20:19:41 +0000
+	mapi id 15.01.0125.002; Wed, 18 Mar 2015 19:55:38 +0000
 From: Erik Bolton <EBolton@agjunction.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Application Dev & Package Management
-Thread-Index: AdBhtdPMgf2s6yxORTW6MGXFwacK3A==
-Date: Wed, 18 Mar 2015 20:19:41 +0000
-Message-ID: <DM2PR0201MB1087DD784F2B16CF0C347BBECC000@DM2PR0201MB1087.namprd02.prod.outlook.com>
+To: Daniel. <danielhilst@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] .rpm not being generated (or empty)
+Thread-Index: AQHQYbSUMo+59IHwUUC+aHjkpBB7Ep0ippLg
+Date: Wed, 18 Mar 2015 19:55:37 +0000
+Message-ID: <DM2PR0201MB1087B8847B8B5863E3D5EC15CC000@DM2PR0201MB1087.namprd02.prod.outlook.com>
+References: <CAF3SDA6jaYBacf3-bQWeqXSM1nWaX6DLZ=zcFOLTXRmM4AHyxw@mail.gmail.com>
+In-Reply-To: <CAF3SDA6jaYBacf3-bQWeqXSM1nWaX6DLZ=zcFOLTXRmM4AHyxw@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [208.93.135.69]
-authentication-results: yoctoproject.org; dkim=none (message not signed)
+authentication-results: gmail.com; dkim=none (message not signed)
 	header.d=none;
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DM2PR0201MB1087;
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DM2PR0201MB1088;
 x-forefront-antispam-report: BMV:1; SFV:NSPM;
-	SFS:(10019020)(53754006)(2351001)(16236675004)(99286002)(2656002)(87936001)(74316001)(76576001)(66066001)(19300405004)(19617315012)(110136001)(19625215002)(107886001)(229853001)(33656002)(122556002)(2900100001)(19580395003)(92566002)(77156002)(450100001)(62966003)(86362001)(50986999)(40100003)(54356999)(15975445007)(102836002)(46102003)(2501003)(80792004);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:DM2PR0201MB1087;
+	SFS:(10019020)(377454003)(53754006)(62966003)(77156002)(76576001)(54356999)(50986999)(76176999)(2501003)(15975445007)(102836002)(99286002)(106116001)(2900100001)(2950100001)(15395725005)(33656002)(19580405001)(16236675004)(19580395003)(19625215002)(66066001)(86362001)(46102003)(40100003)(122556002)(19300405004)(92566002)(107886001)(19617315012)(87936001)(74316001)(2656002)(80792004);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:DM2PR0201MB1088;
 	H:DM2PR0201MB1087.namprd02.prod.outlook.com; FPR:; SPF:None;
 	MLV:sfv; LANG:en; 
-x-microsoft-antispam-prvs: <DM2PR0201MB1087FBC0C1E705A2198E26C4CC000@DM2PR0201MB1087.namprd02.prod.outlook.com>
+x-microsoft-antispam-prvs: <DM2PR0201MB1088AFFC91828084880FCA8FCC000@DM2PR0201MB1088.namprd02.prod.outlook.com>
 x-exchange-antispam-report-test: UriScan:;
 x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(5002010)(5005006); SRVR:DM2PR0201MB1087; BCL:0;
-	PCL:0; RULEID:; SRVR:DM2PR0201MB1087; 
+	RULEID:(601004)(5002010)(5005006); SRVR:DM2PR0201MB1088; BCL:0;
+	PCL:0; RULEID:; SRVR:DM2PR0201MB1088; 
 x-forefront-prvs: 051900244E
 MIME-Version: 1.0
 X-OriginatorOrg: agjunction.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2015 20:19:41.2342 (UTC)
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2015 19:55:37.8586 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 5f7bd4f9-3eab-4e10-b6c3-fdfbbaf69f20
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM2PR0201MB1087
-Subject: Application Dev & Package Management
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM2PR0201MB1088
+Subject: Re: .rpm not being generated (or empty)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,259 +71,176 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Mar 2015 20:19:52 -0000
+X-List-Received-Date: Wed, 18 Mar 2015 20:29:31 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_DM2PR0201MB1087DD784F2B16CF0C347BBECC000DM2PR0201MB1087_"
+	boundary="_000_DM2PR0201MB1087B8847B8B5863E3D5EC15CC000DM2PR0201MB1087_"
 
---_000_DM2PR0201MB1087DD784F2B16CF0C347BBECC000DM2PR0201MB1087_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--_000_DM2PR0201MB1087B8847B8B5863E3D5EC15CC000DM2PR0201MB1087_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hey All:
+SGlsc3Q6DQoNCllvdSBjYW4gc3BlY2lmeSB3aGF0IGZpbGVzIGdldCBpbnN0YWxsZWQgdG8gd2hh
+dCBwYWNrYWdlcyB3aXRoIEZJTEVTXyR7UE59LTxwYWNrYWdlX25hbWU+DQoNCkluIHlvdXIgY2Fz
+ZSwgc29tZXRoaW5nIGxpa2U6DQoNCkZJTEVTXyR7UE59ID0gIiR7bGliZGlyfS9saWJEaWdpdGFs
+KiINCg0KRklMRVNfJHtQTn0tZGJnID0g4oCcIiR7bGliZGlyfS8uZGVidWcvKiINCg0Kd291bGQg
+cHJvYmFibHkgd29yayBmaW5lLg0KDQpJ4oCZZCBhbHNvIHJlY29tbWVuZCB1c2luZyDigJxvZV9y
+dW5tYWtl4oCdIGluc3RlYWQgb2Yg4oCcbWFrZeKAnSBpbiB5b3VyIGJ1aWxkIGZ1bmN0aW9uLg0K
+DQotRXJpaw0KDQpGcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5
+b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBEYW5pZWwuDQpTZW50
+OiBXZWRuZXNkYXksIE1hcmNoIDE4LCAyMDE1IDEyOjQ4IFBNDQpUbzogeW9jdG9AeW9jdG9wcm9q
+ZWN0Lm9yZw0KU3ViamVjdDogW3lvY3RvXSAucnBtIG5vdCBiZWluZyBnZW5lcmF0ZWQgKG9yIGVt
+cHR5KQ0KDQpIaSBhbGwsDQpJIHdyaXRlIGEgcmVjaXBlIHRvIGJ1aWxkIGFuIEpOSSBsYXllciBm
+b3IgbXkgQyBsaWJyYXJ5LCB0aGUgSk5JIGxpYnJhcnkgZ2V0cyBjb21waWxlZCByaWdodCwgYnV0
+IG5vIC5ycG0gaXMgZ2VuZXJhdGVkIGJlc2lkZXMgLWRldiBhbmQgLWRiZy4gSSBzdXNwZWN0IHRo
+YXQgdGhlIHJwbSBpcyBnZXR0aW5nIGVtcHR5Lg0KSGVyZSBpcyB0aGUgcmVjaXBlOiBodHRwOi8v
+cGFzdGViaW4uY29tL3ZxdGFNMUZ2DQpMb29raW5nIG9uIHBhY2thZ2UgZGlyZWN0b3J5IEkgZ290
+IHRoZSBjb21waWxlZCAuc28ncw0KW3Jvb3RAYXJjaCAxLjAtcjBdIyBmaW5kIHBhY2thZ2UNCnBh
+Y2thZ2UNCnBhY2thZ2UvdXNyDQpwYWNrYWdlL3Vzci9saWINCnBhY2thZ2UvdXNyL2xpYi9saWJE
+aWdpdGFsSW5wdXRKbmkuc28NCnBhY2thZ2UvdXNyL2xpYi9saWJEaWdpdGFsT3V0cHV0Sm5pLnNv
+DQpwYWNrYWdlL3Vzci9saWIvLmRlYnVnDQpwYWNrYWdlL3Vzci9saWIvLmRlYnVnL2xpYkRpZ2l0
+YWxPdXRwdXRKbmkuc28NCnBhY2thZ2UvdXNyL2xpYi8uZGVidWcvbGliRGlnaXRhbElucHV0Sm5p
+LnNvDQpCdXQgb24gcGFja2FnZXMtc3BsaXQgSSBnb3Qgbm90aGluZzoNCltyb290QGFyY2ggMS4w
+LXIwXSMgbHMgcGFja2FnZXMtc3BsaXQvbGliZGlnaXRhbGlvLWpuaQ0KdG90YWwgMA0KDQpBbnkg
+aWRlYSB3aGF0IEknbSBtaXNzaW5nPw0KDQpSZWdhcmRzLA0KSGlsc3QNCg0KLS0NCiJEbyBvciBk
+byBub3QuIFRoZXJlIGlzIG5vIHRyeSINCiAgWW9kYSBNYXN0ZXINCkRpc2NsYWltZXI6IFRoaXMg
+bWVzc2FnZSBjb250YWlucyBpbmZvcm1hdGlvbiB0aGF0IG1heSBiZSBwcml2aWxlZ2VkIG9yIGNv
+bmZpZGVudGlhbCBhbmQgaXMgdGhlIHByb3BlcnR5IG9mIEFnSnVuY3Rpb24gSW5jIGFuZCBpdHMg
+c3Vic2lkaWFyaWVzLiBJdCBpcyBpbnRlbmRlZCBvbmx5IGZvciB0aGUgcGVyc29uIHRvIHdob20g
+aXQgaXMgYWRkcmVzc2VkLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50LCB5
+b3UgYXJlIG5vdCBhdXRob3JpemVkIHRvIHJlYWQsIHByaW50LCByZXRhaW4sIGNvcHksIGRpc3Nl
+bWluYXRlLCBkaXN0cmlidXRlLCBvciB1c2UgdGhpcyBtZXNzYWdlIG9yIGFueSBwYXJ0IHRoZXJl
+b2YuIElmIHlvdSByZWNlaXZlIHRoaXMgbWVzc2FnZSBpbiBlcnJvciwgcGxlYXNlIG5vdGlmeSB0
+aGUgc2VuZGVyIGltbWVkaWF0ZWx5IGFuZCBkZWxldGUgYWxsIGNvcGllcyBvZiB0aGlzIG1lc3Nh
+Z2UuDQo=
 
-I'm trying to switch a large project we've been working on for years from T=
-inyCore to yocto.
+--_000_DM2PR0201MB1087B8847B8B5863E3D5EC15CC000DM2PR0201MB1087_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I've avoided dealing with this up until now, but it can't wait any longer.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
+DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
+b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
+Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
+dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0K
+CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIs
+c2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHls
+ZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30N
+CkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4g
+MS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9u
+MTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0
+cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1b
+aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRt
+YXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5k
+aWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1
+cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OyxzYW5zLXNlcmlmIj5IaWxzdDo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
+dDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+WW91IGNhbiBzcGVjaWZ5IHdo
+YXQgZmlsZXMgZ2V0IGluc3RhbGxlZCB0byB3aGF0IHBhY2thZ2VzIHdpdGggRklMRVNfJHtQTn0t
+Jmx0O3BhY2thZ2VfbmFtZSZndDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
+YWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+SW4geW91ciBjYXNlLCBzb21ldGhp
+bmcgbGlrZTo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
+LHNhbnMtc2VyaWYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
+bGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RklMRVNfJHtQTn0gPSAmcXVvdDske2xpYmRpcn0vPC9z
+cGFuPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
+aWYiPmxpYkRpZ2l0YWwqPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+JnF1b3Q7PG86cD48L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
+MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj48bzpwPiZu
+YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
+aWYiPkZJTEVTXyR7UE59LWRiZyA9IOKAnCZxdW90OyR7bGliZGlyfS8uZGVidWcvPC9zcGFuPjxz
+cGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPio8
+L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
+aWJyaSZxdW90OyxzYW5zLXNlcmlmIj4mcXVvdDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
+eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+d291bGQgcHJvYmFi
+bHkgd29yayBmaW5lLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
+cXVvdDssc2Fucy1zZXJpZiI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5J4oCZZCBhbHNvIHJlY29tbWVuZCB1c2luZyDi
+gJxvZV9ydW5tYWtl4oCdIGluc3RlYWQgb2Yg4oCcbWFrZeKAnSBpbiB5b3VyIGJ1aWxkIGZ1bmN0
+aW9uLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
+cy1zZXJpZiI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OyxzYW5zLXNlcmlmIj4tRXJpazxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PHNwYW4gc3R5bGU9ImZvbnQt
+c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2Nv
+bG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvYT48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
+cXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMt
+c2VyaWYiPiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3Vu
+Y2VzQHlvY3RvcHJvamVjdC5vcmddDQo8Yj5PbiBCZWhhbGYgT2YgPC9iPkRhbmllbC48YnI+DQo8
+Yj5TZW50OjwvYj4gV2VkbmVzZGF5LCBNYXJjaCAxOCwgMjAxNSAxMjo0OCBQTTxicj4NCjxiPlRv
+OjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBbeW9jdG9d
+IC5ycG0gbm90IGJlaW5nIGdlbmVyYXRlZCAob3IgZW1wdHkpPG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRp
+dj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJn
+aW4tYm90dG9tOjEyLjBwdCI+SGkgYWxsLCA8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij5JIHdyaXRlIGEgcmVj
+aXBlIHRvIGJ1aWxkIGFuIEpOSSBsYXllciBmb3IgbXkgQyBsaWJyYXJ5LCB0aGUgSk5JIGxpYnJh
+cnkgZ2V0cyBjb21waWxlZCByaWdodCwgYnV0IG5vIC5ycG0gaXMgZ2VuZXJhdGVkIGJlc2lkZXMg
+LWRldiBhbmQgLWRiZy4gSSBzdXNwZWN0IHRoYXQgdGhlIHJwbSBpcyBnZXR0aW5nIGVtcHR5Lg0K
+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJn
+aW4tYm90dG9tOjEyLjBwdCI+SGVyZSBpcyB0aGUgcmVjaXBlOiA8YSBocmVmPSJodHRwOi8vcGFz
+dGViaW4uY29tL3ZxdGFNMUZ2Ij4NCmh0dHA6Ly9wYXN0ZWJpbi5jb20vdnF0YU0xRnY8L2E+PG86
+cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4t
+Ym90dG9tOjEyLjBwdCI+TG9va2luZyBvbiBwYWNrYWdlIGRpcmVjdG9yeSBJIGdvdCB0aGUgY29t
+cGlsZWQgLnNvJ3MNCjxicj4NCltyb290QGFyY2ggMS4wLXIwXSMgZmluZCBwYWNrYWdlPGJyPg0K
+cGFja2FnZTxicj4NCnBhY2thZ2UvdXNyPGJyPg0KcGFja2FnZS91c3IvbGliPGJyPg0KcGFja2Fn
+ZS91c3IvbGliL2xpYkRpZ2l0YWxJbnB1dEpuaS5zbzxicj4NCnBhY2thZ2UvdXNyL2xpYi9saWJE
+aWdpdGFsT3V0cHV0Sm5pLnNvPGJyPg0KcGFja2FnZS91c3IvbGliLy5kZWJ1Zzxicj4NCnBhY2th
+Z2UvdXNyL2xpYi8uZGVidWcvbGliRGlnaXRhbE91dHB1dEpuaS5zbzxicj4NCnBhY2thZ2UvdXNy
+L2xpYi8uZGVidWcvbGliRGlnaXRhbElucHV0Sm5pLnNvPG86cD48L286cD48L3A+DQo8L2Rpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+QnV0IG9u
+IHBhY2thZ2VzLXNwbGl0IEkgZ290IG5vdGhpbmc6PG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij5bcm9vdEBhcmNo
+IDEuMC1yMF0jIGxzIHBhY2thZ2VzLXNwbGl0L2xpYmRpZ2l0YWxpby1qbmk8YnI+DQp0b3RhbCAw
+PGJyPg0KPGJyPg0KPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPkFueSBpZGVhIHdoYXQgSSdtIG1p
+c3Npbmc/PGJyPg0KPGJyPg0KPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj5SZWdhcmRzLDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+SGlsc3Q8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxk
+aXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48YnI+DQotLSA8bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIiBhbGlnbj0icmlnaHQiIHN0eWxlPSJ0ZXh0LWFsaWduOnJpZ2h0Ij48aT4mcXVvdDtE
+byBvciBkbyBub3QuIFRoZXJlIGlzIG5vIHRyeSZxdW90OzwvaT48YnI+DQo8aT4mbmJzcDsgPGI+
+WW9kYSBNYXN0ZXI8L2I+PC9pPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2
+Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+
+DQo8L2Rpdj4NCkRpc2NsYWltZXI6IFRoaXMgbWVzc2FnZSBjb250YWlucyBpbmZvcm1hdGlvbiB0
+aGF0IG1heSBiZSBwcml2aWxlZ2VkIG9yIGNvbmZpZGVudGlhbCBhbmQgaXMgdGhlIHByb3BlcnR5
+IG9mIEFnSnVuY3Rpb24gSW5jIGFuZCBpdHMgc3Vic2lkaWFyaWVzLiBJdCBpcyBpbnRlbmRlZCBv
+bmx5IGZvciB0aGUgcGVyc29uIHRvIHdob20gaXQgaXMgYWRkcmVzc2VkLiBJZiB5b3UgYXJlIG5v
+dCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50LCB5b3UgYXJlIG5vdCBhdXRob3JpemVkDQogdG8gcmVh
+ZCwgcHJpbnQsIHJldGFpbiwgY29weSwgZGlzc2VtaW5hdGUsIGRpc3RyaWJ1dGUsIG9yIHVzZSB0
+aGlzIG1lc3NhZ2Ugb3IgYW55IHBhcnQgdGhlcmVvZi4gSWYgeW91IHJlY2VpdmUgdGhpcyBtZXNz
+YWdlIGluIGVycm9yLCBwbGVhc2Ugbm90aWZ5IHRoZSBzZW5kZXIgaW1tZWRpYXRlbHkgYW5kIGRl
+bGV0ZSBhbGwgY29waWVzIG9mIHRoaXMgbWVzc2FnZS4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-I want to keep the yocto SDK that we distribute to our development team as =
-lean as possible so that we don't have to send out ~100MB install scripts e=
-very week.
-
-We do, however, have a lot of internally developed libraries that change du=
-ring each major release, so I need a simple way of installing the packages =
-for those libraries and their dependencies to the target sysroot in the SDK=
- dir (/opt/poky/1.7.1/sysroots/<target_arch>).
-
-The documentation covers this scenario briefly here:
-
-http://www.yoctoproject.org/docs/1.7.1/adt-manual/adt-manual.html#configuri=
-ng-the-pms
-
-Here's the problem. Yocto sets the default package output type to RPM, but =
-the example uses OPKG. So I switched the output to ipk, but OPKG doesn't al=
-low capital letters in the package names. I've put together about 40 some r=
-ecipes for our libraries and tools, many of which have capital letters.
-
-I've tried to get the rpm command line tool to install packages from the bu=
-ild repo to the sysroot directory, but haven't had any luck. After a bit of=
- Googling, I've found most RPM reference for repos will refer to YUM comman=
-ds, which isn't much help.
-
-I also tried to use smartpm on my workstation since it's the recommended pa=
-ckage manager for runtime (on the target itself), but smart has very little=
- reference so I ran into a wall there as well.
-
-Right now it looks like I have two options:
-
-
-1)      Bite the bullet and switch all my recipes to use names that don't v=
-iolate OPKGs naming rules.
-
-2)      Find a way to make RPM work.
-
-What do you guys recommend? Any suggestions for the RPM route?
-
-Thanks.
--Erik
-
-Disclaimer: This message contains information that may be privileged or con=
-fidential and is the property of AgJunction Inc and its subsidiaries. It is=
- intended only for the person to whom it is addressed. If you are not the i=
-ntended recipient, you are not authorized to read, print, retain, copy, dis=
-seminate, distribute, or use this message or any part thereof. If you recei=
-ve this message in error, please notify the sender immediately and delete a=
-ll copies of this message.
-
---_000_DM2PR0201MB1087DD784F2B16CF0C347BBECC000DM2PR0201MB1087_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1555001466;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1961236382 67698705 67698713 67698715 67698703 67698=
-713 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-text:"%1\)";
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hey All:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I&#8217;m trying to switch a large project we&#8217;=
-ve been working on for years from TinyCore to yocto.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I&#8217;ve avoided dealing with this up until now, b=
-ut it can&#8217;t wait any longer.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I want to keep the yocto SDK that we distribute to o=
-ur development team as lean as possible so that we don&#8217;t have to send=
- out ~100MB install scripts every week.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">We do, however, have a lot of internally developed l=
-ibraries that change during each major release, so I need a simple way of i=
-nstalling the packages for those libraries and their dependencies to the ta=
-rget sysroot in the SDK dir (/opt/poky/1.7.1/sysroots/&lt;target_arch&gt;).=
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The documentation covers this scenario briefly here:=
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><a href=3D"http://www.yoctoproject.org/docs/1.7.1/ad=
-t-manual/adt-manual.html#configuring-the-pms">http://www.yoctoproject.org/d=
-ocs/1.7.1/adt-manual/adt-manual.html#configuring-the-pms</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Here&#8217;s the problem. Yocto sets the default pac=
-kage output type to RPM, but the example uses OPKG. So I switched the outpu=
-t to ipk, but OPKG doesn&#8217;t allow capital letters in the package names=
-. I&#8217;ve put together about 40 some recipes for
- our libraries and tools, many of which have capital letters.<o:p></o:p></p=
->
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I&#8217;ve tried to get the rpm command line tool to=
- install packages from the build repo to the sysroot directory, but haven&#=
-8217;t had any luck. After a bit of Googling, I&#8217;ve found most RPM ref=
-erence for repos will refer to YUM commands, which isn&#8217;t
- much help.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I also tried to use smartpm on my workstation since =
-it&#8217;s the recommended package manager for runtime (on the target itsel=
-f), but smart has very little reference so I ran into a wall there as well.=
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Right now it looks like I have two options:<o:p></o:=
-p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">1)<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]>Bite the bullet and switch all my recipes to use na=
-mes that don&#8217;t violate OPKGs naming rules.<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">2)<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]>Find a way to make RPM work.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">What do you guys recommend? Any suggestions for the =
-RPM route?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks.<o:p></o:p></p>
-<p class=3D"MsoNormal">-Erik<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-Disclaimer: This message contains information that may be privileged or con=
-fidential and is the property of AgJunction Inc and its subsidiaries. It is=
- intended only for the person to whom it is addressed. If you are not the i=
-ntended recipient, you are not authorized
- to read, print, retain, copy, disseminate, distribute, or use this message=
- or any part thereof. If you receive this message in error, please notify t=
-he sender immediately and delete all copies of this message.
-</body>
-</html>
-
---_000_DM2PR0201MB1087DD784F2B16CF0C347BBECC000DM2PR0201MB1087_--
+--_000_DM2PR0201MB1087B8847B8B5863E3D5EC15CC000DM2PR0201MB1087_--
