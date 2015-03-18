@@ -1,65 +1,52 @@
-Return-Path: <EBolton@agjunction.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ED59DE00828; Wed, 18 Mar 2015 13:29:30 -0700 (PDT)
+	id A05F1E00828; Wed, 18 Mar 2015 16:35:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [157.56.111.137 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 2027 seconds by postgrey-1.32 at yocto-www;
-	Wed, 18 Mar 2015 13:29:28 PDT
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1bon0137.outbound.protection.outlook.com [157.56.111.137])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85014E0034E
-	for <yocto@yoctoproject.org>; Wed, 18 Mar 2015 13:29:28 -0700 (PDT)
-Received: from DM2PR0201MB1087.namprd02.prod.outlook.com (25.160.221.144) by
-	DM2PR0201MB1088.namprd02.prod.outlook.com (25.160.221.145) with
-	Microsoft
-	SMTP Server (TLS) id 15.1.125.14; Wed, 18 Mar 2015 19:55:38 +0000
-Received: from DM2PR0201MB1087.namprd02.prod.outlook.com ([25.160.221.144]) by
-	DM2PR0201MB1087.namprd02.prod.outlook.com ([25.160.221.144]) with
-	mapi id 15.01.0125.002; Wed, 18 Mar 2015 19:55:38 +0000
-From: Erik Bolton <EBolton@agjunction.com>
-To: Daniel. <danielhilst@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] .rpm not being generated (or empty)
-Thread-Index: AQHQYbSUMo+59IHwUUC+aHjkpBB7Ep0ippLg
-Date: Wed, 18 Mar 2015 19:55:37 +0000
-Message-ID: <DM2PR0201MB1087B8847B8B5863E3D5EC15CC000@DM2PR0201MB1087.namprd02.prod.outlook.com>
-References: <CAF3SDA6jaYBacf3-bQWeqXSM1nWaX6DLZ=zcFOLTXRmM4AHyxw@mail.gmail.com>
-In-Reply-To: <CAF3SDA6jaYBacf3-bQWeqXSM1nWaX6DLZ=zcFOLTXRmM4AHyxw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [208.93.135.69]
-authentication-results: gmail.com; dkim=none (message not signed)
-	header.d=none;
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DM2PR0201MB1088;
-x-forefront-antispam-report: BMV:1; SFV:NSPM;
-	SFS:(10019020)(377454003)(53754006)(62966003)(77156002)(76576001)(54356999)(50986999)(76176999)(2501003)(15975445007)(102836002)(99286002)(106116001)(2900100001)(2950100001)(15395725005)(33656002)(19580405001)(16236675004)(19580395003)(19625215002)(66066001)(86362001)(46102003)(40100003)(122556002)(19300405004)(92566002)(107886001)(19617315012)(87936001)(74316001)(2656002)(80792004);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:DM2PR0201MB1088;
-	H:DM2PR0201MB1087.namprd02.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; LANG:en; 
-x-microsoft-antispam-prvs: <DM2PR0201MB1088AFFC91828084880FCA8FCC000@DM2PR0201MB1088.namprd02.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(5002010)(5005006); SRVR:DM2PR0201MB1088; BCL:0;
-	PCL:0; RULEID:; SRVR:DM2PR0201MB1088; 
-x-forefront-prvs: 051900244E
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ie0-f169.google.com (mail-ie0-f169.google.com
+	[209.85.223.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33BEFE0034E
+	for <yocto@yoctoproject.org>; Wed, 18 Mar 2015 16:35:36 -0700 (PDT)
+Received: by iecvj10 with SMTP id vj10so53109071iec.0
+	for <yocto@yoctoproject.org>; Wed, 18 Mar 2015 16:35:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=MJm1TvrI/+Vb+IX2UPnnlbC3G3otd2RgymlP6ZrBIZk=;
+	b=LZ7IPl8Qa/tXiI5GXTYDLkWJYY6l4h1tQXqhGqDBr585TS3cV8YXMX9k2zip5VR/j0
+	5agq4uwQryaanGu4GyC+N6jgQUlyy6XroTTfqNtJn/ylFb+hVfAKBA9uxJG/CGLyi+8o
+	chVE69oIo31cx+MySplQRNUlXDPqzzviPf2rDSXiQqynPc29ixMg8lc/87aodjNva0PK
+	bQGoPSWXVSf4c9TMVcSaPU5ErA7jcH7srHrmcNdsvl4rYw2qPNqnmcPFYhLMcNOvUsVF
+	Ckphv3Nl62fYZXQHRF0sEIZL3c8IBMKKPjXRPvtGR7bIQE1K7+EC6v0WdDvWTUWj2Qkk
+	U6Ng==
+X-Received: by 10.107.6.212 with SMTP id f81mr129951067ioi.37.1426721735875;
+	Wed, 18 Mar 2015 16:35:35 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: agjunction.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2015 19:55:37.8586 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 5f7bd4f9-3eab-4e10-b6c3-fdfbbaf69f20
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM2PR0201MB1088
-Subject: Re: .rpm not being generated (or empty)
+Received: by 10.50.117.7 with HTTP; Wed, 18 Mar 2015 16:35:05 -0700 (PDT)
+In-Reply-To: <CAALGJZaXn=ohTynN0sk_Qz8GPahX44AmdPgQ4=xqSmU8kpM0fg@mail.gmail.com>
+References: <CAALGJZaXn=ohTynN0sk_Qz8GPahX44AmdPgQ4=xqSmU8kpM0fg@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 18 Mar 2015 16:35:05 -0700
+Message-ID: <CAMKF1srCKEL8s_xb8FD8g21ZwQPNRYZeWxvV7GNLrZWMKG==9Q@mail.gmail.com>
+To: Christian Ege <k4230r6@gmail.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: How to support arm-none-eabi toolchain for u-boot on Amlogic
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,176 +58,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Mar 2015 20:29:31 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DM2PR0201MB1087B8847B8B5863E3D5EC15CC000DM2PR0201MB1087_"
+X-List-Received-Date: Wed, 18 Mar 2015 23:35:38 -0000
+Content-Type: text/plain; charset=UTF-8
 
---_000_DM2PR0201MB1087B8847B8B5863E3D5EC15CC000DM2PR0201MB1087_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Wed, Mar 18, 2015 at 12:55 PM, Christian Ege <k4230r6@gmail.com> wrote:
+> Hello,
+>
+> it looks like that Amlogic based devices like the ODROID-C1 [1]
+> requires their u-boot compiled with an arm-none-eabi toolchain. The
+> rest kernel and rootfs is compiled with standard arm eabi toolchain. I
+> am wondering how to support this in yocto/openembedded.
 
-SGlsc3Q6DQoNCllvdSBjYW4gc3BlY2lmeSB3aGF0IGZpbGVzIGdldCBpbnN0YWxsZWQgdG8gd2hh
-dCBwYWNrYWdlcyB3aXRoIEZJTEVTXyR7UE59LTxwYWNrYWdlX25hbWU+DQoNCkluIHlvdXIgY2Fz
-ZSwgc29tZXRoaW5nIGxpa2U6DQoNCkZJTEVTXyR7UE59ID0gIiR7bGliZGlyfS9saWJEaWdpdGFs
-KiINCg0KRklMRVNfJHtQTn0tZGJnID0g4oCcIiR7bGliZGlyfS8uZGVidWcvKiINCg0Kd291bGQg
-cHJvYmFibHkgd29yayBmaW5lLg0KDQpJ4oCZZCBhbHNvIHJlY29tbWVuZCB1c2luZyDigJxvZV9y
-dW5tYWtl4oCdIGluc3RlYWQgb2Yg4oCcbWFrZeKAnSBpbiB5b3VyIGJ1aWxkIGZ1bmN0aW9uLg0K
-DQotRXJpaw0KDQpGcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5
-b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBEYW5pZWwuDQpTZW50
-OiBXZWRuZXNkYXksIE1hcmNoIDE4LCAyMDE1IDEyOjQ4IFBNDQpUbzogeW9jdG9AeW9jdG9wcm9q
-ZWN0Lm9yZw0KU3ViamVjdDogW3lvY3RvXSAucnBtIG5vdCBiZWluZyBnZW5lcmF0ZWQgKG9yIGVt
-cHR5KQ0KDQpIaSBhbGwsDQpJIHdyaXRlIGEgcmVjaXBlIHRvIGJ1aWxkIGFuIEpOSSBsYXllciBm
-b3IgbXkgQyBsaWJyYXJ5LCB0aGUgSk5JIGxpYnJhcnkgZ2V0cyBjb21waWxlZCByaWdodCwgYnV0
-IG5vIC5ycG0gaXMgZ2VuZXJhdGVkIGJlc2lkZXMgLWRldiBhbmQgLWRiZy4gSSBzdXNwZWN0IHRo
-YXQgdGhlIHJwbSBpcyBnZXR0aW5nIGVtcHR5Lg0KSGVyZSBpcyB0aGUgcmVjaXBlOiBodHRwOi8v
-cGFzdGViaW4uY29tL3ZxdGFNMUZ2DQpMb29raW5nIG9uIHBhY2thZ2UgZGlyZWN0b3J5IEkgZ290
-IHRoZSBjb21waWxlZCAuc28ncw0KW3Jvb3RAYXJjaCAxLjAtcjBdIyBmaW5kIHBhY2thZ2UNCnBh
-Y2thZ2UNCnBhY2thZ2UvdXNyDQpwYWNrYWdlL3Vzci9saWINCnBhY2thZ2UvdXNyL2xpYi9saWJE
-aWdpdGFsSW5wdXRKbmkuc28NCnBhY2thZ2UvdXNyL2xpYi9saWJEaWdpdGFsT3V0cHV0Sm5pLnNv
-DQpwYWNrYWdlL3Vzci9saWIvLmRlYnVnDQpwYWNrYWdlL3Vzci9saWIvLmRlYnVnL2xpYkRpZ2l0
-YWxPdXRwdXRKbmkuc28NCnBhY2thZ2UvdXNyL2xpYi8uZGVidWcvbGliRGlnaXRhbElucHV0Sm5p
-LnNvDQpCdXQgb24gcGFja2FnZXMtc3BsaXQgSSBnb3Qgbm90aGluZzoNCltyb290QGFyY2ggMS4w
-LXIwXSMgbHMgcGFja2FnZXMtc3BsaXQvbGliZGlnaXRhbGlvLWpuaQ0KdG90YWwgMA0KDQpBbnkg
-aWRlYSB3aGF0IEknbSBtaXNzaW5nPw0KDQpSZWdhcmRzLA0KSGlsc3QNCg0KLS0NCiJEbyBvciBk
-byBub3QuIFRoZXJlIGlzIG5vIHRyeSINCiAgWW9kYSBNYXN0ZXINCkRpc2NsYWltZXI6IFRoaXMg
-bWVzc2FnZSBjb250YWlucyBpbmZvcm1hdGlvbiB0aGF0IG1heSBiZSBwcml2aWxlZ2VkIG9yIGNv
-bmZpZGVudGlhbCBhbmQgaXMgdGhlIHByb3BlcnR5IG9mIEFnSnVuY3Rpb24gSW5jIGFuZCBpdHMg
-c3Vic2lkaWFyaWVzLiBJdCBpcyBpbnRlbmRlZCBvbmx5IGZvciB0aGUgcGVyc29uIHRvIHdob20g
-aXQgaXMgYWRkcmVzc2VkLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50LCB5
-b3UgYXJlIG5vdCBhdXRob3JpemVkIHRvIHJlYWQsIHByaW50LCByZXRhaW4sIGNvcHksIGRpc3Nl
-bWluYXRlLCBkaXN0cmlidXRlLCBvciB1c2UgdGhpcyBtZXNzYWdlIG9yIGFueSBwYXJ0IHRoZXJl
-b2YuIElmIHlvdSByZWNlaXZlIHRoaXMgbWVzc2FnZSBpbiBlcnJvciwgcGxlYXNlIG5vdGlmeSB0
-aGUgc2VuZGVyIGltbWVkaWF0ZWx5IGFuZCBkZWxldGUgYWxsIGNvcGllcyBvZiB0aGlzIG1lc3Nh
-Z2UuDQo=
+are there any specific reasons for doing that ?
+can it be done by passing -ffreestanding option via CFLAGS
+afterall uboot is a baremetal/standalone app.
 
---_000_DM2PR0201MB1087B8847B8B5863E3D5EC15CC000DM2PR0201MB1087_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
-
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
-dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0K
-CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIs
-c2Fucy1zZXJpZjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHls
-ZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30N
-CkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4g
-MS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9u
-MTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0
-cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1b
-aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRt
-YXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5k
-aWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0iYmx1ZSIgdmxpbms9InB1
-cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmIj5IaWxzdDo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
-dDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+WW91IGNhbiBzcGVjaWZ5IHdo
-YXQgZmlsZXMgZ2V0IGluc3RhbGxlZCB0byB3aGF0IHBhY2thZ2VzIHdpdGggRklMRVNfJHtQTn0t
-Jmx0O3BhY2thZ2VfbmFtZSZndDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
-YWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+SW4geW91ciBjYXNlLCBzb21ldGhp
-bmcgbGlrZTo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
-LHNhbnMtc2VyaWYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
-bGlicmkmcXVvdDssc2Fucy1zZXJpZiI+RklMRVNfJHtQTn0gPSAmcXVvdDske2xpYmRpcn0vPC9z
-cGFuPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
-aWYiPmxpYkRpZ2l0YWwqPC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+JnF1b3Q7PG86cD48L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
-MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj48bzpwPiZu
-YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
-aWYiPkZJTEVTXyR7UE59LWRiZyA9IOKAnCZxdW90OyR7bGliZGlyfS8uZGVidWcvPC9zcGFuPjxz
-cGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPio8
-L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
-aWJyaSZxdW90OyxzYW5zLXNlcmlmIj4mcXVvdDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
-eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+d291bGQgcHJvYmFi
-bHkgd29yayBmaW5lLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssc2Fucy1zZXJpZiI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5J4oCZZCBhbHNvIHJlY29tbWVuZCB1c2luZyDi
-gJxvZV9ydW5tYWtl4oCdIGluc3RlYWQgb2Yg4oCcbWFrZeKAnSBpbiB5b3VyIGJ1aWxkIGZ1bmN0
-aW9uLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
-cy1zZXJpZiI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
-aSZxdW90OyxzYW5zLXNlcmlmIj4tRXJpazxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9zZSI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2Nv
-bG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvYT48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
-cXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMt
-c2VyaWYiPiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3Vu
-Y2VzQHlvY3RvcHJvamVjdC5vcmddDQo8Yj5PbiBCZWhhbGYgT2YgPC9iPkRhbmllbC48YnI+DQo8
-Yj5TZW50OjwvYj4gV2VkbmVzZGF5LCBNYXJjaCAxOCwgMjAxNSAxMjo0OCBQTTxicj4NCjxiPlRv
-OjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBbeW9jdG9d
-IC5ycG0gbm90IGJlaW5nIGdlbmVyYXRlZCAob3IgZW1wdHkpPG86cD48L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRp
-dj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJn
-aW4tYm90dG9tOjEyLjBwdCI+SGkgYWxsLCA8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij5JIHdyaXRlIGEgcmVj
-aXBlIHRvIGJ1aWxkIGFuIEpOSSBsYXllciBmb3IgbXkgQyBsaWJyYXJ5LCB0aGUgSk5JIGxpYnJh
-cnkgZ2V0cyBjb21waWxlZCByaWdodCwgYnV0IG5vIC5ycG0gaXMgZ2VuZXJhdGVkIGJlc2lkZXMg
-LWRldiBhbmQgLWRiZy4gSSBzdXNwZWN0IHRoYXQgdGhlIHJwbSBpcyBnZXR0aW5nIGVtcHR5Lg0K
-PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJn
-aW4tYm90dG9tOjEyLjBwdCI+SGVyZSBpcyB0aGUgcmVjaXBlOiA8YSBocmVmPSJodHRwOi8vcGFz
-dGViaW4uY29tL3ZxdGFNMUZ2Ij4NCmh0dHA6Ly9wYXN0ZWJpbi5jb20vdnF0YU0xRnY8L2E+PG86
-cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4t
-Ym90dG9tOjEyLjBwdCI+TG9va2luZyBvbiBwYWNrYWdlIGRpcmVjdG9yeSBJIGdvdCB0aGUgY29t
-cGlsZWQgLnNvJ3MNCjxicj4NCltyb290QGFyY2ggMS4wLXIwXSMgZmluZCBwYWNrYWdlPGJyPg0K
-cGFja2FnZTxicj4NCnBhY2thZ2UvdXNyPGJyPg0KcGFja2FnZS91c3IvbGliPGJyPg0KcGFja2Fn
-ZS91c3IvbGliL2xpYkRpZ2l0YWxJbnB1dEpuaS5zbzxicj4NCnBhY2thZ2UvdXNyL2xpYi9saWJE
-aWdpdGFsT3V0cHV0Sm5pLnNvPGJyPg0KcGFja2FnZS91c3IvbGliLy5kZWJ1Zzxicj4NCnBhY2th
-Z2UvdXNyL2xpYi8uZGVidWcvbGliRGlnaXRhbE91dHB1dEpuaS5zbzxicj4NCnBhY2thZ2UvdXNy
-L2xpYi8uZGVidWcvbGliRGlnaXRhbElucHV0Sm5pLnNvPG86cD48L286cD48L3A+DQo8L2Rpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tYm90dG9tOjEyLjBwdCI+QnV0IG9u
-IHBhY2thZ2VzLXNwbGl0IEkgZ290IG5vdGhpbmc6PG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij5bcm9vdEBhcmNo
-IDEuMC1yMF0jIGxzIHBhY2thZ2VzLXNwbGl0L2xpYmRpZ2l0YWxpby1qbmk8YnI+DQp0b3RhbCAw
-PGJyPg0KPGJyPg0KPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPkFueSBpZGVhIHdoYXQgSSdtIG1p
-c3Npbmc/PGJyPg0KPGJyPg0KPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj5SZWdhcmRzLDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+SGlsc3Q8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxk
-aXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48YnI+DQotLSA8bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIiBhbGlnbj0icmlnaHQiIHN0eWxlPSJ0ZXh0LWFsaWduOnJpZ2h0Ij48aT4mcXVvdDtE
-byBvciBkbyBub3QuIFRoZXJlIGlzIG5vIHRyeSZxdW90OzwvaT48YnI+DQo8aT4mbmJzcDsgPGI+
-WW9kYSBNYXN0ZXI8L2I+PC9pPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2
-Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+
-DQo8L2Rpdj4NCkRpc2NsYWltZXI6IFRoaXMgbWVzc2FnZSBjb250YWlucyBpbmZvcm1hdGlvbiB0
-aGF0IG1heSBiZSBwcml2aWxlZ2VkIG9yIGNvbmZpZGVudGlhbCBhbmQgaXMgdGhlIHByb3BlcnR5
-IG9mIEFnSnVuY3Rpb24gSW5jIGFuZCBpdHMgc3Vic2lkaWFyaWVzLiBJdCBpcyBpbnRlbmRlZCBv
-bmx5IGZvciB0aGUgcGVyc29uIHRvIHdob20gaXQgaXMgYWRkcmVzc2VkLiBJZiB5b3UgYXJlIG5v
-dCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50LCB5b3UgYXJlIG5vdCBhdXRob3JpemVkDQogdG8gcmVh
-ZCwgcHJpbnQsIHJldGFpbiwgY29weSwgZGlzc2VtaW5hdGUsIGRpc3RyaWJ1dGUsIG9yIHVzZSB0
-aGlzIG1lc3NhZ2Ugb3IgYW55IHBhcnQgdGhlcmVvZi4gSWYgeW91IHJlY2VpdmUgdGhpcyBtZXNz
-YWdlIGluIGVycm9yLCBwbGVhc2Ugbm90aWZ5IHRoZSBzZW5kZXIgaW1tZWRpYXRlbHkgYW5kIGRl
-bGV0ZSBhbGwgY29waWVzIG9mIHRoaXMgbWVzc2FnZS4NCjwvYm9keT4NCjwvaHRtbD4NCg==
-
---_000_DM2PR0201MB1087B8847B8B5863E3D5EC15CC000DM2PR0201MB1087_--
