@@ -1,54 +1,49 @@
-Return-Path: <eballetbo@gmail.com>
+Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4191BE00828; Wed, 18 Mar 2015 07:23:17 -0700 (PDT)
+	id 1652AE00828; Wed, 18 Mar 2015 12:48:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (eballetbo[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.182 listed in list.dnswl.org]
+	mail provider *      (danielhilst[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-we0-f182.google.com (mail-we0-f182.google.com
-	[74.125.82.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA1AEE0034E
-	for <yocto@yoctoproject.org>; Wed, 18 Mar 2015 07:23:13 -0700 (PDT)
-Received: by weop45 with SMTP id p45so33664348weo.0
-	for <yocto@yoctoproject.org>; Wed, 18 Mar 2015 07:23:12 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.181 listed in list.dnswl.org]
+Received: from mail-vc0-f181.google.com (mail-vc0-f181.google.com
+	[209.85.220.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 367BFE0034E
+	for <yocto@yoctoproject.org>; Wed, 18 Mar 2015 12:47:59 -0700 (PDT)
+Received: by mail-vc0-f181.google.com with SMTP id hy10so3158261vcb.12
+	for <yocto@yoctoproject.org>; Wed, 18 Mar 2015 12:47:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id;
-	bh=8ma0WVFh/Ic/K/vE0E+xYlYSvXicm4bjsBtT2Jlm4hk=;
-	b=lOyi6FSjqN2LF913TH3tDUDLybTwdGXk2GHnYfR9XBsyk03F9g4mk24NiKSlCd/FvU
-	tTFXzczfyd5dApnvy4CGoEZDsLnck58r0jgvhJrjbT7M3wdanmnm3RnSIEGcqiBYeyCZ
-	CijrZmshV1FbYyqDkvoDoqQcydcd2nqsjlUmYXyXKTh4+Tg3AkLIF7aFyv2kpmu3L7Q0
-	d+MLiYAicHuzFOcy21hjSpM0g0Zkq9Y/rAHzDBq8A0pkc1Z/gbisDHMmJhBxm8M1SRAs
-	hsYjqjS2/Td6C8e6Zu1xfkm8f/hLL7jfXzyVXzoUuYt32+RSHlUjc7mJj0AEMvnjI2ET
-	aNnA==
-X-Received: by 10.194.86.135 with SMTP id p7mr144977211wjz.89.1426688592048;
-	Wed, 18 Mar 2015 07:23:12 -0700 (PDT)
-Received: from localhost.localdomain ([89.128.229.22])
-	by mx.google.com with ESMTPSA id
-	ev7sm24705384wjb.47.2015.03.18.07.23.10
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 18 Mar 2015 07:23:11 -0700 (PDT)
-From: Enric Balletbo i Serra <eballetbo@gmail.com>
-X-Google-Original-From: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-To: yocto@yoctoproject.org, ajlennon@dynamicdevices.co.uk,
-	autif.mlist@gmail.com
-Date: Wed, 18 Mar 2015 15:23:02 +0100
-Message-Id: <1426688582-8302-1-git-send-email-enric.balletbo@collabora.com>
-X-Mailer: git-send-email 2.1.0
-Subject: [meta-mono][PATCH] mono: Support to build mono without X support.
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=NFXo4StPO27P4WgbrcRwprYyPZAnnGew8G3y/pq4pys=;
+	b=XIIVjdF1t+6qSQPqv58ITlSG7a5jbFX9B7HgS+PhPKRatWcMjNuH42iKX1d+P3MSWe
+	6Qa5yQ5SebsZxFKzp8n054tRcjNDvfPoQwSDtkV5EQwJlwGniRhUjYrU8KsmNb/zfm2n
+	S8yn7jwlZlwJ6iOr6lyyTMt/I5280cGUxoRT/OmUM6QY7QYV2utjVXNbCCF2+M2fsQ6N
+	dTHBctPwjO9s9FocbbAVBsYsr7BPh/x1A3MviXSGCb93fv39XpOGjKjPnp8Pwqw89EBG
+	xZ2gOYAxndTgNcxs6ZAgg/bcefN+F0KPJXpfkB4uTN0Ivg3xGAbqNo3Q7vNCn1JtdUug
+	Wp9Q==
+MIME-Version: 1.0
+X-Received: by 10.52.171.110 with SMTP id at14mr8245017vdc.97.1426708078528;
+	Wed, 18 Mar 2015 12:47:58 -0700 (PDT)
+Received: by 10.52.229.67 with HTTP; Wed, 18 Mar 2015 12:47:58 -0700 (PDT)
+Date: Wed, 18 Mar 2015 16:47:58 -0300
+Message-ID: <CAF3SDA6jaYBacf3-bQWeqXSM1nWaX6DLZ=zcFOLTXRmM4AHyxw@mail.gmail.com>
+From: "Daniel." <danielhilst@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: .rpm not being generated (or empty)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,74 +55,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Mar 2015 14:23:17 -0000
+X-List-Received-Date: Wed, 18 Mar 2015 19:48:03 -0000
+Content-Type: multipart/alternative; boundary=047d7b86f5c2380e240511955c89
 
-Use PACKAGECONFIG to build a version of mono with or without X support in
-function of x11 DISTRO_FEATURES.
+--047d7b86f5c2380e240511955c89
+Content-Type: text/plain; charset=UTF-8
 
-Tested on qemux86 (mono using X) and imx6 board (mono without X)
+Hi all,
 
-Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
----
- recipes-mono/mono/mono-native_3.12.1.bb |  8 ++++++--
- recipes-mono/mono/mono_3.12.1.bb        | 12 +++++++++---
- 2 files changed, 15 insertions(+), 5 deletions(-)
+I write a recipe to build an JNI layer for my C library, the JNI library
+gets compiled right, but no .rpm is generated besides -dev and -dbg. I
+suspect that the rpm is getting empty.
 
-diff --git a/recipes-mono/mono/mono-native_3.12.1.bb b/recipes-mono/mono/mono-native_3.12.1.bb
-index b575224..3afae4b 100644
---- a/recipes-mono/mono/mono-native_3.12.1.bb
-+++ b/recipes-mono/mono/mono-native_3.12.1.bb
-@@ -5,10 +5,14 @@ inherit native
- SRC_URI[md5sum] = "ccab015f0c54ffeccd2924b44885809c"
- SRC_URI[sha256sum] = "5d8cf153af2948c06bc9fbf5088f6834868e4db8e5f41c7cff76da173732b60d"
- 
--DEPENDS =+ "libgdiplus-native"
--
- EXTRA_OECONF += "mono_cv_uscore=no --with-sigaltstack=no --with-mcs-docs=no "
- 
-+EDEPENDS_X11 =+ "libgdiplus-native"
-+PACKAGECONFIG[x11] = ",,${EDEPENDS_X11}"
-+
-+# Default configuration, distros might want to override
-+PACKAGECONFIG ??= "${@base_contains('DISTRO_FEATURES', 'x11', 'x11', '', d)}"
-+
- SRC_URI += "file://fix-basic-mscorlib-dep.patch"
- 
- do_compile() {
-diff --git a/recipes-mono/mono/mono_3.12.1.bb b/recipes-mono/mono/mono_3.12.1.bb
-index c22c1d5..e8a8da0 100644
---- a/recipes-mono/mono/mono_3.12.1.bb
-+++ b/recipes-mono/mono/mono_3.12.1.bb
-@@ -2,13 +2,21 @@ require mono-3.12.inc
- 
- inherit pkgconfig
- 
--DEPENDS =+ "mono-native libgdiplus"
-+DEPENDS =+ "mono-native"
- 
- SRC_URI[md5sum] = "ccab015f0c54ffeccd2924b44885809c"
- SRC_URI[sha256sum] = "5d8cf153af2948c06bc9fbf5088f6834868e4db8e5f41c7cff76da173732b60d"
- 
- EXTRA_OECONF += "--disable-mcs-build mono_cv_clang=no mono_cv_uscore=no --with-sigaltstack=no --with-mcs-docs=no"
- 
-+EDEPENDS_X11 = "libgdiplus"
-+ERDEPENDS_X11 = "libgdiplus"
-+
-+PACKAGECONFIG[x11] = ",,${EDEPENDS_X11},${ERDEPENDS_X11}"
-+
-+# Default configuration, distros might want to override
-+PACKAGECONFIG ??= "${@base_contains('DISTRO_FEATURES', 'x11', 'x11', '', d)}"
-+
- do_install_append() {
- 	cp -af ${STAGING_DIR_NATIVE}${sysconfdir}/${PN} ${D}${sysconfdir}
- 	cp -af ${STAGING_DIR_NATIVE}${libdir}/${PN}  ${D}${libdir}/${PN}
-@@ -23,5 +31,3 @@ FILES_${PN}-doc += " ${datadir}/libgc-mono/*"
- FILES_${PN}-dbg += " ${datadir}/mono-2.0/mono/cil/cil-opcodes.xml"
- 
- PACKAGES = "${PN} ${PN}-dbg ${PN}-doc ${PN}-dev ${PN}-staticdev ${PN}-locale"
--
--RDEPENDS_${PN} += "libgdiplus"
+Here is the recipe: http://pastebin.com/vqtaM1Fv
+
+Looking on package directory I got the compiled .so's
+[root@arch 1.0-r0]# find package
+package
+package/usr
+package/usr/lib
+package/usr/lib/libDigitalInputJni.so
+package/usr/lib/libDigitalOutputJni.so
+package/usr/lib/.debug
+package/usr/lib/.debug/libDigitalOutputJni.so
+package/usr/lib/.debug/libDigitalInputJni.so
+
+But on packages-split I got nothing:
+
+[root@arch 1.0-r0]# ls packages-split/libdigitalio-jni
+total 0
+
+
+Any idea what I'm missing?
+
+
+Regards,
+Hilst
+
 -- 
-2.1.0
+*"Do or do not. There is no try"*
+  *Yoda Master*
 
+--047d7b86f5c2380e240511955c89
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><div><div><div>Hi all, <br><br></div>I write a recipe=
+ to build an JNI layer for my C library, the JNI library gets compiled righ=
+t, but no .rpm is generated besides -dev and -dbg. I suspect that the rpm i=
+s getting empty. <br><br></div>Here is the recipe: <a href=3D"http://pasteb=
+in.com/vqtaM1Fv">http://pastebin.com/vqtaM1Fv</a><br><br></div>Looking on p=
+ackage directory I got the compiled .so&#39;s <br>[root@arch 1.0-r0]# find =
+package<br>package<br>package/usr<br>package/usr/lib<br>package/usr/lib/lib=
+DigitalInputJni.so<br>package/usr/lib/libDigitalOutputJni.so<br>package/usr=
+/lib/.debug<br>package/usr/lib/.debug/libDigitalOutputJni.so<br>package/usr=
+/lib/.debug/libDigitalInputJni.so<br><br></div>But on packages-split I got =
+nothing:<br><br><div>[root@arch 1.0-r0]# ls packages-split/libdigitalio-jni=
+<br>total 0<br><br><br></div><div>Any idea what I&#39;m missing?<br><br><br=
+></div><div>Regards,<br></div><div>Hilst<br></div><div><div><div><div><div>=
+<div><div><div><br>-- <br><div class=3D"gmail_signature"><div style=3D"text=
+-align:right"><i>&quot;Do or do not. There is no try&quot;</i><br><i>=C2=A0=
+ </i><i><b>Yoda Master</b></i><br></div></div>
+</div></div></div></div></div></div></div></div></div>
+
+--047d7b86f5c2380e240511955c89--
