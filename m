@@ -1,37 +1,36 @@
-Return-Path: <DILIP.KUMARB@lnttechservices.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 47828E00914; Tue, 17 Mar 2015 20:02:12 -0700 (PDT)
+	id 642FCE0091F; Wed, 18 Mar 2015 03:03:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Tue, 17 Mar 2015 20:01:55 PDT
-Received: from mailout1.ltindia.com (mailout1.ltindia.com [125.18.18.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1919AE008EA
-	for <yocto@yoctoproject.org>; Tue, 17 Mar 2015 20:01:55 -0700 (PDT)
-Received: from unknown (HELO POCITMSEXHUB01.LntUniverse.com) ([10.2.1.58])
-	by mailout1.ltindia.com with ESMTP; 18 Mar 2015 08:30:40 +0530
-Received: from POCITMSEXMB07.LntUniverse.com ([fe80::1955:1321:4cc1:3df1]) by
-	POCITMSEXHUB01 ([10.2.1.58]) with mapi id 14.03.0181.006;
-	Wed, 18 Mar 2015 08:30:37 +0530
-From: Dilip Basavaraju <DILIP.KUMARB@LNTTECHSERVICES.COM>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: customising root file system by removing the unwanted commands
-	and libraries
-Thread-Index: AdBgnLa9hL7sHIoBRWOwvw5el68qdg==
-Date: Wed, 18 Mar 2015 03:00:37 +0000
-Message-ID: <AA6EBB22527ED441A9B86C56F43F6DD81E3D2383@POCITMSEXMB07.LntUniverse.com>
-Accept-Language: en-IN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.2.1.199]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49F24E0091A
+	for <yocto@yoctoproject.org>; Wed, 18 Mar 2015 03:03:38 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga102.jf.intel.com with ESMTP; 18 Mar 2015 03:01:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,422,1422950400"; d="scan'208";a="693825113"
+Received: from mferguso-mobl4.ger.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.10.180])
+	by fmsmga002.fm.intel.com with ESMTP; 18 Mar 2015 03:03:36 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>, "Musat,
+	George L" <george.l.musat@intel.com>
+Date: Wed, 18 Mar 2015 10:03:35 +0000
+Message-ID: <2730093.x5nRteVGu1@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.4 (Linux/3.18.9-200.fc21.x86_64; KDE/4.14.4; x86_64; ; )
 MIME-Version: 1.0
-Subject: customising root file system by removing the unwanted commands and libraries
+Cc: yocto@yoctoproject.org
+Subject: SANITY_TESTED_DISTROS update for 1.8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,137 +42,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Mar 2015 03:02:12 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_AA6EBB22527ED441A9B86C56F43F6DD81E3D2383POCITMSEXMB07Ln_"
-
---_000_AA6EBB22527ED441A9B86C56F43F6DD81E3D2383POCITMSEXMB07Ln_
+X-List-Received-Date: Wed, 18 Mar 2015 10:03:42 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Dear All,
+Hi Lucian / Alex,
 
-                I want to build an RFS, which I need to customize it by rem=
-oving the unwanted packages and particular commands which is not used by me=
-.
+Just a reminder, it looks like we still need to update SANITY_TESTED_DISTROS 
+to match the host distros we are testing against for 1.8.
 
-                Please suggest me how to customize, or refer me for documen=
-ts where I can read and understand completely all the details about customi=
-zation.
+Thanks,
+Paul
 
-                For example:
+-- 
 
-                /bin will have cat, ls, cd, lsmod, wc .....
+Paul Eggleton
+Intel Open Source Technology Centre
 
-                I want to remove wc and lsmod and minimize my RFS as much a=
-s possible.
-
-                Thanks in advance.
-
-Thanks and regards
-DILIP KUMAR B
-
-L&T Technology Services Ltd
-
-www.LntTechservices.com<http://www.lnttechservices.com/>
-
-This Email may contain confidential or privileged information for the inten=
-ded recipient (s). If you are not the intended recipient, please do not use=
- or disseminate the information, notify the sender and delete it from your =
-system.
-
---_000_AA6EBB22527ED441A9B86C56F43F6DD81E3D2383POCITMSEXMB07Ln_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Dear All,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I want to build an RFS, which I need=
- to customize it by removing the unwanted packages and particular commands =
-which is not used by me.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Please suggest me how to customize, =
-or refer me for documents where I can read and understand completely all th=
-e details about customization.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; For example:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /bin will have cat, ls, cd, lsmod, w=
-c &#8230;..<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I want to remove wc and lsmod and mi=
-nimize my RFS as much as possible.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Thanks in advance.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks and regards<o:p></o:p></p>
-<p class=3D"MsoNormal">DILIP KUMAR B &nbsp;<o:p></o:p></p>
-</div>
-<p><strong>L&amp;T Technology Services Ltd</strong></p>
-<p><a href=3D"http://www.lnttechservices.com/" target=3D"_blank">www.LntTec=
-hservices.com</a></p>
-<p>This Email may contain confidential or privileged information for the in=
-tended recipient (s). If you are not the intended recipient, please do not =
-use or disseminate the information, notify the sender and delete it from yo=
-ur system.</p>
-</body>
-</html>
-
---_000_AA6EBB22527ED441A9B86C56F43F6DD81E3D2383POCITMSEXMB07Ln_--
