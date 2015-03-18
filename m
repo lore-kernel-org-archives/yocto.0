@@ -1,34 +1,31 @@
 Return-Path: <DILIP.KUMARB@lnttechservices.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 54C9DE00914; Tue, 17 Mar 2015 19:43:05 -0700 (PDT)
+	id 47828E00914; Tue, 17 Mar 2015 20:02:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [203.199.60.171 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
-	Tue, 17 Mar 2015 19:42:53 PDT
-Received: from mailout2.ltindia.com (mailout2.ltindia.com [203.199.60.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 276E6E008EA
-	for <yocto@yoctoproject.org>; Tue, 17 Mar 2015 19:42:52 -0700 (PDT)
-Received: from unknown (HELO POCITMSEXHUB02.LntUniverse.com) ([10.2.1.59])
-	by mailout2.ltindia.com with ESMTP; 18 Mar 2015 08:11:48 +0530
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Tue, 17 Mar 2015 20:01:55 PDT
+Received: from mailout1.ltindia.com (mailout1.ltindia.com [125.18.18.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1919AE008EA
+	for <yocto@yoctoproject.org>; Tue, 17 Mar 2015 20:01:55 -0700 (PDT)
+Received: from unknown (HELO POCITMSEXHUB01.LntUniverse.com) ([10.2.1.58])
+	by mailout1.ltindia.com with ESMTP; 18 Mar 2015 08:30:40 +0530
 Received: from POCITMSEXMB07.LntUniverse.com ([fe80::1955:1321:4cc1:3df1]) by
-	POCITMSEXHUB02.LntUniverse.com ([::1]) with mapi id 14.03.0181.006;
-	Wed, 18 Mar 2015 08:11:46 +0530
+	POCITMSEXHUB01 ([10.2.1.58]) with mapi id 14.03.0181.006;
+	Wed, 18 Mar 2015 08:30:37 +0530
 From: Dilip Basavaraju <DILIP.KUMARB@LNTTECHSERVICES.COM>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Thread-Topic: customising root file system by removing the unwanted commands
 	and libraries
-Thread-Index: AdBgnLa9hL7sHIoBRWOwvw5el68qdgAh1F0Q
-Date: Wed, 18 Mar 2015 02:41:46 +0000
-Message-ID: <AA6EBB22527ED441A9B86C56F43F6DD81E3D21A2@POCITMSEXMB07.LntUniverse.com>
+Thread-Index: AdBgnLa9hL7sHIoBRWOwvw5el68qdg==
+Date: Wed, 18 Mar 2015 03:00:37 +0000
+Message-ID: <AA6EBB22527ED441A9B86C56F43F6DD81E3D2383@POCITMSEXMB07.LntUniverse.com>
 Accept-Language: en-IN, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -46,12 +43,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Mar 2015 02:43:05 -0000
+X-List-Received-Date: Wed, 18 Mar 2015 03:02:12 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_AA6EBB22527ED441A9B86C56F43F6DD81E3D21A2POCITMSEXMB07Ln_"
+	boundary="_000_AA6EBB22527ED441A9B86C56F43F6DD81E3D2383POCITMSEXMB07Ln_"
 
---_000_AA6EBB22527ED441A9B86C56F43F6DD81E3D21A2POCITMSEXMB07Ln_
+--_000_AA6EBB22527ED441A9B86C56F43F6DD81E3D2383POCITMSEXMB07Ln_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -86,7 +83,7 @@ ded recipient (s). If you are not the intended recipient, please do not use=
  or disseminate the information, notify the sender and delete it from your =
 system.
 
---_000_AA6EBB22527ED441A9B86C56F43F6DD81E3D21A2POCITMSEXMB07Ln_
+--_000_AA6EBB22527ED441A9B86C56F43F6DD81E3D2383POCITMSEXMB07Ln_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -179,4 +176,4 @@ ur system.</p>
 </body>
 </html>
 
---_000_AA6EBB22527ED441A9B86C56F43F6DD81E3D21A2POCITMSEXMB07Ln_--
+--_000_AA6EBB22527ED441A9B86C56F43F6DD81E3D2383POCITMSEXMB07Ln_--
