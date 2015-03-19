@@ -1,6 +1,6 @@
 Return-Path: <craig.mcqueen@innerrange.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 59EA4E00828; Wed, 18 Mar 2015 17:00:27 -0700 (PDT)
+	id 945E9E008CE; Wed, 18 Mar 2015 21:24:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,31 +10,32 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
 	*      dynamic-looking rDNS
-X-Greylist: delayed 66 seconds by postgrey-1.32 at yocto-www;
-	Wed, 18 Mar 2015 17:00:23 PDT
 Received: from remote.innerrange.com (122-143-146.dsl.connexus.net.au
 	[203.122.143.146])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C30ADE0034E
-	for <yocto@yoctoproject.org>; Wed, 18 Mar 2015 17:00:23 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53E44E00832
+	for <yocto@yoctoproject.org>; Wed, 18 Mar 2015 21:24:36 -0700 (PDT)
 Received: from IR-CENTRAL.corp.innerrange.com ([fe80::758b:a6c:a61b:18f4]) by
 	IR-CENTRAL.corp.innerrange.com ([fe80::758b:a6c:a61b:18f4%14]) with
-	mapi; Thu, 19 Mar 2015 10:59:14 +1100
+	mapi; Thu, 19 Mar 2015 15:24:33 +1100
 From: Craig McQueen <craig.mcqueen@innerrange.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 19 Mar 2015 10:59:12 +1100
-Thread-Topic: Installing Linux kernel headers including custom UAPI header file
-Thread-Index: AdBh13EcHQZ95AYdQ2uVK2MQ/Hsuaw==
-Message-ID: <5500469A22567C4BAF673A6E86AFA3A402227720820E@IR-CENTRAL.corp.innerrange.com>
+Date: Thu, 19 Mar 2015 15:24:32 +1100
+Thread-Topic: [yocto] Installing Linux kernel headers including custom UAPI
+	header file
+Thread-Index: AdBh13EcHQZ95AYdQ2uVK2MQ/HsuawAJDLsw
+Message-ID: <5500469A22567C4BAF673A6E86AFA3A40222772082AA@IR-CENTRAL.corp.innerrange.com>
+References: <5500469A22567C4BAF673A6E86AFA3A402227720820E@IR-CENTRAL.corp.innerrange.com>
+In-Reply-To: <5500469A22567C4BAF673A6E86AFA3A402227720820E@IR-CENTRAL.corp.innerrange.com>
 Accept-Language: en-US, en-AU
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US, en-AU
-x-tm-as-product-ver: SMEX-11.1.0.1239-7.500.1018-21406.006
-x-tm-as-result: No--35.155800-5.000000-31
+x-tm-as-product-ver: SMEX-11.1.0.1239-7.500.1018-21408.004
+x-tm-as-result: No--42.605600-5.000000-31
 x-tm-as-user-approved-sender: No
 x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
-Subject: Installing Linux kernel headers including custom UAPI header file
+Subject: Re: Installing Linux kernel headers including custom UAPI	header file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,10 +47,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Mar 2015 00:00:27 -0000
+X-List-Received-Date: Thu, 19 Mar 2015 04:24:52 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+I think I've answered my own question.
+
+The existing files installed in the build root /usr/include/linux/... are p=
+ut there by the linux-libc-headers package.
+
+According to a prominent comment in meta/recipes-kernel/linux-libc-headers/=
+linux-libc-headers.inc, I shouldn't try to fiddle with those, but instead p=
+oint my application/library code to the STAGING_KERNEL_DIR.
+This previous post gave some useful hints: https://lists.yoctoproject.org/p=
+ipermail/linux-yocto/2014-April/002178.html
+
+But according to http://kernelnewbies.org/KernelHeaders I should just copy =
+the specific header file I need from the kernel into my application/library=
+ source code, with a note to keep it synced with the latest kernel versions=
+.
+
+I ended up doing the latter.
+--=20
+Regards,
+Craig McQueen
+
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Craig McQueen
+Sent: Thursday, 19 March 2015 10:59 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Installing Linux kernel headers including custom UAPI head=
+er file
 
 Hello,
 
@@ -88,4 +118,9 @@ ysroots/beaglebone/usr/src/kernel/include/uapi/linux/mydriver.h, but that's=
 --=20
 Craig McQueen
 
+--=20
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
