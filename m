@@ -1,68 +1,55 @@
-Return-Path: <zhenhua.luo@freescale.com>
+Return-Path: <priyaiitmandi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1D453E00832; Thu, 19 Mar 2015 21:31:43 -0700 (PDT)
+	id A30F3E00779; Fri, 20 Mar 2015 01:09:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=unavailable version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [207.46.100.114 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 5689 seconds by postgrey-1.32 at yocto-www;
-	Thu, 19 Mar 2015 21:31:33 PDT
-Received: from na01-by2-obe.outbound.protection.outlook.com
-	(mail-by2on0114.outbound.protection.outlook.com [207.46.100.114])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8545AE00777;
-	Thu, 19 Mar 2015 21:31:33 -0700 (PDT)
-Received: from BN3PR03MB1367.namprd03.prod.outlook.com (25.163.34.153) by
-	BN3PR03MB1365.namprd03.prod.outlook.com (25.163.34.151) with Microsoft
-	SMTP Server (TLS) id 15.1.118.21; Fri, 20 Mar 2015 02:56:40 +0000
-Received: from BN3PR03MB1367.namprd03.prod.outlook.com ([25.163.34.153]) by
-	BN3PR03MB1367.namprd03.prod.outlook.com ([25.163.34.153]) with mapi id
-	15.01.0118.021; Fri, 20 Mar 2015 02:56:40 +0000
-From: "zhenhua.luo@freescale.com" <zhenhua.luo@freescale.com>
-To: Priya Agarwal <priya_agarwal@students.iitmandi.ac.in>,
-	"meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>,
-	"yocto-builds@yoctoproject.org" <yocto-builds@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [meta-freescale] Including Static Libraries from sysroot in an
-	autotools based package
-Thread-Index: AQHQYiRBTsrPkOXIgU+UY0vX5a7ZyJ0krksA
-Date: Fri, 20 Mar 2015 02:56:40 +0000
-Message-ID: <BN3PR03MB13672811BC5AAABE7F729B7DE40E0@BN3PR03MB1367.namprd03.prod.outlook.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ie0-f178.google.com (mail-ie0-f178.google.com
+	[209.85.223.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 551CBE0076B;
+	Fri, 20 Mar 2015 01:09:39 -0700 (PDT)
+Received: by iecvj10 with SMTP id vj10so87053512iec.0;
+	Fri, 20 Mar 2015 01:09:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:cc:content-type;
+	bh=YXQWVX3rv7aoj9OxUbPx4DPoubUf5yAG4R9MVJ9pMVs=;
+	b=UGkJQVHpNQOXcVcbjdVckkoiq4nVeIbqKZuyx7skikPhKjifR8Z7be+VswprSVah2b
+	2TwPaSGQJ2jS39SIM1LieYBgqr6I16qAfK9yYR3XIHbl6j2lLyr5ycl8aVpEOXo7wT4w
+	4QNAOi8JaegwwVfvtS1BnR3KDBshvVzdrQLBYJ05UqlUqDuHfQEEovJwsZx8QRHChUsk
+	xwr/tCM4W7Y0IobwCTKbTZ9RSYJ0ueWRgtHN0tGJu6WDF67Gqd1VxRaBqTiOtjW1gdjy
+	JTv6+HZOwk6He2bQRLcu/MNfZNIWM/Wz5/mM8pZgy4TeIiHtaQOod5DIIVOkRFBGvyKP
+	BpqA==
+MIME-Version: 1.0
+X-Received: by 10.107.148.198 with SMTP id w189mr57599696iod.14.1426838978881; 
+	Fri, 20 Mar 2015 01:09:38 -0700 (PDT)
+Sender: priyaiitmandi@gmail.com
+Received: by 10.107.16.139 with HTTP; Fri, 20 Mar 2015 01:09:38 -0700 (PDT)
+In-Reply-To: <CALTPfpFd+jVRtCEnkf0HK9LfjXwu3wYxtpStXWGwtE_8chbZFg@mail.gmail.com>
 References: <CALTPfpGcuSDbWjqqmmAn8mG0nwRg=gGJePiWLs7U9A8FSn_5DQ@mail.gmail.com>
 	<CALTPfpEioQubDTeBdE6yoVff1_hVu4G7LDqx3On1uGraQTHi1g@mail.gmail.com>
-In-Reply-To: <CALTPfpEioQubDTeBdE6yoVff1_hVu4G7LDqx3On1uGraQTHi1g@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.88.158.211]
-authentication-results: students.iitmandi.ac.in; dkim=none (message not
-	signed) header.d=none;
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BN3PR03MB1365;
-x-microsoft-antispam-prvs: <BN3PR03MB1365DBA7697E13C2A84C0D35E40E0@BN3PR03MB1365.namprd03.prod.outlook.com>
-x-forefront-antispam-report: BMV:1; SFV:NSPM;
-	SFS:(10019020)(377454003)(102836002)(15395725005)(16236675004)(15975445007)(2950100001)(19609705001)(50986999)(74316001)(76176999)(54356999)(76576001)(2900100001)(92566002)(16601075003)(2501003)(86362001)(99286002)(106116001)(19617315012)(107886001)(19580395003)(19580405001)(66066001)(122556002)(46102003)(33656002)(2656002)(19300405004)(62966003)(19625215002)(87936001)(40100003)(77156002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR03MB1365;
-	H:BN3PR03MB1367.namprd03.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; LANG:en; 
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(5005006)(5002010); SRVR:BN3PR03MB1365; BCL:0;
-	PCL:0; RULEID:; SRVR:BN3PR03MB1365; 
-x-forefront-prvs: 05214FD68E
-MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Mar 2015 02:56:40.3578 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 710a03f5-10f6-4d38-9ff4-a80b81da590d
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR03MB1365
-Subject: Re: [meta-freescale] Including Static Libraries from sysroot in an	autotools based package
+	<4A18F97D-CBE3-4D8E-9242-7A0774D2DD4B@gmail.com>
+	<CALTPfpFd+jVRtCEnkf0HK9LfjXwu3wYxtpStXWGwtE_8chbZFg@mail.gmail.com>
+Date: Fri, 20 Mar 2015 13:39:38 +0530
+X-Google-Sender-Auth: nXEqx4RTJrBAoYVTv7Dz3vgC38A
+Message-ID: <CALTPfpG=osbJr7Bs6xOWeMjToobKkWpPXDjyG_BEzzHtT=Pi3w@mail.gmail.com>
+From: Priya Agarwal <priya_agarwal@students.iitmandi.ac.in>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>,
+	"yocto-builds@yoctoproject.org" <yocto-builds@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-freescale] Including Static Libraries from sysroot in an autotools based package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,144 +61,160 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Mar 2015 04:31:43 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN3PR03MB13672811BC5AAABE7F729B7DE40E0BN3PR03MB1367namp_"
+X-List-Received-Date: Fri, 20 Mar 2015 08:09:43 -0000
+Content-Type: multipart/alternative; boundary=001a113ff6d87ced480511b3d687
 
---_000_BN3PR03MB13672811BC5AAABE7F729B7DE40E0BN3PR03MB1367namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--001a113ff6d87ced480511b3d687
+Content-Type: text/plain; charset=UTF-8
 
-VGhlIGZvbGxvd2luZyBhcnRpY2xlIHdvdWxkIGJlIGhlbHBmdWwgZm9yIHlvdS4NCg0KaHR0cDov
-L3N0YWNrb3ZlcmZsb3cuY29tL3F1ZXN0aW9ucy8yMDU3NDcyL2hvd3RvLWFkZC1hLWxpbmstdG8t
-YS1saWJyYXJ5LWluLWF1dG9jb25mLWNvbmZpZ3VyZS1zY3JpcHQtbWFrZWZpbGUNCg0KDQpCZXN0
-IFJlZ2FyZHMsDQoNClpoZW5odWENCg0KRnJvbTogbWV0YS1mcmVlc2NhbGUtYm91bmNlc0B5b2N0
-b3Byb2plY3Qub3JnIFttYWlsdG86bWV0YS1mcmVlc2NhbGUtYm91bmNlc0B5b2N0b3Byb2plY3Qu
-b3JnXSBPbiBCZWhhbGYgT2YgUHJpeWEgQWdhcndhbA0KU2VudDogVGh1cnNkYXksIE1hcmNoIDE5
-LCAyMDE1IDU6MDcgUE0NClRvOiBtZXRhLWZyZWVzY2FsZUB5b2N0b3Byb2plY3Qub3JnOyB5b2N0
-by1idWlsZHNAeW9jdG9wcm9qZWN0Lm9yZzsgeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVj
-dDogUmU6IFttZXRhLWZyZWVzY2FsZV0gSW5jbHVkaW5nIFN0YXRpYyBMaWJyYXJpZXMgZnJvbSBz
-eXNyb290IGluIGFuIGF1dG90b29scyBiYXNlZCBwYWNrYWdlDQoNCkhpLA0KSSBuZWVkIHRvIGxp
-bmsgc29tZSBsaWJyYXJpZXMgd2hpY2ggYXJlIGluIHN5c3Jvb3QgaW50byBteSBzb3VyY2UgY29k
-ZS4gVGhlc2UgYXJlIHVzZHBhYSBsaWJyYXJpZXMuDQpJIGFkZGVkIERFUEVORFMgKz0gInVzZHBh
-YSIgaW4gLmJiIGZpbGUuDQpBcGFydCBmcm9tIHRoYXQgYWxzbyBjaGFuZ2VkIHRoZSBNYWtlZmls
-ZS5hbSBvZiBteSBzb3VyY2UgdG8gaW5jbHVkZSB0aGUgZm9sbG93aW5nOg0KYXJlYV9MREFERCA9
-IC1sdXNkcGFhX29mDQpUaGVuIEkgcmFuIGFjbG9jYWwsIGF1dG9jb25mLCBhdXRvbWFrZSAtLWFk
-ZC1taXNzaW5nIGFuZCByZXRhcnJlZCBteSBwYWNrYWdlLg0KV2hlbiB0aGUgcGFja2FnZSBpcyBi
-ZWluZyBidWlsdCBmcm9tIHJlY2lwZSwgZG9fY29tcGlsZSBmYWlscy4gSXQgc2hvd3MgInVuZGVm
-aW5lZCByZWZlcmVuY2UgdG8iIGVycm9yLg0KU28gdGhpcyBtZWFucyB0aGF0IGxpYnJhcmllcyBh
-cmUgbm90IGdldHRpbmcgbGlua2VkIGJ5IGp1c3QgZG9pbmcgdGhlIGFib3ZlIGNoYW5nZXMuIFdo
-YXQgZWxzZSBJIG5lZWQgdG8gY2hhbmdlPw0KDQpJIHRoaW5rIHRoaXMgcHJvYmxlbSBpcyBzcGVj
-aWZpYyB0byBhdXRvdG9vbHMgYmFzZWQgcHJvamVjdHMgYXMgd2hlbiBJIGluY2x1ZGUgdGhlIGxp
-YnJhcmllcyBkdXJpbmcgdGhlIGdjYyBjb21tYW5kIHRoZXkgYXJlIGVhc2lseSBpbmNsdWRlZC4N
-Cg0KZG9fY29tcGlsZSgpIHsNCiAgICAke0NDfSBjaGVjay5jIC1vIGNoZWNrIC1sdXNkcGFhX29m
-DQp9DQpsaW5rIHRvIGFyZWEuYmI8aHR0cDovL2FyZWEuYmI+DQpodHRwOi8vcGFzdGViaW4uY29t
-L0JlZjJDN25YDQo=
+Hello,
 
---_000_BN3PR03MB13672811BC5AAABE7F729B7DE40E0BN3PR03MB1367namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Sorry to ask this question but I am unable to find any answer in reference
+manuals.
+${CC} is a c compiler. For c++ is it ${CXX} or something else.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-5a6L5L2TOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtm
-b250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0
-O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUg
-MiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJcQOWui+S9kyI7DQoJ
-cGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0K
-cC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0K
-CW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5
-OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7
-bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVu
-ZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0
-eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJs
-aW5lO30NCnNwYW4uRW1haWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5
-Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0K
-Lk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1p
-bHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41
-aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjI1aW4gMS4waW4gMS4yNWluO30NCmRpdi5Xb3Jk
-U2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBt
-c28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYi
-IC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBl
-bGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0K
-PC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0i
-RU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rp
-b24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdE
-Ij5UaGUgZm9sbG93aW5nIGFydGljbGUgd291bGQgYmUgaGVscGZ1bCBmb3IgeW91LiAmbmJzcDs8
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
-aWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxhIGhyZWY9Imh0dHA6
-Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvMjA1NzQ3Mi9ob3d0by1hZGQtYS1saW5rLXRv
-LWEtbGlicmFyeS1pbi1hdXRvY29uZi1jb25maWd1cmUtc2NyaXB0LW1ha2VmaWxlIj5odHRwOi8v
-c3RhY2tvdmVyZmxvdy5jb20vcXVlc3Rpb25zLzIwNTc0NzIvaG93dG8tYWRkLWEtbGluay10by1h
-LWxpYnJhcnktaW4tYXV0b2NvbmYtY29uZmlndXJlLXNjcmlwdC1tYWtlZmlsZTwvYT48bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29s
-b3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
-aWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0
-OTdEIj5CZXN0IFJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
-aWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0
-OTdEIj5aaGVuaHVhPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwv
-cD4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkIGJsdWUgMS41cHQ7
-cGFkZGluZzowaW4gMGluIDBpbiA0LjBwdCI+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5v
-bmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGluIDBpbiAw
-aW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
-cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj5Gcm9tOjwvc3Bh
-bj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
-aWJyaSZxdW90OyxzYW5zLXNlcmlmIj4gbWV0YS1mcmVlc2NhbGUtYm91bmNlc0B5b2N0b3Byb2pl
-Y3Qub3JnIFttYWlsdG86bWV0YS1mcmVlc2NhbGUtYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXQ0K
-PGI+T24gQmVoYWxmIE9mIDwvYj5Qcml5YSBBZ2Fyd2FsPGJyPg0KPGI+U2VudDo8L2I+IFRodXJz
-ZGF5LCBNYXJjaCAxOSwgMjAxNSA1OjA3IFBNPGJyPg0KPGI+VG86PC9iPiBtZXRhLWZyZWVzY2Fs
-ZUB5b2N0b3Byb2plY3Qub3JnOyB5b2N0by1idWlsZHNAeW9jdG9wcm9qZWN0Lm9yZzsgeW9jdG9A
-eW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW21ldGEtZnJlZXNjYWxl
-XSBJbmNsdWRpbmcgU3RhdGljIExpYnJhcmllcyBmcm9tIHN5c3Jvb3QgaW4gYW4gYXV0b3Rvb2xz
-IGJhc2VkIHBhY2thZ2U8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPkhp
-LDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFy
-Z2luLWJvdHRvbToxMi4wcHQiPkkgbmVlZCB0byBsaW5rIHNvbWUgbGlicmFyaWVzIHdoaWNoIGFy
-ZSBpbiBzeXNyb290IGludG8gbXkgc291cmNlIGNvZGUuIFRoZXNlIGFyZSB1c2RwYWEgbGlicmFy
-aWVzLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-SSBhZGRlZCBERVBFTkRTICYjNDM7PSAmcXVvdDt1c2RwYWEmcXVvdDsgaW4gLmJiIGZpbGUuPGJy
-Pg0KQXBhcnQgZnJvbSB0aGF0IGFsc28gY2hhbmdlZCB0aGUgTWFrZWZpbGUuYW0gb2YgbXkgc291
-cmNlIHRvIGluY2x1ZGUgdGhlIGZvbGxvd2luZzo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRp
-diBzdHlsZT0ibWFyZ2luLWxlZnQ6MzAuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmFyZWFf
-TERBREQgPSAtbHVzZHBhYV9vZjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206MTIuMHB0Ij5UaGVuIEkgcmFuIGFj
-bG9jYWwsIGF1dG9jb25mLCBhdXRvbWFrZSAtLWFkZC1taXNzaW5nIGFuZCByZXRhcnJlZCBteSBw
-YWNrYWdlLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+V2hlbiB0aGUgcGFja2FnZSBpcyBiZWluZyBidWlsdCBmcm9tIHJlY2lwZSwgZG9fY29tcGls
-ZSBmYWlscy4gSXQgc2hvd3MgJnF1b3Q7dW5kZWZpbmVkIHJlZmVyZW5jZSB0byZxdW90OyBlcnJv
-ci48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+U28gdGhpcyBt
-ZWFucyB0aGF0IGxpYnJhcmllcyBhcmUgbm90IGdldHRpbmcgbGlua2VkIGJ5IGp1c3QgZG9pbmcg
-dGhlIGFib3ZlIGNoYW5nZXMuIFdoYXQgZWxzZSBJIG5lZWQgdG8gY2hhbmdlPzxicj4NCjxicj4N
-CkkgdGhpbmsgdGhpcyBwcm9ibGVtIGlzIHNwZWNpZmljIHRvIGF1dG90b29scyBiYXNlZCBwcm9q
-ZWN0cyBhcyB3aGVuIEkgaW5jbHVkZSB0aGUgbGlicmFyaWVzIGR1cmluZyB0aGUgZ2NjIGNvbW1h
-bmQgdGhleSBhcmUgZWFzaWx5IGluY2x1ZGVkLjxvOnA+PC9vOnA+PC9wPg0KPGRpdiBzdHlsZT0i
-bWFyZ2luLWxlZnQ6MzAuMHB0Ij4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxicj4NCmRvX2NvbXBp
-bGUoKSB7PGJyPg0KJm5ic3A7Jm5ic3A7Jm5ic3A7ICR7Q0N9IGNoZWNrLmMgLW8gY2hlY2sgLWx1
-c2RwYWFfb2Y8YnI+DQp9PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPmxpbmsgdG8gPGEgaHJlZj0iaHR0cDovL2FyZWEuYmIiIHRhcmdldD0iX2JsYW5rIj5hcmVh
-LmJiPC9hPjxicj4NCjxhIGhyZWY9Imh0dHA6Ly9wYXN0ZWJpbi5jb20vQmVmMkM3blgiIHRhcmdl
-dD0iX2JsYW5rIj5odHRwOi8vcGFzdGViaW4uY29tL0JlZjJDN25YPC9hPjxvOnA+PC9vOnA+PC9w
-Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+Thanks.
 
---_000_BN3PR03MB13672811BC5AAABE7F729B7DE40E0BN3PR03MB1367namp_--
+On Fri, Mar 20, 2015 at 9:07 AM, Priya Agarwal <
+priya_agarwal@students.iitmandi.ac.in> wrote:
+
+> I have edited the Makefile.am as well in this way:
+>
+> squid_LDADD += -lusdpaa_of
+>
+> Then I just retarred squid code and build it again.
+>
+> And The libraries are shown in the compile command as well, when I see the
+> log.do_compile generated during the build.
+> Check Line number 403 in this pastebin link. (ctrl+F 'usdpaa_of' could
+> show where all it occurs). http://pastebin.com/LpaymTQa
+> So how is it possible they are not actually linked.
+> I even checked the OVERRIDE variable in bitbake.conf which is set
+> correctly.
+> I really need to link this library. :/
+>
+> On Fri, Mar 20, 2015 at 8:43 AM, Khem Raj <raj.khem@gmail.com> wrote:
+>
+>>
+>> On Mar 19, 2015, at 2:07 AM, Priya Agarwal <
+>> priya_agarwal@students.iitmandi.ac.in> wrote:
+>>
+>> Hi,
+>>
+>> I need to link some libraries which are in sysroot into my source code.
+>> These are usdpaa libraries.
+>>
+>> I added DEPENDS += "usdpaa" in .bb file.
+>> Apart from that also changed the Makefile.am of my source to include the
+>> following:
+>> area_LDADD = -lusdpaa_of
+>> Then I ran aclocal, autoconf, automake --add-missing and retarred my
+>> package.
+>>
+>> When the package is being built from recipe, do_compile fails. It shows
+>> "undefined reference to" error.
+>> So this means that libraries are not getting linked by just doing the
+>> above changes. What else I need to change?
+>>
+>>
+>> I think you need to specify them in Makefile.am using LDADD since it is
+>> using auto tools. Please take a look at Automake documentation
+>> http://www.gnu.org/software/automake/manual/html_node/Linking.html
+>> might be helpful.
+>>
+>>
+>> I think this problem is specific to autotools based projects as when I
+>> include the libraries during the gcc command they are easily included.
+>>
+>> do_compile() {
+>>     ${CC} check.c -o check -lusdpaa_of
+>> }
+>> link to area.bb
+>> http://pastebin.com/Bef2C7nX
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>>
+>> --
+>> _______________________________________________
+>> meta-freescale mailing list
+>> meta-freescale@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/meta-freescale
+>>
+>>
+>
+
+--001a113ff6d87ced480511b3d687
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div>Hello,<br><br></div>Sorry to ask this quest=
+ion but I am unable to find any answer in reference manuals.<br></div>${CC}=
+ is a c compiler. For c++ is it ${CXX} or something else.<br><br></div>Than=
+ks.</div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Fri, =
+Mar 20, 2015 at 9:07 AM, Priya Agarwal <span dir=3D"ltr">&lt;<a href=3D"mai=
+lto:priya_agarwal@students.iitmandi.ac.in" target=3D"_blank">priya_agarwal@=
+students.iitmandi.ac.in</a>&gt;</span> wrote:<br><blockquote class=3D"gmail=
+_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:=
+1ex"><div dir=3D"ltr"><div><div><div><div><div><div><div>I have edited the =
+Makefile.am as well in this way:<br><br></div>squid_LDADD +=3D -lusdpaa_of<=
+br><br></div>Then I just retarred squid code and build it again.<br><br>And=
+ The libraries are shown in the compile command as well, when I see the log=
+.do_compile generated during the build.<br></div>Check Line number 403 in t=
+his pastebin link. (ctrl+F &#39;usdpaa_of&#39; could show where all it occu=
+rs). <a href=3D"http://pastebin.com/LpaymTQa" target=3D"_blank">http://past=
+ebin.com/LpaymTQa</a><br></div>So how is it possible they are not actually =
+linked.<br></div>I even checked the OVERRIDE variable in bitbake.conf which=
+ is set correctly. <br></div>I really need to link this library. :/<br></di=
+v></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote"><div><div=
+ class=3D"h5">On Fri, Mar 20, 2015 at 8:43 AM, Khem Raj <span dir=3D"ltr">&=
+lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.c=
+om</a>&gt;</span> wrote:<br></div></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div=
+><div class=3D"h5"><div style=3D"word-wrap:break-word"><br><div><span><bloc=
+kquote type=3D"cite"><div>On Mar 19, 2015, at 2:07 AM, Priya Agarwal &lt;<a=
+ href=3D"mailto:priya_agarwal@students.iitmandi.ac.in" target=3D"_blank">pr=
+iya_agarwal@students.iitmandi.ac.in</a>&gt; wrote:</div><br><div><div dir=
+=3D"ltr"><div><div>Hi,<br><br></div>I need to link some libraries which are=
+ in sysroot into my source code. These are usdpaa libraries.<br><br></div><=
+div>I added DEPENDS +=3D &quot;usdpaa&quot; in .bb file.<br>Apart from that=
+ also changed the Makefile.am of my source to include the following:<br></d=
+iv><div style=3D"margin-left:40px">area_LDADD =3D -lusdpaa_of<br></div><div=
+>Then I ran aclocal, autoconf, automake --add-missing and retarred my packa=
+ge.<br><br></div><div>When the package is being built from recipe, do_compi=
+le fails. It shows &quot;undefined reference to&quot; error.<br></div>So th=
+is means that libraries are not getting linked by just doing the above chan=
+ges. What else I need to change?<br></div></div></blockquote><div><br></div=
+></span><div>I think you need to specify them in Makefile.am using LDADD si=
+nce it is using auto tools. Please take a look at Automake documentation</d=
+iv><div><a href=3D"http://www.gnu.org/software/automake/manual/html_node/Li=
+nking.html" target=3D"_blank">http://www.gnu.org/software/automake/manual/h=
+tml_node/Linking.html</a></div><div>might be helpful.</div><br><blockquote =
+type=3D"cite"><div><span><div dir=3D"ltr"><br>I
+ think this problem is specific to autotools based projects as when I=20
+include the libraries during the gcc command they are easily included.<br><=
+div style=3D"margin-left:40px"><br>do_compile() {<br>=C2=A0=C2=A0=C2=A0 ${C=
+C} check.c -o check -lusdpaa_of<br>}<br></div>link to <a href=3D"http://are=
+a.bb/" target=3D"_blank">area.bb</a><br><a href=3D"http://pastebin.com/Bef2=
+C7nX" target=3D"_blank">http://pastebin.com/Bef2C7nX</a></div></span><span>=
+<font color=3D"#888888">
+-- <br>_______________________________________________<br>yocto mailing lis=
+t<br><a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
+oproject.org</a><br><a href=3D"https://lists.yoctoproject.org/listinfo/yoct=
+o" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br><=
+/font></span></div></blockquote></div><br></div><br></div></div><span class=
+=3D"HOEnZb"><font color=3D"#888888">--<br>
+_______________________________________________<br>
+meta-freescale mailing list<br>
+<a href=3D"mailto:meta-freescale@yoctoproject.org" target=3D"_blank">meta-f=
+reescale@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/meta-freescale" target=
+=3D"_blank">https://lists.yoctoproject.org/listinfo/meta-freescale</a><br>
+<br></font></span></blockquote></div><br></div>
+</blockquote></div><br></div>
+
+--001a113ff6d87ced480511b3d687--
