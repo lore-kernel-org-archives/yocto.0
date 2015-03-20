@@ -1,55 +1,59 @@
-Return-Path: <k4230r6@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0258BE00832; Thu, 19 Mar 2015 13:15:21 -0700 (PDT)
+	id 42E5BE00779; Thu, 19 Mar 2015 18:51:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (k4230r6[at]gmail.com)
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.192.176 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.180 listed in list.dnswl.org]
-Received: from mail-lb0-f180.google.com (mail-lb0-f180.google.com
-	[209.85.217.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79AF2E00777
-	for <yocto@yoctoproject.org>; Thu, 19 Mar 2015 13:15:17 -0700 (PDT)
-Received: by lbnq5 with SMTP id q5so33102781lbn.0
-	for <yocto@yoctoproject.org>; Thu, 19 Mar 2015 13:15:15 -0700 (PDT)
+Received: from mail-pd0-f176.google.com (mail-pd0-f176.google.com
+	[209.85.192.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07D1CE0076B
+	for <yocto@yoctoproject.org>; Thu, 19 Mar 2015 18:51:49 -0700 (PDT)
+Received: by pdbcz9 with SMTP id cz9so93301735pdb.3
+	for <yocto@yoctoproject.org>; Thu, 19 Mar 2015 18:51:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=8I0F9O3OfM289Jh2ei++epbk7A1Yqos3drADV3/3b0A=;
-	b=aGkoKZPlick6c6NJTyTsfoNhJXT0nhEhq1Q1PC0OGakaoV687LknNRPmeY6Kho231S
-	GPkQKJUCJnPxo4WKlrPj7C/ZHo9YVhQYa8dQKxoqI6UvSYrAj2R3QoxVfIM1z7njdOPc
-	yH8eLu8MMv0pxOC88oSBbFLTIhgArI/20oQnEKCYxwTnnj6IpVszzQ9ZRLCtIcp1jNEs
-	649zFSIONyBMpWUtzIzSdCyuRo/+cBdzRuVG2rJpZGruAIizvRX/20ObQLvI37M0TyBh
-	+0bfGm+Tbtwx2+gYVnkUG6XkyVmTAP9cIUw7r0NdMnMqtQh+GuCSWBauyRC2CeQeFKWS
-	Qdzw==
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=0hzUVDjqprB6jLH7K37Pq1KoIAELmnNc2fbOXv9760U=;
+	b=pcEaLY+jba3nIXVsHnxip4/ifQx1u2dGK98VZ/DZCp1fawF2D3yNkTgmGcYx9k1h27
+	f1b3aq1YW7+bffHx7WArc18TdFS+J5PhNwULaZIZUrQgKKLG2/8LMnkBAR71Iwz/QUrR
+	sAEgJy2YRTqdCML8MbJjJtx9OUnFgZE/rh45FSRpis3o+UsiwRgHhGqB/jjwxB/R9qEq
+	rMGfdj0dCNMdrSCRylhIm6AKLLOy/uk2HoHa0aZj+NAfGV/g3O7aPZjhBgjAPeZe6hYE
+	MddpYg9IA/kfQ5yQdWuDi225bjP1YkPB4Z9WPiWDQ4zBw123s6RT5ewcrLh622UWrRnw
+	lw3Q==
+X-Received: by 10.66.66.7 with SMTP id b7mr183687146pat.9.1426816308945;
+	Thu, 19 Mar 2015 18:51:48 -0700 (PDT)
+Received: from ?IPv6:2601:c:a700:3ba7:a9cf:3f86:8337:c710?
+	([2601:c:a700:3ba7:a9cf:3f86:8337:c710])
+	by mx.google.com with ESMTPSA id
+	fk15sm5149862pdb.19.2015.03.19.18.51.46 for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 19 Mar 2015 18:51:47 -0700 (PDT)
+Message-ID: <550B7D2F.2020308@gmail.com>
+Date: Thu, 19 Mar 2015 18:51:43 -0700
+From: akuster808 <akuster808@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-X-Received: by 10.152.45.101 with SMTP id l5mr58507591lam.95.1426796115289;
-	Thu, 19 Mar 2015 13:15:15 -0700 (PDT)
-Received: by 10.25.206.132 with HTTP; Thu, 19 Mar 2015 13:15:15 -0700 (PDT)
-Received: by 10.25.206.132 with HTTP; Thu, 19 Mar 2015 13:15:15 -0700 (PDT)
-In-Reply-To: <CAMKF1srCKEL8s_xb8FD8g21ZwQPNRYZeWxvV7GNLrZWMKG==9Q@mail.gmail.com>
-References: <CAALGJZaXn=ohTynN0sk_Qz8GPahX44AmdPgQ4=xqSmU8kpM0fg@mail.gmail.com>
-	<CAMKF1srCKEL8s_xb8FD8g21ZwQPNRYZeWxvV7GNLrZWMKG==9Q@mail.gmail.com>
-Date: Thu, 19 Mar 2015 21:15:15 +0100
-Message-ID: <CAALGJZa6x8SsXeWPye=ZEoibzQZYuH+hf8GZKJkn0VaaY48q6A@mail.gmail.com>
-From: Christian Ege <k4230r6@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: How to support arm-none-eabi toolchain for u-boot on Amlogic
+To: yocto@yoctoproject.org
+References: <CAFQ+DiiAF-r8C2+UpZA5ioR=sRCorZS1SJw1dH=FKkFG28xYcA@mail.gmail.com>
+	<3117116.FDFJ4kzQ93@peggleto-mobl.ger.corp.intel.com>
+In-Reply-To: <3117116.FDFJ4kzQ93@peggleto-mobl.ger.corp.intel.com>
+Subject: Re: meta-toolchain not always relocatable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,63 +65,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Mar 2015 20:15:21 -0000
-Content-Type: multipart/alternative; boundary=001a11c288f29e6cb20511a9db1c
+X-List-Received-Date: Fri, 20 Mar 2015 01:51:53 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
---001a11c288f29e6cb20511a9db1c
-Content-Type: text/plain; charset=UTF-8
 
-Am 19.03.2015 00:35 schrieb "Khem Raj" <raj.khem@gmail.com>:
+
+On 03/19/2015 10:20 AM, Paul Eggleton wrote:
+> Hi Marco,
 >
-> On Wed, Mar 18, 2015 at 12:55 PM, Christian Ege <k4230r6@gmail.com> wrote:
-> > Hello,
-> >
-> > it looks like that Amlogic based devices like the ODROID-C1 [1]
-> > requires their u-boot compiled with an arm-none-eabi toolchain. The
-> > rest kernel and rootfs is compiled with standard arm eabi toolchain. I
-> > am wondering how to support this in yocto/openembedded.
+> On Thursday 19 March 2015 17:46:44 Marco Cavallini wrote:
+>> I am facing to a very odd behaviour installing the resulting meta-toolchain.
+>> I launch
+>> poky-glibc-i686-meta-toolchain-cortexa9hf-vfp-neon-toolchain-1.7.1.sh
+>>
+>> If I install in the default directory or in /opt/poky/test it works as
+>> expected, but if I install in /opt/poky/1.7.1-cortexa9hf there is a
+>> problem. Using YP older that dizzy it worked with a charm.
+>>
+>> $ ./poky-glibc-i686-meta-toolchain-cortexa9hf-vfp-neon-toolchain-1.7.1.sh
+>> Enter target directory for SDK (default: /opt/poky/1.7.1):
+>> /opt/poky/1.7.1-cortexa9hf
+>> You are about to install the SDK to "/opt/poky/1.7.1-cortexa9hf".
+>> Proceed[Y/n]? Extracting SDK...done
+>> Setting it up...done
+>> SDK has been successfully set up and is ready to be used.
+>>
+>> Now I can't use it calling the env setup as usual
+>> $ .
+>> /opt/poky/1.7.1-cortexa9hf/environment-setup-cortexa9hf-vfp-neon-poky-linux
+>> -gnueabi
+>>
+>> the reason is that the resulting path is incorrect
+>>
+>> $ env | grep PATH
+>> PATH=/opt/poky/1.7.1-cortexa9hf-cortexa9hf/sysroots/i686-pokysdk-linux/usr/b
+>> in:/opt/poky/1.7.1-cortexa9hf-cortexa9hf/sysroots/i686-pokysdk-linux/usr/bin
+>> /arm-poky-linux-gnueabi:.....
 >
-> are there any specific reasons for doing that ?
-> can it be done by passing -ffreestanding option via CFLAGS
-> afterall uboot is a baremetal/standalone app.
+> Yes, I discovered this a few months ago and it got fixed in master:
+>
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=7032
+>
+> It looks like we still haven't backported the fix to 1.7 though. Anibal, could
+> you please take care of that?
 
-I do not know any reason, but all tutorials require a arm-none-eabi
-toolchain. Could this be required by the ROM bootloader? Frankly I not
-familiar with this eabi none eabi difference. Due to the fact that there is
-lack of documentation I have to try if I can build it with eabi toolchain.
+I can if Anibal is working on other things. I have slowly back porting 
+changes anyway for the next dizzy release.
 
-Regards,
-Christian
+- armin
+>
+> Thanks,
+> Paul
+>
 
---001a11c288f29e6cb20511a9db1c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p dir=3D"ltr"><br>
-Am 19.03.2015 00:35 schrieb &quot;Khem Raj&quot; &lt;<a href=3D"mailto:raj.=
-khem@gmail.com">raj.khem@gmail.com</a>&gt;:<br>
-&gt;<br>
-&gt; On Wed, Mar 18, 2015 at 12:55 PM, Christian Ege &lt;<a href=3D"mailto:=
-k4230r6@gmail.com">k4230r6@gmail.com</a>&gt; wrote:<br>
-&gt; &gt; Hello,<br>
-&gt; &gt;<br>
-&gt; &gt; it looks like that Amlogic based devices like the ODROID-C1 [1]<b=
-r>
-&gt; &gt; requires their u-boot compiled with an arm-none-eabi toolchain. T=
-he<br>
-&gt; &gt; rest kernel and rootfs is compiled with standard arm eabi toolcha=
-in. I<br>
-&gt; &gt; am wondering how to support this in yocto/openembedded.<br>
-&gt;<br>
-&gt; are there any specific reasons for doing that ?<br>
-&gt; can it be done by passing -ffreestanding option via CFLAGS<br>
-&gt; afterall uboot is a baremetal/standalone app.</p>
-<p dir=3D"ltr">I do not know any reason, but all tutorials require a arm-no=
-ne-eabi toolchain. Could this be required by the ROM bootloader? Frankly I =
-not familiar with this eabi none eabi difference. Due to the fact that ther=
-e is lack of documentation I have to try if I can build it with eabi toolch=
-ain.</p>
-<p dir=3D"ltr">Regards,<br>
-Christian</p>
-
---001a11c288f29e6cb20511a9db1c--
