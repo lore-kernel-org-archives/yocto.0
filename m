@@ -1,28 +1,55 @@
-Return-Path: <joshua.lock@collabora.co.uk>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E5E2EE00754; Fri, 20 Mar 2015 07:22:23 -0700 (PDT)
+	id 4890DE0076B; Fri, 20 Mar 2015 07:53:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,UNPARSEABLE_RELAY
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
-	lines
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [93.93.135.160])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3E57E00839
-	for <yocto@yoctoproject.org>; Fri, 20 Mar 2015 07:22:22 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: joshuagl) with ESMTPSA id 1B127600741
-From: Joshua Lock <joshua.lock@collabora.co.uk>
-To: yocto@yoctoproject.org
-Date: Fri, 20 Mar 2015 14:14:53 +0000
-Message-Id: <1426860894-13604-2-git-send-email-joshua.lock@collabora.co.uk>
-X-Mailer: git-send-email 2.1.0
-In-Reply-To: <1426860894-13604-1-git-send-email-joshua.lock@collabora.co.uk>
-References: <1426860894-13604-1-git-send-email-joshua.lock@collabora.co.uk>
-Subject: [PATCH 1/2] PublishArtifacts.py: respect TMP_DIR if it's set
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.179 listed in list.dnswl.org]
+Received: from mail-ie0-f179.google.com (mail-ie0-f179.google.com
+	[209.85.223.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F278AE003FA
+	for <yocto@yoctoproject.org>; Fri, 20 Mar 2015 07:53:08 -0700 (PDT)
+Received: by iedm5 with SMTP id m5so30181732ied.3
+	for <yocto@yoctoproject.org>; Fri, 20 Mar 2015 07:53:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=r3Y7TFalOYhrp+FGTPWZDZkQSHscVoVptlwJgAANY+g=;
+	b=elAzdvWe2HSBtwcw2ymybUsaxwE9TK46LWDSJ+o+PJya2vmmVLQVy9dSrRxc3rjPlQ
+	HUne3cp/oeAemcFNK4WP1B+tS8hJFLApL3uYgl5xRHe4my4UiMrucRMCgmhV0WXjr3Cj
+	CsXDOcEtZ3M506GL5KeUf1b+7Fbo7e4bykTtYSxh0DEZqPF/zaxbZL4tfvUR4RiY+Biy
+	9ePVopPvFWhu8ctEj7yupF9gtxtvHnLJA/aBMOnWxSSDel1dGwDpgZQoSOqot7+YXjGW
+	m01r6kePr918O5VHgORytnD8Eml4LL+cnITv21AwvE7RJtUHd+KWbItgSKlwXT9vgbDC
+	LrNg==
+X-Received: by 10.107.132.13 with SMTP id g13mr114157781iod.4.1426863188382;
+	Fri, 20 Mar 2015 07:53:08 -0700 (PDT)
+Received: from [192.168.141.85] ([67.55.34.223])
+	by mx.google.com with ESMTPSA id
+	g195sm3263555iog.24.2015.03.20.07.53.07 for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 20 Mar 2015 07:53:08 -0700 (PDT)
+Message-ID: <550C3452.2070403@gmail.com>
+Date: Fri, 20 Mar 2015 10:53:06 -0400
+From: Trevor Woerner <twoerner@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+MIME-Version: 1.0
+To: yocto <yocto@yoctoproject.org>
+Subject: unpacking poky-dora-10.0.4.tar.bz2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,142 +61,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Mar 2015 14:22:23 -0000
+X-List-Received-Date: Fri, 20 Mar 2015 14:53:15 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-If TMP_DIR is set look there for artifacts to publish, rather than a tmp
-directory which is a child of basedir.
+Hi,
 
-Signed-off-by: Joshua Lock <joshua.lock@collabora.co.uk>
----
- .../autobuilder/buildsteps/PublishArtifacts.py     | 39 ++++++++++++----------
- 1 file changed, 21 insertions(+), 18 deletions(-)
+When I download and unpack poky-dora-10.0.4.tar.bz2 from
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.4/poky-dora-10.0.4.tar.bz2
+I end up with a directory called
+poky-de14d21bc6633ddeb810cef051b91ee322276496 instead of (the expected?)
+poky-dora-10.0.4.
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
-index e636fe5..aee3d1f 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
-@@ -47,6 +47,9 @@ class PublishArtifacts(ShellCommand):
-         self.basedir=os.path.join(os.path.join(
-                                     self.workerdir, buildername),
-                                     "build/build/")
-+        self.tmpdir = os.environ.get("TMP_DIR")
-+        if self.tmpdir is None:
-+            self.tmpdir = os.path.join(self.basedir, "tmp")
-         command=""
-         DATESTAMP=datetime.datetime.now().strftime("%Y%m%d")
-         if str(os.environ.get('PUBLISH_BUILDS')) == "True":
-@@ -72,17 +75,17 @@ class PublishArtifacts(ShellCommand):
-                 if artifact == "adt-installer":
-                     command=command+"mkdir -p " + os.path.join(DEST, ADT_INST_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/sdk/") + \
-+                                    os.path.join(self.tmpdir, "deploy/sdk/") + \
-                                     "*adt* " + os.path.join(DEST, ADT_INST_PUBLISH_DIR) + ";"
-                 elif artifact == "adt-installer-QA":
-                     command=command+"mkdir -p " + os.path.join(DEST, ADTQA_INST_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/sdk/") + \
-+                                    os.path.join(self.tmpdir, "deploy/sdk/") + \
-                                     "*adt* " + os.path.join(DEST, ADTQA_INST_PUBLISH_DIR)+ ";"
-                 elif artifact == "adtrepo-dev":
-                     adt_dev_dest= os.environ.get("ADTREPO_DEV_PATH") + "/" + distroversion + "-" + got_revision_poky + '-' + self.getProperty("branch_poky")
-                     command=command+"mkdir -p " + adt_dev_dest + "/adt-ipk;"
--                    command=command+"rsync -av " + os.path.join(self.basedir, "tmp/deploy/ipk/") + " " +  adt_dev_dest + "/adt-ipk;"
-+                    command=command+"rsync -av " + os.path.join(self.tmpdir, "deploy/ipk/") + " " +  adt_dev_dest + "/adt-ipk;"
-                     command=command+"rm -rf " + adt_dev_dest + "/rootfs; mkdir -p " + adt_dev_dest + "/rootfs;"
-                     command=command+"for x in `ls " + DEST + "/machines/qemu/|grep -v tiny`; do ln -s " + DEST + "/machines/qemu/$x " + adt_dev_dest + "/rootfs/$x; done;"
-                     if self.layerversion_yocto is not None and int(self.layerversion_yocto) < 2:
-@@ -98,49 +101,49 @@ class PublishArtifacts(ShellCommand):
-                     command=command+"mkdir -p " + DEST + "/" + BA_PUBLISH_DIR + ";"
-                     if self.layerversion_core is not None and int(self.layerversion_core) > 2:
-                         command=command+"cp -R --no-dereference --preserve=links " + \
--                                        os.path.join(self.basedir, "tmp/deploy/images/qemux86-64/*.zip") + \
-+                                        os.path.join(self.tmpdir, "deploy/images/qemux86-64/*.zip") + \
-                                         " " + DEST + "/" + BA_PUBLISH_DIR + ";"
-                     else:
-                         command=command+"cp -R --no-dereference --preserve=links " + \
--                                        os.path.join(self.basedir, "tmp/deploy/images/*.zip") + \
-+                                        os.path.join(self.tmpdir, "deploy/images/*.zip") + \
-                                         " " + DEST + "/" + BA_PUBLISH_DIR + ";"
-                 elif artifact == "buildtools-tarball":
-                     command=command+"mkdir -p " + DEST + "/buildtools;"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/sdk/*.sh") + \
-+                                    os.path.join(self.tmpdir, "deploy/sdk/*.sh") + \
-                                     " " + DEST + "/buildtools;"
-                 elif artifact == "rpm":
-                     command=command+"mkdir -p " + os.path.join(DEST, RPM_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/rpm/* ") + \
-+                                    os.path.join(self.tmpdir, "deploy/rpm/* ") + \
-                                     os.path.join(DEST, RPM_PUBLISH_DIR) + ";"
-                 elif artifact == "deb":
-                     command=command+"mkdir -p " + os.path.join(DEST, DEB_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/deb/* ") + \
-+                                    os.path.join(self.tmpdir, "deploy/deb/* ") + \
-                                     os.path.join(DEST, DEB_PUBLISH_DIR) + ";"
-                 elif artifact == "ipk":
-                     command=command+"mkdir -p " + os.path.join(DEST, IPK_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/ipk/* ") + \
-+                                    os.path.join(self.tmpdir, "deploy/ipk/* ") + \
-                                     os.path.join(DEST, IPK_PUBLISH_DIR) + ";"
-                 elif artifact == "toolchain":
-                     command=command+"mkdir -p " + os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/sdk/poky-*i686-core-image*.sh ") + \
-+                                    os.path.join(self.tmpdir, "deploy/sdk/poky-*i686-core-image*.sh ") + \
-                                     os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
-                     command=command+"mkdir -p " + os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/sdk/poky-*x86_64-core-image*.sh ") + \
-+                                    os.path.join(self.tmpdir, "deploy/sdk/poky-*x86_64-core-image*.sh ") + \
-                                     os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
-                 elif artifact == "oe-toolchain":
-                     command=command+"mkdir -p " + os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/sdk/oecore-i686* ") + \
-+                                    os.path.join(self.tmpdir, "deploy/sdk/oecore-i686* ") + \
-                                     os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
-                     command=command+"mkdir -p " + os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/sdk/oecore-x86_64* ") + \
-+                                    os.path.join(self.tmpdir, "deploy/sdk/oecore-x86_64* ") + \
-                                     os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
- 
-                 elif "qemu" in artifact:
-@@ -162,11 +165,11 @@ class PublishArtifacts(ShellCommand):
-                     command += self.generateMD5cmd(artifact, QEMU_PUBLISH_DIR + "/qemu-tiny")
-                     if self.layerversion_core is not None and int(self.layerversion_core) > 2:
-                         command=command+"cp -R --no-dereference --preserve=links " + \
--                                        os.path.join(self.basedir, "tmp/deploy/images/qemux86/* ") + \
-+                                        os.path.join(self.tmpdir, "deploy/images/qemux86/* ") + \
-                                         " " + DEST + "/" + QEMU_PUBLISH_DIR + "/qemu-tiny;"
-                     else:
-                         command=command+"cp -R --no-dereference --preserve=links " + \
--                                        os.path.join(self.basedir, "tmp/deploy/images/*") + \
-+                                        os.path.join(self.tmpdir, "deploy/images/*") + \
-                                         DEST + "/" + QEMU_PUBLISH_DIR + "/qemu-tiny;"
-                 elif artifact == "conf":
-                     artifact_name, deploy_image_dir = self.getDeployNames(artifact, buildername)
-@@ -216,12 +219,12 @@ class PublishArtifacts(ShellCommand):
-         if "-lsb" in buildername:
-             artifact_name = artifact_name + "-lsb"
-         if artifact_name is "md5sums":
--            deploy_dir_image = os.path.join(self.basedir, "tmp/deploy/images/")
-+            deploy_dir_image = os.path.join(self.tmpdir, "deploy/images/")
-         else:
-             if self.layerversion_core is not None and int(self.layerversion_core) > 2:
--                deploy_dir_image = os.path.join(os.path.join(self.basedir, "tmp/deploy/images/"), artifact)
-+                deploy_dir_image = os.path.join(os.path.join(self.tmpdir, "deploy/images/"), artifact)
-             else:
--                deploy_dir_image = os.path.join(self.basedir, "tmp/deploy/images/")
-+                deploy_dir_image = os.path.join(self.tmpdir, "deploy/images/")
-         return artifact_name, deploy_dir_image
- 
-     def describe(self, done=False):
--- 
-2.1.0
+Is this expected?
 
+Best regards,
+    Trevor
 
