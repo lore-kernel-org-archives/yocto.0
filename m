@@ -1,6 +1,6 @@
 Return-Path: <schnitzeltony@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6DC9DE0084F; Sun, 22 Mar 2015 13:17:47 -0700 (PDT)
+	id 6137EE0084F; Sun, 22 Mar 2015 13:21:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.175 listed in list.dnswl.org]
+	*      [74.125.82.52 listed in list.dnswl.org]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (schnitzeltony[at]googlemail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
@@ -19,36 +19,37 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pd0-f175.google.com (mail-pd0-f175.google.com
-	[209.85.192.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97A5FE005B6
-	for <yocto@yoctoproject.org>; Sun, 22 Mar 2015 13:17:39 -0700 (PDT)
-Received: by pdbop1 with SMTP id op1so165391081pdb.2
-	for <yocto@yoctoproject.org>; Sun, 22 Mar 2015 13:17:39 -0700 (PDT)
+Received: from mail-wg0-f52.google.com (mail-wg0-f52.google.com [74.125.82.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6246BE005B6
+	for <yocto@yoctoproject.org>; Sun, 22 Mar 2015 13:21:19 -0700 (PDT)
+Received: by wgbcc7 with SMTP id cc7so130663748wgb.0
+	for <yocto@yoctoproject.org>; Sun, 22 Mar 2015 13:21:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=googlemail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=ucy8eeX6vrjkb5Lria5Ete+cZFzRjz0Sh4rOn00RVdA=;
-	b=p1v2G9aZ2DltsA9YWaOldX1MYIbepXvg4jleJrUmcCVO2oF4hFzH+DIkOlitN5bXJ9
-	Adnr2cNlWqrW8roxlgI0v3MNeGQ20aPRc/u/7+IjEQnVQ5FfjQWvzAxKoZl3mtzlVyhb
-	1ThxIXnhZECd+qt3rulVE/+nmo/4n4R/OIoHmPtx7XlnNmmQdNKd3sTwX/fMP5YF2adg
-	Gbf0bzdmndLHh/gFd+jeUrIr8fmI5KTVs/pUivqCSE5gbMtAG6rc+6yCvbenAeSPr3u6
-	CSIMotuv9dr2NC1+bIO7serZXiI4iuZ+rmWjzwj49WxdnC3cd9nL6sf/LqqrNUlQJVwn
-	dvfw==
+	h=from:to:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding;
+	bh=AlXdZnE4FH4H8pP7SkinXFo7+p4cMCixaMce2es9OeE=;
+	b=Up75unix2qx/aivh7VGS0r7oosuCVfjvA9l2sRsaQEBoh9zrn1/5L9NkDj00upAmQY
+	l6xqiuayQTXv0jT0BMvXwOxtCBzrD9EquOukH3aQLsnwr4+m166urHd1Gs8d+qDzVoKc
+	K25rKupfYVBj2fLni2gAInffsDMPvthxq2Sx66ji886BWOxzxOIOUUR/A4YAPZeVAMjT
+	7zRMKis3IYMs73ox5An3LMOvXi62ptpgmLN5nqsGj/vBiPw6Dr7mBpVCBGrvfoMxU5lY
+	+xd7FYqLO35rGmPMJVV1kSKM7brjdZ80OYWM9dgm90YaxtyRyrm0I9iSfFm1Tvul6DY/
+	6sgA==
+X-Received: by 10.194.24.103 with SMTP id t7mr176307397wjf.15.1427055678578;
+	Sun, 22 Mar 2015 13:21:18 -0700 (PDT)
+Received: from localhost.localdomain (p4FDF0F61.dip0.t-ipconnect.de.
+	[79.223.15.97])
+	by mx.google.com with ESMTPSA id n1sm8033902wib.11.2015.03.22.13.21.17
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 22 Mar 2015 13:21:17 -0700 (PDT)
+From: =?UTF-8?q?Andreas=20M=C3=BCller?= <schnitzeltony@googlemail.com>
+To: yocto@yoctoproject.org
+Date: Sun, 22 Mar 2015 21:21:07 +0100
+Message-Id: <1427055667-2226-1-git-send-email-schnitzeltony@googlemail.com>
+X-Mailer: git-send-email 1.9.3
 MIME-Version: 1.0
-X-Received: by 10.68.172.3 with SMTP id ay3mr14865959pbc.94.1427055459137;
-	Sun, 22 Mar 2015 13:17:39 -0700 (PDT)
-Received: by 10.70.38.9 with HTTP; Sun, 22 Mar 2015 13:17:39 -0700 (PDT)
-In-Reply-To: <CAK18fxEStLTUzh7O-YVHyGiqnBK4oVwGRKiO==nMmKiYngH0gQ@mail.gmail.com>
-References: <550EB367.9070508@mlbassoc.com>
-	<CAK18fxEStLTUzh7O-YVHyGiqnBK4oVwGRKiO==nMmKiYngH0gQ@mail.gmail.com>
-Date: Sun, 22 Mar 2015 21:17:39 +0100
-Message-ID: <CALbNGRT3PGeeMpKMPCacpakQXeD81PwWK3=HF4EqCt2EyKH1_A@mail.gmail.com>
-From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Cc: Yocto Project <yocto@yoctoproject.org>, Gary Thomas <gary@mlbassoc.com>
-Subject: Re: [meta-raspberrypi] RaspberryPi2 - no audio?
+Subject: [meta-raspberrypi][PATCH] make sound work out of the box for raspberrypi2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,53 +61,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 22 Mar 2015 20:17:47 -0000
+X-List-Received-Date: Sun, 22 Mar 2015 20:21:21 -0000
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Sun, Mar 22, 2015 at 1:25 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> Hello,
->
-> On Sun, Mar 22, 2015 at 1:19 PM, Gary Thomas <gary@mlbassoc.com> wrote:
->>
->> I just built Poky/Yocto for the RaspberryPi2, straight out
->> of the box using this configuration:
->>
->> Build Configuration:
->> BB_VERSION        = "1.25.0"
->> BUILD_SYS         = "i686-linux"
->> NATIVELSBSTRING   = "Fedora-13"
->> TARGET_SYS        = "arm-amltd-linux-gnueabi"
->> MACHINE           = "raspberrypi2"
->> DISTRO            = "amltd"
->> DISTRO_VERSION    = "1.7+snapshot-20150321"
->> TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard vfpv4
->> cortexa7"
->> TARGET_FPU        = "vfp-vfpv4-neon"
->> meta              = "master:12b6cf0f2212519b14333519746174a5b941f7bf"
->> meta-amltd        =
->> "cutting-edge:d9350ea229c04d64111f38e638f372a1bac87be0"
->> meta-raspberrypi  = "master:b896a7da70dd7a16ba7ffd664f7747cb37e1d142"
->>
->> All seemed to go OK, but when I try to play audio, there are
->> no sound cards found.  Is there some configuration I need?
->> Once I get it going, how can I select between the internal
->> (phono) audio and HDMI?
->>
->> Note: I had this working just fine on my RaspberryPi (model B)
->>
->
-> We didn't test audio on Raspberrypi 2. So, probably the best thing to do it
-> to shoot a redmine bug and maybe help with some patches? Otherwise we will
-> try to pick it as soon as possible.
->
-> Thanks a lot.
->
-> --
-> Andrei Gherzan
->
-Had same - had no time to send yet [1]...
+Signed-off-by: Andreas Müller <schnitzeltony@googlemail.com>
+---
+ ...-during-boot-by-compiling-SND_BCM2835-int.patch | 38 ++++++++++++++++++++++
+ recipes-kernel/linux/linux-raspberrypi_3.18.bb     |  8 +++--
+ 2 files changed, 43 insertions(+), 3 deletions(-)
+ create mode 100644 recipes-kernel/linux/linux-raspberrypi/0001-start-sound-during-boot-by-compiling-SND_BCM2835-int.patch
 
-Andreas
+diff --git a/recipes-kernel/linux/linux-raspberrypi/0001-start-sound-during-boot-by-compiling-SND_BCM2835-int.patch b/recipes-kernel/linux/linux-raspberrypi/0001-start-sound-during-boot-by-compiling-SND_BCM2835-int.patch
+new file mode 100644
+index 0000000..cb06253
+--- /dev/null
++++ b/recipes-kernel/linux/linux-raspberrypi/0001-start-sound-during-boot-by-compiling-SND_BCM2835-int.patch
+@@ -0,0 +1,38 @@
++From dc6d02c68956a1833bd30159d4e411f1515db66e Mon Sep 17 00:00:00 2001
++From: =?UTF-8?q?Andreas=20M=C3=BCller?= <schnitzeltony@googlemail.com>
++Date: Wed, 18 Mar 2015 23:51:37 +0100
++Subject: [PATCH] start sound during boot by compiling SND_BCM2835 into kernel
++MIME-Version: 1.0
++Content-Type: text/plain; charset=UTF-8
++Content-Transfer-Encoding: 8bit
++
++Signed-off-by: Andreas Müller <schnitzeltony@googlemail.com>
++---
++ arch/arm/configs/bcm2709_defconfig | 4 ++--
++ 1 file changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/arch/arm/configs/bcm2709_defconfig b/arch/arm/configs/bcm2709_defconfig
++index b5bf4cb..426f2ed 100644
++--- a/arch/arm/configs/bcm2709_defconfig
+++++ b/arch/arm/configs/bcm2709_defconfig
++@@ -765,7 +765,7 @@ CONFIG_LOGO=y
++ # CONFIG_LOGO_LINUX_MONO is not set
++ # CONFIG_LOGO_LINUX_VGA16 is not set
++ CONFIG_SOUND=y
++-CONFIG_SND=m
+++CONFIG_SND=y
++ CONFIG_SND_SEQUENCER=m
++ CONFIG_SND_SEQ_DUMMY=m
++ CONFIG_SND_MIXER_OSS=m
++@@ -778,7 +778,7 @@ CONFIG_SND_VIRMIDI=m
++ CONFIG_SND_MTPAV=m
++ CONFIG_SND_SERIAL_U16550=m
++ CONFIG_SND_MPU401=m
++-CONFIG_SND_BCM2835=m
+++CONFIG_SND_BCM2835=y
++ CONFIG_SND_USB_AUDIO=m
++ CONFIG_SND_USB_UA101=m
++ CONFIG_SND_USB_CAIAQ=m
++-- 
++1.9.3
++
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.18.bb b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+index 921e702..053e892 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_3.18.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+@@ -1,8 +1,10 @@
+ LINUX_VERSION ?= "3.18.5"
+ 
+ SRCREV = "a6cf3c99bc89e2c010c2f78fbf9e3ed478ccfd46"
+-SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y \
+-           file://sl030raspberrypii2ckernel.patch \
+-          "
++SRC_URI = " \
++    git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y \
++    file://sl030raspberrypii2ckernel.patch \
++    file://0001-start-sound-during-boot-by-compiling-SND_BCM2835-int.patch \
++"
+ 
+ require linux-raspberrypi.inc
+-- 
+1.9.3
 
-[1] https://github.com/schnitzeltony/meta-raspberrypi/commit/d353859131ead0d45cab322d5e93b3f8391dd2ba
 
