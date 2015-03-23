@@ -1,37 +1,49 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <haim.badash@orcam.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78492E0094C; Mon, 23 Mar 2015 00:49:01 -0700 (PDT)
+	id 2F1BFE0094C; Mon, 23 Mar 2015 01:52:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,UNPARSEABLE_RELAY
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18C3EE00757
-	for <yocto@yoctoproject.org>; Mon, 23 Mar 2015 00:48:58 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id t2N7mvlM028067
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 23 Mar 2015 00:48:58 -0700 (PDT)
-Received: from [128.224.162.201] (128.224.162.201) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 23 Mar 2015 00:48:57 -0700
-Message-ID: <550FC568.4020404@windriver.com>
-Date: Mon, 23 Mar 2015 15:48:56 +0800
-From: wenzong fan <wenzong.fan@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines
+X-Greylist: delayed 401 seconds by postgrey-1.32 at yocto-www;
+	Mon, 23 Mar 2015 01:52:25 PDT
+Received: from mobileye.com (mx.mobileye.com [94.188.132.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DEA5E00757
+	for <yocto@yoctoproject.org>; Mon, 23 Mar 2015 01:52:25 -0700 (PDT)
+Received: from Internal Mail-Server by Master (envelope-from
+	haim.badash@orcam.com) with SMTP; 23 Mar 2015 10:26:11 +0200
+Received: from localhost (localhost [127.0.0.1]) by mail.orcam.com (Postfix)
+	with ESMTP id 7A0AD3C2585 for <yocto@yoctoproject.org>; Mon, 23 Mar 2015
+	10:30:07 +0200 (IST)
+Received: from mail.orcam.com ([127.0.0.1]) by localhost (mail.orcam.com
+	[127.0.0.1]) (amavisd-new, port 10032) with ESMTP id GrR6lQdANTf7 for
+	<yocto@yoctoproject.org>; Mon, 23 Mar 2015 10:30:06 +0200 (IST)
+Received: from localhost (localhost [127.0.0.1]) by mail.orcam.com (Postfix)
+	with ESMTP id 1DFDB3C258F for <yocto@yoctoproject.org>; Mon, 23 Mar 2015
+	10:30:06 +0200 (IST)
+X-Virus-Scanned: amavisd-new at mail.orcam.com
+Received: from mail.orcam.com ([127.0.0.1]) by localhost (mail.orcam.com
+	[127.0.0.1]) (amavisd-new, port 10026) with ESMTP id gfZrNvOIpEur for
+	<yocto@yoctoproject.org>; Mon, 23 Mar 2015 10:30:05 +0200 (IST)
+Received: from mail.orcam.com (mail.orcam.com [172.16.4.9]) by
+	mail.orcam.com (Postfix) with ESMTP id 9C4693C2585 for
+	<yocto@yoctoproject.org>; Mon, 23 Mar 2015 10:30:05 +0200 (IST)
+Date: Mon, 23 Mar 2015 10:30:00 +0200 (IST)
+From: Haim Badash <haim.badash@orcam.com>
+To: yocto@yoctoproject.org
+Message-ID: <308713978.132640.1427099397925.JavaMail.zimbra@orcam.com>
+In-Reply-To: <17155169.111135.1427097728846.JavaMail.zimbra@orcam.com>
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <1427095751-31030-1-git-send-email-wenzong.fan@windriver.com>
-In-Reply-To: <1427095751-31030-1-git-send-email-wenzong.fan@windriver.com>
-Subject: Re: [PATCH][meta-selinux] udev: restorecon /run to allow mdadm creating /run/mdadm
+X-Originating-IP: [192.168.100.71]
+X-Mailer: Zimbra 8.0.6_GA_5922 (ZimbraWebClient - GC41 (Linux)/8.0.6_GA_5922)
+Thread-Topic: yocto toolchain
+Thread-Index: hEe/7NE185NyovLnJfWNXRywNtpopQ==
+Subject: yocto toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,52 +55,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Mar 2015 07:49:01 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+X-List-Received-Date: Mon, 23 Mar 2015 08:52:30 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 
-On 03/23/2015 03:29 PM, wenzong.fan@windriver.com wrote:
-> From: Wenzong Fan <wenzong.fan@windriver.com>
->
-> This change bases on the factors during bootup:
->
-> a. the default type for /run is var_run_t;
-> b. the type for /run will be changed to tmpfs_t after tmpfs mounted;
-> c. the type for /run will be fixed after populate-volatile.sh run.
->
-> udev service is started in b->c period, fix the type for /run from
-> udev init script to remove:
->
->    avc: denied { write } for pid=294 comm="mdadm" \
->    name="/" dev="tmpfs" ino=10581 \
->    scontext=system_u:system_r:mdadm_t:s0-s15:c0.c1023 \
->    tcontext=system_u:object_r:tmpfs_t:s0 tclass=dir
->
-> (LOCAL REV: NOT UPSTREAM) -- Sent to yocto on 20150323
+How can I install the yocto toolchain  in directory that I choose (not the default directory)?
+I run poky...toolchain-1.6.2.sh (that created when I run 'bitbake meta-toolchain'), and I choose  target directory for SDK.
+The toolchain Installed in the directory that I choose, but yet has a link to default directory (/opt/poky/1.6.2/).
 
-Oops, the "local rev" mark should be removed, V2 sent for fixing this.
 
-//Wenzong
+/my_dir/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc -v
 
->
-> Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
-> ---
->   recipes-core/udev/udev/init | 3 +++
->   1 file changed, 3 insertions(+)
->
-> diff --git a/recipes-core/udev/udev/init b/recipes-core/udev/udev/init
-> index 66359f2..bb8b95b 100644
-> --- a/recipes-core/udev/udev/init
-> +++ b/recipes-core/udev/udev/init
-> @@ -61,6 +61,9 @@ case "$1" in
->       # /var/volatile/tmp directory to be available.
->       mkdir -p /var/volatile/tmp
->
-> +    # restorecon /run early to allow mdadm creating dir /run/mdadm
-> +    test ! -x /sbin/restorecon || /sbin/restorecon -F /run
-> +
->       # Cache handling.
->       # A list of files which are used as a criteria to judge whether the udev cache could be reused.
->       CMP_FILE_LIST="/proc/version /proc/cmdline /proc/devices /proc/atags"
->
+COLLECT_GCC=/my_dir/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc
+COLLECT_LTO_WRAPPER=/my_dir/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/../../libexec/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.8.2/lto-wrapper
+ --target=arm-poky-linux-gnueabi --prefix=/opt/poky/1.6.2/sysroots/x86_64-pokysdk-linux/usr -- ...
+ ..exec_prefix=/opt/poky/1.6.2/sysroots/x86_64-pokysdk-linux/usr...
+ include-dir=/opt/poky/1.6.2/sysroots/cortexa9hf-vfp-neon-poky-linux-gnueabi/usr/include/c++ --with-build-time-.....
+
+This mail was sent via Mail-SeCure system.
+
+
+
+ 
+ 
+************************************************************************************
+This footnote confirms that this email message has been scanned by
+PineApp Mail-SeCure for the presence of malicious code, vandals & computer viruses.
+************************************************************************************
+
+
+
 
