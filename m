@@ -1,49 +1,39 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DC740E0091A; Tue, 24 Mar 2015 08:10:21 -0700 (PDT)
+	id 0B962E0091A; Tue, 24 Mar 2015 09:19:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 887FEE00854
-	for <yocto@yoctoproject.org>; Tue, 24 Mar 2015 08:10:15 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga103.fm.intel.com with ESMTP; 24 Mar 2015 08:10:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,458,1422950400"; 
-	d="scan'208,217";a="684866067"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by fmsmga001.fm.intel.com with ESMTP; 24 Mar 2015 08:10:13 -0700
-Received: from orsmsx111.amr.corp.intel.com (10.22.240.12) by
-	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
-	(TLS) id 14.3.195.1; Tue, 24 Mar 2015 08:10:13 -0700
-Received: from FMSMSX109.amr.corp.intel.com (10.18.116.9) by
-	ORSMSX111.amr.corp.intel.com (10.22.240.12) with Microsoft SMTP Server
-	(TLS) id 14.3.195.1; Tue, 24 Mar 2015 08:10:12 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.52]) by
-	FMSMSX109.amr.corp.intel.com ([169.254.15.209]) with mapi id
-	14.03.0195.001; Tue, 24 Mar 2015 08:10:12 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, Mar.
-	24, 2015 8:00 AM US Pacific Time
-Thread-Index: AdBmRJ7k/7jpwPLYQcql3b1Gt5cbQg==
-Date: Tue, 24 Mar 2015 15:10:11 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E55423D0D@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.107]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8DEFE00854
+	for <yocto@yoctoproject.org>; Tue, 24 Mar 2015 09:19:05 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id t2OGJ4JE016159
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 24 Mar 2015 09:19:04 -0700 (PDT)
+Received: from Marks-MacBook-Pro.local (172.25.36.226) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.224.2; Tue, 24 Mar 2015 09:19:03 -0700
+Message-ID: <55118E77.9040404@windriver.com>
+Date: Tue, 24 Mar 2015 11:19:03 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, Mar. 24, 2015 8:00 AM US Pacific Time
+To: <yocto@yoctoproject.org>
+References: <CAA2DH4v8kvV6SoEM4aeCBrY=nP6hF83Nde05jeM56_oMr1zn-A@mail.gmail.com>	<550BF5E3.90900@dynamicdevices.co.uk>	<203838231.pb6FNpVrD4@peggleto-mobl.ger.corp.intel.com>	<3145381.WbFnV3fS4E@peggleto-mobl.ger.corp.intel.com>
+	<CAA2DH4vNJxmenn5mVmt8x-=rdBhTnUOFbPpeCmWuO8WpKuZTOg@mail.gmail.com>
+In-Reply-To: <CAA2DH4vNJxmenn5mVmt8x-=rdBhTnUOFbPpeCmWuO8WpKuZTOg@mail.gmail.com>
+Subject: Re: Embedded Linux Package Management
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,300 +45,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Mar 2015 15:10:21 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55423D0Dfmsmsx111amrcor_"
+X-List-Received-Date: Tue, 24 Mar 2015 16:19:08 -0000
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55423D0Dfmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On 3/21/15 3:40 AM, Prasant J wrote:
+> On Fri, Mar 20, 2015 at 4:44 PM, Paul Eggleton
+> <paul.eggleton@linux.intel.com> wrote:
+>> On Friday 20 March 2015 11:10:39 Paul Eggleton wrote:
+>>> On Friday 20 March 2015 11:26:43 Alex J Lennon wrote:
+>>>> On 20/03/2015 11:15, Prasant J wrote:
+>>>>> On Fri, Mar 20, 2015 at 2:21 PM, Alex J Lennon
+>>>>
+>>>> I don't know. To me the question would be does it do want I need it to
+>>>> do as well as I need it to do it,
+>>>> rather than asking whether there is a lot of activity. One might take
+>>>> the view that if it is doing its job,
+>>>> a lack of activity is a sign that it's a mature piece of software that
+>>>> needs little further development.
+>>>>
+>>>> You'll have to make that decision yourself.
+>>>>
+>>>> My understanding is that smart is the recommended way to do things (at
+>>>> least it was what was
+>>>> recommended to me) - https://wiki.yoctoproject.org/wiki/Smart
+> 
+> @Alex:
+> You are correct, it should be able to do what I need.
+> It did most of the things that I need.
+> 
+> But I'm not fine in using a package if the development has stopped.
+> Smart may stop development but other packages continue to develop.
+> It is important for me to know that the maintainer will continue to provide
+> compliance as other libraries are actively developed.
 
-Attendees: Armin, Stephen, Saul, Beth, Bruce, Mark, Richard, Ross, Paul, Al=
-ex, Brendan,
+This is an open source project.  The Yocto Project developers will do they're
+best to stand behind the technology that has been selected and have plans to
+continue to fix defects, improve (as appropriate), and continue to evaluate
+options moving forward.  But at this time, SmartPM is still the best answer for
+our present needs, when RPM is selected as the package type.
 
+You are welcome to provide your own package management front end, and/or port
+components like DNF into the environment.  There is nothing stopping you other
+then time and resources (the same constrains we are under.)
 
+We do welcome contributions and enhancements from community members, but don't
+expect us to select technology on a whim.  Usually we have a good reason to
+select something, community input, requirements from members, or simply
+familiarity with the code.
 
-Agenda:
+The SmartPM project itself is on a downward swing, however it does everything we
+need it to do.  (One exception would be DeltaRPM support.. but frankly it's been
+a low priority for people for a while now...)  SmartPM also has the advantage
+that it's python and small.  Some of the other technologies, such as Zypper were
+tried, and failed due to the, IMHO, onerous requirements that it's support
+libraries, such as Boost and libstdc++, put onto the environment.  YUM is simply
+not easily compatible with RPM5 and their community had been actively hostile to
+RPM5 development.  SmartPM was simple, fast, and easy to modify -- with a
+community that didn't mind change.  (DNF did not yet, exist at the time of the
+decision -- it was being discussed, but it's only been recently that it has
+advanced to a point where it can be seriously investigated as a possible
+alternative.)
 
+Also if you don't like SmartPM/RPM, you can always use IPK.  But you will give
+up some of the capabilities that RPM brings to the table.  (Note, I believe IPK
+is a better solution for smaller environments, while RPM is a better solution
+for medium to large environments.)
 
+> 
+>>>
+>>> FYI, here is some of the thinking that led to the decision to use smart:
+>>>
+>>> https://lists.yoctoproject.org/pipermail/yocto/2012-October/010384.html
+>>>
+>>> Of course that was a few years ago now - we probably ought to look at the
+>>> RPM landscape again (e.g. DNF) and see if any change is warranted.
+> 
+> @Paul:
+> This is a very important link for me. This posts points out that yum
+> will not be compatible with rpm ver 5.
+> This will be a problem for me as my imx6 yocto build uses rpm5. So
+> technically I cannot use yum.
+> 
+>>
+>> I forgot to mention, we do have some basic documentation here on
+>> setting up a feed if you hadn't already seen it:
+>>
+>> http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#using-runtime-package-management
+>>
+> 
+> 
+> Thanks for inputs. Would like to get more inputs from community.
+> 
+> Looks like Alex is successful and happy in using smart + rpm. I would
+> re-consider smart + rpm for my solution.
 
-* Opens collection - 5 min (Stephen)
+I have no heard any serious complaints about SmartPM, other then concern of
+community decline.  I use SmartPM/RPM5 (and intend to continue for the
+forseeable future) in supporting on-target field upgrade solutions.  So far this
+has turned out to be much easier to support and work on unique requirements my
+customers have based on the simplicity of the Smart implementation.
 
-* Yocto Project status - 5 min (Stephen/team)
+--Mark
 
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.8_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.8_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.8_Features
-
-YP 1.8 M4 rc1 build should be ready to go into QA by tomorrow.
-
-YP 1.6.3 rc2 is coming out of QA soon.  But, its release might be delayed d=
-ue to a recent SSL CVE.  Saul and others will review and decide if it need =
-to be held and rebuild and rerun through QA.   Might delay this until early=
- May.
-
-YP 1.7.2 is planned for May.   If 1.6.3 is delayed it might push 1.7.2 unti=
-l mid/late May.
-
-* SWAT team rotation: Saul -> Paul/Ross
-
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-* Opens - 10 min
-
-* Team Sharing - 10 min
-
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55423D0Dfmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Anyone else using any other package management solution ?
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";
-	mso-fareast-language:ZH-CN;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle21
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Attendees: Armin, Stephen, Saul, Beth, Bruce, Mark=
-, Richard, Ross, Paul, Alex, Brendan,
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Project_v1.8_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-8_Status</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.8_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.8_Schedule</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.8_Features">https://wiki.yoctoproject.org/wiki/Yocto_1.8_Features</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 1.8 M4 rc1 build should be ready to go into QA =
-by tomorrow.<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 1.6.3 rc2 is coming out of QA soon.&nbsp; But, =
-its release might be delayed due to a recent SSL CVE.&nbsp; Saul and others=
- will review and decide if it need to be held
- and rebuild and rerun through QA.&nbsp;&nbsp; Might delay this until early=
- May.<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 1.7.2 is planned for May.&nbsp;&nbsp; If 1.6.3 =
-is delayed it might push 1.7.2 until mid/late May.
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* SWAT team rotation: Saul -&gt; Paul/Ross<o:p></o=
-:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Build_Failure_Swat_Team">https://wiki.yoctoproject.org/wiki/Yocto_Build_F=
-ailure_Swat_Team</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens - 10 min
-<o:p></o:p></span></p>
-<div style=3D"border:none;border-bottom:solid windowtext 1.0pt;padding:0in =
-0in 1.0pt 0in">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
-</div>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+> 
+> Regards, Pj
+> 
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55423D0Dfmsmsx111amrcor_--
+
