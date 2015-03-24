@@ -1,45 +1,48 @@
-Return-Path: <tracy.graydon@intel.com>
+Return-Path: <vmartin@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F0EA7E0091D; Tue, 24 Mar 2015 15:15:18 -0700 (PDT)
+	id EF919E0091D; Tue, 24 Mar 2015 15:23:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14279E008D4
-	for <yocto@yoctoproject.org>; Tue, 24 Mar 2015 15:15:14 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga103.jf.intel.com with ESMTP; 24 Mar 2015 15:15:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,460,1422950400"; d="scan'208";a="685065788"
-Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
-	by fmsmga001.fm.intel.com with ESMTP; 24 Mar 2015 15:15:14 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.237]) by
-	ORSMSX107.amr.corp.intel.com ([169.254.1.146]) with mapi id
-	14.03.0195.001; Tue, 24 Mar 2015 15:15:13 -0700
-From: "Graydon, Tracy" <tracy.graydon@intel.com>
-To: Randy Witt <randy.e.witt@linux.intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto]  nightly-world-lsb.conf: Do world builds for poky-lsb
-Thread-Index: AQHQZntu4I23WsHPzkSm8XktTyTJep0sodsA//+RK4A=
-Date: Tue, 24 Mar 2015 22:15:12 +0000
-Message-ID: <D1372FDE.4D2F0%tracy.graydon@intel.com>
-References: <1427236868-26847-1-git-send-email-tracy.graydon@intel.com>
-	<5511DC78.6010005@linux.intel.com>
-In-Reply-To: <5511DC78.6010005@linux.intel.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [198.152.71.100 listed in list.dnswl.org]
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
+	Tue, 24 Mar 2015 15:23:39 PDT
+Received: from de307622-de-outbound.net.avaya.com
+	(de307622-de-outbound.net.avaya.com [198.152.71.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8191AE008D4
+	for <yocto@yoctoproject.org>; Tue, 24 Mar 2015 15:23:39 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AhAFAB7jEVXGmAcV/2dsb2JhbABcgkMhIlJezD4CgUpMAQEBAQEBfYQWAQEDEhteAQwJFVYmAQQbGogNAZ9HhQCkZAwBH49mg0+BFgWOQoIOkQiEHIh3IoNugjN/AQEB
+X-IronPort-AV: E=Sophos;i="5.11,460,1422939600"; d="scan'208,217";a="96104627"
+Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
+	([198.152.7.21]) by de307622-de-outbound.net.avaya.com with ESMTP;
+	24 Mar 2015 18:22:35 -0400
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-US1EXHC01.global.avaya.com) ([135.11.85.12])
+	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
+	24 Mar 2015 18:22:35 -0400
+Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
+	AZ-US1EXHC01.global.avaya.com ([135.11.85.12]) with mapi id
+	14.03.0174.001; Tue, 24 Mar 2015 18:22:33 -0400
+From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: populate_sysroot and sstate question
+Thread-Index: AdBmf347nCMmxSZUS4q3p2qvUDMa3g==
+Date: Tue, 24 Mar 2015 22:22:33 +0000
+Message-ID: <30C2D590D16A5C46ADFE652191037798538ED24E@AZ-US1EXMB03.global.avaya.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.4.8.150116
-x-originating-ip: [10.7.200.117]
+x-originating-ip: [135.11.85.49]
 MIME-Version: 1.0
-Subject: Re: nightly-world-lsb.conf: Do world builds for poky-lsb
+Subject: populate_sysroot and sstate question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,131 +54,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Mar 2015 22:15:19 -0000
+X-List-Received-Date: Tue, 24 Mar 2015 22:23:42 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <59D7C5B48C9A18408ACE2AB510A1CD42@intel.com>
+Content-Type: multipart/alternative;
+	boundary="_000_30C2D590D16A5C46ADFE652191037798538ED24EAZUS1EXMB03glob_"
+
+--_000_30C2D590D16A5C46ADFE652191037798538ED24EAZUS1EXMB03glob_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Crap. You are right. There is a change in here that shouldn=B9t be. Fixing
-that.=20
+Poky Daisy 1.6.1
 
-Thank you for catching that. I was on the wrong local branch.
+I have a custom package of font files and a custom recipe to install then
+into ${libdir}/fonts.
 
--t
+I don't want these files in the sysroot, as they are not necessary there,
+they are only required on the target, and they make the SDK larger.
 
-On 03/24/15, 2:51 PM, "Randy Witt" <randy.e.witt@linux.intel.com> wrote:
+In my recipe, I defined an empty populate_sysroot task to override the
+default behavior of copying the font files to sysroot (presumably because
+they are in ${libdir}).
 
->On 03/24/2015 03:41 PM, Graydon, Tracy wrote:
->> [YOCTO #7261]
->>
->> Do world builds for poky-lsb. This patch adds the new nightly-world-lsb
->>buildset
->> to fix bug #7261. Also added it to the normal nightly.conf trigger
->> and yoctoAB.conf.
->>
->> Signed-off-by: Graydon, Tracy <tracy.graydon@intel.com>
->> ---
->>   buildset-config.controller/nightly-world-lsb.conf | 22
->>++++++++++++++++++++++
->>   buildset-config.controller/nightly.conf           |  4 +---
->>   buildset-config.controller/yoctoAB.conf           |  6 +++---
->>   3 files changed, 26 insertions(+), 6 deletions(-)
->>   create mode 100644 buildset-config.controller/nightly-world-lsb.conf
->>
->> diff --git a/buildset-config.controller/nightly-world-lsb.conf
->>b/buildset-config.controller/nightly-world-lsb.conf
->> new file mode 100644
->> index 0000000..e9782a9
->> --- /dev/null
->> +++ b/buildset-config.controller/nightly-world-lsb.conf
->> @@ -0,0 +1,22 @@
->> +[nightly-world-lsb]
->> +builders: 'example-worker'
->> +repos: [{'poky':
->> +            {'repourl':'git://git.yoctoproject.org/poky',
->> +             'layerversion':{'core':'meta',
->>'yoctobsp':'meta-yocto-bsp'},
->> +             'branch':'master'}},
->> +        {'meta-qt3':
->> +            {'repourl':'git://git.yoctoproject.org/meta-qt3',
->> +             'branch':'master'}}]
->> +steps: [{'SetDest':{}},
->> +        {'CheckOutLayers': {}},
->> +        {'RunPreamble': {}},
->> +        {'GetDistroVersion' : {'distro': 'poky'}},
->> +        {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' :
->>'x86_64',
->> +                            'buildhistory' : False, 'multilib': True,
->> +                            'distro': 'poky-lsb'}},
->> +        {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
->> +        {'BuildImages': {'images': 'world'}},
->> +        {'SendErrorReport': {}},
->> +        {'UploadToasterEventlog': {}},
->> +        {'PublishArtifacts': {'artifacts': ['ipk', 'rpm', 'deb']}}]
->> +
->> diff --git a/buildset-config.controller/nightly.conf
->>b/buildset-config.controller/nightly.conf
->> index e8498f1..e422ede 100644
->> --- a/buildset-config.controller/nightly.conf
->> +++ b/buildset-config.controller/nightly.conf
->> @@ -75,10 +75,8 @@ steps: [{'SetDest':{}},
->>           {'BuildImages': {'images': 'universe -c fetch'}},
->>           {'TriggerBuilds': {'schedulerName': 'main-build',
->>'waitForFinish': 'True',
->>                              'schedulerNames': {'minnow': {},
->>'minnow-lsb': {},
->> -                           'nightly-arm': {}, 'nightly-arm-lsb': {},
->>                              'nightly-fsl-arm': {},
->>'nightly-fsl-arm-lsb': {},
->>                              'nightly-fsl-ppc': {},
->>'nightly-fsl-ppc-lsb': {},
->> -                           'nightly-mips': {}, 'nightly-mips-lsb': {},
+Today, I came across the fact that this results in an empty populate_sysroo=
+t
+sstate tarball, which causes a setscene error if I need to use the sstate f=
+or
+that package later.
+
+Is there a better way to suppress populate_sysroot without breaking
+setscene?
+
+MV
+
+
+--_000_30C2D590D16A5C46ADFE652191037798538ED24EAZUS1EXMB03glob_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
->I'll admit that I'm not that familiar with the autobuilder, but this
->looks like=20
->some builds are being turned off, but the commit message doesn't mention
->that.
->
->>                              'nightly-multilib': {}, 'nightly-x32': {},
->>                              'nightly-ppc': {}, 'nightly-ppc-lsb': {},
->>                              'nightly-x86-64': {},
->>'nightly-x86-64-lsb': {},
->> @@ -87,7 +85,7 @@ steps: [{'SetDest':{}},
->>                              'schedulerNames_nowait' :
->>{'build-appliance': {},
->>                              'eclipse-plugin-kepler': {},
->>'eclipse-plugin-juno': {},
->>                              'nightly-non-gpl3': {}, 'nightly-oecore':
->>{},
->> -                           'nightly-world':{}, 'nightly-intel-gpl': {},
->> +                           'nightly-world':{}, 'nightly-world-lsb':{},
->>'nightly-intel-gpl': {},
->>                              'poky-tiny': {}, 'buildtools': {},
->>                              'nightly-qa-systemd': {},
->>'nightly-qa-extras': {},
->>                              'nightly-qa-logrotate': {},
->>'nightly-qa-pam': {},
->> diff --git a/buildset-config.controller/yoctoAB.conf
->>b/buildset-config.controller/yoctoAB.conf
->> index 9a07512..c087628 100644
->> --- a/buildset-config.controller/yoctoAB.conf
->> +++ b/buildset-config.controller/yoctoAB.conf
->> @@ -1,10 +1,10 @@
->>   [BuildSets]
->>   order: ['nightly', 'eclipse-plugin-juno',
->>           'eclipse-plugin-kepler', 'eclipse-plugin-luna',
->> -        'nightly-arm', 'nightly-arm-lsb', 'nightly-mips',
->> -        'nightly-mips-lsb', 'nightly-ppc', 'nightly-ppc-lsb',
->> +        'nightly-ppc', 'nightly-ppc-lsb',
->>           'nightly-x86-64', 'nightly-x86-64-lsb', 'nightly-x86',
->>           'nightly-x86-lsb', 'nightly-x32', 'nightly-multilib',
->> -        'nightly-world', 'nightly-non-gpl3', 'nightly-oecore',
->> +        'nightly-world', 'nightly-world-lsb',
->> +        'nightly-non-gpl3', 'nightly-oecore',
->>           'nightly-intel-gpl', 'poky-tiny', 'build-appliance',
->>           'nightly-qa-extras', 'nightly-qa-systemd']
->>
->
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Poky Daisy 1.6.1 <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have a custom package of font files and a custom r=
+ecipe to install then<o:p></o:p></p>
+<p class=3D"MsoNormal">into ${libdir}/fonts.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I don&#8217;t want these files in the sysroot, as th=
+ey are not necessary there,<o:p></o:p></p>
+<p class=3D"MsoNormal">they are only required on the target, and they make =
+the SDK larger.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">In my recipe, I defined an empty populate_sysroot ta=
+sk to override the<o:p></o:p></p>
+<p class=3D"MsoNormal">default behavior of copying the font files to sysroo=
+t (presumably because<o:p></o:p></p>
+<p class=3D"MsoNormal">they are in ${libdir}).<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Today, I came across the fact that this results in a=
+n empty populate_sysroot<o:p></o:p></p>
+<p class=3D"MsoNormal">sstate tarball, which causes a setscene error if I n=
+eed to use the sstate for<o:p></o:p></p>
+<p class=3D"MsoNormal">that package later.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Is there a better way to suppress populate_sysroot w=
+ithout breaking<o:p></o:p></p>
+<p class=3D"MsoNormal">setscene?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">MV<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-
+--_000_30C2D590D16A5C46ADFE652191037798538ED24EAZUS1EXMB03glob_--
