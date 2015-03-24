@@ -1,49 +1,32 @@
-Return-Path: <alberk@gmail.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3DAC8E0086D; Tue, 24 Mar 2015 01:50:04 -0700 (PDT)
+	id 4A142E0086D; Tue, 24 Mar 2015 04:21:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (alberk[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.174 listed in list.dnswl.org]
-Received: from mail-ie0-f174.google.com (mail-ie0-f174.google.com
-	[209.85.223.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBBA1E00837
-	for <yocto@yoctoproject.org>; Tue, 24 Mar 2015 01:49:57 -0700 (PDT)
-Received: by iecvj10 with SMTP id vj10so55215119iec.0
-	for <yocto@yoctoproject.org>; Tue, 24 Mar 2015 01:49:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=EYWp+pTv1ocV80o/8pLEkT+cvvkH/03csHH/pTO9YRo=;
-	b=kwDgwF4IZp16icKFqe5EVWqeofWBa/X4UrXKOZAwEj+a8tMYsYe0iFPrdvcu6pSGRj
-	ejvQJH2OyjsWrvKhnFhdutO+qooDVMUyiaqAYlNfu7tGjSfhABBBUFc7Xa87jirOjzRu
-	snHTrN9+lUFA4VvEqUekFCTMi7Z8m9nwdJHkAc1iqXE46U6a+mRoO+kMzU1QoKGgd9Su
-	zsL8WLD3u/zfgSf0usNPRnB5+1AbtI0OipGpgG8uloOpuHyGikLCXlax3Y7hrwkp6nJx
-	If6Y0pn/lYTwGkWlfN2M0MJ3KAJgJ/Q4ruGJUGl6Dn8/KBLuYn6acF/62dqzin0ZB/1k
-	F09A==
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22D78E00837
+	for <yocto@yoctoproject.org>; Tue, 24 Mar 2015 04:21:50 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id CBA12F8119A; Tue, 24 Mar 2015 05:21:49 -0600 (MDT)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 56306F81188;
+	Tue, 24 Mar 2015 05:21:49 -0600 (MDT)
+Message-ID: <551148CE.6070100@mlbassoc.com>
+Date: Tue, 24 Mar 2015 05:21:50 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-X-Received: by 10.107.12.70 with SMTP id w67mr4933307ioi.10.1427186997372;
-	Tue, 24 Mar 2015 01:49:57 -0700 (PDT)
-Received: by 10.64.39.16 with HTTP; Tue, 24 Mar 2015 01:49:57 -0700 (PDT)
-Date: Tue, 24 Mar 2015 16:49:57 +0800
-Message-ID: <CACjDgAOUU3HhbANrmm=iepfjy+UVT9RhLT6so+CSUxV665ifAg@mail.gmail.com>
-From: Albert K <alberk@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Iptables kernel mode driver
+To: yocto@yoctoproject.org
+References: <1427055667-2226-1-git-send-email-schnitzeltony@googlemail.com>	<55103860.7010503@mlbassoc.com>	<CALbNGRRSF6JQ5NXD2E6e74fkNPrfztjbPUS5Scnkf7Xps30txw@mail.gmail.com>	<55108912.5070304@mlbassoc.com>	<CALbNGRRfxu6XWGChZg5XrEUV_mCssteY8T=2bLS4_L3fq42CSw@mail.gmail.com>	<55109E3D.7000306@mlbassoc.com>	<CALbNGRQoiemJ7eLkknFF9syc30UGwnVuVfiFcuZQaZkiSE3+BA@mail.gmail.com>	<55111E73.6000705@dynamicdevices.co.uk>
+	<551122EB.7070707@dynamicdevices.co.uk>
+In-Reply-To: <551122EB.7070707@dynamicdevices.co.uk>
+Subject: Re: [meta-raspberrypi][PATCH] make sound work out of the box for raspberrypi2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,37 +38,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Mar 2015 08:50:04 -0000
-Content-Type: multipart/alternative; boundary=001a113f8b2001ac63051204deee
+X-List-Received-Date: Tue, 24 Mar 2015 11:21:53 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
---001a113f8b2001ac63051204deee
-Content-Type: text/plain; charset=UTF-8
+On 2015-03-24 02:40, Alex J Lennon wrote:
+>
+>
+> On 24/03/2015 09:21, Alex J Lennon wrote:
+>>
+>> On 24/03/2015 08:21, Andreas Müller wrote:
+>>> On Tue, Mar 24, 2015 at 12:14 AM, Gary Thomas<gary@mlbassoc.com>  wrote:
+>>>> On 2015-03-23 16:22, Andreas Müller wrote:
+>>>>> On Mon, Mar 23, 2015 at 10:43 PM, Gary Thomas<gary@mlbassoc.com>  wrote:
+>>>>>> On 2015-03-23 14:57, Andreas Müller wrote:
+>>>>>>> On Mon, Mar 23, 2015 at 4:59 PM, Gary Thomas<gary@mlbassoc.com>  wrote:
+>>>>>>>> On 2015-03-22 14:21, Andreas Müller wrote:
+>>>>>>>>>
+>>>>>>>>> Signed-off-by: Andreas Müller<schnitzeltony@googlemail.com>
+>>>>>>>>> ---
+>>>>>>>>>      ...-during-boot-by-compiling-SND_BCM2835-int.patch | 38
+>>>>>>>>> ++++++++++++++++++++++
+>>>>>>>>>      recipes-kernel/linux/linux-raspberrypi_3.18.bb     |  8 +++--
+>>>>>>>>>      2 files changed, 43 insertions(+), 3 deletions(-)
+>>>>>>>>>      create mode 100644
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> recipes-kernel/linux/linux-raspberrypi/0001-start-sound-during-boot-by-compiling-SND_BCM2835-int.patch
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> I tried this patch (which downloaded very strangely using Thunderbird)
+>>>>>>>> and
+>>>>>>>> the
+>>>>>>>> kernel rebuilt fine.  I now have the audio detected, but still no sound
+>>>>>>>> :-(
+>>>>>>>> Again I've tried the internal (phono) speakers as well as HDMI audio.
+>>>>>>>>
+>>>>>>>> Just to prove a point on the [brand new] hardware, I installed OpenELEC
+>>>>>>>> (XBMC)
+>>>>>>>> and it works fine using the HDMI audio.  Sadly when I tried Raspbian
+>>>>>>>> and
+>>>>>>>> Ubuntu
+>>>>>>>> there was no sound either...
+>>>>>>>>
+>>>>>>>> Were you (Andreas) able to get any sound with this patch?
+>>>>>>>>
+>>>>>>> Yes but I have used 3.5mm sound output - Should have mentioned that in
+>>>>>>> commit. I guess there is to enable something else in kernel config for
+>>>>>>> HDMI. Will look into that
+>>>>>>
+>>>>>> I've tried the 3.5mm jack as well but nothing seems to come out.
+>>>>>> I even tried booting with the HDMI missing (powered off) in case
+>>>>>> that was causing some confusion.
+>>>>>>
+>>>>>> Did you make any changes to config.txt to get this going?
+>>>>> No
+>>>>> Have my standard xfce-image with xfce4-mixer and as mentioned out of
+>>>>> the box: I can hear sound / change volume...
+>>>> Would it be possible to share your [bootable] image?
+>>>>
+>>>>> What does happen if you start alsamixer - if it is installed on your
+>>>>> image?
+>>>> alsamixer looks correct.
+>>>>
+>>>> BTW, I've tried this on my RaspberryPi Model B and I don't get any sound
+>>>> from it either :-(  Again, booting with test_mode=1 shows that the hardware
+>>>> is working, just not in Linux. I'm sure I've tried this in the past with
+>>>> success so I'm becoming more and more confused...
+>>>>
+>>> For sharing I need to create a smaller image - the current one
+>>> contains all stuff from meta-games, all browsers and more. Hope to get
+>>> that done tomorrow evening. What is the preferred way of sharing huge
+>>> files?
+>>>
+>> Circling around this a little, hello_audio built out of vc_graphics
+>> works too over the audio jack
+>>
+>> Alex
+>>
+>
+> OK I got some life from GStreamer and my RPIv2
+>
+> Install amixer
+>
+> modprobe snd_bcm2835 (or presumably use an image with audio built-in)
+>
+> amixer cset numid=3 1 (to set output to audio jack)
+>
+> gst-launch-1.0 audiotestsrc ! alsasink
+>
+> I get a tone out of the audio jack. So some kind of audio routing defaults issue.
 
-Hi,
+Indeed, this does work - tested on RaspberryPi and RaspberryPi2.
 
-I am building with dizzy with hob,  a core-image-minimal with machine
-generic-x86-64 (kernel 3.14) with addition of iptables, iproute2 and some
-netfilter extensions.
+Now, to figure out how to make audio over HDMI work.
 
-I can add the kernel-module-xt-classify, kernel-module-x-tables but i
-cannot find *kernel-module-xt-physdev *(via the build package).
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-Can someone please help to point me the right direction?  Thanks.
-
-Regards,
-Albert.
-
---001a113f8b2001ac63051204deee
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>I am building with dizzy with hob, =
-=C2=A0a core-image-minimal with machine generic-x86-64 (kernel 3.14) with a=
-ddition of iptables, iproute2 and some netfilter extensions. =C2=A0 =C2=A0<=
-/div><div><br></div><div>I can add the kernel-module-xt-classify, kernel-mo=
-dule-x-tables but i cannot find <b>kernel-module-xt-physdev </b>(via the bu=
-ild package).</div><div><br></div><div>Can someone please help to point me =
-the right direction?=C2=A0 Thanks.</div><div><br></div><div>Regards,</div><=
-div>Albert.</div></div>
-
---001a113f8b2001ac63051204deee--
