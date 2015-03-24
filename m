@@ -1,44 +1,49 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3E931E0085D; Tue, 24 Mar 2015 04:34:14 -0700 (PDT)
+	id DC740E0091A; Tue, 24 Mar 2015 08:10:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9DC3E0086E
-	for <yocto@yoctoproject.org>; Tue, 24 Mar 2015 04:33:51 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 97CF527E1F7;
-	Tue, 24 Mar 2015 11:33:49 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id KaMDysJFp6_s; Tue, 24 Mar 2015 11:33:37 +0000 (UTC)
-Received: from [192.168.1.16] (AMarseille-651-1-86-11.w109-208.abo.wanadoo.fr
-	[109.208.53.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 8400A27E1F6;
-	Tue, 24 Mar 2015 11:33:35 +0000 (UTC)
-Message-ID: <55114B1F.6050908@dynamicdevices.co.uk>
-Date: Tue, 24 Mar 2015 12:31:43 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 887FEE00854
+	for <yocto@yoctoproject.org>; Tue, 24 Mar 2015 08:10:15 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga103.fm.intel.com with ESMTP; 24 Mar 2015 08:10:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,458,1422950400"; 
+	d="scan'208,217";a="684866067"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by fmsmga001.fm.intel.com with ESMTP; 24 Mar 2015 08:10:13 -0700
+Received: from orsmsx111.amr.corp.intel.com (10.22.240.12) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.3.195.1; Tue, 24 Mar 2015 08:10:13 -0700
+Received: from FMSMSX109.amr.corp.intel.com (10.18.116.9) by
+	ORSMSX111.amr.corp.intel.com (10.22.240.12) with Microsoft SMTP Server
+	(TLS) id 14.3.195.1; Tue, 24 Mar 2015 08:10:12 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.52]) by
+	FMSMSX109.amr.corp.intel.com ([169.254.15.209]) with mapi id
+	14.03.0195.001; Tue, 24 Mar 2015 08:10:12 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, Mar.
+	24, 2015 8:00 AM US Pacific Time
+Thread-Index: AdBmRJ7k/7jpwPLYQcql3b1Gt5cbQg==
+Date: Tue, 24 Mar 2015 15:10:11 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E55423D0D@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.107]
 MIME-Version: 1.0
-To: Gary Thomas <gary@mlbassoc.com>
-References: <1427055667-2226-1-git-send-email-schnitzeltony@googlemail.com>	<55103860.7010503@mlbassoc.com>	<CALbNGRRSF6JQ5NXD2E6e74fkNPrfztjbPUS5Scnkf7Xps30txw@mail.gmail.com>	<55108912.5070304@mlbassoc.com>	<CALbNGRRfxu6XWGChZg5XrEUV_mCssteY8T=2bLS4_L3fq42CSw@mail.gmail.com>	<55109E3D.7000306@mlbassoc.com>	<CALbNGRQoiemJ7eLkknFF9syc30UGwnVuVfiFcuZQaZkiSE3+BA@mail.gmail.com>	<55111E73.6000705@dynamicdevices.co.uk>	<551122EB.7070707@dynamicdevices.co.uk>
-	<551148CE.6070100@mlbassoc.com>
-In-Reply-To: <551148CE.6070100@mlbassoc.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] make sound work out of the box for raspberrypi2
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, Mar. 24, 2015 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,383 +55,300 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Mar 2015 11:34:14 -0000
+X-List-Received-Date: Tue, 24 Mar 2015 15:10:21 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="------------040909080704020902020701"
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55423D0Dfmsmsx111amrcor_"
 
---------------040909080704020902020701
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55423D0Dfmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Attendees: Armin, Stephen, Saul, Beth, Bruce, Mark, Richard, Ross, Paul, Al=
+ex, Brendan,
 
 
 
-On 24/03/2015 12:21, Gary Thomas wrote:
-> On 2015-03-24 02:40, Alex J Lennon wrote:
->>
->>
->> On 24/03/2015 09:21, Alex J Lennon wrote:
->>>
->>> On 24/03/2015 08:21, Andreas Müller wrote:
->>>> On Tue, Mar 24, 2015 at 12:14 AM, Gary Thomas<gary@mlbassoc.com> 
->>>> wrote:
->>>>> On 2015-03-23 16:22, Andreas Müller wrote:
->>>>>> On Mon, Mar 23, 2015 at 10:43 PM, Gary Thomas<gary@mlbassoc.com> 
->>>>>> wrote:
->>>>>>> On 2015-03-23 14:57, Andreas Müller wrote:
->>>>>>>> On Mon, Mar 23, 2015 at 4:59 PM, Gary
->>>>>>>> Thomas<gary@mlbassoc.com>  wrote:
->>>>>>>>> On 2015-03-22 14:21, Andreas Müller wrote:
->>>>>>>>>>
->>>>>>>>>> Signed-off-by: Andreas Müller<schnitzeltony@googlemail.com>
->>>>>>>>>> ---
->>>>>>>>>>      ...-during-boot-by-compiling-SND_BCM2835-int.patch | 38
->>>>>>>>>> ++++++++++++++++++++++
->>>>>>>>>>      recipes-kernel/linux/linux-raspberrypi_3.18.bb     |  8
->>>>>>>>>> +++--
->>>>>>>>>>      2 files changed, 43 insertions(+), 3 deletions(-)
->>>>>>>>>>      create mode 100644
->>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> recipes-kernel/linux/linux-raspberrypi/0001-start-sound-during-boot-by-compiling-SND_BCM2835-int.patch
->>>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> I tried this patch (which downloaded very strangely using
->>>>>>>>> Thunderbird)
->>>>>>>>> and
->>>>>>>>> the
->>>>>>>>> kernel rebuilt fine.  I now have the audio detected, but still
->>>>>>>>> no sound
->>>>>>>>> :-(
->>>>>>>>> Again I've tried the internal (phono) speakers as well as HDMI
->>>>>>>>> audio.
->>>>>>>>>
->>>>>>>>> Just to prove a point on the [brand new] hardware, I installed
->>>>>>>>> OpenELEC
->>>>>>>>> (XBMC)
->>>>>>>>> and it works fine using the HDMI audio.  Sadly when I tried
->>>>>>>>> Raspbian
->>>>>>>>> and
->>>>>>>>> Ubuntu
->>>>>>>>> there was no sound either...
->>>>>>>>>
->>>>>>>>> Were you (Andreas) able to get any sound with this patch?
->>>>>>>>>
->>>>>>>> Yes but I have used 3.5mm sound output - Should have mentioned
->>>>>>>> that in
->>>>>>>> commit. I guess there is to enable something else in kernel
->>>>>>>> config for
->>>>>>>> HDMI. Will look into that
->>>>>>>
->>>>>>> I've tried the 3.5mm jack as well but nothing seems to come out.
->>>>>>> I even tried booting with the HDMI missing (powered off) in case
->>>>>>> that was causing some confusion.
->>>>>>>
->>>>>>> Did you make any changes to config.txt to get this going?
->>>>>> No
->>>>>> Have my standard xfce-image with xfce4-mixer and as mentioned out of
->>>>>> the box: I can hear sound / change volume...
->>>>> Would it be possible to share your [bootable] image?
->>>>>
->>>>>> What does happen if you start alsamixer - if it is installed on your
->>>>>> image?
->>>>> alsamixer looks correct.
->>>>>
->>>>> BTW, I've tried this on my RaspberryPi Model B and I don't get any
->>>>> sound
->>>>> from it either :-(  Again, booting with test_mode=1 shows that the
->>>>> hardware
->>>>> is working, just not in Linux. I'm sure I've tried this in the
->>>>> past with
->>>>> success so I'm becoming more and more confused...
->>>>>
->>>> For sharing I need to create a smaller image - the current one
->>>> contains all stuff from meta-games, all browsers and more. Hope to get
->>>> that done tomorrow evening. What is the preferred way of sharing huge
->>>> files?
->>>>
->>> Circling around this a little, hello_audio built out of vc_graphics
->>> works too over the audio jack
->>>
->>> Alex
->>>
->>
->> OK I got some life from GStreamer and my RPIv2
->>
->> Install amixer
->>
->> modprobe snd_bcm2835 (or presumably use an image with audio built-in)
->>
->> amixer cset numid=3 1 (to set output to audio jack)
->>
->> gst-launch-1.0 audiotestsrc ! alsasink
->>
->> I get a tone out of the audio jack. So some kind of audio routing
->> defaults issue.
+Agenda:
+
+
+
+* Opens collection - 5 min (Stephen)
+
+* Yocto Project status - 5 min (Stephen/team)
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.8_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_1.8_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_1.8_Features
+
+YP 1.8 M4 rc1 build should be ready to go into QA by tomorrow.
+
+YP 1.6.3 rc2 is coming out of QA soon.  But, its release might be delayed d=
+ue to a recent SSL CVE.  Saul and others will review and decide if it need =
+to be held and rebuild and rerun through QA.   Might delay this until early=
+ May.
+
+YP 1.7.2 is planned for May.   If 1.6.3 is delayed it might push 1.7.2 unti=
+l mid/late May.
+
+* SWAT team rotation: Saul -> Paul/Ross
+
+https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+
+* Opens - 10 min
+
+* Team Sharing - 10 min
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:          (503) 712-0534
+*    Cell:                                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55423D0Dfmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
+icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
+:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
+uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
+t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
+m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
+t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
+:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
+soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
+icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
+schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
+point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
+/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
+=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
+schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
+.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
+/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
+://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
+repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
+ xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
+schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
+/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
+ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
+p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
+/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
+mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
+crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
+s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
+ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
+om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
+ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
+partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
+06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
+6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
+deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
+Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
+st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> Indeed, this does work - tested on RaspberryPi and RaspberryPi2.
->
-> Now, to figure out how to make audio over HDMI work.
->
-
-I don't have HDMI audio kit with me here but there are some bits and
-bobs here which might help
-
-http://raspberrypi.stackexchange.com/questions/22708/is-there-some-trick-to-getting-aplay-audio-output-working
-
-I'd be wont to try
-
-|amixer cset numid=3 2|
-
-
-For starters to try to force HDMI output
-
-Some other bits and pieces on ALSA in there I see, which might be relevant
-
-Cheers, Alex
-
-
-
-
-
---------------040909080704020902020701
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 24/03/2015 12:21, Gary Thomas wrote:<br>
-    </div>
-    <blockquote cite="mid:551148CE.6070100@mlbassoc.com" type="cite">On
-      2015-03-24 02:40, Alex J Lennon wrote:
-      <br>
-      <blockquote type="cite">
-        <br>
-        <br>
-        On 24/03/2015 09:21, Alex J Lennon wrote:
-        <br>
-        <blockquote type="cite">
-          <br>
-          On 24/03/2015 08:21, Andreas Müller wrote:
-          <br>
-          <blockquote type="cite">On Tue, Mar 24, 2015 at 12:14 AM, Gary
-            Thomas<a class="moz-txt-link-rfc2396E" href="mailto:gary@mlbassoc.com">&lt;gary@mlbassoc.com&gt;</a>  wrote:
-            <br>
-            <blockquote type="cite">On 2015-03-23 16:22, Andreas Müller
-              wrote:
-              <br>
-              <blockquote type="cite">On Mon, Mar 23, 2015 at 10:43 PM,
-                Gary Thomas<a class="moz-txt-link-rfc2396E" href="mailto:gary@mlbassoc.com">&lt;gary@mlbassoc.com&gt;</a>  wrote:
-                <br>
-                <blockquote type="cite">On 2015-03-23 14:57, Andreas
-                  Müller wrote:
-                  <br>
-                  <blockquote type="cite">On Mon, Mar 23, 2015 at 4:59
-                    PM, Gary Thomas<a class="moz-txt-link-rfc2396E" href="mailto:gary@mlbassoc.com">&lt;gary@mlbassoc.com&gt;</a>  wrote:
-                    <br>
-                    <blockquote type="cite">On 2015-03-22 14:21, Andreas
-                      Müller wrote:
-                      <br>
-                      <blockquote type="cite">
-                        <br>
-                        Signed-off-by: Andreas
-                        Müller<a class="moz-txt-link-rfc2396E" href="mailto:schnitzeltony@googlemail.com">&lt;schnitzeltony@googlemail.com&gt;</a>
-                        <br>
-                        ---
-                        <br>
-                            
-                        ...-during-boot-by-compiling-SND_BCM2835-int.patch
-                        | 38
-                        <br>
-                        ++++++++++++++++++++++
-                        <br>
-                            
-                        recipes-kernel/linux/linux-raspberrypi_3.18.bb    
-                        |  8 +++--
-                        <br>
-                             2 files changed, 43 insertions(+), 3
-                        deletions(-)
-                        <br>
-                             create mode 100644
-                        <br>
-                        <br>
-                        <br>
-recipes-kernel/linux/linux-raspberrypi/0001-start-sound-during-boot-by-compiling-SND_BCM2835-int.patch
-                        <br>
-                      </blockquote>
-                      <br>
-                      <br>
-                      I tried this patch (which downloaded very
-                      strangely using Thunderbird)
-                      <br>
-                      and
-                      <br>
-                      the
-                      <br>
-                      kernel rebuilt fine.  I now have the audio
-                      detected, but still no sound
-                      <br>
-                      :-(
-                      <br>
-                      Again I've tried the internal (phono) speakers as
-                      well as HDMI audio.
-                      <br>
-                      <br>
-                      Just to prove a point on the [brand new] hardware,
-                      I installed OpenELEC
-                      <br>
-                      (XBMC)
-                      <br>
-                      and it works fine using the HDMI audio.  Sadly
-                      when I tried Raspbian
-                      <br>
-                      and
-                      <br>
-                      Ubuntu
-                      <br>
-                      there was no sound either...
-                      <br>
-                      <br>
-                      Were you (Andreas) able to get any sound with this
-                      patch?
-                      <br>
-                      <br>
-                    </blockquote>
-                    Yes but I have used 3.5mm sound output - Should have
-                    mentioned that in
-                    <br>
-                    commit. I guess there is to enable something else in
-                    kernel config for
-                    <br>
-                    HDMI. Will look into that
-                    <br>
-                  </blockquote>
-                  <br>
-                  I've tried the 3.5mm jack as well but nothing seems to
-                  come out.
-                  <br>
-                  I even tried booting with the HDMI missing (powered
-                  off) in case
-                  <br>
-                  that was causing some confusion.
-                  <br>
-                  <br>
-                  Did you make any changes to config.txt to get this
-                  going?
-                  <br>
-                </blockquote>
-                No
-                <br>
-                Have my standard xfce-image with xfce4-mixer and as
-                mentioned out of
-                <br>
-                the box: I can hear sound / change volume...
-                <br>
-              </blockquote>
-              Would it be possible to share your [bootable] image?
-              <br>
-              <br>
-              <blockquote type="cite">What does happen if you start
-                alsamixer - if it is installed on your
-                <br>
-                image?
-                <br>
-              </blockquote>
-              alsamixer looks correct.
-              <br>
-              <br>
-              BTW, I've tried this on my RaspberryPi Model B and I don't
-              get any sound
-              <br>
-              from it either :-(  Again, booting with test_mode=1 shows
-              that the hardware
-              <br>
-              is working, just not in Linux. I'm sure I've tried this in
-              the past with
-              <br>
-              success so I'm becoming more and more confused...
-              <br>
-              <br>
-            </blockquote>
-            For sharing I need to create a smaller image - the current
-            one
-            <br>
-            contains all stuff from meta-games, all browsers and more.
-            Hope to get
-            <br>
-            that done tomorrow evening. What is the preferred way of
-            sharing huge
-            <br>
-            files?
-            <br>
-            <br>
-          </blockquote>
-          Circling around this a little, hello_audio built out of
-          vc_graphics
-          <br>
-          works too over the audio jack
-          <br>
-          <br>
-          Alex
-          <br>
-          <br>
-        </blockquote>
-        <br>
-        OK I got some life from GStreamer and my RPIv2
-        <br>
-        <br>
-        Install amixer
-        <br>
-        <br>
-        modprobe snd_bcm2835 (or presumably use an image with audio
-        built-in)
-        <br>
-        <br>
-        amixer cset numid=3 1 (to set output to audio jack)
-        <br>
-        <br>
-        gst-launch-1.0 audiotestsrc ! alsasink
-        <br>
-        <br>
-        I get a tone out of the audio jack. So some kind of audio
-        routing defaults issue.
-        <br>
-      </blockquote>
-      <br>
-      Indeed, this does work - tested on RaspberryPi and RaspberryPi2.
-      <br>
-      <br>
-      Now, to figure out how to make audio over HDMI work.
-      <br>
-      <br>
-    </blockquote>
-    <br>
-    I don't have HDMI audio kit with me here but there are some bits and
-    bobs here which might help<br>
-    <br>
-<a class="moz-txt-link-freetext" href="http://raspberrypi.stackexchange.com/questions/22708/is-there-some-trick-to-getting-aplay-audio-output-working">http://raspberrypi.stackexchange.com/questions/22708/is-there-some-trick-to-getting-aplay-audio-output-working</a><br>
-    <br>
-    I'd be wont to try <br>
-    <br>
-    <pre style="margin: 0px 0px 1em; padding: 5px; border: 0px; font-size: 13px; overflow: auto; width: auto; max-height: 600px; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, sans-serif; word-wrap: normal; color: rgb(34, 34, 34); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; orphans: auto; text-align: left; text-indent: 0px; text-transform: none; widows: 1; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(238, 238, 238);"><code style="margin: 0px; padding: 0px; border: 0px; font-size: 13px; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, sans-serif; white-space: inherit; background-color: rgb(238, 238, 238);">amixer cset numid=3 2</code></pre>
-    <br>
-    For starters to try to force HDMI output<br>
-    <br>
-    Some other bits and pieces on ALSA in there I see, which might be
-    relevant<br>
-    <br>
-    Cheers, Alex<br>
-    <br>
-    <br>
-    <br>
-    <br>
-  </body>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-language:ZH-CN;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle21
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Attendees: Armin, Stephen, Saul, Beth, Bruce, Mark=
+, Richard, Ross, Paul, Alex, Brendan,
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
+pan></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_Project_v1.8_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+8_Status</a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_1.8_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.8_Schedule</a><o=
+:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_1.8_Features">https://wiki.yoctoproject.org/wiki/Yocto_1.8_Features</a><o=
+:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">YP 1.8 M4 rc1 build should be ready to go into QA =
+by tomorrow.<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">YP 1.6.3 rc2 is coming out of QA soon.&nbsp; But, =
+its release might be delayed due to a recent SSL CVE.&nbsp; Saul and others=
+ will review and decide if it need to be held
+ and rebuild and rerun through QA.&nbsp;&nbsp; Might delay this until early=
+ May.<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">YP 1.7.2 is planned for May.&nbsp;&nbsp; If 1.6.3 =
+is delayed it might push 1.7.2 until mid/late May.
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* SWAT team rotation: Saul -&gt; Paul/Ross<o:p></o=
+:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_Build_Failure_Swat_Team">https://wiki.yoctoproject.org/wiki/Yocto_Build_F=
+ailure_Swat_Team</a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens - 10 min
+<o:p></o:p></span></p>
+<div style=3D"border:none;border-bottom:solid windowtext 1.0pt;padding:0in =
+0in 1.0pt 0in">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><o:p>&nbsp;</o:p></p>
+</div>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
+span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
+rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
+uot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
 </html>
 
---------------040909080704020902020701--
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55423D0Dfmsmsx111amrcor_--
