@@ -1,6 +1,6 @@
-Return-Path: <benjamin.esquivel@linux.intel.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EF784E0091A; Tue, 24 Mar 2015 12:05:48 -0700 (PDT)
+	id F24A1E0091D; Tue, 24 Mar 2015 14:30:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,33 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14FA9E00854
-	for <yocto@yoctoproject.org>; Tue, 24 Mar 2015 12:05:47 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 864A2E008D4
+	for <yocto@yoctoproject.org>; Tue, 24 Mar 2015 14:30:58 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga103.jf.intel.com with ESMTP; 24 Mar 2015 12:05:47 -0700
+	by orsmga103.jf.intel.com with ESMTP; 24 Mar 2015 14:30:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,459,1422950400"; d="scan'208";a="684990177"
-Received: from hebumgar-mobl.amr.corp.intel.com (HELO [10.254.43.185])
-	([10.254.43.185])
-	by fmsmga001.fm.intel.com with ESMTP; 24 Mar 2015 12:05:46 -0700
-Message-ID: <1427223920.24404.8.camel@besquive-mobl.amr.corp.intel.com>
-From: Benjamin Esquivel <benjamin.esquivel@linux.intel.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, Prasant J <pj0585@gmail.com>
-In-Reply-To: <3145381.WbFnV3fS4E@peggleto-mobl.ger.corp.intel.com>
-References: <CAA2DH4v8kvV6SoEM4aeCBrY=nP6hF83Nde05jeM56_oMr1zn-A@mail.gmail.com>
-	<550BF5E3.90900@dynamicdevices.co.uk>
-	<203838231.pb6FNpVrD4@peggleto-mobl.ger.corp.intel.com>
-	<3145381.WbFnV3fS4E@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel OTC
-Date: Tue, 24 Mar 2015 12:05:20 -0700
-Mime-Version: 1.0
-X-Mailer: Evolution 3.10.4 (3.10.4-4.fc20) 
-Cc: yocto@yoctoproject.org
-Subject: Re: Embedded Linux Package Management
+X-IronPort-AV: E=Sophos;i="5.11,460,1422950400"; d="scan'208";a="685048622"
+Received: from ivanfoxx-mobl1.ger.corp.intel.com (HELO
+	fuath.ger.corp.intel.com) ([10.252.1.239])
+	by fmsmga001.fm.intel.com with ESMTP; 24 Mar 2015 14:30:56 -0700
+From: Beth Flanagan <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 24 Mar 2015 21:30:42 +0000
+Message-Id: <1427232642-20710-1-git-send-email-elizabeth.flanagan@intel.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [PATCH] poky.conf: Flip DISTRO_VERSION for pending 1.8 release
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: benjamin.esquivel@linux.intel.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -47,108 +38,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Mar 2015 19:05:49 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 24 Mar 2015 21:31:00 -0000
 
-Hi Prasant,
+Flipping DISTRO_VERSION for fido.
 
-On Fri, 2015-03-20 at 11:14 +0000, Paul Eggleton wrote:
-> On Friday 20 March 2015 11:10:39 Paul Eggleton wrote:
-> > On Friday 20 March 2015 11:26:43 Alex J Lennon wrote:
-> > > On 20/03/2015 11:15, Prasant J wrote:
-> > > > On Fri, Mar 20, 2015 at 2:21 PM, Alex J Lennon
-> > > > 
-> > > > <ajlennon@dynamicdevices.co.uk> wrote:
-> > > >> On 20/03/2015 09:34, Prasant J wrote:
-> > > >> 
-> > > >> Hi,
-> > > >> 
-> > > >> I'm looking for package management for my embedded linux systems
-> > > >> (yocto on armv7 iMX6Q)
-> > > >> 
-> > > >> 
-> > > >> I'm looking for the following features:
-> > > >> 
-> > > >> (a) Install & remove a package
-> > > >> (b) Install packages and its dependencies
-> > > >> (c) Install a package with conflicts, such that the conflicting
-> > > >> package is force removed
-> > > >> (d) A local location with packages should serve as a package source
-> > > >> (e) Remote server package (http file server based)
-> > > >> (f) List of my packages installed
-> > > >> (g) List of my packages not installed but available on the http file
-> > > >> server
-> > > >> (h) List of my packages that have updates (new version)
-> > > >> (i) To be able to manage packages for multiple architectures (eg. rpm
-> > > >> can produce packages for multiple architectures using one spec file)
-> > > >> 
+Signed-off-by: Beth Flanagan <elizabeth.flanagan@intel.com>
+---
+ meta-yocto/conf/distro/poky.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-This list of requirements you put seem very helpful from the package
-management standpoint although I believe this can all be done in a
-couple of scripting lines at the most, if you're with Yum/RPM anyway.
+diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
+index 66c7b4c..34d4f37 100644
+--- a/meta-yocto/conf/distro/poky.conf
++++ b/meta-yocto/conf/distro/poky.conf
+@@ -1,6 +1,6 @@
+ DISTRO = "poky"
+ DISTRO_NAME = "Poky (Yocto Project Reference Distro)"
+-DISTRO_VERSION = "1.7+snapshot-${DATE}"
++DISTRO_VERSION = "1.8"
+ DISTRO_CODENAME = "fido"
+ SDK_VENDOR = "-pokysdk"
+ SDK_VERSION := "${@'${DISTRO_VERSION}'.replace('snapshot-${DATE}','snapshot')}"
+-- 
+1.9.1
 
-> > > >> 
-> > > >> The above features will be invoked by the application GUI.
-> > > >> Any suggestions: which package management solution would answer all
-> > > >> the above use cases?
-> > > >> 
-> > > >> 
-> > > >> 
-> > > >> (e) I use smart + RPM. I have a remote package server setup via this in
-> > > >> local.conf
-> > > >> 
-> > > >> FEED_DEPLOYDIR_BASE_URI = "http://packages.foo.bar"
-> > > >> 
-> > > >> Then I'm rsyncing the files up to the server after a bitbake
-> > > >> package-index.
-> > > >> 
-> > > >> Then smart update / search / install
-> > > >> 
-> > > >> That seems to work well in my testing.
-> > > > 
-> > > > Hi Alex,
-> > > > 
-> > > > Thanks for inputs!
-> > > > 
-> > > > Is smart development stopped?
-> > > > 
-> > > > When I look at their mailing list it, the last posts were in Nov 2014.
-> > > > It looks like no more development for smart package manager. I would
-> > > > then tend to say that it will not be a right way for me.
-> > > 
-> > > I don't know. To me the question would be does it do want I need it to
-> > > do as well as I need it to do it,
-> > > rather than asking whether there is a lot of activity. One might take
-> > > the view that if it is doing its job,
-> > > a lack of activity is a sign that it's a mature piece of software that
-> > > needs little further development.
-> > > 
-> > > You'll have to make that decision yourself.
-> > > 
-> > > My understanding is that smart is the recommended way to do things (at
-> > > least it was what was
-> > > recommended to me) - https://wiki.yoctoproject.org/wiki/Smart
-> > 
-> > FYI, here is some of the thinking that led to the decision to use smart:
-> > 
-> > https://lists.yoctoproject.org/pipermail/yocto/2012-October/010384.html
-> > 
-> > Of course that was a few years ago now - we probably ought to look at the
-> > RPM landscape again (e.g. DNF) and see if any change is warranted.
-> 
-> I forgot to mention, we do have some basic documentation here on
-> setting up a feed if you hadn't already seen it:
-> 
-> http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#using-runtime-package-management
-> 
-> Cheers,
-> Paul
-> 
-> -- 
-> 
-> Paul Eggleton
-> Intel Open Source Technology Centre
+-------------------------------------------------------------
+Intel Ireland Limited (Branch)
+Collinstown Industrial Park, Leixlip, County Kildare, Ireland
+Registered Number: E902934
 
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
 
 
