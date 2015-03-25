@@ -1,48 +1,39 @@
-Return-Path: <vm.rod25@gmail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 10124E008F6; Wed, 25 Mar 2015 09:28:25 -0700 (PDT)
+	id A86E7E008F6; Wed, 25 Mar 2015 10:31:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vm.rod25[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.181 listed in list.dnswl.org]
-Received: from mail-ig0-f181.google.com (mail-ig0-f181.google.com
-	[209.85.213.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2C11E008CF
-	for <yocto@yoctoproject.org>; Wed, 25 Mar 2015 09:28:23 -0700 (PDT)
-Received: by igbqf9 with SMTP id qf9so30051523igb.1
-	for <yocto@yoctoproject.org>; Wed, 25 Mar 2015 09:28:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=c25G3vq5fCAnbX9GZNxvLrVrHcvQ8ybMJSlH9TNskL0=;
-	b=z2NpAD/Rzqpmw22ehF9kNmka92WjuY/C4zbCp267iUvKtIpjJKmUvQ8Atvz4WSFnKa
-	gu0YqsQZMve/SkCsMjZCGRpPdjHwwQXcsMOlbiiuBzRRoCO5bZex3/WS/aGkCzWm1hOx
-	wu4M3ArKxH9bVUFToRB7qf7wFde0udvQlY0Tztmab4dhqIk/PB1OlmFfajmdpppvR+Sz
-	2E/L5bvanjeM0oS+ZKlrR3jAPkg0vHmK+MKkOLWYrzIRNdyy2hhOPWtzImlpZsU9YFYo
-	qO1qs+G6Y4152W28s5XT1iQ7Qz+MX5cS6F16Yur+VZWAGujFIVLrtsWzn9gJtJlBoB0C
-	MIdQ==
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61044E008CF
+	for <yocto@yoctoproject.org>; Wed, 25 Mar 2015 10:31:17 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id t2PHVDKn009906
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 25 Mar 2015 10:31:13 -0700 (PDT)
+Received: from msp-dhcp8.wrs.com (172.25.34.8) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 25 Mar 2015 10:31:13 -0700
+Message-ID: <5512F0DF.5030203@windriver.com>
+Date: Wed, 25 Mar 2015 12:31:11 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-X-Received: by 10.107.167.145 with SMTP id q139mr15248150ioe.16.1427300902551; 
-	Wed, 25 Mar 2015 09:28:22 -0700 (PDT)
-Received: by 10.50.249.133 with HTTP; Wed, 25 Mar 2015 09:28:22 -0700 (PDT)
-Date: Wed, 25 Mar 2015 10:28:22 -0600
-Message-ID: <CAK5mtewFh6rqfCkpUkBsuWJiZujgDvdSJS00ogKuDan133kCdg@mail.gmail.com>
-From: Victor Rodriguez <vm.rod25@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: GCC 4.9 to 5.0
+To: Victor Rodriguez <vm.rod25@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <CAK5mtewFh6rqfCkpUkBsuWJiZujgDvdSJS00ogKuDan133kCdg@mail.gmail.com>
+In-Reply-To: <CAK5mtewFh6rqfCkpUkBsuWJiZujgDvdSJS00ogKuDan133kCdg@mail.gmail.com>
+Subject: Re: GCC 4.9 to 5.0
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,20 +45,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Mar 2015 16:28:25 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 25 Mar 2015 17:31:19 -0000
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
 
-HI everyone
+On 3/25/15 11:28 AM, Victor Rodriguez wrote:
+> HI everyone
+> 
+> Does anybody knows if there is a best known method/plan/test suite for
+> moving from one version of gcc to another ?
 
-Does anybody knows if there is a best known method/plan/test suite for
-moving from one version of gcc to another ?
+Use the dejagnu test suite and other tests built into gcc, glibc, gdb, binutils,
+and the prelinker..  (I've found the prelinker test suites sometime find obscure
+issues relating to elf section handling.)
 
-I am in the middle of that painful task and wonder if yocto community
-has a plan every time yocto do this switch
+If those all pass, then most likely what you've done is in reasonably good shape.
 
-Thanks a lot for all the help
+--Mark
 
-Regards
+> I am in the middle of that painful task and wonder if yocto community
+> has a plan every time yocto do this switch
+> 
+> Thanks a lot for all the help
+> 
+> Regards
+> 
+> Victor Rodriguez
+> 
 
-Victor Rodriguez
 
