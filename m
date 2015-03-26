@@ -1,55 +1,29 @@
-Return-Path: <testlaster@gmail.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ABD3EE00961; Thu, 26 Mar 2015 06:05:36 -0700 (PDT)
+	id EBA57E00779; Thu, 26 Mar 2015 06:44:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (testlaster[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.212.177 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wi0-f177.google.com (mail-wi0-f177.google.com
-	[209.85.212.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A1FAE0095D
-	for <yocto@yoctoproject.org>; Thu, 26 Mar 2015 06:05:32 -0700 (PDT)
-Received: by wibg7 with SMTP id g7so147744395wib.1
-	for <yocto@yoctoproject.org>; Thu, 26 Mar 2015 06:05:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=PzH5kL2CgSsevS3DW/O6PPpTvhOI8TEaXY5iOIsRSeQ=;
-	b=GYS/ybqsy94mSlBe2bojo8yq+HARRb+/iaZFGMcAdidaU4vXiF2gsR6t1ZtXEYD1tt
-	PcJ8+8I150j3zfon4oq4rC0JlM8eVcjgj4hTdndKhEpH3xzX7oTrTwbuYkIvuELZ+g9m
-	KLpsMbFvQyNaShW4OWwOLR6HDaSIhKq+Z3CWMbip32DI40pl2pZa2/hy35ghZyyPv3E6
-	Eq4wv6rdxb3ibEftt1fQQ6+lJFmA3s2iQLkfYipdyrBFCi6R15xRt1Cjix5vpwE6kPCg
-	UfcsZ2toK+vkyRrcV9jdFA2BWPmFwgqVV3dm+s19RG0d/AAawRfSuDtVc2y3IzMeKRI6
-	+vew==
-X-Received: by 10.180.240.172 with SMTP id wb12mr25210816wic.55.1427375131816; 
-	Thu, 26 Mar 2015 06:05:31 -0700 (PDT)
-Received: from [192.168.11.13] (gwise.truvelo.co.za. [41.160.58.98])
-	by mx.google.com with ESMTPSA id dc9sm25262087wib.9.2015.03.26.06.05.29
-	for <yocto@yoctoproject.org>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 26 Mar 2015 06:05:31 -0700 (PDT)
-Message-ID: <55140415.1050308@gmail.com>
-Date: Thu, 26 Mar 2015 15:05:25 +0200
-From: testlaster <testlaster@gmail.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21D5CE0056E
+	for <yocto@yoctoproject.org>; Thu, 26 Mar 2015 06:44:42 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 3CAD3F811DD; Thu, 26 Mar 2015 07:44:42 -0600 (MDT)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 8FFD1F811D7;
+	Thu, 26 Mar 2015 07:44:41 -0600 (MDT)
+Message-ID: <55140D4C.2060107@mlbassoc.com>
+Date: Thu, 26 Mar 2015 07:44:44 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: Hi..trouble booting
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Sharing sstate
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,46 +35,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Mar 2015 13:05:36 -0000
+X-List-Received-Date: Thu, 26 Mar 2015 13:44:45 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi
+I have two development servers, one running an older version
+of Fedora (x86 *), the other runs a recent Ubuntu (x86_64).
+Both are the same CPU core (Intel(R) Core(TM)2 Quad CPU Q6600 @ 2.40GHz)
 
-I have been having a boot issue on my system.
-Here is a Paste from the machine im trying to boot linux. Its running
-Slackware at the moment.
-When I boot with a USB stick it says boot : followed by alpha symbols that
-seems to continue into eternity unless stopped.
-I have used DD on the hddimg files and i have tried using Rufus and TuxBoot
-with both hddimg and ISO files.
+I've just tried building the same target, using the same version
+of Poky/Yocto, sharing the sstate cache (fully populated) from
+the x86_64 machine with the x86 machine.  This was done using
+HTTP.  Sadly, there was not a single file found in the cache
+that could be used.
 
-bash-4.2# lscpu
-Architecture:          i686
-CPU op-mode(s):        32-bit
-Byte Order:            Little Endian
-CPU(s):                2
-On-line CPU(s) list:   0,1
-Thread(s) per core:    2
-Core(s) per socket:    1
-Socket(s):             1
-NUMA node(s):          1
-Vendor ID:             GenuineIntel
-CPU family:            6
-Model:                 28
-Stepping:              2
-CPU MHz:               800.000
-BogoMIPS:              3200.12
-L1d cache:             24K
-L1i cache:             32K
-L2 cache:              512K
-NUMA node0 CPU(s):     0,1
+Should this not be expected to work?  Does sstate cache only
+work across like systems (32 vs 64 bit hosts)?
 
-I have used the normal Genericx86 and the Atom yocto build from the Yocto
-website with no luck.
+Also, Mark Hatle mentioned a few days ago that there are ways
+to "lock" versions of the sstate cache.  I still haven't found
+any info/documentation on this.  Can someone please explain more?
 
-Can anybody help me with this issue?
-Thansk allot and kind regards
-Testo
+Thanks
 
+(*) I can't update my x86 machine to a more recent (x86_64)
+distribution as I have many older "projects" that only run
+on that hardware and no time/opportunity to upgrade, hence
+my desire to share in this manner.
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
