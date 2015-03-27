@@ -1,47 +1,33 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <hugo.saldanha@aker.com.br>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0CABAE00922; Fri, 27 Mar 2015 12:28:05 -0700 (PDT)
+	id 32F4BE00924; Fri, 27 Mar 2015 13:57:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.53 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qg0-f53.google.com (mail-qg0-f53.google.com
-	[209.85.192.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC2D1E00906
-	for <yocto@yoctoproject.org>; Fri, 27 Mar 2015 12:28:01 -0700 (PDT)
-Received: by qgh3 with SMTP id 3so126968328qgh.2
-	for <yocto@yoctoproject.org>; Fri, 27 Mar 2015 12:28:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=8oIKbJPtMZJyS2+ElL9JywOlaWG/t8wHQk/xLmzp3/w=;
-	b=dHJqW9U8K6jblkb4D+U7TAtVnfh71Q1Cg8O5D8OSbqtSZ6h3QfQVfSqQ18THzOec9v
-	iKbNn3S/sVuL9P6Vc1O1C+ats5ZvlP+NOUwsd0l6+izwa1dA0EW6JAZI6FIekvLkAeYp
-	JPSxHFfF1UCCzqWkJKazttAy7vwrJv2HyBupWzDhMwSoCS35GnBNJixyKBULb4Zvo3/c
-	JojOO6TNmG9gnmFIP1yBP3eEwxfK+O0mGTe3xCzYUdxuROPS6Ck3garIKgMna23hkdH4
-	iLXorMV1LMwjroKWNjiAGfxq9tob0JxZdfI5yx6DRGKpx9QBzyjOFWjMEaxUAJKfWnPH
-	RTLA==
-X-Gm-Message-State: ALoCoQkFdUA0NDENJ3fzO6QuVUkz5NnqoycQfh+QJr+TwWMLxelm95qdsxNAwJqo6VxioG4TV1tM
-X-Received: by 10.55.21.152 with SMTP id 24mr43400021qkv.40.1427484481195;
-	Fri, 27 Mar 2015 12:28:01 -0700 (PDT)
+X-Greylist: delayed 605 seconds by postgrey-1.32 at yocto-www;
+	Fri, 27 Mar 2015 13:57:29 PDT
+Received: from asmg.aker.com.br (asmg.aker.com.br [177.159.144.67])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 693D6E00906
+	for <yocto@yoctoproject.org>; Fri, 27 Mar 2015 13:57:29 -0700 (PDT)
+Received: from mail.aker.com.br (bat.bsb.aker.com.br [10.0.0.20])
+	by asmg.aker.com.br [10.0.1.3]; Fri, 27 Mar 2015 17:57:13 -0300
+	(envelope-from hugo.saldanha@aker.com.br)
+Received: from saldanha.aker.com.br (10.4.3.1) by mail.aker.com.br (10.0.0.20)
+	with Microsoft SMTP Server (TLS) id 8.3.342.0;
+	Fri, 27 Mar 2015 17:47:05 -0300
+From: Hugo Vasconcelos Saldanha <hugo.saldanha@aker.com.br>
+To: <yocto@yoctoproject.org>
+Date: Fri, 27 Mar 2015 17:49:40 -0300
+Message-ID: <1427489380-16202-1-git-send-email-hugo.saldanha@aker.com.br>
+X-Mailer: git-send-email 2.3.3
 MIME-Version: 1.0
-Received: by 10.140.102.203 with HTTP; Fri, 27 Mar 2015 12:27:41 -0700 (PDT)
-In-Reply-To: <5515A7D8.1000900@mlbassoc.com>
-References: <5515A7D8.1000900@mlbassoc.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 27 Mar 2015 19:27:41 +0000
-Message-ID: <CAJTo0LYp=xyfOPUbVM_F7JYxYGgfX+hu=BkVE5PH0LSv20POgQ@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Dependencies gone wild
+X-AkerSMTPGW-ServerID: d3ca878c259c98dab9711b092908c214d1fd543e
+X-AkerSMTPGW-MessageID: d6e4126872cffd39458fee570a20fb310b60abae-10o
+Subject: [meta-security][PATCH] libmspack: update to version 0.5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,39 +39,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Mar 2015 19:28:05 -0000
-Content-Type: multipart/alternative; boundary=001a1147a9b86ca86c05124a21de
+X-List-Received-Date: Fri, 27 Mar 2015 20:57:37 -0000
+Content-Type: text/plain
 
---001a1147a9b86ca86c05124a21de
-Content-Type: text/plain; charset=UTF-8
+SRC_URI to version 0.4 was broken.
 
-On 27 March 2015 at 18:56, Gary Thomas <gary@mlbassoc.com> wrote:
+Signed-off-by: Hugo Vasconcelos Saldanha <hugo.saldanha@aker.com.br>
+---
+ recipes-security/libmspack/{libmspack_0.4.bb => libmspack_0.5.bb} | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ rename recipes-security/libmspack/{libmspack_0.4.bb => libmspack_0.5.bb} (72%)
 
-> What are these all about and why do I have them if I'm not
-> running systemd?
->
+diff --git a/recipes-security/libmspack/libmspack_0.4.bb b/recipes-security/libmspack/libmspack_0.5.bb
+similarity index 72%
+rename from recipes-security/libmspack/libmspack_0.4.bb
+rename to recipes-security/libmspack/libmspack_0.5.bb
+index 5d2061d..80db23c 100644
+--- a/recipes-security/libmspack/libmspack_0.4.bb
++++ b/recipes-security/libmspack/libmspack_0.5.bb
+@@ -8,8 +8,8 @@ LIC_FILES_CHKSUM = "file://COPYING.LIB;beginline=1;endline=2;md5=5b1fd1f66ef926b
+ 
+ SRC_URI = "${DEBIAN_MIRROR}/main/libm/${BPN}/${BPN}_${PV}.orig.tar.gz\
+ "
+-SRC_URI[md5sum] = "1ab10b507259993c74b4c41a88103b59"
+-SRC_URI[sha256sum] = "b7958983f60cbec40d48ef87520210f9d8e2672a57a5ce0a2187b3d4fb2f5c68"
++SRC_URI[md5sum] = "3aa3f6b9ef101463270c085478fda1da"
++SRC_URI[sha256sum] = "8967f275525f5067b364cee43b73e44d0433668c39f9376dfff19f653d1c8110"
+ 
+ inherit autotools
+ 
+-- 
+2.3.3
 
-Bitbake wasn't tracking those variables correctly, and now it is.  You
-could argue that PACKAGEVARS should be extended in the class that sets the
-variable, and patches welcome for that if it would work I guess.
 
-Ross
 
---001a1147a9b86ca86c05124a21de
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 27 March 2015 at 18:56, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span> w=
-rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
-r-left:1px #ccc solid;padding-left:1ex"><div id=3D":1yg" class=3D"a3s" styl=
-e=3D"overflow:hidden">What are these all about and why do I have them if I&=
-#39;m not<br>
-running systemd?</div></blockquote><div><br></div><div>Bitbake wasn&#39;t t=
-racking those variables correctly, and now it is.=C2=A0 You could argue tha=
-t PACKAGEVARS should be extended in the class that sets the variable, and p=
-atches welcome for that if it would work I guess.</div><div><br></div><div>=
-Ross=C2=A0</div></div></div></div>
-
---001a1147a9b86ca86c05124a21de--
