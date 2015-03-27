@@ -1,33 +1,40 @@
-Return-Path: <hugo.saldanha@aker.com.br>
+Return-Path: <matt.schuckmann@planar.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 32F4BE00924; Fri, 27 Mar 2015 13:57:37 -0700 (PDT)
+	id CCAF2E00924; Fri, 27 Mar 2015 13:57:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 605 seconds by postgrey-1.32 at yocto-www;
-	Fri, 27 Mar 2015 13:57:29 PDT
-Received: from asmg.aker.com.br (asmg.aker.com.br [177.159.144.67])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 693D6E00906
-	for <yocto@yoctoproject.org>; Fri, 27 Mar 2015 13:57:29 -0700 (PDT)
-Received: from mail.aker.com.br (bat.bsb.aker.com.br [10.0.0.20])
-	by asmg.aker.com.br [10.0.1.3]; Fri, 27 Mar 2015 17:57:13 -0300
-	(envelope-from hugo.saldanha@aker.com.br)
-Received: from saldanha.aker.com.br (10.4.3.1) by mail.aker.com.br (10.0.0.20)
-	with Microsoft SMTP Server (TLS) id 8.3.342.0;
-	Fri, 27 Mar 2015 17:47:05 -0300
-From: Hugo Vasconcelos Saldanha <hugo.saldanha@aker.com.br>
-To: <yocto@yoctoproject.org>
-Date: Fri, 27 Mar 2015 17:49:40 -0300
-Message-ID: <1427489380-16202-1-git-send-email-hugo.saldanha@aker.com.br>
-X-Mailer: git-send-email 2.3.3
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [63.128.21.105 listed in list.dnswl.org]
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
+	Fri, 27 Mar 2015 13:57:34 PDT
+Received: from us-smtp-delivery-105.mimecast.com
+	(us-smtp-delivery-105.mimecast.com [63.128.21.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A7B1E0091F
+	for <yocto@yoctoproject.org>; Fri, 27 Mar 2015 13:57:33 -0700 (PDT)
+Received: from msxbvt03.planar.net (199.244.171.48 [199.244.171.48]) by
+	us-mta-30.us.mimecast.lan; Fri, 27 Mar 2015 16:56:28 -0400
+Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
+	with mapi; Fri, 27 Mar 2015 13:56:26 -0700
+From: Matt Schuckmann <Matt.Schuckmann@planar.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Fri, 27 Mar 2015 13:56:27 -0700
+Thread-Topic: Best practices for copying recipe from a newer release
+Thread-Index: AdBo0H5P9Et/YApHQPuA1Z+w6xT1/Q==
+Message-ID: <4B07ADD556F70043925DA2E9C5D4346D2FDC987968@MSXBEBVT12.planar.net>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-AkerSMTPGW-ServerID: d3ca878c259c98dab9711b092908c214d1fd543e
-X-AkerSMTPGW-MessageID: d6e4126872cffd39458fee570a20fb310b60abae-10o
-Subject: [meta-security][PATCH] libmspack: update to version 0.5
+X-MC-Unique: DiGXsXNaRa6STeT6uZ7jZQ-1
+Subject: Best practices for copying recipe from a newer release
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,36 +47,69 @@ List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Fri, 27 Mar 2015 20:57:37 -0000
-Content-Type: text/plain
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_4B07ADD556F70043925DA2E9C5D4346D2FDC987968MSXBEBVT12pla_"
 
-SRC_URI to version 0.4 was broken.
+--_000_4B07ADD556F70043925DA2E9C5D4346D2FDC987968MSXBEBVT12pla_
+Content-Type: text/plain; charset=WINDOWS-1252
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Hugo Vasconcelos Saldanha <hugo.saldanha@aker.com.br>
----
- recipes-security/libmspack/{libmspack_0.4.bb => libmspack_0.5.bb} | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
- rename recipes-security/libmspack/{libmspack_0.4.bb => libmspack_0.5.bb} (72%)
+I find myself in the situation where my project is currently using meta-ope=
+nembedded from the Dylan branch but I want to use a recipe from the current=
+ master.
+Is it better for me to copy the recipe into my own branch off of Dylan or t=
+o copy the recipe into my own meta-layer?
 
-diff --git a/recipes-security/libmspack/libmspack_0.4.bb b/recipes-security/libmspack/libmspack_0.5.bb
-similarity index 72%
-rename from recipes-security/libmspack/libmspack_0.4.bb
-rename to recipes-security/libmspack/libmspack_0.5.bb
-index 5d2061d..80db23c 100644
---- a/recipes-security/libmspack/libmspack_0.4.bb
-+++ b/recipes-security/libmspack/libmspack_0.5.bb
-@@ -8,8 +8,8 @@ LIC_FILES_CHKSUM = "file://COPYING.LIB;beginline=1;endline=2;md5=5b1fd1f66ef926b
- 
- SRC_URI = "${DEBIAN_MIRROR}/main/libm/${BPN}/${BPN}_${PV}.orig.tar.gz\
- "
--SRC_URI[md5sum] = "1ab10b507259993c74b4c41a88103b59"
--SRC_URI[sha256sum] = "b7958983f60cbec40d48ef87520210f9d8e2672a57a5ce0a2187b3d4fb2f5c68"
-+SRC_URI[md5sum] = "3aa3f6b9ef101463270c085478fda1da"
-+SRC_URI[sha256sum] = "8967f275525f5067b364cee43b73e44d0433668c39f9376dfff19f653d1c8110"
- 
- inherit autotools
- 
--- 
-2.3.3
+What works out better later on when I want update by project to use a newer=
+ release like Daisy, etc?
+
+Thanks,
+Matt S
+
+PS. I don't think it matters much, but the recipe in question is the v4l-ut=
+ils_1.6.2 recipe
 
 
 
+
+
+--_000_4B07ADD556F70043925DA2E9C5D4346D2FDC987968MSXBEBVT12pla_
+Content-Type: text/html; charset=WINDOWS-1252
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Calibri, sans-serif" size=3D"2">
+<div>I find myself in the situation where my project is currently using met=
+a-openembedded from the Dylan branch but I want to use a recipe from the cu=
+rrent master. </div>
+<div>Is it better for me to copy the recipe into my own branch off of Dylan=
+ or to copy the recipe into my own meta-layer? </div>
+<div>&nbsp;</div>
+<div>What works out better later on when I want update by project to use a =
+newer release like Daisy, etc? </div>
+<div>&nbsp;</div>
+<div>Thanks,</div>
+<div>Matt S</div>
+<div>&nbsp;</div>
+<div>PS. I don&#8217;t think it matters much, but the recipe in question is=
+ the v4l-utils_1.6.2 recipe<br>
+
+</div>
+<div>&nbsp;</div>
+</font>
+</body>
+</html>
+
+
+
+--_000_4B07ADD556F70043925DA2E9C5D4346D2FDC987968MSXBEBVT12pla_--
