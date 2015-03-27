@@ -1,38 +1,32 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2E11DE00922; Fri, 27 Mar 2015 07:40:03 -0700 (PDT)
+	id 2F58DE00922; Fri, 27 Mar 2015 08:03:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7C6CE00906
-	for <yocto@yoctoproject.org>; Fri, 27 Mar 2015 07:39:59 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga101.jf.intel.com with ESMTP; 27 Mar 2015 07:40:00 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37E23E00906
+	for <yocto@yoctoproject.org>; Fri, 27 Mar 2015 08:03:40 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga102.jf.intel.com with ESMTP; 27 Mar 2015 08:03:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,479,1422950400"; d="scan'208";a="686585834"
-Received: from kcone-mobl1.amr.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.254.102.203])
-	by fmsmga001.fm.intel.com with ESMTP; 27 Mar 2015 07:39:59 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Preeti P <itspreetip89@gmail.com>
-Date: Fri, 27 Mar 2015 14:39:58 +0000
-Message-ID: <2100962.0no4cKlWXc@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.4 (Linux/3.18.9-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
-In-Reply-To: <CA+jjunCbZfd-b+V_ipMtdWkkLwyN6xJJH3vhHjGmKG8p8b8doA@mail.gmail.com>
-References: <CA+jjunDcbN-xq8TUB_8y6+HKnhErtckaGYgU7RnhGxV0OC1Qfw@mail.gmail.com>
-	<CA+jjunCbZfd-b+V_ipMtdWkkLwyN6xJJH3vhHjGmKG8p8b8doA@mail.gmail.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: : About adding documentation in final SDK image
+X-IronPort-AV: E=Sophos;i="5.11,479,1422950400"; d="scan'208";a="473549394"
+Received: from crodgers-mobl8.ger.corp.intel.com (HELO
+	fuath.ger.corp.intel.com) ([10.252.24.247])
+	by FMSMGA003.fm.intel.com with ESMTP; 27 Mar 2015 08:03:30 -0700
+From: Beth Flanagan <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 27 Mar 2015 15:03:10 +0000
+Message-Id: <1427468590-6615-1-git-send-email-elizabeth.flanagan@intel.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [PATCH][yocto-docs] poky.ent: Ubuntu based systems need xlstproc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,49 +38,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Mar 2015 14:40:03 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 27 Mar 2015 15:03:46 -0000
 
-Hi Preeti,
+xlstproc is needed for doc building. I'm sure others are
+effected as well.
 
-On Thursday 19 March 2015 21:37:31 Preeti P wrote:
-> I am working on adding the documents in to my SDK image.
-> Basically, I want to have the man and info documentation for the tool-chain
-> item in my SDK image.
-> 
-> As per my understanding, the install package for every recipe gets split
-> into different packages and finally shipped in to the SDK image.
-> 
-> To add the documents in my SDK image, I tried to add the '-doc' support in
-> 'PACKAGES' variable but still the documentation related files are not there
-> in the final image.
-> 
-> I even tried by adding below lines in to the do_install function in my
-> recipe but my final image does not have those files:
-> 
-> do_install {
-> 
->                 install -d ${D}${includedir}${doc}
-> 
->                 install -m 644 ${S}/doc/*.info ${D}${includedir}${doc}
-> 
-> }
-> 
-> Can anyone provide me inputs on how to add the documentation for packages
-> in to the final SDK image?
+Signed-off-by: Beth Flanagan <elizabeth.flanagan@intel.com>
+---
+ documentation/poky.ent | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-When you say "SDK image" I guess you just mean SDK? If so, I think you'd just 
-need to add "doc-pkgs" to SDKIMAGE_FEATURES. Since SDKIMAGE_FEATURES is set 
-with ??= i.e. a soft default, you would need to set the complete value i.e.:
-
-SDKIMAGE_FEATURES = "dev-pkgs dbg-pkgs doc-pkgs"
-
-Cheers,
-Paul
-
+diff --git a/documentation/poky.ent b/documentation/poky.ent
+index 5d12fc1..a8fe99f 100644
+--- a/documentation/poky.ent
++++ b/documentation/poky.ent
+@@ -59,7 +59,7 @@
+ <!ENTITY OE_INIT_PATH "&YOCTO_POKY;/oe-init-build-env">
+ <!ENTITY OE_INIT_FILE "oe-init-build-env">
+ <!ENTITY UBUNTU_HOST_PACKAGES_ESSENTIAL "gawk wget git-core diffstat unzip texinfo gcc-multilib \
+-     build-essential chrpath socat">
++     build-essential chrpath socat xsltproc">
+ <!ENTITY FEDORA_HOST_PACKAGES_ESSENTIAL "gawk make wget tar bzip2 gzip python unzip perl patch \
+      diffutils diffstat git cpp gcc gcc-c++ glibc-devel texinfo chrpath \
+      ccache perl-Data-Dumper perl-Text-ParseWords perl-Thread-Queue socat">
 -- 
+1.9.1
 
-Paul Eggleton
-Intel Open Source Technology Centre
+-------------------------------------------------------------
+Intel Ireland Limited (Branch)
+Collinstown Industrial Park, Leixlip, County Kildare, Ireland
+Registered Number: E902934
+
+This e-mail and any attachments may contain confidential material for
+the sole use of the intended recipient(s). Any review or distribution
+by others is strictly prohibited. If you are not the intended
+recipient, please contact the sender and delete all copies.
+
 
