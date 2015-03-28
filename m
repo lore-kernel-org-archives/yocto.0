@@ -1,31 +1,38 @@
-Return-Path: <tracy.graydon@intel.com>
+Return-Path: <matt.schuckmann@planar.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 04829E00922; Fri, 27 Mar 2015 16:37:29 -0700 (PDT)
+	id 2B15FE00922; Fri, 27 Mar 2015 17:10:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [63.128.21.105 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B718EE00906
-	for <yocto@yoctoproject.org>; Fri, 27 Mar 2015 16:37:25 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga103.jf.intel.com with ESMTP; 27 Mar 2015 16:37:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,481,1422950400"; d="scan'208";a="671725829"
-Received: from tmglnx.jf.intel.com ([10.7.200.136])
-	by orsmga001.jf.intel.com with ESMTP; 27 Mar 2015 16:37:24 -0700
-From: "Graydon, Tracy" <tracy.graydon@intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 27 Mar 2015 17:36:59 -0700
-Message-Id: <1427503019-10759-1-git-send-email-tracy.graydon@intel.com>
-X-Mailer: git-send-email 1.9.3
-Subject: [PATCH] nightly-<arch>*.conf: Add GetBitbakeVersion build step
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from us-smtp-delivery-105.mimecast.com
+	(us-smtp-delivery-105.mimecast.com [63.128.21.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF5AFE00906
+	for <yocto@yoctoproject.org>; Fri, 27 Mar 2015 17:10:13 -0700 (PDT)
+Received: from msxbvt03.planar.net (199.244.171.48 [199.244.171.48]) by
+	us-mta-10.us.mimecast.lan; Fri, 27 Mar 2015 20:10:11 -0400
+Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
+	with mapi; Fri, 27 Mar 2015 17:10:10 -0700
+From: Matt Schuckmann <Matt.Schuckmann@planar.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Fri, 27 Mar 2015 17:10:09 -0700
+Thread-Topic: Please help me understand these packages
+Thread-Index: AdBo642cAM/S8wqGS46RpFgw608MCw==
+Message-ID: <4B07ADD556F70043925DA2E9C5D4346D2FDC9879D9@MSXBEBVT12.planar.net>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+X-MC-Unique: p9qc5ZhkRMGT02rVSUTuxw-1
+Subject: Please help me understand these packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,213 +44,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Mar 2015 23:37:29 -0000
+X-List-Received-Date: Sat, 28 Mar 2015 00:10:17 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_4B07ADD556F70043925DA2E9C5D4346D2FDC9879D9MSXBEBVT12pla_"
 
-[YOCTO #7519]
+--_000_4B07ADD556F70043925DA2E9C5D4346D2FDC9879D9MSXBEBVT12pla_
+Content-Type: text/plain; charset=WINDOWS-1252
+Content-Transfer-Encoding: quoted-printable
 
-Add the GetBitbakeVersion build step to nightly-<arch>*.conf buildsets
-in buildset_config.controller to enable toaster on autobuilder.
+I've run into this a couple times now and I still don't get it so please he=
+lp me understand.
 
-Signed-off-by: Graydon, Tracy <tracy.graydon@intel.com>
----
- buildset-config.controller/nightly-arm-lsb.conf     | 1 +
- buildset-config.controller/nightly-arm.conf         | 1 +
- buildset-config.controller/nightly-arm64.conf       | 1 +
- buildset-config.controller/nightly-fsl-arm-lsb.conf | 1 +
- buildset-config.controller/nightly-fsl-arm.conf     | 1 +
- buildset-config.controller/nightly-fsl-ppc-lsb.conf | 1 +
- buildset-config.controller/nightly-fsl-ppc.conf     | 1 +
- buildset-config.controller/nightly-mips-lsb.conf    | 1 +
- buildset-config.controller/nightly-mips.conf        | 1 +
- buildset-config.controller/nightly-ppc-lsb.conf     | 1 +
- buildset-config.controller/nightly-ppc.conf         | 1 +
- buildset-config.controller/nightly-x86-64-lsb.conf  | 1 +
- buildset-config.controller/nightly-x86-64.conf      | 1 +
- buildset-config.controller/nightly-x86-lsb.conf     | 1 +
- buildset-config.controller/nightly-x86.conf         | 1 +
- 15 files changed, 15 insertions(+)
+I'm trying to understand how to include just the ir-keytable package of the=
+ v4l-utils_1.6.2.bb recipe.
 
-diff --git a/buildset-config.controller/nightly-arm-lsb.conf b/buildset-config.controller/nightly-arm-lsb.conf
-index 261a1e3..f950b6d 100644
---- a/buildset-config.controller/nightly-arm-lsb.conf
-+++ b/buildset-config.controller/nightly-arm-lsb.conf
-@@ -15,6 +15,7 @@ steps: [{'SetDest':{}},
-                             'distro': 'poky-lsb', 'buildhistory' : True}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky-lsb'}},
-+        {'GetBitbakeVersion': {}},
-         {'BuildImages': {'images': 'core-image-lsb core-image-lsb-dev core-image-lsb-sdk core-image-lsb-qt3'}},
-         {'CreateAutoConf': {'machine': 'beagleboard', 'SDKMACHINE' : 'i686', 'distro': 'poky-lsb'}},
-         {'BuildImages': {'images': 'core-image-lsb core-image-lsb-sdk'}},
-diff --git a/buildset-config.controller/nightly-arm.conf b/buildset-config.controller/nightly-arm.conf
-index d705bbc..ae73381 100644
---- a/buildset-config.controller/nightly-arm.conf
-+++ b/buildset-config.controller/nightly-arm.conf
-@@ -14,6 +14,7 @@ steps: [{'SetDest':{}},
-         {'CreateAutoConf': {'machine': 'qemuarm', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'buildhistory' : True}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky'}},
-+        {'GetBitbakeVersion': {}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
-         {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-         {'CreateAutoConf': {'machine': 'beagleboard', 'SDKMACHINE' : 'i686', 'distro': 'poky'}},
-diff --git a/buildset-config.controller/nightly-arm64.conf b/buildset-config.controller/nightly-arm64.conf
-index 9595b3b..0b15ec8 100644
---- a/buildset-config.controller/nightly-arm64.conf
-+++ b/buildset-config.controller/nightly-arm64.conf
-@@ -14,6 +14,7 @@ steps: [{'SetDest':{}},
-         {'CreateAutoConf': {'machine': 'qemuarm64', 'SDKMACHINE' :'i686', 'distro': 'poky', 'buildhistory' : True}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky'}},
-+        {'GetBitbakeVersion': {}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
-         {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-         {'CreateAutoConf': {'machine': 'qemuarm64', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'buildhistory' : False}},
-diff --git a/buildset-config.controller/nightly-fsl-arm-lsb.conf b/buildset-config.controller/nightly-fsl-arm-lsb.conf
-index cccb7a1..4599247 100644
---- a/buildset-config.controller/nightly-fsl-arm-lsb.conf
-+++ b/buildset-config.controller/nightly-fsl-arm-lsb.conf
-@@ -19,6 +19,7 @@ steps: [{'SetDest':{}},
-                             'atextprepend': 'ACCEPT_FSL_EULA = "1"\n',
-                             'devkernel' : False}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto', 'bsplayer' : True, 'bspprovider' : 'fsl-arm'}},
-+        {'GetBitbakeVersion': {}},
-         {'BuildImages': {'images': 'core-image-lsb core-image-lsb-dev core-image-lsb-sdk core-image-lsb-qt3'}},
-         {'CreateAutoConf': {'machine': 'imx6qsabresd', 'SDKMACHINE' : 'x86_64',
-                             'distro': 'poky-lsb', 'buildhistory' : False,
-diff --git a/buildset-config.controller/nightly-fsl-arm.conf b/buildset-config.controller/nightly-fsl-arm.conf
-index a133f3c..e5ca381 100644
---- a/buildset-config.controller/nightly-fsl-arm.conf
-+++ b/buildset-config.controller/nightly-fsl-arm.conf
-@@ -19,6 +19,7 @@ steps: [{'SetDest':{}},
-                             'atextprepend': 'ACCEPT_FSL_EULA = "1"\n',
-                             'devkernel' : False}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto', 'bsplayer' : True, 'bspprovider' : 'fsl-arm'}},
-+        {'GetBitbakeVersion': {}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
-         {'CreateAutoConf': {'machine': 'imx53qsb', 'SDKMACHINE' : 'i686',
-                             'distro': 'poky', 'buildhistory' : False,
-diff --git a/buildset-config.controller/nightly-fsl-ppc-lsb.conf b/buildset-config.controller/nightly-fsl-ppc-lsb.conf
-index 65cdc22..e9fccc1 100644
---- a/buildset-config.controller/nightly-fsl-ppc-lsb.conf
-+++ b/buildset-config.controller/nightly-fsl-ppc-lsb.conf
-@@ -19,6 +19,7 @@ steps: [{'SetDest':{}},
-                             'atextprepend': 'ACCEPT_FSL_EULA = "1"\n',
-                             'devkernel' : False}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto', 'bsplayer' : True, 'bspprovider' : 'fsl-ppc'}},
-+        {'GetBitbakeVersion': {}},        
-         {'BuildImages': {'images': 'core-image-lsb core-image-lsb-dev core-image-lsb-sdk core-image-lsb-qt3'}},
-         {'PublishLayerTarballs':{}},
-         {'SendErrorReport': {}},
-diff --git a/buildset-config.controller/nightly-fsl-ppc.conf b/buildset-config.controller/nightly-fsl-ppc.conf
-index c10913c..f506d0e 100644
---- a/buildset-config.controller/nightly-fsl-ppc.conf
-+++ b/buildset-config.controller/nightly-fsl-ppc.conf
-@@ -19,6 +19,7 @@ steps: [{'SetDest':{}},
-                             'atextprepend': 'ACCEPT_FSL_EULA = "1"\n',
-                             'devkernel' : False}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto', 'bsplayer' : True, 'bspprovider' : 'fsl-ppc'}},
-+        {'GetBitbakeVersion': {}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
-         {'BuildToolchainImages': {}},
-         {'CreateAutoConf': {'machine': 'p1022ds', 'SDKMACHINE' : 'x86_64',
-diff --git a/buildset-config.controller/nightly-mips-lsb.conf b/buildset-config.controller/nightly-mips-lsb.conf
-index d1c5362..78c49dc 100644
---- a/buildset-config.controller/nightly-mips-lsb.conf
-+++ b/buildset-config.controller/nightly-mips-lsb.conf
-@@ -15,6 +15,7 @@ steps: [{'SetDest':{}},
-          'distro': 'poky-lsb', 'buildhistory' : True}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky-lsb'}},
-+        {'GetBitbakeVersion': {}},
-         {'BuildImages': {'images': 'core-image-lsb core-image-lsb-dev core-image-lsb-sdk core-image-lsb-qt3'}},
-         {'CreateAutoConf': {'machine': 'routerstationpro',
-                             'SDKMACHINE' : 'i686', 'distro': 'poky-lsb'}},
-diff --git a/buildset-config.controller/nightly-mips.conf b/buildset-config.controller/nightly-mips.conf
-index 998e0d5..7d63da0 100644
---- a/buildset-config.controller/nightly-mips.conf
-+++ b/buildset-config.controller/nightly-mips.conf
-@@ -15,6 +15,7 @@ steps: [{'SetDest':{}},
-                             'distro': 'poky', 'buildhistory' : True}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky'}},
-+        {'GetBitbakeVersion': {}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
-         {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-         {'CreateAutoConf': {'machine': 'routerstationpro', 'SDKMACHINE' : 'i686',
-diff --git a/buildset-config.controller/nightly-ppc-lsb.conf b/buildset-config.controller/nightly-ppc-lsb.conf
-index a736fea..179121d 100644
---- a/buildset-config.controller/nightly-ppc-lsb.conf
-+++ b/buildset-config.controller/nightly-ppc-lsb.conf
-@@ -15,6 +15,7 @@ steps: [{'SetDest':{}},
-                             'distro': 'poky-lsb', 'buildhistory' : True}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky-lsb'}},
-+        {'GetBitbakeVersion': {}},
-         {'BuildImages': {'images': 'core-image-lsb core-image-lsb-dev core-image-lsb-sdk core-image-lsb-qt3'}},
-         {'CreateAutoConf': {'machine': 'mpc8315e-rdb', 'SDKMACHINE' : 'i686',
-                             'distro': 'poky-lsb', 'buildhistory' : False}},
-diff --git a/buildset-config.controller/nightly-ppc.conf b/buildset-config.controller/nightly-ppc.conf
-index d07165e..b91732a 100644
---- a/buildset-config.controller/nightly-ppc.conf
-+++ b/buildset-config.controller/nightly-ppc.conf
-@@ -15,6 +15,7 @@ steps: [{'SetDest':{}},
-                             'distro': 'poky', 'buildhistory' : True}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky'}},
-+        {'GetBitbakeVersion': {}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
-         {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-         {'CreateAutoConf': {'machine': 'mpc8315e-rdb', 'SDKMACHINE' : 'i686', 'distro': 'poky'}},
-diff --git a/buildset-config.controller/nightly-x86-64-lsb.conf b/buildset-config.controller/nightly-x86-64-lsb.conf
-index 07a23d8..35319f2 100644
---- a/buildset-config.controller/nightly-x86-64-lsb.conf
-+++ b/buildset-config.controller/nightly-x86-64-lsb.conf
-@@ -15,6 +15,7 @@ steps: [{'SetDest':{}},
-                             'distro': 'poky-lsb', 'buildhistory' : True}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky-lsb'}},
-+        {'GetBitbakeVersion': {}},
-         {'BuildImages': {'images': 'core-image-lsb core-image-lsb-dev core-image-lsb-sdk core-image-lsb-qt3'}},
-         {'CreateAutoConf': {'machine': 'genericx86-64', 'SDKMACHINE' : 'i686',
-                             'distro': 'poky-lsb', 'buildhistory' : False}},
-diff --git a/buildset-config.controller/nightly-x86-64.conf b/buildset-config.controller/nightly-x86-64.conf
-index 9a81ab2..bbd0e85 100644
---- a/buildset-config.controller/nightly-x86-64.conf
-+++ b/buildset-config.controller/nightly-x86-64.conf
-@@ -15,6 +15,7 @@ steps: [{'SetDest':{}},
-                             'distro': 'poky', 'buildhistory' : True}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky'}},
-+        {'GetBitbakeVersion': {}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
-         {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-         {'CreateAutoConf': {'machine': 'genericx86-64', 'SDKMACHINE' : 'i686',
-diff --git a/buildset-config.controller/nightly-x86-lsb.conf b/buildset-config.controller/nightly-x86-lsb.conf
-index 654de1f..dc22f80 100644
---- a/buildset-config.controller/nightly-x86-lsb.conf
-+++ b/buildset-config.controller/nightly-x86-lsb.conf
-@@ -15,6 +15,7 @@ steps: [{'SetDest':{}},
-                             'buildhistory' : True, 'distro': 'poky-lsb'}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky-lsb'}},
-+        {'GetBitbakeVersion': {}},
-         {'BuildImages': {'images': 'core-image-lsb core-image-lsb-dev core-image-lsb-sdk core-image-lsb-qt3'}},
-         {'CreateAutoConf': {'machine': 'genericx86', 'SDKMACHINE' : 'i686',
-                             'buildhistory' : False, 'distro': 'poky-lsb'}},
-diff --git a/buildset-config.controller/nightly-x86.conf b/buildset-config.controller/nightly-x86.conf
-index b5a0b36..5053136 100644
---- a/buildset-config.controller/nightly-x86.conf
-+++ b/buildset-config.controller/nightly-x86.conf
-@@ -15,6 +15,7 @@ steps: [{'SetDest':{}},
-                             'distro': 'poky', 'buildhistory' : True}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky'}},
-+        {'GetBitbakeVersion': {}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
-         {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-         {'CreateAutoConf': {'machine': 'genericx86', 'SDKMACHINE' : 'i686',
--- 
-1.9.3
+At first I was getting a lot of "Nothing PROVIDES" or "Nothing RPROVIDES" e=
+rror messages when I tried to add it to a package group or as a dependency =
+of another recipe.
+However, after I added it directly to IMAGE_INSTALL in my image recipe it m=
+ostly seems to be working, no matter where I put it, even after I've remove=
+d it from IMAGE_INSTALL in my image recipe. This leads me to believe that m=
+aybe I had some sort of database caching problem going on, since I had just=
+ back ported the recipe into my branch.
+
+Where it still fails is from the command line:  "bitbake ir-keytable" I don=
+'t understand why this fails?
+
+I've had similar problems with the sub-packages of the boost recipe, I can =
+add it boost-program-options to a packagegroup or as a RDEPENDENCY but I ca=
+n't build it from the command-line.
+
+On the other hand I can build net-snmp-server from the command line, which =
+is a sub-package of net-snmp recipe (interestingly there is no net-snmp pac=
+kage)
+
+I looked at the recipes and they don't seem all that different as far as ho=
+w the packages are declared.
+
+I'm really confused here can anyone enlighten me.
+
+Thanks,
+Matt S.
 
 
+
+
+--_000_4B07ADD556F70043925DA2E9C5D4346D2FDC9879D9MSXBEBVT12pla_
+Content-Type: text/html; charset=WINDOWS-1252
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Calibri, sans-serif" size=3D"2">
+<div>I&#8217;ve run into this a couple times now and I still don&#8217;t ge=
+t it so please help me understand. </div>
+<div>&nbsp;</div>
+<div>I&#8217;m trying to understand how to include just the ir-keytable pac=
+kage of the v4l-utils_1.6.2.bb recipe. </div>
+<div>&nbsp;</div>
+<div>At first I was getting a lot of &#8220;Nothing PROVIDES&#8221; or &#82=
+20;Nothing RPROVIDES&#8221; error messages when I tried to add it to a pack=
+age group or as a dependency of another recipe. </div>
+<div>However, after I added it directly to IMAGE_INSTALL in my image recipe=
+ it mostly seems to be working, no matter where I put it, even after I&#821=
+7;ve removed it from IMAGE_INSTALL in my image recipe. This leads me to bel=
+ieve that maybe I had some sort of database
+caching problem going on, since I had just back ported the recipe into my b=
+ranch. </div>
+<div>&nbsp;</div>
+<div>Where it still fails is from the command line:&nbsp; &#8220;bitbake ir=
+-keytable&#8221; I don&#8217;t understand why this fails? </div>
+<div>&nbsp;</div>
+<div>I&#8217;ve had similar problems with the sub-packages of the boost rec=
+ipe, I can add it boost-program-options to a packagegroup or as a RDEPENDEN=
+CY but I can&#8217;t build it from the command-line. </div>
+<div>&nbsp;</div>
+<div>On the other hand I can build net-snmp-server from the command line, w=
+hich is a sub-package of net-snmp recipe (interestingly there is no net-snm=
+p package)</div>
+<div>&nbsp;</div>
+<div>I looked at the recipes and they don&#8217;t seem all that different a=
+s far as how the packages are declared. </div>
+<div>&nbsp;</div>
+<div>I&#8217;m really confused here can anyone enlighten me. </div>
+<div>&nbsp;</div>
+<div>Thanks,</div>
+<div>Matt S. </div>
+<div>&nbsp;</div>
+</font>
+</body>
+</html>
+
+
+
+--_000_4B07ADD556F70043925DA2E9C5D4346D2FDC9879D9MSXBEBVT12pla_--
