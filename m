@@ -1,37 +1,52 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 80000E007A0; Sat, 28 Mar 2015 08:33:45 -0700 (PDT)
+	id B2A6EE0096F; Sat, 28 Mar 2015 08:34:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19F07E00576
-	for <yocto@yoctoproject.org>; Sat, 28 Mar 2015 08:33:42 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga103.fm.intel.com with ESMTP; 28 Mar 2015 08:33:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,484,1422950400"; d="scan'208";a="705534840"
-Received: from hannahwi-mobl.amr.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.132.46])
-	by orsmga002.jf.intel.com with ESMTP; 28 Mar 2015 08:33:33 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Graydon, Tracy" <tracy.graydon@intel.com>
-Date: Sat, 28 Mar 2015 15:33:33 +0000
-Message-ID: <2229665.NuhmzlEpj1@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.4 (Linux/3.18.9-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
-In-Reply-To: <1427506388-12271-1-git-send-email-tracy.graydon@intel.com>
-References: <1427506388-12271-1-git-send-email-tracy.graydon@intel.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] nightly-weston.conf: Run regular build tests for no-X11 case
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.174 listed in list.dnswl.org]
+Received: from mail-ie0-f174.google.com (mail-ie0-f174.google.com
+	[209.85.223.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 697ACE007A0
+	for <yocto@yoctoproject.org>; Sat, 28 Mar 2015 08:34:10 -0700 (PDT)
+Received: by iecvj10 with SMTP id vj10so90238343iec.0
+	for <yocto@yoctoproject.org>; Sat, 28 Mar 2015 08:34:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id;
+	bh=KT1lmigN/grGhGAy+IE566E8epcULAuiaqsEXCdJDks=;
+	b=Ds4S3lc6KYok01XjoI/YkV0E6AHlOpnSHRswlP/WT0n9K3U00M2WC+GxosBPMd4jzn
+	kVpHExZ57rWJNcPsUurzmxoJPWgFVm+Mh1hovjNGiw6B8zpXR2hpriVS5BPnMQaYF5pq
+	R02zbcxWD0SKqn37hjGQFPM0quTXD3R7VNSBKLX/Z39R5iaY6bV+OLQgauucCf1XlUki
+	U1Vzalt6ZwlSWg3g4uyQFsQjJSjcAYAqhf3nmILBu/m0zyeQSO4hOGiRLWkmwd5Tqxoe
+	QAcn3aP3hHXDqecQCHnczm5CT/hWovkKb1uagsxehwcVGL8A+ulk2RDt+FdpAjnAiJmz
+	uZuA==
+X-Received: by 10.50.43.167 with SMTP id x7mr5997541igl.28.1427556849810;
+	Sat, 28 Mar 2015 08:34:09 -0700 (PDT)
+Received: from Pahoa2.mvista.com (64.2.3.194.ptr.us.xo.net. [64.2.3.194])
+	by mx.google.com with ESMTPSA id t7sm3618804igz.17.2015.03.28.08.34.07
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Sat, 28 Mar 2015 08:34:08 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Sat, 28 Mar 2015 08:33:57 -0700
+Message-Id: <1427556837-23382-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [meta-security][PATCH] samhain: update client and server to 3.1.5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,94 +58,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 28 Mar 2015 15:33:45 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Sat, 28 Mar 2015 15:34:14 -0000
 
-Hi Tracy,
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
 
-On Friday 27 March 2015 18:33:08 Graydon, Tracy wrote:
-> [YOCTO #6854]
-> 
-> A common configuration selection is to remove x11 from
-> DISTRO_FEATURES. Add a nightly-weston.conf builset to allow us to test this
-> via the autobuilder. Also added to nightly.conf and yoctoAB.conf.
-> 
-> Signed-off-by: Graydon, Tracy <tracy.graydon@intel.com>
-> ---
->  buildset-config.controller/nightly-weston.conf | 24
-> ++++++++++++++++++++++++ buildset-config.controller/nightly.conf        | 
-> 2 +-
->  buildset-config.controller/yoctoAB.conf        |  5 +++--
->  3 files changed, 28 insertions(+), 3 deletions(-)
->  create mode 100644 buildset-config.controller/nightly-weston.conf
-> 
-> diff --git a/buildset-config.controller/nightly-weston.conf
-> b/buildset-config.controller/nightly-weston.conf new file mode 100644
-> index 0000000..d9875c6
-> --- /dev/null
-> +++ b/buildset-config.controller/nightly-weston.conf
-> @@ -0,0 +1,24 @@
-> +[nightly-weston]
-> +builders: 'example-worker'
-> +repos: [{'poky':
-> +            {'repourl':'git://git.yoctoproject.org/poky',
-> +             'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
-> +             'branch':'master'}},
-> +        {'meta-qt3':
-> +            {'repourl':'git://git.yoctoproject.org/meta-qt3',
-> +             'branch':'master'}}]
-> +steps: [{'SetDest':{}},
-> +        {'CheckOutLayers': {}},
-> +        {'RunPreamble': {}},
-> +        {'GetDistroVersion' : {'distro': 'poky'}},
-> +        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686',
-> +                            'distro': 'poky', 'buildhistory' : False}}, + 
->                           'atextappend' : '\nDISTRO_FEATURES_remove = "
-> x11"\n'}}, +        {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-> +        {'SyncPersistDB' : {'distro' : 'poky'}},
-> +        {'GetBitbakeVersion': {}},
-> +        {'BuildImages': {'images': 'core-image-weston'}},
-> +        {'PublishLayerTarballs':{}},
-> +        {'SendErrorReport': {}},
-> +        {'UploadToasterEventlog': {}},
-> +        {'PublishArtifacts': {'artifacts': ['qemux86-64', 'md5sums']}}]
-> diff --git a/buildset-config.controller/nightly.conf
-> b/buildset-config.controller/nightly.conf index cf7c77c..13235bf 100644
-> --- a/buildset-config.controller/nightly.conf
-> +++ b/buildset-config.controller/nightly.conf
-> @@ -88,7 +88,7 @@ steps: [{'SetDest':{}},
->                             'eclipse-plugin-kepler': {},
-> 'eclipse-plugin-juno': {}, 'nightly-non-gpl3': {}, 'nightly-oecore': {},
-> 'nightly-world':{}, 'nightly-world-lsb':{}, 'nightly-intel-gpl': {}, -     
->                      'poky-tiny': {}, 'buildtools': {},
-> +                           'nightly-weston':{}, 'poky-tiny': {},
-> 'buildtools': {}, 'nightly-qa-systemd': {}, 'nightly-qa-extras': {},
-> 'nightly-qa-logrotate': {}, 'nightly-qa-pam': {}, 'nightly-qa-skeleton':
-> {}}}},
-> diff --git a/buildset-config.controller/yoctoAB.conf
-> b/buildset-config.controller/yoctoAB.conf index 5bc369d..ab771c0 100644
-> --- a/buildset-config.controller/yoctoAB.conf
-> +++ b/buildset-config.controller/yoctoAB.conf
-> @@ -6,5 +6,6 @@ order: ['nightly', 'eclipse-plugin-juno',
->          'nightly-x86-64', 'nightly-x86-64-lsb', 'nightly-x86',
->          'nightly-x86-lsb', 'nightly-x32', 'nightly-multilib',
->          'nightly-world', 'nightly-world-lsb', 'nightly-non-gpl3',
-> -        'nightly-oecore', 'nightly-intel-gpl', 'poky-tiny',
-> -        'build-appliance', 'nightly-qa-extras', 'nightly-qa-systemd']
-> +        'nightly-oecore', 'nightly-intel-gpl', 'nightly-weston',
-> +        'poky-tiny', 'build-appliance',
-> +        'nightly-qa-extras', 'nightly-qa-systemd']
+fix missing bash depends in server recipe
+---
+ .../samhain/{samhain-client_3.1.3.bb => samhain-client_3.1.5.bb}      | 0
+ .../samhain/{samhain-server_3.1.3.bb => samhain-server_3.1.5.bb}      | 2 +-
+ recipes-security/samhain/samhain.inc                                  | 4 ++--
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+ rename recipes-security/samhain/{samhain-client_3.1.3.bb => samhain-client_3.1.5.bb} (100%)
+ rename recipes-security/samhain/{samhain-server_3.1.3.bb => samhain-server_3.1.5.bb} (97%)
 
-When I wrote the bug I was thinking more of systems with no graphics 
-at all rather than with Weston replacing X11 - not that we shouldn't be 
-testing Weston though I guess.
-
-Cheers,
-Paul
-
+diff --git a/recipes-security/samhain/samhain-client_3.1.3.bb b/recipes-security/samhain/samhain-client_3.1.5.bb
+similarity index 100%
+rename from recipes-security/samhain/samhain-client_3.1.3.bb
+rename to recipes-security/samhain/samhain-client_3.1.5.bb
+diff --git a/recipes-security/samhain/samhain-server_3.1.3.bb b/recipes-security/samhain/samhain-server_3.1.5.bb
+similarity index 97%
+rename from recipes-security/samhain/samhain-server_3.1.3.bb
+rename to recipes-security/samhain/samhain-server_3.1.5.bb
+index 50e8d8a..fd6da3d 100644
+--- a/recipes-security/samhain/samhain-server_3.1.3.bb
++++ b/recipes-security/samhain/samhain-server_3.1.5.bb
+@@ -47,4 +47,4 @@ FILES_${PN}-dbg += " \
+     ${sbindir}/.debug/* \
+     "
+ 
+-DEPENDS_${PN} += "gmp"
++DEPENDS_${PN} += "gmp bash"
+diff --git a/recipes-security/samhain/samhain.inc b/recipes-security/samhain/samhain.inc
+index 3c54c28..869e959 100644
+--- a/recipes-security/samhain/samhain.inc
++++ b/recipes-security/samhain/samhain.inc
+@@ -10,8 +10,8 @@ SRC_URI = "http://la-samhna.de/archive/samhain_signed-${PV}.tar.gz \
+        file://add_aarch64_to_configure.patch \
+ 	  "
+ 
+-SRC_URI[md5sum] = "64572a4dbfdc8065d6e9f7ca0eab0a34"
+-SRC_URI[sha256sum] = "c234afaf9ba3c6b7d240858b74423f935185de66e996405b3016ec4a288a7e1e"
++SRC_URI[md5sum] = "b72b526c6ee504317981e6dba1673b9d"
++SRC_URI[sha256sum] = "2d7d93992d1737b72ff7c835b4c90a2d4d46e448d9265c0c3341544f6b1ffcdb"
+ 
+ S = "${WORKDIR}/samhain-${PV}"
+ 
 -- 
+1.9.1
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
