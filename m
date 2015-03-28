@@ -1,33 +1,37 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A05E9E00922; Sat, 28 Mar 2015 04:47:04 -0700 (PDT)
+	id 80000E007A0; Sat, 28 Mar 2015 08:33:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0ACA2E00906
-	for <yocto@yoctoproject.org>; Sat, 28 Mar 2015 04:47:01 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 01423F81199; Sat, 28 Mar 2015 05:47:00 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 4F30EF81199;
-	Sat, 28 Mar 2015 05:47:00 -0600 (MDT)
-Message-ID: <551694BA.80408@mlbassoc.com>
-Date: Sat, 28 Mar 2015 05:47:06 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19F07E00576
+	for <yocto@yoctoproject.org>; Sat, 28 Mar 2015 08:33:42 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga103.fm.intel.com with ESMTP; 28 Mar 2015 08:33:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,484,1422950400"; d="scan'208";a="705534840"
+Received: from hannahwi-mobl.amr.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.132.46])
+	by orsmga002.jf.intel.com with ESMTP; 28 Mar 2015 08:33:33 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Graydon, Tracy" <tracy.graydon@intel.com>
+Date: Sat, 28 Mar 2015 15:33:33 +0000
+Message-ID: <2229665.NuhmzlEpj1@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.4 (Linux/3.18.9-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
+In-Reply-To: <1427506388-12271-1-git-send-email-tracy.graydon@intel.com>
+References: <1427506388-12271-1-git-send-email-tracy.graydon@intel.com>
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <55158C90.6090001@mlbassoc.com>
-	<55158ED4.3090504@mlbassoc.com>	<1427476761.14020.197.camel@linuxfoundation.org>
-	<5515A067.8070900@mlbassoc.com>
-In-Reply-To: <5515A067.8070900@mlbassoc.com>
-Subject: Re: Question about BB_NO_NETWORK
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH] nightly-weston.conf: Run regular build tests for no-X11 case
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,114 +43,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 28 Mar 2015 11:47:04 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 28 Mar 2015 15:33:45 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 2015-03-27 12:24, Gary Thomas wrote:
-> On 2015-03-27 11:19, Richard Purdie wrote:
->> On Fri, 2015-03-27 at 11:09 -0600, Gary Thomas wrote:
->>> On 2015-03-27 11:00, Gary Thomas wrote:
->>>> Can someone explain to me why this recipe (from meta-fsl-arm-extra)
->>>> requires network access if I have a current (built today on a different
->>>> machine) git tarball of the repository?
->>>
->>> Oops, forgot the recipe:
->>>
->>>>
->>>> The error I get is:
->>>>
->>>>      ERROR: Function failed: Network access disabled through BB_NO_NETWORK (or set indirectly due to use of BB_FETCH_PREMIRRORONLY) but access requested with command git -c
->>>> core.fsyncobjectfiles=0 fetch -f --prune git://github.com/boundarydevices/u-boot-imx6.git refs/*:refs/* (for url
->>>> git://github.com/boundarydevices/u-boot-imx6.git;branch=v2014.07-20140914)
->>>>      ERROR: Logfile of failure stored in:
->>>> /local/imx6_2015-03-27/tmp/work/nitrogen6x-amltd-linux-gnueabi/u-boot-script-boundary/v2014.07+gitAUTOINC+fcb04d6103-r0/temp/log.do_fetch.22945
->>>>      Log data follows:
->>>>      | DEBUG: Executing python function do_fetch
->>>>      | DEBUG: Executing python function base_do_fetch
->>>>      | DEBUG: Trying Upstream
->>>>      | DEBUG: Running export
->>>> PATH="/local/poky-cutting-edge/scripts:/local/imx6_2015-03-27/tmp/sysroots/i686-linux/usr/bin/arm-amltd-linux-gnueabi:/local/imx6_2015-03-27/tmp/sysroots/nitrogen6x/usr/bin/crossscripts:/local/imx6_2015-03-27/tmp/sysroots/i686-linux/usr/sbin:/local/imx6_2015-03-27/tmp/sysroots/i686-linux/usr/bin:/local/imx6_2015-03-27/tmp/sysroots/i686-linux/sbin:/local/imx6_2015-03-27/tmp/sysroots/i686-linux/bin:/local/poky-cutting-edge/scripts:/local/poky-cutting-edge/bitbake/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games";
->>>>
->>>> export HOME="/home/gthomas"; git -c core.fsyncobjectfiles=0 branch --contains fcb04d6103e2a1f62d3ae197432559aee5621765 --list v2014.07-20140914 2> /dev/null | wc -l
->>>>      | DEBUG: Running export
->>>> PATH="/local/poky-cutting-edge/scripts:/local/imx6_2015-03-27/tmp/sysroots/i686-linux/usr/bin/arm-amltd-linux-gnueabi:/local/imx6_2015-03-27/tmp/sysroots/nitrogen6x/usr/bin/crossscripts:/local/imx6_2015-03-27/tmp/sysroots/i686-linux/usr/sbin:/local/imx6_2015-03-27/tmp/sysroots/i686-linux/usr/bin:/local/imx6_2015-03-27/tmp/sysroots/i686-linux/sbin:/local/imx6_2015-03-27/tmp/sysroots/i686-linux/bin:/local/poky-cutting-edge/scripts:/local/poky-cutting-edge/bitbake/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games";
->>>>
->>>> export HOME="/home/gthomas"; git -c core.fsyncobjectfiles=0 remote rm origin
->>>>      | DEBUG: Running export
->>>> PATH="/local/poky-cutting-edge/scripts:/local/imx6_2015-03-27/tmp/sysroots/i686-linux/usr/bin/arm-amltd-linux-gnueabi:/local/imx6_2015-03-27/tmp/sysroots/nitrogen6x/usr/bin/crossscripts:/local/imx6_2015-03-27/tmp/sysroots/i686-linux/usr/sbin:/local/imx6_2015-03-27/tmp/sysroots/i686-linux/usr/bin:/local/imx6_2015-03-27/tmp/sysroots/i686-linux/sbin:/local/imx6_2015-03-27/tmp/sysroots/i686-linux/bin:/local/poky-cutting-edge/scripts:/local/poky-cutting-edge/bitbake/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games";
->>>>
->>>> export HOME="/home/gthomas"; git -c core.fsyncobjectfiles=0 remote add --mirror=fetch origin git://github.com/boundarydevices/u-boot-imx6.git
->>>>      | DEBUG: Python function base_do_fetch finished
->>>>      | DEBUG: Python function do_fetch finished
->>>>      | ERROR: Function failed: Network access disabled through BB_NO_NETWORK (or set indirectly due to use of BB_FETCH_PREMIRRORONLY) but access requested with command git -c
->>>> core.fsyncobjectfiles=0 fetch -f --prune git://github.com/boundarydevices/u-boot-imx6.git refs/*:refs/* (for url
->>>> git://github.com/boundarydevices/u-boot-imx6.git;branch=v2014.07-20140914)
->>>>      ERROR: Task 111 (/local/poky-cutting-edge/meta-fsl-arm-extra/recipes-bsp/u-boot/u-boot-script-boundary_git.bb, do_fetch) failed with exit code '1'
->>>>
->>>> The git tarball and full log are at http://www.mlbassoc.com/poky
->>>>
->>>> Is this a BUG?  I'm using these layers:
->>>>     meta              = "master:5c76cebc24675edb3dff473fce9b67cedff615db"
->>>>     meta-fsl-arm      = "master:115aaced72fddc23024f8838f0eeb8ad5e37d048"
->>>>     meta-fsl-arm-extra = "master:22f6672c3ef58bf5070d0c6894a459fada66f55e"
->>>>
->>
->> Is the specified revision on the specified branch in the tarball?
->
-> Absolutely (otherwise, I wouldn't be asking).  Here's the result
-> of the first query mentioned above:
->
-> $ git -c core.fsyncobjectfiles=0 branch --contains fcb04d6103e2a1f62d3ae197432559aee5621765 --list v2014.07-20140914
->    v2014.07-20140914
->
+Hi Tracy,
 
-After trying this scenario on seven different hosts, some failed
-while others worked as expected.  I have now determined that the
-problem occurred because of stale data that I didn't think to clean
-up.  Here's how it went (in chronological order):
+On Friday 27 March 2015 18:33:08 Graydon, Tracy wrote:
+> [YOCTO #6854]
+> 
+> A common configuration selection is to remove x11 from
+> DISTRO_FEATURES. Add a nightly-weston.conf builset to allow us to test this
+> via the autobuilder. Also added to nightly.conf and yoctoAB.conf.
+> 
+> Signed-off-by: Graydon, Tracy <tracy.graydon@intel.com>
+> ---
+>  buildset-config.controller/nightly-weston.conf | 24
+> ++++++++++++++++++++++++ buildset-config.controller/nightly.conf        | 
+> 2 +-
+>  buildset-config.controller/yoctoAB.conf        |  5 +++--
+>  3 files changed, 28 insertions(+), 3 deletions(-)
+>  create mode 100644 buildset-config.controller/nightly-weston.conf
+> 
+> diff --git a/buildset-config.controller/nightly-weston.conf
+> b/buildset-config.controller/nightly-weston.conf new file mode 100644
+> index 0000000..d9875c6
+> --- /dev/null
+> +++ b/buildset-config.controller/nightly-weston.conf
+> @@ -0,0 +1,24 @@
+> +[nightly-weston]
+> +builders: 'example-worker'
+> +repos: [{'poky':
+> +            {'repourl':'git://git.yoctoproject.org/poky',
+> +             'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+> +             'branch':'master'}},
+> +        {'meta-qt3':
+> +            {'repourl':'git://git.yoctoproject.org/meta-qt3',
+> +             'branch':'master'}}]
+> +steps: [{'SetDest':{}},
+> +        {'CheckOutLayers': {}},
+> +        {'RunPreamble': {}},
+> +        {'GetDistroVersion' : {'distro': 'poky'}},
+> +        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'i686',
+> +                            'distro': 'poky', 'buildhistory' : False}}, + 
+>                           'atextappend' : '\nDISTRO_FEATURES_remove = "
+> x11"\n'}}, +        {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
+> +        {'SyncPersistDB' : {'distro' : 'poky'}},
+> +        {'GetBitbakeVersion': {}},
+> +        {'BuildImages': {'images': 'core-image-weston'}},
+> +        {'PublishLayerTarballs':{}},
+> +        {'SendErrorReport': {}},
+> +        {'UploadToasterEventlog': {}},
+> +        {'PublishArtifacts': {'artifacts': ['qemux86-64', 'md5sums']}}]
+> diff --git a/buildset-config.controller/nightly.conf
+> b/buildset-config.controller/nightly.conf index cf7c77c..13235bf 100644
+> --- a/buildset-config.controller/nightly.conf
+> +++ b/buildset-config.controller/nightly.conf
+> @@ -88,7 +88,7 @@ steps: [{'SetDest':{}},
+>                             'eclipse-plugin-kepler': {},
+> 'eclipse-plugin-juno': {}, 'nightly-non-gpl3': {}, 'nightly-oecore': {},
+> 'nightly-world':{}, 'nightly-world-lsb':{}, 'nightly-intel-gpl': {}, -     
+>                      'poky-tiny': {}, 'buildtools': {},
+> +                           'nightly-weston':{}, 'poky-tiny': {},
+> 'buildtools': {}, 'nightly-qa-systemd': {}, 'nightly-qa-extras': {},
+> 'nightly-qa-logrotate': {}, 'nightly-qa-pam': {}, 'nightly-qa-skeleton':
+> {}}}},
+> diff --git a/buildset-config.controller/yoctoAB.conf
+> b/buildset-config.controller/yoctoAB.conf index 5bc369d..ab771c0 100644
+> --- a/buildset-config.controller/yoctoAB.conf
+> +++ b/buildset-config.controller/yoctoAB.conf
+> @@ -6,5 +6,6 @@ order: ['nightly', 'eclipse-plugin-juno',
+>          'nightly-x86-64', 'nightly-x86-64-lsb', 'nightly-x86',
+>          'nightly-x86-lsb', 'nightly-x32', 'nightly-multilib',
+>          'nightly-world', 'nightly-world-lsb', 'nightly-non-gpl3',
+> -        'nightly-oecore', 'nightly-intel-gpl', 'poky-tiny',
+> -        'build-appliance', 'nightly-qa-extras', 'nightly-qa-systemd']
+> +        'nightly-oecore', 'nightly-intel-gpl', 'nightly-weston',
+> +        'poky-tiny', 'build-appliance',
+> +        'nightly-qa-extras', 'nightly-qa-systemd']
 
-* Machine A [2014-12-03]
-   Successfully built, from scratch, for the given target, BB_NO_NETWORK unset
-   This downloaded git://github.com/boundarydevices/u-boot-imx6.git
-   into BUILD/downloads/git2/github.boundarydevices.u-boot-imx6.git
-   and saved the result tarball, which I then moved to my shared mirror
+When I wrote the bug I was thinking more of systems with no graphics 
+at all rather than with Weston replacing X11 - not that we shouldn't be 
+testing Weston though I guess.
 
-* meta-fsl-arm-extra [2015-03-19]
-   Update recipes-bsp/u-boot/u-boot-script-boundary_git.bb
-
-* Machine B [2015-03-27]
-   Tried to build for the same target, BB_NO_NETWORK="1"
-   Fetch failed (as documented above)
-
-* Machine A [2015-03-27]
-   Rebuilt for the target, BB_NO_NETWORK is unset.
-   The git tree is updated (since network is OK) and tarball rebuilt
-   Move tarball to shared mirror
-
-* Machine B [2015-03-27]
-   Retry build BB_NO_NETWORK="1" - fails?
-   Report error (this email thread) to list
-
-The problem was that on Machine B, the git tree had already been
-unpacked into BUILD/downloads/git2/github.boundarydevices.u-boot-imx6.git
-with the data from 2014-12-03.  As long as that existed, it was never going
-to check for a new tarball from the mirror.
-
-* Machine B [2015-03-28]
-   $ rm -fr downloads/git2_github.com.boundarydevices.u-boot-imx6.git.tar.gz*
-   $ rm -fr downloads/git2/github.com.boundarydevices.u-boot-imx6.git*
-   Built successfully, BB_NO_NETWORK="1"
-
-Sorry for the lengthy explanation, but I thought it worth it
-to document the confusing situation I encountered.  I'm sure
-this could bite my customers who routinely use BB_NO_NETWORK="1"
-if I ship them a new recipe + tarball (for any odd recipe, not just
-this one).
+Cheers,
+Paul
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
