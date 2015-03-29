@@ -1,6 +1,6 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <tzy13888@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B2A6EE0096F; Sat, 28 Mar 2015 08:34:14 -0700 (PDT)
+	id 1049CE00970; Sat, 28 Mar 2015 21:59:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,10 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
+	mail provider *      (tzy13888[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,37 +19,30 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.174 listed in list.dnswl.org]
-Received: from mail-ie0-f174.google.com (mail-ie0-f174.google.com
-	[209.85.223.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 697ACE007A0
-	for <yocto@yoctoproject.org>; Sat, 28 Mar 2015 08:34:10 -0700 (PDT)
-Received: by iecvj10 with SMTP id vj10so90238343iec.0
-	for <yocto@yoctoproject.org>; Sat, 28 Mar 2015 08:34:10 -0700 (PDT)
+Received: from mail-wi0-f172.google.com (mail-wi0-f172.google.com
+	[209.85.212.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BBCAE0096D
+	for <yocto@yoctoproject.org>; Sat, 28 Mar 2015 21:59:29 -0700 (PDT)
+Received: by wibg7 with SMTP id g7so66094327wib.1
+	for <yocto@yoctoproject.org>; Sat, 28 Mar 2015 21:59:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id;
-	bh=KT1lmigN/grGhGAy+IE566E8epcULAuiaqsEXCdJDks=;
-	b=Ds4S3lc6KYok01XjoI/YkV0E6AHlOpnSHRswlP/WT0n9K3U00M2WC+GxosBPMd4jzn
-	kVpHExZ57rWJNcPsUurzmxoJPWgFVm+Mh1hovjNGiw6B8zpXR2hpriVS5BPnMQaYF5pq
-	R02zbcxWD0SKqn37hjGQFPM0quTXD3R7VNSBKLX/Z39R5iaY6bV+OLQgauucCf1XlUki
-	U1Vzalt6ZwlSWg3g4uyQFsQjJSjcAYAqhf3nmILBu/m0zyeQSO4hOGiRLWkmwd5Tqxoe
-	QAcn3aP3hHXDqecQCHnczm5CT/hWovkKb1uagsxehwcVGL8A+ulk2RDt+FdpAjnAiJmz
-	uZuA==
-X-Received: by 10.50.43.167 with SMTP id x7mr5997541igl.28.1427556849810;
-	Sat, 28 Mar 2015 08:34:09 -0700 (PDT)
-Received: from Pahoa2.mvista.com (64.2.3.194.ptr.us.xo.net. [64.2.3.194])
-	by mx.google.com with ESMTPSA id t7sm3618804igz.17.2015.03.28.08.34.07
-	for <yocto@yoctoproject.org>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sat, 28 Mar 2015 08:34:08 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=LoG3uAur55IDm5RZBRlSUnRF9niIMN99HeVE7hxgFVQ=;
+	b=Z6OizD6LaXaYyWk0TVCYO2H4gK8TDOin3ExuSnvPBcI68GwWm9n6GxVo1vPu9bZfum
+	7xFphDHToR763gsz0hgc6PT6nV2jB3G6bKM/4fIlARUhFPqGP4xkyghJq+oH1dkso3as
+	Tw5UdgkZ1ImTG8P7N9RAmPhVvH39f5kHlOpcmVqiokPkvKjSWbbz2nc7AyNe8U615kWy
+	emXZtOpMYQjV28B3uK5222uvc0WmaeIaTxQzJ3lTz74deOsp48OWBPSOXf2HkSHA6Epv
+	NV4XHgdMD2tmmrjV+vZs7TBCjA0BBjY1gkBIbuT3eMTfoGNyjSzd3RC15/+8AZUJlZAH
+	RUOg==
+MIME-Version: 1.0
+X-Received: by 10.194.177.132 with SMTP id cq4mr48783430wjc.99.1427605168837; 
+	Sat, 28 Mar 2015 21:59:28 -0700 (PDT)
+Received: by 10.27.1.85 with HTTP; Sat, 28 Mar 2015 21:59:28 -0700 (PDT)
+Date: Sun, 29 Mar 2015 12:59:28 +0800
+Message-ID: <CAH0sG7tjTfYY7Tx_Eb-seWTKWCHLWdCW4Hkx5vgi28KjSGK_1Q@mail.gmail.com>
+From: Tzy User <tzy13888@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sat, 28 Mar 2015 08:33:57 -0700
-Message-Id: <1427556837-23382-1-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [meta-security][PATCH] samhain: update client and server to 3.1.5
+Subject: [meta-raspberrypi] RaspberryPi B+, bitbake make killed, unfinished jobs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,52 +54,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 28 Mar 2015 15:34:14 -0000
+X-List-Received-Date: Sun, 29 Mar 2015 04:59:36 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+I am trying to build a new kernel for RaspberryPi model B+ with this
+configuration:
 
-fix missing bash depends in server recipe
----
- .../samhain/{samhain-client_3.1.3.bb => samhain-client_3.1.5.bb}      | 0
- .../samhain/{samhain-server_3.1.3.bb => samhain-server_3.1.5.bb}      | 2 +-
- recipes-security/samhain/samhain.inc                                  | 4 ++--
- 3 files changed, 3 insertions(+), 3 deletions(-)
- rename recipes-security/samhain/{samhain-client_3.1.3.bb => samhain-client_3.1.5.bb} (100%)
- rename recipes-security/samhain/{samhain-server_3.1.3.bb => samhain-server_3.1.5.bb} (97%)
+Build Configuration:
+BB_VERSION        = "1.24.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Debian-GNU-Linux-7"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "raspberrypi"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.7.1"
+TUNE_FEATURES     = "arm armv6 vfp"
+TARGET_FPU        = "vfp"
+meta
+meta-yocto
+meta-yocto-bsp    = "dizzy-dev:82c843842854c7e2e87bf7762c3f9e83b3e2bf1b"
+meta-raspberrypi  = "dizzy-dev:efd760d0a2c027fe20ed190c56f416d0a47d7c41"
 
-diff --git a/recipes-security/samhain/samhain-client_3.1.3.bb b/recipes-security/samhain/samhain-client_3.1.5.bb
-similarity index 100%
-rename from recipes-security/samhain/samhain-client_3.1.3.bb
-rename to recipes-security/samhain/samhain-client_3.1.5.bb
-diff --git a/recipes-security/samhain/samhain-server_3.1.3.bb b/recipes-security/samhain/samhain-server_3.1.5.bb
-similarity index 97%
-rename from recipes-security/samhain/samhain-server_3.1.3.bb
-rename to recipes-security/samhain/samhain-server_3.1.5.bb
-index 50e8d8a..fd6da3d 100644
---- a/recipes-security/samhain/samhain-server_3.1.3.bb
-+++ b/recipes-security/samhain/samhain-server_3.1.5.bb
-@@ -47,4 +47,4 @@ FILES_${PN}-dbg += " \
-     ${sbindir}/.debug/* \
-     "
- 
--DEPENDS_${PN} += "gmp"
-+DEPENDS_${PN} += "gmp bash"
-diff --git a/recipes-security/samhain/samhain.inc b/recipes-security/samhain/samhain.inc
-index 3c54c28..869e959 100644
---- a/recipes-security/samhain/samhain.inc
-+++ b/recipes-security/samhain/samhain.inc
-@@ -10,8 +10,8 @@ SRC_URI = "http://la-samhna.de/archive/samhain_signed-${PV}.tar.gz \
-        file://add_aarch64_to_configure.patch \
- 	  "
- 
--SRC_URI[md5sum] = "64572a4dbfdc8065d6e9f7ca0eab0a34"
--SRC_URI[sha256sum] = "c234afaf9ba3c6b7d240858b74423f935185de66e996405b3016ec4a288a7e1e"
-+SRC_URI[md5sum] = "b72b526c6ee504317981e6dba1673b9d"
-+SRC_URI[sha256sum] = "2d7d93992d1737b72ff7c835b4c90a2d4d46e448d9265c0c3341544f6b1ffcdb"
- 
- S = "${WORKDIR}/samhain-${PV}"
- 
--- 
-1.9.1
 
+The make gets killed, then waiting for unfinished jobs...
+.
+/bin/bash /mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/gcc-4.9.1-r0/gcc-4.9.1/gcc/../move-if-change
+tmp-opinit.c insn-opinit.c
+echo timestamp > s-opinit
+build/genautomata
+/mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/gcc-4.9.1-r0/gcc-4.9.1/gcc/config/arm/arm.md
+\
+ insn-conditions.md > tmp-automata.c
+/bin/bash: line 1: 16677 Killed                  build/genautomata
+/mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/gcc-4.9.1-r0/gcc-4.9.1/gcc/config/arm/arm.md
+insn-conditions.md > tmp-automata.c
+make[1]: *** [s-automata] Error 137
+make[1]: *** Waiting for unfinished jobs....
+/bin/bash /mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/gcc-4.9.1-r0/gcc-4.9.1/gcc/../move-if-change
+tmp-attrtab.c    insn-attrtab.c
+/bin/bash /mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/gcc-4.9.1-r0/gcc-4.9.1/gcc/../move-if-change
+tmp-dfatab.c     insn-dfatab.c
+/bin/bash /mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/gcc-4.9.1-r0/gcc-4.9.1/gcc/../move-if-change
+tmp-latencytab.c insn-latencytab.c
+echo timestamp > s-attrtab
+rm gcc.pod
+make[1]: Leaving directory
+`/mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work/x86_64-poky-linux-gnueabi/gcc-cross-arm/4.9.1-r0/gcc-4.9.1/build.x86_64-linux.arm-poky-linux-gnueabi/gcc'
+make: *** [all-gcc] Error 2
+ERROR: oe_runmake failed
+WARNING: exit code 1 from a shell command.
+ERROR: Function failed: do_compile (log file is located at
+/mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work/x86_64-poky-linux-gnueabi/gcc-cross-arm/4.9.1-r0/temp/log.do_compile.15332)
+
+
+Any clue ?
 
