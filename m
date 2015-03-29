@@ -1,48 +1,41 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <matt.schuckmann@planar.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 68773E0092E; Sun, 29 Mar 2015 09:32:01 -0700 (PDT)
+	id BCE26E0092E; Sun, 29 Mar 2015 09:47:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.45 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [63.128.21.105 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qg0-f45.google.com (mail-qg0-f45.google.com
-	[209.85.192.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC888E00477
-	for <yocto@yoctoproject.org>; Sun, 29 Mar 2015 09:31:59 -0700 (PDT)
-Received: by qgep97 with SMTP id p97so170043486qge.1
-	for <yocto@yoctoproject.org>; Sun, 29 Mar 2015 09:31:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=bMkmq8MpdgPe6QzT9d7Cl0VrSlmV34mpfIOVqbCrIb4=;
-	b=a5DksRsXB/vhr20bb8FRyUDBiKxAhZQ31kKE1dK/i38f5Qzd5HYNKvDCMWu7bdubyw
-	yCuuZZNXZ7WmNgVSvxQ01KDTrpR+QMLw3d82G3s1dTkvXSftO3UzwZxNIhYWQ7OHl1/R
-	kyZhvvQEpHpaOQ6oJa+f5OAieROMTGE7QtweTLYGq5eQ+hseOm3j3hKXnoNIWzQEyh21
-	9p6vSH9zRwWwN44gJuyX6dfFjpCeXaLE4n/PDwVeBYA8KdZX7rTUMywUbTDgke/SzQs4
-	oE3ZFAbWZDGeqxDcQoQj1kU1BfzRwfThJx/pOkONujkEffvBAz0wC0FPMjY/MbHWCRnF
-	aoPQ==
-X-Received: by 10.140.16.99 with SMTP id 90mr36222121qga.105.1427646718493;
-	Sun, 29 Mar 2015 09:31:58 -0700 (PDT)
-MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.140.108.8 with HTTP; Sun, 29 Mar 2015 09:31:38 -0700 (PDT)
-In-Reply-To: <4B07ADD556F70043925DA2E9C5D4346D2FDC9879DC@MSXBEBVT12.planar.net>
+Received: from us-smtp-delivery-105.mimecast.com
+	(us-smtp-delivery-105.mimecast.com [63.128.21.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1777EE00477
+	for <yocto@yoctoproject.org>; Sun, 29 Mar 2015 09:47:03 -0700 (PDT)
+Received: from msxbvt03.planar.net (199.244.171.48 [199.244.171.48]) by
+	us-mta-15.us.mimecast.lan; Sun, 29 Mar 2015 12:45:05 -0400
+Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
+	with mapi; Sun, 29 Mar 2015 09:45:04 -0700
+From: Matt Schuckmann <Matt.Schuckmann@planar.com>
+To: Christopher Larson <clarson@kergoth.com>
+Date: Sun, 29 Mar 2015 09:45:00 -0700
+Thread-Topic: [yocto] How do VIRTUAL-RUNTIME's work and how to create a new
+	keymap for VIRTUAL-RUNTIME_ir_keytable-keymaps
+Thread-Index: AdBqPeLMHGN0eWoNQOyXiacJfNh1hwAAKy2g
+Message-ID: <4B07ADD556F70043925DA2E9C5D4346D2FDC9879DD@MSXBEBVT12.planar.net>
 References: <4B07ADD556F70043925DA2E9C5D4346D2FDC9879DC@MSXBEBVT12.planar.net>
-From: Christopher Larson <clarson@kergoth.com>
-Date: Sun, 29 Mar 2015 09:31:38 -0700
-X-Google-Sender-Auth: KjoGn63CP3HwJY_7HpSaLbUyytY
-Message-ID: <CABcZANnqSHbCribX69qFhV9Wnoz_3dCa_jChief8rZTK42cBJQ@mail.gmail.com>
-To: Matt Schuckmann <Matt.Schuckmann@planar.com>
+	<CABcZANnqSHbCribX69qFhV9Wnoz_3dCa_jChief8rZTK42cBJQ@mail.gmail.com>
+In-Reply-To: <CABcZANnqSHbCribX69qFhV9Wnoz_3dCa_jChief8rZTK42cBJQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+X-MC-Unique: Os8Pi9WYR22vrS9tG8onmQ-1
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: How do VIRTUAL-RUNTIME's work and how to create a new keymap for VIRTUAL-RUNTIME_ir_keytable-keymaps
 X-BeenThere: yocto@yoctoproject.org
@@ -56,90 +49,166 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 29 Mar 2015 16:32:01 -0000
-Content-Type: multipart/alternative; boundary=001a11c067a085483005126fe78c
+X-List-Received-Date: Sun, 29 Mar 2015 16:47:08 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_4B07ADD556F70043925DA2E9C5D4346D2FDC9879DDMSXBEBVT12pla_"
 
---001a11c067a085483005126fe78c
+--_000_4B07ADD556F70043925DA2E9C5D4346D2FDC9879DDMSXBEBVT12pla_
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-On Sun, Mar 29, 2015 at 9:23 AM, Matt Schuckmann <Matt.Schuckmann@planar.co=
-m
-> wrote:
+DQoNCkZyb206IGtlcmdvdGhAZ21haWwuY29tIFttYWlsdG86a2VyZ290aEBnbWFpbC5jb21dIE9u
+IEJlaGFsZiBPZiBDaHJpc3RvcGhlciBMYXJzb24NClNlbnQ6IFN1bmRheSwgTWFyY2ggMjksIDIw
+MTUgOTozMiBBTQ0KVG86IE1hdHQgU2NodWNrbWFubg0KQ2M6IFlvY3RvIFByb2plY3QNClN1Ympl
+Y3Q6IFJlOiBbeW9jdG9dIEhvdyBkbyBWSVJUVUFMLVJVTlRJTUUncyB3b3JrIGFuZCBob3cgdG8g
+Y3JlYXRlIGEgbmV3IGtleW1hcCBmb3IgVklSVFVBTC1SVU5USU1FX2lyX2tleXRhYmxlLWtleW1h
+cHMNCg0KDQpPbiBTdW4sIE1hciAyOSwgMjAxNSBhdCA5OjIzIEFNLCBNYXR0IFNjaHVja21hbm4g
+PE1hdHQuU2NodWNrbWFubkBwbGFuYXIuY29tPG1haWx0bzpNYXR0LlNjaHVja21hbm5AcGxhbmFy
+LmNvbT4+IHdyb3RlOg0KVGhlIHY0bC11dGlscyByZWNpcGUgZGVmaW5lcyBWSVJUVUFMLVJVTlRJ
+TUVfaXIta2V5dGFibGUta2V5bWFwcyBhbmQgdGhlIGlyLWtleXRhYmxlIHBhY2thZ2UgYXBwZWFy
+cyB0byBSREVQRU5EUyBvbiBpdHMgdmFsdWUuDQoNCkkgd2FudCB0byBkZWZpbmUgbXkgb3duIGtl
+eSBtYXAgc28gIEkgdGhpbmsgdGhhdCBJIHNob3VsZCBjcmVhdGUgYSBuZXcgcGFja2FnZSwgY2Fs
+bGVkIOKAnG15LXJjLWtleW1hcHPigJ0sIGZvciBub3cgaXQgc2ltcGxlIGluc3RhbGxzIGEgZmls
+ZSBpbiAvbGliL3VkZXYvcmNfa2V5bWFwcw0KSW4gbXkgaW1hZ2UgcmVjaXBlIEkgc2V0IFZJUlRV
+QUwtUlVOVElNRV9pci1rZXl0YWJsZS1rZXltYXBzID0gIm15LXJjLWtleW1hcHMiDQpJIHRoZW4g
+YWRkZWQgaXIta2V5dGFibGUgYXMgYSBSREVQRU5EUyBvZiBhbm90aGVyIG9mIG15IHBhY2thZ2Vz
+Lg0KDQpUaGUgcHJvYmxlbSBpcyBJIGRvbuKAmXQgc2VlIG15IGtleW1hcCBmaWxlIGdldHRpbmcg
+YWRkZWQgdG8gdGhlIGltYWdlLCBpbiBmYWN0IGl0IGxvb2tzIGxpa2UgdGhlIGRlZmF1bHQgcmMt
+a2V5bWFwcyBwYWNrYWdlIGlzIGdldHRpbmcgaW5zdGFsbGVkLg0KDQpJZiBJIGFkZCDigJxteS1y
+Yy1rZXltYXBz4oCdIHRvIHRoZSBzYW1lIFJERVBFTkRTIEkgYWRkZWQgaXIta2V5dGFibGUgdGhl
+biBpdCBnZXRzIGluc3RhbGxlZCBzbyBJIGtub3cgdGhlIHBhY2thZ2UgaXMgb2suDQoNCkkgZG9u
+4oCZdCB1bmRlcnN0YW5kIHdoYXTigJlzIGdvaW5nIG9uIGhlcmUuDQpJIGFsc28gZmluZCBpdCBm
+cnVzdHJhdGluZyB0aGF0IEkgZG9u4oCZdCBzZWUgdGhlIFZJUlRVQUwtUlVOVElNRSBtZWNoYW5p
+c20gZG9jdW1lbnRlZCBzbyBpdCBtYWtlcyBpdCBldmVuIGhhcmRlciB0byB1bmRlcnN0YW5kLg0K
+DQpWSVJUVUFMLVJVTlRJTUVfc29tZXRoaW5nIGlzIGp1c3QgYSB2YXJpYWJsZS4gU29tZW9uZSBk
+ZWZpbmVzIGl0IGluIHRoZSBjb25maWcgbWV0YWRhdGEsIHRoZW4gYSByZWNpcGUgdXNlcyBpdC4g
+VGhhdCdzIGl0LiBUaGVyZSdzIG5vdGhpbmcgbWFnaWMgYWJvdXQgaXQsIG5vciBhbnl0aGluZyBz
+cGVjaWFsIGFib3V0IGl0LiBJdCdzIGp1c3QgYSBjb252ZW50aW9uIHRvIGxldCB0aGUgdXNlciBv
+dmVycmlkZSB0aGUgcGFja2FnZSB0byBiZSB1c2VkIGZvciB0aGF0IGZ1bmN0aW9uYWxpdHkuDQoN
+Cg0KVGhhbmtzIENocmlzdG9wZXIsIEkgZ3Vlc3MgdGhhdCBtYWtlcyBzZW5zZSwgbWlnaHQgYmUg
+bmljZSBpZiB0aGlzIHdhcyBzcGVsbGVkIG91dCBzb21lIHBsYWNlLg0KDQpDYW4geW91IGhlbHAg
+bWUgZmlndXJlIG91dCB3aHkgbXkgb3ZlcnJpZGUgaXNu4oCZdCB3b3JraW5nPyBJ4oCZdmUgdHJp
+ZWQgcnVubmluZyDigJhiaXRiYWtlIOKAk2UgcmVjaXBl4oCZIGFuZCDigJhiaXRiYWtlIOKAk3Ug
+ZGVwZXhwIOKAk2cgaW1hZ2XigJkgYW5kIEkgZG9u4oCZdCBzZWUgYW55dGhpbmcgdG8gbGVhZCBt
+ZSB0byB0aGUgcHJvYmxlbS4NCg0KDQotLQ0KQ2hyaXN0b3BoZXIgTGFyc29uDQpjbGFyc29uIGF0
+IGtlcmdvdGggZG90IGNvbQ0KRm91bmRlciAtIEJpdEJha2UsIE9wZW5FbWJlZGRlZCwgT3Blblph
+dXJ1cw0KTWFpbnRhaW5lciAtIFRzbGliDQpTZW5pb3IgU29mdHdhcmUgRW5naW5lZXIsIE1lbnRv
+ciBHcmFwaGljcw0KDQo=
 
-> The v4l-utils recipe defines VIRTUAL-RUNTIME_ir-keytable-keymaps and the
-> ir-keytable package appears to RDEPENDS on its value.
->
-> I want to define my own key map so  I think that I should create a new
-> package, called =E2=80=9Cmy-rc-keymaps=E2=80=9D, for now it simple instal=
-ls a file in
-> /lib/udev/rc_keymaps
-> In my image recipe I set VIRTUAL-RUNTIME_ir-keytable-keymaps =3D
-> "my-rc-keymaps"
-> I then added ir-keytable as a RDEPENDS of another of my packages.
->
-> The problem is I don=E2=80=99t see my keymap file getting added to the im=
-age, in
-> fact it looks like the default rc-keymaps package is getting installed.
->
-> If I add =E2=80=9Cmy-rc-keymaps=E2=80=9D to the same RDEPENDS I added ir-=
-keytable then it
-> gets installed so I know the package is ok.
->
-> I don=E2=80=99t understand what=E2=80=99s going on here.
-> I also find it frustrating that I don=E2=80=99t see the VIRTUAL-RUNTIME m=
-echanism
-> documented so it makes it even harder to understand.
->
 
-VIRTUAL-RUNTIME_something is just a variable. Someone defines it in the
-config metadata, then a recipe uses it. That's it. There's nothing magic
-about it, nor anything special about it. It's just a convention to let the
-user override the package to be used for that functionality.
---=20
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
-
---001a11c067a085483005126fe78c
+--_000_4B07ADD556F70043925DA2E9C5D4346D2FDC9879DDMSXBEBVT12pla_
 Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Sun, Mar 29, 2015 at 9:23 AM, Matt Schuckmann <span dir=3D"ltr">&lt;<a h=
-ref=3D"mailto:Matt.Schuckmann@planar.com" target=3D"_blank">Matt.Schuckmann=
-@planar.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>Th=
-e v4l-utils recipe defines VIRTUAL-RUNTIME_ir-keytable-keymaps and the ir-k=
-eytable package appears to RDEPENDS on its value.=C2=A0 </div>
-<div>=C2=A0</div>
-<div>I want to define my own key map so=C2=A0 I think that I should create =
-a new package, called =E2=80=9Cmy-rc-keymaps=E2=80=9D, for now it simple in=
-stalls a file in /lib/udev/rc_keymaps</div>
-<div>In my image recipe I set VIRTUAL-RUNTIME_ir-keytable-keymaps =3D &quot=
-;my-rc-keymaps&quot;</div>
-<div>I then added ir-keytable as a RDEPENDS of another of my packages. </di=
-v>
-<div>=C2=A0</div>
-<div>The problem is I don=E2=80=99t see my keymap file getting added to the=
- image, in fact it looks like the default rc-keymaps package is getting ins=
-talled. </div>
-<div>=C2=A0</div>
-<div>If I add =E2=80=9Cmy-rc-keymaps=E2=80=9D to the same RDEPENDS I added =
-ir-keytable then it gets installed so I know the package is ok. </div>
-<div>=C2=A0</div>
-<div>I don=E2=80=99t understand what=E2=80=99s going on here. </div>
-<div>I also find it frustrating that I don=E2=80=99t see the VIRTUAL-RUNTIM=
-E mechanism documented so it makes it even harder to understand.</div></blo=
-ckquote></div><br>VIRTUAL-RUNTIME_something is just a variable. Someone def=
-ines it in the config metadata, then a recipe uses it. That&#39;s it. There=
-&#39;s nothing magic about it, nor anything special about it. It&#39;s just=
- a convention to let the user override the package to be used for that func=
-tionality.<br>-- <br><div class=3D"gmail_signature">Christopher Larson<br>c=
-larson at kergoth dot com<br>Founder - BitBake, OpenEmbedded, OpenZaurus<br=
->Maintainer - Tslib<br>Senior Software Engineer, Mentor Graphics</div>
-</div></div>
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+PGhlYWQ+PG1ldGEgaHR0cC1lcXVpdj1Db250ZW50LVR5cGUgY29udGVu
+dD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij48bWV0YSBuYW1lPUdlbmVyYXRvciBjb250ZW50
+PSJNaWNyb3NvZnQgV29yZCAxMiAoZmlsdGVyZWQgbWVkaXVtKSI+PHN0eWxlPjwhLS0NCi8qIEZv
+bnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0
+aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQt
+ZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KQGZvbnQt
+ZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJcGFub3NlLTE6MiAxMSA2IDQgMyA1IDQgNCAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIiwic2VyaWYi
+O30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0K
+CWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNw
+YW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9y
+OnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uRW1haWxTdHlsZTE3
+DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
+Iiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28t
+c3R5bGUtdHlwZTpleHBvcnQtb25seTt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVp
+biAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2Vj
+dGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28g
+OV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+
+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5
+b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9v
+OnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPjwvaGVhZD48Ym9keSBsYW5nPUVOLVVTIGxp
+bms9Ymx1ZSB2bGluaz1wdXJwbGU+PGRpdiBjbGFzcz1Xb3JkU2VjdGlvbjE+PHAgY2xhc3M9TXNv
+Tm9ybWFsPjxzcGFuIHN0eWxlPSdmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiJDYWxpYnJp
+Iiwic2Fucy1zZXJpZiI7Y29sb3I6IzFGNDk3RCc+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
+PjxwIGNsYXNzPU1zb05vcm1hbD48c3BhbiBzdHlsZT0nZm9udC1zaXplOjExLjBwdDtmb250LWZh
+bWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiO2NvbG9yOiMxRjQ5N0QnPjxvOnA+Jm5ic3A7PC9v
+OnA+PC9zcGFuPjwvcD48ZGl2IHN0eWxlPSdib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCBi
+bHVlIDEuNXB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNC4wcHQnPjxkaXY+PGRpdiBzdHlsZT0nYm9y
+ZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjQjVDNERGIDEuMHB0O3BhZGRpbmc6My4wcHQgMGlu
+IDBpbiAwaW4nPjxwIGNsYXNzPU1zb05vcm1hbD48Yj48c3BhbiBzdHlsZT0nZm9udC1zaXplOjEw
+LjBwdDtmb250LWZhbWlseToiVGFob21hIiwic2Fucy1zZXJpZiInPkZyb206PC9zcGFuPjwvYj48
+c3BhbiBzdHlsZT0nZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseToiVGFob21hIiwic2Fucy1z
+ZXJpZiInPiBrZXJnb3RoQGdtYWlsLmNvbSBbbWFpbHRvOmtlcmdvdGhAZ21haWwuY29tXSA8Yj5P
+biBCZWhhbGYgT2YgPC9iPkNocmlzdG9waGVyIExhcnNvbjxicj48Yj5TZW50OjwvYj4gU3VuZGF5
+LCBNYXJjaCAyOSwgMjAxNSA5OjMyIEFNPGJyPjxiPlRvOjwvYj4gTWF0dCBTY2h1Y2ttYW5uPGJy
+PjxiPkNjOjwvYj4gWW9jdG8gUHJvamVjdDxicj48Yj5TdWJqZWN0OjwvYj4gUmU6IFt5b2N0b10g
+SG93IGRvIFZJUlRVQUwtUlVOVElNRSdzIHdvcmsgYW5kIGhvdyB0byBjcmVhdGUgYSBuZXcga2V5
+bWFwIGZvciBWSVJUVUFMLVJVTlRJTUVfaXJfa2V5dGFibGUta2V5bWFwczxvOnA+PC9vOnA+PC9z
+cGFuPjwvcD48L2Rpdj48L2Rpdj48cCBjbGFzcz1Nc29Ob3JtYWw+PG86cD4mbmJzcDs8L286cD48
+L3A+PGRpdj48ZGl2PjxwIGNsYXNzPU1zb05vcm1hbD48bzpwPiZuYnNwOzwvbzpwPjwvcD48ZGl2
+PjxwIGNsYXNzPU1zb05vcm1hbD5PbiBTdW4sIE1hciAyOSwgMjAxNSBhdCA5OjIzIEFNLCBNYXR0
+IFNjaHVja21hbm4gJmx0OzxhIGhyZWY9Im1haWx0bzpNYXR0LlNjaHVja21hbm5AcGxhbmFyLmNv
+bSIgdGFyZ2V0PSJfYmxhbmsiPk1hdHQuU2NodWNrbWFubkBwbGFuYXIuY29tPC9hPiZndDsgd3Jv
+dGU6PG86cD48L286cD48L3A+PGRpdj48cCBjbGFzcz1Nc29Ob3JtYWw+VGhlIHY0bC11dGlscyBy
+ZWNpcGUgZGVmaW5lcyBWSVJUVUFMLVJVTlRJTUVfaXIta2V5dGFibGUta2V5bWFwcyBhbmQgdGhl
+IGlyLWtleXRhYmxlIHBhY2thZ2UgYXBwZWFycyB0byBSREVQRU5EUyBvbiBpdHMgdmFsdWUuJm5i
+c3A7IDxvOnA+PC9vOnA+PC9wPjwvZGl2PjxkaXY+PHAgY2xhc3M9TXNvTm9ybWFsPiZuYnNwOzxv
+OnA+PC9vOnA+PC9wPjwvZGl2PjxkaXY+PHAgY2xhc3M9TXNvTm9ybWFsPkkgd2FudCB0byBkZWZp
+bmUgbXkgb3duIGtleSBtYXAgc28mbmJzcDsgSSB0aGluayB0aGF0IEkgc2hvdWxkIGNyZWF0ZSBh
+IG5ldyBwYWNrYWdlLCBjYWxsZWQg4oCcbXktcmMta2V5bWFwc+KAnSwgZm9yIG5vdyBpdCBzaW1w
+bGUgaW5zdGFsbHMgYSBmaWxlIGluIC9saWIvdWRldi9yY19rZXltYXBzPG86cD48L286cD48L3A+
+PC9kaXY+PGRpdj48cCBjbGFzcz1Nc29Ob3JtYWw+SW4gbXkgaW1hZ2UgcmVjaXBlIEkgc2V0IFZJ
+UlRVQUwtUlVOVElNRV9pci1rZXl0YWJsZS1rZXltYXBzID0gJnF1b3Q7bXktcmMta2V5bWFwcyZx
+dW90OzxvOnA+PC9vOnA+PC9wPjwvZGl2PjxkaXY+PHAgY2xhc3M9TXNvTm9ybWFsPkkgdGhlbiBh
+ZGRlZCBpci1rZXl0YWJsZSBhcyBhIFJERVBFTkRTIG9mIGFub3RoZXIgb2YgbXkgcGFja2FnZXMu
+IDxvOnA+PC9vOnA+PC9wPjwvZGl2PjxkaXY+PHAgY2xhc3M9TXNvTm9ybWFsPiZuYnNwOzxvOnA+
+PC9vOnA+PC9wPjwvZGl2PjxkaXY+PHAgY2xhc3M9TXNvTm9ybWFsPlRoZSBwcm9ibGVtIGlzIEkg
+ZG9u4oCZdCBzZWUgbXkga2V5bWFwIGZpbGUgZ2V0dGluZyBhZGRlZCB0byB0aGUgaW1hZ2UsIGlu
+IGZhY3QgaXQgbG9va3MgbGlrZSB0aGUgZGVmYXVsdCByYy1rZXltYXBzIHBhY2thZ2UgaXMgZ2V0
+dGluZyBpbnN0YWxsZWQuIDxvOnA+PC9vOnA+PC9wPjwvZGl2PjxkaXY+PHAgY2xhc3M9TXNvTm9y
+bWFsPiZuYnNwOzxvOnA+PC9vOnA+PC9wPjwvZGl2PjxkaXY+PHAgY2xhc3M9TXNvTm9ybWFsPklm
+IEkgYWRkIOKAnG15LXJjLWtleW1hcHPigJ0gdG8gdGhlIHNhbWUgUkRFUEVORFMgSSBhZGRlZCBp
+ci1rZXl0YWJsZSB0aGVuIGl0IGdldHMgaW5zdGFsbGVkIHNvIEkga25vdyB0aGUgcGFja2FnZSBp
+cyBvay4gPG86cD48L286cD48L3A+PC9kaXY+PGRpdj48cCBjbGFzcz1Nc29Ob3JtYWw+Jm5ic3A7
+PG86cD48L286cD48L3A+PC9kaXY+PGRpdj48cCBjbGFzcz1Nc29Ob3JtYWw+SSBkb27igJl0IHVu
+ZGVyc3RhbmQgd2hhdOKAmXMgZ29pbmcgb24gaGVyZS4gPG86cD48L286cD48L3A+PC9kaXY+PGRp
+dj48cCBjbGFzcz1Nc29Ob3JtYWw+SSBhbHNvIGZpbmQgaXQgZnJ1c3RyYXRpbmcgdGhhdCBJIGRv
+buKAmXQgc2VlIHRoZSBWSVJUVUFMLVJVTlRJTUUgbWVjaGFuaXNtIGRvY3VtZW50ZWQgc28gaXQg
+bWFrZXMgaXQgZXZlbiBoYXJkZXIgdG8gdW5kZXJzdGFuZC48bzpwPjwvbzpwPjwvcD48L2Rpdj48
+L2Rpdj48cCBjbGFzcz1Nc29Ob3JtYWw+PGJyPlZJUlRVQUwtUlVOVElNRV9zb21ldGhpbmcgaXMg
+anVzdCBhIHZhcmlhYmxlLiBTb21lb25lIGRlZmluZXMgaXQgaW4gdGhlIGNvbmZpZyBtZXRhZGF0
+YSwgdGhlbiBhIHJlY2lwZSB1c2VzIGl0LiBUaGF0J3MgaXQuIFRoZXJlJ3Mgbm90aGluZyBtYWdp
+YyBhYm91dCBpdCwgbm9yIGFueXRoaW5nIHNwZWNpYWwgYWJvdXQgaXQuIEl0J3MganVzdCBhIGNv
+bnZlbnRpb24gdG8gbGV0IHRoZSB1c2VyIG92ZXJyaWRlIHRoZSBwYWNrYWdlIHRvIGJlIHVzZWQg
+Zm9yIHRoYXQgZnVuY3Rpb25hbGl0eS48c3BhbiBzdHlsZT0nY29sb3I6IzFGNDk3RCc+PG86cD48
+L286cD48L3NwYW4+PC9wPjxwIGNsYXNzPU1zb05vcm1hbD48c3BhbiBzdHlsZT0nZm9udC1zaXpl
+OjExLjBwdDtmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiO2NvbG9yOiMxRjQ5N0Qn
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD48cCBjbGFzcz1Nc29Ob3JtYWw+PHNwYW4gc3R5
+bGU9J2ZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5zLXNlcmlmIjtj
+b2xvcjojMUY0OTdEJz48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+PHAgY2xhc3M9TXNvTm9y
+bWFsPjxzcGFuIHN0eWxlPSdmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiJDYWxpYnJpIiwi
+c2Fucy1zZXJpZiI7Y29sb3I6IzFGNDk3RCc+VGhhbmtzIENocmlzdG9wZXIsIEkgZ3Vlc3MgdGhh
+dCBtYWtlcyBzZW5zZSwgbWlnaHQgYmUgbmljZSBpZiB0aGlzIHdhcyBzcGVsbGVkIG91dCBzb21l
+IHBsYWNlLiA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+PHAgY2xhc3M9TXNvTm9ybWFsPjxzcGFuIHN0
+eWxlPSdmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7
+Y29sb3I6IzFGNDk3RCc+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPjxwIGNsYXNzPU1zb05v
+cm1hbD48c3BhbiBzdHlsZT0nZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseToiQ2FsaWJyaSIs
+InNhbnMtc2VyaWYiO2NvbG9yOiMxRjQ5N0QnPkNhbiB5b3UgaGVscCBtZSBmaWd1cmUgb3V0IHdo
+eSBteSBvdmVycmlkZSBpc27igJl0IHdvcmtpbmc/IEnigJl2ZSB0cmllZCBydW5uaW5nIOKAmGJp
+dGJha2Ug4oCTZSByZWNpcGXigJkgYW5kIOKAmGJpdGJha2Ug4oCTdSBkZXBleHAg4oCTZyBpbWFn
+ZeKAmSBhbmQgSSBkb27igJl0IHNlZSBhbnl0aGluZyB0byBsZWFkIG1lIHRvIHRoZSBwcm9ibGVt
+LiA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+PHAgY2xhc3M9TXNvTm9ybWFsPjxzcGFuIHN0eWxlPSdm
+b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7Y29sb3I6
+IzFGNDk3RCc+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPjxwIGNsYXNzPU1zb05vcm1hbD48
+YnI+LS0gPHNwYW4gc3R5bGU9J2NvbG9yOiMxRjQ5N0QnPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD48
+ZGl2PjxwIGNsYXNzPU1zb05vcm1hbD5DaHJpc3RvcGhlciBMYXJzb248YnI+Y2xhcnNvbiBhdCBr
+ZXJnb3RoIGRvdCBjb208YnI+Rm91bmRlciAtIEJpdEJha2UsIE9wZW5FbWJlZGRlZCwgT3Blblph
+dXJ1czxicj5NYWludGFpbmVyIC0gVHNsaWI8YnI+U2VuaW9yIFNvZnR3YXJlIEVuZ2luZWVyLCBN
+ZW50b3IgR3JhcGhpY3M8bzpwPjwvbzpwPjwvcD48cCBjbGFzcz1Nc29Ob3JtYWw+PHNwYW4gc3R5
+bGU9J2ZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5zLXNlcmlmIjtj
+b2xvcjojMUY0OTdEJz48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+PC9kaXY+PC9kaXY+PC9k
+aXY+PC9kaXY+PC9kaXY+PC9ib2R5PjwvaHRtbD4=
 
---001a11c067a085483005126fe78c--
+
+--_000_4B07ADD556F70043925DA2E9C5D4346D2FDC9879DDMSXBEBVT12pla_--
