@@ -1,47 +1,53 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <challinan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1971CE007A0; Mon, 30 Mar 2015 12:27:34 -0700 (PDT)
+	id 9D699E007A0; Mon, 30 Mar 2015 13:51:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.47 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (challinan[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qg0-f47.google.com (mail-qg0-f47.google.com
-	[209.85.192.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9571E00754
-	for <yocto@yoctoproject.org>; Mon, 30 Mar 2015 12:27:27 -0700 (PDT)
-Received: by qgf60 with SMTP id 60so180218952qgf.3
-	for <yocto@yoctoproject.org>; Mon, 30 Mar 2015 12:27:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=YfLPXFI/wyNWBsaFfaufA0K/hN5rdxL9KpoYSkCl0o8=;
-	b=Ec/g+txbGmPZlL3Bm6tOQanr60vUmtLf/U4RbHkOpIPKcbXtLqF5nCKuOxrH7Z9tav
-	sPt8ZFIJE57YuMhMecq1DZluuqib3cNrKSRyqiivSK6C01KBzN+6qbwHdKSED0C4A6so
-	Qcs3AtMa/mSPAYHQ314rdOxjqz5DsyIxiuCxOxRcdSy4R7iTpaVUwC52CrDkhiZuN3co
-	6DOZaHGRGgbJQfrUgxbK/XQgeFxSnrq/AmzNjVOcVlLeyvTT6WbmwaccSZyIiewtiByP
-	PPuRdHjeZsejyK7SO/5PvO0DEKE5qVZ5x8+e6dFR8AyYuLsEtp+5TnsasDxx4qNPKl05
-	ycyA==
-X-Gm-Message-State: ALoCoQl+5H8m8PTvQAcOODQKNS9fuIgbNz2NMnDEM/ZAC7nDBOYqtbo9hHRd7lkwwY5+q59Zuj0+
-X-Received: by 10.140.148.20 with SMTP id 20mr43215237qhu.67.1427743647198;
-	Mon, 30 Mar 2015 12:27:27 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.140.102.203 with HTTP; Mon, 30 Mar 2015 12:27:07 -0700 (PDT)
-In-Reply-To: <551989B0.7070907@dynamicdevices.co.uk>
-References: <551989B0.7070907@dynamicdevices.co.uk>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 30 Mar 2015 20:27:07 +0100
-Message-ID: <CAJTo0LZ7D4NsVNP155jOy0pRzLCCxrYu_EbSLG60cQU8TN_hfQ@mail.gmail.com>
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-Cc: Yocto <yocto@yoctoproject.org>
-Subject: Re: yocto master work-shared, kernel .config seems to have gone awol
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.48 listed in list.dnswl.org]
+Received: from mail-yh0-f48.google.com (mail-yh0-f48.google.com
+	[209.85.213.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E0E5E00754
+	for <yocto@yoctoproject.org>; Mon, 30 Mar 2015 13:51:32 -0700 (PDT)
+Received: by yhfw71 with SMTP id w71so9767398yhf.2
+	for <yocto@yoctoproject.org>; Mon, 30 Mar 2015 13:51:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=YiTQIhXyjGvEvWemcgLWyBu4OYv5o40863Co2dMfCAc=;
+	b=Z1fo0l0GJOLKo0jp0v2jnhr2DMFoHedJSrH0XEjBQZMVnJ0heiNxfGO2rQFdyazivs
+	A013ULLme5fAS0Ve/F2VLvja5mH2Y86nh2NIMRV2d5vDW6IPVKeipPrnW02IyEYn9ufJ
+	oCX7dSr6pyvQzLnP0Xnc5rK4YGpuqQhJJk/DiWI6AIotAqK4dUVA6TYnmCHaCcnmTuPH
+	dfAF/FEcnNUtLzzsmPMLpiVVRcRYM/Ic6uru6U73+3viWXkXvzfFqe/yDl7gS8R2Z4PD
+	XvlWuWMvulqIDXjvzRMEXDRp9MzCdLKMK3OuMa+QLDgcVlog6reAobU5rqOoypeSV+wq
+	Q8uw==
+X-Received: by 10.236.222.105 with SMTP id s99mr27764955yhp.160.1427748691759; 
+	Mon, 30 Mar 2015 13:51:31 -0700 (PDT)
+Received: from speedy.75.75.75.75
+	(173-10-226-189-BusName-WestFlorida.hfc.comcastbusiness.net.
+	[173.10.226.189]) by mx.google.com with ESMTPSA id
+	g55sm11462298yhb.37.2015.03.30.13.51.30
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Mon, 30 Mar 2015 13:51:31 -0700 (PDT)
+From: Chris Hallinan <challinan@gmail.com>
+To: yocto@yoctoproject.org
+Date: Mon, 30 Mar 2015 16:50:53 -0400
+Message-Id: <1427748653-20274-1-git-send-email-challinan@gmail.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [PATCH] Gracefully abort if rootfs.img gets to big
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,43 +59,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Mar 2015 19:27:34 -0000
-Content-Type: multipart/alternative; boundary=001a113bb4ccec244a051286784a
+X-List-Received-Date: Mon, 30 Mar 2015 20:51:35 -0000
 
---001a113bb4ccec244a051286784a
-Content-Type: text/plain; charset=UTF-8
+See https://bugzilla.yoctoproject.org/show_bug.cgi?id=7541
 
-On 30 March 2015 at 18:36, Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-wrote:
+Current implementation of live image type cannot support image size
+greater than 4GB. If the image gets too large, the build simply 
+hangs silently, without any clues or debug output to indicate why.
+This patch prevents the build hanging on rootfs.img getting too big.
 
-> I'm updating to Yocto master and have been seeing that when I bitbake -c
-> devshell virtual/kernel I go into a work-shared tree now.
->
+---
+ meta/classes/bootimg.bbclass | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-The devshell drops you into whatever ${S} is for that recipe, which for the
-kernel is ${STAGING_KERNEL_DIR} since the kernel optimisations.  For the
-kernel yes, this is sub-optimal.  Maybe the kernel should override this
-using the variable I added (as Bruce mentioned).
+diff --git a/meta/classes/bootimg.bbclass b/meta/classes/bootimg.bbclass
+index b1c03ba..e143e24 100644
+--- a/meta/classes/bootimg.bbclass
++++ b/meta/classes/bootimg.bbclass
+@@ -84,6 +84,13 @@ populate() {
+ 	fi
+ 
+ 	if [ -n "${ROOTFS}" ] && [ -s "${ROOTFS}" ]; then
++		ROOTFS_FILE_SIZE=`stat -L -c "%s" ${ROOTFS}`
++		bbnote "do_bootimg(): rootfs.img size = ${ROOTFS_FILE_SIZE}"
++		# Actual limit is difficult to determine
++		# This leaves ~128MiB headroom for initrd and boot files
++		if [ ${ROOTFS_FILE_SIZE} -gt 4160800000 ]; then
++			bbfatal "Root fs (rootfs.img) is too big for live image"
++		fi
+ 		install -m 0644 ${ROOTFS} ${DEST}/rootfs.img
+ 	fi
+ 
+-- 
+1.9.1
 
-Ross
 
---001a113bb4ccec244a051286784a
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 30 March 2015 at 18:36, Alex J Lennon <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:ajlennon@dynamicdevices.co.uk" target=3D"_blank">ajlennon@dynamicdevi=
-ces.co.uk</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=
-=3D":75g" class=3D"a3s" style=3D"overflow:hidden">I&#39;m updating to Yocto=
- master and have been seeing that when I bitbake -c<br>
-devshell virtual/kernel I go into a work-shared tree now.<br></div></blockq=
-uote></div><br></div><div class=3D"gmail_extra">The devshell drops you into=
- whatever ${S} is for that recipe, which for the kernel is ${STAGING_KERNEL=
-_DIR} since the kernel optimisations.=C2=A0 For the kernel yes, this is sub=
--optimal.=C2=A0 Maybe the kernel should override this using the variable I =
-added (as Bruce mentioned).</div><div class=3D"gmail_extra"><br></div><div =
-class=3D"gmail_extra">Ross</div></div>
-
---001a113bb4ccec244a051286784a--
