@@ -1,6 +1,6 @@
 Return-Path: <texier.pj2@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3A91FE00930; Sun, 29 Mar 2015 11:49:56 -0700 (PDT)
+	id 568A5E0097D; Sun, 29 Mar 2015 23:20:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -20,35 +20,35 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	low *      trust
 	*      [74.125.82.46 listed in list.dnswl.org]
 Received: from mail-wg0-f46.google.com (mail-wg0-f46.google.com [74.125.82.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D003CE007A0
-	for <yocto@yoctoproject.org>; Sun, 29 Mar 2015 11:49:52 -0700 (PDT)
-Received: by wgra20 with SMTP id a20so148350321wgr.3
-	for <yocto@yoctoproject.org>; Sun, 29 Mar 2015 11:49:52 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16322E00930
+	for <yocto@yoctoproject.org>; Sun, 29 Mar 2015 23:20:15 -0700 (PDT)
+Received: by wgbdm7 with SMTP id dm7so54497424wgb.1
+	for <yocto@yoctoproject.org>; Sun, 29 Mar 2015 23:20:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=sender:from:to:cc:subject:date:message-id;
-	bh=OaadQ4hCaEu8Ib132THJ3w7Z3JryQLVqOMpPSFFo9IU=;
-	b=ALHtVt0XPROx53O4e+CQkziWMx1byeHCMG5sNjIwZokxObeyY6XRo9GXqSRDZVWVEj
-	SZVhNdi9ipSJqY5bC8qpCGVcYWpT00YcLBqnRiBkgsyBKQcKoAWszlwdKUeDUUIG0JtB
-	sfJzOZyQDVtngPaDSYUXd66I3SRa0VKH5UFjhwJM7SNmx/VF4mvU3F2F0UKJh5IhVeaf
-	hX802L/01XHuLv7mAXeDjSagsfepk/SqWuuHkzM70QBT//O04LySYIDkq4YTxGCZGFGR
-	Lx1nzRWAKSZUr2vE/shr6C6kb7wLZDGOlAL17UqRb3wi471iVbBBFrfDfwedp/BjH5Gw
-	t/Hw==
-X-Received: by 10.194.120.230 with SMTP id lf6mr55416460wjb.78.1427654992293; 
-	Sun, 29 Mar 2015 11:49:52 -0700 (PDT)
-Received: from localhost.localdomain (cub33-2-78-240-209-183.fbx.proxad.net.
-	[78.240.209.183]) by mx.google.com with ESMTPSA id
-	ha10sm12298030wjc.37.2015.03.29.11.49.51
+	bh=MK0AIlxbcReqT92rGW/H7eqWxLoSlUdBKT7F62AA2uI=;
+	b=xqfeSpzfu9SeJgW3mBCMq07ZilEu81GZ8b7pSULLzs5T/jCi/ENASCFBSUdeprvZ/F
+	WQRckb504DiPWH3lZTNwAJEwqEdElrfLnzRxRr6A2NQl4KHqrr6TQlHRlWdx/5MWdCu9
+	obDH/q1ucmuAmpSH+i0C5CeGEmdxB2EGqCn6SWgR6tow5nZhOjE+2Aey1gjAleu7k9gN
+	nUs9qcFHkMWDyys9j4lvY7dhBtZTMRIhGiMMMxVQMdIkRUtLT3XaLC/ZrnrueKYPPRBC
+	/oFihBSCz/WyMdQYqmi38bZijHyvII76piVZcTOT53HE+Jz3BsvxVK+TUCkM9wh6p7eI
+	SHNg==
+X-Received: by 10.180.90.34 with SMTP id bt2mr19125995wib.43.1427696414633;
+	Sun, 29 Mar 2015 23:20:14 -0700 (PDT)
+Received: from amplitude.amplitude.local ([46.20.167.230])
+	by mx.google.com with ESMTPSA id
+	ea11sm2903486wic.24.2015.03.29.23.20.13
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 29 Mar 2015 11:49:51 -0700 (PDT)
+	Sun, 29 Mar 2015 23:20:13 -0700 (PDT)
 Sender: TEXIER Pierre-Jean <texier.pj2@gmail.com>
 From: texierp <ouf_du_45@hotmail.com>
 To: yocto@yoctoproject.org
-Date: Sun, 29 Mar 2015 20:49:44 +0200
-Message-Id: <1427654984-4457-1-git-send-email-ouf_du_45@hotmail.com>
+Date: Mon, 30 Mar 2015 08:20:00 +0200
+Message-Id: <1427696400-3216-1-git-send-email-ouf_du_45@hotmail.com>
 X-Mailer: git-send-email 1.9.1
 X-Mailman-Approved-At: Mon, 30 Mar 2015 08:20:57 -0700
 Cc: texierp <ouf_du_45@hotmail.com>
-Subject: [meta-raspberrypi][PATCH] This patch add a powerful tool : spitools
+Subject: [meta-raspberrypi][PATCH] spitools : Add new package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,34 +60,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 29 Mar 2015 18:49:56 -0000
+X-List-Received-Date: Mon, 30 Mar 2015 06:20:18 -0000
 
+Signed-off-by: texierp <ouf_du_45@hotmail.com>
 ---
- recipes-devtools/spitools/spitools_git.bb | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
- create mode 100644 recipes-devtools/spitools/spitools_git.bb
+ recipes-devtools/spitools/spitools_git.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/recipes-devtools/spitools/spitools_git.bb b/recipes-devtools/spitools/spitools_git.bb
-new file mode 100644
-index 0000000..287e3eb
---- /dev/null
+index 287e3eb..128ad7f 100644
+--- a/recipes-devtools/spitools/spitools_git.bb
 +++ b/recipes-devtools/spitools/spitools_git.bb
-@@ -0,0 +1,15 @@
-+DESCRIPTION = "This package contains some simple command line tools to help using Linux spidev devices"
-+HOMEPAGE = "https://github.com/cpb-/spi-tools"
-+LICENSE="GPLv2"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=8c16666ae6c159876a0ba63099614381"
-+
-+S = "${WORKDIR}/git"
-+
-+SRC_URI = "git://github.com/cpb-/spi-tools.git;protocol=git"
-+
-+SRCREV = "cc6a41fdcec60610703ba6db488c621c64952898"
-+
-+COMPATIBLE_MACHINE = "raspberrypi"
-+
-+inherit autotools
-+
+@@ -1,5 +1,6 @@
+ DESCRIPTION = "This package contains some simple command line tools to help using Linux spidev devices"
+ HOMEPAGE = "https://github.com/cpb-/spi-tools"
++AUTHOR = "Christophe BLAESS"
+ LICENSE="GPLv2"
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=8c16666ae6c159876a0ba63099614381"
+ 
 -- 
 1.9.1
 
