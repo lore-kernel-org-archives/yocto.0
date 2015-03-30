@@ -1,39 +1,41 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <belen.barros.pena@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 66CAEE007A0; Mon, 30 Mar 2015 10:38:51 -0700 (PDT)
+	id 170E0E007A0; Mon, 30 Mar 2015 10:47:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0837AE00754
-	for <yocto@yoctoproject.org>; Mon, 30 Mar 2015 10:38:48 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id F2EDD27E204
-	for <yocto@yoctoproject.org>; Mon, 30 Mar 2015 17:38:45 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id u_fEMLqNqEDv for <yocto@yoctoproject.org>;
-	Mon, 30 Mar 2015 17:38:44 +0000 (UTC)
-Received: from [192.168.1.16] (AMarseille-651-1-37-107.w92-150.abo.wanadoo.fr
-	[92.150.28.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id F38C427E1DF
-	for <yocto@yoctoproject.org>; Mon, 30 Mar 2015 17:38:43 +0000 (UTC)
-Message-ID: <551989B0.7070907@dynamicdevices.co.uk>
-Date: Mon, 30 Mar 2015 19:36:48 +0200
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA79AE00754
+	for <yocto@yoctoproject.org>; Mon, 30 Mar 2015 10:47:39 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga103.jf.intel.com with ESMTP; 30 Mar 2015 10:47:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,495,1422950400"; d="scan'208";a="548486369"
+Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
+	by orsmga003.jf.intel.com with ESMTP; 30 Mar 2015 10:47:38 -0700
+Received: from irsmsx110.ger.corp.intel.com ([169.254.15.30]) by
+	IRSMSX102.ger.corp.intel.com ([169.254.2.2]) with mapi id
+	14.03.0224.002; Mon, 30 Mar 2015 18:47:37 +0100
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [RFC] Toaster integration with Jenkins
+Thread-Index: AQHQaxGb9e0ecdHkrU+vWFZmdcTyZA==
+Date: Mon, 30 Mar 2015 17:47:36 +0000
+Message-ID: <D13F4AC9.58302%belen.barros.pena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.4.8.150116
+x-originating-ip: [10.237.224.79]
 MIME-Version: 1.0
-To: Yocto <yocto@yoctoproject.org>
-Subject: yocto master work-shared, kernel .config seems to have gone awol
+Subject: [RFC] Toaster integration with Jenkins
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,39 +47,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Mar 2015 17:38:51 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 30 Mar 2015 17:47:41 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <D95D5C6A5E7FDE42803FA6C0CD7A4159@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+We are considering working on integrating Toaster with Jenkins as part of
+the next Yocto Project release. Our thinking so far is collected in this
+Bugzilla feature:
 
-I'm updating to Yocto master and have been seeing that when I bitbake -c
-devshell virtual/kernel I go into a work-shared tree now.
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7527
 
-(This is all with meta-fsl-arm)
+Any thoughts? Are we missing something? Are we going about it in a
+completely wrong way?
 
-I'd normally change the kernel configuration with bitbake -c menuconfig
-virtual/kernel then pull out the .config and make my changes to
-defconfig as needed.
+Let us know.
 
-But I can't seem to find it any more, either in work-shared or if I
-traverse to the work tree.
+Thanks!
 
-No doubt my own stupidity here but where is it supposed to be nowadays?
+Bel=E9n
 
-Could anybody point me to a discussion on how things are going to be
-broken out into work-shared and (presumably) work so I can get up to speed?
-
-Not finding the configuration I thought I'd try generating a kernel
-fragment with bitbake  -c diffconfig virtual/kernel from the Yocto docs
-but I can't see a fragment.cfg anywhere in the tree
-
-I guess this could all be just that meta-fsl-arm isn't quick in sync
-with current the current master? (assuming it's not the more likely
-explanation that I just have this plain wrong)
-
-Thanks,
-
-Alex
 
 
