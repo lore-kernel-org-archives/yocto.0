@@ -1,60 +1,64 @@
-Return-Path: <anders@chargestorm.se>
+Return-Path: <praveenr@tataelxsi.co.in>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 93AFDE0085D; Tue, 31 Mar 2015 02:39:27 -0700 (PDT)
+	id 4A433E0085D; Tue, 31 Mar 2015 03:19:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.215.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [134.170.132.113 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-la0-f43.google.com (mail-la0-f43.google.com
-	[209.85.215.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F6B9E00854
-	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 02:39:16 -0700 (PDT)
-Received: by lajy8 with SMTP id y8so8295864laj.0
-	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 02:39:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id
-	:mail-followup-to:references:mime-version:content-type
-	:content-disposition:content-transfer-encoding:in-reply-to
-	:organization:user-agent;
-	bh=lQN6b0cmHGjzdh9COf2IXbVlc5jTVOh4W5/5g+sOyBs=;
-	b=Tv2rjloJN9SgYIvKlfLKNUmoxqSlNozg0jRYw0sqvAQMNMvnw/GZqXhggNbH2d76By
-	KOWdqHOrBfvuvTK0gdQ8R7/3sDQPwTaNfo6NHN4nYm1tK1x2skiuYkyIg1bcgQpAHFnB
-	+WvuyZwHqhfNi37Sw6qq04fPsFZaW9wT1zGV9OjxrQmkZkwXK4AlZpAwiYaJGhpuu7az
-	h48DAEqYixlyg4SJ8ucTbc2TUdwX/yFSaGu+JqfUEl/TMB+jsVBVmeJHhumnnESRADHh
-	2gGM3t8ygk1f0TN+bPOh28TBfdCkfVzuysTwygSW7hUgX3nIpsqj+VnAXANevau8lnkj
-	NQYg==
-X-Gm-Message-State: ALoCoQmoIM1nFyoXrbODv1TiJf8YkHnPERKK870iMUqo/rqSnUCcuYMm1bY2iNgeOuFeLLH8EOEt
-X-Received: by 10.112.133.35 with SMTP id oz3mr29553150lbb.98.1427794754486;
-	Tue, 31 Mar 2015 02:39:14 -0700 (PDT)
-Received: from ad.chargestorm.se (c-89-160-69-55.cust.bredband2.com.
-	[89.160.69.55]) by mx.google.com with ESMTPSA id
-	dw11sm2397452lbd.38.2015.03.31.02.39.13
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 31 Mar 2015 02:39:13 -0700 (PDT)
-Date: Tue, 31 Mar 2015 11:39:11 +0200
-From: Anders Darander <anders@chargestorm.se>
-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-Message-ID: <20150331093911.GC19097@ad.chargestorm.se>
-Mail-Followup-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <D13F4AC9.58302%belen.barros.pena@intel.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 960 seconds by postgrey-1.32 at yocto-www;
+	Tue, 31 Mar 2015 03:19:10 PDT
+Received: from APAC01-SG1-obe.outbound.protection.outlook.com
+	(mail-sg1on0113.outbound.protection.outlook.com [134.170.132.113])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C0BFE00854
+	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 03:19:10 -0700 (PDT)
+Received: from SIXPR04MB0462.apcprd04.prod.outlook.com (25.160.229.150) by
+	SIXPR04MB0464.apcprd04.prod.outlook.com (25.160.229.152) with Microsoft
+	SMTP Server (TLS) id 15.1.118.21; Tue, 31 Mar 2015 10:03:08 +0000
+Received: from SIXPR04MB0462.apcprd04.prod.outlook.com ([25.160.229.150]) by
+	SIXPR04MB0462.apcprd04.prod.outlook.com ([25.160.229.150]) with mapi id
+	15.01.0118.022; Tue, 31 Mar 2015 10:03:07 +0000
+From: PRAVEEN KUMAR R <praveenr@tataelxsi.co.in>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>
+Thread-Topic: tip and cu utility
+Thread-Index: AQHQa5nB48/jBlSUhku9JFG59X5Svw==
+Date: Tue, 31 Mar 2015 10:03:07 +0000
+Message-ID: <1427796186892.42571@tataelxsi.co.in>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [14.141.44.158]
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=praveenr@tataelxsi.co.in; 
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:SIXPR04MB0464;
+x-forefront-antispam-report: BMV:1; SFV:NSPM;
+	SFS:(10019020)(6009001)(15395725005)(102836002)(40100003)(117636001)(2501003)(46102003)(122556002)(15975445007)(19580395003)(16236675004)(92566002)(87936001)(62966003)(66066001)(74482002)(107886001)(229853001)(36756003)(54356999)(50986999)(19627405001)(2656002)(19625215002)(77156002)(15198665003)(106116001)(2900100001)(86362001)(558084003)(80872002)(10090945008)(19477635001);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:SIXPR04MB0464;
+	H:SIXPR04MB0462.apcprd04.prod.outlook.com; FPR:; SPF:None;
+	MLV:nov; PTR:InfoNoRecords; LANG:en; 
+x-microsoft-antispam-prvs: <SIXPR04MB04646BB5949A0EAF08AF519493F40@SIXPR04MB0464.apcprd04.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(5002010)(5005006); SRVR:SIXPR04MB0464; BCL:0;
+	PCL:0; RULEID:; SRVR:SIXPR04MB0464; 
+x-forefront-prvs: 0532BF6DC2
+received-spf: None (protection.outlook.com: tataelxsi.co.in does not designate
+	permitted sender hosts)
 MIME-Version: 1.0
-In-Reply-To: <D13F4AC9.58302%belen.barros.pena@intel.com>
-X-Accept-Language: sv, en, de
-X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
-X-GPG-Key-Id: 0x920E938C
-X-GPG-Keyserver: hkp://keys.gnupg.net
-Organization: ChargeStorm AB
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [RFC] Toaster integration with Jenkins
+X-OriginatorOrg: tataelxsi.co.in
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Mar 2015 10:03:07.3468 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: ad6a39dd-96b6-4368-82da-f2ec4d92e26a
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SIXPR04MB0464
+Subject: tip and cu utility
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,56 +70,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 Mar 2015 09:39:27 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+X-List-Received-Date: Tue, 31 Mar 2015 10:19:13 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_142779618689242571tataelxsicoin_"
+
+--_000_142779618689242571tataelxsicoin_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Is there any existing package that provide tip and cu utility ?
 
-* Barros Pena, Belen <belen.barros.pena@intel.com> [150330 19:48]:
-> We are considering working on integrating Toaster with Jenkins as part of
-> the next Yocto Project release. Our thinking so far is collected in this
-> Bugzilla feature:
 
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7527
+http://man.cx/TIP(1)?
+?
 
-Ah, sounds really interesting. I've recently been thinking about how I
-should be able to benefit from toaster, as we're running out automated
-builds using Jenkins.
 
-> Any thoughts? Are we missing something? Are we going about it in a
-> completely wrong way?
+--_000_142779618689242571tataelxsicoin_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Sounds quite good to me.
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt; color:#000000; ba=
+ckground-color:#FFFFFF; font-family:Calibri,Arial,Helvetica,sans-serif">
+Is there any existing&nbsp;package that provide tip and cu utility ?
+<div><br>
+</div>
+<div><br>
+http://man.cx/TIP(1)&#8203;<br>
+&#8203;
+<p style=3D"margin-top: 0px; margin-bottom: 0px;"><br>
+</p>
+</div>
+</div>
+</body>
+</html>
 
-If there's some project configuration that needs to be done in Toaster,
-I'd appreciate if as much as possible could be retrieved from our
-current Jenkins setup (i.e. exported from the Jenkins plugin to
-Toaster). (Not least as we're running a couple of scripts to source the
-environment and handling some extra configurations needed; thus I'd
-assume we couldn't just take the freestyle Jenkins project talked about
-in b) of Alexandru 's first comment in #YOCTO-7527.
-
-I don't know if this is the right thread but a couple of other things
-that we really would need in order to fully be able to utilize this.
-
-1) Some way of getting the built git branch shown in toaster. (As we
-discussed on YPDD in D=FCsseldorf together with Axis). We're building
-master and release branches for the same machine and image.
-
-2) In the proposed bug, would toaser be able to recieve and handle
-toaster/build logs from different YP releases? Normally we've at least
-one active release branch, and possibly a master (or master-next) branch
-that's going to the next YP release. If possible, I'd like to visualize
-all this in the same Toaster instance.
-
-Apart from that, I think this is really interesting!
-
-Cheers,
-Anders
-
---=20
-Anders Darander
-ChargeStorm AB / eStorm AB
-
+--_000_142779618689242571tataelxsicoin_--
