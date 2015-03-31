@@ -1,80 +1,60 @@
-Return-Path: <gshastri@juniper.net>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 22884E0085D; Tue, 31 Mar 2015 01:28:43 -0700 (PDT)
+	id 93AFDE0085D; Tue, 31 Mar 2015 02:39:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [157.56.110.132 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.215.43 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 2317 seconds by postgrey-1.32 at yocto-www;
-	Tue, 31 Mar 2015 01:28:39 PDT
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1on0132.outbound.protection.outlook.com [157.56.110.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99223E00854
-	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 01:28:39 -0700 (PDT)
-Received: from BY2PR05MB143.namprd05.prod.outlook.com (10.242.39.153) by
-	BY2PR05MB584.namprd05.prod.outlook.com (10.141.219.153) with Microsoft
-	SMTP Server (TLS) id 15.1.112.19; Tue, 31 Mar 2015 08:28:37 +0000
-Received: from BY2PR05CA035.namprd05.prod.outlook.com (10.141.250.25) by
-	BY2PR05MB143.namprd05.prod.outlook.com (10.242.39.153) with Microsoft
-	SMTP Server (TLS) id 15.1.118.21; Tue, 31 Mar 2015 08:28:36 +0000
-Received: from BN1AFFO11FD022.protection.gbl (2a01:111:f400:7c10::162) by
-	BY2PR05CA035.outlook.office365.com (2a01:111:e400:2c5f::25) with
-	Microsoft SMTP Server (TLS) id 15.1.125.19 via Frontend Transport;
-	Tue, 31 Mar 2015 08:28:36 +0000
-Received: from P-EMF03-SAC.jnpr.net (66.129.239.17) by
-	BN1AFFO11FD022.mail.protection.outlook.com (10.58.52.82) with Microsoft
-	SMTP Server (TLS) id 15.1.130.10 via Frontend Transport;
-	Tue, 31 Mar 2015 08:28:35 +0000
-Received: from magenta.juniper.net (172.17.27.123) by P-EMF03-SAC.jnpr.net
-	(172.24.192.21) with Microsoft SMTP Server (TLS) id 14.3.146.0;
-	Tue, 31 Mar 2015 01:28:31 -0700
-Received: from gshastri-desktop.juniper.net
-	(gshastri-desktop.englab.juniper.net [10.92.9.56])	by
-	magenta.juniper.net
-	(8.11.3/8.11.3) with ESMTP id t2V8SVD27549	for <yocto@yoctoproject.org>;
-	Tue,
-	31 Mar 2015 01:28:31 -0700 (PDT)	(envelope-from gshastri@juniper.net)
-From: Gaurang Shastri <gshastri@juniper.net>
-To: <yocto@yoctoproject.org>
-Date: Tue, 31 Mar 2015 01:32:10 -0700
-Message-ID: <1427790730-7132-1-git-send-email-gshastri@juniper.net>
-X-Mailer: git-send-email 1.7.9.5
+Received: from mail-la0-f43.google.com (mail-la0-f43.google.com
+	[209.85.215.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F6B9E00854
+	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 02:39:16 -0700 (PDT)
+Received: by lajy8 with SMTP id y8so8295864laj.0
+	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 02:39:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id
+	:mail-followup-to:references:mime-version:content-type
+	:content-disposition:content-transfer-encoding:in-reply-to
+	:organization:user-agent;
+	bh=lQN6b0cmHGjzdh9COf2IXbVlc5jTVOh4W5/5g+sOyBs=;
+	b=Tv2rjloJN9SgYIvKlfLKNUmoxqSlNozg0jRYw0sqvAQMNMvnw/GZqXhggNbH2d76By
+	KOWdqHOrBfvuvTK0gdQ8R7/3sDQPwTaNfo6NHN4nYm1tK1x2skiuYkyIg1bcgQpAHFnB
+	+WvuyZwHqhfNi37Sw6qq04fPsFZaW9wT1zGV9OjxrQmkZkwXK4AlZpAwiYaJGhpuu7az
+	h48DAEqYixlyg4SJ8ucTbc2TUdwX/yFSaGu+JqfUEl/TMB+jsVBVmeJHhumnnESRADHh
+	2gGM3t8ygk1f0TN+bPOh28TBfdCkfVzuysTwygSW7hUgX3nIpsqj+VnAXANevau8lnkj
+	NQYg==
+X-Gm-Message-State: ALoCoQmoIM1nFyoXrbODv1TiJf8YkHnPERKK870iMUqo/rqSnUCcuYMm1bY2iNgeOuFeLLH8EOEt
+X-Received: by 10.112.133.35 with SMTP id oz3mr29553150lbb.98.1427794754486;
+	Tue, 31 Mar 2015 02:39:14 -0700 (PDT)
+Received: from ad.chargestorm.se (c-89-160-69-55.cust.bredband2.com.
+	[89.160.69.55]) by mx.google.com with ESMTPSA id
+	dw11sm2397452lbd.38.2015.03.31.02.39.13
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 31 Mar 2015 02:39:13 -0700 (PDT)
+Date: Tue, 31 Mar 2015 11:39:11 +0200
+From: Anders Darander <anders@chargestorm.se>
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+Message-ID: <20150331093911.GC19097@ad.chargestorm.se>
+Mail-Followup-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <D13F4AC9.58302%belen.barros.pena@intel.com>
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
-	juniper.net discourages use of 66.129.239.17 as permitted sender)
-Authentication-Results: spf=softfail (sender IP is 66.129.239.17)
-	smtp.mailfrom=gshastri@juniper.net; yoctoproject.org;
-	dkim=none (message not signed) header.d=none;
-X-Forefront-Antispam-Report: CIP:66.129.239.17; CTRY:US; IPV:NLI; EFV:NLI;
-	BMV:1; SFV:NSPM;
-	SFS:(10019020)(6009001)(189002)(199003)(50226001)(87936001)(106466001)(105596002)(47776003)(50986999)(36756003)(33646002)(86362001)(2351001)(92566002)(16796002)(50466002)(229853001)(77156002)(110136001)(62966003)(450100001)(46102003)(6806004)(53416004)(48376002)(15975445007)(19580395003)(77096005)(107886001)(19580405001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BY2PR05MB143;
-	H:P-EMF03-SAC.jnpr.net; FPR:; SPF:SoftFail; MLV:sfv; MX:1; A:1;
-	LANG:en; 
-X-Microsoft-Antispam: UriScan:; BCL:0; PCL:0; RULEID:; SRVR:BY2PR05MB143;
-	UriScan:; BCL:0; PCL:0; RULEID:; SRVR:BY2PR05MB584; 
-X-Microsoft-Antispam-PRVS: <BY2PR05MB143928AA9D503A48C3DDCDFD5F40@BY2PR05MB143.namprd05.prod.outlook.com>
-X-Exchange-Antispam-Report-Test: UriScan:;
-X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
-	RULEID:(601004)(5002010)(5005006); SRVR:BY2PR05MB143; BCL:0;
-	PCL:0; RULEID:; SRVR:BY2PR05MB143; 
-X-Forefront-PRVS: 0532BF6DC2
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2015 08:28:35.6682 (UTC)
-X-MS-Exchange-CrossTenant-Id: bea78b3c-4cdb-4130-854a-1d193232e5f4
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bea78b3c-4cdb-4130-854a-1d193232e5f4;
-	Ip=[66.129.239.17]; Helo=[P-EMF03-SAC.jnpr.net]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY2PR05MB143
-X-OriginatorOrg: juniper.net
-Subject: [[Patch2]Makedumpfile] Add makedumpfile
+In-Reply-To: <D13F4AC9.58302%belen.barros.pena@intel.com>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [RFC] Toaster integration with Jenkins
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -86,30 +66,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 Mar 2015 08:28:43 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 31 Mar 2015 09:39:27 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-PR NO:[https://bugzilla.yoctoproject.org/show_bug.cgi?id=7069]
+Hi,
 
-Signed-off-by: Gaurang Shastri <gshastri@juniper.net>
----
- .../recipes-cgl/makedumpfile/makedumpfile_1.5.0.bb |    3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+* Barros Pena, Belen <belen.barros.pena@intel.com> [150330 19:48]:
+> We are considering working on integrating Toaster with Jenkins as part of
+> the next Yocto Project release. Our thinking so far is collected in this
+> Bugzilla feature:
 
-diff --git a/meta-cgl-common/recipes-cgl/makedumpfile/makedumpfile_1.5.0.bb b/meta-cgl-common/recipes-cgl/makedumpfile/makedumpfile_1.5.0.bb
-index ce3027e..bd86b64 100644
---- a/meta-cgl-common/recipes-cgl/makedumpfile/makedumpfile_1.5.0.bb
-+++ b/meta-cgl-common/recipes-cgl/makedumpfile/makedumpfile_1.5.0.bb
-@@ -13,7 +13,6 @@ DEPENDS = "zlib elfutils bzip2"
- EXTRA_OEMAKE = "TARGET=${TARGET_ARCH}"
- 
- do_install() {
--	install -d ${D}${bindir}/
--	install -c -m 755 ${S}/makedumpfile ${D}${bindir}/
-+	install -Dm 0755 ${S}/makedumpfile ${D}${bindir}/makedumpfile
- }
- 
--- 
-1.7.9.5
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7527
 
+Ah, sounds really interesting. I've recently been thinking about how I
+should be able to benefit from toaster, as we're running out automated
+builds using Jenkins.
+
+> Any thoughts? Are we missing something? Are we going about it in a
+> completely wrong way?
+
+Sounds quite good to me.
+
+If there's some project configuration that needs to be done in Toaster,
+I'd appreciate if as much as possible could be retrieved from our
+current Jenkins setup (i.e. exported from the Jenkins plugin to
+Toaster). (Not least as we're running a couple of scripts to source the
+environment and handling some extra configurations needed; thus I'd
+assume we couldn't just take the freestyle Jenkins project talked about
+in b) of Alexandru 's first comment in #YOCTO-7527.
+
+I don't know if this is the right thread but a couple of other things
+that we really would need in order to fully be able to utilize this.
+
+1) Some way of getting the built git branch shown in toaster. (As we
+discussed on YPDD in D=FCsseldorf together with Axis). We're building
+master and release branches for the same machine and image.
+
+2) In the proposed bug, would toaser be able to recieve and handle
+toaster/build logs from different YP releases? Normally we've at least
+one active release branch, and possibly a master (or master-next) branch
+that's going to the next YP release. If possible, I'd like to visualize
+all this in the same Toaster instance.
+
+Apart from that, I think this is really interesting!
+
+Cheers,
+Anders
+
+--=20
+Anders Darander
+ChargeStorm AB / eStorm AB
 
