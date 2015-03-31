@@ -1,76 +1,58 @@
-Return-Path: <gshastri@juniper.net>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3864EE0085D; Tue, 31 Mar 2015 01:07:37 -0700 (PDT)
+	id 1B765E0085D; Tue, 31 Mar 2015 01:17:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [207.46.100.129 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 2003 seconds by postgrey-1.32 at yocto-www;
-	Tue, 31 Mar 2015 01:07:32 PDT
-Received: from na01-by2-obe.outbound.protection.outlook.com
-	(mail-by2on0129.outbound.protection.outlook.com [207.46.100.129])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BAA6FE00854
-	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 01:07:32 -0700 (PDT)
-Received: from BL2PR05CA0045.namprd05.prod.outlook.com (10.255.226.45) by
-	BL2PR05MB132.namprd05.prod.outlook.com (10.242.198.27) with Microsoft
-	SMTP Server (TLS) id 15.1.118.21; Tue, 31 Mar 2015 07:34:02 +0000
-Received: from BL2FFO11FD008.protection.gbl (2a01:111:f400:7c09::172) by
-	BL2PR05CA0045.outlook.office365.com (2a01:111:e400:c04::45) with
-	Microsoft SMTP Server (TLS) id 15.1.125.19 via Frontend Transport;
-	Tue, 31 Mar 2015 07:34:02 +0000
-Authentication-Results: spf=softfail (sender IP is 66.129.239.17)
-	smtp.mailfrom=juniper.net; yoctoproject.org;
-	dkim=none (message not signed) header.d=none;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
-	juniper.net discourages use of 66.129.239.17 as permitted sender)
-Received: from P-EMF03-SAC.jnpr.net (66.129.239.17) by
-	BL2FFO11FD008.mail.protection.outlook.com (10.173.161.4) with Microsoft
-	SMTP Server (TLS) id 15.1.136.16 via Frontend Transport;
-	Tue, 31 Mar 2015 07:34:02 +0000
-Received: from magenta.juniper.net (172.17.27.123) by P-EMF03-SAC.jnpr.net
-	(172.24.192.21) with Microsoft SMTP Server (TLS) id 14.3.146.0;
-	Tue, 31 Mar 2015 00:34:00 -0700
-Received: from gshastri-desktop.juniper.net
-	(gshastri-desktop.englab.juniper.net [10.92.9.56])	by
-	magenta.juniper.net (8.11.3/8.11.3) with ESMTP id t2V7Y0D00517;
-	Tue, 31 Mar 2015 00:34:00 -0700
-	(PDT)	(envelope-from gshastri@juniper.net)
-From: Gaurang Shastri <gshastri@juniper.net>
-To: <yocto@yoctoproject.org>
-Date: Tue, 31 Mar 2015 00:37:39 -0700
-Message-ID: <1427787459-22162-1-git-send-email-gshastri@juniper.net>
-X-Mailer: git-send-email 1.7.9.5
-MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-Forefront-Antispam-Report: CIP:66.129.239.17; CTRY:US; IPV:NLI; EFV:NLI;
-	BMV:1; SFV:NSPM;
-	SFS:(10019020)(6009001)(189002)(199003)(19580395003)(86362001)(105596002)(110136001)(77156002)(62966003)(87936001)(15975445007)(50226001)(575784001)(19580405001)(48376002)(50466002)(47776003)(53416004)(229853001)(50986999)(106466001)(46102003)(92566002)(33646002)(77096005)(15395725005)(36756003)(2351001)(6806004)(16796002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BL2PR05MB132;
-	H:P-EMF03-SAC.jnpr.net; FPR:; SPF:SoftFail; MLV:sfv; MX:1; A:1;
-	LANG:en; 
-X-Microsoft-Antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BL2PR05MB132;
-X-Microsoft-Antispam-PRVS: <BL2PR05MB132480DEBEF5DA6665B6306D5F40@BL2PR05MB132.namprd05.prod.outlook.com>
-X-Exchange-Antispam-Report-Test: UriScan:;
-X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
-	RULEID:(601004)(5002010)(5005006); SRVR:BL2PR05MB132; BCL:0;
-	PCL:0; RULEID:; SRVR:BL2PR05MB132; 
-X-Forefront-PRVS: 0532BF6DC2
-X-OriginatorOrg: juniper.net
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2015 07:34:02.2241 (UTC)
-X-MS-Exchange-CrossTenant-Id: bea78b3c-4cdb-4130-854a-1d193232e5f4
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bea78b3c-4cdb-4130-854a-1d193232e5f4;
-	Ip=[66.129.239.17]; Helo=[P-EMF03-SAC.jnpr.net]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL2PR05MB132
-Cc: enealinux@lists.enea.com
-Subject: [PATCH] Add makedumpfile utility
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.177 listed in list.dnswl.org]
+Received: from mail-pd0-f177.google.com (mail-pd0-f177.google.com
+	[209.85.192.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B70DE00854
+	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 01:17:08 -0700 (PDT)
+Received: by pdmh5 with SMTP id h5so870623pdm.3
+	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 01:17:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=yq3FBuLaARVnW51S3B+6VMpD9Kmn1pHrW/pYB+1pB0I=;
+	b=vwsVto6bfzdylsC625MhgKJ6QU7XGuslONJR9uT1VCpDmeIbl9RzAi+iDpAGk1rsXo
+	DzJ/hkg5kwUtpJnn3rThRavcVu3zHbprRooSUAKQ0beEn+c0d58NVB8VFnWqwwj73hW8
+	KcoBP5td95bWDhvJkoRY1gQNtntFYmDE02D24Lsjn0NJe07Qb696xDDyMvXrdmsPUHVy
+	YkqnO/2+zAeoMs8Qjcd0PLCD4q0gRBtnvUuFyQjvMaKXIfjKHcqqOQt8Pe1FfWnrxbX1
+	87HfcVXSlvR5p2VBSPc+zxwlQvh/HJIqxoOkqCxrGTgpIR1NcbWSt0Ub5w1EArqJ6WRJ
+	r+rw==
+X-Received: by 10.67.4.104 with SMTP id cd8mr66018489pad.116.1427789828661;
+	Tue, 31 Mar 2015 01:17:08 -0700 (PDT)
+Received: from ?IPv6:2601:9:3580:84c:5d29:da51:1fde:9224?
+	([2601:9:3580:84c:5d29:da51:1fde:9224])
+	by mx.google.com with ESMTPSA id
+	xz1sm13019474pbb.47.2015.03.31.01.17.06
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 31 Mar 2015 01:17:07 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2070.6\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <1427787459-22162-1-git-send-email-gshastri@juniper.net>
+Date: Tue, 31 Mar 2015 01:17:05 -0700
+Message-Id: <DAC35B91-2D66-4B86-913C-77A8AB9E5EF9@gmail.com>
+References: <1427787459-22162-1-git-send-email-gshastri@juniper.net>
+To: Gaurang Shastri <gshastri@juniper.net>
+X-Mailer: Apple Mail (2.2070.6)
+Cc: enealinux@lists.enea.com, yocto@yoctoproject.org
+Subject: Re: [PATCH] Add makedumpfile utility
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,43 +64,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 Mar 2015 08:07:37 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 31 Mar 2015 08:17:11 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-PR No : [https://bugzilla.yoctoproject.org/show_bug.cgi?id=7069]
 
-Signed-off-by: Gaurang Shastri <gshastri@juniper.net>
----
- .../recipes-cgl/makedumpfile/makedumpfile_1.5.0.bb |   19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
- create mode 100644 meta-cgl-common/recipes-cgl/makedumpfile/makedumpfile_1.5.0.bb
+> On Mar 31, 2015, at 12:37 AM, Gaurang Shastri <gshastri@juniper.net> wrote:
+> 
+> +do_install() {
+> +	install -d ${D}${bindir}/
+> +	install -c -m 755 ${S}/makedumpfile ${D}${bindir}/
+> +}
+> +
 
-diff --git a/meta-cgl-common/recipes-cgl/makedumpfile/makedumpfile_1.5.0.bb b/meta-cgl-common/recipes-cgl/makedumpfile/makedumpfile_1.5.0.bb
-new file mode 100644
-index 0000000..ce3027e
---- /dev/null
-+++ b/meta-cgl-common/recipes-cgl/makedumpfile/makedumpfile_1.5.0.bb
-@@ -0,0 +1,19 @@
-+DESCRIPTION = "Make dump file utility"
-+LICENSE = "GPLv2"
-+
-+LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
-+
-+SRC_URI = "http://sourceforge.net/projects/makedumpfile/files/makedumpfile/1.5.0/makedumpfile-${PV}.tar.gz;name=makedumpfile"
-+
-+SRC_URI[makedumpfile.md5sum] = "e22277d77752c71525a79eab148abf55"
-+SRC_URI[makedumpfile.sha256sum] = "8a771a22c6ba79dc505e55727f0cfd357ccb3c97defe21cefd5a67b64452fca7"
-+
-+DEPENDS = "zlib elfutils bzip2"
-+
-+EXTRA_OEMAKE = "TARGET=${TARGET_ARCH}"
-+
-+do_install() {
-+	install -d ${D}${bindir}/
-+	install -c -m 755 ${S}/makedumpfile ${D}${bindir}/
-+}
-+
--- 
-1.7.9.5
-
+make it a single line like below
+install -Dm 0755 ${S}/makedumpfile ${D}${bindir}/makedumpfile
 
