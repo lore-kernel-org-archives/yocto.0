@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 08A88E0059F; Tue, 31 Mar 2015 15:52:17 -0700 (PDT)
+	id 3408FE0059F; Tue, 31 Mar 2015 15:54:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,41 +8,40 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.44 listed in list.dnswl.org]
+	*      [74.125.82.41 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-wg0-f44.google.com (mail-wg0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 613D5E0049A
-	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 15:52:13 -0700 (PDT)
-Received: by wgra20 with SMTP id a20so35041203wgr.3
-	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 15:52:12 -0700 (PDT)
+Received: from mail-wg0-f41.google.com (mail-wg0-f41.google.com [74.125.82.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6272DE0049A
+	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 15:54:30 -0700 (PDT)
+Received: by wgoe14 with SMTP id e14so34878735wgo.0
+	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 15:54:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-type;
-	bh=3EGh3yIgRQrBsfgitLiKMBFQxDBrSA9q5Rmp4g7nUd8=;
-	b=O4eryCVsUnjBD6hEa+ze1mWlC8K9NWq6yYK/TgiE7CzjB2F1I45N3rq82rGDqi5OSt
-	uaOaz9jF+3lGhUTlxmzuJaQg8XGbj8cok5jaA2nC9ltqvSu3ryx1mJhNa62tqIHpEVWL
-	kyojH9O/3qA8GA0gX9JWeBNlwomFp0Onh2Fl9lj7KbWoDRZFV3AjjHJFknEh9OedYjSD
-	MrGEIBXAE2xRq9LK1z33KtFQJ86ucttSvQ6qlQQE84X8t9uVxwpfF0BAsHWjyQcRGcwh
-	SOM1WZUueqRB+FW9hxMZ4jZ+b7tiw/EEQjktXzDB3hfh3JLGH4Pfu35Sg4ojBEx/5RKM
-	i8Ag==
-X-Gm-Message-State: ALoCoQmXYb8NAd0tOYohGZ5RofaCF/OrddLumDwxozALACPJ4cwqJDoIb39J0Z+N+wqKzD5ar5ni
-X-Received: by 10.180.74.230 with SMTP id x6mr9437753wiv.58.1427842331955;
-	Tue, 31 Mar 2015 15:52:11 -0700 (PDT)
+	bh=2iVdkJ/uIhU/xkJAbMOo9VTJJhIn4lgQ/I2mCnmgJhE=;
+	b=C1uRzbJpnqkne2igIH22OELViOsQmY4B0Ex/QrPnY1XhN9RIN1xUTVxaXJB32wXpig
+	+QlwyXQx8xdgaHaORs/AwY1xyW8lPJRQ25JoEfbDtjQqhv/Gk760I4EsXO0ESrViAcfn
+	e3N/JBGTAWLHiE1ECnr5gbzroPpUFieIuVi8iX6N40ry0aycsqmcWimgeYxwYIqJzbiz
+	AfmbRGJoFEJa3L6MjClmtvkWrV/oSC+TfI/nzRgUCW44nWH8qy30xnu3bmg+GJw+QrQJ
+	cgoJ6vYRoxh2GmcIiaXAJVWgi48rugzpne722SBkbxDbut4FWYSEW69u7sm4FxIoJhLy
+	VggQ==
+X-Gm-Message-State: ALoCoQnRJ9Z1kMEDXu7ibo15WdhZJFl278bvSlPqnxRAb2rEPAi+85x2wM92JhgyjV7H+ar6YsBN
+X-Received: by 10.180.96.37 with SMTP id dp5mr9531009wib.41.1427842469486;
+	Tue, 31 Mar 2015 15:54:29 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.28.224.193 with HTTP; Tue, 31 Mar 2015 15:51:51 -0700 (PDT)
+Received: by 10.28.224.193 with HTTP; Tue, 31 Mar 2015 15:54:09 -0700 (PDT)
 X-Originating-IP: [89.136.6.31]
-In-Reply-To: <55196CC9.5050607@mlbassoc.com>
-References: <1427696400-3216-1-git-send-email-ouf_du_45@hotmail.com>
-	<55196CC9.5050607@mlbassoc.com>
+In-Reply-To: <CAH0sG7tjTfYY7Tx_Eb-seWTKWCHLWdCW4Hkx5vgi28KjSGK_1Q@mail.gmail.com>
+References: <CAH0sG7tjTfYY7Tx_Eb-seWTKWCHLWdCW4Hkx5vgi28KjSGK_1Q@mail.gmail.com>
 From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Wed, 1 Apr 2015 00:51:51 +0200
-Message-ID: <CAK18fxEqM=Wf0Thq1PWyTsC-KC-gjczouys2MqveA31P_BS-2A@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
+Date: Wed, 1 Apr 2015 00:54:09 +0200
+Message-ID: <CAK18fxGnm+iOxO8wr5qNrSJXC=wiUYX944FpdzRJFnpvZoHODg@mail.gmail.com>
+To: Tzy User <tzy13888@gmail.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] spitools : Add new package
+Subject: Re: [meta-raspberrypi] RaspberryPi B+, bitbake make killed, unfinished jobs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,124 +53,173 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 Mar 2015 22:52:17 -0000
-Content-Type: multipart/alternative; boundary=f46d0438957ffde7e905129d72dc
+X-List-Received-Date: Tue, 31 Mar 2015 22:54:35 -0000
+Content-Type: multipart/alternative; boundary=f46d0444815130775405129d7b4a
 
---f46d0438957ffde7e905129d72dc
+--f46d0444815130775405129d7b4a
 Content-Type: text/plain; charset=UTF-8
 
-Hello guys,
+Hello Tzy,
 
-On Mon, Mar 30, 2015 at 5:33 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+On Sun, Mar 29, 2015 at 6:59 AM, Tzy User <tzy13888@gmail.com> wrote:
 
-> On 2015-03-30 00:20, texierp wrote:
+> I am trying to build a new kernel for RaspberryPi model B+ with this
+> configuration:
 >
->> Signed-off-by: texierp <ouf_du_45@hotmail.com>
->> ---
->>   recipes-devtools/spitools/spitools_git.bb | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/recipes-devtools/spitools/spitools_git.bb
->> b/recipes-devtools/spitools/spitools_git.bb
->> index 287e3eb..128ad7f 100644
->> --- a/recipes-devtools/spitools/spitools_git.bb
->> +++ b/recipes-devtools/spitools/spitools_git.bb
->> @@ -1,5 +1,6 @@
->>   DESCRIPTION = "This package contains some simple command line tools to
->> help using Linux spidev devices"
->>   HOMEPAGE = "https://github.com/cpb-/spi-tools"
->> +AUTHOR = "Christophe BLAESS"
->>   LICENSE="GPLv2"
->>   LIC_FILES_CHKSUM = "file://LICENSE;md5=8c16666ae6c159876a0ba630996143
->> 81"
->>
->>
->>
-> The email subject line doesn't match what's happening in the patch.
-
-Also, why put this in meta-raspberrypi?  It probably makes more
-> sense to put it in meta-oe since it doesn't seem to be RaspberryPi
-> specific.
+> Build Configuration:
+> BB_VERSION        = "1.24.0"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "Debian-GNU-Linux-7"
+> TARGET_SYS        = "arm-poky-linux-gnueabi"
+> MACHINE           = "raspberrypi"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "1.7.1"
+> TUNE_FEATURES     = "arm armv6 vfp"
+> TARGET_FPU        = "vfp"
+> meta
+> meta-yocto
+> meta-yocto-bsp    = "dizzy-dev:82c843842854c7e2e87bf7762c3f9e83b3e2bf1b"
+> meta-raspberrypi  = "dizzy-dev:efd760d0a2c027fe20ed190c56f416d0a47d7c41"
 >
 >
-Gary has a fair point here. First of all this patch seems to fix the AUTHOR
-and I would rebase it into the initial one. On the other hand meta-oe
-should be the place where to submit it. I'm saying this because I don't see
-how is this rpi specific.
+> The make gets killed, then waiting for unfinished jobs...
+> .
+> /bin/bash
+> /mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/gcc-4.9.1-r0/gcc-4.9.1/gcc/../move-if-change
+> tmp-opinit.c insn-opinit.c
+> echo timestamp > s-opinit
+> build/genautomata
+>
+> /mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/gcc-4.9.1-r0/gcc-4.9.1/gcc/config/arm/
+> arm.md
+> \
+>  insn-conditions.md > tmp-automata.c
+> /bin/bash: line 1: 16677 Killed                  build/genautomata
+>
+> /mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/gcc-4.9.1-r0/gcc-4.9.1/gcc/config/arm/
+> arm.md
+> insn-conditions.md > tmp-automata.c
+> make[1]: *** [s-automata] Error 137
+> make[1]: *** Waiting for unfinished jobs....
+> /bin/bash
+> /mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/gcc-4.9.1-r0/gcc-4.9.1/gcc/../move-if-change
+> tmp-attrtab.c    insn-attrtab.c
+> /bin/bash
+> /mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/gcc-4.9.1-r0/gcc-4.9.1/gcc/../move-if-change
+> tmp-dfatab.c     insn-dfatab.c
+> /bin/bash
+> /mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/gcc-4.9.1-r0/gcc-4.9.1/gcc/../move-if-change
+> tmp-latencytab.c insn-latencytab.c
+> echo timestamp > s-attrtab
+> rm gcc.pod
+> make[1]: Leaving directory
+>
+> `/mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work/x86_64-poky-linux-gnueabi/gcc-cross-arm/4.9.1-r0/gcc-4.9.1/build.x86_64-linux.arm-poky-linux-gnueabi/gcc'
+> make: *** [all-gcc] Error 2
+> ERROR: oe_runmake failed
+> WARNING: exit code 1 from a shell command.
+> ERROR: Function failed: do_compile (log file is located at
+>
+> /mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work/x86_64-poky-linux-gnueabi/gcc-cross-arm/4.9.1-r0/temp/log.do_compile.15332)
+>
 
-Thanks,
+This is indeed strange. Can you test and see if other kernel providers get
+compiled? For example one for a qemuarm machine.
 
 -- 
 *Andrei Gherzan*
 *e: **andrei@gherzan.ro <andrei@gherzan.ro>*
 *w: *www.gherzan.ro
 
---f46d0438957ffde7e905129d72dc
+--f46d0444815130775405129d7b4a
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello guys,<br><div class=3D"gmail_extra"><br><div class=
-=3D"gmail_quote">On Mon, Mar 30, 2015 at 5:33 PM, Gary Thomas <span dir=3D"=
-ltr">&lt;<a href=3D"mailto:gary@mlbassoc.com" target=3D"_blank">gary@mlbass=
-oc.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,20=
-4,204);border-left-style:solid;padding-left:1ex"><span class=3D"">On 2015-0=
-3-30 00:20, texierp wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">
-Signed-off-by: texierp &lt;<a href=3D"mailto:ouf_du_45@hotmail.com" target=
-=3D"_blank">ouf_du_45@hotmail.com</a>&gt;<br>
----<br>
-=C2=A0 recipes-devtools/spitools/<a href=3D"http://spitools_git.bb" target=
-=3D"_blank">spit<u></u>ools_git.bb</a> | 1 +<br>
-=C2=A0 1 file changed, 1 insertion(+)<br>
+<div dir=3D"ltr">Hello Tzy,<br><div class=3D"gmail_extra"><br><div class=3D=
+"gmail_quote">On Sun, Mar 29, 2015 at 6:59 AM, Tzy User <span dir=3D"ltr">&=
+lt;<a href=3D"mailto:tzy13888@gmail.com" target=3D"_blank">tzy13888@gmail.c=
+om</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">I am trying to b=
+uild a new kernel for RaspberryPi model B+ with this<br>
+configuration:<br>
 <br>
-diff --git a/recipes-devtools/spitools/<a href=3D"http://spitools_git.bb" t=
-arget=3D"_blank">sp<u></u>itools_git.bb</a> b/recipes-devtools/spitools/<a =
-href=3D"http://spitools_git.bb" target=3D"_blank">sp<u></u>itools_git.bb</a=
-><br>
-index 287e3eb..128ad7f 100644<br>
---- a/recipes-devtools/spitools/<a href=3D"http://spitools_git.bb" target=
-=3D"_blank">sp<u></u>itools_git.bb</a><br>
-+++ b/recipes-devtools/spitools/<a href=3D"http://spitools_git.bb" target=
-=3D"_blank">sp<u></u>itools_git.bb</a><br>
-@@ -1,5 +1,6 @@<br>
-=C2=A0 DESCRIPTION =3D &quot;This package contains some simple command line=
- tools to help using Linux spidev devices&quot;<br>
-=C2=A0 HOMEPAGE =3D &quot;<a href=3D"https://github.com/cpb-/spi-tools" tar=
-get=3D"_blank">https://github.com/cpb-/spi-<u></u>tools</a>&quot;<br>
-+AUTHOR =3D &quot;Christophe BLAESS&quot;<br>
-=C2=A0 LICENSE=3D&quot;GPLv2&quot;<br>
-=C2=A0 LIC_FILES_CHKSUM =3D &quot;file://LICENSE;md5=3D<u></u>8c16666ae6c15=
-9876a0ba630996143<u></u>81&quot;<br>
+Build Configuration:<br>
+BB_VERSION=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;1.24.0&quot;<br>
+BUILD_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;x86_64-linux&quot;<br>
+NATIVELSBSTRING=C2=A0 =C2=A0=3D &quot;Debian-GNU-Linux-7&quot;<br>
+TARGET_SYS=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;arm-poky-linux-gnueabi&quot=
+;<br>
+MACHINE=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;raspberrypi&quot;=
+<br>
+DISTRO=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;poky&quot;<br>
+DISTRO_VERSION=C2=A0 =C2=A0 =3D &quot;1.7.1&quot;<br>
+TUNE_FEATURES=C2=A0 =C2=A0 =C2=A0=3D &quot;arm armv6 vfp&quot;<br>
+TARGET_FPU=C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;vfp&quot;<br>
+meta<br>
+meta-yocto<br>
+meta-yocto-bsp=C2=A0 =C2=A0 =3D &quot;dizzy-dev:82c843842854c7e2e87bf7762c3=
+f9e83b3e2bf1b&quot;<br>
+meta-raspberrypi=C2=A0 =3D &quot;dizzy-dev:efd760d0a2c027fe20ed190c56f416d0=
+a47d7c41&quot;<br>
 <br>
 <br>
-</blockquote>
-<br></span>
-The email subject line doesn&#39;t match what&#39;s happening in the patch.=
-</blockquote><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-=
-style:solid;padding-left:1ex">
-Also, why put this in meta-raspberrypi?=C2=A0 It probably makes more<br>
-sense to put it in meta-oe since it doesn&#39;t seem to be RaspberryPi<br>
-specific.<span class=3D""><font color=3D"#888888"><br>
-<br></font></span></blockquote><div><br></div><div>Gary has a fair point he=
-re. First of all this patch seems to fix the AUTHOR and I would rebase it i=
-nto the initial one. On the other hand meta-oe should be the place where to=
- submit it. I&#39;m saying this because I don&#39;t see how is this rpi spe=
-cific.<br></div><div><br></div><div>Thanks,</div></div><div><br></div>-- <b=
-r><div class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><di=
-v style=3D"text-align:center"></div><div style=3D"text-align:center"><div a=
-lign=3D"left"><b style=3D"font-family:Arial;font-size:small;color:rgb(51,51=
-,51);text-align:center">Andrei Gherzan</b><br></div><div align=3D"left"><b =
-style=3D"font-family:Arial;font-size:small;color:rgb(51,51,51);text-align:c=
-enter">e: </b><span style=3D"font-family:Arial;font-size:small;color:rgb(51=
-,51,51);text-align:center"><i><a href=3D"mailto:andrei@gherzan.ro" target=
-=3D"_blank">andrei@gherzan.ro</a></i></span></div><div align=3D"left"><span=
- style=3D"font-family:Arial;font-size:small;color:rgb(51,51,51);text-align:=
-center"><i><b>w:</b> </i><a href=3D"http://www.gherzan.ro" target=3D"_blank=
-">www.gherzan.ro</a></span></div></div></div></div></div></div>
+The make gets killed, then waiting for unfinished jobs...<br>
+.<br>
+/bin/bash /mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/g=
+cc-4.9.1-r0/gcc-4.9.1/gcc/../move-if-change<br>
+tmp-opinit.c insn-opinit.c<br>
+echo timestamp &gt; s-opinit<br>
+build/genautomata<br>
+/mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/gcc-4.9.1-r=
+0/gcc-4.9.1/gcc/config/arm/<a href=3D"http://arm.md" target=3D"_blank">arm.=
+md</a><br>
+\<br>
+=C2=A0<a href=3D"http://insn-conditions.md" target=3D"_blank">insn-conditio=
+ns.md</a> &gt; tmp-automata.c<br>
+/bin/bash: line 1: 16677 Killed=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 build/genautomata<br>
+/mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/gcc-4.9.1-r=
+0/gcc-4.9.1/gcc/config/arm/<a href=3D"http://arm.md" target=3D"_blank">arm.=
+md</a><br>
+<a href=3D"http://insn-conditions.md" target=3D"_blank">insn-conditions.md<=
+/a> &gt; tmp-automata.c<br>
+make[1]: *** [s-automata] Error 137<br>
+make[1]: *** Waiting for unfinished jobs....<br>
+/bin/bash /mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/g=
+cc-4.9.1-r0/gcc-4.9.1/gcc/../move-if-change<br>
+tmp-attrtab.c=C2=A0 =C2=A0 insn-attrtab.c<br>
+/bin/bash /mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/g=
+cc-4.9.1-r0/gcc-4.9.1/gcc/../move-if-change<br>
+tmp-dfatab.c=C2=A0 =C2=A0 =C2=A0insn-dfatab.c<br>
+/bin/bash /mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work-shared/g=
+cc-4.9.1-r0/gcc-4.9.1/gcc/../move-if-change<br>
+tmp-latencytab.c insn-latencytab.c<br>
+echo timestamp &gt; s-attrtab<br>
+rm gcc.pod<br>
+make[1]: Leaving directory<br>
+`/mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work/x86_64-poky-linux=
+-gnueabi/gcc-cross-arm/4.9.1-r0/gcc-4.9.1/build.x86_64-linux.arm-poky-linux=
+-gnueabi/gcc&#39;<br>
+make: *** [all-gcc] Error 2<br>
+ERROR: oe_runmake failed<br>
+WARNING: exit code 1 from a shell command.<br>
+ERROR: Function failed: do_compile (log file is located at<br>
+/mnt/sdb1/projects/yocto/build/raspberrypi-3.18/tmp/work/x86_64-poky-linux-=
+gnueabi/gcc-cross-arm/4.9.1-r0/temp/log.do_compile.15332)<br></blockquote><=
+div><br></div><div>This is indeed strange. Can you test and see if other ke=
+rnel providers get compiled? For example one for a qemuarm machine.=C2=A0</=
+div><div>=C2=A0</div></div>-- <br><div class=3D"gmail_signature"><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><div style=3D"text-align:center"></div><div =
+style=3D"text-align:center"><div align=3D"left"><b style=3D"font-family:Ari=
+al;font-size:small;color:rgb(51,51,51);text-align:center">Andrei Gherzan</b=
+><br></div><div align=3D"left"><b style=3D"font-family:Arial;font-size:smal=
+l;color:rgb(51,51,51);text-align:center">e: </b><span style=3D"font-family:=
+Arial;font-size:small;color:rgb(51,51,51);text-align:center"><i><a href=3D"=
+mailto:andrei@gherzan.ro" target=3D"_blank">andrei@gherzan.ro</a></i></span=
+></div><div align=3D"left"><span style=3D"font-family:Arial;font-size:small=
+;color:rgb(51,51,51);text-align:center"><i><b>w:</b> </i><a href=3D"http://=
+www.gherzan.ro" target=3D"_blank">www.gherzan.ro</a></span></div></div></di=
+v></div></div></div>
 </div></div>
 
---f46d0438957ffde7e905129d72dc--
+--f46d0444815130775405129d7b4a--
