@@ -1,46 +1,40 @@
-Return-Path: <erik.boto@pelagicore.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6E4B0E0056E; Tue, 31 Mar 2015 11:51:40 -0700 (PDT)
+	id 8DCC7E0059F; Tue, 31 Mar 2015 12:01:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.169 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-qc0-f169.google.com (mail-qc0-f169.google.com
-	[209.85.216.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4051FE003A8
-	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 11:51:36 -0700 (PDT)
-Received: by qcgx3 with SMTP id x3so21887220qcg.3
-	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 11:51:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=j4spUcb09txnG3fPzXw6tb/cJJGpF/A/gW81nyifQMY=;
-	b=YTXDXQyV6EaVj0/QQVNuols1tZ8gc0LOkr70JeNpArLZ188tdXVooXJxQfjTKCqmq5
-	w/IljE8JAy8uxUttV4kvtxqubTjcYgJsVCsNNe+YfLk8Y8NOd4xjNSebjlRXiWP6cHoV
-	TtDt91MbtGIPb4wlJ2YkADPhcj/KCWVy2XCY0k/KqV1D0zNrY32cQlGMMmXILDI+5mvo
-	5X7aTAH1qMp5pMbBbp5SieDOXyLUpZKAnITh0SKcqhdgikNE8dlaoZne6dSdTtd9SfNG
-	X+nPTY7pSSB57HabEMo9LZNGBb3c6HJdIfvyNy2uprgltu6crSBlK5A7QtvuU6AB7ljV
-	2k8g==
-X-Gm-Message-State: ALoCoQk14EQebkrRN+yfsbNztBCUanFYe1epdwZgNO75RltttokVTMv5hA3VZGKB1aIi1iEnKPHz
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC76FE003A8
+	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 12:01:54 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.9/8.14.9) with ESMTP id t2VJ1n4J018325
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 31 Mar 2015 12:01:49 -0700 (PDT)
+Received: from Marks-MacBook-Pro.local (172.25.36.228) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.224.2; Tue, 31 Mar 2015 12:01:49 -0700
+Message-ID: <551AEF1C.3020503@windriver.com>
+Date: Tue, 31 Mar 2015 14:01:48 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-X-Received: by 10.140.238.79 with SMTP id j76mr51802318qhc.83.1427827895612;
-	Tue, 31 Mar 2015 11:51:35 -0700 (PDT)
-Received: by 10.96.184.133 with HTTP; Tue, 31 Mar 2015 11:51:35 -0700 (PDT)
-In-Reply-To: <20150325105909.BF720E00954@yocto-www.yoctoproject.org>
-References: <20150325105909.BF720E00954@yocto-www.yoctoproject.org>
-Date: Tue, 31 Mar 2015 20:51:35 +0200
-Message-ID: <CA+AhUGwpMkfmLnPpYWWtBjJGeKN_E7SgL8h+-B0aZB97kohMVQ@mail.gmail.com>
-From: =?UTF-8?Q?Erik_Bot=C3=B6?= <erik.boto@pelagicore.com>
-To: Gerhard de Clercq <gerhard@declercqsystems.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto menuconfig not working
+To: Khem Raj <raj.khem@gmail.com>, <maninder1.s@samsung.com>
+References: <DA.DC.15273.6011A155@epcpsbgx1.samsung.com>
+	<DE4997FE-04B3-4173-9552-D65661C62878@gmail.com>
+In-Reply-To: <DE4997FE-04B3-4173-9552-D65661C62878@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [prelink-cross] [PATCH 1/1] Remove extra check for ld-linux.so.3 in strcmp
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,47 +46,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 Mar 2015 18:51:40 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 31 Mar 2015 19:01:56 -0000
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
 
-Hi,
+Hmm, I never saw the original email (or thread).
 
-Does devshell work for any package? If not, try setting an explicit
-OE_TERMINAL in local.conf, e.g. OE_TERMINAL = "screen".
+What is the context for this, simply that there are multiple ld-linux.do.3 in
+the same check and remove one or the other is more efficient?
 
-See http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-OE_TERMINAL
-for details.
+(I suspect it will be optimized out, but I can make the change quickly enough.)
 
-Cheers,
-Erik
+--Mark
 
-On Wed, Mar 25, 2015 at 11:34 AM, Gerhard de Clercq
-<gerhard@declercqsystems.com> wrote:
-> For some reason the menuconfig menu does not come up when I try launching it
-> from my Yocto installation. I am using the Toradex Yocto 1.6 system as is
-> described here
-> http://developer.toradex.com/software-resources/arm-family/linux/board-support-package/openembedded-%28core%29,
-> with my board set to "apalis-t30". When I run either bitbake virtual/kernal
-> -c menuconfig or bitbake linux-toradex -c menuconfig, it executes fine but
-> finishes (without erros) before actually showing anything. Running devshell
-> also gives the same results.
->
-> If I just use the kernel sources on their own as is described here
-> http://developer.toradex.com/software-resources/arm-family/linux/board-support-package/build-u-boot-and-linux-kernel-from-source-code,
-> I can get menuconfig open using make nconfig. From the Yocto scripts it
-> appears as if though the exact same kernel sources are being used. If I try
-> adding adding make nconfig to the do_configure_prepend script in the
-> linux-toradex_git.bb file then the commands get stuck stating that the
-> process (I assume menuconfig) is running and then provides a PID for it, but
-> no window or menu is displayed anywhere and the task does not seem to
-> finish.
->
-> PS. I am on Fedora 21 64-bit.
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+On 3/31/15 1:01 PM, Khem Raj wrote:
+> 
+>> On Mar 30, 2015, at 8:14 PM, Maninder Singh <maninder1.s@samsung.com
+>> <mailto:maninder1.s@samsung.com>> wrote:
+>>
+>> Hi,
+>>
+>>
+>> From 05ab779af24baef957972aa1d2a9e9d29212cc4c Mon Sep 17 00:00:00 2001
+>> From: Maninder Singh <maninder1.s@samsung.com <mailto:maninder1.s@samsung.com>>
+>> Date: Thu, 19 Mar 2015 03:02:59 +0530
+>> Subject: [PATCH 1/1] Remove extra check for ld-linux.so.3 in strcmp
+>>   
+>> if (! strcmp (soname, "ld-linux.so.2")
+>>       || ! strcmp (soname, "ld-linux.so.3")  ------------------------>
+>>       || ! strcmp (soname, "ld.so.1")
+>>       || ! strcmp (soname, "ld-linux-ia64.so.2")
+>>       || ! strcmp (soname, "ld-linux-x86-64.so.2")
+>>       || ! strcmp (soname, "ld64.so.1")
+>>       || ! strcmp (soname, "ld-linux.so.3") --------------------------->
+>> redundant code
+>>       || ! strcmp (soname, "ld-linux-armhf.so.3"))
+>>
+>> Signed-off-by: Maninder Singh 
+>>
+> 
+> use First Last <your@email>
+> 
+>> ---
+>> src/get.c |    1 -
+>> 1 files changed, 0 insertions(+), 1 deletions(-)
+>> diff --git a/src/get.c b/src/get.c
+>> index 6a63f02..a34668a 100644
+>> --- a/src/get.c
+>> +++ b/src/get.c
+>> @@ -35,7 +35,6 @@ is_ldso_soname (const char *soname)
+>>        || ! strcmp (soname, "ld-linux-ia64.so.2")
+>>        || ! strcmp (soname, "ld-linux-x86-64.so.2")
+>>        || ! strcmp (soname, "ld64.so.1")
+>> -      || ! strcmp (soname, "ld-linux.so.3")
+>>        || ! strcmp (soname, "ld-linux-armhf.so.3"))
+>>      return 1;
+>>    return 0;
+>> -- 
+>> 1.7.1
+>>
+>>
+>> Thanks and Regards,
+>> Maninder Singh
+>>
+>> <201503310844012_QKNMBDIF.gif>
+>>
+>> -- 
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>> https://lists.yoctoproject.org/listinfo/yocto
+> 
+
 
