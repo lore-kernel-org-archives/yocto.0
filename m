@@ -1,45 +1,55 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC3AAE0059F; Tue, 31 Mar 2015 13:57:22 -0700 (PDT)
+	id ECAB3E0059F; Tue, 31 Mar 2015 14:16:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.49 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qg0-f49.google.com (mail-qg0-f49.google.com
-	[209.85.192.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D952E003A8
-	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 13:57:17 -0700 (PDT)
-Received: by qgh3 with SMTP id 3so26262884qgh.2
-	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 13:57:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=PZqfdLznB0CKt73pldtOvN6o0IMUQOEJ6E+9NJF6xRw=;
-	b=JYnkEfifxGFJNYvk5bd45Ozg7xF4i3dtyx0/nj1l3yMhSJI88YtLtlksUd23B9L76D
-	/S93aCQTCxntMJudmxGkPxAorFeD+6h5zW2w8gPLkDJmwa7waIqmpv5Xd5U8S0Akqa4H
-	Em01giU9N2jqfWX4AZF2NvZrTwIedFxtxn8ebh+dt8LGzRaYTtybkz7Fxp6ZQbvC6NGQ
-	s8K1Y9oJG1OvotJ/9gMRqrRC4MbnjcYHhWeNb9cB0jpTeD69cwbB7PlKkmy3l0o8YTaE
-	DUhYvFkZdiEiYmvWV9N43kje+M2NKbAkRE9adZQYGgSsBDogFq18NnMy3qVbpZGYf2NU
-	Rgkw==
-X-Gm-Message-State: ALoCoQkNZ+CjTsI2R+TaliwY1W/4rHxAKmh93a4Lr6BIJWwSLKBfNiW0jned+lQLEaq2yMq/ppi2
-X-Received: by 10.229.122.70 with SMTP id k6mr36422645qcr.27.1427835436610;
-	Tue, 31 Mar 2015 13:57:16 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.140.102.203 with HTTP; Tue, 31 Mar 2015 13:56:56 -0700 (PDT)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f53.google.com (mail-pa0-f53.google.com
+	[209.85.220.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 520B8E003A8
+	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 14:16:25 -0700 (PDT)
+Received: by pactp5 with SMTP id tp5so30987600pac.1
+	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 14:16:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=2k+xFs0GOdZDJ80OGVapz6g2/0Up+xZBLsiNVu9A7ds=;
+	b=DFkNiAxjWdXsmKdELevZHyPk7nPcoqjKnRdfH07vwolIRpI4SJDpCSh6l5QXgIIpD+
+	WwgvAIpsmcdnfaj516FOd5lDe8lPw2SWS/X7oHaoduMjOthXB3HmBBGq3J6vzm3VMFxE
+	okKfLpA9OnL8iVLsBZBz7ej9k5NhMQ9SLqNciFOojBmphXMDLKnjdgeP/WoMbEWkmhNe
+	pu9AEZphZtw9OUF+S3rhWUrJqxQzp6Cy6Wk9zODlc/QGWrkLfNMj2TZTMhNsv1Zhub1P
+	wGgFSJUJtziEkP5XRSSoW2AJzKKdeRVzt7SP1N1WWsw0zYN2qNIqJ6rDzG3Mj0dZGPh5
+	aN2A==
+X-Received: by 10.68.226.161 with SMTP id rt1mr70528618pbc.101.1427836585619; 
+	Tue, 31 Mar 2015 14:16:25 -0700 (PDT)
+Received: from ?IPv6:2601:9:500:ece:a8d0:5a8e:b265:dcbf?
+	([2601:9:500:ece:a8d0:5a8e:b265:dcbf])
+	by mx.google.com with ESMTPSA id t8sm1857256pbs.59.2015.03.31.14.16.24
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 31 Mar 2015 14:16:24 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2070.6\))
+From: Khem Raj <raj.khem@gmail.com>
 In-Reply-To: <alpine.LFD.2.11.1503311547440.7527@localhost>
+Date: Tue, 31 Mar 2015 14:16:23 -0700
+Message-Id: <8AC664C9-4035-4A3C-9AD2-A9D442C6E6EF@gmail.com>
 References: <alpine.LFD.2.11.1503311547440.7527@localhost>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 31 Mar 2015 21:56:56 +0100
-Message-ID: <CAJTo0LaCy8iqppguUhU0Vb_nEFOpCyNtJFs9QBZ_pZf63cLhkQ@mail.gmail.com>
 To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-Mailer: Apple Mail (2.2070.6)
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: what is the proper way to build with fedora rawhide/gcc-5.0?
 X-BeenThere: yocto@yoctoproject.org
@@ -53,37 +63,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 Mar 2015 20:57:22 -0000
-Content-Type: multipart/alternative; boundary=001a1134a38eff61c505129bd7f6
-
---001a1134a38eff61c505129bd7f6
-Content-Type: text/plain; charset=UTF-8
-
-On 31 March 2015 at 20:54, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
-
->   in any event, is there a *preferred* way to build using fedora
-> rawide at this point?
->
-
-Blimey, gcc 5 looks like a barrel of laughs.  Is installing gcc 4.x
-alongside 5.0 possible, and then set BUILD_CC etc?
-
-Ross
-
---001a1134a38eff61c505129bd7f6
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Tue, 31 Mar 2015 21:16:30 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 31 March 2015 at 20:54, Robert P. J. Day <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:rpjday@crashcourse.ca" target=3D"_blank">rpjday@crashcourse.ca</=
-a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
- 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":25p" cla=
-ss=3D"a3s" style=3D"overflow:hidden">=C2=A0 in any event, is there a *prefe=
-rred* way to build using fedora<br>
-rawide at this point?<br></div></blockquote></div><br>Blimey, gcc 5 looks l=
-ike a barrel of laughs.=C2=A0 Is installing gcc 4.x alongside 5.0 possible,=
- and then set BUILD_CC etc?</div><div class=3D"gmail_extra"><br></div><div =
-class=3D"gmail_extra">Ross</div></div>
 
---001a1134a38eff61c505129bd7f6--
+> On Mar 31, 2015, at 12:54 PM, Robert P. J. Day <rpjday@crashcourse.ca> =
+wrote:
+>=20
+>=20
+>  i asked about this a few weeks ago, finally getting back to it ...
+> for better or worse, i'm running fedora rawhide, updated to the point
+> where i have gcc-5.0.0:
+>=20
+> $ gcc --version
+> gcc (GCC) 5.0.0 20150208 (Red Hat 5.0.0-0.10)
+> Copyright (C) 2015 Free Software Foundation, Inc.
+> This is free software; see the source for copying conditions.  There =
+is NO
+> warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR =
+PURPOSE.
+> $
+>=20
+> which causes a number of build issues trying to build for something as
+> simple as qemux86.
+>=20
+>  first, there is a linemarkers issue with gcc-5.0 that i got around
+> by adding to local.conf:
+>=20
+>  CPPFLAGS_append=3D " -P=E2=80=9D
+
+This should not be required. Can you post the failing package with error =
+details
+it should be fixed.
+
+>=20
+> and there were two native build issues due to gcc-5.0 being far
+> pickier with warnings that i sidestepped with the cheap hack:
+>=20
+>  ASSUME_PROVIDED +=3D "elfutils-native"
+>  ASSUME_PROVIDED +=3D "binutils-native=E2=80=9D
+
+There is 2.25 update available on my contrib tree.
+http://git.openembedded.org/openembedded-core-contrib/log/?h=3Dkraj/master=
+
+should help with binutils.
+
+>=20
+> at this point, the build was almost complete when i hit another
+> compile error for udev on the target:
+>=20
+> DEBUG: SITE files ['endian-little', 'bit-32', 'ix86-common',
+> 'common-linux', 'common-glibc', 'i586-linux', 'common']
+> DEBUG: Executing shell function do_compile
+> NOTE: make -j 8
+> make: *** No rule to make target '/linux/input.h', needed by
+> 'src/keymap/keys.txt'.  Stop.
+
+that seems to be unrelated to gcc 5.0 on host. May be you have a =
+different issue there.
+
+> ERROR: oe_runmake failed
+> WARNING:
+> =
+/home/rpjday/oe/builds/qemux86/tmp/work/i586-poky-linux/udev/182-r9/temp/r=
+un.do_compile.30377:1
+> exit 1 from
+>  exit 1
+> ERROR: Function failed: do_compile (log file is located at
+> =
+/home/rpjday/oe/builds/qemux86/tmp/work/i586-poky-linux/udev/182-r9/temp/l=
+og.do_compile.30377)
+>=20
+>  in any event, is there a *preferred* way to build using fedora
+> rawide at this point?
+
+I think people will care when fedora 22 comes out later this summer or =
+may be when they have beta=E2=80=99s coming out.
+
+>=20
+> rday
+>=20
+> --=20
+>=20
+> =
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> Robert P. J. Day                                 Ottawa, Ontario, =
+CANADA
+>                        http://crashcourse.ca
+>=20
+> Twitter:                                       =
+http://twitter.com/rpjday
+> LinkedIn:                               =
+http://ca.linkedin.com/in/rpjday
+> =
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=20
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
