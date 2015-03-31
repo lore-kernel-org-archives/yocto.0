@@ -1,48 +1,42 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E33AE006E9; Tue, 31 Mar 2015 14:26:24 -0700 (PDT)
+	id 2BA1EE0059F; Tue, 31 Mar 2015 14:41:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.170 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qc0-f170.google.com (mail-qc0-f170.google.com
-	[209.85.216.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C49BE0056E
-	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 14:26:22 -0700 (PDT)
-Received: by qcgx3 with SMTP id x3so25724545qcg.3
-	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 14:26:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=Grv0iv8kAEThdiEy+PFbTuuIIyDd6L8pmLc1X2fc7kk=;
-	b=N85WeBJ8zQfRAYSInHb3nuWzMGcs6Ga88yLSN3URgevzu9nrSdrBLn/bbzQhYxZNYI
-	ddtsZuW8fY9puty2L1I1ZHALw1PQj1pgPqvjkIlCpH1FgDxiAGuOcN4M+5uMApEfZpyU
-	/jusyLJYnn4rcWnSUMdG1kZvcgYzqoN20WZqceV/1FVixbnzLh40jjdJyoO7Kfc9V4+R
-	G8c1CdjQTVojRJ70LCRjThl1DW2QYeoRHvje8tU+xEiAclRFijpUeCkT/G35bZ/Nj5bQ
-	MK5d8FUcqWRgX/AS0FwU7DEJ1x1bb49RGCe5tAs3VtzJ++y2LkYE3ogrFNNfRbZ4cZux
-	inkA==
-X-Gm-Message-State: ALoCoQn9fY8/Dtcjoj4YnvG4yPlT1uRlfHe6n/1o5oIvw6bScKqL0EnIBrkctPc6hchkETzaNK10
-X-Received: by 10.55.31.10 with SMTP id f10mr83591087qkf.58.1427837182112;
-	Tue, 31 Mar 2015 14:26:22 -0700 (PDT)
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89F89E0049A
+	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 14:41:46 -0700 (PDT)
+Received: from [99.240.204.5] (port=51088 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Yd3v2-0002T5-IO; Tue, 31 Mar 2015 17:41:56 -0400
+Date: Tue, 31 Mar 2015 17:41:42 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <8AC664C9-4035-4A3C-9AD2-A9D442C6E6EF@gmail.com>
+Message-ID: <alpine.LFD.2.11.1503311738540.30125@localhost>
+References: <alpine.LFD.2.11.1503311547440.7527@localhost>
+	<8AC664C9-4035-4A3C-9AD2-A9D442C6E6EF@gmail.com>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-Received: by 10.140.102.203 with HTTP; Tue, 31 Mar 2015 14:26:01 -0700 (PDT)
-In-Reply-To: <551ABE39.5050503@gmail.com>
-References: <551ABE39.5050503@gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 31 Mar 2015 22:26:01 +0100
-Message-ID: <CAJTo0LbL4oNgV3iynum07uGjo0m5DGJMfsjmSq_GEhAgyze++A@mail.gmail.com>
-To: akuster808 <akuster808@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	OE-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] package update staging
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: what is the proper way to build with fedora rawhide/gcc-5.0?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,36 +48,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 31 Mar 2015 21:26:24 -0000
-Content-Type: multipart/alternative; boundary=001a1147ebda0980eb05129c40c0
+X-List-Received-Date: Tue, 31 Mar 2015 21:41:51 -0000
+Content-Type: MULTIPART/MIXED; BOUNDARY="8323328-1632502581-1427838105=:30125"
 
---001a1147ebda0980eb05129c40c0
-Content-Type: text/plain; charset=UTF-8
+--8323328-1632502581-1427838105=:30125
+Content-Type: TEXT/PLAIN; charset=utf-8
+Content-Transfer-Encoding: 8BIT
 
-On 31 March 2015 at 16:33, akuster808 <akuster808@gmail.com> wrote:
+On Tue, 31 Mar 2015, Khem Raj wrote:
 
-> now that fido is nearing, what is the best method for staging package
-> updates meant for oe-core?
+> > On Mar 31, 2015, at 12:54 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+> >
+> >
+> >  i asked about this a few weeks ago, finally getting back to it ...
+> > for better or worse, i'm running fedora rawhide, updated to the point
+> > where i have gcc-5.0.0:
+> >
+> > $ gcc --version
+> > gcc (GCC) 5.0.0 20150208 (Red Hat 5.0.0-0.10)
+> > Copyright (C) 2015 Free Software Foundation, Inc.
+> > This is free software; see the source for copying conditions.  There is NO
+> > warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+> > $
+> >
+> > which causes a number of build issues trying to build for something as
+> > simple as qemux86.
+> >
+> >  first, there is a linemarkers issue with gcc-5.0 that i got around
+> > by adding to local.conf:
+> >
+> >  CPPFLAGS_append= " -P”
 >
+> This should not be required. Can you post the failing package with
+> error details it should be fixed.
 
-Send patches now if you wish, both me and Richard have started collating
-patches that are good for master.
+  for people not sure what i'm talking about, this issue was
+identified back in feb at red hat:
 
-Ross
+https://lists.fedoraproject.org/pipermail/devel/2015-February/207549.html
 
---001a1147ebda0980eb05129c40c0
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+the package that initially tripped me up was ncurses-native, and
+ncurses is indeed mentioned in that lengthy list of packages.
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 31 March 2015 at 16:33, akuster808 <span dir=3D"ltr">&lt;<a href=3D"mail=
-to:akuster808@gmail.com" target=3D"_blank">akuster808@gmail.com</a>&gt;</sp=
-an> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
-border-left:1px #ccc solid;padding-left:1ex"><div id=3D":1dw" class=3D"a3s"=
- style=3D"overflow:hidden">now that fido is nearing, what is the best metho=
-d for staging package updates meant for oe-core?<br></div></blockquote></di=
-v><br>Send patches now if you wish, both me and Richard have started collat=
-ing patches that are good for master.</div><div class=3D"gmail_extra"><br><=
-/div><div class=3D"gmail_extra">Ross</div></div>
+  i can try another build without "-P" and note the packages that fail
+if that's useful, although i assume anyone else can trivially do the
+same thing.
 
---001a1147ebda0980eb05129c40c0--
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
+--8323328-1632502581-1427838105=:30125--
