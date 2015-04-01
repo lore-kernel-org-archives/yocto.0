@@ -1,6 +1,6 @@
 Return-Path: <maninder1.s@samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34716E006E9; Tue, 31 Mar 2015 21:41:49 -0700 (PDT)
+	id 7F78EE006E9; Tue, 31 Mar 2015 21:52:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,34 +8,34 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00, MIME_BASE64_BLANKS,
 	RCVD_IN_DNSWL_HI,SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [203.254.224.34 listed in list.dnswl.org]
+	*      [203.254.224.24 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 MIME_BASE64_BLANKS RAW: Extra blank lines in base64 encoding
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA8CAE0056E
-	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 21:41:43 -0700 (PDT)
-Received: from epcpsbgr3.samsung.com
-	(u143.gpu120.samsung.co.kr [203.254.230.143])
-	by mailout4.samsung.com (Oracle Communications Messaging Server
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02724E0056E
+	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 21:52:53 -0700 (PDT)
+Received: from epcpsbgr1.samsung.com
+	(u141.gpu120.samsung.co.kr [203.254.230.141])
+	by mailout1.samsung.com (Oracle Communications Messaging Server
 	7.0.5.31.0 64bit (built May  5 2014))
-	with ESMTP id <0NM400C3N2DGRI10@mailout4.samsung.com> for
-	yocto@yoctoproject.org; Wed, 01 Apr 2015 13:41:40 +0900 (KST)
-Received: from epcpsbgx3.samsung.com ( [172.20.52.126])
-	by epcpsbgr3.samsung.com (EPCPMTA) with SMTP id 3C.F8.18484.3077B155;
-	Wed, 1 Apr 2015 13:41:39 +0900 (KST)
-X-AuditID: cbfee68f-f791c6d000004834-23-551b770361b6
-Received: from epmailer03 ( [203.254.219.143])
-	by epcpsbgx3.samsung.com (EPCPMTA) with SMTP id D6.A9.14702.EF67B155;
-	Wed, 1 Apr 2015 13:41:34 +0900 (KST)
-Date: Wed, 01 Apr 2015 04:41:34 +0000 (GMT)
+	with ESMTP id <0NM400IIM2VZ89C0@mailout1.samsung.com> for
+	yocto@yoctoproject.org; Wed, 01 Apr 2015 13:52:47 +0900 (KST)
+Received: from epcpsbgx1.samsung.com ( [172.20.52.122])
+	by epcpsbgr1.samsung.com (EPCPMTA) with SMTP id EA.22.17016.F997B155;
+	Wed, 1 Apr 2015 13:52:47 +0900 (KST)
+X-AuditID: cbfee68d-f79296d000004278-31-551b799fdd9f
+Received: from epmailer01 ( [203.254.219.141])
+	by epcpsbgx1.samsung.com (EPCPMTA) with SMTP id 2C.6C.15273.2997B155;
+	Wed, 1 Apr 2015 13:52:34 +0900 (KST)
+Date: Wed, 01 Apr 2015 04:52:34 +0000 (GMT)
 From: Maninder Singh <maninder1.s@samsung.com>
-To: Mark Hatle <mark.hatle@windriver.com>, Khem Raj <raj.khem@gmail.com>,
-	Maninder Singh <maninder1.s@samsung.com>
+To: Maninder Singh <maninder1.s@samsung.com>,
+	Mark Hatle <mark.hatle@windriver.com>, Khem Raj <raj.khem@gmail.com>
 MIME-version: 1.0
-X-MTR: 20150401043517428@maninder1.s
-Msgkey: 20150401043517428@maninder1.s
+X-MTR: 20150401045114152@maninder1.s
+Msgkey: 20150401045114152@maninder1.s
 X-EPLocale: en_US.windows-1252
 X-Priority: 3
 X-EPWebmail-Msg-Type: personal
@@ -44,38 +44,39 @@ X-EPApproval-Locale:
 X-EPHeader: ML
 X-MLAttribute: 
 X-RootMTR: 20150401043517428@maninder1.s
-X-ParentMTR: 
+X-ParentMTR: 20150401043517428@maninder1.s
 X-ArchiveUser: 
 X-CPGSPASS: N
 X-ConfirmMail: N,general
 MIME-version: 1.0
-Message-id: <366908481.207361427863292912.JavaMail.weblogic@epmlwas09b>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrMIsWRmVeSWpSXmKPExsWyRsSkTpe5XDrUYOdbUYtJL9ewOTB6tJ/o
-	YwtgjOKySUnNySxLLdK3S+DKePPQoqBNvuLKjqlMDYxz5LoYOTmEBNQkFu19zAZiSwiYSOw9
-	dZAdwhaTuHBvPRtEzVJGidfnsmBqpl2bxdTFyAUUn8MocfDUBUaQBIuAikTrrz/MIDabgL7E
-	2b3rwGxhgWSJY293gw0VEaiROLJyKdBQDg5mAVOJtTNKIeYrSqy/8QRsDK+AoMTJmU9YIHap
-	SHy6cIgJIq4qMbfzDjNEXE5iydTLTBA2r8SM9qcsMPFpX9dA1UhLnJ+1gRHml8XfH0PF+SWO
-	3d4B1SsgMfXMQagaTYldt6dDxfkk1ix8ywJTv+vUcmaYXfe3zIWqkZDY2vKEFcRmBrp/SvdD
-	dgjbQOLIojms6H7hFXCX+HBtLVRvL4fErV3CExiVZiEpm4Vk1Cwko5DVLGBkWcUomlqQXFCc
-	lF5krFecmFtcmpeul5yfu4kRmBZO/3vWv4Px7gHrQ4wCHIxKPLwaEdKhQqyJZcWVuYcYTYGx
-	NJFZSjQ5H5h88kriDY3NjCxMTUyNjcwtzZTEeRdK/QwWEkhPLEnNTk0tSC2KLyrNSS0+xMjE
-	wSnVwHgqQPJS+ZcJpVJWwrbFk7049CVE7VsrU4tNHzqqMt7Z9p5H6WFOBptMgqyP1KNTVpfq
-	fgnGPF3SOXnNi4pmh61Mgbz3nk9XMNtZri7gsip8XewZpY6FfQbPeiUWZ3fHzt++8nZZQkTn
-	5akCh5S6V94z3jTztjDX5e6L9ZtvbjmbrxA9fTFnhBJLcUaioRZzUXEiAGtm+88GAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrGKsWRmVeSWpSXmKPExsVy+t/tft1/ZdKhBhOns1hMermGzYHRo/1E
+Message-id: <697078699.208391427863953097.JavaMail.weblogic@epmlwas09b>
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrCIsWRmVeSWpSXmKPExsWyRsSkSnd+pXSowZbTXBaTXq5hc2D0aD/R
+	xxbAGMVlk5Kak1mWWqRvl8CV8XlDC2NBj1JF46bHjA2MMxS7GDk5hATUJBbtfczWxcjBISFg
+	IvF5QRZIWEJATOLCvfVAYS6gkqWMEn1rNzBBJEwk5vasZoZIzGGU+NyzkR0kwSKgIjH38kMW
+	EJtNQF/i7N51zCC2sEC6xJqDTxlBbBGBGolrr3ezgyxjFjCVWDujFOIGRYn1N56AlfAKCEqc
+	nPmEBWKXisT37YfZIeKqEs9+rmSEiMtJLJl6GeoeXokZ7U9ZYOLTvq5hhrClJc7P2sAI88zi
+	74+h4vwSx27vgOoVkJh65iBUjabErtvTmSDhoC2x6YIYTPmuU8uZYVbd3zIXqlVCYmvLE1YQ
+	mxno/CndD9khbAOJI4vmsKJ7hVfAXWLm9PPg8JQQmMghsezpdcYJjEqzkNTNQjJrFpJZyGoW
+	MLKsYhRNLUguKE5KLzLUK07MLS7NS9dLzs/dxAhMDKf/PevdwXj7gPUhRgEORiUeXo0I6VAh
+	1sSy4srcQ4ymwFiayCwlmpwPTD95JfGGxmZGFqYmpsZG5pZmSuK8ilI/g4UE0hNLUrNTUwtS
+	i+KLSnNSiw8xMnFwSjUwHpc/vKQqxH/izulyy+RFGYNsfZ/O2djTascgXhYf/WtP0sSne731
+	Zs76o7C1b5fBWVldNhPOU03bd79tWa2kK3Mqoa2b9fbjtvXBEzcViavaevBMbXl6ND1JLZwh
+	1fx/lePb01Mmmx+e/ffY4/77S0SUC3zlmyuslR/p9Upe/Nz0+qJlwL/PSizFGYmGWsxFxYkA
+	eVqxowcDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrGKsWRmVeSWpSXmKPExsVy+t/tXt1JldKhBi938llMermGzYHRo/1E
 	H1sAY1SaTUZqYkpqkUJqXnJ+SmZeuq2Sd3C8c7ypmYGhrqGlhbmSQl5ibqqtkotPgK5bZg7Q
 	VCWFssScUqBQQGJxsZK+nU1RfmlJqkJGfnGJrVK0obmRnpGBnqmRnqFprJWhgYGRKVBNQlrG
-	m4cWBW3yFVd2TGVqYJwj18XIySEkoCaxaO9jNhBbQsBEYtq1WUwQtpjEhXvrgeJcQDVzGCUO
-	nrrACJJgEVCRaP31hxnEZhPQlzi7dx2YLSyQLHHs7W52EFtEoEbiyMqlQM0cHMwCphJrZ5RC
-	7FKUWH/jCdgYXgFBiZMzn7BA7FKR+HThEBNEXFVibucdZoi4nMSSqZeh7uGVmNH+lAUmPu3r
-	GqgaaYnzszYwwty8+PtjqDi/xLHbO6B6BSSmnjkIVaMpsev2dKg4n8SahW9ZYOp3nVrODLPr
-	/pa5UDUSEltbnrCC2MxA90/pfsgOYRtIHFk0hxXdL7wC7hIfrq1lmsAoOwtJahaS9llI2pHV
-	LGBkWcUomlqQXFCclF5hrFecmFtcmpeul5yfu4kRnIaeLd7B+P+89SFGAQ5GJR7exijpUCHW
-	xLLiytxDjBIczEoivNuPSIUK8aYkVlalFuXHF5XmpBYfYjQFRtpEZinR5HxgiswriTc0NjE3
-	NTa1MDA0NzdTEuf9fy43REggPbEkNTs1tSC1CKaPiYNTqoFR8FBcrwa7Djdrf9nybwcl505J
-	5mu80PsgdY76t+XN/UckIjvK/nrNvymmUrB0W84vlbbQ11xp/xpkeFgL8x94xf9Q2ZXKM0Ht
-	AE/DY0Yz+Q0h2ZxiBZdfxHxIW6j2vqm/x3e77yRp+YlmNdt21bDkqlhNbOz6vSaz7wjvEbsL
-	87TspbtClymxFGckGmoxFxUnAgB/zA04WQMAAA==
+	5w0tjAU9ShWNmx4zNjDOUOxi5OQQElCTWLT3MRuILSFgIjG3ZzUzhC0mceHeeqA4F1DNHEaJ
+	zz0b2UESLAIqEnMvP2QBsdkE9CXO7l0H1iAskC6x5uBTRhBbRKBG4trr3UD1HBzMAqYSa2eU
+	QuxSlFh/4wlYCa+AoMTJmU9YIHapSHzffpgdIq4q8eznSkaIuJzEkqmXmSBsXokZ7U9ZYOLT
+	vq6BulNa4vysDYwwNy/+/hgqzi9x7PYOqF4BialnDkLVaErsuj2dCeQ0CQFtiU0XxGDKd51a
+	zgyz6v6WuVCtEhJbW56wgtjMQOdP6X7IDmEbSBxZNIcV3Su8Au4SM6efZ5vAKDsLSWoWkvZZ
+	SNqR1SxgZFnFKJpakFxQnJReYahXnJhbXJqXrpecn7uJEZyGni3cwfjlvPUhRgEORiUeXs0I
+	6VAh1sSy4srcQ4wSHMxKIrzbj0iFCvGmJFZWpRblxxeV5qQWH2I0BcbZRGYp0eR8YIrMK4k3
+	NDYxNzU2tTAwNDc3UxLn/X8uN0RIID2xJDU7NbUgtQimj4mDU6qB0WartIGHfW174KREnjP2
+	3lNCXAQ5JqvKfPkR6flvfV73p/6NZwJKX102ZT/zfm95RZlz/Ow5e2ddEg1mfanDKleSGh3C
+	LxpppjODMS0zvD62dKKu0CvnFxuiLv5j/XyUWWW64US+pP1PTsr4X7Vqfbn4091K384JP99q
+	TfxTf3vugh7LK2tKlFiKMxINtZiLihMBI5ZlRVkDAAA=
 DLP-Filter: Pass
 X-CFilter-Loop: Reflected
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
@@ -92,13 +93,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Apr 2015 04:41:49 -0000
+X-List-Received-Date: Wed, 01 Apr 2015 04:52:57 -0000
 Content-transfer-encoding: base64
 Content-type: text/plain; charset=windows-1252
 
-SGkgTWFyaywNClNvcnJ5IGZvciBtaXNzaW5nIElEIGluIFNpZ25lZC1vZmYtYnk6IE1hbmluZGVy
-IFNpbmdoIA0KU2lnbmVkLW9mZi1ieTogTWFuaW5kZXIgU2luZ2ggPG1hbmluZGVyMS5zQHNhbXN1
-bmcuY29tPg0KDQpJIHN1Z2dlc3RlZCB0aGF0IGNoYW5nZSBqdXN0IHRvIHJlbW92ZSByZWR1bmRh
+SGkgTWFyaywNCnRoZXJlIGlzIG9uZSB0eXBvIGVycm9yIGluIHRoaXM6LQ0KaHR0cDovL2dpdC55
+b2N0b3Byb2plY3Qub3JnL2NnaXQvY2dpdC5jZ2kvcHJlbGluay1jcm9zcy9jb21taXQvP2g9Y3Jv
+c3NfcHJlbGlua19zdGFnaW5nJmlkPWZkOTlhNDcxMjRiMWYxMTQxZjJhZmU0ZTg3ZGE3Y2IyMDlj
+YzI5MjcNCisgc3JjL2dldC5jOiBSZW1vdmUgZXh0cmEgY2hlY2tmIHJvIGxkLWxpbnV4LnNvLjMg
+aW4gc3RyY21wDQoqKiogY2hlY2sgZm9yICoqKioqDQpUaGFua3MNCi0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNCkhpIE1hcmssDQpTb3JyeSBmb3IgbWlzc2luZyBJRCBp
+biBTaWduZWQtb2ZmLWJ5OiBNYW5pbmRlciBTaW5naCANClNpZ25lZC1vZmYtYnk6IE1hbmluZGVy
+IFNpbmdoIA0KDQpJIHN1Z2dlc3RlZCB0aGF0IGNoYW5nZSBqdXN0IHRvIHJlbW92ZSByZWR1bmRh
 dCBjb2RlLg0KVGhpcyBsb29rcyBPayB0byBtZSANCmh0dHA6Ly9naXQueW9jdG9wcm9qZWN0Lm9y
 Zy9jZ2l0L2NnaXQuY2dpL3ByZWxpbmstY3Jvc3MvY29tbWl0Lz9oPWNyb3NzX3ByZWxpbmtfc3Rh
 Z2luZyZpZD1mZDk5YTQ3MTI0YjFmMTE0MWYyYWZlNGU4N2RhN2NiMjA5Y2MyOTI3DQoNClRoYW5r
