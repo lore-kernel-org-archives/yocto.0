@@ -1,56 +1,66 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <gshastri@juniper.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 039FDE008EA; Wed,  1 Apr 2015 11:08:05 -0700 (PDT)
+	id AD883E008EA; Wed,  1 Apr 2015 12:23:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [65.55.169.130 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f43.google.com (mail-pa0-f43.google.com
-	[209.85.220.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78A7CE0056E
-	for <yocto@yoctoproject.org>; Wed,  1 Apr 2015 11:08:01 -0700 (PDT)
-Received: by pactp5 with SMTP id tp5so58988276pac.1
-	for <yocto@yoctoproject.org>; Wed, 01 Apr 2015 11:08:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=zrArflMNb76yagOuzChkHen8wmaN0CMXQ03U4HGNF1Q=;
-	b=JpcELlnI6aRpnydCNzb+sPpH9IXjhIENOCoD2xQFY2Xjxe1iMu6of5fsCB6mIo+FNO
-	J7Ba69R0gZzk/i3EuXpSJwwcGv9qlyKRlHCWn988q3V+JMvpsUTtnTyzt4+dunty/ajM
-	Ml/SU6SGLE+o4vUAvAvFfsMqmiabTqOjJjYBjQJCFxhTleZ8D6UbhISSLqUFcAn9DZwq
-	kavooN3RjuG4IpafgOgwUzDlQBX2MJ0Ijf9WV9SUOD8FpSks3BrxDR8uaggNM+M4r+OM
-	OgzT9UZJrW6BB/l70jTiZKnDCYLnIZpsxrO92OKa4uEHuYzAceJTujxt3FdI2QnP/WWH
-	mj0A==
-X-Received: by 10.70.46.137 with SMTP id v9mr81150466pdm.116.1427911681388;
-	Wed, 01 Apr 2015 11:08:01 -0700 (PDT)
-Received: from ?IPv6:2601:9:500:ece:94fe:f453:43d6:a40f?
-	([2601:9:500:ece:94fe:f453:43d6:a40f])
-	by mx.google.com with ESMTPSA id xj1sm2754683pbb.92.2015.04.01.11.07.59
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 01 Apr 2015 11:08:00 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2070.6\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <1427891938-17616-1-git-send-email-gshastri@juniper.net>
-Date: Wed, 1 Apr 2015 11:07:59 -0700
-Message-Id: <78A1EDDC-309F-4E74-8339-D10C1FD5EC3B@gmail.com>
+X-Greylist: delayed 863 seconds by postgrey-1.32 at yocto-www;
+	Wed, 01 Apr 2015 12:23:22 PDT
+Received: from na01-bl2-obe.outbound.protection.outlook.com
+	(mail-bl2on0130.outbound.protection.outlook.com [65.55.169.130])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DCA5E0056E
+	for <yocto@yoctoproject.org>; Wed,  1 Apr 2015 12:23:22 -0700 (PDT)
+Received: from BN3PR0501MB1427.namprd05.prod.outlook.com (25.160.117.149) by
+	BN3PR0501MB1426.namprd05.prod.outlook.com (25.160.117.148) with
+	Microsoft
+	SMTP Server (TLS) id 15.1.130.23; Wed, 1 Apr 2015 19:08:57 +0000
+Received: from BN3PR0501MB1427.namprd05.prod.outlook.com ([25.160.117.149]) by
+	BN3PR0501MB1427.namprd05.prod.outlook.com ([25.160.117.149]) with
+	mapi id 15.01.0125.002; Wed, 1 Apr 2015 19:08:57 +0000
+From: Gaurang Shastri <gshastri@juniper.net>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] [Add xorriso recipe] Add xorriso tool support
+Thread-Index: AQHQbHh1MBr1NVvXUUitfHlBd2h8eJ04dKGAgAAQ2QA=
+Date: Wed, 1 Apr 2015 19:08:56 +0000
+Message-ID: <BN3PR0501MB1427DB11489B9F3179CE4B30D5F30@BN3PR0501MB1427.namprd05.prod.outlook.com>
 References: <1427891938-17616-1-git-send-email-gshastri@juniper.net>
-To: Gaurang Shastri <gshastri@juniper.net>
-X-Mailer: Apple Mail (2.2070.6)
-Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
+	<78A1EDDC-309F-4E74-8339-D10C1FD5EC3B@gmail.com>
+In-Reply-To: <78A1EDDC-309F-4E74-8339-D10C1FD5EC3B@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [116.197.184.13]
+authentication-results: gmail.com; dkim=none (message not signed)
+	header.d=none;
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BN3PR0501MB1426;
+x-forefront-antispam-report: BMV:1; SFV:NSPM;
+	SFS:(10019020)(6009001)(24454002)(377454003)(51704005)(13464003)(110136001)(46102003)(2950100001)(2900100001)(122556002)(40100003)(54356999)(77156002)(50986999)(62966003)(76176999)(15975445007)(102836002)(106116001)(87936001)(66066001)(99286002)(2656002)(76576001)(19580405001)(19580395003)(74316001)(86362001)(575784001)(33656002)(92566002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR0501MB1426;
+	H:BN3PR0501MB1427.namprd05.prod.outlook.com; FPR:; SPF:None;
+	MLV:sfv; LANG:en; 
+x-microsoft-antispam-prvs: <BN3PR0501MB1426218D4DB3DEBBAA7BBB7BD5F30@BN3PR0501MB1426.namprd05.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(5002010)(5005006); SRVR:BN3PR0501MB1426; BCL:0;
+	PCL:0; RULEID:; SRVR:BN3PR0501MB1426; 
+x-forefront-prvs: 053315510E
+MIME-Version: 1.0
+X-OriginatorOrg: juniper.net
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Apr 2015 19:08:56.7371 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: bea78b3c-4cdb-4130-854a-1d193232e5f4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR0501MB1426
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
 Subject: Re: [Add xorriso recipe] Add xorriso tool support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -63,21 +73,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Apr 2015 18:08:05 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Wed, 01 Apr 2015 19:23:27 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+>> we have meta-filesystems in meta-openembedded repo, this belongs there f=
+or now
 
-> On Apr 1, 2015, at 5:38 AM, Gaurang Shastri <gshastri@juniper.net> =
-wrote:
+OK, sending the patch to meta-filesystems maintainer.
+
+-----Original Message-----
+From: Khem Raj [mailto:raj.khem@gmail.com]=20
+Sent: Wednesday, April 01, 2015 11:38 PM
+To: Gaurang Shastri
+Cc: yocto@yoctoproject.org; openembedded-core@lists.openembedded.org
+Subject: Re: [yocto] [Add xorriso recipe] Add xorriso tool support
+
+
+> On Apr 1, 2015, at 5:38 AM, Gaurang Shastri <gshastri@juniper.net> wrote:
 >=20
-> xorriso copies file objects from POSIX compliant filesystems into
-> Rock Ridge enhanced ISO 9660 filesystems and allows session-wise
+> xorriso copies file objects from POSIX compliant filesystems into Rock=20
+> Ridge enhanced ISO 9660 filesystems and allows session-wise=20
 > manipulation of such filesystems.
 >=20
 
-we have meta-filesystems in meta-openembedded repo, this belongs there =
-for now
+we have meta-filesystems in meta-openembedded repo, this belongs there for =
+now
 
 > Signed-off-by: Gaurang Shastri <gshastri@juniper.net>
 > ---
@@ -85,16 +107,16 @@ for now
 > 1 file changed, 17 insertions(+)
 > create mode 100644 meta/recipes-support/xorriso/xorriso_1.3.8.bb
 >=20
-> diff --git a/meta/recipes-support/xorriso/xorriso_1.3.8.bb =
-b/meta/recipes-support/xorriso/xorriso_1.3.8.bb
+> diff --git a/meta/recipes-support/xorriso/xorriso_1.3.8.bb=20
+> b/meta/recipes-support/xorriso/xorriso_1.3.8.bb
 > new file mode 100644
 > index 0000000..93914b4
 > --- /dev/null
 > +++ b/meta/recipes-support/xorriso/xorriso_1.3.8.bb
 > @@ -0,0 +1,17 @@
-> +DESCRIPTIONS =3D "xorriso copies file objects from POSIX compliant =
-filesystems into Rock Ridge enhanced ISO 9660 filesystems and allows =
-session-wise manipulation of such filesystems"
+> +DESCRIPTIONS =3D "xorriso copies file objects from POSIX compliant files=
+ystems into Rock Ridge enhanced ISO 9660 filesystems and allows session-wis=
+e manipulation of such filesystems"
 > +
 > +inherit autotools
 > +
@@ -103,20 +125,20 @@ session-wise manipulation of such filesystems"
 > +SRC_URI =3D "http://www.gnu.org/software/${BPN}/${BPN}-${PV}.tar.gz"
 > +
 > +SRC_URI[md5sum] =3D "a0fc534ef8f9589282a189f0e6cdf952"
-> +SRC_URI[sha256sum] =3D =
-"901204634651533f7cbd105eab560534702458258529aac4b2f0fc946992107e"
+> +SRC_URI[sha256sum] =3D "901204634651533f7cbd105eab560534702458258529aac4=
+b2f0fc946992107e"
 > +
-> +LIC_FILES_CHKSUM =3D =
-"file://COPYING;md5=3Dd32239bcb673463ab874e80d47fae504"
+> +LIC_FILES_CHKSUM =3D "file://COPYING;md5=3Dd32239bcb673463ab874e80d47fae=
+504"
 > +LICENSE =3D "GPLv3"
 > +
 > +EXTRA_OECONF =3D "--disable-libacl"
 > +
 > +BBCLASSEXTEND =3D "nativesdk"
-> --=20
+> --
 > 1.7.9.5
 >=20
-> --=20
+> --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
