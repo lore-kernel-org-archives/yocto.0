@@ -1,67 +1,39 @@
-Return-Path: <gshastri@juniper.net>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AD883E008EA; Wed,  1 Apr 2015 12:23:27 -0700 (PDT)
+	id 3FE5BE008EA; Wed,  1 Apr 2015 12:44:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [65.55.169.130 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 863 seconds by postgrey-1.32 at yocto-www;
-	Wed, 01 Apr 2015 12:23:22 PDT
-Received: from na01-bl2-obe.outbound.protection.outlook.com
-	(mail-bl2on0130.outbound.protection.outlook.com [65.55.169.130])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DCA5E0056E
-	for <yocto@yoctoproject.org>; Wed,  1 Apr 2015 12:23:22 -0700 (PDT)
-Received: from BN3PR0501MB1427.namprd05.prod.outlook.com (25.160.117.149) by
-	BN3PR0501MB1426.namprd05.prod.outlook.com (25.160.117.148) with
-	Microsoft
-	SMTP Server (TLS) id 15.1.130.23; Wed, 1 Apr 2015 19:08:57 +0000
-Received: from BN3PR0501MB1427.namprd05.prod.outlook.com ([25.160.117.149]) by
-	BN3PR0501MB1427.namprd05.prod.outlook.com ([25.160.117.149]) with
-	mapi id 15.01.0125.002; Wed, 1 Apr 2015 19:08:57 +0000
-From: Gaurang Shastri <gshastri@juniper.net>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] [Add xorriso recipe] Add xorriso tool support
-Thread-Index: AQHQbHh1MBr1NVvXUUitfHlBd2h8eJ04dKGAgAAQ2QA=
-Date: Wed, 1 Apr 2015 19:08:56 +0000
-Message-ID: <BN3PR0501MB1427DB11489B9F3179CE4B30D5F30@BN3PR0501MB1427.namprd05.prod.outlook.com>
-References: <1427891938-17616-1-git-send-email-gshastri@juniper.net>
-	<78A1EDDC-309F-4E74-8339-D10C1FD5EC3B@gmail.com>
-In-Reply-To: <78A1EDDC-309F-4E74-8339-D10C1FD5EC3B@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [116.197.184.13]
-authentication-results: gmail.com; dkim=none (message not signed)
-	header.d=none;
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BN3PR0501MB1426;
-x-forefront-antispam-report: BMV:1; SFV:NSPM;
-	SFS:(10019020)(6009001)(24454002)(377454003)(51704005)(13464003)(110136001)(46102003)(2950100001)(2900100001)(122556002)(40100003)(54356999)(77156002)(50986999)(62966003)(76176999)(15975445007)(102836002)(106116001)(87936001)(66066001)(99286002)(2656002)(76576001)(19580405001)(19580395003)(74316001)(86362001)(575784001)(33656002)(92566002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR0501MB1426;
-	H:BN3PR0501MB1427.namprd05.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; LANG:en; 
-x-microsoft-antispam-prvs: <BN3PR0501MB1426218D4DB3DEBBAA7BBB7BD5F30@BN3PR0501MB1426.namprd05.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(5002010)(5005006); SRVR:BN3PR0501MB1426; BCL:0;
-	PCL:0; RULEID:; SRVR:BN3PR0501MB1426; 
-x-forefront-prvs: 053315510E
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54BE7E0056E
+	for <yocto@yoctoproject.org>; Wed,  1 Apr 2015 12:44:13 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.9/8.14.9) with ESMTP id t31Ji8j0007443
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 1 Apr 2015 12:44:08 -0700 (PDT)
+Received: from Marks-MacBook-Pro.local (172.25.36.228) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.224.2; Wed, 1 Apr 2015 12:44:08 -0700
+Message-ID: <551C4A87.7040206@windriver.com>
+Date: Wed, 1 Apr 2015 14:44:07 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-X-OriginatorOrg: juniper.net
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Apr 2015 19:08:56.7371 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: bea78b3c-4cdb-4130-854a-1d193232e5f4
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR0501MB1426
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [Add xorriso recipe] Add xorriso tool support
+To: <maninder1.s@samsung.com>, Khem Raj <raj.khem@gmail.com>
+References: <697078699.208391427863953097.JavaMail.weblogic@epmlwas09b>
+In-Reply-To: <697078699.208391427863953097.JavaMail.weblogic@epmlwas09b>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [prelink-cross] [PATCH 1/1] Remove extra check for ld-linux.so.3 in strcmp
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,75 +45,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Apr 2015 19:23:27 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 01 Apr 2015 19:44:21 -0000
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
 
->> we have meta-filesystems in meta-openembedded repo, this belongs there f=
-or now
+On 3/31/15 11:52 PM, Maninder Singh wrote:
+> Hi Mark,
+> there is one typo error in this:-
+> http://git.yoctoproject.org/cgit/cgit.cgi/prelink-cross/commit/?h=cross_prelink_staging&id=fd99a47124b1f1141f2afe4e87da7cb209cc2927
+> + src/get.c: Remove extra checkf ro ld-linux.so.3 in strcmp
+> *** check for *****
 
-OK, sending the patch to meta-filesystems maintainer.
+Thanks for noticing.  I'll get that fixed.
 
------Original Message-----
-From: Khem Raj [mailto:raj.khem@gmail.com]=20
-Sent: Wednesday, April 01, 2015 11:38 PM
-To: Gaurang Shastri
-Cc: yocto@yoctoproject.org; openembedded-core@lists.openembedded.org
-Subject: Re: [yocto] [Add xorriso recipe] Add xorriso tool support
+--Mark
 
-
-> On Apr 1, 2015, at 5:38 AM, Gaurang Shastri <gshastri@juniper.net> wrote:
->=20
-> xorriso copies file objects from POSIX compliant filesystems into Rock=20
-> Ridge enhanced ISO 9660 filesystems and allows session-wise=20
-> manipulation of such filesystems.
->=20
-
-we have meta-filesystems in meta-openembedded repo, this belongs there for =
-now
-
-> Signed-off-by: Gaurang Shastri <gshastri@juniper.net>
-> ---
-> meta/recipes-support/xorriso/xorriso_1.3.8.bb |   17 +++++++++++++++++
-> 1 file changed, 17 insertions(+)
-> create mode 100644 meta/recipes-support/xorriso/xorriso_1.3.8.bb
->=20
-> diff --git a/meta/recipes-support/xorriso/xorriso_1.3.8.bb=20
-> b/meta/recipes-support/xorriso/xorriso_1.3.8.bb
-> new file mode 100644
-> index 0000000..93914b4
-> --- /dev/null
-> +++ b/meta/recipes-support/xorriso/xorriso_1.3.8.bb
-> @@ -0,0 +1,17 @@
-> +DESCRIPTIONS =3D "xorriso copies file objects from POSIX compliant files=
-ystems into Rock Ridge enhanced ISO 9660 filesystems and allows session-wis=
-e manipulation of such filesystems"
-> +
-> +inherit autotools
-> +
-> +DEPENDS +=3D "attr zlib"
-> +
-> +SRC_URI =3D "http://www.gnu.org/software/${BPN}/${BPN}-${PV}.tar.gz"
-> +
-> +SRC_URI[md5sum] =3D "a0fc534ef8f9589282a189f0e6cdf952"
-> +SRC_URI[sha256sum] =3D "901204634651533f7cbd105eab560534702458258529aac4=
-b2f0fc946992107e"
-> +
-> +LIC_FILES_CHKSUM =3D "file://COPYING;md5=3Dd32239bcb673463ab874e80d47fae=
-504"
-> +LICENSE =3D "GPLv3"
-> +
-> +EXTRA_OECONF =3D "--disable-libacl"
-> +
-> +BBCLASSEXTEND =3D "nativesdk"
-> --
-> 1.7.9.5
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Thanks
+> --------------------------------------
+> 
+> Hi Mark,
+> Sorry for missing ID in Signed-off-by: Maninder Singh 
+> Signed-off-by: Maninder Singh 
+> 
+> I suggested that change just to remove redundat code.
+> This looks Ok to me 
+> http://git.yoctoproject.org/cgit/cgit.cgi/prelink-cross/commit/?h=cross_prelink_staging&id=fd99a47124b1f1141f2afe4e87da7cb209cc2927
+> 
+> Thanks a lot
+> 
+> Maninder Singh
+> 
+>> Hmm, I never saw the original email (or thread).
+> 
+> (I have no record of ever receiving the original email.  How odd...)
+> 
+>> What is the context for this, simply that there are multiple ld-linux.do.3 in
+>> the same check and remove one or the other is more efficient?
+>>
+>> (I suspect it will be optimized out, but I can make the change quickly enough.)
+> 
+> I have merged the change, slightly different format.
+> 
+> See:
+> 
+> http://git.yoctoproject.org/cgit/cgit.cgi/prelink-cross/commit/?h=cross_prelink_staging&id=fd99a47124b1f1141f2afe4e87da7cb209cc2927
+> 
+> This is in the staging area.
+> 
+> Maninder if this is ok, I'm more then happy to add your signed-off-by line to
+> the commit before moving it into the cross_prelink branch.
+> 
+> Thanks!
+> --Mark
+> 
+>> --Mark
+>>
+>> On 3/31/15 1:01 PM, Khem Raj wrote:
+>>>
+>>>> On Mar 30, 2015, at 8:14 PM, Maninder Singh >>> > wrote:
+>>>>
+>>>> Hi,
+>>>>
+>>>>
+>>>> From 05ab779af24baef957972aa1d2a9e9d29212cc4c Mon Sep 17 00:00:00 2001
+>>>> From: Maninder Singh >
+>>>> Date: Thu, 19 Mar 2015 03:02:59 +0530
+>>>> Subject: [PATCH 1/1] Remove extra check for ld-linux.so.3 in strcmp
+>>>>   
+>>>> if (! strcmp (soname, "ld-linux.so.2")
+>>>>       || ! strcmp (soname, "ld-linux.so.3")  ------------------------>
+>>>>       || ! strcmp (soname, "ld.so.1")
+>>>>       || ! strcmp (soname, "ld-linux-ia64.so.2")
+>>>>       || ! strcmp (soname, "ld-linux-x86-64.so.2")
+>>>>       || ! strcmp (soname, "ld64.so.1")
+>>>>       || ! strcmp (soname, "ld-linux.so.3") --------------------------->
+>>>> redundant code
+>>>>       || ! strcmp (soname, "ld-linux-armhf.so.3"))
+>>>>
+>>>> Signed-off-by: Maninder Singh 
+>>>>
+>>>
+>>> use First Last 
+>>>
+>>>> ---
+>>>> src/get.c |    1 -
+>>>> 1 files changed, 0 insertions(+), 1 deletions(-)
+>>>> diff --git a/src/get.c b/src/get.c
+>>>> index 6a63f02..a34668a 100644
+>>>> --- a/src/get.c
+>>>> +++ b/src/get.c
+>>>> @@ -35,7 +35,6 @@ is_ldso_soname (const char *soname)
+>>>>        || ! strcmp (soname, "ld-linux-ia64.so.2")
+>>>>        || ! strcmp (soname, "ld-linux-x86-64.so.2")
+>>>>        || ! strcmp (soname, "ld64.so.1")
+>>>> -      || ! strcmp (soname, "ld-linux.so.3")
+>>>>        || ! strcmp (soname, "ld-linux-armhf.so.3"))
+>>>>      return 1;
+>>>>    return 0;
+>>>> -- 
+>>>> 1.7.1
+>>>>
+>>>>
+>>>> Thanks and Regards,
+>>>> Maninder Singh
+>>>>
+>>>> <201503310844012_QKNMBDIF.gif>
+>>>>
+>>>> -- 
+>>>> _______________________________________________
+>>>> yocto mailing list
+>>>> yocto@yoctoproject.org 
+>>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
 
 
