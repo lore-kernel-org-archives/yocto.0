@@ -1,47 +1,57 @@
-Return-Path: <belen.barros.pena@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7ABA1E008EA; Wed,  1 Apr 2015 09:57:49 -0700 (PDT)
+	id 039FDE008EA; Wed,  1 Apr 2015 11:08:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.43 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54456E0056E
-	for <yocto@yoctoproject.org>; Wed,  1 Apr 2015 09:57:46 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga103.fm.intel.com with ESMTP; 01 Apr 2015 09:57:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,504,1422950400"; d="scan'208";a="549664313"
-Received: from irsmsx154.ger.corp.intel.com ([163.33.192.96])
-	by orsmga003.jf.intel.com with ESMTP; 01 Apr 2015 09:57:44 -0700
-Received: from irsmsx110.ger.corp.intel.com ([169.254.15.247]) by
-	IRSMSX154.ger.corp.intel.com ([169.254.12.85]) with mapi id
-	14.03.0224.002; Wed, 1 Apr 2015 17:57:43 +0100
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Anders Darander <anders@chargestorm.se>
-Thread-Topic: [yocto] [RFC] Toaster integration with Jenkins
-Thread-Index: AQHQbJz4lflEiBCd90ebp/VsW3Oi1Q==
-Date: Wed, 1 Apr 2015 16:57:43 +0000
-Message-ID: <D141DDC4.58791%belen.barros.pena@intel.com>
-References: <D13F4AC9.58302%belen.barros.pena@intel.com>
-	<20150331093911.GC19097@ad.chargestorm.se>
-	<D1407F76.584DD%belen.barros.pena@intel.com>
-	<20150401080301.GB18315@ad.chargestorm.se>
-In-Reply-To: <20150401080301.GB18315@ad.chargestorm.se>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.4.8.150116
-x-originating-ip: [10.237.224.80]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [RFC] Toaster integration with Jenkins
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f43.google.com (mail-pa0-f43.google.com
+	[209.85.220.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78A7CE0056E
+	for <yocto@yoctoproject.org>; Wed,  1 Apr 2015 11:08:01 -0700 (PDT)
+Received: by pactp5 with SMTP id tp5so58988276pac.1
+	for <yocto@yoctoproject.org>; Wed, 01 Apr 2015 11:08:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=zrArflMNb76yagOuzChkHen8wmaN0CMXQ03U4HGNF1Q=;
+	b=JpcELlnI6aRpnydCNzb+sPpH9IXjhIENOCoD2xQFY2Xjxe1iMu6of5fsCB6mIo+FNO
+	J7Ba69R0gZzk/i3EuXpSJwwcGv9qlyKRlHCWn988q3V+JMvpsUTtnTyzt4+dunty/ajM
+	Ml/SU6SGLE+o4vUAvAvFfsMqmiabTqOjJjYBjQJCFxhTleZ8D6UbhISSLqUFcAn9DZwq
+	kavooN3RjuG4IpafgOgwUzDlQBX2MJ0Ijf9WV9SUOD8FpSks3BrxDR8uaggNM+M4r+OM
+	OgzT9UZJrW6BB/l70jTiZKnDCYLnIZpsxrO92OKa4uEHuYzAceJTujxt3FdI2QnP/WWH
+	mj0A==
+X-Received: by 10.70.46.137 with SMTP id v9mr81150466pdm.116.1427911681388;
+	Wed, 01 Apr 2015 11:08:01 -0700 (PDT)
+Received: from ?IPv6:2601:9:500:ece:94fe:f453:43d6:a40f?
+	([2601:9:500:ece:94fe:f453:43d6:a40f])
+	by mx.google.com with ESMTPSA id xj1sm2754683pbb.92.2015.04.01.11.07.59
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 01 Apr 2015 11:08:00 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2070.6\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <1427891938-17616-1-git-send-email-gshastri@juniper.net>
+Date: Wed, 1 Apr 2015 11:07:59 -0700
+Message-Id: <78A1EDDC-309F-4E74-8339-D10C1FD5EC3B@gmail.com>
+References: <1427891938-17616-1-git-send-email-gshastri@juniper.net>
+To: Gaurang Shastri <gshastri@juniper.net>
+X-Mailer: Apple Mail (2.2070.6)
+Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
+Subject: Re: [Add xorriso recipe] Add xorriso tool support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,99 +63,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Apr 2015 16:57:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <EAC360F37BBCDB4488A1204CCB27C047@intel.com>
+X-List-Received-Date: Wed, 01 Apr 2015 18:08:05 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
 
+> On Apr 1, 2015, at 5:38 AM, Gaurang Shastri <gshastri@juniper.net> =
+wrote:
+>=20
+> xorriso copies file objects from POSIX compliant filesystems into
+> Rock Ridge enhanced ISO 9660 filesystems and allows session-wise
+> manipulation of such filesystems.
+>=20
 
-On 01/04/2015 09:03, "Anders Darander" <anders@chargestorm.se> wrote:
+we have meta-filesystems in meta-openembedded repo, this belongs there =
+for now
 
->Hi,
->
->* Barros Pena, Belen <belen.barros.pena@intel.com> [150331 18:00]:
->> On 31/03/2015 10:39, "Anders Darander" <anders@chargestorm.se> wrote:
->
->> >I don't know if this is the right thread but a couple of other things
->> >that we really would need in order to fully be able to utilize this.
->
->> >1) Some way of getting the built git branch shown in toaster. (As we
->> >discussed on YPDD in D=FCsseldorf together with Axis). We're building
->> >master and release branches for the same machine and image.
->
->> If you mean the name of the branch, Toaster currently shows this in
->> several places. One of them is the configuration information for a
->> finished build, which displays a list of the layers used, and for each
->>of
->> them the branch name and the commit used. I've uploaded an screenshot
->>here
->
->> http://i.imgur.com/GPDwCh0.png
->
->Good to know.  Just one question, is it possible to get the branch
->information for one layer on the "All build" page?
-
-Not right now, I'm afraid. Having said that, it is probably fairly easy to
-add that information to the table.
-=20
-> To avoid having to go
->into each build to actually see what kind of build that was.
->
->For instance, we're having a master layer, that checks out other layers
->as submodules.
-> Being able to direclty see which branch of the master all
->builds originate from would be extremely useful (or another option would
->be if the Jenkins job name could be shown, as that would provide more or
->less the same information for us).
-
-This we could probably do, since builds connected to a Jenkins instance
-will need to be identifiable somehow in Toaster.
-
->
->Hm, thinking more about that, being able to store the Jenkins job name
->and build number in the toaster database would likely be really useful.
-
-Again, I'd say this is possible.
-
->That would allow Toaster to link back to the actual job and build in
->Jenkins. Those could be retrieved from the environmant variables
->BUILD_NUMBER and JOB_NAME in the Jenkins build.
-
-This sounds like a handy feature.
-
->
->> >2) In the proposed bug, would toaser be able to recieve and handle
->> >toaster/build logs from different YP releases?
->
->> Yes, but you would need to create a Toaster project for each release.
->> Currently, for each Toaster project, you must select the YP release you
->> want to use. A project can only use a single release at any given time.
->
->I've just spent a couple of minutes looking for this (so excuse me if
->it's obvious).
->
->A Toaster project in this case, would that equal to different toaster
->instances and databases, or would they still be able to be shown
->together in the same "All builds" page?
-
-Sorry, I should have explained better: in the same Toaster instance (and
-database). Each Toaster instance can have n projects. Each project is
-associated to a single release. So you can build on different releases
-within the same Toaster instance by using different projects, and access
-all the information through the 'all builds' page.
-
-> If it's not the latter, it would
->be a nice feature for some upcoming release. (Though, it'll obviously
->make the implementation slightly harder as support for older YP releases
->would need to be kept).
->
->Cheers,
->Anders
->
->--=20
->Anders Darander
->ChargeStorm AB / eStorm AB
+> Signed-off-by: Gaurang Shastri <gshastri@juniper.net>
+> ---
+> meta/recipes-support/xorriso/xorriso_1.3.8.bb |   17 +++++++++++++++++
+> 1 file changed, 17 insertions(+)
+> create mode 100644 meta/recipes-support/xorriso/xorriso_1.3.8.bb
+>=20
+> diff --git a/meta/recipes-support/xorriso/xorriso_1.3.8.bb =
+b/meta/recipes-support/xorriso/xorriso_1.3.8.bb
+> new file mode 100644
+> index 0000000..93914b4
+> --- /dev/null
+> +++ b/meta/recipes-support/xorriso/xorriso_1.3.8.bb
+> @@ -0,0 +1,17 @@
+> +DESCRIPTIONS =3D "xorriso copies file objects from POSIX compliant =
+filesystems into Rock Ridge enhanced ISO 9660 filesystems and allows =
+session-wise manipulation of such filesystems"
+> +
+> +inherit autotools
+> +
+> +DEPENDS +=3D "attr zlib"
+> +
+> +SRC_URI =3D "http://www.gnu.org/software/${BPN}/${BPN}-${PV}.tar.gz"
+> +
+> +SRC_URI[md5sum] =3D "a0fc534ef8f9589282a189f0e6cdf952"
+> +SRC_URI[sha256sum] =3D =
+"901204634651533f7cbd105eab560534702458258529aac4b2f0fc946992107e"
+> +
+> +LIC_FILES_CHKSUM =3D =
+"file://COPYING;md5=3Dd32239bcb673463ab874e80d47fae504"
+> +LICENSE =3D "GPLv3"
+> +
+> +EXTRA_OECONF =3D "--disable-libacl"
+> +
+> +BBCLASSEXTEND =3D "nativesdk"
+> --=20
+> 1.7.9.5
+>=20
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
