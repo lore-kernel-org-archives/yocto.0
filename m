@@ -1,55 +1,42 @@
-Return-Path: <k4230r6@gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E6CA1E006E9; Tue, 31 Mar 2015 22:05:37 -0700 (PDT)
+	id EBB09E00828; Wed,  1 Apr 2015 00:07:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (k4230r6[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.169 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-lb0-f169.google.com (mail-lb0-f169.google.com
-	[209.85.217.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8EF4E0056E
-	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 22:05:36 -0700 (PDT)
-Received: by lbbug6 with SMTP id ug6so27765200lbb.3
-	for <yocto@yoctoproject.org>; Tue, 31 Mar 2015 22:05:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=087SRpH93B4Kn/NJ7S+Yvs09ijNHFPpRT4QZ7JYtI64=;
-	b=Gw9AP9lvzIA4GIdzCYMHuwEBIMDLq9u+G3lSACCFiJ3mwcCSlLy5L4JBzdWJ7xAhAh
-	KYS4timtGBEEQsr4k/xb4g/SCSuzCmfLTcG2UpS1dUJxYT6NFBrxR2Ay/GC3Xx9gw4K5
-	uSkOW/Amj/3KVxmZU9GcaNsjqiZAb/vBS/DHuz63SKsTpJ+jgIqB4QZ4E6B4Y2m4Aari
-	EX34LfwlkSvejkmqYUY/DgszdFOkT5DaAzyNYM4BjtBkAC71XhiugTCH7FQnaERH/eGU
-	EOMAnj4zBlHTb5Oxh10aBOe+ViEuvyXsaRqayjtZf0yXqXptoj8shBjCjbV47gVGE6wG
-	ND4A==
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A16D1E006E9
+	for <yocto@yoctoproject.org>; Wed,  1 Apr 2015 00:07:41 -0700 (PDT)
+Received: from [99.240.204.5] (port=52165 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1YdCkg-0004c3-Si; Wed, 01 Apr 2015 03:07:50 -0400
+Date: Wed, 1 Apr 2015 03:07:36 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+In-Reply-To: <551B4086.8050200@windriver.com>
+Message-ID: <alpine.LFD.2.11.1504010306190.24212@localhost>
+References: <alpine.LFD.2.11.1503311824570.28969@localhost>
+	<551B4086.8050200@windriver.com>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-X-Received: by 10.112.64.137 with SMTP id o9mr33819546lbs.15.1427864734340;
-	Tue, 31 Mar 2015 22:05:34 -0700 (PDT)
-Received: by 10.25.206.132 with HTTP; Tue, 31 Mar 2015 22:05:34 -0700 (PDT)
-Received: by 10.25.206.132 with HTTP; Tue, 31 Mar 2015 22:05:34 -0700 (PDT)
-In-Reply-To: <CAGj-b5JQ74eR_4nXO4uQiuUdkspojmXGuXdDDWEd1M7Z=bDqKw@mail.gmail.com>
-References: <CAGj-b5JQ74eR_4nXO4uQiuUdkspojmXGuXdDDWEd1M7Z=bDqKw@mail.gmail.com>
-Date: Wed, 1 Apr 2015 07:05:34 +0200
-Message-ID: <CAALGJZYUhGrQcjMYoJ79DFR_0ckuZ1J5JCa0MyrHxb7KBaj92A@mail.gmail.com>
-From: Christian Ege <k4230r6@gmail.com>
-To: abhishek srivastava <abhishek.embsys@gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: remove package from sdimg
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: "fatal: A branch named 'meta-orig' already exists."
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,102 +48,151 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Apr 2015 05:05:38 -0000
-Content-Type: multipart/alternative; boundary=001a11348fe4471c3e0512a2aa19
+X-List-Received-Date: Wed, 01 Apr 2015 07:07:46 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
---001a11348fe4471c3e0512a2aa19
-Content-Type: text/plain; charset=UTF-8
+On Tue, 31 Mar 2015, Bruce Ashfield wrote:
 
-Hi,
-Am 31.03.2015 17:07 schrieb "abhishek srivastava" <abhishek.embsys@gmail.com
->:
+> On 2015-03-31 6:26 PM, Robert P. J. Day wrote:
+> >
+> >    oh, what fresh hell is this?
+> >
+> > ... snip ...
+> > NOTE: Preparing RunQueue
+> > NOTE: Executing SetScene Tasks
+> > NOTE: Executing RunQueue Tasks
+> > ERROR: Function failed: do_validate_branches (log file is located at
+> > /home/rpjday/oe/builds/qemux86/tmp/work/qemux86-poky-linux/linux-yocto/3.19.2+gitAUTOINC+9e70b482d3_31b35da6a5-r0/temp/log.do_validate_branches.17524)
+> > ERROR: Logfile of failure stored in:
+> > /home/rpjday/oe/builds/qemux86/tmp/work/qemux86-poky-linux/linux-yocto/3.19.2+gitAUTOINC+9e70b482d3_31b35da6a5-r0/temp/log.do_validate_branches.17524
+> > Log data follows:
+> > | DEBUG: Executing shell function do_validate_branches
+> > | NOTE: Setting branch meta to
+> > 9e70b482d3773abf92c9c5850e134cbca1d5651f
+> > | fatal: A branch named 'meta-orig' already exists.
+> >
+> >    this is building core-image-minimal for qemux86, and i'm assuming
+> > this is not fedora rawhide related.
 >
-> hi
-> i have created core-image-sato sdimg for my project on raspberrypi.
-actually, i want to run few applications that need python. i want to remove
-unnecessary packages that were required for smooth compilation of those
-applications since I downloaded entire python and gcc packages which had
-heavily increased size of my sdimg size.
+> You've got a borked tree sitting in work-shared. If you clean-all
+> and start again, does it show up ?
 >
-> how can i find which applications requires what packages for its normal
-functionality so that i can further tweak my sdimg or keep exactly those
-libraries that are needed for my application and remove rest.
-> please help
->
-Have a look at my cheat sheet:
-https:// <https://github.com/cybertux/cheatsheets/tree/master/bitbake>
-github.com <https://github.com/cybertux/cheatsheets/tree/master/bitbake>/
-<https://github.com/cybertux/cheatsheets/tree/master/bitbake>cybertux
-<https://github.com/cybertux/cheatsheets/tree/master/bitbake>/
-<https://github.com/cybertux/cheatsheets/tree/master/bitbake>cheatsheets
-<https://github.com/cybertux/cheatsheets/tree/master/bitbake>/tree/master/
-<https://github.com/cybertux/cheatsheets/tree/master/bitbake>bitbake
-<https://github.com/cybertux/cheatsheets/tree/master/bitbake>
-Or in the yocto wiki:
+> If it repeats, then it very well could be the version of git in
+> rawhide that is causing the issue.
 
-https://wiki.yoctoproject.org/wiki/FAQ#How_can_one_view_the_dependencies_of_packages_and_the_resulting_growth_in_code_size_as_packages_are_added.3F
+  i started with a fresh build, got a validate_branches error, and
+used "bb" to dump the log file for that step:
 
-Regards,
-Christian
-> regards
-> Abhishek
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+///// START /////
 
---001a11348fe4471c3e0512a2aa19
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+DEBUG: Executing shell function do_validate_branches
+NOTE: Setting branch meta to 9e70b482d3773abf92c9c5850e134cbca1d5651f
+error: The following untracked working tree files would be removed by checkout:
+	.gitignore
+	.mailmap
+	COPYING
+	CREDITS
+	Documentation/00-INDEX
+	Documentation/ABI/README
+	Documentation/ABI/obsolete/proc-sys-vm-nr_pdflush_threads
+	Documentation/ABI/obsolete/sysfs-bus-usb
+	Documentation/ABI/obsolete/sysfs-class-rfkill
+	Documentation/ABI/obsolete/sysfs-driver-hid-roccat-koneplus
+	Documentation/ABI/obsolete/sysfs-driver-hid-roccat-kovaplus
+	Documentation/ABI/obsolete/sysfs-driver-hid-roccat-pyra
+	Documentation/ABI/removed/devfs
+	Documentation/ABI/removed/dv1394
+	Documentation/ABI/removed/ip_queue
+	Documentation/ABI/removed/net_dma
+	Documentation/ABI/removed/o2cb
+	Documentation/ABI/removed/raw1394
+	Documentation/ABI/removed/video1394
+	Documentation/ABI/stable/firewire-cdev
+	Documentation/ABI/stable/o2cb
+	Documentation/ABI/stable/syscalls
+	Documentation/ABI/stable/sysfs-acpi-pmprofile
+	Documentation/ABI/stable/sysfs-bus-firewire
+	Documentation/ABI/stable/sysfs-bus-usb
+	Documentation/ABI/stable/sysfs-bus-xen-backend
+	Documentation/ABI/stable/sysfs-class-backlight
+	Documentation/ABI/stable/sysfs-class-rfkill
+	Documentation/ABI/stable/sysfs-class-tpm
+	Documentation/ABI/stable/sysfs-class-ubi
+	Documentation/ABI/stable/sysfs-class-udc
+	Documentation/ABI/stable/sysfs-devices-node
+	Documentation/ABI/stable/sysfs-devices-system-cpu
+	Documentation/ABI/stable/sysfs-devices-system-xen_memory
+	Documentation/ABI/stable/sysfs-driver-ib_srp
+	Documentation/ABI/stable/sysfs-driver-qla2xxx
+	Documentation/ABI/stable/sysfs-driver-usb-usbtmc
+	Documentation/ABI/stable/sysfs-driver-w1_ds28e04
+	Documentation/ABI/stable/sysfs-firmware-efi-vars
+	Documentation/ABI/stable/sysfs-firmware-opal-dump
+	Documentation/ABI/stable/sysfs-firmware-opal-elog
+	Documentation/ABI/stable/sysfs-module
+	Documentation/ABI/stable/sysfs-transport-srp
+	Documentation/ABI/stable/thermal-notification
+	Documentation/ABI/stable/vdso
+	Documentation/ABI/testing/configfs-spear-pcie-gadget
+	Documentation/ABI/testing/configfs-usb-gadget
+	Documentation/ABI/testing/configfs-usb-gadget-acm
+	Documentation/ABI/testing/configfs-usb-gadget-ecm
+	Documentation/ABI/testing/configfs-usb-gadget-eem
+	Documentation/ABI/testing/configfs-usb-gadget-ffs
+	Documentation/ABI/testing/configfs-usb-gadget-hid
+	Documentation/ABI/testing/configfs-usb-gadget-loopback
+	Documentation/ABI/testing/configfs-usb-gadget-mass-storage
+	Documentation/ABI/testing/configfs-usb-gadget-midi
+	Documentation/ABI/testing/configfs-usb-gadget-ncm
+	Documentation/ABI/testing/configfs-usb-gadget-obex
+	Documentation/ABI/testing/configfs-usb-gadget-phonet
+	Documentation/ABI/testing/configfs-usb-gadget-rndis
+	Documentation/ABI/testing/configfs-usb-gadget-serial
+	Documentation/ABI/testing/configfs-usb-gadget-sourcesink
+	Documentation/ABI/testing/configfs-usb-gadget-subset
+	Documentation/ABI/testing/configfs-usb-gadget-uac1
+	Documentation/ABI/testing/configfs-usb-gadget-uac2
+	Documentation/ABI/testing/debugfs-driver-genwqe
+	Documentation/ABI/testing/debugfs-ec
+	Documentation/ABI/testing/debugfs-ideapad
+	Documentation/ABI/testing/debugfs-olpc
+	Documentation/ABI/testing/debugfs-pfo-nx-crypto
+	Documentation/ABI/testing/debugfs-pktcdvd
+	Documentation/ABI/testing/dev-kmsg
+	Documentation/ABI/testing/evm
+	Documentation/ABI/testing/ima_policy
+	Documentation/ABI/testing/procfs-diskstats
+	Documentation/ABI/testing/pstore
+	Documentation/ABI/testing/sysfs-ata
+	Documentation/ABI/testing/sysfs-block
+	Documentation/ABI/testing/sysfs-block-bcache
+	Documentation/ABI/testing/sysfs-block-dm
+	Documentation/ABI/testing/sysfs-block-rssd
+	Documentation/ABI/testing/sysfs-block-zram
+	Documentation/ABI/testing/sysfs-bus-acpi
+	Documentation/ABI/testing/sysfs-bus-bcma
+	Documentation/ABI/testing/sysfs-bus-coresight-devices-etb10
+	Documentation/ABI/testing/sysfs-bus-coresight-devices-etm3x
+	Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel
+	Documentation/ABI/testing/sysfs-bus-coresight-devices-tmc
+	Documentation/ABI/testing/sysfs-bus-css
+	Documentation/ABI/testing/sysfs-bus-event_source-devices-events
+	Documentation/ABI/testing/sysfs-bus-event_source-devices-form
+Aborting
+ERROR: Could not checkout meta branch from known hash 9e70b482d3773abf92c9c5850e134cbca1d5651f
+WARNING: /home/rpjday/oe/builds/qemux86/tmp/work/qemux86-poky-linux/linux-yocto/3.19.2+gitAUTOINC+9e70b482d3_31b35da6a5-r0/temp/run.do_validate_branches.11619:1 exit 1 from
+  exit 1
+ERROR: Function failed: do_validate_branches (log file is located at /home/rpjday/oe/builds/qemux86/tmp/work/qemux86-poky-linux/linux-yocto/3.19.2+gitAUTOINC+9e70b482d3_31b35da6a5-r0/temp/log.do_validate_branches.11619)
 
-<p dir=3D"ltr">Hi,<br>
-Am 31.03.2015 17:07 schrieb &quot;abhishek srivastava&quot; &lt;<a href=3D"=
-mailto:abhishek.embsys@gmail.com">abhishek.embsys@gmail.com</a>&gt;:<br>
-&gt;<br>
-&gt; hi<br>
-&gt; i have created core-image-sato sdimg for my project on raspberrypi. ac=
-tually, i want to run few applications that need python. i want to remove u=
-nnecessary packages that were required for smooth compilation of those appl=
-ications since I downloaded entire python and gcc packages which had heavil=
-y increased size of my sdimg size.<br>
-&gt;<br>
-&gt; how can i find which applications requires what packages for its norma=
-l functionality so that i can further tweak my sdimg or keep exactly those =
-libraries that are needed for my application and remove rest.<br>
-&gt; please help<br>
-&gt;<br>
-Have a look at my cheat sheet: <br>
-<a href=3D"https://github.com/cybertux/cheatsheets/tree/master/bitbake">htt=
-ps://</a><a href=3D"https://github.com/cybertux/cheatsheets/tree/master/bit=
-bake">github.com</a><a href=3D"https://github.com/cybertux/cheatsheets/tree=
-/master/bitbake">/</a><a href=3D"https://github.com/cybertux/cheatsheets/tr=
-ee/master/bitbake">cybertux</a><a href=3D"https://github.com/cybertux/cheat=
-sheets/tree/master/bitbake">/</a><a href=3D"https://github.com/cybertux/che=
-atsheets/tree/master/bitbake">cheatsheets</a><a href=3D"https://github.com/=
-cybertux/cheatsheets/tree/master/bitbake">/tree/master/</a><a href=3D"https=
-://github.com/cybertux/cheatsheets/tree/master/bitbake">bitbake</a><br>
-Or in the yocto wiki:</p>
-<p dir=3D"ltr"><a href=3D"https://wiki.yoctoproject.org/wiki/FAQ#How_can_on=
-e_view_the_dependencies_of_packages_and_the_resulting_growth_in_code_size_a=
-s_packages_are_added.3F">https://wiki.yoctoproject.org/wiki/FAQ#How_can_one=
-_view_the_dependencies_of_packages_and_the_resulting_growth_in_code_size_as=
-_packages_are_added.3F</a></p>
-<p dir=3D"ltr">Regards,<br>
-Christian<br>
-&gt; regards<br>
-&gt; Abhishek<br>
-&gt;<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt;<a href=3D"mailto:yocto@yoctoproject.org"> yocto@yoctoproject.org</a><b=
-r>
-&gt;<a href=3D"https://lists.yoctoproject.org/listinfo/yocto"> https://list=
-s.yoctoproject.org/listinfo/yocto</a><br>
-&gt;<br>
-</p>
+rday
 
---001a11348fe4471c3e0512a2aa19--
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
