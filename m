@@ -1,62 +1,40 @@
-Return-Path: <anders@chargestorm.se>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 61378E00837; Wed,  1 Apr 2015 01:03:09 -0700 (PDT)
+	id 84883E00828; Wed,  1 Apr 2015 04:17:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.217.174 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-lb0-f174.google.com (mail-lb0-f174.google.com
-	[209.85.217.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D19D6E006E9
-	for <yocto@yoctoproject.org>; Wed,  1 Apr 2015 01:03:06 -0700 (PDT)
-Received: by lbbug6 with SMTP id ug6so30225578lbb.3
-	for <yocto@yoctoproject.org>; Wed, 01 Apr 2015 01:03:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id
-	:mail-followup-to:references:mime-version:content-type
-	:content-disposition:content-transfer-encoding:in-reply-to
-	:organization:user-agent;
-	bh=RL1qVQoBhaXPpTU7twtFhHU2e3mPOB00puaHw0L2mls=;
-	b=B5ftzrRmo2L5tVh+Trbt8LVMkhndpWfBdxUxdYQLZTrkpp3SyL0chj7iF7fqVuNLz9
-	ZdA191aKq1NsJlQIEfDJYTh7jUowIWa9jqT0I0UJoVGa9njpuD6D4PY/vGI8CJTvjlVQ
-	0+plkqXatqm9F/qjoI4w/kKXfI22salKeYH7SgVJAVsUAR1NHy3AwpQ490OnX8A/jr7t
-	9O3MpszNE3gBvmv+4Kpq99g7/9aDFE7SjhrQJHEWGYqJB8S80MEEUWTJ2yHPrex9hC6A
-	vTuxmyIjjTVCaAPKTjviyML726H9/BThVqkZwVEXdOmJmBfs9CDxDPxJHA262neJZK7/
-	5fcA==
-X-Gm-Message-State: ALoCoQm3h7Pg0tI6UMdwS/I26NSXGhZZ+xlx1l3ZR0fBEUCMBYSSbm+mEVTbHmffW+LTqjGm1khQ
-X-Received: by 10.112.92.66 with SMTP id ck2mr34199644lbb.105.1427875384193;
-	Wed, 01 Apr 2015 01:03:04 -0700 (PDT)
-Received: from ad.chargestorm.se (213-64-219-84-no126.business.telia.com.
-	[213.64.219.84])
-	by mx.google.com with ESMTPSA id wl9sm218902lbb.11.2015.04.01.01.03.03
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 01 Apr 2015 01:03:03 -0700 (PDT)
-Date: Wed, 1 Apr 2015 10:03:01 +0200
-From: Anders Darander <anders@chargestorm.se>
-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-Message-ID: <20150401080301.GB18315@ad.chargestorm.se>
-Mail-Followup-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <D13F4AC9.58302%belen.barros.pena@intel.com>
-	<20150331093911.GC19097@ad.chargestorm.se>
-	<D1407F76.584DD%belen.barros.pena@intel.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37937E006E9
+	for <yocto@yoctoproject.org>; Wed,  1 Apr 2015 04:17:02 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.14.9/8.14.9) with ESMTP id t31BGsD4017953
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 1 Apr 2015 04:16:54 -0700 (PDT)
+Received: from server.local (128.224.21.196) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 1 Apr 2015 04:16:54 -0700
+Message-ID: <551BD3A5.8020807@windriver.com>
+Date: Wed, 1 Apr 2015 07:16:53 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-In-Reply-To: <D1407F76.584DD%belen.barros.pena@intel.com>
-X-Accept-Language: sv, en, de
-X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
-X-GPG-Key-Id: 0x920E938C
-X-GPG-Keyserver: hkp://keys.gnupg.net
-Organization: ChargeStorm AB
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [RFC] Toaster integration with Jenkins
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+References: <alpine.LFD.2.11.1503311824570.28969@localhost>
+	<551B4086.8050200@windriver.com>
+	<alpine.LFD.2.11.1504010306190.24212@localhost>
+In-Reply-To: <alpine.LFD.2.11.1504010306190.24212@localhost>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: "fatal: A branch named 'meta-orig' already exists."
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,67 +46,160 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Apr 2015 08:03:09 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 01 Apr 2015 11:17:05 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 2015-04-01 3:07 AM, Robert P. J. Day wrote:
+> On Tue, 31 Mar 2015, Bruce Ashfield wrote:
+>
+>> On 2015-03-31 6:26 PM, Robert P. J. Day wrote:
+>>>
+>>>     oh, what fresh hell is this?
+>>>
+>>> ... snip ...
+>>> NOTE: Preparing RunQueue
+>>> NOTE: Executing SetScene Tasks
+>>> NOTE: Executing RunQueue Tasks
+>>> ERROR: Function failed: do_validate_branches (log file is located at
+>>> /home/rpjday/oe/builds/qemux86/tmp/work/qemux86-poky-linux/linux-yocto/3.19.2+gitAUTOINC+9e70b482d3_31b35da6a5-r0/temp/log.do_validate_branches.17524)
+>>> ERROR: Logfile of failure stored in:
+>>> /home/rpjday/oe/builds/qemux86/tmp/work/qemux86-poky-linux/linux-yocto/3.19.2+gitAUTOINC+9e70b482d3_31b35da6a5-r0/temp/log.do_validate_branches.17524
+>>> Log data follows:
+>>> | DEBUG: Executing shell function do_validate_branches
+>>> | NOTE: Setting branch meta to
+>>> 9e70b482d3773abf92c9c5850e134cbca1d5651f
+>>> | fatal: A branch named 'meta-orig' already exists.
+>>>
+>>>     this is building core-image-minimal for qemux86, and i'm assuming
+>>> this is not fedora rawhide related.
+>>
+>> You've got a borked tree sitting in work-shared. If you clean-all
+>> and start again, does it show up ?
+>>
+>> If it repeats, then it very well could be the version of git in
+>> rawhide that is causing the issue.
+>
+>    i started with a fresh build, got a validate_branches error, and
+> used "bb" to dump the log file for that step:
 
-* Barros Pena, Belen <belen.barros.pena@intel.com> [150331 18:00]:
-> On 31/03/2015 10:39, "Anders Darander" <anders@chargestorm.se> wrote:
+There's definitely something wrong or a strange integration between
+the version of git and that tree.
 
-> >I don't know if this is the right thread but a couple of other things
-> >that we really would need in order to fully be able to utilize this.
+Without a place to poke at this, there's not much I can say about
+actually changing that behaviour.
 
-> >1) Some way of getting the built git branch shown in toaster. (As we
-> >discussed on YPDD in D=FCsseldorf together with Axis). We're building
-> >master and release branches for the same machine and image.
+All my local builds are green, all the yocto release builds are green,
+etc, so this is somehow specific to your build and location
+environment.
 
-> If you mean the name of the branch, Toaster currently shows this in
-> several places. One of them is the configuration information for a
-> finished build, which displays a list of the layers used, and for each of
-> them the branch name and the commit used. I've uploaded an screenshot here
+This is on a fully up to date master ?
 
-> http://i.imgur.com/GPDwCh0.png
+Bruce
 
-Good to know.  Just one question, is it possible to get the branch
-information for one layer on the "All build" page? To avoid having to go
-into each build to actually see what kind of build that was.=20
+>
+> ///// START /////
+>
+> DEBUG: Executing shell function do_validate_branches
+> NOTE: Setting branch meta to 9e70b482d3773abf92c9c5850e134cbca1d5651f
+> error: The following untracked working tree files would be removed by checkout:
+> 	.gitignore
+> 	.mailmap
+> 	COPYING
+> 	CREDITS
+> 	Documentation/00-INDEX
+> 	Documentation/ABI/README
+> 	Documentation/ABI/obsolete/proc-sys-vm-nr_pdflush_threads
+> 	Documentation/ABI/obsolete/sysfs-bus-usb
+> 	Documentation/ABI/obsolete/sysfs-class-rfkill
+> 	Documentation/ABI/obsolete/sysfs-driver-hid-roccat-koneplus
+> 	Documentation/ABI/obsolete/sysfs-driver-hid-roccat-kovaplus
+> 	Documentation/ABI/obsolete/sysfs-driver-hid-roccat-pyra
+> 	Documentation/ABI/removed/devfs
+> 	Documentation/ABI/removed/dv1394
+> 	Documentation/ABI/removed/ip_queue
+> 	Documentation/ABI/removed/net_dma
+> 	Documentation/ABI/removed/o2cb
+> 	Documentation/ABI/removed/raw1394
+> 	Documentation/ABI/removed/video1394
+> 	Documentation/ABI/stable/firewire-cdev
+> 	Documentation/ABI/stable/o2cb
+> 	Documentation/ABI/stable/syscalls
+> 	Documentation/ABI/stable/sysfs-acpi-pmprofile
+> 	Documentation/ABI/stable/sysfs-bus-firewire
+> 	Documentation/ABI/stable/sysfs-bus-usb
+> 	Documentation/ABI/stable/sysfs-bus-xen-backend
+> 	Documentation/ABI/stable/sysfs-class-backlight
+> 	Documentation/ABI/stable/sysfs-class-rfkill
+> 	Documentation/ABI/stable/sysfs-class-tpm
+> 	Documentation/ABI/stable/sysfs-class-ubi
+> 	Documentation/ABI/stable/sysfs-class-udc
+> 	Documentation/ABI/stable/sysfs-devices-node
+> 	Documentation/ABI/stable/sysfs-devices-system-cpu
+> 	Documentation/ABI/stable/sysfs-devices-system-xen_memory
+> 	Documentation/ABI/stable/sysfs-driver-ib_srp
+> 	Documentation/ABI/stable/sysfs-driver-qla2xxx
+> 	Documentation/ABI/stable/sysfs-driver-usb-usbtmc
+> 	Documentation/ABI/stable/sysfs-driver-w1_ds28e04
+> 	Documentation/ABI/stable/sysfs-firmware-efi-vars
+> 	Documentation/ABI/stable/sysfs-firmware-opal-dump
+> 	Documentation/ABI/stable/sysfs-firmware-opal-elog
+> 	Documentation/ABI/stable/sysfs-module
+> 	Documentation/ABI/stable/sysfs-transport-srp
+> 	Documentation/ABI/stable/thermal-notification
+> 	Documentation/ABI/stable/vdso
+> 	Documentation/ABI/testing/configfs-spear-pcie-gadget
+> 	Documentation/ABI/testing/configfs-usb-gadget
+> 	Documentation/ABI/testing/configfs-usb-gadget-acm
+> 	Documentation/ABI/testing/configfs-usb-gadget-ecm
+> 	Documentation/ABI/testing/configfs-usb-gadget-eem
+> 	Documentation/ABI/testing/configfs-usb-gadget-ffs
+> 	Documentation/ABI/testing/configfs-usb-gadget-hid
+> 	Documentation/ABI/testing/configfs-usb-gadget-loopback
+> 	Documentation/ABI/testing/configfs-usb-gadget-mass-storage
+> 	Documentation/ABI/testing/configfs-usb-gadget-midi
+> 	Documentation/ABI/testing/configfs-usb-gadget-ncm
+> 	Documentation/ABI/testing/configfs-usb-gadget-obex
+> 	Documentation/ABI/testing/configfs-usb-gadget-phonet
+> 	Documentation/ABI/testing/configfs-usb-gadget-rndis
+> 	Documentation/ABI/testing/configfs-usb-gadget-serial
+> 	Documentation/ABI/testing/configfs-usb-gadget-sourcesink
+> 	Documentation/ABI/testing/configfs-usb-gadget-subset
+> 	Documentation/ABI/testing/configfs-usb-gadget-uac1
+> 	Documentation/ABI/testing/configfs-usb-gadget-uac2
+> 	Documentation/ABI/testing/debugfs-driver-genwqe
+> 	Documentation/ABI/testing/debugfs-ec
+> 	Documentation/ABI/testing/debugfs-ideapad
+> 	Documentation/ABI/testing/debugfs-olpc
+> 	Documentation/ABI/testing/debugfs-pfo-nx-crypto
+> 	Documentation/ABI/testing/debugfs-pktcdvd
+> 	Documentation/ABI/testing/dev-kmsg
+> 	Documentation/ABI/testing/evm
+> 	Documentation/ABI/testing/ima_policy
+> 	Documentation/ABI/testing/procfs-diskstats
+> 	Documentation/ABI/testing/pstore
+> 	Documentation/ABI/testing/sysfs-ata
+> 	Documentation/ABI/testing/sysfs-block
+> 	Documentation/ABI/testing/sysfs-block-bcache
+> 	Documentation/ABI/testing/sysfs-block-dm
+> 	Documentation/ABI/testing/sysfs-block-rssd
+> 	Documentation/ABI/testing/sysfs-block-zram
+> 	Documentation/ABI/testing/sysfs-bus-acpi
+> 	Documentation/ABI/testing/sysfs-bus-bcma
+> 	Documentation/ABI/testing/sysfs-bus-coresight-devices-etb10
+> 	Documentation/ABI/testing/sysfs-bus-coresight-devices-etm3x
+> 	Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel
+> 	Documentation/ABI/testing/sysfs-bus-coresight-devices-tmc
+> 	Documentation/ABI/testing/sysfs-bus-css
+> 	Documentation/ABI/testing/sysfs-bus-event_source-devices-events
+> 	Documentation/ABI/testing/sysfs-bus-event_source-devices-form
+> Aborting
+> ERROR: Could not checkout meta branch from known hash 9e70b482d3773abf92c9c5850e134cbca1d5651f
+> WARNING: /home/rpjday/oe/builds/qemux86/tmp/work/qemux86-poky-linux/linux-yocto/3.19.2+gitAUTOINC+9e70b482d3_31b35da6a5-r0/temp/run.do_validate_branches.11619:1 exit 1 from
+>    exit 1
+> ERROR: Function failed: do_validate_branches (log file is located at /home/rpjday/oe/builds/qemux86/tmp/work/qemux86-poky-linux/linux-yocto/3.19.2+gitAUTOINC+9e70b482d3_31b35da6a5-r0/temp/log.do_validate_branches.11619)
+>
+> rday
+>
 
-For instance, we're having a master layer, that checks out other layers
-as submodules. Being able to direclty see which branch of the master all
-builds originate from would be extremely useful (or another option would
-be if the Jenkins job name could be shown, as that would provide more or
-less the same information for us).
-
-Hm, thinking more about that, being able to store the Jenkins job name
-and build number in the toaster database would likely be really usefull.
-That would allow Toaster to link back to the actual job and build in
-Jenkins. Those could be retrieved from the environmant variables
-BUILD_NUMBER and JOB_NAME in the Jenkins build.
-
-> >2) In the proposed bug, would toaser be able to recieve and handle
-> >toaster/build logs from different YP releases?
-
-> Yes, but you would need to create a Toaster project for each release.
-> Currently, for each Toaster project, you must select the YP release you
-> want to use. A project can only use a single release at any given time.
-
-I've just spent a couple of minutes looking for this (so excuse me if
-it's obvious).
-
-A Toaster project in this case, would that equal to different toaster
-instances and databases, or would they still be able to be shown
-together in the same "All builds" page? If it's not the latter, it would
-be a nice feature for some upcoming release. (Though, it'll obviously
-make the implementation slightly harder as support for older YP releases
-would need to be kept).
-
-Cheers,
-Anders
-
---=20
-Anders Darander
-ChargeStorm AB / eStorm AB
 
