@@ -1,47 +1,47 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <belen.barros.pena@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1ABE2E008EA; Wed,  1 Apr 2015 08:20:21 -0700 (PDT)
+	id 7ABA1E008EA; Wed,  1 Apr 2015 09:57:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.49 listed in list.dnswl.org]
-Received: from mail-qg0-f49.google.com (mail-qg0-f49.google.com
-	[209.85.192.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB6B1E0056E
-	for <yocto@yoctoproject.org>; Wed,  1 Apr 2015 08:20:18 -0700 (PDT)
-Received: by qgep97 with SMTP id p97so45303044qge.1
-	for <yocto@yoctoproject.org>; Wed, 01 Apr 2015 08:20:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=3JrzWEQ/IB76dJGFndKcztXdDfiE/aP1OjXzbN/4Tb0=;
-	b=NUhM1jtyg2TWB4JePg6Uyobr9PjC3vH7e2kVrEkyqrz7OYMLi7y2dCHksUEwyLzWOh
-	990x8QfQJ2mqzy1cxj+vBqtOrhoXmua3Nu6PzWA5OW5LomY10LHJO81S/5YI0BmMoGhM
-	xxwsc9gf9sE6aK9XOjHqf+3Mq3wMyDwThGq4dKJv1uBOXrdIHERyfRB6nQL9+Y4tHYAc
-	Srr+BUk0Im/fRvYwPOoauDGsJTHExD56s/qAQ7gW41h1LZMFBqKrJPfG+a7lBZpwDaDU
-	NGEiIVhqDGPgX0w3Zyh+tL1dLkU1W6hcYD7tKvk+u/xTh6wAg4VrWVv5EUVh0af+oERg
-	GOHw==
-X-Gm-Message-State: ALoCoQns/bzZR0O5e7LNanSPkWqYcn6Am9Ipe54vAGbBdylrqSpv/6EQiGxeNrT4rrT8wKcHUNBf
-X-Received: by 10.55.53.137 with SMTP id c131mr26546384qka.102.1427901618116; 
-	Wed, 01 Apr 2015 08:20:18 -0700 (PDT)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54456E0056E
+	for <yocto@yoctoproject.org>; Wed,  1 Apr 2015 09:57:46 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga103.fm.intel.com with ESMTP; 01 Apr 2015 09:57:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,504,1422950400"; d="scan'208";a="549664313"
+Received: from irsmsx154.ger.corp.intel.com ([163.33.192.96])
+	by orsmga003.jf.intel.com with ESMTP; 01 Apr 2015 09:57:44 -0700
+Received: from irsmsx110.ger.corp.intel.com ([169.254.15.247]) by
+	IRSMSX154.ger.corp.intel.com ([169.254.12.85]) with mapi id
+	14.03.0224.002; Wed, 1 Apr 2015 17:57:43 +0100
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: Anders Darander <anders@chargestorm.se>
+Thread-Topic: [yocto] [RFC] Toaster integration with Jenkins
+Thread-Index: AQHQbJz4lflEiBCd90ebp/VsW3Oi1Q==
+Date: Wed, 1 Apr 2015 16:57:43 +0000
+Message-ID: <D141DDC4.58791%belen.barros.pena@intel.com>
+References: <D13F4AC9.58302%belen.barros.pena@intel.com>
+	<20150331093911.GC19097@ad.chargestorm.se>
+	<D1407F76.584DD%belen.barros.pena@intel.com>
+	<20150401080301.GB18315@ad.chargestorm.se>
+In-Reply-To: <20150401080301.GB18315@ad.chargestorm.se>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.4.8.150116
+x-originating-ip: [10.237.224.80]
 MIME-Version: 1.0
-Received: by 10.140.102.203 with HTTP; Wed, 1 Apr 2015 08:19:57 -0700 (PDT)
-In-Reply-To: <CADu_VSbksoy+hm1Vd=jqzxTpNuFTDLoVX49dp7u9cqWnNVLx9A@mail.gmail.com>
-References: <CADu_VSbksoy+hm1Vd=jqzxTpNuFTDLoVX49dp7u9cqWnNVLx9A@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 1 Apr 2015 16:19:57 +0100
-Message-ID: <CAJTo0LYV88=an8dcFsB=5-C_goHCMR7=X4Q=hF0hh1A6FZQivw@mail.gmail.com>
-To: Matthew Karas <mkarascybi@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: python3-native problems
+Subject: Re: [RFC] Toaster integration with Jenkins
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,40 +53,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Apr 2015 15:20:21 -0000
-Content-Type: multipart/alternative; boundary=001a11476f56b8f4a80512ab4027
-
---001a11476f56b8f4a80512ab4027
-Content-Type: text/plain; charset=UTF-8
-
-On 1 April 2015 at 15:29, Matthew Karas <mkarascybi@gmail.com> wrote:
-
-> DEPENDS = "python3 python3-native python3-distribute"
-> RDEPENDS_${PN} = "python3 python3-native python3-distribute"
-> RDEPENDS_${PN}-dev = "bash python3 python3-native python3-distribute"
->
-
-python3-native is a form of Python 3 that is built and executed on your
-build machine, so it makes no sense to have this as a runtime dependency.
-The RDEPENDS should just be python3 python3-distribute.
-
-Ross
-
---001a11476f56b8f4a80512ab4027
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Wed, 01 Apr 2015 16:57:49 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <EAC360F37BBCDB4488A1204CCB27C047@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 1 April 2015 at 15:29, Matthew Karas <span dir=3D"ltr">&lt;<a href=3D"ma=
-ilto:mkarascybi@gmail.com" target=3D"_blank">mkarascybi@gmail.com</a>&gt;</=
-span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8e=
-x;border-left:1px #ccc solid;padding-left:1ex"><div>DEPENDS =3D &quot;pytho=
-n3 python3-native python3-distribute&quot;<br>RDEPENDS_${PN} =3D &quot;pyth=
-on3 python3-native python3-distribute&quot;<br>RDEPENDS_${PN}-dev =3D &quot=
-;bash python3 python3-native python3-distribute&quot;</div></blockquote></d=
-iv><br>python3-native is a form of Python 3 that is built and executed on y=
-our build machine, so it makes no sense to have this as a runtime dependenc=
-y.=C2=A0 The RDEPENDS should just be python3 python3-distribute.</div><div =
-class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
 
---001a11476f56b8f4a80512ab4027--
+
+On 01/04/2015 09:03, "Anders Darander" <anders@chargestorm.se> wrote:
+
+>Hi,
+>
+>* Barros Pena, Belen <belen.barros.pena@intel.com> [150331 18:00]:
+>> On 31/03/2015 10:39, "Anders Darander" <anders@chargestorm.se> wrote:
+>
+>> >I don't know if this is the right thread but a couple of other things
+>> >that we really would need in order to fully be able to utilize this.
+>
+>> >1) Some way of getting the built git branch shown in toaster. (As we
+>> >discussed on YPDD in D=FCsseldorf together with Axis). We're building
+>> >master and release branches for the same machine and image.
+>
+>> If you mean the name of the branch, Toaster currently shows this in
+>> several places. One of them is the configuration information for a
+>> finished build, which displays a list of the layers used, and for each
+>>of
+>> them the branch name and the commit used. I've uploaded an screenshot
+>>here
+>
+>> http://i.imgur.com/GPDwCh0.png
+>
+>Good to know.  Just one question, is it possible to get the branch
+>information for one layer on the "All build" page?
+
+Not right now, I'm afraid. Having said that, it is probably fairly easy to
+add that information to the table.
+=20
+> To avoid having to go
+>into each build to actually see what kind of build that was.
+>
+>For instance, we're having a master layer, that checks out other layers
+>as submodules.
+> Being able to direclty see which branch of the master all
+>builds originate from would be extremely useful (or another option would
+>be if the Jenkins job name could be shown, as that would provide more or
+>less the same information for us).
+
+This we could probably do, since builds connected to a Jenkins instance
+will need to be identifiable somehow in Toaster.
+
+>
+>Hm, thinking more about that, being able to store the Jenkins job name
+>and build number in the toaster database would likely be really useful.
+
+Again, I'd say this is possible.
+
+>That would allow Toaster to link back to the actual job and build in
+>Jenkins. Those could be retrieved from the environmant variables
+>BUILD_NUMBER and JOB_NAME in the Jenkins build.
+
+This sounds like a handy feature.
+
+>
+>> >2) In the proposed bug, would toaser be able to recieve and handle
+>> >toaster/build logs from different YP releases?
+>
+>> Yes, but you would need to create a Toaster project for each release.
+>> Currently, for each Toaster project, you must select the YP release you
+>> want to use. A project can only use a single release at any given time.
+>
+>I've just spent a couple of minutes looking for this (so excuse me if
+>it's obvious).
+>
+>A Toaster project in this case, would that equal to different toaster
+>instances and databases, or would they still be able to be shown
+>together in the same "All builds" page?
+
+Sorry, I should have explained better: in the same Toaster instance (and
+database). Each Toaster instance can have n projects. Each project is
+associated to a single release. So you can build on different releases
+within the same Toaster instance by using different projects, and access
+all the information through the 'all builds' page.
+
+> If it's not the latter, it would
+>be a nice feature for some upcoming release. (Though, it'll obviously
+>make the implementation slightly harder as support for older YP releases
+>would need to be kept).
+>
+>Cheers,
+>Anders
+>
+>--=20
+>Anders Darander
+>ChargeStorm AB / eStorm AB
+
+
