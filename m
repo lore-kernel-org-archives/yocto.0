@@ -1,31 +1,49 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <mkarascybi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 51C4AE00954; Thu,  2 Apr 2015 10:58:04 -0700 (PDT)
+	id C426CE00953; Thu,  2 Apr 2015 12:09:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mkarascybi[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.177 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2F06E00952
-	for <yocto@yoctoproject.org>; Thu,  2 Apr 2015 10:58:03 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 06BACF811D7; Thu,  2 Apr 2015 11:58:02 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 7F1CEF811D7;
-	Thu,  2 Apr 2015 11:58:02 -0600 (MDT)
-Message-ID: <551D832F.8040808@mlbassoc.com>
-Date: Thu, 02 Apr 2015 11:58:07 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f177.google.com (mail-ig0-f177.google.com
+	[209.85.213.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC3F3E0094C
+	for <yocto@yoctoproject.org>; Thu,  2 Apr 2015 12:09:23 -0700 (PDT)
+Received: by ignm3 with SMTP id m3so54311258ign.0
+	for <yocto@yoctoproject.org>; Thu, 02 Apr 2015 12:09:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=ax90EtzgaJlfnylVOBOnsc10JFWcd1kFxsAyXRaH76g=;
+	b=CuxJlHc2N1u3Dga59VP7yL9m5J06F/tPkciTO3qfLAPvhifW00Pa9gVUSISlU6JiEh
+	lvR8JxpVqpy03AN4aiEnSj9lI0q+588DO3HmWl5xbBOpWM/KPP5cZlGEw+/upx80skkh
+	i746umsWk+TNb8JfGta9CmtYRFmM2oVZLNLklyIHrMhHzAPyk9k1Qeq2CqcLiU9f4UNR
+	xEXT1fV14nVXmOc0IHCN5i2ExO+oLU/qUvq1OIscEM06LPQSKmVDGLV5hUmOy5zpEYs9
+	acpuquHRbVgeRbJneC+LlFH0KyHke2sXffOacAALNJFzQNIYHwg1jSSiw4L4zhlXVDEm
+	sgJA==
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <60F6FAE47D1BCE4380CC06D18F49789BB9B56426@NTXBOIMBX02.micron.com>
-In-Reply-To: <60F6FAE47D1BCE4380CC06D18F49789BB9B56426@NTXBOIMBX02.micron.com>
-Subject: Re: How to find libraries when building software
+X-Received: by 10.107.25.68 with SMTP id 65mr77238178ioz.44.1428001762767;
+	Thu, 02 Apr 2015 12:09:22 -0700 (PDT)
+Received: by 10.36.73.87 with HTTP; Thu, 2 Apr 2015 12:09:22 -0700 (PDT)
+Date: Thu, 2 Apr 2015 15:09:22 -0400
+Message-ID: <CADu_VSbVs6AT+8UCjuEeeSFKCNxLreBj-8Qd8r4RQFZjxN9avw@mail.gmail.com>
+From: Matthew Karas <mkarascybi@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Installing custom python packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,58 +55,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Apr 2015 17:58:04 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 02 Apr 2015 19:09:27 -0000
+Content-Type: multipart/alternative; boundary=001a113fe548cefb490512c291ee
 
-On 2015-04-02 11:36, Andy Falanga (afalanga) wrote:
-> HI,
->
-> Thanks to Gary Thomas' response, I was able to get the python libraries from Boost built.  Now, when I'm building my own library, which requires libboost_python, the configure script isn't able to find it.  How do I work with these cross compilation environments?
->
-> What I have is this.  I added the line below to local.conf as Gary instructed.
->
-> PACKAGECONFIG_pn-boost = "python"
->
-> I then ran
->
-> bitbake core-image-minimal
->
-> This built both python and the full set of boost (include libboost_python).  I see this in <output_dir>/sysroots/zc706-zynq7/usr/lib.  (In case it's relevant, this environment was constructed using /opt/yocto/poky-dizzy-12.0.1/oe-init-build-env.)  I then use a script that a co-worker wrote (quite simple) which configures the paths accordingly to use the cross compiler toolset.  My path is as follows:
->
-> /home/afalanga/src/crisscross/tmp/sysroots/x86_64-linux/usr/bin/arm-poky-linux-gnueabi:/home/afalanga/src/crisscross/tmp/sysroots/x86_64-linux/usr/bin:/opt/yocto/poky-dizzy-12.0.1/scripts:/opt/yocto/poky-dizzy-12.0.1/bitbake/bin:/opt/petalinux-v2014.4-final/tools/linux-i386/arm-xilinx-linux-gnueabi/bin:/opt/petalinux-v2014.4-final/tools/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
->
-> In my own library project, I run my configure script with this:
->
-> ./configure --host=arm-poky-linux-gnueabi
->
-> All is working quite well except that I run into this error:
-> ...
-> checking for Boost headers version >= 1.47.0... yes
-> checking for Boost's header version... 1_56
-> checking for the toolset name used by Boost for arm-poky-linux-gnueabi-g++... gcc49 -gcc
-> checking boost/system/error_code.hpp usability... yes
-> checking boost/system/error_code.hpp presence... yes
-> checking for boost/system/error_code.hpp... yes
-> checking for the Boost system library... yes
-> checking boost/filesystem/path.hpp usability... yes
-> checking boost/filesystem/path.hpp presence... yes
-> checking for boost/filesystem/path.hpp... yes
-> checking for the Boost filesystem library... (cached) yes
-> checking boost/python.hpp usability... no
-> checking boost/python.hpp presence... no
-> checking for boost/python.hpp... no
-> configure: error: cannot find boost/python.hpp
->
-> I can find this file in <output_dir>/sysroots/zx706-zinq7/usr/include/boost, why can't the configure script?  What's wrong with how I've done things?  Or, and probably much more beneficial, when I say, "--host=arm-poky-linux-gnueabi" what does that actually mean?  Where are these things installed?  Why is it saying that it cannot find the header when I can?  The only rational explanation is that it's looking somewhere other than where I am.  Thus, I don't understand as much as I should.  What should I read in the manual?
+--001a113fe548cefb490512c291ee
+Content-Type: text/plain; charset=UTF-8
 
-Another thing to look at is the 'config.log' in your build
-(for your "library" recipe).  It should tell you more about
-why it can't find boost/python.hpp
+How do I install a custom python package in yocto?  I've tried looking up
+google but nothing comes up.  On my non-target machine I just do pip
+install <package-folder>.  What do I put in my bb file?
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Many Thanks
 
+--001a113fe548cefb490512c291ee
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><span>How do I install a custom python package in yoc=
+to?<span>=C2=A0=C2=A0</span>I&#39;ve tried looking up google but nothing co=
+mes up.<span>=C2=A0=C2=A0</span>On my non-target machine I just do pip inst=
+all &lt;package-folder&gt;.<span>=C2=A0=C2=A0</span>What do I put in my bb =
+file?<br><br></span></div><span>Many Thanks<br></span></div>
+
+--001a113fe548cefb490512c291ee--
