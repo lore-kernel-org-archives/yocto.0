@@ -1,42 +1,46 @@
-Return-Path: <chan.kitx.yu@intel.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 76E93E00930; Thu,  2 Apr 2015 02:26:33 -0700 (PDT)
+	id DF79DE00932; Thu,  2 Apr 2015 03:16:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB0F1E008DC
-	for <yocto@yoctoproject.org>; Thu,  2 Apr 2015 02:26:31 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga102.fm.intel.com with ESMTP; 02 Apr 2015 02:26:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,509,1422950400"; 
-	d="scan'208,217";a="707835355"
-Received: from pgsmsx107.gar.corp.intel.com ([10.221.44.105])
-	by orsmga002.jf.intel.com with ESMTP; 02 Apr 2015 02:26:30 -0700
-Received: from pgsmsx101.gar.corp.intel.com ([169.254.1.205]) by
-	PGSMSX107.gar.corp.intel.com ([169.254.7.219]) with mapi id
-	14.03.0224.002; Thu, 2 Apr 2015 17:25:35 +0800
-From: "Yu, Chan KitX" <chan.kitx.yu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Kernel Panic: /sbin/init not found
-Thread-Index: AdBtJJT1N+XghKcCR/iJRvDjeaehYg==
-Date: Thu, 2 Apr 2015 09:25:35 +0000
-Message-ID: <0E4D391FE2BDEC45AA0B4E32D6BD598A28AF2F@PGSMSX101.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.30.20.206]
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E456E008EC
+	for <yocto@yoctoproject.org>; Thu,  2 Apr 2015 03:16:44 -0700 (PDT)
+Received: from [70.30.87.145] (port=51689 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1YdcB9-0005g4-Mn; Thu, 02 Apr 2015 06:16:52 -0400
+Date: Thu, 2 Apr 2015 06:16:33 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
+In-Reply-To: <CADkTA4Pw2M6aLuhjEmpWb4MMNdSTrAbYrdTrn8q3atokJsqp3Q@mail.gmail.com>
+Message-ID: <alpine.LFD.2.11.1504020602230.8123@localhost>
+References: <alpine.LFD.2.11.1503311824570.28969@localhost>
+	<551B4086.8050200@windriver.com>
+	<alpine.LFD.2.11.1504010306190.24212@localhost>
+	<551BD3A5.8020807@windriver.com>
+	<alpine.LFD.2.11.1504010722160.13136@localhost>
+	<CADkTA4Pw2M6aLuhjEmpWb4MMNdSTrAbYrdTrn8q3atokJsqp3Q@mail.gmail.com>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-Subject: Kernel Panic: /sbin/init not found
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: "fatal: A branch named 'meta-orig' already exists."
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,118 +52,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Apr 2015 09:26:33 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_0E4D391FE2BDEC45AA0B4E32D6BD598A28AF2FPGSMSX101garcorpi_"
+X-List-Received-Date: Thu, 02 Apr 2015 10:16:50 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
---_000_0E4D391FE2BDEC45AA0B4E32D6BD598A28AF2FPGSMSX101garcorpi_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On Wed, 1 Apr 2015, Bruce Ashfield wrote:
 
-Hello all,
+... again, snip ...
 
-My Yocto build environment was working perfectly until last week when I got=
- kernel panic caused by missing/sbin/init. When I examined the image, I fou=
-nd that /sbin/init is indeed absent from the root image. To troubleshoot th=
-e issue, I tried building a stock Yocto whose target platform is 64-bit mac=
-hine using a  freshly installed Ubuntu 14.04 from another build machine.  D=
-espite that, the kernel panic still occurs and that's the main reason I'm w=
-riting here; that is to see if anyone else has the same issue. I did not ma=
-ke any change or any customization to local.conf aside from setting MACHINE=
- to 64 bit and adding the following lines which enable multilib:
+> I completely agree .. better to sort this out sooner rather than
+> later, I'm just trying to narrow down on a configuration that allows
+> me to see the problem and poke at the smouldering pile. If git is
+> doing something different now, it won't be hard to fix, but hands
+> on, versus code inspection, is the real trick here.
 
-IMAGE_INSTALL =3D "lib32-connman"
-require conf/multilib.conf
-MULTILIBS =3D "multilib:lib32"
-DEFAULTTUNE_virtclass-multilib-lib32 =3D "x86"
+  ok, now i'm confused about where i'm getting my kernel source from.
+with a fresh build for qemux86 and deliberately not using any of my
+local mirror content, i did:
 
-I would be more than happy to provide necessary diagnostic message shall yo=
-u request so. Let me know if you guys are able to reproduce this issue.
+  $ bitbake -c fetchall linux-yocto
 
-Chan Kit
+assuming the fetch would take a while due to, you know, git checkout.
 
---_000_0E4D391FE2BDEC45AA0B4E32D6BD598A28AF2FPGSMSX101garcorpi_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+  the first puzzler is that my downloads directory very quickly
+contained (among other things):
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello all,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">My Yocto build environment was working perfectly unt=
-il last week when I got kernel panic caused by missing/sbin/init. When I ex=
-amined the image, I found that /sbin/init is indeed absent from the root im=
-age. To troubleshoot the issue, I
- tried building a stock Yocto whose target platform is 64-bit machine using=
- a &nbsp;freshly installed Ubuntu 14.04 from another build machine. &nbsp;D=
-espite that, the kernel panic still occurs and that&#8217;s the main reason=
- I&#8217;m writing here; that is to see if anyone else
- has the same issue. I did not make any change or any customization to loca=
-l.conf aside from setting MACHINE to 64 bit and adding the following lines =
-which enable multilib:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">IMAGE_INSTALL =3D &quot;lib32-connman&quot;<o:p></o:=
-p></p>
-<p class=3D"MsoNormal">require conf/multilib.conf<o:p></o:p></p>
-<p class=3D"MsoNormal">MULTILIBS =3D &quot;multilib:lib32&quot;<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal">DEFAULTTUNE_virtclass-multilib-lib32 =3D &quot;x86&q=
-uot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I would be more than happy to provide necessary diag=
-nostic message shall you request so. Let me know if you guys are able to re=
-produce this issue.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Chan Kit <o:p></o:p></p>
-</div>
-</body>
-</html>
+-rw-rw-r--. 1 rpjday rpjday 81688872 Feb  8 22:20 linux-3.19.tar.xz
 
---_000_0E4D391FE2BDEC45AA0B4E32D6BD598A28AF2FPGSMSX101garcorpi_--
+should i have expected that? why do i suddenly have what looks like a
+stock linux-3.19 tarball when git should be used for this?
+
+  and here's the salient bit from the fetch log file, clearly showing
+a sizable tarball being downloaded from downloads.yoctoproject.org:
+
+///// START /////
+DEBUG: For url
+git://git.yoctoproject.org/linux-yocto-3.19.git;bareclone=1;branch=standard/common-pc,meta;name=machine,meta
+returning
+http://downloads.yoctoproject.org/mirror/sources/git2_git.yoctoproject.org.linux-yocto-3.19.git.tar.gz
+... cut ...
+DEBUG: Fetching
+http://downloads.yoctoproject.org/mirror/sources/git2_git.yoctoproject.org.linux-yocto-3.19.git.tar.gz
+using command '/usr/bin/env wget -t 2 -T 30 -nv --passive-ftp
+--no-check-certificate -P /home/rpjday/oe/builds/qemux86/downloads
+'http://downloads.yoctoproject.org/mirror/sources/git2_git.yoctoproject.org.linux-yocto-3.19.git.tar.gz''
+DEBUG: Fetcher accessed the network with the command /usr/bin/env wget
+-t 2 -T 30 -nv --passive-ftp --no-check-certificate -P
+/home/rpjday/oe/builds/qemux86/downloads
+'http://downloads.yoctoproject.org/mirror/sources/git2_git.yoctoproject.org.linux-yocto-3.19.git.tar.gz'
+/// END ///
+
+  that tarball is 927M as you can see here:
+
+http://downloads.yoctoproject.org/mirror/sources/
+
+dated mar 24, so that's fairly new and makes me wonder if there's
+something weird/broken about it. waiting for wget to finish ... ok,
+done. now try to cuild:
+
+  $ bitbake linux-yocto
+
+hmmmmmmm ... and it's already blown by the validate_branches task, so
+suddenly, no problem. weird.
+
+  it is entirely possible that, because i was using a local mirror
+loaded with tarballs, an earlier kernel tarball was being picked up
+and wasn't compatible with later content. after dropping any reference
+to my local mirror, validate_branches appears to work.
+
+  still curious as to the presence of the linux-3.19 xz tarball in my
+downloads directory.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
+
+
