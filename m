@@ -1,6 +1,6 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF79DE00932; Thu,  2 Apr 2015 03:16:50 -0700 (PDT)
+	id 89D4EE00932; Thu,  2 Apr 2015 03:45:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,24 +10,20 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E456E008EC
-	for <yocto@yoctoproject.org>; Thu,  2 Apr 2015 03:16:44 -0700 (PDT)
-Received: from [70.30.87.145] (port=51689 helo=crashcourse.ca)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 280AAE008EC
+	for <yocto@yoctoproject.org>; Thu,  2 Apr 2015 03:45:17 -0700 (PDT)
+Received: from [70.30.87.145] (port=51901 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1YdcB9-0005g4-Mn; Thu, 02 Apr 2015 06:16:52 -0400
-Date: Thu, 2 Apr 2015 06:16:33 -0400 (EDT)
+	id 1Ydccf-0001Ms-N7; Thu, 02 Apr 2015 06:45:18 -0400
+Date: Thu, 2 Apr 2015 06:45:00 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@localhost
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-In-Reply-To: <CADkTA4Pw2M6aLuhjEmpWb4MMNdSTrAbYrdTrn8q3atokJsqp3Q@mail.gmail.com>
-Message-ID: <alpine.LFD.2.11.1504020602230.8123@localhost>
-References: <alpine.LFD.2.11.1503311824570.28969@localhost>
-	<551B4086.8050200@windriver.com>
-	<alpine.LFD.2.11.1504010306190.24212@localhost>
-	<551BD3A5.8020807@windriver.com>
-	<alpine.LFD.2.11.1504010722160.13136@localhost>
-	<CADkTA4Pw2M6aLuhjEmpWb4MMNdSTrAbYrdTrn8q3atokJsqp3Q@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <8AC664C9-4035-4A3C-9AD2-A9D442C6E6EF@gmail.com>
+Message-ID: <alpine.LFD.2.11.1504020637030.15063@localhost>
+References: <alpine.LFD.2.11.1503311547440.7527@localhost>
+	<8AC664C9-4035-4A3C-9AD2-A9D442C6E6EF@gmail.com>
 User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -40,7 +36,7 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: "fatal: A branch named 'meta-orig' already exists."
+Subject: Re: what is the proper way to build with fedora rawhide/gcc-5.0?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,75 +48,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Apr 2015 10:16:50 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 02 Apr 2015 10:45:21 -0000
+Content-Type: MULTIPART/MIXED; BOUNDARY="8323328-1431720659-1427971055=:15063"
+Content-ID: <alpine.LFD.2.11.1504020637430.15340@localhost>
 
-On Wed, 1 Apr 2015, Bruce Ashfield wrote:
+--8323328-1431720659-1427971055=:15063
+Content-Type: TEXT/PLAIN; CHARSET=UTF-8
+Content-Transfer-Encoding: 8BIT
+Content-ID: <alpine.LFD.2.11.1504020637431.15340@localhost>
 
-... again, snip ...
+On Tue, 31 Mar 2015, Khem Raj wrote:
 
-> I completely agree .. better to sort this out sooner rather than
-> later, I'm just trying to narrow down on a configuration that allows
-> me to see the problem and poke at the smouldering pile. If git is
-> doing something different now, it won't be hard to fix, but hands
-> on, versus code inspection, is the real trick here.
+> > On Mar 31, 2015, at 12:54 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+> >
+> >  i asked about this a few weeks ago, finally getting back to it
+> > ... for better or worse, i'm running fedora rawhide, updated to
+> > the point where i have gcc-5.0.0:
+> >
+> > $ gcc --version
+> > gcc (GCC) 5.0.0 20150208 (Red Hat 5.0.0-0.10)
+> > Copyright (C) 2015 Free Software Foundation, Inc.
+> > This is free software; see the source for copying conditions.  There is NO
+> > warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+> > $
+> >
+> > which causes a number of build issues trying to build for something as
+> > simple as qemux86.
+> >
+> >  first, there is a linemarkers issue with gcc-5.0 that i got around
+> > by adding to local.conf:
+> >
+> >  CPPFLAGS_append= " -P”
+>
+> This should not be required. Can you post the failing package with error details
+> it should be fixed.
+> >
+> > and there were two native build issues due to gcc-5.0 being far
+> > pickier with warnings that i sidestepped with the cheap hack:
+> >
+> >  ASSUME_PROVIDED += "elfutils-native"
+> >  ASSUME_PROVIDED += "binutils-native”
+>
+> There is 2.25 update available on my contrib tree.
+> http://git.openembedded.org/openembedded-core-contrib/log/?h=kraj/master
+> should help with binutils.
 
-  ok, now i'm confused about where i'm getting my kernel source from.
-with a fresh build for qemux86 and deliberately not using any of my
-local mirror content, i did:
+  i *think* i mentioned earlier that the first failing package build
+is ncurses-native:
 
-  $ bitbake -c fetchall linux-yocto
+| In file included from
+/home/rpjday/oe/builds/qemux86/tmp/work/x86_64-linux/ncurses-native/5.9-r15.1/ncurses-5.9/ncurses/curses.priv.h:283:0,
+|                  from ../ncurses/lib_gen.c:19:
+| _9187.c:835:15: error: expected ')' before 'int'
+| ../include/curses.h:1594:56: note: in definition of macro
+'mouse_trafo'
+|  #define mouse_trafo(y,x,to_screen)
+wmouse_trafo(stdscr,y,x,to_screen)
+|                                                         ^
+| gcc  -DHAVE_CONFIG_H -I../ncurses
+-I/home/rpjday/oe/builds/qemux86/tmp/work/x86_64-linux/ncurses-native/5.9-r15.1/ncurses-5.9/ncurses
+-isystem/home/rpjday/oe/builds/qemux86/tmp/sysroots/x86_64-linux/usr/include
+-D_GNU_SOURCE -DNDEBUG -I. -I../include
+-I/home/rpjday/oe/builds/qemux86/tmp/work/x86_64-linux/ncurses-native/5.9-r15.1/ncurses-5.9/ncurses/../include
+-I/home/rpjday/oe/builds/qemux86/tmp/sysroots/x86_64-linux/usr/include
+-isystem/home/rpjday/oe/builds/qemux86/tmp/sysroots/x86_64-linux/usr/include
+-D_GNU_SOURCE -O2 -pipe  --param max-inline-insns-single=1200 -fPIC -c
+/home/rpjday/oe/builds/qemux86/tmp/work/x86_64-linux/ncurses-native/5.9-r15.1/ncurses-5.9/ncurses/base/lib_isendwin.c
+-o ../obj_s/lib_isendwin.o
+| Makefile:1682: recipe for target '../obj_s/lib_gen.o' failed
 
-assuming the fetch would take a while due to, you know, git checkout.
+  this appears to be related to the issues listed in this post
+describing a mass rebuild of fedora packages with gcc-5.0.0:
 
-  the first puzzler is that my downloads directory very quickly
-contained (among other things):
+https://lists.fedoraproject.org/pipermail/devel/2015-February/207549.html
 
--rw-rw-r--. 1 rpjday rpjday 81688872 Feb  8 22:20 linux-3.19.tar.xz
+particularly this:
 
-should i have expected that? why do i suddenly have what looks like a
-stock linux-3.19 tarball when git should be used for this?
+"Main offender this time is probably the gnu11 change that entails
+different inline semantics, enables some warnings by default, bumps
+the __STDC_VERSION__, and so on.  Hopefully it won't take too long
+till these packages catch on. Many packages were not prepared for the
+new major version of GCC.  There's also been quite a lot of churn
+because of the preprocessor now emitting linemarkers in the output
+when the -P option is not turned on.  The C++ compiler now rejects
+some code that it used to accept.  Furthermore, GCC 5 has a batch of
+new warnings, which, combined with -Werror, caused some additional
+failures."
 
-  and here's the salient bit from the fetch log file, clearly showing
-a sizable tarball being downloaded from downloads.yoctoproject.org:
+  sure enough, down that page, ncurses and a bunch of other packages
+are identified as having the issue:
 
-///// START /////
-DEBUG: For url
-git://git.yoctoproject.org/linux-yocto-3.19.git;bareclone=1;branch=standard/common-pc,meta;name=machine,meta
-returning
-http://downloads.yoctoproject.org/mirror/sources/git2_git.yoctoproject.org.linux-yocto-3.19.git.tar.gz
-... cut ...
-DEBUG: Fetching
-http://downloads.yoctoproject.org/mirror/sources/git2_git.yoctoproject.org.linux-yocto-3.19.git.tar.gz
-using command '/usr/bin/env wget -t 2 -T 30 -nv --passive-ftp
---no-check-certificate -P /home/rpjday/oe/builds/qemux86/downloads
-'http://downloads.yoctoproject.org/mirror/sources/git2_git.yoctoproject.org.linux-yocto-3.19.git.tar.gz''
-DEBUG: Fetcher accessed the network with the command /usr/bin/env wget
--t 2 -T 30 -nv --passive-ftp --no-check-certificate -P
-/home/rpjday/oe/builds/qemux86/downloads
-'http://downloads.yoctoproject.org/mirror/sources/git2_git.yoctoproject.org.linux-yocto-3.19.git.tar.gz'
-/// END ///
+"these packages failed to build because of the changes in the
+preprocessor; gcc started to generate line directives to better detect
+whether a macro tokens come from a system header - see
+http://gcc.gnu.org/PR60723 The fix is to use the -P option if the code
+isn't prepared to deal with such directives."
 
-  that tarball is 927M as you can see here:
-
-http://downloads.yoctoproject.org/mirror/sources/
-
-dated mar 24, so that's fairly new and makes me wonder if there's
-something weird/broken about it. waiting for wget to finish ... ok,
-done. now try to cuild:
-
-  $ bitbake linux-yocto
-
-hmmmmmmm ... and it's already blown by the validate_branches task, so
-suddenly, no problem. weird.
-
-  it is entirely possible that, because i was using a local mirror
-loaded with tarballs, an earlier kernel tarball was being picked up
-and wasn't compatible with later content. after dropping any reference
-to my local mirror, validate_branches appears to work.
-
-  still curious as to the presence of the linux-3.19 xz tarball in my
-downloads directory.
+  i see that your oe-contrib repo has a newer version of binutils, but
+not of ncurses, although your ncurses SRC_URI is different. anyway,
+this is just what i've tripped over lately on my rawhide system.
 
 rday
 
@@ -134,5 +160,4 @@ Twitter:                                       http://twitter.com/rpjday
 LinkedIn:                               http://ca.linkedin.com/in/rpjday
 ========================================================================
 
-
-
+--8323328-1431720659-1427971055=:15063--
