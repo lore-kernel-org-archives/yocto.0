@@ -1,42 +1,47 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C1A1EE00932; Thu,  2 Apr 2015 06:12:16 -0700 (PDT)
+	id 5A328E00949; Thu,  2 Apr 2015 07:20:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.174 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78B13E008EC
-	for <yocto@yoctoproject.org>; Thu,  2 Apr 2015 06:12:12 -0700 (PDT)
-Received: from [70.30.87.145] (port=53582 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Ydev1-0000pB-3g; Thu, 02 Apr 2015 09:12:23 -0400
-Date: Thu, 2 Apr 2015 09:12:07 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <8AC664C9-4035-4A3C-9AD2-A9D442C6E6EF@gmail.com>
-Message-ID: <alpine.LFD.2.11.1504020908350.5421@localhost>
-References: <alpine.LFD.2.11.1503311547440.7527@localhost>
-	<8AC664C9-4035-4A3C-9AD2-A9D442C6E6EF@gmail.com>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-qc0-f174.google.com (mail-qc0-f174.google.com
+	[209.85.216.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEF3AE00777
+	for <yocto@yoctoproject.org>; Thu,  2 Apr 2015 07:20:35 -0700 (PDT)
+Received: by qcrf4 with SMTP id f4so55593310qcr.0
+	for <yocto@yoctoproject.org>; Thu, 02 Apr 2015 07:20:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=4Puh8/GA2Bc4cdiY1YPzaJ8+SGywNQ2jJ9tSPBwBPzQ=;
+	b=guZ2XILU7zwjDk/GTQBbtxT0TM2luTOEbY5ZVaVdwFwmyx2qdVnRVhbWP/lB4TPimS
+	pUluumLVCknbjxS02/3ZkBdc9o6Ifds6G8dBDbG3sVvhCX9QdiSV+kK4SplwB0c+Yyf/
+	A2VXOETfn9rvyDvMezN4Daey4Lh3l7r9kZReRy3DnMwuNu9MBtcCEPp25/YP8rkKG5b+
+	FwU9pUZR8r1r8hCV17WMYQHcp+HUE9fN2QPLEk8WjQ4D7owQTPIe7pAe5BnzQoJvRRjm
+	N8rXrlTlb2jKSbmLubYJ3oxOYmUjtqtCqAMy12fT7+DtFWutCk6VzD6LSX/LHvBZtH8B
+	Zdbg==
+X-Gm-Message-State: ALoCoQkkEE2X30yH1A64XlgxKkH5uEmKlN1xAIm/FHasV0xG68jrCWYSb3B4SD/YYNMCWJwR0OgW
+X-Received: by 10.55.53.137 with SMTP id c131mr36354428qka.102.1427984434609; 
+	Thu, 02 Apr 2015 07:20:34 -0700 (PDT)
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: what is the proper way to build with fedora rawhide/gcc-5.0?
+Received: by 10.140.102.203 with HTTP; Thu, 2 Apr 2015 07:20:14 -0700 (PDT)
+In-Reply-To: <7858CE2B355E1A438F13002DDE9D639401110780D4@vie196nt>
+References: <7858CE2B355E1A438F13002DDE9D639401110780D4@vie196nt>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 2 Apr 2015 15:20:14 +0100
+Message-ID: <CAJTo0LaAt_f3EUkaQQ6WpofRryrk+Q6=Gj3c0youZ_KzLVA=aQ@mail.gmail.com>
+To: PIEWALD Georg <Georg.PIEWALD@frequentis.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Devshell configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,75 +53,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Apr 2015 13:12:16 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323328-2034513355-1427980331=:5421"
+X-List-Received-Date: Thu, 02 Apr 2015 14:20:37 -0000
+Content-Type: multipart/alternative; boundary=001a11476f56f8562b0512be88d8
 
---8323328-2034513355-1427980331=:5421
-Content-Type: TEXT/PLAIN; charset=utf-8
-Content-Transfer-Encoding: 8BIT
+--001a11476f56f8562b0512be88d8
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 31 Mar 2015, Khem Raj wrote:
+On 1 April 2015 at 08:59, PIEWALD Georg <Georg.PIEWALD@frequentis.com>
+wrote:
 
+> Ideally I would imagine that I can somewhere configure the exact command
+> that is called when I execute "bitbake xxx =E2=80=93c devshell". If that'=
+s not
+> possible, can I at least change some of the points mentioned above?
 >
-> > On Mar 31, 2015, at 12:54 PM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
-> >
-> >
-> >  i asked about this a few weeks ago, finally getting back to it ...
-> > for better or worse, i'm running fedora rawhide, updated to the point
-> > where i have gcc-5.0.0:
-> >
-> > $ gcc --version
-> > gcc (GCC) 5.0.0 20150208 (Red Hat 5.0.0-0.10)
-> > Copyright (C) 2015 Free Software Foundation, Inc.
-> > This is free software; see the source for copying conditions.  There is NO
-> > warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-> > $
-> >
-> > which causes a number of build issues trying to build for something as
-> > simple as qemux86.
-> >
-> >  first, there is a linemarkers issue with gcc-5.0 that i got around
-> > by adding to local.conf:
-> >
-> >  CPPFLAGS_append= " -P”
 >
-> This should not be required. Can you post the failing package with error details
-> it should be fixed.
->
-> >
-> > and there were two native build issues due to gcc-5.0 being far
-> > pickier with warnings that i sidestepped with the cheap hack:
-> >
-> >  ASSUME_PROVIDED += "elfutils-native"
-> >  ASSUME_PROVIDED += "binutils-native”
->
-> There is 2.25 update available on my contrib tree.
-> http://git.openembedded.org/openembedded-core-contrib/log/?h=kraj/master
-> should help with binutils.
+For most things you said not currently, but classes/devshell.bbclass and
+classes/terminal.bbclass are where the logic lies, so patches are welcome.
 
-  ok, i finally have a full build for qemux86/core-image-minimal.
-things i did:
+Ross
 
-* wiped the old kernel tarball from my local source mirror -- not
-  sure why that fixed the kernel issue but a fresh download seems
-  to have done the trick.
-* removed the above CPPFLAGS_append line from local.conf
-* used khem's ncurses recipe
-* left the two ASSUME_PROVIDED lines where they were, out of sheer
-  laziness since they seem to work.
+--001a11476f56f8562b0512be88d8
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-  enough excitement for one day ...
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 1 April 2015 at 08:59, PIEWALD Georg <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:Georg.PIEWALD@frequentis.com" target=3D"_blank">Georg.PIEWALD@frequent=
+is.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"=
+margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"=
+MsoNormal">Ideally I would imagine that I can somewhere configure the exact=
+ command that is called when I execute &quot;bitbake xxx =E2=80=93c devshel=
+l&quot;. If that&#39;s not possible, can I at least change some of the poin=
+ts mentioned above?<u></u><u></u></p>
+<p class=3D"MsoNormal"></p></blockquote></div><br>For most things you said =
+not currently, but classes/devshell.bbclass and classes/terminal.bbclass ar=
+e where the logic lies, so patches are welcome.</div><div class=3D"gmail_ex=
+tra"><br></div><div class=3D"gmail_extra">Ross</div></div>
 
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
---8323328-2034513355-1427980331=:5421--
+--001a11476f56f8562b0512be88d8--
