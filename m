@@ -1,46 +1,60 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <lev.lehn@kardex.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EF529E00932; Thu,  2 Apr 2015 01:18:00 -0700 (PDT)
+	id 47FC8E00930; Thu,  2 Apr 2015 01:23:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5FC6E008DC
-	for <yocto@yoctoproject.org>; Thu,  2 Apr 2015 01:17:59 -0700 (PDT)
-Received: from [99.240.204.5] (port=56219 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1YdaKH-000257-LU; Thu, 02 Apr 2015 04:18:09 -0400
-Date: Thu, 2 Apr 2015 04:17:54 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-In-Reply-To: <CADkTA4Pw2M6aLuhjEmpWb4MMNdSTrAbYrdTrn8q3atokJsqp3Q@mail.gmail.com>
-Message-ID: <alpine.LFD.2.11.1504020411250.19554@localhost>
-References: <alpine.LFD.2.11.1503311824570.28969@localhost>
-	<551B4086.8050200@windriver.com>
-	<alpine.LFD.2.11.1504010306190.24212@localhost>
-	<551BD3A5.8020807@windriver.com>
-	<alpine.LFD.2.11.1504010722160.13136@localhost>
-	<CADkTA4Pw2M6aLuhjEmpWb4MMNdSTrAbYrdTrn8q3atokJsqp3Q@mail.gmail.com>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [213.61.29.36 listed in list.dnswl.org]
+X-Greylist: delayed 1176 seconds by postgrey-1.32 at yocto-www;
+	Thu, 02 Apr 2015 01:23:46 PDT
+Received: from mail1.kardex.com (mail1.kardex.com [213.61.29.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C49C0E008DC
+	for <yocto@yoctoproject.org>; Thu,  2 Apr 2015 01:23:46 -0700 (PDT)
+X-ASG-Debug-ID: 1427961849-081af84446184d0d0001-yzSStA
+Received: from DE1-SVMSX-008.corp.LOCAL ([192.168.70.4]) by mail1.kardex.com
+	with ESMTP id BVqerMF451S1udcZ (version=TLSv1 cipher=AES128-SHA
+	bits=128 verify=NO) for <yocto@yoctoproject.org>;
+	Thu, 02 Apr 2015 01:04:09 -0700 (PDT)
+X-Barracuda-Envelope-From: lev.lehn@kardex.com
+Received: from DE1-SVMSX-006.corp.LOCAL ([fe80::f4e9:cb0b:8d63:8a1a]) by
+	DE1-SVMSX-008.corp.LOCAL ([::1]) with mapi id 14.03.0195.001;
+	Thu, 2 Apr 2015 10:04:09 +0200
+From: Lev Lehn <lev.lehn@kardex.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Building crosswalk for armv7
+X-ASG-Orig-Subj: Building crosswalk for armv7
+Thread-Index: AdBtG2h2R9VimxeOQbmqohT4o8r2Jw==
+Date: Thu, 2 Apr 2015 08:04:08 +0000
+Message-ID: <32F178E268CB074583CFD7DC1AE3FB8026567305@DE1-SVMSX-006.corp.LOCAL>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.100.117]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: "fatal: A branch named 'meta-orig' already exists."
+X-Barracuda-Connect: UNKNOWN[192.168.70.4]
+X-Barracuda-Start-Time: 1427961849
+X-Barracuda-Encrypted: AES128-SHA
+X-Barracuda-URL: http://192.168.70.15:8000/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at kardex.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Bayes: INNOCENT GLOBAL 0.5000 1.0000 0.0000
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=9.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.17473
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message
+Subject: Building crosswalk for armv7
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,141 +66,118 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 Apr 2015 08:18:01 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 02 Apr 2015 08:23:50 -0000
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_32F178E268CB074583CFD7DC1AE3FB8026567305DE1SVMSX006corp_"
 
-On Wed, 1 Apr 2015, Bruce Ashfield wrote:
+--_000_32F178E268CB074583CFD7DC1AE3FB8026567305DE1SVMSX006corp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-... snip ...
+SeKAmW0gaGF2aW5nIHRyb3VibGVzIGJ1aWxkaW5nIHRoZSBjcm9zc3dhbGstcHJvamVjdCBPRSBt
+ZXRhLWxheWVyIGZvciBhbiBhcm12NyB0YXJnZXQuDQoNCkkgZm9sbG93ZWQgdGhlIHNob3J0IGlu
+c3RydWN0aW9ucyBmcm9tIGhlcmU6DQpodHRwczovL3d3dy55b2N0b3Byb2plY3Qub3JnL2Jsb2dz
+L2plZnJvLzIwMTQvY3Jvc3N3YWxrLW5vdy1hdmFpbGFibGUteW9jdG8tcHJvamVjdA0KDQpIb3dl
+dmVyIEnigJltIGdldHRpbmcgdGhpcyBlcnJvciBpbiBkb19jb21waWxlIHN0ZXAgZnJvbSB0aGUg
+Y3Jvc3N3YWxrIHJlY2lwZToNCg0KfCAvdXNyL2Jpbi9sZDogc2tpcHBpbmcgaW5jb21wYXRpYmxl
+IC91c3IvbGliL2djYy94ODZfNjQtbGludXgtZ251LzQuNy9saWJzdGRjKysuc28gd2hlbiBzZWFy
+Y2hpbmcgZm9yIC1sc3RkYysrDQp8IC91c3IvYmluL2xkOiBza2lwcGluZyBpbmNvbXBhdGlibGUg
+L3Vzci9saWIvZ2NjL3g4Nl82NC1saW51eC1nbnUvNC43L2xpYnN0ZGMrKy5hIHdoZW4gc2VhcmNo
+aW5nIGZvciAtbHN0ZGMrKw0KDQpTbyBpdCBzZWVtcyB0byB1c2UNCi13cm9uZyBsaW5rZXINCi13
+cm9uZyBwYXRoIHRvIGxpYnMNCg0KQW55IGlkZWFzIGhvdyBJIGNhbiBmaXggdGhpcz8NCg0KVGhh
+bmtzIGluIGFkdmFuY2UsDQoNCkxldg0KDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+Xw0KDQpLYXJkZXggU29mdHdhcmUgR21iSA0KU2l0ejogV8O2cnRoIGEuUi4sIERldXRzY2hsYW5k
+DQpBbXRzZ2VyaWNodCBMYW5kYXUgSFJCIDMwMDYwDQpVU1QtSUROUi4gREUgODEyNTYwNzQ4DQpH
+ZXNjaMOkZnRzZsO8aHJlcjogUm9sZiBNw7Zzc25lciwgSsO8cmdlbiBTY2huYXR0ZXJlcg0K
 
-> I completely agree .. better to sort this out sooner rather than
-> later, I'm just trying to narrow down on a configuration that allows
-> me to see the problem and poke at the smouldering pile. If git is
-> doing something different now, it won't be hard to fix, but hands
-> on, versus code inspection, is the real trick here.
+--_000_32F178E268CB074583CFD7DC1AE3FB8026567305DE1SVMSX006corp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-  for a quick test, i started a new project on my fedora rawhide
-system:
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJbXNvLWZh
+cmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28t
+c3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJs
+aW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUt
+cHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7
+fQ0KcC5Nc29BY2V0YXRlLCBsaS5Nc29BY2V0YXRlLCBkaXYuTXNvQWNldGF0ZQ0KCXttc28tc3R5
+bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IlNwcmVjaGJsYXNlbnRleHQgWmNobiI7
+DQoJbWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjguMHB0
+Ow0KCWZvbnQtZmFtaWx5OiJUYWhvbWEiLCJzYW5zLXNlcmlmIjsNCgltc28tZmFyZWFzdC1sYW5n
+dWFnZTpFTi1VUzt9DQpzcGFuLkUtTWFpbEZvcm1hdHZvcmxhZ2UxNw0KCXttc28tc3R5bGUtdHlw
+ZTpwZXJzb25hbC1jb21wb3NlOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7
+DQoJY29sb3I6d2luZG93dGV4dDt9DQpzcGFuLlNwcmVjaGJsYXNlbnRleHRaY2huDQoJe21zby1z
+dHlsZS1uYW1lOiJTcHJlY2hibGFzZW50ZXh0IFpjaG4iOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5
+OTsNCgltc28tc3R5bGUtbGluazpTcHJlY2hibGFzZW50ZXh0Ow0KCWZvbnQtZmFtaWx5OiJUYWhv
+bWEiLCJzYW5zLXNlcmlmIjt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBv
+cnQtb25seTsNCgltc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUzt9DQpAcGFnZSBXb3JkU2VjdGlv
+bjENCgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcwLjg1cHQgNzAuODVwdCAyLjBj
+bSA3MC44NXB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+
+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9
+ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBt
+c28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0
+PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0K
+PC9oZWFkPg0KPGJvZHkgbGFuZz0iREUiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRp
+diBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9
+IkVOLVVTIj5J4oCZbSBoYXZpbmcgdHJvdWJsZXMgYnVpbGRpbmcgdGhlIGNyb3Nzd2Fsay1wcm9q
+ZWN0IE9FIG1ldGEtbGF5ZXIgZm9yIGFuIGFybXY3IHRhcmdldC48bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
+PkkgZm9sbG93ZWQgdGhlIHNob3J0IGluc3RydWN0aW9ucyBmcm9tIGhlcmU6PG86cD48L286cD48
+L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxhIGhy
+ZWY9Imh0dHBzOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvYmxvZ3MvamVmcm8vMjAxNC9jcm9zc3dh
+bGstbm93LWF2YWlsYWJsZS15b2N0by1wcm9qZWN0Ij5odHRwczovL3d3dy55b2N0b3Byb2plY3Qu
+b3JnL2Jsb2dzL2plZnJvLzIwMTQvY3Jvc3N3YWxrLW5vdy1hdmFpbGFibGUteW9jdG8tcHJvamVj
+dDwvYT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBs
+YW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkhvd2V2ZXIgSeKAmW0gZ2V0dGluZyB0aGlzIGVycm9y
+IGluIGRvX2NvbXBpbGUgc3RlcCBmcm9tIHRoZSBjcm9zc3dhbGsgcmVjaXBlOjxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpw
+PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5n
+PSJFTi1VUyIgc3R5bGU9ImNvbG9yOmJsYWNrO21zby1mYXJlYXN0LWxhbmd1YWdlOkRFIj58IC91
+c3IvYmluL2xkOiBza2lwcGluZyBpbmNvbXBhdGlibGUgL3Vzci9saWIvZ2NjL3g4Nl82NC1saW51
+eC1nbnUvNC43L2xpYnN0ZGMmIzQzOyYjNDM7LnNvIHdoZW4gc2VhcmNoaW5nIGZvciAtbHN0ZGMm
+IzQzOyYjNDM7PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjpibGFjazttc28tZmFyZWFzdC1sYW5ndWFnZTpE
+RSI+fCAvdXNyL2Jpbi9sZDogc2tpcHBpbmcgaW5jb21wYXRpYmxlIC91c3IvbGliL2djYy94ODZf
+NjQtbGludXgtZ251LzQuNy9saWJzdGRjJiM0MzsmIzQzOy5hIHdoZW4gc2VhcmNoaW5nIGZvciAt
+bHN0ZGMmIzQzOyYjNDM7PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjpibGFjazttc28tZmFyZWFzdC1sYW5n
+dWFnZTpERSI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjpibGFjazttc28tZmFyZWFzdC1sYW5n
+dWFnZTpERSI+U28gaXQgc2VlbXMgdG8gdXNlPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjpibGFjazttc28t
+ZmFyZWFzdC1sYW5ndWFnZTpERSI+LXdyb25nIGxpbmtlcjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iY29sb3I6Ymxh
+Y2s7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6REUiPi13cm9uZyBwYXRoIHRvIGxpYnM8bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5
+bGU9ImNvbG9yOmJsYWNrO21zby1mYXJlYXN0LWxhbmd1YWdlOkRFIj48bzpwPiZuYnNwOzwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5
+bGU9ImNvbG9yOmJsYWNrO21zby1mYXJlYXN0LWxhbmd1YWdlOkRFIj5BbnkgaWRlYXMgaG93IEkg
+Y2FuIGZpeCB0aGlzPzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iY29sb3I6YmxhY2s7bXNvLWZhcmVhc3QtbGFuZ3Vh
+Z2U6REUiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iY29sb3I6YmxhY2s7bXNvLWZhcmVhc3QtbGFuZ3Vh
+Z2U6REUiPlRoYW5rcyBpbiBhZHZhbmNlLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iY29sb3I6YmxhY2s7bXNvLWZh
+cmVhc3QtbGFuZ3VhZ2U6REUiPiZuYnNwOw0KPGJyPg0KPGI+TGV2PC9iPjwvc3Bhbj48c3BhbiBs
+YW5nPSJFTi1VUyI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8YnI+DQo8aHI+DQo8
+Zm9udCBmYWNlPSJBcmlhbCIgY29sb3I9IkdyYXkiIHNpemU9IjEiPjxicj4NCkthcmRleCBTb2Z0
+d2FyZSBHbWJIPGJyPg0KU2l0ejogV8O2cnRoIGEuUi4sIERldXRzY2hsYW5kPGJyPg0KQW10c2dl
+cmljaHQgTGFuZGF1IEhSQiAzMDA2MDxicj4NClVTVC1JRE5SLiBERSA4MTI1NjA3NDg8YnI+DQpH
+ZXNjaMOkZnRzZsO8aHJlcjogUm9sZiBNw7Zzc25lciwgSsO8cmdlbiBTY2huYXR0ZXJlcjxicj4N
+CjwvZm9udD4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-* latest checkout of poky
-* core-image-minimal
-* qemuarm (as opposed to initial qemux86, just to be different)
-
-  the initial fetch worked fine (taking advantage of numerous tarballs
-i've collected over the months):
-
-  $ bitbake -c fetchall core-image-minimal
-
-  then:
-
-  $ bitbake linux-yocto
-
-which quickly produces the error at the bottom of this note as
-displayed by "bb". i'm baffled ... does the kernel tree have some
-new, untracked garbage in it that is causing this?
-
-  the native git is version 2.3.0.
-
-rday
-
-$ bb log linux-yocto validate_branches
-DEBUG: Executing shell function do_validate_branches
-NOTE: Setting branch meta to 9e70b482d3773abf92c9c5850e134cbca1d5651f
-error: The following untracked working tree files would be removed by checkout:
-	.gitignore
-	.mailmap
-	COPYING
-	CREDITS
-	Documentation/00-INDEX
-	Documentation/ABI/README
-	Documentation/ABI/obsolete/proc-sys-vm-nr_pdflush_threads
-	Documentation/ABI/obsolete/sysfs-bus-usb
-	Documentation/ABI/obsolete/sysfs-class-rfkill
-	Documentation/ABI/obsolete/sysfs-driver-hid-roccat-koneplus
-	Documentation/ABI/obsolete/sysfs-driver-hid-roccat-kovaplus
-	Documentation/ABI/obsolete/sysfs-driver-hid-roccat-pyra
-	Documentation/ABI/removed/devfs
-	Documentation/ABI/removed/dv1394
-	Documentation/ABI/removed/ip_queue
-	Documentation/ABI/removed/net_dma
-	Documentation/ABI/removed/o2cb
-	Documentation/ABI/removed/raw1394
-	Documentation/ABI/removed/video1394
-	Documentation/ABI/stable/firewire-cdev
-	Documentation/ABI/stable/o2cb
-	Documentation/ABI/stable/syscalls
-	Documentation/ABI/stable/sysfs-acpi-pmprofile
-	Documentation/ABI/stable/sysfs-bus-firewire
-	Documentation/ABI/stable/sysfs-bus-usb
-	Documentation/ABI/stable/sysfs-bus-xen-backend
-	Documentation/ABI/stable/sysfs-class-backlight
-	Documentation/ABI/stable/sysfs-class-rfkill
-	Documentation/ABI/stable/sysfs-class-tpm
-	Documentation/ABI/stable/sysfs-class-ubi
-	Documentation/ABI/stable/sysfs-class-udc
-	Documentation/ABI/stable/sysfs-devices-node
-	Documentation/ABI/stable/sysfs-devices-system-cpu
-	Documentation/ABI/stable/sysfs-devices-system-xen_memory
-	Documentation/ABI/stable/sysfs-driver-ib_srp
-	Documentation/ABI/stable/sysfs-driver-qla2xxx
-	Documentation/ABI/stable/sysfs-driver-usb-usbtmc
-	Documentation/ABI/stable/sysfs-driver-w1_ds28e04
-	Documentation/ABI/stable/sysfs-firmware-efi-vars
-	Documentation/ABI/stable/sysfs-firmware-opal-dump
-	Documentation/ABI/stable/sysfs-firmware-opal-elog
-	Documentation/ABI/stable/sysfs-module
-	Documentation/ABI/stable/sysfs-transport-srp
-	Documentation/ABI/stable/thermal-notification
-	Documentation/ABI/stable/vdso
-	Documentation/ABI/testing/configfs-spear-pcie-gadget
-	Documentation/ABI/testing/configfs-usb-gadget
-	Documentation/ABI/testing/configfs-usb-gadget-acm
-	Documentation/ABI/testing/configfs-usb-gadget-ecm
-	Documentation/ABI/testing/configfs-usb-gadget-eem
-	Documentation/ABI/testing/configfs-usb-gadget-ffs
-	Documentation/ABI/testing/configfs-usb-gadget-hid
-	Documentation/ABI/testing/configfs-usb-gadget-loopback
-	Documentation/ABI/testing/configfs-usb-gadget-mass-storage
-	Documentation/ABI/testing/configfs-usb-gadget-midi
-	Documentation/ABI/testing/configfs-usb-gadget-ncm
-	Documentation/ABI/testing/configfs-usb-gadget-obex
-	Documentation/ABI/testing/configfs-usb-gadget-phonet
-	Documentation/ABI/testing/configfs-usb-gadget-rndis
-	Documentation/ABI/testing/configfs-usb-gadget-serial
-	Documentation/ABI/testing/configfs-usb-gadget-sourcesink
-	Documentation/ABI/testing/configfs-usb-gadget-subset
-	Documentation/ABI/testing/configfs-usb-gadget-uac1
-	Documentation/ABI/testing/configfs-usb-gadget-uac2
-	Documentation/ABI/testing/debugfs-driver-genwqe
-	Documentation/ABI/testing/debugfs-ec
-	Documentation/ABI/testing/debugfs-ideapad
-	Documentation/ABI/testing/debugfs-olpc
-	Documentation/ABI/testing/debugfs-pfo-nx-crypto
-	Documentation/ABI/testing/debugfs-pktcdvd
-	Documentation/ABI/testing/dev-kmsg
-	Documentation/ABI/testing/evm
-	Documentation/ABI/testing/ima_policy
-	Documentation/ABI/testing/procfs-diskstats
-	Documentation/ABI/testing/pstore
-	Documentation/ABI/testing/sysfs-ata
-	Documentation/ABI/testing/sysfs-block
-	Documentation/ABI/testing/sysfs-block-bcache
-	Documentation/ABI/testing/sysfs-block-dm
-	Documentation/ABI/testing/sysfs-block-rssd
-	Documentation/ABI/testing/sysfs-block-zram
-	Documentation/ABI/testing/sysfs-bus-acpi
-	Documentation/ABI/testing/sysfs-bus-bcma
-	Documentation/ABI/testing/sysfs-bus-coresight-devices-etb10
-	Documentation/ABI/testing/sysfs-bus-coresight-devices-etm3x
-	Documentation/ABI/testing/sysfs-bus-coresight-devices-funnel
-	Documentation/ABI/testing/sysfs-bus-coresight-devices-tmc
-	Documentation/ABI/testing/sysfs-bus-css
-	Documentation/ABI/testing/sysfs-bus-event_source-devices-events
-	Documentation/ABI/testing/sysfs-bus-event_source-devices-form
-Aborting
-ERROR: Could not checkout meta branch from known hash 9e70b482d3773abf92c9c5850e134cbca1d5651f
-WARNING: /home/rpjday/oe/builds/qemuarm/tmp/work/qemuarm-poky-linux-gnueabi/linux-yocto/3.19.2+gitAUTOINC+9e70b482d3_473e2f3788-r0/temp/run.do_validate_branches.11303:1 exit 1 from
-  exit 1
-ERROR: Function failed: do_validate_branches (log file is located at /home/rpjday/oe/builds/qemuarm/tmp/work/qemuarm-poky-linux-gnueabi/linux-yocto/3.19.2+gitAUTOINC+9e70b482d3_473e2f3788-r0/temp/log.do_validate_branches.11303)
-$
-
+--_000_32F178E268CB074583CFD7DC1AE3FB8026567305DE1SVMSX006corp_--
