@@ -1,39 +1,60 @@
-Return-Path: <cca_liam_maps@mail.com>
+Return-Path: <blackt1ger@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 30B7DE0095C; Fri,  3 Apr 2015 13:39:16 -0700 (PDT)
+	id 18FD9E0095D; Fri,  3 Apr 2015 18:32:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (cca_liam_maps[at]mail.com)
+	mail provider *      (blackt1ger[at]yahoo.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [74.208.4.201 listed in list.dnswl.org]
+	*      [98.138.91.23 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 303 seconds by postgrey-1.32 at yocto-www;
-	Fri, 03 Apr 2015 13:39:12 PDT
-Received: from mout.gmx.com (mout.gmx.com [74.208.4.201])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4988E00922
-	for <yocto@yoctoproject.org>; Fri,  3 Apr 2015 13:39:12 -0700 (PDT)
-Received: from [192.168.0.54] ([84.41.69.7]) by mail.gmx.com (mrgmxus001) with
-	ESMTPSA (Nemesis) id 0LxP6S-1ZWJcq0Lhy-016ueI for
-	<yocto@yoctoproject.org>; Fri, 03 Apr 2015 22:34:06 +0200
-Message-ID: <551EF93B.7080307@mail.com>
-Date: Fri, 03 Apr 2015 22:34:03 +0200
-From: Liam Maps <cca_liam_maps@mail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm8-vm0.bullet.mail.ne1.yahoo.com
+	(nm8-vm0.bullet.mail.ne1.yahoo.com [98.138.91.23])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B20A0E00957
+	for <yocto@yoctoproject.org>; Fri,  3 Apr 2015 18:32:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1428111157; bh=XlhC+Magn4YvDor/VvPZ70iYa1nvXidH7mQLxR+B1Dc=;
+	h=Date:From:To:Subject:From:Subject;
+	b=YpAMGN4JonHY6Bx9YckqbCAx+X0HfKlHEF61d5rCXsUiOHZGoO+aM9m9+emAPij1hDkUsZNYtapPv8h4ludDIfZljgyTCJioku60eSzDfFBF+cBIKZ/gYoLFefdEnUfrvW044l55L2TtQcfVsf/EAhfvGffPQJCpyfFHFcjjAxcC3wraxuVfEHPKhO1iO7SUewiw7jcc+Tfj10IkhWIOldmpl//KSDop6jCgw6RBnLnNTmwGHCTeRyoblP7RDTP9+YkWLugKvynpHzbPubKJdu+ssbzV1yIRCCb7RBMrRSmXsqfdwLFBpdk8N0Wt3Mi5LckLHOoJCeDXYaGUZtbo2Q==
+Received: from [98.138.226.178] by nm8.bullet.mail.ne1.yahoo.com with NNFMP;
+	04 Apr 2015 01:32:37 -0000
+Received: from [98.138.84.44] by tm13.bullet.mail.ne1.yahoo.com with NNFMP;
+	04 Apr 2015 01:32:37 -0000
+Received: from [127.0.0.1] by smtp112.mail.ne1.yahoo.com with NNFMP;
+	04 Apr 2015 01:32:37 -0000
+X-Yahoo-Newman-Id: 294978.11127.bm@smtp112.mail.ne1.yahoo.com
+X-Yahoo-Newman-Property: ymail-3
+X-YMail-OSG: GYKKp_MVM1mU1oBVALovioJ9ZPrcZq3HqF_SidurqXenVbA
+	ND4OIKBQlVG.17aHOOjYi73RI.LvLMNg5KUh5.9264On.1GjVpUlIVL0e6yf
+	KiZZD1ICdpAJR5BxxBw2SVz3owsnt2h.NNOOyPrl0ifZuaXtpmi6HSOCUvjk
+	EkG8Lz6JSllEodxmT1k.UdEaQWSe1sT3F1sKjV1myZtc4gtBky3Lg_eqwGox
+	0SnuwvxSdg2RKqv.o04qMCrtXUXVrS1AyWX1E7yFmna0fsAvSzkBGKI1QfKk
+	xFH3EBx_bDBPnqaETQYlK7MFlD0pYXwIG3rkoOUFfZ0bMa3brGPBSjEFDid7
+	HseHKIsW3dowWpl_UNxtCxFKITS72JPeY8EnWV4T1Bp8VCRNMWwJsh1zlpPa
+	IGL_L49cC3m.n7cdb7vzjVNgbiy5Y7GG0pGWaNiS10VBu_mcz3AVCbRjvBvE
+	nUINmWyZprjKRHS8eTzmr_BC397ViBizeBIPE.m83CGPkCpmskFqH_aQAJPY
+	aSA.DOjrTertIQoQ8Jwch2I39QXUprmet1bLL74mdPeRMJ5IJp20Dd5nE7gO
+	tq3DkunzPqNF8MSiTWAGztHs.RL8FYKlhq0uoGQwuO67v4W_AjeOsAi_y8yy vKg--
+X-Yahoo-SMTP: 64Rl7imswBAWpv6wTwoSL_WDoXYzCQw-
+Message-ID: <551F3F33.6040904@yahoo.com>
+Date: Fri, 03 Apr 2015 21:32:35 -0400
+From: Ken Davis <blackt1ger@yahoo.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-X-Provags-ID: V03:K0:k4vEnbm9D1jKGaEP6fRkBv29mUJkimneewf29teqZDjaJkn/mr/
-	RkDTHvXaWtvRZnh6vxuHb78qEPyPvpFIN44TDKifLs/tvl6fAQBdOsIeL7jIX8F9gd+Z0we
-	rXHIxogD+l7snAYjSONUnR8xKttokfjHVZyaLd0an5cViZp+oyBobZ+bvAlAzqCW5s7qBIK
-	SZszkdWVgVgG6pfjZeAsw==
-X-UI-Out-Filterresults: notjunk:1;
-Subject: [kernel config]: specified values did not make it into the kernel's final configuration
+Subject: Xfce4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,50 +66,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Apr 2015 20:39:16 -0000
+X-List-Received-Date: Sat, 04 Apr 2015 01:32:43 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi,
+Has anybody had any success with Xfce4?
 
-During the build of a core-image-base for BeagleBone using the master 
-branch I was presented with the following warning:
+I'm trying to roll a build for my Wandboard with Xfce4 desktop 
+environment.  Months and months ago, I had things working on the daisy 
+branch.   But I'm up to dizzy.
 
-"WARNING: [kernel config]: specified values did not make it into the 
-kernel's final configuration:"
+Major issues with xfce4-settings pointing to a bad git server. Tried 
+working around that. Generally had to remove the git from the SRC_URI, 
+as it defaults inherits appropriately.
 
-The full list of configuration values, which did not make it into 
-kernel's configuration can be found here:
-http://pastebin.com/sAvXuNC8
+I'm using the git.openembedded.org/meta-openembedded which has the 
+meta-xfce layer.
 
-Most variables seem to have something to do with things which are not 
-applicable for my particular build and device. There is no need for any 
-graphics so values such as CONFIG_FB_CFB_REV_PIXELS_IN_BYTE and 
-CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY seem like they are not needed 
-anyway. But there are a few which look less innocent such as for example 
-CONFIG_ARCH_NR_GPIO and CONFIG_LEDS_GPIO.
-
-I did a few builds with poky-dizzy-12.0.1 before moving to the master 
-branch and the mentioned warning was not issued during those builds.
-
-The only information about the warning I was able to find on the web is 
-this:
-http://patchwork.openembedded.org/patch/89289/
-
-So it seems that this is not that critical and somewhere during the 
-build process some kernel configuration values are dropped. Since I do 
-not have enough knowledge about the subject I would like to ask the more 
-knowledgeable of you to reassure me that this warning is not critical. 
-Also, if someone could give an example of why some values are dropped 
-and by who/what, I would be most grateful.
-
-I should probably mention that I can successfully deploy the build 
-despite the warnings and everything works as expected. Well, there is 
-one thing and that is that one of requested packages is not built 
-(ntfs-3g) but that is an issue for another thread, if I am unable to 
-find the solution myself.
-
-Thank you.
-
-FYI: I am new to Yocto and this mailing list
+--Ken
 
