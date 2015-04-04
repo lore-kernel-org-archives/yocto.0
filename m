@@ -1,60 +1,39 @@
-Return-Path: <blackt1ger@yahoo.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 18FD9E0095D; Fri,  3 Apr 2015 18:32:43 -0700 (PDT)
+	id E744EE0079F; Sat,  4 Apr 2015 07:25:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (blackt1ger[at]yahoo.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [98.138.91.23 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm8-vm0.bullet.mail.ne1.yahoo.com
-	(nm8-vm0.bullet.mail.ne1.yahoo.com [98.138.91.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B20A0E00957
-	for <yocto@yoctoproject.org>; Fri,  3 Apr 2015 18:32:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1428111157; bh=XlhC+Magn4YvDor/VvPZ70iYa1nvXidH7mQLxR+B1Dc=;
-	h=Date:From:To:Subject:From:Subject;
-	b=YpAMGN4JonHY6Bx9YckqbCAx+X0HfKlHEF61d5rCXsUiOHZGoO+aM9m9+emAPij1hDkUsZNYtapPv8h4ludDIfZljgyTCJioku60eSzDfFBF+cBIKZ/gYoLFefdEnUfrvW044l55L2TtQcfVsf/EAhfvGffPQJCpyfFHFcjjAxcC3wraxuVfEHPKhO1iO7SUewiw7jcc+Tfj10IkhWIOldmpl//KSDop6jCgw6RBnLnNTmwGHCTeRyoblP7RDTP9+YkWLugKvynpHzbPubKJdu+ssbzV1yIRCCb7RBMrRSmXsqfdwLFBpdk8N0Wt3Mi5LckLHOoJCeDXYaGUZtbo2Q==
-Received: from [98.138.226.178] by nm8.bullet.mail.ne1.yahoo.com with NNFMP;
-	04 Apr 2015 01:32:37 -0000
-Received: from [98.138.84.44] by tm13.bullet.mail.ne1.yahoo.com with NNFMP;
-	04 Apr 2015 01:32:37 -0000
-Received: from [127.0.0.1] by smtp112.mail.ne1.yahoo.com with NNFMP;
-	04 Apr 2015 01:32:37 -0000
-X-Yahoo-Newman-Id: 294978.11127.bm@smtp112.mail.ne1.yahoo.com
-X-Yahoo-Newman-Property: ymail-3
-X-YMail-OSG: GYKKp_MVM1mU1oBVALovioJ9ZPrcZq3HqF_SidurqXenVbA
-	ND4OIKBQlVG.17aHOOjYi73RI.LvLMNg5KUh5.9264On.1GjVpUlIVL0e6yf
-	KiZZD1ICdpAJR5BxxBw2SVz3owsnt2h.NNOOyPrl0ifZuaXtpmi6HSOCUvjk
-	EkG8Lz6JSllEodxmT1k.UdEaQWSe1sT3F1sKjV1myZtc4gtBky3Lg_eqwGox
-	0SnuwvxSdg2RKqv.o04qMCrtXUXVrS1AyWX1E7yFmna0fsAvSzkBGKI1QfKk
-	xFH3EBx_bDBPnqaETQYlK7MFlD0pYXwIG3rkoOUFfZ0bMa3brGPBSjEFDid7
-	HseHKIsW3dowWpl_UNxtCxFKITS72JPeY8EnWV4T1Bp8VCRNMWwJsh1zlpPa
-	IGL_L49cC3m.n7cdb7vzjVNgbiy5Y7GG0pGWaNiS10VBu_mcz3AVCbRjvBvE
-	nUINmWyZprjKRHS8eTzmr_BC397ViBizeBIPE.m83CGPkCpmskFqH_aQAJPY
-	aSA.DOjrTertIQoQ8Jwch2I39QXUprmet1bLL74mdPeRMJ5IJp20Dd5nE7gO
-	tq3DkunzPqNF8MSiTWAGztHs.RL8FYKlhq0uoGQwuO67v4W_AjeOsAi_y8yy vKg--
-X-Yahoo-SMTP: 64Rl7imswBAWpv6wTwoSL_WDoXYzCQw-
-Message-ID: <551F3F33.6040904@yahoo.com>
-Date: Fri, 03 Apr 2015 21:32:35 -0400
-From: Ken Davis <blackt1ger@yahoo.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6E13E006E5
+	for <yocto@yoctoproject.org>; Sat,  4 Apr 2015 07:25:53 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga103.fm.intel.com with ESMTP; 04 Apr 2015 07:25:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,522,1422950400"; d="scan'208";a="703380678"
+Received: from debyrne-mobl2.ger.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.24.16])
+	by fmsmga002.fm.intel.com with ESMTP; 04 Apr 2015 07:25:47 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Smith, Virgil" <Virgil.Smith@flir.com>
+Date: Sat, 04 Apr 2015 15:25:27 +0100
+Message-ID: <3830727.44ard1Gu2C@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.4 (Linux/3.18.9-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
+In-Reply-To: <F14AEF751653024287138321000C846AF4813599@BOS-DAG1.zone1.flir.net>
+References: <0E4D391FE2BDEC45AA0B4E32D6BD598A28AF2F@PGSMSX101.gar.corp.intel.com>
+	<6493109.qmgxeLPueO@peggleto-mobl.ger.corp.intel.com>
+	<F14AEF751653024287138321000C846AF4813599@BOS-DAG1.zone1.flir.net>
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: Xfce4
+Cc: yocto@yoctoproject.org, "Yu, Chan KitX" <chan.kitx.yu@intel.com>
+Subject: Re: Kernel Panic: /sbin/init not found
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,22 +45,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 04 Apr 2015 01:32:43 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 04 Apr 2015 14:25:56 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Has anybody had any success with Xfce4?
+On Friday 03 April 2015 15:31:06 Smith, Virgil wrote:
+> > > OK, it turned out that prepending the space before lib32-connman does
+> > > not do any good. However, commenting out the line which contains the
+> > > IMAGE_INSTALL_append does. That begs the question; what does
+> > > lib32-connman do?
+> > 
+> > It's not lib32-connman that's the problem. The problem is that you were
+> > effectively setting the value of IMAGE_INSTALL to something and the
+> > default in core-image.bbclass is being set with ?= , and because it's
+> > already set at the time the ?= is parsed, the defaults (including the
+> > chain leading to
+> > sysvinit/systemd) are not being added, among many other packages. If you
+> > use IMAGE_INSTALL_append rather than IMAGE_INSTALL (or use a proper image
+> > recipe instead of appending to IMAGE_INSTALL from local.conf) you
+> > shouldn't have a problem.
+> 
+> You can't use IMAGE_INSTALL_append from local.conf (as you already
+> confirmed).  
 
-I'm trying to roll a build for my Wandboard with Xfce4 desktop 
-environment.  Months and months ago, I had things working on the daisy 
-branch.   But I'm up to dizzy.
+This is not true in the general case. You definitely can use 
+IMAGE_INSTALL_append with a leading space to add items to an image, I just 
+verified that now.
 
-Major issues with xfce4-settings pointing to a bad git server. Tried 
-working around that. Generally had to remove the git from the SRC_URI, 
-as it defaults inherits appropriately.
+I'm not clear on exactly what happened in the case we're discussing, at least 
+initially it sounded like IMAGE_INSTALL = rather than IMAGE_INSTALL_append = 
+was being used, which would definitely account for the behaviour described.
 
-I'm using the git.openembedded.org/meta-openembedded which has the 
-meta-xfce layer.
+> The Yocto layer/configuration composition is non-intuitive.  It is easy to
+> expect items in local.conf to 'override/extend' the configuration resulting
+> from your layer selections in bblayers.conf, but this is not what happens. 
 
---Ken
+You can do that, it's just that there is more going on than may be readily 
+apparent. We do try to simplify things from time to time where practical (and 
+will continue to do so), but a certain level of complexity is basically 
+required if you want the system to be flexible.
+
+FWIW, I can strongly recommend the use of bitbake -e (or Toaster, especially 
+with the upcoming 1.8 release) to get a view on how variables are being set, 
+especially if you are hitting a situation where something is not working in 
+the manner you expect it to.
+
+> I'd personally prefer local.conf to be processed AFTER the conf/layer.conf
+> and conf/machine/some-name.conf files, but at the very least bb needs to
+> know the selected machine first.  So to tune/tweak things you need a file
+> up front (local.conf) and a file at the other end (a custom recipe and/or
+> layer).
+
+local.conf *is* parsed after the layer.conf files, but not after the machine 
+configuration - that is not possible, since it's local.conf that *selects* the 
+MACHINE value and thus determines which machine conf file gets parsed.
+
+My opinion on this is that for anything more than just testing or 
+experimentation, you should be creating custom image recipes and a custom 
+distro configuration, from which you get complete control. The distro 
+configuration file is parsed almost at the end of the configuration for exactly 
+the reason you mentioned.
+
+> Also, don't think that the ordering of layers in your bblayers.conf file
+> (alone) determines the overlaying/replacement of matching bb/bbappend, inc,
+> or source/patch files.
+
+The precedence of bb files and order of application of bbappends is controlled 
+primarily by layer priorities; the order that layers appear in bblayers.conf 
+shouldn't come into that (although it may if you have layers that have exactly 
+the same priority set). The order of layers in bblayers.conf can influence the 
+order in which bbclass and inc files are found *where files of the same name 
+exist across different layers*, since these are found using BBPATH, which is 
+prepended or appended to by each layer.conf file and thus the order in which 
+those files are parsed is significant.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
