@@ -1,44 +1,57 @@
-Return-Path: <Virgil.Smith@flir.com>
+Return-Path: <joaohf@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8726DE006E6; Mon,  6 Apr 2015 10:13:43 -0700 (PDT)
+	id 4C267E009A5; Mon,  6 Apr 2015 15:17:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,WEIRD_PORT
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [208.0.64.244 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (joaohf[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.182 listed in list.dnswl.org]
+	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from east-edge.flir.com (east-edge.flir.com [208.0.64.244])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 190B2E003A8
-	for <yocto@yoctoproject.org>; Mon,  6 Apr 2015 10:13:40 -0700 (PDT)
-Received: from BOS-CH1.zone1.flir.net (10.128.150.52) by EAST-EDGE.flir.com
-	(10.128.210.250) with Microsoft SMTP Server (TLS) id 14.3.195.1;
-	Mon, 6 Apr 2015 13:18:46 -0400
-Received: from BOS-DAG1.zone1.flir.net ([169.254.2.246]) by
-	BOS-CH1.zone1.flir.net ([10.128.150.52]) with mapi id 14.03.0224.002;
-	Mon, 6 Apr 2015 13:12:59 -0400
-From: "Smith, Virgil" <Virgil.Smith@flir.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] Kernel Panic: /sbin/init not found
-Thread-Index: AdBtJJT1N+XghKcCR/iJRvDjeaehYv//o26A//4//jD//HpMcIAGi48A//95NED//uZcYP/9WiyA//q81xD/85+RgP/kWtfw
-Date: Mon, 6 Apr 2015 17:12:59 +0000
-Message-ID: <F14AEF751653024287138321000C846AF48138A8@BOS-DAG1.zone1.flir.net>
-References: <0E4D391FE2BDEC45AA0B4E32D6BD598A28AF2F@PGSMSX101.gar.corp.intel.com>
-	<6493109.qmgxeLPueO@peggleto-mobl.ger.corp.intel.com>
-	<F14AEF751653024287138321000C846AF4813599@BOS-DAG1.zone1.flir.net>
-	<3830727.44ard1Gu2C@peggleto-mobl.ger.corp.intel.com>
-In-Reply-To: <3830727.44ard1Gu2C@peggleto-mobl.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.145.10.29]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qk0-f182.google.com (mail-qk0-f182.google.com
+	[209.85.220.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11922E007A0
+	for <yocto@yoctoproject.org>; Mon,  6 Apr 2015 15:16:57 -0700 (PDT)
+Received: by qkx62 with SMTP id 62so33525853qkx.0
+	for <yocto@yoctoproject.org>; Mon, 06 Apr 2015 15:16:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=3SCrfyXjUkpUAhLyoXnZXwh8DE49M51JA4zyR3w4RNk=;
+	b=0wM7PKKIFfT72Yx8Zns/FGlNjABLUzLu+12kMthIukJgbx7SqcXShWF5DuE5lb9Lii
+	DBs7SPy9VfTivrzHJW+8jGmHg+K5s0ZdubaTArhQMGt+KqLEQs9MGiiw3W5GYVBTaIFI
+	E5ldvly+nfJma6Fcf1ZZf9plbmaZx4wn7PNsDCqBnVobibEPkElpiYvXz20wAjoKaX9M
+	f7bCMUg3d5v56EUxziVkPu1yLHvc7k2ZqE/k7hk0qk0J7SUnYx556TsHK2v81WLQztd4
+	LvHkufzyM8pitd/yLK02vszPQbtM+EBUuP2pNCuN1hF5KWfYSCMGO1Y4pecQBF/zLMFA
+	Bivw==
+X-Received: by 10.55.40.10 with SMTP id o10mr32078114qkh.55.1428358617020;
+	Mon, 06 Apr 2015 15:16:57 -0700 (PDT)
+Received: from [192.168.0.16] ([201.53.207.14])
+	by mx.google.com with ESMTPSA id 126sm4081252qhc.39.2015.04.06.15.16.54
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 06 Apr 2015 15:16:55 -0700 (PDT)
+Message-ID: <552305D5.7030801@gmail.com>
+Date: Mon, 06 Apr 2015 19:16:53 -0300
+From: =?UTF-8?B?Sm/Do28gSGVucmlxdWUgRmVycmVpcmEgZGUgRnJlaXRhcw==?=
+	<joaohf@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Yu,
-	Chan KitX" <chan.kitx.yu@intel.com>
-Subject: Re: Kernel Panic: /sbin/init not found
+To: yocto@yoctoproject.org
+Subject: [RFC] Report build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,59 +63,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Apr 2015 17:13:43 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 06 Apr 2015 22:17:01 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-> This is not true in the general case. You definitely can use
-> IMAGE_INSTALL_append with a leading space to add items to an image, I jus=
-t
-> verified that now.
->
-> I'm not clear on exactly what happened in the case we're discussing, at l=
-east
-> initially it sounded like IMAGE_INSTALL =3D rather than IMAGE_INSTALL_app=
-end =3D
-> was being used, which would definitely account for the behaviour describe=
-d.
+Hi,
 
-Digging.... testing.... reading....
-I don't know what happened in Chan Kit's case, but it looks like my earlier=
- trouble was using IMAGE_INSTALL +=3D  from inside local.conf.  IMAGE_INSTA=
-LL_append isn't applied until after parsing completes.  So here is one (or =
-rather the) way to overcome the fact that local.conf is *parsed* too early =
-for extending variables/configuration introduced later in the *parsing* cha=
-in.
+I would like to share an implementation that I've used with
+great success to solve the following situation:
 
-So, my earlier statement that you can't use/rely on IMAGE_INSTALL_append fr=
-om local.conf is flat wrong.
+We have a farm server that Jenkins CI has the control. All the
+nights a bunch of devel, snapshot and stable builds are fired.
+Each machine receives a job that the aim is to build image, SDK,
+packages and wic images. After that, all the artifacts are collected
+and send to a consolidation server which my users could download.
 
-> The precedence of bb files and order of application of bbappends is contr=
-olled
-> primarily by layer priorities; the order that layers appear in bblayers.c=
-onf
-> shouldn't come into that (although it may if you have layers that have ex=
-actly
-> the same priority set). The order of layers in bblayers.conf can influenc=
-e the
-> order in which bbclass and inc files are found *where files of the same n=
-ame
-> exist across different layers*, since these are found using BBPATH, which=
- is
-> prepended or appended to by each layer.conf file and thus the order in wh=
-ich
-> those files are parsed is significant.
+I believed that many YP users has the very similar settings. So I wanted
+to create a solution which is integrated with YP.
 
-Thanks Paul, I wasn't sure I had the whole story.
+This solution involves three things:
 
-________________________________
+* new class to collect the artifacts
+* script to send the collected artifacts
+* web interface to summaries the results
 
-Notice to recipient: This email is meant for only the intended recipient of=
- the transmission, and may be a communication privileged by law, subject to=
- export control restrictions or that otherwise contains proprietary informa=
-tion. If you receive this email by mistake, please notify us immediately by=
- replying to this message and then destroy it and do not review, disclose, =
-copy or distribute it. Thank you in advance for your cooperation.
+So I implemented a class called report-build. Once properly setup, it
+will collect the artifacts writing in a json file. The meaning of
+artifact is: images, packages, sdks, manifest, deploy kernel and bootloader.
+After that, all artifact is collected using another script called 
+send-build-report. This scripts has
+the responsibility to control and send the artifacts (until now using rsync)
+to consolidation server.
+
+The consolidation server is a machine running an instance of 
+build-report-web that
+receives the json payload, creates all the database entry and filesystem 
+places where
+the artifacts will be placed.
+
+On Jenkins I've created Freestyle jobs that  is setup scripts to build 
+the artifacts and
+configures the variables that build-report class use:
+
+BUILD_REPORT_DISTRO ?= "${DISTRO}"
+BUILD_REPORT_DISTRO_VERSION ?= "${DISTRO_VERSION}"
+
+BUILD_REPORT_JOB_RETENTION ?= "1"
+BUILD_REPORT_JOB_ID ?= "job-${DATE}"
+BUILD_REPORT_DIR ?= "${LOG_DIR}/build-report"
+BUILD_REPORT_SERVER ?= "http://127.0.0.1:8000/Builds"
+BUILD_REPORT_USER ?= ""
+BUILD_REPORT_EMAIL ?= ""
+BUILD_REPORT_TYPE ?= "snapshot"
+BUILD_REPORT_DEPLOY_DIR = "${DEPLOY_DIR}"
+
+When the Jenkins runs the job, it only executes the script and 
+report-build is in charge to
+sends the generated artifacts.
+
+So, the users goes to build-report-web tool and inspects and downloads 
+the results.
+
+Here is the very basic web interface:
+
+A home page showing all builds: http://imgur.com/LTqRewq
+
+A detail page to get files (image, sdk, packages): http://imgur.com/gNOtoLO
+
+There are some drawbacks like: the solution uses rsync over ssh to send 
+files and
+the user must setup ssh keys between build machines and consolidation 
+server. But
+this is done only once, to setup the initial environment.
+
+This work was based on ideas from:
+- report-error
+- Error reporting tool
+
+Currently this implementation works using daisy and master. On my 
+production environment
+I need to use daisy but I am doing the same using master on my free time.
+
+
+Implementation links:
+
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=joaohf/master-build-report-tool
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=joaohf/build-report-web
+
+Thanks
+
+
 
