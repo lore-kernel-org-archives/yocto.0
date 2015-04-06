@@ -1,6 +1,6 @@
 Return-Path: <maninder1.s@samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EBF34E00963; Mon,  6 Apr 2015 01:29:05 -0700 (PDT)
+	id 131CDE00963; Mon,  6 Apr 2015 01:37:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -14,27 +14,27 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	*      [score: 0.0000]
 	*  0.0 MIME_BASE64_BLANKS RAW: Extra blank lines in base64 encoding
 Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D646E0076B
-	for <yocto@yoctoproject.org>; Mon,  6 Apr 2015 01:29:03 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA278E0076B
+	for <yocto@yoctoproject.org>; Mon,  6 Apr 2015 01:37:49 -0700 (PDT)
 Received: from epcpsbgr3.samsung.com
 	(u143.gpu120.samsung.co.kr [203.254.230.143])
 	by mailout2.samsung.com (Oracle Communications Messaging Server
 	7.0.5.31.0 64bit (built May  5 2014))
-	with ESMTP id <0NMD00154M8DJI20@mailout2.samsung.com> for
-	yocto@yoctoproject.org; Mon, 06 Apr 2015 17:29:01 +0900 (KST)
-Received: from epcpsbgx4.samsung.com ( [172.20.52.125])
-	by epcpsbgr3.samsung.com (EPCPMTA) with SMTP id 9B.8F.24422.CC342255;
-	Mon, 6 Apr 2015 17:29:00 +0900 (KST)
-X-AuditID: cbfee68f-f793b6d000005f66-4a-552243ccbfd7
+	with ESMTP id <0NMD00L5FMN0F860@mailout2.samsung.com> for
+	yocto@yoctoproject.org; Mon, 06 Apr 2015 17:37:48 +0900 (KST)
+Received: from epcpsbgx3.samsung.com ( [172.20.52.126])
+	by epcpsbgr3.samsung.com (EPCPMTA) with SMTP id 3F.55.24422.CD542255;
+	Mon, 6 Apr 2015 17:37:48 +0900 (KST)
+X-AuditID: cbfee68f-f793b6d000005f66-af-552245dca1d5
 Received: from epmailer01 ( [203.254.219.141])
-	by epcpsbgx4.samsung.com (EPCPMTA) with SMTP id 6D.CE.25195.CC342255;
-	Mon, 6 Apr 2015 17:29:00 +0900 (KST)
-Date: Mon, 06 Apr 2015 08:29:00 +0000 (GMT)
+	by epcpsbgx3.samsung.com (EPCPMTA) with SMTP id E2.40.18557.CD542255;
+	Mon, 6 Apr 2015 17:37:48 +0900 (KST)
+Date: Mon, 06 Apr 2015 08:37:48 +0000 (GMT)
 From: Maninder Singh <maninder1.s@samsung.com>
 To: "mark.hatle@windriver.com" <mark.hatle@windriver.com>
 MIME-version: 1.0
-X-MTR: 20150406082055973@maninder1.s
-Msgkey: 20150406082055973@maninder1.s
+X-MTR: 20150406082934315@maninder1.s
+Msgkey: 20150406082934315@maninder1.s
 X-EPLocale: en_US.windows-1252
 X-Priority: 3
 X-EPWebmail-Msg-Type: personal
@@ -42,46 +42,46 @@ X-EPWebmail-Reply-Demand: 0
 X-EPApproval-Locale: 
 X-EPHeader: ML
 X-MLAttribute: 
-X-RootMTR: 20150406082055973@maninder1.s
+X-RootMTR: 20150406082934315@maninder1.s
 X-ParentMTR: 
 X-ArchiveUser: 
 X-CPGSPASS: N
 X-ConfirmMail: N,general
 MIME-version: 1.0
-Message-id: <1643488269.444581428308940250.JavaMail.weblogic@epmlwas01c>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrOIsWRmVeSWpSXmKPExsWyRsSkVveMs1KowblrVhaTXq5hc2D0aD/R
-	xxbAGMVlk5Kak1mWWqRvl8CVsf7ME9aCObwVNy8fYmlgfMPTxcjJISSgJrFo72O2LkYODgkB
-	E4kfDWIgYQkBMYkL99YDhbmASpYyStxqmM8CkTCR+PzkKVRiDqPE+XkfmEASLAIqEv2t19hA
-	bDYBfYmze9cxg9jCAr4SV45PBYuLCFhKfFnzihGkmVmgl1Fi+Y4+dogrFCXW33jCCGLzCghK
-	nJz5BGqbisSLC+9ZIeKqEu+ePGGGiMtJLJl6mQnC5pWY0f6UBSY+7esaqBppifOzNjDCvLP4
-	+2OoOL/Esds7oHoFJKaeOQhVoynRt2siVJxPYs3Ctyww9btOLWeG2XV/y1yoGgmJrS1PwG5j
-	Brp/SvdDdgjbQOLIojms6H7hFfCQWPD7BQvI8xICEzkk5h2+yT6BUWkWkrpZSGbNQjILWc0C
-	RpZVjKKpBckFxUnpRcZ6xYm5xaV56XrJ+bmbGIHp4fS/Z/07GO8esD7EKMDBqMTD6/FMMVSI
-	NbGsuDL3EKMpMKImMkuJJucDk1BeSbyhsZmRhamJqbGRuaWZkjjvQqmfwUIC6YklqdmpqQWp
-	RfFFpTmpxYcYmTg4pRoYQyP/K8+asTzJdkvW1MnzFq+UnNAuo2F5/vaRo4J8aiWR/Xv6S2P+
-	c28U4la86Lv3APfPQvNwjTW8osv/zBNaE7mlQuqFx33J1f4ntMIuSn2bvnZFlMzSlgVaElyC
-	ix/POXZb6rzQa5aKc3diFI0PhS5uYHWN4G0LtktI+KhzptZ4zdEfa07/VGIpzkg01GIuKk4E
-	ANdb7XYKAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJKsWRmVeSWpSXmKPExsVy+t/tXt0zzkqhBq87jS0mvVzD5sDo0X6i
-	jy2AMSrNJiM1MSW1SCE1Lzk/JTMv3VbJOzjeOd7UzMBQ19DSwlxJIS8xN9VWycUnQNctMwdo
-	qpJCWWJOKVAoILG4WEnfzqYov7QkVSEjv7jEVina0NxIz8hAz9RIz9A01srQwMDIFKgmIS1j
-	/ZknrAVzeCtuXj7E0sD4hqeLkZNDSEBNYtHex2wgtoSAicTnJ0+hbDGJC/fWA9lcQDVzGCXO
-	z/vABJJgEVCR6G+9BlbEJqAvcXbvOmYQW1jAV+LK8algcREBS4kva14xgjQzC/QySizf0ccO
-	sU1RYv2NJ4wgNq+AoMTJmU9YILapSLy48J4VIq4q8e7JE2aIuJzEkqmXmSBsXokZ7U9ZYOLT
-	vq6BqpGWOD9rAyPM1Yu/P4aK80scu70DqldAYuqZg1A1mhJ9uyZCxfkk1ix8ywJTv+vUcmaY
-	Xfe3zIWqkZDY2vIE7DZmoPundD9kh7ANJI4smsOK7hdeAQ+JBb9fsExglJ2FJDULSfssJO3I
-	ahYwsqxiFE0tSC4oTkqvMNErTswtLs1L10vOz93ECE5Gz5bsYGy4YH2IUYCDUYmHd8ELxVAh
-	1sSy4srcQ4wSHMxKIrw/jJRChXhTEiurUovy44tKc1KLDzGaAqNtIrOUaHI+MFHmlcQbGpuY
-	mxqbWhgYmpubKYnz/j+XGyIkkJ5YkpqdmlqQWgTTx8TBKdXAOPWhnszNjkdxv/6qXp4++Uo2
-	866y6wsnXvo+3+ZlTe1s3Yfe88uDbt25Luy90XnVRqeZaRtcWRW2x25d6qCa1Hgy/0XuguP3
-	N7PNNZWPerV5lbHiNt3JaftFX0c1nay8J/inlIN1j99XhzTB609OpV3ZX79HRiFQt/vIUzVd
-	j7Rnpk7sX37fTFViKc5INNRiLipOBAA8LkvSXAMAAA==
+Message-id: <1789275301.445341428309468219.JavaMail.weblogic@epmlwas01c>
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrGIsWRmVeSWpSXmKPExsWyRsSkTveOq1KowZEtFhaTXq5hc2D0aD/R
+	xxbAGMVlk5Kak1mWWqRvl8CVsWTaD9aCfYIVPevusTUwNgh2MXJyCAmoSSza+5gNxJYQMJF4
+	tvUnC4QtJnHh3nqgOBdQzVJGiUnztzDBFK04d5EVonkOo8TPl8wgNouAikTLrz9gNWwC+hJn
+	964DiwsL+Ems2t8GtkBEwFLiy5pXjCBDmQV6GSWW7+hjhxikKLH+xhNGEJtXQFDi5MwnUFeo
+	SCyfd4UNIq4q8WnVAUaIuJzEkqmXoQ7ilZjR/pQFJj7t6xpmCFta4vysDYww3yz+/hgqzi9x
+	7PYOqF4BialnDgLVcADZmhI3LmhAhPkk1ix8ywJTvuvUcmaYVfe3zIVqlZDY2vIEHA7MQOdP
+	6X7IDmEbSBxZNIcV3Su8Ah4SK5t2M4H8LiEwkUNi6rm/LBMYlWYhqZuFZNYsJLOQ1SxgZFnF
+	KJpakFxQnJReZKxXnJhbXJqXrpecn7uJEZgcTv971r+D8e4B60OMAhyMSjy8Hs8UQ4VYE8uK
+	K3MPMZoC42kis5Rocj4wBeWVxBsamxlZmJqYGhuZW5opifMulPoZLCSQnliSmp2aWpBaFF9U
+	mpNafIiRiYNTqoGxPSCiV0WuO/5shEna221TUqavs1XZZdp+o/yK6cdp4gGV78W6nXrk392I
+	NtZQiull23jR/Mv7va82zrNPDdgt9uXQxswbBtmPVogsUg+4Ex/z6L9prajNUr9Pt+75nUr9
+	LSWcd32dxVGHY/J1s4R+rMxku8Bn2b8m69uEevOTZz6I7dVYmZ+gxFKckWioxVxUnAgAHZrN
+	iQkDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrOKsWRmVeSWpSXmKPExsVy+t/tXt07rkqhBrdvGFhMermGzYHRo/1E
+	H1sAY1SaTUZqYkpqkUJqXnJ+SmZeuq2Sd3C8c7ypmYGhrqGlhbmSQl5ibqqtkotPgK5bZg7Q
+	VCWFssScUqBQQGJxsZK+nU1RfmlJqkJGfnGJrVK0obmRnpGBnqmRnqFprJWhgYGRKVBNQlrG
+	kmk/WAv2CVb0rLvH1sDYINjFyMkhJKAmsWjvYzYQW0LARGLFuYusELaYxIV769kgauYwSvx8
+	yQxiswioSLT8+sMEYrMJ6Euc3bsOLC4s4Cexan8bWL2IgKXElzWvGLsYuTiYBXoZJZbv6GOH
+	GKQosf7GE0YQm1dAUOLkzCcsEMtUJJbPu8IGEVeV+LTqACNEXE5iydTLTBA2r8SM9qcsMPFp
+	X9cwQ9jSEudnbWCEOXrx98dQcX6JY7d3QPUKSEw9cxCohgPI1pS4cUEDIswnsWbhWxaY8l2n
+	ljPDrLq/ZS5Uq4TE1pYn4DBhBjp/SvdDdgjbQOLIojms6F7hFfCQWNm0m2kCo+wsJKlZSNpn
+	IWlHVrOAkWUVo2hqQXJBcVJ6hbFecWJucWleul5yfu4mRnAierZ4B+P/89aHGAU4GJV4eBe8
+	UAwVYk0sK67MPcQowcGsJML7w0gpVIg3JbGyKrUoP76oNCe1+BCjKTDWJjJLiSbnA5NkXkm8
+	obGJuamxqYWBobm5mZI47/9zuSFCAumJJanZqakFqUUwfUwcnFLAdDLtNev1l9+LZ81t3Mas
+	+D18kd4BQfvbOSLCNQJh7Sm+bA/ZYhZ/VrOOPadtUZaWGW1w98n1X2yhZ1p0HfgbNx3yPHLg
+	df7yScKnL3bvebhI3aHh6Qo/P473iqsrvPzFbJ9E9RYtjN21eNPcmuqaqsAa3h11NZWTkmZt
+	PWezxnz19eXic8SNlViKMxINtZiLihMBzt5HrFoDAAA=
 DLP-Filter: Pass
 X-CFilter-Loop: Reflected
 Cc: "v.narang@samsung.com" <v.narang@samsung.com>,
 	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	AJEET YADAV <ajeet.y@samsung.com>
-Subject: [prelink-cross][PATCH 1/1] debug-for-missing-loader-and-libc
+Subject: [prelink-cross] [PATCH 1/1] debug-for-missing-loader-and-libc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -94,32 +94,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Apr 2015 08:29:06 -0000
+X-List-Received-Date: Mon, 06 Apr 2015 08:37:52 -0000
 Content-transfer-encoding: base64
 Content-type: text/plain; charset=windows-1252
 
-SGksCgpwcmVsaW5rIGdpdmVzIGJlbG93IGVycm9yIG1lc3NhZ2UgZm9yIGZhaWx1cmUgZGVwZW5k
-ZW5jeToKLi9wcmVsaW5rOiAvdGVzdF9iaW5hcnk6IENvdWxkIG5vdCBmaW5kIG9uZSBvZiB0aGUg
-ZGVwZW5kZW5jaWVzCgpUaGlzIHByb3ZpZGVzIG5hbWUgb2YgZGVwZW5kZW50IGxpYnJhcnkgd2hp
-Y2ggaXMgbWlzc2luZyBsaWtlIGJlbG93OgouL3ByZWxpbms6IC90ZXN0X2JpbmFyeTogQ291bGQg
-bm90IGZpbmQgb25lIG9mIHRoZSBkZXBlbmRlbmNpZXM6Ci4vcHJlbGluay1ydGxkOiBlcnJvciB3
-aGlsZSBsb2FkaW5nIHNoYXJlZCBsaWJyYXJpZXM6IGxpYkIuc286IGNhbm5vdCBvcGVuIHNoYXJl
-ZCBvYmplY3QgZmlsZTogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQp3aGVyZSBsaWJCLnNvIGlz
-IG1pc3NpbmcgZGVwZW5kZWN5CgpTaWduZWQtb2ZmLWJ5OiBNYW5pbmRlciBTaW5naCA8bWFuaW5k
-ZXIxLnNAc2Ftc3VuZy5jb20+ClNpZ25lZC1vZmYtYnk6IFZhbmVldCBOYXJhbmcgPHYubmFyYW5n
-QHNhbXN1bmcuY29tPgpSZXZpZXdlZC1ieTogQWplZXQgWWFkYXYgPGFqZWV0LnZAc2Ftc3VuZy5j
-b20+ClJldmlld2VkLWJ5OiBHZW9uLWhvIEtpbSA8Z2gwMDcua2ltQHNhbXN1bmcuY29tPgotLS0K
-IHNyYy9nYXRoZXIuYyB8ICAgIDQgKystLQogMSBmaWxlcyBjaGFuZ2VkLCAyIGluc2VydGlvbnMo
-KyksIDIgZGVsZXRpb25zKC0pCgpkaWZmIC0tZ2l0IGEvc3JjL2dhdGhlci5jIGIvc3JjL2dhdGhl
-ci5jCmluZGV4IDVjY2QyNDMuLjRhM2Y0MjggMTAwNjQ0Ci0tLSBhL3NyYy9nYXRoZXIuYworKysg
-Yi9zcmMvZ2F0aGVyLmMKQEAgLTI0MCw4ICsyNDAsOCBAQCBnYXRoZXJfZGVwcyAoRFNPICpkc28s
-IHN0cnVjdCBwcmVsaW5rX2VudHJ5ICplbnQpCiAgICAgICAgICBpZiAocSAhPSBOVUxMKQogICAg
-ICAgICAgICB7CiAgICAgICAgICAgICAgZXJyb3IgKDAsIDAsCi0gICAgICAgICAgICAgICAgIiVz
-OiBDb3VsZCBub3QgZmluZCBvbmUgb2YgdGhlIGRlcGVuZGVuY2llcyIsCi0gICAgICAgICAgICAg
-ICAgZW50LT5maWxlbmFtZSk7CisgICAgICAgICAgICAgICAgIiVzOiBDb3VsZCBub3QgZmluZCBv
-bmUgb2YgdGhlIGRlcGVuZGVuY2llczpcbiVzIiwKKyAgICAgICAgICAgICAgICBlbnQtPmZpbGVu
-YW1lLCBsaW5lKTsKICAgICAgICAgICAgICBnb3RvIGVycm9yX291dDsKICAgICAgICAgICAgfQog
-ICAgICAgIH0KLS0KCgpUaGFua3MgCk1hbmluZGVyIFNpbmdo
+SGksCgpEdXJpbmcgY3Jvc3MgcHJlbGluayBpZiB3ZSBtaXNzIG91dCBsZC1saW51eC5zby4qIG9y
+IGxpYmMuc28uKiBJdCBwcmludHMgYmVsb3cgaW5mbzoKLi9wcmVsaW5rOiAvdGVzdF9iaW5hcnk6
+IENvdWxkIG5vdCBwYXJzZSBgcHJlbGluay1ydGxkOiBkbC12ZXJzaW9uLmM6MjE5OiBydGxkX2No
+ZWNrX21hcF92ZXJzaW9uczoKIEFzc2VydGlvbiBgbmVlZGVkICE9ICgodm9pZCAqKTApJyBmYWls
+ZWQuJwoKQW5kIHRodXMgd2UgbWlzcyBhY3R1YWwgY2F1c2UgZm9yIHRoaXMgZmFpbHVyZSwgIGJ5
+IHRoaXMgcGF0Y2ggd2Ugd2lsbCBrbm93IGZhaWx1cmUgcmVhc29uLgouL3ByZWxpbms6IC90ZXN0
+X2JpbmFyeTogQ291bGQgbm90IHBhcnNlIGAuL3ByZWxpbmstcnRsZDogZXJyb3Igd2hpbGUgbG9h
+ZGluZyBzaGFyZWQgbGlicmFyaWVzOiBsZC1saW51eC5zby4zJwooSW4gdGhpcyBjYXNlIGxkLWxp
+bnV4LnNvLjMgd2FzIG1pc3NpbmcpCgpTaWduZWQtb2ZmLWJ5OiBNYW5pbmRlciBTaW5naCA8bWFu
+aW5kZXIxLnNAc2Ftc3VuZy5jb20+ClNpZ25lZC1vZmYtYnk6IFZhbmVldCBOYXJhbmcgPHYubmFy
+YW5nQHNhbXN1bmcuY29tPgpSZXZpZXdlZC1ieTogQWplZXQgWWFkYXYgPGFqZWV0LnZAc2Ftc3Vu
+Zy5jb20+ClJldmlld2VkLWJ5OiBHZW9uLWhvIEtpbSA8Z2gwMDcua2ltQHNhbXN1bmcuY29tPgot
+LS0KIHNyYy9ydGxkL2RsLXZlcnNpb24uYyB8ICAgIDYgKysrKysrCiAxIGZpbGVzIGNoYW5nZWQs
+IDYgaW5zZXJ0aW9ucygrKSwgMCBkZWxldGlvbnMoLSkKZGlmZiAtLWdpdCBhL3NyYy9ydGxkL2Rs
+LXZlcnNpb24uYyBiL3NyYy9ydGxkL2RsLXZlcnNpb24uYwppbmRleCBlNDA0MGE2Li5lYjYyOTQz
+IDEwMDY0NAotLS0gYS9zcmMvcnRsZC9kbC12ZXJzaW9uLmMKKysrIGIvc3JjL3J0bGQvZGwtdmVy
+c2lvbi5jCkBAIC0yMTYsNiArMjE2LDEyIEBAIF9kbF9jaGVja19tYXBfdmVyc2lvbnMgKHN0cnVj
+dCBsZGxpYnNfbGlua19tYXAgKm1hcCwgaW50IHZlcmJvc2UsIGludCB0cmFjZV9tb2RlCiAgICAg
+IC8qIElmIE5FRURFRCBpcyBOVUxMIHRoaXMgbWVhbnMgYSBkZXBlbmRlbmN5IHdhcyBub3QgZm91
+bmQKICAgICAgICAgYW5kIG5vIHN0dWIgZW50cnkgd2FzIGNyZWF0ZWQuICBUaGlzIHNob3VsZCBu
+ZXZlciBoYXBwZW4uICAqLworICAgICBpZihuZWVkZWQgPT0gTlVMTCkKKyAgICAgICB7CisgICAg
+ICAgICBfZGxfc2lnbmFsX2Vycm9yIChlcnJ2YWwsIE5VTEwsIE5VTEwsIHN0cnRhYiArIGVudC0+
+dm5fZmlsZSk7CisgICAgICAgICBwcmludGYoImVycm9yIHdoaWxlIGxvYWRpbmcgc2hhcmVkIGxp
+YnJhcmllczogJXMiLCBzdHJ0YWIgKyBlbnQtPnZuX2ZpbGUpOworICAgICAgICAgZXhpdCgwKTsK
+KyAgICAgICB9CiAgICAgIGFzc2VydCAobmVlZGVkICE9IE5VTEwpOwogICAgICAvKiBNYWtlIHN1
+cmUgdGhpcyBpcyBubyBzdHViIHdlIGNyZWF0ZWQgYmVjYXVzZSBvZiBhIG1pc3NpbmcKLS0KMS43
+LjEKCkFuZCBhbHNvIGlmIGl0IGlzIG9rIHdlIGNhbiByZW1vdmUgdGhpcyBvbmUgLS0tIGFzc2Vy
+dCAobmVlZGVkICE9IE5VTEwpOyAKYmVjYXVzZSB3ZSBhcmUgdXNpbmcgZXhpdCgwKSBmb3IgKG5l
+ZWRlZD09TlVMTCkgCgpUaGFua3MsCk1hbmluZGVyIFNpbmdo
 
 
 
