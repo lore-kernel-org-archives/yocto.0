@@ -1,48 +1,59 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <blackt1ger@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 57607E00963; Sun,  5 Apr 2015 12:39:17 -0700 (PDT)
+	id 728FFE0098E; Sun,  5 Apr 2015 18:46:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW,WEIRD_PORT autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.180 listed in list.dnswl.org]
-	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (blackt1ger[at]yahoo.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [98.138.90.87 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qk0-f180.google.com (mail-qk0-f180.google.com
-	[209.85.220.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A86F7E002F9
-	for <yocto@yoctoproject.org>; Sun,  5 Apr 2015 12:39:16 -0700 (PDT)
-Received: by qku63 with SMTP id 63so10728513qku.3
-	for <yocto@yoctoproject.org>; Sun, 05 Apr 2015 12:39:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=+v639htbXPyeiR8yMWZrgCXszsFWqGqpthZEiQDifsA=;
-	b=T8jVxmj88q/jb1Phbf+oH77yE+RgGaGmRoiXg9OEd7fXGkNSEoohEZkLzOe7yRhGH3
-	YpbHUENxkU4kVsqpUWaXypydkGErsSaGkwUL9SOnjqz/QI3QWx0Fvqeov8xG8IlUP3pR
-	H7kv9TOpgiWgokjRVVshEacghLvJjmBuSZ4CASHwnk+gI1I9IXFSwbw8IFHzEFyDQJ6D
-	9/tbm+zLo25bOtERsUhwtTXPg4Bx3LeJriCR2bJ1TzGNtPaCLqfU3jzMcrDkzRYrXSMK
-	HkHY8GBvEjegdXtd4irmzF+pzmXGks9+Dq5d5l47ChagYmDIKg8vclwLpyb7r+3a4jfp
-	GoxQ==
-X-Gm-Message-State: ALoCoQmCHjPHc838B0NRpxHUmRkhnmcRD2XN76Ao+BZ4NkFJORh3ySxntwPhm9XJVY+uFRmjNKe2
-X-Received: by 10.55.49.147 with SMTP id x141mr22498902qkx.23.1428262755116;
-	Sun, 05 Apr 2015 12:39:15 -0700 (PDT)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm24.bullet.mail.ne1.yahoo.com (nm24.bullet.mail.ne1.yahoo.com
+	[98.138.90.87])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1C20E00963
+	for <yocto@yoctoproject.org>; Sun,  5 Apr 2015 18:46:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1428284810; bh=h7mCTi8fnEqjfqdKS3RRjXOgUA0ijQEzPsQEyzQWSqw=;
+	h=Date:From:To:Subject:From:Subject;
+	b=L4x4696gxuUq/rdo7jS6Dr46bziWm08Z5F/lGLmL92scSgMUb2AG7q15cck8qEpIHXhdR/OsowRl58hC5bfWAnDB06pe4u+LeR5F7cMg1uIhg1UfdGFBDqRuLP/zg8NRcTDVQzWAoKRhbIHQwGmAMZyxaSvRKcabG4CSBvrZnDcebSfq8t3iS8fuC4obg40ALQ8jekqIewQPPZochHe+QDA7y39CJMqdJmuygFogSx+28hRu4/bIjwUrFAms+yGCFd4coTnaLLJRgbtJ4vyWqd1oz0F8ZHMUuXVmjNrDcgFsluKrOkc8ba4F/BkC89tseBxzwH0E0FrkRDV16jDN6w==
+Received: from [98.138.100.103] by nm24.bullet.mail.ne1.yahoo.com with NNFMP;
+	06 Apr 2015 01:46:50 -0000
+Received: from [98.138.226.56] by tm102.bullet.mail.ne1.yahoo.com with NNFMP;
+	06 Apr 2015 01:46:50 -0000
+Received: from [127.0.0.1] by smtp207.mail.ne1.yahoo.com with NNFMP;
+	06 Apr 2015 01:46:50 -0000
+X-Yahoo-Newman-Id: 611158.41345.bm@smtp207.mail.ne1.yahoo.com
+X-Yahoo-Newman-Property: ymail-3
+X-YMail-OSG: V_w9E.EVM1nTg5Z6qQ6AWP7.QmUW.wnYRvUkPmesTvBeQGC
+	Lfs0iFHm9JrDAEEcEKgFJ9O7cB0aabm5DP73kprGIHdVPoqAtS8dz58PhMhp
+	1xfPph_1eoUjGW.i9MEo_CF2zSXa0ACpgx1.LuHR3ifksgVv6E4T.lh8hHAs
+	WHpcQ1TTLmSYF1KkBf9z2MNZW9Z8s5SDqtyYE8.p_ATkEErcVan1Z48wuMCO
+	jFkfHVxnpGMDv3_iPfBP8ayJMQUiPWJ2iUfCuIictRDH.DOYOFMzKtF38WXG
+	Tmxi629uDeld.mMpr7Tmn3blR8VVO_M9w3y4X41vDYQfnYHETCLRxIym8B4C
+	tYjTt1joWI6b2Qu0oJ0.AH8z3JOkfRnEPk1febX9ElSIu_8WTC4NS_SZTLhs
+	0EOGbrdpztG7uKbZrfcdHcTh4Y446VlzoRvsIYMzIKbrPj5GdvIDLI9n6rqF
+	8z8W.THkRHcd1hoeEydiaPNvyP4IzrEUNOjoUd9ryzEU2ljjtC_c0U..Sl.i
+	uP.0Kk8c2VY_4AUaPV2Qrq_MQ1o2P
+X-Yahoo-SMTP: 64Rl7imswBAWpv6wTwoSL_WDoXYzCQw-
+Message-ID: <5521E589.3010007@yahoo.com>
+Date: Sun, 05 Apr 2015 21:46:49 -0400
+From: Ken Davis <blackt1ger@yahoo.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-Received: by 10.140.102.203 with HTTP; Sun, 5 Apr 2015 12:38:54 -0700 (PDT)
-In-Reply-To: <E0AAEDF37958A64591322A370796C7897C5CE9@post>
-References: <E0AAEDF37958A64591322A370796C7897C5CE9@post>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Sun, 5 Apr 2015 20:38:54 +0100
-Message-ID: <CAJTo0LZaNnEGaO2M=kdC3k5eavsAn+f3xQjCwnevMC0hQcoMbw@mail.gmail.com>
-To: Rickard Bremer <rickard.bremer@tritech.se>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Parse Error
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: what's the difference between meta-openembedded/meta-oe and meta-oe/meta-oe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,44 +65,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 05 Apr 2015 19:39:17 -0000
-Content-Type: multipart/alternative; boundary=001a11471b642a3ed50512ff56cf
+X-List-Received-Date: Mon, 06 Apr 2015 01:46:52 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---001a11471b642a3ed50512ff56cf
-Content-Type: text/plain; charset=UTF-8
+I'm soo confused.
 
-On 5 April 2015 at 15:43, Rickard Bremer <rickard.bremer@tritech.se> wrote:
+what's the difference between meta-openembedded/meta-oe and meta-oe/meta-oe?
 
-> $ bitbake core-image-minimal
-> ERROR: ParseError at
-> /var/lib/jenkins/workspace/thesis-build-yocto/meta-openembedded/meta-oe/recipes-core/packagegroups/
-> packagegroup-basic.bb:12: Could not inherit file classes/bluetooth.bbclass
->
 
-Looks like your meta-oe is from master but your oe-core is from a release
-branch?  bluetooth.bbclass is only in oe-core master (and the shortly to be
-released 1.8 aka "Fido").
-
-Ross
-
---001a11471b642a3ed50512ff56cf
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 5 April 2015 at 15:43, Rickard Bremer <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:rickard.bremer@tritech.se" target=3D"_blank">rickard.bremer@tritech.s=
-e</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div style=3D"dir=
-ection:ltr;font-family:Tahoma;color:#000000;font-size:10pt">$ bitbake core-=
-image-minimal<br>
-ERROR: ParseError at /var/lib/jenkins/workspace/thesis-build-yocto/meta-ope=
-nembedded/meta-oe/recipes-core/packagegroups/<a href=3D"http://packagegroup=
--basic.bb:12" target=3D"_blank">packagegroup-basic.bb:12</a>: Could not inh=
-erit file classes/bluetooth.bbclass<br></div></blockquote></div><br>Looks l=
-ike your meta-oe is from master but your oe-core is from a release branch? =
-=C2=A0bluetooth.bbclass is only in oe-core master (and the shortly to be re=
-leased 1.8 aka &quot;Fido&quot;).</div><div class=3D"gmail_extra"><br></div=
-><div class=3D"gmail_extra">Ross</div></div>
-
---001a11471b642a3ed50512ff56cf--
