@@ -1,29 +1,41 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E31FCE0083E; Tue,  7 Apr 2015 07:52:26 -0700 (PDT)
+	id 9C8E1E0083E; Tue,  7 Apr 2015 07:55:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C99AE00830
-	for <yocto@yoctoproject.org>; Tue,  7 Apr 2015 07:52:24 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id B1E65F811DA; Tue,  7 Apr 2015 08:52:23 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 31536F811D8;
-	Tue,  7 Apr 2015 08:52:23 -0600 (MDT)
-Message-ID: <5523EF34.1000604@mlbassoc.com>
-Date: Tue, 07 Apr 2015 08:52:36 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCA7AE00830
+	for <yocto@yoctoproject.org>; Tue,  7 Apr 2015 07:55:46 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.9/8.14.9) with ESMTP id t37EthfC018223
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 7 Apr 2015 07:55:43 -0700 (PDT)
+Received: from Marks-MacBook-Pro.local (172.25.36.228) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.224.2; Tue, 7 Apr 2015 07:55:42 -0700
+Message-ID: <5523EFF9.1030808@windriver.com>
+Date: Tue, 7 Apr 2015 09:55:53 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
 	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: sstate black hole?
+To: <maninder1.s@samsung.com>
+References: <1615523338.521981428401744312.JavaMail.weblogic@epmlwas08a>
+In-Reply-To: <1615523338.521981428401744312.JavaMail.weblogic@epmlwas08a>
+Cc: Vaneet Narang <v.narang@samsung.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	AJEET YADAV <ajeet.y@samsung.com>
+Subject: Re: [prelink-cross][PATCH 1/1] debug message for dependencies not found
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,58 +47,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Apr 2015 14:52:27 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Tue, 07 Apr 2015 14:55:50 -0000
+Content-Type: text/plain; charset="windows-1252"
 Content-Transfer-Encoding: 7bit
 
-I'm building for multiple ARM i.MX6 platforms.  These have
-the same SoC, but slightly different peripherals. As far as
-I can tell, they should be able to share everything except
-for a few ${MACHINE} specific packages, e.g. the kernel and
-u-boot.
+On 4/7/15 5:15 AM, Maninder Singh wrote:
+> Hi Mark,
+> 
+> We have checked the commit on cross_prelik_staging, it is correct But i did one typo error Please correct following:-
+> Just change Reviewed-by: Ajeet Yadav <ajeet.v@samsung.com>
+> to
+> Reviewed-by: Ajeet Yadav <ajeet.y@samsung.com> for voth patches.
+> Typo arror for ajeet.v ---> ajeet.y
 
-Sadly, that doesn't seem to be the case.  The architecture
-specific packages are being split into two categories - plain
-ARM/Cortex-A9 and those that have i.MX6 specific optimizations.
-For example, after building a complete image (on the order of
-core-image-sato), I have this split:
-$ ls tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/
-acl                  gst-player                 libsamplerate0         modutils-initscripts  shadow-sysroot
-alsa-utils           gst-plugins-bad            libsm                  mpeg2dec              shared-mime-info
-apmd                 gst-plugins-good           libsndfile1            mplayer2              speex
-atk                  gst-plugins-ugly           libsoup-2.4            mtdev                 sqlite3
-attr                 gstreamer                  libtheora              ncurses               startup-notification
-base-passwd          gstreamer1.0               libtirpc               neon                  strace
-    ...
-gst-ffmpeg           libpostproc                matchbox-wm            scrnsaverproto        zlib
-gst-fluendo-mpegmux  libproxy                   mkfontdir              settings-daemon
-gst-meta-base        libpthread-stubs           mkfontscale            shadow
+Fixed in the commit message.  I'm going to let this sit in the staging for a bit
+longer, then merge it to the cross_prelink branch and eventually Yocto Project/OE.
 
-$ ls tmp/work/cortexa9hf-vfp-neon-mx6qdl-amltd-linux-gnueabi/
-alsa-lib      gst-plugins-base           imx-gpu-viv  libfslparser   libsdl      xf86-video-imxfb-vivante
-cairo         gstreamer1.0-plugins-bad   libdrm       libfslvpuwrap  mesa        xserver-xorg
-firmware-imx  gstreamer1.0-plugins-base  libfslcodec  libglu         pulseaudio
+--Mark
 
-It's the second category that is causing problems.  They do not
-seem to end up in any shareable sstate at all.  If I try to rebuild
-using only sstate, i.e. build my complete image to success, then
-remove 'tmp' and rebuild, using the sstate-cache from the first go,
-all of the above packages (alsa-lib, ..., xserver-xorg) are all
-rebuilt from scratch.  Those recipes do seem to end in my sstate-cache,
-but they are never reused from it.
+> Thanks
+> Maninder Singh
+>> This and the other patch have been merged onto the cross_prelink_staging branch.
+> 
+>> Please test that I merged it properly.  (Everything passed my basic testing, but
+>> I haven't run it against any ARM/HF libraries or similar.)
+> 
+>> --Mark
+> 
+> On 4/6/15 4:07 AM, Maninder Singh wrote:
+>> Hi,
+>> Same mail sent earlier Changing subject line, By mistake shared subject line of other patch.
+>>
+>> prelink gives below error message for failure dependency:
+>> ./prelink: /test_binary: Could not find one of the dependencies
+>>
+>> This provides name of dependent library which is missing like below:
+>> ./prelink: /test_binary: Could not find one of the dependencies:
+>> ./prelink-rtld: error while loading shared libraries: libB.so: cannot open shared object file: No such file or directory
+>> where libB.so is missing dependecy
+>>
+>> Signed-off-by: Maninder Singh <maninder1.s@samsung.com>
+>> Signed-off-by: Vaneet Narang <v.narang@samsung.com>
+>> Reviewed-by: Ajeet Yadav <ajeet.v@samsung.com>
+>> Reviewed-by: Geon-ho Kim <gh007.kim@samsung.com>
+>> ---
+>>  src/gather.c |    4 ++--
+>>  1 files changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/src/gather.c b/src/gather.c
+>> index 5ccd243..4a3f428 100644
+>> --- a/src/gather.c
+>> +++ b/src/gather.c
+>> @@ -240,8 +240,8 @@ gather_deps (DSO *dso, struct prelink_entry *ent)
+>>           if (q != NULL)
+>>             {
+>>               error (0, 0,
+>> -                "%s: Could not find one of the dependencies",
+>> -                ent->filename);
+>> +                "%s: Could not find one of the dependencies:\n%s",
+>> +                ent->filename, line);
+>>               goto error_out;
+>>             }
+>>         }
+>> --
+>>
+>>
+>> Thanks 
+>> Maninder Singh
+>>
 
-What would make this happen?  How can I prevent it?
-
-As is, sstate is not really shareable between these i.MX6 targets
-as so much is being rebuilt all the time...
-
-Any ideas or pointers gladly welcomed.
-
-Thanks
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
