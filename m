@@ -1,49 +1,50 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <kergoth@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 88895E00830; Tue,  7 Apr 2015 08:12:44 -0700 (PDT)
+	id 48F0EE00830; Tue,  7 Apr 2015 08:27:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3D3AE00830
-	for <yocto@yoctoproject.org>; Tue,  7 Apr 2015 08:12:40 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 07 Apr 2015 08:10:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,538,1422950400"; 
-	d="scan'208,217";a="691487484"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by fmsmga001.fm.intel.com with ESMTP; 07 Apr 2015 08:10:33 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Tue, 7 Apr 2015 08:10:32 -0700
-Received: from fmsmsx155.amr.corp.intel.com (10.18.116.71) by
-	ORSMSX151.amr.corp.intel.com (10.22.226.38) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Tue, 7 Apr 2015 08:10:32 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.17]) by
-	FMSMSX155.amr.corp.intel.com ([169.254.5.89]) with mapi id
-	14.03.0224.002; Tue, 7 Apr 2015 08:10:32 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, Apr.
-	7, 2015 8:00 AM US Pacific Time
-Thread-Index: AdBxRP1C98NBgE/iRCSMaK4A9ddaHA==
-Date: Tue, 7 Apr 2015 15:10:31 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E5545C64E@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.106]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.182 listed in list.dnswl.org]
+Received: from mail-qk0-f182.google.com (mail-qk0-f182.google.com
+	[209.85.220.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69D71E00830
+	for <yocto@yoctoproject.org>; Tue,  7 Apr 2015 08:27:52 -0700 (PDT)
+Received: by qkgx75 with SMTP id x75so53545729qkg.1
+	for <yocto@yoctoproject.org>; Tue, 07 Apr 2015 08:27:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=5sLj5YXXKdFzmPWqC/t/NIwE31OMJ+hBV1ESYOHAmgU=;
+	b=D9d0fCINaL01Xqd97WiLBs1Nzhog8L1TXG7J0co6u4tdrlX8ElEy1N5xhMzwNyCgC7
+	nCSb18l6TEbsEuWBAss424Z1SEjg8KHE47CouvVNMGm6Tmlgvblg/xblLlHDHp1k1UIb
+	Br6v99ei0IDfINkBPy21K3M13+LY3LRuLVp5fnNN/kZkGrxgVRfhoB/KFa6bBnZzQUor
+	11Fmz4QN12Ri4jVXupRdIk9g9/F0wRca9YWO0cg991kBS9IrQ4YiNhLs72ts3RyPweGM
+	txzMHk90MxnYAzmlVhcYqcF63AlsUsHc4Wpso2f1HIyTgByR8S0EEVmNHgOadMN0wH2D
+	1uVw==
+X-Received: by 10.55.50.20 with SMTP id y20mr39524099qky.58.1428420472399;
+	Tue, 07 Apr 2015 08:27:52 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, Apr. 7, 2015 8:00 AM US Pacific Time
+Sender: kergoth@gmail.com
+Received: by 10.140.108.34 with HTTP; Tue, 7 Apr 2015 08:27:32 -0700 (PDT)
+In-Reply-To: <5523EF34.1000604@mlbassoc.com>
+References: <5523EF34.1000604@mlbassoc.com>
+From: Christopher Larson <clarson@kergoth.com>
+Date: Tue, 7 Apr 2015 08:27:32 -0700
+X-Google-Sender-Auth: fZorHUPK1i9Vacr39BF58CF7qF0
+Message-ID: <CABcZANkkVq+WXx_+qBidBjTPtd4gdctUcrUkocXZK-vuY3paEQ@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: sstate black hole?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,374 +56,173 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Apr 2015 15:12:44 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5545C64Efmsmsx111amrcor_"
+X-List-Received-Date: Tue, 07 Apr 2015 15:27:56 -0000
+Content-Type: multipart/alternative; boundary=001a11471392d8ecb20513240e98
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5545C64Efmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--001a11471392d8ecb20513240e98
+Content-Type: text/plain; charset=UTF-8
 
-Attendees: Armin, Stephen, Sona, Belen, Mark, Bruce, Alex V., Paul, Saul, M=
-ichael, Joe M., Richard, Jussi, Denys, Cristian,
+On Tue, Apr 7, 2015 at 7:52 AM, Gary Thomas <gary@mlbassoc.com> wrote:
 
-
-
-* Opens collection - 5 min (Stephen)
-
-* Yocto Project status - 5 min (Stephen/team)
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.8_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.8_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.8_Features
-
-YP 1.8 M4 rc2 is in QA and should be finished by EOD tomorrow.   It is curr=
-ently progressing good.  If this is the final build then YP 1.7.2 rc1 shoul=
-d go into QA early next week.   YP 1.6.3 rc3 will go in after that is appro=
-ved.
-
-YP 1.9 Planning has begun.  If you have any enhancements you want in YP 1.9=
-, insure they are logged in bugzilla.
-
-* SWAT team rotation: Paul/Ross -> Cristian
-
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-* Opens - 10 min
-
-* Team Sharing - 10 min
-
-Michael - We are adding additional network do our download capability.
-
-Richard - We have been experimenting with shared state over http. This has =
-progressed to the point Richard might include a few patches that enable thi=
-s capability.  YP
-
-
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5545C64Efmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> I'm building for multiple ARM i.MX6 platforms.  These have
+> the same SoC, but slightly different peripherals. As far as
+> I can tell, they should be able to share everything except
+> for a few ${MACHINE} specific packages, e.g. the kernel and
+> u-boot.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";
-	mso-fareast-language:ZH-CN;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:79452940;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1464386262 67698689 67698691 67698693 67698689 67698=
-691 67698693 67698689 67698691 67698693;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Attendees: Armin, Stephen, Sona, Belen, Mark, Bruc=
-e, Alex V., Paul, Saul, Michael, Joe M., Richard, Jussi, Denys, Cristian,
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Project_v1.8_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-8_Status</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.8_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.8_Schedule</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.8_Features">https://wiki.yoctoproject.org/wiki/Yocto_1.8_Features</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 1.8 M4 rc2 is in QA and should be finished by E=
-OD tomorrow.&nbsp;&nbsp; It is currently progressing good.&nbsp; If this is=
- the final build then YP 1.7.2 rc1 should go into QA
- early next week.&nbsp;&nbsp; YP 1.6.3 rc3 will go in after that is approve=
-d.<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 1.9 Planning has begun.&nbsp; If you have any e=
-nhancements you want in YP 1.9, insure they are logged in bugzilla.
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* SWAT team rotation: Paul/Ross -&gt; Cristian<o:p=
-></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Build_Failure_Swat_Team">https://wiki.yoctoproject.org/wiki/Yocto_Build_F=
-ailure_Swat_Team</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens - 10 min
-<o:p></o:p></span></p>
-<div style=3D"border:none;border-bottom:solid windowtext 1.0pt;padding:0in =
-0in 1.0pt 0in">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Michael &#8211; We are adding additional network d=
-o our download capability.&nbsp;&nbsp;
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Richard &#8211; We have been experimenting with sh=
-ared state over http. This has progressed to the point Richard might includ=
-e a few patches that enable this capability.&nbsp;
- YP<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+> Sadly, that doesn't seem to be the case.  The architecture
+> specific packages are being split into two categories - plain
+> ARM/Cortex-A9 and those that have i.MX6 specific optimizations.
+> For example, after building a complete image (on the order of
+> core-image-sato), I have this split:
+> $ ls tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/
+> acl                  gst-player                 libsamplerate0
+>  modutils-initscripts  shadow-sysroot
+> alsa-utils           gst-plugins-bad            libsm
+> mpeg2dec              shared-mime-info
+> apmd                 gst-plugins-good           libsndfile1
+> mplayer2              speex
+> atk                  gst-plugins-ugly           libsoup-2.4
+> mtdev                 sqlite3
+> attr                 gstreamer                  libtheora
+> ncurses               startup-notification
+> base-passwd          gstreamer1.0               libtirpc
+>  neon                  strace
+>    ...
+> gst-ffmpeg           libpostproc                matchbox-wm
+> scrnsaverproto        zlib
+> gst-fluendo-mpegmux  libproxy                   mkfontdir
+> settings-daemon
+> gst-meta-base        libpthread-stubs           mkfontscale
+> shadow
+>
+> $ ls tmp/work/cortexa9hf-vfp-neon-mx6qdl-amltd-linux-gnueabi/
+> alsa-lib      gst-plugins-base           imx-gpu-viv  libfslparser
+>  libsdl      xf86-video-imxfb-vivante
+> cairo         gstreamer1.0-plugins-bad   libdrm       libfslvpuwrap  mesa
+>       xserver-xorg
+> firmware-imx  gstreamer1.0-plugins-base  libfslcodec  libglu
+>  pulseaudio
+>
+> It's the second category that is causing problems.  They do not
+> seem to end up in any shareable sstate at all.  If I try to rebuild
+> using only sstate, i.e. build my complete image to success, then
+> remove 'tmp' and rebuild, using the sstate-cache from the first go,
+> all of the above packages (alsa-lib, ..., xserver-xorg) are all
+> rebuilt from scratch.  Those recipes do seem to end in my sstate-cache,
+> but they are never reused from it.
+>
+> What would make this happen?  How can I prevent it?
+>
+> As is, sstate is not really shareable between these i.MX6 targets
+> as so much is being rebuilt all the time...
+>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5545C64Efmsmsx111amrcor_--
+bitbake -S printdiff <target> (e.g. a specific recipe, your image,
+whatever) will tell you why the sstate wasn't used, by finding the ones
+that are in SSTATE_DIR which most closely match the current configuration,
+and displaying a detailed delta between the two. You might need
+https://gist.github.com/kergoth/3713d779c14dc8b98f36.
+-- 
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
+
+--001a11471392d8ecb20513240e98
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Tue, Apr 7, 2015 at 7:52 AM, Gary Thomas <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</=
+span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-le=
+ft-style:solid;padding-left:1ex"><div id=3D":2b5" class=3D"" style=3D"overf=
+low:hidden">I&#39;m building for multiple ARM i.MX6 platforms.=C2=A0 These =
+have<br>
+the same SoC, but slightly different peripherals. As far as<br>
+I can tell, they should be able to share everything except<br>
+for a few ${MACHINE} specific packages, e.g. the kernel and<br>
+u-boot.<br>
+<br>
+Sadly, that doesn&#39;t seem to be the case.=C2=A0 The architecture<br>
+specific packages are being split into two categories - plain<br>
+ARM/Cortex-A9 and those that have i.MX6 specific optimizations.<br>
+For example, after building a complete image (on the order of<br>
+core-image-sato), I have this split:<br>
+$ ls tmp/work/cortexa9hf-vfp-neon-<u></u>amltd-linux-gnueabi/<br>
+acl=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 gst-playe=
+r=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0libsamplerat=
+e0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0modutils-initscripts=C2=A0 shadow-sysro=
+ot<br>
+alsa-utils=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0gst-plugins-bad=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 libsm=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 mpeg2dec=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 shared-mime-info<br>
+apmd=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0gst-plugi=
+ns-good=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0libsndfile1=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 mplayer2=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 speex<br>
+atk=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 gst-plugi=
+ns-ugly=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0libsoup-2.4=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 mtdev=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0sqlite3<br>
+attr=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0gstreamer=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 libtheora=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ncurses=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0startup-notification<br>
+base-passwd=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 gstreamer1.0=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0libtirpc=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0neon=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 strace<br>
+=C2=A0 =C2=A0...<br>
+gst-ffmpeg=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0libpostproc=C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 matchbox-wm=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 scrnsaverproto=C2=A0 =C2=A0 =C2=A0 =C2=A0 zlib<br>
+gst-fluendo-mpegmux=C2=A0 libproxy=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0mkfontdir=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 settings-daemon<br>
+gst-meta-base=C2=A0 =C2=A0 =C2=A0 =C2=A0 libpthread-stubs=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0mkfontscale=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 shadow<br>
+<br>
+$ ls tmp/work/cortexa9hf-vfp-neon-<u></u>mx6qdl-amltd-linux-gnueabi/<br>
+alsa-lib=C2=A0 =C2=A0 =C2=A0 gst-plugins-base=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0imx-gpu-viv=C2=A0 libfslparser=C2=A0 =C2=A0libsdl=C2=A0 =C2=A0=
+ =C2=A0 xf86-video-imxfb-vivante<br>
+cairo=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0gstreamer1.0-plugins-bad=C2=A0 =C2=
+=A0libdrm=C2=A0 =C2=A0 =C2=A0 =C2=A0libfslvpuwrap=C2=A0 mesa=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 xserver-xorg<br>
+firmware-imx=C2=A0 gstreamer1.0-plugins-base=C2=A0 libfslcodec=C2=A0 libglu=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0pulseaudio<br>
+<br>
+It&#39;s the second category that is causing problems.=C2=A0 They do not<br=
+>
+seem to end up in any shareable sstate at all.=C2=A0 If I try to rebuild<br=
+>
+using only sstate, i.e. build my complete image to success, then<br>
+remove &#39;tmp&#39; and rebuild, using the sstate-cache from the first go,=
+<br>
+all of the above packages (alsa-lib, ..., xserver-xorg) are all<br>
+rebuilt from scratch.=C2=A0 Those recipes do seem to end in my sstate-cache=
+,<br>
+but they are never reused from it.<br>
+<br>
+What would make this happen?=C2=A0 How can I prevent it?<br>
+<br>
+As is, sstate is not really shareable between these i.MX6 targets<br>
+as so much is being rebuilt all the time...</div></blockquote></div><br>bit=
+bake -S printdiff &lt;target&gt; (e.g. a specific recipe, your image, whate=
+ver) will tell you why the sstate wasn&#39;t used, by finding the ones that=
+ are in SSTATE_DIR which most closely match the current configuration, and =
+displaying a detailed delta between the two. You might need=C2=A0<a href=3D=
+"https://gist.github.com/kergoth/3713d779c14dc8b98f36">https://gist.github.=
+com/kergoth/3713d779c14dc8b98f36</a>.<br>-- <br><div class=3D"gmail_signatu=
+re">Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBake, =
+OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engineer,=
+ Mentor Graphics</div>
+</div></div>
+
+--001a11471392d8ecb20513240e98--
