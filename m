@@ -1,31 +1,56 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D5CA4E0083E; Tue,  7 Apr 2015 08:52:00 -0700 (PDT)
+	id 18CBEE0083E; Tue,  7 Apr 2015 09:18:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE38FE00830
-	for <yocto@yoctoproject.org>; Tue,  7 Apr 2015 08:51:55 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id BCC3EF811DA; Tue,  7 Apr 2015 09:51:54 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id CAC52F811D8;
-	Tue,  7 Apr 2015 09:51:53 -0600 (MDT)
-Message-ID: <5523FD27.3030905@mlbassoc.com>
-Date: Tue, 07 Apr 2015 09:52:07 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
-MIME-Version: 1.0
-To: Christopher Larson <clarson@kergoth.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.178 listed in list.dnswl.org]
+Received: from mail-wi0-f178.google.com (mail-wi0-f178.google.com
+	[209.85.212.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B06DE00830
+	for <yocto@yoctoproject.org>; Tue,  7 Apr 2015 09:18:53 -0700 (PDT)
+Received: by widdi4 with SMTP id di4so23788162wid.0
+	for <yocto@yoctoproject.org>; Tue, 07 Apr 2015 09:18:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=vuWQO44eCnLqp0hpbChvWaj8R9r7YFAYzBjZc+ISR9M=;
+	b=rhmsQOBn7CAyNafwQASGeUsQxAIbonfFojk+giYNeQVCVLRmVo2wQTIVliiOPNhE4D
+	xmY9S0SPhUKCCw+IFW5ltKt53qFq9c18CmFAnS5Wc6TEu9GxHo4xuCUal7NcALcccd/M
+	mIZBGv4bxodYhHAVC52TTM4r+NyImYXoVmhI6Se00D0obUmAERJQ2T+Iuo7j+NcuGUcw
+	MeOo1lg1TUJ06Ten3TrzvlqIWzzy7HXmoqLo8NZyuuYVYeaQLceFEVdDUYqPYctXsLKU
+	MDAO1s7ziow+E018UXXMHy3UcvHk4lwlfm5Hp2ree/4ctCwGl4Ya85Nz3+wjpWCalJMd
+	XEew==
+X-Received: by 10.194.3.77 with SMTP id a13mr26632304wja.104.1428423532829;
+	Tue, 07 Apr 2015 09:18:52 -0700 (PDT)
+Received: from localhost (ip-86-49-34-37.net.upcbroadband.cz. [86.49.34.37])
+	by mx.google.com with ESMTPSA id
+	dz4sm11652122wib.17.2015.04.07.09.18.51
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 07 Apr 2015 09:18:51 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Tue, 7 Apr 2015 18:19:35 +0200
+To: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <20150407161935.GC22953@jama>
 References: <5523EF34.1000604@mlbassoc.com>
-	<CABcZANkkVq+WXx_+qBidBjTPtd4gdctUcrUkocXZK-vuY3paEQ@mail.gmail.com>
-In-Reply-To: <CABcZANkkVq+WXx_+qBidBjTPtd4gdctUcrUkocXZK-vuY3paEQ@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <5523EF34.1000604@mlbassoc.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: sstate black hole?
 X-BeenThere: yocto@yoctoproject.org
@@ -39,98 +64,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Apr 2015 15:52:00 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 07 Apr 2015 16:18:57 -0000
+X-Groupsio-MsgNum: 24358
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="UFHRwCdBEJvubb2X"
+Content-Disposition: inline
 
-On 2015-04-07 09:27, Christopher Larson wrote:
->
-> On Tue, Apr 7, 2015 at 7:52 AM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
->
->     I'm building for multiple ARM i.MX6 platforms.  These have
->     the same SoC, but slightly different peripherals. As far as
->     I can tell, they should be able to share everything except
->     for a few ${MACHINE} specific packages, e.g. the kernel and
->     u-boot.
->
->     Sadly, that doesn't seem to be the case.  The architecture
->     specific packages are being split into two categories - plain
->     ARM/Cortex-A9 and those that have i.MX6 specific optimizations.
->     For example, after building a complete image (on the order of
->     core-image-sato), I have this split:
->     $ ls tmp/work/cortexa9hf-vfp-neon-__amltd-linux-gnueabi/
->     acl                  gst-player                 libsamplerate0         modutils-initscripts  shadow-sysroot
->     alsa-utils           gst-plugins-bad            libsm                  mpeg2dec              shared-mime-info
->     apmd                 gst-plugins-good           libsndfile1            mplayer2              speex
->     atk                  gst-plugins-ugly           libsoup-2.4            mtdev                 sqlite3
->     attr                 gstreamer                  libtheora              ncurses               startup-notification
->     base-passwd          gstreamer1.0               libtirpc               neon                  strace
->         ...
->     gst-ffmpeg           libpostproc                matchbox-wm            scrnsaverproto        zlib
->     gst-fluendo-mpegmux  libproxy                   mkfontdir              settings-daemon
->     gst-meta-base        libpthread-stubs           mkfontscale            shadow
->
->     $ ls tmp/work/cortexa9hf-vfp-neon-__mx6qdl-amltd-linux-gnueabi/
->     alsa-lib      gst-plugins-base           imx-gpu-viv  libfslparser   libsdl      xf86-video-imxfb-vivante
->     cairo         gstreamer1.0-plugins-bad   libdrm       libfslvpuwrap  mesa        xserver-xorg
->     firmware-imx  gstreamer1.0-plugins-base  libfslcodec  libglu         pulseaudio
->
->     It's the second category that is causing problems.  They do not
->     seem to end up in any shareable sstate at all.  If I try to rebuild
->     using only sstate, i.e. build my complete image to success, then
->     remove 'tmp' and rebuild, using the sstate-cache from the first go,
->     all of the above packages (alsa-lib, ..., xserver-xorg) are all
->     rebuilt from scratch.  Those recipes do seem to end in my sstate-cache,
->     but they are never reused from it.
->
->     What would make this happen?  How can I prevent it?
->
->     As is, sstate is not really shareable between these i.MX6 targets
->     as so much is being rebuilt all the time...
->
->
-> bitbake -S printdiff <target> (e.g. a specific recipe, your image, whatever) will tell you why the sstate wasn't used, by finding the ones that are in SSTATE_DIR which most closely
-> match the current configuration, and displaying a detailed delta between the two. You might need https://gist.github.com/kergoth/3713d779c14dc8b98f36.
+--UFHRwCdBEJvubb2X
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Sorry, that didn't seem to do anything (I didn't apply your
-patch since I'm not looking at any native or sdk packages).
+On Tue, Apr 07, 2015 at 08:52:36AM -0600, Gary Thomas wrote:
+> I'm building for multiple ARM i.MX6 platforms.  These have
+> the same SoC, but slightly different peripherals. As far as
+> I can tell, they should be able to share everything except
+> for a few ${MACHINE} specific packages, e.g. the kernel and
+> u-boot.
+>=20
+> Sadly, that doesn't seem to be the case.  The architecture
+> specific packages are being split into two categories - plain
+> ARM/Cortex-A9 and those that have i.MX6 specific optimizations.
+> For example, after building a complete image (on the order of
+> core-image-sato), I have this split:
+> $ ls tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/
+> acl                  gst-player                 libsamplerate0         mo=
+dutils-initscripts  shadow-sysroot
+> alsa-utils           gst-plugins-bad            libsm                  mp=
+eg2dec              shared-mime-info
+> apmd                 gst-plugins-good           libsndfile1            mp=
+layer2              speex
+> atk                  gst-plugins-ugly           libsoup-2.4            mt=
+dev                 sqlite3
+> attr                 gstreamer                  libtheora              nc=
+urses               startup-notification
+> base-passwd          gstreamer1.0               libtirpc               ne=
+on                  strace
+>     ...
+> gst-ffmpeg           libpostproc                matchbox-wm            sc=
+rnsaverproto        zlib
+> gst-fluendo-mpegmux  libproxy                   mkfontdir              se=
+ttings-daemon
+> gst-meta-base        libpthread-stubs           mkfontscale            sh=
+adow
+>=20
+> $ ls tmp/work/cortexa9hf-vfp-neon-mx6qdl-amltd-linux-gnueabi/
+> alsa-lib      gst-plugins-base           imx-gpu-viv  libfslparser   libs=
+dl      xf86-video-imxfb-vivante
+> cairo         gstreamer1.0-plugins-bad   libdrm       libfslvpuwrap  mesa=
+        xserver-xorg
+> firmware-imx  gstreamer1.0-plugins-base  libfslcodec  libglu         puls=
+eaudio
+>=20
+> It's the second category that is causing problems.  They do not
+> seem to end up in any shareable sstate at all.  If I try to rebuild
+> using only sstate, i.e. build my complete image to success, then
+> remove 'tmp' and rebuild, using the sstate-cache from the first go,
+> all of the above packages (alsa-lib, ..., xserver-xorg) are all
+> rebuilt from scratch.  Those recipes do seem to end in my sstate-cache,
+> but they are never reused from it.
+>=20
+> What would make this happen?  How can I prevent it?
+>=20
+> As is, sstate is not really shareable between these i.MX6 targets
+> as so much is being rebuilt all the time...
+>=20
+> Any ideas or pointers gladly welcomed.
 
-Here's what I got:
-   $ bitbake -S printdiffs xserver-xorg
-   ...
-   NOTE: Preparing RunQueue
-   NOTE: Reparsing files to collect dependency data
-   Writing locked sigs to /local/imx6_2015-03-26/locked-sigs.inc
-   NOTE: Tasks Summary: Attempted 0 tasks of which 0 didn't need to be rerun and all succeeded.
+Try openembedded-core/scripts/sstate-diff-machines.sh
+to see why.
 
-No other output.
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
-I can see [manually] that there are a number of cache entries, e.g.
+--UFHRwCdBEJvubb2X
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-$ find sstate-cache/ -name "*xserver-xorg*package.tgz"
-sstate-cache/48/sstate:xserver-xorg:cortexa9hf-vfp-neon-mx6qdl-amltd-linux-gnueabi:1.16.3:r0:cortexa9hf-vfp-neon-mx6qdl:3:487ec958840dd9ed48ff3da86e2dabdb_package.tgz
-sstate-cache/4f/sstate:xserver-xorg:cortexa9hf-vfp-neon-mx6qdl-amltd-linux-gnueabi:1.16.3:r0:cortexa9hf-vfp-neon-mx6qdl:3:4f7a493630c7f29762714430ea6be4d1_package.tgz
-sstate-cache/80/sstate:xserver-xorg:cortexa9hf-vfp-neon-mx6qdl-amltd-linux-gnueabi:1.16.3:r0:cortexa9hf-vfp-neon-mx6qdl:3:8041b9f7bda788038e011829939e2049_package.tgz
-sstate-cache/2d/sstate:xserver-xorg:cortexa9hf-vfp-neon-mx6qdl-amltd-linux-gnueabi:1.16.3:r0:cortexa9hf-vfp-neon-mx6qdl:3:2de173b1c4875889f124ce4560f42ed7_package.tgz
-sstate-cache/b4/sstate:xserver-xorg:cortexa9hf-vfp-neon-mx6qdl-amltd-linux-gnueabi:1.16.3:r0:cortexa9hf-vfp-neon-mx6qdl:3:b492f53c05ca6cbeb51b2e574dd60495_package.tgz
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
 
-So I would think that something would be printed.  Do I need to do something
-else to make this work, e.g. cleaning the target package, etc?
+iEYEARECAAYFAlUkA5cACgkQN1Ujt2V2gBwWqQCgiDO02tvCY1aEmZkqHSxPIxM6
+80IAniENy0Co4LZaRSUEg7l1vGtOAfgv
+=l0Gd
+-----END PGP SIGNATURE-----
 
-Note: I looked at the 'locked-sigs.inc' that was generated and I noticed
-that there is no section for the recipes I'm interested in:
-   $ grep ^SIG locked-sigs.inc
-   SIGGEN_LOCKEDSIGS_t-imx6qsabresd = "\
-   SIGGEN_LOCKEDSIGS_t-x86-64 = "\
-   SIGGEN_LOCKEDSIGS_t-x86-64-arm = "\
-   SIGGEN_LOCKEDSIGS_t-cortexa9hf-vfp-neon = "\
-   SIGGEN_LOCKEDSIGS_TYPES_imx6qsabresd = "t-imx6qsabresd t-x86-64 t-x86-64-arm t-cortexa9hf-vfp-neon"
-
-I would think there would need to be a "SIGGEN_LOCKEDSIGS_t-cortexa9hf-vfp-neon-mx6qdl" section?
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
-
+--UFHRwCdBEJvubb2X--
