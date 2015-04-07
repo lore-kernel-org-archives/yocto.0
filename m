@@ -1,6 +1,6 @@
 Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AEA10E008DC; Tue,  7 Apr 2015 06:08:05 -0700 (PDT)
+	id E31FCE0083E; Tue,  7 Apr 2015 07:52:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,21 +9,21 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37677E00854
-	for <yocto@yoctoproject.org>; Tue,  7 Apr 2015 06:08:03 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C99AE00830
+	for <yocto@yoctoproject.org>; Tue,  7 Apr 2015 07:52:24 -0700 (PDT)
 Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id DA78AF811DA; Tue,  7 Apr 2015 07:08:02 -0600 (MDT)
+	id B1E65F811DA; Tue,  7 Apr 2015 08:52:23 -0600 (MDT)
 Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 902D8F811D8;
-	Tue,  7 Apr 2015 07:08:02 -0600 (MDT)
-Message-ID: <5523D6C0.80404@mlbassoc.com>
-Date: Tue, 07 Apr 2015 07:08:16 -0600
+	by mail.chez-thomas.org (Postfix) with ESMTP id 31536F811D8;
+	Tue,  7 Apr 2015 08:52:23 -0600 (MDT)
+Message-ID: <5523EF34.1000604@mlbassoc.com>
+Date: Tue, 07 Apr 2015 08:52:36 -0600
 From: Gary Thomas <gary@mlbassoc.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
 To: Yocto Project <yocto@yoctoproject.org>
-Subject: Simple image viewer
+Subject: sstate black hole?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,18 +35,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Apr 2015 13:08:05 -0000
+X-List-Received-Date: Tue, 07 Apr 2015 14:52:27 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-I've searched my Poky/Yocto repository for this - is there
-some sort of simple image (i.e. .png/.gif/.jpg) viewer available
-in Poky/Yocto (OE-core)?  In meta-openembedded?  I'm just not
-finding it.
+I'm building for multiple ARM i.MX6 platforms.  These have
+the same SoC, but slightly different peripherals. As far as
+I can tell, they should be able to share everything except
+for a few ${MACHINE} specific packages, e.g. the kernel and
+u-boot.
 
-Maybe something along the lines of eog?
+Sadly, that doesn't seem to be the case.  The architecture
+specific packages are being split into two categories - plain
+ARM/Cortex-A9 and those that have i.MX6 specific optimizations.
+For example, after building a complete image (on the order of
+core-image-sato), I have this split:
+$ ls tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/
+acl                  gst-player                 libsamplerate0         modutils-initscripts  shadow-sysroot
+alsa-utils           gst-plugins-bad            libsm                  mpeg2dec              shared-mime-info
+apmd                 gst-plugins-good           libsndfile1            mplayer2              speex
+atk                  gst-plugins-ugly           libsoup-2.4            mtdev                 sqlite3
+attr                 gstreamer                  libtheora              ncurses               startup-notification
+base-passwd          gstreamer1.0               libtirpc               neon                  strace
+    ...
+gst-ffmpeg           libpostproc                matchbox-wm            scrnsaverproto        zlib
+gst-fluendo-mpegmux  libproxy                   mkfontdir              settings-daemon
+gst-meta-base        libpthread-stubs           mkfontscale            shadow
 
-Thanks for any pointers
+$ ls tmp/work/cortexa9hf-vfp-neon-mx6qdl-amltd-linux-gnueabi/
+alsa-lib      gst-plugins-base           imx-gpu-viv  libfslparser   libsdl      xf86-video-imxfb-vivante
+cairo         gstreamer1.0-plugins-bad   libdrm       libfslvpuwrap  mesa        xserver-xorg
+firmware-imx  gstreamer1.0-plugins-base  libfslcodec  libglu         pulseaudio
+
+It's the second category that is causing problems.  They do not
+seem to end up in any shareable sstate at all.  If I try to rebuild
+using only sstate, i.e. build my complete image to success, then
+remove 'tmp' and rebuild, using the sstate-cache from the first go,
+all of the above packages (alsa-lib, ..., xserver-xorg) are all
+rebuilt from scratch.  Those recipes do seem to end in my sstate-cache,
+but they are never reused from it.
+
+What would make this happen?  How can I prevent it?
+
+As is, sstate is not really shareable between these i.MX6 targets
+as so much is being rebuilt all the time...
+
+Any ideas or pointers gladly welcomed.
+
+Thanks
 
 -- 
 ------------------------------------------------------------
