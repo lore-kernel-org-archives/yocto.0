@@ -1,35 +1,50 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <picmaster@mail.bg>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BF7E1E0098D; Wed,  8 Apr 2015 01:55:39 -0700 (PDT)
+	id 3FE16E0098D; Wed,  8 Apr 2015 02:28:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (picmaster[at]mail.bg)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [193.201.172.118 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 848A7E00959
-	for <yocto@yoctoproject.org>; Wed,  8 Apr 2015 01:55:36 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga101.fm.intel.com with ESMTP; 08 Apr 2015 01:55:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,543,1422950400"; d="scan'208";a="710483507"
-Received: from joeholla-mobl2.ger.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.10.65])
-	by orsmga002.jf.intel.com with ESMTP; 08 Apr 2015 01:55:34 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Tobias Olausson <tobias.olausson@pelagicore.com>
-Date: Wed, 08 Apr 2015 09:55:33 +0100
-Message-ID: <1521935.2Je9FCNQNj@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.4 (Linux/3.18.9-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
-In-Reply-To: <CAMg8ce8C3k6L0MOBKtk2i9QGbgmXyza0Kn1sfSZBbfO9kX9EzQ@mail.gmail.com>
-References: <CAMg8ce8C3k6L0MOBKtk2i9QGbgmXyza0Kn1sfSZBbfO9kX9EzQ@mail.gmail.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mx2.mail.bg (mx2.mail.bg [193.201.172.118])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15D80E00959
+	for <yocto@yoctoproject.org>; Wed,  8 Apr 2015 02:28:27 -0700 (PDT)
+Received: from [192.168.0.62] (unknown [93.152.143.60])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by mx2.mail.bg (Postfix) with ESMTPSA id 5A70060028F6;
+	Wed,  8 Apr 2015 12:28:25 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mail.bg; s=default;
+	t=1428485305; bh=9a3daUb/JtQc1o3WPD4OYQlxNIf+LukyWMMAKa6Tagg=;
+	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
+	In-Reply-To:Content-Type:Content-Transfer-Encoding;
+	b=YWyhDtnU1uGyHUTMb5gDq+y65ORKitTAK6wuF6NqD6AlndpBSuNiaMv4ZiQQCeAcg
+	z2jBBLncK5HPEL8RrD5VDAMCoPYKG1LQuo6CqgDG0bgsljnzec93JRC/t2nPNe5pFQ
+	bKotsO1BvTexlLj7zYvtLm8nzfcA458G8EpGwtm4=
+Message-ID: <5524F4B9.9000108@mail.bg>
+Date: Wed, 08 Apr 2015 12:28:25 +0300
+From: Nikolay Dimitrov <picmaster@mail.bg>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Icedove/31.6.0
 MIME-Version: 1.0
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, 
+	Tobias Olausson <tobias.olausson@pelagicore.com>
+References: <CAMg8ce8C3k6L0MOBKtk2i9QGbgmXyza0Kn1sfSZBbfO9kX9EzQ@mail.gmail.com>
+	<1521935.2Je9FCNQNj@peggleto-mobl.ger.corp.intel.com>
+In-Reply-To: <1521935.2Je9FCNQNj@peggleto-mobl.ger.corp.intel.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: bblayer priorities ignored for bbappends?
 X-BeenThere: yocto@yoctoproject.org
@@ -43,41 +58,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Apr 2015 08:55:39 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 08 Apr 2015 09:28:32 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Tobias,
+Hi Paul, Tobias,
 
-On Wednesday 08 April 2015 08:54:20 Tobias Olausson wrote:
-> I just had a weird experience with yocto and I wanted to know if the
-> described behaviour is intentional.
-> 
-> I have a layer with priority 7 containing a recipe, foo.bb. In another
-> layer, with priority 8, there is a foo.bbappend. Finally, I just added
-> another layer, with priority 9, where foo.bb is redefined as a binary
-> recipe.
-> 
-> When I added the last layer, I expected that to take precedence over the
-> other two. However, the bbappend for foo is still applied (which in this
-> case changed the SRC_URI, making the whole binary recipe moot). Is this
-> really the way it's supposed to be? I would expect that lower layers cannot
-> influence layers with higher priority at all, but that does not seem to be
-> the case.
+On 04/08/2015 11:55 AM, Paul Eggleton wrote:
+> Hi Tobias,
+>
+> On Wednesday 08 April 2015 08:54:20 Tobias Olausson wrote:
+>> I just had a weird experience with yocto and I wanted to know if the
+>> described behaviour is intentional.
+>>
+>> I have a layer with priority 7 containing a recipe, foo.bb. In another
+>> layer, with priority 8, there is a foo.bbappend. Finally, I just added
+>> another layer, with priority 9, where foo.bb is redefined as a binary
+>> recipe.
+>>
+>> When I added the last layer, I expected that to take precedence over the
+>> other two. However, the bbappend for foo is still applied (which in this
+>> case changed the SRC_URI, making the whole binary recipe moot). Is this
+>> really the way it's supposed to be? I would expect that lower layers cannot
+>> influence layers with higher priority at all, but that does not seem to be
+>> the case.
+>
+> That is the case, yes - bbappends are always applied. As far as I am aware
+> this is the first time this kind of situation has been asked about though so
+> it's probably just that we didn't consider it before.
+>
+> Presumably you could use a bbappend rather than a recipe in the last layer?
+> You might need to stub out some of the functions of course, but it should be
+> possible.
 
-That is the case, yes - bbappends are always applied. As far as I am aware 
-this is the first time this kind of situation has been asked about though so 
-it's probably just that we didn't consider it before.
+Thanks for touching the important subject. Indeed, this is an issue as
+sometimes the bbappend change is generic and can be reused by the
+customer layer(s), and sometimes the change is not appropriate and
+needs to be undone.
 
-Presumably you could use a bbappend rather than a recipe in the last layer? 
-You might need to stub out some of the functions of course, but it should be 
-possible.
+I would agree that both cases are legitimate and would look for ideas
+how it can be resolved in a logical way.
 
-Cheers,
-Paul
+Regards,
+Nikolay
 
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+PS: I can give examples, but don't want to drift the discussion towards
+my topics.
 
