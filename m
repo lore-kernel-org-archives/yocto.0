@@ -1,58 +1,37 @@
-Return-Path: <martin.beaudet@intelia.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0D915E008EC; Wed,  8 Apr 2015 08:40:59 -0700 (PDT)
+	id DCA09E0076B; Wed,  8 Apr 2015 09:21:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [208.77.80.51 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp-out-1.satelmail.com (smtp-out-1.satelcom.qc.ca
-	[208.77.80.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B99FE003A8
-	for <yocto@yoctoproject.org>; Wed,  8 Apr 2015 08:40:57 -0700 (PDT)
-Received: from mta-1.satelcom.qc.ca (mta-1.satelcom.qc.ca [172.16.16.49])
-	by smtp-out-1.satelmail.com (Postfix) with ESMTP id 96DEE42CFD
-	for <yocto@yoctoproject.org>; Wed,  8 Apr 2015 11:40:56 -0400 (EDT)
-Received: from assp-db2.satelcom.qc.ca (unknown [172.16.16.118])
-	by mta-1.satelcom.qc.ca (Postfix) with ESMTPS id 95D9441FE3
-	for <yocto@yoctoproject.org>; Wed,  8 Apr 2015 11:40:56 -0400 (EDT)
-Received: from smtp-1.satelcom.qc.ca (localhost [127.0.0.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by assp-db2.satelcom.qc.ca (Postfix) with ESMTPS id 7E85A37BBC
-	for <yocto@yoctoproject.org>; Wed,  8 Apr 2015 11:42:13 -0400 (EDT)
-Received: from smtp-1.satelcom.qc.ca ([172.16.16.54]
-	helo=smtp-1.satelcom.qc.ca)
-	by assp-db.satelcom.qc.ca with SMTP (2.4.3); 8 Apr 2015 11:42:13 -0400
-Received: from remote.intelia.com (unknown [204.80.6.198])
-	by smtp-1.satelcom.qc.ca (Postfix) with ESMTPS id 6658D41E70
-	for <yocto@yoctoproject.org>; Wed,  8 Apr 2015 11:40:55 -0400 (EDT)
-Received: from CT-SERVEUR.ctaq.local ([fe80::7895:8268:18d2:9278]) by
-	CT-SERVEUR.ctaq.local ([fe80::7895:8268:18d2:9278%10]) with mapi;
-	Wed, 8 Apr 2015 11:40:55 -0400
-From: Martin Beaudet <martin.beaudet@intelia.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Wed, 8 Apr 2015 11:40:53 -0400
-Thread-Topic: Yocto Dizzy + Beaglebone + Qt5 (Internal compiler error)
-Thread-Index: AdByEjZS9IBCgF3BSIekkTxmlg4wLQ==
-Message-ID: <muid.2540d9f782.00FFF1D896D3FF4482179DF8C27DEFAFA329F13E9F@CT-SERVEUR.ctaq.local>
-Accept-Language: fr-FR, fr-CA
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: fr-FR, fr-CA
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8782E003A8
+	for <yocto@yoctoproject.org>; Wed,  8 Apr 2015 09:21:42 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga102.jf.intel.com with ESMTP; 08 Apr 2015 09:21:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,545,1422950400"; d="scan'208";a="478416447"
+Received: from joeholla-mobl2.ger.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.10.65])
+	by FMSMGA003.fm.intel.com with ESMTP; 08 Apr 2015 09:21:42 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Erik Bolton <EBolton@agjunction.com>
+Date: Wed, 08 Apr 2015 17:21:40 +0100
+Message-ID: <1488754.2yFrWuZha4@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.4 (Linux/3.18.9-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
+In-Reply-To: <1428389040815.28148@agjunction.com>
+References: <1428389040815.28148@agjunction.com>
 MIME-Version: 1.0
-X-Assp-Version: 2.4.3(15059) on assp-db.satelcom.qc.ca
-X-Assp-ID: assp-db.satelcom.qc.ca a119-07733-11253
-X-Assp-Session: B3E76420 (mail 1)
-X-Assp-Envelope-From: martin.beaudet@intelia.com
-X-Assp-Intended-For: yocto@yoctoproject.org
-X-Assp-Server-TLS: yes
-Subject: Yocto Dizzy + Beaglebone + Qt5 (Internal compiler error)
+Cc: yocto@yoctoproject.org
+Subject: Re: Python Error in SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,109 +43,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Apr 2015 15:40:59 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 08 Apr 2015 16:21:48 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Erik,
 
-I'm building an image for the beaglebone. I would like to use (at least) th=
-e version 5.4 of QT with elgfs platform.=20
-Also the hardware accelerated support on Beaglebone Black.
+On Tuesday 07 April 2015 06:44:01 Erik Bolton wrote:
+> This has been brought up before (although I think the error was different),
+> but I'm having a lot of issues with the version of Python included with the
+> SDK.
+> 
+> We use Python for code generation as part of our project. If I source the
+> environment script and try to run our Python scripts I get this:
+> 
+> Traceback (most recent call last):
+>   File
+> "/opt/poky/1.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/python2.7/site.py",
+> line 569, in <module> main()
+>   File
+> "/opt/poky/1.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/python2.7/site.py",
+> line 551, in main known_paths = addusersitepackages(known_paths)
+>   File
+> "/opt/poky/1.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/python2.7/site.py",
+> line 278, in addusersitepackages user_site = getusersitepackages()
+>   File
+> "/opt/poky/1.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/python2.7/site.py",
+> line 253, in getusersitepackages user_base = getuserbase() # this will also
+> set USER_BASE
+>   File
+> "/opt/poky/1.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/python2.7/site.py",
+> line 242, in getuserbase from sysconfig import get_config_var
+>   File
+> "/opt/poky/1.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/python2.7/sysconfig.
+> py", line 10, in <module> 'stdlib':
+> '{base}/'+sys.lib+'/python{py_version_short}',
+> AttributeError: 'module' object has no attribute 'lib'
+> 
+> If I try running something that doesn't exist I get this:
+> 
+> Fatal Python error: Py_Initialize: Unable to get the locale encoding
+> ImportError: No module named 'encodings'
+> Aborted (core dumped)
+> 
+> I've tried using update-alternatives to point the SDK python to my local
+> python (Ubuntu 14.10, Python 2.7.8), but the errors persist.
+> 
+> I know a few people have simply deleted the python binary from the SDK, but
+> I don't think that will help in my case.
+> 
+> I would try to remove it from the SDK in the actual package groups, but
+> smartpm and a few other programs depend on it. I'm not sure they would play
+> nice with my local version.
+> 
+> Any suggestions on how to fix this "correctly"?
 
-Here is what I've done yet :
+Basically when python (technically, "nativesdk-python" when talking about the 
+SDK) gets pulled in, that's the minimal python core and not all of the modules 
+in the normal Python distribution, resulting in failures such as these. You 
+can add those however by adding the following either in your image recipe (if 
+using -c populate_sdk) or in your configuration:
 
-	# SHELL COMMAND :
-	$ mkdir poky
-	$ git clone -b dizzy git://git.yoctoproject.org/poky
-	$ cd poky
-	$ git clone git://git.yoctoproject.org/meta-ti
-	$ git clone -b dizzy git://github.com/meta-qt5/meta-qt5.git
-	$ git clone -b dizzy git://git.openembedded.org/meta-openembedded
-	$ git clone -b daisy https://bitbucket.org/embarcados/meta-embarcados.git
-	$ source oe-init-build-env beaglebone
+  TOOLCHAIN_HOST_TASK_append = " nativesdk-python-modules"
 
-	# FILE : poky/beaglebone/conf/local.conf
-	DISTRO_FEATURES_remove =3D "x11 wayland"
+Rebuild and re-install the SDK and things should work a bit better after that.
 
-	 # FILE : poky/beaglebone/conf/bblayers.conf
-	BBLAYERS ?=3D \
-	  ${TOPDIR}/../meta \
-	  ${TOPDIR}/../meta-yocto \
-	  ${TOPDIR}/../meta-openembedded/meta-oe \
-	  ${TOPDIR}/../meta-ti \
-	  ${TOPDIR}/../meta-qt5 \
-	  ${TOPDIR}/../meta-embarcados \
-	  ${TOPDIR}/../meta-embarcados/meta-bbb \
+Cheers,
+Paul
 
-	# SHELL COMMAND :
-	$ bitbake qt5-image-demo
+-- 
 
-Now I'm getting a compiler error :=20
-
-	/home/test/poky/beaglebone/tmp/work/cortexa8t2hf-vfp-neon-poky-linux-gnuea=
-bi/qttools/5.3.2-r0/qttools-opensource-src-5.3.2/src/linguist/shared/po.cpp=
-: In function 'bool loadPO(Translator&, QIODevice&, ConversionData&)':
-	/home/test/poky/beaglebone/tmp/work/cortexa8t2hf-vfp-neon-poky-linux-gnuea=
-bi/qttools/5.3.2-r0/qttools-opensource-src-5.3.2/src/linguist/shared/po.cpp=
-:717:1: internal compiler error: in add_stores, at var-tracking.c:6000
-	}
-	^
-	Please submit a full bug report,
-	with preprocessed source if appropriate.
-	See <http://gcc.gnu.org/bugs.html> for instructions.
-	Makefile:934: recipe for target '.obj/po.o' failed
-	make[3]: *** [.obj/po.o] Error 1
-	make[3]: Leaving directory '/home/test/poky/beaglebone/tmp/work/cortexa8t2=
-hf-vfp-neon-poky-linux-gnueabi/qttools/5.3.2-r0/build/src/linguist/lupdate'
-	Makefile:66: recipe for target 'sub-lupdate-make_first' failed
-	make[2]: *** [sub-lupdate-make_first] Error 2
-	make[2]: *** Waiting for unfinished jobs....
-	compiling /home/test/poky/beaglebone/tmp/work/cortexa8t2hf-vfp-neon-poky-l=
-inux-gnueabi/qttools/5.3.2-r0/qttools-opensource-src-5.3.2/src/linguist/sha=
-red/po.cpp
-	compiling /home/test/poky/beaglebone/tmp/work/cortexa8t2hf-vfp-neon-poky-l=
-inux-gnueabi/qttools/5.3.2-r0/qttools-opensource-src-5.3.2/src/linguist/sha=
-red/ts.cpp
-	compiling /home/test/poky/beaglebone/tmp/work/cortexa8t2hf-vfp-neon-poky-l=
-inux-gnueabi/qttools/5.3.2-r0/qttools-opensource-src-5.3.2/src/linguist/sha=
-red/ts.cpp
-	/home/test/poky/beaglebone/tmp/work/cortexa8t2hf-vfp-neon-poky-linux-gnuea=
-bi/qttools/5.3.2-r0/qttools-opensource-src-5.3.2/src/linguist/shared/po.cpp=
-: In function 'bool loadPO(Translator&, QIODevice&, ConversionData&)':
-	/home/test/poky/beaglebone/tmp/work/cortexa8t2hf-vfp-neon-poky-linux-gnuea=
-bi/qttools/5.3.2-r0/qttools-opensource-src-5.3.2/src/linguist/shared/po.cpp=
-:717:1: internal compiler error: in add_stores, at var-tracking.c:6000
-	}
-	^
-	Please submit a full bug report,
-	with preprocessed source if appropriate.
-	See <http://gcc.gnu.org/bugs.html> for instructions.
-	Makefile:1022: recipe for target '.obj/po.o' failed
-	make[3]: *** [.obj/po.o] Error 1
-	make[3]: *** Waiting for unfinished jobs....
-	compiling /home/test/poky/beaglebone/tmp/work/cortexa8t2hf-vfp-neon-poky-l=
-inux-gnueabi/qttools/5.3.2-r0/qttools-opensource-src-5.3.2/src/linguist/sha=
-red/ts.cpp
-	/home/test/poky/beaglebone/tmp/work/cortexa8t2hf-vfp-neon-poky-linux-gnuea=
-bi/qttools/5.3.2-r0/qttools-opensource-src-5.3.2/src/linguist/shared/po.cpp=
-: In function 'bool loadPO(Translator&, QIODevice&, ConversionData&)':
-	/home/test/poky/beaglebone/tmp/work/cortexa8t2hf-vfp-neon-poky-linux-gnuea=
-bi/qttools/5.3.2-r0/qttools-opensource-src-5.3.2/src/linguist/shared/po.cpp=
-:717:1: internal compiler error: in add_stores, at var-tracking.c:6000
-	}
-	^
-
-I read about similar error here (https://bugs.launchpad.net/gcc-linaro/+bug=
-/1312931) but they seem to indicate that this error has been fixed in new r=
-elease of GCC and they are talking about 4.8 so I supposed it has been fixe=
-d in 4.9 ?
-
-I hope somebody can point me out the problem because I'm out of idea.
-
-Best regards,
-Martin
-
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
