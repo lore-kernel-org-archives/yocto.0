@@ -1,34 +1,56 @@
-Return-Path: <DILIP.KUMARB@lnttechservices.com>
+Return-Path: <praveen.vatt@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4CF06E00954; Fri, 10 Apr 2015 00:04:54 -0700 (PDT)
+	id 0C0EFE009A4; Fri, 10 Apr 2015 02:30:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (praveen.vatt[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.54 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mailout1.ltindia.com (mailout1.ltindia.com [125.18.18.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98FCCE008F6
-	for <yocto@yoctoproject.org>; Fri, 10 Apr 2015 00:04:48 -0700 (PDT)
-Received: from unknown (HELO POCITMSEXHUB02.LntUniverse.com) ([10.2.1.59])
-	by mailout1.ltindia.com with ESMTP; 10 Apr 2015 12:34:41 +0530
-Received: from POCITMSEXMB07.LntUniverse.com ([fe80::1955:1321:4cc1:3df1]) by
-	POCITMSEXHUB02.LntUniverse.com ([::1]) with mapi id 14.03.0181.006;
-	Fri, 10 Apr 2015 12:34:40 +0530
-From: Dilip Basavaraju <DILIP.KUMARB@LNTTECHSERVICES.COM>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Package reduction(package minimisation) for minimal rootfs
-Thread-Index: AdBzVxF4YatvYmX5TS+H4Q6f+GFH3w==
-Date: Fri, 10 Apr 2015 07:04:39 +0000
-Message-ID: <AA6EBB22527ED441A9B86C56F43F6DD820115DCD@POCITMSEXMB07.LntUniverse.com>
-Accept-Language: en-IN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.2.1.199]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  1.0 FREEMAIL_REPLY From and body contain different freemails
+Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
+	[209.85.220.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D544E00956
+	for <yocto@yoctoproject.org>; Fri, 10 Apr 2015 02:30:38 -0700 (PDT)
+Received: by pabsx10 with SMTP id sx10so16375252pab.3
+	for <yocto@yoctoproject.org>; Fri, 10 Apr 2015 02:30:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=qLL4qDHE7YCRmV0l3f7Rlo14WvYmjxiEBhSM+f94sIc=;
+	b=aETeW7tED7BG46fpt4tyOc2KVJAwgQCEmXYHPVFX5cBNcOv7bPCegJD59XyIm2WlzI
+	4wAj//iovuWc9uqACOnBbasXCFAgA/KHr8EPqlkpMVeWhqqEKMWttgwqRACHg9UC6lB8
+	yY2DSu2nQE6ynRqURoummm2jhv3Nd9N6rBtcqTfSVVo+4DG8vktA8pHZiRSYBKbTBpdW
+	nF73USO1F4Nj2u9kOjJD8PCRMHYAplSccaoWsh1u3dy0E4lu/9L9zfJeOe/1Trr5Dl9v
+	jfTv8DB7MnCitTvNeayWuMy0FYM8nKRpw+vIWP14r+gTIDJVxkf4McRkICeegWUCN272
+	MnzA==
 MIME-Version: 1.0
-Subject: Package reduction(package minimisation) for minimal rootfs
+X-Received: by 10.68.227.41 with SMTP id rx9mr1144067pbc.76.1428658238042;
+	Fri, 10 Apr 2015 02:30:38 -0700 (PDT)
+Received: by 10.70.135.134 with HTTP; Fri, 10 Apr 2015 02:30:37 -0700 (PDT)
+In-Reply-To: <38761C20-F4B2-402A-861C-2C9EB01A4825@gmail.com>
+References: <CA+pXca1siHggYUW5OMO0GM4KNSJ+qEV3-_A=VgkZNTk3H4Db-g@mail.gmail.com>
+	<20150408114746.GE2337@jama>
+	<38761C20-F4B2-402A-861C-2C9EB01A4825@gmail.com>
+Date: Fri, 10 Apr 2015 15:00:37 +0530
+Message-ID: <CA+pXca33_mE9iUvafvJDQN1VZnUqrrt-usTqXr9dr1Z-K=X3_g@mail.gmail.com>
+From: praveen vattipalli <praveen.vatt@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: do_compile_ptest_base error (valgrind) in dizzy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,313 +62,437 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Apr 2015 07:04:54 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_AA6EBB22527ED441A9B86C56F43F6DD820115DCDPOCITMSEXMB07Ln_"
+X-List-Received-Date: Fri, 10 Apr 2015 09:30:50 -0000
+Content-Type: multipart/alternative; boundary=e89a8ff1ce76c8b89e05135b6a2d
 
---_000_AA6EBB22527ED441A9B86C56F43F6DD820115DCDPOCITMSEXMB07Ln_
-Content-Type: text/plain; charset="us-ascii"
+--e89a8ff1ce76c8b89e05135b6a2d
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Dear All,
+HI Khem Raj,
 
-                I have task to minimize the root file system, by removing b=
-usy box and adding additional packages in place of busybox like core-utils,=
- binutils, tiny-login etc.
+I applied the patch by taking reference from
+For gcc ICE please test out
+http://git.openembedded.org/openembedded-core-contrib/commit/?h=3Dkraj/mast=
+er&id=3D5ea11b4fa4e02f079aa9209e482e4922ad90f8de
+still i am facing same problem. I am working on dizzy branch.
 
-                I have tried some of the approach of trimming rootfs and po=
-ky tiny version.
+ERROR
+/home/praveenk/work/git_sources/poky/build/tmp/work/cortexa8hf-vfp-neon-pok=
+y-linux-gnueabi/valgrind/3.10.1-r1/valgrind-3.10.1/none/tests/arm/vcvt_fixe=
+d_float_VFP.c:12:1:
+internal compiler error: Max. number of generated reload insns per insn is
+achieved (90)
+|
+|  }
+|  ^
+| Please submit a full bug report,
+| with preprocessed source if appropriate.
+| See <http://gcc.gnu.org/bugs.html> for instructions.
+| make[5]: *** [vcvt_fixed_float_VFP.o] Error 1
+| make[5]: Leaving directory
+`/home/praveenk/work/git_sources/poky/build/tmp/work/cortexa8hf-vfp-neon-po=
+ky-linux-gnueabi/valgrind/3.10.1-r1/build/none/tests/arm'
+| make[4]: *** [check-am] Error 2
+| make[4]: Leaving directory
+`/home/praveenk/work/git_sources/poky/build/tmp/work/cortexa8hf-vfp-neon-po=
+ky-linux-gnueabi/valgrind/3.10.1-r1/build/none/tests/arm'
+| make[3]: *** [check-recursive] Error 1
+| make[3]: Leaving directory
+`/home/praveenk/work/git_sources/poky/build/tmp/work/cortexa8hf-vfp-neon-po=
+ky-linux-gnueabi/valgrind/3.10.1-r1/build/none/tests'
+| make[2]: *** [check-recursive] Error 1
+| make[2]: Leaving directory
+`/home/praveenk/work/git_sources/poky/build/tmp/work/cortexa8hf-vfp-neon-po=
+ky-linux-gnueabi/valgrind/3.10.1-r1/build/none'
+| make[1]: *** [check-recursive] Error 1
+| make[1]: Leaving directory
+`/home/praveenk/work/git_sources/poky/build/tmp/work/cortexa8hf-vfp-neon-po=
+ky-linux-gnueabi/valgrind/3.10.1-r1/build'
+| make: *** [check] Error 2
+| make: Leaving directory
+`/home/praveenk/work/git_sources/poky/build/tmp/work/cortexa8hf-vfp-neon-po=
+ky-linux-gnueabi/valgrind/3.10.1-r1/build'
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+| ERROR: Function failed: do_compile_ptest_base (log file is located at
+/home/praveenk/work/git_sources/poky/build/tmp/work/cortexa8hf-vfp-neon-pok=
+y-linux-gnueabi/valgrind/3.10.1-r1/temp/log.do_compile_ptest_base.11973)
+ERROR: Task 9
+(/home/praveenk/work/git_sources/poky/meta/recipes-devtools/valgrind/
+valgrind_3.10.1.bb, do_compile_ptest_base) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 795 tasks of which 792 didn't need to be
+rerun and 2 failed.
+Waiting for 0 running tasks to finish:
 
-                Additional packages greatly increased my rootfs size.
-
-                Please clarify my doubts,
 
 
-1.       Is it possible to remove un-necessary files/executebls/libraries f=
-rom the package, if so kindly guide me in minimization.
+What i observed is that when  i am compiling gator recipe i am facing
+"__ARM_PCS_VFP" which is declared in stubs.h(GNU) error. It has to pick
+stubs-hard.h but it is searching for stubs-soft.h.
 
+Is this two errors related.
 
-
-2.       Can I change the do_config in recipe of the package to customize t=
-he contents of the package?
+Thanks
+Praveen
 
 
 
 
-3.       Is there any possibility I can control which all files to added to=
- the rootfs from do_rootfs or any other configuration.
 
+On Thu, Apr 9, 2015 at 12:48 PM, Khem Raj <raj.khem@gmail.com> wrote:
 
-
-4.       For this kind requirement is own custom distribution a good approa=
-ch?
-
-Please guide me in this.
-
-Thanks a lot in advance.
-
-Thanks and regards
-DILIP KUMAR B
-
-L&T Technology Services Ltd
-
-www.LntTechservices.com<http://www.lnttechservices.com/>
-
-This Email may contain confidential or privileged information for the inten=
-ded recipient (s). If you are not the intended recipient, please do not use=
- or disseminate the information, notify the sender and delete it from your =
-system.
-
---_000_AA6EBB22527ED441A9B86C56F43F6DD820115DCDPOCITMSEXMB07Ln_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:432945312;
-	mso-list-type:hybrid;
-	mso-list-template-ids:270203512 -758581292 67698713 67698715 67698703 6769=
-8713 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:.75in;
-	text-indent:-.25in;}
-@list l0:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.25in;
-	text-indent:-.25in;}
-@list l0:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	margin-left:1.75in;
-	text-indent:-9.0pt;}
-@list l0:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.25in;
-	text-indent:-.25in;}
-@list l0:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.75in;
-	text-indent:-.25in;}
-@list l0:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	margin-left:3.25in;
-	text-indent:-9.0pt;}
-@list l0:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.75in;
-	text-indent:-.25in;}
-@list l0:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.25in;
-	text-indent:-.25in;}
-@list l0:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	margin-left:4.75in;
-	text-indent:-9.0pt;}
-@list l1
-	{mso-list-id:2124032092;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-549673878 -1879679820 67698713 67698715 67698703 67=
-698713 67698715 67698703 67698713 67698715;}
-@list l1:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:.75in;
-	text-indent:-.25in;}
-@list l1:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:1.25in;
-	text-indent:-.25in;}
-@list l1:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	margin-left:1.75in;
-	text-indent:-9.0pt;}
-@list l1:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.25in;
-	text-indent:-.25in;}
-@list l1:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:2.75in;
-	text-indent:-.25in;}
-@list l1:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	margin-left:3.25in;
-	text-indent:-9.0pt;}
-@list l1:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:3.75in;
-	text-indent:-.25in;}
-@list l1:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	margin-left:4.25in;
-	text-indent:-.25in;}
-@list l1:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	margin-left:4.75in;
-	text-indent:-9.0pt;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Dear All,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I have task to minimize the root fil=
-e system, by removing busy box and adding additional packages in place of b=
-usybox like core-utils, binutils, tiny-login etc.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I have tried some of the approach of=
- trimming rootfs and poky tiny version.<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Additional packages greatly increase=
-d my rootfs size.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Please clarify my doubts, <o:p></o:p=
-></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l1 level1 lfo2">
-<![if !supportLists]><span style=3D"mso-list:Ignore">1.<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]>Is it possible to remove un-necessary files/execute=
-bls/libraries from the package, if so kindly guide me in minimization.<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l1 level1 lfo2">
-<![if !supportLists]><span style=3D"mso-list:Ignore">2.<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]>Can I change the do_config in recipe of the package=
- to customize the contents of the package?<o:p></o:p></p>
-<p class=3D"MsoListParagraph"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l1 level1 lfo2">
-<![if !supportLists]><span style=3D"mso-list:Ignore">3.<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]>Is there any possibility I can control which all fi=
-les to added to the rootfs from do_rootfs or any other configuration.<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoListParagraph" style=3D"margin-left:.75in;text-indent:-.25in=
-;mso-list:l1 level1 lfo2">
-<![if !supportLists]><span style=3D"mso-list:Ignore">4.<span style=3D"font:=
-7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><![endif]>For this kind requirement is own custom distributio=
-n a good approach?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">Please guide me in this.<=
-o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">Thanks a lot in advance.<=
-o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks and regards<o:p></o:p></p>
-<p class=3D"MsoNormal">DILIP KUMAR B<o:p></o:p></p>
-</div>
-<p><strong>L&amp;T Technology Services Ltd</strong></p>
-<p><a href=3D"http://www.lnttechservices.com/" target=3D"_blank">www.LntTec=
-hservices.com</a></p>
-<p>This Email may contain confidential or privileged information for the in=
-tended recipient (s). If you are not the intended recipient, please do not =
-use or disseminate the information, notify the sender and delete it from yo=
-ur system.</p>
-</body>
-</html>
+> > On Apr 8, 2015, at 4:47 AM, Martin Jansa <martin.jansa@gmail.com> wrote=
+:
+> >
+> > On Wed, Apr 08, 2015 at 12:39:56PM +0530, praveen vattipalli wrote:
+> >> hi
+> >> I am using 64 bit ubuntu12.04 and compiling coertexa9 arch arm  board.=
+ I
+> >> could able to build core-image-minimal successfully. But when I am
+> trying
+> >> to build valgrind. I am getting do_compile_ptest_base error. If i remo=
+ve
+> >> ptest in valgrind_3.9.0.bb it is building without errors.
+> >
+> > There are multiple issues in valgrind's ptest, in the end I've also
+> > disabled ptest for valgrind:
+> >
+> > Here is snippet of my distro config (with link to the same report 7
+> months ago):
+> >
+> > # Work around FTBFS when building valgrind with ptest and thumb enabled
+> > # valgrind/3.9.0-r8/valgrind-3.9.0/none/tests/arm/ldrt_arm.c
+> > # {standard input}: Assembler messages:
+> > # {standard input}:42: Error: cannot use post-indexing with this
+> instruction -- `ldrt r6,[r5],#+132'
+> > # {standard input}:42: Error: cannot use post-indexing with this
+> instruction -- `ldrt r6,[r5],#132'
+> > # ...
+> > # ARM_INSTRUCTION_SET_pn-valgrind =3D "arm"
+> > # and remove -O2 as work around for ICE:
+> > # 3.9.0-r8/valgrind-3.9.0/none/tests/arm/vcvt_fixed_float_VFP.c:12:1:
+> internal compiler error:
+> > # Max. number of generated reload insns per insn is achieved (90)
+> > #
+> http://lists.openembedded.org/pipermail/openembedded-core/2014-September/=
+097330.html
+> > # both issues are still reproducible with 3.10.0 version imported from
+> > # http://patchwork.openembedded.org/patch/83009/
+> > # TARGET_CFLAGS_remove_pn-valgrind =3D "-O2"
+> > PTEST_ENABLED_pn-valgrind =3D =E2=80=9C0"
+>
+> For gcc ICE please test out
+> http://git.openembedded.org/openembedded-core-contrib/commit/?h=3Dkraj/ma=
+ster&id=3D5ea11b4fa4e02f079aa9209e482e4922ad90f8de
+>
+>
+> >
+> >
+> >>
+> >> I am using poky-dizzy.
+> >>
+> >> ERROR LOG:
+> >>
+> >>
+> /home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-poky-linu=
+x-gnueabi/valgrind/3.9.0-r8/valgrind-3.9.0/none/tests/arm/vcvt_fixed_float_=
+VFP.c:
+> >> In function 's32_to_f32_imm1':
+> >> |
+> >>
+> /home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-poky-linu=
+x-gnueabi/valgrind/3.9.0-r8/valgrind-3.9.0/none/tests/arm/vcvt_fixed_float_=
+VFP.c:12:1:
+> >> internal compiler error: Max. number of generated reload insns per ins=
+n
+> is
+> >> achieved (90)
+> >> |
+> >> |  }
+> >> |  ^
+> >> | Please submit a full bug report,
+> >> | with preprocessed source if appropriate.
+> >> | See <http://gcc.gnu.org/bugs.html> for instructions.
+> >> | make[5]: *** [vcvt_fixed_float_VFP.o] Error 1
+> >> | make[5]: Leaving directory
+> >>
+> `/home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-poky-lin=
+ux-gnueabi/valgrind/3.9.0-r8/build/none/tests/arm'
+> >> | make[4]: *** [check-am] Error 2
+> >> | make[4]: Leaving directory
+> >>
+> `/home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-poky-lin=
+ux-gnueabi/valgrind/3.9.0-r8/build/none/tests/arm'
+> >> | make[3]: *** [check-recursive] Error 1
+> >> | make[3]: Leaving directory
+> >>
+> `/home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-poky-lin=
+ux-gnueabi/valgrind/3.9.0-r8/build/none/tests'
+> >> | make[2]: *** [check-recursive] Error 1
+> >> | make[2]: Leaving directory
+> >>
+> `/home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-poky-lin=
+ux-gnueabi/valgrind/3.9.0-r8/build/none'
+> >> | make[1]: *** [check-recursive] Error 1
+> >> | make[1]: Leaving directory
+> >>
+> `/home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-poky-lin=
+ux-gnueabi/valgrind/3.9.0-r8/build'
+> >> | make: *** [check] Error 2
+> >> | make: Leaving directory
+> >>
+> `/home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-poky-lin=
+ux-gnueabi/valgrind/3.9.0-r8/build'
+> >> | ERROR: oe_runmake failed
+> >> | WARNING: exit code 1 from a shell command.
+> >> | ERROR: Function failed: do_compile_ptest_base (log file is located a=
+t
+> >>
+> /home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-poky-linu=
+x-gnueabi/valgrind/3.9.0-r8/temp/log.do_compile_ptest_base.11152)
+> >> ERROR: Task 9
+> (/home/praveenk/work/platform/meta/recipes-devtools/valgrind/
+> >> valgrind_3.9.0.bb, do_compile_ptest_base) failed with exit code '1'
+> >> NOTE: Tasks Summary: Attempted 776 tasks of which 769 didn't need to b=
+e
+> >> rerun and 1 failed.
+> >> No currently running tasks (776 of 784)
+> >>
+> >> Summary: 1 task failed:
+> >>  /home/praveenk/work/platform/meta/recipes-devtools/valgrind/
+> >> valgrind_3.9.0.bb, do_compile_ptest_base
+> >> Summary: There was 1 ERROR message shown, returning a non-zero exit
+> code.
+> >>
+> >> how can i solve this.
+> >>
+> >> Thanks
+> >> Praveen
+> >
+> >> --
+> >> _______________________________________________
+> >> yocto mailing list
+> >> yocto@yoctoproject.org
+> >> https://lists.yoctoproject.org/listinfo/yocto
+> >
+> >
+> > --
+> > Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
---_000_AA6EBB22527ED441A9B86C56F43F6DD820115DCDPOCITMSEXMB07Ln_--
+--e89a8ff1ce76c8b89e05135b6a2d
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div><div><div>HI Khem Raj,<br><br></div>I =
+applied the patch by taking reference from <br>For gcc ICE please test out =
+<a href=3D"http://git.openembedded.org/openembedded-core-contrib/commit/?h=
+=3Dkraj/master&amp;id=3D5ea11b4fa4e02f079aa9209e482e4922ad90f8de" target=3D=
+"_blank">http://git.openembedded.org/openembedded-core-contrib/commit/?h=3D=
+kraj/master&amp;id=3D5ea11b4fa4e02f079aa9209e482e4922ad90f8de</a><br></div>=
+still i am facing same problem. I am working on dizzy branch.<br><br><span =
+style=3D"background-color:rgb(255,0,0)">ERROR</span><br>/home/praveenk/work=
+/git_sources/poky/build/tmp/work/cortexa8hf-vfp-neon-poky-linux-gnueabi/val=
+grind/3.10.1-r1/valgrind-3.10.1/none/tests/arm/vcvt_fixed_float_VFP.c:12:1:=
+ internal compiler error: Max. number of generated reload insns per insn is=
+ achieved (90)<br>| <br>|=C2=A0 }<br>|=C2=A0 ^<br>| Please submit a full bu=
+g report,<br>| with preprocessed source if appropriate.<br>| See &lt;<a hre=
+f=3D"http://gcc.gnu.org/bugs.html">http://gcc.gnu.org/bugs.html</a>&gt; for=
+ instructions.<br>| make[5]: *** [vcvt_fixed_float_VFP.o] Error 1<br>| make=
+[5]: Leaving directory `/home/praveenk/work/git_sources/poky/build/tmp/work=
+/cortexa8hf-vfp-neon-poky-linux-gnueabi/valgrind/3.10.1-r1/build/none/tests=
+/arm&#39;<br>| make[4]: *** [check-am] Error 2<br>| make[4]: Leaving direct=
+ory `/home/praveenk/work/git_sources/poky/build/tmp/work/cortexa8hf-vfp-neo=
+n-poky-linux-gnueabi/valgrind/3.10.1-r1/build/none/tests/arm&#39;<br>| make=
+[3]: *** [check-recursive] Error 1<br>| make[3]: Leaving directory `/home/p=
+raveenk/work/git_sources/poky/build/tmp/work/cortexa8hf-vfp-neon-poky-linux=
+-gnueabi/valgrind/3.10.1-r1/build/none/tests&#39;<br>| make[2]: *** [check-=
+recursive] Error 1<br>| make[2]: Leaving directory `/home/praveenk/work/git=
+_sources/poky/build/tmp/work/cortexa8hf-vfp-neon-poky-linux-gnueabi/valgrin=
+d/3.10.1-r1/build/none&#39;<br>| make[1]: *** [check-recursive] Error 1<br>=
+| make[1]: Leaving directory `/home/praveenk/work/git_sources/poky/build/tm=
+p/work/cortexa8hf-vfp-neon-poky-linux-gnueabi/valgrind/3.10.1-r1/build&#39;=
+<br>| make: *** [check] Error 2<br>| make: Leaving directory `/home/praveen=
+k/work/git_sources/poky/build/tmp/work/cortexa8hf-vfp-neon-poky-linux-gnuea=
+bi/valgrind/3.10.1-r1/build&#39;<br>| ERROR: oe_runmake failed<br>| WARNING=
+: exit code 1 from a shell command.<br>| ERROR: Function failed: do_compile=
+_ptest_base (log file is located at /home/praveenk/work/git_sources/poky/bu=
+ild/tmp/work/cortexa8hf-vfp-neon-poky-linux-gnueabi/valgrind/3.10.1-r1/temp=
+/log.do_compile_ptest_base.11973)<br>ERROR: Task 9 (/home/praveenk/work/git=
+_sources/poky/meta/recipes-devtools/valgrind/<a href=3D"http://valgrind_3.1=
+0.1.bb">valgrind_3.10.1.bb</a>, do_compile_ptest_base) failed with exit cod=
+e &#39;1&#39;<br>NOTE: Tasks Summary: Attempted 795 tasks of which 792 didn=
+&#39;t need to be rerun and 2 failed.<br>Waiting for 0 running tasks to fin=
+ish:<br><br><br><br></div>What i observed is that when=C2=A0 i am compiling=
+ gator recipe i am facing=C2=A0 &quot;__ARM_PCS_VFP&quot; which is declared=
+ in stubs.h(GNU) error. It has to pick stubs-hard.h but it is searching for=
+ stubs-soft.h.<br><br></div>Is this two errors related.<br><br></div>Thanks=
+ <br></div>Praveen<br><div><div><div><br>=C2=A0<br><div><div><div><br>=C2=
+=A0<br></div></div></div></div></div></div></div><div class=3D"gmail_extra"=
+><br><div class=3D"gmail_quote">On Thu, Apr 9, 2015 at 12:48 PM, Khem Raj <=
+span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank=
+">raj.khem@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
+"><div class=3D"HOEnZb"><div class=3D"h5"><br>
+&gt; On Apr 8, 2015, at 4:47 AM, Martin Jansa &lt;<a href=3D"mailto:martin.=
+jansa@gmail.com">martin.jansa@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; On Wed, Apr 08, 2015 at 12:39:56PM +0530, praveen vattipalli wrote:<br=
+>
+&gt;&gt; hi<br>
+&gt;&gt; I am using 64 bit ubuntu12.04 and compiling coertexa9 arch arm=C2=
+=A0 board. I<br>
+&gt;&gt; could able to build core-image-minimal successfully. But when I am=
+ trying<br>
+&gt;&gt; to build valgrind. I am getting do_compile_ptest_base error. If i =
+remove<br>
+&gt;&gt; ptest in <a href=3D"http://valgrind_3.9.0.bb" target=3D"_blank">va=
+lgrind_3.9.0.bb</a> it is building without errors.<br>
+&gt;<br>
+&gt; There are multiple issues in valgrind&#39;s ptest, in the end I&#39;ve=
+ also<br>
+&gt; disabled ptest for valgrind:<br>
+&gt;<br>
+&gt; Here is snippet of my distro config (with link to the same report 7 mo=
+nths ago):<br>
+&gt;<br>
+&gt; # Work around FTBFS when building valgrind with ptest and thumb enable=
+d<br>
+&gt; # valgrind/3.9.0-r8/valgrind-3.9.0/none/tests/arm/ldrt_arm.c<br>
+&gt; # {standard input}: Assembler messages:<br>
+&gt; # {standard input}:42: Error: cannot use post-indexing with this instr=
+uction -- `ldrt r6,[r5],#+132&#39;<br>
+&gt; # {standard input}:42: Error: cannot use post-indexing with this instr=
+uction -- `ldrt r6,[r5],#132&#39;<br>
+&gt; # ...<br>
+&gt; # ARM_INSTRUCTION_SET_pn-valgrind =3D &quot;arm&quot;<br>
+&gt; # and remove -O2 as work around for ICE:<br>
+&gt; # 3.9.0-r8/valgrind-3.9.0/none/tests/arm/vcvt_fixed_float_VFP.c:12:1: =
+internal compiler error:<br>
+&gt; # Max. number of generated reload insns per insn is achieved (90)<br>
+&gt; # <a href=3D"http://lists.openembedded.org/pipermail/openembedded-core=
+/2014-September/097330.html" target=3D"_blank">http://lists.openembedded.or=
+g/pipermail/openembedded-core/2014-September/097330.html</a><br>
+&gt; # both issues are still reproducible with 3.10.0 version imported from=
+<br>
+&gt; # <a href=3D"http://patchwork.openembedded.org/patch/83009/" target=3D=
+"_blank">http://patchwork.openembedded.org/patch/83009/</a><br>
+&gt; # TARGET_CFLAGS_remove_pn-valgrind =3D &quot;-O2&quot;<br>
+&gt; PTEST_ENABLED_pn-valgrind =3D =E2=80=9C0&quot;<br>
+<br>
+</div></div>For gcc ICE please test out <a href=3D"http://git.openembedded.=
+org/openembedded-core-contrib/commit/?h=3Dkraj/master&amp;id=3D5ea11b4fa4e0=
+2f079aa9209e482e4922ad90f8de" target=3D"_blank">http://git.openembedded.org=
+/openembedded-core-contrib/commit/?h=3Dkraj/master&amp;id=3D5ea11b4fa4e02f0=
+79aa9209e482e4922ad90f8de</a><br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+<br>
+&gt;<br>
+&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; I am using poky-dizzy.<br>
+&gt;&gt;<br>
+&gt;&gt; ERROR LOG:<br>
+&gt;&gt;<br>
+&gt;&gt; /home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-po=
+ky-linux-gnueabi/valgrind/3.9.0-r8/valgrind-3.9.0/none/tests/arm/vcvt_fixed=
+_float_VFP.c:<br>
+&gt;&gt; In function &#39;s32_to_f32_imm1&#39;:<br>
+&gt;&gt; |<br>
+&gt;&gt; /home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-po=
+ky-linux-gnueabi/valgrind/3.9.0-r8/valgrind-3.9.0/none/tests/arm/vcvt_fixed=
+_float_VFP.c:12:1:<br>
+&gt;&gt; internal compiler error: Max. number of generated reload insns per=
+ insn is<br>
+&gt;&gt; achieved (90)<br>
+&gt;&gt; |<br>
+&gt;&gt; |=C2=A0 }<br>
+&gt;&gt; |=C2=A0 ^<br>
+&gt;&gt; | Please submit a full bug report,<br>
+&gt;&gt; | with preprocessed source if appropriate.<br>
+&gt;&gt; | See &lt;<a href=3D"http://gcc.gnu.org/bugs.html" target=3D"_blan=
+k">http://gcc.gnu.org/bugs.html</a>&gt; for instructions.<br>
+&gt;&gt; | make[5]: *** [vcvt_fixed_float_VFP.o] Error 1<br>
+&gt;&gt; | make[5]: Leaving directory<br>
+&gt;&gt; `/home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-p=
+oky-linux-gnueabi/valgrind/3.9.0-r8/build/none/tests/arm&#39;<br>
+&gt;&gt; | make[4]: *** [check-am] Error 2<br>
+&gt;&gt; | make[4]: Leaving directory<br>
+&gt;&gt; `/home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-p=
+oky-linux-gnueabi/valgrind/3.9.0-r8/build/none/tests/arm&#39;<br>
+&gt;&gt; | make[3]: *** [check-recursive] Error 1<br>
+&gt;&gt; | make[3]: Leaving directory<br>
+&gt;&gt; `/home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-p=
+oky-linux-gnueabi/valgrind/3.9.0-r8/build/none/tests&#39;<br>
+&gt;&gt; | make[2]: *** [check-recursive] Error 1<br>
+&gt;&gt; | make[2]: Leaving directory<br>
+&gt;&gt; `/home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-p=
+oky-linux-gnueabi/valgrind/3.9.0-r8/build/none&#39;<br>
+&gt;&gt; | make[1]: *** [check-recursive] Error 1<br>
+&gt;&gt; | make[1]: Leaving directory<br>
+&gt;&gt; `/home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-p=
+oky-linux-gnueabi/valgrind/3.9.0-r8/build&#39;<br>
+&gt;&gt; | make: *** [check] Error 2<br>
+&gt;&gt; | make: Leaving directory<br>
+&gt;&gt; `/home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-p=
+oky-linux-gnueabi/valgrind/3.9.0-r8/build&#39;<br>
+&gt;&gt; | ERROR: oe_runmake failed<br>
+&gt;&gt; | WARNING: exit code 1 from a shell command.<br>
+&gt;&gt; | ERROR: Function failed: do_compile_ptest_base (log file is locat=
+ed at<br>
+&gt;&gt; /home/praveenk/work/platform/build/tmp/work/cortexa9hf-vfp-neon-po=
+ky-linux-gnueabi/valgrind/3.9.0-r8/temp/log.do_compile_ptest_base.11152)<br=
+>
+&gt;&gt; ERROR: Task 9 (/home/praveenk/work/platform/meta/recipes-devtools/=
+valgrind/<br>
+&gt;&gt; <a href=3D"http://valgrind_3.9.0.bb" target=3D"_blank">valgrind_3.=
+9.0.bb</a>, do_compile_ptest_base) failed with exit code &#39;1&#39;<br>
+&gt;&gt; NOTE: Tasks Summary: Attempted 776 tasks of which 769 didn&#39;t n=
+eed to be<br>
+&gt;&gt; rerun and 1 failed.<br>
+&gt;&gt; No currently running tasks (776 of 784)<br>
+&gt;&gt;<br>
+&gt;&gt; Summary: 1 task failed:<br>
+&gt;&gt;=C2=A0 /home/praveenk/work/platform/meta/recipes-devtools/valgrind/=
+<br>
+&gt;&gt; <a href=3D"http://valgrind_3.9.0.bb" target=3D"_blank">valgrind_3.=
+9.0.bb</a>, do_compile_ptest_base<br>
+&gt;&gt; Summary: There was 1 ERROR message shown, returning a non-zero exi=
+t code.<br>
+&gt;&gt;<br>
+&gt;&gt; how can i solve this.<br>
+&gt;&gt;<br>
+&gt;&gt; Thanks<br>
+&gt;&gt; Praveen<br>
+&gt;<br>
+&gt;&gt; --<br>
+&gt;&gt; _______________________________________________<br>
+&gt;&gt; yocto mailing list<br>
+&gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</=
+a><br>
+&gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=
+=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+&gt;<br>
+&gt;<br>
+&gt; --<br>
+&gt; Martin &#39;JaMa&#39; Jansa=C2=A0 =C2=A0 =C2=A0jabber: <a href=3D"mail=
+to:Martin.Jansa@gmail.com">Martin.Jansa@gmail.com</a><br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_b=
+lank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br>
+</div></div></blockquote></div><br></div>
+
+--e89a8ff1ce76c8b89e05135b6a2d--
