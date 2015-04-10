@@ -1,6 +1,6 @@
 Return-Path: <Leo.Tao@flextronics.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 22936E00993; Fri, 10 Apr 2015 11:41:52 -0700 (PDT)
+	id 6923BE00961; Fri, 10 Apr 2015 11:45:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,58 +8,54 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [207.46.100.111 listed in list.dnswl.org]
+	*      [157.56.110.139 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 1872 seconds by postgrey-1.32 at yocto-www;
-	Fri, 10 Apr 2015 11:41:48 PDT
-Received: from na01-by2-obe.outbound.protection.outlook.com
-	(mail-by2on0111.outbound.protection.outlook.com [207.46.100.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADF51E009B4
-	for <yocto@yoctoproject.org>; Fri, 10 Apr 2015 11:41:48 -0700 (PDT)
+Received: from na01-bn1-obe.outbound.protection.outlook.com
+	(mail-bn1on0139.outbound.protection.outlook.com [157.56.110.139])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89219E00961
+	for <yocto@yoctoproject.org>; Fri, 10 Apr 2015 11:44:07 -0700 (PDT)
 Received: from CO2PR0801MB679.namprd08.prod.outlook.com (10.141.248.12) by
-	CO2PR0801MB680.namprd08.prod.outlook.com (10.141.248.13) with Microsoft
-	SMTP Server (TLS) id 15.1.136.25; Fri, 10 Apr 2015 18:41:46 +0000
+	CO2PR0801MB679.namprd08.prod.outlook.com (10.141.248.12) with Microsoft
+	SMTP Server (TLS) id 15.1.136.25; Fri, 10 Apr 2015 18:10:35 +0000
 Received: from CO2PR0801MB679.namprd08.prod.outlook.com ([10.141.248.12]) by
 	CO2PR0801MB679.namprd08.prod.outlook.com ([10.141.248.12]) with mapi id
-	15.01.0136.014; Fri, 10 Apr 2015 18:41:46 +0000
+	15.01.0136.014; Fri, 10 Apr 2015 18:10:35 +0000
 From: Leo Tao <Leo.Tao@flextronics.com>
 To: Sandeep G.R <grsandeep85@gmail.com>
 Thread-Topic: [yocto] Freescale T1040RDB Failed to mount UBIFS
-Thread-Index: AdBzraKm14/Gl8jFT1ihJDnewx1eIwABsaOAAAEsz8AAAPBngAAAIygQ
-Date: Fri, 10 Apr 2015 18:41:46 +0000
-Message-ID: <CO2PR0801MB67958D90C7D80310645B6DEEEFA0@CO2PR0801MB679.namprd08.prod.outlook.com>
+Thread-Index: AdBzraKm14/Gl8jFT1ihJDnewx1eIwABsaOAAAEsz8A=
+Date: Fri, 10 Apr 2015 18:10:34 +0000
+Message-ID: <CO2PR0801MB679111DB731916FD334AD70EEFA0@CO2PR0801MB679.namprd08.prod.outlook.com>
 References: <CO2PR0801MB679F57E11AA9AEB84165A8AEEFA0@CO2PR0801MB679.namprd08.prod.outlook.com>
 	<CAKP9-ShNa-Rw-7ibSq-TXk3Cqv79c=3xRMNR-+RZzWW_7OrMSg@mail.gmail.com>
-	<CO2PR0801MB679111DB731916FD334AD70EEFA0@CO2PR0801MB679.namprd08.prod.outlook.com>
-	<CAKP9-Siq-u_qh_EFchXmQVERi2kbgbpBX+tW2SV+20zB6+fQCw@mail.gmail.com>
-In-Reply-To: <CAKP9-Siq-u_qh_EFchXmQVERi2kbgbpBX+tW2SV+20zB6+fQCw@mail.gmail.com>
+In-Reply-To: <CAKP9-ShNa-Rw-7ibSq-TXk3Cqv79c=3xRMNR-+RZzWW_7OrMSg@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: gmail.com; dkim=none (message not signed)
 	header.d=none;
 x-originating-ip: [158.116.144.29]
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:CO2PR0801MB680;
-x-microsoft-antispam-prvs: <CO2PR0801MB6806BF146BDFCC74C005D3EEEFA0@CO2PR0801MB680.namprd08.prod.outlook.com>
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:CO2PR0801MB679;
 x-forefront-antispam-report: BMV:1; SFV:NSPM;
-	SFS:(10019020)(377454003)(24454002)(110136001)(93886004)(19617315012)(86362001)(46102003)(16236675004)(19625215002)(33656002)(62966003)(50986999)(19580395003)(19580405001)(76176999)(66066001)(76576001)(1411001)(87936001)(2656002)(19300405004)(15975445007)(102836002)(575784001)(99286002)(74316001)(54356999)(77156002)(92566002)(77096005)(2950100001)(5890100001)(122556002)(2900100001)(21314002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:CO2PR0801MB680;
+	SFS:(10019020)(377454003)(19580395003)(19300405004)(19580405001)(74316001)(122556002)(99286002)(575784001)(86362001)(46102003)(77156002)(110136001)(77096005)(2950100001)(102836002)(15975445007)(2900100001)(62966003)(16236675004)(2656002)(87936001)(76176999)(54356999)(5890100001)(19625215002)(33656002)(66066001)(50986999)(19617315012)(1411001)(76576001)(92566002)(21314002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:CO2PR0801MB679;
 	H:CO2PR0801MB679.namprd08.prod.outlook.com; FPR:; SPF:None;
 	MLV:sfv; LANG:en; 
+x-microsoft-antispam-prvs: <CO2PR0801MB679CFC706BA3C8C93794DDFEEFA0@CO2PR0801MB679.namprd08.prod.outlook.com>
 x-exchange-antispam-report-test: UriScan:;
 x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(5005006)(5002010); SRVR:CO2PR0801MB680; BCL:0;
-	PCL:0; RULEID:; SRVR:CO2PR0801MB680; 
+	RULEID:(601004)(5002010)(5005006); SRVR:CO2PR0801MB679; BCL:0;
+	PCL:0; RULEID:; SRVR:CO2PR0801MB679; 
 x-forefront-prvs: 054231DC40
 MIME-Version: 1.0
 X-OriginatorOrg: flextronics.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Apr 2015 18:41:46.2149 (UTC)
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Apr 2015 18:10:34.9923 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 3f0e69e0-eb38-4eb2-b4ee-52919719d31e
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO2PR0801MB680
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO2PR0801MB679
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Freescale T1040RDB Failed to mount UBIFS
 X-BeenThere: yocto@yoctoproject.org
@@ -73,37 +69,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Apr 2015 18:41:52 -0000
+X-List-Received-Date: Fri, 10 Apr 2015 18:45:00 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_CO2PR0801MB67958D90C7D80310645B6DEEEFA0CO2PR0801MB679na_"
+	boundary="_000_CO2PR0801MB679111DB731916FD334AD70EEFA0CO2PR0801MB679na_"
 
---_000_CO2PR0801MB67958D90C7D80310645B6DEEEFA0CO2PR0801MB679na_
+--_000_CO2PR0801MB679111DB731916FD334AD70EEFA0CO2PR0801MB679na_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi  Sandeep,
-From the log file,  I can see you are booting from Nor Flash and rootfs is =
-mount as Ext2.
-I had no problem to boot  this way.
-I am trying to boot form nand and mount rootfs  as UBIFS. That's the reason=
- I raised this request.
-Can you forward my original request to  your expert who is familiar with us=
-ing UBIFS?
-
-Thanks
-Leo
-
-From: Sandeep G.R [mailto:grsandeep85@gmail.com]
-Sent: Friday, April 10, 2015 2:34 PM
-To: Leo Tao
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Freescale T1040RDB Failed to mount UBIFS
-
-Attached the boot log for T4240RDB.
-
-On Fri, Apr 10, 2015 at 12:10 PM, Leo Tao <Leo.Tao@flextronics.com<mailto:L=
-eo.Tao@flextronics.com>> wrote:
 Hi Sandeep,
 
 Thank you for your quick response.
@@ -115,11 +89,10 @@ Thanks
 Leo
 
 
-From: Sandeep G.R [mailto:grsandeep85@gmail.com<mailto:grsandeep85@gmail.co=
-m>]
+From: Sandeep G.R [mailto:grsandeep85@gmail.com]
 Sent: Friday, April 10, 2015 1:33 PM
 To: Leo Tao
-Cc: yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+Cc: yocto@yoctoproject.org
 Subject: Re: [yocto] Freescale T1040RDB Failed to mount UBIFS
 
 Hi Leo,
@@ -236,20 +209,7 @@ ntended recipient, you are on notice that any distribution of this message,=
 error, please immediately notify the sender and delete or destroy any copy =
 of this message!
 
-
-
---
-Thanks & Regards,
-Sandeep G R
-The information contained in this message may be privileged and confidentia=
-l. It is intended to be read only by the individual or entity to whom it is=
- addressed or by their designee. If the reader of this message is not the i=
-ntended recipient, you are on notice that any distribution of this message,=
- in any form, is strictly prohibited. If you have received this message in =
-error, please immediately notify the sender and delete or destroy any copy =
-of this message!
-
---_000_CO2PR0801MB67958D90C7D80310645B6DEEEFA0CO2PR0801MB679na_
+--_000_CO2PR0801MB679111DB731916FD334AD70EEFA0CO2PR0801MB679na_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -294,22 +254,10 @@ p
 	margin-left:0in;
 	font-size:12.0pt;
 	font-family:"Times New Roman","serif";}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
 span.EmailStyle18
 	{mso-style-type:personal-reply;
 	font-family:"Calibri","sans-serif";
 	color:#1F497D;}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
 .MsoChpDefault
 	{mso-style-type:export-only;
 	font-family:"Calibri","sans-serif";}
@@ -328,23 +276,21 @@ div.WordSection1
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi&nbsp; Sandeep,<o:p></o=
-:p></span></p>
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi Sandeep,<o:p></o:p></s=
+pan></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">From the log file,&nbsp; =
-I can see you are booting from Nor Flash and rootfs is mount as Ext2.<o:p><=
-/o:p></span></p>
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">I had no problem to boot&=
-nbsp; this way.<o:p></o:p></span></p>
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thank you for your quick =
+response.<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">I am trying to boot form =
-nand and mount rootfs&nbsp; as UBIFS. That&#8217;s the reason I raised this=
- request.<o:p></o:p></span></p>
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">It&#8217;s true SDK1.7 do=
+esn&#8217;t mention&nbsp; using UBIFS with Nand Flash. But we decide to use=
+ the Nand Flash on Board.<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Can you forward my origin=
-al request to&nbsp; your expert who is familiar with using UBIFS?<o:p></o:p=
-></span></p>
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Can you send me your boot=
+cmd&nbsp; and boot log running T4240RDB please?<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
 libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
 /p>
@@ -356,12 +302,15 @@ libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Leo<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
 libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
 /p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
 <p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
 ;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
 ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Sandeep =
 G.R [mailto:grsandeep85@gmail.com]
 <br>
-<b>Sent:</b> Friday, April 10, 2015 2:34 PM<br>
+<b>Sent:</b> Friday, April 10, 2015 1:33 PM<br>
 <b>To:</b> Leo Tao<br>
 <b>Cc:</b> yocto@yoctoproject.org<br>
 <b>Subject:</b> Re: [yocto] Freescale T1040RDB Failed to mount UBIFS<o:p></=
@@ -370,124 +319,49 @@ o:p></span></p>
 <div>
 <div>
 <p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
-&quot;sans-serif&quot;;color:#073763">Attached the boot log for T4240RDB.<o=
-:p></o:p></span></p>
+&quot;sans-serif&quot;;color:#073763">Hi Leo,<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
+&quot;sans-serif&quot;;color:#073763"><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
+&quot;sans-serif&quot;;color:#073763">I walked through the QorIQ-SDK-1.7 ma=
+nual section 3.4.16 for T1040RDB doesn't say anything on the NAND flash pro=
+cedure. I can see the NOR Flash memory map and flash procedure.<o:p></o:p><=
+/span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
+&quot;sans-serif&quot;;color:#073763"><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
+&quot;sans-serif&quot;;color:#073763">I use T4240RDB with NOR flash works g=
+reat.<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
+&quot;sans-serif&quot;;color:#073763"><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
+&quot;sans-serif&quot;;color:#073763">Please contact your local Freescale F=
+AE for more support and post the question is Freescale forum you might get =
+some help.<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
+&quot;sans-serif&quot;;color:#073763"><o:p>&nbsp;</o:p></span></p>
 </div>
 </div>
 <div>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <div>
-<p class=3D"MsoNormal">On Fri, Apr 10, 2015 at 12:10 PM, Leo Tao &lt;<a hre=
+<p class=3D"MsoNormal">On Fri, Apr 10, 2015 at 10:53 AM, Leo Tao &lt;<a hre=
 f=3D"mailto:Leo.Tao@flextronics.com" target=3D"_blank">Leo.Tao@flextronics.=
-com</a>&gt; wrote:<o:p></o:p></p>
-<div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
-uot;sans-serif&quot;;color:#1F497D">Hi Sandeep,</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
-uot;sans-serif&quot;;color:#1F497D">&nbsp;</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
-uot;sans-serif&quot;;color:#1F497D">Thank you for your quick response.</spa=
-n><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
-uot;sans-serif&quot;;color:#1F497D">It&#8217;s true SDK1.7 doesn&#8217;t me=
-ntion&nbsp; using UBIFS with Nand Flash. But we decide to use the Nand Flas=
-h
- on Board.</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
-uot;sans-serif&quot;;color:#1F497D">Can you send me your bootcmd&nbsp; and =
-boot log running T4240RDB please?</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
-uot;sans-serif&quot;;color:#1F497D">&nbsp;</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
-uot;sans-serif&quot;;color:#1F497D">Thanks</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
-uot;sans-serif&quot;;color:#1F497D">Leo</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
-uot;sans-serif&quot;;color:#1F497D">&nbsp;</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&q=
-uot;sans-serif&quot;;color:#1F497D">&nbsp;</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><b><span style=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,=
-&quot;sans-serif&quot;">From:</span></b><span style=3D"font-size:10.0pt;fon=
-t-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Sandeep G.R [mailto:<a=
- href=3D"mailto:grsandeep85@gmail.com" target=3D"_blank">grsandeep85@gmail.=
-com</a>]
-<br>
-<b>Sent:</b> Friday, April 10, 2015 1:33 PM<br>
-<b>To:</b> Leo Tao<br>
-<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
-o@yoctoproject.org</a><br>
-<b>Subject:</b> Re: [yocto] Freescale T1040RDB Failed to mount UBIFS</span>=
-<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;<o:p></o:p></p>
-<div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-family:&quot;Trebuchet MS&quot;,&quot;sans-ser=
-if&quot;;color:#073763">Hi Leo,</span><o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-family:&quot;Trebuchet MS&quot;,&quot;sans-ser=
-if&quot;;color:#073763">&nbsp;</span><o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-family:&quot;Trebuchet MS&quot;,&quot;sans-ser=
-if&quot;;color:#073763">I walked through the QorIQ-SDK-1.7 manual section 3=
-.4.16 for T1040RDB doesn't say anything on the NAND flash
- procedure. I can see the NOR Flash memory map and flash procedure.</span><=
-o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-family:&quot;Trebuchet MS&quot;,&quot;sans-ser=
-if&quot;;color:#073763">&nbsp;</span><o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-family:&quot;Trebuchet MS&quot;,&quot;sans-ser=
-if&quot;;color:#073763">I use T4240RDB with NOR flash works great.</span><o=
-:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-family:&quot;Trebuchet MS&quot;,&quot;sans-ser=
-if&quot;;color:#073763">&nbsp;</span><o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-family:&quot;Trebuchet MS&quot;,&quot;sans-ser=
-if&quot;;color:#073763">Please contact your local Freescale FAE for more su=
-pport and post the question is Freescale forum you might get
- some help.</span><o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><span style=3D"font-family:&quot;Trebuchet MS&quot;,&quot;sans-ser=
-if&quot;;color:#073763">&nbsp;</span><o:p></o:p></p>
-</div>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">On Fri, Apr 10, 2015 at 10:53 AM, Leo Tao &lt;<a href=3D"mailto:Le=
-o.Tao@flextronics.com" target=3D"_blank">Leo.Tao@flextronics.com</a><o:p></=
-o:p></p>
+com</a><span style=3D"color:#1F497D"><o:p></o:p></span></p>
 <div>
 <div>
 <p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
@@ -495,8 +369,6 @@ lt:auto">&nbsp;<o:p></o:p></p>
 <p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
 lt:auto">I built UBIFS rootfs for T1040RDB, apparently I got 2 rootfs image=
 s:<o:p></o:p></p>
-<div>
-<div>
 <p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
 lt:auto">1. fsl-image-core-t1040rdb-20150408204106.rootfs.ubi<o:p></o:p></p=
 >
@@ -665,67 +537,6 @@ n-block(0,0)<o:p></o:p></p>
 lt:auto">CPU: 2 PID: 1 Comm: swapper/0 Not tainted 3.12.19-rt30-QorIQ-SDK-V=
 1.7&#43;g66<o:p></o:p></p>
 </div>
-</div>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">The information contained in this message may be privileged and co=
-nfidential. It is intended to be read only by the individual or entity to w=
-hom it is addressed or by their designee.
- If the reader of this message is not the intended recipient, you are on no=
-tice that any distribution of this message, in any form, is strictly prohib=
-ited. If you have received this message in error, please immediately notify=
- the sender and delete or destroy
- any copy of this message! <o:p></o:p></p>
-</div>
-</div>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;margin-bottom:12.0p=
-t"><br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><o:p></o:p></p>
-</div>
-</div>
-</div>
-<div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><br>
-<br clear=3D"all">
-<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;<o:p></o:p></p>
-</div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">--
-<o:p></o:p></p>
-<div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto"><b><span style=3D"font-family:&quot;Trebuchet MS&quot;,&quot;sans-=
-serif&quot;;color:#073763">Thanks &amp; Regards,</span></b><o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;margin-bottom:12.0p=
-t"><b><span style=3D"font-family:&quot;Trebuchet MS&quot;,&quot;sans-serif&=
-quot;;color:#073763">Sandeep G R</span></b><o:p></o:p></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div>
-<div>
 <p class=3D"MsoNormal">The information contained in this message may be pri=
 vileged and confidential. It is intended to be read only by the individual =
 or entity to whom it is addressed or by their designee. If the reader of th=
@@ -735,8 +546,13 @@ trictly prohibited. If you have received this message in error, please imme=
 diately notify the sender and delete or destroy any copy of this message!
 <o:p></o:p></p>
 </div>
-</div>
-</div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><br>
+--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><o:p></o:p></p>
 </div>
 <p class=3D"MsoNormal"><br>
 <br clear=3D"all">
@@ -769,4 +585,4 @@ ntended recipient, you are on notice
 </body>
 </html>
 
---_000_CO2PR0801MB67958D90C7D80310645B6DEEEFA0CO2PR0801MB679na_--
+--_000_CO2PR0801MB679111DB731916FD334AD70EEFA0CO2PR0801MB679na_--
