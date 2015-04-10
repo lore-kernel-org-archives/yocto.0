@@ -1,61 +1,55 @@
-Return-Path: <Leo.Tao@flextronics.com>
+Return-Path: <grsandeep85@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6923BE00961; Fri, 10 Apr 2015 11:45:00 -0700 (PDT)
+	id D3D97E009B4; Fri, 10 Apr 2015 11:45:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [157.56.110.139 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (grsandeep85[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1on0139.outbound.protection.outlook.com [157.56.110.139])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89219E00961
-	for <yocto@yoctoproject.org>; Fri, 10 Apr 2015 11:44:07 -0700 (PDT)
-Received: from CO2PR0801MB679.namprd08.prod.outlook.com (10.141.248.12) by
-	CO2PR0801MB679.namprd08.prod.outlook.com (10.141.248.12) with Microsoft
-	SMTP Server (TLS) id 15.1.136.25; Fri, 10 Apr 2015 18:10:35 +0000
-Received: from CO2PR0801MB679.namprd08.prod.outlook.com ([10.141.248.12]) by
-	CO2PR0801MB679.namprd08.prod.outlook.com ([10.141.248.12]) with mapi id
-	15.01.0136.014; Fri, 10 Apr 2015 18:10:35 +0000
-From: Leo Tao <Leo.Tao@flextronics.com>
-To: Sandeep G.R <grsandeep85@gmail.com>
-Thread-Topic: [yocto] Freescale T1040RDB Failed to mount UBIFS
-Thread-Index: AdBzraKm14/Gl8jFT1ihJDnewx1eIwABsaOAAAEsz8A=
-Date: Fri, 10 Apr 2015 18:10:34 +0000
-Message-ID: <CO2PR0801MB679111DB731916FD334AD70EEFA0@CO2PR0801MB679.namprd08.prod.outlook.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ob0-f178.google.com (mail-ob0-f178.google.com
+	[209.85.214.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5C0FE009E5
+	for <yocto@yoctoproject.org>; Fri, 10 Apr 2015 11:45:07 -0700 (PDT)
+Received: by obbeb7 with SMTP id eb7so28082776obb.3
+	for <yocto@yoctoproject.org>; Fri, 10 Apr 2015 11:45:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=e0J8UMHDUZc1D6gBbTXg7m2z11d1BTiODNqxmGFgRrU=;
+	b=kyd5ZtW4/J+/mTygCtpZzJy7c49s4m+yQJQoSwfzFodDFL3Wz5+80MZoM/c+JrZ/8k
+	JE6EWosxBXkCmiOEPXW08ZvnvhCVO2zv0p6WWh1l4Dy+ybKRH/Yt1j+FgRHjymybolhr
+	XSAmYl+rmKNEwMJgbCaYF212ZW/p/Bk502HfJfPX2a4VHsn/k5gRslINdmvYuw6r9e1c
+	QduYKWWubhDnpJnfOQzQkmDGaksk2MK5C+XiXaHb/Xezed5K/r8IXpeLprW+b5GG92bI
+	SN06eVoRCudDXkvYJrtEAZ0RJW1CnSfQJKlegtyeSZjAoJpC/j4LXQsDjZJELXetjYVS
+	VuJg==
+MIME-Version: 1.0
+X-Received: by 10.182.134.169 with SMTP id pl9mr3744106obb.32.1428691505980;
+	Fri, 10 Apr 2015 11:45:05 -0700 (PDT)
+Received: by 10.76.24.199 with HTTP; Fri, 10 Apr 2015 11:45:05 -0700 (PDT)
+In-Reply-To: <CO2PR0801MB67958D90C7D80310645B6DEEEFA0@CO2PR0801MB679.namprd08.prod.outlook.com>
 References: <CO2PR0801MB679F57E11AA9AEB84165A8AEEFA0@CO2PR0801MB679.namprd08.prod.outlook.com>
 	<CAKP9-ShNa-Rw-7ibSq-TXk3Cqv79c=3xRMNR-+RZzWW_7OrMSg@mail.gmail.com>
-In-Reply-To: <CAKP9-ShNa-Rw-7ibSq-TXk3Cqv79c=3xRMNR-+RZzWW_7OrMSg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
-	header.d=none;
-x-originating-ip: [158.116.144.29]
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:CO2PR0801MB679;
-x-forefront-antispam-report: BMV:1; SFV:NSPM;
-	SFS:(10019020)(377454003)(19580395003)(19300405004)(19580405001)(74316001)(122556002)(99286002)(575784001)(86362001)(46102003)(77156002)(110136001)(77096005)(2950100001)(102836002)(15975445007)(2900100001)(62966003)(16236675004)(2656002)(87936001)(76176999)(54356999)(5890100001)(19625215002)(33656002)(66066001)(50986999)(19617315012)(1411001)(76576001)(92566002)(21314002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:CO2PR0801MB679;
-	H:CO2PR0801MB679.namprd08.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; LANG:en; 
-x-microsoft-antispam-prvs: <CO2PR0801MB679CFC706BA3C8C93794DDFEEFA0@CO2PR0801MB679.namprd08.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(5002010)(5005006); SRVR:CO2PR0801MB679; BCL:0;
-	PCL:0; RULEID:; SRVR:CO2PR0801MB679; 
-x-forefront-prvs: 054231DC40
-MIME-Version: 1.0
-X-OriginatorOrg: flextronics.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Apr 2015 18:10:34.9923 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f0e69e0-eb38-4eb2-b4ee-52919719d31e
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO2PR0801MB679
+	<CO2PR0801MB679111DB731916FD334AD70EEFA0@CO2PR0801MB679.namprd08.prod.outlook.com>
+	<CAKP9-Siq-u_qh_EFchXmQVERi2kbgbpBX+tW2SV+20zB6+fQCw@mail.gmail.com>
+	<CO2PR0801MB67958D90C7D80310645B6DEEEFA0@CO2PR0801MB679.namprd08.prod.outlook.com>
+Date: Fri, 10 Apr 2015 12:45:05 -0600
+Message-ID: <CAKP9-SgzafokH0MR5Kmjwqa5zB4fhbRvaSaqSapCJfPwweEFKg@mail.gmail.com>
+From: "Sandeep G.R" <grsandeep85@gmail.com>
+To: Leo Tao <Leo.Tao@flextronics.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Freescale T1040RDB Failed to mount UBIFS
 X-BeenThere: yocto@yoctoproject.org
@@ -69,474 +63,645 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Apr 2015 18:45:00 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CO2PR0801MB679111DB731916FD334AD70EEFA0CO2PR0801MB679na_"
+X-List-Received-Date: Fri, 10 Apr 2015 18:45:18 -0000
+Content-Type: multipart/alternative; boundary=001a11c299bcb52a3205136329bf
 
---_000_CO2PR0801MB679111DB731916FD334AD70EEFA0CO2PR0801MB679na_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--001a11c299bcb52a3205136329bf
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Sandeep,
+Sorry we don't use the UBIFS.
 
-Thank you for your quick response.
-It's true SDK1.7 doesn't mention  using UBIFS with Nand Flash. But we decid=
-e to use the Nand Flash on Board.
-Can you send me your bootcmd  and boot log running T4240RDB please?
+On Fri, Apr 10, 2015 at 12:41 PM, Leo Tao <Leo.Tao@flextronics.com> wrote:
 
-Thanks
-Leo
-
-
-From: Sandeep G.R [mailto:grsandeep85@gmail.com]
-Sent: Friday, April 10, 2015 1:33 PM
-To: Leo Tao
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Freescale T1040RDB Failed to mount UBIFS
-
-Hi Leo,
-
-I walked through the QorIQ-SDK-1.7 manual section 3.4.16 for T1040RDB doesn=
-'t say anything on the NAND flash procedure. I can see the NOR Flash memory=
- map and flash procedure.
-
-I use T4240RDB with NOR flash works great.
-
-Please contact your local Freescale FAE for more support and post the quest=
-ion is Freescale forum you might get some help.
-
-
-On Fri, Apr 10, 2015 at 10:53 AM, Leo Tao <Leo.Tao@flextronics.com<mailto:L=
-eo.Tao@flextronics.com>
-
-I built UBIFS rootfs for T1040RDB, apparently I got 2 rootfs images:
-1. fsl-image-core-t1040rdb-20150408204106.rootfs.ubi
-2. fsl-image-core-t1040rdb-20150408204106.rootfs.ubifs
-So I updated  Nand Flash rootfs Partition with  image :fsl-image-core-t1040=
-rdb-20150408204106.rootfs.ubifs
-
-Uboot bootcmd : bootcmd=3Dsetenv bootargs noinitrd ip=3Doff mem=3D256M root=
-wait=3D1 rw ubi.mtd=3D7,4096 rootfstype=3Dubifs root=3Dubi0:rootfs console=
-=3D$consoledev,$baudrate $othbootargs;nand read.e $loadaddr $kernel_addr $k=
-ernel_size;nand read.e $fdtaddr $fdt_addr $fdt_size;bootm $loadaddr - $fdta=
-ddr
-
-My question is
-
-1.       which image should be flashed to Nand, xxx.ubi or xxx.ubifs?
-
-2.       what does the error blow mean?
-
-Built uboot and kernel to support ubifs and reset  T1040RDB, but I got erro=
-r blow:
-
-Key type dns_resolver registered
-UBI: attaching mtd7 to ubi0
-UBI error: validate_ec_hdr: bad VID header offset 512, expected 4096
-UBI error: validate_ec_hdr: bad EC header
-Erase counter header dump:
-        magic          0x55424923
-        version        1
-        ec             0
-        vid_hdr_offset 512
-        data_offset    1024
-        image_seq      2076921562<tel:2076921562>
-        hdr_crc        0x951adef
-erase counter header hexdump:
-CPU: 2 PID: 1 Comm: swapper/0 Not tainted 3.12.19-rt30-QorIQ-SDK-V1.7+g6619=
-b8b #6
-Call Trace:
-[c9081cd0] [c0006f50] show_stack+0x40/0x150 (unreliable)
-[c9081d10] [c06e9a20] dump_stack+0x78/0xa0
-[c9081d20] [c03a56ac] validate_ec_hdr+0xac/0x120
-[c9081d30] [c03a6104] ubi_io_read_ec_hdr+0x184/0x240
-[c9081d60] [c03aaf00] ubi_attach+0x180/0x14d0
-[c9081de0] [c039fdf8] ubi_attach_mtd_dev+0x688/0xc80
-[c9081e30] [c08e9348] ubi_init+0x274/0x30c
-[c9081e80] [c00021a8] do_one_initcall+0x158/0x1b0
-[c9081ef0] [c08cb8d0] kernel_init_freeable+0x134/0x1d0
-[c9081f20] [c0002808] kernel_init+0x18/0x170
-[c9081f40] [c000fe0c] ret_from_kernel_thread+0x5c/0x64
-UBI error: ubi_io_read_ec_hdr: validation failed for PEB 0
-UBI error: ubi_attach_mtd_dev: failed to attach mtd7, error -22
-UBI error: ubi_init: cannot attach mtd7
-fsl_dpa_macless: FSL DPAA MACless Ethernet driver ()
-fsl_dpa_generic: FSL DPAA Generic Ethernet driver ()
-drivers/rtc/hctosys.c: unable to open rtc device (rtc0)
-UBIFS error (pid 1): ubifs_mount: cannot open "ubi0:rootfs", error -19
-VFS: Cannot open root device "ubi0:rootfs" or unknown-block(0,0): error -19
-Please append a correct "root=3D" boot option; here are the available parti=
-tions:
-1f00          131072 mtdblock0  (driver?)
-1f01            1536 mtdblock1  (driver?)
-1f02            1024 mtdblock2  (driver?)
-1f03            1024 mtdblock3  (driver?)
-1f04           24576 mtdblock4  (driver?)
-1f05           10240 mtdblock5  (driver?)
-1f06            1024 mtdblock6  (driver?)
-1f07          409600 mtdblock7  (driver?)
-1f08           98304 mtdblock8  (driver?)
-1f09          524288 mtdblock9  (driver?)
-1f0a           65536 mtdblock10  (driver?)
-Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0=
-,0)
-CPU: 2 PID: 1 Comm: swapper/0 Not tainted 3.12.19-rt30-QorIQ-SDK-V1.7+g66
-The information contained in this message may be privileged and confidentia=
-l. It is intended to be read only by the individual or entity to whom it is=
- addressed or by their designee. If the reader of this message is not the i=
-ntended recipient, you are on notice that any distribution of this message,=
- in any form, is strictly prohibited. If you have received this message in =
-error, please immediately notify the sender and delete or destroy any copy =
-of this message!
-
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-https://lists.yoctoproject.org/listinfo/yocto
-
-
-
---
-Thanks & Regards,
-Sandeep G R
-The information contained in this message may be privileged and confidentia=
-l. It is intended to be read only by the individual or entity to whom it is=
- addressed or by their designee. If the reader of this message is not the i=
-ntended recipient, you are on notice that any distribution of this message,=
- in any form, is strictly prohibited. If you have received this message in =
-error, please immediately notify the sender and delete or destroy any copy =
-of this message!
-
---_000_CO2PR0801MB679111DB731916FD334AD70EEFA0CO2PR0801MB679na_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>  Hi  Sandeep,
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Trebuchet MS";
-	panose-1:2 11 6 3 2 2 2 2 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
+> From the log file,  I can see you are booting from Nor Flash and rootfs is
+> mount as Ext2.
+>
+> I had no problem to boot  this way.
+>
+> I am trying to boot form nand and mount rootfs  as UBIFS. That's the
+> reason I raised this request.
+>
+> Can you forward my original request to  your expert who is familiar with
+> using UBIFS?
+>
+>
+>
+> Thanks
+>
+> Leo
+>
+>
+>
+> *From:* Sandeep G.R [mailto:grsandeep85@gmail.com]
+> *Sent:* Friday, April 10, 2015 2:34 PM
+>
+> *To:* Leo Tao
+> *Cc:* yocto@yoctoproject.org
+> *Subject:* Re: [yocto] Freescale T1040RDB Failed to mount UBIFS
+>
+>
+>
+> Attached the boot log for T4240RDB.
+>
+>
+>
+> On Fri, Apr 10, 2015 at 12:10 PM, Leo Tao <Leo.Tao@flextronics.com> wrote:
+>
+> Hi Sandeep,
+>
+>
+>
+> Thank you for your quick response.
+>
+> It's true SDK1.7 doesn't mention  using UBIFS with Nand Flash. But we
+> decide to use the Nand Flash on Board.
+>
+> Can you send me your bootcmd  and boot log running T4240RDB please?
+>
+>
+>
+> Thanks
+>
+> Leo
+>
+>
+>
+>
+>
+> *From:* Sandeep G.R [mailto:grsandeep85@gmail.com]
+> *Sent:* Friday, April 10, 2015 1:33 PM
+> *To:* Leo Tao
+> *Cc:* yocto@yoctoproject.org
+> *Subject:* Re: [yocto] Freescale T1040RDB Failed to mount UBIFS
+>
+>
+>
+> Hi Leo,
+>
+>
+>
+> I walked through the QorIQ-SDK-1.7 manual section 3.4.16 for T1040RDB
+> doesn't say anything on the NAND flash procedure. I can see the NOR Flash
+> memory map and flash procedure.
+>
+>
+>
+> I use T4240RDB with NOR flash works great.
+>
+>
+>
+> Please contact your local Freescale FAE for more support and post the
+> question is Freescale forum you might get some help.
+>
+>
+>
+>
+>
+> On Fri, Apr 10, 2015 at 10:53 AM, Leo Tao <Leo.Tao@flextronics.com
+>
+>
+>
+> I built UBIFS rootfs for T1040RDB, apparently I got 2 rootfs images:
+>
+> 1. fsl-image-core-t1040rdb-20150408204106.rootfs.ubi
+>
+> 2. fsl-image-core-t1040rdb-20150408204106.rootfs.ubifs
+>
+> So I updated  Nand Flash rootfs Partition with  image
+> :fsl-image-core-t1040rdb-20150408204106.rootfs.ubifs
+>
+>
+>
+> Uboot bootcmd : bootcmd=setenv bootargs noinitrd ip=off mem=256M
+> rootwait=1 rw ubi.mtd=7,4096 rootfstype=ubifs root=ubi0:rootfs
+> console=$consoledev,$baudrate $othbootargs;nand read.e $loadaddr
+> $kernel_addr $kernel_size;nand read.e $fdtaddr $fdt_addr $fdt_size;bootm
+> $loadaddr - $fdtaddr
+>
+>
+>
+> My question is
+>
+> 1.       which image should be flashed to Nand, xxx.ubi or xxx.ubifs?
+>
+> 2.       what does the error blow mean?
+>
+>
+>
+> Built uboot and kernel to support ubifs and reset  T1040RDB, but I got
+> error blow:
+>
+>
+>
+> Key type dns_resolver registered
+>
+> UBI: attaching mtd7 to ubi0
+>
+> UBI error: validate_ec_hdr: bad VID header offset 512, expected 4096
+>
+> UBI error: validate_ec_hdr: bad EC header
+>
+> Erase counter header dump:
+>
+>         magic          0x55424923
+>
+>         version        1
+>
+>         ec             0
+>
+>         vid_hdr_offset 512
+>
+>         data_offset    1024
+>
+>         image_seq      2076921562
+>
+>         hdr_crc        0x951adef
+>
+> erase counter header hexdump:
+>
+> CPU: 2 PID: 1 Comm: swapper/0 Not tainted
+> 3.12.19-rt30-QorIQ-SDK-V1.7+g6619b8b #6
+>
+> Call Trace:
+>
+> [c9081cd0] [c0006f50] show_stack+0x40/0x150 (unreliable)
+>
+> [c9081d10] [c06e9a20] dump_stack+0x78/0xa0
+>
+> [c9081d20] [c03a56ac] validate_ec_hdr+0xac/0x120
+>
+> [c9081d30] [c03a6104] ubi_io_read_ec_hdr+0x184/0x240
+>
+> [c9081d60] [c03aaf00] ubi_attach+0x180/0x14d0
+>
+> [c9081de0] [c039fdf8] ubi_attach_mtd_dev+0x688/0xc80
+>
+> [c9081e30] [c08e9348] ubi_init+0x274/0x30c
+>
+> [c9081e80] [c00021a8] do_one_initcall+0x158/0x1b0
+>
+> [c9081ef0] [c08cb8d0] kernel_init_freeable+0x134/0x1d0
+>
+> [c9081f20] [c0002808] kernel_init+0x18/0x170
+>
+> [c9081f40] [c000fe0c] ret_from_kernel_thread+0x5c/0x64
+>
+> UBI error: ubi_io_read_ec_hdr: validation failed for PEB 0
+>
+> UBI error: ubi_attach_mtd_dev: failed to attach mtd7, error -22
+>
+> UBI error: ubi_init: cannot attach mtd7
+>
+> fsl_dpa_macless: FSL DPAA MACless Ethernet driver ()
+>
+> fsl_dpa_generic: FSL DPAA Generic Ethernet driver ()
+>
+> drivers/rtc/hctosys.c: unable to open rtc device (rtc0)
+>
+> UBIFS error (pid 1): ubifs_mount: cannot open "ubi0:rootfs", error -19
+>
+> VFS: Cannot open root device "ubi0:rootfs" or unknown-block(0,0): error -19
+>
+> Please append a correct "root=" boot option; here are the available
+> partitions:
+>
+> 1f00          131072 mtdblock0  (driver?)
+>
+> 1f01            1536 mtdblock1  (driver?)
+>
+> 1f02            1024 mtdblock2  (driver?)
+>
+> 1f03            1024 mtdblock3  (driver?)
+>
+> 1f04           24576 mtdblock4  (driver?)
+>
+> 1f05           10240 mtdblock5  (driver?)
+>
+> 1f06            1024 mtdblock6  (driver?)
+>
+> 1f07          409600 mtdblock7  (driver?)
+>
+> 1f08           98304 mtdblock8  (driver?)
+>
+> 1f09          524288 mtdblock9  (driver?)
+>
+> 1f0a           65536 mtdblock10  (driver?)
+>
+> Kernel panic - not syncing: VFS: Unable to mount root fs on
+> unknown-block(0,0)
+>
+> CPU: 2 PID: 1 Comm: swapper/0 Not tainted 3.12.19-rt30-QorIQ-SDK-V1.7+g66
+>
+> The information contained in this message may be privileged and
+> confidential. It is intended to be read only by the individual or entity to
+> whom it is addressed or by their designee. If the reader of this message is
+> not the intended recipient, you are on notice that any distribution of this
+> message, in any form, is strictly prohibited. If you have received this
+> message in error, please immediately notify the sender and delete or
+> destroy any copy of this message!
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>
+>
+>
+> --
+>
+> *Thanks & Regards,*
+>
+> *Sandeep G R*
+>
+> The information contained in this message may be privileged and
+> confidential. It is intended to be read only by the individual or entity to
+> whom it is addressed or by their designee. If the reader of this message is
+> not the intended recipient, you are on notice that any distribution of this
+> message, in any form, is strictly prohibited. If you have received this
+> message in error, please immediately notify the sender and delete or
+> destroy any copy of this message!
+>
+>
+>
+>
+>
+> --
+>
+> *Thanks & Regards,*
+>
+> *Sandeep G R*
+>    The information contained in this message may be privileged and
+> confidential. It is intended to be read only by the individual or entity to
+> whom it is addressed or by their designee. If the reader of this message is
+> not the intended recipient, you are on notice that any distribution of this
+> message, in any form, is strictly prohibited. If you have received this
+> message in error, please immediately notify the sender and delete or
+> destroy any copy of this message!
+>
+
+
+
+-- 
+*Thanks & Regards,*
+*Sandeep G R*
+
+--001a11c299bcb52a3205136329bf
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:trebuche=
+t ms,sans-serif;color:#073763">Sorry we don&#39;t use the UBIFS.</div></div=
+><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Fri, Apr 10, =
+2015 at 12:41 PM, Leo Tao <span dir=3D"ltr">&lt;<a href=3D"mailto:Leo.Tao@f=
+lextronics.com" target=3D"_blank">Leo.Tao@flextronics.com</a>&gt;</span> wr=
+ote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
+-left:1px #ccc solid;padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi Sandeep,<o:p></o:p></s=
-pan></p>
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Hi&nbsp; Sandeep,<u></u><=
+u></u></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">From the log file,&nbsp; =
+I can see you are booting from Nor Flash and rootfs is mount as Ext2.<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">I had no problem to boot&=
+nbsp; this way.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">I am trying to boot form =
+nand and mount rootfs&nbsp; as UBIFS. That&rsquo;s the reason I raised this=
+ request.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Can you forward my origin=
+al request to&nbsp; your expert who is familiar with using UBIFS?<u></u><u>=
+</u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>&nbsp;<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Thanks<u></u><u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Leo<u></u><u></u></span><=
 /p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thank you for your quick =
-response.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">It&#8217;s true SDK1.7 do=
-esn&#8217;t mention&nbsp; using UBIFS with Nand Flash. But we decide to use=
- the Nand Flash on Board.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Can you send me your boot=
-cmd&nbsp; and boot log running T4240RDB please?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Thanks<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Leo<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
-/p>
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>&nbsp;<u></u></spa=
+n></p>
 <p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
 ;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
 ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Sandeep =
-G.R [mailto:grsandeep85@gmail.com]
+G.R [mailto:<a href=3D"mailto:grsandeep85@gmail.com" target=3D"_blank">grsa=
+ndeep85@gmail.com</a>]
+<br>
+<b>Sent:</b> Friday, April 10, 2015 2:34 PM</span></p><div><div class=3D"h5=
+"><br>
+<b>To:</b> Leo Tao<br>
+<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] Freescale T1040RDB Failed to mount UBIFS<u></u>=
+<u></u></div></div><p></p><div><div class=3D"h5">
+<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
+&quot;sans-serif&quot;;color:#073763">Attached the boot log for T4240RDB.<u=
+></u><u></u></span></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
+<div>
+<p class=3D"MsoNormal">On Fri, Apr 10, 2015 at 12:10 PM, Leo Tao &lt;<a hre=
+f=3D"mailto:Leo.Tao@flextronics.com" target=3D"_blank">Leo.Tao@flextronics.=
+com</a>&gt; wrote:<u></u><u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Hi Sandeep,</span><u></u>=
+<u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">&nbsp;</span><u></u><u></=
+u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Thank you for your quick =
+response.</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">It&rsquo;s true SDK1.7 do=
+esn&rsquo;t mention&nbsp; using UBIFS with Nand Flash. But we decide to use=
+ the Nand Flash
+ on Board.</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Can you send me your boot=
+cmd&nbsp; and boot log running T4240RDB please?</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">&nbsp;</span><u></u><u></=
+u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Thanks</span><u></u><u></=
+u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Leo</span><u></u><u></u><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">&nbsp;</span><u></u><u></=
+u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">&nbsp;</span><u></u><u></=
+u></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Sandeep =
+G.R [mailto:<a href=3D"mailto:grsandeep85@gmail.com" target=3D"_blank">grsa=
+ndeep85@gmail.com</a>]
 <br>
 <b>Sent:</b> Friday, April 10, 2015 1:33 PM<br>
 <b>To:</b> Leo Tao<br>
-<b>Cc:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] Freescale T1040RDB Failed to mount UBIFS<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] Freescale T1040RDB Failed to mount UBIFS</span>=
+<u></u><u></u></p>
+<p class=3D"MsoNormal">&nbsp;<u></u><u></u></p>
 <div>
 <div>
 <p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
-&quot;sans-serif&quot;;color:#073763">Hi Leo,<o:p></o:p></span></p>
+&quot;sans-serif&quot;;color:#073763">Hi Leo,</span><u></u><u></u></p>
 </div>
 <div>
 <p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
-&quot;sans-serif&quot;;color:#073763"><o:p>&nbsp;</o:p></span></p>
+&quot;sans-serif&quot;;color:#073763">&nbsp;</span><u></u><u></u></p>
 </div>
 <div>
 <p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
 &quot;sans-serif&quot;;color:#073763">I walked through the QorIQ-SDK-1.7 ma=
-nual section 3.4.16 for T1040RDB doesn't say anything on the NAND flash pro=
-cedure. I can see the NOR Flash memory map and flash procedure.<o:p></o:p><=
-/span></p>
+nual section 3.4.16 for T1040RDB doesn&#39;t say anything on the NAND flash
+ procedure. I can see the NOR Flash memory map and flash procedure.</span><=
+u></u><u></u></p>
 </div>
 <div>
 <p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
-&quot;sans-serif&quot;;color:#073763"><o:p>&nbsp;</o:p></span></p>
+&quot;sans-serif&quot;;color:#073763">&nbsp;</span><u></u><u></u></p>
 </div>
 <div>
 <p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
 &quot;sans-serif&quot;;color:#073763">I use T4240RDB with NOR flash works g=
-reat.<o:p></o:p></span></p>
+reat.</span><u></u><u></u></p>
 </div>
 <div>
 <p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
-&quot;sans-serif&quot;;color:#073763"><o:p>&nbsp;</o:p></span></p>
+&quot;sans-serif&quot;;color:#073763">&nbsp;</span><u></u><u></u></p>
 </div>
 <div>
 <p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
 &quot;sans-serif&quot;;color:#073763">Please contact your local Freescale F=
-AE for more support and post the question is Freescale forum you might get =
-some help.<o:p></o:p></span></p>
+AE for more support and post the question is Freescale forum you might get
+ some help.</span><u></u><u></u></p>
 </div>
 <div>
 <p class=3D"MsoNormal"><span style=3D"font-family:&quot;Trebuchet MS&quot;,=
-&quot;sans-serif&quot;;color:#073763"><o:p>&nbsp;</o:p></span></p>
+&quot;sans-serif&quot;;color:#073763">&nbsp;</span><u></u><u></u></p>
 </div>
 </div>
 <div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp;<u></u><u></u></p>
 <div>
 <p class=3D"MsoNormal">On Fri, Apr 10, 2015 at 10:53 AM, Leo Tao &lt;<a hre=
 f=3D"mailto:Leo.Tao@flextronics.com" target=3D"_blank">Leo.Tao@flextronics.=
-com</a><span style=3D"color:#1F497D"><o:p></o:p></span></p>
+com</a><u></u><u></u></p>
 <div>
 <div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">I built UBIFS rootfs for T1040RDB, apparently I got 2 rootfs image=
-s:<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">1. fsl-image-core-t1040rdb-20150408204106.rootfs.ubi<o:p></o:p></p=
->
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">2. fsl-image-core-t1040rdb-20150408204106.rootfs.ubifs<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">So I updated &nbsp;Nand Flash rootfs Partition with &nbsp;image :f=
-sl-image-core-t1040rdb-20150408204106.rootfs.ubifs<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">Uboot bootcmd : bootcmd=3Dsetenv bootargs noinitrd ip=3Doff mem=3D=
-256M rootwait=3D1 rw ubi.mtd=3D7,4096 rootfstype=3Dubifs root=3Dubi0:rootfs=
- console=3D$consoledev,$baudrate $othbootargs;nand read.e
+<p class=3D"MsoNormal">&nbsp;<u></u><u></u></p>
+<p class=3D"MsoNormal">I built UBIFS rootfs for T1040RDB, apparently I got =
+2 rootfs images:<u></u><u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">1. fsl-image-core-t1040rdb-20150408204106.rootfs.ubi=
+<u></u><u></u></p>
+<p class=3D"MsoNormal">2. fsl-image-core-t1040rdb-20150408204106.rootfs.ubi=
+fs<u></u><u></u></p>
+<p class=3D"MsoNormal">So I updated &nbsp;Nand Flash rootfs Partition with =
+&nbsp;image :fsl-image-core-t1040rdb-20150408204106.rootfs.ubifs<u></u><u><=
+/u></p>
+<p class=3D"MsoNormal">&nbsp;<u></u><u></u></p>
+<p class=3D"MsoNormal">Uboot bootcmd : bootcmd=3Dsetenv bootargs noinitrd i=
+p=3Doff mem=3D256M rootwait=3D1 rw ubi.mtd=3D7,4096 rootfstype=3Dubifs root=
+=3Dubi0:rootfs console=3D$consoledev,$baudrate $othbootargs;nand read.e
  $loadaddr $kernel_addr $kernel_size;nand read.e $fdtaddr $fdt_addr $fdt_si=
-ze;bootm $loadaddr - $fdtaddr<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">My question is<o:p></o:p></p>
+ze;bootm $loadaddr - $fdtaddr<u></u><u></u></p>
+<p class=3D"MsoNormal">&nbsp;<u></u><u></u></p>
+<p class=3D"MsoNormal">My question is<u></u><u></u></p>
 <p>1.<span style=3D"font-size:7.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <=
-/span>which image should be flashed to Nand, xxx.ubi or xxx.ubifs?<o:p></o:=
-p></p>
+/span>which image should be flashed to Nand, xxx.ubi or xxx.ubifs?<u></u><u=
+></u></p>
 <p>2.<span style=3D"font-size:7.0pt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <=
-/span>what does the error blow mean?<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">Built uboot and kernel to support ubifs and reset&nbsp; T1040RDB, =
-but I got error blow:<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">Key type dns_resolver registered<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">UBI: attaching mtd7 to ubi0<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">UBI error: validate_ec_hdr: bad VID header offset 512, expected 40=
-96<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">UBI error: validate_ec_hdr: bad EC header<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">Erase counter header dump:<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; magic&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x55424923<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; version&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; 1<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ec&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vid_hdr_offset 512<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data_offset&nbsp;&nbsp;=
-&nbsp; 1024<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; image_seq&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;
-<a href=3D"tel:2076921562" target=3D"_blank">2076921562</a><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hdr_crc&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; 0x951adef<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">erase counter header hexdump:<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">CPU: 2 PID: 1 Comm: swapper/0 Not tainted 3.12.19-rt30-QorIQ-SDK-V=
-1.7&#43;g6619b8b #6<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">Call Trace:<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">[c9081cd0] [c0006f50] show_stack&#43;0x40/0x150 (unreliable)<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">[c9081d10] [c06e9a20] dump_stack&#43;0x78/0xa0<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">[c9081d20] [c03a56ac] validate_ec_hdr&#43;0xac/0x120<o:p></o:p></p=
->
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">[c9081d30] [c03a6104] ubi_io_read_ec_hdr&#43;0x184/0x240<o:p></o:p=
-></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">[c9081d60] [c03aaf00] ubi_attach&#43;0x180/0x14d0<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">[c9081de0] [c039fdf8] ubi_attach_mtd_dev&#43;0x688/0xc80<o:p></o:p=
-></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">[c9081e30] [c08e9348] ubi_init&#43;0x274/0x30c<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">[c9081e80] [c00021a8] do_one_initcall&#43;0x158/0x1b0<o:p></o:p></=
-p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">[c9081ef0] [c08cb8d0] kernel_init_freeable&#43;0x134/0x1d0<o:p></o=
-:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">[c9081f20] [c0002808] kernel_init&#43;0x18/0x170<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">[c9081f40] [c000fe0c] ret_from_kernel_thread&#43;0x5c/0x64<o:p></o=
-:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">UBI error: ubi_io_read_ec_hdr: validation failed for PEB 0<o:p></o=
-:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">UBI error: ubi_attach_mtd_dev: failed to attach mtd7, error -22<o:=
-p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">UBI error: ubi_init: cannot attach mtd7<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">fsl_dpa_macless: FSL DPAA MACless Ethernet driver ()<o:p></o:p></p=
->
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">fsl_dpa_generic: FSL DPAA Generic Ethernet driver ()<o:p></o:p></p=
->
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">drivers/rtc/hctosys.c: unable to open rtc device (rtc0)<o:p></o:p>=
+/span>what does the error blow mean?<u></u><u></u></p>
+<p class=3D"MsoNormal">&nbsp;<u></u><u></u></p>
+<p class=3D"MsoNormal">Built uboot and kernel to support ubifs and reset&nb=
+sp; T1040RDB, but I got error blow:<u></u><u></u></p>
+<p class=3D"MsoNormal">&nbsp;<u></u><u></u></p>
+<p class=3D"MsoNormal">Key type dns_resolver registered<u></u><u></u></p>
+<p class=3D"MsoNormal">UBI: attaching mtd7 to ubi0<u></u><u></u></p>
+<p class=3D"MsoNormal">UBI error: validate_ec_hdr: bad VID header offset 51=
+2, expected 4096<u></u><u></u></p>
+<p class=3D"MsoNormal">UBI error: validate_ec_hdr: bad EC header<u></u><u><=
+/u></p>
+<p class=3D"MsoNormal">Erase counter header dump:<u></u><u></u></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; magic&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x55424923<u></u><u></u>=
 </p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">UBIFS error (pid 1): ubifs_mount: cannot open &quot;ubi0:rootfs&qu=
-ot;, error -19<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">VFS: Cannot open root device &quot;ubi0:rootfs&quot; or unknown-bl=
-ock(0,0): error -19<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">Please append a correct &quot;root=3D&quot; boot option; here are =
-the available partitions:<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">1f00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 131072 =
-mtdblock0&nbsp; (driver?)<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">1f01&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; 1536 mtdblock1&nbsp; (driver?)<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">1f02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; 1024 mtdblock2&nbsp; (driver?)<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">1f03&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; 1024 mtdblock3&nbsp; (driver?)<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">1f04&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2=
-4576 mtdblock4&nbsp; (driver?)<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">1f05&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1=
-0240 mtdblock5&nbsp; (driver?)<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">1f06&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; 1024 mtdblock6&nbsp; (driver?)<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">1f07&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 409600 =
-mtdblock7&nbsp; (driver?)<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">1f08&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9=
-8304 mtdblock8&nbsp; (driver?)<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">1f09&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 524288 =
-mtdblock9&nbsp; (driver?)<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">1f0a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6=
-5536 mtdblock10&nbsp; (driver?)<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">Kernel panic - not syncing: VFS: Unable to mount root fs on unknow=
-n-block(0,0)<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto">CPU: 2 PID: 1 Comm: swapper/0 Not tainted 3.12.19-rt30-QorIQ-SDK-V=
-1.7&#43;g66<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; version&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1<u></u><u></u></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ec&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0<u></u><=
+u></u></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; vid_hdr_o=
+ffset 512<u></u><u></u></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; data_offs=
+et&nbsp;&nbsp;&nbsp; 1024<u></u><u></u></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; image_seq=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href=3D"tel:2076921562" target=3D"_blank">2076921562</a><u></u><u></u></=
+p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hdr_crc&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0x951adef<u></u><u></u></p>
+<p class=3D"MsoNormal">erase counter header hexdump:<u></u><u></u></p>
+<p class=3D"MsoNormal">CPU: 2 PID: 1 Comm: swapper/0 Not tainted 3.12.19-rt=
+30-QorIQ-SDK-V1.7+g6619b8b #6<u></u><u></u></p>
+<p class=3D"MsoNormal">Call Trace:<u></u><u></u></p>
+<p class=3D"MsoNormal">[c9081cd0] [c0006f50] show_stack+0x40/0x150 (unrelia=
+ble)<u></u><u></u></p>
+<p class=3D"MsoNormal">[c9081d10] [c06e9a20] dump_stack+0x78/0xa0<u></u><u>=
+</u></p>
+<p class=3D"MsoNormal">[c9081d20] [c03a56ac] validate_ec_hdr+0xac/0x120<u><=
+/u><u></u></p>
+<p class=3D"MsoNormal">[c9081d30] [c03a6104] ubi_io_read_ec_hdr+0x184/0x240=
+<u></u><u></u></p>
+<p class=3D"MsoNormal">[c9081d60] [c03aaf00] ubi_attach+0x180/0x14d0<u></u>=
+<u></u></p>
+<p class=3D"MsoNormal">[c9081de0] [c039fdf8] ubi_attach_mtd_dev+0x688/0xc80=
+<u></u><u></u></p>
+<p class=3D"MsoNormal">[c9081e30] [c08e9348] ubi_init+0x274/0x30c<u></u><u>=
+</u></p>
+<p class=3D"MsoNormal">[c9081e80] [c00021a8] do_one_initcall+0x158/0x1b0<u>=
+</u><u></u></p>
+<p class=3D"MsoNormal">[c9081ef0] [c08cb8d0] kernel_init_freeable+0x134/0x1=
+d0<u></u><u></u></p>
+<p class=3D"MsoNormal">[c9081f20] [c0002808] kernel_init+0x18/0x170<u></u><=
+u></u></p>
+<p class=3D"MsoNormal">[c9081f40] [c000fe0c] ret_from_kernel_thread+0x5c/0x=
+64<u></u><u></u></p>
+<p class=3D"MsoNormal">UBI error: ubi_io_read_ec_hdr: validation failed for=
+ PEB 0<u></u><u></u></p>
+<p class=3D"MsoNormal">UBI error: ubi_attach_mtd_dev: failed to attach mtd7=
+, error -22<u></u><u></u></p>
+<p class=3D"MsoNormal">UBI error: ubi_init: cannot attach mtd7<u></u><u></u=
+></p>
+<p class=3D"MsoNormal">fsl_dpa_macless: FSL DPAA MACless Ethernet driver ()=
+<u></u><u></u></p>
+<p class=3D"MsoNormal">fsl_dpa_generic: FSL DPAA Generic Ethernet driver ()=
+<u></u><u></u></p>
+<p class=3D"MsoNormal">drivers/rtc/hctosys.c: unable to open rtc device (rt=
+c0)<u></u><u></u></p>
+<p class=3D"MsoNormal">UBIFS error (pid 1): ubifs_mount: cannot open &quot;=
+ubi0:rootfs&quot;, error -19<u></u><u></u></p>
+<p class=3D"MsoNormal">VFS: Cannot open root device &quot;ubi0:rootfs&quot;=
+ or unknown-block(0,0): error -19<u></u><u></u></p>
+<p class=3D"MsoNormal">Please append a correct &quot;root=3D&quot; boot opt=
+ion; here are the available partitions:<u></u><u></u></p>
+<p class=3D"MsoNormal">1f00&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp; 131072 mtdblock0&nbsp; (driver?)<u></u><u></u></p>
+<p class=3D"MsoNormal">1f01&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; 1536 mtdblock1&nbsp; (driver?)<u></u><u></u></p>
+<p class=3D"MsoNormal">1f02&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; 1024 mtdblock2&nbsp; (driver?)<u></u><u></u></p>
+<p class=3D"MsoNormal">1f03&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; 1024 mtdblock3&nbsp; (driver?)<u></u><u></u></p>
+<p class=3D"MsoNormal">1f04&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; 24576 mtdblock4&nbsp; (driver?)<u></u><u></u></p>
+<p class=3D"MsoNormal">1f05&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; 10240 mtdblock5&nbsp; (driver?)<u></u><u></u></p>
+<p class=3D"MsoNormal">1f06&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; 1024 mtdblock6&nbsp; (driver?)<u></u><u></u></p>
+<p class=3D"MsoNormal">1f07&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp; 409600 mtdblock7&nbsp; (driver?)<u></u><u></u></p>
+<p class=3D"MsoNormal">1f08&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; 98304 mtdblock8&nbsp; (driver?)<u></u><u></u></p>
+<p class=3D"MsoNormal">1f09&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp; 524288 mtdblock9&nbsp; (driver?)<u></u><u></u></p>
+<p class=3D"MsoNormal">1f0a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; 65536 mtdblock10&nbsp; (driver?)<u></u><u></u></p>
+<p class=3D"MsoNormal">Kernel panic - not syncing: VFS: Unable to mount roo=
+t fs on unknown-block(0,0)<u></u><u></u></p>
+<p class=3D"MsoNormal">CPU: 2 PID: 1 Comm: swapper/0 Not tainted 3.12.19-rt=
+30-QorIQ-SDK-V1.7+g66<u></u><u></u></p>
 </div>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">The information contained in this message may be pri=
+vileged and confidential. It is intended to be read only by the individual =
+or entity to whom it is addressed or by their designee.
+ If the reader of this message is not the intended recipient, you are on no=
+tice that any distribution of this message, in any form, is strictly prohib=
+ited. If you have received this message in error, please immediately notify=
+ the sender and delete or destroy
+ any copy of this message! <u></u><u></u></p>
+</div>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><br>
+--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><u></u><u></u></p>
+</div>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><br>
+<br clear=3D"all">
+<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">&nbsp;<u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal">--
+<u></u><u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Trebuchet MS&quo=
+t;,&quot;sans-serif&quot;;color:#073763">Thanks &amp; Regards,</span></b><u=
+></u><u></u></p>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><b><span style=3D"fon=
+t-family:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;;color:#073763">San=
+deep G R</span></b><u></u><u></u></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div>
 <p class=3D"MsoNormal">The information contained in this message may be pri=
 vileged and confidential. It is intended to be read only by the individual =
 or entity to whom it is addressed or by their designee. If the reader of th=
@@ -544,37 +709,32 @@ is message is not the intended recipient,
  you are on notice that any distribution of this message, in any form, is s=
 trictly prohibited. If you have received this message in error, please imme=
 diately notify the sender and delete or destroy any copy of this message!
-<o:p></o:p></p>
+<u></u><u></u></p>
 </div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><o:p></o:p></p>
+</div>
+</div>
 </div>
 <p class=3D"MsoNormal"><br>
 <br clear=3D"all">
-<o:p></o:p></p>
+<u></u><u></u></p>
 <div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><u></u>&nbsp;<u></u></p>
 </div>
-<p class=3D"MsoNormal">-- <o:p></o:p></p>
+<p class=3D"MsoNormal">-- <u></u><u></u></p>
 <div>
 <div>
 <p class=3D"MsoNormal"><b><span style=3D"font-family:&quot;Trebuchet MS&quo=
-t;,&quot;sans-serif&quot;;color:#073763">Thanks &amp; Regards,</span></b><o=
-:p></o:p></p>
+t;,&quot;sans-serif&quot;;color:#073763">Thanks &amp; Regards,</span></b><u=
+></u><u></u></p>
 <div>
 <p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><b><span style=3D"fon=
 t-family:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;;color:#073763">San=
-deep G R</span></b><o:p></o:p></p>
+deep G R</span></b><u></u><u></u></p>
 </div>
 </div>
 </div>
 </div>
-</div>
+</div></div></div><div><div class=3D"h5">
 The information contained in this message may be privileged and confidentia=
 l. It is intended to be read only by the individual or entity to whom it is=
  addressed or by their designee. If the reader of this message is not the i=
@@ -582,7 +742,13 @@ ntended recipient, you are on notice
  that any distribution of this message, in any form, is strictly prohibited=
 . If you have received this message in error, please immediately notify the=
  sender and delete or destroy any copy of this message!
-</body>
-</html>
+</div></div></div>
 
---_000_CO2PR0801MB679111DB731916FD334AD70EEFA0CO2PR0801MB679na_--
+</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div class=
+=3D"gmail_signature"><div dir=3D"ltr"><font face=3D"trebuchet ms, sans-seri=
+f" color=3D"#073763"><b>Thanks &amp; Regards,</b></font><div><font face=3D"=
+trebuchet ms, sans-serif" color=3D"#073763"><b>Sandeep G R</b></font><br><b=
+r></div></div></div>
+</div>
+
+--001a11c299bcb52a3205136329bf--
