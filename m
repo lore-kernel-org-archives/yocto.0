@@ -1,50 +1,43 @@
-Return-Path: <vm.rod25@gmail.com>
+Return-Path: <rebecca.swee.fun.chang@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1905BE007D0; Sat, 11 Apr 2015 08:45:53 -0700 (PDT)
+	id EC2FFE00994; Sun, 12 Apr 2015 22:03:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vm.rod25[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.176 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3AECE005A0
-	for <yocto@yoctoproject.org>; Sat, 11 Apr 2015 08:45:50 -0700 (PDT)
-Received: by igbqf9 with SMTP id qf9so18001762igb.1
-	for <yocto@yoctoproject.org>; Sat, 11 Apr 2015 08:45:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=SkfoKMHgQ7t4j9hcRTrdtvGnMMhNxtPZXgYtvpFIvz0=;
-	b=sCxxxVyO33+4f7zRoYek6jpt18+0TgmrYejbc07+AzO/0byI1ihH700TMHzxymlM63
-	nHG6/S69keDtDeo2zYLBCKKsiRaTF/rkrGP6iiY6P+08bAZVw9ycFS0EiIJZhcEeqA+R
-	ubH25nFi3fyih47TV5yktf2iU+Qdm728cZ+0JeMxr5xarpn+O4egMBzgQIfLzjW0e4kc
-	08eGEWyHImz1EjEBZXNxJROLlKHjyu/oIaYTVBrLkiqGbzLdwdb4CNS83H9odvKWFn7Q
-	iXp3HMQJwz8egoVwdbLdx5rZlJSvvVQ2jDkJZ95WvIBPvxBsIXUi4g0Ss+wf8fSB2wm6
-	104w==
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2281E00948
+	for <yocto@yoctoproject.org>; Sun, 12 Apr 2015 22:03:03 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 12 Apr 2015 22:03:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,568,1422950400"; 
+	d="scan'208,217";a="712694931"
+Received: from pgsmsx105.gar.corp.intel.com ([10.221.44.96])
+	by orsmga002.jf.intel.com with ESMTP; 12 Apr 2015 22:03:02 -0700
+Received: from pgsmsx103.gar.corp.intel.com ([169.254.2.4]) by
+	PGSMSX105.gar.corp.intel.com ([169.254.4.127]) with mapi id
+	14.03.0224.002; Mon, 13 Apr 2015 13:03:00 +0800
+From: "Chang, Rebecca Swee Fun" <rebecca.swee.fun.chang@intel.com>
+To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+Thread-Topic: [Dizzy] Multilib in Poky
+Thread-Index: AdB1n+laxuP83XMaQSOcBAwmEUNPqg==
+Date: Mon, 13 Apr 2015 05:03:00 +0000
+Message-ID: <50B33AC5ED75F74F991980326F1C438D18FD6BE2@PGSMSX103.gar.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.30.20.206]
 MIME-Version: 1.0
-X-Received: by 10.50.111.10 with SMTP id ie10mr5455539igb.15.1428767149635;
-	Sat, 11 Apr 2015 08:45:49 -0700 (PDT)
-Received: by 10.50.141.228 with HTTP; Sat, 11 Apr 2015 08:45:49 -0700 (PDT)
-Date: Sat, 11 Apr 2015 10:45:49 -0500
-Message-ID: <CAK5mtex2DWeHiDc3mHtQDnUcVSrHyUcjb-ON0KdKRFgV5CEcVQ@mail.gmail.com>
-From: Victor Rodriguez <vm.rod25@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	openembedded-core@lists.openembedded.org
-Subject: How to export variable in bitbake build for MPICH
+Cc: "'paul.eggleton@linux.intel.com'" <paul.eggleton@linux.intel.com>
+Subject: [Dizzy] Multilib in Poky
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,68 +49,204 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 11 Apr 2015 15:45:53 -0000
-Content-Type: multipart/alternative; boundary=089e0149c0546bbf51051374c680
+X-List-Received-Date: Mon, 13 Apr 2015 05:03:08 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_50B33AC5ED75F74F991980326F1C438D18FD6BE2PGSMSX103garcor_"
 
---089e0149c0546bbf51051374c680
-Content-Type: text/plain; charset=UTF-8
-
-HI MPICH build is facing a problem due to the fact that the configure has a
-variable call BASH_SHELL the which set the bash shell of the developer
-computer. However if the developer has /usr/bin/bash  the configure set
-this for the rest of compilation ( you can check this in config.log). Due
-to the fact that Yocto just has /bin/bash the build of any image that
-includes mpich fails.
-
-ERROR: Unable to install packages. Command
-'/home/vrodri3/poky/build/tmp/sysroots/x86_64-linux/usr/bin/smart --quiet
---data-dir=/home/vrodri3/poky/build/tmp/work/qemux86-poky-linux/core-image-minimal/1.0-r0/rootfs/var/lib/smart
-install -y mpich@i586 gcc@i586 run-postinsts@all
-packagegroup-core-boot@qemux86 bash@i586' returned 1:
-error: Can't install mpich-3.1.1-r0@i586: no package provides /usr/bin/bash
-
-
-I tested on the mpich src and the problem is fixed with a simple :
-
-export BASH_SHELL=/bin/bash
-
-( configure does not have an option for this )
-
-I have 2 points :
-
-1) When I do the same export and then bitbake os-core-image-minimal the
-build still fails , Why is that happening?
-
-2) What is the best way to fix this ? How can I set the environment
-variable on the recipe ? Should I patch the Configure ?
-
-Thanks a lot and regards
-
-Victor Rodriguez
-
---089e0149c0546bbf51051374c680
-Content-Type: text/html; charset=UTF-8
+--_000_50B33AC5ED75F74F991980326F1C438D18FD6BE2PGSMSX103garcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>HI MPICH build is facing a problem due to the fa=
-ct that the configure has a variable call BASH_SHELL the which set the bash=
- shell of the developer computer. However if the developer has /usr/bin/bas=
-h=C2=A0 the configure set this for the rest of compilation ( you can check =
-this in config.log). Due to the fact that Yocto just has /bin/bash the buil=
-d of any image that includes mpich fails. <br><br>ERROR: Unable to install =
-packages. Command &#39;/home/vrodri3/poky/build/tmp/sysroots/x86_64-linux/u=
-sr/bin/smart --quiet --data-dir=3D/home/vrodri3/poky/build/tmp/work/qemux86=
--poky-linux/core-image-minimal/1.0-r0/rootfs/var/lib/smart install -y mpich=
-@i586 gcc@i586 run-postinsts@all packagegroup-core-boot@qemux86 bash@i586&#=
-39; returned 1:<br>error: Can&#39;t install mpich-3.1.1-r0@i586: no package=
- provides /usr/bin/bash<br><br><br></div>I tested on the mpich src and the =
-problem is fixed with a simple : <br><br>export BASH_SHELL=3D/bin/bash<br><=
-br></div><div>( configure does not have an option for this ) <br></div><div=
-><br></div><div>I have 2 points : <br><br></div><div>1) When I do the same =
-export and then bitbake os-core-image-minimal the build still fails , Why i=
-s that happening?<br><br></div><div>2) What is the best way to fix this ? H=
-ow can I set the environment variable on the recipe ? Should I patch the Co=
-nfigure ?=C2=A0 <br><br></div><div>Thanks a lot and regards<br><br></div><d=
-iv>Victor Rodriguez<br><br></div></div>
+Hi,
 
---089e0149c0546bbf51051374c680--
+I am building a MACHINE =3D "qemux86" image using Poky v1.7.1 with multilib=
+ feature. I would like the image generated to use glibc as the main libc an=
+d uclibc in lib32 multilib.
+Here are my settings in build/local.conf:
+
+# Multilib Configurations
+require conf/multilib.conf
+MULTILIBS =3D "multilib:lib32"
+DEFAULTTUNE_virtclass-multilib-lib32 =3D "x86"
+baselib_virtclass-multilib-lib32 =3D "lib32"
+LIBCEXTENSION_virtclass-multilib-lib32 =3D "-uclibc"
+LIBCOVERRIDE_virtclass-multilib-lib32 =3D ":libc-uclibc"
+PREFERRED_PROVIDER_virtual/lib32-libc ?=3D "uclibc"
+PREFERRED_PROVIDER_virtual/lib32-libiconv ?=3D "libiconv"
+PREFERRED_PROVIDER_virtual/lib32-libintl ?=3D "gettext"
+USE_NLS_virtclass-multilib-lib32 ?=3D "no"
+CXXFLAGS_append_virtclass-multilib-lib32 =3D " -fvisibility-inlines-hidden"
+IMAGE_LINGUAS_virtclass-multilib-lib32 =3D ""
+LIBC_DEPENDENCIES_virtclass-multilib-lib32 =3D "uclibc uclibc-dbg uclibc-de=
+v uclibc-thread-db"
+PTEST_ENABLED_virtclass-multilib-lib32 =3D ""
+
+
+When I run BitBake to build a Sato image, Bitbake prompt the following erro=
+r.
+
+Parsing of 893 .bb files complete (0 cached, 893 parsed). 2181 targets, 174=
+ skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing PROVIDES 'lib32-glibc'
+ERROR: lib32-glibc was skipped: incompatible with target linux-uclibc
+ERROR: Required build target 'core-image-sato' has no buildable providers.
+Missing or unbuildable dependency chain was: ['core-image-sato', 'lib32-gli=
+bc']
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+
+While the same configurations for multilib was run on Poky Daisy branch, ho=
+wever we don't hit this problem.
+From the Reference Manual, I know that as we migrate to YP version 1.7, egl=
+ibc 3.19 has been replaced with glibc 2.20.
+Could this be the reason of the broken multilib features?
+
+How should I resolve this? How should I exclude the "lib32-glibc" package f=
+rom the build?
+Thanks in advance.
+
+Regards,
+Rebecca
+
+--_000_50B33AC5ED75F74F991980326F1C438D18FD6BE2PGSMSX103garcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@SimSun";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am building a MACHINE =3D &#8220;qemux86&#8221; im=
+age using Poky v1.7.1 with multilib feature. I would like the image generat=
+ed to use glibc as the main libc and uclibc in lib32 multilib.<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">Here are my settings in build/local.conf:<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"># Multilib Configurations<o:p></o:p></p>
+<p class=3D"MsoNormal">require conf/multilib.conf<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p></o:p></p>
+<p class=3D"MsoNormal">MULTILIBS =3D &quot;multilib:lib32&quot;<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal">DEFAULTTUNE_virtclass-multilib-lib32 =3D &quot;x86&q=
+uot;<o:p></o:p></p>
+<p class=3D"MsoNormal">baselib_virtclass-multilib-lib32 =3D &quot;lib32&quo=
+t;<o:p></o:p></p>
+<p class=3D"MsoNormal">LIBCEXTENSION_virtclass-multilib-lib32 =3D &quot;-uc=
+libc&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">LIBCOVERRIDE_virtclass-multilib-lib32 =3D &quot;:lib=
+c-uclibc&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">PREFERRED_PROVIDER_virtual/lib32-libc ?=3D &quot;ucl=
+ibc&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">PREFERRED_PROVIDER_virtual/lib32-libiconv ?=3D &quot=
+;libiconv&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">PREFERRED_PROVIDER_virtual/lib32-libintl ?=3D &quot;=
+gettext&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">USE_NLS_virtclass-multilib-lib32 ?=3D &quot;no&quot;=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">CXXFLAGS_append_virtclass-multilib-lib32 =3D &quot; =
+-fvisibility-inlines-hidden&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">IMAGE_LINGUAS_virtclass-multilib-lib32 =3D &quot;&qu=
+ot;<o:p></o:p></p>
+<p class=3D"MsoNormal">LIBC_DEPENDENCIES_virtclass-multilib-lib32 =3D &quot=
+;uclibc uclibc-dbg uclibc-dev uclibc-thread-db&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">PTEST_ENABLED_virtclass-multilib-lib32 =3D &quot;&qu=
+ot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">When I run BitBake to build a Sato image, Bitbake pr=
+ompt the following error.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Parsing of 893 .bb files complete (0 cached, 893 par=
+sed). 2181 targets, 174 skipped, 0 masked, 0 errors.<o:p></o:p></p>
+<p class=3D"MsoNormal">NOTE: Resolving any missing task queue dependencies<=
+o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Nothing PROVIDES 'lib32-glibc'<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: lib32-glibc was skipped: incompatible with ta=
+rget linux-uclibc<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Required build target 'core-image-sato' has n=
+o buildable providers.<o:p></o:p></p>
+<p class=3D"MsoNormal">Missing or unbuildable dependency chain was: ['core-=
+image-sato', 'lib32-glibc']<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p></o:p></p>
+<p class=3D"MsoNormal">Summary: There were 2 ERROR messages shown, returnin=
+g a non-zero exit code.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">While the same configurations for multilib was run o=
+n Poky Daisy branch, however we don&#8217;t hit this problem.<o:p></o:p></p=
+>
+<p class=3D"MsoNormal">From the Reference Manual, I know that as we migrate=
+ to YP version 1.7, eglibc 3.19 has been replaced with glibc 2.20.<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">Could this be the reason of the broken multilib feat=
+ures? <o:p>
+</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">How should I resolve this? How should I exclude the =
+&#8220;lib32-glibc&#8221; package from the build?
+<o:p></o:p></p>
+<p class=3D"MsoNormal">Thanks in advance. <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Rebecca<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_50B33AC5ED75F74F991980326F1C438D18FD6BE2PGSMSX103garcor_--
