@@ -1,55 +1,48 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <simon.chen@lmco.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 13E90E00957; Wed, 15 Apr 2015 08:26:41 -0700 (PDT)
+	id 04E1FE0076B; Tue, 14 Apr 2015 09:53:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bruce.ashfield[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.174 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.35.35.12 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ob0-f174.google.com (mail-ob0-f174.google.com
-	[209.85.214.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC2FDE0092E
-	for <yocto@yoctoproject.org>; Wed, 15 Apr 2015 08:26:39 -0700 (PDT)
-Received: by obbeb7 with SMTP id eb7so24623233obb.3
-	for <yocto@yoctoproject.org>; Wed, 15 Apr 2015 08:26:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=mfR9MTokT/fIcsJDiP5YoRhQqZ4X0q4XV9+eLcjNQ88=;
-	b=BuQRjtIY+rXUvgKdxCzwadkoosYrExt/vz48iNz8EQtgWGVdmJZ2l0MmfleWoZ7oFB
-	ht8c2oZPWlhDL3YPOYQfzZjv8sjHyHx7Qup6oGsSakQJpZBPNnWFpyMxP2hcN/UvmtRK
-	6c7CS+q4NMMETJVSqD3mHkm3Li3YDXWvYWg3AQTH17CFGsujVaGFEq+UrZXBFFRUob71
-	eRBHP45aC7DVRAmOKC2UHq7F9PpTMn6KJFUkYcBxku+9jaDX6VcAHw91zLK3E/ALo0Dd
-	N0ROUPbwPN/BLtCj5yFLrnKZm4qO8Lhgb2za4cKJ7cfr5dzxRWWU5AgzAq4mL7atauti
-	9ijQ==
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 9732 seconds by postgrey-1.32 at yocto-www;
+	Tue, 14 Apr 2015 09:53:45 PDT
+Received: from mailfo02.lmco.com (mailfo02.lmco.com [192.35.35.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43572E003A8
+	for <yocto@yoctoproject.org>; Tue, 14 Apr 2015 09:53:45 -0700 (PDT)
+Received: from HVXHTPN8.us.lmco.com (hvxhtpn8.ems.lmco.com [158.186.149.26])
+	by mailfo02.lmco.com (8.14.5/8.14.5) with ESMTP id t3EEB9mb004393
+	for <yocto@yoctoproject.org>; Tue, 14 Apr 2015 15:11:32 +0100
+Received: from HVXDSP45.us.lmco.com ([fe80::e5e8:eada:5adc:d92a]) by
+	HVXHTPN8.us.lmco.com ([fe80::10bd:9768:f118:60b1%15]) with mapi id
+	14.03.0174.001; Tue, 14 Apr 2015 10:10:44 -0400
+From: "Chen, Simon (N-DCR SYSTEM HOUSE)" <simon.chen@lmco.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Configuring Yocto's GRUB with Custom Boot Parameters
+Thread-Index: AdB2vMgLoJxwWj0WSkyXHpN8/RO+sw==
+Date: Tue, 14 Apr 2015 14:10:44 +0000
+Message-ID: <D3EFC6D8DB6B2D48A91E6F02D0DB338FA737B6@HVXDSP45.us.lmco.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [158.186.156.90]
 MIME-Version: 1.0
-X-Received: by 10.42.111.68 with SMTP id t4mr31692309icp.36.1429111565152;
-	Wed, 15 Apr 2015 08:26:05 -0700 (PDT)
-Received: by 10.107.158.20 with HTTP; Wed, 15 Apr 2015 08:26:05 -0700 (PDT)
-In-Reply-To: <552E824C.5080603@mail.bg>
-References: <355BE46A91031048906B695426A8D8E616B7BE37@DEFTHW99EH4MSX.ww902.siemens.net>
-	<552E63F1.9090406@windriver.com> <552E824C.5080603@mail.bg>
-Date: Wed, 15 Apr 2015 11:26:05 -0400
-Message-ID: <CADkTA4Puh7QLQemCSrewmMqcnrUJFw4x6bEJsmKu=SRk6C07-A@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Nikolay Dimitrov <picmaster@mail.bg>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<Openembedded-core@lists.openembedded.org>
-Subject: Re: Move device tree generation from include file to bbclass
+X-LM-Outbound: External 158.186.149.26 cntry=us
+	g=126862b21d470d3c423acfca260d04c5 q=t3EEB9mb004393 m=12
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.13.68, 1.0.33,
+	0.0.0000
+	definitions=2015-04-14_04:2015-04-14, 2015-04-14,
+	1970-01-01 signatures=0
+X-Mailman-Approved-At: Wed, 15 Apr 2015 08:55:31 -0700
+Subject: Configuring Yocto's GRUB with Custom Boot Parameters
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,105 +54,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Apr 2015 15:26:41 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 14 Apr 2015 16:53:48 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_D3EFC6D8DB6B2D48A91E6F02D0DB338FA737B6HVXDSP45uslmcocom_"
 
-On Wed, Apr 15, 2015 at 11:22 AM, Nikolay Dimitrov <picmaster@mail.bg> wrote:
-> Hi Bruce,
+--_000_D3EFC6D8DB6B2D48A91E6F02D0DB338FA737B6HVXDSP45uslmcocom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+I am trying to configure my YOCTO OS, built from poky-dizzy-12.0.1, to use =
+the uvesafb driver upon booting. I am trying to add a few boot parameters t=
+o GRUB by appending the following into GRUB: "vesafb:mtrr,ywrap vga=3D0x31A=
+," but nothing seems to be implemented. I've also tried entering "setparams=
+ vesafb:mtrr,ywrap vga=3D0x31A" into the GRUB command line which doesn't wo=
+rk either. I understand that adding boot parameters in a GRUB menu is only =
+for temporary implementations, which could be the source of my problem. For=
+ a permanent implementation, I've also tried looking for the file etc/defau=
+lt/grub, and the update-grub command that creates it. Both of these do not =
+exist for Yocto. I thought about brute forcing my changes to the EFI/BOOT/g=
+rub.cfg file in my boot drive, which is probably not recommended. My main q=
+uestion is, how would I permanently add custom boot parameters into GRUB?
+
+Curiously enough, I was able to get the OS to boot with the Vesa driver onl=
+y when I append my boot parameters in GRUB, select boot in the GRUB menu, a=
+nd quickly do a force restart mid-way during booting, and then do another r=
+eboot after that. When booting, the CPU also skips the GRUB menu page. This=
+ is extremely hackish, and most likely not a good implementation. I hope I =
+can find a better method.
+
+Thanks,
+Simon
+
+--_000_D3EFC6D8DB6B2D48A91E6F02D0DB338FA737B6HVXDSP45uslmcocom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
->
-> On 04/15/2015 04:13 PM, Bruce Ashfield wrote:
->>
->> On 2015-04-15 08:33 AM, Bach, Pascal wrote:
->>>
->>> Hi
->>>
->>
->> Adding oe-core, since that's the right place to have a discussion
->> like this.
->>
->>> As ARM now also moved to device tree it look like in future we will
->>>  have more kernels that are using device tree then ones that are
->>> not.
->>
->>
->> True, but it has been like this for quite some time now :)
->>
->>> As far as I understand currently the generation of device trees is
->>>  controlled via KERNEL_DEVICETREE and is handled in via an include
->>> file recipes-kernel/linux/linux-dtb.inc.
->>>
->>> I was thinking about moving this include into a class so it becomes
->>>  easier to use. Before I dive into implementing something I would
->>> like some feedback from the community.
->>
->>
->> The big trick with changing anything like this is compatibility with
->> existing recipes. Whatever we do, existing recipes and layers
->> shouldn't be broken .. or if they are broken, there should be a
->> compelling technical reason to do so.
->>
->>>
->>> I have the following variant in mind.
->>>
->>> Add the device tree generation to the current kernel.bbclass (or
->>> let kernel.bblcass inherit from a kernel-dtb.bbclass). This way all
->>> kernels would automatically be DT enabled. The class would check if
->>> KERNEL_DEVICETREE is set and generate device trees based on this
->>> information. For boards that don't have KERNEL_DEVICETREE set the
->>> class would do nothing and the behavior is like before. The
->>> advantage I see with this approach is that the only thing a user
->>> needs to do is to set KERNEL_DEVICETREE in the board and make sure
->>> the device trees are available in the kernel they like to build.
->>
->>
->> That's pretty much the experience that most users have now, since
->> there's nearly always a kernel recipe created, that recipe includes
->> linux-dtb.inc, and sets KERNEL_DEVICETREE.
->
->
-> As far as I understood, Pascal's idea is to remove the need for user
-> recipes to include linux-dtb.inc, and provide this functionality via
-> inheritance.
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am trying to configure my YOCTO OS, built from pok=
+y-dizzy-12.0.1, to use the uvesafb driver upon booting. I am trying to add =
+a few boot parameters to GRUB by appending the following into GRUB: &#8220;=
+vesafb:mtrr,ywrap vga=3D0x31A,&#8221; but nothing
+ seems to be implemented. I&#8217;ve also tried entering &#8220;setparams v=
+esafb:mtrr,ywrap vga=3D0x31A&#8221; into the GRUB command line which doesn&=
+#8217;t work either. I understand that adding boot parameters in a GRUB men=
+u is only for temporary implementations, which could be the
+ source of my problem. For a permanent implementation, I&#8217;ve also trie=
+d looking for the file etc/default/grub, and the update-grub command that c=
+reates it. Both of these do not exist for Yocto. I thought about brute forc=
+ing my changes to the EFI/BOOT/grub.cfg
+ file in my boot drive, which is probably not recommended. My main question=
+ is, how would I permanently add custom boot parameters into GRUB?<o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Curiously enough, I was able to get the OS to boot w=
+ith the Vesa driver only when I append my boot parameters in GRUB, select b=
+oot in the GRUB menu, and quickly do a force restart mid-way during booting=
+, and then do another reboot after
+ that. When booting, the CPU also skips the GRUB menu page. This is extreme=
+ly hackish, and most likely not a good implementation. I hope I can find a =
+better method.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Simon<o:p></o:p></p>
+</div>
+</body>
+</html>
 
-That is obvious. My questions are around "why". There's no big
-technical advantage, and if you remove that existing file, you break
-existing recipes. Which means you need to leave a stub in place.
-
-So without a technical advantage, it's churn for the sake of
-churn.
-
-Bruce
-
->
->> Everything else happens to build and package the device tree.
->>
->> Was there something specifically that was causing issues with the
->> current way of building them ?
->>
->> Cheers,
->>
->> Bruce
->>
->>>
->>> I appreciate your feedback?
->>>
->>> Regards Pascal
->>>
->>
->
-> Regards,
-> Nikolay
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
-
--- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
-
+--_000_D3EFC6D8DB6B2D48A91E6F02D0DB338FA737B6HVXDSP45uslmcocom_--
