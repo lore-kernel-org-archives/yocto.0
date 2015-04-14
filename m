@@ -1,39 +1,46 @@
-Return-Path: <Raghavendra.Kakarla@inedasystems.com>
+Return-Path: <todor.minchev@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CC1F6E00953; Tue, 14 Apr 2015 03:48:23 -0700 (PDT)
+	id C07E9E0095C; Tue, 14 Apr 2015 04:50:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.invecas.com (mx2.invecas.com [112.133.222.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74E97E00932
-	for <yocto@yoctoproject.org>; Tue, 14 Apr 2015 03:48:15 -0700 (PDT)
-Received: from SOC-EXCH-01.invecas.local (10.0.30.8) by mail.invecas.com
-	(10.0.30.132) with Microsoft SMTP Server (TLS) id 14.3.123.3;
-	Tue, 14 Apr 2015 16:18:15 +0530
-Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
-	SOC-EXCH-01.invecas.local (10.0.30.8) with Microsoft SMTP Server (TLS)
-	id 15.0.995.29; Tue, 14 Apr 2015 16:18:09 +0530
-Received: from SOC-EXCH-02.invecas.local ([::1]) by SOC-EXCH-02.invecas.local
-	([fe80::b45c:f5fd:ad11:51c2%17]) with mapi id 15.00.0995.028;
-	Tue, 14 Apr 2015 16:18:09 +0530
-From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: SRCREV Issue for custom linux kernel
-Thread-Index: AQHQdqB+KHCiOibQ8E2+6f4p6IfbgQ==
-Date: Tue, 14 Apr 2015 10:48:08 +0000
-Message-ID: <1429008449674.58960@inedasystems.com>
-References: <mailman.2398.1429003256.2787.yocto@yoctoproject.org>
-In-Reply-To: <mailman.2398.1429003256.2787.yocto@yoctoproject.org>
-Accept-Language: en-US, en-IN
-X-MS-Has-Attach: 
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 439D3E00932
+	for <yocto@yoctoproject.org>; Tue, 14 Apr 2015 04:50:20 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 14 Apr 2015 04:50:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,576,1422950400"; 
+	d="p7s'?scan'208";a="679824747"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by orsmga001.jf.intel.com with ESMTP; 14 Apr 2015 04:50:06 -0700
+Received: from irsmsx105.ger.corp.intel.com ([169.254.7.2]) by
+	IRSMSX101.ger.corp.intel.com ([169.254.1.136]) with mapi id
+	14.03.0224.002; Tue, 14 Apr 2015 12:50:04 +0100
+From: "Minchev, Todor" <todor.minchev@intel.com>
+To: "abhinavbipnesh@avaya.com" <abhinavbipnesh@avaya.com>
+Thread-Topic: [yocto] Yocto Eclipse Plugin
+Thread-Index: AdB2F3HM/xMNdG1HR7StQtYHFqtt4QAYfToAAAI5/gAAB50yAA==
+Date: Tue, 14 Apr 2015 11:50:04 +0000
+Message-ID: <1429012204.8544.44.camel@intel.com>
+References: <F38A866CD026F746A3BF0928A84397BE3A39BD12@AZ-FFEXMB01.global.avaya.com>
+	<1428995298.8544.32.camel@intel.com>
+	<F38A866CD026F746A3BF0928A84397BE3A39E1EA@AZ-FFEXMB01.global.avaya.com>
+In-Reply-To: <F38A866CD026F746A3BF0928A84397BE3A39E1EA@AZ-FFEXMB01.global.avaya.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.42.88]
+x-originating-ip: [172.28.33.100]
 MIME-Version: 1.0
-Subject: SRCREV Issue for custom linux kernel
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto Eclipse Plugin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,1871 +52,266 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Apr 2015 10:48:23 -0000
+X-List-Received-Date: Tue, 14 Apr 2015 11:50:22 -0000
+X-Groupsio-MsgNum: 24449
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: multipart/signed; micalg=sha-1;
+	protocol="application/x-pkcs7-signature";
+	boundary="=-0Z3ACb/kpbFWbXE8QR/G"
+
+--=-0Z3ACb/kpbFWbXE8QR/G
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi All,=0A=
-=0A=
-I got the an error while i am checking out the linux kernel from the SVN to=
- build in the YOCTO project environment.=0A=
- =0A=
-Could please help me in resolving the Issue.=0A=
-=0A=
-=0A=
-Error log is:=0A=
-Log data follows:=0A=
-| DEBUG: Executing shell function do_validate_branches=0A=
-| NOTE: custom recipe is being built, forcing SRCREV to INVALID=0A=
-| NOTE: SRCREV validation skipped for AUTOREV or empty meta branch=0A=
-| fatal: ambiguous argument 'INVALID': unknown revision or path not in the =
-working tree.=0A=
-| Use '--' to separate paths from revisions=0A=
-| WARNING: exit code 128 from a shell command.=0A=
-| ERROR: Function failed: do_validate_branches (log file is located at /hom=
-e/testuser/poky/build/tmp/work/dhruva-poky-linux/linux-yocto-custom/3.10.14=
--r0/temp/log.do_validate_branches.6852)=0A=
-=0A=
-=0A=
-Thanks in advance.=0A=
-=0A=
-Regards,=0A=
-=0A=
-Raghavendra K.=0A=
-________________________________________=0A=
-From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
-half of yocto-request@yoctoproject.org <yocto-request@yoctoproject.org>=0A=
-Sent: Tuesday, April 14, 2015 2:50 PM=0A=
-To: yocto@yoctoproject.org=0A=
-Subject: yocto Digest, Vol 55, Issue 46=0A=
-=0A=
-Send yocto mailing list submissions to=0A=
-        yocto@yoctoproject.org=0A=
-=0A=
-To subscribe or unsubscribe via the World Wide Web, visit=0A=
-        https://lists.yoctoproject.org/listinfo/yocto=0A=
-or, via email, send a message with subject or body 'help' to=0A=
-        yocto-request@yoctoproject.org=0A=
-=0A=
-You can reach the person managing the list at=0A=
-        yocto-owner@yoctoproject.org=0A=
-=0A=
-When replying, please edit your Subject line so it is more specific=0A=
-than "Re: Contents of yocto digest..."=0A=
-=0A=
-=0A=
-Today's Topics:=0A=
-=0A=
-   1. Re: yocto Digest, Vol 53, Issue 97 (Raghavendra Kakarla)=0A=
-=0A=
-=0A=
-----------------------------------------------------------------------=0A=
-=0A=
-Message: 1=0A=
-Date: Tue, 14 Apr 2015 09:20:38 +0000=0A=
-From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>=0A=
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>=0A=
-Subject: Re: [yocto] yocto Digest, Vol 53, Issue 97=0A=
-Message-ID: <1429003199394.19509@inedasystems.com>=0A=
-Content-Type: text/plain; charset=3D"iso-8859-1"=0A=
-=0A=
-Hi All,=0A=
-=0A=
-When I take kernel from the SVN I got the validation error that SRCREV is n=
-ot proper.=0A=
-=0A=
-Could you please help me in resolving this issue.=0A=
-=0A=
-Thanks in advance.=0A=
-=0A=
-Regards,=0A=
-Raghavendra.=0A=
-=0A=
-=0A=
-________________________________________=0A=
-From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on be=
-half of yocto-request@yoctoproject.org <yocto-request@yoctoproject.org>=0A=
-Sent: Saturday, February 21, 2015 4:04 AM=0A=
-To: yocto@yoctoproject.org=0A=
-Subject: yocto Digest, Vol 53, Issue 97=0A=
-=0A=
-Send yocto mailing list submissions to=0A=
-        yocto@yoctoproject.org=0A=
-=0A=
-To subscribe or unsubscribe via the World Wide Web, visit=0A=
-        https://lists.yoctoproject.org/listinfo/yocto=0A=
-or, via email, send a message with subject or body 'help' to=0A=
-        yocto-request@yoctoproject.org=0A=
-=0A=
-You can reach the person managing the list at=0A=
-        yocto-owner@yoctoproject.org=0A=
-=0A=
-When replying, please edit your Subject line so it is more specific=0A=
-than "Re: Contents of yocto digest..."=0A=
-=0A=
-=0A=
-Today's Topics:=0A=
-=0A=
-   1. Re: Simple recipe quit working in dizzy (akuster)=0A=
-=0A=
-=0A=
-----------------------------------------------------------------------=0A=
-=0A=
-Message: 1=0A=
-Date: Fri, 20 Feb 2015 14:28:10 -0800=0A=
-From: akuster <akuster@mvista.com>=0A=
-To: yocto@yoctoproject.org=0A=
-Subject: Re: [yocto] Simple recipe quit working in dizzy=0A=
-Message-ID: <54E7B4FA.502@mvista.com>=0A=
-Content-Type: text/plain; charset=3Dwindows-1252; format=3Dflowed=0A=
-=0A=
-=0A=
-=0A=
-On 02/20/2015 09:49 AM, Jim Rafert wrote:=0A=
-> Hi Paul,=0A=
->=0A=
-> Thank you for taking an interest in this.=0A=
->=0A=
-> I looked at the log.do_rootfs, and didn't see anything that was immediate=
-ly suspicious.=0A=
-> I have inlined the log at the end of my reply, here.=0A=
->=0A=
-> I don't see how such a simple recipe could be broken by a Yocto bug, and =
-not have the=0A=
-> whole thing be massively broken.=0A=
-=0A=
-Is it possible for you to try your recipe on 'master'? that might tell=0A=
-use if something is missing in dizzy.=0A=
-=0A=
-=0A=
-- Armin=0A=
->=0A=
-> -Jim-=0A=
->=0A=
-> cat ./core-image-full-cmdline/1.0-r0/temp/log.do_rootfs=0A=
-> DEBUG: Executing python function rootfs_process_ignore=0A=
-> DEBUG: Python function rootfs_process_ignore finished=0A=
-> DEBUG: Executing python function rootfs_runtime_mapping=0A=
-> DEBUG: Python function rootfs_runtime_mapping finished=0A=
-> DEBUG: Executing python function do_rootfs=0A=
-> NOTE: configuring RPM platform settings=0A=
-> NOTE: configuring RPM system provides=0A=
-> NOTE: configuring RPM DB settings=0A=
-> NOTE: configuring Smart settings=0A=
-> NOTE: Note: adding Smart channel spectra_ls (35)=0A=
-> NOTE: Note: adding Smart channel i586 (30)=0A=
-> NOTE: Note: adding Smart channel all (25)=0A=
-> NOTE: adding Smart RPM DB channel=0A=
-> NOTE: Note: configuring RPM cross-install scriptlet_wrapper=0A=
-> NOTE: ###### Generate rootfs #######=0A=
-> NOTE: Executing '/home/jimr/tera/yocto/dizzy/build/tmp/sysroots/x86_64-li=
-nux/usr/bin/createrepo --update -q /home/jimr/tera/yocto/dizzy/build/tmp/de=
-ploy/rpm/i586' ...=0A=
-> NOTE: Installing the following packages: libgcc1 parted grub dosfstools p=
-splash vim udev-extraconf rsyslog libsoci nss rpm unzip zip spectra-postbui=
-ld smartpm e2fsprogs-tune2fs packagegroup-core-eclipse-debug poco libstdc++=
-6 sqlite3 e2fsprogs-e2fsck openssl-staticdev boost packagegroup-core-ssh-op=
-enssh packagegroup-core-boot packagegroup-core-full-cmdline rpmresolve ntp =
-e2fsprogs-mke2fs util-linux packagegroup-core-tools-debug openssl e2fsprogs=
- sys-freedos e2fsprogs-badblocks locale-base-en-us locale-base-en-gb=0A=
-> NOTE: to be installed: libgcc1@i586 parted@i586 grub@i586 dosfstools@i586=
- psplash@i586 vim@i586 udev-extraconf@i586 rsyslog@i586 libsoci@i586 nss@i5=
-86 rpm@i586 unzip@i586 zip@i586 spectra-postbuild@i586 smartpm@i586 e2fspro=
-gs-tune2fs@i586 packagegroup-core-eclipse-debug@all poco@i586 libstdc++6@i5=
-86 sqlite3@i586 e2fsprogs-e2fsck@i586 openssl-staticdev@i586 boost@i586 pac=
-kagegroup-core-ssh-openssh@all packagegroup-core-boot@spectra_ls packagegro=
-up-core-full-cmdline@all rpmresolve@i586 ntp@i586 e2fsprogs-mke2fs@i586 uti=
-l-linux@i586 packagegroup-core-tools-debug@all openssl@i586 e2fsprogs@i586 =
-sys-freedos@i586 e2fsprogs-badblocks@i586 locale-base-en-us@i586 locale-bas=
-e-en-gb@i586=0A=
-> NOTE: /home/jimr/tera/yocto/dizzy/build/tmp/sysroots/x86_64-linux/usr/bin=
-/smart --quiet --data-dir=3D/home/jimr/tera/yocto/dizzy/build/tmp/work/spec=
-tra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/var/lib/smart insta=
-ll -y libgcc1@i586 parted@i586 grub@i586 dosfstools@i586 psplash@i586 vim@i=
-586 udev-extraconf@i586 rsyslog@i586 libsoci@i586 nss@i586 rpm@i586 unzip@i=
-586 zip@i586 spectra-postbuild@i586 smartpm@i586 e2fsprogs-tune2fs@i586 pac=
-kagegroup-core-eclipse-debug@all poco@i586 libstdc++6@i586 sqlite3@i586 e2f=
-sprogs-e2fsck@i586 openssl-staticdev@i586 boost@i586 packagegroup-core-ssh-=
-openssh@all packagegroup-core-boot@spectra_ls packagegroup-core-full-cmdlin=
-e@all rpmresolve@i586 ntp@i586 e2fsprogs-mke2fs@i586 util-linux@i586 packag=
-egroup-core-tools-debug@all openssl@i586 e2fsprogs@i586 sys-freedos@i586 e2=
-fsprogs-badblocks@i586 locale-base-en-us@i586 locale-base-en-gb@i586=0A=
-> NOTE: Output from bash-4.3-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/sh to /bin/=
-bash=0A=
-> Output from busybox-1.22.1-r32@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/ar to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/gunzip to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/zcat to /bi=
-n/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/bunzip2=
- to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/bzcat t=
-o /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/cpio to /bi=
-n/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/gzip to /bi=
-n/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/tar to /bin=
-/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/unzip t=
-o /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/date to /bi=
-n/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/groups =
-to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/id to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/touch to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/users t=
-o /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/who to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/awk to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/cmp to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/diff to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/patch t=
-o /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/sed to /bin=
-/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/vi to /bin/=
-busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/find to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/grep to /bi=
-n/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/egrep to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/fgrep to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/xargs t=
-o /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/halt to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/poweroff t=
-o /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/reboot to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/rfkill=
- to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/depmod to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/insmod to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/lsmod to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/modprobe t=
-o /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/rmmod to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ash to /bin=
-/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/sh to /bin/=
-bash=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/fstrim to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/[ to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/[[ to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/addgro=
-up to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/adduse=
-r to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/basenam=
-e to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/cat to /bin=
-/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/chattr to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/chgrp to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/chmod to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/chown to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/chroot=
- to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/chvt to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/clear t=
-o /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/cp to /bin/=
-busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/cut to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/dc to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/dd to /bin/=
-busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/dealloc=
-vt to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/delgro=
-up to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/deluse=
-r to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/df to /bin/=
-busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/dirname=
- to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/dmesg to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/dnsdomainna=
-me to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/du to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/dumpkmap to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/dumplea=
-ses to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/echo to /bi=
-n/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/env to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/expr to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/false to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/fbset =
-to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/fdisk to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/flock t=
-o /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/free to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/fsck to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/fuser t=
-o /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/getty to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/head to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/hexdump=
- to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/hostname to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/hwclock to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/ifconfig t=
-o /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/ifdown to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/ifup to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/ip to /bin=
-/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/kill to /bi=
-n/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/killall=
- to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/klogd to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/less to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ln to /bin/=
-busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/loadfo=
-nt to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/loadkmap t=
-o /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/logger =
-to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/logname=
- to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/logread to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/losetup to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ls to /bin/=
-busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/md5sum =
-to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/microco=
-m to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mkdir to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/mkfifo =
-to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mknod to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/mkswap to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mktemp to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/more to /bi=
-n/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mount to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mv to /bin/=
-busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/nc to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/netstat to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/nohup t=
-o /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/nslooku=
-p to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/od to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/openvt =
-to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/pidof to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/pivot_root=
- to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/printf =
-to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ps to /bin/=
-busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/pwd to /bin=
-/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/rdate =
-to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/readlin=
-k to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/realpat=
-h to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/renice =
-to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/reset t=
-o /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/rm to /bin/=
-busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/rmdir to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/route to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/run-parts t=
-o /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/seq to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/setconsole=
- to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sha3sum=
- to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/sleep to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sort to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/start-stop=
--daemon to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/stat to /bi=
-n/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/strings=
- to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/stty to /bi=
-n/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/sulogin to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/swapoff to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/swapon to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/switch_roo=
-t to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/sync to /bi=
-n/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/sysctl to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/syslogd to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tail to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tee to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/telnet =
-to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/test to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tftp to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/time to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/top to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tr to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/true to /bi=
-n/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tty to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/udhcpc to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/udhcpd=
- to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/umount to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/uname to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/uniq to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/uptime =
-to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/usleep to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/watch to /b=
-in/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/wc to /=
-bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/wget to=
- /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/which t=
-o /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/whoami =
-to /bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/yes to =
-/bin/busybox.nosuid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ping to /bi=
-n/busybox.suid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ping6 to /b=
-in/busybox.suid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/login to /b=
-in/busybox.suid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/passwd =
-to /bin/busybox.suid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/su to /bin/=
-busybox.suid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tracero=
-ute to /bin/busybox.suid=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/vlock t=
-o /bin/busybox.suid=0A=
-> Output from init-ifupdown-1.0-r7@i586:=0A=
->   Removing any system startup links for networking ...=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/networ=
-king.=0A=
-> Output from initscripts-functions-1.0-r155@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//etc/init.d/func=
-tions to /etc/init.d/functions.initscripts=0A=
-> Output from run-postinsts-1.0-r9@all:=0A=
->   Removing any system startup links for run-postinsts ...=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/run-po=
-stinsts.=0A=
-> Output from modutils-initscripts-1.0-r7@i586:=0A=
->   Removing any system startup links for modutils.sh ...=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/moduti=
-ls.sh.=0A=
-> Output from udev-cache-182-r9@i586:=0A=
->   Removing any system startup links for udev-cache ...=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/udev-c=
-ache.=0A=
-> Output from busybox-hwclock-1.22.1-r32@i586:=0A=
->   Removing any system startup links for hwclock.sh ...=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/hwcloc=
-k.sh.=0A=
-> Output from kernel-image-3.10.62-ltsi-yocto-standard-3.10.62+git0+f4ab00d=
-96a_b2ac933df1-r0.1@spectra_ls:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//boot/bzImage to=
- /boot/bzImage-3.10.62-ltsi-yocto-standard=0A=
-> Output from busybox-syslog-1.22.1-r32@i586:=0A=
->   Removing any system startup links for syslog ...=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//etc/syslog.conf=
- to /etc/syslog.conf.busybox=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//etc/init.d/sysl=
-og to /etc/init.d/syslog.busybox=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//etc/syslog-star=
-tup.conf to /etc/syslog-startup.conf.busybox=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/syslog=
-.=0A=
-> Output from util-linux-losetup-2.24.2-r1@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/losetup to=
- /sbin/losetup.util-linux=0A=
-> Output from killall-22.21-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/killall=
- to /usr/bin/killall.psmisc=0A=
-> Output from shadow-4.2.1-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/passwd =
-to /usr/bin/passwd.shadow=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/chfn to=
- /usr/bin/chfn.shadow=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/newgrp =
-to /usr/bin/newgrp.shadow=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/chsh to=
- /usr/bin/chsh.shadow=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/groups =
-to /usr/bin/groups.shadow=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/chpass=
-wd to /usr/sbin/chpasswd.shadow=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/login to /b=
-in/login.shadow=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/vipw to /s=
-bin/vipw.shadow=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/vigr to /s=
-bin/vigr.shadow=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/su to /bin/=
-su.shadow=0A=
-> Output from kbd-2.0.2-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/chvt to=
- /usr/bin/chvt.kbd=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/dealloc=
-vt to /usr/bin/deallocvt.kbd=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/fgconso=
-le to /usr/bin/fgconsole.kbd=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/openvt =
-to /usr/bin/openvt.kbd=0A=
-> Output from openssh-scp-6.6p1-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/scp to =
-/usr/bin/scp.openssh=0A=
-> Output from grep-2.19-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/grep to /bi=
-n/grep.grep=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/egrep to /b=
-in/egrep.grep=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/fgrep to /b=
-in/fgrep.grep=0A=
-> Output from net-tools-1.60+25-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/arp to /sb=
-in/arp.net-tools=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/ifconfig t=
-o /sbin/ifconfig.net-tools=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/ipmaddr to=
- /sbin/ipmaddr.net-tools=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/iptunnel t=
-o /sbin/iptunnel.net-tools=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/mii-tool t=
-o /sbin/mii-tool.net-tools=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/nameif to =
-/sbin/nameif.net-tools=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/plipconfig=
- to /sbin/plipconfig.net-tools=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/rarp to /s=
-bin/rarp.net-tools=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/route to /=
-sbin/route.net-tools=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/slattach t=
-o /sbin/slattach.net-tools=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/dnsdomainna=
-me to /bin/dnsdomainname.net-tools=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/domainname =
-to /bin/domainname.net-tools=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/hostname to=
- /bin/hostname.net-tools=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/netstat to =
-/bin/netstat.net-tools=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/nisdomainna=
-me to /bin/nisdomainname.net-tools=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ypdomainnam=
-e to /bin/ypdomainname.net-tools=0A=
-> Output from sysklogd-1.5-r7@i586:=0A=
-> update-rc.d: /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-l=
-inux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/syslog exists during =
-rc.d purge (continuing)=0A=
->   Removing any system startup links for syslog ...=0A=
->    /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-=
-image-full-cmdline/1.0-r0/rootfs/etc/rc0.d/K20syslog=0A=
->    /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-=
-image-full-cmdline/1.0-r0/rootfs/etc/rc1.d/K20syslog=0A=
->    /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-=
-image-full-cmdline/1.0-r0/rootfs/etc/rc2.d/S20syslog=0A=
->    /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-=
-image-full-cmdline/1.0-r0/rootfs/etc/rc3.d/S20syslog=0A=
->    /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-=
-image-full-cmdline/1.0-r0/rootfs/etc/rc4.d/S20syslog=0A=
->    /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-=
-image-full-cmdline/1.0-r0/rootfs/etc/rc5.d/S20syslog=0A=
->    /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-=
-image-full-cmdline/1.0-r0/rootfs/etc/rc6.d/K20syslog=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/syslogd to=
- /sbin/syslogd.sysklogd=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/klogd to /=
-sbin/klogd.sysklogd=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//etc/init.d/sysl=
-og to /etc/init.d/syslog.sysklogd=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//etc/syslog.conf=
- to /etc/syslog.conf.sysklogd=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/syslog=
-.=0A=
-> Output from bc-1.06-r2@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/dc to /=
-usr/bin/dc.bc=0A=
-> Output from fuser-22.21-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/fuser t=
-o /usr/bin/fuser.psmisc=0A=
-> Output from sed-4.2.2-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/sed to /bin=
-/sed.sed=0A=
-> Output from gawk-4.1.1-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/awk to =
-/usr/bin/gawk=0A=
-> Output from diffutils-3.3-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/diff to=
- /usr/bin/diff.diffutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/cmp to =
-/usr/bin/cmp.diffutils=0A=
-> Output from tar-1.27.1-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/tar to /bin=
-/tar.tar=0A=
-> Output from cpio-2.11-r5@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/cpio to /bi=
-n/cpio.cpio=0A=
-> Output from sysvinit-pidof-2.88dsf-r14@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/pidof to /b=
-in/pidof.sysvinit=0A=
-> Output from findutils-4.4.2-r6@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/find to=
- /usr/bin/find.findutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/xargs t=
-o /usr/bin/xargs.findutils=0A=
-> Output from psplash-0.1+git0+afd4e228c6-r15@i586:=0A=
->   Removing any system startup links for psplash.sh ...=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/psplas=
-h.sh.=0A=
-> Output from time-1.7-r2@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/time to=
- /usr/bin/time.time=0A=
-> Output from mktemp-1.7-r3@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mktemp to /=
-bin/mktemp.mktemp=0A=
-> Output from gzip-1.6-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/gunzip to /=
-bin/gunzip.gzip=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/gzip to /bi=
-n/gzip.gzip=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/zcat to /bi=
-n/zcat.gzip=0A=
-> Output from iproute2-3.16.0-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/ip to /sbi=
-n/ip.iproute2=0A=
-> Output from util-linux-readprofile-2.24.2-r1@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/readprofil=
-e to /sbin/readprofile.util-linux=0A=
-> Output from less-466-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/less to=
- /usr/bin/less.less=0A=
-> Output from cronie-1.4.11-r0@i586:=0A=
->   Removing any system startup links for crond ...=0A=
-> Running groupadd commands...=0A=
-> NOTE: Performing groupadd with [--root /home/jimr/tera/yocto/dizzy/build/=
-tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs --syst=
-em crontab] and 10 times of retry=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/crond.=
-=0A=
-> Output from keymaps-1.0-r31@spectra_ls:=0A=
->   Removing any system startup links for keymap.sh ...=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/keymap=
-.sh.=0A=
-> Output from patch-2.7.1-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/patch t=
-o /usr/bin/patch.patch=0A=
-> Output from kmod-18+git0+ae58de0fcb-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/insmod to =
-/sbin/insmod.kmod=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/modprobe t=
-o /sbin/modprobe.kmod=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/rmmod to /=
-sbin/rmmod.kmod=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/modinfo to=
- /sbin/modinfo.kmod=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/lsmod to /b=
-in/lsmod.kmod=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/lsmod to /=
-bin/lsmod.kmod=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/depmod to =
-/sbin/depmod.kmod=0A=
-> Output from openssh-ssh-6.6p1-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/ssh to =
-/usr/bin/ssh.openssh=0A=
-> Output from sysvinit-2.88dsf-r14@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/init to /s=
-bin/init.sysvinit=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mountpoint =
-to /bin/mountpoint.sysvinit=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/halt to /s=
-bin/halt.sysvinit=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/reboot to =
-/sbin/reboot.sysvinit=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/runlevel t=
-o /sbin/runlevel.sysvinit=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/shutdown t=
-o /sbin/shutdown.sysvinit=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/poweroff t=
-o /sbin/poweroff.sysvinit=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/last to=
- /usr/bin/last.sysvinit=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/mesg to=
- /usr/bin/mesg.sysvinit=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/utmpdum=
-p to /usr/bin/utmpdump.sysvinit=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/wall to=
- /usr/bin/wall.sysvinit=0A=
-> Output from psplash-default-0.1+git0+afd4e228c6-r15@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/psplash=
- to /usr/bin/psplash-default=0A=
-> Output from ntp-4.2.6p3-r5@i586:=0A=
->   Removing any system startup links for ntpd ...=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/ntpd.=
-=0A=
-> Output from coreutils-8.22-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/[ to /u=
-sr/bin/lbracket.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/arch to=
- /usr/bin/arch.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/basenam=
-e to /usr/bin/basename.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/chcon t=
-o /usr/bin/chcon.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/cksum t=
-o /usr/bin/cksum.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/comm to=
- /usr/bin/comm.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/csplit =
-to /usr/bin/csplit.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/cut to =
-/usr/bin/cut.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/dir to =
-/usr/bin/dir.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/dircolo=
-rs to /usr/bin/dircolors.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/dirname=
- to /usr/bin/dirname.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/du to /=
-usr/bin/du.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/env to =
-/usr/bin/env.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/expand =
-to /usr/bin/expand.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/expr to=
- /usr/bin/expr.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/factor =
-to /usr/bin/factor.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/fmt to =
-/usr/bin/fmt.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/fold to=
- /usr/bin/fold.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/groups =
-to /usr/bin/groups.shadow=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/head to=
- /usr/bin/head.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/hostid =
-to /usr/bin/hostid.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/id to /=
-usr/bin/id.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/install=
- to /usr/bin/install.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/join to=
- /usr/bin/join.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/link to=
- /usr/bin/link.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/logname=
- to /usr/bin/logname.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/md5sum =
-to /usr/bin/md5sum.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/mkfifo =
-to /usr/bin/mkfifo.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/nice to=
- /usr/bin/nice.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/nl to /=
-usr/bin/nl.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/nohup t=
-o /usr/bin/nohup.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/nproc t=
-o /usr/bin/nproc.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/od to /=
-usr/bin/od.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/paste t=
-o /usr/bin/paste.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/pathchk=
- to /usr/bin/pathchk.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/pinky t=
-o /usr/bin/pinky.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/pr to /=
-usr/bin/pr.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/printen=
-v to /usr/bin/printenv.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/printf =
-to /usr/bin/printf.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/ptx to =
-/usr/bin/ptx.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/readlin=
-k to /usr/bin/readlink.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/realpat=
-h to /usr/bin/realpath.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/runcon =
-to /usr/bin/runcon.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/seq to =
-/usr/bin/seq.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sha1sum=
- to /usr/bin/sha1sum.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sha224s=
-um to /usr/bin/sha224sum.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sha256s=
-um to /usr/bin/sha256sum.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sha384s=
-um to /usr/bin/sha384sum.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sha512s=
-um to /usr/bin/sha512sum.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/shred t=
-o /usr/bin/shred.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/shuf to=
- /usr/bin/shuf.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sort to=
- /usr/bin/sort.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/split t=
-o /usr/bin/split.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/stdbuf =
-to /usr/bin/stdbuf.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sum to =
-/usr/bin/sum.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tac to =
-/usr/bin/tac.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tail to=
- /usr/bin/tail.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tee to =
-/usr/bin/tee.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/test to=
- /usr/bin/test.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/timeout=
- to /usr/bin/timeout.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tr to /=
-usr/bin/tr.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/truncat=
-e to /usr/bin/truncate.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tsort t=
-o /usr/bin/tsort.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tty to =
-/usr/bin/tty.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/unexpan=
-d to /usr/bin/unexpand.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/uniq to=
- /usr/bin/uniq.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/unlink =
-to /usr/bin/unlink.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/uptime =
-to /usr/bin/uptime.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/users t=
-o /usr/bin/users.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/vdir to=
- /usr/bin/vdir.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/wc to /=
-usr/bin/wc.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/who to =
-/usr/bin/who.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/whoami =
-to /usr/bin/whoami.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/yes to =
-/usr/bin/yes.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/cat to /bin=
-/cat.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/chgrp to /b=
-in/chgrp.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/chmod to /b=
-in/chmod.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/chown to /b=
-in/chown.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/cp to /bin/=
-cp.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/date to /bi=
-n/date.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/dd to /bin/=
-dd.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/echo to /bi=
-n/echo.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/false to /b=
-in/false.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/kill to /bi=
-n/kill.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ln to /bin/=
-ln.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ls to /bin/=
-ls.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mkdir to /b=
-in/mkdir.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mknod to /b=
-in/mknod.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mv to /bin/=
-mv.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/pwd to /bin=
-/pwd.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/rm to /bin/=
-rm.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/rmdir to /b=
-in/rmdir.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/sleep to /b=
-in/sleep.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/stty to /bi=
-n/stty.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/sync to /bi=
-n/sync.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/touch to /b=
-in/touch.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/true to /bi=
-n/true.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/uname to /b=
-in/uname.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/stat to /bi=
-n/stat.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/chroot=
- to /usr/sbin/chroot.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/base64 to /=
-usr/bin/base64.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mktemp to /=
-usr/bin/mktemp.coreutils=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/df to /usr/=
-bin/df.coreutils=0A=
-> Output from iputils-ping-s20121221-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ping to /bi=
-n/ping.iputils=0A=
-> Output from rsyslog-7.4.4-r0@i586:=0A=
->   Removing any system startup links for rsyslogd ...=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/rsyslo=
-gd.=0A=
-> Output from rpcbind-0.2.1-r0@i586:=0A=
->   Removing any system startup links for rpcbind ...=0A=
-> Running useradd commands...=0A=
-> NOTE: Performing useradd with [--root /home/jimr/tera/yocto/dizzy/build/t=
-mp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs --syste=
-m --no-create-home --home-dir /                        --shell /bin/false -=
--user-group rpc] and 10 times of retry=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/rpcbin=
-d.=0A=
-> Output from bzip2-1.0.6-r5@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/bunzip2=
- to /usr/bin/bunzip2.bzip2=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/bzcat t=
-o /usr/bin/bzcat.bzip2=0A=
-> Output from procps-3.2.8-r12@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/top to =
-/usr/bin/top.procps=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/uptime =
-to /usr/bin/uptime.procps=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/free to=
- /usr/bin/free.procps=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/pkill t=
-o /usr/bin/pkill.procps=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/pmap to=
- /usr/bin/pmap.procps=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/kill to /bi=
-n/kill.procps=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/sysctl to =
-/sbin/sysctl.procps=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ps to /bin/=
-ps.procps=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/pgrep t=
-o /usr/bin/pgrep.procps=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/pwdx to=
- /usr/bin/pwdx.procps=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/watch to /u=
-sr/bin/watch.procps=0A=
-> Output from lighttpd-1.4.35-r1@i586:=0A=
->   Removing any system startup links for lighttpd ...=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/lightt=
-pd.=0A=
-> Output from tcf-agent-0.4.0+git0+4ef94ecb92-r2@i586:=0A=
->   Removing any system startup links for tcf-agent ...=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/tcf-ag=
-ent.=0A=
-> Output from openssh-sshd-6.6p1-r0@i586:=0A=
->   Removing any system startup links for sshd ...=0A=
-> Running useradd commands...=0A=
-> NOTE: Performing useradd with [--root /home/jimr/tera/yocto/dizzy/build/t=
-mp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs --syste=
-m --no-create-home --home-dir /var/run/sshd --shell /bin/false --user-group=
- sshd] and 10 times of retry=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/sshd.=
-=0A=
-> Output from udev-182-r9@i586:=0A=
->   Removing any system startup links for udev ...=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/udev.=
-=0A=
-> Output from util-linux-fdisk-2.24.2-r1@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/fdisk to /=
-sbin/fdisk.util-linux=0A=
-> Output from at-3.1.15-r0@i586:=0A=
->   Removing any system startup links for atd ...=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/atd.=
-=0A=
-> Output from dbus-1-1.8.2-r0@i586:=0A=
->   Removing any system startup links for dbus-1 ...=0A=
-> Running groupadd commands...=0A=
-> NOTE: Performing groupadd with [--root /home/jimr/tera/yocto/dizzy/build/=
-tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs -r net=
-dev] and 10 times of retry=0A=
-> Running useradd commands...=0A=
-> NOTE: Performing useradd with [--root /home/jimr/tera/yocto/dizzy/build/t=
-mp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs --syste=
-m --home /var/lib/dbus                        --no-create-home --shell /bin=
-/false                        --user-group messagebus] and 10 times of retr=
-y=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/dbus-1=
-.=0A=
-> Output from util-linux-umount-2.24.2-r1@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/umount to /=
-bin/umount.util-linux=0A=
-> Output from util-linux-mount-2.24.2-r1@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mount to /b=
-in/mount.util-linux=0A=
-> Output from util-linux-swaponoff-2.24.2-r1@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/swapoff to=
- /sbin/swapoff.util-linux=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/swapon to =
-/sbin/swapon.util-linux=0A=
-> Output from nfs-utils-client-1.3.0-r0@i586:=0A=
->   Removing any system startup links for nfscommon ...=0A=
-> Running useradd commands...=0A=
-> NOTE: Performing useradd with [--root /home/jimr/tera/yocto/dizzy/build/t=
-mp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs --syste=
-m  --home-dir /var/lib/nfs                              --shell /bin/false =
---user-group rpcuser] and 10 times of retry=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/nfscom=
-mon.=0A=
-> Output from iputils-ping6-s20121221-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ping6 to /b=
-in/ping6.iputils=0A=
-> Output from e2fsprogs-1.42.9-r0@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/chattr to /=
-bin/chattr.e2fsprogs=0A=
-> Output from util-linux-2.24.2-r1@i586:=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/dmesg to /b=
-in/dmesg.util-linux=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/kill to /bi=
-n/kill.procps=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/more to /bi=
-n/more.util-linux=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/mkswap to =
-/sbin/mkswap.util-linux=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/blockdev t=
-o /sbin/blockdev.util-linux=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/pivot_root=
- to /sbin/pivot_root.util-linux=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/switch_roo=
-t to /sbin/switch_root.util-linux=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/mkfs.minix=
- to /sbin/mkfs.minix.util-linux=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/hexdump=
- to /usr/bin/hexdump.util-linux=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/last to=
- /usr/bin/last.sysvinit=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/logger =
-to /usr/bin/logger.util-linux=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/mesg to=
- /usr/bin/mesg.sysvinit=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/renice =
-to /usr/bin/renice.util-linux=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/wall to=
- /usr/bin/wall.sysvinit=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/setsid =
-to /usr/bin/setsid.util-linux=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/chrt to=
- /usr/bin/chrt.util-linux=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/flock t=
-o /usr/bin/flock.util-linux=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/utmpdum=
-p to /usr/bin/utmpdump.sysvinit=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/eject t=
-o /usr/bin/eject.util-linux=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/getopt to /=
-usr/bin/getopt=0A=
-> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/s=
-pectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/sulogin to=
- /sbin/sulogin.util-linux=0A=
-> Output from nfs-utils-1.3.0-r0@i586:=0A=
->   Removing any system startup links for nfsserver ...=0A=
->   Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/nfsser=
-ver.=0A=
->=0A=
->=0A=
-> NOTE: Installing the following packages:=0A=
-> NOTE: Installing complementary packages ...=0A=
-> NOTE: Installing the following packages: mc-locale-en-gb glibc-locale-en-=
-gb libglib-2.0-locale-en-gb=0A=
-> NOTE: installing attempt only packages...=0A=
-> NOTE: Attempting mc-locale-en-gb@i586 glibc-locale-en-gb@i586 libglib-2.0=
--locale-en-gb@i586=0A=
-> NOTE:=0A=
->=0A=
-> NOTE: Running intercept scripts:=0A=
-> NOTE: Executing write_package_manifest ...=0A=
-> DEBUG: Executing python function write_package_manifest=0A=
-> DEBUG: Python function write_package_manifest finished=0A=
-> NOTE: Executing license_create_manifest ...=0A=
-> DEBUG: Executing shell function license_create_manifest=0A=
-> WARNING: The license listed GPLv2 was not in the licenses collected for g=
-libc-locale=0A=
-> WARNING: The license listed LGPLv2.1 was not in the licenses collected fo=
-r glibc-locale=0A=
-> WARNING: The license listed GPLv2 was not in the licenses collected for g=
-libc-locale=0A=
-> WARNING: The license listed LGPLv2.1 was not in the licenses collected fo=
-r glibc-locale=0A=
-> WARNING: The license listed GPLv2 was not in the licenses collected for g=
-libc-locale=0A=
-> WARNING: The license listed LGPLv2.1 was not in the licenses collected fo=
-r glibc-locale=0A=
-> WARNING: The license listed GPLv2 was not in the licenses collected for g=
-libc-mtrace=0A=
-> WARNING: The license listed LGPLv2.1 was not in the licenses collected fo=
-r glibc-mtrace=0A=
-> WARNING: The license listed CLOSED was not in the licenses collected for =
-libsoci=0A=
-> WARNING: The license listed GPLv2 was not in the licenses collected for g=
-libc-locale=0A=
-> WARNING: The license listed LGPLv2.1 was not in the licenses collected fo=
-r glibc-locale=0A=
-> WARNING: The license listed GPLv2 was not in the licenses collected for g=
-libc-locale=0A=
-> WARNING: The license listed LGPLv2.1 was not in the licenses collected fo=
-r glibc-locale=0A=
-> WARNING: The license listed ntp was not in the licenses collected for ntp=
-=0A=
-> WARNING: The license listed ntp was not in the licenses collected for ntp=
-=0A=
-> WARNING: The license listed MIT was not in the licenses collected for pac=
-kagegroup-core-boot=0A=
-> WARNING: The license listed MIT was not in the licenses collected for pac=
-kagegroup-core-eclipse-debug=0A=
-> WARNING: The license listed MIT was not in the licenses collected for pac=
-kagegroup-core-full-cmdline=0A=
-> WARNING: The license listed MIT was not in the licenses collected for pac=
-kagegroup-core-full-cmdline=0A=
-> WARNING: The license listed MIT was not in the licenses collected for pac=
-kagegroup-core-full-cmdline=0A=
-> WARNING: The license listed MIT was not in the licenses collected for pac=
-kagegroup-core-full-cmdline=0A=
-> WARNING: The license listed MIT was not in the licenses collected for pac=
-kagegroup-core-full-cmdline=0A=
-> WARNING: The license listed MIT was not in the licenses collected for pac=
-kagegroup-core-full-cmdline=0A=
-> WARNING: The license listed MIT was not in the licenses collected for pac=
-kagegroup-core-full-cmdline=0A=
-> WARNING: The license listed MIT was not in the licenses collected for pac=
-kagegroup-core-full-cmdline=0A=
-> WARNING: The license listed MIT was not in the licenses collected for pac=
-kagegroup-core-ssh-openssh=0A=
-> WARNING: The license listed MIT was not in the licenses collected for pac=
-kagegroup-core-tools-debug=0A=
-> WARNING: The license listed vim was not in the licenses collected for vim=
-=0A=
-> DEBUG: Shell function license_create_manifest finished=0A=
-> NOTE: Executing write_image_manifest ...=0A=
-> DEBUG: Executing python function write_image_manifest=0A=
-> DEBUG: Python function write_image_manifest finished=0A=
-> NOTE: Executing ssh_allow_empty_password ...=0A=
-> DEBUG: Executing shell function ssh_allow_empty_password=0A=
-> sed: warning: failed to get security context of /home/jimr/tera/yocto/diz=
-zy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/root=
-fs/etc/ssh/sshd_config: No data availablesed: warning: failed to get securi=
-ty context of /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-li=
-nux/core-image-full-cmdline/1.0-r0/rootfs/etc/ssh/sshd_config: No data avai=
-lableDEBUG: Shell function ssh_allow_empty_password finished=0A=
-> NOTE: Executing postinst_enable_logging ...=0A=
-> DEBUG: Executing shell function postinst_enable_logging=0A=
-> DEBUG: Shell function postinst_enable_logging finished=0A=
-> NOTE: Executing rootfs_update_timestamp ...=0A=
-> DEBUG: Executing shell function rootfs_update_timestamp=0A=
-> DEBUG: Shell function rootfs_update_timestamp finished=0A=
-> NOTE: Executing: ldconfig -r/home/jimr/tera/yocto/dizzy/build/tmp/work/sp=
-ectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs-c new -v=0A=
-> NOTE: ###### Generate images #######=0A=
-> NOTE: Executing mklibs_optimize_image ...=0A=
-> DEBUG: Executing shell function mklibs_optimize_image=0A=
-> DEBUG: Shell function mklibs_optimize_image finished=0A=
-> NOTE: Executing prelink_image ...=0A=
-> DEBUG: Executing shell function prelink_image=0A=
-> Size before prelinking 210672.=0A=
-> Size after prelinking 212588.=0A=
-> DEBUG: Shell function prelink_image finished=0A=
-> NOTE: The image creation groups are: [['ext3', 'cpio']]=0A=
-> NOTE: Running image creation script for cpio: /home/jimr/tera/yocto/dizzy=
-/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/temp/c=
-reate_image.cpio ...=0A=
-> NOTE: Creating symlinks for ext3 image ...=0A=
-> NOTE: Creating symlink: core-image-full-cmdline-spectra-ls.ext3 -> core-i=
-mage-full-cmdline-spectra-ls-20150220171753.rootfs.ext3=0A=
-> NOTE: Creating symlinks for cpio image ...=0A=
-> NOTE: Creating symlink: core-image-full-cmdline-spectra-ls.cpio.gz -> cor=
-e-image-full-cmdline-spectra-ls-20150220171753.rootfs.cpio.gz=0A=
-> DEBUG: Python function do_rootfs finished=0A=
-> [jimr@krusty spectra_ls-poky-linux]$=0A=
->=0A=
->=0A=
->=0A=
-> ________________________________________=0A=
-> From: Paul Eggleton [paul.eggleton@linux.intel.com]=0A=
-> Sent: Friday, February 20, 2015 2:51 AM=0A=
-> To: Jim Rafert=0A=
-> Cc: yocto@yoctoproject.org=0A=
-> Subject: Re: [yocto] Simple recipe quit working in dizzy=0A=
->=0A=
-> Hi Jim,=0A=
->=0A=
-> On Wednesday 18 February 2015 20:33:43 Jim Rafert wrote:=0A=
->> The following recipe, spectra-postbuild_0.1.bb, quit working when I port=
-ed=0A=
->> from 1.6 daisy to 1.7.1 dizzy.  I include the recipe in my image by addi=
-ng=0A=
->> it at the end of of the IMAGE_INSTALL_append variable in my local.conf=
-=0A=
->> file.  The purpose of the recipe is simply to lay down some files that w=
-ill=0A=
->> later be used by an installer script.  Two if the files are deposited in=
-=0A=
->> the root directory, and the rest are placed in the /install/spectra=0A=
->> directory, which is created by the recipe.  Nothing is compiled or=0A=
->> transformed in any way.=0A=
->>=0A=
->> When I bitbake the recipe, then bitbake core-image-full-cmdline, both=0A=
->> complete without errors. When I look at the contents of the rpm file=0A=
->> produced by the recipe, all the files and directories are listed. Howeve=
-r,=0A=
->> when I examine the file system images created, only the two files that I=
-=0A=
->> place in the root directory (/) are there, and the entire /install=0A=
->> directory hierarchy is missing. If I modify the recipe such that the=0A=
->> missing files are placed in a directory that is already created by other=
-=0A=
->> recipes (/home/root), all the files are deposited as expected.=0A=
->>=0A=
->> I have looked at section 5.6 of the Yocto reference manual, "Moving to t=
-he=0A=
->> Yocto Project 1.7 Release", but did not see anything that was obviously=
-=0A=
->> relevant.=0A=
->>=0A=
->> Can someone tell me how to fix this for dizzy?=0A=
->>=0A=
->> ######################################################=0A=
->> # spectra-postbuild_0.1.bb=0A=
->> ######################################################=0A=
->>=0A=
->> SUMMARY =3D "Post processing of configuration files for SpectraOS"=0A=
->> SECTION =3D "base"=0A=
->> LICENSE =3D "GPLv2"=0A=
->> LIC_FILES_CHKSUM =3D=0A=
->> "file://${WORKDIR}/COPYRIGHT;md5=3D349c872e0066155e1818b786938876a4"=0A=
->> PR =3D "r0"=0A=
->>=0A=
->> SRC_URI =3D "file://inittab \=0A=
->>         file://fstab \=0A=
->>         file://rsyslog.conf \=0A=
->>             file://profile \=0A=
->>         file://grub.cfg \=0A=
->>         file://mount.sh \=0A=
->>         file://RELEASE-NOTES.txt \=0A=
->>         file://Spectra-OS-Version \=0A=
->>         file://initializeCustomKernelModules \=0A=
->>         file://firewall \=0A=
->>         file://sysctl.conf \=0A=
->>             file://InstallOS.sh \=0A=
->>         file://COPYRIGHT \=0A=
->>             file://WinCE_LCM.tar.bz \=0A=
->>         "=0A=
->>=0A=
->> FILES_${PN} =3D  "/RELEASE-NOTES.txt \=0A=
->>                  /Spectra-OS-Version \=0A=
->>                  /install \=0A=
->>                  /install/spectra \=0A=
->>                  /install/spectra/InstallOS.sh \=0A=
->>                  /install/spectra/fstab \=0A=
->>                  /install/spectra/mount.sh \=0A=
->>                  /install/spectra/grub.cfg \=0A=
->>                  /install/spectra/rsyslog.conf \=0A=
->>                  /install/spectra/profile \=0A=
->>                  /install/spectra/inittab \=0A=
->>                  /install/spectra/WinCE_LCM.tar.bz \=0A=
->>                  /install/spectra/sysctl.conf \=0A=
->>                  /install/spectra/init.d \=0A=
->>                  /install/spectra/rc5.d \=0A=
->>                  /install/spectra/init.d/initializeCustomKernelModules \=
-=0A=
->>                  /install/spectra/init.d/firewall \=0A=
->>                  "=0A=
->>=0A=
->> do_install () {=0A=
->>      install -m 755 ${WORKDIR}/RELEASE-NOTES.txt ${D}=0A=
->>      install -m 755 ${WORKDIR}/Spectra-OS-Version ${D}=0A=
->>          install -d ${D}/install=0A=
->>          install -d ${D}/install/spectra=0A=
->>          install -m 544 ${WORKDIR}/inittab ${D}/install/spectra=0A=
->>          install -m 755 ${WORKDIR}/fstab ${D}/install/spectra=0A=
->>          install -m 755 ${WORKDIR}/rsyslog.conf ${D}/install/spectra=0A=
->>          install -m 755 ${WORKDIR}/profile ${D}/install/spectra=0A=
->>          install -m 755 ${WORKDIR}/grub.cfg ${D}/install/spectra=0A=
->>          install -m 755 ${WORKDIR}/mount.sh ${D}/install/spectra=0A=
->>          install -m 755 ${WORKDIR}/InstallOS.sh ${D}/install/spectra=0A=
->>          install -m 755 ${WORKDIR}/sysctl.conf ${D}/install/spectra=0A=
->>          install -m 644 ${WORKDIR}/WinCE_LCM.tar.bz ${D}/install/spectra=
-=0A=
->>          install -m 755 ${WORKDIR}/firewall ${D}/install/spectra=0A=
->>          install -m 755 ${WORKDIR}/initializeCustomKernelModules=0A=
->> ${D}/install/spectra=0A=
->>=0A=
->> }=0A=
->=0A=
-> Hmm, so I can't see anything immediately wrong with the recipe that would=
- lead=0A=
-> to a problem such as what you describe, so rather than something expected=
-=0A=
-> change between releases this looks more like a bug. Is there anything in =
-the=0A=
-> log.do_rootfs for the image that might indicate something going wrong? Pe=
-rhaps=0A=
-> an uncaught error?=0A=
->=0A=
-> Cheers,=0A=
-> Paul=0A=
->=0A=
-> --=0A=
->=0A=
-> Paul Eggleton=0A=
-> Intel Open Source Technology Centre=0A=
->=0A=
-=0A=
-=0A=
-------------------------------=0A=
-=0A=
---=0A=
-_______________________________________________=0A=
-yocto mailing list=0A=
-yocto@yoctoproject.org=0A=
-https://lists.yoctoproject.org/listinfo/yocto=0A=
-=0A=
-=0A=
-End of yocto Digest, Vol 53, Issue 97=0A=
-*************************************=0A=
-=0A=
-=0A=
-=0A=
-------------------------------=0A=
-=0A=
---=0A=
-_______________________________________________=0A=
-yocto mailing list=0A=
-yocto@yoctoproject.org=0A=
-https://lists.yoctoproject.org/listinfo/yocto=0A=
-=0A=
-=0A=
-End of yocto Digest, Vol 55, Issue 46=0A=
-*************************************=0A=
+Hello Abinhav,
 
+This is most likely caused by a mismatch between the plugin build (juno)
+and the IDE (luna). Please install the luna build of the plugin from
+here:
+
+https://autobuilder.yoctoproject.org/pub/nightly/CURRENT/eclipse-plugin/lun=
+a/org.yocto.sdk-development-201504140001-archive.zip
+
+Thanks,
+Todor
+
+On Tue, 2015-04-14 at 08:39 +0000, Bipnesh, Abhinav (Abhinav) wrote:
+> Hi,
+>=20
+> =20
+>=20
+> I was using the same URL as you suggested for the Yocto Eclipse
+> Plugin. Below is the snapshot of the error I am getting when I try to
+> configure it as Build System derived tool chain
+>=20
+> =20
+
+>=20
+>=20
+>=20
+> =20
+>=20
+> =20
+>=20
+> I already did build meta-ide-support and can see the
+> environment-setup-ppce5500-fsl-linux under <build directory>/tmp. If I
+> select Standalone SDK the it starts work without any issue.
+>=20
+> =20
+>=20
+> =20
+>=20
+> Second issue I am facing is that when I import my existing project
+> which is a Makefile base I can see option for Yocto CMake Build
+> (Toolchain) as below
+>=20
+> =20
+>=20
+>=20
+>=20
+> =20
+>=20
+> So how to fix this as need to make it working with existing Makefile
+> based project.
+>=20
+> =20
+>=20
+> =20
+>=20
+> Any thoughts how to fix these issues.
+>=20
+> =20
+>=20
+> Thanks,
+>=20
+> Abhinav
+>=20
+> =20
+>=20
+> -----Original Message-----
+> From: Minchev, Todor [mailto:todor.minchev@intel.com]=20
+> Sent: Tuesday, April 14, 2015 12:38
+> To: Bipnesh, Abhinav (Abhinav)
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Yocto Eclipse Plugin
+>=20
+> =20
+>=20
+> Hello Abhinav,
+>=20
+> =20
+>=20
+> On Mon, 2015-04-13 at 18:27 +0000, Bipnesh, Abhinav (Abhinav) wrote:
+>=20
+> > Hi All,
+>=20
+> >=20
+>=20
+> > I am trying to setup the Yocto Eclipse Plugin for Eclipse (Luna
+> release). I am able to install the Juno release plugin for 1.7.1
+> release. But while configuring it I am facing issues as below
+>=20
+> =20
+>=20
+> > 1. When I try to provide BitBake directory as part of tool chain I
+> get an error that need to build meta-ide-support before configuring
+> it.=20
+>=20
+> > As I did build meta-ide-support before setting up the path as I can
+> see an environment file present under <bitbake machine directory>/tmp
+> path.
+>=20
+> =20
+>=20
+> You will need to provide the path to the build directory. This is the
+>=20
+> directory holding tmp.
+>=20
+> =20
+>=20
+> > 2. If I select Standard SDK option then it accepts the same i.e. it
+> accept environment file present under tmp directory as vaild which I
+> suppose it should not do.
+>=20
+> > 3. I already has Makefile based project which I am trying to
+> configure in eclipse by selecting Yocto as Toolchain.=20
+>=20
+> > But when I try to build it I am seeing its using platform GCC
+> instead of Yocto tool chain.
+>=20
+> =20
+>=20
+> Selecting the correct directory should set up the cross-compiler
+>=20
+> environment and fix this.
+>=20
+> > =20
+>=20
+> > How to fix the same as I cant change this project to an CMake based
+> project.
+>=20
+> >=20
+>=20
+> > Is there as way I can use Kepler plugin instead of Juno as when I
+> try the same with Luna I am getting dependencies errors.
+>=20
+> =20
+>=20
+> You can find the plugin releases here:
+>=20
+> https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__downloads.yoctoproj=
+ect.org_releases_eclipse-2Dplugin_&d=3DAwIFaQ&c=3DBFpWQw8bsuKpl1SgiZH64Q&r=
+=3DgeJ1wB7xRIMmteYB2Fo8esL32BOWvwP1HmY0YuLEB4E&m=3DHg_RatI-pPFNhlwlj3rvSiP3=
+RspGPYNzHRBg-XaXN1U&s=3D11DZqLCED8UtaM9vU0YxGMeaNWGlerPzTawEoVwuJd4&e=3D=
+=20
+>=20
+> =20
+>=20
+> Cheers,
+>=20
+> Todor
+>=20
+> =20
+>=20
+>=20
+
+
+--=-0Z3ACb/kpbFWbXE8QR/G
+Content-Type: application/x-pkcs7-signature; name="smime.p7s"
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Transfer-Encoding: base64
+
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIQ3jCCBOsw
+ggPToAMCAQICEFLpAsoR6ESdlGU4L6MaMLswDQYJKoZIhvcNAQEFBQAwbzELMAkGA1UEBhMCU0Ux
+FDASBgNVBAoTC0FkZFRydXN0IEFCMSYwJAYDVQQLEx1BZGRUcnVzdCBFeHRlcm5hbCBUVFAgTmV0
+d29yazEiMCAGA1UEAxMZQWRkVHJ1c3QgRXh0ZXJuYWwgQ0EgUm9vdDAeFw0xMzAzMTkwMDAwMDBa
+Fw0yMDA1MzAxMDQ4MzhaMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2Fu
+dGEgQ2xhcmExGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRl
+cm5hbCBCYXNpYyBJc3N1aW5nIENBIDRBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+4LDMgJ3YSVX6A9sE+jjH3b+F3Xa86z3LLKu/6WvjIdvUbxnoz2qnvl9UKQI3sE1zURQxrfgvtP0b
+Pgt1uDwAfLc6H5eqnyi+7FrPsTGCR4gwDmq1WkTQgNDNXUgb71e9/6sfq+WfCDpi8ScaglyLCRp7
+ph/V60cbitBvnZFelKCDBh332S6KG3bAdnNGB/vk86bwDlY6omDs6/RsfNwzQVwo/M3oPrux6y6z
+yIoRulfkVENbM0/9RrzQOlyK4W5Vk4EEsfW2jlCV4W83QKqRccAKIUxw2q/HoHVPbbETrrLmE6RR
+Z/+eWlkGWl+mtx42HOgOmX0BRdTRo9vH7yeBowIDAQABo4IBdzCCAXMwHwYDVR0jBBgwFoAUrb2Y
+ejS0Jvf6xCZU7wO94CTLVBowHQYDVR0OBBYEFB5pKrTcKP5HGE4hCz+8rBEv8Jj1MA4GA1UdDwEB
+/wQEAwIBhjASBgNVHRMBAf8ECDAGAQH/AgEAMDYGA1UdJQQvMC0GCCsGAQUFBwMEBgorBgEEAYI3
+CgMEBgorBgEEAYI3CgMMBgkrBgEEAYI3FQUwFwYDVR0gBBAwDjAMBgoqhkiG+E0BBQFpMEkGA1Ud
+HwRCMEAwPqA8oDqGOGh0dHA6Ly9jcmwudHJ1c3QtcHJvdmlkZXIuY29tL0FkZFRydXN0RXh0ZXJu
+YWxDQVJvb3QuY3JsMDoGCCsGAQUFBwEBBC4wLDAqBggrBgEFBQcwAYYeaHR0cDovL29jc3AudHJ1
+c3QtcHJvdmlkZXIuY29tMDUGA1UdHgQuMCygKjALgQlpbnRlbC5jb20wG6AZBgorBgEEAYI3FAID
+oAsMCWludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOCAQEAKcLNo/2So1Jnoi8G7W5Q6FSPq1fmyKW3
+sSDf1amvyHkjEgd25n7MKRHGEmRxxoziPKpcmbfXYU+J0g560nCo5gPF78Wd7ZmzcmCcm1UFFfIx
+fw6QA19bRpTC8bMMaSSEl8y39Pgwa+HENmoPZsM63DdZ6ziDnPqcSbcfYs8qd/m5d22rpXq5IGVU
+tX6LX7R/hSSw/3sfATnBLgiJtilVyY7OGGmYKCAS2I04itvSS1WtecXTt9OZDyNbl7LtObBrgMLh
+ZkpJW+pOR9f3h5VG2S5uKkA7Th9NC9EoScdwQCAIw+UWKbSQ0Isj2UFL7fHKvmqWKVTL98sRzvI3
+seNC4DCCBXowggRioAMCAQICEzMAAF9mzuWWtUHgbvUAAAAAX2YwDQYJKoZIhvcNAQEFBQAweTEL
+MAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRQwEgYDVQQHEwtTYW50YSBDbGFyYTEaMBgGA1UEChMR
+SW50ZWwgQ29ycG9yYXRpb24xKzApBgNVBAMTIkludGVsIEV4dGVybmFsIEJhc2ljIElzc3Vpbmcg
+Q0EgNEEwHhcNMTQxMDIwMTk1ODQ4WhcNMTcxMDA0MTk1ODQ4WjBBMRcwFQYDVQQDEw5NaW5jaGV2
+LCBUb2RvcjEmMCQGCSqGSIb3DQEJARYXdG9kb3IubWluY2hldkBpbnRlbC5jb20wggEiMA0GCSqG
+SIb3DQEBAQUAA4IBDwAwggEKAoIBAQChZEmRUCTZu/10YB1D5pjLUSInqeNdbq8gdwClnbvhSqni
+b4xLETBFO3lVRVRlRFIz9tc1auJGVYr39a968RcGjgMpLys8Mj67uQfCaBUIx3YvoYAEc5JIqR2e
+v0MbDxD0wQKvqhbT4zQMS5c+lei3D2n4BA5dx0A7AT99ko/qPzuXCDdk3L0FVqi43M4zfqmxNarg
+jIJoc4sx0US/hrfWXU6Kg/sL0WQ+gM8XrWPXJYWk1PoRSAvUCruQGrnN7txUmvTEfuXv3i9NwtuE
+qcETmP5WmZOyycq5cD8qO4qY4N1Va0KlO0MPnPlqCH1idu0Byo6e4f/CsWg2EvGDOT8vAgMBAAGj
+ggIxMIICLTALBgNVHQ8EBAMCB4AwPAYJKwYBBAGCNxUHBC8wLQYlKwYBBAGCNxUIhsOMdYSZ5VGD
+/YEohY6fU4KRwAlngd69OZXwQwIBZAIBCDAdBgNVHQ4EFgQUeijLELxE2SDhZHWre1zfj9+8kOMw
+HwYDVR0jBBgwFoAUHmkqtNwo/kcYTiELP7ysES/wmPUwZQYDVR0fBF4wXDBaoFigVoZUaHR0cDov
+L3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIw
+SXNzdWluZyUyMENBJTIwNEEuY3JsMIGfBggrBgEFBQcBAQSBkjCBjzBpBggrBgEFBQcwAoZdaHR0
+cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5h
+bCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwNEEuY3J0MCIGCCsGAQUFBzABhhZodHRwOi8vb2Nz
+cC5pbnRlbC5jb20vMB8GA1UdJQQYMBYGCCsGAQUFBwMEBgorBgEEAYI3CgMMMCkGCSsGAQQBgjcV
+CgQcMBowCgYIKwYBBQUHAwQwDAYKKwYBBAGCNwoDDDBLBgNVHREERDBCoCcGCisGAQQBgjcUAgOg
+GQwXdG9kb3IubWluY2hldkBpbnRlbC5jb22BF3RvZG9yLm1pbmNoZXZAaW50ZWwuY29tMA0GCSqG
+SIb3DQEBBQUAA4IBAQDVcbxsEX7Mupn3YJ5CF7JdeXczsAZ0zQefcq6IaNgda9aolT/4nSmGJI6l
+uJYF3VpEz++O1P/UfDINsjLBdN9FWURSHOlPggJyrqQ0kHRlULPtjuQVKlew1yGoYGKb2OTYb5hK
+m1ec2oXiWa/FFI1bynTDgWlrO88L58qK1QkIZzL8RwB/JpiJGUyukkPuT1e54ZG2PH78gKSz06Lt
+xRw3w6wRjaP8iwE8AVXry7QylN3dE8PyOgmjlmFUnDn1lRwo9ESaB/QAI5BxSYid/uk6unnm75sq
+P6bTec9bgl4dqJu+rRFJJj4fC4ffnp5GtqG9WTsyEoUfp5Y23pBGc/QaMIIGbTCCBVWgAwIBAgIK
+EWkQ2AAAAABIZTANBgkqhkiG9w0BAQUFADB5MQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDAS
+BgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMi
+SW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSA0QTAeFw0xNDAzMDExOTQ0MTNaFw0xNzAy
+MTMxOTQ0MTNaMEExFzAVBgNVBAMTDk1pbmNoZXYsIFRvZG9yMSYwJAYJKoZIhvcNAQkBFhd0b2Rv
+ci5taW5jaGV2QGludGVsLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAJHqnL6c
+snAM1wfTEDLYYi0hJKf8G7iWdFVXh0DGNaj6VozcDBlPZShviB6WDQjBxCeVU+zgnA8CMBQKXJ7o
+x3KHUiVcY7aYDl41Yl9RBvKzN61SfmFSA+mhKxC9BOuQvyTaWZoxVlm332MTa59gFon4jKVJfP7t
+OCK3uPETR/7ycuAjDHMmZmJzKOmhMrNyq7w75EsdLZJhUsGSmtMDv2wLDPkQk7qkkbEM+24qma5T
+1iIuV1+UUrip4+IWWehvKX1JEIT5bHG9Evnep9Uf/2Whg4l6neqsCuev8k+9r+uYYHMGoUBuTqM3
+Xh3uAu6vVOxtYNwuyzVO9C+lfVLXONUCAwEAAaOCAy0wggMpMAsGA1UdDwQEAwIEMDA9BgkrBgEE
+AYI3FQcEMDAuBiYrBgEEAYI3FQiGw4x1hJnlUYP9gSiFjp9TgpHACWeEudlBh4T/TgIBZAIBDTBE
+BgkqhkiG9w0BCQ8ENzA1MA4GCCqGSIb3DQMCAgIAgDAOBggqhkiG9w0DBAICAIAwBwYFKw4DAgcw
+CgYIKoZIhvcNAwcwHQYDVR0OBBYEFPK/Tetim9eBCuLKW5j5Z0aNlUK+MB8GA1UdIwQYMBaAFB5p
+KrTcKP5HGE4hCz+8rBEv8Jj1MIHJBgNVHR8EgcEwgb4wgbuggbiggbWGVGh0dHA6Ly93d3cuaW50
+ZWwuY29tL3JlcG9zaXRvcnkvQ1JML0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMElzc3Vpbmcl
+MjBDQSUyMDRBLmNybIZdaHR0cDovL2NlcnRpZmljYXRlcy5pbnRlbC5jb20vcmVwb3NpdG9yeS9D
+UkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwNEEuY3JsMIHvBggr
+BgEFBQcBAQSB4jCB3zBpBggrBgEFBQcwAoZdaHR0cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9y
+eS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIw
+NEEuY3J0MHIGCCsGAQUFBzAChmZodHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0
+b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0El
+MjA0QS5jcnQwHwYDVR0lBBgwFgYIKwYBBQUHAwQGCisGAQQBgjcKAwQwKQYJKwYBBAGCNxUKBBww
+GjAKBggrBgEFBQcDBDAMBgorBgEEAYI3CgMEMEsGA1UdEQREMEKgJwYKKwYBBAGCNxQCA6AZDBd0
+b2Rvci5taW5jaGV2QGludGVsLmNvbYEXdG9kb3IubWluY2hldkBpbnRlbC5jb20wDQYJKoZIhvcN
+AQEFBQADggEBAF0E0nNaQoDxgeNMLFImgnNUUryBCNdCuTpbg5jrla+Crqx82t64r5TXrlUtrBDY
+7bfb/ObgQnFlVhoRDYZ8hFo8S5LNihxHKPt7wEq2uN0rusTVzSRtS8Vf6MT7sO44nEKVuvmYAqeL
+TfwAUzHwjTWU8szdaTONfjEaIzC8qh5k4/lc/qCqxJD6aDIZyQYCKufppCtyyttBzVAgZ9LdG4Z9
+0p4PJSr7IxximJkGlGk/2GmOSkuYr4GCYfQAVmZLkQDBuF/qunedYnTXlnIKql7mc1CpPnS6YV4B
+AfFi5vLJk8TKntgrSsu8a97CBqYP4zL9qlIwM/sSzlcb93CrzoUxggNRMIIDTQIBATCBkDB5MQsw
+CQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDASBgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJ
+bnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBD
+QSA0QQITMwAAX2bO5Za1QeBu9QAAAABfZjAJBgUrDgMCGgUAoIIBlTAYBgkqhkiG9w0BCQMxCwYJ
+KoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xNTA0MTQxMTUwMDRaMCMGCSqGSIb3DQEJBDEWBBRO
+MHLNk8t/2VkuJmUU9qL8i2cMWTCBmAYJKwYBBAGCNxAEMYGKMIGHMHkxCzAJBgNVBAYTAlVTMQsw
+CQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAYBgNVBAoTEUludGVsIENvcnBvcmF0
+aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDRBAgoRaRDYAAAA
+AEhlMIGaBgsqhkiG9w0BCRACCzGBiqCBhzB5MQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDAS
+BgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMi
+SW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSA0QQIKEWkQ2AAAAABIZTANBgkqhkiG9w0B
+AQEFAASCAQADb0BxobbPpA590iydITePLHNBQBHXbBquCjm3ODwKeIs6pZSnr5VvAFm2/6z6E8GG
+Zkm6RhWLuKmJl3epGW912ZnreyXevaNCUgKr+NUsUJqbPGvsFiWeaxD/QlCewzCTqu/bpVOXXLKp
+22W7I+FWcIMmTfwFxZTSAIH/xNzazDKC8ISAGUU2nyxU9qhPpF+1NCwwL/NwdbPufVFV1P125tmr
+NR/sXPog6I6iBbhNoywsVTDfVCUtRRbyJzd2VnoX73eqKl0oCaMuvBElYVgmG6PJtdj/2KhbC4Bm
+/AzcLQLB14/KFEDnEe/KZ5AZZIwlr1Bf97p4y/GluJp+YwiPAAAAAAAA
+
+--=-0Z3ACb/kpbFWbXE8QR/G--
