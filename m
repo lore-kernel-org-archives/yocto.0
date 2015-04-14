@@ -1,44 +1,49 @@
-Return-Path: <todor.minchev@intel.com>
+Return-Path: <heliatck@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17B02E0095C; Tue, 14 Apr 2015 00:08:29 -0700 (PDT)
+	id 1D5E7E0095C; Tue, 14 Apr 2015 01:25:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (heliatck[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AE62E00932
-	for <yocto@yoctoproject.org>; Tue, 14 Apr 2015 00:08:24 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 14 Apr 2015 00:08:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,574,1422950400"; 
-	d="p7s'?scan'208";a="708590820"
-Received: from irsmsx154.ger.corp.intel.com ([163.33.192.96])
-	by fmsmga002.fm.intel.com with ESMTP; 14 Apr 2015 00:08:19 -0700
-Received: from irsmsx105.ger.corp.intel.com ([169.254.7.2]) by
-	IRSMSX154.ger.corp.intel.com ([169.254.12.85]) with mapi id
-	14.03.0224.002; Tue, 14 Apr 2015 08:08:19 +0100
-From: "Minchev, Todor" <todor.minchev@intel.com>
-To: "abhinavbipnesh@avaya.com" <abhinavbipnesh@avaya.com>
-Thread-Topic: [yocto] Yocto Eclipse Plugin
-Thread-Index: AdB2F3HM/xMNdG1HR7StQtYHFqtt4QAYfToA
-Date: Tue, 14 Apr 2015 07:08:18 +0000
-Message-ID: <1428995298.8544.32.camel@intel.com>
-References: <F38A866CD026F746A3BF0928A84397BE3A39BD12@AZ-FFEXMB01.global.avaya.com>
-In-Reply-To: <F38A866CD026F746A3BF0928A84397BE3A39BD12@AZ-FFEXMB01.global.avaya.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.33.100]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.53 listed in list.dnswl.org]
+Received: from mail-vn0-f53.google.com (mail-vn0-f53.google.com
+	[209.85.216.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCC64E00932
+	for <yocto@yoctoproject.org>; Tue, 14 Apr 2015 01:25:00 -0700 (PDT)
+Received: by vnbg7 with SMTP id g7so762242vnb.11
+	for <yocto@yoctoproject.org>; Tue, 14 Apr 2015 01:25:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=kOSsMlrireMYQxHp3iTRHf5b0QI5OQhVUfQEkglMWIg=;
+	b=mvAeqPSYTIBiAbN1KJq+a690Nd5MTstDdF06cU1nvGHmI9svP8b12inMii77uFvXWH
+	xdiXoXKEY5vkJ/cEwzznZbX5VoDitJ0I1inYXGbik5wo1PgsI1z9EScxRktiB3k4WJ6b
+	CdzuufHu8ExottU/NBcoGhnAYPNj3jeFCupiRunGJAnAHyHiz8/WcxEoCDoHqKpNJoKn
+	DD8nWVr4o8E+Q4W66CjxEvuNv0mNY7SjUrLh6Opdy+RZbfUGt0yt8uLk6LXieQhnxgsk
+	zgvZiQ8CdB7b1/LO2h5hKNOxqog6UjS7EOuEm6TemXun3rGdGsirSwnyVa8RnIT9KeD+
+	zOvw==
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto Eclipse Plugin
+X-Received: by 10.202.190.134 with SMTP id o128mr6959468oif.111.1428999900037; 
+	Tue, 14 Apr 2015 01:25:00 -0700 (PDT)
+Received: by 10.202.44.3 with HTTP; Tue, 14 Apr 2015 01:24:59 -0700 (PDT)
+Date: Tue, 14 Apr 2015 10:24:59 +0200
+Message-ID: <CADUpHn9xaSy=EAmyK2gCyTd6Lgb=qKXwm19KExn1QXroh8w8Kw@mail.gmail.com>
+From: heli Atck <heliatck@gmail.com>
+To: yocto@yoctoproject.org
+Subject: 1.7.1 ADT-installer errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,155 +55,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Apr 2015 07:08:29 -0000
-X-Groupsio-MsgNum: 24443
-Content-Language: en-US
-Content-Type: multipart/signed; micalg=sha-1;
-	protocol="application/x-pkcs7-signature";
-	boundary="=-meBX2xPzQYTCJglkJ/yj"
+X-List-Received-Date: Tue, 14 Apr 2015 08:25:04 -0000
+Content-Type: multipart/alternative; boundary=001a113dccec6d09e00513aaf779
 
---=-meBX2xPzQYTCJglkJ/yj
-Content-Type: text/plain; charset="UTF-8"
+--001a113dccec6d09e00513aaf779
+Content-Type: text/plain; charset=UTF-8
+
+Hi, I'm new to Yocto (and embedded Linux for that matter). I was following
+the ADT manual to get started with application development. I tried using
+the ADT-installer script, but ran into some errors.
+
+Here's the relevant part of the installer log file:
+
+
+
+
+
+
+*Creating directory /home/spe/test-yocto/qemux86...Extracting rootfs:
+core-image-sato-sdk-qemux86.tar.bz2, using pseudo...tar (child):
+./download_image/core-image-sato-sdk-qemux86.tar.bz2: Cannot open: No such
+file or directorytar (child): Error is not recoverable: exiting nowtar:
+Child returned status 2tar: Error is not recoverable: exiting now*
+
+There are no files in my /download_image directory so I guess they have not
+been properly retrieved from the repository. I looked at the repository for
+1.7.1 at http://adtrepo.yoctoproject.org/1.7.1/rootfs/qemux86/ and some of
+the relevant files seem to be missing.
+
+Or did I mis a step somewhere?
+
+Sammy
+
+--001a113dccec6d09e00513aaf779
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello Abhinav,
+<div dir=3D"ltr"><div>Hi, I&#39;m new to Yocto (and embedded Linux for that=
+ matter). I was following the ADT manual to get started with application de=
+velopment. I tried using the ADT-installer script, but ran into some errors=
+. <br><br></div>Here&#39;s the relevant part of the installer log file:<br>=
+<div><br><i>Creating directory /home/spe/test-yocto/qemux86...<br>Extractin=
+g rootfs: core-image-sato-sdk-qemux86.tar.bz2, using pseudo...<br>tar (chil=
+d): ./download_image/core-image-sato-sdk-qemux86.tar.bz2: Cannot open: No s=
+uch file or directory<br>tar (child): Error is not recoverable: exiting now=
+<br>tar: Child returned status 2<br>tar: Error is not recoverable: exiting =
+now</i><br><br></div><div>There are no files in my /download_image director=
+y so I guess they have not been properly retrieved from the repository. I l=
+ooked at the repository for 1.7.1 at <a href=3D"http://adtrepo.yoctoproject=
+.org/1.7.1/rootfs/qemux86/">http://adtrepo.yoctoproject.org/1.7.1/rootfs/qe=
+mux86/</a> and some of the relevant files seem to be missing.<br><br></div>=
+<div>Or did I mis a step somewhere?<br><br></div><div>Sammy<br></div></div>
 
-On Mon, 2015-04-13 at 18:27 +0000, Bipnesh, Abhinav (Abhinav) wrote:
-> Hi All,
->=20
-> I am trying to setup the Yocto Eclipse Plugin for Eclipse (Luna release).=
- I am able to install the Juno release plugin for 1.7.1 release. But while =
-configuring it I am facing issues as below
-
-> 1. When I try to provide BitBake directory as part of tool chain I get an=
- error that need to build meta-ide-support before configuring it.=20
-> As I did build meta-ide-support before setting up the path as I can see a=
-n environment file present under <bitbake machine directory>/tmp path.
-
-You will need to provide the path to the build directory. This is the
-directory holding tmp.
-
-> 2. If I select Standard SDK option then it accepts the same i.e. it accep=
-t environment file present under tmp directory as vaild which I suppose it =
-should not do.
-> 3. I already has Makefile based project which I am trying to configure in=
- eclipse by selecting Yocto as Toolchain.=20
-> But when I try to build it I am seeing its using platform GCC instead of =
-Yocto tool chain.
-
-Selecting the correct directory should set up the cross-compiler
-environment and fix this.
-=20
-> =20
-> How to fix the same as I cant change this project to an CMake based proje=
-ct.
->=20
-> Is there as way I can use Kepler plugin instead of Juno as when I try the=
- same with Luna I am getting dependencies errors.
-
-You can find the plugin releases here:
-http://downloads.yoctoproject.org/releases/eclipse-plugin/
-
-Cheers,
-Todor
-
-
---=-meBX2xPzQYTCJglkJ/yj
-Content-Type: application/x-pkcs7-signature; name="smime.p7s"
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Transfer-Encoding: base64
-
-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
-qcETmP5WmZOyycq5cD8qO4qY4N1Va0KlO0MPnPlqCH1idu0Byo6e4f/CsWg2EvGDOT8vAgMBAAGj
-ggIxMIICLTALBgNVHQ8EBAMCB4AwPAYJKwYBBAGCNxUHBC8wLQYlKwYBBAGCNxUIhsOMdYSZ5VGD
-/YEohY6fU4KRwAlngd69OZXwQwIBZAIBCDAdBgNVHQ4EFgQUeijLELxE2SDhZHWre1zfj9+8kOMw
-HwYDVR0jBBgwFoAUHmkqtNwo/kcYTiELP7ysES/wmPUwZQYDVR0fBF4wXDBaoFigVoZUaHR0cDov
-L3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIw
-SXNzdWluZyUyMENBJTIwNEEuY3JsMIGfBggrBgEFBQcBAQSBkjCBjzBpBggrBgEFBQcwAoZdaHR0
-cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5h
-bCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwNEEuY3J0MCIGCCsGAQUFBzABhhZodHRwOi8vb2Nz
-cC5pbnRlbC5jb20vMB8GA1UdJQQYMBYGCCsGAQUFBwMEBgorBgEEAYI3CgMMMCkGCSsGAQQBgjcV
-CgQcMBowCgYIKwYBBQUHAwQwDAYKKwYBBAGCNwoDDDBLBgNVHREERDBCoCcGCisGAQQBgjcUAgOg
-GQwXdG9kb3IubWluY2hldkBpbnRlbC5jb22BF3RvZG9yLm1pbmNoZXZAaW50ZWwuY29tMA0GCSqG
-SIb3DQEBBQUAA4IBAQDVcbxsEX7Mupn3YJ5CF7JdeXczsAZ0zQefcq6IaNgda9aolT/4nSmGJI6l
-uJYF3VpEz++O1P/UfDINsjLBdN9FWURSHOlPggJyrqQ0kHRlULPtjuQVKlew1yGoYGKb2OTYb5hK
-m1ec2oXiWa/FFI1bynTDgWlrO88L58qK1QkIZzL8RwB/JpiJGUyukkPuT1e54ZG2PH78gKSz06Lt
-xRw3w6wRjaP8iwE8AVXry7QylN3dE8PyOgmjlmFUnDn1lRwo9ESaB/QAI5BxSYid/uk6unnm75sq
-P6bTec9bgl4dqJu+rRFJJj4fC4ffnp5GtqG9WTsyEoUfp5Y23pBGc/QaMIIGbTCCBVWgAwIBAgIK
-EWkQ2AAAAABIZTANBgkqhkiG9w0BAQUFADB5MQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDAS
-BgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMi
-SW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSA0QTAeFw0xNDAzMDExOTQ0MTNaFw0xNzAy
-MTMxOTQ0MTNaMEExFzAVBgNVBAMTDk1pbmNoZXYsIFRvZG9yMSYwJAYJKoZIhvcNAQkBFhd0b2Rv
-ci5taW5jaGV2QGludGVsLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAJHqnL6c
-snAM1wfTEDLYYi0hJKf8G7iWdFVXh0DGNaj6VozcDBlPZShviB6WDQjBxCeVU+zgnA8CMBQKXJ7o
-x3KHUiVcY7aYDl41Yl9RBvKzN61SfmFSA+mhKxC9BOuQvyTaWZoxVlm332MTa59gFon4jKVJfP7t
-OCK3uPETR/7ycuAjDHMmZmJzKOmhMrNyq7w75EsdLZJhUsGSmtMDv2wLDPkQk7qkkbEM+24qma5T
-1iIuV1+UUrip4+IWWehvKX1JEIT5bHG9Evnep9Uf/2Whg4l6neqsCuev8k+9r+uYYHMGoUBuTqM3
-Xh3uAu6vVOxtYNwuyzVO9C+lfVLXONUCAwEAAaOCAy0wggMpMAsGA1UdDwQEAwIEMDA9BgkrBgEE
-AYI3FQcEMDAuBiYrBgEEAYI3FQiGw4x1hJnlUYP9gSiFjp9TgpHACWeEudlBh4T/TgIBZAIBDTBE
-BgkqhkiG9w0BCQ8ENzA1MA4GCCqGSIb3DQMCAgIAgDAOBggqhkiG9w0DBAICAIAwBwYFKw4DAgcw
-CgYIKoZIhvcNAwcwHQYDVR0OBBYEFPK/Tetim9eBCuLKW5j5Z0aNlUK+MB8GA1UdIwQYMBaAFB5p
-KrTcKP5HGE4hCz+8rBEv8Jj1MIHJBgNVHR8EgcEwgb4wgbuggbiggbWGVGh0dHA6Ly93d3cuaW50
-ZWwuY29tL3JlcG9zaXRvcnkvQ1JML0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMElzc3Vpbmcl
-MjBDQSUyMDRBLmNybIZdaHR0cDovL2NlcnRpZmljYXRlcy5pbnRlbC5jb20vcmVwb3NpdG9yeS9D
-UkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwNEEuY3JsMIHvBggr
-BgEFBQcBAQSB4jCB3zBpBggrBgEFBQcwAoZdaHR0cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9y
-eS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIw
-NEEuY3J0MHIGCCsGAQUFBzAChmZodHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0
-b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0El
-MjA0QS5jcnQwHwYDVR0lBBgwFgYIKwYBBQUHAwQGCisGAQQBgjcKAwQwKQYJKwYBBAGCNxUKBBww
-GjAKBggrBgEFBQcDBDAMBgorBgEEAYI3CgMEMEsGA1UdEQREMEKgJwYKKwYBBAGCNxQCA6AZDBd0
-b2Rvci5taW5jaGV2QGludGVsLmNvbYEXdG9kb3IubWluY2hldkBpbnRlbC5jb20wDQYJKoZIhvcN
-AQEFBQADggEBAF0E0nNaQoDxgeNMLFImgnNUUryBCNdCuTpbg5jrla+Crqx82t64r5TXrlUtrBDY
-7bfb/ObgQnFlVhoRDYZ8hFo8S5LNihxHKPt7wEq2uN0rusTVzSRtS8Vf6MT7sO44nEKVuvmYAqeL
-TfwAUzHwjTWU8szdaTONfjEaIzC8qh5k4/lc/qCqxJD6aDIZyQYCKufppCtyyttBzVAgZ9LdG4Z9
-0p4PJSr7IxximJkGlGk/2GmOSkuYr4GCYfQAVmZLkQDBuF/qunedYnTXlnIKql7mc1CpPnS6YV4B
-AfFi5vLJk8TKntgrSsu8a97CBqYP4zL9qlIwM/sSzlcb93CrzoUxggNRMIIDTQIBATCBkDB5MQsw
-CQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDASBgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJ
-bnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBD
-QSA0QQITMwAAX2bO5Za1QeBu9QAAAABfZjAJBgUrDgMCGgUAoIIBlTAYBgkqhkiG9w0BCQMxCwYJ
-KoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xNTA0MTQwNzA4MThaMCMGCSqGSIb3DQEJBDEWBBSk
-iBkCtM9fR72uCWgWNhWo6AVoNTCBmAYJKwYBBAGCNxAEMYGKMIGHMHkxCzAJBgNVBAYTAlVTMQsw
-CQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAYBgNVBAoTEUludGVsIENvcnBvcmF0
-aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDRBAgoRaRDYAAAA
-AEhlMIGaBgsqhkiG9w0BCRACCzGBiqCBhzB5MQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDAS
-BgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMi
-SW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSA0QQIKEWkQ2AAAAABIZTANBgkqhkiG9w0B
-AQEFAASCAQATNdAC3A6n1VhMrWvwBqYgza3vOvd8/b7aH2MhgnEsgDNGN0a3eedXh4lbu6WZpqrk
-EnqiNlguaT56nF1iWzCSVkANgh2LxAG7Z4W0w7bPkXM8+gmZevRH9XL/3lR+As05nm/Q6hz3594R
-UGR9nTIWsgJsuZochksj9e7DIswl1KAPw/wOL9tKPHRhZPvfrZ/kPN87dRNE0tG4Tm8LVQMCQz0b
-l0saNFIDeKbJ9/u6/MmtcwZHyhjjJVch3Tj8fZ+fOvgUZXwpiuos0F3+LsHaYgNcpfQjTXTwUy81
-PgoRgXCQE/bghXjqNII7hk4pb376dgjdmD8/jSUO/EzVUF53AAAAAAAA
-
---=-meBX2xPzQYTCJglkJ/yj--
+--001a113dccec6d09e00513aaf779--
