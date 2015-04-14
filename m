@@ -1,30 +1,34 @@
-Return-Path: <oliver.staebler@bytesatwork.ch>
+Return-Path: <ed.bartosh@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6CCA3E0076B; Tue, 14 Apr 2015 09:13:07 -0700 (PDT)
+	id 70EA4E0098A; Tue, 14 Apr 2015 11:46:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 500 seconds by postgrey-1.32 at yocto-www;
-	Tue, 14 Apr 2015 09:13:02 PDT
-Received: from bytesatwork.ch (bytesatwork.ch [91.135.72.15])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0069AE003A8
-	for <yocto@yoctoproject.org>; Tue, 14 Apr 2015 09:13:02 -0700 (PDT)
-Received: from stanley.bytesatwork.ch (unknown [95.143.48.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested) (Authenticated sender: oliver)
-	by bytesatwork.ch (Postfix) with ESMTPSA id AAC8A18001A5
-	for <yocto@yoctoproject.org>; Tue, 14 Apr 2015 18:00:08 +0200 (CEST)
-Date: Tue, 14 Apr 2015 18:04:44 +0200
-From: Oliver =?utf-8?Q?St=C3=A4bler?= <oliver.staebler@bytesatwork.ch>
-To: Yocto <yocto@yoctoproject.org>
-Message-ID: <20150414160444.GA24453@stanley.bytesatwork.ch>
-MIME-Version: 1.0
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Subject: Mount options for /dev/root
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45999E0076B
+	for <yocto@yoctoproject.org>; Tue, 14 Apr 2015 11:46:00 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga103.jf.intel.com with ESMTP; 14 Apr 2015 11:45:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,577,1422950400"; d="scan'208";a="555971553"
+Received: from linux.intel.com ([10.23.219.25])
+	by orsmga003.jf.intel.com with ESMTP; 14 Apr 2015 11:45:59 -0700
+Received: from vmed.fi.intel.com (vmed.fi.intel.com [10.237.72.65])
+	by linux.intel.com (Postfix) with ESMTP id 41A786A408D;
+	Tue, 14 Apr 2015 11:45:35 -0700 (PDT)
+From: Ed Bartosh <ed.bartosh@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 14 Apr 2015 21:45:53 +0300
+Message-Id: <1429037153-8943-1-git-send-email-ed.bartosh@linux.intel.com>
+X-Mailer: git-send-email 2.1.4
+Subject: [PATCH] dev-manual: Updated wic runtime requirements
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,33 +40,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Apr 2015 16:13:07 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-List-Received-Date: Tue, 14 Apr 2015 18:46:03 -0000
 
-Hi
+Wic is not using parted and other runtime dependencies from
+host system anymore. It uses native tools instead.
 
-I'm trying to add some mount options to / (/dev/root) such as
-'nobarrier'.
+Removed host parted from the list of requirements. Added
+instructions to build native tools.
 
-What would be the best way to define this option?
+Signed-off-by: Ed Bartosh <ed.bartosh@linux.intel.com>
+---
+ documentation/dev-manual/dev-manual-common-tasks.xml | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-I know two possible ways:
-* rootflags boot paramenter, but I'd prefer it to be in userspace
-* /etc/fstab, but these options are not passed to mount. The script
-/etc/init.d/checkroot.sh does parse fstab and even saves the options
-($rootopts), but these options are not passed to the mount command.
-Other implementation, such as debians checkroot.sh, do pass these
-options to mount. Is this by intention or a bug?
-
-Thanks & Regards,
-Oliver
-
+diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
+index c856775..0ea4940 100644
+--- a/documentation/dev-manual/dev-manual-common-tasks.xml
++++ b/documentation/dev-manual/dev-manual-common-tasks.xml
+@@ -3788,12 +3788,6 @@
+                         development host system.
+                         </para></listitem>
+                     <listitem><para>
+-                        The
+-                        <ulink url='http://www.gnu.org/software/parted/'>GNU Parted</ulink>
+-                        package must be installed on your development host
+-                        system.
+-                        </para></listitem>
+-                    <listitem><para>
+                         You need to have the build artifacts already
+                         available, which typically means that you must
+                         have already created an image using the
+@@ -3806,6 +3800,12 @@
+                         in the form generated by the build system.
+                         </para></listitem>
+                     <listitem><para>
++                        You must build several native tools:
++                        <literallayout class='monospaced'>
++     $ bitbake parted-native dosfstools-native mtools-native
++                        </literallayout>
++                        </para></listitem>
++                    <listitem><para>
+                         You must have sourced one of the build environment
+                         setup scripts (i.e.
+                         <ulink url='&YOCTO_DOCS_REF_URL;#structure-core-script'><filename>&OE_INIT_FILE;</filename></ulink>
 -- 
-bytes at work
-Technoparkstrasse 7
-CH-8406 Winterthur
-Switzerland
+2.1.4
 
-phone: +41 52 213 79 79
 
