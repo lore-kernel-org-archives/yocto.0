@@ -1,6 +1,6 @@
-Return-Path: <abhinavbipnesh@avaya.com>
+Return-Path: <todor.minchev@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0B48E009EA; Wed, 15 Apr 2015 03:15:59 -0700 (PDT)
+	id 04E33E009B8; Wed, 15 Apr 2015 03:57:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,41 +8,38 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [135.11.29.13 listed in list.dnswl.org]
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from p-us1-iereast-outbound.us1.avaya.com
-	(p-us1-iereast-outbound.us1.avaya.com [135.11.29.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 723C0E009D7
-	for <yocto@yoctoproject.org>; Wed, 15 Apr 2015 03:15:37 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AlgFAD05LlXGmAcV/2dsb2JhbABSCoJmJlJcBYMQwWCCOoYHAhyBIEwBAQEBAQF+hCABAQEBAxIREUUMBAIBCA0EBAEBAQICBh0DAgICMBQBCAgBAQQOBQgaiAgBpAmKUJYyAQEBAQEBAQEBAQEBAQEBAQEBAQEBF4EhigqEHywWGwcGgmIvgRYFkQ6DeYc1OoJ9gluNQCKCAxyBUG+BRH8BAQE
-X-IronPort-AV: E=Sophos;i="5.11,581,1422939600"; d="scan'208";a="115792605"
-Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
-	([198.152.7.21]) by p-us1-iereast-outbound.us1.avaya.com with ESMTP;
-	15 Apr 2015 06:15:36 -0400
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-FFEXHC02.global.avaya.com) ([135.64.58.12])
-	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
-	15 Apr 2015 06:15:35 -0400
-Received: from AZ-FFEXMB01.global.avaya.com ([fe80::39ee:75fe:e67a:cf4a]) by
-	AZ-FFEXHC02.global.avaya.com ([135.64.58.12]) with mapi id
-	14.03.0174.001; Wed, 15 Apr 2015 12:15:34 +0200
-From: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
-To: "Minchev, Todor" <todor.minchev@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5694E0079F
+	for <yocto@yoctoproject.org>; Wed, 15 Apr 2015 03:57:52 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga103.jf.intel.com with ESMTP; 15 Apr 2015 03:57:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,581,1422950400"; 
+	d="p7s'?scan'208";a="709389886"
+Received: from irsmsx109.ger.corp.intel.com ([163.33.3.23])
+	by fmsmga002.fm.intel.com with ESMTP; 15 Apr 2015 03:57:45 -0700
+Received: from irsmsx105.ger.corp.intel.com ([169.254.7.2]) by
+	IRSMSX109.ger.corp.intel.com ([169.254.13.95]) with mapi id
+	14.03.0224.002; Wed, 15 Apr 2015 11:57:44 +0100
+From: "Minchev, Todor" <todor.minchev@intel.com>
+To: "abhinavbipnesh@avaya.com" <abhinavbipnesh@avaya.com>
 Thread-Topic: [yocto] Yocto Eclipse Plugin
-Thread-Index: AdB2F3HM/xMNdG1HR7StQtYHFqtt4QAYfToAAAI5/gAAB50yAAAxCWVQ
-Date: Wed, 15 Apr 2015 10:15:33 +0000
-Message-ID: <F38A866CD026F746A3BF0928A84397BE3A39E777@AZ-FFEXMB01.global.avaya.com>
+Thread-Index: AdB2F3HM/xMNdG1HR7StQtYHFqtt4QAYfToAAAI5/gAAB50yAAAxCWVQ///7aYA=
+Date: Wed, 15 Apr 2015 10:57:43 +0000
+Message-ID: <1429095463.26943.7.camel@intel.com>
 References: <F38A866CD026F746A3BF0928A84397BE3A39BD12@AZ-FFEXMB01.global.avaya.com>
 	<1428995298.8544.32.camel@intel.com>
 	<F38A866CD026F746A3BF0928A84397BE3A39E1EA@AZ-FFEXMB01.global.avaya.com>
 	<1429012204.8544.44.camel@intel.com>
-In-Reply-To: <1429012204.8544.44.camel@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
+	<F38A866CD026F746A3BF0928A84397BE3A39E777@AZ-FFEXMB01.global.avaya.com>
+In-Reply-To: <F38A866CD026F746A3BF0928A84397BE3A39E777@AZ-FFEXMB01.global.avaya.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-x-originating-ip: [135.64.58.48]
+x-originating-ip: [172.28.33.100]
 MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Yocto Eclipse Plugin
@@ -57,81 +54,303 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Apr 2015 10:15:59 -0000
+X-List-Received-Date: Wed, 15 Apr 2015 10:57:54 -0000
+X-Groupsio-MsgNum: 24461
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
+Content-Type: multipart/signed; micalg=sha-1;
+	protocol="application/x-pkcs7-signature";
+	boundary="=-/hyUiTQQ/KZn+2PC2KQk"
+
+--=-/hyUiTQQ/KZn+2PC2KQk
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello Abhinav,
+
+On Wed, 2015-04-15 at 10:15 +0000, Bipnesh, Abhinav (Abhinav) wrote:
+> Hi Todor,
+>=20
+> I tried with below link and still observe the same issue. It didn=E2=80=
+=99t identify the bitbake directory environment files and report same error=
+s.
+
+In your previous email you mentioned that the cross compiler variables
+are populated for the hello world example. If that's the case the IDE
+must have parsed the environment setup file.
+
+Please open a bug here so we can track this issue and I will investigate
+the problem.=20
+=20
+https://bugzilla.yoctoproject.org/enter_bug.cgi?product=3DEclipse%20Plugin
+
+Thanks,
+Todor
+
+>=20
+> Thanks,
+> Abhinav
+>=20
+> -----Original Message-----
+> From: Minchev, Todor [mailto:todor.minchev@intel.com]=20
+> Sent: Tuesday, April 14, 2015 17:20
+> To: Bipnesh, Abhinav (Abhinav)
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Yocto Eclipse Plugin
+>=20
+> Hello Abinhav,
+>=20
+> This is most likely caused by a mismatch between the plugin build (juno)
+> and the IDE (luna). Please install the luna build of the plugin from
+> here:
+>=20
+> https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__autobuilder.yoctop=
+roject.org_pub_nightly_CURRENT_eclipse-2Dplugin_luna_org.yocto.sdk-2Ddevelo=
+pment-2D201504140001-2Darchive.zip&d=3DAwIFaQ&c=3DBFpWQw8bsuKpl1SgiZH64Q&r=
+=3DgeJ1wB7xRIMmteYB2Fo8esL32BOWvwP1HmY0YuLEB4E&m=3Dxo2lJGQ9ANMp6iXK5QeTFxfG=
+aBn9HAZBpwjlrurzJSg&s=3D6lW-2yvLIg91mRJrVqXU608Eon92Q0K2p5jUJSptFFI&e=3D=
+=20
+>=20
+> Thanks,
+> Todor
+>=20
+> On Tue, 2015-04-14 at 08:39 +0000, Bipnesh, Abhinav (Abhinav) wrote:
+> > Hi,
+> >=20
+> > =20
+> >=20
+> > I was using the same URL as you suggested for the Yocto Eclipse
+> > Plugin. Below is the snapshot of the error I am getting when I try to
+> > configure it as Build System derived tool chain
+> >=20
+> > =20
+>=20
+> >=20
+> >=20
+> >=20
+> > =20
+> >=20
+> > =20
+> >=20
+> > I already did build meta-ide-support and can see the
+> > environment-setup-ppce5500-fsl-linux under <build directory>/tmp. If I
+> > select Standalone SDK the it starts work without any issue.
+> >=20
+> > =20
+> >=20
+> > =20
+> >=20
+> > Second issue I am facing is that when I import my existing project
+> > which is a Makefile base I can see option for Yocto CMake Build
+> > (Toolchain) as below
+> >=20
+> > =20
+> >=20
+> >=20
+> >=20
+> > =20
+> >=20
+> > So how to fix this as need to make it working with existing Makefile
+> > based project.
+> >=20
+> > =20
+> >=20
+> > =20
+> >=20
+> > Any thoughts how to fix these issues.
+> >=20
+> > =20
+> >=20
+> > Thanks,
+> >=20
+> > Abhinav
+> >=20
+> > =20
+> >=20
+> > -----Original Message-----
+> > From: Minchev, Todor [mailto:todor.minchev@intel.com]=20
+> > Sent: Tuesday, April 14, 2015 12:38
+> > To: Bipnesh, Abhinav (Abhinav)
+> > Cc: yocto@yoctoproject.org
+> > Subject: Re: [yocto] Yocto Eclipse Plugin
+> >=20
+> > =20
+> >=20
+> > Hello Abhinav,
+> >=20
+> > =20
+> >=20
+> > On Mon, 2015-04-13 at 18:27 +0000, Bipnesh, Abhinav (Abhinav) wrote:
+> >=20
+> > > Hi All,
+> >=20
+> > >=20
+> >=20
+> > > I am trying to setup the Yocto Eclipse Plugin for Eclipse (Luna
+> > release). I am able to install the Juno release plugin for 1.7.1
+> > release. But while configuring it I am facing issues as below
+> >=20
+> > =20
+> >=20
+> > > 1. When I try to provide BitBake directory as part of tool chain I
+> > get an error that need to build meta-ide-support before configuring
+> > it.=20
+> >=20
+> > > As I did build meta-ide-support before setting up the path as I can
+> > see an environment file present under <bitbake machine directory>/tmp
+> > path.
+> >=20
+> > =20
+> >=20
+> > You will need to provide the path to the build directory. This is the
+> >=20
+> > directory holding tmp.
+> >=20
+> > =20
+> >=20
+> > > 2. If I select Standard SDK option then it accepts the same i.e. it
+> > accept environment file present under tmp directory as vaild which I
+> > suppose it should not do.
+> >=20
+> > > 3. I already has Makefile based project which I am trying to
+> > configure in eclipse by selecting Yocto as Toolchain.=20
+> >=20
+> > > But when I try to build it I am seeing its using platform GCC
+> > instead of Yocto tool chain.
+> >=20
+> > =20
+> >=20
+> > Selecting the correct directory should set up the cross-compiler
+> >=20
+> > environment and fix this.
+> >=20
+> > > =20
+> >=20
+> > > How to fix the same as I cant change this project to an CMake based
+> > project.
+> >=20
+> > >=20
+> >=20
+> > > Is there as way I can use Kepler plugin instead of Juno as when I
+> > try the same with Luna I am getting dependencies errors.
+> >=20
+> > =20
+> >=20
+> > You can find the plugin releases here:
+> >=20
+> > https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__downloads.yoctopr=
+oject.org_releases_eclipse-2Dplugin_&d=3DAwIFaQ&c=3DBFpWQw8bsuKpl1SgiZH64Q&=
+r=3DgeJ1wB7xRIMmteYB2Fo8esL32BOWvwP1HmY0YuLEB4E&m=3DHg_RatI-pPFNhlwlj3rvSiP=
+3RspGPYNzHRBg-XaXN1U&s=3D11DZqLCED8UtaM9vU0YxGMeaNWGlerPzTawEoVwuJd4&e=3D=
+=20
+> >=20
+> > =20
+> >=20
+> > Cheers,
+> >=20
+> > Todor
+> >=20
+> > =20
+> >=20
+> >=20
+>=20
+
+
+--=-/hyUiTQQ/KZn+2PC2KQk
+Content-Type: application/x-pkcs7-signature; name="smime.p7s"
+Content-Disposition: attachment; filename="smime.p7s"
 Content-Transfer-Encoding: base64
 
-SGkgVG9kb3IsDQoNCkkgdHJpZWQgd2l0aCBiZWxvdyBsaW5rIGFuZCBzdGlsbCBvYnNlcnZlIHRo
-ZSBzYW1lIGlzc3VlLiBJdCBkaWRu4oCZdCBpZGVudGlmeSB0aGUgYml0YmFrZSBkaXJlY3Rvcnkg
-ZW52aXJvbm1lbnQgZmlsZXMgYW5kIHJlcG9ydCBzYW1lIGVycm9ycy4NCg0KVGhhbmtzLA0KQWJo
-aW5hdg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogTWluY2hldiwgVG9kb3Ig
-W21haWx0bzp0b2Rvci5taW5jaGV2QGludGVsLmNvbV0gDQpTZW50OiBUdWVzZGF5LCBBcHJpbCAx
-NCwgMjAxNSAxNzoyMA0KVG86IEJpcG5lc2gsIEFiaGluYXYgKEFiaGluYXYpDQpDYzogeW9jdG9A
-eW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gWW9jdG8gRWNsaXBzZSBQbHVn
-aW4NCg0KSGVsbG8gQWJpbmhhdiwNCg0KVGhpcyBpcyBtb3N0IGxpa2VseSBjYXVzZWQgYnkgYSBt
-aXNtYXRjaCBiZXR3ZWVuIHRoZSBwbHVnaW4gYnVpbGQgKGp1bm8pDQphbmQgdGhlIElERSAobHVu
-YSkuIFBsZWFzZSBpbnN0YWxsIHRoZSBsdW5hIGJ1aWxkIG9mIHRoZSBwbHVnaW4gZnJvbQ0KaGVy
-ZToNCg0KaHR0cHM6Ly91cmxkZWZlbnNlLnByb29mcG9pbnQuY29tL3YyL3VybD91PWh0dHBzLTNB
-X19hdXRvYnVpbGRlci55b2N0b3Byb2plY3Qub3JnX3B1Yl9uaWdodGx5X0NVUlJFTlRfZWNsaXBz
-ZS0yRHBsdWdpbl9sdW5hX29yZy55b2N0by5zZGstMkRkZXZlbG9wbWVudC0yRDIwMTUwNDE0MDAw
-MS0yRGFyY2hpdmUuemlwJmQ9QXdJRmFRJmM9QkZwV1F3OGJzdUtwbDFTZ2laSDY0USZyPWdlSjF3
-Qjd4UklNbXRlWUIyRm84ZXNMMzJCT1d2d1AxSG1ZMFl1TEVCNEUmbT14bzJsSkdROUFOTXA2aVhL
-NVFlVEZ4ZkdhQm45SEFaQnB3amxydXJ6SlNnJnM9NmxXLTJ5dkxJZzkxbVJKclZxWFU2MDhFb245
-MlEwSzJwNWpVSlNwdEZGSSZlPSANCg0KVGhhbmtzLA0KVG9kb3INCg0KT24gVHVlLCAyMDE1LTA0
-LTE0IGF0IDA4OjM5ICswMDAwLCBCaXBuZXNoLCBBYmhpbmF2IChBYmhpbmF2KSB3cm90ZToNCj4g
-SGksDQo+IA0KPiAgDQo+IA0KPiBJIHdhcyB1c2luZyB0aGUgc2FtZSBVUkwgYXMgeW91IHN1Z2dl
-c3RlZCBmb3IgdGhlIFlvY3RvIEVjbGlwc2UNCj4gUGx1Z2luLiBCZWxvdyBpcyB0aGUgc25hcHNo
-b3Qgb2YgdGhlIGVycm9yIEkgYW0gZ2V0dGluZyB3aGVuIEkgdHJ5IHRvDQo+IGNvbmZpZ3VyZSBp
-dCBhcyBCdWlsZCBTeXN0ZW0gZGVyaXZlZCB0b29sIGNoYWluDQo+IA0KPiAgDQoNCj4gDQo+IA0K
-PiANCj4gIA0KPiANCj4gIA0KPiANCj4gSSBhbHJlYWR5IGRpZCBidWlsZCBtZXRhLWlkZS1zdXBw
-b3J0IGFuZCBjYW4gc2VlIHRoZQ0KPiBlbnZpcm9ubWVudC1zZXR1cC1wcGNlNTUwMC1mc2wtbGlu
-dXggdW5kZXIgPGJ1aWxkIGRpcmVjdG9yeT4vdG1wLiBJZiBJDQo+IHNlbGVjdCBTdGFuZGFsb25l
-IFNESyB0aGUgaXQgc3RhcnRzIHdvcmsgd2l0aG91dCBhbnkgaXNzdWUuDQo+IA0KPiAgDQo+IA0K
-PiAgDQo+IA0KPiBTZWNvbmQgaXNzdWUgSSBhbSBmYWNpbmcgaXMgdGhhdCB3aGVuIEkgaW1wb3J0
-IG15IGV4aXN0aW5nIHByb2plY3QNCj4gd2hpY2ggaXMgYSBNYWtlZmlsZSBiYXNlIEkgY2FuIHNl
-ZSBvcHRpb24gZm9yIFlvY3RvIENNYWtlIEJ1aWxkDQo+IChUb29sY2hhaW4pIGFzIGJlbG93DQo+
-IA0KPiAgDQo+IA0KPiANCj4gDQo+ICANCj4gDQo+IFNvIGhvdyB0byBmaXggdGhpcyBhcyBuZWVk
-IHRvIG1ha2UgaXQgd29ya2luZyB3aXRoIGV4aXN0aW5nIE1ha2VmaWxlDQo+IGJhc2VkIHByb2pl
-Y3QuDQo+IA0KPiAgDQo+IA0KPiAgDQo+IA0KPiBBbnkgdGhvdWdodHMgaG93IHRvIGZpeCB0aGVz
-ZSBpc3N1ZXMuDQo+IA0KPiAgDQo+IA0KPiBUaGFua3MsDQo+IA0KPiBBYmhpbmF2DQo+IA0KPiAg
-DQo+IA0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBNaW5jaGV2LCBUb2Rv
-ciBbbWFpbHRvOnRvZG9yLm1pbmNoZXZAaW50ZWwuY29tXSANCj4gU2VudDogVHVlc2RheSwgQXBy
-aWwgMTQsIDIwMTUgMTI6MzgNCj4gVG86IEJpcG5lc2gsIEFiaGluYXYgKEFiaGluYXYpDQo+IENj
-OiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIFlvY3RvIEVj
-bGlwc2UgUGx1Z2luDQo+IA0KPiAgDQo+IA0KPiBIZWxsbyBBYmhpbmF2LA0KPiANCj4gIA0KPiAN
-Cj4gT24gTW9uLCAyMDE1LTA0LTEzIGF0IDE4OjI3ICswMDAwLCBCaXBuZXNoLCBBYmhpbmF2IChB
-YmhpbmF2KSB3cm90ZToNCj4gDQo+ID4gSGkgQWxsLA0KPiANCj4gPiANCj4gDQo+ID4gSSBhbSB0
-cnlpbmcgdG8gc2V0dXAgdGhlIFlvY3RvIEVjbGlwc2UgUGx1Z2luIGZvciBFY2xpcHNlIChMdW5h
-DQo+IHJlbGVhc2UpLiBJIGFtIGFibGUgdG8gaW5zdGFsbCB0aGUgSnVubyByZWxlYXNlIHBsdWdp
-biBmb3IgMS43LjENCj4gcmVsZWFzZS4gQnV0IHdoaWxlIGNvbmZpZ3VyaW5nIGl0IEkgYW0gZmFj
-aW5nIGlzc3VlcyBhcyBiZWxvdw0KPiANCj4gIA0KPiANCj4gPiAxLiBXaGVuIEkgdHJ5IHRvIHBy
-b3ZpZGUgQml0QmFrZSBkaXJlY3RvcnkgYXMgcGFydCBvZiB0b29sIGNoYWluIEkNCj4gZ2V0IGFu
-IGVycm9yIHRoYXQgbmVlZCB0byBidWlsZCBtZXRhLWlkZS1zdXBwb3J0IGJlZm9yZSBjb25maWd1
-cmluZw0KPiBpdC4gDQo+IA0KPiA+IEFzIEkgZGlkIGJ1aWxkIG1ldGEtaWRlLXN1cHBvcnQgYmVm
-b3JlIHNldHRpbmcgdXAgdGhlIHBhdGggYXMgSSBjYW4NCj4gc2VlIGFuIGVudmlyb25tZW50IGZp
-bGUgcHJlc2VudCB1bmRlciA8Yml0YmFrZSBtYWNoaW5lIGRpcmVjdG9yeT4vdG1wDQo+IHBhdGgu
-DQo+IA0KPiAgDQo+IA0KPiBZb3Ugd2lsbCBuZWVkIHRvIHByb3ZpZGUgdGhlIHBhdGggdG8gdGhl
-IGJ1aWxkIGRpcmVjdG9yeS4gVGhpcyBpcyB0aGUNCj4gDQo+IGRpcmVjdG9yeSBob2xkaW5nIHRt
-cC4NCj4gDQo+ICANCj4gDQo+ID4gMi4gSWYgSSBzZWxlY3QgU3RhbmRhcmQgU0RLIG9wdGlvbiB0
-aGVuIGl0IGFjY2VwdHMgdGhlIHNhbWUgaS5lLiBpdA0KPiBhY2NlcHQgZW52aXJvbm1lbnQgZmls
-ZSBwcmVzZW50IHVuZGVyIHRtcCBkaXJlY3RvcnkgYXMgdmFpbGQgd2hpY2ggSQ0KPiBzdXBwb3Nl
-IGl0IHNob3VsZCBub3QgZG8uDQo+IA0KPiA+IDMuIEkgYWxyZWFkeSBoYXMgTWFrZWZpbGUgYmFz
-ZWQgcHJvamVjdCB3aGljaCBJIGFtIHRyeWluZyB0bw0KPiBjb25maWd1cmUgaW4gZWNsaXBzZSBi
-eSBzZWxlY3RpbmcgWW9jdG8gYXMgVG9vbGNoYWluLiANCj4gDQo+ID4gQnV0IHdoZW4gSSB0cnkg
-dG8gYnVpbGQgaXQgSSBhbSBzZWVpbmcgaXRzIHVzaW5nIHBsYXRmb3JtIEdDQw0KPiBpbnN0ZWFk
-IG9mIFlvY3RvIHRvb2wgY2hhaW4uDQo+IA0KPiAgDQo+IA0KPiBTZWxlY3RpbmcgdGhlIGNvcnJl
-Y3QgZGlyZWN0b3J5IHNob3VsZCBzZXQgdXAgdGhlIGNyb3NzLWNvbXBpbGVyDQo+IA0KPiBlbnZp
-cm9ubWVudCBhbmQgZml4IHRoaXMuDQo+IA0KPiA+ICANCj4gDQo+ID4gSG93IHRvIGZpeCB0aGUg
-c2FtZSBhcyBJIGNhbnQgY2hhbmdlIHRoaXMgcHJvamVjdCB0byBhbiBDTWFrZSBiYXNlZA0KPiBw
-cm9qZWN0Lg0KPiANCj4gPiANCj4gDQo+ID4gSXMgdGhlcmUgYXMgd2F5IEkgY2FuIHVzZSBLZXBs
-ZXIgcGx1Z2luIGluc3RlYWQgb2YgSnVubyBhcyB3aGVuIEkNCj4gdHJ5IHRoZSBzYW1lIHdpdGgg
-THVuYSBJIGFtIGdldHRpbmcgZGVwZW5kZW5jaWVzIGVycm9ycy4NCj4gDQo+ICANCj4gDQo+IFlv
-dSBjYW4gZmluZCB0aGUgcGx1Z2luIHJlbGVhc2VzIGhlcmU6DQo+IA0KPiBodHRwczovL3VybGRl
-ZmVuc2UucHJvb2Zwb2ludC5jb20vdjIvdXJsP3U9aHR0cC0zQV9fZG93bmxvYWRzLnlvY3RvcHJv
-amVjdC5vcmdfcmVsZWFzZXNfZWNsaXBzZS0yRHBsdWdpbl8mZD1Bd0lGYVEmYz1CRnBXUXc4YnN1
-S3BsMVNnaVpINjRRJnI9Z2VKMXdCN3hSSU1tdGVZQjJGbzhlc0wzMkJPV3Z3UDFIbVkwWXVMRUI0
-RSZtPUhnX1JhdEktcFBGTmhsd2xqM3J2U2lQM1JzcEdQWU56SFJCZy1YYVhOMVUmcz0xMURacUxD
-RUQ4VXRhTTl2VTBZeEdNZWFOV0dsZXJQelRhd0VvVnd1SmQ0JmU9IA0KPiANCj4gIA0KPiANCj4g
-Q2hlZXJzLA0KPiANCj4gVG9kb3INCj4gDQo+ICANCj4gDQo+IA0KDQo=
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIIQ3jCCBOsw
+ggPToAMCAQICEFLpAsoR6ESdlGU4L6MaMLswDQYJKoZIhvcNAQEFBQAwbzELMAkGA1UEBhMCU0Ux
+FDASBgNVBAoTC0FkZFRydXN0IEFCMSYwJAYDVQQLEx1BZGRUcnVzdCBFeHRlcm5hbCBUVFAgTmV0
+d29yazEiMCAGA1UEAxMZQWRkVHJ1c3QgRXh0ZXJuYWwgQ0EgUm9vdDAeFw0xMzAzMTkwMDAwMDBa
+Fw0yMDA1MzAxMDQ4MzhaMHkxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEUMBIGA1UEBxMLU2Fu
+dGEgQ2xhcmExGjAYBgNVBAoTEUludGVsIENvcnBvcmF0aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRl
+cm5hbCBCYXNpYyBJc3N1aW5nIENBIDRBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+4LDMgJ3YSVX6A9sE+jjH3b+F3Xa86z3LLKu/6WvjIdvUbxnoz2qnvl9UKQI3sE1zURQxrfgvtP0b
+Pgt1uDwAfLc6H5eqnyi+7FrPsTGCR4gwDmq1WkTQgNDNXUgb71e9/6sfq+WfCDpi8ScaglyLCRp7
+ph/V60cbitBvnZFelKCDBh332S6KG3bAdnNGB/vk86bwDlY6omDs6/RsfNwzQVwo/M3oPrux6y6z
+yIoRulfkVENbM0/9RrzQOlyK4W5Vk4EEsfW2jlCV4W83QKqRccAKIUxw2q/HoHVPbbETrrLmE6RR
+Z/+eWlkGWl+mtx42HOgOmX0BRdTRo9vH7yeBowIDAQABo4IBdzCCAXMwHwYDVR0jBBgwFoAUrb2Y
+ejS0Jvf6xCZU7wO94CTLVBowHQYDVR0OBBYEFB5pKrTcKP5HGE4hCz+8rBEv8Jj1MA4GA1UdDwEB
+/wQEAwIBhjASBgNVHRMBAf8ECDAGAQH/AgEAMDYGA1UdJQQvMC0GCCsGAQUFBwMEBgorBgEEAYI3
+CgMEBgorBgEEAYI3CgMMBgkrBgEEAYI3FQUwFwYDVR0gBBAwDjAMBgoqhkiG+E0BBQFpMEkGA1Ud
+HwRCMEAwPqA8oDqGOGh0dHA6Ly9jcmwudHJ1c3QtcHJvdmlkZXIuY29tL0FkZFRydXN0RXh0ZXJu
+YWxDQVJvb3QuY3JsMDoGCCsGAQUFBwEBBC4wLDAqBggrBgEFBQcwAYYeaHR0cDovL29jc3AudHJ1
+c3QtcHJvdmlkZXIuY29tMDUGA1UdHgQuMCygKjALgQlpbnRlbC5jb20wG6AZBgorBgEEAYI3FAID
+oAsMCWludGVsLmNvbTANBgkqhkiG9w0BAQUFAAOCAQEAKcLNo/2So1Jnoi8G7W5Q6FSPq1fmyKW3
+sSDf1amvyHkjEgd25n7MKRHGEmRxxoziPKpcmbfXYU+J0g560nCo5gPF78Wd7ZmzcmCcm1UFFfIx
+fw6QA19bRpTC8bMMaSSEl8y39Pgwa+HENmoPZsM63DdZ6ziDnPqcSbcfYs8qd/m5d22rpXq5IGVU
+tX6LX7R/hSSw/3sfATnBLgiJtilVyY7OGGmYKCAS2I04itvSS1WtecXTt9OZDyNbl7LtObBrgMLh
+ZkpJW+pOR9f3h5VG2S5uKkA7Th9NC9EoScdwQCAIw+UWKbSQ0Isj2UFL7fHKvmqWKVTL98sRzvI3
+seNC4DCCBXowggRioAMCAQICEzMAAF9mzuWWtUHgbvUAAAAAX2YwDQYJKoZIhvcNAQEFBQAweTEL
+MAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRQwEgYDVQQHEwtTYW50YSBDbGFyYTEaMBgGA1UEChMR
+SW50ZWwgQ29ycG9yYXRpb24xKzApBgNVBAMTIkludGVsIEV4dGVybmFsIEJhc2ljIElzc3Vpbmcg
+Q0EgNEEwHhcNMTQxMDIwMTk1ODQ4WhcNMTcxMDA0MTk1ODQ4WjBBMRcwFQYDVQQDEw5NaW5jaGV2
+LCBUb2RvcjEmMCQGCSqGSIb3DQEJARYXdG9kb3IubWluY2hldkBpbnRlbC5jb20wggEiMA0GCSqG
+SIb3DQEBAQUAA4IBDwAwggEKAoIBAQChZEmRUCTZu/10YB1D5pjLUSInqeNdbq8gdwClnbvhSqni
+b4xLETBFO3lVRVRlRFIz9tc1auJGVYr39a968RcGjgMpLys8Mj67uQfCaBUIx3YvoYAEc5JIqR2e
+v0MbDxD0wQKvqhbT4zQMS5c+lei3D2n4BA5dx0A7AT99ko/qPzuXCDdk3L0FVqi43M4zfqmxNarg
+jIJoc4sx0US/hrfWXU6Kg/sL0WQ+gM8XrWPXJYWk1PoRSAvUCruQGrnN7txUmvTEfuXv3i9NwtuE
+qcETmP5WmZOyycq5cD8qO4qY4N1Va0KlO0MPnPlqCH1idu0Byo6e4f/CsWg2EvGDOT8vAgMBAAGj
+ggIxMIICLTALBgNVHQ8EBAMCB4AwPAYJKwYBBAGCNxUHBC8wLQYlKwYBBAGCNxUIhsOMdYSZ5VGD
+/YEohY6fU4KRwAlngd69OZXwQwIBZAIBCDAdBgNVHQ4EFgQUeijLELxE2SDhZHWre1zfj9+8kOMw
+HwYDVR0jBBgwFoAUHmkqtNwo/kcYTiELP7ysES/wmPUwZQYDVR0fBF4wXDBaoFigVoZUaHR0cDov
+L3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIw
+SXNzdWluZyUyMENBJTIwNEEuY3JsMIGfBggrBgEFBQcBAQSBkjCBjzBpBggrBgEFBQcwAoZdaHR0
+cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5h
+bCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwNEEuY3J0MCIGCCsGAQUFBzABhhZodHRwOi8vb2Nz
+cC5pbnRlbC5jb20vMB8GA1UdJQQYMBYGCCsGAQUFBwMEBgorBgEEAYI3CgMMMCkGCSsGAQQBgjcV
+CgQcMBowCgYIKwYBBQUHAwQwDAYKKwYBBAGCNwoDDDBLBgNVHREERDBCoCcGCisGAQQBgjcUAgOg
+GQwXdG9kb3IubWluY2hldkBpbnRlbC5jb22BF3RvZG9yLm1pbmNoZXZAaW50ZWwuY29tMA0GCSqG
+SIb3DQEBBQUAA4IBAQDVcbxsEX7Mupn3YJ5CF7JdeXczsAZ0zQefcq6IaNgda9aolT/4nSmGJI6l
+uJYF3VpEz++O1P/UfDINsjLBdN9FWURSHOlPggJyrqQ0kHRlULPtjuQVKlew1yGoYGKb2OTYb5hK
+m1ec2oXiWa/FFI1bynTDgWlrO88L58qK1QkIZzL8RwB/JpiJGUyukkPuT1e54ZG2PH78gKSz06Lt
+xRw3w6wRjaP8iwE8AVXry7QylN3dE8PyOgmjlmFUnDn1lRwo9ESaB/QAI5BxSYid/uk6unnm75sq
+P6bTec9bgl4dqJu+rRFJJj4fC4ffnp5GtqG9WTsyEoUfp5Y23pBGc/QaMIIGbTCCBVWgAwIBAgIK
+EWkQ2AAAAABIZTANBgkqhkiG9w0BAQUFADB5MQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDAS
+BgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMi
+SW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSA0QTAeFw0xNDAzMDExOTQ0MTNaFw0xNzAy
+MTMxOTQ0MTNaMEExFzAVBgNVBAMTDk1pbmNoZXYsIFRvZG9yMSYwJAYJKoZIhvcNAQkBFhd0b2Rv
+ci5taW5jaGV2QGludGVsLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAJHqnL6c
+snAM1wfTEDLYYi0hJKf8G7iWdFVXh0DGNaj6VozcDBlPZShviB6WDQjBxCeVU+zgnA8CMBQKXJ7o
+x3KHUiVcY7aYDl41Yl9RBvKzN61SfmFSA+mhKxC9BOuQvyTaWZoxVlm332MTa59gFon4jKVJfP7t
+OCK3uPETR/7ycuAjDHMmZmJzKOmhMrNyq7w75EsdLZJhUsGSmtMDv2wLDPkQk7qkkbEM+24qma5T
+1iIuV1+UUrip4+IWWehvKX1JEIT5bHG9Evnep9Uf/2Whg4l6neqsCuev8k+9r+uYYHMGoUBuTqM3
+Xh3uAu6vVOxtYNwuyzVO9C+lfVLXONUCAwEAAaOCAy0wggMpMAsGA1UdDwQEAwIEMDA9BgkrBgEE
+AYI3FQcEMDAuBiYrBgEEAYI3FQiGw4x1hJnlUYP9gSiFjp9TgpHACWeEudlBh4T/TgIBZAIBDTBE
+BgkqhkiG9w0BCQ8ENzA1MA4GCCqGSIb3DQMCAgIAgDAOBggqhkiG9w0DBAICAIAwBwYFKw4DAgcw
+CgYIKoZIhvcNAwcwHQYDVR0OBBYEFPK/Tetim9eBCuLKW5j5Z0aNlUK+MB8GA1UdIwQYMBaAFB5p
+KrTcKP5HGE4hCz+8rBEv8Jj1MIHJBgNVHR8EgcEwgb4wgbuggbiggbWGVGh0dHA6Ly93d3cuaW50
+ZWwuY29tL3JlcG9zaXRvcnkvQ1JML0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMElzc3Vpbmcl
+MjBDQSUyMDRBLmNybIZdaHR0cDovL2NlcnRpZmljYXRlcy5pbnRlbC5jb20vcmVwb3NpdG9yeS9D
+UkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwNEEuY3JsMIHvBggr
+BgEFBQcBAQSB4jCB3zBpBggrBgEFBQcwAoZdaHR0cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9y
+eS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIw
+NEEuY3J0MHIGCCsGAQUFBzAChmZodHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0
+b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0El
+MjA0QS5jcnQwHwYDVR0lBBgwFgYIKwYBBQUHAwQGCisGAQQBgjcKAwQwKQYJKwYBBAGCNxUKBBww
+GjAKBggrBgEFBQcDBDAMBgorBgEEAYI3CgMEMEsGA1UdEQREMEKgJwYKKwYBBAGCNxQCA6AZDBd0
+b2Rvci5taW5jaGV2QGludGVsLmNvbYEXdG9kb3IubWluY2hldkBpbnRlbC5jb20wDQYJKoZIhvcN
+AQEFBQADggEBAF0E0nNaQoDxgeNMLFImgnNUUryBCNdCuTpbg5jrla+Crqx82t64r5TXrlUtrBDY
+7bfb/ObgQnFlVhoRDYZ8hFo8S5LNihxHKPt7wEq2uN0rusTVzSRtS8Vf6MT7sO44nEKVuvmYAqeL
+TfwAUzHwjTWU8szdaTONfjEaIzC8qh5k4/lc/qCqxJD6aDIZyQYCKufppCtyyttBzVAgZ9LdG4Z9
+0p4PJSr7IxximJkGlGk/2GmOSkuYr4GCYfQAVmZLkQDBuF/qunedYnTXlnIKql7mc1CpPnS6YV4B
+AfFi5vLJk8TKntgrSsu8a97CBqYP4zL9qlIwM/sSzlcb93CrzoUxggNRMIIDTQIBATCBkDB5MQsw
+CQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDASBgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJ
+bnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBD
+QSA0QQITMwAAX2bO5Za1QeBu9QAAAABfZjAJBgUrDgMCGgUAoIIBlTAYBgkqhkiG9w0BCQMxCwYJ
+KoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xNTA0MTUxMDU3NDNaMCMGCSqGSIb3DQEJBDEWBBSs
+QBPyIKBhhLavNv+YHm2AfBBh/TCBmAYJKwYBBAGCNxAEMYGKMIGHMHkxCzAJBgNVBAYTAlVTMQsw
+CQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAYBgNVBAoTEUludGVsIENvcnBvcmF0
+aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDRBAgoRaRDYAAAA
+AEhlMIGaBgsqhkiG9w0BCRACCzGBiqCBhzB5MQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDAS
+BgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMi
+SW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSA0QQIKEWkQ2AAAAABIZTANBgkqhkiG9w0B
+AQEFAASCAQB9v27GpqsHWDubkFkPLk5rapoi3PC6RdOM5fqxeg+x33RI2+chkfGi7Xnwy09vyWow
+cW3eYd7KZtMnQhBFPKyTO0c6QhzcC0/8dhG9zUDhOp5SqSf7OKVa2X/YZBEVdKJdHnV7J7achPgt
+qXoL4/Rpr2htg9GrEXsnyXJg8ohVo/ui2KMUm83WUIdAGxlDBbsAq5qO3ILTHvlzWwFYUbvnlBDE
+XCMWMhadnWwEVFYTrEV90qa0k869CEWeHqvXT91MiNYmLyT7XxcBO7h4YeWvNvD9TyEJr0b5eaxh
+LFFOtRsU1AAzlQVjHj84hFBDPV3J+5TJbF0Q0lFSvsSbnfcKAAAAAAAA
 
+--=-/hyUiTQQ/KZn+2PC2KQk--
