@@ -1,6 +1,6 @@
 Return-Path: <Raghavendra.Kakarla@inedasystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E270AE009B8; Tue, 14 Apr 2015 21:55:30 -0700 (PDT)
+	id 86FCCE009B8; Tue, 14 Apr 2015 22:38:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,25 +8,25 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.invecas.com (mx1.invecas.com [112.133.222.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41B21E0079F
-	for <yocto@yoctoproject.org>; Tue, 14 Apr 2015 21:55:19 -0700 (PDT)
-Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by mail.invecas.com
-	(10.0.30.131) with Microsoft SMTP Server (TLS) id 14.3.123.3;
-	Wed, 15 Apr 2015 10:25:21 +0530
+Received: from mail.invecas.com (mx2.invecas.com [112.133.222.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86D0FE0079F
+	for <yocto@yoctoproject.org>; Tue, 14 Apr 2015 22:38:20 -0700 (PDT)
+Received: from SOC-EXCH-01.invecas.local (10.0.30.8) by mail.invecas.com
+	(10.0.30.132) with Microsoft SMTP Server (TLS) id 14.3.123.3;
+	Wed, 15 Apr 2015 11:08:19 +0530
 Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
-	SOC-EXCH-02.invecas.local (10.0.30.9) with Microsoft SMTP Server (TLS)
-	id 15.0.995.29; Wed, 15 Apr 2015 10:25:12 +0530
+	SOC-EXCH-01.invecas.local (10.0.30.8) with Microsoft SMTP Server (TLS)
+	id 15.0.995.29; Wed, 15 Apr 2015 11:08:10 +0530
 Received: from SOC-EXCH-02.invecas.local ([::1]) by SOC-EXCH-02.invecas.local
 	([fe80::b45c:f5fd:ad11:51c2%17]) with mapi id 15.00.0995.028;
-	Wed, 15 Apr 2015 10:25:12 +0530
+	Wed, 15 Apr 2015 11:08:10 +0530
 From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
 To: Bruce Ashfield <bruce.ashfield@windriver.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
 Thread-Topic: [yocto] SRCREV Issue for custom linux kernel
-Thread-Index: AQHQdqB+KHCiOibQ8E2+6f4p6IfbgZ1MDY2AgAF1ZDM=
-Date: Wed, 15 Apr 2015 04:55:11 +0000
-Message-ID: <1429073671526.21814@inedasystems.com>
+Thread-Index: AQHQdqB+KHCiOibQ8E2+6f4p6IfbgZ1MDY2AgAGAxQU=
+Date: Wed, 15 Apr 2015 05:38:10 +0000
+Message-ID: <1429076250273.10555@inedasystems.com>
 References: <mailman.2398.1429003256.2787.yocto@yoctoproject.org>
 	<1429008449674.58960@inedasystems.com>, <552D02E1.9020404@windriver.com>
 In-Reply-To: <552D02E1.9020404@windriver.com>
@@ -47,25 +47,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Apr 2015 04:55:30 -0000
+X-List-Received-Date: Wed, 15 Apr 2015 05:38:33 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
 Hi Bruce,=0A=
 =0A=
-I downloaded the yocto from the following link:=0A=
+My recipe is like following:=0A=
 =0A=
-git clone -b dizzy git://git.yoctoproject.org/poky.git =0A=
 =0A=
-And added the my custom recipe for downloading our custom kernel from SVN. =
-This gives the error.=0A=
+#   oe-core kernel classes to apply a subset of yocto kernel=0A=
+#   management to git managed kernel repositories.=0A=
+#=0A=
+# Warning:=0A=
+#=0A=
+#   Building this kernel without providing a defconfig or BSP=0A=
+#   configuration will result in build or boot errors. This is not a=0A=
+#   bug.=0A=
+#=0A=
+# Notes:=0A=
+#=0A=
+#   patches: patches can be merged into to the source git tree itself,=0A=
+#            added via the SRC_URI, or controlled via a BSP=0A=
+#            configuration.=0A=
+#=0A=
+#   example configuration addition:=0A=
+#            SRC_URI +=3D "file://smp.cfg"=0A=
+#   example patch addition:=0A=
+#            SRC_URI +=3D "file://0001-linux-version-tweak.patch=0A=
+#   example feature addition:=0A=
+#            SRC_URI +=3D "file://feature.scc"=0A=
+#=0A=
+=0A=
+inherit kernel=0A=
+require recipes-kernel/linux/linux-yocto.inc=0A=
+=0A=
+SRC_URI =3D "svn://192.168.24.190:9090/svn/trunk/code/kernels;module=3Dlinu=
+x-3.10.14;protocol=3Dhttp;user=3Dadmin;pswd=3DWelcome123"=0A=
+SRC_URI +=3D "file://defconfig"=0A=
+=0A=
+SRC_URI +=3D "file://arqlyn.scc \=0A=
+            file://arqlyn.cfg \=0A=
+            file://arqlyn-user-config.cfg \=0A=
+            file://arqlyn-user-patches.scc \=0A=
+           "=0A=
+=0A=
+=0A=
+LINUX_VERSION ?=3D "3.10.14"=0A=
+LINUX_VERSION_EXTENSION ?=3D "-custom"=0A=
+SRCREV =3D "94"=0A=
+PR =3D "r0"=0A=
+PV =3D "${LINUX_VERSION}"=0A=
+S =3D "${WORKDIR}/linux-3.10.14"=0A=
+COMPATIBLE_MACHINE_arqlyn =3D "arqlyn"=0A=
+=0A=
 =0A=
 Regards,=0A=
 =0A=
-Raghavendra.=0A=
+Raghavendra=0A=
 =0A=
-    =0A=
 ________________________________________=0A=
 From: Bruce Ashfield <bruce.ashfield@windriver.com>=0A=
 Sent: Tuesday, April 14, 2015 5:36 PM=0A=
