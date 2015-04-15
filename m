@@ -1,75 +1,49 @@
-Return-Path: <damethot@tycoint.com>
+Return-Path: <abhishek.embsys@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A7B17E00997; Wed, 15 Apr 2015 14:57:12 -0700 (PDT)
+	id EC94FE00997; Wed, 15 Apr 2015 15:04:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [157.56.111.96 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (abhishek.embsys[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 4767 seconds by postgrey-1.32 at yocto-www;
-	Wed, 15 Apr 2015 14:57:09 PDT
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1bon0096.outbound.protection.outlook.com [157.56.111.96])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B540E00949
-	for <yocto@yoctoproject.org>; Wed, 15 Apr 2015 14:57:09 -0700 (PDT)
-Received: from BY1PR0201CA0022.namprd02.prod.outlook.com (25.160.191.160) by
-	BY1PR02MB1162.namprd02.prod.outlook.com (25.162.108.151) with Microsoft
-	SMTP Server (TLS) id 15.1.136.25; Wed, 15 Apr 2015 20:22:14 +0000
-Received: from BL2FFO11FD019.protection.gbl (2a01:111:f400:7c09::107) by
-	BY1PR0201CA0022.outlook.office365.com (2a01:111:e400:4814::32) with
-	Microsoft SMTP Server (TLS) id 15.1.136.25 via Frontend Transport;
-	Wed, 15 Apr 2015 20:22:14 +0000
-Authentication-Results: spf=none (sender IP is 157.55.122.94)
-	smtp.mailfrom=tycoint.com; yoctoproject.org;
-	dkim=none (message not signed) header.d=none;
-Received-SPF: None (protection.outlook.com: tycoint.com does not designate
-	permitted sender hosts)
-Received: from mail.tyco.com (157.55.122.94) by
-	BL2FFO11FD019.mail.protection.outlook.com (10.173.161.37) with
-	Microsoft SMTP Server (TLS) id 15.1.148.11 via Frontend Transport;
-	Wed, 15 Apr 2015 20:22:13 +0000
-Received: from 003FCH1MPN2-042.003f.mgd2.msft.net
-	([fe80::8065:e44f:fea6:5fed]) by 003FCH1MMR2-009.003f.mgd2.msft.net
-	([fe80::60f1:8c72:88b:3123%11]) with mapi id 14.03.0224.003;
-	Wed, 15 Apr 2015 20:22:13 +0000
-From: "METHOT, DAVID" <damethot@tycoint.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Force to install package last
-Thread-Index: AdB3udqwzXsR95zDSt2eeRAu6Fix9g==
-Date: Wed, 15 Apr 2015 20:22:11 +0000
-Message-ID: <B2DB68B3697B8042BDB56671387303E8C2FB53@003FCH1MPN2-042.003f.mgd2.msft.net>
-Accept-Language: en-CA, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.38.193.243]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.51 listed in list.dnswl.org]
+Received: from mail-la0-f51.google.com (mail-la0-f51.google.com
+	[209.85.215.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 920BAE00949
+	for <yocto@yoctoproject.org>; Wed, 15 Apr 2015 15:04:17 -0700 (PDT)
+Received: by laat2 with SMTP id t2so43277456laa.1
+	for <yocto@yoctoproject.org>; Wed, 15 Apr 2015 15:04:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=4qmQeSxVXZ0unIOKF6bPW3NQ3/iByQ8MKXNHWClzcQw=;
+	b=yQ1hBCIGORb5BNlPMhodPQ2LuSnvBh8zA5+qkGQi1U8ixJeMdqgVxwlDqXXi4In5I2
+	2z+94/wP0Ifp/gJlk3XnDTpwwkJKB2JRbs8YkejFudLglQXAcVS89lkJxusOomZKcMCI
+	yX/gky7AvTMt02NlUWt+QOg/0WYsTWOwVMmBZZCTssg67FvNpk3UweUNIHbaG/cxPtNW
+	az2wOUecznbkVzW4cR/6rTGd2b160g73b1pEzVfLtOxaN1Rcza6bkahc2kH+7f0OJK3b
+	b7PoCnyoydJTAYhOTnuciIV8XdZSt9efofPVfz+jY3cmTHvhmnrRNsWzChTtlIK+UgY1
+	ScUg==
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-Forefront-Antispam-Report: CIP:157.55.122.94; CTRY:US; IPV:NLI; EFV:NLI;
-	BMV:1; SFV:NSPM;
-	SFS:(10009020)(6009001)(428002)(199003)(189002)(47776003)(6806004)(86362001)(110136001)(92566002)(50986999)(62966003)(2656002)(54356999)(105586002)(77156002)(86146001)(87936001)(107886001)(106466001)(23726002)(2920100001)(2900100001)(2930100002)(102836002)(97756001)(104016003)(229853001)(2351001)(5890100001)(2501003)(33656002)(450100001)(5250100002)(46406003)(101416001)(22746005)(50466002)(46102003)(22756005)(79686002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:BY1PR02MB1162; H:mail.tyco.com;
-	FPR:; SPF:None; MLV:sfv; A:1; MX:1; LANG:en; 
-X-Microsoft-Antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BY1PR02MB1162;
-X-Microsoft-Antispam-PRVS: <BY1PR02MB1162A378F5AB7BDF52983BC7CDE50@BY1PR02MB1162.namprd02.prod.outlook.com>
-X-Exchange-Antispam-Report-Test: UriScan:;
-X-Exchange-Antispam-Report-CFA-Test: BCL:0; PCL:0;
-	RULEID:(601004)(5005006)(5002010); SRVR:BY1PR02MB1162; BCL:0;
-	PCL:0; RULEID:; SRVR:BY1PR02MB1162; 
-X-Forefront-PRVS: 0547116B72
-X-OriginatorOrg: tycoint.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Apr 2015 20:22:13.5271 (UTC)
-X-MS-Exchange-CrossTenant-Id: 046b592b-a415-476a-9c97-a0703cb43ea3
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=046b592b-a415-476a-9c97-a0703cb43ea3;
-	Ip=[157.55.122.94]; Helo=[mail.tyco.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR02MB1162
-Subject: Force to install package last
+X-Received: by 10.112.222.133 with SMTP id qm5mr25812400lbc.86.1429135455493; 
+	Wed, 15 Apr 2015 15:04:15 -0700 (PDT)
+Received: by 10.25.159.202 with HTTP; Wed, 15 Apr 2015 15:04:15 -0700 (PDT)
+Date: Thu, 16 Apr 2015 03:34:15 +0530
+Message-ID: <CAGj-b5JQK8D+3MjMLwF5SzpFFoe5DnYbcvRZtwAcJ=fForHRSA@mail.gmail.com>
+From: abhishek srivastava <abhishek.embsys@gmail.com>
+To: yocto@yoctoproject.org
+Subject: error while inserting driver as recipe in raspberrypi kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -81,32 +55,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Apr 2015 21:57:12 -0000
-Content-Language: en-CA
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 15 Apr 2015 22:04:22 -0000
+Content-Type: multipart/alternative; boundary=001a11346db02923dc0513ca870a
+
+--001a11346db02923dc0513ca870a
+Content-Type: text/plain; charset=UTF-8
+
+I am getting following error when i try to include driver as recipe in
+raspberrypi kernel
+
+NOTE: Executing write_package_manifest ...
+| DEBUG: Executing python function write_package_manifest
+| DEBUG: Python function write_package_manifest finished
+| NOTE: Executing license_create_manifest ...
+| DEBUG: Executing shell function license_create_manifest
+| ls: cannot access
+/home/abhi/yocto_new/build-dizzy/tmp/sysroots/raspberrypi/pkgdata/runtime-reverse/fbtft:
+No such file or directory
+| readlink: missing operand
+| Try 'readlink --help' for more information.
+| basename: missing operand
+| Try 'basename --help' for more information.
+| WARNING: exit code 1 from a shell command.
+| DEBUG: Python function do_rootfs finished
+| ERROR: Function failed: license_create_manifest (log file is located at
+/home/abhi/yocto_new/build-dizzy/tmp/work/raspberrypi-poky-linux-gnueabi/rpi-basic-image/1.0-r0/temp/log.do_rootfs.1262)
+ERROR: Task 7
+(/home/abhi/yocto_new/poky-dizzy-12.0.1/meta-raspberrypi/recipes-core/images/
+rpi-basic-image.bb, do_rootfs) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 3332 tasks of which 3324 didn't need to be
+rerun and 1 failed.
+
+please help me to identify the issue.
+
+Thank you
+
+--001a11346db02923dc0513ca870a
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+<div dir=3D"ltr"><div><div>I am getting following error when i try to inclu=
+de driver as recipe in raspberrypi kernel<br><br>NOTE: Executing write_pack=
+age_manifest ...<br>| DEBUG: Executing python function write_package_manife=
+st<br>| DEBUG: Python function write_package_manifest finished<br>| NOTE: E=
+xecuting license_create_manifest ...<br>| DEBUG: Executing shell function l=
+icense_create_manifest<br>| ls: cannot access /home/abhi/yocto_new/build-di=
+zzy/tmp/sysroots/raspberrypi/pkgdata/runtime-reverse/fbtft: No such file or=
+ directory<br>| readlink: missing operand<br>| Try &#39;readlink --help&#39=
+; for more information.<br>| basename: missing operand<br>| Try &#39;basena=
+me --help&#39; for more information.<br>| WARNING: exit code 1 from a shell=
+ command.<br>| DEBUG: Python function do_rootfs finished<br>| ERROR: Functi=
+on failed: license_create_manifest (log file is located at /home/abhi/yocto=
+_new/build-dizzy/tmp/work/raspberrypi-poky-linux-gnueabi/rpi-basic-image/1.=
+0-r0/temp/log.do_rootfs.1262)<br>ERROR: Task 7 (/home/abhi/yocto_new/poky-d=
+izzy-12.0.1/meta-raspberrypi/recipes-core/images/<a href=3D"http://rpi-basi=
+c-image.bb">rpi-basic-image.bb</a>, do_rootfs) failed with exit code &#39;1=
+&#39;<br>NOTE: Tasks Summary: Attempted 3332 tasks of which 3324 didn&#39;t=
+ need to be rerun and 1 failed.<br><br></div>please help me to identify the=
+ issue.<br><br></div>Thank you<br></div>
 
-I made a package recipe to merge files into my final rootfs (mostly init sc=
-ripts under /etc).
-
-These files may be overriden by other packages so it is crucial that they r=
-emain intact.
-
-I am wondering if there is a way to make sure a package is the last one to =
-be installed in the rootfs.
-
-Thank you,
-
-David
-
-________________________________
-
-This e-mail contains privileged and confidential information intended for t=
-he use of the addressees named above. If you are not the intended recipient=
- of this e-mail, you are hereby notified that you must not disseminate, cop=
-y or take any action in respect of any information contained in it. If you =
-have received this e-mail in error, please notify the sender immediately by=
- e-mail and immediately destroy this e-mail and its attachments.
-
+--001a11346db02923dc0513ca870a--
