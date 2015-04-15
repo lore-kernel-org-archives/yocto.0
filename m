@@ -1,57 +1,49 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AAA37E0092E; Wed, 15 Apr 2015 09:50:00 -0700 (PDT)
+	id E024DE00957; Wed, 15 Apr 2015 13:17:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bruce.ashfield[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.175 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ob0-f175.google.com (mail-ob0-f175.google.com
-	[209.85.214.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6945E003A8
-	for <yocto@yoctoproject.org>; Wed, 15 Apr 2015 09:49:59 -0700 (PDT)
-Received: by oblw8 with SMTP id w8so28468924obl.0
-	for <yocto@yoctoproject.org>; Wed, 15 Apr 2015 09:49:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=2A0xn8ZC3nVhLwUSfBuxp/XG0LGIw5OShmNcNdXWK90=;
-	b=abyCE1zvahRf593Co3kOER30QeHdPSsApujPA9g8OEvdnZ6yeGClm7TqQCfggFvtwk
-	w4UaS/ro+vx04a9NMi93mcys3ok+4LgUkbHbg/59JF28k3zTlZMDpXZmvsoGtjwTQ3MO
-	akPogMcngmScbY8kaTb1doOlBEVvjW+aahYG8DVddeSYf9bu0zLqNOlxqGEiobuaP5Mn
-	t5Qz5taD7FrC+wtcdvh07EFEaA+QKr/4TJ68Pjo99+8crF1vV95t6+qqLLYt9oS59BGs
-	aA2Q0zoYuZIN1T+u6RCgySY39Q66M0FjBufVigO0pBtKKpIW3zk96GMnd34HJe3/DcFb
-	RBSg==
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89957E0092E
+	for <yocto@yoctoproject.org>; Wed, 15 Apr 2015 13:17:21 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 15 Apr 2015 13:17:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,583,1422950400"; 
+	d="scan'208,217";a="714275738"
+Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
+	by orsmga002.jf.intel.com with ESMTP; 15 Apr 2015 13:17:20 -0700
+Received: from fmsmsx115.amr.corp.intel.com (10.18.116.19) by
+	ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server
+	(TLS) id 14.3.224.2; Wed, 15 Apr 2015 13:17:19 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.17]) by
+	fmsmsx115.amr.corp.intel.com ([169.254.4.233]) with mapi id
+	14.03.0224.002; Wed, 15 Apr 2015 13:17:18 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>, "openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>, "'poky@yotcoproject.org'"
+	<poky@yotcoproject.org>
+Thread-Topic: YP 1.8 Release Survey/Retrospective
+Thread-Index: AdB3uSsXsuDlF7DrTgehN+PDqw6s/Q==
+Date: Wed, 15 Apr 2015 20:17:17 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E5546B517@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.107]
 MIME-Version: 1.0
-X-Received: by 10.202.229.139 with SMTP id c133mr16296245oih.99.1429116598725; 
-	Wed, 15 Apr 2015 09:49:58 -0700 (PDT)
-Received: by 10.202.9.193 with HTTP; Wed, 15 Apr 2015 09:49:58 -0700 (PDT)
-In-Reply-To: <552E8DD9.6090202@mail.bg>
-References: <355BE46A91031048906B695426A8D8E616B7BE37@DEFTHW99EH4MSX.ww902.siemens.net>
-	<552E63F1.9090406@windriver.com> <552E824C.5080603@mail.bg>
-	<CADkTA4Puh7QLQemCSrewmMqcnrUJFw4x6bEJsmKu=SRk6C07-A@mail.gmail.com>
-	<552E8DD9.6090202@mail.bg>
-Date: Wed, 15 Apr 2015 12:49:58 -0400
-Message-ID: <CADkTA4MfMCqnPTJrNQGPz+ivJOYiN1ajzttzBVNBVqMVkdnPAg@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Nikolay Dimitrov <picmaster@mail.bg>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<Openembedded-core@lists.openembedded.org>
-Subject: Re: Move device tree generation from include file to bbclass
+Subject: YP 1.8 Release Survey/Retrospective
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,131 +55,173 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Apr 2015 16:50:00 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 15 Apr 2015 20:17:24 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5546B517fmsmsx111amrcor_"
 
-On Wed, Apr 15, 2015 at 12:12 PM, Nikolay Dimitrov <picmaster@mail.bg> wrote:
-> Hi Bruce,
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5546B517fmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+All,
+
+Yocto Project 1.8 will be releasing this week!   YP provides a major releas=
+e every six months, and as an open source project we are always working to =
+improve our processes.  This survey is for the Yocto Project community to p=
+rovide feedback into the development process.  We would greatly appreciate =
+your participation, especially if you have participated in the development =
+process for 1.8 by writing code, submitting bugs, patches, documentation, c=
+ontributing to the wiki, or actively participating on the mailing lists or =
+IRC channels.
+
+https://www.surveymonkey.com/r/SFV7VPH
+
+Thanks for being an important part of the Yocto Project community!
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:          (503) 712-0534
+*    Cell:                                                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5546B517fmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
->
-> On 04/15/2015 06:26 PM, Bruce Ashfield wrote:
->>
->> On Wed, Apr 15, 2015 at 11:22 AM, Nikolay Dimitrov
->> <picmaster@mail.bg> wrote:
->>>
->>> Hi Bruce,
->>>
->>>
->>> On 04/15/2015 04:13 PM, Bruce Ashfield wrote:
->>>>
->>>>
->>>> On 2015-04-15 08:33 AM, Bach, Pascal wrote:
->>>>>
->>>>>
->>>>> Hi
->>>>>
->>>>
->>>> Adding oe-core, since that's the right place to have a discussion
->>>> like this.
->>>>
->>>>> As ARM now also moved to device tree it look like in future we
->>>>> will have more kernels that are using device tree then ones
->>>>> that are not.
->>>>
->>>>
->>>>
->>>> True, but it has been like this for quite some time now :)
->>>>
->>>>> As far as I understand currently the generation of device
->>>>> trees is controlled via KERNEL_DEVICETREE and is handled in via
->>>>> an include file recipes-kernel/linux/linux-dtb.inc.
->>>>>
->>>>> I was thinking about moving this include into a class so it
->>>>> becomes easier to use. Before I dive into implementing
->>>>> something I would like some feedback from the community.
->>>>
->>>>
->>>>
->>>> The big trick with changing anything like this is compatibility
->>>> with existing recipes. Whatever we do, existing recipes and
->>>> layers shouldn't be broken .. or if they are broken, there
->>>> should be a compelling technical reason to do so.
->>>>
->>>>>
->>>>> I have the following variant in mind.
->>>>>
->>>>> Add the device tree generation to the current kernel.bbclass
->>>>> (or let kernel.bblcass inherit from a kernel-dtb.bbclass).
->>>>> This way all kernels would automatically be DT enabled. The
->>>>> class would check if KERNEL_DEVICETREE is set and generate
->>>>> device trees based on this information. For boards that don't
->>>>> have KERNEL_DEVICETREE set the class would do nothing and the
->>>>> behavior is like before. The advantage I see with this
->>>>> approach is that the only thing a user needs to do is to set
->>>>> KERNEL_DEVICETREE in the board and make sure the device trees
->>>>> are available in the kernel they like to build.
->>>>
->>>>
->>>>
->>>> That's pretty much the experience that most users have now, since
->>>> there's nearly always a kernel recipe created, that recipe
->>>> includes linux-dtb.inc, and sets KERNEL_DEVICETREE.
->>>
->>>
->>>
->>> As far as I understood, Pascal's idea is to remove the need for
->>> user recipes to include linux-dtb.inc, and provide this
->>> functionality via inheritance.
->>
->>
->> That is obvious. My questions are around "why". There's no big
->> technical advantage, and if you remove that existing file, you break
->>  existing recipes. Which means you need to leave a stub in place.
->>
->> So without a technical advantage, it's churn for the sake of churn.
->
->
-> Well, removing redundancy and simplifying users' recipes could be
-> considered an advantage. Also, as the contents of linux-dtb.inc are
-> going to be moved to bbclass, the file can be left empty, later
-> maintainers remove the extra line from all users' recipes in following
-> commits. I don't see breaking as an option.
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">All,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Yocto Project 1.8 will be releasing this week!&nbsp;=
+&nbsp; YP provides a major release every six months, and as an open source =
+project we are always working to improve our processes. &nbsp;This survey i=
+s for the Yocto Project community to provide feedback
+ into the development process. &nbsp;We would greatly appreciate your parti=
+cipation, especially if you have participated in the development process fo=
+r 1.8 by writing code, submitting bugs, patches, documentation, contributin=
+g to the wiki, or actively participating
+ on the mailing lists or IRC channels. <o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal"><a href=3D"https://www.surveymonkey.com/r/SFV7VPH">h=
+ttps://www.surveymonkey.com/r/SFV7VPH</a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks for being an important part of the Yocto Proj=
+ect community!<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
+span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
+rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;,&quot;serif&quot=
+;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+,&quot;serif&quot;;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-si=
+ze:8.0pt;font-family:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</=
+span></b><span style=3D"font-family:&quot;MS Sans Serif&quot;,&quot;serif&q=
+uot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+,&quot;serif&quot;">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;,&quot;serif&quot;;color:teal">&nbsp;&nbsp; &nbsp;</span><b>=
+<span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&quot;;color:=
+teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&quot;MS Sa=
+ns Serif&quot;,&quot;serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; </span><span style=3D"font-size:9.0pt;font-family:&quot;MS=
+ Sans Serif&quot;,&quot;serif&quot;">(208) 244-4460<span style=3D"color:bla=
+ck"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;,&quot;serif&quot;;color:teal">:<=
+/span><span lang=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans =
+Serif&quot;,&quot;serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
+uot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-And we could argue that having more inherits in the base is a bad
-thing for users that have no interest in device trees.
-
-One person's advantage is another's churn. I was looking for technical
-advantages or a plan for future features that might leverage this.
-
-Cheers,
-
-Bruce
-
->
->> Bruce
->>
->>>
->>>> Everything else happens to build and package the device tree.
->>>>
->>>> Was there something specifically that was causing issues with the
->>>> current way of building them ?
->>>>
->>>> Cheers,
->>>>
->>>> Bruce
->>>>
->>>>>
->>>>> I appreciate your feedback?
->>>>>
->>>>> Regards Pascal
->
->
-> Kind regards,
-> Nikolay
-
-
-
--- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
-
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5546B517fmsmsx111amrcor_--
