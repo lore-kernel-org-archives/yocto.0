@@ -1,62 +1,39 @@
-Return-Path: <EBolton@agjunction.com>
+Return-Path: <Virgil.Smith@flir.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 69CCAE008F6; Thu, 16 Apr 2015 08:05:31 -0700 (PDT)
+	id 8A03EE0091A; Thu, 16 Apr 2015 08:32:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [157.56.110.133 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [208.0.64.244 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1on0133.outbound.protection.outlook.com [157.56.110.133])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43258E00306
-	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 08:05:26 -0700 (PDT)
-Received: from DM2PR0201MB1087.namprd02.prod.outlook.com (25.160.221.144) by
-	DM2PR0201MB1087.namprd02.prod.outlook.com (25.160.221.144) with
-	Microsoft
-	SMTP Server (TLS) id 15.1.136.17; Thu, 16 Apr 2015 15:05:25 +0000
-Received: from DM2PR0201MB1087.namprd02.prod.outlook.com ([25.160.221.144]) by
-	DM2PR0201MB1087.namprd02.prod.outlook.com ([25.160.221.144]) with
-	mapi id 15.01.0136.026; Thu, 16 Apr 2015 15:05:25 +0000
-From: Erik Bolton <EBolton@agjunction.com>
+Received: from east-edge.flir.com (east-edge.flir.com [208.0.64.244])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6D38E00306
+	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 08:32:56 -0700 (PDT)
+Received: from BOS-CH1.zone1.flir.net (10.128.150.52) by EAST-EDGE.flir.com
+	(10.128.210.250) with Microsoft SMTP Server (TLS) id 14.3.195.1;
+	Thu, 16 Apr 2015 11:37:37 -0400
+Received: from BOS-DAG1.zone1.flir.net ([169.254.2.246]) by
+	BOS-CH1.zone1.flir.net ([10.128.150.52]) with mapi id 14.03.0224.002;
+	Thu, 16 Apr 2015 11:31:41 -0400
+From: "Smith, Virgil" <Virgil.Smith@flir.com>
 To: Laurent Eschenauer <laurent@eschenauer.be>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
 Thread-Topic: [yocto] A simpler way to apply custom config files to an image ?
-Thread-Index: AQHQeFAvilLC/4nS1Eu9slMjkMZXFp1PvOc0
-Date: Thu, 16 Apr 2015 15:05:24 +0000
-Message-ID: <DM2PR0201MB1087F0C18454B8863D9BD2BFCCE40@DM2PR0201MB1087.namprd02.prod.outlook.com>
+Thread-Index: AQHQeFADnDKHftKm8UGYpkSmFs62QJ1PwbHg
+Date: Thu, 16 Apr 2015 15:31:41 +0000
+Message-ID: <F14AEF751653024287138321000C846AF4814FF5@BOS-DAG1.zone1.flir.net>
 References: <552FAFAF.30005@eschenauer.be>
 In-Reply-To: <552FAFAF.30005@eschenauer.be>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: eschenauer.be; dkim=none (message not signed)
-	header.d=none;
-x-originating-ip: [72.201.0.208]
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DM2PR0201MB1087;
-x-microsoft-antispam-prvs: <DM2PR0201MB10877E26F7A94CDD27EA78C7CCE40@DM2PR0201MB1087.namprd02.prod.outlook.com>
-x-forefront-antispam-report: BMV:1; SFV:NSPM;
-	SFS:(10019020)(6009001)(377454003)(40764003)(19580395003)(74316001)(19580405001)(122556002)(2900100001)(76176999)(50986999)(54356999)(106116001)(102836002)(86362001)(62966003)(77156002)(19625215002)(16236675004)(33656002)(40100003)(2950100001)(2501003)(2656002)(87936001)(66066001)(99286002)(46102003)(107886001)(92566002)(4001410100001)(76576001)(80792005)(43043002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:DM2PR0201MB1087;
-	H:DM2PR0201MB1087.namprd02.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; LANG:en; 
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(5005006)(5002010); SRVR:DM2PR0201MB1087; BCL:0;
-	PCL:0; RULEID:; SRVR:DM2PR0201MB1087; 
-x-forefront-prvs: 0548586081
+x-originating-ip: [10.145.10.29]
 MIME-Version: 1.0
-X-OriginatorOrg: agjunction.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Apr 2015 15:05:24.5423 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 5f7bd4f9-3eab-4e10-b6c3-fdfbbaf69f20
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM2PR0201MB1087
 Subject: Re: A simpler way to apply custom config files to an image ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -69,210 +46,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Apr 2015 15:05:31 -0000
+X-List-Received-Date: Thu, 16 Apr 2015 15:32:58 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DM2PR0201MB1087F0C18454B8863D9BD2BFCCE40DM2PR0201MB1087_"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---_000_DM2PR0201MB1087F0C18454B8863D9BD2BFCCE40DM2PR0201MB1087_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+PiBJIHdhbnQgdG8gY3VzdG9taXplIHZhcmlvdXMgY29uZmlnIGZpbGUgb2YgYW4gaW1hZ2UgSSdt
+IGJ1aWxkaW5nIChlLmcuDQo+IG5ldHdvcmsgaW50ZXJmYWNlcywgc3NoZCBiYW5uZXIsIGhvc3Rh
+cGQsIGV0Yy4uKS4NCg0KUGF1bCBFZ2dsZXRvbiBqdXN0IGdhdmUgYSByZXNwb25zZSB0byBhIHNp
+bWlsYXIgcXVlc3Rpb24gIkZvcmNlIGluc3RhbGwgcGFja2FnZSBsYXN0Ig0KaHR0cHM6Ly9saXN0
+cy55b2N0b3Byb2plY3Qub3JnL3BpcGVybWFpbC95b2N0by8yMDE1LUFwcmlsLzAyNDU0OC5odG1s
+DQoNCj4gLSBJZiBub3QgcG9zc2libGUgYW5kIEkgaGF2ZSB0byBzdGljayB3aXRoIGJiYXBwZW5k
+IHRvIGV2ZXJ5IHJlY2lwZSBjb25jZXJuZWQsDQo+IHRoZW4gaG93IGNvdWxkIEkgZG8gaXQgaW4g
+dGhlIGNhc2Ugb2YgYSBjb25maWcgZmlsZSBjb21pbmcgZnJvbSB0aGUgc291cmNlDQo+IHBhY2th
+Z2UgaW5zdGVhZCBvZiB0aGUgcmVjaXBlID8NCg0KSWYgSSB1bmRlcnN0YW5kIHlvdSBjb3JyZWN0
+bHksIHRoYXQgd291bGQgYmUgYSBwYXRjaC4gIEZvciAidW5jaGVja2VkIiB3aG9sZSByZXBsYWNl
+bWVudCBvZiBmaWxlcywgSSd2ZSBzZWVuIGJiYXBwZW5kcyB3aXRoIGEgZG9fcGF0Y2hfYXBwZW5k
+IGZ1bmN0aW9uIHRvIGNvcHkgZmlsZXMgKHNwZWNpZmllZCBpbmRpdmlkdWFsbHkgaW4gU1JDX1VS
+SSBsaWtlIHBhdGNoIGZpbGVzKSBmcm9tIHRoZSBiYXNlIG9mIHRoZSB3b3JrIGRpciB0byB0aGUg
+Y29ycmVjdCBwYXRoIHVuZGVyIHRoZSBzb3VyY2UgZGlyZWN0b3J5Lg0KDQpfX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fXw0KDQpOb3RpY2UgdG8gcmVjaXBpZW50OiBUaGlzIGVtYWlsIGlz
+IG1lYW50IGZvciBvbmx5IHRoZSBpbnRlbmRlZCByZWNpcGllbnQgb2YgdGhlIHRyYW5zbWlzc2lv
+biwgYW5kIG1heSBiZSBhIGNvbW11bmljYXRpb24gcHJpdmlsZWdlZCBieSBsYXcsIHN1YmplY3Qg
+dG8gZXhwb3J0IGNvbnRyb2wgcmVzdHJpY3Rpb25zIG9yIHRoYXQgb3RoZXJ3aXNlIGNvbnRhaW5z
+IHByb3ByaWV0YXJ5IGluZm9ybWF0aW9uLiBJZiB5b3UgcmVjZWl2ZSB0aGlzIGVtYWlsIGJ5IG1p
+c3Rha2UsIHBsZWFzZSBub3RpZnkgdXMgaW1tZWRpYXRlbHkgYnkgcmVwbHlpbmcgdG8gdGhpcyBt
+ZXNzYWdlIGFuZCB0aGVuIGRlc3Ryb3kgaXQgYW5kIGRvIG5vdCByZXZpZXcsIGRpc2Nsb3NlLCBj
+b3B5IG9yIGRpc3RyaWJ1dGUgaXQuIFRoYW5rIHlvdSBpbiBhZHZhbmNlIGZvciB5b3VyIGNvb3Bl
+cmF0aW9uLg0K
 
-Hey Laurent:
-
-Is your config recipe being built before all the recipes with the default c=
-onfig files and overriding your config files?
-
-In that case I would make anything with a config file that you want to over=
-ride a dependency of your config recipe.
-
-What's the actual error?
-
--Erik
-
-Sent from my Verizon 4G LTE Smartphone
-
------ Reply message -----
-From: "Laurent Eschenauer" <laurent@eschenauer.be>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: [yocto] A simpler way to apply custom config files to an image ?
-Date: Thu, Apr 16, 2015 7:18 AM
-
-Hello,
-
-I'm stuck on something that I would have assumed trivial and can't
-managed to do and hope someone can point me to a best practice.
-
-I want to customize various config file of an image I'm building (e.g.
-network interfaces, sshd banner, hostapd, etc..).
-
-To make this simple, I wrote my own recipe called 'custom-config' and
-bundled in there all my config files. Then copying them in the on_install.
-
-do_install () {
-   install -m 0755 -d ${D}${sysconfdir}
-   install -b -m 0644 ${WORKDIR}/udhcpd.conf ${D}${sysconfdir}
-   install -b -m 0644 ${WORKDIR}/hostapd.conf ${D}${sysconfdir}
-   ....
-}
-
-It works great for files that are not provided by packages (e.g.
-udhcpd.conf), however it does not work for files already provided by
-another package (e.g. hostapd.conf). I've tried adding the backup flag
-to install but this did not help.
-
-It seems the recommended way to do this is by extending each individual
-recipe with bbappend and provide an updated config file. This works
-great, although quite heavy for just updating a single config file.
-
-More over, this does not work when the config file is not in the recipe
-but coming from sources archive. This is the case with hostapd.conf from
-recipe hostapd.
-
-Questions:
-
-- Is my idea of a single 'config' recipe completely stupid ? is there
-any way to make it work ? It seems the simpler approach.
-
-- If not possible and I have to stick with bbappend to every recipe
-concerned, then how could I do it in the case of a config file coming
-from the source package instead of the recipe ?
-
-Thanks for your help !
-
-Best,
-
-Laurent
-
-
-
-
-
-Disclaimer: This message contains information that may be privileged or con=
-fidential and is the property of AgJunction Inc and its subsidiaries. It is=
- intended only for the person to whom it is addressed. If you are not the i=
-ntended recipient, you are not authorized to read, print, retain, copy, dis=
-seminate, distribute, or use this message or any part thereof. If you recei=
-ve this message in error, please notify the sender immediately and delete a=
-ll copies of this message.
-
---_000_DM2PR0201MB1087F0C18454B8863D9BD2BFCCE40DM2PR0201MB1087_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
-ding-left: 4pt; border-left: #800000 2px solid; } --></style>
-</head>
-<body>
-<meta name=3D"x_Generator" content=3D"Microsoft Exchange Server">
-<style>
-<!--
-.x_EmailQuote
-	{margin-left:1pt;
-	padding-left:4pt;
-	border-left:#800000 2px solid}
--->
-</style>
-<div>
-<div style=3D"font-family:'Calibri','sans-serif'">
-<div>Hey Laurent:</div>
-<div><br>
-</div>
-<div>Is your config recipe being built before all the recipes with&nbsp;the=
- default config files and overriding your config files?</div>
-<div><br>
-</div>
-<div>In that case I would make anything with a config file that you want to=
- override a dependency of your config recipe.&nbsp;</div>
-<div><br>
-</div>
-<div>What's the actual error?&nbsp;</div>
-<div><br>
-</div>
-<div>-Erik</div>
-<div><br>
-</div>
-<div>Sent from my Verizon 4G LTE Smartphone</div>
-<br>
-<div id=3D"x_htc_header">----- Reply message -----<br>
-From: &quot;Laurent Eschenauer&quot; &lt;laurent@eschenauer.be&gt;<br>
-To: &quot;yocto@yoctoproject.org&quot; &lt;yocto@yoctoproject.org&gt;<br>
-Subject: [yocto] A simpler way to apply custom config files to an image ?<b=
-r>
-Date: Thu, Apr 16, 2015 7:18 AM</div>
-</div>
-<br>
-</div>
-<font size=3D"2"><span style=3D"font-size:10pt;">
-<div class=3D"PlainText">Hello,<br>
-<br>
-I'm stuck on something that I would have assumed trivial and can't<br>
-managed to do and hope someone can point me to a best practice.<br>
-<br>
-I want to customize various config file of an image I'm building (e.g.<br>
-network interfaces, sshd banner, hostapd, etc..).<br>
-<br>
-To make this simple, I wrote my own recipe called 'custom-config' and<br>
-bundled in there all my config files. Then copying them in the on_install.<=
-br>
-<br>
-do_install () {<br>
-&nbsp;&nbsp; install -m 0755 -d ${D}${sysconfdir}<br>
-&nbsp;&nbsp; install -b -m 0644 ${WORKDIR}/udhcpd.conf ${D}${sysconfdir}<br=
->
-&nbsp;&nbsp; install -b -m 0644 ${WORKDIR}/hostapd.conf ${D}${sysconfdir}<b=
-r>
-&nbsp;&nbsp; ....<br>
-}<br>
-<br>
-It works great for files that are not provided by packages (e.g.<br>
-udhcpd.conf), however it does not work for files already provided by<br>
-another package (e.g. hostapd.conf). I've tried adding the backup flag<br>
-to install but this did not help.<br>
-<br>
-It seems the recommended way to do this is by extending each individual<br>
-recipe with bbappend and provide an updated config file. This works<br>
-great, although quite heavy for just updating a single config file.<br>
-<br>
-More over, this does not work when the config file is not in the recipe<br>
-but coming from sources archive. This is the case with hostapd.conf from<br=
->
-recipe hostapd.<br>
-<br>
-Questions:<br>
-<br>
-- Is my idea of a single 'config' recipe completely stupid ? is there<br>
-any way to make it work ? It seems the simpler approach.<br>
-<br>
-- If not possible and I have to stick with bbappend to every recipe<br>
-concerned, then how could I do it in the case of a config file coming<br>
-from the source package instead of the recipe ?<br>
-<br>
-Thanks for your help !<br>
-<br>
-Best,<br>
-<br>
-Laurent<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-</div>
-</span></font>Disclaimer: This message contains information that may be pri=
-vileged or confidential and is the property of AgJunction Inc and its subsi=
-diaries. It is intended only for the person to whom it is addressed. If you=
- are not the intended recipient,
- you are not authorized to read, print, retain, copy, disseminate, distribu=
-te, or use this message or any part thereof. If you receive this message in=
- error, please notify the sender immediately and delete all copies of this =
-message.
-</body>
-</html>
-
---_000_DM2PR0201MB1087F0C18454B8863D9BD2BFCCE40DM2PR0201MB1087_--
