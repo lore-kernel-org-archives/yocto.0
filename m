@@ -1,47 +1,38 @@
-Return-Path: <laurent@eschenauer.be>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3BB68E009C8; Thu, 16 Apr 2015 07:11:23 -0700 (PDT)
+	id 37913E008F6; Thu, 16 Apr 2015 07:22:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [46.105.56.132 listed in list.dnswl.org]
-X-Greylist: delayed 2401 seconds by postgrey-1.32 at yocto-www;
-	Thu, 16 Apr 2015 07:05:30 PDT
-Received: from 17.mo5.mail-out.ovh.net (17.mo5.mail-out.ovh.net
-	[46.105.56.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD5F1E009D4
-	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 07:05:30 -0700 (PDT)
-Received: from mail624.ha.ovh.net (b9.ovh.net [213.186.33.59])
-	by mo5.mail-out.ovh.net (Postfix) with SMTP id C3D8CFFA978
-	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 14:49:18 +0200 (CEST)
-Received: from b0.ovh.net (HELO queueout) (213.186.33.50)
-	by b0.ovh.net with SMTP; 16 Apr 2015 14:49:18 +0200
-Received: from 191.186-246-81.adsl-dyn.isp.belgacom.be (HELO
-	localhost.localdomain) (laurent@eschenauer.be@81.246.186.191)
-	by ns0.ovh.net with SMTP; 16 Apr 2015 14:48:50 +0200
-Message-ID: <552FAFAF.30005@eschenauer.be>
-Date: Thu, 16 Apr 2015 14:48:47 +0200
-From: Laurent Eschenauer <laurent@eschenauer.be>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 105B2E00306
+	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 07:22:29 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.14.9/8.14.9) with ESMTP id t3GEMOY9012160
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 16 Apr 2015 07:22:25 -0700 (PDT)
+Received: from server.local (128.224.22.156) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 16 Apr 2015 07:22:24 -0700
+Message-ID: <552FC59F.2080603@windriver.com>
+Date: Thu, 16 Apr 2015 10:22:23 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-X-Ovh-Tracer-Id: 12660181502719095722
-X-Ovh-Remote: 81.246.186.191 (191.186-246-81.adsl-dyn.isp.belgacom.be)
-X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
-X-OVH-SPAMSTATE: OK
-X-OVH-SPAMSCORE: 0
-X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeektddrgeejucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecu
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeektddrgeejucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecu
-Subject: A simpler way to apply custom config files to an image ?
+To: Wouter van Rooy <wouter.van.rooy@axon.tv>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <AEC347BAFCE456419C9E7C9F50321CEF10E03514F5@IAD2MBX10.mex02.mlsrvr.com>
+In-Reply-To: <AEC347BAFCE456419C9E7C9F50321CEF10E03514F5@IAD2MBX10.mex02.mlsrvr.com>
+Subject: Re: [poky] Initramfs not appended to kernel image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,83 +44,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Apr 2015 14:11:23 -0000
-X-Groupsio-MsgNum: 24487
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="9AEUiuIsNLcoHHJLObr6A4XFlBdT46HBQ"
+X-List-Received-Date: Thu, 16 Apr 2015 14:22:37 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---9AEUiuIsNLcoHHJLObr6A4XFlBdT46HBQ
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+On 2015-04-16 6:23 AM, Wouter van Rooy wrote:
+> Hello,
+>
+> For the last week or so I have been struggling to build a kernel image with an embedded initramfs using the mechanisms provided by Poky Daisy. In local.conf I have set INITRAMFS_IMAGE_BUNDLE to "1" and INITRAMFS_IMAGE to the name of my image recipe. When I try to build virtual/kernel no errors are shown, but the resulting kernel image does not contain an initramfs either.
 
-Hello,
+I'm the proud owner of the bugzilla to document this process better,
+so let's work through the issues and see if there's a bug, or something
+that just isn't clearly described.
 
-I'm stuck on something that I would have assumed trivial and can't
-managed to do and hope someone can point me to a best practice.
+We are talking about the 1.6 release here .. so at least the recent changes
+in kernel.bbclass processing won't be the cause of the breakage.
 
-I want to customize various config file of an image I'm building (e.g.
-network interfaces, sshd banner, hostapd, etc..).
+>
+> I have traced this issue to the passing of the $use_alternate_initrd variable in kernel.bbclass. The run.do_bundle_initramfs log contains the following snippets:
+>
+> Lines 103..120:
+>
+> do_bundle_initramfs() {
+>          if [ ! -z "sytxg1-bootmode-image" -a x"1" = x1 ]; then
+>                  echo "Creating a kernel image with a bundled initramfs..."
+>                  copy_initramfs
+>                  if [ -e arch/powerpc/boot/uImage ] ; then
+>                          mv -f arch/powerpc/boot/uImage arch/powerpc/boot/uImage.bak
+>                  fi
+>                  use_alternate_initrd=CONFIG_INITRAMFS_SOURCE=/home/wouter/Source/Product/sytxg1-boot/tmp/work/sytxg1-oe-linux/linux-axon/3.10-9/linux-3.10.9/usr/sytxg1-bootmode-image-sytxg1.cpio
+>                  kernel_do_compile
+>                  mv -f arch/powerpc/boot/uImage arch/powerpc/boot/uImage.initramfs
+>                  mv -f arch/powerpc/boot/uImage.bak arch/powerpc/boot/uImage
+>                  # Update install area
+>                  echo "There is kernel image bundled with initramfs: /home/wouter/Source/Product/sytxg1-boot/tmp/work/sytxg1-oe-linux/linux-axon/3.10-9/linux-3.10.9/arch/powerpc/boot/uImage.initramfs"
+>                  install -m 0644 /home/wouter/Source/Product/sytxg1-boot/tmp/work/sytxg1-oe-linux/linux-axon/3.10-9/linux-3.10.9/arch/powerpc/boot/uImage.initramfs /home/wouter/Source/Product/sytxg1-boot/tmp/work/sytxg1-oe-linux/linux-axon/3.10-9/image/boot/uImage-initramfs-sytxg1.bin
+>                  echo "/home/wouter/Source/Product/sytxg1-boot/tmp/work/sytxg1-oe-linux/linux-axon/3.10-9/linux-3.10.9/arch/powerpc/boot/uImage.initramfs"
+>          fi
+>   
+> }
+>
+> Lines 164..171:
+>
+> kernel_do_compile() {
+>          unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS MACHINE
+>          oe_runmake uImage  CC="powerpc-oe-linux-gcc " LD="powerpc-oe-linux-ld.bfd "
+>          if test "uImage.gz" = "uImage"; then
+>                  gzip -9c < "uImage" > "arch/powerpc/boot/uImage"
+>          fi
+>   
+> }
+>
+> So, it seems that although do_bundle_initramfs() sets the $use_alternate_initrd to the correct value it is not passed in the oe_runmake call in kernel_do_compile(). Judging from the contents of kernel.bbclass I would expect it to be appended after the LD="..." statement. For now I have found a workaround by copying the relevant oe_runmake call to do_bundle_initramfs(). The patch is included below.
+Correct, and this definitely used to work. I can't see anything wrong by
+inspection alone, but will launch some builds to see if I can confirm the
+behaviour and that variable not making it down into the function call.
 
-To make this simple, I wrote my own recipe called 'custom-config' and
-bundled in there all my config files. Then copying them in the on_install=
-=2E
+Bruce
 
-do_install () {
-   install -m 0755 -d ${D}${sysconfdir}
-   install -b -m 0644 ${WORKDIR}/udhcpd.conf ${D}${sysconfdir}
-   install -b -m 0644 ${WORKDIR}/hostapd.conf ${D}${sysconfdir}
-   ....
-}
+>
+> I cannot imagine this is the intended way to make things work. Could anyone please shed some light on what I am doing wrong in this matter?
+>
+> Kind regards,
+>
+> Wouter van Rooy
+>
+>
+> diff --git a/meta/classes/kernel.bbclass b/meta/classes/kernel.bbclass
+> index 19b159b..224e01e 100644
+> --- a/meta/classes/kernel.bbclass
+> +++ b/meta/classes/kernel.bbclass
+> @@ -131,8 +131,11 @@ do_bundle_initramfs () {
+>   		if [ -e ${KERNEL_OUTPUT} ] ; then
+>   			mv -f ${KERNEL_OUTPUT} ${KERNEL_OUTPUT}.bak
+>   		fi
+> -		use_alternate_initrd=CONFIG_INITRAMFS_SOURCE=${B}/usr/${INITRAMFS_IMAGE}-${MACHINE}.cpio
+> -		kernel_do_compile
+> +		unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS MACHINE
+> +		oe_runmake ${KERNEL_IMAGETYPE_FOR_MAKE} ${KERNEL_ALT_IMAGETYPE} CC="${KERNEL_CC}" LD="${KERNEL_LD}" ${KERNEL_EXTRA_ARGS} CONFIG_INITRAMFS_SOURCE=${B}/usr/${INITRAMFS_IMAGE}-${MACHINE}.cpio
+> +		if test "${KERNEL_IMAGETYPE_FOR_MAKE}.gz" = "${KERNEL_IMAGETYPE}"; then
+> +			gzip -9c < "${KERNEL_IMAGETYPE_FOR_MAKE}" > "${KERNEL_OUTPUT}"
+> +		fi
+>   		mv -f ${KERNEL_OUTPUT} ${KERNEL_OUTPUT}.initramfs
+>   		mv -f ${KERNEL_OUTPUT}.bak ${KERNEL_OUTPUT}
+>   		# Update install area
+> @@ -150,20 +153,7 @@ addtask bundle_initramfs after do_install before do_deploy
+>   
+>   kernel_do_compile() {
+>   	unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS MACHINE
+> -	# The $use_alternate_initrd is only set from
+> -	# do_bundle_initramfs() This variable is specifically for the
+> -	# case where we are making a second pass at the kernel
+> -	# compilation and we want to force the kernel build to use a
+> -	# different initramfs image.  The way to do that in the kernel
+> -	# is to specify:
+> -	# make ...args... CONFIG_INITRAMFS_SOURCE=some_other_initramfs.cpio
+> -	if [ "$use_alternate_initrd" = "" ] && [ "${INITRAMFS_TASK}" != "" ] ; then
+> -		# The old style way of copying an prebuilt image and building it
+> -		# is turned on via INTIRAMFS_TASK != ""
+> -		copy_initramfs
+> -		use_alternate_initrd=CONFIG_INITRAMFS_SOURCE=${B}/usr/${INITRAMFS_IMAGE}-${MACHINE}.cpio
+> -	fi
+> -	oe_runmake ${KERNEL_IMAGETYPE_FOR_MAKE} ${KERNEL_ALT_IMAGETYPE} CC="${KERNEL_CC}" LD="${KERNEL_LD}" ${KERNEL_EXTRA_ARGS} $use_alternate_initrd
+> +	oe_runmake ${KERNEL_IMAGETYPE_FOR_MAKE} ${KERNEL_ALT_IMAGETYPE} CC="${KERNEL_CC}" LD="${KERNEL_LD}" ${KERNEL_EXTRA_ARGS}
+>   	if test "${KERNEL_IMAGETYPE_FOR_MAKE}.gz" = "${KERNEL_IMAGETYPE}"; then
+>   		gzip -9c < "${KERNEL_IMAGETYPE_FOR_MAKE}" > "${KERNEL_OUTPUT}"
+>   	fi
 
-It works great for files that are not provided by packages (e.g.
-udhcpd.conf), however it does not work for files already provided by
-another package (e.g. hostapd.conf). I've tried adding the backup flag
-to install but this did not help.
 
-It seems the recommended way to do this is by extending each individual
-recipe with bbappend and provide an updated config file. This works
-great, although quite heavy for just updating a single config file.
-
-More over, this does not work when the config file is not in the recipe
-but coming from sources archive. This is the case with hostapd.conf from
-recipe hostapd.
-
-Questions:
-
-- Is my idea of a single 'config' recipe completely stupid ? is there
-any way to make it work ? It seems the simpler approach.
-
-- If not possible and I have to stick with bbappend to every recipe
-concerned, then how could I do it in the case of a config file coming
-from the source package instead of the recipe ?
-
-Thanks for your help !
-
-Best,
-
-Laurent
-
-
-
-
-
-
---9AEUiuIsNLcoHHJLObr6A4XFlBdT46HBQ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iQEcBAEBAgAGBQJVL6+wAAoJEG8NyvoPmtl1xi4H/ROFNbcQqXP3F3u7lkm7e6aX
-PWSV0OiWsNDqis0oSzby/c+kt1HjPCKXJsH0Vlwmq5gGsmKakSUzrxY1x2dp90FU
-xMBUjlmTfbdrTpjBYY5WXxD7/EoGI/vyl8o9TGT6MPaNJ8g3C36b82Pt8vMgQij4
-03Zc0DCXvnKyvBDWjzelD/eWE0wtyY/0G+9oWYb/LTOStqVGXfZkeskfZQPcIxbC
-QxYd8lTcWaKGGtBmNzBOUzUMv3Fsp0Pcy7qh/e8sjUccX7/mecJir3YsPK5UUj+v
-Q59nVL6OVr3W/h0/I8TibQXi6pZqGZ8I8T85ybSCUOXt/T60Cao552KPG2bhDpU=
-=Siyu
------END PGP SIGNATURE-----
-
---9AEUiuIsNLcoHHJLObr6A4XFlBdT46HBQ--
