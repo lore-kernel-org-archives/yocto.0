@@ -1,40 +1,40 @@
-Return-Path: <Virgil.Smith@flir.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8A03EE0091A; Thu, 16 Apr 2015 08:32:58 -0700 (PDT)
+	id 99CA2E0091A; Thu, 16 Apr 2015 08:58:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [208.0.64.244 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from east-edge.flir.com (east-edge.flir.com [208.0.64.244])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6D38E00306
-	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 08:32:56 -0700 (PDT)
-Received: from BOS-CH1.zone1.flir.net (10.128.150.52) by EAST-EDGE.flir.com
-	(10.128.210.250) with Microsoft SMTP Server (TLS) id 14.3.195.1;
-	Thu, 16 Apr 2015 11:37:37 -0400
-Received: from BOS-DAG1.zone1.flir.net ([169.254.2.246]) by
-	BOS-CH1.zone1.flir.net ([10.128.150.52]) with mapi id 14.03.0224.002;
-	Thu, 16 Apr 2015 11:31:41 -0400
-From: "Smith, Virgil" <Virgil.Smith@flir.com>
-To: Laurent Eschenauer <laurent@eschenauer.be>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] A simpler way to apply custom config files to an image ?
-Thread-Index: AQHQeFADnDKHftKm8UGYpkSmFs62QJ1PwbHg
-Date: Thu, 16 Apr 2015 15:31:41 +0000
-Message-ID: <F14AEF751653024287138321000C846AF4814FF5@BOS-DAG1.zone1.flir.net>
-References: <552FAFAF.30005@eschenauer.be>
-In-Reply-To: <552FAFAF.30005@eschenauer.be>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.145.10.29]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F04EE00306
+	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 08:58:22 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga103.fm.intel.com with ESMTP; 16 Apr 2015 08:58:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,588,1422950400"; d="scan'208";a="714771037"
+Received: from koneill-mobl3.ger.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.27.110])
+	by orsmga002.jf.intel.com with ESMTP; 16 Apr 2015 08:58:11 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 16 Apr 2015 16:58:10 +0100
+Message-ID: <1795404.fNYR0e1r1I@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.4 (Linux/3.18.9-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
+In-Reply-To: <20150416131144.GA9092@ad.chargestorm.se>
+References: <552FA28B.5010507@actia.se>
+	<14610153.uBZ2VKfICl@peggleto-mobl.ger.corp.intel.com>
+	<20150416131144.GA9092@ad.chargestorm.se>
 MIME-Version: 1.0
-Subject: Re: A simpler way to apply custom config files to an image ?
+Cc: Anders Darander <anders@chargestorm.se>,
+	Christopher Larson <clarson@kergoth.com>
+Subject: Re: Badly formatted subpath for git SRC_URI deletes portions of hard drive.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,32 +46,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Apr 2015 15:32:58 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 16 Apr 2015 15:58:26 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-PiBJIHdhbnQgdG8gY3VzdG9taXplIHZhcmlvdXMgY29uZmlnIGZpbGUgb2YgYW4gaW1hZ2UgSSdt
-IGJ1aWxkaW5nIChlLmcuDQo+IG5ldHdvcmsgaW50ZXJmYWNlcywgc3NoZCBiYW5uZXIsIGhvc3Rh
-cGQsIGV0Yy4uKS4NCg0KUGF1bCBFZ2dsZXRvbiBqdXN0IGdhdmUgYSByZXNwb25zZSB0byBhIHNp
-bWlsYXIgcXVlc3Rpb24gIkZvcmNlIGluc3RhbGwgcGFja2FnZSBsYXN0Ig0KaHR0cHM6Ly9saXN0
-cy55b2N0b3Byb2plY3Qub3JnL3BpcGVybWFpbC95b2N0by8yMDE1LUFwcmlsLzAyNDU0OC5odG1s
-DQoNCj4gLSBJZiBub3QgcG9zc2libGUgYW5kIEkgaGF2ZSB0byBzdGljayB3aXRoIGJiYXBwZW5k
-IHRvIGV2ZXJ5IHJlY2lwZSBjb25jZXJuZWQsDQo+IHRoZW4gaG93IGNvdWxkIEkgZG8gaXQgaW4g
-dGhlIGNhc2Ugb2YgYSBjb25maWcgZmlsZSBjb21pbmcgZnJvbSB0aGUgc291cmNlDQo+IHBhY2th
-Z2UgaW5zdGVhZCBvZiB0aGUgcmVjaXBlID8NCg0KSWYgSSB1bmRlcnN0YW5kIHlvdSBjb3JyZWN0
-bHksIHRoYXQgd291bGQgYmUgYSBwYXRjaC4gIEZvciAidW5jaGVja2VkIiB3aG9sZSByZXBsYWNl
-bWVudCBvZiBmaWxlcywgSSd2ZSBzZWVuIGJiYXBwZW5kcyB3aXRoIGEgZG9fcGF0Y2hfYXBwZW5k
-IGZ1bmN0aW9uIHRvIGNvcHkgZmlsZXMgKHNwZWNpZmllZCBpbmRpdmlkdWFsbHkgaW4gU1JDX1VS
-SSBsaWtlIHBhdGNoIGZpbGVzKSBmcm9tIHRoZSBiYXNlIG9mIHRoZSB3b3JrIGRpciB0byB0aGUg
-Y29ycmVjdCBwYXRoIHVuZGVyIHRoZSBzb3VyY2UgZGlyZWN0b3J5Lg0KDQpfX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fXw0KDQpOb3RpY2UgdG8gcmVjaXBpZW50OiBUaGlzIGVtYWlsIGlz
-IG1lYW50IGZvciBvbmx5IHRoZSBpbnRlbmRlZCByZWNpcGllbnQgb2YgdGhlIHRyYW5zbWlzc2lv
-biwgYW5kIG1heSBiZSBhIGNvbW11bmljYXRpb24gcHJpdmlsZWdlZCBieSBsYXcsIHN1YmplY3Qg
-dG8gZXhwb3J0IGNvbnRyb2wgcmVzdHJpY3Rpb25zIG9yIHRoYXQgb3RoZXJ3aXNlIGNvbnRhaW5z
-IHByb3ByaWV0YXJ5IGluZm9ybWF0aW9uLiBJZiB5b3UgcmVjZWl2ZSB0aGlzIGVtYWlsIGJ5IG1p
-c3Rha2UsIHBsZWFzZSBub3RpZnkgdXMgaW1tZWRpYXRlbHkgYnkgcmVwbHlpbmcgdG8gdGhpcyBt
-ZXNzYWdlIGFuZCB0aGVuIGRlc3Ryb3kgaXQgYW5kIGRvIG5vdCByZXZpZXcsIGRpc2Nsb3NlLCBj
-b3B5IG9yIGRpc3RyaWJ1dGUgaXQuIFRoYW5rIHlvdSBpbiBhZHZhbmNlIGZvciB5b3VyIGNvb3Bl
-cmF0aW9uLg0K
+On Thursday 16 April 2015 15:11:44 Anders Darander wrote:
+> * Paul Eggleton <paul.eggleton@linux.intel.com> [150416 14:57]:
+> > Hi John,
+> > 
+> > On Thursday 16 April 2015 11:52:48 John Ernberg wrote:
+> > > After restoring everything I re-created the recipe, this time I also
+> > > saved a copy of the recipe at a safe location.
+> > > At the end of the path given to subpath I had added a '/' as it was not
+> > > specified what the format of the path should be. I figured I would see
+> > > an error if the path was wrong, and technically I did.
+> > > Essentially the SRC_URI looked like this:
+> > > SRC_URI = "git://git@<server+repo>;protocol=ssh;subpath=path/"
+> > > 
+> > > Running the recipe resulted in do_fetch (or do_unpack) failing again and
+> > > complaining about missing files. This time the deletion was on a much
+> > > greater scale, it had deleted so much of my home-dir that my user
+> > > account was rendered entirely useless. The fastest way to recover this
+> > > time was re-installing the machine.
+> 
+> It's most likely a call to bb.utils.prunedir(destdir), with destdir
+> being set to '/'...
+> 
+> > Very sorry about this :(
+> 
+> Yeah, too bad...
+> 
+> > Looking at the code I can see at least two problems we need to fix
+> > relating to this issue. It seems that having '/' either at the start or
+> > the end of the value was unexpected and would trigger undesirable
+> > behaviour.
+> 
+> The issue with having '/' at the end ought to be solved by adding
+> .rstrip('/') like:
+> ----------------------------
+> diff --git a/bitbake/lib/bb/fetch2/git.py b/bitbake/lib/bb/fetch2/git.py
+> index 44fc271..0fd9bee 100644
+> --- a/bitbake/lib/bb/fetch2/git.py
+> +++ b/bitbake/lib/bb/fetch2/git.py
+> @@ -246,7 +246,7 @@ class Git(FetchMethod):
+>          subdir = ud.parm.get("subpath", "")
+>          if subdir != "":
+>              readpathspec = ":%s" % (subdir)
+> -            def_destsuffix = "%s/" % os.path.basename(subdir)
+> +            def_destsuffix = "%s/" %
+> os.path.basename(subdir.rstrip('/'))
+>          else:
+>              readpathspec = ""
+>              def_destsuffix = "git/"
+> ---------------------------
+> 
+> Probably, the first issue could be solved by replacing subdir with
+> subdir.strip('/') on the line above that.
+> 
+> Though I might be missing something...
+> 
+> I've only looked for a moment on the patch above, which at least seems
+> to create correct path's when inspecting the output.
+
+That looks like a reasonable solution to me, thanks.
+
+FYI I've created the following bug to track this issue:
+
+  https://bugzilla.yoctoproject.org/show_bug.cgi?id=7620
+
+I'll send a fix ASAP probably based on the above.
+
+Cheers,
+Paul
+
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
