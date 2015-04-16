@@ -1,6 +1,6 @@
-Return-Path: <mike.looijmans@topicproducts.com>
+Return-Path: <john.ernberg@actia.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D74F9E009C2; Thu, 16 Apr 2015 04:26:42 -0700 (PDT)
+	id BD6EEE009C6; Thu, 16 Apr 2015 04:53:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,39 +8,28 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp103.mer-nm.internl.net (smtp103.mer-nm.internl.net
-	[217.149.192.139])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86E43E009A3
-	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 04:26:38 -0700 (PDT)
-Received: from amavisd-new (mailscanner02.wrt-nm.internl.net [217.149.192.114])
-	by smtp103.mer-nm.internl.net (Postfix) with ESMTP id 1B7903F562
-	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 13:26:36 +0200 (CEST)
-Received: from smtp103.mer-nm.internl.net ([217.149.192.139])
-	by amavisd-new (mailscanner02.wrt-nm.internl.net [217.149.192.160])
-	(amavisd-new, port 10024) with ESMTP for <yocto@yoctoproject.org>;
-	Thu, 16 Apr 2015 13:26:35 +0200 (CEST)
-Received: from TOP-EX01.TOPIC.LOCAL (mail.topic.nl [82.204.13.182])
-	(using TLSv1 with cipher AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by smtp103.mer-nm.internl.net (Postfix) with ESMTPS
-	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 13:26:35 +0200 (CEST)
-Received: from [192.168.80.121] (192.168.80.121) by TOP-EX01.TOPIC.LOCAL
-	(192.168.10.102) with Microsoft SMTP Server (TLS) id 14.3.224.2;
-	Thu, 16 Apr 2015 13:27:26 +0200
-Message-ID: <552F9C6A.3000405@topic.nl>
-Date: Thu, 16 Apr 2015 13:26:34 +0200
-From: Mike Looijmans <mike.looijmans@topic.nl>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
+	Thu, 16 Apr 2015 04:53:57 PDT
+Received: from mail.actia.se (mail.actia.se [193.41.119.134])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDEF2E009A5
+	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 04:53:57 -0700 (PDT)
+Received: from S005ANL.actianordic.se ([::1]) by S005ANL.actianordic.se
+	([::1]) with mapi id 14.03.0235.001; Thu, 16 Apr 2015 13:52:50 +0200
+From: John Ernberg <john.ernberg@actia.se>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Badly formatted subpath for git SRC_URI deletes portions of
+	hard drive.
+Thread-Index: AQHQeDvbOhU9E4r3tEqYD1S1yHS2tA==
+Date: Thu, 16 Apr 2015 11:52:48 +0000
+Message-ID: <552FA28B.5010507@actia.se>
+Accept-Language: en-US, sv-SE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.15.9]
+x-esetresult: clean, is OK
+x-esetid: E7C3CC3D94689A09B1869C
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <mailman.9.1429038001.21905.yocto@yoctoproject.org>
-	<552F9641.8090805@gmail.com>
-In-Reply-To: <552F9641.8090805@gmail.com>
-X-Originating-IP: [192.168.80.121]
-X-EXCLAIMER-MD-CONFIG: 9833cda7-5b21-4d34-9a38-8d025ddc3664
-X-EXCLAIMER-MD-BIFURCATION-INSTANCE: 0
-Subject: Re: Yocto Header files?
+Subject: Badly formatted subpath for git SRC_URI deletes portions of hard drive.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,54 +41,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Apr 2015 11:26:42 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 16 Apr 2015 11:53:59 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <FCB9580CD976A04389CBBBCC95FC26E1@actia.se>
+Content-Transfer-Encoding: base64
 
-=EF=BB=BFOn 16-04-15 13:00, testlaster wrote:
-> Hi everyone.
->
-> I would just like to know if it is possible to get the Yocto Kernel Heade=
-r files?
->
-> I need it to build a PCI driver but I cant seem to find a recipe or a dow=
-nload
-> for it.
-
-Short answer: Put "inherit module" in your recipe to build the module.
-
-Example Makefile:
-
-https://github.com/topic-embedded-products/kernel-module-vdmafb/blob/master=
-/Makefile
-
-Example bitbake (hence Yocto) recipe for an external kernel module:
-
-https://github.com/topic-embedded-products/meta-topic/blob/master/recipes-k=
-ernel/modules/kernel-module-vdmafb.bb
-
-
-
-
-Kind regards,
-
-Mike Looijmans
-System Expert
-
-TOPIC Embedded Products
-Eindhovenseweg 32-C, NL-5683 KH Best
-Postbus 440, NL-5680 AK Best
-Telefoon: +31 (0) 499 33 69 79
-Telefax: +31 (0) 499 33 69 70
-E-mail: mike.looijmans@topicproducts.com
-Website: www.topicproducts.com
-
-Please consider the environment before printing this e-mail
-
-Please visit us at the Hannover Messe which will be held from 13.04.2015 ti=
-ll 17.04.2015, Hall 2, Stand C12, Holland High Tech House
-http://www.hannovermesse.de/exhibitor/topic-embedded-products/L929216?sourc=
-e=3Dakl
-
-
+SGkNCg0KSSB3YXMgd3JpdGluZyBhIGJpdGJha2UgcmVjaXBlIGZvciBhIHByb2plY3QgaG9zdGVk
+IG9uIGEgZ2l0LXNlcnZlci4gSSANCmFwcGxpZWQgc3VicGF0aCBpbiBvcmRlciB0byBsaW1pdCB0
+aGUgY2hlY2tvdXQgdG8gYSBzcGVjaWZpYyBkaXJlY3RvcnkuDQoNCldoZW4gSSByYW4gdGhlIHJl
+Y2lwZSBpdCBmYWlsZWQgaW4gZG9fZmV0Y2ggKG9yIGRvX3VucGFjaykgY29tcGxhaW5pbmcgDQph
+Ym91dCBtaXNzaW5nIGZpbGVzLiBJdCBoYWQgZGVsZXRlZCB0aGUgZW50aXJlIFlvY3RvIGRpcmVj
+dG9yeSBhbmQgDQpzZWxlY3RlZCBkaXJlY3RvcmllcyBmcm9tIG15IGhvbWUtZGlyIGxpa2Ugc3No
+LWtleXMsIG15IGRpciB3aGVyZSBJIGtlZXAgDQpteSBjb2RlLCBhbmQgc29tZSBjb25maWd1cmF0
+aW9uIGZpbGVzIGZvciBUaHVuZGVyYmlyZCBhbmQgbXkgdGVybWluYWwuDQoNClNpbmNlIEkgaGFk
+IG5vIFlvY3RvIGRpcmVjdG9yeSBsZWZ0IEkgd2FzIHVuYWJsZSB0byBkZWJ1ZyB0aGUgcmVjaXBl
+Lg0KDQpBZnRlciByZXN0b3JpbmcgZXZlcnl0aGluZyBJIHJlLWNyZWF0ZWQgdGhlIHJlY2lwZSwg
+dGhpcyB0aW1lIEkgYWxzbyANCnNhdmVkIGEgY29weSBvZiB0aGUgcmVjaXBlIGF0IGEgc2FmZSBs
+b2NhdGlvbi4NCkF0IHRoZSBlbmQgb2YgdGhlIHBhdGggZ2l2ZW4gdG8gc3VicGF0aCBJIGhhZCBh
+ZGRlZCBhICcvJyBhcyBpdCB3YXMgbm90IA0Kc3BlY2lmaWVkIHdoYXQgdGhlIGZvcm1hdCBvZiB0
+aGUgcGF0aCBzaG91bGQgYmUuIEkgZmlndXJlZCBJIHdvdWxkIHNlZSANCmFuIGVycm9yIGlmIHRo
+ZSBwYXRoIHdhcyB3cm9uZywgYW5kIHRlY2huaWNhbGx5IEkgZGlkLg0KRXNzZW50aWFsbHkgdGhl
+IFNSQ19VUkkgbG9va2VkIGxpa2UgdGhpczoNClNSQ19VUkkgPSAiZ2l0Oi8vZ2l0QDxzZXJ2ZXIr
+cmVwbz47cHJvdG9jb2w9c3NoO3N1YnBhdGg9cGF0aC8iDQoNClJ1bm5pbmcgdGhlIHJlY2lwZSBy
+ZXN1bHRlZCBpbiBkb19mZXRjaCAob3IgZG9fdW5wYWNrKSBmYWlsaW5nIGFnYWluIGFuZCANCmNv
+bXBsYWluaW5nIGFib3V0IG1pc3NpbmcgZmlsZXMuIFRoaXMgdGltZSB0aGUgZGVsZXRpb24gd2Fz
+IG9uIGEgbXVjaCANCmdyZWF0ZXIgc2NhbGUsIGl0IGhhZCBkZWxldGVkIHNvIG11Y2ggb2YgbXkg
+aG9tZS1kaXIgdGhhdCBteSB1c2VyIA0KYWNjb3VudCB3YXMgcmVuZGVyZWQgZW50aXJlbHkgdXNl
+bGVzcy4gVGhlIGZhc3Rlc3Qgd2F5IHRvIHJlY292ZXIgdGhpcyANCnRpbWUgd2FzIHJlLWluc3Rh
+bGxpbmcgdGhlIG1hY2hpbmUuDQoNCkkgd2FzIGtlZXBpbmcgYml0YmFrZSBpbiBteSBob21lLWRp
+ciBib3RoIG9mIHRoZXNlIHRpbWVzLg0KDQpUaGUgcG9reSB2ZXJzaW9uIEkgYW0gdXNpbmcgaXMg
+RGFpc3kuDQoNCkJlc3QgcmVnYXJkcyAvLyBKb2huIEVybmJlcmc=
 
