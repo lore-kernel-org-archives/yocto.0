@@ -1,54 +1,63 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <EBolton@agjunction.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D8B3FE008F6; Thu, 16 Apr 2015 07:36:03 -0700 (PDT)
+	id 69CCAE008F6; Thu, 16 Apr 2015 08:05:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.47 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [157.56.110.133 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qg0-f47.google.com (mail-qg0-f47.google.com
-	[209.85.192.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A765E00306
-	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 07:36:01 -0700 (PDT)
-Received: by qgej70 with SMTP id j70so6548810qge.2
-	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 07:36:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=50FP7e2+51I97ovC19UtL2Bk87b32+HUFlL39vQYgDs=;
-	b=PdLr61S8MXdoo86tF/2amJD4gX0NFxiurbVgxSUC1pI/7vNHrdvoMbhVPR94pXuHBQ
-	AsplIOAKIoLFUeIF5jM81FsPIW9EhLbl+sPWMZLrI5j04JdmX/rXHw07R5RIifHMPdsu
-	XWQqY2l8fxOoLJS08Y1IgNMt1M4fQgx0b20MBLExoUioyR/eSJ+WwnK9rXt3qQpKjfd5
-	tyxZh2qh0CdiviVH/DtGe5WKrx0WXm2htGhgrtgLhSYQRSiQFt6Z9qExcpZSUlyFBUXX
-	baF3/29anZC09s0KDIOPhvVEmU7lf5wPeoftkvxjP6z6U7WHwmIvpHow9/MB+l4H4yXU
-	IJdg==
-X-Received: by 10.55.43.220 with SMTP id r89mr62526115qkr.27.1429194960254;
-	Thu, 16 Apr 2015 07:36:00 -0700 (PDT)
+Received: from na01-bn1-obe.outbound.protection.outlook.com
+	(mail-bn1on0133.outbound.protection.outlook.com [157.56.110.133])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43258E00306
+	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 08:05:26 -0700 (PDT)
+Received: from DM2PR0201MB1087.namprd02.prod.outlook.com (25.160.221.144) by
+	DM2PR0201MB1087.namprd02.prod.outlook.com (25.160.221.144) with
+	Microsoft
+	SMTP Server (TLS) id 15.1.136.17; Thu, 16 Apr 2015 15:05:25 +0000
+Received: from DM2PR0201MB1087.namprd02.prod.outlook.com ([25.160.221.144]) by
+	DM2PR0201MB1087.namprd02.prod.outlook.com ([25.160.221.144]) with
+	mapi id 15.01.0136.026; Thu, 16 Apr 2015 15:05:25 +0000
+From: Erik Bolton <EBolton@agjunction.com>
+To: Laurent Eschenauer <laurent@eschenauer.be>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] A simpler way to apply custom config files to an image ?
+Thread-Index: AQHQeFAvilLC/4nS1Eu9slMjkMZXFp1PvOc0
+Date: Thu, 16 Apr 2015 15:05:24 +0000
+Message-ID: <DM2PR0201MB1087F0C18454B8863D9BD2BFCCE40@DM2PR0201MB1087.namprd02.prod.outlook.com>
+References: <552FAFAF.30005@eschenauer.be>
+In-Reply-To: <552FAFAF.30005@eschenauer.be>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: eschenauer.be; dkim=none (message not signed)
+	header.d=none;
+x-originating-ip: [72.201.0.208]
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:DM2PR0201MB1087;
+x-microsoft-antispam-prvs: <DM2PR0201MB10877E26F7A94CDD27EA78C7CCE40@DM2PR0201MB1087.namprd02.prod.outlook.com>
+x-forefront-antispam-report: BMV:1; SFV:NSPM;
+	SFS:(10019020)(6009001)(377454003)(40764003)(19580395003)(74316001)(19580405001)(122556002)(2900100001)(76176999)(50986999)(54356999)(106116001)(102836002)(86362001)(62966003)(77156002)(19625215002)(16236675004)(33656002)(40100003)(2950100001)(2501003)(2656002)(87936001)(66066001)(99286002)(46102003)(107886001)(92566002)(4001410100001)(76576001)(80792005)(43043002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:DM2PR0201MB1087;
+	H:DM2PR0201MB1087.namprd02.prod.outlook.com; FPR:; SPF:None;
+	MLV:sfv; LANG:en; 
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(5005006)(5002010); SRVR:DM2PR0201MB1087; BCL:0;
+	PCL:0; RULEID:; SRVR:DM2PR0201MB1087; 
+x-forefront-prvs: 0548586081
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.140.108.34 with HTTP; Thu, 16 Apr 2015 07:35:40 -0700 (PDT)
-In-Reply-To: <CAP71WjyfbFWiTdGt5FQ46MK1w_3wf9g50mrAixaRDRfC4t7Dug@mail.gmail.com>
-References: <552FA28B.5010507@actia.se>
-	<14610153.uBZ2VKfICl@peggleto-mobl.ger.corp.intel.com>
-	<20150416131144.GA9092@ad.chargestorm.se>
-	<CAP71WjyfbFWiTdGt5FQ46MK1w_3wf9g50mrAixaRDRfC4t7Dug@mail.gmail.com>
-From: Christopher Larson <clarson@kergoth.com>
-Date: Thu, 16 Apr 2015 07:35:40 -0700
-X-Google-Sender-Auth: LJPulqG3vcR5y7xiWjFVkBDLmGU
-Message-ID: <CABcZANkZpNCrYKjS0DYP8kqmeQ2+ax=87Cox1LQge3jeAA4f7Q@mail.gmail.com>
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Badly formatted subpath for git SRC_URI deletes portions of hard drive.
+X-OriginatorOrg: agjunction.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Apr 2015 15:05:24.5423 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 5f7bd4f9-3eab-4e10-b6c3-fdfbbaf69f20
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM2PR0201MB1087
+Subject: Re: A simpler way to apply custom config files to an image ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,111 +69,210 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Apr 2015 14:36:03 -0000
-Content-Type: multipart/alternative; boundary=001a1149442cebbdd70513d86137
+X-List-Received-Date: Thu, 16 Apr 2015 15:05:31 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DM2PR0201MB1087F0C18454B8863D9BD2BFCCE40DM2PR0201MB1087_"
 
---001a1149442cebbdd70513d86137
-Content-Type: text/plain; charset=UTF-8
-
-On Thu, Apr 16, 2015 at 7:25 AM, Nicolas Dechesne <
-nicolas.dechesne@linaro.org> wrote:
-
-> On Thu, Apr 16, 2015 at 3:11 PM, Anders Darander <anders@chargestorm.se>
-> wrote:
->
->> > > Running the recipe resulted in do_fetch (or do_unpack) failing again
->> and
->> > > complaining about missing files. This time the deletion was on a much
->> > > greater scale, it had deleted so much of my home-dir that my user
->> > > account was rendered entirely useless. The fastest way to recover this
->> > > time was re-installing the machine.
->>
->> It's most likely a call to bb.utils.prunedir(destdir), with destdir
->> being set to '/'...
->
->
->
-> ouch... this is a bit scary ;-)
->
-> maybe we should assert the folder name is 'sane' when we do destructive
-> operations like that. e.g. check that we are in TMPDIR, or TOPDIR..
->
-> hopefully nobody does sudo bitbake ;-)
->
-
-This is scary indeed. We definitely need to be more careful about calls to
-dirname/basename with paths with a trailing or leading / in general, and
-especially for removals, and just need to do more path
-sanitization/normalization probably..
-
->>> def dirsplit(p):
-...     return os.path.dirname(p), os.path.basename(p)
-...
->>> dirsplit('/usr/bin/foo')
-('/usr/bin', 'foo')
->>> dirsplit('/usr/bin/')
-('/usr/bin', '')
->>> dirsplit('/usr/bin')
-('/usr', 'bin')
->>> dirsplit('/bin')
-('/', 'bin')
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
-
---001a1149442cebbdd70513d86137
-Content-Type: text/html; charset=UTF-8
+--_000_DM2PR0201MB1087F0C18454B8863D9BD2BFCCE40DM2PR0201MB1087_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Thu, Apr 16, 2015 at 7:25 AM, Nicolas Dechesne <span dir=3D"ltr">&lt;<a =
-href=3D"mailto:nicolas.dechesne@linaro.org" target=3D"_blank">nicolas.deche=
-sne@linaro.org</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rg=
-b(204,204,204);border-left-style:solid;padding-left:1ex"><span class=3D""><=
-div class=3D"gmail_extra"><div class=3D"gmail_quote">On Thu, Apr 16, 2015 a=
-t 3:11 PM, Anders Darander <span dir=3D"ltr">&lt;<a href=3D"mailto:anders@c=
-hargestorm.se" target=3D"_blank">anders@chargestorm.se</a>&gt;</span> wrote=
-:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:so=
-lid;padding-left:1ex"><span>&gt; &gt; Running the recipe resulted in do_fet=
-ch (or do_unpack) failing again and<br>
-&gt; &gt; complaining about missing files. This time the deletion was on a =
-much<br>
-&gt; &gt; greater scale, it had deleted so much of my home-dir that my user=
-<br>
-&gt; &gt; account was rendered entirely useless. The fastest way to recover=
- this<br>
-&gt; &gt; time was re-installing the machine.<br>
-<br>
-</span>It&#39;s most likely a call to bb.utils.prunedir(destdir), with dest=
-dir<br>
-being set to &#39;/&#39;...</blockquote></div><br><br></div></span><div cla=
-ss=3D"gmail_extra">ouch... this is a bit scary ;-)<br><br></div><div class=
-=3D"gmail_extra">maybe we should assert the folder name is &#39;sane&#39; w=
-hen we do destructive operations like that. e.g. check that we are in TMPDI=
-R, or TOPDIR.. <br><br></div><div class=3D"gmail_extra">hopefully nobody do=
-es sudo bitbake ;-)</div></blockquote></div><br>This is scary indeed. We de=
-finitely need to be more careful about calls to dirname/basename with paths=
- with a trailing or leading / in general, and especially for removals, and =
-just need to do more path sanitization/normalization probably..</div><div c=
-lass=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><div class=3D"gma=
-il_extra">&gt;&gt;&gt; def dirsplit(p):</div><div class=3D"gmail_extra">...=
- =C2=A0 =C2=A0 return os.path.dirname(p), os.path.basename(p)</div><div cla=
-ss=3D"gmail_extra">...</div><div class=3D"gmail_extra">&gt;&gt;&gt; dirspli=
-t(&#39;/usr/bin/foo&#39;)</div><div class=3D"gmail_extra">(&#39;/usr/bin&#3=
-9;, &#39;foo&#39;)</div><div class=3D"gmail_extra">&gt;&gt;&gt; dirsplit(&#=
-39;/usr/bin/&#39;)</div><div class=3D"gmail_extra">(&#39;/usr/bin&#39;, &#3=
-9;&#39;)</div><div class=3D"gmail_extra">&gt;&gt;&gt; dirsplit(&#39;/usr/bi=
-n&#39;)</div><div class=3D"gmail_extra">(&#39;/usr&#39;, &#39;bin&#39;)</di=
-v><div class=3D"gmail_extra">&gt;&gt;&gt; dirsplit(&#39;/bin&#39;)</div><di=
-v class=3D"gmail_extra">(&#39;/&#39;, &#39;bin&#39;)</div>-- <br><div class=
-=3D"gmail_signature">Christopher Larson<br>clarson at kergoth dot com<br>Fo=
-under - BitBake, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior S=
-oftware Engineer, Mentor Graphics</div>
-</div></div>
+Hey Laurent:
 
---001a1149442cebbdd70513d86137--
+Is your config recipe being built before all the recipes with the default c=
+onfig files and overriding your config files?
+
+In that case I would make anything with a config file that you want to over=
+ride a dependency of your config recipe.
+
+What's the actual error?
+
+-Erik
+
+Sent from my Verizon 4G LTE Smartphone
+
+----- Reply message -----
+From: "Laurent Eschenauer" <laurent@eschenauer.be>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: [yocto] A simpler way to apply custom config files to an image ?
+Date: Thu, Apr 16, 2015 7:18 AM
+
+Hello,
+
+I'm stuck on something that I would have assumed trivial and can't
+managed to do and hope someone can point me to a best practice.
+
+I want to customize various config file of an image I'm building (e.g.
+network interfaces, sshd banner, hostapd, etc..).
+
+To make this simple, I wrote my own recipe called 'custom-config' and
+bundled in there all my config files. Then copying them in the on_install.
+
+do_install () {
+   install -m 0755 -d ${D}${sysconfdir}
+   install -b -m 0644 ${WORKDIR}/udhcpd.conf ${D}${sysconfdir}
+   install -b -m 0644 ${WORKDIR}/hostapd.conf ${D}${sysconfdir}
+   ....
+}
+
+It works great for files that are not provided by packages (e.g.
+udhcpd.conf), however it does not work for files already provided by
+another package (e.g. hostapd.conf). I've tried adding the backup flag
+to install but this did not help.
+
+It seems the recommended way to do this is by extending each individual
+recipe with bbappend and provide an updated config file. This works
+great, although quite heavy for just updating a single config file.
+
+More over, this does not work when the config file is not in the recipe
+but coming from sources archive. This is the case with hostapd.conf from
+recipe hostapd.
+
+Questions:
+
+- Is my idea of a single 'config' recipe completely stupid ? is there
+any way to make it work ? It seems the simpler approach.
+
+- If not possible and I have to stick with bbappend to every recipe
+concerned, then how could I do it in the case of a config file coming
+from the source package instead of the recipe ?
+
+Thanks for your help !
+
+Best,
+
+Laurent
+
+
+
+
+
+Disclaimer: This message contains information that may be privileged or con=
+fidential and is the property of AgJunction Inc and its subsidiaries. It is=
+ intended only for the person to whom it is addressed. If you are not the i=
+ntended recipient, you are not authorized to read, print, retain, copy, dis=
+seminate, distribute, or use this message or any part thereof. If you recei=
+ve this message in error, please notify the sender immediately and delete a=
+ll copies of this message.
+
+--_000_DM2PR0201MB1087F0C18454B8863D9BD2BFCCE40DM2PR0201MB1087_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
+ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+</head>
+<body>
+<meta name=3D"x_Generator" content=3D"Microsoft Exchange Server">
+<style>
+<!--
+.x_EmailQuote
+	{margin-left:1pt;
+	padding-left:4pt;
+	border-left:#800000 2px solid}
+-->
+</style>
+<div>
+<div style=3D"font-family:'Calibri','sans-serif'">
+<div>Hey Laurent:</div>
+<div><br>
+</div>
+<div>Is your config recipe being built before all the recipes with&nbsp;the=
+ default config files and overriding your config files?</div>
+<div><br>
+</div>
+<div>In that case I would make anything with a config file that you want to=
+ override a dependency of your config recipe.&nbsp;</div>
+<div><br>
+</div>
+<div>What's the actual error?&nbsp;</div>
+<div><br>
+</div>
+<div>-Erik</div>
+<div><br>
+</div>
+<div>Sent from my Verizon 4G LTE Smartphone</div>
+<br>
+<div id=3D"x_htc_header">----- Reply message -----<br>
+From: &quot;Laurent Eschenauer&quot; &lt;laurent@eschenauer.be&gt;<br>
+To: &quot;yocto@yoctoproject.org&quot; &lt;yocto@yoctoproject.org&gt;<br>
+Subject: [yocto] A simpler way to apply custom config files to an image ?<b=
+r>
+Date: Thu, Apr 16, 2015 7:18 AM</div>
+</div>
+<br>
+</div>
+<font size=3D"2"><span style=3D"font-size:10pt;">
+<div class=3D"PlainText">Hello,<br>
+<br>
+I'm stuck on something that I would have assumed trivial and can't<br>
+managed to do and hope someone can point me to a best practice.<br>
+<br>
+I want to customize various config file of an image I'm building (e.g.<br>
+network interfaces, sshd banner, hostapd, etc..).<br>
+<br>
+To make this simple, I wrote my own recipe called 'custom-config' and<br>
+bundled in there all my config files. Then copying them in the on_install.<=
+br>
+<br>
+do_install () {<br>
+&nbsp;&nbsp; install -m 0755 -d ${D}${sysconfdir}<br>
+&nbsp;&nbsp; install -b -m 0644 ${WORKDIR}/udhcpd.conf ${D}${sysconfdir}<br=
+>
+&nbsp;&nbsp; install -b -m 0644 ${WORKDIR}/hostapd.conf ${D}${sysconfdir}<b=
+r>
+&nbsp;&nbsp; ....<br>
+}<br>
+<br>
+It works great for files that are not provided by packages (e.g.<br>
+udhcpd.conf), however it does not work for files already provided by<br>
+another package (e.g. hostapd.conf). I've tried adding the backup flag<br>
+to install but this did not help.<br>
+<br>
+It seems the recommended way to do this is by extending each individual<br>
+recipe with bbappend and provide an updated config file. This works<br>
+great, although quite heavy for just updating a single config file.<br>
+<br>
+More over, this does not work when the config file is not in the recipe<br>
+but coming from sources archive. This is the case with hostapd.conf from<br=
+>
+recipe hostapd.<br>
+<br>
+Questions:<br>
+<br>
+- Is my idea of a single 'config' recipe completely stupid ? is there<br>
+any way to make it work ? It seems the simpler approach.<br>
+<br>
+- If not possible and I have to stick with bbappend to every recipe<br>
+concerned, then how could I do it in the case of a config file coming<br>
+from the source package instead of the recipe ?<br>
+<br>
+Thanks for your help !<br>
+<br>
+Best,<br>
+<br>
+Laurent<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div>
+</span></font>Disclaimer: This message contains information that may be pri=
+vileged or confidential and is the property of AgJunction Inc and its subsi=
+diaries. It is intended only for the person to whom it is addressed. If you=
+ are not the intended recipient,
+ you are not authorized to read, print, retain, copy, disseminate, distribu=
+te, or use this message or any part thereof. If you receive this message in=
+ error, please notify the sender immediately and delete all copies of this =
+message.
+</body>
+</html>
+
+--_000_DM2PR0201MB1087F0C18454B8863D9BD2BFCCE40DM2PR0201MB1087_--
