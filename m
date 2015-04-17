@@ -1,59 +1,55 @@
-Return-Path: <anders@chargestorm.se>
+Return-Path: <Neil.Wu@emerson.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 646D6E009C8; Thu, 16 Apr 2015 23:00:42 -0700 (PDT)
+	id B0202E009C2; Thu, 16 Apr 2015 23:18:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [68.232.130.237 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.42 listed in list.dnswl.org]
-Received: from mail-la0-f42.google.com (mail-la0-f42.google.com
-	[209.85.215.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20A5BE00965
-	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 23:00:39 -0700 (PDT)
-Received: by lagv1 with SMTP id v1so72533624lag.3
-	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 23:00:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:subject:message-id:mail-followup-to
-	:references:mime-version:content-type:content-disposition
-	:in-reply-to:organization:user-agent;
-	bh=/zyBVF8Db6oEWVzJz4dMOH5azVnHKkG++XqHaVlFYEg=;
-	b=VxraVf/hiBJRiQlN5xzXewVYXYl7iQq0MLwKvS/rslS/Fj+u0w3rcLtzcTrFG2I9zf
-	JvrEUGdfd4a+NBuQJ9g3bWJSR5GGA3MgijckBq9DZar+uzGK+Q1GNcZQzn4FkuPM5jQ8
-	xa/lxI2s3/rf6eQ3MJbu462qDXsS1Wp7cRUZFg4eng8rUXXL9tYRkXdSbCdumwB5lbnt
-	yCzy7pms8V7JcYUFvFaY3MgOmY8vkqNKFzAQQitktaqT50cCwVhSnErYPlNqQsYuYLp5
-	54C916Wr5mPGXxFdXqrWvVm6ijdi3Y1NeMIejZHak5XU1+HAMgeXbjDyIKpPmoJPjlAC
-	VdxA==
-X-Gm-Message-State: ALoCoQm9GrVxpWlvhCooPaxQFxDW4KsEAPgU+za95Ib6sw/nXqpTJDweewRGDvgdtN8T2OTDK7U8
-X-Received: by 10.112.189.102 with SMTP id gh6mr1081984lbc.115.1429250436964; 
-	Thu, 16 Apr 2015 23:00:36 -0700 (PDT)
-Received: from ad.chargestorm.se (213-64-219-84-no126.business.telia.com.
-	[213.64.219.84])
-	by mx.google.com with ESMTPSA id a7sm2175540lbc.48.2015.04.16.23.00.35
-	for <yocto@yoctoproject.org>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 16 Apr 2015 23:00:36 -0700 (PDT)
-Date: Fri, 17 Apr 2015 08:00:34 +0200
-From: Anders Darander <anders@chargestorm.se>
-To: yocto@yoctoproject.org
-Message-ID: <20150417060034.GA19955@ad.chargestorm.se>
-Mail-Followup-To: yocto@yoctoproject.org
+Received: from esa2.emerson-outbound.iphmx.com
+	(esa2.emerson-outbound.iphmx.com [68.232.130.237])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3F1FE0085D
+	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 23:18:53 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.11,592,1422900000"; 
+   d="scan'208";a="6918735"
+Received: from usstlz-pinfez05.extemr.org ([144.191.128.189])
+	by esa2.emerson-outbound.iphmx.com with ESMTP/TLS/AES128-SHA;
+	17 Apr 2015 12:18:53 +0600
+Received: from USSTLZ-PMSG002.emrsn.org (10.16.72.40) by
+	USSTLZ-PINFEZ05.extemr.org (10.16.8.78) with Microsoft SMTP Server
+	(TLS) id 14.3.158.1; Fri, 17 Apr 2015 06:18:43 +0000
+Received: from USSTLZ-PMSG012.emrsn.org ([169.254.3.186]) by
+	USSTLZ-PMSG002.emrsn.org ([169.254.6.221]) with mapi id 14.03.0158.001;
+	Fri, 17 Apr 2015 06:18:42 +0000
+From: <Neil.Wu@Emerson.com>
+To: <yocto@yoctoproject.org>
+Thread-Topic: cannot find crti.o: No such file or directory
+Thread-Index: AQHQeNPj9wkUcVHiU0ubCy5Kxiz+JJ1QuAGg
+Date: Fri, 17 Apr 2015 06:18:41 +0000
+Message-ID: <3204FE6663E1F14CAF4CA6928E60C8522E7042B6@USSTLZ-PMSG012.emrsn.org>
 References: <552FAFAF.30005@eschenauer.be>
 	<F14AEF751653024287138321000C846AF4814FF5@BOS-DAG1.zone1.flir.net>
+	<20150417060034.GA19955@ad.chargestorm.se>
+In-Reply-To: <20150417060034.GA19955@ad.chargestorm.se>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-cr-hashedpuzzle: S3E= BPVw Cq0p CwqZ DG6y EAvh EEnv EbkI FzkI GkjH G1p5
+	Ht9B I0hI JLBe JxEv
+	KBt9; 1; eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
+	Sosha1_v1; 7; {09AC930E-6E38-4B20-A5DE-0B0179CEC70C};
+	bgBlAGkAbAAuAHcAdQBAAGUAbQBlAHIAcwBvAG4ALgBjAG8AbQA=; Fri,
+	17 Apr 2015 06:18:38 GMT;
+	bABkADoAIABjAGEAbgBuAG8AdAAgAGYAaQBuAGQAIABjAHIAdABpAC4AbwA6ACAATgBvACAAcwB1AGMAaAAgAGYAaQBsAGUAIABvAHIAIABkAGkAcgBlAGMAdABvAHIAeQA=
+x-cr-puzzleid: {09AC930E-6E38-4B20-A5DE-0B0179CEC70C}
+x-originating-ip: [10.16.75.1]
 MIME-Version: 1.0
-In-Reply-To: <F14AEF751653024287138321000C846AF4814FF5@BOS-DAG1.zone1.flir.net>
-X-Accept-Language: sv, en, de
-X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
-X-GPG-Key-Id: 0x920E938C
-X-GPG-Keyserver: hkp://keys.gnupg.net
-Organization: ChargeStorm AB
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Subject: Re: A simpler way to apply custom config files to an image ?
+Subject: ld: cannot find crti.o: No such file or directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,39 +61,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Apr 2015 06:00:42 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Fri, 17 Apr 2015 06:18:55 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-* Smith, Virgil <Virgil.Smith@flir.com> [150416 17:33]:
+Hi, all
 
-> > I want to customize various config file of an image I'm building (e.g.
-> > network interfaces, sshd banner, hostapd, etc..).
+I use the 1.8 YP to build the ccgi, the receip of ccgi as this:
 
-> Paul Eggleton just gave a response to a similar question "Force install package last"
-> https://lists.yoctoproject.org/pipermail/yocto/2015-April/024548.html
+SUMMARY =3D "Add ccgi lib to rootfs"
+HOMEPAGE =3D "http://sourceforge.net/projects/libccgi/?source=3Dtyp_redirec=
+t"
+LICENSE =3D "GPLv2"
+FILESEXTRAPATHS_prepend  :=3D "${THISDIR}/${PN}:"
 
-> > - If not possible and I have to stick with bbappend to every recipe
-> > concerned, then how could I do it in the case of a config file
-> > coming from the source package instead of the recipe ?
+LIC_FILES_CHKSUM =3D "file://COPYING;md5=3Dd32239bcb673463ab874e80d47fae504=
+"
 
-> If I understand you correctly, that would be a patch.  For "unchecked"
-> whole replacement of files, I've seen bbappends with a do_patch_append
-> function to copy files (specified individually in SRC_URI like patch
-> files) from the base of the work dir to the correct path under the
-> source directory.
+FILES_${PN}_dev =3D "${libdir}/* ${includedir}/* "
 
-Unless the buildprocess heavily modifies the config file, I wouldn't
-create a patch to patch it in the source tree. I'd rather just add the
-complete config file to FILES +=... and then replace the one from the
-source package with my copy in a do_install_appen() function.
+SRC_URI =3D "file://${PN}-${PV}.tgz \
+	   file://0001-modify-the-source-code-to-match-the-G4-code.patch \        =
+  "
+		 =20
+S =3D "${WORKDIR}/${PN}-${PV}"
 
-This is by far the simplest way of those two.
+PARALLEL_MAKEINST=3D"prefix=3D${D}/usr"
+EXTRA_OEMAKE =3D 'CROSS=3D${HOST_PREFIX}'
+do_compile() {
+        oe_runmake OPENSSL_INCLUDE=3D${TOPDIR}/tmp/sysroots/${MACHINE}/usr/=
+include=20
+}
 
-Cheers,
-Anders
+It appears the error as follows:
+/home/ectrs/poky/coretexa8/tmp/sysroots/i686-linux/usr/libexec/arm-poky-lin=
+ux-gnueabi/gcc/arm-poky-linux-gnueabi/4.9.2/ld: cannot find crti.o: No such=
+ file or directory
+| /home/ectrs/poky/coretexa8/tmp/sysroots/i686-linux/usr/libexec/arm-poky-l=
+inux-gnueabi/gcc/arm-poky-linux-gnueabi/4.9.2/ld: cannot find crtbeginS.o: =
+No such file or directory
+| /home/ectrs/poky/coretexa8/tmp/sysroots/i686-linux/usr/libexec/arm-poky-l=
+inux-gnueabi/gcc/arm-poky-linux-gnueabi/4.9.2/ld: cannot find -lgcc
+| /home/ectrs/poky/coretexa8/tmp/sysroots/i686-linux/usr/libexec/arm-poky-l=
+inux-gnueabi/gcc/arm-poky-linux-gnueabi/4.9.2/ld: cannot find -lgcc_s
+| /home/ectrs/poky/coretexa8/tmp/sysroots/i686-linux/usr/libexec/arm-poky-l=
+inux-gnueabi/gcc/arm-poky-linux-gnueabi/4.9.2/ld: cannot find -lpthread
+| /home/ectrs/poky/coretexa8/tmp/sysroots/i686-linux/usr/libexec/arm-poky-l=
+inux-gnueabi/gcc/arm-poky-linux-gnueabi/4.9.2/ld: cannot find -lc
+| /home/ectrs/poky/coretexa8/tmp/sysroots/i686-linux/usr/libexec/arm-poky-l=
+inux-gnueabi/gcc/arm-poky-linux-gnueabi/4.9.2/ld: cannot find -lgcc
+| /home/ectrs/poky/coretexa8/tmp/sysroots/i686-linux/usr/libexec/arm-poky-l=
+inux-gnueabi/gcc/arm-poky-linux-gnueabi/4.9.2/ld: cannot find -lgcc_s
+| /home/ectrs/poky/coretexa8/tmp/sysroots/i686-linux/usr/libexec/arm-poky-l=
+inux-gnueabi/gcc/arm-poky-linux-gnueabi/4.9.2/ld: cannot find crtendS.o: No=
+ such file or directory
+| /home/ectrs/poky/coretexa8/tmp/sysroots/i686-linux/usr/libexec/arm-poky-l=
+inux-gnueabi/gcc/arm-poky-linux-gnueabi/4.9.2/ld: cannot find crtn.o: No su=
+ch file or directory
 
--- 
-Anders Darander
-ChargeStorm AB / eStorm AB
+In fact , I can find the crti.o in /home/ectrs/poky/coretexa8/tmp/sysroots/=
+i686-linux/usr/ directory.
+
+How to resolve this problem? If you know ,please tell me .
+
+
+
+Thanks=20
+
+Neil
+
 
