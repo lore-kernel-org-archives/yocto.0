@@ -1,36 +1,40 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 33CC0E009A3; Thu, 16 Apr 2015 14:45:36 -0700 (PDT)
+	id 77480E009C2; Thu, 16 Apr 2015 21:35:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3840E0091A
-	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 14:45:33 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga102.jf.intel.com with ESMTP; 16 Apr 2015 14:45:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,590,1422950400"; 
-	d="jpeg'145?scan'145,208,145";a="710466021"
-Received: from alimon-thinkpad-w540.zpn.intel.com (HELO [10.219.4.83])
-	([10.219.4.83])
-	by fmsmga002.fm.intel.com with ESMTP; 16 Apr 2015 14:45:29 -0700
-Message-ID: <55302D98.4090302@linux.intel.com>
-Date: Thu, 16 Apr 2015 16:46:00 -0500
-From: =?UTF-8?B?QW7DrWJhbCBMaW3Ds24=?= <anibal.limon@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.3.0
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43778E00965
+	for <yocto@yoctoproject.org>; Thu, 16 Apr 2015 21:34:54 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.14.9/8.14.9) with ESMTP id t3H4YmOj018931
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 16 Apr 2015 21:34:48 -0700 (PDT)
+Received: from server.local (128.224.22.151) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 16 Apr 2015 21:34:47 -0700
+Message-ID: <55308D66.9060205@windriver.com>
+Date: Fri, 17 Apr 2015 00:34:46 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-To: Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>, Yocto <yocto@yoctoproject.org>
-Subject: [RFC] Factory reset
+To: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <mailman.2398.1429003256.2787.yocto@yoctoproject.org>
+	<1429008449674.58960@inedasystems.com>,
+	<552D02E1.9020404@windriver.com> <1429076250273.10555@inedasystems.com>
+In-Reply-To: <1429076250273.10555@inedasystems.com>
+Subject: Re: SRCREV Issue for custom linux kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,507 +46,1006 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Apr 2015 21:45:36 -0000
-X-Groupsio-MsgNum: 24495
-Content-Type: multipart/mixed; boundary="------------060406080308030802080100"
-
---------------060406080308030802080100
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Fri, 17 Apr 2015 04:35:03 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi,
+On 2015-04-15 1:38 AM, Raghavendra Kakarla wrote:
+> Hi Bruce,
+>
+> My recipe is like following:
+>
+>
+> #   oe-core kernel classes to apply a subset of yocto kernel
+> #   management to git managed kernel repositories.
+> #
+> # Warning:
+> #
+> #   Building this kernel without providing a defconfig or BSP
+> #   configuration will result in build or boot errors. This is not a
+> #   bug.
+> #
+> # Notes:
+> #
+> #   patches: patches can be merged into to the source git tree itself,
+> #            added via the SRC_URI, or controlled via a BSP
+> #            configuration.
+> #
+> #   example configuration addition:
+> #            SRC_URI += "file://smp.cfg"
+> #   example patch addition:
+> #            SRC_URI += "file://0001-linux-version-tweak.patch
+> #   example feature addition:
+> #            SRC_URI += "file://feature.scc"
+> #
+>
+> inherit kernel
+> require recipes-kernel/linux/linux-yocto.inc
+>
+> SRC_URI = "svn://192.168.24.190:9090/svn/trunk/code/kernels;module=linux-3.10.14;protocol=http;user=admin;pswd=Welcome123"
 
-Factory reset is a mechanism that is target to do a restore of rootfs 
-image, the target is to provide
-reference software that helps embedded system vendors to do it easily 
-and to be file system independent.
+I don't have a SVN server with the linux kernel handy, so I wasn't able
+to test this exact same configuration. But I can say a similar git
+configuration to kernel.org, or to a tgz worked when I tried a test
+build.
 
-Here is a design proposal to implement Factory reset, next describe the 
-components,
+Looking through the code more .. this is simply a case that isn't common
+or anticipated. The mixing of the SVN SRCREV and the linux-yocto-custom
+means that the code that follows is looking to manipulate the tree as a
+git repository.
 
-Partitioning: Need to create partition layout with an area for rootfs 
-read-only and another with
-rootfs rw (day to day OS) also it need another area for Linux Recovery 
-OS (minimal).
-Bootloader: Need to detect when a factory reset is needed and boots the 
-Linux Recovery OS.
-Linux Recovery OS: A minimal Linux OS to perform restore fron rootfs ro 
-area to rootfs rw area.
-Linux OS: A Linux OS that need to have an application to set the factory 
-reset mode and
-next reboots, the application will be simple and should have a plugin 
-system for add support of who generate
-the event IP, Serial, HW button, etc.
+Can you look at your linux source directory in the build, and see if
+the SVN checkout has been converted to a git repo ?
 
-All of the settings should be specified at level of user configuration.
+If so, the workaround would be to set SRCREV_machine = "AUTOREV", and
+that should short circuit the SRCREV validation that simply won't be
+correct for a converted git tree.
 
-I attached a simple flow of how it works, any feedback will be appreciated?
+Alternatively, you can also create an override to do_validate_branches
+and stub out the functionality completely.
 
-Cheers,
-     alimon
+Bruce
 
-[1] https://bugzilla.yoctoproject.org/show_bug.cgi?id=1593
 
---------------060406080308030802080100
-Content-Type: image/jpeg;
- name="factory_reset.jpeg"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment;
- filename="factory_reset.jpeg"
+> SRC_URI += "file://defconfig"
+>
+> SRC_URI += "file://arqlyn.scc \
+>              file://arqlyn.cfg \
+>              file://arqlyn-user-config.cfg \
+>              file://arqlyn-user-patches.scc \
+>             "
+>
+>
+> LINUX_VERSION ?= "3.10.14"
+> LINUX_VERSION_EXTENSION ?= "-custom"
+> SRCREV = "94"
+> PR = "r0"
+> PV = "${LINUX_VERSION}"
+> S = "${WORKDIR}/linux-3.10.14"
+> COMPATIBLE_MACHINE_arqlyn = "arqlyn"
+>
+>
+> Regards,
+>
+> Raghavendra
+>
+> ________________________________________
+> From: Bruce Ashfield <bruce.ashfield@windriver.com>
+> Sent: Tuesday, April 14, 2015 5:36 PM
+> To: Raghavendra Kakarla; yocto@yoctoproject.org
+> Subject: Re: [yocto] SRCREV Issue for custom linux kernel
+>
+> On 2015-04-14 6:48 AM, Raghavendra Kakarla wrote:
+>> Hi All,
+>>
+>> I got the an error while i am checking out the linux kernel from the SVN to build in the YOCTO project environment.
+>>
+>
+> What release is this ? master ? An older release ?
+>
+> And are you seeing this same error if you have a kernel recipe
+> that builds from git ? i.e. one of the Yocto reference boards
+> with a similar SRCREV ?
+>
+> The yocto kernel's expect to be able to validate the commits
+> and then modify the tree with additional git commands, so the
+> tree is either in git format, or is converted to a git format
+> (in the case of a tgz) .. so it could be that the SVN checkout
+> is preventing that conversion from happening.
+>
+> Bruce
+>
+>> Could please help me in resolving the Issue.
+>>
+>>
+>> Error log is:
+>> Log data follows:
+>> | DEBUG: Executing shell function do_validate_branches
+>> | NOTE: custom recipe is being built, forcing SRCREV to INVALID
+>> | NOTE: SRCREV validation skipped for AUTOREV or empty meta branch
+>> | fatal: ambiguous argument 'INVALID': unknown revision or path not in the working tree.
+>> | Use '--' to separate paths from revisions
+>> | WARNING: exit code 128 from a shell command.
+>> | ERROR: Function failed: do_validate_branches (log file is located at /home/testuser/poky/build/tmp/work/dhruva-poky-linux/linux-yocto-custom/3.10.14-r0/temp/log.do_validate_branches.6852)
+>>
+>>
+>> Thanks in advance.
+>>
+>> Regards,
+>>
+>> Raghavendra K.
+>> ________________________________________
+>> From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on behalf of yocto-request@yoctoproject.org <yocto-request@yoctoproject.org>
+>> Sent: Tuesday, April 14, 2015 2:50 PM
+>> To: yocto@yoctoproject.org
+>> Subject: yocto Digest, Vol 55, Issue 46
+>>
+>> Send yocto mailing list submissions to
+>>           yocto@yoctoproject.org
+>>
+>> To subscribe or unsubscribe via the World Wide Web, visit
+>>           https://lists.yoctoproject.org/listinfo/yocto
+>> or, via email, send a message with subject or body 'help' to
+>>           yocto-request@yoctoproject.org
+>>
+>> You can reach the person managing the list at
+>>           yocto-owner@yoctoproject.org
+>>
+>> When replying, please edit your Subject line so it is more specific
+>> than "Re: Contents of yocto digest..."
+>>
+>>
+>> Today's Topics:
+>>
+>>      1. Re: yocto Digest, Vol 53, Issue 97 (Raghavendra Kakarla)
+>>
+>>
+>> ----------------------------------------------------------------------
+>>
+>> Message: 1
+>> Date: Tue, 14 Apr 2015 09:20:38 +0000
+>> From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+>> To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+>> Subject: Re: [yocto] yocto Digest, Vol 53, Issue 97
+>> Message-ID: <1429003199394.19509@inedasystems.com>
+>> Content-Type: text/plain; charset="iso-8859-1"
+>>
+>> Hi All,
+>>
+>> When I take kernel from the SVN I got the validation error that SRCREV is not proper.
+>>
+>> Could you please help me in resolving this issue.
+>>
+>> Thanks in advance.
+>>
+>> Regards,
+>> Raghavendra.
+>>
+>>
+>> ________________________________________
+>> From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org> on behalf of yocto-request@yoctoproject.org <yocto-request@yoctoproject.org>
+>> Sent: Saturday, February 21, 2015 4:04 AM
+>> To: yocto@yoctoproject.org
+>> Subject: yocto Digest, Vol 53, Issue 97
+>>
+>> Send yocto mailing list submissions to
+>>           yocto@yoctoproject.org
+>>
+>> To subscribe or unsubscribe via the World Wide Web, visit
+>>           https://lists.yoctoproject.org/listinfo/yocto
+>> or, via email, send a message with subject or body 'help' to
+>>           yocto-request@yoctoproject.org
+>>
+>> You can reach the person managing the list at
+>>           yocto-owner@yoctoproject.org
+>>
+>> When replying, please edit your Subject line so it is more specific
+>> than "Re: Contents of yocto digest..."
+>>
+>>
+>> Today's Topics:
+>>
+>>      1. Re: Simple recipe quit working in dizzy (akuster)
+>>
+>>
+>> ----------------------------------------------------------------------
+>>
+>> Message: 1
+>> Date: Fri, 20 Feb 2015 14:28:10 -0800
+>> From: akuster <akuster@mvista.com>
+>> To: yocto@yoctoproject.org
+>> Subject: Re: [yocto] Simple recipe quit working in dizzy
+>> Message-ID: <54E7B4FA.502@mvista.com>
+>> Content-Type: text/plain; charset=windows-1252; format=flowed
+>>
+>>
+>>
+>> On 02/20/2015 09:49 AM, Jim Rafert wrote:
+>>> Hi Paul,
+>>>
+>>> Thank you for taking an interest in this.
+>>>
+>>> I looked at the log.do_rootfs, and didn't see anything that was immediately suspicious.
+>>> I have inlined the log at the end of my reply, here.
+>>>
+>>> I don't see how such a simple recipe could be broken by a Yocto bug, and not have the
+>>> whole thing be massively broken.
+>>
+>> Is it possible for you to try your recipe on 'master'? that might tell
+>> use if something is missing in dizzy.
+>>
+>>
+>> - Armin
+>>>
+>>> -Jim-
+>>>
+>>> cat ./core-image-full-cmdline/1.0-r0/temp/log.do_rootfs
+>>> DEBUG: Executing python function rootfs_process_ignore
+>>> DEBUG: Python function rootfs_process_ignore finished
+>>> DEBUG: Executing python function rootfs_runtime_mapping
+>>> DEBUG: Python function rootfs_runtime_mapping finished
+>>> DEBUG: Executing python function do_rootfs
+>>> NOTE: configuring RPM platform settings
+>>> NOTE: configuring RPM system provides
+>>> NOTE: configuring RPM DB settings
+>>> NOTE: configuring Smart settings
+>>> NOTE: Note: adding Smart channel spectra_ls (35)
+>>> NOTE: Note: adding Smart channel i586 (30)
+>>> NOTE: Note: adding Smart channel all (25)
+>>> NOTE: adding Smart RPM DB channel
+>>> NOTE: Note: configuring RPM cross-install scriptlet_wrapper
+>>> NOTE: ###### Generate rootfs #######
+>>> NOTE: Executing '/home/jimr/tera/yocto/dizzy/build/tmp/sysroots/x86_64-linux/usr/bin/createrepo --update -q /home/jimr/tera/yocto/dizzy/build/tmp/deploy/rpm/i586' ...
+>>> NOTE: Installing the following packages: libgcc1 parted grub dosfstools psplash vim udev-extraconf rsyslog libsoci nss rpm unzip zip spectra-postbuild smartpm e2fsprogs-tune2fs packagegroup-core-eclipse-debug poco libstdc++6 sqlite3 e2fsprogs-e2fsck openssl-staticdev boost packagegroup-core-ssh-openssh packagegroup-core-boot packagegroup-core-full-cmdline rpmresolve ntp e2fsprogs-mke2fs util-linux packagegroup-core-tools-debug openssl e2fsprogs sys-freedos e2fsprogs-badblocks locale-base-en-us locale-base-en-gb
+>>> NOTE: to be installed: libgcc1@i586 parted@i586 grub@i586 dosfstools@i586 psplash@i586 vim@i586 udev-extraconf@i586 rsyslog@i586 libsoci@i586 nss@i586 rpm@i586 unzip@i586 zip@i586 spectra-postbuild@i586 smartpm@i586 e2fsprogs-tune2fs@i586 packagegroup-core-eclipse-debug@all poco@i586 libstdc++6@i586 sqlite3@i586 e2fsprogs-e2fsck@i586 openssl-staticdev@i586 boost@i586 packagegroup-core-ssh-openssh@all packagegroup-core-boot@spectra_ls packagegroup-core-full-cmdline@all rpmresolve@i586 ntp@i586 e2fsprogs-mke2fs@i586 util-linux@i586 packagegroup-core-tools-debug@all openssl@i586 e2fsprogs@i586 sys-freedos@i586 e2fsprogs-badblocks@i586 locale-base-en-us@i586 locale-base-en-gb@i586
+>>> NOTE: /home/jimr/tera/yocto/dizzy/build/tmp/sysroots/x86_64-linux/usr/bin/smart --quiet --data-dir=/home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/var/lib/smart install -y libgcc1@i586 parted@i586 grub@i586 dosfstools@i586 psplash@i586 vim@i586 udev-extraconf@i586 rsyslog@i586 libsoci@i586 nss@i586 rpm@i586 unzip@i586 zip@i586 spectra-postbuild@i586 smartpm@i586 e2fsprogs-tune2fs@i586 packagegroup-core-eclipse-debug@all poco@i586 libstdc++6@i586 sqlite3@i586 e2fsprogs-e2fsck@i586 openssl-staticdev@i586 boost@i586 packagegroup-core-ssh-openssh@all packagegroup-core-boot@spectra_ls packagegroup-core-full-cmdline@all rpmresolve@i586 ntp@i586 e2fsprogs-mke2fs@i586 util-linux@i586 packagegroup-core-tools-debug@all openssl@i586 e2fsprogs@i586 sys-freedos@i586 e2fsprogs-badblocks@i586 locale-base-en-us@i586 locale-base-en-gb@i586
+>>> NOTE: Output from bash-4.3-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/sh to /bin/bash
+>>> Output from busybox-1.22.1-r32@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/ar to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/gunzip to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/zcat to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/bunzip2 to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/bzcat to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/cpio to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/gzip to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/tar to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/unzip to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/date to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/groups to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/id to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/touch to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/users to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/who to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/awk to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/cmp to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/diff to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/patch to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/sed to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/vi to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/find to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/grep to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/egrep to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/fgrep to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/xargs to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/halt to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/poweroff to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/reboot to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/rfkill to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/depmod to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/insmod to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/lsmod to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/modprobe to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/rmmod to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ash to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/sh to /bin/bash
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/fstrim to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/[ to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/[[ to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/addgroup to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/adduser to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/basename to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/cat to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/chattr to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/chgrp to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/chmod to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/chown to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/chroot to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/chvt to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/clear to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/cp to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/cut to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/dc to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/dd to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/deallocvt to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/delgroup to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/deluser to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/df to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/dirname to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/dmesg to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/dnsdomainname to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/du to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/dumpkmap to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/dumpleases to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/echo to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/env to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/expr to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/false to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/fbset to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/fdisk to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/flock to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/free to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/fsck to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/fuser to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/getty to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/head to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/hexdump to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/hostname to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/hwclock to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/ifconfig to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/ifdown to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/ifup to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/ip to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/kill to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/killall to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/klogd to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/less to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ln to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/loadfont to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/loadkmap to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/logger to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/logname to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/logread to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/losetup to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ls to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/md5sum to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/microcom to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mkdir to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/mkfifo to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mknod to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/mkswap to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mktemp to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/more to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mount to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mv to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/nc to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/netstat to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/nohup to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/nslookup to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/od to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/openvt to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/pidof to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/pivot_root to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/printf to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ps to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/pwd to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/rdate to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/readlink to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/realpath to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/renice to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/reset to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/rm to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/rmdir to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/route to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/run-parts to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/seq to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/setconsole to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sha3sum to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/sleep to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sort to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/start-stop-daemon to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/stat to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/strings to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/stty to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/sulogin to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/swapoff to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/swapon to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/switch_root to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/sync to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/sysctl to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/syslogd to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tail to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tee to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/telnet to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/test to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tftp to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/time to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/top to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tr to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/true to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tty to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/udhcpc to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/udhcpd to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/umount to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/uname to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/uniq to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/uptime to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/usleep to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/watch to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/wc to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/wget to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/which to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/whoami to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/yes to /bin/busybox.nosuid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ping to /bin/busybox.suid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ping6 to /bin/busybox.suid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/login to /bin/busybox.suid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/passwd to /bin/busybox.suid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/su to /bin/busybox.suid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/traceroute to /bin/busybox.suid
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/vlock to /bin/busybox.suid
+>>> Output from init-ifupdown-1.0-r7@i586:
+>>>     Removing any system startup links for networking ...
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/networking.
+>>> Output from initscripts-functions-1.0-r155@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//etc/init.d/functions to /etc/init.d/functions.initscripts
+>>> Output from run-postinsts-1.0-r9@all:
+>>>     Removing any system startup links for run-postinsts ...
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/run-postinsts.
+>>> Output from modutils-initscripts-1.0-r7@i586:
+>>>     Removing any system startup links for modutils.sh ...
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/modutils.sh.
+>>> Output from udev-cache-182-r9@i586:
+>>>     Removing any system startup links for udev-cache ...
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/udev-cache.
+>>> Output from busybox-hwclock-1.22.1-r32@i586:
+>>>     Removing any system startup links for hwclock.sh ...
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/hwclock.sh.
+>>> Output from kernel-image-3.10.62-ltsi-yocto-standard-3.10.62+git0+f4ab00d96a_b2ac933df1-r0.1@spectra_ls:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//boot/bzImage to /boot/bzImage-3.10.62-ltsi-yocto-standard
+>>> Output from busybox-syslog-1.22.1-r32@i586:
+>>>     Removing any system startup links for syslog ...
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//etc/syslog.conf to /etc/syslog.conf.busybox
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//etc/init.d/syslog to /etc/init.d/syslog.busybox
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//etc/syslog-startup.conf to /etc/syslog-startup.conf.busybox
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/syslog.
+>>> Output from util-linux-losetup-2.24.2-r1@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/losetup to /sbin/losetup.util-linux
+>>> Output from killall-22.21-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/killall to /usr/bin/killall.psmisc
+>>> Output from shadow-4.2.1-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/passwd to /usr/bin/passwd.shadow
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/chfn to /usr/bin/chfn.shadow
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/newgrp to /usr/bin/newgrp.shadow
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/chsh to /usr/bin/chsh.shadow
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/groups to /usr/bin/groups.shadow
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/chpasswd to /usr/sbin/chpasswd.shadow
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/login to /bin/login.shadow
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/vipw to /sbin/vipw.shadow
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/vigr to /sbin/vigr.shadow
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/su to /bin/su.shadow
+>>> Output from kbd-2.0.2-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/chvt to /usr/bin/chvt.kbd
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/deallocvt to /usr/bin/deallocvt.kbd
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/fgconsole to /usr/bin/fgconsole.kbd
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/openvt to /usr/bin/openvt.kbd
+>>> Output from openssh-scp-6.6p1-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/scp to /usr/bin/scp.openssh
+>>> Output from grep-2.19-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/grep to /bin/grep.grep
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/egrep to /bin/egrep.grep
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/fgrep to /bin/fgrep.grep
+>>> Output from net-tools-1.60+25-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/arp to /sbin/arp.net-tools
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/ifconfig to /sbin/ifconfig.net-tools
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/ipmaddr to /sbin/ipmaddr.net-tools
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/iptunnel to /sbin/iptunnel.net-tools
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/mii-tool to /sbin/mii-tool.net-tools
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/nameif to /sbin/nameif.net-tools
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/plipconfig to /sbin/plipconfig.net-tools
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/rarp to /sbin/rarp.net-tools
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/route to /sbin/route.net-tools
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/slattach to /sbin/slattach.net-tools
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/dnsdomainname to /bin/dnsdomainname.net-tools
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/domainname to /bin/domainname.net-tools
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/hostname to /bin/hostname.net-tools
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/netstat to /bin/netstat.net-tools
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/nisdomainname to /bin/nisdomainname.net-tools
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ypdomainname to /bin/ypdomainname.net-tools
+>>> Output from sysklogd-1.5-r7@i586:
+>>> update-rc.d: /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/syslog exists during rc.d purge (continuing)
+>>>     Removing any system startup links for syslog ...
+>>>      /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/rc0.d/K20syslog
+>>>      /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/rc1.d/K20syslog
+>>>      /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/rc2.d/S20syslog
+>>>      /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/rc3.d/S20syslog
+>>>      /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/rc4.d/S20syslog
+>>>      /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/rc5.d/S20syslog
+>>>      /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/rc6.d/K20syslog
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/syslogd to /sbin/syslogd.sysklogd
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/klogd to /sbin/klogd.sysklogd
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//etc/init.d/syslog to /etc/init.d/syslog.sysklogd
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//etc/syslog.conf to /etc/syslog.conf.sysklogd
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/syslog.
+>>> Output from bc-1.06-r2@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/dc to /usr/bin/dc.bc
+>>> Output from fuser-22.21-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/fuser to /usr/bin/fuser.psmisc
+>>> Output from sed-4.2.2-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/sed to /bin/sed.sed
+>>> Output from gawk-4.1.1-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/awk to /usr/bin/gawk
+>>> Output from diffutils-3.3-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/diff to /usr/bin/diff.diffutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/cmp to /usr/bin/cmp.diffutils
+>>> Output from tar-1.27.1-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/tar to /bin/tar.tar
+>>> Output from cpio-2.11-r5@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/cpio to /bin/cpio.cpio
+>>> Output from sysvinit-pidof-2.88dsf-r14@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/pidof to /bin/pidof.sysvinit
+>>> Output from findutils-4.4.2-r6@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/find to /usr/bin/find.findutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/xargs to /usr/bin/xargs.findutils
+>>> Output from psplash-0.1+git0+afd4e228c6-r15@i586:
+>>>     Removing any system startup links for psplash.sh ...
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/psplash.sh.
+>>> Output from time-1.7-r2@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/time to /usr/bin/time.time
+>>> Output from mktemp-1.7-r3@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mktemp to /bin/mktemp.mktemp
+>>> Output from gzip-1.6-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/gunzip to /bin/gunzip.gzip
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/gzip to /bin/gzip.gzip
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/zcat to /bin/zcat.gzip
+>>> Output from iproute2-3.16.0-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/ip to /sbin/ip.iproute2
+>>> Output from util-linux-readprofile-2.24.2-r1@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/readprofile to /sbin/readprofile.util-linux
+>>> Output from less-466-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/less to /usr/bin/less.less
+>>> Output from cronie-1.4.11-r0@i586:
+>>>     Removing any system startup links for crond ...
+>>> Running groupadd commands...
+>>> NOTE: Performing groupadd with [--root /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs --system crontab] and 10 times of retry
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/crond.
+>>> Output from keymaps-1.0-r31@spectra_ls:
+>>>     Removing any system startup links for keymap.sh ...
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/keymap.sh.
+>>> Output from patch-2.7.1-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/patch to /usr/bin/patch.patch
+>>> Output from kmod-18+git0+ae58de0fcb-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/insmod to /sbin/insmod.kmod
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/modprobe to /sbin/modprobe.kmod
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/rmmod to /sbin/rmmod.kmod
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/modinfo to /sbin/modinfo.kmod
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/lsmod to /bin/lsmod.kmod
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/lsmod to /bin/lsmod.kmod
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/depmod to /sbin/depmod.kmod
+>>> Output from openssh-ssh-6.6p1-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/ssh to /usr/bin/ssh.openssh
+>>> Output from sysvinit-2.88dsf-r14@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/init to /sbin/init.sysvinit
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mountpoint to /bin/mountpoint.sysvinit
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/halt to /sbin/halt.sysvinit
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/reboot to /sbin/reboot.sysvinit
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/runlevel to /sbin/runlevel.sysvinit
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/shutdown to /sbin/shutdown.sysvinit
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/poweroff to /sbin/poweroff.sysvinit
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/last to /usr/bin/last.sysvinit
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/mesg to /usr/bin/mesg.sysvinit
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/utmpdump to /usr/bin/utmpdump.sysvinit
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/wall to /usr/bin/wall.sysvinit
+>>> Output from psplash-default-0.1+git0+afd4e228c6-r15@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/psplash to /usr/bin/psplash-default
+>>> Output from ntp-4.2.6p3-r5@i586:
+>>>     Removing any system startup links for ntpd ...
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/ntpd.
+>>> Output from coreutils-8.22-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/[ to /usr/bin/lbracket.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/arch to /usr/bin/arch.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/basename to /usr/bin/basename.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/chcon to /usr/bin/chcon.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/cksum to /usr/bin/cksum.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/comm to /usr/bin/comm.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/csplit to /usr/bin/csplit.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/cut to /usr/bin/cut.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/dir to /usr/bin/dir.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/dircolors to /usr/bin/dircolors.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/dirname to /usr/bin/dirname.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/du to /usr/bin/du.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/env to /usr/bin/env.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/expand to /usr/bin/expand.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/expr to /usr/bin/expr.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/factor to /usr/bin/factor.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/fmt to /usr/bin/fmt.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/fold to /usr/bin/fold.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/groups to /usr/bin/groups.shadow
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/head to /usr/bin/head.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/hostid to /usr/bin/hostid.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/id to /usr/bin/id.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/install to /usr/bin/install.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/join to /usr/bin/join.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/link to /usr/bin/link.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/logname to /usr/bin/logname.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/md5sum to /usr/bin/md5sum.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/mkfifo to /usr/bin/mkfifo.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/nice to /usr/bin/nice.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/nl to /usr/bin/nl.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/nohup to /usr/bin/nohup.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/nproc to /usr/bin/nproc.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/od to /usr/bin/od.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/paste to /usr/bin/paste.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/pathchk to /usr/bin/pathchk.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/pinky to /usr/bin/pinky.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/pr to /usr/bin/pr.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/printenv to /usr/bin/printenv.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/printf to /usr/bin/printf.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/ptx to /usr/bin/ptx.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/readlink to /usr/bin/readlink.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/realpath to /usr/bin/realpath.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/runcon to /usr/bin/runcon.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/seq to /usr/bin/seq.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sha1sum to /usr/bin/sha1sum.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sha224sum to /usr/bin/sha224sum.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sha256sum to /usr/bin/sha256sum.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sha384sum to /usr/bin/sha384sum.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sha512sum to /usr/bin/sha512sum.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/shred to /usr/bin/shred.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/shuf to /usr/bin/shuf.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sort to /usr/bin/sort.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/split to /usr/bin/split.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/stdbuf to /usr/bin/stdbuf.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/sum to /usr/bin/sum.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tac to /usr/bin/tac.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tail to /usr/bin/tail.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tee to /usr/bin/tee.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/test to /usr/bin/test.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/timeout to /usr/bin/timeout.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tr to /usr/bin/tr.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/truncate to /usr/bin/truncate.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tsort to /usr/bin/tsort.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/tty to /usr/bin/tty.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/unexpand to /usr/bin/unexpand.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/uniq to /usr/bin/uniq.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/unlink to /usr/bin/unlink.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/uptime to /usr/bin/uptime.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/users to /usr/bin/users.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/vdir to /usr/bin/vdir.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/wc to /usr/bin/wc.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/who to /usr/bin/who.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/whoami to /usr/bin/whoami.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/yes to /usr/bin/yes.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/cat to /bin/cat.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/chgrp to /bin/chgrp.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/chmod to /bin/chmod.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/chown to /bin/chown.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/cp to /bin/cp.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/date to /bin/date.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/dd to /bin/dd.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/echo to /bin/echo.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/false to /bin/false.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/kill to /bin/kill.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ln to /bin/ln.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ls to /bin/ls.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mkdir to /bin/mkdir.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mknod to /bin/mknod.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mv to /bin/mv.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/pwd to /bin/pwd.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/rm to /bin/rm.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/rmdir to /bin/rmdir.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/sleep to /bin/sleep.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/stty to /bin/stty.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/sync to /bin/sync.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/touch to /bin/touch.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/true to /bin/true.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/uname to /bin/uname.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/stat to /bin/stat.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/sbin/chroot to /usr/sbin/chroot.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/base64 to /usr/bin/base64.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mktemp to /usr/bin/mktemp.coreutils
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/df to /usr/bin/df.coreutils
+>>> Output from iputils-ping-s20121221-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ping to /bin/ping.iputils
+>>> Output from rsyslog-7.4.4-r0@i586:
+>>>     Removing any system startup links for rsyslogd ...
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/rsyslogd.
+>>> Output from rpcbind-0.2.1-r0@i586:
+>>>     Removing any system startup links for rpcbind ...
+>>> Running useradd commands...
+>>> NOTE: Performing useradd with [--root /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs --system --no-create-home --home-dir /                        --shell /bin/false --user-group rpc] and 10 times of retry
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/rpcbind.
+>>> Output from bzip2-1.0.6-r5@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/bunzip2 to /usr/bin/bunzip2.bzip2
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/bzcat to /usr/bin/bzcat.bzip2
+>>> Output from procps-3.2.8-r12@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/top to /usr/bin/top.procps
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/uptime to /usr/bin/uptime.procps
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/free to /usr/bin/free.procps
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/pkill to /usr/bin/pkill.procps
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/pmap to /usr/bin/pmap.procps
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/kill to /bin/kill.procps
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/sysctl to /sbin/sysctl.procps
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ps to /bin/ps.procps
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/pgrep to /usr/bin/pgrep.procps
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/pwdx to /usr/bin/pwdx.procps
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/watch to /usr/bin/watch.procps
+>>> Output from lighttpd-1.4.35-r1@i586:
+>>>     Removing any system startup links for lighttpd ...
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/lighttpd.
+>>> Output from tcf-agent-0.4.0+git0+4ef94ecb92-r2@i586:
+>>>     Removing any system startup links for tcf-agent ...
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/tcf-agent.
+>>> Output from openssh-sshd-6.6p1-r0@i586:
+>>>     Removing any system startup links for sshd ...
+>>> Running useradd commands...
+>>> NOTE: Performing useradd with [--root /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs --system --no-create-home --home-dir /var/run/sshd --shell /bin/false --user-group sshd] and 10 times of retry
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/sshd.
+>>> Output from udev-182-r9@i586:
+>>>     Removing any system startup links for udev ...
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/udev.
+>>> Output from util-linux-fdisk-2.24.2-r1@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/fdisk to /sbin/fdisk.util-linux
+>>> Output from at-3.1.15-r0@i586:
+>>>     Removing any system startup links for atd ...
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/atd.
+>>> Output from dbus-1-1.8.2-r0@i586:
+>>>     Removing any system startup links for dbus-1 ...
+>>> Running groupadd commands...
+>>> NOTE: Performing groupadd with [--root /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs -r netdev] and 10 times of retry
+>>> Running useradd commands...
+>>> NOTE: Performing useradd with [--root /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs --system --home /var/lib/dbus                        --no-create-home --shell /bin/false                        --user-group messagebus] and 10 times of retry
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/dbus-1.
+>>> Output from util-linux-umount-2.24.2-r1@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/umount to /bin/umount.util-linux
+>>> Output from util-linux-mount-2.24.2-r1@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/mount to /bin/mount.util-linux
+>>> Output from util-linux-swaponoff-2.24.2-r1@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/swapoff to /sbin/swapoff.util-linux
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/swapon to /sbin/swapon.util-linux
+>>> Output from nfs-utils-client-1.3.0-r0@i586:
+>>>     Removing any system startup links for nfscommon ...
+>>> Running useradd commands...
+>>> NOTE: Performing useradd with [--root /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs --system  --home-dir /var/lib/nfs                              --shell /bin/false --user-group rpcuser] and 10 times of retry
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/nfscommon.
+>>> Output from iputils-ping6-s20121221-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/ping6 to /bin/ping6.iputils
+>>> Output from e2fsprogs-1.42.9-r0@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/chattr to /bin/chattr.e2fsprogs
+>>> Output from util-linux-2.24.2-r1@i586:
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/dmesg to /bin/dmesg.util-linux
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/kill to /bin/kill.procps
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/more to /bin/more.util-linux
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/mkswap to /sbin/mkswap.util-linux
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/blockdev to /sbin/blockdev.util-linux
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/pivot_root to /sbin/pivot_root.util-linux
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/switch_root to /sbin/switch_root.util-linux
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/mkfs.minix to /sbin/mkfs.minix.util-linux
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/hexdump to /usr/bin/hexdump.util-linux
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/last to /usr/bin/last.sysvinit
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/logger to /usr/bin/logger.util-linux
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/mesg to /usr/bin/mesg.sysvinit
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/renice to /usr/bin/renice.util-linux
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/wall to /usr/bin/wall.sysvinit
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/setsid to /usr/bin/setsid.util-linux
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/chrt to /usr/bin/chrt.util-linux
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/flock to /usr/bin/flock.util-linux
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/utmpdump to /usr/bin/utmpdump.sysvinit
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//usr/bin/eject to /usr/bin/eject.util-linux
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//bin/getopt to /usr/bin/getopt
+>>> update-alternatives: Linking /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs//sbin/sulogin to /sbin/sulogin.util-linux
+>>> Output from nfs-utils-1.3.0-r0@i586:
+>>>     Removing any system startup links for nfsserver ...
+>>>     Adding system startup for /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/init.d/nfsserver.
+>>>
+>>>
+>>> NOTE: Installing the following packages:
+>>> NOTE: Installing complementary packages ...
+>>> NOTE: Installing the following packages: mc-locale-en-gb glibc-locale-en-gb libglib-2.0-locale-en-gb
+>>> NOTE: installing attempt only packages...
+>>> NOTE: Attempting mc-locale-en-gb@i586 glibc-locale-en-gb@i586 libglib-2.0-locale-en-gb@i586
+>>> NOTE:
+>>>
+>>> NOTE: Running intercept scripts:
+>>> NOTE: Executing write_package_manifest ...
+>>> DEBUG: Executing python function write_package_manifest
+>>> DEBUG: Python function write_package_manifest finished
+>>> NOTE: Executing license_create_manifest ...
+>>> DEBUG: Executing shell function license_create_manifest
+>>> WARNING: The license listed GPLv2 was not in the licenses collected for glibc-locale
+>>> WARNING: The license listed LGPLv2.1 was not in the licenses collected for glibc-locale
+>>> WARNING: The license listed GPLv2 was not in the licenses collected for glibc-locale
+>>> WARNING: The license listed LGPLv2.1 was not in the licenses collected for glibc-locale
+>>> WARNING: The license listed GPLv2 was not in the licenses collected for glibc-locale
+>>> WARNING: The license listed LGPLv2.1 was not in the licenses collected for glibc-locale
+>>> WARNING: The license listed GPLv2 was not in the licenses collected for glibc-mtrace
+>>> WARNING: The license listed LGPLv2.1 was not in the licenses collected for glibc-mtrace
+>>> WARNING: The license listed CLOSED was not in the licenses collected for libsoci
+>>> WARNING: The license listed GPLv2 was not in the licenses collected for glibc-locale
+>>> WARNING: The license listed LGPLv2.1 was not in the licenses collected for glibc-locale
+>>> WARNING: The license listed GPLv2 was not in the licenses collected for glibc-locale
+>>> WARNING: The license listed LGPLv2.1 was not in the licenses collected for glibc-locale
+>>> WARNING: The license listed ntp was not in the licenses collected for ntp
+>>> WARNING: The license listed ntp was not in the licenses collected for ntp
+>>> WARNING: The license listed MIT was not in the licenses collected for packagegroup-core-boot
+>>> WARNING: The license listed MIT was not in the licenses collected for packagegroup-core-eclipse-debug
+>>> WARNING: The license listed MIT was not in the licenses collected for packagegroup-core-full-cmdline
+>>> WARNING: The license listed MIT was not in the licenses collected for packagegroup-core-full-cmdline
+>>> WARNING: The license listed MIT was not in the licenses collected for packagegroup-core-full-cmdline
+>>> WARNING: The license listed MIT was not in the licenses collected for packagegroup-core-full-cmdline
+>>> WARNING: The license listed MIT was not in the licenses collected for packagegroup-core-full-cmdline
+>>> WARNING: The license listed MIT was not in the licenses collected for packagegroup-core-full-cmdline
+>>> WARNING: The license listed MIT was not in the licenses collected for packagegroup-core-full-cmdline
+>>> WARNING: The license listed MIT was not in the licenses collected for packagegroup-core-full-cmdline
+>>> WARNING: The license listed MIT was not in the licenses collected for packagegroup-core-ssh-openssh
+>>> WARNING: The license listed MIT was not in the licenses collected for packagegroup-core-tools-debug
+>>> WARNING: The license listed vim was not in the licenses collected for vim
+>>> DEBUG: Shell function license_create_manifest finished
+>>> NOTE: Executing write_image_manifest ...
+>>> DEBUG: Executing python function write_image_manifest
+>>> DEBUG: Python function write_image_manifest finished
+>>> NOTE: Executing ssh_allow_empty_password ...
+>>> DEBUG: Executing shell function ssh_allow_empty_password
+>>> sed: warning: failed to get security context of /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/ssh/sshd_config: No data availablesed: warning: failed to get security context of /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs/etc/ssh/sshd_config: No data availableDEBUG: Shell function ssh_allow_empty_password finished
+>>> NOTE: Executing postinst_enable_logging ...
+>>> DEBUG: Executing shell function postinst_enable_logging
+>>> DEBUG: Shell function postinst_enable_logging finished
+>>> NOTE: Executing rootfs_update_timestamp ...
+>>> DEBUG: Executing shell function rootfs_update_timestamp
+>>> DEBUG: Shell function rootfs_update_timestamp finished
+>>> NOTE: Executing: ldconfig -r/home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/rootfs-c new -v
+>>> NOTE: ###### Generate images #######
+>>> NOTE: Executing mklibs_optimize_image ...
+>>> DEBUG: Executing shell function mklibs_optimize_image
+>>> DEBUG: Shell function mklibs_optimize_image finished
+>>> NOTE: Executing prelink_image ...
+>>> DEBUG: Executing shell function prelink_image
+>>> Size before prelinking 210672.
+>>> Size after prelinking 212588.
+>>> DEBUG: Shell function prelink_image finished
+>>> NOTE: The image creation groups are: [['ext3', 'cpio']]
+>>> NOTE: Running image creation script for cpio: /home/jimr/tera/yocto/dizzy/build/tmp/work/spectra_ls-poky-linux/core-image-full-cmdline/1.0-r0/temp/create_image.cpio ...
+>>> NOTE: Creating symlinks for ext3 image ...
+>>> NOTE: Creating symlink: core-image-full-cmdline-spectra-ls.ext3 -> core-image-full-cmdline-spectra-ls-20150220171753.rootfs.ext3
+>>> NOTE: Creating symlinks for cpio image ...
+>>> NOTE: Creating symlink: core-image-full-cmdline-spectra-ls.cpio.gz -> core-image-full-cmdline-spectra-ls-20150220171753.rootfs.cpio.gz
+>>> DEBUG: Python function do_rootfs finished
+>>> [jimr@krusty spectra_ls-poky-linux]$
+>>>
+>>>
+>>>
+>>> ________________________________________
+>>> From: Paul Eggleton [paul.eggleton@linux.intel.com]
+>>> Sent: Friday, February 20, 2015 2:51 AM
+>>> To: Jim Rafert
+>>> Cc: yocto@yoctoproject.org
+>>> Subject: Re: [yocto] Simple recipe quit working in dizzy
+>>>
+>>> Hi Jim,
+>>>
+>>> On Wednesday 18 February 2015 20:33:43 Jim Rafert wrote:
+>>>> The following recipe, spectra-postbuild_0.1.bb, quit working when I ported
+>>>> from 1.6 daisy to 1.7.1 dizzy.  I include the recipe in my image by adding
+>>>> it at the end of of the IMAGE_INSTALL_append variable in my local.conf
+>>>> file.  The purpose of the recipe is simply to lay down some files that will
+>>>> later be used by an installer script.  Two if the files are deposited in
+>>>> the root directory, and the rest are placed in the /install/spectra
+>>>> directory, which is created by the recipe.  Nothing is compiled or
+>>>> transformed in any way.
+>>>>
+>>>> When I bitbake the recipe, then bitbake core-image-full-cmdline, both
+>>>> complete without errors. When I look at the contents of the rpm file
+>>>> produced by the recipe, all the files and directories are listed. However,
+>>>> when I examine the file system images created, only the two files that I
+>>>> place in the root directory (/) are there, and the entire /install
+>>>> directory hierarchy is missing. If I modify the recipe such that the
+>>>> missing files are placed in a directory that is already created by other
+>>>> recipes (/home/root), all the files are deposited as expected.
+>>>>
+>>>> I have looked at section 5.6 of the Yocto reference manual, "Moving to the
+>>>> Yocto Project 1.7 Release", but did not see anything that was obviously
+>>>> relevant.
+>>>>
+>>>> Can someone tell me how to fix this for dizzy?
+>>>>
+>>>> ######################################################
+>>>> # spectra-postbuild_0.1.bb
+>>>> ######################################################
+>>>>
+>>>> SUMMARY = "Post processing of configuration files for SpectraOS"
+>>>> SECTION = "base"
+>>>> LICENSE = "GPLv2"
+>>>> LIC_FILES_CHKSUM =
+>>>> "file://${WORKDIR}/COPYRIGHT;md5=349c872e0066155e1818b786938876a4"
+>>>> PR = "r0"
+>>>>
+>>>> SRC_URI = "file://inittab \
+>>>>           file://fstab \
+>>>>           file://rsyslog.conf \
+>>>>               file://profile \
+>>>>           file://grub.cfg \
+>>>>           file://mount.sh \
+>>>>           file://RELEASE-NOTES.txt \
+>>>>           file://Spectra-OS-Version \
+>>>>           file://initializeCustomKernelModules \
+>>>>           file://firewall \
+>>>>           file://sysctl.conf \
+>>>>               file://InstallOS.sh \
+>>>>           file://COPYRIGHT \
+>>>>               file://WinCE_LCM.tar.bz \
+>>>>           "
+>>>>
+>>>> FILES_${PN} =  "/RELEASE-NOTES.txt \
+>>>>                    /Spectra-OS-Version \
+>>>>                    /install \
+>>>>                    /install/spectra \
+>>>>                    /install/spectra/InstallOS.sh \
+>>>>                    /install/spectra/fstab \
+>>>>                    /install/spectra/mount.sh \
+>>>>                    /install/spectra/grub.cfg \
+>>>>                    /install/spectra/rsyslog.conf \
+>>>>                    /install/spectra/profile \
+>>>>                    /install/spectra/inittab \
+>>>>                    /install/spectra/WinCE_LCM.tar.bz \
+>>>>                    /install/spectra/sysctl.conf \
+>>>>                    /install/spectra/init.d \
+>>>>                    /install/spectra/rc5.d \
+>>>>                    /install/spectra/init.d/initializeCustomKernelModules \
+>>>>                    /install/spectra/init.d/firewall \
+>>>>                    "
+>>>>
+>>>> do_install () {
+>>>>        install -m 755 ${WORKDIR}/RELEASE-NOTES.txt ${D}
+>>>>        install -m 755 ${WORKDIR}/Spectra-OS-Version ${D}
+>>>>            install -d ${D}/install
+>>>>            install -d ${D}/install/spectra
+>>>>            install -m 544 ${WORKDIR}/inittab ${D}/install/spectra
+>>>>            install -m 755 ${WORKDIR}/fstab ${D}/install/spectra
+>>>>            install -m 755 ${WORKDIR}/rsyslog.conf ${D}/install/spectra
+>>>>            install -m 755 ${WORKDIR}/profile ${D}/install/spectra
+>>>>            install -m 755 ${WORKDIR}/grub.cfg ${D}/install/spectra
+>>>>            install -m 755 ${WORKDIR}/mount.sh ${D}/install/spectra
+>>>>            install -m 755 ${WORKDIR}/InstallOS.sh ${D}/install/spectra
+>>>>            install -m 755 ${WORKDIR}/sysctl.conf ${D}/install/spectra
+>>>>            install -m 644 ${WORKDIR}/WinCE_LCM.tar.bz ${D}/install/spectra
+>>>>            install -m 755 ${WORKDIR}/firewall ${D}/install/spectra
+>>>>            install -m 755 ${WORKDIR}/initializeCustomKernelModules
+>>>> ${D}/install/spectra
+>>>>
+>>>> }
+>>>
+>>> Hmm, so I can't see anything immediately wrong with the recipe that would lead
+>>> to a problem such as what you describe, so rather than something expected
+>>> change between releases this looks more like a bug. Is there anything in the
+>>> log.do_rootfs for the image that might indicate something going wrong? Perhaps
+>>> an uncaught error?
+>>>
+>>> Cheers,
+>>> Paul
+>>>
+>>> --
+>>>
+>>> Paul Eggleton
+>>> Intel Open Source Technology Centre
+>>>
+>>
+>>
+>> ------------------------------
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>> End of yocto Digest, Vol 53, Issue 97
+>> *************************************
+>>
+>>
+>>
+>> ------------------------------
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>> End of yocto Digest, Vol 55, Issue 46
+>> *************************************
+>>
+>
 
-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
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/2Q==
 
---------------060406080308030802080100--
