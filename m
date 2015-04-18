@@ -1,26 +1,51 @@
-Return-Path: <pokybuild@ubuntu1204.osl.yoctoproject.org>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3ECC8E00930; Fri, 17 Apr 2015 18:18:10 -0700 (PDT)
+	id 96E13E0074B; Sat, 18 Apr 2015 10:12:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.1
-X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
-	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.215.72 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from ubuntu1204.osl.yoctoproject.org
-	(ubuntu1204.osl.yoctoproject.org [10.0.10.110])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A10FE0083E;
-	Fri, 17 Apr 2015 18:18:06 -0700 (PDT)
-Received: by ubuntu1204.osl.yoctoproject.org (Postfix, from userid 1006)
-	id 1BD832C066D; Sat, 18 Apr 2015 01:18:06 +0000 (UTC)
-To: yocto@yoctoproject.org
-Message-Id: <20150418011806.1BD832C066D@ubuntu1204.osl.yoctoproject.org>
-Date: Sat, 18 Apr 2015 01:18:05 +0000 (UTC)
-From: pokybuild@ubuntu1204.osl.yoctoproject.org (Poky Build User)
-Cc: otavio@ossystems.com.br
-Subject: Release Candidate Build for yocto-1.7.2.rc1 now available.
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-la0-f72.google.com (mail-la0-f72.google.com
+	[209.85.215.72])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37C86E0049A
+	for <yocto@yoctoproject.org>; Sat, 18 Apr 2015 10:12:09 -0700 (PDT)
+Received: by laat2 with SMTP id t2so31134451laa.2
+	for <yocto@yoctoproject.org>; Sat, 18 Apr 2015 10:12:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=Tefgfb0BrYoP+RhbgTz7DSwCYiCxx+S/aD8TNDHgMsk=;
+	b=JF1GSNKkTy8X1oTiRbJoeKOLZg3hQ9uIBE/X44PlC814f/GlVHEO6EsDZ1Cgt4DLaO
+	CsG6xoI7OzSLcgxekx3VriaMoqKkIEGau9VLKJ+Ql7TJa8Tlyj6rvQZfapHQuj7HpIEM
+	b8JMrhvwcsVkD3iKwsWloJKDCvJK6kmUj6a7nP2gfLaEoSZ6ZIp8AAIRVCFg9zNwwT6i
+	dBe6BZbnrZOjLsax8nKem/tVxTHpsJkrsw6+fw+T7ncJUOe5Tu1JGi4kav5vKGaTDkUj
+	w2o7LPq5uQ5pCRfMjPqdP5lhPUBtShoHYo8Y8rnUxHDapOKGs6ME2Gb70X1sz0MCutB1
+	nqLA==
+X-Gm-Message-State: ALoCoQlBVwWjARyNlTeFTk9LZMzPRUeCiscfNtoWEcFkdznjQqL3lbPPRr0GsJlAVqY9MzAcUMzG
+MIME-Version: 1.0
+X-Received: by 10.194.20.67 with SMTP id l3mr15709095wje.94.1429377127140;
+	Sat, 18 Apr 2015 10:12:07 -0700 (PDT)
+Received: by 10.28.3.130 with HTTP; Sat, 18 Apr 2015 10:12:07 -0700 (PDT)
+Received: by 10.28.3.130 with HTTP; Sat, 18 Apr 2015 10:12:07 -0700 (PDT)
+In-Reply-To: <9223869.PKDofxJfeZ@peggleto-mobl.ger.corp.intel.com>
+References: <552FA28B.5010507@actia.se>
+	<CAP71WjyfbFWiTdGt5FQ46MK1w_3wf9g50mrAixaRDRfC4t7Dug@mail.gmail.com>
+	<CABcZANkZpNCrYKjS0DYP8kqmeQ2+ax=87Cox1LQge3jeAA4f7Q@mail.gmail.com>
+	<9223869.PKDofxJfeZ@peggleto-mobl.ger.corp.intel.com>
+Date: Sat, 18 Apr 2015 19:12:07 +0200
+Message-ID: <CADt1enP_Hpwt0cN5T=b_QqUZeLo9iP8BVnU_18vTfrJEwFZL5Q@mail.gmail.com>
+From: Anders Darander <anders@chargestorm.se>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Badly formatted subpath for git SRC_URI deletes portions of hard drive.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,29 +57,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 18 Apr 2015 01:18:10 -0000
+X-List-Received-Date: Sat, 18 Apr 2015 17:12:14 -0000
+Content-Type: multipart/alternative; boundary=047d7b5d649ae9e401051402cbc1
 
--e 
-A release candidate build for yocto-1.7.2.rc1 is now available at:
+--047d7b5d649ae9e401051402cbc1
+Content-Type: text/plain; charset=UTF-8
 
- 
-http://autobuilder.yoctoproject.org/pub/releases/yocto-1.7.2.rc1
+On 17 Apr 2015 16:30, "Paul Eggleton" <paul.eggleton@linux.intel.com> wrote:
+>
+> I have sent an additional patch to the bitbake list to try to protect
+against
+> future instances of this issue, at least for bb.utils.prunedir() and
+> bb.utils.remove():
+>
+>
+http://lists.openembedded.org/pipermail/bitbake-devel/2015-April/005664.html
 
+Good! That should give us some extra confidence for the future.
 
-Please begin QA on this build as soon as possible.
+All the patches mentioned in this thread ought to be cherry-picked to all
+currently supported Poky releases.
 
+Thanks and cheers,
+Anders
 
-Build hash information: 
-meta-intel : c39a4bf4450845fca6f1b26ccfc0db192a4567e8 
-meta-fsl-arm : db1571f40c375a398a8cdbb42de4c4f272ab0cd1 
-meta-minnow : 13a5f2ab84c7284647a3e067a33109c11dae0568 
-meta-qt3 : 3016129d90b7ac8517a5227d819f10ad417b5b45 
-meta-fsl-ppc : 5eeeb3ad74b72d904f805bc6e248e93e722b45c4 
-poky : 15892013ce11b0392060568c3c859bbf8280df49 
+--047d7b5d649ae9e401051402cbc1
+Content-Type: text/html; charset=UTF-8
 
+<p dir="ltr"><br>
+On 17 Apr 2015 16:30, &quot;Paul Eggleton&quot; &lt;<a href="mailto:paul.eggleton@linux.intel.com">paul.eggleton@linux.intel.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; I have sent an additional patch to the bitbake list to try to protect against<br>
+&gt; future instances of this issue, at least for bb.utils.prunedir() and<br>
+&gt; bb.utils.remove():<br>
+&gt;<br>
+&gt; <a href="http://lists.openembedded.org/pipermail/bitbake-devel/2015-April/005664.html">http://lists.openembedded.org/pipermail/bitbake-devel/2015-April/005664.html</a></p>
+<p dir="ltr">Good! That should give us some extra confidence for the future. </p>
+<p dir="ltr">All the patches mentioned in this thread ought to be cherry-picked to all currently supported Poky releases. </p>
+<p dir="ltr">Thanks and cheers, <br>
+Anders </p>
 
-This is an automated message from
-The Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder
-Email: elizabeth.flanagan@intel.com 
-
+--047d7b5d649ae9e401051402cbc1--
