@@ -1,46 +1,44 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <matt.schuckmann@planar.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00160E0095C; Mon, 20 Apr 2015 09:40:10 -0700 (PDT)
+	id 38436E00932; Mon, 20 Apr 2015 11:08:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2958BE00932
-	for <yocto@yoctoproject.org>; Mon, 20 Apr 2015 09:40:09 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 20 Apr 2015 09:39:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,610,1422950400"; d="scan'208";a="698048459"
-Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
-	by fmsmga001.fm.intel.com with ESMTP; 20 Apr 2015 09:39:29 -0700
-Received: from orsmsx155.amr.corp.intel.com (10.22.240.21) by
-	ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Mon, 20 Apr 2015 09:39:28 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.47]) by
-	ORSMSX155.amr.corp.intel.com ([10.22.240.21]) with mapi id
-	14.03.0224.002; Mon, 20 Apr 2015 09:39:28 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Ed Bartosh <ed.bartosh@linux.intel.com>, "yocto@yoctoproject.org"
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [216.205.24.105 listed in list.dnswl.org]
+X-Greylist: delayed 87 seconds by postgrey-1.32 at yocto-www;
+	Mon, 20 Apr 2015 11:08:02 PDT
+Received: from us-smtp-delivery-105.mimecast.com
+	(us-smtp-delivery-105.mimecast.com [216.205.24.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B64EFE003A8
+	for <yocto@yoctoproject.org>; Mon, 20 Apr 2015 11:08:02 -0700 (PDT)
+Received: from msxbvt03.planar.net (199.244.171.48 [199.244.171.48]) by
+	us-mta-23.us.mimecast.lan; Mon, 20 Apr 2015 14:06:33 -0400
+Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
+	with mapi; Mon, 20 Apr 2015 11:06:27 -0700
+From: Matt Schuckmann <Matt.Schuckmann@planar.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>, Yocto Project
 	<yocto@yoctoproject.org>
-Thread-Topic: [PATCH] dev-manual: Updated wic runtime requirements
-Thread-Index: AQHQduNFsKncyri+UEuEikVb+ni+JJ1WIsOg
-Date: Mon, 20 Apr 2015 16:39:27 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988ED897B@ORSMSX101.amr.corp.intel.com>
-References: <1429037153-8943-1-git-send-email-ed.bartosh@linux.intel.com>
-In-Reply-To: <1429037153-8943-1-git-send-email-ed.bartosh@linux.intel.com>
+Date: Mon, 20 Apr 2015 11:06:24 -0700
+Thread-Topic: [yocto] Problems enabling systemd
+Thread-Index: AdB7erFCJh463TKURV2DNC8Z9GQNXwAGddSg
+Message-ID: <4B07ADD556F70043925DA2E9C5D4346D2FDCA586B4@MSXBEBVT12.planar.net>
+References: <4B07ADD556F70043925DA2E9C5D4346D2FDCA585B2@MSXBEBVT12.planar.net>
+	<20150420084300.GC11779@ad.chargestorm.se>
+	<5535128C.6010701@windriver.com>
+In-Reply-To: <5535128C.6010701@windriver.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+acceptlanguage: en-US
 MIME-Version: 1.0
-Subject: Re: [PATCH] dev-manual: Updated wic runtime requirements
+X-MC-Unique: cX_tQK8yTE-j6d9eZSg9yg-3
+Subject: Re: Problems enabling systemd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,77 +50,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Apr 2015 16:40:11 -0000
+X-List-Received-Date: Mon, 20 Apr 2015 18:08:06 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=WINDOWS-1252
 Content-Transfer-Encoding: quoted-printable
 
-Ed,=20
 
-This patch is in.  See http://www.yoctoproject.org/docs/1.9/dev-manual/dev-=
-manual.html#wic-requirements for the updated text.
 
-Thanks,=20
-Scott
+> -----Original Message-----
+> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+> Sent: Monday, April 20, 2015 7:52 AM
+> To: Matt Schuckmann; Yocto Project
+> Subject: Re: [yocto] Problems enabling systemd
+>=20
+> On 04/20/2015 04:43 AM, Anders Darander wrote:
+> > * Matt Schuckmann <Matt.Schuckmann@planar.com> [150417 23:27]:
+> >> I've got an image for a AM3352 system based on Dylan and Arago and
+> >> I'm trying to switch to systemd for init.
+> >
+> >> So far I haven't had much luck.
+> >> First off I'm getting different results depending on where I turn it
+> on.
+> >> I'm turning it on via the following 2 lines:
+> >
+> >> DISTRO_FEATURES_append =3D " systemd"
+> >> VIRTUAL-RUNTIME_init_manager =3D "systemd"
+> >
+> > These two lines looks correct, though, if you're building a
+> > systemd-only distro & image, you migth want to add:
+> >
+> > DISTRO_FEATURES_BACKFILL_CONSIDERED =3D "sysvinit"
+> >
+> >> If I place these lines in my_image.bb file I seem to get a partial
+> >> install of systemd, systemd_udev is there and seems to run but
+> that's
+> >> about it, there is no systemctrl journalctl and the sysvinit init
+> >> scripts still seem to be called.
+>=20
+>=20
+> And also on this point, make sure to check your PACKAGECONFIG values
+> for systemd. The optional utilities like networkd are not enabled by
+> default, and a bbapend of the systemd recipe is needed to enable them
+> via PACKAGECONFIG.
+>=20
+> Cheers,
+>=20
+> Bruce
 
->-----Original Message-----
->From: Ed Bartosh [mailto:ed.bartosh@linux.intel.com]
->Sent: Tuesday, April 14, 2015 11:46 AM
->To: yocto@yoctoproject.org
->Cc: Rifenbark, Scott M; Ed Bartosh
->Subject: [PATCH] dev-manual: Updated wic runtime requirements
->
->Wic is not using parted and other runtime dependencies from host system
->anymore. It uses native tools instead.
->
->Removed host parted from the list of requirements. Added instructions to
->build native tools.
->
->Signed-off-by: Ed Bartosh <ed.bartosh@linux.intel.com>
->---
-> documentation/dev-manual/dev-manual-common-tasks.xml | 12 ++++++----
->--
-> 1 file changed, 6 insertions(+), 6 deletions(-)
->
->diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml
->b/documentation/dev-manual/dev-manual-common-tasks.xml
->index c856775..0ea4940 100644
->--- a/documentation/dev-manual/dev-manual-common-tasks.xml
->+++ b/documentation/dev-manual/dev-manual-common-tasks.xml
->@@ -3788,12 +3788,6 @@
->                         development host system.
->                         </para></listitem>
->                     <listitem><para>
->-                        The
->-                        <ulink url=3D'http://www.gnu.org/software/parted/=
-'>GNU
->Parted</ulink>
->-                        package must be installed on your development hos=
-t
->-                        system.
->-                        </para></listitem>
->-                    <listitem><para>
->                         You need to have the build artifacts already
->                         available, which typically means that you must
->                         have already created an image using the @@ -3806,=
-6 +3800,12
->@@
->                         in the form generated by the build system.
->                         </para></listitem>
->                     <listitem><para>
->+                        You must build several native tools:
->+                        <literallayout class=3D'monospaced'>
->+     $ bitbake parted-native dosfstools-native mtools-native
->+                        </literallayout>
->+                        </para></listitem>
->+                    <listitem><para>
->                         You must have sourced one of the build environmen=
-t
->                         setup scripts (i.e.
->                         <ulink url=3D'&YOCTO_DOCS_REF_URL;#structure-core=
--
->script'><filename>&OE_INIT_FILE;</filename></ulink>
->--
->2.1.4
+Thanks for the info, Bruce I'll try a take a look. Are there any good examp=
+les for what to do with PACKAGECONFIG? the Yocto manual doesn't mention thi=
+s at all for systemd.=20
+
+>=20
+> >
+> > DISTRO_FEATURES is a distro (policy) configuration, and thus, can't
+> be
+> > modfied in a recipe. The correct way would be to add this in your own
+> > my_distro.conf.
+> >
+> >> If I place these lines in either local.conf or my_distrobution.conf
+> >> all of the systemd utility seem to get installed and systemd
+> startups
+> >> up but it's clearly not configured correctly.
+> >
+> > Good that it seems to be installed OK.
+> >
+> >> For starters the systemd dbus isn't getting created and that seems
+> to
+> >> lead to a whole host of other problems, including journald constant
+> >> spewing the following error messages:
+> >
+> >> [   55.926223] systemd-journald[715]: Failed to write entry,
+> ignoring: Argument list too long
+> >> [   55.936931] systemd-journald[715]: Failed to rotate
+> /run/log/journal/c37feca280b74ec583564afcc2a93f0a/system.journal: No
+> such file or directory
+> >> [   55.950911] systemd-journald[715]: Failed to write entry,
+> ignoring: Argument list too long
+> >> [   55.961580] systemd-journald[715]: Failed to rotate
+> /run/log/journal/c37feca280b74ec583564afcc2a93f0a/system.journal: No
+> such file or directory
+> >> [   55.975568] systemd-journald[715]: Failed to write entry,
+> ignoring: Argument list too long
+> >> [   55.986329] systemd-journald[715]: Failed to rotate
+> /run/log/journal/c37feca280b74ec583564afcc2a93f0a/system.journal: No
+> such file or directory
+> >
+> >> I don't know if it matters but this system has no display at all,
+> >> it's a strictly embedded installation.
+> >
+> > That shouldn't really matter, I'm running systemd in headless setups.
+> >
+> > I'd guess that you're getting some errors earlier than this in the
+> > bootlog? Could you paste them?
+> >
+> > Cheers,
+> > Anders
+> >
+> >
+
+
+
 
 
