@@ -1,39 +1,42 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <kapare@rogue-research.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 340CFE00953; Mon, 20 Apr 2015 07:52:07 -0700 (PDT)
+	id 52F6AE00953; Mon, 20 Apr 2015 09:03:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADE04E00932
-	for <yocto@yoctoproject.org>; Mon, 20 Apr 2015 07:52:03 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.14.9/8.14.9) with ESMTP id t3KEpwti020301
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 20 Apr 2015 07:51:58 -0700 (PDT)
-Received: from [128.224.22.169] (128.224.22.169) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 20 Apr 2015 07:51:58 -0700
-Message-ID: <5535128C.6010701@windriver.com>
-Date: Mon, 20 Apr 2015 10:51:56 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+Received: from mail.rogue-research.com (mail.rogue-research.com [68.67.54.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08CFAE00932
+	for <yocto@yoctoproject.org>; Mon, 20 Apr 2015 09:03:30 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.rogue-research.com (Postfix) with ESMTP id 3864F61C2AB
+	for <yocto@yoctoproject.org>; Mon, 20 Apr 2015 12:03:29 -0400 (EDT)
+X-Virus-Scanned: amavisd-new at rogue-research.com
+Received: from mail.rogue-research.com ([127.0.0.1])
+	by localhost (kingu.rogue-research.com [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id 2qqUMXm9xn1q for <yocto@yoctoproject.org>;
+	Mon, 20 Apr 2015 12:03:28 -0400 (EDT)
+Received: from mail-wg0-f53.google.com (mail-wg0-f53.google.com [74.125.82.53])
+	by mail.rogue-research.com (Postfix) with ESMTPSA id 5584561C29A
+	for <yocto@yoctoproject.org>; Mon, 20 Apr 2015 12:03:28 -0400 (EDT)
+Received: by wgyo15 with SMTP id o15so184567663wgy.2
+	for <yocto@yoctoproject.org>; Mon, 20 Apr 2015 09:03:27 -0700 (PDT)
 MIME-Version: 1.0
-To: Matt Schuckmann <Matt.Schuckmann@planar.com>, Yocto Project
-	<yocto@yoctoproject.org>
-References: <4B07ADD556F70043925DA2E9C5D4346D2FDCA585B2@MSXBEBVT12.planar.net>
-	<20150420084300.GC11779@ad.chargestorm.se>
-In-Reply-To: <20150420084300.GC11779@ad.chargestorm.se>
-Subject: Re: Problems enabling systemd
+X-Received: by 10.194.60.43 with SMTP id e11mr33288151wjr.36.1429545807092;
+	Mon, 20 Apr 2015 09:03:27 -0700 (PDT)
+Received: by 10.194.24.97 with HTTP; Mon, 20 Apr 2015 09:03:27 -0700 (PDT)
+In-Reply-To: <CA+chaQeJ64oS8baJLS-L7fTPFBAWNBUCYSFU2OAD3_8mrExm3g@mail.gmail.com>
+References: <CACgAsMcywJ-vWKqC5Sfm7r4mxdboqtKW-NqD32=24LkA3OuG1Q@mail.gmail.com>
+	<CA+chaQeJ64oS8baJLS-L7fTPFBAWNBUCYSFU2OAD3_8mrExm3g@mail.gmail.com>
+Date: Mon, 20 Apr 2015 12:03:27 -0400
+Message-ID: <CACgAsMeejt=pUa_VoVEc9StzJOvsxU=EBBBdBpUfhPDcHUbjGw@mail.gmail.com>
+From: =?UTF-8?Q?Kevyn=2DAlexandre_Par=C3=A9?= <kapare@rogue-research.com>
+To: Martin Jansa <martin.jansa@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [daisy][powertop] powertop_2.5.bb, do_configure) failed with exit code '1'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,75 +48,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Apr 2015 14:52:07 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 20 Apr 2015 16:03:37 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 04/20/2015 04:43 AM, Anders Darander wrote:
-> * Matt Schuckmann <Matt.Schuckmann@planar.com> [150417 23:27]:
->> I've got an image for a AM3352 system based on Dylan and Arago and I'm
->> trying to switch to systemd for init.
->
->> So far I haven't had much luck.
->> First off I'm getting different results depending on where I turn it on.
->> I'm turning it on via the following 2 lines:
->
->> DISTRO_FEATURES_append = " systemd"
->> VIRTUAL-RUNTIME_init_manager = "systemd"
->
-> These two lines looks correct, though, if you're building a systemd-only
-> distro & image, you migth want to add:
->
-> DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
->
->> If I place these lines in my_image.bb file I seem to get a partial
->> install of systemd, systemd_udev is there and seems to run but that's
->> about it, there is no systemctrl journalctl and the sysvinit init
->> scripts still seem to be called.
+Hi Martin,
 
+thx, cleaner way then my temporary fix. I tested it and it's working fine.
 
-And also on this point, make sure to check your PACKAGECONFIG values
-for systemd. The optional utilities like networkd are not enabled by
-default, and a bbapend of the systemd recipe is needed to enable them
-via PACKAGECONFIG.
+git checkout 3ee4015f5b5264d69178f78f0408ab4a225d3877
+meta/recipes-kernel/powertop/powertop_2.7.bb
 
-Cheers,
+Any thought when this will be backported to Daisy branch? I presume
+for the next rc.
 
-Bruce
+thx again,
 
->
-> DISTRO_FEATURES is a distro (policy) configuration, and thus, can't be
-> modfied in a recipe. The correct way would be to add this in your own
-> my_distro.conf.
->
->> If I place these lines in either local.conf or my_distrobution.conf
->> all of the systemd utility seem to get installed and systemd startups
->> up but it's clearly not configured correctly.
->
-> Good that it seems to be installed OK.
->
->> For starters the systemd dbus isn't getting created and that seems to
->> lead to a whole host of other problems, including journald constant
->> spewing the following error messages:
->
->> [   55.926223] systemd-journald[715]: Failed to write entry, ignoring: Argument list too long
->> [   55.936931] systemd-journald[715]: Failed to rotate /run/log/journal/c37feca280b74ec583564afcc2a93f0a/system.journal: No such file or directory
->> [   55.950911] systemd-journald[715]: Failed to write entry, ignoring: Argument list too long
->> [   55.961580] systemd-journald[715]: Failed to rotate /run/log/journal/c37feca280b74ec583564afcc2a93f0a/system.journal: No such file or directory
->> [   55.975568] systemd-journald[715]: Failed to write entry, ignoring: Argument list too long
->> [   55.986329] systemd-journald[715]: Failed to rotate /run/log/journal/c37feca280b74ec583564afcc2a93f0a/system.journal: No such file or directory
->
->> I don't know if it matters but this system has no display at all, it's
->> a strictly embedded installation.
->
-> That shouldn't really matter, I'm running systemd in headless setups.
->
-> I'd guess that you're getting some errors earlier than this in the
-> bootlog? Could you paste them?
->
-> Cheers,
-> Anders
->
->
+-KA
 
+ref:
+http://cgit.openembedded.org/openembedded-core/commit/?id=3Da3e9b391e1024d6=
+d2e256b75c214d34e6693e332
+https://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3D3ee4015f5b5264=
+d69178f78f0408ab4a225d3877
+
+On Sun, Apr 19, 2015 at 2:03 PM, Martin Jansa <martin.jansa@gmail.com> wrot=
+e:
+> See
+>
+> http://lists.openembedded.org/pipermail/openembedded-core/2015-April/1038=
+29.html
+>
+> The same fix is now needed in daisy branch.
+>
+>
+> On Fri, Apr 17, 2015, 21:52 Kevyn-Alexandre Par=C3=A9 <kapare@rogue-resea=
+rch.com>
+> wrote:
+>>
+>> Hi,
+>>
+>> This was not a problem on 1.6.2 then udpated and I'm unable to
+>> configure powertop. I tried to erase sstate & tmp folder without
+>> success.
+>>
+>> The fix was to comment:
+>> #LDFLAGS +=3D "${EXTRA_LDFLAGS}"
+>>
+>> in
+>> poky/meta/recipes-kernel/powertop/powertop_2.5.bb
+>>
+>>
+>> The logs show that the ${EXTRA_LDFLAGS} gets added during the configure?
+>>
+>> Any thoughts on why?
+>>
+>> I looks at commits from 1.6.2 to 1.6.3 and I don't see why this could
+>> happen.
+>>
+>> Could it be a update on Ubuntu 14.04?
+>>
+>> thx,
+>>
+>> -KA
+>>
+>> Here's the complete logs:
+>>
+>> log.do_configure:
+>> https://gist.github.com/kapare/971387ca3812c019a65f
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 
