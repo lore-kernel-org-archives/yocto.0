@@ -1,42 +1,46 @@
-Return-Path: <kapare@rogue-research.com>
+Return-Path: <scott.m.rifenbark@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52F6AE00953; Mon, 20 Apr 2015 09:03:37 -0700 (PDT)
+	id 00160E0095C; Mon, 20 Apr 2015 09:40:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.rogue-research.com (mail.rogue-research.com [68.67.54.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08CFAE00932
-	for <yocto@yoctoproject.org>; Mon, 20 Apr 2015 09:03:30 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rogue-research.com (Postfix) with ESMTP id 3864F61C2AB
-	for <yocto@yoctoproject.org>; Mon, 20 Apr 2015 12:03:29 -0400 (EDT)
-X-Virus-Scanned: amavisd-new at rogue-research.com
-Received: from mail.rogue-research.com ([127.0.0.1])
-	by localhost (kingu.rogue-research.com [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id 2qqUMXm9xn1q for <yocto@yoctoproject.org>;
-	Mon, 20 Apr 2015 12:03:28 -0400 (EDT)
-Received: from mail-wg0-f53.google.com (mail-wg0-f53.google.com [74.125.82.53])
-	by mail.rogue-research.com (Postfix) with ESMTPSA id 5584561C29A
-	for <yocto@yoctoproject.org>; Mon, 20 Apr 2015 12:03:28 -0400 (EDT)
-Received: by wgyo15 with SMTP id o15so184567663wgy.2
-	for <yocto@yoctoproject.org>; Mon, 20 Apr 2015 09:03:27 -0700 (PDT)
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2958BE00932
+	for <yocto@yoctoproject.org>; Mon, 20 Apr 2015 09:40:09 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 20 Apr 2015 09:39:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,610,1422950400"; d="scan'208";a="698048459"
+Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
+	by fmsmga001.fm.intel.com with ESMTP; 20 Apr 2015 09:39:29 -0700
+Received: from orsmsx155.amr.corp.intel.com (10.22.240.21) by
+	ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server
+	(TLS) id 14.3.224.2; Mon, 20 Apr 2015 09:39:28 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.47]) by
+	ORSMSX155.amr.corp.intel.com ([10.22.240.21]) with mapi id
+	14.03.0224.002; Mon, 20 Apr 2015 09:39:28 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Ed Bartosh <ed.bartosh@linux.intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [PATCH] dev-manual: Updated wic runtime requirements
+Thread-Index: AQHQduNFsKncyri+UEuEikVb+ni+JJ1WIsOg
+Date: Mon, 20 Apr 2015 16:39:27 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988ED897B@ORSMSX101.amr.corp.intel.com>
+References: <1429037153-8943-1-git-send-email-ed.bartosh@linux.intel.com>
+In-Reply-To: <1429037153-8943-1-git-send-email-ed.bartosh@linux.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-Received: by 10.194.60.43 with SMTP id e11mr33288151wjr.36.1429545807092;
-	Mon, 20 Apr 2015 09:03:27 -0700 (PDT)
-Received: by 10.194.24.97 with HTTP; Mon, 20 Apr 2015 09:03:27 -0700 (PDT)
-In-Reply-To: <CA+chaQeJ64oS8baJLS-L7fTPFBAWNBUCYSFU2OAD3_8mrExm3g@mail.gmail.com>
-References: <CACgAsMcywJ-vWKqC5Sfm7r4mxdboqtKW-NqD32=24LkA3OuG1Q@mail.gmail.com>
-	<CA+chaQeJ64oS8baJLS-L7fTPFBAWNBUCYSFU2OAD3_8mrExm3g@mail.gmail.com>
-Date: Mon, 20 Apr 2015 12:03:27 -0400
-Message-ID: <CACgAsMeejt=pUa_VoVEc9StzJOvsxU=EBBBdBpUfhPDcHUbjGw@mail.gmail.com>
-From: =?UTF-8?Q?Kevyn=2DAlexandre_Par=C3=A9?= <kapare@rogue-research.com>
-To: Martin Jansa <martin.jansa@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [daisy][powertop] powertop_2.5.bb, do_configure) failed with exit code '1'
+Subject: Re: [PATCH] dev-manual: Updated wic runtime requirements
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,77 +52,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Apr 2015 16:03:37 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 20 Apr 2015 16:40:11 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Martin,
+Ed,=20
 
-thx, cleaner way then my temporary fix. I tested it and it's working fine.
+This patch is in.  See http://www.yoctoproject.org/docs/1.9/dev-manual/dev-=
+manual.html#wic-requirements for the updated text.
 
-git checkout 3ee4015f5b5264d69178f78f0408ab4a225d3877
-meta/recipes-kernel/powertop/powertop_2.7.bb
+Thanks,=20
+Scott
 
-Any thought when this will be backported to Daisy branch? I presume
-for the next rc.
-
-thx again,
-
--KA
-
-ref:
-http://cgit.openembedded.org/openembedded-core/commit/?id=3Da3e9b391e1024d6=
-d2e256b75c214d34e6693e332
-https://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3D3ee4015f5b5264=
-d69178f78f0408ab4a225d3877
-
-On Sun, Apr 19, 2015 at 2:03 PM, Martin Jansa <martin.jansa@gmail.com> wrot=
-e:
-> See
+>-----Original Message-----
+>From: Ed Bartosh [mailto:ed.bartosh@linux.intel.com]
+>Sent: Tuesday, April 14, 2015 11:46 AM
+>To: yocto@yoctoproject.org
+>Cc: Rifenbark, Scott M; Ed Bartosh
+>Subject: [PATCH] dev-manual: Updated wic runtime requirements
 >
-> http://lists.openembedded.org/pipermail/openembedded-core/2015-April/1038=
-29.html
+>Wic is not using parted and other runtime dependencies from host system
+>anymore. It uses native tools instead.
 >
-> The same fix is now needed in daisy branch.
+>Removed host parted from the list of requirements. Added instructions to
+>build native tools.
 >
+>Signed-off-by: Ed Bartosh <ed.bartosh@linux.intel.com>
+>---
+> documentation/dev-manual/dev-manual-common-tasks.xml | 12 ++++++----
+>--
+> 1 file changed, 6 insertions(+), 6 deletions(-)
 >
-> On Fri, Apr 17, 2015, 21:52 Kevyn-Alexandre Par=C3=A9 <kapare@rogue-resea=
-rch.com>
-> wrote:
->>
->> Hi,
->>
->> This was not a problem on 1.6.2 then udpated and I'm unable to
->> configure powertop. I tried to erase sstate & tmp folder without
->> success.
->>
->> The fix was to comment:
->> #LDFLAGS +=3D "${EXTRA_LDFLAGS}"
->>
->> in
->> poky/meta/recipes-kernel/powertop/powertop_2.5.bb
->>
->>
->> The logs show that the ${EXTRA_LDFLAGS} gets added during the configure?
->>
->> Any thoughts on why?
->>
->> I looks at commits from 1.6.2 to 1.6.3 and I don't see why this could
->> happen.
->>
->> Could it be a update on Ubuntu 14.04?
->>
->> thx,
->>
->> -KA
->>
->> Here's the complete logs:
->>
->> log.do_configure:
->> https://gist.github.com/kapare/971387ca3812c019a65f
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+>diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml
+>b/documentation/dev-manual/dev-manual-common-tasks.xml
+>index c856775..0ea4940 100644
+>--- a/documentation/dev-manual/dev-manual-common-tasks.xml
+>+++ b/documentation/dev-manual/dev-manual-common-tasks.xml
+>@@ -3788,12 +3788,6 @@
+>                         development host system.
+>                         </para></listitem>
+>                     <listitem><para>
+>-                        The
+>-                        <ulink url=3D'http://www.gnu.org/software/parted/=
+'>GNU
+>Parted</ulink>
+>-                        package must be installed on your development hos=
+t
+>-                        system.
+>-                        </para></listitem>
+>-                    <listitem><para>
+>                         You need to have the build artifacts already
+>                         available, which typically means that you must
+>                         have already created an image using the @@ -3806,=
+6 +3800,12
+>@@
+>                         in the form generated by the build system.
+>                         </para></listitem>
+>                     <listitem><para>
+>+                        You must build several native tools:
+>+                        <literallayout class=3D'monospaced'>
+>+     $ bitbake parted-native dosfstools-native mtools-native
+>+                        </literallayout>
+>+                        </para></listitem>
+>+                    <listitem><para>
+>                         You must have sourced one of the build environmen=
+t
+>                         setup scripts (i.e.
+>                         <ulink url=3D'&YOCTO_DOCS_REF_URL;#structure-core=
+-
+>script'><filename>&OE_INIT_FILE;</filename></ulink>
+>--
+>2.1.4
+
 
