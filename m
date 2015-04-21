@@ -1,41 +1,39 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <craig.mcqueen@innerrange.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 568A2E00952; Mon, 20 Apr 2015 14:51:26 -0700 (PDT)
+	id 718CCE0099B; Mon, 20 Apr 2015 22:23:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB495E0079F
-	for <yocto@yoctoproject.org>; Mon, 20 Apr 2015 14:51:21 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.14.9/8.14.9) with ESMTP id t3KLpED1024563
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 20 Apr 2015 14:51:15 -0700 (PDT)
-Received: from [128.224.22.111] (128.224.22.111) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.224.2;
-	Mon, 20 Apr 2015 14:51:06 -0700
-Message-ID: <553574AD.7030404@windriver.com>
-Date: Mon, 20 Apr 2015 17:50:37 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
+	*      dynamic-looking rDNS
+Received: from remote.innerrange.com (122-143-146.dsl.connexus.net.au
+	[203.122.143.146])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1B41E00952
+	for <yocto@yoctoproject.org>; Mon, 20 Apr 2015 22:23:26 -0700 (PDT)
+Received: from IR-CENTRAL.corp.innerrange.com ([fe80::758b:a6c:a61b:18f4]) by
+	IR-CENTRAL.corp.innerrange.com ([fe80::758b:a6c:a61b:18f4%14]) with
+	mapi; Tue, 21 Apr 2015 15:23:22 +1000
+From: Craig McQueen <craig.mcqueen@innerrange.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Tue, 21 Apr 2015 15:23:20 +1000
+Thread-Topic: U-Boot with a different default device tree, for
+	BeagleBone-similar system
+Thread-Index: AdB78viqlJ5qJYybRMyc3PkOSJJQuQ==
+Message-ID: <5500469A22567C4BAF673A6E86AFA3A402227F4FA218@IR-CENTRAL.corp.innerrange.com>
+Accept-Language: en-US, en-AU
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US, en-AU
+x-tm-as-product-ver: SMEX-11.1.0.1239-7.500.1018-21492.005
+x-tm-as-result: No--36.063300-5.000000-31
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
-To: Matt Schuckmann <Matt.Schuckmann@planar.com>, Yocto Project
-	<yocto@yoctoproject.org>
-References: <4B07ADD556F70043925DA2E9C5D4346D2FDCA585B2@MSXBEBVT12.planar.net>
-	<20150420084300.GC11779@ad.chargestorm.se>
-	<5535128C.6010701@windriver.com>
-	<4B07ADD556F70043925DA2E9C5D4346D2FDCA586B4@MSXBEBVT12.planar.net>
-In-Reply-To: <4B07ADD556F70043925DA2E9C5D4346D2FDCA586B4@MSXBEBVT12.planar.net>
-Subject: Re: Problems enabling systemd
+Subject: U-Boot with a different default device tree, for BeagleBone-similar system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,114 +45,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Apr 2015 21:51:26 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 21 Apr 2015 05:23:30 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 04/20/2015 02:06 PM, Matt Schuckmann wrote:
->
->
->> -----Original Message-----
->> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
->> Sent: Monday, April 20, 2015 7:52 AM
->> To: Matt Schuckmann; Yocto Project
->> Subject: Re: [yocto] Problems enabling systemd
->>
->> On 04/20/2015 04:43 AM, Anders Darander wrote:
->>> * Matt Schuckmann <Matt.Schuckmann@planar.com> [150417 23:27]:
->>>> I've got an image for a AM3352 system based on Dylan and Arago and
->>>> I'm trying to switch to systemd for init.
->>>
->>>> So far I haven't had much luck.
->>>> First off I'm getting different results depending on where I turn it
->> on.
->>>> I'm turning it on via the following 2 lines:
->>>
->>>> DISTRO_FEATURES_append = " systemd"
->>>> VIRTUAL-RUNTIME_init_manager = "systemd"
->>>
->>> These two lines looks correct, though, if you're building a
->>> systemd-only distro & image, you migth want to add:
->>>
->>> DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
->>>
->>>> If I place these lines in my_image.bb file I seem to get a partial
->>>> install of systemd, systemd_udev is there and seems to run but
->> that's
->>>> about it, there is no systemctrl journalctl and the sysvinit init
->>>> scripts still seem to be called.
->>
->>
->> And also on this point, make sure to check your PACKAGECONFIG values
->> for systemd. The optional utilities like networkd are not enabled by
->> default, and a bbapend of the systemd recipe is needed to enable them
->> via PACKAGECONFIG.
->>
->> Cheers,
->>
->> Bruce
->
-> Thanks for the info, Bruce I'll try a take a look. Are there any good examples for what to do with PACKAGECONFIG? the Yocto manual doesn't mention this at all for systemd.
->
+I'm working on a system based on the TI Sitara AM335x similar to the Beagle=
+Bone Black, but with various custom hardware. I've got a custom device tree=
+ for it, and it's working well.
 
-I can share my configuration in a day or so, I'm in need of a refresh to
-github, and that'll work for one reference (and one that I know works).
+In Yocto, I've defined a custom machine in a custom layer under conf/machin=
+e, derived from the BeagleBone Black machine with modifications. The kernel=
+ is compiling my device tree named something like am335x-myfantasticdevice.=
+dtb, due to a KERNEL_DEVICETREE... line. However, U-Boot is still looking f=
+or the stock BeagleBone Black device tree named am335x-boneblack.dtb.
 
-Otherwise, I recall that Angstrom has some systemd usecases, so cloning
-and having a look at those layers would also be a good reference.
+How can I modify my Yocto build so that U-Boot by default will expect a dev=
+ice tree with the name am335x-myfantasticdevice.dtb? I can see UBOOT_MACHIN=
+E but I'm not sure what I can do with it.
 
-Bruce
-
->>
->>>
->>> DISTRO_FEATURES is a distro (policy) configuration, and thus, can't
->> be
->>> modfied in a recipe. The correct way would be to add this in your own
->>> my_distro.conf.
->>>
->>>> If I place these lines in either local.conf or my_distrobution.conf
->>>> all of the systemd utility seem to get installed and systemd
->> startups
->>>> up but it's clearly not configured correctly.
->>>
->>> Good that it seems to be installed OK.
->>>
->>>> For starters the systemd dbus isn't getting created and that seems
->> to
->>>> lead to a whole host of other problems, including journald constant
->>>> spewing the following error messages:
->>>
->>>> [   55.926223] systemd-journald[715]: Failed to write entry,
->> ignoring: Argument list too long
->>>> [   55.936931] systemd-journald[715]: Failed to rotate
->> /run/log/journal/c37feca280b74ec583564afcc2a93f0a/system.journal: No
->> such file or directory
->>>> [   55.950911] systemd-journald[715]: Failed to write entry,
->> ignoring: Argument list too long
->>>> [   55.961580] systemd-journald[715]: Failed to rotate
->> /run/log/journal/c37feca280b74ec583564afcc2a93f0a/system.journal: No
->> such file or directory
->>>> [   55.975568] systemd-journald[715]: Failed to write entry,
->> ignoring: Argument list too long
->>>> [   55.986329] systemd-journald[715]: Failed to rotate
->> /run/log/journal/c37feca280b74ec583564afcc2a93f0a/system.journal: No
->> such file or directory
->>>
->>>> I don't know if it matters but this system has no display at all,
->>>> it's a strictly embedded installation.
->>>
->>> That shouldn't really matter, I'm running systemd in headless setups.
->>>
->>> I'd guess that you're getting some errors earlier than this in the
->>> bootlog? Could you paste them?
->>>
->>> Cheers,
->>> Anders
->>>
->>>
->
->
->
->
+--=20
+Craig McQueen
 
 
