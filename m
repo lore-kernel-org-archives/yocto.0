@@ -1,40 +1,46 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 49F6DE009AE; Tue, 21 Apr 2015 07:09:25 -0700 (PDT)
+	id ED2FAE009AF; Tue, 21 Apr 2015 08:15:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9C84E00954
-	for <yocto@yoctoproject.org>; Tue, 21 Apr 2015 07:09:21 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.14.9/8.14.9) with ESMTP id t3LE9HEE026959
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 21 Apr 2015 07:09:17 -0700 (PDT)
-Received: from [128.224.22.114] (128.224.22.114) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 21 Apr 2015 07:09:17 -0700
-Message-ID: <55365A0B.3030508@windriver.com>
-Date: Tue, 21 Apr 2015 10:09:15 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A8CFE009AD
+	for <yocto@yoctoproject.org>; Tue, 21 Apr 2015 08:15:57 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 21 Apr 2015 08:15:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,616,1422950400"; 
+	d="scan'208,217";a="683423879"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by orsmga001.jf.intel.com with ESMTP; 21 Apr 2015 08:15:51 -0700
+Received: from fmsmsx152.amr.corp.intel.com (10.18.125.5) by
+	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
+	(TLS) id 14.3.224.2; Tue, 21 Apr 2015 08:15:51 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.204]) by
+	FMSMSX152.amr.corp.intel.com ([169.254.6.232]) with mapi id
+	14.03.0224.002; Tue, 21 Apr 2015 08:15:50 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, Apr.
+	21, 2015 8:00 AM US Pacific Time
+Thread-Index: AdB8RgpuMGGB0QYJT6WOO8GfGoMfrg==
+Date: Tue, 21 Apr 2015 15:15:49 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E5547EE1D@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.107]
 MIME-Version: 1.0
-To: "Mills, Clayton" <cmills@tycoint.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <4ECB83F290E97A4F96082D1BDAF733360D0315@003FCH1MPN2-012.003f.mgd2.msft.net>
-	<55310A4A.8000001@windriver.com>
-	<4ECB83F290E97A4F96082D1BDAF733360D1D7E@003FCH1MPN2-011.003f.mgd2.msft.net>
-In-Reply-To: <4ECB83F290E97A4F96082D1BDAF733360D1D7E@003FCH1MPN2-011.003f.mgd2.msft.net>
-Subject: Re: SRCREV issue with linux-yocto-custom do_validate_branches()
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, Apr. 21, 2015 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,265 +52,435 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Apr 2015 14:09:25 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 21 Apr 2015 15:16:00 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5547EE1Dfmsmsx111amrcor_"
 
-On 04/21/2015 08:21 AM, Mills, Clayton wrote:
->> On 17 April 2015 14:28, Bruce Ashfield wrote:
->>
->> On 2015-04-17 6:12 AM, Mills, Clayton wrote:
->>> Hi All,
->>>
->>> I'm having a little trouble with do_validate_branches() inherited by my linux-yocto-custom.
->>> I'm building the 3.14.28 kernel with ltsi kernel patch set applied, so was trying to set this up with a custom linux recipe in my bsp.
->> Out of curiosity, was something missing in the linux-yocto 3.14 LTSI integration ? I'll comment on the specifics below, but I was wondering about that high level point as well.
-> I'll admit I'm new to yocto so if I've missed where I could have easily selected v3.14.28-ltsi along the way then my bad. Unfortunate because I'm probably making more work for myself. Though this is probably as good an opportunity for learning my way around. To be honest in the very near future I will be building from a branch that is forked off of v3.14.28-ltsi with some custom stuff anyway, so perhaps this isn't a complete waste of time.
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5547EE1Dfmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Attendees: Stephen, Sona, Paul, Michael, Christin,
+
+
+
+Agenda:
+
+
+
+* Opens collection - 5 min (Stephen)
+
+* Yocto Project status - 5 min (Stephen/team)
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.8_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_1.8_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_1.8_Features
+
+https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule
+
+*         YP 1.8 Release should occur Wednesday.
+
+*         YP 1.9 Planning is progressing.
+
+*         YP 1.7.2 rc2 is in QA.
+
+*         YP 1.6.3 will be going in QA after YP 1.7.2 is approved for relea=
+se.
+
+* SWAT team rotation: Cristian -> Randy
+
+https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+
+* Opens - 10 min
+Survey/Retrospective - Please fill out the survey about YP 1.8 at: https://=
+www.surveymonkey.com/r/SFV7VPH
+
+Sona - We decided in the OEDAM meeting to create a CVE list to have track o=
+f CVE addressed in different branches, I said I could do this, I have just =
+started, I am still working on it. please have a look at this and let me kn=
+ow what you think. https://docs.google.com/spreadsheets/d/13o4IPsCQ42aR2CCG=
+zYOHdmpIEHkHUwDWlF4QqgI6emQ/edit#gid=3D0
+
+
+
+* Team Sharing - 10 min
+
+Michael - Primary download site has successfully been moved to the new HW a=
+nd new network.
+
+Michael - We now have the ability to do automatic mirroring from git.yoctop=
+roject.org to GitHub.   Contact Michael if you want this.
+
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:          (503) 712-0534
+*    Cell:                                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5547EE1Dfmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
+icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
+:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
+uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
+t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
+m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
+t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
+:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
+soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
+icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
+schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
+point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
+/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
+=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
+schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
+.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
+/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
+://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
+repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
+ xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
+schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
+/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
+ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
+p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
+/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
+mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
+crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
+s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
+ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
+om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
+ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
+partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
+06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
+6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
+deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
+Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
+st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> Feel free to expand on what I should be doing. Like I said, I'm new to yocto.
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-language:ZH-CN;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:79452940;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1464386262 67698689 67698691 67698693 67698689 67698=
+691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Attendees: Stephen, Sona, Paul, Michael, Christin,
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
+pan></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_Project_v1.8_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+8_Status</a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_1.8_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.8_Schedule</a><o=
+:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_1.8_Features">https://wiki.yoctoproject.org/wiki/Yocto_1.8_Features</a><o=
+:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_1.9_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule</a><o=
+:p></o:p></span></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Symbol"><span style=
+=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roma=
+n&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>YP 1.8 Release should occur Wednesday.&nbsp;=
+ <o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Symbol"><span style=
+=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roma=
+n&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>YP 1.9 Planning is progressing. <o:p></o:p><=
+/p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Symbol"><span style=
+=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roma=
+n&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>YP 1.7.2 rc2 is in QA.<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Symbol"><span style=
+=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roma=
+n&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>YP 1.6.3 will be going in QA after YP 1.7.2 =
+is approved for release.<o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* SWAT team rotation: Cristian -&gt; Randy<o:p></o=
+:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_Build_Failure_Swat_Team">https://wiki.yoctoproject.org/wiki/Yocto_Build_F=
+ailure_Swat_Team</a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens - 10 min
+<o:p></o:p></span></p>
+<div style=3D"border:none;border-bottom:solid windowtext 1.0pt;padding:0in =
+0in 1.0pt 0in">
+<p class=3D"MsoNormal"><span style=3D"font-family:Consolas">Survey/Retrospe=
+ctive &#8211; Please fill out the survey about YP 1.8 at:
+</span><a href=3D"https://www.surveymonkey.com/r/SFV7VPH">https://www.surve=
+ymonkey.com/r/SFV7VPH</a><o:p></o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Sona &#8211; We decided in the OEDAM meeting to cr=
+eate a CVE list to have track of CVE addressed in different branches, I sai=
+d I could do this, I have just started, I
+ am still working on it. please have a look at this and let me know what yo=
+u think.
+</span><a href=3D"https://docs.google.com/spreadsheets/d/13o4IPsCQ42aR2CCGz=
+YOHdmpIEHkHUwDWlF4QqgI6emQ/edit#gid=3D0">https://docs.google.com/spreadshee=
+ts/d/13o4IPsCQ42aR2CCGzYOHdmpIEHkHUwDWlF4QqgI6emQ/edit#gid=3D0</a><span sty=
+le=3D"font-size:11.0pt;font-family:Consolas"><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Michael &#8211; Primary download site has successf=
+ully been moved to the new HW and new network.
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Michael &#8211; We now have the ability to do auto=
+matic mirroring from git.yoctoproject.org to GitHub.&nbsp;&nbsp; Contact Mi=
+chael if you want this.<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
+span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
+rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
+uot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-The kernel's that we select for release with the fall Yocto project are 
-LTSI kernel versions.
-As such, the LTSI changes are merged into both a standalone branch, and 
-then into
-each and every BSP branch in the kernel. So any of the SRCREVs that you 
-get by default
-for the qemu*  BSPs have the LTSI content integrated and present. For 
-custom BSPs,
-they can branch from standard/base and have that same LTSI content 
-present in their
-build.
-
->
->>> Pointing to a branch in my own git repo that has the patch set pre-applied.
->>> I've got a clone of dizzy. Which I used yocto-bsp create to start my bsp layer.
->>>
->>> But the process stops in do_validate_branches() with the following error log:
->>> ----------------------------------------------------------------------
->>> ----------
->>> DEBUG: Executing shell function do_validate_branches
->>> usage: git cat-file (-t|-s|-e|-p|<type>|--textconv) <object>
->>>      or: git cat-file (--batch|--batch-check) < <list_of_objects>
->>>
->>> <type> can be one of: blob, tree, commit, tag
->>>       -t                    show object type
->>>       -s                    show object size
->>>       -e                    exit with zero when there's no error
->>>       -p                    pretty-print object's content
->>>       --textconv            for blob objects, run textconv on object's content
->>>       --batch[=<format>]    show info and content of objects fed from the standard input
->>>       --batch-check[=<format>]
->>>                             show info about objects fed from the
->>> standard input
->>>
->>> ERROR:  is not a valid commit ID.
->>> ERROR: The kernel source tree may be out of sync
->>> WARNING: exit code 1 from a shell command.
->> Do you have the entire log pastebin'd somewhere ? It would be nice to know if this is the meta, or machine validation that is getting an empty commit.
->>
->>> ERROR: Function failed: do_validate_branches (log file is located at
->>> /opt/git/poky/build/tmp/work/mylayer-poky-linux-gnueabi/linux-yocto-cu
->>> stom/3.14.28+gitAUTOINC+7035c2a67d-r0/temp/log.do_validate_branches.56
->>> 991)
->>> ----------------------------------------------------------------------
->>> ----------
->>>
->>>
->>> The do_validate_branches() code from kernel-yocto.bbclass is as follows...
->>> ----------------------------------------------------------------------
->>> ---------- # Ensure that the branches (BSP and meta) are on the
->>> locations specified by # their SRCREV values. If they are NOT on the
->>> right commits, the branches # are corrected to the proper commit.
->>> do_validate_branches() {
->>>           set +e
->>>           cd ${S}
->>>           export KMETA=${KMETA}
->>>
->>>           machine_branch="${@ get_machine_branch(d, "${KBRANCH}" )}"
->>>
->>>           machine_srcrev="${SRCREV_machine}"
->>>
->>>           # if SRCREV is AUTOREV it shows up as AUTOINC there's nothing to
->>>           # check and we can exit early
->>>           if [ "${machine_srcrev}" = "AUTOINC" ]; then
->>>                   bbnote "SRCREV validation is not required for AUTOREV"
->>>           elif [ "${machine_srcrev}" = "" ] && [ "${SRCREV}" != "AUTOINC" ]; then
->>>                   # SRCREV_machine_<MACHINE> was not set. This means that a custom recipe
->>>                   # that doesn't use the SRCREV_FORMAT "machine_meta" is being built. In
->>>                   # this case, we need to reset to the give SRCREV before heading to patching
->>>                   bbnote "custom recipe is being built, forcing SRCREV to ${SRCREV}"
->>>                   force_srcrev="${SRCREV}"
->>>           else
->>>                   git cat-file -t ${machine_srcrev} > /dev/null
->>>                   if [ $? -ne 0 ]; then
->>>                           bberror "${machine_srcrev} is not a valid commit ID."
->>>                           bbfatal "The kernel source tree may be out of sync"
->>>                   fi
->>>                   force_srcrev=${machine_srcrev}
->>>           fi
->>>
->>>           ## KMETA branch validation.
->>>           target_meta_head="${SRCREV_meta}"
->>>           if [ "${target_meta_head}" = "AUTOINC" ] || [ "${target_meta_head}" = "" ]; then
->>>                   bbnote "SRCREV validation skipped for AUTOREV or empty meta branch"
->>>           else
->>>                   meta_head=`git show-ref -s --heads ${KMETA}`
->>>
->>>                   git cat-file -t ${target_meta_head} > /dev/null
->>>                   if [ $? -ne 0 ]; then
->>>                           bberror "${target_meta_head} is not a valid commit ID"
->>>                           bbfatal "The kernel source tree may be out of sync"
->>>                   fi
->>>                   if [ "$meta_head" != "$target_meta_head" ]; then
->>>                           bbnote "Setting branch ${KMETA} to ${target_meta_head}"
->>>                           git branch -m ${KMETA} ${KMETA}-orig
->>>                           git checkout -q -b ${KMETA} ${target_meta_head}
->>>                           if [ $? -ne 0 ];then
->>>                                   bbfatal "Could not checkout ${KMETA} branch from known hash ${target_meta_head}"
->>>                           fi
->>>                   fi
->>>           fi
->>>
->>>           git checkout -q -f ${machine_branch}
->>>           if [ -n "${force_srcrev}" ]; then
->>>                   # see if the branch we are about to patch has been properly reset to the defined
->>>                   # SRCREV .. if not, we reset it.
->>>                   branch_head=`git rev-parse HEAD`
->>>                   if [ "${force_srcrev}" != "${branch_head}" ]; then
->>>                           current_branch=`git rev-parse --abbrev-ref HEAD`
->>>                           git branch "$current_branch-orig"
->>>                           git reset --hard ${force_srcrev}
->>>                   fi
->>>           fi
->>> }
->>> ----------------------------------------------------------------------
->>> ----------
->>>
->>>
->>> It seems like the problem is...
->>> git cat-file -t ${machine_srcrev}
->>> But ${machine_srcrev} is an empty string when it gets to it.
->>>
->>> My linux-yocto-custom.bb in my bsp is as follows...
->>> ----------------------------------------------------------------------
->>> ----------
->>> inherit kernel
->>> require recipes-kernel/linux/linux-yocto.inc
->>>
->>> SRC_URI = "git://joe_blogs@gitmaster/linux-stable.git;protocol=ssh;bareclone=1;branch=${KBRANCH}"
->>>
->>> SRC_URI += "file://mylayer.scc \
->>>               file://mylayer.cfg \
->>>               file://mylayer-user-config.cfg \
->>>               file://mylayer-user-patches.scc \
->>>              "
->>>
->>> KBRANCH = "v3.14.28-ltsi"
->>>
->>> LINUX_VERSION ?= "3.14.28"
->>> LINUX_VERSION_EXTENSION ?= "-ltsi"
->>>
->>> SRCREV="${AUTOREV}"
->>>
->>> PR = "r0"
->>> PV = "${LINUX_VERSION}+git${SRCPV}"
->>>
->>> COMPATIBLE_MACHINE_mymach = "mymach"
->>>
->>> # prepend to do_configure()
->>> # makes a link from the defconfig that is going to be used by #
->>> kernel_do_configure() to the defconfig we have set up in kernel souce
->>> do_configure_prepend () {
->>>           ln -sf "${WORKDIR}/linux-stable/arch/arm/configs/myconfig_defconfig" "${WORKDIR}/defconfig"
->>> }
->>> ----------------------------------------------------------------------
->>> ----------
->>>
->>>
->>> My thoughts are that ${machine_srcrev}, should be ${SRCREV_machine}, which should be "AUTOINC".
->>> Rather than the empty string it is evaluating as.
->>> Because of the SRCREV="${AUTOREV}" line in my bsp layer linux-yocto-custom.bb.
->>>
->>> Replacing a line in the kernel-yocto.bbclass as follows... (please excuse my self-created pseudo-diff, I'm in a rush)
->>> -    machine_srcrev="${SRCREV_machine}"
->>> +    machine_srcrev="${@ get_machine_branch(d, "${SRCREV}" )}"
->>>
->>> Seems make it resolve as "AUTOINC" and fix the problem.
->>> But I would have thought that ${SRCREV_machine} should be resolving as my machine branch ${SRCREV} anyway.
->>> So really this change shouldn't have done anything.
->>>
->>> So I guess what I'm wondering is, what am I missing about how and where "${SRCREV_machine}" is set and how it resolves?
->> You just need to set SRCREV_machine=" <your commit hash> " and things should work. It's a variable like any other, and is triggered for use by the SRCREV_format variable you'll see in the linux-yocto includes (and that sets it to meta_machine), which indicates that both a _machine and _meta SRCREV are used for the recipes.
-> Yeah, it works when I set SRCREV, or SRCREV_machine for that matter, to a commit hash in my linux-yocto-custom.bb but then I'm going to have to update this every time my custom branch progresses in the future.
-> I would have hoped setting SRCREV="${AUTOREV}" in my layer would result in SRCREV_machine being set correctly to "AUTOINC", straight out of the box so to speak, but it seems to not have been or not be resolving.
-
-That's how I typically work as well, for non developer builds AUTOREV is 
-considered
-evil, since you don't have a consistent or repeatable build, so a 
-defined SRCREV is
-normally something that is set when you are locking down a build for a 
-release, or
-some other similar milestone.
-
-> Adding SRCREV_machine="${AUTOREV}" to my layer's .bb, as you suggest later, does fix the problem as would be expected.
->
->> The reason that SRCREV is checked in those routines, is for compatibility with recipes that don't use the same format, or existing recipes that only set SRCREV .. and it's a game or corner cases (which was streamlined a bit more in the
->> 1.8 release).
->>
->> But in both of the validation cases, you should either be hitting this condition for the machine branch:
->>
->> elif [ "${machine_srcrev}" = "" ] && [ "${SRCREV}" != "AUTOINC" ]; then
->>
-> Interesting because when I get to this point ${machine_srcrev} was "" and ${SRCREV} is "AUTOINC". Which causes this block to not be entered due to the != clause. Interesting anyway, I won't claim to understand the finer points of the SRCREV_format stuff you've discussed.
->
->> and for meta:
->>
->> if [ "${target_meta_head}" = "AUTOINC" ] || [ "${target_meta_head}" = ""
->> ]; then
->>
-> It didn't get to this as before this it tried to use the empty ${machine_srcrev} with a git command.
->
->> In both cases, they'll skip validation and not try to cat that empty revision, but looking at it more closely .. I can see that it might just be falling into the third part of the test and going after the empty commit .. another path through the maze!
->>
-> Yes, a maze indeed. Seems that what gets created for a custom linux build by yocto-bsp create, for dizzy at least, has some cracks in the walls where things can fall through.
->
->> Short-term, just set SRCREV_machine, or pick a fixed revision for your SRCREV and you should pass the test.
-> Thanks for your help. As mentioned above setting SRCREV_machine="${AUTOREV}" in my layer .bb fixed the problem. As least this way I don't need to edit the .bbclass.
-
-Great.
-
->
-> So from what you're saying it seems like my original work around in the .bbclass of...
-> -    machine_srcrev="${SRCREV_machine}"
-> +    machine_srcrev="${@ get_machine_branch(d, "${SRCREV}" )}"
-> To get it to retrieve the machine branch SRCREV, which seems to not have been set at this point. Was pretty close to a good fix. Particularly when I look at the line above where it gets the machine branch ${KBRANCH} in the same way.
->
-> I've not looked at whether this corner case slips through the cracks since this stuff was reworked. Perhaps I should.
-
-I did peek, and I kept those pretty consistent, so the new code would 
-probably
-have let it through as well.
-
-I'll adjust the statements here and send out a fix, but I wanted to make 
-sure
-you were up and running first.
-
-Cheers,
-
-Bruce
-
->
-> Clayton
->
->> Bruce
->>
->>> Any help or comments would be appreciated.
->>>
->>> Cheers,
->>> Clayton Mills
->>>
-> ________________________________
->
-> This e-mail contains privileged and confidential information intended for the use of the addressees named above. If you are not the intended recipient of this e-mail, you are hereby notified that you must not disseminate, copy or take any action in respect of any information contained in it. If you have received this e-mail in error, please notify the sender immediately by e-mail and immediately destroy this e-mail and its attachments.
-
-
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5547EE1Dfmsmsx111amrcor_--
