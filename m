@@ -1,52 +1,37 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 105B6E00949; Tue, 21 Apr 2015 23:55:56 -0700 (PDT)
+	id 99BC3E00949; Wed, 22 Apr 2015 01:10:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.174 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f174.google.com (mail-ig0-f174.google.com
-	[209.85.213.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD656E003A8
-	for <yocto@yoctoproject.org>; Tue, 21 Apr 2015 23:55:53 -0700 (PDT)
-Received: by igblo3 with SMTP id lo3so34388841igb.0
-	for <yocto@yoctoproject.org>; Tue, 21 Apr 2015 23:55:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=dpHTWJYeeiaZVjw668PUCkL5a+tvOzpAoTomAlKNr/o=;
-	b=O5fG+tCy3NCK12RZIYn5rnO/lyWyPssVXs9sSR8nVLJQl/Ugr04OAViBUqIlOP1unT
-	pFSBjykgS3WB8CTXirpDduGEo6zmdMQ/BxiuHimN2vNWwJTfGwq1EQMfboY7DpcBVIeC
-	fLofaJHLz4RO6IjdVnswvm4+7tdAAY+YmC+ccZ/Op5QyaZC06+MBGxdWrR77yqvWj22c
-	v8Z3aw9RYlwnK0MRxRgUo1Hf1wJNMAjjKhEzDA+czXjK90EHyYDjQoJ7bSnZ8WnSISK7
-	D5FIU9Wkilw3Ku/BqCBstiEW+/6t/PW+WfuNQqv+zx5aPsFhYYUWR37qVrw0t0HLsaJk
-	4klg==
-X-Received: by 10.50.117.4 with SMTP id ka4mr2411794igb.10.1429685752386; Tue,
-	21 Apr 2015 23:55:52 -0700 (PDT)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8550E003A8
+	for <yocto@yoctoproject.org>; Wed, 22 Apr 2015 01:10:39 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga103.fm.intel.com with ESMTP; 22 Apr 2015 01:10:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,622,1422950400"; d="scan'208";a="559901860"
+Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com) ([10.252.14.70])
+	by orsmga003.jf.intel.com with ESMTP; 22 Apr 2015 01:10:39 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Chris Morgan <chmorgan@gmail.com>
+Date: Wed, 22 Apr 2015 09:10:37 +0100
+Message-ID: <1758688.vCBBUn3nR9@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.4 (Linux/3.18.9-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
+In-Reply-To: <E6ED90C4-6C3F-4D28-8F62-69B4E1637BE7@gmail.com>
+References: <CAAPegz2tNVr3PdWjs_KWb4p9V2Kdq+42LCtYpT3njU3C7Y57=A@mail.gmail.com>
+	<E6ED90C4-6C3F-4D28-8F62-69B4E1637BE7@gmail.com>
 MIME-Version: 1.0
-Received: by 10.50.117.7 with HTTP; Tue, 21 Apr 2015 23:55:21 -0700 (PDT)
-In-Reply-To: <CAJT9KcipnZ-caZCzUVEwFDiC3eQWWXDSgbAK3RQ0w9zAwRy_mQ@mail.gmail.com>
-References: <CAJT9KcipnZ-caZCzUVEwFDiC3eQWWXDSgbAK3RQ0w9zAwRy_mQ@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 21 Apr 2015 23:55:21 -0700
-Message-ID: <CAMKF1sobOeuar4fKLQk4zmLWO5-WD-k=pH3zSAFAYi-oDJ84Gg@mail.gmail.com>
-To: waqas shafique <m.waqas.shafique@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to add a library header file in yocto project
+Cc: yocto@yoctoproject.org
+Subject: Re: extrausers working from image file .bb but not from .bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,40 +43,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Apr 2015 06:55:56 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 22 Apr 2015 08:10:41 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Waqas
+On Tuesday 21 April 2015 18:54:29 Khem Raj wrote:
+> Hi Chris
+> 
+> > On Apr 21, 2015, at 6:27 PM, Chris Morgan <chmorgan@gmail.com> wrote:
+> > 
+> > Hello.
+> > 
+> > Based on
+> > http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#ref-c
+> > lasses-extrausers and the .bbclass file I've added this to a .bbappend,
+> > pulseaudio_%.bbappend actually so root user can use pactl when
+> > pulseaudio is running in system mode:
+> > 
+> > inherit extrausers
+> > EXTRA_USERS_PARAMS = "\
+> > 
+> >        usermod -a -G audio root \
+> > 
+> > "
+> > 
+> > 
+> > From the .bbappend this isn't working. If instead I add it to our
+> > custom image file recipe (image-blah.bb) it does work.
+> 
+> its a image level config so thats right behavior.
+> 
+> > I'm not sure how to debug or why it isn't working from the .bbappend.
+> > Thoughts?
+> > 
+> > 
+> > 
+> > Also, the documentation in the .bbclass seems out of date but wanted to
+> > confirm:
+> > 
+> > http://git.yoctoproject.org/cgit.cgi/poky/plain/meta/classes/extrausers.bb
+> > class
+> > 
+> > shows:
+> > 
+> > Below is an example showing how to use this functionality.
+> > # INHERIT += "extrausers"
+> > # EXTRA_USERS_PARAMS = "\
+> > # useradd -p '' tester; \
+> > # groupadd developers; \
+> > # userdel nobody; \
+> > # groupdel -g video; \
+> > # groupmod -g 1020 developers; \
+> > # usermod -s /bin/sh tester; \
+> > # "
+> > 
+> > This INHERIT vs. inherit seems like it could be something that changed
+> > in bitbake in the past but was left over in the .bbclass.
+> 
+> its correct because its assuming you are adding it to config metadata and
+> not recipe metadata may be location is not right. Send a patch
 
-On Tue, Apr 21, 2015 at 11:34 PM, waqas shafique
-<m.waqas.shafique@gmail.com> wrote:
-> I'm trying to write a code using BlueZ API and Yocto , one C function I'm
-> using has deceleration defined in hci_lib.h which is located at
->
-> /poky/build/tmp/work/armv5te-poky-linux-gnueabi/bluez4/4.101-r5/bluez-4.101/lib
->
-> Can you tell me how can I include this header file in my Yocto project
-> recipe ?
+It should work either in the image recipe (with inherit) or at the 
+configuration level (with INHERIT +=), but I agree extrausers not intended to 
+work from individual recipes, we have useradd for that.
 
-If bluez is not exporting this header as part of its APIs meaning make
-install is not installing it into staging
-then they dont want you to use this function. So please take it up
-with bluez community if its appropriate
-to use this header files and functions inside it. If its supposed to
-be exported APIs then there is a bug
-in bluez component build system. Either way they should be able to tell you.
+Cheers,
+Paul
 
->
-> My build process is not looking at above location and gives me undefined
-> reference error.
->
-> Regards
-> Waqas
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
