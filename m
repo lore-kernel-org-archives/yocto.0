@@ -1,38 +1,53 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <chmorgan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9D1A0E00949; Wed, 22 Apr 2015 02:18:19 -0700 (PDT)
+	id 080D1E00954; Wed, 22 Apr 2015 03:58:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (chmorgan[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.43 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71EDEE003A8
-	for <yocto@yoctoproject.org>; Wed, 22 Apr 2015 02:18:13 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga102.fm.intel.com with ESMTP; 22 Apr 2015 02:18:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.11,623,1422950400"; d="scan'208";a="559930435"
-Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com) ([10.252.14.70])
-	by orsmga003.jf.intel.com with ESMTP; 22 Apr 2015 02:18:12 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Marcin =?utf-8?B?S3J6ZW1pxYRza2k=?= <mar.krzeminski@gmail.com>
-Date: Wed, 22 Apr 2015 10:18:11 +0100
-Message-ID: <1429696603.5MBSuQBYAq@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.4 (Linux/3.18.9-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
-In-Reply-To: <CABc_YGB+jjqmL7wJpXL844DWDQHALsmJhKvo05=ciDp2zPuNJA@mail.gmail.com>
-References: <CABc_YGBZjNwcPoSwBnPKqoVqoq3iZuf-WVeDLnHL2bEVkjjpRQ@mail.gmail.com>
-	<1877075.AIEOl3otnI@peggleto-mobl.ger.corp.intel.com>
-	<CABc_YGB+jjqmL7wJpXL844DWDQHALsmJhKvo05=ciDp2zPuNJA@mail.gmail.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f43.google.com (mail-pa0-f43.google.com
+	[209.85.220.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0DBFE003A8
+	for <yocto@yoctoproject.org>; Wed, 22 Apr 2015 03:58:17 -0700 (PDT)
+Received: by pacyx8 with SMTP id yx8so269711168pac.1
+	for <yocto@yoctoproject.org>; Wed, 22 Apr 2015 03:58:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=9TGFxbpYkqvYN1w+2AnyB9FY4fF62+ihhDOjNcsbFbg=;
+	b=Q2OFCg6C+4Yq3RQFbsDsyN3lzGPMzbjEjzcnc6XqVrM4Qoh3iIlFWMLA69TmMOX2mU
+	E1p7y/B/kS4ymi2ejq0wlyQmbGTK86+I9fq6GfNGm4OdYDiHpvdlhgME5SAaXSsB5HdU
+	BdszBnIWQzHLw3u/EjHQU5NLeVFlqsXMPKhNF22sbAiR2J0uE8i2AR/VB6YGp7KQAMIL
+	TxvqbVdYq9838IG1OLiV5qNf7jJ+PyZgXGJ6us2q6sBl1dEhDrZDyTE6FEgSO+BH74Tv
+	NFF94LzvuteB6RwcV7u86OeyhhkLpQ15xYqK21RyU2FLhwsam0ifJMLCj5uttY+5wHRs
+	l/nQ==
+X-Received: by 10.70.44.100 with SMTP id d4mr45963316pdm.36.1429700297317;
+	Wed, 22 Apr 2015 03:58:17 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Initramfs image name (INITRAMFS_IMAGE)
+Received: by 10.70.114.166 with HTTP; Wed, 22 Apr 2015 03:57:56 -0700 (PDT)
+In-Reply-To: <E6ED90C4-6C3F-4D28-8F62-69B4E1637BE7@gmail.com>
+References: <CAAPegz2tNVr3PdWjs_KWb4p9V2Kdq+42LCtYpT3njU3C7Y57=A@mail.gmail.com>
+	<E6ED90C4-6C3F-4D28-8F62-69B4E1637BE7@gmail.com>
+From: Chris Morgan <chmorgan@gmail.com>
+Date: Wed, 22 Apr 2015 06:57:56 -0400
+Message-ID: <CAAPegz171hRLb+cQo6L70U2S6x_cVOVEc9aPCBPJk5KWvDs+Fg@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: extrausers working from image file .bb but not from .bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,65 +59,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Apr 2015 09:18:19 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Wed, 22 Apr 2015 10:58:21 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Wednesday 22 April 2015 11:07:43 Marcin Krzemi=C5=84ski wrote:
-> 2015-04-21 15:20 GMT+02:00 Paul Eggleton <paul.eggleton@linux.intel.c=
-om>:
-> > On Tuesday 21 April 2015 08:54:49 Marcin Krzemi=C5=84ski wrote:
-> > > I want to set my initramfs image name in my image recipe.
-> > > In local.conf I've set:
-> > >=20
-> > > INITRAMFS_IMAGE_BUNDLE=3D"1"
-> > >=20
-> > > In my image recipe I am setting image name:
-> > >=20
-> > > INITRAMFS_IMAGE =3D "myimage-image-minimal"
-> > >=20
-> > > Unfortunately when kernel recipe is parsed INITRAMFS_IMAGE variab=
-le i
-> >=20
-> > empty.
-> >=20
-> > > running bitbake -e tells that this variable is properly set.
-> > > I think because image recipe is parsed at the very end kernel rec=
-ipe can
-> > > not see it.
-> > > I tried to use export INITRAMFS_IMAGE (like in example) but this =
-also
-> > > not
-> > > working.
-> > > Is the any way that I can do this?
-> >=20
-> > In general, one recipe cannot set a variable such that it is seen f=
-rom
-> > another recipe, our system doesn't work that way. You need to set i=
-t at
-> > the configuration level - local.conf, or more appropriately a custo=
-m distro
-> > config file.
+On Tue, Apr 21, 2015 at 9:54 PM, Khem Raj <raj.khem@gmail.com> wrote:
+> Hi Chris
 >
-> In such below sentence from local.conf.sample is wrong or I missing
-> something here?
->=20
-> *# NOTE: You can set INITRAMFS_IMAGE in an image recipe, but*
-> *#       INITRAMFS_IMAGE_BUNDLE can only be set in a conf file.*
+>> On Apr 21, 2015, at 6:27 PM, Chris Morgan <chmorgan@gmail.com> wrote:
+>>
+>> Hello.
+>>
+>> Based on http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#ref-classes-extrausers
+>> and the .bbclass file I've added this to a .bbappend,
+>> pulseaudio_%.bbappend actually so root user can use pactl when
+>> pulseaudio is running in system mode:
+>>
+>> inherit extrausers
+>> EXTRA_USERS_PARAMS = "\
+>>        usermod -a -G audio root \
+>> "
+>>
+>>
+>> From the .bbappend this isn't working. If instead I add it to our
+>> custom image file recipe (image-blah.bb) it does work.
+>
+> its a image level config so thats right behavior.
+>
+>>
+>> I'm not sure how to debug or why it isn't working from the .bbappend. Thoughts?
+>>
+>>
+>>
+>> Also, the documentation in the .bbclass seems out of date but wanted to confirm:
+>>
+>> http://git.yoctoproject.org/cgit.cgi/poky/plain/meta/classes/extrausers.bbclass
+>>
+>> shows:
+>>
+>> Below is an example showing how to use this functionality.
+>> # INHERIT += "extrausers"
+>> # EXTRA_USERS_PARAMS = "\
+>> # useradd -p '' tester; \
+>> # groupadd developers; \
+>> # userdel nobody; \
+>> # groupdel -g video; \
+>> # groupmod -g 1020 developers; \
+>> # usermod -s /bin/sh tester; \
+>> # "
+>>
+>> This INHERIT vs. inherit seems like it could be something that changed
+>> in bitbake in the past but was left over in the .bbclass.
+>
+> its correct because its assuming you are adding it to config metadata and not recipe metadata
+> may be location is not right. Send a patch
+>
 
-It would seem that this is no longer correct - perhaps it was true in a=
-n older=20
-version. kernel.bbclass (which is inherited by all kernel recipes) read=
-s both=20
-of these variables, so they do both need to be set at the configuration=
- level.=20
-We should update the comment.
-
-Cheers,
-Paul
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Hmm. Not sure I see anything incorrect at this point, given that I was
+using it incorrectly...
 
