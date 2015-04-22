@@ -1,65 +1,37 @@
-Return-Path: <briank@RUSSOUND.COM>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D8C15E009AA; Wed, 22 Apr 2015 13:51:15 -0700 (PDT)
+	id 6FA60E00994; Wed, 22 Apr 2015 16:22:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [157.56.111.132 listed in list.dnswl.org]
-X-Greylist: delayed 18178 seconds by postgrey-1.32 at yocto-www;
-	Wed, 22 Apr 2015 13:51:11 PDT
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1bon0132.outbound.protection.outlook.com [157.56.111.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFDC4E00994
-	for <yocto@yoctoproject.org>; Wed, 22 Apr 2015 13:51:11 -0700 (PDT)
-Received: from BLUPR0501MB1028.namprd05.prod.outlook.com (25.160.35.139) by
-	BLUPR0501MB1027.namprd05.prod.outlook.com (25.160.34.141) with
-	Microsoft SMTP
-	Server (TLS) id 15.1.136.25; Wed, 22 Apr 2015 20:51:09 +0000
-Received: from BLUPR0501MB1028.namprd05.prod.outlook.com ([25.160.35.139]) by
-	BLUPR0501MB1028.namprd05.prod.outlook.com ([25.160.35.139]) with
-	mapi id 15.01.0136.026; Wed, 22 Apr 2015 20:51:09 +0000
-From: Brian Karcz <briank@RUSSOUND.COM>
-To: "'Paul Eggleton (paul.eggleton@linux.intel.com)'"
-	<paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] creating images which include actively developed
-	applications
-Thread-Index: AdB9C6Xg2AUJ1s8lR+6w/hRPMmncvQAGkYYAAAR1gvA=
-Date: Wed, 22 Apr 2015 20:51:08 +0000
-Message-ID: <BLUPR0501MB102866C5EB58E5A59367E3D8BFEE0@BLUPR0501MB1028.namprd05.prod.outlook.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6644AE00994
+	for <yocto@yoctoproject.org>; Wed, 22 Apr 2015 16:22:26 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga102.fm.intel.com with ESMTP; 22 Apr 2015 16:22:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,626,1422950400"; d="scan'208";a="717765052"
+Received: from dkenned1-mobl1.ger.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.5.70])
+	by orsmga002.jf.intel.com with ESMTP; 22 Apr 2015 16:22:26 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Brian Karcz <briank@russound.com>
+Date: Thu, 23 Apr 2015 00:22:23 +0100
+Message-ID: <1508758.Rhv2PmRKWu@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.4 (Linux/3.18.9-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
+In-Reply-To: <BLUPR0501MB102866C5EB58E5A59367E3D8BFEE0@BLUPR0501MB1028.namprd05.prod.outlook.com>
 References: <BLUPR0501MB1028D6037F60D05E868A5F15BFEE0@BLUPR0501MB1028.namprd05.prod.outlook.com>
 	<1674505.cjWkHk81xC@peggleto-mobl.ger.corp.intel.com>
-In-Reply-To: <1674505.cjWkHk81xC@peggleto-mobl.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linux.intel.com; dkim=none (message not signed)
-	header.d=none;
-x-originating-ip: [64.223.142.66]
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BLUPR0501MB1027;
-x-forefront-antispam-report: BMV:1; SFV:NSPM;
-	SFS:(10019020)(6009001)(164054003)(52604005)(377454003)(13464003)(51704005)(24454002)(87936001)(2656002)(33656002)(62966003)(110136001)(54356999)(76176999)(102836002)(15975445007)(86362001)(50986999)(77156002)(74316001)(76576001)(99286002)(46102003)(122556002)(2950100001)(40100003)(19580405001)(19580395003)(2900100001)(92566002)(66066001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BLUPR0501MB1027;
-	H:BLUPR0501MB1028.namprd05.prod.outlook.com; FPR:; SPF:None;
-	MLV:sfv; LANG:en; 
-x-microsoft-antispam-prvs: <BLUPR0501MB10278CCAFC66BD58E39ADE8EBFEE0@BLUPR0501MB1027.namprd05.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(5002010)(5005006); SRVR:BLUPR0501MB1027; BCL:0;
-	PCL:0; RULEID:; SRVR:BLUPR0501MB1027; 
-x-forefront-prvs: 0554B1F54F
+	<BLUPR0501MB102866C5EB58E5A59367E3D8BFEE0@BLUPR0501MB1028.namprd05.prod.outlook.com>
 MIME-Version: 1.0
-X-OriginatorOrg: russound.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Apr 2015 20:51:08.5899 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0a73fa72-2b76-4a4d-8e8c-f8bb38fc0fb6
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BLUPR0501MB1027
 Cc: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
 Subject: Re: creating images which include actively developed applications
 X-BeenThere: yocto@yoctoproject.org
@@ -73,88 +45,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Apr 2015 20:51:15 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 22 Apr 2015 23:22:28 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Paul,
+On Wednesday 22 April 2015 20:51:08 Brian Karcz wrote:
+> Thanks for pointing me to that. It sounds like exactly what I need. I can't
+> believe that I've not come across that in my searches. I suppose its a
+> matter of using the right search criteria.
 
-Thanks for pointing me to that. It sounds like exactly what I need. I can't=
- believe that I've not come across that in my searches. I suppose its a mat=
-ter of using the right search criteria.
+So I do want to mention one thing - we envisaged externalsrc more for 
+situations where you temporarily want to build from an external source tree 
+(for example, when you're in the middle of development). The expectation is 
+that when you reach production you switch over to a standard repository 
+specified in SRC_URI. Having said that there aren't any actual barriers to 
+using it on a more permanent basis as it sounds like you may  be considering 
+(although perhaps I've misunderstood.)
 
-It looks like I can add those lines to either local.conf or the package rec=
-ipe. Once I do that I have a couple question on how it works:
+> It looks like I can add those lines to either local.conf or the package
+> recipe. Once I do that I have a couple question on how it works:
+> 
+> 1) does the version of the recipe become moot? Does it still need dummy
+> versions in PV and PR to be valid? 
 
-1) does the version of the recipe become moot? Does it still need dummy ver=
-sions in PV and PR to be valid?
-2) can the SRC_URI now be omitted in the recipe since there is nothing to f=
-etch?
-3) can the "S" variable be used to drive into the source tree to find the a=
-pplications top level makefile or should I just point the EXTERNALSRC varia=
-ble right there and it will be fine navigating above that base?
-4) can the recipe still inherit autotools to perform the build on the exter=
-nal source directory?
+There isn't a requirement for PR/PV to be set whether you use externalsrc or 
+not - if you don't specify these there are defaults. PV is typically specified 
+through the file name (after the underscore) and PR generally doesn't need to 
+be set or incremented manually these days with the advent of the PR service.
 
-I'm now envisioning a package recipe that looks something like:
+> 2) can the SRC_URI now be omitted in the recipe since there is nothing to
+> fetch? 
 
-PV =3D "1.0"
-PR =3D "r1"
-DESCRIPTION =3D "abc package located outside build tree"
-INHERIT +=3D "externalsrc"
-EXTERNALSRC_abc =3D "../../../../../abc"
-S =3D "../../../../../abc/apps/build"
-inherit autotools
+You can leave it completely blank if you wish. In dizzy and earlier, SRC_URI 
+is effectively ignored with externalsrc. In master and the just-released fido 
+release, any local file:// references will still be fetched if present, remote 
+URIs will be ignored.
 
-Its propably unlikely, since this lends itself to being very custom, but do=
- you know of any examples of a recipe implementation that use this mechanis=
-m?
+> 3) can the "S" variable be used to drive into the source tree to find the
+> applications top level makefile or should I just point the EXTERNALSRC
+> variable right there and it will be fine navigating above that base? 4) can
+> the recipe still inherit autotools to perform the build on the external
+> source directory?
 
-Thanks,
-Brian
+S is no longer used when externalsrc is enabled for a recipe; EXTERNALSRC 
+should point to the base of where the source is (i.e. where S might have 
+pointed to in the unpacked source tree  were you not using externalsrc).
+ 
+> I'm now envisioning a package recipe that looks something like:
+> 
+> PV = "1.0"
+> PR = "r1"
 
------Original Message-----
-From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]=20
-Sent: Wednesday, April 22, 2015 1:58 PM
-To: Brian Karcz
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] creating images which include actively developed appli=
-cations
+You shouldn't need these.
 
-Hi Brian,
+> DESCRIPTION = "abc package located outside build tree"
+> INHERIT += "externalsrc"
 
-On Wednesday 22 April 2015 15:32:06 Brian Karcz wrote:
-> I'm attempting to create a recipe for some custom applications that we=20
-> want to include in our target image. The applications are actively=20
-> developed and it's often desired to generate images without versioning=20
-> the application code. It's also desired to be able to work in a source=20
-> tree that is external to the build tree. I'm trying to determine if=20
-> Yocto has a mechanism similar to the "source directory override" in=20
-> Buildroot that allows you to point a package/recipe at an external=20
-> directory to locate the source code.
->
-> We have been using Poky for a couple years, but so far, have had to=20
-> build the applications externally and use some magic in the image=20
-> recipes to bring in the pre-built executables explicitly. We=20
-> accomplished this by using some relative pathing in the SRC_URI and=20
-> then placing the files in the rootfs by adding some commands to the image=
- preprocess command.
->=20
-> Is there a way to create a recipe to build actively developed code=20
-> located in an external source directory? Basically skip the fetch and=20
-> unpack steps and always execute the compile and populate steps each=20
-> time and image is built?
+INHERIT += is for conf files, in a recipe you need to use inherit instead.
 
-Indeed there is:
+> EXTERNALSRC_abc = "../../../../../abc"
 
-http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#buildin=
-g-software-from-an-external-source
+I don't think a relative path will work, or at least if by some chance it does 
+work I would still advise using an absolute path.
+
+You don't need an override (_abc) here - well, unless your recipe uses 
+BBCLASSEXTEND and you only want to apply to one of the variants, that is. 
+There's one given in the example in the manual because there it is talking 
+about setting it from a conf file rather than within the recipe, thus you need 
+to set an override to make it applicable only to the desired recipe.
+
+> S = "../../../../../abc/apps/build"
+
+You can drop S.
+
+> inherit autotools
+> 
+> Its propably unlikely, since this lends itself to being very custom, but do
+> you know of any examples of a recipe implementation that use this
+> mechanism?
+
+No, there won't be any I'm afraid as typically this is used as a temporary 
+measure.
 
 Cheers,
 Paul
 
---=20
+-- 
 
 Paul Eggleton
 Intel Open Source Technology Centre
