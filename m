@@ -1,36 +1,35 @@
-Return-Path: <Dmitry_Eremin@mentor.com>
+Return-Path: <Yi.Zhao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D20A0E009F6; Fri, 24 Apr 2015 13:29:49 -0700 (PDT)
+	id 4015FE009C8; Sun, 26 Apr 2015 23:31:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [192.94.38.131 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CA7FE0094C
-	for <yocto@yoctoproject.org>; Fri, 24 Apr 2015 13:29:37 -0700 (PDT)
-Received: from nat-ies.mentorg.com ([192.94.31.2]
-	helo=SVR-IES-FEM-01.mgc.mentorg.com)
-	by relay1.mentorg.com with esmtp 
-	id 1YlkEC-0004Fb-W3 from Dmitry_Eremin@mentor.com 
-	for yocto@yoctoproject.org; Fri, 24 Apr 2015 13:29:37 -0700
-Received: from fangorn.rup.mentorg.com (137.202.0.76) by
-	SVR-IES-FEM-01.mgc.mentorg.com (137.202.0.104) with Microsoft SMTP
-	Server (TLS) id 14.3.224.2; Fri, 24 Apr 2015 21:29:35 +0100
-From: Dmitry Eremin-Solenikov <dmitry_eremin@mentor.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DEA0E009C8;
+	Sun, 26 Apr 2015 23:31:43 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.9/8.14.9) with ESMTP id t3R6Vfok011038
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 26 Apr 2015 23:31:42 -0700 (PDT)
+Received: from localhost (128.224.163.137) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.224.2;
+	Sun, 26 Apr 2015 23:31:41 -0700
+From: Yi Zhao <yi.zhao@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Fri, 24 Apr 2015 23:29:29 +0300
-Message-ID: <1429907371-14096-7-git-send-email-dmitry_eremin@mentor.com>
-X-Mailer: git-send-email 2.1.4
-In-Reply-To: <1429907371-14096-1-git-send-email-dmitry_eremin@mentor.com>
-References: <1429907371-14096-1-git-send-email-dmitry_eremin@mentor.com>
+Date: Mon, 27 Apr 2015 14:31:39 +0800
+Message-ID: <1430116299-8880-1-git-send-email-yi.zhao@windriver.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [meta-cgl][PATCH 7/9] openais: make openais script use sh instead of bash
+X-Originating-IP: [128.224.163.137]
+Subject: [yocto-autobuilder][PATCH] SendErrorReport.py: fix two issues
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,50 +41,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Apr 2015 20:29:49 -0000
+X-List-Received-Date: Mon, 27 Apr 2015 06:31:45 -0000
 Content-Type: text/plain
 
-There is no point in using bash for the openais script, if just sh is
-enough. In addition this fixes the following QA warning:
+Remove undefined $x in command.
+Add a missing blank for the -l flag.
 
-openais-1.1.3: /etc/init.d/openais_openais contained in package openais requires /bin/bash, but no providers found in its RDEPENDS [file-rdeps]
-
-Signed-off-by: Dmitry Eremin-Solenikov <dmitry_eremin@mentor.com>
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 ---
- .../recipes-cgl/openais/files/openais-fix-bash.patch           | 10 ++++++++++
- meta-cgl-common/recipes-cgl/openais/openais_1.1.3.bb           |  1 +
- 2 files changed, 11 insertions(+)
- create mode 100644 meta-cgl-common/recipes-cgl/openais/files/openais-fix-bash.patch
+ .../autobuilder/buildsteps/SendErrorReport.py      |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-cgl-common/recipes-cgl/openais/files/openais-fix-bash.patch b/meta-cgl-common/recipes-cgl/openais/files/openais-fix-bash.patch
-new file mode 100644
-index 0000000..ede77e8
---- /dev/null
-+++ b/meta-cgl-common/recipes-cgl/openais/files/openais-fix-bash.patch
-@@ -0,0 +1,10 @@
-+Index: openais-1.1.3/init/generic.in
-+===================================================================
-+--- openais-1.1.3.orig/init/generic.in
-++++ openais-1.1.3/init/generic.in
-+@@ -1,4 +1,4 @@
-+-#!/bin/bash
-++#!/bin/sh
-+ 
-+ # Authors:
-+ #  Andrew Beekhof <abeekhof@redhat.com>
-diff --git a/meta-cgl-common/recipes-cgl/openais/openais_1.1.3.bb b/meta-cgl-common/recipes-cgl/openais/openais_1.1.3.bb
-index 2a03b9a..f4563c9 100644
---- a/meta-cgl-common/recipes-cgl/openais/openais_1.1.3.bb
-+++ b/meta-cgl-common/recipes-cgl/openais/openais_1.1.3.bb
-@@ -9,6 +9,7 @@ SRC_URI = " \
- 	ftp://ftp@tux.rainside.sk/gentoo/distfiles/openais-${PV}.tar.gz \
- 	file://fix-lcrso-linkage.patch \
-     file://build-cleanup-configure-ac.patch \
-+    file://openais-fix-bash.patch \
- 	"
- SRC_URI[md5sum] = "13d8d590f806fb396d750b086c6c0b78"
- SRC_URI[sha256sum] = "eeef58dd2df3eb16ba68b3fbdc6f0d4dfb537443f1c091ec6f0431594f2f00b6"
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/SendErrorReport.py b/lib/python2.7/site-packages/autobuilder/buildsteps/SendErrorReport.py
+index 34bb02a..2d5f32b 100644
+--- a/lib/python2.7/site-packages/autobuilder/buildsteps/SendErrorReport.py
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/SendErrorReport.py
+@@ -42,7 +42,7 @@ class SendErrorReport(ShellCommand):
+         else:
+             if str(os.environ.get('ERROR_REPORT_COLLECT')) == "True":
+                 self.command = "if [ ! -f ~/.oe-send-error ]; then host=`hostname`; echo \"yocto-autobuilder-autogenerated-$host\" > ~/.oe-send-error; fi ; "
+-                self.command += ". ./oe-init-build-env; if [ -d " + self.errordir +"/$x" + " ]; then for x in `ls " + self.errordir + " | grep error_report_`;"
++                self.command += ". ./oe-init-build-env; if [ -d " + self.errordir + " ]; then for x in `ls " + self.errordir + " | grep error_report_`;"
+                 if int(self.layerversion_core) == 4:
+                     if os.environ.get('ERROR_REPORT_SERVER') is not None:
+                         self.er_server = str(os.environ.get('ERROR_REPORT_SERVER'))
+@@ -51,7 +51,7 @@ class SendErrorReport(ShellCommand):
+                     self.command += "do send-error-report " + self.errordir +"/$x"+ self.er_server + "; done; fi"
+                 elif int(self.layerversion_core) == 5:
+                     master = self.build.builder.botmaster.parent
+-                    self.er_link = " -l" + master.status.getURLForBuild(self.buildername, self.buildnumber)
++                    self.er_link = " -l " + master.status.getURLForBuild(self.buildername, self.buildnumber)
+                     if os.environ.get('ERROR_REPORT_SERVER') is not None:
+                         self.er_server = " -s " + str(os.environ.get('ERROR_REPORT_SERVER'))
+                     else:
 -- 
-2.1.4
+1.7.9.5
 
 
