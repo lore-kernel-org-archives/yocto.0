@@ -1,44 +1,37 @@
-Return-Path: <wouter.van.rooy@axon.tv>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F226EE00960; Tue, 28 Apr 2015 00:48:49 -0700 (PDT)
+	id D2B77E00960; Tue, 28 Apr 2015 01:30:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [173.203.187.86 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp86.iad3a.emailsrvr.com (smtp86.iad3a.emailsrvr.com
-	[173.203.187.86])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5F06E0086D
-	for <yocto@yoctoproject.org>; Tue, 28 Apr 2015 00:48:46 -0700 (PDT)
-Received: from smtp11.relay.iad3a.emailsrvr.com (localhost.localdomain
-	[127.0.0.1])
-	by smtp11.relay.iad3a.emailsrvr.com (SMTP Server) with ESMTP id
-	A65AF10029D; Tue, 28 Apr 2015 03:48:45 -0400 (EDT)
-Received: by smtp11.relay.iad3a.emailsrvr.com (Authenticated sender:
-	wouter.van.rooy-AT-axon.tv) with ESMTPSA id 35F3A100289; 
-	Tue, 28 Apr 2015 03:48:45 -0400 (EDT)
-X-Sender-Id: wouter.van.rooy@axon.tv
-Received: from [10.4.8.34] ([UNAVAILABLE]. [83.137.143.222])
-	(using TLSv1.2 with cipher DHE-RSA-AES128-SHA)
-	by 0.0.0.0:465 (trex/5.4.2); Tue, 28 Apr 2015 07:48:45 GMT
-Message-ID: <553F3B5C.5010207@axon.tv>
-Date: Tue, 28 Apr 2015 09:48:44 +0200
-From: Wouter van Rooy <wouter.van.rooy@axon.tv>
-Organization: Axon Digital Design
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
-MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24005E0086D
+	for <yocto@yoctoproject.org>; Tue, 28 Apr 2015 01:30:12 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga101.jf.intel.com with ESMTP; 28 Apr 2015 01:30:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,662,1422950400"; d="scan'208";a="562944387"
+Received: from pkcletus-mobl1.ger.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.20.230])
+	by orsmga003.jf.intel.com with ESMTP; 28 Apr 2015 01:30:10 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 28 Apr 2015 09:30:09 +0100
+Message-ID: <57211261.fZrZbmzik8@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.4 (Linux/3.18.9-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
+In-Reply-To: <5500469A22567C4BAF673A6E86AFA3A402227F4FA84D@IR-CENTRAL.corp.innerrange.com>
 References: <AEC347BAFCE456419C9E7C9F50321CEF10E03514F5@IAD2MBX10.mex02.mlsrvr.com>
-	<552FC59F.2080603@windriver.com> <5534C248.5050107@axon.tv>
 	<553E95B2.4050004@windriver.com>
-In-Reply-To: <553E95B2.4050004@windriver.com>
+	<5500469A22567C4BAF673A6E86AFA3A402227F4FA84D@IR-CENTRAL.corp.innerrange.com>
+MIME-Version: 1.0
 Subject: Re: [poky] Initramfs not appended to kernel image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -51,22 +44,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Apr 2015 07:48:50 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 28 Apr 2015 08:30:17 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 27-04-15 22:01, Bruce Ashfield wrote:
-> I was traveling last week and am just getting back to this now.
-> I wanted to check in to see if your issues are still persisting to see 
-> if you worked it out in the meantime.
->
-> Bruce
+On Tuesday 28 April 2015 16:16:32 Craig McQueen wrote:
+> I'm in the process of using the INITRAMFS_IMAGE and INITRAMFS_IMAGE_BUNDLE
+> feature with the latest from the 'dizzy' branch for Poky, and it seems to
+> be working for me (on BeagleBone Black).
+> 
+> It's been quite a slow process to understand the initramfs mechanism and how
+> to use it in Poky. That's including the initramfs-framework. It would be
+> great to see some documentation for these features.
 
-Unfortunately I have not found a solution yet. For now I am using the 
-workaround as described in my patch file, but obviously that is not a 
-very clean way to fix the issue.
-If you would be willing to take a look at it that would be a great help.
+This is an ideal opportunity for me to point out that there's a bug open for 
+this:
 
-Kind regards,
-Wouter van Rooy
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=7096
+
+Scott just needs someone to send him the raw material so he can add something 
+(presumably a small section) to one of the manuals.
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
