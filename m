@@ -1,6 +1,6 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <joel.zhou@broadcom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 728B2E0095D; Wed, 29 Apr 2015 10:52:21 -0700 (PDT)
+	id 3D487E0095D; Wed, 29 Apr 2015 11:09:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,30 +8,38 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+	*      [216.31.210.63 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AB85E007B9
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 10:52:19 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.9/8.14.9) with ESMTP id t3THqHvQ018263
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 29 Apr 2015 10:52:17 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 29 Apr 2015 10:52:16 -0700
-Message-ID: <55411A50.3030304@windriver.com>
-Date: Wed, 29 Apr 2015 13:52:16 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
-MIME-Version: 1.0
-To: "Joel (Xi Zhou) Zhou" <joel.zhou@broadcom.com>, "yocto@yoctoproject.org"
+Received: from mail-gw2-out.broadcom.com (mail-gw2-out.broadcom.com
+	[216.31.210.63])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAE7AE007B9
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 11:09:01 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.11,671,1422950400"; d="scan'208";a="63476699"
+Received: from irvexchcas06.broadcom.com (HELO
+	IRVEXCHCAS06.corp.ad.broadcom.com) ([10.9.208.53])
+	by mail-gw2-out.broadcom.com with ESMTP; 29 Apr 2015 11:16:40 -0700
+Received: from SJEXCHCAS04.corp.ad.broadcom.com (10.16.203.10) by
+	IRVEXCHCAS06.corp.ad.broadcom.com (10.9.208.53) with Microsoft SMTP
+	Server (TLS) id 14.3.235.1; Wed, 29 Apr 2015 11:09:01 -0700
+Received: from SJEXCHMB12.corp.ad.broadcom.com ([fe80::bc15:c1e1:c29a:36f7])
+	by SJEXCHCAS04.corp.ad.broadcom.com ([::1]) with mapi id 14.03.0235.001;
+	Wed, 29 Apr 2015 11:08:59 -0700
+From: "Joel (Xi Zhou) Zhou" <joel.zhou@broadcom.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Kernel customized do_fetch issue
+Thread-Index: AdCCo3ucpO3id1frRu2TC2HCA6qcDAAPGt4AAA5k2WA=
+Date: Wed, 29 Apr 2015 18:08:59 +0000
+Message-ID: <9F136EE5FB53D64397ED1089A0E760E0162CD6BD@SJEXCHMB12.corp.ad.broadcom.com>
 References: <9F136EE5FB53D64397ED1089A0E760E0162CD671@SJEXCHMB12.corp.ad.broadcom.com>
-In-Reply-To: <9F136EE5FB53D64397ED1089A0E760E0162CD671@SJEXCHMB12.corp.ad.broadcom.com>
+	<55411A50.3030304@windriver.com>
+In-Reply-To: <55411A50.3030304@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.203.100]
+MIME-Version: 1.0
 Subject: Re: Kernel customized do_fetch issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -44,73 +52,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Apr 2015 17:52:21 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 29 Apr 2015 18:09:04 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 2015-04-29 01:39 PM, Joel (Xi Zhou) Zhou wrote:
-> Hi all,
->
-> I created a do_fetch() for checkout in-house git repo, which is working
-> fine with OE.
->
-> do_fetch() {
->
->      cd ${WORKDIR}
->
->      rm -rf ${PN}-${PV}
->
->      git clone ssh://svcswgit@git-ccxsw.inhouse.com/linux-lsk ${PN}-${PV}
->
->      cd ${PN}-${PV}
->
->      git checkout ${KBRANCH}
->
-> }
->
-> With Yocto, the do_fetch() does its job, but do_configure create an issue.
->
-> do_configure_prepend() {
->
->      cp ${WORKDIR}/${KERNEL_CONFIG_FILE} ${S}/.config
->
->      oe_runmake oldconfig
->
-> }
->
-> The do_configure error message:
->
-> | make: *** No rule to make target `oldconfig'.  Stop.
->
-> Basically, the kernel source checkout by do_fetch() is delete/erase
-> while running do_configure().
->
-> I suspect some tasks between do_fetch and do_configure are doing some
-> magic work of moving the kernel  source around.
+> But the question has to be asked. Why exactly are you manually fetching
+> the kernel ? The fetcher can take care of most everything.
 
-It's better if you can post your entire kernel recipe, and what
-branch/release you are using.
+The whole story is starting at the url of our git repo. We have a git URL l=
+ike:
+	ssh://svcswgit@git-ccxsw.inhouse.com/linux-lsk
 
-There are steps that move the kernel source into work-shared, so that
-may be impacting your flow.
+So the SRC_URI like this, but the fetcher try to apply "scp" over it.
+	KBRANCH=3D 3.14_common_dev
+	SRC_URI =3D "ssh://svcswgit@git-ccxsw.inhouse.com/linux-lsk;bareclone=3D1;=
+branch=3D${KBRANCH}"
+Error:
+	ERROR: Fetcher failure: Fetch command failed with exit code 1, output:
+	FATAL: unknown git/gitolite command: 'scp -r -f linux-lsk'
 
-But the question has to be asked. Why exactly are you manually fetching
-the kernel ? The fetcher can take care of most everything.
+Then I change it  according the suggestion in this mailing list:
+	SRC_URI =3D "git://svcswgit@git-ccxsw.inhouse.com/linux-lsk;bareclone=3D1;=
+branch=3D${KBRANCH};protocol=3Dssh"
 
-If you need to modify the source directory later, have a look at the
-steps that I'm taking in kernel-yocto.bbclass, since that works properly
-within the fetcher and build infrastructure.
+This time "bitbake linux-lsk -c fetch" return no error, but the source fold=
+er in working directory is empty.=20
+	In log.do_fetch
+	DEBUG: Fetcher failure: Fetch command failed with exit code 8, output:
+	http://downloads.yoctoproject.org/mirror/sources/git2_git-ccxsw.rtp. inhou=
+se.com. linux-lsk.tar.gz:
+	2015-04-29 12:49:36 ERROR 404: Not Found.
 
-Bruce
-
->
-> Any suggestion?
->
-> Thanks,
->
-> Joel
->
->
->
-
+Thanks,
+Joel
 
