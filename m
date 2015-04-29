@@ -1,48 +1,52 @@
-Return-Path: <joel.zhou@broadcom.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 447A2E0095D; Wed, 29 Apr 2015 12:45:01 -0700 (PDT)
+	id 026CDE0098D; Wed, 29 Apr 2015 14:22:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [216.31.210.62 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-gw1-out.broadcom.com (mail-gw1-out.broadcom.com
-	[216.31.210.62])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 530CCE007B9
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 12:44:57 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.11,672,1422950400"; d="scan'208";a="63657476"
-Received: from irvexchcas06.broadcom.com (HELO
-	IRVEXCHCAS06.corp.ad.broadcom.com) ([10.9.208.53])
-	by mail-gw1-out.broadcom.com with ESMTP; 29 Apr 2015 13:13:31 -0700
-Received: from SJEXCHCAS07.corp.ad.broadcom.com (10.16.203.16) by
-	IRVEXCHCAS06.corp.ad.broadcom.com (10.9.208.53) with Microsoft SMTP
-	Server (TLS) id 14.3.235.1; Wed, 29 Apr 2015 12:44:56 -0700
-Received: from SJEXCHMB12.corp.ad.broadcom.com ([fe80::bc15:c1e1:c29a:36f7])
-	by SJEXCHCAS07.corp.ad.broadcom.com ([::1]) with mapi id 14.03.0235.001;
-	Wed, 29 Apr 2015 12:44:51 -0700
-From: "Joel (Xi Zhou) Zhou" <joel.zhou@broadcom.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Kernel customized do_fetch issue
-Thread-Index: AdCCo3ucpO3id1frRu2TC2HCA6qcDAAPGt4AAA5k2WD//6YWAIAAcK5g
-Date: Wed, 29 Apr 2015 19:44:51 +0000
-Message-ID: <9F136EE5FB53D64397ED1089A0E760E0162CD72C@SJEXCHMB12.corp.ad.broadcom.com>
-References: <9F136EE5FB53D64397ED1089A0E760E0162CD671@SJEXCHMB12.corp.ad.broadcom.com>
-	<55411A50.3030304@windriver.com>
-	<9F136EE5FB53D64397ED1089A0E760E0162CD6BD@SJEXCHMB12.corp.ad.broadcom.com>
-	<55412F7C.8050700@windriver.com>
-In-Reply-To: <55412F7C.8050700@windriver.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 925AEE007CC
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 14:22:13 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga103.fm.intel.com with ESMTP; 29 Apr 2015 14:22:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,672,1422950400"; 
+	d="scan'208,217";a="687677239"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by orsmga001.jf.intel.com with ESMTP; 29 Apr 2015 14:22:14 -0700
+Received: from fmsmsx106.amr.corp.intel.com (10.18.124.204) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.3.224.2; Wed, 29 Apr 2015 14:22:12 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.169]) by
+	FMSMSX106.amr.corp.intel.com ([169.254.5.29]) with mapi id
+	14.03.0224.002; Wed, 29 Apr 2015 14:22:11 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>, "openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>, "'poky@yotcoproject.org'"
+	<poky@yotcoproject.org>
+Thread-Topic: YP 1.8 Release Survey/Retrospective - REMINDER
+Thread-Index: AdCCwo1CaUar6/6JS7yO5QfMEYJK0A==
+Importance: high
+X-Priority: 1
+Date: Wed, 29 Apr 2015 21:22:10 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E5549E634@fmsmsx111.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, OOF, AutoReply
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.203.100]
+x-originating-ip: [10.1.200.106]
 MIME-Version: 1.0
-Subject: Re: Kernel customized do_fetch issue
+Subject: YP 1.8 Release Survey/Retrospective - REMINDER
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,27 +58,206 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Apr 2015 19:45:01 -0000
+X-List-Received-Date: Wed, 29 Apr 2015 21:22:16 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5549E634fmsmsx111amrcor_"
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5549E634fmsmsx111amrcor_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks Bruce!
-> You really aren't seeing anything land in the build/downloads/git2/
-> directory structure ? ssh fetches seem to work here.
+All,
 
-I do see something in build/downloads/git2/git-ccxsw.xxx.com.linux-lsk, but=
- it looks like an empty git.
-	HEAD  branches	config	description  hooks  info  objects  packed-refs	refs
+Yocto Project 1.8 released last week!   YP provides a major release every s=
+ix months, and as an open source project we are always working to improve o=
+ur processes.  This survey is for the Yocto Project community to provide fe=
+edback into the development process.  We would greatly appreciate your part=
+icipation, especially if you have participated in the development process f=
+or 1.8 by writing code, submitting bugs, patches, documentation, contributi=
+ng to the wiki, or actively participating on the mailing lists or IRC chann=
+els.
 
-I bring up this issue to IT department, what they said is, the Yocto expect=
-s the url contains  host/repo, while gitolit requires host:repo.
-This is interesting since the Yocto documentation explicitly mentions gitol=
-ite in the SCM section:
-http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#best-pr=
-actices-source-control-management
+https://www.surveymonkey.com/r/SFV7VPH
 
-Thanks,
-Joel
+Thanks for being an important part of the Yocto Project community!
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:          (503) 712-0534
+*    Cell:                                                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
 
 
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5549E634fmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
+icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
+:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
+uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
+t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
+m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
+t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
+:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
+soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
+icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
+schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
+point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
+/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
+=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
+schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
+.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
+/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
+://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
+repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
+ xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
+schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
+/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
+ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
+p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
+/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
+mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
+crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
+s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
+ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
+om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
+ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
+partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
+06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
+6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
+deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
+Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
+st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">All,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><b>Yocto Project 1.8 released last week!</b>&nbsp;&n=
+bsp; YP provides a major release every six months, and as an open source pr=
+oject we are always working to improve our processes. &nbsp;This survey is =
+for the Yocto Project community to provide feedback
+ into the development process. &nbsp;We would greatly appreciate your parti=
+cipation, especially if you have participated in the development process fo=
+r 1.8 by writing code, submitting bugs, patches, documentation, contributin=
+g to the wiki, or actively participating
+ on the mailing lists or IRC channels. <o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
+<p class=3D"MsoNormal"><a href=3D"https://www.surveymonkey.com/r/SFV7VPH">h=
+ttps://www.surveymonkey.com/r/SFV7VPH</a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks for being an important part of the Yocto Proj=
+ect community!<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
+span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
+rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp; &nbsp;</span><b><span style=3D"fon=
+t-size:8.0pt;font-family:&quot;Comic Sans MS&quot;;color:teal">Cell</span><=
+/b><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;;col=
+or:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; </span><span style=3D"font-size:9.0pt;font-family:&quot;MS=
+ Sans Serif&quot;">(208) 244-4460<span style=3D"color:black"><o:p></o:p></s=
+pan></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
+uot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5549E634fmsmsx111amrcor_--
