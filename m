@@ -1,44 +1,43 @@
-Return-Path: <r.schwarz@sotec.eu>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 62526E009AA; Wed, 29 Apr 2015 07:51:32 -0700 (PDT)
+	id 8945AE009D4; Wed, 29 Apr 2015 07:54:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.175 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-ig0-f175.google.com (mail-ig0-f175.google.com
-	[209.85.213.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BA26E009CC
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 07:51:22 -0700 (PDT)
-Received: by igbyr2 with SMTP id yr2so120779711igb.0
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 07:51:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=1xpkbKWzoiXOrrocGpSWEmIFFRCiszszuwXYINaMp8I=;
-	b=NGGSpCI33NzJuu/DC2XoM19kPL12d/AO1+RQ2IqGZSG8jI96psJi64AftipqrjI/sp
-	0vktZsOcyTD3Cj5I5Q5XpEPwAn7IlLFKHjYmiC63TEeQW3QngmprkVc9BgYH/3wzd9NO
-	ZchanG+RU9yC6U/psxein+tlSlnEiWoV+2fvVK453fQhla1r3kmMff8vfO4PNkKVINlk
-	IJTHHAx3Sgz+hPWct0RqI7O3QobxXiS+ZjV2TO5eGdJm99NgU0o+yqSONa7zax3WKQWU
-	9lqHUC0JaiHbrzdwxeSaGN2c5RnhYv23LbCfK2fBZwi4ctoSl0SZSp1uGs041e20zNWG
-	UlZA==
-X-Gm-Message-State: ALoCoQmrERUKci6g8G2h+fYHnLYs/i0Y7mgJw8j6IYYuuSaYvQXJXyT/JGSvQ9PpoI+HGbEr6DW6SjJ9NQbppIsUvYrBKS2JPOURIe+odAA4sjodgCqAk4w=
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 866ACE009C9
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 07:53:38 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id DE79827E242;
+	Wed, 29 Apr 2015 14:53:36 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id dZy8Q_9-hDJh; Wed, 29 Apr 2015 14:53:34 +0000 (UTC)
+Received: from [192.168.1.16] (AMarseille-651-1-40-127.w92-150.abo.wanadoo.fr
+	[92.150.31.127])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 8495427E224;
+	Wed, 29 Apr 2015 14:53:34 +0000 (UTC)
+Message-ID: <5540F06B.40706@dynamicdevices.co.uk>
+Date: Wed, 29 Apr 2015 16:53:31 +0200
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-X-Received: by 10.107.9.141 with SMTP id 13mr29046736ioj.71.1430319081892;
-	Wed, 29 Apr 2015 07:51:21 -0700 (PDT)
-Received: by 10.107.31.205 with HTTP; Wed, 29 Apr 2015 07:51:21 -0700 (PDT)
-Date: Wed, 29 Apr 2015 16:51:21 +0200
-Message-ID: <CAEMorpg0nebPf90h_3c-FAsg68S80ngjVkEKtkz703tB7sN1xA@mail.gmail.com>
-From: Ruben Schwarz <r.schwarz@sotec.eu>
-To: yocto@yoctoproject.org
-Subject: Eclipse build of existing cmake project
+To: Mauro Carvalho Chehab <mchehab@osg.samsung.com>
+References: <17420222.681949.1430314213894.JavaMail.yahoo@mail.yahoo.com>	<5540E546.9020606@dynamicdevices.co.uk>
+	<20150429113434.2ce31089@recife.lan>
+In-Reply-To: <20150429113434.2ce31089@recife.lan>
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] meta-ivi & meta-raspberrypi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,126 +49,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Apr 2015 14:51:32 -0000
-Content-Type: multipart/alternative; boundary=001a113f99accacf750514de1cf5
-
---001a113f99accacf750514de1cf5
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hi everybody,
-
-What I did:
-I built an image and support for eclipse (meta-ide-support) for beagle bone
-black (BBB).
-I am able to create a new project in eclipse and build and run this new
-project on my hardware.
-
-I have an existing CMAKE project which should run on BBB.
-I know how to write an recipe for my project and build this existing
-project with bitbake.
-
-What I want to do:
-I want to build my existing cmake project with eclipse. Is there any
-possibility to import existing cmake projects to eclipse and do a build
-using yocto toolchain?
-
-Best regards
-Ruben
-
---=20
-Ruben Schwarz | SOTEC | r.schwarz@sotec.eu | T +49 7033 5458 34 | F +49
-7033 5458 95
-
---=20
+X-List-Received-Date: Wed, 29 Apr 2015 14:54:17 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
 
-www.sotec.eu | www.cloudwuerdig.com=20
---=20
-SOTEC Software Entwicklungs GmbH + Co Mikrocomputertechnik KG=20
-Calwer Stra=C3=9Fe 11, D-75395 Ostelsheim=20
-Sitz Ostelsheim, Amtsgericht Stuttgart HRA 330821/HRB 330664,=20
-Gesch=C3=A4ftsf=C3=BChrer: Florian Holz=20
-Cloudw=C3=BCrdig=C2=AE ist eine eingetragene Marke der SOTEC Software Entwi=
-cklungs=20
-GmbH + Co Mikrocomputertechnik KG
 
-Der Inhalt dieser e-Mail ist ausschlie=C3=9Flich f=C3=BCr den bezeichneten =
-Adressaten=20
-bestimmt. Wenn Sie nicht der vorgesehene Adressat dieser e-Mail oder dessen=
-=20
-Vertreter sein sollten, so beachten Sie bitte, dass jede Form der=20
-Kenntnisnahme, Ver=C3=B6ffentlichung, Vervielf=C3=A4ltigung oder Weitergabe=
- des=20
-Inhalts dieser e-Mail unzul=C3=A4ssig ist. Wir bitten Sie, sich in diesem F=
-all=20
-mit dem Absender der e-Mail in Verbindung zu setzen.
+On 29/04/2015 16:34, Mauro Carvalho Chehab wrote:
+> Em Wed, 29 Apr 2015 16:05:58 +0200
+> Alex J Lennon <ajlennon@dynamicdevices.co.uk> escreveu:
+>
+>> On 29/04/2015 15:30, Oliver wrote:
+>>> Hello
+>>>
+>>> I have been working building together the meta-raspberrypi & the meta-ivi layers.
+>>> I have been stuck with configuration/compilation of weston(from mata-ivi layer):
+>>>
+>>> 1)
+>>>
+>>> You can check the intial thread http://lists.genivi.org/pipermail/genivi-meta-ivi/2015-April/000508.html
+>>>
+>>>
+>>> egl provided by userlad is not detected as the *.pc files are not deployed
+>>> Someone has faced similar problems:
+>>>
+>>>    http://git.buildroot.net/buildroot/commit/?id=2282b93f4248a32de84805456efa352f69b28624
+>>>
+>>> 2)
+>>> With this I am able to reach the do_compile stage but there are errors related to the undefined type
+>>>
+>>> PFNEGLQUERYWAYLANDBUFFERWL
+>>> Hacked this one forcing the inclusion of <weston-egl-ext.h> :-S
+>>>
+>>>
+>>> 3)
+>>> At linking time the next trouble is:
+>>>
+>>> /home/oliver/raspberry/build-rpi-ivi/tmp/sysroots/i686-linux/usr/libexec/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.9.1/ld: cannot find -lwayland-egl
+>>>
+>>> IIRC this lib is provided by mesa-gl, but in my build, mesa is configured(--disable-egl (is this ok being provided by userlad?)) which might be the reason why libwayland-egl is not getting deployed in the image?
+>>>
+>>> Any correction to my statements or hint to go further would be appreciated
+>>>
+>>> Best Regards & thanks for your time
+>>>
+>>> Oliver
+>> Hi Oliver,
+>>
+>> I was looking at wayland/weston last year.  I can't remember exactly
+>> where I was at with it I am afraid, but I think I had it building and
+>> have pushed some of the code I was playing with to GitHub
+>>
+>> I think this was related to the .pc issue
+>>
+>> https://github.com/DynamicDevices/meta-raspberrypi/commit/491dd14585efdb52378a57fa6ddacb1f15065257
+>>
+>> And this was what I was doing with weston. Looks like I was disabling EGL.
+>>
+>> https://github.com/DynamicDevices/meta-raspberrypi/commit/c657f69deb57035fc43319dd7d41745c17d7d6e1
+>>
+>> Sorry I can't be more help but perhaps there's something in there that
+>> might be of use.
+> I was able to build weston/wayland with meta-raspberrypi, for
+> the Tizen distro:
+> 	http://blogs.s-osg.org/bringing-tizen-to-a-raspberry-pi-2-near-you/
+>
+> I had to apply a few patches to make it work on both Tizen and
+> meta-raspberrypi. The forks are at:
+> 	http://git.s-osg.org/
+>
+> The current version there is actually disabling EGL. Enabling
+> it seems to be possible, but we're still trying to make it work
+> (it compiles fine, though, so I think we're close).
+>
+> Once done, my plan is to work on porting the patches back to
+> meta-raspberrypi (and tizen-distro).
+>
+>
 
-The content of this e-mail is meant exclusively for the person to whom it=
-=20
-is addressed. If you are not the person to whom this e-mail is addressed or=
-=20
-his/her representative, please be informed, that any form of knowledge,=20
-publication, duplication or distribution of the content of this e-mail is=
-=20
-inadmissible. We ask you, therefore, in such a case to please contact the=
-=20
-sender of this e-mail.
+Great news Mauro. If you need anybody to test out your patches, when
+ready, please give me a shout.
+
+Cheers, Alex
 
 
---001a113f99accacf750514de1cf5
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi everybody,<div><br></div><div>What I did:</div><div>I b=
-uilt an image and support for eclipse (meta-ide-support) for beagle bone bl=
-ack (BBB).</div><div>I am able to create a new project in eclipse and build=
- and run this new project on my hardware.</div><div><br></div><div>I have a=
-n existing CMAKE project which should run on BBB.</div><div>I know how to w=
-rite an recipe for my project and build this existing project with bitbake.=
-</div><div><br></div><div>What I want to do:</div><div>I want to build my e=
-xisting cmake project with eclipse. Is there any possibility to import exis=
-ting cmake projects to eclipse and do a build using yocto toolchain?</div><=
-div><br></div><div>Best regards</div><div>Ruben<br clear=3D"all"><div><br><=
-/div>-- <br><div class=3D"gmail_signature"><span style=3D"font-family:&#39;=
-Times New Roman&#39;;font-size:medium"><span style=3D"font-weight:bold;font=
--size:11px;font-family:Arial;vertical-align:baseline;white-space:pre-wrap">=
-Ruben Schwarz | SOTEC | </span><span style=3D"font-size:11px;font-family:Ar=
-ial;vertical-align:baseline;white-space:pre-wrap"><a href=3D"mailto:r.schwa=
-rz@sotec.eu" target=3D"_blank">r.schwarz@sotec.eu</a></span><span style=3D"=
-font-size:11px;font-family:Arial;vertical-align:baseline;white-space:pre-wr=
-ap"> | </span><span style=3D"font-size:11px;font-family:Arial;vertical-alig=
-n:baseline;white-space:pre-wrap">T +49 7033 5458 34 |  F +49 7033 5458 95</=
-span></span>
-</div>
-</div></div>
-
-<br>
-<p style=3D"font-size:11px;font-family:Arial;vertical-align:baseline"></p><=
-p style=3D"vertical-align:baseline"></p><p style=3D"font-size:11px;font-fam=
-ily:Arial;vertical-align:baseline"><span style=3D"font-weight:bold;vertical=
--align:baseline"><a href=3D"http://www.sotec.eu/" style=3D"text-decoration:=
-none;color:rgb(0,0,0)" target=3D"_blank">www.sotec.eu</a>=C2=A0|=C2=A0<a hr=
-ef=3D"http://www.cloudwuerdig.com/" style=3D"text-decoration:none;color:rgb=
-(0,0,0)" target=3D"_blank">www.<WBR>cloudwuerdig.com</a>=C2=A0</span><br>--=
-=C2=A0<br>SOTEC Software Entwicklungs GmbH + Co Mikrocomputertechnik KG=C2=
-=A0<br>Calwer Stra=C3=9Fe 11, D-75395 Ostelsheim=C2=A0<br>Sitz Ostelsheim, =
-Amtsgericht Stuttgart HRA 330821/HRB 330664, Gesch=C3=A4ftsf=C3=BChrer: Flo=
-rian Holz=C2=A0<br>Cloudw=C3=BCrdig=C2=AE ist eine eingetragene Marke der S=
-OTEC Software Entwicklungs GmbH + Co Mikrocomputertechnik KG</p><p style=3D=
-"font-size:11px;font-family:Arial;vertical-align:baseline">Der Inhalt diese=
-r e-Mail ist ausschlie=C3=9Flich f=C3=BCr den bezeichneten Adressaten besti=
-mmt. Wenn Sie nicht der vorgesehene Adressat dieser e-Mail oder dessen Vert=
-reter sein sollten, so beachten Sie bitte, dass jede Form der Kenntnisnahme=
-, Ver=C3=B6ffentlichung, Vervielf=C3=A4ltigung oder Weitergabe des Inhalts =
-dieser e-Mail unzul=C3=A4ssig ist. Wir bitten Sie, sich in diesem Fall mit =
-dem Absender der e-Mail in Verbindung zu setzen.</p><p style=3D"font-size:1=
-1px;font-family:Arial;vertical-align:baseline">The content of this e-mail i=
-s meant exclusively for the person to whom it is addressed. If you are not =
-the person to whom this e-mail is addressed or his/her representative, plea=
-se be informed, that any form of knowledge, publication, duplication or dis=
-tribution of the content of this e-mail is inadmissible. We ask you, theref=
-ore, in such a case to please contact the sender of this e-mail.</p><p></p>=
-<p></p>
-
---001a113f99accacf750514de1cf5--
