@@ -1,47 +1,51 @@
-Return-Path: <joel.zhou@broadcom.com>
+Return-Path: <francisco.torres@ttcontrol.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 27B87E00998; Wed, 29 Apr 2015 10:17:08 -0700 (PDT)
+	id 45AAFE0095D; Wed, 29 Apr 2015 10:35:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [216.31.210.62 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [188.20.77.195 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-gw1-out.broadcom.com (mail-gw1-out.broadcom.com
-	[216.31.210.62])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52DD8E007B9
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 10:17:03 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.11,671,1422950400"; d="scan'208,217";a="63634944"
-Received: from irvexchcas06.broadcom.com (HELO
-	IRVEXCHCAS06.corp.ad.broadcom.com) ([10.9.208.53])
-	by mail-gw1-out.broadcom.com with ESMTP; 29 Apr 2015 10:45:31 -0700
-Received: from SJEXCHCAS04.corp.ad.broadcom.com (10.16.203.10) by
-	IRVEXCHCAS06.corp.ad.broadcom.com (10.9.208.53) with Microsoft SMTP
-	Server (TLS) id 14.3.235.1; Wed, 29 Apr 2015 10:17:00 -0700
-Received: from SJEXCHMB12.corp.ad.broadcom.com ([fe80::bc15:c1e1:c29a:36f7])
-	by SJEXCHCAS04.corp.ad.broadcom.com ([::1]) with mapi id 14.03.0235.001;
-	Wed, 29 Apr 2015 10:16:58 -0700
-From: "Joel (Xi Zhou) Zhou" <joel.zhou@broadcom.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] Kernel git repo fetch issue
-Thread-Index: AdCCkA4FC1AOUxpdTFKr6vLxqihUPgAO+iEAAA5yQWA=
-Date: Wed, 29 Apr 2015 17:16:57 +0000
-Message-ID: <9F136EE5FB53D64397ED1089A0E760E0162CD630@SJEXCHMB12.corp.ad.broadcom.com>
-References: <9F136EE5FB53D64397ED1089A0E760E0162CC536@SJEXCHMB12.corp.ad.broadcom.com>
-	<AF3AF07B-30B6-40B8-BBA4-79407CCFAC51@gmail.com>
-In-Reply-To: <AF3AF07B-30B6-40B8-BBA4-79407CCFAC51@gmail.com>
-Accept-Language: en-US
+X-Greylist: delayed 312 seconds by postgrey-1.32 at yocto-www;
+	Wed, 29 Apr 2015 10:35:04 PDT
+Received: from mail.tttech.com (mail.tttech.com [188.20.77.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA104E007B9
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 10:35:04 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.tttech.com (Postfix) with ESMTP id 7647F3F129
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 19:29:49 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at tttech.com
+Received: from mail.tttech.com ([127.0.0.1])
+	by localhost (tttmaildmz.vie.at.tttech.ttt [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id znI9c6TEX640 for <yocto@yoctoproject.org>;
+	Wed, 29 Apr 2015 19:29:49 +0200 (CEST)
+Received: from TTTEX02.ds1.internal (unknown [10.100.10.136])
+	by mail.tttech.com (Postfix) with ESMTPS id 62D053F11B
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 19:29:49 +0200 (CEST)
+Received: from TTTEX02.ds1.internal (10.100.10.136) by TTTEX02.ds1.internal
+	(10.100.10.136) with Microsoft SMTP Server (TLS) id 15.0.1044.25;
+	Wed, 29 Apr 2015 19:29:48 +0200
+Received: from TTTEX02.ds1.internal ([fe80::fd88:4379:bed4:8d08]) by
+	TTTEX02.ds1.internal ([fe80::fd88:4379:bed4:8d08%18]) with mapi id
+	15.00.1044.021; Wed, 29 Apr 2015 19:29:48 +0200
+From: Francisco Torres <francisco.torres@ttcontrol.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: How to create a gz file with compiled files from other recipes
+Thread-Index: AdCCobjKx4iAe6UnTcm3z2haIDf26A==
+Date: Wed, 29 Apr 2015 17:29:47 +0000
+Message-ID: <bc0cba483d914890bbf152c385d3ff14@TTTEX02.ds1.internal>
+Accept-Language: de-AT, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.203.100]
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.100.12.81]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Kernel git repo fetch issue
+Subject: How to create a gz file with compiled files from other recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,164 +57,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Apr 2015 17:17:08 -0000
+X-List-Received-Date: Wed, 29 Apr 2015 17:35:08 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9F136EE5FB53D64397ED1089A0E760E0162CD630SJEXCHMB12corpa_"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---_000_9F136EE5FB53D64397ED1089A0E760E0162CD630SJEXCHMB12corpa_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Hello,
 
-VGhhbmtzIEtoZW0uDQpUaGUgZ2l0IHJlcG8gY2FuIGFjY2Vzc2VkIGJ5IHB1YmxpYyBrZXksIHNv
-IHVzZXIvcGFzc3dkIGFyZSBub3QgbmVlZC4NCkFmdGVyIGNoYW5naW5nIHRoZSBVUkwgdG8gdGhp
-czoNClNSQ19VUkkgPSAiZ2l0Oi8vc3Zjc3dnaXRAZ2l0LWNjeHN3LmluaG91c2UuY29tL2xpbnV4
-LWxzaztiYXJlY2xvbmU9MTticmFuY2g9JHtLQlJBTkNIfTtwcm90b2NvbD1zc2giDQoNClRoZW4g
-4oCcYml0YmFrZSBsaW51eC1sc2sg4oCTYyBmZXRjaOKAnSByZXR1cm4gbm8gZXJyb3IsIGJ1dCB0
-aGUgc291cmNlIGZvbGRlciBpbiB3b3JraW5nIGRpcmVjdG9yeSBpcyBlbXB0eS4NCkluIGxvZy5k
-b19mZXRjaA0KREVCVUc6IEZldGNoZXIgZmFpbHVyZTogRmV0Y2ggY29tbWFuZCBmYWlsZWQgd2l0
-aCBleGl0IGNvZGUgOCwgb3V0cHV0Og0KaHR0cDovL2Rvd25sb2Fkcy55b2N0b3Byb2plY3Qub3Jn
-L21pcnJvci9zb3VyY2VzL2dpdDJfZ2l0LWNjeHN3LnJ0cC4gaW5ob3VzZS5jb20uIGxpbnV4LWxz
-ay50YXIuZ3o6DQoyMDE1LTA0LTI5IDEyOjQ5OjM2IEVSUk9SIDQwNDogTm90IEZvdW5kLg0KDQpU
-aGFua3MsDQpKb2VsDQpGcm9tOiBLaGVtIFJhaiBbbWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbV0N
-ClNlbnQ6IFdlZG5lc2RheSwgQXByaWwgMjksIDIwMTUgMTE6MzAgQU0NClRvOiBKb2VsIChYaSBa
-aG91KSBaaG91DQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0
-b10gS2VybmVsIGdpdCByZXBvIGZldGNoIGlzc3VlDQoNCg0KT24gQXByIDI5LCAyMDE1LCBhdCA4
-OjIxIEFNLCBKb2VsIChYaSBaaG91KSBaaG91IDxqb2VsLnpob3VAYnJvYWRjb20uY29tPG1haWx0
-bzpqb2VsLnpob3VAYnJvYWRjb20uY29tPj4gd3JvdGU6DQoNClNvIGluIGxpbnV4LWxza18zLjE0
-LjI5LmJiIGZpbGUsIHdlIGRlZmluZToNClNSQ19VUkkgPSAic3NoOi8vc3Zjc3dnaXRAZ2l0LWNj
-eHN3LmluaG91c2UuY29tL2xpbnV4LWxzaztiYXJlY2xvbmU9MTticmFuY2g9JHtLQlJBTkNIfTxz
-c2g6Ly9zdmNzd2dpdEBnaXQtY2N4c3cuaW5ob3VzZS5jb20vbGludXgtbHNrO2JhcmVjbG9uZT0x
-O2JyYW5jaD0kJTdiS0JSQU5DSCU3ZD4iDQoNCg0KDQpjcmVhdGUgYSAubmV0cmMgaW4geW91ciBo
-b21lIGZvbGRlciBsaWtlDQoNCm1hY2hpbmUgIGdpdC1jY3hzdy5pbmhvdXNlLmNvbTxodHRwOi8v
-Z2l0LXNzeHN3LmluaG91c2UuY29tPiBsb2dpbiBzdmNzd2dpdCAgcGFzc3dvcmQgPHBhc3N3ZD4N
-Cg0KDQp0aGVuIGNoYW5nZSB0aGUgU1JDX1VSSSB0byBzb21ldGhpbmcNCg0KU1JDX1VSSSA9IOKA
-nGdpdDovL2dpdC1jY3hzdy5pbmhvdXNlLmNvbS9saW51eC5sc2s7YmFyZWNsb25lPTE7YnJhbmNo
-PTxicmFuY2g+PGdpdDovL2dpdC1jY3hzdy5pbmhvdXNlLmNvbS9saW51eC5sc2s7YmFyZWNsb25l
-PTE7YnJhbmNoPSUzQ2JyYW5jaCUzRT47cHJvdG9jb2w9c3NoIg0K
+I have created some recipes which using an external mingw toolchain are abl=
+e to compile some libraries for windows (e.g. clutter, mx, ....)
 
---_000_9F136EE5FB53D64397ED1089A0E760E0162CD630SJEXCHMB12corpa_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Now I would like to create a compressed file with all the compiled dlls (an=
+d if possible header files). How can I do that?
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
-e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
-KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
-b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
-emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
-aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
-Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
-eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
-Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNv
-LXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5z
-LXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10
-eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24x
-DQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9
-DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEt
-LVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlk
-bWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+
-DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0
-YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxi
-b2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xhc3M9
-IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
-aWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+VGhhbmtzIEtoZW0uDQo8bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29s
-b3I6IzFGNDk3RCI+VGhlIGdpdCByZXBvIGNhbiBhY2Nlc3NlZCBieSBwdWJsaWMga2V5LCBzbyB1
-c2VyL3Bhc3N3ZCBhcmUgbm90IG5lZWQuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPkFm
-dGVyIGNoYW5naW5nIHRoZSBVUkwgdG8gdGhpczo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
-eTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3
-RCI+U1JDX1VSSSA9ICZxdW90O2dpdDovL3N2Y3N3Z2l0QGdpdC1jY3hzdy5pbmhvdXNlLmNvbS9s
-aW51eC1sc2s7YmFyZWNsb25lPTE7YnJhbmNoPSR7S0JSQU5DSH07cHJvdG9jb2w9c3NoJnF1b3Q7
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtz
-YW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xv
-cjojMUY0OTdEIj5UaGVuIOKAnGJpdGJha2UgbGludXgtbHNrIOKAk2MgZmV0Y2jigJ0gcmV0dXJu
-IG5vIGVycm9yLCBidXQgdGhlIHNvdXJjZSBmb2xkZXIgaW4gd29ya2luZyBkaXJlY3RvcnkgaXMg
-ZW1wdHkuDQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
-LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+SW4gbG9nLmRvX2ZldGNoPG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1s
-ZWZ0Oi41aW4iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5ERUJV
-RzogRmV0Y2hlciBmYWlsdXJlOiBGZXRjaCBjb21tYW5kIGZhaWxlZCB3aXRoIGV4aXQgY29kZSA4
-LCBvdXRwdXQ6PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
-bGU9Im1hcmdpbi1sZWZ0Oi41aW4iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjoj
-MUY0OTdEIj5odHRwOi8vZG93bmxvYWRzLnlvY3RvcHJvamVjdC5vcmcvbWlycm9yL3NvdXJjZXMv
-Z2l0Ml9naXQtY2N4c3cucnRwLiBpbmhvdXNlLmNvbS4gbGludXgtbHNrLnRhci5nejo8bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWxlZnQ6
-LjVpbiI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
-aWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjIwMTUtMDQt
-MjkgMTI6NDk6MzYgRVJST1IgNDA0OiBOb3QgRm91bmQuPG86cD48L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
-YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMx
-RjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5UaGFua3MsPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNl
-cmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPkpvZWw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2
-Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjQjVDNERGIDEuMHB0
-O3BhZGRpbmc6My4wcHQgMGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7
-LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1z
-ZXJpZiZxdW90OyI+IEtoZW0gUmFqIFttYWlsdG86cmFqLmtoZW1AZ21haWwuY29tXQ0KPGJyPg0K
-PGI+U2VudDo8L2I+IFdlZG5lc2RheSwgQXByaWwgMjksIDIwMTUgMTE6MzAgQU08YnI+DQo8Yj5U
-bzo8L2I+IEpvZWwgKFhpIFpob3UpIFpob3U8YnI+DQo8Yj5DYzo8L2I+IHlvY3RvQHlvY3RvcHJv
-amVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gUmU6IFt5b2N0b10gS2VybmVsIGdpdCByZXBv
-IGZldGNoIGlzc3VlPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdp
-bi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRvbTo1LjBwdCI+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+T24gQXByIDI5LCAyMDE1LCBhdCA4OjIxIEFNLCBKb2VsIChYaSBaaG91KSBaaG91ICZs
-dDs8YSBocmVmPSJtYWlsdG86am9lbC56aG91QGJyb2FkY29tLmNvbSI+am9lbC56aG91QGJyb2Fk
-Y29tLmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5TbyBpbiBsaW51eC1sc2tf
-My4xNC4yOS5iYiBmaWxlLCB3ZSBkZWZpbmU6PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+
-DQo8ZGl2IHN0eWxlPSJtYXJnaW4tbGVmdDouNWluO29ycGhhbnM6IGF1dG87dGV4dC1hbGlnbjpz
-dGFydDt3aWRvd3M6IGF1dG87LXdlYmtpdC10ZXh0LXN0cm9rZS13aWR0aDogMHB4O3dvcmQtc3Bh
-Y2luZzowcHgiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTox
-MS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1
-b3Q7Ij5TUkNfVVJJID0gJnF1b3Q7PGEgaHJlZj0ic3NoOi8vc3Zjc3dnaXRAZ2l0LWNjeHN3Lmlu
-aG91c2UuY29tL2xpbnV4LWxzaztiYXJlY2xvbmU9MTticmFuY2g9JCU3YktCUkFOQ0glN2QiPjxz
-cGFuIHN0eWxlPSJjb2xvcjpwdXJwbGUiPnNzaDovL3N2Y3N3Z2l0QGdpdC1jY3hzdy5pbmhvdXNl
-LmNvbS9saW51eC1sc2s7YmFyZWNsb25lPTE7YnJhbmNoPSR7S0JSQU5DSH08L3NwYW4+PC9hPiZx
-dW90OzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj5jcmVhdGUgYSAubmV0cmMgaW4geW91ciBob21lIGZvbGRlciBsaWtlPG86
-cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
-YnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPm1hY2hp
-bmUgJm5ic3A7PGEgaHJlZj0iaHR0cDovL2dpdC1zc3hzdy5pbmhvdXNlLmNvbSI+Z2l0LWNjeHN3
-LmluaG91c2UuY29tPC9hPiBsb2dpbiBzdmNzd2dpdCAmbmJzcDtwYXNzd29yZCAmbHQ7cGFzc3dk
-Jmd0OzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPnRoZW4gY2hhbmdlIHRoZSBTUkNfVVJJIHRvIHNvbWV0aGluZzxvOnA+PC9vOnA+PC9wPg0K
-PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+
-DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5TUkNfVVJJID0g4oCcPGEgaHJl
-Zj0iZ2l0Oi8vZ2l0LWNjeHN3LmluaG91c2UuY29tL2xpbnV4LmxzaztiYXJlY2xvbmU9MTticmFu
-Y2g9JTNDYnJhbmNoJTNFIj5naXQ6Ly9naXQtY2N4c3cuaW5ob3VzZS5jb20vbGludXgubHNrO2Jh
-cmVjbG9uZT0xO2JyYW5jaD0mbHQ7YnJhbmNoJmd0OzwvYT47cHJvdG9jb2w9c3NoJnF1b3Q7PG86
-cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+(I have tried to create an image but when I do that also some other package=
+s, e.g., kernel, that I do not need/want are included).
 
---_000_9F136EE5FB53D64397ED1089A0E760E0162CD630SJEXCHMB12corpa_--
+Thanks,
+Francis.
+CONFIDENTIALITY: The contents of this e-mail are confidential and intended =
+only for the above addressee(s). If you are not the intended recipient, or =
+the person responsible for delivering it to the intended recipient, copying=
+ or delivering it to anyone else or using it in any unauthorized manner is =
+prohibited and may be unlawful. If you receive this e-mail by mistake, plea=
+se notify the sender and the systems administrator at straymail@tttech.com =
+immediately.
+
