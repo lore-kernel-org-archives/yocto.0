@@ -1,38 +1,57 @@
-Return-Path: <craig.mcqueen@innerrange.com>
+Return-Path: <J.Schaumloeffel@astro-kom.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5156AE009A5; Wed, 29 Apr 2015 00:18:15 -0700 (PDT)
+	id 330B8E009A5; Wed, 29 Apr 2015 00:38:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [81.173.193.132 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
-	*      dynamic-looking rDNS
-Received: from remote.innerrange.com (122-143-146.dsl.connexus.net.au
-	[203.122.143.146])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30939E00932
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 00:18:11 -0700 (PDT)
-Received: from IR-CENTRAL.corp.innerrange.com ([fe80::758b:a6c:a61b:18f4]) by
-	IR-CENTRAL.corp.innerrange.com ([fe80::758b:a6c:a61b:18f4%14]) with
-	mapi; Wed, 29 Apr 2015 17:18:09 +1000
-From: Craig McQueen <craig.mcqueen@innerrange.com>
+Received: from mailrelay-out2.netcologne.de (mailrelay-out2.netcologne.de
+	[81.173.193.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1AFA3E00932
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 00:38:53 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mailrelay-out2.netcologne.de (Postfix) with ESMTP id 4345A10B4BF
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 09:38:51 +0200 (CEST)
+Received: from [213.196.222.82] (helo=mailrelay-out2.netcologne.de)
+	by localhost with ESMTP (eXpurgate 4.0.6)
+	(envelope-from <J.Schaumloeffel@astro-kom.de>)
+	id 55408a8b-188e-7f0000012729-7f000001e041-1
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 09:38:51 +0200
+Received: from ASTRO-EX1.Bensberg.de (unknown [213.196.222.82])
+	(using TLSv1 with cipher RC4-SHA (128/128 bits))
+	(No client certificate requested)
+	by mailrelay-out2.netcologne.de (Postfix) with ESMTPS
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 09:38:50 +0200 (CEST)
+Received: from ASTRO-EX1.Bensberg.de (192.168.100.26) by ASTRO-EX1.Bensberg.de
+	(192.168.100.26) with Microsoft SMTP Server (TLS) id 15.0.775.38;
+	Wed, 29 Apr 2015 09:38:43 +0200
+Received: from ASTRO-EX1.Bensberg.de ([::1]) by ASTRO-EX1.Bensberg.de ([::1])
+	with mapi id 15.00.0775.031; Wed, 29 Apr 2015 09:38:43 +0200
+From: =?iso-8859-1?Q?Schauml=F6ffel=2C_Jan?= <J.Schaumloeffel@astro-kom.de>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Wed, 29 Apr 2015 17:18:07 +1000
-Thread-Topic: initramfs-framework ERROR: There's no '/dev' on rootfs.
-Thread-Index: AdCCTB5KPm5LpD9FRqKUBkxZjd0yYw==
-Message-ID: <5500469A22567C4BAF673A6E86AFA3A402227F4FA9F6@IR-CENTRAL.corp.innerrange.com>
-Accept-Language: en-US, en-AU
+Thread-Topic: [yocto] Migration from 1.7.1 to 1.8 - kernel-abiversion missing
+Thread-Index: AdCBfI+fMEqCzoTLSdaz+mOzgmAd4QALUFmAAAerdlAAAv96AAAeAT+w
+Date: Wed, 29 Apr 2015 07:38:42 +0000
+Message-ID: <4f2d75bf33ac423ab064f754e0b67655@ASTRO-EX1.Bensberg.de>
+References: <ce604c0c1a1d4131a72119dbecb97ab2@ASTRO-EX1.Bensberg.de>
+	<553F90A3.9070501@windriver.com>
+	<82ac67a7e46e416dbabdda01c42fc89a@ASTRO-EX1.Bensberg.de>
+	<553FD83A.6040407@windriver.com>
+In-Reply-To: <553FD83A.6040407@windriver.com>
+Accept-Language: de-DE, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US, en-AU
-x-tm-as-product-ver: SMEX-11.1.0.1239-7.500.1018-21510.005
-x-tm-as-result: No--31.507900-5.000000-31
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
+x-originating-ip: [192.168.100.114]
 MIME-Version: 1.0
-Subject: initramfs-framework ERROR: There's no '/dev' on rootfs.
+X-purgate-ID: 153929::1430293131-0000188E-AA5D9781/0/0
+X-purgate: clean
+Subject: Re: Migration from 1.7.1 to 1.8 - kernel-abiversion missing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,31 +63,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Apr 2015 07:18:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 29 Apr 2015 07:38:56 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-I'm trying to use initramfs-framework to mount an overlayfs, and I've got i=
-t working mostly. However, I found that when it boots, I get an error:
+> Have you tried setting linux-dummy as the preferred provider for the kern=
+el
+> ? That would skip the build processing doing anything more than satisfyin=
+g
+> the various kernel dependencies.
 
-ERROR: There's no '/dev' on rootfs.
+Ah, that's a good hint, I'll try that.
 
-That comes from initramfs-framework's 'finish' script. I got around it by c=
-reating the /dev directory on my writable partition. I also created /proc a=
-nd /sys since it looks as though those would be needed too.
+> >
+> >> After your build has failed, if you look in STAGING_KERNEL_BUILDDIR
+> >> do you see the abiversion file ?
+> >
+> > There are three instances of the file:
+> >
+> > ~/yocto-build-fido$ find . -name kernel-abiversion
+> > ./tmp/work/beaglebone-poky-linux-gnueabi/linux-
+> yocto/3.14.36+gitAUTOIN
+> > C+162dfe3bb0_dbe5b52e93-r0/pkgdata/kernel-depmod/kernel-abiversion
+> > ./tmp/sysroots/beaglebone/pkgdata/kernel-depmod/kernel-abiversion
+> > ./tmp/work-shared/beaglebone/kernel-build-artifacts/kernel-abiversion
+>=20
+> Those are where I'd expect them for 1.8, so they should be found and used
+> by the various parts of the build process. Something different is happeni=
+ng in
+> your build .. hmm.
 
-Would it be better to change the 'finish' script to just create the require=
-d directory(s)? E.g.:
+It looks like those were from another run, built from scratch in a new dire=
+ctory I now see the following result:
 
--               if [ ! -d $ROOTFS_DIR/dev ]; then
--                       fatal "ERROR: There's no '/dev' on rootfs."
--               fi
-+               mkdir -p $ROOTFS_DIR/dev
-+               mkdir -p $ROOTFS_DIR/proc
-+               mkdir -p $ROOTFS_DIR/sys
 
---=20
-Craig McQueen
+NOTE: Executing RunQueue Tasks
+ERROR: No kernel-abiversion file found (/home/astro/yocto-build-reproduce/t=
+mp/sysroots/u159/pkgdata/kernel-depmod/kernel-abiversion), cannot run depmo=
+d, aborting
+ERROR: Function failed: do_rootfs
+ERROR: Logfile of failure stored in: /home/astro/yocto-build-reproduce/tmp/=
+work/u159-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.7=
+440
+ERROR: Task 7 (/home/astro/git/poky/meta/recipes-core/images/core-image-min=
+imal.bb, do_rootfs) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 1776 tasks of which 93 didn't need to be rer=
+un and 1 failed.
+No currently running tasks (1775 of 1777)
 
+Summary: 1 task failed:
+  /home/astro/git/poky/meta/recipes-core/images/core-image-minimal.bb, do_r=
+ootfs
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+astro@eldk-vm:~/yocto-build-reproduce$ find . -name kernel-abiversion
+astro@eldk-vm:~/yocto-build-reproduce$ bitbake -e core-image-minimal | grep=
+ STAGING_KERNEL_BUILDDIR
+# $STAGING_KERNEL_BUILDDIR
+STAGING_KERNEL_BUILDDIR=3D"/home/astro/yocto-build-reproduce/tmp/work-share=
+d/u159/kernel-build-artifacts"
+astro@eldk-vm:~/yocto-build-reproduce$ ls -la /home/astro/yocto-build-repro=
+duce/tmp/work-shared/u159/kernel-build-artifacts
+ls: cannot access /home/astro/yocto-build-reproduce/tmp/work-shared/u159/ke=
+rnel-build-artifacts: No such file or directory
+astro@eldk-vm:~/yocto-build-reproduce$
+
+It looks like the entire STAGING_KERNEL_BUILDDIR is missing.
+
+
+I'll try some more variatons of my setup to try and narrow down why that ha=
+ppens.
+
+Jan
 
