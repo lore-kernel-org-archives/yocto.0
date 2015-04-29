@@ -1,39 +1,44 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <parthiban@ulivesystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6F9A7E009A5; Wed, 29 Apr 2015 01:10:52 -0700 (PDT)
+	id 04C8FE009AA; Wed, 29 Apr 2015 05:38:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.177 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37895E00932
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 01:10:48 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 1966027E241
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 08:10:46 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id C1vMcQlr9qW1 for <yocto@yoctoproject.org>;
-	Wed, 29 Apr 2015 08:10:45 +0000 (UTC)
-Received: from [192.168.1.16] (AMarseille-651-1-40-127.w92-150.abo.wanadoo.fr
-	[92.150.31.127])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 74B4827E224
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 08:10:45 +0000 (UTC)
-Message-ID: <55409203.2020501@dynamicdevices.co.uk>
-Date: Wed, 29 Apr 2015 10:10:43 +0200
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-ob0-f177.google.com (mail-ob0-f177.google.com
+	[209.85.214.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A1A6E00949
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 05:38:10 -0700 (PDT)
+Received: by obfe9 with SMTP id e9so18638414obf.1
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 05:38:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=HZo5WDiTRKoTUwCelQECao4nHU0xHVFogYK3EzAzPxg=;
+	b=Nb0a+kpeSGS8pHrTA7AzRDOKXGhVLD5G75K08ydsc4VCbwlwhAmV2/HqGRa5ftAOS6
+	b0sYT4WxBBX8LgfaEjd4h5Yi3celAZPY72ld6KF3AjSbGcKkvp3LkHpPnOTTK/CZ3e0b
+	C1VqsUTNu6tFXH9Pt9gOwQC3cSMgzJwCbf89Uws+5XwdbNnUYOjm80eFHQ2kspoYHY9u
+	5XyAzE0ZVQYOpOs8lXvjyAGbWoSDeCWq4KENzc8cGmVJ0s5ay7Fpfy8Czxi9aY1PTiv8
+	pELBm7m45MsC3QF3mbdNeEjkMKrtwq/r+DtbyUto7zRfkr/AX1JK7ww5jQom+gnxX5tv
+	J3Hg==
+X-Gm-Message-State: ALoCoQksSHqUefVqWSW88EMokQW6feTn3TIYJnjhjfNZU9JuZVn4mw5trSB0FVI14+qTjNaPX+9K
 MIME-Version: 1.0
+X-Received: by 10.182.130.201 with SMTP id og9mr17379858obb.60.1430311089044; 
+	Wed, 29 Apr 2015 05:38:09 -0700 (PDT)
+Received: by 10.60.162.210 with HTTP; Wed, 29 Apr 2015 05:38:09 -0700 (PDT)
+Date: Wed, 29 Apr 2015 18:08:09 +0530
+Message-ID: <CABNKipL2O7mZgYXSjRPR_Y9wYK4amR_EBVQmkEumXgB30Acvww@mail.gmail.com>
+From: Parthiban Kandasamy <parthiban@ulivesystems.com>
 To: yocto@yoctoproject.org
-Subject: Definition of native toolchain, support for -m32?
+Subject: Yocto linux-kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,36 +50,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Apr 2015 08:10:52 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 29 Apr 2015 12:38:17 -0000
+Content-Type: multipart/alternative; boundary=089e01175e0b6193980514dc403c
 
-Hi,
+--089e01175e0b6193980514dc403c
+Content-Type: text/plain; charset=UTF-8
 
-I'm having some trouble building chromium which I think is due to a
-definition in chromium.inc which uses the host compiler rather than the
-Yocto native compile toolchain
+i am using beagleboard-xm like board for my custom use. for my development
+i am using yocto-dora-1.5 as bsp and kernel-2.6.32(i downgraded).
+         while bitbaking kernel, i got error as follows:
 
-CC_host="${BUILD_CC}" export CC_host
-CXX_host="${BUILD_CXX}" export CXX_host
+Log data follows:
+| DEBUG: Executing shell function do_kernel_checkout
+| Reinitialized existing Git repository in
+/home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-10.0.0/BeagleBuild/tmp/work/beagleboard-poky-linux-gnueabi/linux-yocto/2.6.32-r0/linux-2.6.32/.git/
+| On branch standard/base
+| nothing to commit, working directory clean
+| ERROR. The branch 'meta' is required and was not
+| found. Ensure that the SRC_URI points to a valid linux-yocto
+| kernel repository
+| WARNING:
+/home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-10.0.0/BeagleBuild/tmp/work/beagleboard-poky-linux-gnueabi/linux-yocto/2.6.32-r0/temp/run.do_kernel_checkout.32588:1
+exit 1 from
+|   exit 1
+| ERROR: Function failed: do_kernel_checkout (log file is located at
+/home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-10.0.0/BeagleBuild/tmp/work/beagleboard-poky-linux-gnueabi/linux-yocto/2.6.32-r0/temp/log.do_kernel_checkout.32588)
 
-This seems to map to the gcc/g++ on my host system which is surely
-incorrect?
+due to this error i thought error can be cleared if kernel fetched from
+yocto git repository, but i cat get from there,  so how do i get
+kernel-2.6.32 for yocto project.
 
-Am I right in thinking that the correct way to define the Yocto native
-toolchain is using something more like this from native.bbclass?
+-- 
+thanks and regards,
+parthiban
+      +919790329795
 
-CC_host="${CCACHE}${HOST_PREFIX}gcc ${HOST_CC_ARCH}" export CC_host
-CXX_host="${CCACHE}${HOST_PREFIX}g++ ${HOST_CC_ARCH}" export CXX_host
+--089e01175e0b6193980514dc403c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-If I do this to eliminate the external dependency I run into a problem
-that -m32 is not accepted by the Yocto compiler toolchain (which is
-built/running on an x64 Ubuntu 14.04).
+<div dir=3D"ltr"><div><div>i am using beagleboard-xm like board for my cust=
+om use. for my development i am using yocto-dora-1.5 as bsp and kernel-2.6.=
+32(i downgraded). <br></div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 while bitbaking kernel, i got error as follows:<br><br>Log data follows=
+:<br>| DEBUG: Executing shell function do_kernel_checkout<br>| Reinitialize=
+d existing Git repository in /home/parthiban/UliveSytems/Parthiban/CODE/Ope=
+nSource/BSP/beagleboard-dora-10.0.0/BeagleBuild/tmp/work/beagleboard-poky-l=
+inux-gnueabi/linux-yocto/2.6.32-r0/linux-2.6.32/.git/<br>| On branch standa=
+rd/base<br>| nothing to commit, working directory clean<br>| ERROR. The bra=
+nch &#39;meta&#39; is required and was not<br>| found. Ensure that the SRC_=
+URI points to a valid linux-yocto<br>| kernel repository<br>| WARNING: /hom=
+e/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-10.0=
+.0/BeagleBuild/tmp/work/beagleboard-poky-linux-gnueabi/linux-yocto/2.6.32-r=
+0/temp/run.do_kernel_checkout.32588:1 exit 1 from<br>|=C2=A0=C2=A0 exit 1<b=
+r>| ERROR: Function failed: do_kernel_checkout (log file is located at /hom=
+e/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-10.0=
+.0/BeagleBuild/tmp/work/beagleboard-poky-linux-gnueabi/linux-yocto/2.6.32-r=
+0/temp/log.do_kernel_checkout.32588)<br><br></div>due to this error i thoug=
+ht error can be cleared if kernel fetched from yocto git repository, but i =
+cat get from there,=C2=A0 so how do i get kernel-2.6.32 for yocto project.<=
+br><div><div><br>-- <br><div class=3D"gmail_signature"><div style=3D"text-a=
+lign:right">thanks and regards,<br>parthiban =C2=A0 =C2=A0 =C2=A0 <br><div =
+style=3D"text-align:right">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +919790329795=C2=
+=A0=C2=A0 <br></div></div></div>
+</div></div></div>
 
-Could anybody advise on what steps I might take to have the Yocto native
-compile toolchain accepting -m32?
-
-Thanks,
-
-Alex
-
+--089e01175e0b6193980514dc403c--
