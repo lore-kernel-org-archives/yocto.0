@@ -1,60 +1,43 @@
-Return-Path: <xerofoify@gmail.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20BF7E009C7; Wed, 29 Apr 2015 06:34:33 -0700 (PDT)
+	id A5917E009A3; Wed, 29 Apr 2015 07:06:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (xerofoify[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.180 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ie0-f180.google.com (mail-ie0-f180.google.com
-	[209.85.223.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0C96E009AA
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 06:33:46 -0700 (PDT)
-Received: by iejt8 with SMTP id t8so42002680iej.2
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 06:33:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=DZZXVIlMw1K3CfjRuv18Nac8s1l2I/9VzP9D3+pqOv4=;
-	b=lmjtDL00J8QuWeLHIqsXfx47QytKpSpnSfn4sxz08Cu4pid6ikR6vAb07dxAv2oDp/
-	KavSbcDgxo03cc60pLmZa79ltiudQ58y3UUYCpkVudWJ0X4d0sNU3Kslzgz2Vk3PZbXx
-	9fEB16mlfFo9FukebHzTRkQnlfg5OHisCW2PZomOCDO8BAJ7+rIJ3FAlhlbN5g5DlbXb
-	0dRzkM1WEYYNaHqyyodW+WPxf4hfMGhW+udlHi4EjtKb6e/6zpMcQ4X7651xqbjH8gPQ
-	qYP9FL2mkaYqnqYqv7UGks0VqnrUZTghTZuAOjW/fvecADhbM5O9G9Ecy5BNCTxFLi0j
-	/I6A==
-X-Received: by 10.107.9.141 with SMTP id 13mr28507225ioj.71.1430314426168;
-	Wed, 29 Apr 2015 06:33:46 -0700 (PDT)
-Received: from [192.168.0.12]
-	(CPEbc4dfb2691f3-CMbc4dfb2691f0.cpe.net.cable.rogers.com.
-	[99.231.110.121])
-	by mx.google.com with ESMTPSA id q10sm9241153ige.16.2015.04.29.06.33.44
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 29 Apr 2015 06:33:45 -0700 (PDT)
-Message-ID: <5540DDB7.7070908@gmail.com>
-Date: Wed, 29 Apr 2015 09:33:43 -0400
-From: nick <xerofoify@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28E91E00998
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 07:06:13 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 91F8827E242;
+	Wed, 29 Apr 2015 14:06:11 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id RXRVqNeWIw0Z; Wed, 29 Apr 2015 14:06:10 +0000 (UTC)
+Received: from [192.168.1.16] (AMarseille-651-1-40-127.w92-150.abo.wanadoo.fr
+	[92.150.31.127])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 4C79F27E224;
+	Wed, 29 Apr 2015 14:06:07 +0000 (UTC)
+Message-ID: <5540E546.9020606@dynamicdevices.co.uk>
+Date: Wed, 29 Apr 2015 16:05:58 +0200
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
 	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, 
-	Parthiban Kandasamy <parthiban@ulivesystems.com>, yocto@yoctoproject.org
-References: <CABNKipL2O7mZgYXSjRPR_Y9wYK4amR_EBVQmkEumXgB30Acvww@mail.gmail.com>
-	<5540DAAF.6040409@windriver.com>
-In-Reply-To: <5540DAAF.6040409@windriver.com>
-Subject: Re: Yocto linux-kernel
+To: Oliver <urnen81@yahoo.es>
+References: <17420222.681949.1430314213894.JavaMail.yahoo@mail.yahoo.com>
+In-Reply-To: <17420222.681949.1430314213894.JavaMail.yahoo@mail.yahoo.com>
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] meta-ivi & meta-raspberrypi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,55 +49,155 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Apr 2015 13:34:33 -0000
+X-List-Received-Date: Wed, 29 Apr 2015 14:06:19 -0000
+Content-Type: multipart/alternative;
+	boundary="------------010900010201010908090109"
+
+--------------010900010201010908090109
 Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: 7bit
 
 
+On 29/04/2015 15:30, Oliver wrote:
+> Hello
+>
+> I have been working building together the meta-raspberrypi & the meta-ivi layers.
+> I have been stuck with configuration/compilation of weston(from mata-ivi layer):
+>
+> 1)
+>
+> You can check the intial thread http://lists.genivi.org/pipermail/genivi-meta-ivi/2015-April/000508.html
+>
+>
+> egl provided by userlad is not detected as the *.pc files are not deployed
+> Someone has faced similar problems:
+>
+>    http://git.buildroot.net/buildroot/commit/?id=2282b93f4248a32de84805456efa352f69b28624
+>
+> 2)
+> With this I am able to reach the do_compile stage but there are errors related to the undefined type
+>
+> PFNEGLQUERYWAYLANDBUFFERWL
+> Hacked this one forcing the inclusion of <weston-egl-ext.h> :-S
+>
+>
+> 3)
+> At linking time the next trouble is:
+>
+> /home/oliver/raspberry/build-rpi-ivi/tmp/sysroots/i686-linux/usr/libexec/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.9.1/ld: cannot find -lwayland-egl
+>
+> IIRC this lib is provided by mesa-gl, but in my build, mesa is configured(--disable-egl (is this ok being provided by userlad?)) which might be the reason why libwayland-egl is not getting deployed in the image?
+>
+> Any correction to my statements or hint to go further would be appreciated
+>
+> Best Regards & thanks for your time
+>
+> Oliver
 
-On 2015-04-29 09:20 AM, Bruce Ashfield wrote:
-> On 04/29/2015 08:38 AM, Parthiban Kandasamy wrote:
->> i am using beagleboard-xm like board for my custom use. for my
->> development i am using yocto-dora-1.5 as bsp and kernel-2.6.32(i
->> downgraded).
->>           while bitbaking kernel, i got error as follows:
->>
->> Log data follows:
->> | DEBUG: Executing shell function do_kernel_checkout
->> | Reinitialized existing Git repository in
->> /home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-10.0.0/BeagleBuild/tmp/work/beagleboard-poky-linux-gnueabi/linux-yocto/2.6.32-r0/linux-2.6.32/.git/
->> | On branch standard/base
->> | nothing to commit, working directory clean
->> | ERROR. The branch 'meta' is required and was not
->> | found. Ensure that the SRC_URI points to a valid linux-yocto
->> | kernel repository
->> | WARNING:
->> /home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-10.0.0/BeagleBuild/tmp/work/beagleboard-poky-linux-gnueabi/linux-yocto/2.6.32-r0/temp/run.do_kernel_checkout.32588:1
->> exit 1 from
->> |   exit 1
->> | ERROR: Function failed: do_kernel_checkout (log file is located at
->> /home/parthiban/UliveSytems/Parthiban/CODE/OpenSource/BSP/beagleboard-dora-10.0.0/BeagleBuild/tmp/work/beagleboard-poky-linux-gnueabi/linux-yocto/2.6.32-r0/temp/log.do_kernel_checkout.32588)
->>
->> due to this error i thought error can be cleared if kernel fetched from
->> yocto git repository, but i cat get from there,  so how do i get
->> kernel-2.6.32 for yocto project.
-> 
-> There isn't a released 2.6.32 linux-yocto version, so if you
-> really want that old version, you'd need to create a linux-yocto-custom
-> recipe for the version (unless that is what you already did).
-> 
-> Bruce
-> 
->>
->> -- 
->> thanks and regards,
->> parthiban
->>        +919790329795
->>
->>
-> 
-The only reason to use such a old kernel is for one of two reasons in my experience either 
-it's on custom hardware and written by a vendor supporting that hardware or people want to
-run a long term supported kernel. I am wondering of the two which one are you under Parthiban.
-Nick
+Hi Oliver,
 
+I was looking at wayland/weston last year.  I can't remember exactly
+where I was at with it I am afraid, but I think I had it building and
+have pushed some of the code I was playing with to GitHub
+
+I think this was related to the .pc issue
+
+https://github.com/DynamicDevices/meta-raspberrypi/commit/491dd14585efdb52378a57fa6ddacb1f15065257
+
+And this was what I was doing with weston. Looks like I was disabling EGL.
+
+https://github.com/DynamicDevices/meta-raspberrypi/commit/c657f69deb57035fc43319dd7d41745c17d7d6e1
+
+Sorry I can't be more help but perhaps there's something in there that
+might be of use.
+
+Regards,
+
+Alex
+
+--------------010900010201010908090109
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+    <link href="chrome://translator/skin/floatingPanel.css"
+      type="text/css" rel="stylesheet">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <br>
+    <div class="moz-cite-prefix">On 29/04/2015 15:30, Oliver wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:17420222.681949.1430314213894.JavaMail.yahoo@mail.yahoo.com"
+      type="cite">
+      <pre wrap="">Hello
+
+I have been working building together the meta-raspberrypi &amp; the meta-ivi layers.
+I have been stuck with configuration/compilation of weston(from mata-ivi layer):
+
+1)
+
+You can check the intial thread <a class="moz-txt-link-freetext" href="http://lists.genivi.org/pipermail/genivi-meta-ivi/2015-April/000508.html">http://lists.genivi.org/pipermail/genivi-meta-ivi/2015-April/000508.html</a>
+
+
+egl provided by userlad is not detected as the *.pc files are not deployed
+Someone has faced similar problems:
+
+   <a class="moz-txt-link-freetext" href="http://git.buildroot.net/buildroot/commit/?id=2282b93f4248a32de84805456efa352f69b28624">http://git.buildroot.net/buildroot/commit/?id=2282b93f4248a32de84805456efa352f69b28624</a>
+
+2)
+With this I am able to reach the do_compile stage but there are errors related to the undefined type
+
+PFNEGLQUERYWAYLANDBUFFERWL
+Hacked this one forcing the inclusion of &lt;weston-egl-ext.h&gt; :-S
+
+
+3)
+At linking time the next trouble is:
+
+/home/oliver/raspberry/build-rpi-ivi/tmp/sysroots/i686-linux/usr/libexec/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.9.1/ld: cannot find -lwayland-egl
+
+IIRC this lib is provided by mesa-gl, but in my build, mesa is configured(--disable-egl (is this ok being provided by userlad?)) which might be the reason why libwayland-egl is not getting deployed in the image?
+
+Any correction to my statements or hint to go further would be appreciated
+
+Best Regards &amp; thanks for your time
+
+Oliver
+</pre>
+    </blockquote>
+    <br>
+    Hi Oliver,<br>
+    <br>
+    I was looking at wayland/weston last year.  I can't remember exactly
+    where I was at with it I am afraid, but I think I had it building
+    and have pushed some of the code I was playing with to GitHub<br>
+    <br>
+    I think this was related to the .pc issue<br>
+    <br>
+<a class="moz-txt-link-freetext" href="https://github.com/DynamicDevices/meta-raspberrypi/commit/491dd14585efdb52378a57fa6ddacb1f15065257">https://github.com/DynamicDevices/meta-raspberrypi/commit/491dd14585efdb52378a57fa6ddacb1f15065257</a><br>
+    <br>
+    And this was what I was doing with weston. Looks like I was
+    disabling EGL.<br>
+    <br>
+<a class="moz-txt-link-freetext" href="https://github.com/DynamicDevices/meta-raspberrypi/commit/c657f69deb57035fc43319dd7d41745c17d7d6e1">https://github.com/DynamicDevices/meta-raspberrypi/commit/c657f69deb57035fc43319dd7d41745c17d7d6e1</a><br>
+    <br>
+    Sorry I can't be more help but perhaps there's something in there
+    that might be of use.<br>
+    <br>
+    Regards,<br>
+    <br>
+    Alex<br>
+    <div style="bottom: auto; left: 180px; right: auto; top: 701px;
+      display: none;" class="translator-theme-default"
+      id="translator-floating-panel">
+      <div title="Click to translate"
+        id="translator-floating-panel-button"></div>
+    </div>
+  </body>
+</html>
+
+--------------010900010201010908090109--
