@@ -1,43 +1,38 @@
-Return-Path: <joel.zhou@broadcom.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8964DE007CC; Wed, 29 Apr 2015 10:40:03 -0700 (PDT)
+	id 728B2E0095D; Wed, 29 Apr 2015 10:52:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	http://www.dnswl.org/, *      medium trust
-	*      [216.31.210.63 listed in list.dnswl.org]
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-gw2-out.broadcom.com (mail-gw2-out.broadcom.com
-	[216.31.210.63])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D902E0095D
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 10:39:51 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.11,671,1422950400"; d="scan'208,217";a="63470385"
-Received: from irvexchcas06.broadcom.com (HELO
-	IRVEXCHCAS06.corp.ad.broadcom.com) ([10.9.208.53])
-	by mail-gw2-out.broadcom.com with ESMTP; 29 Apr 2015 10:47:27 -0700
-Received: from SJEXCHCAS06.corp.ad.broadcom.com (10.16.203.14) by
-	IRVEXCHCAS06.corp.ad.broadcom.com (10.9.208.53) with Microsoft SMTP
-	Server (TLS) id 14.3.235.1; Wed, 29 Apr 2015 10:39:49 -0700
-Received: from SJEXCHMB12.corp.ad.broadcom.com ([fe80::bc15:c1e1:c29a:36f7])
-	by SJEXCHCAS06.corp.ad.broadcom.com ([::1]) with mapi id 14.03.0235.001;
-	Wed, 29 Apr 2015 10:39:48 -0700
-From: "Joel (Xi Zhou) Zhou" <joel.zhou@broadcom.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Kernel customized do_fetch issue
-Thread-Index: AdCCo3ucpO3id1frRu2TC2HCA6qcDA==
-Date: Wed, 29 Apr 2015 17:39:46 +0000
-Message-ID: <9F136EE5FB53D64397ED1089A0E760E0162CD671@SJEXCHMB12.corp.ad.broadcom.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.203.100]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AB85E007B9
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 10:52:19 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.9/8.14.9) with ESMTP id t3THqHvQ018263
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 29 Apr 2015 10:52:17 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 29 Apr 2015 10:52:16 -0700
+Message-ID: <55411A50.3030304@windriver.com>
+Date: Wed, 29 Apr 2015 13:52:16 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-Subject: Kernel customized do_fetch issue
+To: "Joel (Xi Zhou) Zhou" <joel.zhou@broadcom.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <9F136EE5FB53D64397ED1089A0E760E0162CD671@SJEXCHMB12.corp.ad.broadcom.com>
+In-Reply-To: <9F136EE5FB53D64397ED1089A0E760E0162CD671@SJEXCHMB12.corp.ad.broadcom.com>
+Subject: Re: Kernel customized do_fetch issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,139 +44,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Apr 2015 17:40:03 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9F136EE5FB53D64397ED1089A0E760E0162CD671SJEXCHMB12corpa_"
+X-List-Received-Date: Wed, 29 Apr 2015 17:52:21 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_9F136EE5FB53D64397ED1089A0E760E0162CD671SJEXCHMB12corpa_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hi all,
-
-I created a do_fetch() for checkout in-house git repo, which is working fin=
-e with OE.
-do_fetch() {
-    cd ${WORKDIR}
-    rm -rf ${PN}-${PV}
-    git clone ssh://svcswgit@git-ccxsw.inhouse.com/linux-lsk ${PN}-${PV}
-    cd ${PN}-${PV}
-    git checkout ${KBRANCH}
-}
-
-With Yocto, the do_fetch() does its job, but do_configure create an issue.
-do_configure_prepend() {
-    cp ${WORKDIR}/${KERNEL_CONFIG_FILE} ${S}/.config
-    oe_runmake oldconfig
-}
-The do_configure error message:
-| make: *** No rule to make target `oldconfig'.  Stop.
-
-Basically, the kernel source checkout by do_fetch() is delete/erase while r=
-unning do_configure().
-I suspect some tasks between do_fetch and do_configure are doing some magic=
- work of moving the kernel  source around.
-Any suggestion?
-
-Thanks,
-Joel
-
---_000_9F136EE5FB53D64397ED1089A0E760E0162CD671SJEXCHMB12corpa_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 2015-04-29 01:39 PM, Joel (Xi Zhou) Zhou wrote:
+> Hi all,
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I created a do_fetch() for checkout in-house git rep=
-o, which is working fine with OE.<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">do_fetch() {<o:p></o:p></=
-p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">&nbsp;&nbsp;&nbsp; cd ${W=
-ORKDIR}<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">&nbsp;&nbsp;&nbsp; rm -rf=
- ${PN}-${PV}<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">&nbsp;&nbsp;&nbsp; git cl=
-one ssh://svcswgit@git-ccxsw.inhouse.com/linux-lsk ${PN}-${PV}<o:p></o:p></=
-p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">&nbsp;&nbsp;&nbsp; cd ${P=
-N}-${PV}<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">&nbsp;&nbsp;&nbsp; git ch=
-eckout ${KBRANCH}<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">}<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">With Yocto, the do_fetch() does its job, but do_conf=
-igure create an issue.<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">do_configure_prepend() {<=
-o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">&nbsp;&nbsp;&nbsp; cp ${W=
-ORKDIR}/${KERNEL_CONFIG_FILE} ${S}/.config<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">&nbsp;&nbsp; &nbsp;oe_run=
-make oldconfig<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">}<o:p></o:p></p>
-<p class=3D"MsoNormal">The do_configure error message:<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">| make: *** No rule to ma=
-ke target `oldconfig'.&nbsp; Stop.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Basically, the kernel source checkout by do_fetch() =
-is delete/erase while running do_configure().<o:p></o:p></p>
-<p class=3D"MsoNormal">I suspect some tasks between do_fetch and do_configu=
-re are doing some magic work of moving the kernel &nbsp;source around.<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal">Any suggestion?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Joel<o:p></o:p></p>
-</div>
-</body>
-</html>
+> I created a do_fetch() for checkout in-house git repo, which is working
+> fine with OE.
+>
+> do_fetch() {
+>
+>      cd ${WORKDIR}
+>
+>      rm -rf ${PN}-${PV}
+>
+>      git clone ssh://svcswgit@git-ccxsw.inhouse.com/linux-lsk ${PN}-${PV}
+>
+>      cd ${PN}-${PV}
+>
+>      git checkout ${KBRANCH}
+>
+> }
+>
+> With Yocto, the do_fetch() does its job, but do_configure create an issue.
+>
+> do_configure_prepend() {
+>
+>      cp ${WORKDIR}/${KERNEL_CONFIG_FILE} ${S}/.config
+>
+>      oe_runmake oldconfig
+>
+> }
+>
+> The do_configure error message:
+>
+> | make: *** No rule to make target `oldconfig'.  Stop.
+>
+> Basically, the kernel source checkout by do_fetch() is delete/erase
+> while running do_configure().
+>
+> I suspect some tasks between do_fetch and do_configure are doing some
+> magic work of moving the kernel  source around.
 
---_000_9F136EE5FB53D64397ED1089A0E760E0162CD671SJEXCHMB12corpa_--
+It's better if you can post your entire kernel recipe, and what
+branch/release you are using.
+
+There are steps that move the kernel source into work-shared, so that
+may be impacting your flow.
+
+But the question has to be asked. Why exactly are you manually fetching
+the kernel ? The fetcher can take care of most everything.
+
+If you need to modify the source directory later, have a look at the
+steps that I'm taking in kernel-yocto.bbclass, since that works properly
+within the fetcher and build infrastructure.
+
+Bruce
+
+>
+> Any suggestion?
+>
+> Thanks,
+>
+> Joel
+>
+>
+>
+
+
