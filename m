@@ -1,34 +1,45 @@
-Return-Path: <mchehab@osg.samsung.com>
+Return-Path: <joel.zhou@broadcom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 04B05E009A3; Wed, 29 Apr 2015 07:43:08 -0700 (PDT)
+	id 1DF3EE0097F; Wed, 29 Apr 2015 08:22:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [216.31.210.64 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 488 seconds by postgrey-1.32 at yocto-www;
-	Wed, 29 Apr 2015 07:43:02 PDT
-Received: from lists.s-osg.org (lists.s-osg.org [54.187.51.154])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3CA3E00998
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 07:43:02 -0700 (PDT)
-Received: from recife.lan (unknown [200.101.47.138])
-	by lists.s-osg.org (Postfix) with ESMTPSA id E95BB462CB;
-	Wed, 29 Apr 2015 07:34:43 -0700 (PDT)
-Date: Wed, 29 Apr 2015 11:34:34 -0300
-From: Mauro Carvalho Chehab <mchehab@osg.samsung.com>
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-Message-ID: <20150429113434.2ce31089@recife.lan>
-In-Reply-To: <5540E546.9020606@dynamicdevices.co.uk>
-References: <17420222.681949.1430314213894.JavaMail.yahoo@mail.yahoo.com>
-	<5540E546.9020606@dynamicdevices.co.uk>
-Organization: Samsung
-X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.27; x86_64-redhat-linux-gnu)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
+	Wed, 29 Apr 2015 08:22:14 PDT
+Received: from mail-gw3-out.broadcom.com (mail-gw3-out.broadcom.com
+	[216.31.210.64])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF19DE00477
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 08:22:14 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.11,671,1422950400"; d="scan'208,217";a="63315353"
+Received: from irvexchcas08.broadcom.com (HELO
+	IRVEXCHCAS08.corp.ad.broadcom.com) ([10.9.208.57])
+	by mail-gw3-out.broadcom.com with ESMTP; 29 Apr 2015 08:28:32 -0700
+Received: from SJEXCHCAS03.corp.ad.broadcom.com (10.16.203.8) by
+	IRVEXCHCAS08.corp.ad.broadcom.com (10.9.208.57) with Microsoft SMTP
+	Server (TLS) id 14.3.235.1; Wed, 29 Apr 2015 08:21:09 -0700
+Received: from SJEXCHMB12.corp.ad.broadcom.com ([fe80::bc15:c1e1:c29a:36f7])
+	by SJEXCHCAS03.corp.ad.broadcom.com ([::1]) with mapi id 14.03.0235.001;
+	Wed, 29 Apr 2015 08:21:08 -0700
+From: "Joel (Xi Zhou) Zhou" <joel.zhou@broadcom.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Kernel git repo fetch issue
+Thread-Index: AdCCkA4FC1AOUxpdTFKr6vLxqihUPg==
+Date: Wed, 29 Apr 2015 15:21:08 +0000
+Message-ID: <9F136EE5FB53D64397ED1089A0E760E0162CC536@SJEXCHMB12.corp.ad.broadcom.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.203.100]
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 29 Apr 2015 08:07:35 -0700
-Cc: Yocto <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] meta-ivi & meta-raspberrypi
+Subject: Kernel git repo fetch issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,87 +51,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Apr 2015 14:43:08 -0000
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 29 Apr 2015 15:22:18 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9F136EE5FB53D64397ED1089A0E760E0162CC536SJEXCHMB12corpa_"
 
-Em Wed, 29 Apr 2015 16:05:58 +0200
-Alex J Lennon <ajlennon@dynamicdevices.co.uk> escreveu:
+--_000_9F136EE5FB53D64397ED1089A0E760E0162CC536SJEXCHMB12corpa_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> On 29/04/2015 15:30, Oliver wrote:
-> > Hello
-> >
-> > I have been working building together the meta-raspberrypi & the meta-ivi layers.
-> > I have been stuck with configuration/compilation of weston(from mata-ivi layer):
-> >
-> > 1)
-> >
-> > You can check the intial thread http://lists.genivi.org/pipermail/genivi-meta-ivi/2015-April/000508.html
-> >
-> >
-> > egl provided by userlad is not detected as the *.pc files are not deployed
-> > Someone has faced similar problems:
-> >
-> >    http://git.buildroot.net/buildroot/commit/?id=2282b93f4248a32de84805456efa352f69b28624
-> >
-> > 2)
-> > With this I am able to reach the do_compile stage but there are errors related to the undefined type
-> >
-> > PFNEGLQUERYWAYLANDBUFFERWL
-> > Hacked this one forcing the inclusion of <weston-egl-ext.h> :-S
-> >
-> >
-> > 3)
-> > At linking time the next trouble is:
-> >
-> > /home/oliver/raspberry/build-rpi-ivi/tmp/sysroots/i686-linux/usr/libexec/arm-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.9.1/ld: cannot find -lwayland-egl
-> >
-> > IIRC this lib is provided by mesa-gl, but in my build, mesa is configured(--disable-egl (is this ok being provided by userlad?)) which might be the reason why libwayland-egl is not getting deployed in the image?
-> >
-> > Any correction to my statements or hint to go further would be appreciated
-> >
-> > Best Regards & thanks for your time
-> >
-> > Oliver
-> 
-> Hi Oliver,
-> 
-> I was looking at wayland/weston last year.  I can't remember exactly
-> where I was at with it I am afraid, but I think I had it building and
-> have pushed some of the code I was playing with to GitHub
-> 
-> I think this was related to the .pc issue
-> 
-> https://github.com/DynamicDevices/meta-raspberrypi/commit/491dd14585efdb52378a57fa6ddacb1f15065257
-> 
-> And this was what I was doing with weston. Looks like I was disabling EGL.
-> 
-> https://github.com/DynamicDevices/meta-raspberrypi/commit/c657f69deb57035fc43319dd7d41745c17d7d6e1
-> 
-> Sorry I can't be more help but perhaps there's something in there that
-> might be of use.
+Hi all,
 
-I was able to build weston/wayland with meta-raspberrypi, for
-the Tizen distro:
-	http://blogs.s-osg.org/bringing-tizen-to-a-raspberry-pi-2-near-you/
+We have an in-house git repo for Linux kernel:
+ssh://svcswgit@git-ccxsw.inhouse.com/linux-lsk
 
-I had to apply a few patches to make it work on both Tizen and
-meta-raspberrypi. The forks are at:
-	http://git.s-osg.org/
+So in linux-lsk_3.14.29.bb file, we define:
+SRC_URI =3D "ssh://svcswgit@git-ccxsw.inhouse.com/linux-lsk;bareclone=3D1;b=
+ranch=3D${KBRANCH}"
 
-The current version there is actually disabling EGL. Enabling
-it seems to be possible, but we're still trying to make it work
-(it compiles fine, though, so I think we're close).
+Then 'bitbake linux-lsk' can't fetch the URL:
 
-Once done, my plan is to work on porting the patches back to
-meta-raspberrypi (and tizen-distro).
+ERROR: Fetcher failure: Fetch command failed with exit code 1, output:
+FATAL: unknown git/gitolite command: 'scp -r -f linux-linaro-stable'
 
-The egl-enabled version (with doesn't run, currently), is at the
-"devel" branch at both git trees.
+ERROR: Function failed: Fetcher failure for URL: ' ssh://svcswgit@git-ccxsw=
+.inhouse.com/linux-lsk;bareclone=3D1;branch=3D3.14_common_dev'. Unable to f=
+etch URL from any source.
 
-I hope that helps.
+Any idea how to fix this issue?
 
-Regards,
-Mauro
+Thanks,
+Joel
 
+--_000_9F136EE5FB53D64397ED1089A0E760E0162CC536SJEXCHMB12corpa_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">We have an in-house git repo for Linux kernel:<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">ssh://svcswgit@git-ccxsw.=
+inhouse.com/linux-lsk<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">So in linux-lsk_3.14.29.bb file, we define:<o:p></o:=
+p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">SRC_URI =3D &quot;ssh://s=
+vcswgit@git-ccxsw.inhouse.com/linux-lsk;bareclone=3D1;branch=3D${KBRANCH}&q=
+uot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Then &#8216;bitbake linux-lsk&#8217; can&#8217;t fet=
+ch the URL:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">ERROR: Fetcher failure: F=
+etch command failed with exit code 1, output:<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">FATAL: unknown git/gitoli=
+te command: 'scp -r -f linux-linaro-stable'<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">ERROR: Function failed: F=
+etcher failure for URL: ' ssh://svcswgit@git-ccxsw.inhouse.com/linux-lsk;ba=
+reclone=3D1;branch=3D3.14_common_dev'. Unable to fetch URL from any source.=
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Any idea how to fix this issue?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Joel<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9F136EE5FB53D64397ED1089A0E760E0162CC536SJEXCHMB12corpa_--
