@@ -1,57 +1,39 @@
-Return-Path: <J.Schaumloeffel@astro-kom.de>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 330B8E009A5; Wed, 29 Apr 2015 00:38:56 -0700 (PDT)
+	id 6F9A7E009A5; Wed, 29 Apr 2015 01:10:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [81.173.193.132 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mailrelay-out2.netcologne.de (mailrelay-out2.netcologne.de
-	[81.173.193.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1AFA3E00932
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 00:38:53 -0700 (PDT)
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37895E00932
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 01:10:48 -0700 (PDT)
 Received: from localhost (localhost [127.0.0.1])
-	by mailrelay-out2.netcologne.de (Postfix) with ESMTP id 4345A10B4BF
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 09:38:51 +0200 (CEST)
-Received: from [213.196.222.82] (helo=mailrelay-out2.netcologne.de)
-	by localhost with ESMTP (eXpurgate 4.0.6)
-	(envelope-from <J.Schaumloeffel@astro-kom.de>)
-	id 55408a8b-188e-7f0000012729-7f000001e041-1
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 09:38:51 +0200
-Received: from ASTRO-EX1.Bensberg.de (unknown [213.196.222.82])
-	(using TLSv1 with cipher RC4-SHA (128/128 bits))
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 1966027E241
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 08:10:46 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id C1vMcQlr9qW1 for <yocto@yoctoproject.org>;
+	Wed, 29 Apr 2015 08:10:45 +0000 (UTC)
+Received: from [192.168.1.16] (AMarseille-651-1-40-127.w92-150.abo.wanadoo.fr
+	[92.150.31.127])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by mailrelay-out2.netcologne.de (Postfix) with ESMTPS
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 09:38:50 +0200 (CEST)
-Received: from ASTRO-EX1.Bensberg.de (192.168.100.26) by ASTRO-EX1.Bensberg.de
-	(192.168.100.26) with Microsoft SMTP Server (TLS) id 15.0.775.38;
-	Wed, 29 Apr 2015 09:38:43 +0200
-Received: from ASTRO-EX1.Bensberg.de ([::1]) by ASTRO-EX1.Bensberg.de ([::1])
-	with mapi id 15.00.0775.031; Wed, 29 Apr 2015 09:38:43 +0200
-From: =?iso-8859-1?Q?Schauml=F6ffel=2C_Jan?= <J.Schaumloeffel@astro-kom.de>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Migration from 1.7.1 to 1.8 - kernel-abiversion missing
-Thread-Index: AdCBfI+fMEqCzoTLSdaz+mOzgmAd4QALUFmAAAerdlAAAv96AAAeAT+w
-Date: Wed, 29 Apr 2015 07:38:42 +0000
-Message-ID: <4f2d75bf33ac423ab064f754e0b67655@ASTRO-EX1.Bensberg.de>
-References: <ce604c0c1a1d4131a72119dbecb97ab2@ASTRO-EX1.Bensberg.de>
-	<553F90A3.9070501@windriver.com>
-	<82ac67a7e46e416dbabdda01c42fc89a@ASTRO-EX1.Bensberg.de>
-	<553FD83A.6040407@windriver.com>
-In-Reply-To: <553FD83A.6040407@windriver.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.100.114]
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 74B4827E224
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 08:10:45 +0000 (UTC)
+Message-ID: <55409203.2020501@dynamicdevices.co.uk>
+Date: Wed, 29 Apr 2015 10:10:43 +0200
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-X-purgate-ID: 153929::1430293131-0000188E-AA5D9781/0/0
-X-purgate: clean
-Subject: Re: Migration from 1.7.1 to 1.8 - kernel-abiversion missing
+To: yocto@yoctoproject.org
+Subject: Definition of native toolchain, support for -m32?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,76 +45,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Apr 2015 07:38:56 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 29 Apr 2015 08:10:52 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-> Have you tried setting linux-dummy as the preferred provider for the kern=
-el
-> ? That would skip the build processing doing anything more than satisfyin=
-g
-> the various kernel dependencies.
+Hi,
 
-Ah, that's a good hint, I'll try that.
+I'm having some trouble building chromium which I think is due to a
+definition in chromium.inc which uses the host compiler rather than the
+Yocto native compile toolchain
 
-> >
-> >> After your build has failed, if you look in STAGING_KERNEL_BUILDDIR
-> >> do you see the abiversion file ?
-> >
-> > There are three instances of the file:
-> >
-> > ~/yocto-build-fido$ find . -name kernel-abiversion
-> > ./tmp/work/beaglebone-poky-linux-gnueabi/linux-
-> yocto/3.14.36+gitAUTOIN
-> > C+162dfe3bb0_dbe5b52e93-r0/pkgdata/kernel-depmod/kernel-abiversion
-> > ./tmp/sysroots/beaglebone/pkgdata/kernel-depmod/kernel-abiversion
-> > ./tmp/work-shared/beaglebone/kernel-build-artifacts/kernel-abiversion
->=20
-> Those are where I'd expect them for 1.8, so they should be found and used
-> by the various parts of the build process. Something different is happeni=
-ng in
-> your build .. hmm.
+CC_host="${BUILD_CC}" export CC_host
+CXX_host="${BUILD_CXX}" export CXX_host
 
-It looks like those were from another run, built from scratch in a new dire=
-ctory I now see the following result:
+This seems to map to the gcc/g++ on my host system which is surely
+incorrect?
 
+Am I right in thinking that the correct way to define the Yocto native
+toolchain is using something more like this from native.bbclass?
 
-NOTE: Executing RunQueue Tasks
-ERROR: No kernel-abiversion file found (/home/astro/yocto-build-reproduce/t=
-mp/sysroots/u159/pkgdata/kernel-depmod/kernel-abiversion), cannot run depmo=
-d, aborting
-ERROR: Function failed: do_rootfs
-ERROR: Logfile of failure stored in: /home/astro/yocto-build-reproduce/tmp/=
-work/u159-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.7=
-440
-ERROR: Task 7 (/home/astro/git/poky/meta/recipes-core/images/core-image-min=
-imal.bb, do_rootfs) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 1776 tasks of which 93 didn't need to be rer=
-un and 1 failed.
-No currently running tasks (1775 of 1777)
+CC_host="${CCACHE}${HOST_PREFIX}gcc ${HOST_CC_ARCH}" export CC_host
+CXX_host="${CCACHE}${HOST_PREFIX}g++ ${HOST_CC_ARCH}" export CXX_host
 
-Summary: 1 task failed:
-  /home/astro/git/poky/meta/recipes-core/images/core-image-minimal.bb, do_r=
-ootfs
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-astro@eldk-vm:~/yocto-build-reproduce$ find . -name kernel-abiversion
-astro@eldk-vm:~/yocto-build-reproduce$ bitbake -e core-image-minimal | grep=
- STAGING_KERNEL_BUILDDIR
-# $STAGING_KERNEL_BUILDDIR
-STAGING_KERNEL_BUILDDIR=3D"/home/astro/yocto-build-reproduce/tmp/work-share=
-d/u159/kernel-build-artifacts"
-astro@eldk-vm:~/yocto-build-reproduce$ ls -la /home/astro/yocto-build-repro=
-duce/tmp/work-shared/u159/kernel-build-artifacts
-ls: cannot access /home/astro/yocto-build-reproduce/tmp/work-shared/u159/ke=
-rnel-build-artifacts: No such file or directory
-astro@eldk-vm:~/yocto-build-reproduce$
+If I do this to eliminate the external dependency I run into a problem
+that -m32 is not accepted by the Yocto compiler toolchain (which is
+built/running on an x64 Ubuntu 14.04).
 
-It looks like the entire STAGING_KERNEL_BUILDDIR is missing.
+Could anybody advise on what steps I might take to have the Yocto native
+compile toolchain accepting -m32?
 
+Thanks,
 
-I'll try some more variatons of my setup to try and narrow down why that ha=
-ppens.
-
-Jan
+Alex
 
