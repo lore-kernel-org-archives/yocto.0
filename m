@@ -1,51 +1,43 @@
-Return-Path: <francisco.torres@ttcontrol.com>
+Return-Path: <joel.zhou@broadcom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 45AAFE0095D; Wed, 29 Apr 2015 10:35:08 -0700 (PDT)
+	id 8964DE007CC; Wed, 29 Apr 2015 10:40:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [188.20.77.195 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [216.31.210.63 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 312 seconds by postgrey-1.32 at yocto-www;
-	Wed, 29 Apr 2015 10:35:04 PDT
-Received: from mail.tttech.com (mail.tttech.com [188.20.77.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA104E007B9
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 10:35:04 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.tttech.com (Postfix) with ESMTP id 7647F3F129
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 19:29:49 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at tttech.com
-Received: from mail.tttech.com ([127.0.0.1])
-	by localhost (tttmaildmz.vie.at.tttech.ttt [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id znI9c6TEX640 for <yocto@yoctoproject.org>;
-	Wed, 29 Apr 2015 19:29:49 +0200 (CEST)
-Received: from TTTEX02.ds1.internal (unknown [10.100.10.136])
-	by mail.tttech.com (Postfix) with ESMTPS id 62D053F11B
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 19:29:49 +0200 (CEST)
-Received: from TTTEX02.ds1.internal (10.100.10.136) by TTTEX02.ds1.internal
-	(10.100.10.136) with Microsoft SMTP Server (TLS) id 15.0.1044.25;
-	Wed, 29 Apr 2015 19:29:48 +0200
-Received: from TTTEX02.ds1.internal ([fe80::fd88:4379:bed4:8d08]) by
-	TTTEX02.ds1.internal ([fe80::fd88:4379:bed4:8d08%18]) with mapi id
-	15.00.1044.021; Wed, 29 Apr 2015 19:29:48 +0200
-From: Francisco Torres <francisco.torres@ttcontrol.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-gw2-out.broadcom.com (mail-gw2-out.broadcom.com
+	[216.31.210.63])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D902E0095D
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 10:39:51 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.11,671,1422950400"; d="scan'208,217";a="63470385"
+Received: from irvexchcas06.broadcom.com (HELO
+	IRVEXCHCAS06.corp.ad.broadcom.com) ([10.9.208.53])
+	by mail-gw2-out.broadcom.com with ESMTP; 29 Apr 2015 10:47:27 -0700
+Received: from SJEXCHCAS06.corp.ad.broadcom.com (10.16.203.14) by
+	IRVEXCHCAS06.corp.ad.broadcom.com (10.9.208.53) with Microsoft SMTP
+	Server (TLS) id 14.3.235.1; Wed, 29 Apr 2015 10:39:49 -0700
+Received: from SJEXCHMB12.corp.ad.broadcom.com ([fe80::bc15:c1e1:c29a:36f7])
+	by SJEXCHCAS06.corp.ad.broadcom.com ([::1]) with mapi id 14.03.0235.001;
+	Wed, 29 Apr 2015 10:39:48 -0700
+From: "Joel (Xi Zhou) Zhou" <joel.zhou@broadcom.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: How to create a gz file with compiled files from other recipes
-Thread-Index: AdCCobjKx4iAe6UnTcm3z2haIDf26A==
-Date: Wed, 29 Apr 2015 17:29:47 +0000
-Message-ID: <bc0cba483d914890bbf152c385d3ff14@TTTEX02.ds1.internal>
-Accept-Language: de-AT, en-US
+Thread-Topic: Kernel customized do_fetch issue
+Thread-Index: AdCCo3ucpO3id1frRu2TC2HCA6qcDA==
+Date: Wed, 29 Apr 2015 17:39:46 +0000
+Message-ID: <9F136EE5FB53D64397ED1089A0E760E0162CD671@SJEXCHMB12.corp.ad.broadcom.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.100.12.81]
+x-originating-ip: [10.16.203.100]
 MIME-Version: 1.0
-Subject: How to create a gz file with compiled files from other recipes
+Subject: Kernel customized do_fetch issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,29 +49,139 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Apr 2015 17:35:08 -0000
+X-List-Received-Date: Wed, 29 Apr 2015 17:40:03 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9F136EE5FB53D64397ED1089A0E760E0162CD671SJEXCHMB12corpa_"
+
+--_000_9F136EE5FB53D64397ED1089A0E760E0162CD671SJEXCHMB12corpa_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Hi all,
 
-I have created some recipes which using an external mingw toolchain are abl=
-e to compile some libraries for windows (e.g. clutter, mx, ....)
+I created a do_fetch() for checkout in-house git repo, which is working fin=
+e with OE.
+do_fetch() {
+    cd ${WORKDIR}
+    rm -rf ${PN}-${PV}
+    git clone ssh://svcswgit@git-ccxsw.inhouse.com/linux-lsk ${PN}-${PV}
+    cd ${PN}-${PV}
+    git checkout ${KBRANCH}
+}
 
-Now I would like to create a compressed file with all the compiled dlls (an=
-d if possible header files). How can I do that?
+With Yocto, the do_fetch() does its job, but do_configure create an issue.
+do_configure_prepend() {
+    cp ${WORKDIR}/${KERNEL_CONFIG_FILE} ${S}/.config
+    oe_runmake oldconfig
+}
+The do_configure error message:
+| make: *** No rule to make target `oldconfig'.  Stop.
 
-(I have tried to create an image but when I do that also some other package=
-s, e.g., kernel, that I do not need/want are included).
+Basically, the kernel source checkout by do_fetch() is delete/erase while r=
+unning do_configure().
+I suspect some tasks between do_fetch and do_configure are doing some magic=
+ work of moving the kernel  source around.
+Any suggestion?
 
 Thanks,
-Francis.
-CONFIDENTIALITY: The contents of this e-mail are confidential and intended =
-only for the above addressee(s). If you are not the intended recipient, or =
-the person responsible for delivering it to the intended recipient, copying=
- or delivering it to anyone else or using it in any unauthorized manner is =
-prohibited and may be unlawful. If you receive this e-mail by mistake, plea=
-se notify the sender and the systems administrator at straymail@tttech.com =
-immediately.
+Joel
 
+--_000_9F136EE5FB53D64397ED1089A0E760E0162CD671SJEXCHMB12corpa_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I created a do_fetch() for checkout in-house git rep=
+o, which is working fine with OE.<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">do_fetch() {<o:p></o:p></=
+p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">&nbsp;&nbsp;&nbsp; cd ${W=
+ORKDIR}<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">&nbsp;&nbsp;&nbsp; rm -rf=
+ ${PN}-${PV}<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">&nbsp;&nbsp;&nbsp; git cl=
+one ssh://svcswgit@git-ccxsw.inhouse.com/linux-lsk ${PN}-${PV}<o:p></o:p></=
+p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">&nbsp;&nbsp;&nbsp; cd ${P=
+N}-${PV}<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">&nbsp;&nbsp;&nbsp; git ch=
+eckout ${KBRANCH}<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">}<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">With Yocto, the do_fetch() does its job, but do_conf=
+igure create an issue.<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">do_configure_prepend() {<=
+o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">&nbsp;&nbsp;&nbsp; cp ${W=
+ORKDIR}/${KERNEL_CONFIG_FILE} ${S}/.config<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">&nbsp;&nbsp; &nbsp;oe_run=
+make oldconfig<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">}<o:p></o:p></p>
+<p class=3D"MsoNormal">The do_configure error message:<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">| make: *** No rule to ma=
+ke target `oldconfig'.&nbsp; Stop.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Basically, the kernel source checkout by do_fetch() =
+is delete/erase while running do_configure().<o:p></o:p></p>
+<p class=3D"MsoNormal">I suspect some tasks between do_fetch and do_configu=
+re are doing some magic work of moving the kernel &nbsp;source around.<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">Any suggestion?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Joel<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9F136EE5FB53D64397ED1089A0E760E0162CD671SJEXCHMB12corpa_--
