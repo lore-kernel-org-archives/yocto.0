@@ -1,38 +1,27 @@
-Return-Path: <craig.mcqueen@innerrange.com>
+Return-Path: <pokybuild@centos7-a.osl.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC027E00992; Wed, 29 Apr 2015 21:54:54 -0700 (PDT)
+	id CE751E00992; Wed, 29 Apr 2015 23:43:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
+	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
-	*      dynamic-looking rDNS
-Received: from remote.innerrange.com (122-143-146.dsl.connexus.net.au
-	[203.122.143.146])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16BA0E0095D
-	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 21:54:47 -0700 (PDT)
-Received: from IR-CENTRAL.corp.innerrange.com ([fe80::758b:a6c:a61b:18f4]) by
-	IR-CENTRAL.corp.innerrange.com ([fe80::758b:a6c:a61b:18f4%14]) with
-	mapi; Thu, 30 Apr 2015 14:54:45 +1000
-From: Craig McQueen <craig.mcqueen@innerrange.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 30 Apr 2015 14:54:44 +1000
-Thread-Topic: Deploying linux-ti-staging initramfs kernel into /boot
-Thread-Index: AdCDAb2Tk7EB4yoPQWi6bY727+K9mg==
-Message-ID: <5500469A22567C4BAF673A6E86AFA3A402227F4FAB16@IR-CENTRAL.corp.innerrange.com>
-Accept-Language: en-US, en-AU
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US, en-AU
-x-tm-as-product-ver: SMEX-11.1.0.1239-7.500.1018-21512.004
-x-tm-as-result: No--40.600400-5.000000-31
-x-tm-as-user-approved-sender: No
-x-tm-as-user-blocked-sender: No
+Received: from centos7-a.osl.yoctoproject.org (ab01 [10.0.10.101])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 690F9E0095D
+	for <yocto@yoctoproject.org>; Wed, 29 Apr 2015 23:43:45 -0700 (PDT)
+Received: by centos7-a.osl.yoctoproject.org (Postfix, from userid 1006)
+	id A28CF40004F5; Thu, 30 Apr 2015 06:43:44 +0000 (GMT)
+Date: Thu, 30 Apr 2015 06:43:42 +0000
+To: yocto@yoctoproject.org
+User-Agent: Heirloom mailx 12.5 7/5/10
 MIME-Version: 1.0
-Subject: Deploying linux-ti-staging initramfs kernel into /boot
+Message-Id: <20150430064344.A28CF40004F5@centos7-a.osl.yoctoproject.org>
+From: pokybuild@centos7-a.osl.yoctoproject.org (Poky Build User)
+Cc: otavio@ossystems.com.br
+Subject: Release Candidate Build for yocto-1.7.2 rc2 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,53 +33,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Apr 2015 04:54:54 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 30 Apr 2015 06:43:45 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-I'm using linux-ti-staging kernel 3.14.x with Yocto dizzy, for a build for =
-BeagleBone Black based system.
 
-I'd like to use initramfs in my kernel. So I've set INITRAMFS_IMAGE in my l=
-inux-ti-staging_3.14.bbappend, and INITRAMFS_IMAGE_BUNDLE =3D "1" in local.=
-conf. Now in build dir tmp/deploy/images/<boardname> I'm getting zImage-ini=
-tramfs-<boardname>.bin being built fine.
+A release candidate build for yocto-1.7.2 rc2 is now available at:
 
-However, I'm not getting an initramfs image being deployed to /boot, but ju=
-st a plain zImage without an initramfs.
+ 
+http://autobuilder.yoctoproject.org/pub/releases/yocto-1.7.2 rc2
 
-Looking in the build directory tmp/work/<boardname>-poky-linux-gnueabi/linu=
-x-ti-staging/3.14.39-r22b+gitrAUTOINC+ba552b4bc7/packages-split/kernel-imag=
-e/boot I see there is:
 
-zImage-3.14.39
-zImage-initramfs-<boardname>.bin
+Please begin QA on this build as soon as possible.
 
---however the zImage-initramfs-<boardname>.bin file isn't being included in=
- deploy-rpms/<boardname>/kernel-image-3.14.39-3.14.39-r22b+gitrAUTOINC+ba55=
-2b4bc7.<boardname>.rpm for some reason.
 
-But, if I change my linux-ti-staging_3.14.bbappend to include any one of th=
-e following lines, then the kernel-image .rpm file _does_ include both zIma=
-ge files:
+Build hash information: 
+meta-intel : c39a4bf4450845fca6f1b26ccfc0db192a4567e8 
+meta-fsl-arm : db1571f40c375a398a8cdbb42de4c4f272ab0cd1 
+meta-minnow : 13a5f2ab84c7284647a3e067a33109c11dae0568 
+meta-qt3 : 3016129d90b7ac8517a5227d819f10ad417b5b45 
+meta-fsl-ppc : 5eeeb3ad74b72d904f805bc6e248e93e722b45c4 
+poky : 29812e61736a95f1de64b3e9ebbb9c646ebd28dd 
 
-RDEPENDS_kernel-base =3D ""
-RDEPENDS_kernel-base =3D "kernel-devicetree"
-RDEPENDS_kernel-base =3D "kernel-image"
 
-But if I put:
-
-RDEPENDS_kernel-base =3D "kernel-image kernel-devicetree"
-
---then there is no zImage-initramfs-<boardname>.bin in the kernel-image .rp=
-m. This seems very confusing.
-
-Why would zImage-initramfs-<boardname>.bin disappear from the kernel-image =
-package when the linux-ti-staging RDEPENDS_kernel-base specifies both kerne=
-l-image and kernel-devicetree, but not other cases?
-
---=20
-Craig McQueen
-
+This is an automated message from
+The Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder
+Email: elizabeth.flanagan@intel.com 
 
