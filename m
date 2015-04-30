@@ -1,32 +1,26 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <pokybuild@ubuntu1204.osl.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 90DBCE007B6; Thu, 30 Apr 2015 15:21:10 -0700 (PDT)
+	id 2FEEDE0049A; Thu, 30 Apr 2015 16:57:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
+	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25EC8E0049A
-	for <yocto@yoctoproject.org>; Thu, 30 Apr 2015 15:21:06 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 6473BF811E1; Thu, 30 Apr 2015 16:21:06 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id E4D49F811E1;
-	Thu, 30 Apr 2015 16:21:05 -0600 (MDT)
-Message-ID: <5542AAE9.5040001@mlbassoc.com>
-Date: Thu, 30 Apr 2015 16:21:29 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
-MIME-Version: 1.0
+Received: from ubuntu1204.osl.yoctoproject.org
+	(ubuntu1204.osl.yoctoproject.org [10.0.10.110])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CD27E0049A;
+	Thu, 30 Apr 2015 16:57:05 -0700 (PDT)
+Received: by ubuntu1204.osl.yoctoproject.org (Postfix, from userid 1006)
+	id 2D12A2C02D0; Thu, 30 Apr 2015 23:57:04 +0000 (UTC)
 To: yocto@yoctoproject.org
-References: <5542706A.4070807@reliableembeddedsystems.com>	<554283F9.6030108@mlbassoc.com>	<554290FC.7040104@reliableembeddedsystems.com>	<CAJTo0LYFX96KpPv0_gYVt4i7-dukEpv38szbHO3MNbsNgHLhQQ@mail.gmail.com>
-	<alpine.LFD.2.11.1504301723070.4064@localhost>
-In-Reply-To: <alpine.LFD.2.11.1504301723070.4064@localhost>
-Subject: Re: fido: funny ipk behavior
+Message-Id: <20150430235704.2D12A2C02D0@ubuntu1204.osl.yoctoproject.org>
+Date: Thu, 30 Apr 2015 23:57:04 +0000 (UTC)
+From: pokybuild@ubuntu1204.osl.yoctoproject.org (Poky Build User)
+Cc: otavio@ossystems.com.br
+Subject: Release Candidate Build for yocto-1.7.2_rc3 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,28 +32,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Apr 2015 22:21:10 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 30 Apr 2015 23:57:06 -0000
 
-On 2015-04-30 15:23, Robert P. J. Day wrote:
-> On Thu, 30 Apr 2015, Burton, Ross wrote:
->
->>
->> On 30 April 2015 at 21:30, Robert Berger <gmane@reliableembeddedsystems.com> wrote:
->>        Nothing, since I forgot
->>
->>        EXTRA_IMAGE_FEATURES_append = " package-management"
->
->    um ... i think you only need refer to EXTRA_IMAGE_FEATURES; with
-> that variable, i believe the "_append" part is superfluous.
+-e 
+A release candidate build for yocto-1.7.2_rc3 is now available at:
 
-Unless it's already being set somewhere else - this seems like
-a safe way to make sure it gets set.
+ 
+http://autobuilder.yoctoproject.org/pub/releases/yocto-1.7.2_rc3
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+
+Please begin QA on this build as soon as possible.
+
+
+Build hash information: 
+meta-intel : c39a4bf4450845fca6f1b26ccfc0db192a4567e8 
+meta-fsl-arm : db1571f40c375a398a8cdbb42de4c4f272ab0cd1 
+meta-minnow : 13a5f2ab84c7284647a3e067a33109c11dae0568 
+meta-qt3 : 3016129d90b7ac8517a5227d819f10ad417b5b45 
+meta-fsl-ppc : 5eeeb3ad74b72d904f805bc6e248e93e722b45c4 
+poky : 29812e61736a95f1de64b3e9ebbb9c646ebd28dd 
+
+
+This is an automated message from
+The Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder
+Email: elizabeth.flanagan@intel.com 
 
