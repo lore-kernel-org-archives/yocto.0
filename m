@@ -1,44 +1,48 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 49F2FE007B6; Thu, 30 Apr 2015 13:31:29 -0700 (PDT)
+	id D5913E007B6; Thu, 30 Apr 2015 14:22:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS,WEIRD_PORT autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B570E0049A
-	for <yocto@yoctoproject.org>; Thu, 30 Apr 2015 13:31:19 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1Ynv77-0006xo-Bi
-	for yocto@yoctoproject.org; Thu, 30 Apr 2015 22:31:17 +0200
-Received: from ppp-2-86-133-224.home.otenet.gr ([2.86.133.224])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Thu, 30 Apr 2015 22:31:17 +0200
-Received: from gmane by ppp-2-86-133-224.home.otenet.gr with local (Gmexim 0.1
-	(Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Thu, 30 Apr 2015 22:31:17 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Thu, 30 Apr 2015 23:30:52 +0300
-Message-ID: <554290FC.7040104@reliableembeddedsystems.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.50 listed in list.dnswl.org]
+Received: from mail-qg0-f50.google.com (mail-qg0-f50.google.com
+	[209.85.192.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF358E0049A
+	for <yocto@yoctoproject.org>; Thu, 30 Apr 2015 14:22:03 -0700 (PDT)
+Received: by qgfi89 with SMTP id i89so30777051qgf.1
+	for <yocto@yoctoproject.org>; Thu, 30 Apr 2015 14:22:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=Gnobiw+jao2HMsssmu0LN/ERnmmNXwd0EsPcR+7g9VM=;
+	b=bG3ZwaNsPgiZ7tFKfyH1x90OO8M4ho6yOUrbhdR1HIJ5Mb0Bghm7YrHYrxKNtzqVGh
+	zT7b0NjweKqLaB7wbu30HBOU6esI7oHuG6RJRYM/esN42RXjWi310jyKKN59MPGpGHhn
+	NXGKkPv2tTpBtMbHRlpGlBTm5sfR+RnnSuCRwkUokycuuesvdNFDEIUgRMhff653aI8A
+	b3ycw25t24UAeZdbNDDgDPnWJMp8qgPom1Sf2b9YBKMOG+u3XJ4CqH2D3BPfIdOZ+qvF
+	IDYUQk5h6parn5BosG1GtjffzDO8M8W3HcDf80DcjBbPs3/HOWxhcv6pvBME2WluBCrs
+	itCw==
+X-Gm-Message-State: ALoCoQms0FxMLM9Q48GPOu/sxzJ5aJiNyzk71r4DI+/xgjoNuVDgEdvJenDz7NB5QEbgeiSYfbVu
+X-Received: by 10.229.37.200 with SMTP id y8mr7397769qcd.28.1430428922433;
+	Thu, 30 Apr 2015 14:22:02 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.140.102.231 with HTTP; Thu, 30 Apr 2015 14:21:41 -0700 (PDT)
+In-Reply-To: <554290FC.7040104@reliableembeddedsystems.com>
 References: <5542706A.4070807@reliableembeddedsystems.com>
 	<554283F9.6030108@mlbassoc.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: ppp-2-86-133-224.home.otenet.gr
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
-In-Reply-To: <554283F9.6030108@mlbassoc.com>
+	<554290FC.7040104@reliableembeddedsystems.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 30 Apr 2015 22:21:41 +0100
+Message-ID: <CAJTo0LYFX96KpPv0_gYVt4i7-dukEpv38szbHO3MNbsNgHLhQQ@mail.gmail.com>
+To: Robert Berger <gmane@reliableembeddedsystems.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: fido: funny ipk behavior
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -51,30 +55,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Apr 2015 20:31:29 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 30 Apr 2015 21:22:09 -0000
+Content-Type: multipart/alternative; boundary=001a11c2b180cc85a20514f7affd
 
-Hi,
+--001a11c2b180cc85a20514f7affd
+Content-Type: text/plain; charset=UTF-8
 
+On 30 April 2015 at 21:30, Robert Berger <gmane@reliableembeddedsystems.com>
+wrote:
 
-On 04/30/2015 10:35 PM, Gary Thomas wrote:
+> Nothing, since I forgot
 >
-> On your target, what do you get from this?
->   # opkg list-installed libc6
+> EXTRA_IMAGE_FEATURES_append = " package-management"
+>
 
-Nothing, since I forgot
+That will be it then - your image doesn't have a package database so any
+dependencies won't be able to be satisfied.
 
-EXTRA_IMAGE_FEATURES_append = " package-management"
+Either force the installation or rebuild the image with package-management
+enabled.
 
-Thanks,
+Ross
 
-Robert..."it doesn't matter how beautiful your theory is, it doesn't
-matter how smart you are -- if it doesn't agree with experiment, it's
-wrong." - Richard P. Feynman
+--001a11c2b180cc85a20514f7affd
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-My public pgp key is available,at:
-http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 30 April 2015 at 21:30, Robert Berger <span dir=3D"ltr">&lt;<a href=3D"m=
+ailto:gmane@reliableembeddedsystems.com" target=3D"_blank">gmane@reliableem=
+beddedsystems.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote=
+" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><=
+div id=3D":28x" class=3D"a3s" style=3D"overflow:hidden">Nothing, since I fo=
+rgot<br>
+<br>
+EXTRA_IMAGE_FEATURES_append =3D &quot; package-management&quot;<br></div></=
+blockquote></div><br>That will be it then - your image doesn&#39;t have a p=
+ackage database so any dependencies won&#39;t be able to be satisfied.</div=
+><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Either for=
+ce the installation or rebuild the image with package-management enabled.</=
+div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</d=
+iv></div>
 
-
-
+--001a11c2b180cc85a20514f7affd--
