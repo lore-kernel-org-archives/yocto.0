@@ -1,40 +1,42 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <alexandru.c.georgescu@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B2CDE007B6; Thu, 30 Apr 2015 07:06:13 -0700 (PDT)
+	id D0C35E007B6; Thu, 30 Apr 2015 09:06:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F375AE0049A
-	for <yocto@yoctoproject.org>; Thu, 30 Apr 2015 07:06:11 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.9/8.14.9) with ESMTP id t3UE63IV029703
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 30 Apr 2015 07:06:04 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.224.2;
-	Thu, 30 Apr 2015 07:06:03 -0700
-Message-ID: <554236CB.6000604@windriver.com>
-Date: Thu, 30 Apr 2015 10:06:03 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29C8CE007A0
+	for <yocto@yoctoproject.org>; Thu, 30 Apr 2015 09:06:40 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga103.fm.intel.com with ESMTP; 30 Apr 2015 09:06:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.11,677,1422950400"; d="scan'208";a="721703268"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by orsmga002.jf.intel.com with ESMTP; 30 Apr 2015 09:06:40 -0700
+Received: from irsmsx110.ger.corp.intel.com ([169.254.15.5]) by
+	IRSMSX103.ger.corp.intel.com ([169.254.3.76]) with mapi id
+	14.03.0224.002; Thu, 30 Apr 2015 17:06:38 +0100
+From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Replacing HOB in Build Appliance for YP 1.9
+Thread-Index: AQHQg1+jJHA8n6FEVE60UTnnmkXlIQ==
+Date: Thu, 30 Apr 2015 16:06:37 +0000
+Message-ID: <D1682DBC.1AE81%alexandru.c.georgescu@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.4.9.150325
+x-originating-ip: [10.237.105.34]
 MIME-Version: 1.0
-To: =?windows-1252?Q?=22Schauml=F6ffel=2C_Jan=22?=
-	<J.Schaumloeffel@astro-kom.de>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <ce604c0c1a1d4131a72119dbecb97ab2@ASTRO-EX1.Bensberg.de>	<553F90A3.9070501@windriver.com>	<82ac67a7e46e416dbabdda01c42fc89a@ASTRO-EX1.Bensberg.de>	<553FD83A.6040407@windriver.com>	<4f2d75bf33ac423ab064f754e0b67655@ASTRO-EX1.Bensberg.de>	<5540DB34.6010102@windriver.com>	<a01714e680f8470cb21bb0b52e66c91e@ASTRO-EX1.Bensberg.de>	<55421DA2.9060909@windriver.com>
-	<e134e69a27bd460a9da71929a7f78d9a@ASTRO-EX1.Bensberg.de>
-In-Reply-To: <e134e69a27bd460a9da71929a7f78d9a@ASTRO-EX1.Bensberg.de>
-Subject: Re: Migration from 1.7.1 to 1.8 - kernel-abiversion missing
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>
+Subject: Replacing HOB in Build Appliance for YP 1.9
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,36 +48,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Apr 2015 14:06:13 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 30 Apr 2015 16:06:43 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <EA0B09A416DC284D8345A19F2A5B85DD@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-On 2015-04-30 08:27 AM, Schaumlöffel, Jan wrote:
->> What kernel recipe is used when your machine is set to 'astro' ?
->> Something custom ? Or have you added machine compatibility to another
->> known kernel recipe ?
->
-> How would I see which kernel recipe is used?
+Hello,
+In 1.9 HOB is intended to be deprecated by Toaster functionality. This
+means that Build Appliance also must be changed. Since HOB is started
+automatically in BA in order to help users get started quickly with YP, I
+have the following proposal for updating BA in 1.9 and to replace HOB:
 
-This is where my brute force techniques probably break down. I just
-do a 'bitbake virtual/kernel' and you'll see it display which
-recipe is being built.
 
-If you haven't added compatibility for your new machine to any
-recipe, I'm betting that linux-dummy is used.
+* Update current BA implementation in order to support Toaster (maybe few
+patches needed to be included in the image in order to run Toaster)
+* If Toaster is enabled in BA then the user might be able to run Toaster
+from his host machine, or if BA is installed on a remote server, just
+access the server via HTTP.
+* this should be an easy solution to implement and maintain the BA
+functionality.
 
->
-> I did not customize anything except for aforementioned steps, simply copied beaglebone.conf to astro.conf in the same directory. Also I did not touch any kernel recipes (kernel is built externally), maybe that's what's missing?
+There are solutions like Docker that were previously discussed, but my
+opinion is that first of all Docker is limited to Linux only. Secondly it
+will need much more QA effort (support at least 4 distros that YP
+currently supports) and more failure prone for specific Docker
+configurations.
 
-It is plausible. But in theory, linux-dummy should still provide
-what you need (but since it doesn't build anything, there is
-no abi .. and no modules can be built against it) .. so the
-error isn't graceful.
-
-Bruce
-
->
-> Jan
->
+Regards,
+--
+Alexandru Georgescu
+Yocto QA Engineer
+SSG/SSD Open Source Technology Center Romania
 
 
