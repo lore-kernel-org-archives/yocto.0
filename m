@@ -1,34 +1,40 @@
-Return-Path: <thshin@telechips.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 33442E00992; Thu, 30 Apr 2015 05:18:37 -0700 (PDT)
+	id D7240E009D2; Thu, 30 Apr 2015 05:18:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RDNS_NONE,T_FILL_THIS_FORM_SHORT autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
-	*      information
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Thu, 30 Apr 2015 05:18:34 PDT
-Received: from telegweb.telechips.com (unknown [219.240.43.118])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EF2DE007CC
-	for <yocto@yoctoproject.org>; Thu, 30 Apr 2015 05:18:34 -0700 (PDT)
-X-MimeOLE: Produced By Microsoft Exchange V6.5
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49CCFE009B6
+	for <yocto@yoctoproject.org>; Thu, 30 Apr 2015 05:18:49 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.9/8.14.9) with ESMTP id t3UCIi9k029260
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 30 Apr 2015 05:18:45 -0700 (PDT)
+Received: from server.local (128.224.23.5) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.224.2;
+	Thu, 30 Apr 2015 05:18:44 -0700
+Message-ID: <55421DA2.9060909@windriver.com>
+Date: Thu, 30 Apr 2015 08:18:42 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-Date: Thu, 30 Apr 2015 21:17:11 +0900
-Message-ID: <F4F751F96C54D346898D4C77E196E3DB0E35A09A@telegweb.telechips.com>
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Thread-Topic: gdk-pixbuf-native build error on YP 1.8 Fido
-Thread-Index: AdCDP5WvHKvGatVuTPm+hPfzc3pfmg==
-From: =?ks_c_5601-1987?B?vcXFw8f2IChUYWVrIEh5dW4gU2hpbik=?=
-	<thshin@telechips.com>
-To: <yocto@yoctoproject.org>
-Subject: gdk-pixbuf-native build error on YP 1.8 Fido
+To: =?windows-1252?Q?=22Schauml=F6ffel=2C_Jan=22?=
+	<J.Schaumloeffel@astro-kom.de>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <ce604c0c1a1d4131a72119dbecb97ab2@ASTRO-EX1.Bensberg.de>	<553F90A3.9070501@windriver.com>	<82ac67a7e46e416dbabdda01c42fc89a@ASTRO-EX1.Bensberg.de>	<553FD83A.6040407@windriver.com>	<4f2d75bf33ac423ab064f754e0b67655@ASTRO-EX1.Bensberg.de>	<5540DB34.6010102@windriver.com>
+	<a01714e680f8470cb21bb0b52e66c91e@ASTRO-EX1.Bensberg.de>
+In-Reply-To: <a01714e680f8470cb21bb0b52e66c91e@ASTRO-EX1.Bensberg.de>
+Subject: Re: Migration from 1.7.1 to 1.8 - kernel-abiversion missing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,423 +46,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Apr 2015 12:18:37 -0000
-Content-class: urn:content-classes:message
-Content-Type: multipart/alternative;
-	boundary="----_=_NextPart_001_01D0833F.B28A0574"
-
-------_=_NextPart_001_01D0833F.B28A0574
-Content-Type: text/plain;
-	charset="ks_c_5601-1987"
-Content-Transfer-Encoding: quoted-printable
-
-Hi all,
-
-=20
-
-First sorry, my English is poor
-
-=20
-
-I try to use on YP 1.8 Fido
-
-I add DISTRO_FEATURES_append =3D " directfb" because of I must use =
-directfb
-
-When I build gdk-pixbuf-native, error occured below
-
-=20
-
-~/works/Yocto/build/test$ bitbake gdk-pixbuf-native
-
-WARNING: Host distribution "Fedora-17" has not been validated with this =
-version of the build system; you may possibly experience unexpected =
-failures. It is recommended that you use a tested distribution.
-
-Parsing recipes: 100% =
-|########################################################################=
-#########################################################################=
-#####################################################| Time: 00:00:04
-
-Parsing of 871 .bb files complete (0 cached, 871 parsed). 1265 targets, =
-39 skipped, 0 masked, 0 errors.
-
-NOTE: Resolving any missing task queue dependencies
-
-ERROR: Nothing PROVIDES 'directfb-native' (but =
-virtual:native:/home/B110141/works/git/poky-fido/meta/recipes-graphics/ca=
-iro/cairo_1.12.18.bb DEPENDS on or otherwise requires it). Close =
-matches:
-
-  db-native
-
-  orc-native
-
-  icu-native
-
-ERROR: Required build target 'gdk-pixbuf-native' has no buildable =
-providers.
-
-Missing or unbuildable dependency chain was: ['gdk-pixbuf-native', =
-'harfbuzz-native', 'cairo-native', 'directfb-native']
-
-=20
-
-Summary: There was 1 WARNING message shown.
-
-Summary: There were 2 ERROR messages shown, returning a non-zero exit =
-code.
-
-=20
-
-I can not find why gdk-pixbuf-native have dependency harfbuzz-native
-
-On YP 1.7 Dizzy, gdk-pixbuf-native have not dependency harfbuzz-native
-
-=20
-
-Help me please
-
-=20
-
-=20
-
-Thanks
-
-=20
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
-Wily Taekhyun Shin
-
-Research Engineer
-R&D Center
-Telechips Inc.
-Tel : + 82-2-3443-6792(Ext.390)
-
-Fax : + 82-2-6424-7793=20
-
-Mobile : + 82-10-4376-5530
-
-E-mail : thshin@telechips.com =
-<blocked::blocked::blocked::blocked::blocked::blocked::blocked::blocked::=
-blocked::blocked::mailto:ksjeon@telechips.com>=20
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
-
-This mail and attachments contain confidential information of Telechips =
-Inc. which has its own authority.
-It is not allowed to disclose,transmit or use this confidential =
-information to the third parties without the=20
-prior written consent of Telechips Inc. by any form or means.=20
-If you are not the intended recipient, please notify the sender =
-immediately and do not disclose the=20
-contents and destroy all copies of the original message.
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
-
-=20
-
-
-------_=_NextPart_001_01D0833F.B28A0574
-Content-Type: text/html;
-	charset="ks_c_5601-1987"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40">
-
-<head>
-<meta http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dks_c_5601-1987">
-<meta name=3DGenerator content=3D"Microsoft Word 12 (filtered medium)">
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:=B1=BC=B8=B2;
-	panose-1:2 11 6 0 0 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:"\@=B8=BC=C0=BA =B0=ED=B5=F1";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:"\@=B1=BC=B8=B2";
-	panose-1:2 11 6 0 0 1 1 1 1 1;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-autospace:none;
-	word-break:break-hangul;
-	font-size:10.0pt;
-	font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"=B8=BC=C0=BA =B0=ED=B5=F1";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
- /* Page Definitions */
- @page Section1
-	{size:612.0pt 792.0pt;
-	margin:3.0cm 72.0pt 72.0pt 72.0pt;}
-div.Section1
-	{page:Section1;}
--->
-</style>
-<!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext=3D"edit">
-  <o:idmap v:ext=3D"edit" data=3D"1" />
- </o:shapelayout></xml><![endif]-->
-</head>
-
-<body lang=3DKO link=3Dblue vlink=3Dpurple>
-
-<div class=3DSection1>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Hi all,<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>First sorry, my English is =
-poor<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>I try to use on YP 1.8 =
-Fido<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>I add DISTRO_FEATURES_append =3D =
-&quot;
-directfb&quot; because of I must use directfb<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>When I build gdk-pixbuf-native, =
-error
-occured below<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>~/works/Yocto/build/test$ =
-bitbake
-gdk-pixbuf-native<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>WARNING: Host distribution
-&quot;Fedora-17&quot; has not been validated with this version of the =
-build
-system; you may possibly experience unexpected failures. It is =
-recommended that
-you use a tested distribution.<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Parsing recipes: 100%
-|########################################################################=
-#########################################################################=
-#####################################################|
-Time: 00:00:04<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Parsing of 871 .bb files =
-complete (0
-cached, 871 parsed). 1265 targets, 39 skipped, 0 masked, 0 =
-errors.<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>NOTE: Resolving any missing task =
-queue
-dependencies<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>ERROR: Nothing PROVIDES =
-'directfb-native'
-(but
-virtual:native:/home/B110141/works/git/poky-fido/meta/recipes-graphics/ca=
-iro/cairo_1.12.18.bb
-DEPENDS on or otherwise requires it). Close =
-matches:<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>&nbsp; =
-db-native<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>&nbsp; =
-orc-native<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>&nbsp; =
-icu-native<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>ERROR: Required build target
-'gdk-pixbuf-native' has no buildable providers.<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Missing or unbuildable =
-dependency chain
-was: ['gdk-pixbuf-native', 'harfbuzz-native', 'cairo-native',
-'directfb-native']<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Summary: There was 1 WARNING =
-message shown.<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Summary: There were 2 ERROR =
-messages shown,
-returning a non-zero exit code.<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>I can not find why =
-gdk-pixbuf-native have
-dependency harfbuzz-native<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>On YP 1.7 Dizzy, =
-gdk-pixbuf-native have not
-dependency harfbuzz-native<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US>Help me =
-please<o:p></o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-<p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;
-text-autospace:ideograph-numeric;word-break:keep-all'><span lang=3DEN-US
-style=3D'color:black'>Thanks<o:p></o:p></span></p>
-
-<p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;
-text-autospace:ideograph-numeric;word-break:keep-all'><span lang=3DEN-US
-style=3D'font-family:"Arial","sans-serif";color:black'><o:p>&nbsp;</o:p><=
-/span></p>
-
-<p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;
-text-autospace:ideograph-numeric;word-break:keep-all'><span lang=3DEN-US
-style=3D'font-family:"Arial","sans-serif";color:black'>=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span><sp=
-an
-lang=3DEN-US style=3D'font-family:=B1=BC=B8=B2;color:#00695A'><br>
-</span><b><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:blue'>Wily
-Taekhyun Shin<o:p></o:p></span></b></p>
-
-<p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;
-text-autospace:ideograph-numeric;word-break:keep-all'><span lang=3DEN-US
-style=3D'font-family:"Arial","sans-serif";color:#00695A'>Research =
-Engineer<br>
-R&amp;D Center<br>
-</span><b><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:blue'>Telechips
-Inc.<br>
-</span></b><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:teal'>Tel
-: + 82-2-3443-6792(Ext.390)</span><b><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";
-color:blue'><o:p></o:p></span></b></p>
-
-<p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;
-text-autospace:ideograph-numeric;word-break:keep-all'><span lang=3DEN-US
-style=3D'font-family:"Arial","sans-serif";color:teal'>Fax : + =
-82-2-6424-7793 </span><span
-lang=3DEN-US =
-style=3D'font-size:12.0pt;font-family:=B1=BC=B8=B2'><o:p></o:p></span></p=
+X-List-Received-Date: Thu, 30 Apr 2015 12:18:56 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 8bit
+
+On 2015-04-30 3:14 AM, Schaumlöffel, Jan wrote:
+>> That is really odd. I'll be interested to hear how that happened. I just did a
+>> test and it points to where I expect:
+>>
+>>    [/home/bruc...poky/build]> bitbake -e core-image-minimal | grep
+>> STAGING_KERNEL_BUILDDIR # $STAGING_KERNEL_BUILDDIR
+>> STAGING_KERNEL_BUILDDIR="/home/bruce/poky/build/tmp/work-
+>> shared/qemux86-64/kernel-build-artifacts"
+>>
+>
+> So I experimented a bit more and found a minimal set of steps to reproduce the problem. Maybe that might give someone a clue as to what is happening and/or how to resolve it.
+>
+> Steps to reproduce:
+>
+> - clone Poky repository, checkout branch 'fido'
+> - go to meta-yocto-bsp/conf/machine and copy beaglebone.conf to another file (I used astro.conf)
+> - from poky repository do source oe-init-build-env into new build directory
+> - edit conf/local.conf to set MACHINE ?= "astro" (use filename from second step) and DL_DIR (if present)
+> - run bitbake core-image-minimal
+>
+> -> kernel-abiversion is missing, build fails
+>
+> - edit conf/local.conf, set MACHINE ?= "beaglebone"
+> - run bitbake core-image-minimal
+>
+> -> image builds fine
+>
+> It stays the same if the copied config is in a custom BSP layer, some minor modifications are made, etc., but to eliminate complexity I just put that into the meta-yocto-bsp layer. What strikes me as really odd is that now the only thing changed between working and non-working configuration seems to be the filename of the machine configuration - what am I missing?
 >
 
-<p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;
-text-autospace:ideograph-numeric;word-break:keep-all'><span lang=3DEN-US
-style=3D'font-family:"Arial","sans-serif";color:teal'>Mobile : + =
-82-10-4376-5530<o:p></o:p></span></p>
+What kernel recipe is used when your machine is set to 'astro' ?
+Something custom ? Or have you added machine compatibility to
+another known kernel recipe ?
 
-<p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;
-text-autospace:ideograph-numeric;word-break:keep-all'><span lang=3DEN-US
-style=3D'font-family:"Arial","sans-serif";color:#00695A'>E-mail : =
-</span><span
-lang=3DEN-US style=3D'font-family:=B1=BC=B8=B2;color:#00695A'><a
-href=3D"blocked::blocked::blocked::blocked::blocked::blocked::blocked::bl=
-ocked::blocked::blocked::mailto:ksjeon@telechips.com"
-target=3D"_blank"
-title=3D"blocked::blocked::blocked::blocked::blocked::blocked::blocked::b=
-locked::blocked::blocked::blocked::mailto:ksjeon@telechips.com&#10;blocke=
-d::blocked::blocked::blocked::blocked::blocked::blocked::blocked::blocked=
-::blocked::mailto:ksjeon@telechips.com&#10;blocked::b"><b><span
-style=3D'font-family:"Arial","sans-serif";color:blue'>thshin@telechips.co=
-m</span></b></a><br>
-</span><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif";color:black'>=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span><sp=
-an
-lang=3DEN-US style=3D'font-family:=B1=BC=B8=B2;color:#00695A'><br>
-</span><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif"'>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span><span
-lang=3DEN-US =
-style=3D'font-size:12.0pt;font-family:=B1=BC=B8=B2'><o:p></o:p></span></p=
+The big difference that I see would be the kernel recipe, and
+some of the tasks not executing (and hence not generating the
+abiversion file).
+
+Bruce
+
+> How do I create a working machine configuration for Poky 1.8? (In 1.7.1 I just took some machine configuration from eldk, fiddled around with it a bit, put it into my BSP layer and never had any trouble with that.)
+>
+> Regards,
+> Jan
 >
 
-<p class=3DMsoNormal align=3Dleft =
-style=3D'text-align:left;layout-grid-mode:char;
-text-autospace:ideograph-numeric;word-break:keep-all'><span lang=3DEN-US
-style=3D'font-family:"Arial","sans-serif"'>This mail and attachments =
-contain
-confidential information of Telechips Inc. which has its own =
-authority.<br>
-It is not allowed to disclose,transmit or use this confidential =
-information to
-the third parties without the <br>
-prior written consent of Telechips Inc. by any form or means. <br>
-If you are not the intended recipient, please notify the sender =
-immediately and
-do not disclose the <br>
-contents and destroy all copies of the original message.<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D<o:p></o:p></span></p>
 
-<p class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p>
-
-</div>
-
-</body>
-
-</html>
-
-------_=_NextPart_001_01D0833F.B28A0574--
