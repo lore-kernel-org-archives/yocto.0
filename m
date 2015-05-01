@@ -1,6 +1,6 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6836FE00994; Fri,  1 May 2015 13:25:47 -0700 (PDT)
+	id 95325E00994; Fri,  1 May 2015 14:11:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -18,42 +18,42 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.223.172 listed in list.dnswl.org]
-Received: from mail-ie0-f172.google.com (mail-ie0-f172.google.com
-	[209.85.223.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A0F0E0098A
-	for <yocto@yoctoproject.org>; Fri,  1 May 2015 13:25:43 -0700 (PDT)
-Received: by iedfl3 with SMTP id fl3so108632148ied.1
-	for <yocto@yoctoproject.org>; Fri, 01 May 2015 13:25:43 -0700 (PDT)
+	*      [209.85.220.45 listed in list.dnswl.org]
+Received: from mail-pa0-f45.google.com (mail-pa0-f45.google.com
+	[209.85.220.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7506DE0098A
+	for <yocto@yoctoproject.org>; Fri,  1 May 2015 14:11:31 -0700 (PDT)
+Received: by pabtp1 with SMTP id tp1so101247795pab.2
+	for <yocto@yoctoproject.org>; Fri, 01 May 2015 14:11:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=npNaqkWkQ1Zc/6Lw5eCoZVo7wJvKMEFKUCqCI7V1FsE=;
-	b=XUInTdyzf7zSKxLId2Yt5CfOpqpBzGZ0Peqie4ptzpf0QndDjKj0LeETT3lc0Drzv7
-	tMmQLSZ2QN7ldYYHm5C5Ye2Q5nbvGGgz6Qoo9j6j6RbbpaVyCMfnqA208L798zCw/evT
-	n4z4QD5ixm7Gw/fdB/GD8DBD1Lp0b4BbwtJejlZuzSosZWu55CsS/HG5uZ0MJdNiFnWJ
-	p7iHy+oEbus3R0G7q9Tbex50m6PuejngK5a9Du5Jmof1AdjJjANCEUzVw6nGYRyTlZnw
-	73ZyMVOYTQDvjnJIFr0A4oyBVQhmyZZOL1qWLsOuhyAOv/IX0umEfSTFfLtHC3Zyhd6z
-	UrBQ==
-X-Received: by 10.107.13.11 with SMTP id 11mr14775432ion.70.1430511943216;
-	Fri, 01 May 2015 13:25:43 -0700 (PDT)
-Received: from [192.168.141.85] ([66.49.234.10])
-	by mx.google.com with ESMTPSA id pg7sm3708160igb.6.2015.05.01.13.25.41
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 01 May 2015 13:25:42 -0700 (PDT)
-Message-ID: <5543E142.2020707@gmail.com>
-Date: Fri, 01 May 2015 16:25:38 -0400
-From: Trevor Woerner <twoerner@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
-MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, 
-	Brian Karcz <briank@russound.com>
-References: <BLUPR0501MB1028D6037F60D05E868A5F15BFEE0@BLUPR0501MB1028.namprd05.prod.outlook.com>
-	<1674505.cjWkHk81xC@peggleto-mobl.ger.corp.intel.com>
-In-Reply-To: <1674505.cjWkHk81xC@peggleto-mobl.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: creating images which include actively developed applications
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=R0rhAqFLJZjS4WJdW5WzrMo1YMfu2xIiAlroWybWcxg=;
+	b=bTGHjc8jLJA6fyx5YfGVIuGvyYv10fX2kh4tFyYbc4roa2JGlvA3iRDpRtBHimXRPS
+	c3jYV2XJdKDCdh7aeFc/Rp3D3YY+LItq98LC49DP8AxAySB1Wio39QDEl2qejeiofbCa
+	BpK2uJV2ixrWPIEzfe+MjAjMCu9CsCQSGfnodbO9YbKEADlN6MsqsY0lW1iOTJCcTKgF
+	P+Ktp3IYGtQqCbT9lYQlnoeVRivbWyyZTLQsK6Y3XIBSiolHKe7URl0kwwJmX+DoxfbP
+	1ziJJs/z0AjDeD9cS3nyMcmHxjcmRW+cxFg0lzPK1Hr4GEVBmMxLI0uO78PSIgj3KoaE
+	+4wQ==
+X-Received: by 10.66.119.71 with SMTP id ks7mr20623764pab.147.1430514691070;
+	Fri, 01 May 2015 14:11:31 -0700 (PDT)
+Received: from [192.168.0.13] (c-76-103-142-85.hsd1.ca.comcast.net.
+	[76.103.142.85])
+	by mx.google.com with ESMTPSA id ll2sm5698365pbc.11.2015.05.01.14.11.29
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 01 May 2015 14:11:30 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2098\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <55432FB0.4050204@widenorth.no>
+Date: Fri, 1 May 2015 14:11:29 -0700
+Message-Id: <B01F33FD-7B1F-4740-8568-293CAF7227A3@gmail.com>
+References: <CAPTXVA0nh8rpnsbrHnWTqmOtvesE=VyczD6PjDMqHbuv+DBdkQ@mail.gmail.com>
+	<6115291.3O8KzSeDpB@peggleto-mobl.ger.corp.intel.com>
+	<55432FB0.4050204@widenorth.no>
+To: christophe coutand <ccoutand@widenorth.no>
+X-Mailer: Apple Mail (2.2098)
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: How to add openmp to the target image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,27 +65,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 May 2015 20:25:47 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 01 May 2015 21:11:37 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 04/22/15 13:58, Paul Eggleton wrote:
-> Hi Brian,
->
-> On Wednesday 22 April 2015 15:32:06 Brian Karcz wrote:
->> Is there a way to create a recipe to build actively developed code located
->> in an external source directory? Basically skip the fetch and unpack steps
->> and always execute the compile and populate steps each time and image is
->> built?
-> Indeed there is:
->
-> http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#building-software-from-an-external-source
->
 
-Paul, I'm surprised you suggested externalsrc instead of just mentioning
-devtool right from the start (doubly-surprised since you're the person
-who wrote devtool!). Using devtool the "administration" (of creating a
-recipe, etc) is done for you, no?
+> On May 1, 2015, at 12:48 AM, christophe coutand =
+<ccoutand@widenorth.no> wrote:
+>=20
+> Hi Paul,
+>=20
+> Thank you for your help.
+>=20
+> replacing
+> IMAGE_INSTALL +=3D "libgomp libgomp-dev libgomp-staticdev"
+> with
+> IMAGE_INSTALL_append =3D " libgomp libgomp-dev libgomp-staticdev=E2=80=9D=
 
-http://twoerner.blogspot.ca/2015/01/the-yocto-project-introducing-devtool.html
+
+
+unless you are doing development on the device, you don=E2=80=99t need =
+-dev and -staticdev packages to be there
+
+
 
