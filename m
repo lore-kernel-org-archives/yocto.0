@@ -1,49 +1,59 @@
-Return-Path: <abhishek.embsys@gmail.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 84C03E009A1; Fri,  1 May 2015 18:50:09 -0700 (PDT)
+	id 2A9ABE009A1; Sat,  2 May 2015 04:20:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (abhishek.embsys[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.172 listed in list.dnswl.org]
+	mail provider *      (twoerner[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f172.google.com (mail-lb0-f172.google.com
-	[209.85.217.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06475E0098A
-	for <yocto@yoctoproject.org>; Fri,  1 May 2015 18:50:07 -0700 (PDT)
-Received: by lbbqq2 with SMTP id qq2so74140895lbb.3
-	for <yocto@yoctoproject.org>; Fri, 01 May 2015 18:50:05 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.180 listed in list.dnswl.org]
+Received: from mail-ig0-f180.google.com (mail-ig0-f180.google.com
+	[209.85.213.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFC2FE0098A
+	for <yocto@yoctoproject.org>; Sat,  2 May 2015 04:20:47 -0700 (PDT)
+Received: by igbhj9 with SMTP id hj9so54856670igb.1
+	for <yocto@yoctoproject.org>; Sat, 02 May 2015 04:20:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=hxtKsQyjBy3iHHupGuW1OhX4fJjansVpNJkmx77drHk=;
-	b=WU51qwC49/y6kI7ZLn5MZxXI4Wwl/+LtjEmHkW64/1/53c5f1JhbPZ+07bM6C8J9fw
-	0fFUmmyPhOlZa3i34dLvbf3+sHoo4DcYAP0FbomFx4cql7vQ4eTYXTpF665bTy5V04Hw
-	Ypl3NLToMADE4cG3HZ2tQ486g3ZICyOkLBZqTyKSM5Zf3vq7LFzpMZAhsqUI3ovQkKNv
-	PG43VQv+JNc7nTZfmNYBYe47oYy50fUir5euJT3UJxpg+CJZTneCpJYnYCmZuQvb8ZTI
-	qhfQV703OXmpqPnoLWuRy7RgnPI+KJMYzoGDa+6BnYAFNsnWmp4n286+PsNccs4YZJq9
-	NG8g==
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=KwivkvetfPThLaAqgiWmXwGPkjj0Pfw2ixtx7T9wLTQ=;
+	b=zNrND/LmY386a7UPqe/Q7Il7FPp51VmULfaIe4ruIVPMqZEZET8i0JWdx+/Vvu88e8
+	E8SPNEhlZUWjvZpdpoKjwYmWLzlGHlNLwaKEgdv9G1qmoj5yk7j2LU9W9+3CzTuc/n1H
+	yfw4c70g8x/od/t8BU3J/X9eCnMGRESdar1DKCCypWpnD7/jccaUVgKaOowr7DtiGEGK
+	KF+L0tAh9ytVf0VlCZmK0Wm2T8D6IYm6dvsH4f58WLg0xX7yi5/g1Vu7KGk3bWw0msYk
+	4qmrdHVVtgNINUT2s88iYoY4eADWRneQfwrXZYz9pOYl8txqkuFPCiEWOQ9GMrAjsdVI
+	n4rQ==
+X-Received: by 10.50.132.71 with SMTP id os7mr2737186igb.24.1430565646697;
+	Sat, 02 May 2015 04:20:46 -0700 (PDT)
+Received: from [192.168.141.85] ([66.49.234.10])
+	by mx.google.com with ESMTPSA id
+	i185sm5410165ioi.24.2015.05.02.04.20.45
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 02 May 2015 04:20:46 -0700 (PDT)
+Message-ID: <5544B307.7010804@gmail.com>
+Date: Sat, 02 May 2015 07:20:39 -0400
+From: Trevor Woerner <twoerner@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-X-Received: by 10.152.203.162 with SMTP id kr2mr10444239lac.68.1430531405431; 
-	Fri, 01 May 2015 18:50:05 -0700 (PDT)
-Received: by 10.25.159.202 with HTTP; Fri, 1 May 2015 18:50:05 -0700 (PDT)
-Date: Sat, 2 May 2015 07:20:05 +0530
-Message-ID: <CAGj-b5+iiKiQ-mk3TGz_VD1z8+Ju1A5jXuwNichojH+FC0kOKQ@mail.gmail.com>
-From: abhishek srivastava <abhishek.embsys@gmail.com>
-To: yocto@yoctoproject.org
-Subject: package build for raspberrypi for armel not armhf
+To: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <D1682DBC.1AE81%alexandru.c.georgescu@intel.com>
+In-Reply-To: <D1682DBC.1AE81%alexandru.c.georgescu@intel.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>
+Subject: Re: Replacing HOB in Build Appliance for YP 1.9
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,49 +65,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 02 May 2015 01:50:09 -0000
-Content-Type: multipart/alternative; boundary=001a1134632642c99a05150f8ce9
+X-List-Received-Date: Sat, 02 May 2015 11:20:51 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
---001a1134632642c99a05150f8ce9
-Content-Type: text/plain; charset=UTF-8
+On 04/30/15 12:06, Georgescu, Alexandru C wrote:
+> Since HOB is started
+> automatically in BA in order to help users get started quickly with YP, I
+> have the following proposal for updating BA in 1.9 and to replace HOB:
 
-Hi all
-I want to build armhf package for raspberrypi but bitbake is always giving
-me armel packages.
-I have made changes in
-~/yocto/poky-dizzy-12.0.1/meta-raspberrypi/conf/raspberrypi file at
-DEFAULTTUNE ?= "arm1176jzfshf"
+...
 
-I have also changes in
-~/yocto/poky-dizzy-12.0.1/meta-raspberrypi/conf/machine/include/tiune-arm1176jzf.inc
-file at DEFAULTTUNE ?= "arm1176jzfshf"
+and updating relevant documentation, such as:
+https://www.yoctoproject.org/documentation/build-appliance-manual
 
-Under ~/yocto/build_dizzy/tmp/deploy/deb/raspberrypi, I see all .armel
-packages. Why not armhf? please help to get me armhf packages in my image
 
-Is there somewhere else I am supposed to changes to get armhf packages?
-
-Please help
-
-Thank you
-
-Abhishek
-
---001a1134632642c99a05150f8ce9
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><div><div><div>Hi all<br></div>I want =
-to build armhf package for raspberrypi but bitbake is always giving me arme=
-l packages.<br></div>I have made changes in ~/yocto/poky-dizzy-12.0.1/meta-=
-raspberrypi/conf/raspberrypi file at DEFAULTTUNE ?=3D &quot;arm1176jzfshf&q=
-uot;<br></div><br>I have also changes in ~/yocto/poky-dizzy-12.0.1/meta-ras=
-pberrypi/conf/machine/include/tiune-arm1176jzf.inc file at DEFAULTTUNE ?=3D=
- &quot;arm1176jzfshf&quot;<br><br></div><div>Under ~/yocto/build_dizzy/tmp/=
-deploy/deb/raspberrypi, I see all .armel packages. Why not armhf? please he=
-lp to get me armhf packages in my image<br></div><div><br></div>Is there so=
-mewhere else I am supposed to changes to get armhf packages?<br><br></div>P=
-lease help<br><br></div>Thank you<br><br></div>Abhishek<br><div><div><div><=
-br></div></div></div></div>
-
---001a1134632642c99a05150f8ce9--
