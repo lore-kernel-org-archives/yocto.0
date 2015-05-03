@@ -1,53 +1,40 @@
-Return-Path: <wpdster@gmail.com>
+Return-Path: <tkorthals@cit-ec.uni-bielefeld.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C33D9E009CB; Sun,  3 May 2015 06:13:19 -0700 (PDT)
+	id 82E97E009B8; Sun,  3 May 2015 08:34:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (wpdster[at]gmail.com)
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED,T_FILL_THIS_FORM_SHORT autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [129.70.137.17 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.42 listed in list.dnswl.org]
-Received: from mail-pa0-f42.google.com (mail-pa0-f42.google.com
-	[209.85.220.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EF5DE008EA
-	for <yocto@yoctoproject.org>; Sun,  3 May 2015 06:13:15 -0700 (PDT)
-Received: by pabtp1 with SMTP id tp1so137374681pab.2
-	for <yocto@yoctoproject.org>; Sun, 03 May 2015 06:13:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=i5HvVOuqNof7zU/PBi5wtjrVS6vmw3BpWQeqZHHqp6I=;
-	b=bxGAbwSk2mTtktyjVzGqN9gVJKYDJwUD0u9JH1GYFrMG29TEf4aN88DqZ2G+anCqxB
-	VzyiFQHwnDVQbjeVVnTsBZRrLlnbjNbmoxRdv9vBgMkWL6o0KUjZU0ZM1mMyg1tp4vC3
-	osFA6uaGTiGg1Mk5+V0pOAZHehaJbLkiIi6SP6Xe86/AVmU86gLglSbzw7D3PPamvHvo
-	CTAaV70dKuUEAsZHf1MQfn5WG/QlWPm3EKXwgsco/Wqp53rTcQLolqBB16DCMmNdZ/LZ
-	X+BabUQXvpkUkVLSz6xHIIQb/Sdy8rY2ieDM/Q9GgRBhg8FL9kWG6P+EtzOJS3B1owEh
-	W8EQ==
-X-Received: by 10.66.224.237 with SMTP id rf13mr1489653pac.131.1430658795180; 
-	Sun, 03 May 2015 06:13:15 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
+	*      information
+X-Greylist: delayed 441 seconds by postgrey-1.32 at yocto-www;
+	Sun, 03 May 2015 08:34:08 PDT
+Received: from smarthost.TechFak.Uni-Bielefeld.DE
+	(smarthost.TechFak.Uni-Bielefeld.DE [129.70.137.17])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4AF3E00832
+	for <yocto@yoctoproject.org>; Sun,  3 May 2015 08:34:08 -0700 (PDT)
+Received: from [192.168.0.10] (aftr-37-201-229-207.unity-media.net
+	[37.201.229.207])
+	(using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested) (Authenticated sender: tkorthals)
+	by smarthost.TechFak.Uni-Bielefeld.DE (Postfix) with ESMTPSA id
+	D21AB8000C
+	for <yocto@yoctoproject.org>; Sun,  3 May 2015 17:26:41 +0200 (CEST)
+Message-ID: <55463E32.6020805@cit-ec.uni-bielefeld.de>
+Date: Sun, 03 May 2015 17:26:42 +0200
+From: Timo Korthals <tkorthals@cit-ec.uni-bielefeld.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-Received: by 10.70.134.227 with HTTP; Sun, 3 May 2015 06:12:44 -0700 (PDT)
-In-Reply-To: <CAAPegz0hY842i98AZ-xB7=aEbLZpMA9Wy0ChMHsrS+c6Lb+q9A@mail.gmail.com>
-References: <CAF_dkJCc-fXhPLFxtRYSxSC3Q0DnWwX6k8gRUJiC-f-HP9vBmA@mail.gmail.com>
-	<CAAPegz0hY842i98AZ-xB7=aEbLZpMA9Wy0ChMHsrS+c6Lb+q9A@mail.gmail.com>
-From: Patrick Doyle <wpdster@gmail.com>
-Date: Sun, 3 May 2015 09:12:44 -0400
-Message-ID: <CAF_dkJDB1nUQO_E+zZ17-drWLFoySks=aqrCx6QPR2ZkXHL6DA@mail.gmail.com>
-To: Chris Morgan <chmorgan@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto-ish upgrade-in-place strategy
+To: yocto@yoctoproject.org
+Subject: fido: out-of-tree module build fails due to wrong Module.symvers reference
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,64 +46,374 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 03 May 2015 13:13:19 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 03 May 2015 15:34:17 -0000
+Content-Type: multipart/alternative;
+	boundary="------------020100040402070006030902"
 
-On Sun, May 3, 2015 at 5:51 AM, Chris Morgan <chmorgan@gmail.com> wrote:
-> Is there a standard way? We've seen a few different approaches between
-> android systems (phones), Linux distributions, and things like chromebook.
->
-> In our case we are using two uboot, two kernel, and two root file system
-> partitions with uboot environment controlling the active one. Squashfs for
-> the root fs. Raw images for uboot and kernel. Overlayfs in another rw
-> partition that we put on top of the rootfs where we keep system
-> configuration. Media and other stuff goes into yet another btrfs partition
-> that, like the overlayfs, isn't managed by the update system.
->
-> Approach is to update the second rootfs while one rootfs is running. Swap
-> env in uboot environment to point at the other rootfs and then when
-> appropriate reboot. This lets us avoid downtime while downloading the
-> update, we download in the background.
->
-> We build everything with yocto but afaik we don't have much specific stuff
-> for the update system because we don't have an upgrade partition but rather
-> two sets of partitions.
->
-> Thoughts?
+--------------020100040402070006030902
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Chris,
-Thanks for the description.  We do something very much similar to that
-on one of our systems (except for the part about downloading in the
-background).
+Dear yocto developers,
 
-As I have been thinking about this, I have been thinking about
-something along the lines of creating a rescue/boot partition with the
-following:
+with the yocto projects < 1.8 we were able to build our out-of-tree 
+module without any linking failures, but since the upgrade to 1.8 there 
+seems to be something wrong with the "Module.symvers".
+For our external module we use exactly the same Makefile as you proposed 
+in hello-mod (but of course with another obj-m argument).
+If we then build the module, the do_compile stage prints, what you can 
+find under [1].
+I think the problem refers to a wrong "Module.symvers" which is used by 
+the MODPOST stage.
 
-core-image-minimal
-squashfs
-ssh (for rescue operations)
-kexec-tools
+I just searched for all "Module.symvers" files in my fido work folder, 
+after a full build:
+-rw-r--r-- 1 myName staff 528483 Apr 29 17:59 
+/home/myName/fido/tmp/work/amiro-poky-linux-gnueabi/linux-yocto/3.19.2+gitAUTOINC+9e70b482d3_31b35da6a5-r0/linux-amiro-standard-build/Module.symvers
+-rw-r--r-- 1 myName staff      0 May  3 16:22 
+/home/myName/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/Module.symvers
+-rw-r--r-- 1 myName staff 386012 Apr 29 17:58 
+/home/myName/fido/tmp/work-shared/amiro/kernel-build-artifacts/Module.symvers
 
-U-boot would boot that image.  That image would contain an rc.local
-that would mount the active partition and kexec the kernel it found
-there.  The active partition would contain our deployed application,
-which would likely also have a squashfs rootfs (because I don't want
-to trash the flash when the power goes out).  It would also have
-whatever hooks we needed to upgrade images in place.
+In my old (projects < 1.8) workfolder, the "Module.symvers" files, where 
+distributed as follows:
+-rw-r--r-- 4 myName staff 528483 Mar 11 13:48 
+/home/myName/tmp/sysroots/amiro/usr/src/kernel/Module.symvers
+-rw-r--r-- 4 myName staff 528483 Mar 11 13:48 
+/home/myName/tmp/work/amiro-poky-linux-gnueabi/linux-yocto/3.19+gitAUTOINC+8897ef68b3_bfa76d4957-r0/image/usr/src/kernel/Module.symvers
+-rw-r--r-- 4 myName staff 528483 Mar 11 13:48 
+/home/myName/tmp/work/amiro-poky-linux-gnueabi/linux-yocto/3.19+gitAUTOINC+8897ef68b3_bfa76d4957-r0/linux-amiro-standard-build/Module.symvers
+-rw-r--r-- 2 myName staff 528483 Mar 11 13:48 
+/home/myName/tmp/work/amiro-poky-linux-gnueabi/linux-yocto/3.19+gitAUTOINC+8897ef68b3_bfa76d4957-r0/packages-split/kernel-dev/usr/src/kernel/Module.symvers
+-rw-r--r-- 2 myName staff 528483 Mar 11 13:48 
+/home/myName/tmp/work/amiro-poky-linux-gnueabi/linux-yocto/3.19+gitAUTOINC+8897ef68b3_bfa76d4957-r0/package/usr/src/kernel/Module.symvers
+-rw-r--r-- 4 myName staff 528483 Mar 11 13:48 
+/home/myName/tmp/work/amiro-poky-linux-gnueabi/linux-yocto/3.19+gitAUTOINC+8897ef68b3_bfa76d4957-r0/sysroot-destdir/usr/src/kernel/Module.symvers
+-rw-r--r-- 1 myName staff 0 Mar  3 10:08 
+/home/tkorthals/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647/Module.symvers
+-rw-r--r-- 1 myName staff      0 Mar  3 10:08 
+/home/myName/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647/Module.symvers
 
-My thinking is that the boot/rescue image would be a factory/expert
-image.  It (of necessity) needs special tools and/or access to the
-board (JTAG header, USB rescue port, etc...) to be installed.  But
-once it is installed, it is capable of booting whatever Linux I place
-in the active partition.  I might make it smart enough to support an
-"active" partition and a "fallback" partition, but I kinda feel like I
-already have a "fallback" mechanism in place with the boot/rescue
-image.
+A small hotfix to solve my problem is just a copy of the 
+"Module.symvers" from the kernel build into my source folder of the 
+module, by the following extension in my "ov5647.bb":
+# Copy the fiel containing all kernel modules
+do_patchappend() {
+     cp -f 
+/home/myName/fido/tmp/work/amiro-poky-linux-gnueabi/linux-yocto/3.19.2+gitAUTOINC+9e70b482d3_31b35da6a5-r0/linux-amiro-standard-build/Module.symvers 
+${S}
+}
+addtask patchappend after do_configure before do_compile
 
-At some point, I begin to think that I am overthinking this.  I also
-begin to think that everybody (in this space) has these same issues.
-Why do we keep reinventing the wheel?
+If I take the "Module.symvers" from 
+"kernel-build-artifacts/Module.symvers", the linkage fails because all 
+the symbols are missing which are important for the module.
+Do you have any Idea, if this is a bug in the new 1.8 build environment, 
+or if I am doing something wrong?
 
---wpd
+Greetings,
+Timo
 
+
+
+[1]
+
++ module_do_compile
++ unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
++ oe_runmake 
+KERNEL_PATH=/home/myHome/fido/tmp/work-shared/amiro/kernel-source 
+KERNEL_VERSION=3.19.2-yocto-standard 'CC=arm-poky-linux-gnueabi-gcc  ' 
+'LD=arm-poky-linux-gnueabi-ld.bfd  ' 'AR=arm-poky-linux-gnueabi-ar ' O=/mnt$
++ oe_runmake_call 
+KERNEL_PATH=/home/myHome/fido/tmp/work-shared/amiro/kernel-source 
+KERNEL_VERSION=3.19.2-yocto-standard 'CC=arm-poky-linux-gnueabi-gcc  ' 
+'LD=arm-poky-linux-gnueabi-ld.bfd  ' 'AR=arm-poky-linux-gnueabi-ar ' O$
++ bbnote make -j 8 -e MAKEFLAGS= 
+KERNEL_SRC=/home/myHome/fido/tmp/work-shared/amiro/kernel-source 
+KERNEL_PATH=/home/myHome/fido/tmp/work-shared/amiro/kernel-source 
+KERNEL_VERSION=3.19.2-yocto-standard 'CC=arm-poky-$
++ echo 'NOTE: make -j 8 -e MAKEFLAGS= 
+KERNEL_SRC=/home/myHome/fido/tmp/work-shared/amiro/kernel-source 
+KERNEL_PATH=/home/myHome/fido/tmp/work-shared/amiro/kernel-source 
+KERNEL_VERSION=3.19.2-yocto-standard CC=arm-p$
+NOTE: make -j 8 -e MAKEFLAGS= 
+KERNEL_SRC=/home/myHome/fido/tmp/work-shared/amiro/kernel-source 
+KERNEL_PATH=/home/myHome/fido/tmp/work-shared/amiro/kernel-source 
+KERNEL_VERSION=3.19.2-yocto-standard CC=arm-poky-linu$
++ make -j 8 -e MAKEFLAGS= 
+KERNEL_SRC=/home/myHome/fido/tmp/work-shared/amiro/kernel-source 
+KERNEL_PATH=/home/myHome/fido/tmp/work-shared/amiro/kernel-source 
+KERNEL_VERSION=3.19.2-yocto-standard 'CC=arm-poky-linux-g$
+
+make[1]: Entering directory 
+`/home/myHome/fido/tmp/work-shared/amiro/kernel-source'
+
+make[2]: Entering directory 
+`/home/myHome/fido/tmp/work-shared/amiro/kernel-build-artifacts'
+
+   LD 
+/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/built-in.o
+
+   CC [M] 
+/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.o
+
+   Building modules, stage 2.
+
+   MODPOST 1 modules
+
+WARNING: "v4l2_ctrl_handler_setup" 
+[/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko] 
+undefined!
+WARNING: "__v4l2_ctrl_s_ctrl_int64" 
+[/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko] 
+undefined!
+WARNING: "v4l2_ctrl_handler_free" 
+[/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko] 
+undefined!
+WARNING: "media_entity_init" 
+[/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko] 
+undefined!
+WARNING: "v4l2_i2c_subdev_init" 
+[/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko] 
+undefined!
+WARNING: "v4l2_ctrl_new_std_menu_items" 
+[/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko] 
+undefined!
+WARNING: "v4l2_ctrl_new_std_menu" 
+[/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko] 
+undefined!
+WARNING: "v4l2_ctrl_new_std" 
+[/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko] 
+undefined!
+WARNING: "v4l2_ctrl_handler_init_class" 
+[/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko] 
+undefined!
+WARNING: "media_entity_cleanup" 
+[/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko] 
+undefined!
+WARNING: "v4l2_device_unregister_subdev" 
+[/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko] 
+undefined!
+
+   CC 
+/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.mod.o
+
+   LD [M] 
+/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko
+
+make[2]: Leaving directory 
+`/home/myHome/fido/tmp/work-shared/amiro/kernel-build-artifacts'
+
+make[1]: Leaving directory 
+`/home/myHome/fido/tmp/work-shared/amiro/kernel-source'
+
++ ret=0
++ trap '' 0
++ exit 0
+
+-- 
+
+Timo Korthals, M.Sc.
+Universität Bielefeld
+AG Kognitronik & Sensorik
+Exzellenzcluster Cognitive Interaction Technology (CITEC)
+Inspiration 1 (Zehlendorfer Damm 199)
+33619 Bielefeld - Germany
+
+Office  : 3.037
+Phone   : +49 521 106-67368
+eMail   : myHome@cit-ec.uni-bielefeld.de
+Internet: http://www.ks.cit-ec.uni-bielefeld.de/
+
+
+--------------020100040402070006030902
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    Dear yocto developers,<br>
+    <br>
+    with the yocto projects &lt; 1.8 we were able to build our
+    out-of-tree module without any linking failures, but since the
+    upgrade to 1.8 there seems to be something wrong with the
+    "Module.symvers".<br>
+    For our external module we use exactly the same Makefile as you
+    proposed in hello-mod (but of course with another obj-m argument).<br>
+    If we then build the module, the do_compile stage prints, what you
+    can find under [1].<br>
+    I think the problem refers to a wrong "Module.symvers" which is used
+    by the MODPOST stage.<br>
+    <br>
+    I just searched for all "Module.symvers" files in my fido work
+    folder, after a full build:<br>
+    <tt>-rw-r--r-- 1 myName staff 528483 Apr 29 17:59
+/home/myName/fido/tmp/work/amiro-poky-linux-gnueabi/linux-yocto/3.19.2+gitAUTOINC+9e70b482d3_31b35da6a5-r0/linux-amiro-standard-build/Module.symvers</tt><tt><br>
+    </tt><tt>-rw-r--r-- 1 myName staff      0 May  3 16:22
+/home/myName/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/Module.symvers</tt><tt><br>
+    </tt><tt>-rw-r--r-- 1 myName staff 386012 Apr 29 17:58
+/home/myName/fido/tmp/work-shared/amiro/kernel-build-artifacts/Module.symvers</tt><br>
+    <br>
+    In my old (projects &lt; 1.8) workfolder, the "Module.symvers"
+    files, where distributed as follows:<br>
+    <tt>-rw-r--r-- 4 myName staff 528483 Mar 11 13:48
+      /home/myName/tmp/sysroots/amiro/usr/src/kernel/Module.symvers</tt><tt><br>
+    </tt><tt>-rw-r--r-- 4 myName staff 528483 Mar 11 13:48
+/home/myName/tmp/work/amiro-poky-linux-gnueabi/linux-yocto/3.19+gitAUTOINC+8897ef68b3_bfa76d4957-r0/image/usr/src/kernel/Module.symvers</tt><tt><br>
+    </tt><tt>-rw-r--r-- 4 myName staff 528483 Mar 11 13:48
+/home/myName/tmp/work/amiro-poky-linux-gnueabi/linux-yocto/3.19+gitAUTOINC+8897ef68b3_bfa76d4957-r0/linux-amiro-standard-build/Module.symvers</tt><tt><br>
+    </tt><tt>-rw-r--r-- 2 myName staff 528483 Mar 11 13:48
+/home/myName/tmp/work/amiro-poky-linux-gnueabi/linux-yocto/3.19+gitAUTOINC+8897ef68b3_bfa76d4957-r0/packages-split/kernel-dev/usr/src/kernel/Module.symvers</tt><tt><br>
+    </tt><tt>-rw-r--r-- 2 myName staff 528483 Mar 11 13:48
+/home/myName/tmp/work/amiro-poky-linux-gnueabi/linux-yocto/3.19+gitAUTOINC+8897ef68b3_bfa76d4957-r0/package/usr/src/kernel/Module.symvers</tt><tt><br>
+    </tt><tt>-rw-r--r-- 4 myName staff 528483 Mar 11 13:48
+/home/myName/tmp/work/amiro-poky-linux-gnueabi/linux-yocto/3.19+gitAUTOINC+8897ef68b3_bfa76d4957-r0/sysroot-destdir/usr/src/kernel/Module.symvers</tt><tt><br>
+      -rw-r--r-- 1 </tt><tt><tt>myName</tt> </tt><tt><tt>staff</tt>     
+      0 Mar  3 10:08
+/home/tkorthals/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647/Module.symvers<br>
+    </tt><tt>-rw-r--r-- 1 myName staff      0 Mar  3 10:08
+/home/myName/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647/Module.symvers</tt><br>
+    <br>
+    A small hotfix to solve my problem is just a copy of the
+    "Module.symvers" from the kernel build into my source folder of the
+    module, by the following extension in my "ov5647.bb":<br>
+    <tt># Copy the fiel containing all kernel modules</tt><tt><br>
+    </tt><tt>do_patchappend() {</tt><tt><br>
+    </tt><tt>    cp -f
+      /home/myName/fido/tmp/work/amiro-poky-linux-gnueabi/linux-yocto/3.19.2+gitAUTOINC+9e70b482d3_31b35da6a5-r0/linux-amiro-standard-build/Module.symvers
+      ${S}</tt><tt><br>
+    </tt><tt>}</tt><tt><br>
+    </tt><tt>addtask patchappend after do_configure before do_compile</tt><br>
+    <br>
+    If I take the "Module.symvers" from
+    "kernel-build-artifacts/Module.symvers", the linkage fails because
+    all the symbols are missing which are important for the module.<br>
+    Do you have any Idea, if this is a bug in the new 1.8 build
+    environment, or if I am doing something wrong?<br>
+    <br>
+    Greetings,<br>
+    Timo<br>
+    <br>
+    <br>
+    <br>
+    [1]<br>
+    <br>
+    <small><tt>+ module_do_compile</tt><tt><br>
+      </tt><tt>+ unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS</tt><tt><br>
+      </tt><tt>+ oe_runmake
+        KERNEL_PATH=/home/myHome/fido/tmp/work-shared/amiro/kernel-source
+        KERNEL_VERSION=3.19.2-yocto-standard
+        'CC=arm-poky-linux-gnueabi-gcc  '
+        'LD=arm-poky-linux-gnueabi-ld.bfd  '
+        'AR=arm-poky-linux-gnueabi-ar ' O=/mnt$</tt><tt><br>
+      </tt><tt>+ oe_runmake_call
+        KERNEL_PATH=/home/myHome/fido/tmp/work-shared/amiro/kernel-source
+        KERNEL_VERSION=3.19.2-yocto-standard
+        'CC=arm-poky-linux-gnueabi-gcc  '
+        'LD=arm-poky-linux-gnueabi-ld.bfd  '
+        'AR=arm-poky-linux-gnueabi-ar ' O$</tt><tt><br>
+      </tt><tt>+ bbnote make -j 8 -e MAKEFLAGS=
+        KERNEL_SRC=/home/myHome/fido/tmp/work-shared/amiro/kernel-source
+        KERNEL_PATH=/home/myHome/fido/tmp/work-shared/amiro/kernel-source
+        KERNEL_VERSION=3.19.2-yocto-standard 'CC=arm-poky-$</tt><tt><br>
+      </tt><tt>+ echo 'NOTE: make -j 8 -e MAKEFLAGS=
+        KERNEL_SRC=/home/myHome/fido/tmp/work-shared/amiro/kernel-source
+        KERNEL_PATH=/home/myHome/fido/tmp/work-shared/amiro/kernel-source
+        KERNEL_VERSION=3.19.2-yocto-standard CC=arm-p$</tt><tt><br>
+      </tt><tt>NOTE: make -j 8 -e MAKEFLAGS=
+        KERNEL_SRC=/home/myHome/fido/tmp/work-shared/amiro/kernel-source
+        KERNEL_PATH=/home/myHome/fido/tmp/work-shared/amiro/kernel-source
+        KERNEL_VERSION=3.19.2-yocto-standard CC=arm-poky-linu$</tt><tt><br>
+      </tt><tt>+ make -j 8 -e MAKEFLAGS=
+        KERNEL_SRC=/home/myHome/fido/tmp/work-shared/amiro/kernel-source
+        KERNEL_PATH=/home/myHome/fido/tmp/work-shared/amiro/kernel-source
+        KERNEL_VERSION=3.19.2-yocto-standard 'CC=arm-poky-linux-g$</tt><tt><br>
+      </tt><tt><br>
+      </tt><tt>make[1]: Entering directory
+        `/home/myHome/fido/tmp/work-shared/amiro/kernel-source'</tt><tt><br>
+      </tt><tt><br>
+      </tt><tt>make[2]: Entering directory
+        `/home/myHome/fido/tmp/work-shared/amiro/kernel-build-artifacts'</tt><tt><br>
+      </tt><tt><br>
+      </tt><tt>  LD     
+/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/built-in.o</tt><tt><br>
+      </tt><tt><br>
+      </tt><tt>  CC [M] 
+/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.o</tt><tt><br>
+      </tt><tt><br>
+      </tt><tt>  Building modules, stage 2.</tt><tt><br>
+      </tt><tt><br>
+      </tt><tt>  MODPOST 1 modules</tt><tt><br>
+      </tt><tt><br>
+      </tt><tt>WARNING: "v4l2_ctrl_handler_setup"
+        [/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko]
+        undefined!</tt><tt><br>
+      </tt><tt>WARNING: "__v4l2_ctrl_s_ctrl_int64"
+        [/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko]
+        undefined!</tt><tt><br>
+      </tt><tt>WARNING: "v4l2_ctrl_handler_free"
+        [/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko]
+        undefined!</tt><tt><br>
+      </tt><tt>WARNING: "media_entity_init"
+        [/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko]
+        undefined!</tt><tt><br>
+      </tt><tt>WARNING: "v4l2_i2c_subdev_init"
+        [/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko]
+        undefined!</tt><tt><br>
+      </tt><tt>WARNING: "v4l2_ctrl_new_std_menu_items"
+        [/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko]
+        undefined!</tt><tt><br>
+      </tt><tt>WARNING: "v4l2_ctrl_new_std_menu"
+        [/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko]
+        undefined!</tt><tt><br>
+      </tt><tt>WARNING: "v4l2_ctrl_new_std"
+        [/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko]
+        undefined!</tt><tt><br>
+      </tt><tt>WARNING: "v4l2_ctrl_handler_init_class"
+        [/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko]
+        undefined!</tt><tt><br>
+      </tt><tt>WARNING: "media_entity_cleanup"
+        [/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko]
+        undefined!</tt><tt><br>
+      </tt><tt>WARNING: "v4l2_device_unregister_subdev"
+        [/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko]
+        undefined!</tt><tt><br>
+      </tt><tt><br>
+      </tt><tt>  CC     
+/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.mod.o</tt><tt><br>
+      </tt><tt><br>
+      </tt><tt>  LD [M] 
+/home/myHome/fido/tmp/work/amiro-poky-linux-gnueabi/ov5647/0.0-r0/ov5647.ko</tt><tt><br>
+      </tt><tt><br>
+      </tt><tt>make[2]: Leaving directory
+        `/home/myHome/fido/tmp/work-shared/amiro/kernel-build-artifacts'</tt><tt><br>
+      </tt><tt><br>
+      </tt><tt>make[1]: Leaving directory
+        `/home/myHome/fido/tmp/work-shared/amiro/kernel-source'</tt><tt><br>
+      </tt><tt><br>
+      </tt><tt>+ ret=0</tt><tt><br>
+      </tt><tt>+ trap '' 0</tt><tt><br>
+      </tt><tt>+ exit 0</tt></small><br>
+    <br>
+    -- <br>
+    <br>
+    Timo Korthals, M.Sc.<br>
+    Universität Bielefeld    <br>
+    AG Kognitronik &amp; Sensorik<br>
+    Exzellenzcluster Cognitive Interaction Technology (CITEC)<br>
+    Inspiration 1 (Zehlendorfer Damm 199)<br>
+    33619 Bielefeld - Germany<br>
+    <br>
+    Office  : 3.037<br>
+    Phone   : +49 521 106-67368<br>
+    eMail   : <a class="moz-txt-link-abbreviated" href="mailto:myHome@cit-ec.uni-bielefeld.de">myHome@cit-ec.uni-bielefeld.de</a><br>
+    Internet: <a class="moz-txt-link-freetext" href="http://www.ks.cit-ec.uni-bielefeld.de/">http://www.ks.cit-ec.uni-bielefeld.de/</a><br>
+    <br>
+  </body>
+</html>
+
+--------------020100040402070006030902--
