@@ -1,51 +1,51 @@
-Return-Path: <chmorgan@gmail.com>
+Return-Path: <wpdster@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6B43BE0091D; Sun,  3 May 2015 02:51:28 -0700 (PDT)
+	id C33D9E009CB; Sun,  3 May 2015 06:13:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (chmorgan[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.182 listed in list.dnswl.org]
+	mail provider *      (wpdster[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f182.google.com (mail-ig0-f182.google.com
-	[209.85.213.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3445AE004F6
-	for <yocto@yoctoproject.org>; Sun,  3 May 2015 02:51:22 -0700 (PDT)
-Received: by igbyr2 with SMTP id yr2so66010374igb.0
-	for <yocto@yoctoproject.org>; Sun, 03 May 2015 02:51:21 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.42 listed in list.dnswl.org]
+Received: from mail-pa0-f42.google.com (mail-pa0-f42.google.com
+	[209.85.220.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EF5DE008EA
+	for <yocto@yoctoproject.org>; Sun,  3 May 2015 06:13:15 -0700 (PDT)
+Received: by pabtp1 with SMTP id tp1so137374681pab.2
+	for <yocto@yoctoproject.org>; Sun, 03 May 2015 06:13:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=GsU3HXuD4AbZK0CrfwS3ls0YpZBrPcJSbrKgrLR+TQw=;
-	b=PD9MOytk+hhYNQqzmFh3uE2o13irpvGDY01o5Fq70n+FQes/lLYDS2GKnEkn8mA/2n
-	uZE/bZIcheTCu4LQPTtZ6D4E4uOth9hlAmTvQuVd8YxRjoF+v/GGAQ18jhFkiQqSZ4u3
-	H9xl1qsCEBXPfmuvRXNAQmOz7/ugJTTR44PLrTCw67HDB/+TUPmLyLQA8fltn2anAsc+
-	Zjdbp2F0si2LuurjDNPc4ovXCJuJrmZYS2rNG/QXrQxiPLGlTf8dDHjkqrwepu6b/9sA
-	PXEX1KdICkCIDqmqCXBP93aKUU2jhh7Ht9p9DJEbWvFtykjIR1qWZC1XOXtKMs9l4Fv+
-	Zjzw==
+	bh=i5HvVOuqNof7zU/PBi5wtjrVS6vmw3BpWQeqZHHqp6I=;
+	b=bxGAbwSk2mTtktyjVzGqN9gVJKYDJwUD0u9JH1GYFrMG29TEf4aN88DqZ2G+anCqxB
+	VzyiFQHwnDVQbjeVVnTsBZRrLlnbjNbmoxRdv9vBgMkWL6o0KUjZU0ZM1mMyg1tp4vC3
+	osFA6uaGTiGg1Mk5+V0pOAZHehaJbLkiIi6SP6Xe86/AVmU86gLglSbzw7D3PPamvHvo
+	CTAaV70dKuUEAsZHf1MQfn5WG/QlWPm3EKXwgsco/Wqp53rTcQLolqBB16DCMmNdZ/LZ
+	X+BabUQXvpkUkVLSz6xHIIQb/Sdy8rY2ieDM/Q9GgRBhg8FL9kWG6P+EtzOJS3B1owEh
+	W8EQ==
+X-Received: by 10.66.224.237 with SMTP id rf13mr1489653pac.131.1430658795180; 
+	Sun, 03 May 2015 06:13:15 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.50.138.71 with SMTP id qo7mr7046804igb.10.1430646681667;
-	Sun, 03 May 2015 02:51:21 -0700 (PDT)
-Received: by 10.79.35.135 with HTTP; Sun, 3 May 2015 02:51:21 -0700 (PDT)
-In-Reply-To: <CAF_dkJCc-fXhPLFxtRYSxSC3Q0DnWwX6k8gRUJiC-f-HP9vBmA@mail.gmail.com>
+Received: by 10.70.134.227 with HTTP; Sun, 3 May 2015 06:12:44 -0700 (PDT)
+In-Reply-To: <CAAPegz0hY842i98AZ-xB7=aEbLZpMA9Wy0ChMHsrS+c6Lb+q9A@mail.gmail.com>
 References: <CAF_dkJCc-fXhPLFxtRYSxSC3Q0DnWwX6k8gRUJiC-f-HP9vBmA@mail.gmail.com>
-Date: Sun, 3 May 2015 05:51:21 -0400
-Message-ID: <CAAPegz0hY842i98AZ-xB7=aEbLZpMA9Wy0ChMHsrS+c6Lb+q9A@mail.gmail.com>
-From: Chris Morgan <chmorgan@gmail.com>
-To: Patrick Doyle <wpdster@gmail.com>
+	<CAAPegz0hY842i98AZ-xB7=aEbLZpMA9Wy0ChMHsrS+c6Lb+q9A@mail.gmail.com>
+From: Patrick Doyle <wpdster@gmail.com>
+Date: Sun, 3 May 2015 09:12:44 -0400
+Message-ID: <CAF_dkJDB1nUQO_E+zZ17-drWLFoySks=aqrCx6QPR2ZkXHL6DA@mail.gmail.com>
+To: Chris Morgan <chmorgan@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Yocto-ish upgrade-in-place strategy
 X-BeenThere: yocto@yoctoproject.org
@@ -59,128 +59,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 03 May 2015 09:51:28 -0000
-Content-Type: multipart/alternative; boundary=001a1134b76642913605152a63b8
-
---001a1134b76642913605152a63b8
+X-List-Received-Date: Sun, 03 May 2015 13:13:19 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Saturday, May 2, 2015, Patrick Doyle <wpdster@gmail.com> wrote:
-
-> Rather than inventing this from scratch yet again, I would like to ask
-> what the Yocto-ish best practice is for deploying an embedded system
-> that has to support in-place upgrades.
+On Sun, May 3, 2015 at 5:51 AM, Chris Morgan <chmorgan@gmail.com> wrote:
+> Is there a standard way? We've seen a few different approaches between
+> android systems (phones), Linux distributions, and things like chromebook.
 >
-> It seems to me that this should be a fairly common scenario:
-> I have (or, rather am in the process of developing yet another) an
-> embedded application that will be running on a device whose power
-> supply is uncertain at best.  Consequently, I want to run from a
-> read-only squashfs rootfs, with some small amount of seldom changed
-> configuration data (most likely stored in a JFFS partition).
+> In our case we are using two uboot, two kernel, and two root file system
+> partitions with uboot environment controlling the active one. Squashfs for
+> the root fs. Raw images for uboot and kernel. Overlayfs in another rw
+> partition that we put on top of the rootfs where we keep system
+> configuration. Media and other stuff goes into yet another btrfs partition
+> that, like the overlayfs, isn't managed by the update system.
 >
-> But I need a strategy to upgrade this system in place.  Since I am
-> running from a read-only squashfs, I can't apt-get or rpm upgrade
-> individual packages.  I must redeploy the entire image.
+> Approach is to update the second rootfs while one rootfs is running. Swap
+> env in uboot environment to point at the other rootfs and then when
+> appropriate reboot. This lets us avoid downtime while downloading the
+> update, we download in the background.
 >
-> I can divvy up the flash however I want, so I am thinking that I would
-> like to use u-boot to boot a rescue image from one partition, that
-> would kexec the deployed image from a different parition.
+> We build everything with yocto but afaik we don't have much specific stuff
+> for the update system because we don't have an upgrade partition but rather
+> two sets of partitions.
 >
-> Are there Yocto recipes, blogs, community experience with this sort of
-> thing, or should I invent my own solution?
->
-> Again, this feel like a common problem that others should have already
-> solved, and I would rather solve uncommon problems than re-solve
-> common ones.
->
-> --wpd
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org <javascript:;>
-> https://lists.yoctoproject.org/listinfo/yocto
->
+> Thoughts?
 
-Is there a standard way? We've seen a few different approaches between
-android systems (phones), Linux distributions, and things like chromebook.
+Hi Chris,
+Thanks for the description.  We do something very much similar to that
+on one of our systems (except for the part about downloading in the
+background).
 
-In our case we are using two uboot, two kernel, and two root file system
-partitions with uboot environment controlling the active one. Squashfs for
-the root fs. Raw images for uboot and kernel. Overlayfs in another rw
-partition that we put on top of the rootfs where we keep system
-configuration. Media and other stuff goes into yet another btrfs partition
-that, like the overlayfs, isn't managed by the update system.
+As I have been thinking about this, I have been thinking about
+something along the lines of creating a rescue/boot partition with the
+following:
 
-Approach is to update the second rootfs while one rootfs is running. Swap
-env in uboot environment to point at the other rootfs and then when
-appropriate reboot. This lets us avoid downtime while downloading the
-update, we download in the background.
+core-image-minimal
+squashfs
+ssh (for rescue operations)
+kexec-tools
 
-We build everything with yocto but afaik we don't have much specific stuff
-for the update system because we don't have an upgrade partition but rather
-two sets of partitions.
+U-boot would boot that image.  That image would contain an rc.local
+that would mount the active partition and kexec the kernel it found
+there.  The active partition would contain our deployed application,
+which would likely also have a squashfs rootfs (because I don't want
+to trash the flash when the power goes out).  It would also have
+whatever hooks we needed to upgrade images in place.
 
-Thoughts?
+My thinking is that the boot/rescue image would be a factory/expert
+image.  It (of necessity) needs special tools and/or access to the
+board (JTAG header, USB rescue port, etc...) to be installed.  But
+once it is installed, it is capable of booting whatever Linux I place
+in the active partition.  I might make it smart enough to support an
+"active" partition and a "fallback" partition, but I kinda feel like I
+already have a "fallback" mechanism in place with the boot/rescue
+image.
 
-Chris
+At some point, I begin to think that I am overthinking this.  I also
+begin to think that everybody (in this space) has these same issues.
+Why do we keep reinventing the wheel?
 
---001a1134b76642913605152a63b8
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--wpd
 
-On Saturday, May 2, 2015, Patrick Doyle &lt;<a href=3D"mailto:wpdster@gmail=
-.com">wpdster@gmail.com</a>&gt; wrote:<br><blockquote class=3D"gmail_quote"=
- style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Ra=
-ther than inventing this from scratch yet again, I would like to ask<br>
-what the Yocto-ish best practice is for deploying an embedded system<br>
-that has to support in-place upgrades.<br>
-<br>
-It seems to me that this should be a fairly common scenario:<br>
-I have (or, rather am in the process of developing yet another) an<br>
-embedded application that will be running on a device whose power<br>
-supply is uncertain at best.=C2=A0 Consequently, I want to run from a<br>
-read-only squashfs rootfs, with some small amount of seldom changed<br>
-configuration data (most likely stored in a JFFS partition).<br>
-<br>
-But I need a strategy to upgrade this system in place.=C2=A0 Since I am<br>
-running from a read-only squashfs, I can&#39;t apt-get or rpm upgrade<br>
-individual packages.=C2=A0 I must redeploy the entire image.<br>
-<br>
-I can divvy up the flash however I want, so I am thinking that I would<br>
-like to use u-boot to boot a rescue image from one partition, that<br>
-would kexec the deployed image from a different parition.<br>
-<br>
-Are there Yocto recipes, blogs, community experience with this sort of<br>
-thing, or should I invent my own solution?<br>
-<br>
-Again, this feel like a common problem that others should have already<br>
-solved, and I would rather solve uncommon problems than re-solve<br>
-common ones.<br>
-<br>
---wpd<br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"javascript:;" onclick=3D"_e(event, &#39;cvml&#39;, &#39;yocto@yo=
-ctoproject.org&#39;)">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote><div><br></div><div>Is there a standard way? We&#39;ve seen a =
-few different approaches between android systems (phones), Linux=C2=A0distr=
-ibutions, and things like chromebook.</div><div><br></div><div>In our case =
-w<span></span>e are using two uboot, two kernel, and two root file system p=
-artitions with uboot environment controlling the active one. Squashfs for t=
-he root fs. Raw images for uboot and kernel. Overlayfs in another rw partit=
-ion that we put on top of the rootfs where we keep system configuration. Me=
-dia and other stuff goes into yet another btrfs partition that, like the ov=
-erlayfs, isn&#39;t managed by the update system.</div><div><br></div><div>A=
-pproach is to update the second rootfs while one rootfs is running. Swap en=
-v in uboot environment to point at the other rootfs and then when appropria=
-te reboot. This lets us avoid downtime while downloading the update, we dow=
-nload in the background.</div><div><br></div><div>We build everything with =
-yocto but afaik we don&#39;t have much specific stuff for the update=C2=A0s=
-ystem because we don&#39;t have an upgrade partition but rather two sets of=
- partitions.</div><div><br></div><div>Thoughts?</div><div><br></div><div>Ch=
-ris</div><div>=C2=A0</div>
-
---001a1134b76642913605152a63b8--
