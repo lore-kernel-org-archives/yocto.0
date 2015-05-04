@@ -1,40 +1,26 @@
-Return-Path: <Raghavendra.Kakarla@inedasystems.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 56923E009CD; Sun,  3 May 2015 22:32:29 -0700 (PDT)
+	id 915D5E009CD; Mon,  4 May 2015 03:16:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.invecas.com (mx1.invecas.com [112.133.222.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35EDFE00997
-	for <yocto@yoctoproject.org>; Sun,  3 May 2015 22:32:24 -0700 (PDT)
-Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by mail.invecas.com
-	(10.0.30.131) with Microsoft SMTP Server (TLS) id 14.3.123.3;
-	Mon, 4 May 2015 11:02:23 +0530
-Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
-	SOC-EXCH-02.invecas.local (10.0.30.9) with Microsoft SMTP Server (TLS)
-	id 15.0.995.29; Mon, 4 May 2015 11:02:20 +0530
-Received: from SOC-EXCH-02.invecas.local ([::1]) by SOC-EXCH-02.invecas.local
-	([::1]) with mapi id 15.00.0995.028; Mon, 4 May 2015 11:02:20 +0530
-From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: How to maintain my own git repo for whole poky without affecting
-	of yocto git history
-Thread-Index: AQHQhicuqgr7vXDlF0aKBnOP4lxVKp1rSvvd
-Date: Mon, 4 May 2015 05:32:19 +0000
-Message-ID: <1430717535506.13647@inedasystems.com>
-References: <1430715980866.93398@inedasystems.com>
-In-Reply-To: <1430715980866.93398@inedasystems.com>
-Accept-Language: en-US, en-IN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.42.88]
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EC4DE00997
+	for <yocto@yoctoproject.org>; Mon,  4 May 2015 03:16:24 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id 1E77884821FC
+	for <yocto@yoctoproject.org>; Mon,  4 May 2015 06:16:23 -0400 (EDT)
 MIME-Version: 1.0
-Subject: How to maintain my own git repo for whole poky without affecting of yocto git history
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 04 May 2015 10:16:23 -0000
+Message-ID: <20150504101623.19711.76946@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,201 +32,211 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 May 2015 05:32:29 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_143071753550613647inedasystemscom_"
+X-List-Received-Date: Mon, 04 May 2015 10:16:27 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
---_000_143071753550613647inedasystemscom_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+This mail was sent out by Recipe reporting system.
 
-Hi All,
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade this time, they can fill in
+RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
+recipe remainder until newer upstream version was detected.
 
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
 
+You can check the detail information at:
 
-We want to maintain the whole poky source code (with all required packages =
-are already built) in my local "gitlab". When I do this the yocto git histo=
-ry is replaced by my local git. So, After checkout the poky from my local g=
-it and try to build the poky with a new package enabling in yocto it give s=
-ome errors like unable to fetch the source code. But with original yocto so=
-urce code it is successfully built.
+http://packages.yoctoproject.org/
 
+Package               Version        Upstream version      Maintainer           NoUpgradeReason
+--------------------  -------------  --------------------  -------------------  ------------------------------
+nfs-utils             1.3.1          1.3.2                 Alejandro Hernandez
+midori                0.5.8          0.5.10                Alejandro Hernandez
+python-smmap          0.8.2          0.9.0                 Alejandro Hernandez
+python3               3.3.3          3.5.0a4               Alejandro Hernandez
+python                2.7.9          3.5.0a4               Alejandro Hernandez
+which                 2.20           2.21                  Alejandro Hernandez
+gnome-icon-theme      2.31.0         3.12.0                Alejandro Hernandez  waiting for the sato gtk3 port
+jpeg                  8d             9a                    Aníbal Limón         webkit-gtk 1.8.3 doesn't wo...
+sqlite3               3.8.7.4        3.8.9.                Aníbal Limón
+mc                    4.8.13         4.8.14                Aníbal Limón
+screen                4.0.3          4.2.1                 Aníbal Limón
+nettle                2.7.1          3.1rc3                Armin Kuster         3.0.0 breaks gnutls, api ch...
+linux-libc-headers    3.19           3.19.6                Bruce Ashfield
+console-tools         0.3.2          1999.03.02            Chen Qi
+systemd               219+gitX       21585a6fabdd3e43c...  Chen Qi
+util-linux            2.26.1         2.26.2                Chen Qi
+gawk                  4.1.1          4.1.2                 Chen Qi              Version 4.1.0 requires Auto...
+dbus-test             1.8.10         1.9.14                Chong Lu
+dbus                  1.8.10         1.9.14                Chong Lu             D-BUS 1.9.x is the developm...
+libpcre               8.36           8.37                  Chong Lu
+bluez5                5.29           5.30                  Cristian Iorga
+connman               1.28           1.29                  Cristian Iorga
+iproute2              3.17.0         4.0.0                 Cristian Iorga
+libpcap               1.6.2          1.7.3                 Cristian Iorga
+wpa-supplicant        2.3            2.4                   Cristian Iorga
+gst-plugins-ugly      0.10.19        1.4.5                 Cristian Iorga
+alsa-utils-alsaconf   1.0.28         1.0.29                Cristian Iorga
+alsa-utils            1.0.28         1.0.29                Cristian Iorga
+gst-ffmpeg            0.10.13        0.11.2                Cristian Iorga
+gst-fluendo-mp3       0.10.31        0.10.32               Cristian Iorga
+gst-plugins-bad       0.10.23        1.4.5                 Cristian Iorga       not compatible with gst-flu...
+gst-plugins-base      0.10.36        1.4.5                 Cristian Iorga       not compatible with gst-flu...
+gst-plugins-good      0.10.31        1.4.5                 Cristian Iorga       not compatible with gst-flu...
+gstreamer             0.10.36        1.4.5                 Cristian Iorga       not compatible with gst-fl...
+libvorbis             1.3.4          1.3.5                 Cristian Iorga
+libatomics-ops        7.2            7.4.0                 Cristian Iorga
+speex                 1.2rc1         1.2rc2                Cristian Iorga
+qemu                  2.2.0          2.3.0                 Cristian Iorga
+db                    6.0.30         6.1.23.NC             Cristian Iorga       API compatibility issue
+libical               1.0.0          1.0.1                 Cristian Iorga
+harfbuzz              0.9.38         0.9.40                Cristian Iorga
+linux-yocto-rt        3.14.36+gitX   3.14.39+gitAUTOIN...  Darren Hart
+u-boot-fw-utils       v2015.01+gitX  v2015.04+gitAUTOI...  Denys Dmytriyenko
+u-boot-mkimage        v2015.01+gitX  v2015.04+gitAUTOI...  Denys Dmytriyenko
+u-boot                v2015.01+gitX  v2015.04+gitAUTOI...  Denys Dmytriyenko
+ncurses               5.9            20150502              Hongxu Jia
+distcc                3.1            3.2rc1                Hongxu Jia
+apr                   1.5.1          1.5.2                 Hongxu Jia
+qmmp                  0.7.7          0.8.4                 Hongxu Jia
+perl                  5.20.0         5.21.11               Hongxu Jia
+createrepo            0.4.11         0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
+gnupg                 2.1.2          2.1.3                 Hongxu Jia
+bash                  4.3            4.3.30                Hongxu Jia           The latest version in yocto...
+ghostscript           9.15           9.16                  Hongxu Jia
+alsa-tools            1.0.28         1.0.29                Kai Kang
+libx11-diet           1.6.2          1.6.3                 Kai Kang
+python-mako           0.9.1          1.0.1                 Khem Raj
+python-nose           1.2.1          1.3.6                 Khem Raj
+python-numpy          1.7.0          1.9.2                 Khem Raj
+python3-distribute    0.6.32         0.7.3                 Khem Raj
+rpm                   5.4.14         5.4.15                Mark Hatle
+libpfm4               4.3.0          4.6.0                 Matthew McClintock
+gcc-sanitizers        4.9.2          5.1.0                 No maintainer
+debianutils           4.4            4.5                   No maintainer
+grub                  2.00+X         2.00+AUTOINC+cc69...  Paul Eggleton
+dropbear              2014.66        2015.67               Paul Eggleton
+cmake                 2.8.12.2       3.2.2                 Paul Eggleton
+dosfstools            2.11           3.0.27                Paul Eggleton
+libav                 9.16           11.3                  Paul Eggleton
+x264                  r2265+gitX     r2491                 Paul Eggleton
+qt4-embedded          4.8.6          5.4.1                 Paul Eggleton
+qt4-x11-free          4.8.6          5.4.1                 Paul Eggleton
+yasm                  1.2.0          1.3.0                 Paul Eggleton
+augeas                1.2.0          1.3.0                 Paul Eggleton
+libevdev              1.3            1.4.2                 Paul Eggleton
+libpng12              1.2.52         1.6.17                Randy Witt
+python-async          0.6.1          0.6.2                 Randy Witt
+tcf-agent             0.4.0+gitX     8.0+gitAUTOINC+ea...  Randy Witt
+unfs3                 0.9.22.r490    0.9.22.r494           Randy Witt
+libpng                1.6.16         1.6.17                Randy Witt
+libunistring          0.9.4          0.9.5                 Randy Witt
+ethtool               3.16           3.18                  Randy Witt
+libpam                1.1.6          1.2.0                 Randy Witt
+libpciaccess          0.13.3         0.13.4                Richard Purdie
+x11perf               1.5.4          1.6.0                 Richard Purdie
+btrfs-tools           3.18.2+gitX    4.0+gitAUTOINC+19...  Richard Purdie
+lttng-modules         2.6.0          2.6.1                 Richard Purdie
+lttng-ust             2.6.0          2.6.1                 Richard Purdie
+gcc-runtime           4.9.2          5.1.0                 Richard Purdie
+gcc-source            4.9.2          5.1.0                 Richard Purdie
+libgcc                4.9.2          5.1.0                 Richard Purdie
+libgfortran           4.9.2          5.1.0                 Richard Purdie
+intltool              0.50.2         0.51.0                Richard Purdie
+nasm                  2.11.06        2.11.08               Richard Purdie
+python-distribute     0.6.32         0.7.3                 Richard Purdie       0.7.3 only upgrades 0.6.32,...
+python-gst            0.10.22        1.4.0                 Richard Purdie
+python-pygobject      2.28.3         3.16.1                Richard Purdie       Newer versions of python-py...
+libdrm                2.4.59         2.4.60                Richard Purdie
+libmpc                1.0.2          1.0.3                 Richard Purdie
+glib-2.0              2.44.0         2.45.1                Robert Yang
+binutils              2.25           7.9.0                 Robert Yang
+e2fsprogs             1.42.9         1.42.11               Robert Yang
+gmp                   6.0.0          6.0.0a                Robert Yang
+logrotate             3.8.8          3.9.1                 Robert Yang
+liberation-fonts      1.04           2.00.1                Ross Burton          2.00.0 - fontforge package ...
+waffle                1.3.0          1.5.1                 Ross Burton
+libinput              0.7.0          0.14.1                Ross Burton
+weston                1.6.0          1.7.0                 Ross Burton
+xev                   1.2.1          1.2.2                 Ross Burton
+xhost                 1.0.6          1.0.7                 Ross Burton
+xmodmap               1.0.8          1.0.9                 Ross Burton
+xf86-input-evdev      2.9.1          2.9.2                 Ross Burton
+xf86-input-synaptics  1.8.1          1.8.2                 Ross Burton
+xf86-input-vmmouse    13.0.0         13.0.99               Ross Burton
+xvinfo                1.1.2          1.1.3                 Ross Burton
+xf86-video-vmware     13.0.2         13.1.0                Ross Burton
+font-util             1.3.0          1.3.1                 Ross Burton
+wayland               1.6.0          1.7.0                 Ross Burton
+libx11                1.6.2          1.6.3                 Ross Burton
+libxdmcp              1.1.1          1.1.2                 Ross Burton
+glib-networking       2.44.0         2.45.1                Ross Burton          Pending Glib-2.0 Update
+libxkbfile            1.0.8          1.0.9                 Ross Burton
+libxrender            0.9.8          0.9.9                 Ross Burton
+libxshmfence          1.1            1.2                   Ross Burton
+libxt                 1.1.4          1.1.5                 Ross Burton
+libxvmc               1.0.8          1.0.9                 Ross Burton
+libxxf86vm            1.1.3          1.1.4                 Ross Burton
+xkeyboard-config      2.13           2.14                  Ross Burton
+kbproto               1.0.6          1.0.7                 Ross Burton
+randrproto            1.4.0          1.4.1                 Ross Burton
+xproto                7.0.26         7.0.27                Ross Burton
+xserver-xorg          1.16.3         1.17.1                Ross Burton
+xdpyinfo              1.3.1          1.3.2                 Ross Burton
+libfontenc            1.1.2          1.1.3                 Ross Burton
+xf86-input-keyboard   1.8.0          1.8.1                 Ross Burton
+puzzles               r10116         r10286                Ross Burton
+webkit-gtk            1.8.3          1.9.92                Ross Burton          >= 1.10.2 needs ruby
+vala                  0.26.1         0.28.0                Ross Burton
+shared-mime-info      1.3            1.4                   Ross Burton
+vte                   0.28.2         0.40.0                Ross Burton          Pending Glib-2.0 Update
+gdk-pixbuf            2.30.8         2.31.3                Ross Burton          2.31.x is unstable
+libxfont              1.5.0          1.5.1                 Ross Burton
+gtk+3                 3.12.2         3.17.1                Ross Burton
+gtk+                  2.24.27        3.17.1                Ross Burton          Do not upgrade to version: ...
+gtk-engines           2.20.2         2.91.1                Ross Burton          2.91.1 is a 3.0 beta release
+libnotify             0.6.0          0.7.6                 Ross Burton
+xf86-video-omap       0.4.2+gitrX    0.4.3+gitrAUTOINC...  Ross Burton
+clutter-1.0           1.20.0         1.22.0                Ross Burton
+clutter-gst-1.0       1.6.0          3.0.4                 Ross Burton
+clutter-gtk-1.0       1.4.4          1.6.0                 Ross Burton
+cogl-1.0              1.18.2         1.20.0                Ross Burton
+build-appliance-i...  12.0.1         13.0.0                Saul Wold
+npth                  1.1            1.2                   Saul Wold
+uclibc                0.9.33+gitX    0.9.33.2+gitAUTOI...  Saul Wold
+libtheora             1.1.1          1.2.0alpha1           Saul Wold
+tiff                  4.0.3          4.0.4beta             Saul Wold
+boost                 1.57.0         1.58.0                Saul Wold
+libksba               1.3.2          1.3.3                 Saul Wold
+liburcu               0.8.6          0.8.7                 Saul Wold
+libidn                1.29           1.30                  Saul Wold
+lsbinitscripts        9.61           9.62                  Saul Wold
+msmtp                 1.6.1          1.6.2                 Saul Wold
+libunique             1.1.6          3.0.2                 Saul Wold            Do not upgrade to version: ...
+mx-1.0                1.4.7+gitX     1.99.4+gitAUTOINC...  Saul Wold            PRS 1.99 is dev version
+blktrace              1.0.5+gitX     1.1.0+gitAUTOINC+...  Tom Zanussi
+chkconfig             1.3.58         1.4                   Wenzong Fan
 
-Could you please help for resolving this issue.
+Upgradable count: 143
+Upgradable total count: 166
 
+The based commit is:
 
-Thanks in advance.
+commit 9484fb04c0ed8b3e08c6773662dc7a0f01cb39a8
+Author: Richard Purdie <richard.purdie@linuxfoundation.org>
+Date:   Sun May 3 11:27:24 2015 +0100
 
+    directfb: Improve CFLAGS handling for x86
+    
+    The problem with filter_out is that it expands the variable meaning overrides
+    to sub components can get lost. This has happening to the security flags
+    meaning directfb failed in lsb builds.
+    
+    Use _remove instead of filter_out since it gives much more predictable results.
+    
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-Regards,
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
-
-Raghavendra K.
-
-
-
---_000_143071753550613647inedasystemscom_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none"><!--P{margin-top:0;margin-b=
-ottom:0;} .ms-cui-menu {background-color:#ffffff;border:1px rgb(166, 166, 1=
-66) solid;font-family:"Segoe UI","Segoe WP","Segoe UI WPC",Tahoma,Arial,san=
-s-serif;font-size:10pt;color:rgb(51, 51, 51);} .ms-cui-menusection-title {d=
-isplay:none;} .ms-cui-ctl {vertical-align:text-top;text-decoration:none;col=
-or:rgb(51, 51, 51);} .ms-cui-ctl-on {background-color:rgb(205, 230, 247);op=
-acity: 0.8;} .ms-cui-img-cont-float {display:inline-block;margin-top:2px} .=
-ms-cui-smenu-inner {padding-top:0px;} .ms-owa-paste-option-icon {margin: 0p=
-x 6px 0px 6px;vertical-align:middle!important;padding-bottom: 2px;display:i=
-nline-block;} .ms-rtePasteFlyout-option:hover {background-color:rgb(205, 23=
-0, 247) !important;opacity:1 !important;} .ms-rtePasteFlyout-option {paddin=
-g:8px 4px 8px 4px;outline:none;} .ms-cui-menusection {float:left; width:85p=
-x;height:24px;overflow:hidden}.wf {speak:none; font-weight:normal; font-var=
-iant:normal; text-transform:none; -webkit-font-smoothing:antialiased; verti=
-cal-align:middle; display:inline-block;}.wf-family-owa {font-family:'o365Ic=
-ons'}@font-face {  font-family:'o365IconsIE8';  src:url('prem/15.0.995.29/r=
-esources/styles/office365icons.ie8.eot?#iefix') format('embedded-opentype')=
-,         url('prem/15.0.995.29/resources/styles/office365icons.ie8.woff') =
-format('woff'),         url('prem/15.0.995.29/resources/styles/office365ico=
-ns.ie8.ttf') format('truetype');  font-weight:normal;  font-style:normal;}@=
-font-face {  font-family:'o365IconsMouse';  src:url('prem/15.0.995.29/resou=
-rces/styles/office365icons.mouse.eot?#iefix') format('embedded-opentype'), =
-        url('prem/15.0.995.29/resources/styles/office365icons.mouse.woff') =
-format('woff'),         url('prem/15.0.995.29/resources/styles/office365ico=
-ns.mouse.ttf') format('truetype');  font-weight:normal;  font-style:normal;=
-}.wf-family-owa {font-family:'o365IconsMouse'}.ie8 .wf-family-owa {font-fam=
-ily:'o365IconsIE8'}.ie8 .wf-owa-play-large:before {content:'\e254';}.notIE8=
- .wf-owa-play-large:before {content:'\e054';}.ie8 .wf-owa-play-large {color=
-:#FFFFFF/*$WFWhiteColor*/;}.notIE8 .wf-owa-play-large {border-color:#FFFFFF=
-/*$WFWhiteColor*/; width:1.4em; height:1.4em; border-width:.1em; border-sty=
-le:solid; border-radius:.8em; text-align:center; box-sizing:border-box; -mo=
-z-box-sizing:border-box; padding:0.1em; color:#FFFFFF/*$WFWhiteColor*/;}.ie=
-8 .wf-size-play-large {width:40px; height:40px; font-size:30px}.notIE8 .wf-=
-size-play-large {width:40px; height:40px; font-size:30px}.notIE8 .wf-owa-tr=
-iangle-down-small:before {content:'\e052';}.ie8 .wf-owa-triangle-down-small=
-:before { content:'\e052';}.ie8 .wf-owa-triangle-down-small {color:#666666/=
-*$WFGreyColor*/;}.wf-size-x20 {font-size: 20px!important;}=0A=
-<!--=0A=
-p=0A=
-	{margin-top:0;=0A=
-	margin-bottom:0}=0A=
-.ms-cui-menu=0A=
-	{background-color:#ffffff;=0A=
-	border:1px rgb(166,166,166) solid;=0A=
-	font-family:"Segoe UI","Segoe WP","Segoe UI WPC",Tahoma,Arial,sans-serif;=
-=0A=
-	font-size:10pt;=0A=
-	color:rgb(51,51,51)}=0A=
-.ms-cui-ctl=0A=
-	{vertical-align:text-top;=0A=
-	text-decoration:none;=0A=
-	color:rgb(51,51,51)}=0A=
-.ms-cui-ctl-on=0A=
-	{background-color:rgb(205,230,247)}=0A=
-.ms-cui-img-cont-float=0A=
-	{display:inline-block;=0A=
-	margin-top:2px}=0A=
-.ms-cui-smenu-inner=0A=
-	{padding-top:0px}=0A=
-.ms-owa-paste-option-icon=0A=
-	{margin:0px 6px 0px 6px;=0A=
-	vertical-align:middle!important;=0A=
-	padding-bottom:2px;=0A=
-	display:inline-block}=0A=
-.ms-rtePasteFlyout-option=0A=
-	{padding:8px 4px 8px 4px;=0A=
-	outline:none}=0A=
-.ms-cui-menusection=0A=
-	{float:left;=0A=
-	width:85px;=0A=
-	height:24px;=0A=
-	overflow:hidden}=0A=
-.wf=0A=
-	{speak:none;=0A=
-	font-weight:normal;=0A=
-	font-variant:normal;=0A=
-	text-transform:none;=0A=
-	vertical-align:middle;=0A=
-	display:inline-block}=0A=
-.wf-family-owa=0A=
-	{font-family:'o365Icons'}=0A=
-@font-face=0A=
-	{font-family:'o365IconsIE8';=0A=
-	font-weight:normal;=0A=
-	font-style:normal}=0A=
-@font-face=0A=
-	{font-family:'o365IconsMouse';=0A=
-	font-weight:normal;=0A=
-	font-style:normal}=0A=
-.wf-family-owa=0A=
-	{font-family:'o365IconsMouse'}=0A=
-.ie8 .wf-family-owa=0A=
-	{font-family:'o365IconsIE8'}=0A=
-.notIE8 .wf-owa-play-large=0A=
-	{border-color:#FFFFFF;=0A=
-	width:1.4em;=0A=
-	height:1.4em;=0A=
-	border-width:.1em;=0A=
-	border-style:solid;=0A=
-	text-align:center;=0A=
-	padding:0.1em;=0A=
-	color:#FFFFFF}=0A=
-.ie8 .wf-size-play-large=0A=
-	{width:40px;=0A=
-	height:40px;=0A=
-	font-size:30px}=0A=
-.notIE8 .wf-size-play-large=0A=
-	{width:40px;=0A=
-	height:40px;=0A=
-	font-size:30px}=0A=
-.wf-size-x20=0A=
-	{font-size:20px!important}=0A=
--->=0A=
---></style>
-</head>
-<body dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#F=
-FFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
-<div style=3D"font-size:12pt; color:#000000; background-color:#FFFFFF; font=
--family:Calibri,Arial,Helvetica,sans-serif" dir=3D"ltr">
-<div>
-<p>Hi All,</p>
-<p><br>
-</p>
-<p><br>
-</p>
-<p>We want to maintain the whole poky source code (with all required packag=
-es are already built) in my local &quot;gitlab&quot;. When I do this the yo=
-cto git history is replaced by my local git. So, After checkout the poky fr=
-om my local git and try to build the poky
- with a new package enabling in yocto it give some errors like unable to fe=
-tch the source code. But with original yocto source code it is successfully=
- built.
-</p>
-<p><br>
-</p>
-<p>Could you please help for resolving this issue.</p>
-<p><br>
-</p>
-<p>Thanks in advance.</p>
-<p><br>
-</p>
-<p>Regards,</p>
-<p><br>
-</p>
-<p>Raghavendra K.<br>
-</p>
-<p><br>
-</p>
-<p><br>
-</p>
-</div>
-</div>
-</body>
-</html>
-
---_000_143071753550613647inedasystemscom_--
