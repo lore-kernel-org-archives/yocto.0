@@ -1,29 +1,37 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <sona.sarmadi@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D4CB6E009B4; Tue,  5 May 2015 07:44:49 -0700 (PDT)
+	id 6242EE009B4; Tue,  5 May 2015 07:49:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [192.36.1.252 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EF9BE00992
-	for <yocto@yoctoproject.org>; Tue,  5 May 2015 07:44:45 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 9C4A5F811E0; Tue,  5 May 2015 08:44:45 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 1227FF811DF;
-	Tue,  5 May 2015 08:44:45 -0600 (MDT)
-Message-ID: <5548D75F.3040102@mlbassoc.com>
-Date: Tue, 05 May 2015 08:44:47 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id CE53EE00992
+	for <yocto@yoctoproject.org>; Tue,  5 May 2015 07:49:32 -0700 (PDT)
+Received: from SESTOEX09.enea.se ([fe80::94d8:372f:210c:b4da]) by
+	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
+	14.03.0224.002; Tue, 5 May 2015 16:49:29 +0200
+From: Sona Sarmadi <sona.sarmadi@enea.com>
+To: "yocto.security@yoctoproject.org" <yocto.security@yoctoproject.org>
+Thread-Topic: CVE list vs bugzilla 
+Thread-Index: AdCHMQJlypVzgTuuROqRC6C4yAIJCw==
+Date: Tue, 5 May 2015 14:49:28 +0000
+Message-ID: <3230301C09DEF9499B442BBE162C5E48258EB7C5@sestoex09.enea.se>
+Accept-Language: sv-SE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.142.231]
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Confusing error
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Subject: CVE list vs bugzilla
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,69 +43,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 May 2015 14:44:49 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 05 May 2015 14:49:37 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-I'm getting a very confusing error from bitbake.  I'm using a snapshot
-from Poky/Yocto (equivalent to 1.8 release) with my own $DISTRO
+Hi all,
 
-   $ bitbake nand-installer-image
-   NOTE: Started PRServer with DBfile: /home/gary/tmp/p0381_2015-05-05/p0381_build/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 41585, PID: 460
-   Loading cache: 100% |###################################################################################| ETA:  00:00:00
-   Loaded 1708 entries from dependency cache.
-   NOTE: Resolving any missing task queue dependencies
-   ERROR: Nothing RPROVIDES 'virtual/bootloader' (but /home/gary/tmp/p0381_2015-05-05/opt/amltd/poky/meta-amltd/packages/packagegroups /packagegroup-amltd.bb RDEPENDS on or 
-otherwise requires it)
-   NOTE: Runtime target 'virtual/bootloader' is unbuildable, removing...
-   Missing or unbuildable dependency chain was: ['virtual/bootloader']
-   NOTE: Runtime target 'packagegroup-amltd-boot' is unbuildable, removing...
-   Missing or unbuildable dependency chain was: ['packagegroup-amltd-boot', 'virtual/bootloader']
-   ERROR: Required build target 'nand-installer-image' has no buildable providers.
-   Missing or unbuildable dependency chain was: ['nand-installer-image', 'packagegroup-amltd-boot', 'virtual/bootloader']
+To monitor/scan vulnerabilities (CVE), check affected packages, versions, b=
+ranches, fixed versions/branches etc ... we need either to file a bug in bu=
+gzilla for each publically disclosed CVE or have a simple data base. Today,=
+ we sometimes file a bug but most of the time vulnerabilities just get fixe=
+d by someone volunteer and some vulnerabilities don't get fixed.
 
-But, there is such a provider and I can build it (from the same build tree):
-   $ bitbake virtual/bootloader
-   NOTE: Started PRServer with DBfile: /home/gary/tmp/p0381_2015-05-05/p0381_build/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 43428, PID: 515
-   Loading cache: 100% |###################################################################################| ETA:  00:00:00
-   Loaded 1708 entries from dependency cache.
-   NOTE: Resolving any missing task queue dependencies
+We have created a CVE list just for test to see if this is easier to mainta=
+in and provides better overview, please have a look at this and let us to k=
+now what you think:
+https://docs.google.com/spreadsheets/d/13o4IPsCQ42aR2CCGzYOHdmpIEHkHUwDWlF4=
+QqgI6emQ/edit#gid=3D0=20
 
-   Build Configuration:
-   BB_VERSION        = "1.27.0"
-   BUILD_SYS         = "i686-linux"
-   NATIVELSBSTRING   = "Fedora-17"
-   TARGET_SYS        = "arm-amltd-linux-gnueabi"
-   MACHINE           = "teton-p0381"
-   DISTRO            = "amltd"
-   DISTRO_VERSION    = "1.8+snapshot-2015-05-05"
-   TUNE_FEATURES     = "arm armv7a vfp neon callconvention-hard cortexa7"
-   TARGET_FPU        = "vfp-neon"
-   meta
-   meta-oe
-   meta-amltd
-   meta-teton-ls1-p0381
-   meta-fsl-arm
-   meta-fsl-arm-extra
-   meta-browser      = "<unknown>:<unknown>"
+The alternative for maintaining such a list is filing a bug in Bugzilla. Th=
+e question is which approach is the best, here are some pros and cons:
 
-   NOTE: Preparing RunQueue
-   NOTE: Executing SetScene Tasks
-   NOTE: Executing RunQueue Tasks
-         ...
+Bugzilla:=20
+=3D=3D=3D=3D=3D=3D=3D
+- it takes more time to create/update a bug  in Bugzilla (not a big problem=
+)
+- history, traceable who updated
+- when we have releases, we go through open bugs and try to get them fixed
 
-After much research, I found that this is happening because I have
-   MACHINE_EXTRA_RRECOMMENDS="virtual/bootloader linux-firmware-iwlwifi-5xxx"
+Question: can we generate a report from Bugzilla, search for CVEs and find =
+out what CVEs have been fixed and in what branches etc?
 
-If I remove the 'virtual/bootloader' from MACHINE_EXTRA_RRECOMMENDS,
-the confusion (and error) go away.  Any ideas what's happening and why
-I might be getting this confusing error?
+
+CVE spread sheet:
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++ Easy to update, anyone just can add info preferably automatically; we cou=
+ld use a tool to check with NVD (https://nvd.nist.gov/ ) daily and update t=
+he list (some human interactions needs to be done though)=20
++ easy to have an overview
+- ?
+
+Any comments?
 
 Thanks
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Sona
 
