@@ -1,48 +1,38 @@
-Return-Path: <mar.krzeminski@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2AB5EE00998; Tue,  5 May 2015 01:30:32 -0700 (PDT)
+	id 8E732E0099B; Tue,  5 May 2015 01:32:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (mar.krzeminski[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.47 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wg0-f47.google.com (mail-wg0-f47.google.com [74.125.82.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC063E00961
-	for <yocto@yoctoproject.org>; Tue,  5 May 2015 01:30:28 -0700 (PDT)
-Received: by wgso17 with SMTP id o17so174541477wgs.1
-	for <yocto@yoctoproject.org>; Tue, 05 May 2015 01:30:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=kjrqqrWteTYHKD+zG8u3HTaFMTz2AmsLRC+F4u4Qbso=;
-	b=PpJ6zQWU3aK2S/Ffs07oYp7pmc3Ky5dvV9avetPAMZyUY7MDTJaBAU2r0LSy++5E7D
-	jsi2hTATE+r5Xz8ze68an4zKePw95XHuoIDMCCfO7CKAgB5oMHx4cJ2aKOBI+UwiGQpQ
-	rWoVqroJnZWBTxTE67YaHhY5rQKVRSIDUGsPpBqvTqiDnpO68EBERefKzoGyKudxVBVf
-	/jiKkvhgBp2uAQVMd5IwcJXlTktp+S4RFq/pmnlQYpJh2/Y9tERPq7OhFvpj/2eNWLQL
-	wQ/AqZeQCJTfb9idTl68XS2RTzQXvnTv4MGH+62X5oX26o8AFN1MN1oB7P4EczBkGxs6
-	e0Rg==
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43065E009DB
+	for <yocto@yoctoproject.org>; Tue,  5 May 2015 01:32:05 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga103.jf.intel.com with ESMTP; 05 May 2015 01:32:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.13,371,1427785200"; d="scan'208";a="705393758"
+Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com) ([10.252.6.217])
+	by fmsmga001.fm.intel.com with ESMTP; 05 May 2015 01:32:04 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Trevor Woerner <twoerner@gmail.com>
+Date: Tue, 05 May 2015 09:32:03 +0100
+Message-ID: <7454550.JYGnhI8WWn@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.6 (Linux/3.19.5-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
+In-Reply-To: <5543E142.2020707@gmail.com>
+References: <BLUPR0501MB1028D6037F60D05E868A5F15BFEE0@BLUPR0501MB1028.namprd05.prod.outlook.com>
+	<1674505.cjWkHk81xC@peggleto-mobl.ger.corp.intel.com>
+	<5543E142.2020707@gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.181.13.113 with SMTP id ex17mr1937456wid.12.1430814627068;
-	Tue, 05 May 2015 01:30:27 -0700 (PDT)
-Received: by 10.194.121.105 with HTTP; Tue, 5 May 2015 01:30:27 -0700 (PDT)
-Date: Tue, 5 May 2015 10:30:27 +0200
-Message-ID: <CABc_YGDJ=yvOkU7Bpbwq-oxbJ7Ec4ZHgL-fy2BR2+pTKwSZWdQ@mail.gmail.com>
-From: =?UTF-8?Q?Marcin_Krzemi=C5=84ski?= <mar.krzeminski@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Package group in one ipk package
+Cc: yocto@yoctoproject.org
+Subject: Re: creating images which include actively developed applications
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,29 +44,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 May 2015 08:30:32 -0000
-Content-Type: multipart/alternative; boundary=f46d043c7f0c9600d30515517de2
+X-List-Received-Date: Tue, 05 May 2015 08:32:14 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---f46d043c7f0c9600d30515517de2
-Content-Type: text/plain; charset=UTF-8
+On Friday 01 May 2015 16:25:38 Trevor Woerner wrote:
+> On 04/22/15 13:58, Paul Eggleton wrote:
+> > On Wednesday 22 April 2015 15:32:06 Brian Karcz wrote:
+> >> Is there a way to create a recipe to build actively developed code
+> >> located in an external source directory? Basically skip the fetch and
+> >> unpack steps and always execute the compile and populate steps each time
+> >> and image is built?
+> > 
+> > Indeed there is:
+> > 
+> > http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#buildi
+> > ng-software-from-an-external-source
+>
+> Paul, I'm surprised you suggested externalsrc instead of just mentioning
+> devtool right from the start (doubly-surprised since you're the person
+> who wrote devtool!). Using devtool the "administration" (of creating a
+> recipe, etc) is done for you, no?
+> 
+> http://twoerner.blogspot.ca/2015/01/the-yocto-project-introducing-devtool.ht
+> ml
 
-Hi,
+Well, I would have, except this doesn't quite seem like the same case as 
+devtool is designed for (which is "temporary" switching of the source for 
+development - AIUI Brian was looking for something more permanent.)
 
-I have a question. I created my own package group containing 12 packages
-and I want if possible to make yocto to create one ipk package to system
-update instead of twelve. Is it possible? I can not fin any solution to it.
+Cheers,
+Paul
 
-Regards,
-Marcin
+-- 
 
---f46d043c7f0c9600d30515517de2
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Paul Eggleton
+Intel Open Source Technology Centre
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I have a question. I created my own=
- package group containing 12 packages and I want if possible to make yocto =
-to create one ipk package to system update instead of twelve. Is it possibl=
-e? I can not fin any solution to it.</div><div><br></div><div>Regards,</div=
-><div>Marcin</div></div>
-
---f46d043c7f0c9600d30515517de2--
