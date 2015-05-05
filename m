@@ -1,49 +1,51 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <maxin@maxinbjohn.info>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4B17FE00997; Tue,  5 May 2015 03:53:14 -0700 (PDT)
+	id BEEE5E00997; Tue,  5 May 2015 04:06:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.172 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qc0-f172.google.com (mail-qc0-f172.google.com
-	[209.85.216.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1537E00961
-	for <yocto@yoctoproject.org>; Tue,  5 May 2015 03:53:13 -0700 (PDT)
-Received: by qcyk17 with SMTP id k17so85569407qcy.1
-	for <yocto@yoctoproject.org>; Tue, 05 May 2015 03:53:13 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.50 listed in list.dnswl.org]
+Received: from mail-oi0-f50.google.com (mail-oi0-f50.google.com
+	[209.85.218.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D909E00961
+	for <yocto@yoctoproject.org>; Tue,  5 May 2015 04:06:34 -0700 (PDT)
+Received: by oiko83 with SMTP id o83so141624719oik.1
+	for <yocto@yoctoproject.org>; Tue, 05 May 2015 04:06:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=ZnSSm0aUpGekvUgT4bXF+8UoARxfwHauw8PR1z0eScE=;
-	b=ffOWtNpdmb9PSi6cljEGonDtIESOPd7xp+IFKzzLeydXYOaP9hptiy/x1eXdjvj0Oq
-	sL3ZWQ992CcypePUiz92HeT+a2HKVpwKH7YW41OAAALDiTqKc/9ksg1k1SM4kuXn+kGb
-	Qvs0EzLkXdislOYcmp8yKoaFm0tbMyaUiG0hO99zHM1BacAGmMFKqmWM5j9nh5d+NNJN
-	bYBP186hVZvKJy392s3QMEy+AKRoadRpUuyOeil70y4KXVw8aIv5ieZVI6nYQIpoaRJT
-	XvXgEV7CjdeJwGYiBo1APhrKV0776/QJE02lpaZ/hJ3NpehFXSQJA8eNk+GvXhleJ9Sa
-	Rn4Q==
-X-Gm-Message-State: ALoCoQkk7H0KAQdp/+HxYbGVaxgn6tM4ZS7JTzhZnFhpPlCfJm0UpxxDtwegqUlP711xpasOc7J1
-X-Received: by 10.55.23.16 with SMTP id i16mr54435611qkh.14.1430823193046;
-	Tue, 05 May 2015 03:53:13 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type
+	:content-transfer-encoding;
+	bh=0qae+yygybvSxe/8pP0f0VWxZ8P749wuQzdHNmrLHqc=;
+	b=G8NJQ5LZIM8CnjARFgS84tPoDt2MJl32EQ98fHFaKdbMdWA59Us1BSleTsPwUwjCbY
+	WkhZ0gviK3onWb8r1ciJ8ZbjXwpSkMibPjRB8W1+ar++5bVygYtiXeoPTHO0L5XdpoOI
+	kcRYcoVc8UgNqqXD5eNcBgM9CnF9/HlgiQT+cjLVazk2VSEkEsG4fQ+FNWex/cObQNmo
+	9SwwM6CcWYRwLRjBB2E+CYD3kK3aenmj6WLM1vC+QHSIl5jUK0LW4ol0+/cIYJwYGVEA
+	bbNUphk71j1YOGftqNvU0eXh19PEkIZ15ueDxfa+ULbcO+wnkOqrSTQc8VRnHV+S2pMD
+	lPog==
+X-Gm-Message-State: ALoCoQk1tgSItHUq1aW2srzTZ7FEPcuJV9i+Hdmtw9dmS1Z2qfFqJlPoSgiNMRp5dS/blTCgSkl4
 MIME-Version: 1.0
-Received: by 10.140.102.231 with HTTP; Tue, 5 May 2015 03:52:52 -0700 (PDT)
-In-Reply-To: <CABc_YGAg0uJzFZDKX3rOQQCu9igBujG=XL2iRw2ugBp_s8V4jA@mail.gmail.com>
-References: <CABc_YGDJ=yvOkU7Bpbwq-oxbJ7Ec4ZHgL-fy2BR2+pTKwSZWdQ@mail.gmail.com>
-	<CAJTo0LafbAPvc_+AVQk-OnTeF7kjRkPxLcRPBM=PpXf+UzWfdg@mail.gmail.com>
-	<CABc_YGAg0uJzFZDKX3rOQQCu9igBujG=XL2iRw2ugBp_s8V4jA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 5 May 2015 11:52:52 +0100
-Message-ID: <CAJTo0Lbu7CrGwApZKV2F85B1vadd9t5CVb67ZNXZZAV-g2bfgw@mail.gmail.com>
-To: =?UTF-8?Q?Marcin_Krzemi=C5=84ski?= <mar.krzeminski@gmail.com>
+X-Received: by 10.50.176.134 with SMTP id ci6mr1163934igc.27.1430823993369;
+	Tue, 05 May 2015 04:06:33 -0700 (PDT)
+Received: by 10.36.57.134 with HTTP; Tue, 5 May 2015 04:06:33 -0700 (PDT)
+X-Originating-IP: [192.36.1.252]
+In-Reply-To: <5500469A22567C4BAF673A6E86AFA3A402227F4FAF43@IR-CENTRAL.corp.innerrange.com>
+References: <CAF_dkJCc-fXhPLFxtRYSxSC3Q0DnWwX6k8gRUJiC-f-HP9vBmA@mail.gmail.com>
+	<CAAPegz0hY842i98AZ-xB7=aEbLZpMA9Wy0ChMHsrS+c6Lb+q9A@mail.gmail.com>
+	<5500469A22567C4BAF673A6E86AFA3A402227F4FAF3B@IR-CENTRAL.corp.innerrange.com>
+	<5500469A22567C4BAF673A6E86AFA3A402227F4FAF43@IR-CENTRAL.corp.innerrange.com>
+Date: Tue, 5 May 2015 13:06:33 +0200
+Message-ID: <CAFicg86wNCPnNbe5AvttoEDAY+LZfV+PjHYOHvjj6ggmgEYCsQ@mail.gmail.com>
+From: Maxin John <maxin@maxinbjohn.info>
+To: Craig McQueen <craig.mcqueen@innerrange.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Package group in one ipk package
+Subject: Re: Yocto-ish upgrade-in-place strategy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,47 +57,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 May 2015 10:53:14 -0000
-Content-Type: multipart/alternative; boundary=001a1146f4ba28844d0515537c88
-
---001a1146f4ba28844d0515537c88
+X-List-Received-Date: Tue, 05 May 2015 11:06:37 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On 5 May 2015 at 11:49, Marcin Krzemi=C5=84ski <mar.krzeminski@gmail.com> w=
-rote:
+Hi
 
-> Not exactly. I have strange development where I've got 12 kernel modules
-> (with 12 recipes) built out site kernel tree. And then I have finally 12
-> ipk's. I want to have only one ipk witch can update all kernel modules. I=
-n
-> this case safe sw update is not a goal.
+On Tue, May 5, 2015 at 6:55 AM, Craig McQueen
+<craig.mcqueen@innerrange.com> wrote:
+> I=E2=80=99m working on this for a BeagleBone Black type system, which use=
+s eMMC
+> (i.e. disk partitions). I=E2=80=99m considering:
+
+<snip>
+
 >
+> The BeagleBone Black U-Boot implements an incrementing =E2=80=98bootcount=
+=E2=80=99, stored
+> in RTC scratch, I believe. A Linux kernel driver could be written which
+> allows for this to be reset to 0 by the kernel or userspace app. Then,
+> U-Boot could do some alternative action if bootcount gets too big (meanin=
+g
+> it=E2=80=99s not successfully booting)=E2=80=94such as revert to the othe=
+r older image, if
+> present.
 
-If you really want a single package generated then you'll either need to
-write a single recipe to build them all, or some crazy post-processing
-stage where you extract all the generated packages and construct a single
-package from them.
+Here, one probable scenario could be user switching off the device
+after firmware upgrade
+instead of allowing the device to restart. The "bootcount" value may
+not be preserved
+in the scratch registers after poweroff. In that case, we can store
+the "bootcount" value in the
+persistent environment using "BOOTCOUNT_ENV" in u-boot. This could
+avoid the trouble
+of developing and integrating the kernel driver or userspace app for
+resetting bootcount.
+Instead, we can rely on the fw_(printenv/setenv) utility already
+present in u-boot.
 
-Ross
+Best Regards,
+Maxin
 
---001a1146f4ba28844d0515537c88
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 5 May 2015 at 11:49, Marcin Krzemi=C5=84ski <span dir=3D"ltr">&lt;<a hre=
-f=3D"mailto:mar.krzeminski@gmail.com" target=3D"_blank">mar.krzeminski@gmai=
-l.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"l=
-tr">Not exactly. I have strange development where I&#39;ve got 12 kernel mo=
-dules (with 12 recipes) built out site kernel tree. And then I have finally=
- 12 ipk&#39;s. I want to have only one ipk witch can update all kernel modu=
-les. In this case safe sw update is not a goal.</div></blockquote><div><br>=
-</div><div>If you really want a single package generated then you&#39;ll ei=
-ther need to write a single recipe to build them all, or some crazy post-pr=
-ocessing stage where you extract all the generated packages and construct a=
- single package from them.</div><div><br></div><div>Ross=C2=A0</div></div><=
-br></div></div>
-
---001a1146f4ba28844d0515537c88--
