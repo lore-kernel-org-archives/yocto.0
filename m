@@ -1,38 +1,31 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <joshua.lock@collabora.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8E732E0099B; Tue,  5 May 2015 01:32:14 -0700 (PDT)
+	id DA80BE0099B; Tue,  5 May 2015 02:30:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,UNPARSEABLE_RELAY
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43065E009DB
-	for <yocto@yoctoproject.org>; Tue,  5 May 2015 01:32:05 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga103.jf.intel.com with ESMTP; 05 May 2015 01:32:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,371,1427785200"; d="scan'208";a="705393758"
-Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com) ([10.252.6.217])
-	by fmsmga001.fm.intel.com with ESMTP; 05 May 2015 01:32:04 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Trevor Woerner <twoerner@gmail.com>
-Date: Tue, 05 May 2015 09:32:03 +0100
-Message-ID: <7454550.JYGnhI8WWn@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.6 (Linux/3.19.5-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
-In-Reply-To: <5543E142.2020707@gmail.com>
-References: <BLUPR0501MB1028D6037F60D05E868A5F15BFEE0@BLUPR0501MB1028.namprd05.prod.outlook.com>
-	<1674505.cjWkHk81xC@peggleto-mobl.ger.corp.intel.com>
-	<5543E142.2020707@gmail.com>
-MIME-Version: 1.0
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [93.93.135.160])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 465C3E00961
+	for <yocto@yoctoproject.org>; Tue,  5 May 2015 02:30:45 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(Authenticated sender: joshuagl) with ESMTPSA id 62CC360100A
+Message-ID: <1430818241.5319.0.camel@collabora.co.uk>
+From: Joshua Lock <joshua.lock@collabora.co.uk>
+To: Martin Jansa <martin.jansa@gmail.com>
+Date: Tue, 05 May 2015 10:30:41 +0100
+In-Reply-To: <20150501122631.GB2366@jama>
+References: <1430478583.3318.15.camel@collabora.co.uk>
+	<20150501122631.GB2366@jama>
+X-Mailer: Evolution 3.16.1 (3.16.1-1.fc22) 
+Mime-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: creating images which include actively developed applications
+Subject: Re: First set of fido-next changes are in testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,40 +37,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 May 2015 08:32:14 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 05 May 2015 09:30:47 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Friday 01 May 2015 16:25:38 Trevor Woerner wrote:
-> On 04/22/15 13:58, Paul Eggleton wrote:
-> > On Wednesday 22 April 2015 15:32:06 Brian Karcz wrote:
-> >> Is there a way to create a recipe to build actively developed code
-> >> located in an external source directory? Basically skip the fetch and
-> >> unpack steps and always execute the compile and populate steps each time
-> >> and image is built?
+On Fri, 2015-05-01 at 14:26 +0200, Martin Jansa wrote:
+> On Fri, May 01, 2015 at 12:09:43PM +0100, Joshua Lock wrote:
+> > All,
 > > 
-> > Indeed there is:
+> > There have been a lot of patches proposed for fido so I wanted to 
+> > let
+> > you know that I have just submitted a first fido-next test build to
+> > the autobuilder.
 > > 
-> > http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#buildi
-> > ng-software-from-an-external-source
->
-> Paul, I'm surprised you suggested externalsrc instead of just mentioning
-> devtool right from the start (doubly-surprised since you're the person
-> who wrote devtool!). Using devtool the "administration" (of creating a
-> recipe, etc) is done for you, no?
+> > The full set of changes can be seen in my fido-next branch:
+> > 
+> > http://git.yoctoproject.org/cgit/cgit.cgi/poky
+> > -contrib/log/?h=joshuagl/fido-next
 > 
-> http://twoerner.blogspot.ca/2015/01/the-yocto-project-introducing-devtool.ht
-> ml
+> Is it the same as:
+> From git+ssh://git.openembedded.org/openembedded-core-contrib
+>  * [new branch]      joshuagl/fido-next -> contrib/joshuagl/fido-next
+> ?
 
-Well, I would have, except this doesn't quite seem like the same case as 
-devtool is designed for (which is "temporary" switching of the source for 
-development - AIUI Brian was looking for something more permanent.)
+Yes it is.
 
-Cheers,
-Paul
+> And shouln't this e-mail go to oe-core ML?
 
--- 
+Apologies, I'll send similar mail to the oe-core list in future.
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Regards,
+
+Joshua
 
