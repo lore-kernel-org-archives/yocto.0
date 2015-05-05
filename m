@@ -1,47 +1,54 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <mar.krzeminski@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 11A60E009DB; Tue,  5 May 2015 03:40:53 -0700 (PDT)
+	id B29FBE00997; Tue,  5 May 2015 03:50:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.173 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mar.krzeminski[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qc0-f173.google.com (mail-qc0-f173.google.com
-	[209.85.216.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE5D0E0098D
-	for <yocto@yoctoproject.org>; Tue,  5 May 2015 03:40:42 -0700 (PDT)
-Received: by qcbgy10 with SMTP id gy10so32491933qcb.3
-	for <yocto@yoctoproject.org>; Tue, 05 May 2015 03:40:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=gFU9dhIr+2abNnQ6lXg99knrlMAdPP8uGp6uN92yhyU=;
-	b=NJ6PIHEqMaXbUA/vmSH22KJwcRQkT4x8394kpic1vLjRv7S8HOHFZYNuFHs29nLEh7
-	ocp2YsCKrYfNTlw69+h8gfnA9JG2hZhVcTwEgyzuBqBRsiA79eI/FKJM8efUGrKwGZt6
-	/MVlLdCyT47k5sLy6uwwdThM4D6O3MtzyG5RvOPd36hEVmFQ755HZ+tO0OX1UKX9piHg
-	rPqyhU3ZtlPbCiO/NUw8REuqh9UovCKyGYUv8XHx6IiTGuMxezfx9EwPFO2eL/4V7HN3
-	cjWs5HXr3hcNvEBY3IIiuZ33/IeEeHnUDNjbnJl5cfPZnM6lVR9KsEE0Mc59/YUcJj07
-	6S4Q==
-X-Gm-Message-State: ALoCoQlzjGTPp0sVxOJC5eFi+ndV2y9cE+9cYLXbX12jLjLKn4dOpcOHPONVK/bdfHI061eBXuQm
-X-Received: by 10.140.216.5 with SMTP id m5mr34471639qhb.52.1430822441918;
-	Tue, 05 May 2015 03:40:41 -0700 (PDT)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wi0-f173.google.com (mail-wi0-f173.google.com
+	[209.85.212.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74ADBE00961
+	for <yocto@yoctoproject.org>; Tue,  5 May 2015 03:49:57 -0700 (PDT)
+Received: by widdi4 with SMTP id di4so141063723wid.0
+	for <yocto@yoctoproject.org>; Tue, 05 May 2015 03:49:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=oU+/bLAI2KeQNtlHfXw43t79+SDMwdd2DIZxWBkql7U=;
+	b=DjgKNmsrsqaDZd3qO1mymsOcD0wTcbV93etNg0uz9Shm1ji+6ykVW7pxuDgjNnBQc1
+	fttKOzgJf2VzX+K+f7aKNRHp6TJpW3F2kj8xa5RA7PY8zZMMgODkuaXuggmS+ZZ+TZVr
+	Lz5eKF07IGUuxMnZAM2W4DMfXiG8Ds/8+wrVR2186VfzNfXytLuveAU7FQrHxvELQ9eD
+	dgN3A7790nPjV0WA+Mrc+XZ21PjZA4SrBrUEsubIKzIrFQhPp98TLHnyk7YtZrA9PTJQ
+	EsNh+EP+P4bgHmP6Fv7jPM09QUy039GLRzf+D3tWR+cemAvWHA++Zqf7tIGbpesxB0Lp
+	Ul2A==
 MIME-Version: 1.0
-Received: by 10.140.102.231 with HTTP; Tue, 5 May 2015 03:40:21 -0700 (PDT)
-In-Reply-To: <CAF_dkJBEt-p6_JOvvO7f28ybgPNGNq28qja+EeP2f1yysqH18A@mail.gmail.com>
-References: <CAF_dkJBEt-p6_JOvvO7f28ybgPNGNq28qja+EeP2f1yysqH18A@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 5 May 2015 11:40:21 +0100
-Message-ID: <CAJTo0LaSikiMXp9G15QJEG7XebOEKMLkCyk1-=GvphW9wVxONQ@mail.gmail.com>
-To: Patrick Doyle <wpdster@gmail.com>
+X-Received: by 10.194.234.38 with SMTP id ub6mr51117996wjc.9.1430822997064;
+	Tue, 05 May 2015 03:49:57 -0700 (PDT)
+Received: by 10.194.121.105 with HTTP; Tue, 5 May 2015 03:49:56 -0700 (PDT)
+In-Reply-To: <CAJTo0LafbAPvc_+AVQk-OnTeF7kjRkPxLcRPBM=PpXf+UzWfdg@mail.gmail.com>
+References: <CABc_YGDJ=yvOkU7Bpbwq-oxbJ7Ec4ZHgL-fy2BR2+pTKwSZWdQ@mail.gmail.com>
+	<CAJTo0LafbAPvc_+AVQk-OnTeF7kjRkPxLcRPBM=PpXf+UzWfdg@mail.gmail.com>
+Date: Tue, 5 May 2015 12:49:56 +0200
+Message-ID: <CABc_YGAg0uJzFZDKX3rOQQCu9igBujG=XL2iRw2ugBp_s8V4jA@mail.gmail.com>
+From: =?UTF-8?Q?Marcin_Krzemi=C5=84ski?= <mar.krzeminski@gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: QEMU support for SD/MMC card
+Subject: Re: Package group in one ipk package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,53 +60,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 May 2015 10:40:53 -0000
-Content-Type: multipart/alternative; boundary=001a11354e6863294d0515534f9e
+X-List-Received-Date: Tue, 05 May 2015 10:50:01 -0000
+Content-Type: multipart/alternative; boundary=089e01493daa79fdfb051553703d
 
---001a11354e6863294d0515534f9e
+--089e01493daa79fdfb051553703d
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 3 May 2015 at 22:24, Patrick Doyle <wpdster@gmail.com> wrote:
+Not exactly. I have strange development where I've got 12 kernel modules
+(with 12 recipes) built out site kernel tree. And then I have finally 12
+ipk's. I want to have only one ipk witch can update all kernel modules. In
+this case safe sw update is not a goal.
 
-> Can anybody point me in the direction of running an arm based QEMU
-> with a (simulated) SD/MMC card?
+2015-05-05 12:32 GMT+02:00 Burton, Ross <ross.burton@intel.com>:
+
+> On 5 May 2015 at 09:30, Marcin Krzemi=C5=84ski <mar.krzeminski@gmail.com>
+> wrote:
 >
-> From the documentation for QEMU, I see that I can pass a -drive
-> parameter to QEMU with an if=sd option, which sounds (reads?) an awful
-> lot like I can simulate an SD/MMC card.
+>> I have a question. I created my own package group containing 12 packages
+>> and I want if possible to make yocto to create one ipk package to system
+>> update instead of twelve. Is it possible? I can not fin any solution to =
+it.
+>>
 >
-> But looking through the Yocto supplied runqemu script, (actually,
-> runqemu-internal) it appears that only supports -hda or -virtio disks.
+> Not really.
+>
+> If your goal is something along the lines of safe entire-system atomic
+> updates then you'll be needing something more advanced that rpm/dpkg/opkg=
+,
+> often involving two rootfs partitions and upgrading the one that wasn't
+> booted and then rebooting.
+>
+> Ross
 >
 
-I've no experience using if=sd, but at the end of the day runqemu is just a
-helper script, you can pass the right arguments to qemu directly or patch
-the script locally.
-
-Ross
-
---001a11354e6863294d0515534f9e
+--089e01493daa79fdfb051553703d
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On 3=
- May 2015 at 22:24, Patrick Doyle <span dir=3D"ltr">&lt;<a href=3D"mailto:w=
-pdster@gmail.com" target=3D"_blank">wpdster@gmail.com</a>&gt;</span> wrote:=
-<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-lef=
-t:1px #ccc solid;padding-left:1ex">Can anybody point me in the direction of=
- running an arm based QEMU<br>
-with a (simulated) SD/MMC card?<br>
-<br>
-From the documentation for QEMU, I see that I can pass a -drive<br>
-parameter to QEMU with an if=3Dsd option, which sounds (reads?) an awful<br=
->
-lot like I can simulate an SD/MMC card.<br>
-<br>
-But looking through the Yocto supplied runqemu script, (actually,<br>
-runqemu-internal) it appears that only supports -hda or -virtio disks.<br><=
-/blockquote><div><br></div><div>I&#39;ve no experience using if=3Dsd, but a=
-t the end of the day runqemu is just a helper script, you can pass the righ=
-t arguments to qemu directly or patch the script locally.</div><div><br></d=
-iv><div>Ross=C2=A0</div></div><br></div></div>
+<div dir=3D"ltr">Not exactly. I have strange development where I&#39;ve got=
+ 12 kernel modules (with 12 recipes) built out site kernel tree. And then I=
+ have finally 12 ipk&#39;s. I want to have only one ipk witch can update al=
+l kernel modules. In this case safe sw update is not a goal.</div><div clas=
+s=3D"gmail_extra"><br><div class=3D"gmail_quote">2015-05-05 12:32 GMT+02:00=
+ Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com=
+" target=3D"_blank">ross.burton@intel.com</a>&gt;</span>:<br><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
+adding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"=
+gmail_quote"><span class=3D"">On 5 May 2015 at 09:30, Marcin Krzemi=C5=84sk=
+i <span dir=3D"ltr">&lt;<a href=3D"mailto:mar.krzeminski@gmail.com" target=
+=3D"_blank">mar.krzeminski@gmail.com</a>&gt;</span> wrote:<br><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
+padding-left:1ex"><div dir=3D"ltr"><div>I have a question. I created my own=
+ package group containing 12 packages and I want if possible to make yocto =
+to create one ipk package to system update instead of twelve. Is it possibl=
+e? I can not fin any solution to it.</div></div></blockquote><div><br></div=
+></span><div>Not really.</div><div><br></div><div>If your goal is something=
+ along the lines of safe entire-system atomic updates then you&#39;ll be ne=
+eding something more advanced that rpm/dpkg/opkg, often involving two rootf=
+s partitions and upgrading the one that wasn&#39;t booted and then rebootin=
+g.</div><span class=3D"HOEnZb"><font color=3D"#888888"><div><br></div><div>=
+Ross</div></font></span></div></div></div>
+</blockquote></div><br></div>
 
---001a11354e6863294d0515534f9e--
+--089e01493daa79fdfb051553703d--
