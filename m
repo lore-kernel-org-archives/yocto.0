@@ -1,37 +1,52 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4E907E009B4; Tue,  5 May 2015 08:22:09 -0700 (PDT)
+	id 125ECE009B4; Tue,  5 May 2015 08:27:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20961E00992
-	for <yocto@yoctoproject.org>; Tue,  5 May 2015 08:22:03 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga103.fm.intel.com with ESMTP; 05 May 2015 08:21:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,373,1427785200"; d="scan'208";a="705580777"
-Received: from jashore-mobl4.ger.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.3.219])
-	by fmsmga001.fm.intel.com with ESMTP; 05 May 2015 08:21:32 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Date: Tue, 05 May 2015 16:21:30 +0100
-Message-ID: <158984224.cF8pItULj7@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.6 (Linux/3.19.5-200.fc21.x86_64; KDE/4.14.6; x86_64; ; )
-In-Reply-To: <5548D75F.3040102@mlbassoc.com>
-References: <5548D75F.3040102@mlbassoc.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Confusing error
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.170 listed in list.dnswl.org]
+Received: from mail-pd0-f170.google.com (mail-pd0-f170.google.com
+	[209.85.192.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF358E00992
+	for <yocto@yoctoproject.org>; Tue,  5 May 2015 08:27:12 -0700 (PDT)
+Received: by pdbqd1 with SMTP id qd1so199668293pdb.2
+	for <yocto@yoctoproject.org>; Tue, 05 May 2015 08:27:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:subject:date:message-id;
+	bh=7U10mgJssUAYk8oj0iJSnXDuBiVZuUT4FL95RxJ9V3Q=;
+	b=MzAhwLpeDw/l0v6ZV9PdfRSBPmeZNGK5jqC+seDQH+yIQ9RrS4gNvgC5XwuddE3TAt
+	5f6cabWrFnLkNZv1ET/tVh7a4njg9F5Q3SUNbtUfzQRqR7VEDfezgvWvisKsHDT8vxPe
+	ZgwmytNNi2ubz6SpLF11lqgG14AaOyA7u5FzM+EobyeibEUf2i3PLx2n2sUIjgYAuvzR
+	ZXLaBcjrhp4Ro2ldtYFbuFcWuGvpWb3bAeSTNl9y7nMSiZzD57sEuvdw00cz4Y1r7jsv
+	GtLy/r/iRvpK+fI+nlGdqRgW+uwf7BwfQRjLs3cY89uMy1dCOJnRPHXQ6vduY+uSbbWh
+	7cAw==
+X-Received: by 10.66.243.69 with SMTP id ww5mr52956438pac.106.1430839618572;
+	Tue, 05 May 2015 08:26:58 -0700 (PDT)
+Received: from Pahoa2.hsd1.ca.comcast.net (c-76-20-92-207.hsd1.ca.comcast.net.
+	[76.20.92.207]) by mx.google.com with ESMTPSA id
+	om4sm16297946pdb.68.2015.05.05.08.26.56 for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Tue, 05 May 2015 08:26:57 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Tue,  5 May 2015 08:26:51 -0700
+Message-Id: <1430839611-22671-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 2.3.5
+Subject: [meta-security][PATCH] suricata: Fix QA warnings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,89 +58,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 May 2015 15:22:09 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 05 May 2015 15:27:17 -0000
 
-Hi Gary,
+WARNING: QA Issue: suricata rdepends on nspr, but it isn't a build dependency? [build-deps]
+WARNING: QA Issue: suricata rdepends on nss, but it isn't a build dependency? [build-deps]
 
-On Tuesday 05 May 2015 08:44:47 Gary Thomas wrote:
-> I'm getting a very confusing error from bitbake.  I'm using a snapshot
-> from Poky/Yocto (equivalent to 1.8 release) with my own $DISTRO
-> 
->    $ bitbake nand-installer-image
->    NOTE: Started PRServer with DBfile:
-> /home/gary/tmp/p0381_2015-05-05/p0381_build/cache/prserv.sqlite3, IP:
-> 127.0.0.1, PORT: 41585, PID: 460 Loading cache: 100%
-> |##########################################################################
-> #########| ETA:  00:00:00 Loaded 1708 entries from dependency cache.
->    NOTE: Resolving any missing task queue dependencies
->    ERROR: Nothing RPROVIDES 'virtual/bootloader' (but
-> /home/gary/tmp/p0381_2015-05-05/opt/amltd/poky/meta-amltd/packages/packageg
-> roups /packagegroup-amltd.bb RDEPENDS on or otherwise requires it)
->    NOTE: Runtime target 'virtual/bootloader' is unbuildable, removing...
->    Missing or unbuildable dependency chain was: ['virtual/bootloader']
->    NOTE: Runtime target 'packagegroup-amltd-boot' is unbuildable,
-> removing... Missing or unbuildable dependency chain was:
-> ['packagegroup-amltd-boot', 'virtual/bootloader'] ERROR: Required build
-> target 'nand-installer-image' has no buildable providers. Missing or
-> unbuildable dependency chain was: ['nand-installer-image',
-> 'packagegroup-amltd-boot', 'virtual/bootloader']
-> 
-> But, there is such a provider and I can build it (from the same build tree):
-> $ bitbake virtual/bootloader
->    NOTE: Started PRServer with DBfile:
-> /home/gary/tmp/p0381_2015-05-05/p0381_build/cache/prserv.sqlite3, IP:
-> 127.0.0.1, PORT: 43428, PID: 515 Loading cache: 100%
-> |##########################################################################
-> #########| ETA:  00:00:00 Loaded 1708 entries from dependency cache.
->    NOTE: Resolving any missing task queue dependencies
-> 
->    Build Configuration:
->    BB_VERSION        = "1.27.0"
->    BUILD_SYS         = "i686-linux"
->    NATIVELSBSTRING   = "Fedora-17"
->    TARGET_SYS        = "arm-amltd-linux-gnueabi"
->    MACHINE           = "teton-p0381"
->    DISTRO            = "amltd"
->    DISTRO_VERSION    = "1.8+snapshot-2015-05-05"
->    TUNE_FEATURES     = "arm armv7a vfp neon callconvention-hard cortexa7"
->    TARGET_FPU        = "vfp-neon"
->    meta
->    meta-oe
->    meta-amltd
->    meta-teton-ls1-p0381
->    meta-fsl-arm
->    meta-fsl-arm-extra
->    meta-browser      = "<unknown>:<unknown>"
-> 
->    NOTE: Preparing RunQueue
->    NOTE: Executing SetScene Tasks
->    NOTE: Executing RunQueue Tasks
->          ...
-> 
-> After much research, I found that this is happening because I have
->    MACHINE_EXTRA_RRECOMMENDS="virtual/bootloader
-> linux-firmware-iwlwifi-5xxx"
-> 
-> If I remove the 'virtual/bootloader' from MACHINE_EXTRA_RRECOMMENDS,
-> the confusion (and error) go away.  Any ideas what's happening and why
-> I might be getting this confusing error?
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/suricata/suricata_2.0.7.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-The confusion here is between runtime targets (package names, i.e. what you 
-should specify in MACHINE_EXTRA_RRECOMMENDS) and build-time targets e.g. 
-virtual/bootloader. virtual/bootloader is not a runtime target (hence "Nothing 
-RPROVIDES ..." and thus doesn't belong in MACHINE_EXTRA_RRECOMMENDS. I suspect 
-what you want instead is:
-
-EXTRA_IMAGEDEPENDS += "virtual/bootloader"
-
-Cheers,
-Paul
-
-
+diff --git a/recipes-security/suricata/suricata_2.0.7.bb b/recipes-security/suricata/suricata_2.0.7.bb
+index 7e99791..813deff 100644
+--- a/recipes-security/suricata/suricata_2.0.7.bb
++++ b/recipes-security/suricata/suricata_2.0.7.bb
+@@ -54,4 +54,4 @@ fi
+ FILES_${PN} += "${sysconfdir}/suricata ${logdir}/suricata"
+ FILES_${PN}-dev += "/usr/lib/python2.7/site-packages"
+ 
+-RDEPENDS_${PN} += " python"
++RDEPENDS_${PN} += " python nspr nss"
 -- 
+2.3.5
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
