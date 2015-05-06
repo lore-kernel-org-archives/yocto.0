@@ -1,14 +1,15 @@
-Return-Path: <jatedev@gmail.com>
+Return-Path: <Michael_E_Brown@dell.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4B24E009D8; Tue,  5 May 2015 18:26:39 -0700 (PDT)
+	id 24405E009B6; Tue,  5 May 2015 18:36:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jatedev[at]gmail.com)
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_MED autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [143.166.148.211 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -17,33 +18,60 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.172 listed in list.dnswl.org]
-Received: from mail-qc0-f172.google.com (mail-qc0-f172.google.com
-	[209.85.216.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 144C4E009B6
-	for <yocto@yoctoproject.org>; Tue,  5 May 2015 18:26:37 -0700 (PDT)
-Received: by qctx5 with SMTP id x5so13133685qct.0
-	for <yocto@yoctoproject.org>; Tue, 05 May 2015 18:26:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=nuULD+HEBzcU0BvMgiGxzjFgpX+6CxNkbUc9B/rBT1M=;
-	b=WR83KdrNRQ1rneQCZkoYeyZiLNKm7kk9iHr4QYDPaV157nDQjH9qyX3n6k8jb11n0W
-	qhN/oQhkgTRZUPUE4QC1kltkIU/oPJbSDCtTO7vt+BgHA8FWByhtDYs5ttCbcQ06eCXo
-	VRVmLYSAQdB+lEDz7TI1hvIlpYi3o1cgX2MTqaS6OUv/y8Mwv98dMK3kf5TjysKDmKRr
-	qhIkecz61kkikEAifYbzfSqedFz8VMYjoWqS7FNa/CUAxrwQ9v6UJkK5fW2tVAgoWjz9
-	FQG8AuVmd2vDhAWN6+sIsH1+5pIVGGYslDvBQbHh9RvLxvUahVWQF+szwtnz+Q+CuZST
-	SrsQ==
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
+	Tue, 05 May 2015 18:36:50 PDT
+Received: from ausxipps310.us.dell.com (AUSXIPPS310.us.dell.com
+	[143.166.148.211])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9292E007B6
+	for <yocto@yoctoproject.org>; Tue,  5 May 2015 18:36:50 -0700 (PDT)
+DomainKey-Signature: s=smtpout; d=dell.com; c=nofws; q=dns;
+	h=X-LoopCount0:X-IronPort-AV:From:To:CC:Date:Subject:
+	Thread-Topic:Thread-Index:Message-ID:References:
+	In-Reply-To:Accept-Language:Content-Language:
+	X-MS-Has-Attach:X-MS-TNEF-Correlator:x-titus-version:
+	x-tituslabs-classifications-30:
+	x-tituslabs-classificationhash-30:x-titusconfig:
+	acceptlanguage:Content-Type:MIME-Version;
+	b=O1GQlVr4JYprtkOu2dR+WZROWgY0RGvBcEisrbZjre3sPNqUG73YH5oq
+	QuqFn6ODJGfRzLL5T/plYFk58inCgYSsfS4PPArAiVk4f7zG9a3mHYkAR
+	PbOZU80MYYb7h9HA8BraWi3ZhravC533Of7VSy9RqO+/5QGKsnrvlZEKE
+	0=;
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+	d=dell.com; i=@dell.com; q=dns/txt; s=smtpout;
+	t=1430876210; x=1462412210;
+	h=from:to:cc:date:subject:message-id:references:
+	in-reply-to:mime-version:content-transfer-encoding;
+	bh=RwJJCWWcX2slsEYyZbzJwMvqpeMZNPtMD4oeSJaXwYI=;
+	b=vZCzIwsjeBElmUYTcdw8vERt1i+Ofcwqz+G7uYT8cKmoO7dzGeWNYON1
+	5yvjJck4dfAcrq6h6imXL0bvV68adX9nAEQRlCnW5UF+4yow+3a4sPIoe
+	sUTmxw2qd2G9BJaxRvhgKLUZtv2P9nc4pHnwFaE2tUCIZd2NhcwQxtPEw 0=;
+X-LoopCount0: from 10.175.216.250
+X-IronPort-AV: E=Sophos;i="5.13,376,1427778000"; 
+	d="scan'208,217";a="176632131"
+From: <Michael_E_Brown@Dell.com>
+To: <paul.eggleton@linux.intel.com>, <twoerner@gmail.com>
+Date: Tue, 5 May 2015 20:35:45 -0500
+Thread-Topic: [yocto] creating images which include actively developed
+	applications
+Thread-Index: AdCHDg07ELMlHj/TSlWcLyCRIWkxEQAhpYTQ
+Message-ID: <DB6E482E89290547898851B8CC9D81100167EFD6CA@AUSX7MCPS302.AMER.DELL.COM>
+References: <BLUPR0501MB1028D6037F60D05E868A5F15BFEE0@BLUPR0501MB1028.namprd05.prod.outlook.com>
+	<1674505.cjWkHk81xC@peggleto-mobl.ger.corp.intel.com>
+	<5543E142.2020707@gmail.com>
+	<7454550.JYGnhI8WWn@peggleto-mobl.ger.corp.intel.com>
+In-Reply-To: <7454550.JYGnhI8WWn@peggleto-mobl.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-titus-version: 3.5.29.3
+x-tituslabs-classifications-30: TLPropertyRoot=Dell;Classification=Internal
+	Use;External=No;Sublabels=;
+x-tituslabs-classificationhash-30: VgNFIFU9Hx+/nZJb9Kg7IrXZX68w5SEZSHaW7zNzn79h7X3deX99uGjZykfcybjEP8Q8MhNsGUVQIA3KZe4FKr33IMxS0agUYlCA3YqEGiA+iIlvaEUoyGep0pEGUrFtevP1lO10yxSqILKkgtCiiIPc9VZ3j9Mm8COL5tEt/NFeOSWPQRSA+QvmhT8Zec4uZN27E6G4z7qpA5Hpoy61SOOsxrKE9vescawbVTjSH03uwIkg/Al2Wt7yWO/q3oo5ss/818lCBMg9gwvJcQ0OE5Eh+bNDjkCzUFM/KFBP9ag=
+x-titusconfig: 1.4AMER
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-Received: by 10.141.28.142 with SMTP id f136mr31549325qhe.67.1430875596997; 
-	Tue, 05 May 2015 18:26:36 -0700 (PDT)
-Received: by 10.140.102.74 with HTTP; Tue, 5 May 2015 18:26:36 -0700 (PDT)
-Date: Tue, 5 May 2015 21:26:36 -0400
-Message-ID: <CAPphmgZ1GPkUP_k41KVCUzqdK6hVYf_Vp9s1Xs1sNv6kHt=QeQ@mail.gmail.com>
-From: Jate Sujjavanich <jatedev@gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: [RFC] Yocto Bug 5044, 6149 PREFERRED_PROVIDER runtime
+Cc: yocto@yoctoproject.org
+Subject: Re: creating images which include actively developed	applications
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,113 +83,174 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 May 2015 01:26:39 -0000
-Content-Type: multipart/alternative; boundary=001a11423d2aad95b805155faf8f
+X-List-Received-Date: Wed, 06 May 2015 01:36:53 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DB6E482E89290547898851B8CC9D81100167EFD6CAAUSX7MCPS302A_"
 
---001a11423d2aad95b805155faf8f
-Content-Type: text/plain; charset=UTF-8
-
-This patch allows a PREFERRED_PROVIDER to be specified for a runtime
-package. It's working for me on poky 1.6.3 (Daisy). I have tested it with
-the sshd example in Yocto Bug #5044 (sshd) and #6149
-(libasound-module-bluez).
-
-# In my local.conf
-IMAGE_INSTALL_append = " sshd"
-PREFERRED_PROVIDER_sshd = "dropbear"
-
-However, when I try it with a core-image-minimal on today's poky master, my
-image build fails on in the package manager (with the approximate error
-message):
-
-sshd not found in base feeds
-
-This has me thinking that something has changed in the rpm packager since
-1.6, and on master the rpm packager should create a rpm dependency on
-dropbear instead of sshd (per the PREFERRED_PROVIDER). I think that this
-would have implications for the other package classes as well. Does this
-sound right?
-
-----
-
-The following changes since commit 7a8f37daa7b42905233c31366915b897886a957a:
-
-  dev-manual: Updates to add Luna support for Eclipse (2015-05-03 11:49:35
-+0100)
-
-are available in the git repository at:
-
-  git://github.com/jatedev/poky preferred-provider-runtime
-
-for you to fetch changes up to f721cb634badf8717547254f19d9d88947065998:
-
-  providers.py: Add package name to PREFERRED_PROVIDER search (2015-05-05
-18:35:07 -0400)
-
-----------------------------------------------------------------
-Jate Sujjavanich (1):
-      providers.py: Add package name to PREFERRED_PROVIDER search
-
- bitbake/lib/bb/providers.py |    1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/bitbake/lib/bb/providers.py b/bitbake/lib/bb/providers.py
-index 637e1fa..b6c294e 100644
---- a/bitbake/lib/bb/providers.py
-+++ b/bitbake/lib/bb/providers.py
-@@ -323,6 +323,7 @@ def filterProvidersRunTime(providers, item, cfgData,
-dataCache):
-     for p in eligible:
-         pn = dataCache.pkg_fn[p]
-         provides = dataCache.pn_provides[pn]
-+        provides.append(item)
-         for provide in provides:
-             prefervar = cfgData.getVar('PREFERRED_PROVIDER_%s' % provide,
-True)
-             #logger.debug(1, "checking PREFERRED_PROVIDER_%s (value %s)
-against %s", provide, prefervar, pns.keys())
-
---001a11423d2aad95b805155faf8f
-Content-Type: text/html; charset=UTF-8
+--_000_DB6E482E89290547898851B8CC9D81100167EFD6CAAUSX7MCPS302A_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div><div>This patch allows a PREFERRED_PRO=
-VIDER to be specified for a runtime package. It&#39;s working for me on pok=
-y 1.6.3 (Daisy). I have tested it with the sshd example in Yocto Bug #5044 =
-(sshd) and #6149 (libasound-module-bluez).<br><br></div><div># In my local.=
-conf<br></div><div>IMAGE_INSTALL_append =3D &quot; sshd&quot;<br></div><div=
->PREFERRED_PROVIDER_sshd =3D &quot;dropbear&quot;<br></div><div><br></div>H=
-owever, when I try it with a core-image-minimal on today&#39;s poky master,=
- my image build fails on in the package manager (with the approximate error=
- message):<br><br></div>sshd not found in base feeds<br><br></div>This has =
-me thinking that something has changed in the rpm packager since 1.6, and o=
-n master the rpm packager should create a rpm dependency on dropbear instea=
-d of sshd (per the PREFERRED_PROVIDER). I think that this would have implic=
-ations for the other package classes as well. Does this sound right?<br><br=
->----<br><br>The following changes since commit 7a8f37daa7b42905233c3136691=
-5b897886a957a:<br><br>=C2=A0 dev-manual: Updates to add Luna support for Ec=
-lipse (2015-05-03 11:49:35 +0100)<br><br>are available in the git repositor=
-y at:<br><br>=C2=A0 git://<a href=3D"http://github.com/jatedev/poky">github=
-.com/jatedev/poky</a> preferred-provider-runtime<br><br>for you to fetch ch=
-anges up to f721cb634badf8717547254f19d9d88947065998:<br><br>=C2=A0 provide=
-rs.py: Add package name to PREFERRED_PROVIDER search (2015-05-05 18:35:07 -=
-0400)<br><br>--------------------------------------------------------------=
---<br>Jate Sujjavanich (1):<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 providers.py:=
- Add package name to PREFERRED_PROVIDER search<br><br>=C2=A0bitbake/lib/bb/=
-providers.py |=C2=A0=C2=A0=C2=A0 1 +<br>=C2=A01 file changed, 1 insertion(+=
-)<br><br>diff --git a/bitbake/lib/bb/providers.py b/bitbake/lib/bb/provider=
-s.py<br>index 637e1fa..b6c294e 100644<br>--- a/bitbake/lib/bb/providers.py<=
-br>+++ b/bitbake/lib/bb/providers.py<br>@@ -323,6 +323,7 @@ def filterProvi=
-dersRunTime(providers, item, cfgData, dataCache):<br>=C2=A0=C2=A0=C2=A0=C2=
-=A0 for p in eligible:<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-pn =3D dataCache.pkg_fn[p]<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 provides =3D dataCache.pn_provides[pn]<br>+=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 provides.append(item)<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 for provide in provides:<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 prefervar =3D cfgData.getVar(&#3=
-9;PREFERRED_PROVIDER_%s&#39; % provide, True)<br>=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #logger.debug(1, &quot;che=
-cking PREFERRED_PROVIDER_%s (value %s) against %s&quot;, provide, prefervar=
-, pns.keys())<br></div></div></div>
+Dell - Internal Use - Confidential
+We use the google android "repo" tool plus 'externalsrc' to great effect. 3=
+ generations now, across now 6-ish different products and dozens of release=
+s at this point. It checks out poky, our layer, our source mirror, and our =
+internal sources all at once.
+--
+Michael
 
---001a11423d2aad95b805155faf8f--
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Paul Eggleton
+Sent: Tuesday, May 05, 2015 3:32 AM
+To: Trevor Woerner
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] creating images which include actively developed appli=
+cations
+
+On Friday 01 May 2015 16:25:38 Trevor Woerner wrote:
+> On 04/22/15 13:58, Paul Eggleton wrote:
+> > On Wednesday 22 April 2015 15:32:06 Brian Karcz wrote:
+> >> Is there a way to create a recipe to build actively developed code
+> >> located in an external source directory? Basically skip the fetch
+> >> and unpack steps and always execute the compile and populate steps
+> >> each time and image is built?
+> >
+> > Indeed there is:
+> >
+> > http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#
+> > buildi
+> > ng-software-from-an-external-source
+>
+> Paul, I'm surprised you suggested externalsrc instead of just
+> mentioning devtool right from the start (doubly-surprised since you're
+> the person who wrote devtool!). Using devtool the "administration" (of
+> creating a recipe, etc) is done for you, no?
+>
+> http://twoerner.blogspot.ca/2015/01/the-yocto-project-introducing-devt
+> ool.ht
+> ml
+
+Well, I would have, except this doesn't quite seem like the same case as de=
+vtool is designed for (which is "temporary" switching of the source for dev=
+elopment - AIUI Brian was looking for something more permanent.)
+
+Cheers,
+Paul
+
+--
+
+Paul Eggleton
+Intel Open Source Technology Centre
+--
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
+--_000_DB6E482E89290547898851B8CC9D81100167EFD6CAAUSX7MCPS302A_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
+s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
+40"><head><meta http-equiv=3DContent-Type content=3D"text/html; charset=3Du=
+s-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 (filtered medi=
+um)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@SimSun";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Trebuchet MS";
+	panose-1:2 11 6 3 2 2 2 2 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US link=3Dblue vli=
+nk=3Dpurple><div class=3DWordSection1><p><b><span style=3D'font-size:9.0pt;=
+font-family:"Trebuchet MS","sans-serif";color:#AAAAAA'>Dell - Internal Use =
+- Confidential </span></b><o:p></o:p></p><p class=3DMsoNormal>We use the go=
+ogle android &#8220;repo&#8221; tool plus &#8216;externalsrc&#8217; to grea=
+t effect. 3 generations now, across now 6-ish different products and dozens=
+ of releases at this point. It checks out poky, our layer, our source mirro=
+r, and our internal sources all at once.<o:p></o:p></p><p class=3DMsoNormal=
+>--<o:p></o:p></p><p class=3DMsoNormal>Michael<o:p></o:p></p><p class=3DMso=
+Normal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>-----Original Message-----=
+<br>From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject=
+.org] On Behalf Of Paul Eggleton<br>Sent: Tuesday, May 05, 2015 3:32 AM<br>=
+To: Trevor Woerner<br>Cc: yocto@yoctoproject.org<br>Subject: Re: [yocto] cr=
+eating images which include actively developed applications<br><br>On Frida=
+y 01 May 2015 16:25:38 Trevor Woerner wrote:<br>&gt; On 04/22/15 13:58, Pau=
+l Eggleton wrote:<br>&gt; &gt; On Wednesday 22 April 2015 15:32:06 Brian Ka=
+rcz wrote:<br>&gt; &gt;&gt; Is there a way to create a recipe to build acti=
+vely developed code <br>&gt; &gt;&gt; located in an external source directo=
+ry? Basically skip the fetch <br>&gt; &gt;&gt; and unpack steps and always =
+execute the compile and populate steps <br>&gt; &gt;&gt; each time and imag=
+e is built?<br>&gt; &gt; <br>&gt; &gt; Indeed there is:<br>&gt; &gt; <br>&g=
+t; &gt; http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html=
+#<br>&gt; &gt; buildi<br>&gt; &gt; ng-software-from-an-external-source<br>&=
+gt;<br>&gt; Paul, I'm surprised you suggested externalsrc instead of just <=
+br>&gt; mentioning devtool right from the start (doubly-surprised since you=
+'re <br>&gt; the person who wrote devtool!). Using devtool the &quot;admini=
+stration&quot; (of <br>&gt; creating a recipe, etc) is done for you, no?<br=
+>&gt; <br>&gt; http://twoerner.blogspot.ca/2015/01/the-yocto-project-introd=
+ucing-devt<br>&gt; ool.ht<br>&gt; ml<br><br>Well, I would have, except this=
+ doesn't quite seem like the same case as devtool is designed for (which is=
+ &quot;temporary&quot; switching of the source for development - AIUI Brian=
+ was looking for something more permanent.)<br><br>Cheers,<br>Paul<br><br>-=
+- <br><br>Paul Eggleton<br>Intel Open Source Technology Centre<br>--<br>___=
+____________________________________________<br>yocto mailing list<br>yocto=
+@yoctoproject.org<br>https://lists.yoctoproject.org/listinfo/yocto<o:p></o:=
+p></p></div></body></html>=
+
+--_000_DB6E482E89290547898851B8CC9D81100167EFD6CAAUSX7MCPS302A_--
