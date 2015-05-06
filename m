@@ -1,6 +1,6 @@
 Return-Path: <maninder1.s@samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D574BE009D8; Tue,  5 May 2015 22:51:34 -0700 (PDT)
+	id 84932E009B6; Tue,  5 May 2015 23:34:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,34 +9,34 @@ X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00, MIME_BASE64_BLANKS,
 	XPRIO autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [203.254.224.34 listed in list.dnswl.org]
+	*      [203.254.224.25 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 MIME_BASE64_BLANKS RAW: Extra blank lines in base64 encoding
 	*  1.0 XPRIO Has X-Priority header
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B192AE009AA
-	for <yocto@yoctoproject.org>; Tue,  5 May 2015 22:51:28 -0700 (PDT)
-Received: from epcpsbgr2.samsung.com
-	(u142.gpu120.samsung.co.kr [203.254.230.142])
-	by mailout4.samsung.com (Oracle Communications Messaging Server
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F582E007B6
+	for <yocto@yoctoproject.org>; Tue,  5 May 2015 23:34:05 -0700 (PDT)
+Received: from epcpsbgr4.samsung.com
+	(u144.gpu120.samsung.co.kr [203.254.230.144])
+	by mailout2.samsung.com (Oracle Communications Messaging Server
 	7.0.5.31.0 64bit (built May  5 2014))
-	with ESMTP id <0NNW00EY2YXQG070@mailout4.samsung.com> for
-	yocto@yoctoproject.org; Wed, 06 May 2015 14:51:26 +0900 (KST)
-Received: from epcpsbgx2.samsung.com ( [172.20.52.122])
-	by epcpsbgr2.samsung.com (EPCPMTA) with SMTP id 8C.77.28411.EDBA9455;
-	Wed, 6 May 2015 14:51:26 +0900 (KST)
-X-AuditID: cbfee68e-f79c56d000006efb-a4-5549abde95bc
-Received: from epmailer02 ( [203.254.219.142])
-	by epcpsbgx2.samsung.com (EPCPMTA) with SMTP id C0.1D.31182.EDBA9455;
-	Wed, 6 May 2015 14:51:26 +0900 (KST)
-Date: Wed, 06 May 2015 05:51:26 +0000 (GMT)
+	with ESMTP id <0NNX00D5E0WDW5A0@mailout2.samsung.com> for
+	yocto@yoctoproject.org; Wed, 06 May 2015 15:33:49 +0900 (KST)
+Received: from epcpsbgx1.samsung.com ( [172.20.52.122])
+	by epcpsbgr4.samsung.com (EPCPMTA) with SMTP id 4A.D1.20564.DC5B9455;
+	Wed, 6 May 2015 15:33:49 +0900 (KST)
+X-AuditID: cbfee690-f796f6d000005054-4b-5549b5cdb27f
+Received: from epmailer03 ( [203.254.219.143])
+	by epcpsbgx1.samsung.com (EPCPMTA) with SMTP id 8C.7F.27612.DC5B9455;
+	Wed, 6 May 2015 15:33:49 +0900 (KST)
+Date: Wed, 06 May 2015 06:33:49 +0000 (GMT)
 From: Maninder Singh <maninder1.s@samsung.com>
 To: "mark.hatle@windriver.com" <mark.hatle@windriver.com>
 MIME-version: 1.0
-X-MTR: 20150506054028097@maninder1.s
-Msgkey: 20150506054028097@maninder1.s
+X-MTR: 20150506062815579@maninder1.s
+Msgkey: 20150506062815579@maninder1.s
 X-EPLocale: en_US.windows-1252
 X-Priority: 3
 X-EPWebmail-Msg-Type: personal
@@ -44,45 +44,47 @@ X-EPWebmail-Reply-Demand: 0
 X-EPApproval-Locale: 
 X-EPHeader: ML
 X-MLAttribute: 
-X-RootMTR: 20150506054028097@maninder1.s
+X-RootMTR: 20150506062815579@maninder1.s
 X-ParentMTR: 
 X-ArchiveUser: 
 X-CPGSPASS: N
 X-ConfirmMail: N,general
 MIME-version: 1.0
-Message-id: <389650514.118101430891486083.JavaMail.weblogic@epmlwas03a>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrKIsWRmVeSWpSXmKPExsWyRsSkSvfeas9QgxXnDC0mvVzD5sDo0X6i
-	jy2AMYrLJiU1J7MstUjfLoEr4/+kvywFx9grDiy2bWBcwd7FyMkhJKAmsWjvYzYQW0LARGLv
-	y9UsELaYxIV764HiXEA1SxklZqx7ywhT1HlqFRNEYg6jxOqPF4EmcXCwCKhI9M+UA6lhE9CX
-	OLt3HTOILSxgIXF/02WwXhEBS4kva16B2cwCuxglHq+UhDhCUWL9jSdgcV4BQYmTM59AHaEi
-	sbP9NTNEXFXi59R5UHE5iSVTLzNB2LwSM9qfwsWnfV3DDGFLS5yftYER5pnF3x9Dxfkljt3e
-	AdUrIDH1zEGoGk2JK/+eQc3hk1iz8C0LTP2uU8uZYXbd3zIXqldCYmvLE1aIXxQlpnQ/ZIew
-	DSSOLJrDiu4XXgF3ib8nLoMDVEKgl0Pi1P6LrBMYlWYhqZuFZNYsJLOQ1SxgZFnFKJpakFxQ
-	nJReZKRXnJhbXJqXrpecn7uJEZgaTv971reD8eYB60OMAhyMSjy8N6I9Q4VYE8uKK3MPMZoC
-	o2kis5Rocj4wAeWVxBsamxlZmJqYGhuZW5opifMmSP0MFhJITyxJzU5NLUgtii8qzUktPsTI
-	xMEp1cAomb9uR9z92f3OvKyhG/7fyLSbHXmmwPC3QhrLpGUsK1c9fLZrV3b9f771HtalDwyl
-	1ypWHUx96P7z7p30Zulny07E7+f/+egZV+DW8ydn/fALz/kyTds20Kd616qIoom3n963tW/f
-	5ZXOukZZt3Sp2N+C3ualzJeD3kx90KPv8uq1+ZRf/LJXlViKMxINtZiLihMBwPaNUAgDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrGKsWRmVeSWpSXmKPExsVy+t/tPt17qz1DDVZ/0bKY9HINmwOjR/uJ
+Message-id: <1484215526.122031430894028615.JavaMail.weblogic@epmlwas03a>
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrOIsWRmVeSWpSXmKPExsWyRsSkSvfsVs9Qg8bfQhaTXq5hc2D0aD/R
+	xxbAGMVlk5Kak1mWWqRvl8CVcf/Ab6aCHRwVD3d0sTcwzuDoYuTkEBJQk1i09zEbiC0hYCKx
+	9/R7VghbTOLCvfVAcS6gmqWMEje27GOFKZpzeA8jRGIOo8SO011MIAkWARWJB/M6wCaxCehL
+	nN27jrmLkYNDWMBVovdWHkhYRMBS4suaV2C9zAK7GCXWPrzOBHGFosT6G08YQWxeAUGJkzOf
+	sEAsU5E4c/UFK0RcVeLemwZGiLicxJKpl5kgbF6JGe1PWWDi076uYYawpSXOz9rACPPN4u+P
+	oeL8Esdu74DqFZCYeuYgVI2mxLud56Hm8EmsWfiWBaZ+16nlzDC77m+ZC9UrIbG15QnYbcxA
+	90/pfsgOYRtIHFk0hxXdL7wCHhIN218wgTwvITCRQ2LnkpdsExiVZiGpm4Vk1iwks5DVLGBk
+	WcUomlqQXFCclF5kolecmFtcmpeul5yfu4kRmB5O/3s2YQfjvQPWhxgFOBiVeHhvRHuGCrEm
+	lhVX5h5iNAXG00RmKdHkfGASyiuJNzQ2M7IwNTE1NjK3NFMS530t9TNYSCA9sSQ1OzW1ILUo
+	vqg0J7X4ECMTB6dUA2NSiBTLjebyuL8fY5PPJzoyb1NYb/jkeW7XbK/zkf+rrqbtUHNdMf+f
+	6YuLDYejY75e23Fo+x5mvX4J5XhDeyemeR5zKrZ9yRf0Sn0iH8HaKO0eLuq5V3nFvjPLg7Yu
+	stKVUeLikNmf9+QY6/ENB/cyXV/DbNfkpJ1ptdPHalEti6bxn/31N5RYijMSDbWYi4oTAfF6
+	XHcKAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrBKsWRmVeSWpSXmKPExsVy+t/tft2zWz1DDe6f57aY9HINmwOjR/uJ
 	PrYAxqg0m4zUxJTUIoXUvOT8lMy8dFsl7+B453hTMwNDXUNLC3MlhbzE3FRbJRefAF23zByg
 	qUoKZYk5pUChgMTiYiV9O5ui/NKSVIWM/OISW6VoQ3MjPSMDPVMjPUPTWCtDAwMjU6CahLSM
-	/5P+shQcY684sNi2gXEFexcjJ4eQgJrEor2P2UBsCQETic5Tq5ggbDGJC/fWA8W5gGrmMEqs
-	/ngRqIGDg0VARaJ/phxIDZuAvsTZveuYQWxhAQuJ+5suM4LYIgKWEl/WvAKzmQV2MUo8XikJ
-	sUtRYv2NJ2BxXgFBiZMzn7BA7FKR2Nn+mhkirirxc+o8qLicxJKpl6Hu4ZWY0f4ULj7t6xpm
-	CFta4vysDYwwNy/+/hgqzi9x7PYOqF4BialnDkLVaEpc+fcMag6fxJqFb1lg6nedWs4Ms+v+
-	lrlQvRISW1uesEL8oigxpfshO4RtIHFk0RxWdL/wCrhL/D1xmW0Co+wsJKlZSNpnIWlHVrOA
-	kWUVo2hqQXJBcVJ6hZFecWJucWleul5yfu4mRnAaerZoB+O/89aHGAU4GJV4eG9Ee4YKsSaW
-	FVfmHmKU4GBWEuGd4g4U4k1JrKxKLcqPLyrNSS0+xGgKjLSJzFKiyfnAFJlXEm9obGJuamxq
-	YWBobm6mJM77/1xuiJBAemJJanZqakFqEUwfEwenVANj34qSp+z/on6VfLl1SPtt6eoFKzP1
-	TDiV/heo659WPKawuSxEvvSYWbauQ27nseN3Yh6Yrf97eOmGOEHNmdt9RKLiEiYmTpnK1H5t
-	lv3huVtfrmd8cd172ul5IonpHiWLss677X71Iv/FGv+pz389WP7fOUN03+8tWac+vVunVT/7
-	scgE5XeP1ymxFGckGmoxFxUnAgDz9h7AWQMAAA==
+	+wd+MxXs4Kh4uKOLvYFxBkcXIyeHkICaxKK9j9lAbAkBE4k5h/cwQthiEhfurQeKcwHVzGGU
+	2HG6iwkkwSKgIvFgXgdYA5uAvsTZveuYuxg5OIQFXCV6b+WBhEUELCW+rHnFCNLLLLCLUWLt
+	w+tMEMsUJdbfeAK2gFdAUOLkzCcsEMtUJM5cfcEKEVeVuPemAeoIOYklUy8zQdi8EjPan7LA
+	xKd9XcMMYUtLnJ+1Ae7oxd8fQ8X5JY7d3gHVKyAx9cxBqBpNiXc7z0PN4ZNYs/AtC0z9rlPL
+	mWF23d8yF6pXQmJryxOw25iB7p/S/ZAdwjaQOLJoDiu6X3gFPCQatr9gmsAoOwtJahaS9llI
+	2pHVLGBkWcUomlqQXFCclF5hqFecmFtcmpeul5yfu4kRnIqeLdzB+OW89SFGAQ5GJR5egzjP
+	UCHWxLLiytxDjBIczEoivFPcgUK8KYmVValF+fFFpTmpxYcYTYGxNpFZSjQ5H5gm80riDY1N
+	zE2NTS0MDM3NzZTEef+fyw0REkhPLEnNTk0tSC2C6WPi4JRqYGxcqe7cKN+pJqQTHvaaWfr8
+	9MTuo88Kb36f2lh3sPfx8hMSsrXfbshGntx6Z/OzUO3ZW+re7Dg2W6TJ2i+hmzP3889ZhnlT
+	l29Nk9i17lZIqllk96lPUWdeHTTctPbQn9/b3gnN3nvr+TGRi/d3tRmXfLW2dZ7Z/jWZIXLD
+	QXtts/Kq/EctzjZKLMUZiYZazEXFiQB+lQYMWwMAAA==
 DLP-Filter: Pass
 X-CFilter-Loop: Reflected
-Cc: "v.narang@samsung.com" <v.narang@samsung.com>,
+Cc: AJEET YADAV <ajeet.y@samsung.com>,
 	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	AKHILESH KUMAR <akhilesh.k@samsung.com>, AJEET YADAV <ajeet.y@samsung.com>
-Subject: [EDT][prelink-cross][PATCH] cleanup code
+	AKHILESH KUMAR <akhilesh.k@samsung.com>,
+	"v.narang@samsung.com" <v.narang@samsung.com>
+Subject: [EDT][prelink-cross] possible memory leak in opd_size
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -95,23 +97,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 May 2015 05:51:34 -0000
+X-List-Received-Date: Wed, 06 May 2015 06:34:13 -0000
 Content-transfer-encoding: base64
 Content-type: text/plain; charset=windows-1252
 
-RVAtRjZBQTA2MThDNDlDNEFFREE3M0JGRjFCMzk5NTBCQUIKSGksCgpSZW1vdmUgZHNvIE5VTEwg
-Y2hlY2sgYmVjYXVzZSBiZWZvcmUgY2FsbGluZyB0aGlzIEFQSQphbHJlYWR5IGNoZWNraW5nIGZv
-ciBkc28gTlVMTCBhbmQgYWxzbyBkc28gcG9pbnRlciBpcyB1c2VkIGJlZm9yZSB0aGlzIGNoZWNr
-LgoKU2lnbmVkLW9mZi1ieTogQWtoaWxlc2ggS3VtYXIgPGFraGlsZXNoLmtAc2Ftc3VuZy5jb20+
-ClJldmlld2VkLWJ5OiBBamVldCBZYWRhdiA8YWplZXQueUBzYW1zdW5nLmNvbT4KLS0tCiB0cnVu
-ay9zcmMvZ2F0aGVyLmMgfCAgICAxIC0KIDEgZmlsZXMgY2hhbmdlZCwgMCBpbnNlcnRpb25zKCsp
-LCAxIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL3RydW5rL3NyYy9nYXRoZXIuYyBiL3RydW5r
-L3NyYy9nYXRoZXIuYwppbmRleCBjM2QzMTI4Li44ZjMxMGY2IDEwMDY0NAotLS0gYS90cnVuay9z
-cmMvZ2F0aGVyLmMKKysrIGIvdHJ1bmsvc3JjL2dhdGhlci5jCkBAIC01NjEsNyArNTYxLDYgQEAg
-bWFrZV91bnByZWxpbmthYmxlOgoKICAgICAgIGFzc2VydCAoZW50LT50eXBlID09IEVUX05PTkUp
-OwogICAgICAgZW50LT50eXBlID0gRVRfVU5QUkVMSU5LQUJMRTsKLSAgICAgIGlmIChkc28pCiAg
-ICBjbG9zZV9kc28gKGRzbyk7CiAgICAgICByZXR1cm4gMDsKICAgICB9Ci0tCjEuNy4xCgpUaGFu
-a3MgCk1hbmluZGVyIFNpbmdo
+RVAtRjZBQTA2MThDNDlDNEFFREE3M0JGRjFCMzk5NTBCQUIKCkhpLAoKd2UgZm91bmQgb25lIGlz
+c3VlIHRocm91Z2ggY29kZS13YWxrIHRocm91Z2gKYW5kIGl0IHNlZW1zIHdlIGFyZSBjcmVhdGlu
+ZyB1bnVzYWJsZSBPUEQgdGFibGUgLCBOb3Qgc3VyZSBhYm91dCBmaXgsIHBsZWFzZSBjaGVjayBi
+ZWxvdyBmaXguIAoKU2lnbmVkLW9mZi1ieTogVmFuZWV0IE5hcmFuZyA8di5uYXJhbmdAc2Ftc3Vu
+Zy5jb20+ClNpZ25lZC1vZmYtYnk6IE1hbmluZGVyIFNpbmdoIDxtYW5pbmRlcjEuc0BzYW1zdW5n
+LmNvbT4KUmV2aWV3ZWQtYnk6IEFqZWV0IFlhZGF2IDxhamVldC55QHNhbXN1bmcuY29tPgotLS0K
+IHRydW5rL3NyYy9mcHRyLmMgfCAgICAxICsKIDEgZmlsZXMgY2hhbmdlZCwgMSBpbnNlcnRpb25z
+KCspLCAwIGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBhL3RydW5rL3NyYy9mcHRyLmMgYi90cnVu
+ay9zcmMvZnB0ci5jCmluZGV4IGNmZTNhZWQuLjM5MjcxZDUgMTAwNjQ0Ci0tLSBhL3RydW5rL3Ny
+Yy9mcHRyLmMKKysrIGIvdHJ1bmsvc3JjL2ZwdHIuYwpAQCAtNDU4LDYgKzQ1OCw3IEBAIG9wZF9z
+aXplIChzdHJ1Y3QgcHJlbGlua19pbmZvICppbmZvLCBHRWxmX1dvcmQgZW50c2l6ZSkKICAgIGUt
+PnZhbCA9IGYtPnZhbDsKICAgIGUtPmdwID0gZi0+Z3A7CiAgICBlLT5vcGQgPSByZXQgfCBPUERf
+RU5UX05FVzsKKyAgIGYtPmVudCA9IGU7CiAgICByZXQgKz0gZW50c2l6ZTsKICAgICAgIH0KCi0t
+CjEuNy4xCgoKVGhhbmtzIGFuZCBSZWdhcmRzLApNYW5pbmRlciBTaW5naA==
 
 
 
