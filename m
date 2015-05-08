@@ -1,6 +1,6 @@
 Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 72672E009F5; Fri,  8 May 2015 14:49:24 -0700 (PDT)
+	id 81A23E009F3; Fri,  8 May 2015 14:49:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,24 +13,24 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      [score: 0.0000]
 Received: from bin-vsp-out-04.atm.binero.net (vsp-authed01.binero.net
 	[195.74.38.224])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75D1FE00992
-	for <yocto@yoctoproject.org>; Fri,  8 May 2015 14:49:16 -0700 (PDT)
-X-Halon-ID: 11d49aa9-f5cc-11e4-a7da-005056917c0c
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77758E009CA
+	for <yocto@yoctoproject.org>; Fri,  8 May 2015 14:49:17 -0700 (PDT)
+X-Halon-ID: 12282a7c-f5cc-11e4-a7da-005056917c0c
 Authorized-sender: petter@technux.se
 Received: from elxbvzzwp1-cy.lan (unknown [81.229.90.163])
 	by bin-vsp-out-04.atm.binero.net (Halon Mail Gateway) with ESMTPSA
-	for <yocto@yoctoproject.org>; Fri,  8 May 2015 23:49:14 +0200 (CEST)
+	for <yocto@yoctoproject.org>; Fri,  8 May 2015 23:49:15 +0200 (CEST)
 From: =?UTF-8?q?Petter=20Mab=C3=A4cker?= <petter@technux.se>
 To: yocto@yoctoproject.org
-Date: Fri,  8 May 2015 23:49:04 +0200
-Message-Id: <b4802eb7c1222f52cf5fcd4d913e4fea7e89a196.1431121258.git.petter@technux.se>
+Date: Fri,  8 May 2015 23:49:05 +0200
+Message-Id: <f77554f3a424b1e0a9a43cede5ba642a45cf4255.1431121258.git.petter@technux.se>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <cover.1431121258.git.petter@technux.se>
 References: <cover.1431121258.git.petter@technux.se>
 In-Reply-To: <cover.1431121258.git.petter@technux.se>
 References: <cover.1431121258.git.petter@technux.se>
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH 4/5] linux-raspberrypi: Drop support for old kernel versions
+Subject: [meta-raspberrypi][PATCH 5/5] linux-raspberrypi: Update 3.12 branch to latest
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,80 +46,74 @@ X-List-Received-Date: Fri, 08 May 2015 21:49:24 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-meta-raspberrypi currently supports too many versions in order to ensure
-that all of them are frequently tested and updated. Change to only
-support latest stable + 2 long term versions.
+Update linux-raspberrypi_3.12 to latest revision.
 
-[Support #59]
+Remove sl030raspberrypii2ckernel.patch since it will not apply anymore
+and its content seems to be obsolite after
+'558d0bf Fix grabbing lock from atomic context in i2c driver' was
+merged to 3.12.
+
+[Support #60]
 
 Signed-off-by: Petter Mabäcker <petter@technux.se>
 ---
- recipes-kernel/linux/linux-raspberrypi_3.10.bb | 8 --------
- recipes-kernel/linux/linux-raspberrypi_3.16.bb | 8 --------
- recipes-kernel/linux/linux-raspberrypi_3.6.bb  | 8 --------
- recipes-kernel/linux/linux-raspberrypi_3.8.bb  | 8 --------
- 4 files changed, 32 deletions(-)
- delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.10.bb
- delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.16.bb
- delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.6.bb
- delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.8.bb
+ .../sl030raspberrypii2ckernel.patch                | 32 ----------------------
+ recipes-kernel/linux/linux-raspberrypi_3.12.bb     |  3 +-
+ 2 files changed, 1 insertion(+), 34 deletions(-)
+ delete mode 100644 recipes-kernel/linux/linux-raspberrypi/sl030raspberrypii2ckernel.patch
 
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.10.bb b/recipes-kernel/linux/linux-raspberrypi_3.10.bb
+diff --git a/recipes-kernel/linux/linux-raspberrypi/sl030raspberrypii2ckernel.patch b/recipes-kernel/linux/linux-raspberrypi/sl030raspberrypii2ckernel.patch
 deleted file mode 100644
-index e5d5bf2..0000000
---- a/recipes-kernel/linux/linux-raspberrypi_3.10.bb
+index 8534ecb..0000000
+--- a/recipes-kernel/linux/linux-raspberrypi/sl030raspberrypii2ckernel.patch
 +++ /dev/null
-@@ -1,8 +0,0 @@
--LINUX_VERSION ?= "3.10.38"
+@@ -1,32 +0,0 @@
+-Fix i2c timing errors.
 -
--SRCREV = "1b49b450222df26e4abf7abb6d9302f72b2ed386"
--SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.10.y \
+-When Transmitting: Make SDA valid quarter of a cycle after the falling edge of SCL.
+-When Receiving: Sample SDA Quarter of a cycle after the rising edge of SCL.
+-
+-Upstream-Status: Pending
+-
+-RP 2013/04/21
+-
+-Index: git/drivers/i2c/busses/i2c-bcm2708.c
+-===================================================================
+---- git.orig/drivers/i2c/busses/i2c-bcm2708.c	2013-01-06 17:15:00.754954587 +0000
+-+++ git/drivers/i2c/busses/i2c-bcm2708.c	2013-01-06 17:50:09.794905741 +0000
+-@@ -150,6 +150,7 @@
+- 	unsigned long bus_hz;
+- 	u32 cdiv;
+- 	u32 c = BSC_C_I2CEN | BSC_C_INTD | BSC_C_ST | BSC_C_CLEAR_1;
+-+	u32 cdel;
+- 
+- 	bus_hz = clk_get_rate(bi->clk);
+- 	cdiv = bus_hz / baudrate;
+-@@ -163,6 +164,10 @@
+- 	bcm2708_wr(bi, BSC_A, bi->msg->addr);
+- 	bcm2708_wr(bi, BSC_DLEN, bi->msg->len);
+- 	bcm2708_wr(bi, BSC_C, c);
+-+
+-+	cdel = (cdiv / 4) & 0xffff;
+-+	cdel = cdel << 16 | cdel;
+-+	bcm2708_wr(bi, BSC_DEL, cdel);
+- }
+- 
+- static irqreturn_t bcm2708_i2c_interrupt(int irq, void *dev_id)
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.12.bb b/recipes-kernel/linux/linux-raspberrypi_3.12.bb
+index 2952778..71fba49 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_3.12.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_3.12.bb
+@@ -1,8 +1,7 @@
+ LINUX_VERSION ?= "3.12.36"
+ 
+-SRCREV = "90fa5df724d147564149c7b79cb1ffc571a345ec"
++SRCREV = "ee9b8c7d46f2b1787b1e64604acafc70f70191cf"
+ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.12.y \
 -           file://sl030raspberrypii2ckernel.patch \
--          "
--
--require linux-raspberrypi.inc
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.16.bb b/recipes-kernel/linux/linux-raspberrypi_3.16.bb
-deleted file mode 100644
-index ccc414f..0000000
---- a/recipes-kernel/linux/linux-raspberrypi_3.16.bb
-+++ /dev/null
-@@ -1,8 +0,0 @@
--LINUX_VERSION ?= "3.16.5"
--
--SRCREV = "377c82aa1d31b37f1096096b0e4c65beb0bc5c49"
--SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.16.y \
--           file://sl030raspberrypii2ckernel.patch \
--          "
--
--require linux-raspberrypi.inc
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.6.bb b/recipes-kernel/linux/linux-raspberrypi_3.6.bb
-deleted file mode 100644
-index fc9ac89..0000000
---- a/recipes-kernel/linux/linux-raspberrypi_3.6.bb
-+++ /dev/null
-@@ -1,8 +0,0 @@
--LINUX_VERSION ?= "3.6.11"
--
--SRCREV = "2a8d45ec0883e3cbdce920855b3461ac77308a5f"
--SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.6.y \
--           file://sl030raspberrypii2ckernel.patch \
--          "
--
--require linux-raspberrypi.inc
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.8.bb b/recipes-kernel/linux/linux-raspberrypi_3.8.bb
-deleted file mode 100644
-index ae0dc99..0000000
---- a/recipes-kernel/linux/linux-raspberrypi_3.8.bb
-+++ /dev/null
-@@ -1,8 +0,0 @@
--LINUX_VERSION ?= "3.8.13"
--
--SRCREV = "d996a1b91b2bf3dc06f4f4f822a56f4496457aa1"
--SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.8.y \
--           file://sl030raspberrypii2ckernel.patch \
--          "
--
--require linux-raspberrypi.inc
+           "
+ 
+ require linux-raspberrypi.inc
 -- 
 1.9.1
 
