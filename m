@@ -1,40 +1,38 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <sona.sarmadi@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CC7E0E0098A; Fri,  8 May 2015 07:08:29 -0700 (PDT)
+	id E83CCE0098A; Fri,  8 May 2015 07:26:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [192.36.1.252 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 856DAE0097D
-	for <yocto@yoctoproject.org>; Fri,  8 May 2015 07:08:28 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.14.9/8.14.9) with ESMTP id t48E8GkF024588
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 8 May 2015 07:08:16 -0700 (PDT)
-Received: from server.local (128.224.23.75) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 8 May 2015 07:08:15 -0700
-Message-ID: <554CC34E.9070904@windriver.com>
-Date: Fri, 8 May 2015 10:08:14 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 9042CE0097D
+	for <yocto@yoctoproject.org>; Fri,  8 May 2015 07:26:30 -0700 (PDT)
+Received: from SESTOEX09.enea.se ([fe80::94d8:372f:210c:b4da]) by
+	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
+	14.03.0224.002; Fri, 8 May 2015 16:26:27 +0200
+From: Sona Sarmadi <sona.sarmadi@enea.com>
+To: Paul Barker <paul@paulbarker.me.uk>
+Thread-Topic: opkg and gpg signed ipk packages
+Thread-Index: AQHQiQF1GoctQW/hYkC8XY65YpEcWJ1xw3SQ
+Date: Fri, 8 May 2015 14:26:26 +0000
+Message-ID: <3230301C09DEF9499B442BBE162C5E48258EEECD@sestoex09.enea.se>
+References: <3230301C09DEF9499B442BBE162C5E48258ED362@sestoex09.enea.se>
+	<20150507200911.GA19158@bang.betafive.co.uk>
+In-Reply-To: <20150507200911.GA19158@bang.betafive.co.uk>
+Accept-Language: sv-SE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.142.231]
 MIME-Version: 1.0
-To: "Spriggs, Jim" <J.Spriggs@raylase.de>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <2238EDC6081C944E97E4EE915AE5CBEC521E9F19@EXCHANGE-B.raylase.de>
-In-Reply-To: <2238EDC6081C944E97E4EE915AE5CBEC521E9F19@EXCHANGE-B.raylase.de>
-Cc: "Wilfert, Dennis" <D.Wilfert.extern@raylase.de>, "Weber,
-	Markus" <M.Weber@raylase.de>
-Subject: Re: Need advice on tracking down "-dirty"
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: opkg and gpg signed ipk packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,75 +44,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 May 2015 14:08:29 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 08 May 2015 14:26:34 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 2015-05-08 5:36 AM, Spriggs, Jim wrote:
-> Hi Guys,
->
-> Using poky dizzy with meta-altera (from OE), and trying to implement a simple loadable kernel-module by following the method outlined  in Lab3 of  https://www.yoctoproject.org/sites/default/files/kernel-lab-1.6.pdf.
->
-> I'm doing an "rm -rf tmp" before starting "bitbake virtual/kernel  my-image-recipe".
->
-> The build seems to work just fine: the kernel-module-xxxx-1.0-r0.machine.rpm appears as expected under .../deploy/...
->
-> The package installation task fails, however, with:
->
->      error: Can't install kernel-module-xxxx-1.0-r0@machine : no package provides kernel-3.15.0-00184-g5ae31a7
->
-> and indeed, the kernel packages available in .../deploy/... are:
->
->      kernel-3.15-r1.machine.rpm
->      kernel-3.15.0-00184-g5ae31a7-dirty-3.15-r1.machine.rpm
->      kernel-dev-3.15-r1.machine.rpm
->      kernel-image-3.15.0-00184-g5ae31a7-dirty-3.15-r1.machine.rpm
->
->
-> Yet "git status" reports "nothing to commit, w.d. clean" for both the main poky tree and the meta-altera sub-tree.
+Thanks Paul for your quick feedback .
 
-By this, do you mean the kernel source tree ? Or the layers ?
+> opkg 0.2.x only has support for checking the package feed signature. To u=
+se
+> this, add the line 'option check_signature 1' to your opkg.conf file and =
+place a
+> Packages.sig file next to the Packages file in your package feed. ASCII-
+> armoured signatures are not supported.
 
-I haven't looked at the kernel recipe you are using, but PV
-and the git hash you have in those package names is coming from
-the kernel source directory.
+Ok, even if we can't sign the individual .ipk files, by signing the Package=
+s file we can achieve some
+Level of authentication, e.g. if someone tampers with the .ipk files they c=
+an't change the matching=20
+checksum in the Packages.sig. The checksumming algorithm used for packages =
+is MD5 now which is
+ not really secure. Is it possible to use another algorithm. I guess if we =
+use a better checksum for=20
+packages, there is no need for Signing each individual .ipk patches, signin=
+g package feed (Packages)=20
+would be enough. Right?
 
-It is there that you'll likely find un-commited changes, and what
-is triggering the -dirty flag to be captured.
+> opkg-0.3.0-rc2 extends this. Signatures for each package are supported, a=
+dd
+> the line 'option check_pkg_signature 1' to your opkg.conf file to use thi=
+s.
+> Then for a package named package_v1.ipk you'd need to create a
+> package_v1.ipk.sig file in the same directory. ASCII-armoured signatures =
+are
+> used with the file extension .asc instead of .sig if the line 'option
+> signature_type gpg-asc' is added to your opkg.conf file. The 'Filename' i=
+n the
+> package feed should always refer to the ipk file, the signature is detach=
+ed
+> rather than included with the file.
+> I've not used these options in a while so I might have remembered
+> something wrong, but the general idea is right.
+>=20
 
-Bruce
-
->
-> So I guess the n00b needs a clue about how to find out why and where the dirty-flag is getting set?
->
-> Thanks for listening!
-> --
-> jim spriggs
->
-> PS: the real names of module and machine have been redacted above to protect the guilty...
-> PPS: sorry about the company sig., I can't switch it off.
->
->
-> ________________________________
->
-> RAYLASE AG
-> Argelsrieder Feld 2+4
-> 82234 Wessling
-> Germany
-> Tel.: +49-(0)8153/88 98-0
-> Fax: +49-(0)8153/88 98-10
-> http://www.raylase.de
->
-> District Court Munich, HRB 131450
->
-> Board: Peter von Jan (CEO)
->
-> Supervisory Board: Dr. Ulrich Lohmann (Chairman)
->
->
-> Diese E-Mail enthält vertrauliche und/oder rechtlich geschützte Informationen. Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrtümlich erhalten haben, informieren Sie bitte sofort den Absender und vernichten Sie diese Mail. Das unerlaubte Kopieren sowie die unbefugte Weitergabe dieser Mail ist nicht gestattet.
->
-> This e-mail may contain confidential and/or privileged information. If you are not the intended recipient (or have received this e-mail in error) please notify the sender immediately and destroy this e-mail. Any unauthorized copying, disclosure or distribution of the material in this e-mail is strictly forbidden.
->
-
+//Sona
 
