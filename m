@@ -1,52 +1,49 @@
-Return-Path: <pbarker@betafive.co.uk>
+Return-Path: <vmartin@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A488AE009B8; Fri,  8 May 2015 13:00:33 -0700 (PDT)
+	id 08617E009B8; Fri,  8 May 2015 13:05:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [46.105.58.60 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [135.11.29.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 8399 seconds by postgrey-1.32 at yocto-www;
-	Fri, 08 May 2015 13:00:29 PDT
-Received: from 3.mo68.mail-out.ovh.net (3.mo68.mail-out.ovh.net [46.105.58.60])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4549E0098A
-	for <yocto@yoctoproject.org>; Fri,  8 May 2015 13:00:29 -0700 (PDT)
-Received: from mail626.ha.ovh.net (gw6.ovh.net [213.251.189.206])
-	by mo68.mail-out.ovh.net (Postfix) with SMTP id CD0BDFF97F4
-	for <yocto@yoctoproject.org>; Fri,  8 May 2015 18:21:27 +0200 (CEST)
-Received: from b0.ovh.net (HELO queueout) (213.186.33.50)
-	by b0.ovh.net with SMTP; 8 May 2015 18:21:27 +0200
-Received: from cpc19-shep11-2-0-cust55.8-3.cable.virginm.net (HELO
-	bang.betafive.co.uk) (paul@betafive.co.uk@81.111.243.56)
-	by ns0.ovh.net with SMTP; 8 May 2015 18:21:26 +0200
-Received: by bang.betafive.co.uk (Postfix, from userid 1000)
-	id 58803412AC; Fri,  8 May 2015 17:23:11 +0100 (BST)
-Date: Fri, 8 May 2015 17:23:11 +0100
-From: Paul Barker <paul@paulbarker.me.uk>
-To: Sona Sarmadi <sona.sarmadi@enea.com>
-Message-ID: <20150508162311.GA20977@bang.betafive.co.uk>
-References: <3230301C09DEF9499B442BBE162C5E48258ED362@sestoex09.enea.se>
-	<20150507200911.GA19158@bang.betafive.co.uk>
-	<3230301C09DEF9499B442BBE162C5E48258EEECD@sestoex09.enea.se>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
+	Fri, 08 May 2015 13:04:56 PDT
+Received: from p-us1-iereast-outbound.us1.avaya.com
+	(p-us1-iereast-outbound.us1.avaya.com [135.11.29.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65960E0098A
+	for <yocto@yoctoproject.org>; Fri,  8 May 2015 13:04:56 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AiYFAMkVTVXGmAcV/2dsb2JhbABcgkUhKFRkzG8CgTRMAQEBAQEBgQuEIgEBAxIbXgEMCRVWJgEEGxqICgGlZIUInkoMAR+QDoNPgRYFkAiCM5JQjmIjg3eCNIEBAQEB
+X-IronPort-AV: E=Sophos;i="5.13,393,1427774400"; 
+	d="scan'208,217";a="119634366"
+Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
+	([198.152.7.21]) by p-us1-iereast-outbound.us1.avaya.com with ESMTP;
+	08 May 2015 16:03:52 -0400
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-US1EXHC04.global.avaya.com) ([135.11.85.15])
+	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
+	08 May 2015 16:03:52 -0400
+Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
+	AZ-US1EXHC04.global.avaya.com ([135.11.85.15]) with mapi id
+	14.03.0174.001; Fri, 8 May 2015 16:03:51 -0400
+From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Customizing modules.alias
+Thread-Index: AdCJyYmwtOCRt3DIRuiL4TtcWsPRcw==
+Date: Fri, 8 May 2015 20:03:51 +0000
+Message-ID: <30C2D590D16A5C46ADFE65219103779853925640@AZ-US1EXMB03.global.avaya.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [135.11.85.50]
 MIME-Version: 1.0
-In-Reply-To: <3230301C09DEF9499B442BBE162C5E48258EEECD@sestoex09.enea.se>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Ovh-Tracer-Id: 16322733901594934215
-X-Ovh-Remote: 81.111.243.56 (cpc19-shep11-2-0-cust55.8-3.cable.virginm.net)
-X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
-X-OVH-SPAMSTATE: OK
-X-OVH-SPAMSCORE: -100
-X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeektddrleduucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeektddrleduucetufdoteggodetrfcurfhrohhfihhlvgemucfqggfjnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: opkg and gpg signed ipk packages
+Subject: Customizing modules.alias
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,70 +55,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 May 2015 20:00:33 -0000
-X-Groupsio-MsgNum: 24745
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="xHFwDpU9dbj6ez1V"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 08 May 2015 20:05:01 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_30C2D590D16A5C46ADFE65219103779853925640AZUS1EXMB03glob_"
 
---xHFwDpU9dbj6ez1V
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--_000_30C2D590D16A5C46ADFE65219103779853925640AZUS1EXMB03glob_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 08, 2015 at 02:26:26PM +0000, Sona Sarmadi wrote:
-> Thanks Paul for your quick feedback .
->=20
-> > opkg 0.2.x only has support for checking the package feed signature. To=
- use
-> > this, add the line 'option check_signature 1' to your opkg.conf file an=
-d place a
-> > Packages.sig file next to the Packages file in your package feed. ASCII-
-> > armoured signatures are not supported.
->=20
-> Ok, even if we can't sign the individual .ipk files, by signing the Packa=
-ges file we can achieve some
-> Level of authentication, e.g. if someone tampers with the .ipk files they=
- can't change the matching=20
-> checksum in the Packages.sig. The checksumming algorithm used for package=
-s is MD5 now which is
->  not really secure. Is it possible to use another algorithm. I guess if w=
-e use a better checksum for=20
-> packages, there is no need for Signing each individual .ipk patches, sign=
-ing package feed (Packages)=20
-> would be enough. Right?
->=20
+I see that depmod/depmodwrapper is being run in a postinst
+script in kernel.bbclass.
 
-SHA256 is also supported. In OpenEmbedded, use the PACKAGECONFIG 'sha256' t=
-hen
-ensure that your Packages file contains a 'SHA256sum: ...' line for each
-package.
+I need to adjust the contents of modules.alias after it has been
+generated.
 
-Again, these instructions are fairly rough as I haven't used them for a whi=
-le.
+Can someone suggest what would be the "right" way to do this?
 
-Thanks,
+MV
 
---=20
-Paul Barker
+--_000_30C2D590D16A5C46ADFE65219103779853925640AZUS1EXMB03glob_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">I see that depmod/depmodwrapper is being run in a po=
+stinst<o:p></o:p></p>
+<p class=3D"MsoNormal">script in kernel.bbclass.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I need to adjust the contents of modules.alias after=
+ it has been<o:p></o:p></p>
+<p class=3D"MsoNormal">generated.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Can someone suggest what would be the &#8220;right&#=
+8221; way to do this?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">MV<o:p></o:p></p>
+</div>
+</body>
+</html>
 
---xHFwDpU9dbj6ez1V
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iQEcBAEBAgAGBQJVTOLvAAoJEBwoJlo7UPQD/pkH/jQHxhPttP6QnG+crDZ1azc3
-22ncambsGJ2SaI0puwQs84jS/qdbO1hMYwh0QPARXiQUdJZ+zvIRwmS+G97YbR2V
-CB9L1KJtRio8p5FxHq627FNN2NpG7HqTXSRtb4eqApeeR66w5JFw/nuVBYhoNoiA
-3iw6PKiNAj/L36wssMZOUvfMv0EtSx4AcJmv46bKLSsPR2gCmVHK7Lcjj0iFSyNX
-15bywX4UdUMUsi828WuGJSdj90EomW/VYj/7DnCDXTtmIEpslioD17I0LNQxsuzJ
-L1L2Pmo/ESaKQ7VyduhxeW40aDYKpUNYzT8pMY3gu8KSAWd7vnR4Kiox4E5DenI=
-=v4yY
------END PGP SIGNATURE-----
-
---xHFwDpU9dbj6ez1V--
+--_000_30C2D590D16A5C46ADFE65219103779853925640AZUS1EXMB03glob_--
