@@ -1,61 +1,40 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <Raghavendra.Kakarla@inedasystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3DF86E009A1; Thu,  7 May 2015 17:41:14 -0700 (PDT)
+	id D9C3BE009BB; Thu,  7 May 2015 22:17:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.178 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ie0-f178.google.com (mail-ie0-f178.google.com
-	[209.85.223.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4170CE004F6
-	for <yocto@yoctoproject.org>; Thu,  7 May 2015 17:41:10 -0700 (PDT)
-Received: by iecnq11 with SMTP id nq11so52690269iec.3
-	for <yocto@yoctoproject.org>; Thu, 07 May 2015 17:41:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=jM848z7JnWvB3A170d+iIaM2PZhYjM/S3rFNBBx04ag=;
-	b=tXg1coYM1g5KsYoJs9NwCOhggkQfUf3lkNydOYOgacBNazx9aC3+PuhNUUNpA9c/sc
-	vY2DiX5fol0/ir7Qj4MpjmOFB3u24zLtGABOM2XV7tzqdrfM1UXvwB+v6hy3qEFQm4ZQ
-	474qeJZMPN2VwClZrzgBk8hOf582Ch7f9fYUQ/WZqMstkqJxqlrU1/iMRJAkWpI9YcvP
-	JewpI25CSTesz8SoKiecvGo5A06gYqjJOk7f9SnHQ8+g6GW3BNRmmmoMp+accJbaOMVE
-	pU892C0JNiXtjYrNAsPdWLDAFYwwUDBkleDlfz08+MiIHR6nbnygd/FhyZlqC+n59oMO
-	id0Q==
-X-Received: by 10.43.96.10 with SMTP id ce10mr1328650icc.59.1431045670421;
-	Thu, 07 May 2015 17:41:10 -0700 (PDT)
-Received: from [192.168.141.83] (dsl-67-55-28-109.acanac.net. [67.55.28.109])
-	by mx.google.com with ESMTPSA id
-	69sm2422579ioz.10.2015.05.07.17.41.09
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 07 May 2015 17:41:10 -0700 (PDT)
-Message-ID: <554C0625.9000304@gmail.com>
-Date: Thu, 07 May 2015 20:41:09 -0400
-From: Trevor Woerner <twoerner@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
-MIME-Version: 1.0
-To: openembedded-devel@lists.openembedded.org, 
+Received: from mail.invecas.com (mx1.invecas.com [112.133.222.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6088E00956
+	for <yocto@yoctoproject.org>; Thu,  7 May 2015 22:16:59 -0700 (PDT)
+Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by mail.invecas.com
+	(10.0.30.131) with Microsoft SMTP Server (TLS) id 14.3.123.3;
+	Fri, 8 May 2015 10:44:19 +0530
+Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
+	SOC-EXCH-02.invecas.local (10.0.30.9) with Microsoft SMTP Server (TLS)
+	id 15.0.995.29; Fri, 8 May 2015 10:44:08 +0530
+Received: from SOC-EXCH-02.invecas.local ([::1]) by SOC-EXCH-02.invecas.local
+	([fe80::bc3d:32eb:402d:2fae%15]) with mapi id 15.00.0995.028;
+	Fri, 8 May 2015 10:44:08 +0530
+From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>,
 	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <55483F50.5020803@gmail.com>
-	<554A76F1.8050407@gmail.com>	<554A7893.3060701@gmail.com>
-	<554A8A7A.6030404@gmail.com>
-	<CAALGJZaMCx0-daBCjkP_NrmnheTJQYLW2hU2bSpTW1ij0pMb8w@mail.gmail.com>
-In-Reply-To: <CAALGJZaMCx0-daBCjkP_NrmnheTJQYLW2hU2bSpTW1ij0pMb8w@mail.gmail.com>
-Subject: Re: [oe] Odroid-xu3 support
+Thread-Topic: [yocto] Issue with toaster
+Thread-Index: AQHQiMPwlgqxDyEgoECjGg7s0AKjdZ1xiN4L
+Date: Fri, 8 May 2015 05:14:08 +0000
+Message-ID: <1431062039464.37764@inedasystems.com>
+References: <D1711C04.5B1A6%belen.barros.pena@intel.com>
+In-Reply-To: <D1711C04.5B1A6%belen.barros.pena@intel.com>
+Accept-Language: en-US, en-IN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.42.88]
+MIME-Version: 1.0
+Subject: Re: Issue with toaster
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,24 +46,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 May 2015 00:41:14 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 08 May 2015 05:17:02 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 15-05-07 02:56 AM, Christian Ege wrote:
->  From the ODROID family I do only own a ODROID-C1. If there will be a
-> combined Layer for all odroid devices I will  port my recipes to this
-> and can help on supporting it.
-> I am mostly interested in Multimedia stuff and I do plan to setup a
-> separate layer for Kodi/XBMC on amlogic based devices.
->
-> So how should we proceed with the layer jungle?
-
-Ideally meta-amlogic provides things specific to the chip itself (vendor 
-kernel? vendor u-boot?) and meta-odroid contains things related to the 
-various boards themselves (tweaks specific to each board).
-
-Maybe the beaglebone provides a good example to follow? (meta-ti, 
-meta-beagleboard) Although I'm not sure how clean the separation is in 
-those layers.
+Hi Belen,=0A=
+=0A=
+I am using yocto fido.=0A=
+=0A=
+I am entered the my custom layer git repository url(Which is our local git =
+repository where our product corresponding recipe layers re there),a unique=
+ layer name and our git repository revision number.=0A=
+=0A=
+We entered these data but the import layer version is not respond.=0A=
+=0A=
+Thanks and Regards,=0A=
+=0A=
+Raghavendra K.=0A=
+________________________________________=0A=
+From: Barros Pena, Belen <belen.barros.pena@intel.com>=0A=
+Sent: Thursday, May 7, 2015 6:17 PM=0A=
+To: Raghavendra Kakarla; yocto@yoctoproject.org=0A=
+Subject: Re: [yocto] Issue with toaster=0A=
+=0A=
+On 07/05/2015 10:18, "Raghavendra Kakarla"=0A=
+<Raghavendra.Kakarla@inedasystems.com> wrote:=0A=
+=0A=
+>Hi,=0A=
+>=0A=
+>I have an issue while importing custom layer in toaster. When i gave the=
+=0A=
+>all layer information for importing the layer and click on the import=0A=
+>layer button in toaster it    wont respond.=0A=
+>Could you please help for resolving this issue.=0A=
+=0A=
+Hi Raghavendra,=0A=
+=0A=
+We would need a bit more information to understand what's happening:=0A=
+=0A=
+* Which branch are you using (fido or master). If you are using master,=0A=
+which commit?=0A=
+* Which data are you entering in the import layer form? Keep in mind that=
+=0A=
+you must provide a git url, a unique layer name and a revision. Without=0A=
+that information, the "import layer" button will remain stubbornly=0A=
+inactive and nothing will happen when you click on it.=0A=
+=0A=
+Cheers=0A=
+=0A=
+Bel=E9n=0A=
+=0A=
+>=0A=
+>=0A=
+>=0A=
+>Thanks in advance.=0A=
+>=0A=
+>=0A=
+> Regards,=0A=
+> Raghavendra K.=0A=
+>=0A=
+=0A=
 
