@@ -1,49 +1,49 @@
-Return-Path: <J.Spriggs@raylase.de>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34D7EE009CA; Sat,  9 May 2015 03:18:54 -0700 (PDT)
+	id 4B2EAE009F6; Sun, 10 May 2015 03:17:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.212.171 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.raylase.de (mail.raylase.de [217.6.128.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F333E00945
-	for <yocto@yoctoproject.org>; Sat,  9 May 2015 03:18:49 -0700 (PDT)
-Received: from mail.raylase.de (127.0.0.1) id h9nfgm0171st for
-	<yocto@yoctoproject.org>;
-	Sat, 9 May 2015 12:18:48 +0200 (envelope-from <J.Spriggs@raylase.de>)
-Received: from EXCHANGE-A.raylase.de ([192.168.1.16])
-	by mail.raylase.de (RAYLASE AG)
-	with ESMTPS (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256/256)
-	id 201505091018450088667; Sat, 09 May 2015 12:18:45 +0200
-Received: from EXCHANGE-B.raylase.de (192.168.2.12) by EXCHANGE-A.raylase.de
-	(192.168.1.16) with Microsoft SMTP Server (TLS) id 14.3.224.2;
-	Sat, 9 May 2015 12:18:44 +0200
-Received: from EXCHANGE-B.raylase.de ([fe80::3144:5b1b:13e0:ad49]) by
-	EXCHANGE-B.raylase.de ([fe80::3144:5b1b:13e0:ad49%14]) with mapi id
-	14.03.0224.002; Sat, 9 May 2015 12:18:42 +0200
-From: "Spriggs, Jim" <J.Spriggs@raylase.de>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Need advice on tracking down "-dirty"
-Thread-Index: AdCJbJrG4VCM0mIGQamQT84Gxmu17AAGw4QAAC165Aw=
-Date: Sat, 9 May 2015 10:18:42 +0000
-Message-ID: <2238EDC6081C944E97E4EE915AE5CBEC521EC2A0@EXCHANGE-B.raylase.de>
-References: <2238EDC6081C944E97E4EE915AE5CBEC521E9F19@EXCHANGE-B.raylase.de>,
-	<554CC34E.9070904@windriver.com>
-In-Reply-To: <554CC34E.9070904@windriver.com>
-Accept-Language: en-GB, de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.255.1]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-wi0-f171.google.com (mail-wi0-f171.google.com
+	[209.85.212.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7768CE009ED
+	for <yocto@yoctoproject.org>; Sun, 10 May 2015 03:17:11 -0700 (PDT)
+Received: by wief7 with SMTP id f7so65391118wie.0
+	for <yocto@yoctoproject.org>; Sun, 10 May 2015 03:17:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=pPaqIU9eXq+lBSG6npbGb4isQNA0vmWKsaFx8VMIVfM=;
+	b=EL/AADgLygtZJqPs9THKTjgY3pX8+6DXHcB9xdWZcPz4rkLMtF1AhipRwh1KOJJlHm
+	bwhlvYDzgffQ84/4QkL3ia3ZqGjEPu9SOOJUGpmGW0Gcz6HaZKuPkNw1h4oXE2D85aXX
+	NzOm5cpaakkCXs65A/RQiOmmn0xtPbTtSNH8DPEXV8geIgQfex0g2EJo2N/kgeSTOV5C
+	VdrBh0D+MufAszD9Xh+1kdq5B1b1LT5Y8R7T1UzZ6g+ifmOcL1QFtnU2ySUkPvQMq/S/
+	O662i0F2IYqFSw7YU3/PB2PUzPK/nKypVw0Q2aTRA6c9cbM/btdoqcn7QPADlzFR6P3R
+	R6+Q==
+X-Gm-Message-State: ALoCoQmGy0z6ohZOFlSt8uGCdrwcJNYNK5s2GnvWIB6TsaVWuAE5cLNMpb16+qzFezYr1ASNcLKh
+X-Received: by 10.194.185.8 with SMTP id ey8mr11277083wjc.118.1431253030600;
+	Sun, 10 May 2015 03:17:10 -0700 (PDT)
 MIME-Version: 1.0
-X-Mlf-Version: 8.0.7.3275
-X-Mlf-UniqueId: o201505091018450088667
-Cc: "Wilfert, Dennis" <D.Wilfert.extern@raylase.de>, "Weber,
-	Markus" <M.Weber@raylase.de>
-Subject: Re: Need advice on tracking down "-dirty"
+Received: by 10.28.224.136 with HTTP; Sun, 10 May 2015 03:16:50 -0700 (PDT)
+X-Originating-IP: [87.63.77.14]
+In-Reply-To: <b58053204ede81e2de839e62bc0317d2813d6ec1.1431121258.git.petter@technux.se>
+References: <cover.1431121258.git.petter@technux.se>
+	<b58053204ede81e2de839e62bc0317d2813d6ec1.1431121258.git.petter@technux.se>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Sun, 10 May 2015 12:16:50 +0200
+Message-ID: <CAK18fxE7iDxP5RaH4ObZ-PxoOJB+kos6h9zJQFRaacsLqZvUog@mail.gmail.com>
+To: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 1/5] devicetree: auto-disable dts for old kernels
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,152 +55,325 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 09 May 2015 10:18:54 -0000
-Content-Language: en-GB
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Sun, 10 May 2015 10:17:15 -0000
+Content-Type: multipart/alternative; boundary=047d7bd6abee7915a30515b790a1
+
+--047d7bd6abee7915a30515b790a1
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Bruce, List
+Hello Petter,
 
-@Bruce: many thanks indeed for your prompt reply and very helpful clue!
+On Fri, May 8, 2015 at 11:49 PM, Petter Mab=C3=A4cker <petter@technux.se> w=
+rote:
 
-It turns out "-dirty" has nothing directly to do with my own recipe at all.
-
-It appears as soon as I specify 'KERNEL_PROVIDER =3D "linux-altera"' in loc=
-al.conf, instead of allowing the meta-altera layer's default (which is "lin=
-ux-altera-ltsi") to go through.
-"linux-altera" currently pulls in kernel version 3.15, whereas "linux-alter=
-a-ltsi" pulls in 3.10.
-
-I'm using "git clone https://github.com/kraj/meta-altera" to get the altera=
- layer.
-
-Can anyone suggest why 3.15 should (apparently) be "dirty" straight out of =
-the repo?
-Is this actually expected behaviour?
-Alternatively, what it is that I'm failing to understand about the whole yo=
-cto/bitbake mechanism?
-
-Many thanks for your collective patience....
---
-jim
-________________________________________
-From: Bruce Ashfield [bruce.ashfield@windriver.com]
-Sent: 08 May 2015 16:08
-To: Spriggs, Jim; yocto@yoctoproject.org
-Cc: Wilfert, Dennis; Weber, Markus
-Subject: Re: [yocto] Need advice on tracking down "-dirty"
-
-On 2015-05-08 5:36 AM, Spriggs, Jim wrote:
-> Hi Guys,
+> After '6392a63 rpi-base.inc: Use KERNEL_DEVICETREE by default' was
+> introduced, kernel versions < 3.18 might not be buildable. Since full
+> device tree support was introduced in 3.18 this change ensures that all
+> kernel < 3.18 will automatically disable device tree.
 >
-> Using poky dizzy with meta-altera (from OE), and trying to implement a si=
-mple loadable kernel-module by following the method outlined  in Lab3 of  h=
-ttps://www.yoctoproject.org/sites/default/files/kernel-lab-1.6.pdf.
+> Signed-off-by: Petter Mab=C3=A4cker <petter@technux.se>
+> ---
+>  classes/linux-raspberrypi-base.bbclass     | 29
+> +++++++++++++++++++++++++++++
+>  classes/sdcard_image-rpi.bbclass           |  6 ++++--
+>  recipes-kernel/linux/linux-raspberrypi.inc |  4 +++-
+>  3 files changed, 36 insertions(+), 3 deletions(-)
+>  create mode 100644 classes/linux-raspberrypi-base.bbclass
 >
-> I'm doing an "rm -rf tmp" before starting "bitbake virtual/kernel  my-ima=
-ge-recipe".
+> diff --git a/classes/linux-raspberrypi-base.bbclass
+> b/classes/linux-raspberrypi-base.bbclass
+> new file mode 100644
+> index 0000000..4bcadd0
+> --- /dev/null
+> +++ b/classes/linux-raspberrypi-base.bbclass
+> @@ -0,0 +1,29 @@
+> +inherit linux-kernel-base
+> +
+> +
+> +def get_dts(d, ver):
+> +    staging_dir =3D d.getVar("STAGING_KERNEL_BUILDDIR", True)
+> +    dts =3D d.getVar("KERNEL_DEVICETREE", True)
+> +
+> +    # d.getVar() might return 'None' as a normal string
+> +    # leading to 'is None' check isn't enough.
+> +    # TODO: Investigate if this is a bug in bitbake
+> +    if ver is None or ver =3D=3D "None":
+> +        ''' if 'ver' isn't set try to grab the kernel version
+> +        from the kernel staging '''
+> +        ver =3D get_kernelversion_file(staging_dir)
+> +
+> +    if ver is not None:
+> +        min_ver =3D ver.split('.', 3)
+> +    else:
+> +        return dts
+> +
+> +    # Always turn off device tree support for kernel's < 3.18
+> +    try:
+> +        if int(min_ver[0]) <=3D 3:
+> +            if int(min_ver[1]) < 18:
+> +                dts =3D ""
+> +    except IndexError:
+> +        min_ver =3D None
+> +
+> +    return dts
+> diff --git a/classes/sdcard_image-rpi.bbclass
+> b/classes/sdcard_image-rpi.bbclass
+> index 1ff664d..ca94566 100644
+> --- a/classes/sdcard_image-rpi.bbclass
+> +++ b/classes/sdcard_image-rpi.bbclass
+> @@ -1,4 +1,5 @@
+>  inherit image_types
+> +inherit linux-raspberrypi-base
 >
-> The build seems to work just fine: the kernel-module-xxxx-1.0-r0.machine.=
-rpm appears as expected under .../deploy/...
+>  #
+>  # Create an image that can by written onto a SD card using dd.
+> @@ -88,7 +89,8 @@ IMAGE_CMD_rpi-sdimg () {
+>         ROOTFS_SIZE_ALIGNED=3D$(expr ${ROOTFS_SIZE_ALIGNED} -
+> ${ROOTFS_SIZE_ALIGNED} % ${IMAGE_ROOTFS_ALIGNMENT})
+>         SDIMG_SIZE=3D$(expr ${IMAGE_ROOTFS_ALIGNMENT} +
+> ${BOOT_SPACE_ALIGNED} + ${ROOTFS_SIZE_ALIGNED})
 >
-> The package installation task fails, however, with:
+> -       echo "Creating filesystem with Boot partition
+> ${BOOT_SPACE_ALIGNED} KiB and RootFS ${ROOTFS_SIZE_ALIGNED} KiB"
 >
->      error: Can't install kernel-module-xxxx-1.0-r0@machine : no package =
-provides kernel-3.15.0-00184-g5ae31a7
->
-> and indeed, the kernel packages available in .../deploy/... are:
->
->      kernel-3.15-r1.machine.rpm
->      kernel-3.15.0-00184-g5ae31a7-dirty-3.15-r1.machine.rpm
->      kernel-dev-3.15-r1.machine.rpm
->      kernel-image-3.15.0-00184-g5ae31a7-dirty-3.15-r1.machine.rpm
->
->
-> Yet "git status" reports "nothing to commit, w.d. clean" for both the mai=
-n poky tree and the meta-altera sub-tree.
 
-By this, do you mean the kernel source tree ? Or the layers ?
+Why do you remove this line? Maybe by mistake?
 
-I haven't looked at the kernel recipe you are using, but PV
-and the git hash you have in those package names is coming from
-the kernel source directory.
 
-It is there that you'll likely find un-commited changes, and what
-is triggering the -dirty flag to be captured.
+> +       # Check if we are building with device tree support
+> +       DTS=3D"${@get_dts(d, None)}"
+>
 
-Bruce
+Aren't we able to use the same variable name, KERNEL_DEVICETREE? What that
+be a little clearer?
+
 
 >
-> So I guess the n00b needs a clue about how to find out why and where the =
-dirty-flag is getting set?
+>         # Initialize sdcard image file
+>         dd if=3D/dev/zero of=3D${SDIMG} bs=3D1024 count=3D0 seek=3D${SDIM=
+G_SIZE}
+> @@ -112,7 +114,7 @@ IMAGE_CMD_rpi-sdimg () {
+>                 mcopy -i ${WORKDIR}/boot.img -s
+> ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin
+> ::uImage
+>                 ;;
+>         *)
+> -               if test -n "${KERNEL_DEVICETREE}"; then
+> +               if test -n "${DTS}"; then
+>                         # Copy board device trees to root folder
+>                         for DTB in ${DT_ROOT}; do
+>                                 DTB_BASE_NAME=3D`basename ${DTB} .dtb`
+> diff --git a/recipes-kernel/linux/linux-raspberrypi.inc
+> b/recipes-kernel/linux/linux-raspberrypi.inc
+> index 84d4f9e..7e36408 100644
+> --- a/recipes-kernel/linux/linux-raspberrypi.inc
+> +++ b/recipes-kernel/linux/linux-raspberrypi.inc
+> @@ -1,4 +1,5 @@
+>  require linux.inc
+> +inherit linux-raspberrypi-base
 >
-> Thanks for listening!
+>  DESCRIPTION =3D "Linux Kernel for Raspberry Pi"
+>  SECTION =3D "kernel"
+> @@ -26,7 +27,8 @@ UDEV_GE_141 ?=3D "1"
+>  # See
+> http://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user=
+-manual.html#anonymous-python-functions
+>  python __anonymous () {
+>      kerneltype =3D d.getVar('KERNEL_IMAGETYPE', True)
+> -    kerneldt =3D d.getVar('KERNEL_DEVICETREE', True)
+> +    kerneldt =3D get_dts(d, d.getVar('LINUX_VERSION', True))
+> +    d.setVar("KERNEL_DEVICETREE", kerneldt)
+>
+>      # Add dependency to 'rpi-mkimage-native' package only if RPi
+> bootloader is used with DT-enable kernel
+>      if kerneldt:
 > --
-> jim spriggs
+> 1.9.1
 >
-> PS: the real names of module and machine have been redacted above to prot=
-ect the guilty...
-> PPS: sorry about the company sig., I can't switch it off.
->
->
-> ________________________________
->
-> RAYLASE AG
-> Argelsrieder Feld 2+4
-> 82234 Wessling
-> Germany
-> Tel.: +49-(0)8153/88 98-0
-> Fax: +49-(0)8153/88 98-10
-> http://www.raylase.de
->
-> District Court Munich, HRB 131450
->
-> Board: Peter von Jan (CEO)
->
-> Supervisory Board: Dr. Ulrich Lohmann (Chairman)
->
->
-> Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Infor=
-mationen. Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=
-=FCmlich erhalten haben, informieren Sie bitte sofort den Absender und vern=
-ichten Sie diese Mail. Das unerlaubte Kopieren sowie die unbefugte Weiterga=
-be dieser Mail ist nicht gestattet.
->
-> This e-mail may contain confidential and/or privileged information. If yo=
-u are not the intended recipient (or have received this e-mail in error) pl=
-ease notify the sender immediately and destroy this e-mail. Any unauthorize=
-d copying, disclosure or distribution of the material in this e-mail is str=
-ictly forbidden.
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
 
-________________________________
 
-RAYLASE AG
-Argelsrieder Feld 2+4
-82234 Wessling
-Germany
-Tel.: +49-(0)8153/88 98-0
-Fax: +49-(0)8153/88 98-10
-http://www.raylase.de
+--=20
+*Andrei Gherzan*
+*e: **andrei@gherzan.ro <andrei@gherzan.ro>*
+*w: *www.gherzan.ro
 
-District Court Munich, HRB 131450
+--047d7bd6abee7915a30515b790a1
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Board: Peter von Jan (CEO)
+<div dir=3D"ltr">Hello Petter,<br><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On Fri, May 8, 2015 at 11:49 PM, Petter Mab=C3=A4cker <spa=
+n dir=3D"ltr">&lt;<a href=3D"mailto:petter@technux.se" target=3D"_blank">pe=
+tter@technux.se</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:r=
+gb(204,204,204);border-left-style:solid;padding-left:1ex">After &#39;6392a6=
+3 rpi-base.inc: Use KERNEL_DEVICETREE by default&#39; was<br>
+introduced, kernel versions &lt; 3.18 might not be buildable. Since full<br=
+>
+device tree support was introduced in 3.18 this change ensures that all<br>
+kernel &lt; 3.18 will automatically disable device tree.<br>
+<br>
+Signed-off-by: Petter Mab=C3=A4cker &lt;<a href=3D"mailto:petter@technux.se=
+">petter@technux.se</a>&gt;<br>
+---<br>
+=C2=A0classes/linux-raspberrypi-base.bbclass=C2=A0 =C2=A0 =C2=A0| 29 ++++++=
++++++++++++++++++++++++<br>
+=C2=A0classes/sdcard_image-rpi.bbclass=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0|=C2=A0 6 ++++--<br>
+=C2=A0recipes-kernel/linux/linux-raspberrypi.inc |=C2=A0 4 +++-<br>
+=C2=A03 files changed, 36 insertions(+), 3 deletions(-)<br>
+=C2=A0create mode 100644 classes/linux-raspberrypi-base.bbclass<br>
+<br>
+diff --git a/classes/linux-raspberrypi-base.bbclass b/classes/linux-raspber=
+rypi-base.bbclass<br>
+new file mode 100644<br>
+index 0000000..4bcadd0<br>
+--- /dev/null<br>
++++ b/classes/linux-raspberrypi-base.bbclass<br>
+@@ -0,0 +1,29 @@<br>
++inherit linux-kernel-base<br>
++<br>
++<br>
++def get_dts(d, ver):<br>
++=C2=A0 =C2=A0 staging_dir =3D d.getVar(&quot;STAGING_KERNEL_BUILDDIR&quot;=
+, True)<br>
++=C2=A0 =C2=A0 dts =3D d.getVar(&quot;KERNEL_DEVICETREE&quot;, True)<br>
++<br>
++=C2=A0 =C2=A0 # d.getVar() might return &#39;None&#39; as a normal string<=
+br>
++=C2=A0 =C2=A0 # leading to &#39;is None&#39; check isn&#39;t enough.<br>
++=C2=A0 =C2=A0 # TODO: Investigate if this is a bug in bitbake<br>
++=C2=A0 =C2=A0 if ver is None or ver =3D=3D &quot;None&quot;:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;&#39;&#39; if &#39;ver&#39; isn&#39;t set=
+ try to grab the kernel version<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 from the kernel staging &#39;&#39;&#39;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 ver =3D get_kernelversion_file(staging_dir)<br=
+>
++<br>
++=C2=A0 =C2=A0 if ver is not None:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 min_ver =3D ver.split(&#39;.&#39;, 3)<br>
++=C2=A0 =C2=A0 else:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 return dts<br>
++<br>
++=C2=A0 =C2=A0 # Always turn off device tree support for kernel&#39;s &lt; =
+3.18<br>
++=C2=A0 =C2=A0 try:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 if int(min_ver[0]) &lt;=3D 3:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if int(min_ver[1]) &lt; 18:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 dts =3D &quot;&quo=
+t;<br>
++=C2=A0 =C2=A0 except IndexError:<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 min_ver =3D None<br>
++<br>
++=C2=A0 =C2=A0 return dts<br>
+diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bb=
+class<br>
+index 1ff664d..ca94566 100644<br>
+--- a/classes/sdcard_image-rpi.bbclass<br>
++++ b/classes/sdcard_image-rpi.bbclass<br>
+@@ -1,4 +1,5 @@<br>
+=C2=A0inherit image_types<br>
++inherit linux-raspberrypi-base<br>
+<br>
+=C2=A0#<br>
+=C2=A0# Create an image that can by written onto a SD card using dd.<br>
+@@ -88,7 +89,8 @@ IMAGE_CMD_rpi-sdimg () {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ROOTFS_SIZE_ALIGNED=3D$(expr ${ROOTFS_SIZE_ALIG=
+NED} - ${ROOTFS_SIZE_ALIGNED} % ${IMAGE_ROOTFS_ALIGNMENT})<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 SDIMG_SIZE=3D$(expr ${IMAGE_ROOTFS_ALIGNMENT} +=
+ ${BOOT_SPACE_ALIGNED} + ${ROOTFS_SIZE_ALIGNED})<br>
+<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0echo &quot;Creating filesystem with Boot partit=
+ion ${BOOT_SPACE_ALIGNED} KiB and RootFS ${ROOTFS_SIZE_ALIGNED} KiB&quot;<b=
+r></blockquote><div><br></div><div>Why do you remove this line? Maybe by mi=
+stake?</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,2=
+04);border-left-style:solid;padding-left:1ex">
++=C2=A0 =C2=A0 =C2=A0 =C2=A0# Check if we are building with device tree sup=
+port<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0DTS=3D&quot;${@get_dts(d, None)}&quot;<br></blo=
+ckquote><div><br></div><div>Aren&#39;t we able to use the same variable nam=
+e, KERNEL_DEVICETREE? What that be a little clearer?=C2=A0</div><div>=C2=A0=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:s=
+olid;padding-left:1ex">
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 # Initialize sdcard image file<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 dd if=3D/dev/zero of=3D${SDIMG} bs=3D1024 count=
+=3D0 seek=3D${SDIMG_SIZE}<br>
+@@ -112,7 +114,7 @@ IMAGE_CMD_rpi-sdimg () {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 mcopy -i ${WORKDIR}=
+/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${M=
+ACHINE}.bin ::uImage<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ;;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 *)<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if test -n &quot;${=
+KERNEL_DEVICETREE}&quot;; then<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if test -n &quot;${=
+DTS}&quot;; then<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 # Copy board device trees to root folder<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 for DTB in ${DT_ROOT}; do<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 DTB_BASE_NAME=3D`basename ${DTB} .dt=
+b`<br>
+diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/li=
+nux/linux-raspberrypi.inc<br>
+index 84d4f9e..7e36408 100644<br>
+--- a/recipes-kernel/linux/linux-raspberrypi.inc<br>
++++ b/recipes-kernel/linux/linux-raspberrypi.inc<br>
+@@ -1,4 +1,5 @@<br>
+=C2=A0require linux.inc<br>
++inherit linux-raspberrypi-base<br>
+<br>
+=C2=A0DESCRIPTION =3D &quot;Linux Kernel for Raspberry Pi&quot;<br>
+=C2=A0SECTION =3D &quot;kernel&quot;<br>
+@@ -26,7 +27,8 @@ UDEV_GE_141 ?=3D &quot;1&quot;<br>
+=C2=A0# See <a href=3D"http://www.yoctoproject.org/docs/current/bitbake-use=
+r-manual/bitbake-user-manual.html#anonymous-python-functions" target=3D"_bl=
+ank">http://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-u=
+ser-manual.html#anonymous-python-functions</a><br>
+=C2=A0python __anonymous () {<br>
+=C2=A0 =C2=A0 =C2=A0kerneltype =3D d.getVar(&#39;KERNEL_IMAGETYPE&#39;, Tru=
+e)<br>
+-=C2=A0 =C2=A0 kerneldt =3D d.getVar(&#39;KERNEL_DEVICETREE&#39;, True)<br>
++=C2=A0 =C2=A0 kerneldt =3D get_dts(d, d.getVar(&#39;LINUX_VERSION&#39;, Tr=
+ue))<br>
++=C2=A0 =C2=A0 d.setVar(&quot;KERNEL_DEVICETREE&quot;, kerneldt)<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0# Add dependency to &#39;rpi-mkimage-native&#39; packag=
+e only if RPi bootloader is used with DT-enable kernel<br>
+=C2=A0 =C2=A0 =C2=A0if kerneldt:<br>
+<span class=3D""><font color=3D"#888888">--<br>
+1.9.1<br>
+<br>
+--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
+r><div class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><di=
+v style=3D"text-align:center"></div><div style=3D"text-align:center"><div a=
+lign=3D"left"><b style=3D"font-family:Arial;font-size:small;color:rgb(51,51=
+,51);text-align:center">Andrei Gherzan</b><br></div><div align=3D"left"><b =
+style=3D"font-family:Arial;font-size:small;color:rgb(51,51,51);text-align:c=
+enter">e: </b><span style=3D"font-family:Arial;font-size:small;color:rgb(51=
+,51,51);text-align:center"><i><a href=3D"mailto:andrei@gherzan.ro" target=
+=3D"_blank">andrei@gherzan.ro</a></i></span></div><div align=3D"left"><span=
+ style=3D"font-family:Arial;font-size:small;color:rgb(51,51,51);text-align:=
+center"><i><b>w:</b> </i><a href=3D"http://www.gherzan.ro" target=3D"_blank=
+">www.gherzan.ro</a></span></div></div></div></div></div></div>
+</div></div>
 
-Supervisory Board: Dr. Ulrich Lohmann (Chairman)
-
-
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
-tionen. Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FC=
-mlich erhalten haben, informieren Sie bitte sofort den Absender und vernich=
-ten Sie diese Mail. Das unerlaubte Kopieren sowie die unbefugte Weitergabe =
-dieser Mail ist nicht gestattet.
-
-This e-mail may contain confidential and/or privileged information. If you =
-are not the intended recipient (or have received this e-mail in error) plea=
-se notify the sender immediately and destroy this e-mail. Any unauthorized =
-copying, disclosure or distribution of the material in this e-mail is stric=
-tly forbidden.
-
+--047d7bd6abee7915a30515b790a1--
