@@ -1,56 +1,62 @@
-Return-Path: <martin.beaudet@intelia.com>
+Return-Path: <b.hutchman@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2193EE00961; Mon, 11 May 2015 10:12:38 -0700 (PDT)
+	id 33456E00961; Mon, 11 May 2015 11:10:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (b.hutchman[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.46 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from smtp-out-2.satelmail.com (smtp-out-2.satelcom.qc.ca
-	[208.77.80.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3653EE004F6
-	for <yocto@yoctoproject.org>; Mon, 11 May 2015 10:12:36 -0700 (PDT)
-Received: from mta-1.satelcom.qc.ca (mta-1.satelcom.qc.ca [172.16.16.49])
-	by smtp-out-2.satelmail.com (Postfix) with ESMTP id BD4B941F65
-	for <yocto@yoctoproject.org>; Mon, 11 May 2015 13:12:35 -0400 (EDT)
-Received: from assp-db2.satelcom.qc.ca (unknown [172.16.16.118])
-	by mta-1.satelcom.qc.ca (Postfix) with ESMTPS id B4B8641F85
-	for <yocto@yoctoproject.org>; Mon, 11 May 2015 13:12:35 -0400 (EDT)
-Received: from smtp-1.satelcom.qc.ca (localhost [127.0.0.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by assp-db2.satelcom.qc.ca (Postfix) with ESMTPS id 64B18379C0
-	for <yocto@yoctoproject.org>; Mon, 11 May 2015 13:12:35 -0400 (EDT)
-Received: from smtp-1.satelcom.qc.ca ([172.16.16.54]
-	helo=smtp-1.satelcom.qc.ca)
-	by assp-db.satelcom.qc.ca with SMTP (2.4.3); 11 May 2015 13:12:35 -0400
-Received: from remote.intelia.com (unknown [204.80.6.198])
-	by smtp-1.satelcom.qc.ca (Postfix) with ESMTPS id 2488541E40
-	for <yocto@yoctoproject.org>; Mon, 11 May 2015 13:12:35 -0400 (EDT)
-Received: from CT-SERVEUR.ctaq.local ([fe80::7895:8268:18d2:9278]) by
-	CT-SERVEUR.ctaq.local ([fe80::7895:8268:18d2:9278%10]) with mapi;
-	Mon, 11 May 2015 13:12:34 -0400
-From: Martin Beaudet <martin.beaudet@intelia.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Mon, 11 May 2015 13:12:31 -0400
-Thread-Topic: QT5 - Beaglebone Black (meta-toolchain-qt5) error
-Thread-Index: AdCMDWbR6rdY0l5BSVatYfZuMI9yDQ==
-Message-ID: <muid.8573ca2507.00FFF1D896D3FF4482179DF8C27DEFAFA38C360AD2@CT-SERVEUR.ctaq.local>
-Accept-Language: fr-FR, fr-CA
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: fr-FR, fr-CA
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f46.google.com (mail-oi0-f46.google.com
+	[209.85.218.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D45ADE004F6;
+	Mon, 11 May 2015 11:10:40 -0700 (PDT)
+Received: by oift201 with SMTP id t201so111212017oif.3;
+	Mon, 11 May 2015 11:10:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=5HwmrsWD8cmjRA9e2P2gLcOd0+jgYxLtY4NXDpaqBok=;
+	b=pRwmyZKR133b0Mkn9Q/IOPT8UZccWSXp+Su8GyLaUOGcBd9Wdi7gEWDyVAkgwRVC+J
+	euPFC3TGdPedunYZQjII3QzcAWiIDNXW+unyQIJUjDzwqoi6925n1WZVDzshsLJr+vrW
+	tYgRu8y6CsKqLsxM0Y7cIwKiGNiVWWRJJ/3b2FhTIdPuLZTnOvAUrGgXvcf3L7GQZo+p
+	60vBhlbYFCZ0tI2lBeNiQK8seJoeUk1oXJ2hc3mb8gVHTj6pBxnk9+N7t0UxOsrP//9H
+	Eg/uiRo3KzefwRmvEexnZ1Y7WnDbDDjEWKjnMS+2SlYsPf3RkP2JGhlm/t6EYbHBVe42
+	1PeA==
 MIME-Version: 1.0
-X-Assp-Version: 2.4.3(15075) on assp-db.satelcom.qc.ca
-X-Assp-ID: assp-db.satelcom.qc.ca a119-64355-11618
-X-Assp-Session: 1291F204 (mail 1)
-X-Assp-Envelope-From: martin.beaudet@intelia.com
-X-Assp-Intended-For: yocto@yoctoproject.org
-X-Assp-Server-TLS: yes
-Subject: QT5 - Beaglebone Black (meta-toolchain-qt5) error
+X-Received: by 10.60.84.65 with SMTP id w1mr9252788oey.2.1431367839940; Mon,
+	11 May 2015 11:10:39 -0700 (PDT)
+Received: by 10.60.6.33 with HTTP; Mon, 11 May 2015 11:10:39 -0700 (PDT)
+In-Reply-To: <554236CB.6000604@windriver.com>
+References: <ce604c0c1a1d4131a72119dbecb97ab2@ASTRO-EX1.Bensberg.de>
+	<553F90A3.9070501@windriver.com>
+	<82ac67a7e46e416dbabdda01c42fc89a@ASTRO-EX1.Bensberg.de>
+	<553FD83A.6040407@windriver.com>
+	<4f2d75bf33ac423ab064f754e0b67655@ASTRO-EX1.Bensberg.de>
+	<5540DB34.6010102@windriver.com>
+	<a01714e680f8470cb21bb0b52e66c91e@ASTRO-EX1.Bensberg.de>
+	<55421DA2.9060909@windriver.com>
+	<e134e69a27bd460a9da71929a7f78d9a@ASTRO-EX1.Bensberg.de>
+	<554236CB.6000604@windriver.com>
+Date: Mon, 11 May 2015 14:10:39 -0400
+Message-ID: <CAFZh4h9oL7K-=Nxhy=GV0k31ZgnPQuhFLQ-r_fReSRk1ZRhk1g@mail.gmail.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Migration from 1.7.1 to 1.8 - kernel-abiversion missing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,176 +68,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 May 2015 17:12:38 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_00FFF1D896D3FF4482179DF8C27DEFAFA38C360AD2CTSERVEURctaq_"
+X-List-Received-Date: Mon, 11 May 2015 18:10:45 -0000
+Content-Type: text/plain; charset=UTF-8
 
---_000_00FFF1D896D3FF4482179DF8C27DEFAFA38C360AD2CTSERVEURctaq_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On Thu, Apr 30, 2015 at 10:06 AM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+> It is plausible. But in theory, linux-dummy should still provide
+> what you need (but since it doesn't build anything, there is
+> no abi .. and no modules can be built against it) .. so the
+> error isn't graceful.
+>
+> Bruce
 
-Hi,
+I can confirm this same problem is happening to me.  I just updated
+one of my builds from 1.7 to 1.8 and am also getting my rootfs to fail
+due to no abi kernel version:
 
-I'm trying to build the meta-toolchain-qt5 for Beaglebone Black (daisy) and=
- I'm getting and error.
+ERROR: No kernel-abiversion file found
+(/home/hutch/yocto_1.8_davinci/poky/build/tmp/sysroots/am180x-evm/pkgdata/kernel-depmod/kernel-abiversion),
+cannot run depmod, aborting
+ERROR: Function failed: do_rootfs
+ERROR: Logfile of failure stored in:
+/home/hutch/yocto_1.8_davinci/poky/build/tmp/work/am180x_evm-poky-linux-gnueabi/core-image-nodeam/1.0-r0/temp/log.do_rootfs.23558
+ERROR: Task 7 (/home/hutch/yocto_1.8_davinci/poky/meta/recipes-core/images/core-image-nodeam.bb,
+do_rootfs) failed with exit code '1'
 
-Build Configuration:
-BB_VERSION =3D "1.22.0"
-BUILD_SYS =3D "x86_64-linux"
-NATIVELSBSTRING =3D "Ubuntu-14.10"
-TARGET_SYS =3D "arm-poky-linux-gnueabi"
-MACHINE =3D "beaglebone"
-DISTRO =3D "poky"
-DISTRO_VERSION =3D "1.6.2"
-TUNE_FEATURES =3D "armv7a vfp thumb neon callconvention-hard cortexa8"
-TARGET_FPU =3D "vfp-neon"
-meta
-meta-yocto =3D "daisy:02e603e48c6e0b0492f596890adadf6590fa692c"
-meta-oe =3D "daisy:d3d14d3fcca7fcde362cf0b31411dc4eea6d20aa"
-meta-ti =3D "daisy:3a95559c124d3ce8c076b3fae5859435977d1ac2"
-meta-qt5 =3D "master:87235825459d376bf4537c9523eb2496e15893aa"
-meta-embarcados
-meta-bbb =3D "daisy:9bd79b23a50e407a990a6b00724470c4cbedb71b"
+This is for an AM1808 build.  I'm using fido branch of yocto and
+openembedded and master of meta-ti (since it doesn't have a fido
+branch yet).
 
-I use this command to build the SDK : bitbake meta-toolchain-qt5
+STAGING_KERNEL_BUILDDIR="/home/hutch/yocto_1.8_davinci/poky/build/tmp/work-shared/am180x-evm/kernel-build-artifacts"
 
+I didn't do anything different in my local.conf than what I normally
+do.  linux-dummy was also built with my last yocto 1.7 build and it
+didn't have this problem.
 
-Here is the error :
-------------------------------------------------------------
-Collected errors:
-* check_data_file_clashes: Package libgles-omap3 wants to install file /hom=
-e/xxx/Sonar/poky/beaglebone/tmp/work/cortexa8t2hf-vfp-neon-poky-linux-gnuea=
-bi/meta-toolchain-qt5/1.0-r0/sdk/image/opt/poky/1.6.2/sysroots/cortexa8t2hf=
--vfp-neon-poky-linux-gnueabi/usr/lib/libGLESv2.so<http://libglesv2.so/>
-But that file is already provided by package * libgles2-mesa-dev
-* opkg_install_cmd: Cannot install package packagegroup-qt5-toolchain-targe=
-t.
-------------------------------------------------------------
+Regards,
 
+Brian
 
-How can I correct this ? I presume I have to use the PREFERED_PROVIDER or s=
-omething like this but I did not succeed yet.
-
---_000_00FFF1D896D3FF4482179DF8C27DEFAFA38C360AD2CTSERVEURctaq_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"Content-Type" CONTENT=
-=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
-oft Word 14 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";
-	mso-fareast-language:EN-US;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-span.apple-converted-space
-	{mso-style-name:apple-converted-space;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DFR-CA link=3Dblue vli=
-nk=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span lang=3DEN-=
-US>Hi,<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&n=
-bsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>I'm trying to =
-build the meta-toolchain-qt5 for Beaglebone Black (daisy) and I'm getting a=
-nd error.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p=
->&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>Build Confi=
-guration:<br>BB_VERSION =3D &quot;1.22.0&quot;<br>BUILD_SYS =3D &quot;x86_6=
-4-linux&quot;<br>NATIVELSBSTRING =3D &quot;Ubuntu-14.10&quot;<br>TARGET_SYS=
- =3D &quot;arm-poky-linux-gnueabi&quot;<br>MACHINE =3D &quot;beaglebone&quo=
-t;<br>DISTRO =3D &quot;poky&quot;<br>DISTRO_VERSION =3D &quot;1.6.2&quot;<b=
-r>TUNE_FEATURES =3D &quot;armv7a vfp thumb neon callconvention-hard cortexa=
-8&quot;<br>TARGET_FPU =3D &quot;vfp-neon&quot;<br>meta&nbsp;<br>meta-yocto =
-=3D &quot;daisy:02e603e48c6e0b0492f596890adadf6590fa692c&quot;<br>meta-oe =
-=3D &quot;daisy:d3d14d3fcca7fcde362cf0b31411dc4eea6d20aa&quot;<br>meta-ti =
-=3D &quot;daisy:3a95559c124d3ce8c076b3fae5859435977d1ac2&quot;<br>meta-qt5 =
-=3D &quot;master:87235825459d376bf4537c9523eb2496e15893aa&quot;<br>meta-emb=
-arcados&nbsp;<br>meta-bbb =3D &quot;daisy:9bd79b23a50e407a990a6b00724470c4c=
-bedb71b&quot;<o:p></o:p></span></p><p class=3DMsoNormal style=3D'box-sizing=
-: border-box;orphans: auto;widows: 1;-webkit-text-stroke-width: 0px;word-sp=
-acing:0px'><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNor=
-mal><span lang=3DEN-US>I use this command to build the SDK : bitbake meta-t=
-oolchain-qt5<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><=
-o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US><o:p>&nb=
-sp;</o:p></span></p><p class=3DMsoNormal style=3D'box-sizing: border-box;or=
-phans: auto;widows: 1;-webkit-text-stroke-width: 0px;word-spacing:0px'><spa=
-n lang=3DEN-US>Here is the error :<o:p></o:p></span></p><p class=3DMsoNorma=
-l style=3D'box-sizing: border-box;orphans: auto;widows: 1;-webkit-text-stro=
-ke-width: 0px;word-spacing:0px'><span lang=3DEN-US>------------------------=
-------------------------------------<br>Collected errors:<br>* check_data_f=
-ile_clashes: Package libgles-omap3 wants to install file /home/xxx/Sonar/po=
-ky/beaglebone/tmp/work/cortexa8t2hf-vfp-neon-poky-linux-gnueabi/meta-toolch=
-ain-qt5/1.0-r0/sdk/image/opt/poky/1.6.2/sysroots/cortexa8t2hf-vfp-neon-poky=
--linux-gnueabi/usr/lib/<a href=3D"http://libglesv2.so/"><span style=3D'colo=
-r:windowtext;text-decoration:none'>libGLESv2.so</span></a><br>But that file=
- is already provided by package * libgles2-mesa-dev<br>* opkg_install_cmd: =
-Cannot install package packagegroup-qt5-toolchain-target.<br>--------------=
-----------------------------------------------<o:p></o:p></span></p><p clas=
-s=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMso=
-Normal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal =
-style=3D'box-sizing: border-box;orphans: auto;widows: 1;-webkit-text-stroke=
--width: 0px;word-spacing:0px'><span lang=3DEN-US>How can I correct this ? I=
- presume I have to use the PREFERED_PROVIDER or something like this but I d=
-id not succeed yet.<o:p></o:p></span></p></div></body></html>=
-
---_000_00FFF1D896D3FF4482179DF8C27DEFAFA38C360AD2CTSERVEURctaq_--
