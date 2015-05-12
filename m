@@ -1,42 +1,40 @@
-Return-Path: <peter.t.smith@alstom.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 88FAAE0098D; Tue, 12 May 2015 05:21:23 -0700 (PDT)
+	id 5A49FE007B6; Tue, 12 May 2015 08:35:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [159.245.16.223 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 604 seconds by postgrey-1.32 at yocto-www;
-	Tue, 12 May 2015 05:21:19 PDT
-Received: from MCEGSMTP3.alstom.com (mcegsmtp3.alstom.com [159.245.16.223])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A55F8E0097D
-	for <yocto@yoctoproject.org>; Tue, 12 May 2015 05:21:19 -0700 (PDT)
-Received: from mail.alstom.com (unknown [10.228.1.11]) by MCEGSMTP3.alstom.com
-	with smtp (TLS: TLSv1/SSLv3,128bits,AES128-SHA)
-	id 5132_e670_5e708843_d907_4558_915e_fdff68f98ea2;
-	Tue, 12 May 2015 14:11:09 +0200
-Received: from 041-DB3MPN1-092.041d.mgd.msft.net ([169.254.2.253]) by
-	041-DB3MMR1-001.041d.mgd.msft.net ([10.228.1.11]) with mapi id
-	14.03.0224.003; Tue, 12 May 2015 12:11:08 +0000
-From: SMITH Peter T <peter.t.smith@alstom.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Why does my bitbake build hang fetching linux-yocto-3.14.git
-Thread-Index: AdCMrADmx43qIsLuT9K7Jn8+7rN9xA==
-Date: Tue, 12 May 2015 12:11:07 +0000
-Message-ID: <92BAB684D31DCD4A8F623A7EE7FD8C06013EE91D@041-DB3MPN1-092.041d.mgd.msft.net>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.32.130.85]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2EC05E0027F;
+	Tue, 12 May 2015 08:35:27 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.9/8.14.9) with ESMTP id t4CFZLUT027581
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 12 May 2015 08:35:22 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 12 May 2015 08:35:21 -0700
+Message-ID: <55521DB8.2070606@windriver.com>
+Date: Tue, 12 May 2015 11:35:20 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 12 May 2015 08:24:08 -0700
-Subject: Why does my bitbake build hang fetching linux-yocto-3.14.git
+To: Brian Hutchinson <b.hutchman@gmail.com>
+References: <ce604c0c1a1d4131a72119dbecb97ab2@ASTRO-EX1.Bensberg.de>	<553F90A3.9070501@windriver.com>	<82ac67a7e46e416dbabdda01c42fc89a@ASTRO-EX1.Bensberg.de>	<553FD83A.6040407@windriver.com>	<4f2d75bf33ac423ab064f754e0b67655@ASTRO-EX1.Bensberg.de>	<5540DB34.6010102@windriver.com>	<a01714e680f8470cb21bb0b52e66c91e@ASTRO-EX1.Bensberg.de>	<55421DA2.9060909@windriver.com>	<e134e69a27bd460a9da71929a7f78d9a@ASTRO-EX1.Bensberg.de>	<554236CB.6000604@windriver.com>	<CAFZh4h9oL7K-=Nxhy=GV0k31ZgnPQuhFLQ-r_fReSRk1ZRhk1g@mail.gmail.com>	<5550FD98.1050507@windriver.com>
+	<CAFZh4h-SqSVsG_HXrx3H=QfDs3DH5GoKmFCgwBgGq90+B4WB5A@mail.gmail.com>
+In-Reply-To: <CAFZh4h-SqSVsG_HXrx3H=QfDs3DH5GoKmFCgwBgGq90+B4WB5A@mail.gmail.com>
+Cc: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Migration from 1.7.1 to 1.8 - kernel-abiversion missing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,259 +46,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 May 2015 12:21:23 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_92BAB684D31DCD4A8F623A7EE7FD8C06013EE91D041DB3MPN109204_"
+X-List-Received-Date: Tue, 12 May 2015 15:35:31 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_92BAB684D31DCD4A8F623A7EE7FD8C06013EE91D041DB3MPN109204_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hi All
-
-Fairly new to Yocto, trying to build Wind River's Linux distro (https://git=
-hub.com/WindRiver-OpenSourceLabs). Everything goes to plan until bitbake ge=
-ts round to fetching a clone of linux-yocto-3.14 (see output below), when b=
-itbake just hangs forever (I left it overnight).
-
-If however I try to clone manually with "git -c core.fsyncobjectfiles=3D0 c=
-lone --bare --mirror http://git.yoctoproject.org/git/linux-yocto-3.14.git /=
-home/user/wr-core/build-xilinx-zynq/downloads/git2/git.yoctoproject.org.git=
-.linux-yocto-3.14.git" which seems to be the command line executed by bitba=
-ke, everything works as expected.
-
-Can anyone point me in the right direction?
-
-Regards
-Peter Smith
-
-user@user-VirtualBox:~/wr-core/build-xilinx-zynq$ bitbake virtual/kernel
-Loading cache: 100% |######################################################=
-########################################| ETA:  00:00:00
-Loaded 1603 entries from dependency cache.
-Parsing recipes: 100% |####################################################=
-########################################| Time: 00:00:01
-Parsing of 1180 .bb files complete (1178 cached, 2 parsed). 1604 targets, 9=
-4 skipped, 0 masked, 0 errors.
-NOTE: Resolving any missing task queue dependencies
-
-Build Configuration:
-BB_VERSION        =3D "1.24.0"
-BUILD_SYS         =3D "x86_64-linux"
-NATIVELSBSTRING   =3D "Ubuntu-14.04"
-DISTRO            =3D "wrlinux-small"
-DISTRO_VERSION    =3D "7.0.0.2"
-MACHINE           =3D "xilinx-zynq"
-DEFAULTTUNE       =3D "armv7at-neon"
-TARGET_SYS        =3D "arm-wrs-linux-gnueabi"
-TUNE_FEATURES     =3D "arm armv7a vfp thumb neon"
-TARGET_FPU        =3D "vfp-neon"
-wrlinux           =3D "(detachedfrom9105011):9105011489c249abcfec7970ea584a=
-b65c1dd972"
-meta              =3D "(detachedfrom7cccaaf):7cccaafc69e7758d4c2cfd2b0d19e0=
-6c7fbb10ee"
-meta-webserver    =3D "(detachedfromef02194):ef02194433c135da983695a0201660=
-ff66c96be1"
-meta-perl-subset  =3D "(detachedfrom80e6f87):80e6f878aae0054e7cf00d166654f3=
-a19ea14db8"
-meta-python-subset =3D "(detachedfrom4f1eab3):4f1eab38f8e603de1777b7cd3db05=
-34fd1400997"
-meta-oe-subset    =3D "(detachedfromf777254):f77725420cd906496689e3aeb22359=
-7b011f39fc"
-meta-gnome-subset =3D "(detachedfromea11bab):ea11babea7de95c98efd7e45e10ea7=
-82657b494c"
-meta-networking   =3D "(detachedfrom7cd5080):7cd508084fb4eff70e0fe96124555b=
-9ef31007de"
-wr-fixes          =3D "(detachedfrom1a6a90d):1a6a90d8b68585be2385d639de67a6=
-edc2f792b5"
-wr-base           =3D "(detachedfromc7aae03):c7aae03c71ffc38467adfb838a57c9=
-0403e5238d"
-xilinx-zynq       =3D "(detachedfromf58d751):f58d751ca8372e34df39c9bb5053e6=
-aac9588b04"
-wr-kernel         =3D "(detachedfrom65f8f3e):65f8f3e6a6313a7c85b7ea1a42267b=
-f548b3f04d"
-wrlabs-integration =3D "(detachedfrom47e351d):47e351d1ed1f8c2ac5221934a7ace=
-b458c41c30b"
-
-NOTE: Preparing runqueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-Currently 1 running tasks (200 of 434):
-0: linux-yocto-3.14.39+gitAUTOINC+fb6271a942_db1db62eee-r0 do_fetch (pid 83=
-17)
-
-
-
-________________________________
-CONFIDENTIALITY : This e-mail and any attachments are confidential and may =
-be privileged. If you are not a named recipient, please notify the sender i=
-mmediately and do not disclose the contents to another person, use it for a=
-ny purpose or store or copy the information in any medium.
-
---_000_92BAB684D31DCD4A8F623A7EE7FD8C06013EE91D041DB3MPN109204_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 2015-05-12 10:20 AM, Brian Hutchinson wrote:
+> On Mon, May 11, 2015 at 3:06 PM, Bruce Ashfield
+> <bruce.ashfield@windriver.com> wrote:
+>> On 2015-05-11 02:10 PM, Brian Hutchinson wrote:
+>>>
+>>> On Thu, Apr 30, 2015 at 10:06 AM, Bruce Ashfield
+>>> <bruce.ashfield@windriver.com> wrote:
+>>>>
+>>>> It is plausible. But in theory, linux-dummy should still provide
+>>>> what you need (but since it doesn't build anything, there is
+>>>> no abi .. and no modules can be built against it) .. so the
+>>>> error isn't graceful.
+>>>>
+>>>> Bruce
+>>>
+>>>
+>>> I can confirm this same problem is happening to me.  I just updated
+>>> one of my builds from 1.7 to 1.8 and am also getting my rootfs to fail
+>>> due to no abi kernel version:
+>>
+>>
+>> We still have a race condition in the 1.8 branch for the population
+>> of the build-artifacts directory.
+>>
+>> If modules start building, they'll race against the population of the
+>> abiversion, and you may see that message.
+>>
+>> There's a proposed patch for master, but I don't think it is in
+>> fido yet.
+>>
+>> Bruce
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-GB" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi All<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Fairly new to Yocto, trying to build Wind River&#821=
-7;s Linux distro (<a href=3D"https://github.com/WindRiver-OpenSourceLabs">h=
-ttps://github.com/WindRiver-OpenSourceLabs</a>). Everything goes to plan un=
-til bitbake gets round to fetching a clone
- of linux-yocto-3.14 (see output below), when bitbake just hangs forever (I=
- left it overnight).<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">If however I try to clone manually with &#8220;git -=
-c core.fsyncobjectfiles=3D0 clone --bare --mirror http://git.yoctoproject.o=
-rg/git/linux-yocto-3.14.git /home/user/wr-core/build-xilinx-zynq/downloads/=
-git2/git.yoctoproject.org.git.linux-yocto-3.14.git&#8221;
- which seems to be the command line executed by bitbake, everything works a=
-s expected.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Can anyone point me in the right direction?<o:p></o:=
-p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards<o:p></o:p></p>
-<p class=3D"MsoNormal">Peter Smith<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">user@user-VirtualBox:~/wr-core/build-xilinx-zynq$ bi=
-tbake virtual/kernel<o:p></o:p></p>
-<p class=3D"MsoNormal">Loading cache: 100% |###############################=
-###############################################################| ETA:&nbsp;=
- 00:00:00<o:p></o:p></p>
-<p class=3D"MsoNormal">Loaded 1603 entries from dependency cache.<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">Parsing recipes: 100% |#############################=
-###############################################################| Time: 00:0=
-0:01<o:p></o:p></p>
-<p class=3D"MsoNormal">Parsing of 1180 .bb files complete (1178 cached, 2 p=
-arsed). 1604 targets, 94 skipped, 0 masked, 0 errors.<o:p></o:p></p>
-<p class=3D"MsoNormal">NOTE: Resolving any missing task queue dependencies<=
-o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Build Configuration:<o:p></o:p></p>
-<p class=3D"MsoNormal">BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- =3D &quot;1.24.0&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; =3D &quot;x86_64-linux&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">NATIVELSBSTRING&nbsp;&nbsp; =3D &quot;Ubuntu-14.04&q=
-uot;<o:p></o:p></p>
-<p class=3D"MsoNormal">DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; =3D &quot;wrlinux-small&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">DISTRO_VERSION&nbsp;&nbsp;&nbsp; =3D &quot;7.0.0.2&q=
-uot;<o:p></o:p></p>
-<p class=3D"MsoNormal">MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; =3D &quot;xilinx-zynq&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">DEFAULTTUNE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D =
-&quot;armv7at-neon&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- =3D &quot;arm-wrs-linux-gnueabi&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;arm =
-armv7a vfp thumb neon&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
- =3D &quot;vfp-neon&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">wrlinux&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; =3D &quot;(detachedfrom9105011):9105011489c249abcfec7970ea5=
-84ab65c1dd972&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;(detachedfrom7cccaaf):7cccaafc69e7=
-758d4c2cfd2b0d19e06c7fbb10ee&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">meta-webserver&nbsp;&nbsp;&nbsp; =3D &quot;(detached=
-fromef02194):ef02194433c135da983695a0201660ff66c96be1&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">meta-perl-subset&nbsp; =3D &quot;(detachedfrom80e6f8=
-7):80e6f878aae0054e7cf00d166654f3a19ea14db8&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">meta-python-subset =3D &quot;(detachedfrom4f1eab3):4=
-f1eab38f8e603de1777b7cd3db0534fd1400997&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">meta-oe-subset&nbsp;&nbsp;&nbsp; =3D &quot;(detached=
-fromf777254):f77725420cd906496689e3aeb223597b011f39fc&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">meta-gnome-subset =3D &quot;(detachedfromea11bab):ea=
-11babea7de95c98efd7e45e10ea782657b494c&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">meta-networking&nbsp;&nbsp; =3D &quot;(detachedfrom7=
-cd5080):7cd508084fb4eff70e0fe96124555b9ef31007de&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">wr-fixes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; =3D &quot;(detachedfrom1a6a90d):1a6a90d8b68585be2385d639de67a6ed=
-c2f792b5&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">wr-base&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp; =3D &quot;(detachedfromc7aae03):c7aae03c71ffc38467adfb838a5=
-7c90403e5238d&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">xilinx-zynq&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D =
-&quot;(detachedfromf58d751):f58d751ca8372e34df39c9bb5053e6aac9588b04&quot;<=
-o:p></o:p></p>
-<p class=3D"MsoNormal">wr-kernel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; =3D &quot;(detachedfrom65f8f3e):65f8f3e6a6313a7c85b7ea1a42267bf548b3f=
-04d&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">wrlabs-integration =3D &quot;(detachedfrom47e351d):4=
-7e351d1ed1f8c2ac5221934a7aceb458c41c30b&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">NOTE: Preparing runqueue<o:p></o:p></p>
-<p class=3D"MsoNormal">NOTE: Executing SetScene Tasks<o:p></o:p></p>
-<p class=3D"MsoNormal">NOTE: Executing RunQueue Tasks<o:p></o:p></p>
-<p class=3D"MsoNormal">Currently 1 running tasks (200 of 434):<o:p></o:p></=
-p>
-<p class=3D"MsoNormal">0: linux-yocto-3.14.39&#43;gitAUTOINC&#43;fb6271a942=
-_db1db62eee-r0 do_fetch (pid 8317)<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<br>
-<hr>
-<font face=3D"Arial" color=3D"Black" size=3D"2">CONFIDENTIALITY : This e-ma=
-il and any attachments are confidential and may be privileged. If you are n=
-ot a named recipient, please notify the sender immediately and do not discl=
-ose the contents to another person, use
- it for any purpose or store or copy the information in any medium.<br>
-</font>
-</body>
-</html>
+> Hi Bruce,
+>
+> I did some searches and looks like there are a number of 'race'
+> condition fixes but it wasn't obvious which one I may need.  Is it
+> this one:
+> http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=02d0a003d603266114512160b209876199241e98
+>
 
---_000_92BAB684D31DCD4A8F623A7EE7FD8C06013EE91D041DB3MPN109204_--
+That's the one that should make sure that the shared workdir
+(Which has the abiversion) is in place before building any modules.
+
+I can't say that it is exactly your issue, but it is the change
+I was thinking of.
+
+Bruce
+
+> Regards,
+>
+> Brian
+>
+
+
