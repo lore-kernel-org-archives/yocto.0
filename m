@@ -1,26 +1,42 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <peter.t.smith@alstom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D4239E0098D; Tue, 12 May 2015 08:07:24 -0700 (PDT)
+	id 88FAAE0098D; Tue, 12 May 2015 05:21:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [159.245.16.223 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C8B5E007B6
-	for <yocto@yoctoproject.org>; Tue, 12 May 2015 08:07:21 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id EA8C284AEB94
-	for <yocto@yoctoproject.org>; Tue, 12 May 2015 11:07:19 -0400 (EDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 604 seconds by postgrey-1.32 at yocto-www;
+	Tue, 12 May 2015 05:21:19 PDT
+Received: from MCEGSMTP3.alstom.com (mcegsmtp3.alstom.com [159.245.16.223])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A55F8E0097D
+	for <yocto@yoctoproject.org>; Tue, 12 May 2015 05:21:19 -0700 (PDT)
+Received: from mail.alstom.com (unknown [10.228.1.11]) by MCEGSMTP3.alstom.com
+	with smtp (TLS: TLSv1/SSLv3,128bits,AES128-SHA)
+	id 5132_e670_5e708843_d907_4558_915e_fdff68f98ea2;
+	Tue, 12 May 2015 14:11:09 +0200
+Received: from 041-DB3MPN1-092.041d.mgd.msft.net ([169.254.2.253]) by
+	041-DB3MMR1-001.041d.mgd.msft.net ([10.228.1.11]) with mapi id
+	14.03.0224.003; Tue, 12 May 2015 12:11:08 +0000
+From: SMITH Peter T <peter.t.smith@alstom.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Why does my bitbake build hang fetching linux-yocto-3.14.git
+Thread-Index: AdCMrADmx43qIsLuT9K7Jn8+7rN9xA==
+Date: Tue, 12 May 2015 12:11:07 +0000
+Message-ID: <92BAB684D31DCD4A8F623A7EE7FD8C06013EE91D@041-DB3MPN1-092.041d.mgd.msft.net>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.32.130.85]
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Tue, 12 May 2015 15:07:19 -0000
-Message-ID: <20150512150719.31086.18403@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+X-Mailman-Approved-At: Tue, 12 May 2015 08:24:08 -0700
+Subject: Why does my bitbake build hang fetching linux-yocto-3.14.git
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,207 +48,259 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 May 2015 15:07:24 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 12 May 2015 12:21:23 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_92BAB684D31DCD4A8F623A7EE7FD8C06013EE91D041DB3MPN109204_"
 
-This mail was sent out by Recipe reporting system.
+--_000_92BAB684D31DCD4A8F623A7EE7FD8C06013EE91D041DB3MPN109204_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade this time, they can fill in
-RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
-recipe remainder until newer upstream version was detected.
+Hi All
 
-Example:
-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
+Fairly new to Yocto, trying to build Wind River's Linux distro (https://git=
+hub.com/WindRiver-OpenSourceLabs). Everything goes to plan until bitbake ge=
+ts round to fetching a clone of linux-yocto-3.14 (see output below), when b=
+itbake just hangs forever (I left it overnight).
 
-You can check the detail information at:
+If however I try to clone manually with "git -c core.fsyncobjectfiles=3D0 c=
+lone --bare --mirror http://git.yoctoproject.org/git/linux-yocto-3.14.git /=
+home/user/wr-core/build-xilinx-zynq/downloads/git2/git.yoctoproject.org.git=
+.linux-yocto-3.14.git" which seems to be the command line executed by bitba=
+ke, everything works as expected.
 
-http://packages.yoctoproject.org/
+Can anyone point me in the right direction?
 
-Package               Version        Upstream version      Maintainer           NoUpgradeReason
---------------------  -------------  --------------------  -------------------  ------------------------------
-nfs-utils             1.3.1          1.3.2                 Alejandro Hernandez
-midori                0.5.8          0.5.10                Alejandro Hernandez
-python-smmap          0.8.2          0.9.0                 Alejandro Hernandez
-python                2.7.9          3.5.0a4               Alejandro Hernandez
-which                 2.20           2.21                  Alejandro Hernandez
-gnome-icon-theme      2.31.0         3.12.0                Alejandro Hernandez  waiting for the sato gtk3 port
-jpeg                  8d             9a                    Aníbal Limón         webkit-gtk 1.8.3 doesn't wo...
-sqlite3               3.8.7.4        3.8.10.1.             Aníbal Limón
-mc                    4.8.13         4.8.14                Aníbal Limón
-screen                4.0.3          4.2.1                 Aníbal Limón
-nettle                2.7.1          3.1rc3                Armin Kuster         3.0.0 breaks gnutls, api ch...
-pinentry              0.9.1          0.9.2                 Armin Kuster
-linux-libc-headers    3.19           3.19.8                Bruce Ashfield
-console-tools         0.3.2          1999.03.02            Chen Qi
-systemd               219+gitX       21585a6fabdd3e43c...  Chen Qi
-util-linux            2.26.1         2.26.2                Chen Qi
-gawk                  4.1.1          4.1.2                 Chen Qi              Version 4.1.0 requires Auto...
-dbus-test             1.8.10         1.9.14                Chong Lu
-libpcre               8.36           8.37                  Chong Lu
-iproute2              3.17.0         4.0.0                 Cristian Iorga
-libpcap               1.6.2          1.7.3                 Cristian Iorga
-wpa-supplicant        2.3            2.4                   Cristian Iorga
-gst-plugins-ugly      0.10.19        1.4.5                 Cristian Iorga
-alsa-utils-alsaconf   1.0.28         1.0.29                Cristian Iorga
-gst-ffmpeg            0.10.13        0.11.2                Cristian Iorga
-gst-fluendo-mp3       0.10.31        0.10.32               Cristian Iorga
-gst-plugins-bad       0.10.23        1.4.5                 Cristian Iorga       not compatible with gst-flu...
-gst-plugins-base      0.10.36        1.4.5                 Cristian Iorga       not compatible with gst-flu...
-gst-plugins-good      0.10.31        1.4.5                 Cristian Iorga       not compatible with gst-flu...
-gstreamer             0.10.36        1.4.5                 Cristian Iorga       not compatible with gst-fl...
-libvorbis             1.3.4          1.3.5                 Cristian Iorga
-libatomics-ops        7.2            7.4.0                 Cristian Iorga
-speex                 1.2rc1         1.2rc2                Cristian Iorga
-db                    6.0.30         6.1.23.NC             Cristian Iorga       API compatibility issue
-libical               1.0.0          1.0.1                 Cristian Iorga
-libtirpc              0.2.5          0.3.0                 Cristian Iorga
-harfbuzz              0.9.38         0.9.40                Cristian Iorga
-linux-yocto-rt        3.14.36+gitX   3.14.39+gitAUTOIN...  Darren Hart
-u-boot-fw-utils       v2015.01+gitX  v2015.04+gitAUTOI...  Denys Dmytriyenko
-u-boot-mkimage        v2015.01+gitX  v2015.04+gitAUTOI...  Denys Dmytriyenko
-u-boot                v2015.01+gitX  v2015.04+gitAUTOI...  Denys Dmytriyenko
-ncurses               5.9            20150509              Hongxu Jia
-distcc                3.1            3.2rc1                Hongxu Jia
-apr                   1.5.1          1.5.2                 Hongxu Jia
-qmmp                  0.7.7          0.8.4                 Hongxu Jia
-perl                  5.20.0         5.21.11               Hongxu Jia
-createrepo            0.4.11         0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-gnupg                 2.1.2          2.1.4                 Hongxu Jia
-bash                  4.3            4.3.30                Hongxu Jia           The latest version in yocto...
-ghostscript           9.15           9.16                  Hongxu Jia
-alsa-tools            1.0.28         1.0.29                Kai Kang
-libx11-diet           1.6.2          1.6.3                 Kai Kang
-python-mako           0.9.1          1.0.1                 Khem Raj
-python-nose           1.2.1          1.3.6                 Khem Raj
-python-numpy          1.7.0          1.9.2                 Khem Raj
-python3-distribute    0.6.32         0.7.3                 Khem Raj
-rpm                   5.4.14         5.4.15                Mark Hatle
-libpfm4               4.3.0          4.6.0                 Matthew McClintock
-xf86-video-cirrus     1.5.2          1.5.3                 No maintainer
-gcc-sanitizers        4.9.2          5.1.0                 No maintainer
-debianutils           4.4            4.5                   No maintainer
-grub                  2.00+X         2.00+AUTOINC+a139...  Paul Eggleton
-dropbear              2014.66        2015.67               Paul Eggleton
-cmake                 2.8.12.2       3.2.2                 Paul Eggleton
-dosfstools            2.11           3.0.27                Paul Eggleton
-libav                 9.16           11.3                  Paul Eggleton
-x264                  r2265+gitX     r2491                 Paul Eggleton
-qt4-embedded          4.8.6          5.4.1                 Paul Eggleton
-qt4-x11-free          4.8.6          5.4.1                 Paul Eggleton
-gpgme                 1.4.3          1.5.4                 Paul Eggleton
-yasm                  1.2.0          1.3.0                 Paul Eggleton
-augeas                1.2.0          1.3.0                 Paul Eggleton
-libgpg-error          1.18           1.19                  Paul Eggleton
-libevdev              1.3            1.4.2                 Paul Eggleton
-libpng12              1.2.52         1.6.17                Randy Witt
-python-async          0.6.1          0.6.2                 Randy Witt
-tcf-agent             0.4.0+gitX     8.0+gitAUTOINC+39...  Randy Witt
-unfs3                 0.9.22.r490    0.9.22.r494           Randy Witt
-libpng                1.6.16         1.6.17                Randy Witt
-libunistring          0.9.4          0.9.5                 Randy Witt
-ethtool               3.16           3.18                  Randy Witt
-libpam                1.1.6          1.2.0                 Randy Witt
-libpciaccess          0.13.3         0.13.4                Richard Purdie
-btrfs-tools           3.18.2+gitX    4.0+gitAUTOINC+19...  Richard Purdie
-lttng-modules         2.6.0          2.6.1                 Richard Purdie
-lttng-ust             2.6.0          2.6.1                 Richard Purdie
-gcc-runtime           4.9.2          5.1.0                 Richard Purdie
-gcc-source            4.9.2          5.1.0                 Richard Purdie
-libgcc                4.9.2          5.1.0                 Richard Purdie
-libgfortran           4.9.2          5.1.0                 Richard Purdie
-intltool              0.50.2         0.51.0                Richard Purdie
-nasm                  2.11.06        2.11.08               Richard Purdie
-python-distribute     0.6.32         0.7.3                 Richard Purdie       0.7.3 only upgrades 0.6.32,...
-python-gst            0.10.22        1.4.0                 Richard Purdie
-python-pygobject      2.28.3         3.16.1                Richard Purdie       Newer versions of python-py...
-libdrm                2.4.59         2.4.61                Richard Purdie
-libmpc                1.0.2          1.0.3                 Richard Purdie
-glib-2.0              2.44.0         2.45.1                Robert Yang
-binutils              2.25           7.9.0                 Robert Yang
-e2fsprogs             1.42.9         1.42.11               Robert Yang
-gmp                   6.0.0          6.0.0a                Robert Yang
-logrotate             3.8.8          3.9.1                 Robert Yang
-liberation-fonts      1.04           2.00.1                Ross Burton          2.00.0 - fontforge package ...
-waffle                1.3.0          1.5.1                 Ross Burton
-libinput              0.7.0          0.15.0                Ross Burton
-weston                1.6.0          1.7.91                Ross Burton
-xvinfo                1.1.2          1.1.3                 Ross Burton
-xf86-input-evdev      2.9.1          2.9.2                 Ross Burton
-xf86-input-keyboard   1.8.0          1.8.1                 Ross Burton
-xf86-input-synaptics  1.8.1          1.8.2                 Ross Burton
-xf86-input-vmmouse    13.0.0         13.0.99               Ross Burton
-xf86-video-omap       0.4.2+gitrX    0.4.3+gitrAUTOINC...  Ross Burton
-xf86-video-vmware     13.0.2         13.1.0                Ross Burton
-font-util             1.3.0          1.3.1                 Ross Burton
-wayland               1.6.0          1.7.91                Ross Burton
-libx11                1.6.2          1.6.3                 Ross Burton
-libxdmcp              1.1.1          1.1.2                 Ross Burton
-glib-networking       2.44.0         2.45.1                Ross Burton          Pending Glib-2.0 Update
-libxkbfile            1.0.8          1.0.9                 Ross Burton
-libxrender            0.9.8          0.9.9                 Ross Burton
-libxshmfence          1.1            1.2                   Ross Burton
-libxt                 1.1.4          1.1.5                 Ross Burton
-libxvmc               1.0.8          1.0.9                 Ross Burton
-libxxf86vm            1.1.3          1.1.4                 Ross Burton
-xkeyboard-config      2.13           2.14                  Ross Burton
-xserver-xorg          1.16.3         1.17.1                Ross Burton
-xdpyinfo              1.3.1          1.3.2                 Ross Burton
-libfontenc            1.1.2          1.1.3                 Ross Burton
-puzzles               r10116         r10286                Ross Burton
-webkit-gtk            1.8.3          1.9.92                Ross Burton          >= 1.10.2 needs ruby
-vala                  0.26.1         0.28.0                Ross Burton
-vte                   0.28.2         0.40.2                Ross Burton          Pending Glib-2.0 Update
-gdk-pixbuf            2.30.8         2.31.4                Ross Burton          2.31.x is unstable
-libxfont              1.5.0          1.5.1                 Ross Burton
-gtk+3                 3.12.2         3.17.1                Ross Burton
-gtk+                  2.24.27        3.17.1                Ross Burton          Do not upgrade to version: ...
-gtk-engines           2.20.2         2.91.1                Ross Burton          2.91.1 is a 3.0 beta release
-libnotify             0.6.0          0.7.6                 Ross Burton
-clutter-1.0           1.20.0         1.22.2                Ross Burton
-clutter-gst-1.0       1.6.0          3.0.4                 Ross Burton
-clutter-gtk-1.0       1.4.4          1.6.0                 Ross Burton
-cogl-1.0              1.18.2         1.20.0                Ross Burton
-build-appliance-i...  12.0.1         13.0.0                Saul Wold
-npth                  1.1            1.2                   Saul Wold
-uclibc                0.9.33+gitX    0.9.33.2+gitAUTOI...  Saul Wold
-libtheora             1.1.1          1.2.0alpha1           Saul Wold
-tiff                  4.0.3          4.0.4beta             Saul Wold
-boost                 1.57.0         1.58.0                Saul Wold
-libassuan             2.2.0          2.2.1                 Saul Wold
-libksba               1.3.2          1.3.3                 Saul Wold
-liburcu               0.8.6          0.8.7                 Saul Wold
-libidn                1.29           1.30                  Saul Wold
-lsbinitscripts        9.61           9.62                  Saul Wold
-msmtp                 1.6.1          1.6.2                 Saul Wold
-libunique             1.1.6          3.0.2                 Saul Wold            Do not upgrade to version: ...
-mx-1.0                1.4.7+gitX     1.99.4+gitAUTOINC...  Saul Wold            PRS 1.99 is dev version
-blktrace              1.0.5+gitX     1.1.0+gitAUTOINC+...  Tom Zanussi
-chkconfig             1.3.58         1.4                   Wenzong Fan
+Regards
+Peter Smith
 
-Upgradable count: 136
-Upgradable total count: 158
+user@user-VirtualBox:~/wr-core/build-xilinx-zynq$ bitbake virtual/kernel
+Loading cache: 100% |######################################################=
+########################################| ETA:  00:00:00
+Loaded 1603 entries from dependency cache.
+Parsing recipes: 100% |####################################################=
+########################################| Time: 00:00:01
+Parsing of 1180 .bb files complete (1178 cached, 2 parsed). 1604 targets, 9=
+4 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
 
-The based commit is:
+Build Configuration:
+BB_VERSION        =3D "1.24.0"
+BUILD_SYS         =3D "x86_64-linux"
+NATIVELSBSTRING   =3D "Ubuntu-14.04"
+DISTRO            =3D "wrlinux-small"
+DISTRO_VERSION    =3D "7.0.0.2"
+MACHINE           =3D "xilinx-zynq"
+DEFAULTTUNE       =3D "armv7at-neon"
+TARGET_SYS        =3D "arm-wrs-linux-gnueabi"
+TUNE_FEATURES     =3D "arm armv7a vfp thumb neon"
+TARGET_FPU        =3D "vfp-neon"
+wrlinux           =3D "(detachedfrom9105011):9105011489c249abcfec7970ea584a=
+b65c1dd972"
+meta              =3D "(detachedfrom7cccaaf):7cccaafc69e7758d4c2cfd2b0d19e0=
+6c7fbb10ee"
+meta-webserver    =3D "(detachedfromef02194):ef02194433c135da983695a0201660=
+ff66c96be1"
+meta-perl-subset  =3D "(detachedfrom80e6f87):80e6f878aae0054e7cf00d166654f3=
+a19ea14db8"
+meta-python-subset =3D "(detachedfrom4f1eab3):4f1eab38f8e603de1777b7cd3db05=
+34fd1400997"
+meta-oe-subset    =3D "(detachedfromf777254):f77725420cd906496689e3aeb22359=
+7b011f39fc"
+meta-gnome-subset =3D "(detachedfromea11bab):ea11babea7de95c98efd7e45e10ea7=
+82657b494c"
+meta-networking   =3D "(detachedfrom7cd5080):7cd508084fb4eff70e0fe96124555b=
+9ef31007de"
+wr-fixes          =3D "(detachedfrom1a6a90d):1a6a90d8b68585be2385d639de67a6=
+edc2f792b5"
+wr-base           =3D "(detachedfromc7aae03):c7aae03c71ffc38467adfb838a57c9=
+0403e5238d"
+xilinx-zynq       =3D "(detachedfromf58d751):f58d751ca8372e34df39c9bb5053e6=
+aac9588b04"
+wr-kernel         =3D "(detachedfrom65f8f3e):65f8f3e6a6313a7c85b7ea1a42267b=
+f548b3f04d"
+wrlabs-integration =3D "(detachedfrom47e351d):47e351d1ed1f8c2ac5221934a7ace=
+b458c41c30b"
 
-commit 1702f52b5860336d36fb912fbe2851437e74a7d5
-Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date:   Mon May 11 17:54:57 2015 +0100
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+Currently 1 running tasks (200 of 434):
+0: linux-yocto-3.14.39+gitAUTOINC+fb6271a942_db1db62eee-r0 do_fetch (pid 83=
+17)
 
-    gcc5: Add PR65779 patch to fix powerpc compile issues
-    
-    This fixes compile issues on powerpc with gcc 5 which show up with
-    errors like:
-    
-    | make[2]: Entering directory '/media/build1/poky/build/tmp/work/ppc7400-poky-linux/xprop/1_1.2.2-r0/build'
-    | powerpc-poky-linux-gcc  -m32 -mhard-float -mcpu=7400 --sysroot=/media/build1/poky/build/tmp/sysroots/qemuppc -Wall -Wpointer-arith -Wmissing-declarations -Wformat=2 -Wstrict-prototypes -Wmissing-prototypes -Wnested-externs -Wbad-function-cast -Wold-style-definition -Wdeclaration-after-statement -Wunused -Wuninitialized -Wshadow -Wmissing-noreturn -Wmissing-format-attribute -Wredundant-decls -Wlogical-op -Werror=implicit -Werror=nonnull -Werror=init-self -Werror=main -Werror=missing-braces -Werror=sequence-point -Werror=return-type -Werror=trigraphs -Werror=array-bounds -Werror=write-strings -Werror=address -Werror=int-to-pointer-cast -Werror=pointer-to-int-cast -fno-strict-aliasing  -O2 -pipe -g -feliminate-unused-debug-types  -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -o xprop dsimple.o clientwin.o xprop.o -lX11
-    | /media/build1/poky/build/tmp/sysroots/qemuppc/usr/lib/../lib/libX11.so: undefined reference to `.LCL2'
-    | collect2: error: ld returned 1 exit status
-    
-    [YOCTO #7721]
-    
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
+________________________________
+CONFIDENTIALITY : This e-mail and any attachments are confidential and may =
+be privileged. If you are not a named recipient, please notify the sender i=
+mmediately and do not disclose the contents to another person, use it for a=
+ny purpose or store or copy the information in any medium.
+
+--_000_92BAB684D31DCD4A8F623A7EE7FD8C06013EE91D041DB3MPN109204_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-GB" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi All<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Fairly new to Yocto, trying to build Wind River&#821=
+7;s Linux distro (<a href=3D"https://github.com/WindRiver-OpenSourceLabs">h=
+ttps://github.com/WindRiver-OpenSourceLabs</a>). Everything goes to plan un=
+til bitbake gets round to fetching a clone
+ of linux-yocto-3.14 (see output below), when bitbake just hangs forever (I=
+ left it overnight).<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">If however I try to clone manually with &#8220;git -=
+c core.fsyncobjectfiles=3D0 clone --bare --mirror http://git.yoctoproject.o=
+rg/git/linux-yocto-3.14.git /home/user/wr-core/build-xilinx-zynq/downloads/=
+git2/git.yoctoproject.org.git.linux-yocto-3.14.git&#8221;
+ which seems to be the command line executed by bitbake, everything works a=
+s expected.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Can anyone point me in the right direction?<o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards<o:p></o:p></p>
+<p class=3D"MsoNormal">Peter Smith<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">user@user-VirtualBox:~/wr-core/build-xilinx-zynq$ bi=
+tbake virtual/kernel<o:p></o:p></p>
+<p class=3D"MsoNormal">Loading cache: 100% |###############################=
+###############################################################| ETA:&nbsp;=
+ 00:00:00<o:p></o:p></p>
+<p class=3D"MsoNormal">Loaded 1603 entries from dependency cache.<o:p></o:p=
+></p>
+<p class=3D"MsoNormal">Parsing recipes: 100% |#############################=
+###############################################################| Time: 00:0=
+0:01<o:p></o:p></p>
+<p class=3D"MsoNormal">Parsing of 1180 .bb files complete (1178 cached, 2 p=
+arsed). 1604 targets, 94 skipped, 0 masked, 0 errors.<o:p></o:p></p>
+<p class=3D"MsoNormal">NOTE: Resolving any missing task queue dependencies<=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Build Configuration:<o:p></o:p></p>
+<p class=3D"MsoNormal">BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ =3D &quot;1.24.0&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; =3D &quot;x86_64-linux&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">NATIVELSBSTRING&nbsp;&nbsp; =3D &quot;Ubuntu-14.04&q=
+uot;<o:p></o:p></p>
+<p class=3D"MsoNormal">DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp; =3D &quot;wrlinux-small&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">DISTRO_VERSION&nbsp;&nbsp;&nbsp; =3D &quot;7.0.0.2&q=
+uot;<o:p></o:p></p>
+<p class=3D"MsoNormal">MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; =3D &quot;xilinx-zynq&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">DEFAULTTUNE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D =
+&quot;armv7at-neon&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ =3D &quot;arm-wrs-linux-gnueabi&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;arm =
+armv7a vfp thumb neon&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ =3D &quot;vfp-neon&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">wrlinux&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; =3D &quot;(detachedfrom9105011):9105011489c249abcfec7970ea5=
+84ab65c1dd972&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D &quot;(detachedfrom7cccaaf):7cccaafc69e7=
+758d4c2cfd2b0d19e06c7fbb10ee&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-webserver&nbsp;&nbsp;&nbsp; =3D &quot;(detached=
+fromef02194):ef02194433c135da983695a0201660ff66c96be1&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-perl-subset&nbsp; =3D &quot;(detachedfrom80e6f8=
+7):80e6f878aae0054e7cf00d166654f3a19ea14db8&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-python-subset =3D &quot;(detachedfrom4f1eab3):4=
+f1eab38f8e603de1777b7cd3db0534fd1400997&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-oe-subset&nbsp;&nbsp;&nbsp; =3D &quot;(detached=
+fromf777254):f77725420cd906496689e3aeb223597b011f39fc&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-gnome-subset =3D &quot;(detachedfromea11bab):ea=
+11babea7de95c98efd7e45e10ea782657b494c&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">meta-networking&nbsp;&nbsp; =3D &quot;(detachedfrom7=
+cd5080):7cd508084fb4eff70e0fe96124555b9ef31007de&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">wr-fixes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; =3D &quot;(detachedfrom1a6a90d):1a6a90d8b68585be2385d639de67a6ed=
+c2f792b5&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">wr-base&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp; =3D &quot;(detachedfromc7aae03):c7aae03c71ffc38467adfb838a5=
+7c90403e5238d&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">xilinx-zynq&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D =
+&quot;(detachedfromf58d751):f58d751ca8372e34df39c9bb5053e6aac9588b04&quot;<=
+o:p></o:p></p>
+<p class=3D"MsoNormal">wr-kernel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; =3D &quot;(detachedfrom65f8f3e):65f8f3e6a6313a7c85b7ea1a42267bf548b3f=
+04d&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">wrlabs-integration =3D &quot;(detachedfrom47e351d):4=
+7e351d1ed1f8c2ac5221934a7aceb458c41c30b&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">NOTE: Preparing runqueue<o:p></o:p></p>
+<p class=3D"MsoNormal">NOTE: Executing SetScene Tasks<o:p></o:p></p>
+<p class=3D"MsoNormal">NOTE: Executing RunQueue Tasks<o:p></o:p></p>
+<p class=3D"MsoNormal">Currently 1 running tasks (200 of 434):<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">0: linux-yocto-3.14.39&#43;gitAUTOINC&#43;fb6271a942=
+_db1db62eee-r0 do_fetch (pid 8317)<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<br>
+<hr>
+<font face=3D"Arial" color=3D"Black" size=3D"2">CONFIDENTIALITY : This e-ma=
+il and any attachments are confidential and may be privileged. If you are n=
+ot a named recipient, please notify the sender immediately and do not discl=
+ose the contents to another person, use
+ it for any purpose or store or copy the information in any medium.<br>
+</font>
+</body>
+</html>
+
+--_000_92BAB684D31DCD4A8F623A7EE7FD8C06013EE91D041DB3MPN109204_--
