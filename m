@@ -1,6 +1,6 @@
 Return-Path: <mario.goulart@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 47058E0097D; Tue, 12 May 2015 13:56:07 -0700 (PDT)
+	id 58141E008DC; Tue, 12 May 2015 13:56:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -16,36 +16,34 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [209.85.220.176 listed in list.dnswl.org]
 Received: from mail-qk0-f176.google.com (mail-qk0-f176.google.com
 	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D6A5E00477
-	for <yocto@yoctoproject.org>; Tue, 12 May 2015 13:56:02 -0700 (PDT)
-Received: by qku63 with SMTP id 63so14978361qku.3
-	for <yocto@yoctoproject.org>; Tue, 12 May 2015 13:56:01 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C338E0027F
+	for <yocto@yoctoproject.org>; Tue, 12 May 2015 13:56:00 -0700 (PDT)
+Received: by qkgx75 with SMTP id x75so15003299qkg.1
+	for <yocto@yoctoproject.org>; Tue, 12 May 2015 13:56:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-	:organization; bh=mcszYhLCCLAPoh+ZCpeFTrY+l28BhIL4HWZgBowsFvY=;
-	b=lQAd9kq2RovO0vYbf78mAuNdxEwgJLyqaYfX7IVMlZ/NN5+c5Fv8LzgyH+/bqhZ/VJ
-	MIMRwGI2fO7RdSBLqsBt4eHzojntHU5iHPOoMNO1MgkWWurplcpD0xq1mLZB1fD53cSA
-	0hB8smCDnFA1TXno0Dlg20zaDBGV/rWRbee9IkqQacUqkGhVyVqpFPgri42hkWJcQqnO
-	UigiVomBlLL/goPP1dTUMnjkEBSm9qDgCgW+F2fTjQZEB8ib9mUenI7rXGpfe/hEKvnW
-	mreaRlylfIyWnAZrZz1Y9fLfXZosGwakVC3HdRpBgtzDQ35LRkYZKPCfc7dWou3cgipJ
-	5JdQ==
-X-Received: by 10.55.31.137 with SMTP id n9mr37372936qkh.91.1431464161425;
-	Tue, 12 May 2015 13:56:01 -0700 (PDT)
+	h=sender:from:to:cc:subject:date:message-id:organization;
+	bh=G6Qu/VL/cL+I4TN51BBJpMLx2Kg1F+edRr6YbyauWU4=;
+	b=w+kwXV8IUUzz4B7nlwfcXz4jUbeQRzJas6u0C3iLeKhVeC54BUgGpfBfbgbKpYKh1S
+	tWbdrNe4pD0VybkjNhrotLPNOZxy4m7iu7H7bV66y5x231A1kKKYdVpSfIPy8ZGJimpS
+	UyX29Jrxa7zbRiIVxt9We2XJsnRH8/XnDTExiE3zVH5TreyYpC7MYo9NWrQYu5Z4QFU1
+	ZPL1XZWVbgtFFmdrNXN+x8XTwHZ7ZVWV4V0K+pVdPJodSYmNilYafw6FR4irPo5p+3kF
+	IcO9MSlhF9OH1Vd4sZ/Yp2HBNODDr24jofote/SJeG5SEDS09/UwkFaZLl0kPeVDvETt
+	tXxw==
+X-Received: by 10.140.150.78 with SMTP id 75mr23774798qhw.88.1431464159955;
+	Tue, 12 May 2015 13:55:59 -0700 (PDT)
 Received: from centrium.lab.ossystems.com.br ([177.100.224.72])
-	by mx.google.com with ESMTPSA id 62sm14209921qgz.14.2015.05.12.13.56.00
+	by mx.google.com with ESMTPSA id 62sm14209921qgz.14.2015.05.12.13.55.58
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 12 May 2015 13:56:01 -0700 (PDT)
+	Tue, 12 May 2015 13:55:59 -0700 (PDT)
 Sender: Mario Domenech Goulart <mario.goulart@gmail.com>
 From: Mario Domenech Goulart <mario@ossystems.com.br>
 To: yocto@yoctoproject.org
-Date: Tue, 12 May 2015 17:57:00 -0300
-Message-Id: <1431464224-19858-2-git-send-email-mario@ossystems.com.br>
+Date: Tue, 12 May 2015 17:56:59 -0300
+Message-Id: <1431464224-19858-1-git-send-email-mario@ossystems.com.br>
 X-Mailer: git-send-email 2.1.4
-In-Reply-To: <1431464224-19858-1-git-send-email-mario@ossystems.com.br>
-References: <1431464224-19858-1-git-send-email-mario@ossystems.com.br>
 Organization: O.S. Systems Software LTDA.
 Cc: Mario Domenech Goulart <mario@ossystems.com.br>
-Subject: [meta-oracle-java][PATCH 2/6] oracle-jse-jdk: fix native installation
+Subject: [meta-oracle-java][PATCH 1/6] oracle-jse-jdk: split recipe into per-architecture recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,39 +57,70 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Tue, 12 May 2015 20:56:07 -0000
 
-Link java and javac from the bin dir in the $PATH for native contexts.
-Also link fastjar to jar and gjavah to javah, as some java recipes
-will look for those tools at build time.
+Due the way BitBake parses recipes, including architecture-specific
+include files was happening too late, causing native variants to pick
+wrong include files, thus ending up generating broken content.
+
+Setting COMPATIBLE_HOST guarantees that native installations will be
+consistent.
 
 Signed-off-by: Mario Domenech Goulart <mario@ossystems.com.br>
 ---
- recipes-devtools/oracle-java/oracle-jse-jdk.inc | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ ...acle-jse-jdk-i586.inc => oracle-jse-jdk-i586_1.7.0.bb} |  2 ++
+ ...-jse-jdk-x86-64.inc => oracle-jse-jdk-x86-64_1.7.0.bb} |  2 ++
+ recipes-devtools/oracle-java/oracle-jse-jdk_1.7.0.bb      | 15 ---------------
+ 3 files changed, 4 insertions(+), 15 deletions(-)
+ rename recipes-devtools/oracle-java/{oracle-jse-jdk-i586.inc => oracle-jse-jdk-i586_1.7.0.bb} (90%)
+ rename recipes-devtools/oracle-java/{oracle-jse-jdk-x86-64.inc => oracle-jse-jdk-x86-64_1.7.0.bb} (90%)
+ delete mode 100644 recipes-devtools/oracle-java/oracle-jse-jdk_1.7.0.bb
 
-diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk.inc b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
-index c5c2480..9e312d0 100644
---- a/recipes-devtools/oracle-java/oracle-jse-jdk.inc
-+++ b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
-@@ -12,9 +12,16 @@ JDK_JRE = "jdk"
- require oracle-jse.inc
+diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk-i586.inc b/recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb
+similarity index 90%
+rename from recipes-devtools/oracle-java/oracle-jse-jdk-i586.inc
+rename to recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb
+index 0667161..9fb2188 100644
+--- a/recipes-devtools/oracle-java/oracle-jse-jdk-i586.inc
++++ b/recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb
+@@ -7,3 +7,5 @@ SRC_URI = "http://download.oracle.com/otn-pub/java/jdk/7u${PV_UPDATE}-b${BUILD_N
  
- do_install_class-native() {
--    install -d -m 0755                      ${D}${bindir}/${JDK_JRE}${PV}_${PV_UPDATE}
--    cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE} ${D}${bindir}/
--    ln -sf ${JDK_JRE}${PV}_${PV_UPDATE}     ${D}${bindir}/java
-+    install -d -m 0755 ${D}${libdir}
-+    install -d -m 0755 ${D}${bindir}
-+    cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE} ${D}${libdir}/
-+    for prog in java javac; do
-+	( cd ${D}${bindir} && ln -sf ${D}${libdir}/${JDK_JRE}${PV}_${PV_UPDATE}/bin/$prog )
-+    done
+ SRC_URI[md5sum] = "715b0e8ba2a06bded75f6a92427e2701"
+ SRC_URI[sha256sum] = "b6231064ad2c9fbbcb099dba17b1dcf12033e922b9c24e4348b9a01e9ebaa85c"
 +
-+    ( cd ${D}${libdir}/${JDK_JRE}${PV}_${PV_UPDATE}/bin ; \
-+      ln -sf javah gjavah ; \
-+      ln -sf jar fastjar )
- }
++COMPATIBLE_HOST = "(i586-linux)"
+diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64.inc b/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb
+similarity index 90%
+rename from recipes-devtools/oracle-java/oracle-jse-jdk-x86-64.inc
+rename to recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb
+index f18ce55..a6d0bc7 100644
+--- a/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64.inc
++++ b/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb
+@@ -7,3 +7,5 @@ SRC_URI = "http://download.oracle.com/otn-pub/java/jdk/7u${PV_UPDATE}-b${BUILD_N
  
- BBCLASSEXTEND = "native"
+ SRC_URI[md5sum] = "81e3e2df33e13781e5fac5756ed90e67"
+ SRC_URI[sha256sum] = "54dd1e13edf18c64941a55da9c91210b53dc5cf48f1a8f4538c863049e346335"
++
++COMPATIBLE_HOST = "(x86_64-linux)"
+diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk_1.7.0.bb b/recipes-devtools/oracle-java/oracle-jse-jdk_1.7.0.bb
+deleted file mode 100644
+index 56d84b6..0000000
+--- a/recipes-devtools/oracle-java/oracle-jse-jdk_1.7.0.bb
++++ /dev/null
+@@ -1,15 +0,0 @@
+-# Automatically choose java package based on target architecture
+-def get_java_pkg(d):
+-       TA = d.getVar('TARGET_ARCH', True)
+-       if TA == "i586":
+-               javaPkg = "oracle-jse-jdk-i586"
+-       elif TA == "x86_64":
+-               javaPkg = "oracle-jse-jdk-x86-64"
+-       else:
+-               raise bb.parse.SkipPackage("The target architecture '%s' is not supported by the meta-oracle-java layer" %TA)
+-       
+-       return javaPkg
+-
+-JAVA_PKG = "${@get_java_pkg(d)}"
+-
+-require ${JAVA_PKG}.inc
 -- 
 2.1.4
 
