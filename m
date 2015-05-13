@@ -1,38 +1,47 @@
-Return-Path: <Raghavendra.Kakarla@inedasystems.com>
+Return-Path: <maxin@maxinbjohn.info>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 44DAEE00820; Wed, 13 May 2015 03:34:23 -0700 (PDT)
+	id 43C48E00820; Wed, 13 May 2015 06:22:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.173 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.invecas.com (mx1.invecas.com [112.133.222.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EB63E0027F
-	for <yocto@yoctoproject.org>; Wed, 13 May 2015 03:34:19 -0700 (PDT)
-Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by mail.invecas.com
-	(10.0.30.131) with Microsoft SMTP Server (TLS) id 14.3.123.3;
-	Wed, 13 May 2015 16:04:26 +0530
-Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
-	SOC-EXCH-02.invecas.local (10.0.30.9) with Microsoft SMTP Server (TLS)
-	id 15.0.995.29; Wed, 13 May 2015 16:04:12 +0530
-Received: from SOC-EXCH-02.invecas.local ([::1]) by SOC-EXCH-02.invecas.local
-	([fe80::bc3d:32eb:402d:2fae%15]) with mapi id 15.00.0995.028;
-	Wed, 13 May 2015 16:04:12 +0530
-From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Compilation error in yocto eclipse
-Thread-Index: AQHQjWgNAtIHx4AGqE6jUgUkMEmPHA==
-Date: Wed, 13 May 2015 10:34:12 +0000
-Message-ID: <1431513252546.36425@inedasystems.com>
-Accept-Language: en-US, en-IN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.42.55]
+Received: from mail-ie0-f173.google.com (mail-ie0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02911E0027F
+	for <yocto@yoctoproject.org>; Wed, 13 May 2015 06:22:15 -0700 (PDT)
+Received: by iebpz10 with SMTP id pz10so31617846ieb.2
+	for <yocto@yoctoproject.org>; Wed, 13 May 2015 06:22:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=Z0oPG34kVk1Iyk1L9aj4j6UIVs4zFBDdqAk79CWWBU8=;
+	b=bK9Y0euYA2VpmtNPTCjjgO6Jq8AtMqSytB4SaEdQ/z56HrV56DiPW5rIbTQE0vpr/W
+	motbAxbjjYtpFUHdT4wsVMiAFsnLVvtMO8OYK47bdsTi3BRuvX2/XOMH2pKwPPhQyqWq
+	OVq5jXVj3J//T0QW8Ar2mG16Fw+n2PSPvMB0Cu7nZm0vNDQLm661R3iXARvhkPHOMhTx
+	cicuDe8WXkD4V7ZzkGouW93lD2VeCiJz7ob3EGvIHT0sbD5PeKfUz5h4hvOl71RpwX6a
+	iFuVoWRKgKNBafd0GgMPEw2M29Ihal5lmwJn1vBxTcb77ants5UKqY80VlwuQ9kI1wZI
+	3rVw==
+X-Gm-Message-State: ALoCoQmntLClTsBYCiWDIvw35T4ZHm9wfsKuFfIc8JsDHfjZSClUbhp3INq9UdpVLki6oS8N4u2J
 MIME-Version: 1.0
-Subject: Compilation error in yocto eclipse
+X-Received: by 10.42.235.83 with SMTP id kf19mr8827294icb.41.1431523335056;
+	Wed, 13 May 2015 06:22:15 -0700 (PDT)
+Received: by 10.36.57.134 with HTTP; Wed, 13 May 2015 06:22:15 -0700 (PDT)
+X-Originating-IP: [192.36.1.252]
+In-Reply-To: <1431464224-19858-1-git-send-email-mario@ossystems.com.br>
+References: <1431464224-19858-1-git-send-email-mario@ossystems.com.br>
+Date: Wed, 13 May 2015 15:22:15 +0200
+Message-ID: <CAFicg85wB+c=884wS3yM-7mc4uwGLKw19Gsas4PKuRc5dwB4iQ@mail.gmail.com>
+From: Maxin John <maxin@maxinbjohn.info>
+To: Mario Domenech Goulart <mario@ossystems.com.br>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: [meta-oracle-java][PATCH 1/6] oracle-jse-jdk: split recipe into per-architecture recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,124 +53,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 May 2015 10:34:23 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_143151325254636425inedasystemscom_"
+X-List-Received-Date: Wed, 13 May 2015 13:22:18 -0000
+Content-Type: text/plain; charset=UTF-8
 
---_000_143151325254636425inedasystemscom_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Hi Mario,
 
-Hi,
+On Tue, May 12, 2015 at 10:56 PM, Mario Domenech Goulart
+<mario@ossystems.com.br> wrote:
+> Due the way BitBake parses recipes, including architecture-specific
+> include files was happening too late, causing native variants to pick
+> wrong include files, thus ending up generating broken content.
+>
+> Setting COMPATIBLE_HOST guarantees that native installations will be
+> consistent.
+>
+> Signed-off-by: Mario Domenech Goulart <mario@ossystems.com.br>
+> ---
+>  ...acle-jse-jdk-i586.inc => oracle-jse-jdk-i586_1.7.0.bb} |  2 ++
+>  ...-jse-jdk-x86-64.inc => oracle-jse-jdk-x86-64_1.7.0.bb} |  2 ++
+>  recipes-devtools/oracle-java/oracle-jse-jdk_1.7.0.bb      | 15 ---------------
+>  3 files changed, 4 insertions(+), 15 deletions(-)
+>  rename recipes-devtools/oracle-java/{oracle-jse-jdk-i586.inc => oracle-jse-jdk-i586_1.7.0.bb} (90%)
+>  rename recipes-devtools/oracle-java/{oracle-jse-jdk-x86-64.inc => oracle-jse-jdk-x86-64_1.7.0.bb} (90%)
+>  delete mode 100644 recipes-devtools/oracle-java/oracle-jse-jdk_1.7.0.bb
+>
+> diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk-i586.inc b/recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb
+> similarity index 90%
+> rename from recipes-devtools/oracle-java/oracle-jse-jdk-i586.inc
+> rename to recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb
+> index 0667161..9fb2188 100644
+> --- a/recipes-devtools/oracle-java/oracle-jse-jdk-i586.inc
+> +++ b/recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb
+> @@ -7,3 +7,5 @@ SRC_URI = "http://download.oracle.com/otn-pub/java/jdk/7u${PV_UPDATE}-b${BUILD_N
+>
+>  SRC_URI[md5sum] = "715b0e8ba2a06bded75f6a92427e2701"
+>  SRC_URI[sha256sum] = "b6231064ad2c9fbbcb099dba17b1dcf12033e922b9c24e4348b9a01e9ebaa85c"
+> +
+> +COMPATIBLE_HOST = "(i586-linux)"
+> diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64.inc b/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb
+> similarity index 90%
+> rename from recipes-devtools/oracle-java/oracle-jse-jdk-x86-64.inc
+> rename to recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb
+> index f18ce55..a6d0bc7 100644
+> --- a/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64.inc
+> +++ b/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb
+> @@ -7,3 +7,5 @@ SRC_URI = "http://download.oracle.com/otn-pub/java/jdk/7u${PV_UPDATE}-b${BUILD_N
+>
+>  SRC_URI[md5sum] = "81e3e2df33e13781e5fac5756ed90e67"
+>  SRC_URI[sha256sum] = "54dd1e13edf18c64941a55da9c91210b53dc5cf48f1a8f4538c863049e346335"
+> +
+> +COMPATIBLE_HOST = "(x86_64-linux)"
+> diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk_1.7.0.bb b/recipes-devtools/oracle-java/oracle-jse-jdk_1.7.0.bb
+> deleted file mode 100644
+> index 56d84b6..0000000
+> --- a/recipes-devtools/oracle-java/oracle-jse-jdk_1.7.0.bb
+> +++ /dev/null
+> @@ -1,15 +0,0 @@
+> -# Automatically choose java package based on target architecture
+> -def get_java_pkg(d):
+> -       TA = d.getVar('TARGET_ARCH', True)
+> -       if TA == "i586":
+> -               javaPkg = "oracle-jse-jdk-i586"
+> -       elif TA == "x86_64":
+> -               javaPkg = "oracle-jse-jdk-x86-64"
+> -       else:
+> -               raise bb.parse.SkipPackage("The target architecture '%s' is not supported by the meta-oracle-java layer" %TA)
+> -
+> -       return javaPkg
+> -
+> -JAVA_PKG = "${@get_java_pkg(d)}"
+> -
+> -require ${JAVA_PKG}.inc
 
 
-I have some some issue with compiling the example source code in yocto ecli=
-pse environment.
+This change results in the below listed error:
 
+# bitbake oracle-jse-jdk-x86-64
 
-I got following error:
+ERROR: Nothing PROVIDES 'oracle-jse-jdk-x86-64'
+ERROR: oracle-jse-jdk-x86-64 was skipped: incompatible with host
+x86_64-poky-linux (not in COMPATIBLE_HOST)
 
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
 
-12:48:03 **** Build of configuration Build (GNU) for project example ****
-make all
-make: *** No rule to make target `all'.  Stop.
+The COMPATIBLE_HOST should be "x86_64.*-linux". Please fix it.
 
+Best Regards,
+Maxin
 
-I built generated the tool chain and sysroot from my build system using bit=
-bake command.
-
-
-Could please help me in resolving this issue.
-
-
-Thanks in advance.
-
-
-Regards,
-
-Raghavendra.
-
-
---_000_143151325254636425inedasystemscom_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none"><!--P{margin-top:0;margin-b=
-ottom:0;} .ms-cui-menu {background-color:#ffffff;border:1px rgb(166, 166, 1=
-66) solid;font-family:'Segoe UI','Segoe WP','Segoe UI WPC',Tahoma,Arial,san=
-s-serif;font-size:10pt;color:rgb(51, 51, 51);} .ms-cui-menusection-title {d=
-isplay:none;} .ms-cui-ctl {vertical-align:text-top;text-decoration:none;col=
-or:rgb(51, 51, 51);} .ms-cui-ctl-on {background-color:rgb(205, 230, 247);op=
-acity: 0.8;} .ms-cui-img-cont-float {display:inline-block;margin-top:2px} .=
-ms-cui-smenu-inner {padding-top:0px;} .ms-owa-paste-option-icon {margin: 0p=
-x 6px 0px 6px;vertical-align:middle!important;padding-bottom: 2px;display:i=
-nline-block;} .ms-rtePasteFlyout-option:hover {background-color:rgb(205, 23=
-0, 247) !important;opacity:1 !important;} .ms-rtePasteFlyout-option {paddin=
-g:8px 4px 8px 4px;outline:none;} .ms-cui-menusection {float:left; width:85p=
-x;height:24px;overflow:hidden}.wf {speak:none; font-weight:normal; font-var=
-iant:normal; text-transform:none; -webkit-font-smoothing:antialiased; verti=
-cal-align:middle; display:inline-block;}.wf-family-owa {font-family:'o365Ic=
-ons'}@font-face {  font-family:'o365IconsIE8';  src:url('prem/15.0.995.29/r=
-esources/styles/office365icons.ie8.eot?#iefix') format('embedded-opentype')=
-,         url('prem/15.0.995.29/resources/styles/office365icons.ie8.woff') =
-format('woff'),         url('prem/15.0.995.29/resources/styles/office365ico=
-ns.ie8.ttf') format('truetype');  font-weight:normal;  font-style:normal;}@=
-font-face {  font-family:'o365IconsMouse';  src:url('prem/15.0.995.29/resou=
-rces/styles/office365icons.mouse.eot?#iefix') format('embedded-opentype'), =
-        url('prem/15.0.995.29/resources/styles/office365icons.mouse.woff') =
-format('woff'),         url('prem/15.0.995.29/resources/styles/office365ico=
-ns.mouse.ttf') format('truetype');  font-weight:normal;  font-style:normal;=
-}.wf-family-owa {font-family:'o365IconsMouse'}.ie8 .wf-family-owa {font-fam=
-ily:'o365IconsIE8'}.ie8 .wf-owa-play-large:before {content:'\e254';}.notIE8=
- .wf-owa-play-large:before {content:'\e054';}.ie8 .wf-owa-play-large {color=
-:#FFFFFF/*$WFWhiteColor*/;}.notIE8 .wf-owa-play-large {border-color:#FFFFFF=
-/*$WFWhiteColor*/; width:1.4em; height:1.4em; border-width:.1em; border-sty=
-le:solid; border-radius:.8em; text-align:center; box-sizing:border-box; -mo=
-z-box-sizing:border-box; padding:0.1em; color:#FFFFFF/*$WFWhiteColor*/;}.ie=
-8 .wf-size-play-large {width:40px; height:40px; font-size:30px}.notIE8 .wf-=
-size-play-large {width:40px; height:40px; font-size:30px}.notIE8 .wf-owa-tr=
-iangle-down-small:before {content:'\e052';}.ie8 .wf-owa-triangle-down-small=
-:before { content:'\e052';}.ie8 .wf-owa-triangle-down-small {color:#666666/=
-*$WFGreyColor*/;}.wf-size-x20 {font-size: 20px!important;}--></style>
-</head>
-<body dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#F=
-FFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
-<p>Hi,</p>
-<p><br>
-</p>
-<p>I have some some issue with compiling the example source code in yocto e=
-clipse environment.</p>
-<p><br>
-</p>
-<p>I got following error:</p>
-<p><br>
-</p>
-<p>12:48:03 **** Build of configuration Build (GNU) for project example ***=
-*<br>
-make all <br>
-make: *** No rule to make target `all'.&nbsp; Stop.</p>
-<p><br>
-</p>
-<p>I built generated the tool chain and sysroot from my build system using =
-bitbake command.</p>
-<p><br>
-</p>
-<p>Could please help me in resolving this issue.</p>
-<p><br>
-</p>
-<p>Thanks in advance.</p>
-<p><br>
-</p>
-<p>Regards,</p>
-<p>Raghavendra.<br>
-<br>
-</p>
-</body>
-</html>
-
---_000_143151325254636425inedasystemscom_--
