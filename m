@@ -1,26 +1,39 @@
-Return-Path: <pokybuild@ubuntu1204.osl.yoctoproject.org>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8BF07E00998; Wed, 13 May 2015 17:55:47 -0700 (PDT)
+	id 8932DE009A6; Wed, 13 May 2015 19:26:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
-	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from ubuntu1204.osl.yoctoproject.org
-	(ubuntu1204.osl.yoctoproject.org [10.0.10.110])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21679E0095C;
-	Wed, 13 May 2015 17:55:47 -0700 (PDT)
-Received: by ubuntu1204.osl.yoctoproject.org (Postfix, from userid 1006)
-	id 6F9C02C02C5; Thu, 14 May 2015 00:55:45 +0000 (UTC)
-To: yocto@yoctoproject.org
-Message-Id: <20150514005545.6F9C02C02C5@ubuntu1204.osl.yoctoproject.org>
-Date: Thu, 14 May 2015 00:55:45 +0000 (UTC)
-From: pokybuild@ubuntu1204.osl.yoctoproject.org (Poky Build User)
-Cc: otavio@ossystems.com.br
-Subject: Release Candidate Build for yocto-1.6.3.rc3 now available.
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34199E009A1
+	for <yocto@yoctoproject.org>; Wed, 13 May 2015 19:26:02 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.9/8.14.9) with ESMTP id t4E2Q0Yn014339
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 13 May 2015 19:26:00 -0700 (PDT)
+Received: from [128.224.163.153] (128.224.163.153) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.224.2;
+	Wed, 13 May 2015 19:25:59 -0700
+Message-ID: <555407B9.7040105@windriver.com>
+Date: Thu, 14 May 2015 10:26:01 +0800
+From: ChenQi <Qi.Chen@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
+MIME-Version: 1.0
+To: Ash Charles <ashcharles@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <CAK8F28nH13quAv_8KqfEDnyua99mBYvLnBYej0ugC73dP5LX+A@mail.gmail.com>
+In-Reply-To: <CAK8F28nH13quAv_8KqfEDnyua99mBYvLnBYej0ugC73dP5LX+A@mail.gmail.com>
+X-Originating-IP: [128.224.163.153]
+Subject: Re: Using smart within an SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,29 +45,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 May 2015 00:55:47 -0000
+X-List-Received-Date: Thu, 14 May 2015 02:26:04 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
--e 
-A release candidate build for yocto-1.6.3.rc3 is now available at:
+Hi Ash,
 
- 
-http://autobuilder.yoctoproject.org/pub/releases/yocto-1.6.3.rc3
+SDK has basically two parts, nativesdk part and the target part.
+For the nativesdk part, we can use smart/rpm to manage packages. A long 
+time ago, I tried this out and succeeded.
+However, for the target part, we cannot do the same thing as the rpm 
+database for the target part is not usable after installation. I once 
+tried to solve this problem but failed.
+You can have a little try and if you have some good news, let me know.
 
+Best Regards,
+Chen Qi
 
-Please begin QA on this build as soon as possible.
+On 05/14/2015 08:51 AM, Ash Charles wrote:
+> Hi,
+>
+> I'd like to be able install packages using smart within an SDK
+> environment (much like [1]; @Erik, did you find a solution?).
+>
+> I stumbled on two questions in looking into this.
+>
+> 1. Why does the nativesdk version of smart get wrapped with these
+> environment variables, 'RPM_USRLIBRPM', 'RPM_ETCRPM', and
+> 'RPM_LOCALEDIRRPM'?  As per [2], the RPM utilities themselves are
+> already wrapped.  It might be nice to specify the '--data-dir'
+> argument to smart with a create_cmdline_wrapper instead.
+>
+> 2. Why does the smart configuration data get removed during SDK
+> creation?  In particular, the self.target_pm.remove_packaging_data
+> line in meta/lib/oe/sdk.py.
+>
+> [1] https://lists.yoctoproject.org/pipermail/yocto/2015-March/024152.html
+> [2] http://lists.openembedded.org/pipermail/openembedded-core/2012-December/071894.html
+>
+> Thanks for any advice!
+> --Ash
 
-
-Build hash information: 
-meta-intel : 52d0939a303084e6b90219e5b31b8248173e0c0d 
-meta-fsl-arm : 0c4de80867c3ab4e9682dd7802d3fd907d1e1a23 
-meta-minnow : 58fd55eb321a875d4e51c5c430de4d725ec9ba4c 
-meta-qt3 : 3016129d90b7ac8517a5227d819f10ad417b5b45 
-meta-fsl-ppc : 299f84cceccacd84651c1cefc1c34e66fb598a96 
-poky : b2ba41b57550aa912da93b4aef789ff562a67fce 
-
-
-This is an automated message from
-The Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder
-Email: elizabeth.flanagan@intel.com 
 
