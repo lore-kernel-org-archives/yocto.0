@@ -1,58 +1,67 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <urnen81@yahoo.es>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D2D3CE009BB; Thu, 14 May 2015 12:55:56 -0700 (PDT)
+	id 915E9E009BB; Thu, 14 May 2015 14:39:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.53 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (urnen81[at]yahoo.es)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [67.195.87.241 listed in list.dnswl.org]
+	* 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+	digit *      (oliver <urnen81[at]yahoo.es> )
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qg0-f53.google.com (mail-qg0-f53.google.com
-	[209.85.192.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C53FE00956
-	for <yocto@yoctoproject.org>; Thu, 14 May 2015 12:55:53 -0700 (PDT)
-Received: by qgew3 with SMTP id w3so973593qge.2
-	for <yocto@yoctoproject.org>; Thu, 14 May 2015 12:55:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=ySM66FZBiD6OmwQIgbbhjO1jGW7m5aNx2FClVh9zl4s=;
-	b=c9ufJJaOQHlFz2uqDHSKD8q5DCCdiJagiWeUL6ehMWejtj0pBNiMJ32mAZcv/RVl9A
-	IKCmIDemhFo3aq3cs2Q9XqJtzelAf7i5eAjkaxH6Ue0C6NX8WhKH4iZkM3SSaWgNgJgC
-	zcLrXW3VQI/Pd7Cgkf22b/rU/eZWN5adm1kdbnOruz9nv9/sNelss/J6ITuIl6UBYBPB
-	GTdHMGNwfeChzQ2ihaSrY+z13bEnPTGKNsLvh2en4sX+fRXq0UUx2MYVYN6z7NPBEkyF
-	/ivyCyT5u0fJ5IkuHKK0pRcrtb4Mvnj5puwMD4sLXjuFSDdR2u+oy5EDwG/eO6LG1ugf
-	+obQ==
-X-Gm-Message-State: ALoCoQlW+1X0Rbm38b/3j/AOjkvlVPC2oSgAR/+M9pS6jvbT9ufPftz9UFFepeD1TvUvnvcMhoDm
-X-Received: by 10.140.235.77 with SMTP id g74mr8291507qhc.64.1431633353042;
-	Thu, 14 May 2015 12:55:53 -0700 (PDT)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm50-vm1.bullet.mail.gq1.yahoo.com
+	(nm50-vm1.bullet.mail.gq1.yahoo.com [67.195.87.241])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99D93E00956
+	for <yocto@yoctoproject.org>; Thu, 14 May 2015 14:39:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.es; s=s2048;
+	t=1431639580; bh=X3t0qpCSlNOXCXhsBAUjJgXB+KKWXSuKTW+65fxQXss=;
+	h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject;
+	b=bzv9gohZNjCf7Ug44d0Cfn5aRabuggCLk8uS9Qhnzt6HUPB6uuF9oF3h4S/joKS/Wvl02ckKYuH0g2M+9g4ydAU1zbev2IQD8G5utfrbJATqAAEUAx4wpMucprLut5f7xgCHpG8lDBd4Cg2CDtEjbbj4uwSUogtA0T4/HxPfa3k3PwSw8av/PpLlgclhV807/F6Gl2tDElOwRIFiZbMe8A7CndDOn+f9k3bcu+sCMVz6/4npBMuhxKUlW7ibp+ZeeFAfsO9NXOZBZEdQOlfpzbEbpBfFjT6rHIDV+DxldfEFbJH3SD+0wKrBjF+WD2ZbQ5BpgFwJWqM4KZoQt+qDSg==
+Received: from [127.0.0.1] by nm50.bullet.mail.gq1.yahoo.com with NNFMP;
+	14 May 2015 21:39:40 -0000
+Received: from [216.39.60.183] by nm50.bullet.mail.gq1.yahoo.com with NNFMP;
+	14 May 2015 21:36:40 -0000
+Received: from [212.82.98.50] by tm19.bullet.mail.gq1.yahoo.com with NNFMP;
+	14 May 2015 21:36:40 -0000
+Received: from [212.82.98.96] by tm3.bullet.mail.ir2.yahoo.com with NNFMP;
+	14 May 2015 21:36:40 -0000
+Received: from [127.0.0.1] by omp1033.mail.ir2.yahoo.com with NNFMP;
+	14 May 2015 21:36:40 -0000
+X-Yahoo-Newman-Property: ymail-4
+X-Yahoo-Newman-Id: 304912.86767.bm@omp1033.mail.ir2.yahoo.com
+X-YMail-OSG: fE8NZ5UVM1kaZmpXcqMzYaJu1rdTiHaTw1cU0ot1g2Tsv_E7ny1aV7DS7raYc_r
+	B5sZ192b28Irifu.PzZHSxZsayhE55wEOK41tS0ZD8bvQZCKyodzRox_NlHkS.OjH7S9vSGU1_a0
+	0HRlQ2KpVeFc_fhbRTYwyv1c8ppYCEo3MOSppx5VPiDT28UnXsCuG2ePp.2dNvvNtG3fEDFGIA_q
+	28iFP8lpqLqzI3RdVoDE3kBSgRHCwByEHk4tKNdkpg.sY5ESYVJUeyaeq3WB1_4ATwo0Rt1NQAHD
+	gQdqLesztAVsLDvInsspzah2.iyceEFSLRjAOqK.XRMfxz3Xjuk8jl.sPl4d.HMz09rEYPJbMGUk
+	GuLqJS0YHmHQMiDcQs9QY4gYM.iagZxXYV2ebBFojmQZMSUJ7bOjcUfvXHypnUwFm5b1ch1rYF6k
+	nZPjer1CQ1p.popYVSgL7FeL1rLUrXR2dNEV3Kk0ng8jKPCV12qEYmDwVmKDqNzKXIZCIiAtIrSV
+	h9RBz34ZCx3bo
+Received: by 212.82.98.120; Thu, 14 May 2015 21:36:39 +0000 
+Date: Thu, 14 May 2015 21:36:31 +0000 (UTC)
+From: Oliver <urnen81@yahoo.es>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <675480183.3559858.1431639391019.JavaMail.yahoo@mail.yahoo.com>
+In-Reply-To: <1622249.AcBk4fCPKl@peggleto-mobl.ger.corp.intel.com>
+References: <1622249.AcBk4fCPKl@peggleto-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-Received: by 10.140.102.231 with HTTP; Thu, 14 May 2015 12:55:32 -0700 (PDT)
-In-Reply-To: <5554FA4A.7010003@mlbassoc.com>
-References: <5554ADDE.7030508@mlbassoc.com>
-	<CAJTo0LZZsuEQfizOctX5VnK5KiCJ9iyyuTPUxtum_DpYoqmsWA@mail.gmail.com>
-	<5554B152.8030401@mlbassoc.com>
-	<CAJTo0Lai_StnhatYDa8tZvjt8jKs-EGnYgX7KvPwCOzk-1D6kQ@mail.gmail.com>
-	<5554BED8.2090607@mlbassoc.com>
-	<CAJTo0LadZdQAtCD=REUBjVbwHahnGAi1nLJMiCjZbNKzqYLECA@mail.gmail.com>
-	<5554CD73.5080403@mlbassoc.com>
-	<CAJTo0LaP4vv=hDQNjJY9LG6O4NLYi9_1DMt54OnnvqZrOwRk1Q@mail.gmail.com>
-	<5554FA4A.7010003@mlbassoc.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 14 May 2015 20:55:32 +0100
-Message-ID: <CAJTo0LbNNdfXWXiQn2zX8AN=W_MOQ54-EpFcGmwM2ySL-mTBBw@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: gtk-play issues
+Subject: Re: recipe removing (some)contents of /etc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Oliver <urnen81@yahoo.es>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -61,81 +70,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 May 2015 19:55:56 -0000
-Content-Type: multipart/alternative; boundary=001a11354a0075026c0516101d69
-
---001a11354a0075026c0516101d69
+X-List-Received-Date: Thu, 14 May 2015 21:39:42 -0000
 Content-Type: text/plain; charset=UTF-8
-
-On 14 May 2015 at 20:40, Gary Thomas <gary@mlbassoc.com> wrote:
-
-> Interesting - gst-play/gtk-play works correctly on this target.
-> Now I have to figure out why it doesn't work on the other systems
-> I tested.
->
-> Should I submit bugs against the QEMU targets as they get it
-> even more wrong than the i.MX6 targets??
->
-> Query: my laptop [test device] has two ALSA sound devices,
-> HDMI and the internal PCH.  It has picked the HDMI as default
-> and I get no sound when no HDMI monitor attached.  How do I
-> select the other sound device (from sato desktop would be
-> best, but I'd settle for any answer)
->
-
-Ah, the old audio playback problem.  There's a bug for that.
-
-Sato doesn't have a GUI for this right now but the good news is that this
-is something you can probably fiddle with alsamixer for now, and in master
-we'll be integrating PulseAudio properly so ideally it re-routes the audio
-when HDMI is hotplugged.   Obviously at this point you're expecting this
-series of events to actually work:
-1) GPU detects HDMI hotplug
-2) GPU probes HDMI, detects audio channel
-3) ALSA gets notified of the new audio channel
-4) PulseAudio gets notified of the new channel and can reroute the channels
-
-I think the key word here is YMMV, and a lot of it is up to your GPU driver
-as that's where the HDMI interaction obviously happens.
-
-Ross
-
---001a11354a0075026c0516101d69
-Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 14 May 2015 at 20:40, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"mailt=
-o:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span> wro=
-te:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
-left:1px #ccc solid;padding-left:1ex"><div id=3D":2tn" class=3D"a3s" style=
-=3D"overflow:hidden">Interesting - gst-play/gtk-play works correctly on thi=
-s target.<br>
-Now I have to figure out why it doesn&#39;t work on the other systems<br>
-I tested.<br>
-<br>
-Should I submit bugs against the QEMU targets as they get it<br>
-even more wrong than the i.MX6 targets??<br>
-<br>
-Query: my laptop [test device] has two ALSA sound devices,<br>
-HDMI and the internal PCH.=C2=A0 It has picked the HDMI as default<br>
-and I get no sound when no HDMI monitor attached.=C2=A0 How do I<br>
-select the other sound device (from sato desktop would be<br>
-best, but I&#39;d settle for any answer)</div></blockquote></div><br>Ah, th=
-e old audio playback problem.=C2=A0 There&#39;s a bug for that.</div><div c=
-lass=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Sato doesn&#39;t =
-have a GUI for this right now but the good news is that this is something y=
-ou can probably fiddle with alsamixer for now, and in master we&#39;ll be i=
-ntegrating PulseAudio properly so ideally it re-routes the audio when HDMI =
-is hotplugged. =C2=A0 Obviously at this point you&#39;re expecting this ser=
-ies of events to actually work:</div><div class=3D"gmail_extra">1) GPU dete=
-cts HDMI hotplug</div><div class=3D"gmail_extra">2) GPU probes HDMI, detect=
-s audio channel</div><div class=3D"gmail_extra">3) ALSA gets notified of th=
-e new audio channel</div><div class=3D"gmail_extra">4) PulseAudio gets noti=
-fied of the new channel and can reroute the channels</div><div class=3D"gma=
-il_extra"><br></div><div class=3D"gmail_extra">I think the key word here is=
- YMMV, and a lot of it is up to your GPU driver as that&#39;s where the HDM=
-I interaction obviously happens.</div><div class=3D"gmail_extra"><br></div>=
-<div class=3D"gmail_extra">Ross</div></div>
 
---001a11354a0075026c0516101d69--
+
+> What image are you building?
+
+it is a Freescale iMX6 target, the image name is exactly a fsl-image-qt5 wi=
+th a playground layer
+
+>> You should probably use this line instead
+>>    CORE_IMAGE_EXTRA_INSTALL =3D "canlogger"
+
+>> There is CORE_IMAGE_EXTRA_INSTALL though which you can add to with +=3D =
+(since=20
+>> there aren't any default items in it, unlike IMAGE_INSTALL).
+
+
+My understanding these are the preferred options
+
+> > > IMAGE_INSTALL_append =3D =E2=80=9C canlogger=E2=80=9D
+
+But would this still do? (just for my self-learning)
+
+I have other recipes(not *.bbappend) which end up in the image without addi=
+ng any explicit statement, just the fact of being part of the layer include=
+s them, is there any explanation?
+
+I am still missing something to get the whole picture...
+
+Thanks a lot for the detailed explanations
+best Regards
+Oliver
+
