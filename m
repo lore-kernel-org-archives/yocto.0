@@ -1,47 +1,48 @@
-Return-Path: <maxin@maxinbjohn.info>
+Return-Path: <ashcharles@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5075DE0095C; Wed, 13 May 2015 08:15:47 -0700 (PDT)
+	id 4489CE00985; Wed, 13 May 2015 17:52:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.180 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ashcharles[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.181 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-ig0-f180.google.com (mail-ig0-f180.google.com
-	[209.85.213.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1625E00820
-	for <yocto@yoctoproject.org>; Wed, 13 May 2015 08:15:43 -0700 (PDT)
-Received: by igbsb11 with SMTP id sb11so47738668igb.0
-	for <yocto@yoctoproject.org>; Wed, 13 May 2015 08:15:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=TCfTtljoPY+qY/8Tgn4dniswgDf8rY4+ld0RFfoIkkU=;
-	b=a1AR0bVK3StcwyTdnPgDTNaTm4ieTKtV/mcGn+NI9J9pgSE7p4bGEGbMCsSuOYEc36
-	UOkXjXC/rQLw43M+mmUL9bLSqBwFSjO5FL3nC7S23GSvSFKJA94N8MNK+kh9/YF8DdzO
-	26O0Fe8VxVX625WHfJX/NJrGWVRcdIUi8lESJsIu/UyjjcWDUqYGRaD1gwjo+m+A2EzO
-	TGPrr4C1iub5rYVuzM8WL4QpG3yTmSpWIROHvDDZYRq5reC+kMm9c4lHXoQ3prq7h86U
-	sZnFE0veZvaU/zYnaSEN/79d7rujqcODkHsi105pmWzi7FgELXMA6VZwY3vYADI4Jiur
-	99oA==
-X-Gm-Message-State: ALoCoQnezp9ZuxaRGSW4XanRhgWOkY7HjKf4VP8I5R/HH8LewbmFKWo8I3kGQQUoZeuGD0uxfFof
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ie0-f181.google.com (mail-ie0-f181.google.com
+	[209.85.223.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C778EE0095C
+	for <yocto@yoctoproject.org>; Wed, 13 May 2015 17:52:16 -0700 (PDT)
+Received: by iebgx4 with SMTP id gx4so47622646ieb.0
+	for <yocto@yoctoproject.org>; Wed, 13 May 2015 17:52:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:cc:content-type;
+	bh=gBG3emsRKzwL38icMoglLpLtoS1pzxmD6sLm6oheqCA=;
+	b=BOboFypSjDMbVlSCw3I5Gt0hAK1b1b+J6jhCL/JtWqRpae2VtX/iLDKEuWaxPIFoW+
+	8fgQ5F03el9oqfQrk8tntdzsmU9tONRc+cTYZX+y5vgcL8TvPgBU0vV7DMmkGS+6vIu2
+	KfDgfN2j5UioptoDf6reGHkf1vY9FnhunlYd9fofO0YhMCApqcbSz3UEVVLj6vGDUqIb
+	9Qw0iwzKaMjSH/3A98ymlzoM/QeMwuNUNvHyLEI8JLxiiseNqJOKeWaPFg7NJTU1wAit
+	8sPx5QxWKyL/RbBEy7QWaMe2PUnMKxVB6HDteqRwSXIKpuIlbQADK1bj9Cbd0ohrz008
+	NV3Q==
+X-Received: by 10.43.163.129 with SMTP id mo1mr11590750icc.61.1431564735757;
+	Wed, 13 May 2015 17:52:15 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.107.17.29 with SMTP id z29mr27779580ioi.69.1431530143287;
-	Wed, 13 May 2015 08:15:43 -0700 (PDT)
-Received: by 10.36.57.134 with HTTP; Wed, 13 May 2015 08:15:43 -0700 (PDT)
-X-Originating-IP: [192.36.1.252]
-In-Reply-To: <1431524917-9859-1-git-send-email-mario@ossystems.com.br>
-References: <1431524917-9859-1-git-send-email-mario@ossystems.com.br>
-Date: Wed, 13 May 2015 17:15:43 +0200
-Message-ID: <CAFicg85TBM+o1BLWOXa0U5Gh94gqNwUda0aXH2hWo5uAQvPgQQ@mail.gmail.com>
-From: Maxin John <maxin@maxinbjohn.info>
-To: Mario Domenech Goulart <mario@ossystems.com.br>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: [meta-oracle-java][PATCH v2 1/6] oracle-jse-jdk: split recipe into per-architecture recipes
+Received: by 10.107.138.144 with HTTP; Wed, 13 May 2015 17:51:45 -0700 (PDT)
+From: Ash Charles <ashcharles@gmail.com>
+Date: Wed, 13 May 2015 17:51:45 -0700
+Message-ID: <CAK8F28nH13quAv_8KqfEDnyua99mBYvLnBYej0ugC73dP5LX+A@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Using smart within an SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,26 +54,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 May 2015 15:15:47 -0000
+X-List-Received-Date: Thu, 14 May 2015 00:52:19 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Hi Mario,
+Hi,
 
-On Wed, May 13, 2015 at 3:48 PM, Mario Domenech Goulart
-<mario@ossystems.com.br> wrote:
-> Due the way BitBake parses recipes, including architecture-specific
-> include files was happening too late, causing native variants to pick
-> wrong include files, thus ending up generating broken content.
->
-> Setting COMPATIBLE_HOST guarantees that native installations will be
-> consistent.
->
-> Signed-off-by: Mario Domenech Goulart <mario@ossystems.com.br>
+I'd like to be able install packages using smart within an SDK
+environment (much like [1]; @Erik, did you find a solution?).
 
-<snip>
+I stumbled on two questions in looking into this.
 
-Series applied. Thanks a lot !
+1. Why does the nativesdk version of smart get wrapped with these
+environment variables, 'RPM_USRLIBRPM', 'RPM_ETCRPM', and
+'RPM_LOCALEDIRRPM'?  As per [2], the RPM utilities themselves are
+already wrapped.  It might be nice to specify the '--data-dir'
+argument to smart with a create_cmdline_wrapper instead.
 
-Thanks & Regards,
-Maxin
+2. Why does the smart configuration data get removed during SDK
+creation?  In particular, the self.target_pm.remove_packaging_data
+line in meta/lib/oe/sdk.py.
+
+[1] https://lists.yoctoproject.org/pipermail/yocto/2015-March/024152.html
+[2] http://lists.openembedded.org/pipermail/openembedded-core/2012-December/071894.html
+
+Thanks for any advice!
+--Ash
 
