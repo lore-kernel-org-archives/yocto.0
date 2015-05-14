@@ -1,31 +1,52 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8B8A7E009BB; Thu, 14 May 2015 09:29:43 -0700 (PDT)
+	id 7D597E009BB; Thu, 14 May 2015 09:31:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.176 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2700E00956
-	for <yocto@yoctoproject.org>; Thu, 14 May 2015 09:29:38 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id A983BF811E0; Thu, 14 May 2015 10:29:37 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id EB57FF811DC;
-	Thu, 14 May 2015 10:29:36 -0600 (MDT)
-Message-ID: <5554CD73.5080403@mlbassoc.com>
-Date: Thu, 14 May 2015 10:29:39 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF622E00956
+	for <yocto@yoctoproject.org>; Thu, 14 May 2015 09:31:44 -0700 (PDT)
+Received: by qcbgy10 with SMTP id gy10so42339938qcb.3
+	for <yocto@yoctoproject.org>; Thu, 14 May 2015 09:31:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=LgqQuYKBIveQN55p3Kjo6448J2zCEY+zVOdokL+OXVo=;
+	b=XyC/3+Yz6dbNqUWAu0MO+fVe8YzBCk4oCZC94Dqvl3lQW8Z2SXWD33sO91l9jW3bbH
+	7Y9wQ5iqaZ+Hs/k5WDjSVtEJ9Nm52Ehj/85NRrqlp5WVjTKrU3eA3jem6Aku1fsTCuFH
+	zM7b3LB0VQoXRWk8Ck1Ww6XziQl5KvKApsHb1mompGuSBuKly1ZltEkHlp4PIQj6gM+R
+	Ahp1rFOA0TIpmKkdEcC+qmPAVoB6kRJoZFoDkEs2spS2v3+703Z6nJjxmTXKCf2xw9iU
+	1IelDj3RMR/EkQGHufuLrAR7Hb1m0VBOmmh9aEwcBMl7LCwMi2/Vl8auDLYs/YfnH2NT
+	MUiA==
+X-Gm-Message-State: ALoCoQkTnIyfo1xhV5vB1e/KrClh3ttXO1rDXa22Z4SQxH7cuvLlna7r2IMGpz796dtJcDb0hfH+
+X-Received: by 10.55.20.10 with SMTP id e10mr10999940qkh.36.1431621103518;
+	Thu, 14 May 2015 09:31:43 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <5554ADDE.7030508@mlbassoc.com>	<CAJTo0LZZsuEQfizOctX5VnK5KiCJ9iyyuTPUxtum_DpYoqmsWA@mail.gmail.com>	<5554B152.8030401@mlbassoc.com>	<CAJTo0Lai_StnhatYDa8tZvjt8jKs-EGnYgX7KvPwCOzk-1D6kQ@mail.gmail.com>	<5554BED8.2090607@mlbassoc.com>
+Received: by 10.140.102.231 with HTTP; Thu, 14 May 2015 09:31:23 -0700 (PDT)
+In-Reply-To: <5554CD73.5080403@mlbassoc.com>
+References: <5554ADDE.7030508@mlbassoc.com>
+	<CAJTo0LZZsuEQfizOctX5VnK5KiCJ9iyyuTPUxtum_DpYoqmsWA@mail.gmail.com>
+	<5554B152.8030401@mlbassoc.com>
+	<CAJTo0Lai_StnhatYDa8tZvjt8jKs-EGnYgX7KvPwCOzk-1D6kQ@mail.gmail.com>
+	<5554BED8.2090607@mlbassoc.com>
 	<CAJTo0LadZdQAtCD=REUBjVbwHahnGAi1nLJMiCjZbNKzqYLECA@mail.gmail.com>
-In-Reply-To: <CAJTo0LadZdQAtCD=REUBjVbwHahnGAi1nLJMiCjZbNKzqYLECA@mail.gmail.com>
+	<5554CD73.5080403@mlbassoc.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 14 May 2015 17:31:23 +0100
+Message-ID: <CAJTo0LaP4vv=hDQNjJY9LG6O4NLYi9_1DMt54OnnvqZrOwRk1Q@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: gtk-play issues
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -38,46 +59,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 May 2015 16:29:43 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 14 May 2015 16:31:47 -0000
+Content-Type: multipart/alternative; boundary=001a1137de32542bbe05160d4388
 
-On 2015-05-14 09:29, Burton, Ross wrote:
->
-> On 14 May 2015 at 16:27, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
->
->     Interesting - the version in OE-core is 84 revisions behind the master/HEAD.
->     Should I bother debugging what's in OE-core or see what's up with the latest
->     code?
->
->
-> Try updating to the latest commit (and send the patch...).
+--001a1137de32542bbe05160d4388
+Content-Type: text/plain; charset=UTF-8
 
-Will do.
+On 14 May 2015 at 17:29, Gary Thomas <gary@mlbassoc.com> wrote:
 
+> BTW, neither gtk-play nor gst-play seem to work correctly with
+> an out-of-the-box qemu that I just built (from master at the
+> time of fido release - rev 515a8b790e08a48aaf64a6b7237e2b39390e35f6)
 >
->         If you want to know what elements get dynamically created then I believe turning on debug (see the packageconfig) will let you write out dot files for each stage of the
->         pipeline.
+> I'm not much of an x86 user - how would I build (which $MACHINE, etc)
+> to run on my generic [Dell] laptop so I can test it there?
 >
->
->     I don't see any 'debug' PACKAGECONFIG settings, only GSTREAMER_1_DEBUG
->     variable and that seems to only affect the core.
->
->
-> Erm yeah, that's the one.
 
-OK, thanks.
+For a real x86 machine, intel-corei7-64 from meta-intel.
 
-BTW, neither gtk-play nor gst-play seem to work correctly with
-an out-of-the-box qemu that I just built (from master at the
-time of fido release - rev 515a8b790e08a48aaf64a6b7237e2b39390e35f6)
+Ross
 
-I'm not much of an x86 user - how would I build (which $MACHINE, etc)
-to run on my generic [Dell] laptop so I can test it there?
+--001a1137de32542bbe05160d4388
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 14 May 2015 at 17:29, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"mailt=
+o:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span> wro=
+te:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
+left:1px #ccc solid;padding-left:1ex"><div id=3D":op" class=3D"a3s" style=
+=3D"overflow:hidden">BTW, neither gtk-play nor gst-play seem to work correc=
+tly with<br>
+an out-of-the-box qemu that I just built (from master at the<br>
+time of fido release - rev 515a8b790e08a48aaf64a6b7237e2b39390e35f6)<br>
+<br>
+I&#39;m not much of an x86 user - how would I build (which $MACHINE, etc)<b=
+r>
+to run on my generic [Dell] laptop so I can test it there?</div></blockquot=
+e></div><br>For a real x86 machine, intel-corei7-64 from meta-intel.</div><=
+div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></=
+div>
 
+--001a1137de32542bbe05160d4388--
