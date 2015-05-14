@@ -1,6 +1,6 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1507EE009BB; Thu, 14 May 2015 09:18:36 -0700 (PDT)
+	id 8B8A7E009BB; Thu, 14 May 2015 09:29:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,35 +8,25 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5E5DE00956
-	for <yocto@yoctoproject.org>; Thu, 14 May 2015 09:18:32 -0700 (PDT)
-Received: from [99.240.204.5] (port=51004 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Ysvqd-000606-7q; Thu, 14 May 2015 12:18:59 -0400
-Date: Thu, 14 May 2015 12:18:27 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: "Smith, Virgil" <Virgil.Smith@flir.com>
-In-Reply-To: <F14AEF751653024287138321000C846AF4821E43@BOS-DAG1.zone1.flir.net>
-Message-ID: <alpine.LFD.2.11.1505141217350.3849@localhost>
-References: <641241749.3202512.1431617240967.JavaMail.yahoo@mail.yahoo.com>
-	<F14AEF751653024287138321000C846AF4821E43@BOS-DAG1.zone1.flir.net>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2700E00956
+	for <yocto@yoctoproject.org>; Thu, 14 May 2015 09:29:38 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id A983BF811E0; Thu, 14 May 2015 10:29:37 -0600 (MDT)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id EB57FF811DC;
+	Thu, 14 May 2015 10:29:36 -0600 (MDT)
+Message-ID: <5554CD73.5080403@mlbassoc.com>
+Date: Thu, 14 May 2015 10:29:39 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: recipe removing (some)contents of /etc
+To: yocto@yoctoproject.org
+References: <5554ADDE.7030508@mlbassoc.com>	<CAJTo0LZZsuEQfizOctX5VnK5KiCJ9iyyuTPUxtum_DpYoqmsWA@mail.gmail.com>	<5554B152.8030401@mlbassoc.com>	<CAJTo0Lai_StnhatYDa8tZvjt8jKs-EGnYgX7KvPwCOzk-1D6kQ@mail.gmail.com>	<5554BED8.2090607@mlbassoc.com>
+	<CAJTo0LadZdQAtCD=REUBjVbwHahnGAi1nLJMiCjZbNKzqYLECA@mail.gmail.com>
+In-Reply-To: <CAJTo0LadZdQAtCD=REUBjVbwHahnGAi1nLJMiCjZbNKzqYLECA@mail.gmail.com>
+Subject: Re: gtk-play issues
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,47 +38,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 May 2015 16:18:36 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323328-467307040-1431620310=:3849"
+X-List-Received-Date: Thu, 14 May 2015 16:29:43 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
---8323328-467307040-1431620310=:3849
-Content-Type: TEXT/PLAIN; charset=utf-8
-Content-Transfer-Encoding: 8BIT
+On 2015-05-14 09:29, Burton, Ross wrote:
+>
+> On 14 May 2015 at 16:27, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
+>
+>     Interesting - the version in OE-core is 84 revisions behind the master/HEAD.
+>     Should I bother debugging what's in OE-core or see what's up with the latest
+>     code?
+>
+>
+> Try updating to the latest commit (and send the patch...).
 
-On Thu, 14 May 2015, Smith, Virgil wrote:
+Will do.
 
 >
-> This seems to bite a lot of people (myself included).
+>         If you want to know what elements get dynamically created then I believe turning on debug (see the packageconfig) will let you write out dot files for each stage of the
+>         pipeline.
 >
-> Change
 >
-> IMAGE_INSTALL += “canlogger”
+>     I don't see any 'debug' PACKAGECONFIG settings, only GSTREAMER_1_DEBUG
+>     variable and that seems to only affect the core.
 >
-> to
 >
-> IMAGE_INSTALL_append = “ canlogger”
->
-> or possibly better
->
-> EXTRA_IMAGE_INSTALL_append = “ canlogger”
+> Erm yeah, that's the one.
 
-  if you're putting this in local.conf, i'm pretty sure the preferred
-syntax is just:
+OK, thanks.
 
-  EXTRA_IMAGE_INSTALL = "canlogger"
+BTW, neither gtk-play nor gst-play seem to work correctly with
+an out-of-the-box qemu that I just built (from master at the
+time of fido release - rev 515a8b790e08a48aaf64a6b7237e2b39390e35f6)
 
-no?
-
-rday
+I'm not much of an x86 user - how would I build (which $MACHINE, etc)
+to run on my generic [Dell] laptop so I can test it there?
 
 -- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
---8323328-467307040-1431620310=:3849--
