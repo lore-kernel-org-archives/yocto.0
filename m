@@ -1,63 +1,50 @@
-Return-Path: <b.hutchman@gmail.com>
+Return-Path: <alexandru.damian@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8BD27E009EB; Fri, 15 May 2015 06:55:52 -0700 (PDT)
+	id 66CD7E009ED; Fri, 15 May 2015 07:09:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (b.hutchman[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.48 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f48.google.com (mail-oi0-f48.google.com
-	[209.85.218.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CD69E0095F;
-	Fri, 15 May 2015 06:55:45 -0700 (PDT)
-Received: by oign205 with SMTP id n205so82562221oig.2;
-	Fri, 15 May 2015 06:55:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=H71HlWhy1ZoVW+QAYfrDjRDVpwfcNZAuyHOFfctSFgc=;
-	b=VSteSNaieCOoNfgm4KCFgq0cK7iklsOfggeMM7nk8PkGs5KCxVT2tmGVu+vryhgeqV
-	jrBfueDwZHwQyyjpzumxdfhcYhyxL08qyoDBaKs4yQbFIQWYmPyR+vVXEWkkv1Ey/x0y
-	AAaB4/mJ9GVSpf6f/pUzwhdCs8TKVPrNrpI3U86NMWewVVZ8C+YkWZcTmsK3vw0GKfj/
-	fas0aKl6a11VBasR+3uUsslaOX7uu7tWNn+lofjRfJBJ3Dx3uceE1kelDQV8YpSuutgr
-	yLbrQWHV/U2wxUt4jCpvXRY5MCtT8Xd2txqbMahGcMgRSV+Ay/mC7ED5wrDefC0GD++/
-	uupA==
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-ie0-f174.google.com (mail-ie0-f174.google.com
+	[209.85.223.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A2ADE00960
+	for <yocto@yoctoproject.org>; Fri, 15 May 2015 07:09:15 -0700 (PDT)
+Received: by iebgx4 with SMTP id gx4so112989725ieb.0
+	for <yocto@yoctoproject.org>; Fri, 15 May 2015 07:09:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=ZdtXjVbXqdNtp+sxdYCAFH5bRDzU4EEEBMIwGRZBseM=;
+	b=Xll85dwPlXZD8R9EQySZwaOI2XMVMkYQKl+Z74lsmyoPzxiXZ9P0cuIr2ooNr7kyiJ
+	1zV2NF6BGCnd+XyrEOxSGtURmdEjjWLxxpC8KT9RcOcAA5Pc5gVtZUum5R3UfpFej9n5
+	KTVIGyCuGGNt6/CcU5aN9SA1HcBElGxtMELhLlEA5N0pjf2mxNEgWm0YQJs11rCfIdDz
+	Wv5UAC7lwL0pTqj4YW9KodHsa6gQraIVIeWcv+goBzC9053mTj6cw2XRk9f45lkcB569
+	jTlyc46N4K5URiPWLRZVIDICMWEsf1q0Wd+9fKY7EsDQ0tWDQCg5HLOW6yDMfc9trowl
+	XlbQ==
+X-Gm-Message-State: ALoCoQk0380W6WrHOf5H07ZL6qFOlSKybJo3nhww4Ks6TIrFczTGd5Lp4HdOpgFuL9oAfTGY1rBg
+X-Received: by 10.107.129.163 with SMTP id l35mr12448586ioi.32.1431698955312; 
+	Fri, 15 May 2015 07:09:15 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.60.161.167 with SMTP id xt7mr8486393oeb.28.1431698144645;
-	Fri, 15 May 2015 06:55:44 -0700 (PDT)
-Received: by 10.60.6.33 with HTTP; Fri, 15 May 2015 06:55:44 -0700 (PDT)
-In-Reply-To: <CAFZh4h9=cJG8aVbwvh_NjR24UTnCj9A44zHPs3rqEn_rdCfN3A@mail.gmail.com>
-References: <4f2d75bf33ac423ab064f754e0b67655@ASTRO-EX1.Bensberg.de>
-	<5540DB34.6010102@windriver.com>
-	<a01714e680f8470cb21bb0b52e66c91e@ASTRO-EX1.Bensberg.de>
-	<55421DA2.9060909@windriver.com>
-	<e134e69a27bd460a9da71929a7f78d9a@ASTRO-EX1.Bensberg.de>
-	<554236CB.6000604@windriver.com>
-	<CAFZh4h9oL7K-=Nxhy=GV0k31ZgnPQuhFLQ-r_fReSRk1ZRhk1g@mail.gmail.com>
-	<5550FD98.1050507@windriver.com>
-	<CAFZh4h-SqSVsG_HXrx3H=QfDs3DH5GoKmFCgwBgGq90+B4WB5A@mail.gmail.com>
-	<55521DB8.2070606@windriver.com> <20150514220801.GD20022@denix.org>
-	<CAFZh4h9=cJG8aVbwvh_NjR24UTnCj9A44zHPs3rqEn_rdCfN3A@mail.gmail.com>
-Date: Fri, 15 May 2015 09:55:44 -0400
-Message-ID: <CAFZh4h-r1_gabVP0HdDoOrcT_neED51JpMmm586KLuc_efWdFg@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-To: Denys Dmytriyenko <denis@denix.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>
-Subject: Re: [meta-ti] Migration from 1.7.1 to 1.8 - kernel-abiversion missing
+Received: by 10.79.10.67 with HTTP; Fri, 15 May 2015 07:08:54 -0700 (PDT)
+In-Reply-To: <1431078146099.25248@inedasystems.com>
+References: <D1711C04.5B1A6%belen.barros.pena@intel.com>
+	<1431062039464.37764@inedasystems.com>
+	<CAJ2CSBvXZwPkzSFMwEYwwmjWaQCFZqpeM-LDKEiEmRtag5aXvw@mail.gmail.com>
+	<1431078146099.25248@inedasystems.com>
+From: "Damian, Alexandru" <alexandru.damian@intel.com>
+Date: Fri, 15 May 2015 15:08:54 +0100
+Message-ID: <CAJ2CSBvBaoPC-4Rny4a+DbJoEjYKMP5T19Yzp21XxVf35v5qnw@mail.gmail.com>
+To: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Issue with toaster
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,93 +56,321 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 May 2015 13:55:52 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 15 May 2015 14:09:18 -0000
+Content-Type: multipart/alternative; boundary=001a113ebd7ea82f3b05161f63e2
 
-On Thu, May 14, 2015 at 6:16 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
+--001a113ebd7ea82f3b05161f63e2
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+I'm still investigating these bugs.
+
+There is something funny going on, but I didn't figure out the root cause
+yet.
+
+Alex
+
+On Fri, May 8, 2015 at 10:42 AM, Raghavendra Kakarla <
+Raghavendra.Kakarla@inedasystems.com> wrote:
+
+>  Hi Alex,
 >
-> On May 14, 2015 6:08 PM, "Denys Dmytriyenko" <denis@denix.org> wrote:
+>
+>  I attached the Toaster Web logs with this mail.
+>
+>
+>  Please find the attachments.
+>
+>
+>  Thanks and Regards,
+>
+>
+>  Raghavendra K.
+>  ------------------------------
+> *From:* Damian, Alexandru <alexandru.damian@intel.com>
+> *Sent:* Friday, May 8, 2015 2:24 PM
+> *To:* Raghavendra Kakarla
+> *Cc:* Barros Pena, Belen; yocto@yoctoproject.org
+>
+> *Subject:* Re: [yocto] Issue with toaster
+>
+>   Hello,
+>
+>  Is there any error message displayed on screen ?
+>
+>  Can you please paste bin your latest *toaster_web.log* file  and send us
+> the link ?
+> You can find your latest *toaster_web.log* file by looking in
+> */tmp/toaster_** and take most recent one. One way to do this is:
+>
+>  $ find /tmp/toaster_* -printf '%T@ %p\0' | sort -zk 1nr | xargs -0n1 |
+> cut -d " " -f 2 | head -1
+>
+>  Thank you,
+> Alex
+>
+> On Fri, May 8, 2015 at 6:14 AM, Raghavendra Kakarla <
+> Raghavendra.Kakarla@inedasystems.com> wrote:
+>
+>> Hi Belen,
 >>
->> On Tue, May 12, 2015 at 11:35:20AM -0400, Bruce Ashfield wrote:
->> > On 2015-05-12 10:20 AM, Brian Hutchinson wrote:
->> > >On Mon, May 11, 2015 at 3:06 PM, Bruce Ashfield
->> > ><bruce.ashfield@windriver.com> wrote:
->> > >>On 2015-05-11 02:10 PM, Brian Hutchinson wrote:
->> > >>>
->> > >>>On Thu, Apr 30, 2015 at 10:06 AM, Bruce Ashfield
->> > >>><bruce.ashfield@windriver.com> wrote:
->> > >>>>
->> > >>>>It is plausible. But in theory, linux-dummy should still provide
->> > >>>>what you need (but since it doesn't build anything, there is
->> > >>>>no abi .. and no modules can be built against it) .. so the
->> > >>>>error isn't graceful.
->> > >>>>
->> > >>>>Bruce
->> > >>>
->> > >>>
->> > >>>I can confirm this same problem is happening to me.  I just updated
->> > >>>one of my builds from 1.7 to 1.8 and am also getting my rootfs to
->> > >>> fail
->> > >>>due to no abi kernel version:
->> > >>
->> > >>
->> > >>We still have a race condition in the 1.8 branch for the population
->> > >>of the build-artifacts directory.
->> > >>
->> > >>If modules start building, they'll race against the population of the
->> > >>abiversion, and you may see that message.
->> > >>
->> > >>There's a proposed patch for master, but I don't think it is in
->> > >>fido yet.
->> > >>
->> > >>Bruce
->> > >
->> > >Hi Bruce,
->> > >
->> > >I did some searches and looks like there are a number of 'race'
->> > >condition fixes but it wasn't obvious which one I may need.  Is it
->> > >this one:
->> >
->> > > >http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=02d0a003d603266114512160b209876199241e98
->> > >
->> >
->> > That's the one that should make sure that the shared workdir
->> > (Which has the abiversion) is in place before building any modules.
->> >
->> > I can't say that it is exactly your issue, but it is the change
->> > I was thinking of.
+>> I am using yocto fido.
 >>
->> Brian,
+>> I am entered the my custom layer git repository url(Which is our local
+>> git repository where our product corresponding recipe layers re there),a
+>> unique layer name and our git repository revision number.
 >>
->> Were you able to try the above mentioned commit against am180x in meta-ti?
->> Did
->> it solve the missing abi kernel version? Thanks.
+>> We entered these data but the import layer version is not respond.
+>>
+>> Thanks and Regards,
+>>
+>> Raghavendra K.
+>> ________________________________________
+>> From: Barros Pena, Belen <belen.barros.pena@intel.com>
+>> Sent: Thursday, May 7, 2015 6:17 PM
+>> To: Raghavendra Kakarla; yocto@yoctoproject.org
+>> Subject: Re: [yocto] Issue with toaster
+>>
+>> On 07/05/2015 10:18, "Raghavendra Kakarla"
+>> <Raghavendra.Kakarla@inedasystems.com> wrote:
+>>
+>> >Hi,
+>> >
+>> >I have an issue while importing custom layer in toaster. When i gave th=
+e
+>> >all layer information for importing the layer and click on the import
+>> >layer button in toaster it    wont respond.
+>> >Could you please help for resolving this issue.
+>>
+>> Hi Raghavendra,
+>>
+>> We would need a bit more information to understand what's happening:
+>>
+>> * Which branch are you using (fido or master). If you are using master,
+>> which commit?
+>> * Which data are you entering in the import layer form? Keep in mind tha=
+t
+>> you must provide a git url, a unique layer name and a revision. Without
+>> that information, the "import layer" button will remain stubbornly
+>> inactive and nothing will happen when you click on it.
+>>
+>> Cheers
+>>
+>> Bel=C3=A9n
+>>
+>> >
+>> >
+>> >
+>> >Thanks in advance.
+>> >
+>> >
+>> > Regards,
+>> > Raghavendra K.
+>> >
 >>
 >> --
->> Denys
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
 >
-> Hi Denys,
 >
-> No, I got caught up in something else ... I'll try it tomorrow and report
-> back after I cherry pick that commit Bruce mentioned.
 >
-> Regards,
+>  --
+>  Alex Damian
+> Yocto Project
+>  SSG / OTC
 >
-> Brian
 
-Update.  Not sure if I did this right but this is what I did.  I added
-master as a remote and cherry picked
-02d0a003d603266114512160b209876199241e98.  Next I just went for it and
-tried to bitbake my image again and got the same result as before.
-Next I did a bitbake cleanall on virtual/kernel and tried to make my
-image again and still got the same result.
 
-I'm going to leave this build as is and setup a new one using 1.8
-master and see if I get the same thing again.  I'll leave this broken
-build alone for a while in case someone wants me to try something with
-it to fix it.
 
-Regards,
+--=20
+Alex Damian
+Yocto Project
+SSG / OTC
 
-Brian
+--001a113ebd7ea82f3b05161f63e2
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,s=
+ans-serif">I&#39;m still investigating these bugs.</div><div class=3D"gmail=
+_default" style=3D"font-family:tahoma,sans-serif"><br></div><div class=3D"g=
+mail_default" style=3D"font-family:tahoma,sans-serif">There is something fu=
+nny going on, but I didn&#39;t figure out the root cause yet.</div><div cla=
+ss=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br></div><div=
+ class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Alex</div>=
+</div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Fri, May=
+ 8, 2015 at 10:42 AM, Raghavendra Kakarla <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:Raghavendra.Kakarla@inedasystems.com" target=3D"_blank">Raghavendra.=
+Kakarla@inedasystems.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
+:1ex">
+
+
+
+
+<div dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#ff=
+ffff;font-family:Calibri,Arial,Helvetica,sans-serif">
+<p>Hi Alex,</p>
+<p><br>
+</p>
+<p>I attached the Toaster Web logs with this mail.</p>
+<p><br>
+</p>
+<p>Please find the attachments.</p><span class=3D"">
+<p><br>
+</p>
+<p>Thanks and Regards,</p>
+<p><br>
+</p>
+<p>Raghavendra K.<br>
+</p>
+</span><div style=3D"color:rgb(33,33,33)">
+<hr style=3D"display:inline-block;width:98%">
+<div dir=3D"ltr"><font style=3D"font-size:11pt" color=3D"#000000" face=3D"C=
+alibri, sans-serif"><b>From:</b> Damian, Alexandru &lt;<a href=3D"mailto:al=
+exandru.damian@intel.com" target=3D"_blank">alexandru.damian@intel.com</a>&=
+gt;<br>
+<b>Sent:</b> Friday, May 8, 2015 2:24 PM<br>
+<b>To:</b> Raghavendra Kakarla<br>
+<b>Cc:</b> Barros Pena, Belen; <a href=3D"mailto:yocto@yoctoproject.org" ta=
+rget=3D"_blank">yocto@yoctoproject.org</a><div><div class=3D"h5"><br>
+<b>Subject:</b> Re: [yocto] Issue with toaster</div></div></font>
+<div>=C2=A0</div>
+</div><div><div class=3D"h5">
+<div>
+<div dir=3D"ltr">
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Hello,=
+</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>
+</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Is the=
+re any error message displayed on screen ?=C2=A0</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>
+</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Can yo=
+u please paste bin your latest
+<i>toaster_web.log</i> file =C2=A0and send us the link ?</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">You ca=
+n find your latest
+<i>toaster_web.log</i> file by looking in <i>/tmp/toaster_*</i> and take mo=
+st recent one. One way to do this is:</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>
+</div>
+<div class=3D"gmail_default"><font size=3D"1" face=3D"monospace, monospace"=
+>$ find /tmp/toaster_* -printf &#39;%T@ %p\0&#39; | sort -zk 1nr | xargs -0=
+n1 | cut -d &quot; &quot; -f 2 | head -1<br>
+</font></div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>
+</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Thank =
+you,</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Alex</=
+div>
+</div>
+<div class=3D"gmail_extra"><br>
+<div class=3D"gmail_quote">On Fri, May 8, 2015 at 6:14 AM, Raghavendra Kaka=
+rla <span dir=3D"ltr">
+&lt;<a href=3D"mailto:Raghavendra.Kakarla@inedasystems.com" target=3D"_blan=
+k">Raghavendra.Kakarla@inedasystems.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+Hi Belen,<br>
+<br>
+I am using yocto fido.<br>
+<br>
+I am entered the my custom layer git repository url(Which is our local git =
+repository where our product corresponding recipe layers re there),a unique=
+ layer name and our git repository revision number.<br>
+<br>
+We entered these data but the import layer version is not respond.<br>
+<br>
+Thanks and Regards,<br>
+<br>
+Raghavendra K.<br>
+________________________________________<br>
+From: Barros Pena, Belen &lt;<a href=3D"mailto:belen.barros.pena@intel.com"=
+ target=3D"_blank">belen.barros.pena@intel.com</a>&gt;<br>
+Sent: Thursday, May 7, 2015 6:17 PM<br>
+To: Raghavendra Kakarla; <a href=3D"mailto:yocto@yoctoproject.org" target=
+=3D"_blank">yocto@yoctoproject.org</a><br>
+Subject: Re: [yocto] Issue with toaster<br>
+<div>
+<div><br>
+On 07/05/2015 10:18, &quot;Raghavendra Kakarla&quot;<br>
+&lt;<a href=3D"mailto:Raghavendra.Kakarla@inedasystems.com" target=3D"_blan=
+k">Raghavendra.Kakarla@inedasystems.com</a>&gt; wrote:<br>
+<br>
+&gt;Hi,<br>
+&gt;<br>
+&gt;I have an issue while importing custom layer in toaster. When i gave th=
+e<br>
+&gt;all layer information for importing the layer and click on the import<b=
+r>
+&gt;layer button in toaster it=C2=A0 =C2=A0 wont respond.<br>
+&gt;Could you please help for resolving this issue.<br>
+<br>
+Hi Raghavendra,<br>
+<br>
+We would need a bit more information to understand what&#39;s happening:<br=
+>
+<br>
+* Which branch are you using (fido or master). If you are using master,<br>
+which commit?<br>
+* Which data are you entering in the import layer form? Keep in mind that<b=
+r>
+you must provide a git url, a unique layer name and a revision. Without<br>
+that information, the &quot;import layer&quot; button will remain stubbornl=
+y<br>
+inactive and nothing will happen when you click on it.<br>
+<br>
+Cheers<br>
+<br>
+Bel=C3=A9n<br>
+<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;Thanks in advance.<br>
+&gt;<br>
+&gt;<br>
+&gt; Regards,<br>
+&gt; Raghavendra K.<br>
+&gt;<br>
+<br>
+--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</div>
+</div>
+</blockquote>
+</div>
+<br>
+<br clear=3D"all">
+<div><br>
+</div>
+-- <br>
+<div>
+<div dir=3D"ltr">Alex Damian
+<div>Yocto Project<br>
+</div>
+<div>SSG / OTC=C2=A0</div>
+</div>
+</div>
+</div>
+</div>
+</div></div></div>
+</div>
+
+</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div class=
+=3D"gmail_signature"><div dir=3D"ltr">Alex Damian<div>Yocto Project<br></di=
+v><div>SSG / OTC=C2=A0</div></div></div>
+</div>
+
+--001a113ebd7ea82f3b05161f63e2--
