@@ -1,44 +1,63 @@
-Return-Path: <Raghavendra.Kakarla@inedasystems.com>
+Return-Path: <urnen81@yahoo.es>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A2477E009E1; Fri, 15 May 2015 03:47:48 -0700 (PDT)
+	id CD9E1E009E1; Fri, 15 May 2015 04:07:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (urnen81[at]yahoo.es)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [98.138.90.87 listed in list.dnswl.org]
+	* 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+	digit *      (oliver <urnen81[at]yahoo.es> )
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.invecas.com (mx2.invecas.com [112.133.222.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DB11E00956
-	for <yocto@yoctoproject.org>; Fri, 15 May 2015 03:47:44 -0700 (PDT)
-Received: from SOC-EXCH-01.invecas.local (10.0.30.8) by mail.invecas.com
-	(10.0.30.132) with Microsoft SMTP Server (TLS) id 14.3.123.3;
-	Fri, 15 May 2015 16:17:43 +0530
-Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
-	SOC-EXCH-01.invecas.local (10.0.30.8) with Microsoft SMTP Server (TLS)
-	id 15.0.995.29; Fri, 15 May 2015 16:17:37 +0530
-Received: from SOC-EXCH-02.invecas.local ([::1]) by SOC-EXCH-02.invecas.local
-	([fe80::bc3d:32eb:402d:2fae%15]) with mapi id 15.00.0995.028;
-	Fri, 15 May 2015 16:17:37 +0530
-From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
-To: "Minchev, Todor" <todor.minchev@intel.com>
-Thread-Topic: [yocto] Issue with yocto ADT
-Thread-Index: AQHQjvGS80lL5pX7tEePuV/Y1Ag/NZ18xwuAgAATywg=
-Date: Fri, 15 May 2015 10:47:37 +0000
-Message-ID: <1431686858269.81704@inedasystems.com>
-References: <1431682376634.76952@inedasystems.com>,
-	<1431686123.6150.2.camel@intel.com>
-In-Reply-To: <1431686123.6150.2.camel@intel.com>
-Accept-Language: en-US, en-IN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.42.55]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm24.bullet.mail.ne1.yahoo.com (nm24.bullet.mail.ne1.yahoo.com
+	[98.138.90.87])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64884E00956
+	for <yocto@yoctoproject.org>; Fri, 15 May 2015 04:07:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.es; s=s2048;
+	t=1431688048; bh=f8SyOHseAgB8fs4U+Mg72PYPVcNK52vbWfh6jbmY/Bk=;
+	h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject;
+	b=UGHubXomSOLt3cM/gAZwnbXXuWuzVuq5o6VOdhDJZMBlcAE5Mwv85vR4xsgxkO0PMJFkhz3iUDBwnCDkSD9KRSGMXhHIcDo53wxdKF3e16Non2vFHzDp9o3I+/iLaTMBV87tQeST7B+F75YS2mw9NeDXBMh3YXIqD2eSbkLq7w2/LZpH729sf1SSHag1c4YHvs2KYgFU69pv+PaV7d3NyLfNvfLTXtbIkjH9/zTTAEVY/WWX7QJZDt5BqKixuK0iBMDG19Gp0KqGuF7x6yL2J0C9KYaKrs+0n9KhVT2CJbgsi9HGyi2FZuuyUoeu0gUVJdYNYObCOJCmLjFgR8PS+w==
+Received: from [98.138.100.111] by nm24.bullet.mail.ne1.yahoo.com with NNFMP;
+	15 May 2015 11:07:28 -0000
+Received: from [98.138.88.235] by tm100.bullet.mail.ne1.yahoo.com with NNFMP;
+	15 May 2015 11:07:28 -0000
+Received: from [127.0.0.1] by omp1035.mail.ne1.yahoo.com with NNFMP;
+	15 May 2015 11:07:28 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 952182.43220.bm@omp1035.mail.ne1.yahoo.com
+X-YMail-OSG: RL6kl9gVM1mYV0.mKR31GEywK9p7TpSfMdACfj.9npC8Q1F_HcSjpHfpSUcC.Tk
+	csvV.q7ti6arcgqBlcQuY2VqS7qdWndPgmViWjUooI8C5H5rxwAp8OUDtEcd6eXpdJRB.xH4UJ7z
+	c6cMicjW0NWBZQfxmRNDsk_BSYNbBDz8xq6kYbb0gWDYjXAT6rL2y64UEi3FrMesTJpK6iuyNSjb
+	lY29vJHjSGqlridPQQtTj0Zs6sx4jEWzExA7DTUs1.cepRh3UYi92GGUOxc4aKgBP24XVo5sFm9e
+	kLwDoWJfGQSq.wRsPTVLh7WB_nJ1JkE4b8MuqnI1Bk6h070y2CPflzNFyuX2HwV2WtHNAmRuKk1K
+	TlcNwhmkcouVtZW624HTwynm6URnXZO39HSc7wDzmHAob6wvWIQ3BV4oIx6WNJ86SnOErj24R_Ct
+	HLAkHRE4oHsdGfHoK3zFuzjaxA8mBNiluHG03Hyo3EH_JwnODKGWzU5pj0v5EXzEN.XkvHodmAX8
+	78Kc-
+Received: by 217.12.9.14; Fri, 15 May 2015 11:07:27 +0000 
+Date: Fri, 15 May 2015 11:07:24 +0000 (UTC)
+From: Oliver <urnen81@yahoo.es>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <570277767.349734.1431688044876.JavaMail.yahoo@mail.yahoo.com>
+In-Reply-To: <55551B53.1080307@mlbassoc.com>
+References: <55551B53.1080307@mlbassoc.com>
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Issue with yocto ADT
+Subject: Re: recipe removing (some)contents of /etc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Oliver <urnen81@yahoo.es>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -47,97 +66,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 May 2015 10:47:48 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 15 May 2015 11:07:32 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Todor,=0A=
-=0A=
-Thank you for your  reply.=0A=
-=0A=
-By default we have the setting like this only.=0A=
-=0A=
-But we got the error.=0A=
-=0A=
-Thanks,=0A=
-Raghavendra.=0A=
-________________________________________=0A=
-From: Minchev, Todor <todor.minchev@intel.com>=0A=
-Sent: Friday, May 15, 2015 4:05 PM=0A=
-To: Raghavendra Kakarla=0A=
-Cc: yocto@yoctoproject.org=0A=
-Subject: Re: [yocto] Issue with yocto ADT=0A=
-=0A=
-Hello Raghavendra,=0A=
-=0A=
-Please try the following:=0A=
-=0A=
-Right click on your project - Properties - C/C++ Build - Select the=0A=
-'Behavior' tab - untick 'Build on resource save' and remove 'all' from=0A=
-the 'Build' field=0A=
-=0A=
-Cheers,=0A=
-Todor=0A=
-=0A=
-On Fri, 2015-05-15 at 09:32 +0000, Raghavendra Kakarla wrote:=0A=
-> Hi All,=0A=
->=0A=
->=0A=
-> I have problem with the ADT while i am building the autotool example=0A=
-> helloword project which is given in the "yocto ADT autotool project".=0A=
->=0A=
->=0A=
-> Could you please help me in resolving this issue.=0A=
->=0A=
->=0A=
-> I followed the following steps for installing the adt in my=0A=
-> development PC:=0A=
->=0A=
->=0A=
->=0A=
-> I built the toolchain using the following command:=0A=
->=0A=
-> $cd ~/poky=0A=
-> $source ./oe-init-build-env=0A=
-> $bitbake meta-ide-support=0A=
->=0A=
->=0A=
-> Extract the root file system by using the following commands:=0A=
->=0A=
-> $cd ~=0A=
-> $source ~/poky/build/tmp/environment-setup-mips32r2el-poky-linux=0A=
-> $runqemu-extract-sdk \=0A=
->         ~/poky/build/tmp/deploy/images/arqlyn/=0A=
-> core-image-minimal-dhruwa_ioe-20150511102759.rootfs.tar.bz2\=0A=
->         $HOME/arqlyn=0A=
->=0A=
-> I followed the command given in the yocto project dev-manual for=0A=
-> installing eclipse and adding yocto plugin to eclipse.=0A=
->=0A=
-> I Gave the following data to the eclipse for configuring the=0A=
-> cross-compiler options:=0A=
->=0A=
-> 1. I select the "Build System Derived Toolchain"=0A=
-> 2.point the toolchain path to "home/testuser/poky/build"=0A=
-> 3.gave sysroot path to /home/testuser/arqlyn=0A=
->=0A=
-> After entered this information I got the my machine-name in the=0A=
-> "select the target architecture" filed.=0A=
->=0A=
-> After this I create a autotool support project and tried to build but=0A=
-> it gives the error.=0A=
->=0A=
-> Regards,=0A=
->=0A=
-> Raghavendra.=0A=
->=0A=
->=0A=
->=0A=
-> --=0A=
-> _______________________________________________=0A=
-> yocto mailing list=0A=
-> yocto@yoctoproject.org=0A=
-> https://lists.yoctoproject.org/listinfo/yocto=0A=
-=0A=
+
+
+> The recommended way is to use CORE_IMAGE_EXTRA_INSTALL.
+
+Ok, this one worked! thanks
+
+
+>> I have other recipes(not *.bbappend) which end up in the image without adding any explicit statement, just the fact of being part of the layer includes them, is there any explanation?
+> Something must cause them to be included, either explicitly or implicitly.
+
+
+Therefore if it is included implicitly involves dependencies or requirements by other recipes.
+
+> What package(s) in particular are you asking about?
+
+
+Both components were simple recipes created by my own.
+
+I have discovered the root of my confusion, I had a "Hello World" recipe in my layer, which was in the image, hence I thought It was included implicitly. 
+
+But I was wrong, /usr/bin/hello was already in the default image, some other layer/recipe adds it.
+
+Whats the experts' way to find out the origin of a deployed file?
+
+Hopefully there is a faster way than searching whole $BUILD/tmp/work
+
+Thanks again
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+
+------------------------------------------------------------
+-- 
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
