@@ -1,46 +1,65 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <b.hutchman@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC5CEE00945; Fri, 15 May 2015 12:51:23 -0700 (PDT)
+	id 96CE8E00945; Fri, 15 May 2015 13:21:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (b.hutchman[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5A51E00820
-	for <yocto@yoctoproject.org>; Fri, 15 May 2015 12:51:19 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 15 May 2015 12:51:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,436,1427785200"; d="scan'208";a="710881150"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by fmsmga001.fm.intel.com with ESMTP; 15 May 2015 12:51:19 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.102]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.45]) with mapi id
-	14.03.0224.002; Fri, 15 May 2015 12:51:18 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Trevor Woerner <twoerner@gmail.com>, "Georgescu, Alexandru C"
-	<alexandru.c.georgescu@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Replacing HOB in Build Appliance for YP 1.9
-Thread-Index: AQHQg1+jJHA8n6FEVE60UTnnmkXlIZ1pAqKAgBSHTpA=
-Date: Fri, 15 May 2015 19:51:17 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988EF817D@ORSMSX101.amr.corp.intel.com>
-References: <D1682DBC.1AE81%alexandru.c.georgescu@intel.com>
-	<5544B307.7010804@gmail.com>
-In-Reply-To: <5544B307.7010804@gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f48.google.com (mail-oi0-f48.google.com
+	[209.85.218.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D0C5E00820;
+	Fri, 15 May 2015 13:21:44 -0700 (PDT)
+Received: by oica37 with SMTP id a37so91213434oic.0;
+	Fri, 15 May 2015 13:21:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=//QEMxlkWfvE/k4WF0zZM9H/L5VSrUrxRlRCvsIpC0A=;
+	b=frtU0L4OlCje6AQ2lBQx8n3KKnAaDRUrNRaCw4PPho85C+jyjo0zj1WEIJhI+Z+1+z
+	nPf3kTtuKfGL9n3Fx4IhdTDVFfeA4sFvGbQsJ9A6w20p0A9eyRK0SDCeZUbZmb1qKfPn
+	SrMw2/0EN7C/8HbdG+0G5lUJw8FsGacXI16FrmbUVc8jzoMzvW/vQ6LBfzgVrph6tXyu
+	xvLHLiR7jZiyoviymcjsD1FB8XUqJg2tZgORl038U+hrZLBkLerEzGS+xJiomFPWIyGJ
+	9G+FQauih2qwC0U0/y1L2kwFc6lCX7W5RvhZshrNGAPeJ6N6DMS48oagJFsZDkK2Y1Fr
+	mQLA==
 MIME-Version: 1.0
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>
-Subject: Re: Replacing HOB in Build Appliance for YP 1.9
+X-Received: by 10.60.40.163 with SMTP id y3mr9812919oek.34.1431721303755; Fri,
+	15 May 2015 13:21:43 -0700 (PDT)
+Received: by 10.60.6.33 with HTTP; Fri, 15 May 2015 13:21:43 -0700 (PDT)
+In-Reply-To: <CAFZh4h8qX6hYJ_kA4Ny=K7YqGnECu_nX1Jkejj=3P8saYmCH2g@mail.gmail.com>
+References: <4f2d75bf33ac423ab064f754e0b67655@ASTRO-EX1.Bensberg.de>
+	<5540DB34.6010102@windriver.com>
+	<a01714e680f8470cb21bb0b52e66c91e@ASTRO-EX1.Bensberg.de>
+	<55421DA2.9060909@windriver.com>
+	<e134e69a27bd460a9da71929a7f78d9a@ASTRO-EX1.Bensberg.de>
+	<554236CB.6000604@windriver.com>
+	<CAFZh4h9oL7K-=Nxhy=GV0k31ZgnPQuhFLQ-r_fReSRk1ZRhk1g@mail.gmail.com>
+	<5550FD98.1050507@windriver.com>
+	<CAFZh4h-SqSVsG_HXrx3H=QfDs3DH5GoKmFCgwBgGq90+B4WB5A@mail.gmail.com>
+	<55521DB8.2070606@windriver.com> <20150514220801.GD20022@denix.org>
+	<CAFZh4h9=cJG8aVbwvh_NjR24UTnCj9A44zHPs3rqEn_rdCfN3A@mail.gmail.com>
+	<CAFZh4h-r1_gabVP0HdDoOrcT_neED51JpMmm586KLuc_efWdFg@mail.gmail.com>
+	<CAFZh4h8qX6hYJ_kA4Ny=K7YqGnECu_nX1Jkejj=3P8saYmCH2g@mail.gmail.com>
+Date: Fri, 15 May 2015 16:21:43 -0400
+Message-ID: <CAFZh4h9oJ3UZFt2b_3SHB1xi99M+rEWis12-VU2gQxMQ9sVBsA@mail.gmail.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+To: Denys Dmytriyenko <denis@denix.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>
+Subject: Re: [meta-ti] Migration from 1.7.1 to 1.8 - kernel-abiversion missing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,38 +71,182 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 May 2015 19:51:24 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 15 May 2015 20:21:46 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Yes - this "build-appliance-manual" will need to be updated.  Is the work t=
-o replace HOB in the BA for 1.9 going to have bug associated with it? =20
+On Fri, May 15, 2015 at 3:26 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
+> On Fri, May 15, 2015 at 9:55 AM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
+>> On Thu, May 14, 2015 at 6:16 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
+>>>
+>>> On May 14, 2015 6:08 PM, "Denys Dmytriyenko" <denis@denix.org> wrote:
+>>>>
+>>>> On Tue, May 12, 2015 at 11:35:20AM -0400, Bruce Ashfield wrote:
+>>>> > On 2015-05-12 10:20 AM, Brian Hutchinson wrote:
+>>>> > >On Mon, May 11, 2015 at 3:06 PM, Bruce Ashfield
+>>>> > ><bruce.ashfield@windriver.com> wrote:
+>>>> > >>On 2015-05-11 02:10 PM, Brian Hutchinson wrote:
+>>>> > >>>
+>>>> > >>>On Thu, Apr 30, 2015 at 10:06 AM, Bruce Ashfield
+>>>> > >>><bruce.ashfield@windriver.com> wrote:
+>>>> > >>>>
+>>>> > >>>>It is plausible. But in theory, linux-dummy should still provide
+>>>> > >>>>what you need (but since it doesn't build anything, there is
+>>>> > >>>>no abi .. and no modules can be built against it) .. so the
+>>>> > >>>>error isn't graceful.
+>>>> > >>>>
+>>>> > >>>>Bruce
+>>>> > >>>
+>>>> > >>>
+>>>> > >>>I can confirm this same problem is happening to me.  I just updated
+>>>> > >>>one of my builds from 1.7 to 1.8 and am also getting my rootfs to
+>>>> > >>> fail
+>>>> > >>>due to no abi kernel version:
+>>>> > >>
+>>>> > >>
+>>>> > >>We still have a race condition in the 1.8 branch for the population
+>>>> > >>of the build-artifacts directory.
+>>>> > >>
+>>>> > >>If modules start building, they'll race against the population of the
+>>>> > >>abiversion, and you may see that message.
+>>>> > >>
+>>>> > >>There's a proposed patch for master, but I don't think it is in
+>>>> > >>fido yet.
+>>>> > >>
+>>>> > >>Bruce
+>>>> > >
+>>>> > >Hi Bruce,
+>>>> > >
+>>>> > >I did some searches and looks like there are a number of 'race'
+>>>> > >condition fixes but it wasn't obvious which one I may need.  Is it
+>>>> > >this one:
+>>>> >
+>>>> > > >http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=02d0a003d603266114512160b209876199241e98
+>>>> > >
+>>>> >
+>>>> > That's the one that should make sure that the shared workdir
+>>>> > (Which has the abiversion) is in place before building any modules.
+>>>> >
+>>>> > I can't say that it is exactly your issue, but it is the change
+>>>> > I was thinking of.
+>>>>
+>>>> Brian,
+>>>>
+>>>> Were you able to try the above mentioned commit against am180x in meta-ti?
+>>>> Did
+>>>> it solve the missing abi kernel version? Thanks.
+>>>>
+>>>> --
+>>>> Denys
+>>>
+>>> Hi Denys,
+>>>
+>>> No, I got caught up in something else ... I'll try it tomorrow and report
+>>> back after I cherry pick that commit Bruce mentioned.
+>>>
+>>> Regards,
+>>>
+>>> Brian
+>>
+>> Update.  Not sure if I did this right but this is what I did.  I added
+>> master as a remote and cherry picked
+>> 02d0a003d603266114512160b209876199241e98.  Next I just went for it and
+>> tried to bitbake my image again and got the same result as before.
+>> Next I did a bitbake cleanall on virtual/kernel and tried to make my
+>> image again and still got the same result.
+>>
+>> I'm going to leave this build as is and setup a new one using 1.8
+>> master and see if I get the same thing again.  I'll leave this broken
+>> build alone for a while in case someone wants me to try something with
+>> it to fix it.
+>>
+>> Regards,
+>>
+>> Brian
+>
+> Yet another update ... I did a fresh checkout of master and tried to
+> build and had the same kernelabiversion error:
+>
+> WARNING: omap3-sgx-modules-5.01.01.01 ONLY supports hardfp mode for
+> now#######################
+>                                                           | ETA:
+> 00:00:28
+> WARNING: omap3-sgx-modules-5.01.01.02 ONLY supports hardfp mode for now
+> WARNING: ti-cgt6x-8.0.0 ONLY supports hardfp mode for
+> now########################################
+>
+>  | ETA:  00:00:26
+> Parsing recipes: 100%
+> |##############################################################################################################################################################################|
+> Time: 00:01:02
+> Parsing of 1802 .bb files complete (0 cached, 1802 parsed). 2303
+> targets, 182 skipped, 0 masked, 0 errors.
+> NOTE: Resolving any missing task queue dependencies
+> NOTE: multiple providers are available for u-boot (u-boot,
+> u-boot-glsdk, u-boot-ti-staging)
+> NOTE: consider defining a PREFERRED_PROVIDER entry to match u-boot
+> NOTE: multiple providers are available for jpeg (jpeg, libjpeg-turbo)
+> NOTE: consider defining a PREFERRED_PROVIDER entry to match jpeg
+>
+> Build Configuration:
+> BB_VERSION        = "1.27.0"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "Debian-7.8"
+> TARGET_SYS        = "arm-poky-linux-gnueabi"
+> MACHINE           = "am180x-evm"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "1.8+snapshot-20150515"
+> TUNE_FEATURES     = "arm armv5 thumb dsp"
+> TARGET_FPU        = "soft"
+> meta
+> meta-yocto
+> meta-yocto-bsp    = "master:fab7da4f8030a4067db0522f77eaa6d3b501c68f"
+> meta-ti           = "master:60a7bfbf96609ef6f3e084c32b2af853222b3b7e"
+> meta-oe
+> meta-python
+> meta-networking
+> meta-webserver    = "master:53d55216c8c721d3b66ec8f968737bf081def870"
+>
+> NOTE: Preparing RunQueue
+> NOTE: Executing SetScene Tasks
+> NOTE: Executing RunQueue Tasks
+> WARNING: QA Issue: /usr/bin/apxs_apache2-dev contained in package
+> apache2-dev requires /usr/bin/perl, but no providers found in its
+> RDEPENDS [file-rdeps]
+> ERROR: No kernel-abiversion file found
+> (/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/sysroots/am180x-evm/pkgdata/kernel-depmod/kernel-abiversion),
+> cannot run depmod, aborting
+> ERROR: Function failed: do_rootfs
+> ERROR: Logfile of failure stored in:
+> /home/hutch/yocto_1.8_davinci_2/poky/build/tmp/work/am180x_evm-poky-linux-gnueabi/core-image-nodeam/1.0-r0/temp/log.do_rootfs.10336
+> ERROR: Task 7 (/home/hutch/yocto_1.8_davinci_2/poky/meta/recipes-core/images/core-image-nodeam.bb,
+> do_rootfs) failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 2614 tasks of which 9 didn't need to be
+> rerun and 1 failed.
+> Waiting for 0 running tasks to finish:
+>
+> Summary: 1 task failed:
+>   /home/hutch/yocto_1.8_davinci_2/poky/meta/recipes-core/images/core-image-nodeam.bb,
+> do_rootfs
+> Summary: There were 4 WARNING messages shown.
+> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
 
-Scott
+More info for those that care ...
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Trevor Woerner
->Sent: Saturday, May 02, 2015 4:21 AM
->To: Georgescu, Alexandru C; yocto@yoctoproject.org
->Cc: Paul Eggleton
->Subject: Re: [yocto] Replacing HOB in Build Appliance for YP 1.9
->
->On 04/30/15 12:06, Georgescu, Alexandru C wrote:
->> Since HOB is started
->> automatically in BA in order to help users get started quickly with
->> YP, I have the following proposal for updating BA in 1.9 and to replace =
-HOB:
->
->...
->
->and updating relevant documentation, such as:
->https://www.yoctoproject.org/documentation/build-appliance-manual
->
->--
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+The end of the error log file has:
+DEBUG: Executing python function write_image_manifest
+DEBUG: Python function write_image_manifest finished
+NOTE: Executing: ldconfig
+-r/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/work/am180x_evm-poky-linux-gnueabi/core-image-nodeam/1.0-r0/rootfs-c
+new -v
+ERROR: No kernel-abiversion file found
+(/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/sysroots/am180x-evm/pkgdata/kernel-depmod/kernel-abiversion),
+cannot run depmod, aborting
+DEBUG: Python function do_rootfs finished
+ERROR: Function failed: do_rootfs
+
+I have a linux-dummy director in pkgdata but no kernel-depmod directory exists.
+
+Regards,
+
+Brian
 
