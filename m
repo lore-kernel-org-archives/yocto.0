@@ -1,68 +1,49 @@
-Return-Path: <b.hutchman@gmail.com>
+Return-Path: <mag@mag.cx>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96CE8E00945; Fri, 15 May 2015 13:21:46 -0700 (PDT)
+	id D4D4BE00945; Sat, 16 May 2015 04:13:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (b.hutchman[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.48 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	UC_GIBBERISH_OBFU autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f48.google.com (mail-oi0-f48.google.com
-	[209.85.218.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D0C5E00820;
-	Fri, 15 May 2015 13:21:44 -0700 (PDT)
-Received: by oica37 with SMTP id a37so91213434oic.0;
-	Fri, 15 May 2015 13:21:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=//QEMxlkWfvE/k4WF0zZM9H/L5VSrUrxRlRCvsIpC0A=;
-	b=frtU0L4OlCje6AQ2lBQx8n3KKnAaDRUrNRaCw4PPho85C+jyjo0zj1WEIJhI+Z+1+z
-	nPf3kTtuKfGL9n3Fx4IhdTDVFfeA4sFvGbQsJ9A6w20p0A9eyRK0SDCeZUbZmb1qKfPn
-	SrMw2/0EN7C/8HbdG+0G5lUJw8FsGacXI16FrmbUVc8jzoMzvW/vQ6LBfzgVrph6tXyu
-	xvLHLiR7jZiyoviymcjsD1FB8XUqJg2tZgORl038U+hrZLBkLerEzGS+xJiomFPWIyGJ
-	9G+FQauih2qwC0U0/y1L2kwFc6lCX7W5RvhZshrNGAPeJ6N6DMS48oagJFsZDkK2Y1Fr
-	mQLA==
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 1.0 UC_GIBBERISH_OBFU Multiple instances of "word VERYLONGGIBBERISH
+	*      word"
+X-Greylist: delayed 154 seconds by postgrey-1.32 at yocto-www;
+	Sat, 16 May 2015 04:13:18 PDT
+Received: from ch-p-mailout01.sth.basefarm.net
+	(ch-p-mailout-vip.sth.basefarm.net [164.40.177.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6CCDE00820
+	for <yocto@yoctoproject.org>; Sat, 16 May 2015 04:13:18 -0700 (PDT)
+Received: from c151-177-19-4.bredband.comhem.se ([151.177.19.4]:54667
+	helo=server.mag.cx)
+	by ch-p-mailout01.sth.basefarm.net with esmtp (Exim 4.84)
+	(envelope-from <mag@mag.cx>) id 1YtZzS-0003mU-4P
+	for yocto@yoctoproject.org; Sat, 16 May 2015 13:11:02 +0200
+Received: from server.mag.cx (localhost [127.0.0.1])
+	by server.mag.cx (Postfix) with ESMTP id D74DC1982BE0
+	for <yocto@yoctoproject.org>; Sat, 16 May 2015 13:10:37 +0200 (CEST)
+Received: from SEGOTNB0606 (server.mag.cx [192.168.1.2])
+	by server.mag.cx (Postfix) with ESMTPSA
+	for <yocto@yoctoproject.org>; Sat, 16 May 2015 13:10:37 +0200 (CEST)
+From: "Christian Magnusson" <mag@mag.cx>
+To: <yocto@yoctoproject.org>
+Date: Sat, 16 May 2015 13:10:36 +0200
+Message-ID: <005a01d08fc8$f02aeac0$d080c040$@mag.cx>
 MIME-Version: 1.0
-X-Received: by 10.60.40.163 with SMTP id y3mr9812919oek.34.1431721303755; Fri,
-	15 May 2015 13:21:43 -0700 (PDT)
-Received: by 10.60.6.33 with HTTP; Fri, 15 May 2015 13:21:43 -0700 (PDT)
-In-Reply-To: <CAFZh4h8qX6hYJ_kA4Ny=K7YqGnECu_nX1Jkejj=3P8saYmCH2g@mail.gmail.com>
-References: <4f2d75bf33ac423ab064f754e0b67655@ASTRO-EX1.Bensberg.de>
-	<5540DB34.6010102@windriver.com>
-	<a01714e680f8470cb21bb0b52e66c91e@ASTRO-EX1.Bensberg.de>
-	<55421DA2.9060909@windriver.com>
-	<e134e69a27bd460a9da71929a7f78d9a@ASTRO-EX1.Bensberg.de>
-	<554236CB.6000604@windriver.com>
-	<CAFZh4h9oL7K-=Nxhy=GV0k31ZgnPQuhFLQ-r_fReSRk1ZRhk1g@mail.gmail.com>
-	<5550FD98.1050507@windriver.com>
-	<CAFZh4h-SqSVsG_HXrx3H=QfDs3DH5GoKmFCgwBgGq90+B4WB5A@mail.gmail.com>
-	<55521DB8.2070606@windriver.com> <20150514220801.GD20022@denix.org>
-	<CAFZh4h9=cJG8aVbwvh_NjR24UTnCj9A44zHPs3rqEn_rdCfN3A@mail.gmail.com>
-	<CAFZh4h-r1_gabVP0HdDoOrcT_neED51JpMmm586KLuc_efWdFg@mail.gmail.com>
-	<CAFZh4h8qX6hYJ_kA4Ny=K7YqGnECu_nX1Jkejj=3P8saYmCH2g@mail.gmail.com>
-Date: Fri, 15 May 2015 16:21:43 -0400
-Message-ID: <CAFZh4h9oJ3UZFt2b_3SHB1xi99M+rEWis12-VU2gQxMQ9sVBsA@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-To: Denys Dmytriyenko <denis@denix.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>
-Subject: Re: [meta-ti] Migration from 1.7.1 to 1.8 - kernel-abiversion missing
+X-Mailer: Microsoft Outlook 14.0
+thread-index: AdCPui0H10t0Muk3RdW1m97moS+YCw==
+X-Originating-IP: 151.177.19.4
+X-Scan-Result: No virus found in message 1YtZzS-0003mU-4P.
+X-Scan-Signature: ch-p-mailout01.sth.basefarm.net 1YtZzS-0003mU-4P
+	4ed8d0596cc202c0797562b646313023
+Subject: Re: Layer Priority with Wildcard .bbappend Files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: mag@mag.cx
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -71,182 +52,1013 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 May 2015 20:21:46 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sat, 16 May 2015 11:13:25 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_005B_01D08FD9.B3B73D30"
+Content-Language: sv
 
-On Fri, May 15, 2015 at 3:26 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
-> On Fri, May 15, 2015 at 9:55 AM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
->> On Thu, May 14, 2015 at 6:16 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
->>>
->>> On May 14, 2015 6:08 PM, "Denys Dmytriyenko" <denis@denix.org> wrote:
->>>>
->>>> On Tue, May 12, 2015 at 11:35:20AM -0400, Bruce Ashfield wrote:
->>>> > On 2015-05-12 10:20 AM, Brian Hutchinson wrote:
->>>> > >On Mon, May 11, 2015 at 3:06 PM, Bruce Ashfield
->>>> > ><bruce.ashfield@windriver.com> wrote:
->>>> > >>On 2015-05-11 02:10 PM, Brian Hutchinson wrote:
->>>> > >>>
->>>> > >>>On Thu, Apr 30, 2015 at 10:06 AM, Bruce Ashfield
->>>> > >>><bruce.ashfield@windriver.com> wrote:
->>>> > >>>>
->>>> > >>>>It is plausible. But in theory, linux-dummy should still provide
->>>> > >>>>what you need (but since it doesn't build anything, there is
->>>> > >>>>no abi .. and no modules can be built against it) .. so the
->>>> > >>>>error isn't graceful.
->>>> > >>>>
->>>> > >>>>Bruce
->>>> > >>>
->>>> > >>>
->>>> > >>>I can confirm this same problem is happening to me.  I just updated
->>>> > >>>one of my builds from 1.7 to 1.8 and am also getting my rootfs to
->>>> > >>> fail
->>>> > >>>due to no abi kernel version:
->>>> > >>
->>>> > >>
->>>> > >>We still have a race condition in the 1.8 branch for the population
->>>> > >>of the build-artifacts directory.
->>>> > >>
->>>> > >>If modules start building, they'll race against the population of the
->>>> > >>abiversion, and you may see that message.
->>>> > >>
->>>> > >>There's a proposed patch for master, but I don't think it is in
->>>> > >>fido yet.
->>>> > >>
->>>> > >>Bruce
->>>> > >
->>>> > >Hi Bruce,
->>>> > >
->>>> > >I did some searches and looks like there are a number of 'race'
->>>> > >condition fixes but it wasn't obvious which one I may need.  Is it
->>>> > >this one:
->>>> >
->>>> > > >http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=02d0a003d603266114512160b209876199241e98
->>>> > >
->>>> >
->>>> > That's the one that should make sure that the shared workdir
->>>> > (Which has the abiversion) is in place before building any modules.
->>>> >
->>>> > I can't say that it is exactly your issue, but it is the change
->>>> > I was thinking of.
->>>>
->>>> Brian,
->>>>
->>>> Were you able to try the above mentioned commit against am180x in meta-ti?
->>>> Did
->>>> it solve the missing abi kernel version? Thanks.
->>>>
->>>> --
->>>> Denys
->>>
->>> Hi Denys,
->>>
->>> No, I got caught up in something else ... I'll try it tomorrow and report
->>> back after I cherry pick that commit Bruce mentioned.
->>>
->>> Regards,
->>>
->>> Brian
->>
->> Update.  Not sure if I did this right but this is what I did.  I added
->> master as a remote and cherry picked
->> 02d0a003d603266114512160b209876199241e98.  Next I just went for it and
->> tried to bitbake my image again and got the same result as before.
->> Next I did a bitbake cleanall on virtual/kernel and tried to make my
->> image again and still got the same result.
->>
->> I'm going to leave this build as is and setup a new one using 1.8
->> master and see if I get the same thing again.  I'll leave this broken
->> build alone for a while in case someone wants me to try something with
->> it to fix it.
->>
->> Regards,
->>
->> Brian
->
-> Yet another update ... I did a fresh checkout of master and tried to
-> build and had the same kernelabiversion error:
->
-> WARNING: omap3-sgx-modules-5.01.01.01 ONLY supports hardfp mode for
-> now#######################
->                                                           | ETA:
-> 00:00:28
-> WARNING: omap3-sgx-modules-5.01.01.02 ONLY supports hardfp mode for now
-> WARNING: ti-cgt6x-8.0.0 ONLY supports hardfp mode for
-> now########################################
->
->  | ETA:  00:00:26
-> Parsing recipes: 100%
-> |##############################################################################################################################################################################|
-> Time: 00:01:02
-> Parsing of 1802 .bb files complete (0 cached, 1802 parsed). 2303
-> targets, 182 skipped, 0 masked, 0 errors.
-> NOTE: Resolving any missing task queue dependencies
-> NOTE: multiple providers are available for u-boot (u-boot,
-> u-boot-glsdk, u-boot-ti-staging)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match u-boot
-> NOTE: multiple providers are available for jpeg (jpeg, libjpeg-turbo)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match jpeg
->
-> Build Configuration:
-> BB_VERSION        = "1.27.0"
-> BUILD_SYS         = "x86_64-linux"
-> NATIVELSBSTRING   = "Debian-7.8"
-> TARGET_SYS        = "arm-poky-linux-gnueabi"
-> MACHINE           = "am180x-evm"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "1.8+snapshot-20150515"
-> TUNE_FEATURES     = "arm armv5 thumb dsp"
-> TARGET_FPU        = "soft"
-> meta
-> meta-yocto
-> meta-yocto-bsp    = "master:fab7da4f8030a4067db0522f77eaa6d3b501c68f"
-> meta-ti           = "master:60a7bfbf96609ef6f3e084c32b2af853222b3b7e"
-> meta-oe
-> meta-python
-> meta-networking
-> meta-webserver    = "master:53d55216c8c721d3b66ec8f968737bf081def870"
->
-> NOTE: Preparing RunQueue
-> NOTE: Executing SetScene Tasks
-> NOTE: Executing RunQueue Tasks
-> WARNING: QA Issue: /usr/bin/apxs_apache2-dev contained in package
-> apache2-dev requires /usr/bin/perl, but no providers found in its
-> RDEPENDS [file-rdeps]
-> ERROR: No kernel-abiversion file found
-> (/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/sysroots/am180x-evm/pkgdata/kernel-depmod/kernel-abiversion),
-> cannot run depmod, aborting
-> ERROR: Function failed: do_rootfs
-> ERROR: Logfile of failure stored in:
-> /home/hutch/yocto_1.8_davinci_2/poky/build/tmp/work/am180x_evm-poky-linux-gnueabi/core-image-nodeam/1.0-r0/temp/log.do_rootfs.10336
-> ERROR: Task 7 (/home/hutch/yocto_1.8_davinci_2/poky/meta/recipes-core/images/core-image-nodeam.bb,
-> do_rootfs) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 2614 tasks of which 9 didn't need to be
-> rerun and 1 failed.
-> Waiting for 0 running tasks to finish:
->
-> Summary: 1 task failed:
->   /home/hutch/yocto_1.8_davinci_2/poky/meta/recipes-core/images/core-image-nodeam.bb,
-> do_rootfs
-> Summary: There were 4 WARNING messages shown.
-> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+------=_NextPart_000_005B_01D08FD9.B3B73D30
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-More info for those that care ...
+I also stumbled into this problem.
+We are using a BSP from Phytec. It's using poky and Phytec made a simple
+distribution in meta-yougurt.
+Now I want to customize it, and made my own meta-platform to overwrite files
+from the other layers. (prio 100)
+ 
+# bitbake-layers show-recipes
+init-ifupdown:
+  meta                 1.0
+ 
+# bitbake-layers show-layers
+layer                 path                                      priority
+==========================================================================
+meta                  /home/s22463/yocto/sources/poky/meta      5
+meta-yocto            /home/s22463/yocto/sources/poky/meta-yocto  5
+meta-phytec           /home/s22463/yocto/sources/meta-phytec    20
+meta-phyam335x        /home/s22463/yocto/sources/meta-phytec/meta-phyam335x
+20
+meta-yogurt           /home/s22463/yocto/sources/meta-yogurt    10
+meta-oe               /home/s22463/yocto/sources/meta-openembedded/meta-oe
+6
+meta-networking
+/home/s22463/yocto/sources/meta-openembedded/meta-networking  5
+meta-python
+/home/s22463/yocto/sources/meta-openembedded/meta-python  7
+meta-systemd
+/home/s22463/yocto/sources/meta-openembedded/meta-systemd  7
+meta-qt5              /home/s22463/yocto/sources/meta-qt5       7
+meta-platform         /home/s22463/yocto/sources/meta-platform  100
+meta-webserver
+/home/s22463/yocto/sources/meta-openembedded/meta-webserver  6
+ 
+# bitbake-layers show-appends
+init-ifupdown_1.0.bb:
+ 
+/home/s22463/yocto/sources/meta-platform/recipes-core/init-ifupdown/init-ifu
+pdown_1.0.bbappend
+ 
+/home/s22463/yocto/sources/meta-yogurt/recipes-core/init-ifupdown/init-ifupd
+own_%.bbappend
+ 
+Changing BBFILE_PRIORITY_platform-layer in meta-platform/conf/layer.conf
+doesn't affect the order either.
+ 
+ 
+If I rename 
+/home/s22463/yocto/sources/meta-yogurt/recipes-core/init-ifupdown/init-ifupd
+own_%.bbappend -> init-ifupdown_1.0.bbappend
+the priority works, and my files in meta-platform are installed last, as I
+want to overwrite all other files.
+ 
+# mv
+/home/s22463/yocto/sources/meta-yogurt/recipes-core/init-ifupdown/init-ifupd
+own_%.bbappend
+/home/s22463/yocto/sources/meta-yogurt/recipes-core/init-ifupdown/init-ifupd
+own_1.0.bbappend
+# bitbake-layers show-appends
+init-ifupdown_1.0.bb:
+ 
+/home/s22463/yocto/sources/meta-yogurt/recipes-core/init-ifupdown/init-ifupd
+own_1.0.bbappend
+ 
+/home/s22463/yocto/sources/meta-platform/recipes-core/init-ifupdown/init-ifu
+pdown_1.0.bbappend
+ 
+The installation order works now, but I would rather avoid to patch the
+other layers.
+Changing BBFILE_PRIORITY_platform-layer in meta-platform/conf/layer.conf
+now, will affect the order!, and I can install meta-plaform either before or
+after the meta-yougurt layer if I want.
+ 
+Does anyone know the reason to the faulty sort-order?
+ 
+/Christian Magnusson
+ 
+ 
+ 
+On 11/24/2014 03:22 PM, Stevens, Nick wrote:
+I think I've encountered a bug with how multiple bbappend files are
+processed 
+when one of the bbappends contains a filename wildcard, but I want to make
+sure 
+there's not something I'm missing before filing a bug report.
+ 
+I have a BSP layer and a customization layer that are based on the OE/poky 
+Daisy release. The output of `bitbake-layers show-layers` looks like:
+     layer                 path                 priority
+     =====================================================
+     meta                  poky/meta            5
+     meta-yocto            poky/meta-yocto      5
+     meta-yocto-bsp        poky/meta-yocto-bsp  5
+     ...ellided...
+     meta-bsp              meta-bsp             6
+     meta-custom           meta-custom          8
+ 
+In meta-bsp there is a bbappend for base-files named 
+base-files_3.0.14.bbappend. The meta-bsp bbappend adds a sysctl.conf to /etc
+- 
+pretty straightforward:
+     FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+     SRC_URI += "file://sysctl.conf"
+     do_install_append() {
+         install -m 0644 ${WORKDIR}/sysctl.conf ${D}${sysconfdir}/
+     }
+ 
+Now what I want to do is add a file called base-files_%.bbappend to 
+meta-custom. It has its own version of sysctl.conf, and the recipe looks
+like 
+this:
+     FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+ 
+Here's where things get weird. If I run `bitbake -e base-files` and pull out
 
-The end of the error log file has:
-DEBUG: Executing python function write_image_manifest
-DEBUG: Python function write_image_manifest finished
-NOTE: Executing: ldconfig
--r/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/work/am180x_evm-poky-linux-gnueabi/core-image-nodeam/1.0-r0/rootfs-c
-new -v
-ERROR: No kernel-abiversion file found
-(/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/sysroots/am180x-evm/pkgdata/kernel-depmod/kernel-abiversion),
-cannot run depmod, aborting
-DEBUG: Python function do_rootfs finished
-ERROR: Function failed: do_rootfs
+the section for FILESEXTRAPATHS, this is what I get (note that I've stripped
 
-I have a linux-dummy director in pkgdata but no kernel-depmod directory exists.
+out the huge absolute paths to make this easier to read):
+     # $FILESEXTRAPATHS [5 operations]
+     #   set poky/meta/conf/documentation.conf:172
+     #     [doc] "Extends the search path the OpenEmbedded build system uses
+when 
+looking for files and patches as it processes recipes and append files."
+     #   _prepend
+meta-custom/recipes-core/base-files/base-files_%.bbappend:6
+     #     "meta-custom/recipes-core/base-files/base-files:"
+     #   _prepend
+meta-bsp/recipes-core/base-files/base-files_3.0.14.bbappend:3
+     #     "meta-bsp/recipes-core/base-files/base-files:"
+     #   set data_smart.py:432 [finalize]
+     #     "meta-custom/recipes-core/base-files/base-files:"
+     #   set data_smart.py:432 [finalize]
+     #     
+"meta-bsp/recipes-core/base-files/base-files:meta-custom/recipes-core/base-f
+iles/base-files:"
+     # computed:
+     #   
+"meta-bsp/recipes-core/base-files/base-files:meta-custom/recipes-core/base-f
+iles/base-files:"
+     
+FILESEXTRAPATHS="meta-bsp/recipes-core/base-files/base-files:meta-custom/rec
+ipes-core/base-files/base-files:"
+ 
+For some reason meta-bsp is coming before meta-custom in FILESEXTRAPATHS,
+even 
+though meta-custom has a higher priority!
+ 
+ 
 
-Regards,
+I also have some questions about how FILESEXTRAPATHS is supposed to work
+with append files and layer priorities.
 
-Brian
+ 
 
+Does a higher layer priority mean that the FILESEXTRAPATHS operation should
+occur first? If this is the case, then a lower priority layer prepend will
+appear to the left of the higher layer prepend since it runs later, and this
+will probably not provide the result you want.
+
+ 
+
+The prepend and layer logic seems messy to me. I would like to have a way to
+write my custom layer and specify that what I include in my SRC_URI in each
+recipe is definitive and can not be overwritten. Suggestions on how to best
+accomplish this will be greatly appreciated.
+
+ 
+
+I have been trying to accomplish this with FILESOVERRIDES, but this logic
+seems counterintuitive since DISTROOVERRIDES take precedence over
+MACHINEOVERRIDES in building the file search path during the unpack task.
+
+ 
+
+It seems to me that the file search path should be built using
+FILESOVERRIDES from left to right: TRANSLATED_TARGET_ARCH, MACHINEOVERRIDES,
+and then DISTROOVERRIDES (specific to generic), but this isn't what I'm
+seeing. Still investigating how it's all put together...
+
+ 
+ 
+
+I verified this by building an image - the sysctl.conf that ends up in the
+final image is the one from meta-bsp, not the one from meta-custom. But if I
+switch the name of base-files_%.bbappend in meta-custom to
+base-files_3.0.14.bbappend, this is what I get:
+
+     # $FILESEXTRAPATHS [5 operations]
+     #   set poky/meta/conf/documentation.conf:172
+     #     [doc] "Extends the search path the OpenEmbedded build system uses
+when 
+looking for files and patches as it processes recipes and append files."
+     #   _prepend
+meta-bsp/recipes-core/base-files/base-files_3.0.14.bbappend:3
+     #     "meta-bsp/recipes-core/base-files/base-files:"
+     #   _prepend 
+meta-custom/recipes-core/base-files/base-files_3.0.14.bbappend:6
+     #     "meta-custom/recipes-core/base-files/base-files:"
+     #   set data_smart.py:432 [finalize]
+     #     "meta-bsp/recipes-core/base-files/base-files:"
+     #   set data_smart.py:432 [finalize]
+     #     
+"meta-custom/recipes-core/base-files/base-files:meta-bsp/recipes-core/base-f
+iles/base-files:"
+     # computed:
+     #   
+"meta-custom/recipes-core/base-files/base-files:meta-bsp/recipes-core/base-f
+iles/base-files:"
+     
+FILESEXTRAPATHS="meta-custom/recipes-core/base-files/base-files:meta-bsp/rec
+ipes-core/base-files/base-files:"
+ 
+And now the sysctl.conf file is being pulled from meta-custom.
+ 
+Is there something I'm missing, like some sort of decreased priorty for 
+bbappend files with a wildcard? Or is this a bug?
+ 
+Thanks for any help!
+ 
+Nick Stevens
+ 
+ 
+--
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+ <https://lists.yoctoproject.org/listinfo/yocto>
+https://lists.yoctoproject.org/listinfo/yocto
+
+ 
+
+ 
+
+
+------=_NextPart_000_005B_01D08FD9.B3B73D30
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Courier;
+	panose-1:2 7 4 9 2 2 5 2 4 4;}
+@font-face
+	{font-family:Courier;
+	panose-1:2 7 4 9 2 2 5 2 4 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+tt
+	{mso-style-priority:99;
+	font-family:"Courier New";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:"Courier New";
+	mso-fareast-language:SV;}
+span.apple-converted-space
+	{mso-style-name:apple-converted-space;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DSV link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>I also =
+stumbled into this problem.<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>We are using =
+a BSP from Phytec. It&#8217;s using poky and Phytec made a simple =
+distribution in meta-yougurt.<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>Now I want to =
+customize it, and made my own meta-platform to overwrite files from the =
+other layers. (prio 100)<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'># =
+bitbake-layers show-recipes<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>init-ifupdown:=
+<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>&nbsp; =
+meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; 1.0<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'># =
+bitbake-layers show-layers<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>layer&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; =
+path&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; priority<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<o:p></o:p></spa=
+n></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>meta&nbsp;&nbs=
+p; =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;/home/s22463/yocto/sources/poky/meta&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; 5<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>meta-yocto&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+/home/s22463/yocto/sources/poky/meta-yocto&nbsp; =
+5<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>meta-phytec&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+/home/s22463/yocto/sources/meta-phytec&nbsp;&nbsp;&nbsp; =
+20<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>meta-phyam335x=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+/home/s22463/yocto/sources/meta-phytec/meta-phyam335x&nbsp; =
+20<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>meta-yogurt&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+/home/s22463/yocto/sources/meta-yogurt&nbsp;&nbsp;&nbsp; =
+10<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>meta-oe&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; /home/s22463/yocto/sources/meta-openembedded/meta-oe&nbsp; =
+6<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>meta-networkin=
+g&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+/home/s22463/yocto/sources/meta-openembedded/meta-networking&nbsp; =
+5<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>meta-python&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+/home/s22463/yocto/sources/meta-openembedded/meta-python&nbsp; =
+7<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>meta-systemd&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+/home/s22463/yocto/sources/meta-openembedded/meta-systemd&nbsp; =
+7<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>meta-qt5&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+/home/s22463/yocto/sources/meta-qt5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+7<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>meta-platform&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+/home/s22463/yocto/sources/meta-platform&nbsp; =
+100<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>meta-webserver=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+/home/s22463/yocto/sources/meta-openembedded/meta-webserver&nbsp; =
+6<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'># =
+bitbake-layers show-appends<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>init-ifupdown_=
+1.0.bb:<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>&nbsp; =
+/home/s22463/yocto/sources/meta-platform/recipes-core/init-ifupdown/init-=
+ifupdown_1.0.bbappend<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>&nbsp; =
+/home/s22463/yocto/sources/meta-yogurt/recipes-core/init-ifupdown/init-if=
+updown_%.bbappend<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>Changing =
+BBFILE_PRIORITY_platform-layer in meta-platform/conf/layer.conf =
+doesn&#8217;t affect the order either.<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>If I rename =
+<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>/home/s22463/y=
+octo/sources/meta-yogurt/recipes-core/init-ifupdown/init-ifupdown_%.bbapp=
+end -&gt; init-ifupdown_1.0.bbappend<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>the priority =
+works, and my files in meta-platform are installed last, as I want to =
+overwrite all other files.<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'># mv =
+/home/s22463/yocto/sources/meta-yogurt/recipes-core/init-ifupdown/init-if=
+updown_%.bbappend =
+/home/s22463/yocto/sources/meta-yogurt/recipes-core/init-ifupdown/init-if=
+updown_1.0.bbappend<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'># =
+bitbake-layers show-appends<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>init-ifupdown_=
+1.0.bb:<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>&nbsp; =
+/home/s22463/yocto/sources/meta-yogurt/recipes-core/init-ifupdown/init-if=
+updown_1.0.bbappend<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>&nbsp; =
+/home/s22463/yocto/sources/meta-platform/recipes-core/init-ifupdown/init-=
+ifupdown_1.0.bbappend<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>The =
+installation order works now, but I would rather avoid to patch the =
+other layers.<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>Changing =
+BBFILE_PRIORITY_platform-layer in meta-platform/conf/layer.conf now, =
+will affect the order!, and I can install meta-plaform either before or =
+after the meta-yougurt layer if I want.<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>Does anyone =
+know the reason to the faulty sort-order?<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>/Christian =
+Magnusson<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>On 11/24/2014 =
+03:22 PM, Stevens, Nick wrote:<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white;white-space:pre-wrap;word-wr=
+ap: break-word'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>I think =
+I've encountered a bug with how multiple bbappend files are processed =
+<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>when one of =
+the bbappends contains a filename wildcard, but I want to make sure =
+<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>there's not =
+something I'm missing before filing a bug =
+report.<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white;white-space:pre-wrap;word-wr=
+ap: break-word'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'><o:p>&nbsp;<=
+/o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>I have a =
+BSP layer and a customization layer that are based on the OE/poky =
+<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>Daisy =
+release. The output of `bitbake-layers show-layers` looks =
+like:<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; =
+layer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+path&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; priority<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; =
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; =
+meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp; =
+&nbsp;&nbsp;&nbsp;&nbsp;poky/meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; 5<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; =
+meta-yocto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp; poky/meta-yocto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+5<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; meta-yocto-bsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+poky/meta-yocto-bsp&nbsp; 5<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; </span><span =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>...ellided..=
+.<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; =
+meta-bsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp; =
+meta-bsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; 6<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; </span><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>meta-custom&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+meta-custom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+8<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'><o:p>&nbsp;<=
+/o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>In meta-bsp =
+there is a bbappend for base-files named <o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>base-files_3=
+.0.14.bbappend. The meta-bsp bbappend adds a sysctl.conf to /etc - =
+<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>pretty =
+straightforward:<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; FILESEXTRAPATHS_prepend :=3D =
+&quot;${THISDIR}/${PN}:&quot;<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; SRC_URI +=3D =
+&quot;file://sysctl.conf&quot;<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; do_install_append() {<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -m 0644 =
+${WORKDIR}/sysctl.conf ${D}${sysconfdir}/<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; }<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'><o:p>&nbsp;<=
+/o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>Now what I =
+want to do is add a file called base-files_%.bbappend to =
+<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>meta-custom.=
+ It has its own version of sysctl.conf, and the recipe looks like =
+<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>this:<o:p></=
+o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; FILESEXTRAPATHS_prepend :=3D =
+&quot;${THISDIR}/${PN}:&quot;<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'><o:p>&nbsp;<=
+/o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>Here's =
+where things get weird. If I run `bitbake -e base-files` and pull out =
+<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>the section =
+for FILESEXTRAPATHS, this is what I get (note that I've stripped =
+<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>out the =
+huge absolute paths to make this easier to =
+read):<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; # $FILESEXTRAPATHS [5 =
+operations]<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp; set =
+poky/meta/conf/documentation.conf:172<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp;&nbsp;&nbsp; [doc] &quot;Extends the search =
+path the OpenEmbedded build system uses when =
+<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>looking for =
+files and patches as it processes recipes and append =
+files.&quot;<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp; &nbsp;_prepend =
+meta-custom/recipes-core/base-files/base-files_%.bbappend:6<o:p></o:p></s=
+pan></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp;&nbsp;&nbsp; =
+&quot;meta-custom/recipes-core/base-files/base-files:&quot;<o:p></o:p></s=
+pan></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp; _prepend =
+meta-bsp/recipes-core/base-files/base-files_3.0.14.bbappend:3<o:p></o:p><=
+/span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp;&nbsp;&nbsp; =
+&quot;meta-bsp/recipes-core/base-files/base-files:&quot;<o:p></o:p></span=
+></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp; set data_smart.py:432 =
+[finalize]<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp;&nbsp;&nbsp; =
+&quot;meta-custom/recipes-core/base-files/base-files:&quot;<o:p></o:p></s=
+pan></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp; set data_smart.py:432 =
+[finalize]<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&quot;meta-b=
+sp/recipes-core/base-files/base-files:meta-custom/recipes-core/base-files=
+/base-files:&quot;<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; # computed:<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp; <o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&quot;meta-b=
+sp/recipes-core/base-files/base-files:meta-custom/recipes-core/base-files=
+/base-files:&quot;<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; <o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DPT-BR =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>FILESEXTRAPA=
+THS=3D&quot;meta-bsp/recipes-core/base-files/base-files:meta-custom/recip=
+es-core/base-files/base-files:&quot;<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DPT-BR =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'><o:p>&nbsp;<=
+/o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>For some =
+reason meta-bsp is coming before meta-custom in FILESEXTRAPATHS, even =
+<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>though =
+meta-custom has a higher priority!<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white;white-space:pre-wrap;word-wr=
+ap: break-word;orphans: auto;text-align:start;widows: =
+1;-webkit-text-stroke-width: 0px;word-spacing:0px'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><p class=3DMsoNormal><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>I also have some questions about how FILESEXTRAPATHS is supposed to =
+work</span></tt><span class=3Dapple-converted-space><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>&nbsp;</span></span><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>with append files and layer priorities.</span></tt><span lang=3DEN-US =
+style=3D'font-size:12.0pt;font-family:"Times New =
+Roman","serif"'><o:p></o:p></span></p><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><p class=3DMsoNormal><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>Does a higher layer priority mean that the FILESEXTRAPATHS =
+operation</span></tt><span class=3Dapple-converted-space><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>&nbsp;</span></span><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>should occur first? If this is the case, then a lower priority =
+layer</span></tt><span class=3Dapple-converted-space><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>&nbsp;</span></span><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>prepend will appear to the left of the higher layer prepend since =
+it</span></tt><span class=3Dapple-converted-space><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>&nbsp;</span></span><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>runs later, and this will probably not provide the result you =
+want.</span></tt><span lang=3DEN-US><o:p></o:p></span></p><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><p class=3DMsoNormal><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>The prepend and layer logic seems messy to me. I would like to have =
+a</span></tt><span class=3Dapple-converted-space><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>&nbsp;</span></span><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>way to write my custom layer and specify that what I include in =
+my</span></tt><span class=3Dapple-converted-space><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>&nbsp;</span></span><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>SRC_URI in each recipe is definitive and can not be =
+overwritten.</span></tt><span class=3Dapple-converted-space><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>&nbsp;</span></span><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>Suggestions on how to best accomplish this will be greatly =
+appreciated.</span></tt><span lang=3DEN-US><o:p></o:p></span></p><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><p class=3DMsoNormal><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>I have been trying to accomplish this with FILESOVERRIDES, but =
+this</span></tt><span class=3Dapple-converted-space><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>&nbsp;</span></span><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>logic seems counterintuitive since DISTROOVERRIDES take precedence =
+over</span></tt><span class=3Dapple-converted-space><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>&nbsp;</span></span><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>MACHINEOVERRIDES in building the file search path during the unpack =
+task.</span></tt><span lang=3DEN-US><o:p></o:p></span></p><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><p class=3DMsoNormal><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>It seems to me that the file search path should be built =
+using</span></tt><span class=3Dapple-converted-space><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>&nbsp;</span></span><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>FILESOVERRIDES from left to right: =
+TRANSLATED_TARGET_ARCH,</span></tt><span =
+class=3Dapple-converted-space><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>&nbsp;</span></span><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>MACHINEOVERRIDES, and then DISTROOVERRIDES (specific to generic), =
+but</span></tt><span class=3Dapple-converted-space><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>&nbsp;</span></span><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>this isn't what I'm seeing. Still investigating how it's all =
+put</span></tt><span class=3Dapple-converted-space><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>&nbsp;</span></span><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>together...</span></tt><span lang=3DEN-US><o:p></o:p></span></p><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><p class=3DMsoNormal><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>I verified this by building an image - the sysctl.conf that ends up =
+in</span></tt><span class=3Dapple-converted-space><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>&nbsp;</span></span><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>the final image is the one from meta-bsp, not the one from =
+meta-custom.</span></tt><span class=3Dapple-converted-space><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>&nbsp;</span></span><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>But if I switch the name of base-files_%.bbappend in meta-custom =
+to</span></tt><span class=3Dapple-converted-space><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>&nbsp;</span></span><tt><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black;background:whit=
+e'>base-files_3.0.14.bbappend, this is what I get:</span></tt><span =
+lang=3DEN-US><o:p></o:p></span></p><pre =
+style=3D'line-height:14.7pt;background:white;white-space:pre-wrap;word-wr=
+ap: break-word'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; # $FILESEXTRAPATHS [5 =
+operations]<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp; set =
+poky/meta/conf/documentation.conf:172<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp;&nbsp;&nbsp; [doc] &quot;Extends the search =
+path the OpenEmbedded build system uses when =
+<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>looking for =
+files and patches as it processes recipes and append =
+files.&quot;<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; </span><span =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>#&nbsp;&nbsp=
+; _prepend =
+meta-bsp/recipes-core/base-files/base-files_3.0.14.bbappend:3<o:p></o:p><=
+/span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp;&nbsp;&nbsp; =
+&quot;meta-bsp/recipes-core/base-files/base-files:&quot;<o:p></o:p></span=
+></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp; _prepend <o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>meta-custom/=
+recipes-core/base-files/base-files_3.0.14.bbappend:6<o:p></o:p></span></p=
+re><pre style=3D'line-height:14.7pt;background:white'><span =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp;&nbsp;&nbsp; =
+&quot;meta-custom/recipes-core/base-files/base-files:&quot;<o:p></o:p></s=
+pan></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; </span><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>#&nbsp;&nbsp=
+; set data_smart.py:432 [finalize]<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp;&nbsp;&nbsp; =
+&quot;meta-bsp/recipes-core/base-files/base-files:&quot;<o:p></o:p></span=
+></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp; set data_smart.py:432 =
+[finalize]<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp;&nbsp;&nbsp; <o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&quot;meta-c=
+ustom/recipes-core/base-files/base-files:meta-bsp/recipes-core/base-files=
+/base-files:&quot;<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; # computed:<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; #&nbsp;&nbsp; <o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&quot;meta-c=
+ustom/recipes-core/base-files/base-files:meta-bsp/recipes-core/base-files=
+/base-files:&quot;<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>&nbsp;&nbsp;=
+&nbsp;&nbsp; <o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>FILESEXTRAPA=
+THS=3D&quot;meta-custom/recipes-core/base-files/base-files:meta-bsp/recip=
+es-core/base-files/base-files:&quot;<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'><o:p>&nbsp;<=
+/o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>And now the =
+sysctl.conf file is being pulled from =
+meta-custom.<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'><o:p>&nbsp;<=
+/o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>Is there =
+something I'm missing, like some sort of decreased priorty for =
+<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>bbappend =
+files with a wildcard? Or is this a bug?<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'><o:p>&nbsp;<=
+/o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>Thanks for =
+any help!<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'><o:p>&nbsp;<=
+/o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'>Nick =
+Stevens<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:#A01E1E'><o:p>&nbsp;<=
+/o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white;white-space:pre-wrap;word-wr=
+ap: break-word;orphans: auto;text-align:start;widows: =
+1;-webkit-text-stroke-width: 0px;word-spacing:0px'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p>&nbsp;</o=
+:p></span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>--<o:p></o:p><=
+/span></pre><pre style=3D'line-height:14.7pt;background:white'><span =
+lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>______________=
+_________________________________<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>yocto mailing =
+list<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'>yocto@yoctopro=
+ject.org<o:p></o:p></span></pre><pre =
+style=3D'line-height:14.7pt;background:white'><span =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><a =
+href=3D"https://lists.yoctoproject.org/listinfo/yocto"><span =
+lang=3DEN-US =
+style=3D'color:#A01E1E'>https://lists.yoctoproject.org/listinfo/yocto</sp=
+an></a></span><span lang=3DEN-US =
+style=3D'font-size:10.5pt;font-family:Courier;color:black'><o:p></o:p></s=
+pan></pre><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
+
+------=_NextPart_000_005B_01D08FD9.B3B73D30--
