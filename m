@@ -1,46 +1,35 @@
-Return-Path: <Raghavendra.Kakarla@inedasystems.com>
+Return-Path: <schuetz@cs.uni-kl.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F2658E009D4; Sun, 17 May 2015 23:03:50 -0700 (PDT)
+	id B3A97E00830; Mon, 18 May 2015 02:52:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.invecas.com (mx1.invecas.com [112.133.222.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BFF6E00830
-	for <yocto@yoctoproject.org>; Sun, 17 May 2015 23:03:48 -0700 (PDT)
-Received: from SOC-EXCH-01.invecas.local (10.0.30.8) by mail.invecas.com
-	(10.0.30.131) with Microsoft SMTP Server (TLS) id 14.3.123.3;
-	Mon, 18 May 2015 10:37:30 +0530
-Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
-	SOC-EXCH-01.invecas.local (10.0.30.8) with Microsoft SMTP Server (TLS)
-	id 15.0.995.29; Mon, 18 May 2015 10:37:30 +0530
-Received: from SOC-EXCH-02.invecas.local ([::1]) by SOC-EXCH-02.invecas.local
-	([fe80::bc3d:32eb:402d:2fae%15]) with mapi id 15.00.0995.028;
-	Mon, 18 May 2015 10:37:23 +0530
-From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
-To: "Minchev, Todor" <todor.minchev@intel.com>
-Thread-Topic: [yocto] Issue with yocto ADT
-Thread-Index: AQHQjvGS80lL5pX7tEePuV/Y1Ag/NZ18xwuAgAATywj///ZkAIAAFVU6///3i4CAABFuWIAEQy9N
-Date: Mon, 18 May 2015 05:07:23 +0000
-Message-ID: <1431925643423.13631@inedasystems.com>
-References: <1431682376634.76952@inedasystems.com> ,
-	<1431686123.6150.2.camel@intel.com>
-	<1431686858269.81704@inedasystems.com>
-	,<1431688310.6150.4.camel@intel.com>
-	<1431689589890.85414@inedasystems.com>,
-	<1431691075.6150.6.camel@intel.com>,
-	<1431691274788.8264@inedasystems.com>
-In-Reply-To: <1431691274788.8264@inedasystems.com>
-Accept-Language: en-US, en-IN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.42.55]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [131.246.120.220 listed in list.dnswl.org]
+X-Greylist: delayed 632 seconds by postgrey-1.32 at yocto-www;
+	Mon, 18 May 2015 02:52:28 PDT
+Received: from mailgw1.uni-kl.de (mailgw1.uni-kl.de [131.246.120.220])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0786E005B9
+	for <yocto@yoctoproject.org>; Mon, 18 May 2015 02:52:28 -0700 (PDT)
+Received: from [IPv6:2001:638:208:480d:18ca:794e:7c7a:c069]
+	([IPv6:2001:638:208:480d:18ca:794e:7c7a:c069]) (authenticated bits=0)
+	by mailgw1.uni-kl.de (8.14.4/8.14.4/Debian-7) with ESMTP id
+	t4I9fqY8029822
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT)
+	for <yocto@yoctoproject.org>; Mon, 18 May 2015 11:41:52 +0200
+Message-ID: <5559B3E0.7080104@cs.uni-kl.de>
+Date: Mon, 18 May 2015 11:41:52 +0200
+From: Steffen Schuetz <schuetz@cs.uni-kl.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Issue with yocto ADT
+To: yocto@yoctoproject.org
+Subject: Altera Cyclone V DTB origin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,168 +41,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 May 2015 06:03:51 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Mon, 18 May 2015 09:52:32 -0000
+X-Groupsio-MsgNum: 24868
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature";
+	boundary="bUpmU1uRgBLhuMN2RVwU05hCWJtgA9Baf"
+
+--bUpmU1uRgBLhuMN2RVwU05hCWJtgA9Baf
+Content-Type: multipart/mixed;
+ boundary="------------050504000908020608080504"
+
+--------------050504000908020608080504
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Todor,=0A=
-=0A=
-Could you please let me know the cause for the issue.=0A=
-Thanks in advance.=0A=
-=0A=
-Regards,=0A=
-Raghavendra K.=0A=
-=0A=
-=0A=
-________________________________________=0A=
-From: Raghavendra Kakarla=0A=
-Sent: Friday, May 15, 2015 5:31 PM=0A=
-To: Minchev, Todor=0A=
-Cc: yocto@yoctoproject.org=0A=
-Subject: RE: [yocto] Issue with yocto ADT=0A=
-=0A=
-Hi Todor,=0A=
-=0A=
-It is provided by the Yocto eclipse plugin itself.=0A=
-=0A=
-Regards,=0A=
-Raghavendra.=0A=
-________________________________________=0A=
-From: Minchev, Todor <todor.minchev@intel.com>=0A=
-Sent: Friday, May 15, 2015 5:27 PM=0A=
-To: Raghavendra Kakarla=0A=
-Cc: yocto@yoctoproject.org=0A=
-Subject: Re: [yocto] Issue with yocto ADT=0A=
-=0A=
-On Fri, 2015-05-15 at 11:33 +0000, Raghavendra Kakarla wrote:=0A=
-> Hi Todor,=0A=
->=0A=
-> It is an autotool based example.=0A=
-> It is not generated makefile itself.=0A=
->=0A=
-=0A=
-Is it an example you created yourself or is it the autotools C Hello=0A=
-World template provided by the Yocto Eclipse Plug-in.=0A=
-=0A=
-> I attached the makefile.in and makefile.am file to the paste bin.=0A=
-=0A=
-Could you please paste the Makefile and share the pastebin link?=0A=
-=0A=
-> Thanks,=0A=
->=0A=
-> Raghavendra.=0A=
->=0A=
->=0A=
-> ________________________________________=0A=
-> From: Minchev, Todor <todor.minchev@intel.com>=0A=
-> Sent: Friday, May 15, 2015 4:41 PM=0A=
-> To: Raghavendra Kakarla=0A=
-> Cc: yocto@yoctoproject.org=0A=
-> Subject: Re: [yocto] Issue with yocto ADT=0A=
->=0A=
-> Hello Raghavendra,=0A=
->=0A=
-> Could you please pastebin the makefile from your project?=0A=
->=0A=
-> http://pastebin.com/=0A=
->=0A=
-> Cheers,=0A=
-> Todor=0A=
->=0A=
-> On Fri, 2015-05-15 at 10:47 +0000, Raghavendra Kakarla wrote:=0A=
-> > Hi Todor,=0A=
-> >=0A=
-> > Thank you for your  reply.=0A=
-> >=0A=
-> > By default we have the setting like this only.=0A=
-> >=0A=
-> > But we got the error.=0A=
-> >=0A=
-> > Thanks,=0A=
-> > Raghavendra.=0A=
-> > ________________________________________=0A=
-> > From: Minchev, Todor <todor.minchev@intel.com>=0A=
-> > Sent: Friday, May 15, 2015 4:05 PM=0A=
-> > To: Raghavendra Kakarla=0A=
-> > Cc: yocto@yoctoproject.org=0A=
-> > Subject: Re: [yocto] Issue with yocto ADT=0A=
-> >=0A=
-> > Hello Raghavendra,=0A=
-> >=0A=
-> > Please try the following:=0A=
-> >=0A=
-> > Right click on your project - Properties - C/C++ Build - Select the=0A=
-> > 'Behavior' tab - untick 'Build on resource save' and remove 'all' from=
-=0A=
-> > the 'Build' field=0A=
-> >=0A=
-> > Cheers,=0A=
-> > Todor=0A=
-> >=0A=
-> > On Fri, 2015-05-15 at 09:32 +0000, Raghavendra Kakarla wrote:=0A=
-> > > Hi All,=0A=
-> > >=0A=
-> > >=0A=
-> > > I have problem with the ADT while i am building the autotool example=
-=0A=
-> > > helloword project which is given in the "yocto ADT autotool project".=
-=0A=
-> > >=0A=
-> > >=0A=
-> > > Could you please help me in resolving this issue.=0A=
-> > >=0A=
-> > >=0A=
-> > > I followed the following steps for installing the adt in my=0A=
-> > > development PC:=0A=
-> > >=0A=
-> > >=0A=
-> > >=0A=
-> > > I built the toolchain using the following command:=0A=
-> > >=0A=
-> > > $cd ~/poky=0A=
-> > > $source ./oe-init-build-env=0A=
-> > > $bitbake meta-ide-support=0A=
-> > >=0A=
-> > >=0A=
-> > > Extract the root file system by using the following commands:=0A=
-> > >=0A=
-> > > $cd ~=0A=
-> > > $source ~/poky/build/tmp/environment-setup-mips32r2el-poky-linux=0A=
-> > > $runqemu-extract-sdk \=0A=
-> > >         ~/poky/build/tmp/deploy/images/arqlyn/=0A=
-> > > core-image-minimal-dhruwa_ioe-20150511102759.rootfs.tar.bz2\=0A=
-> > >         $HOME/arqlyn=0A=
-> > >=0A=
-> > > I followed the command given in the yocto project dev-manual for=0A=
-> > > installing eclipse and adding yocto plugin to eclipse.=0A=
-> > >=0A=
-> > > I Gave the following data to the eclipse for configuring the=0A=
-> > > cross-compiler options:=0A=
-> > >=0A=
-> > > 1. I select the "Build System Derived Toolchain"=0A=
-> > > 2.point the toolchain path to "home/testuser/poky/build"=0A=
-> > > 3.gave sysroot path to /home/testuser/arqlyn=0A=
-> > >=0A=
-> > > After entered this information I got the my machine-name in the=0A=
-> > > "select the target architecture" filed.=0A=
-> > >=0A=
-> > > After this I create a autotool support project and tried to build but=
-=0A=
-> > > it gives the error.=0A=
-> > >=0A=
-> > > Regards,=0A=
-> > >=0A=
-> > > Raghavendra.=0A=
-> > >=0A=
-> > >=0A=
-> > >=0A=
-> > > --=0A=
-> > > _______________________________________________=0A=
-> > > yocto mailing list=0A=
-> > > yocto@yoctoproject.org=0A=
-> > > https://lists.yoctoproject.org/listinfo/yocto=0A=
-> >=0A=
->=0A=
-=0A=
+Hi,
 
+I build a customized Linux image using Yocto Daisy - we need gcc >=3D 4.8=
+
+- following the instructions at
+http://rocketboards.org/foswiki/Documentation/YoctoDoraBuildWithMetaAlter=
+a .
+Besides the zImage and rootfs the build process outputs an .dtb file.
+Now, in order to get the FPGA fabric involved, I'd have to come up with
+a modified dts and build it.
+That's where I'm a bit lost in the blur. I can not figure out where the
+generated dtb is coming from? What's the mechanism behind? I cannot find
+any .dts nor .dtb in the meta-altera layer.
+
+Besides that I realized that if I use the dtb that shipped with the
+board with the "daisy" kernel, the boot process gets stuck at "Waiting
+for root device /dev/mmcblk0p3..." The "shipped" kernel is version 3.8.0
+while the "daisy" one is 3.10.31-ltsi.
+Was there a change in the device tree layout as the "old" one doesn't
+work with the "daisy" kernel?
+
+
+Thanks in advance!
+
+Regards,
+Steffen
+
+--=20
+
+
+
+
+--------------050504000908020608080504
+Content-Type: text/x-vcard; charset=utf-8;
+ name="schuetz.vcf"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+ filename="schuetz.vcf"
+
+begin:vcard
+fn:Dipl.-Ing. Steffen Schuetz
+n:Schuetz;Steffen
+org:TU Kaiserslautern;AG Robotersysteme, FB Informatik
+adr:Gottlieb-Daimler-Str., Geb. 48;;Postfach 3049;Kaiserslautern;Rheinland-=
+Pfalz;67663;Germany
+email;internet:schuetz@cs.uni-kl.de
+tel;work:+49 631 205 2579
+tel;fax:+49 631 205 2640
+x-mozilla-html:FALSE
+url:http://agrosy.cs.uni-kl.de
+version:2.1
+end:vcard
+
+
+--------------050504000908020608080504--
+
+--bUpmU1uRgBLhuMN2RVwU05hCWJtgA9Baf
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQEcBAEBAgAGBQJVWbPgAAoJEKrAQLUVzr6sZ+UH/ilAZN7WJbztYNO64jArGNYy
+dFX5GaZwDKoXaKtGyqlVAhJONWTb+S2D+oxmpM5rpdhVDg5J4FWwHQxTePnIoick
+YMsp2JrW6BTk5frW6yaWSeqQJ0ZpbzcfJSqi+vwGJFZ/pq4wlfFv5whN7YYnFI5W
+O8jJh+yF0W/eBmPO7JSroUGNJoDf8ghAr6SCgGiF+7kEbkvuz9Qyg7Ne0QOwlSQl
+0OSOu2bNx7OlBdkg8PNs/nCpDtWlY2JyK1VXlzSL52BJAzpwT4YG7+DMkfKOec/3
+PQYzbZPzHAIZCmKMZsi4mBVwkDztyCxOHR3GulZaPOCY56ViOyyd2DaVCJda59I=
+=IGhq
+-----END PGP SIGNATURE-----
+
+--bUpmU1uRgBLhuMN2RVwU05hCWJtgA9Baf--
