@@ -1,92 +1,42 @@
-Return-Path: <maninder1.s@samsung.com>
+Return-Path: <Raghavendra.Kakarla@inedasystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C61FDE009DF; Sun, 17 May 2015 22:17:29 -0700 (PDT)
+	id C5E2AE009D4; Sun, 17 May 2015 23:02:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00, MIME_BASE64_BLANKS, 
-	RCVD_IN_DNSWL_HI, SPF_HELO_PASS,
-	XPRIO autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [203.254.224.25 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 MIME_BASE64_BLANKS RAW: Extra blank lines in base64 encoding
-	*  1.0 XPRIO Has X-Priority header
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36725E00830
-	for <yocto@yoctoproject.org>; Sun, 17 May 2015 22:17:24 -0700 (PDT)
-Received: from epcpsbgr3.samsung.com
-	(u143.gpu120.samsung.co.kr [203.254.230.143])
-	by mailout2.samsung.com (Oracle Communications Messaging Server
-	7.0.5.31.0 64bit (built May  5 2014))
-	with ESMTP id <0NOJ0065Y5CYRN60@mailout2.samsung.com> for
-	yocto@yoctoproject.org; Mon, 18 May 2015 14:17:22 +0900 (KST)
-Received: from epcpsbgx2.samsung.com ( [172.20.52.123])
-	by epcpsbgr3.samsung.com (EPCPMTA) with SMTP id 98.7E.24422.2E579555;
-	Mon, 18 May 2015 14:17:22 +0900 (KST)
-X-AuditID: cbfee68f-f793b6d000005f66-38-555975e279ba
-Received: from epmailer02 ( [203.254.219.142])
-	by epcpsbgx2.samsung.com (EPCPMTA) with SMTP id A1.80.31182.2E579555;
-	Mon, 18 May 2015 14:17:22 +0900 (KST)
-Date: Mon, 18 May 2015 05:17:22 +0000 (GMT)
-From: Maninder Singh <maninder1.s@samsung.com>
-To: "mark.hatle@windriver.com" <mark.hatle@windriver.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-MIME-version: 1.0
-X-MTR: 20150518050307821@maninder1.s
-Msgkey: 20150518050307821@maninder1.s
-X-EPLocale: en_US.windows-1252
-X-Priority: 3
-X-EPWebmail-Msg-Type: personal
-X-EPWebmail-Reply-Demand: 0
-X-EPApproval-Locale: 
-X-EPHeader: ML
-X-MLAttribute: 
-X-RootMTR: 20150518050307821@maninder1.s
-X-ParentMTR: 
-X-ArchiveUser: 
-X-CPGSPASS: N
-X-ConfirmMail: N,general
-MIME-version: 1.0
-Message-id: <1535067091.320761431926242042.JavaMail.weblogic@ep2mlwas03d>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrKIsWRmVeSWpSXmKPExsWyRsSkWvdRaWSowd9r+haTXq5hc2D0aD/R
-	xxbAGMVlk5Kak1mWWqRvl8CVsXNSTUFfREXTsZeMDYwvQrsYOTmEBNQkFu19zAZiSwiYSMw9
-	so8dwhaTuHBvPVCcC6hmKaPElBdvgBwOsKLPP7Qh4nMYJWZu6WIFaWARUJW4ta+VEcRmE9CX
-	OLt3HTOILSzgLPHg5QmwuIhAnsTWviNgcWaBCIl/Bx8yQRyhKLH+xhOwGl4BQYmTM5+wQByh
-	IvH90lF2iLiqxOcPy6EOlZNYMvUyE4TNKzGj/SkLTHza1zXMELa0xPlZGxhhnln8/TFUnF/i
-	2O0dUL0CElPPHISq0ZTY9eY41Bw+iTUL37LA1O86tZwZZtf9LXOheiUktrY8YYX4RVFiSvdD
-	dgjbQOLIojms6H7hFfCUeLr+Miso4CQEejkkuk8vY57AqDQLSd0sJLNmIZmFrGYBI8sqRtHU
-	guSC4qT0ImO94sTc4tK8dL3k/NxNjMDUcPrfs/4djHcPWB9iFOBgVOLhtXgTESrEmlhWXJl7
-	iNEUGE8TmaVEk/OBCSivJN7Q2MzIwtTE1NjI3NJMSZx3odTPYCGB9MSS1OzU1ILUovii0pzU
-	4kOMTBycUg2Mk06ohdrva3k8Lf+H6VfJUraZyUeNvi0srTnz20a9bZOb1Wv/FsuH2ptienYF
-	f2Je8Cjk6n7Zlm25U1f/VOPdqTrlpveOrT/KT36v879279XvV98jJXpd4tRXa2n4TFG8b7Dz
-	S4pa/MqPP7escFPl2/RXO9TSx8iiVvxWVv6qCqmbUy6vWcJvqsRSnJFoqMVcVJwIAN2BN+cI	AwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrGKsWRmVeSWpSXmKPExsVy+t/tPt1HpZGhBk0fNC0mvVzD5sDo0X6i
-	jy2AMSrNJiM1MSW1SCE1Lzk/JTMv3VbJOzjeOd7UzMBQ19DSwlxJIS8xN9VWycUnQNctMwdo
-	qpJCWWJOKVAoILG4WEnfzqYov7QkVSEjv7jEVina0NxIz8hAz9RIz9A01srQwMDIFKgmIS1j
-	56Sagr6IiqZjLxkbGF+EdjFycggJqEks2vuYrYuRg0NCwETi8w9tkLCEgJjEhXvrgcJcQCVz
-	GCVmbuliBUmwCKhK3NrXyghiswnoS5zdu44ZxBYWcJZ48PIEWFxEIE9ia98RsDizQITEv4MP
-	mSB2KUqsv/EErIZXQFDi5MwnLBDLVCS+XzrKDhFXlfj8YTkbRFxOYsnUy0wQNq/EjPanLDDx
-	aV/XMEPY0hLnZ21ghDl68ffHUHF+iWO3d0D1CkhMPXMQqkZTYteb41Bz+CTWLHzLAlO/69Ry
-	Zphd97fMheqVkNja8oQV4hdFiSndD9khbAOJI4vmsKL7hVfAU+Lp+susExhlZyFJzULSPgtJ
-	O7KaBYwsqxhFUwuSC4qT0iuM9IoTc4tL89L1kvNzNzGC09CzRTsY/523PsQowMGoxMNr8SYi
-	VIg1say4MvcQowQHs5IIb+QZoBBvSmJlVWpRfnxRaU5q8SFGU2CsTWSWEk3OB6bIvJJ4Q2MT
-	c1NjUwsDQ3NzMyVx3v/nckOEBNITS1KzU1MLUotg+pg4OKUaGN8ce73x4/Wpxez3K5g9tlf7
-	yzyPln/JebzNNyqR6290+w3FjT2uTMEbfv7iv8RfKuptafdssuMSq+K7J/POacr5LLX/EOin
-	lC1UdjdER18uLjQl7Je7jPxS97R9Xq8DPH8f2vB0Wv/Cp1MD1y4/JWkd0Hg3/GaMTkrNry1/
-	vmznE8k0Ugi9r8RSnJFoqMVcVJwIAOpMgsRZAwAA
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-Cc: "v.narang@samsung.com" <v.narang@samsung.com>,
-	AJEET YADAV <ajeet.y@samsung.com>
-Subject: [EDT][prelink-cross] LD_PRELOAD Implementation in Prelink
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail.invecas.com (mx2.invecas.com [112.133.222.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9CC2CE00830
+	for <yocto@yoctoproject.org>; Sun, 17 May 2015 23:01:58 -0700 (PDT)
+Received: from SOC-EXCH-01.invecas.local (10.0.30.8) by mail.invecas.com
+	(10.0.30.132) with Microsoft SMTP Server (TLS) id 14.3.123.3;
+	Mon, 18 May 2015 10:56:21 +0530
+Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
+	SOC-EXCH-01.invecas.local (10.0.30.8) with Microsoft SMTP Server (TLS)
+	id 15.0.995.29; Mon, 18 May 2015 10:56:20 +0530
+Received: from SOC-EXCH-02.invecas.local ([::1]) by SOC-EXCH-02.invecas.local
+	([fe80::bc3d:32eb:402d:2fae%15]) with mapi id 15.00.0995.028;
+	Mon, 18 May 2015 10:56:15 +0530
+From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Issue with ADT when we use the extrcted rootfile system
+Thread-Index: AQHQkSpCYyFano73ME6rrRGw5BSitw==
+Date: Mon, 18 May 2015 05:26:14 +0000
+Message-ID: <1431926774578.12916@inedasystems.com>
+Accept-Language: en-US, en-IN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.42.55]
+MIME-Version: 1.0
+Cc: Ramakrishna Chatram <Ramakrishna.Chatram@inedasystems.com>
+Subject: Issue with ADT when we use the extrcted rootfile system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: maninder1.s@samsung.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -95,155 +45,120 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 May 2015 05:17:29 -0000
-Content-transfer-encoding: base64
-Content-type: text/plain; charset=windows-1252
+X-List-Received-Date: Mon, 18 May 2015 06:02:03 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_143192677457812916inedasystemscom_"
 
-RVAtRjZBQTA2MThDNDlDNEFFREE3M0JGRjFCMzk5NTBCQUIKSGksCgpTdWJqZWN0OiBbUEFUQ0gg
-MS8xXSBMRF9QUkVMT0FEIEltcGxlbWVudGF0aW9uIGluIFByZWxpbmsKCnByZWxpbmsgZmFpbHMg
-aWYgIHRoZXJlIGFyZSBsZF9wcmVsb2FkIGxpYnMgcHJlc2VudCBhdCB0YXJnZXQgd2l0aCBiZWxv
-dyBlcnJvci4KCWV4cGVjdCBsaWJzWC5zby4xLCBmb3VuZCAvbGliL2xpYlkuc28gaW4gZGVwZW5k
-ZW5jeSBvcmRlcgoJd2hlcmUgbGliWS5zby4xIGlzIGxkX3ByZWxvYWQgbGliCiAKVG8gdXNlIHRo
-aXMgZmVhdHVyZSA6Ci4vcHJlbGluayAtLWxkLXByZWxvYWQ9bGlicHJlbG9hZDEuc286bGlicHJl
-bG9hZDIuc286Li4uLiB1cHRvIDIwIGxpYnMKT3JkZXIgb2YgbGlicmFyaWVzIHRvIGJlIHByZWxv
-YWRlZCBpcyBzaWduaWZpY2FudC4gTWFrZSBzdXJlIHNlcXVlbmNlCm1lbnRpb25lZCBpbiBwcmVs
-aW5rCnNob3VsZCBiZSBzYW1lIGFzIHJ1bnRpbWUgc2VxdWVuY2UuCgpTaWduZWQtb2ZmLWJ5OiBW
-YW5lZXQgTmFyYW5nIDx2Lm5hcmFuZ0BzYW1zdW5nLmNvbT4KU2lnbmVkLW9mZi1ieTogTWFuaW5k
-ZXIgU2luZ2ggPG1hbmluZGVyMS5zQHNhbXN1bmcuY29tPgpSZXZpZXdlZC1ieTogQWplZXQgWWFk
-YXYgPGFqZWV0LnZAc2Ftc3VuZy5jb20+ClJldmlld2VkLWJ5OiBHZW9uLWhvIEtpbSA8Z2gwMDcu
-a2ltQHNhbXN1bmcuY29tPgotLS0KIHNyYy9nYXRoZXIuYyAgICB8ICAgIDggKysrKysrKy0KIHNy
-Yy9nZXQuYyAgICAgICB8ICAgIDkgKysrKysrKystCiBzcmMvbWFpbi5jICAgICAgfCAgICA2ICsr
-KysrKwogc3JjL3ByZWxpbmsuaCAgIHwgICAgMSArCiBzcmMvcnRsZC9ydGxkLmMgfCAgIDUxICsr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0tLS0tLQogNSBmaWxl
-cyBjaGFuZ2VkLCA2NyBpbnNlcnRpb25zKCspLCA4IGRlbGV0aW9ucygtKQoKZGlmZiAtLWdpdCBh
-L3NyYy9nYXRoZXIuYyBiL3NyYy9nYXRoZXIuYwppbmRleCBjM2QzMTI4Li41Y2NkMjQzIDEwMDY0
-NAotLS0gYS9zcmMvZ2F0aGVyLmMKKysrIGIvc3JjL2dhdGhlci5jCkBAIC02MSw3ICs2MSw3IEBA
-IGdhdGhlcl9kZXBzIChEU08gKmRzbywgc3RydWN0IHByZWxpbmtfZW50cnkgKmVudCkKIHsKICAg
-aW50IGksIGosIHNlZW4gPSAwOwogICBGSUxFICpmID0gTlVMTDsKLSAgY29uc3QgY2hhciAqYXJn
-dls2XTsKKyAgY29uc3QgY2hhciAqYXJndls4XTsKICAgY29uc3QgY2hhciAqZW52cFs1XTsKICAg
-Y2hhciAqbGluZSA9IE5VTEwsICpwLCAqcSA9IE5VTEw7CiAgIGNvbnN0IGNoYXIgKipkZXBlbmRz
-ID0gTlVMTDsKQEAgLTc0LDYgKzc0LDcgQEAgZ2F0aGVyX2RlcHMgKERTTyAqZHNvLCBzdHJ1Y3Qg
-cHJlbGlua19lbnRyeSAqZW50KQogICBpbnQgbmxpYmxpc3QgPSAwOwogICBjb25zdCBjaGFyICpk
-bDsKICAgY29uc3QgY2hhciAqZW50X2ZpbGVuYW1lOworICBpbnQgZXR5cGUgPSBkc28tPmVoZHIu
-ZV90eXBlOwogCiAgIGlmIChjaGVja19kc28gKGRzbykpCiAgICAgewpAQCAtMTgxLDYgKzE4Miwx
-MSBAQCBnYXRoZXJfZGVwcyAoRFNPICpkc28sIHN0cnVjdCBwcmVsaW5rX2VudHJ5ICplbnQpCiAg
-ICAgICAgICAgYXJndltpKytdID0gIi0tbGlicmFyeS1wYXRoIjsKICAgICAgICAgICBhcmd2W2kr
-K10gPSBsZF9saWJyYXJ5X3BhdGg7CiAgICAgICAgIH0KKworICAgICAgaWYoZXR5cGUgPT0gRVRf
-RVhFQyAmJiBsZF9wcmVsb2FkKSB7CisgICAgICAgICAgYXJndltpKytdID0gIi0tbGQtcHJlbG9h
-ZCI7CisgICAgICAgICAgYXJndltpKytdID0gbGRfcHJlbG9hZDsKKyAgICAgIH0KICAgICAgIGFy
-Z3ZbaSsrXSA9ICItLXRhcmdldC1wYXRocyI7CiAgICAgICBhcmd2W2krK10gPSBlbnRfZmlsZW5h
-bWU7CiAgICAgICBhcmd2W2ldID0gTlVMTDsKZGlmZiAtLWdpdCBhL3NyYy9nZXQuYyBiL3NyYy9n
-ZXQuYwppbmRleCA2YTYzZjAyLi4wNDNhZjIyIDEwMDY0NAotLS0gYS9zcmMvZ2V0LmMKKysrIGIv
-c3JjL2dldC5jCkBAIC02NDEsMTIgKzY0MSwxMyBAQCBwcmVsaW5rX2dldF9yZWxvY2F0aW9ucyAo
-c3RydWN0IHByZWxpbmtfaW5mbyAqaW5mbykKIHsKICAgRklMRSAqZjsKICAgRFNPICpkc28gPSBp
-bmZvLT5kc287Ci0gIGNvbnN0IGNoYXIgKmFyZ3ZbNl07CisgIGNvbnN0IGNoYXIgKmFyZ3ZbOF07
-CiAgIGNvbnN0IGNoYXIgKmVudnBbNF07CiAgIGludCBpLCByZXQsIHN0YXR1czsKICAgY2hhciAq
-cDsKICAgY29uc3QgY2hhciAqZGwgPSBkeW5hbWljX2xpbmtlciA/OiBkc28tPmFyY2gtPmR5bmFt
-aWNfbGlua2VyOwogICBjb25zdCBjaGFyICplbnRfZmlsZW5hbWU7CisgIGludCBldHlwZSA9IGlu
-Zm8tPmRzby0+ZWhkci5lX3R5cGU7CiAKICAgaWYgKGluZm8tPmVudC0+dHlwZSA9PSBFVF9EWU4p
-CiAgICAgewpAQCAtNzA5LDYgKzcxMCwxMiBAQCBwcmVsaW5rX2dldF9yZWxvY2F0aW9ucyAoc3Ry
-dWN0IHByZWxpbmtfaW5mbyAqaW5mbykKICAgICAgICAgICBhcmd2W2krK10gPSAiLS1saWJyYXJ5
-LXBhdGgiOwogICAgICAgICAgIGFyZ3ZbaSsrXSA9IGxkX2xpYnJhcnlfcGF0aDsKICAgICAgICAg
-fQorCisgICAgICBpZihldHlwZSA9PSBFVF9FWEVDICYmIGxkX3ByZWxvYWQpIHsKKyAgICAgICAg
-ICBhcmd2W2krK10gPSAiLS1sZC1wcmVsb2FkIjsKKyAgICAgICAgICBhcmd2W2krK10gPSBsZF9w
-cmVsb2FkOworICAgICAgfSAgICAgIAorCiAgICAgICBhcmd2W2krK10gPSAiLS10YXJnZXQtcGF0
-aHMiOwogICAgICAgYXJndltpKytdID0gZW50X2ZpbGVuYW1lOwogICAgICAgYXJndltpXSA9IE5V
-TEw7CmRpZmYgLS1naXQgYS9zcmMvbWFpbi5jIGIvc3JjL21haW4uYwppbmRleCAxNWMxZDUzLi5h
-OTk4MTZkIDEwMDY0NAotLS0gYS9zcmMvbWFpbi5jCisrKyBiL3NyYy9tYWluLmMKQEAgLTU5LDYg
-KzU5LDcgQEAgY29uc3QgY2hhciAqbGRfbGlicmFyeV9wYXRoOwogY29uc3QgY2hhciAqcHJlbGlu
-a19jb25mID0gUFJFTElOS19DT05GOwogY29uc3QgY2hhciAqcHJlbGlua19jYWNoZSA9IFBSRUxJ
-TktfQ0FDSEU7CiBjb25zdCBjaGFyICp1bmRvX291dHB1dDsKK2NoYXIgKmxkX3ByZWxvYWQgPSBO
-VUxMOwogaW50IG5vcmVleGVjaW5pdDsKIHRpbWVfdCBpbml0Y3RpbWU7CiAKQEAgLTg0LDYgKzg1
-LDcgQEAgc3RhdGljIGNoYXIgYXJncF9kb2NbXSA9IFBSRUxJTktfUFJPRyAiIC0tIHByb2dyYW0g
-dG8gcmVsb2NhdGUgYW5kIHByZWxpbmsgRUxGIHMKICNkZWZpbmUgT1BUX1NZU1JPT1QJCTB4OGQK
-ICNkZWZpbmUgT1BUX1JUTEQJCTB4OGUKICNkZWZpbmUgT1BUX0FMTE9XX1RFWFRSRUwJMHg4Zgor
-I2RlZmluZSBPUFRfTERfUFJFTE9BRCAgICAgICAgICAweDkwCiAKIHN0YXRpYyBzdHJ1Y3QgYXJn
-cF9vcHRpb24gb3B0aW9uc1tdID0gewogICB7ImFsbCIsCQknYScsIDAsIDAsICAiUHJlbGluayBh
-bGwgYmluYXJpZXMiIH0sCkBAIC0xMjMsNiArMTI1LDcgQEAgc3RhdGljIHN0cnVjdCBhcmdwX29w
-dGlvbiBvcHRpb25zW10gPSB7CiAgIHsicnRsZCIsCQlPUFRfUlRMRCwgIlJUTEQiLCBPUFRJT05f
-SElEREVOLCAiIiB9LAogICB7ImluaXQiLAkJJ2knLCAwLCAwLCAgIkRvIG5vdCByZS1leGVjdXRl
-IGluaXQiIH0sCiAgIHsiYWxsb3ctdGV4dHJlbCIsCU9QVF9BTExPV19URVhUUkVMLCAwLCAwLCAi
-QWxsb3cgdGV4dCByZWxvY2F0aW9ucyBldmVuIG9uIGFyY2hpdGVjdHVyZXMgd2hlcmUgdGhleSBt
-YXkgbm90IHdvcmsiIH0sCisgIHsibGQtcHJlbG9hZCIsICAgICAgIE9QVF9MRF9QUkVMT0FELCAi
-TElCTElTVCIsIDAsICAiTGlzdCBvZiBsaWJyYXJpZXMgcHJlbG9hZGVkIG9uIHRhcmdldCIgfSwK
-ICAgeyAwIH0KIH07CiAKQEAgLTI1MCw2ICsyNTMsOSBAQCBwYXJzZV9vcHQgKGludCBrZXksIGNo
-YXIgKmFyZywgc3RydWN0IGFyZ3Bfc3RhdGUgKnN0YXRlKQogICAgIGNhc2UgT1BUX0FMTE9XX1RF
-WFRSRUw6CiAgICAgICBhbGxvd19iYWRfdGV4dHJlbCA9IDE7CiAgICAgICBicmVhazsKKyAgICBj
-YXNlIE9QVF9MRF9QUkVMT0FEOgorICAgICAgbGRfcHJlbG9hZCA9IGFyZzsKKyAgICAgIGJyZWFr
-OwogICAgIGRlZmF1bHQ6CiAgICAgICByZXR1cm4gQVJHUF9FUlJfVU5LTk9XTjsKICAgICB9CmRp
-ZmYgLS1naXQgYS9zcmMvcHJlbGluay5oIGIvc3JjL3ByZWxpbmsuaAppbmRleCA2NmFiYTk5Li5h
-NmNlNjA3IDEwMDY0NAotLS0gYS9zcmMvcHJlbGluay5oCisrKyBiL3NyYy9wcmVsaW5rLmgKQEAg
-LTU5Nyw2ICs1OTcsNyBAQCBleHRlcm4gZW51bSB2ZXJpZnlfbWV0aG9kX3QgdmVyaWZ5X21ldGhv
-ZDsKIGV4dGVybiBpbnQgcXVpY2s7CiBleHRlcm4gbG9uZyBsb25nIHNlZWQ7CiBleHRlcm4gR0Vs
-Zl9BZGRyIG1tYXBfcmVnX3N0YXJ0LCBtbWFwX3JlZ19lbmQsIGxheW91dF9wYWdlX3NpemU7Citl
-eHRlcm4gY2hhciAqbGRfcHJlbG9hZDsKIAogZXh0ZXJuIGNvbnN0IGNoYXIgKnN5c3Jvb3Q7CiAK
-ZGlmZiAtLWdpdCBhL3NyYy9ydGxkL3J0bGQuYyBiL3NyYy9ydGxkL3J0bGQuYwppbmRleCAyYWQz
-YWRlLi5mMDE0YmVhIDEwMDY0NAotLS0gYS9zcmMvcnRsZC9ydGxkLmMKKysrIGIvc3JjL3J0bGQv
-cnRsZC5jCkBAIC00Nyw2ICs0Nyw3IEBAIHVuc2lnbmVkIGludCBfZGxfZGVidWdfbWFzayA9IDA7
-CiAvKiBMRF9EWU5BTUlDX1dFQUsgb3B0aW9uLiAgRGVmYXVsdCBpcyBvZmYsIGNoYW5naW5nIHRv
-IDEKICAgIGlzIGVxdWl2YWxlbnQgdG8gc2V0dGluZyBMRF9EWU5BTUlDX1dFQUsuICovCiB1bnNp
-Z25lZCBpbnQgX2RsX2R5bmFtaWNfd2VhayA9IDA7CisjZGVmaW5lIE1BWF9QUkVMT0FERURfTElC
-UyAgIDIwCiAKIHN0cnVjdCBzZWFyY2hfcGF0aAogewpAQCAtNjAsNiArNjEsNyBAQCBpbnQgaG9z
-dF9wYXRoczsKIGNoYXIgKiBkc3RfT1JJR0lOOwogY2hhciAqIGRzdF9QTEFURk9STSA9ICIiOyAv
-KiB1bmRlZmluZWQgKi8KIGNoYXIgKiBkc3RfTElCID0gImxpYiI7CitjaGFyICogbGRfcHJlbG9h
-ZCA9IE5VTEw7CiAKIAogdm9pZCBzdHJpbmdfdG9fcGF0aCAoc3RydWN0IHNlYXJjaF9wYXRoICpw
-YXRoLCBjb25zdCBjaGFyICpzdHJpbmcpOwpAQCAtNzMsMTEgKzc1LDEzIEBAIHN0YXRpYyBjaGFy
-IGFyZ3BfZG9jW10gPSBQUkVMSU5LX1JUTERfUFJPRyAiIC0tIHByb2dyYW0gdG8gc2ltdWxhdGUg
-dGhlIHJ1bnRpbWUKICNkZWZpbmUgT1BUX1NZU1JPT1QJCTB4OGMKICNkZWZpbmUgT1BUX0xJQlJB
-UllfUEFUSAkweDhlCiAjZGVmaW5lIE9QVF9UQVJHRVRfUEFUSFMJMHg4ZgorI2RlZmluZSBPUFRf
-TERfUFJFTE9BRCAgICAgICAgICAweDkwCiAKIHN0YXRpYyBzdHJ1Y3QgYXJncF9vcHRpb24gb3B0
-aW9uc1tdID0gewogICB7ImxpYnJhcnktcGF0aCIsCQlPUFRfTElCUkFSWV9QQVRILCAiTElCUkFS
-WV9QQVRIIiwgMCwgIlNldCBsaWJyYXJ5IHNlYXJjaCBwYXRoIHRvIExJQlJBUllfUEFUSCIgfSwK
-ICAgeyJyb290IiwJCQlPUFRfU1lTUk9PVCwgIlJPT1RfUEFUSCIsIDAsICJQcmVmaXggYWxsIHBh
-dGhzIHdpdGggUk9PVF9QQVRIIiB9LAogICB7InRhcmdldC1wYXRocyIsCQlPUFRfVEFSR0VUX1BB
-VEhTLCAwLCAwLCAiU3BlY2lmaWVkIHBhdGhzIGFyZSBiYXNlZCBvbiBST09UX1BBVEgiIH0sCisg
-IHsibGQtcHJlbG9hZCIsICAgICAgICAgICAgICAgIE9QVF9MRF9QUkVMT0FELCAiTElCTElTVCIs
-IDAsICJMaXN0IG9mIGxpYnJhcmllcyBuZWVkcyB0byBiZSBwcmVsb2FkZWQifSwKICAgeyAwIH0K
-IH07CiAKQEAgLTk1LDYgKzk5LDkgQEAgcGFyc2Vfb3B0IChpbnQga2V5LCBjaGFyICphcmcsIHN0
-cnVjdCBhcmdwX3N0YXRlICpzdGF0ZSkKICAgICBjYXNlIE9QVF9UQVJHRVRfUEFUSFM6CiAgICAg
-ICBob3N0X3BhdGhzID0gMDsKICAgICAgIGJyZWFrOworICAgIGNhc2UgT1BUX0xEX1BSRUxPQUQ6
-CisgICAgICBsZF9wcmVsb2FkID0gYXJnOworICAgICAgYnJlYWs7CiAgICAgZGVmYXVsdDoKICAg
-ICAgIHJldHVybiBBUkdQX0VSUl9VTktOT1dOOwogICAgIH0KQEAgLTU4Miw2ICs1ODksOCBAQCBs
-b2FkX2Rzb3MgKERTTyAqZHNvLCBpbnQgaG9zdF9wYXRocykKIHsKICAgc3RydWN0IGRzb19saXN0
-ICpkc29fbGlzdCwgKmRzb19saXN0X3RhaWwsICpjdXJfZHNvX2VudCwgKm5ld19kc29fZW50Owog
-ICBzdHJ1Y3Qgc3RhdDY0IHN0OworICBpbnQgdG90YWxfcHJlbG9hZCA9IDA7CisgIGNoYXIgKiBs
-aWJuYW1lW01BWF9QUkVMT0FERURfTElCU10gPSB7TlVMTH07CiAKICAgLyogQXNzdW1lIGl0J3Mg
-c3RhdGljIHVubGVzcyB3ZSBmaW5kIERUX05FRURFRCBlbnRyaWVzICovCiAgIHN0YXRpY19iaW5h
-cnkgPSAxOwpAQCAtNjA0LDYgKzYxMywyMiBAQCBsb2FkX2Rzb3MgKERTTyAqZHNvLCBpbnQgaG9z
-dF9wYXRocykKIAogICBjdXJfZHNvX2VudCA9IGRzb19saXN0X3RhaWwgPSBkc29fbGlzdDsKIAor
-ICBpZihkc28tPmVoZHIuZV90eXBlID09IEVUX0VYRUMgJiYgbGRfcHJlbG9hZCkgeworICAgICAg
-Y2hhciAqbmV4dF9saWIgPSAgbGRfcHJlbG9hZDsKKyAgICAgIGxpYm5hbWVbdG90YWxfcHJlbG9h
-ZF0gPSBsZF9wcmVsb2FkOworICAgICAgdG90YWxfcHJlbG9hZCsrOworICAgICAgbmV4dF9saWI9
-c3RyY2hyKGxkX3ByZWxvYWQsJzonKTsKKyAgICAgIHdoaWxlKG5leHRfbGliIT1OVUxMKXsKKwkg
-ICpuZXh0X2xpYiA9ICdcMCc7CisJICBuZXh0X2xpYisrOworCSAgbGlibmFtZVt0b3RhbF9wcmVs
-b2FkXSA9IG5leHRfbGliOworCSAgdG90YWxfcHJlbG9hZCsrOworCSAgbmV4dF9saWI9c3RyY2hy
-KG5leHRfbGliLCc6Jyk7CisgICAgICB9CisgIH0KKyAgZWxzZSB7CisgICAgICB0b3RhbF9wcmVs
-b2FkID0gMDsKKyAgfQogICB3aGlsZSAoY3VyX2Rzb19lbnQgIT0gTlVMTCkKICAgICB7CiAgICAg
-ICBEU08gKmN1cl9kc28sICpuZXdfZHNvOwpAQCAtNjI0LDkgKzY0OSwxNiBAQCBsb2FkX2Rzb3Mg
-KERTTyAqZHNvLCBpbnQgaG9zdF9wYXRocykKIAl7CiAJICBpbnQgbmR4LCBtYXhuZHg7CiAJICBt
-YXhuZHggPSBkYXRhLT5kX3NpemUgLyBjdXJfZHNvLT5zaGRyW2N1cl9kc28tPmR5bmFtaWNdLnNo
-X2VudHNpemU7Ci0JICBmb3IgKG5keCA9IDA7IG5keCA8IG1heG5keDsgKytuZHgpCisJICBmb3Ig
-KG5keCA9IDA7IG5keCA8IG1heG5keCArIHRvdGFsX3ByZWxvYWQ7ICsrbmR4KQogCSAgICB7Ci0J
-ICAgICAgZ2VsZnhfZ2V0ZHluIChjdXJfZHNvLT5lbGYsIGRhdGEsIG5keCwgJmR5bik7CisKKyAg
-ICAgICAgICAgICAgaWYobmR4IC0gdG90YWxfcHJlbG9hZCA+PSAwKSB7CisgICAgICAgICAgICAg
-ICAgICBnZWxmeF9nZXRkeW4gKGN1cl9kc28tPmVsZiwgZGF0YSwgbmR4IC0gdG90YWxfcHJlbG9h
-ZCwgJmR5bik7CisgICAgICAgICAgICAgIH0KKyAgICAgICAgICAgICAgZWxzZSB7CisgICAgICAg
-ICAgICAgICAgICBkeW4uZF90YWcgPSBEVF9ORUVERUQ7CisgICAgICAgICAgICAgIH0KKwogCSAg
-ICAgIGlmIChkeW4uZF90YWcgPT0gRFRfTlVMTCkKIAkJYnJlYWs7CiAJICAgICAgaWYgKGR5bi5k
-X3RhZyA9PSBEVF9ORUVERUQpCkBAIC02MzUsMTAgKzY2NywxNyBAQCBsb2FkX2Rzb3MgKERTTyAq
-ZHNvLCBpbnQgaG9zdF9wYXRocykKIAkJICBzdGF0aWNfYmluYXJ5ID0gMDsKIAogCQkgIGNoYXIg
-Km5ld19uYW1lPU5VTEwsICpuZXdfY2Fub25fbmFtZT1OVUxMOwotCQkgIGNvbnN0IGNoYXIgKnNv
-bmFtZSA9IGdldF9kYXRhIChjdXJfZHNvLAotCQkJCQkJIGN1cl9kc28tPmluZm9bRFRfU1RSVEFC
-XQotCQkJCQkJICsgZHluLmRfdW4uZF92YWwsCi0JCQkJCQkgTlVMTCwgTlVMTCk7CisgICAgICAg
-ICAgICAgICAgICBjaGFyICogc29uYW1lID0gTlVMTDsgIAorICAgICAgICAgICAgICAgICAgaWYo
-bmR4IC0gdG90YWxfcHJlbG9hZCA+PSAwKSB7CisJCSAgICAgIHNvbmFtZSA9IGdldF9kYXRhIChj
-dXJfZHNvLAorCQkgICAgCSAgICAgICAgICAgICAgICAgY3VyX2Rzby0+aW5mb1tEVF9TVFJUQUJd
-CisJCQkgICAgICAgCSAgICAgICAgICsgZHluLmRfdW4uZF92YWwsCisJCQkJICAgICAgICAgTlVM
-TCwgTlVMTCk7CisgICAgICAgICAgICAgICAgICB9CisgICAgICAgICAgICAgICAgICBlbHNlIHsK
-KyAgICAgICAgICAgICAgICAgICAgICBzb25hbWUgPSBsaWJuYW1lW25keF07CisgICAgICAgICAg
-ICAgICAgICB9CisKIAkJICBuZXdfZHNvX2VudCA9IGluX2Rzb19saXN0IChkc29fbGlzdCwgc29u
-YW1lLCBOVUxMKTsKIAkJICBpZiAobmV3X2Rzb19lbnQgPT0gTlVMTCkKIAkJICAgIHsKLS0gCjEu
-Ny4xCgoKVGhhbmtzIApNYW5pbmRlciBTaW5naA==
+--_000_143192677457812916inedasystemscom_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
 
 
+I have some issues with the ADT while building example autotool project whe=
+n I extracted the rootfs using the "runqemu-extract-sdk" and give extracted=
+ directory path to ADT sysroot path.
 
+
+But while building the same application in ADT by giving the sysroot path t=
+o actual sysroot path i.e "~/poky/build/tmp/sysroot/machine-name".
+
+
+Could you please let me know is the way what i am doing is recommended or n=
+ot.
+
+
+If not please tell me the why i am getting the errors while building the ap=
+plication using the extracted sysroot.
+
+
+Thanks in advance.
+
+
+Regards,
+
+Raghavendra K.
+
+--_000_143192677457812916inedasystemscom_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none"><!--P{margin-top:0;margin-b=
+ottom:0;} .ms-cui-menu {background-color:#ffffff;border:1px rgb(166, 166, 1=
+66) solid;font-family:'Segoe UI','Segoe WP','Segoe UI WPC',Tahoma,Arial,san=
+s-serif;font-size:10pt;color:rgb(51, 51, 51);} .ms-cui-menusection-title {d=
+isplay:none;} .ms-cui-ctl {vertical-align:text-top;text-decoration:none;col=
+or:rgb(51, 51, 51);} .ms-cui-ctl-on {background-color:rgb(205, 230, 247);op=
+acity: 0.8;} .ms-cui-img-cont-float {display:inline-block;margin-top:2px} .=
+ms-cui-smenu-inner {padding-top:0px;} .ms-owa-paste-option-icon {margin: 0p=
+x 6px 0px 6px;vertical-align:middle!important;padding-bottom: 2px;display:i=
+nline-block;} .ms-rtePasteFlyout-option:hover {background-color:rgb(205, 23=
+0, 247) !important;opacity:1 !important;} .ms-rtePasteFlyout-option {paddin=
+g:8px 4px 8px 4px;outline:none;} .ms-cui-menusection {float:left; width:85p=
+x;height:24px;overflow:hidden}.wf {speak:none; font-weight:normal; font-var=
+iant:normal; text-transform:none; -webkit-font-smoothing:antialiased; verti=
+cal-align:middle; display:inline-block;}.wf-family-owa {font-family:'o365Ic=
+ons'}@font-face {  font-family:'o365IconsIE8';  src:url('prem/15.0.995.29/r=
+esources/styles/office365icons.ie8.eot?#iefix') format('embedded-opentype')=
+,         url('prem/15.0.995.29/resources/styles/office365icons.ie8.woff') =
+format('woff'),         url('prem/15.0.995.29/resources/styles/office365ico=
+ns.ie8.ttf') format('truetype');  font-weight:normal;  font-style:normal;}@=
+font-face {  font-family:'o365IconsMouse';  src:url('prem/15.0.995.29/resou=
+rces/styles/office365icons.mouse.eot?#iefix') format('embedded-opentype'), =
+        url('prem/15.0.995.29/resources/styles/office365icons.mouse.woff') =
+format('woff'),         url('prem/15.0.995.29/resources/styles/office365ico=
+ns.mouse.ttf') format('truetype');  font-weight:normal;  font-style:normal;=
+}.wf-family-owa {font-family:'o365IconsMouse'}.ie8 .wf-family-owa {font-fam=
+ily:'o365IconsIE8'}.ie8 .wf-owa-play-large:before {content:'\e254';}.notIE8=
+ .wf-owa-play-large:before {content:'\e054';}.ie8 .wf-owa-play-large {color=
+:#FFFFFF/*$WFWhiteColor*/;}.notIE8 .wf-owa-play-large {border-color:#FFFFFF=
+/*$WFWhiteColor*/; width:1.4em; height:1.4em; border-width:.1em; border-sty=
+le:solid; border-radius:.8em; text-align:center; box-sizing:border-box; -mo=
+z-box-sizing:border-box; padding:0.1em; color:#FFFFFF/*$WFWhiteColor*/;}.ie=
+8 .wf-size-play-large {width:40px; height:40px; font-size:30px}.notIE8 .wf-=
+size-play-large {width:40px; height:40px; font-size:30px}.notIE8 .wf-owa-tr=
+iangle-down-small:before {content:'\e052';}.ie8 .wf-owa-triangle-down-small=
+:before { content:'\e052';}.ie8 .wf-owa-triangle-down-small {color:#666666/=
+*$WFGreyColor*/;}.wf-size-x20 {font-size: 20px!important;}--></style>
+</head>
+<body dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#F=
+FFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Hi,</p>
+<p><br>
+</p>
+<p>I have some issues with the ADT while building&nbsp;example&nbsp;autotoo=
+l&nbsp;project when I extracted the rootfs using the &quot;runqemu-extract-=
+sdk&quot; and&nbsp;give extracted directory&nbsp;path to&nbsp;ADT&nbsp;sysr=
+oot&nbsp;path.
+</p>
+<p><br>
+</p>
+<p>But while building the same application in ADT by giving the sysroot pat=
+h to actual sysroot path i.e &quot;~/poky/build/tmp/sysroot/machine-name&qu=
+ot;.</p>
+<p><br>
+</p>
+<p>Could you please let me know&nbsp;is the way what i am doing is recommen=
+ded or not.</p>
+<p><br>
+</p>
+<p>If not please tell me the why i am getting the errors while building the=
+ application using the extracted sysroot.</p>
+<p><br>
+</p>
+<p>Thanks in advance.</p>
+<p><br>
+</p>
+<p>Regards,</p>
+<p>Raghavendra K.<br>
+</p>
+</body>
+</html>
+
+--_000_143192677457812916inedasystemscom_--
