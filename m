@@ -1,45 +1,47 @@
-Return-Path: <juliet.z.cai@intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F3106E0095D; Tue, 19 May 2015 12:31:48 -0700 (PDT)
+	id 24A36E0051B; Tue, 19 May 2015 12:40:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.192.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0416EE009B6
-	for <yocto@yoctoproject.org>; Tue, 19 May 2015 12:31:44 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga101.jf.intel.com with ESMTP; 19 May 2015 12:31:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,459,1427785200"; 
-	d="scan'208,217";a="728544524"
-Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
-	by fmsmga002.fm.intel.com with ESMTP; 19 May 2015 12:31:10 -0700
-Received: from orsmsx116.amr.corp.intel.com (10.22.240.14) by
-	ORSMSX109.amr.corp.intel.com (10.22.240.7) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Tue, 19 May 2015 12:31:09 -0700
-Received: from orsmsx109.amr.corp.intel.com ([169.254.2.160]) by
-	ORSMSX116.amr.corp.intel.com ([169.254.9.185]) with mapi id
-	14.03.0224.002; Tue, 19 May 2015 12:31:09 -0700
-From: "Cai, Juliet Z" <juliet.z.cai@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Files/directories were installed but not shipped
-Thread-Index: AdCSaVLdwFLFz8cWTtaDB2rUO/9I2w==
-Date: Tue, 19 May 2015 19:31:09 +0000
-Message-ID: <51A964697D1B374D923D8F12DAC9906F9730C3A3@ORSMSX109.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Received: from mail-qg0-f49.google.com (mail-qg0-f49.google.com
+	[209.85.192.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98629E0027F
+	for <yocto@yoctoproject.org>; Tue, 19 May 2015 12:40:43 -0700 (PDT)
+Received: by qgew3 with SMTP id w3so13092007qge.2
+	for <yocto@yoctoproject.org>; Tue, 19 May 2015 12:40:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=0p7GSEhTtiRmaVq3Z9EdGDvMOUVUokhNLPgKf8SPTj0=;
+	b=kfXmBGhT8FuGHntEea8Qoc91aAtaVqOwff4JZr1E6MJ0fN/5XRmoaoUr6HR+kDQ5t+
+	+GpJg2edOQ8/xKKWmH1I3sngLT4hyGR9M8NjyZlTC41y9qPpt/ISUltbpU3zd1tPqYD6
+	vIXciLR22KreIjvvZAipNyJBHTzzx6D8ENjkW/N3W51Cc1DKl88qDjrrcz2DCBYsxDA2
+	/aia3hzYnGUN8Lo/u4OWHr8sskgkc8bufzsnhYLqIvUaN7VgRlXpJUhV/Y8GYKBoH+nT
+	5Ayeu3ed4CjWyT6WBNfcbm6udrNFCb1YDpRKVlYJic7hW4/xPsRo5lRqkoLcTfO5Axjo
+	/Vcg==
+X-Gm-Message-State: ALoCoQnMEb8Yeb2PVyCaxmqMqLXZDZnQ6gTt9aP128cr0WjsjHTLcmsIzz5XB0lkdp1AjB3Z5B00
+X-Received: by 10.140.238.143 with SMTP id j137mr11442759qhc.52.1432064442855; 
+	Tue, 19 May 2015 12:40:42 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Files/directories were installed but not shipped
+Received: by 10.140.102.231 with HTTP; Tue, 19 May 2015 12:40:22 -0700 (PDT)
+In-Reply-To: <51A964697D1B374D923D8F12DAC9906F9730C3A3@ORSMSX109.amr.corp.intel.com>
+References: <51A964697D1B374D923D8F12DAC9906F9730C3A3@ORSMSX109.amr.corp.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 19 May 2015 20:40:22 +0100
+Message-ID: <CAJTo0LYA=BvLEyV3R7JWq+VWp86ubOEYhw1r6DF=Xp64DXDYcA@mail.gmail.com>
+To: "Cai, Juliet Z" <juliet.z.cai@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Files/directories were installed but not shipped
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,122 +53,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 May 2015 19:31:49 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_51A964697D1B374D923D8F12DAC9906F9730C3A3ORSMSX109amrcor_"
+X-List-Received-Date: Tue, 19 May 2015 19:40:55 -0000
+Content-Type: multipart/alternative; boundary=001a1135acbe6998570516747c43
 
---_000_51A964697D1B374D923D8F12DAC9906F9730C3A3ORSMSX109amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--001a1135acbe6998570516747c43
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-I am getting "ERROR:  QA Issue:  Files/directories were installed but not s=
-hipped" when I try to build my custom layer.  It then list bunch of directo=
-ries and files under
+On 19 May 2015 at 20:31, Cai, Juliet Z <juliet.z.cai@intel.com> wrote:
 
-/usr/src
-/usr/src/debug
-...
-
-My do_install looks something like this
-do_install () {
-               Install -d ${D}${libdir}
-               Install -c -m 555  {S}/path-to-files/libmy.so
-}
-
-Nowhere in my do_install function did I try to install files to /usr/src.  =
-Where does this come from? And how can I get rid of it?
-
-Thanks in advance
-
---_000_51A964697D1B374D923D8F12DAC9906F9730C3A3ORSMSX109amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> I am getting =E2=80=9CERROR:  QA Issue:  Files/directories were installed=
+ but not
+> shipped=E2=80=9D when I try to build my custom layer.  It then list bunch=
+ of
+> directories and files under
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@SimSun";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">I am getting &#8220;ERROR: &nbsp;QA Issue: &nbsp;Fil=
-es/directories were installed but not shipped&#8221; when I try to build my=
- custom layer.&nbsp; It then list bunch of directories and files under<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">/usr/src<o:p></o:p></p>
-<p class=3D"MsoNormal">/usr/src/debug<o:p></o:p></p>
-<p class=3D"MsoNormal">&#8230;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">My do_install looks something like this<o:p></o:p></=
-p>
-<p class=3D"MsoNormal">do_install () {<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Install &#8211;d ${D}${libdir}<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Install &#8211;c &#8211;m 555&nbsp; {S}/pa=
-th-to-files/libmy.so<o:p></o:p></p>
-<p class=3D"MsoNormal">}<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Nowhere in my do_install function did I try to insta=
-ll files to /usr/src. &nbsp;Where does this come from? And how can I get ri=
-d of it?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks in advance<o:p></o:p></p>
-</div>
-</body>
-</html>
+>
+>
+> /usr/src
+>
+> /usr/src/debug
+>
+> =E2=80=A6
+>
+>
+>
+> My do_install looks something like this
+>
+> do_install () {
+>
+>                Install =E2=80=93d ${D}${libdir}
+>
+>                Install =E2=80=93c =E2=80=93m 555  {S}/path-to-files/libmy=
+.so
+>
+> }
+>
+>
+>
+> Nowhere in my do_install function did I try to install files to /usr/src.
+> Where does this come from? And how can I get rid of it?
+>
 
---_000_51A964697D1B374D923D8F12DAC9906F9730C3A3ORSMSX109amrcor_--
+That's the debug source/symbols splitting happening.  That directory is
+usually packaged into FILES_${PN}-debug (see meta/conf/bitbake.conf), so
+you must be overriding either that value, or PACKAGES so as to not have a
+PN-debug package.
+
+Ross
+
+--001a1135acbe6998570516747c43
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 19 May 2015 at 20:31, Cai, Juliet Z <span dir=3D"ltr">&lt;<a href=3D"mai=
+lto:juliet.z.cai@intel.com" target=3D"_blank">juliet.z.cai@intel.com</a>&gt=
+;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
+.8ex;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNormal">I =
+am getting =E2=80=9CERROR: =C2=A0QA Issue: =C2=A0Files/directories were ins=
+talled but not shipped=E2=80=9D when I try to build my custom layer.=C2=A0 =
+It then list bunch of directories and files under<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">/usr/src<u></u><u></u></p>
+<p class=3D"MsoNormal">/usr/src/debug<u></u><u></u></p>
+<p class=3D"MsoNormal">=E2=80=A6<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">My do_install looks something like this<u></u><u></u=
+></p>
+<p class=3D"MsoNormal">do_install () {<u></u><u></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Install =E2=80=93d ${D}${libdir}<u></u><u=
+></u></p>
+<p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Install =E2=80=93c =E2=80=93m 555=C2=A0 {=
+S}/path-to-files/libmy.so<u></u><u></u></p>
+<p class=3D"MsoNormal">}<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Nowhere in my do_install function did I try to insta=
+ll files to /usr/src.=C2=A0 Where does this come from? And how can I get ri=
+d of it?</p></blockquote></div><br>That&#39;s the debug source/symbols spli=
+tting happening.=C2=A0 That directory is usually packaged into FILES_${PN}-=
+debug (see meta/conf/bitbake.conf), so you must be overriding either that v=
+alue, or PACKAGES so as to not have a PN-debug package.</div><div class=3D"=
+gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
+
+--001a1135acbe6998570516747c43--
