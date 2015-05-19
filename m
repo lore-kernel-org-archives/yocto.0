@@ -1,66 +1,56 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <Raghavendra.Kakarla@inedasystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BA1AAE009B8; Tue, 19 May 2015 04:39:36 -0700 (PDT)
+	id 64F6AE009DA; Tue, 19 May 2015 05:04:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bruce.ashfield[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.47 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yh0-f47.google.com (mail-yh0-f47.google.com
-	[209.85.213.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DD06E0095D;
-	Tue, 19 May 2015 04:39:28 -0700 (PDT)
-Received: by yhom41 with SMTP id m41so3207291yho.1;
-	Tue, 19 May 2015 04:39:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=NgDf0mi3SAD8LXOpVqcubHlU5guP2zHuaIcOMgAm6Sk=;
-	b=QG1TsjwyA3X9z39aMR/+JwGRdP5+Bhkbxdaq777Q3F8GQWXq8MEZU+UXeOt7yYmL9d
-	zRWvO2YqyXEM9GQu9Ytt3z8r3owTh0wefkN4LJP849zpmGfG7AtRJtCvS7uzN9NL6kqT
-	rjucjnI1oEgqtzjTKLCJnkhnKDEIczfB3YdIYGg68VG8nQA/f5UBGf7SHu80IOYVcYHA
-	eTAACm7NVkAn5F4t3hraE0N6VrxlAg/7UYSerzw+YArNcyo8Z4BAmcb9OMY/lk85dBrk
-	5MxHTuvbJLvMveSJ4kbeFJojdkSEWCM33Nsc7Kw44dVRddYAwVftf9/niXxtp87bxrL4
-	YvYw==
+Received: from mail.invecas.com (mx2.invecas.com [112.133.222.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3936AE009B8
+	for <yocto@yoctoproject.org>; Tue, 19 May 2015 05:03:44 -0700 (PDT)
+Received: from SOC-EXCH-01.invecas.local (10.0.30.8) by mail.invecas.com
+	(10.0.30.132) with Microsoft SMTP Server (TLS) id 14.3.123.3;
+	Tue, 19 May 2015 17:33:33 +0530
+Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
+	SOC-EXCH-01.invecas.local (10.0.30.8) with Microsoft SMTP Server (TLS)
+	id 15.0.995.29; Tue, 19 May 2015 17:33:27 +0530
+Received: from SOC-EXCH-02.invecas.local ([::1]) by SOC-EXCH-02.invecas.local
+	([fe80::bc3d:32eb:402d:2fae%15]) with mapi id 15.00.0995.028;
+	Tue, 19 May 2015 17:33:27 +0530
+From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+To: "Minchev, Todor" <todor.minchev@intel.com>
+Thread-Topic: [yocto] Issue with yocto ADT
+Thread-Index: AQHQjvGS80lL5pX7tEePuV/Y1Ag/NZ18xwuAgAATywj///ZkAIAAFVU6///3i4CAABFuWIAEQy9NgACr7wCAABkPjYAA1/wAgAAVlwL///tNgAAGUYQNAAGaUYAAArL9Rw==
+Date: Tue, 19 May 2015 12:03:26 +0000
+Message-ID: <1432036984110.43188@inedasystems.com>
+References: <1431682376634.76952@inedasystems.com> ,
+	<1431686123.6150.2.camel@intel.com>
+	<1431686858269.81704@inedasystems.com> ,
+	<1431688310.6150.4.camel@intel.com>
+	<1431689589890.85414@inedasystems.com>
+	, <1431691075.6150.6.camel@intel.com>,
+	<1431691274788.8264@inedasystems.com>
+	<1431925643423.13631@inedasystems.com>,
+	<1431966070.3387.3.camel@intel.com>
+	<9fb2bdd0aab24dcdaeebd7e73d2dfcb4@SOC-EXCH-02.invecas.local>
+	,<1432017834.9202.26.camel@intel.com>
+	<1432019239480.90156@inedasystems.com>,
+	<1432021461.9202.33.camel@intel.com>
+	<1432028956512.13945@inedasystems.com>,
+	<1432035069.21431.6.camel@intel.com>
+In-Reply-To: <1432035069.21431.6.camel@intel.com>
+Accept-Language: en-US, en-IN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.42.88]
 MIME-Version: 1.0
-X-Received: by 10.236.22.40 with SMTP id s28mr25902094yhs.194.1432035567794;
-	Tue, 19 May 2015 04:39:27 -0700 (PDT)
-Received: by 10.129.128.2 with HTTP; Tue, 19 May 2015 04:39:27 -0700 (PDT)
-In-Reply-To: <CAFZh4h9oJ3UZFt2b_3SHB1xi99M+rEWis12-VU2gQxMQ9sVBsA@mail.gmail.com>
-References: <4f2d75bf33ac423ab064f754e0b67655@ASTRO-EX1.Bensberg.de>
-	<5540DB34.6010102@windriver.com>
-	<a01714e680f8470cb21bb0b52e66c91e@ASTRO-EX1.Bensberg.de>
-	<55421DA2.9060909@windriver.com>
-	<e134e69a27bd460a9da71929a7f78d9a@ASTRO-EX1.Bensberg.de>
-	<554236CB.6000604@windriver.com>
-	<CAFZh4h9oL7K-=Nxhy=GV0k31ZgnPQuhFLQ-r_fReSRk1ZRhk1g@mail.gmail.com>
-	<5550FD98.1050507@windriver.com>
-	<CAFZh4h-SqSVsG_HXrx3H=QfDs3DH5GoKmFCgwBgGq90+B4WB5A@mail.gmail.com>
-	<55521DB8.2070606@windriver.com> <20150514220801.GD20022@denix.org>
-	<CAFZh4h9=cJG8aVbwvh_NjR24UTnCj9A44zHPs3rqEn_rdCfN3A@mail.gmail.com>
-	<CAFZh4h-r1_gabVP0HdDoOrcT_neED51JpMmm586KLuc_efWdFg@mail.gmail.com>
-	<CAFZh4h8qX6hYJ_kA4Ny=K7YqGnECu_nX1Jkejj=3P8saYmCH2g@mail.gmail.com>
-	<CAFZh4h9oJ3UZFt2b_3SHB1xi99M+rEWis12-VU2gQxMQ9sVBsA@mail.gmail.com>
-Date: Tue, 19 May 2015 07:39:27 -0400
-Message-ID: <CADkTA4Px0rhNzfPsjcNN5Bq4sKZujkPDwnJfxq5dsKRc7=G0Aw@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Brian Hutchinson <b.hutchman@gmail.com>
-Cc: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-ti] Migration from 1.7.1 to 1.8 - kernel-abiversion missing
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Surya Dommeti <Venkatasuryanarayana.Dommeti@inedasystems.com>,
+	Ramakrishna Chatram <Ramakrishna.Chatram@inedasystems.com>
+Subject: Re: Issue with yocto ADT
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,200 +62,312 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 May 2015 11:39:36 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 19 May 2015 12:04:45 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 15, 2015 at 4:21 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
-> On Fri, May 15, 2015 at 3:26 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
->> On Fri, May 15, 2015 at 9:55 AM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
->>> On Thu, May 14, 2015 at 6:16 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
->>>>
->>>> On May 14, 2015 6:08 PM, "Denys Dmytriyenko" <denis@denix.org> wrote:
->>>>>
->>>>> On Tue, May 12, 2015 at 11:35:20AM -0400, Bruce Ashfield wrote:
->>>>> > On 2015-05-12 10:20 AM, Brian Hutchinson wrote:
->>>>> > >On Mon, May 11, 2015 at 3:06 PM, Bruce Ashfield
->>>>> > ><bruce.ashfield@windriver.com> wrote:
->>>>> > >>On 2015-05-11 02:10 PM, Brian Hutchinson wrote:
->>>>> > >>>
->>>>> > >>>On Thu, Apr 30, 2015 at 10:06 AM, Bruce Ashfield
->>>>> > >>><bruce.ashfield@windriver.com> wrote:
->>>>> > >>>>
->>>>> > >>>>It is plausible. But in theory, linux-dummy should still provide
->>>>> > >>>>what you need (but since it doesn't build anything, there is
->>>>> > >>>>no abi .. and no modules can be built against it) .. so the
->>>>> > >>>>error isn't graceful.
->>>>> > >>>>
->>>>> > >>>>Bruce
->>>>> > >>>
->>>>> > >>>
->>>>> > >>>I can confirm this same problem is happening to me.  I just updated
->>>>> > >>>one of my builds from 1.7 to 1.8 and am also getting my rootfs to
->>>>> > >>> fail
->>>>> > >>>due to no abi kernel version:
->>>>> > >>
->>>>> > >>
->>>>> > >>We still have a race condition in the 1.8 branch for the population
->>>>> > >>of the build-artifacts directory.
->>>>> > >>
->>>>> > >>If modules start building, they'll race against the population of the
->>>>> > >>abiversion, and you may see that message.
->>>>> > >>
->>>>> > >>There's a proposed patch for master, but I don't think it is in
->>>>> > >>fido yet.
->>>>> > >>
->>>>> > >>Bruce
->>>>> > >
->>>>> > >Hi Bruce,
->>>>> > >
->>>>> > >I did some searches and looks like there are a number of 'race'
->>>>> > >condition fixes but it wasn't obvious which one I may need.  Is it
->>>>> > >this one:
->>>>> >
->>>>> > > >http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=02d0a003d603266114512160b209876199241e98
->>>>> > >
->>>>> >
->>>>> > That's the one that should make sure that the shared workdir
->>>>> > (Which has the abiversion) is in place before building any modules.
->>>>> >
->>>>> > I can't say that it is exactly your issue, but it is the change
->>>>> > I was thinking of.
->>>>>
->>>>> Brian,
->>>>>
->>>>> Were you able to try the above mentioned commit against am180x in meta-ti?
->>>>> Did
->>>>> it solve the missing abi kernel version? Thanks.
->>>>>
->>>>> --
->>>>> Denys
->>>>
->>>> Hi Denys,
->>>>
->>>> No, I got caught up in something else ... I'll try it tomorrow and report
->>>> back after I cherry pick that commit Bruce mentioned.
->>>>
->>>> Regards,
->>>>
->>>> Brian
->>>
->>> Update.  Not sure if I did this right but this is what I did.  I added
->>> master as a remote and cherry picked
->>> 02d0a003d603266114512160b209876199241e98.  Next I just went for it and
->>> tried to bitbake my image again and got the same result as before.
->>> Next I did a bitbake cleanall on virtual/kernel and tried to make my
->>> image again and still got the same result.
->>>
->>> I'm going to leave this build as is and setup a new one using 1.8
->>> master and see if I get the same thing again.  I'll leave this broken
->>> build alone for a while in case someone wants me to try something with
->>> it to fix it.
->>>
->>> Regards,
->>>
->>> Brian
->>
->> Yet another update ... I did a fresh checkout of master and tried to
->> build and had the same kernelabiversion error:
->>
->> WARNING: omap3-sgx-modules-5.01.01.01 ONLY supports hardfp mode for
->> now#######################
->>                                                           | ETA:
->> 00:00:28
->> WARNING: omap3-sgx-modules-5.01.01.02 ONLY supports hardfp mode for now
->> WARNING: ti-cgt6x-8.0.0 ONLY supports hardfp mode for
->> now########################################
->>
->>  | ETA:  00:00:26
->> Parsing recipes: 100%
->> |##############################################################################################################################################################################|
->> Time: 00:01:02
->> Parsing of 1802 .bb files complete (0 cached, 1802 parsed). 2303
->> targets, 182 skipped, 0 masked, 0 errors.
->> NOTE: Resolving any missing task queue dependencies
->> NOTE: multiple providers are available for u-boot (u-boot,
->> u-boot-glsdk, u-boot-ti-staging)
->> NOTE: consider defining a PREFERRED_PROVIDER entry to match u-boot
->> NOTE: multiple providers are available for jpeg (jpeg, libjpeg-turbo)
->> NOTE: consider defining a PREFERRED_PROVIDER entry to match jpeg
->>
->> Build Configuration:
->> BB_VERSION        = "1.27.0"
->> BUILD_SYS         = "x86_64-linux"
->> NATIVELSBSTRING   = "Debian-7.8"
->> TARGET_SYS        = "arm-poky-linux-gnueabi"
->> MACHINE           = "am180x-evm"
->> DISTRO            = "poky"
->> DISTRO_VERSION    = "1.8+snapshot-20150515"
->> TUNE_FEATURES     = "arm armv5 thumb dsp"
->> TARGET_FPU        = "soft"
->> meta
->> meta-yocto
->> meta-yocto-bsp    = "master:fab7da4f8030a4067db0522f77eaa6d3b501c68f"
->> meta-ti           = "master:60a7bfbf96609ef6f3e084c32b2af853222b3b7e"
->> meta-oe
->> meta-python
->> meta-networking
->> meta-webserver    = "master:53d55216c8c721d3b66ec8f968737bf081def870"
->>
->> NOTE: Preparing RunQueue
->> NOTE: Executing SetScene Tasks
->> NOTE: Executing RunQueue Tasks
->> WARNING: QA Issue: /usr/bin/apxs_apache2-dev contained in package
->> apache2-dev requires /usr/bin/perl, but no providers found in its
->> RDEPENDS [file-rdeps]
->> ERROR: No kernel-abiversion file found
->> (/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/sysroots/am180x-evm/pkgdata/kernel-depmod/kernel-abiversion),
->> cannot run depmod, aborting
->> ERROR: Function failed: do_rootfs
->> ERROR: Logfile of failure stored in:
->> /home/hutch/yocto_1.8_davinci_2/poky/build/tmp/work/am180x_evm-poky-linux-gnueabi/core-image-nodeam/1.0-r0/temp/log.do_rootfs.10336
->> ERROR: Task 7 (/home/hutch/yocto_1.8_davinci_2/poky/meta/recipes-core/images/core-image-nodeam.bb,
->> do_rootfs) failed with exit code '1'
->> NOTE: Tasks Summary: Attempted 2614 tasks of which 9 didn't need to be
->> rerun and 1 failed.
->> Waiting for 0 running tasks to finish:
->>
->> Summary: 1 task failed:
->>   /home/hutch/yocto_1.8_davinci_2/poky/meta/recipes-core/images/core-image-nodeam.bb,
->> do_rootfs
->> Summary: There were 4 WARNING messages shown.
->> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
->
-> More info for those that care ...
->
-> The end of the error log file has:
-> DEBUG: Executing python function write_image_manifest
-> DEBUG: Python function write_image_manifest finished
-> NOTE: Executing: ldconfig
-> -r/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/work/am180x_evm-poky-linux-gnueabi/core-image-nodeam/1.0-r0/rootfs-c
-> new -v
-> ERROR: No kernel-abiversion file found
-> (/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/sysroots/am180x-evm/pkgdata/kernel-depmod/kernel-abiversion),
-> cannot run depmod, aborting
-> DEBUG: Python function do_rootfs finished
-> ERROR: Function failed: do_rootfs
->
-> I have a linux-dummy director in pkgdata but no kernel-depmod directory exists.
->
-
-Interesting. Looks like we have some sort of bad dependency. I'm poking around
-to see if I can reproduce this locally.
-
-Bruce
-
-> Regards,
->
-> Brian
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
-
--- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
+Hi Todor,=0A=
+sbin/init script is there in the rootfile system.=0A=
+=0A=
+But i built rootfile system for my BSP and I give this rootfs to the eclips=
+e sysroot path.=0A=
+=0A=
+And i select the qemu instead of externel hardware. I give the qemu kernel =
+path to prevuiously built qemumips kernel image which is built before my BS=
+P is built.=0A=
+=0A=
+When I click on the "external Tool -> qemu_mips-poky-linux" qemu image is b=
+ooted and gives the following error.=0A=
+->sbin/init exist but could not execute it    =0A=
+=0A=
+Regards,=0A=
+Raghavenmdra K.=0A=
+________________________________________=0A=
+From: Minchev, Todor <todor.minchev@intel.com>=0A=
+Sent: Tuesday, May 19, 2015 5:01 PM=0A=
+To: Raghavendra Kakarla=0A=
+Cc: Surya Dommeti; Ramakrishna Chatram; yocto@yoctoproject.org=0A=
+Subject: Re: [yocto] Issue with yocto ADT=0A=
+=0A=
+On Tue, 2015-05-19 at 09:49 +0000, Raghavendra Kakarla wrote:=0A=
+> Hi Todor,=0A=
+>=0A=
+> Thank you for your reply.=0A=
+>=0A=
+> Now I am able to build the application with my extracted rootfs.=0A=
+>=0A=
+> I built the rootfs for our machine.=0A=
+>=0A=
+> for launching the qemu from the eclipse,is it required we should build it=
+ for qemu?=0A=
+> I have the previously built qemu kernel image and i give it path to the e=
+clipse's qemu kernel path field.=0A=
+>=0A=
+> Qemu is launched but it gives error while switching from kernel to rootfs=
+ i.e init script execution problem.=0A=
+=0A=
+If your rootfs does not have /sbin/init, your kernel won't be able to=0A=
+execute the topmost parent process(init) and the boot will fail? What is=0A=
+the error message?=0A=
+=0A=
+>=0A=
+> Regards,=0A=
+> Raghavendra.=0A=
+> ________________________________________=0A=
+> From: Minchev, Todor <todor.minchev@intel.com>=0A=
+> Sent: Tuesday, May 19, 2015 1:14 PM=0A=
+> To: Raghavendra Kakarla=0A=
+> Cc: Surya Dommeti; Ramakrishna Chatram; yocto@yoctoproject.org=0A=
+> Subject: Re: [yocto] Issue with yocto ADT=0A=
+>=0A=
+> On Tue, 2015-05-19 at 07:07 +0000, Raghavendra Kakarla wrote:=0A=
+> > Hi Todor,=0A=
+> >=0A=
+> > For not working scenario there is no makefile created.=0A=
+> >=0A=
+> > For working scenario using build directory sysroot makefiles are create=
+d.=0A=
+>=0A=
+> So configure fails to create your Makefile. You probably see something=0A=
+> like this in your config.log:=0A=
+>=0A=
+> configure: error: C compiler cannot create executables=0A=
+> configure: error: C compiler cannot create executables=0A=
+> See `config.log' for more details=0A=
+>=0A=
+> Please have a look at this thread, it explains how to resolve this=0A=
+> problem:=0A=
+>=0A=
+> https://lists.yoctoproject.org/pipermail/yocto/2015-March/024089.html=0A=
+>=0A=
+> Cheers,=0A=
+> Todor=0A=
+>=0A=
+> >=0A=
+> > I attaching the makefile for working scenario.=0A=
+> >=0A=
+> > Regards,=0A=
+> >=0A=
+> > Raghavendra K.=0A=
+> > ________________________________________=0A=
+> > From: Minchev, Todor <todor.minchev@intel.com>=0A=
+> > Sent: Tuesday, May 19, 2015 12:13 PM=0A=
+> > To: Raghavendra Kakarla=0A=
+> > Cc: yocto@yoctoproject.org=0A=
+> > Subject: Re: [yocto] Issue with yocto ADT=0A=
+> >=0A=
+> > On Mon, 2015-05-18 at 16:55 +0000, Raghavendra Kakarla wrote:=0A=
+> > > Hi Todor,=0A=
+> > >=0A=
+> > > I created four more new projects.=0A=
+> > >=0A=
+> > > For all the projects I gives error like this only.=0A=
+> >=0A=
+> > Is the error message the same as the original one you posted about a=0A=
+> > missing make `all` target?=0A=
+> >=0A=
+> > > Can send those projects make files?=0A=
+> >=0A=
+> > Please share both your working and non-working Makefiles.=0A=
+> >=0A=
+> > >=0A=
+> > > But when I give the sysroot path in eclipse to the poky/build/tmp/sys=
+root/machine it worked properly.=0A=
+> > >=0A=
+> > > When we give the extracted sysroot it gives problem.=0A=
+> > > Regards,=0A=
+> > > Raghavendra.=0A=
+> > > ________________________________________=0A=
+> > > From: Minchev, Todor [todor.minchev@intel.com]=0A=
+> > > Sent: Monday, May 18, 2015 9:51 PM=0A=
+> > > To: Raghavendra Kakarla=0A=
+> > > Cc: yocto@yoctoproject.org=0A=
+> > > Subject: Re: [yocto] Issue with yocto ADT=0A=
+> > >=0A=
+> > > Hello Raghavendra,=0A=
+> > >=0A=
+> > > On Mon, 2015-05-18 at 05:07 +0000, Raghavendra Kakarla wrote:=0A=
+> > > > Hi Todor,=0A=
+> > > >=0A=
+> > > > Could you please let me know the cause for the issue.=0A=
+> > > Please pastebin your Makefile and share the pastebin link.=0A=
+> > >=0A=
+> > > Seem like your project is corrupt and the Makefile is not generated=
+=0A=
+> > > correctly.=0A=
+> > >=0A=
+> > > Have you tried to delete the project and create a new one?=0A=
+> > >=0A=
+> > > > Thanks in advance.=0A=
+> > > >=0A=
+> > > > Regards,=0A=
+> > > > Raghavendra K.=0A=
+> > > >=0A=
+> > > >=0A=
+> > > > ________________________________________=0A=
+> > > > From: Raghavendra Kakarla=0A=
+> > > > Sent: Friday, May 15, 2015 5:31 PM=0A=
+> > > > To: Minchev, Todor=0A=
+> > > > Cc: yocto@yoctoproject.org=0A=
+> > > > Subject: RE: [yocto] Issue with yocto ADT=0A=
+> > > >=0A=
+> > > > Hi Todor,=0A=
+> > > >=0A=
+> > > > It is provided by the Yocto eclipse plugin itself.=0A=
+> > > >=0A=
+> > > > Regards,=0A=
+> > > > Raghavendra.=0A=
+> > > > ________________________________________=0A=
+> > > > From: Minchev, Todor <todor.minchev@intel.com>=0A=
+> > > > Sent: Friday, May 15, 2015 5:27 PM=0A=
+> > > > To: Raghavendra Kakarla=0A=
+> > > > Cc: yocto@yoctoproject.org=0A=
+> > > > Subject: Re: [yocto] Issue with yocto ADT=0A=
+> > > >=0A=
+> > > > On Fri, 2015-05-15 at 11:33 +0000, Raghavendra Kakarla wrote:=0A=
+> > > > > Hi Todor,=0A=
+> > > > >=0A=
+> > > > > It is an autotool based example.=0A=
+> > > > > It is not generated makefile itself.=0A=
+> > > > >=0A=
+> > > >=0A=
+> > > > Is it an example you created yourself or is it the autotools C Hell=
+o=0A=
+> > > > World template provided by the Yocto Eclipse Plug-in.=0A=
+> > > >=0A=
+> > > > > I attached the makefile.in and makefile.am file to the paste bin.=
+=0A=
+> > > >=0A=
+> > > > Could you please paste the Makefile and share the pastebin link?=0A=
+> > > >=0A=
+> > > > > Thanks,=0A=
+> > > > >=0A=
+> > > > > Raghavendra.=0A=
+> > > > >=0A=
+> > > > >=0A=
+> > > > > ________________________________________=0A=
+> > > > > From: Minchev, Todor <todor.minchev@intel.com>=0A=
+> > > > > Sent: Friday, May 15, 2015 4:41 PM=0A=
+> > > > > To: Raghavendra Kakarla=0A=
+> > > > > Cc: yocto@yoctoproject.org=0A=
+> > > > > Subject: Re: [yocto] Issue with yocto ADT=0A=
+> > > > >=0A=
+> > > > > Hello Raghavendra,=0A=
+> > > > >=0A=
+> > > > > Could you please pastebin the makefile from your project?=0A=
+> > > > >=0A=
+> > > > > http://pastebin.com/=0A=
+> > > > >=0A=
+> > > > > Cheers,=0A=
+> > > > > Todor=0A=
+> > > > >=0A=
+> > > > > On Fri, 2015-05-15 at 10:47 +0000, Raghavendra Kakarla wrote:=0A=
+> > > > > > Hi Todor,=0A=
+> > > > > >=0A=
+> > > > > > Thank you for your  reply.=0A=
+> > > > > >=0A=
+> > > > > > By default we have the setting like this only.=0A=
+> > > > > >=0A=
+> > > > > > But we got the error.=0A=
+> > > > > >=0A=
+> > > > > > Thanks,=0A=
+> > > > > > Raghavendra.=0A=
+> > > > > > ________________________________________=0A=
+> > > > > > From: Minchev, Todor <todor.minchev@intel.com>=0A=
+> > > > > > Sent: Friday, May 15, 2015 4:05 PM=0A=
+> > > > > > To: Raghavendra Kakarla=0A=
+> > > > > > Cc: yocto@yoctoproject.org=0A=
+> > > > > > Subject: Re: [yocto] Issue with yocto ADT=0A=
+> > > > > >=0A=
+> > > > > > Hello Raghavendra,=0A=
+> > > > > >=0A=
+> > > > > > Please try the following:=0A=
+> > > > > >=0A=
+> > > > > > Right click on your project - Properties - C/C++ Build - Select=
+ the=0A=
+> > > > > > 'Behavior' tab - untick 'Build on resource save' and remove 'al=
+l' from=0A=
+> > > > > > the 'Build' field=0A=
+> > > > > >=0A=
+> > > > > > Cheers,=0A=
+> > > > > > Todor=0A=
+> > > > > >=0A=
+> > > > > > On Fri, 2015-05-15 at 09:32 +0000, Raghavendra Kakarla wrote:=
+=0A=
+> > > > > > > Hi All,=0A=
+> > > > > > >=0A=
+> > > > > > >=0A=
+> > > > > > > I have problem with the ADT while i am building the autotool =
+example=0A=
+> > > > > > > helloword project which is given in the "yocto ADT autotool p=
+roject".=0A=
+> > > > > > >=0A=
+> > > > > > >=0A=
+> > > > > > > Could you please help me in resolving this issue.=0A=
+> > > > > > >=0A=
+> > > > > > >=0A=
+> > > > > > > I followed the following steps for installing the adt in my=
+=0A=
+> > > > > > > development PC:=0A=
+> > > > > > >=0A=
+> > > > > > >=0A=
+> > > > > > >=0A=
+> > > > > > > I built the toolchain using the following command:=0A=
+> > > > > > >=0A=
+> > > > > > > $cd ~/poky=0A=
+> > > > > > > $source ./oe-init-build-env=0A=
+> > > > > > > $bitbake meta-ide-support=0A=
+> > > > > > >=0A=
+> > > > > > >=0A=
+> > > > > > > Extract the root file system by using the following commands:=
+=0A=
+> > > > > > >=0A=
+> > > > > > > $cd ~=0A=
+> > > > > > > $source ~/poky/build/tmp/environment-setup-mips32r2el-poky-li=
+nux=0A=
+> > > > > > > $runqemu-extract-sdk \=0A=
+> > > > > > >         ~/poky/build/tmp/deploy/images/arqlyn/=0A=
+> > > > > > > core-image-minimal-dhruwa_ioe-20150511102759.rootfs.tar.bz2\=
+=0A=
+> > > > > > >         $HOME/arqlyn=0A=
+> > > > > > >=0A=
+> > > > > > > I followed the command given in the yocto project dev-manual =
+for=0A=
+> > > > > > > installing eclipse and adding yocto plugin to eclipse.=0A=
+> > > > > > >=0A=
+> > > > > > > I Gave the following data to the eclipse for configuring the=
+=0A=
+> > > > > > > cross-compiler options:=0A=
+> > > > > > >=0A=
+> > > > > > > 1. I select the "Build System Derived Toolchain"=0A=
+> > > > > > > 2.point the toolchain path to "home/testuser/poky/build"=0A=
+> > > > > > > 3.gave sysroot path to /home/testuser/arqlyn=0A=
+> > > > > > >=0A=
+> > > > > > > After entered this information I got the my machine-name in t=
+he=0A=
+> > > > > > > "select the target architecture" filed.=0A=
+> > > > > > >=0A=
+> > > > > > > After this I create a autotool support project and tried to b=
+uild but=0A=
+> > > > > > > it gives the error.=0A=
+> > > > > > >=0A=
+> > > > > > > Regards,=0A=
+> > > > > > >=0A=
+> > > > > > > Raghavendra.=0A=
+> > > > > > >=0A=
+> > > > > > >=0A=
+> > > > > > >=0A=
+> > > > > > >=0A=
+> > > > > > > _______________________________________________=0A=
+> > > > > > > yocto mailing list=0A=
+> > > > > > > yocto@yoctoproject.org=0A=
+> > > > > > > https://lists.yoctoproject.org/listinfo/yocto=0A=
+> > > > > >=0A=
+> > > > >=0A=
+> > > >=0A=
+> > >=0A=
+> >=0A=
+>=0A=
+=0A=
 
