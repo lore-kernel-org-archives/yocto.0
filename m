@@ -1,65 +1,66 @@
-Return-Path: <todor.minchev@intel.com>
+Return-Path: <bruce.ashfield@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7A2F0E009DA; Tue, 19 May 2015 04:31:16 -0700 (PDT)
+	id BA1AAE009B8; Tue, 19 May 2015 04:39:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bruce.ashfield[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CC96E0095D
-	for <yocto@yoctoproject.org>; Tue, 19 May 2015 04:31:13 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 19 May 2015 04:31:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,457,1427785200"; 
-	d="p7s'?scan'208";a="712386126"
-Received: from irsmsx106.ger.corp.intel.com ([163.33.3.31])
-	by fmsmga001.fm.intel.com with ESMTP; 19 May 2015 04:31:11 -0700
-Received: from irsmsx155.ger.corp.intel.com (163.33.192.3) by
-	IRSMSX106.ger.corp.intel.com (163.33.3.31) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Tue, 19 May 2015 12:31:11 +0100
-Received: from irsmsx105.ger.corp.intel.com ([169.254.7.73]) by
-	irsmsx155.ger.corp.intel.com ([169.254.14.38]) with mapi id
-	14.03.0224.002; Tue, 19 May 2015 12:31:10 +0100
-From: "Minchev, Todor" <todor.minchev@intel.com>
-To: "Raghavendra.Kakarla@inedasystems.com"
-	<Raghavendra.Kakarla@inedasystems.com>
-Thread-Topic: [yocto] Issue with yocto ADT
-Thread-Index: AQHQjvGS80lL5pX7tEePuV/Y1Ag/NZ18xwuAgAATywj///ZkAIAAFVU6///3i4CAABFuWIAEQy9NgACr7wCAABkPjYAA1/wAgAAVlwL///tNgAAGUYQNAAGaUYA=
-Date: Tue, 19 May 2015 11:31:10 +0000
-Message-ID: <1432035069.21431.6.camel@intel.com>
-References: <1431682376634.76952@inedasystems.com> ,
-	<1431686123.6150.2.camel@intel.com>
-	<1431686858269.81704@inedasystems.com> ,
-	<1431688310.6150.4.camel@intel.com>
-	<1431689589890.85414@inedasystems.com>
-	, <1431691075.6150.6.camel@intel.com>,
-	<1431691274788.8264@inedasystems.com>
-	<1431925643423.13631@inedasystems.com>,
-	<1431966070.3387.3.camel@intel.com>
-	<9fb2bdd0aab24dcdaeebd7e73d2dfcb4@SOC-EXCH-02.invecas.local>
-	,<1432017834.9202.26.camel@intel.com>
-	<1432019239480.90156@inedasystems.com>,
-	<1432021461.9202.33.camel@intel.com>
-	<1432028956512.13945@inedasystems.com>
-In-Reply-To: <1432028956512.13945@inedasystems.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.254.103.25]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-yh0-f47.google.com (mail-yh0-f47.google.com
+	[209.85.213.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DD06E0095D;
+	Tue, 19 May 2015 04:39:28 -0700 (PDT)
+Received: by yhom41 with SMTP id m41so3207291yho.1;
+	Tue, 19 May 2015 04:39:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=NgDf0mi3SAD8LXOpVqcubHlU5guP2zHuaIcOMgAm6Sk=;
+	b=QG1TsjwyA3X9z39aMR/+JwGRdP5+Bhkbxdaq777Q3F8GQWXq8MEZU+UXeOt7yYmL9d
+	zRWvO2YqyXEM9GQu9Ytt3z8r3owTh0wefkN4LJP849zpmGfG7AtRJtCvS7uzN9NL6kqT
+	rjucjnI1oEgqtzjTKLCJnkhnKDEIczfB3YdIYGg68VG8nQA/f5UBGf7SHu80IOYVcYHA
+	eTAACm7NVkAn5F4t3hraE0N6VrxlAg/7UYSerzw+YArNcyo8Z4BAmcb9OMY/lk85dBrk
+	5MxHTuvbJLvMveSJ4kbeFJojdkSEWCM33Nsc7Kw44dVRddYAwVftf9/niXxtp87bxrL4
+	YvYw==
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"Venkatasuryanarayana.Dommeti@inedasystems.com"
-	<Venkatasuryanarayana.Dommeti@inedasystems.com>,
-	"Ramakrishna.Chatram@inedasystems.com"
-	<Ramakrishna.Chatram@inedasystems.com>
-Subject: Re: Issue with yocto ADT
+X-Received: by 10.236.22.40 with SMTP id s28mr25902094yhs.194.1432035567794;
+	Tue, 19 May 2015 04:39:27 -0700 (PDT)
+Received: by 10.129.128.2 with HTTP; Tue, 19 May 2015 04:39:27 -0700 (PDT)
+In-Reply-To: <CAFZh4h9oJ3UZFt2b_3SHB1xi99M+rEWis12-VU2gQxMQ9sVBsA@mail.gmail.com>
+References: <4f2d75bf33ac423ab064f754e0b67655@ASTRO-EX1.Bensberg.de>
+	<5540DB34.6010102@windriver.com>
+	<a01714e680f8470cb21bb0b52e66c91e@ASTRO-EX1.Bensberg.de>
+	<55421DA2.9060909@windriver.com>
+	<e134e69a27bd460a9da71929a7f78d9a@ASTRO-EX1.Bensberg.de>
+	<554236CB.6000604@windriver.com>
+	<CAFZh4h9oL7K-=Nxhy=GV0k31ZgnPQuhFLQ-r_fReSRk1ZRhk1g@mail.gmail.com>
+	<5550FD98.1050507@windriver.com>
+	<CAFZh4h-SqSVsG_HXrx3H=QfDs3DH5GoKmFCgwBgGq90+B4WB5A@mail.gmail.com>
+	<55521DB8.2070606@windriver.com> <20150514220801.GD20022@denix.org>
+	<CAFZh4h9=cJG8aVbwvh_NjR24UTnCj9A44zHPs3rqEn_rdCfN3A@mail.gmail.com>
+	<CAFZh4h-r1_gabVP0HdDoOrcT_neED51JpMmm586KLuc_efWdFg@mail.gmail.com>
+	<CAFZh4h8qX6hYJ_kA4Ny=K7YqGnECu_nX1Jkejj=3P8saYmCH2g@mail.gmail.com>
+	<CAFZh4h9oJ3UZFt2b_3SHB1xi99M+rEWis12-VU2gQxMQ9sVBsA@mail.gmail.com>
+Date: Tue, 19 May 2015 07:39:27 -0400
+Message-ID: <CADkTA4Px0rhNzfPsjcNN5Bq4sKZujkPDwnJfxq5dsKRc7=G0Aw@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: Brian Hutchinson <b.hutchman@gmail.com>
+Cc: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-ti] Migration from 1.7.1 to 1.8 - kernel-abiversion missing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,387 +72,200 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 May 2015 11:31:16 -0000
-X-Groupsio-MsgNum: 24888
-Content-Language: en-US
-Content-Type: multipart/signed; micalg=sha-1;
-	protocol="application/x-pkcs7-signature";
-	boundary="=-TmVx+lku/36C6P3Q8wuS"
+X-List-Received-Date: Tue, 19 May 2015 11:39:36 -0000
+Content-Type: text/plain; charset=UTF-8
 
---=-TmVx+lku/36C6P3Q8wuS
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Fri, May 15, 2015 at 4:21 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
+> On Fri, May 15, 2015 at 3:26 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
+>> On Fri, May 15, 2015 at 9:55 AM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
+>>> On Thu, May 14, 2015 at 6:16 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
+>>>>
+>>>> On May 14, 2015 6:08 PM, "Denys Dmytriyenko" <denis@denix.org> wrote:
+>>>>>
+>>>>> On Tue, May 12, 2015 at 11:35:20AM -0400, Bruce Ashfield wrote:
+>>>>> > On 2015-05-12 10:20 AM, Brian Hutchinson wrote:
+>>>>> > >On Mon, May 11, 2015 at 3:06 PM, Bruce Ashfield
+>>>>> > ><bruce.ashfield@windriver.com> wrote:
+>>>>> > >>On 2015-05-11 02:10 PM, Brian Hutchinson wrote:
+>>>>> > >>>
+>>>>> > >>>On Thu, Apr 30, 2015 at 10:06 AM, Bruce Ashfield
+>>>>> > >>><bruce.ashfield@windriver.com> wrote:
+>>>>> > >>>>
+>>>>> > >>>>It is plausible. But in theory, linux-dummy should still provide
+>>>>> > >>>>what you need (but since it doesn't build anything, there is
+>>>>> > >>>>no abi .. and no modules can be built against it) .. so the
+>>>>> > >>>>error isn't graceful.
+>>>>> > >>>>
+>>>>> > >>>>Bruce
+>>>>> > >>>
+>>>>> > >>>
+>>>>> > >>>I can confirm this same problem is happening to me.  I just updated
+>>>>> > >>>one of my builds from 1.7 to 1.8 and am also getting my rootfs to
+>>>>> > >>> fail
+>>>>> > >>>due to no abi kernel version:
+>>>>> > >>
+>>>>> > >>
+>>>>> > >>We still have a race condition in the 1.8 branch for the population
+>>>>> > >>of the build-artifacts directory.
+>>>>> > >>
+>>>>> > >>If modules start building, they'll race against the population of the
+>>>>> > >>abiversion, and you may see that message.
+>>>>> > >>
+>>>>> > >>There's a proposed patch for master, but I don't think it is in
+>>>>> > >>fido yet.
+>>>>> > >>
+>>>>> > >>Bruce
+>>>>> > >
+>>>>> > >Hi Bruce,
+>>>>> > >
+>>>>> > >I did some searches and looks like there are a number of 'race'
+>>>>> > >condition fixes but it wasn't obvious which one I may need.  Is it
+>>>>> > >this one:
+>>>>> >
+>>>>> > > >http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=02d0a003d603266114512160b209876199241e98
+>>>>> > >
+>>>>> >
+>>>>> > That's the one that should make sure that the shared workdir
+>>>>> > (Which has the abiversion) is in place before building any modules.
+>>>>> >
+>>>>> > I can't say that it is exactly your issue, but it is the change
+>>>>> > I was thinking of.
+>>>>>
+>>>>> Brian,
+>>>>>
+>>>>> Were you able to try the above mentioned commit against am180x in meta-ti?
+>>>>> Did
+>>>>> it solve the missing abi kernel version? Thanks.
+>>>>>
+>>>>> --
+>>>>> Denys
+>>>>
+>>>> Hi Denys,
+>>>>
+>>>> No, I got caught up in something else ... I'll try it tomorrow and report
+>>>> back after I cherry pick that commit Bruce mentioned.
+>>>>
+>>>> Regards,
+>>>>
+>>>> Brian
+>>>
+>>> Update.  Not sure if I did this right but this is what I did.  I added
+>>> master as a remote and cherry picked
+>>> 02d0a003d603266114512160b209876199241e98.  Next I just went for it and
+>>> tried to bitbake my image again and got the same result as before.
+>>> Next I did a bitbake cleanall on virtual/kernel and tried to make my
+>>> image again and still got the same result.
+>>>
+>>> I'm going to leave this build as is and setup a new one using 1.8
+>>> master and see if I get the same thing again.  I'll leave this broken
+>>> build alone for a while in case someone wants me to try something with
+>>> it to fix it.
+>>>
+>>> Regards,
+>>>
+>>> Brian
+>>
+>> Yet another update ... I did a fresh checkout of master and tried to
+>> build and had the same kernelabiversion error:
+>>
+>> WARNING: omap3-sgx-modules-5.01.01.01 ONLY supports hardfp mode for
+>> now#######################
+>>                                                           | ETA:
+>> 00:00:28
+>> WARNING: omap3-sgx-modules-5.01.01.02 ONLY supports hardfp mode for now
+>> WARNING: ti-cgt6x-8.0.0 ONLY supports hardfp mode for
+>> now########################################
+>>
+>>  | ETA:  00:00:26
+>> Parsing recipes: 100%
+>> |##############################################################################################################################################################################|
+>> Time: 00:01:02
+>> Parsing of 1802 .bb files complete (0 cached, 1802 parsed). 2303
+>> targets, 182 skipped, 0 masked, 0 errors.
+>> NOTE: Resolving any missing task queue dependencies
+>> NOTE: multiple providers are available for u-boot (u-boot,
+>> u-boot-glsdk, u-boot-ti-staging)
+>> NOTE: consider defining a PREFERRED_PROVIDER entry to match u-boot
+>> NOTE: multiple providers are available for jpeg (jpeg, libjpeg-turbo)
+>> NOTE: consider defining a PREFERRED_PROVIDER entry to match jpeg
+>>
+>> Build Configuration:
+>> BB_VERSION        = "1.27.0"
+>> BUILD_SYS         = "x86_64-linux"
+>> NATIVELSBSTRING   = "Debian-7.8"
+>> TARGET_SYS        = "arm-poky-linux-gnueabi"
+>> MACHINE           = "am180x-evm"
+>> DISTRO            = "poky"
+>> DISTRO_VERSION    = "1.8+snapshot-20150515"
+>> TUNE_FEATURES     = "arm armv5 thumb dsp"
+>> TARGET_FPU        = "soft"
+>> meta
+>> meta-yocto
+>> meta-yocto-bsp    = "master:fab7da4f8030a4067db0522f77eaa6d3b501c68f"
+>> meta-ti           = "master:60a7bfbf96609ef6f3e084c32b2af853222b3b7e"
+>> meta-oe
+>> meta-python
+>> meta-networking
+>> meta-webserver    = "master:53d55216c8c721d3b66ec8f968737bf081def870"
+>>
+>> NOTE: Preparing RunQueue
+>> NOTE: Executing SetScene Tasks
+>> NOTE: Executing RunQueue Tasks
+>> WARNING: QA Issue: /usr/bin/apxs_apache2-dev contained in package
+>> apache2-dev requires /usr/bin/perl, but no providers found in its
+>> RDEPENDS [file-rdeps]
+>> ERROR: No kernel-abiversion file found
+>> (/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/sysroots/am180x-evm/pkgdata/kernel-depmod/kernel-abiversion),
+>> cannot run depmod, aborting
+>> ERROR: Function failed: do_rootfs
+>> ERROR: Logfile of failure stored in:
+>> /home/hutch/yocto_1.8_davinci_2/poky/build/tmp/work/am180x_evm-poky-linux-gnueabi/core-image-nodeam/1.0-r0/temp/log.do_rootfs.10336
+>> ERROR: Task 7 (/home/hutch/yocto_1.8_davinci_2/poky/meta/recipes-core/images/core-image-nodeam.bb,
+>> do_rootfs) failed with exit code '1'
+>> NOTE: Tasks Summary: Attempted 2614 tasks of which 9 didn't need to be
+>> rerun and 1 failed.
+>> Waiting for 0 running tasks to finish:
+>>
+>> Summary: 1 task failed:
+>>   /home/hutch/yocto_1.8_davinci_2/poky/meta/recipes-core/images/core-image-nodeam.bb,
+>> do_rootfs
+>> Summary: There were 4 WARNING messages shown.
+>> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+>
+> More info for those that care ...
+>
+> The end of the error log file has:
+> DEBUG: Executing python function write_image_manifest
+> DEBUG: Python function write_image_manifest finished
+> NOTE: Executing: ldconfig
+> -r/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/work/am180x_evm-poky-linux-gnueabi/core-image-nodeam/1.0-r0/rootfs-c
+> new -v
+> ERROR: No kernel-abiversion file found
+> (/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/sysroots/am180x-evm/pkgdata/kernel-depmod/kernel-abiversion),
+> cannot run depmod, aborting
+> DEBUG: Python function do_rootfs finished
+> ERROR: Function failed: do_rootfs
+>
+> I have a linux-dummy director in pkgdata but no kernel-depmod directory exists.
+>
 
-On Tue, 2015-05-19 at 09:49 +0000, Raghavendra Kakarla wrote:
-> Hi Todor,
->=20
-> Thank you for your reply.
->=20
-> Now I am able to build the application with my extracted rootfs.
->=20
-> I built the rootfs for our machine.
->=20
-> for launching the qemu from the eclipse,is it required we should build it=
- for qemu?
-> I have the previously built qemu kernel image and i give it path to the e=
-clipse's qemu kernel path field.
->=20
-> Qemu is launched but it gives error while switching from kernel to rootfs=
- i.e init script execution problem.
+Interesting. Looks like we have some sort of bad dependency. I'm poking around
+to see if I can reproduce this locally.
 
-If your rootfs does not have /sbin/init, your kernel won't be able to
-execute the topmost parent process(init) and the boot will fail? What is
-the error message?
+Bruce
 
->=20
 > Regards,
-> Raghavendra.
-> ________________________________________
-> From: Minchev, Todor <todor.minchev@intel.com>
-> Sent: Tuesday, May 19, 2015 1:14 PM
-> To: Raghavendra Kakarla
-> Cc: Surya Dommeti; Ramakrishna Chatram; yocto@yoctoproject.org
-> Subject: Re: [yocto] Issue with yocto ADT
->=20
-> On Tue, 2015-05-19 at 07:07 +0000, Raghavendra Kakarla wrote:
-> > Hi Todor,
-> >
-> > For not working scenario there is no makefile created.
-> >
-> > For working scenario using build directory sysroot makefiles are create=
-d.
->=20
-> So configure fails to create your Makefile. You probably see something
-> like this in your config.log:
->=20
-> configure: error: C compiler cannot create executables
-> configure: error: C compiler cannot create executables
-> See `config.log' for more details
->=20
-> Please have a look at this thread, it explains how to resolve this
-> problem:
->=20
-> https://lists.yoctoproject.org/pipermail/yocto/2015-March/024089.html
->=20
-> Cheers,
-> Todor
->=20
-> >
-> > I attaching the makefile for working scenario.
-> >
-> > Regards,
-> >
-> > Raghavendra K.
-> > ________________________________________
-> > From: Minchev, Todor <todor.minchev@intel.com>
-> > Sent: Tuesday, May 19, 2015 12:13 PM
-> > To: Raghavendra Kakarla
-> > Cc: yocto@yoctoproject.org
-> > Subject: Re: [yocto] Issue with yocto ADT
-> >
-> > On Mon, 2015-05-18 at 16:55 +0000, Raghavendra Kakarla wrote:
-> > > Hi Todor,
-> > >
-> > > I created four more new projects.
-> > >
-> > > For all the projects I gives error like this only.
-> >
-> > Is the error message the same as the original one you posted about a
-> > missing make `all` target?
-> >
-> > > Can send those projects make files?
-> >
-> > Please share both your working and non-working Makefiles.
-> >
-> > >
-> > > But when I give the sysroot path in eclipse to the poky/build/tmp/sys=
-root/machine it worked properly.
-> > >
-> > > When we give the extracted sysroot it gives problem.
-> > > Regards,
-> > > Raghavendra.
-> > > ________________________________________
-> > > From: Minchev, Todor [todor.minchev@intel.com]
-> > > Sent: Monday, May 18, 2015 9:51 PM
-> > > To: Raghavendra Kakarla
-> > > Cc: yocto@yoctoproject.org
-> > > Subject: Re: [yocto] Issue with yocto ADT
-> > >
-> > > Hello Raghavendra,
-> > >
-> > > On Mon, 2015-05-18 at 05:07 +0000, Raghavendra Kakarla wrote:
-> > > > Hi Todor,
-> > > >
-> > > > Could you please let me know the cause for the issue.
-> > > Please pastebin your Makefile and share the pastebin link.
-> > >
-> > > Seem like your project is corrupt and the Makefile is not generated
-> > > correctly.
-> > >
-> > > Have you tried to delete the project and create a new one?
-> > >
-> > > > Thanks in advance.
-> > > >
-> > > > Regards,
-> > > > Raghavendra K.
-> > > >
-> > > >
-> > > > ________________________________________
-> > > > From: Raghavendra Kakarla
-> > > > Sent: Friday, May 15, 2015 5:31 PM
-> > > > To: Minchev, Todor
-> > > > Cc: yocto@yoctoproject.org
-> > > > Subject: RE: [yocto] Issue with yocto ADT
-> > > >
-> > > > Hi Todor,
-> > > >
-> > > > It is provided by the Yocto eclipse plugin itself.
-> > > >
-> > > > Regards,
-> > > > Raghavendra.
-> > > > ________________________________________
-> > > > From: Minchev, Todor <todor.minchev@intel.com>
-> > > > Sent: Friday, May 15, 2015 5:27 PM
-> > > > To: Raghavendra Kakarla
-> > > > Cc: yocto@yoctoproject.org
-> > > > Subject: Re: [yocto] Issue with yocto ADT
-> > > >
-> > > > On Fri, 2015-05-15 at 11:33 +0000, Raghavendra Kakarla wrote:
-> > > > > Hi Todor,
-> > > > >
-> > > > > It is an autotool based example.
-> > > > > It is not generated makefile itself.
-> > > > >
-> > > >
-> > > > Is it an example you created yourself or is it the autotools C Hell=
-o
-> > > > World template provided by the Yocto Eclipse Plug-in.
-> > > >
-> > > > > I attached the makefile.in and makefile.am file to the paste bin.
-> > > >
-> > > > Could you please paste the Makefile and share the pastebin link?
-> > > >
-> > > > > Thanks,
-> > > > >
-> > > > > Raghavendra.
-> > > > >
-> > > > >
-> > > > > ________________________________________
-> > > > > From: Minchev, Todor <todor.minchev@intel.com>
-> > > > > Sent: Friday, May 15, 2015 4:41 PM
-> > > > > To: Raghavendra Kakarla
-> > > > > Cc: yocto@yoctoproject.org
-> > > > > Subject: Re: [yocto] Issue with yocto ADT
-> > > > >
-> > > > > Hello Raghavendra,
-> > > > >
-> > > > > Could you please pastebin the makefile from your project?
-> > > > >
-> > > > > http://pastebin.com/
-> > > > >
-> > > > > Cheers,
-> > > > > Todor
-> > > > >
-> > > > > On Fri, 2015-05-15 at 10:47 +0000, Raghavendra Kakarla wrote:
-> > > > > > Hi Todor,
-> > > > > >
-> > > > > > Thank you for your  reply.
-> > > > > >
-> > > > > > By default we have the setting like this only.
-> > > > > >
-> > > > > > But we got the error.
-> > > > > >
-> > > > > > Thanks,
-> > > > > > Raghavendra.
-> > > > > > ________________________________________
-> > > > > > From: Minchev, Todor <todor.minchev@intel.com>
-> > > > > > Sent: Friday, May 15, 2015 4:05 PM
-> > > > > > To: Raghavendra Kakarla
-> > > > > > Cc: yocto@yoctoproject.org
-> > > > > > Subject: Re: [yocto] Issue with yocto ADT
-> > > > > >
-> > > > > > Hello Raghavendra,
-> > > > > >
-> > > > > > Please try the following:
-> > > > > >
-> > > > > > Right click on your project - Properties - C/C++ Build - Select=
- the
-> > > > > > 'Behavior' tab - untick 'Build on resource save' and remove 'al=
-l' from
-> > > > > > the 'Build' field
-> > > > > >
-> > > > > > Cheers,
-> > > > > > Todor
-> > > > > >
-> > > > > > On Fri, 2015-05-15 at 09:32 +0000, Raghavendra Kakarla wrote:
-> > > > > > > Hi All,
-> > > > > > >
-> > > > > > >
-> > > > > > > I have problem with the ADT while i am building the autotool =
-example
-> > > > > > > helloword project which is given in the "yocto ADT autotool p=
-roject".
-> > > > > > >
-> > > > > > >
-> > > > > > > Could you please help me in resolving this issue.
-> > > > > > >
-> > > > > > >
-> > > > > > > I followed the following steps for installing the adt in my
-> > > > > > > development PC:
-> > > > > > >
-> > > > > > >
-> > > > > > >
-> > > > > > > I built the toolchain using the following command:
-> > > > > > >
-> > > > > > > $cd ~/poky
-> > > > > > > $source ./oe-init-build-env
-> > > > > > > $bitbake meta-ide-support
-> > > > > > >
-> > > > > > >
-> > > > > > > Extract the root file system by using the following commands:
-> > > > > > >
-> > > > > > > $cd ~
-> > > > > > > $source ~/poky/build/tmp/environment-setup-mips32r2el-poky-li=
-nux
-> > > > > > > $runqemu-extract-sdk \
-> > > > > > >         ~/poky/build/tmp/deploy/images/arqlyn/
-> > > > > > > core-image-minimal-dhruwa_ioe-20150511102759.rootfs.tar.bz2\
-> > > > > > >         $HOME/arqlyn
-> > > > > > >
-> > > > > > > I followed the command given in the yocto project dev-manual =
-for
-> > > > > > > installing eclipse and adding yocto plugin to eclipse.
-> > > > > > >
-> > > > > > > I Gave the following data to the eclipse for configuring the
-> > > > > > > cross-compiler options:
-> > > > > > >
-> > > > > > > 1. I select the "Build System Derived Toolchain"
-> > > > > > > 2.point the toolchain path to "home/testuser/poky/build"
-> > > > > > > 3.gave sysroot path to /home/testuser/arqlyn
-> > > > > > >
-> > > > > > > After entered this information I got the my machine-name in t=
-he
-> > > > > > > "select the target architecture" filed.
-> > > > > > >
-> > > > > > > After this I create a autotool support project and tried to b=
-uild but
-> > > > > > > it gives the error.
-> > > > > > >
-> > > > > > > Regards,
-> > > > > > >
-> > > > > > > Raghavendra.
-> > > > > > >
-> > > > > > >
-> > > > > > >
-> > > > > > >
-> > > > > > > _______________________________________________
-> > > > > > > yocto mailing list
-> > > > > > > yocto@yoctoproject.org
-> > > > > > > https://lists.yoctoproject.org/listinfo/yocto
-> > > > > >
-> > > > >
-> > > >
-> > >
-> >
->=20
+>
+> Brian
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
---=-TmVx+lku/36C6P3Q8wuS
-Content-Type: application/x-pkcs7-signature; name="smime.p7s"
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Transfer-Encoding: base64
 
-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
-qcETmP5WmZOyycq5cD8qO4qY4N1Va0KlO0MPnPlqCH1idu0Byo6e4f/CsWg2EvGDOT8vAgMBAAGj
-ggIxMIICLTALBgNVHQ8EBAMCB4AwPAYJKwYBBAGCNxUHBC8wLQYlKwYBBAGCNxUIhsOMdYSZ5VGD
-/YEohY6fU4KRwAlngd69OZXwQwIBZAIBCDAdBgNVHQ4EFgQUeijLELxE2SDhZHWre1zfj9+8kOMw
-HwYDVR0jBBgwFoAUHmkqtNwo/kcYTiELP7ysES/wmPUwZQYDVR0fBF4wXDBaoFigVoZUaHR0cDov
-L3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIw
-SXNzdWluZyUyMENBJTIwNEEuY3JsMIGfBggrBgEFBQcBAQSBkjCBjzBpBggrBgEFBQcwAoZdaHR0
-cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5h
-bCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwNEEuY3J0MCIGCCsGAQUFBzABhhZodHRwOi8vb2Nz
-cC5pbnRlbC5jb20vMB8GA1UdJQQYMBYGCCsGAQUFBwMEBgorBgEEAYI3CgMMMCkGCSsGAQQBgjcV
-CgQcMBowCgYIKwYBBQUHAwQwDAYKKwYBBAGCNwoDDDBLBgNVHREERDBCoCcGCisGAQQBgjcUAgOg
-GQwXdG9kb3IubWluY2hldkBpbnRlbC5jb22BF3RvZG9yLm1pbmNoZXZAaW50ZWwuY29tMA0GCSqG
-SIb3DQEBBQUAA4IBAQDVcbxsEX7Mupn3YJ5CF7JdeXczsAZ0zQefcq6IaNgda9aolT/4nSmGJI6l
-uJYF3VpEz++O1P/UfDINsjLBdN9FWURSHOlPggJyrqQ0kHRlULPtjuQVKlew1yGoYGKb2OTYb5hK
-m1ec2oXiWa/FFI1bynTDgWlrO88L58qK1QkIZzL8RwB/JpiJGUyukkPuT1e54ZG2PH78gKSz06Lt
-xRw3w6wRjaP8iwE8AVXry7QylN3dE8PyOgmjlmFUnDn1lRwo9ESaB/QAI5BxSYid/uk6unnm75sq
-P6bTec9bgl4dqJu+rRFJJj4fC4ffnp5GtqG9WTsyEoUfp5Y23pBGc/QaMIIGbTCCBVWgAwIBAgIK
-EWkQ2AAAAABIZTANBgkqhkiG9w0BAQUFADB5MQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDAS
-BgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMi
-SW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSA0QTAeFw0xNDAzMDExOTQ0MTNaFw0xNzAy
-MTMxOTQ0MTNaMEExFzAVBgNVBAMTDk1pbmNoZXYsIFRvZG9yMSYwJAYJKoZIhvcNAQkBFhd0b2Rv
-ci5taW5jaGV2QGludGVsLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAJHqnL6c
-snAM1wfTEDLYYi0hJKf8G7iWdFVXh0DGNaj6VozcDBlPZShviB6WDQjBxCeVU+zgnA8CMBQKXJ7o
-x3KHUiVcY7aYDl41Yl9RBvKzN61SfmFSA+mhKxC9BOuQvyTaWZoxVlm332MTa59gFon4jKVJfP7t
-OCK3uPETR/7ycuAjDHMmZmJzKOmhMrNyq7w75EsdLZJhUsGSmtMDv2wLDPkQk7qkkbEM+24qma5T
-1iIuV1+UUrip4+IWWehvKX1JEIT5bHG9Evnep9Uf/2Whg4l6neqsCuev8k+9r+uYYHMGoUBuTqM3
-Xh3uAu6vVOxtYNwuyzVO9C+lfVLXONUCAwEAAaOCAy0wggMpMAsGA1UdDwQEAwIEMDA9BgkrBgEE
-AYI3FQcEMDAuBiYrBgEEAYI3FQiGw4x1hJnlUYP9gSiFjp9TgpHACWeEudlBh4T/TgIBZAIBDTBE
-BgkqhkiG9w0BCQ8ENzA1MA4GCCqGSIb3DQMCAgIAgDAOBggqhkiG9w0DBAICAIAwBwYFKw4DAgcw
-CgYIKoZIhvcNAwcwHQYDVR0OBBYEFPK/Tetim9eBCuLKW5j5Z0aNlUK+MB8GA1UdIwQYMBaAFB5p
-KrTcKP5HGE4hCz+8rBEv8Jj1MIHJBgNVHR8EgcEwgb4wgbuggbiggbWGVGh0dHA6Ly93d3cuaW50
-ZWwuY29tL3JlcG9zaXRvcnkvQ1JML0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMElzc3Vpbmcl
-MjBDQSUyMDRBLmNybIZdaHR0cDovL2NlcnRpZmljYXRlcy5pbnRlbC5jb20vcmVwb3NpdG9yeS9D
-UkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwNEEuY3JsMIHvBggr
-BgEFBQcBAQSB4jCB3zBpBggrBgEFBQcwAoZdaHR0cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9y
-eS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIw
-NEEuY3J0MHIGCCsGAQUFBzAChmZodHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0
-b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0El
-MjA0QS5jcnQwHwYDVR0lBBgwFgYIKwYBBQUHAwQGCisGAQQBgjcKAwQwKQYJKwYBBAGCNxUKBBww
-GjAKBggrBgEFBQcDBDAMBgorBgEEAYI3CgMEMEsGA1UdEQREMEKgJwYKKwYBBAGCNxQCA6AZDBd0
-b2Rvci5taW5jaGV2QGludGVsLmNvbYEXdG9kb3IubWluY2hldkBpbnRlbC5jb20wDQYJKoZIhvcN
-AQEFBQADggEBAF0E0nNaQoDxgeNMLFImgnNUUryBCNdCuTpbg5jrla+Crqx82t64r5TXrlUtrBDY
-7bfb/ObgQnFlVhoRDYZ8hFo8S5LNihxHKPt7wEq2uN0rusTVzSRtS8Vf6MT7sO44nEKVuvmYAqeL
-TfwAUzHwjTWU8szdaTONfjEaIzC8qh5k4/lc/qCqxJD6aDIZyQYCKufppCtyyttBzVAgZ9LdG4Z9
-0p4PJSr7IxximJkGlGk/2GmOSkuYr4GCYfQAVmZLkQDBuF/qunedYnTXlnIKql7mc1CpPnS6YV4B
-AfFi5vLJk8TKntgrSsu8a97CBqYP4zL9qlIwM/sSzlcb93CrzoUxggNRMIIDTQIBATCBkDB5MQsw
-CQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDASBgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJ
-bnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBD
-QSA0QQITMwAAX2bO5Za1QeBu9QAAAABfZjAJBgUrDgMCGgUAoIIBlTAYBgkqhkiG9w0BCQMxCwYJ
-KoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xNTA1MTkxMTMxMDlaMCMGCSqGSIb3DQEJBDEWBBQ5
-LGwjAvOb4EehYfRTimQnG1ei1zCBmAYJKwYBBAGCNxAEMYGKMIGHMHkxCzAJBgNVBAYTAlVTMQsw
-CQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAYBgNVBAoTEUludGVsIENvcnBvcmF0
-aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDRBAgoRaRDYAAAA
-AEhlMIGaBgsqhkiG9w0BCRACCzGBiqCBhzB5MQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDAS
-BgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMi
-SW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSA0QQIKEWkQ2AAAAABIZTANBgkqhkiG9w0B
-AQEFAASCAQAeKyxi9UfBVEzFnc+Oi30ejv82vyoNXTPReUuoXbrSg+YQvbGEx5QYjV0BzBZmspde
-xXc2I9rmZ3iKOE8Qj9detjeBQF3E795NpK4t9FZiLMfj0lc/uju9uBoi/tSjTg0JoabzDavNKx9I
-pAYBi14oMotaAqb9Q0VHcW71reMGNPOUCFKuNEjIj0N04T9wycIRe/P3/bQEK0iys3VmMrNet2AW
-VKUO829kuKEjcgB/GP2wWzs4NseZncKEubQL+dNEV5sDETbieee7SLUJV/KxylTZyQEhG/lq7cYW
-vBJi9mpyqv2wrulNQuy5vTFTKYXPyqbN/0S87uIIN7aTjhn0AAAAAAAA
+-- 
+"Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end"
 
---=-TmVx+lku/36C6P3Q8wuS--
