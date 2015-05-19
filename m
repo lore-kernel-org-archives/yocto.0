@@ -1,64 +1,49 @@
-Return-Path: <todor.minchev@intel.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2076AE009DA; Tue, 19 May 2015 05:22:44 -0700 (PDT)
+	id EC2DFE0098D; Tue, 19 May 2015 08:12:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6A26E009B6
-	for <yocto@yoctoproject.org>; Tue, 19 May 2015 05:22:39 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga103.jf.intel.com with ESMTP; 19 May 2015 05:22:40 -0700
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77292E004F6
+	for <yocto@yoctoproject.org>; Tue, 19 May 2015 08:11:40 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga102.fm.intel.com with ESMTP; 19 May 2015 08:11:40 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.13,458,1427785200"; 
-	d="p7s'?scan'208";a="697102613"
-Received: from irsmsx151.ger.corp.intel.com ([163.33.192.59])
-	by orsmga001.jf.intel.com with ESMTP; 19 May 2015 05:22:39 -0700
-Received: from irsmsx105.ger.corp.intel.com ([169.254.7.73]) by
-	IRSMSX151.ger.corp.intel.com ([169.254.4.102]) with mapi id
-	14.03.0224.002; Tue, 19 May 2015 13:22:30 +0100
-From: "Minchev, Todor" <todor.minchev@intel.com>
-To: "Raghavendra.Kakarla@inedasystems.com"
-	<Raghavendra.Kakarla@inedasystems.com>
-Thread-Topic: [yocto] Issue with yocto ADT
-Thread-Index: AQHQjvGS80lL5pX7tEePuV/Y1Ag/NZ18xwuAgAATywj///ZkAIAAFVU6///3i4CAABFuWIAEQy9NgACr7wCAABkPjYAA1/wAgAAVlwL///tNgAAGUYQNAAGaUYAAArL9R///+L4A
-Date: Tue, 19 May 2015 12:22:29 +0000
-Message-ID: <1432038148.21431.9.camel@intel.com>
-References: <1431682376634.76952@inedasystems.com> ,
-	<1431686123.6150.2.camel@intel.com>
-	<1431686858269.81704@inedasystems.com> ,
-	<1431688310.6150.4.camel@intel.com>
-	<1431689589890.85414@inedasystems.com>
-	, <1431691075.6150.6.camel@intel.com>,
-	<1431691274788.8264@inedasystems.com>
-	<1431925643423.13631@inedasystems.com>,
-	<1431966070.3387.3.camel@intel.com>
-	<9fb2bdd0aab24dcdaeebd7e73d2dfcb4@SOC-EXCH-02.invecas.local>
-	,<1432017834.9202.26.camel@intel.com>
-	<1432019239480.90156@inedasystems.com>,
-	<1432021461.9202.33.camel@intel.com>
-	<1432028956512.13945@inedasystems.com>,
-	<1432035069.21431.6.camel@intel.com>
-	<1432036984110.43188@inedasystems.com>
-In-Reply-To: <1432036984110.43188@inedasystems.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: yes
+	d="scan'208,217";a="731810785"
+Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
+	by orsmga002.jf.intel.com with ESMTP; 19 May 2015 08:11:42 -0700
+Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
+	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
+	(TLS) id 14.3.224.2; Tue, 19 May 2015 08:11:40 -0700
+Received: from FMSMSX109.amr.corp.intel.com (10.18.116.9) by
+	ORSMSX151.amr.corp.intel.com (10.22.226.38) with Microsoft SMTP Server
+	(TLS) id 14.3.224.2; Tue, 19 May 2015 08:11:39 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.169]) by
+	FMSMSX109.amr.corp.intel.com ([169.254.15.155]) with mapi id
+	14.03.0224.002; Tue, 19 May 2015 08:11:39 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, May
+	5, 2015 8:00 AM US Pacific Time
+Thread-Index: AdCSRhK2DgHQp7aOQMCwpanIeQ95bg==
+Date: Tue, 19 May 2015 15:11:39 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E554E4F20@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.254.103.25]
+x-originating-ip: [10.1.200.107]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"Venkatasuryanarayana.Dommeti@inedasystems.com"
-	<Venkatasuryanarayana.Dommeti@inedasystems.com>,
-	"Ramakrishna.Chatram@inedasystems.com"
-	<Ramakrishna.Chatram@inedasystems.com>
-Subject: Re: Issue with yocto ADT
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, May 5, 2015 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,421 +55,303 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 May 2015 12:22:44 -0000
-X-Groupsio-MsgNum: 24891
+X-List-Received-Date: Tue, 19 May 2015 15:12:28 -0000
 Content-Language: en-US
-Content-Type: multipart/signed; micalg=sha-1;
-	protocol="application/x-pkcs7-signature";
-	boundary="=-P35rMUP7w7UYofbybfrk"
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E554E4F20fmsmsx111amrcor_"
 
---=-P35rMUP7w7UYofbybfrk
-Content-Type: text/plain; charset="UTF-8"
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E554E4F20fmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2015-05-19 at 12:03 +0000, Raghavendra Kakarla wrote:
-> Hi Todor,
-> sbin/init script is there in the rootfile system.
->=20
-> But i built rootfile system for my BSP and I give this rootfs to the ecli=
-pse sysroot path.
->=20
-> And i select the qemu instead of externel hardware. I give the qemu kerne=
-l path to prevuiously built qemumips kernel image which is built before my =
-BSP is built.
->=20
-> When I click on the "external Tool -> qemu_mips-poky-linux" qemu image is=
- booted and gives the following error.
-> ->sbin/init exist but could not execute it   =20
->=20
-
-This error message should be followed by an error number.=20
-Also check that your /sbin/init is executable.
+Attendees: Ross, Stephen, Richard, Jussi, Saul, Denys, Sona, Bruce, Paul, M=
+ark, Josep, Oliver, Alex V., Maxin,
 
 
-> Regards,
-> Raghavenmdra K.
-> ________________________________________
-> From: Minchev, Todor <todor.minchev@intel.com>
-> Sent: Tuesday, May 19, 2015 5:01 PM
-> To: Raghavendra Kakarla
-> Cc: Surya Dommeti; Ramakrishna Chatram; yocto@yoctoproject.org
-> Subject: Re: [yocto] Issue with yocto ADT
->=20
-> On Tue, 2015-05-19 at 09:49 +0000, Raghavendra Kakarla wrote:
-> > Hi Todor,
-> >
-> > Thank you for your reply.
-> >
-> > Now I am able to build the application with my extracted rootfs.
-> >
-> > I built the rootfs for our machine.
-> >
-> > for launching the qemu from the eclipse,is it required we should build =
-it for qemu?
-> > I have the previously built qemu kernel image and i give it path to the=
- eclipse's qemu kernel path field.
-> >
-> > Qemu is launched but it gives error while switching from kernel to root=
-fs i.e init script execution problem.
->=20
-> If your rootfs does not have /sbin/init, your kernel won't be able to
-> execute the topmost parent process(init) and the boot will fail? What is
-> the error message?
->=20
-> >
-> > Regards,
-> > Raghavendra.
-> > ________________________________________
-> > From: Minchev, Todor <todor.minchev@intel.com>
-> > Sent: Tuesday, May 19, 2015 1:14 PM
-> > To: Raghavendra Kakarla
-> > Cc: Surya Dommeti; Ramakrishna Chatram; yocto@yoctoproject.org
-> > Subject: Re: [yocto] Issue with yocto ADT
-> >
-> > On Tue, 2015-05-19 at 07:07 +0000, Raghavendra Kakarla wrote:
-> > > Hi Todor,
-> > >
-> > > For not working scenario there is no makefile created.
-> > >
-> > > For working scenario using build directory sysroot makefiles are crea=
-ted.
-> >
-> > So configure fails to create your Makefile. You probably see something
-> > like this in your config.log:
-> >
-> > configure: error: C compiler cannot create executables
-> > configure: error: C compiler cannot create executables
-> > See `config.log' for more details
-> >
-> > Please have a look at this thread, it explains how to resolve this
-> > problem:
-> >
-> > https://lists.yoctoproject.org/pipermail/yocto/2015-March/024089.html
-> >
-> > Cheers,
-> > Todor
-> >
-> > >
-> > > I attaching the makefile for working scenario.
-> > >
-> > > Regards,
-> > >
-> > > Raghavendra K.
-> > > ________________________________________
-> > > From: Minchev, Todor <todor.minchev@intel.com>
-> > > Sent: Tuesday, May 19, 2015 12:13 PM
-> > > To: Raghavendra Kakarla
-> > > Cc: yocto@yoctoproject.org
-> > > Subject: Re: [yocto] Issue with yocto ADT
-> > >
-> > > On Mon, 2015-05-18 at 16:55 +0000, Raghavendra Kakarla wrote:
-> > > > Hi Todor,
-> > > >
-> > > > I created four more new projects.
-> > > >
-> > > > For all the projects I gives error like this only.
-> > >
-> > > Is the error message the same as the original one you posted about a
-> > > missing make `all` target?
-> > >
-> > > > Can send those projects make files?
-> > >
-> > > Please share both your working and non-working Makefiles.
-> > >
-> > > >
-> > > > But when I give the sysroot path in eclipse to the poky/build/tmp/s=
-ysroot/machine it worked properly.
-> > > >
-> > > > When we give the extracted sysroot it gives problem.
-> > > > Regards,
-> > > > Raghavendra.
-> > > > ________________________________________
-> > > > From: Minchev, Todor [todor.minchev@intel.com]
-> > > > Sent: Monday, May 18, 2015 9:51 PM
-> > > > To: Raghavendra Kakarla
-> > > > Cc: yocto@yoctoproject.org
-> > > > Subject: Re: [yocto] Issue with yocto ADT
-> > > >
-> > > > Hello Raghavendra,
-> > > >
-> > > > On Mon, 2015-05-18 at 05:07 +0000, Raghavendra Kakarla wrote:
-> > > > > Hi Todor,
-> > > > >
-> > > > > Could you please let me know the cause for the issue.
-> > > > Please pastebin your Makefile and share the pastebin link.
-> > > >
-> > > > Seem like your project is corrupt and the Makefile is not generated
-> > > > correctly.
-> > > >
-> > > > Have you tried to delete the project and create a new one?
-> > > >
-> > > > > Thanks in advance.
-> > > > >
-> > > > > Regards,
-> > > > > Raghavendra K.
-> > > > >
-> > > > >
-> > > > > ________________________________________
-> > > > > From: Raghavendra Kakarla
-> > > > > Sent: Friday, May 15, 2015 5:31 PM
-> > > > > To: Minchev, Todor
-> > > > > Cc: yocto@yoctoproject.org
-> > > > > Subject: RE: [yocto] Issue with yocto ADT
-> > > > >
-> > > > > Hi Todor,
-> > > > >
-> > > > > It is provided by the Yocto eclipse plugin itself.
-> > > > >
-> > > > > Regards,
-> > > > > Raghavendra.
-> > > > > ________________________________________
-> > > > > From: Minchev, Todor <todor.minchev@intel.com>
-> > > > > Sent: Friday, May 15, 2015 5:27 PM
-> > > > > To: Raghavendra Kakarla
-> > > > > Cc: yocto@yoctoproject.org
-> > > > > Subject: Re: [yocto] Issue with yocto ADT
-> > > > >
-> > > > > On Fri, 2015-05-15 at 11:33 +0000, Raghavendra Kakarla wrote:
-> > > > > > Hi Todor,
-> > > > > >
-> > > > > > It is an autotool based example.
-> > > > > > It is not generated makefile itself.
-> > > > > >
-> > > > >
-> > > > > Is it an example you created yourself or is it the autotools C He=
-llo
-> > > > > World template provided by the Yocto Eclipse Plug-in.
-> > > > >
-> > > > > > I attached the makefile.in and makefile.am file to the paste bi=
-n.
-> > > > >
-> > > > > Could you please paste the Makefile and share the pastebin link?
-> > > > >
-> > > > > > Thanks,
-> > > > > >
-> > > > > > Raghavendra.
-> > > > > >
-> > > > > >
-> > > > > > ________________________________________
-> > > > > > From: Minchev, Todor <todor.minchev@intel.com>
-> > > > > > Sent: Friday, May 15, 2015 4:41 PM
-> > > > > > To: Raghavendra Kakarla
-> > > > > > Cc: yocto@yoctoproject.org
-> > > > > > Subject: Re: [yocto] Issue with yocto ADT
-> > > > > >
-> > > > > > Hello Raghavendra,
-> > > > > >
-> > > > > > Could you please pastebin the makefile from your project?
-> > > > > >
-> > > > > > http://pastebin.com/
-> > > > > >
-> > > > > > Cheers,
-> > > > > > Todor
-> > > > > >
-> > > > > > On Fri, 2015-05-15 at 10:47 +0000, Raghavendra Kakarla wrote:
-> > > > > > > Hi Todor,
-> > > > > > >
-> > > > > > > Thank you for your  reply.
-> > > > > > >
-> > > > > > > By default we have the setting like this only.
-> > > > > > >
-> > > > > > > But we got the error.
-> > > > > > >
-> > > > > > > Thanks,
-> > > > > > > Raghavendra.
-> > > > > > > ________________________________________
-> > > > > > > From: Minchev, Todor <todor.minchev@intel.com>
-> > > > > > > Sent: Friday, May 15, 2015 4:05 PM
-> > > > > > > To: Raghavendra Kakarla
-> > > > > > > Cc: yocto@yoctoproject.org
-> > > > > > > Subject: Re: [yocto] Issue with yocto ADT
-> > > > > > >
-> > > > > > > Hello Raghavendra,
-> > > > > > >
-> > > > > > > Please try the following:
-> > > > > > >
-> > > > > > > Right click on your project - Properties - C/C++ Build - Sele=
-ct the
-> > > > > > > 'Behavior' tab - untick 'Build on resource save' and remove '=
-all' from
-> > > > > > > the 'Build' field
-> > > > > > >
-> > > > > > > Cheers,
-> > > > > > > Todor
-> > > > > > >
-> > > > > > > On Fri, 2015-05-15 at 09:32 +0000, Raghavendra Kakarla wrote:
-> > > > > > > > Hi All,
-> > > > > > > >
-> > > > > > > >
-> > > > > > > > I have problem with the ADT while i am building the autotoo=
-l example
-> > > > > > > > helloword project which is given in the "yocto ADT autotool=
- project".
-> > > > > > > >
-> > > > > > > >
-> > > > > > > > Could you please help me in resolving this issue.
-> > > > > > > >
-> > > > > > > >
-> > > > > > > > I followed the following steps for installing the adt in my
-> > > > > > > > development PC:
-> > > > > > > >
-> > > > > > > >
-> > > > > > > >
-> > > > > > > > I built the toolchain using the following command:
-> > > > > > > >
-> > > > > > > > $cd ~/poky
-> > > > > > > > $source ./oe-init-build-env
-> > > > > > > > $bitbake meta-ide-support
-> > > > > > > >
-> > > > > > > >
-> > > > > > > > Extract the root file system by using the following command=
-s:
-> > > > > > > >
-> > > > > > > > $cd ~
-> > > > > > > > $source ~/poky/build/tmp/environment-setup-mips32r2el-poky-=
-linux
-> > > > > > > > $runqemu-extract-sdk \
-> > > > > > > >         ~/poky/build/tmp/deploy/images/arqlyn/
-> > > > > > > > core-image-minimal-dhruwa_ioe-20150511102759.rootfs.tar.bz2=
-\
-> > > > > > > >         $HOME/arqlyn
-> > > > > > > >
-> > > > > > > > I followed the command given in the yocto project dev-manua=
-l for
-> > > > > > > > installing eclipse and adding yocto plugin to eclipse.
-> > > > > > > >
-> > > > > > > > I Gave the following data to the eclipse for configuring th=
-e
-> > > > > > > > cross-compiler options:
-> > > > > > > >
-> > > > > > > > 1. I select the "Build System Derived Toolchain"
-> > > > > > > > 2.point the toolchain path to "home/testuser/poky/build"
-> > > > > > > > 3.gave sysroot path to /home/testuser/arqlyn
-> > > > > > > >
-> > > > > > > > After entered this information I got the my machine-name in=
- the
-> > > > > > > > "select the target architecture" filed.
-> > > > > > > >
-> > > > > > > > After this I create a autotool support project and tried to=
- build but
-> > > > > > > > it gives the error.
-> > > > > > > >
-> > > > > > > > Regards,
-> > > > > > > >
-> > > > > > > > Raghavendra.
-> > > > > > > >
-> > > > > > > >
-> > > > > > > >
-> > > > > > > >
-> > > > > > > > _______________________________________________
-> > > > > > > > yocto mailing list
-> > > > > > > > yocto@yoctoproject.org
-> > > > > > > > https://lists.yoctoproject.org/listinfo/yocto
-> > > > > > >
-> > > > > >
-> > > > >
-> > > >
-> > >
-> >
->=20
+
+Agenda:
 
 
---=-P35rMUP7w7UYofbybfrk
-Content-Type: application/x-pkcs7-signature; name="smime.p7s"
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Transfer-Encoding: base64
 
-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
-qcETmP5WmZOyycq5cD8qO4qY4N1Va0KlO0MPnPlqCH1idu0Byo6e4f/CsWg2EvGDOT8vAgMBAAGj
-ggIxMIICLTALBgNVHQ8EBAMCB4AwPAYJKwYBBAGCNxUHBC8wLQYlKwYBBAGCNxUIhsOMdYSZ5VGD
-/YEohY6fU4KRwAlngd69OZXwQwIBZAIBCDAdBgNVHQ4EFgQUeijLELxE2SDhZHWre1zfj9+8kOMw
-HwYDVR0jBBgwFoAUHmkqtNwo/kcYTiELP7ysES/wmPUwZQYDVR0fBF4wXDBaoFigVoZUaHR0cDov
-L3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9DUkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIw
-SXNzdWluZyUyMENBJTIwNEEuY3JsMIGfBggrBgEFBQcBAQSBkjCBjzBpBggrBgEFBQcwAoZdaHR0
-cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9yeS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5h
-bCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwNEEuY3J0MCIGCCsGAQUFBzABhhZodHRwOi8vb2Nz
-cC5pbnRlbC5jb20vMB8GA1UdJQQYMBYGCCsGAQUFBwMEBgorBgEEAYI3CgMMMCkGCSsGAQQBgjcV
-CgQcMBowCgYIKwYBBQUHAwQwDAYKKwYBBAGCNwoDDDBLBgNVHREERDBCoCcGCisGAQQBgjcUAgOg
-GQwXdG9kb3IubWluY2hldkBpbnRlbC5jb22BF3RvZG9yLm1pbmNoZXZAaW50ZWwuY29tMA0GCSqG
-SIb3DQEBBQUAA4IBAQDVcbxsEX7Mupn3YJ5CF7JdeXczsAZ0zQefcq6IaNgda9aolT/4nSmGJI6l
-uJYF3VpEz++O1P/UfDINsjLBdN9FWURSHOlPggJyrqQ0kHRlULPtjuQVKlew1yGoYGKb2OTYb5hK
-m1ec2oXiWa/FFI1bynTDgWlrO88L58qK1QkIZzL8RwB/JpiJGUyukkPuT1e54ZG2PH78gKSz06Lt
-xRw3w6wRjaP8iwE8AVXry7QylN3dE8PyOgmjlmFUnDn1lRwo9ESaB/QAI5BxSYid/uk6unnm75sq
-P6bTec9bgl4dqJu+rRFJJj4fC4ffnp5GtqG9WTsyEoUfp5Y23pBGc/QaMIIGbTCCBVWgAwIBAgIK
-EWkQ2AAAAABIZTANBgkqhkiG9w0BAQUFADB5MQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDAS
-BgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMi
-SW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSA0QTAeFw0xNDAzMDExOTQ0MTNaFw0xNzAy
-MTMxOTQ0MTNaMEExFzAVBgNVBAMTDk1pbmNoZXYsIFRvZG9yMSYwJAYJKoZIhvcNAQkBFhd0b2Rv
-ci5taW5jaGV2QGludGVsLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAJHqnL6c
-snAM1wfTEDLYYi0hJKf8G7iWdFVXh0DGNaj6VozcDBlPZShviB6WDQjBxCeVU+zgnA8CMBQKXJ7o
-x3KHUiVcY7aYDl41Yl9RBvKzN61SfmFSA+mhKxC9BOuQvyTaWZoxVlm332MTa59gFon4jKVJfP7t
-OCK3uPETR/7ycuAjDHMmZmJzKOmhMrNyq7w75EsdLZJhUsGSmtMDv2wLDPkQk7qkkbEM+24qma5T
-1iIuV1+UUrip4+IWWehvKX1JEIT5bHG9Evnep9Uf/2Whg4l6neqsCuev8k+9r+uYYHMGoUBuTqM3
-Xh3uAu6vVOxtYNwuyzVO9C+lfVLXONUCAwEAAaOCAy0wggMpMAsGA1UdDwQEAwIEMDA9BgkrBgEE
-AYI3FQcEMDAuBiYrBgEEAYI3FQiGw4x1hJnlUYP9gSiFjp9TgpHACWeEudlBh4T/TgIBZAIBDTBE
-BgkqhkiG9w0BCQ8ENzA1MA4GCCqGSIb3DQMCAgIAgDAOBggqhkiG9w0DBAICAIAwBwYFKw4DAgcw
-CgYIKoZIhvcNAwcwHQYDVR0OBBYEFPK/Tetim9eBCuLKW5j5Z0aNlUK+MB8GA1UdIwQYMBaAFB5p
-KrTcKP5HGE4hCz+8rBEv8Jj1MIHJBgNVHR8EgcEwgb4wgbuggbiggbWGVGh0dHA6Ly93d3cuaW50
-ZWwuY29tL3JlcG9zaXRvcnkvQ1JML0ludGVsJTIwRXh0ZXJuYWwlMjBCYXNpYyUyMElzc3Vpbmcl
-MjBDQSUyMDRBLmNybIZdaHR0cDovL2NlcnRpZmljYXRlcy5pbnRlbC5jb20vcmVwb3NpdG9yeS9D
-UkwvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIwNEEuY3JsMIHvBggr
-BgEFBQcBAQSB4jCB3zBpBggrBgEFBQcwAoZdaHR0cDovL3d3dy5pbnRlbC5jb20vcmVwb3NpdG9y
-eS9jZXJ0aWZpY2F0ZXMvSW50ZWwlMjBFeHRlcm5hbCUyMEJhc2ljJTIwSXNzdWluZyUyMENBJTIw
-NEEuY3J0MHIGCCsGAQUFBzAChmZodHRwOi8vY2VydGlmaWNhdGVzLmludGVsLmNvbS9yZXBvc2l0
-b3J5L2NlcnRpZmljYXRlcy9JbnRlbCUyMEV4dGVybmFsJTIwQmFzaWMlMjBJc3N1aW5nJTIwQ0El
-MjA0QS5jcnQwHwYDVR0lBBgwFgYIKwYBBQUHAwQGCisGAQQBgjcKAwQwKQYJKwYBBAGCNxUKBBww
-GjAKBggrBgEFBQcDBDAMBgorBgEEAYI3CgMEMEsGA1UdEQREMEKgJwYKKwYBBAGCNxQCA6AZDBd0
-b2Rvci5taW5jaGV2QGludGVsLmNvbYEXdG9kb3IubWluY2hldkBpbnRlbC5jb20wDQYJKoZIhvcN
-AQEFBQADggEBAF0E0nNaQoDxgeNMLFImgnNUUryBCNdCuTpbg5jrla+Crqx82t64r5TXrlUtrBDY
-7bfb/ObgQnFlVhoRDYZ8hFo8S5LNihxHKPt7wEq2uN0rusTVzSRtS8Vf6MT7sO44nEKVuvmYAqeL
-TfwAUzHwjTWU8szdaTONfjEaIzC8qh5k4/lc/qCqxJD6aDIZyQYCKufppCtyyttBzVAgZ9LdG4Z9
-0p4PJSr7IxximJkGlGk/2GmOSkuYr4GCYfQAVmZLkQDBuF/qunedYnTXlnIKql7mc1CpPnS6YV4B
-AfFi5vLJk8TKntgrSsu8a97CBqYP4zL9qlIwM/sSzlcb93CrzoUxggNRMIIDTQIBATCBkDB5MQsw
-CQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDASBgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJ
-bnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMiSW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBD
-QSA0QQITMwAAX2bO5Za1QeBu9QAAAABfZjAJBgUrDgMCGgUAoIIBlTAYBgkqhkiG9w0BCQMxCwYJ
-KoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xNTA1MTkxMjIyMjhaMCMGCSqGSIb3DQEJBDEWBBT+
-8+kFvy76hD7VX943x3weJqMydzCBmAYJKwYBBAGCNxAEMYGKMIGHMHkxCzAJBgNVBAYTAlVTMQsw
-CQYDVQQIEwJDQTEUMBIGA1UEBxMLU2FudGEgQ2xhcmExGjAYBgNVBAoTEUludGVsIENvcnBvcmF0
-aW9uMSswKQYDVQQDEyJJbnRlbCBFeHRlcm5hbCBCYXNpYyBJc3N1aW5nIENBIDRBAgoRaRDYAAAA
-AEhlMIGaBgsqhkiG9w0BCRACCzGBiqCBhzB5MQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFDAS
-BgNVBAcTC1NhbnRhIENsYXJhMRowGAYDVQQKExFJbnRlbCBDb3Jwb3JhdGlvbjErMCkGA1UEAxMi
-SW50ZWwgRXh0ZXJuYWwgQmFzaWMgSXNzdWluZyBDQSA0QQIKEWkQ2AAAAABIZTANBgkqhkiG9w0B
-AQEFAASCAQCB4yvspfmzC20LSn+6bnZiILoeEMbXC1KciWJKBZNoE29297D5SmOs92hYBd3hqyr6
-mnbGkzk/hDyQEx/loU0kh2GDdkAFQU1J/Fa+DzMLezHhZbRw8Hy7y5JSV44LHpDSEgEoTU7/9QEw
-2CFlPSgbqqSxW7Y/5X7jaYCHQD5qS3076Kgz9qUEVNvBxP9DbJNJm19KPVBsigms6qLosrZbcJtp
-mcgZvVx8a3nOJq6DwR6meVM2oZAKfdJ2oJHi7f7Lh9qrbJL8q44eh2h7UaDm9Iry8brv149XDvwW
-iG8WfGWWDABXSUCFqwivSZ+RdViX4MS0F1K9ywFI+qcOlwqeAAAAAAAA
+* Opens collection - 5 min (Stephen)
 
---=-P35rMUP7w7UYofbybfrk--
+* Yocto Project status - 5 min (Stephen/team)
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.9_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_1.9_Features
+
+YP 1.7.2 is released.
+
+YP 1.6.3 is in QA now.
+
+YP 1.9 M1 is in process.
+
+* SWAT team rotation: Benjamin -> Juro
+
+https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+
+* Opens - 10 min
+
+Richard - gcc 5.1 recipes are in the master branch.
+
+* Team Sharing - 10 min
+
+Mark - Some patches coming from Samsung are in process and should be done i=
+n a few weeks.  Let Mark know if there are concerns with this.
+
+
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:          (503) 712-0534
+*    Cell:                                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E554E4F20fmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
+icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
+:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
+uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
+t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
+m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
+t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
+:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
+soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
+icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
+schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
+point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
+/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
+=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
+schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
+.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
+/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
+://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
+repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
+ xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
+schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
+/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
+ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
+p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
+/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
+mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
+crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
+s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
+ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
+om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
+ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
+partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
+06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
+6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
+deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
+Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
+st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-language:ZH-CN;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Attendees: Ross, Stephen, Richard, Jussi, Saul, De=
+nys, Sona, Bruce, Paul, Mark, Josep, Oliver, Alex V., Maxin,
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
+pan></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_Project_v1.9_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+9_Status</a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_1.9_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule</a><o=
+:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_1.9_Features">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Features</a>
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">YP 1.7.2 is released.
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">YP 1.6.3 is in QA now.
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">YP 1.9 M1 is in process.<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* SWAT team rotation: Benjamin -&gt; Juro<o:p></o:=
+p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_Build_Failure_Swat_Team">https://wiki.yoctoproject.org/wiki/Yocto_Build_F=
+ailure_Swat_Team</a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens - 10 min
+<o:p></o:p></span></p>
+<div style=3D"border:none;border-bottom:solid windowtext 1.0pt;padding:0in =
+0in 1.0pt 0in">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Richard - gcc 5.1 recipes are in the master branch=
+.<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Mark &#8211; Some patches coming from Samsung are =
+in process and should be done in a few weeks.&nbsp; Let Mark know if there =
+are concerns with this.<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+</div>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
+span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
+rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
+uot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E554E4F20fmsmsx111amrcor_--
