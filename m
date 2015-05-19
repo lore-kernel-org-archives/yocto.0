@@ -1,49 +1,42 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC2DFE0098D; Tue, 19 May 2015 08:12:27 -0700 (PDT)
+	id 91F0FE009C8; Tue, 19 May 2015 09:31:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77292E004F6
-	for <yocto@yoctoproject.org>; Tue, 19 May 2015 08:11:40 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga102.fm.intel.com with ESMTP; 19 May 2015 08:11:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,458,1427785200"; 
-	d="scan'208,217";a="731810785"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by orsmga002.jf.intel.com with ESMTP; 19 May 2015 08:11:42 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Tue, 19 May 2015 08:11:40 -0700
-Received: from FMSMSX109.amr.corp.intel.com (10.18.116.9) by
-	ORSMSX151.amr.corp.intel.com (10.22.226.38) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Tue, 19 May 2015 08:11:39 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.169]) by
-	FMSMSX109.amr.corp.intel.com ([169.254.15.155]) with mapi id
-	14.03.0224.002; Tue, 19 May 2015 08:11:39 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, May
-	5, 2015 8:00 AM US Pacific Time
-Thread-Index: AdCSRhK2DgHQp7aOQMCwpanIeQ95bg==
-Date: Tue, 19 May 2015 15:11:39 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E554E4F20@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.107]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AADC9E0027F;
+	Tue, 19 May 2015 09:31:51 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.9/8.14.9) with ESMTP id t4JGVmtO003003
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 19 May 2015 09:31:49 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 19 May 2015 09:31:48 -0700
+Message-ID: <555B6573.5030002@windriver.com>
+Date: Tue, 19 May 2015 12:31:47 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, May 5, 2015 8:00 AM US Pacific Time
+To: Bruce Ashfield <bruce.ashfield@gmail.com>, Brian Hutchinson
+	<b.hutchman@gmail.com>
+References: <4f2d75bf33ac423ab064f754e0b67655@ASTRO-EX1.Bensberg.de>	<5540DB34.6010102@windriver.com>	<a01714e680f8470cb21bb0b52e66c91e@ASTRO-EX1.Bensberg.de>	<55421DA2.9060909@windriver.com>	<e134e69a27bd460a9da71929a7f78d9a@ASTRO-EX1.Bensberg.de>	<554236CB.6000604@windriver.com>	<CAFZh4h9oL7K-=Nxhy=GV0k31ZgnPQuhFLQ-r_fReSRk1ZRhk1g@mail.gmail.com>	<5550FD98.1050507@windriver.com>	<CAFZh4h-SqSVsG_HXrx3H=QfDs3DH5GoKmFCgwBgGq90+B4WB5A@mail.gmail.com>	<55521DB8.2070606@windriver.com>
+	<20150514220801.GD20022@denix.org>	<CAFZh4h9=cJG8aVbwvh_NjR24UTnCj9A44zHPs3rqEn_rdCfN3A@mail.gmail.com>	<CAFZh4h-r1_gabVP0HdDoOrcT_neED51JpMmm586KLuc_efWdFg@mail.gmail.com>	<CAFZh4h8qX6hYJ_kA4Ny=K7YqGnECu_nX1Jkejj=3P8saYmCH2g@mail.gmail.com>	<CAFZh4h9oJ3UZFt2b_3SHB1xi99M+rEWis12-VU2gQxMQ9sVBsA@mail.gmail.com>
+	<CADkTA4Px0rhNzfPsjcNN5Bq4sKZujkPDwnJfxq5dsKRc7=G0Aw@mail.gmail.com>
+In-Reply-To: <CADkTA4Px0rhNzfPsjcNN5Bq4sKZujkPDwnJfxq5dsKRc7=G0Aw@mail.gmail.com>
+Cc: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-ti] Migration from 1.7.1 to 1.8 - kernel-abiversion missing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,303 +48,218 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 May 2015 15:12:28 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E554E4F20fmsmsx111amrcor_"
+X-List-Received-Date: Tue, 19 May 2015 16:31:58 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E554E4F20fmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Attendees: Ross, Stephen, Richard, Jussi, Saul, Denys, Sona, Bruce, Paul, M=
-ark, Josep, Oliver, Alex V., Maxin,
-
-
-
-Agenda:
-
-
-
-* Opens collection - 5 min (Stephen)
-
-* Yocto Project status - 5 min (Stephen/team)
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.9_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.9_Features
-
-YP 1.7.2 is released.
-
-YP 1.6.3 is in QA now.
-
-YP 1.9 M1 is in process.
-
-* SWAT team rotation: Benjamin -> Juro
-
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-* Opens - 10 min
-
-Richard - gcc 5.1 recipes are in the master branch.
-
-* Team Sharing - 10 min
-
-Mark - Some patches coming from Samsung are in process and should be done i=
-n a few weeks.  Let Mark know if there are concerns with this.
-
-
-
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E554E4F20fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 2015-05-19 07:39 AM, Bruce Ashfield wrote:
+> On Fri, May 15, 2015 at 4:21 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
+>> On Fri, May 15, 2015 at 3:26 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
+>>> On Fri, May 15, 2015 at 9:55 AM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
+>>>> On Thu, May 14, 2015 at 6:16 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
+>>>>>
+>>>>> On May 14, 2015 6:08 PM, "Denys Dmytriyenko" <denis@denix.org> wrote:
+>>>>>>
+>>>>>> On Tue, May 12, 2015 at 11:35:20AM -0400, Bruce Ashfield wrote:
+>>>>>>> On 2015-05-12 10:20 AM, Brian Hutchinson wrote:
+>>>>>>>> On Mon, May 11, 2015 at 3:06 PM, Bruce Ashfield
+>>>>>>>> <bruce.ashfield@windriver.com> wrote:
+>>>>>>>>> On 2015-05-11 02:10 PM, Brian Hutchinson wrote:
+>>>>>>>>>>
+>>>>>>>>>> On Thu, Apr 30, 2015 at 10:06 AM, Bruce Ashfield
+>>>>>>>>>> <bruce.ashfield@windriver.com> wrote:
+>>>>>>>>>>>
+>>>>>>>>>>> It is plausible. But in theory, linux-dummy should still provide
+>>>>>>>>>>> what you need (but since it doesn't build anything, there is
+>>>>>>>>>>> no abi .. and no modules can be built against it) .. so the
+>>>>>>>>>>> error isn't graceful.
+>>>>>>>>>>>
+>>>>>>>>>>> Bruce
+>>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> I can confirm this same problem is happening to me.  I just updated
+>>>>>>>>>> one of my builds from 1.7 to 1.8 and am also getting my rootfs to
+>>>>>>>>>> fail
+>>>>>>>>>> due to no abi kernel version:
+>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> We still have a race condition in the 1.8 branch for the population
+>>>>>>>>> of the build-artifacts directory.
+>>>>>>>>>
+>>>>>>>>> If modules start building, they'll race against the population of the
+>>>>>>>>> abiversion, and you may see that message.
+>>>>>>>>>
+>>>>>>>>> There's a proposed patch for master, but I don't think it is in
+>>>>>>>>> fido yet.
+>>>>>>>>>
+>>>>>>>>> Bruce
+>>>>>>>>
+>>>>>>>> Hi Bruce,
+>>>>>>>>
+>>>>>>>> I did some searches and looks like there are a number of 'race'
+>>>>>>>> condition fixes but it wasn't obvious which one I may need.  Is it
+>>>>>>>> this one:
+>>>>>>>
+>>>>>>>>> http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=02d0a003d603266114512160b209876199241e98
+>>>>>>>>
+>>>>>>>
+>>>>>>> That's the one that should make sure that the shared workdir
+>>>>>>> (Which has the abiversion) is in place before building any modules.
+>>>>>>>
+>>>>>>> I can't say that it is exactly your issue, but it is the change
+>>>>>>> I was thinking of.
+>>>>>>
+>>>>>> Brian,
+>>>>>>
+>>>>>> Were you able to try the above mentioned commit against am180x in meta-ti?
+>>>>>> Did
+>>>>>> it solve the missing abi kernel version? Thanks.
+>>>>>>
+>>>>>> --
+>>>>>> Denys
+>>>>>
+>>>>> Hi Denys,
+>>>>>
+>>>>> No, I got caught up in something else ... I'll try it tomorrow and report
+>>>>> back after I cherry pick that commit Bruce mentioned.
+>>>>>
+>>>>> Regards,
+>>>>>
+>>>>> Brian
+>>>>
+>>>> Update.  Not sure if I did this right but this is what I did.  I added
+>>>> master as a remote and cherry picked
+>>>> 02d0a003d603266114512160b209876199241e98.  Next I just went for it and
+>>>> tried to bitbake my image again and got the same result as before.
+>>>> Next I did a bitbake cleanall on virtual/kernel and tried to make my
+>>>> image again and still got the same result.
+>>>>
+>>>> I'm going to leave this build as is and setup a new one using 1.8
+>>>> master and see if I get the same thing again.  I'll leave this broken
+>>>> build alone for a while in case someone wants me to try something with
+>>>> it to fix it.
+>>>>
+>>>> Regards,
+>>>>
+>>>> Brian
+>>>
+>>> Yet another update ... I did a fresh checkout of master and tried to
+>>> build and had the same kernelabiversion error:
+>>>
+>>> WARNING: omap3-sgx-modules-5.01.01.01 ONLY supports hardfp mode for
+>>> now#######################
+>>>                                                            | ETA:
+>>> 00:00:28
+>>> WARNING: omap3-sgx-modules-5.01.01.02 ONLY supports hardfp mode for now
+>>> WARNING: ti-cgt6x-8.0.0 ONLY supports hardfp mode for
+>>> now########################################
+>>>
+>>>   | ETA:  00:00:26
+>>> Parsing recipes: 100%
+>>> |##############################################################################################################################################################################|
+>>> Time: 00:01:02
+>>> Parsing of 1802 .bb files complete (0 cached, 1802 parsed). 2303
+>>> targets, 182 skipped, 0 masked, 0 errors.
+>>> NOTE: Resolving any missing task queue dependencies
+>>> NOTE: multiple providers are available for u-boot (u-boot,
+>>> u-boot-glsdk, u-boot-ti-staging)
+>>> NOTE: consider defining a PREFERRED_PROVIDER entry to match u-boot
+>>> NOTE: multiple providers are available for jpeg (jpeg, libjpeg-turbo)
+>>> NOTE: consider defining a PREFERRED_PROVIDER entry to match jpeg
+>>>
+>>> Build Configuration:
+>>> BB_VERSION        = "1.27.0"
+>>> BUILD_SYS         = "x86_64-linux"
+>>> NATIVELSBSTRING   = "Debian-7.8"
+>>> TARGET_SYS        = "arm-poky-linux-gnueabi"
+>>> MACHINE           = "am180x-evm"
+>>> DISTRO            = "poky"
+>>> DISTRO_VERSION    = "1.8+snapshot-20150515"
+>>> TUNE_FEATURES     = "arm armv5 thumb dsp"
+>>> TARGET_FPU        = "soft"
+>>> meta
+>>> meta-yocto
+>>> meta-yocto-bsp    = "master:fab7da4f8030a4067db0522f77eaa6d3b501c68f"
+>>> meta-ti           = "master:60a7bfbf96609ef6f3e084c32b2af853222b3b7e"
+>>> meta-oe
+>>> meta-python
+>>> meta-networking
+>>> meta-webserver    = "master:53d55216c8c721d3b66ec8f968737bf081def870"
+>>>
+>>> NOTE: Preparing RunQueue
+>>> NOTE: Executing SetScene Tasks
+>>> NOTE: Executing RunQueue Tasks
+>>> WARNING: QA Issue: /usr/bin/apxs_apache2-dev contained in package
+>>> apache2-dev requires /usr/bin/perl, but no providers found in its
+>>> RDEPENDS [file-rdeps]
+>>> ERROR: No kernel-abiversion file found
+>>> (/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/sysroots/am180x-evm/pkgdata/kernel-depmod/kernel-abiversion),
+>>> cannot run depmod, aborting
+>>> ERROR: Function failed: do_rootfs
+>>> ERROR: Logfile of failure stored in:
+>>> /home/hutch/yocto_1.8_davinci_2/poky/build/tmp/work/am180x_evm-poky-linux-gnueabi/core-image-nodeam/1.0-r0/temp/log.do_rootfs.10336
+>>> ERROR: Task 7 (/home/hutch/yocto_1.8_davinci_2/poky/meta/recipes-core/images/core-image-nodeam.bb,
+>>> do_rootfs) failed with exit code '1'
+>>> NOTE: Tasks Summary: Attempted 2614 tasks of which 9 didn't need to be
+>>> rerun and 1 failed.
+>>> Waiting for 0 running tasks to finish:
+>>>
+>>> Summary: 1 task failed:
+>>>    /home/hutch/yocto_1.8_davinci_2/poky/meta/recipes-core/images/core-image-nodeam.bb,
+>>> do_rootfs
+>>> Summary: There were 4 WARNING messages shown.
+>>> Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+>>
+>> More info for those that care ...
+>>
+>> The end of the error log file has:
+>> DEBUG: Executing python function write_image_manifest
+>> DEBUG: Python function write_image_manifest finished
+>> NOTE: Executing: ldconfig
+>> -r/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/work/am180x_evm-poky-linux-gnueabi/core-image-nodeam/1.0-r0/rootfs-c
+>> new -v
+>> ERROR: No kernel-abiversion file found
+>> (/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/sysroots/am180x-evm/pkgdata/kernel-depmod/kernel-abiversion),
+>> cannot run depmod, aborting
+>> DEBUG: Python function do_rootfs finished
+>> ERROR: Function failed: do_rootfs
+>>
+>> I have a linux-dummy director in pkgdata but no kernel-depmod directory exists.
+>>
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";
-	mso-fareast-language:ZH-CN;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Attendees: Ross, Stephen, Richard, Jussi, Saul, De=
-nys, Sona, Bruce, Paul, Mark, Josep, Oliver, Alex V., Maxin,
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Project_v1.9_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-9_Status</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.9_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.9_Features">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Features</a>
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 1.7.2 is released.
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 1.6.3 is in QA now.
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 1.9 M1 is in process.<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* SWAT team rotation: Benjamin -&gt; Juro<o:p></o:=
-p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Build_Failure_Swat_Team">https://wiki.yoctoproject.org/wiki/Yocto_Build_F=
-ailure_Swat_Team</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens - 10 min
-<o:p></o:p></span></p>
-<div style=3D"border:none;border-bottom:solid windowtext 1.0pt;padding:0in =
-0in 1.0pt 0in">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Richard - gcc 5.1 recipes are in the master branch=
-.<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Mark &#8211; Some patches coming from Samsung are =
-in process and should be done in a few weeks.&nbsp; Let Mark know if there =
-are concerns with this.<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-</div>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+> Interesting. Looks like we have some sort of bad dependency. I'm poking around
+> to see if I can reproduce this locally.
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E554E4F20fmsmsx111amrcor_--
+Brian,
+
+I'm trying to wrap my head around this. Which kernel did you say
+was building in your configuration ? Was it really linux-dummy, or
+is there a bootable kernel in play ?
+
+Looking at the dependencies, I can see how the depmodwrapper requires
+that a kernel be built and the abiversion file created. But in the
+case of linux-dummy, there's no header files to use and generate the
+abiversion, so it won't be available for depmod.
+
+Which takes me back to one of my original questions, why is depmod
+running if the kernel isn't being built as part of this image .. and
+that leads me to think I'm missing some important information.
+
+Bruce
+
+>
+> Bruce
+>
+>> Regards,
+>>
+>> Brian
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>
+
+
