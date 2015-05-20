@@ -1,60 +1,58 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Raghavendra.Kakarla@inedasystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 420B3E0095D; Tue, 19 May 2015 21:59:53 -0700 (PDT)
+	id D993DE0095D; Tue, 19 May 2015 22:12:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.173 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pd0-f173.google.com (mail-pd0-f173.google.com
-	[209.85.192.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D46BEE004F6
-	for <yocto@yoctoproject.org>; Tue, 19 May 2015 21:59:51 -0700 (PDT)
-Received: by pdbnk13 with SMTP id nk13so54333253pdb.1
-	for <yocto@yoctoproject.org>; Tue, 19 May 2015 21:59:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=Y7XpBJArgQookFJVT6Z8OPEO/8Z+ChLAGZs29JrHvSY=;
-	b=UYuL9g4/D7SCpyxkxTbHFZRNwC+p63K9BS9my7DLPhYtG+rQPM0YkLza28tie+O7wb
-	Fv/iPaGZ7D7wX2BcZqA+qbpEM7F1oGM2k0eZcQF+Cy0OK5ntZnN9/dj/rabLhMswV0xW
-	IvNTyLcZLnWNeoF3t1yG/UFqGHp35s+ulq6+Nx3tvUhSn7TVaU1/8uY8D06kUf4mcRTI
-	GzELP8XsKYIX2iYA18ZY7oX18NQS24lXUiBO3Wz1VZAMFGhanBgHn+yYRkJGGcLzf2xj
-	YFES5sWC0Am/IuDV2h6jFg64thcJybEkHEnyZ6/etRNknjysNRZMA571TowBwzclIV/D
-	EboA==
-X-Received: by 10.70.44.76 with SMTP id c12mr60973872pdm.49.1432097990732;
-	Tue, 19 May 2015 21:59:50 -0700 (PDT)
-Received: from ?IPv6:2601:9:3580:84c:f46f:40a:7124:fb2?
-	([2601:9:3580:84c:f46f:40a:7124:fb2])
-	by mx.google.com with ESMTPSA id
-	dk5sm14643726pdb.88.2015.05.19.21.59.49
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 19 May 2015 21:59:49 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2098\))
-X-Pgp-Agent: GPGMail 2.5b6
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <AA6EBB22527ED441A9B86C56F43F6DD82012EDDA@POCITMSEXMB08.LntUniverse.com>
-Date: Tue, 19 May 2015 21:59:44 -0700
-Message-Id: <A60620CB-81E7-4974-95F9-4372AA329E6F@gmail.com>
-References: <AA6EBB22527ED441A9B86C56F43F6DD82012EDDA@POCITMSEXMB08.LntUniverse.com>
-To: Dilip Basavaraju <DILIP.KUMARB@LNTTECHSERVICES.COM>
-X-Mailer: Apple Mail (2.2098)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Modify configuration via bb file
+Received: from mail.invecas.com (mx1.invecas.com [112.133.222.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F5FEE004F6
+	for <yocto@yoctoproject.org>; Tue, 19 May 2015 22:12:41 -0700 (PDT)
+Received: from SOC-EXCH-01.invecas.local (10.0.30.8) by mail.invecas.com
+	(10.0.30.131) with Microsoft SMTP Server (TLS) id 14.3.123.3;
+	Wed, 20 May 2015 10:42:40 +0530
+Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
+	SOC-EXCH-01.invecas.local (10.0.30.8) with Microsoft SMTP Server (TLS)
+	id 15.0.995.29; Wed, 20 May 2015 10:42:35 +0530
+Received: from SOC-EXCH-02.invecas.local ([::1]) by SOC-EXCH-02.invecas.local
+	([fe80::bc3d:32eb:402d:2fae%15]) with mapi id 15.00.0995.028;
+	Wed, 20 May 2015 10:42:35 +0530
+From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+To: "Minchev, Todor" <todor.minchev@intel.com>
+Thread-Topic: [yocto] Issue with yocto ADT
+Thread-Index: AQHQjvGS80lL5pX7tEePuV/Y1Ag/NZ18xwuAgAATywj///ZkAIAAFVU6///3i4CAABFuWIAEQy9NgACr7wCAABkPjYAA1/wAgAAVlwL///tNgAAGUYQNAAGaUYAAArL9R///+L4AgAEqJTQ=
+Date: Wed, 20 May 2015 05:12:35 +0000
+Message-ID: <1432098732271.73666@inedasystems.com>
+References: <1431682376634.76952@inedasystems.com> ,
+	<1431686123.6150.2.camel@intel.com>
+	<1431686858269.81704@inedasystems.com> ,
+	<1431688310.6150.4.camel@intel.com>
+	<1431689589890.85414@inedasystems.com>
+	, <1431691075.6150.6.camel@intel.com>,
+	<1431691274788.8264@inedasystems.com>
+	<1431925643423.13631@inedasystems.com>,
+	<1431966070.3387.3.camel@intel.com>
+	<9fb2bdd0aab24dcdaeebd7e73d2dfcb4@SOC-EXCH-02.invecas.local>
+	,<1432017834.9202.26.camel@intel.com>
+	<1432019239480.90156@inedasystems.com>,
+	<1432021461.9202.33.camel@intel.com>
+	<1432028956512.13945@inedasystems.com>,
+	<1432035069.21431.6.camel@intel.com>
+	<1432036984110.43188@inedasystems.com>,
+	<1432038148.21431.9.camel@intel.com>
+In-Reply-To: <1432038148.21431.9.camel@intel.com>
+Accept-Language: en-US, en-IN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.42.88]
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Surya Dommeti <Venkatasuryanarayana.Dommeti@inedasystems.com>,
+	Ramakrishna Chatram <Ramakrishna.Chatram@inedasystems.com>
+Subject: Re: Issue with yocto ADT
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,207 +64,360 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 May 2015 04:59:53 -0000
-X-Groupsio-MsgNum: 24900
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_0129C192-C4B1-4D1B-8E2D-5A710D7A19ED";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
-
---Apple-Mail=_0129C192-C4B1-4D1B-8E2D-5A710D7A19ED
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_92C9ACF4-C801-47C3-890E-07EDE07F6E8E"
-
---Apple-Mail=_92C9ACF4-C801-47C3-890E-07EDE07F6E8E
+X-List-Received-Date: Wed, 20 May 2015 05:12:47 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
 
+Hi Todor,=0A=
+=0A=
+Now I am able to build the application,launch the qemu and run the applicat=
+ion from eclipse.=0A=
+=0A=
+but when I run the application in stepmode or stepover it gives the followi=
+ng error.=0A=
+=0A=
+Reading symbols from /home/testuser/workspace/test16/src/test16...done.=0A=
+warning: GDB can't find the start of the function at 0x31c73cf0.=0A=
+=0A=
+GDB is unable to find the start of the function at 0x31c73cf0=0A=
+and thus can't determine the size of that function's stack frame.=0A=
+This means that GDB may be unable to access that stack frame, or=0A=
+the frames below it.=0A=
+    This problem is most likely caused by an invalid program counter or=0A=
+stack pointer.=0A=
+    However, if you think GDB should simply search farther back=0A=
+from 0x31c73cf0 for code which looks like the beginning of a=0A=
+function, you can increase the range of the search using the `set=0A=
+heuristic-fence-post' command.=0A=
+warning: GDB can't find the start of the function at 0x31c62ed4.=0A=
+warning: GDB can't find the start of the function at 0x31c73cf0.=0A=
+warning: GDB can't find the start of the function at 0x31c63e30.=0A=
+warning: GDB can't find the start of the function at 0x31d11380.=0A=
+ =0A=
+Regards,=0A=
+Raghavendra K.=0A=
+________________________________________=0A=
+From: Minchev, Todor <todor.minchev@intel.com>=0A=
+Sent: Tuesday, May 19, 2015 5:52 PM=0A=
+To: Raghavendra Kakarla=0A=
+Cc: Surya Dommeti; Ramakrishna Chatram; yocto@yoctoproject.org=0A=
+Subject: Re: [yocto] Issue with yocto ADT=0A=
+=0A=
+On Tue, 2015-05-19 at 12:03 +0000, Raghavendra Kakarla wrote:=0A=
+> Hi Todor,=0A=
+> sbin/init script is there in the rootfile system.=0A=
+>=0A=
+> But i built rootfile system for my BSP and I give this rootfs to the ecli=
+pse sysroot path.=0A=
+>=0A=
+> And i select the qemu instead of externel hardware. I give the qemu kerne=
+l path to prevuiously built qemumips kernel image which is built before my =
+BSP is built.=0A=
+>=0A=
+> When I click on the "external Tool -> qemu_mips-poky-linux" qemu image is=
+ booted and gives the following error.=0A=
+> ->sbin/init exist but could not execute it=0A=
+>=0A=
+=0A=
+This error message should be followed by an error number.=0A=
+Also check that your /sbin/init is executable.=0A=
+=0A=
+=0A=
+> Regards,=0A=
+> Raghavenmdra K.=0A=
+> ________________________________________=0A=
+> From: Minchev, Todor <todor.minchev@intel.com>=0A=
+> Sent: Tuesday, May 19, 2015 5:01 PM=0A=
+> To: Raghavendra Kakarla=0A=
+> Cc: Surya Dommeti; Ramakrishna Chatram; yocto@yoctoproject.org=0A=
+> Subject: Re: [yocto] Issue with yocto ADT=0A=
+>=0A=
+> On Tue, 2015-05-19 at 09:49 +0000, Raghavendra Kakarla wrote:=0A=
+> > Hi Todor,=0A=
+> >=0A=
+> > Thank you for your reply.=0A=
+> >=0A=
+> > Now I am able to build the application with my extracted rootfs.=0A=
+> >=0A=
+> > I built the rootfs for our machine.=0A=
+> >=0A=
+> > for launching the qemu from the eclipse,is it required we should build =
+it for qemu?=0A=
+> > I have the previously built qemu kernel image and i give it path to the=
+ eclipse's qemu kernel path field.=0A=
+> >=0A=
+> > Qemu is launched but it gives error while switching from kernel to root=
+fs i.e init script execution problem.=0A=
+>=0A=
+> If your rootfs does not have /sbin/init, your kernel won't be able to=0A=
+> execute the topmost parent process(init) and the boot will fail? What is=
+=0A=
+> the error message?=0A=
+>=0A=
+> >=0A=
+> > Regards,=0A=
+> > Raghavendra.=0A=
+> > ________________________________________=0A=
+> > From: Minchev, Todor <todor.minchev@intel.com>=0A=
+> > Sent: Tuesday, May 19, 2015 1:14 PM=0A=
+> > To: Raghavendra Kakarla=0A=
+> > Cc: Surya Dommeti; Ramakrishna Chatram; yocto@yoctoproject.org=0A=
+> > Subject: Re: [yocto] Issue with yocto ADT=0A=
+> >=0A=
+> > On Tue, 2015-05-19 at 07:07 +0000, Raghavendra Kakarla wrote:=0A=
+> > > Hi Todor,=0A=
+> > >=0A=
+> > > For not working scenario there is no makefile created.=0A=
+> > >=0A=
+> > > For working scenario using build directory sysroot makefiles are crea=
+ted.=0A=
+> >=0A=
+> > So configure fails to create your Makefile. You probably see something=
+=0A=
+> > like this in your config.log:=0A=
+> >=0A=
+> > configure: error: C compiler cannot create executables=0A=
+> > configure: error: C compiler cannot create executables=0A=
+> > See `config.log' for more details=0A=
+> >=0A=
+> > Please have a look at this thread, it explains how to resolve this=0A=
+> > problem:=0A=
+> >=0A=
+> > https://lists.yoctoproject.org/pipermail/yocto/2015-March/024089.html=
+=0A=
+> >=0A=
+> > Cheers,=0A=
+> > Todor=0A=
+> >=0A=
+> > >=0A=
+> > > I attaching the makefile for working scenario.=0A=
+> > >=0A=
+> > > Regards,=0A=
+> > >=0A=
+> > > Raghavendra K.=0A=
+> > > ________________________________________=0A=
+> > > From: Minchev, Todor <todor.minchev@intel.com>=0A=
+> > > Sent: Tuesday, May 19, 2015 12:13 PM=0A=
+> > > To: Raghavendra Kakarla=0A=
+> > > Cc: yocto@yoctoproject.org=0A=
+> > > Subject: Re: [yocto] Issue with yocto ADT=0A=
+> > >=0A=
+> > > On Mon, 2015-05-18 at 16:55 +0000, Raghavendra Kakarla wrote:=0A=
+> > > > Hi Todor,=0A=
+> > > >=0A=
+> > > > I created four more new projects.=0A=
+> > > >=0A=
+> > > > For all the projects I gives error like this only.=0A=
+> > >=0A=
+> > > Is the error message the same as the original one you posted about a=
+=0A=
+> > > missing make `all` target?=0A=
+> > >=0A=
+> > > > Can send those projects make files?=0A=
+> > >=0A=
+> > > Please share both your working and non-working Makefiles.=0A=
+> > >=0A=
+> > > >=0A=
+> > > > But when I give the sysroot path in eclipse to the poky/build/tmp/s=
+ysroot/machine it worked properly.=0A=
+> > > >=0A=
+> > > > When we give the extracted sysroot it gives problem.=0A=
+> > > > Regards,=0A=
+> > > > Raghavendra.=0A=
+> > > > ________________________________________=0A=
+> > > > From: Minchev, Todor [todor.minchev@intel.com]=0A=
+> > > > Sent: Monday, May 18, 2015 9:51 PM=0A=
+> > > > To: Raghavendra Kakarla=0A=
+> > > > Cc: yocto@yoctoproject.org=0A=
+> > > > Subject: Re: [yocto] Issue with yocto ADT=0A=
+> > > >=0A=
+> > > > Hello Raghavendra,=0A=
+> > > >=0A=
+> > > > On Mon, 2015-05-18 at 05:07 +0000, Raghavendra Kakarla wrote:=0A=
+> > > > > Hi Todor,=0A=
+> > > > >=0A=
+> > > > > Could you please let me know the cause for the issue.=0A=
+> > > > Please pastebin your Makefile and share the pastebin link.=0A=
+> > > >=0A=
+> > > > Seem like your project is corrupt and the Makefile is not generated=
+=0A=
+> > > > correctly.=0A=
+> > > >=0A=
+> > > > Have you tried to delete the project and create a new one?=0A=
+> > > >=0A=
+> > > > > Thanks in advance.=0A=
+> > > > >=0A=
+> > > > > Regards,=0A=
+> > > > > Raghavendra K.=0A=
+> > > > >=0A=
+> > > > >=0A=
+> > > > > ________________________________________=0A=
+> > > > > From: Raghavendra Kakarla=0A=
+> > > > > Sent: Friday, May 15, 2015 5:31 PM=0A=
+> > > > > To: Minchev, Todor=0A=
+> > > > > Cc: yocto@yoctoproject.org=0A=
+> > > > > Subject: RE: [yocto] Issue with yocto ADT=0A=
+> > > > >=0A=
+> > > > > Hi Todor,=0A=
+> > > > >=0A=
+> > > > > It is provided by the Yocto eclipse plugin itself.=0A=
+> > > > >=0A=
+> > > > > Regards,=0A=
+> > > > > Raghavendra.=0A=
+> > > > > ________________________________________=0A=
+> > > > > From: Minchev, Todor <todor.minchev@intel.com>=0A=
+> > > > > Sent: Friday, May 15, 2015 5:27 PM=0A=
+> > > > > To: Raghavendra Kakarla=0A=
+> > > > > Cc: yocto@yoctoproject.org=0A=
+> > > > > Subject: Re: [yocto] Issue with yocto ADT=0A=
+> > > > >=0A=
+> > > > > On Fri, 2015-05-15 at 11:33 +0000, Raghavendra Kakarla wrote:=0A=
+> > > > > > Hi Todor,=0A=
+> > > > > >=0A=
+> > > > > > It is an autotool based example.=0A=
+> > > > > > It is not generated makefile itself.=0A=
+> > > > > >=0A=
+> > > > >=0A=
+> > > > > Is it an example you created yourself or is it the autotools C He=
+llo=0A=
+> > > > > World template provided by the Yocto Eclipse Plug-in.=0A=
+> > > > >=0A=
+> > > > > > I attached the makefile.in and makefile.am file to the paste bi=
+n.=0A=
+> > > > >=0A=
+> > > > > Could you please paste the Makefile and share the pastebin link?=
+=0A=
+> > > > >=0A=
+> > > > > > Thanks,=0A=
+> > > > > >=0A=
+> > > > > > Raghavendra.=0A=
+> > > > > >=0A=
+> > > > > >=0A=
+> > > > > > ________________________________________=0A=
+> > > > > > From: Minchev, Todor <todor.minchev@intel.com>=0A=
+> > > > > > Sent: Friday, May 15, 2015 4:41 PM=0A=
+> > > > > > To: Raghavendra Kakarla=0A=
+> > > > > > Cc: yocto@yoctoproject.org=0A=
+> > > > > > Subject: Re: [yocto] Issue with yocto ADT=0A=
+> > > > > >=0A=
+> > > > > > Hello Raghavendra,=0A=
+> > > > > >=0A=
+> > > > > > Could you please pastebin the makefile from your project?=0A=
+> > > > > >=0A=
+> > > > > > http://pastebin.com/=0A=
+> > > > > >=0A=
+> > > > > > Cheers,=0A=
+> > > > > > Todor=0A=
+> > > > > >=0A=
+> > > > > > On Fri, 2015-05-15 at 10:47 +0000, Raghavendra Kakarla wrote:=
+=0A=
+> > > > > > > Hi Todor,=0A=
+> > > > > > >=0A=
+> > > > > > > Thank you for your  reply.=0A=
+> > > > > > >=0A=
+> > > > > > > By default we have the setting like this only.=0A=
+> > > > > > >=0A=
+> > > > > > > But we got the error.=0A=
+> > > > > > >=0A=
+> > > > > > > Thanks,=0A=
+> > > > > > > Raghavendra.=0A=
+> > > > > > > ________________________________________=0A=
+> > > > > > > From: Minchev, Todor <todor.minchev@intel.com>=0A=
+> > > > > > > Sent: Friday, May 15, 2015 4:05 PM=0A=
+> > > > > > > To: Raghavendra Kakarla=0A=
+> > > > > > > Cc: yocto@yoctoproject.org=0A=
+> > > > > > > Subject: Re: [yocto] Issue with yocto ADT=0A=
+> > > > > > >=0A=
+> > > > > > > Hello Raghavendra,=0A=
+> > > > > > >=0A=
+> > > > > > > Please try the following:=0A=
+> > > > > > >=0A=
+> > > > > > > Right click on your project - Properties - C/C++ Build - Sele=
+ct the=0A=
+> > > > > > > 'Behavior' tab - untick 'Build on resource save' and remove '=
+all' from=0A=
+> > > > > > > the 'Build' field=0A=
+> > > > > > >=0A=
+> > > > > > > Cheers,=0A=
+> > > > > > > Todor=0A=
+> > > > > > >=0A=
+> > > > > > > On Fri, 2015-05-15 at 09:32 +0000, Raghavendra Kakarla wrote:=
+=0A=
+> > > > > > > > Hi All,=0A=
+> > > > > > > >=0A=
+> > > > > > > >=0A=
+> > > > > > > > I have problem with the ADT while i am building the autotoo=
+l example=0A=
+> > > > > > > > helloword project which is given in the "yocto ADT autotool=
+ project".=0A=
+> > > > > > > >=0A=
+> > > > > > > >=0A=
+> > > > > > > > Could you please help me in resolving this issue.=0A=
+> > > > > > > >=0A=
+> > > > > > > >=0A=
+> > > > > > > > I followed the following steps for installing the adt in my=
+=0A=
+> > > > > > > > development PC:=0A=
+> > > > > > > >=0A=
+> > > > > > > >=0A=
+> > > > > > > >=0A=
+> > > > > > > > I built the toolchain using the following command:=0A=
+> > > > > > > >=0A=
+> > > > > > > > $cd ~/poky=0A=
+> > > > > > > > $source ./oe-init-build-env=0A=
+> > > > > > > > $bitbake meta-ide-support=0A=
+> > > > > > > >=0A=
+> > > > > > > >=0A=
+> > > > > > > > Extract the root file system by using the following command=
+s:=0A=
+> > > > > > > >=0A=
+> > > > > > > > $cd ~=0A=
+> > > > > > > > $source ~/poky/build/tmp/environment-setup-mips32r2el-poky-=
+linux=0A=
+> > > > > > > > $runqemu-extract-sdk \=0A=
+> > > > > > > >         ~/poky/build/tmp/deploy/images/arqlyn/=0A=
+> > > > > > > > core-image-minimal-dhruwa_ioe-20150511102759.rootfs.tar.bz2=
+\=0A=
+> > > > > > > >         $HOME/arqlyn=0A=
+> > > > > > > >=0A=
+> > > > > > > > I followed the command given in the yocto project dev-manua=
+l for=0A=
+> > > > > > > > installing eclipse and adding yocto plugin to eclipse.=0A=
+> > > > > > > >=0A=
+> > > > > > > > I Gave the following data to the eclipse for configuring th=
+e=0A=
+> > > > > > > > cross-compiler options:=0A=
+> > > > > > > >=0A=
+> > > > > > > > 1. I select the "Build System Derived Toolchain"=0A=
+> > > > > > > > 2.point the toolchain path to "home/testuser/poky/build"=0A=
+> > > > > > > > 3.gave sysroot path to /home/testuser/arqlyn=0A=
+> > > > > > > >=0A=
+> > > > > > > > After entered this information I got the my machine-name in=
+ the=0A=
+> > > > > > > > "select the target architecture" filed.=0A=
+> > > > > > > >=0A=
+> > > > > > > > After this I create a autotool support project and tried to=
+ build but=0A=
+> > > > > > > > it gives the error.=0A=
+> > > > > > > >=0A=
+> > > > > > > > Regards,=0A=
+> > > > > > > >=0A=
+> > > > > > > > Raghavendra.=0A=
+> > > > > > > >=0A=
+> > > > > > > >=0A=
+> > > > > > > >=0A=
+> > > > > > > >=0A=
+> > > > > > > > _______________________________________________=0A=
+> > > > > > > > yocto mailing list=0A=
+> > > > > > > > yocto@yoctoproject.org=0A=
+> > > > > > > > https://lists.yoctoproject.org/listinfo/yocto=0A=
+> > > > > > >=0A=
+> > > > > >=0A=
+> > > > >=0A=
+> > > >=0A=
+> > >=0A=
+> >=0A=
+>=0A=
+=0A=
 
-> On May 19, 2015, at 9:44 PM, Dilip Basavaraju =
-<DILIP.KUMARB@LNTTECHSERVICES.COM> wrote:
->=20
-> Dear All,
->=20
->                 I am compiling coreutils package with the coreutils.bb =
-file and its compiling  successfully, now I need to modify the arguments =
-passed to ./configure command I tried to modify in the bb file but I did =
-not get the proper results.
->=20
-
-Pass it using EXTRA_OECONF in recipe e.g.
-
-EXTRA_OECONF +=3D =E2=80=9C=E2=80=94enable-foo"
-
->                 Please suggest me where to modify parameters to =
-./configure via bb file or if any other way.
->=20
-> Thanks and regards
-> DILIP KUMAR B
-> L&T Technology Services Ltd
->=20
-> www.LntTechservices.com <http://www.lnttechservices.com/>
-> This Email may contain confidential or privileged information for the =
-intended recipient (s). If you are not the intended recipient, please do =
-not use or disseminate the information, notify the sender and delete it =
-from your system.
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
-> https://lists.yoctoproject.org/listinfo/yocto =
-<https://lists.yoctoproject.org/listinfo/yocto>
-
---Apple-Mail=_92C9ACF4-C801-47C3-890E-07EDE07F6E8E
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On May 19, 2015, at 9:44 PM, Dilip Basavaraju &lt;<a =
-href=3D"mailto:DILIP.KUMARB@LNTTECHSERVICES.COM" =
-class=3D"">DILIP.KUMARB@LNTTECHSERVICES.COM</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div =
-class=3D"WordSection1" style=3D"page: WordSection1; font-family: =
-Helvetica; font-size: 13px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;"><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">Dear =
-All,<o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;<span =
-class=3D"Apple-converted-space">&nbsp;</span><o:p =
-class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; I am compiling coreutils package with the =
-coreutils.bb file and its compiling &nbsp;successfully, now I need to =
-modify the arguments passed to ./configure command I tried to modify in =
-the bb file but I did not get the proper results.<o:p =
-class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><o:p =
-class=3D"">&nbsp;</o:p></div></div></div></blockquote><div><br =
-class=3D""></div><div>Pass it using EXTRA_OECONF in recipe =
-e.g.</div><div><br class=3D""></div><div>EXTRA_OECONF +=3D =
-=E2=80=9C=E2=80=94enable-foo"</div><br class=3D""><blockquote =
-type=3D"cite" class=3D""><div class=3D""><div class=3D"WordSection1" =
-style=3D"page: WordSection1; font-family: Helvetica; font-size: 13px; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;"><div =
-style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" =
-class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; Please suggest me where to modify parameters =
-to ./configure via bb file or if any other way.<o:p =
-class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><o:p =
-class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">Thanks =
-and regards<o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in =
-0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">DILIP KUMAR B<o:p class=3D""></o:p></div></div><p =
-style=3D"font-family: Helvetica; font-size: 13px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px;" class=3D""><strong =
-class=3D"">L&amp;T Technology Services Ltd</strong></p><p =
-style=3D"font-family: Helvetica; font-size: 13px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"http://www.lnttechservices.com/" target=3D"_blank" style=3D"color:=
- purple; text-decoration: underline;" =
-class=3D"">www.LntTechservices.com</a></p><p style=3D"font-family: =
-Helvetica; font-size: 13px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D"">This Email may contain =
-confidential or privileged information for the intended recipient (s). =
-If you are not the intended recipient, please do not use or disseminate =
-the information, notify the sender and delete it from your =
-system.</p><span style=3D"font-family: Helvetica; font-size: 13px; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; float: =
-none; display: inline !important;" class=3D"">--<span =
-class=3D"Apple-converted-space">&nbsp;</span></span><br =
-style=3D"font-family: Helvetica; font-size: 13px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px;" class=3D""><span =
-style=3D"font-family: Helvetica; font-size: 13px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px; float: none; display: inline =
-!important;" =
-class=3D"">_______________________________________________</span><br =
-style=3D"font-family: Helvetica; font-size: 13px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px;" class=3D""><span =
-style=3D"font-family: Helvetica; font-size: 13px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px; float: none; display: inline =
-!important;" class=3D"">yocto mailing list</span><br style=3D"font-family:=
- Helvetica; font-size: 13px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" style=3D"color: purple; =
-text-decoration: underline; font-family: Helvetica; font-size: 13px; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
-class=3D"">yocto@yoctoproject.org</a><br style=3D"font-family: =
-Helvetica; font-size: 13px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"https://lists.yoctoproject.org/listinfo/yocto" style=3D"color: =
-purple; text-decoration: underline; font-family: Helvetica; font-size: =
-13px; font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
-uote></div><br class=3D""></body></html>=
-
---Apple-Mail=_92C9ACF4-C801-47C3-890E-07EDE07F6E8E--
-
---Apple-Mail=_0129C192-C4B1-4D1B-8E2D-5A710D7A19ED
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlVcFMQACgkQuwUzVZGdMxTP0gCeObbXVO3dbd3hdcdLcYRevORm
-xMgAoI2YWrH4FLiXB3ZmRQkDk3bf03Pf
-=r97o
------END PGP SIGNATURE-----
-
---Apple-Mail=_0129C192-C4B1-4D1B-8E2D-5A710D7A19ED--
