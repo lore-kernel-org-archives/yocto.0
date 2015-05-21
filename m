@@ -1,37 +1,29 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83497E00956; Thu, 21 May 2015 05:55:52 -0700 (PDT)
+	id B1410E00956; Thu, 21 May 2015 05:59:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F0A2E004F6
-	for <yocto@yoctoproject.org>; Thu, 21 May 2015 05:55:49 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 21 May 2015 05:55:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,468,1427785200"; d="scan'208";a="733059623"
-Received: from lpobrien-mobl.ger.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.1.32])
-	by orsmga002.jf.intel.com with ESMTP; 21 May 2015 05:55:46 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Marcin =?utf-8?B?S3J6ZW1pxYRza2k=?= <mar.krzeminski@gmail.com>
-Date: Thu, 21 May 2015 13:55:45 +0100
-Message-ID: <2022355.kJ2gG9TIlz@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.7 (Linux/3.19.7-200.fc21.x86_64; KDE/4.14.7; x86_64; ; )
-In-Reply-To: <CABc_YGCU1KaKpSZr24-BO2cDHS-s5qkp1j1U2ri+UCoa-zrc0w@mail.gmail.com>
-References: <CABc_YGCU1KaKpSZr24-BO2cDHS-s5qkp1j1U2ri+UCoa-zrc0w@mail.gmail.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBFF5E004F6
+	for <yocto@yoctoproject.org>; Thu, 21 May 2015 05:59:16 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 22A86F811D9; Thu, 21 May 2015 06:59:15 -0600 (MDT)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id A4DFFF811D9;
+	Thu, 21 May 2015 06:59:15 -0600 (MDT)
+Message-ID: <555DD6B1.8010608@mlbassoc.com>
+Date: Thu, 21 May 2015 06:59:29 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Removing do_compile task and ordering problem
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Strangeness with devshell
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,47 +35,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 May 2015 12:55:52 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Thu, 21 May 2015 12:59:22 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Marcin,
+I'm trying to run emacs inside of devshell.  For some reason,
+emacs can't find my startup files (emacs configuration).  When
+I look, I see very different startup behaviour for emacs when
+I'm running in devshell vs. my normal shell (bash).  Inside
+the devshell it seems to be totally lost and I get messages
+like "User gthomas has no home directory".  Indeed when running
+in the devshell, I can see that emacs is trying to access paths
+like this:
+   /usr/share/emacs/23.2/site-lisp/~gthomas/.emacs.elc
 
-On Thursday 21 May 2015 12:47:05 Marcin Krzemi=C5=84ski wrote:
-> I am writing recipe that inherits from *native*.
-> I removed do_compile task using: *deltask do_compile*
-> When i was ruing bitbake my-recipe all works fine, but when I added r=
-ecipe
-> to *EXTRA_IMAGEDEPENDS *and run* bitbake core-image-minimal *tasks we=
-re
-> reordered in some strange way that task do_install was performed befo=
-re
-> do_fetch.
-> When I hanged *deltask do_compile *to *do_compile[noexec] =3D "1" * a=
-ll went
-> back to normal.
-> I found *deltask *in manual so I do not know, is it a bug or not?
+What's even more odd is that emacs does manage to find _some_
+of the correct files such as
+   /home/gthomas/.emacs.d/auto-save
+   /home/gthomas/.emacs.d/auto-save-list
 
-I suspect this is because all deltask does is delete the task, it does =
-not=20
-reconnect the dependency chain such that tasks that depended on the del=
-eted=20
-task would depend on the tasks that the deleted task depended upon, so =
-what=20
-you get in this case is do_install no longer having any dependencies. T=
-o be=20
-honest the current behaviour seems reasonable to me, though it is not=20=
+Any idea why the confusion?
 
-immediately obvious and ought to be described in the manual. I think in=
- your=20
-situation you really do want to set the noexec flag rather than using d=
-eltask.
+I'd really like to have emacs behave properly within devshell :-)
+I can only imagine what else might be "weird" under the covers
+while using devshell...
 
-Cheers,
-Paul
+Thanks
 
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
