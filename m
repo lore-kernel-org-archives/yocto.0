@@ -1,49 +1,43 @@
-Return-Path: <yoctomailinglist@gmail.com>
+Return-Path: <haris.okanovic@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ED8DBE009C2; Thu, 21 May 2015 14:21:55 -0700 (PDT)
+	id B5909E009C8; Thu, 21 May 2015 16:51:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (yoctomailinglist[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.45 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [130.164.80.23 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qg0-f45.google.com (mail-qg0-f45.google.com
-	[209.85.192.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 796E4E00902
-	for <yocto@yoctoproject.org>; Thu, 21 May 2015 14:21:53 -0700 (PDT)
-Received: by qgfa63 with SMTP id a63so66494qgf.0
-	for <yocto@yoctoproject.org>; Thu, 21 May 2015 14:21:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=dMTk+L5bO5/H9XIBYB+prTPKWOL7qohIQyrrwK2ImrI=;
-	b=gJiXwZ+9DmK3338/YyfSC/ys3YGGUTnsN9jyTZs+bGwIerNa7FhAMExs/+zfpSOv1q
-	API9B/JyfEcJUUY5VdWb2bZEUM/Nfh5q441M9cLqLDdF4d2bnAZtcvR6C5eVD5+1cDXF
-	xHxGgSZD8FAUJJQhqRhFk7AC5WE5QphFN/SkkgGyy7Bk6c1gcYPrSctv4HeUwVoCMuy5
-	v0jWbfbZ5HDhAQ6CEHAOv+QHKhxIHWmiZmOucKuUbwddtW5CwVpQSgJZ2vRBci/VXJ0J
-	Q+901T7wkK3mg1sR6KeaQWM85RUBxSeKW1Pcd458J2sREvsENgmhwtuId/gjERedMK+0
-	x+8w==
-MIME-Version: 1.0
-X-Received: by 10.55.15.135 with SMTP id 7mr11270239qkp.12.1432243313319; Thu,
-	21 May 2015 14:21:53 -0700 (PDT)
-Received: by 10.140.83.102 with HTTP; Thu, 21 May 2015 14:21:53 -0700 (PDT)
-Date: Thu, 21 May 2015 23:21:53 +0200
-Message-ID: <CACTu1LijXDjHx-1065KrogZgyLTCSPur3dC4sbA6Qq1pkDz0Wg@mail.gmail.com>
-From: yocto yocto <yoctomailinglist@gmail.com>
-To: yocto@yoctoproject.org
-Subject: How to enable php5 (php_5.5.24.bb) support for postgresql
+X-Greylist: delayed 1421 seconds by postgrey-1.32 at yocto-www;
+	Thu, 21 May 2015 16:51:29 PDT
+Received: from ni.com (skprod2.natinst.com [130.164.80.23])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8894DE009B6
+	for <yocto@yoctoproject.org>; Thu, 21 May 2015 16:51:29 -0700 (PDT)
+Received: from us-aus-mgwout2.amer.corp.natinst.com (nb-snip2-1338.natinst.com
+	[130.164.19.135])
+	by us-aus-skprod2.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
+	t4LNRjNK025197; Thu, 21 May 2015 18:27:45 -0500
+Received: from harisdt.amer.corp.natinst.com ([130.164.14.198])
+	by us-aus-mgwout2.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
+	HF1218) with ESMTP id 2015052118274561-362879 ;
+	Thu, 21 May 2015 18:27:45 -0500 
+From: Haris Okanovic <haris.okanovic@ni.com>
+To: yocto@yoctoproject.org, opkg-devel@googlegroups.com
+Date: Thu, 21 May 2015 18:27:30 -0500
+Message-Id: <1432250850-25266-1-git-send-email-haris.okanovic@ni.com>
+X-Mailer: git-send-email 2.2.2
+X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut2/AUS/H/NIC(Release
+	8.5.3FP6 HF1218|December 12, 2014) at 05/21/2015 06:27:45 PM,
+	Serialize by Router on US-AUS-MGWOut2/AUS/H/NIC(Release 8.5.3FP6
+	HF1218|December 12, 2014) at 05/21/2015 06:27:45 PM,
+	Serialize complete at 05/21/2015 06:27:45 PM
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
+	definitions=2015-05-21_08:, , signatures=0
+Subject: [PATCH] opkg-utils: Fix crash on dependency error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,240 +49,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 May 2015 21:21:56 -0000
-Content-Type: multipart/alternative; boundary=001a11371070ec256b05169e21ca
+X-List-Received-Date: Thu, 21 May 2015 23:51:31 -0000
+
+Fix crash on exception in opkg-show-deps when generating an
+'unsatisfied dependency' error. process_dep() function was
+referencing a missing parameter `pkg`.
+
+Signed-off-by: Haris Okanovic <haris.okanovic@ni.com>
+Reviewed-by: Alejandro del Castillo <alejandro.delcastillo@ni.com>
+Acked-by: Brad Mouring <brad.mouring@ni.com>
+Cc: Alejandro del Castillo <alejandro.delcastillo@ni.com>
+Cc: Paul Barker <paul@paulbarker.me.uk>
+---
+ opkg-show-deps | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/opkg-show-deps b/opkg-show-deps
+index 3c3be6a..4694579 100755
+--- a/opkg-show-deps
++++ b/opkg-show-deps
+@@ -58,7 +58,7 @@ def find_package(name):
+           return provider_hash[name]
+      return None
+ 
+-def process_dep(dep):
++def process_dep(pkg, dep):
+      # Add a provider of the given dependency to the list of required packages
+      # unless a provider is already present in this list.
+      dep = re.sub("\s*\(.*\)", "", dep)
+@@ -83,7 +83,7 @@ def recurse(pkg):
+      if pkg.depends:
+           deps = split_list(pkg.depends)
+           for dep in deps:
+-               process_dep(dep)
++               process_dep(pkg, dep)
+ 
+ for root in remaining_args:
+      pkgs = find_package(root)
+-- 
+2.2.2
 
---001a11371070ec256b05169e21ca
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-Good day,
-
-
-I am working with the intel Edison. Therefore I am using the
-meta-openembedded =E2=80=9Cdaisy=E2=80=9D branch (have a look here:
-https://github.com/openembedded/meta-openembedded/branches/stale). Using
-another branch causes bitbake errors. Beside this, =E2=80=9Cdaisy=E2=80=9D =
-is recommended
-for the intel Edison within the official intel documents.
-
-
-Nevertheless I added apache2_2.4.9.bb and postgresql_9.2.4.bb to my custom
-image. However, php5 support is missing. Therefore I downloaded the php
-recipe from the current master branch and put it in my custom layer:
-
-
-https://github.com/openembedded/meta-openembedded/blob/b070899000162e7f4baf=
-75e2427216b39c641a12/meta-oe/recipes-devtools/php/
-
-
-<https://github.com/openembedded/meta-openembedded/blob/b070899000162e7f4ba=
-f75e2427216b39c641a12/meta-oe/recipes-devtools/php/>
-
-Furthermore I created =E2=80=9Cphp_5.5.24.bbappend=E2=80=9D with the follow=
-ing content in
-the same folder:
-
-
-PACKAGECONFIG_append +=3D "apache2"
-
-PACKAGECONFIG_append +=3D "pgsql"
-
-
-bitbake php results in the following errors:
-
-
-ERROR: Nothing PROVIDES 'uw-imap' [=E2=80=A6] but php/php_5.5.24.bb DEPENDS=
- on or
-otherwise requires it)
-
-ERROR: Required build target 'php' has no buildable providers.
-
-Missing or unbuildable dependency chain was: ['php', 'uw-imap']
-
-
-So I removed the config =E2=80=9CPACKAGECONFIG[imap]=E2=80=9D from php_5.5.=
-24.bb.  Result:
-
-
-ERROR: Nothing PROVIDES 'postgresql-native' [=E2=80=A6] but /php/php_5.5.24=
-.bb
-DEPENDS on or otherwise requires it). Close matches:
-
-  postgresql
-
-  strace-native
-
-  popt-native
-
-ERROR: Required build target 'php' has no buildable providers.
-
-Missing or unbuildable dependency chain was: ['php', 'php-native',
-'postgresql-native']
-
-
-Google does not show much for postgresql-native related to yocto. "bitbake
-postgresql" is running fine... If I remove BBCLASSEXTEND =3D "native" from
-the recipe I get the following result:
-
-
-ERROR: This autoconf log indicates errors, it looked at host include and/or
-library paths while determining system capabilities.
-
-Rerun configure task after fixing this. The path was
-"php/5.5.24-r0/php-5.5.24'
-
-ERROR: Function failed: do_qa_configure
-
-ERROR: Logfile of failure stored in:
-"php/5.5.24-r0/temp/log.do_configure.22410
-
-ERROR: Task 5 (php/php_5.5.24.bb, do_configure) failed with exit code '1'
-
-
-
-
-I appreciate any advice on how to set up php5 for postgresql.
-
---001a11371070ec256b05169e21ca
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">
-
-<p class=3D"MsoNormal"><span style lang=3D"EN-US">Good day,</span></p><p cl=
-ass=3D"MsoNormal"><span style lang=3D"EN-US"><br></span></p>
-
-<p class=3D"MsoNormal"><span style lang=3D"EN-US">I am
-working with the intel Edison. Therefore I am using the
-meta-openembedded =E2=80=9Cdaisy=E2=80=9D branch (have a look here: <a href=
-=3D"https://github.com/openembedded/meta-openembedded/branches/stale">https=
-://github.com/openembedded/meta-openembedded/branches/stale</a>).
-Using another branch causes bitbake errors. Beside this, =E2=80=9Cdaisy=E2=
-=80=9D is recommended
-for the intel Edison within the official intel documents.</span></p><p clas=
-s=3D"MsoNormal"><span style lang=3D"EN-US"><br></span></p>
-
-<p class=3D"MsoNormal"><span style lang=3D"EN-US">Nevertheless
-I added <a href=3D"http://apache2_2.4.9.bb">apache2_2.4.9.bb</a> and <a hre=
-f=3D"http://postgresql_9.2.4.bb">postgresql_9.2.4.bb</a> to my custom image=
-. However,
-php5 support is missing. Therefore I downloaded the php recipe from the cur=
-rent
-master branch and put it in my custom layer:</span></p><p class=3D"MsoNorma=
-l"><span style lang=3D"EN-US"><br></span></p>
-
-<p class=3D"MsoNormal"><span style lang=3D"EN-US"><a href=3D"https://github=
-.com/openembedded/meta-openembedded/blob/b070899000162e7f4baf75e2427216b39c=
-641a12/meta-oe/recipes-devtools/php/">https://github.com/openembedded/meta-=
-openembedded/blob/b070899000162e7f4baf75e2427216b39c641a12/meta-oe/recipes-=
-devtools/php/</a></span></p><p class=3D"MsoNormal"><span style lang=3D"EN-U=
-S"><a href=3D"https://github.com/openembedded/meta-openembedded/blob/b07089=
-9000162e7f4baf75e2427216b39c641a12/meta-oe/recipes-devtools/php/"><br></a>
-</span></p>
-
-<p class=3D"MsoNormal"><span style lang=3D"EN-US">Furthermore
-I created =E2=80=9Cphp_5.5.24.bbappend=E2=80=9D with the following content<=
-/span><span style lang=3D"EN-US"><span style lang=3D"EN-US"> in the same fo=
-lder</span>:</span></p><p class=3D"MsoNormal"><br><span style lang=3D"EN-US=
-"></span></p>
-
-<p class=3D"MsoNormal"><span style lang=3D"EN-US">PACKAGECONFIG_append
-+=3D &quot;apache2&quot;</span></p>
-
-<p class=3D"MsoNormal"><span style lang=3D"EN-US">PACKAGECONFIG_append
-+=3D &quot;pgsql&quot;</span></p><p class=3D"MsoNormal"><br><span style lan=
-g=3D"EN-US"></span></p>
-
-<p class=3D"MsoNormal"><span style lang=3D"EN-US">bitbake php
-results in the following errors:</span></p><p class=3D"MsoNormal"><span sty=
-le lang=3D"EN-US"><br></span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt"><span style lang=3D"EN-=
-US">ERROR: Nothing PROVIDES &#39;uw-imap&#39; [=E2=80=A6] but php/<a href=
-=3D"http://php_5.5.24.bb">php_5.5.24.bb</a>
-DEPENDS on or otherwise requires it)</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt"><span style lang=3D"EN-=
-US">ERROR: Required build target &#39;php&#39; has no
-buildable providers.</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt"><span style lang=3D"EN-=
-US">Missing or unbuildable dependency chain was:
-[&#39;php&#39;, &#39;uw-imap&#39;]</span></p><p class=3D"MsoNormal" style=
-=3D"margin-left:35.4pt"><span style lang=3D"EN-US"><br></span></p>
-
-<p class=3D"MsoNormal"><span style lang=3D"EN-US">So I
-removed the config =E2=80=9CPACKAGECONFIG[imap]=E2=80=9D from </span><span =
-style lang=3D"EN-US"><span style lang=3D"EN-US"><a href=3D"http://php_5.5.2=
-4.bb">php_5.5.24.bb</a></span>.<span style>=C2=A0
-</span>Result:</span></p><p class=3D"MsoNormal"><span style lang=3D"EN-US">=
-<br></span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt"><span style lang=3D"EN-=
-US">ERROR: Nothing PROVIDES &#39;postgresql-native&#39; [=E2=80=A6]
-but /php/<a href=3D"http://php_5.5.24.bb">php_5.5.24.bb</a> DEPENDS on or o=
-therwise requires it). Close matches:</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt"><span style lang=3D"EN-=
-US"><span style>=C2=A0
-</span>postgresql</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt"><span style lang=3D"EN-=
-US"><span style>=C2=A0
-</span>strace-native</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt"><span style lang=3D"EN-=
-US"><span style>=C2=A0
-</span>popt-native</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt"><span style lang=3D"EN-=
-US">ERROR: Required build target &#39;php&#39; has no
-buildable providers.</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt"><span style lang=3D"EN-=
-US">Missing or unbuildable dependency chain was:
-[&#39;php&#39;, &#39;php-native&#39;, &#39;postgresql-native&#39;]</span></=
-p>
-
-<p class=3D"MsoNormal"><span style lang=3D"EN-US"><br></span></p>
-
-
-
-<p class=3D"MsoNormal"><span style lang=3D"EN-US">Google does
-not show much for postgresql-native related to yocto. &quot;bitbake postgre=
-sql&quot; is running fine... If I remove BBCLASSEXTEND
-=3D &quot;native&quot; from the recipe I get the following result:</span></=
-p><p class=3D"MsoNormal"><span style lang=3D"EN-US"><br></span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt"><span style lang=3D"EN-=
-US">ERROR: This autoconf log indicates errors, it
-looked at host include and/or library paths while determining system
-capabilities.</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt"><span style lang=3D"EN-=
-US">Rerun configure task after fixing this. The
-path was &quot;php/5.5.24-r0/php-5.5.24&#39;</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt"><span style lang=3D"EN-=
-US">ERROR: Function failed: do_qa_configure</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt"><span style lang=3D"EN-=
-US">ERROR: Logfile of failure stored in: &quot;php/5.5.24-r0/temp/log.do_co=
-nfigure.22410</span></p>
-
-<p class=3D"MsoNormal" style=3D"margin-left:35.4pt"><span style lang=3D"EN-=
-US">ERROR: Task 5 (php/<a href=3D"http://php_5.5.24.bb">php_5.5.24.bb</a>,
-do_configure) failed with exit code &#39;1&#39;</span></p>
-
-<p class=3D"MsoNormal"><span style lang=3D"EN-US"><br></span></p><span styl=
-e=3D"font-size:11pt;line-height:107%;font-family:&quot;Calibri&quot;,&quot;=
-sans-serif&quot;" lang=3D"EN-US"></span><span style lang=3D"EN-US">=C2=A0</=
-span>
-
-<p class=3D"MsoNormal"><span style lang=3D"EN-US">I appreciate
-any advice on how to set up php5 for postgresql.<br></span></p>
-
-</div>
-
---001a11371070ec256b05169e21ca--
