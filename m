@@ -1,50 +1,48 @@
-Return-Path: <akuster@mvista.com>
+Return-Path: <mkarascybi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21DD2E009D9; Fri, 22 May 2015 06:09:17 -0700 (PDT)
+	id D9890E009D9; Fri, 22 May 2015 06:34:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.182 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mkarascybi[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-pd0-f182.google.com (mail-pd0-f182.google.com
-	[209.85.192.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F105CE00974
-	for <yocto@yoctoproject.org>; Fri, 22 May 2015 06:09:13 -0700 (PDT)
-Received: by pdea3 with SMTP id a3so19351937pde.2
-	for <yocto@yoctoproject.org>; Fri, 22 May 2015 06:09:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-	:subject:content-type:content-transfer-encoding;
-	bh=Blv7SuEKIrmhTkdMvG2oh3TgtaKKNw5g/PmOv+ftLls=;
-	b=mEqXgqCKtzX+P3eK0l0b1deKW6WxBsoEAaLvsacA5lKqx0+M4PE5zo9VERxEhF+m6r
-	UJ3ID4BrC1T0+B8lpCGu2+w7fV9xldlU2MtTAEKFD7UjwuoZ4TQ/v9mzQSH2iRpvcO3q
-	dCK6Hv5mrIw0S9YzwildJjeEtnvpAdxpZtVIZkLcpcWxRK/N9AtCEBT1qpo6PnhH9dSE
-	U8eFuQBgigQ9hVbrVMnv1r6PNz4kAjWhIbK6WKGY8iZt5kCpwQLwIRADKT2Qi76lPwXU
-	276L9A4VN5Vz0twh3zzLuTpYTEpBUOV7H1c0xFNQhyKxZX/nQorRWs9/5cn+dcw/YcZx
-	AoFg==
-X-Gm-Message-State: ALoCoQnk3xriTrmxj28FsFMoYL1+4M/vtgWCtTSl+x2oya8bjsq1ZTW/LvWlEnHnfdQv0kL5VzG0
-X-Received: by 10.68.57.229 with SMTP id l5mr15692393pbq.130.1432300153034;
-	Fri, 22 May 2015 06:09:13 -0700 (PDT)
-Received: from ?IPv6:2601:c:a700:3ba7:4dde:b12e:28c1:24ff?
-	([2601:c:a700:3ba7:4dde:b12e:28c1:24ff])
-	by mx.google.com with ESMTPSA id en2sm2179290pab.14.2015.05.22.06.09.11
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 22 May 2015 06:09:12 -0700 (PDT)
-Message-ID: <555F2A75.7090207@mvista.com>
-Date: Fri, 22 May 2015 06:09:09 -0700
-From: akuster <akuster@mvista.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FB47E00974
+	for <yocto@yoctoproject.org>; Fri, 22 May 2015 06:34:30 -0700 (PDT)
+Received: by igbhj9 with SMTP id hj9so36318275igb.1
+	for <yocto@yoctoproject.org>; Fri, 22 May 2015 06:34:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=pWboKroBFIImLaCyQwrvSfPTkifZLUef78XkFpQkVLg=;
+	b=rOl5D2qNniihkVjjLVBZ7mPPlgVk1JysIWrYSjQynZh5oR1tEZliewExVD6tCfR/6I
+	LORlXIZQlmCddbcMZxBhTvAxnjBvfmFUJk7P02pd/2wC4OtiUZlTB1wJp2KXxmpP36Fn
+	2rEd6aOQ5B7DjnoCbeowtep7OyOPjsC59REc0HmnSMbdNHQygRb9KbYyCyZBBmHKUHG9
+	S3iLruum2cXzP90FP04b4Xm6Zs1jiWPUKzrPnphejO80elZWF6ix09cQCse2yrkMUlMe
+	sSIb/7ewNqRvWMs8VctFB/0muj2KN87RVptDMOTrB/oQEtGnGWnEZ2jP29nAJQYEa4G1
+	9+AQ==
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	"Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
-Subject: Yocto compliance
+X-Received: by 10.107.15.149 with SMTP id 21mr5644687iop.44.1432301669449;
+	Fri, 22 May 2015 06:34:29 -0700 (PDT)
+Received: by 10.36.73.71 with HTTP; Fri, 22 May 2015 06:34:29 -0700 (PDT)
+Date: Fri, 22 May 2015 09:34:29 -0400
+Message-ID: <CADu_VSY4d0Q-gtJq4JjbY9u1Rxx+Qvubg1_QBW6O=E3B2nmt+A@mail.gmail.com>
+From: Matthew Karas <mkarascybi@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Configuring dropbear ssh
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,14 +54,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 May 2015 13:09:17 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 22 May 2015 13:34:31 -0000
+Content-Type: text/plain; charset=UTF-8
 
+I've tried googling and searching for a while about this.
 
-Hello,
+How do I set up yocto to configure dropbear ssh?
 
-shouldn't we add '1.8' as a check box?
+I'd like to prevent password access over ssh, only permitting key access.
 
-- armin
+Thanks.
 
