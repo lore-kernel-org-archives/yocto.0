@@ -1,47 +1,60 @@
-Return-Path: <J.Spriggs@raylase.de>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 173A8E009D9; Fri, 22 May 2015 04:52:59 -0700 (PDT)
+	id 563BEE009D9; Fri, 22 May 2015 05:00:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.51 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.raylase.de (mail.raylase.de [217.6.128.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AB81E00974
-	for <yocto@yoctoproject.org>; Fri, 22 May 2015 04:52:55 -0700 (PDT)
-Received: from mail.raylase.de (127.0.0.1) id hbsc9g0171s8 for
-	<yocto@yoctoproject.org>;
-	Fri, 22 May 2015 13:52:55 +0200 (envelope-from <J.Spriggs@raylase.de>)
-Received: from EXCHANGE-A.raylase.de ([192.168.1.16])
-	by mail.raylase.de (RAYLASE AG)
-	with ESMTPS (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256/256)
-	id 201505221152530045288; Fri, 22 May 2015 13:52:53 +0200
-Received: from EXCHANGE-B.raylase.de (192.168.2.12) by EXCHANGE-A.raylase.de
-	(192.168.1.16) with Microsoft SMTP Server (TLS) id 14.3.224.2;
-	Fri, 22 May 2015 13:52:52 +0200
-Received: from EXCHANGE-B.raylase.de ([fe80::3144:5b1b:13e0:ad49]) by
-	EXCHANGE-B.raylase.de ([fe80::3144:5b1b:13e0:ad49%14]) with mapi id
-	14.03.0224.002; Fri, 22 May 2015 13:52:52 +0200
-From: "Spriggs, Jim" <J.Spriggs@raylase.de>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] How to debug a custom image creation script?
-Thread-Index: AdCUaXWqeq+R2OBlQcmfkU4eoJKmCv//7RaA//+9aXA=
-Date: Fri, 22 May 2015 11:52:51 +0000
-Message-ID: <2238EDC6081C944E97E4EE915AE5CBEC52EBBB40@EXCHANGE-B.raylase.de>
-References: <2238EDC6081C944E97E4EE915AE5CBEC52EBBABA@EXCHANGE-B.raylase.de>
-	<2039964.hlcGcaqj34@peggleto-mobl.ger.corp.intel.com>
-In-Reply-To: <2039964.hlcGcaqj34@peggleto-mobl.ger.corp.intel.com>
-Accept-Language: en-GB, de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.2.104]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wg0-f51.google.com (mail-wg0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3878E00974
+	for <yocto@yoctoproject.org>; Fri, 22 May 2015 05:00:29 -0700 (PDT)
+Received: by wgez8 with SMTP id z8so15717775wge.0
+	for <yocto@yoctoproject.org>; Fri, 22 May 2015 05:00:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:content-transfer-encoding
+	:in-reply-to:user-agent;
+	bh=GfrdhPB7rciHwwgdoUxKFPX3WVX3bbbp2z78kOCXAOI=;
+	b=rd7G0scft1vhr2frFIIjuktHt7BKNFbpbCbn8hT8i4SD+Ow9ftznxpkv40iRl3mH1z
+	JAj+rrXWa78WqFCvC+S+gVF0lmuo2x4ErEnpLkaY0nfjWLNJkCz7bYsU7NCXjIleKfzS
+	rotLmXakvFey9iD/GnMVr/tW5rESI4K73uZucQHUl/lN9gPeg7PX1sr7GSPiiVqRO9he
+	fuOOBeqkBufmWnPri29ep4XNx76/zHz8Q+7d5Tr8z+jrs6aGXCLCPTGBprlhB63KJjpB
+	xef4SDNxqmp5Rx6hJfY76LKQRg14dJ1OurW64Do0aCABNUKS5Qi6XR5gImHqeTLLjrcz
+	6x5Q==
+X-Received: by 10.194.189.4 with SMTP id ge4mr14125870wjc.111.1432296028697;
+	Fri, 22 May 2015 05:00:28 -0700 (PDT)
+Received: from localhost (ip-86-49-34-37.net.upcbroadband.cz. [86.49.34.37])
+	by mx.google.com with ESMTPSA id ex2sm2844790wjd.28.2015.05.22.05.00.27
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 22 May 2015 05:00:27 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Fri, 22 May 2015 14:00:50 +0200
+To: yocto yocto <yoctomailinglist@gmail.com>
+Message-ID: <20150522120050.GD2376@jama>
+References: <CACTu1LijXDjHx-1065KrogZgyLTCSPur3dC4sbA6Qq1pkDz0Wg@mail.gmail.com>
+	<2493502.gGu5ytCTqB@peggleto-mobl.ger.corp.intel.com>
+	<20150522111758.GA2376@jama>
+	<CACTu1Li_MZA+M3D+Y72ODut60+Uhz4Xvp3w_zFB3DcXfjg5Nug@mail.gmail.com>
 MIME-Version: 1.0
-X-Mlf-Version: 8.0.7.3275
-X-Mlf-UniqueId: o201505221152530045288
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>
-Subject: Re: How to debug a custom image creation script?
+In-Reply-To: <CACTu1Li_MZA+M3D+Y72ODut60+Uhz4Xvp3w_zFB3DcXfjg5Nug@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
+Subject: Re: How to enable php5 (php_5.5.24.bb) support for postgresql
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,116 +66,196 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 May 2015 11:52:59 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Fri, 22 May 2015 12:00:34 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Paul,
-Rodger, thanks.
+On Fri, May 22, 2015 at 01:44:20PM +0200, yocto yocto wrote:
+> I set BBCLASSEXTEND =3D "native" active again. My php_5.5.24.bbappend loo=
+ks
+> like this (just one line):
+>=20
+> PACKAGECONFIG_append_class-native =3D " pgsql"
 
-Strangely, log.do_rootfs says:
+Do you really want to add it for native or target version?
 
-        NOTE: The image creation groups are: [['ext3', 'tar'], ['sdcard']]
-and
-        NOTE: Running image creation script for  sdcard:   .../tmp/work/mym=
-achine-poky-linux-gnuabi/my-image/1.0-r0/temp/create_image.sdcard ...
-and
-        NOTE: Creating symlinks for  sdcard image ...
+>=20
+> However, the error still persists, nothing changed:
+>=20
+> ---------------------------------
+> ERROR: Nothing PROVIDES 'postgresql-native' (but /recipes-devtools/php/
+> php_5.5.24.bb DEPENDS on or otherwise requires it). Close matches:
+>   postgresql
+>   strace-native
+>   popt-native
+> NOTE: Runtime target 'php' is unbuildable, removing...
+> Missing or unbuildable dependency chain was: ['php', 'php-native',
+> 'postgresql-native']
+> ERROR: Required build target 'myImage-image' has no buildable providers.
+> Missing or unbuildable dependency chain was: ['myImage-image', 'php',
+> 'php-native', 'postgresql-native']
+>=20
+> Summary: There were 2 ERROR messages shown, returning a non-zero exit cod=
+e.
+> ---------------------------------
+>=20
+> When changing php_5.5.24.bbappend to
+>=20
+> #PACKAGECONFIG_append_class-native =3D " pgsql"
+>=20
+> everything compiles but of course the support for pgsql is missing. I fou=
+nd
+> this: https://www.yoctoproject.org/irc/%23yocto.2013-12-17.log.html But
+> this discussion is not helping me (search for postgresql-native)
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+> 2015-05-22 13:17 GMT+02:00 Martin Jansa <martin.jansa@gmail.com>:
+>=20
+> > On Fri, May 22, 2015 at 09:51:31AM +0100, Paul Eggleton wrote:
+> > > On Thursday 21 May 2015 23:21:53 yocto yocto wrote:
+> > > > Good day,
+> > > >
+> > > >
+> > > > I am working with the intel Edison. Therefore I am using the
+> > > > meta-openembedded =E2=80=9Cdaisy=E2=80=9D branch (have a look here:
+> > > > https://github.com/openembedded/meta-openembedded/branches/stale).
+> > Using
+> > > > another branch causes bitbake errors. Beside this, =E2=80=9Cdaisy=
+=E2=80=9D is
+> > recommended
+> > > > for the intel Edison within the official intel documents.
+> > > >
+> > > >
+> > > > Nevertheless I added apache2_2.4.9.bb and postgresql_9.2.4.bb to my
+> > custom
+> > > > image. However, php5 support is missing. Therefore I downloaded the=
+ php
+> > > > recipe from the current master branch and put it in my custom layer:
+> > > >
+> > > >
+> > > >
+> > https://github.com/openembedded/meta-openembedded/blob/b070899000162e7f=
+4baf7
+> > > > 5e2427216b39c641a12/meta-oe/recipes-devtools/php/
+> > > >
+> > > >
+> > > > <
+> > https://github.com/openembedded/meta-openembedded/blob/b070899000162e7f=
+4baf
+> > > > 75e2427216b39c641a12/meta-oe/recipes-devtools/php/>
+> > > >
+> > > > Furthermore I created =E2=80=9Cphp_5.5.24.bbappend=E2=80=9D with th=
+e following content
+> > in
+> > > > the same folder:
+> > > >
+> > > >
+> > > > PACKAGECONFIG_append +=3D "apache2"
+> > > >
+> > > > PACKAGECONFIG_append +=3D "pgsql"
+> > > >
+> > > >
+> > > > bitbake php results in the following errors:
+> > > >
+> > > >
+> > > > ERROR: Nothing PROVIDES 'uw-imap' [=E2=80=A6] but php/php_5.5.24.bb=
+ DEPENDS
+> > on or
+> > > > otherwise requires it)
+> > > >
+> > > > ERROR: Required build target 'php' has no buildable providers.
+> > > >
+> > > > Missing or unbuildable dependency chain was: ['php', 'uw-imap']
+> > > >
+> > > >
+> > > > So I removed the config =E2=80=9CPACKAGECONFIG[imap]=E2=80=9D from =
+php_5.5.24.bb.
+> > Result:
+> > > >
+> > > >
+> > > > ERROR: Nothing PROVIDES 'postgresql-native' [=E2=80=A6] but /php/ph=
+p_5.5.24.bb
+> > > > DEPENDS on or otherwise requires it). Close matches:
+> > > >
+> > > >   postgresql
+> > > >
+> > > >   strace-native
+> > > >
+> > > >   popt-native
+> > > >
+> > > > ERROR: Required build target 'php' has no buildable providers.
+> > > >
+> > > > Missing or unbuildable dependency chain was: ['php', 'php-native',
+> > > > 'postgresql-native']
+> > > >
+> > > >
+> > > > Google does not show much for postgresql-native related to yocto.
+> > "bitbake
+> > > > postgresql" is running fine... If I remove BBCLASSEXTEND =3D "nativ=
+e"
+> > from
+> > > > the recipe I get the following result:
+> > > >
+> > > >
+> > > > ERROR: This autoconf log indicates errors, it looked at host include
+> > and/or
+> > > > library paths while determining system capabilities.
+> > > >
+> > > > Rerun configure task after fixing this. The path was
+> > > > "php/5.5.24-r0/php-5.5.24'
+> > > >
+> > > > ERROR: Function failed: do_qa_configure
+> > > >
+> > > > ERROR: Logfile of failure stored in:
+> > > > "php/5.5.24-r0/temp/log.do_configure.22410
+> > > >
+> > > > ERROR: Task 5 (php/php_5.5.24.bb, do_configure) failed with exit co=
+de
+> > '1'
+> > > >
+> > > >
+> > > >
+> > > >
+> > > > I appreciate any advice on how to set up php5 for postgresql.
+> > >
+> > > Change your PACKAGECONFIG_append lines in your bbappend to use
+> > > PACKAGECONFIG_append_class-native instead and you should be able to
+> > progress.
+> > > Also, you very likely shouldn't be removing the BBCLASSEXTEND.
+> >
+> > And add leading space in append instead of +=3D (_append + +=3D always =
+looks
+> > wrong as the only function of +=3D is to add the leading space), change=
+ it
+> > to:
+> >
+> > PACKAGECONFIG_append =3D " pgsql"
+> >
+> > >
+> > > Cheers,
+> > > Paul
+> > >
+> > > --
+> > >
+> > > Paul Eggleton
+> > > Intel Open Source Technology Centre
+> > > --
+> > > _______________________________________________
+> > > yocto mailing list
+> > > yocto@yoctoproject.org
+> > > https://lists.yoctoproject.org/listinfo/yocto
+> >
+> > --
+> > Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+> >
 
-But nothing between the last two, as if the output from "create_image.sdcar=
-d" is not being captured after all.
-
-That script is present, and appears to contain everything from my bbclass.
-The xxxx.rootfs.sdcard is being created in deploy/images, albeit with bogus=
- contents (which is why I want to debug the script), so I have every reason=
- to think that img_creation_func() is indeed being called.
-However, not even a simple "echo" at the start of img_creation_func() leave=
-s anything visible in log.do_rootfs.
-
-I guess either I'm still doing something wrong, or the problem with "bbnote=
-", etc., is not just confined to the UI.
-
-I'm using dizzy, btw.
-
-Greets,
---
-jim
-
------Urspr=FCngliche Nachricht-----
-Von: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
-Gesendet: Freitag, 22. Mai 2015 11:22
-An: Spriggs, Jim
-Cc: yocto@yoctoproject.org
-Betreff: Re: [yocto] How to debug a custom image creation script?
-
-Hi Jim,
-
-On Friday 22 May 2015 08:47:23 Spriggs, Jim wrote:
-> I'd like to have my custom layer generate an sdcard image, so I've
-> implemented a classes/image_types_xxxxx.bbclass. This contains,
-> amongst other things, the (bash) function generate_xxxxx_sdcard().
-> Being a na=EFve n00b, I assumed that I could just scatter "bbnote"s,
-> "echo"s, or even "set -x" around inside the function to my heart's
-> content, and would be able to see the output "somewhere".
-> Trouble is, I can't find it anywhere!
->
-> So what is the best/approved/obvious way to get debug traces out of a
-> bbclass function?
->
-> If I am already doing the Right Thing, where should I be looking for
-> the output?
-
-You should see output printed here in log.do_rootfs for the image you are b=
-uilding. In case you're unaware, you can find this in the directory pointed=
- to by the T variable for the recipe, the following command will show this =
-to you:
-
-bitbake -e your-imagename | grep ^T=3D
-
-As an aside, we do want to change the bbwarn/bbnote/bberror etc. shell func=
-tions to output to the UI just like the python equivalents do, it's a known=
- issue that they do not. There's a bug open for that (assigned to me as it =
-happens):
-
-  https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5275
-
-I should really get that one sorted out for the next release.
-
-Cheers,
-Paul
-
---
-
-Paul Eggleton
-Intel Open Source Technology Centre
-
-________________________________
-
-RAYLASE AG
-Argelsrieder Feld 2+4
-82234 Wessling
-Germany
-Tel.: +49-(0)8153/88 98-0
-Fax: +49-(0)8153/88 98-10
-http://www.raylase.de
-
-District Court Munich, HRB 131450
-
-Board: Peter von Jan (CEO)
-
-Supervisory Board: Dr. Ulrich Lohmann (Chairman)
-
-
-Diese E-Mail enth=E4lt vertrauliche und/oder rechtlich gesch=FCtzte Informa=
-tionen. Wenn Sie nicht der richtige Adressat sind oder diese E-Mail irrt=FC=
-mlich erhalten haben, informieren Sie bitte sofort den Absender und vernich=
-ten Sie diese Mail. Das unerlaubte Kopieren sowie die unbefugte Weitergabe =
-dieser Mail ist nicht gestattet.
-
-This e-mail may contain confidential and/or privileged information. If you =
-are not the intended recipient (or have received this e-mail in error) plea=
-se notify the sender immediately and destroy this e-mail. Any unauthorized =
-copying, disclosure or distribution of the material in this e-mail is stric=
-tly forbidden.
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
