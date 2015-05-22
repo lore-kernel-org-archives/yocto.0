@@ -1,47 +1,58 @@
-Return-Path: <vomegaz@gmail.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ED85DE009C8; Fri, 22 May 2015 03:04:03 -0700 (PDT)
+	id ACFF1E009C8; Fri, 22 May 2015 04:17:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.212.176 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 138B0E00961
-	for <yocto@yoctoproject.org>; Fri, 22 May 2015 03:04:01 -0700 (PDT)
-Received: by wizk4 with SMTP id k4so42136482wiz.1
-	for <yocto@yoctoproject.org>; Fri, 22 May 2015 03:04:00 -0700 (PDT)
+Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3784E00961
+	for <yocto@yoctoproject.org>; Fri, 22 May 2015 04:17:38 -0700 (PDT)
+Received: by wghq2 with SMTP id q2so14674536wgh.1
+	for <yocto@yoctoproject.org>; Fri, 22 May 2015 04:17:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id;
-	bh=WK0NZs+JvWdSU4/nC1F1YmvFrULLe5hUvHHk87wtE6I=;
-	b=Na4e5GQkfanX6cen9WQBvWc0LPmvhf1XTS+46uRztiW8Nmb/8/QdbsOUQmYwU26L46
-	eYs8/a0QvcuNqEpDsESJdh3gvDT9MxdgbRYYg1u2WQvA449ZwAo9KcnAUQVWOLCECaaB
-	MuqVkPNuknUbXhNtm6sgB/TLzKf4FDs++CN9tB3rPfDbEqs70SgWOLcOQ+sHX51/TzIp
-	4XIz9VHWjGY+uIuMrG0JrmJedc2HzGP53gSS+tG5P6zPhYWYTs5qduF7Z4pzWYku0Z/3
-	ZnVr7YJsdlolJ31ChjmsUFgAWkICKlSkM7edeG4xUAQUZjmSByognAPQcCOFI3bHjw3l
-	0BPg==
-X-Received: by 10.180.210.235 with SMTP id mx11mr5699099wic.95.1432289040232; 
-	Fri, 22 May 2015 03:04:00 -0700 (PDT)
-Received: from X220.tupi.fr ([37.164.121.82])
-	by mx.google.com with ESMTPSA id gy8sm6747847wib.13.2015.05.22.03.03.58
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:content-transfer-encoding
+	:in-reply-to:user-agent;
+	bh=G7P4sSl2kraNOZ8srJmFzwM6e1RcvwCbHVcMnvAzBBg=;
+	b=xwMIhqGBQoF4k5zGFkehaT/8qGq9ki9ZAPd5L6zSjgsSVNn5PC8BV3PZCn6hNgEBx5
+	VglcFdSqorHZrejEQd2tHrE2pM2Uio8oOkHS6k5BqVdjwu4kTD5uMJ3aixdIqijryBh7
+	oSbgNoGhNu32geu81S2PODdcGZDolYGMKKghDznEBzL47yZTPRyx6mjiko95aIQo9V3N
+	kQ8ZjjYhDjSaWTsap7Su0UoIqpSTVaT/1ksxXPr9tdcyTThpntP1KmKnAmdoykpmLxJa
+	QnZfpMVW8nOawYyEFaJTssk2tAUCLowckHAk0Yz3rWo0lEoQ7P7ZG2dYbpw9m5pBQAqz
+	WC/w==
+X-Received: by 10.180.77.8 with SMTP id o8mr6679715wiw.74.1432293457193;
+	Fri, 22 May 2015 04:17:37 -0700 (PDT)
+Received: from localhost (ip-86-49-34-37.net.upcbroadband.cz. [86.49.34.37])
+	by mx.google.com with ESMTPSA id fs9sm2676419wjc.34.2015.05.22.04.17.36
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 22 May 2015 03:03:59 -0700 (PDT)
-Sender: Thomas PERROT <vomegaz@gmail.com>
-From: Thomas Perrot <thomas.perrot@tupi.fr>
-To: yocto@yoctoproject.org
-Date: Fri, 22 May 2015 12:03:55 +0200
-Message-Id: <1432289035-762-1-git-send-email-thomas.perrot@tupi.fr>
-X-Mailer: git-send-email 1.7.10.4
-Subject: [meta-raspberrypi][PATCH] If SERIAL_CONSOLE is already define by another layer, this value may not be good.
+	Fri, 22 May 2015 04:17:36 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Fri, 22 May 2015 13:17:58 +0200
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Message-ID: <20150522111758.GA2376@jama>
+References: <CACTu1LijXDjHx-1065KrogZgyLTCSPur3dC4sbA6Qq1pkDz0Wg@mail.gmail.com>
+	<2493502.gGu5ytCTqB@peggleto-mobl.ger.corp.intel.com>
+MIME-Version: 1.0
+In-Reply-To: <2493502.gGu5ytCTqB@peggleto-mobl.ger.corp.intel.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: How to enable php5 (php_5.5.24.bb) support for postgresql
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,27 +64,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 May 2015 10:04:04 -0000
+X-List-Received-Date: Fri, 22 May 2015 11:17:40 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Thomas Perrot <thomas.perrot@tupi.fr>
----
- conf/machine/include/rpi-base.inc |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Fri, May 22, 2015 at 09:51:31AM +0100, Paul Eggleton wrote:
+> On Thursday 21 May 2015 23:21:53 yocto yocto wrote:
+> > Good day,
+> >=20
+> >=20
+> > I am working with the intel Edison. Therefore I am using the
+> > meta-openembedded =E2=80=9Cdaisy=E2=80=9D branch (have a look here:
+> > https://github.com/openembedded/meta-openembedded/branches/stale). Using
+> > another branch causes bitbake errors. Beside this, =E2=80=9Cdaisy=E2=80=
+=9D is recommended
+> > for the intel Edison within the official intel documents.
+> >=20
+> >=20
+> > Nevertheless I added apache2_2.4.9.bb and postgresql_9.2.4.bb to my cus=
+tom
+> > image. However, php5 support is missing. Therefore I downloaded the php
+> > recipe from the current master branch and put it in my custom layer:
+> >=20
+> >=20
+> > https://github.com/openembedded/meta-openembedded/blob/b070899000162e7f=
+4baf7
+> > 5e2427216b39c641a12/meta-oe/recipes-devtools/php/
+> >=20
+> >=20
+> > <https://github.com/openembedded/meta-openembedded/blob/b070899000162e7=
+f4baf
+> > 75e2427216b39c641a12/meta-oe/recipes-devtools/php/>
+> >=20
+> > Furthermore I created =E2=80=9Cphp_5.5.24.bbappend=E2=80=9D with the fo=
+llowing content in
+> > the same folder:
+> >=20
+> >=20
+> > PACKAGECONFIG_append +=3D "apache2"
+> >=20
+> > PACKAGECONFIG_append +=3D "pgsql"
+> >=20
+> >=20
+> > bitbake php results in the following errors:
+> >=20
+> >=20
+> > ERROR: Nothing PROVIDES 'uw-imap' [=E2=80=A6] but php/php_5.5.24.bb DEP=
+ENDS on or
+> > otherwise requires it)
+> >=20
+> > ERROR: Required build target 'php' has no buildable providers.
+> >=20
+> > Missing or unbuildable dependency chain was: ['php', 'uw-imap']
+> >=20
+> >=20
+> > So I removed the config =E2=80=9CPACKAGECONFIG[imap]=E2=80=9D from php_=
+5.5.24.bb.  Result:
+> >=20
+> >=20
+> > ERROR: Nothing PROVIDES 'postgresql-native' [=E2=80=A6] but /php/php_5.=
+5.24.bb
+> > DEPENDS on or otherwise requires it). Close matches:
+> >=20
+> >   postgresql
+> >=20
+> >   strace-native
+> >=20
+> >   popt-native
+> >=20
+> > ERROR: Required build target 'php' has no buildable providers.
+> >=20
+> > Missing or unbuildable dependency chain was: ['php', 'php-native',
+> > 'postgresql-native']
+> >=20
+> >=20
+> > Google does not show much for postgresql-native related to yocto. "bitb=
+ake
+> > postgresql" is running fine... If I remove BBCLASSEXTEND =3D "native" f=
+rom
+> > the recipe I get the following result:
+> >=20
+> >=20
+> > ERROR: This autoconf log indicates errors, it looked at host include an=
+d/or
+> > library paths while determining system capabilities.
+> >=20
+> > Rerun configure task after fixing this. The path was
+> > "php/5.5.24-r0/php-5.5.24'
+> >=20
+> > ERROR: Function failed: do_qa_configure
+> >=20
+> > ERROR: Logfile of failure stored in:
+> > "php/5.5.24-r0/temp/log.do_configure.22410
+> >=20
+> > ERROR: Task 5 (php/php_5.5.24.bb, do_configure) failed with exit code '=
+1'
+> >=20
+> >=20
+> >=20
+> >=20
+> > I appreciate any advice on how to set up php5 for postgresql.
+>=20
+> Change your PACKAGECONFIG_append lines in your bbappend to use=20
+> PACKAGECONFIG_append_class-native instead and you should be able to progr=
+ess.=20
+> Also, you very likely shouldn't be removing the BBCLASSEXTEND.
 
-diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
-index a26803a..1dda207 100644
---- a/conf/machine/include/rpi-base.inc
-+++ b/conf/machine/include/rpi-base.inc
-@@ -7,7 +7,7 @@ include conf/machine/include/soc-family.inc
- 
- IMAGE_FSTYPES ?= "tar.bz2 ext3 rpi-sdimg"
- 
--SERIAL_CONSOLE ?= "115200 ttyAMA0"
-+SERIAL_CONSOLE = "115200 ttyAMA0"
- 
- XSERVER = " \
-     xserver-xorg \
--- 
-1.7.10.4
+And add leading space in append instead of +=3D (_append + +=3D always looks
+wrong as the only function of +=3D is to add the leading space), change it
+to:
 
+PACKAGECONFIG_append =3D " pgsql"
+
+>=20
+> Cheers,
+> Paul
+>=20
+> --=20
+>=20
+> Paul Eggleton
+> Intel Open Source Technology Centre
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
