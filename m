@@ -1,43 +1,37 @@
-Return-Path: <haris.okanovic@ni.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B5909E009C8; Thu, 21 May 2015 16:51:31 -0700 (PDT)
+	id 17FF4E009D9; Fri, 22 May 2015 01:43:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [130.164.80.23 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 1421 seconds by postgrey-1.32 at yocto-www;
-	Thu, 21 May 2015 16:51:29 PDT
-Received: from ni.com (skprod2.natinst.com [130.164.80.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8894DE009B6
-	for <yocto@yoctoproject.org>; Thu, 21 May 2015 16:51:29 -0700 (PDT)
-Received: from us-aus-mgwout2.amer.corp.natinst.com (nb-snip2-1338.natinst.com
-	[130.164.19.135])
-	by us-aus-skprod2.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
-	t4LNRjNK025197; Thu, 21 May 2015 18:27:45 -0500
-Received: from harisdt.amer.corp.natinst.com ([130.164.14.198])
-	by us-aus-mgwout2.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
-	HF1218) with ESMTP id 2015052118274561-362879 ;
-	Thu, 21 May 2015 18:27:45 -0500 
-From: Haris Okanovic <haris.okanovic@ni.com>
-To: yocto@yoctoproject.org, opkg-devel@googlegroups.com
-Date: Thu, 21 May 2015 18:27:30 -0500
-Message-Id: <1432250850-25266-1-git-send-email-haris.okanovic@ni.com>
-X-Mailer: git-send-email 2.2.2
-X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut2/AUS/H/NIC(Release
-	8.5.3FP6 HF1218|December 12, 2014) at 05/21/2015 06:27:45 PM,
-	Serialize by Router on US-AUS-MGWOut2/AUS/H/NIC(Release 8.5.3FP6
-	HF1218|December 12, 2014) at 05/21/2015 06:27:45 PM,
-	Serialize complete at 05/21/2015 06:27:45 PM
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
-	definitions=2015-05-21_08:, , signatures=0
-Subject: [PATCH] opkg-utils: Fix crash on dependency error
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7136DE00974
+	for <yocto@yoctoproject.org>; Fri, 22 May 2015 01:43:50 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga103.fm.intel.com with ESMTP; 22 May 2015 01:43:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.13,474,1427785200"; d="scan'208";a="575327213"
+Received: from gfois-mobl2.ger.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.27.18])
+	by orsmga003.jf.intel.com with ESMTP; 22 May 2015 01:43:41 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: George Nita <george.nita@enea.com>
+Date: Fri, 22 May 2015 09:43:40 +0100
+Message-ID: <1502347.ZKKJbWNJ0A@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.7 (Linux/3.19.7-200.fc21.x86_64; KDE/4.14.7; x86_64; ; )
+In-Reply-To: <555D9B06.3050603@enea.com>
+References: <555D9B06.3050603@enea.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: smart 1.4.1 unsolved problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,44 +43,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 May 2015 23:51:31 -0000
+X-List-Received-Date: Fri, 22 May 2015 08:43:52 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Fix crash on exception in opkg-show-deps when generating an
-'unsatisfied dependency' error. process_dep() function was
-referencing a missing parameter `pkg`.
+Hi George,
 
-Signed-off-by: Haris Okanovic <haris.okanovic@ni.com>
-Reviewed-by: Alejandro del Castillo <alejandro.delcastillo@ni.com>
-Acked-by: Brad Mouring <brad.mouring@ni.com>
-Cc: Alejandro del Castillo <alejandro.delcastillo@ni.com>
-Cc: Paul Barker <paul@paulbarker.me.uk>
----
- opkg-show-deps | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On Thursday 21 May 2015 11:44:54 George Nita wrote:
+> I've reproduced the https://bugs.launchpad.net/smart/+bug/1238492 issue
+> 
+> branch: dizzy
+> target: p2041rdb
+> 
+> Did any one hit this too?
 
-diff --git a/opkg-show-deps b/opkg-show-deps
-index 3c3be6a..4694579 100755
---- a/opkg-show-deps
-+++ b/opkg-show-deps
-@@ -58,7 +58,7 @@ def find_package(name):
-           return provider_hash[name]
-      return None
- 
--def process_dep(dep):
-+def process_dep(pkg, dep):
-      # Add a provider of the given dependency to the list of required packages
-      # unless a provider is already present in this list.
-      dep = re.sub("\s*\(.*\)", "", dep)
-@@ -83,7 +83,7 @@ def recurse(pkg):
-      if pkg.depends:
-           deps = split_list(pkg.depends)
-           for dep in deps:
--               process_dep(dep)
-+               process_dep(pkg, dep)
- 
- for root in remaining_args:
-      pkgs = find_package(root)
+Did you enable runtime package management (i.e., is "package-management" in 
+IMAGE_FEATURES (or indirectly via EXTRA_IMAGE_FEATURES)?) If you're not sure, 
+you can use bitbake -e to check.
+
+If it isn't enabled, that would explain the behaviour because smart/rpm think 
+that no packages are installed because there is no package database in the 
+image.
+
+Cheers,
+Paul
+
 -- 
-2.2.2
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
