@@ -1,49 +1,57 @@
-Return-Path: <patholdn@gmail.com>
+Return-Path: <ashcharles@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 68FB8E009E6; Fri, 22 May 2015 15:10:05 -0700 (PDT)
+	id 21AD3E009E6; Fri, 22 May 2015 15:25:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (patholdn[at]gmail.com)
+	mail provider *      (ashcharles[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.218.51 listed in list.dnswl.org]
+	*      [209.85.223.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f51.google.com (mail-oi0-f51.google.com
-	[209.85.218.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DD30E009CA
-	for <yocto@yoctoproject.org>; Fri, 22 May 2015 15:10:03 -0700 (PDT)
-Received: by oihb142 with SMTP id b142so23684384oih.3
-	for <yocto@yoctoproject.org>; Fri, 22 May 2015 15:10:03 -0700 (PDT)
+Received: from mail-ie0-f180.google.com (mail-ie0-f180.google.com
+	[209.85.223.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDB86E009CA
+	for <yocto@yoctoproject.org>; Fri, 22 May 2015 15:25:02 -0700 (PDT)
+Received: by ieczm2 with SMTP id zm2so40972244iec.1
+	for <yocto@yoctoproject.org>; Fri, 22 May 2015 15:25:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Ge3cLPUg6cuCKiuyHmHbKMMtHrhYKDxFBXHcbTqtgLc=;
-	b=d+0XTBL2aFjNb8NodQY+kaDGiDxoXfHb61J8tWgBe35C07PFEA9qK9y80r62c2dKFQ
-	Q1QtA3XP/hhdXCyktPLfxL447VpWvThRS0znlMiGe/qsXGzpkhvh8yxbO8A/sAIH9fkc
-	RnCDRQBpL4wZ5CCMOFkU2lZ+SLAIfE4Swd1QKS/pBiNKaGDqFc5rQo41YAnPsEEHwWDQ
-	cojozxIYfCR1Wcor8igzOfHi93gfRYJiM67HQIO3u03YcVWTL2us0JP54Gc+uiSEElB2
-	H5S2QZtX0Sy9Gk9uPkaFlPBpUATlypNnGfWDTbL2doPZJpV09xKS3ihdu6IErx5jVu1U
-	nsjg==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=7FMBggyiqBhSDyRBR/ZdKEUDLCJh4moyUvuTijqyPbs=;
+	b=ZhYThMritTb7XuzhTONIR8L8fJBqLnHf76uoLXwgAZK1q4vFfJzhRGz6zMh5ddt9+7
+	9VBGImnPbs53qh6gP0IDWlEweDCUy6TGHCvLZn+tUBguvARGvhqGpDf6uaBz638IG1Dt
+	GU/wLXq7nq1iCQSsXdLkucXp6osiFehV0/eqdV3S4dirG2apYhDMc1hr79TizaSSnNXt
+	eFIvdXKl8punxnpK+EDKq7cweMfB1JTfJkHX/Rp/bXiVL+Qysbdy8jRIqwm9uk6Bpb6L
+	btBasNTJiB0HcMoxEzrvQlH6n2J/eWB39Y2TK6QctbejG15/cgl6w8ku72ZymYxjHTEG
+	6v4Q==
+X-Received: by 10.50.176.228 with SMTP id cl4mr8627655igc.2.1432333500890;
+	Fri, 22 May 2015 15:25:00 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.202.219.195 with SMTP id s186mr7897502oig.25.1432332603136; 
-	Fri, 22 May 2015 15:10:03 -0700 (PDT)
-Received: by 10.202.197.144 with HTTP; Fri, 22 May 2015 15:10:03 -0700 (PDT)
-Date: Fri, 22 May 2015 18:10:03 -0400
-Message-ID: <CANKYLMECkzr5_TKFAPcUt99ppT=+L54-s1VTSRYBLojV+7hMPg@mail.gmail.com>
-From: Patricia Holden <patholdn@gmail.com>
-To: yocto@yoctoproject.org
-Subject: bitbake core-image-minimal failure
+Received: by 10.107.138.134 with HTTP; Fri, 22 May 2015 15:24:30 -0700 (PDT)
+In-Reply-To: <55436.10.254.91.149.1432012382.squirrel@linux.intel.com>
+References: <CAK8F28nH13quAv_8KqfEDnyua99mBYvLnBYej0ugC73dP5LX+A@mail.gmail.com>
+	<555407B9.7040105@windriver.com>
+	<CAK8F28=iqLWycPRJtvbJ3cjHd04e-XvrQhqHQ0iC7xZ6ADrASA@mail.gmail.com>
+	<55555FE4.7060902@windriver.com>
+	<CAK8F28nesmgbMQhmcdPeiXbmiMmttnjmqP7_3_wQyDN7OsKGxQ@mail.gmail.com>
+	<55436.10.254.91.149.1432012382.squirrel@linux.intel.com>
+From: Ash Charles <ashcharles@gmail.com>
+Date: Fri, 22 May 2015 15:24:30 -0700
+Message-ID: <CAK8F28nzBnuc+kSA6HTBVO_y1qd4HUafPSuo0oeOsUidvH3t6w@mail.gmail.com>
+To: randy.e.witt@linux.intel.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Using smart within an SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,47 +63,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 May 2015 22:10:05 -0000
-Content-Type: multipart/alternative; boundary=001a113d29da02a1360516b2ecee
-
---001a113d29da02a1360516b2ecee
+X-List-Received-Date: Fri, 22 May 2015 22:25:06 -0000
 Content-Type: text/plain; charset=UTF-8
 
-I'm trying to create a barebones linux for a demo board based on Intel
-Atom.  I've got a kernel patch to add to it, so I created a BSP for Yocto
-linux, gave it the config & patch and now I want to create a live image to
-boot via USB stick onto the target board.  I got a basic bitbake done with
-no problems.  I tried to run Qemu and got "missing movbe".  So I dropped
-that course of action since I've got time limitations to get this project
-done.   I tried to get SDK going, but ran into compile error for GLIBC.  So
-I added the "IMAGE_INSTALL_append = " glibc-staticdev", got tons of
-errors.  So I dropped that course of action too.  I read in the manual to
-use IMAGE_FSTYPE = "live" to build a bootable image, so I'm doing
-that now.  Once I've got this demo part done, I need to add an app for the
-real target so I really would like to get Qemu/SDK going.
+On Mon, May 18, 2015 at 10:13 PM,  <randy.e.witt@linux.intel.com> wrote:
+> The idea is that an sdk will comprise of a manifest(contains list of
+> sstate items in the sdk) and some location that contains the items in the
+> manifest. So to update the sdk you would run a command and give it the
+> location of the manifest and sstate, and it would make your sdk match what
+> is in the manifest.
+>
+> So the sstate could be hosted on a webserver, nfs, locally, etc.
+Thanks Randy.
 
-Any suggestions?
+I stepped through the process of making an extensible SDK based on my
+image.  Is the conf/locked-sigs.inc file the manifest you mentioned?
 
-Thanks!
+Unfortunately, devtool is failing for me ("ImportError: No module
+named site"...looks like the SDK is missing a python library?) but it
+is great to at least be able to build it and get a sense of the
+contents.
 
---001a113d29da02a1360516b2ecee
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+I'm uploading my sstate to a server so theoretically updating would be
+a process of grabbing items from this server cache into the
+'sstate-cache' directory within the SDK?  If I needed a new package
+not originally included in the SDK, I would do something like devtool
+get opencv-dev?
 
-<div dir=3D"ltr">I&#39;m trying to create a barebones linux for a demo boar=
-d based on Intel Atom.=C2=A0 I&#39;ve got a kernel patch to add to it, so I=
- created a BSP for Yocto linux, gave it the config &amp; patch and now I wa=
-nt to create a live image to boot via USB stick onto the target board.=C2=
-=A0 I got a basic bitbake done with no problems.=C2=A0 I tried to run Qemu =
-and got &quot;missing movbe&quot;.=C2=A0 So I dropped that course of action=
- since I&#39;ve got time limitations to get this project done.=C2=A0=C2=A0=
-=C2=A0I tried to get SDK going, but ran into compile error for GLIBC.=C2=A0=
- So I added the &quot;IMAGE_INSTALL_append =3D &quot; glibc-staticdev&quot;=
-, got tons of errors.=C2=A0 So I dropped that course of action too.=C2=A0 I=
- read in the manual to use IMAGE_FSTYPE =3D &quot;live&quot; to build a boo=
-table image, so I&#39;m doing that=C2=A0now.=C2=A0 Once I&#39;ve got this d=
-emo part done, I need to add an app for the real target so I really would l=
-ike to get Qemu/SDK going.<div><br></div><div>Any suggestions?</div><div><b=
-r></div><div>Thanks!</div></div>
+Thanks for any insights.  I realize this is work-in-progress so I'm
+just looking to get a sense of how things might work.
 
---001a113d29da02a1360516b2ecee--
+--Ash
+
