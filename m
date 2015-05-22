@@ -1,50 +1,49 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <mario.goulart@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 51983E00A04; Fri, 22 May 2015 10:00:21 -0700 (PDT)
+	id 167B3E009E7; Fri, 22 May 2015 14:08:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13549E009E5
-	for <yocto@yoctoproject.org>; Fri, 22 May 2015 09:59:43 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga103.fm.intel.com with ESMTP; 22 May 2015 09:59:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,476,1427785200"; 
-	d="scan'208,217";a="714342137"
-Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
-	by fmsmga001.fm.intel.com with ESMTP; 22 May 2015 09:59:21 -0700
-Received: from orsmsx155.amr.corp.intel.com (10.22.240.21) by
-	ORSMSX109.amr.corp.intel.com (10.22.240.7) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Fri, 22 May 2015 09:59:20 -0700
-Received: from fmsmsx105.amr.corp.intel.com (10.18.124.203) by
-	ORSMSX155.amr.corp.intel.com (10.22.240.21) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Fri, 22 May 2015 09:59:20 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.169]) by
-	FMSMSX105.amr.corp.intel.com ([169.254.4.137]) with mapi id
-	14.03.0224.002; Fri, 22 May 2015 09:59:20 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Technical Team Meeting
-Thread-Index: AdCUsKSWZnOI6YNQRYeXOx8a3nj3vA==
-Date: Fri, 22 May 2015 16:59:19 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E554EDA3F@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.106]
-MIME-Version: 1.0
-Subject: Yocto Project Technical Team Meeting
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qk0-f169.google.com (mail-qk0-f169.google.com
+	[209.85.220.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10C78E009CA
+	for <yocto@yoctoproject.org>; Fri, 22 May 2015 14:08:04 -0700 (PDT)
+Received: by qkx62 with SMTP id 62so22008559qkx.3
+	for <yocto@yoctoproject.org>; Fri, 22 May 2015 14:08:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:cc:subject:date:message-id:organization;
+	bh=XK4FInWfZZQRehGVUkKpNdRVG/2gwN2Jqt0vqYNI0cs=;
+	b=nbMVtuix1MKqz2fw3Th7w+VMIauDJ3onvDmJOkz2w8wtgB4b7xoVBCRQ3cbSTEism5
+	C0KF4hSt591lWlQb5DPibNpJ2b0KDJ4oYflJfyH1/UtqDWDIooUlZPKk04G/P4ntFruA
+	4mQx66w1cydNLSiXN0OMzfy5nNvYoCDuHVo3LdTBB0cCU1sdeQZ1Bh5K79xvHH5jLThf
+	wjCa6j8e/x2iR/LEwVsf6ccsd7cq3KKlsGb6sf7i/4k67BcetcApo4NtsdhfIkm5pJVD
+	kwX+8KtHJOiNH7O+pU2omo+sBd7b67kMqGG5GAVlwxRC4PkD1DjMYpaam+vzFEp49Oug
+	aXNA==
+X-Received: by 10.140.95.204 with SMTP id i70mr13310190qge.51.1432328883555;
+	Fri, 22 May 2015 14:08:03 -0700 (PDT)
+Received: from centrium.lab.ossystems.com.br ([177.100.224.72])
+	by mx.google.com with ESMTPSA id i92sm2082466qkh.5.2015.05.22.14.08.02
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 22 May 2015 14:08:03 -0700 (PDT)
+Sender: Mario Domenech Goulart <mario.goulart@gmail.com>
+From: Mario Domenech Goulart <mario@ossystems.com.br>
+To: yocto@yoctoproject.org
+Date: Fri, 22 May 2015 18:09:41 -0300
+Message-Id: <1432328982-919-1-git-send-email-mario@ossystems.com.br>
+X-Mailer: git-send-email 2.1.4
+Organization: O.S. Systems Software LTDA.
+Cc: Mario Domenech Goulart <mario@ossystems.com.br>
+Subject: [meta-oracle-java][PATCH 1/2] oracle-jse-jdk: fix link to binaries
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,172 +55,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 May 2015 17:00:21 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E554EDA3Ffmsmsx111amrcor_"
+X-List-Received-Date: Fri, 22 May 2015 21:08:10 -0000
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E554EDA3Ffmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Remove ${D} from link targets, as it breaks native builds when we
+restore package contents from sstate cache after removing TMPDIR.
 
-All,
+Signed-off-by: Mario Domenech Goulart <mario@ossystems.com.br>
+---
+ recipes-devtools/oracle-java/oracle-jse-jdk.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Due to very few opens and team sharing being brought up during the meeting,=
- we will be moving the Yocto Project Technical Team meeting to once a month=
-, the first Tuesday of each month, at 8am Pacific time.
-
-I will start sending a reminder the Friday before the meeting that the foll=
-owing week a meeting will be held.   The hope of this reminder is to get yo=
-u to bring those items you want to discuss to the meeting.
-
-Please support the Yocto project by bringing to the meeting the items you w=
-ould like to discuss.
-
-Thanks,
-
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
+diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk.inc b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+index 54e83b8..6f13125 100644
+--- a/recipes-devtools/oracle-java/oracle-jse-jdk.inc
++++ b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+@@ -16,7 +16,7 @@ do_install_class-native() {
+     install -d -m 0755 ${D}${bindir}
+     cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE} ${D}${libdir}/
+     for prog in java javac; do
+-	( cd ${D}${bindir} && ln -sf ${D}${libdir}/${JDK_JRE}${PV}_${PV_UPDATE}/bin/$prog )
++	( cd ${D}${bindir} && ln -sf ${libdir}/${JDK_JRE}${PV}_${PV_UPDATE}/bin/$prog )
+     done
+ 
+     ( cd ${D}${libdir}/${JDK_JRE}${PV}_${PV_UPDATE}/bin ; \
+-- 
+2.1.4
 
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E554EDA3Ffmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
-s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
-40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";
-	panose-1:0 0 0 0 0 0 0 0 0 0;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">All,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Due to very few opens and team sharing being brought=
- up during the meeting, we will be moving the Yocto Project Technical Team =
-meeting to once a month, the first Tuesday of each month, at 8am Pacific ti=
-me.&nbsp;&nbsp;
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I will start sending a reminder the Friday before th=
-e meeting that the following week a meeting will be held.&nbsp;&nbsp; The h=
-ope of this reminder is to get you to bring those items you want to discuss=
- to the meeting.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Please support the Yocto project by bringing to the =
-meeting the items you would like to discuss.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E554EDA3Ffmsmsx111amrcor_--
