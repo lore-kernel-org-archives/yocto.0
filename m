@@ -1,51 +1,49 @@
-Return-Path: <mario.goulart@gmail.com>
+Return-Path: <patholdn@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 201A8E009E6; Fri, 22 May 2015 14:08:10 -0700 (PDT)
+	id 68FB8E009E6; Fri, 22 May 2015 15:10:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.175 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (patholdn[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f175.google.com (mail-qk0-f175.google.com
-	[209.85.220.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 666F1E009E5
-	for <yocto@yoctoproject.org>; Fri, 22 May 2015 14:08:07 -0700 (PDT)
-Received: by qkgx75 with SMTP id x75so22076157qkg.1
-	for <yocto@yoctoproject.org>; Fri, 22 May 2015 14:08:07 -0700 (PDT)
+Received: from mail-oi0-f51.google.com (mail-oi0-f51.google.com
+	[209.85.218.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DD30E009CA
+	for <yocto@yoctoproject.org>; Fri, 22 May 2015 15:10:03 -0700 (PDT)
+Received: by oihb142 with SMTP id b142so23684384oih.3
+	for <yocto@yoctoproject.org>; Fri, 22 May 2015 15:10:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-	:organization; bh=9Vwh2pTP2x7JHyobRvSL5s58Djv0WkIFF6qQhvqmrX4=;
-	b=uj+Kbp5jT9kKWzNFdeRhbuxD1sJOxvAPIxOO7G1fO4WEuPlUt1eSU/3tJx+KRZhcBr
-	WLK1fMK36Rv62ShkQYHTRK2tykEjhkfb5hAFwLoTkzBWU3ADyhPmZrOiWPcwT+4V71yx
-	xt2sO7Dkihn4qKhXN2pJ4tsWBaL9khB5AuTpeiIium5GsB6EV3MRc8raQ1Oa4+zIxqcE
-	OfcTDcto6NERSubAonReInJiOO7syFuwMo6Qo1uz5umHOWh5j0/wyi6Thc5sSbdh9yD9
-	pxegVnaN96NAEn//3/j4K7CE/nEKNTYwWHhFtPNg2By3xB1iBEg1rOipNPsMDim+0x3U
-	kwJQ==
-X-Received: by 10.140.98.36 with SMTP id n33mr2156676qge.62.1432328887340;
-	Fri, 22 May 2015 14:08:07 -0700 (PDT)
-Received: from centrium.lab.ossystems.com.br ([177.100.224.72])
-	by mx.google.com with ESMTPSA id i92sm2082466qkh.5.2015.05.22.14.08.06
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 22 May 2015 14:08:07 -0700 (PDT)
-Sender: Mario Domenech Goulart <mario.goulart@gmail.com>
-From: Mario Domenech Goulart <mario@ossystems.com.br>
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Ge3cLPUg6cuCKiuyHmHbKMMtHrhYKDxFBXHcbTqtgLc=;
+	b=d+0XTBL2aFjNb8NodQY+kaDGiDxoXfHb61J8tWgBe35C07PFEA9qK9y80r62c2dKFQ
+	Q1QtA3XP/hhdXCyktPLfxL447VpWvThRS0znlMiGe/qsXGzpkhvh8yxbO8A/sAIH9fkc
+	RnCDRQBpL4wZ5CCMOFkU2lZ+SLAIfE4Swd1QKS/pBiNKaGDqFc5rQo41YAnPsEEHwWDQ
+	cojozxIYfCR1Wcor8igzOfHi93gfRYJiM67HQIO3u03YcVWTL2us0JP54Gc+uiSEElB2
+	H5S2QZtX0Sy9Gk9uPkaFlPBpUATlypNnGfWDTbL2doPZJpV09xKS3ihdu6IErx5jVu1U
+	nsjg==
+MIME-Version: 1.0
+X-Received: by 10.202.219.195 with SMTP id s186mr7897502oig.25.1432332603136; 
+	Fri, 22 May 2015 15:10:03 -0700 (PDT)
+Received: by 10.202.197.144 with HTTP; Fri, 22 May 2015 15:10:03 -0700 (PDT)
+Date: Fri, 22 May 2015 18:10:03 -0400
+Message-ID: <CANKYLMECkzr5_TKFAPcUt99ppT=+L54-s1VTSRYBLojV+7hMPg@mail.gmail.com>
+From: Patricia Holden <patholdn@gmail.com>
 To: yocto@yoctoproject.org
-Date: Fri, 22 May 2015 18:09:42 -0300
-Message-Id: <1432328982-919-2-git-send-email-mario@ossystems.com.br>
-X-Mailer: git-send-email 2.1.4
-In-Reply-To: <1432328982-919-1-git-send-email-mario@ossystems.com.br>
-References: <1432328982-919-1-git-send-email-mario@ossystems.com.br>
-Organization: O.S. Systems Software LTDA.
-Cc: Mario Domenech Goulart <mario@ossystems.com.br>
-Subject: [meta-oracle-java][PATCH 2/2] oracle-jse: provide java2-vm
+Subject: bitbake core-image-minimal failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,28 +55,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 May 2015 21:08:10 -0000
+X-List-Received-Date: Fri, 22 May 2015 22:10:05 -0000
+Content-Type: multipart/alternative; boundary=001a113d29da02a1360516b2ecee
 
-This is mostly to make meta-oracle-java compatible with what the
-counterparts in meta-java provide.
+--001a113d29da02a1360516b2ecee
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Mario Domenech Goulart <mario@ossystems.com.br>
----
- recipes-devtools/oracle-java/oracle-jse.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I'm trying to create a barebones linux for a demo board based on Intel
+Atom.  I've got a kernel patch to add to it, so I created a BSP for Yocto
+linux, gave it the config & patch and now I want to create a live image to
+boot via USB stick onto the target board.  I got a basic bitbake done with
+no problems.  I tried to run Qemu and got "missing movbe".  So I dropped
+that course of action since I've got time limitations to get this project
+done.   I tried to get SDK going, but ran into compile error for GLIBC.  So
+I added the "IMAGE_INSTALL_append = " glibc-staticdev", got tons of
+errors.  So I dropped that course of action too.  I read in the manual to
+use IMAGE_FSTYPE = "live" to build a bootable image, so I'm doing
+that now.  Once I've got this demo part done, I need to add an app for the
+real target so I really would like to get Qemu/SDK going.
 
-diff --git a/recipes-devtools/oracle-java/oracle-jse.inc b/recipes-devtools/oracle-java/oracle-jse.inc
-index 7781421..d5cd765 100644
---- a/recipes-devtools/oracle-java/oracle-jse.inc
-+++ b/recipes-devtools/oracle-java/oracle-jse.inc
-@@ -29,5 +29,5 @@ INSANE_SKIP_${PN} = "${ERROR_QA} ${WARN_QA}"
- INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
- 
- FILES_${PN} = "/usr/"
--RPROVIDES_${PN} = "java2-runtime"
-+RPROVIDES_${PN} = "java2-runtime java2-vm"
- PROVIDES += "virtual/java"
--- 
-2.1.4
+Any suggestions?
 
+Thanks!
 
+--001a113d29da02a1360516b2ecee
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I&#39;m trying to create a barebones linux for a demo boar=
+d based on Intel Atom.=C2=A0 I&#39;ve got a kernel patch to add to it, so I=
+ created a BSP for Yocto linux, gave it the config &amp; patch and now I wa=
+nt to create a live image to boot via USB stick onto the target board.=C2=
+=A0 I got a basic bitbake done with no problems.=C2=A0 I tried to run Qemu =
+and got &quot;missing movbe&quot;.=C2=A0 So I dropped that course of action=
+ since I&#39;ve got time limitations to get this project done.=C2=A0=C2=A0=
+=C2=A0I tried to get SDK going, but ran into compile error for GLIBC.=C2=A0=
+ So I added the &quot;IMAGE_INSTALL_append =3D &quot; glibc-staticdev&quot;=
+, got tons of errors.=C2=A0 So I dropped that course of action too.=C2=A0 I=
+ read in the manual to use IMAGE_FSTYPE =3D &quot;live&quot; to build a boo=
+table image, so I&#39;m doing that=C2=A0now.=C2=A0 Once I&#39;ve got this d=
+emo part done, I need to add an app for the real target so I really would l=
+ike to get Qemu/SDK going.<div><br></div><div>Any suggestions?</div><div><b=
+r></div><div>Thanks!</div></div>
+
+--001a113d29da02a1360516b2ecee--
