@@ -1,35 +1,47 @@
-Return-Path: <george.nita@enea.com>
+Return-Path: <vomegaz@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9855FE009C8; Fri, 22 May 2015 02:35:47 -0700 (PDT)
+	id ED85DE009C8; Fri, 22 May 2015 03:04:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
+	*      [209.85.212.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id E1149E00961
-	for <yocto@yoctoproject.org>; Fri, 22 May 2015 02:35:42 -0700 (PDT)
-Received: from [192.168.14.147] (192.168.14.147) by smtp.enea.com
-	(172.21.1.208) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 22 May 2015 11:35:36 +0200
-Message-ID: <555EF85D.5080209@enea.com>
-Date: Fri, 22 May 2015 12:35:25 +0300
-From: George Nita <george.nita@enea.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
-MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <555D9B06.3050603@enea.com>
-	<1502347.ZKKJbWNJ0A@peggleto-mobl.ger.corp.intel.com>
-In-Reply-To: <1502347.ZKKJbWNJ0A@peggleto-mobl.ger.corp.intel.com>
-X-Originating-IP: [192.168.14.147]
-Cc: yocto@yoctoproject.org
-Subject: Re: smart 1.4.1 unsolved problem
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 138B0E00961
+	for <yocto@yoctoproject.org>; Fri, 22 May 2015 03:04:01 -0700 (PDT)
+Received: by wizk4 with SMTP id k4so42136482wiz.1
+	for <yocto@yoctoproject.org>; Fri, 22 May 2015 03:04:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:cc:subject:date:message-id;
+	bh=WK0NZs+JvWdSU4/nC1F1YmvFrULLe5hUvHHk87wtE6I=;
+	b=Na4e5GQkfanX6cen9WQBvWc0LPmvhf1XTS+46uRztiW8Nmb/8/QdbsOUQmYwU26L46
+	eYs8/a0QvcuNqEpDsESJdh3gvDT9MxdgbRYYg1u2WQvA449ZwAo9KcnAUQVWOLCECaaB
+	MuqVkPNuknUbXhNtm6sgB/TLzKf4FDs++CN9tB3rPfDbEqs70SgWOLcOQ+sHX51/TzIp
+	4XIz9VHWjGY+uIuMrG0JrmJedc2HzGP53gSS+tG5P6zPhYWYTs5qduF7Z4pzWYku0Z/3
+	ZnVr7YJsdlolJ31ChjmsUFgAWkICKlSkM7edeG4xUAQUZjmSByognAPQcCOFI3bHjw3l
+	0BPg==
+X-Received: by 10.180.210.235 with SMTP id mx11mr5699099wic.95.1432289040232; 
+	Fri, 22 May 2015 03:04:00 -0700 (PDT)
+Received: from X220.tupi.fr ([37.164.121.82])
+	by mx.google.com with ESMTPSA id gy8sm6747847wib.13.2015.05.22.03.03.58
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 22 May 2015 03:03:59 -0700 (PDT)
+Sender: Thomas PERROT <vomegaz@gmail.com>
+From: Thomas Perrot <thomas.perrot@tupi.fr>
+To: yocto@yoctoproject.org
+Date: Fri, 22 May 2015 12:03:55 +0200
+Message-Id: <1432289035-762-1-git-send-email-thomas.perrot@tupi.fr>
+X-Mailer: git-send-email 1.7.10.4
+Subject: [meta-raspberrypi][PATCH] If SERIAL_CONSOLE is already define by another layer, this value may not be good.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,113 +53,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 May 2015 09:35:47 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 22 May 2015 10:04:04 -0000
 
-On 05/22/2015 11:43 AM, Paul Eggleton wrote:
-> Hi George,
->
-> On Thursday 21 May 2015 11:44:54 George Nita wrote:
->> I've reproduced the https://bugs.launchpad.net/smart/+bug/1238492 issue
->>
->> branch: dizzy
->> target: p2041rdb
->>
->> Did any one hit this too?
->
-> Did you enable runtime package management (i.e., is "package-management" in
-> IMAGE_FEATURES (or indirectly via EXTRA_IMAGE_FEATURES)?) If you're not sure,
-> you can use bitbake -e to check.
->
-> If it isn't enabled, that would explain the behaviour because smart/rpm think
-> that no packages are installed because there is no package database in the
-> image.
->
-> Cheers,
-> Paul
->
+Signed-off-by: Thomas Perrot <thomas.perrot@tupi.fr>
+---
+ conf/machine/include/rpi-base.inc |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Hello Paul,
-
-IMAGE_FEATURES="debug-tweaks ssh-server-dropbear package-management"
-
-
-When committing the computed changeset smart attempts to install 
-packages that are in the dependency list but are already installed, and 
-fails because of it:
-
-root@p2041rdb:~# smart install -y bc
-Loading cache...
-Updating cache...               ######################################## 
-[100%]
-
-Computing transaction...
-
-Installing packages (7):
-   bc-1.06-r2.0@ppce500mc 
-
-   busybox-1.22.1-r32.0@ppce500mc 
-
-   busybox-syslog-1.22.1-r32.0@ppce500mc 
-
-   busybox-udhcpc-1.22.1-r32.0@ppce500mc 
-
-   libc6-2.20-r0.0@ppce500mc 
-
-   update-alternatives-opkg-0.1.8+git0+eae0d8fa44-r0.0@ppce500mc 
-
-   update-rc.d-0.7-r5.0@all 
-
-
-2.2MB of package files are needed. 4.4MB will be used.
-
-Fetching packages... 
-
--> 
-http://172.21.3.25/.../update-alternatives-opkg-0.1.8+git0+eae0d8fa44-r0.0.ppce500mc.rpm
-update-alternatives-opkg-0.1... ######################################## 
-[ 14%]
--> http://.../rpm/all/update-rc.d-0.7-r5.0.all.rpm
--> 
-http://172.21.3.25/~geni/rpm/.../busybox-udhcpc-1.22.1-r32.0.ppce500mc.rpm
-busybox-udhcpc-1.22.1-r32.0.p.. ######################################## 
-[ 28%]
--> http://.../rpm/ppce500mc/bc-1.06-r2.0.ppce500mc.rpm
-bc-1.06-r2.0.ppce500mc.rpm      ######################################## 
-[ 42%]
--> http://.../rpm/.../busybox-syslog-1.22.1-r32.0.ppce500mc.rpm
-busybox-syslog-1.22.1-r32.0.p.. ######################################## 
-[ 57%]
-update-rc.d-0.7-r5.0.all.rpm    ######################################## 
-[ 71%]
--> http://.../rpm/ppce500mc/busybox-1.22.1-r32.0.ppce500mc.rpm
-busybox-1.22.1-r32.0.ppce500m.. ######################################## 
-[ 85%]
--> http://.../rpm/ppce500mc/libc6-2.20-r0.0.ppce500mc.rpm
-libc6-2.20-r0.0.ppce500mc.rpm   ######################################## 
-[100%]
-
+diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
+index a26803a..1dda207 100644
+--- a/conf/machine/include/rpi-base.inc
++++ b/conf/machine/include/rpi-base.inc
+@@ -7,7 +7,7 @@ include conf/machine/include/soc-family.inc
  
-
-Committing transaction...
-Preparing...                    ######################################## 
-[  0%]
-error: package 
-update-alternatives-opkg-0.1.8+git0+eae0d8fa44-r0.0.ppce500mc is already 
-installed
-error: package busybox-1.22.1-r32.0.ppce500mc is already installed
-error: package update-rc.d-0.7-r5.0.all is already installed
-...
-
-
-This seems consistent with the reported issue 
-https://bugs.launchpad.net/smart/+bug/1238492
-
-
-
-Thanks,
-
+ IMAGE_FSTYPES ?= "tar.bz2 ext3 rpi-sdimg"
+ 
+-SERIAL_CONSOLE ?= "115200 ttyAMA0"
++SERIAL_CONSOLE = "115200 ttyAMA0"
+ 
+ XSERVER = " \
+     xserver-xorg \
 -- 
-George Nita
+1.7.10.4
+
 
