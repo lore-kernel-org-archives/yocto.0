@@ -1,37 +1,35 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <george.nita@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B2A66E009D9; Fri, 22 May 2015 02:22:08 -0700 (PDT)
+	id 9855FE009C8; Fri, 22 May 2015 02:35:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [192.36.1.252 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05059E00974
-	for <yocto@yoctoproject.org>; Fri, 22 May 2015 02:22:07 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga101.fm.intel.com with ESMTP; 22 May 2015 02:22:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,474,1427785200"; d="scan'208";a="733620856"
-Received: from gfois-mobl2.ger.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.27.18])
-	by orsmga002.jf.intel.com with ESMTP; 22 May 2015 02:22:06 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Spriggs, Jim" <J.Spriggs@raylase.de>
-Date: Fri, 22 May 2015 10:22:05 +0100
-Message-ID: <2039964.hlcGcaqj34@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.7 (Linux/3.19.7-200.fc21.x86_64; KDE/4.14.7; x86_64; ; )
-In-Reply-To: <2238EDC6081C944E97E4EE915AE5CBEC52EBBABA@EXCHANGE-B.raylase.de>
-References: <2238EDC6081C944E97E4EE915AE5CBEC52EBBABA@EXCHANGE-B.raylase.de>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id E1149E00961
+	for <yocto@yoctoproject.org>; Fri, 22 May 2015 02:35:42 -0700 (PDT)
+Received: from [192.168.14.147] (192.168.14.147) by smtp.enea.com
+	(172.21.1.208) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 22 May 2015 11:35:36 +0200
+Message-ID: <555EF85D.5080209@enea.com>
+Date: Fri, 22 May 2015 12:35:25 +0300
+From: George Nita <george.nita@enea.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
 MIME-Version: 1.0
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <555D9B06.3050603@enea.com>
+	<1502347.ZKKJbWNJ0A@peggleto-mobl.ger.corp.intel.com>
+In-Reply-To: <1502347.ZKKJbWNJ0A@peggleto-mobl.ger.corp.intel.com>
+X-Originating-IP: [192.168.14.147]
 Cc: yocto@yoctoproject.org
-Subject: Re: How to debug a custom image creation script?
+Subject: Re: smart 1.4.1 unsolved problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,59 +41,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 May 2015 09:22:08 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Fri, 22 May 2015 09:35:47 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Jim,
+On 05/22/2015 11:43 AM, Paul Eggleton wrote:
+> Hi George,
+>
+> On Thursday 21 May 2015 11:44:54 George Nita wrote:
+>> I've reproduced the https://bugs.launchpad.net/smart/+bug/1238492 issue
+>>
+>> branch: dizzy
+>> target: p2041rdb
+>>
+>> Did any one hit this too?
+>
+> Did you enable runtime package management (i.e., is "package-management" in
+> IMAGE_FEATURES (or indirectly via EXTRA_IMAGE_FEATURES)?) If you're not sure,
+> you can use bitbake -e to check.
+>
+> If it isn't enabled, that would explain the behaviour because smart/rpm think
+> that no packages are installed because there is no package database in the
+> image.
+>
+> Cheers,
+> Paul
+>
 
-On Friday 22 May 2015 08:47:23 Spriggs, Jim wrote:
-> I'd like to have my custom layer generate an sdcard image, so I've
-> implemented a classes/image_types_xxxxx.bbclass. This contains, among=
-st
-> other things, the (bash) function generate_xxxxx_sdcard(). Being a na=
-=EFve
-> n00b, I assumed that I could just scatter "bbnote"s, "echo"s, or even=
- "set
-> -x" around inside the function to my heart's content, and would be ab=
-le to
-> see the output "somewhere".
-> Trouble is, I can't find it anywhere!
->=20
-> So what is the best/approved/obvious way to get debug traces out of a=
+Hello Paul,
 
-> bbclass function?
->=20
-> If I am already doing the Right Thing, where should I be looking for =
-the
-> output?
+IMAGE_FEATURES="debug-tweaks ssh-server-dropbear package-management"
 
-You should see output printed here in log.do_rootfs for the image you a=
-re=20
-building. In case you're unaware, you can find this in the directory po=
-inted to=20
-by the T variable for the recipe, the following command will show this =
-to you:
 
-bitbake -e your-imagename | grep ^T=3D
+When committing the computed changeset smart attempts to install 
+packages that are in the dependency list but are already installed, and 
+fails because of it:
 
-As an aside, we do want to change the bbwarn/bbnote/bberror etc. shell=20=
+root@p2041rdb:~# smart install -y bc
+Loading cache...
+Updating cache...               ######################################## 
+[100%]
 
-functions to output to the UI just like the python equivalents do, it's=
- a=20
-known issue that they do not. There's a bug open for that (assigned to =
-me as=20
-it happens):
+Computing transaction...
 
-  https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5275
+Installing packages (7):
+   bc-1.06-r2.0@ppce500mc 
 
-I should really get that one sorted out for the next release.
+   busybox-1.22.1-r32.0@ppce500mc 
 
-Cheers,
-Paul
+   busybox-syslog-1.22.1-r32.0@ppce500mc 
 
---=20
+   busybox-udhcpc-1.22.1-r32.0@ppce500mc 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+   libc6-2.20-r0.0@ppce500mc 
+
+   update-alternatives-opkg-0.1.8+git0+eae0d8fa44-r0.0@ppce500mc 
+
+   update-rc.d-0.7-r5.0@all 
+
+
+2.2MB of package files are needed. 4.4MB will be used.
+
+Fetching packages... 
+
+-> 
+http://172.21.3.25/.../update-alternatives-opkg-0.1.8+git0+eae0d8fa44-r0.0.ppce500mc.rpm
+update-alternatives-opkg-0.1... ######################################## 
+[ 14%]
+-> http://.../rpm/all/update-rc.d-0.7-r5.0.all.rpm
+-> 
+http://172.21.3.25/~geni/rpm/.../busybox-udhcpc-1.22.1-r32.0.ppce500mc.rpm
+busybox-udhcpc-1.22.1-r32.0.p.. ######################################## 
+[ 28%]
+-> http://.../rpm/ppce500mc/bc-1.06-r2.0.ppce500mc.rpm
+bc-1.06-r2.0.ppce500mc.rpm      ######################################## 
+[ 42%]
+-> http://.../rpm/.../busybox-syslog-1.22.1-r32.0.ppce500mc.rpm
+busybox-syslog-1.22.1-r32.0.p.. ######################################## 
+[ 57%]
+update-rc.d-0.7-r5.0.all.rpm    ######################################## 
+[ 71%]
+-> http://.../rpm/ppce500mc/busybox-1.22.1-r32.0.ppce500mc.rpm
+busybox-1.22.1-r32.0.ppce500m.. ######################################## 
+[ 85%]
+-> http://.../rpm/ppce500mc/libc6-2.20-r0.0.ppce500mc.rpm
+libc6-2.20-r0.0.ppce500mc.rpm   ######################################## 
+[100%]
+
+ 
+
+Committing transaction...
+Preparing...                    ######################################## 
+[  0%]
+error: package 
+update-alternatives-opkg-0.1.8+git0+eae0d8fa44-r0.0.ppce500mc is already 
+installed
+error: package busybox-1.22.1-r32.0.ppce500mc is already installed
+error: package update-rc.d-0.7-r5.0.all is already installed
+...
+
+
+This seems consistent with the reported issue 
+https://bugs.launchpad.net/smart/+bug/1238492
+
+
+
+Thanks,
+
+-- 
+George Nita
 
