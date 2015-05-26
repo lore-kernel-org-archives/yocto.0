@@ -1,32 +1,45 @@
-Return-Path: <randy.e.witt@linux.intel.com>
+Return-Path: <ashcharles@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A5C80E0095D; Tue, 26 May 2015 16:04:37 -0700 (PDT)
+	id DE629E0095D; Tue, 26 May 2015 16:30:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ashcharles[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.178 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BAE1E007B6
-	for <yocto@yoctoproject.org>; Tue, 26 May 2015 16:04:33 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga101.fm.intel.com with ESMTP; 26 May 2015 16:04:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,502,1427785200"; d="scan'208";a="735707804"
-Received: from bitbang.jf.intel.com ([10.7.201.37])
-	by orsmga002.jf.intel.com with ESMTP; 26 May 2015 16:04:33 -0700
-Message-ID: <5564FC01.9050803@linux.intel.com>
-Date: Tue, 26 May 2015 16:04:33 -0700
-From: Randy Witt <randy.e.witt@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f178.google.com (mail-ig0-f178.google.com
+	[209.85.213.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F86AE007B6
+	for <yocto@yoctoproject.org>; Tue, 26 May 2015 16:30:47 -0700 (PDT)
+Received: by igcau1 with SMTP id au1so1377535igc.1
+	for <yocto@yoctoproject.org>; Tue, 26 May 2015 16:30:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=vz41deS19lLFUQt3P0hS6HrXCZVSdVVkPMl0wgR9098=;
+	b=SIEwIFRGB7U50ugjWJ4Z0lYbyKJ48P/7O/Rvz4bw3ptbEoBnhaIp8aZibQtebGUBVm
+	iNsLadbGQ6J2vSlR5h8qY0GTgqJbgUrkXEjXg13S5EY7zwBxqdHIZgKo1ARA9ZaotoyX
+	eDOxNhUy/6Fyx1ymNrNA8iByiByExmgXWIjC30+Ge7F+ntrfxwkdFiKpFjFhpbKNPkCM
+	GkCK2CPK3qtMfvMIVIlABhuMvcPofqb2x+3KFXFSpyTYnEhE9QqujYFzt/qL5qaYmr8r
+	Y5JyNwfC75tSg2HTEyo667Yxr6bsQsGsjB+19HmSCECApMn0a6boPeaa6kwgh1dOMG6a
+	XN3g==
+X-Received: by 10.50.39.105 with SMTP id o9mr33085898igk.39.1432683047383;
+	Tue, 26 May 2015 16:30:47 -0700 (PDT)
 MIME-Version: 1.0
-To: Ash Charles <ashcharles@gmail.com>
+Received: by 10.107.138.134 with HTTP; Tue, 26 May 2015 16:30:16 -0700 (PDT)
+In-Reply-To: <5564FC01.9050803@linux.intel.com>
 References: <CAK8F28nH13quAv_8KqfEDnyua99mBYvLnBYej0ugC73dP5LX+A@mail.gmail.com>
 	<555407B9.7040105@windriver.com>
 	<CAK8F28=iqLWycPRJtvbJ3cjHd04e-XvrQhqHQ0iC7xZ6ADrASA@mail.gmail.com>
@@ -36,7 +49,11 @@ References: <CAK8F28nH13quAv_8KqfEDnyua99mBYvLnBYej0ugC73dP5LX+A@mail.gmail.com>
 	<CAK8F28nzBnuc+kSA6HTBVO_y1qd4HUafPSuo0oeOsUidvH3t6w@mail.gmail.com>
 	<5564F148.3010007@linux.intel.com>
 	<CAK8F28=sm13e2urstMKOAY0pwb6tsGg4eQTGVUM3N-sriyFkRQ@mail.gmail.com>
-In-Reply-To: <CAK8F28=sm13e2urstMKOAY0pwb6tsGg4eQTGVUM3N-sriyFkRQ@mail.gmail.com>
+	<5564FC01.9050803@linux.intel.com>
+From: Ash Charles <ashcharles@gmail.com>
+Date: Tue, 26 May 2015 16:30:16 -0700
+Message-ID: <CAK8F28mrM94h0Kd+dckNyzx0krRKWJHLXf_q+aWAsyYMDy8Y+g@mail.gmail.com>
+To: Randy Witt <randy.e.witt@linux.intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	Paul Eggleton <paul.eggleton@linux.intel.com>
 Subject: Re: Using smart within an SDK
@@ -51,55 +68,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 May 2015 23:04:37 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 26 May 2015 23:30:51 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 05/26/2015 03:38 PM, Ash Charles wrote:
-> On Tue, May 26, 2015 at 3:18 PM, Randy Witt
-> <randy.e.witt@linux.intel.com> wrote:
->> Did you source the environment-setup script? If so, what distro were you
->> using?
-> Ubuntu 15.04 (Vivid-Vervet).  I used an SDK created based on the
-> gumstix-console-image rather than a mainstream image from meta-yocto
-> so perhaps there is a particular configuration etc. that messes up the
-> creation of the SDK?
-> <snip>
->> We were thinking it wouldn't be so granular Basically it would end up
->> matching everything in a manifest rather than asking for one particular
->> package. So it would look more like "devtool publish-sdk location", followed
->> by users being able to then update to whatever "sdk's" exist at that
->> location.
-> Okay---If I understand correctly, that's a little more limiting than I
-> would like.  No matter how many different SDKs I provide, each
-> customer will need a different set of a software packages in their
-> sysroot.  Yocto makes it easy to build up a big sstate or package
-> repository and post this online---users can just grab a baseline SDK
-> and then pull in the pieces they need (which probably is pretty
-> comfortable for folks who are used to a 'sudo apt-get install
-> libboost-dev' etc.).
+On Tue, May 26, 2015 at 4:04 PM, Randy Witt
+<randy.e.witt@linux.intel.com> wrote:
+> It is a bit of a different workflow than we were initially looking at, but I
+> don't see a reason we couldn't do it. The locked signatures file should be
+> able to be a superset of items you would want, so theoretically if you only
+> wanted items from your sstate mirror to be used, the manifest would contain
+> all items on the mirror. This would prevent the user from building something
+> locally rather than pulling from the mirror and potentially not matching.
+So the user would download a minimal SDK, run a devtool update to get
+the super manifest listing everything in the sstate mirror as which
+point they could pull what they needed.
 >
-> Based on this, should I be turning my attention back to using smart
-> install with a regular SDK environment or is this imagined workflow
-> just not a reasonable objective?
-
-It is a bit of a different workflow than we were initially looking at, but I 
-don't see a reason we couldn't do it. The locked signatures file should be able 
-to be a superset of items you would want, so theoretically if you only wanted 
-items from your sstate mirror to be used, the manifest would contain all items 
-on the mirror. This would prevent the user from building something locally 
-rather than pulling from the mirror and potentially not matching.
-
-The nativesdk items are not in the extensible sdk, and the native items are just 
-part of the bitbake workspace. This is why it should be fairly easy to add what 
-you want. Because in the end it would just be adding an sstate mirror and doing 
-a bitbake "native-foo". And we could wrap that with devtool or some other command.
-
-I do see the convenience and why you want it, so I'll talk it over with Paul 
-tomorrow.
-
-> Thanks,
-> --Ash
+> The nativesdk items are not in the extensible sdk, and the native items are
+> just part of the bitbake workspace. This is why it should be fairly easy to
+> add what you want. Because in the end it would just be adding an sstate
+> mirror and doing a bitbake "native-foo". And we could wrap that with devtool
+> or some other command.
+That would be great.
 >
+> I do see the convenience and why you want it, so I'll talk it over with Paul
+> tomorrow.
+Thanks.  And please let me know if you need me to do any testing
+:)---I'm watching for extensible SDK related patches.
 
+--Ash
 
