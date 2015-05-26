@@ -1,36 +1,38 @@
-Return-Path: <petter@technux.se>
+Return-Path: <Raghavendra.Kakarla@inedasystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7B6AAE00A00; Mon, 25 May 2015 07:59:36 -0700 (PDT)
+	id 57F5DE009E1; Mon, 25 May 2015 23:21:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [195.74.38.224 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from bin-vsp-out-05.atm.binero.net (vsp-authed01.binero.net
-	[195.74.38.224])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BB34E009E1
-	for <yocto@yoctoproject.org>; Mon, 25 May 2015 07:59:31 -0700 (PDT)
-X-Halon-ID: a43a09c1-02ee-11e5-b72b-005056916f53
-Authorized-sender: petter@technux.se
-Received: from elxbvzzwp1-cy.localdomain (unknown [95.197.1.175])
-	by bin-vsp-out-05.atm.binero.net (Halon Mail Gateway) with ESMTPSA
-	for <yocto@yoctoproject.org>; Mon, 25 May 2015 16:59:28 +0200 (CEST)
-From: =?UTF-8?q?Petter=20Mab=C3=A4cker?= <petter@technux.se>
-To: yocto@yoctoproject.org
-Date: Mon, 25 May 2015 16:59:21 +0200
-Message-Id: <2375dc76d5f00173760ff56cb37a4ab80fffdc5d.1432564621.git.petter@technux.se>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <cover.1432564621.git.petter@technux.se>
-References: <cover.1432564621.git.petter@technux.se>
-In-Reply-To: <cover.1432564621.git.petter@technux.se>
-References: <cover.1432564621.git.petter@technux.se>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail.invecas.com (mx1.invecas.com [112.133.222.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38307E0095D
+	for <yocto@yoctoproject.org>; Mon, 25 May 2015 23:20:58 -0700 (PDT)
+Received: from SOC-EXCH-01.invecas.local (10.0.30.8) by mail.invecas.com
+	(10.0.30.131) with Microsoft SMTP Server (TLS) id 14.3.123.3;
+	Tue, 26 May 2015 11:50:58 +0530
+Received: from SOC-EXCH-02.invecas.local (10.0.30.9) by
+	SOC-EXCH-01.invecas.local (10.0.30.8) with Microsoft SMTP Server (TLS)
+	id 15.0.995.29; Tue, 26 May 2015 11:50:54 +0530
+Received: from SOC-EXCH-02.invecas.local ([::1]) by SOC-EXCH-02.invecas.local
+	([fe80::bc3d:32eb:402d:2fae%15]) with mapi id 15.00.0995.028;
+	Tue, 26 May 2015 11:50:54 +0530
+From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: ADT issue
+Thread-Index: AQHQl3vC//77u5Xy2kelUAYnqhcjwg==
+Date: Tue, 26 May 2015 06:20:54 +0000
+Message-ID: <1432621253700.51487@inedasystems.com>
+Accept-Language: en-US, en-IN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [202.153.34.22]
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCHv2 1/2] devicetree: auto-disable dts for old kernels
+Subject: ADT issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,134 +44,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 May 2015 14:59:36 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 26 May 2015 06:21:01 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_143262125370051487inedasystemscom_"
 
-After '6392a63 rpi-base.inc: Use KERNEL_DEVICETREE by default' was
-introduced, kernel versions < 3.18 might not be buildable. Since full
-device tree support was introduced in 3.18 this change ensures that all
-kernel < 3.18 will automatically disable device tree.
+--_000_143262125370051487inedasystemscom_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Petter Mabäcker <petter@technux.se>
----
- classes/linux-raspberrypi-base.bbclass     | 39 ++++++++++++++++++++++++++++++
- classes/sdcard_image-rpi.bbclass           | 15 +++++++-----
- recipes-kernel/linux/linux-raspberrypi.inc |  4 ++-
- 3 files changed, 51 insertions(+), 7 deletions(-)
- create mode 100644 classes/linux-raspberrypi-base.bbclass
-
-diff --git a/classes/linux-raspberrypi-base.bbclass b/classes/linux-raspberrypi-base.bbclass
-new file mode 100644
-index 0000000..40beef1
---- /dev/null
-+++ b/classes/linux-raspberrypi-base.bbclass
-@@ -0,0 +1,39 @@
-+inherit linux-kernel-base
-+
-+
-+def get_dts(d, ver):
-+    staging_dir = d.getVar("STAGING_KERNEL_BUILDDIR", True)
-+    dts = d.getVar("KERNEL_DEVICETREE", True)
-+
-+    # d.getVar() might return 'None' as a normal string
-+    # leading to 'is None' check isn't enough.
-+    # TODO: Investigate if this is a bug in bitbake
-+    if ver is None or ver == "None":
-+        ''' if 'ver' isn't set try to grab the kernel version
-+        from the kernel staging '''
-+        ver = get_kernelversion_file(staging_dir)
-+
-+    if ver is not None:
-+        min_ver = ver.split('.', 3)
-+    else:
-+        return dts
-+
-+    # Always turn off device tree support for kernel's < 3.18
-+    try:
-+        if int(min_ver[0]) <= 3:
-+            if int(min_ver[1]) < 18:
-+                dts = ""
-+    except IndexError:
-+        min_ver = None
-+
-+    return dts
-+
-+
-+def split_overlays(d, out):
-+    dts = get_dts(d, None)
-+    if out:
-+        overlays = oe.utils.str_filter_out('\S+\-overlay\.dtb$', dts, d)
-+    else:
-+        overlays = oe.utils.str_filter('\S+\-overlay\.dtb$', dts, d)
-+
-+    return overlays
-diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
-index 1ff664d..7592cc1 100644
---- a/classes/sdcard_image-rpi.bbclass
-+++ b/classes/sdcard_image-rpi.bbclass
-@@ -1,4 +1,5 @@
- inherit image_types
-+inherit linux-raspberrypi-base
- 
- #
- # Create an image that can by written onto a SD card using dd.
-@@ -70,11 +71,6 @@ SDIMG = "${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.rpi-sdimg"
- # Additional files and/or directories to be copied into the vfat partition from the IMAGE_ROOTFS.
- FATPAYLOAD ?= ""
- 
--# Device Tree Overlays are assumed to be suffixed by '-overlay.dtb' string and will be put in a dedicated folder
--DT_ALL = "${@d.getVar('KERNEL_DEVICETREE', True) or ''}"
--DT_OVERLAYS = "${@oe.utils.str_filter('\S+\-overlay\.dtb$', '${DT_ALL}', d)}"
--DT_ROOT = "${@oe.utils.str_filter_out('\S+\-overlay\.dtb$', '${DT_ALL}', d)}"
--
- IMAGEDATESTAMP = "${@time.strftime('%Y.%m.%d',time.gmtime())}"
- 
- IMAGE_CMD_rpi-sdimg () {
-@@ -90,6 +86,9 @@ IMAGE_CMD_rpi-sdimg () {
- 
- 	echo "Creating filesystem with Boot partition ${BOOT_SPACE_ALIGNED} KiB and RootFS ${ROOTFS_SIZE_ALIGNED} KiB"
- 
-+	# Check if we are building with device tree support
-+	DTS="${@get_dts(d, None)}"
-+
- 	# Initialize sdcard image file
- 	dd if=/dev/zero of=${SDIMG} bs=1024 count=0 seek=${SDIMG_SIZE}
- 
-@@ -112,7 +111,11 @@ IMAGE_CMD_rpi-sdimg () {
- 		mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin ::uImage
- 		;;
- 	*)
--		if test -n "${KERNEL_DEVICETREE}"; then
-+		if test -n "${DTS}"; then
-+			# Device Tree Overlays are assumed to be suffixed by '-overlay.dtb' string and will be put in a dedicated folder
-+			DT_OVERLAYS="${@split_overlays(d, 0)}"
-+			DT_ROOT="${@split_overlays(d, 1)}"
-+
- 			# Copy board device trees to root folder
- 			for DTB in ${DT_ROOT}; do
- 				DTB_BASE_NAME=`basename ${DTB} .dtb`
-diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
-index 84d4f9e..7e36408 100644
---- a/recipes-kernel/linux/linux-raspberrypi.inc
-+++ b/recipes-kernel/linux/linux-raspberrypi.inc
-@@ -1,4 +1,5 @@
- require linux.inc
-+inherit linux-raspberrypi-base
- 
- DESCRIPTION = "Linux Kernel for Raspberry Pi"
- SECTION = "kernel"
-@@ -26,7 +27,8 @@ UDEV_GE_141 ?= "1"
- # See http://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#anonymous-python-functions
- python __anonymous () {
-     kerneltype = d.getVar('KERNEL_IMAGETYPE', True)
--    kerneldt = d.getVar('KERNEL_DEVICETREE', True)
-+    kerneldt = get_dts(d, d.getVar('LINUX_VERSION', True))
-+    d.setVar("KERNEL_DEVICETREE", kerneldt)
- 
-     # Add dependency to 'rpi-mkimage-native' package only if RPi bootloader is used with DT-enable kernel
-     if kerneldt:
--- 
-1.9.1
+Hi,
 
 
+I am using the ADT tool for developing and debugging the application.
+
+
+Now i am comfortable with the Yocto ADT for develop and debug applications =
+which have either autotool support or makefile support.
+
+
+But we want to develop the application which have the scon script support u=
+sing the ADT.
+
+
+So, Could you please help in how to build the scon support packages using t=
+he ADT.
+
+
+Thanks in Advance.
+
+
+Regards,
+
+Raghavendra K.
+
+--_000_143262125370051487inedasystemscom_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none"><!--P{margin-top:0;margin-b=
+ottom:0;} .ms-cui-menu {background-color:#ffffff;border:1px rgb(166, 166, 1=
+66) solid;font-family:"Segoe UI","Segoe WP","Segoe UI WPC",Tahoma,Arial,san=
+s-serif;font-size:10pt;color:rgb(51, 51, 51);} .ms-cui-menusection-title {d=
+isplay:none;} .ms-cui-ctl {vertical-align:text-top;text-decoration:none;col=
+or:rgb(51, 51, 51);} .ms-cui-ctl-on {background-color:rgb(205, 230, 247);op=
+acity: 0.8;} .ms-cui-img-cont-float {display:inline-block;margin-top:2px} .=
+ms-cui-smenu-inner {padding-top:0px;} .ms-owa-paste-option-icon {margin: 0p=
+x 6px 0px 6px;vertical-align:middle!important;padding-bottom: 2px;display:i=
+nline-block;} .ms-rtePasteFlyout-option:hover {background-color:rgb(205, 23=
+0, 247) !important;opacity:1 !important;} .ms-rtePasteFlyout-option {paddin=
+g:8px 4px 8px 4px;outline:none;} .ms-cui-menusection {float:left; width:85p=
+x;height:24px;overflow:hidden}.wf {speak:none; font-weight:normal; font-var=
+iant:normal; text-transform:none; -webkit-font-smoothing:antialiased; verti=
+cal-align:middle; display:inline-block;}.wf-family-owa {font-family:'o365Ic=
+ons'}@font-face {  font-family:'o365IconsIE8';  src:url('prem/15.0.995.29/r=
+esources/styles/office365icons.ie8.eot?#iefix') format('embedded-opentype')=
+,         url('prem/15.0.995.29/resources/styles/office365icons.ie8.woff') =
+format('woff'),         url('prem/15.0.995.29/resources/styles/office365ico=
+ns.ie8.ttf') format('truetype');  font-weight:normal;  font-style:normal;}@=
+font-face {  font-family:'o365IconsMouse';  src:url('prem/15.0.995.29/resou=
+rces/styles/office365icons.mouse.eot?#iefix') format('embedded-opentype'), =
+        url('prem/15.0.995.29/resources/styles/office365icons.mouse.woff') =
+format('woff'),         url('prem/15.0.995.29/resources/styles/office365ico=
+ns.mouse.ttf') format('truetype');  font-weight:normal;  font-style:normal;=
+}.wf-family-owa {font-family:'o365IconsMouse'}.ie8 .wf-family-owa {font-fam=
+ily:'o365IconsIE8'}.ie8 .wf-owa-play-large:before {content:'\e254';}.notIE8=
+ .wf-owa-play-large:before {content:'\e054';}.ie8 .wf-owa-play-large {color=
+:#FFFFFF/*$WFWhiteColor*/;}.notIE8 .wf-owa-play-large {border-color:#FFFFFF=
+/*$WFWhiteColor*/; width:1.4em; height:1.4em; border-width:.1em; border-sty=
+le:solid; border-radius:.8em; text-align:center; box-sizing:border-box; -mo=
+z-box-sizing:border-box; padding:0.1em; color:#FFFFFF/*$WFWhiteColor*/;}.ie=
+8 .wf-size-play-large {width:40px; height:40px; font-size:30px}.notIE8 .wf-=
+size-play-large {width:40px; height:40px; font-size:30px}.notIE8 .wf-owa-tr=
+iangle-down-small:before {content:'\e052';}.ie8 .wf-owa-triangle-down-small=
+:before { content:'\e052';}.ie8 .wf-owa-triangle-down-small {color:#666666/=
+*$WFGreyColor*/;}.wf-size-x20 {font-size: 20px!important;}--></style>
+</head>
+<body dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#F=
+FFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Hi,</p>
+<p><br>
+</p>
+<p>I am using the ADT tool for developing and debugging the application.</p=
+>
+<p><br>
+</p>
+<p>Now i am comfortable with the Yocto ADT for&nbsp;develop and&nbsp;debug =
+applications which&nbsp;have&nbsp;either autotool&nbsp;support&nbsp;or make=
+file support.</p>
+<p><br>
+</p>
+<p>But we want to develop the application which have the scon script suppor=
+t using the ADT.</p>
+<p><br>
+</p>
+<p>So, Could you please help in how to build the scon support packages usin=
+g the ADT.</p>
+<p><br>
+</p>
+<p>Thanks in Advance.</p>
+<p><br>
+</p>
+<p>Regards,</p>
+<p>Raghavendra K.<br>
+</p>
+</body>
+</html>
+
+--_000_143262125370051487inedasystemscom_--
