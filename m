@@ -1,47 +1,42 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <ed.sutter@alcatel-lucent.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AF4B5E009C6; Wed, 27 May 2015 13:37:05 -0700 (PDT)
+	id 0A2FBE009C6; Wed, 27 May 2015 13:45:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.179 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+	TO_NO_BRKTS_PCNT autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [135.245.210.21 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qk0-f179.google.com (mail-qk0-f179.google.com
-	[209.85.220.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79B68E00956
-	for <yocto@yoctoproject.org>; Wed, 27 May 2015 13:37:02 -0700 (PDT)
-Received: by qkdn188 with SMTP id n188so13058260qkd.2
-	for <yocto@yoctoproject.org>; Wed, 27 May 2015 13:37:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=6sst4NCD6AZ1olSFoe1xFXVMuFJMMVIENcLco+Gmmv8=;
-	b=adLGo2kibJLU7Hje5VhU51GAYi9goD9hE0L4mHWsB2ACx48xb+KG2vCXU+BopYZZwp
-	2HtUs7qtVtGjmOTBFqYsBKbjnMULBjYhewPImAfD3OTxKUbI12pey88rC88ecdxEWbQB
-	jKhDpEz0AnLUnrBaLDA8gZpfW1LaaXxM6aTrpHkHpLccO8sMax+wO8tPwNzirzEAvmPg
-	ZlTv/VXutKNxtpWc/WFSrL1AiiH9x4K083D8lJocOeMOIJQUTypVesS1oRNc32y6kUV1
-	0ENbMdjgCZyvaMw1aIzzZm5K/UERXEWOZpiy9LAXx13pRxX/knzNQMpKdE//zOWd37Vw
-	w6gw==
-X-Gm-Message-State: ALoCoQnUFE5CZWJLCwqhF2TTQ+2vWy9XSPhi9DTrk742/mOVXZ4+CDKpoIyvfRu26MLhQCHDckdo
-X-Received: by 10.140.88.100 with SMTP id s91mr18174336qgd.59.1432759022280;
-	Wed, 27 May 2015 13:37:02 -0700 (PDT)
+	*  2.5 TO_NO_BRKTS_PCNT To: misformatted + percentage
+X-Greylist: delayed 625 seconds by postgrey-1.32 at yocto-www;
+	Wed, 27 May 2015 13:45:37 PDT
+Received: from smtp-fr.alcatel-lucent.com (fr-hpida-esg-02.alcatel-lucent.com
+	[135.245.210.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3571AE00956
+	for <yocto@yoctoproject.org>; Wed, 27 May 2015 13:45:37 -0700 (PDT)
+Received: from us70uusmtp4.zam.alcatel-lucent.com (unknown [135.5.2.66])
+	by Websense Email Security Gateway with ESMTPS id 0B2AC8C0835B0
+	for <yocto@yoctoproject.org>; Wed, 27 May 2015 20:35:06 +0000 (GMT)
+Received: from umail.lucent.com (umail.ndc.lucent.com [135.3.40.61])
+	by us70uusmtp4.zam.alcatel-lucent.com (GMO) with ESMTP id
+	t4RKZ8Gx030258
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO)
+	for <yocto@yoctoproject.org>; Wed, 27 May 2015 16:35:09 -0400
+Received: from [135.222.138.133] (Ed-PC.mh.lucent.com [135.222.138.133])
+	by umail.lucent.com (8.13.8/TPES) with ESMTP id t4RKZ7O4016363
+	for <yocto@yoctoproject.org>; Wed, 27 May 2015 15:35:08 -0500 (CDT)
+Message-ID: <556629F2.20605@alcatel-lucent.com>
+Date: Wed, 27 May 2015 16:32:50 -0400
+From: Ed Sutter <ed.sutter@alcatel-lucent.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Received: by 10.140.102.231 with HTTP; Wed, 27 May 2015 13:36:41 -0700 (PDT)
-In-Reply-To: <5566050D.9090705@gmail.com>
-References: <5566050D.9090705@gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 27 May 2015 21:36:41 +0100
-Message-ID: <CAJTo0LY3xtoy6Hke0tjo+D+PHWd=6+vR7x3k0qRoHBzeHLWTWw@mail.gmail.com>
-To: "mar.krzeminski" <mar.krzeminski@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Changing VIRTUAL-RUNTIME_init_manager for initramfs image
+To: yocto@yoctoproject.org
+Subject: getting started...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,54 +48,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 May 2015 20:37:05 -0000
-Content-Type: multipart/alternative; boundary=001a11c11990927a3c051716344c
+X-List-Received-Date: Wed, 27 May 2015 20:45:42 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---001a11c11990927a3c051716344c
-Content-Type: text/plain; charset=UTF-8
+Hi,
+I'm new to Yocto.  I've used it to build/install linux on the Wandboard, 
+and I've installed
+host-based cross devlopement environment (bitbake -c populate_sdk ).  
+Everything worked, but
+basically I just followed some "getting started" steps so, I still don't 
+really have a clue...
 
-On 27 May 2015 at 18:55, mar.krzeminski <mar.krzeminski@gmail.com> wrote:
+Last year I finished up a custom iMX6-based project using buildroot for 
+rootfs, ftp.denx.de
+for uboot and freescale git for the kernel.
 
-> I have machine and in this machine I have two images. One of this images
-> is image for kernel initramfs.
-> In this image I want to change init manager to busybox mdev, while ine the
-> other one I use udev.
-> I can do that by changing VIRTUAL-RUNTIME_init_manager variable.
-> And now is time for dummy qestion, but I am not sure, if I change this
-> variable
-> in particular image everything will be ok? Is this a proper way to do so?
->
+These two projects are totally isolated; yet I'm sure >85% of the code 
+base is identical.
 
-Yes, you can have a default assignment in your distro configuration, and
-have another assignment in the image recipe that you want to have a
-different init manager.
+This year I have two ongoing iMX6 based linux projects, and may need to 
+use a beaglebone
+or RPi for some other small project.
 
-Also, don't you mean _dev_manager for the udev/mdev choice?
+The point of the above detail is that I'd like to backup a bit and 
+attempt to use Yocto to
+organize all four of these with one instance of Yocto/Poky.  Is that 
+practical?  Seems
+to me that is the ideal goal of Yocto, but I don't see many BSPs listed 
+under the project
+downloads page.  On the other hand, I know wandboard and sabresd and 
+many others do have
+yocto build environments.
 
-Ross
+What's the scoop on that?
 
---001a11c11990927a3c051716344c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+I'd really like to manage all of these projects under one umbrella if 
+possible; but what
+if different projects use different versions of poky (for example)?
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 27 May 2015 at 18:55, mar.krzeminski <span dir=3D"ltr">&lt;<a href=3D"ma=
-ilto:mar.krzeminski@gmail.com" target=3D"_blank">mar.krzeminski@gmail.com</=
-a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0=
- 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":1wu" cla=
-ss=3D"a3s" style=3D"overflow:hidden">I have machine and in this machine I h=
-ave two images. One of this images is image for kernel initramfs.<br>
-In this image I want to change init manager to busybox mdev, while ine the =
-other one I use udev.<br>
-I can do that by changing VIRTUAL-RUNTIME_init_manager variable.<br>
-And now is time for dummy qestion, but I am not sure, if I change this vari=
-able<br>
-in particular image everything will be ok? Is this a proper way to do so?</=
-div></blockquote></div><br>Yes, you can have a default assignment in your d=
-istro configuration, and have another assignment in the image recipe that y=
-ou want to have a different init manager.</div><div class=3D"gmail_extra"><=
-br></div><div class=3D"gmail_extra">Also, don&#39;t you mean _dev_manager f=
-or the udev/mdev choice?</div><div class=3D"gmail_extra"><br></div><div cla=
-ss=3D"gmail_extra">Ross</div></div>
+Thanks in advance for any info...
+Ed
 
---001a11c11990927a3c051716344c--
+
