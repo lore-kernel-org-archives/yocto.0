@@ -1,58 +1,43 @@
-Return-Path: <k4230r6@gmail.com>
+Return-Path: <joel.zhou@broadcom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 28EB0E00A1F; Wed, 27 May 2015 12:03:48 -0700 (PDT)
+	id 8188CE009D2; Wed, 27 May 2015 12:19:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (k4230r6[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.49 listed in list.dnswl.org]
-Received: from mail-la0-f49.google.com (mail-la0-f49.google.com
-	[209.85.215.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85959E009D2
-	for <yocto@yoctoproject.org>; Wed, 27 May 2015 12:03:28 -0700 (PDT)
-Received: by labko7 with SMTP id ko7so10982475lab.2
-	for <yocto@yoctoproject.org>; Wed, 27 May 2015 12:03:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:message-id:mime-version:subject:date:references
-	:to:in-reply-to;
-	bh=GVlcgkCIehgyvjuy0jI2TiBW3zigVd/WmFFUIkBEa3g=;
-	b=xOF7tV9nPk72eg5hUgK2iDXU5R7XVUe3zEsHXNd4KqTXWx6SnUsLp92xHgyChQRGeK
-	7YhXxXkgbv9o8mDeIaB1p0H8Flf3kKBlQerG2EgH6bBoyLgsCu0Gsslz1DYjTzp6JV26
-	iURD/f97QWvXUhVHsWvVCWRqRMTcOs2V2YCfr8skTMFwPNXYpKuPCiz/zLbS19zy2yVS
-	Gn1SQApxIkz3E7D5Obj7pkT89tW4gWWpy8YcnfpbVGD6YIGbrgl1PGmUgHfqcrlBWRGA
-	SpUg9Crnb+uEr430c3rYUXKP2fBw1Iqmco50simrzuC/h27CV4zDrByahnndO71Gfe7D
-	pnMg==
-X-Received: by 10.112.64.193 with SMTP id q1mr28792489lbs.11.1432753406626;
-	Wed, 27 May 2015 12:03:26 -0700 (PDT)
-Received: from [192.168.0.102] (0xc2ffb932.linknet.dk.telia.net.
-	[194.255.185.50])
-	by mx.google.com with ESMTPSA id w7sm4015895lag.42.2015.05.27.12.03.24
-	for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 27 May 2015 12:03:26 -0700 (PDT)
-From: Christian Ege <k4230r6@gmail.com>
-Message-Id: <4D62EF5B-89C3-4498-86CE-04017A5C9A82@gmail.com>
-Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2098\))
-Date: Wed, 27 May 2015 21:03:23 +0200
-References: <CADu_VSa5W1E+GCiXgkaXGRoJ7g4kz4WZ7M=GZvbAgL_KCYgodg@mail.gmail.com>
-To: yocto@yoctoproject.org
-In-Reply-To: <CADu_VSa5W1E+GCiXgkaXGRoJ7g4kz4WZ7M=GZvbAgL_KCYgodg@mail.gmail.com>
-X-Mailer: Apple Mail (2.2098)
-Subject: Re: Start openvpn with my own config at startup
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [216.31.210.62 listed in list.dnswl.org]
+Received: from mail-gw1-out.broadcom.com (mail-gw1-out.broadcom.com
+	[216.31.210.62])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAD2DE00956
+	for <yocto@yoctoproject.org>; Wed, 27 May 2015 12:19:13 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.13,507,1427785200"; d="scan'208,217";a="66120006"
+Received: from irvexchcas06.broadcom.com (HELO
+	IRVEXCHCAS06.corp.ad.broadcom.com) ([10.9.208.53])
+	by mail-gw1-out.broadcom.com with ESMTP; 27 May 2015 13:01:59 -0700
+Received: from SJEXCHCAS07.corp.ad.broadcom.com (10.16.203.16) by
+	IRVEXCHCAS06.corp.ad.broadcom.com (10.9.208.53) with Microsoft SMTP
+	Server (TLS) id 14.3.235.1; Wed, 27 May 2015 12:19:09 -0700
+Received: from SJEXCHMB12.corp.ad.broadcom.com ([fe80::bc15:c1e1:c29a:36f7])
+	by SJEXCHCAS07.corp.ad.broadcom.com ([::1]) with mapi id 14.03.0235.001;
+	Wed, 27 May 2015 12:19:09 -0700
+From: "Joel (Xi Zhou) Zhou" <joel.zhou@broadcom.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: armv7 firmware recipe in armv8 distro
+Thread-Index: AdCYru38JSV+jiS5TsKwtqr9ugy1oA==
+Date: Wed, 27 May 2015 19:19:08 +0000
+Message-ID: <9F136EE5FB53D64397ED1089A0E760E0162D1190@SJEXCHMB12.corp.ad.broadcom.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.203.100]
+MIME-Version: 1.0
+Subject: armv7 firmware recipe in armv8 distro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,78 +49,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 May 2015 19:03:48 -0000
+X-List-Received-Date: Wed, 27 May 2015 19:19:15 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_F62F0ADC-A1E3-42D9-90DB-449171DBC8A0"
+	boundary="_000_9F136EE5FB53D64397ED1089A0E760E0162D1190SJEXCHMB12corpa_"
 
---Apple-Mail=_F62F0ADC-A1E3-42D9-90DB-449171DBC8A0
+--_000_9F136EE5FB53D64397ED1089A0E760E0162D1190SJEXCHMB12corpa_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
 
+Hi all,
 
-> Am 27.05.2015 um 20:07 schrieb Matthew Karas <mkarascybi@gmail.com>:
->=20
-> I have an ovpn file I'd like my system to start up with.  I was able
-> to install the openvpn file into /etc/openvpn using a bbappends file -
-> but the system doesn't start openvpn like the openvpn docs describes.
->=20
-> How do I set up openvpn to launch with my config file at start up?
-It depends if you build for a systemd or init.d based set-up. If you are =
-building for init.d which is the default setting you can check the init =
-script how openvpn is started:
+We have a Yocto BSP based on arm64/aarch64 machine.
+On top of this, I need to create a firmware recipe, which need armv7 cross-=
+compiler.
+So question is, how to support multiple toolchain in Yocto?
 
-=
-http://cgit.openembedded.org/meta-openembedded/tree/meta-networking/recipe=
-s-support/openvpn/openvpn/openvpn =
-<http://cgit.openembedded.org/meta-openembedded/tree/meta-networking/recip=
-es-support/openvpn/openvpn/openvpn>
+Thanks,
+Joel
 
-Regards,
-Christian
->=20
-> Thanks
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---Apple-Mail=_F62F0ADC-A1E3-42D9-90DB-449171DBC8A0
+--_000_9F136EE5FB53D64397ED1089A0E760E0162D1190SJEXCHMB12corpa_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">Am 27.05.2015 um 20:07 schrieb Matthew Karas &lt;<a =
-href=3D"mailto:mkarascybi@gmail.com" =
-class=3D"">mkarascybi@gmail.com</a>&gt;:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D"">I have an ovpn file =
-I'd like my system to start up with. &nbsp;I was able<br class=3D"">to =
-install the openvpn file into /etc/openvpn using a bbappends file -<br =
-class=3D"">but the system doesn't start openvpn like the openvpn docs =
-describes.<br class=3D""><br class=3D"">How do I set up openvpn to =
-launch with my config file at start up?<br =
-class=3D""></div></blockquote>It depends if you build for a systemd or =
-init.d based set-up. If you are building for init.d which is the default =
-setting you can check the init script how openvpn is =
-started:</div><div><br class=3D""></div><div><a =
-href=3D"http://cgit.openembedded.org/meta-openembedded/tree/meta-networkin=
-g/recipes-support/openvpn/openvpn/openvpn" =
-class=3D"">http://cgit.openembedded.org/meta-openembedded/tree/meta-networ=
-king/recipes-support/openvpn/openvpn/openvpn</a></div><div><br =
-class=3D""></div><div>Regards,</div><div>Christian<br =
-class=3D""><blockquote type=3D"cite" class=3D""><div class=3D""><br =
-class=3D"">Thanks<br class=3D"">-- <br =
-class=3D"">_______________________________________________<br =
-class=3D"">yocto mailing list<br class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" =
-class=3D"">yocto@yoctoproject.org</a><br =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto<br =
-class=3D""></div></blockquote></div><br class=3D""></body></html>=
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">We have a Yocto BSP based on arm64/aarch64 machine. =
+<o:p></o:p></p>
+<p class=3D"MsoNormal">On top of this, I need to create a firmware recipe, =
+which need armv7 cross-compiler.<o:p></o:p></p>
+<p class=3D"MsoNormal">So question is, how to support multiple toolchain in=
+ Yocto?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Joel<o:p></o:p></p>
+</div>
+</body>
+</html>
 
---Apple-Mail=_F62F0ADC-A1E3-42D9-90DB-449171DBC8A0--
+--_000_9F136EE5FB53D64397ED1089A0E760E0162D1190SJEXCHMB12corpa_--
