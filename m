@@ -1,39 +1,53 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <chmorgan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 97077E009F0; Thu, 28 May 2015 04:15:34 -0700 (PDT)
+	id 78987E00A10; Thu, 28 May 2015 04:23:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (chmorgan[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.169 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52B9DE009E7
-	for <yocto@yoctoproject.org>; Thu, 28 May 2015 04:15:33 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 28 May 2015 04:15:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,512,1427785200"; d="scan'208";a="733044486"
-Received: from ecurley-mobl2.ger.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.28.106])
-	by fmsmga002.fm.intel.com with ESMTP; 28 May 2015 04:15:23 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto yocto <yoctomailinglist@gmail.com>
-Date: Thu, 28 May 2015 12:15:22 +0100
-Message-ID: <4977390.O0q4MNQSA8@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.7 (Linux/3.19.7-200.fc21.x86_64; KDE/4.14.7; x86_64; ; )
-In-Reply-To: <CACTu1Lg-0R2MK+zbfTQWVfN2DGRFDA3nhpL+OHw_eMKOhLGOYA@mail.gmail.com>
-References: <CACTu1LijXDjHx-1065KrogZgyLTCSPur3dC4sbA6Qq1pkDz0Wg@mail.gmail.com>
-	<11192520.5TF2irfV67@peggleto-mobl.ger.corp.intel.com>
-	<CACTu1Lg-0R2MK+zbfTQWVfN2DGRFDA3nhpL+OHw_eMKOhLGOYA@mail.gmail.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f169.google.com (mail-ig0-f169.google.com
+	[209.85.213.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 238BBE009EF
+	for <yocto@yoctoproject.org>; Thu, 28 May 2015 04:23:27 -0700 (PDT)
+Received: by igbpi8 with SMTP id pi8so110645704igb.0
+	for <yocto@yoctoproject.org>; Thu, 28 May 2015 04:23:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=K0VReomAJu2NuSR9JSUlPvYmn4eSit3zy+tWpc3aMTQ=;
+	b=bKN3HC2NEfudPK1n0QDObCD+tqTAh16aqgEviu1A9DbDMeozzt/y3667b2LuJNP74d
+	QbD1Rh/jyaEt8Fc0X6aycE+OKrRQu9U+a1cBzlIBR3rmumKuBxdBB7b8HDl6Xxk8DBT6
+	apsLmA2KOW6CT1bdw/sUYwExLieQiyecq6Qy6b9nW8Q6wEHluFUGN6BCz+h8B65CvDSB
+	S11Gyda6W5t1XylYHDQOm2/eApbuLwKVv7/c8hBW+CCTxxLtp9ApY6bI/z2tek5+kZS/
+	87Ha2hJBicXU4hSk375w4YIb4BmxxOxIadyH6uRvwZISzoXPC+KKX8hpilZv/kSwzMs3
+	m6Ig==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: How to enable php5 (php_5.5.24.bb) support for postgresql
+X-Received: by 10.107.32.73 with SMTP id g70mr2714966iog.23.1432812207325;
+	Thu, 28 May 2015 04:23:27 -0700 (PDT)
+Received: by 10.79.0.18 with HTTP; Thu, 28 May 2015 04:23:27 -0700 (PDT)
+In-Reply-To: <CADu_VSa5W1E+GCiXgkaXGRoJ7g4kz4WZ7M=GZvbAgL_KCYgodg@mail.gmail.com>
+References: <CADu_VSa5W1E+GCiXgkaXGRoJ7g4kz4WZ7M=GZvbAgL_KCYgodg@mail.gmail.com>
+Date: Thu, 28 May 2015 07:23:27 -0400
+Message-ID: <CAAPegz2wvXap_eHY9hsQ3b0emQGYvaK=6Uyj6ShecjxkLVsakg@mail.gmail.com>
+From: Chris Morgan <chmorgan@gmail.com>
+To: Matthew Karas <mkarascybi@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Start openvpn with my own config at startup
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,66 +59,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 May 2015 11:15:34 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 28 May 2015 11:23:31 -0000
+Content-Type: multipart/alternative; boundary=001a11404078a5cbac05172296c4
 
-On Saturday 23 May 2015 11:12:22 yocto yocto wrote:
-> after looking at the config.log that I sent you I realized that all "unsafe
-> for cross-compilation" message occur because the recipe tries to link
-> against my local installation of postgresql-server-dev-9.3 and libpq-dev
-> lying in /usr/lib. Consider the following line:
-> 
-> "skipping incompatible /usr/lib/libpq.so when searching for -lpq"
-> 
-> The recipe is doing right to skip the library, because I am using Ubuntu
-> 64bit. Therefore my local installations of postgresql-server-dev-9.3 and
-> libpq-dev are 64 bit versions. So yesterday evening/night I did the
-> following:
-> 
-> - I installed a virtual machine Ubuntu 32 bit
-> - I downloaded the latest linux sources (edison-src-ww18-15-1.tgz)
-> - I added the meta-openembbed layer (daisy branch)
-> - I removed the php recipe from the daisy branch and replaced it by the
-> latest from the master branch
-> - I added PACKAGECONFIG_pn-php = "mysql sqlite3 pgsql" in local.conf
-> - I added my own layer
-> - I built the image
-> 
-> Result: Everything builds fine from scratch beside the php recipe. I
-> appended the latest config.log. As you can see some dependencies are
-> missing resulting in linker errors and I still get the "unsafe for
-> cross-compilation" error.
+--001a11404078a5cbac05172296c4
+Content-Type: text/plain; charset=UTF-8
+
+On Wednesday, May 27, 2015, Matthew Karas <mkarascybi@gmail.com> wrote:
+
+> I have an ovpn file I'd like my system to start up with.  I was able
+> to install the openvpn file into /etc/openvpn using a bbappends file -
+> but the system doesn't start openvpn like the openvpn docs describes.
 >
-> Is the approach of the recipe correct (linking against local packages?).
+> How do I set up openvpn to launch with my config file at start up?
+>
+>
+Openvpn doesn't come with init or systemd support out of the box?
 
-Certainly not. A recipe built for the target machine should never be picking 
-up includes or libraries from the host, that's why this check exists. We need 
-to ensure the configure script does not look at host locations at all. I guess 
-one reason we haven't picked up on this is that by default postgres 
-functionality is disabled.
+If you are using systemd there is a class that will take care of installing
+and enabling a service file for you. You'd have to write the service file
+yourself I think. There should be some examples of how other recipes are
+using it if you search for systemd in the base poky recipes.
 
-> What is your system configuration? Do you have any ideas or do you know a
-> person who might help?
+You can put your changes into the .bbappend and they should take effect
+when you build and install the recipe.
 
-The system I did my most recent build on is a CentOS 6 machine, but that's 
-probably not why it works for me - it likely works for me because I simply 
-don't have postgres or its development files installed, so there's nothing for 
-the configure script to find on the host.
+Chris
 
-Unfortunately this is a case where someone is going to have to dig into the 
-php configure script, find out how that -L/usr/lib is getting into the linker 
-path, and then stop that from happening; depending on how it is getting in 
-there that may be an additional argument to the configure script or it might 
-require patching the configure.ac file. Using "grep" and a little knowledge of 
-how autoconf works this shouldn't be too difficult, but it's not something I 
-have time for at the moment.
+--001a11404078a5cbac05172296c4
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Cheers,
-Paul
+On Wednesday, May 27, 2015, Matthew Karas &lt;<a href=3D"mailto:mkarascybi@=
+gmail.com">mkarascybi@gmail.com</a>&gt; wrote:<br><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
+:1ex">I have an ovpn file I&#39;d like my system to start up with.=C2=A0 I =
+was able<br>
+to install the openvpn file into /etc/openvpn using a bbappends file -<br>
+but the system doesn&#39;t start openvpn like the openvpn docs describes.<b=
+r>
+<br>
+How do I set up openvpn to launch with my config file at start up?<br><br>
+</blockquote><div><br></div>Openvpn doesn&#39;t come with init or systemd s=
+upport out of the box?<br><div><br></div><div>If you are using systemd ther=
+e is a class that will take care of installing and enabling a service file =
+for you. You&#39;d have to write the service file yourself I think. There s=
+hould be some examples of how other recipes are using it if you search for =
+systemd in the base poky recipes.</div><div><br></div><div>You can put your=
+ changes into the .bbappend and they should take effect when you build and =
+install the recipe.<span></span></div><div><br></div><div>Chris</div><div><=
+br></div><div>=C2=A0</div>
 
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
-
+--001a11404078a5cbac05172296c4--
