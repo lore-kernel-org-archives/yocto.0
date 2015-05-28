@@ -1,49 +1,39 @@
-Return-Path: <mike.looijmans@topic.nl>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EBF39E009E5; Wed, 27 May 2015 22:28:22 -0700 (PDT)
+	id 965E7E009E5; Thu, 28 May 2015 00:57:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.17.115.61 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 201 seconds by postgrey-1.32 at yocto-www;
-	Wed, 27 May 2015 22:28:17 PDT
-Received: from atl4mhfb03.myregisteredsite.com
-	(atl4mhfb03.myregisteredsite.com [209.17.115.61])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78BB4E009A1
-	for <yocto@yoctoproject.org>; Wed, 27 May 2015 22:28:17 -0700 (PDT)
-Received: from atl4mhob12.myregisteredsite.com
-	(atl4mhob12.myregisteredsite.com [209.17.115.50])
-	by atl4mhfb03.myregisteredsite.com (8.14.4/8.14.4) with ESMTP id
-	t4S5OupV003278
-	for <yocto@yoctoproject.org>; Thu, 28 May 2015 01:24:57 -0400
-Received: from mailpod.hostingplatform.com ([10.30.71.204])
-	by atl4mhob12.myregisteredsite.com (8.14.4/8.14.4) with ESMTP id
-	t4S5Osw2010518
-	for <yocto@yoctoproject.org>; Thu, 28 May 2015 01:24:54 -0400
-Received: (qmail 26072 invoked by uid 0); 28 May 2015 05:24:54 -0000
-X-TCPREMOTEIP: 88.159.208.100
-X-Authenticated-UID: mike@milosoftware.com
-Received: from unknown (HELO ?192.168.80.121?)
-	(mike@milosoftware.com@88.159.208.100)
-	by 0 with ESMTPA; 28 May 2015 05:24:54 -0000
-Message-ID: <5566A6A4.4030206@topic.nl>
-Date: Thu, 28 May 2015 07:24:52 +0200
-From: Mike Looijmans <mike.looijmans@topic.nl>
-Organization: TOPIC
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DCB4E009A1
+	for <yocto@yoctoproject.org>; Thu, 28 May 2015 00:57:29 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga102.jf.intel.com with ESMTP; 28 May 2015 00:57:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.13,511,1427785200"; d="scan'208";a="499293562"
+Received: from mmwhyte-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.3.20])
+	by FMSMGA003.fm.intel.com with ESMTP; 28 May 2015 00:57:25 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Burton, Ross" <ross.burton@intel.com>,
+	"mar.krzeminski" <mar.krzeminski@gmail.com>
+Date: Thu, 28 May 2015 08:57:24 +0100
+Message-ID: <59702342.fYMEjU6vFU@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.7 (Linux/3.19.7-200.fc21.x86_64; KDE/4.14.7; x86_64; ; )
+In-Reply-To: <CAJTo0LY3xtoy6Hke0tjo+D+PHWd=6+vR7x3k0qRoHBzeHLWTWw@mail.gmail.com>
+References: <5566050D.9090705@gmail.com>
+	<CAJTo0LY3xtoy6Hke0tjo+D+PHWd=6+vR7x3k0qRoHBzeHLWTWw@mail.gmail.com>
 MIME-Version: 1.0
-To: "Joel (Xi Zhou) Zhou" <joel.zhou@broadcom.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <9F136EE5FB53D64397ED1089A0E760E0162D1190@SJEXCHMB12.corp.ad.broadcom.com>
-In-Reply-To: <9F136EE5FB53D64397ED1089A0E760E0162D1190@SJEXCHMB12.corp.ad.broadcom.com>
-Subject: Re: armv7 firmware recipe in armv8 distro
+Cc: yocto@yoctoproject.org
+Subject: Re: Changing VIRTUAL-RUNTIME_init_manager for initramfs image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,30 +45,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 May 2015 05:28:23 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 28 May 2015 07:57:32 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 27-05-15 21:19, Joel (Xi Zhou) Zhou wrote:
-> Hi all,
->
-> We have a Yocto BSP based on arm64/aarch64 machine.
->
-> On top of this, I need to create a firmware recipe, which need armv7
-> cross-compiler.
->
-> So question is, how to support multiple toolchain in Yocto?
+On Wednesday 27 May 2015 21:36:41 Burton, Ross wrote:
+> On 27 May 2015 at 18:55, mar.krzeminski <mar.krzeminski@gmail.com> wrote:
+> > I have machine and in this machine I have two images. One of this images
+> > is image for kernel initramfs.
+> > In this image I want to change init manager to busybox mdev, while ine the
+> > other one I use udev.
+> > I can do that by changing VIRTUAL-RUNTIME_init_manager variable.
+> > And now is time for dummy qestion, but I am not sure, if I change this
+> > variable
+> > in particular image everything will be ok? Is this a proper way to do so?
+> 
+> Yes, you can have a default assignment in your distro configuration, and
+> have another assignment in the image recipe that you want to have a
+> different init manager.
 
-Yocto/OE doesn't support multiple "machines" in a single build.
+No, I don't think you can, since these are controlled from packagegroups, not 
+the image recipe. It's certainly possible to create an initramfs image where 
+you don't actually use those packagegroups and therefore you can just select 
+the desired init system package directly.
 
-You'll have to create a separate yocto build (can use the same environment 
-though) by setting MACHINE to your armv7 firmware system and then placing the 
-output somewhere ("deploy" task). Then make a recipe for the arm64 machine 
-that picks up this output and packs it for deployment on target, like other 
-firmware blobs.
+Cheers,
+Paul
 
+-- 
 
-I think eventually we'll see "composite" machine support in OE, I guess, but 
-for now, I have no clue as to how this would work, otherwise I'd have 
-submitted a patch implementing it already.
+Paul Eggleton
+Intel Open Source Technology Centre
 
