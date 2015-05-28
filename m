@@ -1,53 +1,44 @@
-Return-Path: <chmorgan@gmail.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78987E00A10; Thu, 28 May 2015 04:23:31 -0700 (PDT)
+	id 14855E009CC; Thu, 28 May 2015 07:30:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (chmorgan[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.169 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.43 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f169.google.com (mail-ig0-f169.google.com
-	[209.85.213.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 238BBE009EF
-	for <yocto@yoctoproject.org>; Thu, 28 May 2015 04:23:27 -0700 (PDT)
-Received: by igbpi8 with SMTP id pi8so110645704igb.0
-	for <yocto@yoctoproject.org>; Thu, 28 May 2015 04:23:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=K0VReomAJu2NuSR9JSUlPvYmn4eSit3zy+tWpc3aMTQ=;
-	b=bKN3HC2NEfudPK1n0QDObCD+tqTAh16aqgEviu1A9DbDMeozzt/y3667b2LuJNP74d
-	QbD1Rh/jyaEt8Fc0X6aycE+OKrRQu9U+a1cBzlIBR3rmumKuBxdBB7b8HDl6Xxk8DBT6
-	apsLmA2KOW6CT1bdw/sUYwExLieQiyecq6Qy6b9nW8Q6wEHluFUGN6BCz+h8B65CvDSB
-	S11Gyda6W5t1XylYHDQOm2/eApbuLwKVv7/c8hBW+CCTxxLtp9ApY6bI/z2tek5+kZS/
-	87Ha2hJBicXU4hSk375w4YIb4BmxxOxIadyH6uRvwZISzoXPC+KKX8hpilZv/kSwzMs3
-	m6Ig==
+Received: from mail-vn0-f43.google.com (mail-vn0-f43.google.com
+	[209.85.216.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB170E009EC
+	for <yocto@yoctoproject.org>; Thu, 28 May 2015 07:30:49 -0700 (PDT)
+Received: by vnbf190 with SMTP id f190so4778765vnb.0
+	for <yocto@yoctoproject.org>; Thu, 28 May 2015 07:30:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=alOUHI+nbSixWca3VcUeXY825ce9OcYF06t8jYny9vw=;
+	b=CZbVK0uhY4LfFSOROoaQGnzOxLnLOSjI4etlSKOPmveMfm4WRNxIZ+xz//A8nUZJlF
+	OlJ0WFCF5hz5/EEi5+pUHjVHPPIYMmrpoiLXAM8WM2TwRXJC0icAJEuMy6B83pYg3nWi
+	XqgNptI+f0wJlSmX2wrA4QckECmaeG3wqieXRWG2+fSutcZe+d1dE9fjz4wvOqiXCclp
+	y+3gzFAwQvKRaHju/x2IkWgnePPMOiQyXa7crXp36kDsZFUCUC9iEL0Ni6QzNvT9h84R
+	VU19BOzlMs1XtDjTi6WY4M96NqSNBPV/uDTmDo3GAROr+BTddJtGEyqbRJN2iBquYcYv
+	3LHA==
+X-Gm-Message-State: ALoCoQk6gSgb2FHcWHt46UXW/bvpuRyjyJD1P62tkZfpRrbmsOXRuxONfVxHA6nM41WB8mP7KKDY
 MIME-Version: 1.0
-X-Received: by 10.107.32.73 with SMTP id g70mr2714966iog.23.1432812207325;
-	Thu, 28 May 2015 04:23:27 -0700 (PDT)
-Received: by 10.79.0.18 with HTTP; Thu, 28 May 2015 04:23:27 -0700 (PDT)
-In-Reply-To: <CADu_VSa5W1E+GCiXgkaXGRoJ7g4kz4WZ7M=GZvbAgL_KCYgodg@mail.gmail.com>
-References: <CADu_VSa5W1E+GCiXgkaXGRoJ7g4kz4WZ7M=GZvbAgL_KCYgodg@mail.gmail.com>
-Date: Thu, 28 May 2015 07:23:27 -0400
-Message-ID: <CAAPegz2wvXap_eHY9hsQ3b0emQGYvaK=6Uyj6ShecjxkLVsakg@mail.gmail.com>
-From: Chris Morgan <chmorgan@gmail.com>
-To: Matthew Karas <mkarascybi@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Start openvpn with my own config at startup
+X-Received: by 10.52.142.115 with SMTP id rv19mr2576349vdb.78.1432823449044;
+	Thu, 28 May 2015 07:30:49 -0700 (PDT)
+Received: by 10.52.233.105 with HTTP; Thu, 28 May 2015 07:30:48 -0700 (PDT)
+Date: Thu, 28 May 2015 15:30:48 +0100
+Message-ID: <CAPhnLPAeAN1jDGbRs82=bvV270Kg4g4KDjNQEW7uz+7BN+_WZg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	yocto-announce@yoctoproject.org
+Subject: [ANNOUNCEMENT] Yocto Project 1.6.3 (daisy 11.0.3) released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,55 +50,118 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 May 2015 11:23:31 -0000
-Content-Type: multipart/alternative; boundary=001a11404078a5cbac05172296c4
-
---001a11404078a5cbac05172296c4
+X-List-Received-Date: Thu, 28 May 2015 14:30:54 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Wednesday, May 27, 2015, Matthew Karas <mkarascybi@gmail.com> wrote:
+All,
 
-> I have an ovpn file I'd like my system to start up with.  I was able
-> to install the openvpn file into /etc/openvpn using a bbappends file -
-> but the system doesn't start openvpn like the openvpn docs describes.
->
-> How do I set up openvpn to launch with my config file at start up?
->
->
-Openvpn doesn't come with init or systemd support out of the box?
+We are pleased to announce the third point release for Yocto Project
+"daisy" 1.6.3.
 
-If you are using systemd there is a class that will take care of installing
-and enabling a service file for you. You'd have to write the service file
-yourself I think. There should be some examples of how other recipes are
-using it if you search for systemd in the base poky recipes.
+This release contains 39 patches including 10 patches for known CVEs.
 
-You can put your changes into the .bbappend and they should take effect
-when you build and install the recipe.
+This release is available for download at:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.6.3/poky-daisy-11.0.3.tar.bz2
 
-Chris
+or
 
---001a11404078a5cbac05172296c4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+http://mirrors.kernel.org/yocto/yocto/yocto-1.6.3/poky-daisy-11.0.3.tar.bz2
 
-On Wednesday, May 27, 2015, Matthew Karas &lt;<a href=3D"mailto:mkarascybi@=
-gmail.com">mkarascybi@gmail.com</a>&gt; wrote:<br><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left=
-:1ex">I have an ovpn file I&#39;d like my system to start up with.=C2=A0 I =
-was able<br>
-to install the openvpn file into /etc/openvpn using a bbappends file -<br>
-but the system doesn&#39;t start openvpn like the openvpn docs describes.<b=
-r>
-<br>
-How do I set up openvpn to launch with my config file at start up?<br><br>
-</blockquote><div><br></div>Openvpn doesn&#39;t come with init or systemd s=
-upport out of the box?<br><div><br></div><div>If you are using systemd ther=
-e is a class that will take care of installing and enabling a service file =
-for you. You&#39;d have to write the service file yourself I think. There s=
-hould be some examples of how other recipes are using it if you search for =
-systemd in the base poky recipes.</div><div><br></div><div>You can put your=
- changes into the .bbappend and they should take effect when you build and =
-install the recipe.<span></span></div><div><br></div><div>Chris</div><div><=
-br></div><div>=C2=A0</div>
+Thanks to everyone for all your work and contributions.
 
---001a11404078a5cbac05172296c4--
+Elizabeth Flanagan
+Yocto Project
+Release Engineering
+
+--------------------
+yocto-1.6.3 Errata
+--------------------
+
+Release Name: poky-daisy-11.0.3
+Branch: daisy
+Tag: daisy-11.0.3
+Hash: b2ba41b57550aa912da93b4aef789ff562a67fce
+md5sum: 64f0ab2f5110203e9e33eb879fe0d6df
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.6.3/poky-daisy-11.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.6.3/poky-daisy-11.0.3.tar.bz2
+
+Release Name: eclipse-poky-juno-daisy-11.0.3
+Branch: daisy
+Tag: daisy-11.0.3
+Hash: f5e33fc79a3f77b0013c005019b72430d8998e8b
+md5sum: 57eda33458c89db951ac818cb85bc83f
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.6.3/eclipse-poky-juno-daisy-11.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.6.3/eclipse-poky-juno-daisy-11.0.3.tar.bz2
+
+Release Name: eclipse-poky-kepler-daisy-11.0.3
+Branch: daisy
+Tag: daisy-11.0.3
+Hash: 0ee2b82c0e8ce355bca0601aa63a0d8758aaf199
+md5sum: f5379af02f04d6a1a871b139fa428f76
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.6.3/eclipse-poky-kepler-daisy-11.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.6.3/eclipse-poky-kepler-daisy-11.0.3.tar.bz2
+
+Release Name: meta-qt3-daisy-11.0.3
+Branch: daisy
+Tag: daisy-11.0.3
+Hash: 3016129d90b7ac8517a5227d819f10ad417b5b45
+md5sum: 832691ad5cfeef2be6e037eb4ca70343
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.6.3/meta-qt3-daisy-11.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.6.3/meta-qt3-daisy-11.0.3.tar.bz2
+
+--------------
+Features
+--------------
+* security_flags: Fix typo for cups
+* powertop: Fix build for !uclibc
+* systemd: fix /var/log/journal ownership
+* eglibc: fix two security issues.
+* documentation: Updated manual revision table to new date
+* bitbake: lib/bb/utils: add safeguard against recursively deleting
+things we shouldn't
+* bitbake: fetch/git: Remove a possible trailing '/' in subpath
+* openssl: Fix x32 openssl patch which was not building
+* bitbake: data.py: fixes bad substitution when running devshell
+* ref-manual: Corrected the "package_rpm.bbclass" section.
+* openssl: Upgrade to 1.0.1m
+* utils.bbclass: fix create_cmdline_wrapper
+* qt4: add patch for BMP denial-of-service vulnerability
+* binutils: several security fixes
+* documentation: Prepared for YP 1.6.3 doc release.
+* lib/oe/package_manager: support exclusion from complementary glob
+process by regex
+* ref-manual: Fixed icecc example code
+* documentation: Reverted back to the 1.76.1 XSL stylesheet
+* yocto-bsp: Add branch to SRC_URI for custom kernels
+* btrfs: create an empty file to build the fs in
+* update-rc.d: Allow to use different initscripts provider
+* python: Disables SSLv3
+* systemd: backport patch to fix reading journal backwards
+* openssh: move setting LD to allow for correct override
+* resolvconf: add fixes for busybox and make it work
+* beaglebone: enable the nowayout option for the watchdog
+* linux-yocto-rt/3.14: update to 3.14-rt5
+* linux-yocto/3.14: update to v3.14.4
+* linux-yocto/3.14: update to v3.14.2
+
+--------------
+Security Fixes
+--------------
+* e2fsprogs: CVE-2015-0247
+* elfutils: CVE-2014-9447
+* coreutils: parse-datetime: CVE-2014-9471
+* libpng16: CVE-2015-0973
+* qemu: CVE-2014-2894
+* python: CVE-2014-7185
+* bind: fix for CVE-2014-8500
+* file: CVE-2014-9620 and CVE-2014-9621
+* cpio: fix bug CVE-2014-9112 for cpio-2.8
+* cpio: fix bug CVE-2014-9112 for cpio-2.11
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
+
