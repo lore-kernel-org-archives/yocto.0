@@ -1,51 +1,48 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <vm.rod25@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 530F0E009A3; Fri, 29 May 2015 13:53:23 -0700 (PDT)
+	id A9861E009A3; Fri, 29 May 2015 13:59:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (vm.rod25[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21952E0086D
-	for <yocto@yoctoproject.org>; Fri, 29 May 2015 13:53:19 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga103.jf.intel.com with ESMTP; 29 May 2015 13:53:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,519,1427785200"; d="scan'208";a="579002589"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by orsmga003.jf.intel.com with ESMTP; 29 May 2015 13:53:16 -0700
-Received: from orsmsx116.amr.corp.intel.com (10.22.240.14) by
-	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Fri, 29 May 2015 13:53:16 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.102]) by
-	ORSMSX116.amr.corp.intel.com ([169.254.9.185]) with mapi id
-	14.03.0224.002; Fri, 29 May 2015 13:53:15 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Hart, Darren" <darren.hart@intel.com>, Trevor Woerner
-	<twoerner@gmail.com>, "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Nicholas Krause <xerofoify@gmail.com>
-Thread-Topic: [yocto] Question on building out-of-tree modules on the target
-Thread-Index: AdCReOu3pXj0Q3tfSEaVNG//rlsQSQJBlt8A//+P5QD///6w4IAABoaA///xoqA=
-Date: Fri, 29 May 2015 20:53:15 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237988EFB023@ORSMSX101.amr.corp.intel.com>
-References: <41DEA4B02DBDEF40A0F3B6D0DDB1237988EF8590@ORSMSX101.amr.corp.intel.com>
-	<5568BC20.7080703@gmail.com> <D18E0E6B.CFFFE%darren.hart@intel.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237988EFAF5B@ORSMSX101.amr.corp.intel.com>
-	<D18E10A4.D001E%darren.hart@intel.com>
-In-Reply-To: <D18E10A4.D001E%darren.hart@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.179 listed in list.dnswl.org]
+Received: from mail-ig0-f179.google.com (mail-ig0-f179.google.com
+	[209.85.213.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CF7AE0086D
+	for <yocto@yoctoproject.org>; Fri, 29 May 2015 13:59:17 -0700 (PDT)
+Received: by igbyr2 with SMTP id yr2so23799458igb.0
+	for <yocto@yoctoproject.org>; Fri, 29 May 2015 13:59:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=huws6Qq6v0+IuH4rr4Yjreto2j0KP9urp1bcFgcFpqk=;
+	b=PsLuWGSPN2rodehqDHnEcHIcM3Gr2s6LJs0aKVMoXlGwjAGDVngNUYqciF4/m1wOAW
+	UmpDBPX3gWyKR+avOmC1F/WJaGQ7TxrpKsRHJj85PUB8uz0hlLlb59aioOBzBAtSLWll
+	xNM+goFeEEGUzrfavut0GI+uy1Xz33OVeCM9OxHf3KEL8a1U+DxHa6mRB40vqYPnENJl
+	dhXto8KlZSvFxYK6fuB04bP+3q2q6tf3xIJD3qTld3kGqsJcDlRqsygB9FRtyY5526S1
+	QnQfyCEGzGQHCaoLL8Rt0/82r1Vyvwgug9s1uyW6jtnFmFdYKhow3ec+1MMJ5AztQSlh
+	zFgw==
 MIME-Version: 1.0
-Cc: "Wold, Saul" <saul.wold@intel.com>
-Subject: Re: Question on building out-of-tree modules on the target
+X-Received: by 10.50.138.70 with SMTP id qo6mr6375078igb.15.1432933156565;
+	Fri, 29 May 2015 13:59:16 -0700 (PDT)
+Received: by 10.50.141.228 with HTTP; Fri, 29 May 2015 13:59:16 -0700 (PDT)
+Date: Fri, 29 May 2015 15:59:16 -0500
+Message-ID: <CAK5mteyg4FSKmzrDoMmvx+-fwJEhybHCa+MA9bokQuJt5m-H_Q@mail.gmail.com>
+From: Victor Rodriguez <vm.rod25@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: build hello_world.c in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,111 +54,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 May 2015 20:53:23 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 29 May 2015 20:59:19 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi,
+HI team
 
-I added a clarifying paragraph at the start of this section.  Also, for the=
- last paragraph I mentioned kernel-devsrc.  I could not find any commits th=
-at I understood looking in poky for "kernel-devsrc" so from the comment you=
- gave Darren about the package not being uniformly installed on all *.sdk i=
-mages, I improvised.  Let me know of any corrections.
+Question what are the necessary IMAGE_INSTALL_append to build a c
+hello world in an core-image-minimal ?
 
-http://www.yoctoproject.org/docs/1.9/kernel-dev/kernel-dev.html#building-ou=
-t-of-tree-modules-on-the-target
+If I just add gcc .. then I need "as" when I try to gcc -0 hello hello.c
 
-Thanks,=20
-Scott
 
->-----Original Message-----
->From: Hart, Darren
->Sent: Friday, May 29, 2015 12:59 PM
->To: Rifenbark, Scott M; Trevor Woerner; yocto@yoctoproject.org
->Cc: Wold, Saul
->Subject: Re: [yocto] Question on building out-of-tree modules on the targe=
-t
->
->On 5/29/15, 12:46 PM, "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
->wrote:
->
->>Ok - so we established that we want it... If I get some clarifications
->>in there about the "rarity" of the situation that would allow someone
->>to develop on the target and also the benefits of having a verified
->>cross-development system if they were to develop on the host, does the
->>rest of the section stand as is?  Are there any issues with it?
->
->
->Adding something like:
->
->"While the traditional Yocto Project development model would be to include
->kernel modules as part of the normal build process, some developers find i=
-t
->useful to build modules on the target."
->
->This section is lagging the 1.8 addition of kernel-devsrc, which was not a=
-pplied
->uniformly across all included SDK images. There is probably a patch necess=
-ary
->to do that for a 1.8 point release, and then this document could be made t=
-o
->reflect that.
->
->--
->Darren
->
->>
->>Thanks,
->>Scott
->>
->>>-----Original Message-----
->>>From: Hart, Darren
->>>Sent: Friday, May 29, 2015 12:40 PM
->>>To: Trevor Woerner; Rifenbark, Scott M; yocto@yoctoproject.org
->>>Cc: Wold, Saul
->>>Subject: Re: [yocto] Question on building out-of-tree modules on the
->>>target
->>>
->>>On 5/29/15, 12:21 PM, "Trevor Woerner" <twoerner@gmail.com> wrote:
->>>
->>>>Hi Scott,
->>>>
->>>>On 05/18/15 10:42, Rifenbark, Scott M wrote:
->>>>> I have a section in the YP Linux Kernel Development Manual that
->>>>>talks about building out-of-tree-modules on the target -
->>>>
->>>>Interestingly enough, I was just reading through that document the
->>>>other day. As soon as I saw a section titled "Building Out-Of-Tree
->>>>Modules _On The Target_" I thought to myself "why would anyone be
->>>>doing development on the target and not the host?" and skipped to the
->>>>next
->>>section.
->>>>
->>>>If it were me, I'd just remove that section altogether. I'm of the
->>>>opinion that doing development work on the target is wrong (if for no
->>>>other reason than to prove your cross-development setup is working
->>>>correctly), but that's just me.
->>>>
->>>>;-)
->>>>
->>>
->>>I personally agree, but having it documented means I get to answer a
->>>lot few emails about people insisting on doing this. The section
->>>stays.
->>>
->>>--
->>>Darren Hart
->>>Intel Open Source Technology Center
->>>
->>
->>
->
->
->--
->Darren Hart
->Intel Open Source Technology Center
->
+I will add gcc and gcc-dev .. anyone else that I might be missing ?
 
+Thanks a lot and regards
+
+Victor Rodriguez
 
