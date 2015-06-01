@@ -1,51 +1,47 @@
-Return-Path: <vm.rod25@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 41D0DE00A49; Mon,  1 Jun 2015 05:08:23 -0700 (PDT)
+	id EDA9BE00A3C; Mon,  1 Jun 2015 05:22:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vm.rod25[at]gmail.com)
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.177 listed in list.dnswl.org]
-Received: from mail-ie0-f177.google.com (mail-ie0-f177.google.com
-	[209.85.223.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FD17E009CA
-	for <yocto@yoctoproject.org>; Mon,  1 Jun 2015 05:08:20 -0700 (PDT)
-Received: by ieczm2 with SMTP id zm2so106967053iec.1
-	for <yocto@yoctoproject.org>; Mon, 01 Jun 2015 05:08:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=97E1imSjuYRiOu7qAt7pW+ZVgNCgST6AjKI1u8b/kH4=;
-	b=L8YjJ3KwSASddw/tVQNjLHIrSZBYZq3JGFWlo8nBqADkmagkbI69kDVN9ijwU697gu
-	eXuD0oKg39wU2k/ZQbg/eX65IB1y6b/HaxxJdwM99G3e7PJnfzTnxSrYWWchSXeWlAY2
-	ywrgXjau+V3cmQ92E6GVuteVDqsvjPpuWBLpO2ZYH0ursXG4+puwsp0ZMDQ7eLmFGJjB
-	95WLWGKfEp83nSYEHtIEQTT9ZovLE+mrGYjmtNBGHDWMmy9ar2HHFLGLxyQ4eqSifbz8
-	TpnsqYxMNHlAbnw4Cyp82Sfg5SkLa3H1zX5yECuYzk75fYPKDz39zu54UQ5eRsnNWWuU
-	HmZg==
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-qc0-f178.google.com (mail-qc0-f178.google.com
+	[209.85.216.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43878E009A3
+	for <yocto@yoctoproject.org>; Mon,  1 Jun 2015 05:22:24 -0700 (PDT)
+Received: by qcej9 with SMTP id j9so3510707qce.1
+	for <yocto@yoctoproject.org>; Mon, 01 Jun 2015 05:22:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=BbsLUj0PJekT4paTcVaX5PoyHCuhiQjk5B9JV9cMuT4=;
+	b=TXPBViN4Gybe3p/ndAR93PpeQswnj1LrK3IBKWGEpbhrp2JOW5Wom/aUyBp/Quror5
+	gr8jD/ospGNE3utemB0V/R9Nq+zuK2RS7Jkc7jp8k3YO6W6zTpNw6TBRhgMbCJSjukVy
+	J/zNvAylN31Ktwb4yEv+S1K7siHu2APK6+Co6c7snki0yBq/AnbNcZOGNuUSKmZGu9gj
+	61u/m+Un1Lo+FxbfQziLXLuW1AD2SyTXwMQWN7GBQ9RSo9sMQP0zkvhLCM0krOMeYyg4
+	6Fd7cO/SEMj1Qnv6xByihEdEDZofwXIdGEgHLJpTjwya86RFIyjn//vsqZshp9Fyw8sM
+	xcmw==
+X-Gm-Message-State: ALoCoQmnI4X2v4IndgumYbPVwnH1C9tz0rC/weVvBWgERiGLjUcpYthG5OW5gnAeMcOFIlXgPnuM
+X-Received: by 10.140.133.199 with SMTP id 190mr24296995qhf.17.1433161343960; 
+	Mon, 01 Jun 2015 05:22:23 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.107.33.9 with SMTP id h9mr26594494ioh.1.1433160500026; Mon,
-	01 Jun 2015 05:08:20 -0700 (PDT)
-Received: by 10.50.141.228 with HTTP; Mon, 1 Jun 2015 05:08:19 -0700 (PDT)
-In-Reply-To: <CAJTo0LYmV418_39HBjj+VoYs1O8qHQCwOWfd9YdotSwcGdHvsw@mail.gmail.com>
+Received: by 10.140.102.231 with HTTP; Mon, 1 Jun 2015 05:22:03 -0700 (PDT)
+In-Reply-To: <CAK5mtexC81Yi9C2YA6O4SuKZ=vQ6wk8=cUYNZ8mYOQ4uAoZ+qw@mail.gmail.com>
 References: <CAK5mteyg4FSKmzrDoMmvx+-fwJEhybHCa+MA9bokQuJt5m-H_Q@mail.gmail.com>
 	<CAJTo0LYmV418_39HBjj+VoYs1O8qHQCwOWfd9YdotSwcGdHvsw@mail.gmail.com>
-Date: Mon, 1 Jun 2015 07:08:19 -0500
-Message-ID: <CAK5mtexC81Yi9C2YA6O4SuKZ=vQ6wk8=cUYNZ8mYOQ4uAoZ+qw@mail.gmail.com>
-From: Victor Rodriguez <vm.rod25@gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
+	<CAK5mtexC81Yi9C2YA6O4SuKZ=vQ6wk8=cUYNZ8mYOQ4uAoZ+qw@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 1 Jun 2015 13:22:03 +0100
+Message-ID: <CAJTo0LZqH+u5fNKF_vVVuyw7kaXRMdLteNai1UCPz2-UEpbXxw@mail.gmail.com>
+To: Victor Rodriguez <vm.rod25@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: build hello_world.c in yocto
 X-BeenThere: yocto@yoctoproject.org
@@ -59,28 +55,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Jun 2015 12:08:23 -0000
+X-List-Received-Date: Mon, 01 Jun 2015 12:22:27 -0000
+Content-Type: multipart/alternative; boundary=001a11353390d020c9051773e075
+
+--001a11353390d020c9051773e075
 Content-Type: text/plain; charset=UTF-8
 
-On Sun, May 31, 2015 at 5:48 PM, Burton, Ross <ross.burton@intel.com> wrote:
+On 1 June 2015 at 13:08, Victor Rodriguez <vm.rod25@gmail.com> wrote:
+
+> EXTRA_IMAGE_FEATURES = "debug-tweaks dev-pkgs"
 >
-> On 29 May 2015 at 21:59, Victor Rodriguez <vm.rod25@gmail.com> wrote:
->>
->> Question what are the necessary IMAGE_INSTALL_append to build a c
->> hello world in an core-image-minimal ?
->
->
-> The easy way is to add tools-sdk to IMAGE_FEATURES.  That gives you a
-> complete toolchain (not just gcc) and more pieces.
->
-> Ross
-Thanks a lot Ross
 
-I will try this on e, I had the idea that just with
+As the documentation says (
+http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#ref-features-image),
+dev-pkgs is just the headers and library links for the packages you've
+installed.  No tools come with that.
 
-EXTRA_IMAGE_FEATURES = "debug-tweaks dev-pkgs"
+Ross
 
-Thanks
+--001a11353390d020c9051773e075
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Victor Rodriguez
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 1 June 2015 at 13:08, Victor Rodriguez <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:vm.rod25@gmail.com" target=3D"_blank">vm.rod25@gmail.com</a>&gt;</sp=
+an> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left=
+-style:solid;padding-left:1ex"><div id=3D":qh" class=3D"" style=3D"overflow=
+:hidden">EXTRA_IMAGE_FEATURES =3D &quot;debug-tweaks dev-pkgs&quot;<br></di=
+v></blockquote></div><br>As the documentation says (<a href=3D"http://www.y=
+octoproject.org/docs/1.8/ref-manual/ref-manual.html#ref-features-image">htt=
+p://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#ref-features-i=
+mage</a>), dev-pkgs is just the headers and library links for the packages =
+you&#39;ve installed.=C2=A0 No tools come with that.</div><div class=3D"gma=
+il_extra"><br></div><div class=3D"gmail_extra">Ross</div></div>
 
+--001a11353390d020c9051773e075--
