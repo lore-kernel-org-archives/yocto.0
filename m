@@ -1,26 +1,43 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <joel.zhou@broadcom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65891E00960; Mon,  1 Jun 2015 09:09:02 -0700 (PDT)
+	id 543EAE00960; Mon,  1 Jun 2015 09:30:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [216.31.210.62 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C7EFE0027F
-	for <yocto@yoctoproject.org>; Mon,  1 Jun 2015 09:08:59 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 0223D83872F8
-	for <yocto@yoctoproject.org>; Mon,  1 Jun 2015 12:08:57 -0400 (EDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-gw1-out.broadcom.com (mail-gw1-out.broadcom.com
+	[216.31.210.62])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8516E0027F
+	for <yocto@yoctoproject.org>; Mon,  1 Jun 2015 09:30:10 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.13,533,1427785200"; d="scan'208,217";a="66455415"
+Received: from irvexchcas06.broadcom.com (HELO
+	IRVEXCHCAS06.corp.ad.broadcom.com) ([10.9.208.53])
+	by mail-gw1-out.broadcom.com with ESMTP; 01 Jun 2015 10:15:23 -0700
+Received: from SJEXCHCAS06.corp.ad.broadcom.com (10.16.203.14) by
+	IRVEXCHCAS06.corp.ad.broadcom.com (10.9.208.53) with Microsoft SMTP
+	Server (TLS) id 14.3.235.1; Mon, 1 Jun 2015 09:30:08 -0700
+Received: from SJEXCHMB12.corp.ad.broadcom.com ([fe80::bc15:c1e1:c29a:36f7])
+	by SJEXCHCAS06.corp.ad.broadcom.com ([::1]) with mapi id 14.03.0235.001;
+	Mon, 1 Jun 2015 09:30:08 -0700
+From: "Joel (Xi Zhou) Zhou" <joel.zhou@broadcom.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: ERROR: Multiple .bb files
+Thread-Index: AdCciDh2Yq3rayNhThWdldxQpO21mg==
+Date: Mon, 1 Jun 2015 16:30:07 +0000
+Message-ID: <9F136EE5FB53D64397ED1089A0E760E0162D2A19@SJEXCHMB12.corp.ad.broadcom.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.203.100]
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 01 Jun 2015 16:08:57 -0000
-Message-ID: <20150601160857.12055.37938@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Subject: ERROR: Multiple .bb files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,159 +49,268 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Jun 2015 16:09:02 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 01 Jun 2015 16:30:16 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9F136EE5FB53D64397ED1089A0E760E0162D2A19SJEXCHMB12corpa_"
 
-This mail was sent out by Recipe reporting system.
+--_000_9F136EE5FB53D64397ED1089A0E760E0162D2A19SJEXCHMB12corpa_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade this time, they can fill in
-RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
-recipe remainder until newer upstream version was detected.
+Updated.
+If I bypass the "packagedata" error,  the new kernel recipe runs into "ERRO=
+R: Multiple .bb files ..."
+Anyone has suggestion for this issue?
 
-Example:
-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
+Thanks,
+Joel
+---------------
+NOTE: Compute totals (have 1 endpoint(s))
+ERROR: Multiple .bb files are due to be built which each provide virtual/ke=
+rnel (/projects/poky/build64/../meta-brcm/recipes-kernel/linux/linux-brcm-n=
+and_3.14.29.bb /projects/poky/build64/../meta-brcm/recipes-kernel/linux/lin=
+ux-brcm_3.14.29.bb).
+This usually means one provides something the other doesn't and should.
 
-You can check the detail information at:
 
-http://packages.yoctoproject.org/
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Joel (Xi Zhou) Zhou
+Sent: Monday, June 01, 2015 10:48 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] Multi recipes for different defconfig on the same kernel s=
+ource
 
-Package               Version          Upstream version      Maintainer           NoUpgradeReason
---------------------  ---------------  --------------------  -------------------  ------------------------------
-nfs-utils             1.3.1            1.3.2                 Alejandro Hernandez
-midori                0.5.8            0.5.10                Alejandro Hernandez
-python-smmap          0.8.2            0.9.0                 Alejandro Hernandez
-python3               3.4.3            3.5.0b1               Alejandro Hernandez
-python                2.7.9            3.5.0b1               Alejandro Hernandez
-cronie                1.4.12           1.5.0                 Alejandro Hernandez
-which                 2.20             2.21                  Alejandro Hernandez
-gnome-icon-theme      2.31.0           3.12.0                Alejandro Hernandez
-jpeg                  8d               9a                    Aníbal Limón         webkit-gtk 1.8.3 doesn't wo...
-dpkg                  1.17.25          1.18.1                Aníbal Limón
-sqlite3               3.8.10.0         3.8.10.2.             Aníbal Limón
-mc                    4.8.13           4.8.14                Aníbal Limón
-screen                4.0.3            4.2.1                 Aníbal Limón
-nettle                2.7.1            3.1rc3                Armin Kuster         3.0.0 breaks gnutls, api ch...
-lz4                   128+gitX         r123                  Armin Kuster
-linux-libc-headers    3.19             3.19.8                Bruce Ashfield
-console-tools         0.3.2            1999.03.02            Chen Qi
-dbus-test             1.8.10           1.9.16                Chen Qi
-dbus                  1.8.16           1.9.16                Chen Qi
-systemd               219-stable+gitX  21522eade6dd8422b...  Chen Qi
-util-linux            2.26.1           2.26.2                Chen Qi
-gawk                  4.1.1            4.1.3                 Chen Qi
-iproute2              3.17.0           4.0.0                 Cristian Iorga
-libpcap               1.6.2            1.7.3                 Cristian Iorga
-libvorbis             1.3.4            1.3.5                 Cristian Iorga
-libatomics-ops        7.2              7.4.0                 Cristian Iorga
-speex                 1.2rc1           1.2rc2                Cristian Iorga
-db                    6.0.30           6.1.23.NC             Cristian Iorga       API compatibility issue
-libical               1.0.0            1.0.1                 Cristian Iorga
-libtirpc              0.2.5            0.3.1                 Cristian Iorga
-linux-yocto-rt        3.14.36+gitX     3.14.39+gitAUTOIN...  Darren Hart
-u-boot-fw-utils       v2015.01+gitX    v2015.04+gitAUTOI...  Denys Dmytriyenko
-u-boot-mkimage        v2015.01+gitX    v2015.04+gitAUTOI...  Denys Dmytriyenko
-u-boot                v2015.01+gitX    v2015.04+gitAUTOI...  Denys Dmytriyenko
-ncurses               5.9              20150530              Hongxu Jia
-distcc                3.1              3.2rc1                Hongxu Jia
-qmmp                  0.7.7            0.8.4                 Hongxu Jia
-perl                  5.20.0           5.21.11               Hongxu Jia
-createrepo            0.4.11           0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-bash                  4.3              4.3.30                Hongxu Jia           The latest version in yocto...
-python-mako           0.9.1            1.0.1                 Khem Raj
-python-nose           1.2.1            1.3.6                 Khem Raj
-python-numpy          1.7.0            1.9.2                 Khem Raj
-python3-distribute    0.6.32           0.7.3                 Khem Raj
-rpm                   5.4.14           5.4.15                Mark Hatle
-libpfm4               4.3.0            4.6.0                 Matthew McClintock
-liberror-perl         0.17023          0.17024               No maintainer
-debianutils           4.5              4.5.1                 No maintainer
-grub                  2.00+X           2.00+AUTOINC+ca59...  Paul Eggleton
-dropbear              2014.66          2015.67               Paul Eggleton
-cmake                 2.8.12.2         3.2.2                 Paul Eggleton
-dosfstools            2.11             3.0.27                Paul Eggleton
-libav                 9.16             11.4                  Paul Eggleton
-x264                  r2265+gitX       r2491                 Paul Eggleton
-qt4-embedded          4.8.6            5.4.1                 Paul Eggleton
-qt4-x11-free          4.8.6            5.4.1                 Paul Eggleton
-gpgme                 1.4.3            1.5.4                 Paul Eggleton
-yasm                  1.2.0            1.3.0                 Paul Eggleton
-augeas                1.2.0            1.3.0                 Paul Eggleton
-libevdev              1.3              1.4.2                 Paul Eggleton
-libpng12              1.2.53           1.6.17                Randy Witt
-python-async          0.6.1            0.6.2                 Randy Witt
-tcf-agent             0.4.0+gitX       8.0+gitAUTOINC+01...  Randy Witt
-unfs3                 0.9.22.r490      0.9.22.r494           Randy Witt
-libunistring          0.9.4            0.9.5                 Randy Witt
-ethtool               3.16             4.0                   Randy Witt
-libpam                1.1.6            1.2.0                 Randy Witt
-libpciaccess          0.13.3           0.13.4                Richard Purdie
-btrfs-tools           3.18.2+gitX      4.0.1+gitAUTOINC+...  Richard Purdie
-gcc-source-4.9.2      4.9.2            5.1.0                 Richard Purdie
-gdb                   7.9              7.9.1                 Richard Purdie
-intltool              0.50.2           0.51.0                Richard Purdie
-python-distribute     0.6.32           0.7.3                 Richard Purdie       0.7.3 only upgrades 0.6.32,...
-python-pygobject      2.28.3           3.16.1                Richard Purdie       Newer versions of python-py...
-libdrm                2.4.59           2.4.61                Richard Purdie
-libmpc                1.0.2            1.0.3                 Richard Purdie
-glib-2.0              2.44.0           2.44.1                Robert Yang
-binutils              2.25             7.9.1                 Robert Yang
-e2fsprogs             1.42.9           1.42.13               Robert Yang
-gmp                   6.0.0            6.0.0a                Robert Yang
-logrotate             3.8.8            3.9.1                 Robert Yang
-pango                 1.36.8           1.37.0                Ross Burton
-liberation-fonts      1.04             2.00.1                Ross Burton          2.00.0 - fontforge package ...
-libinput              0.7.0            0.15.0                Ross Burton
-weston                1.6.0            1.7.93                Ross Burton
-xf86-input-evdev      2.9.1            2.9.2                 Ross Burton
-xf86-input-keyboard   1.8.0            1.8.1                 Ross Burton
-xf86-input-synaptics  1.8.1            1.8.2                 Ross Burton
-xf86-input-vmmouse    13.0.0           13.0.99               Ross Burton
-xf86-video-omap       0.4.2+gitrX      0.4.3+gitrAUTOINC...  Ross Burton
-xf86-video-vmware     13.0.2           13.1.0                Ross Burton
-wayland               1.6.0            1.7.93                Ross Burton
-xkeyboard-config      2.14             2.15                  Ross Burton
-xserver-xorg          1.16.3           1.17.1                Ross Burton
-webkit-gtk            1.8.3            1.9.92                Ross Burton          >= 1.10.2 needs ruby
-vala                  0.28.0           0.29.1                Ross Burton
-vte                   0.28.2           0.40.2                Ross Burton
-gtk+3                 3.12.2           3.16.3                Ross Burton
-gtk+                  2.24.27          2.24.28               Ross Burton
-libnotify             0.6.0            0.7.6                 Ross Burton
-clutter-1.0           1.20.0           1.22.2                Ross Burton
-clutter-gtk-1.0       1.4.4            1.6.0                 Ross Burton
-cogl-1.0              1.18.2           1.20.0                Ross Burton
-build-appliance-i...  12.0.1           13.0.0                Saul Wold
-uclibc                0.9.33+gitX      0.9.33.2+gitAUTOI...  Saul Wold
-libtheora             1.1.1            1.2.0alpha1           Saul Wold
-tiff                  4.0.3            4.0.4beta             Saul Wold
-ca-certificates       20141019         20150426              Saul Wold
-libunique             1.1.6            3.0.2                 Saul Wold
-mx-1.0                1.4.7+gitX       1.99.4+gitAUTOINC...  Saul Wold
-blktrace              1.0.5+gitX       1.1.0+gitAUTOINC+...  Tom Zanussi
-ccache                3.1.11           3.2.2                 Wenzong Fan
-chkconfig             1.3.58           1.5                   Wenzong Fan
+Hi all,
 
-Upgradable count: 104
-Upgradable total count: 113
+I need to create multiple recipes for different kernel config based on the =
+same kernel source.
+In my experiment, I create a new recipe linux-brcm-nand based on linux-brcm=
+, the only different is the kernel defconfig file.
+From the following error message, it looks like the idea of multi-kernel pr=
+oviders.
 
-The based commit is:
+What is the correct way to different kernel config on the same kernel sourc=
+e?
 
-commit 968973d55d4b33e1a929ed4cdf9387fcaba2d93f
-Author: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Date:   Wed May 27 12:58:15 2015 +0300
+Thanks,
+Joel
+----------------------------------
+ERROR: The recipe linux-brcm-nand is trying to install files into a shared =
+area when those files already exist. Those files and their manifest locatio=
+n are:
+   /projects/poky/build64/tmp/sysroots/brcm/pkgdata/runtime/kernel
+Matched in manifest-brcm-linux-brcm.packagedata
+/projects/poky/build64/tmp/sysroots/brcm/pkgdata/runtime/kernel.packaged
+Matched in manifest-brcm-linux-brcm.packagedata
+...
+/projects/poky/build64/tmp/sysroots/brcm/pkgdata/kernel-depmod/System.map-3=
+.14.29
+Matched in manifest-brcm-linux-brcm.packagedata
+Please verify which recipe should provide the above files.
+The build has stopped as continuing in this scenario WILL break things, if =
+not now, possibly in the future (we've seen builds fail several months late=
+r). If the system knew how to recover from this automatically it would howe=
+ver there are several different scenarios which can result in this and we d=
+on't know which one this is. It may be you have switched providers of somet=
+hing like virtual/kernel (e.g. from linux-yocto to linux-yocto-dev), in tha=
+t case you need to execute the clean task for both recipes and it will reso=
+lve this error. It may be you changed DISTRO_FEATURES from systemd to udev =
+or vice versa. Cleaning those recipes should again resolve this error howev=
+er switching DISTRO_FEATURES on an existing build directory is not supporte=
+d, you should really clean out tmp and rebuild (reusing sstate should be sa=
+fe). It could be the overlapping files detected are harmless in which case =
+adding them to SSTATE_DUPWHITELIST may be the correct solution. It could al=
+so be your build is including two different conflicting versions of things =
+(e.g. bluez 4 and bluez 5 and the correct solution for that would be to res=
+olve the conflict. If in doubt, please ask on the mailing list, sharing the=
+ error and filelist above.
+ERROR: If the above message is too much, the simpler version is you're advi=
+sed to wipe out tmp and rebuild (reusing sstate is fine). That will likely =
+fix things in most (but not all) cases.
+ERROR: Function failed: sstate_task_postfunc
+ERROR: Logfile of failure stored in: /projects/poky/build64/tmp/work/brcm -=
+poky-linux/linux-brcm-nand/3.14.29-r6/temp/log.do_packagedata.40045
+NOTE: recipe linux-brcm-nand-3.14.29-r6: task do_packagedata: Failed
+ERROR: Task 11 (/projects/poky/build64../meta-brcm/meta/recipes-kernel/linu=
+x/linux-brcm-nand_3.14.29.bb, do_packagedata) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 447 tasks of which 445 didn't need to be rer=
+un and 2 failed.
 
-    qt4: unconditionally disable gstreamer 0.10 support in qt webkit
-    
-    Previously it was auto-detected in a broken way, which was causing build errors
-    for qt-mobility. Qt4 build will fail if some gstreamer 0.10 packages are
-    available at build time, but not all. It will not fail if none of
-    the packages are available or if all of them are available. We can't guarantee either,
-    hence this patch.
-    
-    Signed-off-by: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+--_000_9F136EE5FB53D64397ED1089A0E760E0162D2A19SJEXCHMB12corpa_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Updated.<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">If I bypass the &#8220=
+;packagedata&#8221; error,&nbsp; the new kernel recipe runs into &#8220;ERR=
+OR: Multiple .bb files &#8230;&#8221;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Anyone has suggestion =
+for this issue?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Thanks,<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Joel<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">---------------<o:p></=
+o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">NOTE: Compute totals (=
+have 1 endpoint(s))<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">ERROR: Multiple .bb fi=
+les are due to be built which each provide virtual/kernel (/projects/poky/b=
+uild64/../meta-brcm/recipes-kernel/linux/linux-brcm-nand_3.14.29.bb /projec=
+ts/poky/build64/../meta-brcm/recipes-kernel/linux/linux-brcm_3.14.29.bb).<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">This usually means one=
+ provides something the other doesn't and should.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
+unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+<b>On Behalf Of </b>Joel (Xi Zhou) Zhou<br>
+<b>Sent:</b> Monday, June 01, 2015 10:48 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] Multi recipes for different defconfig on the same k=
+ernel source<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I need to create multiple recipes for different kern=
+el config based on the same kernel source.<o:p></o:p></p>
+<p class=3D"MsoNormal">In my experiment, I create a new recipe linux-brcm-n=
+and based on linux-brcm, the only different is the kernel defconfig file.<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">From the following error message, it looks like the =
+idea of multi-kernel providers.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">What is the correct way to different kernel config o=
+n the same kernel source?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Joel<o:p></o:p></p>
+<p class=3D"MsoNormal">----------------------------------<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: The recipe linux-brcm-nand is trying to insta=
+ll files into a shared area when those files already exist. Those files and=
+ their manifest location are:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp; /projects/poky/build64/tmp/sysroots/brc=
+m/pkgdata/runtime/kernel<o:p></o:p></p>
+<p class=3D"MsoNormal">Matched in manifest-brcm-linux-brcm.packagedata<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">/projects/poky/build64/tmp/sysroots/brcm/pkgdata/run=
+time/kernel.packaged<o:p></o:p></p>
+<p class=3D"MsoNormal">Matched in manifest-brcm-linux-brcm.packagedata<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">...<o:p></o:p></p>
+<p class=3D"MsoNormal">/projects/poky/build64/tmp/sysroots/brcm/pkgdata/ker=
+nel-depmod/System.map-3.14.29<o:p></o:p></p>
+<p class=3D"MsoNormal">Matched in manifest-brcm-linux-brcm.packagedata<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">Please verify which recipe should provide the above =
+files.<o:p></o:p></p>
+<p class=3D"MsoNormal">The build has stopped as continuing in this scenario=
+ WILL break things, if not now, possibly in the future (we've seen builds f=
+ail several months later). If the system knew how to recover from this auto=
+matically it would however there are
+ several different scenarios which can result in this and we don't know whi=
+ch one this is. It may be you have switched providers of something like vir=
+tual/kernel (e.g. from linux-yocto to linux-yocto-dev), in that case you ne=
+ed to execute the clean task for
+ both recipes and it will resolve this error. It may be you changed DISTRO_=
+FEATURES from systemd to udev or vice versa. Cleaning those recipes should =
+again resolve this error however switching DISTRO_FEATURES on an existing b=
+uild directory is not supported,
+ you should really clean out tmp and rebuild (reusing sstate should be safe=
+). It could be the overlapping files detected are harmless in which case ad=
+ding them to SSTATE_DUPWHITELIST may be the correct solution. It could also=
+ be your build is including two
+ different conflicting versions of things (e.g. bluez 4 and bluez 5 and the=
+ correct solution for that would be to resolve the conflict. If in doubt, p=
+lease ask on the mailing list, sharing the error and filelist above.<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">ERROR: If the above message is too much, the simpler=
+ version is you're advised to wipe out tmp and rebuild (reusing sstate is f=
+ine). That will likely fix things in most (but not all) cases.<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">ERROR: Function failed: sstate_task_postfunc<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">ERROR: Logfile of failure stored in: /projects/poky/=
+build64/tmp/work/brcm -poky-linux/linux-brcm-nand/3.14.29-r6/temp/log.do_pa=
+ckagedata.40045<o:p></o:p></p>
+<p class=3D"MsoNormal">NOTE: recipe linux-brcm-nand-3.14.29-r6: task do_pac=
+kagedata: Failed<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task 11 (/projects/poky/build64../meta-brcm/m=
+eta/recipes-kernel/linux/linux-brcm-nand_3.14.29.bb, do_packagedata) failed=
+ with exit code '1'<o:p></o:p></p>
+<p class=3D"MsoNormal">NOTE: Tasks Summary: Attempted 447 tasks of which 44=
+5 didn't need to be rerun and 2 failed.<o:p></o:p></p>
+</div>
+</body>
+</html>
 
+--_000_9F136EE5FB53D64397ED1089A0E760E0162D2A19SJEXCHMB12corpa_--
