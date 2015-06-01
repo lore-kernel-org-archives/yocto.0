@@ -1,6 +1,6 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <ed.sutter@alcatel-lucent.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 69A44E00960; Mon,  1 Jun 2015 08:53:05 -0700 (PDT)
+	id 65E09E00992; Mon,  1 Jun 2015 08:54:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,24 +8,37 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+	*      [135.245.210.22 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B231E0027F
-	for <yocto@yoctoproject.org>; Mon,  1 Jun 2015 08:52:59 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga101.jf.intel.com with ESMTP; 01 Jun 2015 08:52:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,533,1427785200"; d="scan'208";a="718751716"
-Received: from fuath.isw.intel.com ([10.237.224.85])
-	by fmsmga001.fm.intel.com with ESMTP; 01 Jun 2015 08:52:56 -0700
-From: Beth Flanagan <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-Date: Mon,  1 Jun 2015 16:52:42 +0100
-Message-Id: <1433173962-7600-1-git-send-email-elizabeth.flanagan@intel.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [PATCH] poky.conf: DISTRO_VERSION bump
+Received: from smtp-fr.alcatel-lucent.com (fr-hpgre-esg-01.alcatel-lucent.com
+	[135.245.210.22])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 315D3E0096A
+	for <yocto@yoctoproject.org>; Mon,  1 Jun 2015 08:53:54 -0700 (PDT)
+Received: from us70tusmtp1.zam.alcatel-lucent.com (unknown [135.5.2.63])
+	by Websense Email Security Gateway with ESMTPS id 37141DE1165F0;
+	Mon,  1 Jun 2015 15:53:50 +0000 (GMT)
+Received: from umail.lucent.com (umail.ndc.lucent.com [135.3.40.61])
+	by us70tusmtp1.zam.alcatel-lucent.com (GMO) with ESMTP id
+	t51Frol2007645
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
+	Mon, 1 Jun 2015 11:53:51 -0400
+Received: from [135.222.138.133] (Ed-PC.mh.lucent.com [135.222.138.133])
+	by umail.lucent.com (8.13.8/TPES) with ESMTP id t51FrmKl018828;
+	Mon, 1 Jun 2015 10:53:49 -0500 (CDT)
+Message-ID: <556C7F78.3080002@alcatel-lucent.com>
+Date: Mon, 01 Jun 2015 11:51:20 -0400
+From: Ed Sutter <ed.sutter@alcatel-lucent.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+MIME-Version: 1.0
+To: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	Trevor Woerner <twoerner@gmail.com>
+References: <556629F2.20605@alcatel-lucent.com> <5568B2E1.2000507@gmail.com>
+	<1795848.uj7DDzVjdK@peggleto-mobl.ger.corp.intel.com>
+In-Reply-To: <1795848.uj7DDzVjdK@peggleto-mobl.ger.corp.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: getting started...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,40 +50,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Jun 2015 15:53:05 -0000
+X-List-Received-Date: Mon, 01 Jun 2015 15:54:12 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-We missed the DISTRO_VERSION bump for the 1.6.3 release. I've opened
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=7836 to
-ensure that this doesn't happen again.
+On 5/31/2015 8:16 AM, Paul Eggleton wrote:
+> On Friday 29 May 2015 14:41:37 Trevor Woerner wrote:
+>> Hi Ed,
+>>
+>> On 05/27/15 16:32, Ed Sutter wrote:
+>>> This year I have two ongoing iMX6 based linux projects, and may need
+>>> to use a beaglebone
+>>> or RPi for some other small project.
+>>>
+>>> The point of the above detail is that I'd like to backup a bit and
+>>> attempt to use Yocto to
+>>> organize all four of these with one instance of Yocto/Poky.  Is that
+>>> practical?
+>> Yes, that would be a great idea!Have a look at angstrom, for example:
+>> http://www.angstrom-distribution.org. They build one distro for a whole
+>> bunch of different machines. As such, they start with a whole bunch of
+>> different layers, most of which are BSP layers, and then simply do:
+>>
+>> $ MACHINE=<machine> bitbake <image>
+>>
+>> e.g.
+>>
+>> $ MACHINE=raspberrypi2 bitbake angstrom-image
+>> $ MACHINE=beaglebone bitbake angstrom-image
+>> ...
+>>
+>> and build the exact same image for a bunch of different boards/machines.
+>>
+>> They've recently switched to using a repo manifest (which I think is a
+>> great idea): https://github.com/Angstrom-distribution/angstrom-manifest
+>>
+>> I've been playing around with doing essentially the same thing for a
+>> "poky" distribution here (but it's still a work-in-progress and not
+>> really ready for prime time yet): https://github.com/twoerner/layer-repos
+>>
+>>>    Seems
+>>>
+>>> to me that is the ideal goal of Yocto, but I don't see many BSPs
+>>> listed under the project
+>>> downloads page.
+>> Take a look here:
+>> http://layers.openembedded.org/layerindex/branch/master/layers this is
+>> the "master" list of all the "known" layers, recipes, etc. As you can
+>> see, there are quite a few BSP layers.
+> Furthermore, you can click on the "Machines" tab i.e.
+>
+> http://layers.openembedded.org/layerindex/branch/master/machines/
+>
+> Type in a keyword (or leave the box empty to see all) and hit Search, and
+> you'll see a list of the matching machines provided by all the layers in the
+> index.
+>
+> Cheers,
+> Paul
+>
+Trevor & Paul,
+Ok, thanks much.  I'll dig into this more now.
+By the way, the page that gave me the impression there were very
+few BSPs is this: https://www.yoctoproject.org/downloads/bsps
+Clicking on "Board Support Packages" and using <Any> and <ARM>
+for "YP Core Release" and "Processor Family" respectively.
 
-Signed-off-by: Beth Flanagan <elizabeth.flanagan@intel.com>
----
- meta-yocto/conf/distro/poky.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
-index b62de4b..9c10031 100644
---- a/meta-yocto/conf/distro/poky.conf
-+++ b/meta-yocto/conf/distro/poky.conf
-@@ -1,6 +1,6 @@
- DISTRO = "poky"
- DISTRO_NAME = "Poky (Yocto Project Reference Distro)"
--DISTRO_VERSION = "1.6.2"
-+DISTRO_VERSION = "1.6.3"
- DISTRO_CODENAME = "daisy"
- SDK_VENDOR = "-pokysdk"
- SDK_VERSION := "${@'${DISTRO_VERSION}'}"
 -- 
-1.9.1
-
--------------------------------------------------------------
-Intel Ireland Limited (Branch)
-Collinstown Industrial Park, Leixlip, County Kildare, Ireland
-Registered Number: E902934
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
+Ed Sutter
+Alcatel-Lucent Technologies -- Bell Laboratories
+Phone: 908-582-2351
+Email: ed.sutter@alcatel-lucent.com
 
 
