@@ -1,51 +1,47 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <vmartin@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C9C8CE007B6; Tue,  2 Jun 2015 09:34:23 -0700 (PDT)
+	id 4E8A4E009C8; Tue,  2 Jun 2015 12:58:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [198.152.71.100 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.173 listed in list.dnswl.org]
-Received: from mail-qc0-f173.google.com (mail-qc0-f173.google.com
-	[209.85.216.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04872E007B6
-	for <yocto@yoctoproject.org>; Tue,  2 Jun 2015 09:34:16 -0700 (PDT)
-Received: by qcej9 with SMTP id j9so18887842qce.1
-	for <yocto@yoctoproject.org>; Tue, 02 Jun 2015 09:34:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=bq1dVUCOBGPB24jxJ87yhpCaaYXSZf+sAIqH3obcr1k=;
-	b=bF1xTQTUwVuHY4ldGZkk3NHtbe3AJtN6SMvJ/+7+0jkzAQ8ZMeyt6jRslQCtmN6eKW
-	sV256rsz9bdWvIpMpImhO6n5ipzs7E5mwrhPFCwxm7LgUjzk+a9jfi4mqboQg6ZJcJx5
-	uvwdbhhU4gARmRH1DdZBhMxeF1k94MiiGOOz0iVTVje8JkHf4IJ+qEJEGNljj4Xg4Iyw
-	wOQesLGMQ3ChULj/SphUQi6B2O9cbPNmDtXuEqqXAuqxQVeD1TwX0CMbamPxsMCa2TE+
-	qJbZJSGpHlKialnj+isIWQhSq0sd7EAHvXA7fBC9KWl81E618djnuFcPKQBWxHL69AO6
-	XcoQ==
-X-Gm-Message-State: ALoCoQkAhjl1s8AV8jQp7aJC07pe+MYDwb9ddIGu4xlwokNVeHR8LWdgdh4srCvMCpF1tQ+/ceE4
-X-Received: by 10.140.43.228 with SMTP id e91mr14057923qga.80.1433262855994;
-	Tue, 02 Jun 2015 09:34:15 -0700 (PDT)
+Received: from de307622-de-outbound.net.avaya.com
+	(de307622-de-outbound.net.avaya.com [198.152.71.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 792DEE007B6
+	for <yocto@yoctoproject.org>; Tue,  2 Jun 2015 12:58:53 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: Ag0FAJYKblXGmAcV/2dsb2JhbABbgkUhKlRkxkUCgUNMAQEBAQEBgQuEJAEBAxIbXgEMCRVWJgEEGxqICwGmcIUJrm8MAR+QGINPgRYFkFKCPpMojyYjggocgVKCNYEBAQEB
+X-IronPort-AV: E=Sophos;i="5.13,541,1427774400"; 
+	d="scan'208,217";a="104972647"
+Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
+	([198.152.7.21]) by de307622-de-outbound.net.avaya.com with ESMTP;
+	02 Jun 2015 15:58:51 -0400
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-US1EXHC02.global.avaya.com) ([135.11.85.13])
+	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
+	02 Jun 2015 15:58:51 -0400
+Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
+	AZ-US1EXHC02.global.avaya.com ([::1]) with mapi id 14.03.0174.001;
+	Tue, 2 Jun 2015 15:58:50 -0400
+From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Kernel module not installed in rootfs
+Thread-Index: AdCdbfFqFMJECWBQTEOFK6W7uxmOPQ==
+Date: Tue, 2 Jun 2015 19:58:50 +0000
+Message-ID: <30C2D590D16A5C46ADFE6521910377985392F38F@AZ-US1EXMB03.global.avaya.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [135.11.85.50]
 MIME-Version: 1.0
-Received: by 10.140.102.231 with HTTP; Tue, 2 Jun 2015 09:33:55 -0700 (PDT)
-In-Reply-To: <CAK5mtew29B5e88HjkmjbNhc4U7G8vnTOi6pPqBn4xELTt_MOFg@mail.gmail.com>
-References: <CAK5mteyg4FSKmzrDoMmvx+-fwJEhybHCa+MA9bokQuJt5m-H_Q@mail.gmail.com>
-	<CAJTo0LYmV418_39HBjj+VoYs1O8qHQCwOWfd9YdotSwcGdHvsw@mail.gmail.com>
-	<CAK5mtexC81Yi9C2YA6O4SuKZ=vQ6wk8=cUYNZ8mYOQ4uAoZ+qw@mail.gmail.com>
-	<CAJTo0LZqH+u5fNKF_vVVuyw7kaXRMdLteNai1UCPz2-UEpbXxw@mail.gmail.com>
-	<CAK5mtew29B5e88HjkmjbNhc4U7G8vnTOi6pPqBn4xELTt_MOFg@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 2 Jun 2015 17:33:55 +0100
-Message-ID: <CAJTo0LZEu+ahS_CrNtTepbURZdriQGHgUD=9Dmee6o6qpw5i5Q@mail.gmail.com>
-To: Victor Rodriguez <vm.rod25@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: build hello_world.c in yocto
+Subject: Kernel module not installed in rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,40 +53,118 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Jun 2015 16:34:23 -0000
-Content-Type: multipart/alternative; boundary=001a113a34bc66d2cd05178b8388
+X-List-Received-Date: Tue, 02 Jun 2015 19:58:59 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_30C2D590D16A5C46ADFE6521910377985392F38FAZUS1EXMB03glob_"
 
---001a113a34bc66d2cd05178b8388
-Content-Type: text/plain; charset=UTF-8
-
-On 2 June 2015 at 17:30, Victor Rodriguez <vm.rod25@gmail.com> wrote:
-
-> However I realize that it also includes many other stuffs ( pango for
-> example )
->
-> Is there any way to make it with less features ?
->
-
-Try installing packagegroup-core-buildessential (that's a package, not an
-image feature).
-
-Ross
-
---001a113a34bc66d2cd05178b8388
-Content-Type: text/html; charset=UTF-8
+--_000_30C2D590D16A5C46ADFE6521910377985392F38FAZUS1EXMB03glob_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 2 June 2015 at 17:30, Victor Rodriguez <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:vm.rod25@gmail.com" target=3D"_blank">vm.rod25@gmail.com</a>&gt;</sp=
-an> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
-border-left:1px #ccc solid;padding-left:1ex"><div id=3D":n5" class=3D"a3s" =
-style=3D"overflow:hidden">However I realize that it also includes many othe=
-r stuffs ( pango for example )<br>
-<br>
-Is there any way to make it with less features ?<br></div></blockquote></di=
-v><br>Try installing packagegroup-core-buildessential (that&#39;s a package=
-, not an image feature).=C2=A0</div><div class=3D"gmail_extra"><br></div><d=
-iv class=3D"gmail_extra">Ross</div></div>
+Yocto 1.6.1
 
---001a113a34bc66d2cd05178b8388--
+I have added a module to my kernel.
+
+The module is getting built, I see a kernel-module-blah-blah RPM
+and it contains the .ko
+
+I add kernel-module-blah-blah to one of the packagegroups
+contained in my image, I see do_rootfs task run, but the module
+is not in the image. In log.do_rootfs I see that the module is NOT
+one of the packages installed.
+
+I did a cleansstate on the image and the packagegroup, I did a
+cleanall on virtual/kernel, makes no difference.
+
+If I do a "clean build" from scratch, then the module is installed.
+
+Any thoughts on what I'm missing here?
+
+MV
+
+--_000_30C2D590D16A5C46ADFE6521910377985392F38FAZUS1EXMB03glob_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Yocto 1.6.1<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have added a module to my kernel.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The module is getting built, I see a kernel-module-b=
+lah-blah RPM<o:p></o:p></p>
+<p class=3D"MsoNormal">and it contains the .ko<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I add kernel-module-blah-blah to one of the packageg=
+roups<o:p></o:p></p>
+<p class=3D"MsoNormal">contained in my image, I see do_rootfs task run, but=
+ the module<o:p></o:p></p>
+<p class=3D"MsoNormal">is not in the image. In log.do_rootfs I see that the=
+ module is NOT<o:p></o:p></p>
+<p class=3D"MsoNormal">one of the packages installed.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I did a cleansstate on the image and the packagegrou=
+p, I did a<o:p></o:p></p>
+<p class=3D"MsoNormal">cleanall on virtual/kernel, makes no difference.<o:p=
+></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">If I do a &#8220;clean build&#8221; from scratch, th=
+en the module is installed.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Any thoughts on what I&#8217;m missing here?<o:p></o=
+:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">MV<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_30C2D590D16A5C46ADFE6521910377985392F38FAZUS1EXMB03glob_--
