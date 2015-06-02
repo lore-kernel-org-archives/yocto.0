@@ -1,34 +1,55 @@
-Return-Path: <Alexandru.Vaduva@enea.com>
+Return-Path: <vm.rod25@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC3C2E009C8; Tue,  2 Jun 2015 08:50:26 -0700 (PDT)
+	id 2456DE009C8; Tue,  2 Jun 2015 09:30:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (vm.rod25[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 24DDDE007B6
-	for <yocto@yoctoproject.org>; Tue,  2 Jun 2015 08:50:22 -0700 (PDT)
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
-	14.03.0224.002; Tue, 2 Jun 2015 17:50:20 +0200
-From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Smart package manager problems
-Thread-Index: AdCdSSeUcCzqNNvLRx2ZwuPjolKMuA==
-Date: Tue, 2 Jun 2015 15:50:20 +0000
-Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D8AAC26@SESTOEX04.enea.se>
-Accept-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.14.175]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f171.google.com (mail-ig0-f171.google.com
+	[209.85.213.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 650E6E007B6
+	for <yocto@yoctoproject.org>; Tue,  2 Jun 2015 09:30:40 -0700 (PDT)
+Received: by igbsb11 with SMTP id sb11so92316206igb.0
+	for <yocto@yoctoproject.org>; Tue, 02 Jun 2015 09:30:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=xwiJrLiyUqh+9w06EZhdLIdgbSonRgFj3A08r+dopTw=;
+	b=ybKRzdEcE7enNQaaHndq0y6qplFNNL8wX/y5ffPWuFOmAe6Rm6Vd/Vb0M2v1dyNyYn
+	TcydH/SocwM2VvtwOCclzZs+sDSU3N3DvPVBh/vQImdkWcWElo8dIx+rrs3Y7PJHityv
+	v758HTvETZ1D53OdiCk9mzLDIPSNBKJxVFFoTQai1bcccV4RfEJiS4ZhglJ4JGZeA8Lk
+	dweaavcdGvIKjLO5D+MD6nPu8rc81W5SYf0OJzyf370ui7cIPIdCE3aREpcSFNfiXuoZ
+	hsRqYEDbIsHSjGgITBH5yJ6C5YsDIszqLFV9Xt3Ixmg3KnsgA778spWCRrXDkbd5Wcid
+	GPSw==
 MIME-Version: 1.0
-Subject: Smart package manager problems
+X-Received: by 10.42.93.17 with SMTP id v17mr12131350icm.42.1433262639795;
+	Tue, 02 Jun 2015 09:30:39 -0700 (PDT)
+Received: by 10.50.141.228 with HTTP; Tue, 2 Jun 2015 09:30:39 -0700 (PDT)
+In-Reply-To: <CAJTo0LZqH+u5fNKF_vVVuyw7kaXRMdLteNai1UCPz2-UEpbXxw@mail.gmail.com>
+References: <CAK5mteyg4FSKmzrDoMmvx+-fwJEhybHCa+MA9bokQuJt5m-H_Q@mail.gmail.com>
+	<CAJTo0LYmV418_39HBjj+VoYs1O8qHQCwOWfd9YdotSwcGdHvsw@mail.gmail.com>
+	<CAK5mtexC81Yi9C2YA6O4SuKZ=vQ6wk8=cUYNZ8mYOQ4uAoZ+qw@mail.gmail.com>
+	<CAJTo0LZqH+u5fNKF_vVVuyw7kaXRMdLteNai1UCPz2-UEpbXxw@mail.gmail.com>
+Date: Tue, 2 Jun 2015 11:30:39 -0500
+Message-ID: <CAK5mtew29B5e88HjkmjbNhc4U7G8vnTOi6pPqBn4xELTt_MOFg@mail.gmail.com>
+From: Victor Rodriguez <vm.rod25@gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: build hello_world.c in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,114 +61,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Jun 2015 15:50:27 -0000
-X-Groupsio-MsgNum: 25025
-Content-Language: en-US
-Content-Type: multipart/mixed;
-	boundary="_003_DDB0C57E45663A458C5CACB7B5688BC21D8AAC26SESTOEX04enease_"
+X-List-Received-Date: Tue, 02 Jun 2015 16:30:44 -0000
+Content-Type: text/plain; charset=UTF-8
 
---_003_DDB0C57E45663A458C5CACB7B5688BC21D8AAC26SESTOEX04enease_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On Mon, Jun 1, 2015 at 7:22 AM, Burton, Ross <ross.burton@intel.com> wrote:
+>
+> On 1 June 2015 at 13:08, Victor Rodriguez <vm.rod25@gmail.com> wrote:
+>>
+>> EXTRA_IMAGE_FEATURES = "debug-tweaks dev-pkgs"
+>
+>
+> As the documentation says
+> (http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#ref-features-image),
+> dev-pkgs is just the headers and library links for the packages you've
+> installed.  No tools come with that.
+>
+> Ross
 
-Hello guys,
+Thanks a lot Roos that did the magic.
 
-I experiences a problem related to smart package manager that I wanted to d=
-iscuss with you. I was interested in your feedback, knowledge of this and m=
-aybe advices on how should we proceed further.
+However I realize that it also includes many other stuffs ( pango for example )
 
-The bug I experienced can be duplicated with the information available in t=
-he "patch-info.txt" file attached to this email.
-I also attached the log of the error for easier read in the "image-build-in=
-fo.txt" file.
+Is there any way to make it with less features ?
 
-After some careful investigation I discovered that the problem is caused by=
- the smart package manager, after the install_complementary function call w=
-hen it in fact tries to call smart with "install --attempt -y" arguments. I=
-t is not able to see the fact that those packages were already installed an=
-d tries to do it again.
-This error behavior might also be related to the problems mentioned here:
-https://www.mail-archive.com/yocto@yoctoproject.org/msg24279.html
-and https://bugs.launchpad.net/smart/+bug/1238492
+The part I am developing is MPI (http://www.open-mpi.org/) in Yocto.
+RIght now it works ( I am about to submit the final patches for tuning
+, but it works :
 
-Thanks again for all your help. If any further information would be require=
-d I will be more than happy to share it.
+root@qemux86:~# mpicc mpi_hello.c  -L /lib/ -o mpi_hello
+root@qemux86:~# ls
+hello.c  mpi_hello  mpi_hello.c
+root@qemux86:~# mpiexec -n 4 ./mpi_hello
+Hello from task 3 on qemux86!
+Hello from task 1 on qemux86!
+Hello from task 0 on qemux86!
+MASTER: Number of MPI tasks is: 4
+Hello from task 2 on qemux86!
 
 
-AlexV
+Now this image will go to an embedded system ( minnowboard ) and would
+like to keep the image as simple as possible :)
 
+Do you know if there is any other way to just include the minimal for
+gcc build ? ( if not do you think it could be worth to have ? , I
+could work on that )
 
+Thanks a lot and regards
 
---_003_DDB0C57E45663A458C5CACB7B5688BC21D8AAC26SESTOEX04enease_
-Content-Type: text/plain; name="patch-info.txt"
-Content-Description: patch-info.txt
-Content-Disposition: attachment; filename="patch-info.txt"; size=1161;
-	creation-date="Tue, 02 Jun 2015 15:34:23 GMT";
-	modification-date="Tue, 02 Jun 2015 15:34:24 GMT"
-Content-Transfer-Encoding: base64
+Victor Rodriguez
 
-Z2l0IGRpZmYgbWV0YS9yZWNpcGVzLWNvcmUvaW1hZ2VzL2NvcmUtaW1hZ2UtbWluaW1hbC5iYg0K
-ZGlmZiAtLWdpdCBhL21ldGEvcmVjaXBlcy1jb3JlL2ltYWdlcy9jb3JlLWltYWdlLW1pbmltYWwu
-YmIgYi9tZXRhL3JlY2lwZXMtY29yZS9pbWFnZXMvY29yZS1pbWFnZS1taW5pbWFsLmJiDQppbmRl
-eCA5NzE2Mjc0Li4wZTZmN2ZiIDEwMDY0NA0KLS0tIGEvbWV0YS9yZWNpcGVzLWNvcmUvaW1hZ2Vz
-L2NvcmUtaW1hZ2UtbWluaW1hbC5iYg0KKysrIGIvbWV0YS9yZWNpcGVzLWNvcmUvaW1hZ2VzL2Nv
-cmUtaW1hZ2UtbWluaW1hbC5iYg0KQEAgLTEsNSArMSwyNSBAQA0KIFNVTU1BUlkgPSAiQSBzbWFs
-bCBpbWFnZSBqdXN0IGNhcGFibGUgb2YgYWxsb3dpbmcgYSBkZXZpY2UgdG8gYm9vdC4iDQoNCitJ
-TUFHRV9GRUFUVVJFUyArPSAiIFwNCisgICAgICAgICAgICAgICAgICAgZGJnLXBrZ3MgXA0KKyAg
-ICAgICAgICAgICAgICAgICBkZWJ1Zy10d2Vha3MgXA0KKyAgICAgICAgICAgICAgICAgICBkZXYt
-cGtncyBcDQorICAgICAgICAgICAgICAgICAgIGRvYy1wa2dzIFwNCisgICAgICAgICAgICAgICAg
-ICAgcHRlc3QtcGtncyBcDQorICAgICAgICAgICAgICAgICAgIHNwbGFzaCBcDQorICAgICAgICAg
-ICAgICAgICAgIHN0YXRpY2Rldi1wa2dzIFwNCisgICAgICAgICAgICAgICAgICAgZWNsaXBzZS1k
-ZWJ1ZyBcDQorICAgICAgICAgICAgICAgICAgIGh3Y29kZWNzIFwNCisgICAgICAgICAgICAgICAg
-ICAgbmZzLXNlcnZlciBcDQorICAgICAgICAgICAgICAgICAgIHF0NC1wa2dzIFwNCisgICAgICAg
-ICAgICAgICAgICAgc3NoLXNlcnZlci1vcGVuc3NoIFwNCisgICAgICAgICAgICAgICAgICAgdG9v
-bHMtZGVidWcgXA0KKyAgICAgICAgICAgICAgICAgICB0b29scy1wcm9maWxlIFwNCisgICAgICAg
-ICAgICAgICAgICAgdG9vbHMtc2RrIFwNCisgICAgICAgICAgICAgICAgICAgdG9vbHMtdGVzdGFw
-cHMgXA0KKyAgICAgICAgICAgICAgICAgICB4MTEgXA0KKyAgICAgICAgICAgICAgICAgICB4MTEt
-YmFzZSINCisNCiBJTUFHRV9JTlNUQUxMID0gInBhY2thZ2Vncm91cC1jb3JlLWJvb3QgJHtST09U
-RlNfUEtHTUFOQUdFX0JPT1RTVFJBUH0gJHtDT1JFX0lNQUdFX0VYVFJBX0lOU1RBTEx9Ig0KDQog
-SU1BR0VfTElOR1VBUyA9ICIgIg0K
-
---_003_DDB0C57E45663A458C5CACB7B5688BC21D8AAC26SESTOEX04enease_
-Content-Type: text/plain; name="image-build-info.txt"
-Content-Description: image-build-info.txt
-Content-Disposition: attachment; filename="image-build-info.txt"; size=1848;
-	creation-date="Tue, 02 Jun 2015 15:36:31 GMT";
-	modification-date="Tue, 02 Jun 2015 15:36:31 GMT"
-Content-Transfer-Encoding: base64
-
-V0FSTklORzogbG9nX2NoZWNrOiBUaGVyZSBpcyBhIHdhcm4gbWVzc2FnZSBpbiB0aGUgbG9nZmls
-ZQ0KV0FSTklORzogbG9nX2NoZWNrOiBNYXRjaGVkIGtleXdvcmQ6IFt3YXJuXQ0KV0FSTklORzog
-bG9nX2NoZWNrOiB3YXJuaW5nOiBsaWJzdGRjKystc3RhdGljZGV2LTQuOS4yLXIwQGk1ODYgaXMg
-YWxyZWFkeSBpbnN0YWxsZWQNCg0KV0FSTklORzogbG9nX2NoZWNrOiBUaGVyZSBpcyBhIHdhcm4g
-bWVzc2FnZSBpbiB0aGUgbG9nZmlsZQ0KV0FSTklORzogbG9nX2NoZWNrOiBNYXRjaGVkIGtleXdv
-cmQ6IFt3YXJuXQ0KV0FSTklORzogbG9nX2NoZWNrOiB3YXJuaW5nOiBsaWJzdGRjKystZGV2LTQu
-OS4yLXIwQGk1ODYgaXMgYWxyZWFkeSBpbnN0YWxsZWQNCg0KV0FSTklORzogbG9nX2NoZWNrOiBU
-aGVyZSBpcyBhIHdhcm4gbWVzc2FnZSBpbiB0aGUgbG9nZmlsZQ0KV0FSTklORzogbG9nX2NoZWNr
-OiBNYXRjaGVkIGtleXdvcmQ6IFt3YXJuXQ0KV0FSTklORzogbG9nX2NoZWNrOiB3YXJuaW5nOiBn
-ZXR0ZXh0LWRldi0wLjE5LjQtcjBAaTU4NiBpcyBhbHJlYWR5IGluc3RhbGxlZA0KDQpXQVJOSU5H
-OiBsb2dfY2hlY2s6IFRoZXJlIGlzIGEgd2FybiBtZXNzYWdlIGluIHRoZSBsb2dmaWxlDQpXQVJO
-SU5HOiBsb2dfY2hlY2s6IE1hdGNoZWQga2V5d29yZDogW3dhcm5dDQpXQVJOSU5HOiBsb2dfY2hl
-Y2s6IHdhcm5pbmc6IGxpYmM2LWRldi0yLjIxLXIwQGk1ODYgaXMgYWxyZWFkeSBpbnN0YWxsZWQN
-Cg0KV0FSTklORzogbG9nX2NoZWNrOiBUaGVyZSBpcyBhIHdhcm4gbWVzc2FnZSBpbiB0aGUgbG9n
-ZmlsZQ0KV0FSTklORzogbG9nX2NoZWNrOiBNYXRjaGVkIGtleXdvcmQ6IFt3YXJuXQ0KV0FSTklO
-RzogbG9nX2NoZWNrOiB3YXJuaW5nOiBsaWJjNi1kYmctMi4yMS1yMEBpNTg2IGlzIGFscmVhZHkg
-aW5zdGFsbGVkDQoNCldBUk5JTkc6IGxvZ19jaGVjazogVGhlcmUgaXMgYSB3YXJuIG1lc3NhZ2Ug
-aW4gdGhlIGxvZ2ZpbGUNCldBUk5JTkc6IGxvZ19jaGVjazogTWF0Y2hlZCBrZXl3b3JkOiBbd2Fy
-bl0NCldBUk5JTkc6IGxvZ19jaGVjazogd2FybmluZzogbGliZ2NjLXMtZGV2LTQuOS4yLXIwQGk1
-ODYgaXMgYWxyZWFkeSBpbnN0YWxsZWQNCg0KV0FSTklORzogbG9nX2NoZWNrOiBUaGVyZSBpcyBh
-IHdhcm4gbWVzc2FnZSBpbiB0aGUgbG9nZmlsZQ0KV0FSTklORzogbG9nX2NoZWNrOiBNYXRjaGVk
-IGtleXdvcmQ6IFt3YXJuXQ0KV0FSTklORzogbG9nX2NoZWNrOiB3YXJuaW5nOiBsaWJjNi1zdGF0
-aWNkZXYtMi4yMS1yMEBpNTg2IGlzIGFscmVhZHkgaW5zdGFsbGVkDQoNCldBUk5JTkc6IGxvZ19j
-aGVjazogVGhlcmUgaXMgYSB3YXJuIG1lc3NhZ2UgaW4gdGhlIGxvZ2ZpbGUNCldBUk5JTkc6IGxv
-Z19jaGVjazogTWF0Y2hlZCBrZXl3b3JkOiBbd2Fybl0NCldBUk5JTkc6IGxvZ19jaGVjazogd2Fy
-bmluZzogbGliZ29tcC1kZXYtNC45LjItcjBAaTU4NiBpcyBhbHJlYWR5IGluc3RhbGxlZA0KDQpX
-QVJOSU5HOiBsb2dfY2hlY2s6IFRoZXJlIGlzIGEgd2FybiBtZXNzYWdlIGluIHRoZSBsb2dmaWxl
-DQpXQVJOSU5HOiBsb2dfY2hlY2s6IE1hdGNoZWQga2V5d29yZDogW3dhcm5dDQpXQVJOSU5HOiBs
-b2dfY2hlY2s6IHdhcm5pbmc6IGxpYnVic2FuLWRldi00LjkuMi1yMEBpNTg2IGlzIGFscmVhZHkg
-aW5zdGFsbGVkDQoNCldBUk5JTkc6IGxvZ19jaGVjazogVGhlcmUgaXMgYSB3YXJuIG1lc3NhZ2Ug
-aW4gdGhlIGxvZ2ZpbGUNCldBUk5JTkc6IGxvZ19jaGVjazogTWF0Y2hlZCBrZXl3b3JkOiBbd2Fy
-bl0NCldBUk5JTkc6IGxvZ19jaGVjazogd2FybmluZzogbGliYXNhbi1kZXYtNC45LjItcjBAaTU4
-NiBpcyBhbHJlYWR5IGluc3RhbGxlZA0K
-
---_003_DDB0C57E45663A458C5CACB7B5688BC21D8AAC26SESTOEX04enease_--
