@@ -1,35 +1,33 @@
-Return-Path: <andreas.enbacka@gasera.fi>
+Return-Path: <alejandro.franco@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3FFAEE009E7; Wed,  3 Jun 2015 06:59:23 -0700 (PDT)
+	id 20E4EE009CC; Tue,  2 Jun 2015 13:36:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [194.211.207.200 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 1661 seconds by postgrey-1.32 at yocto-www;
-	Wed, 03 Jun 2015 06:59:19 PDT
-Received: from smtp1.eteinen.fi (smtp1.eteinen.fi [194.211.207.200])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8710BE009E5
-	for <yocto@yoctoproject.org>; Wed,  3 Jun 2015 06:59:19 -0700 (PDT)
-Received: from [194.100.86.92] (helo=LenovoPC)
-	by smtp1.eteinen.fi with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.71) (envelope-from <andreas.enbacka@gasera.fi>)
-	id 1Z08lY-0004Km-3V
-	for yocto@yoctoproject.org; Wed, 03 Jun 2015 16:31:32 +0300
-From: "Andreas Enbacka" <andreas.enbacka@gasera.fi>
-To: <yocto@yoctoproject.org>
-Date: Wed, 3 Jun 2015 16:31:32 +0300
-Message-ID: <000a01d09e01$9b031210$d1093630$@gasera.fi>
-MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AdCeAZq+25HO3YQiT+2JzonYAJ8Z2g==
-Subject: Issue with 8250/16550 UART1 access in raspberrypi (meta-raspberrypi)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0D27E0095D
+	for <yocto@yoctoproject.org>; Tue,  2 Jun 2015 13:36:56 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga103.fm.intel.com with ESMTP; 02 Jun 2015 13:36:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.13,541,1427785200"; d="scan'208";a="580895904"
+Received: from afshjern.zpn.intel.com ([10.219.4.61])
+	by orsmga003.jf.intel.com with ESMTP; 02 Jun 2015 13:36:55 -0700
+From: Alex Franco <alejandro.franco@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue,  2 Jun 2015 15:36:05 -0500
+Message-Id: <1433277366-16113-1-git-send-email-alejandro.franco@linux.intel.com>
+X-Mailer: git-send-email 2.4.1
+X-Mailman-Approved-At: Wed, 03 Jun 2015 08:08:33 -0700
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>
+Subject: [PATCH 1/2] [layerindex-web] Support for recipe inherits field v2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,185 +39,137 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Jun 2015 13:59:23 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_000B_01D09E1A.C0510D60"
-Content-Language: fi
+X-List-Received-Date: Tue, 02 Jun 2015 20:36:59 -0000
 
-------=_NextPart_000_000B_01D09E1A.C0510D60
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Modified: models.py, update.py, recipes.html, detail.html,
+recipedetail.html, additional.css
 
-Hello,
+To identify image recipes and provide inheritance data for recipes, an
+inherits field was added to the recipe model, and then populated using
+refactored data from __inherit_cache. Finally the field was also added
+to Toaster templates, along with style changes proposed in attachment.
+Inherits field skips recipes from globally inherited data as proposed.
 
+[YOCTO #7575]
+
+Signed-off-by: Alex Franco <alejandro.franco@linux.intel.com>
+---
+ layerindex/models.py                   |  2 +-
+ layerindex/static/css/additional.css   | 11 ++++++++++-
+ layerindex/update.py                   |  4 ++++
+ templates/layerindex/detail.html       |  4 +++-
+ templates/layerindex/recipedetail.html |  4 ++++
+ templates/layerindex/recipes.html      |  4 +++-
+ 6 files changed, 25 insertions(+), 4 deletions(-)
+
+diff --git a/layerindex/models.py b/layerindex/models.py
+index dd291a3..c9e9620 100644
+--- a/layerindex/models.py
++++ b/layerindex/models.py
+@@ -242,7 +242,7 @@ class Recipe(models.Model):
+     bugtracker = models.URLField(blank=True)
+     provides = models.CharField(max_length=255, blank=True)
+     bbclassextend = models.CharField(max_length=100, blank=True)
+-
++    inherits = models.CharField(max_length=255, blank=True)
+     updated = models.DateTimeField(auto_now = True)
  
-
-After a long break, I have returned to the Yocto project, and generally very
-pleased. A lot of progress has been done since I last used the project (two
-years ago), and now in my opinion everything works very smoothly.
-
+     def vcs_web_url(self):
+diff --git a/layerindex/static/css/additional.css b/layerindex/static/css/additional.css
+index 0703257..0d74db3 100644
+--- a/layerindex/static/css/additional.css
++++ b/layerindex/static/css/additional.css
+@@ -198,4 +198,13 @@ padding: 8px;
  
-
-I have used yocto to build a custom image for the RaspberryPi Compute
-Module. Generally everything works ok, however I am experiencing problem
-with accessing the UART1 port on the raspberryPi. I am using a library
-called wiringPi to put the appropriate GPIO pins in the correct mode (alt5)
-for RXD1/TXD1 (pins 32/33). Also I have used menuconfig to enable the
-8250/16550 serial port support in the kernel (3.18.5+). After booting the
-image I examined the dmesg output, and it shows following information
-related to 8250/16550:
-
-..
-
-[   1.010958] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
-
-[   1.013920] serial8250.0: ttyS0 at MMIO 0x20215040 (irq = 29, base_baud =
-7812500) is a 8250
-
-.
-
+ .buttonblock-btn {
+     margin-left: 8px;
+-}
+\ No newline at end of file
++}
++
++.icon-hdd {
++   margin-left: 2px;
++}
++
++.icon-hdd:hover {
++   cursor: pointer;
++}
++
+diff --git a/layerindex/update.py b/layerindex/update.py
+index a56507b..4419745 100755
+--- a/layerindex/update.py
++++ b/layerindex/update.py
+@@ -65,6 +65,10 @@ def update_recipe_file(data, path, recipe, layerdir_start, repodir):
+         recipe.bugtracker = envdata.getVar("BUGTRACKER", True) or ""
+         recipe.provides = envdata.getVar("PROVIDES", True) or ""
+         recipe.bbclassextend = envdata.getVar("BBCLASSEXTEND", True) or ""
++        # Handle recipe inherits for this recipe
++        gr = set(data.getVar("__inherit_cache", True) or [])
++        lr = set(envdata.getVar("__inherit_cache", True) or [])
++        recipe.inherits = ' '.join(sorted({split_recipe_fn(r)[0] for r in lr if r not in gr}))
+         recipe.save()
  
-
-Then I put the pins 32/33 into alternative mode alt5, and try to connect to
-the port /dev/ttyS0 using minicom (baud 115200). Trying to enter something
-into the Mincom terminal does not give any indications on our connected
-oscilloscope (connected to the relevant pins), however change of the alt
-mode earlier was observed correctly. The serial port should not be using any
-flow control, but when trying to disable the flow control using Minicom (it
-was on by default) freezes the complete RaspberryPi system (requiring to
-disconnect and reconnect power).
-
+         # Get file dependencies within this layer
+diff --git a/templates/layerindex/detail.html b/templates/layerindex/detail.html
+index e013e4c..c9439b3 100644
+--- a/templates/layerindex/detail.html
++++ b/templates/layerindex/detail.html
+@@ -198,7 +198,7 @@
+                         <tbody>
+                             {% for recipe in layerbranch.sorted_recipes %}
+                                 <tr>
+-                                    <td><a href="{% url recipe recipe.id %}">{{ recipe.name }}</a></td>
++                                    <td><a href="{% url recipe recipe.id %}">{{ recipe.name }}</a>{% if 'image' in recipe.inherits %}<i class="icon-hdd"></i>{% endif %}</td>
+                                     <td>{{ recipe.pv }}</td>
+                                     <td class="span8">{{ recipe.short_desc }}</td>
+                                 </tr>
+@@ -321,6 +321,8 @@
+                     e.preventDefault();
+                     $(this).tab('show');
+                 })
++
++                $('.icon-hdd').tooltip({title:"Inherits image"});
+             });
+         });
+     </script>
+diff --git a/templates/layerindex/recipedetail.html b/templates/layerindex/recipedetail.html
+index 658694e..cde8e50 100644
+--- a/templates/layerindex/recipedetail.html
++++ b/templates/layerindex/recipedetail.html
+@@ -83,6 +83,10 @@
+                             <th>Layer</th>
+                             <td><a href="{% url layer_item recipe.layerbranch.branch.name recipe.layerbranch.layer.name %}">{{ recipe.layerbranch.layer.name }}</a> ({{ recipe.layerbranch.branch.name}} branch)</td>
+                         </tr>
++                        <tr>
++                            <th>Inherits</th>
++                            <td>{{ recipe.inherits }}</td>
++                        </tr>
+                     </tbody>
+                 </table>
  
+diff --git a/templates/layerindex/recipes.html b/templates/layerindex/recipes.html
+index 6777ed2..f1a7834 100644
+--- a/templates/layerindex/recipes.html
++++ b/templates/layerindex/recipes.html
+@@ -52,7 +52,7 @@
+                     <tbody>
+                         {% for recipe in recipe_list %}
+                             <tr {% if recipe.preferred_count > 0 %}class="muted"{% endif %}>
+-                                <td><a href="{% url recipe recipe.id %}">{{ recipe.name }}</a></td>
++                                <td><a href="{% url recipe recipe.id %}">{{ recipe.name }}</a>{% if 'image' in recipe.inherits %}<i class="icon-hdd"></i>{% endif %}</td>
+                                 <td>{{ recipe.pv }}</td>
+                                 <td>{{ recipe.short_desc }}</td>
+                                 <td><a href="{% url layer_item url_branch recipe.layerbranch.layer.name %}">{{ recipe.layerbranch.layer.name }}</a></td>
+@@ -82,6 +82,8 @@
+         firstfield = $("#filter-form input:text").first()
+         if( ! firstfield.val() )
+             firstfield.focus()
++
++        $('.icon-hdd').tooltip({title:"Inherits image"});
+     });
+ </script>
+ {% endblock %}
+-- 
+2.4.1
 
-Does anyone have any thoughts what could be the cause of these issues (e.g.,
-problems with driver etc)? Any information would be greatly appreciated. In
-the project we are working on we would need to use both uart ports (0/1)
-provided by the compute module (the uart0 is a pl011 and by disabling
-console use of /dev/ttyAMA0 we were able to successfully connect to that
-port).
 
- 
-
-Thanks for the great work with the Yocto platform.
-
- 
-
-Sincerely,
-
-Andreas Enbacka
-
-SW designer
-
-Gasera Ltd
-
- 
-
-
-------=_NextPart_000_000B_01D09E1A.C0510D60
-Content-Type: text/html;
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DFI =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal>Hello,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
-lang=3DEN-US>After a long break, I have returned to the Yocto project, =
-and generally very pleased. A lot of progress has been done since I last =
-used the project (two years ago), and now in my opinion everything works =
-very smoothly.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>I have used yocto to build a custom image for the =
-RaspberryPi Compute Module. Generally everything works ok, however I am =
-experiencing problem with accessing the UART1 port on the raspberryPi. I =
-am using a library called wiringPi to put the appropriate GPIO pins in =
-the correct mode (alt5) for RXD1/TXD1 (pins 32/33). Also I have used =
-menuconfig to enable the 8250/16550 serial port support in the kernel =
-(3.18.5+). After booting the image I examined the dmesg output, and it =
-shows following information related to =
-8250/16550:<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>..<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>[&nbsp;&nbsp; 1.010958] Serial: 8250/16550 driver, 4 ports, =
-IRQ sharing disabled<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>[&nbsp;&nbsp; 1.013920] serial8250.0: ttyS0 at MMIO =
-0x20215040 (irq =3D 29, base_baud =3D 7812500) is a =
-8250<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>&#8230;<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Then I put the pins 32/33 into alternative mode alt5, and =
-try to connect to the port /dev/ttyS0 using minicom (baud 115200). =
-Trying to enter something into the Mincom terminal does not give any =
-indications on our connected oscilloscope (connected to the relevant =
-pins), however change of the alt mode earlier was observed correctly. =
-The serial port should not be using any flow control, but when trying to =
-disable the flow control using Minicom (it was on by default) freezes =
-the complete RaspberryPi system (requiring to disconnect and reconnect =
-power).<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Does anyone have any thoughts what could be the cause of =
-these issues (e.g., problems with driver etc)? Any information would be =
-greatly appreciated. In the project we are working on we would need to =
-use both uart ports (0/1) provided by the compute module (the uart0 is a =
-pl011 and by disabling console use of /dev/ttyAMA0 we were able to =
-successfully connect to that port).<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Thanks for the great work with the =
-Yocto platform.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Sincerely,<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Andreas Enbacka<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>SW designer<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Gasera Ltd<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
-
-------=_NextPart_000_000B_01D09E1A.C0510D60--
