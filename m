@@ -1,38 +1,40 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <Alexandru.Vaduva@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 56D3FE00A08; Wed,  3 Jun 2015 02:08:08 -0700 (PDT)
+	id ABC01E0099B; Wed,  3 Jun 2015 04:26:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [192.36.1.252 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03E15E009E5
-	for <yocto@yoctoproject.org>; Wed,  3 Jun 2015 02:08:06 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga101.jf.intel.com with ESMTP; 03 Jun 2015 02:08:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,546,1427785200"; d="scan'208";a="736205758"
-Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com) ([10.252.4.158])
-	by fmsmga002.fm.intel.com with ESMTP; 03 Jun 2015 02:08:05 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Erik Bolton <EBolton@agjunction.com>
-Date: Wed, 03 Jun 2015 10:08:04 +0100
-Message-ID: <1735906.ADXU4BdX5j@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.7 (Linux/3.19.7-200.fc21.x86_64; KDE/4.14.7; x86_64; ; )
-In-Reply-To: <DM2PR0201MB108780BAEC93C124DE88B1D0CCFC0@DM2PR0201MB1087.namprd02.prod.outlook.com>
-References: <1428389040815.28148@agjunction.com>
-	<1488754.2yFrWuZha4@peggleto-mobl.ger.corp.intel.com>
-	<DM2PR0201MB108780BAEC93C124DE88B1D0CCFC0@DM2PR0201MB1087.namprd02.prod.outlook.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 09B98E00974
+	for <yocto@yoctoproject.org>; Wed,  3 Jun 2015 04:26:15 -0700 (PDT)
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
+	14.03.0224.002; Wed, 3 Jun 2015 13:26:13 +0200
+From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Thread-Topic: [yocto] Smart package manager problems
+Thread-Index: AdCdSSeUcCzqNNvLRx2ZwuPjolKMuAAd2McAAAYIgtD//+JXAP//s6hg
+Date: Wed, 3 Jun 2015 11:26:13 +0000
+Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D8AB172@SESTOEX04.enea.se>
+References: <DDB0C57E45663A458C5CACB7B5688BC21D8AAC26@SESTOEX04.enea.se>
+	<1934442.fZaNR3y9Jt@peggleto-mobl.ger.corp.intel.com>
+	<DDB0C57E45663A458C5CACB7B5688BC21D8AB022@SESTOEX04.enea.se>
+	<2307123.SRrdZ8krDi@peggleto-mobl.ger.corp.intel.com>
+In-Reply-To: <2307123.SRrdZ8krDi@peggleto-mobl.ger.corp.intel.com>
+Accept-Language: en-US, sv-SE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.14.175]
 MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Python Error in SDK
+Subject: Re: Smart package manager problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,144 +46,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Jun 2015 09:08:08 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Wed, 03 Jun 2015 11:26:17 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Erik,
+Here is the Bugzilla bug link: https://bugzilla.yoctoproject.org/show_bug.c=
+gi?id=3D7840
 
-I'm really not sure what to advise, other than debugging it by checking 
-variable values with bitbake -e, adding print/bb.warn statements at various 
-points, etc.
+-----Original Message-----
+From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]=20
+Sent: Wednesday, June 03, 2015 11:52 AM
+To: Alexandru Vaduva
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] Smart package manager problems
 
-Sorry, this message was sitting in my inbox for some time - I don't suppose 
-you have found anything since April?
+I think you may be overstating the issue - I'm convinced the warnings are h=
+armless. As I said before, it's likely these warnings have been present for=
+ a long time, the only recent change is we are now exposing them - the quic=
+kest fix would be to stop doing that.
+
+However, if you'd like to dig into the smart code and fix the underlying is=
+sue, you're more than welcome.
 
 Cheers,
 Paul
 
-On Wednesday 08 April 2015 17:39:52 Erik Bolton wrote:
-> Hey Paul:
-> 
-> Thanks very much for the help.
-> 
-> I already have a meta-toolchain.bbappend in our project so I added
-> nativesdk-python-modules to the TOOLCHAIN_HOST_TASK append line in there.
-> 
-> The system doesn't seem to detect the change, though. If I "bitbake
-> meta-toolchain" no tasks are performed. If I "bitbake meta-toolchain -c
-> cleanall" and rebuild it just repackages the toolchain...no new packages
-> are added and there's no nativesdk-python-modules dir in the work dir for
-> the SDK.
-> 
-> This is really odd, because I added some jibberish to meta-toolchain.append
-> and tried again. It fails with a parsing error on the lines I added, so I
-> know the file is being re-parsed.
-> 
-> Any thoughts?
-> 
-> Thanks again.
-> -Erik
-> 
+On Wednesday 03 June 2015 08:42:13 Alexandru Vaduva wrote:
+> Thanks Paul,
+>=20
+> I will do that, but the smart package manager cannot be used as a=20
+> rootfs package. The fact that is does not correctly identify which of=20
+> the dependencies are already installed could cause further problems.
+>=20
+>=20
+> Alex
+>=20
 > -----Original Message-----
 > From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
-> Sent: Wednesday, April 08, 2015 9:22 AM
-> To: Erik Bolton
+> Sent: Wednesday, June 03, 2015 10:46 AM
+> To: Alexandru Vaduva
 > Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Python Error in SDK
-> 
-> Hi Erik,
-> 
-> On Tuesday 07 April 2015 06:44:01 Erik Bolton wrote:
-> > This has been brought up before (although I think the error was
-> > different), but I'm having a lot of issues with the version of Python
-> > included with the SDK.
-> > 
-> > We use Python for code generation as part of our project. If I source
-> > the environment script and try to run our Python scripts I get this:
-> > 
-> > Traceback (most recent call last):
-> >   File
-> > 
-> > "/opt/poky/1.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/python2.7/site.
-> > py",
-> > line 569, in <module> main()
-> > 
-> >   File
-> > 
-> > "/opt/poky/1.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/python2.7/site.
-> > py", line 551, in main known_paths = addusersitepackages(known_paths)
-> > 
-> >   File
-> > 
-> > "/opt/poky/1.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/python2.7/site.
-> > py", line 278, in addusersitepackages user_site =
-> > getusersitepackages()
-> > 
-> >   File
-> > 
-> > "/opt/poky/1.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/python2.7/site.
-> > py", line 253, in getusersitepackages user_base = getuserbase() # this
-> > will also set USER_BASE
-> > 
-> >   File
-> > 
-> > "/opt/poky/1.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/python2.7/site.
-> > py", line 242, in getuserbase from sysconfig import get_config_var
-> > 
-> >   File
-> > 
-> > "/opt/poky/1.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/python2.7/sysconfig
-> > .
-> > py", line 10, in <module> 'stdlib':
-> > '{base}/'+sys.lib+'/python{py_version_short}',
-> > AttributeError: 'module' object has no attribute 'lib'
-> > 
-> > If I try running something that doesn't exist I get this:
-> > 
-> > Fatal Python error: Py_Initialize: Unable to get the locale encoding
-> > ImportError: No module named 'encodings'
-> > Aborted (core dumped)
-> > 
-> > I've tried using update-alternatives to point the SDK python to my
-> > local python (Ubuntu 14.10, Python 2.7.8), but the errors persist.
-> > 
-> > I know a few people have simply deleted the python binary from the
-> > SDK, but I don't think that will help in my case.
-> > 
-> > I would try to remove it from the SDK in the actual package groups,
-> > but smartpm and a few other programs depend on it. I'm not sure they
-> > would play nice with my local version.
-> > 
-> > Any suggestions on how to fix this "correctly"?
-> 
-> Basically when python (technically, "nativesdk-python" when talking about
-> the SDK) gets pulled in, that's the minimal python core and not all of the
-> modules in the normal Python distribution, resulting in failures such as
-> these. You can add those however by adding the following either in your
-> image recipe (if using -c populate_sdk) or in your configuration:
-> 
->   TOOLCHAIN_HOST_TASK_append = " nativesdk-python-modules"
-> 
-> Rebuild and re-install the SDK and things should work a bit better after
-> that.
-> 
+> Subject: Re: [yocto] Smart package manager problems
+>=20
+> Hi Alex,
+>=20
+> On Tuesday 02 June 2015 15:50:20 Alexandru Vaduva wrote:
+> > I experiences a problem related to smart package manager that I=20
+> > wanted to discuss with you. I was interested in your feedback,=20
+> > knowledge of this and maybe advices on how should we proceed further.
+> >=20
+> > The bug I experienced can be duplicated with the information=20
+> > available in the "patch-info.txt" file attached to this email. I=20
+> > also attached the log of the error for easier read in the "image-build-=
+info.txt" file.
+> >=20
+> > After some careful investigation I discovered that the problem is=20
+> > caused by the smart package manager, after the install_complementary=20
+> > function call when it in fact tries to call smart with "install=20
+> > --attempt -y" arguments. It is not able to see the fact that those=20
+> > packages were already installed and tries to do it again. This error=20
+> > behavior might also be related to the problems mentioned here:
+> > https://www.mail-archive.com/yocto@yoctoproject.org/msg24279.html
+> > and https://bugs.launchpad.net/smart/+bug/1238492
+>=20
+> Would you mind filing a bug in the Yocto Project bugzilla to cover=20
+> this? I think the likely solution will be just to whitelist the warnings.
+>=20
 > Cheers,
 > Paul
-> 
-> --
-> 
-> Paul Eggleton
-> Intel Open Source Technology Centre
-> Disclaimer: This message contains information that may be privileged or
-> confidential and is the property of AgJunction Inc and its subsidiaries. It
-> is intended only for the person to whom it is addressed. If you are not the
-> intended recipient, you are not authorized to read, print, retain, copy,
-> disseminate, distribute, or use this message or any part thereof. If you
-> receive this message in error, please notify the sender immediately and
-> delete all copies of this message.
 
--- 
+--=20
 
 Paul Eggleton
 Intel Open Source Technology Centre
