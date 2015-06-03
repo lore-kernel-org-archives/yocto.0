@@ -1,6 +1,6 @@
-Return-Path: <philip@balister.org>
+Return-Path: <yocto@mindchasers.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F0B6BE009E5; Tue,  2 Jun 2015 15:59:44 -0700 (PDT)
+	id 3D18CE009EC; Tue,  2 Jun 2015 18:36:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,27 +8,23 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id F2344E009CC
-	for <yocto@yoctoproject.org>; Tue,  2 Jun 2015 15:59:41 -0700 (PDT)
-Received: (qmail 26688 invoked by uid 1003); 2 Jun 2015 22:59:40 -0000
-Received: from unknown (HELO ?192.168.11.121?)
-	(philip@opensdr.com@71.171.11.200)
-	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
-	2 Jun 2015 22:59:39 -0000
-Message-ID: <556E355B.8010604@balister.org>
-Date: Tue, 02 Jun 2015 18:59:39 -0400
-From: Philip Balister <philip@balister.org>
+Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC2D1E009CC
+	for <yocto@yoctoproject.org>; Tue,  2 Jun 2015 18:36:48 -0700 (PDT)
+Received: from [192.168.1.10] (c-73-194-208-34.hsd1.nj.comcast.net
+	[73.194.208.34])
+	by smtp.webfaction.com (Postfix) with ESMTP id CA71A211F3E5
+	for <yocto@yoctoproject.org>; Wed,  3 Jun 2015 01:35:53 +0000 (UTC)
+Message-ID: <556E59F6.7060806@mindchasers.com>
+Date: Tue, 02 Jun 2015 21:35:50 -0400
+From: Bob Cochran <yocto@mindchasers.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-To: "openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>, 
-	Yocto Project <yocto@yoctoproject.org>
-References: <CAOLEWZUq-ig-fVZgdgd7P15U-jCKaG0FnJM9zYVgPYvxqXDmyw@mail.gmail.com>
-In-Reply-To: <CAOLEWZUq-ig-fVZgdgd7P15U-jCKaG0FnJM9zYVgPYvxqXDmyw@mail.gmail.com>
-X-Forwarded-Message-Id: <CAOLEWZUq-ig-fVZgdgd7P15U-jCKaG0FnJM9zYVgPYvxqXDmyw@mail.gmail.com>
-Subject: [OE-core] open source conference in Honduras needs Yocto Project/Openembedded/OpenHardware speaker
+To: yocto@yoctoproject.org
+References: <556D1937.9090602@mindchasers.com>
+In-Reply-To: <556D1937.9090602@mindchasers.com>
+Subject: Re: Question regarding python, _sysconfigdata.py, and building C extension modules on the target...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,46 +36,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Jun 2015 22:59:45 -0000
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Wed, 03 Jun 2015 01:36:52 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Speaking opportunity in Honduras.
+On 06/01/2015 10:47 PM, Bob Cochran wrote:
+> Hi,
+>
+> While building a python 2.7 C extension module on the target (e.g.,
+> python setup.py build) I found that I needed to modify
+> /usr/lib64/python2.7/_sysconfigdata.py to successfully build the module.
+>
+> I modified both CC and LDSHARE.  For both, I removed
+> --sysroot=/build/yocto/<project>/tmp/sysroots/<machine>'.  And for
+> LDSHARE, I added -L/lib64, so gcc_s could be found.
+>
+> I'm wondering whether this is expected behavior or perhaps a bug.
+> Perhaps I should have setup my environment differently for building a C
+> extension module on the target?
+>
+> I would appreciate any advice on the best way to rectify this so I can
+> use a non-modified, generated rootfs to build C extension modules on my
+> target.
 
-Contact Steve, not me.
+For now, I modified my setup.py to include the following in my call to 
+Extension():
 
-Philip
+                     include_dirs=['/usr/include'],
+                     library_dirs=['/lib64'])
 
-
--------- Forwarded Message --------
-Subject: [OE-core] open source conference in Honduras needs Yocto
-Project/Openembedded/OpenHardware speaker
-Date: Tue, 2 Jun 2015 14:45:22 -0700
-From: Stephen Arnold <stephen.arnold42@gmail.com>
-To: Patches and discussions about the oe-core layer
-<openembedded-core@lists.openembedded.org>
-
-There seems to be plenty of room (only 2 or 3 speakers signed up so
-far) and they'd love to have an "official" LF (or just embedded linux)
-speaker.  I've been invited to speak, and they can cover the normal
-fees/lodging/food for speakers (just not the travel costs, so I'm
-still working things out with my wife...)
-
-http://ecsl2015.softwarelibre.ca/
-
-I guess I was hoping Linux Foundation (or member companies) had enough
-support to maybe send an openembedded developer to speak as an
-outreach sort of thing.
-
-Steve Arnold
-aka nerdboy/mr_science
--- 
-_______________________________________________
-Openembedded-core mailing list
-Openembedded-core@lists.openembedded.org
-http://lists.openembedded.org/mailman/listinfo/openembedded-core
+However, I don't think I should need to do this, and I didn't have to do 
+this on targets (rootfs) generated by earlier poky releases.  I'll keep 
+digging...
 
 
-
+>
+> I'm using poky fido (508c4cac320d) and building with a Freescale t1040
+> 64bit (meta-fsl-ppc).
+>
+> Thanks
+>
+> Bob
 
 
