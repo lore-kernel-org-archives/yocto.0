@@ -1,51 +1,55 @@
-Return-Path: <vmartin@avaya.com>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 93F78E0086D; Wed,  3 Jun 2015 10:28:20 -0700 (PDT)
+	id 971A9E0095D; Wed,  3 Jun 2015 15:35:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.152.13.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Wed, 03 Jun 2015 10:28:19 PDT
-Received: from co300216-co-outbound.net.avaya.com
-	(co300216-co-outbound.net.avaya.com [198.152.13.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4921CE005B9
-	for <yocto@yoctoproject.org>; Wed,  3 Jun 2015 10:28:19 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AikFALc4b1WHCzIm/2dsb2JhbABbgmYqgTIGxiwCgUNMAQEBAQEBgQuEIgEBAQEDEig/DAQCAQgNCAECChQJBzIUEQEBBA4FCBqICwGtDK5AAQEBAQEBAQEBAQEBAQEBAQEBAQEBF4tDhFUxB4MXgRYFkxSMTYZni1aDWSSCChyBUm8BgUWBAQEBAQ
-X-IronPort-AV: E=Sophos;i="5.13,548,1427774400"; d="scan'208";a="119190499"
-Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
-	([135.11.50.38]) by co300216-co-outbound.net.avaya.com with ESMTP;
-	03 Jun 2015 13:27:15 -0400
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC01.global.avaya.com) ([135.11.85.12])
-	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/AES128-SHA;
-	03 Jun 2015 13:27:16 -0400
-Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
-	AZ-US1EXHC01.global.avaya.com ([135.11.85.12]) with mapi id
-	14.03.0174.001; Wed, 3 Jun 2015 13:27:15 -0400
-From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] Kernel module not installed in rootfs
-Thread-Index: AdCdbfFqFMJECWBQTEOFK6W7uxmOPQAhGTuAAAv2J4A=
-Date: Wed, 3 Jun 2015 17:27:15 +0000
-Message-ID: <30C2D590D16A5C46ADFE6521910377985392FD7F@AZ-US1EXMB03.global.avaya.com>
-References: <30C2D590D16A5C46ADFE6521910377985392F38F@AZ-US1EXMB03.global.avaya.com>
-	<71668614.b93BMjqxRS@peggleto-mobl.ger.corp.intel.com>
-In-Reply-To: <71668614.b93BMjqxRS@peggleto-mobl.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.11.85.50]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ie0-f171.google.com (mail-ie0-f171.google.com
+	[209.85.223.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1943E007B6
+	for <yocto@yoctoproject.org>; Wed,  3 Jun 2015 15:35:00 -0700 (PDT)
+Received: by iecwk5 with SMTP id wk5so23519515iec.1
+	for <yocto@yoctoproject.org>; Wed, 03 Jun 2015 15:34:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=P5vFcCV6eAkueLBfJCZ/bqZcY8JfJBB3DICR+L59xic=;
+	b=D1sIoXBLjOCcBt/h/5/8rGy2clwlYXil7RGVuFmWKIKvfqztbCYwtTMAr/OvAnOpHK
+	zL0JvsoSUxgypWGTmci1z7WtQUNUZICcAPeGmfSbE7FXL31tWqsi4JWUhUas2cJKuG9I
+	GWP+E6QXPAs2nLr6g3dWu4RkFuiGErhIMBxzRm9aVy2ewOcV8LBJFf9v5XaQs/YLmujQ
+	Kaq369LbYHhCryyUDek4koV8IVgPFXHuRmYkMtWRjYlgqsA0Ltq/FmqMlRe3gdElUfXn
+	b3rMnE3kURsuVckdaeioHqK8f+XXsOYImbMXkaqsp03s4qiTNHogS9XK+7jaNr/QHqpm
+	Hsbw==
+X-Received: by 10.50.176.228 with SMTP id cl4mr1337053igc.2.1433370899559;
+	Wed, 03 Jun 2015 15:34:59 -0700 (PDT)
+Received: from [192.168.141.85] (dsl-67-55-28-109.acanac.net. [67.55.28.109])
+	by mx.google.com with ESMTPSA id
+	z195sm108129iod.33.2015.06.03.15.34.58 for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 03 Jun 2015 15:34:58 -0700 (PDT)
+Message-ID: <556F8111.2030201@gmail.com>
+Date: Wed, 03 Jun 2015 18:34:57 -0400
+From: Trevor Woerner <twoerner@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Kernel module not installed in rootfs
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: layerindex
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,55 +61,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Jun 2015 17:28:20 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 03 Jun 2015 22:35:01 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-> -----Original Message-----
-> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
-> Sent: June 03, 2015 3:42 AM
->=20
-> On Tuesday 02 June 2015 19:58:50 Vuille, Martin wrote:
-> > Yocto 1.6.1
-> >
-> > I have added a module to my kernel.
-> >
-> > The module is getting built, I see a kernel-module-blah-blah RPM and
-> > it contains the .ko
-> >
-> > I add kernel-module-blah-blah to one of the packagegroups contained in
-> > my image, I see do_rootfs task run, but the module is not in the
-> > image. In log.do_rootfs I see that the module is NOT one of the
-> > packages installed.
-> >
-> > I did a cleansstate on the image and the packagegroup, I did a
-> > cleanall on virtual/kernel, makes no difference.
-> >
-> > If I do a "clean build" from scratch, then the module is installed.
-> >
-> > Any thoughts on what I'm missing here?
->=20
-> Something is definitely strange here.
->=20
-> If you cleansstate and rebuild the packagegroup *after* building the kern=
-el
-> with the module in it, does that make a difference?
->=20
+Hi,
 
-Hi Paul,
+Does the layer index provide a REST api?
 
-Overnight I deleted build/tmp and build/sstate-cache from my workspace
-and rebuilt everything.
+-or-
 
-Then this morning I added the module to the packagegroup and rebuilt the im=
-age.
-This time the .ko did show up in the rootfs.
+Would (could) it be possible to somehow grab/access the data that drives
+the layer index (preferably without scraping)?
 
-So it seems there was some sort of gremlin lurking and now it's gone. I hop=
-e
-for good.
-
-Thanks for your help
-MV
+Best regards,
+    Trevor
 
