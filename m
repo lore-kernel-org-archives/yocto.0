@@ -1,40 +1,35 @@
-Return-Path: <Alexandru.Vaduva@enea.com>
+Return-Path: <andreas.enbacka@gasera.fi>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ABC01E0099B; Wed,  3 Jun 2015 04:26:17 -0700 (PDT)
+	id 3FFAEE009E7; Wed,  3 Jun 2015 06:59:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
+	*      [194.211.207.200 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 09B98E00974
-	for <yocto@yoctoproject.org>; Wed,  3 Jun 2015 04:26:15 -0700 (PDT)
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
-	14.03.0224.002; Wed, 3 Jun 2015 13:26:13 +0200
-From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Thread-Topic: [yocto] Smart package manager problems
-Thread-Index: AdCdSSeUcCzqNNvLRx2ZwuPjolKMuAAd2McAAAYIgtD//+JXAP//s6hg
-Date: Wed, 3 Jun 2015 11:26:13 +0000
-Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D8AB172@SESTOEX04.enea.se>
-References: <DDB0C57E45663A458C5CACB7B5688BC21D8AAC26@SESTOEX04.enea.se>
-	<1934442.fZaNR3y9Jt@peggleto-mobl.ger.corp.intel.com>
-	<DDB0C57E45663A458C5CACB7B5688BC21D8AB022@SESTOEX04.enea.se>
-	<2307123.SRrdZ8krDi@peggleto-mobl.ger.corp.intel.com>
-In-Reply-To: <2307123.SRrdZ8krDi@peggleto-mobl.ger.corp.intel.com>
-Accept-Language: en-US, sv-SE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.14.175]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 1661 seconds by postgrey-1.32 at yocto-www;
+	Wed, 03 Jun 2015 06:59:19 PDT
+Received: from smtp1.eteinen.fi (smtp1.eteinen.fi [194.211.207.200])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8710BE009E5
+	for <yocto@yoctoproject.org>; Wed,  3 Jun 2015 06:59:19 -0700 (PDT)
+Received: from [194.100.86.92] (helo=LenovoPC)
+	by smtp1.eteinen.fi with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.71) (envelope-from <andreas.enbacka@gasera.fi>)
+	id 1Z08lY-0004Km-3V
+	for yocto@yoctoproject.org; Wed, 03 Jun 2015 16:31:32 +0300
+From: "Andreas Enbacka" <andreas.enbacka@gasera.fi>
+To: <yocto@yoctoproject.org>
+Date: Wed, 3 Jun 2015 16:31:32 +0300
+Message-ID: <000a01d09e01$9b031210$d1093630$@gasera.fi>
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Smart package manager problems
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AdCeAZq+25HO3YQiT+2JzonYAJ8Z2g==
+Subject: Issue with 8250/16550 UART1 access in raspberrypi (meta-raspberrypi)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,78 +41,185 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Jun 2015 11:26:17 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 03 Jun 2015 13:59:23 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_000B_01D09E1A.C0510D60"
+Content-Language: fi
+
+------=_NextPart_000_000B_01D09E1A.C0510D60
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hello,
+
+ 
+
+After a long break, I have returned to the Yocto project, and generally very
+pleased. A lot of progress has been done since I last used the project (two
+years ago), and now in my opinion everything works very smoothly.
+
+ 
+
+I have used yocto to build a custom image for the RaspberryPi Compute
+Module. Generally everything works ok, however I am experiencing problem
+with accessing the UART1 port on the raspberryPi. I am using a library
+called wiringPi to put the appropriate GPIO pins in the correct mode (alt5)
+for RXD1/TXD1 (pins 32/33). Also I have used menuconfig to enable the
+8250/16550 serial port support in the kernel (3.18.5+). After booting the
+image I examined the dmesg output, and it shows following information
+related to 8250/16550:
+
+..
+
+[   1.010958] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+
+[   1.013920] serial8250.0: ttyS0 at MMIO 0x20215040 (irq = 29, base_baud =
+7812500) is a 8250
+
+.
+
+ 
+
+Then I put the pins 32/33 into alternative mode alt5, and try to connect to
+the port /dev/ttyS0 using minicom (baud 115200). Trying to enter something
+into the Mincom terminal does not give any indications on our connected
+oscilloscope (connected to the relevant pins), however change of the alt
+mode earlier was observed correctly. The serial port should not be using any
+flow control, but when trying to disable the flow control using Minicom (it
+was on by default) freezes the complete RaspberryPi system (requiring to
+disconnect and reconnect power).
+
+ 
+
+Does anyone have any thoughts what could be the cause of these issues (e.g.,
+problems with driver etc)? Any information would be greatly appreciated. In
+the project we are working on we would need to use both uart ports (0/1)
+provided by the compute module (the uart0 is a pl011 and by disabling
+console use of /dev/ttyAMA0 we were able to successfully connect to that
+port).
+
+ 
+
+Thanks for the great work with the Yocto platform.
+
+ 
+
+Sincerely,
+
+Andreas Enbacka
+
+SW designer
+
+Gasera Ltd
+
+ 
+
+
+------=_NextPart_000_000B_01D09E1A.C0510D60
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Here is the Bugzilla bug link: https://bugzilla.yoctoproject.org/show_bug.c=
-gi?id=3D7840
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DFI =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>Hello,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+lang=3DEN-US>After a long break, I have returned to the Yocto project, =
+and generally very pleased. A lot of progress has been done since I last =
+used the project (two years ago), and now in my opinion everything works =
+very smoothly.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>I have used yocto to build a custom image for the =
+RaspberryPi Compute Module. Generally everything works ok, however I am =
+experiencing problem with accessing the UART1 port on the raspberryPi. I =
+am using a library called wiringPi to put the appropriate GPIO pins in =
+the correct mode (alt5) for RXD1/TXD1 (pins 32/33). Also I have used =
+menuconfig to enable the 8250/16550 serial port support in the kernel =
+(3.18.5+). After booting the image I examined the dmesg output, and it =
+shows following information related to =
+8250/16550:<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>..<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>[&nbsp;&nbsp; 1.010958] Serial: 8250/16550 driver, 4 ports, =
+IRQ sharing disabled<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>[&nbsp;&nbsp; 1.013920] serial8250.0: ttyS0 at MMIO =
+0x20215040 (irq =3D 29, base_baud =3D 7812500) is a =
+8250<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>&#8230;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Then I put the pins 32/33 into alternative mode alt5, and =
+try to connect to the port /dev/ttyS0 using minicom (baud 115200). =
+Trying to enter something into the Mincom terminal does not give any =
+indications on our connected oscilloscope (connected to the relevant =
+pins), however change of the alt mode earlier was observed correctly. =
+The serial port should not be using any flow control, but when trying to =
+disable the flow control using Minicom (it was on by default) freezes =
+the complete RaspberryPi system (requiring to disconnect and reconnect =
+power).<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Does anyone have any thoughts what could be the cause of =
+these issues (e.g., problems with driver etc)? Any information would be =
+greatly appreciated. In the project we are working on we would need to =
+use both uart ports (0/1) provided by the compute module (the uart0 is a =
+pl011 and by disabling console use of /dev/ttyAMA0 we were able to =
+successfully connect to that port).<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Thanks for the great work with the =
+Yocto platform.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Sincerely,<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Andreas Enbacka<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>SW designer<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Gasera Ltd<o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
 
------Original Message-----
-From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]=20
-Sent: Wednesday, June 03, 2015 11:52 AM
-To: Alexandru Vaduva
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] Smart package manager problems
-
-I think you may be overstating the issue - I'm convinced the warnings are h=
-armless. As I said before, it's likely these warnings have been present for=
- a long time, the only recent change is we are now exposing them - the quic=
-kest fix would be to stop doing that.
-
-However, if you'd like to dig into the smart code and fix the underlying is=
-sue, you're more than welcome.
-
-Cheers,
-Paul
-
-On Wednesday 03 June 2015 08:42:13 Alexandru Vaduva wrote:
-> Thanks Paul,
->=20
-> I will do that, but the smart package manager cannot be used as a=20
-> rootfs package. The fact that is does not correctly identify which of=20
-> the dependencies are already installed could cause further problems.
->=20
->=20
-> Alex
->=20
-> -----Original Message-----
-> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
-> Sent: Wednesday, June 03, 2015 10:46 AM
-> To: Alexandru Vaduva
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] Smart package manager problems
->=20
-> Hi Alex,
->=20
-> On Tuesday 02 June 2015 15:50:20 Alexandru Vaduva wrote:
-> > I experiences a problem related to smart package manager that I=20
-> > wanted to discuss with you. I was interested in your feedback,=20
-> > knowledge of this and maybe advices on how should we proceed further.
-> >=20
-> > The bug I experienced can be duplicated with the information=20
-> > available in the "patch-info.txt" file attached to this email. I=20
-> > also attached the log of the error for easier read in the "image-build-=
-info.txt" file.
-> >=20
-> > After some careful investigation I discovered that the problem is=20
-> > caused by the smart package manager, after the install_complementary=20
-> > function call when it in fact tries to call smart with "install=20
-> > --attempt -y" arguments. It is not able to see the fact that those=20
-> > packages were already installed and tries to do it again. This error=20
-> > behavior might also be related to the problems mentioned here:
-> > https://www.mail-archive.com/yocto@yoctoproject.org/msg24279.html
-> > and https://bugs.launchpad.net/smart/+bug/1238492
->=20
-> Would you mind filing a bug in the Yocto Project bugzilla to cover=20
-> this? I think the likely solution will be just to whitelist the warnings.
->=20
-> Cheers,
-> Paul
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
-
+------=_NextPart_000_000B_01D09E1A.C0510D60--
