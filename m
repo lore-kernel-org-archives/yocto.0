@@ -1,33 +1,52 @@
-Return-Path: <andreas.enbacka@gasera.fi>
+Return-Path: <bruce.ashfield@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 15834E009C8; Thu,  4 Jun 2015 05:01:33 -0700 (PDT)
+	id 13A01E009C8; Thu,  4 Jun 2015 05:19:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [194.211.207.200 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bruce.ashfield[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.160.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from smtp1.eteinen.fi (smtp1.eteinen.fi [194.211.207.200])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F956E007B6
-	for <yocto@yoctoproject.org>; Thu,  4 Jun 2015 05:01:29 -0700 (PDT)
-Received: from [194.100.86.92] (helo=LenovoPC)
-	by smtp1.eteinen.fi with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.71) (envelope-from <andreas.enbacka@gasera.fi>)
-	id 1Z0Tpt-0005tv-1f
-	for yocto@yoctoproject.org; Thu, 04 Jun 2015 15:01:25 +0300
-From: "Andreas Enbacka" <andreas.enbacka@gasera.fi>
-To: <yocto@yoctoproject.org>
-Date: Thu, 4 Jun 2015 15:01:26 +0300
-Message-ID: <001701d09ebe$2f3a5030$8daef090$@gasera.fi>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-yk0-f176.google.com (mail-yk0-f176.google.com
+	[209.85.160.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92662E007B6
+	for <yocto@yoctoproject.org>; Thu,  4 Jun 2015 05:19:25 -0700 (PDT)
+Received: by yken206 with SMTP id n206so13470621yke.2
+	for <yocto@yoctoproject.org>; Thu, 04 Jun 2015 05:19:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=JAzEsu5xZWPjBpzPriwNtJYFjazgSIbGTwR1wSDWjAg=;
+	b=DpeWXRtdYtUHsqNzAsI9roz8aw+8/Lds+UTj2UEMo8aPNQljbnE8tIpNCvZq2ciyex
+	qPr/lJ8SXNZk2xPtPgFUqM5MIQOHkV/F3q0STicMkZJfXdCGtGzk5/I870v8O/OVOVy7
+	+M1wAGJ2DAiLr8CzrAZNqwIYgEa0imoev17Fi9uAw+rUwD1nZ8PvZt5tfN7/MXnopc4o
+	EFPB1psl9Cyt1Q0BImttwQ1sdkHzqw7Rm5Nqlqa8tY78wsQ9AJkVWMorduYjnrRI756j
+	hIQCsuYMbVG7O+awwxLU0e+uqbiYur/dOLPJS1DdBMekBc6sgErXh5YfGCA0QU9U5YeQ
+	o+Ug==
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AdCevi7nsQD2Mr7MRbySLELCozFF4w==
-Subject: [meta-raspberrypi] Issue with 8250/16550 UART1 access in raspberrypi (meta-raspberrypi)
+X-Received: by 10.170.55.143 with SMTP id 137mr44932967ykx.16.1433420364544;
+	Thu, 04 Jun 2015 05:19:24 -0700 (PDT)
+Received: by 10.129.128.2 with HTTP; Thu, 4 Jun 2015 05:19:24 -0700 (PDT)
+In-Reply-To: <55702CD0.5030909@gmx.de>
+References: <55702CD0.5030909@gmx.de>
+Date: Thu, 4 Jun 2015 08:19:24 -0400
+Message-ID: <CADkTA4PwjMeY+4risNoFNxctEkdkbJsXDJDSfs2w-f3kvO_3kQ@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: Neuer User <auslands-kv@gmx.de>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: Kernel config fragments are no longer applied after update to Fido
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,189 +58,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Jun 2015 12:01:33 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0018_01D09ED7.5488E7C0"
-Content-Language: fi
+X-List-Received-Date: Thu, 04 Jun 2015 12:19:28 -0000
+Content-Type: text/plain; charset=UTF-8
 
-------=_NextPart_000_0018_01D09ED7.5488E7C0
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+On Thu, Jun 4, 2015 at 6:47 AM, Neuer User <auslands-kv@gmx.de> wrote:
+> Hello
+>
+> I have the following kernel recipe, which is based on some help from
+> Bruce Ashfield last year:
+>
+> -------------------------------------------------------------
+> inherit kernel
+> require recipes-kernel/linux/linux-yocto.inc
+>
+> SUMMARY = "Linaro Kernel 3.14 with additional machine specific patches"
+>
+> SRCREV = "91d5e90284ee69d219872e3ae42ae0eac417f7e9"
+> LOCALVERSION = "-cubox-i+linux4kix+${SRCPV}"
+>
+> DEPENDS += "lzop-native bc-native"
+>
+> FILESEXTRAPATHS_prepend := "${THISDIR}/linux-cubox-i:"
+>
+> SRC_URI = "file://defconfig \
+>            file://videoin.cfg \
+>            file://dvb.cfg \
+>            file://networking.cfg \
+>            file://wlan.cfg \
+>            file://dm-crypt.cfg \
+>            file://no-caam.cfg \
+>            file://leds.cfg \
+>            file://mod-to-builtin.cfg \
+>            file://watchdog-nowayout.cfg \
+>            file://brcmfmac4330-sdio.bin \
+>            file://brcmfmac4330-sdio.txt \
+> "
+>
+> SRC_URI +=
+> "git://github.com/linux4kix/linux-linaro-stable-mx6.git;branch=${SRCBRANCH}"
+> SRCBRANCH ?= "linux-linaro-lsk-v3.14-mx6"
+>
+> COMPATIBLE_MACHINE = "(cubox-i)"
+>
+> KERNEL_IMAGETYPE_cubox-i = "zImage"
+>
+> SRCREV_machine = "${SRCREV}"
+> --------------------------------------------------------------
+>
+>
+> This worked nicely under yocto daisy. Now, after I migrated my recipes
+> to yocto fido, the recipe no longer seems to include the kernel
+> fragments, i.e. everything runs without errors, but the fragments are
+> not applied. (They are, however, copied to the build directory.)
+>
+> Any idea, what the problem is or how to debug/solve it?
 
-Hello,
+The transition should have been seamless .. this is something that
+works here and
+something that was obviously tested as part of the release.
 
- 
+Is there somewhere that I can get a copy of the layer you are using
+for your BSP ?
+Otherwise, let me hack something up and try my own build.
 
-After a long break, I have returned to the Yocto project, and generally very
-pleased. A lot of progress has been done since I last used the project (two
-years ago), and now in my opinion everything works very smoothly.
+Bruce
 
- 
-
-I have used yocto to build a custom image for the RaspberryPi Compute
-Module. Generally everything works ok, however I am experiencing problem
-with accessing the UART1 port on the raspberryPi. I am using a library
-called wiringPi to put the appropriate GPIO pins in the correct mode (alt5)
-for RXD1/TXD1 (pins 32/33). Also I have used menuconfig to enable the
-8250/16550 serial port support in the kernel (3.18.5+). After booting the
-image I examined the dmesg output, and it shows following information
-related to 8250/16550:
-
-..
-
-[   1.010958] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
-
-[   1.013920] serial8250.0: ttyS0 at MMIO 0x20215040 (irq = 29, base_baud =
-7812500) is a 8250
-
-.
-
- 
-
-Then I put the pins 32/33 into alternative mode alt5, and try to connect to
-the port /dev/ttyS0 using minicom (baud 115200). Trying to enter something
-into the Mincom terminal does not give any indications on our connected
-oscilloscope (connected to the relevant pins), however change of the alt
-mode earlier was observed correctly. The serial port should not be using any
-flow control, but when trying to disable the flow control using Minicom (it
-was on by default) freezes the complete RaspberryPi system (requiring to
-disconnect and reconnect power).
-
- 
-
-Does anyone have any thoughts what could be the cause of these issues (e.g.,
-problems with driver etc)? Any information would be greatly appreciated. In
-the project we are working on we would need to use both uart ports (0/1)
-provided by the compute module (the uart0 is a pl011 and by disabling
-console use of /dev/ttyAMA0 we were able to successfully connect to that
-port).
-
- 
-
-Thanks for the great work with the Yocto platform.
-
- 
-
-Sincerely,
-
-Andreas Enbacka
-
-SW designer
-
-Gasera Ltd
-
- 
+>
+> Thanks in advance
+>
+> Michael
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
-------=_NextPart_000_0018_01D09ED7.5488E7C0
-Content-Type: text/html;
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DFI =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal>Hello,<span =
-style=3D'color:#1F497D'><o:p></o:p></span></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
-lang=3DEN-US>After a long break, I have returned to the Yocto project, =
-and generally very pleased. A lot of progress has been done since I last =
-used the project (two years ago), and now in my opinion everything works =
-very smoothly.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>I have used yocto to build a custom image for the =
-RaspberryPi Compute Module. Generally everything works ok, however I am =
-experiencing problem with accessing the UART1 port on the raspberryPi. I =
-am using a library called wiringPi to put the appropriate GPIO pins in =
-the correct mode (alt5) for RXD1/TXD1 (pins 32/33). Also I have used =
-menuconfig to enable the 8250/16550 serial port support in the kernel =
-(3.18.5+). After booting the image I examined the dmesg output, and it =
-shows following information related to =
-8250/16550:<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>..<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>[&nbsp;&nbsp; 1.010958] Serial: 8250/16550 driver, 4 ports, =
-IRQ sharing disabled<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>[&nbsp;&nbsp; 1.013920] serial8250.0: ttyS0 at MMIO =
-0x20215040 (irq =3D 29, base_baud =3D 7812500) is a =
-8250<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>&#8230;<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Then I put the pins 32/33 into alternative mode alt5, and =
-try to connect to the port /dev/ttyS0 using minicom (baud 115200). =
-Trying to enter something into the Mincom terminal does not give any =
-indications on our connected oscilloscope (connected to the relevant =
-pins), however change of the alt mode earlier was observed correctly. =
-The serial port should not be using any flow control, but when trying to =
-disable the flow control using Minicom (it was on by default) freezes =
-the complete RaspberryPi system (requiring to disconnect and reconnect =
-power).<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Does anyone have any thoughts what could be the cause of =
-these issues (e.g., problems with driver etc)? Any information would be =
-greatly appreciated. In the project we are working on we would need to =
-use both uart ports (0/1) provided by the compute module (the uart0 is a =
-pl011 and by disabling console use of /dev/ttyAMA0 we were able to =
-successfully connect to that port).<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Thanks for the great work with the =
-Yocto platform.<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Sincerely,<o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Andreas Enbacka<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>SW designer<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Gasera Ltd<o:p></o:p></span></p><p =
-class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p></div></body></html>
+-- 
+"Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end"
 
-------=_NextPart_000_0018_01D09ED7.5488E7C0--
