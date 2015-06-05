@@ -1,44 +1,55 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 63346E009F6; Fri,  5 Jun 2015 09:05:49 -0700 (PDT)
+	id 37F94E009EB; Fri,  5 Jun 2015 09:34:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=unavailable version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,FSL_HELO_FAKE,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: *  1.6 FSL_HELO_FAKE FSL_HELO_FAKE
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.216.53 listed in list.dnswl.org]
-Received: from mail-vn0-f53.google.com (mail-vn0-f53.google.com
-	[209.85.216.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29C1DE009EA
-	for <yocto@yoctoproject.org>; Fri,  5 Jun 2015 09:05:46 -0700 (PDT)
-Received: by vnbg62 with SMTP id g62so9627595vnb.4
-	for <yocto@yoctoproject.org>; Fri, 05 Jun 2015 09:05:45 -0700 (PDT)
+	*      [209.85.215.53 listed in list.dnswl.org]
+Received: from mail-la0-f53.google.com (mail-la0-f53.google.com
+	[209.85.215.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB165E009E7
+	for <yocto@yoctoproject.org>; Fri,  5 Jun 2015 09:34:10 -0700 (PDT)
+Received: by laar3 with SMTP id r3so9041678laa.3
+	for <yocto@yoctoproject.org>; Fri, 05 Jun 2015 09:34:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type:content-transfer-encoding;
-	bh=pXNm/Eq8P+bzvixEzVeQkH2xFQuq5x+VRUq3dmHBBVk=;
-	b=WHoYWzOgPxDWX3fLBCykdnmgLl6YPM1X7EX0L90YlzblkERKfYzpwdB84nIU0Hd6gT
-	CQCF4cxU5n2LOMTk9nOk8RYz6aDoiNVnGTdm2m2stla5ywa3hpdyyrGP8ARGWhdcxu+p
-	QLPFET3poDSn/mqOhvsdtD46hesl9Qa9lXU9YFv2hcV1gmH58NGYP1BVAgbp+9106nRM
-	OHAnn3ImXOwUCinFs+8XYvAisMTesgklYOOgwK8Ncs6foN3gyy/ySukUVqQiVNtOiJCx
-	8uVa5c9oYuoYySNcqMSQvEoc8yFAt5m/Gh6tbwM4ArKJ60r75NGTXr+o3tPG/VW0T+ac
-	KKpw==
-X-Gm-Message-State: ALoCoQkuyssPXSG+pgHW0nd7FnMt5/UWMSoeC1TV3vKxzGxizrTCtsZjJNeNpkvEOtBVF/6Wk0G7
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=i08k6JmGV4eUNsMSUyF8GKJrPUGhdkGXRmke2Jr6ULM=;
+	b=EdA/JVuouibeqBIvurGuAo25BKSjvPGb+i7v8AsharXgx9xJ+j2HGDyNbZBICjOqG3
+	rVg9+7lWfqIjg5gffopBPaK4YR0gRtfGB+BEFheV9f/EjYw3Hkq83T3l4NynRrqLylTu
+	ID8cb9sjHFqPsUODGvTEfDYRh98RL44L82+CcQTvYJE5HbkepH8GfsIswZA4+Jn1vp4w
+	aknrBUGadmmbZrF5MfIootUWgmE0lPibRtu5fnVYkhSTqMVGNtVOoE1lBnqLXP6j9M/B
+	FFYAMJMADM1RUqDab26fX3PNY1gm7IAMTs2KIcIyhkP3LzusNfgycBEJFmEJowumcmqm
+	QYmA==
+X-Gm-Message-State: ALoCoQlvsDm2VRgnRWcW8lwRWqKHO+N6gPWxnzcu7xOwf6svjNGB44PaCkuJkU+PDaWa5eZM4VV8
+X-Received: by 10.112.151.178 with SMTP id ur18mr4216807lbb.59.1433522048278; 
+	Fri, 05 Jun 2015 09:34:08 -0700 (PDT)
+Received: from gmail.com (87-63-77-14-static.dk.customer.tdc.net.
+	[87.63.77.14])
+	by mx.google.com with ESMTPSA id rp10sm1882452lbb.8.2015.06.05.09.34.02
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 05 Jun 2015 09:34:07 -0700 (PDT)
+Date: Fri, 5 Jun 2015 18:33:58 +0200
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <20150605163358.GB5866@gmail.com>
+References: <5527E83B.6030006@mlbassoc.com>
+	<DM2PR0201MB108770242C2114A0D12F29CBCCFA0@DM2PR0201MB1087.namprd02.prod.outlook.com>
+	<55280A40.50605@mlbassoc.com> <55281FC2.8030602@mlbassoc.com>
 MIME-Version: 1.0
-X-Received: by 10.52.190.131 with SMTP id gq3mr7401318vdc.70.1433520345599;
-	Fri, 05 Jun 2015 09:05:45 -0700 (PDT)
-Received: by 10.52.233.105 with HTTP; Fri, 5 Jun 2015 09:05:45 -0700 (PDT)
-Date: Fri, 5 Jun 2015 17:05:45 +0100
-Message-ID: <CAPhnLPArRnALG8mbN0v8agXVyyNAN8SOWerX10dKzoG61CPANg@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: yocto-announce@yoctoproject.org, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: [ANNOUNCEMENT] meta-intel 3.0 for Yocto Project "fido" 1.8 now available
+In-Reply-To: <55281FC2.8030602@mlbassoc.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi] mesa & gl problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,83 +61,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Jun 2015 16:05:49 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 05 Jun 2015 16:34:12 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-All,
+On Fri, Apr 10, 2015 at 01:08:50PM -0600, Gary Thomas wrote:
+> On 2015-04-10 11:37, Gary Thomas wrote:
+> >On 2015-04-10 10:25, Erik Bolton wrote:
+> >>Gary:
+> >>
+> >>Something is still pulling in libjpeg. It's possible you've got a recipe that depends on libjpeg directly. Check any modified recipes or custom stuff you've added.
+> >>
+> >
+> >I'll give it a look.
+> >
+> >>The mesa errors are a little more interesting. Typically that means a graphics driver is being included that provides GL/GLES along with mesa (which also provides the same
+> >>functionality).
+> >>
+> >>Are you sure the mesa errors only started after you tried to make libjpeg-turbo the preferred jpeg provider?
+> >
+> >Yes, if I remove those lines from by local.conf, all of these errors vanish.
+>
+> I found a couple of problems
+>
+> * meta-raspberrypi/conf/machine/include/rpi-default-providers.inc
+>   Does not currently allow PREFERRED_PROVIDER_jpeg to be overriden
+>
+> * meta-raspberrypi/recipes-graphics/userland/userland_git.bb
+>   Does not provide virtual/libgles1 (only virtual/libgles2 and virtual/libgl)
+>   The 'libva' library used by 'vlc' requires virtual/libgles1 and virtual/libgles2
+>
+> The first issue is simple to fix:
+> diff --git a/conf/machine/include/rpi-default-providers.inc b/conf/machine/include/rpi-default-providers.inc
+> index ee3a3ac..ae9ed70 100644
+> --- a/conf/machine/include/rpi-default-providers.inc
+> +++ b/conf/machine/include/rpi-default-providers.inc
+> @@ -7,4 +7,5 @@ PREFERRED_PROVIDER_virtual/egl ?= "userland"
+>  PREFERRED_PROVIDER_virtual/libgles2 ?= "userland"
+>  PREFERRED_PROVIDER_virtual/libgl ?= "mesa-gl"
+>  PREFERRED_PROVIDER_virtual/mesa ?= "mesa-gl"
+> -PREFERRED_PROVIDER_jpeg = "jpeg"
+> +PREFERRED_PROVIDER_jpeg ?= "jpeg"
+> +PREFERRED_PROVIDER_jpeg-native ?= "jpeg-native"
+>
+> I don't know a workaround for the second.  Any ideas?
 
-The meta-intel 3.0 layer for the Yocto Projects 1.8 "fido" release and
-board support packages are now available for download.
+RaspberryPi doesn't provide GLES1 on any of the providers. Check the mailing
+history for another related topic. The solutions are:
+1. patch mesa to have gles1 provided from there
+2. have something like mesa-gl but for gles1
 
-Elizabeth Flanagan
-Intel Corp.
+https://lists.yoctoproject.org/pipermail/yocto/2015-April/024710.html
 
-meta-intel
------------------------
-repo: git://git.yoctoproject.org/meta-intel
-branch: fido
-tag: 3.0-fido-1.8
-hash: f9738ec19d3b2864c0bd71b9bb3418d16e922a12
-download: http://downloads.yoctoproject.org/releases/yocto/yocto-1.8/meta-i=
-ntel-3.0-fido-1.8.tar.bz2
-md5sum: fb7db908cb06d77a913650f304fe7967
-
-BSP downloads
------------------------
-
-Intel=C2=AE Common Core BSP (intel-core2-32 and intel-corei7-64):
-    https://www.yoctoproject.org/downloads/bsps/fido18/intel-core2-32
-    https://www.yoctoproject.org/downloads/bsps/fido18/intel-corei7-64
-Downloads:
-    http://downloads.yoctoproject.org/releases/yocto/yocto-1.8/machines/int=
-el-corei7-64/intel-corei7-64-3.0-fido-1.8.tar.bz2
-    http://downloads.yoctoproject.org/releases/yocto/yocto-1.8/machines/int=
-el-core2-32/intel-core2-32-3.0-fido-1.8.tar.bz2
-md5sums:
-    3119280f090644811b4f0b32e5ab2379  intel-corei7-64-3.0-fido-1.8.tar.bz2
-    ac332422a8ca155c20db84e32db2fad8  intel-core2-32-3.0-fido-1.8.tar.bz2
-
-Intel=C2=AE Xeon=C2=AE C5500/C3500 Series Processors With Intel 3420 PCH
-Chipset(Jasper Forest):
-https://www.yoctoproject.org/downloads/bsps/fido18/jasper-forest
-Downloads:
-    http://downloads.yoctoproject.org/releases/yocto/yocto-1.8/machines/jas=
-perforest/jasperforest-3.0-fido-1.8.tar.bz2
-md5sums:
-    947e3ab9b40a229e3325db46938fed27  jasperforest-3.0-fido-1.8.tar.bz2
-
-Next Unit of Computing Kit DC3217IYE (nuc):
-    https://www.yoctoproject.org/downloads/bsps/fido18/nuc
-Downloads:
-    http://downloads.yoctoproject.org/releases/yocto/yocto-1.8/machines/nuc=
-/nuc-3.0-fido-1.8.tar.bz2
-md5sums:
-    21a1151d96f8dc77a7b9ca2e02718a41  nuc-3.0-fido-1.8.tar.bz2
-
-Intel=C2=AE 2nd Generation Core=E2=84=A2 Platforms: Core i3, i5, i7 (Sandy =
-Bridge):
-    https://www.yoctoproject.org/downloads/bsps/fido18/sugar-bay
-Downloads:
-    http://downloads.yoctoproject.org/releases/yocto/yocto-1.8/machines/sug=
-arbay/sugarbay-3.0-fido-1.8.tar.bz2
-md5sums:
-    ede6349fa6f9a068f3e67bac423ba1e6  sugarbay-3.0-fido-1.8.tar.bz2
-
-Features:
------------------------
-- Linux Kernel Updated to 3.19.5 for intel-core2 and intel-corei7
-- LTS Kernel Updated to 3.14.39
-- meta-isg/romley/mohonpeak updated to use 3.14 LTS Kernel
-- xf86-video-mga Updated to 1.6.4
-- intel-gpu-tools: Upgrade to 1.9
-- gstreamer-vaapi: Upgrade to 0.5.9
-- intel-gpu-tools: Update to 1.8
-- libva-intel-driver: Update to 1.4.1
-- libva: Update to 1.4.1
-
---=20
-Elizabeth Flanagan
-Intel OTC
-Build and Release
+--
+Andrei Gherzan
 
