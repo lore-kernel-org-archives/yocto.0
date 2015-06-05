@@ -1,54 +1,41 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <Raghavendra.Kakarla@inedasystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9E502E009DF; Fri,  5 Jun 2015 00:52:29 -0700 (PDT)
+	id 48ABEE009DF; Fri,  5 Jun 2015 01:33:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 1388 seconds by postgrey-1.32 at yocto-www;
-	Fri, 05 Jun 2015 00:52:27 PDT
-Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1219CE0098D;
-	Fri,  5 Jun 2015 00:52:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=Mime-Version:To:Message-Id:Date:Subject:Content-Type:From;
-	bh=5vM47t0z9EssHLYEXjvkhO1LFtGenfsoH94AcWRNDos=; 
-	b=V8pt6ewmLry1K9bJjO+I/A8r/h7gIZjPAdQpDFYpy5plMTLGevwn5N0pGs9M9yinGn6agIH/f5hzu1DisfJiifwiMlJDRKGfcopBEHR6cLtoZOlFwIYAdlhQDdwJzGFuDHdFA5UGgQn2mJn4yESfwndhB+4hBGNdQ2fkeOXM2qI=;
-Received: from durham.keylevel.com ([88.97.63.243]:42648
-	helo=macbook-pro.durham.keylevel.com)
-	by a180.4uh.net with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.85) (envelope-from <opensource@keylevel.com>)
-	id 1Z0m41-000Ggk-Ts; Fri, 05 Jun 2015 08:29:15 +0100
-From: Chris Tapp <opensource@keylevel.com>
-X-Pgp-Agent: GPGMail 2.5b6
-Date: Fri, 5 Jun 2015 08:29:00 +0100
-Message-Id: <107F2908-2817-46D5-96CC-0B71CD6ADBEB@keylevel.com>
-To: Yocto Project <yocto@yoctoproject.org>,
- meta-intel@yoctoproject.org
-Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2098\))
-X-Mailer: Apple Mail (2.2098)
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - a180.4uh.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
-	chris.tapp@keylevel.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: "Crazy" Xorg memory usage after upgrading from Daisy to Fido
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail.invecas.com (mx1.invecas.com [112.133.222.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D2AAE0098D
+	for <yocto@yoctoproject.org>; Fri,  5 Jun 2015 01:33:19 -0700 (PDT)
+Received: from SOC-EXCH-01.invecas.local (10.0.30.8) by mail.invecas.com
+	(10.0.30.131) with Microsoft SMTP Server (TLS) id 14.3.123.3;
+	Fri, 5 Jun 2015 14:03:21 +0530
+Received: from SOC-EXCH-01.invecas.local (10.0.30.8) by
+	SOC-EXCH-01.invecas.local (10.0.30.8) with Microsoft SMTP Server (TLS)
+	id 15.0.995.29; Fri, 5 Jun 2015 14:03:14 +0530
+Received: from SOC-EXCH-01.invecas.local ([::1]) by SOC-EXCH-01.invecas.local
+	([fe80::44e9:6dad:80f6:cd9d%14]) with mapi id 15.00.0995.028;
+	Fri, 5 Jun 2015 14:03:14 +0530
+From: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: which image i can build for including all package files in
+	generated sdk sysroot
+Thread-Index: AQHQnC9xQj2cS0i/nkGqQ3oneDN93J2dmzz4
+Date: Fri, 5 Jun 2015 08:33:13 +0000
+Message-ID: <1433493192791.96280@inedasystems.com>
+References: <1433138225087.53118@inedasystems.com>
+In-Reply-To: <1433138225087.53118@inedasystems.com>
+Accept-Language: en-US, en-IN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.42.88]
+MIME-Version: 1.0
+Subject: Re: which image i can build for including all package files in generated sdk sysroot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,100 +47,255 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Jun 2015 07:52:29 -0000
-X-Groupsio-MsgNum: 25059
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_2DBF7F8D-6F0D-4B9E-911C-F869F9C885CE";
-	protocol="application/pgp-signature"; micalg=pgp-sha512
+X-List-Received-Date: Fri, 05 Jun 2015 08:33:24 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_143349319279196280inedasystemscom_"
 
---Apple-Mail=_2DBF7F8D-6F0D-4B9E-911C-F869F9C885CE
+--_000_143349319279196280inedasystemscom_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
 
-I=E2=80=99ve got an application that I=E2=80=99ve had running nicely =
-under Daisy for some time. As Daisy is now a bit old, I decided to move =
-the application to Fido. I=E2=80=99m using the =
-meta-intel/isg/valleyisland BSP and also switched to using its Fido =
-branch.
-
-The move only required a few minor changes and allowed me to drop a =
-Daisy =E2=80=9Cupdates=E2=80=9D layer that I had been using for things =
-like gstreamer-1.0.
-
-However, there is one behaviour which is killing me - I keep getting =
-oom-killer events!
-
-The application is basically an OpenGL-ES 2.0 application that renders =
-various bits of text, images and streams captured from a gstreamer =
-pipeline at 60 Hz to a 1080 screen.
-
-Under Daisy this generally took just under 50% CPU and used a modest =
-percentage of the 4 GB system memory - i.e. no where near running out =
-and usage was just about static.
-
-Under Fido the CPU usage is about the same and the memory used by the =
-application itself looks reasonable when compared to Daisy (and usage is =
-static). However, the memory used by XOrg is far from constant or stable =
-- it basically has a VSZ value cycling from about 630m to 2989m with the =
-cycle period being in the order of 5 to 10 seconds. Peaks in XOrg memory =
-usage coincide with stutters in video playback within my app (audio is =
-unaffected).
-
-Monitoring /proc/meminfo when this is going on shows that =E2=80=9CShmem=E2=
-=80=9D usage is following the same pattern as the memory used by XOrg =
-(i.e. Shmem usage is high at the same time). If the values are plotted =
-on a graph they appear to show that Shmem usage grows linearly and then =
-falls rapidly when nearly all the free memory has been exhausted, =
-perhaps in response to a delayed garbage collection run.
-
-Does anyone have any ideas as to what I should be looking at to work out =
-what=E2=80=99s going on?
-
-Are there any significant changes between XOrg under Daisy and Fido that =
-could be causing this?
-
-Could this be related to the meta-intel video drivers?
-
-Any feedback / comments would be really appreciated.
-
-Thanks :-)
-
---
-
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
-
-----
-You can tell you're getting older when your car insurance gets real =
-cheap!
+Hi All,
 
 
---Apple-Mail=_2DBF7F8D-6F0D-4B9E-911C-F869F9C885CE
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
 
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
+I got solution for this issue.
 
-iQIcBAEBCgAGBQJVcU/JAAoJEAM2GeiJDBSG/iIQAJS+3R2gjCUrdj8ROnAPRNwE
-rLXHDtq9tP/4xacYOh8MJHgNs+ckFrCL3PMuU67NkHXXMBU2Dv6BmKHkPnIaHsz+
-80N1a7MMqdUSWRqt9uUKs9gblhdATVuWwrORE+3pxleihxYgpIS89bMiWKOAaSJz
-R/Wy9+IfnB6QaHZf8DMpZEHURx+yZayd74V9KjUEc5fB1ikgitMT1c/3k7jcaAtr
-7BTUujrcjA93y/vqaG7zr7MSQAyGnRPRLU9Qg1bRcVmXpHFAGub5NrG2fKnZ7DGP
-ynhF1V1i+Gd6GVLkmY84i7COnJiByT1dtpRvRaf06GVeU5vNBVXDaJMNKl6Mzd9/
-XICmhNaY0EIFBu9CFIwi+y37SRisHP8wbleMj14Csz8yU5fix5C40m+YYtF3IqMo
-974vrWx6EXpHdsrBtENGIIqSp0hGXiMugfYXHVfo8ryZt8+uFEvuazPdbah1zmzZ
-xW61kL40YXhaIrHKmrdSKl7cfJvo7hPTFn6pmQtqh5sIh5AJlMHAD/jGrkGcxsrY
-rCJq2UYkl+kcsSiv9BrcxV8m1UDKNr1M0IOrqBaUzyBf91GNuBXYhJiEHms8Joqm
-WrM9iB/g4ny1O/ZuITmTSPvjvXcPuifskoGRl7ffry/JGKjDXTqdZmKWc56Rl9tq
-XwgFVTfyQoPNK2vkkSuA
-=RdLq
------END PGP SIGNATURE-----
 
---Apple-Mail=_2DBF7F8D-6F0D-4B9E-911C-F869F9C885CE--
+I enabled the pkg-dbg and package-manager features in loca.conf and built t=
+he image for the core-image-minimal-dev now genearted image consists of all=
+ the packages which i included for that image.
+
+
+I add the following line in local.conf file:
+
+
+EXTRA_IMAGE_FEATURES =3D "debug-tweaks tools-debug "
+IMAGE_FEATURES +=3D "package-management"
+
+
+Regards,
+
+
+Raghavendra K.
+
+________________________________
+From: Raghavendra Kakarla
+Sent: Monday, June 1, 2015 11:27 AM
+To: yocto@yoctoproject.org
+Subject: which image i can build for including all package files in generat=
+ed sdk sysroot
+
+
+Hi,
+
+
+I built the core-image-minimal image in poky but when i generated the sdk a=
+nd install the sdk in my development machine i notice that some packages in=
+cude files and libraries are not included in the sysroot given by the insta=
+llation toolcahin.
+
+
+But when i gone through the "tmp/sysroot" in poky i found that all include =
+files and libraries are there.
+
+
+
+So, which image i can build for the including the all packages.
+
+
+Thanks and Regards,
+
+Raghavnedra K.
+
+--_000_143349319279196280inedasystemscom_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none"><!--P{margin-top:0;margin-b=
+ottom:0;} .ms-cui-menu {background-color:#ffffff;border:1px rgb(166, 166, 1=
+66) solid;font-family:"Segoe UI","Segoe WP","Segoe UI WPC",Tahoma,Arial,san=
+s-serif;font-size:10pt;color:rgb(51, 51, 51);} .ms-cui-menusection-title {d=
+isplay:none;} .ms-cui-ctl {vertical-align:text-top;text-decoration:none;col=
+or:rgb(51, 51, 51);} .ms-cui-ctl-on {background-color:rgb(205, 230, 247);op=
+acity: 0.8;} .ms-cui-img-cont-float {display:inline-block;margin-top:2px} .=
+ms-cui-smenu-inner {padding-top:0px;} .ms-owa-paste-option-icon {margin: 0p=
+x 6px 0px 6px;vertical-align:middle!important;padding-bottom: 2px;display:i=
+nline-block;} .ms-rtePasteFlyout-option:hover {background-color:rgb(205, 23=
+0, 247) !important;opacity:1 !important;} .ms-rtePasteFlyout-option {paddin=
+g:8px 4px 8px 4px;outline:none;} .ms-cui-menusection {float:left; width:85p=
+x;height:24px;overflow:hidden}.wf {speak:none; font-weight:normal; font-var=
+iant:normal; text-transform:none; -webkit-font-smoothing:antialiased; verti=
+cal-align:middle; display:inline-block;}.wf-family-owa {font-family:'o365Ic=
+ons'}@font-face {  font-family:'o365IconsIE8';  src:url('prem/15.0.995.29/r=
+esources/styles/office365icons.ie8.eot?#iefix') format('embedded-opentype')=
+,         url('prem/15.0.995.29/resources/styles/office365icons.ie8.woff') =
+format('woff'),         url('prem/15.0.995.29/resources/styles/office365ico=
+ns.ie8.ttf') format('truetype');  font-weight:normal;  font-style:normal;}@=
+font-face {  font-family:'o365IconsMouse';  src:url('prem/15.0.995.29/resou=
+rces/styles/office365icons.mouse.eot?#iefix') format('embedded-opentype'), =
+        url('prem/15.0.995.29/resources/styles/office365icons.mouse.woff') =
+format('woff'),         url('prem/15.0.995.29/resources/styles/office365ico=
+ns.mouse.ttf') format('truetype');  font-weight:normal;  font-style:normal;=
+}.wf-family-owa {font-family:'o365IconsMouse'}.ie8 .wf-family-owa {font-fam=
+ily:'o365IconsIE8'}.ie8 .wf-owa-play-large:before {content:'\e254';}.notIE8=
+ .wf-owa-play-large:before {content:'\e054';}.ie8 .wf-owa-play-large {color=
+:#FFFFFF/*$WFWhiteColor*/;}.notIE8 .wf-owa-play-large {border-color:#FFFFFF=
+/*$WFWhiteColor*/; width:1.4em; height:1.4em; border-width:.1em; border-sty=
+le:solid; border-radius:.8em; text-align:center; box-sizing:border-box; -mo=
+z-box-sizing:border-box; padding:0.1em; color:#FFFFFF/*$WFWhiteColor*/;}.ie=
+8 .wf-size-play-large {width:40px; height:40px; font-size:30px}.notIE8 .wf-=
+size-play-large {width:40px; height:40px; font-size:30px}.notIE8 .wf-owa-tr=
+iangle-down-small:before {content:'\e052';}.ie8 .wf-owa-triangle-down-small=
+:before { content:'\e052';}.ie8 .wf-owa-triangle-down-small {color:#666666/=
+*$WFGreyColor*/;}.wf-size-x20 {font-size: 20px!important;}=0A=
+<!--=0A=
+p=0A=
+	{margin-top:0;=0A=
+	margin-bottom:0}=0A=
+.ms-cui-menu=0A=
+	{background-color:#ffffff;=0A=
+	border:1px rgb(166,166,166) solid;=0A=
+	font-family:"Segoe UI","Segoe WP","Segoe UI WPC",Tahoma,Arial,sans-serif;=
+=0A=
+	font-size:10pt;=0A=
+	color:rgb(51,51,51)}=0A=
+.ms-cui-ctl=0A=
+	{vertical-align:text-top;=0A=
+	text-decoration:none;=0A=
+	color:rgb(51,51,51)}=0A=
+.ms-cui-ctl-on=0A=
+	{background-color:rgb(205,230,247)}=0A=
+.ms-cui-img-cont-float=0A=
+	{display:inline-block;=0A=
+	margin-top:2px}=0A=
+.ms-cui-smenu-inner=0A=
+	{padding-top:0px}=0A=
+.ms-owa-paste-option-icon=0A=
+	{margin:0px 6px 0px 6px;=0A=
+	vertical-align:middle!important;=0A=
+	padding-bottom:2px;=0A=
+	display:inline-block}=0A=
+.ms-rtePasteFlyout-option=0A=
+	{padding:8px 4px 8px 4px;=0A=
+	outline:none}=0A=
+.ms-cui-menusection=0A=
+	{float:left;=0A=
+	width:85px;=0A=
+	height:24px;=0A=
+	overflow:hidden}=0A=
+.wf=0A=
+	{speak:none;=0A=
+	font-weight:normal;=0A=
+	font-variant:normal;=0A=
+	text-transform:none;=0A=
+	vertical-align:middle;=0A=
+	display:inline-block}=0A=
+.wf-family-owa=0A=
+	{font-family:'o365Icons'}=0A=
+@font-face=0A=
+	{font-family:'o365IconsIE8';=0A=
+	font-weight:normal;=0A=
+	font-style:normal}=0A=
+@font-face=0A=
+	{font-family:'o365IconsMouse';=0A=
+	font-weight:normal;=0A=
+	font-style:normal}=0A=
+.wf-family-owa=0A=
+	{font-family:'o365IconsMouse'}=0A=
+.ie8 .wf-family-owa=0A=
+	{font-family:'o365IconsIE8'}=0A=
+.notIE8 .wf-owa-play-large=0A=
+	{border-color:#FFFFFF;=0A=
+	width:1.4em;=0A=
+	height:1.4em;=0A=
+	border-width:.1em;=0A=
+	border-style:solid;=0A=
+	text-align:center;=0A=
+	padding:0.1em;=0A=
+	color:#FFFFFF}=0A=
+.ie8 .wf-size-play-large=0A=
+	{width:40px;=0A=
+	height:40px;=0A=
+	font-size:30px}=0A=
+.notIE8 .wf-size-play-large=0A=
+	{width:40px;=0A=
+	height:40px;=0A=
+	font-size:30px}=0A=
+.wf-size-x20=0A=
+	{font-size:20px!important}=0A=
+-->=0A=
+--></style>
+</head>
+<body dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#F=
+FFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Hi All,</p>
+<p><br>
+</p>
+<p><br>
+</p>
+<p>I got solution for this issue.</p>
+<p><br>
+</p>
+<p>I enabled the pkg-dbg and package-manager features in loca.conf and buil=
+t the image for the core-image-minimal-dev now genearted image consists of =
+all the packages which i included for that image.</p>
+<p><br>
+</p>
+<p>I add the following line in local.conf file:</p>
+<p><br>
+</p>
+<p>EXTRA_IMAGE_FEATURES =3D &quot;debug-tweaks tools-debug &quot;<br>
+IMAGE_FEATURES &#43;=3D &quot;package-management&quot;</p>
+<p><br>
+</p>
+<p>Regards,</p>
+<p><br>
+</p>
+<p>Raghavendra K.<br>
+</p>
+<div style=3D"font-size:12pt; color:#000000; background-color:#FFFFFF; font=
+-family:Calibri,Arial,Helvetica,sans-serif" dir=3D"ltr">
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font style=3D"font-size:11pt" face=
+=3D"Calibri, sans-serif" color=3D"#000000"><b>From:</b> Raghavendra Kakarla=
+<br>
+<b>Sent:</b> Monday, June 1, 2015 11:27 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> which image i can build for including all package files in =
+generated sdk sysroot</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<p>Hi,</p>
+<p><br>
+</p>
+<p>I built the core-image-minimal image in poky but when i generated the sd=
+k and install the sdk in my development machine i notice that some packages=
+ incude files and libraries are not included in the sysroot given by the in=
+stallation toolcahin.</p>
+<p><br>
+</p>
+<p>But when i gone through the &quot;tmp/sysroot&quot; in poky i found that=
+ all include files and libraries are there.</p>
+<p><br>
+</p>
+<p><br>
+</p>
+<p>So, which image i can build for the including the all packages.</p>
+<p><br>
+</p>
+<p>Thanks and Regards,</p>
+<p>Raghavnedra K.<br>
+</p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_143349319279196280inedasystemscom_--
