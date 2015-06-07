@@ -1,55 +1,30 @@
-Return-Path: <darren.j.breeze@gmail.com>
+Return-Path: <flihp@twobit.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1A73BE009FA; Fri,  5 Jun 2015 17:50:23 -0700 (PDT)
+	id 8720CE00A10; Sat,  6 Jun 2015 17:37:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (darren.j.breeze[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.177 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pd0-f177.google.com (mail-pd0-f177.google.com
-	[209.85.192.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9EBAE009F0
-	for <yocto@yoctoproject.org>; Fri,  5 Jun 2015 17:50:21 -0700 (PDT)
-Received: by pdbki1 with SMTP id ki1so63089591pdb.1
-	for <yocto@yoctoproject.org>; Fri, 05 Jun 2015 17:50:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=Atlz9j+GoYy4C40aLD2CrM3UFJ2gR5sMeTX1Ol/OBRk=;
-	b=vw0u0Zobqf8sCxE4K8ZSZHa4/uGIp2E1ovR/n0N8o8z7t//1rAyycg9GuetlA+tLe2
-	dUhM5xuIHWvH2ijGACOa+HfLKE4kQK4pGVErZecVYsGOIj2Es9736d6PuOyowUVSxjCn
-	t9obbtJETogvOSZl5zn9hnidezh3snTNwdGTDI1CL2PSDPQGmIhOEjQZgwjh54/yH7W3
-	ZwAWH21ZvTfRGJuKZUZnVSB9qndNeJw6dT/613ma3YDrQTXyJDNfp99C0ImpuR4tfeKV
-	JP4epUycweeaae+wvIvKhGmCxe6ZxsNDD4+FVBofGbVE0Sb14WIxU4W7DvMDOynRnwzJ
-	aB7w==
-X-Received: by 10.70.61.68 with SMTP id n4mr10102565pdr.78.1433551820881;
-	Fri, 05 Jun 2015 17:50:20 -0700 (PDT)
-Received: from [192.168.192.10] (1-64-6-039.static.netvigator.com. [1.64.6.39])
-	by mx.google.com with ESMTPSA id gy3sm946675pbb.42.2015.06.05.17.50.19
-	for <yocto@yoctoproject.org>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 05 Jun 2015 17:50:20 -0700 (PDT)
-Message-ID: <557243CA.7000203@gmail.com>
-Date: Sat, 06 Jun 2015 08:50:18 +0800
-From: Darren Breeze <darren.j.breeze@gmail.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C72D9E00960
+	for <yocto@yoctoproject.org>; Sat,  6 Jun 2015 17:37:53 -0700 (PDT)
+Received: from [172.56.38.137] (helo=lappy2.twobit.us)
+	by smtp.twobit.us with esmtpsa (TLSv1.2:AES128-SHA256:128)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1Z1OWf-0000Nq-9t; Sun, 07 Jun 2015 00:33:23 +0000
+From: Philip Tricca <flihp@twobit.us>
 To: yocto@yoctoproject.org
-Subject: Recipe question
+Date: Sat,  6 Jun 2015 17:36:58 -0700
+Message-Id: <1433637428-21242-1-git-send-email-flihp@twobit.us>
+X-Mailer: git-send-email 2.1.4
+X-SA-Exim-Connect-IP: 172.56.38.137
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Subject: [meta-selinux][RFC 00/10] Label file system in build.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,82 +36,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 06 Jun 2015 00:50:23 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 07 Jun 2015 00:37:58 -0000
 
-Hi
+This is a request for comment (RFC) on some patches to enable labing the
+root file system of an SELinux image. Having to relabel a system as part
+of the "first boot" has been a significant limitation so hopefully the
+maintainers will agree at least that the functionality is needed /
+useful.
 
-First post, I hope this is the correct list..
+Currently these patches will copy any xattrs in the 'security' namespace
+which covers my use case: SELinux and eventually IMA as part of some work
+in a different layer (meta-measured). Additional xattrs can likely be
+supported without much trouble but I haven't tested anything beyond
+SELinux. Eventually I imagine this should go upstream into
+openembedded-core but since SELinux is the use case I'm submitting the
+patch against meta-selinux first for feedback and testing.
 
-I am trying to create a simple recipe that takes a tree of a website off 
-a local git repository and places it in a directory under /opt in my 
-image. It's a small tree of a couple of subdirectories and about 20 files.
+Approach:
+These patches ride on an existing patch set in openembedded-core that
+add the '-d' option to mke2fs to copy files into the newly created file
+system. I've added another function called as part of the recursive
+traversal to copy xattrs for each file system object processed.
 
-the recipe file is :
+The algorithm for creating an xattr block is straight forward. We query
+the existing xattrs on a file using 'lgetfattr' and then process them one
+at a time getting their values (lgetxattr) and building a disk block in
+the required format. Creating the xattr disk block is a bit of a pain but
+it's mostly a mechanical process of copying data from source to
+destination in the proper format. The block is then associated with right
+inode by way of the i_file_acl member of the ext2_inode structure and
+written to disk.
 
----------
+Caching:
+The ext* file systems allow for xattrs to be shared between inodes when
+their contents are identical as a way to save space. SELinux benefits
+from this greatly as many files have the same label. My implementation of
+a cache to enable xattr block sharing is grossly inefficient but
+functional.
 
-DESCRIPTION = "Web Remote"
-SECTION = "utils"
+I'm currently looking for examples of similar caching techniques (likely
+from the SELinux tools) to better inform this implementation. I expect to
+change the caching implementation but in the meantime I thought I'd get
+an RFC out to get early feedback / testing.
 
-ALTERNATIVE_${PN} = "web-remote"
+Thanks,
+Philip
+--
 
-PROVIDES = "web-remote"
-RPROVIDES_${PN} += "${PN}"
+Philip Tricca (10):
+  policycoreutils: Add FTS_NOCHDIR flag to fts_open.
+  selinux-image: Add new image class to label the rootfs.
+  e2fsprogs: Add bbappend and apply initial xattr patch.
+  e2fsprogs: Add patch to build xattr code.
+  e2fsprogs: Add patch make calls necessary to label file system root
+    and do cleanup.
+  e2fsprogs: Add patch to call xattr copy function in populate_fs.
+  e2fsprogs: Add xattr security prefix data to
+    lib/ext2fs/ext2_ext_attr.h
+  e2fsprogs: Add patch to copy xattr block from source file.
+  e2fsprogs: Add patch to hold xattr header and block number in a
+    structure for the cache.
+  e2fsprogs: Add patch to implement simple linked list as cache for
+    existing xattr blocks.
 
-LICENSE = "CLOSED"
-LIC_FILES_CHKSUM = ""
+ classes/selinux-image.bbclass                      |   8 +
+ .../e2fsprogs/Makefile.in-build-xattr.o.patch      |  96 ++++++
+ ...ib-ext2fs-ext2_ext_attr.h-add-xattr-index.patch |  20 ++
+ .../misc-create_inode.c-label-fs-objects.patch     |  30 ++
+ .../misc-mke2fs.c-label-root-dir-and-cleanup.patch |  40 +++
+ .../e2fsprogs/misc-xattr-copy-xattrs.patch         |  69 ++++
+ .../misc-xattr-create-xattr-block-node.patch       | 126 ++++++++
+ .../e2fsprogs/misc-xattr-create-xattr-block.patch  | 351 +++++++++++++++++++++
+ .../e2fsprogs/misc-xattr-create-xattr-cache.patch  | 217 +++++++++++++
+ .../e2fsprogs/e2fsprogs_1.42.9.bbappend            |  12 +
+ .../images/core-image-selinux-minimal.bb           |   2 +-
+ recipes-security/images/core-image-selinux.bb      |   2 +-
+ .../policycoreutils-setfiles-path.patch            |  27 ++
+ recipes-security/selinux/policycoreutils_2.3.bb    |   1 +
+ 14 files changed, 999 insertions(+), 2 deletions(-)
+ create mode 100644 classes/selinux-image.bbclass
+ create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/Makefile.in-build-xattr.o.patch
+ create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/lib-ext2fs-ext2_ext_attr.h-add-xattr-index.patch
+ create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-create_inode.c-label-fs-objects.patch
+ create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-mke2fs.c-label-root-dir-and-cleanup.patch
+ create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-copy-xattrs.patch
+ create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-block-node.patch
+ create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-block.patch
+ create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-cache.patch
+ create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
+ create mode 100644 recipes-security/selinux/policycoreutils/policycoreutils-setfiles-path.patch
 
-SRCREV = "${AUTOREV}"
-
-PV="1.0"
-PR = "r0"
-
-SRC_URI = 
-"git://192.168.192.46/mygroup/web_remote.git;protocol=http;branch=master;"
-
-S = "${WORKDIR}/git"
-
-do_install() {
-         install -d ${D}opt/web_remote
-         cp -r ${S}/* ${D}opt/web_remote/.
-}
-
-SRC_URI[md5sum] = "???"
-SRC_URI[sha256sum] = "???"
-
-----------
-
-but I keep getting this error
-
-"error: Can't install packagegroup-core-boot-1.0-r17@rk3188: no package 
-provides web-remote"
-
-Without web-remote included in the build, everything works and I get a 
-bootable image, I think I am missing something very obvious but been 
-hacking at this too long to see it waving at me from the edge of the forest.
-
-I have set the license to CLOSED, just as I had issues with setting up 
-MIT (I will fix this later)
-
-Can someone please point me in the correct direction.
-
-many thanks in advance.
-
-Darren B.
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- 
+2.1.4
 
 
