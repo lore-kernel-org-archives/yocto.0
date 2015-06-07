@@ -1,6 +1,6 @@
 Return-Path: <house.83@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78E3DE00A08; Sun,  7 Jun 2015 02:44:37 -0700 (PDT)
+	id 0C4D7E00A08; Sun,  7 Jun 2015 02:50:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (house.83[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.216.45 listed in list.dnswl.org]
+	*      [209.85.216.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,30 +20,30 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vn0-f45.google.com (mail-vn0-f45.google.com
-	[209.85.216.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A99EE00961
-	for <yocto@yoctoproject.org>; Sun,  7 Jun 2015 02:44:33 -0700 (PDT)
-Received: by vnbg62 with SMTP id g62so13877352vnb.4
-	for <yocto@yoctoproject.org>; Sun, 07 Jun 2015 02:44:33 -0700 (PDT)
+Received: from mail-vn0-f48.google.com (mail-vn0-f48.google.com
+	[209.85.216.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B34DE00961
+	for <yocto@yoctoproject.org>; Sun,  7 Jun 2015 02:50:13 -0700 (PDT)
+Received: by vnbg129 with SMTP id g129so13844352vnb.11
+	for <yocto@yoctoproject.org>; Sun, 07 Jun 2015 02:50:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=y2keiFz0rOnOn8/52ldMUayDwImVItL8uh5zBxLmgTg=;
-	b=eTnm/tUmGHMzx+8D6pOsjQVBHFVzhj4j1UnNXDam/HQb4RK+yUSD2LdAFly1ZsA4xq
-	vi7Tl7gcwWkwrHDdUKQHofnzKYAniKLBH43Bwy9vzT1GFoCkgZdAK3KGW8XRah6jU39l
-	sZ0OU9//E+wnvLyd9XKQ93Mt+cGabo/yZSAnbzu66cEHzu5vLMndxmGh/9jvZr64MXAt
-	bJTVtINSVtUcad8YJ3uxHb6MvXO2ea5aBJXsj2CSWetC3UoXtDruZOZEJuqOm3vcdzFC
-	oJdXCj4sLhAgoy8R54NMverzCQqIUUJuqNKxsDMEXCb+1+yY2xAHHx31PhHlZ7TwGPYG
-	8N/A==
-X-Received: by 10.52.52.114 with SMTP id s18mr21811083vdo.9.1433670272978;
-	Sun, 07 Jun 2015 02:44:32 -0700 (PDT)
+	bh=h/KckIltYpSZsRR0sy9ndeLwijgnnPwivLhOUQHJjbY=;
+	b=MH630oObZl4Q0wmTcTPRc+IhzLgDOWODfjIxnJawd2Lz7cwE00dQfkZoYXBVuUfFhH
+	9vsKN/DWSXbMDQJllkDe0YwRbqr/LQ95U2VI1SQGpTYGEUCaAQl7g6vP8cudYEy2Fi13
+	mgUVz9vXQvh96hzMaK5LEoS7/Knrp7qCpgbrpGl8aBcTnx9dhWZZKOgdcvE+QhsOm2kK
+	fTV8NuxbolEqE6qZ5z+ucTDpIN0liP9R02aD3qGKnILcjErj3ynsZJU7VuN5/AebBp3+
+	okae6Sq04nD+MQ/BYiQiVvo0uAyspwBskmVkL9XNOad8F5PB0vMrCKKgAqMZkBNgu6Tw
+	WGNg==
+X-Received: by 10.52.129.100 with SMTP id nv4mr21091099vdb.43.1433670612639;
+	Sun, 07 Jun 2015 02:50:12 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.52.255.194 with HTTP; Sun, 7 Jun 2015 02:44:12 -0700 (PDT)
+Received: by 10.52.255.194 with HTTP; Sun, 7 Jun 2015 02:49:52 -0700 (PDT)
 From: Roberto Saltini <house.83@gmail.com>
-Date: Sun, 7 Jun 2015 19:44:12 +1000
-Message-ID: <CAGLePYu7eyeGhC6Y9WBu1fHr+evThMx2vf_9H0YJCaLwrK+Y_w@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: How to search for the .bb of .bbappen file in which a variable is set?
+Date: Sun, 7 Jun 2015 19:49:52 +1000
+Message-ID: <CAGLePYs7OGHzbn9TUg0qj7PMEMF-DGkWzrDGdnD__OOA7uWiGA@mail.gmail.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: How to list all of the .bb and .bbappend files used to build a specific package with bitbake?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,39 +55,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 07 Jun 2015 09:44:37 -0000
-Content-Type: multipart/alternative; boundary=089e0111d57c5895e10517ea5f5d
+X-List-Received-Date: Sun, 07 Jun 2015 09:50:16 -0000
+Content-Type: multipart/alternative; boundary=bcaec52bece19766870517ea73f4
 
---089e0111d57c5895e10517ea5f5d
+--bcaec52bece19766870517ea73f4
 Content-Type: text/plain; charset=UTF-8
 
-For example, I would like to know in which .bb of .bbappend file the
-variable PREFERRED_PROVIDER_u-boot is set.
+Let's consider the package "virtual/kernel". I would like to know which .bb
+and .bbappend files are involved in building this package.
+
+I know that I can get the package name through:
+
+bitbake -e virtual/kernel | grep ^BP=
+
+This command gives me the name of the package used to build virtual/kernel
+that in my case is linux-fslc-4.0+gitAUTOINC+19ebefd40a. However, I do not
+know how to get the list of .bb and .bbappend files (with their location
+included) used to build the linux-fslc-4.0+gitAUTOINC+19ebefd40a package.
 
 
-
-The only (dummy) way that I have figured out up to now is to use grep.
-
-
-
-Does anyone know a better way?
-
-
-
-Thanks.
-
+-- 
 R.
 
---089e0111d57c5895e10517ea5f5d
+--bcaec52bece19766870517ea73f4
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div class=3D""><p>For example, I would like to know =
-in which .bb of .bbappend file the variable PREFERRED_PROVIDER_u-boot is se=
-t.</p><p style=3D"min-height:8pt;padding:0px">=C2=A0</p><p>The only (dummy)=
- way that I have figured out up to now is to use grep.</p><p style=3D"min-h=
-eight:8pt;padding:0px">=C2=A0</p><p>Does anyone know a better way?</p><p st=
-yle=3D"min-height:8pt;padding:0px">=C2=A0</p><p>Thanks.</p></div><br clear=
-=3D"all"></div>R.<br></div>
+<div dir=3D"ltr"><div class=3D""><p>Let&#39;s consider the package=20
+&quot;virtual/kernel&quot;. I would like to know which .bb and .bbappend fi=
+les are
+ involved in building this package.</p><p>I know that I can get the package=
+ name through:</p><blockquote class=3D"">
+<p>bitbake -e virtual/kernel | grep ^BP=3D</p>
+</blockquote><p>This command gives me the name of the package used to build=
+ virtual/kernel that in my case is <code>linux-fslc-4.0+gitAUTOINC+19ebefd4=
+0a</code>. However, I do not know how to get the list of .bb and .bbappend =
+files (with their location included) used to build the <code>linux-fslc-4.0=
++gitAUTOINC+19ebefd40a</code> package.</p></div><br clear=3D"all"><br>-- <b=
+r><div class=3D"gmail_signature"><div dir=3D"ltr">R.<br></div></div>
+</div>
 
---089e0111d57c5895e10517ea5f5d--
+--bcaec52bece19766870517ea73f4--
