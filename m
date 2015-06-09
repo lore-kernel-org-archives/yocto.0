@@ -1,49 +1,26 @@
-Return-Path: <michael.g.wood@intel.com>
+Return-Path: <pokybuild@debian7.osl.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E2E51E009E6; Tue,  9 Jun 2015 09:28:26 -0700 (PDT)
+	id A263FE009E6; Tue,  9 Jun 2015 14:14:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.212.169 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
+	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
-	[209.85.212.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7B31E0099B
-	for <yocto@yoctoproject.org>; Tue,  9 Jun 2015 09:28:24 -0700 (PDT)
-Received: by wifx6 with SMTP id x6so22752777wif.0
-	for <yocto@yoctoproject.org>; Tue, 09 Jun 2015 09:28:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-	:subject:content-type:content-transfer-encoding;
-	bh=1+yob8wlL542OaQfX6YY1QnXJuq/KO4rCbedX2Y8+zg=;
-	b=Jo/XAnY9HLOKyOPqtegoUyVZe+/RGP6njiaUYwc7Nr2DVdRH7eXc9kPEEOmsD8btax
-	NFUlhAlvsQVxl+eR21fJ5+BpOpgkrADH8auZOJxjRqxXj0fyEU9LgbG/Sv4BGky2Xd2S
-	10h/BiQlC5OcyzU4wA//F8R24Jdbqd976Kjf8hdVyxlzGDTbOaBQ664IZGpYueMfR1bR
-	D9Nr5wRkFnPWvphnifI1S0FLMcEKY2aAQnWjWIZHfcBTJ0Ygv5Txf+lX75mIjSlFmWZf
-	XswkzroO/fJlJ9wxd9NHSerGZHrf8ljlKExND2Ds/cw+tz/uGssXvcme40sHY/D5dPp6
-	EimQ==
-X-Gm-Message-State: ALoCoQkyA1fdcQJPZS3R+0+gmsld8I2CYqzY7QC0E8vmvLsmcWm60LO4ogWO273/KwWb5BwSsSj9
-X-Received: by 10.180.72.176 with SMTP id e16mr34689396wiv.12.1433867303412;
-	Tue, 09 Jun 2015 09:28:23 -0700 (PDT)
-Received: from [192.168.2.194] ([83.217.123.106])
-	by mx.google.com with ESMTPSA id j7sm10199722wjz.11.2015.06.09.09.28.22
-	for <yocto@yoctoproject.org>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 09 Jun 2015 09:28:22 -0700 (PDT)
-Message-ID: <55771426.2040502@intel.com>
-Date: Tue, 09 Jun 2015 17:28:22 +0100
-From: Michael Wood <michael.g.wood@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
+Received: from debian7.osl.yoctoproject.org (ab02 [10.0.10.102])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C692E0099B;
+	Tue,  9 Jun 2015 14:14:36 -0700 (PDT)
+Received: from pokybuild by debian7.osl.yoctoproject.org with local (Exim 4.80)
+	(envelope-from <pokybuild@debian7.osl.yoctoproject.org>)
+	id 1Z2Qqy-00029M-8l; Tue, 09 Jun 2015 14:14:36 -0700
 To: yocto@yoctoproject.org
-Subject: [RFC] error-report-web error matching
+Message-Id: <E1Z2Qqy-00029M-8l@debian7.osl.yoctoproject.org>
+From: Poky Build User <pokybuild@debian7.osl.yoctoproject.org>
+Date: Tue, 09 Jun 2015 14:14:36 -0700
+Cc: otavio@ossystems.com.br
+Subject: Build available for QA
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,24 +32,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Jun 2015 16:28:27 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 09 Jun 2015 21:14:39 -0000
 
-I've recently added a feature which was requested for the 
-error-report-web project[1] to add some kind of error matching 
-mechanism, this is now live on http://errors.yoctoproject.org
+-e 
+    A build identified as needing QA has finished on the autobuilder. This
+    build is located at:
 
-I'd be interested to hear If anyone has feedback regarding the similar 
-errors matching, whether it's useful or has too many false positives etc.
+ 
+    http://autobuilder.yoctoproject.org/pub/nightly/20150609-1
 
-The matching threshold value can be tweaked, I've currently just set it 
-to a threshold that seemed OK to me, but would be good if those with 
-more experienced eyes could have a glance over.
 
-Thanks,
+Build hash information: 
+meta-intel : b92a0b5c7f6befda61466ad491ff90079bfc95c4 
+meta-fsl-arm : 9c0e329fa02673a990630f6e400157ca30e3447f 
+meta-minnow : 00a39ed5a5f7037965ff674efe11277bd73416a5 
+meta-qt3 : 3016129d90b7ac8517a5227d819f10ad417b5b45 
+meta-fsl-ppc : 36bd6ce8c63b8876c96fc1cd50e43863cdc2e44e 
+poky : 926de56da9469e3d4ea8349d8e7c9777ae6f93c1 
 
-Michael
 
-[1] http://git.yoctoproject.org/cgit/cgit.cgi/error-report-web/
+This is an automated message from
+The Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder
+Email: elizabeth.flanagan@intel.com 
 
