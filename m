@@ -1,69 +1,36 @@
-Return-Path: <b.hutchman@gmail.com>
+Return-Path: <flihp@twobit.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34D5BE009F0; Tue,  9 Jun 2015 18:34:58 -0700 (PDT)
+	id 42BF4E00A3B; Tue,  9 Jun 2015 23:03:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (b.hutchman[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.180 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ob0-f180.google.com (mail-ob0-f180.google.com
-	[209.85.214.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE7DDE009AE;
-	Tue,  9 Jun 2015 18:34:55 -0700 (PDT)
-Received: by obbgp2 with SMTP id gp2so24821452obb.2;
-	Tue, 09 Jun 2015 18:34:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=5l8LWXaEQMIigxeO9Yl+XjNtm6RPPPWv4s/iMjROcpc=;
-	b=FQf56/PqhzN7q3c35sc2M1wdb7r8d91ngYm9BnTxDsgUoLcFqQgTWOcW9fCgKcYenx
-	IXMg4SVH4zPRYk6n4QrUxfT8Xz2wAeUh3GICrAlqvOhK738L5IPwCYvUCn7lXoRKgJXt
-	UywcswRkCLTBT9DewJ8KbGc0zaw6MU51LYJsNYcAwFSNw8r+/Av0OjAkps95D5i78+5l
-	Xu1PlbKiUqSkc9D6n6XmlRgXZVLnSfNvCMhJTBk3sSWt2OeaR73NXT1+4JilA5oJsPgE
-	RAYA9Z7e8Wd8o6jSTME7OVYvkpO/oXkCdp6riiTwjD/qiKRSH0dpAvQEyAJtoxnLCQ11
-	vmvQ==
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97335E00A38
+	for <yocto@yoctoproject.org>; Tue,  9 Jun 2015 23:03:42 -0700 (PDT)
+Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
+	helo=[10.79.148.125])
+	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1Z2Z2W-0003ha-FC; Wed, 10 Jun 2015 05:59:06 +0000
+Message-ID: <5577D332.2080103@twobit.us>
+Date: Tue, 09 Jun 2015 23:03:30 -0700
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Icedove/31.7.0
 MIME-Version: 1.0
-X-Received: by 10.182.16.135 with SMTP id g7mr511449obd.34.1433900095277; Tue,
-	09 Jun 2015 18:34:55 -0700 (PDT)
-Received: by 10.60.150.76 with HTTP; Tue, 9 Jun 2015 18:34:55 -0700 (PDT)
-In-Reply-To: <55778F7F.6020407@windriver.com>
-References: <4f2d75bf33ac423ab064f754e0b67655@ASTRO-EX1.Bensberg.de>
-	<55421DA2.9060909@windriver.com>
-	<e134e69a27bd460a9da71929a7f78d9a@ASTRO-EX1.Bensberg.de>
-	<554236CB.6000604@windriver.com>
-	<CAFZh4h9oL7K-=Nxhy=GV0k31ZgnPQuhFLQ-r_fReSRk1ZRhk1g@mail.gmail.com>
-	<5550FD98.1050507@windriver.com>
-	<CAFZh4h-SqSVsG_HXrx3H=QfDs3DH5GoKmFCgwBgGq90+B4WB5A@mail.gmail.com>
-	<55521DB8.2070606@windriver.com> <20150514220801.GD20022@denix.org>
-	<CAFZh4h9=cJG8aVbwvh_NjR24UTnCj9A44zHPs3rqEn_rdCfN3A@mail.gmail.com>
-	<CAFZh4h-r1_gabVP0HdDoOrcT_neED51JpMmm586KLuc_efWdFg@mail.gmail.com>
-	<CAFZh4h8qX6hYJ_kA4Ny=K7YqGnECu_nX1Jkejj=3P8saYmCH2g@mail.gmail.com>
-	<CAFZh4h9oJ3UZFt2b_3SHB1xi99M+rEWis12-VU2gQxMQ9sVBsA@mail.gmail.com>
-	<CADkTA4Px0rhNzfPsjcNN5Bq4sKZujkPDwnJfxq5dsKRc7=G0Aw@mail.gmail.com>
-	<555B6573.5030002@windriver.com>
-	<CAFZh4h_LtR6s08XtL78uD0WUA2DM_8xuzOCEaCF5rCDe7tqFng@mail.gmail.com>
-	<CAFZh4h9vZv0_iZjgesg9vAGZnTx9wZ3AUuK+DiA=bFp=J7KmSg@mail.gmail.com>
-	<55778F7F.6020407@windriver.com>
-Date: Tue, 9 Jun 2015 21:34:55 -0400
-Message-ID: <CAFZh4h8GyYxfczNhEcFc6CwXdR42n=CsFEwymXDtqJuQWjzgVA@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-ti] Migration from 1.7.1 to 1.8 - kernel-abiversion missing
+To: yocto@yoctoproject.org
+References: <1433637428-21242-1-git-send-email-flihp@twobit.us>
+	<1433637428-21242-11-git-send-email-flihp@twobit.us>
+In-Reply-To: <1433637428-21242-11-git-send-email-flihp@twobit.us>
+X-SA-Exim-Connect-IP: 50.185.54.102
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Subject: Re: [meta-selinux][RFC 10/10] e2fsprogs: Add patch to implement simple linked list as cache for existing xattr blocks.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,346 +42,256 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Jun 2015 01:34:58 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 10 Jun 2015 06:03:55 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jun 9, 2015 at 9:14 PM, Bruce Ashfield
-<bruce.ashfield@windriver.com> wrote:
-> On 2015-06-09 9:12 PM, Brian Hutchinson wrote:
->>
->> On Tue, May 19, 2015 at 12:42 PM, Brian Hutchinson <b.hutchman@gmail.com>
->> wrote:
->>>
->>> On Tue, May 19, 2015 at 12:31 PM, Bruce Ashfield
->>> <bruce.ashfield@windriver.com> wrote:
->>>>
->>>> On 2015-05-19 07:39 AM, Bruce Ashfield wrote:
->>>>>
->>>>>
->>>>> On Fri, May 15, 2015 at 4:21 PM, Brian Hutchinson
->>>>> <b.hutchman@gmail.com>
->>>>> wrote:
->>>>>>
->>>>>>
->>>>>> On Fri, May 15, 2015 at 3:26 PM, Brian Hutchinson
->>>>>> <b.hutchman@gmail.com>
->>>>>> wrote:
->>>>>>>
->>>>>>>
->>>>>>> On Fri, May 15, 2015 at 9:55 AM, Brian Hutchinson
->>>>>>> <b.hutchman@gmail.com>
->>>>>>> wrote:
->>>>>>>>
->>>>>>>>
->>>>>>>> On Thu, May 14, 2015 at 6:16 PM, Brian Hutchinson
->>>>>>>> <b.hutchman@gmail.com> wrote:
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> On May 14, 2015 6:08 PM, "Denys Dmytriyenko" <denis@denix.org>
->>>>>>>>> wrote:
->>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> On Tue, May 12, 2015 at 11:35:20AM -0400, Bruce Ashfield wrote:
->>>>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>> On 2015-05-12 10:20 AM, Brian Hutchinson wrote:
->>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>> On Mon, May 11, 2015 at 3:06 PM, Bruce Ashfield
->>>>>>>>>>>> <bruce.ashfield@windriver.com> wrote:
->>>>>>>>>>>>>
->>>>>>>>>>>>>
->>>>>>>>>>>>> On 2015-05-11 02:10 PM, Brian Hutchinson wrote:
->>>>>>>>>>>>>>
->>>>>>>>>>>>>>
->>>>>>>>>>>>>>
->>>>>>>>>>>>>> On Thu, Apr 30, 2015 at 10:06 AM, Bruce Ashfield
->>>>>>>>>>>>>> <bruce.ashfield@windriver.com> wrote:
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> It is plausible. But in theory, linux-dummy should still
->>>>>>>>>>>>>>> provide
->>>>>>>>>>>>>>> what you need (but since it doesn't build anything, there is
->>>>>>>>>>>>>>> no abi .. and no modules can be built against it) .. so the
->>>>>>>>>>>>>>> error isn't graceful.
->>>>>>>>>>>>>>>
->>>>>>>>>>>>>>> Bruce
->>>>>>>>>>>>>>
->>>>>>>>>>>>>>
->>>>>>>>>>>>>>
->>>>>>>>>>>>>>
->>>>>>>>>>>>>> I can confirm this same problem is happening to me.  I just
->>>>>>>>>>>>>> updated
->>>>>>>>>>>>>> one of my builds from 1.7 to 1.8 and am also getting my rootfs
->>>>>>>>>>>>>> to
->>>>>>>>>>>>>> fail
->>>>>>>>>>>>>> due to no abi kernel version:
->>>>>>>>>>>>>
->>>>>>>>>>>>>
->>>>>>>>>>>>>
->>>>>>>>>>>>>
->>>>>>>>>>>>> We still have a race condition in the 1.8 branch for the
->>>>>>>>>>>>> population
->>>>>>>>>>>>> of the build-artifacts directory.
->>>>>>>>>>>>>
->>>>>>>>>>>>> If modules start building, they'll race against the population
->>>>>>>>>>>>> of
->>>>>>>>>>>>> the
->>>>>>>>>>>>> abiversion, and you may see that message.
->>>>>>>>>>>>>
->>>>>>>>>>>>> There's a proposed patch for master, but I don't think it is in
->>>>>>>>>>>>> fido yet.
->>>>>>>>>>>>>
->>>>>>>>>>>>> Bruce
->>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>> Hi Bruce,
->>>>>>>>>>>>
->>>>>>>>>>>> I did some searches and looks like there are a number of 'race'
->>>>>>>>>>>> condition fixes but it wasn't obvious which one I may need.  Is
->>>>>>>>>>>> it
->>>>>>>>>>>> this one:
->>>>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>>>>
->>>>>>>>>>>>>
->>>>>>>>>>>>> http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=02d0a003d603266114512160b209876199241e98
->>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>> That's the one that should make sure that the shared workdir
->>>>>>>>>>> (Which has the abiversion) is in place before building any
->>>>>>>>>>> modules.
->>>>>>>>>>>
->>>>>>>>>>> I can't say that it is exactly your issue, but it is the change
->>>>>>>>>>> I was thinking of.
->>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> Brian,
->>>>>>>>>>
->>>>>>>>>> Were you able to try the above mentioned commit against am180x in
->>>>>>>>>> meta-ti?
->>>>>>>>>> Did
->>>>>>>>>> it solve the missing abi kernel version? Thanks.
->>>>>>>>>>
->>>>>>>>>> --
->>>>>>>>>> Denys
->>>>>>>>>
->>>>>>>>>
->>>>>>>>>
->>>>>>>>> Hi Denys,
->>>>>>>>>
->>>>>>>>> No, I got caught up in something else ... I'll try it tomorrow and
->>>>>>>>> report
->>>>>>>>> back after I cherry pick that commit Bruce mentioned.
->>>>>>>>>
->>>>>>>>> Regards,
->>>>>>>>>
->>>>>>>>> Brian
->>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>> Update.  Not sure if I did this right but this is what I did.  I
->>>>>>>> added
->>>>>>>> master as a remote and cherry picked
->>>>>>>> 02d0a003d603266114512160b209876199241e98.  Next I just went for it
->>>>>>>> and
->>>>>>>> tried to bitbake my image again and got the same result as before.
->>>>>>>> Next I did a bitbake cleanall on virtual/kernel and tried to make my
->>>>>>>> image again and still got the same result.
->>>>>>>>
->>>>>>>> I'm going to leave this build as is and setup a new one using 1.8
->>>>>>>> master and see if I get the same thing again.  I'll leave this
->>>>>>>> broken
->>>>>>>> build alone for a while in case someone wants me to try something
->>>>>>>> with
->>>>>>>> it to fix it.
->>>>>>>>
->>>>>>>> Regards,
->>>>>>>>
->>>>>>>> Brian
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>>> Yet another update ... I did a fresh checkout of master and tried to
->>>>>>> build and had the same kernelabiversion error:
->>>>>>>
->>>>>>> WARNING: omap3-sgx-modules-5.01.01.01 ONLY supports hardfp mode for
->>>>>>> now#######################
->>>>>>>                                                             | ETA:
->>>>>>> 00:00:28
->>>>>>> WARNING: omap3-sgx-modules-5.01.01.02 ONLY supports hardfp mode for
->>>>>>> now
->>>>>>> WARNING: ti-cgt6x-8.0.0 ONLY supports hardfp mode for
->>>>>>> now########################################
->>>>>>>
->>>>>>>    | ETA:  00:00:26
->>>>>>> Parsing recipes: 100%
->>>>>>>
->>>>>>>
->>>>>>> |##############################################################################################################################################################################|
->>>>>>> Time: 00:01:02
->>>>>>> Parsing of 1802 .bb files complete (0 cached, 1802 parsed). 2303
->>>>>>> targets, 182 skipped, 0 masked, 0 errors.
->>>>>>> NOTE: Resolving any missing task queue dependencies
->>>>>>> NOTE: multiple providers are available for u-boot (u-boot,
->>>>>>> u-boot-glsdk, u-boot-ti-staging)
->>>>>>> NOTE: consider defining a PREFERRED_PROVIDER entry to match u-boot
->>>>>>> NOTE: multiple providers are available for jpeg (jpeg, libjpeg-turbo)
->>>>>>> NOTE: consider defining a PREFERRED_PROVIDER entry to match jpeg
->>>>>>>
->>>>>>> Build Configuration:
->>>>>>> BB_VERSION        = "1.27.0"
->>>>>>> BUILD_SYS         = "x86_64-linux"
->>>>>>> NATIVELSBSTRING   = "Debian-7.8"
->>>>>>> TARGET_SYS        = "arm-poky-linux-gnueabi"
->>>>>>> MACHINE           = "am180x-evm"
->>>>>>> DISTRO            = "poky"
->>>>>>> DISTRO_VERSION    = "1.8+snapshot-20150515"
->>>>>>> TUNE_FEATURES     = "arm armv5 thumb dsp"
->>>>>>> TARGET_FPU        = "soft"
->>>>>>> meta
->>>>>>> meta-yocto
->>>>>>> meta-yocto-bsp    = "master:fab7da4f8030a4067db0522f77eaa6d3b501c68f"
->>>>>>> meta-ti           = "master:60a7bfbf96609ef6f3e084c32b2af853222b3b7e"
->>>>>>> meta-oe
->>>>>>> meta-python
->>>>>>> meta-networking
->>>>>>> meta-webserver    = "master:53d55216c8c721d3b66ec8f968737bf081def870"
->>>>>>>
->>>>>>> NOTE: Preparing RunQueue
->>>>>>> NOTE: Executing SetScene Tasks
->>>>>>> NOTE: Executing RunQueue Tasks
->>>>>>> WARNING: QA Issue: /usr/bin/apxs_apache2-dev contained in package
->>>>>>> apache2-dev requires /usr/bin/perl, but no providers found in its
->>>>>>> RDEPENDS [file-rdeps]
->>>>>>> ERROR: No kernel-abiversion file found
->>>>>>>
->>>>>>>
->>>>>>> (/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/sysroots/am180x-evm/pkgdata/kernel-depmod/kernel-abiversion),
->>>>>>> cannot run depmod, aborting
->>>>>>> ERROR: Function failed: do_rootfs
->>>>>>> ERROR: Logfile of failure stored in:
->>>>>>>
->>>>>>>
->>>>>>> /home/hutch/yocto_1.8_davinci_2/poky/build/tmp/work/am180x_evm-poky-linux-gnueabi/core-image-nodeam/1.0-r0/temp/log.do_rootfs.10336
->>>>>>> ERROR: Task 7
->>>>>>>
->>>>>>> (/home/hutch/yocto_1.8_davinci_2/poky/meta/recipes-core/images/core-image-nodeam.bb,
->>>>>>> do_rootfs) failed with exit code '1'
->>>>>>> NOTE: Tasks Summary: Attempted 2614 tasks of which 9 didn't need to
->>>>>>> be
->>>>>>> rerun and 1 failed.
->>>>>>> Waiting for 0 running tasks to finish:
->>>>>>>
->>>>>>> Summary: 1 task failed:
->>>>>>>
->>>>>>>
->>>>>>> /home/hutch/yocto_1.8_davinci_2/poky/meta/recipes-core/images/core-image-nodeam.bb,
->>>>>>> do_rootfs
->>>>>>> Summary: There were 4 WARNING messages shown.
->>>>>>> Summary: There were 2 ERROR messages shown, returning a non-zero exit
->>>>>>> code.
->>>>>>
->>>>>>
->>>>>>
->>>>>> More info for those that care ...
->>>>>>
->>>>>> The end of the error log file has:
->>>>>> DEBUG: Executing python function write_image_manifest
->>>>>> DEBUG: Python function write_image_manifest finished
->>>>>> NOTE: Executing: ldconfig
->>>>>>
->>>>>>
->>>>>> -r/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/work/am180x_evm-poky-linux-gnueabi/core-image-nodeam/1.0-r0/rootfs-c
->>>>>> new -v
->>>>>> ERROR: No kernel-abiversion file found
->>>>>>
->>>>>>
->>>>>> (/home/hutch/yocto_1.8_davinci_2/poky/build/tmp/sysroots/am180x-evm/pkgdata/kernel-depmod/kernel-abiversion),
->>>>>> cannot run depmod, aborting
->>>>>> DEBUG: Python function do_rootfs finished
->>>>>> ERROR: Function failed: do_rootfs
->>>>>>
->>>>>> I have a linux-dummy director in pkgdata but no kernel-depmod
->>>>>> directory
->>>>>> exists.
->>>>>>
->>>>>
->>>>> Interesting. Looks like we have some sort of bad dependency. I'm poking
->>>>> around
->>>>> to see if I can reproduce this locally.
->>>>
->>>>
->>>>
->>>> Brian,
->>>>
->>>> I'm trying to wrap my head around this. Which kernel did you say
->>>> was building in your configuration ? Was it really linux-dummy, or
->>>> is there a bootable kernel in play ?
->>>>
->>>> Looking at the dependencies, I can see how the depmodwrapper requires
->>>> that a kernel be built and the abiversion file created. But in the
->>>> case of linux-dummy, there's no header files to use and generate the
->>>> abiversion, so it won't be available for depmod.
->>>>
->>>> Which takes me back to one of my original questions, why is depmod
->>>> running if the kernel isn't being built as part of this image .. and
->>>> that leads me to think I'm missing some important information.
->>>>
->>>> Bruce
->>>
->>>
->>> Hi Bruce,
->>>
->>> Thanks for looking into it.
->>>
->>> I have the meta-ti layer included and in the past, it did build a real
->>> kernel version.  I don't know when (because I don't use the kernel
->>> built by the system, I use one from outside bitbake) but this release
->>> (1.8) and last (1.7) has built linux-dummy instead of a real version
->>> and I didn't tell it to.
->>>
->>> Maybe I'm doing something wrong on my end but I built this release the
->>> same way I've built all of them (and I've been doing it from the start
->>> of yocto project).
->>>
->>> The only other layers I use are meta-openembedded and meta-ti.
->>>
->>> Regards,
->>>
->>> Brian
->>
->>
->> After being off this for a while ... today I did a git pull on all my
->> master based layers, deleted /tmp and rebuilt my am1808 based image
->> with no problems.  Never saw a post of a formal resolution to this
->> problem but obviously it was fixed somehow so thanks to whomever that
->> was.
->
->
-> Good news. I was keeping this email around as a reminder, since I never
-> was able to reproduce the problem here.
->
-> I can't say that anything was explicitly targeted as a fix for this ..
-> but there have been quite a few changes to the dependencies, kernel and
-> build plumbing .. one of them may have had the right effect.
->
-> If this does pop back up, let me know, and we can try and root cause it
-> again.
->
-> Bruce
+It looks like I screwed up this patch when I was rewriting some git
+history. I'm working up a fix.
 
-I'll try the same with my 1.8 checkout and see what happens with it.
+Philip
 
-Regards,
+On 06/06/2015 05:37 PM, Philip Tricca wrote:
+> Signed-off-by: Philip Tricca <flihp@twobit.us>
+> ---
+>  .../e2fsprogs/misc-xattr-create-xattr-cache.patch  | 217 +++++++++++++++++++++
+>  .../e2fsprogs/e2fsprogs_1.42.9.bbappend            |   1 +
+>  2 files changed, 218 insertions(+)
+>  create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-cache.patch
+> 
+> diff --git a/recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-cache.patch b/recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-cache.patch
+> new file mode 100644
+> index 0000000..ba09e2b
+> --- /dev/null
+> +++ b/recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-cache.patch
+> @@ -0,0 +1,217 @@
+> +Implement the xattr block cache as a sorted linked list. This requires the add
+> +and rm functions be able to compare xattr blocks. This is implemented as two
+> +functions. The first compares individual entries and the second compares the
+> +whole xattr block by iterating over and comparing individual entries.
+> +
+> +The xattr block cache keeps memory allocated on the heap around across
+> +invocations of the set_inode_xattr function. To free this memory we implement
+> +an xattr_cleanup function that iterates over the cache freeing resources
+> +associated with each node.
+> +
+> +Signed-off-by: Philip Tricca <flihp@twobit.us>
+> +
+> +Index: e2fsprogs-1.42.9/misc/xattr.c
+> +===================================================================
+> +--- e2fsprogs-1.42.9.orig/misc/xattr.c
+> ++++ e2fsprogs-1.42.9/misc/xattr.c
+> +@@ -76,7 +76,16 @@ xattr_free_node (xattr_node_t *node)
+> + void
+> + xattr_cleanup ()
+> + {
+> ++	xattr_node_t *curr = NULL, *tmp = NULL;
+> ++	size_t count = 0;
+> ++
+> + 	XATTR_STDERR ("Cleaning up resources from xattrs.\n");
+> ++	for (curr = xattr_list_head; curr != NULL; ++count) {
+> ++                tmp = curr;
+> ++                curr = curr->next;
+> ++                xattr_free_node (tmp);
+> ++	}
+> ++	XATTR_STDERR ("Freed %d xattr_node_ts.\n", count);
+> + }
+> + 
+> + /* Get value for named xattr from file at path.
+> +@@ -284,6 +293,77 @@ out:
+> + 	return ret;
+> + }
+> + 
+> ++/* Compre two extended attribute entries. This includes the entry and the value.
+> ++ * if a < b return -1
+> ++ * if a == b return 0
+> ++ * if a > b return 1
+> ++ */
+> ++static int
+> ++xattr_compare_entry (struct ext2_ext_attr_header *header_a,
+> ++		struct ext2_ext_attr_entry *entry_a,
+> ++		struct ext2_ext_attr_header *header_b,
+> ++		struct ext2_ext_attr_entry *entry_b)
+> ++{
+> ++	int ret = 0;
+> ++
+> ++	if (entry_a->e_hash != entry_b->e_hash ||
+> ++		entry_a->e_name_index != entry_b->e_name_index ||
+> ++		entry_a->e_name_len != entry_b->e_name_len ||
+> ++		entry_a->e_value_size != entry_b->e_value_size)
+> ++	{
+> ++		if (ret = memcmp (EXT2_EXT_ATTR_NAME(entry_a),
+> ++				EXT2_EXT_ATTR_NAME(entry_b),
+> ++				MIN (entry_a->e_name_len, entry_b->e_name_len)))
+> ++			return ret;
+> ++		if (entry_a->e_value_block != 0 || entry_b->e_value_block != 0)
+> ++			return -EIO;
+> ++		return memcmp (VALUE(header_a, entry_a),
+> ++				VALUE(header_b, entry_b),
+> ++				MIN(entry_a->e_value_size, entry_b->e_value_size));
+> ++	}
+> ++}
+> ++
+> ++/* Compare two extended attribute blocks. This includes the header as well as
+> ++ *   all entries and values.
+> ++ * Algorithm is almost straight from the ext2 kernel drive with the exception
+> ++ *   of adding lt and gt behavior to get sorting.
+> ++ * If a < b return < 0
+> ++ * If a == b return 0
+> ++ * If a > b return > 0
+> ++ */
+> ++static int
+> ++xattr_compare_block (struct ext2_ext_attr_header *header_a,
+> ++					 struct ext2_ext_attr_header *header_b)
+> ++{
+> ++	struct ext2_ext_attr_entry *entry_a = NULL, *entry_b = NULL;
+> ++	int ret = 0;
+> ++
+> ++	XATTR_STDERR ("comparing xattr blocks at 0x%x and 0x%x\n", header_a, header_b);
+> ++	for (entry_a = FIRST_ENTRY(header_a), entry_b = FIRST_ENTRY(header_b);
+> ++		!EXT2_EXT_IS_LAST_ENTRY(entry_a) && !EXT2_EXT_IS_LAST_ENTRY(entry_b);
+> ++		entry_a = EXT2_EXT_ATTR_NEXT(entry_a), entry_b = EXT2_EXT_ATTR_NEXT(entry_b))
+> ++	{
+> ++		xattr_pp_value (VALUE(header_a, entry_a), entry_a->e_value_size);
+> ++		xattr_pp_value (VALUE(header_b, entry_b), entry_b->e_value_size);
+> ++		if (ret = xattr_compare_entry (header_a, entry_a, header_b, entry_b)) {
+> ++			XATTR_STDERR ("entries do not match: %d\n", ret);
+> ++			return ret;
+> ++		} else {
+> ++			XATTR_STDERR ("entries match!\n");
+> ++		}
+> ++	}
+> ++	/* All entries checked were equal. Handle edge case where entry_a is a
+> ++	 * subset of entry_b: test to see if either block had more entries than the
+> ++	 * other. More entries -> block is greater than the other.
+> ++	 */
+> ++	if (EXT2_EXT_IS_LAST_ENTRY(entry_a) && !EXT2_EXT_IS_LAST_ENTRY(entry_b))
+> ++		return -1;
+> ++	if (!EXT2_EXT_IS_LAST_ENTRY(entry_a) && EXT2_EXT_IS_LAST_ENTRY(entry_b))
+> ++		return 1;
+> ++	if (EXT2_EXT_IS_LAST_ENTRY(entry_a) && EXT2_EXT_IS_LAST_ENTRY(entry_b))
+> ++		return 0;
+> ++}
+> ++
+> + /* Add an xattr node to the list specified by head. This function will update
+> +  * head as necessary. It will return a pointer to the xattr_node_t added to the
+> +  * list. In the event that an identical xattr block is already on the list this
+> +@@ -292,7 +372,37 @@ out:
+> + static xattr_node_t*
+> + xattr_add_block (xattr_node_t **head, xattr_node_t *node)
+> + {
+> ++	xattr_node_t *curr_node = NULL, *prev_node = NULL;
+> ++	int ret = 0;
+> ++
+> + 	XATTR_STDERR ("Adding xattr to the the node list.\n");
+> ++	if (node == NULL)
+> ++		return NULL;
+> ++	/* list is empty, node becomes first node */
+> ++	if (!(*head)) {
+> ++		*head = node;
+> ++		return node;
+> ++	}
+> ++	for (prev_node = NULL, curr_node = *head;
+> ++		curr_node != NULL;
+> ++		prev_node = curr_node, curr_node = curr_node->next)
+> ++	{
+> ++		/* When the supplied node is "less than" the current node we add it to
+> ++		 * the list before the current ndoe.
+> ++		 */
+> ++		if ((ret = xattr_compare_block (node->header, curr_node->header)) < 0) {
+> ++			node->next = curr_node;
+> ++			if (prev_node)
+> ++				prev_node->next = node;
+> ++			else /* edge case: we added node to the head of the list */
+> ++				*head = node;
+> ++			return node;
+> ++		} else if (ret == 0) { /* found a match */
+> ++			return curr_node;
+> ++		}
+> ++	}
+> ++	/* reached end of list, new node should be last */
+> ++	prev_node->next = node;
+> + 	return node;
+> + }
+> + 
+> +@@ -302,8 +412,27 @@ xattr_add_block (xattr_node_t **head, xa
+> + static xattr_node_t*
+> + xattr_rm_block (xattr_node_t **head, xattr_node_t *node)
+> + {
+> ++	xattr_node_t *curr_node = NULL, *prev_node = NULL;
+> ++
+> + 	XATTR_STDERR ("Removing xattr from the node list.\n");
+> +-	return node;
+> ++	/* no list, or empty list: nothing to search though */
+> ++	if (!head || !(*head))
+> ++		return NULL;
+> ++
+> ++	for (prev_node = NULL, curr_node = *head;
+> ++		curr_node != NULL;
+> ++		prev_node = curr_node, curr_node = curr_node->next)
+> ++	{
+> ++		if (node == curr_node) {
+> ++			if (prev_node)
+> ++				prev_node->next = curr_node->next;
+> ++			else
+> ++				*head = curr_node->next;
+> ++			return curr_node;
+> ++		}
+> ++	}
+> ++	/* reached end of list, no match */
+> ++	return NULL;
+> + }
+> + 
+> + /* This is the entry point to the xattr module. This function copies the xattrs
+> +@@ -342,23 +471,23 @@ set_inode_xattr (ext2_filsys fs, ext2_in
+> + 		com_err(__func__, ret, "ext2fs_read_inode");
+> + 		goto out;
+> + 	}
+> +-	if (ret = ext2fs_alloc_block (fs, 0, NULL, &block)) {
+> ++	if (ret = ext2fs_alloc_block (fs, 0, NULL, &(node->block))) {
+> + 		com_err(__func__, ret, "ext2fs_alloc_block: returned %d", ret);
+> + 		goto out;
+> + 	}
+> +-	ext2fs_mark_block_bitmap2 (fs->block_map, block);
+> +-	XATTR_STDERR ("writing xattr block 0x%x to disk:\n", block);
+> +-	if (ret = ext2fs_write_ext_attr (fs, block, header)) {
+> ++	ext2fs_mark_block_bitmap2 (fs->block_map, node->block);
+> ++	XATTR_STDERR ("writing xattr block 0x%x to disk:\n", node->block);
+> ++	if (ret = ext2fs_write_ext_attr (fs, node->block, node->header)) {
+> + 		com_err(__func__, ret, "ext2fs_write_ext_attr: returned %d", ret);
+> + 		goto out;
+> + 	}
+> + 	/* point inode for current file to xattr block, update block count and
+> + 	 * write inode to disk
+> + 	 */
+> +-	inode.i_file_acl = block;
+> ++	inode.i_file_acl = node->block;
+> + 	if (ret = ext2fs_adjust_ea_refcount2(fs,
+> +-					block,
+> +-					(char*)header,
+> ++					node->block,
+> ++					(char*)(node->header),
+> + 					1,
+> + 					&newcount))
+> + 	{
+> +@@ -371,6 +500,7 @@ set_inode_xattr (ext2_filsys fs, ext2_in
+> + 	}
+> + 	if (ret = ext2fs_write_inode (fs, ino, &inode))
+> + 		com_err(__func__, ret, "ext2fs_write_inode: returned %d", ret);
+> ++	return ret;
+> + out:
+> + 	xattr_free_node (node);
+> + 	return ret;
+> diff --git a/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend b/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
+> index 241a9bf..8756d76 100644
+> --- a/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
+> +++ b/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
+> @@ -8,4 +8,5 @@ SRC_URI += " \
+>      file://lib-ext2fs-ext2_ext_attr.h-add-xattr-index.patch \
+>      file://misc-xattr-create-xattr-block.patch \
+>      file://misc-xattr-create-xattr-block-node.patch \
+> +    file://misc-xattr-create-xattr-cache.patch \
+>  "
+> 
 
-Brian
 
