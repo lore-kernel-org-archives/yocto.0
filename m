@@ -1,36 +1,52 @@
-Return-Path: <flihp@twobit.us>
+Return-Path: <alexandru.damian@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 42BF4E00A3B; Tue,  9 Jun 2015 23:03:55 -0700 (PDT)
+	id 0917DE009C2; Wed, 10 Jun 2015 07:46:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.170 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97335E00A38
-	for <yocto@yoctoproject.org>; Tue,  9 Jun 2015 23:03:42 -0700 (PDT)
-Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
-	helo=[10.79.148.125])
-	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
-	(Exim 4.80) (envelope-from <flihp@twobit.us>)
-	id 1Z2Z2W-0003ha-FC; Wed, 10 Jun 2015 05:59:06 +0000
-Message-ID: <5577D332.2080103@twobit.us>
-Date: Tue, 09 Jun 2015 23:03:30 -0700
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Icedove/31.7.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-ie0-f170.google.com (mail-ie0-f170.google.com
+	[209.85.223.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3B95E0095D
+	for <yocto@yoctoproject.org>; Wed, 10 Jun 2015 07:46:21 -0700 (PDT)
+Received: by iesa3 with SMTP id a3so35920387ies.2
+	for <yocto@yoctoproject.org>; Wed, 10 Jun 2015 07:46:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=iZpo+QUKPjaz5yOO8VNdQUgiXpZucqF1EUSvoAk23ds=;
+	b=FITmxcdos+Vw55P+fuK0WoaO6kr3E6C8PfXL9psNlm0lvZropP/JV3YHEnE0BhogXY
+	6d8pf6mt5418m9+FMUVwgBzKnN30tEDkpW3CpBCPQP3TkknAxm4Z+NNepYCGg2NWcVos
+	OSwegRQk5iNPf7DRecy+RAFPYa/8VQgicYHl5C9lr9FTrOFS5Gf4dhoifUb8qvnqbUBh
+	0u5Y/3pyiQMaPCbzuYXzZE8+ZNvE3IKjOTjv/eDuZqkfIQHB+rTmwSbDTJui0Lje3Riu
+	VAy6JmlUQ45ywEBKFjtV9vfbWRz8rIF1EBvY0q7NAOap8yhKwjx/l02dfnquLEaDGWA9
+	Tq4w==
+X-Gm-Message-State: ALoCoQlUy5A98e81TfdiUJOtHdSetVGKRK45voVygepCmyPaPV5YxCcsxrnOGTR8rFaiCe0tPwzM
+X-Received: by 10.50.25.162 with SMTP id d2mr6343071igg.11.1433947580561; Wed,
+	10 Jun 2015 07:46:20 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <1433637428-21242-1-git-send-email-flihp@twobit.us>
-	<1433637428-21242-11-git-send-email-flihp@twobit.us>
-In-Reply-To: <1433637428-21242-11-git-send-email-flihp@twobit.us>
-X-SA-Exim-Connect-IP: 50.185.54.102
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
-X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Subject: Re: [meta-selinux][RFC 10/10] e2fsprogs: Add patch to implement simple linked list as cache for existing xattr blocks.
+Received: by 10.79.38.11 with HTTP; Wed, 10 Jun 2015 07:46:00 -0700 (PDT)
+In-Reply-To: <1433221637508.32807@inedasystems.com>
+References: <D1711C04.5B1A6%belen.barros.pena@intel.com>
+	<1431062039464.37764@inedasystems.com>
+	<CAJ2CSBvXZwPkzSFMwEYwwmjWaQCFZqpeM-LDKEiEmRtag5aXvw@mail.gmail.com>
+	<1431078146099.25248@inedasystems.com>
+	<CAJ2CSBvBaoPC-4Rny4a+DbJoEjYKMP5T19Yzp21XxVf35v5qnw@mail.gmail.com>
+	<1433221637508.32807@inedasystems.com>
+From: "Damian, Alexandru" <alexandru.damian@intel.com>
+Date: Wed, 10 Jun 2015 15:46:00 +0100
+Message-ID: <CAJ2CSBtr_-Tfj9irE3JgFmN6Sxf6T+fh70eak1=0D7Nz3zSzAQ@mail.gmail.com>
+To: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Issue with toaster
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,256 +58,450 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Jun 2015 06:03:55 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 10 Jun 2015 14:46:25 -0000
+Content-Type: multipart/alternative; boundary=e89a8f83ad652ab75c05182af08b
 
-It looks like I screwed up this patch when I was rewriting some git
-history. I'm working up a fix.
+--e89a8f83ad652ab75c05182af08b
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Philip
+Hi,
 
-On 06/06/2015 05:37 PM, Philip Tricca wrote:
-> Signed-off-by: Philip Tricca <flihp@twobit.us>
-> ---
->  .../e2fsprogs/misc-xattr-create-xattr-cache.patch  | 217 +++++++++++++++++++++
->  .../e2fsprogs/e2fsprogs_1.42.9.bbappend            |   1 +
->  2 files changed, 218 insertions(+)
->  create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-cache.patch
-> 
-> diff --git a/recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-cache.patch b/recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-cache.patch
-> new file mode 100644
-> index 0000000..ba09e2b
-> --- /dev/null
-> +++ b/recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-cache.patch
-> @@ -0,0 +1,217 @@
-> +Implement the xattr block cache as a sorted linked list. This requires the add
-> +and rm functions be able to compare xattr blocks. This is implemented as two
-> +functions. The first compares individual entries and the second compares the
-> +whole xattr block by iterating over and comparing individual entries.
-> +
-> +The xattr block cache keeps memory allocated on the heap around across
-> +invocations of the set_inode_xattr function. To free this memory we implement
-> +an xattr_cleanup function that iterates over the cache freeing resources
-> +associated with each node.
-> +
-> +Signed-off-by: Philip Tricca <flihp@twobit.us>
-> +
-> +Index: e2fsprogs-1.42.9/misc/xattr.c
-> +===================================================================
-> +--- e2fsprogs-1.42.9.orig/misc/xattr.c
-> ++++ e2fsprogs-1.42.9/misc/xattr.c
-> +@@ -76,7 +76,16 @@ xattr_free_node (xattr_node_t *node)
-> + void
-> + xattr_cleanup ()
-> + {
-> ++	xattr_node_t *curr = NULL, *tmp = NULL;
-> ++	size_t count = 0;
-> ++
-> + 	XATTR_STDERR ("Cleaning up resources from xattrs.\n");
-> ++	for (curr = xattr_list_head; curr != NULL; ++count) {
-> ++                tmp = curr;
-> ++                curr = curr->next;
-> ++                xattr_free_node (tmp);
-> ++	}
-> ++	XATTR_STDERR ("Freed %d xattr_node_ts.\n", count);
-> + }
-> + 
-> + /* Get value for named xattr from file at path.
-> +@@ -284,6 +293,77 @@ out:
-> + 	return ret;
-> + }
-> + 
-> ++/* Compre two extended attribute entries. This includes the entry and the value.
-> ++ * if a < b return -1
-> ++ * if a == b return 0
-> ++ * if a > b return 1
-> ++ */
-> ++static int
-> ++xattr_compare_entry (struct ext2_ext_attr_header *header_a,
-> ++		struct ext2_ext_attr_entry *entry_a,
-> ++		struct ext2_ext_attr_header *header_b,
-> ++		struct ext2_ext_attr_entry *entry_b)
-> ++{
-> ++	int ret = 0;
-> ++
-> ++	if (entry_a->e_hash != entry_b->e_hash ||
-> ++		entry_a->e_name_index != entry_b->e_name_index ||
-> ++		entry_a->e_name_len != entry_b->e_name_len ||
-> ++		entry_a->e_value_size != entry_b->e_value_size)
-> ++	{
-> ++		if (ret = memcmp (EXT2_EXT_ATTR_NAME(entry_a),
-> ++				EXT2_EXT_ATTR_NAME(entry_b),
-> ++				MIN (entry_a->e_name_len, entry_b->e_name_len)))
-> ++			return ret;
-> ++		if (entry_a->e_value_block != 0 || entry_b->e_value_block != 0)
-> ++			return -EIO;
-> ++		return memcmp (VALUE(header_a, entry_a),
-> ++				VALUE(header_b, entry_b),
-> ++				MIN(entry_a->e_value_size, entry_b->e_value_size));
-> ++	}
-> ++}
-> ++
-> ++/* Compare two extended attribute blocks. This includes the header as well as
-> ++ *   all entries and values.
-> ++ * Algorithm is almost straight from the ext2 kernel drive with the exception
-> ++ *   of adding lt and gt behavior to get sorting.
-> ++ * If a < b return < 0
-> ++ * If a == b return 0
-> ++ * If a > b return > 0
-> ++ */
-> ++static int
-> ++xattr_compare_block (struct ext2_ext_attr_header *header_a,
-> ++					 struct ext2_ext_attr_header *header_b)
-> ++{
-> ++	struct ext2_ext_attr_entry *entry_a = NULL, *entry_b = NULL;
-> ++	int ret = 0;
-> ++
-> ++	XATTR_STDERR ("comparing xattr blocks at 0x%x and 0x%x\n", header_a, header_b);
-> ++	for (entry_a = FIRST_ENTRY(header_a), entry_b = FIRST_ENTRY(header_b);
-> ++		!EXT2_EXT_IS_LAST_ENTRY(entry_a) && !EXT2_EXT_IS_LAST_ENTRY(entry_b);
-> ++		entry_a = EXT2_EXT_ATTR_NEXT(entry_a), entry_b = EXT2_EXT_ATTR_NEXT(entry_b))
-> ++	{
-> ++		xattr_pp_value (VALUE(header_a, entry_a), entry_a->e_value_size);
-> ++		xattr_pp_value (VALUE(header_b, entry_b), entry_b->e_value_size);
-> ++		if (ret = xattr_compare_entry (header_a, entry_a, header_b, entry_b)) {
-> ++			XATTR_STDERR ("entries do not match: %d\n", ret);
-> ++			return ret;
-> ++		} else {
-> ++			XATTR_STDERR ("entries match!\n");
-> ++		}
-> ++	}
-> ++	/* All entries checked were equal. Handle edge case where entry_a is a
-> ++	 * subset of entry_b: test to see if either block had more entries than the
-> ++	 * other. More entries -> block is greater than the other.
-> ++	 */
-> ++	if (EXT2_EXT_IS_LAST_ENTRY(entry_a) && !EXT2_EXT_IS_LAST_ENTRY(entry_b))
-> ++		return -1;
-> ++	if (!EXT2_EXT_IS_LAST_ENTRY(entry_a) && EXT2_EXT_IS_LAST_ENTRY(entry_b))
-> ++		return 1;
-> ++	if (EXT2_EXT_IS_LAST_ENTRY(entry_a) && EXT2_EXT_IS_LAST_ENTRY(entry_b))
-> ++		return 0;
-> ++}
-> ++
-> + /* Add an xattr node to the list specified by head. This function will update
-> +  * head as necessary. It will return a pointer to the xattr_node_t added to the
-> +  * list. In the event that an identical xattr block is already on the list this
-> +@@ -292,7 +372,37 @@ out:
-> + static xattr_node_t*
-> + xattr_add_block (xattr_node_t **head, xattr_node_t *node)
-> + {
-> ++	xattr_node_t *curr_node = NULL, *prev_node = NULL;
-> ++	int ret = 0;
-> ++
-> + 	XATTR_STDERR ("Adding xattr to the the node list.\n");
-> ++	if (node == NULL)
-> ++		return NULL;
-> ++	/* list is empty, node becomes first node */
-> ++	if (!(*head)) {
-> ++		*head = node;
-> ++		return node;
-> ++	}
-> ++	for (prev_node = NULL, curr_node = *head;
-> ++		curr_node != NULL;
-> ++		prev_node = curr_node, curr_node = curr_node->next)
-> ++	{
-> ++		/* When the supplied node is "less than" the current node we add it to
-> ++		 * the list before the current ndoe.
-> ++		 */
-> ++		if ((ret = xattr_compare_block (node->header, curr_node->header)) < 0) {
-> ++			node->next = curr_node;
-> ++			if (prev_node)
-> ++				prev_node->next = node;
-> ++			else /* edge case: we added node to the head of the list */
-> ++				*head = node;
-> ++			return node;
-> ++		} else if (ret == 0) { /* found a match */
-> ++			return curr_node;
-> ++		}
-> ++	}
-> ++	/* reached end of list, new node should be last */
-> ++	prev_node->next = node;
-> + 	return node;
-> + }
-> + 
-> +@@ -302,8 +412,27 @@ xattr_add_block (xattr_node_t **head, xa
-> + static xattr_node_t*
-> + xattr_rm_block (xattr_node_t **head, xattr_node_t *node)
-> + {
-> ++	xattr_node_t *curr_node = NULL, *prev_node = NULL;
-> ++
-> + 	XATTR_STDERR ("Removing xattr from the node list.\n");
-> +-	return node;
-> ++	/* no list, or empty list: nothing to search though */
-> ++	if (!head || !(*head))
-> ++		return NULL;
-> ++
-> ++	for (prev_node = NULL, curr_node = *head;
-> ++		curr_node != NULL;
-> ++		prev_node = curr_node, curr_node = curr_node->next)
-> ++	{
-> ++		if (node == curr_node) {
-> ++			if (prev_node)
-> ++				prev_node->next = curr_node->next;
-> ++			else
-> ++				*head = curr_node->next;
-> ++			return curr_node;
-> ++		}
-> ++	}
-> ++	/* reached end of list, no match */
-> ++	return NULL;
-> + }
-> + 
-> + /* This is the entry point to the xattr module. This function copies the xattrs
-> +@@ -342,23 +471,23 @@ set_inode_xattr (ext2_filsys fs, ext2_in
-> + 		com_err(__func__, ret, "ext2fs_read_inode");
-> + 		goto out;
-> + 	}
-> +-	if (ret = ext2fs_alloc_block (fs, 0, NULL, &block)) {
-> ++	if (ret = ext2fs_alloc_block (fs, 0, NULL, &(node->block))) {
-> + 		com_err(__func__, ret, "ext2fs_alloc_block: returned %d", ret);
-> + 		goto out;
-> + 	}
-> +-	ext2fs_mark_block_bitmap2 (fs->block_map, block);
-> +-	XATTR_STDERR ("writing xattr block 0x%x to disk:\n", block);
-> +-	if (ret = ext2fs_write_ext_attr (fs, block, header)) {
-> ++	ext2fs_mark_block_bitmap2 (fs->block_map, node->block);
-> ++	XATTR_STDERR ("writing xattr block 0x%x to disk:\n", node->block);
-> ++	if (ret = ext2fs_write_ext_attr (fs, node->block, node->header)) {
-> + 		com_err(__func__, ret, "ext2fs_write_ext_attr: returned %d", ret);
-> + 		goto out;
-> + 	}
-> + 	/* point inode for current file to xattr block, update block count and
-> + 	 * write inode to disk
-> + 	 */
-> +-	inode.i_file_acl = block;
-> ++	inode.i_file_acl = node->block;
-> + 	if (ret = ext2fs_adjust_ea_refcount2(fs,
-> +-					block,
-> +-					(char*)header,
-> ++					node->block,
-> ++					(char*)(node->header),
-> + 					1,
-> + 					&newcount))
-> + 	{
-> +@@ -371,6 +500,7 @@ set_inode_xattr (ext2_filsys fs, ext2_in
-> + 	}
-> + 	if (ret = ext2fs_write_inode (fs, ino, &inode))
-> + 		com_err(__func__, ret, "ext2fs_write_inode: returned %d", ret);
-> ++	return ret;
-> + out:
-> + 	xattr_free_node (node);
-> + 	return ret;
-> diff --git a/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend b/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
-> index 241a9bf..8756d76 100644
-> --- a/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
-> +++ b/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
-> @@ -8,4 +8,5 @@ SRC_URI += " \
->      file://lib-ext2fs-ext2_ext_attr.h-add-xattr-index.patch \
->      file://misc-xattr-create-xattr-block.patch \
->      file://misc-xattr-create-xattr-block-node.patch \
-> +    file://misc-xattr-create-xattr-cache.patch \
->  "
-> 
+Yes, actually we have some problems checking out layers when the build
+starts. But I'm not seeing anything that may be related to imported layers.
+
+The problem that I'm seeing in your logs is actually tracked here:
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7505
+
+So I'm guessing you're seeing the same symptoms.
+
+Cheers,
+Alex
+
+On Tue, Jun 2, 2015 at 6:07 AM, Raghavendra Kakarla <
+Raghavendra.Kakarla@inedasystems.com> wrote:
+
+>  Hi Alex,
+>
+>
+>  Do you have any updates on this issue?
+>
+>
+>  Regards,
+>
+> Raghavendra K.
+>  ------------------------------
+> *From:* Damian, Alexandru <alexandru.damian@intel.com>
+> *Sent:* Friday, May 15, 2015 7:38 PM
+>
+> *To:* Raghavendra Kakarla
+> *Cc:* Barros Pena, Belen; yocto@yoctoproject.org
+> *Subject:* Re: [yocto] Issue with toaster
+>
+>   I'm still investigating these bugs.
+>
+>  There is something funny going on, but I didn't figure out the root
+> cause yet.
+>
+>  Alex
+>
+> On Fri, May 8, 2015 at 10:42 AM, Raghavendra Kakarla <
+> Raghavendra.Kakarla@inedasystems.com> wrote:
+>
+>>  Hi Alex,
+>>
+>>
+>>  I attached the Toaster Web logs with this mail.
+>>
+>>
+>>  Please find the attachments.
+>>
+>>
+>>  Thanks and Regards,
+>>
+>>
+>>  Raghavendra K.
+>>   ------------------------------
+>> *From:* Damian, Alexandru <alexandru.damian@intel.com>
+>> *Sent:* Friday, May 8, 2015 2:24 PM
+>> *To:* Raghavendra Kakarla
+>> *Cc:* Barros Pena, Belen; yocto@yoctoproject.org
+>>
+>> *Subject:* Re: [yocto] Issue with toaster
+>>
+>>    Hello,
+>>
+>>  Is there any error message displayed on screen ?
+>>
+>>  Can you please paste bin your latest *toaster_web.log* file  and send
+>> us the link ?
+>> You can find your latest *toaster_web.log* file by looking in
+>> */tmp/toaster_** and take most recent one. One way to do this is:
+>>
+>>  $ find /tmp/toaster_* -printf '%T@ %p\0' | sort -zk 1nr | xargs -0n1 |
+>> cut -d " " -f 2 | head -1
+>>
+>>  Thank you,
+>> Alex
+>>
+>> On Fri, May 8, 2015 at 6:14 AM, Raghavendra Kakarla <
+>> Raghavendra.Kakarla@inedasystems.com> wrote:
+>>
+>>> Hi Belen,
+>>>
+>>> I am using yocto fido.
+>>>
+>>> I am entered the my custom layer git repository url(Which is our local
+>>> git repository where our product corresponding recipe layers re there),=
+a
+>>> unique layer name and our git repository revision number.
+>>>
+>>> We entered these data but the import layer version is not respond.
+>>>
+>>> Thanks and Regards,
+>>>
+>>> Raghavendra K.
+>>> ________________________________________
+>>> From: Barros Pena, Belen <belen.barros.pena@intel.com>
+>>> Sent: Thursday, May 7, 2015 6:17 PM
+>>> To: Raghavendra Kakarla; yocto@yoctoproject.org
+>>> Subject: Re: [yocto] Issue with toaster
+>>>
+>>> On 07/05/2015 10:18, "Raghavendra Kakarla"
+>>> <Raghavendra.Kakarla@inedasystems.com> wrote:
+>>>
+>>> >Hi,
+>>> >
+>>> >I have an issue while importing custom layer in toaster. When i gave t=
+he
+>>> >all layer information for importing the layer and click on the import
+>>> >layer button in toaster it    wont respond.
+>>> >Could you please help for resolving this issue.
+>>>
+>>> Hi Raghavendra,
+>>>
+>>> We would need a bit more information to understand what's happening:
+>>>
+>>> * Which branch are you using (fido or master). If you are using master,
+>>> which commit?
+>>> * Which data are you entering in the import layer form? Keep in mind th=
+at
+>>> you must provide a git url, a unique layer name and a revision. Without
+>>> that information, the "import layer" button will remain stubbornly
+>>> inactive and nothing will happen when you click on it.
+>>>
+>>> Cheers
+>>>
+>>> Bel=C3=A9n
+>>>
+>>> >
+>>> >
+>>> >
+>>> >Thanks in advance.
+>>> >
+>>> >
+>>> > Regards,
+>>> > Raghavendra K.
+>>> >
+>>>
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>
+>>
+>>
+>>  --
+>>  Alex Damian
+>> Yocto Project
+>>  SSG / OTC
+>>
+>
+>
+>
+>  --
+>  Alex Damian
+> Yocto Project
+>  SSG / OTC
+>
 
 
+
+--=20
+Alex Damian
+Yocto Project
+SSG / OTC
+
+--e89a8f83ad652ab75c05182af08b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,s=
+ans-serif">Hi,</div><div class=3D"gmail_default" style=3D"font-family:tahom=
+a,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:t=
+ahoma,sans-serif">Yes, actually we have some problems checking out layers w=
+hen the build starts. But I&#39;m not seeing anything that may be related t=
+o imported layers.</div><div class=3D"gmail_default" style=3D"font-family:t=
+ahoma,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-fami=
+ly:tahoma,sans-serif">The problem that I&#39;m seeing in your logs is actua=
+lly tracked here:</div><div class=3D"gmail_default" style=3D"font-family:ta=
+homa,sans-serif"><br></div><div class=3D"gmail_default" style><font face=3D=
+"tahoma, sans-serif"><a href=3D"https://bugzilla.yoctoproject.org/show_bug.=
+cgi?id=3D7505">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7505</a>=
+</font><br></div><div class=3D"gmail_default" style><font face=3D"tahoma, s=
+ans-serif"><br></font></div><div class=3D"gmail_default" style><font face=
+=3D"tahoma, sans-serif">So I&#39;m guessing you&#39;re seeing the same symp=
+toms.</font></div><div class=3D"gmail_default" style><font face=3D"tahoma, =
+sans-serif"><br></font></div><div class=3D"gmail_default" style><font face=
+=3D"tahoma, sans-serif">Cheers,</font></div><div class=3D"gmail_default" st=
+yle><font face=3D"tahoma, sans-serif">Alex</font></div></div><div class=3D"=
+gmail_extra"><br><div class=3D"gmail_quote">On Tue, Jun 2, 2015 at 6:07 AM,=
+ Raghavendra Kakarla <span dir=3D"ltr">&lt;<a href=3D"mailto:Raghavendra.Ka=
+karla@inedasystems.com" target=3D"_blank">Raghavendra.Kakarla@inedasystems.=
+com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+
+
+
+
+<div dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#ff=
+ffff;font-family:Calibri,Arial,Helvetica,sans-serif">
+<p>Hi Alex,</p>
+<p><br>
+</p>
+<p>Do you have any updates on this issue?</p>
+<p><br>
+</p>
+<p>Regards,</p>
+<p>Raghavendra K.<br>
+</p>
+<div style=3D"color:rgb(33,33,33)">
+<hr style=3D"display:inline-block;width:98%">
+<div dir=3D"ltr"><font style=3D"font-size:11pt" face=3D"Calibri, sans-serif=
+" color=3D"#000000"><b>From:</b> Damian, Alexandru &lt;<a href=3D"mailto:al=
+exandru.damian@intel.com" target=3D"_blank">alexandru.damian@intel.com</a>&=
+gt;<br>
+<b>Sent:</b> Friday, May 15, 2015 7:38 PM<div><div class=3D"h5"><br>
+<b>To:</b> Raghavendra Kakarla<br>
+<b>Cc:</b> Barros Pena, Belen; <a href=3D"mailto:yocto@yoctoproject.org" ta=
+rget=3D"_blank">yocto@yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] Issue with toaster</div></div></font>
+<div>=C2=A0</div>
+</div><div><div class=3D"h5">
+<div>
+<div dir=3D"ltr">
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">I&#39;=
+m still investigating these bugs.</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>
+</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">There =
+is something funny going on, but I didn&#39;t figure out the root cause yet=
+.</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>
+</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Alex</=
+div>
+</div>
+<div class=3D"gmail_extra"><br>
+<div class=3D"gmail_quote">On Fri, May 8, 2015 at 10:42 AM, Raghavendra Kak=
+arla <span dir=3D"ltr">
+&lt;<a href=3D"mailto:Raghavendra.Kakarla@inedasystems.com" target=3D"_blan=
+k">Raghavendra.Kakarla@inedasystems.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+<div dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#ff=
+ffff;font-family:Calibri,Arial,Helvetica,sans-serif">
+<p>Hi Alex,</p>
+<p><br>
+</p>
+<p>I attached the Toaster Web logs with this mail.</p>
+<p><br>
+</p>
+<p>Please find the attachments.</p>
+<span>
+<p><br>
+</p>
+<p>Thanks and Regards,</p>
+<p><br>
+</p>
+<p>Raghavendra K.<br>
+</p>
+</span>
+<div style=3D"color:rgb(33,33,33)">
+<hr style=3D"display:inline-block;width:98%">
+<div dir=3D"ltr"><font style=3D"font-size:11pt" face=3D"Calibri, sans-serif=
+" color=3D"#000000"><b>From:</b> Damian, Alexandru &lt;<a href=3D"mailto:al=
+exandru.damian@intel.com" target=3D"_blank">alexandru.damian@intel.com</a>&=
+gt;<br>
+<b>Sent:</b> Friday, May 8, 2015 2:24 PM<br>
+<b>To:</b> Raghavendra Kakarla<br>
+<b>Cc:</b> Barros Pena, Belen; <a href=3D"mailto:yocto@yoctoproject.org" ta=
+rget=3D"_blank">
+yocto@yoctoproject.org</a>
+<div>
+<div><br>
+<b>Subject:</b> Re: [yocto] Issue with toaster</div>
+</div>
+</font>
+<div>=C2=A0</div>
+</div>
+<div>
+<div>
+<div>
+<div dir=3D"ltr">
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Hello,=
+</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>
+</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Is the=
+re any error message displayed on screen ?=C2=A0</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>
+</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Can yo=
+u please paste bin your latest
+<i>toaster_web.log</i> file =C2=A0and send us the link ?</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">You ca=
+n find your latest
+<i>toaster_web.log</i> file by looking in <i>/tmp/toaster_*</i> and take mo=
+st recent one. One way to do this is:</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>
+</div>
+<div class=3D"gmail_default"><font face=3D"monospace, monospace" size=3D"1"=
+>$ find /tmp/toaster_* -printf &#39;%T@ %p\0&#39; | sort -zk 1nr | xargs -0=
+n1 | cut -d &quot; &quot; -f 2 | head -1<br>
+</font></div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>
+</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Thank =
+you,</div>
+<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Alex</=
+div>
+</div>
+<div class=3D"gmail_extra"><br>
+<div class=3D"gmail_quote">On Fri, May 8, 2015 at 6:14 AM, Raghavendra Kaka=
+rla <span dir=3D"ltr">
+&lt;<a href=3D"mailto:Raghavendra.Kakarla@inedasystems.com" target=3D"_blan=
+k">Raghavendra.Kakarla@inedasystems.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+Hi Belen,<br>
+<br>
+I am using yocto fido.<br>
+<br>
+I am entered the my custom layer git repository url(Which is our local git =
+repository where our product corresponding recipe layers re there),a unique=
+ layer name and our git repository revision number.<br>
+<br>
+We entered these data but the import layer version is not respond.<br>
+<br>
+Thanks and Regards,<br>
+<br>
+Raghavendra K.<br>
+________________________________________<br>
+From: Barros Pena, Belen &lt;<a href=3D"mailto:belen.barros.pena@intel.com"=
+ target=3D"_blank">belen.barros.pena@intel.com</a>&gt;<br>
+Sent: Thursday, May 7, 2015 6:17 PM<br>
+To: Raghavendra Kakarla; <a href=3D"mailto:yocto@yoctoproject.org" target=
+=3D"_blank">
+yocto@yoctoproject.org</a><br>
+Subject: Re: [yocto] Issue with toaster<br>
+<div>
+<div><br>
+On 07/05/2015 10:18, &quot;Raghavendra Kakarla&quot;<br>
+&lt;<a href=3D"mailto:Raghavendra.Kakarla@inedasystems.com" target=3D"_blan=
+k">Raghavendra.Kakarla@inedasystems.com</a>&gt; wrote:<br>
+<br>
+&gt;Hi,<br>
+&gt;<br>
+&gt;I have an issue while importing custom layer in toaster. When i gave th=
+e<br>
+&gt;all layer information for importing the layer and click on the import<b=
+r>
+&gt;layer button in toaster it=C2=A0 =C2=A0 wont respond.<br>
+&gt;Could you please help for resolving this issue.<br>
+<br>
+Hi Raghavendra,<br>
+<br>
+We would need a bit more information to understand what&#39;s happening:<br=
+>
+<br>
+* Which branch are you using (fido or master). If you are using master,<br>
+which commit?<br>
+* Which data are you entering in the import layer form? Keep in mind that<b=
+r>
+you must provide a git url, a unique layer name and a revision. Without<br>
+that information, the &quot;import layer&quot; button will remain stubbornl=
+y<br>
+inactive and nothing will happen when you click on it.<br>
+<br>
+Cheers<br>
+<br>
+Bel=C3=A9n<br>
+<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;Thanks in advance.<br>
+&gt;<br>
+&gt;<br>
+&gt; Regards,<br>
+&gt; Raghavendra K.<br>
+&gt;<br>
+<br>
+--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</div>
+</div>
+</blockquote>
+</div>
+<br>
+<br clear=3D"all">
+<div><br>
+</div>
+-- <br>
+<div>
+<div dir=3D"ltr">Alex Damian
+<div>Yocto Project<br>
+</div>
+<div>SSG / OTC=C2=A0</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+<br>
+<br clear=3D"all">
+<div><br>
+</div>
+-- <br>
+<div>
+<div dir=3D"ltr">Alex Damian
+<div>Yocto Project<br>
+</div>
+<div>SSG / OTC=C2=A0</div>
+</div>
+</div>
+</div>
+</div>
+</div></div></div>
+</div>
+
+</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div class=
+=3D"gmail_signature"><div dir=3D"ltr">Alex Damian<div>Yocto Project<br></di=
+v><div>SSG / OTC=C2=A0</div></div></div>
+</div>
+
+--e89a8f83ad652ab75c05182af08b--
