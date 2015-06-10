@@ -1,52 +1,50 @@
-Return-Path: <alexandru.damian@intel.com>
+Return-Path: <vincent.beng.keat.cheah@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0917DE009C2; Wed, 10 Jun 2015 07:46:25 -0700 (PDT)
+	id 7508AE00A25; Tue,  9 Jun 2015 19:50:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.170 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-ie0-f170.google.com (mail-ie0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3B95E0095D
-	for <yocto@yoctoproject.org>; Wed, 10 Jun 2015 07:46:21 -0700 (PDT)
-Received: by iesa3 with SMTP id a3so35920387ies.2
-	for <yocto@yoctoproject.org>; Wed, 10 Jun 2015 07:46:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=iZpo+QUKPjaz5yOO8VNdQUgiXpZucqF1EUSvoAk23ds=;
-	b=FITmxcdos+Vw55P+fuK0WoaO6kr3E6C8PfXL9psNlm0lvZropP/JV3YHEnE0BhogXY
-	6d8pf6mt5418m9+FMUVwgBzKnN30tEDkpW3CpBCPQP3TkknAxm4Z+NNepYCGg2NWcVos
-	OSwegRQk5iNPf7DRecy+RAFPYa/8VQgicYHl5C9lr9FTrOFS5Gf4dhoifUb8qvnqbUBh
-	0u5Y/3pyiQMaPCbzuYXzZE8+ZNvE3IKjOTjv/eDuZqkfIQHB+rTmwSbDTJui0Lje3Riu
-	VAy6JmlUQ45ywEBKFjtV9vfbWRz8rIF1EBvY0q7NAOap8yhKwjx/l02dfnquLEaDGWA9
-	Tq4w==
-X-Gm-Message-State: ALoCoQlUy5A98e81TfdiUJOtHdSetVGKRK45voVygepCmyPaPV5YxCcsxrnOGTR8rFaiCe0tPwzM
-X-Received: by 10.50.25.162 with SMTP id d2mr6343071igg.11.1433947580561; Wed,
-	10 Jun 2015 07:46:20 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC0A9E009F0;
+	Tue,  9 Jun 2015 19:50:56 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga102.jf.intel.com with ESMTP; 09 Jun 2015 19:50:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.13,585,1427785200"; d="scan'208";a="505876202"
+Received: from pgsmsx102.gar.corp.intel.com ([10.221.44.80])
+	by FMSMGA003.fm.intel.com with ESMTP; 09 Jun 2015 19:50:51 -0700
+Received: from pgsmsx103.gar.corp.intel.com ([169.254.2.205]) by
+	PGSMSX102.gar.corp.intel.com ([10.221.44.80]) with mapi id
+	14.03.0224.002; Wed, 10 Jun 2015 10:50:50 +0800
+From: "Cheah, Vincent Beng Keat" <vincent.beng.keat.cheah@intel.com>
+To: Chris Tapp <opensource@keylevel.com>
+Thread-Topic: [meta-intel] "Crazy" Xorg memory usage after upgrading from
+	Daisy to Fido
+Thread-Index: AQHQogZAhcPdu0sLrEaBPYZenhd+m52k7viwgAAPRtA=
+Date: Wed, 10 Jun 2015 02:50:50 +0000
+Message-ID: <D4B999590D2ACC499FE6A1F7CF2D454A05A77060@PGSMSX103.gar.corp.intel.com>
+References: <107F2908-2817-46D5-96CC-0B71CD6ADBEB@keylevel.com>
+	<2174669.LymzPMzo3U@peggleto-mobl.ger.corp.intel.com>
+	<50B33AC5ED75F74F991980326F1C438D1905581B@PGSMSX103.gar.corp.intel.com>
+In-Reply-To: <50B33AC5ED75F74F991980326F1C438D1905581B@PGSMSX103.gar.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.30.20.205]
 MIME-Version: 1.0
-Received: by 10.79.38.11 with HTTP; Wed, 10 Jun 2015 07:46:00 -0700 (PDT)
-In-Reply-To: <1433221637508.32807@inedasystems.com>
-References: <D1711C04.5B1A6%belen.barros.pena@intel.com>
-	<1431062039464.37764@inedasystems.com>
-	<CAJ2CSBvXZwPkzSFMwEYwwmjWaQCFZqpeM-LDKEiEmRtag5aXvw@mail.gmail.com>
-	<1431078146099.25248@inedasystems.com>
-	<CAJ2CSBvBaoPC-4Rny4a+DbJoEjYKMP5T19Yzp21XxVf35v5qnw@mail.gmail.com>
-	<1433221637508.32807@inedasystems.com>
-From: "Damian, Alexandru" <alexandru.damian@intel.com>
-Date: Wed, 10 Jun 2015 15:46:00 +0100
-Message-ID: <CAJ2CSBtr_-Tfj9irE3JgFmN6Sxf6T+fh70eak1=0D7Nz3zSzAQ@mail.gmail.com>
-To: Raghavendra Kakarla <Raghavendra.Kakarla@inedasystems.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Issue with toaster
+X-Mailman-Approved-At: Wed, 10 Jun 2015 08:01:38 -0700
+Cc: Yocto Project <yocto@yoctoproject.org>, "Chang,
+	Rebecca Swee Fun" <rebecca.swee.fun.chang@intel.com>,
+	'Paul Eggleton' <paul.eggleton@linux.intel.com>,
+	"meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>
+Subject: Re: [meta-intel] "Crazy" Xorg memory usage after upgrading from Daisy to Fido
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,450 +56,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Jun 2015 14:46:25 -0000
-Content-Type: multipart/alternative; boundary=e89a8f83ad652ab75c05182af08b
+X-List-Received-Date: Wed, 10 Jun 2015 02:50:59 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---e89a8f83ad652ab75c05182af08b
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+SGkgQ2hyaXMsIA0KDQpJIGRvbuKAmXQgaGF2ZSBhbnkgaWRlYSB3aXRoIHJlZ2FyZCB0byB0aGUg
+aXNzdWUgdGhhdCB5b3UgYXJlIGdldHRpbmcgYmVsb3cuIEFsbCB0aGUgd29yayB0aGF0IHdlIGFy
+ZSBkb2luZyBoZXJlIHNvIGZhciBpcyBvbiBDSFYgKHlvY3RvLWtlcm5lbC0zLjE5LjUgc3RhbmRh
+cmQvYmFzZSBicmFuY2gpLg0KDQpGcm9tIHlvdXIgc3RhdGVtZW50IGJlbG93LCBpdCBsb29rcyB0
+byBtZSB0aGF0IHlvdSBhcmUgdXBncmFkaW5nIG1ldGEtaW50ZWwgZnJvbSBEYWlzeSB0byBGaWRv
+IGJyYW5jaCB3aGljaCBhcmUgdXNpbmcgeW9jdG8ta2VybmVsLTMuMTQgKG1ldGEtaW50ZWwvaXNn
+L3ZhbGxleWlzbGFuZCBCU1ApLiBJJ20gbm90IHN1cmUgaWYgeW91IGFyZSBhYmxlIHRvIHJlcHJv
+ZHVjZSB0aGlzIHdpdGggeW9jdG8ta2VybmVsLTMuMTkuNSAoc3RhbmRhcmQvYmFzZSBicmFuY2gp
+IGZyb20gdGhlIG1ldGEtaW50ZWwgY29tbW9uIGRpcmVjdG9yeS4gQWxzbywgY29tcGFyaW5nIERh
+aXN5IGJyYW5jaCBhZ2FpbnN0IEZpZG8sIGl0IHNlZW1zIGxpa2UgdGhlcmUgYXJlIGxvdCBvZiBj
+aGFuZ2VzIGluIHRoZSB1c2VyLXNwYWNlIHN0YWNrcywgd2hpY2ggSSdtIG5vdCBzdXJlIGNvdWxk
+IGNhdXNlIHRoZSBpc3N1ZSBiZWxvdy4gDQoNCg0KRGFpc3kgMS42LjINCglLZXJuZWwgMy40LCAz
+LjEwLCAzLjE0IChTdXBwb3J0YWJsZSBjb21tb24gYmFzZSkNCglYb3JnLXNlcnZlciAxLjE1DQoJ
+V2F5bGFuZC9XZXN0b24gMS40LjANCglYZjg2LXZpZGVvLWludGVsIDIuOTkuOTEwDQoJTGliZHJt
+IDIuNC41Mg0KCU1FU0EgOS4yLjUNCglDYWlybyAxLjEyLjE2DQoJbGliVkEgMS4zLjEgKGZyb20g
+bWV0YS1pbnRlbCkNCglJbnRlbC1WQS1kcml2ZXIgMS4zLjIgKGZyb20gbWV0YS1pbnRlbCkNCglH
+U3RyZWFtZXIgMS4yLjMNCglHU3RyZWFtZXItVkFBUEkgMC41LjggKGZyb20gbWV0YS1pbnRlbCkN
+Cg0KDQpEaXp6eSAxLjcuMQ0KCUtlcm5lbCAzLjEwLCAzLjE0LCAzLjE3IChTdXBwb3J0YWJsZSBj
+b21tb24gYmFzZSkNCglYb3JnLXNlcnZlciAxLjE1LjENCglXYXlsYW5kL1dlc3RvbiAxLjUuMA0K
+CVhmODYtdmlkZW8taW50ZWwgMi45OS45MTINCglMaWJkcm0gMi40LjU0DQoJTUVTQSAxMC4xLjMN
+CglDYWlybyAxLjEyLjE2DQoJbGliVkEgMS4zLjEgKGZyb20gbWV0YS1pbnRlbCkNCglJbnRlbC1W
+QS1kcml2ZXIgMS4zLjIgKGZyb20gbWV0YS1pbnRlbCkNCglHU3RyZWFtZXIgMS40LjENCglHU3Ry
+ZWFtZXItVkFBUEkgMC41LjggKGZyb20gbWV0YS1pbnRlbCkNCg0KDQpGaWRvIDEuOA0KCUtlcm5l
+bCAzLjE0LCAzLjE5IChzdXBwb3J0YWJsZSBjb21vbiBiYXNlKQ0KCVhvcmctc2VydmVyIDEuMTYu
+Mw0KCVdheWxhbmQvd2VzdG9uIDEuNi4wDQoJWGY4Ni12aWRlby1pbnRlbCAyLjk5LjkxNw0KCUxp
+YmRybSAyLjQuNTkNCglNZXNhIDEwLjQuNA0KCUNhaXJvIDEuMTIuMTgNCglMaWJWQSAxLjUuMCAo
+ZnJvbSBtZXRhLWludGVsKQ0KCUludGVsLVZBLWRyaXZlciAxLjUuMCAoZnJvbSBtZXRhLWludGVs
+KQ0KCUdzdHJlYW1lciAxLjQuNQ0KCUdzdHJlYW1lci12YWFwaSAwLjUuMTAgKGZyb20gbWV0YS1p
+bnRlbCkNCg0KDQouLi4gVmluY2VudA0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJv
+bTogQ2hhbmcsIFJlYmVjY2EgU3dlZSBGdW4gDQpTZW50OiBXZWRuZXNkYXksIEp1bmUgMTAsIDIw
+MTUgOTowOCBBTQ0KVG86IENoZWFoLCBWaW5jZW50IEJlbmcgS2VhdA0KQ2M6IG1ldGEtaW50ZWxA
+eW9jdG9wcm9qZWN0Lm9yZzsgQ2hyaXMgVGFwcDsgWW9jdG8gUHJvamVjdDsgV29sZCwgU2F1bDsg
+J1BhdWwgRWdnbGV0b24nDQpTdWJqZWN0OiBSRTogW21ldGEtaW50ZWxdICJDcmF6eSIgWG9yZyBt
+ZW1vcnkgdXNhZ2UgYWZ0ZXIgdXBncmFkaW5nIGZyb20gRGFpc3kgdG8gRmlkbw0KDQpIaSBWaW5j
+ZW50LA0KDQpDYW4geW91IGhlbHAgdG8gY29tbWVudCBvbiB0aGlzIGlzc3VlIG1lbnRpb25lZCBi
+eSBDaHJpcz8NClRoYW5rcy4NCg0KUmVnYXJkcywNClJlYmVjY2ENCg0KPiAtLS0tLU9yaWdpbmFs
+IE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBQYXVsIEVnZ2xldG9uIFttYWlsdG86cGF1bC5lZ2dsZXRv
+bkBsaW51eC5pbnRlbC5jb21dDQo+IFNlbnQ6IDA5IEp1bmUsIDIwMTUgMTI6MTUgQU0NCj4gVG86
+IENoYW5nLCBSZWJlY2NhIFN3ZWUgRnVuDQo+IENjOiBtZXRhLWludGVsQHlvY3RvcHJvamVjdC5v
+cmc7IENocmlzIFRhcHA7IFlvY3RvIFByb2plY3Q7IFdvbGQsIFNhdWwNCj4gU3ViamVjdDogUmU6
+IFttZXRhLWludGVsXSAiQ3JhenkiIFhvcmcgbWVtb3J5IHVzYWdlIGFmdGVyIHVwZ3JhZGluZyAN
+Cj4gZnJvbSBEYWlzeSB0byBGaWRvDQo+IA0KPiBSZWJlY2NhLCBpcyB0aGlzIHNvbWV0aGluZyB5
+b3Ugb3Igb25lIG9mIHlvdXIgY29sbGVhZ3VlcyB3b3VsZCBiZSBhYmxlIA0KPiB0byBoZWxwIHdp
+dGg/DQo+IA0KPiBUaGFua3MsDQo+IFBhdWwNCj4gDQo+IE9uIEZyaWRheSAwNSBKdW5lIDIwMTUg
+MDg6Mjk6MDAgQ2hyaXMgVGFwcCB3cm90ZToNCj4gPiBJ4oCZdmUgZ290IGFuIGFwcGxpY2F0aW9u
+IHRoYXQgSeKAmXZlIGhhZCBydW5uaW5nIG5pY2VseSB1bmRlciBEYWlzeSBmb3IgDQo+ID4gc29t
+ZSB0aW1lLiBBcyBEYWlzeSBpcyBub3cgYSBiaXQgb2xkLCBJIGRlY2lkZWQgdG8gbW92ZSB0aGUg
+DQo+ID4gYXBwbGljYXRpb24gdG8NCj4gRmlkby4NCj4gPiBJ4oCZbSB1c2luZyB0aGUgbWV0YS1p
+bnRlbC9pc2cvdmFsbGV5aXNsYW5kIEJTUCBhbmQgYWxzbyBzd2l0Y2hlZCB0byANCj4gPiB1c2lu
+ZyBpdHMgRmlkbyBicmFuY2guDQo+ID4NCj4gPiBUaGUgbW92ZSBvbmx5IHJlcXVpcmVkIGEgZmV3
+IG1pbm9yIGNoYW5nZXMgYW5kIGFsbG93ZWQgbWUgdG8gZHJvcCBhIA0KPiA+IERhaXN5IOKAnHVw
+ZGF0ZXPigJ0gbGF5ZXIgdGhhdCBJIGhhZCBiZWVuIHVzaW5nIGZvciB0aGluZ3MgbGlrZSBnc3Ry
+ZWFtZXItMS4wLg0KPiA+DQo+ID4gSG93ZXZlciwgdGhlcmUgaXMgb25lIGJlaGF2aW91ciB3aGlj
+aCBpcyBraWxsaW5nIG1lIC0gSSBrZWVwIGdldHRpbmcgDQo+ID4gb29tLWtpbGxlciBldmVudHMh
+DQo+ID4NCj4gPiBUaGUgYXBwbGljYXRpb24gaXMgYmFzaWNhbGx5IGFuIE9wZW5HTC1FUyAyLjAg
+YXBwbGljYXRpb24gdGhhdCANCj4gPiByZW5kZXJzIHZhcmlvdXMgYml0cyBvZiB0ZXh0LCBpbWFn
+ZXMgYW5kIHN0cmVhbXMgY2FwdHVyZWQgZnJvbSBhIA0KPiA+IGdzdHJlYW1lciBwaXBlbGluZSBh
+dCA2MCBIeiB0byBhIDEwODAgc2NyZWVuLg0KPiA+DQo+ID4gVW5kZXIgRGFpc3kgdGhpcyBnZW5l
+cmFsbHkgdG9vayBqdXN0IHVuZGVyIDUwJSBDUFUgYW5kIHVzZWQgYSBtb2Rlc3QgDQo+ID4gcGVy
+Y2VudGFnZSBvZiB0aGUgNCBHQiBzeXN0ZW0gbWVtb3J5IC0gaS5lLiBubyB3aGVyZSBuZWFyIHJ1
+bm5pbmcgDQo+ID4gb3V0IGFuZCB1c2FnZSB3YXMganVzdCBhYm91dCBzdGF0aWMuDQo+ID4NCj4g
+PiBVbmRlciBGaWRvIHRoZSBDUFUgdXNhZ2UgaXMgYWJvdXQgdGhlIHNhbWUgYW5kIHRoZSBtZW1v
+cnkgdXNlZCBieSANCj4gPiB0aGUgYXBwbGljYXRpb24gaXRzZWxmIGxvb2tzIHJlYXNvbmFibGUg
+d2hlbiBjb21wYXJlZCB0byBEYWlzeSAoYW5kIA0KPiA+IHVzYWdlIGlzIHN0YXRpYykuIEhvd2V2
+ZXIsIHRoZSBtZW1vcnkgdXNlZCBieSBYT3JnIGlzIGZhciBmcm9tIA0KPiA+IGNvbnN0YW50IG9y
+IHN0YWJsZSAtIGl0IGJhc2ljYWxseSBoYXMgYSBWU1ogdmFsdWUgY3ljbGluZyBmcm9tIGFib3V0
+IA0KPiA+IDYzMG0gdG8gMjk4OW0gd2l0aCB0aGUgY3ljbGUgcGVyaW9kIGJlaW5nIGluIHRoZSBv
+cmRlciBvZiA1IHRvIDEwIA0KPiA+IHNlY29uZHMuIFBlYWtzIGluIFhPcmcgbWVtb3J5IHVzYWdl
+IGNvaW5jaWRlIHdpdGggc3R1dHRlcnMgaW4gdmlkZW8gDQo+ID4gcGxheWJhY2sgd2l0aGluIG15
+IGFwcCAoYXVkaW8gaXMgdW5hZmZlY3RlZCkuDQo+ID4NCj4gPiBNb25pdG9yaW5nIC9wcm9jL21l
+bWluZm8gd2hlbiB0aGlzIGlzIGdvaW5nIG9uIHNob3dzIHRoYXQg4oCcU2htZW3igJ0NCj4gPiB1
+c2FnZSBpcyBmb2xsb3dpbmcgdGhlIHNhbWUgcGF0dGVybiBhcyB0aGUgbWVtb3J5IHVzZWQgYnkg
+WE9yZyAoaS5lLg0KPiA+IFNobWVtIHVzYWdlIGlzIGhpZ2ggYXQgdGhlIHNhbWUgdGltZSkuIElm
+IHRoZSB2YWx1ZXMgYXJlIHBsb3R0ZWQgb24gDQo+ID4gYSBncmFwaCB0aGV5IGFwcGVhciB0byBz
+aG93IHRoYXQgU2htZW0gdXNhZ2UgZ3Jvd3MgbGluZWFybHkgYW5kIHRoZW4gDQo+ID4gZmFsbHMg
+cmFwaWRseSB3aGVuIG5lYXJseSBhbGwgdGhlIGZyZWUgbWVtb3J5IGhhcyBiZWVuIGV4aGF1c3Rl
+ZCwgDQo+ID4gcGVyaGFwcyBpbiByZXNwb25zZSB0byBhIGRlbGF5ZWQgZ2FyYmFnZSBjb2xsZWN0
+aW9uIHJ1bi4NCj4gPg0KPiA+IERvZXMgYW55b25lIGhhdmUgYW55IGlkZWFzIGFzIHRvIHdoYXQg
+SSBzaG91bGQgYmUgbG9va2luZyBhdCB0byB3b3JrIA0KPiA+IG91dCB3aGF04oCZcyBnb2luZyBv
+bj8NCj4gPg0KPiA+IEFyZSB0aGVyZSBhbnkgc2lnbmlmaWNhbnQgY2hhbmdlcyBiZXR3ZWVuIFhP
+cmcgdW5kZXIgRGFpc3kgYW5kIEZpZG8gDQo+ID4gdGhhdCBjb3VsZCBiZSBjYXVzaW5nIHRoaXM/
+DQo+ID4NCj4gPiBDb3VsZCB0aGlzIGJlIHJlbGF0ZWQgdG8gdGhlIG1ldGEtaW50ZWwgdmlkZW8g
+ZHJpdmVycz8NCj4gPg0KPiA+IEFueSBmZWVkYmFjayAvIGNvbW1lbnRzIHdvdWxkIGJlIHJlYWxs
+eSBhcHByZWNpYXRlZC4NCj4gPg0KPiA+IFRoYW5rcyA6LSkNCj4gPg0KPiA+IC0tDQo+ID4NCj4g
+PiBDaHJpcyBUYXBwDQo+ID4gb3BlbnNvdXJjZUBrZXlsZXZlbC5jb20NCj4gPiB3d3cua2V5bGV2
+ZWwuY29tDQo+ID4NCj4gPiAtLS0tDQo+ID4gWW91IGNhbiB0ZWxsIHlvdSdyZSBnZXR0aW5nIG9s
+ZGVyIHdoZW4geW91ciBjYXIgaW5zdXJhbmNlIGdldHMgcmVhbCBjaGVhcCENCj4gDQo+IC0tDQo+
+IA0KPiBQYXVsIEVnZ2xldG9uDQo+IEludGVsIE9wZW4gU291cmNlIFRlY2hub2xvZ3kgQ2VudHJl
+DQo=
 
-Hi,
-
-Yes, actually we have some problems checking out layers when the build
-starts. But I'm not seeing anything that may be related to imported layers.
-
-The problem that I'm seeing in your logs is actually tracked here:
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7505
-
-So I'm guessing you're seeing the same symptoms.
-
-Cheers,
-Alex
-
-On Tue, Jun 2, 2015 at 6:07 AM, Raghavendra Kakarla <
-Raghavendra.Kakarla@inedasystems.com> wrote:
-
->  Hi Alex,
->
->
->  Do you have any updates on this issue?
->
->
->  Regards,
->
-> Raghavendra K.
->  ------------------------------
-> *From:* Damian, Alexandru <alexandru.damian@intel.com>
-> *Sent:* Friday, May 15, 2015 7:38 PM
->
-> *To:* Raghavendra Kakarla
-> *Cc:* Barros Pena, Belen; yocto@yoctoproject.org
-> *Subject:* Re: [yocto] Issue with toaster
->
->   I'm still investigating these bugs.
->
->  There is something funny going on, but I didn't figure out the root
-> cause yet.
->
->  Alex
->
-> On Fri, May 8, 2015 at 10:42 AM, Raghavendra Kakarla <
-> Raghavendra.Kakarla@inedasystems.com> wrote:
->
->>  Hi Alex,
->>
->>
->>  I attached the Toaster Web logs with this mail.
->>
->>
->>  Please find the attachments.
->>
->>
->>  Thanks and Regards,
->>
->>
->>  Raghavendra K.
->>   ------------------------------
->> *From:* Damian, Alexandru <alexandru.damian@intel.com>
->> *Sent:* Friday, May 8, 2015 2:24 PM
->> *To:* Raghavendra Kakarla
->> *Cc:* Barros Pena, Belen; yocto@yoctoproject.org
->>
->> *Subject:* Re: [yocto] Issue with toaster
->>
->>    Hello,
->>
->>  Is there any error message displayed on screen ?
->>
->>  Can you please paste bin your latest *toaster_web.log* file  and send
->> us the link ?
->> You can find your latest *toaster_web.log* file by looking in
->> */tmp/toaster_** and take most recent one. One way to do this is:
->>
->>  $ find /tmp/toaster_* -printf '%T@ %p\0' | sort -zk 1nr | xargs -0n1 |
->> cut -d " " -f 2 | head -1
->>
->>  Thank you,
->> Alex
->>
->> On Fri, May 8, 2015 at 6:14 AM, Raghavendra Kakarla <
->> Raghavendra.Kakarla@inedasystems.com> wrote:
->>
->>> Hi Belen,
->>>
->>> I am using yocto fido.
->>>
->>> I am entered the my custom layer git repository url(Which is our local
->>> git repository where our product corresponding recipe layers re there),=
-a
->>> unique layer name and our git repository revision number.
->>>
->>> We entered these data but the import layer version is not respond.
->>>
->>> Thanks and Regards,
->>>
->>> Raghavendra K.
->>> ________________________________________
->>> From: Barros Pena, Belen <belen.barros.pena@intel.com>
->>> Sent: Thursday, May 7, 2015 6:17 PM
->>> To: Raghavendra Kakarla; yocto@yoctoproject.org
->>> Subject: Re: [yocto] Issue with toaster
->>>
->>> On 07/05/2015 10:18, "Raghavendra Kakarla"
->>> <Raghavendra.Kakarla@inedasystems.com> wrote:
->>>
->>> >Hi,
->>> >
->>> >I have an issue while importing custom layer in toaster. When i gave t=
-he
->>> >all layer information for importing the layer and click on the import
->>> >layer button in toaster it    wont respond.
->>> >Could you please help for resolving this issue.
->>>
->>> Hi Raghavendra,
->>>
->>> We would need a bit more information to understand what's happening:
->>>
->>> * Which branch are you using (fido or master). If you are using master,
->>> which commit?
->>> * Which data are you entering in the import layer form? Keep in mind th=
-at
->>> you must provide a git url, a unique layer name and a revision. Without
->>> that information, the "import layer" button will remain stubbornly
->>> inactive and nothing will happen when you click on it.
->>>
->>> Cheers
->>>
->>> Bel=C3=A9n
->>>
->>> >
->>> >
->>> >
->>> >Thanks in advance.
->>> >
->>> >
->>> > Regards,
->>> > Raghavendra K.
->>> >
->>>
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->>
->>
->>
->>  --
->>  Alex Damian
->> Yocto Project
->>  SSG / OTC
->>
->
->
->
->  --
->  Alex Damian
-> Yocto Project
->  SSG / OTC
->
-
-
-
---=20
-Alex Damian
-Yocto Project
-SSG / OTC
-
---e89a8f83ad652ab75c05182af08b
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:tahoma,s=
-ans-serif">Hi,</div><div class=3D"gmail_default" style=3D"font-family:tahom=
-a,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:t=
-ahoma,sans-serif">Yes, actually we have some problems checking out layers w=
-hen the build starts. But I&#39;m not seeing anything that may be related t=
-o imported layers.</div><div class=3D"gmail_default" style=3D"font-family:t=
-ahoma,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-fami=
-ly:tahoma,sans-serif">The problem that I&#39;m seeing in your logs is actua=
-lly tracked here:</div><div class=3D"gmail_default" style=3D"font-family:ta=
-homa,sans-serif"><br></div><div class=3D"gmail_default" style><font face=3D=
-"tahoma, sans-serif"><a href=3D"https://bugzilla.yoctoproject.org/show_bug.=
-cgi?id=3D7505">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7505</a>=
-</font><br></div><div class=3D"gmail_default" style><font face=3D"tahoma, s=
-ans-serif"><br></font></div><div class=3D"gmail_default" style><font face=
-=3D"tahoma, sans-serif">So I&#39;m guessing you&#39;re seeing the same symp=
-toms.</font></div><div class=3D"gmail_default" style><font face=3D"tahoma, =
-sans-serif"><br></font></div><div class=3D"gmail_default" style><font face=
-=3D"tahoma, sans-serif">Cheers,</font></div><div class=3D"gmail_default" st=
-yle><font face=3D"tahoma, sans-serif">Alex</font></div></div><div class=3D"=
-gmail_extra"><br><div class=3D"gmail_quote">On Tue, Jun 2, 2015 at 6:07 AM,=
- Raghavendra Kakarla <span dir=3D"ltr">&lt;<a href=3D"mailto:Raghavendra.Ka=
-karla@inedasystems.com" target=3D"_blank">Raghavendra.Kakarla@inedasystems.=
-com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"mar=
-gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-
-
-
-
-<div dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#ff=
-ffff;font-family:Calibri,Arial,Helvetica,sans-serif">
-<p>Hi Alex,</p>
-<p><br>
-</p>
-<p>Do you have any updates on this issue?</p>
-<p><br>
-</p>
-<p>Regards,</p>
-<p>Raghavendra K.<br>
-</p>
-<div style=3D"color:rgb(33,33,33)">
-<hr style=3D"display:inline-block;width:98%">
-<div dir=3D"ltr"><font style=3D"font-size:11pt" face=3D"Calibri, sans-serif=
-" color=3D"#000000"><b>From:</b> Damian, Alexandru &lt;<a href=3D"mailto:al=
-exandru.damian@intel.com" target=3D"_blank">alexandru.damian@intel.com</a>&=
-gt;<br>
-<b>Sent:</b> Friday, May 15, 2015 7:38 PM<div><div class=3D"h5"><br>
-<b>To:</b> Raghavendra Kakarla<br>
-<b>Cc:</b> Barros Pena, Belen; <a href=3D"mailto:yocto@yoctoproject.org" ta=
-rget=3D"_blank">yocto@yoctoproject.org</a><br>
-<b>Subject:</b> Re: [yocto] Issue with toaster</div></div></font>
-<div>=C2=A0</div>
-</div><div><div class=3D"h5">
-<div>
-<div dir=3D"ltr">
-<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">I&#39;=
-m still investigating these bugs.</div>
-<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>
-</div>
-<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">There =
-is something funny going on, but I didn&#39;t figure out the root cause yet=
-.</div>
-<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>
-</div>
-<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Alex</=
-div>
-</div>
-<div class=3D"gmail_extra"><br>
-<div class=3D"gmail_quote">On Fri, May 8, 2015 at 10:42 AM, Raghavendra Kak=
-arla <span dir=3D"ltr">
-&lt;<a href=3D"mailto:Raghavendra.Kakarla@inedasystems.com" target=3D"_blan=
-k">Raghavendra.Kakarla@inedasystems.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-<div dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#ff=
-ffff;font-family:Calibri,Arial,Helvetica,sans-serif">
-<p>Hi Alex,</p>
-<p><br>
-</p>
-<p>I attached the Toaster Web logs with this mail.</p>
-<p><br>
-</p>
-<p>Please find the attachments.</p>
-<span>
-<p><br>
-</p>
-<p>Thanks and Regards,</p>
-<p><br>
-</p>
-<p>Raghavendra K.<br>
-</p>
-</span>
-<div style=3D"color:rgb(33,33,33)">
-<hr style=3D"display:inline-block;width:98%">
-<div dir=3D"ltr"><font style=3D"font-size:11pt" face=3D"Calibri, sans-serif=
-" color=3D"#000000"><b>From:</b> Damian, Alexandru &lt;<a href=3D"mailto:al=
-exandru.damian@intel.com" target=3D"_blank">alexandru.damian@intel.com</a>&=
-gt;<br>
-<b>Sent:</b> Friday, May 8, 2015 2:24 PM<br>
-<b>To:</b> Raghavendra Kakarla<br>
-<b>Cc:</b> Barros Pena, Belen; <a href=3D"mailto:yocto@yoctoproject.org" ta=
-rget=3D"_blank">
-yocto@yoctoproject.org</a>
-<div>
-<div><br>
-<b>Subject:</b> Re: [yocto] Issue with toaster</div>
-</div>
-</font>
-<div>=C2=A0</div>
-</div>
-<div>
-<div>
-<div>
-<div dir=3D"ltr">
-<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Hello,=
-</div>
-<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>
-</div>
-<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Is the=
-re any error message displayed on screen ?=C2=A0</div>
-<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>
-</div>
-<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Can yo=
-u please paste bin your latest
-<i>toaster_web.log</i> file =C2=A0and send us the link ?</div>
-<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">You ca=
-n find your latest
-<i>toaster_web.log</i> file by looking in <i>/tmp/toaster_*</i> and take mo=
-st recent one. One way to do this is:</div>
-<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>
-</div>
-<div class=3D"gmail_default"><font face=3D"monospace, monospace" size=3D"1"=
->$ find /tmp/toaster_* -printf &#39;%T@ %p\0&#39; | sort -zk 1nr | xargs -0=
-n1 | cut -d &quot; &quot; -f 2 | head -1<br>
-</font></div>
-<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif"><br>
-</div>
-<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Thank =
-you,</div>
-<div class=3D"gmail_default" style=3D"font-family:tahoma,sans-serif">Alex</=
-div>
-</div>
-<div class=3D"gmail_extra"><br>
-<div class=3D"gmail_quote">On Fri, May 8, 2015 at 6:14 AM, Raghavendra Kaka=
-rla <span dir=3D"ltr">
-&lt;<a href=3D"mailto:Raghavendra.Kakarla@inedasystems.com" target=3D"_blan=
-k">Raghavendra.Kakarla@inedasystems.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-Hi Belen,<br>
-<br>
-I am using yocto fido.<br>
-<br>
-I am entered the my custom layer git repository url(Which is our local git =
-repository where our product corresponding recipe layers re there),a unique=
- layer name and our git repository revision number.<br>
-<br>
-We entered these data but the import layer version is not respond.<br>
-<br>
-Thanks and Regards,<br>
-<br>
-Raghavendra K.<br>
-________________________________________<br>
-From: Barros Pena, Belen &lt;<a href=3D"mailto:belen.barros.pena@intel.com"=
- target=3D"_blank">belen.barros.pena@intel.com</a>&gt;<br>
-Sent: Thursday, May 7, 2015 6:17 PM<br>
-To: Raghavendra Kakarla; <a href=3D"mailto:yocto@yoctoproject.org" target=
-=3D"_blank">
-yocto@yoctoproject.org</a><br>
-Subject: Re: [yocto] Issue with toaster<br>
-<div>
-<div><br>
-On 07/05/2015 10:18, &quot;Raghavendra Kakarla&quot;<br>
-&lt;<a href=3D"mailto:Raghavendra.Kakarla@inedasystems.com" target=3D"_blan=
-k">Raghavendra.Kakarla@inedasystems.com</a>&gt; wrote:<br>
-<br>
-&gt;Hi,<br>
-&gt;<br>
-&gt;I have an issue while importing custom layer in toaster. When i gave th=
-e<br>
-&gt;all layer information for importing the layer and click on the import<b=
-r>
-&gt;layer button in toaster it=C2=A0 =C2=A0 wont respond.<br>
-&gt;Could you please help for resolving this issue.<br>
-<br>
-Hi Raghavendra,<br>
-<br>
-We would need a bit more information to understand what&#39;s happening:<br=
->
-<br>
-* Which branch are you using (fido or master). If you are using master,<br>
-which commit?<br>
-* Which data are you entering in the import layer form? Keep in mind that<b=
-r>
-you must provide a git url, a unique layer name and a revision. Without<br>
-that information, the &quot;import layer&quot; button will remain stubbornl=
-y<br>
-inactive and nothing will happen when you click on it.<br>
-<br>
-Cheers<br>
-<br>
-Bel=C3=A9n<br>
-<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;Thanks in advance.<br>
-&gt;<br>
-&gt;<br>
-&gt; Regards,<br>
-&gt; Raghavendra K.<br>
-&gt;<br>
-<br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</div>
-</div>
-</blockquote>
-</div>
-<br>
-<br clear=3D"all">
-<div><br>
-</div>
--- <br>
-<div>
-<div dir=3D"ltr">Alex Damian
-<div>Yocto Project<br>
-</div>
-<div>SSG / OTC=C2=A0</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</blockquote>
-</div>
-<br>
-<br clear=3D"all">
-<div><br>
-</div>
--- <br>
-<div>
-<div dir=3D"ltr">Alex Damian
-<div>Yocto Project<br>
-</div>
-<div>SSG / OTC=C2=A0</div>
-</div>
-</div>
-</div>
-</div>
-</div></div></div>
-</div>
-
-</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div class=
-=3D"gmail_signature"><div dir=3D"ltr">Alex Damian<div>Yocto Project<br></di=
-v><div>SSG / OTC=C2=A0</div></div></div>
-</div>
-
---e89a8f83ad652ab75c05182af08b--
