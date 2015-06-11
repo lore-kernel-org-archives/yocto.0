@@ -1,40 +1,60 @@
-Return-Path: <peter.bergin@tritech.se>
+Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4D714E00982; Wed, 10 Jun 2015 14:41:57 -0700 (PDT)
+	id 86F4AE009F6; Thu, 11 Jun 2015 00:52:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	SPF_HELO_PASS,WEIRD_PORT autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from tritech.se (tritech.se [46.59.120.190])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94281E0086D
-	for <yocto@yoctoproject.org>; Wed, 10 Jun 2015 14:41:50 -0700 (PDT)
-Received: from post.tritech.se (post.tritech.se [10.75.60.100])
-	by tritech.se (8.14.3/8.14.3) with ESMTP id t5ALffMl014337;
-	Wed, 10 Jun 2015 23:41:46 +0200
-Received: from POST.tritech.se ([10.75.60.100]) by post ([10.75.60.100]) with
-	mapi id 14.02.0387.000; Wed, 10 Jun 2015 23:41:41 +0200
-From: Peter Bergin <peter.bergin@tritech.se>
-To: "Burton, Ross" <ross.burton@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Python3 failure using ctypes
-Thread-Index: AdCijjC84rVA5NwYQ8OM32IUS6li8g==
-Date: Wed, 10 Jun 2015 21:41:40 +0000
-Message-ID: <43F0718C449F6A46B393DA2BEC8E01280C824192@post>
-References: <43F0718C449F6A46B393DA2BEC8E01280C822E98@post>
-	<CAJTo0LYTmkFvjXsevSc22VOyr1jtcrErO-vm=gh5NqaAVpuh-Q@mail.gmail.com>
-	<43F0718C449F6A46B393DA2BEC8E01280C82309D@post>
-Accept-Language: sv-SE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [84.219.204.119]
-MIME-Version: 1.0
-Subject: Re: Python3 failure using ctypes
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71264E009C2;
+	Thu, 11 Jun 2015 00:52:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Content-Type:Mime-Version:Subject;
+	bh=qbyFBq77icEGHFhVp9k+u1VRfSBeyzCsMl0qa5kEPps=; 
+	b=evXqb9oiZ0SjiAx2rP6whprO04v0o79t+5Ut6zSVCCuLodQQHDpxKX/IcQnUmwhkT8jaTOeHF0PVoabFLXBZpqN679xt1lveO3XJU9muEbGYxEOcHtuYEyl1PdjF3+4FR5pjlYAbwN4FkagTxJFJyg31llGF4BN+3wKAXcWBIOw=;
+Received: from durham.keylevel.com ([88.97.63.243]:5709
+	helo=macbook-pro.durham.keylevel.com)
+	by a180.4uh.net with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.85) (envelope-from <opensource@keylevel.com>)
+	id 1Z2xHX-001vfZ-GJ; Thu, 11 Jun 2015 08:52:19 +0100
+Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2098\))
+X-Pgp-Agent: GPGMail 2.5b6
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <D4B999590D2ACC499FE6A1F7CF2D454A05A77060@PGSMSX103.gar.corp.intel.com>
+Date: Thu, 11 Jun 2015 08:52:02 +0100
+Message-Id: <E93C211A-7165-4196-B0BB-79625A06B79F@keylevel.com>
+References: <107F2908-2817-46D5-96CC-0B71CD6ADBEB@keylevel.com>
+	<2174669.LymzPMzo3U@peggleto-mobl.ger.corp.intel.com>
+	<50B33AC5ED75F74F991980326F1C438D1905581B@PGSMSX103.gar.corp.intel.com>
+	<D4B999590D2ACC499FE6A1F7CF2D454A05A77060@PGSMSX103.gar.corp.intel.com>
+To: "Cheah, Vincent Beng Keat" <vincent.beng.keat.cheah@intel.com>
+X-Mailer: Apple Mail (2.2098)
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - a180.4uh.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
+	chris.tapp@keylevel.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto Project <yocto@yoctoproject.org>, "Chang,
+	Rebecca Swee Fun" <rebecca.swee.fun.chang@intel.com>,
+	Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"meta-intel@yoctoproject.org" <meta-intel@yoctoproject.org>
+Subject: Re: [meta-intel] "Crazy" Xorg memory usage after upgrading from Daisy to Fido
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,279 +66,234 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Jun 2015 21:41:57 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_43F0718C449F6A46B393DA2BEC8E01280C824192post_"
+X-List-Received-Date: Thu, 11 Jun 2015 07:52:26 -0000
+X-Groupsio-MsgNum: 25143
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_B857EAB2-89BA-4D95-B4FA-1CEF2CA729E0";
+	protocol="application/pgp-signature"; micalg=pgp-sha512
 
---_000_43F0718C449F6A46B393DA2BEC8E01280C824192post_
-Content-Type: text/plain; charset="us-ascii"
+--Apple-Mail=_B857EAB2-89BA-4D95-B4FA-1CEF2CA729E0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-Hi again,
+Hi Vincent,
 
+> On 10 Jun 2015, at 03:50, Cheah, Vincent Beng Keat =
+<vincent.beng.keat.cheah@intel.com> wrote:
+>=20
+> Hi Chris,
+>=20
+> I don=E2=80=99t have any idea with regard to the issue that you are =
+getting below. All the work that we are doing here so far is on CHV =
+(yocto-kernel-3.19.5 standard/base branch).
+>=20
+> =46rom your statement below, it looks to me that you are upgrading =
+meta-intel from Daisy to Fido branch which are using yocto-kernel-3.14 =
+(meta-intel/isg/valleyisland BSP). I'm not sure if you are able to =
+reproduce this with yocto-kernel-3.19.5 (standard/base branch) from the =
+meta-intel common directory. Also, comparing Daisy branch against Fido, =
+it seems like there are lot of changes in the user-space stacks, which =
+I'm not sure could cause the issue below.
 
-On 06/09/2015 12:21 PM, Peter Bergin wrote:
-Hi,
+I=E2=80=99ve switch my build to use 3.19.5-yocto-standard by adding a =
+preferred_version to my local.conf. This has changed the behaviour:
 
-On 06/09/2015 11:28 AM, Burton, Ross wrote:
+1) At startup XOrg is still using a lot of memory (%VSZ goes above 88%);
+2) The application works much better, but still has a few minor stutters =
+every now and then;
+3) XOrg memory usage (%VSZ) cycles between about 25% and 88%;
+4) After a while (does not appear to be deterministic) the XOrg memory =
+usage drops to and stays at a %VSZ of 4%;
+5) At this point the application works as it did under daisy.
 
-On 9 June 2015 at 09:27, Peter Bergin <peter.bergin@tritech.se<mailto:peter=
-.bergin@tritech.se>> wrote:
-The root cause of this is an error during the build of Python3. From tmp/wo=
-rk/cortexa9hf-vfp-neon-poky-linux-gnueabi/python3/3.3.3-r1.0/temp/log.do_co=
-nfigure:
+> Daisy 1.6.2
+> 	Kernel 3.4, 3.10, 3.14 (Supportable common base)
+> 	Xorg-server 1.15
+> 	Wayland/Weston 1.4.0
+> 	Xf86-video-intel 2.99.910
+> 	Libdrm 2.4.52
+> 	MESA 9.2.5
+> 	Cairo 1.12.16
+> 	libVA 1.3.1 (from meta-intel)
+> 	Intel-VA-driver 1.3.2 (from meta-intel)
+> 	GStreamer 1.2.3
+> 	GStreamer-VAAPI 0.5.8 (from meta-intel)
+>=20
+>=20
+> Dizzy 1.7.1
+> 	Kernel 3.10, 3.14, 3.17 (Supportable common base)
+> 	Xorg-server 1.15.1
+> 	Wayland/Weston 1.5.0
+> 	Xf86-video-intel 2.99.912
+> 	Libdrm 2.4.54
+> 	MESA 10.1.3
+> 	Cairo 1.12.16
+> 	libVA 1.3.1 (from meta-intel)
+> 	Intel-VA-driver 1.3.2 (from meta-intel)
+> 	GStreamer 1.4.1
+> 	GStreamer-VAAPI 0.5.8 (from meta-intel)
+>=20
+>=20
+> Fido 1.8
+> 	Kernel 3.14, 3.19 (supportable comon base)
+> 	Xorg-server 1.16.3
+> 	Wayland/weston 1.6.0
+> 	Xf86-video-intel 2.99.917
+> 	Libdrm 2.4.59
+> 	Mesa 10.4.4
+> 	Cairo 1.12.18
+> 	LibVA 1.5.0 (from meta-intel)
+> 	Intel-VA-driver 1.5.0 (from meta-intel)
+> 	Gstreamer 1.4.5
+> 	Gstreamer-vaapi 0.5.10 (from meta-intel)
 
-DEBUG: Executing shell function do_configure
-autoreconf: 'configure.ac<http://configure.ac>' or 'configure.in<http://con=
-figure.in>' is required
-NOTE: _ctypes failed to autoreconf
+I will have a go at down-versioning these to see if that makes any =
+difference. I doubt GStreamer is the issue as I was already using 1.4.5 =
+under daisy.
 
-The targeted machine for us is i.Mx6 built with the Freescale community BSP=
- but I have also been able to reproduce the same thing with just building c=
-ore-image-base for qemux86 only appending python3-ctypes.
-
-That's odd.  My local builds of python3 appear to be working fine, there's =
-a python3-ctypes package with a _ctype.so inside, and configure works:
-
-
-It seems that you are building Python 3.4.3. Recipes included in fido is ve=
-rsion 3.3.3.
-
-autoreconf: Entering directory `../Python-3.4.3/Modules/_ctypes/libffi'
-autoreconf: configure.ac<http://configure.ac>: not using Gettext
-autoreconf: running: aclocal --force -I m4
-autoreconf: configure.ac<http://configure.ac>: tracing
-autoreconf: running: libtoolize --copy --force
-libtoolize: putting auxiliary files in '.'.
-libtoolize: copying file './ltmain.sh'
-libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
-libtoolize: copying file 'm4/libtool.m4'
-libtoolize: copying file 'm4/ltoptions.m4'
-libtoolize: copying file 'm4/ltsugar.m4'
-libtoolize: copying file 'm4/ltversion.m4'
-libtoolize: copying file 'm4/lt~obsolete.m4'
-autoreconf: running: /data/poky-master/tmp/sysroots/x86_64-linux/usr/bin/au=
-toconf --force
-autoreconf: running: /data/poky-master/tmp/sysroots/x86_64-linux/usr/bin/au=
-toheader --force
-autoreconf: running: automake --add-missing --copy --force-missing
-configure.ac:34<http://configure.ac:34>: installing './compile'
-configure.ac:22<http://configure.ac:22>: installing './missing'
-Makefile.am: installing './depcomp'
-autoreconf: running: gnu-configize
-autoreconf: Leaving directory `../Python-3.4.3/Modules/_ctypes/libffi'
-
-Can you share the full do_configure log?
-
-Ross
-
-I attach the log.do_configure files from a build. See if you can find somet=
-hing odd in it.
-
-Thanks,
-/Peter
-
-I still have serious with this issue. I think it is not possible to cross-c=
-ompile python3-ctypes in fido. I filed a bug https://bugzilla.yoctoproject.=
-org/show_bug.cgi?id=3D7873 and hope that I can get some help to sort this o=
-ut.
-
-My previous mail showed an error in the configure step. I have fixed that i=
-ssue with the following patch to poky:
-
-diff --git a/meta/recipes-devtools/python/python3_3.3.3.bb b/meta/recipes-d=
-evtools/python/python3_3.3.3.bb
-index 6147408..9162ad7 100644
---- a/meta/recipes-devtools/python/python3_3.3.3.bb
-+++ b/meta/recipes-devtools/python/python3_3.3.3.bb
-@@ -75,9 +75,9 @@ export _PYTHON_PROJECT_SRC =3D "${S}"
- # No ctypes option for python 3
- PYTHONLSBOPTS =3D ""
-
--do_configure_prepend() {
-+do_configure_append() {
-     rm -f ${S}/Makefile.orig
--    autoreconf -Wcross --verbose --install --force --exclude=3Dautopoint M=
-odules/_ctypes/libffi || bbnote "_ctypes failed to autoreconf"
-+    autoreconf -Wcross --verbose --install --force --exclude=3Dautopoint .=
-./Python-${PV}/Modules/_ctypes/libffi
- }
-
- do_compile() {
+Thanks for the pointers :-)
 
 
-The next and more serious issue is now in the compile step. When compiling =
-the switch --with-system-ffi that is passed to configure is not taken care =
-of by the build system and setup.py. When building _ctypes the file setup.p=
-y is looking for information in the python lib sysconfig but the sysconfig =
-used is the one for the host. More specific information is located in the v=
-ariable CONFIG_ARGS.
+>=20
+> ... Vincent
+>=20
+> -----Original Message-----
+> From: Chang, Rebecca Swee Fun
+> Sent: Wednesday, June 10, 2015 9:08 AM
+> To: Cheah, Vincent Beng Keat
+> Cc: meta-intel@yoctoproject.org; Chris Tapp; Yocto Project; Wold, =
+Saul; 'Paul Eggleton'
+> Subject: RE: [meta-intel] "Crazy" Xorg memory usage after upgrading =
+from Daisy to Fido
+>=20
+> Hi Vincent,
+>=20
+> Can you help to comment on this issue mentioned by Chris?
+> Thanks.
+>=20
+> Regards,
+> Rebecca
+>=20
+>> -----Original Message-----
+>> From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
+>> Sent: 09 June, 2015 12:15 AM
+>> To: Chang, Rebecca Swee Fun
+>> Cc: meta-intel@yoctoproject.org; Chris Tapp; Yocto Project; Wold, =
+Saul
+>> Subject: Re: [meta-intel] "Crazy" Xorg memory usage after upgrading
+>> from Daisy to Fido
+>>=20
+>> Rebecca, is this something you or one of your colleagues would be =
+able
+>> to help with?
+>>=20
+>> Thanks,
+>> Paul
+>>=20
+>> On Friday 05 June 2015 08:29:00 Chris Tapp wrote:
+>>> I=E2=80=99ve got an application that I=E2=80=99ve had running nicely =
+under Daisy for
+>>> some time. As Daisy is now a bit old, I decided to move the
+>>> application to
+>> Fido.
+>>> I=E2=80=99m using the meta-intel/isg/valleyisland BSP and also =
+switched to
+>>> using its Fido branch.
+>>>=20
+>>> The move only required a few minor changes and allowed me to drop a
+>>> Daisy =E2=80=9Cupdates=E2=80=9D layer that I had been using for =
+things like gstreamer-1.0.
+>>>=20
+>>> However, there is one behaviour which is killing me - I keep getting
+>>> oom-killer events!
+>>>=20
+>>> The application is basically an OpenGL-ES 2.0 application that
+>>> renders various bits of text, images and streams captured from a
+>>> gstreamer pipeline at 60 Hz to a 1080 screen.
+>>>=20
+>>> Under Daisy this generally took just under 50% CPU and used a modest
+>>> percentage of the 4 GB system memory - i.e. no where near running
+>>> out and usage was just about static.
+>>>=20
+>>> Under Fido the CPU usage is about the same and the memory used by
+>>> the application itself looks reasonable when compared to Daisy (and
+>>> usage is static). However, the memory used by XOrg is far from
+>>> constant or stable - it basically has a VSZ value cycling from about
+>>> 630m to 2989m with the cycle period being in the order of 5 to 10
+>>> seconds. Peaks in XOrg memory usage coincide with stutters in video
+>>> playback within my app (audio is unaffected).
+>>>=20
+>>> Monitoring /proc/meminfo when this is going on shows that =
+=E2=80=9CShmem=E2=80=9D
+>>> usage is following the same pattern as the memory used by XOrg (i.e.
+>>> Shmem usage is high at the same time). If the values are plotted on
+>>> a graph they appear to show that Shmem usage grows linearly and then
+>>> falls rapidly when nearly all the free memory has been exhausted,
+>>> perhaps in response to a delayed garbage collection run.
+>>>=20
+>>> Does anyone have any ideas as to what I should be looking at to work
+>>> out what=E2=80=99s going on?
+>>>=20
+>>> Are there any significant changes between XOrg under Daisy and Fido
+>>> that could be causing this?
+>>>=20
+>>> Could this be related to the meta-intel video drivers?
+>>>=20
+>>> Any feedback / comments would be really appreciated.
+>>>=20
+>>> Thanks :-)
+>>>=20
+>>> --
+>>>=20
+>>> Chris Tapp
+>>> opensource@keylevel.com
+>>> www.keylevel.com
+>>>=20
+>>> ----
+>>> You can tell you're getting older when your car insurance gets real =
+cheap!
+>>=20
+>> --
+>>=20
+>> Paul Eggleton
+>> Intel Open Source Technology Centre
 
-Regards,
-/Peter
+--
+
+Chris Tapp
+opensource@keylevel.com
+www.keylevel.com
+
+----
+You can tell you're getting older when your car insurance gets real =
+cheap!
 
 
+--Apple-Mail=_B857EAB2-89BA-4D95-B4FA-1CEF2CA729E0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
 
---_000_43F0718C449F6A46B393DA2BEC8E01280C824192post_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-</head>
-<body bgcolor=3D"#FFFFFF" text=3D"#000000">
-<div class=3D"moz-cite-prefix">Hi again,<br>
-<br>
-<br>
-On 06/09/2015 12:21 PM, Peter Bergin wrote:<br>
-</div>
-<blockquote cite=3D"mid:43F0718C449F6A46B393DA2BEC8E01280C82309D@post" type=
-=3D"cite">
-<div class=3D"moz-cite-prefix">Hi,<br>
-<br>
-On 06/09/2015 11:28 AM, Burton, Ross wrote:<br>
-</div>
-<blockquote cite=3D"mid:CAJTo0LYTmkFvjXsevSc22VOyr1jtcrErO-vm=3Dgh5NqaAVpuh=
--Q@mail.gmail.com" type=3D"cite">
-<div dir=3D"ltr">
-<div class=3D"gmail_extra"><br>
-<div class=3D"gmail_quote">On 9 June 2015 at 09:27, Peter Bergin <span dir=
-=3D"ltr">&lt;<a moz-do-not-send=3D"true" href=3D"mailto:peter.bergin@tritec=
-h.se" target=3D"_blank">peter.bergin@tritech.se</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=0A=
-0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-=
-style:solid;padding-left:1ex">
-<div id=3D":us" class=3D"" style=3D"overflow:hidden">The root cause of this=
- is an error during the build of Python3. From tmp/work/cortexa9hf-vfp-neon=
--poky-linux-gnueabi/python3/3.3.3-r1.0/temp/log.do_configure:<br>
-<br>
-DEBUG: Executing shell function do_configure<br>
-autoreconf: '<a moz-do-not-send=3D"true" href=3D"http://configure.ac" targe=
-t=3D"_blank">configure.ac</a>' or '<a moz-do-not-send=3D"true" href=3D"http=
-://configure.in" target=3D"_blank">configure.in</a>' is required<br>
-NOTE: _ctypes failed to autoreconf<br>
-<br>
-The targeted machine for us is i.Mx6 built with the Freescale community BSP=
- but I have also been able to reproduce the same thing with just building c=
-ore-image-base for qemux86 only appending python3-ctypes.</div>
-</blockquote>
-</div>
-<br>
-That's odd.&nbsp; My local builds of python3 appear to be working fine, the=
-re's a python3-ctypes package with a _ctype.so inside, and configure works:=
-</div>
-<div class=3D"gmail_extra"><br>
-</div>
-</div>
-</blockquote>
-<br>
-It seems that you are building Python 3.4.3. Recipes included in fido is ve=
-rsion 3.3.3.<br>
-<br>
-<blockquote cite=3D"mid:CAJTo0LYTmkFvjXsevSc22VOyr1jtcrErO-vm=3Dgh5NqaAVpuh=
--Q@mail.gmail.com" type=3D"cite">
-<div dir=3D"ltr">
-<div class=3D"gmail_extra">
-<div class=3D"gmail_extra">autoreconf: Entering directory `../Python-3.4.3/=
-Modules/_ctypes/libffi'</div>
-<div class=3D"gmail_extra">autoreconf: <a moz-do-not-send=3D"true" href=3D"=
-http://configure.ac">
-configure.ac</a>: not using Gettext</div>
-<div class=3D"gmail_extra">autoreconf: running: aclocal --force -I m4</div>
-<div class=3D"gmail_extra">autoreconf: <a moz-do-not-send=3D"true" href=3D"=
-http://configure.ac">
-configure.ac</a>: tracing</div>
-<div class=3D"gmail_extra">autoreconf: running: libtoolize --copy --force</=
-div>
-<div class=3D"gmail_extra">libtoolize: putting auxiliary files in '.'.</div=
->
-<div class=3D"gmail_extra">libtoolize: copying file './ltmain.sh'</div>
-<div class=3D"gmail_extra">libtoolize: putting macros in AC_CONFIG_MACRO_DI=
-RS, 'm4'.</div>
-<div class=3D"gmail_extra">libtoolize: copying file 'm4/libtool.m4'</div>
-<div class=3D"gmail_extra">libtoolize: copying file 'm4/ltoptions.m4'</div>
-<div class=3D"gmail_extra">libtoolize: copying file 'm4/ltsugar.m4'</div>
-<div class=3D"gmail_extra">libtoolize: copying file 'm4/ltversion.m4'</div>
-<div class=3D"gmail_extra">libtoolize: copying file 'm4/lt~obsolete.m4'</di=
-v>
-<div class=3D"gmail_extra">autoreconf: running: /data/poky-master/tmp/sysro=
-ots/x86_64-linux/usr/bin/autoconf --force</div>
-<div class=3D"gmail_extra">autoreconf: running: /data/poky-master/tmp/sysro=
-ots/x86_64-linux/usr/bin/autoheader --force</div>
-<div class=3D"gmail_extra">autoreconf: running: automake --add-missing --co=
-py --force-missing</div>
-<div class=3D"gmail_extra"><a moz-do-not-send=3D"true" href=3D"http://confi=
-gure.ac:34">configure.ac:34</a>: installing './compile'</div>
-<div class=3D"gmail_extra"><a moz-do-not-send=3D"true" href=3D"http://confi=
-gure.ac:22">configure.ac:22</a>: installing './missing'</div>
-<div class=3D"gmail_extra">Makefile.am: installing './depcomp'</div>
-<div class=3D"gmail_extra">autoreconf: running: gnu-configize</div>
-<div class=3D"gmail_extra">autoreconf: Leaving directory `../Python-3.4.3/M=
-odules/_ctypes/libffi'</div>
-<div class=3D"gmail_extra"><br>
-</div>
-<div class=3D"gmail_extra">Can you share the full do_configure log?</div>
-<div class=3D"gmail_extra"><br>
-</div>
-<div class=3D"gmail_extra">Ross</div>
-</div>
-</div>
-</blockquote>
-<br>
-I attach the log.do_configure files from a build. See if you can find somet=
-hing odd in it.<br>
-<br>
-Thanks,<br>
-/Peter<br>
-<br>
-</blockquote>
-I still have serious with this issue. I think it is not possible to cross-c=
-ompile python3-ctypes in fido. I filed a bug
-<a class=3D"moz-txt-link-freetext" href=3D"https://bugzilla.yoctoproject.or=
-g/show_bug.cgi?id=3D7873">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7873</a> and hope that =
-I can get some help to sort this out.<br>
-<br>
-My previous mail showed an error in the configure step. I have fixed that i=
-ssue with the following patch to poky:<br>
-<br>
-diff --git a/meta/recipes-devtools/python/python3_3.3.3.bb b/meta/recipes-d=
-evtools/python/python3_3.3.3.bb<br>
-index 6147408..9162ad7 100644<br>
---- a/meta/recipes-devtools/python/python3_3.3.3.bb<br>
-&#43;&#43;&#43; b/meta/recipes-devtools/python/python3_3.3.3.bb<br>
-@@ -75,9 &#43;75,9 @@ export _PYTHON_PROJECT_SRC =3D &quot;${S}&quot;<br>
-&nbsp;# No ctypes option for python 3<br>
-&nbsp;PYTHONLSBOPTS =3D &quot;&quot;<br>
-&nbsp;<br>
--do_configure_prepend() {<br>
-&#43;do_configure_append() {<br>
-&nbsp;&nbsp;&nbsp;&nbsp; rm -f ${S}/Makefile.orig<br>
--&nbsp;&nbsp;&nbsp; autoreconf -Wcross --verbose --install --force --exclud=
-e=3Dautopoint Modules/_ctypes/libffi || bbnote &quot;_ctypes failed to auto=
-reconf&quot;<br>
-&#43;&nbsp;&nbsp;&nbsp; autoreconf -Wcross --verbose --install --force --ex=
-clude=3Dautopoint ../Python-${PV}/Modules/_ctypes/libffi<br>
-&nbsp;}<br>
-&nbsp;<br>
-&nbsp;do_compile() {<br>
-<br>
-<br>
-The next and more serious issue is now in the compile step. When compiling =
-the switch --with-system-ffi that is passed to configure is not taken care =
-of by the build system and setup.py. When building _ctypes the file setup.p=
-y is looking for information in
- the python lib sysconfig but the sysconfig used is the one for the host. M=
-ore specific information is located in the variable CONFIG_ARGS.<br>
-<br>
-Regards,<br>
-/Peter<br>
-<br>
-<br>
-</body>
-</html>
+iQIcBAEBCgAGBQJVeT4rAAoJEAM2GeiJDBSGZT4QANR/ZLaxCRyZTS/V5tnNmOIG
+VrlI7DL2aCuq4/TFV9HLqzW3jtLbVpAaxamrXIaaQBhPQiym8UChazViKvpL+Y80
+R/jUSSsskbgfoLGZQziXL4tUOMdveHNuwvVsNYLeKuJLR/dKzjds/CPDKHj+BuwM
+O7YIgguM+9CsbUz1vSBfJ4f+1y1XFvtlNcl9Wrz086JNQ6UhYacqB8xH4Wle776o
+hXD/ySJYFpfK7YXRNaY1ywB9dKINuBQqlUjSphtdW/F6J70zt8mLHJLnzUtZyrNj
+TBRoM+0Sh0lEmrcZyaaYAt2RNpFkaZWwyXBnvj8+T2t0OgGNFZbUU62C/9SAiuxQ
+1EFN4AnsH+zMAv75e9+wvXloHznR65pq0wIg6EnGnkW1M+0OQ7PRFJQAtQgecSbC
+xb5waJq77kdaQruPh2FWRXgYCdIrYQxg2bi6uAs5Y4vRl1rrNKKth+MobMukJot1
+IXZDA544KolWw0Ait2YiYdgnRi3BZXEBYrzt3L0/5Pkn2fPA1b7IyH1NMLJEpyt2
+fTkQ1t9cXtmcdkhh3tE0VGSONrOcs4Kvi7OAeJl2D8RueQPWseIM6+PChfzftqnl
+gcpQOZIlt9fppeOpcr4DzJ13FB/5av3R/aX/6Q8JNaJQ5Y8c4lmcKqnq7C+gT6kR
+fH3+eV+hnedZD7GUQjqg
+=Lasq
+-----END PGP SIGNATURE-----
 
---_000_43F0718C449F6A46B393DA2BEC8E01280C824192post_--
+--Apple-Mail=_B857EAB2-89BA-4D95-B4FA-1CEF2CA729E0--
