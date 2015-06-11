@@ -1,41 +1,51 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <abhinavbipnesh@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9B75EE009F6; Thu, 11 Jun 2015 03:31:42 -0700 (PDT)
+	id B8984E009F6; Thu, 11 Jun 2015 03:32:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [198.152.13.100 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBE4DE009C2
-	for <yocto@yoctoproject.org>; Thu, 11 Jun 2015 03:31:41 -0700 (PDT)
-Received: from [70.30.87.145] (port=44234 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Z2zmN-0005rT-Qe; Thu, 11 Jun 2015 06:32:11 -0400
-Date: Thu, 11 Jun 2015 06:31:30 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: "Burton, Ross" <ross.burton@intel.com>
-In-Reply-To: <CAJTo0LZ8o=8KHZ=357AuNcF4-Y480t_jHCdbpfRev0nxy=Nqfw@mail.gmail.com>
-Message-ID: <alpine.LFD.2.11.1506110630340.5358@localhost>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Thu, 11 Jun 2015 03:32:50 PDT
+Received: from co300216-co-outbound.net.avaya.com
+	(co300216-co-outbound.net.avaya.com [198.152.13.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81D34E009C2
+	for <yocto@yoctoproject.org>; Thu, 11 Jun 2015 03:32:50 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: Al0FAAhieVXGmAcV/2dsb2JhbABcgkUhKlRTDAa8ZoJMhX4CgTpMAQEBAQEBgQuEIgEBAQEDEhtcAgEIDQQEAQELHQcyFAkIAQEEARIIGogNAaQ9rwkBAQEBAQEBAQEBAQEBAQEBAQEBAQEXi0OEVTcBgxeBFgWTUoRHiGGGOY9YJIN4b4FGgQEBAQE
+X-IronPort-AV: E=Sophos;i="5.13,594,1427774400"; 
+	d="scan'208,217";a="120707984"
+Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
+	([198.152.7.21]) by co300216-co-outbound.net.avaya.com with ESMTP;
+	11 Jun 2015 06:31:46 -0400
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-FFEXHC01.global.avaya.com) ([135.64.58.11])
+	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
+	11 Jun 2015 06:31:19 -0400
+Received: from AZ-FFEXMB01.global.avaya.com ([fe80::39ee:75fe:e67a:cf4a]) by
+	AZ-FFEXHC01.global.avaya.com ([135.64.58.11]) with mapi id
+	14.03.0174.001; Thu, 11 Jun 2015 12:31:17 +0200
+From: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
+To: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Merging of two recipes
+Thread-Index: AdCkLJwlry0zDBx8SVmXh/3OYBl0DQABMLVg
+Date: Thu, 11 Jun 2015 10:31:17 +0000
+Message-ID: <F38A866CD026F746A3BF0928A84397BE3A42C347@AZ-FFEXMB01.global.avaya.com>
 References: <F38A866CD026F746A3BF0928A84397BE3A42B2EE@AZ-FFEXMB01.global.avaya.com>
-	<CAJTo0LZ8o=8KHZ=357AuNcF4-Y480t_jHCdbpfRev0nxy=Nqfw@mail.gmail.com>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+In-Reply-To: <F38A866CD026F746A3BF0928A84397BE3A42B2EE@AZ-FFEXMB01.global.avaya.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [135.64.58.47]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Merging of two recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -48,37 +58,402 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Jun 2015 10:31:42 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 11 Jun 2015 10:32:53 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_F38A866CD026F746A3BF0928A84397BE3A42C347AZFFEXMB01globa_"
 
-On Thu, 11 Jun 2015, Burton, Ross wrote:
+--_000_F38A866CD026F746A3BF0928A84397BE3A42C347AZFFEXMB01globa_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+Hi All,
+
+One more thing the convert task has different flow for both the recipes and=
+ the names of the package is different as below is snapshot of the actual c=
+ode.
+Also PACKAGE_CLASSES has both rpm and tar. We have explicitly turned off on=
+e of the task in the recipe based on the requirement.
+
+Thanks,
+Abhinav
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Bipnesh, Abhinav (Abhinav)
+Sent: Thursday, June 11, 2015 15:25
+To: yocto@yoctoproject.org
+Subject: [yocto] Merging of two recipes
+
+Hi,
+
+Currently I have two different recipes for similar type of package with a m=
+inor differences. Below is the list
+
+1.       One being packaged as tar.gz and don't have pre or post install ac=
+tivity
+
+2.       Other one being packaged as RPM and have a post install section in=
+ it.
+Below is the extract of the recipes
+
+Test.bb
+
+PACKAGES =3D "test-ch test-da test-de test-el \
+            test-en test-enu test-es test-eso \
+            test-fi test-fr test-frc test-hu \
+            test-it test-jp test-ko test-nl \
+            test-no test-pl test-pt test-ptb \
+            test-ru test-sv test-trk test-zhh \
+"
+addtask convert after do_fetch before do_install
+
+do_install_append() {
+    for lang in ${LANGS}; do
+        install -d ${D}/system/test/${lang}
+        install -m 0644 ${WORKDIR}/adpcm/${lang}/* ${D}/system/test/${lang}
+        install -m 0755 ${S}/../vmpro/Build_Scripts/vmpro500L-build/audio_c=
+onverter.sh ${D}/system/test/${lang}
+    done
+}
+
+#ch
+FILES_test-ch   =3D "${S}/alaw/ch"
+FILES_test-ch   +=3D "/system/test/ch"
+
+pkg_postinst_test-ch(){
+    echo "Post installation of test-ch"
+    cd /system/test/ch/
+    ./test.sh
+}
+
+# da
+FILES_test-da   =3D "${S}/alaw/da"
+FILES_test-da   +=3D "/system/test/da"
+
+pkg_postinst_test-da(){
+    echo "Post installation of test-da"
+    cd /system/test/da/
+    ./test.sh
+}
+
+. . .
+
+Test1.bb
+
+PACKAGES =3D "test-ch test-da test-de test-el \
+            test-en test-enu test-es test-eso \
+            test-fi test-fr test-frc test-hu \
+            test-it test-jp test-ko test-nl \
+            test-no test-pl test-pt test-ptb \
+            test-ru test-sv test-trk test-zhh \
+            "
+
+addtask do_convert after do_fetch before do_install
+
+do_install_append() {
+    for lang in ${LANGS}; do
+        install -d ${D}/system/test/${lang}
+        install -m 0644 ${WORKDIR}/law/${lang}/* ${D}/system/test/${lang}
+    done
+}
+
+#ch
+FILES_test-ch   +=3D "/system/test/ch"
+
+# da
+FILES_test-da   +=3D "/system/test/da"
+
+# de
+FILES_test-de   +=3D "/system/test/de"
+
+
+So I want to merge these both recipes to produce the same artificats as abo=
+ve but using a single recipe. So any thoughts how to do it.
+
+Thanks,
+Abhinav
+
+--_000_F38A866CD026F746A3BF0928A84397BE3A42C347AZFFEXMB01globa_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> On 11 June 2015 at 10:54, Bipnesh, Abhinav (Abhinav) <abhinavbipnesh@avaya.com> wrote:
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:180315240;
+	mso-list-type:hybrid;
+	mso-list-template-ids:928798512 67698703 67698713 67698715 67698703 676987=
+13 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Hi All,<o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">One more thing the con=
+vert task has different flow for both the recipes and the names of the pack=
+age is different as below is snapshot of the actual code.<o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Also </span>PACKAGE_CL=
+ASSES has both rpm and tar. We have explicitly turned off one of the task i=
+n the recipe based on the requirement.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Abhinav<span style=3D"color:#1F497D"><o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
+unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+<b>On Behalf Of </b>Bipnesh, Abhinav (Abhinav)<br>
+<b>Sent:</b> Thursday, June 11, 2015 15:25<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] Merging of two recipes<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Currently I have two different recipes for similar t=
+ype of package with a minor differences. Below is the list<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo2"><![if !supportLists]><span style=3D"mso-list:Ignore">1.<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;
+</span></span><![endif]>One being packaged as tar.gz and don&#8217;t have p=
+re or post install activity<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo2"><![if !supportLists]><span style=3D"mso-list:Ignore">2.<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;
+</span></span><![endif]>Other one being packaged as RPM and have a post ins=
+tall section in it.<o:p></o:p></p>
+<p class=3D"MsoNormal">Below is the extract of the recipes<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Test.bb<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">PACKAGES =3D &quot;test-ch test-da test-de test-el \=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; test-en test-enu test-es test-eso \<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; test-fi test-fr test-frc test-hu \<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; test-it test-jp test-ko test-nl \<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; test-no test-pl test-pt test-ptb \<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; test-ru test-sv test-trk test-zhh \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#8220;<o:p></o:p></p>
+<p class=3D"MsoNormal">addtask convert after do_fetch before do_install<o:p=
+></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">do_install_append() {<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; for lang in ${LANGS}; do<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -=
+d ${D}/system/test/${lang}<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -=
+m 0644 ${WORKDIR}/adpcm/${lang}/* ${D}/system/test/${lang}<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -=
+m 0755 ${S}/../vmpro/Build_Scripts/vmpro500L-build/audio_converter.sh ${D}/=
+system/test/${lang}<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; done<o:p></o:p></p>
+<p class=3D"MsoNormal">}<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">#ch<o:p></o:p></p>
+<p class=3D"MsoNormal">FILES_test-ch&nbsp;&nbsp; =3D &quot;${S}/alaw/ch&quo=
+t;<o:p></o:p></p>
+<p class=3D"MsoNormal">FILES_test-ch&nbsp;&nbsp; &#43;=3D &quot;/system/tes=
+t/ch&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">pkg_postinst_test-ch(){<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; echo &quot;Post installation of t=
+est-ch&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; cd /system/test/ch/<o:p></o:p></p=
 >
->       So I want to merge these both recipes to produce the same artificats as above but using a single
->       recipe. So any thoughts how to do it.
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; ./test.sh<o:p></o:p></p>
+<p class=3D"MsoNormal">}<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"># da<o:p></o:p></p>
+<p class=3D"MsoNormal">FILES_test-da&nbsp;&nbsp; =3D &quot;${S}/alaw/da&quo=
+t;<o:p></o:p></p>
+<p class=3D"MsoNormal">FILES_test-da &nbsp;&nbsp;&#43;=3D &quot;/system/tes=
+t/da&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">pkg_postinst_test-da(){<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; echo &quot;Post installation of t=
+est-da&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; cd /system/test/da/<o:p></o:p></p=
 >
->
-> Just add "tar" to PACKAGE_CLASSES and you'll get a tarball of every
-> package alongside the RPM.
->
-> (note that the tar packages are relatively untested but they're also
-> very simple so should still work)
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; ./test.sh<o:p></o:p></p>
+<p class=3D"MsoNormal">}<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">. . .<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Test1.bb<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">PACKAGES =3D &quot;test-ch test-da test-de test-el \=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; test-en test-enu test-es test-eso \<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; test-fi test-fr test-frc test-hu \<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; test-it test-jp test-ko test-nl \<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; test-no test-pl test-pt test-ptb \<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;test-ru test-sv test-trk test-zhh \<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; &quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">addtask do_convert after do_fetch before do_install<=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">do_install_append() {<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; for lang in ${LANGS}; do<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -=
+d ${D}/system/test/${lang}<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -=
+m 0644 ${WORKDIR}/law/${lang}/* ${D}/system/test/${lang}<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; done<o:p></o:p></p>
+<p class=3D"MsoNormal">}<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">#ch<o:p></o:p></p>
+<p class=3D"MsoNormal">FILES_test-ch&nbsp;&nbsp; &#43;=3D &quot;/system/tes=
+t/ch&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"># da<o:p></o:p></p>
+<p class=3D"MsoNormal">FILES_test-da&nbsp;&nbsp; &#43;=3D &quot;/system/tes=
+t/da&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"># de<o:p></o:p></p>
+<p class=3D"MsoNormal">FILES_test-de&nbsp;&nbsp; &#43;=3D &quot;/system/tes=
+t/de&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">So I want to merge these both recipes to produce the=
+ same artificats as above but using a single recipe. So any thoughts how to=
+ do it.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Abhinav<o:p></o:p></p>
+</div>
+</body>
+</html>
 
-  i vaguely recall from way back that the tar packaging was not really
-supported, or was mostly unused, or something to that effect. what's
-the status on that these days?
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+--_000_F38A866CD026F746A3BF0928A84397BE3A42C347AZFFEXMB01globa_--
