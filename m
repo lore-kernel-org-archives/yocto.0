@@ -1,49 +1,50 @@
-Return-Path: <abhinavbipnesh@avaya.com>
+Return-Path: <sm0ketst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 13248E009F6; Thu, 11 Jun 2015 02:55:49 -0700 (PDT)
+	id 19047E00A03; Thu, 11 Jun 2015 03:00:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.152.71.100 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (sm0ketst[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 66 seconds by postgrey-1.32 at yocto-www;
-	Thu, 11 Jun 2015 02:55:46 PDT
-Received: from de307622-de-outbound.net.avaya.com
-	(de307622-de-outbound.net.avaya.com [198.152.71.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0B87E009C2
-	for <yocto@yoctoproject.org>; Thu, 11 Jun 2015 02:55:46 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: Au8FAH3ldlXGmAcV/2dsb2JhbABcgkUhKiMxXga+CYIpHQEFhX0CgUhMAQEBAQEBgQALhCQBAQMSG14BFRVWJgEEGxqIDAGcPYUJrn4MAR+QGIJlDEEdgRYFkz6EQohehjCPSySDeG+BRoEBAQEB
-X-IronPort-AV: E=Sophos;i="5.13,581,1427774400"; 
-	d="scan'208,217";a="106141063"
-Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
-	([198.152.7.21]) by de307622-de-outbound.net.avaya.com with ESMTP;
-	11 Jun 2015 05:54:37 -0400
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-FFEXHC04.global.avaya.com) ([135.64.58.14])
-	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
-	11 Jun 2015 05:54:37 -0400
-Received: from AZ-FFEXMB01.global.avaya.com ([fe80::39ee:75fe:e67a:cf4a]) by
-	AZ-FFEXHC04.global.avaya.com ([135.64.58.14]) with mapi id
-	14.03.0174.001; Thu, 11 Jun 2015 11:54:36 +0200
-From: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Merging of two recipes
-Thread-Index: AdCkLJwlry0zDBx8SVmXh/3OYBl0DQ==
-Date: Thu, 11 Jun 2015 09:54:36 +0000
-Message-ID: <F38A866CD026F746A3BF0928A84397BE3A42B2EE@AZ-FFEXMB01.global.avaya.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.64.58.47]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f51.google.com (mail-oi0-f51.google.com
+	[209.85.218.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4713EE009C2;
+	Thu, 11 Jun 2015 03:00:35 -0700 (PDT)
+Received: by oihb142 with SMTP id b142so1307633oih.3;
+	Thu, 11 Jun 2015 03:00:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:cc:content-type;
+	bh=/1Ymv+awNZvCI7SaQHFpGPuNebyAKYjzGNffdxL46zw=;
+	b=mQb8V0bqeUzLPS+3QzLGeOFZVxVmc4vWi1RQavnaIMnLM44/xQ2h61IiSMKrpgR8gL
+	F228+pyHw2v5m7HS/5e70xkmpwURPVmBpJGcEOKVeVlldiUr4w+RvWqamjGHh/qSiKqu
+	X7YjzTUDqjb9hk0a2Fu+zmAZrjtfNzy0aB1dGgYqwtVqpX7VFSwOcNAMhudQTY30dMXy
+	uwXFnKOpvzxzujLJdWtNrXuSgCgdq9eGrIe/SKWYFsfvNtIDCvcbXVudFGj7QJeY8OEl
+	jU+2eL4AgVXXkhvtbj6rGc/BxSBn7hUna/Di829j06getDTUQVwd/ihbaVcXrNqyvist
+	43bQ==
 MIME-Version: 1.0
-Subject: Merging of two recipes
+X-Received: by 10.202.52.138 with SMTP id b132mr6544921oia.125.1434016835340; 
+	Thu, 11 Jun 2015 03:00:35 -0700 (PDT)
+Received: by 10.60.4.104 with HTTP; Thu, 11 Jun 2015 03:00:35 -0700 (PDT)
+Date: Thu, 11 Jun 2015 12:00:35 +0200
+Message-ID: <CABMtxuwRxDH2wZfTGSm_Z6_CGm_DSS_qUMc+5O9oVJpW4fObMA@mail.gmail.com>
+From: "J.J. Garcia" <sm0ketst@gmail.com>
+To: meta-intel@yoctoproject.org
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: [meta-intel] MATOM set while using yocto-bsp create i386 (Celeron M targets / ThinkIO unit)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,347 +56,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Jun 2015 09:55:49 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_F38A866CD026F746A3BF0928A84397BE3A42B2EEAZFFEXMB01globa_"
+X-List-Received-Date: Thu, 11 Jun 2015 10:00:37 -0000
+Content-Type: multipart/alternative; boundary=001a113d3e02128ea205183b10be
 
---_000_F38A866CD026F746A3BF0928A84397BE3A42B2EEAZFFEXMB01globa_
-Content-Type: text/plain; charset="us-ascii"
+--001a113d3e02128ea205183b10be
+Content-Type: text/plain; charset=UTF-8
+
+Hello all,
+
+Why 'yocto-bsp create ... i386' (Yocto dizzy 1.7.2) is defining a kernel
+config with the MATOM=y even if I select the default kernel with the '586'
+tune (neither the  'Atom' nor the 'core2')? is this expected? Im using and
+old Celeron M (petium M based)
+
+I'm also using the meta-intel layer.
+
+My selections are like the following:
+
+$ yocto-bsp create thinkio i386
+Checking basic git connectivity...
+Done.
+
+Would you like to use the default (3.14) kernel? (y/n) [default: y]
+Do you need a new machine branch for this BSP (the alternative is to re-use
+an existing branch)? [y/n] [default: y]
+Getting branches from remote repo git://
+git.yoctoproject.org/linux-yocto-3.14.git...
+Please choose a machine branch to base this BSP on: [default: standard/base]
+    1) standard/arm-versatile-926ejs
+    2) standard/base
+    3) standard/beagleboard
+    4) standard/beaglebone
+    5) standard/ck
+    6) standard/common-pc/base
+    7) standard/edgerouter
+    8) standard/fsl-mpc8315e-rdb
+    9) standard/mti-malta32
+    10) standard/mti-malta64
+    11) standard/qemuarm64
+    12) standard/qemuppc
+    13) standard/routerstationpro
+    14) standard/xilinx-zynq
+
+Do you need SMP support? (y/n) [default: y]
+Which machine tuning would you like to use? [default: tune_core2]
+    1) i586 tuning optimizations
+    2) Atom tuning optimizations
+    3) Core2 tuning optimizations
+1
+Do you need support for X? (y/n) [default: y]
+Please select an xserver for this machine: [default: xserver_i915]
+    1) VESA xserver support
+    2) i915 xserver support
+    3) i965 xserver support
+
+Does your BSP have a touchscreen? (y/n) [default: n] y
+Does your BSP have a keyboard? (y/n) [default: y] y
+
+New i386 BSP created in meta-thinkio
+
+$ head meta-thinkio/recipes-kernel/linux/files/thinkio.cfg
+CONFIG_X86_32=y
+CONFIG_MATOM=y
+CONFIG_PRINTK=y
+
+
+Thanks in advance.
+
+JJ
+
+--001a113d3e02128ea205183b10be
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+<div dir=3D"ltr"><div>Hello all,<br><br><span>Why &#39;yocto-bsp create ...=
+ i386&#39; (Yocto dizzy 1.7.2) is defining a kernel=20
+config with the MATOM=3Dy even if I select the default kernel with the=20
+&#39;586&#39; tune (neither the<span>=C2=A0=C2=A0</span>&#39;Atom&#39; nor =
+the &#39;core2&#39;)? is this expected? Im using and old Celeron M (petium =
+M based)</span><br><br></div><div>I&#39;m also using the meta-intel layer.<=
+br><br></div><div>My selections are like the following:<br><br><span style=
+=3D"font-family:monospace,monospace">$ yocto-bsp create thinkio i386<br>Che=
+cking basic git connectivity...<br>Done.<br><br>Would you like to use the d=
+efault (3.14) kernel? (y/n) [default: y] <br>Do you need a new machine bran=
+ch for this BSP (the alternative is to re-use an existing branch)? [y/n] [d=
+efault: y] <br>Getting branches from remote repo git://<a href=3D"http://gi=
+t.yoctoproject.org/linux-yocto-3.14.git.">git.yoctoproject.org/linux-yocto-=
+3.14.git.</a>..<br>Please choose a machine branch to base this BSP on: [def=
+ault: standard/base]<br>=C2=A0=C2=A0=C2=A0 1) standard/arm-versatile-926ejs=
+<br>=C2=A0=C2=A0=C2=A0 2) standard/base<br>=C2=A0=C2=A0=C2=A0 3) standard/b=
+eagleboard<br>=C2=A0=C2=A0=C2=A0 4) standard/beaglebone<br>=C2=A0=C2=A0=C2=
+=A0 5) standard/ck<br>=C2=A0=C2=A0=C2=A0 6) standard/common-pc/base<br>=C2=
+=A0=C2=A0=C2=A0 7) standard/edgerouter<br>=C2=A0=C2=A0=C2=A0 8) standard/fs=
+l-mpc8315e-rdb<br>=C2=A0=C2=A0=C2=A0 9) standard/mti-malta32<br>=C2=A0=C2=
+=A0=C2=A0 10) standard/mti-malta64<br>=C2=A0=C2=A0=C2=A0 11) standard/qemua=
+rm64<br>=C2=A0=C2=A0=C2=A0 12) standard/qemuppc<br>=C2=A0=C2=A0=C2=A0 13) s=
+tandard/routerstationpro<br>=C2=A0=C2=A0=C2=A0 14) standard/xilinx-zynq<br>=
+<br>Do you need SMP support? (y/n) [default: y] <br>Which machine tuning wo=
+uld you like to use? [default: tune_core2]<br>=C2=A0=C2=A0=C2=A0 1) i586 tu=
+ning optimizations<br>=C2=A0=C2=A0=C2=A0 2) Atom tuning optimizations<br>=
+=C2=A0=C2=A0=C2=A0 3) Core2 tuning optimizations<br>1<br>Do you need suppor=
+t for X? (y/n) [default: y] <br>Please select an xserver for this machine: =
+[default: xserver_i915]<br>=C2=A0=C2=A0=C2=A0 1) VESA xserver support<br>=
+=C2=A0=C2=A0=C2=A0 2) i915 xserver support<br>=C2=A0=C2=A0=C2=A0 3) i965 xs=
+erver support<br><br>Does your BSP have a touchscreen? (y/n) [default: n] y=
+<br>Does your BSP have a keyboard? (y/n) [default: y] y<br><br>New i386 BSP=
+ created in meta-thinkio<br><br>$ head meta-thinkio/recipes-kernel/linux/fi=
+les/thinkio.cfg <br>CONFIG_X86_32=3Dy<br>CONFIG_MATOM=3Dy<br>CONFIG_PRINTK=
+=3Dy<br></span><br><br></div><div>Thanks in advance.<br><br></div><div>JJ</=
+div></div>
 
-Currently I have two different recipes for similar type of package with a m=
-inor differences. Below is the list
-
-1.       One being packaged as tar.gz and don't have pre or post install ac=
-tivity
-
-2.       Other one being packaged as RPM and have a post install section in=
- it.
-Below is the extract of the recipes
-
-Test.bb
-
-PACKAGES =3D "test-ch test-da test-de test-el \
-            test-en test-enu test-es test-eso \
-            test-fi test-fr test-frc test-hu \
-            test-it test-jp test-ko test-nl \
-            test-no test-pl test-pt test-ptb \
-            test-ru test-sv test-trk test-zhh \
-"
-addtask convert after do_fetch before do_install
-
-do_install_append() {
-    for lang in ${LANGS}; do
-        install -d ${D}/system/test/${lang}
-        install -m 0644 ${WORKDIR}/adpcm/${lang}/* ${D}/system/test/${lang}
-        install -m 0755 ${S}/../vmpro/Build_Scripts/vmpro500L-build/audio_c=
-onverter.sh ${D}/system/test/${lang}
-    done
-}
-
-#ch
-FILES_test-ch   =3D "${S}/alaw/ch"
-FILES_test-ch   +=3D "/system/test/ch"
-
-pkg_postinst_test-ch(){
-    echo "Post installation of test-ch"
-    cd /system/test/ch/
-    ./test.sh
-}
-
-# da
-FILES_test-da   =3D "${S}/alaw/da"
-FILES_test-da   +=3D "/system/test/da"
-
-pkg_postinst_test-da(){
-    echo "Post installation of test-da"
-    cd /system/test/da/
-    ./test.sh
-}
-
-. . .
-
-Test1.bb
-
-PACKAGES =3D "test-ch test-da test-de test-el \
-            test-en test-enu test-es test-eso \
-            test-fi test-fr test-frc test-hu \
-            test-it test-jp test-ko test-nl \
-            test-no test-pl test-pt test-ptb \
-            test-ru test-sv test-trk test-zhh \
-            "
-
-addtask do_convert after do_fetch before do_install
-
-do_install_append() {
-    for lang in ${LANGS}; do
-        install -d ${D}/system/test/${lang}
-        install -m 0644 ${WORKDIR}/law/${lang}/* ${D}/system/test/${lang}
-    done
-}
-
-#ch
-FILES_test-ch   +=3D "/system/test/ch"
-
-# da
-FILES_test-da   +=3D "/system/test/da"
-
-# de
-FILES_test-de   +=3D "/system/test/de"
-
-
-So I want to merge these both recipes to produce the same artificats as abo=
-ve but using a single recipe. So any thoughts how to do it.
-
-Thanks,
-Abhinav
-
---_000_F38A866CD026F746A3BF0928A84397BE3A42B2EEAZFFEXMB01globa_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:180315240;
-	mso-list-type:hybrid;
-	mso-list-template-ids:928798512 67698703 67698713 67698715 67698703 676987=
-13 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-@list l0:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Currently I have two different recipes for similar t=
-ype of package with a minor differences. Below is the list<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">1.<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;
-</span></span><![endif]>One being packaged as tar.gz and don&#8217;t have p=
-re or post install activity<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">2.<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;
-</span></span><![endif]>Other one being packaged as RPM and have a post ins=
-tall section in it.<o:p></o:p></p>
-<p class=3D"MsoNormal">Below is the extract of the recipes<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Test.bb<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">PACKAGES =3D &quot;test-ch test-da test-de test-el \=
-<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; test-en test-enu test-es test-eso \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; test-fi test-fr test-frc test-hu \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; test-it test-jp test-ko test-nl \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; test-no test-pl test-pt test-ptb \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; test-ru test-sv test-trk test-zhh \<o:p></o:p></p>
-<p class=3D"MsoNormal">&#8220;<o:p></o:p></p>
-<p class=3D"MsoNormal">addtask convert after do_fetch before do_install<o:p=
-></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">do_install_append() {<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; for lang in ${LANGS}; do<o:p></o:=
-p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -=
-d ${D}/system/test/${lang}<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -=
-m 0644 ${WORKDIR}/adpcm/${lang}/* ${D}/system/test/${lang}<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -=
-m 0755 ${S}/../vmpro/Build_Scripts/vmpro500L-build/audio_converter.sh ${D}/=
-system/test/${lang}<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; done<o:p></o:p></p>
-<p class=3D"MsoNormal">}<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">#ch<o:p></o:p></p>
-<p class=3D"MsoNormal">FILES_test-ch&nbsp;&nbsp; =3D &quot;${S}/alaw/ch&quo=
-t;<o:p></o:p></p>
-<p class=3D"MsoNormal">FILES_test-ch&nbsp;&nbsp; &#43;=3D &quot;/system/tes=
-t/ch&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">pkg_postinst_test-ch(){<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; echo &quot;Post installation of t=
-est-ch&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; cd /system/test/ch/<o:p></o:p></p=
->
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; ./test.sh<o:p></o:p></p>
-<p class=3D"MsoNormal">}<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"># da<o:p></o:p></p>
-<p class=3D"MsoNormal">FILES_test-da&nbsp;&nbsp; =3D &quot;${S}/alaw/da&quo=
-t;<o:p></o:p></p>
-<p class=3D"MsoNormal">FILES_test-da &nbsp;&nbsp;&#43;=3D &quot;/system/tes=
-t/da&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">pkg_postinst_test-da(){<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; echo &quot;Post installation of t=
-est-da&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; cd /system/test/da/<o:p></o:p></p=
->
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; ./test.sh<o:p></o:p></p>
-<p class=3D"MsoNormal">}<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">. . .<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Test1.bb<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">PACKAGES =3D &quot;test-ch test-da test-de test-el \=
-<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; test-en test-enu test-es test-eso \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; test-fi test-fr test-frc test-hu \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; test-it test-jp test-ko test-nl \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; test-no test-pl test-pt test-ptb \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;test-ru test-sv test-trk test-zhh \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; &quot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">addtask do_convert after do_fetch before do_install<=
-o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">do_install_append() {<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; for lang in ${LANGS}; do<o:p></o:=
-p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -=
-d ${D}/system/test/${lang}<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -=
-m 0644 ${WORKDIR}/law/${lang}/* ${D}/system/test/${lang}<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; done<o:p></o:p></p>
-<p class=3D"MsoNormal">}<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">#ch<o:p></o:p></p>
-<p class=3D"MsoNormal">FILES_test-ch&nbsp;&nbsp; &#43;=3D &quot;/system/tes=
-t/ch&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"># da<o:p></o:p></p>
-<p class=3D"MsoNormal">FILES_test-da&nbsp;&nbsp; &#43;=3D &quot;/system/tes=
-t/da&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"># de<o:p></o:p></p>
-<p class=3D"MsoNormal">FILES_test-de&nbsp;&nbsp; &#43;=3D &quot;/system/tes=
-t/de&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">So I want to merge these both recipes to produce the=
- same artificats as above but using a single recipe. So any thoughts how to=
- do it.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Abhinav<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_F38A866CD026F746A3BF0928A84397BE3A42B2EEAZFFEXMB01globa_--
+--001a113d3e02128ea205183b10be--
