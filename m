@@ -1,44 +1,49 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <mayank77fromindia@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C7DAE00B71; Thu, 11 Jun 2015 07:28:46 -0700 (PDT)
+	id 3D741E009C2; Thu, 11 Jun 2015 03:50:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS,WEIRD_PORT autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mayank77fromindia[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39500E00AC8
-	for <yocto@yoctoproject.org>; Thu, 11 Jun 2015 07:28:18 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1Z33Sp-00036v-W6
-	for yocto@yoctoproject.org; Thu, 11 Jun 2015 16:28:16 +0200
-Received: from ppp-2-86-141-63.home.otenet.gr ([2.86.141.63])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Thu, 11 Jun 2015 16:28:15 +0200
-Received: from gmane by ppp-2-86-141-63.home.otenet.gr with local (Gmexim 0.1
-	(Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Thu, 11 Jun 2015 16:28:15 +0200
-X-Injected-Via-Gmane: http://gmane.org/
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.172 listed in list.dnswl.org]
+Received: from mail-ie0-f172.google.com (mail-ie0-f172.google.com
+	[209.85.223.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E33E3E009C2
+	for <yocto@yoctoproject.org>; Thu, 11 Jun 2015 03:49:58 -0700 (PDT)
+Received: by iebmu5 with SMTP id mu5so3770776ieb.1
+	for <yocto@yoctoproject.org>; Thu, 11 Jun 2015 03:49:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=cxab+b2FT+aN1HbPcMjY3wMIy7ILTwhkWUcL8fUlXII=;
+	b=O7pntBoYlM+PHjXGZ8vWXICvS/FFhFaigMpNvSHnCLtWA7G4XrwunxozgDH4CzF4Qf
+	r44n/9o5/BeKUx9dVvoWwCvjILbI/ffIu4L7kTUhG92aXx2BGbdMYJNMp628rbO1o9ai
+	EmoERBrxZae4CDnz6929rjSnBPX1QurWJ6uoWs9K2mdiyUe5leztU2Ef5DRmvpbjQQgq
+	xZimprqDiLhRlY6PvFvRmgmjx7OkvvR5d9xdmo5+UmEMHVqLn+PV7S9CaVFLKRraitNZ
+	NcFhl02xxW4h+h6ufR8Sa4uywBLwPUAQW+IzY6vnKdjVz/M2OAAcWgmGe3OrLTCdv8Mx
+	Sg+Q==
+MIME-Version: 1.0
+X-Received: by 10.50.4.66 with SMTP id i2mr34347533igi.40.1434019797646; Thu,
+	11 Jun 2015 03:49:57 -0700 (PDT)
+Received: by 10.79.7.147 with HTTP; Thu, 11 Jun 2015 03:49:57 -0700 (PDT)
+Date: Thu, 11 Jun 2015 16:19:57 +0530
+Message-ID: <CAKjpqyKKepJMGvi2zBJK8zFP4F0VxLckh6ZEwwqAvYZH56sKxw@mail.gmail.com>
+From: Mayank Agarwal <mayank77fromindia@gmail.com>
 To: yocto@yoctoproject.org
-From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Thu, 11 Jun 2015 17:28:09 +0300
-Message-ID: <55799AF9.1060607@reliableembeddedsystems.com>
-References: <DB59870584238C45879465F0A2E5C3F17B01E6@IRVEXCHMB14.corp.ad.broadcom.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: ppp-2-86-141-63.home.otenet.gr
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
-In-Reply-To: <DB59870584238C45879465F0A2E5C3F17B01E6@IRVEXCHMB14.corp.ad.broadcom.com>
-Subject: Re: multi-user shared state
+X-Mailman-Approved-At: Thu, 11 Jun 2015 08:06:26 -0700
+Subject: Generate iso image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,67 +55,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 11 Jun 2015 14:28:46 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 11 Jun 2015 10:50:01 -0000
+Content-Type: text/plain; charset=UTF-8
 
 Hi,
 
-On 06/10/2015 10:25 PM, Luke (Lucas) Starrett wrote:
-> Hi,
-> 
->  
-> 
-> I’m trying to understand the feasibility of shared-state across multiple
-> users in a development environment.  Does anyone have first-hand
-> experience with this?  Am I asking for trouble?
+I have configured the yocto project and i am getting vmdk.ext3 image
+I want to configure that iso image should also be generated.
+I have changed IMAGE_FSTYPE in qemux86.conf to iso.
 
-Have a look here [1] 3.2.1.2. Core System Development, and [2]
+But on building i am getting do_configure failure in grub_0.xx recipe.
+and the error is: cannot link at address 7C00
 
-I did have troubles in the past. When I built e.g. for 2 different
-boards both using the same compiler and the same sstate funny things
-happened when 2 machines tried to work on the same package at the same
-time. But everything should be fine as long as things work sequentially.
-Don't know if the sstate mechanism works concurrently in the meantime.
+I think i am missing some setting in which i have to configure kernel
+to generate
+an iso image.
 
-> 
->  
-> 
-> If this is expected to work, a secondary question would be whether or
-> not shared-state on a NFS mounted path works.  Any thoughts?
-
-shared state works (and as a matter of fact everything on an nfs share
-would work)
-
-> 
->  
-> 
-> Thanks,
-> 
->  
-> 
-> Luke Starrett     
-> 
->  
-
-[1] http://www.yoctoproject.org/docs/1.8/dev-manual/dev-manual.html
-[2]
-http://www.yoctoproject.org/docs/1.8/ref-manual/ref-manual.html#shared-state-cache
-> 
-> 
-> 
-> -- 
-> 
 
 Regards,
-
-Robert
-
-..."Teaching of beginners should be done by a master, not by a hack." -
-Deming
-
-My public pgp key is available,at:
-http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
-
-
+Mayank
 
