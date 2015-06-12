@@ -1,44 +1,34 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 39239E009C8; Fri, 12 Jun 2015 09:20:26 -0700 (PDT)
+	id F3D7FE0098F; Fri, 12 Jun 2015 13:12:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS,WEIRD_PORT autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2F91E0086D
-	for <yocto@yoctoproject.org>; Fri, 12 Jun 2015 09:20:20 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1Z3Rgm-0007gv-Vq
-	for yocto@yoctoproject.org; Fri, 12 Jun 2015 18:20:17 +0200
-Received: from ppp-2-86-141-63.home.otenet.gr ([2.86.141.63])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Fri, 12 Jun 2015 18:20:16 +0200
-Received: from gmane by ppp-2-86-141-63.home.otenet.gr with local (Gmexim 0.1
-	(Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Fri, 12 Jun 2015 18:20:16 +0200
-X-Injected-Via-Gmane: http://gmane.org/
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77E9BE0086D
+	for <yocto@yoctoproject.org>; Fri, 12 Jun 2015 13:12:00 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga102.jf.intel.com with ESMTP; 12 Jun 2015 13:12:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.13,604,1427785200"; d="scan'208";a="586884927"
+Received: from yctb03.ostc.intel.com (HELO yctb03.otcr.jf.intel.com)
+	([10.23.219.52])
+	by orsmga003.jf.intel.com with ESMTP; 12 Jun 2015 13:11:58 -0700
+From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Fri, 12 Jun 2015 19:19:51 +0300
-Message-ID: <557B06A7.6070300@reliableembeddedsystems.com>
-References: <557896F3.2040207@mlbassoc.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: ppp-2-86-141-63.home.otenet.gr
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
-In-Reply-To: <557896F3.2040207@mlbassoc.com>
-Subject: Re: Strange sstate problem
+Date: Fri, 12 Jun 2015 20:10:45 +0000
+Message-Id: <1434139845-34607-1-git-send-email-anibal.limon@linux.intel.com>
+X-Mailer: git-send-email 1.8.4.5
+MIME-Version: 1.0
+Cc: paul.eggleton@linux.intel.com
+Subject: [PATCHv2 09/11][auh] upgradehelper.py: Change policy for send emails and fix error passing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,76 +40,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Jun 2015 16:20:26 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 12 Jun 2015 20:12:08 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Now send emails almost in all cases this give the maintainer
+patches and diff to continue work also if the build isn't
+succesful.
 
-On 06/10/2015 10:58 PM, Gary Thomas wrote:
-> I'm building for two similar targets and sharing sstate between
-> them.  Actually, I build for target A and use that sstate cache
-> in my SSTATE_MIRRORS for target B.
+[YOCTO #7489]
 
-If I understand correctly what should happen, then SSTATE_MIRRORS should
-point to some build machine, which populates SSTATE and other machines
-pull from it.
+Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
+---
+ upgradehelper.py | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
 
-something like:
-
-SSTATE_MIRRORS ?= "file:///nfs/mount/sstate/PATH"
-
-where PATH will be substituted.
-
-So it looks like you do the right thing.
-
-Is the sequence you do the following?
-
-1) Build for target A (which is the SSTATE_MIRROR for target B)
-2) After the build finished you build for target B using the shared
-sstate from target A
-
-> 
-> If I try to build target B from scratch, i.e. wipe out most
-> everything from my build tree:
->   % mv cache sstate-cache tmp old2; rm -fr old&
-> I also have a PR server for each target - in local.conf:
->   PRSERV_HOST = "localhost:0"
-
-I think that if you use a shared sstate whoever populates the sstate
-should also use a central pr server.
-
-something like:
-
-bitbake-prserv --host <server_ip> --port <port> --start on one machine
-and instead of localhost:0 the <server_ip>:<port>
-
-In your case it should not matter, since only target A populates the
-shared sstate, but you can give it a try.
-
-
-> 
-> When I build in target B, I'm getting a ton of QA errors, basically
-> one for every package selected, e.g.
->   ERROR: QA Issue: Package version for package fsl-alsa-plugins went
-> backwards which would break package feeds from (0:1.0.25-r0.2 to
-> 0:1.0.25-r0.0) [version-going-backwards]
-> 
-> What could be going on here?
-> 
-> n.b. I'm using a fairly recent Poky/Yocto master
-> (a05663bfa10352fd5af6ca9a9d7b323c1c099f35)
-> 
-
-Regards,
-
-Robert
-
-..."Software is getting slower more rapidly than hardware becomes
-faster." - Niklaus Wirth, who attributed it to Martin Reiser.
-
-My public pgp key is available,at:
-http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
-
+diff --git a/upgradehelper.py b/upgradehelper.py
+index b1f075d..d065fba 100755
+--- a/upgradehelper.py
++++ b/upgradehelper.py
+@@ -346,8 +346,6 @@ class Updater(object):
+                 self.git.clean_untracked()
+                 return
+ 
+-        status = type(err).__name__
+-
+         # drop last upgrade from git. It's safer this way if the upgrade has
+         # problems and other recipes depend on it. Give the other recipes a
+         # chance...
+@@ -381,8 +379,14 @@ class Updater(object):
+                 "Attached are the patch, license diff (if change) and bitbake log.\n\n" \
+                 "Regards,\nThe Upgrade Helper"
+ 
+-            # don't bother maintainer with mail if the recipe is already up to date
+-            if status == "UpgradeNotNeededError":
++            # if error only send email when useful infomration for maintainers exist
++            if err and not (isinstance(err, PatchError) or \
++               isinstance(err, ConfigureError) or \
++               isinstance(err, CompilationError) or \
++               isinstance(err, LicenseError)):
++                D( "%s: Don't send email to maintainer because the error was " \
++                   "%s and the information isn't useful, please review it." \
++                    % (self.pn, type(err).__name__))
+                 return
+ 
+             if self.maintainer in maintainer_override:
+@@ -478,6 +482,7 @@ class Updater(object):
+ 
+         attempted_pkgs = 0
+         for self.pn, self.new_ver, self.maintainer in pkgs_to_upgrade:
++            error = None
+             self.recipe = None
+             attempted_pkgs += 1
+             I(" ATTEMPT PACKAGE %d/%d" % (attempted_pkgs, total_pkgs))
+@@ -489,10 +494,6 @@ class Updater(object):
+                     step()
+ 
+                 I(" %s: Upgrade SUCCESSFUL! Please test!" % self.pn)
+-                error = None
+-            except UpgradeNotNeededError as e:
+-                I(" %s: %s" % (self.pn, e.message))
+-                error = e
+             except Error as e:
+                 E(" %s: %s" % (self.pn, e.message))
+                 E(" %s: Upgrade FAILED! Logs and/or file diffs are available in %s" % (self.pn, self.workdir))
+@@ -667,7 +668,7 @@ class UniverseUpdater(Updater):
+ 
+     # overriding the base method
+     def pkg_upgrade_handler(self, err):
+-        super(UniverseUpdater, self).pkg_upgrade_handler(self)
++        super(UniverseUpdater, self).pkg_upgrade_handler(err)
+         self.update_history(self.pn, self.new_ver, self.maintainer,
+                 self._get_status_msg(err))
+ 
+-- 
+1.8.4.5
 
 
