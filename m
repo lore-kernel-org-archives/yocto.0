@@ -1,47 +1,47 @@
-Return-Path: <abhinavbipnesh@avaya.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 94C6EE00A28; Fri, 12 Jun 2015 04:15:33 -0700 (PDT)
+	id 80B23E00A21; Fri, 12 Jun 2015 04:22:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [198.152.71.100 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from de307622-de-outbound.net.avaya.com
-	(de307622-de-outbound.net.avaya.com [198.152.71.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2ED94E00A0A
-	for <yocto@yoctoproject.org>; Fri, 12 Jun 2015 04:15:30 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AqMFAH3ldlWHCzIm/2dsb2JhbABcgkUhKlRkvgmISQKBSEwBAQEBAQGBAAuEJAEBAxIbXgEVFVYmAQQbGogMAZw9hQmufgwBH5AYg0+BFgWTPpNQj0skg3iCNYEBAQEB
-X-IronPort-AV: E=Sophos;i="5.13,581,1427774400"; 
-	d="scan'208,217";a="106311682"
-Received: from unknown (HELO p-us1-erheast-smtpauth.us1.avaya.com)
-	([135.11.50.38]) by de307622-de-outbound.net.avaya.com with ESMTP;
-	12 Jun 2015 07:15:27 -0400
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-FFEXHC03.global.avaya.com) ([135.64.58.13])
-	by p-us1-erheast-out.us1.avaya.com with ESMTP/TLS/AES128-SHA;
-	12 Jun 2015 07:15:27 -0400
-Received: from AZ-FFEXMB01.global.avaya.com ([fe80::39ee:75fe:e67a:cf4a]) by
-	AZ-FFEXHC03.global.avaya.com ([135.64.58.13]) with mapi id
-	14.03.0174.001; Fri, 12 Jun 2015 07:15:25 -0400
-From: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Post install section for multiple packages using a function
-Thread-Index: AdClAQwuUcuu/8j0R4yAqRyaqk0Zmw==
-Date: Fri, 12 Jun 2015 11:15:24 +0000
-Message-ID: <F38A866CD026F746A3BF0928A84397BE3A42D7B3@AZ-FFEXMB01.global.avaya.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.64.58.47]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.171 listed in list.dnswl.org]
+Received: from mail-qk0-f171.google.com (mail-qk0-f171.google.com
+	[209.85.220.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01B13E009EF
+	for <yocto@yoctoproject.org>; Fri, 12 Jun 2015 04:21:59 -0700 (PDT)
+Received: by qkx62 with SMTP id 62so15715857qkx.3
+	for <yocto@yoctoproject.org>; Fri, 12 Jun 2015 04:21:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=mRv0tBpgsIIltmeTEPkJ4OGVwdRq4FNXr0dmKIA8tLM=;
+	b=XU3NcoPlWQGuyzUHSdICzjZmMmSygxEAS77fspjv8l+sO8nclRvzwjeALr2dgHiGZK
+	h7l98FoIW+r4RFfevia0jimzSmkXxUptDegNjfskdiEEn7xYZrB1ybIOqg9mGYemTfJZ
+	EP9e97NbuBO0YTg9iVtmQw4qmRLNz0h3lRioDmUMxe9I8C9jgEWupVDvKFeP+qnW73ZJ
+	A1lDCZo9zH8NLN/Wh/CJOOAcrO6aS17H+7ot0Em/pnUmnVBYNhfFHpNNrv3LXaCPtzCK
+	otzM398tXolpvoqd+NEhkzJQbuQbRg5aeqQ9e7bwVxnJHiBrbJUh+EjzZnBS5YqCinnw
+	hMJQ==
+X-Gm-Message-State: ALoCoQkZfzF4gA7Beux3RLmMeFFW229dnSNJS29lbcUNx0BGOsrHewO6QgY8snqzI2rNF++xj3RZ
+X-Received: by 10.55.43.130 with SMTP id r2mr29329441qkr.14.1434108118852;
+	Fri, 12 Jun 2015 04:21:58 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Post install section for multiple packages using a function
+Received: by 10.140.102.231 with HTTP; Fri, 12 Jun 2015 04:21:38 -0700 (PDT)
+In-Reply-To: <F38A866CD026F746A3BF0928A84397BE3A42D7B3@AZ-FFEXMB01.global.avaya.com>
+References: <F38A866CD026F746A3BF0928A84397BE3A42D7B3@AZ-FFEXMB01.global.avaya.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 12 Jun 2015 12:21:38 +0100
+Message-ID: <CAJTo0LZa4=5J=RhMKJ3uL1Akpq6-OCJqmm20VLm_dnQEAvbUWA@mail.gmail.com>
+To: "Bipnesh, Abhinav (Abhinav)" <abhinavbipnesh@avaya.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Post install section for multiple packages using a function
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,140 +53,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 12 Jun 2015 11:15:33 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_F38A866CD026F746A3BF0928A84397BE3A42D7B3AZFFEXMB01globa_"
+X-List-Received-Date: Fri, 12 Jun 2015 11:22:03 -0000
+Content-Type: multipart/alternative; boundary=001a1147afb0fe7b6b05185050c2
 
---_000_F38A866CD026F746A3BF0928A84397BE3A42D7B3AZFFEXMB01globa_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--001a1147afb0fe7b6b05185050c2
+Content-Type: text/plain; charset=UTF-8
 
-Hi,
+On 12 June 2015 at 12:15, Bipnesh, Abhinav (Abhinav) <
+abhinavbipnesh@avaya.com> wrote:
 
-I have an recipe in which 24 packages are being created using split package=
- format. Below is the sample recipe with the same
-
-PACKAGES =3D "${TEST_PACKAGE}"
-LANGS =3D "ch da de el en enu es eso fi fr frc hu it jp ko nl no pl pt ptb =
-ru sv trk zhh"python __anonymous () {
-    packages =3D []
-    extras =3D []
-    for lang in d.getVar('LANGS', True).split( ):
-        pkg =3D "test-%s" %lang
-        files =3D "/test/%s" %lang
-        fileName =3D "FILES_test-%s" %lang
-        d.setVar(fileName,files)
-        packages.append(pkg)
-    d.setVar("TEST_PACKAGE", " ".join(packages))
-}
-
-addtask convert after do_fetch before do_install
-do_install_append() {
-. . .
-}
-
-So I need to write an pkg_postinstall_PACKAGE section for 24 such packages.=
- So is there a way I can do it through some function or way out.
-
-Thanks,
-Abhinav
-
---_000_F38A866CD026F746A3BF0928A84397BE3A42D7B3AZFFEXMB01globa_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> So I need to write an pkg_postinstall_PACKAGE section for 24 such
+> packages. So is there a way I can do it through some function or way out.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I have an recipe in which 24 packages are being crea=
-ted using split package format. Below is the sample recipe with the same<o:=
-p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">PACKAGES =3D &quot;${TEST_PACKAGE}&quot;<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal">LANGS =3D &quot;ch da de el en enu es eso fi fr frc =
-hu it jp ko nl no pl pt ptb ru sv trk zhh&quot;python __anonymous () {<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; packages =3D []<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; extras =3D []<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; for lang in d.getVar('LANGS', Tru=
-e).split( ):<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pkg =3D &=
-quot;test-%s&quot; %lang<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; files =3D=
- &quot;/test/%s&quot; %lang<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fileName =
-=3D &quot;FILES_test-%s&quot; %lang<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; d.setVar(=
-fileName,files)<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; packages.=
-append(pkg)<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; d.setVar(&quot;TEST_PACKAGE&quot;=
-, &quot; &quot;.join(packages))<o:p></o:p></p>
-<p class=3D"MsoNormal">}<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">addtask convert after do_fetch before do_install<o:p=
-></o:p></p>
-<p class=3D"MsoNormal">do_install_append() {<o:p></o:p></p>
-<p class=3D"MsoNormal">. . . <o:p></o:p></p>
-<p class=3D"MsoNormal">}<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">So I need to write an pkg_postinstall_PACKAGE sectio=
-n for 24 such packages. So is there a way I can do it through some function=
- or way out.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Abhinav<o:p></o:p></p>
-</div>
-</body>
-</html>
+>
+Just set the variable pkg_postinstall_[PACKAGE] in your function to the
+string you want to use as the postinst.  Many classes already do this, such
+as systemd.bbclass.
 
---_000_F38A866CD026F746A3BF0928A84397BE3A42D7B3AZFFEXMB01globa_--
+Ross
+
+--001a1147afb0fe7b6b05185050c2
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 12 June 2015 at 12:15, Bipnesh, Abhinav (Abhinav) <span dir=3D"ltr">&lt;=
+<a href=3D"mailto:abhinavbipnesh@avaya.com" target=3D"_blank">abhinavbipnes=
+h@avaya.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><p clas=
+s=3D"MsoNormal">So I need to write an pkg_postinstall_PACKAGE section for 2=
+4 such packages. So is there a way I can do it through some function or way=
+ out.<u></u><u></u></p>
+<p class=3D"MsoNormal"></p></blockquote></div><br>Just set the variable pkg=
+_postinstall_[PACKAGE] in your function to the string you want to use as th=
+e postinst.=C2=A0 Many classes already do this, such as systemd.bbclass.</d=
+iv><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</di=
+v></div>
+
+--001a1147afb0fe7b6b05185050c2--
