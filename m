@@ -1,6 +1,6 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <john.ernberg@actia.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C0C4E009E5; Sun, 14 Jun 2015 13:31:24 -0700 (PDT)
+	id 40FD2E00A2C; Sun, 14 Jun 2015 22:39:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,24 +8,29 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5943E006C6
-	for <yocto@yoctoproject.org>; Sun, 14 Jun 2015 13:31:20 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id D9FA2F811DE; Sun, 14 Jun 2015 14:31:19 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 327DBF811D9;
-	Sun, 14 Jun 2015 14:31:19 -0600 (MDT)
-Message-ID: <557DE4A6.3040703@mlbassoc.com>
-Date: Sun, 14 Jun 2015 14:31:34 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+Received: from mail.actia.se (mail.actia.se [193.41.119.134])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8810EE009F8
+	for <yocto@yoctoproject.org>; Sun, 14 Jun 2015 22:39:27 -0700 (PDT)
+Received: from S005ANL.actianordic.se ([::1]) by S005ANL.actianordic.se
+	([::1]) with mapi id 14.03.0235.001; Mon, 15 Jun 2015 07:39:25 +0200
+From: John Ernberg <john.ernberg@actia.se>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Thread-Topic: [yocto] Removing rootfs from SDK
+Thread-Index: AQHQnqkksrR0RtzV0UqrLrguwcGouJ2ou+qAgARAqYA=
+Date: Mon, 15 Jun 2015 05:39:24 +0000
+Message-ID: <557E652D.4030400@actia.se>
+References: <55701AD1.3060300@actia.se>
+	<2657960.9G8c0QYjYG@peggleto-mobl.ger.corp.intel.com>
+In-Reply-To: <2657960.9G8c0QYjYG@peggleto-mobl.ger.corp.intel.com>
+Accept-Language: en-US, sv-SE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.15.20]
+x-esetresult: clean, is OK
+x-esetid: 360D0A390C662C34674A54
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <557896F3.2040207@mlbassoc.com>
-In-Reply-To: <557896F3.2040207@mlbassoc.com>
-Subject: Re: Strange sstate problem
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Removing rootfs from SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,41 +42,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 14 Jun 2015 20:31:24 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 15 Jun 2015 05:39:32 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <47866BD06EC4FE49A4E46CEB79DBE9FE@actia.se>
+Content-Transfer-Encoding: quoted-printable
 
-On 2015-06-10 13:58, Gary Thomas wrote:
-> I'm building for two similar targets and sharing sstate between
-> them.  Actually, I build for target A and use that sstate cache
-> in my SSTATE_MIRRORS for target B.
->
-> If I try to build target B from scratch, i.e. wipe out most
-> everything from my build tree:
->    % mv cache sstate-cache tmp old2; rm -fr old&
-> I also have a PR server for each target - in local.conf:
->    PRSERV_HOST = "localhost:0"
->
-> When I build in target B, I'm getting a ton of QA errors, basically
-> one for every package selected, e.g.
->    ERROR: QA Issue: Package version for package fsl-alsa-plugins went backwards which would break package feeds from (0:1.0.25-r0.2 to 0:1.0.25-r0.0) [version-going-backwards]
->
-> What could be going on here?
->
-> n.b. I'm using a fairly recent Poky/Yocto master (a05663bfa10352fd5af6ca9a9d7b323c1c099f35)
->
+Hi Paul
 
-I discovered what was causing these errors - I have buildhistory
-enabled for target B.  Periodically I rebuild target A from scratch
-and this gives buildhistory on target B fits.  For now, I'll just
-disable buildhistory...
+I managed to clear out everything set by IMAGE_INSTALL and=20
+IMAGE_FEATURES by setting PACKAGE_INSTALL =3D "".
+So we no longer package the kernel etc into our SDK.
+We do however still package the busybox binaries, when I run:
+bitbake -e -c populate_sdk [image] | less
+and then search for busybox, I get no results, so according to the=20
+variables nothing adds busybox to the SDK.
+I cannot figure out why busybox would get included, and I don't mean the=20
+dev and dbg packages here, but the actual binary package.
 
-BTW, except for the buildhistory "errors", using sstate like
-this does help quite a lot.
+For this project we're not able to update to dizzy or later at this=20
+time, we're currently on 1.6.1.
+So the PACKAGE_EXCLUDE_COMPLEMENTARY variable is not available to us.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Best regards // John Ernberg
+
+On 2015-06-12 14:43, Paul Eggleton wrote:
+> Hi John,
+>
+> On Thursday 04 June 2015 09:30:49 John Ernberg wrote:
+>> We're trying to optimize the SDK generated by bitbake -c populate_sdk.
+>> Currently we're trying to remove the kernel, modules and other
+>> executables which we have no use for, most of it could be removed using
+>> IMAGE_INSTALL =3D "" and IMAGE_FEATURES =3D "".
+>>
+>> Due to us using 2 different kernel module sets, we're using
+>> IMAGE_INSTALL_append_[machine] additions to IMAGE_INSTALL which are not
+>> cleared by the IMAGE_INSTALL =3D "" setting.
+>>
+>> I've tried to do IMAGE_INSTALL_remove using the same variable that we
+>> use to populate the IMAGE_INSTALL_append, but that doesn't work. I can
+>> however remove each individual package added by IMAGE_INSTALL_append.
+>> Due to the number of packages added by IMAGE_INSTALL_append this is not
+>> really feasible.
+>>
+>> Is there a way to clear IMAGE_INSTALL_append without doing an
+>> IMAGE_INSTALL_remove per package? Alternatively clearing it using a
+>> python loop without needing to know the name of each package.
+>>
+>> We're also seeing busybox getting included into the SDK without anything
+>> showing a dependency on it from running bitbake -g -c populate_sdk.
+>>
+>> What could be going on with that?
+> We construct the SDK for an image by getting a list of the packages in th=
+e
+> image, and then including the -dev and -dbg packages that correspond to t=
+hose
+> in the host portion of the SDK. Thus if your image has busybox in it then=
+ you
+> will get busybox-dev and busybox-dbg in your SDK.
+>
+> In the dizzy (1.7) and later releases, there is a
+> PACKAGE_EXCLUDE_COMPLEMENTARY variable that can take a regex to match pac=
+kages
+> that you do not wish to install complementary packages for. You could set=
+ this
+> in your image recipe. Note that this will affect all complementary packag=
+e
+> processing for the image as well as the SDK (e.g. dev-pkgs in IMAGE_FEATU=
+RES
+> will also be affected, if you used that).
+>
+> Cheers,
+> Paul
+>
 
