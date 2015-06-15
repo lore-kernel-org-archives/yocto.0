@@ -1,58 +1,52 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2A413E00978; Mon, 15 Jun 2015 07:21:13 -0700 (PDT)
+	id 7ABF6E00A3F; Mon, 15 Jun 2015 07:25:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.jansa[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.212.178 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wi0-f178.google.com (mail-wi0-f178.google.com
-	[209.85.212.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D0DEE00960
-	for <yocto@yoctoproject.org>; Mon, 15 Jun 2015 07:21:07 -0700 (PDT)
-Received: by wiwd19 with SMTP id d19so76738209wiw.0
-	for <yocto@yoctoproject.org>; Mon, 15 Jun 2015 07:21:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:date:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:content-transfer-encoding
-	:in-reply-to:user-agent;
-	bh=qRatk0PgkLV9KiUdsNfLDg0jPAuAiO4FQG2U5tPw3YM=;
-	b=mM3chp1uUCeLv8GHqWtyh/pQ2WZ8xQTkXqqWN+fQcuvubT+N58DRFyVHbqYuVIGNbR
-	Iu2Ax4IDTYpaQ4HHrxJX6PyIhHdD/N3xJA5/nXpSyOAmCua4Rp0z6FUeYD/MIYJAfjtG
-	GCc0TLN7miP1WblwIyWE4tcMgpM9/uO8pFelVojDwkw79clgRuOIKEoHETbS6a/wZc+/
-	kfOx98+iMd9M4svs+o6EAqn48xGJK4IkL66dLA6/DKYbqD1k20RcEg3f/qbpMFagQq3T
-	FM/YW4/U1T+LGbU/NyWZLcwZVDFMyQqZi+hmUEkXH6F7aQWvczTJk4dXs1Yr8i91bn/r
-	NhCw==
-X-Received: by 10.194.78.110 with SMTP id a14mr52948819wjx.87.1434378066784;
-	Mon, 15 Jun 2015 07:21:06 -0700 (PDT)
-Received: from localhost (ip-86-49-34-37.net.upcbroadband.cz. [86.49.34.37])
-	by mx.google.com with ESMTPSA id hn7sm16087075wib.5.2015.06.15.07.21.06
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 15 Jun 2015 07:21:06 -0700 (PDT)
-From: Martin Jansa <martin.jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-Date: Mon, 15 Jun 2015 16:21:10 +0200
-To: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <20150615142110.GC2398@jama>
-References: <557ED498.50406@mlbassoc.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1034BE00960
+	for <yocto@yoctoproject.org>; Mon, 15 Jun 2015 07:25:11 -0700 (PDT)
+Received: by qcej3 with SMTP id j3so6509136qce.3
+	for <yocto@yoctoproject.org>; Mon, 15 Jun 2015 07:25:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=vcG311h/6vchBfnqY5OORslfphhsSCm0x3hgS5sriDs=;
+	b=WNRB47y016fC3fHkjLUNsbNUAClc84OosV+WPK5TYNiTmOzpOx2vCDpX1YAy2bhxj2
+	ffuOZL657aRoGJSe3neH7xVIN9Hp3TKgvGwzpRvZ+yFk+4gxP5BiiBRv4I3/VmipufKd
+	RttzhpLyxdR72CyrCA+pSv9rSqayy5Bl/7I7D9BYMokNhFxP3Yw/vCyVpWua2Y6W6jo/
+	hoqsM8NSxumX1ac8HYkoSeEe7L3uVfwu+CClAWL6fY/G9UGuzXPVyKxw3RnzTNR27iGO
+	+/C5POKv+4RUTVwa4tQhrh9ud2ujPbejJE6ispyofOFeodlRpNfnGB2K3WH3BI5ijdgN
+	3ZkQ==
+X-Gm-Message-State: ALoCoQmUVtGxL3qTPa5S2DqeUvJBED/Fzln4oA6qS/q7BBPRLrIfAzP8y0tMUXlQ0u23HSPmEXkp
+X-Received: by 10.55.18.144 with SMTP id 16mr58195938qks.17.1434378310095;
+	Mon, 15 Jun 2015 07:25:10 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <557ED498.50406@mlbassoc.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: sstate black hole?
+Received: by 10.140.102.231 with HTTP; Mon, 15 Jun 2015 07:24:49 -0700 (PDT)
+In-Reply-To: <CALbNGRS9UWjVQQh8POPc5zVYOeYa9VaeC7dEfzH3AMs4k9Mjzw@mail.gmail.com>
+References: <557E9EFE.1030703@linux.intel.com>
+	<CALbNGRS9UWjVQQh8POPc5zVYOeYa9VaeC7dEfzH3AMs4k9Mjzw@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 15 Jun 2015 15:24:49 +0100
+Message-ID: <CAJTo0LbRVqw3h_3igs59=DTnaz6nf4w=A5ZpXepmh6xiKtVdPA@mail.gmail.com>
+To: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	"openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] Webkit-gtk will be updated to latest upstream; midori browser to be replaced with Epiphany
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,42 +58,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Jun 2015 14:21:13 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 15 Jun 2015 14:25:16 -0000
+Content-Type: multipart/alternative; boundary=001a113ad64aa5ab0705188f3957
+
+--001a113ad64aa5ab0705188f3957
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 15, 2015 at 07:35:20AM -0600, Gary Thomas wrote:
-> I'm working with i.MX6 targets (meta-fsl-arm*).  For these
-> targets, some packages are "special" in that they use i.MX6
-> specific graphics support.  This ends up with an additional
-> layer of stratification, so my tmp/work tree has:
->    all-amltd-linux
->    cortexa9hf-vfp-neon-amltd-linux-gnueabi
->    cortexa9hf-vfp-neon-mx6qdl-amltd-linux-gnueabi
->    teton_p0382-amltd-linux-gnueabi
->    x86_64-amltd-linux-gnueabi
->    x86_64-linux
->=20
-> The packages that are built in tmp/work/cortex* are architecture
-> specific, not target specific, hence my question:
->=20
->    If I build for two i.MX6 targets, identical in every way
->    except for the ${MACHINE} name, if I use sstate to share
->    the builds from target A when building for target B, why
->    are the packages built in cortexa9hf-vfp-neon-mx6qdl-amltd-linux-gnuea=
-bi
->    not shared by sstate?  I can see that they are present in
->    the sstate cache, but they are always rebuilt for target B.
->    I consider this incorrect behaviour as these are the same
->    architecture and so they should be sharable via sstate.
->=20
-> Am I missing something here?  How can I determine why the
-> package from target A (sstate cache) is not usable by target B?
+On 15 June 2015 at 12:53, Andreas M=C3=BCller <schnitzeltony@googlemail.com=
+>
+wrote:
 
-Use openembedded-core/scripts/sstate-diff-machines.sh to check if the
-signatures of the recipes you expect to be re-used are the same.
+> So we are loosing last working browser around - what get's better
+> except later is greater?
+>
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+If you actually compare the build dependencies, you'll see that Midori and
+Epiphany are actually almost identical.
 
+We need to upgrade WebKit as the release we're shipping has known security
+flaws and is very old - and the community is rightly moaning about that.
+However Midori doesn't build with a recent WebKit... if you have an
+alternative solution then your thoughts are welcome.
+
+Ross
+
+--001a113ad64aa5ab0705188f3957
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 15 June 2015 at 12:53, Andreas M=C3=BCller <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:schnitzeltony@googlemail.com" target=3D"_blank">schnitzeltony@go=
+oglemail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div i=
+d=3D":1dc" class=3D"a3s" style=3D"overflow:hidden">So we are loosing last w=
+orking browser around - what get&#39;s better<br>
+except later is greater?<br></div></blockquote><div><br></div><div>If you a=
+ctually compare the build dependencies, you&#39;ll see that Midori and Epip=
+hany are actually almost identical.</div><div><br></div><div>We need to upg=
+rade WebKit as the release we&#39;re shipping has known security flaws and =
+is very old - and the community is rightly moaning about that.=C2=A0 Howeve=
+r Midori doesn&#39;t build with a recent WebKit... if you have an alternati=
+ve solution then your thoughts are welcome.</div><div><br></div><div>Ross=
+=C2=A0</div></div></div></div>
+
+--001a113ad64aa5ab0705188f3957--
