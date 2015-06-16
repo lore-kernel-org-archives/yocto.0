@@ -1,32 +1,62 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <schnitzeltony@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EF7E5E00A4C; Tue, 16 Jun 2015 06:20:49 -0700 (PDT)
+	id 21557E00A4F; Tue, 16 Jun 2015 06:27:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (schnitzeltony[at]googlemail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.179 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0672E009E6
-	for <yocto@yoctoproject.org>; Tue, 16 Jun 2015 06:20:47 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 585AAF811E5; Tue, 16 Jun 2015 07:20:47 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 064CFF811E3;
-	Tue, 16 Jun 2015 07:20:47 -0600 (MDT)
-Message-ID: <558022C1.7080006@mlbassoc.com>
-Date: Tue, 16 Jun 2015 07:21:05 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pd0-f179.google.com (mail-pd0-f179.google.com
+	[209.85.192.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5B96E009E6
+	for <yocto@yoctoproject.org>; Tue, 16 Jun 2015 06:27:23 -0700 (PDT)
+Received: by pdjn11 with SMTP id n11so14588225pdj.0
+	for <yocto@yoctoproject.org>; Tue, 16 Jun 2015 06:27:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=hmkex+jX1EXN9IJns5BieF8PJ4evfZx7aKFrADSFx+E=;
+	b=wlfqyJ0Kv9lm6xw2IldCGVQApfSNvDhIQJoJFHi3VmiGJ5AsGeLc9teQ44k3eBqcIO
+	6btzUHtVMeQ77a1UhjPqfBq9xieJnnONAD1mGvxjjDZHo7Bb9+xAlLPIgej7MwVhD+MI
+	8ky4RQvoarupkBsLbSmuqYBf/s19NhOTOxB89sbgeNqDXv157EMSv0HIqefwrsSvi9ft
+	/F20dxmIRrrDf/ZCqn84WNvB0wr5i7K77dPEmApUwlZAakhdIySpIIP+B7pb+6MXRx3A
+	T+xenHO/4NVKmn74/8vxG2XTIw89Y4mJqjGhUasg8ByHyOXcC8Xuy2fBRQhLSEXXQPCb
+	agPg==
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <557ED498.50406@mlbassoc.com>	<1510925.QRRL9HzgZN@peggleto-mobl.ger.corp.intel.com>	<557FFED9.40205@mlbassoc.com>
-	<1986608.cqN5gJUDst@peggleto-mobl.ger.corp.intel.com>
-In-Reply-To: <1986608.cqN5gJUDst@peggleto-mobl.ger.corp.intel.com>
-Subject: Re: sstate black hole?
+X-Received: by 10.68.200.100 with SMTP id jr4mr649919pbc.168.1434461243095;
+	Tue, 16 Jun 2015 06:27:23 -0700 (PDT)
+Received: by 10.70.44.41 with HTTP; Tue, 16 Jun 2015 06:27:23 -0700 (PDT)
+In-Reply-To: <55801903.4040905@linux.intel.com>
+References: <557E9EFE.1030703@linux.intel.com>
+	<CALbNGRS9UWjVQQh8POPc5zVYOeYa9VaeC7dEfzH3AMs4k9Mjzw@mail.gmail.com>
+	<CAJTo0LbRVqw3h_3igs59=DTnaz6nf4w=A5ZpXepmh6xiKtVdPA@mail.gmail.com>
+	<557EE4C2.501@linux.intel.com>
+	<CALbNGRS-xR52wapA2viFa0oZJ6kotFdjhXpb6kyOtpRyn--5=A@mail.gmail.com>
+	<55801903.4040905@linux.intel.com>
+Date: Tue, 16 Jun 2015 15:27:23 +0200
+Message-ID: <CALbNGRTJeh4eCD45cGUOx-DRZPHSeKTqndq1Jk+7V-ANQtAPNA@mail.gmail.com>
+From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
+To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>,
+	"openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>
+Subject: Re: [OE-core] Webkit-gtk will be updated to latest upstream; midori browser to be replaced with Epiphany
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,83 +68,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jun 2015 13:20:50 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 16 Jun 2015 13:27:25 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 2015-06-16 06:36, Paul Eggleton wrote:
-> On Tuesday 16 June 2015 04:47:53 Gary Thomas wrote:
->> On 2015-06-16 02:37, Paul Eggleton wrote:
->>> On Monday 15 June 2015 18:19:21 Gary Thomas wrote:
->>>> I followed this down to an i.MX6 specific package which is
->>>>
->>>> in DEPENDS:
->>>>      Variable PROVIDES value changed from
->>>>      '${PN}  virtual/wayland-egl virtual/libgal-x11 virtual/egl
->>>>
->>>> virtual/libopenvg virtual/libg2d virtual/libgl virtual/libgles1
->>>> virtual/libgles2' to
->>>>
->>>>      '${PN}  virtual/wayland-egl virtual/libgal-x11 virtual/egl
->>>>
->>>> virtual/libopenvg virtual/libg2d virtual/libgl virtual/libgles1
->>>> virtual/libgles2 virtual/libgl virtual/libgles1 virtual/libgles2'
->>>>
->>>> Why aren't these considered the same (duplicate elements and/or order)
->>>> should not matter for PROVIDES.  Is there some way we could get bitbake
->>>> to collapse this and remove the duplicates?
->>>>
->>>> I found that this happens in
->>>> meta-fsl-arm:recipes-graphics/imx-gpu-viv/imx-gpu-viv.inc which contains
->>>>
->>>> these lines:
->>>>      PROVIDES += "virtual/wayland-egl virtual/libgal-x11 virtual/egl
->>>>
->>>> virtual/libopenvg virtual/libg2d"
->>>> PROVIDES_append_mx6q  = " virtual/libgl virtual/libgles1
->>>> virtual/libgles2"
->>>> PROVIDES_append_mx6dl  = " virtual/libgl virtual/libgles1
->>>> virtual/libgles2"
->>>> PROVIDES_append_mx6sx  = " virtual/libgl virtual/libgles1
->>>> virtual/libgles2"
->>>>
->>>> Some i.MX6 targets, nitrogen6x in particular, has overrides for both mx6q
->>>> and mx6dl, hence the duplication.
->>>>
->>>> Note: I removed the extra override (for testing) and found that
->>>> now the packages built by target A can be shared via sstate with
->>>> target B (at least the few I tested)
->>>
->>> I agree this would be nice, but for this to work we'd probably need to
->>> introduce a typing system within bitbake so that it can understand that
->>> this variable is a space-separated list. That is something we will
->>> probably do at some point for a variety of reasons, but I don't know that
->>> it's something we will get to soon.
->>
->> Is there some way to solve this in the recipe itself?  I can see that
->> it needs to make sure that those values are provided for each of the
->> [sub]class of processor, but is there a way to write it so that they
->> are only added once?  Perhaps a little bit of Python magic?
+On Tue, Jun 16, 2015 at 2:39 PM, Alexander Kanavin
+<alexander.kanavin@linux.intel.com> wrote:
+> On 06/16/2015 09:50 AM, Andreas M=C3=BCller wrote:
 >
-> Sure, you could use an anonymous python function with actual conditional
-> statements instead of overrides to set PROVIDES here.
+>> How about doing same as others do e.g fedora [1-2]: Keep two version
+>> of webkit-gtk based on same recent code:
+>>
+>> * gtk2/webkit1
+>> * gtk3/webkit2
+>
+>
+> Before showing how, you need to explain why. Fedora has to package webkit=
+1
+> because they have a lot of apps in the Gnome stack that still haven't bee=
+n
+> ported to webkit2. Oe-core on the other hand has only one such app: midor=
+i.
+Yes and midori is the only working browser in Yocto (I know): firefox
+crashes since very long time for illegal ARM instruction and chromium
+does not start at all.
 
-Thanks.  I found a much simpler way - I replaced the previous version by:
-   EXTRA_PROVIDES = ""
-   EXTRA_PROVIDES_mx6q  = " virtual/libgl virtual/libgles1 virtual/libgles2"
-   EXTRA_PROVIDES_mx6dl  = " virtual/libgl virtual/libgles1 virtual/libgles2"
-   EXTRA_PROVIDES_mx6sx  = " virtual/libgl virtual/libgles1 virtual/libgles2"
-   PROVIDES += "virtual/wayland-egl virtual/libgal-x11 virtual/egl virtual/libopenvg virtual/libg2d ${EXTRA_PROVIDES}"
+I suggest we stop discussing my comment: You continue updating
+webkitgtk and I'll try to get a working browser.
 
-If the additions were unique, i.e. _mx6q was somehow different from _mx6dl,
-I would have had to use the python function, but since they are all the same
-this simpler way works just fine.
-
-Thanks for the pointers
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Andreas
 
