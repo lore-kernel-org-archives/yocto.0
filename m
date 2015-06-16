@@ -1,37 +1,32 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C7C61E00A4C; Tue, 16 Jun 2015 06:02:02 -0700 (PDT)
+	id EF7E5E00A4C; Tue, 16 Jun 2015 06:20:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA676E009E6
-	for <yocto@yoctoproject.org>; Tue, 16 Jun 2015 06:01:54 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga103.jf.intel.com with ESMTP; 16 Jun 2015 06:01:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,626,1427785200"; d="scan'208";a="588808536"
-Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com)
-	([10.252.25.227])
-	by orsmga003.jf.intel.com with ESMTP; 16 Jun 2015 06:01:53 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: =?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>
-Date: Tue, 16 Jun 2015 14:01:52 +0100
-Message-ID: <2202663.KVYxiN3Sl2@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.7 (Linux/4.0.4-202.fc21.x86_64; KDE/4.14.9; x86_64; ; )
-In-Reply-To: <1434139845-34607-1-git-send-email-anibal.limon@linux.intel.com>
-References: <1434139845-34607-1-git-send-email-anibal.limon@linux.intel.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0672E009E6
+	for <yocto@yoctoproject.org>; Tue, 16 Jun 2015 06:20:47 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 585AAF811E5; Tue, 16 Jun 2015 07:20:47 -0600 (MDT)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 064CFF811E3;
+	Tue, 16 Jun 2015 07:20:47 -0600 (MDT)
+Message-ID: <558022C1.7080006@mlbassoc.com>
+Date: Tue, 16 Jun 2015 07:21:05 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCHv2 09/11][auh] upgradehelper.py: Change policy for send emails and fix error passing
+To: yocto@yoctoproject.org
+References: <557ED498.50406@mlbassoc.com>	<1510925.QRRL9HzgZN@peggleto-mobl.ger.corp.intel.com>	<557FFED9.40205@mlbassoc.com>
+	<1986608.cqN5gJUDst@peggleto-mobl.ger.corp.intel.com>
+In-Reply-To: <1986608.cqN5gJUDst@peggleto-mobl.ger.corp.intel.com>
+Subject: Re: sstate black hole?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,99 +38,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jun 2015 13:02:02 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 16 Jun 2015 13:20:50 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi An=EDbal,
+On 2015-06-16 06:36, Paul Eggleton wrote:
+> On Tuesday 16 June 2015 04:47:53 Gary Thomas wrote:
+>> On 2015-06-16 02:37, Paul Eggleton wrote:
+>>> On Monday 15 June 2015 18:19:21 Gary Thomas wrote:
+>>>> I followed this down to an i.MX6 specific package which is
+>>>>
+>>>> in DEPENDS:
+>>>>      Variable PROVIDES value changed from
+>>>>      '${PN}  virtual/wayland-egl virtual/libgal-x11 virtual/egl
+>>>>
+>>>> virtual/libopenvg virtual/libg2d virtual/libgl virtual/libgles1
+>>>> virtual/libgles2' to
+>>>>
+>>>>      '${PN}  virtual/wayland-egl virtual/libgal-x11 virtual/egl
+>>>>
+>>>> virtual/libopenvg virtual/libg2d virtual/libgl virtual/libgles1
+>>>> virtual/libgles2 virtual/libgl virtual/libgles1 virtual/libgles2'
+>>>>
+>>>> Why aren't these considered the same (duplicate elements and/or order)
+>>>> should not matter for PROVIDES.  Is there some way we could get bitbake
+>>>> to collapse this and remove the duplicates?
+>>>>
+>>>> I found that this happens in
+>>>> meta-fsl-arm:recipes-graphics/imx-gpu-viv/imx-gpu-viv.inc which contains
+>>>>
+>>>> these lines:
+>>>>      PROVIDES += "virtual/wayland-egl virtual/libgal-x11 virtual/egl
+>>>>
+>>>> virtual/libopenvg virtual/libg2d"
+>>>> PROVIDES_append_mx6q  = " virtual/libgl virtual/libgles1
+>>>> virtual/libgles2"
+>>>> PROVIDES_append_mx6dl  = " virtual/libgl virtual/libgles1
+>>>> virtual/libgles2"
+>>>> PROVIDES_append_mx6sx  = " virtual/libgl virtual/libgles1
+>>>> virtual/libgles2"
+>>>>
+>>>> Some i.MX6 targets, nitrogen6x in particular, has overrides for both mx6q
+>>>> and mx6dl, hence the duplication.
+>>>>
+>>>> Note: I removed the extra override (for testing) and found that
+>>>> now the packages built by target A can be shared via sstate with
+>>>> target B (at least the few I tested)
+>>>
+>>> I agree this would be nice, but for this to work we'd probably need to
+>>> introduce a typing system within bitbake so that it can understand that
+>>> this variable is a space-separated list. That is something we will
+>>> probably do at some point for a variety of reasons, but I don't know that
+>>> it's something we will get to soon.
+>>
+>> Is there some way to solve this in the recipe itself?  I can see that
+>> it needs to make sure that those values are provided for each of the
+>> [sub]class of processor, but is there a way to write it so that they
+>> are only added once?  Perhaps a little bit of Python magic?
+>
+> Sure, you could use an anonymous python function with actual conditional
+> statements instead of overrides to set PROVIDES here.
 
-On Friday 12 June 2015 20:10:45 An=EDbal Lim=F3n wrote:
-> Now send emails almost in all cases this give the maintainer
-> patches and diff to continue work also if the build isn't
-> succesful.
->=20
-> [YOCTO #7489]
->=20
-> Signed-off-by: An=EDbal Lim=F3n <anibal.limon@linux.intel.com>
-> ---
->  upgradehelper.py | 19 ++++++++++---------
->  1 file changed, 10 insertions(+), 9 deletions(-)
->=20
-> diff --git a/upgradehelper.py b/upgradehelper.py
-> index b1f075d..d065fba 100755
-> --- a/upgradehelper.py
-> +++ b/upgradehelper.py
-> @@ -346,8 +346,6 @@ class Updater(object):
->                  self.git.clean_untracked()
->                  return
->=20
-> -        status =3D type(err).__name__
-> -
->          # drop last upgrade from git. It's safer this way if the upg=
-rade
-> has # problems and other recipes depend on it. Give the other recipes=
- a #
-> chance...
-> @@ -381,8 +379,14 @@ class Updater(object):
->                  "Attached are the patch, license diff (if change) an=
-d
-> bitbake log.\n\n" \ "Regards,\nThe Upgrade Helper"
->=20
-> -            # don't bother maintainer with mail if the recipe is alr=
-eady up
-> to date -            if status =3D=3D "UpgradeNotNeededError":
-> +            # if error only send email when useful infomration for
-> maintainers exist +            if err and not (isinstance(err, PatchE=
-rror)
-> or \
-> +               isinstance(err, ConfigureError) or \
-> +               isinstance(err, CompilationError) or \
-> +               isinstance(err, LicenseError)):
-> +                D( "%s: Don't send email to maintainer because the e=
-rror
-> was " \ +                   "%s and the information isn't useful, ple=
-ase
-> review it." \ +                    % (self.pn, type(err).__name__))
->                  return
+Thanks.  I found a much simpler way - I replaced the previous version by:
+   EXTRA_PROVIDES = ""
+   EXTRA_PROVIDES_mx6q  = " virtual/libgl virtual/libgles1 virtual/libgles2"
+   EXTRA_PROVIDES_mx6dl  = " virtual/libgl virtual/libgles1 virtual/libgles2"
+   EXTRA_PROVIDES_mx6sx  = " virtual/libgl virtual/libgles1 virtual/libgles2"
+   PROVIDES += "virtual/wayland-egl virtual/libgal-x11 virtual/egl virtual/libopenvg virtual/libg2d ${EXTRA_PROVIDES}"
 
-I think a better approach here would be to have the classes of error th=
-at are=20
-likely to be fixable by the maintainer as inheriting from a particular =
-class=20
-(e.g. MaintainerError) and then we can just check for that rather than =
-having=20
-to extend this code every time we add a new type of error.
+If the additions were unique, i.e. _mx6q was somehow different from _mx6dl,
+I would have had to use the python function, but since they are all the same
+this simpler way works just fine.
 
->              if self.maintainer in maintainer_override:
-> @@ -478,6 +482,7 @@ class Updater(object):
->=20
->          attempted_pkgs =3D 0
->          for self.pn, self.new_ver, self.maintainer in pkgs_to_upgrad=
-e:
-> +            error =3D None
->              self.recipe =3D None
->              attempted_pkgs +=3D 1
->              I(" ATTEMPT PACKAGE %d/%d" % (attempted_pkgs, total_pkgs=
-))
-> @@ -489,10 +494,6 @@ class Updater(object):
->                      step()
->=20
->                  I(" %s: Upgrade SUCCESSFUL! Please test!" % self.pn)=
+Thanks for the pointers
 
-> -                error =3D None
-> -            except UpgradeNotNeededError as e:
-> -                I(" %s: %s" % (self.pn, e.message))
-> -                error =3D e
-
-I'm confused by this. Won't this change result in UpgradeNotNeededError=
- being=20
-treated as an actual error? Surely we don't actually want that?
-
-Cheers,
-Paul
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
