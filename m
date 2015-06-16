@@ -1,39 +1,42 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <alexander.kanavin@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DC2D4E00A4C; Tue, 16 Jun 2015 05:36:44 -0700 (PDT)
+	id 5C36AE00A4C; Tue, 16 Jun 2015 05:39:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA9CCE009E6
-	for <yocto@yoctoproject.org>; Tue, 16 Jun 2015 05:36:43 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga101.jf.intel.com with ESMTP; 16 Jun 2015 05:36:42 -0700
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 651A5E009E6
+	for <yocto@yoctoproject.org>; Tue, 16 Jun 2015 05:39:24 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 16 Jun 2015 05:39:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,626,1427785200"; d="scan'208";a="744379446"
-Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com)
-	([10.252.25.227])
-	by fmsmga002.fm.intel.com with ESMTP; 16 Jun 2015 05:36:42 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Date: Tue, 16 Jun 2015 13:36:40 +0100
-Message-ID: <1986608.cqN5gJUDst@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.7 (Linux/4.0.4-202.fc21.x86_64; KDE/4.14.9; x86_64; ; )
-In-Reply-To: <557FFED9.40205@mlbassoc.com>
-References: <557ED498.50406@mlbassoc.com>
-	<1510925.QRRL9HzgZN@peggleto-mobl.ger.corp.intel.com>
-	<557FFED9.40205@mlbassoc.com>
+X-IronPort-AV: E=Sophos;i="5.13,626,1427785200"; d="scan'208";a="747612327"
+Received: from kanavin-desktop.fi.intel.com (HELO [10.237.68.143])
+	([10.237.68.143])
+	by orsmga002.jf.intel.com with ESMTP; 16 Jun 2015 05:39:22 -0700
+Message-ID: <55801903.4040905@linux.intel.com>
+Date: Tue, 16 Jun 2015 15:39:31 +0300
+From: Alexander Kanavin <alexander.kanavin@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Icedove/31.7.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: sstate black hole?
+To: =?UTF-8?B?QW5kcmVhcyBNw7xsbGVy?= <schnitzeltony@googlemail.com>
+References: <557E9EFE.1030703@linux.intel.com>	<CALbNGRS9UWjVQQh8POPc5zVYOeYa9VaeC7dEfzH3AMs4k9Mjzw@mail.gmail.com>	<CAJTo0LbRVqw3h_3igs59=DTnaz6nf4w=A5ZpXepmh6xiKtVdPA@mail.gmail.com>	<557EE4C2.501@linux.intel.com>
+	<CALbNGRS-xR52wapA2viFa0oZJ6kotFdjhXpb6kyOtpRyn--5=A@mail.gmail.com>
+In-Reply-To: <CALbNGRS-xR52wapA2viFa0oZJ6kotFdjhXpb6kyOtpRyn--5=A@mail.gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>,
+	"openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>
+Subject: Re: [OE-core] Webkit-gtk will be updated to latest upstream; midori browser to be replaced with Epiphany
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,71 +48,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jun 2015 12:36:44 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 16 Jun 2015 12:39:27 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Tuesday 16 June 2015 04:47:53 Gary Thomas wrote:
-> On 2015-06-16 02:37, Paul Eggleton wrote:
-> > On Monday 15 June 2015 18:19:21 Gary Thomas wrote:
-> >> I followed this down to an i.MX6 specific package which is
-> >> 
-> >> in DEPENDS:
-> >>     Variable PROVIDES value changed from
-> >>     '${PN}  virtual/wayland-egl virtual/libgal-x11 virtual/egl
-> >> 
-> >> virtual/libopenvg virtual/libg2d virtual/libgl virtual/libgles1
-> >> virtual/libgles2' to
-> >> 
-> >>     '${PN}  virtual/wayland-egl virtual/libgal-x11 virtual/egl
-> >> 
-> >> virtual/libopenvg virtual/libg2d virtual/libgl virtual/libgles1
-> >> virtual/libgles2 virtual/libgl virtual/libgles1 virtual/libgles2'
-> >> 
-> >> Why aren't these considered the same (duplicate elements and/or order)
-> >> should not matter for PROVIDES.  Is there some way we could get bitbake
-> >> to collapse this and remove the duplicates?
-> >> 
-> >> I found that this happens in
-> >> meta-fsl-arm:recipes-graphics/imx-gpu-viv/imx-gpu-viv.inc which contains
-> >> 
-> >> these lines:
-> >>     PROVIDES += "virtual/wayland-egl virtual/libgal-x11 virtual/egl
-> >> 
-> >> virtual/libopenvg virtual/libg2d"
-> >> PROVIDES_append_mx6q  = " virtual/libgl virtual/libgles1
-> >> virtual/libgles2"
-> >> PROVIDES_append_mx6dl  = " virtual/libgl virtual/libgles1
-> >> virtual/libgles2"
-> >> PROVIDES_append_mx6sx  = " virtual/libgl virtual/libgles1
-> >> virtual/libgles2"
-> >> 
-> >> Some i.MX6 targets, nitrogen6x in particular, has overrides for both mx6q
-> >> and mx6dl, hence the duplication.
-> >> 
-> >> Note: I removed the extra override (for testing) and found that
-> >> now the packages built by target A can be shared via sstate with
-> >> target B (at least the few I tested)
-> > 
-> > I agree this would be nice, but for this to work we'd probably need to
-> > introduce a typing system within bitbake so that it can understand that
-> > this variable is a space-separated list. That is something we will
-> > probably do at some point for a variety of reasons, but I don't know that
-> > it's something we will get to soon.
-> 
-> Is there some way to solve this in the recipe itself?  I can see that
-> it needs to make sure that those values are provided for each of the
-> [sub]class of processor, but is there a way to write it so that they
-> are only added once?  Perhaps a little bit of Python magic?
+On 06/16/2015 09:50 AM, Andreas Müller wrote:
 
-Sure, you could use an anonymous python function with actual conditional 
-statements instead of overrides to set PROVIDES here.
+> How about doing same as others do e.g fedora [1-2]: Keep two version
+> of webkit-gtk based on same recent code:
+>
+> * gtk2/webkit1
+> * gtk3/webkit2
 
-Cheers,
-Paul
+Before showing how, you need to explain why. Fedora has to package 
+webkit1 because they have a lot of apps in the Gnome stack that still 
+haven't been ported to webkit2. Oe-core on the other hand has only one 
+such app: midori.
 
--- 
+Also, webkit1 has been deprecated for years, and there is no commitment 
+from upstream to maintain the 2.4.x series which is the last that still 
+has it in the source tree; they may cease to do it at any moment. So 
+once again, why keep it in oe-core?
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Regards,
+Alex
+
 
