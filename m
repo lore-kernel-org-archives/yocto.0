@@ -1,38 +1,37 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6841CE00939; Tue, 16 Jun 2015 12:12:32 -0700 (PDT)
+	id 540AFE00939; Tue, 16 Jun 2015 14:21:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00, DATE_IN_PAST_06_12, 
+	RCVD_IN_DNSWL_HI, TVD_SPACE_RATIO,
+	TVD_SPACE_RATIO_MINFP autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 1.5 DATE_IN_PAST_06_12 Date: is 6 to 12 hours before
+	Received: date
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB9D5E0086D
-	for <yocto@yoctoproject.org>; Tue, 16 Jun 2015 12:12:09 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.1/8.15.1) with ESMTPS id t5GJC73b020879
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 16 Jun 2015 12:12:08 -0700 (PDT)
-Received: from Marks-MacBook-Pro.local (172.25.36.234) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.224.2; Tue, 16 Jun 2015 12:12:08 -0700
-Message-ID: <55807507.1080906@windriver.com>
-Date: Tue, 16 Jun 2015 14:12:07 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <CALgoR9NG-nVj7qaSSbAVjmhEWSpWaq_oGqFvA0yq+YM9nisF_g@mail.gmail.com>
-In-Reply-To: <CALgoR9NG-nVj7qaSSbAVjmhEWSpWaq_oGqFvA0yq+YM9nisF_g@mail.gmail.com>
-Subject: Re: [prelink-cross] error while loading shared libraries: ld-linux.so.3
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+	*  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
+	*  2.7 TVD_SPACE_RATIO_MINFP TVD_SPACE_RATIO_MINFP
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07E3DE00496
+	for <yocto@yoctoproject.org>; Tue, 16 Jun 2015 14:21:25 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga103.fm.intel.com with ESMTP; 16 Jun 2015 14:21:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.13,628,1427785200"; d="scan'208";a="509401244"
+Received: from yctb05.ostc.intel.com (HELO yctb05.otcr.jf.intel.com)
+	([10.23.219.54])
+	by FMSMGA003.fm.intel.com with ESMTP; 16 Jun 2015 14:21:25 -0700
+From: leonardo.sandoval.gonzalez@linux.intel.com
+To: yocto@yoctoproject.org
+Date: Tue, 16 Jun 2015 13:17:17 +0000
+Message-Id: <1434460637-46540-1-git-send-email-leonardo.sandoval.gonzalez@linux.intel.com>
+X-Mailer: git-send-email 1.8.4.5
+Subject: [PATCH] dev-manual: Include biosfilename runqemu option
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,105 +43,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jun 2015 19:12:32 -0000
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 16 Jun 2015 21:21:30 -0000
 
-On 6/16/15 2:01 AM, Florian Boehmak wrote:
-> Hi,
-> 
-> I am having difficulties to cross-prelink a simple hello world program.
-> Prelinking for my x86 machine works fine (host system) but when using the arm
-> cross-compile toolchain I get the error: 
-> 
-> prelink: bin_arm/hello: Could not parse `/usr/local/sbin//prelink-rtld: error
-> while loading shared libraries: ld-linux.so.3'
+From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
 
-The error indicates that it found a library required called 'ld-linux.so.3', but
-could not find that in the "path".  (The path generally being the sysroot path
-passed to the rtld.)
+Poky's commit edde3e58da00adf9ef3a8cc687268f6e24294c7c included the
+biosfilename option on the runqemu script.
 
-What command did you use to run the prelinker?  And does your sysroot contain
-the /lib/ld-linux.so.3?
+Signed-off-by: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+---
+ documentation/dev-manual/dev-manual-qemu.xml | 3 +++
+ 1 file changed, 3 insertions(+)
 
---Mark
-
-> If I understand it correctly then prelink-rtld emulates ld-linux.so but why is
-> it parsed by rtld?
-> 
-> Here are my files:
-> 
-> # main.cpp
-> 
-> #include <stdio.h>
-> #include "world.h"
-> int main (int argc, char *argv[])
-> {
-> fprintf(stdout, "hello\n");
-> World w;
-> w.Str();
-> return 0;
-> }
-> 
-> 
-> # world.cpp
-> 
-> #include "world.h"
-> void World::Str()
-> {
-> fprintf(stdout, "world\n");
-> }
-> 
-> 
-> # prelink_arm.conf
-> 
-> -l arm-2012.03/arm-none-linux-gnueabi/libc/lib 
-> -h arm-2012.03/arm-none-linux-gnueabi/libc/lib 
-> -l arm-2012.03/arm-none-linux-gnueabi/libc/usr/lib
-> -h arm-2012.03/arm-none-linux-gnueabi/libc/usr/lib
-> 
-> 
-> # compiling
-> 
-> ../arm-2012.03/bin/arm-none-linux-gnueabi-gcc -Wall -fPIC -shared -Iinclude -o
-> lib_arm/libworld.so src/world.cpp 
-> arm-2012.03/bin/arm-none-linux-gnueabi-gcc -Wall -Iworld/include
-> -Lworld/lib_arm/ -lworld -o bin_arm/hello src/main.cpp
-> 
-> 
-> # prelink-cross
-> 
-> PATH=/usr/local/sbin prelink --verbose --cache-file=cache/prelink_arm.cache
-> --config-file=prelink_arm.conf
-> --ld-library-path="world/lib_arm;arm-2012.03/arm-none-linux-gnueabi/libc/lib;arm-2012.03/arm-none-linux-gnueabi/libc/usr/lib;"
-> -h bin_arm/hello
-> 
-> 
-> I am sort of stuck. Could you point me in the right direction. What am I missing
-> or doing wrong?
-> Thank you.
-> 
-> Cheers
-> Florian
-> 
-> Ps. I have put together the code on github this would be the "shared-library"
-> branch.
-> https://github.com/fnbk/prelink-cross-example 
-> 
-> Ps. I posted a similar question on stackoverflow, cross-prelinking but without
-> shared libraries.
-> http://stackoverflow.com/q/30849060/5011904
-> 
->  
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
-> 
+diff --git a/documentation/dev-manual/dev-manual-qemu.xml b/documentation/dev-manual/dev-manual-qemu.xml
+index 4d95fbd..ccc915f 100644
+--- a/documentation/dev-manual/dev-manual-qemu.xml
++++ b/documentation/dev-manual/dev-manual-qemu.xml
+@@ -171,6 +171,9 @@
+                     Establishes a custom directory for BIOS, VGA BIOS and
+                     keymaps.
+                     </para></listitem>
++                <listitem><para><filename>biosfilename</filename>:
++                    Establishes a custom BIOS name.
++                    </para></listitem>
+                 <listitem><para><filename>qemuparams=\"<replaceable>xyz</replaceable>\"</filename>:
+                     Specifies custom QEMU parameters.
+                     Use this option to pass options other than the simple
+-- 
+1.8.4.5
 
 
