@@ -1,60 +1,44 @@
-Return-Path: <schnitzeltony@googlemail.com>
+Return-Path: <florian@fnbk.cc>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9C7E2E00A48; Mon, 15 Jun 2015 23:50:53 -0700 (PDT)
+	id D36B4E009E6; Tue, 16 Jun 2015 00:01:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (schnitzeltony[at]googlemail.com)
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.52 listed in list.dnswl.org]
-Received: from mail-pa0-f52.google.com (mail-pa0-f52.google.com
-	[209.85.220.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40965E009A1
-	for <yocto@yoctoproject.org>; Mon, 15 Jun 2015 23:50:50 -0700 (PDT)
-Received: by pabqy3 with SMTP id qy3so6756386pab.3
-	for <yocto@yoctoproject.org>; Mon, 15 Jun 2015 23:50:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=TCUs/TqQXq+RPOjI8f7bMNAq0Aku+29Mw8y9aeeZSkY=;
-	b=nKt7YaiV+u6P615j8SjtRneDgRxNvCtdjI4QDO9wIa6vGx5sXQ+gRYNJH/QcRAKG8+
-	+6hScH6rlvV2KOOJJSGf316cItsQNO3S1YyoedcEZmQomt24WUPB+Mzk0b+mUvOt/p+J
-	QhX2Me2TYQmUfig1rjIkK7LbJcceoefXT82BTh1Xa/OSuWvHpWTgHXaA7O4jcHOtMZKi
-	np7rmMUQzpaYF+f51zU6y+xwhmXDR0GZVj+tjx52D+jv0T/xGJ/ps9rA4Ag65xGo3j4A
-	LDqSyBd+yWs2OpUa8IQpe7dmKahZaQs6lHbZjkGrPrMpwxhDEEWi/fzS9DxKnwFXQL+I
-	cVVA==
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-ig0-f179.google.com (mail-ig0-f179.google.com
+	[209.85.213.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 875ECE009A1
+	for <yocto@yoctoproject.org>; Tue, 16 Jun 2015 00:01:33 -0700 (PDT)
+Received: by igblz2 with SMTP id lz2so7787442igb.1
+	for <yocto@yoctoproject.org>; Tue, 16 Jun 2015 00:01:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=7qLaYioqmpXlktINgppV3I8VrEP9IIncRhk+2UrWUlo=;
+	b=iszKocBZa5Co4Kw7wMUo9N6kz7CXPzGlAFkwpQM+I2KF29x238X3FU6jzyhxz2nM0S
+	lJ7QVT0SkzdEXuFLHVon8wZAjHNJpdtHlBV5XntSxudj+jgbTi/Q+p1mm7mr4ER9t7Jl
+	+KVuNV4zyQGL8TjuSqTzzSyB7x/oFUr/4DzTHTwRXrF//Bh4egGqSMWK6lEfETGSfBYh
+	bHsydyTRdAhEKHT93pzt6PXtcEBz/oJGS0BmMxVueTKE3AXSmvOuVgvkjDQBjiUv41BL
+	Vr5l/pjng0VqJHTf9W+SB2fpvU+NQObftYhGSJpB1UVqP34DaK+JepoS78KjHu79U9OF
+	GeYw==
+X-Gm-Message-State: ALoCoQnQDI4G7wWsjRrZ1q4oGYbSq0RLkNi8kavHrC0czm6g3goBt3dE6noSs9D/YoZ0KKCPtu1q
 MIME-Version: 1.0
-X-Received: by 10.68.57.170 with SMTP id j10mr56048769pbq.150.1434437450552;
-	Mon, 15 Jun 2015 23:50:50 -0700 (PDT)
-Received: by 10.70.44.41 with HTTP; Mon, 15 Jun 2015 23:50:50 -0700 (PDT)
-In-Reply-To: <557EE4C2.501@linux.intel.com>
-References: <557E9EFE.1030703@linux.intel.com>
-	<CALbNGRS9UWjVQQh8POPc5zVYOeYa9VaeC7dEfzH3AMs4k9Mjzw@mail.gmail.com>
-	<CAJTo0LbRVqw3h_3igs59=DTnaz6nf4w=A5ZpXepmh6xiKtVdPA@mail.gmail.com>
-	<557EE4C2.501@linux.intel.com>
-Date: Tue, 16 Jun 2015 08:50:50 +0200
-Message-ID: <CALbNGRS-xR52wapA2viFa0oZJ6kotFdjhXpb6kyOtpRyn--5=A@mail.gmail.com>
-From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
-To: Alexander Kanavin <alexander.kanavin@linux.intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>,
-	"openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>
-Subject: Re: [OE-core] Webkit-gtk will be updated to latest upstream; midori browser to be replaced with Epiphany
+X-Received: by 10.50.17.104 with SMTP id n8mr25598387igd.21.1434438093486;
+	Tue, 16 Jun 2015 00:01:33 -0700 (PDT)
+Received: by 10.79.116.145 with HTTP; Tue, 16 Jun 2015 00:01:33 -0700 (PDT)
+Date: Tue, 16 Jun 2015 09:01:33 +0200
+Message-ID: <CALgoR9NG-nVj7qaSSbAVjmhEWSpWaq_oGqFvA0yq+YM9nisF_g@mail.gmail.com>
+From: Florian Boehmak <florian@fnbk.cc>
+To: yocto@yoctoproject.org
+Subject: [prelink-cross] error while loading shared libraries: ld-linux.so.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,38 +50,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jun 2015 06:50:53 -0000
+X-List-Received-Date: Tue, 16 Jun 2015 07:01:39 -0000
+Content-Type: multipart/alternative; boundary=089e0118398a03db0705189d2594
+
+--089e0118398a03db0705189d2594
 Content-Type: text/plain; charset=UTF-8
 
-On Mon, Jun 15, 2015 at 4:44 PM, Alexander Kanavin
-<alexander.kanavin@linux.intel.com> wrote:
-> On 06/15/2015 05:24 PM, Burton, Ross wrote:
->
->> If you actually compare the build dependencies, you'll see that Midori
->> and Epiphany are actually almost identical.
->>
->> We need to upgrade WebKit as the release we're shipping has known
->> security flaws and is very old - and the community is rightly moaning
->> about that.  However Midori doesn't build with a recent WebKit... if you
->> have an alternative solution then your thoughts are welcome.
->
->
-> Also, Webkit2 itself ships with a tiny browser wrapper called MiniBrowser:
->
-> http://blogs.igalia.com/carlosgc/2011/11/04/webkit2-gtk-minibrowser-ported-to-gtk-api/
->
-> That may be enough for many people's needs, and they can simply not include
-> Epiphany into their images if it's too big and bloated or whatever.
->
->
-How about doing same as others do e.g fedora [1-2]: Keep two version
-of webkit-gtk based on same recent code:
+Hi,
 
-* gtk2/webkit1
-* gtk3/webkit2
+I am having difficulties to cross-prelink a simple hello world program.
+Prelinking for my x86 machine works fine (host system) but when using the
+arm cross-compile toolchain I get the error:
 
-Andreas
+prelink: bin_arm/hello: Could not parse `/usr/local/sbin//prelink-rtld:
+error while loading shared libraries: ld-linux.so.3'
 
-[1] http://pkgs.fedoraproject.org/cgit/webkitgtk.git/tree/webkitgtk.spec
-[2] http://pkgs.fedoraproject.org/cgit/webkitgtk3.git/tree/webkitgtk3.spec
+If I understand it correctly then prelink-rtld emulates ld-linux.so but why
+is it parsed by rtld?
 
+Here are my files:
+
+# main.cpp
+
+#include <stdio.h>
+#include "world.h"
+int main (int argc, char *argv[])
+{
+fprintf(stdout, "hello\n");
+World w;
+w.Str();
+return 0;
+}
+
+
+# world.cpp
+
+#include "world.h"
+void World::Str()
+{
+fprintf(stdout, "world\n");
+}
+
+
+# prelink_arm.conf
+
+-l arm-2012.03/arm-none-linux-gnueabi/libc/lib
+-h arm-2012.03/arm-none-linux-gnueabi/libc/lib
+-l arm-2012.03/arm-none-linux-gnueabi/libc/usr/lib
+-h arm-2012.03/arm-none-linux-gnueabi/libc/usr/lib
+
+
+# compiling
+
+../arm-2012.03/bin/arm-none-linux-gnueabi-gcc -Wall -fPIC -shared -Iinclude
+-o lib_arm/libworld.so src/world.cpp
+arm-2012.03/bin/arm-none-linux-gnueabi-gcc -Wall -Iworld/include
+-Lworld/lib_arm/ -lworld -o bin_arm/hello src/main.cpp
+
+
+# prelink-cross
+
+PATH=/usr/local/sbin prelink --verbose --cache-file=cache/prelink_arm.cache
+--config-file=prelink_arm.conf
+--ld-library-path="world/lib_arm;arm-2012.03/arm-none-linux-gnueabi/libc/lib;arm-2012.03/arm-none-linux-gnueabi/libc/usr/lib;"
+-h bin_arm/hello
+
+
+I am sort of stuck. Could you point me in the right direction. What am I
+missing or doing wrong?
+Thank you.
+
+Cheers
+Florian
+
+Ps. I have put together the code on github this would be the
+"shared-library" branch.
+https://github.com/fnbk/prelink-cross-example
+
+Ps. I posted a similar question on stackoverflow, cross-prelinking but
+without shared libraries.
+http://stackoverflow.com/q/30849060/5011904
+
+--089e0118398a03db0705189d2594
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>I am having difficulties=
+ to cross-prelink a simple hello world program. Prelinking for my x86 machi=
+ne works fine (host system) but when using the arm cross-compile toolchain =
+I get the error:=C2=A0</div><div><br></div><div>prelink: bin_arm/hello: Cou=
+ld not parse `/usr/local/sbin//prelink-rtld: error while loading shared lib=
+raries: ld-linux.so.3&#39;</div><div><br></div><div>If I understand it corr=
+ectly then prelink-rtld emulates ld-linux.so but why is it parsed by rtld?<=
+/div><div><br></div><div>Here are my files:</div><div><br></div><div># main=
+.cpp</div><div><br></div><div>#include &lt;stdio.h&gt;</div><div>#include &=
+quot;world.h&quot;</div><div>int main (int argc, char *argv[])</div><div>{<=
+/div><div><span class=3D"" style=3D"white-space:pre">	</span>fprintf(stdout=
+, &quot;hello\n&quot;);</div><div><span class=3D"" style=3D"white-space:pre=
+">	</span>World w;</div><div><span class=3D"" style=3D"white-space:pre">	</=
+span>w.Str();</div><div><span class=3D"" style=3D"white-space:pre">	</span>=
+return 0;</div><div>}</div><div><br></div><div><br></div><div># world.cpp</=
+div><div><br></div><div>#include &quot;world.h&quot;</div><div>void World::=
+Str()</div><div>{</div><div><span class=3D"" style=3D"white-space:pre">	</s=
+pan>fprintf(stdout, &quot;world\n&quot;);</div><div>}</div><div><br></div><=
+div><br></div><div># prelink_arm.conf</div><div><br></div><div>-l arm-2012.=
+03/arm-none-linux-gnueabi/libc/lib=C2=A0</div><div>-h arm-2012.03/arm-none-=
+linux-gnueabi/libc/lib=C2=A0</div><div>-l arm-2012.03/arm-none-linux-gnueab=
+i/libc/usr/lib</div><div>-h arm-2012.03/arm-none-linux-gnueabi/libc/usr/lib=
+</div><div><br></div><div><br></div><div># compiling</div><div><br></div><d=
+iv>../arm-2012.03/bin/arm-none-linux-gnueabi-gcc -Wall -fPIC -shared -Iincl=
+ude -o lib_arm/libworld.so src/world.cpp=C2=A0</div><div>arm-2012.03/bin/ar=
+m-none-linux-gnueabi-gcc -Wall -Iworld/include -Lworld/lib_arm/ -lworld -o =
+bin_arm/hello src/main.cpp</div><div><br></div><div><br></div><div># prelin=
+k-cross</div><div><br></div><div>PATH=3D/usr/local/sbin prelink --verbose -=
+-cache-file=3Dcache/prelink_arm.cache --config-file=3Dprelink_arm.conf --ld=
+-library-path=3D&quot;world/lib_arm;arm-2012.03/arm-none-linux-gnueabi/libc=
+/lib;arm-2012.03/arm-none-linux-gnueabi/libc/usr/lib;&quot; -h bin_arm/hell=
+o</div><div><br></div><div><br></div><div>I am sort of stuck. Could you poi=
+nt me in the right direction. What am I missing or doing wrong?</div><div>T=
+hank you.</div><div><br></div><div>Cheers</div><div>Florian</div><div><br><=
+/div><div>Ps. I have put together the code on github this would be the &quo=
+t;shared-library&quot; branch.</div><div><a href=3D"https://github.com/fnbk=
+/prelink-cross-example">https://github.com/fnbk/prelink-cross-example</a>=
+=C2=A0</div><div><br></div><div>Ps. I posted a similar question on stackove=
+rflow, cross-prelinking but without shared libraries.</div><div><a href=3D"=
+http://stackoverflow.com/q/30849060/5011904">http://stackoverflow.com/q/308=
+49060/5011904</a></div><div><br></div><div>=C2=A0</div><div><br></div><div>=
+<br></div><div><br></div><div><br></div><div><br></div><div><br></div><div>=
+<br></div><div><br></div>
+</div>
+
+--089e0118398a03db0705189d2594--
