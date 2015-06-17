@@ -1,48 +1,48 @@
-Return-Path: <florian@fnbk.cc>
+Return-Path: <cavallini.koan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B36C8E009E4; Wed, 17 Jun 2015 06:28:08 -0700 (PDT)
+	id D7BCFE00A3B; Wed, 17 Jun 2015 08:56:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.170 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (cavallini.koan[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-ig0-f170.google.com (mail-ig0-f170.google.com
-	[209.85.213.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64E61E009B8
-	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 06:28:02 -0700 (PDT)
-Received: by igboe5 with SMTP id oe5so79539360igb.1
-	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 06:28:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=58hQbqwl6davzxz4NGwyjPi+SyxQbi8R3qEQuTSqW7A=;
-	b=AVvYaqL6I4W22THEuLUNKcoKY3rtcK3HMTUmSQfw1Lf3G+U++nHYyToheZAsh+7FDb
-	av/0+Zy4xzsEpNvOrF6EhhbHHIm2Wh6ju1vteBfuliFa8l1PqHDwbShEWmEQwauhPwWV
-	j/QizwjjSl2BYVz7Bv0Zq38hOl3o3cyRL9ZS9d/4xH3QFVUCspNkRtYheILXGisVNpfj
-	vyHl4dxoxu/bV/19oImdaC3azIPm257sarxWT/eYe/+oTxTCcCKBC8DMXFPjVl3KKjfX
-	Ghs/egWFivYd/sGKpA+zM1LXGazREBrwANH6RJ1jTKwDi8aLAT2AvIwb5AIS0jle3g75
-	NwTg==
-X-Gm-Message-State: ALoCoQlAeG5s8LIEITcf38KEtDcMs7tODSYEqk3Ep7+0UdKlE1Lp4/SLEfT61x35tFXLPiGAuBdP
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wi0-f171.google.com (mail-wi0-f171.google.com
+	[209.85.212.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 496EEE00998
+	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 08:56:26 -0700 (PDT)
+Received: by wibdq8 with SMTP id dq8so58581587wib.1
+	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 08:56:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=y3GOkb22ZCDwuK8VT5sjpDHcT7RmkVFurwWZc0Rw96s=;
+	b=PVe27fku9bEePFGuwcpVIopsNQnOIeUeY5FXgk1/ByfHtb8G3DpSg0FsUSb5tdbeR2
+	FjUb6+znuRhmpd5Ievys6nu5IVlNWgjrc6f3ACYbvIrgI8r7znUozPiVKxQ15lXXioXO
+	CnLWxwKBKU57s7nL4vaF04x6JYDxbVC9GXyQn70YaDANHpWO7GhUmkNus22l6f6zMcRi
+	rXLVSwPYtKxBErHc5lEbtf6syFksGrbojY6XFxbotYseLnHmbppI5UcfWbeno50rZ+Wq
+	zT2ox8yOPFhpOonrjbWA5rkg/RuXYTlaUo9dW80cA7UZQ8o8n86cau5Pe1HBmGr9Pi2+
+	43Ew==
 MIME-Version: 1.0
-X-Received: by 10.107.34.85 with SMTP id i82mr8359408ioi.6.1434547682282; Wed,
-	17 Jun 2015 06:28:02 -0700 (PDT)
-Received: by 10.79.116.145 with HTTP; Wed, 17 Jun 2015 06:28:02 -0700 (PDT)
-In-Reply-To: <CALgoR9N55VS2D+UzMmdShBUmQBes_tEj8KqTi7Ff9UtO8pV7Mw@mail.gmail.com>
-References: <CALgoR9NG-nVj7qaSSbAVjmhEWSpWaq_oGqFvA0yq+YM9nisF_g@mail.gmail.com>
-	<55807507.1080906@windriver.com>
-	<CALgoR9N55VS2D+UzMmdShBUmQBes_tEj8KqTi7Ff9UtO8pV7Mw@mail.gmail.com>
-Date: Wed, 17 Jun 2015 15:28:02 +0200
-Message-ID: <CALgoR9PzNjuOWnhC6cH0XLaPu9Winx0_m6nRM21ou4mPcB0JhA@mail.gmail.com>
-From: Florian Boehmak <florian@fnbk.cc>
-To: Mark Hatle <mark.hatle@windriver.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [prelink-cross] error while loading shared libraries: ld-linux.so.3
+X-Received: by 10.180.160.210 with SMTP id xm18mr19000053wib.93.1434556585719; 
+	Wed, 17 Jun 2015 08:56:25 -0700 (PDT)
+Received: by 10.194.201.131 with HTTP; Wed, 17 Jun 2015 08:56:25 -0700 (PDT)
+Date: Wed, 17 Jun 2015 17:56:25 +0200
+Message-ID: <CAFQ+Dij3q-k0eakxRoE5sq+sTwPv-r+K_YKF_qW7ai8VpY3uCg@mail.gmail.com>
+From: Marco Cavallini <cavallini.koan@gmail.com>
+To: yocto@yoctoproject.org
+Subject: No rule to make target `Makefile.in' SITE files ['endian-little', 'bit-32', 'arm-common', 'common-linux', ...]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,48 +54,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jun 2015 13:28:08 -0000
+X-List-Received-Date: Wed, 17 Jun 2015 15:56:32 -0000
 Content-Type: text/plain; charset=UTF-8
 
-> The error indicates that it found a library required called 'ld-linux.so.3', but
-> could not find that in the "path".  (The path generally being the sysroot path
-> passed to the rtld.)
->
-> What command did you use to run the prelinker?  And does your sysroot contain
-> the /lib/ld-linux.so.3?
+Hello,
+I'm trying to create a recipe rdesktop_1.8.3.bb but I get an error
+hard to understand.
+With Yocto 'daisy' the same recipe worked without complaining.
+To avoid any temporary misconfiguraton I deleted the sstate and tmp
+and rebuilt core-image-minimal from scratch and then rdesktop but the
+error is always present.
+I'd like to know what is wrong with inherit autotools now using
+'dizzy' and what is this DEBUG: SITE files ['endian-little', 'bit-32',
+'arm-common', 'common-linux', 'common-glibc', 'arm-linux',
+'arm-linux-gnueabi', 'common']
 
-Hey, now I understand it :-) Thank you!
-
-I need to specify the sysroot and explicitly tell prelink which
-libraries to prelink:
-
-PATH=/usr/local/sbin prelink --verbose
---root=/home/developer/workspace/eclipse/prelink-cross-example/arm-2012.03/arm-none-linux-gnueabi/libc
---cache-file=/etc/cache/prelink.cache --config-file=/etc/prelink.conf
---ld-library-path="/usr/local/lib;/lib;" -h /usr/local/bin/hello
-/lib/libc.so.6 /lib/libgcc_s.so.1 /lib/ld-2.15.so
+Thank you
 
 
-This will produce the following output:
+This is my recipe:
+$ cat rdesktop_1.8.3.bb
+---------------------------------
+DESCRIPTION = "Rdesktop rdp client for X"
+HOMEPAGE = "http://www.rdesktop.org"
+SECTION = "x11/network"
+LICENSE = "GPL"
+LIC_FILES_CHKSUM = "file://COPYING;md5=f27defe1e96c2e1ecd4e0c9be8967949"
+SRC_URI = "${SOURCEFORGE_MIRROR}/rdesktop/rdesktop-${PV}.tar.gz"
+inherit autotools
+EXTRA_OECONF = "--with-openssl=${STAGING_EXECPREFIXDIR}
+--disable-credssp --disable-smartcard"
+SRC_URI[md5sum] = "86e8b368a7c715e74ded92e0d7912dc5"
+SRC_URI[sha256sum] =
+"88b20156b34eff5f1b453f7c724e0a3ff9370a599e69c01dc2bf0b5e650eece4"
 
-Assigned virtual address space slots for libraries:
-/lib/ld-linux.so.3                                           41000000-4102a968
-/lib/libc.so.6                                               41030000-41181968
-/lib/libgcc_s.so.1                                           41188000-411af748
-/usr/local/lib/libworld.so                                   411b8000-411c06d0
-Prelinking /lib/ld-2.15.so
-Prelinking /lib/libc-2.15.so
-Prelinking /lib/libgcc_s.so.1
-Prelinking /usr/local/lib/libworld.so
-Prelinking /usr/local/bin/hello
 
+And I get this error:
+$ bitbake rdesktop
 
-I put all the code on github, in case somebody has the same issues
-(make sure to checkout both branches 'master' and 'shared-library'):
-https://github.com/fnbk/prelink-cross-example
+Build Configuration:
+BB_VERSION        = "1.24.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Ubuntu-12.04"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "imx6solosabresd"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.7.2"
+TUNE_FEATURES     = "arm armv7a vfp neon callconvention-hard cortexa9"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto
+meta-yocto-bsp    = "dizzy:9c4ff467f66428488b1cd9798066a8cb5d6b4c3b"
+meta-oe           = "dizzy:5b6f39ce325d490fc382d5d59c5b8b9d5fa38b38"
+meta-fsl-arm      = "dizzy:db1571f40c375a398a8cdbb42de4c4f272ab0cd1"
+meta-fsl-arm-extra = "dizzy:794e46e0b0a3e7e270a2f3c217d8fe5751a6b2c6"
+meta-mh          = "dizzy:9c4ff467f66428488b1cd9798066a8cb5d6b4c3b"
 
-Thank you for the great help.
+...
+ERROR: Function failed: do_compile (log file is located at
+/home/mc/yocto-fsl-dizzy/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/rdesktop/1.8.3-r0/temp/log.do_compile.3066)
+ERROR: Logfile of failure stored in:
+/home/mc/yocto-fsl-dizzy/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/rdesktop/1.8.3-r0/temp/log.do_compile.3066
+Log data follows:
+| DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
+'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi',
+'common']
+| DEBUG: Executing shell function do_compile
+| NOTE: make -j 8
+| make: *** No rule to make target `Makefile.in', needed by `Makefile'.  Stop.
+| ERROR: oe_runmake failed
+| WARNING: /home/mc/yocto-fsl-dizzy/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/rdesktop/1.8.3-r0/temp/run.do_compile.3066:1
+exit 1 from
+|   exit 1
+| ERROR: Function failed: do_compile (log file is located at
+/home/mc/yocto-fsl-dizzy/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/rdesktop/1.8.3-r0/temp/log.do_compile.3066)
+ERROR: Task 6 (/home/mc/yocto-fsl-dizzy/poky/meta-mh/recipes-connectivity/rdesktop/rdesktop_1.8.3.bb,
+do_compile) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 545 tasks of which 544 didn't need to
+be rerun and 1 failed.
+No currently running tasks (522 of 554)
 
-Cheers
-Florian
+Summary: 1 task failed:
+  /home/mc/yocto-fsl-dizzy/poky/meta-mh/recipes-connectivity/rdesktop/rdesktop_1.8.3.bb,
+do_compile
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+
+--
+Marco
 
