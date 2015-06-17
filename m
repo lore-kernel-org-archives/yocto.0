@@ -1,40 +1,30 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <flihp@twobit.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F3C69E00A5B; Wed, 17 Jun 2015 13:35:45 -0700 (PDT)
+	id BF11FE00A51; Wed, 17 Jun 2015 15:31:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B9E8E00A51
-	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 13:35:39 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.1/8.15.1) with ESMTPS id t5HKZbHX018843
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 17 Jun 2015 13:35:37 -0700 (PDT)
-Received: from Marks-MacBook-Pro.local (172.25.36.234) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.224.2; Wed, 17 Jun 2015 13:35:37 -0700
-Message-ID: <5581DA18.4080803@windriver.com>
-Date: Wed, 17 Jun 2015 15:35:36 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
-To: Florian Boehmak <florian@fnbk.cc>
-References: <CALgoR9NG-nVj7qaSSbAVjmhEWSpWaq_oGqFvA0yq+YM9nisF_g@mail.gmail.com>	<55807507.1080906@windriver.com>
-	<CALgoR9N55VS2D+UzMmdShBUmQBes_tEj8KqTi7Ff9UtO8pV7Mw@mail.gmail.com>
-In-Reply-To: <CALgoR9N55VS2D+UzMmdShBUmQBes_tEj8KqTi7Ff9UtO8pV7Mw@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [prelink-cross] error while loading shared libraries: ld-linux.so.3
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 340BEE00A51
+	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 15:31:33 -0700 (PDT)
+Received: from [172.56.2.220] (helo=lappy2.twobit.us)
+	by smtp.twobit.us with esmtpsa (TLSv1.2:AES128-SHA256:128)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1Z5LnB-00032Z-J1; Wed, 17 Jun 2015 22:26:48 +0000
+From: Philip Tricca <flihp@twobit.us>
+To: yocto@yoctoproject.org
+Date: Wed, 17 Jun 2015 15:30:50 -0700
+Message-Id: <1434580258-18121-1-git-send-email-flihp@twobit.us>
+X-Mailer: git-send-email 2.1.4
+X-SA-Exim-Connect-IP: 172.56.2.220
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Subject: [meta-selinux][PATCHv2 0/8] Label file system in build.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,155 +36,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jun 2015 20:35:46 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 17 Jun 2015 22:31:35 -0000
 
-On 6/16/15 5:56 PM, Florian Boehmak wrote:
->> The error indicates that it found a library required called 'ld-linux.so.3', but
->> could not find that in the "path".  (The path generally being the sysroot path
->> passed to the rtld.)
-> 
-> I tried to move the files to their location in sysroot:
-> 
-> arm-2012.03/arm-none-linux-gnueabi/libc/usr/local/include/world.h
-> arm-2012.03/arm-none-linux-gnueabi/libc/usr/local/lib/libworld.so
-> arm-2012.03/arm-none-linux-gnueabi/libc/usr/local/bin/hello
-> arm-2012.03/arm-none-linux-gnueabi/libc/etc/prelink.conf
-> 
-> 
->> What command did you use to run the prelinker?  And does your sysroot contain
->> the /lib/ld-linux.so.3?
-> 
-> prelink command:
-> 
-> PATH=/usr/local/sbin prelink --verbose
-> --root=arm-2012.03/arm-none-linux-gnueabi/libc
-> --cache-file=/etc/cache/prelink.cache --config-file=/etc/prelink.conf
-> --ld-library-path="/usr/local/lib;/lib;/usr/lib;" -h /usr/local/bin/hello
-> 
+This is the second version of a patch series that allows the file system
+of SELinux images to be labeled as part of the build process. This will
+allow SELinux images to boot read only file systems and remove the need to
+label the file system on first boot.
 
-/usr/local/bin/hello is going to look at the absolute location, not that patch
-within that specific sysroot.  Any files passed in should have the on-host path
-names specified.  This allows for you to prelink an app based on rootfs where
-the app is not present.
+To do this we must label the file system in the build as well as add
+support for extended attributes to the mke2fs utility in the e2fsprogs
+package. The first version of this patch series is here:
+https://lists.yoctoproject.org/pipermail/yocto/2015-June/025141.html
+The approach described in this previous RFC remains the same.
 
-The normal mechanism used by the Yocto Project is:
+Changes in v2:
+This second version has two significant changes: First I've done a bunch
+of cleanup. This includes work to make the descriptions in the patch
+headers / commit messages more exact as well as combining some commits
+with related functionality. Secondly I've reimplemented the xattr cache
+so that it actually works.
 
-[path]/prelink --root ${IMAGE_ROOTFS} -amR -N -c /etc/prelink.conf
+I've made the patch headers as descriptive as possible and kept the git
+commit messages minimal. If the preference is for more verbose commit
+messages I'm happy to oblige if advised.
 
-This will process the entire contents of the IMAGE_ROOTFS.
+The cache is just a single linked list that's searched for duplicates after
+the creation of each new xattr block. The previous implementation was similar
+but, aside from not working properly, it was overly complex in its attempt to
+keep the list sorted.
 
---Mark
+Tests:
+To test this new implementation I used the core-image-selinux-minimal image
+from the unmodified master branch as a control. This image has 2536 unique
+file system objects including the root fs directory. The ext4 file system
+produced by the build has 71492 blocks with 13621 free.
 
-> error message:
-> 
-> prelink: /lib/libdl-2.15.so <http://libdl-2.15.so> is not present in any config
-> file directories, nor was specified on command line
-> prelink: /lib/libc-2.15.so <http://libc-2.15.so> is not present in any config
-> file directories, nor was specified on command line
-> prelink: /lib/libgcc_s.so.1 is not present in any config file directories, nor
-> was specified on command line
-> prelink: /lib/ld-2.15.so <http://ld-2.15.so> is not present in any config file
-> directories, nor was specified on command line
-> Laying out 1 libraries in virtual address space 41000000-50000000
-> Assigned virtual address space slots for libraries:
-> /usr/local/lib/libworld.so                                   41000000-410086d0
-> prelink: Could not prelink /usr/lib/bin/localedef because its dependency
-> /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/POSIX_V6_ILP32_OFFBIG because its
-> dependency /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/zdump because its dependency
-> /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/POSIX_V7_ILP32_OFF32 because its
-> dependency /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/local/lib/libworld.so because its dependency
-> /lib/libgcc_s.so.1 could not be prelinked
-> prelink: Could not prelink /usr/local/bin/hello because its dependency
-> /usr/local/lib/libworld.so could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/pldd because its dependency
-> /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/zic because its dependency
-> /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/sprof because its dependency
-> /lib/libdl.so.2 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/POSIX_V6_ILP32_OFF32 because its
-> dependency /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/gdbserver because its dependency
-> /lib/libdl.so.2 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/XBS5_ILP32_OFFBIG because its dependency
-> /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/XBS5_ILP32_OFF32 because its dependency
-> /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/makedb because its dependency
-> /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/pcprofiledump because its dependency
-> /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/iconv because its dependency
-> /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/locale because its dependency
-> /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/gencat because its dependency
-> /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/POSIX_V7_ILP32_OFFBIG because its
-> dependency /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/rpcgen because its dependency
-> /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/getent because its dependency
-> /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/getconf because its dependency
-> /lib/libc.so.6 could not be prelinked
-> prelink: Could not prelink /usr/lib/bin/iconvconfig because its dependency
-> /lib/libc.so.6 could not be prelinked
-> 
-> 
-> prelink.conf
-> 
-> -l /lib 
-> -h /lib 
-> -l /usr/lib
-> -h /usr/lib
-> -l /usr/local/lib
-> -h /usr/local/lib
-> 
-> 
-> Now there is no error message from rtld and libworld.so seems to be found. But
-> what's the problem with the folling libraries?
-> 
-> libdl-2.15.so <http://libdl-2.15.so>
-> libc-2.15.so <http://libc-2.15.so>
-> libgcc_s.so.1
-> ld-2.15.so <http://ld-2.15.so>
-> 
-> 
-> I can see them in this folder arm-2012.03/arm-none-linux-gnueabi/libc/lib:
-> 
-> -rwxr-xr-x 1 developer users  177212 10. Jun 18:43 ld-2.15.so <http://ld-2.15.so>
-> lrwxrwxrwx 1 developer users      10 10. Jun 18:43 ld-linux.so.3 -> ld-2.15.so
-> <http://ld-2.15.so>
-> -rwxr-xr-x 1 developer users 1777390 10. Jun 18:43 libc-2.15.so
-> <http://libc-2.15.so>
-> lrwxrwxrwx 1 developer users      12 10. Jun 18:43 libc.so.6 -> libc-2.15.so
-> <http://libc-2.15.so>
-> -rwxr-xr-x 1 developer users   26841 10. Jun 18:43 libdl-2.15.so
-> <http://libdl-2.15.so>
-> lrwxrwxrwx 1 developer users      13 10. Jun 18:43 libdl.so.2 -> libdl-2.15.so
-> <http://libdl-2.15.so>
-> -rw-r--r-- 1 developer users     135 10. Jun 18:43 libgcc_s.so
-> -rw-r--r-- 1 developer users 3190583 10. Jun 18:43 libgcc_s.so.1
-> lrwxrwxrwx 1 developer users      13 10. Jun 18:43 libld-linux.so.3 -> ld-linux.so.3
-> 
-> 
-> 
-> I have also put the code on github for reference. Where is the mistake? - I
-> think we are almost there :-)
-> https://github.com/fnbk/prelink-cross-example/tree/shared-library
-> 
-> 
-> Greetings
-> Florian
-> 
-> 
-> 
+As an additional test I added the patches from this set WITHOUT the cache
+patches. This causes each file system object with an associated extended
+attribute to use up an additional block for the xattr. This should cause
+(hypothesis) the output file system to have 13621 - 2536 = 11085 free
+blocks. The build producing an ext4 file system with 71492 blocks and 11088
+free. That's an additional 2533 blocks used instead of the 2536 expected.
+These 3 missing xattr blocks can be accounted for in that there are 3
+unlabeled files in the file system.
+
+Introducing the cache allows files with identical xattr blocks to share
+them to reduce the number of used blocks. Since we're only storing SELinux
+labels in the xattrs we can say that every file with the same SELinux label
+should share an xattr block. Counting the unique SELinux labels on file
+objects we know that there are 83 in total. The second hypothesis we have
+to test then is that using the cache will reduce the number of used blocks
+from 2533 down to 83.
+
+Applying the patch that enables the cache produces a third and final ext4
+file system. This one again report 71492 total blocks but this time 13538
+free. This is 83 blocks fewer than the unlabled file system from the
+initial test as we expected. The code added by this patch set is also
+instrumented to count the objects in the cache when they're freed. With
+this debug output enabled it reports the same number of objects in the
+cache.
+
+From the test results I'm pretty confident that the cache functions as
+expected. It's still a very basic implementation but given the small
+number of unique SELinux labels in the reference file systems it's
+likely sufficient for a first version. Feedback / comments on both the
+implementation and testing approach would be appreciated.
+
+Regards,
+Philip
+----
+
+Philip Tricca (8):
+  policycoreutils: Patch setfiles to add FTS_NOCHDIR to fts_flags.
+  selinux-image: Add new image class to label the rootfs, use it for
+    selinux images.
+  e2fsprogs: Add bbappend and stub for xattr module.
+  e2fsprogs: Insert calls to xattr module into mke2fs and build xattr
+    code.
+  e2fsprogs: Add xattr security prefix data to
+    lib/ext2fs/ext2_ext_attr.h
+  e2fsprogs: Copy xattr block from source file.
+  e2fsprogs: Add stub functions for an xattr cache and struct to hold
+    the header and block data.
+  e2fsprogs: Implement xattr block cache with simple linked list.
+
+ classes/selinux-image.bbclass                      |   8 +
+ ...ib-ext2fs-ext2_ext_attr.h-add-xattr-index.patch |  20 ++
+ .../misc-xattr-add-xattr-module-stub.patch         |  57 ++++
+ .../misc-xattr-create-xattr-block-node.patch       | 175 +++++++++++
+ .../e2fsprogs/misc-xattr-create-xattr-block.patch  | 341 +++++++++++++++++++++
+ .../e2fsprogs/misc-xattr-create-xattr-cache.patch  | 181 +++++++++++
+ .../mke2fs.c-create_inode.c-copy-xattrs.patch      | 164 ++++++++++
+ .../e2fsprogs/e2fsprogs_1.42.9.bbappend            |  10 +
+ .../images/core-image-selinux-minimal.bb           |   2 +-
+ recipes-security/images/core-image-selinux.bb      |   2 +-
+ .../policycoreutils-fts_flags-FTS_NOCHDIR.patch    |  25 ++
+ recipes-security/selinux/policycoreutils_2.3.bb    |   1 +
+ 12 files changed, 984 insertions(+), 2 deletions(-)
+ create mode 100644 classes/selinux-image.bbclass
+ create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/lib-ext2fs-ext2_ext_attr.h-add-xattr-index.patch
+ create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-add-xattr-module-stub.patch
+ create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-block-node.patch
+ create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-block.patch
+ create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-cache.patch
+ create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/mke2fs.c-create_inode.c-copy-xattrs.patch
+ create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
+ create mode 100644 recipes-security/selinux/policycoreutils/policycoreutils-fts_flags-FTS_NOCHDIR.patch
+
+-- 
+2.1.4
 
 
