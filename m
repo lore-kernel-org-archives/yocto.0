@@ -1,47 +1,33 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <andreas.enbacka@gasera.fi>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 32E6FE009E4; Wed, 17 Jun 2015 05:24:59 -0700 (PDT)
+	id 874B0E009E4; Wed, 17 Jun 2015 05:27:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [194.211.207.200 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C717E009B8
-	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 05:24:57 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga103.fm.intel.com with ESMTP; 17 Jun 2015 05:24:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,632,1427785200"; d="scan'208";a="729173633"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by fmsmga001.fm.intel.com with ESMTP; 17 Jun 2015 05:24:57 -0700
-Received: from orsmsx112.amr.corp.intel.com (10.22.240.13) by
-	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Wed, 17 Jun 2015 05:24:57 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.217]) by
-	ORSMSX112.amr.corp.intel.com ([169.254.12.27]) with mapi id
-	14.03.0224.002; Wed, 17 Jun 2015 05:24:57 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "leonardo.sandoval.gonzalez@linux.intel.com"
-	<leonardo.sandoval.gonzalez@linux.intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [PATCH] dev-manual: Include biosfilename runqemu option
-Thread-Index: AQHQqHpmQQYpCRDAzkipKM2GFRWS0J2wn97g
-Date: Wed, 17 Jun 2015 12:24:56 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB123798D2042AF@ORSMSX101.amr.corp.intel.com>
-References: <1434460637-46540-1-git-send-email-leonardo.sandoval.gonzalez@linux.intel.com>
-In-Reply-To: <1434460637-46540-1-git-send-email-leonardo.sandoval.gonzalez@linux.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from smtp1.eteinen.fi (smtp1.eteinen.fi [194.211.207.200])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8335E009B8
+	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 05:27:46 -0700 (PDT)
+Received: from [194.100.86.92] (helo=LenovoPC)
+	by smtp1.eteinen.fi with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.71) (envelope-from <andreas.enbacka@gasera.fi>)
+	id 1Z5CRT-0005ca-Bs
+	for yocto@yoctoproject.org; Wed, 17 Jun 2015 15:27:43 +0300
+From: "Andreas Enbacka" <andreas.enbacka@gasera.fi>
+To: <yocto@yoctoproject.org>
+Date: Wed, 17 Jun 2015 15:27:45 +0300
+Message-ID: <003801d0a8f9$0389f400$0a9ddc00$@gasera.fi>
 MIME-Version: 1.0
-Subject: Re: [PATCH] dev-manual: Include biosfilename runqemu option
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AdCo+PL5sVFzqsyZRNqNaEFXzOqsyA==
+Subject: Yocto recipe for libftdi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,57 +39,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jun 2015 12:24:59 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 17 Jun 2015 12:27:50 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0039_01D0A912.28D7A130"
+Content-Language: fi
+
+------=_NextPart_000_0039_01D0A912.28D7A130
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Hello,
+
+ 
+
+I am trying to build libftdi using Yocto, however I am encountering some
+problems. My image (for raspberrypi) contains libusb-compat, as libftdi
+depends on virtual/libusb0. However during the configure stage (autotools),
+the version check for libusb (>=0.1.7) fails, and the bitbake process is
+interrupted. Anyone has any experience on building libftdi using Yocto, or
+possible suggestions how to solve this issue. 
+
+ 
+
+Best regards,
+
+Andreas Enbacka
+
+
+------=_NextPart_000_0039_01D0A912.28D7A130
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Leonardo,=20
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DFI =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal>Hello,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+lang=3DEN-US>I am trying to build libftdi using Yocto, however I am =
+encountering some problems. My image (for raspberrypi) contains =
+libusb-compat, as libftdi depends on virtual/libusb0. However during the =
+configure stage (autotools), the version check for libusb (&gt;=3D0.1.7) =
+fails, and the bitbake process is interrupted. Anyone has any experience =
+on building libftdi using Yocto, or possible suggestions how to solve =
+this issue. <o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Best regards,<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>Andreas =
+Enbacka<o:p></o:p></span></p></div></body></html>
 
-I have applied this patch.  You can see the change at http://www.yoctoproje=
-ct.org/docs/1.9/dev-manual/dev-manual.html#qemu-using-the-runqemu-command. =
-=20
-
-Thanks,=20
-Scott
-
->-----Original Message-----
->From: leonardo.sandoval.gonzalez@linux.intel.com
->[mailto:leonardo.sandoval.gonzalez@linux.intel.com]
->Sent: Tuesday, June 16, 2015 6:17 AM
->To: yocto@yoctoproject.org
->Cc: Rifenbark, Scott M; Leonardo Sandoval
->Subject: [PATCH] dev-manual: Include biosfilename runqemu option
->
->From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
->
->Poky's commit edde3e58da00adf9ef3a8cc687268f6e24294c7c included the
->biosfilename option on the runqemu script.
->
->Signed-off-by: Leonardo Sandoval
-><leonardo.sandoval.gonzalez@linux.intel.com>
->---
-> documentation/dev-manual/dev-manual-qemu.xml | 3 +++
-> 1 file changed, 3 insertions(+)
->
->diff --git a/documentation/dev-manual/dev-manual-qemu.xml
->b/documentation/dev-manual/dev-manual-qemu.xml
->index 4d95fbd..ccc915f 100644
->--- a/documentation/dev-manual/dev-manual-qemu.xml
->+++ b/documentation/dev-manual/dev-manual-qemu.xml
->@@ -171,6 +171,9 @@
->                     Establishes a custom directory for BIOS, VGA BIOS and
->                     keymaps.
->                     </para></listitem>
->+                <listitem><para><filename>biosfilename</filename>:
->+                    Establishes a custom BIOS name.
->+                    </para></listitem>
->
-><listitem><para><filename>qemuparams=3D\"<replaceable>xyz</replaceable>
->\"</filename>:
->                     Specifies custom QEMU parameters.
->                     Use this option to pass options other than the simple
->--
->1.8.4.5
-
-
+------=_NextPart_000_0039_01D0A912.28D7A130--
