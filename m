@@ -1,36 +1,58 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5BC41E00A64; Wed, 17 Jun 2015 10:32:39 -0700 (PDT)
+	id 32D90E00998; Wed, 17 Jun 2015 10:36:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BB37E00A5B
-	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 10:32:26 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP; 17 Jun 2015 10:32:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,634,1427785200"; d="scan'208";a="729362722"
-Received: from apulli-mobl2.ger.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.1.212])
-	by fmsmga001.fm.intel.com with ESMTP; 17 Jun 2015 10:32:25 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Wed, 17 Jun 2015 18:32:24 +0100
-Message-ID: <12176130.ZhO8ySBba4@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.7 (Linux/4.0.4-202.fc21.x86_64; KDE/4.14.9; x86_64; ; )
-In-Reply-To: <1434501318-33354-1-git-send-email-anibal.limon@linux.intel.com>
-References: <1434501318-33354-1-git-send-email-anibal.limon@linux.intel.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.180 listed in list.dnswl.org]
+Received: from mail-pd0-f180.google.com (mail-pd0-f180.google.com
+	[209.85.192.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07CAAE00998
+	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 10:35:59 -0700 (PDT)
+Received: by pdbki1 with SMTP id ki1so45065268pdb.1
+	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 10:35:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=82rT4n5g7j3pEmxf2CcWnzInGE28bhr+StsNdbGTbxQ=;
+	b=FEw18fDFP5BKbJKotH6BAMNXD+NVzEEs77zROdfKzQvVlF4Q9uf5Upakg4evYLwUuj
+	CJQNVJWC0jKt9nX2HNFRyCLKJPMJrGMQC52OxYifVxyCtlnRGPnMxGciX5mtRlH9DKkd
+	r4o0ykaCfcpG1HHEHYQQof2iG9BPaoNlmaCH6et5bpjwHoKZaj+mfMVZ2TSYwt2HIR1W
+	/yxd1MXUZpQFRSrS3twwsrkjmKjqfljjpaxPCmmZK7mgMl0bpZ0ttEZ4wmWXQIRvcHSq
+	dUm/Vxe2qpZa2tfiNna3wIbaUFXFPHmC1l+1LoxLwftDh+zX5bDbVgvvFiqR/Hx3mNL6
+	m+9Q==
+X-Received: by 10.66.118.166 with SMTP id kn6mr12924786pab.93.1434562559218;
+	Wed, 17 Jun 2015 10:35:59 -0700 (PDT)
+Received: from ?IPv6:2601:202:4000:1239:a5ff:d7b:c36b:ccb?
+	([2601:202:4000:1239:a5ff:d7b:c36b:ccb])
+	by mx.google.com with ESMTPSA id sl9sm5394902pac.41.2015.06.17.10.35.57
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 17 Jun 2015 10:35:57 -0700 (PDT)
+Message-ID: <5581AFFB.1010405@gmail.com>
+Date: Wed, 17 Jun 2015 10:35:55 -0700
+From: akuster808 <akuster808@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Subject: Re: [PATCHv3 09/11][auh] upgradehelper.py: Change policy for send emails and fix error handling.
+To: yocto@yoctoproject.org
+References: <CACjDgAMQqkF==04mMtyXbPQw+47hQU=2w3HNs8+JSbZWFFrJgw@mail.gmail.com>
+In-Reply-To: <CACjDgAMQqkF==04mMtyXbPQw+47hQU=2w3HNs8+JSbZWFFrJgw@mail.gmail.com>
+Subject: Re: Recipe for ipset 6.x
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,155 +64,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jun 2015 17:32:39 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Wed, 17 Jun 2015 17:36:02 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wednesday 17 June 2015 00:35:18 An=EDbal Lim=F3n wrote:
-> Add MaintainerError class for identify errors that can be hanlded by
-> Maintainers, only send emails when error is instance of MaintainerErr=
-or.
->=20
-> Get rid of UpgradeNotNeededError when run steps now is handled by
-> new upstream version detection only load recipes that need update.
->=20
-> [YOCTO #7489]
->=20
-> Signed-off-by: An=EDbal Lim=F3n <anibal.limon@linux.intel.com>
-> ---
->  errors.py        | 16 ++++++++++++----
->  upgradehelper.py | 16 +++++++---------
->  2 files changed, 19 insertions(+), 13 deletions(-)
->=20
-> diff --git a/errors.py b/errors.py
-> index c650165..7194944 100644
-> --- a/errors.py
-> +++ b/errors.py
-> @@ -31,6 +31,11 @@ class Error(Exception):
->      def __str__(self):
->          return "Failed(other errors)"
->=20
-> +class MaintainerError(Error):
-> +    """ Class for group error that can be sent to Maintainer's """
-> +    def __init__(self, message=3DNone, stdout=3DNone, stderr=3DNone)=
-:
-> +        super(MaintainerError, self).__init__(message, stdout, stder=
-r)
-> +
->  class FetchError(Error):
->      def __init__(self):
->          super(FetchError, self).__init__("do_fetch failed")
-> @@ -38,25 +43,28 @@ class FetchError(Error):
->      def __str__(self):
->          return "Failed(do_fetch)"
->=20
-> -class PatchError(Error):
-> +class PatchError(MaintainerError):
->      def __init__(self):
->          super(PatchError, self).__init__("do_patch failed")
->=20
->      def __str__(self):
->          return "Failed(do_patch)"
->=20
-> -class ConfigureError(Error):
-> +class ConfigureError(MaintainerError):
->      def __init__(self):
->          super(ConfigureError, self).__init__("do_configure failed")
->=20
-> -class CompilationError(Error):
-> +    def __str__(self):
-> +        return "Failed(do_configure)"
-> +
-> +class CompilationError(MaintainerError):
->      def __init__(self):
->          super(CompilationError, self).__init__("do_compile failed")
->=20
->      def __str__(self):
->          return "Failed(do_compile)"
->=20
-> -class LicenseError(Error):
-> +class LicenseError(MaintainerError):
->      def __init__(self):
->          super(LicenseError, self).__init__("license checksum does no=
-t
-> match")
->=20
-> diff --git a/upgradehelper.py b/upgradehelper.py
-> index b1f075d..7756b36 100755
-> --- a/upgradehelper.py
-> +++ b/upgradehelper.py
-> @@ -346,8 +346,6 @@ class Updater(object):
->                  self.git.clean_untracked()
->                  return
->=20
-> -        status =3D type(err).__name__
-> -
->          # drop last upgrade from git. It's safer this way if the upg=
-rade
-> has # problems and other recipes depend on it. Give the other recipes=
- a #
-> chance...
-> @@ -381,8 +379,11 @@ class Updater(object):
->                  "Attached are the patch, license diff (if change) an=
-d
-> bitbake log.\n\n" \ "Regards,\nThe Upgrade Helper"
->=20
-> -            # don't bother maintainer with mail if the recipe is alr=
-eady up
-> to date -            if status =3D=3D "UpgradeNotNeededError":
-> +            # only send email to Maintainer when is an error that ca=
-n
-> handle +            if err and not isinstance(err, MaintainerError):
-> +                D( "%s: Don't send email to maintainer because the e=
-rror
-> was " \ +                   "%s and the information isn't useful, ple=
-ase
-> review it." \ +                    % (self.pn, type(err).__name__))
->                  return
->=20
->              if self.maintainer in maintainer_override:
-> @@ -478,6 +479,7 @@ class Updater(object):
->=20
->          attempted_pkgs =3D 0
->          for self.pn, self.new_ver, self.maintainer in pkgs_to_upgrad=
-e:
-> +            error =3D None
->              self.recipe =3D None
->              attempted_pkgs +=3D 1
->              I(" ATTEMPT PACKAGE %d/%d" % (attempted_pkgs, total_pkgs=
-))
-> @@ -489,10 +491,6 @@ class Updater(object):
->                      step()
->=20
->                  I(" %s: Upgrade SUCCESSFUL! Please test!" % self.pn)=
 
-> -                error =3D None
-> -            except UpgradeNotNeededError as e:
-> -                I(" %s: %s" % (self.pn, e.message))
-> -                error =3D e
->              except Error as e:
->                  E(" %s: %s" % (self.pn, e.message))
->                  E(" %s: Upgrade FAILED! Logs and/or file diffs are
-> available in %s" % (self.pn, self.workdir)) @@ -667,7 +665,7 @@ class=
 
-> UniverseUpdater(Updater):
->=20
->      # overriding the base method
->      def pkg_upgrade_handler(self, err):
-> -        super(UniverseUpdater, self).pkg_upgrade_handler(self)
-> +        super(UniverseUpdater, self).pkg_upgrade_handler(err)
->          self.update_history(self.pn, self.new_ver, self.maintainer,
->                  self._get_status_msg(err))
+On 06/16/2015 08:52 PM, Albert K wrote:
+> Hi,
+>
+> Does anyone know where can I get the ipset recipe for yocto 1.7.1?
+> Thank you.
+>
+>
 
-OK, after this v3, this and all other patches in this series look OK.
+Package lookups can be done via the layer index.
 
-Acked-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+http://layers.openembedded.org/layerindex/branch/master/layers/
 
-Cheers,
-Paul
+I don't see it unless it is part of another package.
 
---=20
 
-Paul Eggleton
-Intel Open Source Technology Centre
+- armin
 
