@@ -1,31 +1,36 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2BFC2E00A3B; Wed, 17 Jun 2015 09:09:17 -0700 (PDT)
+	id 5BC41E00A64; Wed, 17 Jun 2015 10:32:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCFE8E00998
-	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 09:09:11 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 75F13F811D7; Wed, 17 Jun 2015 10:09:11 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 4515AF811D7;
-	Wed, 17 Jun 2015 10:09:10 -0600 (MDT)
-Message-ID: <55819BBA.5090601@mlbassoc.com>
-Date: Wed, 17 Jun 2015 10:09:30 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BB37E00A5B
+	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 10:32:26 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga102.jf.intel.com with ESMTP; 17 Jun 2015 10:32:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.13,634,1427785200"; d="scan'208";a="729362722"
+Received: from apulli-mobl2.ger.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.1.212])
+	by fmsmga001.fm.intel.com with ESMTP; 17 Jun 2015 10:32:25 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-References: <CAFQ+Dij3q-k0eakxRoE5sq+sTwPv-r+K_YKF_qW7ai8VpY3uCg@mail.gmail.com>
-In-Reply-To: <CAFQ+Dij3q-k0eakxRoE5sq+sTwPv-r+K_YKF_qW7ai8VpY3uCg@mail.gmail.com>
-Subject: Re: No rule to make target `Makefile.in' SITE files ['endian-little', 'bit-32', 'arm-common', 'common-linux', ...]
+Date: Wed, 17 Jun 2015 18:32:24 +0100
+Message-ID: <12176130.ZhO8ySBba4@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.7 (Linux/4.0.4-202.fc21.x86_64; KDE/4.14.9; x86_64; ; )
+In-Reply-To: <1434501318-33354-1-git-send-email-anibal.limon@linux.intel.com>
+References: <1434501318-33354-1-git-send-email-anibal.limon@linux.intel.com>
+MIME-Version: 1.0
+Subject: Re: [PATCHv3 09/11][auh] upgradehelper.py: Change policy for send emails and fix error handling.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,104 +42,155 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jun 2015 16:09:17 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 17 Jun 2015 17:32:39 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On 2015-06-17 09:56, Marco Cavallini wrote:
-> Hello,
-> I'm trying to create a recipe rdesktop_1.8.3.bb but I get an error
-> hard to understand.
-> With Yocto 'daisy' the same recipe worked without complaining.
-> To avoid any temporary misconfiguraton I deleted the sstate and tmp
-> and rebuilt core-image-minimal from scratch and then rdesktop but the
-> error is always present.
-> I'd like to know what is wrong with inherit autotools now using
-> 'dizzy' and what is this DEBUG: SITE files ['endian-little', 'bit-32',
-> 'arm-common', 'common-linux', 'common-glibc', 'arm-linux',
-> 'arm-linux-gnueabi', 'common']
->
-> Thank you
->
->
-> This is my recipe:
-> $ cat rdesktop_1.8.3.bb
-> ---------------------------------
-> DESCRIPTION = "Rdesktop rdp client for X"
-> HOMEPAGE = "http://www.rdesktop.org"
-> SECTION = "x11/network"
-> LICENSE = "GPL"
-> LIC_FILES_CHKSUM = "file://COPYING;md5=f27defe1e96c2e1ecd4e0c9be8967949"
-> SRC_URI = "${SOURCEFORGE_MIRROR}/rdesktop/rdesktop-${PV}.tar.gz"
-> inherit autotools
+On Wednesday 17 June 2015 00:35:18 An=EDbal Lim=F3n wrote:
+> Add MaintainerError class for identify errors that can be hanlded by
+> Maintainers, only send emails when error is instance of MaintainerErr=
+or.
+>=20
+> Get rid of UpgradeNotNeededError when run steps now is handled by
+> new upstream version detection only load recipes that need update.
+>=20
+> [YOCTO #7489]
+>=20
+> Signed-off-by: An=EDbal Lim=F3n <anibal.limon@linux.intel.com>
+> ---
+>  errors.py        | 16 ++++++++++++----
+>  upgradehelper.py | 16 +++++++---------
+>  2 files changed, 19 insertions(+), 13 deletions(-)
+>=20
+> diff --git a/errors.py b/errors.py
+> index c650165..7194944 100644
+> --- a/errors.py
+> +++ b/errors.py
+> @@ -31,6 +31,11 @@ class Error(Exception):
+>      def __str__(self):
+>          return "Failed(other errors)"
+>=20
+> +class MaintainerError(Error):
+> +    """ Class for group error that can be sent to Maintainer's """
+> +    def __init__(self, message=3DNone, stdout=3DNone, stderr=3DNone)=
+:
+> +        super(MaintainerError, self).__init__(message, stdout, stder=
+r)
+> +
+>  class FetchError(Error):
+>      def __init__(self):
+>          super(FetchError, self).__init__("do_fetch failed")
+> @@ -38,25 +43,28 @@ class FetchError(Error):
+>      def __str__(self):
+>          return "Failed(do_fetch)"
+>=20
+> -class PatchError(Error):
+> +class PatchError(MaintainerError):
+>      def __init__(self):
+>          super(PatchError, self).__init__("do_patch failed")
+>=20
+>      def __str__(self):
+>          return "Failed(do_patch)"
+>=20
+> -class ConfigureError(Error):
+> +class ConfigureError(MaintainerError):
+>      def __init__(self):
+>          super(ConfigureError, self).__init__("do_configure failed")
+>=20
+> -class CompilationError(Error):
+> +    def __str__(self):
+> +        return "Failed(do_configure)"
+> +
+> +class CompilationError(MaintainerError):
+>      def __init__(self):
+>          super(CompilationError, self).__init__("do_compile failed")
+>=20
+>      def __str__(self):
+>          return "Failed(do_compile)"
+>=20
+> -class LicenseError(Error):
+> +class LicenseError(MaintainerError):
+>      def __init__(self):
+>          super(LicenseError, self).__init__("license checksum does no=
+t
+> match")
+>=20
+> diff --git a/upgradehelper.py b/upgradehelper.py
+> index b1f075d..7756b36 100755
+> --- a/upgradehelper.py
+> +++ b/upgradehelper.py
+> @@ -346,8 +346,6 @@ class Updater(object):
+>                  self.git.clean_untracked()
+>                  return
+>=20
+> -        status =3D type(err).__name__
+> -
+>          # drop last upgrade from git. It's safer this way if the upg=
+rade
+> has # problems and other recipes depend on it. Give the other recipes=
+ a #
+> chance...
+> @@ -381,8 +379,11 @@ class Updater(object):
+>                  "Attached are the patch, license diff (if change) an=
+d
+> bitbake log.\n\n" \ "Regards,\nThe Upgrade Helper"
+>=20
+> -            # don't bother maintainer with mail if the recipe is alr=
+eady up
+> to date -            if status =3D=3D "UpgradeNotNeededError":
+> +            # only send email to Maintainer when is an error that ca=
+n
+> handle +            if err and not isinstance(err, MaintainerError):
+> +                D( "%s: Don't send email to maintainer because the e=
+rror
+> was " \ +                   "%s and the information isn't useful, ple=
+ase
+> review it." \ +                    % (self.pn, type(err).__name__))
+>                  return
+>=20
+>              if self.maintainer in maintainer_override:
+> @@ -478,6 +479,7 @@ class Updater(object):
+>=20
+>          attempted_pkgs =3D 0
+>          for self.pn, self.new_ver, self.maintainer in pkgs_to_upgrad=
+e:
+> +            error =3D None
+>              self.recipe =3D None
+>              attempted_pkgs +=3D 1
+>              I(" ATTEMPT PACKAGE %d/%d" % (attempted_pkgs, total_pkgs=
+))
+> @@ -489,10 +491,6 @@ class Updater(object):
+>                      step()
+>=20
+>                  I(" %s: Upgrade SUCCESSFUL! Please test!" % self.pn)=
 
-Try it with
-   inherit autotools-brokensep
+> -                error =3D None
+> -            except UpgradeNotNeededError as e:
+> -                I(" %s: %s" % (self.pn, e.message))
+> -                error =3D e
+>              except Error as e:
+>                  E(" %s: %s" % (self.pn, e.message))
+>                  E(" %s: Upgrade FAILED! Logs and/or file diffs are
+> available in %s" % (self.pn, self.workdir)) @@ -667,7 +665,7 @@ class=
 
-> EXTRA_OECONF = "--with-openssl=${STAGING_EXECPREFIXDIR}
-> --disable-credssp --disable-smartcard"
-> SRC_URI[md5sum] = "86e8b368a7c715e74ded92e0d7912dc5"
-> SRC_URI[sha256sum] =
-> "88b20156b34eff5f1b453f7c724e0a3ff9370a599e69c01dc2bf0b5e650eece4"
->
->
-> And I get this error:
-> $ bitbake rdesktop
->
-> Build Configuration:
-> BB_VERSION        = "1.24.0"
-> BUILD_SYS         = "x86_64-linux"
-> NATIVELSBSTRING   = "Ubuntu-12.04"
-> TARGET_SYS        = "arm-poky-linux-gnueabi"
-> MACHINE           = "imx6solosabresd"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "1.7.2"
-> TUNE_FEATURES     = "arm armv7a vfp neon callconvention-hard cortexa9"
-> TARGET_FPU        = "vfp-neon"
-> meta
-> meta-yocto
-> meta-yocto-bsp    = "dizzy:9c4ff467f66428488b1cd9798066a8cb5d6b4c3b"
-> meta-oe           = "dizzy:5b6f39ce325d490fc382d5d59c5b8b9d5fa38b38"
-> meta-fsl-arm      = "dizzy:db1571f40c375a398a8cdbb42de4c4f272ab0cd1"
-> meta-fsl-arm-extra = "dizzy:794e46e0b0a3e7e270a2f3c217d8fe5751a6b2c6"
-> meta-mh          = "dizzy:9c4ff467f66428488b1cd9798066a8cb5d6b4c3b"
->
-> ...
-> ERROR: Function failed: do_compile (log file is located at
-> /home/mc/yocto-fsl-dizzy/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/rdesktop/1.8.3-r0/temp/log.do_compile.3066)
-> ERROR: Logfile of failure stored in:
-> /home/mc/yocto-fsl-dizzy/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/rdesktop/1.8.3-r0/temp/log.do_compile.3066
-> Log data follows:
-> | DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common',
-> 'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi',
-> 'common']
-> | DEBUG: Executing shell function do_compile
-> | NOTE: make -j 8
-> | make: *** No rule to make target `Makefile.in', needed by `Makefile'.  Stop.
-> | ERROR: oe_runmake failed
-> | WARNING: /home/mc/yocto-fsl-dizzy/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/rdesktop/1.8.3-r0/temp/run.do_compile.3066:1
-> exit 1 from
-> |   exit 1
-> | ERROR: Function failed: do_compile (log file is located at
-> /home/mc/yocto-fsl-dizzy/poky/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/rdesktop/1.8.3-r0/temp/log.do_compile.3066)
-> ERROR: Task 6 (/home/mc/yocto-fsl-dizzy/poky/meta-mh/recipes-connectivity/rdesktop/rdesktop_1.8.3.bb,
-> do_compile) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 545 tasks of which 544 didn't need to
-> be rerun and 1 failed.
-> No currently running tasks (522 of 554)
->
-> Summary: 1 task failed:
->    /home/mc/yocto-fsl-dizzy/poky/meta-mh/recipes-connectivity/rdesktop/rdesktop_1.8.3.bb,
-> do_compile
-> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
->
-> --
-> Marco
->
+> UniverseUpdater(Updater):
+>=20
+>      # overriding the base method
+>      def pkg_upgrade_handler(self, err):
+> -        super(UniverseUpdater, self).pkg_upgrade_handler(self)
+> +        super(UniverseUpdater, self).pkg_upgrade_handler(err)
+>          self.update_history(self.pn, self.new_ver, self.maintainer,
+>                  self._get_status_msg(err))
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+OK, after this v3, this and all other patches in this series look OK.
+
+Acked-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+
+Cheers,
+Paul
+
+--=20
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
