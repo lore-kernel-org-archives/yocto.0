@@ -1,58 +1,47 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 32D90E00998; Wed, 17 Jun 2015 10:36:02 -0700 (PDT)
+	id 1EA88E00A5B; Wed, 17 Jun 2015 12:30:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.180 listed in list.dnswl.org]
-Received: from mail-pd0-f180.google.com (mail-pd0-f180.google.com
-	[209.85.192.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07CAAE00998
-	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 10:35:59 -0700 (PDT)
-Received: by pdbki1 with SMTP id ki1so45065268pdb.1
-	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 10:35:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=82rT4n5g7j3pEmxf2CcWnzInGE28bhr+StsNdbGTbxQ=;
-	b=FEw18fDFP5BKbJKotH6BAMNXD+NVzEEs77zROdfKzQvVlF4Q9uf5Upakg4evYLwUuj
-	CJQNVJWC0jKt9nX2HNFRyCLKJPMJrGMQC52OxYifVxyCtlnRGPnMxGciX5mtRlH9DKkd
-	r4o0ykaCfcpG1HHEHYQQof2iG9BPaoNlmaCH6et5bpjwHoKZaj+mfMVZ2TSYwt2HIR1W
-	/yxd1MXUZpQFRSrS3twwsrkjmKjqfljjpaxPCmmZK7mgMl0bpZ0ttEZ4wmWXQIRvcHSq
-	dUm/Vxe2qpZa2tfiNna3wIbaUFXFPHmC1l+1LoxLwftDh+zX5bDbVgvvFiqR/Hx3mNL6
-	m+9Q==
-X-Received: by 10.66.118.166 with SMTP id kn6mr12924786pab.93.1434562559218;
-	Wed, 17 Jun 2015 10:35:59 -0700 (PDT)
-Received: from ?IPv6:2601:202:4000:1239:a5ff:d7b:c36b:ccb?
-	([2601:202:4000:1239:a5ff:d7b:c36b:ccb])
-	by mx.google.com with ESMTPSA id sl9sm5394902pac.41.2015.06.17.10.35.57
-	for <yocto@yoctoproject.org>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 17 Jun 2015 10:35:57 -0700 (PDT)
-Message-ID: <5581AFFB.1010405@gmail.com>
-Date: Wed, 17 Jun 2015 10:35:55 -0700
-From: akuster808 <akuster808@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	*      [209.85.192.43 listed in list.dnswl.org]
+Received: from mail-qg0-f43.google.com (mail-qg0-f43.google.com
+	[209.85.192.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49CA5E009C5
+	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 12:30:21 -0700 (PDT)
+Received: by qgal13 with SMTP id l13so18903780qga.3
+	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 12:30:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=grQcgvp1AxTlT5lkWS7SWBOlokVXjPxZxUnpbpD4T+c=;
+	b=O3I9EibA9/cdgNcp7WxW+xZS7n68NOzRv1M2HP2fuyje9KZs+49Vt0u18wXEvK0hMW
+	kfxk0FBuNynYHYZreol96TOWNZHV1juxTXmNLLFKzpjxW5RQHhMg7xI1VgNUFnWWYmHe
+	hk4ReWTdgxjgRx+lgDrKi0gYpas0Hh+PRop4r/cTZNgx02ffdpPC58mSzdZ5kVbIee/L
+	OysY44gOAZ48vg17cnfDjRuoHPchocXi0YFHObjMky+Yz6MoYKASI7cIF4RAkcScrc/Y
+	qvCnOJgeyqHcbKdMdnpOooi46nk6FTu8XIZ0cPD/5QiGZfXozP1Lr4DA9B7y5fWLBefs
+	piww==
+X-Gm-Message-State: ALoCoQnDL9ziSso8vz6JVRqa8bq1H5iq/vQBkeeFfTE68cvzIsASJEgtnfOFokajWT2YdnhiZvSB
+X-Received: by 10.55.25.150 with SMTP id 22mr16622173qkz.105.1434569421480;
+	Wed, 17 Jun 2015 12:30:21 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CACjDgAMQqkF==04mMtyXbPQw+47hQU=2w3HNs8+JSbZWFFrJgw@mail.gmail.com>
-In-Reply-To: <CACjDgAMQqkF==04mMtyXbPQw+47hQU=2w3HNs8+JSbZWFFrJgw@mail.gmail.com>
-Subject: Re: Recipe for ipset 6.x
+Received: by 10.140.102.231 with HTTP; Wed, 17 Jun 2015 12:30:01 -0700 (PDT)
+In-Reply-To: <CAFQ+Dij3q-k0eakxRoE5sq+sTwPv-r+K_YKF_qW7ai8VpY3uCg@mail.gmail.com>
+References: <CAFQ+Dij3q-k0eakxRoE5sq+sTwPv-r+K_YKF_qW7ai8VpY3uCg@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 17 Jun 2015 20:30:01 +0100
+Message-ID: <CAJTo0LZeTK52R3S6wX5yzKDHfkFRupAfsZn4gEeS24ZtHVZ-Ww@mail.gmail.com>
+To: Marco Cavallini <cavallini.koan@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: No rule to make target `Makefile.in' SITE files ['endian-little', 'bit-32', 'arm-common', 'common-linux', ...]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,26 +53,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jun 2015 17:36:02 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 17 Jun 2015 19:30:26 -0000
+Content-Type: multipart/alternative; boundary=001a1147b3b0c5f78c0518bbb82e
 
+--001a1147b3b0c5f78c0518bbb82e
+Content-Type: text/plain; charset=UTF-8
 
+On 17 June 2015 at 16:56, Marco Cavallini <cavallini.koan@gmail.com> wrote:
 
-On 06/16/2015 08:52 PM, Albert K wrote:
-> Hi,
+> Hello,
+> I'm trying to create a recipe rdesktop_1.8.3.bb but I get an error
+> hard to understand.
+> With Yocto 'daisy' the same recipe worked without complaining.
+> To avoid any temporary misconfiguraton I deleted the sstate and tmp
+> and rebuilt core-image-minimal from scratch and then rdesktop but the
+> error is always present.
+> I'd like to know what is wrong with inherit autotools now using
+> 'dizzy' and what is this DEBUG: SITE files ['endian-little', 'bit-32',
+> 'arm-common', 'common-linux', 'common-glibc', 'arm-linux',
+> 'arm-linux-gnueabi', 'common']
 >
-> Does anyone know where can I get the ipset recipe for yocto 1.7.1?
-> Thank you.
->
->
 
-Package lookups can be done via the layer index.
+Compile is failing because configure failed to generate the Makefiles, read
+the temp/log.do_configure log file under the recipe's work directory to see
+if that explains why.
 
-http://layers.openembedded.org/layerindex/branch/master/layers/
+(you're probably missing some build dependencies)
 
-I don't see it unless it is part of another package.
+Ross
 
+--001a1147b3b0c5f78c0518bbb82e
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-- armin
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 17 June 2015 at 16:56, Marco Cavallini <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:cavallini.koan@gmail.com" target=3D"_blank">cavallini.koan@gmail.com=
+</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin=
+:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hello,<br>
+I&#39;m trying to create a recipe <a href=3D"http://rdesktop_1.8.3.bb" rel=
+=3D"noreferrer" target=3D"_blank">rdesktop_1.8.3.bb</a> but I get an error<=
+br>
+hard to understand.<br>
+With Yocto &#39;daisy&#39; the same recipe worked without complaining.<br>
+To avoid any temporary misconfiguraton I deleted the sstate and tmp<br>
+and rebuilt core-image-minimal from scratch and then rdesktop but the<br>
+error is always present.<br>
+I&#39;d like to know what is wrong with inherit autotools now using<br>
+&#39;dizzy&#39; and what is this DEBUG: SITE files [&#39;endian-little&#39;=
+, &#39;bit-32&#39;,<br>
+&#39;arm-common&#39;, &#39;common-linux&#39;, &#39;common-glibc&#39;, &#39;=
+arm-linux&#39;,<br>
+&#39;arm-linux-gnueabi&#39;, &#39;common&#39;]<br></blockquote><div><br></d=
+iv><div>Compile is failing because configure failed to generate the Makefil=
+es, read the temp/log.do_configure log file under the recipe&#39;s work dir=
+ectory to see if that explains why.</div><div><br></div><div>(you&#39;re pr=
+obably missing some build dependencies)</div><div><br></div><div>Ross</div>=
+</div></div></div>
 
+--001a1147b3b0c5f78c0518bbb82e--
