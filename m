@@ -1,33 +1,48 @@
-Return-Path: <andreas.enbacka@gasera.fi>
+Return-Path: <florian@fnbk.cc>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 874B0E009E4; Wed, 17 Jun 2015 05:27:50 -0700 (PDT)
+	id B36C8E009E4; Wed, 17 Jun 2015 06:28:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [194.211.207.200 listed in list.dnswl.org]
+	*      [209.85.213.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from smtp1.eteinen.fi (smtp1.eteinen.fi [194.211.207.200])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8335E009B8
-	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 05:27:46 -0700 (PDT)
-Received: from [194.100.86.92] (helo=LenovoPC)
-	by smtp1.eteinen.fi with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.71) (envelope-from <andreas.enbacka@gasera.fi>)
-	id 1Z5CRT-0005ca-Bs
-	for yocto@yoctoproject.org; Wed, 17 Jun 2015 15:27:43 +0300
-From: "Andreas Enbacka" <andreas.enbacka@gasera.fi>
-To: <yocto@yoctoproject.org>
-Date: Wed, 17 Jun 2015 15:27:45 +0300
-Message-ID: <003801d0a8f9$0389f400$0a9ddc00$@gasera.fi>
+Received: from mail-ig0-f170.google.com (mail-ig0-f170.google.com
+	[209.85.213.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64E61E009B8
+	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 06:28:02 -0700 (PDT)
+Received: by igboe5 with SMTP id oe5so79539360igb.1
+	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 06:28:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=58hQbqwl6davzxz4NGwyjPi+SyxQbi8R3qEQuTSqW7A=;
+	b=AVvYaqL6I4W22THEuLUNKcoKY3rtcK3HMTUmSQfw1Lf3G+U++nHYyToheZAsh+7FDb
+	av/0+Zy4xzsEpNvOrF6EhhbHHIm2Wh6ju1vteBfuliFa8l1PqHDwbShEWmEQwauhPwWV
+	j/QizwjjSl2BYVz7Bv0Zq38hOl3o3cyRL9ZS9d/4xH3QFVUCspNkRtYheILXGisVNpfj
+	vyHl4dxoxu/bV/19oImdaC3azIPm257sarxWT/eYe/+oTxTCcCKBC8DMXFPjVl3KKjfX
+	Ghs/egWFivYd/sGKpA+zM1LXGazREBrwANH6RJ1jTKwDi8aLAT2AvIwb5AIS0jle3g75
+	NwTg==
+X-Gm-Message-State: ALoCoQlAeG5s8LIEITcf38KEtDcMs7tODSYEqk3Ep7+0UdKlE1Lp4/SLEfT61x35tFXLPiGAuBdP
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AdCo+PL5sVFzqsyZRNqNaEFXzOqsyA==
-Subject: Yocto recipe for libftdi
+X-Received: by 10.107.34.85 with SMTP id i82mr8359408ioi.6.1434547682282; Wed,
+	17 Jun 2015 06:28:02 -0700 (PDT)
+Received: by 10.79.116.145 with HTTP; Wed, 17 Jun 2015 06:28:02 -0700 (PDT)
+In-Reply-To: <CALgoR9N55VS2D+UzMmdShBUmQBes_tEj8KqTi7Ff9UtO8pV7Mw@mail.gmail.com>
+References: <CALgoR9NG-nVj7qaSSbAVjmhEWSpWaq_oGqFvA0yq+YM9nisF_g@mail.gmail.com>
+	<55807507.1080906@windriver.com>
+	<CALgoR9N55VS2D+UzMmdShBUmQBes_tEj8KqTi7Ff9UtO8pV7Mw@mail.gmail.com>
+Date: Wed, 17 Jun 2015 15:28:02 +0200
+Message-ID: <CALgoR9PzNjuOWnhC6cH0XLaPu9Winx0_m6nRM21ou4mPcB0JhA@mail.gmail.com>
+From: Florian Boehmak <florian@fnbk.cc>
+To: Mark Hatle <mark.hatle@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [prelink-cross] error while loading shared libraries: ld-linux.so.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,101 +54,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jun 2015 12:27:50 -0000
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0039_01D0A912.28D7A130"
-Content-Language: fi
+X-List-Received-Date: Wed, 17 Jun 2015 13:28:08 -0000
+Content-Type: text/plain; charset=UTF-8
 
-------=_NextPart_000_0039_01D0A912.28D7A130
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+> The error indicates that it found a library required called 'ld-linux.so.3', but
+> could not find that in the "path".  (The path generally being the sysroot path
+> passed to the rtld.)
+>
+> What command did you use to run the prelinker?  And does your sysroot contain
+> the /lib/ld-linux.so.3?
 
-Hello,
+Hey, now I understand it :-) Thank you!
 
- 
+I need to specify the sysroot and explicitly tell prelink which
+libraries to prelink:
 
-I am trying to build libftdi using Yocto, however I am encountering some
-problems. My image (for raspberrypi) contains libusb-compat, as libftdi
-depends on virtual/libusb0. However during the configure stage (autotools),
-the version check for libusb (>=0.1.7) fails, and the bitbake process is
-interrupted. Anyone has any experience on building libftdi using Yocto, or
-possible suggestions how to solve this issue. 
-
- 
-
-Best regards,
-
-Andreas Enbacka
+PATH=/usr/local/sbin prelink --verbose
+--root=/home/developer/workspace/eclipse/prelink-cross-example/arm-2012.03/arm-none-linux-gnueabi/libc
+--cache-file=/etc/cache/prelink.cache --config-file=/etc/prelink.conf
+--ld-library-path="/usr/local/lib;/lib;" -h /usr/local/bin/hello
+/lib/libc.so.6 /lib/libgcc_s.so.1 /lib/ld-2.15.so
 
 
-------=_NextPart_000_0039_01D0A912.28D7A130
-Content-Type: text/html;
-	charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+This will produce the following output:
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
-HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DFI =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal>Hello,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
-lang=3DEN-US>I am trying to build libftdi using Yocto, however I am =
-encountering some problems. My image (for raspberrypi) contains =
-libusb-compat, as libftdi depends on virtual/libusb0. However during the =
-configure stage (autotools), the version check for libusb (&gt;=3D0.1.7) =
-fails, and the bitbake process is interrupted. Anyone has any experience =
-on building libftdi using Yocto, or possible suggestions how to solve =
-this issue. <o:p></o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
-lang=3DEN-US>Best regards,<o:p></o:p></span></p><p =
-class=3DMsoNormal><span lang=3DEN-US>Andreas =
-Enbacka<o:p></o:p></span></p></div></body></html>
+Assigned virtual address space slots for libraries:
+/lib/ld-linux.so.3                                           41000000-4102a968
+/lib/libc.so.6                                               41030000-41181968
+/lib/libgcc_s.so.1                                           41188000-411af748
+/usr/local/lib/libworld.so                                   411b8000-411c06d0
+Prelinking /lib/ld-2.15.so
+Prelinking /lib/libc-2.15.so
+Prelinking /lib/libgcc_s.so.1
+Prelinking /usr/local/lib/libworld.so
+Prelinking /usr/local/bin/hello
 
-------=_NextPart_000_0039_01D0A912.28D7A130--
+
+I put all the code on github, in case somebody has the same issues
+(make sure to checkout both branches 'master' and 'shared-library'):
+https://github.com/fnbk/prelink-cross-example
+
+Thank you for the great help.
+
+Cheers
+Florian
+
