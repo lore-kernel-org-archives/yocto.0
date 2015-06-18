@@ -1,6 +1,6 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 828A6E00A51; Wed, 17 Jun 2015 23:28:49 -0700 (PDT)
+	id 97655E00A51; Thu, 18 Jun 2015 01:22:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,41 +8,40 @@ X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
 	URIBL_JP_SURBL autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.215.49 listed in list.dnswl.org]
+	*      [93.17.128.163 listed in list.dnswl.org]
 	* 1.2 URIBL_JP_SURBL Contains an URL listed in the JP SURBL blocklist
 	*      [URIs: gherzan.ro]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-la0-f49.google.com (mail-la0-f49.google.com
-	[209.85.215.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44BAAE009D2
-	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 23:28:45 -0700 (PDT)
-Received: by labko7 with SMTP id ko7so48024905lab.2
-	for <yocto@yoctoproject.org>; Wed, 17 Jun 2015 23:28:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:content-transfer-encoding;
-	bh=kzZoV4WifBygeFqYGJcNBzWPP64/V26S/gGJi/mebno=;
-	b=LMtgvIlArGq4yep2OhjFuioSpiLMeZfKwC9TIwFOOvFFvxlekFKJK91JWOJ77UX893
-	W8wExsrV8gWs5Pg8ryr97/M9/fRDJ9is6b56LxW8j+JF8NvYyYcAlj84f7ueOpipUawW
-	DxVwSXs/8EthZnC5+AOH7//uAzMHcCVrV4oq2wh36HQYxgDLDVTASkeT5OmBaDZYKU0m
-	Z9FUGQAjMI5K8Vf2ZhkAyXpCwerr4gAC2yhXWaODdNpvHb6+8xALk1xfSnc4ym0qXbVW
-	0j3rUnLduUNNCKZ0xOjNi0F7TqsQEFddzP7rGeJqYsr92g5ZSVIQi4fl6fhPoYfRgBQv
-	X3JQ==
-X-Gm-Message-State: ALoCoQlZU0b5x5z5J6BEy845FFi42hySTzOeJ1ISvnkdev4UZwOdrfw9qQqgU+GQ/eDTrbU070xm
-X-Received: by 10.152.18.163 with SMTP id x3mr11525908lad.70.1434608924483;
-	Wed, 17 Jun 2015 23:28:44 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.112.147.232 with HTTP; Wed, 17 Jun 2015 23:28:23 -0700 (PDT)
-X-Originating-IP: [185.30.25.218]
-In-Reply-To: <009101d0a8d9$c460eb40$4d22c1c0$@neuf.fr>
+Received: from smtp26.services.sfr.fr (smtp26.services.sfr.fr [93.17.128.163])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F497E009D2
+	for <yocto@yoctoproject.org>; Thu, 18 Jun 2015 01:22:38 -0700 (PDT)
+Received: from filter.sfr.fr (localhost [42.73.231.117])
+	by msfrf2601.sfr.fr (SMTP Server) with ESMTP id 2C9A91C000429;
+	Thu, 18 Jun 2015 10:22:35 +0200 (CEST)
+Authentication-Results: sfrmc.priv.atos.fr; dkim=none (no signature);
+	dkim-adsp=none (no policy) header.from=herve.jourdain@neuf.fr
+Received: from hjo-pc (42-73-231-117.EMOME-IP.hinet.net
+	[42.73.231.117])	(using TLSv1
+	with cipher AES128-SHA (128/128 bits))	(No client certificate
+	requested)
+	by msfrf2601.sfr.fr (SMTP Server) with ESMTP id D1F6F1C000C86;
+	Thu, 18 Jun 2015 10:22:32 +0200 (CEST)
+X-SFR-UUID: 20150618082232860.D1F6F1C000C86@msfrf2601.sfr.fr
+Received: from hjopc
+	by hjo-pc (PGP Universal service);  Thu, 18 Jun 2015 10:22:32 +0100
+X-PGP-Universal: processed;	by hjo-pc on Thu, 18 Jun 2015 10:22:32 +0100
+From: Herve Jourdain <herve.jourdain@neuf.fr>
+To: 'Andrei Gherzan' <andrei@gherzan.ro>
 References: <009101d0a8d9$c460eb40$4d22c1c0$@neuf.fr>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Thu, 18 Jun 2015 08:28:23 +0200
-Message-ID: <CAK18fxEc3T93vKFmRdxhRu5MHOZxM22xyBAfR+cAsnBiptwgUg@mail.gmail.com>
-To: Herve Jourdain <herve.jourdain@neuf.fr>
-Cc: Yocto Project <yocto@yoctoproject.org>
+	<CAK18fxEc3T93vKFmRdxhRu5MHOZxM22xyBAfR+cAsnBiptwgUg@mail.gmail.com>
+In-Reply-To: <CAK18fxEc3T93vKFmRdxhRu5MHOZxM22xyBAfR+cAsnBiptwgUg@mail.gmail.com>
+Date: Thu, 18 Jun 2015 10:22:23 +0200
+Message-ID: <02ea01d0a99f$ec37d2c0$c4a77840$@neuf.fr>
+MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 15.0
+thread-index: AQKKC9ddfvMg404D4wnsS7ZEixxZ4wG5h1mmnDFasTA=
+Cc: 'Yocto Project' <yocto@yoctoproject.org>
 Subject: Re: [meta-raspberrypi] [PATCH] ds1307-rtc-overlay.dtb has been removed from the kernel tree, and most overlays have been moved to the dts/overlays directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -55,40 +54,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Jun 2015 06:28:49 -0000
+X-List-Received-Date: Thu, 18 Jun 2015 08:22:45 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+Content-Language: fr
+
+Hi Andrei,
+
+Well, it seems that the current meta-raspberrypi is pulling the kernel =
+from github, and the kernel on github already has these "features" in.
+Which is why I could compile fine with the current meta-raspberrypi 2or =
+3 weeks ago, but it failed 2 days ago when I tried to do a fresh =
+build...
+Therefore, I believe the change in the meta-raspberrypi is already =
+needed for the 3.18.y branch, because the kernel already has it.
+
+Regards,
+
+Herve
+
+-----Original Message-----
+From: Andrei Gherzan [mailto:andrei@gherzan.ro]=20
+Sent: jeudi 18 juin 2015 08:28
+To: Herve Jourdain
+Cc: Yocto Project
+Subject: Re: [yocto] [meta-raspberrypi] [PATCH] ds1307-rtc-overlay.dtb =
+has been removed from the kernel tree, and most overlays have been moved =
+to the dts/overlays directory
 
 Hello Herve,
 
-On Wed, Jun 17, 2015 at 10:43 AM, Herve Jourdain <herve.jourdain@neuf.fr> w=
-rote:
+On Wed, Jun 17, 2015 at 10:43 AM, Herve Jourdain =
+<herve.jourdain@neuf.fr> wrote:
 > Hi,
 >
 >
 >
-> Actually, the situation is slightly more complex than I initially suppose=
-d :
-> not only were some .dtb deleted, but also most were moved to the =C2=AB o=
-verlays
-> =C2=BB subdirectory.
+> Actually, the situation is slightly more complex than I initially =
+supposed :
+> not only were some .dtb deleted, but also most were moved to the =
+=C2=AB=20
+> overlays =C2=BB subdirectory.
 >
 > This is true for the kernel after git
 > 739c586c87576fb8ef151b5843ebed76c43a5221:
 
-These patches will first need to update kernel. So please send the
-Linux update which is dependent on too. Submitting a patch is very
-simple and there is documentation in the layer's README file. You can
-always use pull requests in github and bitbucket too.
+These patches will first need to update kernel. So please send the Linux =
+update which is dependent on too. Submitting a patch is very simple and =
+there is documentation in the layer's README file. You can always use =
+pull requests in github and bitbucket too.
 
-> https://github.com/raspberrypi/linux/commit/739c586c87576fb8ef151b5843ebe=
-d76c43a5221
+> https://github.com/raspberrypi/linux/commit/739c586c87576fb8ef151b5843
+> ebed76c43a5221
 >
-> The following patch is making the whole thing compiling, and seems to
-> install them in the right places, but I=E2=80=99m not sure I=E2=80=99m cr=
-eating the
-> directory needed for compiling the overlays at the best of places=E2=80=
-=A6
+> The following patch is making the whole thing compiling, and seems to=20
+> install them in the right places, but I=E2=80=99m not sure I=E2=80=99m =
+creating the=20
+> directory needed for compiling the overlays at the best of =
+places=E2=80=A6
 >
 > Anyway, here it goes:
 >
@@ -160,7 +183,7 @@ eating the
 >
 >      "
 
-On the boot partition will these files be deployed as overlays/* ? If
+On the boot partition will these files be deployed as overlays/* ? If =
 so, does kernel knows to pick them up from this directory?
 
 >
@@ -197,9 +220,8 @@ so, does kernel knows to pick them up from this directory?
 > From: Herve Jourdain [mailto:herve.jourdain@neuf.fr]
 > Sent: mercredi 17 juin 2015 04:57
 > To: 'yocto@yoctoproject.org'
-> Subject: [meta-raspberrypi] ds1307-rtc-overlay.dtb has been removed from =
-the
-> kernel tree
+> Subject: [meta-raspberrypi] ds1307-rtc-overlay.dtb has been removed=20
+> from the kernel tree
 >
 >
 >
@@ -207,21 +229,21 @@ the
 >
 >
 >
-> I=E2=80=99m not sure about the formalism of submitting patches to this li=
-st, so I
-> hope you will forgive any misstep.
+> I=E2=80=99m not sure about the formalism of submitting patches to this =
+list,=20
+> so I hope you will forgive any misstep.
 >
 >
 >
-> Recently, the RaspberryPi kernel has removed some =E2=80=9Cdeprecated=E2=
-=80=9D DTB overlays
-> from the kernel tree, causing the meta-raspberrypi layer to fail at compi=
-le
-> time.
+> Recently, the RaspberryPi kernel has removed some =
+=E2=80=9Cdeprecated=E2=80=9D DTB=20
+> overlays from the kernel tree, causing the meta-raspberrypi layer to=20
+> fail at compile time.
 >
 > The failure message is:
 >
-> No rule to make target `arch/arm/boot/dts/ds1307-rtc-overlay.dtb'.  Stop.
+> No rule to make target `arch/arm/boot/dts/ds1307-rtc-overlay.dtb'.  =
+Stop.
 >
 >
 >
@@ -241,8 +263,9 @@ le
 >
 >
 >
-> Therefore, the file conf/machine/include/rpi-base.inc must be modified to
-> accommodate those changes.
+> Therefore, the file conf/machine/include/rpi-base.inc must be modified =
+
+> to accommodate those changes.
 >
 >
 >
@@ -304,7 +327,7 @@ le
 
 
 
---=20
+--
 Andrei Gherzan
 e: andrei@gherzan.ro
 w: www.gherzan.ro
