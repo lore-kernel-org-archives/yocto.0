@@ -1,37 +1,44 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0B33BE00992; Fri, 19 Jun 2015 09:19:59 -0700 (PDT)
+	id 03264E009D6; Fri, 19 Jun 2015 10:04:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.160.175 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3106E00957
-	for <yocto@yoctoproject.org>; Fri, 19 Jun 2015 09:19:54 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.1/8.15.1) with ESMTPS id t5JGJqvZ012708
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 19 Jun 2015 09:19:53 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 19 Jun 2015 09:19:52 -0700
-Message-ID: <55844128.9030507@windriver.com>
-Date: Fri, 19 Jun 2015 12:19:52 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+Received: from mail-yk0-f175.google.com (mail-yk0-f175.google.com
+	[209.85.160.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F8E5E00957
+	for <yocto@yoctoproject.org>; Fri, 19 Jun 2015 10:04:26 -0700 (PDT)
+Received: by ykar6 with SMTP id r6so96586889yka.2
+	for <yocto@yoctoproject.org>; Fri, 19 Jun 2015 10:04:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type:content-transfer-encoding;
+	bh=HkmXQTwgmU6+P+uO7/Mu2WkZQwzsHuqlkHsjemwt6U4=;
+	b=C/wF4J1o3U+BV5+qG+htSKCNCb4q2wYi9MvJJrDwWzaP+xRKb7L+DDS9NZ3D+Y+lQa
+	Om8dDPmdaCZ6iGkEGNNBKSVVff7QMhHhWdjcZS8G4bYkt/uWdW6W9EMAlZMf1IG9UgfG
+	BEqw5FASZ7D1EiDBuI7o6WLMVAel4rk/44ud6lj4mAV1tUAgwJnfgQPZ/r1NpfDGeyIG
+	2yzAiLEQSWFUZoc54hiE7jBtKEHmrEBNjjeIqE2y5PVZCxQOyeUvCUrmt/8RLjDnw/Fx
+	oacd1w2U/No+YMKizvo4H7UrHxynMC5eIawwLoaLJxh3eZ6AA4yB4opb5SS7+G7+yEbM
+	PgJQ==
+X-Gm-Message-State: ALoCoQkWZQGgEHzBup2csWr4sicBLuIhi0tHc04++LjRvTuGx+XaArKmKiEEqUaIGZMratVAoQYg
 MIME-Version: 1.0
-To: Andreas Fenkart <afenkart@gmail.com>, <yocto@yoctoproject.org>
-References: <CALtMJECkfxQz+tabTRVL9JcZUNgO+Oho_JcssbCWkZdEEmCsvg@mail.gmail.com>
-In-Reply-To: <CALtMJECkfxQz+tabTRVL9JcZUNgO+Oho_JcssbCWkZdEEmCsvg@mail.gmail.com>
-Subject: Re: Problems using "In-Tree" defconfig File
+X-Received: by 10.52.32.34 with SMTP id f2mr13452322vdi.11.1434733465676; Fri,
+	19 Jun 2015 10:04:25 -0700 (PDT)
+Received: by 10.52.233.105 with HTTP; Fri, 19 Jun 2015 10:04:25 -0700 (PDT)
+Date: Fri, 19 Jun 2015 18:04:25 +0100
+Message-ID: <CAPhnLPCyL93UoDMwoKtcoMu1gUhh9Rkk_8n8+eKF7nFFbCEB5w@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	yocto-announce@yoctoproject.org
+Subject: [ANNOUNCEMENT] meta-intel 3.1 with Cherry Hill (Braswell) support for Yocto Project "fido" 1.8 now available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,81 +50,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jun 2015 16:19:59 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 19 Jun 2015 17:04:30 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 2015-06-19 03:28 AM, Andreas Fenkart wrote:
-> I want to use a defconfig, that is provided by the linux git
-> repository, hence this seems to fit my need:
->
-> http://www.yoctoproject.org/docs/1.8/kernel-dev/kernel-dev.html#using-an-in-tree-defconfig-file
-> KBUILD_DEFCONFIG_KMACHINE ?= defconfig_file
->
-> Anybody used that feature recently? I couldn't get it to work, :-(
+All,
 
-Works here.
+The meta-intel 3.1 layer for the Yocto Projects 1.8 "fido" release is
+now available for download. This update includes and supports the
+Intel=C2=AE Cherry Hill (Braswell) board support package.
 
->
-> The build fails in kernel_config target, in merge_config.sh. It fails
-> to merge kernel config fragments. Probably because I don't have any.
->
-> [INFO] collecting configs in .meta/meta-series
-> ARCH=arm O=<path>/linux-dss11e-standard-build merge_config.sh -d
-> mv: cannot stat '<path>/linux-dss11e-standard-build/.tmp.config*': No
-> such file or directory
+---
+Elizabeth Flanagan
+Intel Corp.
 
-This actually means something else, like a misconfigured BSP.
+meta-intel
+-----------------------
+repo: git://git.yoctoproject.org/meta-intel
+branch: fido
+tag: 3.1-fido-1.8
+hash: 28e8017ab8ba4f4d9e3fe5a5346bf31b3334bbbb
+download: http://downloads.yoctoproject.org/releases/yocto/yocto-1.8/meta-i=
+ntel-3.1-fido-1.8.tar.bz2
+md5sum: 09c78d0d76db223adc4bd0617180453c
 
->
-> Grep'ing for KBUILD_DEFCONFIG in kernel-tools only get_defconfig seems
-> to use  that variable
->
-> $ get_defconfig arm dss20_defconfig
-> linux/arch/arm/configs/dss20_defconfig      ...so that works fine
->
-> I took that snipped from check_defconfig functoin, here:
-> http://git.yoctoproject.org/cgit/cgit.cgi/yocto-kernel-tools/tree/tools/createme#n201
->
-> but that function is not called anywhere in script createme. After all
-> that script only creates the meta folder but has nothing to do with
-> kernel configuration. Seems to be a dead end. Probably get_defconfig
-> call should be added to configme script
-
-In this case no. What release are you using ? And what does your kernel
-recipe look like ?
-
-do_kernel_metadata is responsible for yanking that defconfig out of the
-tree and feeding it into the build just like a 'defconfig' passed via
-the SRC_URI.
-
-Bruce
-
->
-> Anybody had the same problem, is there a patch. Or did I misconfigure something?
->
-> kind regards,
-> Andi
->
->
-> Here my recipe:
-> ---------------------------------------------------------------------------------------------------------------
-> inherit kernel
-> require recipes-kernel/linux/linux-yocto.inc
->
-> SRCBRANCH = "dSS"
-> SRCREV="82d97d74bb072fe24be10b46d0782d3735130199"
-> SRC_URI =
-> "git://git.digitalstrom.org/bsp/linux.git;protocol=https;branch=${SRCBRANCH}"
->
-> LINUX_VERSION = "4.1"
-> LINUX_VERSION_EXTENSION = ""
-> KBUILD_DEFCONFIG_dss11e = "dss20_defconfig"
->
-> PR = "r1"
-> PV = "${LINUX_VERSION}+git${SRCPV}"
->
-> COMPATIBLE_MACHINE = "(dss11e)"
->
-
+BSP downloads
+-----------------------
+Intel=C2=AE Cherry Hill BSP (Braswell) (intel-corei7-64):
+https://www.yoctoproject.org/downloads/bsps/fido18/intel-cherry-hill
+Downloads: http://downloads.yoctoproject.org/releases/yocto/yocto-1.8/machi=
+nes/intel-corei7-64-3.1/intel-corei7-64-3.1-fido-1.8.tar.bz2
+md5sums: b959c199cdd4658730227e1611598ae9
 
