@@ -1,47 +1,44 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <dgallagher@219design.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 71CDEE00A1A; Fri, 19 Jun 2015 07:43:47 -0700 (PDT)
+	id 79E26E00A1A; Fri, 19 Jun 2015 08:33:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9B3BE009E1
-	for <yocto@yoctoproject.org>; Fri, 19 Jun 2015 07:43:44 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga102.fm.intel.com with ESMTP; 19 Jun 2015 07:43:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,643,1427785200"; 
-	d="scan'208,217";a="590933977"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by orsmga003.jf.intel.com with ESMTP; 19 Jun 2015 07:43:43 -0700
-Received: from fmsmsx103.amr.corp.intel.com (10.18.124.201) by
-	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Fri, 19 Jun 2015 07:43:43 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.65]) by
-	FMSMSX103.amr.corp.intel.com ([10.18.124.201]) with mapi id
-	14.03.0224.002; Fri, 19 Jun 2015 07:43:42 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Status WW25
-Thread-Index: AdCqnlKjWKtsaiq3Sy6unf+cHheq5A==
-Date: Fri, 19 Jun 2015 14:43:42 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E55523934@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.108]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.178 listed in list.dnswl.org]
+Received: from mail-ob0-f178.google.com (mail-ob0-f178.google.com
+	[209.85.214.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22880E009E1
+	for <yocto@yoctoproject.org>; Fri, 19 Jun 2015 08:33:10 -0700 (PDT)
+Received: by obbkn5 with SMTP id kn5so48126584obb.0
+	for <yocto@yoctoproject.org>; Fri, 19 Jun 2015 08:33:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=I3WFfY2Y5knqbWTZxxpdGG6PkNVBTc7UuC1RdFcq6FE=;
+	b=IvEtttMfRgBhY91dFJcFupBlYcRdkl9rrpQpjpYf1JIgNPpGtI+iKKp+YmWQL5orty
+	g0zNb8wyFkPHEc4Ac5OwuVmh7G3nLLDm7+NDPQOwOfEzX8Afk3dXY9vhPlbnKxhqmHau
+	icOJlB+luAbLgmWy04GGTo8ftcmRdwAT85Rm6cS+syKOxIu+0a9vcm0VeRzvFj0mKmmb
+	cDDj1ygmrfd9ne0VpXOVV240M1fNl4xN5SFyrGn7pAvFtMLvD/fRj2tpvK9xqG5e6L81
+	BuTevrwhGa7zOZH1EtUTqZhnB+hsvwJhkoRwnYqBXgwHpJRLeW99T6LGcSImFNGEluuG
+	3c1g==
+X-Gm-Message-State: ALoCoQkjzO6Jf+RJHRvS0BcB326/Vc/Lvy+j1cVoZWSxrOg8hXNjCo7yxJKN0VLBxZJpajbsGqSL
 MIME-Version: 1.0
-Subject: Yocto Project Status WW25
+X-Received: by 10.182.128.234 with SMTP id nr10mr14210185obb.81.1434727989583; 
+	Fri, 19 Jun 2015 08:33:09 -0700 (PDT)
+Received: by 10.76.57.130 with HTTP; Fri, 19 Jun 2015 08:33:09 -0700 (PDT)
+Date: Fri, 19 Jun 2015 08:33:09 -0700
+Message-ID: <CA+89abzJG1v9v7AUpRmexJnQs2S7GMYuAVe3McWygm=vnmbnQQ@mail.gmail.com>
+From: Daniel Gallagher <dgallagher@219design.com>
+To: yocto@yoctoproject.org
+Subject: Automatic Virtual Keyboard?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,372 +50,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jun 2015 14:43:47 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55523934fmsmsx111amrcor_"
+X-List-Received-Date: Fri, 19 Jun 2015 15:33:14 -0000
+Content-Type: multipart/alternative; boundary=089e015382b62b40ff0518e0a4bb
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55523934fmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--089e015382b62b40ff0518e0a4bb
+Content-Type: text/plain; charset=UTF-8
 
-NOTE: M1 cut off next week
+Hi all,
 
+I'm trying to get matchbox-keyboard to pop up automatically for text input
+fields, and ran across this bug report:
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=6774
 
-Current Dev Position: 1.9 Milestone 1 (M1)
+I've tried setting
 
-Next Deadline: M1 cut off of June 23rd noon GMT
+HAVE_TOUCHSCREEN=1
 
+HAVE_KEYBOARD=0
 
-SWAT team rotation: Alejandro -> Beth
+in /etc/formfactor/machconfig as suggested in this post:
+https://lists.yoctoproject.org/pipermail/yocto/2011-September/002951.html
+but that doesn't seem to have any effect in fido.
 
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-
-Key Status/Updates:
-
-Datastore changes for getVar default expansion options proposed
-
-Little feedback on datastore changes
-
-Stability issues in MUT delaying patch merging
-
-
-Key YP 1.9 Dates:
-
-M2 Cut off July 27, 2015 noon GMT
-
-1.9 Feature Freeze Date/M3 Cut off: Aug. 24, 2015 noon GMT
-
-M4 Cut off: Sept. 28, 2015 noon GMT
-
-1.9 M1 Release Target: Before July 10, 2015
-
-1.9 M2 Release Target: Before Aug. 14, 2015
-
-1.9 M3 Release Target: Before Sept. 11 2015
-
-1.9 final Release Target: Before Oct. 30, 2015
-
-
-Key Status Links for YP:
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.9_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.9_Features
-
-
-Tracking Metrics:
-
-            WDD 1757 (last week 1745)
-
-(https://wiki.yoctoproject.org/charts/combo.html)
-
-      Performance Benchmarks stable compared to last week although one mach=
-ine is having OS issues.
-
-
-[If anyone has suggestions for other information you'd like to see on this =
-weekly status update, let us know!]
+Does anyone have a workaround for this bug in fido?
 
 Thanks,
+Daniel Gallagher
+Software Engineer
+(650) 969-4219 x106
+219 Design, LLC
 
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55523934fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
+--089e015382b62b40ff0518e0a4bb
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.apple-tab-span
-	{mso-style-name:apple-tab-span;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">NOTE: =
-M1 cut off next week</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Curren=
-t Dev Position: 1.9 Milestone 1 (M1)</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Next D=
-eadline: M1 cut off of June 23rd noon GMT</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">SWAT t=
-eam rotation: Alejandro -&gt; Beth</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11=
-.0pt;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki=
-/Yocto_Build_Failure_Swat_Team</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Key St=
-atus/Updates:</span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt">
-<span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,&quot;sans-se=
-rif&quot;;color:black">Datastore changes for getVar default expansion optio=
-ns proposed</span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt">
-<span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,&quot;sans-se=
-rif&quot;;color:black">Little feedback on datastore changes</span><o:p></o:=
-p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt">
-<span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,&quot;sans-se=
-rif&quot;;color:black">Stability issues in MUT delaying patch merging</span=
-><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Key YP=
- 1.9 Dates:</span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt">
-<span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,&quot;sans-se=
-rif&quot;;color:black">M2 Cut off July 27, 2015 noon GMT
-</span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt">
-<span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,&quot;sans-se=
-rif&quot;;color:black">1.9 Feature Freeze Date/M3 Cut off: Aug. 24, 2015 no=
-on GMT
-</span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt">
-<span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,&quot;sans-se=
-rif&quot;;color:black">M4 Cut off: Sept. 28, 2015 noon GMT
-</span><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt">
-<span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,&quot;sans-se=
-rif&quot;;color:black">1.9 M1 Release Target: Before July 10, 2015</span><o=
-:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt">
-<span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,&quot;sans-se=
-rif&quot;;color:black">1.9 M2 Release Target: Before Aug. 14, 2015</span><o=
-:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt">
-<span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,&quot;sans-se=
-rif&quot;;color:black">1.9 M3 Release Target: Before Sept. 11 2015</span><o=
-:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt">
-<span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,&quot;sans-se=
-rif&quot;;color:black">1.9 final Release Target: Before Oct. 30, 2015</span=
-><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Key St=
-atus Links for YP:</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_Project_v1.9_Status"><span style=3D"font-size:11.0pt=
-;font-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yoc=
-to_Project_v1.9_Status</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_1.9_Schedule"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_1.9_=
-Schedule</span></a><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><a href=3D"https://wiki.yocto=
-project.org/wiki/Yocto_1.9_Features"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_1.9_=
-Features</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Tracki=
-ng Metrics:</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span class=3D"apple-tab-span=
-"><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;,&quot;sans-=
-serif&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;
-</span></span><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;=
-,&quot;sans-serif&quot;;color:black">WDD 1757 (last week 1745)</span><o:p><=
-/o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt;text-indent:.5in"><span style=
-=3D"font-size:11.0pt;font-family:Consolas;color:black">(</span><a href=3D"h=
-ttps://wiki.yoctoproject.org/charts/combo.html"><span style=3D"font-size:11=
-.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#1155CC">ht=
-tps://wiki.yoctoproject.org/charts/combo.html</span></a><span style=3D"font=
--size:11.0pt;font-family:Consolas;color:black">)</span><o:p></o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span class=3D"apple-tab-span=
-"><span style=3D"font-size:11.0pt;font-family:Consolas;color:black">&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;
-</span></span><span style=3D"font-size:11.0pt;font-family:&quot;Arial&quot;=
-,&quot;sans-serif&quot;;color:black">Performance Benchmarks stable compared=
- to last week although one machine is having OS issues.</span><o:p></o:p></=
-p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">[If an=
-yone has suggestions for other information you&#8217;d like to see on this =
-weekly status update, let us know!]</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>I&#39;m trying to ge=
+t matchbox-keyboard to pop up automatically for text input fields, and ran =
+across this bug report: <a href=3D"https://bugzilla.yoctoproject.org/show_b=
+ug.cgi?id=3D6774">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D6774<=
+/a></div><div><br></div><div>I&#39;ve tried setting</div><div><blockquote s=
+tyle=3D"margin:0px 0px 0px 40px;border:none;padding:0px"><div>HAVE_TOUCHSCR=
+EEN=3D1</div></blockquote><blockquote style=3D"margin:0px 0px 0px 40px;bord=
+er:none;padding:0px"><div>HAVE_KEYBOARD=3D0</div></blockquote>in /etc/formf=
+actor/machconfig as suggested in this post:=C2=A0<a href=3D"https://lists.y=
+octoproject.org/pipermail/yocto/2011-September/002951.html">https://lists.y=
+octoproject.org/pipermail/yocto/2011-September/002951.html</a> but that doe=
+sn&#39;t seem to have any effect in fido.</div><div><br></div><div>Does any=
+one have a workaround for this bug in fido?</div><div><br></div><div>Thanks=
+,<br clear=3D"all"><div><div class=3D"gmail_signature">Daniel Gallagher<br>=
+Software Engineer<br>(650) 969-4219 x106<br>219 Design, LLC</div></div>
+</div></div>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55523934fmsmsx111amrcor_--
+--089e015382b62b40ff0518e0a4bb--
