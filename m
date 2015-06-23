@@ -1,52 +1,49 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 57676E009B8; Tue, 23 Jun 2015 11:29:51 -0700 (PDT)
+	id B8FA2E009B8; Tue, 23 Jun 2015 12:57:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	URIBL_JP_SURBL autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.215.44 listed in list.dnswl.org]
-	* 1.2 URIBL_JP_SURBL Contains an URL listed in the JP SURBL blocklist
-	*      [URIs: gherzan.ro]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-la0-f44.google.com (mail-la0-f44.google.com
-	[209.85.215.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D839E0096A
-	for <yocto@yoctoproject.org>; Tue, 23 Jun 2015 11:29:46 -0700 (PDT)
-Received: by laka10 with SMTP id a10so12063803lak.0
-	for <yocto@yoctoproject.org>; Tue, 23 Jun 2015 11:29:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=Go7CS6ycJSfPK727Gpfqw00koVqc+WCv7JB3F/7A3NQ=;
-	b=hjDHZE6NVay9eRN9Fuo01kniug73Si356zjbrxYS5cKaTfY4a9QOrGe6Zgr6CV4hy/
-	xe/giC1lV3T0ZaI8oEYtdXGbIcaqDuof6jlC/9BmC9uBFeoap0GCHftaDAYzMXK7Am0w
-	+r7nhjmQlouRF/l0jpB0vFeQeXpXPlqA2bD2uagh6bIGrzbE0FKtHHVKcwudfDNnm6O2
-	qGKNWxuNTrAFD1J2Y+GMk/g+1rGb9sNy3mycpfMi8WYkAbXWbpZlFAgJqK2gaWc3/hhW
-	pVYEol45/FzUkpDX9buFVOZ+RCvM/CwmiljoJJs8Jj3GLqY1WoZAgEVuJWL5Q7VWNwKX
-	QPjw==
-X-Gm-Message-State: ALoCoQnbedQCjEJP2V27nh4/ubyn2afK7xIIikzFS1tp/wf2Cbwglm8M2Y3b47OSuadueQQr+gsw
-X-Received: by 10.112.185.100 with SMTP id fb4mr18177231lbc.79.1435084184113; 
-	Tue, 23 Jun 2015 11:29:44 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85C83E0096A
+	for <yocto@yoctoproject.org>; Tue, 23 Jun 2015 12:57:05 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.15.1/8.15.1) with ESMTPS id t5NJuuxg020292
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 23 Jun 2015 12:56:56 -0700 (PDT)
+Received: from server.local (128.224.20.240) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 23 Jun 2015 12:56:56 -0700
+Message-ID: <5589BA07.4000805@windriver.com>
+Date: Tue, 23 Jun 2015 15:56:55 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10;
+	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Received: by 10.112.147.232 with HTTP; Tue, 23 Jun 2015 11:29:24 -0700 (PDT)
-X-Originating-IP: [87.63.77.14]
-In-Reply-To: <CAK18fxG+HWcgNYmnspFVHdfi_Pzz5wK-vstJTAxti1pTz0943A@mail.gmail.com>
-References: <009101d0a8d9$c460eb40$4d22c1c0$@neuf.fr>
-	<CAK18fxEc3T93vKFmRdxhRu5MHOZxM22xyBAfR+cAsnBiptwgUg@mail.gmail.com>
-	<02ea01d0a99f$ec37d2c0$c4a77840$@neuf.fr>
-	<CAK18fxG+HWcgNYmnspFVHdfi_Pzz5wK-vstJTAxti1pTz0943A@mail.gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Tue, 23 Jun 2015 20:29:24 +0200
-Message-ID: <CAK18fxGtQ=bQZZKK2LyBVhmR1O-L_atYXZnAcVU2-9qf6hzxSA@mail.gmail.com>
-To: Herve Jourdain <herve.jourdain@neuf.fr>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] [PATCH] ds1307-rtc-overlay.dtb has been removed from the kernel tree, and most overlays have been moved to the dts/overlays directory
+To: Robert Calhoun <rcalhoun@shotspotter.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>, =?windows-1252?Q?=22Schauml=F6ffel=2C_Jan=22?=
+	<J.Schaumloeffel@astro-kom.de>
+References: <ce604c0c1a1d4131a72119dbecb97ab2@ASTRO-EX1.Bensberg.de>
+	<553F90A3.9070501@windriver.com>
+	<82ac67a7e46e416dbabdda01c42fc89a@ASTRO-EX1.Bensberg.de>
+	<553FD83A.6040407@windriver.com>
+	<4f2d75bf33ac423ab064f754e0b67655@ASTRO-EX1.Bensberg.de>
+	<5540DB34.6010102@windriver.com>
+	<a01714e680f8470cb21bb0b52e66c91e@ASTRO-EX1.Bensberg.de>
+	<55421DA2.9060909@windriver.com>
+	<e134e69a27bd460a9da71929a7f78d9a@ASTRO-EX1.Bensberg.de>
+	<554236CB.6000604@windriver.com>
+	<D1AF2551.5EB971%rcalhoun@shotspotter.com>
+In-Reply-To: <D1AF2551.5EB971%rcalhoun@shotspotter.com>
+Subject: Re: Migration from 1.7.1 to 1.8 - kernel-abiversion missing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,35 +55,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Jun 2015 18:29:51 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 23 Jun 2015 19:57:09 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi,
-
-On Thu, Jun 18, 2015 at 10:33 AM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> Hello,
+On 2015-06-23 3:15 PM, Robert Calhoun wrote:
 >
-> On 18 Jun 2015 10:22, "Herve Jourdain" <herve.jourdain@neuf.fr> wrote:
->>
->> Hi Andrei,
->>
->> Well, it seems that the current meta-raspberrypi is pulling the kernel
->> from github, and the kernel on github already has these "features" in.
->> Which is why I could compile fine with the current meta-raspberrypi 2or 3
->> weeks ago, but it failed 2 days ago when I tried to do a fresh build...
->> Therefore, I believe the change in the meta-raspberrypi is already needed
->> for the 3.18.y branch, because the kernel already has it.
 >
-> This is interesting. I'll check it tonight.
+> On 4/30/15 10:06 AM, "Bruce Ashfield" <bruce.ashfield@windriver.com> wrote:
+>
+>> On 2015-04-30 08:27 AM, Schaumlöffel, Jan wrote:
+>>>> What kernel recipe is used when your machine is set to 'astro' ?
+>>>> Something custom ? Or have you added machine compatibility to another
+>>>> known kernel recipe ?
+>>>
+>>> How would I see which kernel recipe is used?
+>>
+>> This is where my brute force techniques probably break down. I just
+>> do a 'bitbake virtual/kernel' and you'll see it display which
+>> recipe is being built.
+>>
+>> If you haven't added compatibility for your new machine to any
+>> recipe, I'm betting that linux-dummy is used.
+>>
+>>>
+>>> I did not customize anything except for aforementioned steps, simply
+>>> copied beaglebone.conf to astro.conf in the same directory. Also I did
+>>> not touch any kernel recipes (kernel is built externally), maybe that's
+>>> what's missing?
+>>
+>> It is plausible. But in theory, linux-dummy should still provide
+>> what you need (but since it doesn't build anything, there is
+>> no abi .. and no modules can be built against it) .. so the
+>> error isn't graceful.
+>>
+>> Bruce
+>>
+>>>
+>>> Jan
+>>>
+>
+> I encountered the same error ("ERROR: No kernel-abiversion file found
+> (build/tmp/sysroots/{machinename}/pkgdata/kernel-depmod/kernel-abiversion),
+>   cannot run depmod, aborting") after porting my system from poky-daisy to
+> poky-fido. My machine config sets PREFERRED_PROVIDER_virtual/kernel =
+> "linux-dummy", as we currently use a monolithic out-of-tree 2.6 kernel.
+> It's a clean fido checkout, and I tried trashing tmp and rebuilding
+> everything to no effect.
+>
+> Based on
+> http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/image.bbcl
+> ass I have worked around this by setting:
+>
+> USE_DEPMOD = "0"
+>
+> in my image configuration. This works, and allows the root file system to
+> be built.
+>
+> Is it a bug that depmod is not skipped automatically when linux-dummy is
+> specified? Am I risking death and destruction by overriding it? (We don't
+> have any kernel modules.)
 
-I re-downloaded and recompiled kernel on the current meta-raspberrypi
-master HEAD and had no issues. What meta-raspberrypi revision are you
-using?
+See Saul's patch from about 33 minutes ago:
 
+[OE-core] [PATCH][master&fido] image.bbclass: Disable USE_DEPMOD for the 
+dummy kernel
 
+:)
 
--- 
-Andrei Gherzan
-e: andrei@gherzan.ro
-w: www.gherzan.ro
+Bruce
+
+>
+> Thanks,
+>
+> Rob Calhoun
+>
+
 
