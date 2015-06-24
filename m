@@ -1,50 +1,71 @@
-Return-Path: <herve.jourdain@neuf.fr>
+Return-Path: <gshastri@juniper.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 90E62E009C8; Wed, 24 Jun 2015 01:02:12 -0700 (PDT)
+	id 2FAA2E009C8; Wed, 24 Jun 2015 01:06:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	URIBL_JP_SURBL autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [65.55.169.124 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [93.17.128.21 listed in list.dnswl.org]
-	* 1.2 URIBL_JP_SURBL Contains an URL listed in the JP SURBL blocklist
-	*      [URIs: gherzan.ro]
-Received: from smtp23.services.sfr.fr (smtp23.services.sfr.fr [93.17.128.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 307D3E00974
-	for <yocto@yoctoproject.org>; Wed, 24 Jun 2015 01:02:07 -0700 (PDT)
-Received: from filter.sfr.fr (localhost [86.71.202.125])
-	by msfrf2313.sfr.fr (SMTP Server) with ESMTP id 56AC8700017D;
-	Wed, 24 Jun 2015 10:02:05 +0200 (CEST)
-Authentication-Results: sfrmc.priv.atos.fr; dkim=none (no signature);
-	dkim-adsp=none (no policy) header.from=herve.jourdain@neuf.fr
-Received: from hjo-pc (125.202.71.86.rev.sfr.net [86.71.202.125])	(using TLSv1
-	with cipher AES128-SHA (128/128 bits))	(No client certificate
-	requested)
-	by msfrf2313.sfr.fr (SMTP Server) with ESMTP id B98D27000046;
-	Wed, 24 Jun 2015 10:02:04 +0200 (CEST)
-X-SFR-UUID: 20150624080204760.B98D27000046@msfrf2313.sfr.fr
-Received: from hjopc
-	by hjo-pc (PGP Universal service);  Wed, 24 Jun 2015 10:02:04 +0100
-X-PGP-Universal: processed;	by hjo-pc on Wed, 24 Jun 2015 10:02:04 +0100
-From: Herve Jourdain <herve.jourdain@neuf.fr>
-To: 'Andrei Gherzan' <andrei@gherzan.ro>
-References: <009101d0a8d9$c460eb40$4d22c1c0$@neuf.fr>
-	<CAK18fxEc3T93vKFmRdxhRu5MHOZxM22xyBAfR+cAsnBiptwgUg@mail.gmail.com>
-	<02ea01d0a99f$ec37d2c0$c4a77840$@neuf.fr>
-	<CAK18fxG+HWcgNYmnspFVHdfi_Pzz5wK-vstJTAxti1pTz0943A@mail.gmail.com>
-	<CAK18fxGtQ=bQZZKK2LyBVhmR1O-L_atYXZnAcVU2-9qf6hzxSA@mail.gmail.com>
-In-Reply-To: <CAK18fxGtQ=bQZZKK2LyBVhmR1O-L_atYXZnAcVU2-9qf6hzxSA@mail.gmail.com>
-Date: Wed, 24 Jun 2015 10:02:03 +0200
-Message-ID: <000a01d0ae54$0efcd180$2cf67480$@neuf.fr>
+X-Greylist: delayed 1056 seconds by postgrey-1.32 at yocto-www;
+	Wed, 24 Jun 2015 01:06:18 PDT
+Received: from na01-bl2-obe.outbound.protection.outlook.com
+	(mail-bl2on0124.outbound.protection.outlook.com [65.55.169.124])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2EE6E00974
+	for <yocto@yoctoproject.org>; Wed, 24 Jun 2015 01:06:18 -0700 (PDT)
+Received: from BN3PR0501MB1427.namprd05.prod.outlook.com (10.160.117.149) by
+	BN3PR0501MB1425.namprd05.prod.outlook.com (10.160.117.147) with
+	Microsoft
+	SMTP Server (TLS) id 15.1.190.14; Wed, 24 Jun 2015 07:33:08 +0000
+Received: from BN3PR0501MB1427.namprd05.prod.outlook.com ([10.160.117.149]) by
+	BN3PR0501MB1427.namprd05.prod.outlook.com ([10.160.117.149]) with
+	mapi id 15.01.0195.005; Wed, 24 Jun 2015 07:33:08 +0000
+From: Gaurang Shastri <gshastri@juniper.net>
+To: Alexandru.Vaduva <Alexandru.Vaduva@enea.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>, "Adrian.Dudau@enea.com" <Adrian.Dudau@enea.com>, 
+	"Alexandra.Safta@enea.com" <Alexandra.Safta@enea.com>
+Thread-Topic: [yocto] [LXCR-4977 PATCH 1/1] Add makedumpfile recipe to cgl.
+Thread-Index: AQHQrb1efUVVNeTHQkiJdhCwe9N8jZ27RC+Q
+Date: Wed, 24 Jun 2015 07:33:07 +0000
+Message-ID: <BN3PR0501MB1427578A5A8515507336D40ED5AF0@BN3PR0501MB1427.namprd05.prod.outlook.com>
+References: <1435053560-6941-1-git-send-email-siva.borra@enea.com>
+	<1435053560-6941-2-git-send-email-siva.borra@enea.com>
+In-Reply-To: <1435053560-6941-2-git-send-email-siva.borra@enea.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: enea.com; dkim=none (message not signed) header.d=none;
+x-originating-ip: [116.197.184.12]
+x-microsoft-exchange-diagnostics: 1; BN3PR0501MB1425;
+	3:ZoQw+VTeBry3Xw6Mi8IKtFbqtLckLYjb+n+eRAUW4RVqrhQOYKjtnjs+VQByoFa5xCIsYlW/z8w+tDMy6tf0rxt7u/ghg/pLpfBkjffEfsLJC+DFYPol5u5rekKhkZWrk4w0fKmAhUkejVR9jeOVIg==;
+	10:QW7GPcI4N1mFEmFyMX4xr1a3ugKqlZNhz3Cl+aQzachpjVcF2LbryuzWAszMCXE3SkoqsB7kCSQh1KL5DcIV9WbMnnDHp2LARlOWdY6ylk8=;
+	6:l5QvufITRvrXUdSeJBSRWvU5DpazYJC6DyEZqkFnZrEc8x/n9JqjBr29G6CMinqm
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BN3PR0501MB1425;
+x-microsoft-antispam-prvs: <BN3PR0501MB1425C9BF5E464D1CC76F1307D5AF0@BN3PR0501MB1425.namprd05.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(5005006)(3002001); SRVR:BN3PR0501MB1425; BCL:0;
+	PCL:0; RULEID:; SRVR:BN3PR0501MB1425; 
+x-forefront-prvs: 061725F016
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6009001)(377454003)(13464003)(102836002)(2900100001)(15975445007)(19580395003)(74316001)(54356999)(76176999)(2656002)(33656002)(87936001)(5001960100002)(19580405001)(2950100001)(76576001)(5001770100001)(2201001)(86362001)(77156002)(5003600100002)(122556002)(15395725005)(40100003)(5002640100001)(66066001)(106116001)(5001920100001)(99286002)(77096005)(46102003)(2501003)(62966003)(92566002)(189998001)(50986999);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR0501MB1425;
+	H:BN3PR0501MB1427.namprd05.prod.outlook.com; FPR:; SPF:None;
+	MLV:sfv; LANG:en; 
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQKKC9ddfvMg404D4wnsS7ZEixxZ4wG5h1mmAY+ntWkBd08PKgGqOEl7nBU6VyA=
-Cc: 'Yocto Project' <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] [PATCH] ds1307-rtc-overlay.dtb has been removed from the kernel tree, and most overlays have been moved to the dts/overlays directory
+X-OriginatorOrg: juniper.net
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jun 2015 07:33:07.9665 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: bea78b3c-4cdb-4130-854a-1d193232e5f4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR0501MB1425
+Cc: Siva Borra <siva.borra@enea.com>, "linux@list.enea.se" <linux@list.enea.se>,
+	"issues@enea.com" <issues@enea.com>
+Subject: Re: [LXCR-4977 PATCH 1/1] Add makedumpfile recipe to cgl.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,76 +77,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jun 2015 08:02:12 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Wed, 24 Jun 2015 08:06:20 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Language: fr
 
-Hi,
+JFYI, makedumpfile recipe patch was already sent on emea list on 3/31/2015.
 
-I used the master head, downloaded in may.
-The last commit I see using "git log" is:
-commit 6ef9d94a2c2588dcefe442577ef6ae5bbe722dec
-Author: Petter Mab=C3=A4cker <petter@technux.se>
-Date:   Fri May 8 23:49:05 2015 +0200
+Can you please check?
 
-    linux-raspberrypi: Update 3.12 branch to latest
-   =20
-    Update linux-raspberrypi_3.12 to latest revision.
-   =20
-    Remove sl030raspberrypii2ckernel.patch since it will not apply =
-anymore
-    and its content seems to be obsolite after
-    '558d0bf Fix grabbing lock from atomic context in i2c driver' was
-    merged to 3.12.
-   =20
-    [Support #60]
-   =20
-    Signed-off-by: Petter Mab=C3=A4cker <petter@technux.se>
-    Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
-
-Regards,
-
-Herve
+//Gaurang Shastri
 
 -----Original Message-----
-From: Andrei Gherzan [mailto:andrei@gherzan.ro]=20
-Sent: mardi 23 juin 2015 20:29
-To: Herve Jourdain
-Cc: Yocto Project
-Subject: Re: [yocto] [meta-raspberrypi] [PATCH] ds1307-rtc-overlay.dtb =
-has been removed from the kernel tree, and most overlays have been moved =
-to the dts/overlays directory
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Alexandru.Vaduva
+Sent: Tuesday, June 23, 2015 7:30 PM
+To: yocto@yoctoproject.org; Adrian.Dudau@enea.com; Alexandru.Vaduva@enea.co=
+m; Alexandra.Safta@enea.com
+Cc: Siva Borra; linux@list.enea.se; issues@enea.com
+Subject: [yocto] [LXCR-4977 PATCH 1/1] Add makedumpfile recipe to cgl.
 
-Hi,
+From: Siva Borra <siva.borra@enea.com>
 
-On Thu, Jun 18, 2015 at 10:33 AM, Andrei Gherzan <andrei@gherzan.ro> =
-wrote:
-> Hello,
->
-> On 18 Jun 2015 10:22, "Herve Jourdain" <herve.jourdain@neuf.fr> wrote:
->>
->> Hi Andrei,
->>
->> Well, it seems that the current meta-raspberrypi is pulling the=20
->> kernel from github, and the kernel on github already has these =
-"features" in.
->> Which is why I could compile fine with the current meta-raspberrypi=20
->> 2or 3 weeks ago, but it failed 2 days ago when I tried to do a fresh =
-build...
->> Therefore, I believe the change in the meta-raspberrypi is already=20
->> needed for the 3.18.y branch, because the kernel already has it.
->
-> This is interesting. I'll check it tonight.
+Add the makedumpfile package recipe to
+the cgl layer.
 
-I re-downloaded and recompiled kernel on the current meta-raspberrypi =
-master HEAD and had no issues. What meta-raspberrypi revision are you =
-using?
+[LXCR-4977]
 
 
+Signed-off-by: Siva Borra <siva.borra@enea.com>
+---
+ .../makedumpfile/files/alias-powerpc-powerpc32.patch | 13 +++++++++++++
+ .../recipes-cgl/makedumpfile/makedumpfile_1.5.8.bb   | 20 ++++++++++++++++=
+++++
+ 2 files changed, 33 insertions(+)
+ create mode 100644 meta-cgl-common/recipes-cgl/makedumpfile/files/alias-po=
+werpc-powerpc32.patch
+ create mode 100644 meta-cgl-common/recipes-cgl/makedumpfile/makedumpfile_1=
+.5.8.bb
+
+diff --git a/meta-cgl-common/recipes-cgl/makedumpfile/files/alias-powerpc-p=
+owerpc32.patch b/meta-cgl-common/recipes-cgl/makedumpfile/files/alias-power=
+pc-powerpc32.patch
+new file mode 100644
+index 0000000..70ad663
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/makedumpfile/files/alias-powerpc-power
++++ pc32.patch
+@@ -0,0 +1,13 @@
++diff -rupN makedumpfile-1.5.8/Makefile makedumpfile-1.5.8/Makefile
++--- makedumpfile-1.5.8/Makefile	2015-03-24 02:58:33.000000000 +0100
+++++ makedumpfile-1.5.8/Makefile	2015-06-23 11:08:30.595655336 +0200
++@@ -25,7 +25,8 @@ endif
++ ARCH :=3D $(shell echo ${TARGET}  | sed -e s/i.86/x86/ -e s/sun4u/sparc64=
+/ \
++ 			       -e s/arm.*/arm/ -e s/sa110/arm/ \
++ 			       -e s/s390x/s390/ -e s/parisc64/parisc/ \
++-			       -e s/ppc64/powerpc64/ -e s/ppc/powerpc32/)
+++			       -e s/ppc64/powerpc64/ -e s/ppc/powerpc32/ \
+++			       -e s/powerpc/powerpc32/)
++=20
++ CROSS :=3D
++ ifneq ($(TARGET), $(HOST_ARCH))
+diff --git a/meta-cgl-common/recipes-cgl/makedumpfile/makedumpfile_1.5.8.bb=
+ b/meta-cgl-common/recipes-cgl/makedumpfile/makedumpfile_1.5.8.bb
+new file mode 100644
+index 0000000..6c32306
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/makedumpfile/makedumpfile_1.5.8.bb
+@@ -0,0 +1,20 @@
++DESCRIPTION =3D "Make dump file utility"
++LICENSE =3D "GPLv2"
++
++LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D751419260aa954499f7abaabaa882bb=
+e"
++
++SRC_URI =3D "http://sourceforge.net/projects/makedumpfile/files/makedumpfi=
+le/1.5.8/makedumpfile-${PV}.tar.gz;name=3Dmakedumpfile \
++	   file://alias-powerpc-powerpc32.patch \
++	   "
++
++SRC_URI[makedumpfile.md5sum] =3D "642d975349dff744c6027d4486499258"
++SRC_URI[makedumpfile.sha256sum] =3D "dd9c6c40c1ae6774b61bbe7b53f5ebbee9734=
+f576d8ecb75ffb929288f5ea64d"
++
++DEPENDS =3D "zlib elfutils bzip2"
++
++EXTRA_OEMAKE =3D "TARGET=3D${TARGET_ARCH}"
++
++do_install() {
++	install -d ${D}${bindir}/
++	install -c -m 755 ${S}/makedumpfile ${D}${bindir}/ }
+--
+1.9.1
 
 --
-Andrei Gherzan
-e: andrei@gherzan.ro
-w: www.gherzan.ro
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
