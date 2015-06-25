@@ -1,46 +1,41 @@
-Return-Path: <Alexandru.Vaduva@enea.com>
+Return-Path: <craig.mcqueen@innerrange.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C2ABE00A1E; Wed, 24 Jun 2015 10:51:09 -0700 (PDT)
+	id 4172FE00A1E; Wed, 24 Jun 2015 23:31:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,
-	MSGID_FROM_MTA_HEADER,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
-	*  0.0 MSGID_FROM_MTA_HEADER Message-Id was added by a relay
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 7C7A7E009AE
-	for <yocto@yoctoproject.org>; Wed, 24 Jun 2015 10:51:02 -0700 (PDT)
-Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 24 Jun 2015 19:50:58 +0200
-Received: by sestofb10.enea.se (Postfix, from userid 4470)	id DC3C128BA1D;
-	Wed, 24 Jun 2015 19:50:58 +0200 (CEST)
-From: Alexandru.Vaduva <Alexandru.Vaduva@enea.com>
-To: <yocto@yoctoproject.org>, <Adrian.Dudau@enea.com>,
-	<Alexandru.Vaduva@enea.com>
-Date: Wed, 24 Jun 2015 19:50:57 +0200
-Message-ID: <1435135605-4021-2-git-send-email-siva.borra@enea.com>
-X-Mailer: git-send-email 1.9.1
-Received: from zsibo-HP-EliteBook-2170p (172.16.141.151) by mx-3.enea.com
-	(172.21.1.204) with Microsoft SMTP Server id 14.3.224.2;
-	Wed, 24 Jun 2015 10:46:51 +0200
-Received: by zsibo-HP-EliteBook-2170p (Postfix, from userid 1000)	id
-	1C1E0442480; Wed, 24 Jun 2015 10:46:51 +0200 (CEST)
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1435135605-4021-1-git-send-email-siva.borra@enea.com>
-References: <1435135605-4021-1-git-send-email-siva.borra@enea.com>
-Received-SPF: None (SESTOEX03.enea.se: Alexandru.Vaduva@enea.com does not
-	designate permitted sender hosts)
-Received-SPF: None (SESTOEX03.enea.se: siva.borra@enea.com does not
-	designate permitted sender hosts)
+	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
+	*      dynamic-looking rDNS
+Received: from remote.innerrange.com (122-143-146.dsl.connexus.net.au
+	[203.122.143.146])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E864E009EF
+	for <yocto@yoctoproject.org>; Wed, 24 Jun 2015 23:31:02 -0700 (PDT)
+Received: from IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b]) by
+	IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b%16]) with
+	mapi; Thu, 25 Jun 2015 16:30:59 +1000
+From: Craig McQueen <craig.mcqueen@innerrange.com>
+To: Craig McQueen <craig.mcqueen@innerrange.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Thu, 25 Jun 2015 16:30:57 +1000
+Thread-Topic: cryptsetup in initramfs causes ~4 MB image size increase
+Thread-Index: AdCtW04k1TN1i222S3aCpTFrRGXDlwBtHDIA
+Message-ID: <5500469A22567C4BAF673A6E86AFA3A40227C1C146E2@IR-CENTRAL.corp.innerrange.com>
+References: <5500469A22567C4BAF673A6E86AFA3A40227C1C14416@IR-CENTRAL.corp.innerrange.com>
+In-Reply-To: <5500469A22567C4BAF673A6E86AFA3A40227C1C14416@IR-CENTRAL.corp.innerrange.com>
+Accept-Language: en-US, en-AU
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US, en-AU
+x-tm-as-product-ver: SMEX-11.1.0.1239-8.000.1202-21634.004
+x-tm-as-result: No--49.278100-5.000000-31
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
 MIME-Version: 1.0
-Cc: Siva Borra <siva.borra@enea.com>, linux@list.enea.se, issues@enea.com
-Subject: [PATCHv2 1/1] Add packages umip, makedumpfile, openl2tp
+Subject: Re: cryptsetup in initramfs causes ~4 MB image size increase
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,47 +47,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jun 2015 17:51:09 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 25 Jun 2015 06:31:11 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Siva Borra <siva.borra@enea.com>
+I earlier wrote:
+>=20
+> I'm interested to use an encrypted root filesystem, by using cryptsetup i=
+n
+> initramfs.
+>=20
+> I'm finding that adding cryptsetup to an initramfs image increases its si=
+ze by
+> about 4 MB. It seems that cryptsetup depends on openssl and lvm2, and
+> lvm2 depends on bash, and the result of that is that a lot of extra files=
+ get
+> dragged in.
+>=20
+> Is this all strictly necessary? Perhaps cryptsetup really only needs libr=
+aries,
+> not all of openssl and lvm2.
+>=20
+> What would be a good way to go about reducing the dependencies that get
+> pulled in for cryptsetup?
+>=20
+> I also noticed that libgcrypt could possibly be used instead of openssl (=
+by
+> putting in bbappend, PACKAGECONFIG =3D ""), saving about 0.5 MB. However
+> libgcrypt isn't used, according to the cryptsetup bb file, because it dro=
+ps root
+> privileges if it is linked with libcap support. That gives the obscure cr=
+yptsetup
+> error "Cannot initialize device-mapper. Is dm_mod kernel module loaded?"
+> when trying to use cryptsetup with libgcrypt. Is there any reasonable wor=
+k-
+> around for this?
 
-Add packages umip, makedumpfile and open2tp
-to the image.
+I found that I can cut it down significantly, using the following lvm2_2.%.=
+bbappend:
 
+-----------------------------------------------------------
+PACKAGES =3D+ "lvm2-libdevmapper"
 
-Signed-off-by: Siva Borra <siva.borra@enea.com>
----
- meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb | 2 ++
- meta-cgl-common/packagegroups/packagegroup-cgl-middleware.bb   | 1 +
- 2 files changed, 3 insertions(+)
+# ${base_libdir}/udev ${sbindir}/dmsetup are to get device mapper udev rule=
+s,
+# to avoid cryptsetup luksOpen hanging.
+FILES_lvm2-libdevmapper =3D "${libdir}/libdevmapper.so.* ${base_libdir}/ude=
+v ${sbindir}/dmsetup"
 
-diff --git a/meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb b/meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb
-index 2f2d55f..f921c1c 100644
---- a/meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb
-+++ b/meta-cgl-common/packagegroups/packagegroup-cgl-applications.bb
-@@ -50,6 +50,8 @@ RDEPENDS_packagegroup-cgl-applications = " \
-     pam-passwdqc \
-     libpam \
-     rsyslog \
-+    openl2tp \
-+    umip \
-     "
- 
- LTTNG ?= "\
-diff --git a/meta-cgl-common/packagegroups/packagegroup-cgl-middleware.bb b/meta-cgl-common/packagegroups/packagegroup-cgl-middleware.bb
-index effdb81..ea7377b 100644
---- a/meta-cgl-common/packagegroups/packagegroup-cgl-middleware.bb
-+++ b/meta-cgl-common/packagegroups/packagegroup-cgl-middleware.bb
-@@ -58,6 +58,7 @@ RDEPENDS_packagegroup-cgl-middleware = "\
-     cluster-resource-agents \
-     ifenslave \
-     drbd \
-+    makedumpfile \
-     "
- 
- DISTRO_FEATURES_append = " ptest argp ext2 xattr nfs pci ipv4 ipv6"
--- 
-1.9.1
+RDEPENDS_lvm2-libdevmapper =3D "bash"
+
+RDEPENDS_${PN} +=3D " lvm2-libdevmapper"
+
+RPROVIDES_${PN}-dev =3D "lvm2-libdevmapper-dev"
+-----------------------------------------------------------
+
+That cuts out a bunch of unneeded lvm files.
+
+I'm not sure why there needs to be a bash dependency, but it didn't work wi=
+thout it. I'd like to get rid of bash if it's possible.
+
+(After reading more about libgcrypt, I think I'll just stick with openssl. =
+It seems questionable design for the library, to drop an application's capa=
+bilities.)
+
+--=20
+Craig McQueen
 
 
