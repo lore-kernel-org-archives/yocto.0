@@ -1,31 +1,49 @@
-Return-Path: <mariano.lopez@linux.intel.com>
+Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0ACADE0096A; Fri, 26 Jun 2015 12:35:53 -0700 (PDT)
+	id 3F798E0096A; Fri, 26 Jun 2015 12:45:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (danielhilst[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BB74E006C6
-	for <yocto@yoctoproject.org>; Fri, 26 Jun 2015 12:35:49 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 26 Jun 2015 12:35:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,686,1427785200"; d="scan'208";a="753894662"
-Received: from mlopezva-mobl2.zpn.intel.com ([10.219.16.65])
-	by orsmga002.jf.intel.com with ESMTP; 26 Jun 2015 12:35:48 -0700
-From: mariano.lopez@linux.intel.com
-To: yocto@yoctoproject.org
-Date: Fri, 26 Jun 2015 14:35:31 -0500
-Message-Id: <1435347331-11932-1-git-send-email-mariano.lopez@linux.intel.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [PATCH] views.py: Add how long a recipe hasn't been updated
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vn0-f53.google.com (mail-vn0-f53.google.com
+	[209.85.216.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E24B8E006C6
+	for <yocto@yoctoproject.org>; Fri, 26 Jun 2015 12:45:26 -0700 (PDT)
+Received: by vnbf190 with SMTP id f190so17058207vnb.0
+	for <yocto@yoctoproject.org>; Fri, 26 Jun 2015 12:45:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=EkybnOttKvs26t6/67km7Jxl4Z9/vRzzxix6VPzjkeQ=;
+	b=MHIgV4NdIdK/LiUlT1/BWpx/iu+lpxCBnxTgbeDYhxKBWKZ4pFW7IhSectn5ilEgJ4
+	xRIYb6PuVXdO4mW7HVgLMn3IIqkT5KSA+iU62WAumEzcfdq1IrLkwbFcaqZimg0bAmCV
+	a9AMpaNsxZgLMdFDV2ryJQdp7sQsqaoOQlxdDAarMkhjsFxt9vl3lRdTnysCNejyObja
+	OPDrLw7wtIZK9skqZnZX6TVFTr/hXmcSglaCw8vHr/5UBG9BPUpgiZyEhNdNlimt2I2k
+	7Ur4Zp01kk1WiXHmVkJKIEVmbhRrqXCzOa0NvnrtFPbcqKgFuyLoCQa1AN92YGunSmnc
+	nCRQ==
+MIME-Version: 1.0
+X-Received: by 10.52.30.201 with SMTP id u9mr2835998vdh.95.1435347925783; Fri,
+	26 Jun 2015 12:45:25 -0700 (PDT)
+Received: by 10.52.176.105 with HTTP; Fri, 26 Jun 2015 12:45:25 -0700 (PDT)
+Date: Fri, 26 Jun 2015 16:45:25 -0300
+Message-ID: <CAF3SDA76D5CjH8s0BGSovUXqgaKkGDy0YMD7No1qZujJd69yBw@mail.gmail.com>
+From: "Daniel." <danielhilst@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Avoid creation of .sdcard images.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,149 +55,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Jun 2015 19:35:53 -0000
+X-List-Received-Date: Fri, 26 Jun 2015 19:45:28 -0000
+Content-Type: multipart/alternative; boundary=bcaec51ba3ab3edb51051970fbeb
 
-From: Mariano Lopez <mariano.lopez@linux.intel.com>
+--bcaec51ba3ab3edb51051970fbeb
+Content-Type: text/plain; charset=UTF-8
 
-This add a tooltip in the upstream status field that
-show how long the recipe hasn't been updated.
+Does any one knows how to avoid the creation of .sdcard images? This ones
+takes a lot of diskspace and I have to delete it periodically, which gives
+headaches about cleaning everything every time. A have an 50GB partition
+and from month to month I get out of disk space. :(
 
-Signed-off-by: Mariano Lopez <mariano.lopez@linux.intel.com>
----
- rrs/models.py              | 15 +++++++++++++++
- rrs/views.py               | 23 ++++++++++++++++++++++-
- templates/rrs/recipes.html |  8 ++++----
- 3 files changed, 41 insertions(+), 5 deletions(-)
+Thanks in advance
 
-diff --git a/rrs/models.py b/rrs/models.py
-index 320670c..77e8442 100644
---- a/rrs/models.py
-+++ b/rrs/models.py
-@@ -448,6 +448,21 @@ class Raw():
-         return Raw.dictfetchall(cur)
- 
-     @staticmethod
-+    def get_reup_by_last_updated(date):
-+        cur = connection.cursor()
-+        cur.execute("""SELECT te.recipe_id, te.status, te.date, te.rownum FROM(
-+                    SELECT  recipe_id, status, date, ROW_NUMBER() OVER(
-+                        PARTITION BY recipe_id
-+                        ORDER BY date DESC
-+                    ) AS rownum
-+                    FROM rrs_RecipeUpstream
-+                    WHERE status = 'Y'
-+                    AND date <= %s) AS te
-+            WHERE te.rownum = 1;
-+            """, [date])
-+        return Raw.dictfetchall(cur)
-+
-+    @staticmethod
-     def dictfetchall(cursor):
-         "Returns all rows from a cursor as a dict"
-         desc = cursor.description
-diff --git a/rrs/views.py b/rrs/views.py
-index ad741f6..b0a5935 100644
---- a/rrs/views.py
-+++ b/rrs/views.py
-@@ -3,7 +3,7 @@ import urllib
- import csv
- from django.http import HttpResponse
- 
--from datetime import date
-+from datetime import date, datetime
- from django.http import Http404
- from django.shortcuts import get_object_or_404
- from django.views.generic import ListView, DetailView
-@@ -96,6 +96,7 @@ class RecipeList():
-     summary = None
-     upstream_status = None
-     upstream_version = None
-+    outdated = None
-     maintainer_name = None
-     no_update_reason = None
- 
-@@ -116,6 +117,7 @@ def _get_recipe_list(milestone):
-     recipe_list = []
-     recipes_ids = []
-     recipe_upstream_dict_all = {}
-+    recipe_last_updated_dict_all = {}
-     maintainers_dict_all = {}
-     current_date = date.today()
- 
-@@ -127,12 +129,17 @@ def _get_recipe_list(milestone):
-     if recipe_upstream_history:
-         recipe_upstream_all = Raw.get_reup_by_recipes_and_date(
-                 recipes_ids, recipe_upstream_history.id)
-+        recipe_last_updated = Raw.get_reup_by_last_updated(
-+                milestone.end_date)
-         maintainers_all = Raw.get_ma_by_recipes_and_date(
-                 recipes_ids, recipe_maintainer_history[0])
-         for reup in recipe_upstream_all:
-             recipe_upstream_dict_all[reup['recipe_id']] = reup
-+        for rela in recipe_last_updated:
-+            recipe_last_updated_dict_all[rela['recipe_id']] = rela
-         for ma in maintainers_all:
-             maintainers_dict_all[ma['recipe_id']] = ma['name']
-+
-     else:
-         recipe_upstream_all = None
- 
-@@ -140,6 +147,7 @@ def _get_recipe_list(milestone):
-         upstream_version = ''
-         upstream_status = ''
-         no_update_reason = ''
-+        outdated = ''
- 
-         if recipe_upstream_history:
-             recipe_upstream = recipe_upstream_dict_all.get(recipe['id'])
-@@ -167,11 +175,24 @@ def _get_recipe_list(milestone):
-             upstream_version = recipe_upstream['version']
-             no_update_reason = recipe_upstream['no_update_reason']
- 
-+            #Get how long the recipe hasn't been updated
-+            if recipe_upstream['status'] != 'Y':
-+                recipe_last_updated = \
-+                    recipe_last_updated_dict_all.get(recipe['id'])
-+                if recipe_last_updated:
-+                    recipe_date = recipe_last_updated['date']
-+                    outdated = (current_date - recipe_date.date()).days
-+                else:
-+                    outdated = 'Unknown'
-+            else:
-+                outdated = 'Up-to-date'
-+
-         maintainer_name =  maintainers_dict_all.get(recipe['id'], '')
-         recipe_list_item = RecipeList(recipe['id'], recipe['pn'], recipe['summary'])
-         recipe_list_item.version = recipe['version']
-         recipe_list_item.upstream_status = upstream_status
-         recipe_list_item.upstream_version = upstream_version
-+        recipe_list_item.outdated = outdated
-         recipe_list_item.maintainer_name = maintainer_name
-         recipe_list_item.no_update_reason = no_update_reason
-         recipe_list.append(recipe_list_item)
-diff --git a/templates/rrs/recipes.html b/templates/rrs/recipes.html
-index 493b7cf..ca3c93e 100644
---- a/templates/rrs/recipes.html
-+++ b/templates/rrs/recipes.html
-@@ -88,13 +88,13 @@
-     <td class="version_column">{{ r.version }}</td>
-     <td class="upstream_version_column">{{ r.upstream_version }}</td>
-     {% if r.upstream_status == "Up-to-date" %}
--    <td class="text-success">
-+    <td class="text-success" data-toggle="tooltip" title="{{r.outdated}}">
-     {% elif r.upstream_status == "Not updated" %}
--    <td class="text-error">
-+    <td class="text-error" data-toggle="tooltip" title="{{r.outdated}}">
-     {% elif r.upstream_status == "Can't be updated" %}
--    <td class="muted">
-+    <td class="muted" data-toggle="tooltip" title="{{r.outdated}}">
-     {% else %}
--    <td class="text-warning">
-+    <td class="text-warning" data-toggle="tooltip" title="{{r.outdated}}">
-     {% endif %}
-         {{ r.upstream_status }}
-     </td>
 -- 
-1.9.1
+*"Do or do not. There is no try"*
+  *Yoda Master*
 
+--bcaec51ba3ab3edb51051970fbeb
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div>Does any one knows how to avoid the creation of .sdca=
+rd images? This ones takes a lot of diskspace and I have to delete it perio=
+dically, which gives headaches about cleaning everything every time. A have=
+ an 50GB partition and from month to month I get out of disk space. :(<br><=
+br></div>Thanks in advance<br clear=3D"all"><div><div><div><br>-- <br><div =
+class=3D"gmail_signature"><div style=3D"text-align:right"><i>&quot;Do or do=
+ not. There is no try&quot;</i><br><i>=C2=A0 </i><i><b>Yoda Master</b></i><=
+br></div></div>
+</div></div></div></div>
+
+--bcaec51ba3ab3edb51051970fbeb--
