@@ -1,53 +1,47 @@
-Return-Path: <jon.szymaniak@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B5BC1E00A4B; Thu, 25 Jun 2015 21:16:54 -0700 (PDT)
+	id 9E2BDE00A5B; Fri, 26 Jun 2015 01:31:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jon.szymaniak[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.172 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f172.google.com (mail-qk0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90613E00A26
-	for <yocto@yoctoproject.org>; Thu, 25 Jun 2015 21:16:48 -0700 (PDT)
-Received: by qkbp125 with SMTP id p125so49499832qkb.2
-	for <yocto@yoctoproject.org>; Thu, 25 Jun 2015 21:16:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=kmnH9xZFSiDaTcYjBJGThk557AqA94/whaTa9Qt7ydI=;
-	b=ZDcfOpgXgkhEMciJQ6cv3mL7jyixGC7uy+7yxeJlxoByA3sWQ6kCCNd/Tb4Fn5Vzvk
-	XmpMS2pTzyBXOxm6ejsf+QUNZ2NQDl4JmhN6HYOBmIg7B8LRowccaedxdoPIppwv+/qv
-	1IZFZTDe2OHt0LTmK5tRtK0SzEsgEh8PvhZnmxWroLxv2GdGSWk+nx1jeAImkJZ8UBqs
-	qX87z0BU2iKvoqeNWRYfnGc0+N9x76Ks4VGW+eJJQRrfeOW46lx5F85wwJnULW8Of0IP
-	1ZVMOMFv3WnKUGPsrwAWR70KN1twOriYtZRVeuHmKIVetyYwNJx9roBSCSiheUcB9DuA
-	q8ZA==
-X-Received: by 10.55.31.155 with SMTP id n27mr106582714qkh.5.1435292207614;
-	Thu, 25 Jun 2015 21:16:47 -0700 (PDT)
-Received: from localhost.localdomain (cpe-66-66-110-14.rochester.res.rr.com.
-	[66.66.110.14])
-	by mx.google.com with ESMTPSA id 7sm6226349qky.29.2015.06.25.21.16.45
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 25 Jun 2015 21:16:46 -0700 (PDT)
-From: Jon Szymaniak <jon.szymaniak@gmail.com>
-To: yocto@yoctoproject.org
-Date: Fri, 26 Jun 2015 00:16:28 -0400
-Message-Id: <1435292188-29514-1-git-send-email-jon.szymaniak@gmail.com>
-X-Mailer: git-send-email 2.1.4
-Cc: Jon Szymaniak <jon.szymaniak@gmail.com>
-Subject: [meta-raspberrypi][PATCH] firmware.inc: Fetch a zip instead of cloning a git repo
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-qk0-f176.google.com (mail-qk0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D06BE00A4F
+	for <yocto@yoctoproject.org>; Fri, 26 Jun 2015 01:31:34 -0700 (PDT)
+Received: by qkbp125 with SMTP id p125so51758100qkb.2
+	for <yocto@yoctoproject.org>; Fri, 26 Jun 2015 01:31:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=SLgM9zvyVIc0vO8OQHOwkF1ykTVdI0i4yfLmFf8tH3E=;
+	b=YsTHX07ibaRnI6mjGo7yUfmkH+b4tp5zzrpkWznYKfA7est1uuEwheOTmVYZe+TYuz
+	rDQsoNdBD7ZgbQnZWpa5aVyiI0TlOIacJJLOqa+wuKiel2sDuGM5F7pjceypYN26n4Fq
+	9YqMZe6AExGNU5jU7x2Y688W2z7YSFim5otUBS8j4XMUPWRwncRDXBMHndiDWBtC4v5D
+	qYP2i/S6VYiHf7g9cg7blLGfeLwQSlrdHpvvl+AfmXzwlPuGql/b2STDtPs0yW/NfqBr
+	WeXnUZ5eu/OXCRGoKUOTpHUBMMhaYgvyQdIZBHFHK5889LYXmQs6MB1Nufg1/xYTPRNO
+	52Hg==
+X-Gm-Message-State: ALoCoQnCz9aV2jZ5z1409RO7pNmrFlKzVaMETaSV2BHbTiYg41QWptXSSi/34avQAI//UiVmZOAb
+X-Received: by 10.140.43.100 with SMTP id d91mr535456qga.77.1435307493684;
+	Fri, 26 Jun 2015 01:31:33 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.140.102.231 with HTTP; Fri, 26 Jun 2015 01:31:14 -0700 (PDT)
+In-Reply-To: <1435292188-29514-1-git-send-email-jon.szymaniak@gmail.com>
+References: <1435292188-29514-1-git-send-email-jon.szymaniak@gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 26 Jun 2015 09:31:14 +0100
+Message-ID: <CAJTo0LaKZsvvC4hKZrJiX6r2=Q+JL48+i3fBVQauDDYNtPn+og@mail.gmail.com>
+To: Jon Szymaniak <jon.szymaniak@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] firmware.inc: Fetch a zip instead of cloning a git repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,39 +53,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Jun 2015 04:16:54 -0000
+X-List-Received-Date: Fri, 26 Jun 2015 08:31:38 -0000
+Content-Type: multipart/alternative; boundary=001a113a989c4e0d950519679179
 
-GitHub provides this ability to download repository contents at
-a specified changeset as a zip file. This is generally *much* quicker
-than fetching the entire git repository.
+--001a113a989c4e0d950519679179
+Content-Type: text/plain; charset=UTF-8
 
-This resolves some do_fetch() failures I've seen for bcm2835-bootfiles
-in which the clone operation takes a very long time, and the connection
-eventually hangs and errors out.
+On 26 June 2015 at 05:16, Jon Szymaniak <jon.szymaniak@gmail.com> wrote:
 
-Signed-off-by: Jon Szymaniak <jon.szymaniak@gmail.com>
----
- recipes-bsp/common/firmware.inc | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+> GitHub provides this ability to download repository contents at
+> a specified changeset as a zip file. This is generally *much* quicker
+> than fetching the entire git repository.
+>
 
-diff --git a/recipes-bsp/common/firmware.inc b/recipes-bsp/common/firmware.inc
-index ad3176a..5830bb0 100644
---- a/recipes-bsp/common/firmware.inc
-+++ b/recipes-bsp/common/firmware.inc
-@@ -1,8 +1,10 @@
- RPIFW_SRCREV ?= "e42a747e8d5c4a2fb3e837d0924c7cc39999936a"
- RPIFW_DATE ?= "20150206"
--RPIFW_SRC_URI ?= "git://github.com/raspberrypi/firmware.git;protocol=git;branch=master"
--RPIFW_S ?= "${WORKDIR}/git"
-+RPIFW_SRC_URI ?= "https://github.com/raspberrypi/firmware/archive/${RPIFW_SRCREV}.zip"
-+RPIFW_S ?= "${WORKDIR}/firmware-${RPIFW_SRCREV}"
- 
- SRC_URI = "${RPIFW_SRC_URI}"
-+SRC_URI[md5sum] = "a0cd8bc3a82fa708e26da62350fcf485"
-+SRC_URI[sha256sum] = "eebf3bbe2fda533da4b44e713090428e6c14306445543243ae03bca774894840"
- SRCREV = "${RPIFW_SRCREV}"
- PV = "${RPIFW_DATE}"
--- 
-2.1.4
+Github also can and will regenerate these tarballs whenever it feels like
+it, so you'll need to periodically update the checksums.  Obviously as
+existing developers will tend to have the tarballs cached locally, it can
+be a while before this failure is reported back.
 
+A better solution might be to add support for "depth" to the git fetcher,
+so you can grab just the commit you are interested in instead of the entire
+repository.
 
+Ross
+
+--001a113a989c4e0d950519679179
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 26 June 2015 at 05:16, Jon Szymaniak <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:jon.szymaniak@gmail.com" target=3D"_blank">jon.szymaniak@gmail.com</a>=
+&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
+ 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":w6" class=
+=3D"a3s" style=3D"overflow:hidden">GitHub provides this ability to download=
+ repository contents at<br>
+a specified changeset as a zip file. This is generally *much* quicker<br>
+than fetching the entire git repository.</div></blockquote></div><br>Github=
+ also can and will regenerate these tarballs whenever it feels like it, so =
+you&#39;ll need to periodically update the checksums.=C2=A0 Obviously as ex=
+isting developers will tend to have the tarballs cached locally, it can be =
+a while before this failure is reported back.</div><div class=3D"gmail_extr=
+a"><br></div><div class=3D"gmail_extra">A better solution might be to add s=
+upport for &quot;depth&quot; to the git fetcher, so you can grab just the c=
+ommit you are interested in instead of the entire repository.=C2=A0</div><d=
+iv class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></d=
+iv>
+
+--001a113a989c4e0d950519679179--
