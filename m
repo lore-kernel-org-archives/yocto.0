@@ -1,50 +1,46 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <simon.chen@lmco.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C685DE00A45; Fri, 26 Jun 2015 08:29:04 -0700 (PDT)
+	id 5FCFEE0096A; Fri, 26 Jun 2015 12:26:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+	RCVD_IN_DNSWL_HI,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.35.35.12 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A097E00A2C
-	for <yocto@yoctoproject.org>; Fri, 26 Jun 2015 08:29:00 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga101.jf.intel.com with ESMTP; 26 Jun 2015 08:29:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.13,685,1427785200"; 
-	d="scan'208,217";a="595328433"
-Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
-	by orsmga003.jf.intel.com with ESMTP; 26 Jun 2015 08:29:01 -0700
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Fri, 26 Jun 2015 08:28:59 -0700
-Received: from FMSMSX110.amr.corp.intel.com (10.18.116.10) by
-	ORSMSX153.amr.corp.intel.com (10.22.226.247) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Fri, 26 Jun 2015 08:28:59 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.65]) by
-	FMSMSX110.amr.corp.intel.com ([169.254.14.199]) with mapi id
-	14.03.0224.002; Fri, 26 Jun 2015 08:28:59 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Status WW26
-Thread-Index: AdCwJM7lAJeNndkQTHW4yOK40tTAwg==
-Date: Fri, 26 Jun 2015 15:28:58 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E5552EE9A@fmsmsx111.amr.corp.intel.com>
+Received: from mailfo02.lmco.com (mailfo02.lmco.com [192.35.35.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18CB8E006C6
+	for <yocto@yoctoproject.org>; Fri, 26 Jun 2015 12:26:44 -0700 (PDT)
+Received: from HVXHTPN10.us.lmco.com (hvxhtpn10.ems.lmco.com [158.186.149.28])
+	by mailfo02.lmco.com (8.14.5/8.14.5) with ESMTP id t5QJQbdB032171
+	for <yocto@yoctoproject.org>; Fri, 26 Jun 2015 20:26:40 +0100
+Received: from HVXDSP45.us.lmco.com ([fe80::e5e8:eada:5adc:d92a]) by
+	HVXHTPN10.us.lmco.com ([fe80::ed1d:9a54:1e81:8133%15]) with mapi id
+	14.03.0174.001; Fri, 26 Jun 2015 15:26:10 -0400
+From: "Chen, Simon" <simon.chen@lmco.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Copying an Xserver .conf file to the image rootfs
+	usr/share/X11/xorg.conf.d
+Thread-Index: AdCwRQi3KfZ0WJCwRLKuMzYCkywJVg==
+Date: Fri, 26 Jun 2015 19:26:09 +0000
+Message-ID: <D3EFC6D8DB6B2D48A91E6F02D0DB338FAAC7D8@HVXDSP45.us.lmco.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.108]
+x-originating-ip: [158.186.156.90]
 MIME-Version: 1.0
-Subject: Yocto Project Status WW26
+X-LM-Outbound: External 158.186.149.28 cntry=us
+	g=c71c3bc1694f0d1762121782deb08ddd q=t5QJQbdB032171 m=7
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.14.151, 1.0.33,
+	0.0.0000
+	definitions=2015-06-26_06:2015-06-26, 2015-06-26,
+	1970-01-01 signatures=0
+Subject: Copying an Xserver .conf file to the image rootfs usr/share/X11/xorg.conf.d
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,103 +52,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Jun 2015 15:29:04 -0000
+X-List-Received-Date: Fri, 26 Jun 2015 19:26:53 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5552EE9Afmsmsx111amrcor_"
+	boundary="_000_D3EFC6D8DB6B2D48A91E6F02D0DB338FAAC7D8HVXDSP45uslmcocom_"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5552EE9Afmsmsx111amrcor_
+--_000_D3EFC6D8DB6B2D48A91E6F02D0DB338FAAC7D8HVXDSP45uslmcocom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Current Dev Position: 1.9 Milestone 2 (M2)
-Next Deadline: M2 cut off of July 27th at noon GMT
+Software/Hardware Used:
+Yocto poky-dizzy-12.0.1
+AMD Radeon E8860 GFX Card
 
-SWAT team rotation: Beth -> Saul
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+Hi all,
 
-Key Status/Updates:
-YP 1.9 M1 is in QA - Target for release is before July 10th.
-https://wiki.yoctoproject.org/wiki/1.9_QA_Status (automatically fills as QA=
- completes)
-Various oe-selftest issues were fixed for various distros
-UUID support for initramfs/live installer/wic
-Fido builds being worked on for gcc 5.x issues
+I am trying write up a recipe that is supposed to pull in a custom  radeon.=
+conf file and install it into Yocto's rootfs at /usr/share/X11/xorg.conf.d.=
+ This file is basically an Xorg configuration file that enables the use of =
+an external Radeon GFX card. Radeon.conf, however, never gets successfully =
+written into that directory after I run bitbake. My only hunch is perhaps  =
+the other packages that write files in that directory are overwriting the r=
+adeon.conf file. There are other driver recipes that populate this director=
+y with files such as glamor.conf, 10-evdev.conf, 10-quirks.conf, and 50-syn=
+aptics.conf.
 
-Key YP 1.9 Dates:
-1.9 Feature Freeze Date/M3 Cut off: Aug. 24, 2015 noon GMT
-YP Final/M4 Cut off: Sept. 28, 2015 noon GMT
-1.9 M1 Release Target: Before July 10, 2015
-1.9 M2 Release Target: Before Aug. 14, 2015
-1.9 M3 Release Target: Before Sept. 11 2015
-1.9 final Release Target: Before Oct. 30, 2015
+...Otherwise, my implementation could also be flat out wrong. Radeon.conf l=
+ives in a folder called xorg-radeon-config, and here is my xorg-radeon-conf=
+ig.bb recipe file:
 
-Key Status Links for YP:
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.9_Status
-https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule
-https://wiki.yoctoproject.org/wiki/Yocto_1.9_Features
+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+LIC_FILES_CHKSUM =3D "file://${COMMON_LICENSE_DIR}/MST;md5=3Daeb0a03c272f6b=
+3063369c470299d8af"
+SRC_URI =3D " \
+                  file://radeon.conf \
+"
+FILES_${PN} =3D "usr/share/X11/xorg.conf.d/"
 
-Tracking Metrics:
-            WDD 1724 (last week 1749)
-(https://wiki.yoctoproject.org/charts/combo.html)
-
-[If anyone has suggestions for other information you'd like to see on this =
-weekly status update, let us know!]
+S =3D "${WORKDIR}"
+do_install () {
+                install -d ${D}/usr/share/X11/xorg.conf.d/
+                install -m 0644 ${WORKDIR}/radeon.conf ${D}/usr/share/X11/x=
+org.conf.d/
+}
 
 Thanks,
+Simon
 
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5552EE9Afmsmsx111amrcor_
+--_000_D3EFC6D8DB6B2D48A91E6F02D0DB338FAAC7D8HVXDSP45uslmcocom_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 <html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
 osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
@@ -160,25 +114,8 @@ st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
 <style><!--
 /* Font Definitions */
 @font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
@@ -193,23 +130,13 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:purple;
 	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-span.EmailStyle18
+span.EmailStyle17
 	{mso-style-type:personal-compose;
 	font-family:"Calibri","sans-serif";
 	color:windowtext;}
-span.apple-tab-span
-	{mso-style-name:apple-tab-span;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-size:10.0pt;}
+	font-family:"Calibri","sans-serif";}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
@@ -224,190 +151,56 @@ div.WordSection1
 </head>
 <body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
 <div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Current Dev Position: 1.9 Milestone 2 (M2)</sp=
-an><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,=
-&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Next Deadline: M2 cut off of July 27th at noon=
- GMT</span><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roma=
-n&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">SWAT team rotation:
-<span style=3D"background:white">Beth </span>-&gt; Saul</span><span style=
-=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&qu=
-ot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11.0pt;fo=
-nt-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_=
-Build_Failure_Swat_Team</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Key Status/Updates:</span><span style=3D"font-=
-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">YP 1.9 M1 is in QA =
-- Target for release is before July 10th.</span><span style=3D"font-size:12=
-.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-size:=
-12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><a href=
-=3D"https://wiki.yoctoproject.org/wiki/1.9_QA_Status"><span style=3D"font-s=
-ize:11.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#1155=
-CC">https://wiki.yoctoproject.org/wiki/1.9_QA_Status</span></a></span><span=
- style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black"=
->
- (automatically fills as QA completes)</span><span style=3D"font-size:12.0p=
-t;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Various oe-selftest=
- issues were fixed for various distros</span><span style=3D"font-size:12.0p=
-t;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">UUID support for in=
-itramfs/live installer/wic</span><span style=3D"font-size:12.0pt;font-famil=
-y:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">Fido builds being w=
-orked on for gcc 5.x issues</span><span style=3D"font-size:12.0pt;font-fami=
-ly:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Key YP 1.9 Dates:</span><span style=3D"font-si=
-ze:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">1.9 Feature Freeze =
-Date/M3 Cut off: Aug. 24, 2015 noon GMT
-</span><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">YP Final/M4 Cut off=
-: Sept. 28, 2015 noon GMT
-</span><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">1.9 M1 Release Targ=
-et: Before July 10, 2015</span><span style=3D"font-size:12.0pt;font-family:=
-&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">1.9 M2 Release Targ=
-et: Before Aug. 14, 2015</span><span style=3D"font-size:12.0pt;font-family:=
-&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">1.9 M3 Release Targ=
-et: Before Sept. 11 2015</span><span style=3D"font-size:12.0pt;font-family:=
-&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">1.9 final Release T=
-arget: Before Oct. 30, 2015</span><span style=3D"font-size:12.0pt;font-fami=
-ly:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Key Status Links for YP:</span><span style=3D"=
-font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"=
-><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_Project_v1.9_Status"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Proj=
-ect_v1.9_Status</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_1.9_Schedule"><span style=3D"font-size:11.0pt;font-family:C=
-onsolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedul=
-e</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_1.9_Features"><span style=3D"font-size:11.0pt;font-family:C=
-onsolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Feature=
-s</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Tracking Metrics:</span><span style=3D"font-si=
-ze:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; WDD 1724 (last week 1749)</span><span style=3D"font-si=
-ze:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"font-famil=
-y:Consolas;color:black">(</span><span style=3D"font-size:12.0pt;font-family=
-:&quot;Times New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoc=
-toproject.org/charts/combo.html"><span style=3D"font-size:11.0pt;font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#1155CC">https://wiki.yoct=
-oproject.org/charts/combo.html</span></a></span><span style=3D"font-family:=
-Consolas;color:black">)</span><span style=3D"font-size:12.0pt;font-family:&=
-quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas;color:black">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-<span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&qu=
-ot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">[If anyone has suggestions for other informati=
-on you&#8217;d like to see on this weekly status update, let us know!]</spa=
-n><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&=
-quot;serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal">Software/Hardware Used:<o:p></o:p></p>
+<p class=3D"MsoNormal">Yocto poky-dizzy-12.0.1<o:p></o:p></p>
+<p class=3D"MsoNormal">AMD Radeon E8860 GFX Card<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am trying write up a recipe that is supposed to pu=
+ll in a custom &nbsp;radeon.conf file and install it into Yocto&#8217;s roo=
+tfs at /usr/share/X11/xorg.conf.d. This file is basically an Xorg configura=
+tion file that enables the use of an external
+ Radeon GFX card. Radeon.conf, however, never gets successfully written int=
+o that directory after I run bitbake. My only hunch is perhaps &nbsp;the ot=
+her packages that write files in that directory are overwriting the radeon.=
+conf file. There are other driver recipes
+ that populate this directory with files such as glamor.conf, 10-evdev.conf=
+, 10-quirks.conf, and 50-synaptics.conf.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&#8230;Otherwise, my implementation could also be fl=
+at out wrong. Radeon.conf lives in a folder called xorg-radeon-config, and =
+here is my xorg-radeon-config.bb recipe file:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}:=
+&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">LIC_FILES_CHKSUM =3D &quot;file://${COMMON_LICENSE_D=
+IR}/MST;md5=3Daeb0a03c272f6b3063369c470299d8af&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">SRC_URI =3D &quot; \<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;file://radeon.conf \<o:p=
+></o:p></p>
+<p class=3D"MsoNormal">&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">FILES_${PN} =3D &quot;usr/share/X11/xorg.conf.d/&quo=
+t;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">S =3D &quot;${WORKDIR}&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">do_install () {<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -d ${D}/usr/share/X11/xorg.c=
+onf.d/<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -m 0644 ${WORKDIR}/radeon.co=
+nf ${D}/usr/share/X11/xorg.conf.d/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;
+<o:p></o:p></p>
+<p class=3D"MsoNormal">}<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Simon<o:p></o:p></p>
 </div>
 </body>
 </html>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5552EE9Afmsmsx111amrcor_--
+--_000_D3EFC6D8DB6B2D48A91E6F02D0DB338FAAC7D8HVXDSP45uslmcocom_--
