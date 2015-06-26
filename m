@@ -1,51 +1,47 @@
-Return-Path: <jon.szymaniak@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5BBDAE00A45; Fri, 26 Jun 2015 07:17:13 -0700 (PDT)
+	id 73146E00A45; Fri, 26 Jun 2015 07:20:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jon.szymaniak[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.51 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wg0-f51.google.com (mail-wg0-f51.google.com [74.125.82.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12CBAE00A2C
-	for <yocto@yoctoproject.org>; Fri, 26 Jun 2015 07:17:08 -0700 (PDT)
-Received: by wgjx7 with SMTP id x7so16531573wgj.2
-	for <yocto@yoctoproject.org>; Fri, 26 Jun 2015 07:17:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=8puOJwU3NF5+WSk0kXDwE5kHXlVq9Izjo3zmm9YaDic=;
-	b=tBXqNRlymkFj2c5ClfHz0Y3emlajAgWqWakcND4s8MShr/fUM1LiiBpsNjkNw0RQK4
-	nOpkNqqKUg2KgJV9hOe2+M/tkTRqAAIzgYluWFyE+uTtroMP2tuhGhxNSLP/wg2ZtipZ
-	VDISQPkwYJPVhScp8mkTL9RUW1WTY3QHocNx0acdOdYMDBK9eZqbA5oC7eYuwoviIunV
-	M/wz+tMHuOObF/EncMSXRypCOw23XARqwTVz0lAgnJOu2u9caODjphL4eVvVxslpyoL6
-	/pZLKLkDXvy9IKTnkMjS8dmBNgnTjdOkSEVjRIl3zTG3f0+USDsvJwcoxPRSyWbt20ZZ
-	mGfQ==
-X-Received: by 10.180.105.227 with SMTP id gp3mr5358124wib.56.1435328226941;
-	Fri, 26 Jun 2015 07:17:06 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.177 listed in list.dnswl.org]
+Received: from mail-qk0-f177.google.com (mail-qk0-f177.google.com
+	[209.85.220.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2091BE00A2C
+	for <yocto@yoctoproject.org>; Fri, 26 Jun 2015 07:20:05 -0700 (PDT)
+Received: by qkhu186 with SMTP id u186so55776366qkh.0
+	for <yocto@yoctoproject.org>; Fri, 26 Jun 2015 07:20:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=LE4sJdHxK6xHq8jliTfJpAEJ3v9/OCZLbR05Aq/Jd3w=;
+	b=FwQ8l3kAUFC93a3LI0cD7pS1KLNvyanDtXKoF1MsxQZFTwdtBUyMY8m6X2LEsfTVTh
+	zbR1yZixU2vWvQYfp/tfqoRaynrPLxSeEMpQW6XpUDmGdjDP0m74MczYOuzNo9d7c1/I
+	QfOweOwn3C42QqrpIcaWtCMdcXBzO4OcQDtqp/AtCEZGN2ao58wJV80zzA0mQ/kPgigj
+	+FCJqv7SQWyKBq+2x0PzMhjXveU7tWxUW/eztws1Xc4vp3GCBYHNpmP1UfnyWfbdpodn
+	mt3O4IRMuJMGxS9qOxP9ct1Bx4kgmQsGq7oAA77HL452fYHqr6hOaw2+ZZaPW3kcbSD3
+	V0dA==
+X-Gm-Message-State: ALoCoQkenh8v6Rk/ZYwJJUoIKOy4gBlbPj1Gv6YLkVfjUD7OFX/wYYjEbyj/PRvtoOV3AUE1PPx6
+X-Received: by 10.140.88.5 with SMTP id s5mr2461454qgd.59.1435328404752; Fri,
+	26 Jun 2015 07:20:04 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.27.19.6 with HTTP; Fri, 26 Jun 2015 07:16:47 -0700 (PDT)
-In-Reply-To: <CAJTo0LaKZsvvC4hKZrJiX6r2=Q+JL48+i3fBVQauDDYNtPn+og@mail.gmail.com>
+Received: by 10.140.102.231 with HTTP; Fri, 26 Jun 2015 07:19:43 -0700 (PDT)
+In-Reply-To: <CANge7vUQG3p3L7R5ZiZJJ62=zsYoGdjieiHwHktPD7yQ-ZsPag@mail.gmail.com>
 References: <1435292188-29514-1-git-send-email-jon.szymaniak@gmail.com>
 	<CAJTo0LaKZsvvC4hKZrJiX6r2=Q+JL48+i3fBVQauDDYNtPn+og@mail.gmail.com>
-From: Jon Szymaniak <jon.szymaniak@gmail.com>
-Date: Fri, 26 Jun 2015 10:16:47 -0400
-Message-ID: <CANge7vUQG3p3L7R5ZiZJJ62=zsYoGdjieiHwHktPD7yQ-ZsPag@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
+	<CANge7vUQG3p3L7R5ZiZJJ62=zsYoGdjieiHwHktPD7yQ-ZsPag@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 26 Jun 2015 15:19:43 +0100
+Message-ID: <CAJTo0LaJuRxg86a9rF8LiW2xB=cjt9px4+7NLQ0fdy94PwXLVA@mail.gmail.com>
+To: Jon Szymaniak <jon.szymaniak@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [meta-raspberrypi][PATCH] firmware.inc: Fetch a zip instead of cloning a git repo
 X-BeenThere: yocto@yoctoproject.org
@@ -59,85 +55,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Jun 2015 14:17:13 -0000
-Content-Type: multipart/alternative; boundary=f46d0418257e1a5f5405196c65a4
+X-List-Received-Date: Fri, 26 Jun 2015 14:20:08 -0000
+Content-Type: multipart/alternative; boundary=001a11c11874b39fe805196c6f73
 
---f46d0418257e1a5f5405196c65a4
+--001a11c11874b39fe805196c6f73
 Content-Type: text/plain; charset=UTF-8
 
-On Fri, Jun 26, 2015 at 4:31 AM, Burton, Ross <ross.burton@intel.com> wrote:
+On 26 June 2015 at 15:16, Jon Szymaniak <jon.szymaniak@gmail.com> wrote:
 
->
-> On 26 June 2015 at 05:16, Jon Szymaniak <jon.szymaniak@gmail.com> wrote:
->
->> GitHub provides this ability to download repository contents at
->> a specified changeset as a zip file. This is generally *much* quicker
->> than fetching the entire git repository.
->>
->
-> Github also can and will regenerate these tarballs whenever it feels like
-> it, so you'll need to periodically update the checksums.  Obviously as
-> existing developers will tend to have the tarballs cached locally, it can
-> be a while before this failure is reported back.
->
-> A better solution might be to add support for "depth" to the git fetcher,
-> so you can grab just the commit you are interested in instead of the entire
-> repository.
->
-> Ross
+> I'm open to other suggestions as well, as this was just a first stab at
+> it. I've been seeing that cloning this git repo containing binary firmware
+> blobs takes an absurd amount of time, if it even finishes at all
+> successfully.
 >
 
-Hi Ross,
+I believe github offers hosting of "release" tarballs too, so upstream
+could take advantage of that.  Having verified checksums of firmware is
+useful from a security point of view as you can't really inspect the
+sources for it...
 
-Excellent point about the regeneration potentially yielding different
-checksums.  I suppose they could change the compression level they use at
-any moment in time... I'll look into adding that depth support to the
-fetcher, as that doesn't look too hard at all.
+Ross
 
-I'm open to other suggestions as well, as this was just a first stab at it.
-I've been seeing that cloning this git repo containing binary firmware
-blobs takes an absurd amount of time, if it even finishes at all
-successfully.
-
-Cheers,
-Jon
-
---f46d0418257e1a5f5405196c65a4
+--001a11c11874b39fe805196c6f73
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On F=
-ri, Jun 26, 2015 at 4:31 AM, Burton, Ross <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@intel.com</a>&g=
-t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div cl=
-ass=3D"gmail_extra"><span class=3D""><br><div class=3D"gmail_quote">On 26 J=
-une 2015 at 05:16, Jon Szymaniak <span dir=3D"ltr">&lt;<a href=3D"mailto:jo=
-n.szymaniak@gmail.com" target=3D"_blank">jon.szymaniak@gmail.com</a>&gt;</s=
-pan> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex=
-;border-left:1px #ccc solid;padding-left:1ex"><div style=3D"overflow:hidden=
-">GitHub provides this ability to download repository contents at<br>
-a specified changeset as a zip file. This is generally *much* quicker<br>
-than fetching the entire git repository.</div></blockquote></div><br></span=
->Github also can and will regenerate these tarballs whenever it feels like =
-it, so you&#39;ll need to periodically update the checksums.=C2=A0 Obviousl=
-y as existing developers will tend to have the tarballs cached locally, it =
-can be a while before this failure is reported back.</div><div class=3D"gma=
-il_extra"><br></div><div class=3D"gmail_extra">A better solution might be t=
-o add support for &quot;depth&quot; to the git fetcher, so you can grab jus=
-t the commit you are interested in instead of the entire repository.=C2=A0<=
-/div><span class=3D"HOEnZb"><font color=3D"#888888"><div class=3D"gmail_ext=
-ra"><br></div><div class=3D"gmail_extra">Ross</div></font></span></div>
-</blockquote></div><br></div><div class=3D"gmail_extra">Hi Ross,<br><br></d=
-iv><div class=3D"gmail_extra">Excellent point about the regeneration potent=
-ially yielding different checksums.=C2=A0 I suppose they could change the c=
-ompression level they use at any moment in time... I&#39;ll look into addin=
-g that depth support to the fetcher, as that doesn&#39;t look too hard at a=
-ll.<br><br></div><div class=3D"gmail_extra">I&#39;m open to other suggestio=
-ns as well, as this was just a first stab at it. I&#39;ve been seeing that =
-cloning this git repo containing binary firmware blobs takes an absurd amou=
-nt of time, if it even finishes at all successfully.<br><br></div><div clas=
-s=3D"gmail_extra"></div><div class=3D"gmail_extra">Cheers,<br></div><div cl=
-ass=3D"gmail_extra">Jon<br></div></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 26 June 2015 at 15:16, Jon Szymaniak <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:jon.szymaniak@gmail.com" target=3D"_blank">jon.szymaniak@gmail.com</a>=
+&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0=
+ 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class=3D"gmail_ex=
+tra">I&#39;m open to other suggestions as well, as this was just a first st=
+ab at it. I&#39;ve been seeing that cloning this git repo containing binary=
+ firmware blobs takes an absurd amount of time, if it even finishes at all =
+successfully.<br></div></blockquote></div><br>I believe github offers hosti=
+ng of &quot;release&quot; tarballs too, so upstream could take advantage of=
+ that.=C2=A0 Having verified checksums of firmware is useful from a securit=
+y point of view as you can&#39;t really inspect the sources for it...</div>=
+<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div><=
+/div>
 
---f46d0418257e1a5f5405196c65a4--
+--001a11c11874b39fe805196c6f73--
