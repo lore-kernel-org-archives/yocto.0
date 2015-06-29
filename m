@@ -1,26 +1,70 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <Mans.Andersson@nibe.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83899E00A71; Mon, 29 Jun 2015 03:22:26 -0700 (PDT)
+	id 6613BE009E7; Mon, 29 Jun 2015 07:22:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [212.162.190.12 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70C2EE009B8
-	for <yocto@yoctoproject.org>; Mon, 29 Jun 2015 03:22:21 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 28E6D8086F0B
-	for <yocto@yoctoproject.org>; Mon, 29 Jun 2015 06:22:20 -0400 (EDT)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Greylist: delayed 904 seconds by postgrey-1.32 at yocto-www;
+	Mon, 29 Jun 2015 07:22:50 PDT
+Received: from bmail.nibe.se (bmail.nibe.se [212.162.190.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FC64E009D9
+	for <yocto@yoctoproject.org>; Mon, 29 Jun 2015 07:22:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; d=nibe.se; s=s1024; c=relaxed/simple;
+	q=dns/txt; i=@nibe.se; t=1435586860; x=1438178860;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=7edtkmc9uCLWxqVWM3+uIelXLYAp9+pod/56AIL7Yrk=;
+	b=ZbXxFf3id2C5VzIQDj6/zXIqvz5q4298Sga7xORnJeFs29c9XU2p8Gj75LxoBBXZ
+	6VieE9V3d8PUu8cz1zLiiMzMlAphFjIXIk/GIGhd3jtvtlaPPLpEPScF2LKMCM28
+	rKsXG7FHbx0+ZYA71zEQMIyvYc51YWPNbOYswW6BYQs=;
+X-AuditID: 0a0201f8-f79316d000000d60-80-5591512c1ef9
+Received: from mail.nibe.se (nivm320.nibe.se [10.2.0.33])
+	(using TLS with cipher AES256-SHA (256/256 bits))
+	(Client did not present a certificate)
+	by bmail.nibe.se (NIBE mail) with SMTP id B7.80.03424.C2151955;
+	Mon, 29 Jun 2015 16:07:40 +0200 (CEST)
+From: =?iso-8859-1?Q?M=E5ns_Andersson?= <Mans.Andersson@nibe.se>
+To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+Thread-Topic: Sftp deploy hangs when using dropbear and yocto fido.
+Thread-Index: AdCydOtsDMShhNIgRtGU7vrHGPnrhQ==
+Date: Mon, 29 Jun 2015 14:07:39 +0000
+Message-ID: <3070750398d841b6866b97073c1bbeaa@nivm320.nibe.se>
+Accept-Language: en-US, sv-SE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.2.3.81]
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 29 Jun 2015 10:22:20 -0000
-Message-ID: <20150629102220.10799.60027@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+X-Brightmail-Tracker: H4sIAAAAAAAAA12TbUhTURjHO9vdui5PXe/mdlwpOfBD5msG9iFUiEhpYsYGvXywO7255dzm
+	7iYuKKRAQVNUTEkqJ/ZCoplaaiBBsyhNyPKLlAmlaGZSlqYkavfebXb128Pv/zz/83/O4eBi
+	sm+7GjdZHLTdQpk1UhkmE20Lj47KrNbHfZqKPlQz0ypNAamlryulJ8AZ2eEc2mwqpO2xSedk
+	xsXyIZGtQlI0fLcdKwYVWBkIwBFxEHUXvxB5ayUaHm+XlgEZThLrAI3/WJRwgpRIQR23r/K1
+	gkhExeWj/ICcSEJTzXXiMoCz/Ai6X37B2xKDSlq7pRzGiAi03KPjMGS7PVM9Eg4DIhStPuIN
+	xYQKfZhs9CUg0J2+t2JvHYxmJtYk3joU/Ryp9/XHoNHrtVJvvR/da5oVe+2D0MCNSawKkA0C
+	2wbBSINgpEEw4gZYC4CGfMpkjrGYDHQMQ3cC/mrBci+41bXPAwgcaAJhbXK1npRQhYwr3wMy
+	cJEmGEpSWbTTYM1xGSnGmGV3mmlGo4DqEyyGG9jgNOdpwmD29yo9qdqgjJOxmbJNVieT5bSb
+	PQDhYnZ0pIttgjmU6yJtt3oNPWA3jmlUMH6gREcSuZSDzqNpG233q6dwXIPgXAZ7ZpCdzqWL
+	zpvMDr/MzvVzCiFU+EDhMJ0LpBYKWzOJ8AAP0OKBbLAQfifGRuUzplyftxyOcd6Bfsr7hsKT
+	c6yv0g83ew6CLNy9/LFNRGIWq4VWq+ArPh7XbXRaNnKrlVA/w9rsEgicvXov7D1eqSdDBHzz
+	Cd9AGvtccrjOR2M/y/+8JATcFjt8kI+7B2q5awj2sa1eWvadFbCFOxIyDsohXD5FW8kt76O+
+	5ZM5qPTDzXbqYhBgnG17kPYnv74icTBTRQ7rHKsH4goMJXWKgnnbk5f9uumxPrjQHBvXL6/L
+	dXTOpyWMNtp+/w3+6rqWMh95RXlzoSYssfLys6bMNqmyemjlzaXhL9aIzxPHzqLOrMawhHe/
+	Vh4mhi8plubG1qJcR926PHfN41J5QdLzjqfpp99PazDGSMVHiu0M9Q9eWSm1TwQAAA==
+Subject: Sftp deploy hangs when using dropbear and yocto fido.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,157 +76,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Jun 2015 10:22:26 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 29 Jun 2015 14:22:57 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-This mail was sent out by Recipe reporting system.
+Does anyone know about a problem with dropbear and openssh-sftp-server on Y=
+octo Fido?
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade this time, they can fill in
-RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
-recipe remainder until newer upstream version was detected.
+After upgrading my build from Dora to Fido the deployment of builds from Qt=
+Creator (3.2.2) to my qemuarm build stopped working. It just hangs waiting =
+as if it's working, i.e. no error message. I've switched toolchains and emu=
+lator images from my Dora and Fido builds back and forth and the only commo=
+n denominator when it doesn't work is when using the Fido qemuarm build. Re=
+gular SSH connections and manual sftp transfers (i.e. not initiated by Qt C=
+reator) works, which just makes it even harder to debug.
 
-Example:
-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
+Thanks in advance.
+// M=E5ns
 
-You can check the detail information at:
-
-http://packages.yoctoproject.org/
-
-Package               Version          Upstream version      Maintainer           NoUpgradeReason
---------------------  ---------------  --------------------  -------------------  ------------------------------
-nfs-utils             1.3.1            1.3.2                 Alejandro Hernandez
-midori                0.5.8            0.5.10                Alejandro Hernandez
-python-smmap          0.8.2            0.9.0                 Alejandro Hernandez
-python3               3.4.3            3.5.0b2               Alejandro Hernandez
-python                2.7.9            3.5.0b2               Alejandro Hernandez
-cronie                1.4.12           1.5.0                 Alejandro Hernandez
-texinfo               5.2              6.0                   Alejandro Hernandez  Checking script parses dire...
-which                 2.20             2.21                  Alejandro Hernandez
-gnome-icon-theme      2.31.0           3.12.0                Alejandro Hernandez
-jpeg                  8d               9a                    Aníbal Limón         webkit-gtk 1.8.3 doesn't wo...
-dpkg                  1.17.25          1.18.1                Aníbal Limón
-sqlite3               3.8.10.0         3.8.10.2.             Aníbal Limón
-mc                    4.8.13           4.8.14                Aníbal Limón
-screen                4.0.3            4.3.1                 Aníbal Limón
-lz4                   128+gitX         r123                  Armin Kuster
-nettle                2.7.1            3.1rc3                Armin Kuster         3.0.0 breaks gnutls, api ch...
-pinentry              0.9.2            0.9.4                 Armin Kuster
-linux-libc-headers    3.19             3.19.8                Bruce Ashfield
-console-tools         0.3.2            1999.03.02            Chen Qi
-systemd               219-stable+gitX  21522eade6dd8422b...  Chen Qi
-curl                  7.42.1           7.43.0                Chen Qi
-cups                  2.0.3            2.1b1                 Chen Qi
-sysstat               11.1.4           11.1.5                Chen Qi
-iproute2              3.17.0           4.1.0                 Cristian Iorga
-libpcap               1.6.2            1.7.4                 Cristian Iorga
-gstreamer1.0-libav    1.4.5            1.5.2                 Cristian Iorga
-gstreamer1.0-plug...  1.4.5            1.5.2                 Cristian Iorga
-gstreamer1.0-plug...  1.4.5            1.5.2                 Cristian Iorga
-gstreamer1.0-plug...  1.4.5            1.5.2                 Cristian Iorga
-gstreamer1.0-plug...  1.4.5            1.5.2                 Cristian Iorga
-gstreamer1.0          1.4.5            1.5.2                 Cristian Iorga
-libvorbis             1.3.4            1.3.5                 Cristian Iorga
-speex                 1.2rc1           1.2rc2                Cristian Iorga
-gstreamer1.0-rtsp...  1.4.5            1.5.2                 Cristian Iorga
-db                    6.0.30           6.1.26.NC             Cristian Iorga       API compatibility issue
-libical               1.0.0            1.0.1                 Cristian Iorga
-libtirpc              0.2.5            0.3.2                 Cristian Iorga
-harfbuzz              0.9.40           0.9.41                Cristian Iorga
-linux-yocto-rt        3.14.36+gitX     3.14.39+gitAUTOIN...  Darren Hart
-u-boot-fw-utils       v2015.01+gitX    v2015.04+gitAUTOI...  Denys Dmytriyenko
-u-boot-mkimage        v2015.01+gitX    v2015.04+gitAUTOI...  Denys Dmytriyenko
-u-boot                v2015.01+gitX    v2015.04+gitAUTOI...  Denys Dmytriyenko
-ncurses               5.9              386                   Hongxu Jia
-distcc                3.1              3.2rc1                Hongxu Jia
-elfutils              0.161            0.163                 Hongxu Jia
-perl                  5.20.0           5.23.0                Hongxu Jia
-createrepo            0.4.11           0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-bash                  4.3              4.3.30                Hongxu Jia           The latest version in yocto...
-gnupg                 2.1.4            2.1.5                 Hongxu Jia
-libinput              0.7.0            0.18.0                Jussi Kukkonen
-wayland               1.6.0            1.8.1                 Jussi Kukkonen
-weston                1.6.0            1.8.0                 Jussi Kukkonen
-xf86-input-vmmouse    13.0.0           13.1.0                Jussi Kukkonen
-vala                  0.28.0           0.29.2                Jussi Kukkonen
-vte                   0.28.2           0.40.2                Jussi Kukkonen
-gtk+3                 3.12.2           3.16.4                Jussi Kukkonen
-libnotify             0.6.0            0.7.6                 Jussi Kukkonen
-clutter-1.0           1.20.0           1.23.2                Jussi Kukkonen
-clutter-gtk-1.0       1.4.4            1.6.0                 Jussi Kukkonen
-cogl-1.0              1.18.2           1.20.0                Jussi Kukkonen
-fontconfig            2.11.93          2.11.94               Jussi Kukkonen
-mesa-gl               10.5.8           10.6.1                Jussi Kukkonen
-mesa                  10.5.8           10.6.1                Jussi Kukkonen
-python-nose           1.3.6            1.3.7                 Khem Raj
-python-numpy          1.7.0            1.9.2                 Khem Raj
-rpm                   5.4.14           5.4.15                Mark Hatle
-gcc-source-4.9.2      4.9.2            5.1.0                 No maintainer
-i2c-tools             3.1.1            3.1.2                 No maintainer
-orc                   0.4.23           0.4.24                No maintainer
-opkg                  0.2.4            0.3.0                 Paul Barker
-cmake                 3.2.2            3.2.3                 Paul Eggleton
-qt4-embedded          4.8.7            5.4.2                 Paul Eggleton
-qt4-x11-free          4.8.7            5.4.2                 Paul Eggleton
-libav                 9.18             11.4                  Paul Eggleton
-gpgme                 1.5.4            1.5.5                 Paul Eggleton
-libevdev              1.4.2            1.4.3                 Paul Eggleton
-libpng12              1.2.53           1.6.17                Randy Witt
-python-async          0.6.1            0.6.2                 Randy Witt
-tcf-agent             0.4.0+gitX       8.0+gitAUTOINC+b1...  Randy Witt
-unfs3                 0.9.22.r490      0.9.22.r494           Randy Witt
-libunistring          0.9.4            0.9.5                 Randy Witt
-libpam                1.1.6            1.2.1                 Randy Witt
-libpciaccess          0.13.3           0.13.4                Richard Purdie
-kexec-tools           2.0.9            2.0.10                Richard Purdie
-btrfs-tools           4.0.1+gitX       4.1+gitAUTOINC+01...  Richard Purdie
-lttng-modules         2.6.1            2.6.2                 Richard Purdie
-lttng-ust             2.6.1            2.6.2                 Richard Purdie
-intltool              0.50.2           0.51.0                Richard Purdie
-python-distribute     0.6.32           0.7.3                 Richard Purdie       0.7.3 only upgrades 0.6.32,...
-python-pygobject      2.28.3           3.17.1                Richard Purdie       Newer versions of python-py...
-libdrm                2.4.59           2.4.61                Richard Purdie
-libmpc                1.0.2            1.0.3                 Richard Purdie
-binutils              2.25             7.9.1                 Robert Yang
-e2fsprogs             1.42.9           1.42.13               Robert Yang
-file                  5.22             5.23                  Robert Yang
-git                   2.4.2            2.4.5                 Robert Yang
-gmp                   6.0.0            6.0.0a                Robert Yang
-hdparm                9.45             9.48                  Robert Yang
-less                  471              478                   Robert Yang
-logrotate             3.8.8            3.9.1                 Robert Yang
-liberation-fonts      1.04             2.00.1                Ross Burton          2.00.0 - fontforge package ...
-webkit-gtk            1.8.3            1.9.92                Ross Burton          >= 1.10.2 needs ruby
-gnutls                3.3.14           3.4.2                 Ross Burton
-openssl               1.0.2a           1.0.2c                Saul Wold
-build-appliance-i...  12.0.1           13.0.0                Saul Wold
-uclibc                0.9.33+gitX      0.9.33.2+gitAUTOI...  Saul Wold
-systemtap             2.7+gitX         2.8+gitAUTOINC+a7...  Saul Wold
-libtheora             1.1.1            1.2.0alpha1           Saul Wold
-tiff                  4.0.4            4.0.4beta             Saul Wold
-ca-certificates       20141019         20150426              Saul Wold
-libunique             1.1.6            3.0.2                 Saul Wold
-mx-1.0                1.4.7+gitX       1.99.4+gitAUTOINC...  Saul Wold
-systemtap-uprobes     2.7+gitX         2.8+gitAUTOINC+a7...  Tom Zanussi
-ccache                3.1.11           3.2.2                 Wenzong Fan
-chkconfig             1.3.58           1.5                   Wenzong Fan
-
-Upgradable count: 105
-Upgradable total count: 115
-
-The based commit is:
-
-commit 592a1d94a7b0e80059016adb59c4c61e256206f0
-Author: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date:   Sat Jun 27 22:44:59 2015 +0100
-
-    oeqa/parselogs: Whitelist qemumips64 runtime error
-    
-    Similarly to qemumips, ignore these errors upon bootup so that
-    we have a good QA baseline for new errors.
-    
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
