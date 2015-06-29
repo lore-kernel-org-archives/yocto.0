@@ -1,70 +1,47 @@
-Return-Path: <Mans.Andersson@nibe.se>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6613BE009E7; Mon, 29 Jun 2015 07:22:57 -0700 (PDT)
+	id 8655AE0096A; Mon, 29 Jun 2015 08:53:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [212.162.190.12 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.175 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 904 seconds by postgrey-1.32 at yocto-www;
-	Mon, 29 Jun 2015 07:22:50 PDT
-Received: from bmail.nibe.se (bmail.nibe.se [212.162.190.12])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FC64E009D9
-	for <yocto@yoctoproject.org>; Mon, 29 Jun 2015 07:22:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; d=nibe.se; s=s1024; c=relaxed/simple;
-	q=dns/txt; i=@nibe.se; t=1435586860; x=1438178860;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=7edtkmc9uCLWxqVWM3+uIelXLYAp9+pod/56AIL7Yrk=;
-	b=ZbXxFf3id2C5VzIQDj6/zXIqvz5q4298Sga7xORnJeFs29c9XU2p8Gj75LxoBBXZ
-	6VieE9V3d8PUu8cz1zLiiMzMlAphFjIXIk/GIGhd3jtvtlaPPLpEPScF2LKMCM28
-	rKsXG7FHbx0+ZYA71zEQMIyvYc51YWPNbOYswW6BYQs=;
-X-AuditID: 0a0201f8-f79316d000000d60-80-5591512c1ef9
-Received: from mail.nibe.se (nivm320.nibe.se [10.2.0.33])
-	(using TLS with cipher AES256-SHA (256/256 bits))
-	(Client did not present a certificate)
-	by bmail.nibe.se (NIBE mail) with SMTP id B7.80.03424.C2151955;
-	Mon, 29 Jun 2015 16:07:40 +0200 (CEST)
-From: =?iso-8859-1?Q?M=E5ns_Andersson?= <Mans.Andersson@nibe.se>
-To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
-Thread-Topic: Sftp deploy hangs when using dropbear and yocto fido.
-Thread-Index: AdCydOtsDMShhNIgRtGU7vrHGPnrhQ==
-Date: Mon, 29 Jun 2015 14:07:39 +0000
-Message-ID: <3070750398d841b6866b97073c1bbeaa@nivm320.nibe.se>
-Accept-Language: en-US, sv-SE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.2.3.81]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-qk0-f175.google.com (mail-qk0-f175.google.com
+	[209.85.220.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13917E00947
+	for <yocto@yoctoproject.org>; Mon, 29 Jun 2015 08:53:21 -0700 (PDT)
+Received: by qkhu186 with SMTP id u186so96571674qkh.0
+	for <yocto@yoctoproject.org>; Mon, 29 Jun 2015 08:53:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=rlHVL+TX4tEmxaEXlPH2QbSX8ZU3I79aN6FLITuHZmY=;
+	b=XpZanR15u+TzzAjIrlApaJrV9CaMumwdwDpl7R4hCiWCF1gT/d+eYrczUTg0EbrH/W
+	tv7aLeqEOuJFSNFifj/jEFpDRyPtQ5zwrNwThuJiNbYDjs9ChRawTCISKwGfS6vMdG9n
+	woXgZWL0X5z3XOtjMHNHBTbukn0PuZLUMMrCVCYnKUvpEbT7oDxu9GDMKGZ7LddhL6UZ
+	NXIBnm8BGNLaWbZzMWPP5egiGHhMgc+OZ8ymEdaiq37gkOLd4VWZ8Uqj2ARoTLjCutwm
+	Ex/zfwiapQ3tqN7t25kPEXwhR66ho7JJr/Rr5BpkEXGIHVsCfA5SmbrhYnBpF+yMHxiU
+	KYVQ==
+X-Gm-Message-State: ALoCoQm/c97DIMGAuakm46mC52mWn8BWBG9tcHJrpX1Rwz6S0MwFIp0+4rHdkXJ0lLIl+gquSBKA
+X-Received: by 10.140.89.100 with SMTP id u91mr7747278qgd.15.1435593200602;
+	Mon, 29 Jun 2015 08:53:20 -0700 (PDT)
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA12TbUhTURjHO9vdui5PXe/mdlwpOfBD5msG9iFUiEhpYsYGvXywO7255dzm
-	7iYuKKRAQVNUTEkqJ/ZCoplaaiBBsyhNyPKLlAmlaGZSlqYkavfebXb128Pv/zz/83/O4eBi
-	sm+7GjdZHLTdQpk1UhkmE20Lj47KrNbHfZqKPlQz0ypNAamlryulJ8AZ2eEc2mwqpO2xSedk
-	xsXyIZGtQlI0fLcdKwYVWBkIwBFxEHUXvxB5ayUaHm+XlgEZThLrAI3/WJRwgpRIQR23r/K1
-	gkhExeWj/ICcSEJTzXXiMoCz/Ai6X37B2xKDSlq7pRzGiAi03KPjMGS7PVM9Eg4DIhStPuIN
-	xYQKfZhs9CUg0J2+t2JvHYxmJtYk3joU/Ryp9/XHoNHrtVJvvR/da5oVe+2D0MCNSawKkA0C
-	2wbBSINgpEEw4gZYC4CGfMpkjrGYDHQMQ3cC/mrBci+41bXPAwgcaAJhbXK1npRQhYwr3wMy
-	cJEmGEpSWbTTYM1xGSnGmGV3mmlGo4DqEyyGG9jgNOdpwmD29yo9qdqgjJOxmbJNVieT5bSb
-	PQDhYnZ0pIttgjmU6yJtt3oNPWA3jmlUMH6gREcSuZSDzqNpG233q6dwXIPgXAZ7ZpCdzqWL
-	zpvMDr/MzvVzCiFU+EDhMJ0LpBYKWzOJ8AAP0OKBbLAQfifGRuUzplyftxyOcd6Bfsr7hsKT
-	c6yv0g83ew6CLNy9/LFNRGIWq4VWq+ArPh7XbXRaNnKrlVA/w9rsEgicvXov7D1eqSdDBHzz
-	Cd9AGvtccrjOR2M/y/+8JATcFjt8kI+7B2q5awj2sa1eWvadFbCFOxIyDsohXD5FW8kt76O+
-	5ZM5qPTDzXbqYhBgnG17kPYnv74icTBTRQ7rHKsH4goMJXWKgnnbk5f9uumxPrjQHBvXL6/L
-	dXTOpyWMNtp+/w3+6rqWMh95RXlzoSYssfLys6bMNqmyemjlzaXhL9aIzxPHzqLOrMawhHe/
-	Vh4mhi8plubG1qJcR926PHfN41J5QdLzjqfpp99PazDGSMVHiu0M9Q9eWSm1TwQAAA==
-Subject: Sftp deploy hangs when using dropbear and yocto fido.
+Received: by 10.140.102.231 with HTTP; Mon, 29 Jun 2015 08:53:01 -0700 (PDT)
+In-Reply-To: <CA+89abzJG1v9v7AUpRmexJnQs2S7GMYuAVe3McWygm=vnmbnQQ@mail.gmail.com>
+References: <CA+89abzJG1v9v7AUpRmexJnQs2S7GMYuAVe3McWygm=vnmbnQQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 29 Jun 2015 16:53:01 +0100
+Message-ID: <CAJTo0LaisgY3iST7_umKK=5vaPU3VsBj=BeQK6Z=0qibsQHuMw@mail.gmail.com>
+To: Daniel Gallagher <dgallagher@219design.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Automatic Virtual Keyboard?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,23 +53,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Jun 2015 14:22:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Mon, 29 Jun 2015 15:53:23 -0000
+Content-Type: multipart/alternative; boundary=001a11c1334ec3a7f00519aa1646
+
+--001a11c1334ec3a7f00519aa1646
+Content-Type: text/plain; charset=UTF-8
+
+On 19 June 2015 at 16:33, Daniel Gallagher <dgallagher@219design.com> wrote:
+
+> I'm trying to get matchbox-keyboard to pop up automatically for text input
+> fields, and ran across this bug report:
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=6774
+>
+> I've tried setting
+>
+> HAVE_TOUCHSCREEN=1
+>
+> HAVE_KEYBOARD=0
+>
+> in /etc/formfactor/machconfig as suggested in this post:
+> https://lists.yoctoproject.org/pipermail/yocto/2011-September/002951.html
+> but that doesn't seem to have any effect in fido.
+>
+> Does anyone have a workaround for this bug in fido?
+>
+
+Sadly not, it appears that something regressed and I've not had the time to
+sort it out.  Do you have matchbox-keyboard-im installed?
+
+Ross
+
+--001a11c1334ec3a7f00519aa1646
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Does anyone know about a problem with dropbear and openssh-sftp-server on Y=
-octo Fido?
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 19 June 2015 at 16:33, Daniel Gallagher <span dir=3D"ltr">&lt;<a href=3D=
+"mailto:dgallagher@219design.com" target=3D"_blank">dgallagher@219design.co=
+m</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>I&#39;m tryi=
+ng to get matchbox-keyboard to pop up automatically for text input fields, =
+and ran across this bug report: <a href=3D"https://bugzilla.yoctoproject.or=
+g/show_bug.cgi?id=3D6774" target=3D"_blank">https://bugzilla.yoctoproject.o=
+rg/show_bug.cgi?id=3D6774</a></div><div><br></div><div>I&#39;ve tried setti=
+ng</div><div><blockquote style=3D"margin:0px 0px 0px 40px;border:none;paddi=
+ng:0px"><div>HAVE_TOUCHSCREEN=3D1</div></blockquote><blockquote style=3D"ma=
+rgin:0px 0px 0px 40px;border:none;padding:0px"><div>HAVE_KEYBOARD=3D0</div>=
+</blockquote>in /etc/formfactor/machconfig as suggested in this post:=C2=A0=
+<a href=3D"https://lists.yoctoproject.org/pipermail/yocto/2011-September/00=
+2951.html" target=3D"_blank">https://lists.yoctoproject.org/pipermail/yocto=
+/2011-September/002951.html</a> but that doesn&#39;t seem to have any effec=
+t in fido.</div><div><br></div><div>Does anyone have a workaround for this =
+bug in fido?</div></blockquote></div><br>Sadly not, it appears that somethi=
+ng regressed and I&#39;ve not had the time to sort it out.=C2=A0 Do you hav=
+e matchbox-keyboard-im installed?</div><div class=3D"gmail_extra"><br></div=
+><div class=3D"gmail_extra">Ross</div></div>
 
-After upgrading my build from Dora to Fido the deployment of builds from Qt=
-Creator (3.2.2) to my qemuarm build stopped working. It just hangs waiting =
-as if it's working, i.e. no error message. I've switched toolchains and emu=
-lator images from my Dora and Fido builds back and forth and the only commo=
-n denominator when it doesn't work is when using the Fido qemuarm build. Re=
-gular SSH connections and manual sftp transfers (i.e. not initiated by Qt C=
-reator) works, which just makes it even harder to debug.
-
-Thanks in advance.
-// M=E5ns
-
-
+--001a11c1334ec3a7f00519aa1646--
