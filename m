@@ -1,49 +1,41 @@
-Return-Path: <dl9pf@gmx.de>
+Return-Path: <belen.barros.pena@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8734BE00A81; Tue, 30 Jun 2015 06:22:39 -0700 (PDT)
+	id CFDCDE00A1E; Tue, 30 Jun 2015 11:30:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (dl9pf[at]gmx.de)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [212.227.17.22 listed in list.dnswl.org]
-X-Greylist: delayed 303 seconds by postgrey-1.32 at yocto-www;
-	Tue, 30 Jun 2015 06:22:27 PDT
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AA4EE009E6
-	for <yocto@yoctoproject.org>; Tue, 30 Jun 2015 06:22:27 -0700 (PDT)
-Received: from aragorn.auenland.lan ([88.134.178.228]) by mail.gmx.com
-	(mrgmx102) with ESMTPSA (Nemesis) id 0LbPza-1Yl4yf0eCY-00kwEx;
-	Tue, 30 Jun 2015 15:17:23 +0200
-From: Jan-Simon Moeller <dl9pf@gmx.de>
-To: yocto@yoctoproject.org
-Date: Tue, 30 Jun 2015 15:16:40 +0200
-Message-ID: <1625171.HGLB6nQN4h@aragorn.auenland.lan>
-Organization: priv
-User-Agent: KMail/4.14.8 (Linux/3.16.7-21-desktop; KDE/4.14.8; x86_64; ; )
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81E75E009A7
+	for <yocto@yoctoproject.org>; Tue, 30 Jun 2015 11:30:12 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga101.fm.intel.com with ESMTP; 30 Jun 2015 11:30:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.15,379,1432623600"; d="scan'208";a="597621294"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by orsmga003.jf.intel.com with ESMTP; 30 Jun 2015 11:30:09 -0700
+Received: from irsmsx110.ger.corp.intel.com ([169.254.15.72]) by
+	IRSMSX101.ger.corp.intel.com ([169.254.1.201]) with mapi id
+	14.03.0224.002; Tue, 30 Jun 2015 19:30:08 +0100
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Design and Yocto Project development cycle
+Thread-Index: AQHQs2LKu1/aTGx2R0u1+uB0CLaD+w==
+Date: Tue, 30 Jun 2015 18:30:08 +0000
+Message-ID: <D1B89EBF.5E615%belen.barros.pena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.5.1.150515
+x-originating-ip: [10.237.224.32]
 MIME-Version: 1.0
-X-Provags-ID: V03:K0:bbGMs8BWuRGPMRINfM7b1DOllVePXKZFgw2tOXqMtmQ+NI6iW3c
-	pa6mEG8SC0Q7/Eo8vZeqVRO6SSs4nzbxPHyxf680VG5UQMCCGwXI2miV53/U1k1QSvNqXYp
-	HsOQn9115s73q2NDPDVPVGyKxosfHnYRXyAgTiUkm3IRBSTJfTDumHPsRMS7TgOymdy8fXu
-	PbKR6mwY7CYWzHK7nTpig==
-X-UI-Out-Filterresults: notjunk:1;V01:K0:rQT3RzjuEIo=:s8ZyoxX63QV2khe2Bs9uHk
-	4iEnoX57Lw7vcy1QE4HUTzJEaL5siFV2rSAo6Uh6VLZn6YMDBzaDpTKgGP0rdSougAdcdtLTs
-	gATFqAEVFrkShs71sJFt20KbAlqroLi5GXR7IRgOeUjJSnWb58tyQIHIbQohXcMV3RPzbezUe
-	Ooo5zSxcoDNtoZJj21MA/4l2hvdLuDs2svdGM05QGyA40rwGmwBbx0qslAGtddUmVEvjtm27I
-	xI3+nWF/tTgYn9XhmmVtX4soGvXOq6JwaJbdVOOjmQWhgR4x1KKjvsTj+kUC7uwbnvQyQ0GGL
-	ZfmNh5yfLr5dcZYnrfkIMbF1nviWt+X1pwNqJc3+cYbNkp9s9pyWlDIwle7dg3Tm/GEmsNt59
-	Bs7zqytBloEcZEoCpLXxmWbBB6w8SuflqWHijRfIWrhpqjdXxMfDmRvfZyHTqy9MxGWpXgFL6
-	trp7LD3w4haXyHpxfWVM+IWooRwrHJnSLSysDUSbtRXUTG3kJa38c1DAk+/Me6SlA9ZEJN4um
-	oEwfCIfc53VU0OSXq1oWqPD6gpd06ODELJS0B09ms7YbtUU7VNOeocXqOii4seEoK7swyBZoI
-	e9biMFokZcWSEoGyiLTe4kvLc7wUh0vV8fmC3OuxVpJxH3hffBOlBpR2uBmyrNQOWW8VWyyWe
-	ydMEzdKQZxNGCH708/OszimFZi24l0FrANYIsO26di6ox5ffszTZ7xJIS+OQE+xbofxs=
-Subject: [RFC][master][fido] yocto bsp on arm not in sync with beaglebone target defaults
+Subject: Design and Yocto Project development cycle
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,44 +47,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Jun 2015 13:22:39 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 30 Jun 2015 18:30:18 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <59985668B0A0A5429FCBE6BE9A2FE82E@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi all!
+I had to sit down today to write how design activities have been
+integrated into the Yocto Project development cycle. Once I finished
+writing, I realised that this might be of interest to the community
+somehow. So here it is, for posterity ;)
 
-I noticed this inconsitency:
+This is the Yocto Project development cycle for the 1.9 release:
 
-bitbake MACHINE=beaglebone  -> zImage kernel
+https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule
 
-but 
+The 6-month period is broken down into 4 milestones. Each milestone has
+planning, development, stabilisation and release phases.
 
-yocto-bsp create foo arm
+The following is how design has been integrated into this process:
 
-will setup for uImage. 
+* M1 is the design milestone: we design new features and produce the
+necessary design specifications. A high-fidelity prototype and detailed
+design specification documents should exist by the cut-off date of
+milestone 1. Design documents are attached to the relevant Bugzilla entry.
 
-Shouldn't we do:
-diff --git 
-a/scripts/lib/bsp/substrate/target/arch/arm/conf/machine/machine.conf 
-b/scripts/lib/bsp/substrate/target/arch/arm/conf/machine/machine.conf
-index 588367a..e0831f5 100644
---- a/scripts/lib/bsp/substrate/target/arch/arm/conf/machine/machine.conf
-+++ b/scripts/lib/bsp/substrate/target/arch/arm/conf/machine/machine.conf
-@@ -84,9 +84,8 @@ PREFERRED_PROVIDER_virtual/kernel ?= "{{=preferred_kernel}}"
- PREFERRED_PROVIDER_virtual/kernel ?= "{{=preferred_kernel}}"
- PREFERRED_VERSION_{{=preferred_kernel}} ?= "{{=preferred_kernel_version}}%"
- 
--KERNEL_IMAGETYPE = "uImage"
-+KERNEL_IMAGETYPE = "zImage"
- KERNEL_DEVICETREE = "am335x-bone.dtb am335x-boneblack.dtb"
--KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
- 
- SPL_BINARY = "MLO"
- UBOOT_SUFFIX = "img"
+* M2 and M3 are implementation milestones. In the Yocto Project, design
+remains very involved during the implementation phase. All patches
+submitted to the Toaster mailing list that touch the web interface must be
+reviewed by design and feedback provided accordingly. In this sense, we
+are exactly like developers doing patch review. These reviews are critical
+to achieving acceptable interface quality, and use the design documents
+produced in milestone 1 as a reference. Design work in this phase also
+involves filling any gaps in the design done during milestone 1, and
+making any changes needed due to unforeseen issues arising during the
+development work. Patches must be reviewed promptly, and any design
+changes must be worked out fast so that we don't block development.
+
+* M4: this is a kind of design stabilisation milestone. The goal is to
+leave the interface in a good enough state, fit for release. That often
+involves making compromises in scope (cut down things we cannot deliver at
+an acceptable level of quality), while guaranteeing that new features are
+still useful and usable (maybe in the future we'll be able to make them
+also beautiful, but for now useful and usable is all we can aim for).
+
+Planning for the next release takes place after the M4 cut-off date. I
+also tend to use this time to run informal usability testing on the new
+features, so that we have some visibility of what are the main issues and
+how they could be fixed during the next release cycle. This is by no means
+ideal: the mantra of usability testing is "do it early, do it often". But
+given the design resources we have and the amount of work to be done, it
+is better than nothing.
+
+There  you have it: this is roughly how design has been done in the Yocto
+Project over the past couple of years. If you have any questions or
+comments, just ask.
+
+Cheers,
+
+Bel=E9n
 
 
-##########
 
-Best,
-Jan-Simon
+
+
+
 
