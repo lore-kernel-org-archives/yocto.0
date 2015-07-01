@@ -1,54 +1,66 @@
-Return-Path: <b.hutchman@gmail.com>
+Return-Path: <bevenson@melinkcorp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CDA6CE00A54; Wed,  1 Jul 2015 04:41:08 -0700 (PDT)
+	id 60779E00A54; Wed,  1 Jul 2015 06:08:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (b.hutchman[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.46 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [157.56.111.135 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f46.google.com (mail-oi0-f46.google.com
-	[209.85.218.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89999E00A4B
-	for <yocto@yoctoproject.org>; Wed,  1 Jul 2015 04:41:04 -0700 (PDT)
-Received: by oiyy130 with SMTP id y130so29625310oiy.0
-	for <yocto@yoctoproject.org>; Wed, 01 Jul 2015 04:41:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=sILlQ27o4JoIsxYnsJvN/n3gxJ1A0oSouPD+w9IsXGI=;
-	b=gmicO8oANW4bVMPjw1p8gaiIrgTWLMEqrW5WmxIMRGks1mDoHWL4sJtSSSg5FqYhy9
-	pzustAp/sal50mst4MvpVNB/8xyhgikiGr76SyOKg/WXTI9gC85RPG21BS6bnRQQ/84J
-	OYzJiHCMiR3bfnQyaGXUcqU8kIhlOtvGl9OQouCsUi8bLWyIaiDVIO/2+so6zm/GZ9zF
-	Lwbqbn9+iHeUCpcdy5ZqWF+yPJ1nPGeVSfZflhm88LT3asu6DOpowrLUQ41pVUvd/Psu
-	aqioPJuuO3H0/WCbbg9TZMavAyY4dydv34gpYzfjYQxMfcQ0yGr9pG3OFpdvm8vr5M7u
-	nF6g==
+Received: from na01-bn1-obe.outbound.protection.outlook.com
+	(mail-bn1bon0135.outbound.protection.outlook.com [157.56.111.135])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7F07E00A4B
+	for <yocto@yoctoproject.org>; Wed,  1 Jul 2015 06:08:39 -0700 (PDT)
+Received: from BN3PR0501MB1090.namprd05.prod.outlook.com (10.160.113.12) by
+	BN3PR0501MB1090.namprd05.prod.outlook.com (10.160.113.12) with
+	Microsoft SMTP
+	Server (TLS) id 15.1.195.15; Wed, 1 Jul 2015 13:08:37 +0000
+Received: from BN3PR0501MB1090.namprd05.prod.outlook.com ([10.160.113.12]) by
+	BN3PR0501MB1090.namprd05.prod.outlook.com ([10.160.113.12]) with
+	mapi id 15.01.0195.005; Wed, 1 Jul 2015 13:08:37 +0000
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: SAS NONE <sarsher83@yahoo.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] SAMA5D3 header files for C application development
+Thread-Index: AQHQs7eCNoGZj8MYvUWuaCLIPY5nwp3Ghptg
+Date: Wed, 1 Jul 2015 13:08:37 +0000
+Message-ID: <BN3PR0501MB1090AAEA23B3F7C3A89CFBDBBBA80@BN3PR0501MB1090.namprd05.prod.outlook.com>
+References: <1375415882.87911.1435725356116.JavaMail.yahoo@mail.yahoo.com>
+In-Reply-To: <1375415882.87911.1435725356116.JavaMail.yahoo@mail.yahoo.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: yahoo.com; dkim=none (message not signed)
+	header.d=none;
+x-originating-ip: [98.100.91.242]
+x-microsoft-exchange-diagnostics: 1; BN3PR0501MB1090;
+	5:CzcA/oUlC3wmB+RAaqDTF8oJ8QNZ8Hc9oEpPx/txMDGTKwdftySoPmSFNCgz9msCd1JUNYfJx91JPeKQr1CNxidGQxIriSWc0eV3LmRFENfVaODJXo2pI84DakVdp0DNoEDZ1HRud/4EKyxGirn+jQ==;
+	24:412BgvfKWIOi+uR5nCN6rRMsou0rJF9Q5IC0H6h3AHYCwOGJOtvh5HNt1zSsQjkrSsseRm9g7J2uA2+LWT7LLRXoEut4TskZVhtNT1rNSpQ=;
+	20:Xw4IBcvd0wPs3FcM4GqS1IB6KNTEd34efRugXHiZBW9uIUvOxnZmmx5XU8XXp6YG8mc7IVzXoJaWIlwFNUDU2w==
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BN3PR0501MB1090;
+x-microsoft-antispam-prvs: <BN3PR0501MB109082A75A891392CE696AD0BBA80@BN3PR0501MB1090.namprd05.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:;
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(5005006)(3002001); SRVR:BN3PR0501MB1090; BCL:0;
+	PCL:0; RULEID:; SRVR:BN3PR0501MB1090; 
+x-forefront-prvs: 0624A2429E
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(6009001)(51704005)(377454003)(164054003)(19580395003)(19580405001)(86362001)(5003600100002)(87936001)(2656002)(2501003)(99286002)(40100003)(1720100001)(77096005)(102836002)(77156002)(62966003)(15975445007)(5001770100001)(33656002)(106116001)(189998001)(76576001)(5002640100001)(2950100001)(2900100001)(50986999)(54356999)(76176999)(74316001)(107886002)(5001960100002)(92566002)(46102003)(2521001)(66066001)(122556002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR0501MB1090;
+	H:BN3PR0501MB1090.namprd05.prod.outlook.com; FPR:; SPF:None;
+	MLV:sfv; LANG:en; 
 MIME-Version: 1.0
-X-Received: by 10.182.114.138 with SMTP id jg10mr13826112obb.55.1435750863354; 
-	Wed, 01 Jul 2015 04:41:03 -0700 (PDT)
-Received: by 10.60.150.76 with HTTP; Wed, 1 Jul 2015 04:41:03 -0700 (PDT)
-Received: by 10.60.150.76 with HTTP; Wed, 1 Jul 2015 04:41:03 -0700 (PDT)
-In-Reply-To: <A50844B104EDFA45BBC46099A9C6C8407B0BB7D6@SPCCOREXCMBX01.AD.SPIRENTCOM.COM>
-References: <A50844B104EDFA45BBC46099A9C6C8407B0BB7D6@SPCCOREXCMBX01.AD.SPIRENTCOM.COM>
-Date: Wed, 1 Jul 2015 07:41:03 -0400
-Message-ID: <CAFZh4h_P6NrLmWNuK-4d0UYANwR0DfB3RBTOGZ_AjpszFz6a9g@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-To: "Stanciu, Alin" <Alin.Stanciu@spirent.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Retrieve list of all software/applications/packages installed on Yocto
+X-OriginatorOrg: melinkcorp.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2015 13:08:37.5451 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d06db0f9-efcc-42b5-9f8c-c934a01c9bfd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR0501MB1090
+Subject: Re: SAMA5D3 header files for C application development
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,195 +72,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Jul 2015 11:41:08 -0000
-Content-Type: multipart/alternative; boundary=001a11c2e0d032449d0519cecc84
+X-List-Received-Date: Wed, 01 Jul 2015 13:08:43 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---001a11c2e0d032449d0519cecc84
-Content-Type: text/plain; charset=UTF-8
+U2FtLA0KDQoNCj4gRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86
+eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgU0FTIE5PTkUNCj4g
+U2VudDogV2VkbmVzZGF5LCBKdWx5IDAxLCAyMDE1IDEyOjM2IEFNDQo+IFRvOiB5b2N0b0B5b2N0
+b3Byb2plY3Qub3JnDQo+IFN1YmplY3Q6IFt5b2N0b10gU0FNQTVEMyBoZWFkZXIgZmlsZXMgZm9y
+IEMgYXBwbGljYXRpb24gZGV2ZWxvcG1lbnQNCj4NCj4gSGksDQo+DQo+IEknbSB1c2luZyBTQU1B
+NUQzLXhwbGFpbmVkIGJvYXJkIGFuZCBidWlsdCBhIExpbnV4IGtlcm5lbCAzLjE4IGRpc3RybyBm
+b3IgaXQgdXNpbmcgdGhlIFBva3kgWW9jdG8gYnVpbGQgZGlyZWN0b3J5LsKgIEkndmUgYWxzbyBj
+cmVhdGVkIHRoZSBzZGsgYW5kIGluc3RhbGxlZCBpdCBpbiAvb3B0L3Bva3ktYXRtZWwvMS43LjIu
+wqAgUmFuIGhlbGxvIHdvcmxkIGV4YW1wbGUgaW4gZWNsaXBzZSBob3dldmVyIEknbSB0cnlpbmcg
+dG8gZmluZCB0aGUgQyBoZWFkZXIgZmlsZXMgZm9yIHRoZSBwZXJpcGhlcmFscyBzbyBJIGNhbiBk
+ZXZlbG9wIGFwcGxpY2F0aW9ucyB1c2luZyB0aGUgU1BJIGJ1cyBvciB0aGUgaTJjIGJ1cy7CoCBB
+bnkgaGVscCBpbiBsb2NhdGluZyB0aGVzZSBoZWFkZXIgZmlsZXMgb3IgaG93IHRvIGdvIGFib3V0
+IGRldmVsb3BpbmcgYW5kIGNyb3NzIGNvbXBpbGluZyB0aGUgQyBjb2RlIGluIGVjbGlwc2U/wqAg
+SSd2ZSBhbHJlYWR5IGxvb2tlZCBhdCB0aGUgWW9jdG8gYWR0IG1hbnVhbCBmb3IgZWNsaXBzZSB3
+aGljaCBpcyB2ZXJ5IG1pbmltdW0uDQo+IA0KPiBBbnkgaGVscCBpcyBncmVhdGx5IGFwcHJlY2lh
+dGVkLg0KDQpJJ20gYXNzdW1pbmcgYmFzZWQgb24geW91ciBxdWVzdGlvbnMgdGhhdCB5b3UgYXJl
+IG5ldyB0byB0aGUgZGV2aWNlIHRyZWUgc2V0dXAgZm9yIEFSTSBpbiB0aGUgTGludXgga2VybmVs
+IGFuZCBob3cgdG8gbWFrZSB1c2Ugb2YgaXQgb24gdGhlIGtlcm5lbCBzaWRlIGFuZCB0aGUgdXNl
+cnNwYWNlIHNpZGUuICBJZiBzbywgSSdkIHN1Z2dlc3QgeW91IGdvIHRvIGh0dHA6Ly93d3cuYXQ5
+MS5jb20vbGludXg0c2FtL2Jpbi92aWV3L0xpbnV4NFNBTS9MaW51eEtlcm5lbCBhbmQgcmVhZCB0
+aGUgZG9jdW1lbnRhdGlvbiBsaW5rZWQgaW4gdGhlICJDaGFuZ2VzIGludHJvZHVjZWQgYnkgRGV2
+aWNlIFRyZWUgU3VwcG9ydCBzZWN0aW9uIi4gIFRoZW4gQXRtZWwgaGFzIGRvY3VtZW50YXRpb24g
+c3BlY2lmaWMgdG8gdGhlaXIgU1BJIGFuZCBJMkMgd2l0aCB0aGUgTGludXgga2VybmVsIGRvY3Vt
+ZW50YXRpb24uICBMb29rIHVuZGVyIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9z
+cGkvc3BpX2F0bWVsLnR4dCBhbmQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2ky
+Yy9pMmMtYXQ5MS50eHQgaW4geW91ciBrZXJuZWwgc291cmNlLg0KDQpJbiBzdW1tYXJ5LCBpZiB5
+b3UgYXJlIGx1Y2t5IGVub3VnaCB0aGF0IHRoZSBkZXZpY2UgeW91IHdhbnQgdG8gY29tbXVuaWNh
+dGUgd2l0aCBoYXMgZGV2aWNlIHRyZWUgc3VwcG9ydCwgdGhlbiB5b3Ugd291bGQgYWRkIHRoYXQg
+ZGV2aWNlIHRvIHlvdXIgZGV2aWNlIHRyZWUgZmlsZXMgYW5kIGZvbGxvdyB0aGVpciBkb2N1bWVu
+dGF0aW9uIG9uIGhvdyB0byBjb21tdW5pY2F0ZSB3aXRoIGl0IGZyb20gdXNlcnNwYWNlLiAgRm9y
+IGV4YW1wbGUsIEkgYW0gdXNpbmcgdGhlIEFENTQ0NiBEQUMgb24gbXkgaGFyZHdhcmUsIGFuZCBB
+bmFsb2cgRGV2aWNlcyBoYXMgZXhjZWxsZW50IGRvY3VtZW50YXRpb24gb2YgdGhlaXIgREFDIExp
+bnV4IGtlcm5lbCBkcml2ZXIgaGVyZTogaHR0cDovL3dpa2kuYW5hbG9nLmNvbS9yZXNvdXJjZXMv
+dG9vbHMtc29mdHdhcmUvbGludXgtZHJpdmVycy9paW8tZGFjL2FkNTQ0Ni4gIEZvciB0aGlzIGRl
+dmljZSBJIG9wZW4gdXAgYSBmaWxlIGFuZCB3cml0ZSBhIHZhbHVlIGZvciB0aGUgZGVzaXJlZCBv
+dXRwdXQgdm9sdGFnZSwgYW5kIHRoZW4gdGhlIGRyaXZlciB0YWtlcyBjYXJlIG9mIGNvbW11bmlj
+YXRpbmcgdG8gdGhlIEFENTQ0Ni4gIE90aGVyd2lzZSBJIHRoaW5rIHlvdSBjYW4gdXNlIHRoZSBn
+ZW5lcmljIHNwaWRldiBpbnRlcmZhY2UgZm9yIHJlYWRpbmcgYW5kIHdyaXRpbmcgZGF0YSBvbiB0
+aGUgU1BJIHBvcnQgKGFuZCBJIHRoaW5rIHRoZXJlIGlzIHNvbWV0aGluZyBzaW1pbGFyIGZvciBJ
+MkM/KS4NCg0KU2luY2UgeW91IGhhdmUgcXVlc3Rpb25zIHRoYXQgYXJlIHNwZWNpZmljIHRvIHlv
+dXIgaGFyZHdhcmUsIEkgdGhpbmsgeW91IG1heSBiZSBhYmxlIHRvIGdldCBiZXR0ZXIgYW5zd2Vy
+cyBvbiBBdG1lbCdzIEFUOTEgZm9ydW1zIG9yIGNoZWNraW5nIGZvciBpbmZvcm1hdGlvbiBvbiBM
+aW51eCBrZXJuZWwgZHJpdmVyIHN1cHBvcnQgZm9yIHlvdXIgc3BlY2lmaWMgSTJDIGFuZCBTUEkg
+ZGV2aWNlcy4gIElmIHlvdSBhcmUgaGF2aW5nIHByb2JsZW1zIGJ1aWxkaW5nIGFuIGFwcGxpY2F0
+aW9uIHdpdGggdGhlIEVjbGlwc2UgQURUIGFuZCBnZXR0aW5nIHRvIHJ1biBvbiB5b3VyIGhhcmR3
+YXJlLCB0aGVuIGxldCB1cyBrbm93IHNvbWUgc3BlY2lmaWMgZGV0YWlscyB3aXRoIHRoZSBwcm9i
+bGVtcyB5b3UgYXJlIHNlZWluZy4NCg0KUmVnYXJkcywNCkJyeWFuDQoNCj4gDQo+IFRoYW5rcywN
+Cj4gDQo+IFNhbQ0K
 
-On Jul 1, 2015 7:34 AM, "Stanciu, Alin" <Alin.Stanciu@spirent.com> wrote:
->
-> Hello,
->
->
->
-> I would simply like to know how to obtain a list of all software
-packages/products (basically all applications) running in my Yocto build.
->
->
->
-> Can this be done via a recipe? How can I find out whether my build has a
-recipe? What are other ways are there to get the listing?
->
->
->
-> Thanks
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
-> Spirent Communications e-mail confidentiality.
-> ------------------------------------------------------------------------
-> This e-mail contains confidential and / or privileged information
-belonging to Spirent Communications plc, its affiliates and / or
-subsidiaries. If you are not the intended recipient, you are hereby
-notified that any disclosure, copying, distribution and / or the taking of
-any action based upon reliance on the contents of this transmission is
-strictly forbidden. If you have received this message in error please
-notify the sender by return e-mail and delete it from your system.
->
-> Spirent Communications plc
-> Northwood Park, Gatwick Road, Crawley, West Sussex, RH10 9XN, United
-Kingdom.
-> Tel No. +44 (0) 1293 767676
-> Fax No. +44 (0) 1293 767677
->
-> Registered in England Number 470893
-> Registered at Northwood Park, Gatwick Road, Crawley, West Sussex, RH10
-9XN, United Kingdom.
->
-> Or if within the US,
->
-> Spirent Communications,
-> 27349 Agoura Road, Calabasas, CA, 91301, USA.
-> Tel No. 1-818-676- 2300
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
-When you build your image ... a manifest file will contain the list of
-packages (with versions) contained in that image.
-
-If you have a running system, you can generate kind of the same list
-(depending on which package manager is being used - if any) by running a
-command like opkg list-installed.
-
-Regards,
-
-Brian
-
---001a11c2e0d032449d0519cecc84
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p dir=3D"ltr"><br>
-On Jul 1, 2015 7:34 AM, &quot;Stanciu, Alin&quot; &lt;<a href=3D"mailto:Ali=
-n.Stanciu@spirent.com">Alin.Stanciu@spirent.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hello,<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; I would simply like to know how to obtain a list of all software packa=
-ges/products (basically all applications) running in my Yocto build.<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; Can this be done via a recipe? How can I find out whether my build has=
- a recipe? What are other ways are there to get the listing?<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; Thanks<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; =C2=A0<br>
-&gt;<br>
-&gt; Spirent Communications e-mail confidentiality.<br>
-&gt; ----------------------------------------------------------------------=
---<br>
-&gt; This e-mail contains confidential and / or privileged information belo=
-nging to Spirent Communications plc, its affiliates and / or subsidiaries. =
-If you are not the intended recipient, you are hereby notified that any dis=
-closure, copying, distribution and / or the taking of any action based upon=
- reliance on the contents of this transmission is strictly forbidden. If yo=
-u have received this message in error please notify the sender by return e-=
-mail and delete it from your system.<br>
-&gt;<br>
-&gt; Spirent Communications plc<br>
-&gt; Northwood Park, Gatwick Road, Crawley, West Sussex, RH10 9XN, United K=
-ingdom.<br>
-&gt; Tel No. +44 (0) 1293 767676<br>
-&gt; Fax No. +44 (0) 1293 767677<br>
-&gt;<br>
-&gt; Registered in England Number 470893<br>
-&gt; Registered at Northwood Park, Gatwick Road, Crawley, West Sussex, RH10=
- 9XN, United Kingdom.<br>
-&gt;<br>
-&gt; Or if within the US, <br>
-&gt;<br>
-&gt; Spirent Communications,<br>
-&gt; 27349 Agoura Road, Calabasas, CA, 91301, USA.<br>
-&gt; Tel No. 1-818-676- 2300 <br>
-&gt;<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://list=
-s.yoctoproject.org/listinfo/yocto</a><br>
-&gt;</p>
-<p dir=3D"ltr">When you build your image ... a manifest file will contain t=
-he list of packages (with versions) contained in that image.</p>
-<p dir=3D"ltr">If you have a running system, you can generate kind of the s=
-ame list (depending on which package manager is being used - if any) by run=
-ning a command like opkg list-installed.</p>
-<p dir=3D"ltr">Regards,</p>
-<p dir=3D"ltr">Brian</p>
-
---001a11c2e0d032449d0519cecc84--
