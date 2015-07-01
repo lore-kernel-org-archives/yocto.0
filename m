@@ -1,37 +1,54 @@
-Return-Path: <sgw@linux.intel.com>
+Return-Path: <b.hutchman@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 457D7E00A85; Wed,  1 Jul 2015 09:44:35 -0700 (PDT)
+	id DB4DEE00A81; Wed,  1 Jul 2015 10:31:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (b.hutchman[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A34EE00A1E
-	for <yocto@yoctoproject.org>; Wed,  1 Jul 2015 09:44:34 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by fmsmga102.fm.intel.com with ESMTP; 01 Jul 2015 09:44:33 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,387,1432623600"; d="scan'208";a="721129018"
-Received: from ashussai-mobl1.amr.corp.intel.com (HELO
-	swold-mobl.amr.corp.intel.com) ([10.254.105.108])
-	by orsmga001.jf.intel.com with ESMTP; 01 Jul 2015 09:44:33 -0700
-Message-ID: <559418F1.1060704@linux.intel.com>
-Date: Wed, 01 Jul 2015 09:44:33 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.6.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.49 listed in list.dnswl.org]
+Received: from mail-oi0-f49.google.com (mail-oi0-f49.google.com
+	[209.85.218.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C7F7E009D2
+	for <yocto@yoctoproject.org>; Wed,  1 Jul 2015 10:30:58 -0700 (PDT)
+Received: by oiyy130 with SMTP id y130so37295095oiy.0
+	for <yocto@yoctoproject.org>; Wed, 01 Jul 2015 10:30:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=nfXLYv3dFgUhdQg63NZCXnyUou1XUqbE5Pmijn88/RM=;
+	b=PDx2xRoVtCej8fgb/0osn5dzb9cscq27fJ7qSzxzuBS1s2Ehv4WsVIOcunNF3QbmkH
+	wmeOMf5+OJrR09HzP7xAx8AqPPMrVWiWupY/UYVV+fSoT1eEPU2XjokAGZDOl42j2Tpr
+	zIA9hSjCT5pMGR2R+3VC3hP2PZQLDhyQUyp/Jg/HYFZiaio+8rAG5bIQKr5Fj4CI8gb1
+	Lud9s8BrZu1MwiObihqRBW+Y/0WgWiEi8hEInjzgy2fpEHI1ibzYR4o/wjFfdKrn+4M6
+	oLiL4J+MbULietpL1MduuQ4Fmbxz61+BpLudoPxCoDaMDbmzu0gj/L8KE2zGsVJLA8F8
+	XYqA==
 MIME-Version: 1.0
-To: Vipin Nair <vipin.jn@gmail.com>, yocto@yoctoproject.org
-References: <CAFYg0UpeehEy41ethe90thM+hL3EzkPZWcuKJ_3OS2hN4kuESQ@mail.gmail.com>
-	<CAFYg0Uq1yqubKPyn2r36h1xXRLTVQvzCvx=hYO3FvGpJzr1pfQ@mail.gmail.com>
-In-Reply-To: <CAFYg0Uq1yqubKPyn2r36h1xXRLTVQvzCvx=hYO3FvGpJzr1pfQ@mail.gmail.com>
-Subject: Re: With my layer, Systemd not invoking my application at startup
+X-Received: by 10.60.45.207 with SMTP id p15mr25609985oem.34.1435771857968;
+	Wed, 01 Jul 2015 10:30:57 -0700 (PDT)
+Received: by 10.60.150.76 with HTTP; Wed, 1 Jul 2015 10:30:57 -0700 (PDT)
+In-Reply-To: <A50844B104EDFA45BBC46099A9C6C8407B0BB7F2@SPCCOREXCMBX01.AD.SPIRENTCOM.COM>
+References: <A50844B104EDFA45BBC46099A9C6C8407B0BB7D6@SPCCOREXCMBX01.AD.SPIRENTCOM.COM>
+	<CAFZh4h_P6NrLmWNuK-4d0UYANwR0DfB3RBTOGZ_AjpszFz6a9g@mail.gmail.com>
+	<A50844B104EDFA45BBC46099A9C6C8407B0BB7F2@SPCCOREXCMBX01.AD.SPIRENTCOM.COM>
+Date: Wed, 1 Jul 2015 13:30:57 -0400
+Message-ID: <CAFZh4h_Z5Kjwm=pspfdW7RukQOK2AZik5ija=jUP4Q7i5Kik1A@mail.gmail.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+To: "Stanciu, Alin" <Alin.Stanciu@spirent.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Retrieve list of all software/applications/packages installed on Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,116 +60,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Jul 2015 16:44:35 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 01 Jul 2015 17:31:11 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 06/30/2015 08:35 PM, Vipin Nair wrote:
-> Hi All,
->
-> I have  created a layer (my first layer) and have build it with WindRiver
-> media which uses Systemd for the startup services.
->
-> As per my application need, I have to create a new user on the final image
-> and change the owner permissions of certain files to the new user.
-> Since I could not get it done on the build machine, I have written the post
-> install script such that it gets executed on the  target board during the
-> 1st boot cycle
-> and from within the post install script I am creating the new user and
-> changing the file ownership. And this works.
->
-> But the only problem I have now is that, even though I register my service
-> with Systemd at pre-install (or postinstall) section (using the systemctl
-> enable command)
-> my service is not getting launched by Systemd during the 1st boot. On
-> subsequent reboots, it invokes my service at boot up.
->
-> As part of debugging I just modified my postinstall script, such that it
-> gets executed on the board (i.e without the exit 1)  and not executed on
-> the 1st boot. After that I see that
-> systemd invokes my service at boot up.  So I wonder if Systemd ignores the
-> services for which post-install is not invoked at build machine ?
->
-> Now I am confused on how to solve this problem.
->
-> Only 2 approaches comes to my mind :
-> 1) Run the postinstall on the board only (not on 1st boot)  - But with this
-> (i.e running the postinstall section on board) I don't see the new user
-> creation happening and as a result it fails to change the file ownership.
->
-> 2) Somehow force systemd to invoke my service at startup (even with
-> postinstall running during 1st boot)  - But I don't know what I have to do
-> to achieve this.
->
-> Here is the brief of my recipe file :
-> -----------------------------------------------
->
-> DEPENDS += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd',
-> 'systemd-systemctl-native', '', d)}"
+On Wed, Jul 1, 2015 at 7:55 AM, Stanciu, Alin <Alin.Stanciu@spirent.com> wr=
+ote:
+> Thank you Brian, this is very useful.
 >
 >
-> do_install() {
-> ------------
-> ------------
-> #if systemd configured
-> install -m 0755 -d ${D}/lib/systemd/system
-> cp ${WORKDIR}/${MA_BIN_DIR}/my_ser.service ${D}/lib/systemd/system/
-> ------------
-> ------------
-> }
 >
-> pkg_preinst_${PN}() {
-> ------------
-> ------------
+> I don=E2=80=99t have either opkg or dpkg installed so I=E2=80=99m using r=
+pm. It=E2=80=99s useful in
+> the sense I can get comprehensive information on all packages installed, =
+as
+> well as all files for each package:
 >
-> if [  "$IS_SYSTEMD_CONFIGURED" = "yes" ] ; then
-> systemctl --root=$D enable my_ser.service    # Have tried executing it only
-> on postinstall, but it does not help.
-> fi
-> ------------
-> ------------
-> }
 >
-> pkg_postinst_${PN}() {
-> ------------
-> ------------
-> if [  "$IS_SYSTEMD_CONFIGURED" = "yes" ] ; then
-> systemctl --root=$D enable ma.service
-> fi
->   if [ x"$D" = "x" ] ; then
->   # Create group and user
-> groupadd test_grp
-> useradd -r -s /sbin/nologin -g  test_grp test_usr
+>
+> =C2=B7         rpm =E2=80=93qa (all packages)
+>
+> =C2=B7         rpm -qi <package_name>(detailed package information)
+>
+> =C2=B7         rpm -ql <package_name>( package files)
+>
+>
+>
+> This is almost too useful=E2=80=A6in the sense that I need a more high-le=
+vel
+> description/listing off the packages installed (or even a more succinct
+> listing, if you will). Think of it as a Linux (or in this case Yocto)
+> equivalent of Control Panel -> Programs and Features in Windows.
+>
+>
+>
+> Are you aware of an easy way to do this?
+>
 
-It appears you did not try to use the useradd bbclass here.
+On a running system?  The way I usually research things is to use sites lik=
+e:
 
->   chown test_usr:test_grp /etc/test_folder/*
->   if [  "$IS_SYSTEMD_CONFIGURED" = "yes" ] ; then
-> if [ "$1" == 1 ] || [ "$1" = 2 ] ; then  # only install and upgrade
-> scenario, not to exeute on 1st boot
-> systemctl daemon-reload
-> systemctl start my_ser.service
-> fi
-> else
-> exit 1
-> fi
-> }
->
-> I am new to the yacto project and the layer approach. So kindly guide me on
-> how to resolve this issue.
->
-If you can send your full bb file, are you using the systemd bbclass as 
-I suggested in a past email?
+http://recipes.yoctoproject.org/rrs/recipes/1.9/M2/
+http://layers.openembedded.org/layerindex/branch/master/layers/
 
-Sau!
+If you are running X with a window manager of some type then yea, you
+can install any number of GUI front ends to the package manager and do
+a similiar thing as your windows example.  My embedded boxes aren't
+running X, they are just console based systems that run a web server.
 
+If you run Toaster (used to be HOB) you can have a nice GUI on your
+development host that will unwind all the metatdata of all possible
+packages and display some of the same info and look at dependencies,
+sizes etc.  It will allow you to do "what if" cases like "If I want
+bluez, what other packages get pulled in an how much bigger will my
+flash image be".
 
-> Also if this is not the right group to get help on this issue, please
-> suggest about the relevant group.
->
-> Thanks
-> Vipin
->
->
->
+On a running system if you need more info about packages and you don't
+have a GUI front end ... I would think you would have to use the
+package manager cmd line to see what's installed and if you need more
+info on that package then use the name of it and visit some of the
+sites like I listed above.
+
+That's all I can think of at the moment.  I'm sure there are a lot of
+folks smarter than me that hopefully will chime in with better tricks.
+
+Regards,
+
+Brian
 
