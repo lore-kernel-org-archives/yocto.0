@@ -1,54 +1,31 @@
-Return-Path: <b.hutchman@gmail.com>
+Return-Path: <mariano.lopez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DB4DEE00A81; Wed,  1 Jul 2015 10:31:11 -0700 (PDT)
+	id 7A4D8E00A96; Wed,  1 Jul 2015 12:08:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (b.hutchman[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.49 listed in list.dnswl.org]
-Received: from mail-oi0-f49.google.com (mail-oi0-f49.google.com
-	[209.85.218.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C7F7E009D2
-	for <yocto@yoctoproject.org>; Wed,  1 Jul 2015 10:30:58 -0700 (PDT)
-Received: by oiyy130 with SMTP id y130so37295095oiy.0
-	for <yocto@yoctoproject.org>; Wed, 01 Jul 2015 10:30:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=nfXLYv3dFgUhdQg63NZCXnyUou1XUqbE5Pmijn88/RM=;
-	b=PDx2xRoVtCej8fgb/0osn5dzb9cscq27fJ7qSzxzuBS1s2Ehv4WsVIOcunNF3QbmkH
-	wmeOMf5+OJrR09HzP7xAx8AqPPMrVWiWupY/UYVV+fSoT1eEPU2XjokAGZDOl42j2Tpr
-	zIA9hSjCT5pMGR2R+3VC3hP2PZQLDhyQUyp/Jg/HYFZiaio+8rAG5bIQKr5Fj4CI8gb1
-	Lud9s8BrZu1MwiObihqRBW+Y/0WgWiEi8hEInjzgy2fpEHI1ibzYR4o/wjFfdKrn+4M6
-	oLiL4J+MbULietpL1MduuQ4Fmbxz61+BpLudoPxCoDaMDbmzu0gj/L8KE2zGsVJLA8F8
-	XYqA==
-MIME-Version: 1.0
-X-Received: by 10.60.45.207 with SMTP id p15mr25609985oem.34.1435771857968;
-	Wed, 01 Jul 2015 10:30:57 -0700 (PDT)
-Received: by 10.60.150.76 with HTTP; Wed, 1 Jul 2015 10:30:57 -0700 (PDT)
-In-Reply-To: <A50844B104EDFA45BBC46099A9C6C8407B0BB7F2@SPCCOREXCMBX01.AD.SPIRENTCOM.COM>
-References: <A50844B104EDFA45BBC46099A9C6C8407B0BB7D6@SPCCOREXCMBX01.AD.SPIRENTCOM.COM>
-	<CAFZh4h_P6NrLmWNuK-4d0UYANwR0DfB3RBTOGZ_AjpszFz6a9g@mail.gmail.com>
-	<A50844B104EDFA45BBC46099A9C6C8407B0BB7F2@SPCCOREXCMBX01.AD.SPIRENTCOM.COM>
-Date: Wed, 1 Jul 2015 13:30:57 -0400
-Message-ID: <CAFZh4h_Z5Kjwm=pspfdW7RukQOK2AZik5ija=jUP4Q7i5Kik1A@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-To: "Stanciu, Alin" <Alin.Stanciu@spirent.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Retrieve list of all software/applications/packages installed on Yocto
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A0BBE009D2
+	for <yocto@yoctoproject.org>; Wed,  1 Jul 2015 12:08:41 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga103.fm.intel.com with ESMTP; 01 Jul 2015 12:08:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.15,388,1432623600"; d="scan'208";a="517384077"
+Received: from mlopezva-mobl2.zpn.intel.com ([10.219.16.59])
+	by FMSMGA003.fm.intel.com with ESMTP; 01 Jul 2015 12:08:11 -0700
+From: mariano.lopez@linux.intel.com
+To: yocto@yoctoproject.org
+Date: Wed,  1 Jul 2015 14:08:09 -0500
+Message-Id: <1435777689-9773-1-git-send-email-mariano.lopez@linux.intel.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [PATCH] views.py: Fix version in current milestone
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,71 +37,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Jul 2015 17:31:11 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 01 Jul 2015 19:08:44 -0000
 
-On Wed, Jul 1, 2015 at 7:55 AM, Stanciu, Alin <Alin.Stanciu@spirent.com> wr=
-ote:
-> Thank you Brian, this is very useful.
->
->
->
-> I don=E2=80=99t have either opkg or dpkg installed so I=E2=80=99m using r=
-pm. It=E2=80=99s useful in
-> the sense I can get comprehensive information on all packages installed, =
-as
-> well as all files for each package:
->
->
->
-> =C2=B7         rpm =E2=80=93qa (all packages)
->
-> =C2=B7         rpm -qi <package_name>(detailed package information)
->
-> =C2=B7         rpm -ql <package_name>( package files)
->
->
->
-> This is almost too useful=E2=80=A6in the sense that I need a more high-le=
-vel
-> description/listing off the packages installed (or even a more succinct
-> listing, if you will). Think of it as a Linux (or in this case Yocto)
-> equivalent of Control Panel -> Programs and Features in Windows.
->
->
->
-> Are you aware of an easy way to do this?
->
+From: Mariano Lopez <mariano.lopez@linux.intel.com>
 
-On a running system?  The way I usually research things is to use sites lik=
-e:
+Fixed the version displayed in current milestone.
+Before the data was obtained from recipe upgrad table
+and this allows to fetch the data from the recipe table.
 
-http://recipes.yoctoproject.org/rrs/recipes/1.9/M2/
-http://layers.openembedded.org/layerindex/branch/master/layers/
+Signed-off-by: Mariano Lopez <mariano.lopez@linux.intel.com>
+---
+ rrs/models.py |  7 +++++++
+ rrs/views.py  | 16 ++++++++++++----
+ 2 files changed, 19 insertions(+), 4 deletions(-)
 
-If you are running X with a window manager of some type then yea, you
-can install any number of GUI front ends to the package manager and do
-a similiar thing as your windows example.  My embedded boxes aren't
-running X, they are just console based systems that run a web server.
+diff --git a/rrs/models.py b/rrs/models.py
+index 320670c..f0d4ed3 100644
+--- a/rrs/models.py
++++ b/rrs/models.py
+@@ -430,6 +430,13 @@ class Raw():
+         return stats
+ 
+     @staticmethod
++    def get_re_all():
++        cur = connection.cursor()
++        cur.execute("""SELECT id, pn, pv, summary
++                FROM layerindex_recipe""")
++        return Raw.dictfetchall(cur)
++
++    @staticmethod
+     def get_reupg_by_date(date):
+         cur = connection.cursor()
+         cur.execute("""SELECT re.id, re.pn, re.summary, te.version, rownum FROM (
+diff --git a/rrs/views.py b/rrs/views.py
+index e2aa1ce..4a1e9bb 100644
+--- a/rrs/views.py
++++ b/rrs/views.py
+@@ -119,10 +119,18 @@ def _get_recipe_list(milestone):
+     maintainers_dict_all = {}
+     current_date = date.today()
+ 
+-    recipes = Raw.get_reupg_by_date(
+-            milestone.end_date)
+-    for recipe in recipes:
+-        recipes_ids.append(recipe['id'])
++    # If the is the curent milestone take the data recipes table
++    # otherwise take it from recipe upgrade
++    if current_date >= milestone.start_date and \
++            current_date <= milestone.end_date:
++        recipes = Raw.get_re_all()
++    else:
++        recipes = Raw.get_reupg_by_date(milestone.end_date)
++
++    for i,re in enumerate(recipes):
++        if re.has_key('pv'):
++            recipes[i]['version'] = re['pv']
++        recipes_ids.append(re['id'])
+ 
+     if recipe_upstream_history:
+         recipe_upstream_all = Raw.get_reup_by_recipes_and_date(
+-- 
+1.9.1
 
-If you run Toaster (used to be HOB) you can have a nice GUI on your
-development host that will unwind all the metatdata of all possible
-packages and display some of the same info and look at dependencies,
-sizes etc.  It will allow you to do "what if" cases like "If I want
-bluez, what other packages get pulled in an how much bigger will my
-flash image be".
-
-On a running system if you need more info about packages and you don't
-have a GUI front end ... I would think you would have to use the
-package manager cmd line to see what's installed and if you need more
-info on that package then use the name of it and visit some of the
-sites like I listed above.
-
-That's all I can think of at the moment.  I'm sure there are a lot of
-folks smarter than me that hopefully will chime in with better tricks.
-
-Regards,
-
-Brian
 
