@@ -1,31 +1,38 @@
-Return-Path: <mariano.lopez@linux.intel.com>
+Return-Path: <craig.mcqueen@innerrange.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A498E00A96; Wed,  1 Jul 2015 12:28:49 -0700 (PDT)
+	id 35BE5E00AB9; Wed,  1 Jul 2015 22:07:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34CD3E00A1E
-	for <yocto@yoctoproject.org>; Wed,  1 Jul 2015 12:28:44 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by orsmga103.jf.intel.com with ESMTP; 01 Jul 2015 12:28:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,388,1432623600"; d="scan'208";a="517392253"
-Received: from mlopezva-mobl2.zpn.intel.com ([10.219.16.59])
-	by FMSMGA003.fm.intel.com with ESMTP; 01 Jul 2015 12:28:42 -0700
-From: mariano.lopez@linux.intel.com
-To: yocto@yoctoproject.org
-Date: Wed,  1 Jul 2015 14:28:42 -0500
-Message-Id: <1435778922-10825-1-git-send-email-mariano.lopez@linux.intel.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [PATCH] views.py: Fix current up to date percentage
+	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
+	*      dynamic-looking rDNS
+Received: from remote.innerrange.com (122-143-146.dsl.connexus.net.au
+	[203.122.143.146])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6E4EE00A93
+	for <yocto@yoctoproject.org>; Wed,  1 Jul 2015 22:07:49 -0700 (PDT)
+Received: from IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b]) by
+	IR-CENTRAL.corp.innerrange.com ([fe80::216f:2d6c:20cc:241b%16]) with
+	mapi; Thu, 2 Jul 2015 15:07:45 +1000
+From: Craig McQueen <craig.mcqueen@innerrange.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Thu, 2 Jul 2015 15:07:44 +1000
+Thread-Topic: Unset a variable
+Thread-Index: AdC0hJitclVynmrLSPyLvYk0sidy0A==
+Message-ID: <5500469A22567C4BAF673A6E86AFA3A40227C1CB9D0E@IR-CENTRAL.corp.innerrange.com>
+Accept-Language: en-US, en-AU
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US, en-AU
+x-tm-as-product-ver: SMEX-11.1.0.1239-8.000.1202-21650.001
+x-tm-as-result: No--31.017700-5.000000-31
+x-tm-as-user-approved-sender: No
+x-tm-as-user-blocked-sender: No
+MIME-Version: 1.0
+Subject: Unset a variable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,52 +44,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Jul 2015 19:28:49 -0000
+X-List-Received-Date: Thu, 02 Jul 2015 05:07:54 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Mariano Lopez <mariano.lopez@linux.intel.com>
+I'd like to make a distro config file, derived from conf/distro/poky.conf. =
+But in my case, DISTRO_CODENAME is not really something that can contain a =
+meaningful value, so I'd like to unset it. How can I unset the variable?
 
-There was an issue where the current up to date was always
-using the latest upstream version to get the percentage.
-This uses the upstream version in the period displayed.
+(This affects the format of VERSION in /etc/os-release. I guess alternative=
+ly I could modify it in a os-release.bbappend)
 
-Signed-off-by: Mariano Lopez <mariano.lopez@linux.intel.com>
----
- rrs/models.py | 5 +++++
- rrs/views.py  | 4 ++--
- 2 files changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/rrs/models.py b/rrs/models.py
-index f0d4ed3..d0e88b9 100644
---- a/rrs/models.py
-+++ b/rrs/models.py
-@@ -272,6 +272,11 @@ class RecipeUpstream(models.Model):
-     date = models.DateTimeField(db_index=True)
- 
-     @staticmethod
-+    def get_all_recipes(history):
-+        qry = RecipeUpstream.objects.filter(history = history)
-+        return qry
-+
-+    @staticmethod
-     def get_recipes_not_updated(history):
-         qry = RecipeUpstream.objects.filter(history = history, status = 'N',
-                 no_update_reason = '').order_by('pn')
-diff --git a/rrs/views.py b/rrs/views.py
-index 4a1e9bb..dbdf9cd 100644
---- a/rrs/views.py
-+++ b/rrs/views.py
-@@ -42,8 +42,8 @@ def _get_milestone_statistics(milestone, maintainer_name=None):
-     )
- 
-     if maintainer_name is None:
--        milestone_statistics['all'] = Recipe.objects.all().count()
--
-+        milestone_statistics['all'] = \
-+            RecipeUpstream.get_all_recipes(recipe_upstream_history).count()
-         milestone_statistics['up_to_date'] = \
-             RecipeUpstream.get_recipes_up_to_date(recipe_upstream_history).count()
-         milestone_statistics['not_updated'] = \
--- 
-1.9.1
+--=20
+Craig McQueen
 
 
