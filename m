@@ -1,37 +1,26 @@
-Return-Path: <biannm@cn.fujitsu.com>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9D41BE00A9B; Mon,  6 Jul 2015 03:11:27 -0700 (PDT)
+	id B456CE00A25; Mon,  6 Jul 2015 03:21:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.6 required=5.0 tests=BAYES_00, RDNS_NONE,
-	URIBL_BLACK autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 1.7 URIBL_BLACK Contains an URL listed in the URIBL
-	blacklist *      [URIs: configure.ac]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1824E00AA8
-	for <yocto@yoctoproject.org>; Mon,  6 Jul 2015 03:11:12 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.13,665,1427731200"; d="scan'208";a="98120842"
-Received: from bogon (HELO edo.cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 06 Jul 2015 18:15:00 +0800
-Received: from G08CNEXCHPEKD03.g08.fujitsu.local (localhost.localdomain
-	[127.0.0.1])
-	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id t66A9OC9019464
-	for <yocto@yoctoproject.org>; Mon, 6 Jul 2015 18:09:24 +0800
-Received: from localhost.localdomain (10.167.226.31) by
-	G08CNEXCHPEKD03.g08.fujitsu.local (10.167.33.89) with Microsoft SMTP
-	Server (TLS) id 14.3.181.6; Mon, 6 Jul 2015 18:11:05 +0800
-From: Bian Naimeng <biannm@cn.fujitsu.com>
-To: <yocto@yoctoproject.org>
-Date: Mon, 6 Jul 2015 18:01:24 +0800
-Message-ID: <1436176884-54443-1-git-send-email-biannm@cn.fujitsu.com>
-X-Mailer: git-send-email 1.9.1
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AD17E009DF
+	for <yocto@yoctoproject.org>; Mon,  6 Jul 2015 03:21:30 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id CDD598A345F2
+	for <yocto@yoctoproject.org>; Mon,  6 Jul 2015 06:21:29 -0400 (EDT)
 MIME-Version: 1.0
-X-Originating-IP: [10.167.226.31]
-Subject: [meta-cgl][PATCH] pacemaker: upgrade to 1.1.12
+From: recipe-report@yoctoproject.org
+To: yocto@yoctoproject.org
+Date: Mon, 06 Jul 2015 10:21:29 -0000
+Message-ID: <20150706102129.26113.15147@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,730 +32,170 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Jul 2015 10:11:27 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 06 Jul 2015 10:21:34 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
----
- .../pacemaker/files/kill-stack-protector.patch     | 12 ---
- .../pacemaker-remove-ptest-functionality.patch     | 29 -------
- .../recipes-cgl/pacemaker/files/tmpfiles           | 11 +--
- .../recipes-cgl/pacemaker/files/volatiles          | 11 +--
- .../pacemaker-1.0.9.1/fix-header-defs-lookup.patch | 16 ----
- .../pacemaker-dont-use-help2man.patch              | 16 ----
- .../pacemaker-fix-xml-config.patch                 | 53 ------------
- .../pacemaker-1.0.9.1/pacemaker-no-bash.patch      | 40 ---------
- .../pacemaker-remove-native-includes.patch         | 22 -----
- .../pacemaker/0001-pacemaker-fix-xml-config.patch  | 49 +++++++++++
- ...earch-header-from-STAGING_INCDIR-to-walka.patch | 45 ++++++++++
- .../0003-pacemaker-fix-header-defs-lookup.patch    | 29 +++++++
- .../0004-pacemaker-do-not-build-help.patch         | 29 +++++++
- ...o-not-execute-target-program-while-cross-.patch | 43 ++++++++++
- .../recipes-cgl/pacemaker/pacemaker_1.0.9.1.bb     | 95 ----------------------
- .../recipes-cgl/pacemaker/pacemaker_1.1.12.bb      | 92 +++++++++++++++++++++
- 16 files changed, 299 insertions(+), 293 deletions(-)
- delete mode 100644 meta-cgl-common/recipes-cgl/pacemaker/files/kill-stack-protector.patch
- delete mode 100644 meta-cgl-common/recipes-cgl/pacemaker/files/pacemaker-remove-ptest-functionality.patch
- delete mode 100644 meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/fix-header-defs-lookup.patch
- delete mode 100644 meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/pacemaker-dont-use-help2man.patch
- delete mode 100644 meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/pacemaker-fix-xml-config.patch
- delete mode 100644 meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/pacemaker-no-bash.patch
- delete mode 100644 meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/pacemaker-remove-native-includes.patch
- create mode 100644 meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-pacemaker-fix-xml-config.patch
- create mode 100644 meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0002-pacemaker-search-header-from-STAGING_INCDIR-to-walka.patch
- create mode 100644 meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0003-pacemaker-fix-header-defs-lookup.patch
- create mode 100644 meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0004-pacemaker-do-not-build-help.patch
- create mode 100644 meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0005-pacemaker-do-not-execute-target-program-while-cross-.patch
- delete mode 100644 meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.0.9.1.bb
- create mode 100644 meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.12.bb
+This mail was sent out by Recipe reporting system.
 
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/files/kill-stack-protector.patch b/meta-cgl-common/recipes-cgl/pacemaker/files/kill-stack-protector.patch
-deleted file mode 100644
-index a9f5b83..0000000
---- a/meta-cgl-common/recipes-cgl/pacemaker/files/kill-stack-protector.patch
-+++ /dev/null
-@@ -1,12 +0,0 @@
--Index: Pacemaker-1-0-Pacemaker-1.0.8/configure.ac
--===================================================================
----- Pacemaker-1-0-Pacemaker-1.0.8.orig/configure.ac	2010-05-06 13:43:17.000000000 +0400
--+++ Pacemaker-1-0-Pacemaker-1.0.8/configure.ac	2010-05-06 13:43:20.000000000 +0400
--@@ -1302,7 +1302,6 @@
-- 
-- 	# We had to eliminate -Wnested-externs because of libtool changes
--         EXTRA_FLAGS="-fgnu89-inline
---		-fstack-protector-all
-- 		-Wall
-- 		-Waggregate-return
-- 		-Wbad-function-cast 
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/files/pacemaker-remove-ptest-functionality.patch b/meta-cgl-common/recipes-cgl/pacemaker/files/pacemaker-remove-ptest-functionality.patch
-deleted file mode 100644
-index fee2e02..0000000
---- a/meta-cgl-common/recipes-cgl/pacemaker/files/pacemaker-remove-ptest-functionality.patch
-+++ /dev/null
-@@ -1,29 +0,0 @@
--diff -Naur a/pengine/Makefile.am b/pengine/Makefile.am
----- a/pengine/Makefile.am	2014-07-23 13:24:08.887745910 +0200
--+++ b/pengine/Makefile.am	2014-07-23 13:28:22.704843745 +0200
--@@ -42,12 +42,9 @@
-- 
-- ## binary progs
-- halib_PROGRAMS	= pengine
---sbin_PROGRAMS	= ptest
-- 
-- if BUILD_HELP
---man8_MANS =	ptest.8
---%.8:	%
---	help2man --output $@ --no-info --section 8 --name "Part of the Pacemaker cluster resource manager" $(top_builddir)/pengine/$<
--+## removed the ptest functionality
-- endif
-- 
-- ## SOURCES
--@@ -64,11 +61,6 @@
-- # libcib for get_object_root()
-- #		$(top_builddir)/lib/hbclient/libhbclient.la
-- 
---ptest_SOURCES	= ptest.c 
---ptest_LDADD	= $(COMMONLIBS)						\
---		$(top_builddir)/lib/cib/libcib.la			\
---		$(top_builddir)/lib/transition/libtransitioner.la
---
-- install-exec-local:
-- 	$(mkinstalldirs) $(DESTDIR)/$(PE_STATE_DIR)
-- 	-chown $(CRM_DAEMON_USER) $(DESTDIR)/$(PE_STATE_DIR)
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/files/tmpfiles b/meta-cgl-common/recipes-cgl/pacemaker/files/tmpfiles
-index 1d2b295..979db47 100644
---- a/meta-cgl-common/recipes-cgl/pacemaker/files/tmpfiles
-+++ b/meta-cgl-common/recipes-cgl/pacemaker/files/tmpfiles
-@@ -1,5 +1,6 @@
--d /var/lib/heartbeat/crm 0750 hacluster haclient -
--d /var/lib/pengine 0755 hacluster haclient -
--d /var/run/heartbeat 0755 hacluster haclient -
--d /var/run/heartbeat/rsctmp 0755 hacluster haclient -
--d /var/run/crm 0755 hacluster haclient -
-+d /var/lib/pacemaker 0750 hacluster haclient -
-+d /var/lib/pacemaker/cib 0750 hacluster haclient -
-+d /var/lib/pacemaker/cores 0750 hacluster haclient -
-+d /var/lib/pacemaker/pengine 0750 hacluster haclient -
-+d /var/lib/pacemaker/blackbox 0750 hacluster haclient -
-+d /var/run/crm 0750 hacluster haclient -
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/files/volatiles b/meta-cgl-common/recipes-cgl/pacemaker/files/volatiles
-index 9ad1434..1700a69 100644
---- a/meta-cgl-common/recipes-cgl/pacemaker/files/volatiles
-+++ b/meta-cgl-common/recipes-cgl/pacemaker/files/volatiles
-@@ -1,5 +1,6 @@
--d hacluster haclient 0750 /var/lib/heartbeat/crm none
--d hacluster haclient 0755 /var/lib/pengine none
--d hacluster haclient 0755 /var/run/heartbeat none
--d hacluster haclient 0755 /var/run/heartbeat/rsctmp none
--d hacluster haclient 0755 /var/run/crm none
-+d hacluster haclient 0750 /var/lib/pacemaker/ none
-+d hacluster haclient 0750 /var/lib/pacemaker/cib none
-+d hacluster haclient 0750 /var/lib/pacemaker/cores none
-+d hacluster haclient 0750 /var/lib/pacemaker/pengine none
-+d hacluster haclient 0750 /var/lib/pacemaker/blackbox none
-+d hacluster haclient 0750 /var/run/crm none
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/fix-header-defs-lookup.patch b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/fix-header-defs-lookup.patch
-deleted file mode 100644
-index 02ce26e..0000000
---- a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/fix-header-defs-lookup.patch
-+++ /dev/null
-@@ -1,16 +0,0 @@
--Index: Pacemaker-1-0-Pacemaker-1.0.8/configure.ac
--===================================================================
----- Pacemaker-1-0-Pacemaker-1.0.8.orig/configure.ac	2010-04-06 13:08:53.000000000 +0400
--+++ Pacemaker-1-0-Pacemaker-1.0.8/configure.ac	2010-04-06 13:08:58.000000000 +0400
--@@ -106,9 +106,8 @@
-- 	  Cfile=/tmp/extract_define.$2.${$}
-- 	  printf "#include <stdio.h>\n" > ${Cfile}.c
-- 	  printf "#include <%s>\n" $1 >> ${Cfile}.c
---	  printf "int main(int argc, char **argv) { printf(\"%%s\", %s); return 0; }\n" $2 >> ${Cfile}.c
---	  $CC $CFLAGS ${Cfile}.c -o ${Cfile}
---	  value=`${Cfile}`
--+	  printf "\"%s\":%s\n" $2 $2 >> ${Cfile}.c
--+	  value=`$CC $CFLAGS -E ${Cfile}.c | grep \"$2\" | cut -f 2 -d ':' | sed 's,^",,' | sed 's,"$,,'`
-- 	  AC_MSG_RESULT($value)
-- 	  printf $value
-- 	  rm -f ${Cfile}.c ${Cfile}
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/pacemaker-dont-use-help2man.patch b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/pacemaker-dont-use-help2man.patch
-deleted file mode 100644
-index da970d5..0000000
---- a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/pacemaker-dont-use-help2man.patch
-+++ /dev/null
-@@ -1,16 +0,0 @@
--Index: Pacemaker-1-0-Pacemaker-1.0.8/configure.ac
--===================================================================
----- Pacemaker-1-0-Pacemaker-1.0.8.orig/configure.ac	2010-03-23 12:03:29.000000000 +0300
--+++ Pacemaker-1-0-Pacemaker-1.0.8/configure.ac	2010-03-23 12:06:43.000000000 +0300
--@@ -504,10 +504,7 @@
--    AC_MSG_ERROR(You need (g)make installed in order to build ${PACKAGE})
-- fi
-- 
---AM_CONDITIONAL(BUILD_HELP, test x"${HELP2MAN}" != x"")
---if test x"${HELP2MAN}" != x""; then
---   PKG_FEATURES="$PKG_FEATURES manpages"
---fi
--+AM_CONDITIONAL(BUILD_HELP, test x"" != x"")
-- 
-- AM_CONDITIONAL(BUILD_ASCIIDOC, test x"${ASCIIDOC}" != x"")
-- if test x"${ASCIIDOC}" != x""; then
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/pacemaker-fix-xml-config.patch b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/pacemaker-fix-xml-config.patch
-deleted file mode 100644
-index 553c3f3..0000000
---- a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/pacemaker-fix-xml-config.patch
-+++ /dev/null
-@@ -1,53 +0,0 @@
--Index: pacemaker-1.0-Pacemaker-1.0.9.1/configure.ac
--===================================================================
----- pacemaker-1.0-Pacemaker-1.0.9.1.orig/configure.ac
--+++ pacemaker-1.0-Pacemaker-1.0.9.1/configure.ac
--@@ -22,6 +22,7 @@ dnl     checks for system services
-- AC_INIT(pacemaker, 1.0.9, pacemaker@oss.clusterlabs.org)
-- CRM_DTD_VERSION="1.0"
-- 
--+m4_pattern_allow([PKG_FEATURES])
-- PKG_FEATURES=""
-- HB_PKG=heartbeat
-- 
--@@ -97,7 +98,7 @@ dnl ====================================
-- cc_supports_flag() {
--          local CFLAGS="$@"
--          AC_MSG_CHECKING(whether $CC supports "$@")
---         AC_COMPILE_IFELSE([int main(){return 0;}] ,[RC=0; AC_MSG_RESULT(yes)],[RC=1; AC_MSG_RESULT(no)])
--+         AC_COMPILE_IFELSE([AC_LANG_SOURCE([int main(){return 0;}])] ,[RC=0; AC_MSG_RESULT(yes)],[RC=1; AC_MSG_RESULT(no)])
--          return $RC
-- }
-- 
--@@ -502,7 +503,6 @@ AC_PATH_PROGS(TAR, tar)
-- AC_PATH_PROGS(MD5, md5)
-- AC_PATH_PROGS(TEST, test)
-- AC_PATH_PROGS(PKGCONFIG, pkg-config)
---AC_PATH_PROGS(XML2CONFIG, xml2-config)
-- AC_PATH_PROGS(VALGRIND_BIN, valgrind, /usr/bin/valgrind)
-- AC_DEFINE_UNQUOTED(VALGRIND_BIN, "$VALGRIND_BIN", Valgrind command)
-- 
--@@ -671,17 +671,13 @@ dnl AC_CHECK_HEADERS(netinet/icmp6.h)
-- dnl AC_CHECK_HEADERS(netinet/ip6.h)
-- dnl AC_CHECK_HEADERS(netinet/ip_icmp.h)
-- 
---AC_MSG_CHECKING(for special libxml2 includes)
---if test "x$XML2CONFIG" = "x"; then
---   AC_MSG_ERROR(libxml2 config not found)
---else
---   XML2HEAD="`$XML2CONFIG --cflags`"
---   AC_MSG_RESULT($XML2HEAD)
---   AC_CHECK_LIB(xml2, xmlReadMemory)
---   AC_CHECK_LIB(xslt, xsltApplyStylesheet)
---fi
--+PKG_CHECK_MODULES([XML], [libxml-2.0])
--+PKG_CHECK_MODULES([XSLT], [libxslt])
--+
--+AC_CHECK_LIB(xml2, xmlReadMemory)
--+AC_CHECK_LIB(xslt, xsltApplyStylesheet)
-- 
---CPPFLAGS="$CPPFLAGS $XML2HEAD"
--+CPPFLAGS="$CPPFLAGS $XML_CFLAGS"
-- 
-- AC_CHECK_HEADERS(libxml/xpath.h)
-- AC_CHECK_HEADERS(libxslt/xslt.h)
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/pacemaker-no-bash.patch b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/pacemaker-no-bash.patch
-deleted file mode 100644
-index 6f9639d..0000000
---- a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/pacemaker-no-bash.patch
-+++ /dev/null
-@@ -1,40 +0,0 @@
--Index: pacemaker-1.0-Pacemaker-1.0.9.1/tools/crm_failcount
--===================================================================
----- pacemaker-1.0-Pacemaker-1.0.9.1.orig/tools/crm_failcount
--+++ pacemaker-1.0-Pacemaker-1.0.9.1/tools/crm_failcount
--@@ -1,4 +1,4 @@
---#!/bin/bash
--+#!/bin/sh
-- 
-- options=""
-- target=`uname -n`
--Index: pacemaker-1.0-Pacemaker-1.0.9.1/tools/crm_master
--===================================================================
----- pacemaker-1.0-Pacemaker-1.0.9.1.orig/tools/crm_master
--+++ pacemaker-1.0-Pacemaker-1.0.9.1/tools/crm_master
--@@ -1,4 +1,4 @@
---#!/bin/bash
--+#!/bin/sh
-- 
-- TEMP=`getopt -o DGQVN:U:v:i:l:r: --long resource:,node:,uname:,attr-value:,delete-attr,get-value,attr-id:,lifetime:,quiet \
--      -n 'crm_master' -- "$@"`
--Index: pacemaker-1.0-Pacemaker-1.0.9.1/tools/crm_standby
--===================================================================
----- pacemaker-1.0-Pacemaker-1.0.9.1.orig/tools/crm_standby
--+++ pacemaker-1.0-Pacemaker-1.0.9.1/tools/crm_standby
--@@ -1,4 +1,4 @@
---#!/bin/bash
--+#!/bin/sh
-- 
-- op=""
-- options=""
--Index: pacemaker-1.0-Pacemaker-1.0.9.1/extra/resources/o2cb
--===================================================================
----- pacemaker-1.0-Pacemaker-1.0.9.1.orig/extra/resources/o2cb
--+++ pacemaker-1.0-Pacemaker-1.0.9.1/extra/resources/o2cb
--@@ -1,4 +1,4 @@
---#!/bin/bash
--+#!/bin/sh
-- # Copyright (c) 2005,2008 Oracle 
-- # Copyright (c) 2008 Andrew Beekhof
-- #                    All Rights Reserved.
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/pacemaker-remove-native-includes.patch b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/pacemaker-remove-native-includes.patch
-deleted file mode 100644
-index a168540..0000000
---- a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker-1.0.9.1/pacemaker-remove-native-includes.patch
-+++ /dev/null
-@@ -1,22 +0,0 @@
--Index: Pacemaker-1-0-Pacemaker-1.0.8/configure.ac
--===================================================================
----- Pacemaker-1-0-Pacemaker-1.0.8.orig/configure.ac	2010-03-16 22:46:38.000000000 +0300
--+++ Pacemaker-1-0-Pacemaker-1.0.8/configure.ac	2010-03-23 00:06:28.000000000 +0300
--@@ -325,7 +325,6 @@
-- 		;;
-- *linux*)	
-- 		AC_DEFINE_UNQUOTED(ON_LINUX, 1, Compiling for Linux platform)
---  		CFLAGS="$CFLAGS -I${prefix}/include"
--  		;;
-- darwin*)	
-- 		AC_DEFINE_UNQUOTED(ON_DARWIN, 1, Compiling for Darwin platform)
--@@ -334,9 +333,6 @@
-- 		;;
-- esac
-- 
---dnl Eventually remove this 
---CFLAGS="$CFLAGS -I${prefix}/include/heartbeat"
---
-- AC_SUBST(INIT_EXT)
-- AC_DEFINE_UNQUOTED(HA_LOG_FACILITY, LOG_DAEMON, Default logging facility)
-- 
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-pacemaker-fix-xml-config.patch b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-pacemaker-fix-xml-config.patch
-new file mode 100644
-index 0000000..ea9380e
---- /dev/null
-+++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-pacemaker-fix-xml-config.patch
-@@ -0,0 +1,49 @@
-+From a6b792b9abb26e810ad9ca11be31998c7e97db6c Mon Sep 17 00:00:00 2001
-+From: Bian Naimeng <biannm@cn.fujitsu.com>
-+Date: Fri, 3 Jul 2015 15:48:58 +0900
-+Subject: [PATCH 1/2] pacemaker: fix xml config
-+
-+Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
-+---
-+ configure.ac | 17 ++++++-----------
-+ 1 file changed, 6 insertions(+), 11 deletions(-)
-+
-+diff --git a/configure.ac b/configure.ac
-+index 03f543d..25af918 100644
-+--- a/configure.ac
-++++ b/configure.ac
-+@@ -533,7 +533,6 @@ AC_PATH_PROGS(TAR, tar)
-+ AC_PATH_PROGS(MD5, md5)
-+ AC_PATH_PROGS(TEST, test)
-+ AC_PATH_PROGS(PKGCONFIG, pkg-config)
-+-AC_PATH_PROGS(XML2CONFIG, xml2-config)
-+ AC_PATH_PROGS(VALGRIND_BIN, valgrind, /usr/bin/valgrind)
-+ AC_DEFINE_UNQUOTED(VALGRIND_BIN, "$VALGRIND_BIN", Valgrind command)
-+ 
-+@@ -779,17 +778,13 @@ dnl AC_CHECK_HEADERS(netinet/icmp6.h)
-+ dnl AC_CHECK_HEADERS(netinet/ip6.h)
-+ dnl AC_CHECK_HEADERS(netinet/ip_icmp.h)
-+ 
-+-AC_MSG_CHECKING(for special libxml2 includes)
-+-if test "x$XML2CONFIG" = "x"; then
-+-   AC_MSG_ERROR(libxml2 config not found)
-+-else
-+-   XML2HEAD="`$XML2CONFIG --cflags`"
-+-   AC_MSG_RESULT($XML2HEAD)
-+-   AC_CHECK_LIB(xml2, xmlReadMemory)
-+-   AC_CHECK_LIB(xslt, xsltApplyStylesheet)
-+-fi
-++PKG_CHECK_MODULES([XML], [libxml-2.0])
-++PKG_CHECK_MODULES([XSLT], [libxslt])
-++
-++AC_CHECK_LIB(xml2, xmlReadMemory)
-++AC_CHECK_LIB(xslt, xsltApplyStylesheet)
-+ 
-+-CPPFLAGS="$CPPFLAGS $XML2HEAD"
-++CPPFLAGS="$CPPFLAGS $XML_CFLAGS"
-+ 
-+ AC_CHECK_HEADERS(libxml/xpath.h)
-+ AC_CHECK_HEADERS(libxslt/xslt.h)
-+-- 
-+1.8.4.2
-+
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0002-pacemaker-search-header-from-STAGING_INCDIR-to-walka.patch b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0002-pacemaker-search-header-from-STAGING_INCDIR-to-walka.patch
-new file mode 100644
-index 0000000..7e5f499
---- /dev/null
-+++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0002-pacemaker-search-header-from-STAGING_INCDIR-to-walka.patch
-@@ -0,0 +1,45 @@
-+From 1fef2f6adaef3c56649adce4aca1b0ef2214c13b Mon Sep 17 00:00:00 2001
-+From: Bian Naimeng <biannm@cn.fujitsu.com>
-+Date: Fri, 3 Jul 2015 15:55:52 +0900
-+Subject: [PATCH 2/2] pacemaker: search header from STAGING_INCDIR to
-+ walkaround error
-+
-+ ** -I/usr/include/ is unsafe for cross-compilation
-+
-+ ... ...
-+
-+ ** This autoconf log indicates errors, it looked at host include and/or library paths
-+ ** while determining system capabilities
-+
-+Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
-+---
-+ configure.ac | 6 ++++--
-+ 1 file changed, 4 insertions(+), 2 deletions(-)
-+
-+diff --git a/configure.ac b/configure.ac
-+index 25af918..4dee123 100644
-+--- a/configure.ac
-++++ b/configure.ac
-+@@ -451,7 +451,8 @@ case "$host_os" in
-+ 		;;
-+ *linux*)
-+ 		AC_DEFINE_UNQUOTED(ON_LINUX, 1, Compiling for Linux platform)
-+-  		CFLAGS="$CFLAGS -I${prefix}/include"
-++		CFLAGS="$CFLAGS -I${STAGING_INCDIR}"
-++		CPPFLAGS="$CPPFLAGS -I${STAGING_INCDIR}/heartbeat"
-+  		;;
-+ darwin*)
-+ 		AC_DEFINE_UNQUOTED(ON_DARWIN, 1, Compiling for Darwin platform)
-+@@ -461,7 +462,8 @@ darwin*)
-+ esac
-+ 
-+ dnl Eventually remove this
-+-CFLAGS="$CFLAGS -I${prefix}/include/heartbeat"
-++CFLAGS="$CFLAGS -I${STAGING_INCDIR}/heartbeat"
-++CPPFLAGS="$CPPFLAGS -I${STAGING_INCDIR}/heartbeat"
-+ 
-+ AC_SUBST(INIT_EXT)
-+ AC_MSG_NOTICE(Host CPU: $host_cpu)
-+-- 
-+1.8.4.2
-+
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0003-pacemaker-fix-header-defs-lookup.patch b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0003-pacemaker-fix-header-defs-lookup.patch
-new file mode 100644
-index 0000000..939ecab
---- /dev/null
-+++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0003-pacemaker-fix-header-defs-lookup.patch
-@@ -0,0 +1,29 @@
-+From 1a84908d57291a82e35eaa9369144a398e2265bf Mon Sep 17 00:00:00 2001
-+From: Bian Naimeng <biannm@cn.fujitsu.com>
-+Date: Fri, 3 Jul 2015 16:30:25 +0900
-+Subject: [PATCH 4/4] pacemaker: fix header defs lookup
-+
-+Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
-+---
-+ configure.ac | 5 ++---
-+ 1 file changed, 2 insertions(+), 3 deletions(-)
-+
-+diff --git a/configure.ac b/configure.ac
-+index cb47011..d37eccf 100644
-+--- a/configure.ac
-++++ b/configure.ac
-+@@ -141,9 +141,8 @@ extract_header_define() {
-+ 	  Cfile=$srcdir/extract_define.$2.${$}
-+ 	  printf "#include <stdio.h>\n" > ${Cfile}.c
-+ 	  printf "#include <%s>\n" $1 >> ${Cfile}.c
-+-	  printf "int main(int argc, char **argv) { printf(\"%%s\", %s); return 0; }\n" $2 >> ${Cfile}.c
-+-	  $CC $CFLAGS ${Cfile}.c -o ${Cfile}
-+-	  value=`${Cfile}`
-++	  printf "\"%s\":%s\n" $2 $2 >> ${Cfile}.c
-++	  value=`$CC $CFLAGS -E ${Cfile}.c | grep \"$2\" | cut -f 2 -d ':' | sed 's,^",,' | sed 's,"$,,'`
-+ 	  AC_MSG_RESULT($value)
-+ 	  printf $value
-+ 	  rm -rf ${Cfile}.c ${Cfile} ${Cfile}.dSYM ${Cfile}.gcno
-+-- 
-+1.8.4.2
-+
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0004-pacemaker-do-not-build-help.patch b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0004-pacemaker-do-not-build-help.patch
-new file mode 100644
-index 0000000..9a2db0a
---- /dev/null
-+++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0004-pacemaker-do-not-build-help.patch
-@@ -0,0 +1,29 @@
-+From cba9add61c72c734af8a7a16ad33e62457413ed8 Mon Sep 17 00:00:00 2001
-+From: Bian Naimeng <biannm@cn.fujitsu.com>
-+Date: Fri, 3 Jul 2015 17:27:52 +0900
-+Subject: [PATCH 5/5] pacemaker: do not build help
-+
-+Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
-+---
-+ configure.ac | 5 +----
-+ 1 file changed, 1 insertion(+), 4 deletions(-)
-+
-+diff --git a/configure.ac b/configure.ac
-+index d37eccf..3c08524 100644
-+--- a/configure.ac
-++++ b/configure.ac
-+@@ -549,10 +549,7 @@ if test x"${MAKE}" = x""; then
-+    AC_MSG_ERROR(You need (g)make installed in order to build ${PACKAGE})
-+ fi
-+ 
-+-AM_CONDITIONAL(BUILD_HELP, test x"${HELP2MAN}" != x"")
-+-if test x"${HELP2MAN}" != x""; then
-+-   PCMK_FEATURES="$PCMK_FEATURES generated-manpages"
-+-fi
-++AM_CONDITIONAL(BUILD_HELP, test x"Do not build help" = x"")
-+ 
-+ MANPAGE_XSLT=""
-+ if test x"${XSLTPROC}" != x""; then
-+-- 
-+1.8.4.2
-+
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0005-pacemaker-do-not-execute-target-program-while-cross-.patch b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0005-pacemaker-do-not-execute-target-program-while-cross-.patch
-new file mode 100644
-index 0000000..b1aa58f
---- /dev/null
-+++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0005-pacemaker-do-not-execute-target-program-while-cross-.patch
-@@ -0,0 +1,43 @@
-+From 9ad877d3f4294e5aa8b479cc81fa10250134ccc3 Mon Sep 17 00:00:00 2001
-+From: Bian Naimeng <biannm@cn.fujitsu.com>
-+Date: Mon, 6 Jul 2015 12:20:17 +0900
-+Subject: [PATCH] pacemaker: do not execute target program while cross compile
-+
-+Signed-off-by: Bian Naimeng <biannm@cn.fujitsu.com>
-+---
-+ Makefile.common | 8 +++++---
-+ 1 file changed, 5 insertions(+), 3 deletions(-)
-+
-+diff --git a/Makefile.common b/Makefile.common
-+index 5163261..630cab6 100644
-+--- a/Makefile.common
-++++ b/Makefile.common
-+@@ -36,6 +36,8 @@ if BUILD_HELP
-+ man8_MANS		= $(sbin_PROGRAMS:%=%.8) $(sbin_SCRIPTS:%=%.8)
-+ endif
-+ 
-++man7_MANS		=
-++
-+ %.8:	% $(MAN8DEPS)
-+ 	chmod a+x $(abs_builddir)/$<
-+ 	$(PCMK_V) PATH=$$PATH:$(abs_builddir) $(abs_builddir)/$< --help
-+@@ -43,13 +45,13 @@ endif
-+ 	$(AM_V_MAN)PATH=$$PATH:$(abs_builddir) $(HELP2MAN) --output $@ --no-info --section 8 --name "Part of the Pacemaker cluster resource manager" $(abs_builddir)/$<
-+ 
-+ %.xml:  %
-+-	$(AM_V_GEN)$(abs_builddir)/$< metadata > $@
-++	@echo "xml for $<: Do not try to execute target program here"
-+ 
-+ %.dbook: %.xml
-+-	$(AM_V_XSL)$(XSLTPROC) --nonet --novalid --stringparam man.name $* $(DBOOK_OPTS) $(top_srcdir)/xml/ocf-meta2man.xsl $(abs_builddir)/$< > $(abs_builddir)/$@
-++	@echo "dbook for $<: Do not try to execute target program here"
-+ 
-+ %.7:	%.dbook
-+-	$(AM_V_XSL)$(XSLTPROC) $(MANPAGE_XSLT) $(abs_builddir)/$< $(PCMK_quiet)
-++	@echo "man7 for $<: Do not try to execute target program here"
-+ 
-+ # Build docbook from asciidoc because XML is a PITA to edit
-+ #
-+-- 
-+1.8.4.2
-+
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.0.9.1.bb b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.0.9.1.bb
-deleted file mode 100644
-index a5cd284..0000000
---- a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.0.9.1.bb
-+++ /dev/null
-@@ -1,95 +0,0 @@
--DESCRIPTION = "Scalable High-Availability cluster resource manager"
--LICENSE = "GPLv2"
--LIC_FILES_CHKSUM="file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
--DEPENDS = " \
--	bzip2 \
--	cluster-glue \
--	cluster-resource-agents \
--	glib-2.0 \
--	gnutls \
--	libxml2 \
--	libxslt \
--	ncurses \
--	openais \
--	python-native \
--	util-linux \
--	zlib \
--	"
--RDEPENDS_${PN} += "openais"
--
--#PR = "r2"
--
--SRC_URI = " \
--    https://github.com/ClusterLabs/pacemaker-1.0/archive/Pacemaker-${PV}.tar.gz \
--    file://pacemaker-remove-native-includes.patch \
--    file://pacemaker-dont-use-help2man.patch \
--    file://fix-header-defs-lookup.patch \
--    file://pacemaker-remove-ptest-functionality.patch \
--    file://pacemaker-fix-xml-config.patch \
--    file://pacemaker-no-bash.patch \
--	file://volatiles \
--	file://tmpfiles \
--	"
--SRC_URI_append_libc-uclibc = " file://kill-stack-protector.patch"
--SRC_URI[md5sum] = "103fb2e804be3f8ace17021c5d9ad15d"
--SRC_URI[sha256sum] = "aabfc9ee1c66804151d973d0ed0323798ffebe49e1c2219fa804dc6898a69a1e"
--inherit autotools-brokensep python-dir pkgconfig useradd
--
--S = "${WORKDIR}/pacemaker-1.0-Pacemaker-${PV}"
--
--EXTRA_OECONF = "--with-ais --without-heartbeat --disable-fatal-warnings --disable-pretty"
--
--CFLAGS += "-I${STAGING_INCDIR}/heartbeat -lncurses"
--
--USERADD_PACKAGES = "${PN}"
--USERADD_PARAM_${PN} = "--home-dir=${localstatedir}/lib/heartbeat -g haclient -r hacluster"
--GROUPADD_PARAM_${PN} = "-r haclient"
--
--do_install_append() {
--	install -d ${D}${sysconfdir}/default/volatiles
--	install -m 0644 ${WORKDIR}/volatiles ${D}${sysconfdir}/default/volatiles/06_pacemaker
--	install -d ${D}${sysconfdir}/tmpfiles.d
--	install -m 0644 ${WORKDIR}/tmpfiles ${D}${sysconfdir}/tmpfiles.d/${PN}.conf
--	find ${D} -name "*.pyo" -exec rm {} \;
--	find ${D} -name "*.pyc" -exec rm {} \;
--	find ${D} -name "*.py" | xargs sed -i -e "s:${STAGING_BINDIR_NATIVE}:${bindir}:g"
--}
--
--pkg_postinst_${PN} () {
--	if [ -z "$D" ]; then
--		if type systemd-tmpfiles >/dev/null; then
--			systemd-tmpfiles --create
--		elif [ -e ${sysconfdir}/init.d/populate-volatile.sh ]; then
--			${sysconfdir}/init.d/populate-volatile.sh update
--		fi
--	fi
--}
--FILES_${PN}-doc += "${datadir}/pacemaker/crm_cli.txt ${datadir}/pacemaker/templates/"
--FILES_${PN} += " \
--    /run \
--    ${libdir}/corosync \
--    ${libdir}/python2.7 \
--	${libdir}/service_crm.so \
--	${libdir}/ocf/resource.d/pacemaker \
--	${libdir}/heartbeat/attrd \
--	${libdir}/heartbeat/c* \
--	${libdir}/heartbeat/pengine \
--	${libdir}/heartbeat/pingd \
--	${libdir}/heartbeat/plugins/RAExec/stonith.so \
--	${libdir}/heartbeat/stonithd \
--	${datadir}/pacemaker/*.rng \
--	"
--FILES_${PN}-dbg += "${libdir}/heartbeat/.debug ${libdir}/heartbeat/plugins/RAExec/.debug/ ${libdir}/heartbeat/stonithdtest/.debug/ ${libexecdir}/lcrso/.debug ${libdir}/corosync/lcrso/.debug"
--FILES_${PN}-dev += "${libdir}/heartbeat/plugins/RAExec/*.la"
--FILES_${PN}-staticdev += "${libdir}/heartbeat/plugins/RAExec/*.a"
--
--PACKAGES =+ "${PN}-crm ${PN}-hb2openais ${PN}-haresources2cib ${PN}-tests ${PN}-snmp"
--FILES_${PN}-crm = "${sbindir}/crm ${PYTHON_SITEPACKAGES_DIR} ${libdir}/heartbeat/crm_primitive.py "
--RDEPENDS_${PN}-crm += "python-core"
--FILES_${PN}-hb2openais = "${libdir}/heartbeat/hb2openais.sh ${libdir}/heartbeat/hb2openais-helper.py"
--RDEPENDS_${PN}-hb2openais += "python-core"
--FILES_${PN}-haresources2cib = "${libdir}/heartbeat/haresources2cib.py"
--RDEPENDS_${PN}-haresources2cib += "python-core"
--FILES_${PN}-tests = "${datadir}/pacemaker/tests ${datadir}/pacemaker/stonithdtest ${libdir}/heartbeat/atest ${libdir}/heartbeat/stonithdtest/*"
--RDEPENDS_${PN}-tests += "python-core bash"
--FILES_${PN}-snmp = "${datadir}/snmp/mibs/PCMK-MIB.txt"
-diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.12.bb b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.12.bb
-new file mode 100644
-index 0000000..a58f0b0
---- /dev/null
-+++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker_1.1.12.bb
-@@ -0,0 +1,92 @@
-+SUMMARY = "Scalable High-Availability cluster resource manager"
-+DESCRIPTION = "Pacemaker is an advanced, scalable High-Availability \
-+cluster resource manager for Linux-HA (Heartbeat) and/or OpenAIS. \
-+It supports n-node clusters with significant capabilities for \
-+managing resources and dependencies. \
-+It will run scripts at initialization, when machines go up or down, \
-+when related resources fail and can be configured to periodically \
-+check resource health."
-+HOMEPAGE = "http://www.clusterlabs.org"
-+
-+LICENSE = "GPLv2+ & LGPLv2+"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=6adca3b36477cc77e04376f9a40df32c \
-+                    file://COPYING.LIB;md5=243b725d71bb5df4a1e5920b344b86ad \
-+                   "
-+DEPENDS = "corosync libxslt openais libxml2 gnutls resource-agents python-native"
-+
-+SRC_URI = "https://codeload.github.com/ClusterLabs/${BPN}/tar.gz/Pacemaker-1.1.12;downloadfilename=${BPN}-${PV}.tar.gz \
-+           file://0001-pacemaker-fix-xml-config.patch \
-+           file://0002-pacemaker-search-header-from-STAGING_INCDIR-to-walka.patch \
-+           file://0003-pacemaker-fix-header-defs-lookup.patch \
-+           file://0004-pacemaker-do-not-build-help.patch \
-+           file://0005-pacemaker-do-not-execute-target-program-while-cross-.patch \
-+           file://volatiles \
-+           file://tmpfiles \
-+          "
-+
-+SRC_URI[md5sum] = "c5c28013efb08441ab74a12034d9e9b4"
-+SRC_URI[sha256sum] = "f5c72b609fac18d362880d120f08f990e8afd9388e6ff86c55cd93900ba54d9c"
-+
-+inherit autotools-brokensep pkgconfig systemd python-dir
-+
-+S="${WORKDIR}/pacemaker-Pacemaker-${PV}"
-+
-+EXTRA_OECONF += "STAGING_INCDIR=${STAGING_INCDIR} \
-+                 --disable-fatal-warnings \
-+                 --with-ais \
-+                 --without-heartbeat \
-+                 --disable-pretty \
-+                "
-+
-+do_install_append() {
-+    install -d ${D}${sysconfdir}/default
-+    install -d ${D}${sysconfdir}/default/volatiles
-+    install -m 0644 ${WORKDIR}/volatiles ${D}${sysconfdir}/default/volatiles/06_${PN}
-+    install -d ${D}${sysconfdir}/tmpfiles.d
-+    install -m 0644 ${WORKDIR}/tmpfiles ${D}${sysconfdir}/tmpfiles.d/${PN}.conf
-+
-+    # Don't package some files
-+    find ${D} -name "*.pyo" -exec rm {} \;
-+    find ${D} -name "*.pyc" -exec rm {} \;
-+    rm -rf ${D}/${libdir}/service_crm.so
-+
-+    rm -rf ${D}${localstatedir}/run
-+}
-+
-+PACKAGES_prepend = "${PN}-cli-utils ${PN}-libs ${PN}-cluster-libs ${PN}-remote "
-+
-+FILES_${PN}-cli-utils = "${sbindir}/crm* ${sbindir}/iso8601"
-+RDEPENDS_${PN}-cli-utils += "libqb bash"
-+FILES_${PN}-libs = "${libdir}/libcib.so.* \
-+                    ${libdir}/liblrmd.so.* \
-+                    ${libdir}/libcrmservice.so.* \
-+                    ${libdir}/libcrmcommon.so.* \
-+                    ${libdir}/libpe_status.so.* \
-+                    ${libdir}/libpe_rules.so.* \
-+                    ${libdir}/libpengine.so.* \
-+                    ${libdir}/libstonithd.so.* \
-+                    ${libdir}/libtransitioner.so.* \
-+                   "
-+RDEPENDS_${PN}-libs += "libqb"
-+FILES_${PN}-cluster-libs = "${libdir}/libcrmcluster.so.*"
-+RDEPENDS_${PN}-cluster-libs += "libqb"
-+FILES_${PN}-remote = "${sysconfdir}/init.d/pacemaker_remote \
-+                      ${sbindir}/pacemaker_remoted \
-+                      ${libdir}/ocf/resource.d/pacemaker/remote \
-+                     "
-+RDEPENDS_${PN}-remote += "libqb bash"
-+FILES_${PN} += " ${datadir}/snmp                             \
-+                 ${libdir}/corosync/lcrso/pacemaker.lcrso    \
-+                 ${PYTHON_SITEPACKAGES_DIR} \
-+                 ${libdir}/ocf/resource.d/ \
-+               "
-+FILES_${PN}-dbg += "${libdir}/corosync/lcrso/.debug"
-+RDEPENDS_${PN} = "bash python libqb"
-+
-+SYSTEMD_PACKAGES += "${PN}-remote"
-+SYSTEMD_SERVICE_${PN} += "pacemaker.service"
-+SYSTEMD_SERVICE_${PN}-remote += "pacemaker_remote.service"
-+
-+USERADD_PACKAGES = "${PN}"
-+USERADD_PARAM_${PN} = "-r -g haclient -s ${base_sbindir}/nologin hacluster"
-+GROUPADD_PARAM_${PN} = "-r haclient"
--- 
-1.8.4.2
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade this time, they can fill in
+RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
+recipe remainder until newer upstream version was detected.
 
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
+
+You can check the detail information at:
+
+http://packages.yoctoproject.org/
+
+Package               Version          Upstream version      Maintainer           NoUpgradeReason
+--------------------  ---------------  --------------------  -------------------  ------------------------------
+nfs-utils             1.3.1            1.3.2                 Alejandro Hernandez
+midori                0.5.8            0.5.10                Alejandro Hernandez
+python-smmap          0.8.2            0.9.0                 Alejandro Hernandez
+python3               3.4.3            3.5.0b2               Alejandro Hernandez
+python                2.7.9            3.5.0b2               Alejandro Hernandez
+cronie                1.4.12           1.5.0                 Alejandro Hernandez
+texinfo               5.2              6.0                   Alejandro Hernandez  Checking script parses dire...
+which                 2.20             2.21                  Alejandro Hernandez
+gnome-icon-theme      2.31.0           3.12.0                Alejandro Hernandez
+jpeg                  8d               9a                    Aníbal Limón         webkit-gtk 1.8.3 doesn't wo...
+dpkg                  1.17.25          1.18.1                Aníbal Limón
+sqlite3               3.8.10.0         3.8.10.2.             Aníbal Limón
+mc                    4.8.13           4.8.14                Aníbal Limón
+screen                4.0.3            4.3.1                 Aníbal Limón
+lz4                   128+gitX         r123                  Armin Kuster
+nettle                2.7.1            3.1rc3                Armin Kuster         3.0.0 breaks gnutls, api ch...
+pinentry              0.9.2            0.9.5                 Armin Kuster
+linux-libc-headers    3.19             3.19.8                Bruce Ashfield
+console-tools         0.3.2            1999.03.02            Chen Qi
+coreutils             8.23             8.24                  Chen Qi
+systemd               219-stable+gitX  21522eade6dd8422b...  Chen Qi
+cups                  2.0.3            2.1b1                 Chen Qi
+iproute2              3.17.0           4.1.0                 Cristian Iorga
+libpcap               1.6.2            1.7.4                 Cristian Iorga
+gstreamer1.0-libav    1.4.5            1.5.2                 Cristian Iorga
+gstreamer1.0-plug...  1.4.5            1.5.2                 Cristian Iorga
+gstreamer1.0-plug...  1.4.5            1.5.2                 Cristian Iorga
+gstreamer1.0-plug...  1.4.5            1.5.2                 Cristian Iorga
+gstreamer1.0-plug...  1.4.5            1.5.2                 Cristian Iorga
+gstreamer1.0-rtsp...  1.4.5            1.5.2                 Cristian Iorga
+gstreamer1.0          1.4.5            1.5.2                 Cristian Iorga
+libvorbis             1.3.4            1.3.5                 Cristian Iorga
+speex                 1.2rc1           1.2rc2                Cristian Iorga
+db                    6.0.30           6.1.26.NC             Cristian Iorga       API compatibility issue
+libical               1.0.0            1.0.1                 Cristian Iorga
+libtirpc              0.2.5            0.3.2                 Cristian Iorga
+harfbuzz              0.9.40           0.9.41                Cristian Iorga
+linux-yocto-rt        3.14.36+gitX     3.14.39+gitAUTOIN...  Darren Hart
+u-boot-fw-utils       v2015.01+gitX    v2015.04+gitAUTOI...  Denys Dmytriyenko
+u-boot-mkimage        v2015.01+gitX    v2015.04+gitAUTOI...  Denys Dmytriyenko
+u-boot                v2015.01+gitX    v2015.04+gitAUTOI...  Denys Dmytriyenko
+ncurses               5.9              20150704              Hongxu Jia
+distcc                3.1              3.2rc1                Hongxu Jia
+elfutils              0.162            0.163                 Hongxu Jia
+perl                  5.22.0           5.23.0                Hongxu Jia
+createrepo            0.4.11           0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
+bash                  4.3              4.3.30                Hongxu Jia           The latest version in yocto...
+libinput              0.18.0           0.19.0                Jussi Kukkonen
+xf86-input-vmmouse    13.0.0           13.1.0                Jussi Kukkonen
+xproto                7.0.27           7.0.28                Jussi Kukkonen
+vte                   0.28.2           0.40.2                Jussi Kukkonen
+gtk+3                 3.12.2           3.16.4                Jussi Kukkonen
+libnotify             0.6.0            0.7.6                 Jussi Kukkonen
+clutter-1.0           1.20.0           1.23.2                Jussi Kukkonen
+clutter-gtk-1.0       1.4.4            1.6.2                 Jussi Kukkonen
+cogl-1.0              1.18.2           1.20.0                Jussi Kukkonen
+fontconfig            2.11.93          2.11.94               Jussi Kukkonen
+mesa-gl               10.5.8           10.6.1                Jussi Kukkonen
+mesa                  10.5.8           10.6.1                Jussi Kukkonen
+python-nose           1.3.6            1.3.7                 Khem Raj
+python-numpy          1.7.0            1.9.2                 Khem Raj
+rpm                   5.4.14           5.4.15                Mark Hatle
+gcc-source-4.9.2      4.9.2            5.1.0                 No maintainer
+orc                   0.4.23           0.4.24                No maintainer
+i2c-tools             3.1.1            3.1.2                 No maintainer
+opkg                  0.2.4            0.3.0                 Paul Barker
+openssh               6.8p1            6.9p1                 Paul Eggleton
+cmake                 3.2.2            3.2.3                 Paul Eggleton
+libav                 9.18             11.4                  Paul Eggleton
+qt4-embedded          4.8.7            5.5.0                 Paul Eggleton
+qt4-x11-free          4.8.7            5.5.0                 Paul Eggleton
+gpgme                 1.5.4            1.5.5                 Paul Eggleton
+libevdev              1.4.2            1.4.3                 Paul Eggleton
+libpng12              1.2.53           1.6.17                Randy Witt
+python-async          0.6.1            0.6.2                 Randy Witt
+tcf-agent             0.4.0+gitX       8.0+gitAUTOINC+2c...  Randy Witt
+unfs3                 0.9.22.r490      0.9.22.r494           Randy Witt
+libunistring          0.9.4            0.9.5                 Randy Witt
+libpam                1.1.6            1.2.1                 Randy Witt
+kexec-tools           2.0.9            2.0.10                Richard Purdie
+btrfs-tools           4.0.1+gitX       4.1+gitAUTOINC+01...  Richard Purdie
+lttng-modules         2.6.1            2.6.2                 Richard Purdie
+lttng-ust             2.6.1            2.6.2                 Richard Purdie
+intltool              0.50.2           0.51.0                Richard Purdie
+python-distribute     0.6.32           0.7.3                 Richard Purdie       0.7.3 only upgrades 0.6.32,...
+python-pygobject      2.28.3           3.17.1                Richard Purdie       Newer versions of python-py...
+libdrm                2.4.59           2.4.62                Richard Purdie
+libmpc                1.0.2            1.0.3                 Richard Purdie
+binutils              2.25             7.9.1                 Robert Yang
+e2fsprogs             1.42.9           1.42.13               Robert Yang
+git                   2.4.4            2.4.5                 Robert Yang
+gmp                   6.0.0            6.0.0a                Robert Yang
+less                  471              478                   Robert Yang
+liberation-fonts      1.04             2.00.1                Ross Burton          2.00.0 - fontforge package ...
+webkit-gtk            1.8.3            1.9.92                Ross Burton          >= 1.10.2 needs ruby
+gnutls                3.3.14           3.4.2                 Ross Burton
+build-appliance-i...  12.0.1           13.0.0                Saul Wold
+uclibc                0.9.33+gitX      0.9.33.2+gitAUTOI...  Saul Wold
+systemtap             2.7+gitX         2.8+gitAUTOINC+16...  Saul Wold
+libtheora             1.1.1            1.2.0alpha1           Saul Wold
+tiff                  4.0.4            4.0.4beta             Saul Wold
+ca-certificates       20141019         20150426              Saul Wold
+libunique             1.1.6            3.0.2                 Saul Wold
+mx-1.0                1.4.7+gitX       1.99.4+gitAUTOINC...  Saul Wold
+systemtap-uprobes     2.7+gitX         2.8+gitAUTOINC+16...  Tom Zanussi
+ccache                3.1.11           3.2.2                 Wenzong Fan
+chkconfig             1.3.58           1.5                   Wenzong Fan
+
+Upgradable count: 97
+Upgradable total count: 107
+
+The based commit is:
+
+commit dd09fab685de2eaf04aa5ab60f8220b89c1deae9
+Author: Andre McCurdy <armccurdy@gmail.com>
+Date:   Tue Jun 23 16:27:57 2015 -0700
+
+    tune-core2.inc: set X86ARCH32 to i686 (instead of i586)
+    
+    Use i686 as TARGET_ARCH for 32bit core2 (and corei7 and atom) builds.
+    
+    In most cases, i586 and i686 are equivalent values for TARGET_ARCH, however
+    one important exception is glibc. When configured for i686, glibc enables
+    optimised string functions (SSE, SSE2, etc), which are not used when
+    building for i586.
+    
+    The benefits of i686 optimised string functions vary depending on the
+    application and the CPU, however in some cases the improvements are
+    significant. In one test, a 50% increase in FPS was seen when running the
+    'smashcat' benchmark [1] in a qtwebkit browser on an Intel Atom based SoC.
+    The gain seems to comes from a 3x improvement in memcpy performance when
+    copying graphics buffer lines (5120 bytes, or 1280 x 4 bytes/pixel), from
+    the CPU to GPU. Note that very large memcpy's (e.g. 32MB) on the same
+    machine show no particular performance increase between i586 and i686.
+    
+      [1] http://www.smashcat.org/av/canvas_test/
+    
+    Warning: The change in TARGET_ARCH means that _i586 architecture specific
+    over-rides will no longer take effect. Both oe-core and meta-oe have been
+    updated to replace _i586 over-rides with _x86, however other layers may
+    still need review and updating.
+    
+    Signed-off-by: Andre McCurdy <armccurdy@gmail.com>
+    Signed-off-by: Ross Burton <ross.burton@intel.com>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
