@@ -1,39 +1,53 @@
-Return-Path: <petter@technux.se>
+Return-Path: <vm.rod25@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 74848E00A30; Sun,  5 Jul 2015 12:19:44 -0700 (PDT)
+	id 3FBF6E00A70; Sun,  5 Jul 2015 20:44:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [195.74.38.225 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (vm.rod25[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from bin-vsp-out-01.atm.binero.net (vsp-unauthed01.binero.net
-	[195.74.38.225])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A855FE009CC
-	for <yocto@yoctoproject.org>; Sun,  5 Jul 2015 12:19:40 -0700 (PDT)
-X-Halon-ID: d1bdc205-234a-11e5-8486-005056917a89
-Authorized-sender: petter@technux.se
-Received: from [192.168.1.82] (unknown [81.229.90.163])
-	by bin-vsp-out-01.atm.binero.net (Halon Mail Gateway) with ESMTPSA;
-	Sun,  5 Jul 2015 21:19:54 +0200 (CEST)
-Message-ID: <55998349.8080103@technux.se>
-Date: Sun, 05 Jul 2015 21:19:37 +0200
-From: =?windows-1252?Q?Petter_Mab=E4cker?= <petter@technux.se>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.4.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f171.google.com (mail-ig0-f171.google.com
+	[209.85.213.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6ADAAE00A25
+	for <yocto@yoctoproject.org>; Sun,  5 Jul 2015 20:44:44 -0700 (PDT)
+Received: by igcqs7 with SMTP id qs7so1880312igc.0
+	for <yocto@yoctoproject.org>; Sun, 05 Jul 2015 20:44:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=Xt7bao7wDnHYiyiYxEfCdZrDLJMBkcD1MsHt7aiNz+w=;
+	b=ZFVsxCYTU2tmd6YE5GmyTD2lebqK47RJt5VfEnVpGobAQMlVrXf7ob8iZJRo9yXbaJ
+	gkmIpMvPXvobLrKtvlV+fL8rs9Pm9paICawaYiteLijQK785p7q/KOeMmLuH6cJ+qKg6
+	C3C9hRTz4+1QkGnhndqI6CASrzIX24wPnkfu1yxSPnbkhnKxJoA6g75b8IbWDmoHOo9i
+	49EDUv2DvCZRsMZP7G9t8vS+70o82ZNfO8/K1Yr0SLdbn1EpLKq6pJDhDYkab2qj+h4r
+	Bu2lYygCy9MVxGCxdGoPei+LdxCmuodl6k5/vQdWzNkgrS2SISdwJ4bKDhNMYrN8RaWK
+	oifg==
 MIME-Version: 1.0
-To: Jon Szymaniak <jon.szymaniak@gmail.com>, 
-	Andrei Gherzan <andrei@gherzan.ro>
-References: <1435292188-29514-1-git-send-email-jon.szymaniak@gmail.com>	<CAJTo0LaKZsvvC4hKZrJiX6r2=Q+JL48+i3fBVQauDDYNtPn+og@mail.gmail.com>
-	<CANge7vUQG3p3L7R5ZiZJJ62=zsYoGdjieiHwHktPD7yQ-ZsPag@mail.gmail.com>
-In-Reply-To: <CANge7vUQG3p3L7R5ZiZJJ62=zsYoGdjieiHwHktPD7yQ-ZsPag@mail.gmail.com>
+X-Received: by 10.107.131.199 with SMTP id n68mr1126335ioi.63.1436154283307;
+	Sun, 05 Jul 2015 20:44:43 -0700 (PDT)
+Received: by 10.50.141.228 with HTTP; Sun, 5 Jul 2015 20:44:43 -0700 (PDT)
+In-Reply-To: <55881861.5090100@linux.intel.com>
+References: <CAK5mtexAAs35+7SPauu3ftDVbpr1A_6fcVjn14ULOb43cXAboA@mail.gmail.com>
+	<55881861.5090100@linux.intel.com>
+Date: Sun, 5 Jul 2015 22:44:43 -0500
+Message-ID: <CAK5mteymh-5B0aHZ58f_pPqgYAmYZ_FHa+yrKTP0jkAD6jdv=g@mail.gmail.com>
+From: Victor Rodriguez <vm.rod25@gmail.com>
+To: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] firmware.inc: Fetch a zip instead of cloning a git repo
+Subject: Re: OpenCV yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,188 +59,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 05 Jul 2015 19:19:44 -0000
-Content-Type: multipart/alternative;
-	boundary="------------070001080002050700060205"
+X-List-Received-Date: Mon, 06 Jul 2015 03:44:46 -0000
+Content-Type: text/plain; charset=UTF-8
 
---------------070001080002050700060205
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 06/26/2015 04:16 PM, Jon Szymaniak wrote:
-> On Fri, Jun 26, 2015 at 4:31 AM, Burton, Ross <ross.burton@intel.com 
-> <mailto:ross.burton@intel.com>> wrote:
+On Mon, Jun 22, 2015 at 9:14 AM, Leonardo Sandoval
+<leonardo.sandoval.gonzalez@linux.intel.com> wrote:
 >
 >
->     On 26 June 2015 at 05:16, Jon Szymaniak <jon.szymaniak@gmail.com
->     <mailto:jon.szymaniak@gmail.com>> wrote:
+> On 06/20/2015 09:22 PM, Victor Rodriguez wrote:
+>>
+>> HI team
+>>
+>> I am having this same problem:
+>>
+>>
+>> http://stackoverflow.com/questions/25332969/opencv-pkg-config-cannot-find-lopencv-ts-when-compiling-using-g
+>>
+>> I try to build opencv simple source code :
+>>
+>> g++ hello.cpp -o video `pkg-config --cflags --libs opencv`
+>>
+> Victor, you may take at look at this recipe (opencv_samples)
 >
->         GitHub provides this ability to download repository contents at
->         a specified changeset as a zip file. This is generally *much*
->         quicker
->         than fetching the entire git repository.
+> http://cgit.openembedded.org/cgit.cgi/meta-openembedded/tree/meta-oe/recipes-support/opencv/opencv-samples_2.4.bb?h=master
 >
->
->     Github also can and will regenerate these tarballs whenever it
->     feels like it, so you'll need to periodically update the
->     checksums.  Obviously as existing developers will tend to have the
->     tarballs cached locally, it can be a while before this failure is
->     reported back.
->
->     A better solution might be to add support for "depth" to the git
->     fetcher, so you can grab just the commit you are interested in
->     instead of the entire repository.
->
->     Ross
->
->
-> Hi Ross,
->
-> Excellent point about the regeneration potentially yielding different 
-> checksums.  I suppose they could change the compression level they use 
-> at any moment in time... I'll look into adding that depth support to 
-> the fetcher, as that doesn't look too hard at all.
->
-> I'm open to other suggestions as well, as this was just a first stab 
-> at it. I've been seeing that cloning this git repo containing binary 
-> firmware blobs takes an absurd amount of time, if it even finishes at 
-> all successfully.
->
-> Cheers,
-> Jon
->
->
-
-Hi Jon,
-
-Any news about this? I have also used a very similar changeset like you 
-suggests (use .zip from github) ontop of meta-raspberrypi when building, 
-to get rid of the annoying problem that it takes a very long time or 
-even worse that you get a timeout.
-
-My suggestion is to go for the .zip changeset at least until --depth=1 
-is supported in the git fetcher.
-
-@Andrei any comments from your side regarding this discussion?
-
-BR,
-Petter
+> What I can see, seems that the `pkg-config --libs openvc` is missing on your
+> bb.
 
 
+Thanks for the help Leo , aparently the missing part was :
 
---------------070001080002050700060205
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+opencv-staticdev
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">On 06/26/2015 04:16 PM, Jon Szymaniak
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CANge7vUQG3p3L7R5ZiZJJ62=zsYoGdjieiHwHktPD7yQ-ZsPag@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div class="gmail_extra">
-          <div class="gmail_quote">On Fri, Jun 26, 2015 at 4:31 AM,
-            Burton, Ross <span dir="ltr">&lt;<a moz-do-not-send="true"
-                href="mailto:ross.burton@intel.com" target="_blank">ross.burton@intel.com</a>&gt;</span>
-            wrote:<br>
-            <blockquote class="gmail_quote" style="margin:0 0 0
-              .8ex;border-left:1px #ccc solid;padding-left:1ex">
-              <div dir="ltr">
-                <div class="gmail_extra"><span class=""><br>
-                    <div class="gmail_quote">On 26 June 2015 at 05:16,
-                      Jon Szymaniak <span dir="ltr">&lt;<a
-                          moz-do-not-send="true"
-                          href="mailto:jon.szymaniak@gmail.com"
-                          target="_blank">jon.szymaniak@gmail.com</a>&gt;</span>
-                      wrote:<br>
-                      <blockquote class="gmail_quote" style="margin:0 0
-                        0 .8ex;border-left:1px #ccc
-                        solid;padding-left:1ex">
-                        <div style="overflow:hidden">GitHub provides
-                          this ability to download repository contents
-                          at<br>
-                          a specified changeset as a zip file. This is
-                          generally *much* quicker<br>
-                          than fetching the entire git repository.</div>
-                      </blockquote>
-                    </div>
-                    <br>
-                  </span>Github also can and will regenerate these
-                  tarballs whenever it feels like it, so you'll need to
-                  periodically update the checksums.  Obviously as
-                  existing developers will tend to have the tarballs
-                  cached locally, it can be a while before this failure
-                  is reported back.</div>
-                <div class="gmail_extra"><br>
-                </div>
-                <div class="gmail_extra">A better solution might be to
-                  add support for "depth" to the git fetcher, so you can
-                  grab just the commit you are interested in instead of
-                  the entire repository. </div>
-                <span class="HOEnZb"><font color="#888888">
-                    <div class="gmail_extra"><br>
-                    </div>
-                    <div class="gmail_extra">Ross</div>
-                  </font></span></div>
-            </blockquote>
-          </div>
-          <br>
-        </div>
-        <div class="gmail_extra">Hi Ross,<br>
-          <br>
-        </div>
-        <div class="gmail_extra">Excellent point about the regeneration
-          potentially yielding different checksums.  I suppose they
-          could change the compression level they use at any moment in
-          time... I'll look into adding that depth support to the
-          fetcher, as that doesn't look too hard at all.<br>
-          <br>
-        </div>
-        <div class="gmail_extra">I'm open to other suggestions as well,
-          as this was just a first stab at it. I've been seeing that
-          cloning this git repo containing binary firmware blobs takes
-          an absurd amount of time, if it even finishes at all
-          successfully.<br>
-          <br>
-        </div>
-        <div class="gmail_extra">Cheers,<br>
-        </div>
-        <div class="gmail_extra">Jon<br>
-        </div>
-      </div>
-    </blockquote>
-    <blockquote
-cite="mid:CANge7vUQG3p3L7R5ZiZJJ62=zsYoGdjieiHwHktPD7yQ-ZsPag@mail.gmail.com"
-      type="cite">
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-    Hi Jon,<br>
-    <br>
-    Any news about this? I have also used a very similar changeset like
-    you suggests (use .zip from github) ontop of meta-raspberrypi when
-    building, to get rid of the annoying problem that it takes a very
-    long time or even worse that you get a timeout.<br>
-    <br>
-    My suggestion is to go for the .zip changeset at least until
-    --depth=1 is supported in the git fetcher.<br>
-    <br>
-    @Andrei any comments from your side regarding this discussion?<br>
-    <br>
-    BR,<br>
-    Petter<br>
-    <br>
-     <br>
-  </body>
-</html>
+My local.conf ended like :
 
---------------070001080002050700060205--
+# CONF_VERSION is increased each time build/conf/ changes incompatibly
+and is used to
+# track the version of this file when it was generated. This can
+safely be ignored if
+# this doesn't mean anything to you.
+CONF_VERSION = "1"
+IMAGE_INSTALL_append = " gcc gcc-dev openssh php mariadb opencv opencv-samples"
+#IMAGE_INSTALL_append = " mpich mpich-dev"
+IMAGE_INSTALL_append = " libopencv-core-dev libopencv-highgui-dev
+libopencv-imgproc-dev libopencv-objdetect-dev libopencv-ml-dev
+opencv-staticdev"
+LICENSE_FLAGS_WHITELIST = "commercial"
+
+
+IMAGE_FEATURES += "package-management"
+MACHINE = "intel-corei7-64"
+
+I learned in the hard way that CORE_IMAGE_EXTRA_INSTALL and
+IMAGE_INSTALL_append are nto the same when I build for xfce the
+CORE_IMAGE_EXTRA_INSTALL is not taking into consideration
+
+After that opencv is working like a charm
+
+Now I am having problems to come up the web cam , do you know any part
+that might be missing ?
+
+If I do lsusb  the webcam is detected( I check and the driver is
+enable as module in make menuconfig )  , but when I try to run this
+code , It return as if the camera were not found
+
+https://github.com/VictorRodriguez/opencv_tutorial
+
+I might be missing gstream or something :(
+
+Thanks a lot for the help
+
+>
+>> But got this error :
+>>
+>> /usr/lib/gcc/i586-poky-linux/4.9.2/../../../../i586-poky-linux/bin/ld:
+>> cannot find -lopencv_ts
+>> collect2: error: ld returned 1 exit status
+>>
+>> My local.conf is like this :
+>>
+>> EXTRA_IMAGE_FEATURES = "debug-tweaks tools-sdk"
+>> IMAGE_INSTALL_append = " mpich mpich-dev gcc gcc-dev openssh php mariadb
+>> opencv"
+>> LICENSE_FLAGS_WHITELIST = "commercial"
+>> CORE_IMAGE_EXTRA_INSTALL += "libopencv-core-dev libopencv-highgui-dev
+>> libopencv-imgproc-dev libopencv-objdetect-dev libopencv-ml-dev"
+>>
+>>
+>> All the help is more than welcome
+>>
+>> Best regards
+>>
+>> Victor Rodriguez
+>>
+>
+
