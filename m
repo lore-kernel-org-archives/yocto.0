@@ -1,6 +1,6 @@
 Return-Path: <picmaster@mail.bg>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BFFCDE009E6; Mon,  6 Jul 2015 09:58:15 -0700 (PDT)
+	id 8BD45E009E6; Mon,  6 Jul 2015 09:59:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -20,33 +20,31 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mx2.mail.bg (mx2.mail.bg [193.201.172.118])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D27DE007A3
-	for <yocto@yoctoproject.org>; Mon,  6 Jul 2015 09:58:13 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B38EE007A3
+	for <yocto@yoctoproject.org>; Mon,  6 Jul 2015 09:59:42 -0700 (PDT)
 Received: from [192.168.0.62] (unknown [93.152.143.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by mx2.mail.bg (Postfix) with ESMTPSA id 49593600127E;
-	Mon,  6 Jul 2015 19:58:12 +0300 (EEST)
+	by mx2.mail.bg (Postfix) with ESMTPSA id BAFAE6002063;
+	Mon,  6 Jul 2015 19:59:41 +0300 (EEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mail.bg; s=default;
-	t=1436201892; bh=j+Rud/WA1vH3iJRQ+9wmwZEAM4rtqhvuHVwS6xM8lk0=;
+	t=1436201981; bh=MxdatjgxfswMm8P8FQmxUpc+xLifxvYCV1taYHXETUM=;
 	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
 	In-Reply-To:Content-Type:Content-Transfer-Encoding;
-	b=XbA7J+CEkMY0hsF/Xwgo19CONmcT9PWD5ivfH9xd08dPwkhJWItE6GU1eiGScGzzm
-	z/ZUoy6cbNWnCNgo61X0qV+5QbTh8fRcX5UJI7iMM3Z3AuyXm6TqxuRxGzdqJAX/Cs
-	+BSQr5hYTSusUO3u+4BDE+51r+DML3GvgPR6+ZvI=
-Message-ID: <559AB3A4.7010206@mail.bg>
-Date: Mon, 06 Jul 2015 19:58:12 +0300
+	b=peefLl4T8ebiSpWMSfOHwmGiI1Mzus8xpplwYJigtukup7U7leVUz7ToFFS3Lc9PU
+	8yIb1i8hC/OulPu1M0DZNIzWIVT9BaYOmQDHqkNetOO0sKGJTBKbyDoWon5a/OCOIz
+	pR/jVLOCoQxMxZBCtOMJMjsG/FEHGa3VW6czpBi4=
+Message-ID: <559AB3FB.2090302@mail.bg>
+Date: Mon, 06 Jul 2015 19:59:39 +0300
 From: Nikolay Dimitrov <picmaster@mail.bg>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Icedove/31.7.0
 MIME-Version: 1.0
 To: "Burton, Ross" <ross.burton@intel.com>
-References: <1435981717-29443-1-git-send-email-net147@gmail.com>
-	<55976F44.5070106@mail.bg> <559A8572.6020203@gmail.com>
-	<559AAA59.9090007@mail.bg>
-	<CAJTo0La_FqBveOEv90+ofCq2gAj4hiNfSA72dc40mEjrFv8aJg@mail.gmail.com>
-	<CAJTo0LYoqTs3o7di3rvwcsX5Q4iruAqFZePAJRXdw8eHWqW7HA@mail.gmail.com>
-In-Reply-To: <CAJTo0LYoqTs3o7di3rvwcsX5Q4iruAqFZePAJRXdw8eHWqW7HA@mail.gmail.com>
+References: <1435981717-29443-1-git-send-email-net147@gmail.com>	<55976F44.5070106@mail.bg>
+	<559A8572.6020203@gmail.com>	<559AAA59.9090007@mail.bg>	<CAJTo0La_FqBveOEv90+ofCq2gAj4hiNfSA72dc40mEjrFv8aJg@mail.gmail.com>	<CAJTo0LYoqTs3o7di3rvwcsX5Q4iruAqFZePAJRXdw8eHWqW7HA@mail.gmail.com>
+	<559AB3A4.7010206@mail.bg>
+In-Reply-To: <559AB3A4.7010206@mail.bg>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [meta-raspberrypi][PATCH] firmware.inc: fetch from SVN instead of Git
 X-BeenThere: yocto@yoctoproject.org
@@ -60,36 +58,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Jul 2015 16:58:15 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Mon, 06 Jul 2015 16:59:44 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
 Hi Ross,
 
-On 07/06/2015 07:26 PM, Burton, Ross wrote:
+On 07/06/2015 07:58 PM, Nikolay Dimitrov wrote:
+> Hi Ross,
 >
-> On 6 July 2015 at 17:23, Burton, Ross <ross.burton@intel.com
-> <mailto:ross.burton@intel.com>> wrote:
+> On 07/06/2015 07:26 PM, Burton, Ross wrote:
+>>
+>> On 6 July 2015 at 17:23, Burton, Ross <ross.burton@intel.com
+>> <mailto:ross.burton@intel.com>> wrote:
+>>
+>>     How latest, remembering that oe-core supports LTS distros which are
+>>     likely to have old releases of git.
+>>
+>>
+>> Assuming I'm driving it correctly:
+>>
+>> [git init, git remote add origin ...]
+>> $ git fetch  --depth=1 origin beeafee030a38380c65a9a664003ba50f87aefbf
+>> error: no such remote ref beeafee030a38380c65a9a664003ba50f87aefbf
+>> $ git --version
+>> git version 2.1.4
+>>
+>> That's with the latest Debian release.
+>>
+>> Ross
 >
->     How latest, remembering that oe-core supports LTS distros which are
->     likely to have old releases of git.
+> Well, the commits that add this feature are from May-June.2015. I fully
+> agree with you that LTS is a factor that can't be ignored.
 >
->
-> Assuming I'm driving it correctly:
->
-> [git init, git remote add origin ...]
-> $ git fetch  --depth=1 origin beeafee030a38380c65a9a664003ba50f87aefbf
-> error: no such remote ref beeafee030a38380c65a9a664003ba50f87aefbf
-> $ git --version
-> git version 2.1.4
->
-> That's with the latest Debian release.
->
-> Ross
+> Kind regards,
+> Nikolay
 
-Well, the commits that add this feature are from May-June.2015. I fully
-agree with you that LTS is a factor that can't be ignored.
+Forgot to answer you question - the expected versions to include this 
+feature are 2.5.0/2.5.1.
 
-Kind regards,
+Regards,
 Nikolay
 
