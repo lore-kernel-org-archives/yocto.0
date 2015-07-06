@@ -1,53 +1,44 @@
-Return-Path: <vm.rod25@gmail.com>
+Return-Path: <clemens.lang@bmw-carit.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3FBF6E00A70; Sun,  5 Jul 2015 20:44:46 -0700 (PDT)
+	id 17014E0096A; Sun,  5 Jul 2015 22:23:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vm.rod25[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.171 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [62.245.222.98 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f171.google.com (mail-ig0-f171.google.com
-	[209.85.213.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6ADAAE00A25
-	for <yocto@yoctoproject.org>; Sun,  5 Jul 2015 20:44:44 -0700 (PDT)
-Received: by igcqs7 with SMTP id qs7so1880312igc.0
-	for <yocto@yoctoproject.org>; Sun, 05 Jul 2015 20:44:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=Xt7bao7wDnHYiyiYxEfCdZrDLJMBkcD1MsHt7aiNz+w=;
-	b=ZFVsxCYTU2tmd6YE5GmyTD2lebqK47RJt5VfEnVpGobAQMlVrXf7ob8iZJRo9yXbaJ
-	gkmIpMvPXvobLrKtvlV+fL8rs9Pm9paICawaYiteLijQK785p7q/KOeMmLuH6cJ+qKg6
-	C3C9hRTz4+1QkGnhndqI6CASrzIX24wPnkfu1yxSPnbkhnKxJoA6g75b8IbWDmoHOo9i
-	49EDUv2DvCZRsMZP7G9t8vS+70o82ZNfO8/K1Yr0SLdbn1EpLKq6pJDhDYkab2qj+h4r
-	Bu2lYygCy9MVxGCxdGoPei+LdxCmuodl6k5/vQdWzNkgrS2SISdwJ4bKDhNMYrN8RaWK
-	oifg==
+X-Greylist: delayed 179 seconds by postgrey-1.32 at yocto-www;
+	Sun, 05 Jul 2015 22:23:00 PDT
+Received: from mail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2720E006C6
+	for <yocto@yoctoproject.org>; Sun,  5 Jul 2015 22:23:00 -0700 (PDT)
+Received: from exchange2010.bmw-carit.intra ([192.168.100.28]:8419
+	helo=mail.bmw-carit.de)
+	by mail.bmw-carit.de with esmtps (TLSv1:AES128-SHA:128)
+	(Exim 4.82_1-5b7a7c0-XX) (envelope-from <Clemens.Lang@bmw-carit.de>)
+	id 1ZByot-0007kD-24; Mon, 06 Jul 2015 07:19:55 +0200
+Received: from localhost (172.20.20.163) by Exchange2010.bmw-carit.intra
+	(192.168.100.28) with Microsoft SMTP Server (TLS) id 14.1.218.12;
+	Mon, 6 Jul 2015 07:19:55 +0200
+X-CTCH-RefID: str=0001.0A0C0205.559A0FFB.018C, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+Date: Mon, 6 Jul 2015 07:19:54 +0200
+From: Clemens Lang <clemens.lang@bmw-carit.de>
+To: "Burton, Ross" <ross.burton@intel.com>
+Message-ID: <20150706051954.GF6806@ulm-bmuc496424.bmw-carit.de>
+References: <1435292188-29514-1-git-send-email-jon.szymaniak@gmail.com>
+	<CAJTo0LaKZsvvC4hKZrJiX6r2=Q+JL48+i3fBVQauDDYNtPn+og@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.107.131.199 with SMTP id n68mr1126335ioi.63.1436154283307;
-	Sun, 05 Jul 2015 20:44:43 -0700 (PDT)
-Received: by 10.50.141.228 with HTTP; Sun, 5 Jul 2015 20:44:43 -0700 (PDT)
-In-Reply-To: <55881861.5090100@linux.intel.com>
-References: <CAK5mtexAAs35+7SPauu3ftDVbpr1A_6fcVjn14ULOb43cXAboA@mail.gmail.com>
-	<55881861.5090100@linux.intel.com>
-Date: Sun, 5 Jul 2015 22:44:43 -0500
-Message-ID: <CAK5mteymh-5B0aHZ58f_pPqgYAmYZ_FHa+yrKTP0jkAD6jdv=g@mail.gmail.com>
-From: Victor Rodriguez <vm.rod25@gmail.com>
-To: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: OpenCV yocto
+In-Reply-To: <CAJTo0LaKZsvvC4hKZrJiX6r2=Q+JL48+i3fBVQauDDYNtPn+og@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+X-Originating-IP: [172.20.20.163]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Jon Szymaniak <jon.szymaniak@gmail.com>
+Subject: Re: [meta-raspberrypi][PATCH] firmware.inc: Fetch a zip instead of cloning a git repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,98 +50,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Jul 2015 03:44:46 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 06 Jul 2015 05:23:05 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jun 22, 2015 at 9:14 AM, Leonardo Sandoval
-<leonardo.sandoval.gonzalez@linux.intel.com> wrote:
->
->
-> On 06/20/2015 09:22 PM, Victor Rodriguez wrote:
->>
->> HI team
->>
->> I am having this same problem:
->>
->>
->> http://stackoverflow.com/questions/25332969/opencv-pkg-config-cannot-find-lopencv-ts-when-compiling-using-g
->>
->> I try to build opencv simple source code :
->>
->> g++ hello.cpp -o video `pkg-config --cflags --libs opencv`
->>
-> Victor, you may take at look at this recipe (opencv_samples)
->
-> http://cgit.openembedded.org/cgit.cgi/meta-openembedded/tree/meta-oe/recipes-support/opencv/opencv-samples_2.4.bb?h=master
->
-> What I can see, seems that the `pkg-config --libs openvc` is missing on your
-> bb.
+Hello,
+
+On Fri, Jun 26, 2015 at 09:31:14AM +0100, Burton, Ross wrote:
+> Github also can and will regenerate these tarballs whenever it feels
+> like it, so you'll need to periodically update the checksums.
+> Obviously as existing developers will tend to have the tarballs cached
+> locally, it can be a while before this failure is reported back.
+
+While that does happen from time to time it's pretty rare. I see maybe
+one case of this every couple of months in MacPorts. Additionally, after
+a while the checksums generally change back again in almost all cases.
+
+So, yes, this brings its own set of problems, but is still a worthwhile
+improvement over the current situation IMO.
 
 
-Thanks for the help Leo , aparently the missing part was :
-
-opencv-staticdev
-
-My local.conf ended like :
-
-# CONF_VERSION is increased each time build/conf/ changes incompatibly
-and is used to
-# track the version of this file when it was generated. This can
-safely be ignored if
-# this doesn't mean anything to you.
-CONF_VERSION = "1"
-IMAGE_INSTALL_append = " gcc gcc-dev openssh php mariadb opencv opencv-samples"
-#IMAGE_INSTALL_append = " mpich mpich-dev"
-IMAGE_INSTALL_append = " libopencv-core-dev libopencv-highgui-dev
-libopencv-imgproc-dev libopencv-objdetect-dev libopencv-ml-dev
-opencv-staticdev"
-LICENSE_FLAGS_WHITELIST = "commercial"
-
-
-IMAGE_FEATURES += "package-management"
-MACHINE = "intel-corei7-64"
-
-I learned in the hard way that CORE_IMAGE_EXTRA_INSTALL and
-IMAGE_INSTALL_append are nto the same when I build for xfce the
-CORE_IMAGE_EXTRA_INSTALL is not taking into consideration
-
-After that opencv is working like a charm
-
-Now I am having problems to come up the web cam , do you know any part
-that might be missing ?
-
-If I do lsusb  the webcam is detected( I check and the driver is
-enable as module in make menuconfig )  , but when I try to run this
-code , It return as if the camera were not found
-
-https://github.com/VictorRodriguez/opencv_tutorial
-
-I might be missing gstream or something :(
-
-Thanks a lot for the help
-
->
->> But got this error :
->>
->> /usr/lib/gcc/i586-poky-linux/4.9.2/../../../../i586-poky-linux/bin/ld:
->> cannot find -lopencv_ts
->> collect2: error: ld returned 1 exit status
->>
->> My local.conf is like this :
->>
->> EXTRA_IMAGE_FEATURES = "debug-tweaks tools-sdk"
->> IMAGE_INSTALL_append = " mpich mpich-dev gcc gcc-dev openssh php mariadb
->> opencv"
->> LICENSE_FLAGS_WHITELIST = "commercial"
->> CORE_IMAGE_EXTRA_INSTALL += "libopencv-core-dev libopencv-highgui-dev
->> libopencv-imgproc-dev libopencv-objdetect-dev libopencv-ml-dev"
->>
->>
->> All the help is more than welcome
->>
->> Best regards
->>
->> Victor Rodriguez
->>
->
+Best regards,
+Clemens
+-- 
+Clemens Lang • Development Specialist
+BMW Car IT GmbH • Lise-Meitner-Str. 14 • 89081 Ulm • http://bmw-carit.com
+-------------------------------------------------------------------------
+BMW Car IT GmbH
+Geschäftsführer: Michael Würtenberger und Reinhard Stolle
+Sitz und Registergericht: München HRB 134810
+-------------------------------------------------------------------------
 
