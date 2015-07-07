@@ -1,50 +1,36 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <eirik.solberg.hamnvik@tomra.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 189FCE00A21; Tue,  7 Jul 2015 01:29:31 -0700 (PDT)
+	id 0A371E009FD; Tue,  7 Jul 2015 02:03:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.173 listed in list.dnswl.org]
-Received: from mail-qk0-f173.google.com (mail-qk0-f173.google.com
-	[209.85.220.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A364E009FD
-	for <yocto@yoctoproject.org>; Tue,  7 Jul 2015 01:29:30 -0700 (PDT)
-Received: by qkbp125 with SMTP id p125so134682040qkb.2
-	for <yocto@yoctoproject.org>; Tue, 07 Jul 2015 01:29:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=VwtKRa+DUrKNvhj38qJRv5VPs1dfnnWMjegcLEIYJ8M=;
-	b=g1pdCyLoaFd795FjUn6IvFyRDw/Bfvur654zBdza/G7D2l4CN89a50lzIIsI3XGpx/
-	dfaTCpeAYAIxNO73qBUpCMAD/s0cKtYi3YfM/uxhRr+evAJcHYr/BXf7lQzz2jgbqMXN
-	QueNRySHu58FBQKqFTlJJ+vK4YgAb1UGj7/3pUoqqcJqyVWlRMKCLVly14bRJPL1DlVU
-	18gwc4ysPIw0+3vVeZKKI7+S8eMl+gKoITnoAwAQLBH7+iZRHeWxrZnOf2hKuTbNwgZ7
-	Dgc07o/D/xWZUeHriztcUQi4hyNwcG7tPF8o2xhdAXA4AduFqnxzxQYxis5eIHjr8QDm
-	w4XQ==
-X-Gm-Message-State: ALoCoQmUOMsqUA0lNkmhZU/NxI/+U42elFPd7SoD+tMv308FwXBeszRRTtU3sdOz9Sh8ioLeyHgG
-X-Received: by 10.55.53.193 with SMTP id c184mr4766986qka.62.1436257769545;
-	Tue, 07 Jul 2015 01:29:29 -0700 (PDT)
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
+	Tue, 07 Jul 2015 02:03:26 PDT
+Received: from smtp.tomra.com (smtp.tomra.com [62.92.2.160])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 619A0E009E6
+	for <yocto@yoctoproject.org>; Tue,  7 Jul 2015 02:03:26 -0700 (PDT)
+Received: from EUNOEUR-EXS010.teu.tomra.corp ([fe80::242c:2953:fc66:e1ee]) by
+	EUNOEUR-EXS013.teu.tomra.corp ([fe80::b81a:bbf8:2f42:40f1%13]) with
+	mapi id 14.03.0224.002; Tue, 7 Jul 2015 11:02:18 +0200
+From: Eirik Solberg Hamnvik <eirik.solberg.hamnvik@tomra.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Recipe runs before network is established on target, causes
+	problems. 
+Thread-Index: AdC4kxx5mm8MU+ytSSiJaNulWKiP6A==
+Date: Tue, 7 Jul 2015 09:02:17 +0000
+Message-ID: <9EB14782B17D6549A78433A42753B30B244F3C4F@EUNOEUR-EXS010.teu.tomra.corp>
+Accept-Language: nb-NO, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.3.8]
+x-exclaimer-md-config: 6b757840-9012-48b5-a10c-05c6ceeb7fd2
 MIME-Version: 1.0
-Received: by 10.140.102.231 with HTTP; Tue, 7 Jul 2015 01:29:10 -0700 (PDT)
-In-Reply-To: <87vbdwy88m.fsf@weregild.amer.corp.natinst.com>
-References: <alpine.LFD.2.11.1502190508290.29947@localhost>
-	<CAF3SDA6sUY=4cg-pihtftzTNDREm5cKMS7MqQp4DJ9M81ez5UQ@mail.gmail.com>
-	<87vbdwy88m.fsf@weregild.amer.corp.natinst.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 7 Jul 2015 09:29:10 +0100
-Message-ID: <CAJTo0Lb1Nth4VGocNqTDWFnrzO4_FGFbeg6Akk7ZmSvFLPP6Ew@mail.gmail.com>
-To: Richard Tollerton <rich.tollerton@ni.com>
-Cc: OE-core <openembedded-core@lists.openembedded.org>,
-	Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [OE-core] [PATCH] cross-localedef-native_2.20.bb: fix for gcc5
+Subject: Recipe runs before network is established on target, causes problems.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,37 +42,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Jul 2015 08:29:31 -0000
-Content-Type: multipart/alternative; boundary=001a11476f1428fdbc051a44d28c
+X-List-Received-Date: Tue, 07 Jul 2015 09:03:31 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9EB14782B17D6549A78433A42753B30B244F3C4FEUNOEUREXS010te_"
 
---001a11476f1428fdbc051a44d28c
-Content-Type: text/plain; charset=UTF-8
-
-On 7 July 2015 at 03:54, Richard Tollerton <rich.tollerton@ni.com> wrote:
-
-> The build of cross-localedef-native is observed to fail under gcc5 hosts
-> with multiple definition errors, e.g.:
->
-
-Is this patch intended for fido?  Master doesn't have 2.20 anymore (2.21)
-and I believe that works with gcc5 hosts.
-
-Ross
-
---001a11476f1428fdbc051a44d28c
-Content-Type: text/html; charset=UTF-8
+--_000_9EB14782B17D6549A78433A42753B30B244F3C4FEUNOEUREXS010te_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 7 July 2015 at 03:54, Richard Tollerton <span dir=3D"ltr">&lt;<a href=3D=
-"mailto:rich.tollerton@ni.com" target=3D"_blank">rich.tollerton@ni.com</a>&=
-gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 =
-0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=3D":2es" class=
-=3D"a3s" style=3D"overflow:hidden">The build of cross-localedef-native is o=
-bserved to fail under gcc5 hosts<br>
-with multiple definition errors, e.g.:<br></div></blockquote></div><br>Is t=
-his patch intended for fido?=C2=A0 Master doesn&#39;t have 2.20 anymore (2.=
-21) and I believe that works with gcc5 hosts.</div><div class=3D"gmail_extr=
-a"><br></div><div class=3D"gmail_extra">Ross</div></div>
+Hey!
 
---001a11476f1428fdbc051a44d28c--
+I have a recipe where I in the pkg_postinst_mypackage () function runs apt-=
+get update on first boot only.
+This doesn't work. I've seen the logfile which says:
+
+Cannot initiate the connection to xxx.xxx.xxx.xxx - connect (101: Network i=
+s unreachable).
+
+If I manually go to the terminal after it has booted and type "apt-get upda=
+te" it works perfectly fine.
+Guess that means that my code tries to run before the network settings are =
+established.
+Is there some way I could manage this?
+
+Eirik
+
+--_000_9EB14782B17D6549A78433A42753B30B244F3C4FEUNOEUREXS010te_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"NO-BOK" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hey! <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I have a recipe where I in the =
+pkg_postinst_mypackage () function runs apt-get update on first boot only.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">This doesn&#8217;t work. I&#821=
+7;ve seen the logfile which says:
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Cannot initiate the connection =
+to xxx.xxx.xxx.xxx &#8211; connect (101: Network is unreachable).<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">If I manually go to the termina=
+l after it has booted and type &#8220;apt-get update&#8221; it works perfec=
+tly fine.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Guess that means that my code t=
+ries to run before the network settings are established.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Is there some way I could manag=
+e this? <o:p>
+</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Eirik<o:p></o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_9EB14782B17D6549A78433A42753B30B244F3C4FEUNOEUREXS010te_--
