@@ -1,46 +1,57 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 731D4E009FD; Mon,  6 Jul 2015 19:47:18 -0700 (PDT)
+	id C6C47E009FD; Mon,  6 Jul 2015 20:34:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (danielhilst[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D987E009E6
-	for <yocto@yoctoproject.org>; Mon,  6 Jul 2015 19:47:12 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by fmsmga101.fm.intel.com with ESMTP; 06 Jul 2015 19:47:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,419,1432623600"; 
-	d="scan'208,217";a="601299672"
-Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
-	by orsmga003.jf.intel.com with ESMTP; 06 Jul 2015 19:47:11 -0700
-Received: from fmsmsx104.amr.corp.intel.com (10.18.124.202) by
-	ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Mon, 6 Jul 2015 19:47:11 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.65]) by
-	fmsmsx104.amr.corp.intel.com ([169.254.3.127]) with mapi id
-	14.03.0224.002; Mon, 6 Jul 2015 19:47:11 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Reminder: Yocto Project Technical Team Meeting - Tuesday, July
-	7, 2015 8:00 AM US Pacific Time
-Thread-Index: AdC4Xzdg5FNQGu1aQiCSPFgl22IGSA==
-Date: Tue, 7 Jul 2015 02:47:10 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E5553CD81@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.108]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.41 listed in list.dnswl.org]
+Received: from mail-qg0-f41.google.com (mail-qg0-f41.google.com
+	[209.85.192.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 819A1E009E6
+	for <yocto@yoctoproject.org>; Mon,  6 Jul 2015 20:34:48 -0700 (PDT)
+Received: by qgii30 with SMTP id i30so78856623qgi.1
+	for <yocto@yoctoproject.org>; Mon, 06 Jul 2015 20:34:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=/JrNwBKs7PUSZ9k2vlKjj9caI529kqfpBdhDLQHj1+8=;
+	b=jy9UnKHtQ/QQSFQoFiyMhCAqjMySF+/RlET2qXr0CTlrkZloRxYeWOtVuk2FdC4xiR
+	DHHfEJvcXn7w+olBSWSKfm10KTUY643xG1xsFwd8XGpBgYjHUnoHX3T2nL+nZjOuoZdi
+	549O+J3o1OAS53xkOoy9gjXeIpwClOoYcPpwt32XagWZWy3itH34/HjYGCcACcQo/b2+
+	RNz9xa+bhS0izT07Q+QimiSWBfxr1g9nHsNGRbvzcgyra01/w7Pt/gI+1cvQMAVYy/gz
+	NHDxzHlhY6A9qM+i3yuO9eQQAF6oHaSYLN/znNp1jYOpO5JGUA57uMnEoHki3tfyj5H7
+	2rJw==
 MIME-Version: 1.0
-Subject: Reminder: Yocto Project Technical Team Meeting - Tuesday, July 7, 2015 8:00 AM US Pacific Time
+X-Received: by 10.140.239.9 with SMTP id k9mr3785783qhc.38.1436240087596; Mon,
+	06 Jul 2015 20:34:47 -0700 (PDT)
+Received: by 10.96.179.74 with HTTP; Mon, 6 Jul 2015 20:34:47 -0700 (PDT)
+Received: by 10.96.179.74 with HTTP; Mon, 6 Jul 2015 20:34:47 -0700 (PDT)
+In-Reply-To: <87vbdwy88m.fsf@weregild.amer.corp.natinst.com>
+References: <alpine.LFD.2.11.1502190508290.29947@localhost>
+	<CAF3SDA6sUY=4cg-pihtftzTNDREm5cKMS7MqQp4DJ9M81ez5UQ@mail.gmail.com>
+	<87vbdwy88m.fsf@weregild.amer.corp.natinst.com>
+Date: Tue, 7 Jul 2015 00:34:47 -0300
+Message-ID: <CAF3SDA7SYcST1fPRy=cW2nJYaBSHeeOqPHGbK51H+TiDSkuZCg@mail.gmail.com>
+From: "Daniel." <danielhilst@gmail.com>
+To: Richard Tollerton <rich.tollerton@ni.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+	openembedded-core@lists.openembedded.org
+Subject: Re: [PATCH] cross-localedef-native_2.20.bb: fix for gcc5
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,321 +63,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Jul 2015 02:47:18 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5553CD81fmsmsx111amrcor_"
+X-List-Received-Date: Tue, 07 Jul 2015 03:34:54 -0000
+Content-Type: multipart/alternative; boundary=001a113593a63bc654051a40b437
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5553CD81fmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--001a113593a63bc654051a40b437
+Content-Type: text/plain; charset=UTF-8
 
-Tuesday, July 7, 2015 8:00 AM US Pacific Time
+Thanks!!!
+Em 07/07/2015 00:09, "Richard Tollerton" <rich.tollerton@ni.com> escreveu:
 
-
-
-Agenda:
-
-
-
-* Opens collection - 5 min (Stephen)
-
-* Yocto Project status - 5 min (Stephen/team)
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.9_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.9_Features
-
-* Opens - 10 min
-
-* Team Sharing - 10 min
-
-
-
-
-
-We encourage people attending the meeting to logon the Yocto Project IRC ch=
-ancel during the meeting (optional):
-
-
-
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
-
-
-
-Conference Details:
-
-Company:           WIND RIVER SYS
-
-Ready-Access Number: 8007302996/9139049836
-
-Access Code:     2705751
-
-
-For International numbers see: https://www.yoctoproject.org/tools-resources=
-/community/monthly-technical-call
-
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5553CD81fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Message-ID: <87wpycy88v.fsf@weregild.amer.corp.natinst.com>
+> MIME-Version: 1.0
+> Content-Type: text/plain
+> --text follows this line--
+> The build of cross-localedef-native is observed to fail under gcc5 hosts
+> with multiple definition errors, e.g.:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:Verdana;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";
-	mso-fareast-language:ZH-CN;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Tuesday, July 7, 2015 8:00 AM US Pacific Time<o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Project_v1.9_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-9_Status</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.9_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.9_Features">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Features</a>
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens - 10 min
-<o:p></o:p></span></p>
-<div style=3D"border:none;border-bottom:solid windowtext 1.0pt;padding:0in =
-0in 1.0pt 0in">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-</div>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">We encourage people attending the meeting to logo=
-n the Yocto Project IRC chancel during the meeting (optional):<o:p></o:p></=
-p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Yocto IRC: <a href=3D"http://webchat.freenode.net=
-/?channels=3D#yocto">
-http://webchat.freenode.net/?channels=3D#yocto</a><o:p></o:p></p>
-<p class=3D"MsoPlainText">IRC Tutorial: <a href=3D"http://www.irchelp.org/i=
-rchelp/irctutorial.html">
-http://www.irchelp.org/irchelp/irctutorial.html</a> <o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Conference Details:<o:p></o:p></p>
-<p class=3D"MsoPlainText">Company:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp; WIND RIVER SYS<o:p></o:p></p>
-<p class=3D"MsoPlainText">Ready-Access Number: 8007302996/9139049836<o:p></=
-o:p></p>
-<p class=3D"MsoPlainText">Access Code:&nbsp;&nbsp;&nbsp;&nbsp; 2705751<o:p>=
-</o:p></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
-Verdana&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span><=
-/b></p>
-<p class=3D"MsoPlainText">For International numbers see: <a href=3D"https:/=
-/www.yoctoproject.org/tools-resources/community/monthly-technical-call">
-https://www.yoctoproject.org/tools-resources/community/monthly-technical-ca=
-ll</a><o:p></o:p></p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;,&quot;serif&quot=
-;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-,&quot;serif&quot;;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-si=
-ze:8.0pt;font-family:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</=
-span></b><span style=3D"font-family:&quot;MS Sans Serif&quot;,&quot;serif&q=
-uot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-,&quot;serif&quot;">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;,&quot;serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;,&quot;serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-,&quot;serif&quot;">(208) 244-4460<span style=3D"color:black"><o:p></o:p></=
-span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;,&quot;serif&quot;;color:teal">:<=
-/span><span lang=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans =
-Serif&quot;,&quot;serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+> argp-help.o: In function `argp_fmtstream_write':
+> argp-help.c:(.text+0x1da0): multiple definition of `argp_fmtstream_write'
+> argp-fmtstream.o:argp-fmtstream.c:(.text+0x7a0): first defined here
+>
+> The problem is the change of the default C standard from gnu89 to gnu11
+> which changes the semantics of 'inline'. The issue is described in the
+> Porting guide at https://gcc.gnu.org/gcc-5/porting_to.html. Adding the
+> '-fgnu89-inline' option fixes the issue.
+>
+> (This fix, including the above explanation, was shamelessly copied from
+>
+> http://git.vahanus.net/?p=csc/ptxdist-kp.git;a=commit;h=2f04a3587bd33c74ccc9be6e115a8b1fde620841
+> .)
+>
+> Signed-off-by: Richard Tollerton <rich.tollerton@ni.com>
+> ---
+>  meta/recipes-core/glibc/cross-localedef-native_2.20.bb | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/meta/recipes-core/glibc/cross-localedef-native_2.20.bb
+> b/meta/recipes-core/glibc/cross-localedef-native_2.20.bb
+> index ccf56a9..38f2af4 100644
+> --- a/meta/recipes-core/glibc/cross-localedef-native_2.20.bb
+> +++ b/meta/recipes-core/glibc/cross-localedef-native_2.20.bb
+> @@ -39,7 +39,7 @@ SRCREV_localedef =
+> "c833367348d39dad7ba018990bfdaffaec8e9ed3"
+>  S = "${WORKDIR}/git"
+>
+>  EXTRA_OECONF = "--with-glibc=${S}"
+> -CFLAGS += "-DNOT_IN_libc=1"
+> +CFLAGS += "-DNOT_IN_libc=1 -fgnu89-inline"
+>
+>  do_configure () {
+>         ${S}/localedef/configure ${EXTRA_OECONF}
+> --
+> 2.4.4
+>
+>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5553CD81fmsmsx111amrcor_--
+--001a113593a63bc654051a40b437
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p dir=3D"ltr">Thanks!!!</p>
+<div class=3D"gmail_quote">Em 07/07/2015 00:09, &quot;Richard Tollerton&quo=
+t; &lt;<a href=3D"mailto:rich.tollerton@ni.com">rich.tollerton@ni.com</a>&g=
+t; escreveu:<br type=3D"attribution"><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Message=
+-ID: &lt;<a href=3D"mailto:87wpycy88v.fsf@weregild.amer.corp.natinst.com">8=
+7wpycy88v.fsf@weregild.amer.corp.natinst.com</a>&gt;<br>
+MIME-Version: 1.0<br>
+Content-Type: text/plain<br>
+--text follows this line--<br>
+The build of cross-localedef-native is observed to fail under gcc5 hosts<br=
+>
+with multiple definition errors, e.g.:<br>
+<br>
+argp-help.o: In function `argp_fmtstream_write&#39;:<br>
+argp-help.c:(.text+0x1da0): multiple definition of `argp_fmtstream_write&#3=
+9;<br>
+argp-fmtstream.o:argp-fmtstream.c:(.text+0x7a0): first defined here<br>
+<br>
+The problem is the change of the default C standard from gnu89 to gnu11<br>
+which changes the semantics of &#39;inline&#39;. The issue is described in =
+the<br>
+Porting guide at <a href=3D"https://gcc.gnu.org/gcc-5/porting_to.html" rel=
+=3D"noreferrer" target=3D"_blank">https://gcc.gnu.org/gcc-5/porting_to.html=
+</a>. Adding the<br>
+&#39;-fgnu89-inline&#39; option fixes the issue.<br>
+<br>
+(This fix, including the above explanation, was shamelessly copied from<br>
+<a href=3D"http://git.vahanus.net/?p=3Dcsc/ptxdist-kp.git;a=3Dcommit;h=3D2f=
+04a3587bd33c74ccc9be6e115a8b1fde620841" rel=3D"noreferrer" target=3D"_blank=
+">http://git.vahanus.net/?p=3Dcsc/ptxdist-kp.git;a=3Dcommit;h=3D2f04a3587bd=
+33c74ccc9be6e115a8b1fde620841</a>.)<br>
+<br>
+Signed-off-by: Richard Tollerton &lt;<a href=3D"mailto:rich.tollerton@ni.co=
+m">rich.tollerton@ni.com</a>&gt;<br>
+---<br>
+=C2=A0meta/recipes-core/glibc/<a href=3D"http://cross-localedef-native_2.20=
+.bb" rel=3D"noreferrer" target=3D"_blank">cross-localedef-native_2.20.bb</a=
+> | 2 +-<br>
+=C2=A01 file changed, 1 insertion(+), 1 deletion(-)<br>
+<br>
+diff --git a/meta/recipes-core/glibc/<a href=3D"http://cross-localedef-nati=
+ve_2.20.bb" rel=3D"noreferrer" target=3D"_blank">cross-localedef-native_2.2=
+0.bb</a> b/meta/recipes-core/glibc/<a href=3D"http://cross-localedef-native=
+_2.20.bb" rel=3D"noreferrer" target=3D"_blank">cross-localedef-native_2.20.=
+bb</a><br>
+index ccf56a9..38f2af4 100644<br>
+--- a/meta/recipes-core/glibc/<a href=3D"http://cross-localedef-native_2.20=
+.bb" rel=3D"noreferrer" target=3D"_blank">cross-localedef-native_2.20.bb</a=
+><br>
++++ b/meta/recipes-core/glibc/<a href=3D"http://cross-localedef-native_2.20=
+.bb" rel=3D"noreferrer" target=3D"_blank">cross-localedef-native_2.20.bb</a=
+><br>
+@@ -39,7 +39,7 @@ SRCREV_localedef =3D &quot;c833367348d39dad7ba018990bfdaf=
+faec8e9ed3&quot;<br>
+=C2=A0S =3D &quot;${WORKDIR}/git&quot;<br>
+<br>
+=C2=A0EXTRA_OECONF =3D &quot;--with-glibc=3D${S}&quot;<br>
+-CFLAGS +=3D &quot;-DNOT_IN_libc=3D1&quot;<br>
++CFLAGS +=3D &quot;-DNOT_IN_libc=3D1 -fgnu89-inline&quot;<br>
+<br>
+=C2=A0do_configure () {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ${S}/localedef/configure ${EXTRA_OECONF}<br>
+--<br>
+2.4.4<br>
+<br>
+</blockquote></div>
+
+--001a113593a63bc654051a40b437--
