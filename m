@@ -1,32 +1,39 @@
-Return-Path: <philip@balister.org>
+Return-Path: <dev.kurt@vandijck-laurijssen.be>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8A3FAE00A2C; Tue,  7 Jul 2015 05:55:21 -0700 (PDT)
+	id 2CA0FE00A30; Tue,  7 Jul 2015 06:08:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [212.71.1.210 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
-	[216.168.135.167])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 30F61E009F0
-	for <yocto@yoctoproject.org>; Tue,  7 Jul 2015 05:55:17 -0700 (PDT)
-Received: (qmail 13125 invoked by uid 1003); 7 Jul 2015 12:55:16 -0000
-Received: from unknown (HELO ?192.168.11.124?)
-	(philip@opensdr.com@108.44.116.228)
-	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
-	7 Jul 2015 12:55:16 -0000
-Message-ID: <559BCC32.9050002@balister.org>
-Date: Tue, 07 Jul 2015 08:55:14 -0400
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
+	Tue, 07 Jul 2015 06:08:32 PDT
+Received: from relaygateway01.edpnet.net (relaygateway01.edpnet.net
+	[212.71.1.210])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96FB9E009FD
+	for <yocto@yoctoproject.org>; Tue,  7 Jul 2015 06:08:32 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AoUGABnOm1Vt7IXT/2dsb2JhbABcgxKBGcVrBASBU00BAQEBAQGBC4RNM1gCBSECEQUlJIhFpFaPX5ckgSGSHy+BFAWUGItomFsmgUlDHIFVgzgBAQE
+X-IPAS-Result: AoUGABnOm1Vt7IXT/2dsb2JhbABcgxKBGcVrBASBU00BAQEBAQGBC4RNM1gCBSECEQUlJIhFpFaPX5ckgSGSHy+BFAWUGItomFsmgUlDHIFVgzgBAQE
+X-IronPort-AV: E=Sophos;i="5.15,423,1432591200"; d="scan'208";a="339269862"
+Received: from 109.236.133.211.wls.msr91gkk3.adsl.fix.edpnet.net (HELO
+	zotac.vandijck-laurijssen.be) ([109.236.133.211])
+	by relaygateway01.edpnet.net with ESMTP; 07 Jul 2015 15:07:24 +0200
+Received: from vandijck-laurijssen.be (unknown [195.130.156.3])
+	by zotac.vandijck-laurijssen.be (Postfix) with ESMTPSA id 519A01C0057
+	for <yocto@yoctoproject.org>; Tue,  7 Jul 2015 15:07:27 +0200 (CEST)
+Date: Tue, 7 Jul 2015 15:07:18 +0200
+From: Kurt Van Dijck <dev.kurt@vandijck-laurijssen.be>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <20150707130718.GB3967@vandijck-laurijssen.be>
 MIME-Version: 1.0
-To: Richard Cagley <rcagley@gmail.com>, yocto@yoctoproject.org
-References: <CAN-NoH3OUDBmKqmO4hzUBjKt_LprWc-uwc1X8w6zRDwmUpQFKg@mail.gmail.com>
-In-Reply-To: <CAN-NoH3OUDBmKqmO4hzUBjKt_LprWc-uwc1X8w6zRDwmUpQFKg@mail.gmail.com>
-Subject: Re: installing kernel modules in root filesystem
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Subject: using shared state cache from other machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,33 +45,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Jul 2015 12:55:21 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 07 Jul 2015 13:08:34 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-On 07/06/2015 09:16 PM, Richard Cagley wrote:
-> I have a kernel module that shows up in my build work directory after
-> I configure the kernel accordingly
-> build/tmp-glibc/work/zedboard_zynq7-oe-linux-gnueabi/linux-xlnx/3.14-xilinx+gitAUTOINC+2b48a8aeea-r0/image/lib/modules/3.14.2-xilinx/kernel/drivers/dma/xilinx/vdmatest.ko
-> 
-> But, when I add "kernel-modules" to my IMAGE_INSTALL in local.conf I
-> don't see vdmatest.ko show up in the resultant root filesystem after I
-> run bitbake core-image-minimal-dev and untar the image
-> 
-> Is there a way to tell yocto to install all kernel modules or a step
-> I've missed?
-> 
+Hey,
 
-I have:
+I started to re-use the shared state cache from a build machine.
+If I clean everything locally, I still spend time building.
+So, can everything be re-used, or only the target packages.
+How different may the build machine & may host be.
+The build machine is a (recent) ubuntu. My machine is debian squeeze+sid
+mixed version. Is that a problem?
 
-MACHINE_EXTRA_RRECOMMENDS = "kernel-modules"
-
-in my machine conf,
-
-Make sure you have buildhistory in your user classes. That creates files
-that are very helpful for working out what is actually in the generated
-packages.
-
-Philip
-
+Kind regards,
+Kurt
 
