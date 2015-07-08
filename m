@@ -1,52 +1,37 @@
-Return-Path: <armccurdy@gmail.com>
+Return-Path: <Wenzong.Fan@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D3591E009C5; Tue,  7 Jul 2015 17:53:49 -0700 (PDT)
+	id 5EA8FE009CC; Tue,  7 Jul 2015 19:55:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (armccurdy[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.218.42 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-oi0-f42.google.com (mail-oi0-f42.google.com
-	[209.85.218.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75B80E00957
-	for <yocto@yoctoproject.org>; Tue,  7 Jul 2015 17:53:48 -0700 (PDT)
-Received: by oihr66 with SMTP id r66so98846242oih.2
-	for <yocto@yoctoproject.org>; Tue, 07 Jul 2015 17:53:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=8sgmOoLVKqluJXaW7+dtEKnwhkNcix3HLzxKTve2vvk=;
-	b=fopQLXNEDOxWs4gPQl/CUZuRtwgm0B7oete0h+ugX8d37BgtTUtNrdI+YuXHSBvVXF
-	U5AF1Derv3KbzN7vDbiTiZkoQ9FDd/WRT0k9BM31YFU2Q/RV+QmoUfZt+2To6gPb77dM
-	0pdoQXWJpo/8SyokQ/wX9VfnDxA9RGJHuka/4ESoq4qWt1wS4TSoZ23VK0g/K5j/UvvY
-	uvdjzzeI39ngcGG/GfBkFFRe++DoJssffFUPol5Y4u7zL/EOj+/CuEd+e2WRd+EJVUmd
-	32/X8IcR2V5uUI4AvQqHuHnzpGE/UmbfP9lUGSObVNcHjTRv2x5dFkVguS3KUuE6yZtS
-	6ZxA==
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F36CAE00960
+	for <yocto@yoctoproject.org>; Tue,  7 Jul 2015 19:55:22 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.15.1/8.15.1) with ESMTPS id t682tLiR002237
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 7 Jul 2015 19:55:21 -0700 (PDT)
+Received: from [128.224.162.176] (128.224.162.176) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.224.2;
+	Tue, 7 Jul 2015 19:55:21 -0700
+Message-ID: <559C9117.6020309@windriver.com>
+Date: Wed, 8 Jul 2015 10:55:19 +0800
+From: wenzong fan <wenzong.fan@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
 MIME-Version: 1.0
-X-Received: by 10.202.217.68 with SMTP id q65mr6071689oig.17.1436316827354;
-	Tue, 07 Jul 2015 17:53:47 -0700 (PDT)
-Received: by 10.202.64.130 with HTTP; Tue, 7 Jul 2015 17:53:47 -0700 (PDT)
-In-Reply-To: <0a834e96761d47fe91dc52870a8906f8@MCCRENEX02.meteorcomm.lan>
-References: <0a834e96761d47fe91dc52870a8906f8@MCCRENEX02.meteorcomm.lan>
-Date: Tue, 7 Jul 2015 17:53:47 -0700
-Message-ID: <CAJ86T=UQ1wmWiSJmhSzS97Z5y5bDFqhX0Bv5e38Q2jRf2bLSww@mail.gmail.com>
-From: Andre McCurdy <armccurdy@gmail.com>
-To: Benjamin Fleming <bfleming@meteorcomm.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: populate_sdk and kernel headers
+To: <yocto@yoctoproject.org>
+References: <1427941583-22684-1-git-send-email-rongqing.li@windriver.com>
+In-Reply-To: <1427941583-22684-1-git-send-email-rongqing.li@windriver.com>
+Subject: Re: [PATCH][meta-selinux] findutils/gnulib:drop the error output of 'ls' command
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,33 +43,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jul 2015 00:53:49 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 08 Jul 2015 02:55:28 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jul 7, 2015 at 4:16 PM, Benjamin Fleming
-<bfleming@meteorcomm.com> wrote:
-> Hello,
-> I want my kernel headers to be included in the SDK output when I run bitb=
-ake myimage -c populate_sdk. I expect to see the headers in my installed SD=
-K folder such as <sdk>/sysroot/<target_mach>/usr/src/kernel; however, I don=
-'t see anything there. Also, I don't want the headers appearing on the targ=
-et.
+Ping...
+
+On 04/02/2015 10:26 AM, rongqing.li@windriver.com wrote:
+> From: Roy Li <rongqing.li@windriver.com>
 >
-> In my recipe I have added IMAGE_INSTALL +=3D kernel-modules, and SDKIMAGE=
-_FEATURES +=3D kernel-devsrc.  The kernel I'm using is linux-altera-ltsi-rt=
- from https://github.com/kraj/meta-altera/blob/master/recipes-kernel/linux/=
-linux-altera-ltsi-rt_3.10.bb
-> What am I missing?
-
-Try adding kernel-devsrc to IMAGE_INSTALL rather than SDKIMAGE_FEATURES.
-
-> Thanks,
+> The ls command is used to check if the file exists, and it is normal that
+> the checked file does not exist, so drop the ls error ouput:
+> 	 ls: cannot access ./doc/fdl.texi: No such file or directory
 >
-> Ben
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Signed-off-by: Roy Li <rongqing.li@windriver.com>
+> ---
+>   .../drop-the-error-output-of-ls-command.patch      | 29 ++++++++++++++++++++++
+>   .../findutils/findutils_4.4.2.bbappend             |  1 +
+>   2 files changed, 30 insertions(+)
+>   create mode 100644 recipes-extended/findutils/findutils-4.4.2/drop-the-error-output-of-ls-command.patch
+>
+> diff --git a/recipes-extended/findutils/findutils-4.4.2/drop-the-error-output-of-ls-command.patch b/recipes-extended/findutils/findutils-4.4.2/drop-the-error-output-of-ls-command.patch
+> new file mode 100644
+> index 0000000..069be41
+> --- /dev/null
+> +++ b/recipes-extended/findutils/findutils-4.4.2/drop-the-error-output-of-ls-command.patch
+> @@ -0,0 +1,29 @@
+> +[PATCH] drop the error output of 'ls' command
+> +
+> +Upstream-Status: pending
+> +
+> +ls is used to check if the file exists, and it is normal that
+> +the checked file does not exist, so drop the ls error
+> +	 ls: cannot access ./doc/fdl.texi: No such file or directory
+> +
+> +Signed-off-by: Roy Li <rongqing.li@windriver.com>
+> +---
+> + gnulib-tool | 2 +-
+> + 1 file changed, 1 insertion(+), 1 deletion(-)
+> +
+> +diff --git a/gnulib-tool b/gnulib-tool
+> +index 354b1f0..beb81ba 100755
+> +--- a/gnulib-tool
+> ++++ b/gnulib-tool
+> +@@ -602,7 +602,7 @@ else
+> +   {
+> +     # Use two sed invocations. A single sed -n -e 's,^.* -> \(.*\)$,\1,p'
+> +     # would do the wrong thing if the link target contains " -> ".
+> +-    LC_ALL=C ls -l "$1" | sed -e 's, -> ,#%%#,' | sed -n -e 's,^.*#%%#\(.*\)$,\1,p'
+> ++    LC_ALL=C ls -l "$1" 2>/dev/null | sed -e 's, -> ,#%%#,' | sed -n -e 's,^.*#%%#\(.*\)$,\1,p'
+> +   }
+> + fi
+> +
+> +--
+> +1.9.1
+> +
+> diff --git a/recipes-extended/findutils/findutils_4.4.2.bbappend b/recipes-extended/findutils/findutils_4.4.2.bbappend
+> index 3245e5c..e174888 100644
+> --- a/recipes-extended/findutils/findutils_4.4.2.bbappend
+> +++ b/recipes-extended/findutils/findutils_4.4.2.bbappend
+> @@ -5,6 +5,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+>   SRC_URI += "git://git.savannah.gnu.org/gnulib.git;protocol=git;rev=0e0635af0b23826911dc456bd0da40dcb19247de"
+>   SRC_URI += "file://findutils-with-selinux.patch"
+>   SRC_URI += "file://findutils-with-selinux-gnulib.patch"
+> +SRC_URI += "file://drop-the-error-output-of-ls-command.patch;patchdir=../git/"
+>
+>   inherit with-selinux
+>
+>
 
