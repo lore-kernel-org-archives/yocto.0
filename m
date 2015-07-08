@@ -1,32 +1,33 @@
-Return-Path: <petter@technux.se>
+Return-Path: <knopper@knopper.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B66B5E00A45; Wed,  8 Jul 2015 09:10:50 -0700 (PDT)
+	id 99043E00978; Wed,  8 Jul 2015 09:35:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [195.74.38.227 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [85.214.68.145 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from bin-vsp-out-03.atm.binero.net (vsp-unauthed02.binero.net
-	[195.74.38.227])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB3AFE009C5
-	for <yocto@yoctoproject.org>; Wed,  8 Jul 2015 09:10:42 -0700 (PDT)
-X-Halon-ID: dd2ceedb-258b-11e5-8f60-0050569116f7
-Authorized-sender: petter@technux.se
-Received: from elxbvzzwp1-cy.lan (unknown [81.229.90.163])
-	by bin-vsp-out-03.atm.binero.net (Halon Mail Gateway) with ESMTPSA
-	for <yocto@yoctoproject.org>; Wed,  8 Jul 2015 18:10:34 +0200 (CEST)
-From: =?UTF-8?q?Petter=20Mab=C3=A4cker?= <petter@technux.se>
-To: yocto@yoctoproject.org
-Date: Wed,  8 Jul 2015 18:10:33 +0200
-Message-Id: <cover.1436366548.git.petter@technux.se>
-X-Mailer: git-send-email 1.9.1
+Received: from knopper.net (knopper.net [85.214.68.145])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17A43E0095D
+	for <yocto@yoctoproject.org>; Wed,  8 Jul 2015 09:35:44 -0700 (PDT)
+Received: by knopper.net (Postfix, from userid 26015)
+	id 4AE305D39; Wed,  8 Jul 2015 18:35:39 +0200 (CEST)
+Date: Wed, 8 Jul 2015 18:36:05 +0200
+From: Klaus Knopper <yocto@knopper.net>
+To: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+Message-ID: <20150708163604.GQ5636@knopper.net>
+References: <20150708145002.GO5636@knopper.net>
+	<559D445A.4010308@linux.intel.com>
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH 0/6] Update packages
+In-Reply-To: <559D445A.4010308@linux.intel.com>
+Organization: Knopper Networks
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: Yocto Mailinglist <yocto@yoctoproject.org>
+Subject: Re: Selecting different kernel inside an image recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,45 +39,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jul 2015 16:10:50 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 08 Jul 2015 16:35:48 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-See http://redmine.gherzan.com/issues/60 for additional info.
+Hello Leonardo,
 
-The following changes since commit c8532df1c2e4812b3520d32ed49be943bea2edd9:
+On Wed, Jul 08, 2015 at 10:40:10AM -0500, Leonardo Sandoval wrote:
+> On 07/08/2015 09:50 AM, Klaus Knopper wrote:
+> >Hello list,
+> >
+> >I'm trying to build variantions/brands of an image that only differ in
+> >kernel configuration and kernel modules included, but everything else stays
+> >the same, for the exact same board, as in the main image.
+> >
+> >Setting PREFERRED_PROVIDER_virtual/kernel = "different_kernel"
+> >right inside in the new image recipe does not have any effect, as that
+> >variable seems to be evaluated exclusively in the local.conf machine
+> >file, which is read by all recipes.
+> 
+> This variable is commonly used inside configuration metadata (machine or
+> distro conf files). You may try it there.
 
-  If SERIAL_CONSOLE is already define by another layer, this value may not be good. (2015-06-05 16:38:14 +0200)
+Please help me to understand your answer: You are saying that I do have
+to change the machine or distro config used for ALL recipes, to be able
+to use a different kernel configuration in ONE recipe, right?
 
-are available in the git repository at:
+I was really trying to avoid that. :-(
 
-  git://git.yoctoproject.org/poky-contrib petmab/rpi_redmine_60_03
-  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=petmab/rpi_redmine_60_03
+So it is really not possible to just select a different kernel config
+within a normal recipe without changing the global configuration?
 
-Petter Mabäcker (6):
-  bcm: Bump SRCREV
-  rpi-mkimage: Bump SRCREV
-  bcm2835: update version to 1.44
-  pi-blaster: bump to latest version
-  rpi-gpio: update version to 0.5.11
-  userland: bump SRCREV
-
- recipes-bsp/common/firmware.inc                    |  4 +-
- recipes-bsp/rpi-mkimage/rpi-mkimage_git.bb         |  2 +-
- .../bcm2835/{bcm2835_1.38.bb => bcm2835_1.44.bb}   |  4 +-
- ...ndle-install-data-hook-when-cross-compile.patch | 54 +++++++++++++++
- .../files/enable-autotools-support.patch           | 77 ----------------------
- recipes-devtools/pi-blaster/pi-blaster.inc         |  4 +-
- recipes-devtools/pi-blaster/pi-blaster_git.bb      |  2 +-
- .../{rpi-gpio_0.5.9.bb => rpi-gpio_0.5.11.bb}      |  4 +-
- recipes-graphics/userland/userland_git.bb          |  4 +-
- 9 files changed, 66 insertions(+), 89 deletions(-)
- rename recipes-devtools/bcm2835/{bcm2835_1.38.bb => bcm2835_1.44.bb} (88%)
- create mode 100644 recipes-devtools/pi-blaster/files/0001-handle-install-data-hook-when-cross-compile.patch
- delete mode 100644 recipes-devtools/pi-blaster/files/enable-autotools-support.patch
- rename recipes-devtools/python/{rpi-gpio_0.5.9.bb => rpi-gpio_0.5.11.bb} (76%)
-
--- 
-1.9.1
-
+Regards
+-Klaus
 
