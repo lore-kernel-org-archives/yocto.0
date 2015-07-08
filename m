@@ -1,61 +1,52 @@
-Return-Path: <bfleming@meteorcomm.com>
+Return-Path: <armccurdy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 45882E00960; Tue,  7 Jul 2015 16:20:54 -0700 (PDT)
+	id D3591E009C5; Tue,  7 Jul 2015 17:53:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (armccurdy[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [208.65.144.82 listed in list.dnswl.org]
-X-Greylist: delayed 278 seconds by postgrey-1.32 at yocto-www;
-	Tue, 07 Jul 2015 16:20:48 PDT
-Received: from p02c11o149.mxlogic.net (p02c11o149.mxlogic.net [208.65.144.82])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0BB7E006EE
-	for <yocto@yoctoproject.org>; Tue,  7 Jul 2015 16:20:48 -0700 (PDT)
-Received: from unknown [66.194.68.135] (EHLO mail.meteorcomm.com)
-	by p02c11o149.mxlogic.net(mxl_mta-8.4.0-1) with ESMTP id
-	3de5c955.2afd38606940.590397.00-526.1653984.p02c11o149.mxlogic.net
-	(envelope-from <bfleming@meteorcomm.com>); 
-	Tue, 07 Jul 2015 17:20:51 -0600 (MDT)
-X-MXL-Hash: 559c5ed37ac61218-7dea8117c39d7244ba6b0094a41dca6a154e8169
-Received: from unknown [66.194.68.135] (EHLO mail.meteorcomm.com)
-	by p02c11o149.mxlogic.net(mxl_mta-8.4.0-1)
-	with ESMTP id 8bd5c955.0.588661.00-308.1649209.p02c11o149.mxlogic.net
-	(envelope-from <bfleming@meteorcomm.com>); 
-	Tue, 07 Jul 2015 17:16:11 -0600 (MDT)
-X-MXL-Hash: 559c5dbb371bcfe0-c88d6caee1734e59e4fea3913b6f11b2d7ced3f0
-Received: from MCCRENEX02.MeteorComm.lan (10.20.0.35) by
-	MCCRENEX01.meteorcomm.lan (10.20.0.34) with Microsoft SMTP Server (TLS)
-	id 15.0.1076.9; Tue, 7 Jul 2015 16:16:07 -0700
-Received: from MCCRENEX02.MeteorComm.lan ([fe80::a041:97dc:4159:5f18]) by
-	MCCRENEX02.meteorcomm.lan ([fe80::a041:97dc:4159:5f18%14]) with mapi id
-	15.00.1076.000; Tue, 7 Jul 2015 16:16:07 -0700
-From: Benjamin Fleming <bfleming@meteorcomm.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: populate_sdk and kernel headers
-Thread-Index: AdC5BnS9N7dIQ8PTStSMJIydFi1wEQ==
-Date: Tue, 7 Jul 2015 23:16:07 +0000
-Message-ID: <0a834e96761d47fe91dc52870a8906f8@MCCRENEX02.meteorcomm.lan>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [192.168.17.166]
+	*      [209.85.218.42 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-oi0-f42.google.com (mail-oi0-f42.google.com
+	[209.85.218.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75B80E00957
+	for <yocto@yoctoproject.org>; Tue,  7 Jul 2015 17:53:48 -0700 (PDT)
+Received: by oihr66 with SMTP id r66so98846242oih.2
+	for <yocto@yoctoproject.org>; Tue, 07 Jul 2015 17:53:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=8sgmOoLVKqluJXaW7+dtEKnwhkNcix3HLzxKTve2vvk=;
+	b=fopQLXNEDOxWs4gPQl/CUZuRtwgm0B7oete0h+ugX8d37BgtTUtNrdI+YuXHSBvVXF
+	U5AF1Derv3KbzN7vDbiTiZkoQ9FDd/WRT0k9BM31YFU2Q/RV+QmoUfZt+2To6gPb77dM
+	0pdoQXWJpo/8SyokQ/wX9VfnDxA9RGJHuka/4ESoq4qWt1wS4TSoZ23VK0g/K5j/UvvY
+	uvdjzzeI39ngcGG/GfBkFFRe++DoJssffFUPol5Y4u7zL/EOj+/CuEd+e2WRd+EJVUmd
+	32/X8IcR2V5uUI4AvQqHuHnzpGE/UmbfP9lUGSObVNcHjTRv2x5dFkVguS3KUuE6yZtS
+	6ZxA==
 MIME-Version: 1.0
-X-AnalysisOut: [v=2.1 cv=NoXFcqtJ c=1 sm=1 tr=0 a=/XjKdzJjB8Y25GP6vDHOEw==]
-X-AnalysisOut: [:117 a=/XjKdzJjB8Y25GP6vDHOEw==:17 a=oLoTwKZ2AAAA:8 a=YlVT]
-X-AnalysisOut: [AMxIAAAA:8 a=QP8GsjE2h34A:10 a=BLceEmwcHowA:10 a=kj9zAlcOe]
-X-AnalysisOut: [l0A:10 a=xqWC_Br6kY4A:10 a=zOBTXjUuO1YA:10 a=NEAV23lmAAAA:]
-X-AnalysisOut: [8 a=mSsply_Lju6Lfb7dRtkA:9 a=CjuIK1q_8ugA:10 a=VlZU0XKO32w]
-X-AnalysisOut: [A:10]
-X-Spam: [F=0.5000000000; CM=0.500; MH=0.500(2015070712); S=0.200(2014051901)]
-X-MAIL-FROM: <bfleming@meteorcomm.com>
-X-SOURCE-IP: [66.194.68.135]
-Subject: populate_sdk and kernel headers
+X-Received: by 10.202.217.68 with SMTP id q65mr6071689oig.17.1436316827354;
+	Tue, 07 Jul 2015 17:53:47 -0700 (PDT)
+Received: by 10.202.64.130 with HTTP; Tue, 7 Jul 2015 17:53:47 -0700 (PDT)
+In-Reply-To: <0a834e96761d47fe91dc52870a8906f8@MCCRENEX02.meteorcomm.lan>
+References: <0a834e96761d47fe91dc52870a8906f8@MCCRENEX02.meteorcomm.lan>
+Date: Tue, 7 Jul 2015 17:53:47 -0700
+Message-ID: <CAJ86T=UQ1wmWiSJmhSzS97Z5y5bDFqhX0Bv5e38Q2jRf2bLSww@mail.gmail.com>
+From: Andre McCurdy <armccurdy@gmail.com>
+To: Benjamin Fleming <bfleming@meteorcomm.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: populate_sdk and kernel headers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,25 +58,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Jul 2015 23:20:54 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 08 Jul 2015 00:53:49 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
-I want my kernel headers to be included in the SDK output when I run bitbak=
-e myimage -c populate_sdk. I expect to see the headers in my installed SDK =
-folder such as <sdk>/sysroot/<target_mach>/usr/src/kernel; however, I don't=
- see anything there. Also, I don't want the headers appearing on the target=
-.
+On Tue, Jul 7, 2015 at 4:16 PM, Benjamin Fleming
+<bfleming@meteorcomm.com> wrote:
+> Hello,
+> I want my kernel headers to be included in the SDK output when I run bitb=
+ake myimage -c populate_sdk. I expect to see the headers in my installed SD=
+K folder such as <sdk>/sysroot/<target_mach>/usr/src/kernel; however, I don=
+'t see anything there. Also, I don't want the headers appearing on the targ=
+et.
+>
+> In my recipe I have added IMAGE_INSTALL +=3D kernel-modules, and SDKIMAGE=
+_FEATURES +=3D kernel-devsrc.  The kernel I'm using is linux-altera-ltsi-rt=
+ from https://github.com/kraj/meta-altera/blob/master/recipes-kernel/linux/=
+linux-altera-ltsi-rt_3.10.bb
+> What am I missing?
 
-In my recipe I have added IMAGE_INSTALL +=3D kernel-modules, and SDKIMAGE_F=
-EATURES +=3D kernel-devsrc.  The kernel I'm using is linux-altera-ltsi-rt f=
-rom https://github.com/kraj/meta-altera/blob/master/recipes-kernel/linux/li=
-nux-altera-ltsi-rt_3.10.bb
-What am I missing?
+Try adding kernel-devsrc to IMAGE_INSTALL rather than SDKIMAGE_FEATURES.
 
-Thanks,
-
-Ben
+> Thanks,
+>
+> Ben
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
