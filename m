@@ -1,45 +1,34 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <Wenzong.Fan@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 36400E00978; Thu,  9 Jul 2015 01:03:35 -0700 (PDT)
+	id 68025E00A45; Thu,  9 Jul 2015 01:04:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE52FE00978
-	for <yocto@yoctoproject.org>; Thu,  9 Jul 2015 01:03:29 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 8624427E2B2;
-	Thu,  9 Jul 2015 08:03:27 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id KZdXkhQV941E; Thu,  9 Jul 2015 08:03:25 +0000 (UTC)
-Received: from [192.168.0.7] (cpc47-live22-2-0-cust92.17-2.cable.virginm.net
-	[86.17.157.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id A12DB27E289;
-	Thu,  9 Jul 2015 08:03:25 +0000 (UTC)
-Message-ID: <559E2AC9.5050205@dynamicdevices.co.uk>
-Date: Thu, 09 Jul 2015 09:03:21 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF03FE00998
+	for <yocto@yoctoproject.org>; Thu,  9 Jul 2015 01:04:15 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.1/8.15.1) with ESMTPS id t6984D2N022602
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 9 Jul 2015 01:04:14 -0700 (PDT)
+Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.3.224.2; Thu, 9 Jul 2015 01:04:13 -0700
+From: <wenzong.fan@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 9 Jul 2015 15:58:39 +0800
+Message-ID: <1436428719-22986-1-git-send-email-wenzong.fan@windriver.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-To: Chris Morgan <chmorgan@gmail.com>
-References: <CAAPegz31c_b7hfi9YDbZ3uPz0iiDNMpT3=P0=SsZDYjCMGcOHg@mail.gmail.com>
-	<1436300222-15947-1-git-send-email-rich.tollerton@ni.com>
-	<559D0035.6070803@dynamicdevices.co.uk>
-	<CAAPegz2NX65g9bE6an3wg0X9qPnRGZsfgZs2r45HNvGtm9yUFw@mail.gmail.com>
-In-Reply-To: <CAAPegz2NX65g9bE6an3wg0X9qPnRGZsfgZs2r45HNvGtm9yUFw@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] mono-4.xx.inc: disable parallel make
+Subject: [PATCH 1/1][meta-selinux] audit: correct syscall rule arch usage for arm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,46 +40,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Jul 2015 08:03:35 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 09 Jul 2015 08:04:18 -0000
+Content-Type: text/plain
 
+From: He Zhe <zhe.he@windriver.com>
 
+For all arm arch, kernel uses AUDIT_ARCH_ARM as its arch to filter
+syscalls. But userspace audit uses AUDIT_ARCH_ARMEB when creating audit
+rules, if arch=b32 is specified for auditctl. This causes kernel not to
+record all arm syscalls.
 
-On 08/07/2015 21:07, Chris Morgan wrote:
-> On Wed, Jul 8, 2015 at 6:49 AM, Alex J Lennon
-> <ajlennon@dynamicdevices.co.uk> wrote:
->>
->> On 07/07/2015 21:17, Richard Tollerton wrote:
->>> A race was observed during `make install` of mono-native under
->>> PARALLEL_MAKE=-j6:
->> Thanks Richard - patch applied
->>
->> Chris - I wasn't able to replicate the failure you see under Fedora F22
->> with PARALLEL_MAKE="-j 6". The build works for me here.
->> Can you confirm Richard's patch fixes the issue you see on your system?
->>
->> Thanks,
->>
->> Alex
->>
-> Hi Alex.
->
-> I can confirm that it fixes the build for me here under F22 on an 8
-> core machine, although it takes a long time to fail.
->
-> Seems like something that should be reported upstream to mono. I
-> copied them on Richard's email but haven't seen any response yet.
->
+This patch change audit rule arch from AUDIT_ARCH_ARMEB to
+AUDIT_ARCH_ARM.
 
-Hi Chris,
+Signed-off-by: He Zhe <zhe.he@windriver.com>
+---
+ .../audit/arm-correct-audit-rule-arch-usage.patch  | 35 ++++++++++++++++++++++
+ recipes-security/audit/audit_2.3.2.bb              |  1 +
+ 2 files changed, 36 insertions(+)
+ create mode 100644 recipes-security/audit/audit/arm-correct-audit-rule-arch-usage.patch
 
-Thanks for coming back to me, at least we have an interim workaround then.
-
-You might consider putting a bug report up on Xamarin's bugzilla?
-
-http://www.mono-project.com/community/bugs/
-
-Cheers, Alex
+diff --git a/recipes-security/audit/audit/arm-correct-audit-rule-arch-usage.patch b/recipes-security/audit/audit/arm-correct-audit-rule-arch-usage.patch
+new file mode 100644
+index 0000000..a2e058b
+--- /dev/null
++++ b/recipes-security/audit/audit/arm-correct-audit-rule-arch-usage.patch
+@@ -0,0 +1,35 @@
++From 11b3b7628ba9c33ca7a89ba12cf45d3917441ff0 Mon Sep 17 00:00:00 2001
++From: He Zhe <zhe.he@windriver.com>
++Date: Tue, 10 Mar 2015 16:03:36 +0800
++Subject: [PATCH] arm: Correct arch usage
++
++Upstream Status: Pending
++
++For all arm arch, kernel uses AUDIT_ARCH_ARM as its arch to filter syscalls.
++But userspace audit uses AUDIT_ARCH_ARMEB when creating audit rules, if
++arch=b32 is specified for auditctl. This causes kernel not to record all
++arm syscalls.
++
++This patch change audit rule arch from AUDIT_ARCH_ARMEB to AUDIT_ARCH_ARM.
++
++Signed-off-by: He Zhe <zhe.he@windriver.com>
++---
++ lib/lookup_table.c | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/lib/lookup_table.c b/lib/lookup_table.c
++index 4f4c0ae..f79c6ee 100644
++--- a/lib/lookup_table.c
+++++ b/lib/lookup_table.c
++@@ -77,7 +77,7 @@ static const struct int_transtab elftab[] = {
++     { MACH_ALPHA,   AUDIT_ARCH_ALPHA  },
++ #endif
++ #ifdef WITH_ARMEB
++-    { MACH_ARMEB,   AUDIT_ARCH_ARMEB  },
+++    { MACH_ARMEB,   AUDIT_ARCH_ARM    },
++ #endif
++ #ifdef WITH_AARCH64
++     { MACH_AARCH64, AUDIT_ARCH_AARCH64},
++-- 
++1.8.3.1
++
+diff --git a/recipes-security/audit/audit_2.3.2.bb b/recipes-security/audit/audit_2.3.2.bb
+index 1d7ea0f..2eeb1e0 100644
+--- a/recipes-security/audit/audit_2.3.2.bb
++++ b/recipes-security/audit/audit_2.3.2.bb
+@@ -17,6 +17,7 @@ SRC_URI = "http://people.redhat.com/sgrubb/audit/audit-${PV}.tar.gz \
+ 	   file://fix-swig-host-contamination.patch \
+ 	   file://auditd.service \
+ 	   file://audit-volatile.conf \
++	   file://arm-correct-audit-rule-arch-usage.patch \
+ "
+ SRC_URI_append_arm = "file://add-system-call-table-for-ARM.patch"
+ 
+-- 
+1.9.1
 
 
