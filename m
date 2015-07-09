@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17733E00A45; Thu,  9 Jul 2015 13:20:00 -0700 (PDT)
+	id 8CD86E00A45; Thu,  9 Jul 2015 13:24:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,46 +8,43 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.217.172 listed in list.dnswl.org]
+	*      [209.85.215.45 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-lb0-f172.google.com (mail-lb0-f172.google.com
-	[209.85.217.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB54EE009D7
-	for <yocto@yoctoproject.org>; Thu,  9 Jul 2015 13:19:56 -0700 (PDT)
-Received: by lbnk3 with SMTP id k3so81413218lbn.1
-	for <yocto@yoctoproject.org>; Thu, 09 Jul 2015 13:19:54 -0700 (PDT)
+Received: from mail-la0-f45.google.com (mail-la0-f45.google.com
+	[209.85.215.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39C5EE009D7
+	for <yocto@yoctoproject.org>; Thu,  9 Jul 2015 13:24:47 -0700 (PDT)
+Received: by laar3 with SMTP id r3so253744168laa.0
+	for <yocto@yoctoproject.org>; Thu, 09 Jul 2015 13:24:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-type;
-	bh=o3I+pXD9X9QLUDB2POXKPvoSyyzkJf4jhbYwsSP0DIo=;
-	b=UVnBBN7XEgic0mDE/OTnsuyynidN1t4GhUsSSOmk/oNmU+4JxXnzQVkwC9rTy1ZPHn
-	hrXMrF72GKlu/FBlZ+CQaESoOadoLZl2KtBVh8MN8Vp8Q8FLq04V/eZaEyfR2feuAYZt
-	23GRi+eQCkdyle6dvSGox2PbhioPiJJ0AUcBWgQM440WOVYVHvjFH4EzE5g0vwcDxtOe
-	SxIvDhN8uo/RtiU8A5cVpHEV89f6XVsUF+J0DjwfOpjeGOFm1xc+atZn8whOFKNl9RuW
-	gV03hRfisek5LUL7gaSJHXgt3H8cviwdAUdAPNy0F6IWqE5kcsF7UHeQD8P3bP7678Xa
-	NDwg==
-X-Gm-Message-State: ALoCoQktje4VQuPn9hEMp4MDmnhZaJR7mgzWKulmJIRT7lZOD4qVai9wftmlNXJQBe0tfX3yvch6
-X-Received: by 10.112.161.197 with SMTP id xu5mr16429868lbb.69.1436473194257; 
-	Thu, 09 Jul 2015 13:19:54 -0700 (PDT)
+	bh=XIN6kNiEEvXUuzDCWfwEs/lZhpxAo7yM+EYfqYhrFDg=;
+	b=LkeFbbCOE/2KV6awzjWGM68QvF/m3mlZkVI+hF6Ud7iLrwxjm4OZEPAfySkVofebjT
+	J7AmLqtbrwPevRk8SZechFOvxGgMnl6OP3Su5GmY2CCsVBG9x3Wm4Iiu4fx8dXllQNIM
+	M4NjM6uVWJ0YpavWXjxClPrywMm+d8a3Ad6IW01sJLaElv8eCHUJ3MEE56dk33XVWOT1
+	0iBORJ2/wFs5FBKKigOmcWP5e8JpNKNgH57FWmNejN6uoqgJjPsu5yFGlm3hvcFNQx2b
+	anW12LQWCiFpRt7RlX0rAlJJATeGMMRLqNmjoQQpc1Pdeha3vGRlfTOcPrqLYcB67HQz
+	PcdA==
+X-Gm-Message-State: ALoCoQkkZF1bue5Yr5fxiYbX7sk+RPeOCvsqSrHtbTEd6FtyC7prRNmNyVQNCS1v0DdXvI6bx1bR
+X-Received: by 10.152.36.41 with SMTP id n9mr16579515laj.79.1436473485493;
+	Thu, 09 Jul 2015 13:24:45 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.112.147.232 with HTTP; Thu, 9 Jul 2015 13:19:14 -0700 (PDT)
+Received: by 10.112.147.232 with HTTP; Thu, 9 Jul 2015 13:24:05 -0700 (PDT)
 X-Originating-IP: [81.108.63.159]
-In-Reply-To: <559AB3FB.2090302@mail.bg>
-References: <1435981717-29443-1-git-send-email-net147@gmail.com>
-	<55976F44.5070106@mail.bg> <559A8572.6020203@gmail.com>
-	<559AAA59.9090007@mail.bg>
-	<CAJTo0La_FqBveOEv90+ofCq2gAj4hiNfSA72dc40mEjrFv8aJg@mail.gmail.com>
-	<CAJTo0LYoqTs3o7di3rvwcsX5Q4iruAqFZePAJRXdw8eHWqW7HA@mail.gmail.com>
-	<559AB3A4.7010206@mail.bg> <559AB3FB.2090302@mail.bg>
+In-Reply-To: <CAHiDW_GkQHOhqLKPg5+1uVZ0trBY3vfQDQEnkMrW58foFv_cpg@mail.gmail.com>
+References: <674E4B49C1A61B4592185A7FB9B55276317002@post>
+	<CAHiDW_GkQHOhqLKPg5+1uVZ0trBY3vfQDQEnkMrW58foFv_cpg@mail.gmail.com>
 From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Thu, 9 Jul 2015 22:19:14 +0200
-Message-ID: <CAK18fxEc8njxqD7Opzrw_mh_NXp8w3igD6YVREBh6qPeWizDPg@mail.gmail.com>
-To: Nikolay Dimitrov <picmaster@mail.bg>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] firmware.inc: fetch from SVN instead of Git
+Date: Thu, 9 Jul 2015 22:24:05 +0200
+Message-ID: <CAK18fxGWe5Ym2424ro84r3oP1pehNDy=TmUcRxFsoXpFa49NcA@mail.gmail.com>
+To: Jussi Kukkonen <jussi.kukkonen@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	=?UTF-8?Q?Tobias_Bostr=C3=B6m?= <tobias.bostrom@tritech.se>
+Subject: Re: [meta-raspberrypi] libepoxy do_configure fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,118 +56,222 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Jul 2015 20:20:00 -0000
-Content-Type: multipart/alternative; boundary=001a11c3bfe6794061051a76fa24
+X-List-Received-Date: Thu, 09 Jul 2015 20:24:53 -0000
+Content-Type: multipart/alternative; boundary=089e0158b608d51fa7051a770bd0
 
---001a11c3bfe6794061051a76fa24
+--089e0158b608d51fa7051a770bd0
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 6, 2015 at 6:59 PM, Nikolay Dimitrov <picmaster@mail.bg> wrote:
+On Thu, Jul 2, 2015 at 8:20 PM, Jussi Kukkonen <jussi.kukkonen@intel.com>
+wrote:
 
-> Hi Ross,
+> On 2 July 2015 at 12:47, Tobias Bostr=C3=B6m <tobias.bostrom@tritech.se> =
+wrote:
 >
-> On 07/06/2015 07:58 PM, Nikolay Dimitrov wrote:
+>>
+>> Hello!
+>>
+>>  I'm currently trying to build the core-image-x11 for the raspberry
+>> pi.However, when doing the task responsible for configuring libepoxy,
+>> bitbake fails. The error message i get is "no package 'egl' found". Belo=
+w
+>> is parts error messages I received. Anyone got any ideas on what the
+>> problem might be?
+>>
+>>  Best regards,
+>> Tobias Bostr=C3=B6m
+>>
+>>  | checking whether -lc should be explicitly linked in... no
+>>  | checking dynamic linker characteristics... GNU/Linux ld.so
+>>  | checking how to hardcode library paths into programs... immediate
+>>  | checking whether stripping libraries is possible... yes
+>>  | checking if libtool supports shared libraries... yes
+>>  | checking whether to build shared libraries... yes
+>>  | checking whether to build static libraries... no
+>>  | checking for special C compiler options needed for large files... no
+>>  | checking for _FILE_OFFSET_BITS value needed for large files... 64
+>>  | checking KHR/khrplatform.h usability... yes
+>>  | checking KHR/khrplatform.h presence... yes
+>>  | checking for KHR/khrplatform.h... yes
+>>  | checking if arm-poky-linux-gnueabi-gcc  -march=3Darmv7-a -marm
+>>  -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon-vfpv4 -mtune=3Dcortex=
+-a7
+>> --sysroot=3D/home/tobiasb/Development/build/tmp/sysroots/raspberrypi2
+>> -std=3Dgnu99 supports -Wno-int-conversion... yes
+>>  | checking for X11... yes
+>>  | checking for EGL... no
+>>  | configure: error: Package requirements (egl) were not met:
+>>  |
+>>  | No package 'egl' found
+>>  |
+>>  | Consider adjusting the PKG_CONFIG_PATH environment variable if you
+>>  | installed software in a non-standard prefix.
+>>  |
+>>  | Alternatively, you may set the environment variables EGL_CFLAGS
+>>  | and EGL_LIBS to avoid the need to call pkg-config.
+>>
 >
->> Hi Ross,
->>
->> On 07/06/2015 07:26 PM, Burton, Ross wrote:
->>
->>>
->>> On 6 July 2015 at 17:23, Burton, Ross <ross.burton@intel.com
->>> <mailto:ross.burton@intel.com>> wrote:
->>>
->>>     How latest, remembering that oe-core supports LTS distros which are
->>>     likely to have old releases of git.
->>>
->>>
->>> Assuming I'm driving it correctly:
->>>
->>> [git init, git remote add origin ...]
->>> $ git fetch  --depth=1 origin beeafee030a38380c65a9a664003ba50f87aefbf
->>> error: no such remote ref beeafee030a38380c65a9a664003ba50f87aefbf
->>> $ git --version
->>> git version 2.1.4
->>>
->>> That's with the latest Debian release.
->>>
->>> Ross
->>>
->>
->> Well, the commits that add this feature are from May-June.2015. I fully
->> agree with you that LTS is a factor that can't be ignored.
->>
->> Kind regards,
->> Nikolay
->>
 >
-> Forgot to answer you question - the expected versions to include this
-> feature are 2.5.0/2.5.1.
+> libepoxy expects something to provide a 'egl.pc' pkg-config file, and
+> apparently the virtual/egl provider on the raspberry ("userland") doesn't
+> do that. That may be an optimistic expectation on epoxys part but it's no=
+t
+> alone: at least weston has as similar check.
+>
+> Upstream issue is here: https://github.com/raspberrypi/userland/issues/24=
+5
+> . It links to some pkg-config files that could be used in the userland
+> recipe in the meanwhile.
 >
 >
-So there is no support for depth clones until 2.5.0? I didn't really
-understand.
+>
+
+I remember  seeing some patches in the past which addressed these pc files.
+Unfortunately we lost these patches with our gerrit transition. Would you
+be able to push patches for this? (hint:
+https://github.com/heiher/raspberrypi-firmware-pkgconfig/tree/master/pkgcon=
+fig
+)
 
 --
 Andrei Gherzan
 
---001a11c3bfe6794061051a76fa24
+--089e0158b608d51fa7051a770bd0
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On M=
-on, Jul 6, 2015 at 6:59 PM, Nikolay Dimitrov <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:picmaster@mail.bg" target=3D"_blank">picmaster@mail.bg</a>&gt;</=
-span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-le=
-ft-style:solid;padding-left:1ex">Hi Ross,<span class=3D""><br>
-<br>
-On 07/06/2015 07:58 PM, Nikolay Dimitrov wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">
-Hi Ross,<br>
-<br>
-On 07/06/2015 07:26 PM, Burton, Ross wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">
-<br>
-On 6 July 2015 at 17:23, Burton, Ross &lt;<a href=3D"mailto:ross.burton@int=
-el.com" target=3D"_blank">ross.burton@intel.com</a><br>
-&lt;mailto:<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.=
-burton@intel.com</a>&gt;&gt; wrote:<br>
-<br>
-=C2=A0 =C2=A0 How latest, remembering that oe-core supports LTS distros whi=
-ch are<br>
-=C2=A0 =C2=A0 likely to have old releases of git.<br>
-<br>
-<br>
-Assuming I&#39;m driving it correctly:<br>
-<br>
-[git init, git remote add origin ...]<br>
-$ git fetch=C2=A0 --depth=3D1 origin beeafee030a38380c65a9a664003ba50f87aef=
-bf<br>
-error: no such remote ref beeafee030a38380c65a9a664003ba50f87aefbf<br>
-$ git --version<br>
-git version 2.1.4<br>
-<br>
-That&#39;s with the latest Debian release.<br>
-<br>
-Ross<br>
-</blockquote>
-<br>
-Well, the commits that add this feature are from May-June.2015. I fully<br>
-agree with you that LTS is a factor that can&#39;t be ignored.<br>
-<br>
-Kind regards,<br>
-Nikolay<br>
-</blockquote>
-<br></span>
-Forgot to answer you question - the expected versions to include this featu=
-re are 2.5.0/<a href=3D"http://2.5.1." rel=3D"noreferrer" target=3D"_blank"=
->2.5.1.</a><div class=3D""><div class=3D"h5"><br></div></div></blockquote><=
-div><br></div><div>So there is no support for depth clones until 2.5.0? I d=
-idn&#39;t really understand.</div><div><div><br class=3D"">--</div>Andrei G=
-herzan<br></div></div></div></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Thu, Jul 2, 2015 at 8:20 PM, Jussi Kukkonen <span dir=3D"ltr">&lt;<a hre=
+f=3D"mailto:jussi.kukkonen@intel.com" target=3D"_blank">jussi.kukkonen@inte=
+l.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204=
+,204);border-left-style:solid;padding-left:1ex"><div dir=3D"ltr"><div class=
+=3D"gmail_extra"><div class=3D"gmail_quote"><div><div>On 2 July 2015 at 12:=
+47, Tobias Bostr=C3=B6m <span dir=3D"ltr">&lt;<a href=3D"mailto:tobias.bost=
+rom@tritech.se" target=3D"_blank">tobias.bostrom@tritech.se</a>&gt;</span> =
+wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-sty=
+le:solid;padding-left:1ex">
 
---001a11c3bfe6794061051a76fa24--
+
+
+
+<div>
+<div>
+<p></p>
+</div>
+<br>
+<div style=3D"direction:ltr;font-family:Tahoma;color:rgb(0,0,0);font-size:1=
+0pt">Hello!
+<div><br>
+</div>
+<div>I&#39;m currently trying to build the core-image-x11 for the raspberry=
+ pi.However, when doing the task responsible for configuring libepoxy, bitb=
+ake fails. The error message i get is &quot;no package &#39;egl&#39; found&=
+quot;. Below is parts error messages I received. Anyone
+ got any ideas on what the problem might be?</div>
+<div><br>
+</div>
+<div>Best regards,</div>
+<div>Tobias Bostr=C3=B6m</div>
+<div><br>
+</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| checking whether -lc should be explicitly linked in... no</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| checking dynamic linker characteristics... GNU/Linux ld.so</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| checking how to hardcode library paths into programs... immediate</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| checking whether stripping libraries is possible... yes</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| checking if libtool supports shared libraries... yes</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| checking whether to build shared libraries... yes</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| checking whether to build static libraries... no</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| checking for special C compiler options needed for large files... no</div=
+>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| checking for _FILE_OFFSET_BITS value needed for large files... 64</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| checking KHR/khrplatform.h usability... yes</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| checking KHR/khrplatform.h presence... yes</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| checking for KHR/khrplatform.h... yes</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| checking if arm-poky-linux-gnueabi-gcc =C2=A0-march=3Darmv7-a -marm =C2=
+=A0-mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon-vfpv4 -mtune=3Dcortex-=
+a7 --sysroot=3D/home/tobiasb/Development/build/tmp/sysroots/raspberrypi2 -s=
+td=3Dgnu99 supports -Wno-int-conversion... yes</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| checking for X11... yes</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| checking for EGL... no</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| configure: error: Package requirements (egl) were not met:</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+|</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| No package &#39;egl&#39; found</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+|</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| Consider adjusting the PKG_CONFIG_PATH environment variable if you</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| installed software in a non-standard prefix.</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+|</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| Alternatively, you may set the environment variables EGL_CFLAGS</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+| and EGL_LIBS to avoid the need to call pkg-config.</div>
+<div style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:12=
+.8000001907349px;background-color:rgb(255,255,255)">
+</div></div></div></blockquote><div><br></div><div><br></div></div></div><d=
+iv>libepoxy expects something to provide a &#39;egl.pc&#39; pkg-config file=
+, and apparently the virtual/egl provider on the raspberry=C2=A0(&quot;user=
+land&quot;) doesn&#39;t do that. That may be an optimistic expectation on e=
+poxys part but it&#39;s not alone: at least weston has as similar check.</d=
+iv><div><br></div><div>Upstream issue is here: <a href=3D"https://github.co=
+m/raspberrypi/userland/issues/245" target=3D"_blank">https://github.com/ras=
+pberrypi/userland/issues/245</a> . It links to some pkg-config files that c=
+ould be used in the userland recipe in the meanwhile.=C2=A0</div><div><br><=
+/div><div>=C2=A0</div></div></div></div></blockquote><div><br></div>I remem=
+ber =C2=A0seeing some patches in the past which addressed these pc files. U=
+nfortunately we lost these patches with our gerrit transition. Would you be=
+ able to push patches for this? (hint:=C2=A0<a href=3D"https://github.com/h=
+eiher/raspberrypi-firmware-pkgconfig/tree/master/pkgconfig" target=3D"_blan=
+k">https://github.com/heiher/raspberrypi-firmware-pkgconfig/tree/master/pkg=
+config</a>)=C2=A0<br><br clear=3D"all"><div><div><div dir=3D"ltr"><div><div=
+ dir=3D"ltr"><div>--</div>Andrei Gherzan</div></div></div></div></div><div>=
+=C2=A0</div></div></div></div>
+
+--089e0158b608d51fa7051a770bd0--
