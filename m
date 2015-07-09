@@ -1,34 +1,42 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <dev.kurt@vandijck-laurijssen.be>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7C820E00A5B; Thu,  9 Jul 2015 01:04:59 -0700 (PDT)
+	id 27B5EE009CC; Thu,  9 Jul 2015 01:37:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [212.71.1.210 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25FF6E009C8
-	for <yocto@yoctoproject.org>; Thu,  9 Jul 2015 01:04:58 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.15.1/8.15.1) with ESMTPS id t6984wYe022611
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 9 Jul 2015 01:04:58 -0700 (PDT)
-Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.224.2; Thu, 9 Jul 2015 01:04:57 -0700
-From: <wenzong.fan@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 9 Jul 2015 15:59:23 +0800
-Message-ID: <1436428763-9988-1-git-send-email-wenzong.fan@windriver.com>
-X-Mailer: git-send-email 1.9.1
+Received: from relaygateway01.edpnet.net (relaygateway01.edpnet.net
+	[212.71.1.210])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8197AE00978
+	for <yocto@yoctoproject.org>; Thu,  9 Jul 2015 01:37:07 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AncGAAkynlVt7IXT/2dsb2JhbABbgxJUYIMgv2wCgVdNAQEBAQEBgQuEIwEBAQMBIwQvIxALFAEDAgIFIQICDwUlJBOIJgy3UJYzAQEBAQEBBAEBAQEBHYEhiiqEO0sHgmgvgRQFkUWCZ4t/mGYmggwcgVVtAYJKAQEB
+X-IPAS-Result: AncGAAkynlVt7IXT/2dsb2JhbABbgxJUYIMgv2wCgVdNAQEBAQEBgQuEIwEBAQMBIwQvIxALFAEDAgIFIQICDwUlJBOIJgy3UJYzAQEBAQEBBAEBAQEBHYEhiiqEO0sHgmgvgRQFkUWCZ4t/mGYmggwcgVVtAYJKAQEB
+X-IronPort-AV: E=Sophos;i="5.15,438,1432591200"; d="scan'208";a="339565753"
+Received: from 109.236.133.211.wls.msr91gkk3.adsl.fix.edpnet.net (HELO
+	zotac.vandijck-laurijssen.be) ([109.236.133.211])
+	by relaygateway01.edpnet.net with ESMTP; 09 Jul 2015 10:37:05 +0200
+Received: from vandijck-laurijssen.be (unknown [195.130.156.3])
+	by zotac.vandijck-laurijssen.be (Postfix) with ESMTPSA id 101AC1C223F; 
+	Thu,  9 Jul 2015 10:37:07 +0200 (CEST)
+Date: Thu, 9 Jul 2015 10:36:57 +0200
+From: Kurt Van Dijck <dev.kurt@vandijck-laurijssen.be>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Message-ID: <20150709083657.GB2707@vandijck-laurijssen.be>
+References: <20150707130718.GB3967@vandijck-laurijssen.be>
+	<CAJ86T=WEPME4dien+V8Z80_W9eY858nULSTngRksw1tX2MswYw@mail.gmail.com>
+	<1588478.7WsJS1fAGp@peggleto-mobl.ger.corp.intel.com>
 MIME-Version: 1.0
-Subject: [PATCH 1/1][meta-selinux] initscripts: fix contexts for /etc/resolv.conf, adjtime
+In-Reply-To: <1588478.7WsJS1fAGp@peggleto-mobl.ger.corp.intel.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: yocto@yoctoproject.org
+Subject: Re: fixed: using shared state cache from other machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,38 +48,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Jul 2015 08:04:59 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 09 Jul 2015 08:37:12 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-From: Wenzong Fan <wenzong.fan@windriver.com>
+--- Original message ---
+> Date: Tue, 07 Jul 2015 23:40:49 +0100
+> From: Paul Eggleton <paul.eggleton@linux.intel.com>
+> On Tuesday 07 July 2015 14:59:37 Andre McCurdy wrote:
+> > On Tue, Jul 7, 2015 at 6:07 AM, Kurt Van Dijck
+> > <dev.kurt@vandijck-laurijssen.be> wrote:
+> > > I started to re-use the shared state cache from a build machine.
+> > > If I clean everything locally, I still spend time building.
+> > > So, can everything be re-used, or only the target packages.
+> > > How different may the build machine & may host be.
+> > > The build machine is a (recent) ubuntu. My machine is debian squeeze+sid
+> > > mixed version. Is that a problem?
+> > 
+> > You can try it, but no guarantees.
+> > 
+> > I have a build machine running Ubuntu 14.04 and a laptop running Linux
+> > Mint 17.1 and I regularly rsync sstate from the build server to the
+> > laptop without any issues (as expected, since Linux Mint uses Ubuntu
+> > packages). 
 
-Restore contexts for /etc/{resolv.conf, adjtime}, they are created
-dynamically and the incorrect contexts maybe prevent some programs
-from valid accessing.
+I defined the mirror over http, so I skip the rsync.
 
-  /etc/resolv.conf: etc_t:SystemHigh -> etc_t:SystemLow
-  /etc/adjtime:     etc_t:SystemHigh -> adjtime_t:SystemLow
+> 
+> The theory is this should work provided the distro you use the native sstate 
+> artifacts on has the same or newer glibc version as the one on which they were 
+> originally built.
 
-Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
----
- recipes-core/initscripts/initscripts_1.0.bbappend | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+I needed to upgrade locally.
 
-diff --git a/recipes-core/initscripts/initscripts_1.0.bbappend b/recipes-core/initscripts/initscripts_1.0.bbappend
-index 462db6f..f17cf07 100644
---- a/recipes-core/initscripts/initscripts_1.0.bbappend
-+++ b/recipes-core/initscripts/initscripts_1.0.bbappend
-@@ -5,7 +5,8 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- do_install_append () {
- 	cat <<-EOF >> ${D}${sysconfdir}/init.d/populate-volatile.sh
- touch /var/log/lastlog
--test ! -x /sbin/restorecon || /sbin/restorecon -RF /var/volatile/ /var/lib /run
-+test ! -x /sbin/restorecon || /sbin/restorecon -RF /var/volatile/ /var/lib /run \
-+    /etc/resolv.conf /etc/adjtime
- EOF
- 	sed -i '/mount -n -o remount,$rootmode/i\test ! -x /sbin/restorecon || /sbin/restorecon -RF /run' \
- 	    ${D}${sysconfdir}/init.d/checkroot.sh
--- 
-1.9.1
+> 
+> > The trick to avoid rebuilding all native packages is to
+> > rename sstate-cache/Ubuntu-14.04 -> sstate-cache/LinuxMint-17.1 after
+> > each rsync.
+> 
+> Rather than renaming, you can simply create a symlink from the other 
+> distribution to the one which was used to do the build.
 
+Due to the http retrieval, I put the symlink on the build server.
+
+Now, I just built a basic image in 10 minutes.
+Thank you for the support,
+thank you Gigabit ethernet & thank you SSD.
+
+Kind regards,
+Kurt
 
