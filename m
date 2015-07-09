@@ -1,33 +1,48 @@
-Return-Path: <mariano.lopez@linux.intel.com>
+Return-Path: <avery.brian@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 293CBE00A54; Thu,  9 Jul 2015 13:33:44 -0700 (PDT)
+	id AAC01E00A49; Thu,  9 Jul 2015 14:29:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (avery.brian[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB8C9E009D7
-	for <yocto@yoctoproject.org>; Thu,  9 Jul 2015 13:33:42 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 09 Jul 2015 13:33:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,442,1432623600"; d="scan'208";a="761497494"
-Received: from mlopezva-mobl2.zpn.intel.com ([10.219.24.79])
-	by orsmga002.jf.intel.com with ESMTP; 09 Jul 2015 13:33:42 -0700
-From: mariano.lopez@linux.intel.com
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.160.173 listed in list.dnswl.org]
+Received: from mail-yk0-f173.google.com (mail-yk0-f173.google.com
+	[209.85.160.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B7AFE009D9
+	for <yocto@yoctoproject.org>; Thu,  9 Jul 2015 14:29:23 -0700 (PDT)
+Received: by ykcp133 with SMTP id p133so60631740ykc.1
+	for <yocto@yoctoproject.org>; Thu, 09 Jul 2015 14:29:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=vBLbBgDO7GKduX1XMogdqJHEREmWmcbEphkHc28V9l8=;
+	b=qfD+XE2ldihNq46L2llhF8G7DK8BghIWiymsp5i1zoXw6EPplt5n+H3fp5U852v4Xy
+	qI9m1m07IdofbXmprcRZxFf0nQKx7AgPM5COluuk8Belu8msxnz9uFmls0HiG+BAgl/s
+	x99l4XZQvgHWCNPppY85SDVhBVV4uqxr1uGoPgASzvGSHnFnEGJhrJj2qzhvnE07sah4
+	LVDPBJftP7kKWIhr09fXS0MEP0tyxCwr3C9i17bFenhmimL0oXY7eceMNUT/JE/lgmk6
+	C5eHb/CVyuC5cRyzXlAmCL+l4DELpHE+TiEnET3/yQoznOaQpUDpcjvQ0/Fz0UbYHj8Q
+	MKxA==
+MIME-Version: 1.0
+X-Received: by 10.13.217.151 with SMTP id b145mr19545234ywe.173.1436477363180; 
+	Thu, 09 Jul 2015 14:29:23 -0700 (PDT)
+Received: by 10.37.215.148 with HTTP; Thu, 9 Jul 2015 14:29:23 -0700 (PDT)
+Date: Thu, 9 Jul 2015 14:29:23 -0700
+Message-ID: <CAKV_0ei93Lz4dga9vy77pQxFOZeuj_C01XoBQ63OKnjX9OyF2Q@mail.gmail.com>
+From: Brian Avery <avery.brian@gmail.com>
 To: yocto@yoctoproject.org
-Date: Thu,  9 Jul 2015 15:33:34 -0500
-Message-Id: <1436474014-12101-3-git-send-email-mariano.lopez@linux.intel.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1436474014-12101-1-git-send-email-mariano.lopez@linux.intel.com>
-References: <1436474014-12101-1-git-send-email-mariano.lopez@linux.intel.com>
-Subject: [rrs][PATCH 2/2] recipes.html: Add Last Updated column
+Subject: [layerindex-web]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,61 +54,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Jul 2015 20:33:44 -0000
+X-List-Received-Date: Thu, 09 Jul 2015 21:29:28 -0000
+Content-Type: text/plain; charset=UTF-8
 
-From: Mariano Lopez <mariano.lopez@linux.intel.com>
+For the update script you also need python-git. Since we are already
+using a virtenv, why not add it to requirements :).
 
-Added a column in the recipes view that show
-the last time a recipe was updated when is
-not up-to-date
+yolk lists the following as being available so I fairly arbitrarily
+picked 0.3.7 on the assumption it was the "best" of the 0.3 line...
 
-Signed-off-by: Mariano Lopez <mariano.lopez@linux.intel.com>
----
- templates/rrs/recipes.html | 17 +++++++++++++----
- 1 file changed, 13 insertions(+), 4 deletions(-)
+GitPython 1.0.1
+GitPython 1.0.0
+GitPython 0.3.7
+GitPython 0.3.6
 
-diff --git a/templates/rrs/recipes.html b/templates/rrs/recipes.html
-index ca3c93e..a69ff0f 100644
---- a/templates/rrs/recipes.html
-+++ b/templates/rrs/recipes.html
-@@ -76,6 +76,7 @@
-         <th class="version_column muted">Version</th>
-         <th class="upstream_version_column muted">Upstream version</th>
-         <th class="upstream_status_column span2">Upstream status</th>
-+        <th class="last_updated_column">Last Updated</th>
-         <th class="maintainer_column">Maintainer</th>
-         <th class="summary_column muted span5">Summary</th>
-         <th class="no_update_reason_column muted span5" style="display:none">No update reason</th>
-@@ -88,16 +89,24 @@
-     <td class="version_column">{{ r.version }}</td>
-     <td class="upstream_version_column">{{ r.upstream_version }}</td>
-     {% if r.upstream_status == "Up-to-date" %}
--    <td class="text-success" data-toggle="tooltip" title="{{r.outdated}}">
-+    <td class="text-success">
-     {% elif r.upstream_status == "Not updated" %}
--    <td class="text-error" data-toggle="tooltip" title="{{r.outdated}}">
-+    <td class="text-error">
-     {% elif r.upstream_status == "Can't be updated" %}
--    <td class="muted" data-toggle="tooltip" title="{{r.outdated}}">
-+    <td class="muted">
-     {% else %}
--    <td class="text-warning" data-toggle="tooltip" title="{{r.outdated}}">
-+    <td class="text-warning">
-     {% endif %}
-         {{ r.upstream_status }}
-     </td>
-+    {% if r.outdated == "Up-to-date" %}
-+    <td class="text-success">
-+    {% elif r.outdated == "Unknown" %}
-+    <td class="text-warning">
-+    {% else %}
-+    <td class="text-error">
-+    {% endif %}
-+        {{r.outdated}}</td>
-     <td class="maintainer_column">{{ r.maintainer_name }}</td>
-     <td class="summary_column">{{ r.summary }}</td>
-     <td class="no_update_reason_column" style="display:none">{{ r.no_update_reason }}</td>
--- 
-1.9.1
 
+-bavery
+
+diff --git a/requirements.txt b/requirements.txt
+index b88ab2b..ea52994 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -17,3 +17,4 @@ python-nvd3==0.12.2
+ regex==2014.06.28
+ six==1.7.3
+ wsgiref==0.1.2
++gitpython==0.3.7
 
