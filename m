@@ -1,31 +1,51 @@
-Return-Path: <mariano.lopez@linux.intel.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 66CE8E009D9; Thu,  9 Jul 2015 12:46:52 -0700 (PDT)
+	id 14992E00A51; Thu,  9 Jul 2015 13:14:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.215.49 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E016E009D9
-	for <yocto@yoctoproject.org>; Thu,  9 Jul 2015 12:46:48 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 09 Jul 2015 12:46:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,441,1432623600"; d="scan'208";a="761468065"
-Received: from mlopezva-mobl2.zpn.intel.com ([10.219.24.79])
-	by orsmga002.jf.intel.com with ESMTP; 09 Jul 2015 12:46:47 -0700
-From: mariano.lopez@linux.intel.com
-To: yocto@yoctoproject.org
-Date: Thu,  9 Jul 2015 14:46:36 -0500
-Message-Id: <1436471196-10909-1-git-send-email-mariano.lopez@linux.intel.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [rrs][PATCHv2 2/3] views.py: Changed the behavior of percentage done
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-la0-f49.google.com (mail-la0-f49.google.com
+	[209.85.215.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75472E00A45
+	for <yocto@yoctoproject.org>; Thu,  9 Jul 2015 13:14:14 -0700 (PDT)
+Received: by lagx9 with SMTP id x9so253011507lag.1
+	for <yocto@yoctoproject.org>; Thu, 09 Jul 2015 13:14:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=yiBcphP9ILmx4nxYI1xQOQ0I7bRGJsJ2qYDsqvUMlO4=;
+	b=hbI4HKAxWkR/1FNnQybCWSr7GQf+StBqt+1DfTdvZ/Eut2WYCMpHHjeB1kFRwViu1K
+	IjeVuwQZ/GUgLxI/U8kspdmwEjtIDXfJSlfAWxdLyZva6NgweN8xIoacNxCkqdVVSW5E
+	1o2lr6lE6cTa/s8/+uGKPZCfJxHocgTw/2M0RPIOYYNymwOcvg16GzekoUpUfWm3qhf6
+	MUEfPBfi5gKWsSljJZPMhtwjpxCT6LY1VK2mNx4Sq+wEltwU35CNZytI2UiaHXoGiDNb
+	KhzKXBxi2lRoj3NKDu4EzLlqNOlHVtThqvb6brck3thQBM55SfQu6CwnwEvM3/wWedjV
+	mvOA==
+X-Gm-Message-State: ALoCoQllFP0aAtOyHCSMcQYIlDHnsw/4mxHq/boscT/vCamCnG+aT7BD9fSzC9nRes6ojKL2Mlzp
+X-Received: by 10.152.36.161 with SMTP id r1mr16446091laj.88.1436472852777;
+	Thu, 09 Jul 2015 13:14:12 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.112.147.232 with HTTP; Thu, 9 Jul 2015 13:13:32 -0700 (PDT)
+X-Originating-IP: [81.108.63.159]
+In-Reply-To: <8257415.nZmIxnRxaN@peggleto-mobl.ger.corp.intel.com>
+References: <1435292188-29514-1-git-send-email-jon.szymaniak@gmail.com>
+	<20150706084005.GA8098@ad.chargestorm.se> <559A4F02.8040907@mail.bg>
+	<8257415.nZmIxnRxaN@peggleto-mobl.ger.corp.intel.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Thu, 9 Jul 2015 22:13:32 +0200
+Message-ID: <CAK18fxGnkbAtveQND5zCs-KntpPjoZPMzn1_hmHVNKZMWrc1zQ@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	Anders Darander <anders@chargestorm.se>
+Subject: Re: [meta-raspberrypi][PATCH] firmware.inc: Fetch a zip instead of cloning a git repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,76 +57,130 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Jul 2015 19:46:52 -0000
+X-List-Received-Date: Thu, 09 Jul 2015 20:14:19 -0000
+Content-Type: multipart/alternative; boundary=089e0158b5e41ea5c3051a76e611
 
-From: Mariano Lopez <mariano.lopez@linux.intel.com>
+--089e0158b5e41ea5c3051a76e611
+Content-Type: text/plain; charset=UTF-8
 
-This changes the percetage done from recipes up to date
-in the period to percentage of not updated recipes that
-were updated in the period.
+Finally I hop on to this discussion too.
 
-Signed-off-by: Mariano Lopez <mariano.lopez@linux.intel.com>
----
- rrs/views.py | 36 +++++++++++++++++++++++++++---------
- 1 file changed, 27 insertions(+), 9 deletions(-)
+On Mon, Jul 6, 2015 at 12:58 PM, Paul Eggleton <
+paul.eggleton@linux.intel.com> wrote:
 
-diff --git a/rrs/views.py b/rrs/views.py
-index fc43d7d..7fd2e8f 100644
---- a/rrs/views.py
-+++ b/rrs/views.py
-@@ -40,10 +40,29 @@ def _get_milestone_statistics(milestone, maintainer_name=None):
-         milestone.start_date,
-         milestone.end_date
-     )
-+    recipe_upstream_history_first = \
-+        RecipeUpstreamHistory.get_first_by_date_range(
-+            milestone.start_date,
-+            milestone.end_date,
-+    )
- 
-     if maintainer_name is None:
--        milestone_statistics['all'] = \
--            RecipeUpstream.get_all_recipes(recipe_upstream_history).count()
-+        if recipe_upstream_history_first:
-+            recipes_not_upgraded = \
-+                Raw.get_reup_by_date(recipe_upstream_history_first.id)
-+            if recipes_not_upgraded:
-+                recipes_upgraded = \
-+                    Raw.get_reupg_by_dates_and_recipes(
-+                        milestone.start_date, milestone.end_date, recipes_not_upgraded)
-+                milestone_statistics['all'] = \
-+                    float(len(recipes_upgraded))/float(len(recipes_not_upgraded))
-+            else:
-+                milestone_statistics['all'] = 0
-+        else:
-+            milestone_statistics['all'] = 0
-+
-+        milestone_statistics['percentage'] = "%.0f" % \
-+            (float(milestone_statistics['all']) * 100.0)
-         milestone_statistics['up_to_date'] = \
-             RecipeUpstream.get_recipes_up_to_date(recipe_upstream_history).count()
-         milestone_statistics['not_updated'] = \
-@@ -79,13 +98,12 @@ def _get_milestone_statistics(milestone, maintainer_name=None):
-                     milestone_statistics['cant_be_updated'] += 1
-             else:
-                 milestone_statistics['unknown'] += 1
--
--    if milestone_statistics['all'] == 0:
--        milestone_statistics['percentage'] = 0
--    else:
--        milestone_statistics['percentage'] = "%.0f" % \
--            ((float(milestone_statistics['up_to_date']) /
--                float(milestone_statistics['all'])) * 100)
-+        if milestone_statistics['all'] == 0:
-+            milestone_statistics['percentage'] = '0'
-+        else:
-+            milestone_statistics['percentage'] = "%.0f" % \
-+                ((float(milestone_statistics['up_to_date']) /
-+                    float(milestone_statistics['all'])) * 100)
- 
-     return milestone_statistics
- 
--- 
-1.9.1
+> On Monday 06 July 2015 12:48:50 Nikolay Dimitrov wrote:
+> > One issue with the regularly changing tarball checksums is that people
+> > start to get used to thes changes (e.g. everything looks like false
+> > positive). Currently the tarball checksums and SCM revisions are
+> > probably the most important tool for builds traceability. If we get
+> > used to think about these checksums as "unreliable", it will be much
+> > easier to miss an important component change, which would otherwise
+> > ring a bell.
+>
+> Fully agreed.
+>
+> There are a couple of things I think we can do here:
+>
+> 1) Implement shallow cloning in bitbake's git fetcher as suggested. This
+> shouldn't be too tricky. I've filed a bug to track this:
+>
+>   https://bugzilla.yoctoproject.org/show_bug.cgi?id=7958
+>
+> (Richard is the default assignee, but anyone could potentially work on
+> this).
+>
+>
+This should be the fix that would really fix the issue. And would be a
+useful feature for many other BSPs / layers out there.
 
 
+> 2) In the mean time we could consider upload git mirror tarballs to a
+> source
+> mirror that gets enabled through meta-raspberrypi (would need to be via
+> PREMIRRORS to actually solve the issue). This has the advantage that it
+> wouldn't require any changes to the kernel recipe itself, but new tarballs
+> would of course need to be uploaded every time SRCREV is changed in the
+> recipe.
+>
+>
+And until 1) is done, we can have a premirror. Paul, can you upload a
+tarball? Can I help you with anything for having this up? After we have
+this, can we force premirrors when using a specific layer? Was thinking of
+forcing it by adding PREMIRRORS to layer.conf.
+
+Using github snapshots is not a good idea. Most of the issues you guys
+pointed out above I experienced as well. In my opinion we should combine
+Paul's solutions in order to address this problem.
+
+One more thing. Given the fact the the repository we are talking about is
+not under our control, we shouldn't rely on releases or other things from
+the remote repository.
+
+Andrei
+
+--089e0158b5e41ea5c3051a76e611
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Finally I hop on to this discussion too.=C2=A0<div class=
+=3D"gmail_extra"><br clear=3D"all"><div><div class=3D"gmail_signature"><div=
+ dir=3D"ltr">On Mon, Jul 6, 2015 at 12:58 PM, Paul Eggleton <span dir=3D"lt=
+r">&lt;<a href=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">p=
+aul.eggleton@linux.intel.com</a>&gt;</span> wrote:<br></div></div></div><di=
+v class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);b=
+order-left-style:solid;padding-left:1ex"><span class=3D"">On Monday 06 July=
+ 2015 12:48:50 Nikolay Dimitrov wrote:<br>
+&gt; One issue with the regularly changing tarball checksums is that people=
+<br>
+&gt; start to get used to thes changes (e.g. everything looks like false<br=
+>
+&gt; positive). Currently the tarball checksums and SCM revisions are<br>
+&gt; probably the most important tool for builds traceability. If we get<br=
+>
+&gt; used to think about these checksums as &quot;unreliable&quot;, it will=
+ be much<br>
+&gt; easier to miss an important component change, which would otherwise<br=
+>
+&gt; ring a bell.<br>
+<br>
+</span>Fully agreed.<br>
+<br>
+There are a couple of things I think we can do here:<br>
+<br>
+1) Implement shallow cloning in bitbake&#39;s git fetcher as suggested. Thi=
+s<br>
+shouldn&#39;t be too tricky. I&#39;ve filed a bug to track this:<br>
+<br>
+=C2=A0 <a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D7958"=
+ rel=3D"noreferrer" target=3D"_blank">https://bugzilla.yoctoproject.org/sho=
+w_bug.cgi?id=3D7958</a><br>
+<br>
+(Richard is the default assignee, but anyone could potentially work on this=
+).<br>
+<br></blockquote><div><br></div><div>This should be the fix that would real=
+ly fix the issue. And would be a useful feature for many other BSPs / layer=
+s out there.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(20=
+4,204,204);border-left-style:solid;padding-left:1ex">
+2) In the mean time we could consider upload git mirror tarballs to a sourc=
+e<br>
+mirror that gets enabled through meta-raspberrypi (would need to be via<br>
+PREMIRRORS to actually solve the issue). This has the advantage that it<br>
+wouldn&#39;t require any changes to the kernel recipe itself, but new tarba=
+lls<br>
+would of course need to be uploaded every time SRCREV is changed in the<br>
+recipe.<br>
+<br></blockquote><div><br></div><div>And until 1) is done, we can have a pr=
+emirror. Paul, can you upload a tarball? Can I help you with anything for h=
+aving this up? After we have this, can we force premirrors when using a spe=
+cific layer? Was thinking of forcing it by adding PREMIRRORS to layer.conf.=
+</div><div><br></div><div>Using github snapshots is not a good idea. Most o=
+f the issues you guys pointed out above I experienced as well. In my opinio=
+n we should combine Paul&#39;s solutions in order to address this problem.=
+=C2=A0</div><div><br></div><div>One more thing. Given the fact the the repo=
+sitory we are talking about is not under our control, we shouldn&#39;t rely=
+ on releases or other things from the remote repository.</div><div><br></di=
+v><div><div>Andrei</div></div></div></div></div>
+
+--089e0158b5e41ea5c3051a76e611--
