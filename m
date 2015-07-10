@@ -1,45 +1,56 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <picmaster@mail.bg>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52963E00A51; Thu,  9 Jul 2015 18:30:49 -0700 (PDT)
+	id 970A2E00A54; Fri, 10 Jul 2015 01:43:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (picmaster[at]mail.bg)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.215.50 listed in list.dnswl.org]
-Received: from mail-la0-f50.google.com (mail-la0-f50.google.com
-	[209.85.215.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 923BAE009D6
-	for <yocto@yoctoproject.org>; Thu,  9 Jul 2015 18:30:38 -0700 (PDT)
-Received: by lagc2 with SMTP id c2so253644316lag.3
-	for <yocto@yoctoproject.org>; Thu, 09 Jul 2015 18:30:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
-	:content-type;
-	bh=yK5y1onx1PlutMbWIGcjd+nOaO+mGVmqLeVx7WsX9hQ=;
-	b=fjaXPEjtqSxCVwN+ApToldXPmc7k/ir1ldwx5i38qrmE0yHhFQqNiYdq84pmFytfjP
-	afEnnvHIpJiVJ97/eyWzmDVeDbcZ8/9dLTqn8H/jxRKfDJ+SgeisdALc4YSoahTbxHzQ
-	CbhJtPT8XMqcz5SryMo8YWlO+zbqdg5hUvO+EIQC+Blzo+eJajtiQaW8tPfr6+Q0rjTG
-	e21mKbsv76CucttTn1clIeBhLunVZ0BNUoXituJPMHo191NYD6joNtls6wTLwkEPwcn5
-	pGOlTpeYisan6aroSMui3MZERVVIjDCtP4sjsNly2IHsrVukxFieGAnsTZjeeW1S1QbP
-	sa2g==
-X-Gm-Message-State: ALoCoQlrmg17fwdOt0oItwfhVwSq4GbKw4UnZ1kNlgdfd9rcrro7gnOwcmiMoAtD3T/o/BUcHPtg
-X-Received: by 10.112.185.100 with SMTP id fb4mr17528788lbc.79.1436491835991; 
-	Thu, 09 Jul 2015 18:30:35 -0700 (PDT)
+	*      [193.201.172.118 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mx2.mail.bg (mx2.mail.bg [193.201.172.118])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18BD4E009D6
+	for <yocto@yoctoproject.org>; Fri, 10 Jul 2015 01:43:27 -0700 (PDT)
+Received: from [192.168.0.62] (unknown [93.152.143.60])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by mx2.mail.bg (Postfix) with ESMTPSA id E3A5C60037CC;
+	Fri, 10 Jul 2015 11:43:25 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mail.bg; s=default;
+	t=1436517806; bh=pde6d2Tg04PtiAiO0OmAe1bqI36eAMDqy5s9Qx+cnxM=;
+	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
+	In-Reply-To:Content-Type:Content-Transfer-Encoding;
+	b=f/r+c4WP/R0KfRD7sJMiWhrjypwhnvab0YiXBHjyAWdij56TA3Yo1cRFWj8OMExzG
+	WC5cjKfu4ki6Y2INVQY/g6CsBJL6hHoQYdgcC0i0PZ4bY4pvqdYNx+jhF3XOfo6a8I
+	7Zni3sRjJtMq0YEKHje6rY0cLm9RsP9+nZexzpkg=
+Message-ID: <559F85AD.3050603@mail.bg>
+Date: Fri, 10 Jul 2015 11:43:25 +0300
+From: Nikolay Dimitrov <picmaster@mail.bg>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Icedove/31.7.0
 MIME-Version: 1.0
-Received: by 10.112.147.232 with HTTP; Thu, 9 Jul 2015 18:29:56 -0700 (PDT)
-X-Originating-IP: [81.108.63.159]
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Fri, 10 Jul 2015 03:29:56 +0200
-Message-ID: <CAK18fxGVOvkCmNfmd6Q3ydxpaRXcpxWSB-dNKYa3epQvLXDC2g@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Masking out hddimg in bootimg bbclass
+To: Andrei Gherzan <andrei@gherzan.ro>
+References: <1435981717-29443-1-git-send-email-net147@gmail.com>
+	<55976F44.5070106@mail.bg> <559A8572.6020203@gmail.com>
+	<559AAA59.9090007@mail.bg>
+	<CAJTo0La_FqBveOEv90+ofCq2gAj4hiNfSA72dc40mEjrFv8aJg@mail.gmail.com>
+	<CAJTo0LYoqTs3o7di3rvwcsX5Q4iruAqFZePAJRXdw8eHWqW7HA@mail.gmail.com>
+	<559AB3A4.7010206@mail.bg> <559AB3FB.2090302@mail.bg>
+	<CAK18fxEc8njxqD7Opzrw_mh_NXp8w3igD6YVREBh6qPeWizDPg@mail.gmail.com>
+In-Reply-To: <CAK18fxEc8njxqD7Opzrw_mh_NXp8w3igD6YVREBh6qPeWizDPg@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH] firmware.inc: fetch from SVN instead of Git
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,32 +62,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Jul 2015 01:30:49 -0000
-Content-Type: multipart/alternative; boundary=001a11c3ca229b7fdb051a7b514e
+X-List-Received-Date: Fri, 10 Jul 2015 08:43:31 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
---001a11c3ca229b7fdb051a7b514e
-Content-Type: text/plain; charset=UTF-8
+Hi Andrei,
 
-Hello,
+On 07/09/2015 11:19 PM, Andrei Gherzan wrote:
+> On Mon, Jul 6, 2015 at 6:59 PM, Nikolay Dimitrov <picmaster@mail.bg
+> <mailto:picmaster@mail.bg>> wrote:
+>
+>     Hi Ross,
+>
+>     On 07/06/2015 07:58 PM, Nikolay Dimitrov wrote:
+>
+>         Hi Ross,
+>
+>         On 07/06/2015 07:26 PM, Burton, Ross wrote:
+>
+>
+>             On 6 July 2015 at 17:23, Burton, Ross <ross.burton@intel.com
+>             <mailto:ross.burton@intel.com>
+>             <mailto:ross.burton@intel.com
+>             <mailto:ross.burton@intel.com>>> wrote:
+>
+>                  How latest, remembering that oe-core supports LTS
+>             distros which are
+>                  likely to have old releases of git.
+>
+>
+>             Assuming I'm driving it correctly:
+>
+>             [git init, git remote add origin ...]
+>             $ git fetch  --depth=1 origin
+>             beeafee030a38380c65a9a664003ba50f87aefbf
+>             error: no such remote ref
+>             beeafee030a38380c65a9a664003ba50f87aefbf
+>             $ git --version
+>             git version 2.1.4
+>
+>             That's with the latest Debian release.
+>
+>             Ross
+>
+>
+>         Well, the commits that add this feature are from May-June.2015.
+>         I fully
+>         agree with you that LTS is a factor that can't be ignored.
+>
+>         Kind regards,
+>         Nikolay
+>
+>
+>     Forgot to answer you question - the expected versions to include
+>     this feature are 2.5.0/2.5.1. <http://2.5.1.>
+>
+>
+> So there is no support for depth clones until 2.5.0? I didn't really
+> understand.
 
-Reading the bootimg bbclass, I see that iso and hddimg fstypes are masked.
-Any reason why? The log doesn't really help much:
-http://lists.openembedded.org/pipermail/openembedded-core/2014-February/089634.html
+Well, shallow clones are supported but only for branch tips, which is
+not what we need. This feature for shallow cloning a specific revision
+is available only in git 2.5.0+. Also, this feature needs a server-side
+configuration option to be enabled, in order to work properly.
 
---
-Andrei Gherzan
+Regards,
+Nikolay
 
---001a11c3ca229b7fdb051a7b514e
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello,<div><br></div><div>Reading the bootimg bbclass, I s=
-ee that iso and hddimg fstypes are masked. Any reason why? The log doesn&#3=
-9;t really help much:=C2=A0<a href=3D"http://lists.openembedded.org/piperma=
-il/openembedded-core/2014-February/089634.html">http://lists.openembedded.o=
-rg/pipermail/openembedded-core/2014-February/089634.html</a></div><div><br =
-clear=3D"all"><div><div class=3D"gmail_signature"><div dir=3D"ltr"><div><di=
-v dir=3D"ltr"><div>--</div>Andrei Gherzan</div></div></div></div></div>
-</div></div>
-
---001a11c3ca229b7fdb051a7b514e--
