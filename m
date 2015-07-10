@@ -1,17 +1,17 @@
 Return-Path: <picmaster@mail.bg>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 970A2E00A54; Fri, 10 Jul 2015 01:43:31 -0700 (PDT)
+	id 4F8C7E00A54; Fri, 10 Jul 2015 01:47:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (picmaster[at]mail.bg)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
 	*      [193.201.172.118 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (picmaster[at]mail.bg)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -20,37 +20,35 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from mx2.mail.bg (mx2.mail.bg [193.201.172.118])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18BD4E009D6
-	for <yocto@yoctoproject.org>; Fri, 10 Jul 2015 01:43:27 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37D95E009D6
+	for <yocto@yoctoproject.org>; Fri, 10 Jul 2015 01:47:51 -0700 (PDT)
 Received: from [192.168.0.62] (unknown [93.152.143.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by mx2.mail.bg (Postfix) with ESMTPSA id E3A5C60037CC;
-	Fri, 10 Jul 2015 11:43:25 +0300 (EEST)
+	by mx2.mail.bg (Postfix) with ESMTPSA id A89BC60055EB;
+	Fri, 10 Jul 2015 11:47:50 +0300 (EEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mail.bg; s=default;
-	t=1436517806; bh=pde6d2Tg04PtiAiO0OmAe1bqI36eAMDqy5s9Qx+cnxM=;
+	t=1436518070; bh=uXnEG1BKgO+2reUOJY8YDPSdKHbFFXAg43OgjH53aB0=;
 	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
 	In-Reply-To:Content-Type:Content-Transfer-Encoding;
-	b=f/r+c4WP/R0KfRD7sJMiWhrjypwhnvab0YiXBHjyAWdij56TA3Yo1cRFWj8OMExzG
-	WC5cjKfu4ki6Y2INVQY/g6CsBJL6hHoQYdgcC0i0PZ4bY4pvqdYNx+jhF3XOfo6a8I
-	7Zni3sRjJtMq0YEKHje6rY0cLm9RsP9+nZexzpkg=
-Message-ID: <559F85AD.3050603@mail.bg>
-Date: Fri, 10 Jul 2015 11:43:25 +0300
+	b=8qeLpoFkoJbJqKyLqKcCCDzz2ms9D2XxdgFipYs96Mt1anV21xeJO3sVvFs41UwNX
+	yw776IMY1FeSluNqtb0bGKvAsPk5N6kEP96e1K2aaEd7HA6VQ6UUisAW8ivXklPeoZ
+	wQcsu1nVwxJxvhjgAIuGw1DxZgCgl/px80rxV8uM=
+Message-ID: <559F86B6.9030100@mail.bg>
+Date: Fri, 10 Jul 2015 11:47:50 +0300
 From: Nikolay Dimitrov <picmaster@mail.bg>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Icedove/31.7.0
 MIME-Version: 1.0
-To: Andrei Gherzan <andrei@gherzan.ro>
-References: <1435981717-29443-1-git-send-email-net147@gmail.com>
-	<55976F44.5070106@mail.bg> <559A8572.6020203@gmail.com>
-	<559AAA59.9090007@mail.bg>
-	<CAJTo0La_FqBveOEv90+ofCq2gAj4hiNfSA72dc40mEjrFv8aJg@mail.gmail.com>
-	<CAJTo0LYoqTs3o7di3rvwcsX5Q4iruAqFZePAJRXdw8eHWqW7HA@mail.gmail.com>
-	<559AB3A4.7010206@mail.bg> <559AB3FB.2090302@mail.bg>
-	<CAK18fxEc8njxqD7Opzrw_mh_NXp8w3igD6YVREBh6qPeWizDPg@mail.gmail.com>
-In-Reply-To: <CAK18fxEc8njxqD7Opzrw_mh_NXp8w3igD6YVREBh6qPeWizDPg@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] firmware.inc: fetch from SVN instead of Git
+To: Andrei Gherzan <andrei@gherzan.ro>, 
+	Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <1435292188-29514-1-git-send-email-jon.szymaniak@gmail.com>	<20150706084005.GA8098@ad.chargestorm.se>
+	<559A4F02.8040907@mail.bg>	<8257415.nZmIxnRxaN@peggleto-mobl.ger.corp.intel.com>
+	<CAK18fxGnkbAtveQND5zCs-KntpPjoZPMzn1_hmHVNKZMWrc1zQ@mail.gmail.com>
+In-Reply-To: <CAK18fxGnkbAtveQND5zCs-KntpPjoZPMzn1_hmHVNKZMWrc1zQ@mail.gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	Anders Darander <anders@chargestorm.se>
+Subject: Re: [meta-raspberrypi][PATCH] firmware.inc: Fetch a zip instead of cloning a git repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,69 +60,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Jul 2015 08:43:31 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Fri, 10 Jul 2015 08:47:55 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
 Hi Andrei,
 
-On 07/09/2015 11:19 PM, Andrei Gherzan wrote:
-> On Mon, Jul 6, 2015 at 6:59 PM, Nikolay Dimitrov <picmaster@mail.bg
-> <mailto:picmaster@mail.bg>> wrote:
+On 07/09/2015 11:13 PM, Andrei Gherzan wrote:
+> Finally I hop on to this discussion too.
 >
->     Hi Ross,
+> On Mon, Jul 6, 2015 at 12:58 PM, Paul Eggleton
+> <paul.eggleton@linux.intel.com <mailto:paul.eggleton@linux.intel.com>>
+> wrote:
 >
->     On 07/06/2015 07:58 PM, Nikolay Dimitrov wrote:
+>     On Monday 06 July 2015 12:48:50 Nikolay Dimitrov wrote:
+>     > One issue with the regularly changing tarball checksums is that people
+>     > start to get used to thes changes (e.g. everything looks like false
+>     > positive). Currently the tarball checksums and SCM revisions are
+>     > probably the most important tool for builds traceability. If we get
+>     > used to think about these checksums as "unreliable", it will be much
+>     > easier to miss an important component change, which would otherwise
+>     > ring a bell.
 >
->         Hi Ross,
+>     Fully agreed.
 >
->         On 07/06/2015 07:26 PM, Burton, Ross wrote:
+>     There are a couple of things I think we can do here:
 >
+>     1) Implement shallow cloning in bitbake's git fetcher as suggested. This
+>     shouldn't be too tricky. I've filed a bug to track this:
 >
->             On 6 July 2015 at 17:23, Burton, Ross <ross.burton@intel.com
->             <mailto:ross.burton@intel.com>
->             <mailto:ross.burton@intel.com
->             <mailto:ross.burton@intel.com>>> wrote:
+>     https://bugzilla.yoctoproject.org/show_bug.cgi?id=7958
 >
->                  How latest, remembering that oe-core supports LTS
->             distros which are
->                  likely to have old releases of git.
->
->
->             Assuming I'm driving it correctly:
->
->             [git init, git remote add origin ...]
->             $ git fetch  --depth=1 origin
->             beeafee030a38380c65a9a664003ba50f87aefbf
->             error: no such remote ref
->             beeafee030a38380c65a9a664003ba50f87aefbf
->             $ git --version
->             git version 2.1.4
->
->             That's with the latest Debian release.
->
->             Ross
+>     (Richard is the default assignee, but anyone could potentially work
+>     on this).
 >
 >
->         Well, the commits that add this feature are from May-June.2015.
->         I fully
->         agree with you that LTS is a factor that can't be ignored.
+> This should be the fix that would really fix the issue. And would be a
+> useful feature for many other BSPs / layers out there.
 >
->         Kind regards,
->         Nikolay
+>     2) In the mean time we could consider upload git mirror tarballs to
+>     a source
+>     mirror that gets enabled through meta-raspberrypi (would need to be via
+>     PREMIRRORS to actually solve the issue). This has the advantage that it
+>     wouldn't require any changes to the kernel recipe itself, but new
+>     tarballs
+>     would of course need to be uploaded every time SRCREV is changed in the
+>     recipe.
 >
 >
->     Forgot to answer you question - the expected versions to include
->     this feature are 2.5.0/2.5.1. <http://2.5.1.>
->
->
-> So there is no support for depth clones until 2.5.0? I didn't really
-> understand.
+> And until 1) is done, we can have a premirror. Paul, can you upload a
+> tarball? Can I help you with anything for having this up? After we have
+> this, can we force premirrors when using a specific layer? Was thinking
+> of forcing it by adding PREMIRRORS to layer.conf.
 
-Well, shallow clones are supported but only for branch tips, which is
-not what we need. This feature for shallow cloning a specific revision
-is available only in git 2.5.0+. Also, this feature needs a server-side
-configuration option to be enabled, in order to work properly.
+I don't think this is a good move. The current solution is already
+working properly, although with slower-than-ideal download speed.
+
+Prepackaged tarballs will require constant manpower for supporting,
+and it's probably better to be invested into looking for a better
+solution.
+
+>
+> Using github snapshots is not a good idea. Most of the issues you guys
+> pointed out above I experienced as well. In my opinion we should combine
+> Paul's solutions in order to address this problem.
+>
+> One more thing. Given the fact the the repository we are talking about
+> is not under our control, we shouldn't rely on releases or other things
+> from the remote repository.
+>
+> Andrei
+>
+>
 
 Regards,
 Nikolay
