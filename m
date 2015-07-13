@@ -1,39 +1,58 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52551E0086E; Mon, 13 Jul 2015 09:39:07 -0700 (PDT)
+	id C59A7E00758; Mon, 13 Jul 2015 10:37:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.43 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE5F4E00474
-	for <yocto@yoctoproject.org>; Mon, 13 Jul 2015 09:39:05 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by orsmga102.jf.intel.com with ESMTP; 13 Jul 2015 09:39:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,463,1432623600"; d="scan'208";a="523524367"
-Received: from kieranfl-mobl1.ger.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.30.146])
-	by FMSMGA003.fm.intel.com with ESMTP; 13 Jul 2015 09:39:00 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Pampolini Matteo <matteo.pampolini@selex-es.com>
-Date: Mon, 13 Jul 2015 17:38:59 +0100
-Message-ID: <10339162.sO6SsRz4fR@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.9 (Linux/4.0.6-200.fc21.x86_64; KDE/4.14.9; x86_64; ; )
-In-Reply-To: <1436804334217.6373@selex-es.com>
-References: <1436797408174.67011@selex-es.com>
-	<22658_1436803637_55A3E234_22658_12077_1_10339148.fJj1pddUcL@peggleto-mobl.ger.corp.intel.com>
-	<1436804334217.6373@selex-es.com>
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Which is the best strategy to customize Qt configuration?
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f43.google.com (mail-pa0-f43.google.com
+	[209.85.220.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F7F7E00474
+	for <yocto@yoctoproject.org>; Mon, 13 Jul 2015 10:37:29 -0700 (PDT)
+Received: by padck2 with SMTP id ck2so46084849pad.0
+	for <yocto@yoctoproject.org>; Mon, 13 Jul 2015 10:37:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:subject:date:message-id:to:mime-version;
+	bh=WV90vRhDSEr0G6zdISz5trb1N/4j/lvh/ikyYbHOE9c=;
+	b=Nc30UISpyHNjjB4sN0rXD0aUmK7Vq+ZSC0UHo3HxWcpQKkytOUdeA4NUjSiODCqC6N
+	LBzgRAe6roCFfFZ+RLQQaM+IC6fV9fefTp+gfEamkE8fNWLQLclqZNtLsp9upXnOy3c6
+	umPmfrL86oBrC0A0z9hHiC60wKYzdiZm1CV3mUEsiPxm0cLNqlPac88BijOKz0v/XMry
+	EmT+YBiJQv05u8J8uE50vgN32Iy/qc++XdAoPmf/zmcON8TU1orhQlhA7yNwJh1T9i9Q
+	rB+2LPSBcg8lxFcTHMDRQwMbgaHDl90ZOUykf5K+n2QaO5AnAEWmkJ+ev2/sXN+jcacm
+	1gsg==
+X-Received: by 10.66.62.202 with SMTP id a10mr5715115pas.42.1436809049203;
+	Mon, 13 Jul 2015 10:37:29 -0700 (PDT)
+Received: from ?IPv6:2601:646:8601:4580:2911:52b8:984e:c65b?
+	([2601:646:8601:4580:2911:52b8:984e:c65b])
+	by smtp.gmail.com with ESMTPSA id
+	do3sm19160866pbb.5.2015.07.13.10.37.28
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 13 Jul 2015 10:37:28 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
+X-Pgp-Agent: GPGMail 2.5
+Date: Mon, 13 Jul 2015 10:37:23 -0700
+Message-Id: <261F5389-C495-4B05-B79E-309AE0E0F0CA@gmail.com>
+To: Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>, 
+	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
+	Yocto discussion list <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2102\))
+X-Mailer: Apple Mail (2.2102)
+Subject: glibc 2.22
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,34 +64,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 Jul 2015 16:39:07 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 13 Jul 2015 17:37:32 -0000
+X-Groupsio-MsgNum: 25450
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_65805941-0605-4404-B39B-FBE83868203D";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
 
-On Monday 13 July 2015 16:18:55 Pampolini Matteo wrote:
-> It was also my idea to override QT_PHONON variable inside my .bbappend file,
-> but the fact is that this does not prevent BitBake from downloading and
-> compiling glib/gstreamer.
-> 
-> In my first hack, when I modified the original qt.inc file, I had to make
-> both changes, DEPENDS variable for BitBake and QT_PHONON for Qt itself.
-> 
-> As I wrote in my answer to Leonardo the issue is: how can I override the
-> value of DEPENDS variable in my own layer, if possible?
+--Apple-Mail=_65805941-0605-4404-B39B-FBE83868203D
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-You can set DEPENDS in the qt4-x11-free bbappend just as with any other 
-variable. In this instance you could use the _remove operator e.g.
+Hi All
 
-DEPENDS_remove = "gstreamer gst-plugins-base"
+glibc 2.22 will release end of this month. For some time I have put =
+together the update here
 
-(This will only work here having additionally set QT_PHONON = "-no-phonon" to 
-disable the underlying depenendency, of course.)
+=
+http://git.openembedded.org/openembedded-core-contrib/commit/?h=3Dkraj/mas=
+ter&id=3D02e73ea526d94f21c7ef82eb96b062eff8ebb825
 
-Cheers,
-Paul
+It works pretty well for machines I have tested it on ( arm/x86 ) but =
+would be interested if more wider trial could be carried
+out and issues reported between now and release can be addressed.
 
--- 
+Please give it a try if you have spare cycles
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Thanks
+-Khem
 
+
+
+--Apple-Mail=_65805941-0605-4404-B39B-FBE83868203D
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlWj91cACgkQuwUzVZGdMxRA+gCgkSzUeaeubUSKZHM5rUY2Re1z
+5wEAn2OPj0sFYt4er8ptomzLr33zTaXZ
+=/J8r
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_65805941-0605-4404-B39B-FBE83868203D--
