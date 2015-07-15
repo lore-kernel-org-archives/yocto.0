@@ -1,45 +1,41 @@
-Return-Path: <mei.yeen.ng@intel.com>
+Return-Path: <dkimble@alticast.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 33639E0086E; Wed, 15 Jul 2015 10:40:57 -0700 (PDT)
+	id C7C6CE0095C; Wed, 15 Jul 2015 14:53:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEE1EE00474
-	for <yocto@yoctoproject.org>; Wed, 15 Jul 2015 10:40:50 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 15 Jul 2015 10:40:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,481,1432623600"; 
-	d="bb'?scan'208,217";a="765087406"
-Received: from kmsmsx152.gar.corp.intel.com ([172.21.73.87])
-	by orsmga002.jf.intel.com with ESMTP; 15 Jul 2015 10:40:26 -0700
-Received: from kmsmsx153.gar.corp.intel.com ([169.254.5.131]) by
-	KMSMSX152.gar.corp.intel.com ([169.254.11.67]) with mapi id
-	14.03.0224.002; Thu, 16 Jul 2015 01:40:25 +0800
-From: "Ng, Mei Yeen" <mei.yeen.ng@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Packages in packagegroup are not installed in image
-Thread-Index: AdC/JTdQ3JBuJ199QBOTZNoIWPVvUA==
-Date: Wed, 15 Jul 2015 17:40:23 +0000
-Message-ID: <62355CE5B24AE3438DF93AF114E1F91B2DBC9045@KMSMSX153.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: yes
+Received: from CAS.ALTICAST.COM (cas.alticast.com [210.223.111.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C78FBE0086E
+	for <yocto@yoctoproject.org>; Wed, 15 Jul 2015 14:53:27 -0700 (PDT)
+Received: from MDBA.ALTICAST.COM (10.20.1.13) by MDBA.ALTICAST.COM
+	(10.20.1.13) with Microsoft SMTP Server (TLS) id 15.0.847.32;
+	Thu, 16 Jul 2015 06:52:40 +0900
+Received: from MDBA.ALTICAST.COM ([::1]) by MDBA.ALTICAST.COM
+	([fe80::a120:603e:ce7f:b63a%22]) with mapi id 15.00.0847.030;
+	Thu, 16 Jul 2015 06:52:40 +0900
+From: Dave Kimble <dkimble@alticast.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] using gdb with externalsrc
+Thread-Index: AQHQvow+Np9lhVRZQU2DpV3k5r/M/Z3ct0rS//+jYACAAJqvrQ==
+Date: Wed, 15 Jul 2015 21:52:40 +0000
+Message-ID: <13cb666befe542429cf1351610232147@MDBA.ALTICAST.COM>
+References: <72517437afa14ef49b98771c29280999@MDBA.ALTICAST.COM>
+	<18f7ce035aef414a9f831b93f7891401@MDBA.ALTICAST.COM>,
+	<CAMKF1sonpFNZJo4W6hr9tZgwYFLK=FQTYRm-nqonzWgqYMJPyg@mail.gmail.com>
+In-Reply-To: <CAMKF1sonpFNZJo4W6hr9tZgwYFLK=FQTYRm-nqonzWgqYMJPyg@mail.gmail.com>
+Accept-Language: en-US, ko-KR
+X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.30.20.206]
+x-originating-ip: [107.1.177.180]
 MIME-Version: 1.0
 X-Mailman-Approved-At: Mon, 20 Jul 2015 02:42:32 -0700
-Cc: "Hart, Darren" <darren.hart@intel.com>, "Witt,
-	Randy E" <randy.e.witt@intel.com>
-Subject: Packages in packagegroup are not installed in image
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: using gdb with externalsrc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,304 +47,167 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Jul 2015 17:40:57 -0000
-X-Groupsio-MsgNum: 25552
+X-List-Received-Date: Wed, 15 Jul 2015 21:53:30 -0000
 Content-Language: en-US
-Content-Type: multipart/mixed;
-	boundary="_005_62355CE5B24AE3438DF93AF114E1F91B2DBC9045KMSMSX153garcor_"
-
---_005_62355CE5B24AE3438DF93AF114E1F91B2DBC9045KMSMSX153garcor_
 Content-Type: multipart/alternative;
-	boundary="_000_62355CE5B24AE3438DF93AF114E1F91B2DBC9045KMSMSX153garcor_"
+	boundary="_000_13cb666befe542429cf1351610232147MDBAALTICASTCOM_"
 
---_000_62355CE5B24AE3438DF93AF114E1F91B2DBC9045KMSMSX153garcor_
+--_000_13cb666befe542429cf1351610232147MDBAALTICASTCOM_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Yes, I'm able to debug the externalsrc component. I can see variables, set =
+breakpoints, step/next through the code etc. (so the symbols are valid). An=
+d local changes to the externalsrc component are reflected when I debug.
 
-I need help for issue where packages in packagegroup that compiles perfectl=
-y fine with core-images, but when verified in the image, they are not insta=
-lled for some reason.
-My understanding was that packages listed under RDEPENDS in the packagegrou=
-p would get compiled and installed.
+But I can't list the externalsrc component source code from within gdb (or =
+find it anywhere in the image). The source for all of the other components =
+is in the image (and I can list it in gdb). When I try to list the code for=
+ the externalsrc component, gdb prints this error message:
+"[path on my build? machine]/sourceFile.c: No such file or directory."
 
-Some packages would appear in 1 image and then disappear in the next compil=
-ed image.
-I'm seeing this when compiling with core-image-full-cmdline and core-image-=
-sato.
+If I don't use externalsrc at all, I can debug all of the components and li=
+st source code for all of them from within gdb.
 
-I have attached the following package group created:
+So, I can't solve how to get the externalsrc source code into the image. I =
+don't mind if I have to use "set substitute-path" from within gdb if extern=
+alsrc source files are put in a different place (although, it'd be ideal if=
+ they were put in the same place).
 
--        graphics package group- ldd would not be installed in the image
+Thanks
 
--        build essentials extended package group - gdb were not install, gc=
-c and mkdosfs will intermittently not install into the image
 
-Any help to shed some light on this is very much appreciated.
+________________________________________
+From: Khem Raj <raj.khem@gmail.com>
+Sent: Wednesday, July 15, 2015 1:49 PM
+To: Dave Kimble
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] using gdb with externalsrc
 
-Thanks,
-MY
+On Wed, Jul 15, 2015 at 9:36 AM, Dave Kimble <dkimble@alticast.com> wrote:
+> We've got a component of an existing Yocto project under active developme=
+nt
+> that we'd like to debug with gdb.
+>
+> We've added these features to get gdb and the debug symbol packages into =
+the
+> image:
+>
+> EXTRA_IMAGE_FEATURES =3D "debug-tweaks tools-debug"
+>
+> IMAGE_FEATURES =3D "ssh-server-openssh dbg-pkgs"
+>
+>
+> We've added these variables to build the component under active developme=
+nt
+> from the local code:
+> INHERIT +=3D "externalsrc"
+> EXTERNALSRC_pn-[component] =3D "[local source code path]/[component]"
+>
+> All seems well, as the build succeeds and the component in the image
+> reflects local code changes. However, the component source code never mak=
+es
+> it into the image, so it can't be referenced in gdb.
+>
+> Is there a secret to using dbg-pkgs and EXTERNALSRC together?
 
---_000_62355CE5B24AE3438DF93AF114E1F91B2DBC9045KMSMSX153garcor_
+Can you check if -dbg package for extrnalsrc component is installed ?
+secondly, does the debugging work if you dont isue externalsrc for
+this particular component.
+
+--_000_13cb666befe542429cf1351610232147MDBAALTICASTCOM_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
+<html>
 <head>
 <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1698655529;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1940115052 1101846732 67698691 67698693 67698689 67=
-698691 67698693 67698689 67698691 67698693;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-font-family:Calibri;
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
+<style type=3D"text/css" style=3D"display:none"><!--P{margin-top:0;margin-b=
+ottom:0;} .ms-cui-menu {background-color:#ffffff;border:1px rgb(171, 171, 1=
+71) solid;font-family:'Segoe UI WPC', 'Segoe UI', Tahoma, 'Microsoft Sans S=
+erif', Verdana, sans-serif;font-size:11pt;color:rgb(51, 51, 51);} .ms-cui-m=
+enusection-title {display:none;} .ms-cui-ctl {vertical-align:text-top;text-=
+decoration:none;color:rgb(51, 51, 51);} .ms-cui-ctl-on {background-color:rg=
+b(223, 237, 250);opacity: 0.8;} .ms-cui-img-cont-float {display:inline-bloc=
+k;margin-top:2px} .ms-cui-smenu-inner {padding-top:0px;} .ms-owa-paste-opti=
+on-icon {margin: 2px 4px 0px 4px;vertical-align:sub;padding-bottom: 2px;dis=
+play:inline-block;} .ms-rtePasteFlyout-option:hover {background-color:rgb(2=
+23, 237, 250) !important;opacity:1 !important;} .ms-rtePasteFlyout-option {=
+padding:8px 4px 8px 4px;outline:none;} .ms-cui-menusection {float:left; wid=
+th:85px;height:24px;overflow:hidden}--></style>
 </head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:black">Hi,<o:p></o:p></span></p=
+<body>
+<div style=3D"font-size:12pt;color:#000000;background-color:#FFFFFF;font-fa=
+mily:Calibri,Arial,Helvetica,sans-serif;">
+Yes, I'm able to debug the externalsrc component. I can see variables, set =
+breakpoints, step/next through the code etc. (so the symbols are valid). An=
+d local changes to the externalsrc component are reflected when I debug.<br=
 >
-<p class=3D"MsoNormal"><span style=3D"color:black"><o:p>&nbsp;</o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"color:black">I need help for issue wh=
-ere packages in packagegroup that compiles perfectly fine with core-images,=
- but when verified in the image, they are not installed for some reason.<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:black">My understanding was tha=
-t packages listed under RDEPENDS in the packagegroup would get compiled and=
- installed.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:black"><o:p>&nbsp;</o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"color:black">Some packages would appe=
-ar in 1 image and then disappear in the next compiled image.<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"color:black">I&#8217;m seeing this wh=
-en compiling with core-image-full-cmdline and core-image-sato.<o:p></o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"color:black">&nbsp;<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"color:black">I have attached the foll=
-owing package group created:
-<o:p></o:p></span></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"color:black"><span style=3D"mso=
--list:Ignore">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"color:black">graphics package=
- group&#8211; ldd would not be installed in the image
-<o:p></o:p></span></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"color:black"><span style=3D"mso=
--list:Ignore">-<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span></span></span><![endif]><span style=3D"color:black">build essentials=
- extended package group &#8211; gdb were not install, gcc and mkdosfs will =
-intermittently not install into the image<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Any help to shed some light on this is very much app=
-reciated.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">MY<o:p></o:p></p>
+<br>
+But I can't list the externalsrc component&nbsp;source code from within gdb=
+ (or find it&nbsp;anywhere in the image). The source for all of the other c=
+omponents is in the image (and I can list it in gdb). When I try to list th=
+e code for the externalsrc component, gdb
+ prints this error message:<br>
+&quot;[path on my <strong style=3D"text-decoration: underline;"><em>build</=
+em></strong><span style=3D"text-decoration: underline;"></span>&#8203; mach=
+ine]/sourceFile.c: No such file or directory.&quot;
+<div><br>
+If I don't use externalsrc at all, I can debug all of the components and li=
+st source code for all of them&nbsp;from within gdb.<br>
+<br>
+So,&nbsp;I can't solve&nbsp;how to get the externalsrc&nbsp;source code int=
+o the image. I don't mind if I have to use &quot;set substitute-path&quot; =
+from within gdb&nbsp;if externalsrc source files are put in a different pla=
+ce (although, it'd be ideal if they were put in the same place).<br>
+<br>
+Thanks<br>
+<br>
+<br>
+________________________________________<br>
+From: Khem Raj &lt;raj.khem@gmail.com&gt;<br>
+Sent: Wednesday, July 15, 2015 1:49 PM<br>
+To: Dave Kimble<br>
+Cc: yocto@yoctoproject.org<br>
+Subject: Re: [yocto] using gdb with externalsrc<br>
+<br>
+On Wed, Jul 15, 2015 at 9:36 AM, Dave Kimble &lt;dkimble@alticast.com&gt; w=
+rote:<br>
+&gt; We've got a component of an existing Yocto project under active develo=
+pment<br>
+&gt; that we'd like to debug with gdb.<br>
+&gt;<br>
+&gt; We&#8217;ve added these features to get gdb and the debug symbol packa=
+ges into the<br>
+&gt; image:<br>
+&gt;<br>
+&gt; EXTRA_IMAGE_FEATURES =3D &quot;debug-tweaks tools-debug&quot;<br>
+&gt;<br>
+&gt; IMAGE_FEATURES =3D &quot;ssh-server-openssh dbg-pkgs&quot;<br>
+&gt;<br>
+&gt;<br>
+&gt; We&#8217;ve added these variables to build the component under active =
+development<br>
+&gt; from the local code:<br>
+&gt; INHERIT &#43;=3D &quot;externalsrc&quot;<br>
+&gt; EXTERNALSRC_pn-[component] =3D &#8220;[local source code path]/[compon=
+ent]&#8221;<br>
+&gt;<br>
+&gt; All seems well, as the build succeeds and the component in the image<b=
+r>
+&gt; reflects local code changes. However, the component source code never =
+makes<br>
+&gt; it into the image, so it can&#8217;t be referenced in gdb.<br>
+&gt;<br>
+&gt; Is there a secret to using dbg-pkgs and EXTERNALSRC together?<br>
+<br>
+Can you check if -dbg package for extrnalsrc component is installed ?<br>
+secondly, does the debugging work if you dont isue externalsrc for<br>
+this particular component.<br>
+</div>
 </div>
 </body>
 </html>
 
---_000_62355CE5B24AE3438DF93AF114E1F91B2DBC9045KMSMSX153garcor_--
-
---_005_62355CE5B24AE3438DF93AF114E1F91B2DBC9045KMSMSX153garcor_
-Content-Type: application/octet-stream;
-	name="packagegroup-core-buildessential-extended.bb"
-Content-Description: packagegroup-core-buildessential-extended.bb
-Content-Disposition: attachment;
-	filename="packagegroup-core-buildessential-extended.bb"; size=1021;
-	creation-date="Wed, 15 Jul 2015 17:40:12 GMT";
-	modification-date="Wed, 15 Jul 2015 17:40:12 GMT"
-Content-Transfer-Encoding: base64
-
-REVTQ1JJUFRJT04gPSAiRXh0ZW5kZWQgbGlzdCBvZiBwYWNrYWdlcyBmb3IgYnVpbGQgZXNzZW50
-aWFscyIKTElDRU5TRSA9ICJNSVQiClBSID0gInIxIgoKaW5oZXJpdCBwYWNrYWdlZ3JvdXAKClBB
-Q0tBR0VTID0gInBhY2thZ2Vncm91cC1jb3JlLWJ1aWxkZXNzZW50aWFsLWV4dGVuZGVkIgoKUkRF
-UEVORFNfcGFja2FnZWdyb3VwLWNvcmUtYnVpbGRlc3NlbnRpYWwtZXh0ZW5kZWQgPSAiXAogICAg
-YWxzYS1saWIgXAogICAgYWxzYS11dGlscyBcCiAgICBhdXRvY29uZiBcCiAgICBhdXRvbWFrZSBc
-CiAgICBiYXNoIFwKICAgIGJpbnV0aWxzIFwKICAgIGJpbnV0aWxzLXN5bWxpbmtzIFwKICAgIGJp
-c29uIFwKICAgIGJ6aXAyIFwKICAgIGNoa2NvbmZpZyBcCiAgICBjbWFrZSBcCiAgICBjb3JldXRp
-bHMgXAogICAgY3BwIFwKICAgIGNwcC1zeW1saW5rcyBcCiAgICBkb3Nmc3Rvb2xzIFwgCiAgICBm
-aWxlIFwKICAgIGZsZXggXAogICAgZysrIFwKICAgIGcrKy1zeW1saW5rcyBcCiAgICBnYXdrIFwK
-ICAgIGdjYyBcCiAgICBnY2Mtc3ltbGlua3MgXAogICAgZ2RiIFwKICAgIGdldHRleHQgXAogICAg
-Z2l0IFwKICAgIGdsaWJjIFwKICAgIGdudS1jb25maWcgXAogICAgZ3RrKzMgXAogICAgaW50bHRv
-b2wgXAogICAgbGlicHRocmVhZC1zdHVicyBcCiAgICBsaWJzdGRjKysgXAogICAgbGlic3RkYysr
-LWRldiBcCiAgICBsaWJ0b29sIFwKICAgIG00IFwKICAgIG1ha2UgXAogICAgbXRvb2xzIFwKICAg
-IG5hc20gXAogICAgbmN1cnNlcyBcCiAgICBuc3ByIFwKICAgIHBhdGNoIFwKICAgIHBjaXV0aWxz
-IFwKICAgIHBrZ2NvbmZpZyBcCiAgICBwcm9jcHMgXAogICAgcHl0aG9uLW51bXB5IFwKICAgIHJw
-bSBcCiAgICBycG1yZXNvbHZlIFwKICAgIHN0cmFjZSBcCiAgICBzeXNsaW51eCBcCiAgICB0YXIg
-XAogICAgdHpkYXRhIFwKICAgIHVkZXYgXAogICAgdW56aXAgXAogICAgdXNidXRpbHMgXAogICAg
-dXRpbC1saW51eCBcCiAgICB3Z2V0IFwKICAgIHlhc20gXAogICAgemxpYiBcCiAgICAiCg==
-
---_005_62355CE5B24AE3438DF93AF114E1F91B2DBC9045KMSMSX153garcor_
-Content-Type: application/octet-stream;
-	name="packagegroup-core-graphics-essential.bb"
-Content-Description: packagegroup-core-graphics-essential.bb
-Content-Disposition: attachment;
-	filename="packagegroup-core-graphics-essential.bb"; size=1575;
-	creation-date="Wed, 15 Jul 2015 17:40:15 GMT";
-	modification-date="Wed, 15 Jul 2015 17:40:15 GMT"
-Content-Transfer-Encoding: base64
-
-U1VNTUFSWSA9ICJBbGwgcGFja2FnZXMgZm9yIGZ1bGwgZ3JhcGhpY3MgdXNlciBzcGFjZSIKTElD
-RU5TRSA9ICJNSVQiClBSID0gInIxIgoKUEFDS0FHRV9BUkNIID0gIiR7TUFDSElORV9BUkNIfSIK
-aW5oZXJpdCBwYWNrYWdlZ3JvdXAKClBBQ0tBR0VTID0gInBhY2thZ2Vncm91cC1jb3JlLWdyYXBo
-aWNzLWVzc2VudGlhbCIKCkFMTE9XX0VNUFRZXyR7UE59ID0gIjEiCgpSREVQRU5EU19wYWNrYWdl
-Z3JvdXAtY29yZS1ncmFwaGljcy1lc3NlbnRpYWwgPSAiXAogICAgY2Fpcm8gXAogICAgZmxhYyBc
-CiAgICBmb250Y29uZmlnIFwKICAgIGZyZWV0eXBlIFwKICAgIGdsZXcgXAogICAgZ3RrKzMgXAog
-ICAganBlZyBcCiAgICBsYW1lIFwKICAgIGxkZCBcCiAgICBsaWJhdiBcCiAgICBsaWJkcm0gXAog
-ICAgbGliZ2x1IFwKICAgIGxpYm1hZCBcCiAgICBsaWJvZ2cgXAogICAgbGlicG5nIFwKICAgIGxp
-YnBuZzEyIFwKICAgIGxpYnNvdXAtMi40IFwKICAgIGxpYnRoZW9yYSBcCiAgICBsaWJ2YSBcCiAg
-ICBsaWJ2YS1pbnRlbC1kcml2ZXIgXAogICAgbGlidm9yYmlzIFwKICAgIG1lc2EgXAogICAgbXBl
-ZzJkZWMgXAogICAgcGFuZ28gXAogICAgc3BlZXggXAogICAgeDI2NCBcCiAgICBcCiAgICB4c2Vy
-dmVyLXhmODYtY29uZmlnIFwKICAgIHhjYi11dGlsIFwKICAgIHhyYW5kciBcCiAgICBcCiAgICBs
-aWJ4MTEgXAogICAgbGlieGNiIFwKICAgIGxpYnhjb21wb3NpdGUgXAogICAgbGlieGN1cnNvciBc
-CiAgICBsaWJ4ZGFtYWdlIFwKICAgIGxpYnhleHQgXAogICAgbGlieGZ0IFwKICAgIGxpYnhmb250
-IFwKICAgIGxpYnhmaXhlcyBcCiAgICBsaWJ4aSBcCiAgICBsaWJ4aW5lcmFtYSBcCiAgICBsaWJ4
-a2Jjb21tb24gXAogICAgbGlieGtiZmlsZSBcCiAgICBsaWJ4cG0gXAogICAgbGlieHJhbmRyIFwK
-ICAgIGxpYnhyZW5kZXIgXAogICAgbGlieHNjcm5zYXZlciBcCiAgICBsaWJ4c2htZmVuY2UgXAog
-ICAgbGlieHQgXAogICAgbGlieHRzdCBcCiAgICBsaWJ4diBcCiAgICBsaWJ4dm1jIFwKICAgIGxp
-Ynh4Zjg2ZGdhIFwKICAgIGxpYnh4Zjg2bWlzYyBcCiAgICBsaWJ4eGY4NnZtIFwKICAgIGxpYnh2
-IFwKICAgIFwKICAgIGxsdm0zLjMgXAogICAgb3BlbmN2IFwKICAgIHhyZGIgXAogICAgXAogICAg
-Z3N0cmVhbWVyMS4wIFwKICAgIGdzdHJlYW1lcjEuMC1saWJhdiBcCiAgICBnc3RyZWFtZXIxLjAt
-b214IFwKICAgIGdzdHJlYW1lcjEuMC1wbHVnaW5zLWJhc2UgXAogICAgZ3N0cmVhbWVyMS4wLXBs
-dWdpbnMtZ29vZCBcCiAgICBnc3RyZWFtZXIxLjAtcGx1Z2lucy1iYWQgXAogICAgZ3N0cmVhbWVy
-MS4wLXBsdWdpbnMtdWdseSBcCiAgICBnc3RyZWFtZXItdmFhcGktMS4wIFwKICAgIFwKICAgIHdh
-eWxhbmQgXAogICAgd2VzdG9uIFwKICAgIFwKICAgIHF0YmFzZSBcCiAgICBxdDUtZGVtby1leHRy
-YWZpbGVzIFwKICAgIFwKICAgIGRtaWRlY29kZSBcCiAgICBpbnRlbC1ncHUtdG9vbHMgXAogICAg
-cGlnbGl0IFwKICAgIHB5dGhvbi1udW1weSBcCiAgICB2NGwtdXRpbHMgXAogICAgeGRvdG9vbCBc
-CiAgICBjaHJvbWl1bSBcCiAgICBmaXJlZm94IFwKICAgICIK
-
---_005_62355CE5B24AE3438DF93AF114E1F91B2DBC9045KMSMSX153garcor_--
+--_000_13cb666befe542429cf1351610232147MDBAALTICASTCOM_--
