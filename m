@@ -1,53 +1,41 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <rich.tollerton@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2402FE0095C; Wed, 15 Jul 2015 12:49:48 -0700 (PDT)
+	id 693C5E00978; Wed, 15 Jul 2015 18:26:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [130.164.80.23 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.180 listed in list.dnswl.org]
-Received: from mail-ie0-f180.google.com (mail-ie0-f180.google.com
-	[209.85.223.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F309AE0086E
-	for <yocto@yoctoproject.org>; Wed, 15 Jul 2015 12:49:40 -0700 (PDT)
-Received: by iecuq6 with SMTP id uq6so41403007iec.2
-	for <yocto@yoctoproject.org>; Wed, 15 Jul 2015 12:49:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=4bYhDS17lqhqA7Z1s+qeDfWnoOe0NzMm9na32ewZXwM=;
-	b=a51GOTFM+JUZRXi8qMmZLimY3NhAd0cZahI1GIHVVZWUKIqy215Gcfrs0JbldCmfZd
-	BxjgssIWnVJrRgXxrXxfS1FDsut0S5uHu1O6ESjwPvV9oKKgGyS5FEpSNf0YqyCagNqD
-	si4WjB6oP7m3O0YxOyx+AzkvBBnqepR+d+utypkg1KwsOjZGnzAsMJD/NMFJZRLex7cL
-	RQE3atdJvgW1j27scmkBZOThpdZ0AFolmjYiTTcOftpOzUQVseY7ldbO4EdT2W9z4Fhc
-	Hy4B6ndSsSkHUfsO4XPrEe+m8GXNx6a3WSIRxTJwvtXjGzRy2YSLKaZS1czEVWFIB3Bk
-	rf4g==
-X-Received: by 10.50.28.78 with SMTP id z14mr28654577igg.61.1436989779430;
-	Wed, 15 Jul 2015 12:49:39 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.20.83 with HTTP; Wed, 15 Jul 2015 12:49:10 -0700 (PDT)
-In-Reply-To: <18f7ce035aef414a9f831b93f7891401@MDBA.ALTICAST.COM>
-References: <72517437afa14ef49b98771c29280999@MDBA.ALTICAST.COM>
-	<18f7ce035aef414a9f831b93f7891401@MDBA.ALTICAST.COM>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 15 Jul 2015 12:49:10 -0700
-Message-ID: <CAMKF1sonpFNZJo4W6hr9tZgwYFLK=FQTYRm-nqonzWgqYMJPyg@mail.gmail.com>
-To: Dave Kimble <dkimble@alticast.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: using gdb with externalsrc
+Received: from ni.com (skprod2.natinst.com [130.164.80.23])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CCEEDE00957
+	for <yocto@yoctoproject.org>; Wed, 15 Jul 2015 18:26:19 -0700 (PDT)
+Received: from us-aus-mgwout2.amer.corp.natinst.com (nb-chan1-1338.natinst.com
+	[130.164.19.134])
+	by us-aus-skprod2.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
+	t6G1QFTZ002245; Wed, 15 Jul 2015 20:26:15 -0500
+Received: from weregild.amer.corp.natinst.com ([130.164.14.198])
+	by us-aus-mgwout2.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
+	HF1218) with ESMTP id 2015071520261554-1271373 ;
+	Wed, 15 Jul 2015 20:26:15 -0500 
+From: Richard Tollerton <rich.tollerton@ni.com>
+To: yocto@yoctoproject.org, ajlennon@dynamicdevices.co.uk
+Date: Wed, 15 Jul 2015 20:25:31 -0500
+Message-Id: <cover.1436830398.git.rich.tollerton@ni.com>
+X-Mailer: git-send-email 2.4.4
+X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut2/AUS/H/NIC(Release
+	8.5.3FP6 HF1218|December 12, 2014) at 07/15/2015 08:26:15 PM,
+	Serialize by Router on US-AUS-MGWOut2/AUS/H/NIC(Release 8.5.3FP6
+	HF1218|December 12, 2014) at 07/15/2015 08:26:15 PM,
+	Serialize complete at 07/15/2015 08:26:15 PM
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
+	definitions=2015-07-15_07:, , signatures=0
+Subject: [meta-mono] [PATCH 0/1] mono: use PARALLEL_MAKEINST="" instead of PARALLEL_MAKE=""
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,39 +47,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Jul 2015 19:49:48 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 16 Jul 2015 01:26:22 -0000
 
-On Wed, Jul 15, 2015 at 9:36 AM, Dave Kimble <dkimble@alticast.com> wrote:
-> We've got a component of an existing Yocto project under active developme=
-nt
-> that we'd like to debug with gdb.
->
-> We=E2=80=99ve added these features to get gdb and the debug symbol packag=
-es into the
-> image:
->
-> EXTRA_IMAGE_FEATURES =3D "debug-tweaks tools-debug"
->
-> IMAGE_FEATURES =3D "ssh-server-openssh dbg-pkgs"
->
->
-> We=E2=80=99ve added these variables to build the component under active d=
-evelopment
-> from the local code:
-> INHERIT +=3D "externalsrc"
-> EXTERNALSRC_pn-[component] =3D =E2=80=9C[local source code path]/[compone=
-nt]=E2=80=9D
->
-> All seems well, as the build succeeds and the component in the image
-> reflects local code changes. However, the component source code never mak=
-es
-> it into the image, so it can=E2=80=99t be referenced in gdb.
->
-> Is there a secret to using dbg-pkgs and EXTERNALSRC together?
+Hi, last week I sent out a patch to disable parallel builds in mono; in
+hindsight I should have used PARALLEL_MAKEINST instead of PARALLEL_MAKE. Patch
+follows.
 
-Can you check if -dbg package for extrnalsrc component is installed ?
-secondly, does the debugging work if you dont isue externalsrc for
-this particular component.
+This is one of several topic branches I've hacked together over the last couple
+of weeks; you can see the rest at https://github.com/rtollert/meta-mono. I'll
+be meting them out over the next several days.
+
+
+The following changes since commit 9f63cbaaa859f9ae55288de06c1c0eb0e6992f53:
+
+  mono-4.xx.inc: disable parallel make (2015-07-08 11:46:11 +0100)
+
+are available in the git repository at:
+
+  git://github.com/rtollert/meta-mono dev/rtollert/v2/parallel
+  https://github.com/rtollert/meta-mono/tree/dev/rtollert/v2/parallel
+
+Richard Tollerton (1):
+  mono-4.xx.inc: use PARALLEL_MAKEINST="" instead of PARALLEL_MAKE=""
+
+ recipes-mono/mono/mono-4.xx.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+-- 
+2.4.4
+
 
