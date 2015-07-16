@@ -1,43 +1,44 @@
-Return-Path: <rich.tollerton@ni.com>
+Return-Path: <robin@deltastrike.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96D31E009F3; Wed, 15 Jul 2015 18:29:39 -0700 (PDT)
+	id 86C43E00978; Wed, 15 Jul 2015 18:38:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [130.164.80.23 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.216.51 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from ni.com (skprod2.natinst.com [130.164.80.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D257E009A7
-	for <yocto@yoctoproject.org>; Wed, 15 Jul 2015 18:29:29 -0700 (PDT)
-Received: from us-aus-mgwout1.amer.corp.natinst.com (nb-snip2-1338.natinst.com
-	[130.164.19.135])
-	by us-aus-skprod2.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
-	t6G1TRG3003983; Wed, 15 Jul 2015 20:29:27 -0500
-Received: from weregild.amer.corp.natinst.com ([130.164.14.198])
-	by us-aus-mgwout1.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
-	HF1218) with ESMTP id 2015071520292686-1263330 ;
-	Wed, 15 Jul 2015 20:29:26 -0500 
-From: Richard Tollerton <rich.tollerton@ni.com>
-To: yocto@yoctoproject.org, ajlennon@dynamicdevices.co.uk
-Date: Wed, 15 Jul 2015 20:29:23 -0500
-Message-Id: <30bcb51e628f974b9d48a38878f3a4a9989ac8da.1437009521.git.rich.tollerton@ni.com>
-X-Mailer: git-send-email 2.4.4
-In-Reply-To: <cover.1437009521.git.rich.tollerton@ni.com>
-References: <cover.1437009521.git.rich.tollerton@ni.com>
-X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut1/AUS/H/NIC(Release
-	8.5.3FP6 HF1218|December 12, 2014) at 07/15/2015 08:29:27 PM,
-	Serialize by Router on US-AUS-MGWOut1/AUS/H/NIC(Release 8.5.3FP6
-	HF1218|December 12, 2014) at 07/15/2015 08:29:27 PM,
-	Serialize complete at 07/15/2015 08:29:27 PM
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
-	definitions=2015-07-15_07:, , signatures=0
-Subject: [meta-mono] [PATCH 2/3] gtk-sharp-dev: add perl dependency
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-vn0-f51.google.com (mail-vn0-f51.google.com
+	[209.85.216.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38BA7E00957
+	for <yocto@yoctoproject.org>; Wed, 15 Jul 2015 18:38:37 -0700 (PDT)
+Received: by vnbf7 with SMTP id f7so6506911vnb.1
+	for <yocto@yoctoproject.org>; Wed, 15 Jul 2015 18:38:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=Eacld9iWd7V6et1OMDwQFZKUhW/v9X61MWz6bCki/pA=;
+	b=aVyyNxRpqKNxfK1xZbMun9ko8Vm0Pt44iC0kWx1ffsNI/GC6BVdc5uNaE/XZEdTnd7
+	mGtqlbWMUKXMFHqHQ3z0iYbn/FJsqdHmmD0lo6BOi0hTvwtmQei0gX12k+AoqkuzEEGd
+	GhZco+YAN4BQyZzaeTof4wQcReaS9io7wUpArITUkXpSoDQrOdtUxwAMTn8lY34ktqIC
+	Qf0zjmXLCUMhwh5C+VKlBy4LZ+YalrI4AnIjVRu4GigeryDxkBLIEAi6Iue/87Hq4BW6
+	PJFQ/4gHhH6eBibSYfr07jHRJI0FzY6zg9PTrjnxMvwyuuh5MQtwGlmRuCCL4Si5O733
+	OnjA==
+X-Gm-Message-State: ALoCoQmwfjJA3s77Ql5w/Zmbat8yChoArDmoqEA3+F/RDYUsi3IjDe3dTj5d569tBjPfjK8++WXt
+MIME-Version: 1.0
+X-Received: by 10.52.103.8 with SMTP id fs8mr7553446vdb.13.1437010716626; Wed,
+	15 Jul 2015 18:38:36 -0700 (PDT)
+Received: by 10.31.3.92 with HTTP; Wed, 15 Jul 2015 18:38:36 -0700 (PDT)
+Date: Thu, 16 Jul 2015 13:38:36 +1200
+Message-ID: <CAHG6Dmenn5HzjNoTgddc7qXMi_SR_edwRa40y-9g4f98PO4Fpw@mail.gmail.com>
+From: Robin Gilks <robin@deltastrike.com>
+To: yocto@yoctoproject.org
+Subject: Anyone done a VAR-SOM-SOLO run-up?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,28 +50,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Jul 2015 01:29:39 -0000
+X-List-Received-Date: Thu, 16 Jul 2015 01:38:40 -0000
+Content-Type: multipart/alternative; boundary=047d7b86ef2e4da92f051af4210d
 
-This package has perl scripts; make sure they're runnable.
+--047d7b86ef2e4da92f051af4210d
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Richard Tollerton <rich.tollerton@ni.com>
----
- recipes-mono/gtk-sharp/gtk-sharp.inc | 1 +
- 1 file changed, 1 insertion(+)
+Greetings all
 
-diff --git a/recipes-mono/gtk-sharp/gtk-sharp.inc b/recipes-mono/gtk-sharp/gtk-sharp.inc
-index fe2b285..45d12b2 100644
---- a/recipes-mono/gtk-sharp/gtk-sharp.inc
-+++ b/recipes-mono/gtk-sharp/gtk-sharp.inc
-@@ -4,6 +4,7 @@ SECTION = "devel/mono"
- BUGTRACKER = "http://bugzilla.xamarin.com"
- RDEPENDS_${PN} = "mono"
- LICENSE = "LGPL-2.1"
-+RDEPENDS_${PN}-dev += "perl"
- 
- inherit autotools
- 
+I'm having problems with the run-up of a Dizzy build on a VAR-SOM-SOLO. The
+same image is OK with a quad core variant, its just the single core fails
+so probably a DTB problem.
+
+I can't find any info on getting into u-boot - not even which serial port
+is used - so I can start debugging this.
+
+Has anyone on the list experience of this SOM and its associated
+VAR-MX6CustomBoard development/breakout board?
+
+Thanks
+
 -- 
-2.4.4
+*Robin Gilks*
+Development
 
+Delta Strike
+Success through Delta Strike
+phone:    +64 3 982 9892
+skype:     robindeltastrike
+web:       www.deltastrike.com
 
+--047d7b86ef2e4da92f051af4210d
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Greetings all</div><div><br></div>I&#39;m having prob=
+lems with the run-up of a Dizzy build on a VAR-SOM-SOLO. The same image is =
+OK with a quad core variant, its just the single core fails so probably a D=
+TB problem.<div><br></div><div>I can&#39;t find any info on getting into u-=
+boot - not even which serial port is used - so I can start debugging this.<=
+/div><div><br></div><div>Has anyone on the list experience of this SOM and =
+its associated VAR-MX6CustomBoard development/breakout board?</div><div><br=
+></div><div>Thanks<br clear=3D"all"><div><br></div>-- <br><div class=3D"gma=
+il_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div style=3D"font-siz=
+e:12.8000001907349px"><font color=3D"#444444"><b>Robin Gilks</b></font></di=
+v><div style=3D"font-size:12.8000001907349px"><div><font color=3D"#444444">=
+<font face=3D"verdana, arial, helvetica, sans-serif">Development<br><br></f=
+ont></font></div><div style=3D"font-family:verdana,arial,helvetica,sans-ser=
+if"><span style=3D"font-weight:bold;font-size:large;font-family:arial,sans-=
+serif;color:rgb(255,69,0)">Delta=C2=A0</span><span style=3D"font-weight:bol=
+d;font-size:large;font-family:arial,sans-serif;color:rgb(68,68,68)">Strike<=
+/span></div><div style=3D"font-family:verdana,arial,helvetica,sans-serif"><=
+span style=3D"color:rgb(68,68,68)"><span style=3D"font-size:small;font-fami=
+ly:Verdana,Arial,Helvetica,sans-serif;font-weight:bold">Success=C2=A0</span=
+><span style=3D"font-size:small;font-family:Verdana,Arial,Helvetica,sans-se=
+rif;font-weight:bold;font-style:italic"><span style=3D"color:rgb(255,0,0)">=
+</span></span></span><span style=3D"color:rgb(68,68,68)"><span style=3D"fon=
+t-size:small;font-family:Verdana,Arial,Helvetica,sans-serif;font-weight:bol=
+d;font-style:italic"><span style=3D"color:rgb(255,0,0)"><span style=3D"font=
+-family:arial,sans-serif;color:rgb(255,69,0)">through</span></span>=C2=A0</=
+span><span style=3D"font-size:small;font-family:Verdana,Arial,Helvetica,san=
+s-serif;font-weight:bold">Delta Strike</span></span><span style=3D"font-wei=
+ght:bold;font-size:large;font-family:arial,sans-serif;color:rgb(68,68,68)">=
+<br></span></div><font color=3D"#444444">phone: =C2=A0=C2=A0=C2=A0</font><a=
+ value=3D"+6439829892">+64 3 982 9892</a><br><font color=3D"#444444">skype:=
+ =C2=A0 =C2=A0 robindeltastrike</font></div><div style=3D"font-size:12.8000=
+001907349px">web: =C2=A0 =C2=A0 =C2=A0=C2=A0<a href=3D"http://www.deltastri=
+ke.com/" style=3D"color:rgb(17,85,204)" target=3D"_blank">www.deltastrike.c=
+om</a></div></div></div></div></div>
+</div></div>
+
+--047d7b86ef2e4da92f051af4210d--
