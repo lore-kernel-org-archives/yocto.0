@@ -1,6 +1,6 @@
 Return-Path: <rich.tollerton@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 778F2E009D7; Thu, 16 Jul 2015 11:20:32 -0700 (PDT)
+	id A256FE009DF; Thu, 16 Jul 2015 16:16:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,35 +13,31 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from ni.com (skprod2.natinst.com [130.164.80.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 322E2E009CC
-	for <yocto@yoctoproject.org>; Thu, 16 Jul 2015 11:20:27 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39C7DE009D2
+	for <yocto@yoctoproject.org>; Thu, 16 Jul 2015 16:16:24 -0700 (PDT)
 Received: from us-aus-mgwout1.amer.corp.natinst.com (nb-snip2-1338.natinst.com
 	[130.164.19.135])
 	by us-aus-skprod2.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
-	t6GIKOgL007324; Thu, 16 Jul 2015 13:20:24 -0500
+	t6GNGMrt015577; Thu, 16 Jul 2015 18:16:22 -0500
 Received: from weregild.amer.corp.natinst.com ([130.164.14.198])
 	by us-aus-mgwout1.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
-	HF1218) with ESMTP id 2015071613202454-1316086 ;
-	Thu, 16 Jul 2015 13:20:24 -0500 
+	HF1218) with ESMTP id 2015071618162211-1332971 ;
+	Thu, 16 Jul 2015 18:16:22 -0500 
 From: Richard Tollerton <rich.tollerton@ni.com>
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>, yocto@yoctoproject.org
-In-Reply-To: <55A7F231.8050509@dynamicdevices.co.uk>
-References: <cover.1437067107.git.rich.tollerton@ni.com>
-	<21d68aa45a210d7ada5c87793ae90edb099e2f04.1437067107.git.rich.tollerton@ni.com>
-	<55A7F231.8050509@dynamicdevices.co.uk>
-User-Agent: Notmuch/0.20.1 (http://notmuchmail.org) Emacs/24.5.2
-	(x86_64-unknown-linux-gnu)
-Date: Thu, 16 Jul 2015 13:20:24 -0500
-Message-ID: <87lhegvuaf.fsf@weregild.amer.corp.natinst.com>
-MIME-Version: 1.0
+To: yocto@yoctoproject.org, ajlennon@dynamicdevices.co.uk
+Date: Thu, 16 Jul 2015 18:16:13 -0500
+Message-Id: <b4f0eda23a6e1fcd7006f77871c579dcd384391d.1437083171.git.rich.tollerton@ni.com>
+X-Mailer: git-send-email 2.4.4
+In-Reply-To: <cover.1437083171.git.rich.tollerton@ni.com>
+References: <cover.1437083171.git.rich.tollerton@ni.com>
 X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut1/AUS/H/NIC(Release
-	8.5.3FP6 HF1218|December 12, 2014) at 07/16/2015 01:20:24 PM,
+	8.5.3FP6 HF1218|December 12, 2014) at 07/16/2015 06:16:22 PM,
 	Serialize by Router on US-AUS-MGWOut1/AUS/H/NIC(Release 8.5.3FP6
-	HF1218|December 12, 2014) at 07/16/2015 01:20:24 PM,
-	Serialize complete at 07/16/2015 01:20:24 PM
+	HF1218|December 12, 2014) at 07/16/2015 06:16:22 PM,
+	Serialize complete at 07/16/2015 06:16:22 PM
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
 	definitions=2015-07-16_06:, , signatures=0
-Subject: Re: [meta-mono] [PATCH 4/4] mono-xsp-3.x.inc: use autogen.sh
+Subject: [meta-mono] [PATCH 03/11] dbus-sharp: use mono.bbclass
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,16 +49,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Jul 2015 18:20:32 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 16 Jul 2015 23:16:26 -0000
 
-Alex J Lennon <ajlennon@dynamicdevices.co.uk> writes:
+Signed-off-by: Richard Tollerton <rich.tollerton@ni.com>
+---
+ recipes-mono/dbus-sharp/dbus-sharp.inc | 13 +------------
+ 1 file changed, 1 insertion(+), 12 deletions(-)
 
-> Many thanks for the updates, fixes, and cleanups Richard. Your
-> patch-sets for mono-xsp, fsharp, mono-basic are applied.
->
-> In future can you remove any trailing newlines from your patches
-> please?
+diff --git a/recipes-mono/dbus-sharp/dbus-sharp.inc b/recipes-mono/dbus-sharp/dbus-sharp.inc
+index 243b489..a458082 100644
+--- a/recipes-mono/dbus-sharp/dbus-sharp.inc
++++ b/recipes-mono/dbus-sharp/dbus-sharp.inc
+@@ -1,11 +1,11 @@
+ SUMMARY = "C# implementation of D-Bus"
+ DESCRIPTION = "An inter-process communication framework that lets applications	interface with the system event bus as well as allowing them to talk to one another in a peer-to-peer configuration."
+ SECTION = "devel/mono"
+-DEPENDS = "mono"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "files://COPYING;md5=09d60852216ea29fdba9ea146513336c"
+ 
+ inherit autotools
++inherit mono
+ 
+ def dbus_sharp_download_version(d):
+     pvsplit = d.getVar('PV', True).split('.')
+@@ -18,14 +18,3 @@ SRC_URI = "https://github.com/mono/dbus-sharp/archive/v${SDIRVER}.tar.gz"
+ S = "${WORKDIR}/${PN}-${SDIRVER}"
+ 
+ FILESPATH =. "${FILE_DIRNAME}/${PN}-${PV}:"
+-
+-FILES_${PN} += " \
+-  ${libdir}/mono/dbus-sharp-2.0/* \
+-  ${libdir}/mono/gac/dbus-sharp/*/*.dll \
+-  ${libdir}/mono/gac/dbus-sharp/*/*.config \
+-"
+-
+-FILES_${PN}-dbg += " \
+-  ${libdir}/mono/gac/dbus-sharp/*/*.mdb \
+-"
+-
+-- 
+2.4.4
 
-You're welcome! Yes, I will get those removed in future pull requests.
 
