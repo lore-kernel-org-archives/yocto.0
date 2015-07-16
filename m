@@ -1,6 +1,6 @@
 Return-Path: <rich.tollerton@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4F445E009ED; Thu, 16 Jul 2015 10:22:14 -0700 (PDT)
+	id 404B5E009ED; Thu, 16 Jul 2015 10:22:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,31 +13,29 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from ni.com (skprod3.natinst.com [130.164.80.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28EEEE009EC
-	for <yocto@yoctoproject.org>; Thu, 16 Jul 2015 10:22:12 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA07CE009D7
+	for <yocto@yoctoproject.org>; Thu, 16 Jul 2015 10:22:19 -0700 (PDT)
 Received: from us-aus-mgwout1.amer.corp.natinst.com (nb-chan1-1338.natinst.com
 	[130.164.19.134])
 	by us-aus-skprod3.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
-	t6GHMApt027088; Thu, 16 Jul 2015 12:22:10 -0500
+	t6GHMHpW027443; Thu, 16 Jul 2015 12:22:17 -0500
 Received: from weregild.amer.corp.natinst.com ([130.164.14.198])
 	by us-aus-mgwout1.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
-	HF1218) with ESMTP id 2015071612221024-1313665 ;
-	Thu, 16 Jul 2015 12:22:10 -0500 
+	HF1218) with ESMTP id 2015071612221775-1313669 ;
+	Thu, 16 Jul 2015 12:22:17 -0500 
 From: Richard Tollerton <rich.tollerton@ni.com>
 To: yocto@yoctoproject.org, ajlennon@dynamicdevices.co.uk
-Date: Thu, 16 Jul 2015 12:22:07 -0500
-Message-Id: <4a8395a93d123034c76bdb98305c437dcf55ea13.1437067054.git.rich.tollerton@ni.com>
+Date: Thu, 16 Jul 2015 12:22:16 -0500
+Message-Id: <cover.1437067107.git.rich.tollerton@ni.com>
 X-Mailer: git-send-email 2.4.4
-In-Reply-To: <cover.1437067054.git.rich.tollerton@ni.com>
-References: <cover.1437067054.git.rich.tollerton@ni.com>
 X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut1/AUS/H/NIC(Release
-	8.5.3FP6 HF1218|December 12, 2014) at 07/16/2015 12:22:10 PM,
+	8.5.3FP6 HF1218|December 12, 2014) at 07/16/2015 12:22:17 PM,
 	Serialize by Router on US-AUS-MGWOut1/AUS/H/NIC(Release 8.5.3FP6
-	HF1218|December 12, 2014) at 07/16/2015 12:22:10 PM,
-	Serialize complete at 07/16/2015 12:22:10 PM
+	HF1218|December 12, 2014) at 07/16/2015 12:22:17 PM,
+	Serialize complete at 07/16/2015 12:22:17 PM
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
 	definitions=2015-07-16_05:, , signatures=0
-Subject: [meta-mono] [PATCH 1/3] fsharp_3.1.2.4.bb: add
+Subject: [meta-mono] [PATCH 0/4] mono-xsp: upgrade and fix build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,30 +47,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Jul 2015 17:22:14 -0000
+X-List-Received-Date: Thu, 16 Jul 2015 17:22:20 -0000
 
-There are several build issues in 3.1.1.1 that appear to be fixed in
-3.1.2.4, so rather than try to fix the old version, add the new one.
+I ran into some fairly bad build issues when trying to build mono-xsp that
+appear to be worked around by using mono-xsp's autogen.sh instead of letting
+autotools.bbclass attempt to call everything itself.
 
-Signed-off-by: Richard Tollerton <rich.tollerton@ni.com>
----
- recipes-mono/fsharp/fsharp_3.1.2.4.bb | 7 +++++++
- 1 file changed, 7 insertions(+)
- create mode 100644 recipes-mono/fsharp/fsharp_3.1.2.4.bb
+I then took the opportunity to upgrade the package to 3.0.
 
-diff --git a/recipes-mono/fsharp/fsharp_3.1.2.4.bb b/recipes-mono/fsharp/fsharp_3.1.2.4.bb
-new file mode 100644
-index 0000000..6e21d72
---- /dev/null
-+++ b/recipes-mono/fsharp/fsharp_3.1.2.4.bb
-@@ -0,0 +1,7 @@
-+require fsharp.inc
-+
-+inherit pkgconfig
-+
-+SRC_URI[md5sum] = "6b86979034d15efb1d5e167129ae7a9e"
-+SRC_URI[sha256sum] = "cf3b5ea00fd13b9d35f5a4ffec6fbd8cecc2c4039d09a79fb0e3f7fa48da9429"
-+
+I haven't actually tested these changes -- I was under the mistaken impression
+that monotools-server was necessary for remote debugging to work with mono4, and
+figured that I might as well not let these changes go to waste, even though I
+will probably not use them.
+
+The following changes since commit 8c613bf3d82dd5edb58472e5b016d86a1a9e4a63:
+
+  README: Add contributors section (2015-07-16 10:17:06 +0100)
+
+are available in the git repository at:
+
+  git://github.com/rtollert/meta-mono dev/rtollert/v3/mono-xsp
+  https://github.com/rtollert/meta-mono/tree/dev/rtollert/v3/mono-xsp
+
+Richard Tollerton (4):
+  mono-xsp-3.x.inc: copy from mono-xsp.inc
+  mono-xsp-3.x.inc: updating SRC_URI and LIC_FILES_CHKSUM
+  mono-xsp_3.0.11.bb: add
+  mono-xsp-3.x.inc: use autogen.sh
+
+ recipes-mono/mono-xsp/mono-xsp-3.x.inc   | 44 ++++++++++++++++++++++++++++++++
+ recipes-mono/mono-xsp/mono-xsp_3.0.11.bb |  5 ++++
+ 2 files changed, 49 insertions(+)
+ create mode 100644 recipes-mono/mono-xsp/mono-xsp-3.x.inc
+ create mode 100644 recipes-mono/mono-xsp/mono-xsp_3.0.11.bb
+
 -- 
 2.4.4
 
