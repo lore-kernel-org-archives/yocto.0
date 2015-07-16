@@ -1,6 +1,6 @@
 Return-Path: <rich.tollerton@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D8BEFE009ED; Thu, 16 Jul 2015 16:16:27 -0700 (PDT)
+	id 3FEE8E009D2; Thu, 16 Jul 2015 16:16:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,20 +13,20 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from ni.com (skprod3.natinst.com [130.164.80.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 542C2E009D2
-	for <yocto@yoctoproject.org>; Thu, 16 Jul 2015 16:16:26 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EB21E009E6
+	for <yocto@yoctoproject.org>; Thu, 16 Jul 2015 16:16:27 -0700 (PDT)
 Received: from us-aus-mgwout1.amer.corp.natinst.com (nb-chan1-1338.natinst.com
 	[130.164.19.134])
 	by us-aus-skprod3.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
-	t6GNGMnr014905; Thu, 16 Jul 2015 18:16:22 -0500
+	t6GNGMo0014905; Thu, 16 Jul 2015 18:16:22 -0500
 Received: from weregild.amer.corp.natinst.com ([130.164.14.198])
 	by us-aus-mgwout1.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
-	HF1218) with ESMTP id 2015071618162208-1332969 ;
+	HF1218) with ESMTP id 2015071618162222-1332979 ;
 	Thu, 16 Jul 2015 18:16:22 -0500 
 From: Richard Tollerton <rich.tollerton@ni.com>
 To: yocto@yoctoproject.org, ajlennon@dynamicdevices.co.uk
-Date: Thu, 16 Jul 2015 18:16:11 -0500
-Message-Id: <bd83c1905798e715af6e733f25fc98ab9baca4a3.1437083171.git.rich.tollerton@ni.com>
+Date: Thu, 16 Jul 2015 18:16:21 -0500
+Message-Id: <a5e2802aa347963518db426a4a7a5a2bd496f684.1437083171.git.rich.tollerton@ni.com>
 X-Mailer: git-send-email 2.4.4
 In-Reply-To: <cover.1437083171.git.rich.tollerton@ni.com>
 References: <cover.1437083171.git.rich.tollerton@ni.com>
@@ -37,7 +37,7 @@ X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut1/AUS/H/NIC(Release
 	Serialize complete at 07/16/2015 06:16:22 PM
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
 	definitions=2015-07-16_06:, , signatures=0
-Subject: [meta-mono] [PATCH 01/11] mono.bbclass: add
+Subject: [meta-mono] [PATCH 11/11] gtk-sharp: remove mono-native dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,70 +49,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Jul 2015 23:16:27 -0000
+X-List-Received-Date: Thu, 16 Jul 2015 23:16:28 -0000
 
-The DEPENDS_*, RDEPENDS_*, and FILES_* settings between C# packages
-share a lot in common. We can refactor these bits into their own
-bbclass:
-
-- DEPEND on mono-native because we need it to compile stuff
-- DEPEND on mono to have the native sysroot available
-- RDEPEND on mono to make sure we can run the package
-- ${PN} contains dlls, exes, and config bits thereof
-- ${PN}-dbg contains mono debug (mdb) files
-- ${PN}-dev contains:
-  - build response (rsp) files
-  - machine-readable assembly documentation (xml)
-  - xbuild-related files
-- ${PN}-doc contains monodoc output
-
-Some C# packages build native code, though, so don't set
-PACKAGE_ARCH="all".
+mono.bbclass already adds it so it's unnecessary here.
 
 Signed-off-by: Richard Tollerton <rich.tollerton@ni.com>
 ---
- classes/mono.bbclass | 32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
- create mode 100644 classes/mono.bbclass
+ recipes-mono/gtk-sharp/gtk-sharp_2.12.21.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/classes/mono.bbclass b/classes/mono.bbclass
-new file mode 100644
-index 0000000..315ee82
---- /dev/null
-+++ b/classes/mono.bbclass
-@@ -0,0 +1,32 @@
-+# Class for building C# packages. If your package is all-managed, add
-+# PACKAGE_ARCH="all"
-+
-+DEPENDS += "mono-native mono"
-+RDEPENDS_${PN} += "mono"
-+
-+FILES_${PN} += "\
-+  ${libdir}/mono/*/*.exe \
-+  ${libdir}/mono/*/*.dll \
-+  ${libdir}/mono/*/*.config \
-+  ${libdir}/mono/gac/*/*/*.dll \
-+  ${libdir}/mono/gac/*/*/*.*.config \
-+"
-+
-+FILES_${PN}-dbg += "\
-+  ${libdir}/mono/*/*.mdb \
-+  ${libdir}/mono/gac/*/*/*.mdb \
-+"
-+
-+FILES_${PN}-dev += "\
-+  ${libdir}/mono/*/*.rsp \
-+  ${libdir}/mono/*/*.xml \
-+  ${libdir}/mono/gac/*/*/*.xml \
-+  ${libdir}/mono/xbuild/* \
-+  ${libdir}/mono/xbuild-frameworks/* \
-+  ${libdir}/mono/Microsoft* \
-+  ${libdir}/mono/*/*.Targets \
-+"
-+
-+FILES_${PN}-doc += "\
-+  ${libdir}/monodoc/* \
-+"
+diff --git a/recipes-mono/gtk-sharp/gtk-sharp_2.12.21.bb b/recipes-mono/gtk-sharp/gtk-sharp_2.12.21.bb
+index 563da51..c72b0bb 100644
+--- a/recipes-mono/gtk-sharp/gtk-sharp_2.12.21.bb
++++ b/recipes-mono/gtk-sharp/gtk-sharp_2.12.21.bb
+@@ -2,7 +2,7 @@ require gtk-sharp.inc
+ 
+ inherit pkgconfig
+ 
+-DEPENDS = "mono gtk+ atk pango cairo glib-2.0 libglade "
++DEPENDS += " gtk+ atk pango cairo glib-2.0 libglade"
+ 
+ LIC_FILES_CHKSUM = "files://COPYING;md5=f14599a2f089f6ff8c97e2baa4e3d575"
+ 
 -- 
 2.4.4
 
