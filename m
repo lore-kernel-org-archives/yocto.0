@@ -1,39 +1,50 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <picmaster@mail.bg>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65294E009F3; Fri, 17 Jul 2015 05:48:56 -0700 (PDT)
+	id 7779FE009E4; Fri, 17 Jul 2015 06:03:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (picmaster[at]mail.bg)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [193.201.172.118 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA47FE009D9
-	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 05:48:51 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga103.jf.intel.com with ESMTP; 17 Jul 2015 05:48:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,496,1432623600"; d="scan'208";a="730722018"
-Received: from ddacost1-mobl1.ger.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.6.74])
-	by orsmga001.jf.intel.com with ESMTP; 17 Jul 2015 05:48:51 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
-Date: Fri, 17 Jul 2015 13:48:50 +0100
-Message-ID: <2678681.VL8xmAfbfV@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.9 (Linux/4.0.7-200.fc21.x86_64; KDE/4.14.9; x86_64; ; )
-In-Reply-To: <DDB0C57E45663A458C5CACB7B5688BC21D8C97D3@SESTOEX04.enea.se>
-References: <1437127559-9853-1-git-send-email-Alexandru.Vaduva@enea.com>
-	<CAJTo0LYvZ4xfs=WsjkOwpXEs06a-Yf9Y-y7had=dVs3oR1=LcQ@mail.gmail.com>
-	<DDB0C57E45663A458C5CACB7B5688BC21D8C97D3@SESTOEX04.enea.se>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mx2.mail.bg (mx2.mail.bg [193.201.172.118])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F1D7E009D7
+	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 06:03:18 -0700 (PDT)
+Received: from [192.168.0.62] (unknown [93.152.143.60])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by mx2.mail.bg (Postfix) with ESMTPSA id B82F86001285;
+	Fri, 17 Jul 2015 16:03:16 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mail.bg; s=default;
+	t=1437138196; bh=ST7htCdvZHuJPOiYSclV98VlL0JUhQ+WIwStefzj4AA=;
+	h=Message-ID:Date:From:MIME-Version:To:Subject:References:
+	In-Reply-To:Content-Type:Content-Transfer-Encoding;
+	b=V4F+9fzkDq0JNWthJOBD5Rx736gLtFKNHTz83g2HNxLYhR/keaXddgAiA18D6lkqV
+	UlMr99o1bjZ3jUCREdaddkHazoY6zsID/C4FyzypgNbofYsNtMvfHl2RhyrI6kcg+o
+	uh7Jsqgow7GvlqcAAT9uz9IBQls79kUDW3NNrbWY=
+Message-ID: <55A8FD14.6040803@mail.bg>
+Date: Fri, 17 Jul 2015 16:03:16 +0300
+From: Nikolay Dimitrov <picmaster@mail.bg>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Icedove/31.7.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] Fix LSB core sysvinit issue.
+To: Gary Thomas <gary@mlbassoc.com>, 
+ Yocto Project <yocto@yoctoproject.org>
+References: <55A79757.8010704@mlbassoc.com>
+In-Reply-To: <55A79757.8010704@mlbassoc.com>
+Subject: Re: Read-only file system with persistent storage
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,88 +56,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Jul 2015 12:48:56 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 17 Jul 2015 13:03:23 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Alex,
+Hi Gary,
 
-Can you please ensure patches for meta-cgl sent to this list are marked with 
-[meta-cgl] in the subject?
+On 07/16/2015 02:36 PM, Gary Thomas wrote:
+> I'd like to set up a system with a read-only root file system
+> along with some persistent read-write storage.  What are the
+> [best] options in Poky/Yocto for this?  Is there any support
+> for some type of overlay file system?
+>
+> Thanks for any ideas/pointers
 
-FYI in case you didn't know, you can ensure this by adding something like the 
-following to .git/config under your local clone of the repo:
+I remember that back in my automotive days, one of my teams had to use
+Genivi's persistence component:
 
-[format]
-        subjectprefix = meta-something][PATCH
-[sendemail]
-        to = mailing.list@example.com
+http://projects.genivi.org/persistence-management/
 
-Thanks,
-Paul
+There are also git repositories over there. I can't comment on the code
+quality and stability, but this component is part of the Genivi
+reference platform (which technically doesn't mean anything), and
+there's at least 1 vehicle from a major OEM which uses this component
+on the roads. As usual, keep your eyes open for possible issues.
 
-On Friday 17 July 2015 10:24:58 Alexandru Vaduva wrote:
-> Hello Ross,
-> 
-> It is for meta-cgl. For CGL compliance the STD.1.0 Linux Standard Base
-> Compliance requirement requires certain LSB modules compliance.
- The patch
-> solves /tset/LSB.fhs/root/sbin/sbin-tc.
-> 
-> 
-> Thanks for the input,
-> Alex V.
-> 
-> 
-> From: Burton, Ross [mailto:ross.burton@intel.com]
-> Sent: Friday, July 17, 2015 1:16 PM
-> To: Alexandru Vaduva
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] [PATCH] Fix LSB core sysvinit issue.
-> 
-> You don't say what layer this is for... but it looks a lot like this fix
-> should go into oe-core (with an explanation of why it is needed).
- 
-> Ross
-> 
-> On 17 July 2015 at 11:05, Alexandru.Vaduva
-> <Alexandru.Vaduva@enea.com<mailto:Alexandru.Vaduva@enea.com>> wrote:
- From:
-> Alexandra Safta <alexandra.safta@enea.com<mailto:alexandra.safta@enea.com>>
-> 
-> [LXCR-3306]
-> Signed-off-by: Alexandra Safta
-> <alexandra.safta@enea.com<mailto:alexandra.safta@enea.com>>
- Signed-off-by:
-> Tudor Florea <tudor.florea@enea.com<mailto:tudor.florea@enea.com>>
-> Signed-off-by: Alexandra Safta
-> <alexandra.safta@enea.com<mailto:alexandra.safta@enea.com>> ---
->  recipes-core/sysvinit/sysvinit_2.88dsf.bbappend | 3 +++
->  1 file changed, 3 insertions(+)
->  create mode 100644 recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
-> 
-> diff --git a/recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
-> b/recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
- new file mode 100644
-> index 0000000..4fd3c00
-> --- /dev/null
-> +++ b/recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
-> @@ -0,0 +1,3 @@
-> +do_install_append(){
-> +        chmod o+x ${D}${base_sbindir}/shutdown
-> +}
-> --
-> 1.9.1
-> 
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-> https://lists.yoctoproject.org/listinfo/yocto
-> 
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Kind regards,
+Nikolay
 
