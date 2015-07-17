@@ -1,39 +1,40 @@
-Return-Path: <Alexandru.Vaduva@enea.com>
+Return-Path: <krystian.gorny@wipotec.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 421C8E009E4; Fri, 17 Jul 2015 03:25:03 -0700 (PDT)
+	id 1E4A5E009E4; Fri, 17 Jul 2015 05:47:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	T_REMOTE_IMAGE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 314F9E009D2
-	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 03:25:00 -0700 (PDT)
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
-	14.03.0224.002; Fri, 17 Jul 2015 12:24:58 +0200
-From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] [PATCH] Fix LSB core sysvinit issue.
-Thread-Index: AQHQwHhGms/Pgat2j06TIrMyhkizqJ3fUJCAgAAi/lA=
-Date: Fri, 17 Jul 2015 10:24:58 +0000
-Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D8C97D3@SESTOEX04.enea.se>
-References: <1437127559-9853-1-git-send-email-Alexandru.Vaduva@enea.com>
-	<CAJTo0LYvZ4xfs=WsjkOwpXEs06a-Yf9Y-y7had=dVs3oR1=LcQ@mail.gmail.com>
-In-Reply-To: <CAJTo0LYvZ4xfs=WsjkOwpXEs06a-Yf9Y-y7had=dVs3oR1=LcQ@mail.gmail.com>
-Accept-Language: en-US, sv-SE
+	*  0.0 T_REMOTE_IMAGE Message contains an external image
+Received: from mx03.wipotec.com (mx01.wipotec.com [212.43.72.26])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A706E009D7
+	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 05:47:41 -0700 (PDT)
+Received: from mx03.wipotec.com (localhost [127.0.0.1])
+	by localhost (Postfix) with SMTP id F2A0C381D36
+	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 14:47:38 +0200 (CEST)
+Received: from svr-exc-04.intern.wipotec.de (unknown [10.1.60.47])
+	by mx03.wipotec.com (Postfix) with ESMTP id ED18D380CA1
+	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 14:47:38 +0200 (CEST)
+Received: from SVR-EXC-03.intern.wipotec.de ([10.1.60.46]) by
+	svr-exc-04.intern.wipotec.de ([10.1.60.47]) with mapi id 14.03.0158.001;
+	Fri, 17 Jul 2015 14:47:38 +0200
+From: Gorny Krystian <krystian.gorny@wipotec.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Kernel header missing for specific Target
+Thread-Index: AdDAjpu7EeGePRnvSAuGIjYslKm29A==
+Date: Fri, 17 Jul 2015 12:47:38 +0000
+Message-ID: <10D57FBA9FD7C14FB49EE17590E1AF9453C901C3@svr-exc-03.intern.wipotec.de>
+Accept-Language: de-DE, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.14.208]
+x-originating-ip: [10.1.21.216]
+x-olx-disclaimer: Done
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] Fix LSB core sysvinit issue.
+Subject: Kernel header missing for specific Target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,167 +46,157 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Jul 2015 10:25:03 -0000
-Content-Language: en-US
+X-List-Received-Date: Fri, 17 Jul 2015 12:47:45 -0000
+Content-Language: de-DE
 Content-Type: multipart/alternative;
-	boundary="_000_DDB0C57E45663A458C5CACB7B5688BC21D8C97D3SESTOEX04enease_"
+	boundary="_000_10D57FBA9FD7C14FB49EE17590E1AF9453C901C3svrexc03internw_"
 
---_000_DDB0C57E45663A458C5CACB7B5688BC21D8C97D3SESTOEX04enease_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--_000_10D57FBA9FD7C14FB49EE17590E1AF9453C901C3svrexc03internw_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-SGVsbG8gUm9zcywNCg0KSXQgaXMgZm9yIG1ldGEtY2dsLiBGb3IgQ0dMIGNvbXBsaWFuY2UgdGhl
-IFNURC4xLjAgTGludXggU3RhbmRhcmQgQmFzZSBDb21wbGlhbmNlIHJlcXVpcmVtZW50IHJlcXVp
-cmVzIGNlcnRhaW4gTFNCIG1vZHVsZXMgY29tcGxpYW5jZS4NClRoZSBwYXRjaCBzb2x2ZXMgL3Rz
-ZXQvTFNCLmZocy9yb290L3NiaW4vc2Jpbi10Yy4NCg0KDQpUaGFua3MgZm9yIHRoZSBpbnB1dCwN
-CkFsZXggVi4NCg0KDQpGcm9tOiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRl
-bC5jb21dDQpTZW50OiBGcmlkYXksIEp1bHkgMTcsIDIwMTUgMToxNiBQTQ0KVG86IEFsZXhhbmRy
-dSBWYWR1dmENCkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3Rv
-XSBbUEFUQ0hdIEZpeCBMU0IgY29yZSBzeXN2aW5pdCBpc3N1ZS4NCg0KWW91IGRvbid0IHNheSB3
-aGF0IGxheWVyIHRoaXMgaXMgZm9yLi4uIGJ1dCBpdCBsb29rcyBhIGxvdCBsaWtlIHRoaXMgZml4
-IHNob3VsZCBnbyBpbnRvIG9lLWNvcmUgKHdpdGggYW4gZXhwbGFuYXRpb24gb2Ygd2h5IGl0IGlz
-IG5lZWRlZCkuDQoNClJvc3MNCg0KT24gMTcgSnVseSAyMDE1IGF0IDExOjA1LCBBbGV4YW5kcnUu
-VmFkdXZhIDxBbGV4YW5kcnUuVmFkdXZhQGVuZWEuY29tPG1haWx0bzpBbGV4YW5kcnUuVmFkdXZh
-QGVuZWEuY29tPj4gd3JvdGU6DQpGcm9tOiBBbGV4YW5kcmEgU2FmdGEgPGFsZXhhbmRyYS5zYWZ0
-YUBlbmVhLmNvbTxtYWlsdG86YWxleGFuZHJhLnNhZnRhQGVuZWEuY29tPj4NCg0KW0xYQ1ItMzMw
-Nl0NClNpZ25lZC1vZmYtYnk6IEFsZXhhbmRyYSBTYWZ0YSA8YWxleGFuZHJhLnNhZnRhQGVuZWEu
-Y29tPG1haWx0bzphbGV4YW5kcmEuc2FmdGFAZW5lYS5jb20+Pg0KU2lnbmVkLW9mZi1ieTogVHVk
-b3IgRmxvcmVhIDx0dWRvci5mbG9yZWFAZW5lYS5jb208bWFpbHRvOnR1ZG9yLmZsb3JlYUBlbmVh
-LmNvbT4+DQpTaWduZWQtb2ZmLWJ5OiBBbGV4YW5kcmEgU2FmdGEgPGFsZXhhbmRyYS5zYWZ0YUBl
-bmVhLmNvbTxtYWlsdG86YWxleGFuZHJhLnNhZnRhQGVuZWEuY29tPj4NCi0tLQ0KIHJlY2lwZXMt
-Y29yZS9zeXN2aW5pdC9zeXN2aW5pdF8yLjg4ZHNmLmJiYXBwZW5kIHwgMyArKysNCiAxIGZpbGUg
-Y2hhbmdlZCwgMyBpbnNlcnRpb25zKCspDQogY3JlYXRlIG1vZGUgMTAwNjQ0IHJlY2lwZXMtY29y
-ZS9zeXN2aW5pdC9zeXN2aW5pdF8yLjg4ZHNmLmJiYXBwZW5kDQoNCmRpZmYgLS1naXQgYS9yZWNp
-cGVzLWNvcmUvc3lzdmluaXQvc3lzdmluaXRfMi44OGRzZi5iYmFwcGVuZCBiL3JlY2lwZXMtY29y
-ZS9zeXN2aW5pdC9zeXN2aW5pdF8yLjg4ZHNmLmJiYXBwZW5kDQpuZXcgZmlsZSBtb2RlIDEwMDY0
-NA0KaW5kZXggMDAwMDAwMC4uNGZkM2MwMA0KLS0tIC9kZXYvbnVsbA0KKysrIGIvcmVjaXBlcy1j
-b3JlL3N5c3Zpbml0L3N5c3Zpbml0XzIuODhkc2YuYmJhcHBlbmQNCkBAIC0wLDAgKzEsMyBAQA0K
-K2RvX2luc3RhbGxfYXBwZW5kKCl7DQorICAgICAgICBjaG1vZCBvK3ggJHtEfSR7YmFzZV9zYmlu
-ZGlyfS9zaHV0ZG93bg0KK30NCi0tDQoxLjkuMQ0KDQotLQ0KX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX18NCnlvY3RvIG1haWxpbmcgbGlzdA0KeW9jdG9AeW9j
-dG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NCmh0dHBzOi8vbGlz
-dHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KDQo=
+Hi
 
---_000_DDB0C57E45663A458C5CACB7B5688BC21D8C97D3SESTOEX04enease_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+I try add to my core-image-rt image on a x86 arch my own IO driver. I have =
+already my own recipe, for normal user space programs everything is working=
+ fine.
+For the kernel space driver Yocto is missing at do_comile task the asm/atom=
+ic.h header file. I have searched for the atomic.h file and found a lot of =
+them in the ./build/tmp/work folder. Yocto should use one of them for the r=
+ight hardware architecture right? Or is the a something else I have forget =
+to do?
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
-e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
-KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
-b05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
-emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
-aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
-Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
-eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
-Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcC5Nc29BY2V0YXRlLCBsaS5Nc29BY2V0
-YXRlLCBkaXYuTXNvQWNldGF0ZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxl
-LWxpbms6IkJhbGxvb24gVGV4dCBDaGFyIjsNCgltYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206
-LjAwMDFwdDsNCglmb250LXNpemU6OC4wcHQ7DQoJZm9udC1mYW1pbHk6IlRhaG9tYSIsInNhbnMt
-c2VyaWYiO30NCnNwYW4uaG9lbnpiDQoJe21zby1zdHlsZS1uYW1lOmhvZW56Yjt9DQpzcGFuLkVt
-YWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWls
-eToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0Kc3Bhbi5CYWxsb29u
-VGV4dENoYXINCgl7bXNvLXN0eWxlLW5hbWU6IkJhbGxvb24gVGV4dCBDaGFyIjsNCgltc28tc3R5
-bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkJhbGxvb24gVGV4dCI7DQoJZm9udC1m
-YW1pbHk6IlRhaG9tYSIsInNhbnMtc2VyaWYiOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOlJPO30N
-Ci5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFt
-aWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7
-fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3
-MC44NXB0IDcwLjg1cHQgNzAuODVwdCA3MC44NXB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFn
-ZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxv
-OnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtl
-bmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJl
-ZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0
-PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iUk8iIGxpbms9ImJsdWUi
-IHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5IZWxs
-byBSb3NzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
-JnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVv
-dDs7Y29sb3I6IzFGNDk3RCI+SXQgaXMgZm9yIG1ldGEtY2dsLiBGb3IgQ0dMIGNvbXBsaWFuY2Ug
-dGhlIFNURC4xLjAgTGludXggU3RhbmRhcmQgQmFzZSBDb21wbGlhbmNlIHJlcXVpcmVtZW50IHJl
-cXVpcmVzIGNlcnRhaW4gTFNCIG1vZHVsZXMgY29tcGxpYW5jZS48bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29s
-b3I6IzFGNDk3RCI+VGhlIHBhdGNoIHNvbHZlcyAvdHNldC9MU0IuZmhzL3Jvb3Qvc2Jpbi9zYmlu
-LXRjLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1
-b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
-Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
-Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPlRoYW5r
-cyBmb3IgdGhlIGlucHV0LDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
-cmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5BbGV4IFYuPC9z
-cGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5z
-LXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjoj
-MUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFu
-PjwvYj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBCdXJ0b24sIFJv
-c3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dDQo8YnI+DQo8Yj5TZW50OjwvYj4gRnJp
-ZGF5LCBKdWx5IDE3LCAyMDE1IDE6MTYgUE08YnI+DQo8Yj5Ubzo8L2I+IEFsZXhhbmRydSBWYWR1
-dmE8YnI+DQo8Yj5DYzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0
-OjwvYj4gUmU6IFt5b2N0b10gW1BBVENIXSBGaXggTFNCIGNvcmUgc3lzdmluaXQgaXNzdWUuPG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
-cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+WW91IGRvbid0IHNheSB3aGF0IGxh
-eWVyIHRoaXMgaXMgZm9yLi4uIGJ1dCBpdCBsb29rcyBhIGxvdCBsaWtlIHRoaXMgZml4IHNob3Vs
-ZCBnbyBpbnRvIG9lLWNvcmUgKHdpdGggYW4gZXhwbGFuYXRpb24gb2Ygd2h5IGl0IGlzIG5lZWRl
-ZCkuPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
-cDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Sb3NzPG86
-cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
-YnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiAxNyBKdWx5IDIw
-MTUgYXQgMTE6MDUsIEFsZXhhbmRydS5WYWR1dmEgJmx0OzxhIGhyZWY9Im1haWx0bzpBbGV4YW5k
-cnUuVmFkdXZhQGVuZWEuY29tIiB0YXJnZXQ9Il9ibGFuayI+QWxleGFuZHJ1LlZhZHV2YUBlbmVh
-LmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-RnJvbTogQWxleGFuZHJhIFNhZnRhICZsdDs8YSBocmVmPSJtYWlsdG86YWxleGFuZHJhLnNhZnRh
-QGVuZWEuY29tIj5hbGV4YW5kcmEuc2FmdGFAZW5lYS5jb208L2E+Jmd0Ozxicj4NCjxicj4NCltM
-WENSLTMzMDZdPGJyPg0KU2lnbmVkLW9mZi1ieTogQWxleGFuZHJhIFNhZnRhICZsdDs8YSBocmVm
-PSJtYWlsdG86YWxleGFuZHJhLnNhZnRhQGVuZWEuY29tIj5hbGV4YW5kcmEuc2FmdGFAZW5lYS5j
-b208L2E+Jmd0Ozxicj4NClNpZ25lZC1vZmYtYnk6IFR1ZG9yIEZsb3JlYSAmbHQ7PGEgaHJlZj0i
-bWFpbHRvOnR1ZG9yLmZsb3JlYUBlbmVhLmNvbSI+dHVkb3IuZmxvcmVhQGVuZWEuY29tPC9hPiZn
-dDs8YnI+DQpTaWduZWQtb2ZmLWJ5OiBBbGV4YW5kcmEgU2FmdGEgJmx0OzxhIGhyZWY9Im1haWx0
-bzphbGV4YW5kcmEuc2FmdGFAZW5lYS5jb20iPmFsZXhhbmRyYS5zYWZ0YUBlbmVhLmNvbTwvYT4m
-Z3Q7PGJyPg0KLS0tPGJyPg0KJm5ic3A7cmVjaXBlcy1jb3JlL3N5c3Zpbml0L3N5c3Zpbml0XzIu
-ODhkc2YuYmJhcHBlbmQgfCAzICYjNDM7JiM0MzsmIzQzOzxicj4NCiZuYnNwOzEgZmlsZSBjaGFu
-Z2VkLCAzIGluc2VydGlvbnMoJiM0MzspPGJyPg0KJm5ic3A7Y3JlYXRlIG1vZGUgMTAwNjQ0IHJl
-Y2lwZXMtY29yZS9zeXN2aW5pdC9zeXN2aW5pdF8yLjg4ZHNmLmJiYXBwZW5kPGJyPg0KPGJyPg0K
-ZGlmZiAtLWdpdCBhL3JlY2lwZXMtY29yZS9zeXN2aW5pdC9zeXN2aW5pdF8yLjg4ZHNmLmJiYXBw
-ZW5kIGIvcmVjaXBlcy1jb3JlL3N5c3Zpbml0L3N5c3Zpbml0XzIuODhkc2YuYmJhcHBlbmQ8YnI+
-DQpuZXcgZmlsZSBtb2RlIDEwMDY0NDxicj4NCmluZGV4IDAwMDAwMDAuLjRmZDNjMDA8YnI+DQot
-LS0gL2Rldi9udWxsPGJyPg0KJiM0MzsmIzQzOyYjNDM7IGIvcmVjaXBlcy1jb3JlL3N5c3Zpbml0
-L3N5c3Zpbml0XzIuODhkc2YuYmJhcHBlbmQ8YnI+DQpAQCAtMCwwICYjNDM7MSwzIEBAPGJyPg0K
-JiM0Mztkb19pbnN0YWxsX2FwcGVuZCgpezxicj4NCiYjNDM7Jm5ic3A7ICZuYnNwOyAmbmJzcDsg
-Jm5ic3A7IGNobW9kIG8mIzQzO3ggJHtEfSR7YmFzZV9zYmluZGlyfS9zaHV0ZG93bjxicj4NCiYj
-NDM7fTxicj4NCjxzcGFuIGNsYXNzPSJob2VuemIiPjxzcGFuIHN0eWxlPSJjb2xvcjojODg4ODg4
-Ij4tLTwvc3Bhbj48L3NwYW4+PHNwYW4gc3R5bGU9ImNvbG9yOiM4ODg4ODgiPjxicj4NCjxzcGFu
-IGNsYXNzPSJob2VuemIiPjEuOS4xPC9zcGFuPjxicj4NCjxicj4NCjxzcGFuIGNsYXNzPSJob2Vu
-emIiPi0tPC9zcGFuPjxicj4NCjxzcGFuIGNsYXNzPSJob2VuemIiPl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPC9zcGFuPjxicj4NCjxzcGFuIGNsYXNzPSJo
-b2VuemIiPnlvY3RvIG1haWxpbmcgbGlzdDwvc3Bhbj48YnI+DQo8c3BhbiBjbGFzcz0iaG9lbnpi
-Ij48YSBocmVmPSJtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyI+eW9jdG9AeW9jdG9wcm9q
-ZWN0Lm9yZzwvYT48L3NwYW4+PGJyPg0KPHNwYW4gY2xhc3M9ImhvZW56YiI+PGEgaHJlZj0iaHR0
-cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvIiB0YXJnZXQ9Il9ibGFu
-ayI+aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvPC9hPjwvc3Bh
-bj48L3NwYW4+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9o
-dG1sPg0K
+Many thanks
+Krystian
 
---_000_DDB0C57E45663A458C5CACB7B5688BC21D8C97D3SESTOEX04enease_--
+_____________________________________________________________________
+
+Krystian Gorny
+Research & Development
+
+Wipotec GmbH
+Adam-Hoffmann-Str. 26
+67657 Kaiserslautern
+
+T +49.631.34146-0
+F +49.631.34146-8640
+http://www.wipotec.com
+
+
+[http://www.wipotec.com/fileadmin/user_upload/Signatur/W_Standard.jpg]<http=
+://www.wipotec.com>
+
+Legal information:
+Wipotec Wiege- und Positioniersysteme GmbH
+HRB 2317 Kaiserslautern, Management: T. D?ppre, U. Wagner
+
+This e-mail may contain confidential and/or privileged information.
+If you are not the intended recipient (or have received this e-mail in erro=
+r)
+please notify the sender immediately and delete this e-mail. Any unauthoriz=
+ed
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly
+forbidden.
+
+--_000_10D57FBA9FD7C14FB49EE17590E1AF9453C901C3svrexc03internw_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I try add to my core-image-rt i=
+mage on a x86 arch my own IO driver. I have already my own recipe, for norm=
+al user space programs everything is working fine.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">For the kernel space driver Yoc=
+to is missing at do_comile task the asm/atomic.h header file. I have search=
+ed for the atomic.h file and found a lot of them in the ./build/tmp/work fo=
+lder. Yocto should use one of them for
+ the right hardware architecture right? Or is the a something else I have f=
+orget to do?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal">Many thanks<o:p></o:p></p>
+<p class=3D"MsoNormal">Krystian<o:p></o:p></p>
+</div>
+<br>
+_____________________________________________________________________
+<p><font size=3D"2" face=3D"Arial"><b>Krystian Gorny</b> <br>
+Research &amp; Development</p>
+<p>Wipotec GmbH<br>
+Adam-Hoffmann-Str. 26 <br>
+67657 Kaiserslautern </p>
+<p>T &#43;49.631.34146-0 <br>
+F &#43;49.631.34146-8640 <br>
+<a href=3D"http://www.wipotec.com">http://www.wipotec.com</a> </font></p>
+<p><br>
+<br>
+<font size=3D"4" face=3D"Arial"><a href=3D"http://www.wipotec.com"><img src=
+=3D"http://www.wipotec.com/fileadmin/user_upload/Signatur/W_Standard.jpg"><=
+/a></font><br>
+</p>
+<p><font size=3D"1" face=3D"Arial">Legal information:<br>
+Wipotec Wiege- und Positioniersysteme GmbH<br>
+HRB 2317 Kaiserslautern, Management: T. D&uuml;ppre, U. Wagner </p>
+This e-mail may contain confidential and/or privileged information.<br>
+If you are not the intended recipient (or have received this e-mail in erro=
+r)<br>
+please notify the sender immediately and delete this e-mail. Any unauthoriz=
+ed<br>
+copying, disclosure or distribution of the material in this e-mail is stric=
+tly<br>
+forbidden. </font><br>
+</body>
+</html>
+
+--_000_10D57FBA9FD7C14FB49EE17590E1AF9453C901C3svrexc03internw_--
