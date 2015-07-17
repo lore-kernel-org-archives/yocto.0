@@ -1,35 +1,41 @@
-Return-Path: <Alexandru.Vaduva@enea.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7175AE00A1F; Fri, 17 Jul 2015 02:07:49 -0700 (PDT)
+	id EFF2EE009EF; Fri, 17 Jul 2015 02:20:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 9EA8CE00A16
-	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 02:07:46 -0700 (PDT)
-Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.208) with Microsoft SMTP Server id 14.3.224.2;
-	Fri, 17 Jul 2015 11:07:45 +0200
-Received: by sestofb10.enea.se (Postfix, from userid 4470)	id 676F828E782;
-	Fri, 17 Jul 2015 11:07:39 +0200 (CEST)
-From: Alexandru.Vaduva <Alexandru.Vaduva@enea.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 17 Jul 2015 11:07:37 +0200
-Message-ID: <1437124057-34410-6-git-send-email-Alexandru.Vaduva@enea.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1437124057-34410-1-git-send-email-Alexandru.Vaduva@enea.com>
-References: <1437124057-34410-1-git-send-email-Alexandru.Vaduva@enea.com>
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82879E009D7
+	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 02:20:04 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 7A2AD27E2CF;
+	Fri, 17 Jul 2015 09:20:02 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id MYnHMBYbEvR9; Fri, 17 Jul 2015 09:20:01 +0000 (UTC)
+Received: from [192.168.0.12] (cpc47-live22-2-0-cust92.17-2.cable.virginm.net
+	[86.17.157.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 02C8127E289;
+	Fri, 17 Jul 2015 09:20:00 +0000 (UTC)
+Message-ID: <55A8C8B9.8020700@dynamicdevices.co.uk>
+Date: Fri, 17 Jul 2015 10:19:53 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Received-SPF: None (SESTOEX08.enea.se: Alexandru.Vaduva@enea.com does not
-	designate permitted sender hosts)
-Subject: [PATCH] virtual/kernel: add support for IPMI.
+To: Richard Tollerton <rich.tollerton@ni.com>, yocto@yoctoproject.org
+References: <cover.1437083171.git.rich.tollerton@ni.com>
+In-Reply-To: <cover.1437083171.git.rich.tollerton@ni.com>
+Subject: Re: [meta-mono] [PATCH 00/11] Refactor common mono build bits into mono.bbclass
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,54 +47,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Jul 2015 09:07:49 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 17 Jul 2015 09:20:08 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Alexandru.Vaduva <Alexandru.Vaduva@enea.com>
----
- meta-cgl-common/recipes-kernel/linux/cgl-common.inc              | 1 +
- meta-cgl-common/recipes-kernel/linux/files/cfg/00025-ipmi.cfg    | 9 +++++++++
- .../recipes-kernel/linux/linux-qoriq-prt_3.12.bbappend           | 1 +
- 3 files changed, 11 insertions(+)
- create mode 100644 meta-cgl-common/recipes-kernel/linux/files/cfg/00025-ipmi.cfg
 
-diff --git a/meta-cgl-common/recipes-kernel/linux/cgl-common.inc b/meta-cgl-common/recipes-kernel/linux/cgl-common.inc
-index ffd0b74..2ed1920 100644
---- a/meta-cgl-common/recipes-kernel/linux/cgl-common.inc
-+++ b/meta-cgl-common/recipes-kernel/linux/cgl-common.inc
-@@ -21,5 +21,6 @@ SRC_URI += "file://cfg/00001-systemtap.cfg \
-             file://cfg/00022-coredump.cfg \
-             file://cfg/00023-open-scsi.cfg \
-             file://cfg/00024-ftrace.cfg \
-+            file://cfg/00025-ipmi.cfg \
-            "
- 
-diff --git a/meta-cgl-common/recipes-kernel/linux/files/cfg/00025-ipmi.cfg b/meta-cgl-common/recipes-kernel/linux/files/cfg/00025-ipmi.cfg
-new file mode 100644
-index 0000000..90e9f6e
---- /dev/null
-+++ b/meta-cgl-common/recipes-kernel/linux/files/cfg/00025-ipmi.cfg
-@@ -0,0 +1,9 @@
-+CONFIG_IPMI_HANDLER=y
-+CONFIG_IPMI_PANIC_EVENT=y
-+CONFIG_IPMI_PANIC_STRING=y
-+CONFIG_IPMI_DEVICE_INTERFACE=y
-+CONFIG_IPMI_SI=y
-+CONFIG_IPMI_WATCHDOG=y
-+CONFIG_IPMI_POWEROFF=y
-+# CONFIG_SENSORS_IBMAEM is not set
-+# CONFIG_SENSORS_IBMPEX is not set
-diff --git a/meta-cgl-fsl-ppc/recipes-kernel/linux/linux-qoriq-prt_3.12.bbappend b/meta-cgl-fsl-ppc/recipes-kernel/linux/linux-qoriq-prt_3.12.bbappend
-index 2376daa..e33d72d 100644
---- a/meta-cgl-fsl-ppc/recipes-kernel/linux/linux-qoriq-prt_3.12.bbappend
-+++ b/meta-cgl-fsl-ppc/recipes-kernel/linux/linux-qoriq-prt_3.12.bbappend
-@@ -23,4 +23,5 @@ DELTA_KERNEL_DEFCONFIG += "cfg/00001-systemtap.cfg \
-                         cfg/00022-coredump.cfg \
-                         cfg/00023-open-scsi.cfg \
-                         cfg/00024-ftrace.cfg \
-+                        cfg/00025-ipmi.cfg \
-                         "
--- 
-1.9.1
+
+On 17/07/2015 00:16, Richard Tollerton wrote:
+> Building CLI packages involves lots of boilerplate recipe settings, particularly
+> involving FILES and DEPENDS. This is a first attempt at refactoring these
+> settings into a single bbclass that can be inherited by all CLI packages that do
+> not require unusual build settings.
+>
+> I attempted to refactor every recipe in the layer with these exceptions:
+>
+> - cefglue, because it doesn't actually install anything (!)
+> - monotools-server, because I haven't been able to build it successfully
+> - mono-upnp and taglib-sharp because I don't use them
+>
+>
+> The following changes since commit 136ed556de19bd497279d6c3ae8704551fb1ec4d:
+>
+>   mono-xsp-3.x.inc: use autogen.sh (2015-07-16 18:56:23 +0100)
+>
+> are available in the git repository at:
+>
+>   git://github.com/rtollert/meta-mono dev/rtollert/v4/bbclass
+>   https://github.com/rtollert/meta-mono/tree/dev/rtollert/v4/bbclass
+>
+> Richard Tollerton (11):
+>   mono.bbclass: add
+>   dbus-sharp-glib: use mono.bbclass
+>   dbus-sharp: use mono.bbclass
+>   fsharp.inc: use mono.bbclass
+>   mono-addins: use mono.bbclass
+>   mono-helloworld: use mono.bbclass
+>   mono-xsp: use mono.bbclass
+>   mono-basic-4.xx.inc: use mono.bbclass
+>   gtk-sharp.inc: use mono.bbclass and make some FILES fixes
+>   gtk-sharp-native: remove mono-native dependency
+>   gtk-sharp: remove mono-native dependency
+>
+>  classes/mono.bbclass                               | 32 ++++++++++++++++++++++
+>  recipes-mono/dbus-sharp-glib/dbus-sharp-glib.inc   | 13 ++-------
+>  recipes-mono/dbus-sharp/dbus-sharp.inc             | 13 +--------
+>  recipes-mono/fsharp/fsharp.inc                     | 19 +------------
+>  recipes-mono/gtk-sharp/gtk-sharp-native_2.12.21.bb |  2 +-
+>  recipes-mono/gtk-sharp/gtk-sharp.inc               | 23 +++-------------
+>  recipes-mono/gtk-sharp/gtk-sharp_2.12.21.bb        |  2 +-
+>  recipes-mono/mono-addins/mono-addins.inc           | 14 ++--------
+>  recipes-mono/mono-basic/mono-basic-4.xx.inc        | 13 +--------
+>  recipes-mono/mono-helloworld/mono-helloworld.inc   |  4 +--
+>  recipes-mono/mono-xsp/mono-xsp-3.x.inc             |  3 +-
+>  11 files changed, 47 insertions(+), 91 deletions(-)
+>  create mode 100644 classes/mono.bbclass
+>
+
+Great idea - applied thanks Richard
+
+Cheers, Alex
 
 
