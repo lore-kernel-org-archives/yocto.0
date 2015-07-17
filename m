@@ -1,6 +1,6 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CBA0DE009E6; Fri, 17 Jul 2015 03:15:54 -0700 (PDT)
+	id 24225E009E6; Fri, 17 Jul 2015 03:19:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,40 +8,40 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.181 listed in list.dnswl.org]
+	*      [209.85.220.176 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qk0-f181.google.com (mail-qk0-f181.google.com
-	[209.85.220.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6EF9E009D2
-	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 03:15:53 -0700 (PDT)
-Received: by qkdv3 with SMTP id v3so66707550qkd.3
-	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 03:15:52 -0700 (PDT)
+Received: from mail-qk0-f176.google.com (mail-qk0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D5BBE009D2
+	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 03:19:21 -0700 (PDT)
+Received: by qkdv3 with SMTP id v3so66744199qkd.3
+	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 03:19:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-type;
-	bh=vLVUl9k0HxGgv0HABctYp4f3i8kmysQYQ/J80z9zHfo=;
-	b=LlP+pPAoNRYJTj94XM8AhlXxwgW1M+qhFw0oYPIOqhUzx9PS7hLOnlVn2kicOCPBF2
-	fN7ACxC4h53c/mIHXbIdwB5gcD8NzSlUwgAyghy/n18oFin0UCrj4x6sTNq2BIM7VwBN
-	a25Te6+OjsnbtwtUFLBn1C17OXtk6Z0Xhs22B1y2rbitThgd3VsPDu68JHwSPeavOsbI
-	rTbdBQVfX7drZ0ifHGC6Tc4cheLK3WAC6B5DDZbe4lmfEdhY/4cd2MNnwApeYKCXWzkJ
-	u4e4KqT4i/JwEFVi74/uZNKwP+a4/vyekZIPOY7QHF7fPRLqbnXxdPa1uMJaGKDhrO9W
-	eeNQ==
-X-Gm-Message-State: ALoCoQmelyzdCjKja4rojTm13asKnJW20Y4mY/YqrHzAplFyBqrx5DIeoRJ9PnrCljefADp/Rg71
-X-Received: by 10.140.150.142 with SMTP id 136mr18169018qhw.17.1437128152815; 
-	Fri, 17 Jul 2015 03:15:52 -0700 (PDT)
+	bh=xwpYpMp5DgUWAKMTlx8t4maZBatiNz22ifC6+DvoyxA=;
+	b=Gm9HA80XzfZhlljeP8c+Mkrn5/79x4tn7/BpHHv4jIvdKHgScNFdCsNeYwzY6NRFWK
+	T2IlOCvi9/8+z14ObEXFGCB3x9w208FNPSjRjuDw1vpmlsdkMtB5XfCgHD4B1UcYEsNo
+	5wxpgE3jr8TidGD6QFwktcv4mkFbscwCk1f49gSoTm1SQjxDHP2W7CAvlMxSvl/PBH/w
+	JqOb+6K9iikbz/tfcGOONeIxR7ZWAi4N0nao8FZhyOejg0ZwEJnyUX2WLY2qLr8OPMqU
+	xS+/BY7IQrUQFV9751XecwhsSaYZ+nKXv1yP9vD252PAs6+Oqb1qWqWvTXC2MrToA9JP
+	7Xnw==
+X-Gm-Message-State: ALoCoQniMtMXtZGfFgDRsKxU4jFzkwTH1RtbBTtvHnCBDTRF3Wp1aUkScFVHh1wg48uyXOkTKSbs
+X-Received: by 10.55.15.129 with SMTP id 1mr24149596qkp.29.1437128360590; Fri,
+	17 Jul 2015 03:19:20 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.140.102.231 with HTTP; Fri, 17 Jul 2015 03:15:33 -0700 (PDT)
-In-Reply-To: <1437127559-9853-1-git-send-email-Alexandru.Vaduva@enea.com>
-References: <1437127559-9853-1-git-send-email-Alexandru.Vaduva@enea.com>
+Received: by 10.140.102.231 with HTTP; Fri, 17 Jul 2015 03:19:01 -0700 (PDT)
+In-Reply-To: <CALkREYC=zehWPk5YmfDiOeaeGdLyriMF5us7kTTjn38mRWpZ+w@mail.gmail.com>
+References: <CALkREYC=zehWPk5YmfDiOeaeGdLyriMF5us7kTTjn38mRWpZ+w@mail.gmail.com>
 From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 17 Jul 2015 11:15:33 +0100
-Message-ID: <CAJTo0LYvZ4xfs=WsjkOwpXEs06a-Yf9Y-y7had=dVs3oR1=LcQ@mail.gmail.com>
-To: "Alexandru.Vaduva" <Alexandru.Vaduva@enea.com>
+Date: Fri, 17 Jul 2015 11:19:01 +0100
+Message-ID: <CAJTo0LaWjfrOmgu2wUgb_Vp9-tD+StNwzpBJ4KXBQujz16UK1g@mail.gmail.com>
+To: Anooj Gopi <anoojgopi@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] Fix LSB core sysvinit issue.
+Subject: Re: clone multiple git source repository from single recipe file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,98 +53,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Jul 2015 10:15:54 -0000
-Content-Type: multipart/alternative; boundary=001a11357d4a0be77e051b0f7988
+X-List-Received-Date: Fri, 17 Jul 2015 10:19:22 -0000
+Content-Type: multipart/alternative; boundary=001a1146f1006e14cc051b0f85c4
 
---001a11357d4a0be77e051b0f7988
+--001a1146f1006e14cc051b0f85c4
 Content-Type: text/plain; charset=UTF-8
 
-You don't say what layer this is for... but it looks a lot like this fix
-should go into oe-core (with an explanation of why it is needed).
+On 17 July 2015 at 10:32, Anooj Gopi <anoojgopi@gmail.com> wrote:
+
+> But now I would like to clone two git repository, which of course have
+> different hash value to be checked-out. Is it possible to do that in yocto?
+>
+
+Almost the same syntax.  I'm not sure why you're using pn-${BPN} notation
+in a recipe, but this is from gstreamer1.0-omx:
+
+SRC_URI = " \
+    git://
+anongit.freedesktop.org/gstreamer/gst-omx;branch=master;name=gst-omx \
+git://
+anongit.freedesktop.org/gstreamer/common;destsuffix=git/common;branch=master;name=common
+"
+
+SRCREV_gst-omx = "a2db76b048db278ef0aa798e106b7594264e06c0"
+SRCREV_common = "5edcd857b2107cd8b78c16232dd10877513ec157"
+
+Basically, give each URI a name, and then use the names in SRCREV overrides.
 
 Ross
 
-On 17 July 2015 at 11:05, Alexandru.Vaduva <Alexandru.Vaduva@enea.com>
-wrote:
-
-> From: Alexandra Safta <alexandra.safta@enea.com>
->
-> [LXCR-3306]
-> Signed-off-by: Alexandra Safta <alexandra.safta@enea.com>
-> Signed-off-by: Tudor Florea <tudor.florea@enea.com>
-> Signed-off-by: Alexandra Safta <alexandra.safta@enea.com>
-> ---
->  recipes-core/sysvinit/sysvinit_2.88dsf.bbappend | 3 +++
->  1 file changed, 3 insertions(+)
->  create mode 100644 recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
->
-> diff --git a/recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
-> b/recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
-> new file mode 100644
-> index 0000000..4fd3c00
-> --- /dev/null
-> +++ b/recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
-> @@ -0,0 +1,3 @@
-> +do_install_append(){
-> +        chmod o+x ${D}${base_sbindir}/shutdown
-> +}
-> --
-> 1.9.1
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---001a11357d4a0be77e051b0f7988
+--001a1146f1006e14cc051b0f85c4
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">You don&#39;t say what layer this is for... but it looks a=
- lot like this fix should go into oe-core (with an explanation of why it is=
- needed).<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ro=
-ss</div><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On 17 Jul=
-y 2015 at 11:05, Alexandru.Vaduva <span dir=3D"ltr">&lt;<a href=3D"mailto:A=
-lexandru.Vaduva@enea.com" target=3D"_blank">Alexandru.Vaduva@enea.com</a>&g=
-t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex">From: Alexandra Safta &l=
-t;<a href=3D"mailto:alexandra.safta@enea.com">alexandra.safta@enea.com</a>&=
-gt;<br>
-<br>
-[LXCR-3306]<br>
-Signed-off-by: Alexandra Safta &lt;<a href=3D"mailto:alexandra.safta@enea.c=
-om">alexandra.safta@enea.com</a>&gt;<br>
-Signed-off-by: Tudor Florea &lt;<a href=3D"mailto:tudor.florea@enea.com">tu=
-dor.florea@enea.com</a>&gt;<br>
-Signed-off-by: Alexandra Safta &lt;<a href=3D"mailto:alexandra.safta@enea.c=
-om">alexandra.safta@enea.com</a>&gt;<br>
----<br>
-=C2=A0recipes-core/sysvinit/sysvinit_2.88dsf.bbappend | 3 +++<br>
-=C2=A01 file changed, 3 insertions(+)<br>
-=C2=A0create mode 100644 recipes-core/sysvinit/sysvinit_2.88dsf.bbappend<br=
->
-<br>
-diff --git a/recipes-core/sysvinit/sysvinit_2.88dsf.bbappend b/recipes-core=
-/sysvinit/sysvinit_2.88dsf.bbappend<br>
-new file mode 100644<br>
-index 0000000..4fd3c00<br>
---- /dev/null<br>
-+++ b/recipes-core/sysvinit/sysvinit_2.88dsf.bbappend<br>
-@@ -0,0 +1,3 @@<br>
-+do_install_append(){<br>
-+=C2=A0 =C2=A0 =C2=A0 =C2=A0 chmod o+x ${D}${base_sbindir}/shutdown<br>
-+}<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-1.9.1<br>
-<br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</font></span></blockquote></div><br></div></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 17 July 2015 at 10:32, Anooj Gopi <span dir=3D"ltr">&lt;<a href=3D"mailt=
+o:anoojgopi@gmail.com" target=3D"_blank">anoojgopi@gmail.com</a>&gt;</span>=
+ wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
+8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-st=
+yle:solid;padding-left:1ex"><div>But now I would like to clone two git repo=
+sitory, which of course have different hash value to be checked-out. Is it =
+possible to do that in yocto?<br></div></blockquote></div><br>Almost the sa=
+me syntax.=C2=A0 I&#39;m not sure why you&#39;re using pn-${BPN} notation i=
+n a recipe, but this is from gstreamer1.0-omx:</div><div class=3D"gmail_ext=
+ra"><br></div><div class=3D"gmail_extra"><div class=3D"gmail_extra">SRC_URI=
+ =3D &quot; \</div><div class=3D"gmail_extra">=C2=A0 =C2=A0 git://<a href=
+=3D"http://anongit.freedesktop.org/gstreamer/gst-omx;branch=3Dmaster;name=
+=3Dgst-omx">anongit.freedesktop.org/gstreamer/gst-omx;branch=3Dmaster;name=
+=3Dgst-omx</a> \=C2=A0</div><div class=3D"gmail_extra">git://<a href=3D"htt=
+p://anongit.freedesktop.org/gstreamer/common;destsuffix=3Dgit/common;branch=
+=3Dmaster;name=3Dcommon">anongit.freedesktop.org/gstreamer/common;destsuffi=
+x=3Dgit/common;branch=3Dmaster;name=3Dcommon</a>&quot;</div><div class=3D"g=
+mail_extra"><br></div><div class=3D"gmail_extra">SRCREV_gst-omx =3D &quot;a=
+2db76b048db278ef0aa798e106b7594264e06c0&quot;</div><div class=3D"gmail_extr=
+a">SRCREV_common =3D &quot;5edcd857b2107cd8b78c16232dd10877513ec157&quot;</=
+div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Basical=
+ly, give each URI a name, and then use the names in SRCREV overrides.</div>=
+<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div><=
+/div></div>
 
---001a11357d4a0be77e051b0f7988--
+--001a1146f1006e14cc051b0f85c4--
