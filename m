@@ -1,45 +1,43 @@
-Return-Path: <irish_guy@hotmail.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8DEC5E009E5; Fri, 17 Jul 2015 08:19:33 -0700 (PDT)
+	id A268FE009E5; Fri, 17 Jul 2015 08:39:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (irish_guy[at]hotmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [157.55.2.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Fri, 17 Jul 2015 08:19:30 PDT
-Received: from DUB004-OMC3S4.hotmail.com (dub004-omc3s4.hotmail.com
-	[157.55.2.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9837E009C3
-	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 08:19:30 -0700 (PDT)
-Received: from DUB116-W136 ([157.55.2.9]) by DUB004-OMC3S4.hotmail.com over
-	TLS secured channel with Microsoft SMTPSVC(7.5.7601.23008); 
-	Fri, 17 Jul 2015 08:18:26 -0700
-X-TMN: [Hrra81s6OYIQtUxdedAF3WmOrt1QhQXJ]
-X-Originating-Email: [irish_guy@hotmail.com]
-Message-ID: <DUB116-W136650FCAAE16AB02294C4E92980@phx.gbl>
-From: Louis Ryan <irish_guy@hotmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Fri, 17 Jul 2015 16:18:25 +0100
-Importance: Normal
-In-Reply-To: <10D57FBA9FD7C14FB49EE17590E1AF9453C901C3@svr-exc-03.intern.wipotec.de>
-References: <10D57FBA9FD7C14FB49EE17590E1AF9453C901C3@svr-exc-03.intern.wipotec.de>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40483E009C3
+	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 08:39:40 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.1/8.15.1) with ESMTPS id t6HFdZDK026922
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 17 Jul 2015 08:39:36 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.235.1;
+	Fri, 17 Jul 2015 08:39:35 -0700
+Message-ID: <55A921B6.7050902@windriver.com>
+Date: Fri, 17 Jul 2015 11:39:34 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-X-OriginalArrivalTime: 17 Jul 2015 15:18:26.0354 (UTC)
-	FILETIME=[D40C9120:01D0C0A3]
-Subject: Kernel header files missing
+To: Gorny Krystian <krystian.gorny@wipotec.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <10D57FBA9FD7C14FB49EE17590E1AF9453C901C3@svr-exc-03.intern.wipotec.de>
+	<55A903ED.70906@windriver.com>
+	<10D57FBA9FD7C14FB49EE17590E1AF9453C901FD@svr-exc-03.intern.wipotec.de>
+In-Reply-To: <10D57FBA9FD7C14FB49EE17590E1AF9453C901FD@svr-exc-03.intern.wipotec.de>
+Subject: Re: Kernel header missing for specific Target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: irish_guy@hotmail.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -48,93 +46,143 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Jul 2015 15:19:33 -0000
-Content-Type: multipart/alternative;
-	boundary="_0849bd99-a673-4646-b78a-f8f4ae49300a_"
+X-List-Received-Date: Fri, 17 Jul 2015 15:39:42 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 8bit
 
---_0849bd99-a673-4646-b78a-f8f4ae49300a_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+On 15-07-17 09:55 AM, Gorny Krystian wrote:
+> I'm using the fido branch. My iointerrupt.bb file looks as follow:
+>
+>
+> DESCRIPTION = "Simple IO-interrupt driver"
+> SECTION = "iointerrupt"
+> LICENSE = "MIT"
+> LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+> PR = "r0"
+>
+> SRC_URI = "file://drv_iointerrupt.c"
+> S = "${WORKDIR}"
+> do_compile() {
+>               ${CC} drv_iointerrupt.c -o iointerrupt
+> }
 
-Hi=2C
+And so I'm clear .. this is a standard .ko ? Or a userspace kernel driver ?
 
-I am trying to do loadable kernel module development using the yocto produc=
-ed sdk.
+If you are looking for the internal kernel sources to be on the include
+path, you need to reference STAGING_KERNEL_DIR (and something has to
+depend on the kernel do_shared_workdir task to get the right bits
+in place).
 
-I can create the sdk and it works fine for application development.
+  recipes-kernel/lttng/lttng-modules_2.6.1.bb
 
-There appears to be some header files missing for kernel module development=
-.
+Is an example of both.
 
-These are the steps I went through ( I am using Beaglebone Black )
+Bruce
 
-mkdir bb-yocto
-cd bb-yocto
-git clone -b daisy git://git.yoctoproject.org/poky.git
-cd poky
-source oe-init-build-env build
+> do_install() {
+>               install -d ${D}${bindir}
+>               install -m 0755 iointerrupt ${D}${bindir}
+> }
+>
+> Thanks,
+> Krystian
+>
+> _____________________________________________________________________
+>
+> Krystian Gorny
+> Research & Development
+>
+> Wipotec GmbH
+> Adam-Hoffmann-Str. 26
+> 67657 Kaiserslautern
+>
+> T +49.631.34146-0
+> F +49.631.34146-8640
+> http://www.wipotec.com
+>
+>
+> _____________________________________________________________________
+>
+> Weigh Cells | Weighing systems
+>
+> See our solutions. Visit us at our events
+> http://www.wipotec.com/de/aktuelles/veranstaltungen/
+>
+> _____________________________________________________________________
+>
+> Legal information:
+> Wipotec Wiege- und Positioniersysteme GmbH
+> HRB 2317 Kaiserslautern, Management: T. D?ppre, U. Wagner
+>
+> This e-mail may contain confidential and/or privileged information.
+> If you are not the intended recipient (or have received this e-mail in error)
+> please notify the sender immediately and delete this e-mail. Any unauthorized
+> copying, disclosure or distribution of the material in this e-mail is strictly
+> forbidden.
+>
+> -----Original Message-----
+> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+> Sent: Friday, July 17, 2015 3:32 PM
+> To: Gorny Krystian; yocto@yoctoproject.org
+> Subject: Re: [yocto] Kernel header missing for specific Target
+>
+> On 15-07-17 08:47 AM, Gorny Krystian wrote:
+>> Hi
+>>
+>> I try add to my core-image-rt image on a x86 arch my own IO driver. I
+>> have already my own recipe, for normal user space programs everything
+>> is working fine.
+>>
+>> For the kernel space driver Yocto is missing at do_comile task the
+>> asm/atomic.h header file. I have searched for the atomic.h file and
+>> found a lot of them in the ./build/tmp/work folder. Yocto should use
+>> one of them for the right hardware architecture right? Or is the a
+>> something else I have forget to do?
+>
+> What Yocto branch are you using ?
+>
+> atomic.h is placed in the right location by the kernel build, assuming that your driver recipe has the proper dependencies.  Without seeing that recipe, it is hard to say more.
+>
+> Cheers,
+>
+> Bruce
+>
+>>
+>> Many thanks
+>>
+>> Krystian
+>>
+>>
+>> _____________________________________________________________________
+>>
+>> *Krystian Gorny*
+>> Research & Development
+>>
+>> Wipotec GmbH
+>> Adam-Hoffmann-Str. 26
+>> 67657 Kaiserslautern
+>>
+>> T +49.631.34146-0
+>> F +49.631.34146-8640
+>> http://www.wipotec.com
+>>
+>>
+>>
+>> <http://www.wipotec.com>
+>>
+>> Legal information:
+>> Wipotec Wiege- und Positioniersysteme GmbH HRB 2317 Kaiserslautern,
+>> Management: T. Düppre, U. Wagner
+>>
+>> This e-mail may contain confidential and/or privileged information.
+>> If you are not the intended recipient (or have received this e-mail in
+>> error)
+>> please notify the sender immediately and delete this e-mail. Any
+>> unauthorized copying, disclosure or distribution of the material in
+>> this e-mail is strictly forbidden.
+>>
+>>
+>
+>
 
-vi conf/local.conf
-MACHINE ?=3D "beaglebone"
 
-bitbake core-image-minimal
-
-bitbake core-image-minimal -c populate_sdk
-
-cd tmp/deploy/sdk
-
-./poky-eglibc-x86_64-core-image-minimal-cortexa8hf-vfp-neon-toolchain-1.6.3=
-.sh
-
-some header files I want to use fro kernel module development like kernel.h=
-=2C kdev_t.h appear in=20
-
-/opt/poky/bb-linux/sysroots/cortexa8hf-vfp-neon-poky-linux-gnueabi/usr/incl=
-ude/linux
-
-but some are missing like=2C module.h=2C device.h=2C cdev.h=2Cuaccess.h.
-
-
-Is there something else I need to do to get the missing files?
-
-Thanks
-Louis
- 		 	   		  =
-
---_0849bd99-a673-4646-b78a-f8f4ae49300a_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<style><!--
-.hmmessage P
-{
-margin:0px=3B
-padding:0px
-}
-body.hmmessage
-{
-font-size: 12pt=3B
-font-family:Calibri
-}
---></style></head>
-<body class=3D'hmmessage'><div dir=3D'ltr'>Hi=2C<br><br>I am trying to do l=
-oadable kernel module development using the yocto produced sdk.<br><br>I ca=
-n create the sdk and it works fine for application development.<br><br>Ther=
-e appears to be some header files missing for kernel module development.<br=
-><br>These are the steps I went through ( I am using Beaglebone Black )<br>=
-<br>mkdir bb-yocto<br>cd bb-yocto<br>git clone -b daisy git://git.yoctoproj=
-ect.org/poky.git<br>cd poky<br>source oe-init-build-env build<br><br>vi con=
-f/local.conf<br>MACHINE ?=3D "beaglebone"<br><br>bitbake core-image-minimal=
-<br><br>bitbake core-image-minimal -c populate_sdk<br><br>cd tmp/deploy/sdk=
-<br><br>./poky-eglibc-x86_64-core-image-minimal-cortexa8hf-vfp-neon-toolcha=
-in-1.6.3.sh<br><br>some header files I want to use fro kernel module develo=
-pment like kernel.h=2C kdev_t.h appear in <br><br>/opt/poky/bb-linux/sysroo=
-ts/cortexa8hf-vfp-neon-poky-linux-gnueabi/usr/include/linux<br><br>but some=
- are missing like=2C module.h=2C device.h=2C cdev.h=2Cuaccess.h.<br><br><br=
->Is there something else I need to do to get the missing files?<br><br>Than=
-ks<br>Louis<br> 		 	   		  </div></body>
-</html>=
-
---_0849bd99-a673-4646-b78a-f8f4ae49300a_--
