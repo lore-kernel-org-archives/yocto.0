@@ -1,41 +1,49 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <anoojgopi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EFF2EE009EF; Fri, 17 Jul 2015 02:20:07 -0700 (PDT)
+	id AA839E00A4D; Fri, 17 Jul 2015 02:32:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (anoojgopi[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82879E009D7
-	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 02:20:04 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 7A2AD27E2CF;
-	Fri, 17 Jul 2015 09:20:02 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id MYnHMBYbEvR9; Fri, 17 Jul 2015 09:20:01 +0000 (UTC)
-Received: from [192.168.0.12] (cpc47-live22-2-0-cust92.17-2.cable.virginm.net
-	[86.17.157.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 02C8127E289;
-	Fri, 17 Jul 2015 09:20:00 +0000 (UTC)
-Message-ID: <55A8C8B9.8020700@dynamicdevices.co.uk>
-Date: Fri, 17 Jul 2015 10:19:53 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.180 listed in list.dnswl.org]
+Received: from mail-lb0-f180.google.com (mail-lb0-f180.google.com
+	[209.85.217.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8EA46E009D2
+	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 02:32:03 -0700 (PDT)
+Received: by lbbzr7 with SMTP id zr7so58137382lbb.1
+	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 02:32:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=92eO4o0rN6h7qv1sV9GyGEQWQxZGCqPVtJcQsXDLBR8=;
+	b=rzZ5wlW+a5fPm5S7JuA0VujXx9b9arubU9XyW4HXx/mCDWp2Hz3Spwo8Vazns/sOnC
+	Vm5F0F9rK/tNQOl/aeHksh0/ztwnQDvaMzayJYHQ28GbGxvIHjshd2Hdes4TFcl1ngLg
+	Zk8jTkjKe0C5uachNnedr1KlICSNk0UNe/Jl5QcslgOvEH2H7csMEPeIxAD7PjQWZguk
+	Fm0fRaZSFab8x0k7iexU42CfV0kCqq92cee83gPv5H1BQnK6AuykEGh8j8yiZbEnN+65
+	vcRJWQyWHhdIltqScmb1HXzutvMzoFrLw71qIblratAKdpfi9a8hCEIrdo1kiTIJ69+c
+	WLVw==
 MIME-Version: 1.0
-To: Richard Tollerton <rich.tollerton@ni.com>, yocto@yoctoproject.org
-References: <cover.1437083171.git.rich.tollerton@ni.com>
-In-Reply-To: <cover.1437083171.git.rich.tollerton@ni.com>
-Subject: Re: [meta-mono] [PATCH 00/11] Refactor common mono build bits into mono.bbclass
+X-Received: by 10.112.29.228 with SMTP id n4mr13700580lbh.89.1437125521640;
+	Fri, 17 Jul 2015 02:32:01 -0700 (PDT)
+Received: by 10.25.64.4 with HTTP; Fri, 17 Jul 2015 02:32:01 -0700 (PDT)
+Date: Fri, 17 Jul 2015 11:32:01 +0200
+Message-ID: <CALkREYC=zehWPk5YmfDiOeaeGdLyriMF5us7kTTjn38mRWpZ+w@mail.gmail.com>
+From: Anooj Gopi <anoojgopi@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: clone multiple git source repository from single recipe file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,64 +55,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Jul 2015 09:20:08 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 17 Jul 2015 09:32:19 -0000
+Content-Type: multipart/alternative; boundary=001a1133a3663714b0051b0edcce
 
+--001a1133a3663714b0051b0edcce
+Content-Type: text/plain; charset=UTF-8
 
+Hello All,
 
-On 17/07/2015 00:16, Richard Tollerton wrote:
-> Building CLI packages involves lots of boilerplate recipe settings, particularly
-> involving FILES and DEPENDS. This is a first attempt at refactoring these
-> settings into a single bbclass that can be inherited by all CLI packages that do
-> not require unusual build settings.
->
-> I attempted to refactor every recipe in the layer with these exceptions:
->
-> - cefglue, because it doesn't actually install anything (!)
-> - monotools-server, because I haven't been able to build it successfully
-> - mono-upnp and taglib-sharp because I don't use them
->
->
-> The following changes since commit 136ed556de19bd497279d6c3ae8704551fb1ec4d:
->
->   mono-xsp-3.x.inc: use autogen.sh (2015-07-16 18:56:23 +0100)
->
-> are available in the git repository at:
->
->   git://github.com/rtollert/meta-mono dev/rtollert/v4/bbclass
->   https://github.com/rtollert/meta-mono/tree/dev/rtollert/v4/bbclass
->
-> Richard Tollerton (11):
->   mono.bbclass: add
->   dbus-sharp-glib: use mono.bbclass
->   dbus-sharp: use mono.bbclass
->   fsharp.inc: use mono.bbclass
->   mono-addins: use mono.bbclass
->   mono-helloworld: use mono.bbclass
->   mono-xsp: use mono.bbclass
->   mono-basic-4.xx.inc: use mono.bbclass
->   gtk-sharp.inc: use mono.bbclass and make some FILES fixes
->   gtk-sharp-native: remove mono-native dependency
->   gtk-sharp: remove mono-native dependency
->
->  classes/mono.bbclass                               | 32 ++++++++++++++++++++++
->  recipes-mono/dbus-sharp-glib/dbus-sharp-glib.inc   | 13 ++-------
->  recipes-mono/dbus-sharp/dbus-sharp.inc             | 13 +--------
->  recipes-mono/fsharp/fsharp.inc                     | 19 +------------
->  recipes-mono/gtk-sharp/gtk-sharp-native_2.12.21.bb |  2 +-
->  recipes-mono/gtk-sharp/gtk-sharp.inc               | 23 +++-------------
->  recipes-mono/gtk-sharp/gtk-sharp_2.12.21.bb        |  2 +-
->  recipes-mono/mono-addins/mono-addins.inc           | 14 ++--------
->  recipes-mono/mono-basic/mono-basic-4.xx.inc        | 13 +--------
->  recipes-mono/mono-helloworld/mono-helloworld.inc   |  4 +--
->  recipes-mono/mono-xsp/mono-xsp-3.x.inc             |  3 +-
->  11 files changed, 47 insertions(+), 91 deletions(-)
->  create mode 100644 classes/mono.bbclass
->
+How can we checkout two git repo into work directory?
 
-Great idea - applied thanks Richard
+In SVN we do something like below:
 
-Cheers, Alex
+SRC_URI = "svn://
+example.com/trunk/OneDirectory;module=SubDirectory1;protocol=http;user=theuser;pswd=thepassword
+\
+svn://
+example.com/trunk/OneDirectory;module=SubDirectory2;protocol=http;user=theuser;pswd=thepassword
+"
 
+SRCREV_default_pn-${BPN} = "svn-rev-no"
 
+But now I would like to clone two git repository, which of course have
+different hash value to be checked-out. Is it possible to do that in yocto?
+
+Best Regards,
+Anooj Gopi
+
+--001a1133a3663714b0051b0edcce
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div><div>Hello All,<br><br></div>How can w=
+e checkout two git repo into work directory?<br><br></div>In SVN we do some=
+thing like below:<br><br>SRC_URI =3D &quot;svn://<a href=3D"http://example.=
+com/trunk/OneDirectory;module=3DSubDirectory1;protocol=3Dhttp;user=3Dtheuse=
+r;pswd=3Dthepassword">example.com/trunk/OneDirectory;module=3DSubDirectory1=
+;protocol=3Dhttp;user=3Dtheuser;pswd=3Dthepassword</a> \<br>svn://<a href=
+=3D"http://example.com/trunk/OneDirectory;module=3DSubDirectory2;protocol=
+=3Dhttp;user=3Dtheuser;pswd=3Dthepassword">example.com/trunk/OneDirectory;m=
+odule=3DSubDirectory2;protocol=3Dhttp;user=3Dtheuser;pswd=3Dthepassword</a>=
+&quot;<br><br>SRCREV_default_pn-${BPN} =3D &quot;svn-rev-no&quot;<br><br></=
+div>But now I would like to clone two git repository, which of course have =
+different hash value to be checked-out. Is it possible to do that in yocto?=
+<br><br></div>Best Regards,<br></div>Anooj Gopi<br></div>
+
+--001a1133a3663714b0051b0edcce--
