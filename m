@@ -1,6 +1,6 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <Alexandru.Vaduva@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 24225E009E6; Fri, 17 Jul 2015 03:19:22 -0700 (PDT)
+	id 421C8E009E4; Fri, 17 Jul 2015 03:25:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,40 +8,32 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.176 listed in list.dnswl.org]
+	*      [192.36.1.252 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qk0-f176.google.com (mail-qk0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D5BBE009D2
-	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 03:19:21 -0700 (PDT)
-Received: by qkdv3 with SMTP id v3so66744199qkd.3
-	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 03:19:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=xwpYpMp5DgUWAKMTlx8t4maZBatiNz22ifC6+DvoyxA=;
-	b=Gm9HA80XzfZhlljeP8c+Mkrn5/79x4tn7/BpHHv4jIvdKHgScNFdCsNeYwzY6NRFWK
-	T2IlOCvi9/8+z14ObEXFGCB3x9w208FNPSjRjuDw1vpmlsdkMtB5XfCgHD4B1UcYEsNo
-	5wxpgE3jr8TidGD6QFwktcv4mkFbscwCk1f49gSoTm1SQjxDHP2W7CAvlMxSvl/PBH/w
-	JqOb+6K9iikbz/tfcGOONeIxR7ZWAi4N0nao8FZhyOejg0ZwEJnyUX2WLY2qLr8OPMqU
-	xS+/BY7IQrUQFV9751XecwhsSaYZ+nKXv1yP9vD252PAs6+Oqb1qWqWvTXC2MrToA9JP
-	7Xnw==
-X-Gm-Message-State: ALoCoQniMtMXtZGfFgDRsKxU4jFzkwTH1RtbBTtvHnCBDTRF3Wp1aUkScFVHh1wg48uyXOkTKSbs
-X-Received: by 10.55.15.129 with SMTP id 1mr24149596qkp.29.1437128360590; Fri,
-	17 Jul 2015 03:19:20 -0700 (PDT)
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 314F9E009D2
+	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 03:25:00 -0700 (PDT)
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
+	14.03.0224.002; Fri, 17 Jul 2015 12:24:58 +0200
+From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] [PATCH] Fix LSB core sysvinit issue.
+Thread-Index: AQHQwHhGms/Pgat2j06TIrMyhkizqJ3fUJCAgAAi/lA=
+Date: Fri, 17 Jul 2015 10:24:58 +0000
+Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D8C97D3@SESTOEX04.enea.se>
+References: <1437127559-9853-1-git-send-email-Alexandru.Vaduva@enea.com>
+	<CAJTo0LYvZ4xfs=WsjkOwpXEs06a-Yf9Y-y7had=dVs3oR1=LcQ@mail.gmail.com>
+In-Reply-To: <CAJTo0LYvZ4xfs=WsjkOwpXEs06a-Yf9Y-y7had=dVs3oR1=LcQ@mail.gmail.com>
+Accept-Language: en-US, sv-SE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.14.208]
 MIME-Version: 1.0
-Received: by 10.140.102.231 with HTTP; Fri, 17 Jul 2015 03:19:01 -0700 (PDT)
-In-Reply-To: <CALkREYC=zehWPk5YmfDiOeaeGdLyriMF5us7kTTjn38mRWpZ+w@mail.gmail.com>
-References: <CALkREYC=zehWPk5YmfDiOeaeGdLyriMF5us7kTTjn38mRWpZ+w@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 17 Jul 2015 11:19:01 +0100
-Message-ID: <CAJTo0LaWjfrOmgu2wUgb_Vp9-tD+StNwzpBJ4KXBQujz16UK1g@mail.gmail.com>
-To: Anooj Gopi <anoojgopi@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: clone multiple git source repository from single recipe file
+Subject: Re: [PATCH] Fix LSB core sysvinit issue.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,63 +45,167 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Jul 2015 10:19:22 -0000
-Content-Type: multipart/alternative; boundary=001a1146f1006e14cc051b0f85c4
+X-List-Received-Date: Fri, 17 Jul 2015 10:25:03 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DDB0C57E45663A458C5CACB7B5688BC21D8C97D3SESTOEX04enease_"
 
---001a1146f1006e14cc051b0f85c4
-Content-Type: text/plain; charset=UTF-8
+--_000_DDB0C57E45663A458C5CACB7B5688BC21D8C97D3SESTOEX04enease_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 17 July 2015 at 10:32, Anooj Gopi <anoojgopi@gmail.com> wrote:
+SGVsbG8gUm9zcywNCg0KSXQgaXMgZm9yIG1ldGEtY2dsLiBGb3IgQ0dMIGNvbXBsaWFuY2UgdGhl
+IFNURC4xLjAgTGludXggU3RhbmRhcmQgQmFzZSBDb21wbGlhbmNlIHJlcXVpcmVtZW50IHJlcXVp
+cmVzIGNlcnRhaW4gTFNCIG1vZHVsZXMgY29tcGxpYW5jZS4NClRoZSBwYXRjaCBzb2x2ZXMgL3Rz
+ZXQvTFNCLmZocy9yb290L3NiaW4vc2Jpbi10Yy4NCg0KDQpUaGFua3MgZm9yIHRoZSBpbnB1dCwN
+CkFsZXggVi4NCg0KDQpGcm9tOiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRl
+bC5jb21dDQpTZW50OiBGcmlkYXksIEp1bHkgMTcsIDIwMTUgMToxNiBQTQ0KVG86IEFsZXhhbmRy
+dSBWYWR1dmENCkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3Rv
+XSBbUEFUQ0hdIEZpeCBMU0IgY29yZSBzeXN2aW5pdCBpc3N1ZS4NCg0KWW91IGRvbid0IHNheSB3
+aGF0IGxheWVyIHRoaXMgaXMgZm9yLi4uIGJ1dCBpdCBsb29rcyBhIGxvdCBsaWtlIHRoaXMgZml4
+IHNob3VsZCBnbyBpbnRvIG9lLWNvcmUgKHdpdGggYW4gZXhwbGFuYXRpb24gb2Ygd2h5IGl0IGlz
+IG5lZWRlZCkuDQoNClJvc3MNCg0KT24gMTcgSnVseSAyMDE1IGF0IDExOjA1LCBBbGV4YW5kcnUu
+VmFkdXZhIDxBbGV4YW5kcnUuVmFkdXZhQGVuZWEuY29tPG1haWx0bzpBbGV4YW5kcnUuVmFkdXZh
+QGVuZWEuY29tPj4gd3JvdGU6DQpGcm9tOiBBbGV4YW5kcmEgU2FmdGEgPGFsZXhhbmRyYS5zYWZ0
+YUBlbmVhLmNvbTxtYWlsdG86YWxleGFuZHJhLnNhZnRhQGVuZWEuY29tPj4NCg0KW0xYQ1ItMzMw
+Nl0NClNpZ25lZC1vZmYtYnk6IEFsZXhhbmRyYSBTYWZ0YSA8YWxleGFuZHJhLnNhZnRhQGVuZWEu
+Y29tPG1haWx0bzphbGV4YW5kcmEuc2FmdGFAZW5lYS5jb20+Pg0KU2lnbmVkLW9mZi1ieTogVHVk
+b3IgRmxvcmVhIDx0dWRvci5mbG9yZWFAZW5lYS5jb208bWFpbHRvOnR1ZG9yLmZsb3JlYUBlbmVh
+LmNvbT4+DQpTaWduZWQtb2ZmLWJ5OiBBbGV4YW5kcmEgU2FmdGEgPGFsZXhhbmRyYS5zYWZ0YUBl
+bmVhLmNvbTxtYWlsdG86YWxleGFuZHJhLnNhZnRhQGVuZWEuY29tPj4NCi0tLQ0KIHJlY2lwZXMt
+Y29yZS9zeXN2aW5pdC9zeXN2aW5pdF8yLjg4ZHNmLmJiYXBwZW5kIHwgMyArKysNCiAxIGZpbGUg
+Y2hhbmdlZCwgMyBpbnNlcnRpb25zKCspDQogY3JlYXRlIG1vZGUgMTAwNjQ0IHJlY2lwZXMtY29y
+ZS9zeXN2aW5pdC9zeXN2aW5pdF8yLjg4ZHNmLmJiYXBwZW5kDQoNCmRpZmYgLS1naXQgYS9yZWNp
+cGVzLWNvcmUvc3lzdmluaXQvc3lzdmluaXRfMi44OGRzZi5iYmFwcGVuZCBiL3JlY2lwZXMtY29y
+ZS9zeXN2aW5pdC9zeXN2aW5pdF8yLjg4ZHNmLmJiYXBwZW5kDQpuZXcgZmlsZSBtb2RlIDEwMDY0
+NA0KaW5kZXggMDAwMDAwMC4uNGZkM2MwMA0KLS0tIC9kZXYvbnVsbA0KKysrIGIvcmVjaXBlcy1j
+b3JlL3N5c3Zpbml0L3N5c3Zpbml0XzIuODhkc2YuYmJhcHBlbmQNCkBAIC0wLDAgKzEsMyBAQA0K
+K2RvX2luc3RhbGxfYXBwZW5kKCl7DQorICAgICAgICBjaG1vZCBvK3ggJHtEfSR7YmFzZV9zYmlu
+ZGlyfS9zaHV0ZG93bg0KK30NCi0tDQoxLjkuMQ0KDQotLQ0KX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX18NCnlvY3RvIG1haWxpbmcgbGlzdA0KeW9jdG9AeW9j
+dG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NCmh0dHBzOi8vbGlz
+dHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KDQo=
 
-> But now I would like to clone two git repository, which of course have
-> different hash value to be checked-out. Is it possible to do that in yocto?
->
+--_000_DDB0C57E45663A458C5CACB7B5688BC21D8C97D3SESTOEX04enease_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Almost the same syntax.  I'm not sure why you're using pn-${BPN} notation
-in a recipe, but this is from gstreamer1.0-omx:
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
+aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
+Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
+eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
+Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcC5Nc29BY2V0YXRlLCBsaS5Nc29BY2V0
+YXRlLCBkaXYuTXNvQWNldGF0ZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxl
+LWxpbms6IkJhbGxvb24gVGV4dCBDaGFyIjsNCgltYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206
+LjAwMDFwdDsNCglmb250LXNpemU6OC4wcHQ7DQoJZm9udC1mYW1pbHk6IlRhaG9tYSIsInNhbnMt
+c2VyaWYiO30NCnNwYW4uaG9lbnpiDQoJe21zby1zdHlsZS1uYW1lOmhvZW56Yjt9DQpzcGFuLkVt
+YWlsU3R5bGUxOA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWls
+eToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0Kc3Bhbi5CYWxsb29u
+VGV4dENoYXINCgl7bXNvLXN0eWxlLW5hbWU6IkJhbGxvb24gVGV4dCBDaGFyIjsNCgltc28tc3R5
+bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkJhbGxvb24gVGV4dCI7DQoJZm9udC1m
+YW1pbHk6IlRhaG9tYSIsInNhbnMtc2VyaWYiOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOlJPO30N
+Ci5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFt
+aWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7
+fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3
+MC44NXB0IDcwLjg1cHQgNzAuODVwdCA3MC44NXB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFn
+ZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxv
+OnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtl
+bmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJl
+ZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0
+PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iUk8iIGxpbms9ImJsdWUi
+IHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5IZWxs
+byBSb3NzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+JnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwv
+c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
+LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVv
+dDs7Y29sb3I6IzFGNDk3RCI+SXQgaXMgZm9yIG1ldGEtY2dsLiBGb3IgQ0dMIGNvbXBsaWFuY2Ug
+dGhlIFNURC4xLjAgTGludXggU3RhbmRhcmQgQmFzZSBDb21wbGlhbmNlIHJlcXVpcmVtZW50IHJl
+cXVpcmVzIGNlcnRhaW4gTFNCIG1vZHVsZXMgY29tcGxpYW5jZS48bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
+b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29s
+b3I6IzFGNDk3RCI+VGhlIHBhdGNoIHNvbHZlcyAvdHNldC9MU0IuZmhzL3Jvb3Qvc2Jpbi9zYmlu
+LXRjLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1
+b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
+Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPlRoYW5r
+cyBmb3IgdGhlIGlucHV0LDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
+cmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5BbGV4IFYuPC9z
+cGFuPjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5z
+LXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjoj
+MUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFu
+PjwvYj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBCdXJ0b24sIFJv
+c3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dDQo8YnI+DQo8Yj5TZW50OjwvYj4gRnJp
+ZGF5LCBKdWx5IDE3LCAyMDE1IDE6MTYgUE08YnI+DQo8Yj5Ubzo8L2I+IEFsZXhhbmRydSBWYWR1
+dmE8YnI+DQo8Yj5DYzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0
+OjwvYj4gUmU6IFt5b2N0b10gW1BBVENIXSBGaXggTFNCIGNvcmUgc3lzdmluaXQgaXNzdWUuPG86
+cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
+cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+WW91IGRvbid0IHNheSB3aGF0IGxh
+eWVyIHRoaXMgaXMgZm9yLi4uIGJ1dCBpdCBsb29rcyBhIGxvdCBsaWtlIHRoaXMgZml4IHNob3Vs
+ZCBnbyBpbnRvIG9lLWNvcmUgKHdpdGggYW4gZXhwbGFuYXRpb24gb2Ygd2h5IGl0IGlzIG5lZWRl
+ZCkuPG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
+cDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Sb3NzPG86
+cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
+YnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiAxNyBKdWx5IDIw
+MTUgYXQgMTE6MDUsIEFsZXhhbmRydS5WYWR1dmEgJmx0OzxhIGhyZWY9Im1haWx0bzpBbGV4YW5k
+cnUuVmFkdXZhQGVuZWEuY29tIiB0YXJnZXQ9Il9ibGFuayI+QWxleGFuZHJ1LlZhZHV2YUBlbmVh
+LmNvbTwvYT4mZ3Q7IHdyb3RlOjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+RnJvbTogQWxleGFuZHJhIFNhZnRhICZsdDs8YSBocmVmPSJtYWlsdG86YWxleGFuZHJhLnNhZnRh
+QGVuZWEuY29tIj5hbGV4YW5kcmEuc2FmdGFAZW5lYS5jb208L2E+Jmd0Ozxicj4NCjxicj4NCltM
+WENSLTMzMDZdPGJyPg0KU2lnbmVkLW9mZi1ieTogQWxleGFuZHJhIFNhZnRhICZsdDs8YSBocmVm
+PSJtYWlsdG86YWxleGFuZHJhLnNhZnRhQGVuZWEuY29tIj5hbGV4YW5kcmEuc2FmdGFAZW5lYS5j
+b208L2E+Jmd0Ozxicj4NClNpZ25lZC1vZmYtYnk6IFR1ZG9yIEZsb3JlYSAmbHQ7PGEgaHJlZj0i
+bWFpbHRvOnR1ZG9yLmZsb3JlYUBlbmVhLmNvbSI+dHVkb3IuZmxvcmVhQGVuZWEuY29tPC9hPiZn
+dDs8YnI+DQpTaWduZWQtb2ZmLWJ5OiBBbGV4YW5kcmEgU2FmdGEgJmx0OzxhIGhyZWY9Im1haWx0
+bzphbGV4YW5kcmEuc2FmdGFAZW5lYS5jb20iPmFsZXhhbmRyYS5zYWZ0YUBlbmVhLmNvbTwvYT4m
+Z3Q7PGJyPg0KLS0tPGJyPg0KJm5ic3A7cmVjaXBlcy1jb3JlL3N5c3Zpbml0L3N5c3Zpbml0XzIu
+ODhkc2YuYmJhcHBlbmQgfCAzICYjNDM7JiM0MzsmIzQzOzxicj4NCiZuYnNwOzEgZmlsZSBjaGFu
+Z2VkLCAzIGluc2VydGlvbnMoJiM0MzspPGJyPg0KJm5ic3A7Y3JlYXRlIG1vZGUgMTAwNjQ0IHJl
+Y2lwZXMtY29yZS9zeXN2aW5pdC9zeXN2aW5pdF8yLjg4ZHNmLmJiYXBwZW5kPGJyPg0KPGJyPg0K
+ZGlmZiAtLWdpdCBhL3JlY2lwZXMtY29yZS9zeXN2aW5pdC9zeXN2aW5pdF8yLjg4ZHNmLmJiYXBw
+ZW5kIGIvcmVjaXBlcy1jb3JlL3N5c3Zpbml0L3N5c3Zpbml0XzIuODhkc2YuYmJhcHBlbmQ8YnI+
+DQpuZXcgZmlsZSBtb2RlIDEwMDY0NDxicj4NCmluZGV4IDAwMDAwMDAuLjRmZDNjMDA8YnI+DQot
+LS0gL2Rldi9udWxsPGJyPg0KJiM0MzsmIzQzOyYjNDM7IGIvcmVjaXBlcy1jb3JlL3N5c3Zpbml0
+L3N5c3Zpbml0XzIuODhkc2YuYmJhcHBlbmQ8YnI+DQpAQCAtMCwwICYjNDM7MSwzIEBAPGJyPg0K
+JiM0Mztkb19pbnN0YWxsX2FwcGVuZCgpezxicj4NCiYjNDM7Jm5ic3A7ICZuYnNwOyAmbmJzcDsg
+Jm5ic3A7IGNobW9kIG8mIzQzO3ggJHtEfSR7YmFzZV9zYmluZGlyfS9zaHV0ZG93bjxicj4NCiYj
+NDM7fTxicj4NCjxzcGFuIGNsYXNzPSJob2VuemIiPjxzcGFuIHN0eWxlPSJjb2xvcjojODg4ODg4
+Ij4tLTwvc3Bhbj48L3NwYW4+PHNwYW4gc3R5bGU9ImNvbG9yOiM4ODg4ODgiPjxicj4NCjxzcGFu
+IGNsYXNzPSJob2VuemIiPjEuOS4xPC9zcGFuPjxicj4NCjxicj4NCjxzcGFuIGNsYXNzPSJob2Vu
+emIiPi0tPC9zcGFuPjxicj4NCjxzcGFuIGNsYXNzPSJob2VuemIiPl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPC9zcGFuPjxicj4NCjxzcGFuIGNsYXNzPSJo
+b2VuemIiPnlvY3RvIG1haWxpbmcgbGlzdDwvc3Bhbj48YnI+DQo8c3BhbiBjbGFzcz0iaG9lbnpi
+Ij48YSBocmVmPSJtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyI+eW9jdG9AeW9jdG9wcm9q
+ZWN0Lm9yZzwvYT48L3NwYW4+PGJyPg0KPHNwYW4gY2xhc3M9ImhvZW56YiI+PGEgaHJlZj0iaHR0
+cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvIiB0YXJnZXQ9Il9ibGFu
+ayI+aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvPC9hPjwvc3Bh
+bj48L3NwYW4+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9o
+dG1sPg0K
 
-SRC_URI = " \
-    git://
-anongit.freedesktop.org/gstreamer/gst-omx;branch=master;name=gst-omx \
-git://
-anongit.freedesktop.org/gstreamer/common;destsuffix=git/common;branch=master;name=common
-"
-
-SRCREV_gst-omx = "a2db76b048db278ef0aa798e106b7594264e06c0"
-SRCREV_common = "5edcd857b2107cd8b78c16232dd10877513ec157"
-
-Basically, give each URI a name, and then use the names in SRCREV overrides.
-
-Ross
-
---001a1146f1006e14cc051b0f85c4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 17 July 2015 at 10:32, Anooj Gopi <span dir=3D"ltr">&lt;<a href=3D"mailt=
-o:anoojgopi@gmail.com" target=3D"_blank">anoojgopi@gmail.com</a>&gt;</span>=
- wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
-8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-st=
-yle:solid;padding-left:1ex"><div>But now I would like to clone two git repo=
-sitory, which of course have different hash value to be checked-out. Is it =
-possible to do that in yocto?<br></div></blockquote></div><br>Almost the sa=
-me syntax.=C2=A0 I&#39;m not sure why you&#39;re using pn-${BPN} notation i=
-n a recipe, but this is from gstreamer1.0-omx:</div><div class=3D"gmail_ext=
-ra"><br></div><div class=3D"gmail_extra"><div class=3D"gmail_extra">SRC_URI=
- =3D &quot; \</div><div class=3D"gmail_extra">=C2=A0 =C2=A0 git://<a href=
-=3D"http://anongit.freedesktop.org/gstreamer/gst-omx;branch=3Dmaster;name=
-=3Dgst-omx">anongit.freedesktop.org/gstreamer/gst-omx;branch=3Dmaster;name=
-=3Dgst-omx</a> \=C2=A0</div><div class=3D"gmail_extra">git://<a href=3D"htt=
-p://anongit.freedesktop.org/gstreamer/common;destsuffix=3Dgit/common;branch=
-=3Dmaster;name=3Dcommon">anongit.freedesktop.org/gstreamer/common;destsuffi=
-x=3Dgit/common;branch=3Dmaster;name=3Dcommon</a>&quot;</div><div class=3D"g=
-mail_extra"><br></div><div class=3D"gmail_extra">SRCREV_gst-omx =3D &quot;a=
-2db76b048db278ef0aa798e106b7594264e06c0&quot;</div><div class=3D"gmail_extr=
-a">SRCREV_common =3D &quot;5edcd857b2107cd8b78c16232dd10877513ec157&quot;</=
-div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Basical=
-ly, give each URI a name, and then use the names in SRCREV overrides.</div>=
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div><=
-/div></div>
-
---001a1146f1006e14cc051b0f85c4--
+--_000_DDB0C57E45663A458C5CACB7B5688BC21D8C97D3SESTOEX04enease_--
