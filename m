@@ -1,40 +1,41 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <rich.tollerton@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A268FE009E5; Fri, 17 Jul 2015 08:39:42 -0700 (PDT)
+	id EEA09E009EC; Fri, 17 Jul 2015 09:57:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40483E009C3
-	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 08:39:40 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.1/8.15.1) with ESMTPS id t6HFdZDK026922
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 17 Jul 2015 08:39:36 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.235.1;
-	Fri, 17 Jul 2015 08:39:35 -0700
-Message-ID: <55A921B6.7050902@windriver.com>
-Date: Fri, 17 Jul 2015 11:39:34 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
-MIME-Version: 1.0
-To: Gorny Krystian <krystian.gorny@wipotec.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <10D57FBA9FD7C14FB49EE17590E1AF9453C901C3@svr-exc-03.intern.wipotec.de>
-	<55A903ED.70906@windriver.com>
-	<10D57FBA9FD7C14FB49EE17590E1AF9453C901FD@svr-exc-03.intern.wipotec.de>
-In-Reply-To: <10D57FBA9FD7C14FB49EE17590E1AF9453C901FD@svr-exc-03.intern.wipotec.de>
-Subject: Re: Kernel header missing for specific Target
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [130.164.80.23 listed in list.dnswl.org]
+Received: from ni.com (skprod2.natinst.com [130.164.80.23])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3E23E009C3
+	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 09:57:23 -0700 (PDT)
+Received: from us-aus-mgwout1.amer.corp.natinst.com (nb-snip2-1338.natinst.com
+	[130.164.19.135])
+	by us-aus-skprod2.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
+	t6HGvKCG016120; Fri, 17 Jul 2015 11:57:20 -0500
+Received: from weregild.amer.corp.natinst.com ([130.164.14.198])
+	by us-aus-mgwout1.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
+	HF1218) with ESMTP id 2015071711572102-1384540 ;
+	Fri, 17 Jul 2015 11:57:21 -0500 
+From: Richard Tollerton <rich.tollerton@ni.com>
+To: yocto@yoctoproject.org, ajlennon@dynamicdevices.co.uk
+Date: Fri, 17 Jul 2015 11:57:12 -0500
+Message-Id: <cover.1437151912.git.rich.tollerton@ni.com>
+X-Mailer: git-send-email 2.4.4
+X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut1/AUS/H/NIC(Release
+	8.5.3FP6 HF1218|December 12, 2014) at 07/17/2015 11:57:21 AM,
+	Serialize by Router on US-AUS-MGWOut1/AUS/H/NIC(Release 8.5.3FP6
+	HF1218|December 12, 2014) at 07/17/2015 11:57:21 AM,
+	Serialize complete at 07/17/2015 11:57:21 AM
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
+	definitions=2015-07-17_09:, , signatures=0
+Subject: [meta-mono] [RFC] [PATCH 0/1] Force MONO_CFG_DIR
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,143 +47,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Jul 2015 15:39:42 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 17 Jul 2015 16:57:28 -0000
 
-On 15-07-17 09:55 AM, Gorny Krystian wrote:
-> I'm using the fido branch. My iointerrupt.bb file looks as follow:
->
->
-> DESCRIPTION = "Simple IO-interrupt driver"
-> SECTION = "iointerrupt"
-> LICENSE = "MIT"
-> LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
-> PR = "r0"
->
-> SRC_URI = "file://drv_iointerrupt.c"
-> S = "${WORKDIR}"
-> do_compile() {
->               ${CC} drv_iointerrupt.c -o iointerrupt
-> }
+Hi Alex,
 
-And so I'm clear .. this is a standard .ko ? Or a userspace kernel driver ?
+When you mentioned having weird build troubles, that reminded me that I
+was seeing weird build problems of my own, that I had been refraining
+from sending patches on until I could better characterize the issue.
 
-If you are looking for the internal kernel sources to be on the include
-path, you need to reference STAGING_KERNEL_DIR (and something has to
-depend on the kernel do_shared_workdir task to get the right bits
-in place).
+If you've been seeing weird build failures in executables that really
+should never be failing in the first place -- i.e., gacutils failures,
+or "invalid resx file", or anything involving not being able to dlopen
+libc or being unable to open /etc/mono/config -- you might be interested
+in this patch.
 
-  recipes-kernel/lttng/lttng-modules_2.6.1.bb
+That said, if you *don't* have problems compiling to an ARM sysroot, I'd
+be interested in knowing that too. :F
 
-Is an example of both.
 
-Bruce
+The following changes since commit 041cc6b70c7fb3b55e73b90b1a101844da1726b2:
 
-> do_install() {
->               install -d ${D}${bindir}
->               install -m 0755 iointerrupt ${D}${bindir}
-> }
->
-> Thanks,
-> Krystian
->
-> _____________________________________________________________________
->
-> Krystian Gorny
-> Research & Development
->
-> Wipotec GmbH
-> Adam-Hoffmann-Str. 26
-> 67657 Kaiserslautern
->
-> T +49.631.34146-0
-> F +49.631.34146-8640
-> http://www.wipotec.com
->
->
-> _____________________________________________________________________
->
-> Weigh Cells | Weighing systems
->
-> See our solutions. Visit us at our events
-> http://www.wipotec.com/de/aktuelles/veranstaltungen/
->
-> _____________________________________________________________________
->
-> Legal information:
-> Wipotec Wiege- und Positioniersysteme GmbH
-> HRB 2317 Kaiserslautern, Management: T. D?ppre, U. Wagner
->
-> This e-mail may contain confidential and/or privileged information.
-> If you are not the intended recipient (or have received this e-mail in error)
-> please notify the sender immediately and delete this e-mail. Any unauthorized
-> copying, disclosure or distribution of the material in this e-mail is strictly
-> forbidden.
->
-> -----Original Message-----
-> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
-> Sent: Friday, July 17, 2015 3:32 PM
-> To: Gorny Krystian; yocto@yoctoproject.org
-> Subject: Re: [yocto] Kernel header missing for specific Target
->
-> On 15-07-17 08:47 AM, Gorny Krystian wrote:
->> Hi
->>
->> I try add to my core-image-rt image on a x86 arch my own IO driver. I
->> have already my own recipe, for normal user space programs everything
->> is working fine.
->>
->> For the kernel space driver Yocto is missing at do_comile task the
->> asm/atomic.h header file. I have searched for the atomic.h file and
->> found a lot of them in the ./build/tmp/work folder. Yocto should use
->> one of them for the right hardware architecture right? Or is the a
->> something else I have forget to do?
->
-> What Yocto branch are you using ?
->
-> atomic.h is placed in the right location by the kernel build, assuming that your driver recipe has the proper dependencies.  Without seeing that recipe, it is hard to say more.
->
-> Cheers,
->
-> Bruce
->
->>
->> Many thanks
->>
->> Krystian
->>
->>
->> _____________________________________________________________________
->>
->> *Krystian Gorny*
->> Research & Development
->>
->> Wipotec GmbH
->> Adam-Hoffmann-Str. 26
->> 67657 Kaiserslautern
->>
->> T +49.631.34146-0
->> F +49.631.34146-8640
->> http://www.wipotec.com
->>
->>
->>
->> <http://www.wipotec.com>
->>
->> Legal information:
->> Wipotec Wiege- und Positioniersysteme GmbH HRB 2317 Kaiserslautern,
->> Management: T. Düppre, U. Wagner
->>
->> This e-mail may contain confidential and/or privileged information.
->> If you are not the intended recipient (or have received this e-mail in
->> error)
->> please notify the sender immediately and delete this e-mail. Any
->> unauthorized copying, disclosure or distribution of the material in
->> this e-mail is strictly forbidden.
->>
->>
->
->
+  README: Update to remove references to mono < 3.12.1 (2015-07-17 12:38:32 +0100)
+
+are available in the git repository at:
+
+  git://github.com/rtollert/meta-mono dev/rtollert/v5/mono-cfg
+  https://github.com/rtollert/meta-mono/tree/dev/rtollert/v5/mono-cfg
+
+Richard Tollerton (1):
+  mono.bbclass: set MONO_CFG_DIR
+
+ classes/mono.bbclass | 2 ++
+ 1 file changed, 2 insertions(+)
+
+-- 
+2.4.4
 
 
