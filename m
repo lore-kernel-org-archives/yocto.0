@@ -1,43 +1,49 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <ryansvb91@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 89E8CE009E5; Fri, 17 Jul 2015 11:44:40 -0700 (PDT)
+	id 6089EE009EC; Fri, 17 Jul 2015 18:35:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ryansvb91[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 221E1E009C3
-	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 11:44:33 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 0B36F27E2D1;
-	Fri, 17 Jul 2015 18:44:32 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id UiruwlTCnSDW; Fri, 17 Jul 2015 18:44:30 +0000 (UTC)
-Received: from [192.168.0.12] (cpc47-live22-2-0-cust92.17-2.cable.virginm.net
-	[86.17.157.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id EED1F27E289;
-	Fri, 17 Jul 2015 18:44:29 +0000 (UTC)
-Message-ID: <55A94D03.207@dynamicdevices.co.uk>
-Date: Fri, 17 Jul 2015 19:44:19 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.173 listed in list.dnswl.org]
+Received: from mail-qk0-f173.google.com (mail-qk0-f173.google.com
+	[209.85.220.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35797E0034B
+	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 18:35:30 -0700 (PDT)
+Received: by qkbm65 with SMTP id m65so25997428qkb.2
+	for <yocto@yoctoproject.org>; Fri, 17 Jul 2015 18:35:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=9SeSZ+7HnZyWWwy9mFmLuE9JrqYDhkeqp1n+SqGewWw=;
+	b=OytXAUrO0KeHK+OJXYpkjvyudSTp8Lci2bdL9En5QsgqJoWqU20r27sFt5/LOXp28B
+	j8SOY/tPoq3u6Onl6fHYGwQmTMenNWYt7cjBAx04zdJfCEXF8jO8IKgfvdv678mFIost
+	pvnNWDpydEMdeS2A2WtAHEp02tMAAuGedCFrhXt5X9zvHOg6spHoRQPuLi4DWL/mPueb
+	HHlcRgkXrkzX2A9oQQmkYob5zQeD8VJ8Ffrvxc06qvFlOgNp6QIg66vVytP/pzV3roGO
+	8QZwHttoHCu0TagFQ7O6d0sJ0jNsSA0sAYXPaiGHge8ThklSGQmRr7l1xVkzfiJggPZe
+	mkNw==
 MIME-Version: 1.0
-To: Richard Tollerton <rich.tollerton@ni.com>, yocto@yoctoproject.org
-References: <cover.1437151912.git.rich.tollerton@ni.com>
-	<55A93AAF.7010601@dynamicdevices.co.uk>
-	<87y4iewsku.fsf@weregild.amer.corp.natinst.com>
-In-Reply-To: <87y4iewsku.fsf@weregild.amer.corp.natinst.com>
-Subject: Re: [meta-mono] [RFC] [PATCH 0/1] Force MONO_CFG_DIR
+X-Received: by 10.55.41.195 with SMTP id p64mr30434285qkp.5.1437183329870;
+	Fri, 17 Jul 2015 18:35:29 -0700 (PDT)
+Received: by 10.140.91.229 with HTTP; Fri, 17 Jul 2015 18:35:29 -0700 (PDT)
+Date: Fri, 17 Jul 2015 18:35:29 -0700
+Message-ID: <CAMeZNHSyDNsKD0aX0P_cnpS3o8jZPkGcN8d0ZDnWFhrC3P1cHw@mail.gmail.com>
+From: Ryan Soussan <ryansvb91@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Problem overwriting default kernel config values
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,126 +55,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Jul 2015 18:44:40 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 18 Jul 2015 01:35:36 -0000
+Content-Type: multipart/alternative; boundary=001a11473b24daa948051b1c517a
 
+--001a11473b24daa948051b1c517a
+Content-Type: text/plain; charset=UTF-8
 
+Hello,
+We're having a problem overwriting the default linux kernel config values.
+We tried adding our own .cfg file to our layer and appending it to the
+source url of the linux-yocto bitbake file.  The variable in our case is
+not getting overwritten though (changing CONFIG_ATH5K=m to =y).  Here's
+some relevant output from mismatch.txt:
+Value requested for CONFIG_ATH5K not in final .config
+  Requested value:  CONFIG_ATH5K=y
+        Actual value:     CONFIG_ATH5K=m
 
-On 17/07/2015 19:24, Richard Tollerton wrote:
-> Alex J Lennon <ajlennon@dynamicdevices.co.uk> writes:
->
->> Hi Richard,
->>
->> On 17/07/2015 17:57, Richard Tollerton wrote:
->>> Hi Alex,
->>>
->>> When you mentioned having weird build troubles, that reminded me that I
->>> was seeing weird build problems of my own, that I had been refraining
->>> from sending patches on until I could better characterize the issue.
->>>
->>> If you've been seeing weird build failures in executables that really
->>> should never be failing in the first place -- i.e., gacutils failures,
->>> or "invalid resx file", or anything involving not being able to dlopen
->>> libc or being unable to open /etc/mono/config -- you might be interested
->>> in this patch.
->> I think I have identified the problems I was seeing with the recipes,
->> which boil down to the lack of a mono gmcs script and inheriting
->> autotools-brokensep instead of autotools.
->>
->> I can't quite understand why you were not seeing the problem at your
->> end, but I can see that gmcs was removed at end 2014 -
->>
->> https://github.com/mono/mono/commit/b304ec5e0e694ef7098e0fc3eba9dbc0162f4568
-> Yeah, I saw it too. :F I wound up working around it by adding a gmcs
-> symlink in the recipe, but then I also added a gmcs symlink in my host
-> OS, which wound up masking the build errors when I tried removing the
-> gmcs symlink from the recipe later.
->
-> There were also some autotools-brokensep build problems I was planning
-> on submitting later, sounds like you got those fixed first (yay!)
+And basically the same error message in missing_required.cfg.  So it looks
+like yocto is seeing our request but ignoring it.  The source code for
+these messages is located here:
+http://git.yoctoproject.org/cgit/cgit.cgi/yocto-kernel-tools/tree/tools/kconf_check
 
-Good - that explains it then. Yes autotools-brokensep is in there now.
-The gmcs workaround will arrive shortly
+We were following the instructions for editing the config file located in
+the linux directory of the meta-skeleton layer in poky.   Any help would be
+appreciated!
 
->> The commits I made today address the autotools-brokensep issue and get
->> me to a point where I can build image-full-mono with a hand-added gmcs
->> script in sysroot
->>
->> (There was a patch needed for monotools-server to support the more
->> recent mono-xsp and mono-upnp needed autotools-brokensep).
->>
->> Now I just need to decide whether to reintroduce the gmcs script or fix
->> all the other autotools configurations...
-> A-ha! mono-xsp fixed its gmcs references in master, but hasn't cut a
-> release since May 2013. I just asked on #monodev for somebody to cut a
-> new release, but until then, I suppose a workaround is to create a
-> mono-xsp_git.bb?
->
-> Which other packages require gmcs? I see that monotools-server does, but
-> I can't find evidence of that being maintained since 2010, and I
-> otherwise don't have a use for it AFAIK.
+Thanks,
+Ryan
 
-I'd have to check. I think there were a couple of others but adding in
-gmcs made all the problems "disappear" so I didn't investigate further.
+--001a11473b24daa948051b1c517a
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-If I get a chance I may remove tmp/ and rebuild without the gmcs patch
-to see what breaks.
+<div dir=3D"ltr">Hello,<div>We&#39;re having a problem overwriting the defa=
+ult linux kernel config values.=C2=A0 We tried adding our own .cfg file to =
+our layer and appending it to the source url of the linux-yocto bitbake fil=
+e.=C2=A0 The variable in our case is not getting overwritten though (changi=
+ng CONFIG_ATH5K=3Dm to =3Dy).=C2=A0 Here&#39;s some relevant output from mi=
+smatch.txt:</div><div><div>Value requested for CONFIG_ATH5K not in final .c=
+onfig =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 Requested value: =C2=A0CONFIG_ATH5K=3Dy =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 A=
+ctual value: =C2=A0 =C2=A0 CONFIG_ATH5K=3Dm =C2=A0=C2=A0</div></div><div><b=
+r></div><div>And basically the same error message in missing_required.cfg.=
+=C2=A0 So it looks like yocto is seeing our request but ignoring it.=C2=A0 =
+The source code for these messages is located here: <a href=3D"http://git.y=
+octoproject.org/cgit/cgit.cgi/yocto-kernel-tools/tree/tools/kconf_check">ht=
+tp://git.yoctoproject.org/cgit/cgit.cgi/yocto-kernel-tools/tree/tools/kconf=
+_check</a> =C2=A0 =C2=A0</div><div>We were following the instructions for e=
+diting the config file located in the linux directory of the meta-skeleton =
+layer in poky. =C2=A0 Any help would be appreciated! =C2=A0</div><div><br><=
+/div><div>Thanks,</div><div>Ryan=C2=A0</div></div>
 
-monotools-server is there because I want to be able to remote debug onto
-ARM platforms with Visual Studio (or Xamarin IDE if I have to) Some time
-ago Xamarin had a neat Visual Studio plugin that supported this but
-unfortunately it has disappeared. Xamarin IDE can be  configured to
-remote debug against Mono/Arm/Linux and I've had some success with
-trivial applications but I really want to find time to get this up and
-running for more complex commercial applications.
-
->> I am probably going to reintroduce the script due to time contraints
->> unless you want to take a look at this?
-> Yeah, go for it.
->
-> I asked on #monodev whether there was any downside to symlinking gmcs to
-> mcs, and at least one person responded in the negative. But IIRC, at the
-> same time, nobody expressed any surprise that this isn't done already,
-> which is kinda weird. I did do some grepping through the mono codebase
-> and was unable to find any behavioral changes that were keyed off
-> executing mcs as gmcs, so obviously it's going to emit 4.5-compatible
-> stuff which isn't ideal, but it does get stuff building.
->
-> I presume that your script solution restricts assembly versions
-> appropriately and the like and tries to do The Right Thing.
->
-> See also
-> https://github.com/mono/mono/commit/6b76c7e984cbe42d6455ffcde2fe227aa5ffd801,
-> which was breaking mono-xsp when build with gmcs symlinked to mcs. I
-> presume you didn't encounter this with your script because it's properly
-> behaving like gmcs, but once these mono-xsp gmcs fixes roll in, this
-> will probably start breaking stuff.
-
-I wasn't keen on symlinking, so in the short term I am looking at just
-reverting the patch I referenced which removed gmcs.
-
-I can believe that may lead us onto other issues but at least it is a
-step in the right direction as the recipes will at least build...
-
->> I use mono primarily on ARM (i.MX6) - commercially, quite a lot - and
->> haven't seen anything that was problematical with the build for some
->> time, since I addressed some issues with use of out of tree mono
->> installed on the host.
->>
->> So from my experience "all is well" with Mono ARM builds. I'd like to
->> know about any issues you or others have seen on ARM platforms though
->> which we need to address.
->>
->> That said, I can't see any reason not to apply your patch so will merge
->> that in.
-> Thanks. I'll try to dig deeper into this soon, and will work upstream
-> with the mono devs when I get to the bottom of it.
-
-Great!
-
-Cheers,
-
-Alex
-
-
+--001a11473b24daa948051b1c517a--
