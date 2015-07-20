@@ -1,50 +1,58 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <develone@sbcglobal.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AB36CE008D4; Mon, 20 Jul 2015 08:40:00 -0700 (PDT)
+	id 2CAC1E008DC; Mon, 20 Jul 2015 08:50:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [98.138.91.249 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.170 listed in list.dnswl.org]
-Received: from mail-qk0-f170.google.com (mail-qk0-f170.google.com
-	[209.85.220.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C304E008D4
-	for <yocto@yoctoproject.org>; Mon, 20 Jul 2015 08:39:51 -0700 (PDT)
-Received: by qkfc129 with SMTP id c129so71615660qkf.1
-	for <yocto@yoctoproject.org>; Mon, 20 Jul 2015 08:39:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=JjF65VUD26I7hP2cU/YbI1f9exP1ae91Dnvt2edq9+o=;
-	b=hjSVlvrHYr9IS47nHKmXgHkC4yIW/EvJPBA+e2gDEG/13l621n3p8ckhK/Y07MhRwk
-	2rSZvzQsneSICH/b6PMTd4fzU2Q/6iQV7retaEViRuS2ZzaVeZm1jb8Hsa7kY2MXTwyQ
-	ED77Qe29SfIvbtJxcrQCuz3a0rvws0v/ofnLi78xjD6P4Tpqw9sP1UdCNnid+7MlnboG
-	9ZIocmE22bb//H8BgQ61w6hxX4hCntiDfNYB7D0Cvam9tJCeW8CY1OLYNfZPaa3LT18Y
-	mVjR4fnOG2LyQwWImvUHXKX6b8+g8LlFkbs9DhfTISi8gCX9gTc+RoeE9iCIcVOI3dqd
-	r1Uw==
-X-Gm-Message-State: ALoCoQmh+DM71zsJgwC0kgPl3blFyWQPF5kJz7A9LcFr9iHLX+i5xXjynEeHE2DzFpIUL+oLs9Lk
-X-Received: by 10.55.22.169 with SMTP id 41mr16230084qkw.13.1437406790941;
-	Mon, 20 Jul 2015 08:39:50 -0700 (PDT)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm27-vm5.bullet.mail.ne1.yahoo.com
+	(nm27-vm5.bullet.mail.ne1.yahoo.com [98.138.91.249])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1A8BE008D4
+	for <yocto@yoctoproject.org>; Mon, 20 Jul 2015 08:50:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
+	t=1437407446; bh=o97LjEnc+uodtm4ewY0+AKYyF1o6XFPulughYXZQ33Q=;
+	h=Date:From:Reply-To:To:Subject:From:Subject;
+	b=DLsnYAvSe4VzT6XvgROSI/XabAbZ1r81snWeG1Vmvcns2vTv9vpvrczMZrUpRzu/yNaorD5lqx+UZp7RbhIr2xkm5hSTn8vm5BhaJrFZ/FCNdjDGNb3gnTG4gZRJgZJv8VZSS12P3UfqxmaKXZ1uaN6tGu8fDGgavc4wBjf6syMrrzDqqSqzcoE+lb50G9QTX4CDUWZGIZNtNv7G+5aKdC9q0wmbimyBqbOaoGn4e/dVfK7fMW0DO83Xzb6UoOugMBz5scNaTodOeOC5CkWFLztY5wSrSqb2NRoTHRKyLPxa0MgChx/NmScz0GJLPu3yA6VeZfzFc5u+pvbHdo3Jfg==
+Received: from [98.138.226.179] by nm27.bullet.mail.ne1.yahoo.com with NNFMP;
+	20 Jul 2015 15:50:46 -0000
+Received: from [98.138.89.161] by tm14.bullet.mail.ne1.yahoo.com with NNFMP;
+	20 Jul 2015 15:50:46 -0000
+Received: from [127.0.0.1] by omp1017.mail.ne1.yahoo.com with NNFMP;
+	20 Jul 2015 15:50:46 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 39575.12525.bm@omp1017.mail.ne1.yahoo.com
+X-YMail-OSG: pMXANagVM1mqnVJ.tZfRGSNW3sf.NFm0PjtAyl5FKk6065TF_oUmj8g6Si3GuVo
+	92LByICjY1GoNa8hxPvPQ.CHd3JkbvhF5OXwnN8VAguTTDCJBmHL27yU.MHwvX0j7jB9e0r9Wulp
+	phlLgvRACXPIGBl9901.zvKP9Czo38jcAh2A.rpcQwCPrwxk7XNbdbCcFvWFlitB8rQAfidllE7M
+	HzlzFPrZzI.bw0UAyOOdrugU02qOSWx59HXEW6U0AzdASaiKvuJ0wD0jdXskjukKqbAXKLvDa0qz
+	U6XQFIFd565hHy7_Dqx8yyAdyGF0ZjtfA1Q2s0tbgKsK.U7XntxaB2YFErKjT5HqXwHxB6LEKXsW
+	mQ8mc2.Esw1dr24sthi9rtgyj5jwGkWFjy3gQ7SCv0S5M2nGgTBG7wO79gaCiejzGqy8wkqSGndX
+	TaLXoV7k1WJ83jRwUIV6.2PRwxHwDtrsBdU.eL1ynqFUZEX3Up2imLWZQhIJcJVJg_4.mgaQSvk.
+	_.SOqEmwi1GAvIYEepTOAZ_RAlgNNJ9U-
+Received: by 98.138.105.208; Mon, 20 Jul 2015 15:50:45 +0000 
+Date: Mon, 20 Jul 2015 15:50:41 +0000 (UTC)
+From: Edward Vidal <develone@sbcglobal.net>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <1483998023.951321.1437407441203.JavaMail.yahoo@mail.yahoo.com>
 MIME-Version: 1.0
-Received: by 10.140.102.231 with HTTP; Mon, 20 Jul 2015 08:39:31 -0700 (PDT)
-In-Reply-To: <55AD13AC.3010802@mlbassoc.com>
-References: <55AD13AC.3010802@mlbassoc.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 20 Jul 2015 16:39:31 +0100
-Message-ID: <CAJTo0LY=mS1xJ5kW-ogFNY=T60qpyWP0MofdTK4_XKckzh5mfg@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: New/unfamiliar messages
+Subject: RaspberryPi 2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Edward Vidal <develone@sbcglobal.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -53,58 +61,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Jul 2015 15:40:00 -0000
-Content-Type: multipart/alternative; boundary=001a11496e902c0ee1051b50594a
+X-List-Received-Date: Mon, 20 Jul 2015 15:50:51 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_951320_899815232.1437407441200"
 
---001a11496e902c0ee1051b50594a
+------=_Part_951320_899815232.1437407441200
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 20 July 2015 at 16:28, Gary Thomas <gary@mlbassoc.com> wrote:
+Hi all,Gary Thomas recommended installing apt-get install libsdl1.2. which =
+helped withThe libsdl-native error.=C2=A0=C2=A0 Is MACHINE ??=3D "raspberry=
+pi2" a valid machine.bitbake rpi-basic-image
+ERROR:=C2=A0 OE-core's config sanity checker detected a potential misconfig=
+uration.
+=C2=A0=C2=A0=C2=A0 Either fix the cause of this error or at your own risk d=
+isable the checker (see sanity.conf).
+=C2=A0=C2=A0=C2=A0 Following is the list of potential problems / advisories=
+:
 
->   NOTE: Stamp
-> /home/local/rpi2_2015-03-05/tmp/stamps/i686-linux/dbus-native/1.8.16-r0 is
-> not reachable, removing related manifests
->       ... many more
->
-> What do these mean and should I be worried about seeing them?
->
+=C2=A0=C2=A0=C2=A0 Please set a valid MACHINE in your local.conf or environ=
+ment
 
-That basically means that e.g. the dbus-native in the layers is newer than
-the version in the sysroot, so it is now removing dbus-native 1.8.16 from
-the sysroot so it can later install 1.8.<something newer>.  Now this code
-has pretty much proven itself we can probably remove those messages.
 
-Previously it just wrote over the top and hoped for the best, with logic to
-error out if one native recipe wrote over another recipe's files.  This was
-good for determinism but bad for moving files between recipes or renaming
-recipes (which was impossible).
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.=
+=C2=A0As always any and all help is appreciated.Thanks
+Edward Vidal Jr.
+e-mail develone@sbcglobal.net
+915-595-1613
 
-Ross
-
---001a11496e902c0ee1051b50594a
+------=_Part_951320_899815232.1437407441200
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 20 July 2015 at 16:28, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"mail=
-to:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span> wr=
-ote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
--left:1px #ccc solid;padding-left:1ex"><div id=3D":5f5" class=3D"a3s" style=
-=3D"overflow:hidden">=C2=A0 NOTE: Stamp /home/local/rpi2_2015-03-05/tmp/sta=
-mps/i686-linux/dbus-native/1.8.16-r0 is not reachable, removing related man=
-ifests<br>
-=C2=A0 =C2=A0 =C2=A0 ... many more<br>
-<br>
-What do these mean and should I be worried about seeing them?</div></blockq=
-uote><div><br></div><div>That basically means that e.g. the dbus-native in =
-the layers is newer than the version in the sysroot, so it is now removing =
-dbus-native 1.8.16 from the sysroot so it can later install 1.8.&lt;somethi=
-ng newer&gt;.=C2=A0 Now this code has pretty much proven itself we can prob=
-ably remove those messages.</div><div><br></div><div>Previously it just wro=
-te over the top and hoped for the best, with logic to error out if one nati=
-ve recipe wrote over another recipe&#39;s files.=C2=A0 This was good for de=
-terminism but bad for moving files between recipes or renaming recipes (whi=
-ch was impossible).</div><div><br></div><div>Ross=C2=A0</div></div></div></=
-div>
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
+nt-size:16px"><div id=3D"yui_3_16_0_1_1437407008300_2359"><span>Hi all,</sp=
+an></div><div><span>Gary Thomas recommended installing apt-get install libs=
+dl1.2. which helped with</span></div><div id=3D"yui_3_16_0_1_1437407008300_=
+2452"><span id=3D"yui_3_16_0_1_1437407008300_2451">The libsdl-native error.=
+&nbsp;&nbsp; Is MACHINE ??=3D "raspberrypi2" a valid machine.</span></div><=
+div dir=3D"ltr" id=3D"yui_3_16_0_1_1437407008300_2440"><span>bitbake rpi-ba=
+sic-image<br class=3D"">ERROR:&nbsp; OE-core's config sanity checker detect=
+ed a potential misconfiguration.<br class=3D"">&nbsp;&nbsp;&nbsp; Either fi=
+x the cause of this error or at your own risk disable the checker (see sani=
+ty.conf).<br class=3D"">&nbsp;&nbsp;&nbsp; Following is the list of potenti=
+al problems / advisories:<br class=3D""><br class=3D"">&nbsp;&nbsp;&nbsp; P=
+lease set a valid MACHINE in your local.conf or environment<br class=3D""><=
+br class=3D""><br class=3D"">Summary: There was 1 ERROR message shown, retu=
+rning a non-zero exit code.</span></div><div id=3D"yui_3_16_0_1_14374070083=
+00_2482"><div>&nbsp;As always any and all help is appreciated.</div><div>Th=
+anks</div><div><br></div></div><div><div>Edward Vidal Jr.<br>e-mail develon=
+e@sbcglobal.net<br>915-595-1613</div></div></div></body></html>
 
---001a11496e902c0ee1051b50594a--
+------=_Part_951320_899815232.1437407441200--
