@@ -1,47 +1,39 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 69B41E008DC; Mon, 20 Jul 2015 09:11:47 -0700 (PDT)
+	id C7D29E009C5; Mon, 20 Jul 2015 10:08:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.179 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qk0-f179.google.com (mail-qk0-f179.google.com
-	[209.85.220.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F2D0E008D4
-	for <yocto@yoctoproject.org>; Mon, 20 Jul 2015 09:11:39 -0700 (PDT)
-Received: by qkdl129 with SMTP id l129so115113046qkd.0
-	for <yocto@yoctoproject.org>; Mon, 20 Jul 2015 09:11:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=sHSucyPxQsfW10UhZI52laSwhYBEthVgBhSnqSm4SnM=;
-	b=b3CImdPxHR3umVP23R7vBWrirb5dezj966iDgnzVoJHoicLcYjRz6ekRcfnb/WKYb+
-	MmK/aLm75Yv30FwiIu/X1pSjY9mT0561RcUd193gxaMr+37WbdBn5WKo/GgU24DfKesJ
-	BQYIfm9B//Wv/NFhvxcBGuOaib47lt7DV2OS3P4CPe+qlIhoEOpI1Hr0Xs7oLjBa2uJL
-	f2K+/nF9QqaGXNwYGZMOV+FIfFZqrOZaAV855G0nEt8Uycx/CTGjHHy0oygyDsnJtIOM
-	9iS9s4JmqpaWqqvpvoDwIOOMW6QV+dz+Z89X5WSIxFuMs105GCVnJpWqfI03d/lRFSjf
-	+yjg==
-X-Gm-Message-State: ALoCoQnH3HUKt7fNHT+x9Qgdb+5fOl/au7Wbj85z8DpHbrdph4jkrq6vgaCvVnJGbtA72e5s8YGx
-X-Received: by 10.141.28.211 with SMTP id f202mr43319448qhe.93.1437408699342; 
-	Mon, 20 Jul 2015 09:11:39 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.140.102.231 with HTTP; Mon, 20 Jul 2015 09:11:19 -0700 (PDT)
+X-Greylist: delayed 581 seconds by postgrey-1.32 at yocto-www;
+	Mon, 20 Jul 2015 10:08:38 PDT
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08F17E008D4
+	for <yocto@yoctoproject.org>; Mon, 20 Jul 2015 10:08:37 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	t6KGwpIm023472; Mon, 20 Jul 2015 17:58:51 +0100
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id xoIyisgIJgKv; Mon, 20 Jul 2015 17:58:51 +0100 (BST)
+Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
+	t6KGwcR2023467
+	(version=TLSv1/SSLv3 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+	Mon, 20 Jul 2015 17:58:49 +0100
+Message-ID: <1437411518.27687.43.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Gary Thomas <gary@mlbassoc.com>
+Date: Mon, 20 Jul 2015 17:58:38 +0100
 In-Reply-To: <55AD1D0E.1020402@mlbassoc.com>
 References: <55AD13AC.3010802@mlbassoc.com>
 	<CAJTo0LY=mS1xJ5kW-ogFNY=T60qpyWP0MofdTK4_XKckzh5mfg@mail.gmail.com>
 	<55AD1D0E.1020402@mlbassoc.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 20 Jul 2015 17:11:19 +0100
-Message-ID: <CAJTo0LZnu+XEHJZy3m2bZnzrbYmRXKJjmj1WO2NhHQTE+YNfiQ@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
+X-Mailer: Evolution 3.12.10-0ubuntu1~14.10.1 
+Mime-Version: 1.0
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: New/unfamiliar messages
 X-BeenThere: yocto@yoctoproject.org
@@ -55,36 +47,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Jul 2015 16:11:47 -0000
-Content-Type: multipart/alternative; boundary=001a114218c6ec1199051b50ca0a
+X-List-Received-Date: Mon, 20 Jul 2015 17:08:40 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---001a114218c6ec1199051b50ca0a
-Content-Type: text/plain; charset=UTF-8
-
-On 20 July 2015 at 17:08, Gary Thomas <gary@mlbassoc.com> wrote:
-
+On Mon, 2015-07-20 at 10:08 -0600, Gary Thomas wrote:
+> On 2015-07-20 09:39, Burton, Ross wrote:
+> >
+> > On 20 July 2015 at 16:28, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
+> >
+> >        NOTE: Stamp /home/local/rpi2_2015-03-05/tmp/stamps/i686-linux/dbus-native/1.8.16-r0 is not reachable, removing related manifests
+> >            ... many more
+> >
+> >     What do these mean and should I be worried about seeing them?
+> >
+> >
+> > That basically means that e.g. the dbus-native in the layers is newer than the version in the sysroot, so it is now removing dbus-native 1.8.16 from the sysroot so it can later
+> > install 1.8.<something newer>.  Now this code has pretty much proven itself we can probably remove those messages.
+> >
+> > Previously it just wrote over the top and hoped for the best, with logic to error out if one native recipe wrote over another recipe's files.  This was good for determinism but bad
+> > for moving files between recipes or renaming recipes (which was impossible).
+> 
+> Thanks for the explanation.  I can see that the code for this
+> is fairly new (early June) and I must have not seen many of these
+> so it grabbed my attention.  The build tree in question was last
+> touched in March, so there obviously were many cases of this
+> situation.
+> 
+> Related query: I tend to build & rebuild in the same tree (typically
+> only one platform per build tree) over long periods of time (like my
+> RaspberryPi2 tree which I've had around for many months).  Over time,
+> there may be a lot of updated builds and I end up with many "duplicated"
+> trees in my tmp/work (I don't use rm_work), e.g.
+>    tmp/work/x86_64-linux/libfontenc-native/1_1.1.3-r0
+>    tmp/work/x86_64-linux/libfontenc-native/1_1.1.2-r0
+>    tmp/work/x86_64-linux/glib-2.0-native/1_2.44.1-r0
+>    tmp/work/x86_64-linux/glib-2.0-native/1_2.44.0-r0
+> 
 > Is there a [simple] way to remove just the old/redundant trees?
->
 
-Use rm_work? :)  I believe there is a rm_old_work in meta-oe which may be
-what you're after.
+The code you're talking about above now does this (without rm_work)!
 
-Ross
+Cheers,
 
---001a114218c6ec1199051b50ca0a
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Richard
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 20 July 2015 at 17:08, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"mail=
-to:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span> wr=
-ote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
--left:1px #ccc solid;padding-left:1ex"><div id=3D":5bx" class=3D"a3s" style=
-=3D"overflow:hidden">Is there a [simple] way to remove just the old/redunda=
-nt trees?<div class=3D"yj6qo ajU"><div id=3D":5dt" class=3D"ajR" tabindex=
-=3D"0"></div></div></div></blockquote></div><br>Use rm_work? :) =C2=A0I bel=
-ieve there is a rm_old_work in meta-oe which may be what you&#39;re after.<=
-/div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</=
-div></div>
 
---001a114218c6ec1199051b50ca0a--
+
+
