@@ -1,49 +1,37 @@
-Return-Path: <lenin.muthukumar@gmail.com>
+Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00DF1E006EE; Mon, 20 Jul 2015 05:28:51 -0700 (PDT)
+	id D8D23E008D7; Mon, 20 Jul 2015 08:04:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (lenin.muthukumar[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.160.175 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yk0-f175.google.com (mail-yk0-f175.google.com
-	[209.85.160.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95E4FE0034B
-	for <yocto@yoctoproject.org>; Mon, 20 Jul 2015 05:28:49 -0700 (PDT)
-Received: by ykdu72 with SMTP id u72so137066535ykd.2
-	for <yocto@yoctoproject.org>; Mon, 20 Jul 2015 05:28:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=v+dYwJYMDWgWwKRhEUoYq7vNYSFtXQrVAjoLOi43dEo=;
-	b=xTIxCdCF+R4j4RX3K+5CMG7jmnoD2UDtXH+vnyyBkHYZ2y+POreO2u1l9NGC6w1Rj5
-	NBBYystUv4+N9UiZ37Ozi5tl1RGxfMAci/J/A0seeHsZbwNE2jWfHhjSbAlwMRCRxGke
-	Gyz678PoutNFhWqyLyGwUgk9YAPl7a2QR23T1qBSOXDVtC8odAU2ih2C7PyNrYYmbAuq
-	oE7Qf9XgC6OE/KnE0DTqkyLhB6oUL63PD8OX92EZiaYK7oHh0uSEzfy5B1Df/tjCLHZx
-	s6VMkkVDhdFvJDUKGz27Vfw6/heb38zCGvX2066nqPfS0xj6z0l28wxezp0+n850d/Hr
-	h/Xg==
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B452FE00895
+	for <yocto@yoctoproject.org>; Mon, 20 Jul 2015 08:04:40 -0700 (PDT)
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by fmsmga103.fm.intel.com with ESMTP; 20 Jul 2015 08:04:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.15,508,1432623600"; d="scan'208";a="609423957"
+Received: from lsandov1-mobl-linux.zpn.intel.com (HELO [10.219.4.40])
+	([10.219.4.40])
+	by orsmga003.jf.intel.com with ESMTP; 20 Jul 2015 08:04:18 -0700
+Message-ID: <55AD0E1E.2030805@linux.intel.com>
+Date: Mon, 20 Jul 2015 10:05:02 -0500
+From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Icedove/31.7.0
 MIME-Version: 1.0
-X-Received: by 10.170.75.194 with SMTP id r185mr5347045ykr.121.1437395328504; 
-	Mon, 20 Jul 2015 05:28:48 -0700 (PDT)
-Received: by 10.13.200.65 with HTTP; Mon, 20 Jul 2015 05:28:48 -0700 (PDT)
-Date: Mon, 20 Jul 2015 17:58:48 +0530
-Message-ID: <CAO0HP3E2LNpv=buzdVJG_PcNCW2wSCmho6GRk5x_ScWnge39mw@mail.gmail.com>
-From: Lenin Muthu kumar <lenin.muthukumar@gmail.com>
-To: yocto@yoctoproject.org
-Subject: How to add bluetooth "bluez4" to core image sato (valleyisland)
+To: Lenin Muthu kumar <lenin.muthukumar@gmail.com>, 
+ yocto@yoctoproject.org
+References: <CAO0HP3E2LNpv=buzdVJG_PcNCW2wSCmho6GRk5x_ScWnge39mw@mail.gmail.com>
+In-Reply-To: <CAO0HP3E2LNpv=buzdVJG_PcNCW2wSCmho6GRk5x_ScWnge39mw@mail.gmail.com>
+Subject: Re: How to add bluetooth "bluez4" to core image sato (valleyisland)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,25 +43,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Jul 2015 12:28:52 -0000
-Content-Type: multipart/alternative; boundary=001a1139bbe2f51a19051b4dada9
+X-List-Received-Date: Mon, 20 Jul 2015 15:04:44 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
---001a1139bbe2f51a19051b4dada9
-Content-Type: text/plain; charset=UTF-8
+You can add recipes (packages) through CORE_IMAGE_EXTRA_INSTALL = "pkg 1 
+pkg2 ...". Regarding the specific package you want (bluez4), it is not 
+on master, so you may try older stable branches.
 
-Hi,
-    i have created the image for atom E3800 processor (valleyisland -
-core-image-sato). now i need to add bluetooth service to that image. i need
-a detailed steps how to do it. im expecting positive reply from you. thanks
-in advance.
 
---001a1139bbe2f51a19051b4dada9
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+On 07/20/2015 07:28 AM, Lenin Muthu kumar wrote:
+> Hi,
+>      i have created the image for atom E3800 processor (valleyisland -
+> core-image-sato). now i need to add bluetooth service to that image. i need
+> a detailed steps how to do it. im expecting positive reply from you. thanks
+> in advance.
+>
+>
+>
 
-<div dir=3D"ltr">Hi,<div>=C2=A0 =C2=A0 i have created the image for atom E3=
-800 processor (valleyisland - core-image-sato). now i need to add bluetooth=
- service to that image. i need a detailed steps how to do it. im expecting =
-positive reply from you. thanks in advance.</div></div>
-
---001a1139bbe2f51a19051b4dada9--
