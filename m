@@ -1,33 +1,28 @@
-Return-Path: <Alexandru.Vaduva@enea.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 77A9DE009C5; Tue, 21 Jul 2015 04:21:45 -0700 (PDT)
+	id 33876E009C5; Tue, 21 Jul 2015 04:45:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [192.36.1.252 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 6CD6CE00973
-	for <yocto@yoctoproject.org>; Tue, 21 Jul 2015 04:21:37 -0700 (PDT)
-Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.3.224.2;
-	Tue, 21 Jul 2015 13:21:35 +0200
-Received: by sestofb10.enea.se (Postfix, from userid 4470)	id 7FCB028E77D;
-	Tue, 21 Jul 2015 13:21:35 +0200 (CEST)
-From: Alexandru.Vaduva <Alexandru.Vaduva@enea.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 21 Jul 2015 13:21:17 +0200
-Message-ID: <1437477677-48800-1-git-send-email-Alexandru.Vaduva@enea.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F474E00973
+	for <yocto@yoctoproject.org>; Tue, 21 Jul 2015 04:45:13 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 96F9CF811DA; Tue, 21 Jul 2015 05:45:13 -0600 (MDT)
+Received: from Zeus.chez-thomas.org (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 2F370F811DA;
+	Tue, 21 Jul 2015 05:45:13 -0600 (MDT)
+From: Gary Thomas <gary@mlbassoc.com>
+To: yocto@yoctoproject.org
+Date: Tue, 21 Jul 2015 05:45:30 -0600
+Message-Id: <1437479130-7065-1-git-send-email-gary@mlbassoc.com>
 X-Mailer: git-send-email 1.9.1
-MIME-Version: 1.0
-Received-SPF: None (SESTOEX03.enea.se: Alexandru.Vaduva@enea.com does not
-	designate permitted sender hosts)
-Subject: [meta-cgl][PATCH] Images cleanup
+Cc: Gary Thomas <gary@mlbassoc.com>
+Subject: [meta-raspberrypi][PATCH] sdcard_image: Fix sdcard image generation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,60 +34,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Jul 2015 11:21:45 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 21 Jul 2015 11:45:17 -0000
 
-Signed-off-by: Alexandru.Vaduva <Alexandru.Vaduva@enea.com>
+Recent updates to the MSDOS tools (OE-core is now at 3.0.28) have made
+it an error to overwrite an image using mkfs.vfat.  This patch fixes
+that problem by removing any old/stale images, thus starting from scratch.
+
+Signed-off-by: Gary Thomas <gary@mlbassoc.com>
 ---
- meta-cgl-common/images/core-image-cgl-qt3.bb | 27 ---------------------------
- meta-cgl-common/images/core-image-cgl-sdk.bb |  4 ----
- 2 files changed, 31 deletions(-)
- delete mode 100644 meta-cgl-common/images/core-image-cgl-qt3.bb
- delete mode 100644 meta-cgl-common/images/core-image-cgl-sdk.bb
+ classes/sdcard_image-rpi.bbclass | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/meta-cgl-common/images/core-image-cgl-qt3.bb b/meta-cgl-common/images/core-image-cgl-qt3.bb
-deleted file mode 100644
-index a330c7a..0000000
---- a/meta-cgl-common/images/core-image-cgl-qt3.bb
-+++ /dev/null
-@@ -1,27 +0,0 @@
--require recipes-qt3/images/core-image-lsb-qt3.bb
--
--
--VALGRIND ?= ""
--VALGRIND_powerpc ?= "valgrind"
--VALGRIND_e500v2 ?= ""
--VALGRIND_x86 ?= "valgrind"
--VALGRIND_x86_64 ?= "valgrind"
--VALGRIND_armv7a ?= "valgrind"
--
--# Include modules in rootfs
--IMAGE_INSTALL += "\
--    ${ROOTFS_PKGMANAGE_BOOTSTRAP} \
--    packagegroup-core-buildessential \
--    packagegroup-core-selinux \
--    packagegroup-cgl \
--    kexec-tools \
--    lttng-tools \
--    lttng-modules \
--    ${VALGRIND} \
--    "
--
--# kexec-tools doesn't work on Mips
--KEXECTOOLS_mips ?= ""
--KEXECTOOLS_mipsel ?= ""
--
--IMAGE_FEATURES += "eclipse-debug tools-debug tools-profile dbg-pkgs"
-diff --git a/meta-cgl-common/images/core-image-cgl-sdk.bb b/meta-cgl-common/images/core-image-cgl-sdk.bb
-deleted file mode 100644
-index 090846e..0000000
---- a/meta-cgl-common/images/core-image-cgl-sdk.bb
-+++ /dev/null
-@@ -1,4 +0,0 @@
--require recipes-extended/images/core-image-lsb-sdk.bb
--
--
--IMAGE_FEATURES += "dbg-pkgs"
+diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
+index 7592cc1..62c0768 100644
+--- a/classes/sdcard_image-rpi.bbclass
++++ b/classes/sdcard_image-rpi.bbclass
+@@ -103,6 +103,7 @@ IMAGE_CMD_rpi-sdimg () {
+ 
+ 	# Create a vfat image with boot files
+ 	BOOT_BLOCKS=$(LC_ALL=C parted -s ${SDIMG} unit b print | awk '/ 1 / { print substr($4, 1, length($4 -1)) / 512 /2 }')
++	rm -f ${WORKDIR}/boot.img
+ 	mkfs.vfat -n "${BOOTDD_VOLUME_ID}" -S 512 -C ${WORKDIR}/boot.img $BOOT_BLOCKS
+ 	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/* ::/
+ 	case "${KERNEL_IMAGETYPE}" in
 -- 
 1.9.1
 
