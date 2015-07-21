@@ -1,42 +1,39 @@
-Return-Path: <matt.schuckmann@planar.com>
+Return-Path: <leonardo.sandoval.gonzalez@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DB839E0097F; Tue, 21 Jul 2015 09:08:50 -0700 (PDT)
+	id F103FE0097F; Tue, 21 Jul 2015 10:40:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [63.128.21.105 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 305 seconds by postgrey-1.32 at yocto-www;
-	Tue, 21 Jul 2015 09:08:45 PDT
-Received: from us-smtp-delivery-105.mimecast.com
-	(us-smtp-delivery-105.mimecast.com [63.128.21.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6740BE00837
-	for <yocto@yoctoproject.org>; Tue, 21 Jul 2015 09:08:45 -0700 (PDT)
-Received: from msxbvt03.planar.net (barbvt01.planar.com [199.244.172.50])
-	(Using TLS) by us-smtp-1.mimecast.com with ESMTP id
-	us-mta-21-uFkKN-gHR6KRVNtN9Tm0FQ-2; Tue, 21 Jul 2015 12:02:02 -0400
-Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
-	with mapi; Tue, 21 Jul 2015 09:01:40 -0700
-From: Matt Schuckmann <Matt.Schuckmann@planar.com>
-To: Gary Thomas <gary@mlbassoc.com>, Yocto Project <yocto@yoctoproject.org>
-Date: Tue, 21 Jul 2015 09:01:38 -0700
-Thread-Topic: [yocto] Read-only file system with persistent storage
-Thread-Index: AdC/u883jhXIszpqQlOJFHLyqvN2CQEEVR6w
-Message-ID: <4B07ADD556F70043925DA2E9C5D4346D2FE9BBF806@MSXBEBVT12.planar.net>
-References: <55A79757.8010704@mlbassoc.com>
-In-Reply-To: <55A79757.8010704@mlbassoc.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B37CE00837
+	for <yocto@yoctoproject.org>; Tue, 21 Jul 2015 10:40:44 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by orsmga101.jf.intel.com with ESMTP; 21 Jul 2015 10:40:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.15,517,1432623600"; d="scan'208";a="527840470"
+Received: from lsandov1-mobl-linux.zpn.intel.com (HELO [10.219.4.55])
+	([10.219.4.55])
+	by FMSMGA003.fm.intel.com with ESMTP; 21 Jul 2015 10:40:41 -0700
+Message-ID: <55AE8445.60302@linux.intel.com>
+Date: Tue, 21 Jul 2015 12:41:25 -0500
+From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Icedove/31.7.0
 MIME-Version: 1.0
-X-MC-Unique: uFkKN-gHR6KRVNtN9Tm0FQ-2
-Subject: Re: Read-only file system with persistent storage
+To: Victor Rodriguez <vm.rod25@gmail.com>, 
+	openembedded-devel@lists.openembedded.org
+References: <CAK5mtexdmYF7ivs+nwa7WZSqVb8sZCq5Euvt8oK2HimiXy7PMA@mail.gmail.com>	<55AE6705.5040907@mlbassoc.com>
+	<CAK5mtex-n4XrVXG18zG=ha_+R1-Z5Yh6TKLWudt1CVpXpUHokQ@mail.gmail.com>
+In-Reply-To: <CAK5mtex-n4XrVXG18zG=ha_+R1-Z5Yh6TKLWudt1CVpXpUHokQ@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [oe] Question about IMAGE_INSTALL_append and CORE_IMAGE_EXTRA_INSTALL
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,52 +45,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Jul 2015 16:08:50 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset=WINDOWS-1252
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 21 Jul 2015 17:40:47 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-If you are using systemd you can simply create a separate writeable partiti=
-on and then use the volatile_binds.bb recipe to map files or directories fr=
-om the read only rootfs to the writable partition via bind mounts.=20
-If you are not using systemd you can do the same thing with sysVinit you'll=
- just have to write your own recipe equivalent to volatile_binds.bb
 
-This method works and the way volatile_binds is written it takes the defaul=
-t settings from the read only rootfs which is nice.=20
 
-The only problem I've found is if you have a bind mount to a file you have =
-to be careful not to delete the file or it will break the mount link.You'd =
-be surprised how often you want to delete the file when you go to update it=
-. Therefore I tend to use directories with volatile_binds.bb instead of ind=
-ividual files.=20
 
-Matt S.=20
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Gary Thomas
-> Sent: Thursday, July 16, 2015 4:37 AM
-> To: Yocto Project
-> Subject: [yocto] Read-only file system with persistent storage
->=20
-> I'd like to set up a system with a read-only root file system along with =
-some
-> persistent read-write storage.  What are the [best] options in Poky/Yocto=
- for
-> this?  Is there any support for some type of overlay file system?
->=20
-> Thanks for any ideas/pointers
->=20
-> --
-> ------------------------------------------------------------
-> Gary Thomas                 |  Consulting for the
-> MLB Associates              |    Embedded world
-> ------------------------------------------------------------
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+On 07/21/2015 10:45 AM, Victor Rodriguez wrote:
+> On Tue, Jul 21, 2015 at 10:36 AM, Gary Thomas <gary@mlbassoc.com> wrote:
+>> On 2015-07-21 09:26, Victor Rodriguez wrote:
+>>>
+>>> Hi team
+>>>
+>>> I have a question , according to documentation there is a difference
+>>> between
+>>>
+>>> IMAGE_INSTALL_append
+>>>
+>>> and
+>>>
+>>> CORE_IMAGE_EXTRA_INSTALL
+>>>
+>>> Specifies the list of packages to be added to the image. You should
+>>> only set this variable in the local.conf configuration file found in
+>>> the Build Directory.
+>>>
+>>> When I use the second one and try to build a core-image-minimal-xfce
+>>> bitbake does not install what I wanted in my image . I had a really
+>>> hard time few weekends ago because of this.
+>>>
+>>> I wonder If I am missing something or if this is a bug
+>>
+>>
+>> The core-image-minimal-xfce recipe does not "play nice" with
+>> the core-image class and is not respecting CORE_IMAGE_EXTRA_INSTALL.
+>>
+>> I think this should be filed as a bug (and feel free to suggest a patch)
+>>
+>> BTW, this question should really be on the OpenEmbedded development list.
+>
+>
+> Thanks Gary
+>
+> I will submit the BUG , do you know the Bugzila where I should submit it ?
 
+Victor, you can file a bug at https://bugzilla.yoctoproject.org
+
+>
+>> --
+>> ------------------------------------------------------------
+>> Gary Thomas                 |  Consulting for the
+>> MLB Associates              |    Embedded world
+>> ------------------------------------------------------------
+>> --
+>> _______________________________________________
+>> Openembedded-devel mailing list
+>> Openembedded-devel@lists.openembedded.org
+>> http://lists.openembedded.org/mailman/listinfo/openembedded-devel
 
