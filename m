@@ -1,17 +1,15 @@
-Return-Path: <ryansvb91@gmail.com>
+Return-Path: <develone@sbcglobal.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4A867E009C8; Mon, 20 Jul 2015 16:12:18 -0700 (PDT)
+	id 1AADCE009C5; Mon, 20 Jul 2015 17:53:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ryansvb91[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.180 listed in list.dnswl.org]
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [98.138.91.152 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,36 +18,41 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f180.google.com (mail-ig0-f180.google.com
-	[209.85.213.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 093EAE008D4
-	for <yocto@yoctoproject.org>; Mon, 20 Jul 2015 16:12:13 -0700 (PDT)
-Received: by iggf3 with SMTP id f3so93387981igg.1
-	for <yocto@yoctoproject.org>; Mon, 20 Jul 2015 16:12:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=JhVTehBrEFEhQedWAuF4dBCiQ0iNVG74GuLGDzHQfTI=;
-	b=AWL6W7sEAYnSMHW319mn1u3VyDfE/jDHPZ0Sh741i4m19k7HmBDi94winVPBla7wuw
-	ORj020EJTpl6wDRxo28HOQ9MXf1voa1+J3ellf4djUqX0ZgVsYkp0arAqti5IG8VDL7u
-	fNfHk5sPqkgNZECAroOZfDGse9n1+cIJF+aJpFy4Bcq8FDoz+L1XzEmWMZrpnZteM11g
-	QFN00vu2N02JEvapkBfkrIeIB/D4qRiDu8ZaBRUNkudjCc9ohz+wGXBBh1OwCod+sl1V
-	+VAdxASc+MqCj4+KNEjV2aNYHAeR7L7XiIv/dSJHSbCTgDuhLinbUdNWJHCSyiIFN373
-	eWMw==
+Received: from nm22-vm3.bullet.mail.ne1.yahoo.com
+	(nm22-vm3.bullet.mail.ne1.yahoo.com [98.138.91.152])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2D14E008D4
+	for <yocto@yoctoproject.org>; Mon, 20 Jul 2015 17:53:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
+	t=1437440003; bh=ZoRnYmQH1dztlEAjdcCOdhvOpJdO+d41Ff8w/Rmz5BA=;
+	h=Date:From:Reply-To:To:Subject:From:Subject;
+	b=OXLYbk1vIFnyNyu60kweZSQPL82uNLI8fMUW0lR4rSGSORu7AZzJ3FJz4WFgjp9OkqTOwaRSlQIZZdk2WJzDQ3ULDGhBN/E9mB5fMD0x9x8nk1YcsJC3iM2RunkxBBlwpAClzY/Glu2r+tlAxUaY0VptQrz6m6IlwzCT0M8LVarH7CDiX+sMvQ9vu9q5mEEweOqv13ef6J7RO+2fYxKel4mquRJtuQ6VR6r2XOLaixO9hdk5bsyY4iTc7cdU7f4Dae7lPlSJy5hqWHM6XZIqRcaJEFdTJSy7Nh71hZRwv1qO/gZnaXX7zoZg7k8GkWulBMQjBkEIq7soT0kH+hRSXw==
+Received: from [98.138.101.129] by nm22.bullet.mail.ne1.yahoo.com with NNFMP;
+	21 Jul 2015 00:53:23 -0000
+Received: from [98.138.89.249] by tm17.bullet.mail.ne1.yahoo.com with NNFMP;
+	21 Jul 2015 00:53:23 -0000
+Received: from [127.0.0.1] by omp1041.mail.ne1.yahoo.com with NNFMP;
+	21 Jul 2015 00:53:23 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 111254.89119.bm@omp1041.mail.ne1.yahoo.com
+X-YMail-OSG: yD4rxEsVM1mjaKuE5JkE3RfStodDg9T.5NzvzpNWQB_ok7URySADE1oDeh4o4FL
+	kIZd7z4vrIvnmChrO9_hoUOwF6v2xf0s5cs77HR_P3ibNXtQdttovN7ct440HiINrVx2HJFLowGq
+	JcQfFR3uk2fn3RAKUCyyYC27CJz_mHkFjJXrnPFAR3End5GqcUubpCRfvlCiCrOdzCzA5Jp0Yx3v
+	.dIGw_DO2xLjjwdz1ea55QDAzg.4bNifqpRQXa9eRK6hHqxcke.z1JTRn5U4YyUb82LhbXRmK2VO
+	rR0Zl0rhVIhO7DGoGwxQqRrWwuYkThfFLZHr2r.iYmiePCSS8ar0Fo_cXt9wUhhkTqks9K8hBODJ
+	poKq3G2hvvMtlNIm80YYk8reF25FGu_VNXpkOLsnBvPFTGCLsqDpj21dWUMNJpKGaegBmLp0cse4
+	klR98sTIvbHsWtAMoh2WFqtP5_dSrhoo.aOpaYLLuUX9xy_Va2R7UAtAl_FoQJFydoIlhqy59VbP
+	R5ofPttRiIslk1q2zJjukyznDCul3kzA-
+Received: by 98.138.101.163; Tue, 21 Jul 2015 00:53:22 +0000 
+Date: Tue, 21 Jul 2015 00:53:04 +0000 (UTC)
+From: Edward Vidal <develone@sbcglobal.net>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <589295184.1298757.1437439984022.JavaMail.yahoo@mail.yahoo.com>
 MIME-Version: 1.0
-X-Received: by 10.107.138.13 with SMTP id m13mr27500502iod.24.1437433932731;
-	Mon, 20 Jul 2015 16:12:12 -0700 (PDT)
-Received: by 10.79.116.78 with HTTP; Mon, 20 Jul 2015 16:12:12 -0700 (PDT)
-In-Reply-To: <55AB2842.6070405@windriver.com>
-References: <CAMeZNHSyDNsKD0aX0P_cnpS3o8jZPkGcN8d0ZDnWFhrC3P1cHw@mail.gmail.com>
-	<55AB1F48.2050404@windriver.com> <55AB2842.6070405@windriver.com>
-Date: Mon, 20 Jul 2015 16:12:12 -0700
-Message-ID: <CAMeZNHRhXXCNaaeZUTCkwH5ovopPSEddwiuhc93K1VFqpYyqVA@mail.gmail.com>
-From: Ryan Soussan <ryansvb91@gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, yocto@yoctoproject.org
-Subject: Re: Problem overwriting default kernel config values
+Subject: Raspberry 2 Pi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Edward Vidal <develone@sbcglobal.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -58,188 +61,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Jul 2015 23:12:18 -0000
-Content-Type: multipart/alternative; boundary=001a113f1ef2f2ddb4051b56aa1b
+X-List-Received-Date: Tue, 21 Jul 2015 00:53:28 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1298756_651716771.1437439984018"
 
---001a113f1ef2f2ddb4051b56aa1b
+------=_Part_1298756_651716771.1437439984018
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jul 18, 2015 at 9:32 PM, Bruce Ashfield <
-bruce.ashfield@windriver.com> wrote:
+Hi all,Finally making progress.=C2=A0 My problem was conf/bblayers.confI ha=
+d the=C2=A0=20
+poky/meta-raspberrypi in the=20
+BBLAYERS_NON_REMOVABLE ?=3D " \=C2=A0 Instead BBLAYERS ?=3D " \
 
-> On 2015-07-18 11:53 PM, Bruce Ashfield wrote:
->
->> On 2015-07-17 9:35 PM, Ryan Soussan wrote:
->>
->>> Hello,
->>> We're having a problem overwriting the default linux kernel config
->>> values.  We tried adding our own .cfg file to our layer and appending it
->>> to the source url of the linux-yocto bitbake file.  The variable in our
->>> case is not getting overwritten though (changing CONFIG_ATH5K=m to =y).
->>> Here's some relevant output from mismatch.txt:
->>> Value requested for CONFIG_ATH5K not in final .config
->>>        Requested value:  CONFIG_ATH5K=y
->>>                  Actual value:     CONFIG_ATH5K=m
->>>
->>> And basically the same error message in missing_required.cfg.  So it
->>> looks like yocto is seeing our request but ignoring it.  The source code
->>> for these messages is located here:
->>>
->>> http://git.yoctoproject.org/cgit/cgit.cgi/yocto-kernel-tools/tree/tools/kconf_check
->>>
->>>
->>> We were following the instructions for editing the config file located
->>> in the linux directory of the meta-skeleton layer in poky.   Any help
->>> would be appreciated!
->>>
->>>
->> What release/branch are you using ? This is a test case that I run
->> ever release (and use every day), so the overrides do work.
->>
->> The kernel configuration system doesn't have the opportunity to
->> ignore settings. They are consolidated and then passed to the kernel's
->> config subsystem and then the results audited.
->>
->> I'll run a similar test here, since if something else later in the
->> configuration is selecting that driver as a module, or another constraint
->> is kicking in .. you will end up with a module, no matter what you
->> set in your fragment.
->>
->
-> And yes, it was a contraint in the end. I needed this in my fragment to
-> flip ATH5K to =y
->
-> CONFIG_ATH5K=y
-> CONFIG_ATH_CARDS=y
-> CONFIG_ATH_COMMON=y
-> CONFIG_CFG80211=y
-> CONFIG_R8723AU=y
-> CONFIG_MAC80211=y
->
-> I'm working on some diagnostics and symbol lookups that will help with
-> this in the future .. but it is much more challenging than you'd expect!
->
-> Cheers,
->
-> Bruce
->
->
->> Bruce
->>
->>  Thanks,
->>> Ryan
->>>
->>>
->>>
->>
-> Thanks so much for the help - adding the other configuration options fixed
-the bug for us!
+Currently working on 1965 tasks
+Build Configuration:
+BB_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "1.27.1"
+BUILD_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "x86_64-linux=
+"
+NATIVELSBSTRING=C2=A0=C2=A0 =3D "Ubuntu-12.04"
+TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "arm-poky-linux-gn=
+ueabi"
+MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "ra=
+spberrypi2"
+DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+=3D "poky"
+DISTRO_VERSION=C2=A0=C2=A0=C2=A0 =3D "1.8+snapshot-20150721"
+TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0 =3D "arm armv7a vfp thumb neon callco=
+nvention-hard vfpv4 cortexa7"
+TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "vfp-vfpv4-neon"
+meta=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=20
+meta-yocto=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=20
+meta-yocto-bsp=C2=A0=C2=A0=C2=A0 =3D "master:0f8d89ce66cfffccc9911d6c61470a=
+585173b79d"
+meta-raspberrypi=C2=A0 =3D "master:7457bf182c8fd550ec877ecd786a3edd16e65495=
+"
+=C2=A0Is anyone working on a compute module for the Pi using Yocto?Any and =
+all help will be appreciated.
+Regards,
 
-Best,
-Ryan
+Edward Vidal Jr.
+e-mail develone@sbcglobal.net
+915-595-1613
 
---001a113f1ef2f2ddb4051b56aa1b
+------=_Part_1298756_651716771.1437439984018
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
-te">On Sat, Jul 18, 2015 at 9:32 PM, Bruce Ashfield <span dir=3D"ltr">&lt;<=
-a href=3D"mailto:bruce.ashfield@windriver.com" target=3D"_blank">bruce.ashf=
-ield@windriver.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-colo=
-r:rgb(204,204,204);border-left-style:solid;padding-left:1ex"><div class=3D"=
-"><div class=3D"h5">On 2015-07-18 11:53 PM, Bruce Ashfield wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">
-On 2015-07-17 9:35 PM, Ryan Soussan wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">
-Hello,<br>
-We&#39;re having a problem overwriting the default linux kernel config<br>
-values.=C2=A0 We tried adding our own .cfg file to our layer and appending =
-it<br>
-to the source url of the linux-yocto bitbake file.=C2=A0 The variable in ou=
-r<br>
-case is not getting overwritten though (changing CONFIG_ATH5K=3Dm to =3Dy).=
-<br>
-Here&#39;s some relevant output from mismatch.txt:<br>
-Value requested for CONFIG_ATH5K not in final .config<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0Requested value:=C2=A0 CONFIG_ATH5K=3Dy<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Actual value:=
-=C2=A0 =C2=A0 =C2=A0CONFIG_ATH5K=3Dm<br>
-<br>
-And basically the same error message in missing_required.cfg.=C2=A0 So it<b=
-r>
-looks like yocto is seeing our request but ignoring it.=C2=A0 The source co=
-de<br>
-for these messages is located here:<br>
-<a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/yocto-kernel-tools/tre=
-e/tools/kconf_check" rel=3D"noreferrer" target=3D"_blank">http://git.yoctop=
-roject.org/cgit/cgit.cgi/yocto-kernel-tools/tree/tools/kconf_check</a><br>
-<br>
-<br>
-We were following the instructions for editing the config file located<br>
-in the linux directory of the meta-skeleton layer in poky.=C2=A0 =C2=A0Any =
-help<br>
-would be appreciated!<br>
-<br>
-</blockquote>
-<br>
-What release/branch are you using ? This is a test case that I run<br>
-ever release (and use every day), so the overrides do work.<br>
-<br>
-The kernel configuration system doesn&#39;t have the opportunity to<br>
-ignore settings. They are consolidated and then passed to the kernel&#39;s<=
-br>
-config subsystem and then the results audited.<br>
-<br>
-I&#39;ll run a similar test here, since if something else later in the<br>
-configuration is selecting that driver as a module, or another constraint<b=
-r>
-is kicking in .. you will end up with a module, no matter what you<br>
-set in your fragment.<br>
-</blockquote>
-<br></div></div>
-And yes, it was a contraint in the end. I needed this in my fragment to<br>
-flip ATH5K to =3Dy<br>
-<br>
-CONFIG_ATH5K=3Dy<br>
-CONFIG_ATH_CARDS=3Dy<br>
-CONFIG_ATH_COMMON=3Dy<br>
-CONFIG_CFG80211=3Dy<br>
-CONFIG_R8723AU=3Dy<br>
-CONFIG_MAC80211=3Dy<br>
-<br>
-I&#39;m working on some diagnostics and symbol lookups that will help with<=
-br>
-this in the future .. but it is much more challenging than you&#39;d expect=
-!<br>
-<br>
-Cheers,<br>
-<br>
-Bruce<br>
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">
-<br>
-Bruce<br>
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">
-Thanks,<br>
-Ryan<br>
-<br>
-<br>
-</blockquote>
-<br>
-</blockquote>
-<br>
-</blockquote></div>Thanks so much for the help - adding the other configura=
-tion options fixed the bug for us! =C2=A0<div><br></div><div>Best,</div><di=
-v>Ryan</div></div></div>
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
+nt-size:16px"><div id=3D"yui_3_16_0_1_1437439284461_2363"><span>Hi all,</sp=
+an></div><div id=3D"yui_3_16_0_1_1437439284461_2402"><span id=3D"yui_3_16_0=
+_1_1437439284461_2401">Finally making progress.&nbsp; My problem was conf/b=
+blayers.conf</span></div><div dir=3D"ltr" id=3D"yui_3_16_0_1_1437439284461_=
+2531"><span class=3D"" id=3D"yui_3_16_0_1_1437439284461_2401">I had the&nbs=
+p; <br class=3D""></span><span class=3D"" id=3D"yui_3_16_0_1_1437439284461_=
+2401"><span class=3D"" id=3D"yui_3_16_0_1_1437439284461_2401"><span class=
+=3D"" id=3D"yui_3_16_0_1_1437439284461_2401">poky/me</span></span>ta-raspbe=
+rrypi in the </span><br><span class=3D"" id=3D"yui_3_16_0_1_1437439284461_2=
+401">BBLAYERS_NON_REMOVABLE ?=3D " \&nbsp; Instead BBLAYERS ?=3D " \<br></s=
+pan></div><div dir=3D"ltr"><span class=3D"" id=3D"yui_3_16_0_1_143743928446=
+1_2401"><br></span></div><div dir=3D"ltr"><span id=3D"yui_3_16_0_1_14374392=
+84461_2401">Currently working on 1965 tasks<br></span></div><div id=3D"yui_=
+3_16_0_1_1437439284461_2517" dir=3D"ltr"><span>Build Configuration:<br clas=
+s=3D"">BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "1.27.1"<br=
+ class=3D"">BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "=
+x86_64-linux"<br class=3D"">NATIVELSBSTRING&nbsp;&nbsp; =3D "Ubuntu-12.04"<=
+br class=3D"">TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "arm=
+-poky-linux-gnueabi"<br class=3D"">MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "raspberrypi2"<br class=3D"">DISTRO&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "poky"<br cl=
+ass=3D"">DISTRO_VERSION&nbsp;&nbsp;&nbsp; =3D "1.8+snapshot-20150721"<br cl=
+ass=3D"">TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp; =3D "arm armv7a vfp thumb ne=
+on callconvention-hard vfpv4 cortexa7"<br class=3D"">TARGET_FPU&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "vfp-vfpv4-neon"<br class=3D"">meta&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <=
+br class=3D"">meta-yocto&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br clas=
+s=3D"">meta-yocto-bsp&nbsp;&nbsp;&nbsp; =3D "master:0f8d89ce66cfffccc9911d6=
+c61470a585173b79d"<br class=3D"">meta-raspberrypi&nbsp; =3D "master:7457bf1=
+82c8fd550ec877ecd786a3edd16e65495"<br class=3D""></span></div><div><div>&nb=
+sp;Is anyone working on a compute module for the Pi using Yocto?</div><div>=
+Any and all help will be appreciated.</div><div><br></div><div>Regards,</di=
+v><div><br></div><div><br></div></div><div><div>Edward Vidal Jr.<br>e-mail =
+develone@sbcglobal.net<br>915-595-1613</div></div></div></body></html>
 
---001a113f1ef2f2ddb4051b56aa1b--
+------=_Part_1298756_651716771.1437439984018--
