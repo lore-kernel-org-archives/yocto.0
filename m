@@ -1,49 +1,57 @@
-Return-Path: <dakuit00@gmail.com>
+Return-Path: <otavio.salvador@ossystems.com.br>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 59408E009BE; Wed, 22 Jul 2015 00:33:37 -0700 (PDT)
+	id D1F2EE009ED; Wed, 22 Jul 2015 05:35:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (dakuit00[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.178 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.192.178 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f178.google.com (mail-lb0-f178.google.com
-	[209.85.217.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E820E0096A
-	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 00:33:32 -0700 (PDT)
-Received: by lbbqi7 with SMTP id qi7so50510064lbb.3
-	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 00:33:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=coSSvbrQFskxVlF0DxSfbwYm/psHJh0GaUxY45Ya8fE=;
-	b=y9YFAr71jtUlT54qjcz+CSOL4xsMFAoGYYKPgw95mZ42t4KYAUyxDK2FgVWTz0ZzDp
-	dxX8KZx5it512Rg4FkfJU8w9wjnenoiCKn1QOnwDWQ/9LLAk8WAEE4fw0VwXKXpQNvvN
-	IJPLGczmcqu6rqeIH2zP6eTIQl6FJs90e+TRLkY2seuMh0QARyuezVKbsRB7kaY35XsO
-	M8tN1zX4RDmHAn+Hg0sLVPmqwIR/hQEF1ZkWV78ymz/t4actudhfWMQJZgnY402Ndhat
-	muXgl/BfEN0FqtI+wEpsg75psiEzNb5HmvBFH6wmzVzMa6S5sDnrBI+RStNX7/uMrHA0
-	HC6w==
-X-Received: by 10.152.37.228 with SMTP id b4mr967860lak.117.1437550409669;
-	Wed, 22 Jul 2015 00:33:29 -0700 (PDT)
+Received: from mail-pd0-f178.google.com (mail-pd0-f178.google.com
+	[209.85.192.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04946E009BE
+	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 05:35:23 -0700 (PDT)
+Received: by pdrg1 with SMTP id g1so138226871pdr.2
+	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 05:35:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:mime-version:in-reply-to:references:date
+	:message-id:subject:to:cc:content-type;
+	bh=x8nVlSofoIAm6YIIup5mH1rbrD3E8FLDwuR8vuo4JuA=;
+	b=LoLbcUtooyslUQWlUVbLpnsuIu21sEGEX8LcuIqoURZ7RZb+WelAY5lvDz8xfLBBri
+	q0paeXDPazBMDX7j+MX32arxSY9jwdsjmqe3Bzo6bFLwI5+7h6JvxZrMmUw+Q5mKFPJy
+	Mf5kUgd2GPrZuXAaNURwEzMqgkHsWDEXq/5XjP4VHMcYO7FEzIyxEHBqZizRY6GVGT9A
+	aY9kVi47mEUkypvglWir8PmAuyUJvso6DB0ax/xpaAXyjFkUk56AKuf6thHTCAEs5qK1
+	EEnSigVKq3Jo76lts7KnJvi/0+RiayiRdnSjPRch3dEfLXEvnuzD9/GVxSUKsnL8S7VV
+	PbfQ==
+X-Gm-Message-State: ALoCoQlhg2qfrSslhBnbwglUV7RG2ZQACEV80mva6iFzyGEHvZ9a9hFEgFbej7O6eB1sFMoD2vBz
+X-Received: by 10.70.96.194 with SMTP id du2mr5659795pdb.108.1437568522817;
+	Wed, 22 Jul 2015 05:35:22 -0700 (PDT)
+Received: from mail-pd0-f176.google.com (mail-pd0-f176.google.com.
+	[209.85.192.176]) by smtp.gmail.com with ESMTPSA id
+	ca13sm3225615pac.25.2015.07.22.05.35.21 for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 22 Jul 2015 05:35:21 -0700 (PDT)
+From: Otavio Salvador <otavio.salvador@ossystems.com.br>
+X-Google-Original-From: Otavio Salvador <otavio@ossystems.com.br>
+Received: by pdrg1 with SMTP id g1so138226345pdr.2
+	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 05:35:20 -0700 (PDT)
 MIME-Version: 1.0
-From: Daniel Kuhne <dakuit00@gmail.com>
-Date: Wed, 22 Jul 2015 07:33:20 +0000
-Message-ID: <CABEeoJV2CXbGtu1UnFZGtg-Snxj7+J9_RBb32EDzhq=LdH5D_Q@mail.gmail.com>
-To: yocto@yoctoproject.org
+X-Received: by 10.70.119.41 with SMTP id kr9mr5702853pdb.0.1437568520286; Wed,
+	22 Jul 2015 05:35:20 -0700 (PDT)
+Received: by 10.70.59.105 with HTTP; Wed, 22 Jul 2015 05:35:20 -0700 (PDT)
+In-Reply-To: <CAK5mtexxdYxhwvv-MB27Ur56iwAV8O3Y6ah_BPAo+R58NmNouQ@mail.gmail.com>
+References: <CAK5mtexxdYxhwvv-MB27Ur56iwAV8O3Y6ah_BPAo+R58NmNouQ@mail.gmail.com>
+Date: Wed, 22 Jul 2015 09:35:20 -0300
+Message-ID: <CAP9ODKq6U0udqPvjgs1WmHNFy693O6h5Qt+hHFwnYo5nbpH1kQ@mail.gmail.com>
+To: OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>
 X-Mailman-Approved-At: Wed, 22 Jul 2015 14:34:49 -0700
-Subject: VMDK image not booting
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [oe] Bug in Open CV receipt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,32 +63,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Jul 2015 07:33:37 -0000
-Content-Type: multipart/alternative; boundary=089e014939fc83e1ae051b71c982
-
---089e014939fc83e1ae051b71c982
+X-List-Received-Date: Wed, 22 Jul 2015 12:35:26 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Hello,
+On Tue, Jul 21, 2015 at 11:57 AM, Victor Rodriguez <vm.rod25@gmail.com> wrote:
+> Few weeks ago I was having some problems with open CV receipt. In the
+> begining I toght I was adding opencv tro my core-image-minimal-xfce
+> just with this:
+>
+> IMAGE_INSTALL_append = " gcc gcc-dev openssh php mariadb opencv"
+>
+> Now after booting the image I realize that none of the libraries for
+> open stack were added to my image
+>
+> What I had to do was the following:
+>
+>
+> IMAGE_INSTALL_append = " libopencv-core-dev libopencv-highgui-dev
+> libopencv-imgproc-dev libopencv-objdetect-dev libopencv-ml-dev
+> opencv-staticdev python-opencv"
+>
+> Even last night when one of the opencv developers ask me for python
+> opencv I had to add the last part python-opencv. That is not cool at
+> all . If I add opencv in the beginning I assume we are more than cool
+> with that and yocto will add all the packages . Unless I am doing
+> something wrong, in taht case I am more than happy to get the
+> feedback.
+>
+> Thanks a lot for all the help . If someone else can reproduce this bug
+> I am more than happy to report it in bugzila (not sure the URL)
 
-my vmdk image is not booting into systemd. But my iso image does.
-It is similar to
-https://lists.yoctoproject.org/pipermail/yocto/2014-August/021218.html
+You should add the dev-pkgs and tools-sdk image features for the
+image, not mangle it manually.
 
-I use fido with meta-intel.
+-- 
+Otavio Salvador                             O.S. Systems
+http://www.ossystems.com.br        http://code.ossystems.com.br
+Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
 
-Cheers,
-Daniel
-
---089e014939fc83e1ae051b71c982
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><div>Hello,<br><br></div>my vmdk image=
- is not booting into systemd. But my iso image does.<br></div>It is similar=
- to <a href=3D"https://lists.yoctoproject.org/pipermail/yocto/2014-August/0=
-21218.html">https://lists.yoctoproject.org/pipermail/yocto/2014-August/0212=
-18.html</a><br><br></div>I use fido with meta-intel.<br><br></div>Cheers,<b=
-r></div>Daniel<br></div>
-
---089e014939fc83e1ae051b71c982--
