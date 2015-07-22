@@ -1,49 +1,58 @@
-Return-Path: <Gamma.Dean@emerson.com>
+Return-Path: <develone@sbcglobal.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 19007E00927; Wed, 22 Jul 2015 08:10:52 -0700 (PDT)
+	id 0CCA3E00861; Wed, 22 Jul 2015 15:17:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [68.232.130.217 listed in list.dnswl.org]
+	*      [98.138.91.158 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
-	Wed, 22 Jul 2015 08:10:50 PDT
-Received: from esa1.emerson-outbound.iphmx.com
-	(esa1.emerson-outbound.iphmx.com [68.232.130.217])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0049E008EC
-	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 08:10:50 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.15,523,1432576800"; d="scan'208,217";a="13035788"
-Received: from usstlz-pinfez05.extemr.org ([144.191.128.189])
-	by esa1.emerson-outbound.iphmx.com with ESMTP/TLS/AES128-SHA;
-	22 Jul 2015 21:09:44 +0600
-Received: from USSTLZ-PMSG015.emrsn.org (10.16.72.197) by
-	USSTLZ-PINFEZ05.extemr.org (10.16.8.78) with Microsoft SMTP Server
-	(TLS) id 14.3.158.1; Wed, 22 Jul 2015 15:09:27 +0000
-Received: from USSTLZ-PMSG016.emrsn.org ([169.254.8.133]) by
-	USSTLZ-PMSG015.emrsn.org ([169.254.7.101]) with mapi id 14.03.0158.001;
-	Wed, 22 Jul 2015 15:09:27 +0000
-From: <Gamma.Dean@Emerson.com>
-To: <yocto@yoctoproject.org>
-Thread-Topic: Re: [yocto] Exporting kernel header from patch
-Thread-Index: AdDEj9S9XdwaQlrYRxG6+34ksITjOQ==
-Date: Wed, 22 Jul 2015 15:09:26 +0000
-Message-ID: <5B6A9B05AFA9AC4FB94345D083806F144B2BF945@USSTLZ-PMSG016.emrsn.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.19.249.11]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm28-vm3.bullet.mail.ne1.yahoo.com
+	(nm28-vm3.bullet.mail.ne1.yahoo.com [98.138.91.158])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA02DE00474
+	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 15:16:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
+	t=1437603411; bh=EBqTepjGBOCZLB9QfH5wLxYhX7W3HNJ82Tr9VS3aXWA=;
+	h=Date:From:Reply-To:To:Subject:From:Subject;
+	b=oY0bpr5CPRfxpI+V2QX4PH+6Ml/JFedWCanmjftPqBStks3TANEI2/9ya76GaXU7sL2mGpQhv129DUHKLCJNuuEtpUzhIklTjoiPg6f3/zfkOv1w6377olHUkxCcqZHKvHXaNkbCpbY30hP1wH/+J82qRA5wnT/OW0reEraxGAccZtHQWsGImMaaNSUTw3LXfF935ITfu+VUdhvi3gLBQGmES3qhuDYfSN+V6QTreIF0i00xsH8quzp9pVuJlwUuw5zxOVmaevygnSOhvPLXe5YNaoyBmFy/4mUeIZM/dsaX9zB1eEGtdlu74AX15SFlLI5/Vm3HmA8OopIpiIWABw==
+Received: from [98.138.101.128] by nm28.bullet.mail.ne1.yahoo.com with NNFMP;
+	22 Jul 2015 22:16:51 -0000
+Received: from [98.138.87.6] by tm16.bullet.mail.ne1.yahoo.com with NNFMP;
+	22 Jul 2015 22:16:51 -0000
+Received: from [127.0.0.1] by omp1006.mail.ne1.yahoo.com with NNFMP;
+	22 Jul 2015 22:16:51 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 438847.58282.bm@omp1006.mail.ne1.yahoo.com
+X-YMail-OSG: gOpWISAVM1knNsOjw9rHq5znFDo6g5yHLT.DX6MDGcVScSfU8eAU9qM5CDjSDIc
+	qeAmN7NbcNxEJZPQivor10BkbCqWQzE8Bia3_qFT6MgU_CzlFkyMpYVeKaUTEYk88l7x9NZNPKJz
+	9.ZZmMhhyS1jkHuVd0lszryzzsx1YjLStDs6Gdj6DNnBJSwuo5Es8fQPyNFZR9PO6Ky7Hln.zhZC
+	mRTdfQjIzwQGOOBHfT0PjyalZb0xtqLK0htEi8Ii1kN4SwKbXI5TBNcGqxIgi_kOjx2ogPbu6hAY
+	.mXFYKqePz5Wstfqqq00w4OpSrZ.5uSAgUeyzQweERUrYN2JevZYRDg7x.QBKEcZ_lXNXojBW_YL
+	.p3J874Up1LiKO_tbbTuYIyK1zN.wlfGfqOgTUqxXX86LQMo0CJk7ORdv.zyh2xNTxndOPSR2hY4
+	.J4M0exILGkQp1_ndJwdmusdylrAfsrfzQA.DbaQEnXBCSVahIQk_FeWxw8bqvJkf_HpsSfNizG9
+	3OIrfLBNC8OfyOyRn_No4hx0_1Qt9vXk-
+Received: by 98.138.105.240; Wed, 22 Jul 2015 22:16:50 +0000 
+Date: Wed, 22 Jul 2015 22:16:50 +0000 (UTC)
+From: Edward Vidal <develone@sbcglobal.net>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <858020079.672977.1437603410191.JavaMail.yahoo@mail.yahoo.com>
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 22 Jul 2015 14:34:49 -0700
-Subject: Re: Exporting kernel header from patch
+Subject: raspberry Pi core-image-sato
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Edward Vidal <develone@sbcglobal.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -52,88 +61,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Jul 2015 15:10:52 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_5B6A9B05AFA9AC4FB94345D083806F144B2BF945USSTLZPMSG016em_"
+X-List-Received-Date: Wed, 22 Jul 2015 22:17:03 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_672976_1990408823.1437603410189"
 
---_000_5B6A9B05AFA9AC4FB94345D083806F144B2BF945USSTLZPMSG016em_
-Content-Type: text/plain; charset="us-ascii"
+------=_Part_672976_1990408823.1437603410189
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-When using a shared sstate cache which has the previously built kernel it a=
-ppears that STAGING_KERNEL_DIR does not get populated - in my case there is=
- no tmp/work-shared directory at all.  If I have modified the user space ap=
-p to look there for a header is there some dependency I can add that will f=
-orce STAGING_KERNEL_DIR to get built?
+HiStill having errors with bitbake core-image-satoThis occurs at | checking=
+ for X11... yes
+| checking for EGL... no
+| configure: error: Package requirements (egl) were not met:
+ERROR: Task 4856 (/home/vidal/wkg/yocto/RaspberryPi2/poky/meta/recipes-grap=
+hics/libepoxy/libepoxy_git.bb, do_configure) failed with exit code '1'I tri=
+ed adding /conf/machine/raspberrypi2.conf which I found on the internet.+PR=
+EFERRED_PROVIDER_virtual/egl ?=3D "vc-graphics-hardfp"
++PREFERRED_PROVIDER_virtual/libgles2 ?=3D "vc-graphics-hardfp"This caused s=
+everal more errors.Any and all help is appreciated. =C2=A0Edward Vidal Jr.
+e-mail develone@sbcglobal.net
+915-595-1613
 
-If not, perhaps the best answer is your other proposed method of just addin=
-g the header to an additional path in sysroot.
+------=_Part_672976_1990408823.1437603410189
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---_000_5B6A9B05AFA9AC4FB94345D083806F144B2BF945USSTLZPMSG016em_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+<html><body><div style="color:#000; background-color:#fff; font-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font-size:16px"><div id="yui_3_16_0_1_1437603095794_10870"></div><div class="" id="yiv0962762372yui_3_16_0_1_1437594813612_17000"><span class="">Hi</span></div><div class=""><span class="">Still having errors with bitbake core-image-sato</span></div><div class=""><span class="">This occurs at </span></div>| checking for X11... yes<br class="">| checking for EGL... no<br class="">| configure: error: Package requirements (egl) were not met:<br class=""><div class="" id="yiv0962762372yui_3_16_0_1_1437594813612_17053" dir="ltr">ERROR:
+ Task 4856 
+(/home/vidal/wkg/yocto/RaspberryPi2/poky/meta/recipes-graphics/libepoxy/libepoxy_git.bb,
+ do_configure) failed with exit code '1'</div><pre id="yiv0962762372yui_3_16_0_1_1437594813612_17127" class="">I tried adding /conf/machine/raspberrypi2.conf which I found on the internet.</pre><pre class="">+PREFERRED_PROVIDER_virtual/egl ?= "vc-graphics-hardfp"
++PREFERRED_PROVIDER_virtual/libgles2 ?= "vc-graphics-hardfp"</pre><div class="" dir="ltr">This caused several more errors.</div><div dir="ltr">Any and all help is appreciated. </div><div>&nbsp;</div><div><div>Edward Vidal Jr.<br>e-mail develone@sbcglobal.net<br>915-595-1613</div></div></div></body></html>
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">When using a shared sstate cache which has the previ=
-ously built kernel it appears that STAGING_KERNEL_DIR does not get populate=
-d &#8211; in my case there is no tmp/work-shared directory at all.&nbsp; If=
- I have modified the user space app to look there
- for a header is there some dependency I can add that will force STAGING_KE=
-RNEL_DIR to get built?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">If not, perhaps the best answer is your other propos=
-ed method of just adding the header to an additional path in sysroot.<o:p><=
-/o:p></p>
-</div>
-</body>
-</html>
-
---_000_5B6A9B05AFA9AC4FB94345D083806F144B2BF945USSTLZPMSG016em_--
+------=_Part_672976_1990408823.1437603410189--
