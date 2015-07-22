@@ -1,40 +1,44 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <sleepylight@jive-turkey.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C477E00927; Wed, 22 Jul 2015 06:51:03 -0700 (PDT)
+	id 1D2D5E00927; Wed, 22 Jul 2015 07:16:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3CF0E008EC
-	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 06:51:00 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP; 22 Jul 2015 06:51:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,523,1432623600"; d="scan'208";a="752248615"
-Received: from gwhaley-mobl1.ger.corp.intel.com (HELO
-	peggleto-mobl.ger.corp.intel.com) ([10.252.19.55])
-	by fmsmga001.fm.intel.com with ESMTP; 22 Jul 2015 06:50:58 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: openembedded-devel@lists.openembedded.org
-Date: Wed, 22 Jul 2015 14:50:57 +0100
-Message-ID: <3048124.JhGOlONExd@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.9 (Linux/4.0.7-200.fc21.x86_64; KDE/4.14.9; x86_64; ; )
-In-Reply-To: <CAK5mtexxVJ2uZeahegoJ=+8pOztcPufUHYmXWrhwy9hMzc3tLw@mail.gmail.com>
-References: <CAK5mtexdmYF7ivs+nwa7WZSqVb8sZCq5Euvt8oK2HimiXy7PMA@mail.gmail.com>
-	<55AE8445.60302@linux.intel.com>
-	<CAK5mtexxVJ2uZeahegoJ=+8pOztcPufUHYmXWrhwy9hMzc3tLw@mail.gmail.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.170 listed in list.dnswl.org]
+Received: from mail-lb0-f170.google.com (mail-lb0-f170.google.com
+	[209.85.217.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81C21E008EC
+	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 07:15:58 -0700 (PDT)
+Received: by lbbqi7 with SMTP id qi7so57261694lbb.3
+	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 07:15:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=95Qu2Iud6Hg5142z4f374kvnwoJpwWFf5QeloJl9zuA=;
+	b=XbHkXDIbgpoxLdoOVS9hOy5ZXU3oA6w6XBH6XcN+hcAZA9uauFFrtGS3UpVVtffrlL
+	Sov1nTeuJroeYyZj2vz6tEV9V1tSLhJwNxDS6WGkyo18r9LTMjmS/ru4cyDGPf6ZUJk8
+	gex1Zf9PSAG3r0c44nttCRuAxfFnO+HY8CiCfEAXIAUeeKpyVAjkhh9yl2+kKKnngbKI
+	gfQ0E8Nc3kOjUpqsQStcxN4BUoWEHNlItuTPz7E3fwdex+/h3Xtg7DoVLsJHxEbciJjV
+	8mIlOnO/03H5AyB1IAtoXvEW1jBeqKwCnSOQ1irpdB6J9n4JaOsg6V/tWA2yXT9mdcnx
+	QogQ==
+X-Gm-Message-State: ALoCoQmH75h+FrUvfEFDypKZWHmfo4Z+h5LzlHisVFUlp4CPYhO8Sevymm+uR5k9se6gmi4SIM8f
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Gary Thomas <gary@mlbassoc.com>
-Subject: Re: [oe] Question about IMAGE_INSTALL_append and CORE_IMAGE_EXTRA_INSTALL
+X-Received: by 10.112.164.35 with SMTP id yn3mr2576581lbb.91.1437574556014;
+	Wed, 22 Jul 2015 07:15:56 -0700 (PDT)
+Received: by 10.25.156.65 with HTTP; Wed, 22 Jul 2015 07:15:55 -0700 (PDT)
+Date: Wed, 22 Jul 2015 10:15:55 -0400
+Message-ID: <CADi-vsyPaW_XJ+0_im=jtEdnqRT2=bHv7xO96rU05-TmMbTKgw@mail.gmail.com>
+From: Maxwell Bottiger <sleepylight@jive-turkey.net>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Missing _bsddb.so from python build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,68 +50,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Jul 2015 13:51:03 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 22 Jul 2015 14:16:01 -0000
+Content-Type: multipart/alternative; boundary=001a11c33530bff271051b7768ac
 
-On Tuesday 21 July 2015 14:51:55 Victor Rodriguez wrote:
-> On Tue, Jul 21, 2015 at 12:41 PM, Leonardo Sandoval
-> 
-> <leonardo.sandoval.gonzalez@linux.intel.com> wrote:
-> > On 07/21/2015 10:45 AM, Victor Rodriguez wrote:
-> >> On Tue, Jul 21, 2015 at 10:36 AM, Gary Thomas <gary@mlbassoc.com> wrote:
-> >>> On 2015-07-21 09:26, Victor Rodriguez wrote:
-> >>>> Hi team
-> >>>> 
-> >>>> I have a question , according to documentation there is a difference
-> >>>> between
-> >>>> 
-> >>>> IMAGE_INSTALL_append
-> >>>> 
-> >>>> and
-> >>>> 
-> >>>> CORE_IMAGE_EXTRA_INSTALL
-> >>>> 
-> >>>> Specifies the list of packages to be added to the image. You should
-> >>>> only set this variable in the local.conf configuration file found in
-> >>>> the Build Directory.
-> >>>> 
-> >>>> When I use the second one and try to build a core-image-minimal-xfce
-> >>>> bitbake does not install what I wanted in my image . I had a really
-> >>>> hard time few weekends ago because of this.
-> >>>> 
-> >>>> I wonder If I am missing something or if this is a bug
-> >>> 
-> >>> The core-image-minimal-xfce recipe does not "play nice" with
-> >>> the core-image class and is not respecting CORE_IMAGE_EXTRA_INSTALL.
-> >>> 
-> >>> I think this should be filed as a bug (and feel free to suggest a patch)
-> >>> 
-> >>> BTW, this question should really be on the OpenEmbedded development
-> >>> list.
-> >> 
-> >> Thanks Gary
-> >> 
-> >> I will submit the BUG , do you know the Bugzila where I should submit it
-> >> ?
-> > 
-> > Victor, you can file a bug at https://bugzilla.yoctoproject.org
-> 
-> I think we have one already
-> 
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=7616
+--001a11c33530bff271051b7768ac
+Content-Type: text/plain; charset=UTF-8
 
-That's not the right bug.
+Hi,
 
-If the suggestion is that core-image-minimal-xfce needs to be fixed, that's not 
-a bug we would track in the Yocto Project bugzilla (since the Yocto Project is 
-not actively involved in maintaining meta-xfce).
+I'm trying to build python in yocto, and I'm hung up on a missing library.
+I've built python-bsddb, and I see all of the .py and .pyc libraries, but I
+don't have _bsddb.so in lib-dynload.  I see the python-2.7-mainfest.inc
+either installs it or expects to install it, but I can't get anything to
+build it.
 
-Cheers,
-Paul
+Does anyone know how to generate _bsddb.so?
 
--- 
+-Max
 
-Paul Eggleton
-Intel Open Source Technology Centre
+--001a11c33530bff271051b7768ac
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><div><div>Hi,<br><br></div>I&#39;m trying to build py=
+thon in yocto, and I&#39;m hung up on a missing library.=C2=A0 I&#39;ve bui=
+lt python-bsddb, and I see all of the .py and .pyc libraries, but I don&#39=
+;t have _bsddb.so in lib-dynload.=C2=A0 I see the python-2.7-mainfest.inc e=
+ither installs it or expects to install it, but I can&#39;t get anything to=
+ build it.<br><br></div>Does anyone know how to generate _bsddb.so?<br><br>=
+</div>-Max<br></div>
+
+--001a11c33530bff271051b7768ac--
