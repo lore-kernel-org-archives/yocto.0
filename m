@@ -1,6 +1,6 @@
 Return-Path: <herve.jourdain@neuf.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BDE84E009B3; Thu, 23 Jul 2015 15:45:43 -0700 (PDT)
+	id 73617E009B3; Thu, 23 Jul 2015 15:50:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,35 +12,33 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from smtp21.services.sfr.fr (smtp21.services.sfr.fr [93.17.128.1])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC314E0087F
-	for <yocto@yoctoproject.org>; Thu, 23 Jul 2015 15:45:39 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A808E0087F
+	for <yocto@yoctoproject.org>; Thu, 23 Jul 2015 15:50:21 -0700 (PDT)
 Received: from filter.sfr.fr (localhost [1.169.170.132])
-	by msfrf2109.sfr.fr (SMTP Server) with ESMTP id 73E8C7000083;
-	Fri, 24 Jul 2015 00:45:37 +0200 (CEST)
+	by msfrf2109.sfr.fr (SMTP Server) with ESMTP id EBDA77000094;
+	Fri, 24 Jul 2015 00:50:20 +0200 (CEST)
 Authentication-Results: sfrmc.priv.atos.fr; dkim=none (no signature);
 	dkim-adsp=none (no policy) header.from=herve.jourdain@neuf.fr
 Received: from hjo-pc (1-169-170-132.dynamic.hinet.net [1.169.170.132])	(using
 	TLSv1 with cipher AES128-SHA (128/128 bits))	(No client certificate
 	requested)
-	by msfrf2109.sfr.fr (SMTP Server) with ESMTP id 016937000081;
-	Fri, 24 Jul 2015 00:45:34 +0200 (CEST)
-X-SFR-UUID: 20150723224535587.016937000081@msfrf2109.sfr.fr
+	by msfrf2109.sfr.fr (SMTP Server) with ESMTP id 4FC407000081;
+	Fri, 24 Jul 2015 00:50:19 +0200 (CEST)
+X-SFR-UUID: 20150723225019326.4FC407000081@msfrf2109.sfr.fr
 Received: from hjopc
-	by hjo-pc (PGP Universal service);  Fri, 24 Jul 2015 00:45:35 +0100
-X-PGP-Universal: processed;	by hjo-pc on Fri, 24 Jul 2015 00:45:35 +0100
+	by hjo-pc (PGP Universal service);  Fri, 24 Jul 2015 00:50:19 +0100
+X-PGP-Universal: processed;	by hjo-pc on Fri, 24 Jul 2015 00:50:19 +0100
 From: Herve Jourdain <herve.jourdain@neuf.fr>
-To: 'Mauro Carvalho Chehab' <mchehab@osg.samsung.com>
+To: 'Andreas =?iso-8859-1?q?M=FCller=27?= <schnitzeltony@googlemail.com>
 References: <004101d0c55c$d068da20$713a8e60$@neuf.fr>
-	<20150723130029.1268067b@recife.lan>
-	<007301d0c564$360d30e0$a22792a0$@neuf.fr>
-	<20150723152821.352e1a52@recife.lan>
-In-Reply-To: <20150723152821.352e1a52@recife.lan>
-Date: Fri, 24 Jul 2015 00:45:29 +0200
-Message-ID: <021e01d0c599$4a106140$de3123c0$@neuf.fr>
+	<CALbNGRRgRKX0Rh08gWPJ496oc9AY9e5XEJ6foN9m6fKcrpUgGw@mail.gmail.com>
+In-Reply-To: <CALbNGRRgRKX0Rh08gWPJ496oc9AY9e5XEJ6foN9m6fKcrpUgGw@mail.gmail.com>
+Date: Fri, 24 Jul 2015 00:50:14 +0200
+Message-ID: <021f01d0c599$f338f9d0$d9aaed70$@neuf.fr>
 MIME-Version: 1.0
 X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQFnXKxyRAcEzfeDEFvGsDtkXP+9rgCtpmStAQi5nHoBWLTH7J6j/H3g
-Cc: yocto@yoctoproject.org
+Thread-Index: AQFnXKxyRAcEzfeDEFvGsDtkXP+9rgHxjRycnqztJ4A=
+Cc: 'Yocto Project' <yocto@yoctoproject.org>
 Subject: Re: [meta-raspberrypi][PATCH] Add networkd as default for RaspberryPi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -53,196 +51,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Jul 2015 22:45:43 -0000
+X-List-Received-Date: Thu, 23 Jul 2015 22:50:24 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 Content-Language: fr
 
-Well, I'm using Poky as a "distribution", at least for my tests...
-But there might be a reason why it's not included there, I believe.
-The problem to include it at the distribution level is you need to make =
-assumptions as to what kind of network/network interfaces will be found.
-On a raspberrypi, we know there will be at least an Ethernet available, =
-so starting networkd and resolved makes sense.
-But at the Poky distribution level, it can run on any kind of hardware, =
-including those without any network capability.
-So I believe it can't really be easily done at the distribution layer =
-itself either, unless there is some kind of understanding networking =
-will be required.
-
-Therefore, my problem: if we want raspberrypi to start network out of =
-the box, because we know it has the HW to support it, then we should do =
-something at the raspberrypi layer, if it can not be supported at the =
-distribution layer.
-
-As I mentioned, I had initially kept that in a custom layer of mine.
-But if it stays there, that means anyone starting poky on a raspberrypi =
-using system will have to do its own layer with the bbappend, similar to =
-that.
-So I'm trying to find a way to make this work out of the box, with =
-systemd, on raspberrypi, for everyone, and I'm not sure what's the best =
-way to achieve this indeed.
+Indeed, it's a valid point, and I should probably be more cautious in =
+the naming of the bbappend.
+This said, I - maybe wrongfully - assumed that anyone including the =
+meta-raspberrypi layer would actually want to run on a raspberrypi, =
+which does have an Ethernet interface I believe on all machines - I only =
+have a RaspberryPi 2, so I didn't check all other devices, so might =
+assumption might be wrong there.
+Is there any version of raspberrypi without an Ethernet interface?
 
 BR,
 
 Herve
 
 -----Original Message-----
-From: Mauro Carvalho Chehab [mailto:mchehab@osg.samsung.com]=20
-Sent: jeudi 23 juillet 2015 20:28
+From: Andreas M=C3=BCller [mailto:schnitzeltony@googlemail.com]=20
+Sent: jeudi 23 juillet 2015 18:39
 To: Herve Jourdain
-Cc: 'Andrei Gherzan'; 'Petter Mab=C3=A4cker'; yocto@yoctoproject.org
+Cc: Andrei Gherzan; Petter Mab=C3=A4cker; Yocto Project
 Subject: Re: [yocto] [meta-raspberrypi][PATCH] Add networkd as default =
 for RaspberryPi
 
-Em Thu, 23 Jul 2015 18:25:29 +0200
-Herve Jourdain <herve.jourdain@neuf.fr> escreveu:
-
-> Hi Mauro,
->=20
-> Well, that's precisely one of my concerns. I believe that one of the =
-Tizen layers might do just that.=20
-
-Yes, it does. It is at the meta-tizen layer.
-
-> Maybe it should be at the Yocto layer.
+On Thu, Jul 23, 2015 at 5:32 PM, Herve Jourdain <herve.jourdain@neuf.fr> =
+wrote:
+> This patch adds systemd-networkd for RaspberryPi in the=20
+> meta-raspberrypi layer, in order to have Ethernet and Networking work =
+out of the box.
 >
-> But it seems not to be with the one I'm using. And just enabling =
-system - which can be done at distro level - is not enough, there is a =
-need for a bbappend and a config file.
-> So honestly, since I was experimenting with system, I stumbled on this =
-one, and I had initially put that patch in another layer - custom one.
->=20
-> The question that remains is how do we make sure that Poky on =
-raspberry pi has network enabled by default when people switch to =
-system? Since I don't know where else to put it, I decided to propose =
-the patch for the raspberrypi layer, knowing it probably makes more =
-sense to put it somewhere else.
-
-I'd say that it should not be at the Yocto layer, but at the layer =
-specific for your distribution.
-
->=20
-> BR,
->=20
-> Herve
->=20
-> -----Original Message-----
-> From: Mauro Carvalho Chehab [mailto:mchehab@osg.samsung.com]
-> Sent: jeudi 23 juillet 2015 18:00
-> To: Herve Jourdain
-> Cc: 'Andrei Gherzan'; 'Petter Mab=C3=A4cker'; yocto@yoctoproject.org
-> Subject: Re: [yocto] [meta-raspberrypi][PATCH] Add networkd as default =
-
-> for RaspberryPi
->=20
-> Em Thu, 23 Jul 2015 17:32:35 +0200
-> Herve Jourdain <herve.jourdain@neuf.fr> escreveu:
->=20
-> > This patch adds systemd-networkd for RaspberryPi in the=20
-> > meta-raspberrypi layer, in order to have Ethernet and Networking =
-work out of the box.
-> >=20
-> > =20
-> >=20
-> > This said, I=E2=80=99m not 100% sure if it should be enabled in=20
-> > meta-raspberrypi, instead of another custom layer.
-> >=20
-> > But something similar needs to be added somewhere, and with the=20
-> > current version of Yocto on RaspberryPi, without this patch, network =
-
-> > just doesn=E2=80=99t start=E2=80=A6
->=20
-> I guess putting it at BSP is not right. Ethernet network does work on =
-Tizen on Yocto:
-> 	http://blogs.s-osg.org/tizen-rpi2-now-supporting-3d-acceleration/
->=20
-> Regards,
-> Mauro
->=20
->=20
-> >=20
-> > =20
-> >=20
-> > Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr=20
-> > <mailto:herve.jourdain@neuf.fr> >
-> >=20
-> > ---
-> >=20
-> > diff -Naur
-> > meta-raspberrypi.orig/recipes-core/systemd/files/eth.network
-> > meta-raspberrypi/recipes-core/systemd/files/eth.network
-> >=20
-> > --- meta-raspberrypi.orig/recipes-core/systemd/files/eth.network
-> > 1970-01-01 08:00:00.000000000 +0800
-> >=20
-> > +++ meta-raspberrypi/recipes-core/systemd/files/eth.network    =
+>
+>
+> This said, I=E2=80=99m not 100% sure if it should be enabled in=20
+> meta-raspberrypi, instead of another custom layer.
+>
+> But something similar needs to be added somewhere, and with the=20
+> current version of Yocto on RaspberryPi, without this patch, network=20
+> just doesn=E2=80=99t start=E2=80=A6
+>
+>
+>
+> Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr>
+>
+> ---
+>
+> diff -Naur=20
+> meta-raspberrypi.orig/recipes-core/systemd/files/eth.network
+> meta-raspberrypi/recipes-core/systemd/files/eth.network
+>
+> --- meta-raspberrypi.orig/recipes-core/systemd/files/eth.network
+> 1970-01-01 08:00:00.000000000 +0800
+>
+> +++ meta-raspberrypi/recipes-core/systemd/files/eth.network    =
 2015-07-22
-> > 12:01:53.587830690 +0800
-> >=20
-> > @@ -0,0 +1,6 @@
-> >=20
-> > +[Match]
-> >=20
-> > +Name=3Deth*
-> >=20
-> > +
-> >=20
-> > +[Network]
-> >=20
-> > +DHCP=3Dv4
-> >=20
-> > +
-> >=20
-> > diff -Naur
-> > meta-raspberrypi.orig/recipes-core/systemd/systemd_%.bbappend
-> > meta-raspberrypi/recipes-core/systemd/systemd_%.bbappend
-> >=20
-> > --- meta-raspberrypi.orig/recipes-core/systemd/systemd_%.bbappend
-> > 1970-01-01 08:00:00.000000000 +0800
-> >=20
-> > +++ meta-raspberrypi/recipes-core/systemd/systemd_%.bbappend
-> > 2015-07-22 12:05:07.307838546 +0800
-> >=20
-> > @@ -0,0 +1,17 @@
-> >=20
-> > +FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
-> >=20
-> > +
-> >=20
-> > +EXTRA_OECONF +=3D "--disable-ldconfig"
-> >=20
-> > +
-> >=20
-> > +PACKAGECONFIG +=3D "networkd resolved"
-> >=20
-> > +
-> >=20
-> > +CFLAGS_append_arm =3D " -fno-lto"
-> >=20
-> > +
-> >=20
-> > +SRC_URI +=3D "file://eth.network"
-> >=20
-> > +
-> >=20
-> > +FILES_${PN} +=3D "{sysconfdir}/systemd/network/*"
-> >=20
-> > +
-> >=20
-> > +do_install_append() {
-> >=20
-> > +    install -d ${D}${sysconfdir}/systemd/network/
-> >=20
-> > +    install -m 0644 ${WORKDIR}/*.network=20
-> > + ${D}${sysconfdir}/systemd/network/
-> >=20
-> > +}
-> >=20
-> > +
-> >=20
-> > =20
-> >=20
->=20
+> 12:01:53.587830690 +0800
+>
+> @@ -0,0 +1,6 @@
+>
+> +[Match]
+>
+> +Name=3Deth*
+>
+> +
+>
+> +[Network]
+>
+> +DHCP=3Dv4
+>
+> +
+>
+> diff -Naur=20
+> meta-raspberrypi.orig/recipes-core/systemd/systemd_%.bbappend
+> meta-raspberrypi/recipes-core/systemd/systemd_%.bbappend
+>
+> --- meta-raspberrypi.orig/recipes-core/systemd/systemd_%.bbappend
+> 1970-01-01 08:00:00.000000000 +0800
+>
+> +++ meta-raspberrypi/recipes-core/systemd/systemd_%.bbappend
+> 2015-07-22 12:05:07.307838546 +0800
+>
+> @@ -0,0 +1,17 @@
+>
+> +FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+>
+> +
+>
+> +EXTRA_OECONF +=3D "--disable-ldconfig"
+>
+> +
+>
+> +PACKAGECONFIG +=3D "networkd resolved"
+>
+> +
+>
+> +CFLAGS_append_arm =3D " -fno-lto"
+>
+> +
+>
+> +SRC_URI +=3D "file://eth.network"
+>
+> +
+>
+> +FILES_${PN} +=3D "{sysconfdir}/systemd/network/*"
+>
+> +
+>
+> +do_install_append() {
+>
+> +    install -d ${D}${sysconfdir}/systemd/network/
+>
+> +    install -m 0644 ${WORKDIR}/*.network=20
+> + ${D}${sysconfdir}/systemd/network/
+>
+> +}
+>
+> +
+Please don't modify these kind of settings in a BSP. Even worse by doing =
+it as suggested all machines will get this modification. This for sake =
+that you have no network. Why not add networkmanager or whatever and =
+being fine?
+
+Andreas
 
 
