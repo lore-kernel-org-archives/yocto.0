@@ -1,6 +1,6 @@
-Return-Path: <danielhilst@gmail.com>
+Return-Path: <lenin.muthukumar@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C467FE008D4; Wed, 22 Jul 2015 18:03:15 -0700 (PDT)
+	id EE034E00927; Wed, 22 Jul 2015 22:33:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (danielhilst[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.45 listed in list.dnswl.org]
+	mail provider *      (lenin.muthukumar[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,36 +17,38 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qg0-f45.google.com (mail-qg0-f45.google.com
-	[209.85.192.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 375B4E00474
-	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 18:03:14 -0700 (PDT)
-Received: by qgii95 with SMTP id i95so80159110qgi.2
-	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 18:03:14 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.160.171 listed in list.dnswl.org]
+Received: from mail-yk0-f171.google.com (mail-yk0-f171.google.com
+	[209.85.160.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9771E008EC
+	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 22:33:05 -0700 (PDT)
+Received: by ykdu72 with SMTP id u72so211244571ykd.2
+	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 22:33:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=K0TLEO7zUuuHbb3fjzlrcurdbU9gTMUMRdABFXTPYFo=;
-	b=GQXvDOyXeRnl85SvdCqIdsVfuIu/najWN7HryqyW/eTjVqmSi4Z+H54cFNXJYnEYzk
-	kvqYgQnegCKSDU4hgpBDQ5hzoDHhvmtE0t/m6vKlHBeaotL8XJcsAca2vgbqFWqSM0Li
-	V9NpPO8PUqGQWHvze3pR3nHOfnwf/R8P2ZZxwOhAGoWjCVfNIGtW2EvCi+2IEHbGAoBW
-	DQePiy45uCCUkeArLuWJkFvWgUF91sclH5KXo3iiPi3FrLvnF5uGzeF6KXaL+1QG16S1
-	PccQ88qqQr9vl57Dkxh8cjBwPtLgUgS2gFwoYhoYoPsG29pUejI9acNT/aqJkWokRGqV
-	op/g==
+	bh=q+FkesgyrfXU2DVXdX3DVloPSnmOibS6L6djS//XpFM=;
+	b=wHhVv/V2NxcO2MUYIWKCnTG0J/lyxAjL4oAQ9iEonohKsdptEQoPoX+FgaTjQQfS2t
+	nu+uRvZcRm9F54TLvau0saHhSve9ucTP+ZZ6kjIwXRrpBN9bmYH2yzFGQuYxbK+qv8pS
+	2FTCA1weopOLMBXfCLJuUxCT03UrKnGZ9P5XPDwrm/jo1HISibdtDQYnuMqwbA7wzbpl
+	l0qC8y9kzsO2SqH1mprdraAUy081YmfQlzGGW0z+ofm0DK/5R9+b5u4WCh7doSyNO+vs
+	dJQsl3+63QxkhzMoizZdOVE0DmWoTb5x8s/flNr5V+ArnWLmUfwQwHVWY3wBsl4oyEnZ
+	UQEw==
 MIME-Version: 1.0
-X-Received: by 10.140.239.9 with SMTP id k9mr8561036qhc.38.1437613394330; Wed,
-	22 Jul 2015 18:03:14 -0700 (PDT)
-Received: by 10.96.179.74 with HTTP; Wed, 22 Jul 2015 18:03:14 -0700 (PDT)
-Received: by 10.96.179.74 with HTTP; Wed, 22 Jul 2015 18:03:14 -0700 (PDT)
-In-Reply-To: <CAF3SDA5-QQ3me8ETP=nP5irdf3nDtncFQLT0PtyzoJb3SCgMjQ@mail.gmail.com>
-References: <5B6A9B05AFA9AC4FB94345D083806F144B2BF945@USSTLZ-PMSG016.emrsn.org>
-	<CAF3SDA5-QQ3me8ETP=nP5irdf3nDtncFQLT0PtyzoJb3SCgMjQ@mail.gmail.com>
-Date: Wed, 22 Jul 2015 22:03:14 -0300
-Message-ID: <CAF3SDA6ZXCK=GAGpPif7gfyNcKzUkwe9ztsdMdMM9Wi+3kBGtw@mail.gmail.com>
-From: "Daniel." <danielhilst@gmail.com>
-To: Gamma.Dean@emerson.com
+X-Received: by 10.170.120.197 with SMTP id m188mr6287029ykb.60.1437629585384; 
+	Wed, 22 Jul 2015 22:33:05 -0700 (PDT)
+Received: by 10.13.200.65 with HTTP; Wed, 22 Jul 2015 22:33:05 -0700 (PDT)
+In-Reply-To: <55AD0E1E.2030805@linux.intel.com>
+References: <CAO0HP3E2LNpv=buzdVJG_PcNCW2wSCmho6GRk5x_ScWnge39mw@mail.gmail.com>
+	<55AD0E1E.2030805@linux.intel.com>
+Date: Thu, 23 Jul 2015 11:03:05 +0530
+Message-ID: <CAO0HP3FJS1gLB5+uwKSXd84XMuxz7AuUhbAePkROJGuz0m39VA@mail.gmail.com>
+From: Lenin Muthu kumar <lenin.muthukumar@gmail.com>
+To: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: Exporting kernel header from patch
+Subject: Re: How to add bluetooth "bluez4" to core image sato (valleyisland)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,78 +60,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Jul 2015 01:03:15 -0000
-Content-Type: multipart/alternative; boundary=001a113593a6b18dcb051b80737f
+X-List-Received-Date: Thu, 23 Jul 2015 05:33:10 -0000
+Content-Type: multipart/alternative; boundary=001a1137834cc16b40051b84389b
 
---001a113593a6b18dcb051b80737f
+--001a1137834cc16b40051b84389b
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-Just a guess,
+Hi Leonardo,
+                 i done as per you said but no changes in my image. And i
+add the CORE_IMAGE_EXTRA_INSTALL = "bluze4" in build/conf/local.conf. As im
+new to yocto image i dont know anything in depth and new to this platform.
+so i need complete steps to implement bluethooth to my image.  Thanks in
+advance.
 
-Did you have INHERIT +=3D "rm_work" in your local.conf?
+On Mon, Jul 20, 2015 at 8:35 PM, Leonardo Sandoval <
+leonardo.sandoval.gonzalez@linux.intel.com> wrote:
 
-Cheers,
-- dhs
-Em 22/07/2015 18:36, <Gamma.Dean@emerson.com> escreveu:
+> You can add recipes (packages) through CORE_IMAGE_EXTRA_INSTALL = "pkg 1
+> pkg2 ...". Regarding the specific package you want (bluez4), it is not on
+> master, so you may try older stable branches.
+>
+>
+>
+> On 07/20/2015 07:28 AM, Lenin Muthu kumar wrote:
+>
+>> Hi,
+>>      i have created the image for atom E3800 processor (valleyisland -
+>> core-image-sato). now i need to add bluetooth service to that image. i
+>> need
+>> a detailed steps how to do it. im expecting positive reply from you.
+>> thanks
+>> in advance.
+>>
+>>
+>>
+>>
 
- When using a shared sstate cache which has the previously built kernel it
-appears that STAGING_KERNEL_DIR does not get populated =E2=80=93 in my case=
- there
-is no tmp/work-shared directory at all.  If I have modified the user space
-app to look there for a header is there some dependency I can add that will
-force STAGING_KERNEL_DIR to get built?
-
-
-
-If not, perhaps the best answer is your other proposed method of just
-adding the header to an additional path in sysroot.
-
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
---001a113593a6b18dcb051b80737f
+--001a1137834cc16b40051b84389b
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<p dir=3D"ltr">Just a guess,</p>
-<p dir=3D"ltr">Did you have INHERIT +=3D &quot;rm_work&quot; in your local.=
-conf?</p>
-<p dir=3D"ltr">Cheers,<br>
-- dhs</p>
-<div class=3D"gmail_quote">Em 22/07/2015 18:36,  &lt;<a href=3D"mailto:Gamm=
-a.Dean@emerson.com">Gamma.Dean@emerson.com</a>&gt; escreveu:<br type=3D"att=
-ribution"><blockquote class=3D"quote" style=3D"margin:0 0 0 .8ex;border-lef=
-t:1px #ccc solid;padding-left:1ex">
+<div dir=3D"ltr">Hi Leonardo,<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0i done as per you said but no changes in my image. And=
+ i add the=C2=A0<span style=3D"font-size:12.8000001907349px">CORE_IMAGE_EXT=
+RA_INSTALL =3D &quot;bluze4&quot; in build/conf/local.conf. As im new to yo=
+cto image i dont know anything in depth and new to this platform. so i need=
+ complete steps to implement bluethooth to my image.=C2=A0 Thanks in advanc=
+e.</span></div></div><div class=3D"gmail_extra"><br><div class=3D"gmail_quo=
+te">On Mon, Jul 20, 2015 at 8:35 PM, Leonardo Sandoval <span dir=3D"ltr">&l=
+t;<a href=3D"mailto:leonardo.sandoval.gonzalez@linux.intel.com" target=3D"_=
+blank">leonardo.sandoval.gonzalez@linux.intel.com</a>&gt;</span> wrote:<br>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">You can add recipes (packages) through CORE_=
+IMAGE_EXTRA_INSTALL =3D &quot;pkg 1 pkg2 ...&quot;. Regarding the specific =
+package you want (bluez4), it is not on master, so you may try older stable=
+ branches.<div class=3D"HOEnZb"><div class=3D"h5"><br>
+<br>
+<br>
+On 07/20/2015 07:28 AM, Lenin Muthu kumar wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+Hi,<br>
+=C2=A0 =C2=A0 =C2=A0i have created the image for atom E3800 processor (vall=
+eyisland -<br>
+core-image-sato). now i need to add bluetooth service to that image. i need=
+<br>
+a detailed steps how to do it. im expecting positive reply from you. thanks=
+<br>
+in advance.<br>
+<br>
+<br>
+<br>
+</blockquote>
+</div></div></blockquote></div><br></div>
 
-
-
-
-
-<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div>
-<p class=3D"MsoNormal">When using a shared sstate cache which has the previ=
-ously built kernel it appears that STAGING_KERNEL_DIR does not get populate=
-d =E2=80=93 in my case there is no tmp/work-shared directory at all.=C2=A0 =
-If I have modified the user space app to look there
- for a header is there some dependency I can add that will force STAGING_KE=
-RNEL_DIR to get built?<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">If not, perhaps the best answer is your other propos=
-ed method of just adding the header to an additional path in sysroot.<u></u=
-><u></u></p>
-</div>
-</div>
-
-<br>--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div>
-
---001a113593a6b18dcb051b80737f--
+--001a1137834cc16b40051b84389b--
