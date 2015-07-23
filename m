@@ -1,58 +1,34 @@
-Return-Path: <develone@sbcglobal.net>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0CCA3E00861; Wed, 22 Jul 2015 15:17:03 -0700 (PDT)
+	id 0D3BFE00861; Wed, 22 Jul 2015 17:23:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [98.138.91.158 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm28-vm3.bullet.mail.ne1.yahoo.com
-	(nm28-vm3.bullet.mail.ne1.yahoo.com [98.138.91.158])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA02DE00474
-	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 15:16:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
-	t=1437603411; bh=EBqTepjGBOCZLB9QfH5wLxYhX7W3HNJ82Tr9VS3aXWA=;
-	h=Date:From:Reply-To:To:Subject:From:Subject;
-	b=oY0bpr5CPRfxpI+V2QX4PH+6Ml/JFedWCanmjftPqBStks3TANEI2/9ya76GaXU7sL2mGpQhv129DUHKLCJNuuEtpUzhIklTjoiPg6f3/zfkOv1w6377olHUkxCcqZHKvHXaNkbCpbY30hP1wH/+J82qRA5wnT/OW0reEraxGAccZtHQWsGImMaaNSUTw3LXfF935ITfu+VUdhvi3gLBQGmES3qhuDYfSN+V6QTreIF0i00xsH8quzp9pVuJlwUuw5zxOVmaevygnSOhvPLXe5YNaoyBmFy/4mUeIZM/dsaX9zB1eEGtdlu74AX15SFlLI5/Vm3HmA8OopIpiIWABw==
-Received: from [98.138.101.128] by nm28.bullet.mail.ne1.yahoo.com with NNFMP;
-	22 Jul 2015 22:16:51 -0000
-Received: from [98.138.87.6] by tm16.bullet.mail.ne1.yahoo.com with NNFMP;
-	22 Jul 2015 22:16:51 -0000
-Received: from [127.0.0.1] by omp1006.mail.ne1.yahoo.com with NNFMP;
-	22 Jul 2015 22:16:51 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 438847.58282.bm@omp1006.mail.ne1.yahoo.com
-X-YMail-OSG: gOpWISAVM1knNsOjw9rHq5znFDo6g5yHLT.DX6MDGcVScSfU8eAU9qM5CDjSDIc
-	qeAmN7NbcNxEJZPQivor10BkbCqWQzE8Bia3_qFT6MgU_CzlFkyMpYVeKaUTEYk88l7x9NZNPKJz
-	9.ZZmMhhyS1jkHuVd0lszryzzsx1YjLStDs6Gdj6DNnBJSwuo5Es8fQPyNFZR9PO6Ky7Hln.zhZC
-	mRTdfQjIzwQGOOBHfT0PjyalZb0xtqLK0htEi8Ii1kN4SwKbXI5TBNcGqxIgi_kOjx2ogPbu6hAY
-	.mXFYKqePz5Wstfqqq00w4OpSrZ.5uSAgUeyzQweERUrYN2JevZYRDg7x.QBKEcZ_lXNXojBW_YL
-	.p3J874Up1LiKO_tbbTuYIyK1zN.wlfGfqOgTUqxXX86LQMo0CJk7ORdv.zyh2xNTxndOPSR2hY4
-	.J4M0exILGkQp1_ndJwdmusdylrAfsrfzQA.DbaQEnXBCSVahIQk_FeWxw8bqvJkf_HpsSfNizG9
-	3OIrfLBNC8OfyOyRn_No4hx0_1Qt9vXk-
-Received: by 98.138.105.240; Wed, 22 Jul 2015 22:16:50 +0000 
-Date: Wed, 22 Jul 2015 22:16:50 +0000 (UTC)
-From: Edward Vidal <develone@sbcglobal.net>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <858020079.672977.1437603410191.JavaMail.yahoo@mail.yahoo.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42E1DE00474
+	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 17:23:17 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id A10A1F811DC; Wed, 22 Jul 2015 18:23:16 -0600 (MDT)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 2B617F811DA;
+	Wed, 22 Jul 2015 18:23:16 -0600 (MDT)
+Message-ID: <55B033F6.0@mlbassoc.com>
+Date: Wed, 22 Jul 2015 18:23:18 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.8.0
 MIME-Version: 1.0
-Subject: raspberry Pi core-image-sato
+To: yocto@yoctoproject.org
+References: <858020079.672977.1437603410191.JavaMail.yahoo@mail.yahoo.com>
+In-Reply-To: <858020079.672977.1437603410191.JavaMail.yahoo@mail.yahoo.com>
+Subject: Re: raspberry Pi core-image-sato
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Edward Vidal <develone@sbcglobal.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -61,35 +37,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 Jul 2015 22:17:03 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_672976_1990408823.1437603410189"
+X-List-Received-Date: Thu, 23 Jul 2015 00:23:21 -0000
+X-Groupsio-MsgNum: 25628
+Content-Type: multipart/mixed; boundary="------------070503050708070103090104"
 
-------=_Part_672976_1990408823.1437603410189
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-HiStill having errors with bitbake core-image-satoThis occurs at | checking=
- for X11... yes
-| checking for EGL... no
-| configure: error: Package requirements (egl) were not met:
-ERROR: Task 4856 (/home/vidal/wkg/yocto/RaspberryPi2/poky/meta/recipes-grap=
-hics/libepoxy/libepoxy_git.bb, do_configure) failed with exit code '1'I tri=
-ed adding /conf/machine/raspberrypi2.conf which I found on the internet.+PR=
-EFERRED_PROVIDER_virtual/egl ?=3D "vc-graphics-hardfp"
-+PREFERRED_PROVIDER_virtual/libgles2 ?=3D "vc-graphics-hardfp"This caused s=
-everal more errors.Any and all help is appreciated. =C2=A0Edward Vidal Jr.
-e-mail develone@sbcglobal.net
-915-595-1613
-
-------=_Part_672976_1990408823.1437603410189
-Content-Type: text/html; charset=UTF-8
+--------------070503050708070103090104
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
-<html><body><div style="color:#000; background-color:#fff; font-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font-size:16px"><div id="yui_3_16_0_1_1437603095794_10870"></div><div class="" id="yiv0962762372yui_3_16_0_1_1437594813612_17000"><span class="">Hi</span></div><div class=""><span class="">Still having errors with bitbake core-image-sato</span></div><div class=""><span class="">This occurs at </span></div>| checking for X11... yes<br class="">| checking for EGL... no<br class="">| configure: error: Package requirements (egl) were not met:<br class=""><div class="" id="yiv0962762372yui_3_16_0_1_1437594813612_17053" dir="ltr">ERROR:
- Task 4856 
-(/home/vidal/wkg/yocto/RaspberryPi2/poky/meta/recipes-graphics/libepoxy/libepoxy_git.bb,
- do_configure) failed with exit code '1'</div><pre id="yiv0962762372yui_3_16_0_1_1437594813612_17127" class="">I tried adding /conf/machine/raspberrypi2.conf which I found on the internet.</pre><pre class="">+PREFERRED_PROVIDER_virtual/egl ?= "vc-graphics-hardfp"
-+PREFERRED_PROVIDER_virtual/libgles2 ?= "vc-graphics-hardfp"</pre><div class="" dir="ltr">This caused several more errors.</div><div dir="ltr">Any and all help is appreciated. </div><div>&nbsp;</div><div><div>Edward Vidal Jr.<br>e-mail develone@sbcglobal.net<br>915-595-1613</div></div></div></body></html>
+On 2015-07-22 16:16, Edward Vidal wrote:
+> Hi
+> Still having errors with bitbake core-image-sato
 
-------=_Part_672976_1990408823.1437603410189--
+You must have added something to your image - core-image-sato does
+not include libepoxy by default.
+
+> This occurs at
+> | checking for X11... yes
+> | checking for EGL... no
+> | configure: error: Package requirements (egl) were not met:
+> ERROR: Task 4856 (/home/vidal/wkg/yocto/RaspberryPi2/poky/meta/recipes-graphics/libepoxy/libepoxy_git.bb, do_configure) failed with exit code '1'
+>
+> I tried adding /conf/machine/raspberrypi2.conf which I found on the internet.
+>
+> +PREFERRED_PROVIDER_virtual/egl ?= "vc-graphics-hardfp"
+> +PREFERRED_PROVIDER_virtual/libgles2 ?= "vc-graphics-hardfp"
+>
+> This caused several more errors.
+
+Which you failed [again] to list :-(
+
+> Any and all help is appreciated.
+
+To get libepoxy to build:
+   % bitbake userland -c cleansstate
+
+Then apply this patch which fixes a problem with libepoxy using
+the wrong python3
+
+After that, I got it to build for RaspberryPi-2
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
+
+--------------070503050708070103090104
+Content-Type: text/x-patch;
+ name="0001-libepoxy-Use-native-python3.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="0001-libepoxy-Use-native-python3.patch"
+
+From 17d22ee69a1568d1aaeaee26823ce6adbdf3062a Mon Sep 17 00:00:00 2001
+From: Gary Thomas <gary@mlbassoc.com>
+Date: Wed, 22 Jul 2015 18:20:30 -0600
+Subject: [PATCH] libepoxy: Use native python3
+
+This recipe needs python3.  This patch arranges to use the bitbake-built
+version, not the host version (which may be missing or not work...)
+
+Signed-off-by: Gary Thomas <gary@mlbassoc.com>
+---
+ meta/recipes-graphics/libepoxy/libepoxy_git.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meta/recipes-graphics/libepoxy/libepoxy_git.bb b/meta/recipes-graphics/libepoxy/libepoxy_git.bb
+index 9816257..0330a7b 100644
+--- a/meta/recipes-graphics/libepoxy/libepoxy_git.bb
++++ b/meta/recipes-graphics/libepoxy/libepoxy_git.bb
+@@ -16,7 +16,7 @@ PV = "1.2+git${SRCPV}"
+ 
+ S = "${WORKDIR}/git"
+ 
+-inherit autotools pkgconfig
++inherit autotools pkgconfig python3native
+ 
+ DEPENDS = "util-macros virtual/egl"
+ 
+-- 
+1.9.1
+
+
+--------------070503050708070103090104--
