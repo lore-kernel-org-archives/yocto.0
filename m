@@ -1,42 +1,67 @@
-Return-Path: <randy.e.witt@linux.intel.com>
+Return-Path: <just_abhi22@yahoo.co.in>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 18913E0087F; Thu, 23 Jul 2015 11:01:49 -0700 (PDT)
+	id F2FBDE009B3; Thu, 23 Jul 2015 11:07:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,
+	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (just_abhi22[at]yahoo.co.in)
+	* 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
+	digit
+	*      (abhishek srivastava <just_abhi22[at]yahoo.co.in> )
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9775E0087F
-	for <yocto@yoctoproject.org>; Thu, 23 Jul 2015 11:01:46 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 23 Jul 2015 11:01:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,532,1432623600"; d="scan'208";a="769997873"
-Received: from bitbang.jf.intel.com ([10.7.201.51])
-	by orsmga002.jf.intel.com with ESMTP; 23 Jul 2015 11:01:46 -0700
-To: "Ng, Mei Yeen" <mei.yeen.ng@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <62355CE5B24AE3438DF93AF114E1F91B2DBC9045@KMSMSX153.gar.corp.intel.com>
-	<55B12B8B.7060509@linux.intel.com>
-From: Randy Witt <randy.e.witt@linux.intel.com>
-Message-ID: <55B12C0A.9090102@linux.intel.com>
-Date: Thu, 23 Jul 2015 11:01:46 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.0.1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [67.195.87.83 listed in list.dnswl.org]
+Received: from nm43.bullet.mail.gq1.yahoo.com (nm43.bullet.mail.gq1.yahoo.com
+	[67.195.87.83])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66601E0087F
+	for <yocto@yoctoproject.org>; Thu, 23 Jul 2015 11:07:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.co.in; s=s2048;
+	t=1437674854; bh=fIMFBB03J5pXNQpdB5DjZExYbOF5WF9ja/FgUecSjg4=;
+	h=Date:From:Reply-To:To:Subject:From:Subject;
+	b=FMiEWcDh7Cn1Z40iCqIA+wh/y8Qb3WJogT5lKiKf5XnHHWWOuMmj7c+kNLvobWvvPQqdhKnW4Ecfshp/ijd6SHxZCdSbhj4H1v5qwNa6VENl1LT3uxWSryHip23Mqddezp8b7ONcBCtEi53LO7VkPTAslKi0PBpxORduGyX4S/th7/WPBD50wRx8ldkKE+vAKHrpGbXSDrtJ3gfYib92RWFJH9LK30x6hvmbXxgLEwyTIMWSjwZTdaexM4b/44QYxc+fi8XqCIF5aNYcwZuYN0kqaow5+E2fJijOghYogne/8e8H4seoH0wzTjUA+w2xuIIUbRyXQP0oELfEpmPlcA==
+Received: from [127.0.0.1] by nm43.bullet.mail.gq1.yahoo.com with NNFMP;
+	23 Jul 2015 18:07:34 -0000
+Received: from [98.137.12.55] by nm43.bullet.mail.gq1.yahoo.com with NNFMP;
+	23 Jul 2015 18:04:47 -0000
+Received: from [106.10.166.62] by tm15.bullet.mail.gq1.yahoo.com with NNFMP;
+	23 Jul 2015 18:04:47 -0000
+Received: from [106.10.151.154] by tm19.bullet.mail.sg3.yahoo.com with NNFMP;
+	23 Jul 2015 18:04:47 -0000
+Received: from [127.0.0.1] by omp1008.mail.sg3.yahoo.com with NNFMP;
+	23 Jul 2015 18:04:47 -0000
+X-Yahoo-Newman-Property: ymail-4
+X-Yahoo-Newman-Id: 12002.22312.bm@omp1008.mail.sg3.yahoo.com
+X-YMail-OSG: qpgUYasVM1nbLWIw6BjhNXdR_7Q3CWWm_t5NH6lEpXxTWBX7UonN4CmhVczqcJp
+	umcLlxTsl2Vxcu1VEJjJjGOO2V_vuUXaeI9U1MCNwGsksuoOIyVeJKpu_nmC_11VqzVT73Y2H_Ng
+	qrKba5L7se1jD5I0AIBSEtgxJSCTR80Y1k1gLPP0txEazGggH2lliJWbGJob4lWCwP6qlcK7wbls
+	XkgHSuNefHHWgAVHFDYgm048o_9sK1xlAAYN6l9Rxegdpq5Ey_dA5_8PqOVVMqSh3RQaHrMTs3gS
+	e7v9.lAd24UrarwhCfLcBuw9ta.WHEK79G39xTkbOcULeXGQrkqpkDAOT8PGD.gJvyqtGNvneA2x
+	rIbHL_mv6XPVKiqEakZpxEs5ucBCqQ5W1xNX7V_5zg8jcIxE2PVAS6bCdW2ejmMFy2NSjJzsOv8X
+	9hOuMj751bVzwhv6xDM2jLIYPmc4wgFGFW2cE26f.297JH7JLNvIylXOXxQB36q.Ge4GmL4LHqal
+	To9nJRD22coSC9PjInxOy1nU-
+Received: by 106.10.196.180; Thu, 23 Jul 2015 18:04:46 +0000 
+Date: Thu, 23 Jul 2015 18:04:46 +0000 (UTC)
+From: abhishek srivastava <just_abhi22@yahoo.co.in>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <2007816747.884401.1437674686329.JavaMail.yahoo@mail.yahoo.com>
 MIME-Version: 1.0
-In-Reply-To: <55B12B8B.7060509@linux.intel.com>
-Cc: "Hart, Darren" <darren.hart@intel.com>, "Witt,
-	Randy E" <randy.e.witt@intel.com>
-Subject: Re: Packages in packagegroup are not installed in image
+Subject: driver for piTFT 2.8 resistive display
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: abhishek srivastava <just_abhi22@yahoo.co.in>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -45,46 +70,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Jul 2015 18:01:49 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 23 Jul 2015 18:07:39 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_884400_2009364149.1437674686326"
 
-On 07/23/2015 10:59 AM, Randy Witt wrote:
-> Hi Mei,
->
-> On 07/15/2015 10:40 AM, Ng, Mei Yeen wrote:
->> Hi,
->>
->> I need help for issue where packages in packagegroup that compiles perfectly
->> fine with core-images, but when verified in the image, they are not installed
->> for some reason.
->> My understanding was that packages listed under RDEPENDS in the packagegroup
->> would get compiled and installed.
->>
->> Some packages would appear in 1 image and then disappear in the next compiled
->> image.
->> I'm seeing this when compiling with core-image-full-cmdline and core-image-sato.
->>
->> I have attached the following package group created:
->>
->> -        graphics package group- ldd would not be installed in the image
->>
->> -        build essentials extended package group - gdb were not install, gcc
->> and mkdosfs will intermittently not install into the image
->
-> Could you perhaps provide the recipe that creates the package group and show how
-> you are adding the package group to the image?
+------=_Part_884400_2009364149.1437674686326
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Sorry I hit send too quickly, I saw the package group recipe, I just was curious 
-how you are adding them to the image. Sorry.
+Hi allCan anyone please tell how to interface raspberrypi with pitft 2.8 re=
+sistive screen. notro tft driver is available in stagging mode but how to u=
+se that to make display functional, is not clear.Have any one succeeded in =
+running pitft with yocto ?=C2=A0=20
+please help to make pitft display functional with yocto.
+thank you
+Abhishek=20
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=20
 
->> Any help to shed some light on this is very much appreciated.
->>
->> Thanks,
->> MY
->>
->>
->>
->
+------=_Part_884400_2009364149.1437674686326
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, Sans-Serif;fo=
+nt-size:14px"><div id=3D"yui_3_16_0_1_1437674256114_10899">Hi all</div><div=
+ id=3D"yui_3_16_0_1_1437674256114_10894">Can anyone please tell how to inte=
+rface raspberrypi with pitft 2.8 resistive screen. notro tft driver is avai=
+lable in stagging mode but how to use that to make display functional, is n=
+ot clear.Have any one succeeded in running pitft with yocto ?&nbsp; <br></d=
+iv><div id=3D"yui_3_16_0_1_1437674256114_10892" dir=3D"ltr">please help to =
+make pitft display functional with yocto.</div><div id=3D"yui_3_16_0_1_1437=
+674256114_10933" dir=3D"ltr"><br></div><div dir=3D"ltr">thank you<br></div>=
+<div id=3D"yui_3_16_0_1_1437674256114_10768"><span></span></div><div id=3D"=
+yui_3_16_0_1_1437674256114_10775" class=3D"signature"><div id=3D"yui_3_16_0=
+_1_1437674256114_10774"><span id=3D"yui_3_16_0_1_1437674256114_10779" style=
+=3D"font-size:16px;"><span id=3D"yui_3_16_0_1_1437674256114_10778" style=3D=
+"font-family:garamond, new york, times, serif;"><span id=3D"yui_3_16_0_1_14=
+37674256114_10777" style=3D"font-weight:bold;">Abhishek <br><span class=3D"=
+tab">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class=3D=
+"tab"><br></span></span></span></span></div></div></div></body></html>
 
+------=_Part_884400_2009364149.1437674686326--
