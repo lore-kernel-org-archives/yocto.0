@@ -1,31 +1,55 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0D3BFE00861; Wed, 22 Jul 2015 17:23:21 -0700 (PDT)
+	id C467FE008D4; Wed, 22 Jul 2015 18:03:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (danielhilst[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.45 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42E1DE00474
-	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 17:23:17 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id A10A1F811DC; Wed, 22 Jul 2015 18:23:16 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 2B617F811DA;
-	Wed, 22 Jul 2015 18:23:16 -0600 (MDT)
-Message-ID: <55B033F6.0@mlbassoc.com>
-Date: Wed, 22 Jul 2015 18:23:18 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.8.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qg0-f45.google.com (mail-qg0-f45.google.com
+	[209.85.192.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 375B4E00474
+	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 18:03:14 -0700 (PDT)
+Received: by qgii95 with SMTP id i95so80159110qgi.2
+	for <yocto@yoctoproject.org>; Wed, 22 Jul 2015 18:03:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=K0TLEO7zUuuHbb3fjzlrcurdbU9gTMUMRdABFXTPYFo=;
+	b=GQXvDOyXeRnl85SvdCqIdsVfuIu/najWN7HryqyW/eTjVqmSi4Z+H54cFNXJYnEYzk
+	kvqYgQnegCKSDU4hgpBDQ5hzoDHhvmtE0t/m6vKlHBeaotL8XJcsAca2vgbqFWqSM0Li
+	V9NpPO8PUqGQWHvze3pR3nHOfnwf/R8P2ZZxwOhAGoWjCVfNIGtW2EvCi+2IEHbGAoBW
+	DQePiy45uCCUkeArLuWJkFvWgUF91sclH5KXo3iiPi3FrLvnF5uGzeF6KXaL+1QG16S1
+	PccQ88qqQr9vl57Dkxh8cjBwPtLgUgS2gFwoYhoYoPsG29pUejI9acNT/aqJkWokRGqV
+	op/g==
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <858020079.672977.1437603410191.JavaMail.yahoo@mail.yahoo.com>
-In-Reply-To: <858020079.672977.1437603410191.JavaMail.yahoo@mail.yahoo.com>
-Subject: Re: raspberry Pi core-image-sato
+X-Received: by 10.140.239.9 with SMTP id k9mr8561036qhc.38.1437613394330; Wed,
+	22 Jul 2015 18:03:14 -0700 (PDT)
+Received: by 10.96.179.74 with HTTP; Wed, 22 Jul 2015 18:03:14 -0700 (PDT)
+Received: by 10.96.179.74 with HTTP; Wed, 22 Jul 2015 18:03:14 -0700 (PDT)
+In-Reply-To: <CAF3SDA5-QQ3me8ETP=nP5irdf3nDtncFQLT0PtyzoJb3SCgMjQ@mail.gmail.com>
+References: <5B6A9B05AFA9AC4FB94345D083806F144B2BF945@USSTLZ-PMSG016.emrsn.org>
+	<CAF3SDA5-QQ3me8ETP=nP5irdf3nDtncFQLT0PtyzoJb3SCgMjQ@mail.gmail.com>
+Date: Wed, 22 Jul 2015 22:03:14 -0300
+Message-ID: <CAF3SDA6ZXCK=GAGpPif7gfyNcKzUkwe9ztsdMdMM9Wi+3kBGtw@mail.gmail.com>
+From: "Daniel." <danielhilst@gmail.com>
+To: Gamma.Dean@emerson.com
+Cc: yocto@yoctoproject.org
+Subject: Re: Exporting kernel header from patch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,87 +61,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Jul 2015 00:23:21 -0000
-X-Groupsio-MsgNum: 25628
-Content-Type: multipart/mixed; boundary="------------070503050708070103090104"
+X-List-Received-Date: Thu, 23 Jul 2015 01:03:15 -0000
+Content-Type: multipart/alternative; boundary=001a113593a6b18dcb051b80737f
 
---------------070503050708070103090104
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--001a113593a6b18dcb051b80737f
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 2015-07-22 16:16, Edward Vidal wrote:
-> Hi
-> Still having errors with bitbake core-image-sato
+Just a guess,
 
-You must have added something to your image - core-image-sato does
-not include libepoxy by default.
+Did you have INHERIT +=3D "rm_work" in your local.conf?
 
-> This occurs at
-> | checking for X11... yes
-> | checking for EGL... no
-> | configure: error: Package requirements (egl) were not met:
-> ERROR: Task 4856 (/home/vidal/wkg/yocto/RaspberryPi2/poky/meta/recipes-graphics/libepoxy/libepoxy_git.bb, do_configure) failed with exit code '1'
->
-> I tried adding /conf/machine/raspberrypi2.conf which I found on the internet.
->
-> +PREFERRED_PROVIDER_virtual/egl ?= "vc-graphics-hardfp"
-> +PREFERRED_PROVIDER_virtual/libgles2 ?= "vc-graphics-hardfp"
->
-> This caused several more errors.
+Cheers,
+- dhs
+Em 22/07/2015 18:36, <Gamma.Dean@emerson.com> escreveu:
 
-Which you failed [again] to list :-(
-
-> Any and all help is appreciated.
-
-To get libepoxy to build:
-   % bitbake userland -c cleansstate
-
-Then apply this patch which fixes a problem with libepoxy using
-the wrong python3
-
-After that, I got it to build for RaspberryPi-2
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
-
---------------070503050708070103090104
-Content-Type: text/x-patch;
- name="0001-libepoxy-Use-native-python3.patch"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
- filename="0001-libepoxy-Use-native-python3.patch"
-
-From 17d22ee69a1568d1aaeaee26823ce6adbdf3062a Mon Sep 17 00:00:00 2001
-From: Gary Thomas <gary@mlbassoc.com>
-Date: Wed, 22 Jul 2015 18:20:30 -0600
-Subject: [PATCH] libepoxy: Use native python3
-
-This recipe needs python3.  This patch arranges to use the bitbake-built
-version, not the host version (which may be missing or not work...)
-
-Signed-off-by: Gary Thomas <gary@mlbassoc.com>
----
- meta/recipes-graphics/libepoxy/libepoxy_git.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/meta/recipes-graphics/libepoxy/libepoxy_git.bb b/meta/recipes-graphics/libepoxy/libepoxy_git.bb
-index 9816257..0330a7b 100644
---- a/meta/recipes-graphics/libepoxy/libepoxy_git.bb
-+++ b/meta/recipes-graphics/libepoxy/libepoxy_git.bb
-@@ -16,7 +16,7 @@ PV = "1.2+git${SRCPV}"
- 
- S = "${WORKDIR}/git"
- 
--inherit autotools pkgconfig
-+inherit autotools pkgconfig python3native
- 
- DEPENDS = "util-macros virtual/egl"
- 
--- 
-1.9.1
+ When using a shared sstate cache which has the previously built kernel it
+appears that STAGING_KERNEL_DIR does not get populated =E2=80=93 in my case=
+ there
+is no tmp/work-shared directory at all.  If I have modified the user space
+app to look there for a header is there some dependency I can add that will
+force STAGING_KERNEL_DIR to get built?
 
 
---------------070503050708070103090104--
+
+If not, perhaps the best answer is your other proposed method of just
+adding the header to an additional path in sysroot.
+
+--
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
+
+--001a113593a6b18dcb051b80737f
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p dir=3D"ltr">Just a guess,</p>
+<p dir=3D"ltr">Did you have INHERIT +=3D &quot;rm_work&quot; in your local.=
+conf?</p>
+<p dir=3D"ltr">Cheers,<br>
+- dhs</p>
+<div class=3D"gmail_quote">Em 22/07/2015 18:36,  &lt;<a href=3D"mailto:Gamm=
+a.Dean@emerson.com">Gamma.Dean@emerson.com</a>&gt; escreveu:<br type=3D"att=
+ribution"><blockquote class=3D"quote" style=3D"margin:0 0 0 .8ex;border-lef=
+t:1px #ccc solid;padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div>
+<p class=3D"MsoNormal">When using a shared sstate cache which has the previ=
+ously built kernel it appears that STAGING_KERNEL_DIR does not get populate=
+d =E2=80=93 in my case there is no tmp/work-shared directory at all.=C2=A0 =
+If I have modified the user space app to look there
+ for a header is there some dependency I can add that will force STAGING_KE=
+RNEL_DIR to get built?<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">If not, perhaps the best answer is your other propos=
+ed method of just adding the header to an additional path in sysroot.<u></u=
+><u></u></p>
+</div>
+</div>
+
+<br>--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div>
+
+--001a113593a6b18dcb051b80737f--
