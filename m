@@ -1,50 +1,38 @@
-Return-Path: <Gamma.Dean@emerson.com>
+Return-Path: <randy.e.witt@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 76F87E009B3; Thu, 23 Jul 2015 10:55:14 -0700 (PDT)
+	id 1754CE009B3; Thu, 23 Jul 2015 10:59:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [68.232.143.91 listed in list.dnswl.org]
-X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
-	Thu, 23 Jul 2015 10:55:11 PDT
-Received: from esa5.emerson-outbound.iphmx.com
-	(esa5.emerson-outbound.iphmx.com [68.232.143.91])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37A29E0087F
-	for <yocto@yoctoproject.org>; Thu, 23 Jul 2015 10:55:11 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.15,532,1432598400"; d="scan'208,217";a="12529411"
-Received: from usstlz-pinfez08.extemr.org ([144.191.128.192])
-	by esa5.emerson-outbound.iphmx.com with ESMTP/TLS/AES128-SHA;
-	23 Jul 2015 17:54:06 +0000
-Received: from USSTLZ-PMSG004.emrsn.org (10.16.72.186) by
-	USSTLZ-PINFEZ08.extemr.org (10.16.8.81) with Microsoft SMTP Server
-	(TLS) id 14.3.158.1; Thu, 23 Jul 2015 17:54:06 +0000
-Received: from USSTLZ-PMSG016.emrsn.org ([169.254.8.133]) by
-	USSTLZ-PMSG004.emrsn.org ([169.254.8.96]) with mapi id 14.03.0158.001;
-	Thu, 23 Jul 2015 17:54:05 +0000
-From: <Gamma.Dean@Emerson.com>
-To: <danielhilst@gmail.com>
-Thread-Topic: [yocto] Exporting kernel header from patch
-Thread-Index: AQHQxONZhvoLQsZeQgK+7f8U+Rof/J3pVlUQ
-Date: Thu, 23 Jul 2015 17:54:06 +0000
-Message-ID: <5B6A9B05AFA9AC4FB94345D083806F144B2BFEC2@USSTLZ-PMSG016.emrsn.org>
-References: <5B6A9B05AFA9AC4FB94345D083806F144B2BF945@USSTLZ-PMSG016.emrsn.org>
-	<CAF3SDA5-QQ3me8ETP=nP5irdf3nDtncFQLT0PtyzoJb3SCgMjQ@mail.gmail.com>
-	<CAF3SDA6ZXCK=GAGpPif7gfyNcKzUkwe9ztsdMdMM9Wi+3kBGtw@mail.gmail.com>
-In-Reply-To: <CAF3SDA6ZXCK=GAGpPif7gfyNcKzUkwe9ztsdMdMM9Wi+3kBGtw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.19.249.11]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB211E0087F
+	for <yocto@yoctoproject.org>; Thu, 23 Jul 2015 10:59:39 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 23 Jul 2015 10:59:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.15,532,1432623600"; d="scan'208";a="734324559"
+Received: from bitbang.jf.intel.com ([10.7.201.51])
+	by orsmga001.jf.intel.com with ESMTP; 23 Jul 2015 10:59:39 -0700
+To: "Ng, Mei Yeen" <mei.yeen.ng@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <62355CE5B24AE3438DF93AF114E1F91B2DBC9045@KMSMSX153.gar.corp.intel.com>
+From: Randy Witt <randy.e.witt@linux.intel.com>
+Message-ID: <55B12B8B.7060509@linux.intel.com>
+Date: Thu, 23 Jul 2015 10:59:39 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.0.1
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Exporting kernel header from patch
+In-Reply-To: <62355CE5B24AE3438DF93AF114E1F91B2DBC9045@KMSMSX153.gar.corp.intel.com>
+Cc: "Hart, Darren" <darren.hart@intel.com>, "Witt,
+	Randy E" <randy.e.witt@intel.com>
+Subject: Re: Packages in packagegroup are not installed in image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,135 +44,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Jul 2015 17:55:14 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_5B6A9B05AFA9AC4FB94345D083806F144B2BFEC2USSTLZPMSG016em_"
+X-List-Received-Date: Thu, 23 Jul 2015 17:59:41 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_5B6A9B05AFA9AC4FB94345D083806F144B2BFEC2USSTLZPMSG016em_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Hi Mei,
 
-SSBkaWRu4oCZdCBmaW5kIOKAnHJtX3dvcmvigJ0gaW4gYW55IG9mIG15IGNvbmYgZmlsZXMgc28g
-SSBkb27igJl0IHRoaW5rIHRoYXTigJlzIHRoZSBpc3N1ZS4NCg0KSXQgYXBwZWFycyB0aGF0IFNU
-QUdJTkdfS0VSTkVMX0RJUiBqdXN0IGRvZXNu4oCZdCBnZXQgcmVidWlsdCBmcm9tIHNzdGF0ZSB3
-aGljaCBJIGNhbiB1bmRlcnN0YW5kIHNpbmNlIGl0IGlzbuKAmXQgbmVlZGVkIGJ5IGRlZmF1bHQu
-ICBJIGZvdW5kIGEgd2F5IHRvIHNldCB1cCB0aGUgZGVwZW5kZW5jaWVzIHRvIGJ1aWxkIGl0IHdo
-ZW4gbmVlZGVkIGFuZCBJIHN0YXJ0ZWQgYSBuZXcgdGhyZWFkIG92ZXIgb24gdGhlIG9lLWNvcmUg
-bGlzdCB0aXRsZWQg4oCcUmVidWlsZGluZyBTVEFHSU5HX0tFUk5FTF9ESVIgZnJvbSBzc3RhdGUg
-Y2FjaGXigJ0gcmVnYXJkaW5nIHRoYXQuDQoNClRoYW5rcyENCg0KRnJvbTogRGFuaWVsLiBbbWFp
-bHRvOmRhbmllbGhpbHN0QGdtYWlsLmNvbV0NClNlbnQ6IFdlZG5lc2RheSwgSnVseSAyMiwgMjAx
-NSA5OjAzIFBNDQpUbzogRGVhbiwgR2FtbWEgW05FVFBXUi9GTF0NCkNjOiB5b2N0b0B5b2N0b3By
-b2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBFeHBvcnRpbmcga2VybmVsIGhlYWRlciBm
-cm9tIHBhdGNoDQoNCg0KSnVzdCBhIGd1ZXNzLA0KDQpEaWQgeW91IGhhdmUgSU5IRVJJVCArPSAi
-cm1fd29yayIgaW4geW91ciBsb2NhbC5jb25mPw0KDQpDaGVlcnMsDQotIGRocw0KRW0gMjIvMDcv
-MjAxNSAxODozNiwgPEdhbW1hLkRlYW5AZW1lcnNvbi5jb208bWFpbHRvOkdhbW1hLkRlYW5AZW1l
-cnNvbi5jb20+PiBlc2NyZXZldToNCldoZW4gdXNpbmcgYSBzaGFyZWQgc3N0YXRlIGNhY2hlIHdo
-aWNoIGhhcyB0aGUgcHJldmlvdXNseSBidWlsdCBrZXJuZWwgaXQgYXBwZWFycyB0aGF0IFNUQUdJ
-TkdfS0VSTkVMX0RJUiBkb2VzIG5vdCBnZXQgcG9wdWxhdGVkIOKAkyBpbiBteSBjYXNlIHRoZXJl
-IGlzIG5vIHRtcC93b3JrLXNoYXJlZCBkaXJlY3RvcnkgYXQgYWxsLiAgSWYgSSBoYXZlIG1vZGlm
-aWVkIHRoZSB1c2VyIHNwYWNlIGFwcCB0byBsb29rIHRoZXJlIGZvciBhIGhlYWRlciBpcyB0aGVy
-ZSBzb21lIGRlcGVuZGVuY3kgSSBjYW4gYWRkIHRoYXQgd2lsbCBmb3JjZSBTVEFHSU5HX0tFUk5F
-TF9ESVIgdG8gZ2V0IGJ1aWx0Pw0KDQpJZiBub3QsIHBlcmhhcHMgdGhlIGJlc3QgYW5zd2VyIGlz
-IHlvdXIgb3RoZXIgcHJvcG9zZWQgbWV0aG9kIG9mIGp1c3QgYWRkaW5nIHRoZSBoZWFkZXIgdG8g
-YW4gYWRkaXRpb25hbCBwYXRoIGluIHN5c3Jvb3QuDQoNCi0tDQpfX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KeW9jdG8gbWFpbGluZyBsaXN0DQp5b2N0b0B5
-b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnPg0KaHR0cHM6Ly9s
-aXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvDQo=
+On 07/15/2015 10:40 AM, Ng, Mei Yeen wrote:
+> Hi,
+>
+> I need help for issue where packages in packagegroup that compiles perfectly fine with core-images, but when verified in the image, they are not installed for some reason.
+> My understanding was that packages listed under RDEPENDS in the packagegroup would get compiled and installed.
+>
+> Some packages would appear in 1 image and then disappear in the next compiled image.
+> I'm seeing this when compiling with core-image-full-cmdline and core-image-sato.
+>
+> I have attached the following package group created:
+>
+> -        graphics package group- ldd would not be installed in the image
+>
+> -        build essentials extended package group - gdb were not install, gcc and mkdosfs will intermittently not install into the image
 
---_000_5B6A9B05AFA9AC4FB94345D083806F144B2BFEC2USSTLZPMSG016em_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Could you perhaps provide the recipe that creates the package group and show how 
+you are adding the package group to the image?
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
-e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
-KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
-b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
-emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
-aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
-Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
-eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
-Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcA0KCXttc28tc3R5bGUtcHJpb3JpdHk6
-OTk7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0OjBpbjsNCgltc28t
-bWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowaW47DQoJZm9udC1zaXplOjEy
-LjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIiwic2VyaWYiO30NCnNwYW4uRW1h
-aWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5
-OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVs
-dA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIs
-InNhbnMtc2VyaWYiO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDExLjBpbjsN
-CgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtw
-YWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0K
-PG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwh
-W2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9
-ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlv
-dXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0i
-Ymx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0Qi
-PkkgZGlkbuKAmXQgZmluZCDigJxybV93b3Jr4oCdIGluIGFueSBvZiBteSBjb25mIGZpbGVzIHNv
-IEkgZG9u4oCZdCB0aGluayB0aGF04oCZcyB0aGUgaXNzdWUuPG86cD48L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
-dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9y
-OiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
-cmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5JdCBhcHBlYXJz
-IHRoYXQgU1RBR0lOR19LRVJORUxfRElSIGp1c3QgZG9lc27igJl0IGdldCByZWJ1aWx0IGZyb20g
-c3N0YXRlIHdoaWNoIEkgY2FuIHVuZGVyc3RhbmQgc2luY2UgaXQgaXNu4oCZdCBuZWVkZWQgYnkg
-ZGVmYXVsdC4mbmJzcDsgSSBmb3VuZCBhIHdheSB0byBzZXQgdXAgdGhlDQogZGVwZW5kZW5jaWVz
-IHRvIGJ1aWxkIGl0IHdoZW4gbmVlZGVkIGFuZCBJIHN0YXJ0ZWQgYSBuZXcgdGhyZWFkIG92ZXIg
-b24gdGhlIG9lLWNvcmUgbGlzdCB0aXRsZWQg4oCcUmVidWlsZGluZyBTVEFHSU5HX0tFUk5FTF9E
-SVIgZnJvbSBzc3RhdGUgY2FjaGXigJ0gcmVnYXJkaW5nIHRoYXQuPG86cD48L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
-Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2Nv
-bG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
-bGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5UaGFua3Mh
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtz
-YW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5G
-cm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBEYW5pZWwuIFttYWls
-dG86ZGFuaWVsaGlsc3RAZ21haWwuY29tXQ0KPGJyPg0KPGI+U2VudDo8L2I+IFdlZG5lc2RheSwg
-SnVseSAyMiwgMjAxNSA5OjAzIFBNPGJyPg0KPGI+VG86PC9iPiBEZWFuLCBHYW1tYSBbTkVUUFdS
-L0ZMXTxicj4NCjxiPkNjOjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1Ympl
-Y3Q6PC9iPiBSZTogW3lvY3RvXSBFeHBvcnRpbmcga2VybmVsIGhlYWRlciBmcm9tIHBhdGNoPG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
-cD48L3A+DQo8cD5KdXN0IGEgZ3Vlc3MsPG86cD48L286cD48L3A+DQo8cD5EaWQgeW91IGhhdmUg
-SU5IRVJJVCAmIzQzOz0gJnF1b3Q7cm1fd29yayZxdW90OyBpbiB5b3VyIGxvY2FsLmNvbmY/PG86
-cD48L286cD48L3A+DQo8cD5DaGVlcnMsPGJyPg0KLSBkaHM8bzpwPjwvbzpwPjwvcD4NCjxkaXY+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5FbSAyMi8wNy8yMDE1IDE4OjM2LCAmbHQ7PGEgaHJlZj0i
-bWFpbHRvOkdhbW1hLkRlYW5AZW1lcnNvbi5jb20iPkdhbW1hLkRlYW5AZW1lcnNvbi5jb208L2E+
-Jmd0OyBlc2NyZXZldTo8bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9t
-LWFsdDphdXRvIj5XaGVuIHVzaW5nIGEgc2hhcmVkIHNzdGF0ZSBjYWNoZSB3aGljaCBoYXMgdGhl
-IHByZXZpb3VzbHkgYnVpbHQga2VybmVsIGl0IGFwcGVhcnMgdGhhdCBTVEFHSU5HX0tFUk5FTF9E
-SVIgZG9lcyBub3QgZ2V0IHBvcHVsYXRlZCDigJMgaW4gbXkgY2FzZSB0aGVyZSBpcyBubyB0bXAv
-d29yay1zaGFyZWQgZGlyZWN0b3J5DQogYXQgYWxsLiZuYnNwOyBJZiBJIGhhdmUgbW9kaWZpZWQg
-dGhlIHVzZXIgc3BhY2UgYXBwIHRvIGxvb2sgdGhlcmUgZm9yIGEgaGVhZGVyIGlzIHRoZXJlIHNv
-bWUgZGVwZW5kZW5jeSBJIGNhbiBhZGQgdGhhdCB3aWxsIGZvcmNlIFNUQUdJTkdfS0VSTkVMX0RJ
-UiB0byBnZXQgYnVpbHQ/PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHls
-ZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZu
-YnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJn
-aW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5JZiBub3QsIHBlcmhh
-cHMgdGhlIGJlc3QgYW5zd2VyIGlzIHlvdXIgb3RoZXIgcHJvcG9zZWQgbWV0aG9kIG9mIGp1c3Qg
-YWRkaW5nIHRoZSBoZWFkZXIgdG8gYW4gYWRkaXRpb25hbCBwYXRoIGluIHN5c3Jvb3QuPG86cD48
-L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1h
-cmdpbi1ib3R0b206MTIuMHB0Ij48YnI+DQotLTxicj4NCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fPGJyPg0KeW9jdG8gbWFpbGluZyBsaXN0PGJyPg0KPGEg
-aHJlZj0ibWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmciPnlvY3RvQHlvY3RvcHJvamVjdC5v
-cmc8L2E+PGJyPg0KPGEgaHJlZj0iaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3Rp
-bmZvL3lvY3RvIiB0YXJnZXQ9Il9ibGFuayI+aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3Jn
-L2xpc3RpbmZvL3lvY3RvPC9hPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9k
-eT4NCjwvaHRtbD4NCg==
+> Any help to shed some light on this is very much appreciated.
+>
+> Thanks,
+> MY
+>
+>
+>
 
---_000_5B6A9B05AFA9AC4FB94345D083806F144B2BFEC2USSTLZPMSG016em_--
+
