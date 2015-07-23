@@ -1,13 +1,19 @@
-Return-Path: <develone@sbcglobal.net>
+Return-Path: <sadlife1990@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CD57CE009C8; Sun, 26 Jul 2015 05:02:02 -0700 (PDT)
+	id 1BABEE0096A; Thu, 23 Jul 2015 04:01:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW, URI_HEX autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (sadlife1990[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.170 listed in list.dnswl.org]
+	*  1.1 URI_HEX URI: URI hostname has long hexadecimal sequence
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -15,44 +21,36 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [98.138.91.246 listed in list.dnswl.org]
-Received: from nm24-vm5.bullet.mail.ne1.yahoo.com
-	(nm24-vm5.bullet.mail.ne1.yahoo.com [98.138.91.246])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EAC3E008D7
-	for <yocto@yoctoproject.org>; Sun, 26 Jul 2015 05:01:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
-	t=1437912117; bh=GpbztMxtW95MgpjeeF+41+9tgwJhsPGHIbzvQp3iOJ0=;
-	h=Date:From:Reply-To:To:Subject:From:Subject;
-	b=Kq6NjVvv2tdtOIgcCmq5QGjga4jOP6wH+/Rrp3HZIGICI6fBLxj5TAkKXuylHYjHN7Q3YCj9MK0t7vw/JUx/QtB8Mpa3avK2JvV7qkbqu4pPYC1l7e4iSAoQIGFbRvZUQFZQd/XbaRvPL57YMAix6o4LT6M4Y0+ylBWgrauHsY/QwyU7xFQAt+m69yJyDC3FalofV2TkkmqkjzQz9rVtde7+X1dt2PqScAGmLGtigoaQGsMPUecMhdDLMJbrUbGiQqHC+W2Uh2W+cymkEz6N3jbC/XcgTLL/MBKzLOrZ9LIRJehXOFeEK2YEXVIz3LfNE1MIFNbD0JeozhT1A7cJCA==
-Received: from [98.138.226.176] by nm24.bullet.mail.ne1.yahoo.com with NNFMP;
-	26 Jul 2015 12:01:57 -0000
-Received: from [98.138.89.197] by tm11.bullet.mail.ne1.yahoo.com with NNFMP;
-	26 Jul 2015 12:01:57 -0000
-Received: from [127.0.0.1] by omp1055.mail.ne1.yahoo.com with NNFMP;
-	26 Jul 2015 12:01:57 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 97684.41975.bm@omp1055.mail.ne1.yahoo.com
-X-YMail-OSG: OrJATRcVM1lfsshuSBRCrUtFgHXXSllSrZIgrIYfOalPXNOONRlbzCGC4_XYka0
-	rqe8TEYceREV6e2mwT6_S_.p_00I3NoBeVY4FEgx52BLJaQYJfqSNdwYCi0Q5q2VfIeeW2dUefF0
-	QcAISrWl.BAmi6XqZXc2OEuCObKxBilq5mi6YJeCF.I93mIrhAK7aPB8ibdO.aJpyM9cs8ADlhnA
-	UULbvPlGcqr.JLUhcCUg7mCCtvwfproNtQIwvLWfcMvwRGJV2cHs6Xia.WE.w.WuEb8oQvwW2sZE
-	C.VvPoJPQ.kVWbsrXcz3dpP_CMpy_lhhae52hT5xzGumfd15KokRpmgpGjGGTUqKu8o8wfQJ89aT
-	zxH4m16uzZpuiodpMDuDd15uRM7oiwwSYZvScGe0h5oX6WeHHFoSNGCdik_l_G5F8N9WU7dxsUNp
-	GcmRBSay5QErxGAMFeQYh4gpp1xEq5xDn4EvdNIMDcGEwMgRzugWj.HhZ8KO2G_PMsRHNYS6jggZ
-	iTyBx86ZeQAw9goxnwzoEB_6A0h3e9Ao-
-Received: by 98.138.101.162; Sun, 26 Jul 2015 12:01:56 +0000 
-Date: Sun, 26 Jul 2015 12:01:11 +0000 (UTC)
-From: Edward Vidal <develone@sbcglobal.net>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <1226509950.2472991.1437912071100.JavaMail.yahoo@mail.yahoo.com>
+Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
+	[209.85.212.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46D65E008EC
+	for <yocto@yoctoproject.org>; Thu, 23 Jul 2015 04:01:41 -0700 (PDT)
+Received: by wicmv11 with SMTP id mv11so18624229wic.0
+	for <yocto@yoctoproject.org>; Thu, 23 Jul 2015 04:01:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=+choI/9Q35p6ZDuD+SuYS0fqAxJDnrZFL0ePOEd1598=;
+	b=mcClVc+C9aNfyoKhDavhG9xGZh3va15ji6IlBfurfddTj2q8hB5MJQaC9Bx/AmD6Al
+	5+VH50QlGGjwLnkJGMnUUe9+a8GwVztcufTg+/EWgA54p9eV7aBNIWMt1tQt3T87Pdv6
+	6rzfOfkBYRqQOhy+NaslJcr6Cf6n97p+5habXQiF9NIZXGQ+bywHr9YhUxGh6hdPH1Uv
+	LK3zpJSCY9c/mAjiHpbmYaM02ROKlsESP0/AITMdRRbztG0ekiKyPP4aCVeiicdCrvpK
+	QBDoK34l6MsDCxLu20DcAEtu/FI/2pQeabE/yywAgkBBOwb0q2goGMsU7Cg4q+EyCwQy
+	vWcA==
 MIME-Version: 1.0
-Subject: fido LICENSE error opencv
+X-Received: by 10.194.60.226 with SMTP id k2mr14090855wjr.10.1437649300652;
+	Thu, 23 Jul 2015 04:01:40 -0700 (PDT)
+Received: by 10.194.120.132 with HTTP; Thu, 23 Jul 2015 04:01:40 -0700 (PDT)
+Date: Thu, 23 Jul 2015 14:01:40 +0300
+Message-ID: <CAAHuHfxtDAi4xF8tJqiiswWGMEC-=jsryjbvuKu1Fg311J+Jyw@mail.gmail.com>
+From: Life Life <sadlife1990@gmail.com>
+To: yocto@yoctoproject.org, Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>, 
+	openembedded-devel@lists.openembedded.org
+X-Mailman-Approved-At: Sun, 26 Jul 2015 09:17:14 -0700
+Subject: qt5 webkit Nothing RPROVIDES 'liborc-0.4'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Edward Vidal <develone@sbcglobal.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -61,110 +59,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 26 Jul 2015 12:02:02 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_2472990_1106724700.1437912071097"
+X-List-Received-Date: Thu, 23 Jul 2015 11:01:44 -0000
+Content-Type: multipart/alternative; boundary=047d7bacbed6e088f7051b88cf0f
 
-------=_Part_2472990_1106724700.1437912071097
+--047d7bacbed6e088f7051b88cf0f
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-Hello all
-When I previously created opencv in dylan & dora builds I used the followin=
-g in my local.conf
+Hello,
 
-LICENSE_FLAGS_WHITELIST =3D "commercial_libmad commercial_mpeg2dec commerci=
-al_libav commercial_ffmpeg "=20
+I'm trying to build qt5 webkit. I seen this error message
 
-With fido the following error is occurring when I add opencv opencv-samples
-IMAGE_INSTALL items.
+Build Configuration:
+BB_VERSION        = "1.24.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Ubuntu-14.04"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "phyboard-wega-am335x-2"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.7"
+TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard cortexa8"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto        = "(nobranch):9aff3a4ec058a1a1149d026ebedcc6251089fffb"
+meta-phytec       = "(nobranch):ccf1c78f312f84933b90926e9bf4f72de59e8e94"
+meta-phyam335x    = "(nobranch):a6c488b268d0c2e506f293221703dafcc05b9610"
+meta-oe
+meta-networking
+meta-python
+meta-multimedia   = "(nobranch):9efaed99125b1c4324663d9a1b2d3319c74e7278"
+meta-qt5          = "master:6d9e2a6dfc21f7d9a3a11b4bcb426b5dfe6feaeb"
+meta-ruby         = "(nobranch):9efaed99125b1c4324663d9a1b2d3319c74e7278"
 
-ERROR: Nothing PROVIDES 'x264' (but /home/vidal/wkg/yocto/RaspberryPi2/poky=
-/meta/recipes-multimedia/libav/libav_9.18.bb DEPENDS on or otherwise requir=
-es it)
-ERROR: x264 was skipped: because it has a restricted license not whiteliste=
-d in LICENSE_FLAGS_WHITELIST
-NOTE: Runtime target 'opencv-samples' is unbuildable, removing...
-Missing or unbuildable dependency chain was: ['opencv-samples', 'opencv', '=
-libav', 'x264']
-ERROR: Required build target 'core-image-sato' has no buildable providers.
-Missing or unbuildable dependency chain was: ['core-image-sato', 'opencv-sa=
-mples', 'opencv', 'libav', 'x264']
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+NOTE: Tasks Summary: Attempted 3367 tasks of which 3367 didn't need to be
+rerun and all succeeded.
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing RPROVIDES 'liborc-0.4' (but
+/home/xy/yocto/build/recipes/images/
+core-image-base-edited-20150723-135844.bb RDEPENDS on or otherwise requires
+it)
 
-This is the Build Configuration:
-BB_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "1.27.1"
-BUILD_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "x86_64-linux=
-"
-NATIVELSBSTRING=C2=A0=C2=A0 =3D "Ubuntu-12.04"
-TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "arm-poky-linux-gn=
-ueabi"
-MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "ra=
-spberrypi2"
-DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-=3D "poky"
-DISTRO_VERSION=C2=A0=C2=A0=C2=A0 =3D "1.8+snapshot-20150725"
-TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0 =3D "arm armv7a vfp thumb neon callco=
-nvention-hard vfpv4 cortexa7"
-TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "vfp-vfpv4-neon"
-meta=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=20
-meta-yocto=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=20
-meta-yocto-bsp=C2=A0=C2=A0=C2=A0 =3D "fido:0f8d89ce66cfffccc9911d6c61470a58=
-5173b79d"
-meta-raspberrypi=C2=A0 =3D "fido:7457bf182c8fd550ec877ecd786a3edd16e65495"
-meta-oe=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "fi=
-do:0f8d89ce66cfffccc9911d6c61470a585173b79d"
-
-Is there something else that I must provide for fido?
-
-Thanks in advance.
-=C2=A0Edward Vidal Jr.
-e-mail develone@sbcglobal.net
-915-595-1613
-
-------=_Part_2472990_1106724700.1437912071097
+--047d7bacbed6e088f7051b88cf0f
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
-lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
-nt-size:16px"><div dir=3D"ltr" id=3D"yui_3_16_0_1_1437910813245_2887"><span=
->Hello all<br class=3D"">When I previously created opencv in dylan &amp; do=
-ra builds I used the following in my local.conf<br class=3D""><br class=3D"=
-">LICENSE_FLAGS_WHITELIST =3D "commercial_libmad commercial_mpeg2dec commer=
-cial_libav commercial_ffmpeg " <br class=3D""><br class=3D"">With fido the =
-following error is occurring when I add opencv opencv-samples<br class=3D""=
->IMAGE_INSTALL items.<br class=3D""><br class=3D"">ERROR: Nothing PROVIDES =
-'x264' (but /home/vidal/wkg/yocto/RaspberryPi2/poky/meta/recipes-multimedia=
-/libav/libav_9.18.bb DEPENDS on or otherwise requires it)<br class=3D"">ERR=
-OR: x264 was skipped: because it has a restricted license not whitelisted i=
-n LICENSE_FLAGS_WHITELIST<br class=3D"">NOTE: Runtime target 'opencv-sample=
-s' is unbuildable, removing...<br class=3D"">Missing or unbuildable depende=
-ncy chain was: ['opencv-samples', 'opencv', 'libav', 'x264']<br class=3D"">=
-ERROR: Required build target 'core-image-sato' has no buildable providers.<=
-br class=3D"">Missing or unbuildable dependency chain was: ['core-image-sat=
-o', 'opencv-samples', 'opencv', 'libav', 'x264']<br class=3D""><br class=3D=
-"">This is the Build Configuration:<br class=3D"">BB_VERSION&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "1.27.1"<br class=3D"">BUILD_SYS&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "x86_64-linux"<br class=3D"">NATI=
-VELSBSTRING&nbsp;&nbsp; =3D "Ubuntu-12.04"<br class=3D"">TARGET_SYS&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "arm-poky-linux-gnueabi"<br class=3D=
-"">MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D =
-"raspberrypi2"<br class=3D"">DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; =3D "poky"<br class=3D"">DISTRO_VERSION&nbsp;&nb=
-sp;&nbsp; =3D "1.8+snapshot-20150725"<br class=3D"">TUNE_FEATURES&nbsp;&nbs=
-p;&nbsp;&nbsp; =3D "arm armv7a vfp thumb neon callconvention-hard vfpv4 cor=
-texa7"<br class=3D"">TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-=3D "vfp-vfpv4-neon"<br class=3D"">meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br class=3D"">meta-yocto&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br class=3D"">meta-yocto-bsp&nbsp;&nbs=
-p;&nbsp; =3D "fido:0f8d89ce66cfffccc9911d6c61470a585173b79d"<br class=3D"">=
-meta-raspberrypi&nbsp; =3D "fido:7457bf182c8fd550ec877ecd786a3edd16e65495"<=
-br class=3D"">meta-oe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; =3D "fido:0f8d89ce66cfffccc9911d6c61470a585173b79d"<br class=3D""><b=
-r class=3D"">Is there something else that I must provide for fido?<br class=
-=3D""><br class=3D"">Thanks in advance.<br class=3D""></span></div><div>&nb=
-sp;</div><div><div>Edward Vidal Jr.<br>e-mail develone@sbcglobal.net<br>915=
--595-1613</div></div></div></body></html>
+<div dir=3D"ltr"><div>Hello,<br><br></div>I&#39;m trying to build qt5 webki=
+t. I seen this error message<br><br>Build Configuration:<br>BB_VERSION=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;1.24.0&quot;<br>BUILD_SYS=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;x86_64-linux&quo=
+t;<br>NATIVELSBSTRING=C2=A0=C2=A0 =3D &quot;Ubuntu-14.04&quot;<br>TARGET_SY=
+S=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;arm-poky-linux-gnueab=
+i&quot;<br>MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 =3D &quot;phyboard-wega-am335x-2&quot;<br>DISTRO=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;poky&quot;<br>DISTR=
+O_VERSION=C2=A0=C2=A0=C2=A0 =3D &quot;1.7&quot;<br>TUNE_FEATURES=C2=A0=C2=
+=A0=C2=A0=C2=A0 =3D &quot;arm armv7a vfp thumb neon callconvention-hard cor=
+texa8&quot;<br>TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &qu=
+ot;vfp-neon&quot;<br>meta=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>meta-yocto=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 =3D &quot;(nobranch):9aff3a4ec058a1a1149d026ebedcc6251089fffb&=
+quot;<br>meta-phytec=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;(nobranc=
+h):ccf1c78f312f84933b90926e9bf4f72de59e8e94&quot;<br>meta-phyam335x=C2=A0=
+=C2=A0=C2=A0 =3D &quot;(nobranch):a6c488b268d0c2e506f293221703dafcc05b9610&=
+quot;<br>meta-oe=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 <br>meta-networking=C2=A0=C2=A0 <br>meta-python=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 <br>meta-multimedia=C2=A0=C2=A0 =3D &quot;(nobranch):9efaed991=
+25b1c4324663d9a1b2d3319c74e7278&quot;<br>meta-qt5=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;master:6d9e2a6dfc21f7d9a3a11b4bcb4=
+26b5dfe6feaeb&quot;<br>meta-ruby=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 =3D &quot;(nobranch):9efaed99125b1c4324663d9a1b2d3319c74e7278&quot;<=
+br><br>NOTE: Preparing runqueue<br>NOTE: Executing SetScene Tasks<br>NOTE: =
+Executing RunQueue Tasks<br>NOTE: Tasks Summary: Attempted 3367 tasks of wh=
+ich 3367 didn&#39;t need to be rerun and all succeeded.<br>NOTE: Resolving =
+any missing task queue dependencies<br>ERROR: Nothing RPROVIDES &#39;liborc=
+-0.4&#39; (but /home/xy/yocto/build/recipes/images/<a href=3D"http://core-i=
+mage-base-edited-20150723-135844.bb">core-image-base-edited-20150723-135844=
+.bb</a> RDEPENDS on or otherwise requires it)<br></div>
 
-------=_Part_2472990_1106724700.1437912071097--
+--047d7bacbed6e088f7051b88cf0f--
