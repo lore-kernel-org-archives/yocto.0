@@ -1,36 +1,57 @@
-Return-Path: <mchehab@osg.samsung.com>
+Return-Path: <vm.rod25@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7B3C8E009B3; Thu, 23 Jul 2015 11:28:32 -0700 (PDT)
+	id 7755EE009B3; Thu, 23 Jul 2015 13:28:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [54.187.51.154 listed in list.dnswl.org]
+	*      [209.85.213.175 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (vm.rod25[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from lists.s-osg.org (lists.s-osg.org [54.187.51.154])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4FA8FE0087F
-	for <yocto@yoctoproject.org>; Thu, 23 Jul 2015 11:28:26 -0700 (PDT)
-Received: from recife.lan (177.18.21.249.dynamic.adsl.gvt.net.br
-	[177.18.21.249])
-	by lists.s-osg.org (Postfix) with ESMTPSA id BFC9A46329;
-	Thu, 23 Jul 2015 11:28:24 -0700 (PDT)
-Date: Thu, 23 Jul 2015 15:28:21 -0300
-From: Mauro Carvalho Chehab <mchehab@osg.samsung.com>
-To: Herve Jourdain <herve.jourdain@neuf.fr>
-Message-ID: <20150723152821.352e1a52@recife.lan>
-In-Reply-To: <007301d0c564$360d30e0$a22792a0$@neuf.fr>
-References: <004101d0c55c$d068da20$713a8e60$@neuf.fr>
-	<20150723130029.1268067b@recife.lan>
-	<007301d0c564$360d30e0$a22792a0$@neuf.fr>
-Organization: Samsung
-X-Mailer: Claws Mail 3.11.1 (GTK+ 2.24.28; x86_64-redhat-linux-gnu)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f175.google.com (mail-ig0-f175.google.com
+	[209.85.213.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 504DBE0087F
+	for <yocto@yoctoproject.org>; Thu, 23 Jul 2015 13:28:43 -0700 (PDT)
+Received: by iggf3 with SMTP id f3so326597igg.1
+	for <yocto@yoctoproject.org>; Thu, 23 Jul 2015 13:28:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=EPKV/LtYh9mTHlcFCfilbkxD3Ys9yVDBDpReppQJq2o=;
+	b=nR78e/DfY2v7pz3XSt66vPMBq7sM3XVZQYXBP73en6vqtveMziv847Mv72ucTlhW8E
+	uZJ86Whgm6AxV5D4v1XWsKHgw/4O5z7GEb+jE2s+rLm7niw56DlrRXpsFkim77cQst2L
+	SuhfnYEhU9CYHStrzhZffoO7ZLQhgE2oXkC5qQ0lmCzypyd934yjkxFvp8yqiMAzfsFl
+	BdebxzMdVdhlC2/I/vWVt0okMODhmfdDbAEgyEGnc6LZNzSc9+aJgfn71WguCGh5dCcX
+	n4Xd3jS7KFCp85FuYSwHOYx4e+e16TzrIRahOFsAZ5XIsVQNtQzn6EBqAwh/ltyGjRpc
+	GHpQ==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] Add networkd as default for RaspberryPi
+X-Received: by 10.107.166.72 with SMTP id p69mr16823885ioe.65.1437683323325;
+	Thu, 23 Jul 2015 13:28:43 -0700 (PDT)
+Received: by 10.50.141.228 with HTTP; Thu, 23 Jul 2015 13:28:43 -0700 (PDT)
+In-Reply-To: <3048124.JhGOlONExd@peggleto-mobl.ger.corp.intel.com>
+References: <CAK5mtexdmYF7ivs+nwa7WZSqVb8sZCq5Euvt8oK2HimiXy7PMA@mail.gmail.com>
+	<55AE8445.60302@linux.intel.com>
+	<CAK5mtexxVJ2uZeahegoJ=+8pOztcPufUHYmXWrhwy9hMzc3tLw@mail.gmail.com>
+	<3048124.JhGOlONExd@peggleto-mobl.ger.corp.intel.com>
+Date: Thu, 23 Jul 2015 15:28:43 -0500
+Message-ID: <CAK5mtezCMOyUvN9y8ds4heV-p2AN5Ndv5F-gic3BY0TKDP3sKg@mail.gmail.com>
+From: Victor Rodriguez <vm.rod25@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
+	Gary Thomas <gary@mlbassoc.com>
+Subject: Re: [oe] Question about IMAGE_INSTALL_append and CORE_IMAGE_EXTRA_INSTALL
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,154 +63,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Jul 2015 18:28:32 -0000
+X-List-Received-Date: Thu, 23 Jul 2015 20:28:48 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-Em Thu, 23 Jul 2015 18:25:29 +0200
-Herve Jourdain <herve.jourdain@neuf.fr> escreveu:
-
-> Hi Mauro,
->=20
-> Well, that's precisely one of my concerns. I believe that one of the Tize=
-n layers might do just that.=20
-
-Yes, it does. It is at the meta-tizen layer.
-
-> Maybe it should be at the Yocto layer.
+On Wed, Jul 22, 2015 at 8:50 AM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> On Tuesday 21 July 2015 14:51:55 Victor Rodriguez wrote:
+>> On Tue, Jul 21, 2015 at 12:41 PM, Leonardo Sandoval
+>>
+>> <leonardo.sandoval.gonzalez@linux.intel.com> wrote:
+>> > On 07/21/2015 10:45 AM, Victor Rodriguez wrote:
+>> >> On Tue, Jul 21, 2015 at 10:36 AM, Gary Thomas <gary@mlbassoc.com> wrote:
+>> >>> On 2015-07-21 09:26, Victor Rodriguez wrote:
+>> >>>> Hi team
+>> >>>>
+>> >>>> I have a question , according to documentation there is a difference
+>> >>>> between
+>> >>>>
+>> >>>> IMAGE_INSTALL_append
+>> >>>>
+>> >>>> and
+>> >>>>
+>> >>>> CORE_IMAGE_EXTRA_INSTALL
+>> >>>>
+>> >>>> Specifies the list of packages to be added to the image. You should
+>> >>>> only set this variable in the local.conf configuration file found in
+>> >>>> the Build Directory.
+>> >>>>
+>> >>>> When I use the second one and try to build a core-image-minimal-xfce
+>> >>>> bitbake does not install what I wanted in my image . I had a really
+>> >>>> hard time few weekends ago because of this.
+>> >>>>
+>> >>>> I wonder If I am missing something or if this is a bug
+>> >>>
+>> >>> The core-image-minimal-xfce recipe does not "play nice" with
+>> >>> the core-image class and is not respecting CORE_IMAGE_EXTRA_INSTALL.
+>> >>>
+>> >>> I think this should be filed as a bug (and feel free to suggest a patch)
+>> >>>
+>> >>> BTW, this question should really be on the OpenEmbedded development
+>> >>> list.
+>> >>
+>> >> Thanks Gary
+>> >>
+>> >> I will submit the BUG , do you know the Bugzila where I should submit it
+>> >> ?
+>> >
+>> > Victor, you can file a bug at https://bugzilla.yoctoproject.org
+>>
+>> I think we have one already
+>>
+>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=7616
 >
-> But it seems not to be with the one I'm using. And just enabling system -=
- which can be done at distro level - is not enough, there is a need for a b=
-bappend and a config file.
-> So honestly, since I was experimenting with system, I stumbled on this on=
-e, and I had initially put that patch in another layer - custom one.
->=20
-> The question that remains is how do we make sure that Poky on raspberry p=
-i has network enabled by default when people switch to system? Since I don'=
-t know where else to put it, I decided to propose the patch for the raspber=
-rypi layer, knowing it probably makes more sense to put it somewhere else.
+> That's not the right bug.
+>
+> If the suggestion is that core-image-minimal-xfce needs to be fixed, that's not
+> a bug we would track in the Yocto Project bugzilla (since the Yocto Project is
+> not actively involved in maintaining meta-xfce).
+>
+> Cheers,
+> Paul
 
-I'd say that it should not be at the Yocto layer, but at the layer specific=
- for your distribution.
+Hi Paul
 
->=20
-> BR,
->=20
-> Herve
->=20
-> -----Original Message-----
-> From: Mauro Carvalho Chehab [mailto:mchehab@osg.samsung.com]=20
-> Sent: jeudi 23 juillet 2015 18:00
-> To: Herve Jourdain
-> Cc: 'Andrei Gherzan'; 'Petter Mab=C3=A4cker'; yocto@yoctoproject.org
-> Subject: Re: [yocto] [meta-raspberrypi][PATCH] Add networkd as default fo=
-r RaspberryPi
->=20
-> Em Thu, 23 Jul 2015 17:32:35 +0200
-> Herve Jourdain <herve.jourdain@neuf.fr> escreveu:
->=20
-> > This patch adds systemd-networkd for RaspberryPi in the=20
-> > meta-raspberrypi layer, in order to have Ethernet and Networking work o=
-ut of the box.
-> >=20
-> > =20
-> >=20
-> > This said, I=E2=80=99m not 100% sure if it should be enabled in=20
-> > meta-raspberrypi, instead of another custom layer.
-> >=20
-> > But something similar needs to be added somewhere, and with the=20
-> > current version of Yocto on RaspberryPi, without this patch, network=20
-> > just doesn=E2=80=99t start=E2=80=A6
->=20
-> I guess putting it at BSP is not right. Ethernet network does work on Tiz=
-en on Yocto:
-> 	http://blogs.s-osg.org/tizen-rpi2-now-supporting-3d-acceleration/
->=20
-> Regards,
-> Mauro
->=20
->=20
-> >=20
-> > =20
-> >=20
-> > Signed-off-by: Herve Jourdain <herve.jourdain@neuf.fr=20
-> > <mailto:herve.jourdain@neuf.fr> >
-> >=20
-> > ---
-> >=20
-> > diff -Naur=20
-> > meta-raspberrypi.orig/recipes-core/systemd/files/eth.network
-> > meta-raspberrypi/recipes-core/systemd/files/eth.network
-> >=20
-> > --- meta-raspberrypi.orig/recipes-core/systemd/files/eth.network
-> > 1970-01-01 08:00:00.000000000 +0800
-> >=20
-> > +++ meta-raspberrypi/recipes-core/systemd/files/eth.network    2015-07-=
-22
-> > 12:01:53.587830690 +0800
-> >=20
-> > @@ -0,0 +1,6 @@
-> >=20
-> > +[Match]
-> >=20
-> > +Name=3Deth*
-> >=20
-> > +
-> >=20
-> > +[Network]
-> >=20
-> > +DHCP=3Dv4
-> >=20
-> > +
-> >=20
-> > diff -Naur=20
-> > meta-raspberrypi.orig/recipes-core/systemd/systemd_%.bbappend
-> > meta-raspberrypi/recipes-core/systemd/systemd_%.bbappend
-> >=20
-> > --- meta-raspberrypi.orig/recipes-core/systemd/systemd_%.bbappend
-> > 1970-01-01 08:00:00.000000000 +0800
-> >=20
-> > +++ meta-raspberrypi/recipes-core/systemd/systemd_%.bbappend
-> > 2015-07-22 12:05:07.307838546 +0800
-> >=20
-> > @@ -0,0 +1,17 @@
-> >=20
-> > +FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
-> >=20
-> > +
-> >=20
-> > +EXTRA_OECONF +=3D "--disable-ldconfig"
-> >=20
-> > +
-> >=20
-> > +PACKAGECONFIG +=3D "networkd resolved"
-> >=20
-> > +
-> >=20
-> > +CFLAGS_append_arm =3D " -fno-lto"
-> >=20
-> > +
-> >=20
-> > +SRC_URI +=3D "file://eth.network"
-> >=20
-> > +
-> >=20
-> > +FILES_${PN} +=3D "{sysconfdir}/systemd/network/*"
-> >=20
-> > +
-> >=20
-> > +do_install_append() {
-> >=20
-> > +    install -d ${D}${sysconfdir}/systemd/network/
-> >=20
-> > +    install -m 0644 ${WORKDIR}/*.network=20
-> > + ${D}${sysconfdir}/systemd/network/
-> >=20
-> > +}
-> >=20
-> > +
-> >=20
-> > =20
-> >=20
->=20
+Where can I track this ?
+
+
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
