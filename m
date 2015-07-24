@@ -1,29 +1,45 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B3858E00A3C; Fri, 24 Jul 2015 11:02:50 -0700 (PDT)
+	id 3454EE00A3C; Fri, 24 Jul 2015 12:25:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BASE64_LENGTH_79_INF, BAYES_00,
+	RCVD_IN_DNSWL_LOW,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95609E00942
-	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 11:02:45 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id CE8AEF811D8; Fri, 24 Jul 2015 12:02:44 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 50490F811D8;
-	Fri, 24 Jul 2015 12:02:44 -0600 (MDT)
-Message-ID: <55B27DC9.1090307@mlbassoc.com>
-Date: Fri, 24 Jul 2015 12:02:49 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.8.0
-MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Missing certificates
+	*  1.5 BASE64_LENGTH_79_INF BODY: base64 encoded email part uses line
+	*      length greater than 79 characters
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DD2FE00942
+	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 12:25:07 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1ZIiad-0002e3-Hx
+	for yocto@yoctoproject.org; Fri, 24 Jul 2015 21:25:03 +0200
+Received: from modemcable148.153-160-184.mc.videotron.ca ([184.160.153.148])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 21:25:03 +0200
+Received: from adam by modemcable148.153-160-184.mc.videotron.ca with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 21:25:03 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Adam Sherman <adam@alembicinst.com>
+Date: Fri, 24 Jul 2015 19:20:22 +0000 (UTC)
+Message-ID: <loom.20150724T210947-218@post.gmane.org>
+References: <3070750398d841b6866b97073c1bbeaa@nivm320.nibe.se>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 184.160.153.148 (Mozilla/5.0 (X11; Ubuntu; Linux x86_64;
+	rv:39.0) Gecko/20100101 Firefox/39.0)
+Subject: Re: Sftp deploy hangs when using dropbear and yocto fido.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,42 +51,10 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jul 2015 18:02:50 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 24 Jul 2015 19:25:12 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
 
-I was trying to run a simple fetch from python using
-         url = 'https://raw.github.com/Itseez/opencv/master/samples/c/fruits.jpg'
-         filedata = urllib2.urlopen(url).read()
+TcOlbnMgQW5kZXJzc29uIDxNYW5zLkFuZGVyc3NvbkAuLi4+IHdyaXRlczoKCj4gCj4gRG9lcyBhbnlvbmUga25vdyBhYm91dCBhIHByb2JsZW0gd2l0aCBkcm9wYmVhciBhbmQgb3BlbnNzaC1zZnRwLXNlcnZlciBvbgpZb2N0byBGaWRvPwo+IAo+IEFmdGVyIHVwZ3JhZGluZyBteSBidWlsZCBmcm9tIERvcmEgdG8gRmlkbyB0aGUgZGVwbG95bWVudCBvZiBidWlsZHMgZnJvbQpRdENyZWF0b3IgKDMuMi4yKSB0byBteSBxZW11YXJtCj4gYnVpbGQgc3RvcHBlZCB3b3JraW5nLiBJdCBqdXN0IGhhbmdzIHdhaXRpbmcgYXMgaWYgaXQncyB3b3JraW5nLCBpLmUuIG5vCmVycm9yIG1lc3NhZ2UuIEkndmUgc3dpdGNoZWQKPiB0b29sY2hhaW5zIGFuZCBlbXVsYXRvciBpbWFnZXMgZnJvbSBteSBEb3JhIGFuZCBGaWRvIGJ1aWxkcyBiYWNrIGFuZCBmb3J0aAphbmQgdGhlIG9ubHkgY29tbW9uIGRlbm9taW5hdG9yCj4gd2hlbiBpdCBkb2Vzbid0IHdvcmsgaXMgd2hlbiB1c2luZyB0aGUgRmlkbyBxZW11YXJtIGJ1aWxkLiBSZWd1bGFyIFNTSApjb25uZWN0aW9ucyBhbmQgbWFudWFsIHNmdHAKPiB0cmFuc2ZlcnMgKGkuZS4gbm90IGluaXRpYXRlZCBieSBRdCBDcmVhdG9yKSB3b3Jrcywgd2hpY2gganVzdCBtYWtlcyBpdApldmVuIGhhcmRlciB0byBkZWJ1Zy4KPiAKPiBUaGFua3MgaW4gYWR2YW5jZS4KPiAvLyBNw6Vucwo+IAoKSnVzdCB0byBsZXQgeW91IGtub3csIEkgaGF2ZSB0aGUgc2FtZSBiZWhhdmlvciB3aXRoIFF0Q3JlYXRvciAoMy40LjIpIC8KdHJ5aW5nIHRvIGRlcGxveSBvbiB0aGUgQXJtYWRldXMgQVBGMjcgZW1iZWRkZWQgTGludXggQXJtIFBsYXRmb3JtIAooQnVpbGRyb290IDIwMTUuMDIgLyBEcm9wYmVhciAvIG9wZW5zc2ggc2Z0cCBzZXJ2ZXIpLgoKU2ltaWxhcmx5LCBzdGFuZC1hbG9uZSBzZnRwIHRyYW5zZmVycyBvdXRzaWRlIG9mIFF0Q3JlYXRvciB3b3JrIGp1c3QgZmluZS4KCkFkYW0gU2hlcm1hbgo=
 
-This failed:
-   Traceback (most recent call last):
-   File "./edge.py", line 36, in <module>
-     filedata = urllib2.urlopen(url).read()
-   File "/usr/lib/python2.7/urllib2.py", line 154, in urlopen
-     return opener.open(url, data, timeout)
-   File "/usr/lib/python2.7/urllib2.py", line 431, in open
-     response = self._open(req, data)
-   File "/usr/lib/python2.7/urllib2.py", line 449, in _open
-     '_open', req)
-   File "/usr/lib/python2.7/urllib2.py", line 409, in _call_chain
-     result = func(*args)
-   File "/usr/lib/python2.7/urllib2.py", line 1240, in https_open
-     context=self._context)
-   File "/usr/lib/python2.7/urllib2.py", line 1197, in do_open
-     raise URLError(err)
-urllib2.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:581)>
-
-I can see that it was looking for some certificates in /usr/lib/ssl/certs
-but that directory is missing.
-
-Anyone know what I might be missing (or have misconfigured)?
-
-Thanks
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
