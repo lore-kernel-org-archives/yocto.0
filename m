@@ -1,46 +1,81 @@
-Return-Path: <sarayu@tanmic.co.in>
+Return-Path: <zhenhua.luo@freescale.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 738C4E009EB; Fri, 24 Jul 2015 00:21:21 -0700 (PDT)
+	id AD29CE00530; Fri, 24 Jul 2015 01:41:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.176 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [207.46.100.122 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E424E00530
-	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 00:21:14 -0700 (PDT)
-Received: by igbij6 with SMTP id ij6so9965220igb.1
-	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 00:21:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:sender:date:message-id:subject:from
-	:to:content-type;
-	bh=gGCwFyKUdblfoz5WDfipSSPK7UZYZbDA9dIHToq1Ono=;
-	b=bsH+jHU3T+42Zt7cXMU1x9ze1rzK2wM41gayCeD5jf844FvobnBWjfMMsUKEUVWm11
-	sLVXJqz4fuH+/N+wMoGVe4duHGY/vTMvijPeFtInseeTz+5lJKadwBBXWrohuQpMDANG
-	5g3N/N88sldn/NlgV7gLJ5Z0vmg3+MIAJdde7uZf3ws9iceugR5RuPalvMUgFSrZzP7f
-	zaJ4kEFxKPb8bmyPCiIdkM49PDIks1+O/c9boyWiQiBkGLkIc5WSqyF8O0tY+j26qkKh
-	pXkyALCQtlP2YSSFP89sak5atjvWkDHWs4IrIKMNksM7Zug2HVEljH1vnS6O3Ofj/ym5
-	0N5A==
-X-Gm-Message-State: ALoCoQmOyw49WezNTKBWQU9BEK46GjhqNpKDI00KQdVqNJfT5c9ZELq/6MIhjpTSPyq7YcI5cyhf
+X-Greylist: delayed 915 seconds by postgrey-1.32 at yocto-www;
+	Fri, 24 Jul 2015 01:41:01 PDT
+Received: from na01-by2-obe.outbound.protection.outlook.com
+	(mail-by2on0122.outbound.protection.outlook.com [207.46.100.122])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37D4CE00530
+	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 01:41:01 -0700 (PDT)
+Received: from BN3PR03MB1365.namprd03.prod.outlook.com (10.163.34.151) by
+	BN3PR03MB1461.namprd03.prod.outlook.com (10.163.35.12) with Microsoft
+	SMTP Server (TLS) id 15.1.225.19; Fri, 24 Jul 2015 08:25:44 +0000
+Received: from BN3PR03MB1367.namprd03.prod.outlook.com (10.163.34.153) by
+	BN3PR03MB1365.namprd03.prod.outlook.com (10.163.34.151) with Microsoft
+	SMTP Server (TLS) id 15.1.225.19; Fri, 24 Jul 2015 08:25:44 +0000
+Received: from BN3PR03MB1367.namprd03.prod.outlook.com ([10.163.34.153]) by
+	BN3PR03MB1367.namprd03.prod.outlook.com ([10.163.34.153]) with mapi id
+	15.01.0225.018; Fri, 24 Jul 2015 08:25:44 +0000
+From: Luo Zhenhua <zhenhua.luo@freescale.com>
+To: Sarayu Krishna Sivanandam <sarayu@zaikenn.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] QorIQ-SDK-V1.8 fsl-toolchain generation misses libuuid
+Thread-Index: AQHQxeFtLO3bqImjNUuQSw1/urq0HJ3qSAKA
+Date: Fri, 24 Jul 2015 08:25:43 +0000
+Message-ID: <BN3PR03MB13675DD275030BA32B9E2DBFE4810@BN3PR03MB1367.namprd03.prod.outlook.com>
+References: <CAF5S8SM5YF+w-UiJwteD4+PFz3NyEekqFZeqoqKZ=O9Y9D3jgw@mail.gmail.com>
+In-Reply-To: <CAF5S8SM5YF+w-UiJwteD4+PFz3NyEekqFZeqoqKZ=O9Y9D3jgw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: zaikenn.com; dkim=none (message not signed)
+	header.d=none;
+x-originating-ip: [123.151.195.51]
+x-microsoft-exchange-diagnostics: 1; BN3PR03MB1365;
+	5:qNuM3/t+4/EvcTf0WnSmXK6qb8iEsXxwC8i36mTGhfrXvoRkUoPGV+YJXP1aS+rPrYkGh1BzoUtrCWJgjah8tWdIDoHMB/c0qdnBcJupTzUge9iRFr2nAS5Qr4Hvfhz4QCl3wHzvpDSMIMjFaKpnDg==;
+	24:YCmFyUWcIhARtxV419TLd08ttr9JNL39VjmEW594mGA4wTMd6fN6QK/4ntFCpwUCzLIXOWRsdpx5oDxheZJf9VZVwzQqff+BFyQAwziky5s=;
+	20:r0RzCQiy0KKIoN4LrVrOev5jjt9IOk9+9lpOQNkaeH3wZ7GGEBzbPB4Mz1xiEpWmDvbUefCxEmzTwdl+NiUpfA==
+x-microsoft-antispam: UriScan:; BCL:0; PCL:0; RULEID:; SRVR:BN3PR03MB1365;
+	UriScan:; BCL:0; PCL:0; RULEID:; SRVR:BN3PR03MB1461; 
+bn3pr03mb1365: X-MS-Exchange-Organization-RulesExecuted
+x-microsoft-antispam-prvs: <BN3PR03MB1365D2E6BD638F98D075F263E4810@BN3PR03MB1365.namprd03.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(108003899814671);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(5005006)(3002001); SRVR:BN3PR03MB1365; BCL:0;
+	PCL:0; RULEID:; SRVR:BN3PR03MB1365; 
+x-forefront-prvs: 0647963F84
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(377454003)(53754006)(19300405004)(87936001)(2501003)(86362001)(77156002)(46102003)(19609705001)(62966003)(66066001)(230783001)(16236675004)(19617315012)(99286002)(19580405001)(189998001)(19580395003)(106116001)(2656002)(92566002)(107886002)(40100003)(5001770100001)(76576001)(16601075003)(54356999)(76176999)(50986999)(122556002)(74316001)(2950100001)(5002640100001)(2900100001)(15975445007)(77096005)(102836002)(5003600100002)(33656002)(5001960100002)(19625215002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR03MB1365;
+	H:BN3PR03MB1367.namprd03.prod.outlook.com; FPR:; SPF:None;
+	MLV:sfv; LANG:en; 
 MIME-Version: 1.0
-X-Received: by 10.107.10.17 with SMTP id u17mr19732242ioi.16.1437722474027;
-	Fri, 24 Jul 2015 00:21:14 -0700 (PDT)
-Sender: sarayu@tanmic.co.in
-Received: by 10.107.186.10 with HTTP; Fri, 24 Jul 2015 00:21:13 -0700 (PDT)
-Date: Fri, 24 Jul 2015 12:51:13 +0530
-X-Google-Sender-Auth: -3NlUZsmji4HyxJ-_J8YnlKyl0c
-Message-ID: <CAF5S8SM5YF+w-UiJwteD4+PFz3NyEekqFZeqoqKZ=O9Y9D3jgw@mail.gmail.com>
-From: Sarayu Krishna Sivanandam <sarayu@zaikenn.com>
-To: yocto@yoctoproject.org
-Subject: QorIQ-SDK-V1.8 fsl-toolchain generation misses libuuid
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jul 2015 08:25:43.8789 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 710a03f5-10f6-4d38-9ff4-a80b81da590d
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR03MB1365
+X-Microsoft-Exchange-Diagnostics: 1; BN3PR03MB1461;
+	2:SYBRhP0Qfmv4HZk++TlcKFd43KKmOOH21FQZ7Pk15x+4kgExac44gWzh8h1pDxqAr8noMiRdKLO5g0D3W+Yph+7oeM/xqO/k7Grm6iW4J8yH1Uwpmk9m/Fsa/BxFHekgQqA59+2teY+nez94e5qt7woW0WFkUa+loXYtZiw9R3k=;
+	3:2iIh6QkS6fAuB2TWPsRSFbPVclYmeS6g7e+NPwal0Z6ZP4e7IxP6c7cHS2xa2aDnBNb8POkbhH9w8PttsQasTE3bcbpOwJNr6plLAEQGfFSFLAxuyPrhMrKQilRv8m6JVQyxPZkDJLg9yCrTAHe6sQ==;
+	25:ik8RFzPcyNkKtrSblKNol2DqnFZ+3/5t1uKdv+OFMjEPhqG5j6cPymR8b4YIO/fCoaHUWRzSMY22xVPdKmv0I3DhCYOXuCX3uKmlzDZd4TjQBfMaFugNpJBVatM/WM+Xf68nRC6beXNpLK+DtuomcskSB03DgI6B22MBnGmJbZ9B2hqQ3cteach8U1DaY7F+e7Zbe8U0zEQDC2MYOwP1+Nu0FnFVOol1EOLQGcr2RYkjobGPEpd4l0LL7h4HFz7S
+X-Microsoft-Exchange-Diagnostics: 1; BN3PR03MB1461;
+	20:Zlgi0o4DKqSJxS74gojrISfT0IAjtdpOjKYxE2ZDEDrKjsfEF/KGbzuOa9dU2U2m34KzBm7DdHbANq/Qeqa79XxaRMS5gXAWokWeeALARy6zS51naDGRFC9koUyeFrwvNi11f1L/ybscHJ4rllQEZbFMJPbC2qY6zIW1lvntCpn+3NDUOUVCSM2sxogxGCG7YZXzyTy8UPR1ziab5NFxSYu+74zw7sDD6NrF6mkzOaARevztXZOmSvM06/Yjb2pgnw8TOgPvTVvgoHwoGPP/ofQlwlMkU7vTGT/Dqj3c9BX2TOepJ250AVNIabUWUZy97u2Q6lD9dFskX1KKd1Nrs+ujuB4bSS7mvDp7/AbQN7EfEaCOuSBJm+coHFNQp1Skh06n9Fkk7HoD+WJ/5P0oE+XS12FgoquNisNy28b3AjR2TjUY8q3A1sYNSGJjL4tV9sWZLSZl3LW0CDAqVM1F7+q/Uyz1GY2VtN7mU2gOIq7G88SZpxpYGKJt4kyCfx4o;
+	23:v4yY5BEgX3qiHpi6sOrDKPuVohwAAZgoojEDGlpzElmIsEMJELG2Sv0r3n3VbT30LOxT2oLppurEyZ0Ch8+Tn7w4G+20zMgKNHx9krIldZnxEeEyhKhBSpL9cP+5Og0j2g0SlKGzfNAdW8t+acV2Qg+vNe3V505LlN4ntN++Bt99Q3E0zg+SdEQ4ZLPYXuxBYwxItqTt7lelpkBEWsMXJlMhkQNCYroWFRgWHMQso5HN0K3SHHLHk//esaX+vHYl
+BN3PR03MB1461: X-MS-Exchange-Organization-RulesExecuted
+X-OriginatorOrg: freescale.com
+Subject: Re: QorIQ-SDK-V1.8 fsl-toolchain generation misses libuuid
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,81 +87,222 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jul 2015 07:21:21 -0000
-Content-Type: multipart/alternative; boundary=001a113ee77e59ce5e051b99d921
+X-List-Received-Date: Fri, 24 Jul 2015 08:41:06 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN3PR03MB13675DD275030BA32B9E2DBFE4810BN3PR03MB1367namp_"
 
---001a113ee77e59ce5e051b99d921
-Content-Type: text/plain; charset=UTF-8
+--_000_BN3PR03MB13675DD275030BA32B9E2DBFE4810BN3PR03MB1367namp_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi all ,
+SGkgU2FyYXl1IEsgUywNCg0KVGhlIGZzbC10b29sY2hpYW4gaW5jbHVkZXMgdGhlIHZlcnkgYmFz
+aWMgcGFja2FnZXMgb2YgY3Jvc3MtY29tcGlsZSBzdXBwb3J0IGJ5IGRlZmF1bHQsIHRvIGFkZCB0
+aGUgbW9yZSBoZWFkZXJzIGFuZCBsaWJyYXJpZXMsIHlvdSBjYW4gZWRpdCBtZXRhLWZzbC1uZXR3
+b3JraW5nL2ltYWdlcy9mc2wtdG9vbGNoYWluLmJiIHRvIGFkZCBjb3JyZXNwb25kaW5nIHBhY2th
+Z2VzIGFuZCByZWJ1aWxkIGZzbC10b29sY2hhaW4uDQoNCkZvciB0aGUgc3BlY2lmaWMgY2FzZSwg
+eW91IGNhbiBkbyB0aGUgZm9sbG93aW5nIGNoYW5nZSBhbmQgcmVidWlsZCBmc2wtdG9vbGNoYWlu
+Lg0KZGlmZiAtLWdpdCBhL2ltYWdlcy9mc2wtdG9vbGNoYWluLmJiIGIvaW1hZ2VzL2ZzbC10b29s
+Y2hhaW4uYmINCmluZGV4IDg4NjI1YzAuLjA3NTZiZDAgMTAwNjQ0DQotLS0gYS9pbWFnZXMvZnNs
+LXRvb2xjaGFpbi5iYg0KKysrIGIvaW1hZ2VzL2ZzbC10b29sY2hhaW4uYmINCkBAIC0xMSw2ICsx
+MSw3IEBAIFRPT0xDSEFJTl9UQVJHRVRfVEFTSyArPSAiIFwNCiAgICAgbGliZ29tcC1zdGF0aWNk
+ZXYgXA0KICAgICBsaWJzdGRjKystc3RhdGljZGV2IFwNCiAgICAgJHtUQ0xJQkN9LXN0YXRpY2Rl
+diBcDQorICAgIG5hdGl2ZXNkay11dGlsLWxpbnV4LWRldiBcDQoiDQoNCg0KQmVzdCBSZWdhcmRz
+LA0KDQpaaGVuaHVhDQoNCkZyb206IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyBbbWFp
+bHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10gT24gQmVoYWxmIE9mIFNhcmF5dSBL
+cmlzaG5hIFNpdmFuYW5kYW0NClNlbnQ6IEZyaWRheSwgSnVseSAyNCwgMjAxNSAzOjIxIFBNDQpU
+bzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogW3lvY3RvXSBRb3JJUS1TREstVjEu
+OCBmc2wtdG9vbGNoYWluIGdlbmVyYXRpb24gbWlzc2VzIGxpYnV1aWQNCg0KSGkgYWxsICwNCg0K
+SSBhbSB1c2luZyB0aGUgUW9ySVEtU0RLLVYxLjggU0RLIGZvciB0aGUgdG9vbGNoYWluIGdlbmVy
+YXRpb24gZm9yIG15IEFSTSBib2FyZCAuIEkgZm9sbG93ZWQgdGhlIGluc3RydWN0aW9ucyBpbiAg
+aHR0cDovL3d3dy5mcmVlc2NhbGUuY29tL2luZm9jZW50ZXIvdG9waWMvUU9SSVFTREsvNjczNTU0
+Mi5odG1sIGFuZCB3YXMgYWJsZSB0byBzdWNjZXNzZnVsbHkgZ2VuZXJhdGUgdGhlIHRvb2xjaGFp
+biBhbmQgaW5zdGFsbCB0aGUgc2FtZS4NCg0KSSB3YXMgYWxzbyBhYmxlIHRvIGNyb3NzIGNvbXBp
+bGUgbXkgaGVsbG8gd29ybGQgcHJvZ3JhbSBhbmQgcnVuIHRoZSBzYW1lIG9uIG15IGJvYXJkIC4g
+QnV0IHdoZW4gaSB3YW50ZWQgdG8gdGVzdCBteSBvdGhlciBwcm9ncmFtcyAsIGkgZmlndXJlZCB0
+aGF0IHRoZXkgd2VyZSB1c2luZyB0aGUgbGlidXVpZCB3aGljaCB3YXMgbm90IHByZXNlbnQgaW4g
+dGhlIHRvb2xjaGFpbiBzaW5jZSBpdCB3YXMgdGhyb3dpbmcgZXJyb3JzIGZvciB0aGUgdXVpZC5o
+IHJlZmVyZW5jZSBpbiBteSBjb2RlLg0KDQpJIHZlcmlmaWVkIHRoYXQgdGhlIFNESyBoYWQgdGhl
+IHV0aWwtbGludXggcmVjaXBlIGluIHRoZSByZWNpcGllcy1jb3JlIGZvbGRlciBhbmQgYWxzbyB0
+aGlzIHdhcyBpbiB0aGUgQkJMQVlFUiBwYXRoIGFzIHdlbGwuIEkgc2F3IHRoYXQgdGhlIHBhY2th
+Z2VzIHdlcmUgYWxzbyBkZWZpbmVkIHJpZ2h0IGFuZCB0aGlzIHJlY2lwZSB3YXMgYmVpbmcgcGFy
+c2VkIGFsc28gd2hlbiBpIHRyaWVkIHRvIGJ1aWxkIGl0IC4NCg0KSSB1c2VkIGJpdGJha2UgdG8g
+cnVuIHRoZSB1dGlsLWxpbnV4XzIuMjQuMS5iYjxodHRwOi8vdXRpbC1saW51eF8yLjI0LjEuYmI+
+IGZpbGUgc2VwYXJhdGVseSBhbmQgc2F3IHRoYXQgaXQgd2FzIGFibGUgdG8gZ2VuZXJhdGUgdGhl
+IGxpYnV1aWQgYnV0IGZvciBzb21lIHJlYXNvbiBpdCBpcyBub3QgYmVpbmcgYnVpbHQgYXMgcGFy
+dCBvZiB0aGUgdG9vbGNoYWluIC4NCg0KQ2FuIHlvdSBwbGVhc2UgbGV0IG1lIGtub3cgd2hhdCBj
+aGFuZ2VzIGFyZSByZXF1aXJlZCB0byBpbmNsdWRlIGl0IGFsb25nIHdpdGggdGhlIHRvb2xjaGFp
+biBidWlsZCAuDQoNClRoYW5rcyBhbmQgUmVnYXJkcywNClNhcmF5dSBLIFMNClRlY2ggTGVhZA0K
+WmFpa2VubiBUZWNobm9sb2dpZXMNCg==
 
-I am using the QorIQ-SDK-V1.8 SDK for the toolchain generation for my ARM
-board . I followed the instructions in
-http://www.freescale.com/infocenter/topic/QORIQSDK/6735542.html and was
-able to successfully generate the toolchain and install the same.
+--_000_BN3PR03MB13675DD275030BA32B9E2DBFE4810BN3PR03MB1367namp_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I was also able to cross compile my hello world program and run the same on
-my board . But when i wanted to test my other programs , i figured that
-they were using the libuuid which was not present in the toolchain since it
-was throwing errors for the uuid.h reference in my code.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+5a6L5L2TOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtm
+b250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0
+O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUg
+MiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJcQOWui+S9kyI7DQoJ
+cGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5
+OiJDb21pYyBTYW5zIE1TIjsNCglwYW5vc2UtMTozIDE1IDcgMiAzIDMgMiAyIDIgNDt9DQovKiBT
+dHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05v
+cm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6
+MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCmE6bGluaywg
+c3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7
+DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJs
+aW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0
+ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uRW1haWxTdHlsZTE3DQoJe21zby1zdHls
+ZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlm
+Ow0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhw
+b3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KQHBhZ2UgV29y
+ZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjI1aW4gMS4w
+aW4gMS4yNWluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+
+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9
+ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBt
+c28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0
+PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0K
+PC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0K
+PGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
+cy1zZXJpZjtjb2xvcjojMUY0OTdEIj5IaSBTYXJheXUgSyBTLA0KPG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
+Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Qi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+c2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5UaGUgZnNsLXRvb2xjaGlhbiBpbmNsdWRlcyB0aGUg
+dmVyeSBiYXNpYyBwYWNrYWdlcyBvZiBjcm9zcy1jb21waWxlIHN1cHBvcnQgYnkgZGVmYXVsdCwg
+dG8gYWRkIHRoZSBtb3JlIGhlYWRlcnMgYW5kIGxpYnJhcmllcywgeW91IGNhbiBlZGl0IG1ldGEt
+ZnNsLW5ldHdvcmtpbmcvaW1hZ2VzL2ZzbC10b29sY2hhaW4uYmINCiB0byBhZGQgY29ycmVzcG9u
+ZGluZyBwYWNrYWdlcyBhbmQgcmVidWlsZCBmc2wtdG9vbGNoYWluLiA8bzpwPjwvbzpwPjwvc3Bh
+bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3
+RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
+OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkZvciB0aGUgc3BlY2lmaWMgY2FzZSwgeW91IGNh
+biBkbyB0aGUgZm9sbG93aW5nIGNoYW5nZSBhbmQgcmVidWlsZCBmc2wtdG9vbGNoYWluLg0KPG86
+cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlm
+O2NvbG9yOiMxRjQ5N0QiPmRpZmYgLS1naXQgYS9pbWFnZXMvZnNsLXRvb2xjaGFpbi5iYiBiL2lt
+YWdlcy9mc2wtdG9vbGNoYWluLmJiPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPmluZGV4IDg4NjI1YzAuLjA3
+NTZiZDAgMTAwNjQ0PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPi0tLSBhL2ltYWdlcy9mc2wtdG9vbGNoYWlu
+LmJiPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
+bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
+LXNlcmlmO2NvbG9yOiMxRjQ5N0QiPiYjNDM7JiM0MzsmIzQzOyBiL2ltYWdlcy9mc2wtdG9vbGNo
+YWluLmJiPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oyxz
+YW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkBAIC0xMSw2ICYjNDM7MTEsNyBAQCBUT09MQ0hBSU5f
+VEFSR0VUX1RBU0sgJiM0Mzs9ICZxdW90OyBcPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPiZuYnNwOyZuYnNw
+OyZuYnNwOyZuYnNwOyBsaWJnb21wLXN0YXRpY2RldiBcPG86cD48L286cD48L3NwYW4+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
+YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPiZuYnNw
+OyZuYnNwOyZuYnNwOyZuYnNwOyBsaWJzdGRjJiM0MzsmIzQzOy1zdGF0aWNkZXYgXDxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xv
+cjojMUY0OTdEIj4mbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsgJHtUQ0xJQkN9LXN0YXRpY2RldiBc
+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
+ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
+cmlmO2NvbG9yOiMxRjQ5N0QiPiYjNDM7Jm5ic3A7Jm5ic3A7Jm5ic3A7IG5hdGl2ZXNkay11dGls
+LWxpbnV4LWRldiBcPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
+dW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPiZxdW90OzxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
+bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj48
+bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
+bnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPkJlc3QgUmVn
+YXJkcyw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
+bnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
+bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0QiPlpoZW5odWE8
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2Vy
+aWY7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHls
+ZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBpbiAw
+aW4gMGluIDQuMHB0Ij4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9w
+OnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
+eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYiPkZyb206PC9zcGFuPjwvYj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
+bnMtc2VyaWYiPiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1i
+b3VuY2VzQHlvY3RvcHJvamVjdC5vcmddDQo8Yj5PbiBCZWhhbGYgT2YgPC9iPlNhcmF5dSBLcmlz
+aG5hIFNpdmFuYW5kYW08YnI+DQo8Yj5TZW50OjwvYj4gRnJpZGF5LCBKdWx5IDI0LCAyMDE1IDM6
+MjEgUE08YnI+DQo8Yj5Ubzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJq
+ZWN0OjwvYj4gW3lvY3RvXSBRb3JJUS1TREstVjEuOCBmc2wtdG9vbGNoYWluIGdlbmVyYXRpb24g
+bWlzc2VzIGxpYnV1aWQ8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDb21pYyBT
+YW5zIE1TJnF1b3Q7Ij5IaSBhbGwgLCZuYnNwOzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2
+Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTom
+cXVvdDtDb21pYyBTYW5zIE1TJnF1b3Q7Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
+L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1p
+bHk6JnF1b3Q7Q29taWMgU2FucyBNUyZxdW90OyI+SSBhbSB1c2luZyB0aGUmbmJzcDtRb3JJUS1T
+REstVjEuOCBTREsgZm9yIHRoZSB0b29sY2hhaW4gZ2VuZXJhdGlvbiBmb3IgbXkgQVJNIGJvYXJk
+IC4gSSBmb2xsb3dlZCB0aGUgaW5zdHJ1Y3Rpb25zIGluICZuYnNwOzxhIGhyZWY9Imh0dHA6Ly93
+d3cuZnJlZXNjYWxlLmNvbS9pbmZvY2VudGVyL3RvcGljL1FPUklRU0RLLzY3MzU1NDIuaHRtbCI+
+aHR0cDovL3d3dy5mcmVlc2NhbGUuY29tL2luZm9jZW50ZXIvdG9waWMvUU9SSVFTREsvNjczNTU0
+Mi5odG1sPC9hPg0KIGFuZCB3YXMgYWJsZSB0byBzdWNjZXNzZnVsbHkgZ2VuZXJhdGUgdGhlIHRv
+b2xjaGFpbiBhbmQgaW5zdGFsbCB0aGUgc2FtZS4mbmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1m
+YW1pbHk6JnF1b3Q7Q29taWMgU2FucyBNUyZxdW90OyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZv
+bnQtZmFtaWx5OiZxdW90O0NvbWljIFNhbnMgTVMmcXVvdDsiPkkgd2FzIGFsc28gYWJsZSB0byBj
+cm9zcyBjb21waWxlIG15IGhlbGxvIHdvcmxkIHByb2dyYW0gYW5kIHJ1biB0aGUgc2FtZSBvbiBt
+eSBib2FyZCAuIEJ1dCB3aGVuIGkgd2FudGVkIHRvIHRlc3QgbXkgb3RoZXIgcHJvZ3JhbXMgLCBp
+IGZpZ3VyZWQgdGhhdCB0aGV5IHdlcmUgdXNpbmcgdGhlIGxpYnV1aWQgd2hpY2ggd2FzIG5vdCBw
+cmVzZW50DQogaW4gdGhlIHRvb2xjaGFpbiBzaW5jZSBpdCB3YXMgdGhyb3dpbmcgZXJyb3JzIGZv
+ciB0aGUgdXVpZC5oIHJlZmVyZW5jZSBpbiBteSBjb2RlLiZuYnNwOzxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
+b250LWZhbWlseTomcXVvdDtDb21pYyBTYW5zIE1TJnF1b3Q7Ij48bzpwPiZuYnNwOzwvbzpwPjwv
+c3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
+ZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q29taWMgU2FucyBNUyZxdW90OyI+SSB2ZXJpZmllZCB0aGF0
+IHRoZSBTREsgaGFkIHRoZSB1dGlsLWxpbnV4IHJlY2lwZSBpbiB0aGUgcmVjaXBpZXMtY29yZSBm
+b2xkZXIgYW5kIGFsc28gdGhpcyB3YXMgaW4gdGhlIEJCTEFZRVIgcGF0aCBhcyB3ZWxsLiBJIHNh
+dyB0aGF0IHRoZSBwYWNrYWdlcyB3ZXJlIGFsc28gZGVmaW5lZCByaWdodCBhbmQgdGhpcyByZWNp
+cGUgd2FzIGJlaW5nDQogcGFyc2VkIGFsc28gd2hlbiBpIHRyaWVkIHRvIGJ1aWxkIGl0IC4mbmJz
+cDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q29taWMgU2FucyBNUyZxdW90OyI+
+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NvbWljIFNhbnMgTVMmcXVv
+dDsiPkkgdXNlZCBiaXRiYWtlIHRvIHJ1biB0aGUNCjxhIGhyZWY9Imh0dHA6Ly91dGlsLWxpbnV4
+XzIuMjQuMS5iYiI+dXRpbC1saW51eF8yLjI0LjEuYmI8L2E+IGZpbGUgc2VwYXJhdGVseSBhbmQg
+c2F3IHRoYXQgaXQgd2FzIGFibGUgdG8gZ2VuZXJhdGUgdGhlIGxpYnV1aWQgYnV0IGZvciBzb21l
+IHJlYXNvbiBpdCBpcyBub3QgYmVpbmcgYnVpbHQgYXMgcGFydCBvZiB0aGUgdG9vbGNoYWluIC4m
+bmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q29taWMgU2FucyBNUyZxdW90
+OyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NvbWljIFNhbnMgTVMm
+cXVvdDsiPkNhbiB5b3UgcGxlYXNlIGxldCBtZSBrbm93IHdoYXQgY2hhbmdlcyBhcmUgcmVxdWly
+ZWQgdG8gaW5jbHVkZSBpdCBhbG9uZyB3aXRoIHRoZSB0b29sY2hhaW4gYnVpbGQgLjxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
+IHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDb21pYyBTYW5zIE1TJnF1b3Q7Ij48bzpwPiZuYnNw
+OzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90
+O0NvbWljIFNhbnMgTVMmcXVvdDsiPlRoYW5rcyBhbmQgUmVnYXJkcyw8L3NwYW4+PG86cD48L286
+cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFt
+aWx5OiZxdW90O0NvbWljIFNhbnMgTVMmcXVvdDsiPlNhcmF5dSBLIFMmbmJzcDs8L3NwYW4+PG86
+cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBz
+dHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q29taWMgU2FucyBNUyZxdW90OyI+VGVjaCBMZWFkJm5i
+c3A7PC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NvbWljIFNhbnMgTVMmcXVvdDsi
+PlphaWtlbm4gVGVjaG5vbG9naWVzPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rp
+dj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2
+Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-I verified that the SDK had the util-linux recipe in the recipies-core
-folder and also this was in the BBLAYER path as well. I saw that the
-packages were also defined right and this recipe was being parsed also when
-i tried to build it .
-
-I used bitbake to run the util-linux_2.24.1.bb file separately and saw that
-it was able to generate the libuuid but for some reason it is not being
-built as part of the toolchain .
-
-Can you please let me know what changes are required to include it along
-with the toolchain build .
-
-Thanks and Regards,
-Sarayu K S
-Tech Lead
-Zaikenn Technologies
-
---001a113ee77e59ce5e051b99d921
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:comic sa=
-ns ms,sans-serif">Hi all ,=C2=A0</div><div class=3D"gmail_default" style=3D=
-"font-family:comic sans ms,sans-serif"><br></div><div class=3D"gmail_defaul=
-t" style=3D"font-family:comic sans ms,sans-serif">I am using the=C2=A0QorIQ=
--SDK-V1.8 SDK for the toolchain generation for my ARM board . I followed th=
-e instructions in =C2=A0<a href=3D"http://www.freescale.com/infocenter/topi=
-c/QORIQSDK/6735542.html">http://www.freescale.com/infocenter/topic/QORIQSDK=
-/6735542.html</a> and was able to successfully generate the toolchain and i=
-nstall the same.=C2=A0</div><div class=3D"gmail_default" style=3D"font-fami=
-ly:comic sans ms,sans-serif"><br></div><div class=3D"gmail_default" style=
-=3D"font-family:comic sans ms,sans-serif">I was also able to cross compile =
-my hello world program and run the same on my board . But when i wanted to =
-test my other programs , i figured that they were using the libuuid which w=
-as not present in the toolchain since it was throwing errors for the uuid.h=
- reference in my code.=C2=A0</div><div class=3D"gmail_default" style=3D"fon=
-t-family:comic sans ms,sans-serif"><br></div><div class=3D"gmail_default" s=
-tyle=3D"font-family:comic sans ms,sans-serif">I verified that the SDK had t=
-he util-linux recipe in the recipies-core folder and also this was in the B=
-BLAYER path as well. I saw that the packages were also defined right and th=
-is recipe was being parsed also when i tried to build it .=C2=A0</div><div =
-class=3D"gmail_default" style=3D"font-family:comic sans ms,sans-serif"><br>=
-</div><div class=3D"gmail_default" style=3D"font-family:comic sans ms,sans-=
-serif">I used bitbake to run the <a href=3D"http://util-linux_2.24.1.bb">ut=
-il-linux_2.24.1.bb</a> file separately and saw that it was able to generate=
- the libuuid but for some reason it is not being built as part of the toolc=
-hain .=C2=A0</div><div class=3D"gmail_default" style=3D"font-family:comic s=
-ans ms,sans-serif"><br></div><div class=3D"gmail_default" style=3D"font-fam=
-ily:comic sans ms,sans-serif">Can you please let me know what changes are r=
-equired to include it along with the toolchain build .</div><div class=3D"g=
-mail_default" style=3D"font-family:comic sans ms,sans-serif"><br></div><div=
-><div class=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><fon=
-t face=3D"comic sans ms, sans-serif">Thanks and Regards,</font><div><font f=
-ace=3D"comic sans ms, sans-serif">Sarayu K S=C2=A0</font></div><div><font f=
-ace=3D"comic sans ms, sans-serif">Tech Lead=C2=A0</font></div><div><font fa=
-ce=3D"comic sans ms, sans-serif">Zaikenn Technologies</font></div></div></d=
-iv></div></div></div>
-</div>
-
---001a113ee77e59ce5e051b99d921--
+--_000_BN3PR03MB13675DD275030BA32B9E2DBFE4810BN3PR03MB1367namp_--
