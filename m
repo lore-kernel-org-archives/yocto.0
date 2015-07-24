@@ -1,37 +1,50 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <kergoth@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E29DBE00A51; Fri, 24 Jul 2015 13:02:30 -0700 (PDT)
+	id EA112E00A51; Fri, 24 Jul 2015 13:10:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67118E00A3C
-	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 13:02:26 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by orsmga101.jf.intel.com with ESMTP; 24 Jul 2015 13:02:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,540,1432623600"; d="scan'208";a="529766953"
-Received: from alimon-thinkpad-w540.zpn.intel.com (HELO [10.219.5.54])
-	([10.219.5.54])
-	by FMSMGA003.fm.intel.com with ESMTP; 24 Jul 2015 13:02:25 -0700
-Message-ID: <55B299D3.8040302@linux.intel.com>
-Date: Fri, 24 Jul 2015 15:02:27 -0500
-From: =?windows-1252?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.8.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f179.google.com (mail-ig0-f179.google.com
+	[209.85.213.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF1A8E00A3C
+	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 13:10:16 -0700 (PDT)
+Received: by igbpg9 with SMTP id pg9so25228686igb.0
+	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 13:10:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=z65glHGCl8gZ+aWkmQabWm+x90zCOcptbL/kGejhyVQ=;
+	b=JWMpsBbQ9b4B2A9AFs8FpYEvANSnkCysamon0GOJYtVwlMe9F7Rz3LnHjD6A2jgB4Q
+	l17EryPWQL+JF/PaBdCjegPVD39vl9ScBjVIQroLRv2KVonP9C0BS4CwBU9QozvuWcZ4
+	raULn8vijQTENWRTxCzfMToUXYmUX+YBUCOcP/fOrS+qzzaqth9YyiZMFEGOP+VKIJG5
+	RMx91+2jv2cF/Hk4Vmoy/xDpW1+N+FEeTVZdqE1ebaHBeCWCJoPEk1tFMUxLe/3fDKqV
+	UKC8inzID6MhXxA0QitbO7Xq4iMweZmva/Cp/rejhhUg/43rbmNLCl+wmvl9j2qAmjhw
+	UkFg==
+X-Received: by 10.107.134.83 with SMTP id i80mr23947222iod.123.1437768616435; 
+	Fri, 24 Jul 2015 13:10:16 -0700 (PDT)
 MIME-Version: 1.0
-To: Gary Thomas <gary@mlbassoc.com>, 
- Yocto Project <yocto@yoctoproject.org>
+Sender: kergoth@gmail.com
+Received: by 10.79.100.199 with HTTP; Fri, 24 Jul 2015 13:09:57 -0700 (PDT)
+In-Reply-To: <55B296CA.6000404@mlbassoc.com>
 References: <55B27DC9.1090307@mlbassoc.com> <55B2926F.4010608@linux.intel.com>
 	<55B296CA.6000404@mlbassoc.com>
-In-Reply-To: <55B296CA.6000404@mlbassoc.com>
+From: Christopher Larson <clarson@kergoth.com>
+Date: Fri, 24 Jul 2015 13:09:57 -0700
+X-Google-Sender-Auth: RWsf4M06BivbqcZnL7ch6EIQR8k
+Message-ID: <CABcZANn0aLo8Pzxrn0G=5BkeHk=BFvf1QyTKiUY2G5YUzEVv-A@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Missing certificates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -44,83 +57,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jul 2015 20:02:31 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 24 Jul 2015 20:10:23 -0000
+Content-Type: multipart/alternative; boundary=001a113fe07aa6e890051ba497ee
 
-On 24/07/15 14:49, Gary Thomas wrote:
-> On 2015-07-24 13:30, Aníbal Limón wrote:
+--001a113fe07aa6e890051ba497ee
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Jul 24, 2015 at 12:49 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+
+> On 2015-07-24 13:30, An=C3=ADbal Lim=C3=B3n wrote:
+>
 >> Hi Gary,
 >>
 >> What version of python do you use?.
 >>
->> Since 2.7.9 cert checking is enabled by default causing this kind of 
+>> Since 2.7.9 cert checking is enabled by default causing this kind of
 >> errors. [1]
 >>
 >> [1] https://www.python.org/dev/peps/pep-0476/
 >>
 >> Kind regards,
 >>      alimon
+>>
 >
-> I'm using the stock python 2.7.9 from Poky/Yocto 
+> I'm using the stock python 2.7.9 from Poky/Yocto
 > master:901be2cb69892595443ed41ab4be285932db15eb
 >
 > Is there an answer for this that's a bit less intrusive?
 > Perhaps there could be a DISTRO or even IMAGE feature to
 > enable/disable this checking?
-
-I don't think that Python guys include a configuration flags to disable 
-this behavior because it's
-the default now due to security issues.
-
 >
 > The pep you referenced mostly talks about why this was changed
 > and how to disable it - manually within the python code itself.
 > What I don't see is where/how/what to change/import to actually
 > let the full certificate checking happen.
 
-You can use this code for disable per urlopen call or globally [1].
 
-Regards,
-     alimon
+I think the better bet is to fix it so it actually finds the certs from
+ca-certificates rather than bypassing certificate checking, personally, but
+I can see how that would be a useful workaround. :)
+--=20
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
 
-[1] https://www.python.org/dev/peps/pep-0476/#opting-out
+--001a113fe07aa6e890051ba497ee
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
->
->>
->> On 24/07/15 13:02, Gary Thomas wrote:
->>> I was trying to run a simple fetch from python using
->>>         url = 
->>> 'https://raw.github.com/Itseez/opencv/master/samples/c/fruits.jpg'
->>>         filedata = urllib2.urlopen(url).read()
->>>
->>> This failed:
->>>   Traceback (most recent call last):
->>>   File "./edge.py", line 36, in <module>
->>>     filedata = urllib2.urlopen(url).read()
->>>   File "/usr/lib/python2.7/urllib2.py", line 154, in urlopen
->>>     return opener.open(url, data, timeout)
->>>   File "/usr/lib/python2.7/urllib2.py", line 431, in open
->>>     response = self._open(req, data)
->>>   File "/usr/lib/python2.7/urllib2.py", line 449, in _open
->>>     '_open', req)
->>>   File "/usr/lib/python2.7/urllib2.py", line 409, in _call_chain
->>>     result = func(*args)
->>>   File "/usr/lib/python2.7/urllib2.py", line 1240, in https_open
->>>     context=self._context)
->>>   File "/usr/lib/python2.7/urllib2.py", line 1197, in do_open
->>>     raise URLError(err)
->>> urllib2.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] 
->>> certificate verify failed (_ssl.c:581)>
->>>
->>> I can see that it was looking for some certificates in 
->>> /usr/lib/ssl/certs
->>> but that directory is missing.
->>>
->>> Anyone know what I might be missing (or have misconfigured)?
->>>
->>> Thanks
->>>
->
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Fri, Jul 24, 2015 at 12:49 PM, Gary Thomas <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</=
+span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8e=
+x;border-left:1px #ccc solid;padding-left:1ex"><span class=3D"">On 2015-07-=
+24 13:30, An=C3=ADbal Lim=C3=B3n wrote:<br>
+</span><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
+left:1px #ccc solid;padding-left:1ex"><span class=3D"">
+Hi Gary,<br>
+<br>
+What version of python do you use?.<br>
+<br>
+Since 2.7.9 cert checking is enabled by default causing this kind of errors=
+. [1]<br>
+<br></span>
+[1] <a href=3D"https://www.python.org/dev/peps/pep-0476/" rel=3D"noreferrer=
+" target=3D"_blank">https://www.python.org/dev/peps/pep-0476/</a><br>
+<br>
+Kind regards,<br>
+=C2=A0 =C2=A0 =C2=A0alimon<br>
+</blockquote>
+<br>
+I&#39;m using the stock python 2.7.9 from Poky/Yocto master:901be2cb6989259=
+5443ed41ab4be285932db15eb<br>
+<br>
+Is there an answer for this that&#39;s a bit less intrusive?<br>
+Perhaps there could be a DISTRO or even IMAGE feature to<br>
+enable/disable this checking?<br>
+<br>
+The pep you referenced mostly talks about why this was changed<br>
+and how to disable it - manually within the python code itself.<br>
+What I don&#39;t see is where/how/what to change/import to actually<br>
+let the full certificate checking happen.</blockquote></div><br>I think the=
+ better bet is to fix it so it actually finds the certs from ca-certificate=
+s rather than bypassing certificate checking, personally, but I can see how=
+ that would be a useful workaround. :)<br>-- <br><div class=3D"gmail_signat=
+ure">Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBake,=
+ OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engineer=
+, Mentor Graphics</div>
+</div></div>
 
-
+--001a113fe07aa6e890051ba497ee--
