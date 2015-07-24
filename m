@@ -1,34 +1,49 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <vandegriftlorin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B3481E00A51; Fri, 24 Jul 2015 13:17:16 -0700 (PDT)
+	id 2D433E00A5B; Fri, 24 Jul 2015 14:27:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (vandegriftlorin[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55917E00A3C
-	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 13:17:11 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id A236FF811E0; Fri, 24 Jul 2015 14:17:10 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 7677CF81188;
-	Fri, 24 Jul 2015 14:17:09 -0600 (MDT)
-Message-ID: <55B29D4A.8090301@mlbassoc.com>
-Date: Fri, 24 Jul 2015 14:17:14 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.8.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.169 listed in list.dnswl.org]
+Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
+	[209.85.212.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA70AE00A3C
+	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 14:27:10 -0700 (PDT)
+Received: by wibud3 with SMTP id ud3so43607117wib.0
+	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 14:27:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=wNwSaN2MKqJA8t2fzGUDofaEC7BRGEZVKJcNp/bb1Sk=;
+	b=BBhpqEHF7tZpfIeq1h4GrMz4lQyBR2C9JEzjNS5Wcbm3HUDlLb4zGeQLcoQmQtE6gG
+	fABOyvGYL1Z4+eaTg36jL5iHL9Ygl81wIP3C+w5/N96xinTt2v0oQ7gO2BsaOi8rLDI2
+	eOsAooFZZXPoL3BYYCMG55zk38fUEghYse5c+07vrxsw25/S1FyumHm9xvFBw1Xi+b2D
+	kytHMNh04mxGJMXYtUTZ1UyjfUVHVECpnqAMNHYW15lQ5OWXOq+2ZTheF/3ei6r67g6G
+	HuTBX26kMp990i8bnhuJQaypyXw8eQFWSzkjTwbgr/IFIobFsxx7rrVZCwFYbBlQTIeG
+	y4Xw==
 MIME-Version: 1.0
-To: Christopher Larson <clarson@kergoth.com>
-References: <55B27DC9.1090307@mlbassoc.com> <55B2926F.4010608@linux.intel.com>
-	<55B296CA.6000404@mlbassoc.com>
-	<CABcZANn0aLo8Pzxrn0G=5BkeHk=BFvf1QyTKiUY2G5YUzEVv-A@mail.gmail.com>
-In-Reply-To: <CABcZANn0aLo8Pzxrn0G=5BkeHk=BFvf1QyTKiUY2G5YUzEVv-A@mail.gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Missing certificates
+X-Received: by 10.194.200.73 with SMTP id jq9mr30383321wjc.52.1437773229384;
+	Fri, 24 Jul 2015 14:27:09 -0700 (PDT)
+Received: by 10.27.46.17 with HTTP; Fri, 24 Jul 2015 14:27:09 -0700 (PDT)
+Date: Fri, 24 Jul 2015 14:27:09 -0700
+Message-ID: <CAOzegEN3YB0HvA+sHopRJexapWWkU03MMPFEdk=acOaTBGTc-Q@mail.gmail.com>
+From: Lorin Vandegrift <vandegriftlorin@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Problem add and removing files to filesystem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,54 +55,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jul 2015 20:17:16 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 24 Jul 2015 21:27:12 -0000
+Content-Type: multipart/alternative; boundary=047d7b873ba49ae920051ba5aaba
 
-On 2015-07-24 14:09, Christopher Larson wrote:
->
-> On Fri, Jul 24, 2015 at 12:49 PM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
->
->     On 2015-07-24 13:30, Aníbal Limón wrote:
->
->         Hi Gary,
->
->         What version of python do you use?.
->
->         Since 2.7.9 cert checking is enabled by default causing this kind of errors. [1]
->
->         [1] https://www.python.org/dev/peps/pep-0476/
->
->         Kind regards,
->               alimon
->
->
->     I'm using the stock python 2.7.9 from Poky/Yocto master:901be2cb69892595443ed41ab4be285932db15eb
->
->     Is there an answer for this that's a bit less intrusive?
->     Perhaps there could be a DISTRO or even IMAGE feature to
->     enable/disable this checking?
->
->     The pep you referenced mostly talks about why this was changed
->     and how to disable it - manually within the python code itself.
->     What I don't see is where/how/what to change/import to actually
->     let the full certificate checking happen.
->
->
-> I think the better bet is to fix it so it actually finds the certs from ca-certificates rather than bypassing certificate checking, personally, but I can see how that would be a
-> useful workaround. :)
+--047d7b873ba49ae920051ba5aaba
+Content-Type: text/plain; charset=UTF-8
 
-I tried this same code on my Ubuntu 15.04 desktop and it looks
-like they've disabled it in the main python http[s] code - there
-were no certificates examined during the transaction as far as
-I could tell (strace is my friend)
+Hi all,
 
-I'll see if I can figure out how to stitch this together with our
-[Poky/Yocto/OE-core] setup for OpenSSL and ca-certificates.
+We are having problems adding extra files/removing files from the generated
+file system in Yocto.  We've had success with using a do_install command in
+our own bb file and using commands in the format rsync -avz test.txt
+${D}{sysconfdir}, however we can't write to some paths (i.e. writing to
+root with ${D).  Additionally, we are not able to overwrite files generated
+by other recipes.  We also tried using install and couldn't push our init
+script (nstall -m 0755 test.sh ${D}${sysconfdir}/init.d).  Any advice for
+these?  Also is there a recommended way for removing files?   We were able
+to remove them by using the rm command and adding it to
+ROOTFS_POSTPROCESS_COMMAND.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Thanks,
+Lorin
 
+--047d7b873ba49ae920051ba5aaba
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi all,<div><br></div><div>We are having problems adding e=
+xtra files/removing files from the generated file system in Yocto.=C2=A0 We=
+&#39;ve had success with using a do_install command in our own bb file and =
+using commands in the format rsync -avz test.txt ${D}{sysconfdir}, however =
+we can&#39;t write to some paths (i.e. writing to root with ${D).=C2=A0 Add=
+itionally, we are not able to overwrite files generated by other recipes.=
+=C2=A0 We also tried using install and couldn&#39;t push our init script (n=
+stall -m 0755 test.sh ${D}${sysconfdir}/init.d).=C2=A0 Any advice for these=
+?=C2=A0 Also is there a recommended way for removing files? =C2=A0 We were =
+able to remove them by using the rm command and adding it to ROOTFS_POSTPRO=
+CESS_COMMAND. =C2=A0</div><div><br></div><div>Thanks,</div><div>Lorin</div>=
+</div>
+
+--047d7b873ba49ae920051ba5aaba--
