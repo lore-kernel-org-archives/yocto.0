@@ -1,53 +1,51 @@
-Return-Path: <sadlife1990@gmail.com>
+Return-Path: <adam@alembicinst.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1BABEE0096A; Thu, 23 Jul 2015 04:01:44 -0700 (PDT)
+	id 3A309E0049B; Sat, 25 Jul 2015 07:42:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW, URI_HEX autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (sadlife1990[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.212.170 listed in list.dnswl.org]
-	*  1.1 URI_HEX URI: URI hostname has long hexadecimal sequence
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
-	[209.85.212.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46D65E008EC
-	for <yocto@yoctoproject.org>; Thu, 23 Jul 2015 04:01:41 -0700 (PDT)
-Received: by wicmv11 with SMTP id mv11so18624229wic.0
-	for <yocto@yoctoproject.org>; Thu, 23 Jul 2015 04:01:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=+choI/9Q35p6ZDuD+SuYS0fqAxJDnrZFL0ePOEd1598=;
-	b=mcClVc+C9aNfyoKhDavhG9xGZh3va15ji6IlBfurfddTj2q8hB5MJQaC9Bx/AmD6Al
-	5+VH50QlGGjwLnkJGMnUUe9+a8GwVztcufTg+/EWgA54p9eV7aBNIWMt1tQt3T87Pdv6
-	6rzfOfkBYRqQOhy+NaslJcr6Cf6n97p+5habXQiF9NIZXGQ+bywHr9YhUxGh6hdPH1Uv
-	LK3zpJSCY9c/mAjiHpbmYaM02ROKlsESP0/AITMdRRbztG0ekiKyPP4aCVeiicdCrvpK
-	QBDoK34l6MsDCxLu20DcAEtu/FI/2pQeabE/yywAgkBBOwb0q2goGMsU7Cg4q+EyCwQy
-	vWcA==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.179 listed in list.dnswl.org]
+Received: from mail-lb0-f179.google.com (mail-lb0-f179.google.com
+	[209.85.217.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5274E003D7
+	for <yocto@yoctoproject.org>; Sat, 25 Jul 2015 07:42:19 -0700 (PDT)
+Received: by lblf12 with SMTP id f12so30163534lbl.2
+	for <yocto@yoctoproject.org>; Sat, 25 Jul 2015 07:42:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=LgUUUjQnhPk+fOFDq/wxbff0e80/R+oRhsktC+UHGLo=;
+	b=YA/obAgp7E6i4xzCQ6kPmbciBkXWm2nOFpxrgJpwVeXP2WFnWoGtu8/r5QYeJPZpkx
+	8qX8XgVN80ycHRfcBXRDlyvpIDtSBqY/2ErUe1L/CMYvz30FGlxLfNhyLvIckgjcfRKF
+	alQMQCsdO9PVmJtl/IaHxNFpUuGlUy6OZQNziAqr69b887VG/Y+bx2fWQoR3xppi7lSz
+	0Y6EbkUOLDbU9QkqklcJXjOAMt9LE2bZA/fhNKY2+4j+ykqpZRp/5Ztfw4M/7g6gein+
+	5VyF0VAJRo28QuprFlfVwHOBvzmuBnoGelp+koiO8sGYJK4NVTiTUQaRve4htPwB7YmV
+	cI3w==
+X-Gm-Message-State: ALoCoQmDbIf6DvFoA2v3ErjOKX6h7j0NHsdMiR1voClfnBYqyZ+CZZQ3Vesi3Rp7h4Lh1Q5JRqSG
 MIME-Version: 1.0
-X-Received: by 10.194.60.226 with SMTP id k2mr14090855wjr.10.1437649300652;
-	Thu, 23 Jul 2015 04:01:40 -0700 (PDT)
-Received: by 10.194.120.132 with HTTP; Thu, 23 Jul 2015 04:01:40 -0700 (PDT)
-Date: Thu, 23 Jul 2015 14:01:40 +0300
-Message-ID: <CAAHuHfxtDAi4xF8tJqiiswWGMEC-=jsryjbvuKu1Fg311J+Jyw@mail.gmail.com>
-From: Life Life <sadlife1990@gmail.com>
-To: yocto@yoctoproject.org, Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>, 
-	openembedded-devel@lists.openembedded.org
+X-Received: by 10.153.7.166 with SMTP id dd6mr18662942lad.42.1437835337545;
+	Sat, 25 Jul 2015 07:42:17 -0700 (PDT)
+Received: by 10.25.27.65 with HTTP; Sat, 25 Jul 2015 07:42:17 -0700 (PDT)
+Received: by 10.25.27.65 with HTTP; Sat, 25 Jul 2015 07:42:17 -0700 (PDT)
+In-Reply-To: <20150725002742.GC14383@haswell>
+References: <3070750398d841b6866b97073c1bbeaa@nivm320.nibe.se>
+	<loom.20150724T210947-218@post.gmane.org>
+	<20150725002742.GC14383@haswell>
+Date: Sat, 25 Jul 2015 10:42:17 -0400
+Message-ID: <CAM5rrE5JiLnkEiZKrKGTdjZ+=N6WvPrep0A6BdEt62+uPa=AFw@mail.gmail.com>
+From: Adam Sherman <adam@alembicinst.com>
+To: Khem Raj <raj.khem@gmail.com>
 X-Mailman-Approved-At: Sun, 26 Jul 2015 09:17:14 -0700
-Subject: qt5 webkit Nothing RPROVIDES 'liborc-0.4'
+Cc: yocto@yoctoproject.org
+Subject: Re: Sftp deploy hangs when using dropbear and yocto fido.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,83 +57,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Jul 2015 11:01:44 -0000
-Content-Type: multipart/alternative; boundary=047d7bacbed6e088f7051b88cf0f
+X-List-Received-Date: Sat, 25 Jul 2015 14:42:25 -0000
+Content-Type: multipart/alternative; boundary=001a1133a6fe8a4e9e051bb42058
 
---047d7bacbed6e088f7051b88cf0f
+--001a1133a6fe8a4e9e051bb42058
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Will let you know on Monday.
 
-I'm trying to build qt5 webkit. I seen this error message
+I suppose all this implies that Qt Creator has its own sftp client, since
+file transfers work outside of the IDE. In that case, I should find out
+what protocol version this internal client is using. Not sure how to do
+this... Perhaps the server on the embedded host can tell me with debug
+output enabled?
 
-Build Configuration:
-BB_VERSION        = "1.24.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Ubuntu-14.04"
-TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "phyboard-wega-am335x-2"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.7"
-TUNE_FEATURES     = "arm armv7a vfp thumb neon callconvention-hard cortexa8"
-TARGET_FPU        = "vfp-neon"
-meta
-meta-yocto        = "(nobranch):9aff3a4ec058a1a1149d026ebedcc6251089fffb"
-meta-phytec       = "(nobranch):ccf1c78f312f84933b90926e9bf4f72de59e8e94"
-meta-phyam335x    = "(nobranch):a6c488b268d0c2e506f293221703dafcc05b9610"
-meta-oe
-meta-networking
-meta-python
-meta-multimedia   = "(nobranch):9efaed99125b1c4324663d9a1b2d3319c74e7278"
-meta-qt5          = "master:6d9e2a6dfc21f7d9a3a11b4bcb426b5dfe6feaeb"
-meta-ruby         = "(nobranch):9efaed99125b1c4324663d9a1b2d3319c74e7278"
+Thanks,
 
-NOTE: Preparing runqueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-NOTE: Tasks Summary: Attempted 3367 tasks of which 3367 didn't need to be
-rerun and all succeeded.
-NOTE: Resolving any missing task queue dependencies
-ERROR: Nothing RPROVIDES 'liborc-0.4' (but
-/home/xy/yocto/build/recipes/images/
-core-image-base-edited-20150723-135844.bb RDEPENDS on or otherwise requires
-it)
+Adam.
+On 15-07-24 19:20:22, Adam Sherman wrote:
+> M=C3=A5ns Andersson <Mans.Andersson@...> writes:
+>
+> >
+> > Does anyone know about a problem with dropbear and openssh-sftp-server
+on
+> Yocto Fido?
+> >
+> > After upgrading my build from Dora to Fido the deployment of builds fro=
+m
+> QtCreator (3.2.2) to my qemuarm
+> > build stopped working. It just hangs waiting as if it's working, i.e. n=
+o
+> error message. I've switched
+> > toolchains and emulator images from my Dora and Fido builds back and
+forth
+> and the only common denominator
+> > when it doesn't work is when using the Fido qemuarm build. Regular SSH
+> connections and manual sftp
+> > transfers (i.e. not initiated by Qt Creator) works, which just makes it
+> even harder to debug.
+> >
+> > Thanks in advance.
+> > // M=C3=A5ns
+> >
+>
+> Just to let you know, I have the same behavior with QtCreator (3.4.2) /
+> trying to deploy on the Armadeus APF27 embedded Linux Arm Platform
+> (Buildroot 2015.02 / Dropbear / openssh sftp server).
+>
+> Similarly, stand-alone sftp transfers outside of QtCreator work just fine=
+.
 
---047d7bacbed6e088f7051b88cf0f
+openssh 6.9 has changed some default ciphers and I see that it may not
+work directly with older openssh servers, I wonder if you have same
+problem with dropbear. Whats the openssh client/server versions involved on
+your host ?
+
+>
+> Adam Sherman
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+--001a1133a6fe8a4e9e051bb42058
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello,<br><br></div>I&#39;m trying to build qt5 webki=
-t. I seen this error message<br><br>Build Configuration:<br>BB_VERSION=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;1.24.0&quot;<br>BUILD_SYS=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;x86_64-linux&quo=
-t;<br>NATIVELSBSTRING=C2=A0=C2=A0 =3D &quot;Ubuntu-14.04&quot;<br>TARGET_SY=
-S=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;arm-poky-linux-gnueab=
-i&quot;<br>MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 =3D &quot;phyboard-wega-am335x-2&quot;<br>DISTRO=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;poky&quot;<br>DISTR=
-O_VERSION=C2=A0=C2=A0=C2=A0 =3D &quot;1.7&quot;<br>TUNE_FEATURES=C2=A0=C2=
-=A0=C2=A0=C2=A0 =3D &quot;arm armv7a vfp thumb neon callconvention-hard cor=
-texa8&quot;<br>TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &qu=
-ot;vfp-neon&quot;<br>meta=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>meta-yocto=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 =3D &quot;(nobranch):9aff3a4ec058a1a1149d026ebedcc6251089fffb&=
-quot;<br>meta-phytec=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;(nobranc=
-h):ccf1c78f312f84933b90926e9bf4f72de59e8e94&quot;<br>meta-phyam335x=C2=A0=
-=C2=A0=C2=A0 =3D &quot;(nobranch):a6c488b268d0c2e506f293221703dafcc05b9610&=
-quot;<br>meta-oe=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 <br>meta-networking=C2=A0=C2=A0 <br>meta-python=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 <br>meta-multimedia=C2=A0=C2=A0 =3D &quot;(nobranch):9efaed991=
-25b1c4324663d9a1b2d3319c74e7278&quot;<br>meta-qt5=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;master:6d9e2a6dfc21f7d9a3a11b4bcb4=
-26b5dfe6feaeb&quot;<br>meta-ruby=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 =3D &quot;(nobranch):9efaed99125b1c4324663d9a1b2d3319c74e7278&quot;<=
-br><br>NOTE: Preparing runqueue<br>NOTE: Executing SetScene Tasks<br>NOTE: =
-Executing RunQueue Tasks<br>NOTE: Tasks Summary: Attempted 3367 tasks of wh=
-ich 3367 didn&#39;t need to be rerun and all succeeded.<br>NOTE: Resolving =
-any missing task queue dependencies<br>ERROR: Nothing RPROVIDES &#39;liborc=
--0.4&#39; (but /home/xy/yocto/build/recipes/images/<a href=3D"http://core-i=
-mage-base-edited-20150723-135844.bb">core-image-base-edited-20150723-135844=
-.bb</a> RDEPENDS on or otherwise requires it)<br></div>
+<p dir=3D"ltr">Will let you know on Monday.</p>
+<p dir=3D"ltr">I suppose all this implies that Qt Creator has its own sftp =
+client, since file transfers work outside of the IDE. In that case, I shoul=
+d find out what protocol version this internal client is using. Not sure ho=
+w to do this... Perhaps the server on the embedded host can tell me with de=
+bug output enabled?</p>
+<p dir=3D"ltr">Thanks,</p>
+<p dir=3D"ltr">Adam.</p>
+<div class=3D"gmail_quot&lt;blockquote class=3D" style=3D"margin:0 0 0 .8ex=
+;border-left:1px #ccc solid;padding-left:1ex">On 15-07-24 19:20:22, Adam Sh=
+erman wrote:<br>
+&gt; M=C3=A5ns Andersson &lt;Mans.Andersson@...&gt; writes:<br>
+&gt;<br>
+&gt; &gt;<br>
+&gt; &gt; Does anyone know about a problem with dropbear and openssh-sftp-s=
+erver on<br>
+&gt; Yocto Fido?<br>
+&gt; &gt;<br>
+&gt; &gt; After upgrading my build from Dora to Fido the deployment of buil=
+ds from<br>
+&gt; QtCreator (3.2.2) to my qemuarm<br>
+&gt; &gt; build stopped working. It just hangs waiting as if it&#39;s worki=
+ng, i.e. no<br>
+&gt; error message. I&#39;ve switched<br>
+&gt; &gt; toolchains and emulator images from my Dora and Fido builds back =
+and forth<br>
+&gt; and the only common denominator<br>
+&gt; &gt; when it doesn&#39;t work is when using the Fido qemuarm build. Re=
+gular SSH<br>
+&gt; connections and manual sftp<br>
+&gt; &gt; transfers (i.e. not initiated by Qt Creator) works, which just ma=
+kes it<br>
+&gt; even harder to debug.<br>
+&gt; &gt;<br>
+&gt; &gt; Thanks in advance.<br>
+&gt; &gt; // M=C3=A5ns<br>
+&gt; &gt;<br>
+&gt;<br>
+&gt; Just to let you know, I have the same behavior with QtCreator (3.4.2) =
+/<br>
+&gt; trying to deploy on the Armadeus APF27 embedded Linux Arm Platform<br>
+&gt; (Buildroot 2015.02 / Dropbear / openssh sftp server).<br>
+&gt;<br>
+&gt; Similarly, stand-alone sftp transfers outside of QtCreator work just f=
+ine.<br>
+<br>
+openssh 6.9 has changed some default ciphers and I see that it may not<br>
+work directly with older openssh servers, I wonder if you have same<br>
+problem with dropbear. Whats the openssh client/server versions involved on=
+ your host ?<br>
+<br>
+&gt;<br>
+&gt; Adam Sherman<br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
+errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
+br>
+</div>
 
---047d7bacbed6e088f7051b88cf0f--
+--001a1133a6fe8a4e9e051bb42058--
