@@ -1,55 +1,52 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <clay@montgomery1.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C733E00A4D; Sat, 25 Jul 2015 05:56:56 -0700 (PDT)
+	id 28B53E00A6B; Sat, 25 Jul 2015 08:37:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [69.89.20.122 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.178 listed in list.dnswl.org]
-Received: from mail-ie0-f178.google.com (mail-ie0-f178.google.com
-	[209.85.223.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51A5AE009F8
-	for <yocto@yoctoproject.org>; Sat, 25 Jul 2015 05:56:47 -0700 (PDT)
-Received: by iecrl10 with SMTP id rl10so32595596iec.1
-	for <yocto@yoctoproject.org>; Sat, 25 Jul 2015 05:56:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=CPZgJXgi3mcV46Xmc917BtiF6n3WAeLNbKQrGN8+2AI=;
-	b=Ep2vp/rmsN5GAkn19na02IKJKXFC2z9LoJmG5fHDdMv/BunWzAcM8gLtqbTEbn1JXO
-	XCZ7Lh81cIMiGmH361v0d+yXWijPy3dSy9jX9QVN7Qumles2uD3329xdqysbl2onAYSr
-	wwgBUYttDdQfoo38hu7sKCBiXgBcglG6JiQOC03HUzKnW1X4HN8E9j9YX8ayGWvAJ2YD
-	FMXOH8zgcqsdD7zmeY7+m9ccu2snow2q0PolVz07sSlfSojQUWq11kwN23kJBjbwVPYp
-	4W/0UCD6lmy1n1lgD42rVJJZygSeQJ/GQO7tgtdSTNphcZdsAFsPlvhj/bduu90Xgdnb
-	i89g==
-X-Received: by 10.50.143.104 with SMTP id sd8mr4415540igb.34.1437829006752;
-	Sat, 25 Jul 2015 05:56:46 -0700 (PDT)
-Received: from openSUSE-i7.site (dsl-67-55-28-109.acanac.net. [67.55.28.109])
-	by smtp.gmail.com with ESMTPSA id
-	rr5sm1420231igb.7.2015.07.25.05.56.44
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sat, 25 Jul 2015 05:56:45 -0700 (PDT)
-From: Trevor Woerner <twoerner@gmail.com>
+X-Greylist: delayed 396 seconds by postgrey-1.32 at yocto-www;
+	Sat, 25 Jul 2015 08:36:56 PDT
+Received: from gproxy9-pub.mail.unifiedlayer.com
+	(gproxy9-pub.mail.unifiedlayer.com [69.89.20.122])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id DBD3FE0049B
+	for <yocto@yoctoproject.org>; Sat, 25 Jul 2015 08:36:56 -0700 (PDT)
+Received: (qmail 20011 invoked by uid 0); 25 Jul 2015 15:30:15 -0000
+Received: from unknown (HELO cmgw3) (10.0.90.84)
+	by gproxy9.mail.unifiedlayer.com with SMTP; 25 Jul 2015 15:30:15 -0000
+Received: from box858.bluehost.com ([69.195.124.58]) by cmgw3 with 
+	id wlWA1q00B1Fiqph01lWDT3; Sat, 25 Jul 2015 15:30:14 -0600
+X-Authority-Analysis: v=2.1 cv=Qc314Krv c=1 sm=1 tr=0
+	a=6215HlyIVfFolxfkGyTlSg==:117 a=6215HlyIVfFolxfkGyTlSg==:17
+	a=cNaOj0WVAAAA:8
+	a=f5113yIGAAAA:8 a=cwQF-0P1AAAA:8 a=xDn4ee4CKTYA:10 a=IkcTkHD0fZMA:10
+	a=DpUQn3bY8hUA:10 a=F7vrFIpsXqIA:10 a=zOBTXjUuO1YA:10
+	a=KXF5GlgIp31Em3opj_8A:9 a=QEXdDO2ut3YA:10
+Received: from [70.119.214.20] (port=49316 helo=[192.168.0.18])
+	by box858.bluehost.com with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
+	(Exim 4.84) (envelope-from <clay@montgomery1.com>)
+	id 1ZJ1Os-0000hZ-Ro
+	for yocto@yoctoproject.org; Sat, 25 Jul 2015 09:30:10 -0600
 To: yocto@yoctoproject.org
-Date: Sat, 25 Jul 2015 08:56:23 -0400
-Message-Id: <1437828983-7773-1-git-send-email-twoerner@gmail.com>
-X-Mailer: git-send-email 2.5.0.rc2.13.g961abca
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	Lucian Musat <george.l.musat@intel.com>,
-	Otavio Salvador <otavio@ossystems.com.br>
-Subject: [PATCH][meta-yocto] SANITY_TESTED_DISTROS: fix lsb name for openSUSE 13.2
+References: <3070750398d841b6866b97073c1bbeaa@nivm320.nibe.se>
+	<loom.20150724T210947-218@post.gmane.org>
+From: "Clay D. Montgomery" <clay@montgomery1.com>
+Message-ID: <55B3AB8B.2060303@montgomery1.com>
+Date: Sat, 25 Jul 2015 10:30:19 -0500
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.0.1
+MIME-Version: 1.0
+In-Reply-To: <loom.20150724T210947-218@post.gmane.org>
+X-Identified-User: {1231:box858.bluehost.com:montgor0:montgomery1.com}
+	{sentby:smtp auth 70.119.214.20 authed with
+	clay@montgomery1.com}
+Subject: Re: Sftp deploy hangs when using dropbear and yocto fido.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,27 +58,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 25 Jul 2015 12:56:56 -0000
+X-List-Received-Date: Sat, 25 Jul 2015 15:37:00 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
- meta-yocto/conf/distro/poky.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 7/24/2015 2:20 PM, Adam Sherman wrote:
+> Måns Andersson <Mans.Andersson@...> writes:
+>
+>> Does anyone know about a problem with dropbear and openssh-sftp-server on
+> Yocto Fido?
+>> After upgrading my build from Dora to Fido the deployment of builds from
+> QtCreator (3.2.2) to my qemuarm
+>> build stopped working. It just hangs waiting as if it's working, i.e. no
+> error message. I've switched
+>> toolchains and emulator images from my Dora and Fido builds back and forth
+> and the only common denominator
+>> when it doesn't work is when using the Fido qemuarm build. Regular SSH
+> connections and manual sftp
+>> transfers (i.e. not initiated by Qt Creator) works, which just makes it
+> even harder to debug.
+>> Thanks in advance.
+>> // Måns
+>>
+> Just to let you know, I have the same behavior with QtCreator (3.4.2) /
+> trying to deploy on the Armadeus APF27 embedded Linux Arm Platform
+> (Buildroot 2015.02 / Dropbear / openssh sftp server).
+>
+> Similarly, stand-alone sftp transfers outside of QtCreator work just fine.
+>
+> Adam Sherman
 
-diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
-index e3d3c78..80861f6 100644
---- a/meta-yocto/conf/distro/poky.conf
-+++ b/meta-yocto/conf/distro/poky.conf
-@@ -80,7 +80,7 @@ SANITY_TESTED_DISTROS ?= " \
-             CentOS-7.* \n \
-             Debian-7.* \n \
-             Debian-8.* \n \
--            openSUSE-13.2 \n \
-+            openSUSE-project-13.2 \n \
-             "
- 
- # Default hash policy for distro
--- 
-2.5.0.rc2.13.g961abca
+   I am curious why continue to use dropbear anyway?
 
+   The openssh-sftp-server will likely work better with openssh than 
+with dropbear.
+
+  Openssh uses only about 3MB more per session than dropbear, which is 
+small unless you need a lot of simultaneous sessions.
+I think dropbear is a relic from when systems had less RAM.  Just 
+curious.  Maybe I'm missing something.
+
+Regards, Clay Montgomery
 
