@@ -1,49 +1,57 @@
-Return-Path: <vandegriftlorin@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2D433E00A5B; Fri, 24 Jul 2015 14:27:12 -0700 (PDT)
+	id 7EFF0E00A5B; Fri, 24 Jul 2015 16:55:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vandegriftlorin[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.52 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.212.169 listed in list.dnswl.org]
-Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
-	[209.85.212.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA70AE00A3C
-	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 14:27:10 -0700 (PDT)
-Received: by wibud3 with SMTP id ud3so43607117wib.0
-	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 14:27:09 -0700 (PDT)
+Received: from mail-pa0-f52.google.com (mail-pa0-f52.google.com
+	[209.85.220.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CCDAE00A3C
+	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 16:55:06 -0700 (PDT)
+Received: by padck2 with SMTP id ck2so21321181pad.0
+	for <yocto@yoctoproject.org>; Fri, 24 Jul 2015 16:55:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=wNwSaN2MKqJA8t2fzGUDofaEC7BRGEZVKJcNp/bb1Sk=;
-	b=BBhpqEHF7tZpfIeq1h4GrMz4lQyBR2C9JEzjNS5Wcbm3HUDlLb4zGeQLcoQmQtE6gG
-	fABOyvGYL1Z4+eaTg36jL5iHL9Ygl81wIP3C+w5/N96xinTt2v0oQ7gO2BsaOi8rLDI2
-	eOsAooFZZXPoL3BYYCMG55zk38fUEghYse5c+07vrxsw25/S1FyumHm9xvFBw1Xi+b2D
-	kytHMNh04mxGJMXYtUTZ1UyjfUVHVECpnqAMNHYW15lQ5OWXOq+2ZTheF/3ei6r67g6G
-	HuTBX26kMp990i8bnhuJQaypyXw8eQFWSzkjTwbgr/IFIobFsxx7rrVZCwFYbBlQTIeG
-	y4Xw==
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=6s4ugIOEO597Dl0KOld+aGFWrZ8YSZmPMJzZi1n9+WY=;
+	b=ySIDVv0yVFhvZnFRZG/lDmwe3Voj6XDCW2+jkGn6rsynaAN1klA1vM37mab33U9s3G
+	FHCtMI3qdIj9yg2CG6HoHqsrthsN5tG4S7H6uFZ30hpnVNG5jr0xZgDek3HYcnUf21SO
+	VE46kodrWwxkB0IGAObyZJI6oejl50soKv+m30Ud7M9o/XAgjuKqc2BDm9i58w9t7+W0
+	O1LYenXfhb2luM2/kIuXJeEpkuweBSmUIGHIt6wk9g2kUBdc3D2Lz2Jmj4P6Ookc4ieq
+	J29m7tBrh83nmu1s9nMtQ2QerNMAsZBhFNyxSVxkscdOIuHdFIENg9K89xUCIo92ozCI
+	O4tQ==
+X-Received: by 10.66.174.36 with SMTP id bp4mr35934266pac.133.1437782105474;
+	Fri, 24 Jul 2015 16:55:05 -0700 (PDT)
+Received: from haswell ([2601:646:8601:4580:baca:3aff:fe80:aa8f])
+	by smtp.gmail.com with ESMTPSA id
+	bu10sm16644309pac.36.2015.07.24.16.55.04
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 24 Jul 2015 16:55:04 -0700 (PDT)
+Date: Fri, 24 Jul 2015 17:02:33 -0700
+From: Khem Raj <raj.khem@gmail.com>
+To: Matthew Karas <mkarascybi@gmail.com>
+Message-ID: <20150725000233.GA14383@haswell>
+References: <CADu_VSZCW7YegWTzRWQX+ZzQH=CygvxorwUH7KvgtkyYO-feVQ@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.194.200.73 with SMTP id jq9mr30383321wjc.52.1437773229384;
-	Fri, 24 Jul 2015 14:27:09 -0700 (PDT)
-Received: by 10.27.46.17 with HTTP; Fri, 24 Jul 2015 14:27:09 -0700 (PDT)
-Date: Fri, 24 Jul 2015 14:27:09 -0700
-Message-ID: <CAOzegEN3YB0HvA+sHopRJexapWWkU03MMPFEdk=acOaTBGTc-Q@mail.gmail.com>
-From: Lorin Vandegrift <vandegriftlorin@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Problem add and removing files to filesystem
+In-Reply-To: <CADu_VSZCW7YegWTzRWQX+ZzQH=CygvxorwUH7KvgtkyYO-feVQ@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Dropbear configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,43 +63,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jul 2015 21:27:12 -0000
-Content-Type: multipart/alternative; boundary=047d7b873ba49ae920051ba5aaba
+X-List-Received-Date: Fri, 24 Jul 2015 23:55:09 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
---047d7b873ba49ae920051ba5aaba
-Content-Type: text/plain; charset=UTF-8
+On 15-05-29 10:40:35, Matthew Karas wrote:
+> I am trying to configure dropbear to do the following.
+> 
+> 1) Only listen on port 22 of the tun0 interface (made by openvpn service).
+> 2) Only use public key authorization.
+> 
+> To do this I've overridden the dropbear.socket file with my own.
+> 
+> ---------------------------------------------------- start
+> [Unit]
+> Conflicts=dropbear.service
+> After=openvpn@foo.service
+> Wants=openvpn@foo.service
 
-Hi all,
+may be ise 'Requires' here
 
-We are having problems adding extra files/removing files from the generated
-file system in Yocto.  We've had success with using a do_install command in
-our own bb file and using commands in the format rsync -avz test.txt
-${D}{sysconfdir}, however we can't write to some paths (i.e. writing to
-root with ${D).  Additionally, we are not able to overwrite files generated
-by other recipes.  We also tried using install and couldn't push our init
-script (nstall -m 0755 test.sh ${D}${sysconfdir}/init.d).  Any advice for
-these?  Also is there a recommended way for removing files?   We were able
-to remove them by using the rm command and adding it to
-ROOTFS_POSTPROCESS_COMMAND.
+> 
+> [Socket]
+> ListenStream=22
+> Accept=yes
+> BindToDevice=tun0  <<<<<<< made by open vpn
+> 
+> [Install]
+> WantedBy=sockets.target
+> Also=dropbearkey.service
+> 
+> ----------------------------------------------------finish
+> 
+> I also install my public key to where I think dropbear needs the keys.
+> 
+> --------bb append snippet-----------------------------------
+> do_install_append() {
+>     install -d ${D}/root/.ssh
+>     install -m 0600 ${WORKDIR}/authorized_keys ${D}/root/.ssh/authorized_keys
+>     echo 'DROPBEAR_EXTRA_ARGS="-E -g"'> ${D}${sysconfdir}/default/dropbear
+> }
+> 
+> FILES_${PN} += "/home/root/.ssh/authorized_keys"
+> -------------------------------------------------------------------
+> 
+> Currently the system finds a system ordering loop and shuts down openvpn.
+> 
+> How do I get the dropbear.socket to depend on openvpn - when openvpn
+> depends on the sockets being up  (and sockets.target wants
+> dropbear.socket)?  Is there another way to have dropbear only look at
+> the tun0 port 22 and not the eth0 port 22?
+> 
+> Thanks
+> -- 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Thanks,
-Lorin
-
---047d7b873ba49ae920051ba5aaba
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi all,<div><br></div><div>We are having problems adding e=
-xtra files/removing files from the generated file system in Yocto.=C2=A0 We=
-&#39;ve had success with using a do_install command in our own bb file and =
-using commands in the format rsync -avz test.txt ${D}{sysconfdir}, however =
-we can&#39;t write to some paths (i.e. writing to root with ${D).=C2=A0 Add=
-itionally, we are not able to overwrite files generated by other recipes.=
-=C2=A0 We also tried using install and couldn&#39;t push our init script (n=
-stall -m 0755 test.sh ${D}${sysconfdir}/init.d).=C2=A0 Any advice for these=
-?=C2=A0 Also is there a recommended way for removing files? =C2=A0 We were =
-able to remove them by using the rm command and adding it to ROOTFS_POSTPRO=
-CESS_COMMAND. =C2=A0</div><div><br></div><div>Thanks,</div><div>Lorin</div>=
-</div>
-
---047d7b873ba49ae920051ba5aaba--
