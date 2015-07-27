@@ -1,46 +1,59 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <twoerner@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 49D36E00A49; Mon, 27 Jul 2015 05:05:16 -0700 (PDT)
+	id 72813E00A3B; Mon, 27 Jul 2015 05:17:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.192.47 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (twoerner[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-qg0-f47.google.com (mail-qg0-f47.google.com
-	[209.85.192.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57FD9E009D6
-	for <yocto@yoctoproject.org>; Mon, 27 Jul 2015 05:05:12 -0700 (PDT)
-Received: by qgii95 with SMTP id i95so49395481qgi.2
-	for <yocto@yoctoproject.org>; Mon, 27 Jul 2015 05:05:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=C7RAZD6xw7r/ePUWhIpoYFg5Tvq1W7LLBhynepLVNYs=;
-	b=E+6oZIaG/YhJGMFFkgshQvag0nuPVHyMz20pzk9jeiTTlOrrWiOOexJFZ7P7qt0at2
-	QexEfHj8XxHgpImGjEbffNx2yDOIQGRU5YSQd3tG/kYO7gbWxEpdWe7wuxzWK3lzmufU
-	M/9f844+4Nrrk5c2aZF/itO3nb0QDhMX9WNXwJPgf3Vdq0x9ewJolOM3aO/uGjUCfa7N
-	Gb0aY0T/sEBzYTWUOqVAk+2t28F2T3zMx4XLSGVa/GKsvELwiuLa2ZfGx1UOwEIt20g7
-	nvUmGBhGYJZ0b1rV1fvsiNnUTDvFW9oKzqg4Dna7JBCGq6BZcYm9Q0d9BlZqradm4XWH
-	sgaQ==
-X-Gm-Message-State: ALoCoQkXVL6GvTszxJE+UVc5dAqjqb31Ci7blvOQjlCMuNd5Vy0cYPfyjj0tbdKS+cCltd8xJnK5
-X-Received: by 10.140.133.17 with SMTP id 17mr31054447qhf.72.1437998712321;
-	Mon, 27 Jul 2015 05:05:12 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.140.98.8 with HTTP; Mon, 27 Jul 2015 05:04:52 -0700 (PDT)
-In-Reply-To: <55B61016.1030504@gmail.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f173.google.com (mail-ig0-f173.google.com
+	[209.85.213.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 589CBE009D6
+	for <yocto@yoctoproject.org>; Mon, 27 Jul 2015 05:17:26 -0700 (PDT)
+Received: by igbpg9 with SMTP id pg9so73910168igb.0
+	for <yocto@yoctoproject.org>; Mon, 27 Jul 2015 05:17:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=subject:to:references:cc:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-type:content-transfer-encoding;
+	bh=bhsrPqc3wjQ5J8Ev7srJEAWdzruWB7lRBW7t6lc6+rY=;
+	b=Gb79az2Q1KVtCCbi9SwHw5hnEYJjeeorbTfUxgDgWdBjVMT5p+Q7ybHy7D5EllKOS2
+	WFJXjn6y2tT73bs2WQuhk95RJWXSubeCqpxsuDv/0/JdhkRzo+3FKsRrifSm2I0roNR8
+	WqU8HNQqHMcYXUQR6SbyRHcwuoOwrNAfKVrfENkuuFk5RmkjeUAqJbgLa32MqFWxgHGr
+	6WBpSqi1ML18OpRcgSaIhw2nK5AQSacpzpvqE82s0sQyCOJWEOCB+8lsCj12LnEc+b7w
+	XvUAst+TlrVTidoJUnrhzoDtGXdIzqVlaxzdMDN6t/3dyrYy4HgUiUTnrnP9SakVzqbA
+	yhMQ==
+X-Received: by 10.50.136.134 with SMTP id qa6mr17043193igb.26.1437999446048;
+	Mon, 27 Jul 2015 05:17:26 -0700 (PDT)
+Received: from [192.168.141.85] (dsl-67-55-28-109.acanac.net. [67.55.28.109])
+	by smtp.gmail.com with ESMTPSA id
+	q187sm11724880ioe.37.2015.07.27.05.17.24
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 27 Jul 2015 05:17:25 -0700 (PDT)
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
 References: <55B5213D.9040604@gmail.com>
 	<CAP71Wjz6LZ465Mjskx1gDLV5xpff=_jZiqogAJsm0=x3_o+e1w@mail.gmail.com>
 	<55B61016.1030504@gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Mon, 27 Jul 2015 14:04:52 +0200
-Message-ID: <CAP71WjzRBHmATtczTV=5x6YoNhXuy66c4FVnhYJjSt-5QophQw@mail.gmail.com>
-To: Trevor Woerner <twoerner@gmail.com>
+	<CAP71WjzRBHmATtczTV=5x6YoNhXuy66c4FVnhYJjSt-5QophQw@mail.gmail.com>
+From: Trevor Woerner <twoerner@gmail.com>
+Message-ID: <55B62152.9080103@gmail.com>
+Date: Mon, 27 Jul 2015 08:17:22 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.1.0
+MIME-Version: 1.0
+In-Reply-To: <CAP71WjzRBHmATtczTV=5x6YoNhXuy66c4FVnhYJjSt-5QophQw@mail.gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: include all kernel modules in image
 X-BeenThere: yocto@yoctoproject.org
@@ -54,65 +67,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Jul 2015 12:05:16 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 27 Jul 2015 12:17:31 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jul 27, 2015 at 1:03 PM, Trevor Woerner <twoerner@gmail.com> wrote:
-> File: '/z/layerindex/layers/openembedded-core/meta/lib/oe/rootfs.py',
-> lineno: 156, function: _exec_shell_cmd
->      0152:        else:
->      0153:            exec_cmd = cmd
->      0154:
->      0155:        try:
->  *** 0156:            subprocess.check_output(exec_cmd,
-> stderr=subprocess.STDOUT)
->      0157:        except subprocess.CalledProcessError as e:
->      0158:            return("Command '%s' returned %d:\n%s" % (e.cmd,
-> e.returncode, e.output))
->      0159:
->      0160:        return None
-> File: '/usr/lib64/python2.7/subprocess.py', lineno: 566, function:
-> check_output
->      0562:    'ls: non_existent_file: No such file or directory\n'
->      0563:    """
->      0564:    if 'stdout' in kwargs:
->      0565:        raise ValueError('stdout argument not allowed, it will
-> be overridden.')
->  *** 0566:    process = Popen(stdout=PIPE, *popenargs, **kwargs)
->      0567:    output, unused_err = process.communicate()
->      0568:    retcode = process.poll()
->      0569:    if retcode:
->      0570:        cmd = kwargs.get("args")
-> File: '/usr/lib64/python2.7/subprocess.py', lineno: 710, function: __init__
->      0706:                                cwd, env, universal_newlines,
->      0707:                                startupinfo, creationflags,
-> shell, to_close,
->      0708:                                p2cread, p2cwrite,
->      0709:                                c2pread, c2pwrite,
->  *** 0710:                                errread, errwrite)
->      0711:        except Exception:
->      0712:            # Preserve original exception in case os.close raises.
->      0713:            exc_type, exc_value, exc_trace = sys.exc_info()
->      0714:
-> File: '/usr/lib64/python2.7/subprocess.py', lineno: 1327, function:
-> _execute_child
->      1323:                except OSError as e:
->      1324:                    if e.errno != errno.ECHILD:
->      1325:                        raise
->      1326:                child_exception = pickle.loads(data)
->  *** 1327:                raise child_exception
->      1328:
->      1329:
->      1330:        def _handle_exitstatus(self, sts,
-> _WIFSIGNALED=os.WIFSIGNALED,
->      1331:                _WTERMSIG=os.WTERMSIG, _WIFEXITED=os.WIFEXITED,
-> Exception: OSError: [Errno 2] No such file or directory
+On 07/27/15 08:04, Nicolas Dechesne wrote:
+> On Mon, Jul 27, 2015 at 1:03 PM, Trevor Woerner <twoerner@gmail.com> wrote:
+>
+>
+> well, something's definitely wrong here.. are you doing a minimal
+> OE-core build? can you try to reproduce / narrow down? Are you running
+> recent master? I have no idea what the error means here.. but clearly,
+> it works for me, so that could be something from your environment..
 
+I agree.
 
-well, something's definitely wrong here.. are you doing a minimal
-OE-core build? can you try to reproduce / narrow down? Are you running
-recent master? I have no idea what the error means here.. but clearly,
-it works for me, so that could be something from your environment..
+The error appears to be some sort of "file not found". The command it is
+running when it fails is:
 
-nico
+     depmodwrapper
+/z/layerindex/firefly/tmp/work/firefly_emmc_mainline-poky-linux-gnueabi/core-image-minimal/1.0-r0/rootfs
+4.0.0-rc1
+
+Since the directory (/z/layerindex/firefly...) exists, it must be
+failing because something is wrong with the version (?)
+
+My kernel recipe's name is "firefly-mainline-kernel_4.0.bb" and it looks
+like:
+
+# Copyright (C) 2015 Trevor Woerner <twoerner@gmail.com>
+# Released under the MIT license (see COPYING.MIT for the terms)
+
+inherit kernel
+
+DESCRIPTION = "Mainline Rockchip Linux kernel for Firefly"
+HOMEPAGE =
+"http://wiki.t-firefly.com/index.php/Firefly-RK3288/Mainline_Kernel/en"
+LICENSE = "GPLv2"
+LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
+SECTION = "kernel"
+
+DEPENDS = "rk2918-tools-native"
+
+SRC_URI =
+"git://github.com/TeeFirefly/linux-rockchip.git;branch=firefly;rev=cbbae6741c60c9e09f87521e3a79810abd6a2fda"
+LINUX_VERSION ?= "4.0.0-rc1"
+PV = "4.0.0-rc1+git${SRCPV}"
+S = "${WORKDIR}/git"
+B = "${S}"
+
+COMPATIBLE_MACHINE = "firefly-emmc-mainline"
+
+KERNEL_CONFIG_COMMAND = "cd ${S}; make rk3288_firefly_defconfig"
+KERNEL_IMAGETYPE = "zImage"
+
+do_compile_append () {
+        make rk3288-firefly.dtb
+}
+
+do_install_append () {
+        if [ ! -r arch/arm/boot/zImage ]; then
+                echo "can't find 'arch/arm/boot/zImage'"
+                exit 1
+        fi 
+        if [ ! -r arch/arm/boot/dts/rk3288-firefly.dtb ]; then
+                echo "can't find 'arch/arm/boot/dts/rk3288-firefly.dtb'"
+                exit 1
+        fi 
+        cat ${S}/arch/arm/boot/zImage
+${S}/arch/arm/boot/dts/rk3288-firefly.dtb > ${S}/zImage-dtb
+
+        rk2918_mkkrnlimg -a ${S}/zImage-dtb ${S}/kernel.img
+}
+
+inherit deploy
+
+do_deploy_append () {
+        install -d ${DEPLOYDIR}
+        cp ${S}/kernel.img ${DEPLOYDIR}
+}
+
+addtask deploy before do_build after do_compile
 
