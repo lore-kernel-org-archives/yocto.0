@@ -1,51 +1,31 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8D348E00758; Mon, 27 Jul 2015 06:02:02 -0700 (PDT)
+	id F310CE009B8; Mon, 27 Jul 2015 07:04:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.50 listed in list.dnswl.org]
-Received: from mail-qg0-f50.google.com (mail-qg0-f50.google.com
-	[209.85.192.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D63CE00461
-	for <yocto@yoctoproject.org>; Mon, 27 Jul 2015 06:01:58 -0700 (PDT)
-Received: by qgii95 with SMTP id i95so50529167qgi.2
-	for <yocto@yoctoproject.org>; Mon, 27 Jul 2015 06:01:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=YLhiUt/ceG6a0S5CAc0FPrj/CasP0ii5CrzJ9AdQyWE=;
-	b=leewQ63lHCfi/WidjmZhGxcTS5YOibgkkrGKLbik0064CkBzR9c60/DTypc+ayGI0y
-	sOdGGXUzlypENqYhiQtzNUQby9eJ8NC8gSkXbNLJRC9dG1W5DLvaRCmYPtaqPtxas8H6
-	UFz6eehl1CFPBDSwPNYZWONgtDt1/jioSZwVZsfVjWrTQft42p1qe646AwUbZG9s450z
-	wdaGWBzAEQCEl51uoeX/FDrxCw06rLOXoLPy8U1IJ1/eo4/wYZKVszWCJuWil7as8Qp2
-	rsfq4uQMshVZVVoUiKS7Oa//Wr2MEBO7TCDQrhA0sRSlSBy122K91+yHdOPGG6GEIv//
-	V4Pg==
-X-Gm-Message-State: ALoCoQmDjjlgcw5jItaLpAp9Feam3QeOTAWSraT13HuZf/Jb+jl/DwhbiR3Bh1iu4/Cnfw6K9Ycf
-X-Received: by 10.140.196.85 with SMTP id r82mr42691213qha.64.1438002117673;
-	Mon, 27 Jul 2015 06:01:57 -0700 (PDT)
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFD1DE0094D
+	for <yocto@yoctoproject.org>; Mon, 27 Jul 2015 07:04:57 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 57917F81188; Mon, 27 Jul 2015 08:04:56 -0600 (MDT)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id D5C52F81188;
+	Mon, 27 Jul 2015 08:04:55 -0600 (MDT)
+Message-ID: <55B63A91.9000808@mlbassoc.com>
+Date: Mon, 27 Jul 2015 08:05:05 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.8.0
 MIME-Version: 1.0
-Received: by 10.140.102.195 with HTTP; Mon, 27 Jul 2015 06:01:38 -0700 (PDT)
-In-Reply-To: <365E1805BC95084CBE82381A0B86999401095B33DF@EU-MBX-01.mgc.mentorg.com>
-References: <55B517E5.5080708@mentor.com>
-	<CAJTo0LaKRO8dkGWmA1iXkkKE7HK9e22A_KLWJgpcfK18XQfCJg@mail.gmail.com>
-	<365E1805BC95084CBE82381A0B86999401095B33DF@EU-MBX-01.mgc.mentorg.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 27 Jul 2015 14:01:38 +0100
-Message-ID: <CAJTo0LbtNw9gmDhLRo3Ru5pATOkz-JoX42zhu_g5FA7LNivHxA@mail.gmail.com>
-To: "Ahsan, Noor" <Noor_Ahsan@mentor.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Khandavilli,
-	Arun" <Arun_Khandavalli@mentor.com>, "Larson,
-	Chris" <Chris_Larson@mentor.com>
-Subject: Re: Using wic from a Bitbake task
+To: yocto@yoctoproject.org
+References: <55B27DC9.1090307@mlbassoc.com>
+In-Reply-To: <55B27DC9.1090307@mlbassoc.com>
+Subject: Re: Missing certificates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,38 +37,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Jul 2015 13:02:02 -0000
-Content-Type: multipart/alternative; boundary=001a11432652692a84051bdaf522
+X-List-Received-Date: Mon, 27 Jul 2015 14:05:00 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
---001a11432652692a84051bdaf522
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-On 27 July 2015 at 13:49, Ahsan, Noor <Noor_Ahsan@mentor.com> wrote:
-
-> May I know it=E2=80=99s expected completion date?
+On 2015-07-24 12:02, Gary Thomas wrote:
+> I was trying to run a simple fetch from python using
+>          url = 'https://raw.github.com/Itseez/opencv/master/samples/c/fruits.jpg'
+>          filedata = urllib2.urlopen(url).read()
 >
+> This failed:
+>    Traceback (most recent call last):
+>    File "./edge.py", line 36, in <module>
+>      filedata = urllib2.urlopen(url).read()
+>    File "/usr/lib/python2.7/urllib2.py", line 154, in urlopen
+>      return opener.open(url, data, timeout)
+>    File "/usr/lib/python2.7/urllib2.py", line 431, in open
+>      response = self._open(req, data)
+>    File "/usr/lib/python2.7/urllib2.py", line 449, in _open
+>      '_open', req)
+>    File "/usr/lib/python2.7/urllib2.py", line 409, in _call_chain
+>      result = func(*args)
+>    File "/usr/lib/python2.7/urllib2.py", line 1240, in https_open
+>      context=self._context)
+>    File "/usr/lib/python2.7/urllib2.py", line 1197, in do_open
+>      raise URLError(err)
+> urllib2.URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:581)>
 >
-Currently marked as "1.9", you'll have to talk to Ed to get anything more
-precise than that.
+> I can see that it was looking for some certificates in /usr/lib/ssl/certs
+> but that directory is missing.
+>
+> Anyone know what I might be missing (or have misconfigured)?
+>
+> Thanks
+>
 
-Ross
+I've found a discussion about this problem on the OpenEmbedded
+development list:
+   http://lists.openembedded.org/pipermail/openembedded-devel/2015-July/102160.html
 
---001a11432652692a84051bdaf522
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+So the problem that this has uncovered is twofold:
+1) Python (and OpenSSL) are not using the certificates that are installed by the ca-certificates package
+    OpenSSL expects the certificates in /usr/lib/ssl/certs and ca-certificates uses /etc/ssl/certs
+2) The certificates from ca-certificates are not immediately usable by OpenSSL since they are not
+    hashed.  This is done by the 'c_rehash' program but has been explicitly disabled by a patch.
+    Further exploration implies that this was disabled because not all targets will have c_rehash
+    available and since the hashing is expected to be done on the target when the certificates
+    are loaded/updated.  Finally, c_rehash, may or may not exist in the OpenSSL packages, depending
+    on whether or not perl is available on the target (it's a perl script)
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 27 July 2015 at 13:49, Ahsan, Noor <span dir=3D"ltr">&lt;<a href=3D"mail=
-to:Noor_Ahsan@mentor.com" target=3D"_blank">Noor_Ahsan@mentor.com</a>&gt;</=
-span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8e=
-x;border-left:1px #ccc solid;padding-left:1ex"><p class=3D"MsoNormal"><span=
- style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif=
-&quot;;color:#1f497d">May I know it=E2=80=99s expected completion date?<u><=
-/u><u></u></span></p>
-<p class=3D"MsoNormal"></p></blockquote></div><br>Currently marked as &quot=
-;1.9&quot;, you&#39;ll have to talk to Ed to get anything more precise than=
- that.</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"=
->Ross</div></div>
+How best to solve this?  As is, python htts:// support is broken in OE-core, so I think an
+off-the-shelf solution is warranted.
 
---001a11432652692a84051bdaf522--
+Perhaps the PACKAGECONFIG for openssl should default to supporting perl on the target, and hence
+the c_rehash utility would be available?  Certainly the choice of where the certificates live, etc,
+should be standardized.
+
+Maybe the c_rehash can be run at package build time for ca-certificates?  This would make things work,
+at least for the real CA certificates.
+
+Ideas?
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
+
