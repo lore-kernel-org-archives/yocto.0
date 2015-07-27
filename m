@@ -1,18 +1,13 @@
-Return-Path: <vandegriftlorin@gmail.com>
+Return-Path: <develone@sbcglobal.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B5DC5E009DF; Mon, 27 Jul 2015 10:53:39 -0700 (PDT)
+	id 1E192E009DF; Mon, 27 Jul 2015 16:03:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.212.169 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (vandegriftlorin[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -20,36 +15,48 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
-	[209.85.212.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9864E009B8
-	for <yocto@yoctoproject.org>; Mon, 27 Jul 2015 10:53:37 -0700 (PDT)
-Received: by wibxm9 with SMTP id xm9so123475711wib.0
-	for <yocto@yoctoproject.org>; Mon, 27 Jul 2015 10:53:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=Z9gM1pl/FnR246TqlZKapRJX2lYxfDWut7a2o6bWCBM=;
-	b=HJxH9Hn6xcwO14BbpD+QQ5wKDmfhKL6Wcw/LA7GCHDTvyGA+2eoVA+7w4V2D/2EAVb
-	6wv36g3IcVJb+5d941vaxdv0uyEmlN0Blu1RLPQhEVBOcK+ekx/oWvvnFk2G6kQknJ25
-	0TxWru9VrjIY2cHZejBJbPUUF79FeJ3tLbw66sFlIBYXBL4T/Lc5ZpqEUu/RFvjb0Hse
-	uW3ojJo4ppXHGtzkCn9IJ7DrAQlpEfwiRt3SUTWruUDnq6CU+v81n9xG7GwUJr8kGYsU
-	fHNx6WqwCLNqZMMZ1slWiItuZwTK4TVjJQ4uQNxvBgQX12xBgo9uZMtpJ1E/cYBJghWa
-	uYaA==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [98.138.91.213 listed in list.dnswl.org]
+Received: from nm25-vm2.bullet.mail.ne1.yahoo.com
+	(nm25-vm2.bullet.mail.ne1.yahoo.com [98.138.91.213])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE68CE009B8
+	for <yocto@yoctoproject.org>; Mon, 27 Jul 2015 16:03:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
+	t=1438038189; bh=YN6weXwA8yjgZQ/UrLu5vtWbuyk5lcY6D297A662F/A=;
+	h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject;
+	b=KdPTFnFAGY/xV8NfHjdKmuAxBE9n+DwotLhLXOJbzB0zrroiSDDafNLD8O3kQftCH3iYDYrtW+U4eboJ8Y3vu1FXV5L16Hkxn04WfD4+atsnPGbMtmwIHfrJAHanunQ4bu9DZV1ROK+FLSDZyTnbU591y+yzkVlmDpV6jDBIlgKGc13dBkf+Uhkz3R/IiReIWACKBtnURcs05xk/o1O0Q13fgNeAEoyOvaeZIpVyRKNAX4bE6FlbIWogJdAFpQAXieJOsM0bgrku3ZrZknHrcYWQmolmALj1GaBc0GYsUhX79+98MjEQTcsv3u1XMmP1Fl4DKQEOJ2/upJB+7/9ilw==
+Received: from [98.138.100.103] by nm25.bullet.mail.ne1.yahoo.com with NNFMP;
+	27 Jul 2015 23:03:09 -0000
+Received: from [98.138.88.238] by tm102.bullet.mail.ne1.yahoo.com with NNFMP;
+	27 Jul 2015 23:03:09 -0000
+Received: from [127.0.0.1] by omp1038.mail.ne1.yahoo.com with NNFMP;
+	27 Jul 2015 23:03:09 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 287470.94922.bm@omp1038.mail.ne1.yahoo.com
+X-YMail-OSG: FMkXL9sVM1k1yanrpIN.5NZnPQSjN5CAa2r8yYZ_jazQs5rbFdjJ.d4O843SbL5
+	RWD0c0PA9HNBwS8Pj4LfyssZzEsiA0zPaaANOaY4vrydsYqV_veBzplCpzBHbh20NUMdEInkHDFG
+	YbnRCwcQ4PIxHxa1RVE3sZjG1WH0PWluL4L9ECqb22tujz4xahrR49ZdfUo748NI4fYNayO2D_zn
+	eSFa5paurLsBPXEF4ljCTCX2rcbi7rikXnWhoc_lEXVEklfDKSh7aRQgjk5MmwaERwqp9_iGfj1R
+	Xa4pGA0nFxsTZMsUmwNAqLPDV.iDpDmMcKRx2ilXRlKA1bLc_yBL2pOgy7YrNTpB4tpc9BfzQNm.
+	Id8r4fCnDbEAa7AHNe1Nj48mIoNTeKh.PpLFfKQQywJ0JsjiW8RtI4f6H29VhiZ3CpPTQKZXNoJM
+	jsdu58wJAHFrLkJ1bQDjgv755A17TKWr5LIqfj.C0cG1C1CtCK6YFKYTzxxWMgAleaO39_TOTLGi
+	Y7LIVAHG9GKEF1yAl9vCB2FVrf4kRqOEd0Iw-
+Received: by 98.138.101.172; Mon, 27 Jul 2015 23:03:08 +0000 
+Date: Mon, 27 Jul 2015 23:03:08 +0000 (UTC)
+From: Edward Vidal <develone@sbcglobal.net>
+To: Victor Rodriguez <vm.rod25@gmail.com>
+Message-ID: <872437073.3382959.1438038188182.JavaMail.yahoo@mail.yahoo.com>
+In-Reply-To: <CAK5mtewWvCSGNs-Hx2qpVS-75Pkn+_6b9y31a0Vz8M=0F+3FYA@mail.gmail.com>
+References: <CAK5mtewWvCSGNs-Hx2qpVS-75Pkn+_6b9y31a0Vz8M=0F+3FYA@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.180.106.5 with SMTP id gq5mr24761990wib.61.1438019616560;
-	Mon, 27 Jul 2015 10:53:36 -0700 (PDT)
-Received: by 10.27.46.17 with HTTP; Mon, 27 Jul 2015 10:53:36 -0700 (PDT)
-In-Reply-To: <20150725002429.GB14383@haswell>
-References: <CAOzegEN3YB0HvA+sHopRJexapWWkU03MMPFEdk=acOaTBGTc-Q@mail.gmail.com>
-	<20150725002429.GB14383@haswell>
-Date: Mon, 27 Jul 2015 10:53:36 -0700
-Message-ID: <CAOzegEO5Z6KZAuiUhXz+b1fG=4wrmGr3NV9H4GM0VKuyXsFB0w@mail.gmail.com>
-From: Lorin Vandegrift <vandegriftlorin@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>, yocto@yoctoproject.org
-Subject: Re: Problem add and removing files to filesystem
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Richard Collins <richard.collins@axenterprize.com>
+Subject: Re: fido LICENSE error opencv
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Edward Vidal <develone@sbcglobal.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -58,193 +65,167 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 Jul 2015 17:53:39 -0000
-Content-Type: multipart/alternative; boundary=f46d044306b26cdbb4051bdf08cf
+X-List-Received-Date: Mon, 27 Jul 2015 23:03:14 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_3382958_875921665.1438038188178"
 
---f46d044306b26cdbb4051bdf08cf
+------=_Part_3382958_875921665.1438038188178
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 24, 2015 at 5:24 PM, Khem Raj <raj.khem@gmail.com> wrote:
+Hello All,I got openCV to detect 2 C920 cameras using a python api.I starte=
+d a repository https://github.com/develone/raspberrypi2_yocto
+I am currently using fido branch.The things that I have been able to create=
+bitbake rpi-basic-image=20
+bitbake core-image-sato with addition additional libs and applications see =
+the file wkg_conf_files/core-image-sato.bbbitbake meta-toolchainIf you have=
+ any questions=C2=A0 feel free to contract me.=C2=A0Edward Vidal Jr.
+e-mail develone@sbcglobal.net
+915-595-1613=20
 
-> On 15-07-24 14:27:09, Lorin Vandegrift wrote:
-> > Hi all,
-> >
-> > We are having problems adding extra files/removing files from the
-> generated
-> > file system in Yocto.  We've had success with using a do_install command
-> in
-> > our own bb file and using commands in the format rsync -avz test.txt
-> > ${D}{sysconfdir}, however we can't write to some paths (i.e. writing to
-> > root with ${D).  Additionally, we are not able to overwrite files
-> generated
-> > by other recipes.  We also tried using install and couldn't push our init
-> > script (nstall -m 0755 test.sh ${D}${sysconfdir}/init.d).  Any advice for
-> > these?  Also is there a recommended way for removing files?   We were
-> able
-> > to remove them by using the rm command and adding it to
-> > ROOTFS_POSTPROCESS_COMMAND.
+
+     On Monday, July 27, 2015 9:53 AM, Victor Rodriguez <vm.rod25@gmail.com=
+> wrote:
+  =20
+
+ On Mon, Jul 27, 2015 at 7:34 AM, Edward Vidal <develone@sbcglobal.net> wro=
+te:
+> Hello All,
+> I was able to fix the license error in fido by adding commercial_x264 to
+> LICENSE_FLAGS_WHITELIST variable.
 >
-> You can consider few approaches
+> LICENSE_FLAGS_WHITELIST =3D "commercial_libmad commercial_mpeg2dec
+> commercial_libav commercial_ffmpeg commercial_x264"
 >
-> 1. Move the files into packages of there own in the recipe which means
+> Opencv was installed on the Raspberry core-image-sato with the following
+> changes
 >
-> PACKAGES += "foo"
-> FILES_foo = "files you want to separate out"
+> git diff meta/recipes-sato/images/core-image-sato.bb
+> diff --git a/meta/recipes-sato/images/core-image-sato.bb
+> b/meta/recipes-sato/ima
+> index e3246d2..f4b2286 100644
+> --- a/meta/recipes-sato/images/core-image-sato.bb
+> +++ b/meta/recipes-sato/images/core-image-sato.bb
+> @@ -8,4 +8,9 @@ LICENSE =3D "MIT"
 >
-> 2. Write a bbappend in your own layer if you are doing something thats
-> not generic and wont benefit community, in this bbappend you can write
-> do_install_append () function and do the removal and any other packaging
-> related adjustments needed for that recipe
+>=C2=A0 inherit core-image
 >
-> 3. Write your own rootfs post processing function and hook it up into
-> ROOTFS_POSTPROCESS_COMMAND variable, this will however mean that online
-> package upgrades wont work out of box.
+> -IMAGE_INSTALL +=3D "packagegroup-core-x11-sato-games"
+> +IMAGE_INSTALL +=3D "packagegroup-core-x11-sato-games kernel-dev xterm gi=
+t \
+> + jasper gsl gsl-dev python-netserver python-pygtk python-pygtk-dev \
+> + python-numpy liba52 liba52-dev libmad libmad-dev libmad-staticdev \
+> + chkconfig v4l-utils python-imaging parted python-distribute \
+> + python-pyrex python-pexpect gperf tree libav libav-dev \
+> + x264 x264-dev libav libav-dev opencv opencv-samples cmake"
 >
-> If you are looking for overwriting files then consider them patching
-> using patches or overlaying files using SRC_URI itself again using a
-> bbappend, if its a config file and you have few tweaks you can sed/awk
-> then in do_install step itself.
+> What is the preferred method of creating an image with additional softwar=
+e
+> installed?
 >
-> what you are trying is violating the packaging concerns of buildsystem
-> and thats why its not working as you expected.
+> Thanks for all the help.
 >
-> Consider components and files a component provides as basic unit of
-> operation, all changes has to be done at that level for best results.
+> Edward Vidal Jr.
+> e-mail develone@sbcglobal.net
+> 915-595-1613
 >
-> -Khem
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
+Hi
 
-Hi there,
+I had the same problem with opencv in yocto . There is a trend about
+this in mailign list:
 
-Thanks for the response. Unfortunately we tried your suggestions with no
-luck. Below is the bb file for our package, do you see anything that we
-might of missed? The tar ball listed below is in a subdirectory called
-"files" in the same folder as the bb file.
+https://www.mail-archive.com/yocto@yoctoproject.org/msg24746.html
 
-Thanks
+I am pushing to do a change in opencv receipt
 
-SUMMARY = "Extra filesystem files"
-SECTION = "rootfs"
-LICENSE = "CLOSED"
+Hope it helps
 
-SRC_URI = "file://extrafiles.tar.gz"
-S = "${WORKDIR}/files"
 
-ROOTFS_POSTPROCESS_COMMAND += "set_root_passwd;"
-ROOTFS_POSTPROCESS_COMMAND += "modify_filesystem;"
+  
 
-do_install() {
-   install -m 0755 testFile.sh ${D}/home/root
-   rsync -avz wpa_supplicant ${D}${sysconfdir}
-   rsync -avz root ${D}${sysconfdir}
-   rsync -avz network ${D}${sysconfdir}
-   rsync -avz test.txt ${D}${sysconfdir}
-   rsync -avz syslog.conf ${D}${sysconfdir}
-   rsync -avz rules.d ${D}${sysconfdir}/udev/
-   rsync -avz sys_init.service ${D}${sysconfdir}/system/
-}
-
-modify_filesystem() {
-   rm ${IMAGE_ROOTFS}${sysconfdir}/wpa_supplicant.conf;
-}
-
-set_root_passwd() {
-        sed 's%^root:[^:]*:%root:$1$xyz$KSp5j8kx3cPgA3/ODPZ6E.:%' \
-        < ${IMAGE_ROOTFS}/etc/shadow \
-        > ${IMAGE_ROOTFS}/etc/shadow.new;
-        mv ${IMAGE_ROOTFS}/etc/shadow.new ${IMAGE_ROOTFS}/etc/shadow ;
-}
-
-EXTRA_IMAGE_FEATURES += "read-only-rootfs"
-
---f46d044306b26cdbb4051bdf08cf
+------=_Part_3382958_875921665.1438038188178
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><div><div><br></div></div><div><br></div><div class=3D=
-"gmail_extra"><br><div class=3D"gmail_quote">On Fri, Jul 24, 2015 at 5:24 P=
-M, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" tar=
-get=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
-ding-left:1ex"><span class=3D"">On 15-07-24 14:27:09, Lorin Vandegrift wrot=
-e:<br>
-&gt; Hi all,<br>
-&gt;<br>
-&gt; We are having problems adding extra files/removing files from the gene=
-rated<br>
-&gt; file system in Yocto.=C2=A0 We&#39;ve had success with using a do_inst=
-all command in<br>
-&gt; our own bb file and using commands in the format rsync -avz test.txt<b=
-r>
-&gt; ${D}{sysconfdir}, however we can&#39;t write to some paths (i.e. writi=
-ng to<br>
-&gt; root with ${D).=C2=A0 Additionally, we are not able to overwrite files=
- generated<br>
-&gt; by other recipes.=C2=A0 We also tried using install and couldn&#39;t p=
-ush our init<br>
-&gt; script (nstall -m 0755 test.sh ${D}${sysconfdir}/init.d).=C2=A0 Any ad=
-vice for<br>
-&gt; these?=C2=A0 Also is there a recommended way for removing files?=C2=A0=
- =C2=A0We were able<br>
-&gt; to remove them by using the rm command and adding it to<br>
-&gt; ROOTFS_POSTPROCESS_COMMAND.<br>
-<br>
-</span>You can consider few approaches<br>
-<br>
-1. Move the files into packages of there own in the recipe which means<br>
-<br>
-PACKAGES +=3D &quot;foo&quot;<br>
-FILES_foo =3D &quot;files you want to separate out&quot;<br>
-<br>
-2. Write a bbappend in your own layer if you are doing something thats<br>
-not generic and wont benefit community, in this bbappend you can write<br>
-do_install_append () function and do the removal and any other packaging<br=
->
-related adjustments needed for that recipe<br>
-<br>
-3. Write your own rootfs post processing function and hook it up into<br>
-ROOTFS_POSTPROCESS_COMMAND variable, this will however mean that online<br>
-package upgrades wont work out of box.<br>
-<br>
-If you are looking for overwriting files then consider them patching<br>
-using patches or overlaying files using SRC_URI itself again using a<br>
-bbappend, if its a config file and you have few tweaks you can sed/awk<br>
-then in do_install step itself.<br>
-<br>
-what you are trying is violating the packaging concerns of buildsystem<br>
-and thats why its not working as you expected.<br>
-<br>
-Consider components and files a component provides as basic unit of<br>
-operation, all changes has to be done at that level for best results.<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
--Khem<br></font></span></blockquote><div>=C2=A0</div><div><br></div>Hi ther=
-e,<div><br></div><div>Thanks for the response. Unfortunately we tried your =
-suggestions with no luck. Below is the bb file for our package, do you see =
-anything that we might of missed? The tar ball listed below is in a subdire=
-ctory called &quot;files&quot; in the same folder as the bb file.</div><div=
-><br></div><div>Thanks<br></div><div><br></div><div><div>SUMMARY =3D &quot;=
-Extra filesystem files&quot;</div><div>SECTION =3D &quot;rootfs&quot;</div>=
-<div>LICENSE =3D &quot;CLOSED&quot;</div><div><br></div><div>SRC_URI =3D &q=
-uot;file://extrafiles.tar.gz&quot;</div><div>S =3D &quot;${WORKDIR}/files&q=
-uot;</div><div><br></div><div>ROOTFS_POSTPROCESS_COMMAND +=3D &quot;set_roo=
-t_passwd;&quot;</div><div>ROOTFS_POSTPROCESS_COMMAND +=3D &quot;modify_file=
-system;&quot;</div><div><br></div><div>do_install() {</div><div>=C2=A0 =C2=
-=A0install -m 0755 testFile.sh ${D}/home/root</div><div>=C2=A0 =C2=A0rsync =
--avz wpa_supplicant ${D}${sysconfdir}</div><div>=C2=A0 =C2=A0rsync -avz roo=
-t ${D}${sysconfdir}</div><div>=C2=A0 =C2=A0rsync -avz network ${D}${sysconf=
-dir}</div><div>=C2=A0 =C2=A0rsync -avz test.txt ${D}${sysconfdir}</div><div=
->=C2=A0 =C2=A0rsync -avz syslog.conf ${D}${sysconfdir}</div><div>=C2=A0 =C2=
-=A0rsync -avz rules.d ${D}${sysconfdir}/udev/</div><div>=C2=A0 =C2=A0rsync =
--avz sys_init.service ${D}${sysconfdir}/system/</div><div>}</div><div><br><=
-/div><div>modify_filesystem() {</div><div>=C2=A0 =C2=A0rm ${IMAGE_ROOTFS}${=
-sysconfdir}/wpa_supplicant.conf;</div><div>}</div><div><br></div><div>set_r=
-oot_passwd() {</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 sed &#39;s%^root:[^:]*=
-:%root:$1$xyz$KSp5j8kx3cPgA3/ODPZ6E.:%&#39; \</div><div>=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 &lt; ${IMAGE_ROOTFS}/etc/shadow \</div><div>=C2=A0 =C2=A0 =C2=A0=
- =C2=A0 &gt; ${IMAGE_ROOTFS}/etc/shadow.new;</div><div>=C2=A0 =C2=A0 =C2=A0=
- =C2=A0 mv ${IMAGE_ROOTFS}/etc/shadow.new ${IMAGE_ROOTFS}/etc/shadow ;</div=
-><div>}</div><div><br></div></div><div>EXTRA_IMAGE_FEATURES +=3D &quot;read=
--only-rootfs&quot;=C2=A0</div></div><br></div></div>
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
+nt-size:16px"><div id=3D"yui_3_16_0_1_1438019301590_67309">Hello All,</div>=
+<div id=3D"yui_3_16_0_1_1438019301590_65516">I got openCV to detect 2 C920 =
+cameras using a python api.</div><div dir=3D"ltr" id=3D"yui_3_16_0_1_143801=
+9301590_66783">I started a repository <a id=3D"yui_3_16_0_1_1438019301590_6=
+6782" href=3D"https://github.com/develone/raspberrypi2_yocto">https://githu=
+b.com/develone/raspberrypi2_yocto</a><br></div><div id=3D"yui_3_16_0_1_1438=
+019301590_67057"><span>I am currently using fido branch.</span></div><div><=
+span>The things that I have been able to create</span></div><div dir=3D"ltr=
+"><span>bitbake rpi-basic-image <br></span></div><div id=3D"yui_3_16_0_1_14=
+38019301590_68843" dir=3D"ltr"><span>bitbake core-image-sato with addition =
+additional libs and applications see the file wkg_conf_files/core-image-sat=
+o.bb</span></div><div dir=3D"ltr"><span>bitbake meta-toolchain</span></div>=
+<div id=3D"yui_3_16_0_1_1438019301590_69358" dir=3D"ltr"><span>If you have =
+any questions&nbsp; feel free to contract me.</span></div><div dir=3D"ltr">=
+<span></span></div><div>&nbsp;</div><div><div>Edward Vidal Jr.<br>e-mail de=
+velone@sbcglobal.net<br>915-595-1613</div></div>  <br><div class=3D"qtdSepa=
+rateBR"><br><br></div><div style=3D"display: block;" class=3D"yahoo_quoted"=
+> <div style=3D"font-family: HelveticaNeue, Helvetica Neue, Helvetica, Aria=
+l, Lucida Grande, sans-serif; font-size: 16px;"> <div style=3D"font-family:=
+ HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif=
+; font-size: 16px;"> <div dir=3D"ltr"> <font size=3D"2" face=3D"Arial"> On =
+Monday, July 27, 2015 9:53 AM, Victor Rodriguez &lt;vm.rod25@gmail.com&gt; =
+wrote:<br> </font> </div>  <br><br> <div class=3D"y_msg_container">On Mon, =
+Jul 27, 2015 at 7:34 AM, Edward Vidal &lt;<a shape=3D"rect" ymailto=3D"mail=
+to:develone@sbcglobal.net" href=3D"mailto:develone@sbcglobal.net">develone@=
+sbcglobal.net</a>&gt; wrote:<div class=3D"yqt1746825412" id=3D"yqtfd04185">=
+<br clear=3D"none">&gt; Hello All,<br clear=3D"none">&gt; I was able to fix=
+ the license error in fido by adding commercial_x264 to<br clear=3D"none">&=
+gt; LICENSE_FLAGS_WHITELIST variable.<br clear=3D"none">&gt;<br clear=3D"no=
+ne">&gt; LICENSE_FLAGS_WHITELIST =3D "commercial_libmad commercial_mpeg2dec=
+<br clear=3D"none">&gt; commercial_libav commercial_ffmpeg commercial_x264"=
+<br clear=3D"none">&gt;<br clear=3D"none">&gt; Opencv was installed on the =
+Raspberry core-image-sato with the following<br clear=3D"none">&gt; changes=
+<br clear=3D"none">&gt;<br clear=3D"none">&gt; git diff meta/recipes-sato/i=
+mages/core-image-sato.bb<br clear=3D"none">&gt; diff --git a/meta/recipes-s=
+ato/images/core-image-sato.bb<br clear=3D"none">&gt; b/meta/recipes-sato/im=
+a<br clear=3D"none">&gt; index e3246d2..f4b2286 100644<br clear=3D"none">&g=
+t; --- a/meta/recipes-sato/images/core-image-sato.bb<br clear=3D"none">&gt;=
+ +++ b/meta/recipes-sato/images/core-image-sato.bb<br clear=3D"none">&gt; @=
+@ -8,4 +8,9 @@ LICENSE =3D "MIT"<br clear=3D"none">&gt;<br clear=3D"none">&=
+gt;&nbsp; inherit core-image<br clear=3D"none">&gt;<br clear=3D"none">&gt; =
+-IMAGE_INSTALL +=3D "packagegroup-core-x11-sato-games"<br clear=3D"none">&g=
+t; +IMAGE_INSTALL +=3D "packagegroup-core-x11-sato-games kernel-dev xterm g=
+it \<br clear=3D"none">&gt; + jasper gsl gsl-dev python-netserver python-py=
+gtk python-pygtk-dev \<br clear=3D"none">&gt; + python-numpy liba52 liba52-=
+dev libmad libmad-dev libmad-staticdev \<br clear=3D"none">&gt; + chkconfig=
+ v4l-utils python-imaging parted python-distribute \<br clear=3D"none">&gt;=
+ + python-pyrex python-pexpect gperf tree libav libav-dev \<br clear=3D"non=
+e">&gt; + x264 x264-dev libav libav-dev opencv opencv-samples cmake"<br cle=
+ar=3D"none">&gt;<br clear=3D"none">&gt; What is the preferred method of cre=
+ating an image with additional software<br clear=3D"none">&gt; installed?<b=
+r clear=3D"none">&gt;<br clear=3D"none">&gt; Thanks for all the help.<br cl=
+ear=3D"none">&gt;<br clear=3D"none">&gt; Edward Vidal Jr.<br clear=3D"none"=
+>&gt; e-mail <a shape=3D"rect" ymailto=3D"mailto:develone@sbcglobal.net" hr=
+ef=3D"mailto:develone@sbcglobal.net">develone@sbcglobal.net</a><br clear=3D=
+"none">&gt; 915-595-1613</div><br clear=3D"none">&gt;<br clear=3D"none">&gt=
+; --<br clear=3D"none">&gt; _______________________________________________=
+<br clear=3D"none">&gt; yocto mailing list<br clear=3D"none">&gt; <a shape=
+=3D"rect" ymailto=3D"mailto:yocto@yoctoproject.org" href=3D"mailto:yocto@yo=
+ctoproject.org">yocto@yoctoproject.org</a><br clear=3D"none">&gt; <a shape=
+=3D"rect" href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"=
+_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br clear=3D"none"=
+>&gt;<br clear=3D"none"><br clear=3D"none">Hi<br clear=3D"none"><br clear=
+=3D"none">I had the same problem with opencv in yocto . There is a trend ab=
+out<br clear=3D"none">this in mailign list:<br clear=3D"none"><br clear=3D"=
+none"><a shape=3D"rect" href=3D"https://www.mail-archive.com/yocto@yoctopro=
+ject.org/msg24746.html" target=3D"_blank">https://www.mail-archive.com/yoct=
+o@yoctoproject.org/msg24746.html</a><br clear=3D"none"><br clear=3D"none">I=
+ am pushing to do a change in opencv receipt<br clear=3D"none"><br clear=3D=
+"none">Hope it helps<div class=3D"yqt1746825412" id=3D"yqtfd20161"><br clea=
+r=3D"none"></div><br><br></div>  </div> </div>  </div></div></body></html>
 
---f46d044306b26cdbb4051bdf08cf--
+------=_Part_3382958_875921665.1438038188178--
