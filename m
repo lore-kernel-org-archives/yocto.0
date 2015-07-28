@@ -1,48 +1,49 @@
-Return-Path: <J.Spriggs@raylase.de>
+Return-Path: <ed.bartosh@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7A779E00A3B; Tue, 28 Jul 2015 02:10:21 -0700 (PDT)
+	id 73DB8E00A53; Tue, 28 Jul 2015 04:10:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.raylase.de (mail.raylase.de [217.6.128.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F11BAE00902
-	for <yocto@yoctoproject.org>; Tue, 28 Jul 2015 02:10:18 -0700 (PDT)
-Received: from mail.raylase.de (127.0.0.1) id hmt3fm0171sr for
-	<yocto@yoctoproject.org>;
-	Tue, 28 Jul 2015 11:10:16 +0200 (envelope-from <J.Spriggs@raylase.de>)
-Received: from EXCHANGE-A.raylase.de ([192.168.1.16])
-	by mail.raylase.de (RAYLASE AG)
-	with ESMTPS (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256/256)
-	id 201507280910150034365; Tue, 28 Jul 2015 11:10:16 +0200
-Received: from EXCHANGE-B.raylase.de (192.168.2.12) by EXCHANGE-A.raylase.de
-	(192.168.1.16) with Microsoft SMTP Server (TLS) id 14.3.248.2;
-	Tue, 28 Jul 2015 11:10:15 +0200
-Received: from EXCHANGE-B.raylase.de ([fe80::3144:5b1b:13e0:ad49]) by
-	EXCHANGE-B.raylase.de ([fe80::3144:5b1b:13e0:ad49%14]) with mapi id
-	14.03.0248.002; Tue, 28 Jul 2015 11:10:15 +0200
-From: "Spriggs, Jim" <J.Spriggs@raylase.de>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	=?utf-8?B?cmZpIOKAjltyZmlAbGlzdHMucm9ja2V0Ym9hcmRzLm9yZ13igI4=?=
-	<rfi@lists.rocketboards.org>
-Thread-Topic: Which repo for meta-altera ?
-Thread-Index: AdDJFHrk/r5V2qTtQ1K5KfDyaiXrhA==
-Date: Tue, 28 Jul 2015 09:10:14 +0000
-Message-ID: <2238EDC6081C944E97E4EE915AE5CBEC5476A872@EXCHANGE-B.raylase.de>
-Accept-Language: en-GB, de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.2.109]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16B8EE00A31
+	for <yocto@yoctoproject.org>; Tue, 28 Jul 2015 04:10:04 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga103.fm.intel.com with ESMTP; 28 Jul 2015 04:09:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.15,562,1432623600"; d="scan'208";a="772706768"
+Received: from linux.intel.com ([10.23.219.25])
+	by orsmga002.jf.intel.com with ESMTP; 28 Jul 2015 04:09:53 -0700
+Received: from linux.intel.com (vmed.fi.intel.com [10.237.72.65])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by linux.intel.com (Postfix) with ESMTP id 9B7326A4005;
+	Tue, 28 Jul 2015 04:09:06 -0700 (PDT)
+Date: Tue, 28 Jul 2015 14:09:46 +0300
+From: Ed Bartosh <ed.bartosh@linux.intel.com>
+To: "Ahsan, Noor" <Noor_Ahsan@mentor.com>
+Message-ID: <20150728110946.GB2320@linux.intel.com>
+References: <55B517E5.5080708@mentor.com>
+	<CAJTo0LaKRO8dkGWmA1iXkkKE7HK9e22A_KLWJgpcfK18XQfCJg@mail.gmail.com>
+	<365E1805BC95084CBE82381A0B86999401095B33DF@EU-MBX-01.mgc.mentorg.com>
 MIME-Version: 1.0
-X-Mlf-Version: 8.0.8.3655
-X-Mlf-UniqueId: o201507280910150034365
-Subject: Which repo for meta-altera ?
+In-Reply-To: <365E1805BC95084CBE82381A0B86999401095B33DF@EU-MBX-01.mgc.mentorg.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Khandavilli,
+	Arun" <Arun_Khandavalli@mentor.com>, "Larson,
+	Chris" <Chris_Larson@mentor.com>
+Subject: Re: Using wic from a Bitbake task
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: ed.bartosh@linux.intel.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -51,32 +52,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Jul 2015 09:10:21 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 28 Jul 2015 11:10:06 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-SGkgR3V5czsgY29uZnVzZWQgbm9vYiBoZXJlLi4uDQoNClRoZXJlIGFwcGVhciB0byBiZSAoYXQg
-bGVhc3QpIHR3byAib2ZmaWNpYWwiIHJlcG9zIGZvciBtZXRhLWFsdGVyYToNCg0KICAgICAgICBn
-aXRodWIuY29tL2tyYWovbWV0YS1hbHRlcmENCg0KYW5kDQoNCiAgICAgICAgZ2l0LnJvY2tldGJv
-YXJkcy5vcmcvbWV0YS1hbHRlcmEuZ2l0DQoNCg0KU28gaG93IHNob3VsZCBJIGNob29zZSBiZXR3
-ZWVuIHRoZW0/DQoNClRoYW5rcyENCi0tDQpKaW0NCg0KU29ycnkgYWJvdXQgdGhlIGNvbXBhbnkg
-c2lnLjogSSBjYW4ndCBzd2l0Y2ggaXQgb2ZmLg0KDQoNCl9fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fDQoNClJBWUxBU0UgQUcNCkFyZ2Vsc3JpZWRlciBGZWxkIDIrNA0KODIyMzQgV2Vz
-c2xpbmcNCkdlcm1hbnkNClRlbC46ICs0OS0oMCk4MTUzLzg4IDk4LTANCkZheDogKzQ5LSgwKTgx
-NTMvODggOTgtMTANCmh0dHA6Ly93d3cucmF5bGFzZS5kZQ0KDQpEaXN0cmljdCBDb3VydCBNdW5p
-Y2gsIEhSQiAxMzE0NTANCg0KQm9hcmQ6IFBldGVyIHZvbiBKYW4gKENFTykNCg0KU3VwZXJ2aXNv
-cnkgQm9hcmQ6IERyLiBVbHJpY2ggTG9obWFubiAoQ2hhaXJtYW4pDQoNCg0KRGllc2UgRS1NYWls
-IGVudGjDpGx0IHZlcnRyYXVsaWNoZSB1bmQvb2RlciByZWNodGxpY2ggZ2VzY2jDvHR6dGUgSW5m
-b3JtYXRpb25lbi4gV2VubiBTaWUgbmljaHQgZGVyIHJpY2h0aWdlIEFkcmVzc2F0IHNpbmQgb2Rl
-ciBkaWVzZSBFLU1haWwgaXJydMO8bWxpY2ggZXJoYWx0ZW4gaGFiZW4sIGluZm9ybWllcmVuIFNp
-ZSBiaXR0ZSBzb2ZvcnQgZGVuIEFic2VuZGVyIHVuZCB2ZXJuaWNodGVuIFNpZSBkaWVzZSBNYWls
-LiBEYXMgdW5lcmxhdWJ0ZSBLb3BpZXJlbiBzb3dpZSBkaWUgdW5iZWZ1Z3RlIFdlaXRlcmdhYmUg
-ZGllc2VyIE1haWwgaXN0IG5pY2h0IGdlc3RhdHRldC4NCg0KVGhpcyBlLW1haWwgbWF5IGNvbnRh
-aW4gY29uZmlkZW50aWFsIGFuZC9vciBwcml2aWxlZ2VkIGluZm9ybWF0aW9uLiBJZiB5b3UgYXJl
-IG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50IChvciBoYXZlIHJlY2VpdmVkIHRoaXMgZS1tYWls
-IGluIGVycm9yKSBwbGVhc2Ugbm90aWZ5IHRoZSBzZW5kZXIgaW1tZWRpYXRlbHkgYW5kIGRlc3Ry
-b3kgdGhpcyBlLW1haWwuIEFueSB1bmF1dGhvcml6ZWQgY29weWluZywgZGlzY2xvc3VyZSBvciBk
-aXN0cmlidXRpb24gb2YgdGhlIG1hdGVyaWFsIGluIHRoaXMgZS1tYWlsIGlzIHN0cmljdGx5IGZv
-cmJpZGRlbi4NCg==
+On Mon, Jul 27, 2015 at 12:49:12PM +0000, Ahsan, Noor wrote:
+> May I know it’s expected completion date?
+
+I hope to get it done till the end of August. This bug has the highest
+priority, so I'll start working on it as soon as I'm back to wic
+development.
+
+> Noor
+> 
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Burton, Ross
+> Sent: Monday, July 27, 2015 3:05 PM
+> To: Usman, Fahad
+> Cc: yocto@yoctoproject.org; Khandavilli, Arun
+> Subject: Re: [yocto] Using wic from a Bitbake task
+> 
+> 
+> On 26 July 2015 at 18:24, Usman, Fahad <Fahad_Usman@mentor.com<mailto:Fahad_Usman@mentor.com>> wrote:
+> Is it possible to invoke 'wic create' command from a bitbake task. As currently it is implemented to be run as a standalone tool and if we invoke it from a task, the 'bitbake -e' command fails, since more than one instances of bitbake cannot be run from a single build directory.
+> 
+> Not yet, but there's a bug for that:
+> 
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=7672
+> 
+> Ross
+
+> -- 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+-- 
+--
+Regards,
+Ed
 
