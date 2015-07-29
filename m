@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0620AE00A9A; Wed, 29 Jul 2015 13:51:00 -0700 (PDT)
+	id 10309E00A97; Wed, 29 Jul 2015 13:51:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEF4CE009E4
-	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 13:50:56 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44709E009B3
+	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 13:50:58 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga101.jf.intel.com with ESMTP; 29 Jul 2015 13:50:55 -0700
+	by orsmga101.jf.intel.com with ESMTP; 29 Jul 2015 13:50:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,572,1432623600"; d="scan'208";a="757672218"
+X-IronPort-AV: E=Sophos;i="5.15,572,1432623600"; d="scan'208";a="757672252"
 Received: from alimon-thinkpad-w540.zpn.intel.com ([10.219.5.54])
-	by fmsmga001.fm.intel.com with ESMTP; 29 Jul 2015 13:50:55 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 29 Jul 2015 13:50:57 -0700
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 29 Jul 2015 15:50:44 -0500
-Message-Id: <1438203053-7909-2-git-send-email-anibal.limon@linux.intel.com>
+Date: Wed, 29 Jul 2015 15:50:48 -0500
+Message-Id: <1438203053-7909-6-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1438203053-7909-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1438203053-7909-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: paul.eggleton@linux.intel.com
-Subject: [PATCH 01/10][auh] upgradehelper.py: Only run with one recipe or all.
+Subject: [PATCH 05/10][auh] upgradehelper.py: Add own step for loading environment
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,80 +45,57 @@ X-List-Received-Date: Wed, 29 Jul 2015 20:51:00 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Remove ability to run with several recipes because isn't make sense.
-
-Supported modes are,
-
-	$ ./upgradehelper.py all
-	$ ./upgradehelper.py recipe --to_version VERSION
+Instead of load environment in detecting git repository use own
+function making easy to debug.
 
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- upgradehelper.py | 34 ++++++++++------------------------
- 1 file changed, 10 insertions(+), 24 deletions(-)
+ upgradehelper.py | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
 diff --git a/upgradehelper.py b/upgradehelper.py
-index d6ac7fd..63b30e4 100755
+index 13fc7dd..9119cb0 100755
 --- a/upgradehelper.py
 +++ b/upgradehelper.py
-@@ -65,7 +65,7 @@ def parse_cmdline():
-     parser = argparse.ArgumentParser(description='Package Upgrade Helper',
-                                      formatter_class=argparse.RawTextHelpFormatter,
-                                      epilog=help_text)
--    parser.add_argument("recipe", nargs="+", help="recipe to be upgraded")
-+    parser.add_argument("recipe", help="recipe to be upgraded")
+@@ -147,6 +147,7 @@ class Updater(object):
  
-     parser.add_argument("-t", "--to_version",
-                         help="version to upgrade the recipe to")
-@@ -507,14 +507,6 @@ class Updater(object):
+         self.upgrade_steps = [
+             (self._create_workdir, None),
++            (self._get_env, "Loading environment ..."),
+             (self._detect_repo, "Detecting git repository location ..."),
+             (self._clean_repo, "Cleaning git repository of temporary branch ..."),
+             (self._detect_recipe_type, None),
+@@ -205,18 +206,16 @@ class Updater(object):
+                 os.remove(os.path.join(self.workdir, f))
  
-             self.statistics.update(self.pn, self.new_ver, self.maintainer, error)
- 
--            if self.interactive and attempted_pkgs < total_pkgs:
--                I(" %s: Proceed to next recipe? (Y/n)" % self.pn)
--                answer = sys.stdin.readline().strip().upper()
+     def _detect_repo(self):
+-        self._get_env()
 -
--                if answer != 'Y' and answer != '':
--                    I("Aborted by user!")
--                    exit(0)
+-        if self.env['PV'] == self.new_ver:
++        if self.env['PKGV'] == self.new_ver:
+             raise UpgradeNotNeededError
+ 
+-        if self.git is not None:
++        # UniverseUpdater use git poky respository 
++        if isinstance(self.git, UniverseUpdater):
+             return
+ 
+         self.git = Git(self.recipe_dir)
+ 
+         stdout = self.git.status()
 -
-         if (attempted_pkgs > 1):
-             I("%s" % self.statistics.pkg_stats())
-             if self.send_email:
-@@ -700,24 +692,18 @@ if __name__ == "__main__":
+         if stdout != "":
+             if self.interactive:
+                 W(" %s: git repository has uncommited work which will be dropped! Proceed? (y/N)" % self.pn)
+@@ -527,6 +526,8 @@ class Updater(object):
+ class UniverseUpdater(Updater):
+     def __init__(self):
+         Updater.__init__(self, True, True)
++
++        # XXX: assume that the poky directory is the first entry in the PATH
+         self.git = Git(os.path.dirname(os.getenv('PATH', False).split(':')[0]))
  
-     settings, maintainer_override = parse_config_file(args.config_file)
- 
--    if len(args.recipe) == 1 and args.recipe[0] == "all":
-+    if args.recipe == "all":
-         updater = UniverseUpdater()
-         updater.run()
--    elif len(args.recipe) >= 1:
--        if len(args.recipe) == 1:
--            if not args.to_version:
--                E(" For upgrade only one recipe you must specify --to_version\n")
--                exit(1)
--
--            if not args.maintainer and args.send_emails:
--                E(" For upgrade only one recipe and send email you must specify --maintainer\n")
--                exit(1)
-+    else:
-+        if not args.to_version:
-+            E(" For upgrade only one recipe you must specify --to_version\n")
-+            exit(1)
- 
--            pkg_list = [(args.recipe[0], args.to_version, args.maintainer)]
--        else:
--            pkg_list = []
--            for pkg in args.recipe:
--                pkg_list.append((pkg, None, None))
-+        if not args.maintainer and args.send_emails:
-+            E(" For upgrade only one recipe and send email you must specify --maintainer\n")
-+            exit(1)
- 
-+        pkg_list = [(args.recipe, args.to_version, args.maintainer)]
-         updater = Updater(args.auto_mode, args.send_emails, args.skip_compilation)
-         updater.run(pkg_list)
+         # read history file
 -- 
 1.9.1
 
