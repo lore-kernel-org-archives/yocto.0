@@ -1,36 +1,67 @@
-Return-Path: <roosembert.palacios@epfl.ch>
+Return-Path: <enak999@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C236CE009EB; Wed, 29 Jul 2015 08:42:28 -0700 (PDT)
+	id 7E573E009B3; Wed, 29 Jul 2015 13:45:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [128.178.224.219 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_FONT_FACE_BAD,
+	HTML_MESSAGE, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (enak999[at]googlemail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 399 seconds by postgrey-1.32 at yocto-www;
-	Wed, 29 Jul 2015 08:42:24 PDT
-Received: from smtp4.epfl.ch (smtp4.epfl.ch [128.178.224.219])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CF3AE0097F
-	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 08:42:23 -0700 (PDT)
-Received: (qmail 23406 invoked by uid 107); 29 Jul 2015 15:35:41 -0000
-X-Virus-Scanned: ClamAV
-Received: from domosafety1.epfl.ch (HELO [172.21.93.129]) (128.179.67.139)
-	(TLS, DHE-RSA-AES256-SHA cipher) (authenticated)
-	by smtp4.epfl.ch (AngelmatoPhylax SMTP proxy) with ESMTPSA;
-	Wed, 29 Jul 2015 17:35:41 +0200
-Message-ID: <55B8F2CB.6020000@epfl.ch>
-Date: Wed, 29 Jul 2015 17:35:39 +0200
-From: Roosemberth Palacios <roosembert.palacios@epfl.ch>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  1.0 HTML_FONT_FACE_BAD BODY: HTML font face is not a word
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
+	[209.85.212.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09579E00978
+	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 13:45:07 -0700 (PDT)
+Received: by wibxm9 with SMTP id xm9so217623691wib.0
+	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 13:45:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:from:to:cc:subject:importance:date:message-id
+	:in-reply-to:references:content-type;
+	bh=d5GEzHXGCFZCFbZt31zIxjD7oi49aTrwCDLo4aQcRBo=;
+	b=xio1Rn8vAZYS2ROdAROkVLzBz9Lrg1QPeQN237+d6fGmMj+cYQc3lidBRwqlXEZOSW
+	oV1jq4xeej5o/mveT2qzsaiOiEx7n7TAStNw28MilWJCvmOjkIpItpSIqhwDzwPJ0Og3
+	eEMCD8EU503sOjmS1SYpxzNTK6rZU7x16VdFxNRoJCQl+Um77NgjVALG/HpSOzI8vOZc
+	NgJ3HaoeYa5rMRXYP7S+PrBIVQI0gVvcHIq9b51keVhs4J74zBkIKe4jtvn0A2XWxu8O
+	bjRwtnJzNyMif3R+XWyoRFvT8HiAFbioRh4hmtHtW9D1mTwuDZ1r7zW80kV2S7IZpgKR
+	7cmg==
+X-Received: by 10.194.61.175 with SMTP id q15mr39571781wjr.135.1438202706477; 
+	Wed, 29 Jul 2015 13:45:06 -0700 (PDT)
+Received: from AsusF550L (dslb-084-063-088-138.084.063.pools.vodafone-ip.de.
+	[84.63.88.138]) by smtp.gmail.com with ESMTPSA id
+	ib9sm40385190wjb.2.2015.07.29.13.45.05
+	(version=TLSv1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Wed, 29 Jul 2015 13:45:05 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
+From: <enak999@googlemail.com>
+To: =?utf-8?Q?Dalon_Westergreen?= <dwesterg@gmail.com>, 
+	"=?utf-8?Q?Spriggs,_Jim?=" <J.Spriggs@raylase.de>, 
+	=?utf-8?Q?Alex_J_Lennon?= <ajlennon@dynamicdevices.co.uk>
+Importance: Normal
+Date: Wed, 29 Jul 2015 20:36:50 +0000
+Message-ID: <81e2e36e8df04c9584ea5a9ca8afa303@googlemail.com>
+In-Reply-To: <C90FACF2-BCAC-4B73-A0D2-07216FCACB09@gmail.com>
+References: <2238EDC6081C944E97E4EE915AE5CBEC5476A872@EXCHANGE-B.raylase.de>
+	<55B8D0BD.3050803@dynamicdevices.co.uk>
+	<2238EDC6081C944E97E4EE915AE5CBEC5476ECD3@EXCHANGE-B.raylase.de>,
+	<C90FACF2-BCAC-4B73-A0D2-07216FCACB09@gmail.com>
 X-Mailman-Approved-At: Sun, 02 Aug 2015 23:22:39 -0700
-Subject: Cannot build Runtime Dependency "kernel-devicetree" on custom kernel based image / OE Arago
+Cc: "=?utf-8?Q?yocto@yoctoproject.org?=" <yocto@yoctoproject.org>,
+	"=?utf-8?Q?rfi@lists.rocketboards.org?=" <rfi@lists.rocketboards.org>
+Subject: Re: Which repo for meta-altera ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,250 +73,181 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Jul 2015 15:42:28 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 29 Jul 2015 20:45:11 -0000
+Content-Type: multipart/alternative;
+	boundary="_59ED261F-6E93-41EE-B756-9FA54B8BCE96_"
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+--_59ED261F-6E93-41EE-B756-9FA54B8BCE96_
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="utf-8"
 
-Hello, I'm working on a custom image for ti's am335x chip. Still, I
-try to build my image, but at the end I get
+QXMgeW91IGNhbiByZWFkIGluIHRoZSBSZWFkTWUubWQgS2hlbSBSYWogYW5kIFl2ZXMgVmFuZGVy
+dmVubmV0IGFyZSB0aGUgb2ZmaWNpYWwgbWFpbnRhaW5lcnMgb2YgZ2l0aHViLmNvbS9hbHRlcmEt
+b3BlbnNvdXJjZS9tZXRhLWFsdGVyYQ0KDQoNCkkgcmVhbGx5IHJlY29tbWVuZCB0byB1c2UgZ2l0
+aHViLmNvbS9hbHRlcmEtb3BlbnNvdXJjZS9tZXRhLWFsdGVyYSBpbnN0ZWFkIG9mIHRoZSBmb3Jr
+IGZyb20gS2hlbSBSYWouIEJ1dCBzaW5jZSB5b3UgdXNlIHRoZSBmb3JrIG9mIG9uZSBvZiB0aGUg
+bWFpbnRhaW5lcnMsIGl0IHdpbGwgcHJvYmFibHkgYmUgbW9zdCBvZiB0aGUgdGltZSBpbiBzeW5j
+aCB3aXRoIHRoZSBhbHRlcmEtb3BlbnNvdXJjZSByZXBvc2l0b3J5Lg0KDQoNCg0KDQoNCg0KVm9u
+OiBEYWxvbiBXZXN0ZXJncmVlbg0KR2VzZW5kZXQ6IOKAjk1pdHR3b2No4oCOLCDigI4yOeKAji4g
+4oCOSnVsaeKAjiDigI4yMDE1IOKAjjIx4oCOOuKAjjU0DQpBbjogU3ByaWdncywgSmltLCBBbGV4
+IEogTGVubm9uLCBLZXZpbiBCLg0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcsIHJmaUBsaXN0
+cy5yb2NrZXRib2FyZHMub3JnDQoNCg0KDQoNCkFzIGZhciBhcyBJIHVuZGVyc3RhbmQgaXQgQWx0
+ZXJhIG9ubHkgbWFpbnRhaW5zIHRoZSBvbmUgcmVwby4gDQoNCg0KT24gSnVseSAyOSwgMjAxNSA2
+OjQ0OjIzIEFNIFBEVCwgIlNwcmlnZ3MsIEppbSIgPEouU3ByaWdnc0ByYXlsYXNlLmRlPiB3cm90
+ZToNCkhpIEFsZXgsIERhbG9uLCBLZXZpbiwgTGlzdHMNCg0KaG1tbSwgc28gSSBndWVzcyBJJ20g
+c3RpbGwgY29uZnVzZWQgKHNvcnJ5KS4NCg0KQWxleCByZWNvbW1lbmRzIGdvaW5nIHZpYSB0aGUg
+Im9mZmljaWFsIiBvZSBsYXllcnMgaW5kZXgsIHdoaWNoIGN1cnJlbnRseSBsaW5rcyBkaXJlY3Rs
+eSB0byBnaXRodWIuY29tL2tyYWovbWV0YS1hbHRlcmEuDQoNCktldmluIGFuZCBEYWxvbiBob2xk
+IG91dCBmb3IgZ2l0aHViLmNvbS9hbHRlcmEtb3BlbnNvdXJjZS9tZXRhLWFsdGVyYSwgYW5kIERh
+bG9uIHNwZWNpZmljYWxseSBzYXlzICIuLi4gYW5kIHJlcG9zIHVuZGVyIGFueSB1c2VyIG5hbWUg
+aW4gZ2l0aHViIGFyZSBmb3JrcyIuDQoNClNvIGlzIHRoZXJlIGFuIG9mZmljaWFsIDstKSBkaWNo
+b3RvbXkgYmV0d2VlbiBhbHRlcmEgYW5kIG9lPw0KDQpUaGFua3MgZm9yIGxpc3RlbmluZy4uLg0K
+LS0NCmppbQ0KDQoNCi0tLS0tVXJzcHLDvG5nbGljaGUgTmFjaHJpY2h0LS0tLS0NClZvbjogQWxl
+eCBKIExlbm5vbiBbbWFpbHRvOmFqbGVubm9uQGR5bmFtaWNkZXZpY2VzLmNvLnVrXQ0KR2VzZW5k
+ZXQ6IE1pdHR3b2NoLCAyOS4gSnVsaSAyMDE1IDE1OjEwDQpBbjogU3ByaWdncywgSmltIDxKLlNw
+cmlnZ3NAcmF5bGFzZS5kZT4NCkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpCZXRyZWZmOiBS
+ZTogW3lvY3RvXSBXaGljaCByZXBvIGZvciBtZXRhLWFsdGVyYSA/DQoNCg0KDQpPbiAyOC8wNy8y
+MDE1IDEwOjEwLCBTcHJpZ2dzLCBKaW0NCndyb3RlOg0KIEhpIEd1eXM7IGNvbmZ1c2VkIG5vb2Ig
+aGVyZS4uLg0KDQogVGhlcmUgYXBwZWFyIHRvIGJlIChhdCBsZWFzdCkgdHdvICJvZmZpY2lhbCIg
+cmVwb3MgZm9yIG1ldGEtYWx0ZXJhOg0KDQogICAgICAgICBnaXRodWIuY29tL2tyYWovbWV0YS1h
+bHRlcmENCg0KIGFuZA0KDQogICAgICAgICBnaXQucm9ja2V0Ym9hcmRzLm9yZy9tZXRhLWFsdGVy
+YS5naXQNCg0KDQogU28gaG93IHNob3VsZCBJIGNob29zZSBiZXR3ZWVuIHRoZW0/DQoNCiBUaGFu
+a3MhDQogLS0NCiBKaW0NCg0KIFNvcnJ5IGFib3V0IHRoZSBjb21wYW55IHNpZy46IEkgY2FuJ3Qg
+c3dpdGNoIGl0IG9mZi4NCg0KDQpmd2l3IEkgd291bGQgdXN1YWxseSBzdGFydCB3aXRoIHRoZSBv
+ZmZpY2lhbCBpbmRleA0KDQpodHRwOi8vbGF5ZXJzLm9wZW5lbWJlZGRlZC5vcmcvbGF5ZXJpbmRl
+eC9icmFuY2gvbWFzdGVyL2xheWVycy8NCg0KVGhpcyBzZWVtcyB0byBwb2ludCB0byBnaXRodWIN
+Cg0KQ2hlZXJzLCBBbGV4DQoNCg0KDQoNCg0KDQpSQVlMQVNFIEFHDQpBcmdlbHNyaWVkZXIgRmVs
+ZCAyKzQNCjgyMjM0IFdlc3NsaW5nDQpHZXJtYW55DQpUZWwuOiArNDktKDApODE1My84OCA5OC0w
+DQpGYXg6ICs0OS0oMCk4MTUzLzg4IDk4LTEwDQpodHRwOi8vd3d3LnJheWxhc2UuZGUNCg0KRGlz
+dHJpY3QgQ291cnQgTXVuaWNoLCBIUkIgMTMxNDUwDQoNCkJvYXJkOiBQZXRlciB2b24gSmFuIChD
+RU8pDQoNClN1cGVydmlzb3J5IEJvYXJkOiBEci4gVWxyaWNoIExvaG1hbm4gKENoYWlybWFuKQ0K
+DQoNCkRpZXNlIEUtTWFpbCBlbnRow6RsdCB2ZXJ0cmF1bGljaGUgdW5kL29kZXIgcmVjaHRsaWNo
+IGdlc2Now7x0enRlIEluZm9ybWF0aW9uZW4uIFdlbm4gU2llIG5pY2h0IGRlciByaWNodGlnZSBB
+ZHJlc3NhdCBzaW5kIG9kZXIgZGllc2UgRS1NYWlsIGlycnTDvG1saWNoIGVyaGFsdGVuIGhhYmVu
+LCBpbmZvcm1pZXJlbiBTaWUgYml0dGUgc29mb3J0IGRlbiBBYnNlbmRlciB1bmQgdmVybmljaHRl
+biBTaWUgZGllc2UgTWFpbC4gRGFzIHVuZXJsYXVidGUgS29waWVyZW4gc293aWUgZGllIHVuYmVm
+dWd0ZSBXZWl0ZXJnYWJlIGRpZXNlciBNYWlsIGlzdCBuaWNodCBnZXN0YXR0ZXQuDQoNClRoaXMg
+ZS1tYWlsIG1heSBjb250YWluIGNvbmZpZGVudGlhbCBhbmQvb3IgcHJpdmlsZWdlZCBpbmZvcm1h
+dGlvbi4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCAob3IgaGF2ZSByZWNl
+aXZlZCB0aGlzIGUtbWFpbCBpbiBlcnJvcikgcGxlYXNlIG5vdGlmeSB0aGUgc2VuZGVyIGltbWVk
+aWF0ZWx5IGFuZCBkZXN0cm95IHRoaXMgZS1tYWlsLiBBbnkgdW5hdXRob3JpemVkIGNvcHlpbmcs
+IGRpc2Nsb3N1cmUgb3IgZGlzdHJpYnV0aW9uIG9mIHRoZSBtYXRlcmlhbCBpbiB0aGlzIGUtbWFp
+bCBpcyBzdHJpY3RseSBmb3JiaWRkZW4uDQoNCg0KLS0gDQpTZW50IGZyb20gbXkgQW5kcm9pZCBk
+ZXZpY2Ugd2l0aCBLLTkgTWFpbC4gUGxlYXNlIGV4Y3VzZSBteSBicmV2aXR5Lg==
 
-[...]
-| Collected errors:
-| * satisfy_dependencies_for: Cannot satisfy the following
-dependencies for domosafety-userspace-1.0:
-| * kernel-devicetree * kernel-devicetree *
-| * opkg_install_cmd: Cannot install package domosafety-userspace-1.0.
-[...]
+--_59ED261F-6E93-41EE-B756-9FA54B8BCE96_
+Content-Transfer-Encoding: base64
+Content-Type: text/html; charset="utf-8"
 
-I'm using a custom kernel which was provided by the hardware
-manufacturer. I was able to build {MACHINE="CBoxNAND.conf" bitbake
-custom-base-image} (from TI's Sitiara Linux Training:
-http://processors.wiki.ti.com/index.php/Sitara_Linux_Training:_Getting_Started_with_Openembedded)
+CjxodG1sPgo8aGVhZD4KPG1ldGEgbmFtZT0iZ2VuZXJhdG9yIiBjb250ZW50PSJXaW5kb3dzIE1h
+aWwgMTcuNS45NjAwLjIwNTczIj4KPHN0eWxlIGRhdGEtZXh0ZXJuYWxzdHlsZT0idHJ1ZSI+PCEt
+LQpwLk1zb0xpc3RQYXJhZ3JhcGgsIGxpLk1zb0xpc3RQYXJhZ3JhcGgsIGRpdi5Nc29MaXN0UGFy
+YWdyYXBoIHsKbWFyZ2luLXRvcDowaW47Cm1hcmdpbi1yaWdodDowaW47Cm1hcmdpbi1ib3R0b206
+MGluOwptYXJnaW4tbGVmdDouNWluOwptYXJnaW4tYm90dG9tOi4wMDAxcHQ7Cn0KcC5Nc29Ob3Jt
+YWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbCB7Cm1hcmdpbjowaW47Cm1hcmdpbi1ib3R0
+b206LjAwMDFwdDsKfQpwLk1zb0xpc3RQYXJhZ3JhcGhDeFNwRmlyc3QsIGxpLk1zb0xpc3RQYXJh
+Z3JhcGhDeFNwRmlyc3QsIGRpdi5Nc29MaXN0UGFyYWdyYXBoQ3hTcEZpcnN0LCAKcC5Nc29MaXN0
+UGFyYWdyYXBoQ3hTcE1pZGRsZSwgbGkuTXNvTGlzdFBhcmFncmFwaEN4U3BNaWRkbGUsIGRpdi5N
+c29MaXN0UGFyYWdyYXBoQ3hTcE1pZGRsZSwgCnAuTXNvTGlzdFBhcmFncmFwaEN4U3BMYXN0LCBs
+aS5Nc29MaXN0UGFyYWdyYXBoQ3hTcExhc3QsIGRpdi5Nc29MaXN0UGFyYWdyYXBoQ3hTcExhc3Qg
+ewptYXJnaW4tdG9wOjBpbjsKbWFyZ2luLXJpZ2h0OjBpbjsKbWFyZ2luLWJvdHRvbTowaW47Cm1h
+cmdpbi1sZWZ0Oi41aW47Cm1hcmdpbi1ib3R0b206LjAwMDFwdDsKbGluZS1oZWlnaHQ6MTE1JTsK
+fQotLT48L3N0eWxlPjwvaGVhZD4KPGJvZHkgZGlyPSJsdHIiPgo8ZGl2IGRhdGEtZXh0ZXJuYWxz
+dHlsZT0iZmFsc2UiIGRpcj0ibHRyIiBzdHlsZT0iZm9udC1mYW1pbHk6ICdDYWxpYnJpJywgJ1Nl
+Z29lIFVJJywgJ01laXJ5bycsICdNaWNyb3NvZnQgWWFIZWkgVUknLCAnTWljcm9zb2Z0IEpoZW5n
+SGVpIFVJJywgJ01hbGd1biBHb3RoaWMnLCAnc2Fucy1zZXJpZic7Zm9udC1zaXplOjEycHQ7Ij48
+ZGl2PkFzIHlvdSBjYW4gcmVhZCBpbiB0aGUgUmVhZE1lLm1kIEtoZW0gUmFqIGFuZCBZdmVzIFZh
+bmRlcnZlbm5ldCBhcmUgdGhlIG9mZmljaWFsIG1haW50YWluZXJzIG9mIDxhIGhyZWY9Imh0dHA6
+Ly9naXRodWIuY29tL2FsdGVyYS1vcGVuc291cmNlL21ldGEtYWx0ZXJhIiB0YXJnZXQ9Il9wYXJl
+bnQiPjx1Pjxmb250IGNvbG9yPSIjMDA2NmNjIj5naXRodWIuY29tL2FsdGVyYS1vcGVuc291cmNl
+L21ldGEtYWx0ZXJhPC9mb250PjwvdT48L2E+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5JIHJl
+YWxseSByZWNvbW1lbmQgdG8gdXNlIDxhIGhyZWY9Imh0dHA6Ly9naXRodWIuY29tL2FsdGVyYS1v
+cGVuc291cmNlL21ldGEtYWx0ZXJhIiB0YXJnZXQ9Il9wYXJlbnQiPjx1Pjxmb250IGNvbG9yPSIj
+MDA2NmNjIj5naXRodWIuY29tL2FsdGVyYS1vcGVuc291cmNlL21ldGEtYWx0ZXJhPC9mb250Pjwv
+dT48L2E+IGluc3RlYWQgb2YgdGhlIGZvcmsgZnJvbSBLaGVtIFJhai4gQnV0IHNpbmNlIHlvdSB1
+c2UgdGhlIGZvcmsgb2Ygb25lIG9mIHRoZSBtYWludGFpbmVycywgaXQgd2lsbCBwcm9iYWJseSBi
+ZSBtb3N0IG9mIHRoZSB0aW1lIGluIHN5bmNoIHdpdGggdGhlIGFsdGVyYS1vcGVuc291cmNlIHJl
+cG9zaXRvcnkuPGJyPjwvZGl2PjxkaXYgZGF0YS1zaWduYXR1cmVibG9jaz0idHJ1ZSI+PGJyPjwv
+ZGl2PjxkaXYgc3R5bGU9InBhZGRpbmctdG9wOiA1cHg7IGJvcmRlci10b3AtY29sb3I6IHJnYigy
+MjksIDIyOSwgMjI5KTsgYm9yZGVyLXRvcC13aWR0aDogMXB4OyBib3JkZXItdG9wLXN0eWxlOiBz
+b2xpZDsiPjxkaXY+PGZvbnQgZmFjZT0iICdDYWxpYnJpJywgJ1NlZ29lIFVJJywgJ01laXJ5bycs
+ICdNaWNyb3NvZnQgWWFIZWkgVUknLCAnTWljcm9zb2Z0IEpoZW5nSGVpIFVJJywgJ01hbGd1biBH
+b3RoaWMnLCAnc2Fucy1zZXJpZiciIHN0eWxlPSdsaW5lLWhlaWdodDogMTVwdDsgbGV0dGVyLXNw
+YWNpbmc6IDAuMDJlbTsgZm9udC1mYW1pbHk6ICJDYWxpYnJpIiwgIlNlZ29lIFVJIiwgIk1laXJ5
+byIsICJNaWNyb3NvZnQgWWFIZWkgVUkiLCAiTWljcm9zb2Z0IEpoZW5nSGVpIFVJIiwgIk1hbGd1
+biBHb3RoaWMiLCAic2Fucy1zZXJpZiI7IGZvbnQtc2l6ZTogMTJwdDsnPjxiPlZvbjo8L2I+Jm5i
+c3A7PGEgaHJlZj0ibWFpbHRvOmR3ZXN0ZXJnQGdtYWlsLmNvbSIgdGFyZ2V0PSJfcGFyZW50Ij5E
+YWxvbiBXZXN0ZXJncmVlbjwvYT48YnI+PGI+R2VzZW5kZXQ6PC9iPiZuYnNwO+KAjk1pdHR3b2No
+4oCOLCDigI4yOeKAji4g4oCOSnVsaeKAjiDigI4yMDE1IOKAjjIx4oCOOuKAjjU0PGJyPjxiPkFu
+OjwvYj4mbmJzcDs8YSBocmVmPSJtYWlsdG86Si5TcHJpZ2dzQHJheWxhc2UuZGUiIHRhcmdldD0i
+X3BhcmVudCI+U3ByaWdncywgSmltPC9hPiwgPGEgaHJlZj0ibWFpbHRvOmFqbGVubm9uQGR5bmFt
+aWNkZXZpY2VzLmNvLnVrIiB0YXJnZXQ9Il9wYXJlbnQiPkFsZXggSiBMZW5ub248L2E+LCA8YSBo
+cmVmPSJtYWlsdG86ZW5hazk5OUBnb29nbGVtYWlsLmNvbSIgdGFyZ2V0PSJfcGFyZW50Ij5LZXZp
+biBCLjwvYT48YnI+PGI+Q2M6PC9iPiZuYnNwOzxhIGhyZWY9Im1haWx0bzp5b2N0b0B5b2N0b3By
+b2plY3Qub3JnIiB0YXJnZXQ9Il9wYXJlbnQiPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L2E+LCA8
+YSBocmVmPSJtYWlsdG86cmZpQGxpc3RzLnJvY2tldGJvYXJkcy5vcmciIHRhcmdldD0iX3BhcmVu
+dCI+cmZpQGxpc3RzLnJvY2tldGJvYXJkcy5vcmc8L2E+PC9mb250PjwvZGl2PjwvZGl2PjxkaXY+
+PGJyPjwvZGl2PjxkaXYgZGlyPSIiPkFzIGZhciBhcyBJIHVuZGVyc3RhbmQgaXQgQWx0ZXJhIG9u
+bHkgbWFpbnRhaW5zIHRoZSBvbmUgcmVwby4gIDxicj48YnI+PGRpdiBjbGFzcz0iZ21haWxfcXVv
+dGUiPk9uIEp1bHkgMjksIDIwMTUgNjo0NDoyMyBBTSBQRFQsICJTcHJpZ2dzLCBKaW0iICZsdDtK
+LlNwcmlnZ3NAcmF5bGFzZS5kZSZndDsgd3JvdGU6PGJsb2NrcXVvdGUgY2xhc3M9ImdtYWlsX3F1
+b3RlIiBzdHlsZT0ibWFyZ2luOiAwcHQgMHB0IDBwdCAwLjhleDsgcGFkZGluZy1sZWZ0OiAxZXg7
+IGJvcmRlci1sZWZ0LWNvbG9yOiByZ2IoMjA0LCAyMDQsIDIwNCk7IGJvcmRlci1sZWZ0LXdpZHRo
+OiAxcHg7IGJvcmRlci1sZWZ0LXN0eWxlOiBzb2xpZDsiPgo8cHJlIGNsYXNzPSJrOW1haWwiPkhp
+IEFsZXgsIERhbG9uLCBLZXZpbiwgTGlzdHM8YnI+PGJyPmhtbW0sIHNvIEkgZ3Vlc3MgSSdtIHN0
+aWxsIGNvbmZ1c2VkIChzb3JyeSkuPGJyPjxicj5BbGV4IHJlY29tbWVuZHMgZ29pbmcgdmlhIHRo
+ZSAib2ZmaWNpYWwiIG9lIGxheWVycyBpbmRleCwgd2hpY2ggY3VycmVudGx5IGxpbmtzIGRpcmVj
+dGx5IHRvIDxhIGhyZWY9Imh0dHA6Ly9naXRodWIuY29tL2tyYWovbWV0YS1hbHRlcmEiIHRhcmdl
+dD0iX3BhcmVudCI+Z2l0aHViLmNvbS9rcmFqL21ldGEtYWx0ZXJhPC9hPi48YnI+PGJyPktldmlu
+IGFuZCBEYWxvbiBob2xkIG91dCBmb3IgPGEgaHJlZj0iaHR0cDovL2dpdGh1Yi5jb20vYWx0ZXJh
+LW9wZW5zb3VyY2UvbWV0YS1hbHRlcmEiIHRhcmdldD0iX3BhcmVudCI+Z2l0aHViLmNvbS9hbHRl
+cmEtb3BlbnNvdXJjZS9tZXRhLWFsdGVyYTwvYT4sIGFuZCBEYWxvbiBzcGVjaWZpY2FsbHkgc2F5
+cyAiLi4uIGFuZCByZXBvcyB1bmRlciBhbnkgdXNlciBuYW1lIGluIGdpdGh1YiBhcmUgZm9ya3Mi
+Ljxicj48YnI+U28gaXMgdGhlcmUgYW4gb2ZmaWNpYWwgOy0pIGRpY2hvdG9teSBiZXR3ZWVuIGFs
+dGVyYSBhbmQgb2U/PGJyPjxicj5UaGFua3MgZm9yIGxpc3RlbmluZy4uLjxicj4tLTxicj5qaW08
+YnI+PGJyPjxicj4tLS0tLVVyc3Byw7xuZ2xpY2hlIE5hY2hyaWNodC0tLS0tPGJyPlZvbjogQWxl
+eCBKIExlbm5vbiBbbWFpbHRvOmFqbGVubm9uQGR5bmFtaWNkZXZpY2VzLmNvLnVrXTxicj5HZXNl
+bmRldDogTWl0dHdvY2gsIDI5LiBKdWxpIDIwMTUgMTU6MTA8YnI+QW46IFNwcmlnZ3MsIEppbSAm
+bHQ7Si5TcHJpZ2dzQHJheWxhc2UuZGUmZ3Q7PGJyPkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
+PGJyPkJldHJlZmY6IFJlOiBbeW9jdG9dIFdoaWNoIHJlcG8gZm9yIG1ldGEtYWx0ZXJhID88YnI+
+PGJyPjxicj48YnI+T24gMjgvMDcvMjAxNSAxMDoxMCwgU3ByaWdncywgSmltCndyb3RlOjxicj48
+YmxvY2txdW90ZSBjbGFzcz0iZ21haWxfcXVvdGUiIHN0eWxlPSJtYXJnaW46IDBwdCAwcHQgMWV4
+IDAuOGV4OyBwYWRkaW5nLWxlZnQ6IDFleDsgYm9yZGVyLWxlZnQtY29sb3I6IHJnYigxMTQsIDE1
+OSwgMjA3KTsgYm9yZGVyLWxlZnQtd2lkdGg6IDFweDsgYm9yZGVyLWxlZnQtc3R5bGU6IHNvbGlk
+OyI+IEhpIEd1eXM7IGNvbmZ1c2VkIG5vb2IgaGVyZS4uLjxicj48YnI+IFRoZXJlIGFwcGVhciB0
+byBiZSAoYXQgbGVhc3QpIHR3byAib2ZmaWNpYWwiIHJlcG9zIGZvciBtZXRhLWFsdGVyYTo8YnI+
+PGJyPiAgICAgICAgIDxhIGhyZWY9Imh0dHA6Ly9naXRodWIuY29tL2tyYWovbWV0YS1hbHRlcmEi
+IHRhcmdldD0iX3BhcmVudCI+Z2l0aHViLmNvbS9rcmFqL21ldGEtYWx0ZXJhPC9hPjxicj48YnI+
+IGFuZDxicj48YnI+ICAgICAgICAgPGEgaHJlZj0iaHR0cDovL2dpdC5yb2NrZXRib2FyZHMub3Jn
+L21ldGEtYWx0ZXJhLmdpdCIgdGFyZ2V0PSJfcGFyZW50Ij5naXQucm9ja2V0Ym9hcmRzLm9yZy9t
+ZXRhLWFsdGVyYS5naXQ8L2E+PGJyPjxicj48YnI+IFNvIGhvdyBzaG91bGQgSSBjaG9vc2UgYmV0
+d2VlbiB0aGVtPzxicj48YnI+IFRoYW5rcyE8YnI+IC0tPGJyPiBKaW08YnI+PGJyPiBTb3JyeSBh
+Ym91dCB0aGUgY29tcGFueSBzaWcuOiBJIGNhbid0IHN3aXRjaCBpdCBvZmYuPC9ibG9ja3F1b3Rl
+Pjxicj48YnI+ZndpdyBJIHdvdWxkIHVzdWFsbHkgc3RhcnQgd2l0aCB0aGUgb2ZmaWNpYWwgaW5k
+ZXg8YnI+PGJyPjxhIGhyZWY9Imh0dHA6Ly9sYXllcnMub3BlbmVtYmVkZGVkLm9yZy9sYXllcmlu
+ZGV4L2JyYW5jaC9tYXN0ZXIvbGF5ZXJzIiB0YXJnZXQ9Il9wYXJlbnQiPmh0dHA6Ly9sYXllcnMu
+b3BlbmVtYmVkZGVkLm9yZy9sYXllcmluZGV4L2JyYW5jaC9tYXN0ZXIvbGF5ZXJzPC9hPi88YnI+
+PGJyPlRoaXMgc2VlbXMgdG8gcG9pbnQgdG8gZ2l0aHViPGJyPjxicj5DaGVlcnMsIEFsZXg8YnI+
+PGJyPjxicj48aHI+PGJyPjxicj5SQVlMQVNFIEFHPGJyPkFyZ2Vsc3JpZWRlciBGZWxkIDIrNDxi
+cj44MjIzNCBXZXNzbGluZzxicj5HZXJtYW55PGJyPlRlbC46ICs0OS0oMCk4MTUzLzg4IDk4LTA8
+YnI+RmF4OiArNDktKDApODE1My84OCA5OC0xMDxicj48YSBocmVmPSJodHRwOi8vd3d3LnJheWxh
+c2UuZGUiIHRhcmdldD0iX3BhcmVudCI+aHR0cDovL3d3dy5yYXlsYXNlLmRlPC9hPjxicj48YnI+
+RGlzdHJpY3QgQ291cnQgTXVuaWNoLCBIUkIgMTMxNDUwPGJyPjxicj5Cb2FyZDogUGV0ZXIgdm9u
+IEphbiAoQ0VPKTxicj48YnI+U3VwZXJ2aXNvcnkgQm9hcmQ6IERyLiBVbHJpY2ggTG9obWFubiAo
+Q2hhaXJtYW4pPGJyPjxicj48YnI+RGllc2UgRS1NYWlsIGVudGjDpGx0IHZlcnRyYXVsaWNoZSB1
+bmQvb2RlciByZWNodGxpY2ggZ2VzY2jDvHR6dGUgSW5mb3JtYXRpb25lbi4gV2VubiBTaWUgbmlj
+aHQgZGVyIHJpY2h0aWdlIEFkcmVzc2F0IHNpbmQgb2RlciBkaWVzZSBFLU1haWwgaXJydMO8bWxp
+Y2ggZXJoYWx0ZW4gaGFiZW4sIGluZm9ybWllcmVuIFNpZSBiaXR0ZSBzb2ZvcnQgZGVuIEFic2Vu
+ZGVyIHVuZCB2ZXJuaWNodGVuIFNpZSBkaWVzZSBNYWlsLiBEYXMgdW5lcmxhdWJ0ZSBLb3BpZXJl
+biBzb3dpZSBkaWUgdW5iZWZ1Z3RlIFdlaXRlcmdhYmUgZGllc2VyIE1haWwgaXN0IG5pY2h0IGdl
+c3RhdHRldC48YnI+PGJyPlRoaXMgZS1tYWlsIG1heSBjb250YWluIGNvbmZpZGVudGlhbCBhbmQv
+b3IgcHJpdmlsZWdlZCBpbmZvcm1hdGlvbi4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJl
+Y2lwaWVudCAob3IgaGF2ZSByZWNlaXZlZCB0aGlzIGUtbWFpbCBpbiBlcnJvcikgcGxlYXNlIG5v
+dGlmeSB0aGUgc2VuZGVyIGltbWVkaWF0ZWx5IGFuZCBkZXN0cm95IHRoaXMgZS1tYWlsLiBBbnkg
+dW5hdXRob3JpemVkIGNvcHlpbmcsIGRpc2Nsb3N1cmUgb3IgZGlzdHJpYnV0aW9uIG9mIHRoZSBt
+YXRlcmlhbCBpbiB0aGlzIGUtbWFpbCBpcyBzdHJpY3RseSBmb3JiaWRkZW4uPGJyPjwvcHJlPjwv
+YmxvY2txdW90ZT48L2Rpdj48YnI+Ci0tIDxicj4KU2VudCBmcm9tIG15IEFuZHJvaWQgZGV2aWNl
+IHdpdGggSy05IE1haWwuIFBsZWFzZSBleGN1c2UgbXkgYnJldml0eS4KPC9kaXY+PC9kaXY+Cjwv
+Ym9keT4KPC9odG1sPgo=
 
-Then, we just replaced the kernel source by the hw manufacturer's one
-(note the .tar as the kernel source). Device tree is in the good place
-in the kernel sources (arch/arm/boot/dts/cbox-NAND.dt{s,b}). But still
-I can't manage to build. I had to copy paste the "linux-dtb.inc" at
-the end of the recipe as it wasn't getting loaded (why?). And I
-changed from do_install_append to do_compile_kernelmodules_append in
-order that code to run.
-
-build command:
-MACHINE="CBoxNAND" bitbake core-image-domosafety -DDD | tee
-/tmp/logCBoxNAND.core-image-domosafety
-
-The complete log file is at: http://www.pasteall.org/59962
-
-I'll leave down here part of important files.
-
-
-Best Regards!
-Roosembert Palacios
-
-- ---------- "conf/machine/CBoxNAND.conf"
-
-#@TYPE: Machine
-#@NAME: AM335x EVM
-#@DESCRIPTION: Machine configuration for Domosafety's CBox NAND Storage
-
-require conf/machine/include/ti33x.inc
-
-XSERVER = ""
-GUI_MACHINE_CLASS = ""
-MACHINE_FEATURES = "kernel26 apm usbhost vfat ext2 ethernet"
-IMAGE_FEATURES += "package-management"
-
-IMAGE_FSTYPES += "ubi tar.gz"
-
-SERIAL_CONSOLE = "115200 ttyO0"
-MKUBIFS_ARGS = "-F -m 2048 -e 131072 -c 3836"
-UBINIZE_ARGS = "-m 2048 -p 128KiB -s 512 -O 2048"
-
-PREFERRED_VERSION_linux-libc-headers_CBoxNAND = "3.2"
-PREFERRED_PROVIDER_virtual/kernel_CBoxNAND = "linux-domosafety"
-PREFERRED_PROVIDER_virtual/bootloader_CBoxNAND = "u-boot-domosafety"
-PREFERRED_PROVIDER_virtual/uenv_CBoxNAND = "uenv-domosafety-nand"
-PREFERRED_PROVIDER_kernel_CBoxNAND = "linux-domosafety"
-PREFERRED_PROVIDER_u-boot_CBoxNAND = "u-boot-domosafety"
-
-PREFERRED_PROVIDER_ltp-ddt_CBoxNAND = "ltp-ddt-legacy"
-PREFERRED_PROVIDER_virtual/gettext = "gettext"
-
-RDEPENDS_kernel-base += "kernel-devicetree"
-KERNEL_IMAGETYPE = "uImage"
-UBOOT_MACHINE="zigBeeBox_secured_config"
-
-
-- ---------- "recipes-core/images/core-image-domosafety_1.0.bb"
-DESCRIPTION = "DomoSafety Image"
-export IMAGE_BASENAME = "core-image-domosafety"
-
-# IMAGE_INSTALL += "domosafety-BareImage"
-IMAGE_INSTALL = "domosafety-userspace-1.0 packagegroup-core-boot
-${ROOTFS_PKGMANAGE_BOOTSTRAP} ${CORE_IMAGE_EXTRA_INSTALL}"
-IMAGE_LINGUAS = " "
-LICENSE = "MIT"
-
-IMAGE_ROOTFS_SIZE = "524288"
-IMAGE_FEATURES += " ssh-server-openssh package-management "
-
-inherit core-image
-
-
-- ---------- "linux-domosafety_3.13.43.bb" ----------------
-
-LICENSE = "GPLv2"
-KERNEL_IMAGETYPE = "uImage"
-LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
-COMPATIBLE_MACHINE = "CBoxNAND"
-KERNEL_DEVICETREE = "cbox-NAND.dts"
-
-DEFAULT_PREFERENCE = "1"
-
-inherit kernel
-# TI's
-require recipes-kernel/linux/setup-defconfig.inc
-
-# Pull in the devicetree files into the rootfs
-RDEPENDS_kernel-base += "kernel-devicetree"
-IMAGE_INSTALL_append = " kernel-image "
-INITRAMFS_IMAGE = "initramfs-cbox-normal"
-
-# Add a run-time dependency for the PM firmware to be installed on the
-target file system.
-RDEPENDS_kernel-base_append_CBoxNAND = " am33x-cm3"
-
-# Default is to package all dtb files for ti33x devices unless
-building for the specific beaglebone machine.
-KERNEL_DEVICETREE_CBoxNAND = "cbox-NAND.dts "
-
-S = "${WORKDIR}/linux-${PV}-am335x"
-B = "${S}"
-
-PR = "devel6"
-MACHINE_KERNEL_PR_append = "r+${PR}"
-
-EXTRA_OEMAKE_append += " LOADADDR=${UBOOT_ENTRYPOINT} "
-
-SRC_URI = " \
-file://${PN}_${PV}/am335x-pm-firmware.bin;name=pm-firmware \
-file://${PN}_${PV}/cbox-domosafety.defconfig;name=kconfig \
-file://${PN}_${PV}/linux-${PV}-am335x.tar;name=kernel \
-"
-
-SRC_URI[kernel.md5sum] = "3d5b4539183a0f4c7634ff728ec61707"
-SRC_URI[pm-firmware.md5sum] = "c571cf09f994d5fd8750338618cafa0b"
-SRC_URI[kconfig.md5sum] = "22be214b4fd6ffa8d2da6a4b895d722a"
-
-do_fetch_append() {
-os.system("cp ${WORKDIR}/${PN}_${PV}/am335x-pm-firmware.bin ${S}/
-2>>${WORKDIR}/Failure ")
-os.system("cp ${WORKDIR}/${PN}_${PV}/cbox-domosafety.defconfig
-${WORKDIR}/defconfig 2>>${WORKDIR}/Failure ")
-os.system("tree $(WORKDIR) -L 3 &>>${WORKDIR}/Failure")
-}
-
-do_configure_append() {
-cp "${DEPLOY_DIR_IMAGE}/${INITRAMFS_IMAGE}-${MACHINE}.cpio.lzma"
-${S}/initramfs.cpio.lzma
-}
-
-pkg_postinst_kernel-image() {
-if [ "x$D" = "x" ]; then
-/usr/sbin/flash_erase /dev/mtd2 0 0
-/bin/dd if=/boot/uImage of=/dev/mtd2 bs=131072 conv=sync
-fi
-update-alternatives --install /${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}
-${KERNEL_IMAGETYPE} ${KERNEL_IMAGETYPE}-${KERNEL_VERSION}
-${KERNEL_PRIORITY} || true
-if [ ! -e "$D/lib/modules/${KERNEL_VERSION}" ]; then
-mkdir -p $D/lib/modules/${KERNEL_VERSION}
-fi
-if [ -n "$D" ]; then
-depmodwrapper -a -b $D ${KERNEL_VERSION}
-else
-depmod -a ${KERNEL_VERSION}
-fi
-}
-
-pkg_postrm_kernel-image () {
-update-alternatives --remove ${KERNEL_IMAGETYPE}
-${KERNEL_IMAGETYPE}-${KERNEL_VERSION} || true
-}
-
-pkg_postinst_kernel-devicetree() {
-cd /${KERNEL_IMAGEDEST}; update-alternatives --install
-/${KERNEL_IMAGEDEST}/${MACHINE}.dtb devicetree
-devicetree-uImage-cbox-NAND.dtb ${KERNEL_PRIORITY} || true
-if [ "x$D" = "x" ]; then
-/usr/sbin/flash_erase /dev/mtd1 0 0
-/bin/dd if=/boot/devicetree-uImage-cbox-NAND.dtb of=/dev/mtd1
-bs=131072 conv=sync
-fi
-}
-
-pkg_postrm_kernel-devicetree() {
-cd /${KERNEL_IMAGEDEST}; update-alternatives --remove devicetree
-devicetree-${KERNEL_VERSION} || true
-}
-
-# Support for device tree generation
-FILES_kernel-devicetree = "/boot/devicetree*"
-KERNEL_DEVICETREE_FLAGS = "-R 8 -p 0x3000"
-
-PACKAGES += " kernel-devicetree "
-DEPENDS_append = " dtc-native "
-
-#python __anonymous () {
-# devicetree = d.getVar("KERNEL_DEVICETREE", True) or ''
-# if devicetree:
-# depends = d.getVar("DEPENDS", True)
-# d.setVar("DEPENDS", "%s dtc-native" % depends)
-# packages = d.getVar("PACKAGES", True)
-#}
-
-#pkg_preinst_kernel-image_append() {
-do_compile_kernelmodules_append(){
-# echo "linux-dtb[ds-pkg_prinst_kernel-image_append]: Processing
-Device Trees..." > /tmp/log
-echo "linux-dtb[ds.do_compile_kernelmodules_append]: Processing Device
-Trees..." > /tmp/log
-if test -n "${KERNEL_DEVICETREE}"; then
-for DTS_FILE in ${KERNEL_DEVICETREE}; do
-echo "Processing ${DTS_FILE}" >> /tmp/log
-if [ ! -f ${DTS_FILE} ]; then
-echo "Warning: ${DTS_FILE} is not available!"
-continue
-fi
-DTS_BASE_NAME=`basename ${DTS_FILE} | awk -F "." '{print $1}'`
-DTB_NAME=`echo ${KERNEL_IMAGE_BASE_NAME} | sed
-"s/${MACHINE}/${DTS_BASE_NAME}/g"`
-DTB_SYMLINK_NAME=`echo ${KERNEL_IMAGE_SYMLINK_NAME} | sed
-"s/${MACHINE}/${DTS_BASE_NAME}/g"`
-dtc -I dts -O dtb ${KERNEL_DEVICETREE_FLAGS} -o ${DTS_BASE_NAME}
-${DTS_FILE}
-install -m 0644 ${DTS_BASE_NAME}
-${D}/boot/devicetree-${DTB_SYMLINK_NAME}.dtb
-done
-fi
-echo "linux-dtb[]: end processing Device Trees..."
-}
-
-- -------------------------------------------------------------
-
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iQEcBAEBAgAGBQJVuPLKAAoJEMqq7OXCJCu3c4sH/01OqSaNOA8vBAD6eImsiqGO
-RTR2b9rpEN8h5TPn2ShCZV3D29MMZC6UZUEaUC/NVGR8Ehe4vRy4T2rlVGKNw45d
-szRqy76+mLQWAkyANTkJ1rYB6Un5nBcLPGNDmFFohevKMq7INNuRVklQ5vP7S3bk
-0TJL93na5SBh/5CtbOMOvrZus47jhRnlHFv/Ng1TC5DsRfhiw+TY529pb4OA1qOV
-hZ4nG9nxrc6b7w/pjjvA3WhQTGp/iGF2ErMkfLa11hUpNg9wUOssgudBg9zirXbm
-rj0420XWEN5vyQTzkJp41W6TQ7x//Ny6WGuiyurxYLRub6p+0qCQBkQi2axqLAA=
-=v4et
------END PGP SIGNATURE-----
-
+--_59ED261F-6E93-41EE-B756-9FA54B8BCE96_--
