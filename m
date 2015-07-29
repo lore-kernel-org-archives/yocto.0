@@ -1,48 +1,42 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B35A0E00A7B; Wed, 29 Jul 2015 03:06:54 -0700 (PDT)
+	id 755CCE00A8E; Wed, 29 Jul 2015 06:10:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.215.49 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-la0-f49.google.com (mail-la0-f49.google.com
-	[209.85.215.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E187BE009EB
-	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 03:06:52 -0700 (PDT)
-Received: by lahh5 with SMTP id h5so3135458lah.2
-	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 03:06:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:content-type;
-	bh=7arXmRWhc7O1Ldubx50SZ8Odq9MKDcBHWLub/9JLgJE=;
-	b=UXm9TNORkVpWFdfiw06lENdLGtBI7fef42MJPIPfQ6PL+c4IIXD+RlKb3lpiAej7yH
-	xWWlSvn1P/2RYKdHt0pOR8ibZxapcRJky2CBpkFHwqDMdZj922AlIVMCzcRTHaCFaLX5
-	YskA55e21I4Go/+RFen37OWLKgW6oCMGI2pyn5Rb1LgYt/gBEtEJtq5bjY4XBJwKGqA2
-	e7IZFuHeFRsT6RBAo1WoeC4A66kdGAhLYAs+UXO31L7s9+YrGLWflZpQSqyUKTqxRBgK
-	h551GOOYXBRSYCUeKO3tG990BebvbXqXbyPXSZ8+MqbOpncSPmZO3EuwWDrlQieAUbka
-	PFCw==
-X-Gm-Message-State: ALoCoQnZG/AhUi8DME+v9bUVM+mfC+gsJSLwyO/P7a/mcSnASHQFRpiU4y2Ntb1iOUomloHuSxKx
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 819E0E00A81
+	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 06:10:28 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 1EB0E27E2F3;
+	Wed, 29 Jul 2015 13:10:26 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id N0Yh4sGr5m61; Wed, 29 Jul 2015 13:10:24 +0000 (UTC)
+Received: from [192.168.0.11] (cpc47-live22-2-0-cust92.17-2.cable.virginm.net
+	[86.17.157.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id A01FB27E2EC;
+	Wed, 29 Jul 2015 13:10:24 +0000 (UTC)
+To: J.Spriggs@raylase.de
+References: <2238EDC6081C944E97E4EE915AE5CBEC5476A872@EXCHANGE-B.raylase.de>
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Message-ID: <55B8D0BD.3050803@dynamicdevices.co.uk>
+Date: Wed, 29 Jul 2015 14:10:21 +0100
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.1.0
 MIME-Version: 1.0
-X-Received: by 10.152.182.194 with SMTP id eg2mr37835958lac.71.1438164410578; 
-	Wed, 29 Jul 2015 03:06:50 -0700 (PDT)
-Received: by 10.112.147.232 with HTTP; Wed, 29 Jul 2015 03:06:50 -0700 (PDT)
-X-Originating-IP: [2a02:8108:9b40:1710:f85c:170f:d7cf:6118]
-Received: by 10.112.147.232 with HTTP; Wed, 29 Jul 2015 03:06:50 -0700 (PDT)
-In-Reply-To: <CAK18fxE+Rks=wNwAnbQCB5F4Dg0KPup+P1u=L+pUe=srZO52vQ@mail.gmail.com>
-References: <CAK18fxE+Rks=wNwAnbQCB5F4Dg0KPup+P1u=L+pUe=srZO52vQ@mail.gmail.com>
-Date: Wed, 29 Jul 2015 12:06:50 +0200
-Message-ID: <CAK18fxFesmiA+GxNB9xHDc=c2buyVR382uD+_xQiw-3vj4Q4HA@mail.gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: [meta-raspberrypi] Patches in queue
+In-Reply-To: <2238EDC6081C944E97E4EE915AE5CBEC5476A872@EXCHANGE-B.raylase.de>
+Cc: yocto@yoctoproject.org
+Subject: Re: Which repo for meta-altera ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,27 +48,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Jul 2015 10:06:54 -0000
-Content-Type: multipart/alternative; boundary=001a113491f2d2558a051c00be4b
+X-List-Received-Date: Wed, 29 Jul 2015 13:10:31 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---001a113491f2d2558a051c00be4b
-Content-Type: text/plain; charset=UTF-8
 
-Hello all,
 
-I know there a some patches in queue. The problem is that I won't be able
-to take care of them until 7th of August. Basically vacation + my laptop
-broke and I'm waiting for a replacement. So please bear with me.
+On 28/07/2015 10:10, Spriggs, Jim wrote:
+> Hi Guys; confused noob here...
+>
+> There appear to be (at least) two "official" repos for meta-altera:
+>
+>         github.com/kraj/meta-altera
+>
+> and
+>
+>         git.rocketboards.org/meta-altera.git
+>
+>
+> So how should I choose between them?
+>
+> Thanks!
+> --
+> Jim
+>
+> Sorry about the company sig.: I can't switch it off.
+>
 
-Thanks for understanding,
-Andrei
+fwiw I would usually start with the official index
 
---001a113491f2d2558a051c00be4b
-Content-Type: text/html; charset=UTF-8
+http://layers.openembedded.org/layerindex/branch/master/layers/
 
-<p dir="ltr">Hello all,</p>
-<p dir="ltr">I know there a some patches in queue. The problem is that I won&#39;t be able to take care of them until 7th of August. Basically vacation + my laptop broke and I&#39;m waiting for a replacement. So please bear with me.</p>
-<p dir="ltr">Thanks for understanding,<br>
-Andrei</p>
+This seems to point to github
 
---001a113491f2d2558a051c00be4b--
+Cheers, Alex
+
+
