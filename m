@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 10309E00A97; Wed, 29 Jul 2015 13:51:00 -0700 (PDT)
+	id 1A809E009E4; Wed, 29 Jul 2015 13:51:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44709E009B3
-	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 13:50:58 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DD26E00A53
+	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 13:50:57 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga101.jf.intel.com with ESMTP; 29 Jul 2015 13:50:58 -0700
+	by orsmga101.jf.intel.com with ESMTP; 29 Jul 2015 13:50:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,572,1432623600"; d="scan'208";a="757672252"
+X-IronPort-AV: E=Sophos;i="5.15,572,1432623600"; d="scan'208";a="757672230"
 Received: from alimon-thinkpad-w540.zpn.intel.com ([10.219.5.54])
-	by fmsmga001.fm.intel.com with ESMTP; 29 Jul 2015 13:50:57 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 29 Jul 2015 13:50:56 -0700
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Wed, 29 Jul 2015 15:50:48 -0500
-Message-Id: <1438203053-7909-6-git-send-email-anibal.limon@linux.intel.com>
+Date: Wed, 29 Jul 2015 15:50:46 -0500
+Message-Id: <1438203053-7909-4-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1438203053-7909-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1438203053-7909-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: paul.eggleton@linux.intel.com
-Subject: [PATCH 05/10][auh] upgradehelper.py: Add own step for loading environment
+Subject: [PATCH 03/10][auh] upgradehelper.py: Only send emails when patch file exist
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,57 +45,42 @@ X-List-Received-Date: Wed, 29 Jul 2015 20:51:00 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Instead of load environment in detecting git repository use own
-function making easy to debug.
+Remove old decision of send email based on error because only
+makes sense to send email when patch file was created.
 
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- upgradehelper.py | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ upgradehelper.py | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
 
 diff --git a/upgradehelper.py b/upgradehelper.py
-index 13fc7dd..9119cb0 100755
+index f10d974..13fc7dd 100755
 --- a/upgradehelper.py
 +++ b/upgradehelper.py
-@@ -147,6 +147,7 @@ class Updater(object):
+@@ -358,7 +358,8 @@ class Updater(object):
+             self.git.reset_hard(1)
+             self.git.clean_untracked()
  
-         self.upgrade_steps = [
-             (self._create_workdir, None),
-+            (self._get_env, "Loading environment ..."),
-             (self._detect_repo, "Detecting git repository location ..."),
-             (self._clean_repo, "Cleaning git repository of temporary branch ..."),
-             (self._detect_recipe_type, None),
-@@ -205,18 +206,16 @@ class Updater(object):
-                 os.remove(os.path.join(self.workdir, f))
+-        if self.send_email:
++        # only send email to Maintainer when patch file exist
++        if self.send_email and self.patch_file:
+             mail_header = \
+                 "Hello,\n\nYou are receiving this email because you are the maintainer\n" \
+                 "of *%s* recipe and this is to let you know that the automatic attempt\n" \
+@@ -383,13 +384,6 @@ class Updater(object):
+                 "Any problem please contact Anibal Limon <anibal.limon@intel.com>.\n\n" \
+                 "Regards,\nThe Upgrade Helper"
  
-     def _detect_repo(self):
--        self._get_env()
+-            # only send email to Maintainer when is an error that can handle
+-            if err and not isinstance(err, MaintainerError):
+-                D( "%s: Don't send email to maintainer because the error was " \
+-                   "%s and the information isn't useful, please review it." \
+-                    % (self.pn, type(err).__name__))
+-                return
 -
--        if self.env['PV'] == self.new_ver:
-+        if self.env['PKGV'] == self.new_ver:
-             raise UpgradeNotNeededError
- 
--        if self.git is not None:
-+        # UniverseUpdater use git poky respository 
-+        if isinstance(self.git, UniverseUpdater):
-             return
- 
-         self.git = Git(self.recipe_dir)
- 
-         stdout = self.git.status()
--
-         if stdout != "":
-             if self.interactive:
-                 W(" %s: git repository has uncommited work which will be dropped! Proceed? (y/N)" % self.pn)
-@@ -527,6 +526,8 @@ class Updater(object):
- class UniverseUpdater(Updater):
-     def __init__(self):
-         Updater.__init__(self, True, True)
-+
-+        # XXX: assume that the poky directory is the first entry in the PATH
-         self.git = Git(os.path.dirname(os.getenv('PATH', False).split(':')[0]))
- 
-         # read history file
+             if self.maintainer in maintainer_override:
+                 to_addr = maintainer_override[self.maintainer]
+             else:
 -- 
 1.9.1
 
