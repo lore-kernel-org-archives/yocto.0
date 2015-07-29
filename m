@@ -1,50 +1,51 @@
-Return-Path: <J.Spriggs@raylase.de>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D9AD4E009E4; Wed, 29 Jul 2015 06:44:36 -0700 (PDT)
+	id 6A770E00B3F; Wed, 29 Jul 2015 06:45:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.178 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.raylase.de (mail.raylase.de [217.6.128.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20A49E0096A
-	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 06:44:29 -0700 (PDT)
-Received: from mail.raylase.de (127.0.0.1) id hn3cc40171sq for
-	<yocto@yoctoproject.org>;
-	Wed, 29 Jul 2015 15:44:26 +0200 (envelope-from <J.Spriggs@raylase.de>)
-Received: from EXCHANGE-A.raylase.de ([192.168.1.16])
-	by mail.raylase.de (RAYLASE AG)
-	with ESMTPS (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256/256)
-	id 201507291344250041695; Wed, 29 Jul 2015 15:44:25 +0200
-Received: from EXCHANGE-B.raylase.de (192.168.2.12) by EXCHANGE-A.raylase.de
-	(192.168.1.16) with Microsoft SMTP Server (TLS) id 14.3.248.2;
-	Wed, 29 Jul 2015 15:44:24 +0200
-Received: from EXCHANGE-B.raylase.de ([fe80::3144:5b1b:13e0:ad49]) by
-	EXCHANGE-B.raylase.de ([fe80::3144:5b1b:13e0:ad49%14]) with mapi id
-	14.03.0248.002; Wed, 29 Jul 2015 15:44:24 +0200
-From: "Spriggs, Jim" <J.Spriggs@raylase.de>
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>, Dalon Westergreen
-	<dwesterg@gmail.com>, Kevin B. <enak999@googlemail.com>
-Thread-Topic: [yocto] Which repo for meta-altera ?
-Thread-Index: AdDJFHrk/r5V2qTtQ1K5KfDyaiXrhAA2q3CAAAS8GeA=
-Date: Wed, 29 Jul 2015 13:44:23 +0000
-Message-ID: <2238EDC6081C944E97E4EE915AE5CBEC5476ECD3@EXCHANGE-B.raylase.de>
-References: <2238EDC6081C944E97E4EE915AE5CBEC5476A872@EXCHANGE-B.raylase.de>
-	<55B8D0BD.3050803@dynamicdevices.co.uk>
-In-Reply-To: <55B8D0BD.3050803@dynamicdevices.co.uk>
-Accept-Language: en-GB, de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.2.109]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-qk0-f178.google.com (mail-qk0-f178.google.com
+	[209.85.220.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 270BAE00B2F
+	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 06:44:54 -0700 (PDT)
+Received: by qkdg63 with SMTP id g63so4460619qkd.0
+	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 06:44:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=msYMxTHcyFGl3yei5fL55Vop1tdHK8HDWJi46MkERvQ=;
+	b=mCKhzMjbgCnr6/FG6aTcMrpc8ClmRnIgjHT8h99gbCtPWty/gIAhI3qjqP19kwJy+Y
+	bM23njZdW+5qJoRM7117JkJivpvieBxnQK9A58EyROqizmQ2jr0BkxKLLrGa5WiojsDx
+	xFVoxOBbL6UjOAC5g80lEsRVcYbQvEmh96OCngcQY0n4u+DixbShcbP02mHZcucQDSta
+	cdC6CU/3FU/MboyMhe02bj2/rArTUj0JuchPoZxRONn0y45PU4D/AtkC3aQi8b/aomGY
+	Gd3kn7S7Z2I/+Gabj9W8KWU/hMlkHHeA+6q0u9148MNcUdytUKXDJlX4NegvXLHHJpWD
+	2jKg==
+X-Gm-Message-State: ALoCoQlLkuC6NQ9VREG6NDSlvlqGxDYFJ344+fJ2mYI6idpdoG9ezh1//XAkaO87XGPzDnbaARfv
+X-Received: by 10.55.53.193 with SMTP id c184mr58893113qka.62.1438177494006;
+	Wed, 29 Jul 2015 06:44:54 -0700 (PDT)
 MIME-Version: 1.0
-X-Mlf-Version: 8.0.8.3655
-X-Mlf-UniqueId: o201507291344250041695
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	=?utf-8?B?cmZpIOKAjltyZmlAbGlzdHMucm9ja2V0Ym9hcmRzLm9yZ13igI4=?=
-	<rfi@lists.rocketboards.org>
-Subject: Re: Which repo for meta-altera ?
+Received: by 10.140.102.195 with HTTP; Wed, 29 Jul 2015 06:44:34 -0700 (PDT)
+In-Reply-To: <CAJtzDg864mgz4668FceX4ov5Uu8VxeGKh4tc1ERXq7wXQz06bQ@mail.gmail.com>
+References: <CAJtzDg8b-JtqeAtbCBckq+pQDahetrhWB8DeE_XXAv5vQBdcWg@mail.gmail.com>
+	<55B8D37A.6020308@mlbassoc.com>
+	<CAJtzDg_BE_+hxYu9jNHUQW3gxme6Ay95NENjA=R6ufj+w9LfCw@mail.gmail.com>
+	<55B8D76A.1090507@mlbassoc.com>
+	<CAJtzDg864mgz4668FceX4ov5Uu8VxeGKh4tc1ERXq7wXQz06bQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 29 Jul 2015 14:44:34 +0100
+Message-ID: <CAJTo0Lb=VpuK8UOQMdr7YkaNH-SHsBfRXa8z7Jq9SXARBDmWsQ@mail.gmail.com>
+To: Laurent Joli <l.joli@expemb.com>
+Cc: yocto <yocto@yoctoproject.org>, Gary Thomas <gary@mlbassoc.com>
+Subject: Re: [Asterisk] recipe 13.1.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,49 +57,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Jul 2015 13:44:36 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 29 Jul 2015 13:45:03 -0000
+Content-Type: multipart/alternative; boundary=001a11476f14a7a83a051c03caaf
 
-SGkgQWxleCwgRGFsb24sIEtldmluLCBMaXN0cw0KDQpobW1tLCBzbyBJIGd1ZXNzIEknbSBzdGls
-bCBjb25mdXNlZCAoc29ycnkpLg0KDQpBbGV4IHJlY29tbWVuZHMgZ29pbmcgdmlhIHRoZSAib2Zm
-aWNpYWwiIG9lIGxheWVycyBpbmRleCwgd2hpY2ggY3VycmVudGx5IGxpbmtzIGRpcmVjdGx5IHRv
-IGdpdGh1Yi5jb20va3Jhai9tZXRhLWFsdGVyYS4NCg0KS2V2aW4gYW5kIERhbG9uIGhvbGQgb3V0
-IGZvciBnaXRodWIuY29tL2FsdGVyYS1vcGVuc291cmNlL21ldGEtYWx0ZXJhLCBhbmQgRGFsb24g
-c3BlY2lmaWNhbGx5IHNheXMgIi4uLiBhbmQgcmVwb3MgdW5kZXIgYW55IHVzZXIgbmFtZSBpbiBn
-aXRodWIgYXJlIGZvcmtzIi4NCg0KU28gaXMgdGhlcmUgYW4gb2ZmaWNpYWwgOy0pIGRpY2hvdG9t
-eSBiZXR3ZWVuIGFsdGVyYSBhbmQgb2U/DQoNClRoYW5rcyBmb3IgbGlzdGVuaW5nLi4uDQotLQ0K
-amltDQoNCg0KLS0tLS1VcnNwcsO8bmdsaWNoZSBOYWNocmljaHQtLS0tLQ0KVm9uOiBBbGV4IEog
-TGVubm9uIFttYWlsdG86YWpsZW5ub25AZHluYW1pY2RldmljZXMuY28udWtdDQpHZXNlbmRldDog
-TWl0dHdvY2gsIDI5LiBKdWxpIDIwMTUgMTU6MTANCkFuOiBTcHJpZ2dzLCBKaW0gPEouU3ByaWdn
-c0ByYXlsYXNlLmRlPg0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCkJldHJlZmY6IFJlOiBb
-eW9jdG9dIFdoaWNoIHJlcG8gZm9yIG1ldGEtYWx0ZXJhID8NCg0KDQoNCk9uIDI4LzA3LzIwMTUg
-MTA6MTAsIFNwcmlnZ3MsIEppbSB3cm90ZToNCj4gSGkgR3V5czsgY29uZnVzZWQgbm9vYiBoZXJl
-Li4uDQo+DQo+IFRoZXJlIGFwcGVhciB0byBiZSAoYXQgbGVhc3QpIHR3byAib2ZmaWNpYWwiIHJl
-cG9zIGZvciBtZXRhLWFsdGVyYToNCj4NCj4gICAgICAgICBnaXRodWIuY29tL2tyYWovbWV0YS1h
-bHRlcmENCj4NCj4gYW5kDQo+DQo+ICAgICAgICAgZ2l0LnJvY2tldGJvYXJkcy5vcmcvbWV0YS1h
-bHRlcmEuZ2l0DQo+DQo+DQo+IFNvIGhvdyBzaG91bGQgSSBjaG9vc2UgYmV0d2VlbiB0aGVtPw0K
-Pg0KPiBUaGFua3MhDQo+IC0tDQo+IEppbQ0KPg0KPiBTb3JyeSBhYm91dCB0aGUgY29tcGFueSBz
-aWcuOiBJIGNhbid0IHN3aXRjaCBpdCBvZmYuDQo+DQoNCmZ3aXcgSSB3b3VsZCB1c3VhbGx5IHN0
-YXJ0IHdpdGggdGhlIG9mZmljaWFsIGluZGV4DQoNCmh0dHA6Ly9sYXllcnMub3BlbmVtYmVkZGVk
-Lm9yZy9sYXllcmluZGV4L2JyYW5jaC9tYXN0ZXIvbGF5ZXJzLw0KDQpUaGlzIHNlZW1zIHRvIHBv
-aW50IHRvIGdpdGh1Yg0KDQpDaGVlcnMsIEFsZXgNCg0KDQpfX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXw0KDQpSQVlMQVNFIEFHDQpBcmdlbHNyaWVkZXIgRmVsZCAyKzQNCjgyMjM0IFdl
-c3NsaW5nDQpHZXJtYW55DQpUZWwuOiArNDktKDApODE1My84OCA5OC0wDQpGYXg6ICs0OS0oMCk4
-MTUzLzg4IDk4LTEwDQpodHRwOi8vd3d3LnJheWxhc2UuZGUNCg0KRGlzdHJpY3QgQ291cnQgTXVu
-aWNoLCBIUkIgMTMxNDUwDQoNCkJvYXJkOiBQZXRlciB2b24gSmFuIChDRU8pDQoNClN1cGVydmlz
-b3J5IEJvYXJkOiBEci4gVWxyaWNoIExvaG1hbm4gKENoYWlybWFuKQ0KDQoNCkRpZXNlIEUtTWFp
-bCBlbnRow6RsdCB2ZXJ0cmF1bGljaGUgdW5kL29kZXIgcmVjaHRsaWNoIGdlc2Now7x0enRlIElu
-Zm9ybWF0aW9uZW4uIFdlbm4gU2llIG5pY2h0IGRlciByaWNodGlnZSBBZHJlc3NhdCBzaW5kIG9k
-ZXIgZGllc2UgRS1NYWlsIGlycnTDvG1saWNoIGVyaGFsdGVuIGhhYmVuLCBpbmZvcm1pZXJlbiBT
-aWUgYml0dGUgc29mb3J0IGRlbiBBYnNlbmRlciB1bmQgdmVybmljaHRlbiBTaWUgZGllc2UgTWFp
-bC4gRGFzIHVuZXJsYXVidGUgS29waWVyZW4gc293aWUgZGllIHVuYmVmdWd0ZSBXZWl0ZXJnYWJl
-IGRpZXNlciBNYWlsIGlzdCBuaWNodCBnZXN0YXR0ZXQuDQoNClRoaXMgZS1tYWlsIG1heSBjb250
-YWluIGNvbmZpZGVudGlhbCBhbmQvb3IgcHJpdmlsZWdlZCBpbmZvcm1hdGlvbi4gSWYgeW91IGFy
-ZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCAob3IgaGF2ZSByZWNlaXZlZCB0aGlzIGUtbWFp
-bCBpbiBlcnJvcikgcGxlYXNlIG5vdGlmeSB0aGUgc2VuZGVyIGltbWVkaWF0ZWx5IGFuZCBkZXN0
-cm95IHRoaXMgZS1tYWlsLiBBbnkgdW5hdXRob3JpemVkIGNvcHlpbmcsIGRpc2Nsb3N1cmUgb3Ig
-ZGlzdHJpYnV0aW9uIG9mIHRoZSBtYXRlcmlhbCBpbiB0aGlzIGUtbWFpbCBpcyBzdHJpY3RseSBm
-b3JiaWRkZW4uDQo=
+--001a11476f14a7a83a051c03caaf
+Content-Type: text/plain; charset=UTF-8
 
+On 29 July 2015 at 14:42, Laurent Joli <l.joli@expemb.com> wrote:
+
+> | Must specify package names on the command line
+>
+
+Looks like you forgot to tell pkgconfig what you are looking for
+(libxml-2.0).
+
+Ross
+
+--001a11476f14a7a83a051c03caaf
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 29 July 2015 at 14:42, Laurent Joli <span dir=3D"ltr">&lt;<a href=3D"mai=
+lto:l.joli@expemb.com" target=3D"_blank">l.joli@expemb.com</a>&gt;</span> w=
+rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
+r-left:1px #ccc solid;padding-left:1ex"><span class=3D"">| Must specify pac=
+kage names on the command line<br></span></blockquote></div><br>Looks like =
+you forgot to tell pkgconfig what you are looking for (libxml-2.0).</div><d=
+iv class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></d=
+iv>
+
+--001a11476f14a7a83a051c03caaf--
