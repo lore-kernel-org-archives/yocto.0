@@ -1,53 +1,36 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <roosembert.palacios@epfl.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 438B5E009E4; Wed, 29 Jul 2015 07:47:01 -0700 (PDT)
+	id 27A2DE00A4C; Wed, 29 Jul 2015 09:01:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.182 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [128.178.224.219 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qk0-f182.google.com (mail-qk0-f182.google.com
-	[209.85.220.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 906E3E0096A
-	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 07:46:53 -0700 (PDT)
-Received: by qkdg63 with SMTP id g63so5501311qkd.0
-	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 07:46:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=vqchaJAj2nEHtdBPh3SwQZAlEbdMDPWQk5rn07mpf/U=;
-	b=TifgBz7yCznH1WgtXGwhWhkZ92gYCk131yceyXH41cPRGoaJYQi5F8r0HSN8RIvJEf
-	QBNvms0VvTWIcLyc0Omh/NGcNgbSJ419ElaHmLDSliN3IbP+1Id6qNAzWu9QecVudtHM
-	En0WeuHGLmBoPYGptqwseE9PEcr5kmWXecLz8pEVVhS01kcA0tjZ832MAYoNLTbX1QgE
-	rlByHwZpvKKSmofzH5MdN+gkplu3CV4bZgpr6QTu66vVJ1gAkCDO9cCgS4omTKb0l8KP
-	kHtydTApAoY9Y6BYDy/F13BEqvcGEwuvdUUrzZQhxFa05FJo4krgQLd3Utg/MFHMjWku
-	uvOg==
-X-Gm-Message-State: ALoCoQmQiU71AGEycUPmFzFuqzBQHAbBgK2NSOk8fpDPlN/dZ8+uqNz3X8LdTMO/bNGq+mK17cG0
-X-Received: by 10.55.43.95 with SMTP id r92mr60503832qkh.67.1438181213253;
-	Wed, 29 Jul 2015 07:46:53 -0700 (PDT)
+Received: from smtp4.epfl.ch (smtp4.epfl.ch [128.178.224.219])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 296E5E009E4
+	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 09:01:51 -0700 (PDT)
+Received: (qmail 30188 invoked by uid 107); 29 Jul 2015 16:01:47 -0000
+X-Virus-Scanned: ClamAV
+Received: from domosafety1.epfl.ch (HELO [172.21.93.129]) (128.179.67.139)
+	(TLS, DHE-RSA-AES256-SHA cipher) (authenticated)
+	by smtp4.epfl.ch (AngelmatoPhylax SMTP proxy) with ESMTPSA;
+	Wed, 29 Jul 2015 18:01:47 +0200
+Message-ID: <55B8F8EA.4050805@epfl.ch>
+Date: Wed, 29 Jul 2015 18:01:46 +0200
+From: Roosemberth Palacios <roosembert.palacios@epfl.ch>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-Received: by 10.140.102.195 with HTTP; Wed, 29 Jul 2015 07:46:33 -0700 (PDT)
-In-Reply-To: <CAJtzDg9GNXGq71w8znmQHY_uzXoOcuBEeuC-=7FU2OJGukU6RQ@mail.gmail.com>
-References: <CAJtzDg8b-JtqeAtbCBckq+pQDahetrhWB8DeE_XXAv5vQBdcWg@mail.gmail.com>
-	<55B8D37A.6020308@mlbassoc.com>
-	<CAJtzDg_BE_+hxYu9jNHUQW3gxme6Ay95NENjA=R6ufj+w9LfCw@mail.gmail.com>
-	<55B8D76A.1090507@mlbassoc.com>
-	<CAJtzDg864mgz4668FceX4ov5Uu8VxeGKh4tc1ERXq7wXQz06bQ@mail.gmail.com>
-	<CAJTo0Lb=VpuK8UOQMdr7YkaNH-SHsBfRXa8z7Jq9SXARBDmWsQ@mail.gmail.com>
-	<CAJtzDg9GNXGq71w8znmQHY_uzXoOcuBEeuC-=7FU2OJGukU6RQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 29 Jul 2015 15:46:33 +0100
-Message-ID: <CAJTo0LbquzF2Rif1q-vxyt9HJHFgUDcUkOrBL5xh5_7VYe2-WA@mail.gmail.com>
-To: Laurent Joli <l.joli@expemb.com>
-Cc: yocto <yocto@yoctoproject.org>, Gary Thomas <gary@mlbassoc.com>
-Subject: Re: [Asterisk] recipe 13.1.1
+To: yocto@yoctoproject.org
+References: <55B8F4CA.1080603@epfl.ch>
+In-Reply-To: <55B8F4CA.1080603@epfl.ch>
+X-Forwarded-Message-Id: <55B8F4CA.1080603@epfl.ch>
+Subject: [OpenEmbedded] [Arago] - "kernel-devicetree" Cannot build Runtime dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,45 +42,251 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Jul 2015 14:47:01 -0000
-Content-Type: multipart/alternative; boundary=001a1147b8dc56c069051c04a825
+X-List-Received-Date: Wed, 29 Jul 2015 16:01:56 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---001a1147b8dc56c069051c04a825
-Content-Type: text/plain; charset=UTF-8
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
 
-On 29 July 2015 at 15:40, Laurent Joli <l.joli@expemb.com> wrote:
+Hello, I'm working on a custom image for ti's am335x chip. Still, I
+try to build my image, but at the end I get
 
-> But How can do that in my configure file of asterisk ?
->
+[...]
+| Collected errors:
+|  * satisfy_dependencies_for: Cannot satisfy the following
+dependencies for domosafety-userspace-1.0:
+|  *    kernel-devicetree *     kernel-devicetree *
+|  * opkg_install_cmd: Cannot install package domosafety-userspace-1.0.
+[...]
 
-If that is a proper autoconf configure script then remove your
-do_configure() task and just inherit autotools.  You'll also want to
-inherit pkgconfig.
+I'm using a custom kernel which was provided by the hardware
+manufacturer. I was able to build {MACHINE="CBoxNAND.conf" bitbake
+custom-base-image} (from TI's Sitiara Linux Training:
+http://processors.wiki.ti.com/index.php/Sitara_Linux_Training:_Getting_Started_with_Openembedded)
 
-http://people.freedesktop.org/~dbn/pkg-config-guide.html#using shows how to
-use pkgconfig, as you're invoking it from a configure script you can use
-the macros at the end of that chapter (PKG_CHECK_MODULES, normally).
+Then, we just replaced the kernel source by the hw manufacturer's one
+(note the .tar as the kernel source). Device tree is in the good place
+in the kernel sources (arch/arm/boot/dts/cbox-NAND.dt{s,b}). But still
+I can't manage to build. I had to copy paste the "linux-dtb.inc" at
+the end of the recipe as it wasn't getting loaded (why?). And I
+changed from do_install_append to do_compile_kernelmodules_append in
+order that code to run.
 
-Ross
+build command:
+MACHINE="CBoxNAND" bitbake core-image-domosafety -DDD | tee
+/tmp/logCBoxNAND.core-image-domosafety
 
---001a1147b8dc56c069051c04a825
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+The complete log file is at: http://www.pasteall.org/59962
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On 29 July 2015 at 15:40, Laurent Joli <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:l.joli@expemb.com" target=3D"_blank">l.joli@expemb.com</a>&gt;</span> w=
-rote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;borde=
-r-left:1px #ccc solid;padding-left:1ex"><div>But How can do that in my conf=
-igure file of asterisk ?<br></div></blockquote></div><br>If that is a prope=
-r autoconf configure script then remove your do_configure() task and just i=
-nherit autotools.=C2=A0 You&#39;ll also want to inherit pkgconfig.</div><di=
-v class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><a href=3D"htt=
-p://people.freedesktop.org/~dbn/pkg-config-guide.html#using">http://people.=
-freedesktop.org/~dbn/pkg-config-guide.html#using</a> shows how to use pkgco=
-nfig, as you&#39;re invoking it from a configure script you can use the mac=
-ros at the end of that chapter (PKG_CHECK_MODULES, normally).<br></div><div=
- class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></div=
->
+I'll leave down here part of important files.
 
---001a1147b8dc56c069051c04a825--
+
+Best Regards!
+Roosembert Palacios
+
+- ---------- "conf/machine/CBoxNAND.conf"
+
+#@TYPE: Machine
+#@NAME: AM335x EVM
+#@DESCRIPTION: Machine configuration for Domosafety's CBox NAND Storage
+
+require conf/machine/include/ti33x.inc
+
+XSERVER = ""
+GUI_MACHINE_CLASS = ""
+MACHINE_FEATURES = "kernel26 apm usbhost vfat ext2 ethernet"
+IMAGE_FEATURES += "package-management"
+
+IMAGE_FSTYPES += "ubi tar.gz"
+
+SERIAL_CONSOLE = "115200 ttyO0"
+MKUBIFS_ARGS = "-F -m 2048 -e 131072 -c 3836"
+UBINIZE_ARGS = "-m 2048 -p 128KiB -s 512 -O 2048"
+
+PREFERRED_VERSION_linux-libc-headers_CBoxNAND = "3.2"
+PREFERRED_PROVIDER_virtual/kernel_CBoxNAND = "linux-domosafety"
+PREFERRED_PROVIDER_virtual/bootloader_CBoxNAND = "u-boot-domosafety"
+PREFERRED_PROVIDER_virtual/uenv_CBoxNAND = "uenv-domosafety-nand"
+PREFERRED_PROVIDER_kernel_CBoxNAND = "linux-domosafety"
+PREFERRED_PROVIDER_u-boot_CBoxNAND = "u-boot-domosafety"
+
+PREFERRED_PROVIDER_ltp-ddt_CBoxNAND = "ltp-ddt-legacy"
+PREFERRED_PROVIDER_virtual/gettext = "gettext"
+
+RDEPENDS_kernel-base += "kernel-devicetree"
+KERNEL_IMAGETYPE = "uImage"
+UBOOT_MACHINE="zigBeeBox_secured_config"
+
+
+- ---------- "recipes-core/images/core-image-domosafety_1.0.bb"
+DESCRIPTION = "DomoSafety Image"
+export IMAGE_BASENAME = "core-image-domosafety"
+
+# IMAGE_INSTALL += "domosafety-BareImage"
+IMAGE_INSTALL = "domosafety-userspace-1.0 packagegroup-core-boot
+${ROOTFS_PKGMANAGE_BOOTSTRAP} ${CORE_IMAGE_EXTRA_INSTALL}"
+IMAGE_LINGUAS = " "
+LICENSE = "MIT"
+
+IMAGE_ROOTFS_SIZE = "524288"
+IMAGE_FEATURES += " ssh-server-openssh package-management "
+
+inherit core-image
+
+
+- ---------- "linux-domosafety_3.13.43.bb" ----------------
+
+LICENSE = "GPLv2"
+KERNEL_IMAGETYPE = "uImage"
+LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
+COMPATIBLE_MACHINE = "CBoxNAND"
+KERNEL_DEVICETREE = "cbox-NAND.dts"
+
+DEFAULT_PREFERENCE = "1"
+
+inherit kernel
+# TI's
+require recipes-kernel/linux/setup-defconfig.inc
+
+# Pull in the devicetree files into the rootfs
+RDEPENDS_kernel-base += "kernel-devicetree"
+IMAGE_INSTALL_append = " kernel-image "
+INITRAMFS_IMAGE = "initramfs-cbox-normal"
+
+# Add a run-time dependency for the PM firmware to be installed on the
+target file system.
+RDEPENDS_kernel-base_append_CBoxNAND = " am33x-cm3"
+
+# Default is to package all dtb files for ti33x devices unless
+building for the specific beaglebone machine.
+KERNEL_DEVICETREE_CBoxNAND = "cbox-NAND.dts "
+
+S = "${WORKDIR}/linux-${PV}-am335x"
+B = "${S}"
+
+PR = "devel6"
+MACHINE_KERNEL_PR_append = "r+${PR}"
+
+EXTRA_OEMAKE_append += " LOADADDR=${UBOOT_ENTRYPOINT} "
+
+SRC_URI = " \
+        file://${PN}_${PV}/am335x-pm-firmware.bin;name=pm-firmware \
+        file://${PN}_${PV}/cbox-domosafety.defconfig;name=kconfig \
+        file://${PN}_${PV}/linux-${PV}-am335x.tar;name=kernel \
+"
+
+SRC_URI[kernel.md5sum] = "3d5b4539183a0f4c7634ff728ec61707"
+SRC_URI[pm-firmware.md5sum] = "c571cf09f994d5fd8750338618cafa0b"
+SRC_URI[kconfig.md5sum] = "22be214b4fd6ffa8d2da6a4b895d722a"
+
+do_fetch_append() {
+os.system("cp ${WORKDIR}/${PN}_${PV}/am335x-pm-firmware.bin ${S}/
+2>>${WORKDIR}/Failure ")
+os.system("cp ${WORKDIR}/${PN}_${PV}/cbox-domosafety.defconfig
+${WORKDIR}/defconfig 2>>${WORKDIR}/Failure ")
+os.system("tree $(WORKDIR) -L 3 &>>${WORKDIR}/Failure")
+}
+
+do_configure_append() {
+    cp "${DEPLOY_DIR_IMAGE}/${INITRAMFS_IMAGE}-${MACHINE}.cpio.lzma"
+${S}/initramfs.cpio.lzma
+}
+
+pkg_postinst_kernel-image() {
+if [ "x$D" = "x" ]; then
+    /usr/sbin/flash_erase /dev/mtd2 0 0
+    /bin/dd if=/boot/uImage of=/dev/mtd2 bs=131072 conv=sync
+fi
+update-alternatives --install /${KERNEL_IMAGEDEST}/${KERNEL_IMAGETYPE}
+${KERNEL_IMAGETYPE} ${KERNEL_IMAGETYPE}-${KERNEL_VERSION}
+${KERNEL_PRIORITY} || true
+if [ ! -e "$D/lib/modules/${KERNEL_VERSION}" ]; then
+        mkdir -p $D/lib/modules/${KERNEL_VERSION}
+fi
+if [ -n "$D" ]; then
+        depmodwrapper -a -b $D ${KERNEL_VERSION}
+else
+        depmod -a ${KERNEL_VERSION}
+fi
+}
+
+pkg_postrm_kernel-image () {
+        update-alternatives --remove ${KERNEL_IMAGETYPE}
+${KERNEL_IMAGETYPE}-${KERNEL_VERSION} || true
+}
+
+pkg_postinst_kernel-devicetree() {
+cd /${KERNEL_IMAGEDEST}; update-alternatives --install
+/${KERNEL_IMAGEDEST}/${MACHINE}.dtb devicetree
+devicetree-uImage-cbox-NAND.dtb ${KERNEL_PRIORITY} || true
+if [ "x$D" = "x" ]; then
+    /usr/sbin/flash_erase /dev/mtd1 0 0
+    /bin/dd if=/boot/devicetree-uImage-cbox-NAND.dtb of=/dev/mtd1
+bs=131072 conv=sync
+fi
+}
+
+pkg_postrm_kernel-devicetree() {
+cd /${KERNEL_IMAGEDEST}; update-alternatives --remove devicetree
+devicetree-${KERNEL_VERSION} || true
+}
+
+# Support for device tree generation
+FILES_kernel-devicetree = "/boot/devicetree*"
+KERNEL_DEVICETREE_FLAGS = "-R 8 -p 0x3000"
+
+PACKAGES += " kernel-devicetree "
+DEPENDS_append = " dtc-native "
+
+#python __anonymous () {
+#    devicetree = d.getVar("KERNEL_DEVICETREE", True) or ''
+#    if devicetree:
+#        depends = d.getVar("DEPENDS", True)
+#        d.setVar("DEPENDS", "%s dtc-native" % depends)
+#        packages = d.getVar("PACKAGES", True)
+#}
+
+#pkg_preinst_kernel-image_append() {
+do_compile_kernelmodules_append(){
+#        echo "linux-dtb[ds-pkg_prinst_kernel-image_append]:
+Processing Device Trees..." > /tmp/log
+        echo "linux-dtb[ds.do_compile_kernelmodules_append]:
+Processing Device Trees..." > /tmp/log
+        if test -n "${KERNEL_DEVICETREE}"; then
+                for DTS_FILE in ${KERNEL_DEVICETREE}; do
+                        echo "Processing ${DTS_FILE}" >> /tmp/log
+                        if [ ! -f ${DTS_FILE} ]; then
+                                echo "Warning: ${DTS_FILE} is not
+available!"
+                                continue
+                        fi
+                        DTS_BASE_NAME=`basename ${DTS_FILE} | awk -F
+"." '{print $1}'`
+                        DTB_NAME=`echo ${KERNEL_IMAGE_BASE_NAME} | sed
+"s/${MACHINE}/${DTS_BASE_NAME}/g"`
+                        DTB_SYMLINK_NAME=`echo
+${KERNEL_IMAGE_SYMLINK_NAME} | sed "s/${MACHINE}/${DTS_BASE_NAME}/g"`
+                        dtc -I dts -O dtb ${KERNEL_DEVICETREE_FLAGS}
+- -o ${DTS_BASE_NAME} ${DTS_FILE}
+                        install -m 0644 ${DTS_BASE_NAME}
+${D}/boot/devicetree-${DTB_SYMLINK_NAME}.dtb
+                done
+        fi
+        echo "linux-dtb[]: end processing Device Trees..."
+}
+
+- -------------------------------------------------------------
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iQEcBAEBAgAGBQJVuPjqAAoJEMqq7OXCJCu3Du8IAI7I7I7WRnRkywH8mCUjqF8P
+YY9qF8gWQWXeXMfQxhxT0yAsO/OUWeUIXLiFcpjrUfTU6OMvf61TP1u6AXI0m1cO
+8NmQtsi7izQUbK1vgskn7Msf4DgyXfNYav9zklWW9mLPP4N3/+wRAir8LntURMUM
+y/9kJQNKjAjfT5zeZU5Ce8gV/jvu0Fe+4UyQ8jqctR+96wdlpucUNsyrcoNOQt6Q
+qZFIwr/fM0wqGEyZgjsomz0rvpvnneFGT9W62hBrRYRTmGW/M+ZyFSpI18lxra35
+E0FEOD0B5jFekvU3tmhuuIYxij7jFOA9Fk4QG0zB8/vd7Tg/9fZYQsf6FnVYqgw=
+=+TL3
+-----END PGP SIGNATURE-----
+
