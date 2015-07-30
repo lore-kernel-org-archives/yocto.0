@@ -1,47 +1,58 @@
-Return-Path: <philip@balister.org>
+Return-Path: <develone@sbcglobal.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9366EE00B18; Thu, 30 Jul 2015 11:21:07 -0700 (PDT)
+	id 737B8E00B18; Thu, 30 Jul 2015 12:08:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [216.168.135.166 listed in list.dnswl.org]
+	*      [98.138.91.181 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 38C87E00A6C
-	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 11:20:58 -0700 (PDT)
-Received: (qmail 16401 invoked by uid 1003); 30 Jul 2015 18:20:57 -0000
-Received: from unknown (HELO ?192.168.11.121?)
-	(philip@opensdr.com@71.171.15.180)
-	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
-	30 Jul 2015 18:20:57 -0000
-To: Khem Raj <raj.khem@gmail.com>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <2238EDC6081C944E97E4EE915AE5CBEC5476A872@EXCHANGE-B.raylase.de>
-	<81e2e36e8df04c9584ea5a9ca8afa303@googlemail.com>
-	<2238EDC6081C944E97E4EE915AE5CBEC5476EED6@EXCHANGE-B.raylase.de>
-	<7861693.hW9MCO2lEF@peggleto-mobl.ger.corp.intel.com>
-	<CAMKF1soKnb5LR7pkiXW2=o0hjA4iVx_803yO3P=2vEc_85Y0gQ@mail.gmail.com>
-From: Philip Balister <philip@balister.org>
-Message-ID: <55BA6B07.3070905@balister.org>
-Date: Thu, 30 Jul 2015 14:20:55 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.1.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm21-vm4.bullet.mail.ne1.yahoo.com
+	(nm21-vm4.bullet.mail.ne1.yahoo.com [98.138.91.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF157E00A6C
+	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 12:08:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
+	t=1438283316; bh=AlUUja53N6mVaRKT3k2cN8BvhhfqQGG6pfB5HAMLutI=;
+	h=Date:From:Reply-To:To:Subject:From:Subject;
+	b=n/W0zu0d2fay+KF0K3kpvHEhgnWC3GHrnNfcVqJi+zALKK+8LnMH44j7aqcLULZdsJNXsQrNH82X68pb/pb2e7tQ4d2+pqOEMTQj7Y+BU7ZCE+7m5brIK67WPD3IQim42IyrRwJlw3fa9MIDc2HQk90XruvQR/D0puMkVDXD3dk2kxaf3EJf6lVusbBUTQIzJyIcZIYw9QoD2XxzrAvyscxpYj6zdk47dyhRf9gYAD3flYaxdDuvT1GYZZjufzk4kbl7q3YWPrwi85E0u7OknhoknhZa1euqjwiS9/OFAwp7zIZfgmS36GmOnd5m5GI51ouH221U3JP8b6r+EJ3jVA==
+Received: from [98.138.226.177] by nm21.bullet.mail.ne1.yahoo.com with NNFMP;
+	30 Jul 2015 19:08:36 -0000
+Received: from [98.138.89.246] by tm12.bullet.mail.ne1.yahoo.com with NNFMP;
+	30 Jul 2015 19:08:36 -0000
+Received: from [127.0.0.1] by omp1060.mail.ne1.yahoo.com with NNFMP;
+	30 Jul 2015 19:08:36 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 157701.26766.bm@omp1060.mail.ne1.yahoo.com
+X-YMail-OSG: ZOqvaLgVM1l7tZAiiOc6TRSP2wpuCykGgmjpEWVaXiEn_yDhihx1_CaSZNb85FU
+	LIuDuMivNYrAUKRzigJbb1RwtbtTuX.fi9CluL8ZVggi9uncheWCcYbpHzy2Nln266Ufv1hgkNcX
+	UOoB7griSD76uiphvufVRT0FS4yzqCSTSfDD1ieWCp2TpOCvvsigIfYiV2Len46PuwNTUlQDBmqn
+	jEwwgWoCEzjgTExNKDBIFJ5UkbKaoOtTS7YDFcdflFW_q36jfVJQ9kutBYXntm4D_DscKkjFUd_G
+	wFLYmpUHusZWYp7jmZUdJ2p_9BOYUvyvE05P4b5Cgl5t4Vj2h0UIJtOkSEemdIAnptIER8JnKkGV
+	gScokeTmwTEI7f.UyzJfGEKlAYP5UlfP4QXBwPUdW3EQTKPPeCctgiqIJr3pxteuDhOpDTXf_Zzn
+	E_CTqoD5WsRkWv9rd_E0LFW_eeecF9syP5JDe6dVSA5wzDT3iSpc7G27avAHTz1ulB408YjiiGuO
+	3nO8AZWnkK2zvHv.E6.wcejPdr1TgJ1Ng3M_iVcIo70WBcfz2fgPWUcFmLXCRvSc-
+Received: by 98.138.105.224; Thu, 30 Jul 2015 19:08:35 +0000 
+Date: Thu, 30 Jul 2015 19:08:20 +0000 (UTC)
+From: Edward Vidal <develone@sbcglobal.net>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <2129998261.5367168.1438283300331.JavaMail.yahoo@mail.yahoo.com>
 MIME-Version: 1.0
-In-Reply-To: <CAMKF1soKnb5LR7pkiXW2=o0hjA4iVx_803yO3P=2vEc_85Y0gQ@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Dalon Westergreen <dwesterg@gmail.com>,
-	Yves Vandervennet <yvanderv@opensource.altera.com>,
-	"rfi@lists.rocketboards.org" <rfi@lists.rocketboards.org>,
-	"enak999@googlemail.com" <enak999@googlemail.com>
-Subject: Re: Which repo for meta-altera ?
+Subject: recipe md5sum and sha256sum changing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Edward Vidal <develone@sbcglobal.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -50,203 +61,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jul 2015 18:21:07 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 30 Jul 2015 19:08:40 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_5367167_931485845.1438283300328"
 
-On 07/30/2015 01:02 PM, Khem Raj wrote:
-> On Thu, Jul 30, 2015 at 12:50 AM, Paul Eggleton
-> <paul.eggleton@linux.intel.com> wrote:
->> (Adding Khem and Yves, the maintainers of the github repo, to CC)
->>
->> In the interests of keeping the layer index accurate, can we get some
->> clarification on which repo is the official BSP?
-> 
-> Please use github.com/kraj/meta-altera as mentioned in layerindex as
-> well. This is the community supported BSP
+------=_Part_5367167_931485845.1438283300328
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-What are the differences, shouldn't th ecommunity send in updates to the
-vendor BSP?
+Hello All,
+I used the following to create a recipe.
 
-Philip
+=C2=A0recipetool create=C2=A0 -o /home/vidal/wkg/yocto/myhdl_recipe/poky/me=
+ta/recipes-devtools/python/python-myhdl_1.0.0.bb=C2=A0 https://github.com/j=
+andecaluwe/myhdl.git
 
+This provided the following:
+LICENSE =3D "CLOSED"
+LIC_FILES_CHKSUM =3D ""
 
-> 
->>
->> Thanks,
->> Paul
->>
->> On Thursday 30 July 2015 06:52:22 Spriggs, Jim wrote:
->>> Hi Kevin,
->>>
->>> Rodger, got it this time – I had indeed missed the clue about the
->>> maintainers.
->>
->>> I should RTFM more often….
->>>
->>> Many thanks for your help and patience ☺.
->>> --
->>> jim
->>>
->>> Von: enak999@googlemail.com [mailto:enak999@googlemail.com]
->>> Gesendet: Mittwoch, 29. Juli 2015 22:37
->>> An: Dalon Westergreen <dwesterg@gmail.com>; Spriggs, Jim
->>> <J.Spriggs@raylase.de>; Alex J Lennon <ajlennon@dynamicdevices.co.uk>
->>  Cc:
->>> yocto@yoctoproject.org; rfi@lists.rocketboards.org
->>> Betreff: Re: [yocto] Which repo for meta-altera ?
->>>
->>> As you can read in the ReadMe.md Khem Raj and Yves Vandervennet are the
->>> official maintainers of
->>> github.com/altera-opensource/meta-altera<http://github.com/altera-opensourc
->>> e/meta-altera>
->>
->>> I really recommend to use
->>> github.com/altera-opensource/meta-altera<http://github.com/altera-opensourc
->>> e/meta-altera> instead of the fork from Khem Raj. But since you use the fork
->>> of one of the maintainers, it will probably be most of the time in synch
->>> with the altera-opensource repository.
->>
->>> Von: Dalon Westergreen<mailto:dwesterg@gmail.com>
->>> Gesendet: ‎Mittwoch‎, ‎29‎. ‎Juli‎ ‎2015 ‎21‎:‎54
->>> An: Spriggs, Jim<mailto:J.Spriggs@raylase.de>, Alex J
->>> Lennon<mailto:ajlennon@dynamicdevices.co.uk>, Kevin
->>> B.<mailto:enak999@googlemail.com>
->>  Cc:
->>> yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>,
->>> rfi@lists.rocketboards.org<mailto:rfi@lists.rocketboards.org>
->>> As far as I understand it Altera only maintains the one repo.
->>> On July 29, 2015 6:44:23 AM PDT, "Spriggs, Jim"
->>> <J.Spriggs@raylase.de<mailto:J.Spriggs@raylase.de>> wrote:
->>
->>> Hi Alex, Dalon, Kevin, Lists
->>>
->>> hmmm, so I guess I'm still confused (sorry).
->>>
->>> Alex recommends going via the "official" oe layers index, which currently
->>> links directly to
->>> github.com/kraj/meta-altera<http://github.com/kraj/meta-altera>.
->>
->>> Kevin and Dalon hold out for
->>> github.com/altera-opensource/meta-altera<http://github.com/altera-opensourc
->>> e/meta-altera>, and Dalon specifically says "... and repos under any user
->>> name in github are forks".
->>
->>> So is there an official ;-) dichotomy between altera and oe?
->>>
->>> Thanks for listening...
->>> --
->>> jim
->>>
->>>
->>> -----Ursprüngliche Nachricht-----
->>> Von: Alex J Lennon [mailto:ajlennon@dynamicdevices.co.uk]
->>> Gesendet: Mittwoch, 29. Juli 2015 15:10
->>> An: Spriggs, Jim <J.Spriggs@raylase.de<mailto:J.Spriggs@raylase.de>>
->>> Cc: yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
->>> Betreff: Re: [yocto] Which repo for meta-altera ?
->>>
->>>
->>>
->>> On 28/07/2015 10:10, Spriggs, Jim
->>>
->>> wrote:
->>>
->>>  Hi Guys; confused noob here...
->>>
->>>  There appear to be (at least) two "official" repos for meta-altera:
->>>
->>>          github.com/kraj/meta-altera<http://github.com/kraj/meta-altera>
->>>
->>>  and
->>>
->>>
->>> git.rocketboards.org/meta-altera.git<http://git.rocketboards.org/meta-alter
->>> a.git>
->>
->>>
->>>  So how should I choose between them?
->>>
->>>  Thanks!
->>>  --
->>>  Jim
->>>
->>>  Sorry about the company sig.: I can't switch it off.
->>>
->>>
->>> fwiw I would usually start with the official index
->>>
->>> http://layers.openembedded.org/layerindex/branch/master/layers/
->>>
->>> This seems to point to github
->>>
->>> Cheers, Alex
->>>
->>>
->>> ________________________________
->>>
->>>
->>> RAYLASE AG
->>> Argelsrieder Feld 2+4
->>> 82234 Wessling
->>> Germany
->>> Tel.: +49-(0)8153/88 98-0
->>> Fax: +49-(0)8153/88 98-10
->>> http://www.raylase.de
->>>
->>> District Court Munich, HRB 131450
->>>
->>> Board: Peter von Jan (CEO)
->>>
->>> Supervisory Board: Dr. Ulrich Lohmann (Chairman)
->>>
->>>
->>> Diese E-Mail enthält vertrauliche und/oder rechtlich geschützte
->>> Informationen. Wenn Sie nicht der richtige Adressat sind oder diese E-Mail
->>> irrtümlich erhalten haben, informieren Sie bitte sofort den Absender und
->>> vernichten Sie diese Mail. Das unerlaubte Kopieren sowie die unbefugte
->>> Weitergabe dieser Mail ist nicht gestattet.
->>
->>> This e-mail may contain confidential and/or privileged information. If you
->>> are not the intended recipient (or have received this e-mail in error)
->>> please notify the sender immediately and destroy this e-mail. Any
->>> unauthorized copying, disclosure or distribution of the material in this
->>> e-mail is strictly forbidden.
->>
->>> --
->>> Sent from my Android device with K-9 Mail. Please excuse my brevity.
->>>
->>> ________________________________
->>>
->>> RAYLASE AG
->>> Argelsrieder Feld 2+4
->>> 82234 Wessling
->>> Germany
->>> Tel.: +49-(0)8153/88 98-0
->>> Fax: +49-(0)8153/88 98-10
->>> http://www.raylase.de
->>>
->>> District Court Munich, HRB 131450
->>>
->>> Board: Peter von Jan (CEO)
->>>
->>> Supervisory Board: Dr. Ulrich Lohmann (Chairman)
->>>
->>>
->>> Diese E-Mail enthält vertrauliche und/oder rechtlich geschützte
->>> Informationen. Wenn Sie nicht der richtige Adressat sind oder diese E-Mail
->>> irrtümlich erhalten haben, informieren Sie bitte sofort den Absender und
->>> vernichten Sie diese Mail. Das unerlaubte Kopieren sowie die unbefugte
->>> Weitergabe dieser Mail ist nicht gestattet.
->>
->>> This e-mail may contain confidential and/or privileged information. If you
->>> are not the intended recipient (or have received this e-mail in error)
->>> please notify the sender immediately and destroy this e-mail. Any
->>> unauthorized copying, disclosure or distribution of the material in this
->>> e-mail is strictly forbidden.
->>
->> --
->>
->> Paul Eggleton
->> Intel Open Source Technology Centre
+SRC_URI =3D "https://github.com/jandecaluwe/myhdl.git"
+SRC_URI[md5sum] =3D "6f56a9bcbd03a9c8036f87f32f9adc47"
+SRC_URI[sha256sum] =3D "7766c49947c6574c8fb35d0dfcd795ada1e4e457ab5b15499d7=
+000909b8e46e9"
 
+When I run bitbake python-mydhl
+the md5sum and sha256sum change everytime I run the command.
+
+WARNING: Renaming /home/vidal/wkg/yocto/myhdl_recipe/poky/build/downloads/m=
+yhdl.git to /home/vidal/wkg/yocto/myhdl_recipe/poky/build/downloads/myhdl.g=
+it_bad-checksum_a4b1db68cde5b996661caa6abce2cb45
+ERROR: Fetcher failure for URL: 'https://github.com/jandecaluwe/myhdl.git'.=
+ Checksum mismatch!
+File: '/home/vidal/wkg/yocto/myhdl_recipe/poky/build/downloads/myhdl.git' h=
+as md5 checksum a4b1db68cde5b996661caa6abce2cb45 when 6f56a9bcbd03a9c8036f8=
+7f32f9adc47 was expected
+File: '/home/vidal/wkg/yocto/myhdl_recipe/poky/build/downloads/myhdl.git' h=
+as sha256 checksum dc35dc44e0a480097eb1c4dd3df739396e96c8d7648bd9b9d347d02d=
+34bbcd01 when 7766c49947c6574c8fb35d0dfcd795ada1e4e457ab5b15499d7000909b8e4=
+6e9 was expected
+If this change is expected (e.g. you have upgraded to a new version without=
+ updating the checksums) then you can use these lines within the recipe:
+SRC_URI[md5sum] =3D "a4b1db68cde5b996661caa6abce2cb45"
+SRC_URI[sha256sum] =3D "dc35dc44e0a480097eb1c4dd3df739396e96c8d7648bd9b9d34=
+7d02d34bbcd01"
+Otherwise you should retry the download and/or check with upstream to deter=
+mine if the file has become corrupted or otherwise unexpectedly modified.
+
+ERROR: Function failed: Fetcher failure for URL: 'https://github.com/jandec=
+aluwe/myhdl.git'. Unable to fetch URL from any source.
+ERROR: Logfile of failure stored in: /home/vidal/wkg/yocto/myhdl_recipe/pok=
+y/build/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/python-myhdl/=
+1.0.0-r0/temp/log.do_fetch.6277
+ERROR: Task 4 (/home/vidal/wkg/yocto/myhdl_recipe/poky/meta/recipes-devtool=
+s/python/python-myhdl_1.0.0.bb, do_fetch) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 421 tasks of which 413 didn't need to be rer=
+un and 1 failed.
+Waiting for 0 running tasks to finish:
+
+Summary: 1 task failed:
+=C2=A0 /home/vidal/wkg/yocto/myhdl_recipe/poky/meta/recipes-devtools/python=
+/python-myhdl_1.0.0.bb, do_fetch
+Summary: There were 3 WARNING messages shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+
+Thanks in advance=C2=A0Edward Vidal Jr.
+e-mail develone@sbcglobal.net
+915-595-1613
+
+------=_Part_5367167_931485845.1438283300328
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
+nt-size:16px"><div dir=3D"ltr" id=3D"yui_3_16_0_1_1438267597908_21288"><spa=
+n>Hello All,<br class=3D"">I used the following to create a recipe.<br clas=
+s=3D""><br class=3D"">&nbsp;recipetool create&nbsp; -o /home/vidal/wkg/yoct=
+o/myhdl_recipe/poky/meta/recipes-devtools/python/python-myhdl_1.0.0.bb&nbsp=
+; https://github.com/jandecaluwe/myhdl.git<br class=3D""><br class=3D"">Thi=
+s provided the following:<br class=3D"">LICENSE =3D "CLOSED"<br class=3D"">=
+LIC_FILES_CHKSUM =3D ""<br class=3D""><br class=3D"">SRC_URI =3D "https://g=
+ithub.com/jandecaluwe/myhdl.git"<br class=3D"">SRC_URI[md5sum] =3D "6f56a9b=
+cbd03a9c8036f87f32f9adc47"<br class=3D"">SRC_URI[sha256sum] =3D "7766c49947=
+c6574c8fb35d0dfcd795ada1e4e457ab5b15499d7000909b8e46e9"<br class=3D""><br c=
+lass=3D"">When I run bitbake python-mydhl<br class=3D"">the md5sum and sha2=
+56sum change everytime I run the command.<br class=3D""><br class=3D"">WARN=
+ING: Renaming /home/vidal/wkg/yocto/myhdl_recipe/poky/build/downloads/myhdl=
+.git to /home/vidal/wkg/yocto/myhdl_recipe/poky/build/downloads/myhdl.git_b=
+ad-checksum_a4b1db68cde5b996661caa6abce2cb45<br class=3D"">ERROR: Fetcher f=
+ailure for URL: 'https://github.com/jandecaluwe/myhdl.git'. Checksum mismat=
+ch!<br class=3D"">File: '/home/vidal/wkg/yocto/myhdl_recipe/poky/build/down=
+loads/myhdl.git' has md5 checksum a4b1db68cde5b996661caa6abce2cb45 when 6f5=
+6a9bcbd03a9c8036f87f32f9adc47 was expected<br class=3D"">File: '/home/vidal=
+/wkg/yocto/myhdl_recipe/poky/build/downloads/myhdl.git' has sha256 checksum=
+ dc35dc44e0a480097eb1c4dd3df739396e96c8d7648bd9b9d347d02d34bbcd01 when 7766=
+c49947c6574c8fb35d0dfcd795ada1e4e457ab5b15499d7000909b8e46e9 was expected<b=
+r class=3D"">If this change is expected (e.g. you have upgraded to a new ve=
+rsion without updating the checksums) then you can use these lines within t=
+he recipe:<br class=3D"">SRC_URI[md5sum] =3D "a4b1db68cde5b996661caa6abce2c=
+b45"<br class=3D"">SRC_URI[sha256sum] =3D "dc35dc44e0a480097eb1c4dd3df73939=
+6e96c8d7648bd9b9d347d02d34bbcd01"<br class=3D"">Otherwise you should retry =
+the download and/or check with upstream to determine if the file has become=
+ corrupted or otherwise unexpectedly modified.<br class=3D""><br class=3D""=
+>ERROR: Function failed: Fetcher failure for URL: 'https://github.com/jande=
+caluwe/myhdl.git'. Unable to fetch URL from any source.<br class=3D"">ERROR=
+: Logfile of failure stored in: /home/vidal/wkg/yocto/myhdl_recipe/poky/bui=
+ld/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/python-myhdl/1.0.0=
+-r0/temp/log.do_fetch.6277<br class=3D"">ERROR: Task 4 (/home/vidal/wkg/yoc=
+to/myhdl_recipe/poky/meta/recipes-devtools/python/python-myhdl_1.0.0.bb, do=
+_fetch) failed with exit code '1'<br class=3D"">NOTE: Tasks Summary: Attemp=
+ted 421 tasks of which 413 didn't need to be rerun and 1 failed.<br class=
+=3D"">Waiting for 0 running tasks to finish:<br class=3D""><br class=3D"">S=
+ummary: 1 task failed:<br class=3D"">&nbsp; /home/vidal/wkg/yocto/myhdl_rec=
+ipe/poky/meta/recipes-devtools/python/python-myhdl_1.0.0.bb, do_fetch<br cl=
+ass=3D"">Summary: There were 3 WARNING messages shown.<br class=3D"">Summar=
+y: There were 2 ERROR messages shown, returning a non-zero exit code.<br cl=
+ass=3D""><br class=3D"">Thanks in advance</span></div><div>&nbsp;</div><div=
+><div>Edward Vidal Jr.<br>e-mail develone@sbcglobal.net<br>915-595-1613</di=
+v></div></div></body></html>
+
+------=_Part_5367167_931485845.1438283300328--
