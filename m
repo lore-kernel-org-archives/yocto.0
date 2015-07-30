@@ -1,54 +1,41 @@
-Return-Path: <J.Spriggs@raylase.de>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3C2D8E00A96; Wed, 29 Jul 2015 23:52:35 -0700 (PDT)
+	id 61CAFE00AAA; Thu, 30 Jul 2015 01:50:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	T_FILL_THIS_FORM_SHORT autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
-	*      information
-Received: from mail.raylase.de (mail.raylase.de [217.6.128.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7C2DE00A53
-	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 23:52:29 -0700 (PDT)
-Received: from mail.raylase.de (127.0.0.1) id hn74qu0171sq for
-	<yocto@yoctoproject.org>;
-	Thu, 30 Jul 2015 08:52:28 +0200 (envelope-from <J.Spriggs@raylase.de>)
-Received: from EXCHANGE-A.raylase.de ([192.168.1.16])
-	by mail.raylase.de (RAYLASE AG)
-	with ESMTPS (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256/256)
-	id 201507300652240044951; Thu, 30 Jul 2015 08:52:24 +0200
-Received: from EXCHANGE-B.raylase.de (192.168.2.12) by EXCHANGE-A.raylase.de
-	(192.168.1.16) with Microsoft SMTP Server (TLS) id 14.3.248.2;
-	Thu, 30 Jul 2015 08:52:24 +0200
-Received: from EXCHANGE-B.raylase.de ([fe80::3144:5b1b:13e0:ad49]) by
-	EXCHANGE-B.raylase.de ([fe80::3144:5b1b:13e0:ad49%14]) with mapi id
-	14.03.0248.002; Thu, 30 Jul 2015 08:52:23 +0200
-From: "Spriggs, Jim" <J.Spriggs@raylase.de>
-To: "enak999@googlemail.com" <enak999@googlemail.com>, Dalon Westergreen
-	<dwesterg@gmail.com>, Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-Thread-Topic: [yocto] Which repo for meta-altera ?
-Thread-Index: AdDJFHrk/r5V2qTtQ1K5KfDyaiXrhAA2q3CAAAS8GeAACWS2gAABdxAAABli92A=
-Date: Thu, 30 Jul 2015 06:52:22 +0000
-Message-ID: <2238EDC6081C944E97E4EE915AE5CBEC5476EED6@EXCHANGE-B.raylase.de>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7F99E00A7E
+	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 01:50:18 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by fmsmga102.fm.intel.com with ESMTP; 30 Jul 2015 01:50:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.15,576,1432623600"; d="scan'208";a="774348028"
+Received: from mjsmolax-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl.ger.corp.intel.com) ([10.252.8.11])
+	by orsmga002.jf.intel.com with ESMTP; 30 Jul 2015 01:50:16 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 30 Jul 2015 09:50:13 +0100
+Message-ID: <7861693.hW9MCO2lEF@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.9 (Linux/4.0.8-200.fc21.x86_64; KDE/4.14.9; x86_64; ; )
+In-Reply-To: <2238EDC6081C944E97E4EE915AE5CBEC5476EED6@EXCHANGE-B.raylase.de>
 References: <2238EDC6081C944E97E4EE915AE5CBEC5476A872@EXCHANGE-B.raylase.de>
-	<55B8D0BD.3050803@dynamicdevices.co.uk>
-	<2238EDC6081C944E97E4EE915AE5CBEC5476ECD3@EXCHANGE-B.raylase.de>,
-	<C90FACF2-BCAC-4B73-A0D2-07216FCACB09@gmail.com>
 	<81e2e36e8df04c9584ea5a9ca8afa303@googlemail.com>
-In-Reply-To: <81e2e36e8df04c9584ea5a9ca8afa303@googlemail.com>
-Accept-Language: en-GB, de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.2.109]
+	<2238EDC6081C944E97E4EE915AE5CBEC5476EED6@EXCHANGE-B.raylase.de>
 MIME-Version: 1.0
-X-Mlf-Version: 8.0.8.3655
-X-Mlf-UniqueId: o201507300652240044951
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"rfi@lists.rocketboards.org" <rfi@lists.rocketboards.org>
+Cc: Yves Vandervennet <yvanderv@opensource.altera.com>,
+	"rfi@lists.rocketboards.org" <rfi@lists.rocketboards.org>,
+	Dalon Westergreen <dwesterg@gmail.com>,
+	"enak999@googlemail.com" <enak999@googlemail.com>
 Subject: Re: Which repo for meta-altera ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -61,356 +48,217 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jul 2015 06:52:35 -0000
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_2238EDC6081C944E97E4EE915AE5CBEC5476EED6EXCHANGEBraylas_"
-
---_000_2238EDC6081C944E97E4EE915AE5CBEC5476EED6EXCHANGEBraylas_
+X-List-Received-Date: Thu, 30 Jul 2015 08:50:22 -0000
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 
-SGkgS2V2aW4sDQoNClJvZGdlciwgZ290IGl0IHRoaXMgdGltZSDigJMgSSBoYWQgaW5kZWVkIG1p
-c3NlZCB0aGUgY2x1ZSBhYm91dCB0aGUgbWFpbnRhaW5lcnMuDQoNCkkgc2hvdWxkIFJURk0gbW9y
-ZSBvZnRlbuKApi4NCg0KTWFueSB0aGFua3MgZm9yIHlvdXIgaGVscCBhbmQgcGF0aWVuY2Ug4pi6
-Lg0KLS0NCmppbQ0KDQpWb246IGVuYWs5OTlAZ29vZ2xlbWFpbC5jb20gW21haWx0bzplbmFrOTk5
-QGdvb2dsZW1haWwuY29tXQ0KR2VzZW5kZXQ6IE1pdHR3b2NoLCAyOS4gSnVsaSAyMDE1IDIyOjM3
-DQpBbjogRGFsb24gV2VzdGVyZ3JlZW4gPGR3ZXN0ZXJnQGdtYWlsLmNvbT47IFNwcmlnZ3MsIEpp
-bSA8Si5TcHJpZ2dzQHJheWxhc2UuZGU+OyBBbGV4IEogTGVubm9uIDxhamxlbm5vbkBkeW5hbWlj
-ZGV2aWNlcy5jby51az4NCkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnOyByZmlAbGlzdHMucm9j
-a2V0Ym9hcmRzLm9yZw0KQmV0cmVmZjogUmU6IFt5b2N0b10gV2hpY2ggcmVwbyBmb3IgbWV0YS1h
-bHRlcmEgPw0KDQpBcyB5b3UgY2FuIHJlYWQgaW4gdGhlIFJlYWRNZS5tZCBLaGVtIFJhaiBhbmQg
-WXZlcyBWYW5kZXJ2ZW5uZXQgYXJlIHRoZSBvZmZpY2lhbCBtYWludGFpbmVycyBvZiBnaXRodWIu
-Y29tL2FsdGVyYS1vcGVuc291cmNlL21ldGEtYWx0ZXJhPGh0dHA6Ly9naXRodWIuY29tL2FsdGVy
-YS1vcGVuc291cmNlL21ldGEtYWx0ZXJhPg0KDQpJIHJlYWxseSByZWNvbW1lbmQgdG8gdXNlIGdp
-dGh1Yi5jb20vYWx0ZXJhLW9wZW5zb3VyY2UvbWV0YS1hbHRlcmE8aHR0cDovL2dpdGh1Yi5jb20v
-YWx0ZXJhLW9wZW5zb3VyY2UvbWV0YS1hbHRlcmE+IGluc3RlYWQgb2YgdGhlIGZvcmsgZnJvbSBL
-aGVtIFJhai4gQnV0IHNpbmNlIHlvdSB1c2UgdGhlIGZvcmsgb2Ygb25lIG9mIHRoZSBtYWludGFp
-bmVycywgaXQgd2lsbCBwcm9iYWJseSBiZSBtb3N0IG9mIHRoZSB0aW1lIGluIHN5bmNoIHdpdGgg
-dGhlIGFsdGVyYS1vcGVuc291cmNlIHJlcG9zaXRvcnkuDQoNClZvbjogRGFsb24gV2VzdGVyZ3Jl
-ZW48bWFpbHRvOmR3ZXN0ZXJnQGdtYWlsLmNvbT4NCkdlc2VuZGV0OiDigI5NaXR0d29jaOKAjiwg
-4oCOMjnigI4uIOKAjkp1bGnigI4g4oCOMjAxNSDigI4yMeKAjjrigI41NA0KQW46IFNwcmlnZ3Ms
-IEppbTxtYWlsdG86Si5TcHJpZ2dzQHJheWxhc2UuZGU+LCBBbGV4IEogTGVubm9uPG1haWx0bzph
-amxlbm5vbkBkeW5hbWljZGV2aWNlcy5jby51az4sIEtldmluIEIuPG1haWx0bzplbmFrOTk5QGdv
-b2dsZW1haWwuY29tPg0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQHlv
-Y3RvcHJvamVjdC5vcmc+LCByZmlAbGlzdHMucm9ja2V0Ym9hcmRzLm9yZzxtYWlsdG86cmZpQGxp
-c3RzLnJvY2tldGJvYXJkcy5vcmc+DQoNCkFzIGZhciBhcyBJIHVuZGVyc3RhbmQgaXQgQWx0ZXJh
-IG9ubHkgbWFpbnRhaW5zIHRoZSBvbmUgcmVwby4NCk9uIEp1bHkgMjksIDIwMTUgNjo0NDoyMyBB
-TSBQRFQsICJTcHJpZ2dzLCBKaW0iIDxKLlNwcmlnZ3NAcmF5bGFzZS5kZTxtYWlsdG86Si5TcHJp
-Z2dzQHJheWxhc2UuZGU+PiB3cm90ZToNCg0KSGkgQWxleCwgRGFsb24sIEtldmluLCBMaXN0cw0K
-DQpobW1tLCBzbyBJIGd1ZXNzIEknbSBzdGlsbCBjb25mdXNlZCAoc29ycnkpLg0KDQpBbGV4IHJl
-Y29tbWVuZHMgZ29pbmcgdmlhIHRoZSAib2ZmaWNpYWwiIG9lIGxheWVycyBpbmRleCwgd2hpY2gg
-Y3VycmVudGx5IGxpbmtzIGRpcmVjdGx5IHRvIGdpdGh1Yi5jb20va3Jhai9tZXRhLWFsdGVyYTxo
-dHRwOi8vZ2l0aHViLmNvbS9rcmFqL21ldGEtYWx0ZXJhPi4NCg0KS2V2aW4gYW5kIERhbG9uIGhv
-bGQgb3V0IGZvciBnaXRodWIuY29tL2FsdGVyYS1vcGVuc291cmNlL21ldGEtYWx0ZXJhPGh0dHA6
-Ly9naXRodWIuY29tL2FsdGVyYS1vcGVuc291cmNlL21ldGEtYWx0ZXJhPiwgYW5kIERhbG9uIHNw
-ZWNpZmljYWxseSBzYXlzICIuLi4gYW5kIHJlcG9zIHVuZGVyIGFueSB1c2VyIG5hbWUgaW4gZ2l0
-aHViIGFyZSBmb3JrcyIuDQoNClNvIGlzIHRoZXJlIGFuIG9mZmljaWFsIDstKSBkaWNob3RvbXkg
-YmV0d2VlbiBhbHRlcmEgYW5kIG9lPw0KDQpUaGFua3MgZm9yIGxpc3RlbmluZy4uLg0KLS0NCmpp
-bQ0KDQoNCi0tLS0tVXJzcHLDvG5nbGljaGUgTmFjaHJpY2h0LS0tLS0NClZvbjogQWxleCBKIExl
-bm5vbiBbbWFpbHRvOmFqbGVubm9uQGR5bmFtaWNkZXZpY2VzLmNvLnVrXQ0KR2VzZW5kZXQ6IE1p
-dHR3b2NoLCAyOS4gSnVsaSAyMDE1IDE1OjEwDQpBbjogU3ByaWdncywgSmltIDxKLlNwcmlnZ3NA
-cmF5bGFzZS5kZTxtYWlsdG86Si5TcHJpZ2dzQHJheWxhc2UuZGU+Pg0KQ2M6IHlvY3RvQHlvY3Rv
-cHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpCZXRyZWZmOiBSZTog
-W3lvY3RvXSBXaGljaCByZXBvIGZvciBtZXRhLWFsdGVyYSA/DQoNCg0KDQpPbiAyOC8wNy8yMDE1
-IDEwOjEwLCBTcHJpZ2dzLCBKaW0NCg0Kd3JvdGU6DQoNCiBIaSBHdXlzOyBjb25mdXNlZCBub29i
-IGhlcmUuLi4NCg0KIFRoZXJlIGFwcGVhciB0byBiZSAoYXQgbGVhc3QpIHR3byAib2ZmaWNpYWwi
-IHJlcG9zIGZvciBtZXRhLWFsdGVyYToNCg0KICAgICAgICAgZ2l0aHViLmNvbS9rcmFqL21ldGEt
-YWx0ZXJhPGh0dHA6Ly9naXRodWIuY29tL2tyYWovbWV0YS1hbHRlcmE+DQoNCiBhbmQNCg0KICAg
-ICAgICAgZ2l0LnJvY2tldGJvYXJkcy5vcmcvbWV0YS1hbHRlcmEuZ2l0PGh0dHA6Ly9naXQucm9j
-a2V0Ym9hcmRzLm9yZy9tZXRhLWFsdGVyYS5naXQ+DQoNCg0KIFNvIGhvdyBzaG91bGQgSSBjaG9v
-c2UgYmV0d2VlbiB0aGVtPw0KDQogVGhhbmtzIQ0KIC0tDQogSmltDQoNCiBTb3JyeSBhYm91dCB0
-aGUgY29tcGFueSBzaWcuOiBJIGNhbid0IHN3aXRjaCBpdCBvZmYuDQoNCg0KZndpdyBJIHdvdWxk
-IHVzdWFsbHkgc3RhcnQgd2l0aCB0aGUgb2ZmaWNpYWwgaW5kZXgNCg0KaHR0cDovL2xheWVycy5v
-cGVuZW1iZWRkZWQub3JnL2xheWVyaW5kZXgvYnJhbmNoL21hc3Rlci9sYXllcnMvDQoNClRoaXMg
-c2VlbXMgdG8gcG9pbnQgdG8gZ2l0aHViDQoNCkNoZWVycywgQWxleA0KDQoNCl9fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fDQoNCg0KUkFZTEFTRSBBRw0KQXJnZWxzcmllZGVyIEZlbGQg
-Mis0DQo4MjIzNCBXZXNzbGluZw0KR2VybWFueQ0KVGVsLjogKzQ5LSgwKTgxNTMvODggOTgtMA0K
-RmF4OiArNDktKDApODE1My84OCA5OC0xMA0KaHR0cDovL3d3dy5yYXlsYXNlLmRlDQoNCkRpc3Ry
-aWN0IENvdXJ0IE11bmljaCwgSFJCIDEzMTQ1MA0KDQpCb2FyZDogUGV0ZXIgdm9uIEphbiAoQ0VP
-KQ0KDQpTdXBlcnZpc29yeSBCb2FyZDogRHIuIFVscmljaCBMb2htYW5uIChDaGFpcm1hbikNCg0K
-DQpEaWVzZSBFLU1haWwgZW50aMOkbHQgdmVydHJhdWxpY2hlIHVuZC9vZGVyIHJlY2h0bGljaCBn
-ZXNjaMO8dHp0ZSBJbmZvcm1hdGlvbmVuLiBXZW5uIFNpZSBuaWNodCBkZXIgcmljaHRpZ2UgQWRy
-ZXNzYXQgc2luZCBvZGVyIGRpZXNlIEUtTWFpbCBpcnJ0w7xtbGljaCBlcmhhbHRlbiBoYWJlbiwg
-aW5mb3JtaWVyZW4gU2llIGJpdHRlIHNvZm9ydCBkZW4gQWJzZW5kZXIgdW5kIHZlcm5pY2h0ZW4g
-U2llIGRpZXNlIE1haWwuIERhcyB1bmVybGF1YnRlIEtvcGllcmVuIHNvd2llIGRpZSB1bmJlZnVn
-dGUgV2VpdGVyZ2FiZSBkaWVzZXIgTWFpbCBpc3QgbmljaHQgZ2VzdGF0dGV0Lg0KDQpUaGlzIGUt
-bWFpbCBtYXkgY29udGFpbiBjb25maWRlbnRpYWwgYW5kL29yIHByaXZpbGVnZWQgaW5mb3JtYXRp
-b24uIElmIHlvdSBhcmUgbm90IHRoZSBpbnRlbmRlZCByZWNpcGllbnQgKG9yIGhhdmUgcmVjZWl2
-ZWQgdGhpcyBlLW1haWwgaW4gZXJyb3IpIHBsZWFzZSBub3RpZnkgdGhlIHNlbmRlciBpbW1lZGlh
-dGVseSBhbmQgZGVzdHJveSB0aGlzIGUtbWFpbC4gQW55IHVuYXV0aG9yaXplZCBjb3B5aW5nLCBk
-aXNjbG9zdXJlIG9yIGRpc3RyaWJ1dGlvbiBvZiB0aGUgbWF0ZXJpYWwgaW4gdGhpcyBlLW1haWwg
-aXMgc3RyaWN0bHkgZm9yYmlkZGVuLg0KDQotLQ0KU2VudCBmcm9tIG15IEFuZHJvaWQgZGV2aWNl
-IHdpdGggSy05IE1haWwuIFBsZWFzZSBleGN1c2UgbXkgYnJldml0eS4NCg0KX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18NCg0KUkFZTEFTRSBBRw0KQXJnZWxzcmllZGVyIEZlbGQgMis0
-DQo4MjIzNCBXZXNzbGluZw0KR2VybWFueQ0KVGVsLjogKzQ5LSgwKTgxNTMvODggOTgtMA0KRmF4
-OiArNDktKDApODE1My84OCA5OC0xMA0KaHR0cDovL3d3dy5yYXlsYXNlLmRlDQoNCkRpc3RyaWN0
-IENvdXJ0IE11bmljaCwgSFJCIDEzMTQ1MA0KDQpCb2FyZDogUGV0ZXIgdm9uIEphbiAoQ0VPKQ0K
-DQpTdXBlcnZpc29yeSBCb2FyZDogRHIuIFVscmljaCBMb2htYW5uIChDaGFpcm1hbikNCg0KDQpE
-aWVzZSBFLU1haWwgZW50aMOkbHQgdmVydHJhdWxpY2hlIHVuZC9vZGVyIHJlY2h0bGljaCBnZXNj
-aMO8dHp0ZSBJbmZvcm1hdGlvbmVuLiBXZW5uIFNpZSBuaWNodCBkZXIgcmljaHRpZ2UgQWRyZXNz
-YXQgc2luZCBvZGVyIGRpZXNlIEUtTWFpbCBpcnJ0w7xtbGljaCBlcmhhbHRlbiBoYWJlbiwgaW5m
-b3JtaWVyZW4gU2llIGJpdHRlIHNvZm9ydCBkZW4gQWJzZW5kZXIgdW5kIHZlcm5pY2h0ZW4gU2ll
-IGRpZXNlIE1haWwuIERhcyB1bmVybGF1YnRlIEtvcGllcmVuIHNvd2llIGRpZSB1bmJlZnVndGUg
-V2VpdGVyZ2FiZSBkaWVzZXIgTWFpbCBpc3QgbmljaHQgZ2VzdGF0dGV0Lg0KDQpUaGlzIGUtbWFp
-bCBtYXkgY29udGFpbiBjb25maWRlbnRpYWwgYW5kL29yIHByaXZpbGVnZWQgaW5mb3JtYXRpb24u
-IElmIHlvdSBhcmUgbm90IHRoZSBpbnRlbmRlZCByZWNpcGllbnQgKG9yIGhhdmUgcmVjZWl2ZWQg
-dGhpcyBlLW1haWwgaW4gZXJyb3IpIHBsZWFzZSBub3RpZnkgdGhlIHNlbmRlciBpbW1lZGlhdGVs
-eSBhbmQgZGVzdHJveSB0aGlzIGUtbWFpbC4gQW55IHVuYXV0aG9yaXplZCBjb3B5aW5nLCBkaXNj
-bG9zdXJlIG9yIGRpc3RyaWJ1dGlvbiBvZiB0aGUgbWF0ZXJpYWwgaW4gdGhpcyBlLW1haWwgaXMg
-c3RyaWN0bHkgZm9yYmlkZGVuLg0K
+(Adding Khem and Yves, the maintainers of the github repo, to CC)
 
---_000_2238EDC6081C944E97E4EE915AE5CBEC5476EED6EXCHANGEBraylas_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+In the interests of keeping the layer index accurate, can we get some=20=
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPCEtLVtp
-ZiAhbXNvXT48c3R5bGU+dlw6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kb1w6KiB7
-YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kd1w6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0
-I1ZNTCk7fQ0KLnNoYXBlIHtiZWhhdmlvcjp1cmwoI2RlZmF1bHQjVk1MKTt9DQo8L3N0eWxlPjwh
-W2VuZGlmXS0tPjxzdHlsZT48IS0tDQovKiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNl
-DQoJe2ZvbnQtZmFtaWx5OldpbmdkaW5nczsNCglwYW5vc2UtMTo1IDAgMCAwIDAgMCAwIDAgMCAw
-O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6
-MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7
-DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZh
-bWlseTpDb25zb2xhczsNCglwYW5vc2UtMToyIDExIDYgOSAyIDIgNCAzIDIgNDt9DQovKiBTdHls
-ZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1h
-bA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIu
-MHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCmE6bGluaywgc3Bh
-bi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJ
-dGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5r
-Rm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0
-LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnByZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJ
-bXNvLXN0eWxlLWxpbms6IkhUTUwgVm9yZm9ybWF0aWVydCBaY2huIjsNCgltYXJnaW46MGNtOw0K
-CW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5
-OiJDb3VyaWVyIE5ldyI7fQ0KcC5Nc29MaXN0UGFyYWdyYXBoLCBsaS5Nc29MaXN0UGFyYWdyYXBo
-LCBkaXYuTXNvTGlzdFBhcmFncmFwaA0KCXttc28tc3R5bGUtcHJpb3JpdHk6MzQ7DQoJbWFyZ2lu
-LXRvcDowY207DQoJbWFyZ2luLXJpZ2h0OjBjbTsNCgltYXJnaW4tYm90dG9tOjBjbTsNCgltYXJn
-aW4tbGVmdDozNi4wcHQ7DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMi4w
-cHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIsc2VyaWY7fQ0KcC5tc29saXN0cGFy
-YWdyYXBoY3hzcGZpcnN0LCBsaS5tc29saXN0cGFyYWdyYXBoY3hzcGZpcnN0LCBkaXYubXNvbGlz
-dHBhcmFncmFwaGN4c3BmaXJzdA0KCXttc28tc3R5bGUtbmFtZTptc29saXN0cGFyYWdyYXBoY3hz
-cGZpcnN0Ow0KCW1hcmdpbi10b3A6MGNtOw0KCW1hcmdpbi1yaWdodDowY207DQoJbWFyZ2luLWJv
-dHRvbTowY207DQoJbWFyZ2luLWxlZnQ6MzYuMHB0Ow0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsN
-CglsaW5lLWhlaWdodDoxMTUlOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRp
-bWVzIE5ldyBSb21hbiIsc2VyaWY7fQ0KcC5tc29saXN0cGFyYWdyYXBoY3hzcG1pZGRsZSwgbGku
-bXNvbGlzdHBhcmFncmFwaGN4c3BtaWRkbGUsIGRpdi5tc29saXN0cGFyYWdyYXBoY3hzcG1pZGRs
-ZQ0KCXttc28tc3R5bGUtbmFtZTptc29saXN0cGFyYWdyYXBoY3hzcG1pZGRsZTsNCgltYXJnaW4t
-dG9wOjBjbTsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1hcmdpbi1ib3R0b206MGNtOw0KCW1hcmdp
-bi1sZWZ0OjM2LjBwdDsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJbGluZS1oZWlnaHQ6MTE1
-JTsNCglmb250LXNpemU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNl
-cmlmO30NCnAubXNvbGlzdHBhcmFncmFwaGN4c3BsYXN0LCBsaS5tc29saXN0cGFyYWdyYXBoY3hz
-cGxhc3QsIGRpdi5tc29saXN0cGFyYWdyYXBoY3hzcGxhc3QNCgl7bXNvLXN0eWxlLW5hbWU6bXNv
-bGlzdHBhcmFncmFwaGN4c3BsYXN0Ow0KCW1hcmdpbi10b3A6MGNtOw0KCW1hcmdpbi1yaWdodDow
-Y207DQoJbWFyZ2luLWJvdHRvbTowY207DQoJbWFyZ2luLWxlZnQ6MzYuMHB0Ow0KCW1hcmdpbi1i
-b3R0b206LjAwMDFwdDsNCglsaW5lLWhlaWdodDoxMTUlOw0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJ
-Zm9udC1mYW1pbHk6IlRpbWVzIE5ldyBSb21hbiIsc2VyaWY7fQ0Kc3Bhbi5IVE1MVm9yZm9ybWF0
-aWVydFpjaG4NCgl7bXNvLXN0eWxlLW5hbWU6IkhUTUwgVm9yZm9ybWF0aWVydCBaY2huIjsNCglt
-c28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgVm9yZm9ybWF0aWVy
-dCI7DQoJZm9udC1mYW1pbHk6Q29uc29sYXM7fQ0Kc3Bhbi5FLU1haWxGb3JtYXR2b3JsYWdlMjMN
-Cgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmki
-LHNhbnMtc2VyaWY7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5
-bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LXNpemU6MTAuMHB0O30NCkBwYWdlIFdvcmRTZWN0
-aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46NzAuODVwdCA3MC44NXB0IDIu
-MGNtIDcwLjg1cHQ7fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQot
-LT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4
-dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3Rl
-IG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpl
-eHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+
-DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJERSIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8
-ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5z
-LXNlcmlmO2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkhpIEtldmlu
-LDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1z
-ZXJpZjtjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNw
-OzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1V
-UyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
-OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPlJv
-ZGdlciwgZ290IGl0IHRoaXMgdGltZSDigJMgSSBoYWQgaW5kZWVkIG1pc3NlZCB0aGUgY2x1ZSBh
-Ym91dCB0aGUgbWFpbnRhaW5lcnMuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEO21zby1m
-YXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4w
-cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5
-N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkkgc2hvdWxkIFJURk0gbW9yZSBvZnRlbuKA
-pi48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5n
-PSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
-aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4t
-VVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
-cGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
-dDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RDttc28tZmFyZWFzdC1sYW5n
-dWFnZTpFTi1VUyI+TWFueSB0aGFua3MgZm9yIHlvdXIgaGVscCBhbmQgcGF0aWVuY2UNCjwvc3Bh
-bj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
-V2luZ2RpbmdzO2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPko8L3Nw
-YW4+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0
-LWxhbmd1YWdlOkVOLVVTIj4uPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEO21zby1mYXJl
-YXN0LWxhbmd1YWdlOkVOLVVTIj4tLTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RDttc28t
-ZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+amltPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5n
-dWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxkaXYgc3R5
-bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMu
-MHB0IDBjbSAwY20gMGNtIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJm
-b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJp
-ZiI+Vm9uOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj4gZW5hazk5OUBnb29nbGVtYWlsLmNv
-bSBbbWFpbHRvOmVuYWs5OTlAZ29vZ2xlbWFpbC5jb21dDQo8YnI+DQo8Yj5HZXNlbmRldDo8L2I+
-IE1pdHR3b2NoLCAyOS4gSnVsaSAyMDE1IDIyOjM3PGJyPg0KPGI+QW46PC9iPiBEYWxvbiBXZXN0
-ZXJncmVlbiAmbHQ7ZHdlc3RlcmdAZ21haWwuY29tJmd0OzsgU3ByaWdncywgSmltICZsdDtKLlNw
-cmlnZ3NAcmF5bGFzZS5kZSZndDs7IEFsZXggSiBMZW5ub24gJmx0O2FqbGVubm9uQGR5bmFtaWNk
-ZXZpY2VzLmNvLnVrJmd0Ozxicj4NCjxiPkNjOjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzsg
-cmZpQGxpc3RzLnJvY2tldGJvYXJkcy5vcmc8YnI+DQo8Yj5CZXRyZWZmOjwvYj4gUmU6IFt5b2N0
-b10gV2hpY2ggcmVwbyBmb3IgbWV0YS1hbHRlcmEgPzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwv
-ZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4N
-CjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+QXMgeW91IGNhbiByZWFkIGluIHRo
-ZSBSZWFkTWUubWQgS2hlbSBSYWogYW5kIFl2ZXMgVmFuZGVydmVubmV0IGFyZSB0aGUgb2ZmaWNp
-YWwgbWFpbnRhaW5lcnMgb2YNCjxhIGhyZWY9Imh0dHA6Ly9naXRodWIuY29tL2FsdGVyYS1vcGVu
-c291cmNlL21ldGEtYWx0ZXJhIiB0YXJnZXQ9Il9wYXJlbnQiPjxzcGFuIHN0eWxlPSJjb2xvcjoj
-MDA2NkNDIj5naXRodWIuY29tL2FsdGVyYS1vcGVuc291cmNlL21ldGEtYWx0ZXJhPC9zcGFuPjwv
-YT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNl
-cmlmIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
-OyxzYW5zLXNlcmlmIj5JIHJlYWxseSByZWNvbW1lbmQgdG8gdXNlDQo8YSBocmVmPSJodHRwOi8v
-Z2l0aHViLmNvbS9hbHRlcmEtb3BlbnNvdXJjZS9tZXRhLWFsdGVyYSIgdGFyZ2V0PSJfcGFyZW50
-Ij48c3BhbiBzdHlsZT0iY29sb3I6IzAwNjZDQyI+Z2l0aHViLmNvbS9hbHRlcmEtb3BlbnNvdXJj
-ZS9tZXRhLWFsdGVyYTwvc3Bhbj48L2E+IGluc3RlYWQgb2YgdGhlIGZvcmsgZnJvbSBLaGVtIFJh
-ai4gQnV0IHNpbmNlIHlvdSB1c2UgdGhlIGZvcmsgb2Ygb25lIG9mIHRoZSBtYWludGFpbmVycywg
-aXQgd2lsbCBwcm9iYWJseQ0KIGJlIG1vc3Qgb2YgdGhlIHRpbWUgaW4gc3luY2ggd2l0aCB0aGUg
-YWx0ZXJhLW9wZW5zb3VyY2UgcmVwb3NpdG9yeS48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rp
-dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6
-JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
-L3A+DQo8L2Rpdj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0U1
-RTVFNSAxLjBwdDtwYWRkaW5nOjQuMHB0IDBjbSAwY20gMGNtIj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
-OyxzYW5zLXNlcmlmO2xldHRlci1zcGFjaW5nOi4yNXB0Ij5Wb246PC9zcGFuPjwvYj48c3BhbiBz
-dHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2xldHRlci1z
-cGFjaW5nOi4yNXB0Ij4mbmJzcDs8YSBocmVmPSJtYWlsdG86ZHdlc3RlcmdAZ21haWwuY29tIiB0
-YXJnZXQ9Il9wYXJlbnQiPkRhbG9uIFdlc3RlcmdyZWVuPC9hPjxicj4NCjxiPkdlc2VuZGV0Ojwv
-Yj4mbmJzcDvigI5NaXR0d29jaOKAjiwg4oCOMjnigI4uIOKAjkp1bGnigI4g4oCOMjAxNSDigI4y
-MeKAjjrigI41NDxicj4NCjxiPkFuOjwvYj4mbmJzcDs8YSBocmVmPSJtYWlsdG86Si5TcHJpZ2dz
-QHJheWxhc2UuZGUiIHRhcmdldD0iX3BhcmVudCI+U3ByaWdncywgSmltPC9hPiwNCjxhIGhyZWY9
-Im1haWx0bzphamxlbm5vbkBkeW5hbWljZGV2aWNlcy5jby51ayIgdGFyZ2V0PSJfcGFyZW50Ij5B
-bGV4IEogTGVubm9uPC9hPiwNCjxhIGhyZWY9Im1haWx0bzplbmFrOTk5QGdvb2dsZW1haWwuY29t
-IiB0YXJnZXQ9Il9wYXJlbnQiPktldmluIEIuPC9hPjxicj4NCjxiPkNjOjwvYj4mbmJzcDs8YSBo
-cmVmPSJtYWlsdG86eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyIgdGFyZ2V0PSJfcGFyZW50Ij55b2N0
-b0B5b2N0b3Byb2plY3Qub3JnPC9hPiwNCjxhIGhyZWY9Im1haWx0bzpyZmlAbGlzdHMucm9ja2V0
-Ym9hcmRzLm9yZyIgdGFyZ2V0PSJfcGFyZW50Ij5yZmlAbGlzdHMucm9ja2V0Ym9hcmRzLm9yZzwv
-YT48L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fu
-cy1zZXJpZiI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXY+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
-aSZxdW90OyxzYW5zLXNlcmlmIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQi
-PjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWYi
-PkFzIGZhciBhcyBJIHVuZGVyc3RhbmQgaXQgQWx0ZXJhIG9ubHkgbWFpbnRhaW5zIHRoZSBvbmUg
-cmVwby4NCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
-dDssc2Fucy1zZXJpZiI+T24gSnVseSAyOSwgMjAxNSA2OjQ0OjIzIEFNIFBEVCwgJnF1b3Q7U3By
-aWdncywgSmltJnF1b3Q7ICZsdDs8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+PGEgaHJlZj0ibWFpbHRvOkouU3ByaWdnc0ByYXls
-YXNlLmRlIj48c3BhbiBsYW5nPSJFTi1VUyI+Si5TcHJpZ2dzQHJheWxhc2UuZGU8L3NwYW4+PC9h
-Pjwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGli
-cmkmcXVvdDssc2Fucy1zZXJpZiI+Jmd0Ow0KIHdyb3RlOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0NDQ0ND
-IDEuMHB0O3BhZGRpbmc6MGNtIDBjbSAwY20gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2lu
-LXJpZ2h0OjBjbSI+DQo8cHJlPkhpIEFsZXgsIERhbG9uLCBLZXZpbiwgTGlzdHM8YnI+PGJyPmht
-bW0sIHNvIEkgZ3Vlc3MgSSdtIHN0aWxsIGNvbmZ1c2VkIChzb3JyeSkuPGJyPjxicj5BbGV4IHJl
-Y29tbWVuZHMgZ29pbmcgdmlhIHRoZSAmcXVvdDtvZmZpY2lhbCZxdW90OyBvZSBsYXllcnMgaW5k
-ZXgsIHdoaWNoIGN1cnJlbnRseSBsaW5rcyBkaXJlY3RseSB0byA8YSBocmVmPSJodHRwOi8vZ2l0
-aHViLmNvbS9rcmFqL21ldGEtYWx0ZXJhIiB0YXJnZXQ9Il9wYXJlbnQiPmdpdGh1Yi5jb20va3Jh
-ai9tZXRhLWFsdGVyYTwvYT4uPGJyPjxicj5LZXZpbiBhbmQgRGFsb24gaG9sZCBvdXQgZm9yIDxh
-IGhyZWY9Imh0dHA6Ly9naXRodWIuY29tL2FsdGVyYS1vcGVuc291cmNlL21ldGEtYWx0ZXJhIiB0
-YXJnZXQ9Il9wYXJlbnQiPmdpdGh1Yi5jb20vYWx0ZXJhLW9wZW5zb3VyY2UvbWV0YS1hbHRlcmE8
-L2E+LCBhbmQgRGFsb24gc3BlY2lmaWNhbGx5IHNheXMgJnF1b3Q7Li4uIGFuZCByZXBvcyB1bmRl
-ciBhbnkgdXNlciBuYW1lIGluIGdpdGh1YiBhcmUgZm9ya3MmcXVvdDsuPGJyPjxicj5TbyBpcyB0
-aGVyZSBhbiBvZmZpY2lhbCA7LSkgZGljaG90b215IGJldHdlZW4gYWx0ZXJhIGFuZCBvZT88YnI+
-PGJyPlRoYW5rcyBmb3IgbGlzdGVuaW5nLi4uPGJyPi0tPGJyPmppbTxicj48YnI+PGJyPi0tLS0t
-VXJzcHLDvG5nbGljaGUgTmFjaHJpY2h0LS0tLS08YnI+Vm9uOiBBbGV4IEogTGVubm9uIFs8YSBo
-cmVmPSJtYWlsdG86YWpsZW5ub25AZHluYW1pY2RldmljZXMuY28udWsiPm1haWx0bzphamxlbm5v
-bkBkeW5hbWljZGV2aWNlcy5jby51azwvYT5dPGJyPkdlc2VuZGV0OiBNaXR0d29jaCwgMjkuIDxz
-cGFuIGxhbmc9IkVOLVVTIj5KdWxpIDIwMTUgMTU6MTA8YnI+QW46IFNwcmlnZ3MsIEppbSAmbHQ7
-PC9zcGFuPjxhIGhyZWY9Im1haWx0bzpKLlNwcmlnZ3NAcmF5bGFzZS5kZSI+PHNwYW4gbGFuZz0i
-RU4tVVMiPkouU3ByaWdnc0ByYXlsYXNlLmRlPC9zcGFuPjwvYT48c3BhbiBsYW5nPSJFTi1VUyI+
-Jmd0Ozxicj5DYzogPC9zcGFuPjxhIGhyZWY9Im1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
-Ij48c3BhbiBsYW5nPSJFTi1VUyI+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzwvc3Bhbj48L2E+PHNw
-YW4gbGFuZz0iRU4tVVMiPjxicj5CZXRyZWZmOiBSZTogW3lvY3RvXSBXaGljaCByZXBvIGZvciBt
-ZXRhLWFsdGVyYSA/PGJyPjxicj48YnI+PGJyPjwvc3Bhbj5PbiAyOC8wNy8yMDE1IDEwOjEwLCBT
-cHJpZ2dzLCBKaW08bzpwPjwvbzpwPjwvcHJlPg0KPHByZT53cm90ZTo8bzpwPjwvbzpwPjwvcHJl
-Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICM3MjlG
-Q0YgMS4wcHQ7cGFkZGluZzowY20gMGNtIDBjbSA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJn
-aW4tcmlnaHQ6MGNtO21hcmdpbi1ib3R0b206Ni4wcHQiPg0KPHByZT4gSGkgR3V5czsgY29uZnVz
-ZWQgbm9vYiBoZXJlLi4uPGJyPjxicj4gVGhlcmUgYXBwZWFyIHRvIGJlIChhdCBsZWFzdCkgdHdv
-ICZxdW90O29mZmljaWFsJnF1b3Q7IHJlcG9zIGZvciBtZXRhLWFsdGVyYTo8YnI+PGJyPiZuYnNw
-OyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyA8YSBocmVmPSJodHRw
-Oi8vZ2l0aHViLmNvbS9rcmFqL21ldGEtYWx0ZXJhIiB0YXJnZXQ9Il9wYXJlbnQiPmdpdGh1Yi5j
-b20va3Jhai9tZXRhLWFsdGVyYTwvYT48YnI+PGJyPiBhbmQ8YnI+PGJyPiZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyA8YSBocmVmPSJodHRwOi8vZ2l0LnJv
-Y2tldGJvYXJkcy5vcmcvbWV0YS1hbHRlcmEuZ2l0IiB0YXJnZXQ9Il9wYXJlbnQiPmdpdC5yb2Nr
-ZXRib2FyZHMub3JnL21ldGEtYWx0ZXJhLmdpdDwvYT48YnI+PGJyPjxicj4gU28gaG93IHNob3Vs
-ZCBJIGNob29zZSBiZXR3ZWVuIHRoZW0/PGJyPjxicj4gVGhhbmtzITxicj4gLS08YnI+IEppbTxi
-cj48YnI+IFNvcnJ5IGFib3V0IHRoZSBjb21wYW55IHNpZy46IEkgY2FuJ3Qgc3dpdGNoIGl0IG9m
-Zi48bzpwPjwvbzpwPjwvcHJlPg0KPC9ibG9ja3F1b3RlPg0KPHByZSBzdHlsZT0ibWFyZ2luLWJv
-dHRvbToxMi4wcHQiPjxicj48YnI+ZndpdyBJIHdvdWxkIHVzdWFsbHkgc3RhcnQgd2l0aCB0aGUg
-b2ZmaWNpYWwgaW5kZXg8YnI+PGJyPjxhIGhyZWY9Imh0dHA6Ly9sYXllcnMub3BlbmVtYmVkZGVk
-Lm9yZy9sYXllcmluZGV4L2JyYW5jaC9tYXN0ZXIvbGF5ZXJzIiB0YXJnZXQ9Il9wYXJlbnQiPmh0
-dHA6Ly9sYXllcnMub3BlbmVtYmVkZGVkLm9yZy9sYXllcmluZGV4L2JyYW5jaC9tYXN0ZXIvbGF5
-ZXJzPC9hPi88YnI+PGJyPlRoaXMgc2VlbXMgdG8gcG9pbnQgdG8gZ2l0aHViPGJyPjxicj5DaGVl
-cnMsIEFsZXg8YnI+PGJyPjxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlIHN0eWxlPSJ0ZXh0LWFsaWdu
-OmNlbnRlciI+PGhyIHNpemU9IjIiIHdpZHRoPSIxMDAlIiBhbGlnbj0iY2VudGVyIj48L3ByZT4N
-CjxwcmU+PGJyPjxicj5SQVlMQVNFIEFHPGJyPkFyZ2Vsc3JpZWRlciBGZWxkIDImIzQzOzQ8YnI+
-ODIyMzQgV2Vzc2xpbmc8YnI+R2VybWFueTxicj5UZWwuOiAmIzQzOzQ5LSgwKTgxNTMvODggOTgt
-MDxicj5GYXg6ICYjNDM7NDktKDApODE1My84OCA5OC0xMDxicj48YSBocmVmPSJodHRwOi8vd3d3
-LnJheWxhc2UuZGUiIHRhcmdldD0iX3BhcmVudCI+aHR0cDovL3d3dy5yYXlsYXNlLmRlPC9hPjxi
-cj48YnI+RGlzdHJpY3QgQ291cnQgTXVuaWNoLCBIUkIgMTMxNDUwPGJyPjxicj5Cb2FyZDogUGV0
-ZXIgdm9uIEphbiAoQ0VPKTxicj48YnI+U3VwZXJ2aXNvcnkgQm9hcmQ6IERyLiBVbHJpY2ggTG9o
-bWFubiAoQ2hhaXJtYW4pPGJyPjxicj48YnI+RGllc2UgRS1NYWlsIGVudGjDpGx0IHZlcnRyYXVs
-aWNoZSB1bmQvb2RlciByZWNodGxpY2ggZ2VzY2jDvHR6dGUgSW5mb3JtYXRpb25lbi4gV2VubiBT
-aWUgbmljaHQgZGVyIHJpY2h0aWdlIEFkcmVzc2F0IHNpbmQgb2RlciBkaWVzZSBFLU1haWwgaXJy
-dMO8bWxpY2ggZXJoYWx0ZW4gaGFiZW4sIGluZm9ybWllcmVuIFNpZSBiaXR0ZSBzb2ZvcnQgZGVu
-IEFic2VuZGVyIHVuZCB2ZXJuaWNodGVuIFNpZSBkaWVzZSBNYWlsLiBEYXMgdW5lcmxhdWJ0ZSBL
-b3BpZXJlbiBzb3dpZSBkaWUgdW5iZWZ1Z3RlIFdlaXRlcmdhYmUgZGllc2VyIE1haWwgaXN0IG5p
-Y2h0IGdlc3RhdHRldC48YnI+PGJyPlRoaXMgZS1tYWlsIG1heSBjb250YWluIGNvbmZpZGVudGlh
-bCBhbmQvb3IgcHJpdmlsZWdlZCBpbmZvcm1hdGlvbi4gSWYgeW91IGFyZSBub3QgdGhlIGludGVu
-ZGVkIHJlY2lwaWVudCAob3IgaGF2ZSByZWNlaXZlZCB0aGlzIGUtbWFpbCBpbiBlcnJvcikgcGxl
-YXNlIG5vdGlmeSB0aGUgc2VuZGVyIGltbWVkaWF0ZWx5IGFuZCBkZXN0cm95IHRoaXMgZS1tYWls
-LiBBbnkgdW5hdXRob3JpemVkIGNvcHlpbmcsIGRpc2Nsb3N1cmUgb3IgZGlzdHJpYnV0aW9uIG9m
-IHRoZSBtYXRlcmlhbCBpbiB0aGlzIGUtbWFpbCBpcyBzdHJpY3RseSBmb3JiaWRkZW4uPG86cD48
-L286cD48L3ByZT4NCjwvYmxvY2txdW90ZT4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+
-PGJyPg0KLS0gPGJyPg0KU2VudCBmcm9tIG15IEFuZHJvaWQgZGV2aWNlIHdpdGggSy05IE1haWwu
-IFBsZWFzZSBleGN1c2UgbXkgYnJldml0eS4gPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+
-DQo8L2Rpdj4NCjwvZGl2Pg0KPGJyPg0KPGhyPg0KPGZvbnQgZmFjZT0iQXJpYWwiIGNvbG9yPSJH
-cmF5IiBzaXplPSIxIj48YnI+DQpSQVlMQVNFIEFHPGJyPg0KQXJnZWxzcmllZGVyIEZlbGQgMiYj
-NDM7NDxicj4NCjgyMjM0IFdlc3NsaW5nPGJyPg0KR2VybWFueTxicj4NClRlbC46ICYjNDM7NDkt
-KDApODE1My84OCA5OC0wPGJyPg0KRmF4OiAmIzQzOzQ5LSgwKTgxNTMvODggOTgtMTA8YnI+DQpo
-dHRwOi8vd3d3LnJheWxhc2UuZGU8YnI+DQo8YnI+DQpEaXN0cmljdCBDb3VydCBNdW5pY2gsIEhS
-QiAxMzE0NTA8YnI+DQo8YnI+DQpCb2FyZDogUGV0ZXIgdm9uIEphbiAoQ0VPKTxicj4NCjxicj4N
-ClN1cGVydmlzb3J5IEJvYXJkOiBEci4gVWxyaWNoIExvaG1hbm4gKENoYWlybWFuKTxicj4NCjxi
-cj4NCjxicj4NCkRpZXNlIEUtTWFpbCBlbnRow6RsdCB2ZXJ0cmF1bGljaGUgdW5kL29kZXIgcmVj
-aHRsaWNoIGdlc2Now7x0enRlIEluZm9ybWF0aW9uZW4uIFdlbm4gU2llIG5pY2h0IGRlciByaWNo
-dGlnZSBBZHJlc3NhdCBzaW5kIG9kZXIgZGllc2UgRS1NYWlsIGlycnTDvG1saWNoIGVyaGFsdGVu
-IGhhYmVuLCBpbmZvcm1pZXJlbiBTaWUgYml0dGUgc29mb3J0IGRlbiBBYnNlbmRlciB1bmQgdmVy
-bmljaHRlbiBTaWUgZGllc2UgTWFpbC4gRGFzIHVuZXJsYXVidGUgS29waWVyZW4NCiBzb3dpZSBk
-aWUgdW5iZWZ1Z3RlIFdlaXRlcmdhYmUgZGllc2VyIE1haWwgaXN0IG5pY2h0IGdlc3RhdHRldC48
-YnI+DQo8YnI+DQpUaGlzIGUtbWFpbCBtYXkgY29udGFpbiBjb25maWRlbnRpYWwgYW5kL29yIHBy
-aXZpbGVnZWQgaW5mb3JtYXRpb24uIElmIHlvdSBhcmUgbm90IHRoZSBpbnRlbmRlZCByZWNpcGll
-bnQgKG9yIGhhdmUgcmVjZWl2ZWQgdGhpcyBlLW1haWwgaW4gZXJyb3IpIHBsZWFzZSBub3RpZnkg
-dGhlIHNlbmRlciBpbW1lZGlhdGVseSBhbmQgZGVzdHJveSB0aGlzIGUtbWFpbC4gQW55IHVuYXV0
-aG9yaXplZCBjb3B5aW5nLCBkaXNjbG9zdXJlIG9yIGRpc3RyaWJ1dGlvbg0KIG9mIHRoZSBtYXRl
-cmlhbCBpbiB0aGlzIGUtbWFpbCBpcyBzdHJpY3RseSBmb3JiaWRkZW4uPGJyPg0KPC9mb250Pg0K
-PC9ib2R5Pg0KPC9odG1sPg0K
+clarification on which repo is the official BSP?
 
---_000_2238EDC6081C944E97E4EE915AE5CBEC5476EED6EXCHANGEBraylas_--
+Thanks,
+Paul
+
+On Thursday 30 July 2015 06:52:22 Spriggs, Jim wrote:
+> Hi Kevin,
+>=20
+> Rodger, got it this time =E2=80=93 I had indeed missed the clue about=
+ the
+> maintainers.
+=20
+> I should RTFM more often=E2=80=A6.
+>=20
+> Many thanks for your help and patience =E2=98=BA.
+> --
+> jim
+>=20
+> Von: enak999@googlemail.com [mailto:enak999@googlemail.com]
+> Gesendet: Mittwoch, 29. Juli 2015 22:37
+> An: Dalon Westergreen <dwesterg@gmail.com>; Spriggs, Jim
+> <J.Spriggs@raylase.de>; Alex J Lennon <ajlennon@dynamicdevices.co.uk>=
+
+ Cc:
+> yocto@yoctoproject.org; rfi@lists.rocketboards.org
+> Betreff: Re: [yocto] Which repo for meta-altera ?
+>=20
+> As you can read in the ReadMe.md Khem Raj and Yves Vandervennet are t=
+he
+> official maintainers of
+> github.com/altera-opensource/meta-altera<http://github.com/altera-ope=
+nsourc
+> e/meta-altera>
+=20
+> I really recommend to use
+> github.com/altera-opensource/meta-altera<http://github.com/altera-ope=
+nsourc
+> e/meta-altera> instead of the fork from Khem Raj. But since you use t=
+he fork
+> of one of the maintainers, it will probably be most of the time in sy=
+nch
+> with the altera-opensource repository.
+=20
+> Von: Dalon Westergreen<mailto:dwesterg@gmail.com>
+> Gesendet: =E2=80=8EMittwoch=E2=80=8E, =E2=80=8E29=E2=80=8E. =E2=80=8E=
+Juli=E2=80=8E =E2=80=8E2015 =E2=80=8E21=E2=80=8E:=E2=80=8E54
+> An: Spriggs, Jim<mailto:J.Spriggs@raylase.de>, Alex J
+> Lennon<mailto:ajlennon@dynamicdevices.co.uk>, Kevin
+> B.<mailto:enak999@googlemail.com>
+ Cc:
+> yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>,
+> rfi@lists.rocketboards.org<mailto:rfi@lists.rocketboards.org>=20
+> As far as I understand it Altera only maintains the one repo.
+> On July 29, 2015 6:44:23 AM PDT, "Spriggs, Jim"
+> <J.Spriggs@raylase.de<mailto:J.Spriggs@raylase.de>> wrote:
+=20
+> Hi Alex, Dalon, Kevin, Lists
+>=20
+> hmmm, so I guess I'm still confused (sorry).
+>=20
+> Alex recommends going via the "official" oe layers index, which curre=
+ntly
+> links directly to
+> github.com/kraj/meta-altera<http://github.com/kraj/meta-altera>.
+=20
+> Kevin and Dalon hold out for
+> github.com/altera-opensource/meta-altera<http://github.com/altera-ope=
+nsourc
+> e/meta-altera>, and Dalon specifically says "... and repos under any =
+user
+> name in github are forks".
+=20
+> So is there an official ;-) dichotomy between altera and oe?
+>=20
+> Thanks for listening...
+> --
+> jim
+>=20
+>=20
+> -----Urspr=C3=BCngliche Nachricht-----
+> Von: Alex J Lennon [mailto:ajlennon@dynamicdevices.co.uk]
+> Gesendet: Mittwoch, 29. Juli 2015 15:10
+> An: Spriggs, Jim <J.Spriggs@raylase.de<mailto:J.Spriggs@raylase.de>>
+> Cc: yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+> Betreff: Re: [yocto] Which repo for meta-altera ?
+>=20
+>=20
+>=20
+> On 28/07/2015 10:10, Spriggs, Jim
+>=20
+> wrote:
+>=20
+>  Hi Guys; confused noob here...
+>=20
+>  There appear to be (at least) two "official" repos for meta-altera:
+>=20
+>          github.com/kraj/meta-altera<http://github.com/kraj/meta-alte=
+ra>
+>=20
+>  and
+>=20
+>        =20
+> git.rocketboards.org/meta-altera.git<http://git.rocketboards.org/meta=
+-alter
+> a.git>
+=20
+>=20
+>  So how should I choose between them?
+>=20
+>  Thanks!
+>  --
+>  Jim
+>=20
+>  Sorry about the company sig.: I can't switch it off.
+>=20
+>=20
+> fwiw I would usually start with the official index
+>=20
+> http://layers.openembedded.org/layerindex/branch/master/layers/
+>=20
+> This seems to point to github
+>=20
+> Cheers, Alex
+>=20
+>=20
+> ________________________________
+>=20
+>=20
+> RAYLASE AG
+> Argelsrieder Feld 2+4
+> 82234 Wessling
+> Germany
+> Tel.: +49-(0)8153/88 98-0
+> Fax: +49-(0)8153/88 98-10
+> http://www.raylase.de
+>=20
+> District Court Munich, HRB 131450
+>=20
+> Board: Peter von Jan (CEO)
+>=20
+> Supervisory Board: Dr. Ulrich Lohmann (Chairman)
+>=20
+>=20
+> Diese E-Mail enth=C3=A4lt vertrauliche und/oder rechtlich gesch=C3=BC=
+tzte
+> Informationen. Wenn Sie nicht der richtige Adressat sind oder diese E=
+-Mail
+> irrt=C3=BCmlich erhalten haben, informieren Sie bitte sofort den Abse=
+nder und
+> vernichten Sie diese Mail. Das unerlaubte Kopieren sowie die unbefugt=
+e
+> Weitergabe dieser Mail ist nicht gestattet.
+=20
+> This e-mail may contain confidential and/or privileged information. I=
+f you
+> are not the intended recipient (or have received this e-mail in error=
+)
+> please notify the sender immediately and destroy this e-mail. Any
+> unauthorized copying, disclosure or distribution of the material in t=
+his
+> e-mail is strictly forbidden.
+=20
+> --
+> Sent from my Android device with K-9 Mail. Please excuse my brevity.
+>=20
+> ________________________________
+>=20
+> RAYLASE AG
+> Argelsrieder Feld 2+4
+> 82234 Wessling
+> Germany
+> Tel.: +49-(0)8153/88 98-0
+> Fax: +49-(0)8153/88 98-10
+> http://www.raylase.de
+>=20
+> District Court Munich, HRB 131450
+>=20
+> Board: Peter von Jan (CEO)
+>=20
+> Supervisory Board: Dr. Ulrich Lohmann (Chairman)
+>=20
+>=20
+> Diese E-Mail enth=C3=A4lt vertrauliche und/oder rechtlich gesch=C3=BC=
+tzte
+> Informationen. Wenn Sie nicht der richtige Adressat sind oder diese E=
+-Mail
+> irrt=C3=BCmlich erhalten haben, informieren Sie bitte sofort den Abse=
+nder und
+> vernichten Sie diese Mail. Das unerlaubte Kopieren sowie die unbefugt=
+e
+> Weitergabe dieser Mail ist nicht gestattet.
+=20
+> This e-mail may contain confidential and/or privileged information. I=
+f you
+> are not the intended recipient (or have received this e-mail in error=
+)
+> please notify the sender immediately and destroy this e-mail. Any
+> unauthorized copying, disclosure or distribution of the material in t=
+his
+> e-mail is strictly forbidden.
+
+--=20
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
