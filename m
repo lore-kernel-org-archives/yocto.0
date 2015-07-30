@@ -1,55 +1,33 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <eirik.solberg.hamnvik@tomra.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8DDE6E00A96; Wed, 29 Jul 2015 21:08:07 -0700 (PDT)
+	id 3E346E00A97; Wed, 29 Jul 2015 22:28:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.174 listed in list.dnswl.org]
-Received: from mail-ig0-f174.google.com (mail-ig0-f174.google.com
-	[209.85.213.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C460E00A7E
-	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 21:07:59 -0700 (PDT)
-Received: by igbij6 with SMTP id ij6so158873677igb.1
-	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 21:07:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=lpPG+ha5y8HNkCRa7xFbLMcsMdExiJMwB2cXP4roo6s=;
-	b=hAhqensj6K7lksaHar4PKvlm5xDnMxLwjcHE6717cBcPGQe2H5guc5QkZrKxOBiTfe
-	CovD36Q5Tei2YOfU0YrY3bXE/wNqknqTUfDqOLfryEx9lcSmEFG9iyBlNw62o55Wk4D4
-	6/3WFzgfzBYkqDvV2UxpxiFr9KxcuW3lq+MmRvEf6VTK0XCAc4sUccWQq9n0IagL+95l
-	NpcG+AHE1C2+jsEUql4eP6DdEug4JiYk6WZWAkW/Nn0qguWXDLFmGdoxxKOO85N9Sc74
-	0Z+F+XUqIpCZD1EnvLfLcGNjj3ScTng1YwaPQF3p8nJasJ9TpcdW68cqhhJAWpsnaEqU
-	E+Ww==
-X-Received: by 10.50.39.17 with SMTP id l17mr1531581igk.75.1438229279560; Wed,
-	29 Jul 2015 21:07:59 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from smtp.tomra.com (smtp.tomra.com [62.92.2.160])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1FFEE00A7E
+	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 22:28:05 -0700 (PDT)
+Received: from EUNOEUR-EXS010.teu.tomra.corp ([fe80::242c:2953:fc66:e1ee]) by
+	EUNOEUR-EXS013.teu.tomra.corp ([fe80::b81a:bbf8:2f42:40f1%13]) with
+	mapi id 14.03.0224.002; Thu, 30 Jul 2015 07:28:02 +0200
+From: Eirik Solberg Hamnvik <eirik.solberg.hamnvik@tomra.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Core-image-weston network problems
+Thread-Index: AdDKh98wYZKQ4fcFQNGznN7K4buppA==
+Date: Thu, 30 Jul 2015 05:28:01 +0000
+Message-ID: <9EB14782B17D6549A78433A42753B30B244FA7F7@EUNOEUR-EXS010.teu.tomra.corp>
+Accept-Language: nb-NO, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.3.8]
+x-exclaimer-md-config: 6b757840-9012-48b5-a10c-05c6ceeb7fd2
 MIME-Version: 1.0
-Received: by 10.107.38.79 with HTTP; Wed, 29 Jul 2015 21:07:30 -0700 (PDT)
-In-Reply-To: <1B56A49860EB2D45ADE3731B15C959FDB2E4B4@G08CNEXMBPEKD01.g08.fujitsu.local>
-References: <1B56A49860EB2D45ADE3731B15C959FDB2E4B4@G08CNEXMBPEKD01.g08.fujitsu.local>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 29 Jul 2015 20:07:30 -0800
-Message-ID: <CAMKF1sroAnY+C+TPg9-N24V_CLQzzfFTdz2RE+jF1x=_pwxqOA@mail.gmail.com>
-To: "Lei, Maohui" <leimaohui@cn.fujitsu.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] glibc 2.22
+Subject: Core-image-weston network problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,71 +39,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jul 2015 04:08:07 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 30 Jul 2015 05:28:08 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9EB14782B17D6549A78433A42753B30B244FA7F7EUNOEUREXS010te_"
 
-On Tue, Jul 28, 2015 at 12:48 AM, Lei, Maohui <leimaohui@cn.fujitsu.com> wrote:
-> Hi Khem,
->
->
->> glibc 2.22 will release end of this month. For some time I have put
->> together the update here
->>
->> http://git.openembedded.org/openembedded-core-contrib/commit/?h=kraj/m
->> aster&id=0
->> 2e73ea526d94f21c7ef82eb96b062eff8ebb825
->>
->> It works pretty well for machines I have tested it on ( arm/x86 ) but
->> would be interested if more wider trial could be carried out and
->> issues reported between now and release can be addressed.
->>
->> Please give it a try if you have spare cycles
->
-> I tested it on powerpc(e500v2),and did a ltp test. It does work well.
->
+--_000_9EB14782B17D6549A78433A42753B30B244FA7F7EUNOEUREXS010te_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-thanks for the report
+Hey!
 
+I am building core-image-weston. Branch fido. I have a postinstall script t=
+hat runs some code on first startup. The script is supposed to do  apt-get =
+install of some packages. The problem is that the postinstall script runs b=
+efore the network is correctly configured.
+Meaning my packages wont download. When it is fully booted I can manually d=
+o apt-get install and it works fine. For now I am using the 'at'-command to=
+ solve this issue, but I need to change that.
+The perfect thing would be to make my package dependent on whichever packag=
+e that configures the network settings, so I am guaranteed that it will dow=
+nload succesfully. Which one is that? Or are there any better solutions?
 
->
->
-> Best Regards
-> Lei Maohui
->
->
->
->
->> -----Original Message-----
->> From: openembedded-core-bounces@lists.openembedded.org
->> [mailto:openembedded-core-bounces@lists.openembedded.org] On Behalf Of
->> Khem Raj
->> Sent: Tuesday, July 14, 2015 1:37 AM
->> To: Patches and discussions about the oe-core layer; OpenEmbedded
->> Devel List; Yocto discussion list
->> Subject: [OE-core] glibc 2.22
->>
->> Hi All
->>
->> glibc 2.22 will release end of this month. For some time I have put
->> together the update here
->>
->> http://git.openembedded.org/openembedded-core-contrib/commit/?h=kraj/m
->> aster&id=0
->> 2e73ea526d94f21c7ef82eb96b062eff8ebb825
->>
->> It works pretty well for machines I have tested it on ( arm/x86 ) but
->> would be interested if more wider trial could be carried out and
->> issues reported between now and release can be addressed.
->>
->> Please give it a try if you have spare cycles
->>
->> Thanks
->> -Khem
->>
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Eirik
 
+--_000_9EB14782B17D6549A78433A42753B30B244FA7F7EUNOEUREXS010te_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"NO-BOK" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hey! <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I am building core-image-weston=
+. Branch fido. I have a postinstall script that runs some code on first sta=
+rtup. The script is supposed to do &nbsp;apt-get install of some packages. =
+The problem is that the postinstall script
+ runs before the network is correctly configured.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Meaning my packages wont downlo=
+ad. When it is fully booted I can manually do apt-get install and it works =
+fine. For now I am using the &#8216;at&#8217;-command to solve this issue, =
+but I need to change that.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">The perfect thing would be to m=
+ake my package dependent on whichever package that configures the network s=
+ettings, so I am guaranteed that it will download succesfully. Which one is=
+ that? Or are there any better solutions?
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Eirik<o:p></o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_9EB14782B17D6549A78433A42753B30B244FA7F7EUNOEUREXS010te_--
