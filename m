@@ -1,67 +1,35 @@
-Return-Path: <enak999@googlemail.com>
+Return-Path: <javier@osg.samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E573E009B3; Wed, 29 Jul 2015 13:45:11 -0700 (PDT)
+	id 95818E00AB6; Thu, 30 Jul 2015 01:41:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_FONT_FACE_BAD,
-	HTML_MESSAGE, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (enak999[at]googlemail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.212.180 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [54.187.51.154 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  1.0 HTML_FONT_FACE_BAD BODY: HTML font face is not a word
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
-	[209.85.212.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09579E00978
-	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 13:45:07 -0700 (PDT)
-Received: by wibxm9 with SMTP id xm9so217623691wib.0
-	for <yocto@yoctoproject.org>; Wed, 29 Jul 2015 13:45:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:from:to:cc:subject:importance:date:message-id
-	:in-reply-to:references:content-type;
-	bh=d5GEzHXGCFZCFbZt31zIxjD7oi49aTrwCDLo4aQcRBo=;
-	b=xio1Rn8vAZYS2ROdAROkVLzBz9Lrg1QPeQN237+d6fGmMj+cYQc3lidBRwqlXEZOSW
-	oV1jq4xeej5o/mveT2qzsaiOiEx7n7TAStNw28MilWJCvmOjkIpItpSIqhwDzwPJ0Og3
-	eEMCD8EU503sOjmS1SYpxzNTK6rZU7x16VdFxNRoJCQl+Um77NgjVALG/HpSOzI8vOZc
-	NgJ3HaoeYa5rMRXYP7S+PrBIVQI0gVvcHIq9b51keVhs4J74zBkIKe4jtvn0A2XWxu8O
-	bjRwtnJzNyMif3R+XWyoRFvT8HiAFbioRh4hmtHtW9D1mTwuDZ1r7zW80kV2S7IZpgKR
-	7cmg==
-X-Received: by 10.194.61.175 with SMTP id q15mr39571781wjr.135.1438202706477; 
-	Wed, 29 Jul 2015 13:45:06 -0700 (PDT)
-Received: from AsusF550L (dslb-084-063-088-138.084.063.pools.vodafone-ip.de.
-	[84.63.88.138]) by smtp.gmail.com with ESMTPSA id
-	ib9sm40385190wjb.2.2015.07.29.13.45.05
-	(version=TLSv1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 29 Jul 2015 13:45:05 -0700 (PDT)
-MIME-Version: 1.0
-From: <enak999@googlemail.com>
-To: =?utf-8?Q?Dalon_Westergreen?= <dwesterg@gmail.com>, 
-	"=?utf-8?Q?Spriggs,_Jim?=" <J.Spriggs@raylase.de>, 
-	=?utf-8?Q?Alex_J_Lennon?= <ajlennon@dynamicdevices.co.uk>
-Importance: Normal
-Date: Wed, 29 Jul 2015 20:36:50 +0000
-Message-ID: <81e2e36e8df04c9584ea5a9ca8afa303@googlemail.com>
-In-Reply-To: <C90FACF2-BCAC-4B73-A0D2-07216FCACB09@gmail.com>
-References: <2238EDC6081C944E97E4EE915AE5CBEC5476A872@EXCHANGE-B.raylase.de>
-	<55B8D0BD.3050803@dynamicdevices.co.uk>
-	<2238EDC6081C944E97E4EE915AE5CBEC5476ECD3@EXCHANGE-B.raylase.de>,
-	<C90FACF2-BCAC-4B73-A0D2-07216FCACB09@gmail.com>
+Received: from lists.s-osg.org (lists.s-osg.org [54.187.51.154])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69E33E00A97
+	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 01:41:21 -0700 (PDT)
+Received: from localhost.localdomain (119.3.11.37.dynamic.jazztel.es
+	[37.11.3.119])
+	by lists.s-osg.org (Postfix) with ESMTPSA id 5C9854632D;
+	Thu, 30 Jul 2015 01:36:15 -0700 (PDT)
+From: Javier Martinez Canillas <javier@osg.samsung.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Date: Thu, 30 Jul 2015 10:34:11 +0200
+Message-Id: <1438245251-20437-6-git-send-email-javier@osg.samsung.com>
+X-Mailer: git-send-email 2.4.3
+In-Reply-To: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
+References: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
 X-Mailman-Approved-At: Sun, 02 Aug 2015 23:22:39 -0700
-Cc: "=?utf-8?Q?yocto@yoctoproject.org?=" <yocto@yoctoproject.org>,
-	"=?utf-8?Q?rfi@lists.rocketboards.org?=" <rfi@lists.rocketboards.org>
-Subject: Re: Which repo for meta-altera ?
+Cc: yocto@yoctoproject.org, Derek Foreman <derekf@osg.samsung.com>,
+	Javier Martinez Canillas <javier@osg.samsung.com>,
+	Mauro Carvalho Chehab <mchehab@osg.samsung.com>
+Subject: [meta-raspberrypi][PATCH 5/5] rpi-default-providers: Switch providers according to used gfx stack
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,181 +41,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Jul 2015 20:45:11 -0000
-Content-Type: multipart/alternative;
-	boundary="_59ED261F-6E93-41EE-B756-9FA54B8BCE96_"
+X-List-Received-Date: Thu, 30 Jul 2015 08:41:23 -0000
 
---_59ED261F-6E93-41EE-B756-9FA54B8BCE96_
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"
+From: Derek Foreman <derekf@osg.samsung.com>
 
-QXMgeW91IGNhbiByZWFkIGluIHRoZSBSZWFkTWUubWQgS2hlbSBSYWogYW5kIFl2ZXMgVmFuZGVy
-dmVubmV0IGFyZSB0aGUgb2ZmaWNpYWwgbWFpbnRhaW5lcnMgb2YgZ2l0aHViLmNvbS9hbHRlcmEt
-b3BlbnNvdXJjZS9tZXRhLWFsdGVyYQ0KDQoNCkkgcmVhbGx5IHJlY29tbWVuZCB0byB1c2UgZ2l0
-aHViLmNvbS9hbHRlcmEtb3BlbnNvdXJjZS9tZXRhLWFsdGVyYSBpbnN0ZWFkIG9mIHRoZSBmb3Jr
-IGZyb20gS2hlbSBSYWouIEJ1dCBzaW5jZSB5b3UgdXNlIHRoZSBmb3JrIG9mIG9uZSBvZiB0aGUg
-bWFpbnRhaW5lcnMsIGl0IHdpbGwgcHJvYmFibHkgYmUgbW9zdCBvZiB0aGUgdGltZSBpbiBzeW5j
-aCB3aXRoIHRoZSBhbHRlcmEtb3BlbnNvdXJjZSByZXBvc2l0b3J5Lg0KDQoNCg0KDQoNCg0KVm9u
-OiBEYWxvbiBXZXN0ZXJncmVlbg0KR2VzZW5kZXQ6IOKAjk1pdHR3b2No4oCOLCDigI4yOeKAji4g
-4oCOSnVsaeKAjiDigI4yMDE1IOKAjjIx4oCOOuKAjjU0DQpBbjogU3ByaWdncywgSmltLCBBbGV4
-IEogTGVubm9uLCBLZXZpbiBCLg0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcsIHJmaUBsaXN0
-cy5yb2NrZXRib2FyZHMub3JnDQoNCg0KDQoNCkFzIGZhciBhcyBJIHVuZGVyc3RhbmQgaXQgQWx0
-ZXJhIG9ubHkgbWFpbnRhaW5zIHRoZSBvbmUgcmVwby4gDQoNCg0KT24gSnVseSAyOSwgMjAxNSA2
-OjQ0OjIzIEFNIFBEVCwgIlNwcmlnZ3MsIEppbSIgPEouU3ByaWdnc0ByYXlsYXNlLmRlPiB3cm90
-ZToNCkhpIEFsZXgsIERhbG9uLCBLZXZpbiwgTGlzdHMNCg0KaG1tbSwgc28gSSBndWVzcyBJJ20g
-c3RpbGwgY29uZnVzZWQgKHNvcnJ5KS4NCg0KQWxleCByZWNvbW1lbmRzIGdvaW5nIHZpYSB0aGUg
-Im9mZmljaWFsIiBvZSBsYXllcnMgaW5kZXgsIHdoaWNoIGN1cnJlbnRseSBsaW5rcyBkaXJlY3Rs
-eSB0byBnaXRodWIuY29tL2tyYWovbWV0YS1hbHRlcmEuDQoNCktldmluIGFuZCBEYWxvbiBob2xk
-IG91dCBmb3IgZ2l0aHViLmNvbS9hbHRlcmEtb3BlbnNvdXJjZS9tZXRhLWFsdGVyYSwgYW5kIERh
-bG9uIHNwZWNpZmljYWxseSBzYXlzICIuLi4gYW5kIHJlcG9zIHVuZGVyIGFueSB1c2VyIG5hbWUg
-aW4gZ2l0aHViIGFyZSBmb3JrcyIuDQoNClNvIGlzIHRoZXJlIGFuIG9mZmljaWFsIDstKSBkaWNo
-b3RvbXkgYmV0d2VlbiBhbHRlcmEgYW5kIG9lPw0KDQpUaGFua3MgZm9yIGxpc3RlbmluZy4uLg0K
-LS0NCmppbQ0KDQoNCi0tLS0tVXJzcHLDvG5nbGljaGUgTmFjaHJpY2h0LS0tLS0NClZvbjogQWxl
-eCBKIExlbm5vbiBbbWFpbHRvOmFqbGVubm9uQGR5bmFtaWNkZXZpY2VzLmNvLnVrXQ0KR2VzZW5k
-ZXQ6IE1pdHR3b2NoLCAyOS4gSnVsaSAyMDE1IDE1OjEwDQpBbjogU3ByaWdncywgSmltIDxKLlNw
-cmlnZ3NAcmF5bGFzZS5kZT4NCkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpCZXRyZWZmOiBS
-ZTogW3lvY3RvXSBXaGljaCByZXBvIGZvciBtZXRhLWFsdGVyYSA/DQoNCg0KDQpPbiAyOC8wNy8y
-MDE1IDEwOjEwLCBTcHJpZ2dzLCBKaW0NCndyb3RlOg0KIEhpIEd1eXM7IGNvbmZ1c2VkIG5vb2Ig
-aGVyZS4uLg0KDQogVGhlcmUgYXBwZWFyIHRvIGJlIChhdCBsZWFzdCkgdHdvICJvZmZpY2lhbCIg
-cmVwb3MgZm9yIG1ldGEtYWx0ZXJhOg0KDQogICAgICAgICBnaXRodWIuY29tL2tyYWovbWV0YS1h
-bHRlcmENCg0KIGFuZA0KDQogICAgICAgICBnaXQucm9ja2V0Ym9hcmRzLm9yZy9tZXRhLWFsdGVy
-YS5naXQNCg0KDQogU28gaG93IHNob3VsZCBJIGNob29zZSBiZXR3ZWVuIHRoZW0/DQoNCiBUaGFu
-a3MhDQogLS0NCiBKaW0NCg0KIFNvcnJ5IGFib3V0IHRoZSBjb21wYW55IHNpZy46IEkgY2FuJ3Qg
-c3dpdGNoIGl0IG9mZi4NCg0KDQpmd2l3IEkgd291bGQgdXN1YWxseSBzdGFydCB3aXRoIHRoZSBv
-ZmZpY2lhbCBpbmRleA0KDQpodHRwOi8vbGF5ZXJzLm9wZW5lbWJlZGRlZC5vcmcvbGF5ZXJpbmRl
-eC9icmFuY2gvbWFzdGVyL2xheWVycy8NCg0KVGhpcyBzZWVtcyB0byBwb2ludCB0byBnaXRodWIN
-Cg0KQ2hlZXJzLCBBbGV4DQoNCg0KDQoNCg0KDQpSQVlMQVNFIEFHDQpBcmdlbHNyaWVkZXIgRmVs
-ZCAyKzQNCjgyMjM0IFdlc3NsaW5nDQpHZXJtYW55DQpUZWwuOiArNDktKDApODE1My84OCA5OC0w
-DQpGYXg6ICs0OS0oMCk4MTUzLzg4IDk4LTEwDQpodHRwOi8vd3d3LnJheWxhc2UuZGUNCg0KRGlz
-dHJpY3QgQ291cnQgTXVuaWNoLCBIUkIgMTMxNDUwDQoNCkJvYXJkOiBQZXRlciB2b24gSmFuIChD
-RU8pDQoNClN1cGVydmlzb3J5IEJvYXJkOiBEci4gVWxyaWNoIExvaG1hbm4gKENoYWlybWFuKQ0K
-DQoNCkRpZXNlIEUtTWFpbCBlbnRow6RsdCB2ZXJ0cmF1bGljaGUgdW5kL29kZXIgcmVjaHRsaWNo
-IGdlc2Now7x0enRlIEluZm9ybWF0aW9uZW4uIFdlbm4gU2llIG5pY2h0IGRlciByaWNodGlnZSBB
-ZHJlc3NhdCBzaW5kIG9kZXIgZGllc2UgRS1NYWlsIGlycnTDvG1saWNoIGVyaGFsdGVuIGhhYmVu
-LCBpbmZvcm1pZXJlbiBTaWUgYml0dGUgc29mb3J0IGRlbiBBYnNlbmRlciB1bmQgdmVybmljaHRl
-biBTaWUgZGllc2UgTWFpbC4gRGFzIHVuZXJsYXVidGUgS29waWVyZW4gc293aWUgZGllIHVuYmVm
-dWd0ZSBXZWl0ZXJnYWJlIGRpZXNlciBNYWlsIGlzdCBuaWNodCBnZXN0YXR0ZXQuDQoNClRoaXMg
-ZS1tYWlsIG1heSBjb250YWluIGNvbmZpZGVudGlhbCBhbmQvb3IgcHJpdmlsZWdlZCBpbmZvcm1h
-dGlvbi4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCAob3IgaGF2ZSByZWNl
-aXZlZCB0aGlzIGUtbWFpbCBpbiBlcnJvcikgcGxlYXNlIG5vdGlmeSB0aGUgc2VuZGVyIGltbWVk
-aWF0ZWx5IGFuZCBkZXN0cm95IHRoaXMgZS1tYWlsLiBBbnkgdW5hdXRob3JpemVkIGNvcHlpbmcs
-IGRpc2Nsb3N1cmUgb3IgZGlzdHJpYnV0aW9uIG9mIHRoZSBtYXRlcmlhbCBpbiB0aGlzIGUtbWFp
-bCBpcyBzdHJpY3RseSBmb3JiaWRkZW4uDQoNCg0KLS0gDQpTZW50IGZyb20gbXkgQW5kcm9pZCBk
-ZXZpY2Ugd2l0aCBLLTkgTWFpbC4gUGxlYXNlIGV4Y3VzZSBteSBicmV2aXR5Lg==
+The Raspberry Pi boards can use one of two graphics stacks: The "userland"
+user-space driver or the VC4 drm/kms kernel driver. This patch allows the
+user to choose if the VC4 driver has to be used instead and set the right
+preferred providers for that case.
 
---_59ED261F-6E93-41EE-B756-9FA54B8BCE96_
-Content-Transfer-Encoding: base64
-Content-Type: text/html; charset="utf-8"
+Signed-off-by: Derek Foreman <derekf@osg.samsung.com>
+[javier: Extend commit msg and made conditional instead removing userland]
+Signed-off-by: Javier Martinez Canillas <javier@osg.samsung.com>
 
-CjxodG1sPgo8aGVhZD4KPG1ldGEgbmFtZT0iZ2VuZXJhdG9yIiBjb250ZW50PSJXaW5kb3dzIE1h
-aWwgMTcuNS45NjAwLjIwNTczIj4KPHN0eWxlIGRhdGEtZXh0ZXJuYWxzdHlsZT0idHJ1ZSI+PCEt
-LQpwLk1zb0xpc3RQYXJhZ3JhcGgsIGxpLk1zb0xpc3RQYXJhZ3JhcGgsIGRpdi5Nc29MaXN0UGFy
-YWdyYXBoIHsKbWFyZ2luLXRvcDowaW47Cm1hcmdpbi1yaWdodDowaW47Cm1hcmdpbi1ib3R0b206
-MGluOwptYXJnaW4tbGVmdDouNWluOwptYXJnaW4tYm90dG9tOi4wMDAxcHQ7Cn0KcC5Nc29Ob3Jt
-YWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbCB7Cm1hcmdpbjowaW47Cm1hcmdpbi1ib3R0
-b206LjAwMDFwdDsKfQpwLk1zb0xpc3RQYXJhZ3JhcGhDeFNwRmlyc3QsIGxpLk1zb0xpc3RQYXJh
-Z3JhcGhDeFNwRmlyc3QsIGRpdi5Nc29MaXN0UGFyYWdyYXBoQ3hTcEZpcnN0LCAKcC5Nc29MaXN0
-UGFyYWdyYXBoQ3hTcE1pZGRsZSwgbGkuTXNvTGlzdFBhcmFncmFwaEN4U3BNaWRkbGUsIGRpdi5N
-c29MaXN0UGFyYWdyYXBoQ3hTcE1pZGRsZSwgCnAuTXNvTGlzdFBhcmFncmFwaEN4U3BMYXN0LCBs
-aS5Nc29MaXN0UGFyYWdyYXBoQ3hTcExhc3QsIGRpdi5Nc29MaXN0UGFyYWdyYXBoQ3hTcExhc3Qg
-ewptYXJnaW4tdG9wOjBpbjsKbWFyZ2luLXJpZ2h0OjBpbjsKbWFyZ2luLWJvdHRvbTowaW47Cm1h
-cmdpbi1sZWZ0Oi41aW47Cm1hcmdpbi1ib3R0b206LjAwMDFwdDsKbGluZS1oZWlnaHQ6MTE1JTsK
-fQotLT48L3N0eWxlPjwvaGVhZD4KPGJvZHkgZGlyPSJsdHIiPgo8ZGl2IGRhdGEtZXh0ZXJuYWxz
-dHlsZT0iZmFsc2UiIGRpcj0ibHRyIiBzdHlsZT0iZm9udC1mYW1pbHk6ICdDYWxpYnJpJywgJ1Nl
-Z29lIFVJJywgJ01laXJ5bycsICdNaWNyb3NvZnQgWWFIZWkgVUknLCAnTWljcm9zb2Z0IEpoZW5n
-SGVpIFVJJywgJ01hbGd1biBHb3RoaWMnLCAnc2Fucy1zZXJpZic7Zm9udC1zaXplOjEycHQ7Ij48
-ZGl2PkFzIHlvdSBjYW4gcmVhZCBpbiB0aGUgUmVhZE1lLm1kIEtoZW0gUmFqIGFuZCBZdmVzIFZh
-bmRlcnZlbm5ldCBhcmUgdGhlIG9mZmljaWFsIG1haW50YWluZXJzIG9mIDxhIGhyZWY9Imh0dHA6
-Ly9naXRodWIuY29tL2FsdGVyYS1vcGVuc291cmNlL21ldGEtYWx0ZXJhIiB0YXJnZXQ9Il9wYXJl
-bnQiPjx1Pjxmb250IGNvbG9yPSIjMDA2NmNjIj5naXRodWIuY29tL2FsdGVyYS1vcGVuc291cmNl
-L21ldGEtYWx0ZXJhPC9mb250PjwvdT48L2E+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5JIHJl
-YWxseSByZWNvbW1lbmQgdG8gdXNlIDxhIGhyZWY9Imh0dHA6Ly9naXRodWIuY29tL2FsdGVyYS1v
-cGVuc291cmNlL21ldGEtYWx0ZXJhIiB0YXJnZXQ9Il9wYXJlbnQiPjx1Pjxmb250IGNvbG9yPSIj
-MDA2NmNjIj5naXRodWIuY29tL2FsdGVyYS1vcGVuc291cmNlL21ldGEtYWx0ZXJhPC9mb250Pjwv
-dT48L2E+IGluc3RlYWQgb2YgdGhlIGZvcmsgZnJvbSBLaGVtIFJhai4gQnV0IHNpbmNlIHlvdSB1
-c2UgdGhlIGZvcmsgb2Ygb25lIG9mIHRoZSBtYWludGFpbmVycywgaXQgd2lsbCBwcm9iYWJseSBi
-ZSBtb3N0IG9mIHRoZSB0aW1lIGluIHN5bmNoIHdpdGggdGhlIGFsdGVyYS1vcGVuc291cmNlIHJl
-cG9zaXRvcnkuPGJyPjwvZGl2PjxkaXYgZGF0YS1zaWduYXR1cmVibG9jaz0idHJ1ZSI+PGJyPjwv
-ZGl2PjxkaXYgc3R5bGU9InBhZGRpbmctdG9wOiA1cHg7IGJvcmRlci10b3AtY29sb3I6IHJnYigy
-MjksIDIyOSwgMjI5KTsgYm9yZGVyLXRvcC13aWR0aDogMXB4OyBib3JkZXItdG9wLXN0eWxlOiBz
-b2xpZDsiPjxkaXY+PGZvbnQgZmFjZT0iICdDYWxpYnJpJywgJ1NlZ29lIFVJJywgJ01laXJ5bycs
-ICdNaWNyb3NvZnQgWWFIZWkgVUknLCAnTWljcm9zb2Z0IEpoZW5nSGVpIFVJJywgJ01hbGd1biBH
-b3RoaWMnLCAnc2Fucy1zZXJpZiciIHN0eWxlPSdsaW5lLWhlaWdodDogMTVwdDsgbGV0dGVyLXNw
-YWNpbmc6IDAuMDJlbTsgZm9udC1mYW1pbHk6ICJDYWxpYnJpIiwgIlNlZ29lIFVJIiwgIk1laXJ5
-byIsICJNaWNyb3NvZnQgWWFIZWkgVUkiLCAiTWljcm9zb2Z0IEpoZW5nSGVpIFVJIiwgIk1hbGd1
-biBHb3RoaWMiLCAic2Fucy1zZXJpZiI7IGZvbnQtc2l6ZTogMTJwdDsnPjxiPlZvbjo8L2I+Jm5i
-c3A7PGEgaHJlZj0ibWFpbHRvOmR3ZXN0ZXJnQGdtYWlsLmNvbSIgdGFyZ2V0PSJfcGFyZW50Ij5E
-YWxvbiBXZXN0ZXJncmVlbjwvYT48YnI+PGI+R2VzZW5kZXQ6PC9iPiZuYnNwO+KAjk1pdHR3b2No
-4oCOLCDigI4yOeKAji4g4oCOSnVsaeKAjiDigI4yMDE1IOKAjjIx4oCOOuKAjjU0PGJyPjxiPkFu
-OjwvYj4mbmJzcDs8YSBocmVmPSJtYWlsdG86Si5TcHJpZ2dzQHJheWxhc2UuZGUiIHRhcmdldD0i
-X3BhcmVudCI+U3ByaWdncywgSmltPC9hPiwgPGEgaHJlZj0ibWFpbHRvOmFqbGVubm9uQGR5bmFt
-aWNkZXZpY2VzLmNvLnVrIiB0YXJnZXQ9Il9wYXJlbnQiPkFsZXggSiBMZW5ub248L2E+LCA8YSBo
-cmVmPSJtYWlsdG86ZW5hazk5OUBnb29nbGVtYWlsLmNvbSIgdGFyZ2V0PSJfcGFyZW50Ij5LZXZp
-biBCLjwvYT48YnI+PGI+Q2M6PC9iPiZuYnNwOzxhIGhyZWY9Im1haWx0bzp5b2N0b0B5b2N0b3By
-b2plY3Qub3JnIiB0YXJnZXQ9Il9wYXJlbnQiPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L2E+LCA8
-YSBocmVmPSJtYWlsdG86cmZpQGxpc3RzLnJvY2tldGJvYXJkcy5vcmciIHRhcmdldD0iX3BhcmVu
-dCI+cmZpQGxpc3RzLnJvY2tldGJvYXJkcy5vcmc8L2E+PC9mb250PjwvZGl2PjwvZGl2PjxkaXY+
-PGJyPjwvZGl2PjxkaXYgZGlyPSIiPkFzIGZhciBhcyBJIHVuZGVyc3RhbmQgaXQgQWx0ZXJhIG9u
-bHkgbWFpbnRhaW5zIHRoZSBvbmUgcmVwby4gIDxicj48YnI+PGRpdiBjbGFzcz0iZ21haWxfcXVv
-dGUiPk9uIEp1bHkgMjksIDIwMTUgNjo0NDoyMyBBTSBQRFQsICJTcHJpZ2dzLCBKaW0iICZsdDtK
-LlNwcmlnZ3NAcmF5bGFzZS5kZSZndDsgd3JvdGU6PGJsb2NrcXVvdGUgY2xhc3M9ImdtYWlsX3F1
-b3RlIiBzdHlsZT0ibWFyZ2luOiAwcHQgMHB0IDBwdCAwLjhleDsgcGFkZGluZy1sZWZ0OiAxZXg7
-IGJvcmRlci1sZWZ0LWNvbG9yOiByZ2IoMjA0LCAyMDQsIDIwNCk7IGJvcmRlci1sZWZ0LXdpZHRo
-OiAxcHg7IGJvcmRlci1sZWZ0LXN0eWxlOiBzb2xpZDsiPgo8cHJlIGNsYXNzPSJrOW1haWwiPkhp
-IEFsZXgsIERhbG9uLCBLZXZpbiwgTGlzdHM8YnI+PGJyPmhtbW0sIHNvIEkgZ3Vlc3MgSSdtIHN0
-aWxsIGNvbmZ1c2VkIChzb3JyeSkuPGJyPjxicj5BbGV4IHJlY29tbWVuZHMgZ29pbmcgdmlhIHRo
-ZSAib2ZmaWNpYWwiIG9lIGxheWVycyBpbmRleCwgd2hpY2ggY3VycmVudGx5IGxpbmtzIGRpcmVj
-dGx5IHRvIDxhIGhyZWY9Imh0dHA6Ly9naXRodWIuY29tL2tyYWovbWV0YS1hbHRlcmEiIHRhcmdl
-dD0iX3BhcmVudCI+Z2l0aHViLmNvbS9rcmFqL21ldGEtYWx0ZXJhPC9hPi48YnI+PGJyPktldmlu
-IGFuZCBEYWxvbiBob2xkIG91dCBmb3IgPGEgaHJlZj0iaHR0cDovL2dpdGh1Yi5jb20vYWx0ZXJh
-LW9wZW5zb3VyY2UvbWV0YS1hbHRlcmEiIHRhcmdldD0iX3BhcmVudCI+Z2l0aHViLmNvbS9hbHRl
-cmEtb3BlbnNvdXJjZS9tZXRhLWFsdGVyYTwvYT4sIGFuZCBEYWxvbiBzcGVjaWZpY2FsbHkgc2F5
-cyAiLi4uIGFuZCByZXBvcyB1bmRlciBhbnkgdXNlciBuYW1lIGluIGdpdGh1YiBhcmUgZm9ya3Mi
-Ljxicj48YnI+U28gaXMgdGhlcmUgYW4gb2ZmaWNpYWwgOy0pIGRpY2hvdG9teSBiZXR3ZWVuIGFs
-dGVyYSBhbmQgb2U/PGJyPjxicj5UaGFua3MgZm9yIGxpc3RlbmluZy4uLjxicj4tLTxicj5qaW08
-YnI+PGJyPjxicj4tLS0tLVVyc3Byw7xuZ2xpY2hlIE5hY2hyaWNodC0tLS0tPGJyPlZvbjogQWxl
-eCBKIExlbm5vbiBbbWFpbHRvOmFqbGVubm9uQGR5bmFtaWNkZXZpY2VzLmNvLnVrXTxicj5HZXNl
-bmRldDogTWl0dHdvY2gsIDI5LiBKdWxpIDIwMTUgMTU6MTA8YnI+QW46IFNwcmlnZ3MsIEppbSAm
-bHQ7Si5TcHJpZ2dzQHJheWxhc2UuZGUmZ3Q7PGJyPkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
-PGJyPkJldHJlZmY6IFJlOiBbeW9jdG9dIFdoaWNoIHJlcG8gZm9yIG1ldGEtYWx0ZXJhID88YnI+
-PGJyPjxicj48YnI+T24gMjgvMDcvMjAxNSAxMDoxMCwgU3ByaWdncywgSmltCndyb3RlOjxicj48
-YmxvY2txdW90ZSBjbGFzcz0iZ21haWxfcXVvdGUiIHN0eWxlPSJtYXJnaW46IDBwdCAwcHQgMWV4
-IDAuOGV4OyBwYWRkaW5nLWxlZnQ6IDFleDsgYm9yZGVyLWxlZnQtY29sb3I6IHJnYigxMTQsIDE1
-OSwgMjA3KTsgYm9yZGVyLWxlZnQtd2lkdGg6IDFweDsgYm9yZGVyLWxlZnQtc3R5bGU6IHNvbGlk
-OyI+IEhpIEd1eXM7IGNvbmZ1c2VkIG5vb2IgaGVyZS4uLjxicj48YnI+IFRoZXJlIGFwcGVhciB0
-byBiZSAoYXQgbGVhc3QpIHR3byAib2ZmaWNpYWwiIHJlcG9zIGZvciBtZXRhLWFsdGVyYTo8YnI+
-PGJyPiAgICAgICAgIDxhIGhyZWY9Imh0dHA6Ly9naXRodWIuY29tL2tyYWovbWV0YS1hbHRlcmEi
-IHRhcmdldD0iX3BhcmVudCI+Z2l0aHViLmNvbS9rcmFqL21ldGEtYWx0ZXJhPC9hPjxicj48YnI+
-IGFuZDxicj48YnI+ICAgICAgICAgPGEgaHJlZj0iaHR0cDovL2dpdC5yb2NrZXRib2FyZHMub3Jn
-L21ldGEtYWx0ZXJhLmdpdCIgdGFyZ2V0PSJfcGFyZW50Ij5naXQucm9ja2V0Ym9hcmRzLm9yZy9t
-ZXRhLWFsdGVyYS5naXQ8L2E+PGJyPjxicj48YnI+IFNvIGhvdyBzaG91bGQgSSBjaG9vc2UgYmV0
-d2VlbiB0aGVtPzxicj48YnI+IFRoYW5rcyE8YnI+IC0tPGJyPiBKaW08YnI+PGJyPiBTb3JyeSBh
-Ym91dCB0aGUgY29tcGFueSBzaWcuOiBJIGNhbid0IHN3aXRjaCBpdCBvZmYuPC9ibG9ja3F1b3Rl
-Pjxicj48YnI+ZndpdyBJIHdvdWxkIHVzdWFsbHkgc3RhcnQgd2l0aCB0aGUgb2ZmaWNpYWwgaW5k
-ZXg8YnI+PGJyPjxhIGhyZWY9Imh0dHA6Ly9sYXllcnMub3BlbmVtYmVkZGVkLm9yZy9sYXllcmlu
-ZGV4L2JyYW5jaC9tYXN0ZXIvbGF5ZXJzIiB0YXJnZXQ9Il9wYXJlbnQiPmh0dHA6Ly9sYXllcnMu
-b3BlbmVtYmVkZGVkLm9yZy9sYXllcmluZGV4L2JyYW5jaC9tYXN0ZXIvbGF5ZXJzPC9hPi88YnI+
-PGJyPlRoaXMgc2VlbXMgdG8gcG9pbnQgdG8gZ2l0aHViPGJyPjxicj5DaGVlcnMsIEFsZXg8YnI+
-PGJyPjxicj48aHI+PGJyPjxicj5SQVlMQVNFIEFHPGJyPkFyZ2Vsc3JpZWRlciBGZWxkIDIrNDxi
-cj44MjIzNCBXZXNzbGluZzxicj5HZXJtYW55PGJyPlRlbC46ICs0OS0oMCk4MTUzLzg4IDk4LTA8
-YnI+RmF4OiArNDktKDApODE1My84OCA5OC0xMDxicj48YSBocmVmPSJodHRwOi8vd3d3LnJheWxh
-c2UuZGUiIHRhcmdldD0iX3BhcmVudCI+aHR0cDovL3d3dy5yYXlsYXNlLmRlPC9hPjxicj48YnI+
-RGlzdHJpY3QgQ291cnQgTXVuaWNoLCBIUkIgMTMxNDUwPGJyPjxicj5Cb2FyZDogUGV0ZXIgdm9u
-IEphbiAoQ0VPKTxicj48YnI+U3VwZXJ2aXNvcnkgQm9hcmQ6IERyLiBVbHJpY2ggTG9obWFubiAo
-Q2hhaXJtYW4pPGJyPjxicj48YnI+RGllc2UgRS1NYWlsIGVudGjDpGx0IHZlcnRyYXVsaWNoZSB1
-bmQvb2RlciByZWNodGxpY2ggZ2VzY2jDvHR6dGUgSW5mb3JtYXRpb25lbi4gV2VubiBTaWUgbmlj
-aHQgZGVyIHJpY2h0aWdlIEFkcmVzc2F0IHNpbmQgb2RlciBkaWVzZSBFLU1haWwgaXJydMO8bWxp
-Y2ggZXJoYWx0ZW4gaGFiZW4sIGluZm9ybWllcmVuIFNpZSBiaXR0ZSBzb2ZvcnQgZGVuIEFic2Vu
-ZGVyIHVuZCB2ZXJuaWNodGVuIFNpZSBkaWVzZSBNYWlsLiBEYXMgdW5lcmxhdWJ0ZSBLb3BpZXJl
-biBzb3dpZSBkaWUgdW5iZWZ1Z3RlIFdlaXRlcmdhYmUgZGllc2VyIE1haWwgaXN0IG5pY2h0IGdl
-c3RhdHRldC48YnI+PGJyPlRoaXMgZS1tYWlsIG1heSBjb250YWluIGNvbmZpZGVudGlhbCBhbmQv
-b3IgcHJpdmlsZWdlZCBpbmZvcm1hdGlvbi4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJl
-Y2lwaWVudCAob3IgaGF2ZSByZWNlaXZlZCB0aGlzIGUtbWFpbCBpbiBlcnJvcikgcGxlYXNlIG5v
-dGlmeSB0aGUgc2VuZGVyIGltbWVkaWF0ZWx5IGFuZCBkZXN0cm95IHRoaXMgZS1tYWlsLiBBbnkg
-dW5hdXRob3JpemVkIGNvcHlpbmcsIGRpc2Nsb3N1cmUgb3IgZGlzdHJpYnV0aW9uIG9mIHRoZSBt
-YXRlcmlhbCBpbiB0aGlzIGUtbWFpbCBpcyBzdHJpY3RseSBmb3JiaWRkZW4uPGJyPjwvcHJlPjwv
-YmxvY2txdW90ZT48L2Rpdj48YnI+Ci0tIDxicj4KU2VudCBmcm9tIG15IEFuZHJvaWQgZGV2aWNl
-IHdpdGggSy05IE1haWwuIFBsZWFzZSBleGN1c2UgbXkgYnJldml0eS4KPC9kaXY+PC9kaXY+Cjwv
-Ym9keT4KPC9odG1sPgo=
+---
 
---_59ED261F-6E93-41EE-B756-9FA54B8BCE96_--
+ conf/machine/include/rpi-default-providers.inc | 8 ++++----
+ conf/machine/include/rpi-default-versions.inc  | 2 +-
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/conf/machine/include/rpi-default-providers.inc b/conf/machine/include/rpi-default-providers.inc
+index ee3a3acce7bd..233f177bd16e 100644
+--- a/conf/machine/include/rpi-default-providers.inc
++++ b/conf/machine/include/rpi-default-providers.inc
+@@ -3,8 +3,8 @@
+ PREFERRED_PROVIDER_virtual/kernel = "linux-raspberrypi"
+ PREFERRED_PROVIDER_u-boot = "u-boot-rpi"
+ PREFERRED_PROVIDER_virtual/xserver = "xserver-xorg"
+-PREFERRED_PROVIDER_virtual/egl ?= "userland"
+-PREFERRED_PROVIDER_virtual/libgles2 ?= "userland"
+-PREFERRED_PROVIDER_virtual/libgl ?= "mesa-gl"
+-PREFERRED_PROVIDER_virtual/mesa ?= "mesa-gl"
++PREFERRED_PROVIDER_virtual/egl ?= "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'userland', d)}"
++PREFERRED_PROVIDER_virtual/libgles2 ?= "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'userland', d)}"
++PREFERRED_PROVIDER_virtual/libgl ?= "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'mesa-gl', d)}"
++PREFERRED_PROVIDER_virtual/mesa ?= "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'mesa-gl', d)}"
+ PREFERRED_PROVIDER_jpeg = "jpeg"
+diff --git a/conf/machine/include/rpi-default-versions.inc b/conf/machine/include/rpi-default-versions.inc
+index bcf78281b6ff..c07ecac5924b 100644
+--- a/conf/machine/include/rpi-default-versions.inc
++++ b/conf/machine/include/rpi-default-versions.inc
+@@ -1,3 +1,3 @@
+ # RaspberryPi BSP default versions
+ 
+-PREFERRED_VERSION_linux-raspberrypi ?= "3.18.%"
++PREFERRED_VERSION_linux-raspberrypi ?= "${@bb.utils.contains("DISTRO_FEATURES", "vc4-gfx", "4.1.%", "3.18.%", d)}"
+-- 
+2.4.3
+
+
