@@ -1,6 +1,6 @@
 Return-Path: <bobadeshrikant@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 242E8E00B43; Thu, 30 Jul 2015 06:37:20 -0700 (PDT)
+	id AE009E00B47; Thu, 30 Jul 2015 06:37:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -19,36 +19,36 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.52 listed in list.dnswl.org]
-Received: from mail-pa0-f52.google.com (mail-pa0-f52.google.com
-	[209.85.220.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AFD5E00A7E
-	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 06:35:49 -0700 (PDT)
-Received: by pachj5 with SMTP id hj5so23752441pac.3
-	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 06:35:49 -0700 (PDT)
+	*      [209.85.192.178 listed in list.dnswl.org]
+Received: from mail-pd0-f178.google.com (mail-pd0-f178.google.com
+	[209.85.192.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C94FE00B0B
+	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 06:36:01 -0700 (PDT)
+Received: by pdjr16 with SMTP id r16so25298302pdj.3
+	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 06:36:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id;
-	bh=0N1TJgXRP4Hhlv2W4sKsKyRyjaouLPJyKRaOlQxH/rQ=;
-	b=F0IHjdeWJZ7Jvq2XTAIfH65xO7mUg+vpPCHA0eMN//DIDKi1MgCzsc5oYGPc+8GbZe
-	uPDIo2aCwrqOwzp+8uCAsXzKK+3LZ83E93KR9ikmn17EjWoUGjDZVV0cqTi6xCaKa0ha
-	NIQfhGFecuuv31PV+nCZ5tBaExHzxX45oUGpZ1wzKdORF2FZtyJeN3Qx/hVrXNoj+S35
-	O8wgAPQKHX25+i53T8wpounUDthjCUuFEfCjHaY4hhtspa1y6AAcgTEA4xaFfVzOqAk5
-	K5RvfnYcLxukle6QbUJf8ffn8DafvM3U6oKnTrI8Lgu6rvGH4fx4fucGssyWqBtBjw61
-	lkdA==
-X-Received: by 10.66.157.195 with SMTP id wo3mr105829977pab.17.1438263349024; 
-	Thu, 30 Jul 2015 06:35:49 -0700 (PDT)
+	bh=5UKztP54Ixqg4It8lDQH9ypV9XbdWKA3YcJJTJHIZg4=;
+	b=PsaRoyFykgjlD7+m33o/EDDHpYmqEhaO8jcsAAFYWnXFfHkOYt7EPj5IVkqRnum1h1
+	COj1ymEcOwXVeGbsVItfxxQGP1jwK8A7TldWW8nTL7Li6FLVK1Rc+92rHPGS4llXGyo9
+	Xur68YtB6sPDzoZd0CLcNo1EbhyJKLOhvVZHQP/g7rXurhcKp9KGCL2c286HRdra8nxX
+	cbaDX3dqC2Bs3+wmjvk7Eh5ljKYRAKaudjnU5vpyjkBoeZf5f3mnQlKGT+O4uX6KEbAz
+	br9YtL5BPeq67L+fIUqxFbbOXalPI0pSu5buBxg0YvxjGxkSNnE/bg2znqYsR+hJD3qY
+	wWgA==
+X-Received: by 10.70.103.145 with SMTP id fw17mr107878124pdb.1.1438263361869; 
+	Thu, 30 Jul 2015 06:36:01 -0700 (PDT)
 Received: from localhost.localdomain ([139.181.35.34])
 	by smtp.gmail.com with ESMTPSA id
-	wc8sm2277579pab.45.2015.07.30.06.35.47
+	nh3sm2303993pdb.72.2015.07.30.06.36.00
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 30 Jul 2015 06:35:48 -0700 (PDT)
+	Thu, 30 Jul 2015 06:36:01 -0700 (PDT)
 From: Shrikant Bobade <bobadeshrikant@gmail.com>
 To: yocto@yoctoproject.org
-Date: Thu, 30 Jul 2015 19:06:29 +0530
-Message-Id: <1438263389-14421-1-git-send-email-bobadeshrikant@gmail.com>
+Date: Thu, 30 Jul 2015 19:06:42 +0530
+Message-Id: <1438263402-14452-1-git-send-email-bobadeshrikant@gmail.com>
 X-Mailer: git-send-email 1.7.9.5
 Cc: Shrikant Bobade <shrikant_bobade@mentor.com>
-Subject: [meta-selinux][PATCH 3/7] refpolicy-targeted: update base refpolicy 20141203
+Subject: [meta-selinux][PATCH 4/7] refpolicy-mcs: update base refpolicy 20141203
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,45 +60,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jul 2015 13:37:20 -0000
+X-List-Received-Date: Thu, 30 Jul 2015 13:37:27 -0000
 
 From: Shrikant Bobade <shrikant_bobade@mentor.com>
 
-A simple forward-port of refpolicy-targeted to use the 20141203
+A simple forward-port of refpolicy-mcs to use the 20141203
 base refpolicy.
 
 Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
 ---
- .../refpolicy/refpolicy-targeted_2.20141203.bb     |   20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100644 recipes-security/refpolicy/refpolicy-targeted_2.20141203.bb
+ .../refpolicy/refpolicy-mcs_2.20141203.bb          |   11 +++++++++++
+ 1 file changed, 11 insertions(+)
+ create mode 100644 recipes-security/refpolicy/refpolicy-mcs_2.20141203.bb
 
-diff --git a/recipes-security/refpolicy/refpolicy-targeted_2.20141203.bb b/recipes-security/refpolicy/refpolicy-targeted_2.20141203.bb
+diff --git a/recipes-security/refpolicy/refpolicy-mcs_2.20141203.bb b/recipes-security/refpolicy/refpolicy-mcs_2.20141203.bb
 new file mode 100644
-index 0000000..b169604
+index 0000000..062727b
 --- /dev/null
-+++ b/recipes-security/refpolicy/refpolicy-targeted_2.20141203.bb
-@@ -0,0 +1,20 @@
-+SUMMARY = "SELinux targeted policy"
++++ b/recipes-security/refpolicy/refpolicy-mcs_2.20141203.bb
+@@ -0,0 +1,11 @@
++SUMMARY = "MCS (Multi Category Security) variant of the SELinux policy"
 +DESCRIPTION = "\
-+This is the targeted variant of the SELinux reference policy.  Most service \
-+domains are locked down. Users and admins will login in with unconfined_t \
-+domain, so they have the same access to the system as if SELinux was not \
-+enabled. \
++This is the reference policy for SE Linux built with MCS support. \
++An MCS policy is the same as an MLS policy but with only one sensitivity \
++level. This is useful on systems where a hierarchical policy (MLS) isn't \
++needed (pretty much all systems) but the non-hierarchical categories are. \
 +"
 +
-+FILESEXTRAPATHS_prepend := "${THISDIR}/refpolicy-${PV}:"
-+
-+POLICY_NAME = "targeted"
 +POLICY_TYPE = "mcs"
-+POLICY_MLS_SENS = "0"
 +
 +include refpolicy_${PV}.inc
-+
-+SRC_URI += " \
-+            file://refpolicy-fix-optional-issue-on-sysadm-module.patch \
-+            file://refpolicy-unconfined_u-default-user.patch \
-+           "
 -- 
 1.7.9.5
 
