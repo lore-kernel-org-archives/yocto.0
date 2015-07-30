@@ -1,18 +1,17 @@
-Return-Path: <bobadeshrikant@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E1DF2E00B6F; Thu, 30 Jul 2015 06:38:34 -0700 (PDT)
+	id DFCC4E00B23; Thu, 30 Jul 2015 10:02:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
-	URI_HEX autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.54 listed in list.dnswl.org]
+	*      [209.85.223.178 listed in list.dnswl.org]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (bobadeshrikant[at]gmail.com)
-	*  1.1 URI_HEX URI: URI hostname has long hexadecimal sequence
+	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -20,34 +19,41 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
-	[209.85.220.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3560E00AF9
-	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 06:36:42 -0700 (PDT)
-Received: by pabkd10 with SMTP id kd10so23772473pab.2
-	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 06:36:42 -0700 (PDT)
+Received: from mail-io0-f178.google.com (mail-io0-f178.google.com
+	[209.85.223.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 401B1E00AE9
+	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 10:02:33 -0700 (PDT)
+Received: by iodd187 with SMTP id d187so59959025iod.2
+	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 10:02:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=RvFY7gZKz4ZUYqibpUd5pzjjPfiv6sRA7FwP8Z7Ae7o=;
-	b=mrkumx7nfuigVqYllwAE5ox6xNscmhTPrfQGez5iGRoEzhKhtY9JCfTyaiFuF4VYNu
-	6cV1qjGDQo6zFG7HbCPUHHAtqCSeeXdfDZJh+Xc+cm6UmU5IDBWl9Z2ngh1EARIER3vm
-	20NrOI9ReG7z5CI2Aa0Rrx8+snf3yuErKSAFAcmBx4GG6+eufCYc75z5wdsY+pYefLDY
-	DHYhUI30PN6hdKb5EICAofQffbNw9Mg6xd6TxCK/sU2Yi2AeQFMybXFVV4ErGHiHEA66
-	xYJWN4XRiDFNq43nivEwJZ9sgrhkS/qktaUjK4R2zl4HPsTr2fS1fkaxSLlZc/uaQvB7
-	iPyQ==
-X-Received: by 10.66.66.166 with SMTP id g6mr107944471pat.157.1438263402140;
-	Thu, 30 Jul 2015 06:36:42 -0700 (PDT)
-Received: from localhost.localdomain ([139.181.35.34])
-	by smtp.gmail.com with ESMTPSA id f1sm2344127pdp.39.2015.07.30.06.36.40
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 30 Jul 2015 06:36:41 -0700 (PDT)
-From: Shrikant Bobade <bobadeshrikant@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu, 30 Jul 2015 19:07:23 +0530
-Message-Id: <1438263443-14547-1-git-send-email-bobadeshrikant@gmail.com>
-X-Mailer: git-send-email 1.7.9.5
-Cc: Shrikant Bobade <shrikant_bobade@mentor.com>
-Subject: [meta-selinux][PATCH 7/7] refpolicy-minimum: update base refpolicy 20141203
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=bHz6cK8EjiBFRnCf1NnXQqU25MJXVlClqWeP7I7ZADI=;
+	b=QAEuVp+k7A7R5DzmvtpdzzLelNl3mk8EBOVNEIMDVQQ3cEAYCc5HJQKm0wmcMb2Mom
+	fsZyOX1UHWtOOU/RLJOkQ80r2gz02frUMyDccQteGU/hAvvelCOYdfQJsuDyKRXNdVU0
+	NjJpyEboPcqcuWjtUdQy3MqX0srdiDnSCPfX0oP3U686SQ1hnQRUrtfHFbIhag3+AsaA
+	ZFAPcj5NB80XncjXK/7wkVdZAXWAyWeQcMeYHKooXcxo59ITFJC+3gNSBfq61dEd3AzS
+	ZSrudiDO6/1deIMDghlYyWIlnpNaHA90PZrnz7ZxLNFRgsVWLoQvN741THxl3dMpAXEe
+	ausw==
+X-Received: by 10.107.4.6 with SMTP id 6mr11781912ioe.49.1438275753251; Thu,
+	30 Jul 2015 10:02:33 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.38.79 with HTTP; Thu, 30 Jul 2015 10:02:03 -0700 (PDT)
+In-Reply-To: <7861693.hW9MCO2lEF@peggleto-mobl.ger.corp.intel.com>
+References: <2238EDC6081C944E97E4EE915AE5CBEC5476A872@EXCHANGE-B.raylase.de>
+	<81e2e36e8df04c9584ea5a9ca8afa303@googlemail.com>
+	<2238EDC6081C944E97E4EE915AE5CBEC5476EED6@EXCHANGE-B.raylase.de>
+	<7861693.hW9MCO2lEF@peggleto-mobl.ger.corp.intel.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 30 Jul 2015 09:02:03 -0800
+Message-ID: <CAMKF1soKnb5LR7pkiXW2=o0hjA4iVx_803yO3P=2vEc_85Y0gQ@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Yves Vandervennet <yvanderv@opensource.altera.com>,
+	"rfi@lists.rocketboards.org" <rfi@lists.rocketboards.org>,
+	Dalon Westergreen <dwesterg@gmail.com>,
+	"enak999@googlemail.com" <enak999@googlemail.com>
+Subject: Re: Which repo for meta-altera ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,74 +65,212 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jul 2015 13:38:34 -0000
+X-List-Received-Date: Thu, 30 Jul 2015 17:02:37 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-From: Shrikant Bobade <shrikant_bobade@mentor.com>
+On Thu, Jul 30, 2015 at 12:50 AM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> (Adding Khem and Yves, the maintainers of the github repo, to CC)
+>
+> In the interests of keeping the layer index accurate, can we get some
+> clarification on which repo is the official BSP?
 
-A simple forward-port of refpolicy-minimum to use the 20141203
-base refpolicy.
+Please use github.com/kraj/meta-altera as mentioned in layerindex as
+well. This is the community supported BSP
 
-Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
----
- .../refpolicy/refpolicy-minimum_2.20141203.bb      |   48 ++++++++++++++++++++
- 1 file changed, 48 insertions(+)
- create mode 100644 recipes-security/refpolicy/refpolicy-minimum_2.20141203.bb
-
-diff --git a/recipes-security/refpolicy/refpolicy-minimum_2.20141203.bb b/recipes-security/refpolicy/refpolicy-minimum_2.20141203.bb
-new file mode 100644
-index 0000000..b275821
---- /dev/null
-+++ b/recipes-security/refpolicy/refpolicy-minimum_2.20141203.bb
-@@ -0,0 +1,48 @@
-+include refpolicy-targeted_${PV}.bb
-+
-+SUMMARY = "SELinux minimum policy"
-+DESCRIPTION = "\
-+This is a minimum reference policy with just core policy modules, and \
-+could be used as a base for customizing targeted policy. \
-+Pretty much everything runs as initrc_t or unconfined_t so all of the \
-+domains are unconfined. \
-+"
-+
-+POLICY_NAME = "minimum"
-+
-+FILESEXTRAPATHS_prepend := "${THISDIR}/files:${THISDIR}/refpolicy-${PV}:${THISDIR}/refpolicy-targeted:"
-+
-+CORE_POLICY_MODULES = "unconfined \
-+	selinuxutil storage sysnetwork \
-+	application libraries miscfiles logging userdomain \
-+	init mount modutils getty authlogin locallogin \
-+	"
-+
-+# nscd caches libc-issued requests to the name service.
-+# Without nscd.pp, commands want to use these caches will be blocked.
-+EXTRA_POLICY_MODULES += "nscd"
-+
-+# pam_mail module enables checking and display of mailbox status upon
-+# "login", so "login" process will access to /var/spool/mail.
-+EXTRA_POLICY_MODULES += "mta"
-+
-+POLICY_MODULES_MIN = "${CORE_POLICY_MODULES} ${EXTRA_POLICY_MODULES}"
-+
-+# re-write the same func from refpolicy_common.inc
-+prepare_policy_store () {
-+	oe_runmake 'DESTDIR=${D}' 'prefix=${D}${prefix}' install
-+
-+	# Prepare to create policy store
-+	mkdir -p ${D}${sysconfdir}/selinux/
-+	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/policy
-+	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules
-+	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files
-+	touch ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files/file_contexts.local
-+	for i in ${D}${datadir}/selinux/${POLICY_NAME}/*.pp; do
-+		bzip2 -f $i && mv -f $i.bz2 $i
-+	done
-+	cp base.pp ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/base.pp
-+	for i in ${POLICY_MODULES_MIN}; do
-+		cp ${i}.pp ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules/`basename $i.pp`
-+	done
-+}
--- 
-1.7.9.5
-
+>
+> Thanks,
+> Paul
+>
+> On Thursday 30 July 2015 06:52:22 Spriggs, Jim wrote:
+>> Hi Kevin,
+>>
+>> Rodger, got it this time =E2=80=93 I had indeed missed the clue about th=
+e
+>> maintainers.
+>
+>> I should RTFM more often=E2=80=A6.
+>>
+>> Many thanks for your help and patience =E2=98=BA.
+>> --
+>> jim
+>>
+>> Von: enak999@googlemail.com [mailto:enak999@googlemail.com]
+>> Gesendet: Mittwoch, 29. Juli 2015 22:37
+>> An: Dalon Westergreen <dwesterg@gmail.com>; Spriggs, Jim
+>> <J.Spriggs@raylase.de>; Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+>  Cc:
+>> yocto@yoctoproject.org; rfi@lists.rocketboards.org
+>> Betreff: Re: [yocto] Which repo for meta-altera ?
+>>
+>> As you can read in the ReadMe.md Khem Raj and Yves Vandervennet are the
+>> official maintainers of
+>> github.com/altera-opensource/meta-altera<http://github.com/altera-openso=
+urc
+>> e/meta-altera>
+>
+>> I really recommend to use
+>> github.com/altera-opensource/meta-altera<http://github.com/altera-openso=
+urc
+>> e/meta-altera> instead of the fork from Khem Raj. But since you use the =
+fork
+>> of one of the maintainers, it will probably be most of the time in synch
+>> with the altera-opensource repository.
+>
+>> Von: Dalon Westergreen<mailto:dwesterg@gmail.com>
+>> Gesendet: =E2=80=8EMittwoch=E2=80=8E, =E2=80=8E29=E2=80=8E. =E2=80=8EJul=
+i=E2=80=8E =E2=80=8E2015 =E2=80=8E21=E2=80=8E:=E2=80=8E54
+>> An: Spriggs, Jim<mailto:J.Spriggs@raylase.de>, Alex J
+>> Lennon<mailto:ajlennon@dynamicdevices.co.uk>, Kevin
+>> B.<mailto:enak999@googlemail.com>
+>  Cc:
+>> yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>,
+>> rfi@lists.rocketboards.org<mailto:rfi@lists.rocketboards.org>
+>> As far as I understand it Altera only maintains the one repo.
+>> On July 29, 2015 6:44:23 AM PDT, "Spriggs, Jim"
+>> <J.Spriggs@raylase.de<mailto:J.Spriggs@raylase.de>> wrote:
+>
+>> Hi Alex, Dalon, Kevin, Lists
+>>
+>> hmmm, so I guess I'm still confused (sorry).
+>>
+>> Alex recommends going via the "official" oe layers index, which currentl=
+y
+>> links directly to
+>> github.com/kraj/meta-altera<http://github.com/kraj/meta-altera>.
+>
+>> Kevin and Dalon hold out for
+>> github.com/altera-opensource/meta-altera<http://github.com/altera-openso=
+urc
+>> e/meta-altera>, and Dalon specifically says "... and repos under any use=
+r
+>> name in github are forks".
+>
+>> So is there an official ;-) dichotomy between altera and oe?
+>>
+>> Thanks for listening...
+>> --
+>> jim
+>>
+>>
+>> -----Urspr=C3=BCngliche Nachricht-----
+>> Von: Alex J Lennon [mailto:ajlennon@dynamicdevices.co.uk]
+>> Gesendet: Mittwoch, 29. Juli 2015 15:10
+>> An: Spriggs, Jim <J.Spriggs@raylase.de<mailto:J.Spriggs@raylase.de>>
+>> Cc: yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+>> Betreff: Re: [yocto] Which repo for meta-altera ?
+>>
+>>
+>>
+>> On 28/07/2015 10:10, Spriggs, Jim
+>>
+>> wrote:
+>>
+>>  Hi Guys; confused noob here...
+>>
+>>  There appear to be (at least) two "official" repos for meta-altera:
+>>
+>>          github.com/kraj/meta-altera<http://github.com/kraj/meta-altera>
+>>
+>>  and
+>>
+>>
+>> git.rocketboards.org/meta-altera.git<http://git.rocketboards.org/meta-al=
+ter
+>> a.git>
+>
+>>
+>>  So how should I choose between them?
+>>
+>>  Thanks!
+>>  --
+>>  Jim
+>>
+>>  Sorry about the company sig.: I can't switch it off.
+>>
+>>
+>> fwiw I would usually start with the official index
+>>
+>> http://layers.openembedded.org/layerindex/branch/master/layers/
+>>
+>> This seems to point to github
+>>
+>> Cheers, Alex
+>>
+>>
+>> ________________________________
+>>
+>>
+>> RAYLASE AG
+>> Argelsrieder Feld 2+4
+>> 82234 Wessling
+>> Germany
+>> Tel.: +49-(0)8153/88 98-0
+>> Fax: +49-(0)8153/88 98-10
+>> http://www.raylase.de
+>>
+>> District Court Munich, HRB 131450
+>>
+>> Board: Peter von Jan (CEO)
+>>
+>> Supervisory Board: Dr. Ulrich Lohmann (Chairman)
+>>
+>>
+>> Diese E-Mail enth=C3=A4lt vertrauliche und/oder rechtlich gesch=C3=BCtzt=
+e
+>> Informationen. Wenn Sie nicht der richtige Adressat sind oder diese E-Ma=
+il
+>> irrt=C3=BCmlich erhalten haben, informieren Sie bitte sofort den Absende=
+r und
+>> vernichten Sie diese Mail. Das unerlaubte Kopieren sowie die unbefugte
+>> Weitergabe dieser Mail ist nicht gestattet.
+>
+>> This e-mail may contain confidential and/or privileged information. If y=
+ou
+>> are not the intended recipient (or have received this e-mail in error)
+>> please notify the sender immediately and destroy this e-mail. Any
+>> unauthorized copying, disclosure or distribution of the material in this
+>> e-mail is strictly forbidden.
+>
+>> --
+>> Sent from my Android device with K-9 Mail. Please excuse my brevity.
+>>
+>> ________________________________
+>>
+>> RAYLASE AG
+>> Argelsrieder Feld 2+4
+>> 82234 Wessling
+>> Germany
+>> Tel.: +49-(0)8153/88 98-0
+>> Fax: +49-(0)8153/88 98-10
+>> http://www.raylase.de
+>>
+>> District Court Munich, HRB 131450
+>>
+>> Board: Peter von Jan (CEO)
+>>
+>> Supervisory Board: Dr. Ulrich Lohmann (Chairman)
+>>
+>>
+>> Diese E-Mail enth=C3=A4lt vertrauliche und/oder rechtlich gesch=C3=BCtzt=
+e
+>> Informationen. Wenn Sie nicht der richtige Adressat sind oder diese E-Ma=
+il
+>> irrt=C3=BCmlich erhalten haben, informieren Sie bitte sofort den Absende=
+r und
+>> vernichten Sie diese Mail. Das unerlaubte Kopieren sowie die unbefugte
+>> Weitergabe dieser Mail ist nicht gestattet.
+>
+>> This e-mail may contain confidential and/or privileged information. If y=
+ou
+>> are not the intended recipient (or have received this e-mail in error)
+>> please notify the sender immediately and destroy this e-mail. Any
+>> unauthorized copying, disclosure or distribution of the material in this
+>> e-mail is strictly forbidden.
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
