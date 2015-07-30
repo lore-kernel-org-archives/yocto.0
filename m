@@ -1,35 +1,47 @@
-Return-Path: <eirik.solberg.hamnvik@tomra.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 242BFE00ABE; Thu, 30 Jul 2015 06:08:39 -0700 (PDT)
+	id 79CD9E00ABE; Thu, 30 Jul 2015 06:13:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.192.44 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from smtp.tomra.com (smtp.tomra.com [62.92.2.160])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46D5EE00A7E
-	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 06:08:34 -0700 (PDT)
-Received: from EUNOEUR-EXS010.teu.tomra.corp ([fe80::242c:2953:fc66:e1ee]) by
-	EUNOEUR-EXS013.teu.tomra.corp ([fe80::b81a:bbf8:2f42:40f1%13]) with
-	mapi id 14.03.0224.002; Thu, 30 Jul 2015 15:08:31 +0200
-From: Eirik Solberg Hamnvik <eirik.solberg.hamnvik@tomra.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Core-image-weston network problems
-Thread-Index: AdDKh98wYZKQ4fcFQNGznN7K4buppAADkhKAAAyiykA=
-Date: Thu, 30 Jul 2015 13:08:30 +0000
-Message-ID: <9EB14782B17D6549A78433A42753B30B244FA86A@EUNOEUR-EXS010.teu.tomra.corp>
+Received: from mail-qg0-f44.google.com (mail-qg0-f44.google.com
+	[209.85.192.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4252FE00A7E
+	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 06:13:30 -0700 (PDT)
+Received: by qgii95 with SMTP id i95so23422450qgi.2
+	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 06:13:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=nDtNmLulpmvxozxqWuRxOKFijAPnM+xCzr7uhcyqocw=;
+	b=g85hcMG2X6fbNcg9b+i+9jhuMHHBecb2aw2b9bd+T+QheLjAjTqP2xboA4MxwLzgAX
+	rKbNBrWyifnk+gnqjnFtRRxZyn1+lFzl1G8P6Y8OHcWnZWC3JykmyGMH554HOI4NnOJS
+	RsvlxjekLkTsPPj0eFm68QWT1H4X1Xaq/qL+2v3I+V0jVGSza9aG84RcS4mf701B+Apx
+	4bQ02JCXRFTYB7DmxtMywwC+RmE/sPpBO9QfAhZLvauuml6Ed3eWFIBWgBPVc8feJ/eX
+	wqJkjFmCrOJR1lI5VYSNlhQPIq5+HK0mmlGFuo+hPTZ/AKCZaarN+R/cvw3+HC3y5gSN
+	+gRQ==
+X-Gm-Message-State: ALoCoQltE27b5IQ8QT822Fe58Fq0y+TnG52+stch+3T35Gl9WwdsmiuiHPDeXH+cDTtdIaWQzysy
+X-Received: by 10.141.28.200 with SMTP id f191mr5387825qhe.52.1438262010187;
+	Thu, 30 Jul 2015 06:13:30 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.140.102.195 with HTTP; Thu, 30 Jul 2015 06:13:10 -0700 (PDT)
+In-Reply-To: <9EB14782B17D6549A78433A42753B30B244FA86A@EUNOEUR-EXS010.teu.tomra.corp>
 References: <9EB14782B17D6549A78433A42753B30B244FA7F7@EUNOEUR-EXS010.teu.tomra.corp>
 	<CAJTo0Lb-y1MG9-uPP+kDE5gUNFPOvrAEnbevG=gN9-cOwZeCaw@mail.gmail.com>
-In-Reply-To: <CAJTo0Lb-y1MG9-uPP+kDE5gUNFPOvrAEnbevG=gN9-cOwZeCaw@mail.gmail.com>
-Accept-Language: nb-NO, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.3.8]
-x-exclaimer-md-config: 6b757840-9012-48b5-a10c-05c6ceeb7fd2
-MIME-Version: 1.0
+	<9EB14782B17D6549A78433A42753B30B244FA86A@EUNOEUR-EXS010.teu.tomra.corp>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 30 Jul 2015 14:13:10 +0100
+Message-ID: <CAJTo0LYdiFMjc7cJts4nuBqrFM_HcGa-tt=th+m2fHe1QZ+NwQ@mail.gmail.com>
+To: Eirik Solberg Hamnvik <eirik.solberg.hamnvik@tomra.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Core-image-weston network problems
 X-BeenThere: yocto@yoctoproject.org
@@ -43,103 +55,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jul 2015 13:08:39 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9EB14782B17D6549A78433A42753B30B244FA86AEUNOEUREXS010te_"
+X-List-Received-Date: Thu, 30 Jul 2015 13:13:33 -0000
+Content-Type: multipart/alternative; boundary=001a114234123641d4051c1778c0
 
---_000_9EB14782B17D6549A78433A42753B30B244FA86AEUNOEUREXS010te_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--001a114234123641d4051c1778c0
+Content-Type: text/plain; charset=UTF-8
 
-VGhhbmtzISBJdCB3b3JrZWQgb3V0IGZvciBtZS4gSSBtYWRlIGEgUkMgc2NyaXB0IGFuZCBwbGFj
-ZWQgaXQgaW4gL2V0Yy9pbml0LmQvLiBJbiAvZXRjL3JjNS5kLyBJIGFkZGVkIGEgc3ltbGluayB3
-aGljaCB3YXMgYWZ0ZXIgdGhlIG5ldHdvcmsgc3ltbGluay4gV29ya2VkIGdyZWF0IC4NCg0KRnJv
-bTogQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KU2VudDogMzAu
-IGp1bGkgMjAxNSAxMTowNg0KVG86IEVpcmlrIFNvbGJlcmcgSGFtbnZpaw0KQ2M6IHlvY3RvQHlv
-Y3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIENvcmUtaW1hZ2Utd2VzdG9uIG5l
-dHdvcmsgcHJvYmxlbXMNCg0KDQpPbiAzMCBKdWx5IDIwMTUgYXQgMDY6MjgsIEVpcmlrIFNvbGJl
-cmcgSGFtbnZpayA8ZWlyaWsuc29sYmVyZy5oYW1udmlrQHRvbXJhLmNvbTxtYWlsdG86ZWlyaWsu
-c29sYmVyZy5oYW1udmlrQHRvbXJhLmNvbT4+IHdyb3RlOg0KVGhlIHBlcmZlY3QgdGhpbmcgd291
-bGQgYmUgdG8gbWFrZSBteSBwYWNrYWdlIGRlcGVuZGVudCBvbiB3aGljaGV2ZXIgcGFja2FnZSB0
-aGF0IGNvbmZpZ3VyZXMgdGhlIG5ldHdvcmsgc2V0dGluZ3MsIHNvIEkgYW0gZ3VhcmFudGVlZCB0
-aGF0IGl0IHdpbGwgZG93bmxvYWQgc3VjY2VzZnVsbHkuIFdoaWNoIG9uZSBpcyB0aGF0PyBPciBh
-cmUgdGhlcmUgYW55IGJldHRlciBzb2x1dGlvbnM/DQoNCkRvbid0IHVzZSBhIHBvc3RpbnN0YWxs
-IHNjcmlwdCwgd2hpY2ggYnkgZGVmaW5pdGlvbiBoYXMgdG8gcnVuIGVhcmx5LiAgV3JpdGUgYSBu
-b3JtYWwgaW5pdCBzY3JpcHQgdGhhdCBkZWxldGVzIGl0c2VsZiBhZnRlciBjb21wbGV0aW9uIGFu
-ZCBzY2hlZHVsZSBpdCB0byBjb21lIGFmdGVyIG5ldHdvcmtpbmcgKHdoaWNoIGlzIGEgY2FuIG9m
-IHdvcm1zLCB5b3UnbGwgaGF2ZSBtb3JlIGx1Y2sgaWYgeW91IHVzZSBzeXN0ZW1kIGhlcmUpLg0K
-DQpSb3NzDQo=
+On 30 July 2015 at 14:08, Eirik Solberg Hamnvik <
+eirik.solberg.hamnvik@tomra.com> wrote:
 
---_000_9EB14782B17D6549A78433A42753B30B244FA86AEUNOEUREXS010te_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> Thanks! It worked out for me. I made a RC script and placed it in
+> /etc/init.d/. In /etc/rc5.d/ I added a symlink which was after the network
+> symlink. Worked great .
+>
+>
+Beware races - it only worked because networking came up quickly.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
-e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
-KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
-b05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
-emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
-aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
-Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
-eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
-Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5ob2VuemINCgl7bXNvLXN0eWxl
-LW5hbWU6aG9lbnpiO30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNv
-bmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6
-IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsN
-Cglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCW1zby1mYXJlYXN0LWxhbmd1
-YWdlOkVOLVVTO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQgNzkyLjBwdDsN
-CgltYXJnaW46NzAuODVwdCA3MC44NXB0IDcwLjg1cHQgNzAuODVwdDt9DQpkaXYuV29yZFNlY3Rp
-b24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDld
-Pjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0K
-PC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91
-dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpz
-aGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9Ik5PLUJP
-SyIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEi
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNp
-emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJp
-ZiZxdW90Oztjb2xvcjojMUY0OTdEIj5UaGFua3MhIEl0IHdvcmtlZCBvdXQgZm9yIG1lLiBJIG1h
-ZGUgYSBSQyBzY3JpcHQgYW5kIHBsYWNlZCBpdCBpbiAvZXRjL2luaXQuZC8uIEluIC9ldGMvcmM1
-LmQvIEkgYWRkZWQgYSBzeW1saW5rIHdoaWNoIHdhcyBhZnRlciB0aGUgbmV0d29yayBzeW1saW5r
-Lg0KIFdvcmtlZCBncmVhdCAuIDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZh
-bWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFG
-NDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PGI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5Gcm9tOjwvc3Bhbj48
-L2I+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4gQnVydG9uLCBSb3Nz
-IFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXQ0KPGJyPg0KPGI+U2VudDo8L2I+IDMwLiBq
-dWxpIDIwMTUgMTE6MDY8YnI+DQo8Yj5Ubzo8L2I+IEVpcmlrIFNvbGJlcmcgSGFtbnZpazxicj4N
-CjxiPkNjOjwvYj4geW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBS
-ZTogW3lvY3RvXSBDb3JlLWltYWdlLXdlc3RvbiBuZXR3b3JrIHByb2JsZW1zPG86cD48L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8
-ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
-PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIDMwIEp1bHkgMjAxNSBhdCAwNjoyOCwgRWly
-aWsgU29sYmVyZyBIYW1udmlrICZsdDs8YSBocmVmPSJtYWlsdG86ZWlyaWsuc29sYmVyZy5oYW1u
-dmlrQHRvbXJhLmNvbSIgdGFyZ2V0PSJfYmxhbmsiPmVpcmlrLnNvbGJlcmcuaGFtbnZpa0B0b21y
-YS5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-IHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0
-byI+PHNwYW4gbGFuZz0iRU4tVVMiPlRoZSBwZXJmZWN0IHRoaW5nIHdvdWxkIGJlIHRvIG1ha2Ug
-bXkgcGFja2FnZSBkZXBlbmRlbnQgb24gd2hpY2hldmVyIHBhY2thZ2UgdGhhdCBjb25maWd1cmVz
-IHRoZSBuZXR3b3JrIHNldHRpbmdzLCBzbyBJIGFtIGd1YXJhbnRlZWQgdGhhdCBpdCB3aWxsIGRv
-d25sb2FkIHN1Y2Nlc2Z1bGx5Lg0KIFdoaWNoIG9uZSBpcyB0aGF0PyBPciBhcmUgdGhlcmUgYW55
-IGJldHRlciBzb2x1dGlvbnM/IDwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PGJyPg0KRG9uJ3QgdXNlIGEgcG9zdGluc3RhbGwgc2NyaXB0LCB3aGlj
-aCBieSBkZWZpbml0aW9uIGhhcyB0byBydW4gZWFybHkuJm5ic3A7IFdyaXRlIGEgbm9ybWFsIGlu
-aXQgc2NyaXB0IHRoYXQgZGVsZXRlcyBpdHNlbGYgYWZ0ZXIgY29tcGxldGlvbiBhbmQgc2NoZWR1
-bGUgaXQgdG8gY29tZSBhZnRlciBuZXR3b3JraW5nICh3aGljaCBpcyBhIGNhbiBvZiB3b3Jtcywg
-eW91J2xsIGhhdmUgbW9yZSBsdWNrIGlmIHlvdSB1c2Ugc3lzdGVtZCBoZXJlKS48bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Um9zczxvOnA+PC9v
-OnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+Ross
 
---_000_9EB14782B17D6549A78433A42753B30B244FA86AEUNOEUREXS010te_--
+--001a114234123641d4051c1778c0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 30 July 2015 at 14:08, Eirik Solberg Hamnvik <span dir=3D"ltr">&lt;<a hr=
+ef=3D"mailto:eirik.solberg.hamnvik@tomra.com" target=3D"_blank">eirik.solbe=
+rg.hamnvik@tomra.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex=
+"><p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:11.0pt;fon=
+t-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">Thanks! =
+It worked out for me. I made a RC script and placed it in /etc/init.d/. In =
+/etc/rc5.d/ I added a symlink which was after the network symlink.
+ Worked great . <u></u><u></u></span></p>
+<p class=3D"MsoNormal"></p></blockquote></div><br>Beware races - it only wo=
+rked because networking came up quickly.</div><div class=3D"gmail_extra"><b=
+r></div><div class=3D"gmail_extra">Ross</div></div>
+
+--001a114234123641d4051c1778c0--
