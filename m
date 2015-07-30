@@ -1,47 +1,58 @@
-Return-Path: <jfdavis@anuvainnovations.com>
+Return-Path: <develone@sbcglobal.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6BCF4E00B30; Thu, 30 Jul 2015 14:18:42 -0700 (PDT)
+	id 51B43E00B34; Thu, 30 Jul 2015 15:19:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.160.176 listed in list.dnswl.org]
+	*      [98.138.91.116 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-yk0-f176.google.com (mail-yk0-f176.google.com
-	[209.85.160.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A7EEE00B18
-	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 14:18:39 -0700 (PDT)
-Received: by ykay190 with SMTP id y190so44516716yka.3
-	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 14:18:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=iUVfp2gcthyk/smTXShvmpDryQrDbPvV+SVSiTq8FV4=;
-	b=l6TKJIlPq8urhWiP7DFw4etLUHzglvNRLCP6dsS4vdofQVGTn1Zge3DuAVOZNS++8M
-	cR7KUvxLMAE3mrxU1ZS+08n3ey08/GXFCF6qD8t1Lq+a2keYiEtmt50q3oHSPKWi+jRs
-	WEbop7srfbVHYeR6X7XqJU/Rjm0uAmsBdYI2AGK1Sz9TQ7Th6kOkmalzyGrqYigrH5dU
-	45pe8GKTN7oy3z+NxIobGope3VZ2NaMSpUQYLcbc9H3Vs/8KCwHJyvcPi4/Q1RP7s/56
-	S9349O+H+adZi9+yaP/QfjmcYZSV7w9jTF5sdP72B5JknIKdSqlr/9zwazQbQvp0VXv7
-	TIdg==
-X-Gm-Message-State: ALoCoQlvV7jKhPlL4ib/HtHG0mdOtIjOm4nflvkNhzXjWKZqBVnx62BMeuIMnUtJbvdSyGHw/wuA
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm23-vm6.bullet.mail.ne1.yahoo.com
+	(nm23-vm6.bullet.mail.ne1.yahoo.com [98.138.91.116])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10871E00B18
+	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 15:19:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
+	t=1438294785; bh=1qMpGAY107LxSgWg1rHXKE89v1N0hf0r1DApGr+Gp/E=;
+	h=Date:From:Reply-To:To:Subject:From:Subject;
+	b=W+4DUnuM5WsQpeAb8GR3+/OX8YphxEEDzZ3XpuOup0aEw7XNXHXRicjvzsrrH6kPIY6CZ+PvvGnI+LS6G/VzgDMpn1vybHpviLvx9V8TSQjyz4JWUztGzhhjCDy3jPV7W7yfclUfPVzhLBJ5noojXsOeRHncVC4EB0w24me+gKXG96nyOv/zHuloU0Sk5+GgPTeE9qPuccTBzC1PYmZm9KMgDscgyiXvOSiQRBF3RzOpNPyarOfPKLIRI9Qr7nxBNrT2a+CN+D+x4DegJmtl8jz+KOGK0wMH4hVX0I0qtLSzWiu5TfA3pb0Ul4LQirL/Y/Apv4zasAt3BYldFTfAXA==
+Received: from [98.138.226.179] by nm23.bullet.mail.ne1.yahoo.com with NNFMP;
+	30 Jul 2015 22:19:45 -0000
+Received: from [98.138.89.164] by tm14.bullet.mail.ne1.yahoo.com with NNFMP;
+	30 Jul 2015 22:19:45 -0000
+Received: from [127.0.0.1] by omp1020.mail.ne1.yahoo.com with NNFMP;
+	30 Jul 2015 22:19:45 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 535339.28020.bm@omp1020.mail.ne1.yahoo.com
+X-YMail-OSG: uA2BQmoVM1kBoho8MqUkmKeXtoaOLywhhQoiZ3mlkwi_r0AJeHpJ8PXh.90xNcs
+	Hpg4yiEN48S4EZN07u_x13FQQsVo3U6K9enQ5IrtiCCOiY6co._Yc0_qqJyv3iaFZEAVVKt9qv0D
+	hwHEJrznEsn0jCExqOcp4SV1Cqey59VgwVtUu0KCM00INlsINinmL3buWy1N5t.fcFECu0BtEw.6
+	L1tsppB2W1sJUohWDT4fjMHGnGLWVj.30T4I4meKd0oOH2Vs0bkpVGos24y7zA9FcjCEQ75C0n5J
+	fbMUIkxXLcVTzYCn3rqiGNGeiC1eCSi94aH_Evw2yIcaGoUPKLPC.vvVSLvZjph1D4GNdLUKGon6
+	F8meQwBXm2asYO9G3etJ_C0eQM6hNT00AtgdvyiutwCmf7QH1LJjbXD8kCUqyfaxnUr3SbhWiGHZ
+	NcLmwZjsGG068qNhshVMuHrJiAxmHP.YAkVFJv3v9T1QKa5RCZAtVmfv9UU8Q3wU1783ParFspHN
+	no3tp.fMc5MoypRpTvht8zLHDwPiFpAMLqPuSHtIxqacqbYputzHw22JyFn2FlGc-
+Received: by 98.138.105.199; Thu, 30 Jul 2015 22:19:45 +0000 
+Date: Thu, 30 Jul 2015 22:16:05 +0000 (UTC)
+From: Edward Vidal <develone@sbcglobal.net>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <467329904.5499903.1438294565023.JavaMail.yahoo@mail.yahoo.com>
 MIME-Version: 1.0
-X-Received: by 10.13.204.150 with SMTP id o144mr54191683ywd.54.1438291118472; 
-	Thu, 30 Jul 2015 14:18:38 -0700 (PDT)
-Received: by 10.37.44.137 with HTTP; Thu, 30 Jul 2015 14:18:38 -0700 (PDT)
-Date: Thu, 30 Jul 2015 17:18:38 -0400
-Message-ID: <CAPTvctUNu_z7UMuBvFvSB6YUyDueBcx3chjn5pV0YgLDf+BSvw@mail.gmail.com>
-From: John Davis <jfdavis@anuvainnovations.com>
-To: yocto@yoctoproject.org
-Subject: beaglebone black and lcd
+Subject: (No subject)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Edward Vidal <develone@sbcglobal.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -50,55 +61,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jul 2015 21:18:42 -0000
-Content-Type: multipart/alternative; boundary=001a114e43a633731f051c1e3f40
+X-List-Received-Date: Thu, 30 Jul 2015 22:19:51 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_5499902_77238914.1438294565017"
 
---001a114e43a633731f051c1e3f40
+------=_Part_5499902_77238914.1438294565017
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hello
+Hello All,Thanks to Ross Burton=20
+see the files https://github.com/develone/raspberrypi2_yocto.git
 
-What mailing list would be good for talking about beaglebone black and 4D
-systems LCD? This list or the meta-ti list?
+in recipe_myhdl folder.
 
-I'm new to beaglebone black and yocto. I have managed to build and deploy a
-sato build but it does not recognize the lcd cape.  I don't have a clue
-where to begin and I'm looking for pointers.
+Now have an rpm to install myhdl on a yocto build.
+let me know if you have any questions.
+=C2=A0=C2=A0Edward Vidal Jr.
+e-mail develone@sbcglobal.net
+915-595-1613
 
-From what I can tell there is a tilcdc driver which shows up in dmesg
-output.  This might be the driver for the lcd or it might be a driver for
-hdmi.  I don't have a hdmi cable yet to see if its using the hdmi port for
-its display but I suspect so.
-
-I also don't know if the kernel is configured to use the cape.  Is there a
-way to run make menuconfig equivalent on the arm kernel in yocto?
-
-Is there any howto or guide on getting the cape working with bbone black?
-
---
-John F. Davis
-cell: 919 888 8358
-
---001a114e43a633731f051c1e3f40
+------=_Part_5499902_77238914.1438294565017
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello<div><br></div><div>What mailing list would be good f=
-or talking about beaglebone black and 4D systems LCD? This list or the meta=
--ti list?</div><div><br></div><div>I&#39;m new to beaglebone black and yoct=
-o. I have managed to build and deploy a sato build but it does not recogniz=
-e the lcd cape.=C2=A0 I don&#39;t have a clue where to begin and I&#39;m lo=
-oking for pointers. =C2=A0</div><div><br></div><div>From what I can tell th=
-ere is a tilcdc driver which shows up in dmesg output.=C2=A0 This might be =
-the driver for the lcd or it might be a driver for hdmi.=C2=A0 I don&#39;t =
-have a hdmi cable yet to see if its using the hdmi port for its display but=
- I suspect so.</div><div><br></div><div>I also don&#39;t know if the kernel=
- is configured to use the cape.=C2=A0 Is there a way to run make menuconfig=
- equivalent on the arm kernel in yocto?</div><div><br></div><div>Is there a=
-ny howto or guide on getting the cape working with bbone black?</div><div><=
-br clear=3D"all"><div><div class=3D"gmail_signature"><div dir=3D"ltr"><div>=
-<div dir=3D"ltr">--</div><div dir=3D"ltr">John F. Davis<div>cell: 919 888 8=
-358</div></div></div></div></div></div>
-</div></div>
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
+nt-size:16px"><div id=3D"yui_3_16_0_1_1438294122924_3423"></div><div class=
+=3D"" id=3D"yui_3_16_0_1_1438294122924_2399"><span class=3D"" id=3D"yui_3_1=
+6_0_1_1438294122924_2577">Hello All,</span></div><div class=3D"" dir=3D"ltr=
+" id=3D"yui_3_16_0_1_1438294122924_2429"><span class=3D"" id=3D"yui_3_16_0_=
+1_1438294122924_2432">Thanks to Ross Burton <br class=3D""></span></div><di=
+v class=3D"" dir=3D"ltr"><span class=3D"" id=3D"yui_3_16_0_1_1438294122924_=
+2432">see the files <a class=3D"" id=3D"yui_3_16_0_1_1438294122924_2430" hr=
+ef=3D"https://github.com/develone/raspberrypi2_yocto.git">https://github.co=
+m/develone/raspberrypi2_yocto.git</a><br class=3D""></span></div><div class=
+=3D"" id=3D"yui_3_16_0_1_1438294122924_2429"><br class=3D""></div><div clas=
+s=3D"" dir=3D"ltr">in recipe_myhdl folder.<br class=3D""></div><div class=
+=3D"" dir=3D"ltr"><br class=3D""></div><div class=3D"">Now have an rpm to i=
+nstall myhdl on a yocto build.</div><div class=3D""><br class=3D""></div><d=
+iv class=3D"">let me know if you have any questions.<br class=3D""></div><d=
+iv class=3D""><div dir=3D"ltr">&nbsp;</div></div><div>&nbsp;</div><div><div=
+>Edward Vidal Jr.<br>e-mail develone@sbcglobal.net<br>915-595-1613</div></d=
+iv></div></body></html>
 
---001a114e43a633731f051c1e3f40--
+------=_Part_5499902_77238914.1438294565017--
