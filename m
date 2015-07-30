@@ -1,6 +1,6 @@
 Return-Path: <javier@osg.samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 95818E00AB6; Thu, 30 Jul 2015 01:41:23 -0700 (PDT)
+	id A1BB9E00AB4; Thu, 30 Jul 2015 01:41:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,16 +12,16 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from lists.s-osg.org (lists.s-osg.org [54.187.51.154])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69E33E00A97
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69426E00A96
 	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 01:41:21 -0700 (PDT)
 Received: from localhost.localdomain (119.3.11.37.dynamic.jazztel.es
 	[37.11.3.119])
-	by lists.s-osg.org (Postfix) with ESMTPSA id 5C9854632D;
-	Thu, 30 Jul 2015 01:36:15 -0700 (PDT)
+	by lists.s-osg.org (Postfix) with ESMTPSA id EE2454632A;
+	Thu, 30 Jul 2015 01:36:11 -0700 (PDT)
 From: Javier Martinez Canillas <javier@osg.samsung.com>
 To: Andrei Gherzan <andrei@gherzan.ro>
-Date: Thu, 30 Jul 2015 10:34:11 +0200
-Message-Id: <1438245251-20437-6-git-send-email-javier@osg.samsung.com>
+Date: Thu, 30 Jul 2015 10:34:09 +0200
+Message-Id: <1438245251-20437-4-git-send-email-javier@osg.samsung.com>
 X-Mailer: git-send-email 2.4.3
 In-Reply-To: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
 References: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
@@ -29,7 +29,7 @@ X-Mailman-Approved-At: Sun, 02 Aug 2015 23:22:39 -0700
 Cc: yocto@yoctoproject.org, Derek Foreman <derekf@osg.samsung.com>,
 	Javier Martinez Canillas <javier@osg.samsung.com>,
 	Mauro Carvalho Chehab <mchehab@osg.samsung.com>
-Subject: [meta-raspberrypi][PATCH 5/5] rpi-default-providers: Switch providers according to used gfx stack
+Subject: [meta-raspberrypi][PATCH 3/5] sdcard_image-rpi.bbclass: Allocate more space for boot partition
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,47 +45,52 @@ X-List-Received-Date: Thu, 30 Jul 2015 08:41:23 -0000
 
 From: Derek Foreman <derekf@osg.samsung.com>
 
-The Raspberry Pi boards can use one of two graphics stacks: The "userland"
-user-space driver or the VC4 drm/kms kernel driver. This patch allows the
-user to choose if the VC4 driver has to be used instead and set the right
-preferred providers for that case.
+The boot partition currently has a size of 20 MiB but just the start elf
+binaries account almost 12 MiB, which means that only 8 MiB is left for
+the kernel image. A recent kernel with many of its options built-in can
+easily be more than 4 MiB so let's double the boot partition size to 40
+MiB to make sure that it has enough room for the kernel image, the DTBs
+and possible even a backup kernel.
 
 Signed-off-by: Derek Foreman <derekf@osg.samsung.com>
-[javier: Extend commit msg and made conditional instead removing userland]
+[javier: Extended the commit message]
 Signed-off-by: Javier Martinez Canillas <javier@osg.samsung.com>
 
 ---
 
- conf/machine/include/rpi-default-providers.inc | 8 ++++----
- conf/machine/include/rpi-default-versions.inc  | 2 +-
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ classes/sdcard_image-rpi.bbclass | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/conf/machine/include/rpi-default-providers.inc b/conf/machine/include/rpi-default-providers.inc
-index ee3a3acce7bd..233f177bd16e 100644
---- a/conf/machine/include/rpi-default-providers.inc
-+++ b/conf/machine/include/rpi-default-providers.inc
-@@ -3,8 +3,8 @@
- PREFERRED_PROVIDER_virtual/kernel = "linux-raspberrypi"
- PREFERRED_PROVIDER_u-boot = "u-boot-rpi"
- PREFERRED_PROVIDER_virtual/xserver = "xserver-xorg"
--PREFERRED_PROVIDER_virtual/egl ?= "userland"
--PREFERRED_PROVIDER_virtual/libgles2 ?= "userland"
--PREFERRED_PROVIDER_virtual/libgl ?= "mesa-gl"
--PREFERRED_PROVIDER_virtual/mesa ?= "mesa-gl"
-+PREFERRED_PROVIDER_virtual/egl ?= "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'userland', d)}"
-+PREFERRED_PROVIDER_virtual/libgles2 ?= "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'userland', d)}"
-+PREFERRED_PROVIDER_virtual/libgl ?= "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'mesa-gl', d)}"
-+PREFERRED_PROVIDER_virtual/mesa ?= "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'mesa-gl', d)}"
- PREFERRED_PROVIDER_jpeg = "jpeg"
-diff --git a/conf/machine/include/rpi-default-versions.inc b/conf/machine/include/rpi-default-versions.inc
-index bcf78281b6ff..c07ecac5924b 100644
---- a/conf/machine/include/rpi-default-versions.inc
-+++ b/conf/machine/include/rpi-default-versions.inc
-@@ -1,3 +1,3 @@
- # RaspberryPi BSP default versions
+diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
+index 7592cc170451..4211fd438989 100644
+--- a/classes/sdcard_image-rpi.bbclass
++++ b/classes/sdcard_image-rpi.bbclass
+@@ -14,14 +14,14 @@ inherit linux-raspberrypi-base
+ #                                                     Default Free space = 1.3x
+ #                                                     Use IMAGE_OVERHEAD_FACTOR to add more space
+ #                                                     <--------->
+-#            4MiB              20MiB           SDIMG_ROOTFS
++#            4MiB              40MiB           SDIMG_ROOTFS
+ # <-----------------------> <----------> <---------------------->
+ #  ------------------------ ------------ ------------------------
+ # | IMAGE_ROOTFS_ALIGNMENT | BOOT_SPACE | ROOTFS_SIZE            |
+ #  ------------------------ ------------ ------------------------
+ # ^                        ^            ^                        ^
+ # |                        |            |                        |
+-# 0                      4MiB     4MiB + 20MiB       4MiB + 20Mib + SDIMG_ROOTFS
++# 0                      4MiB     4MiB + 40MiB       4MiB + 40Mib + SDIMG_ROOTFS
  
--PREFERRED_VERSION_linux-raspberrypi ?= "3.18.%"
-+PREFERRED_VERSION_linux-raspberrypi ?= "${@bb.utils.contains("DISTRO_FEATURES", "vc4-gfx", "4.1.%", "3.18.%", d)}"
+ # This image depends on the rootfs image
+ IMAGE_TYPEDEP_rpi-sdimg = "${SDIMG_ROOTFS_TYPE}"
+@@ -40,7 +40,7 @@ SDIMG_KERNELIMAGE_raspberrypi2 ?= "kernel7.img"
+ BOOTDD_VOLUME_ID ?= "${MACHINE}"
+ 
+ # Boot partition size [in KiB] (will be rounded up to IMAGE_ROOTFS_ALIGNMENT)
+-BOOT_SPACE ?= "20480"
++BOOT_SPACE ?= "40960"
+ 
+ # Set alignment to 4MB [in KiB]
+ IMAGE_ROOTFS_ALIGNMENT = "4096"
 -- 
 2.4.3
 
