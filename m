@@ -1,50 +1,60 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <forlorn18@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 506D0E00B63; Fri, 31 Jul 2015 08:14:44 -0700 (PDT)
+	id 8E003E00B9F; Fri, 31 Jul 2015 08:16:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (forlorn18[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.180 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DE35E009E5
-	for <yocto@yoctoproject.org>; Fri, 31 Jul 2015 08:14:37 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga103.fm.intel.com with ESMTP; 31 Jul 2015 08:14:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,585,1432623600"; 
-	d="scan'208,217";a="533742522"
-Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
-	by FMSMGA003.fm.intel.com with ESMTP; 31 Jul 2015 08:14:31 -0700
-Received: from orsmsx112.amr.corp.intel.com (10.22.240.13) by
-	ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Fri, 31 Jul 2015 08:14:31 -0700
-Received: from fmsmsx153.amr.corp.intel.com (10.18.125.6) by
-	ORSMSX112.amr.corp.intel.com (10.22.240.13) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Fri, 31 Jul 2015 08:14:30 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.35]) by
-	FMSMSX153.amr.corp.intel.com ([169.254.9.53]) with mapi id
-	14.03.0224.002; Fri, 31 Jul 2015 08:14:30 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Status WW31
-Thread-Index: AdDLo5WJFc3IDJhPQtmE20iMf3rZ/Q==
-Date: Fri, 31 Jul 2015 15:14:30 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E555E9384@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.107]
-MIME-Version: 1.0
-Subject: Yocto Project Status WW31
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
+	[209.85.212.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E8C4E009E5
+	for <yocto@yoctoproject.org>; Fri, 31 Jul 2015 08:16:20 -0700 (PDT)
+Received: by wibxm9 with SMTP id xm9so38297199wib.0
+	for <yocto@yoctoproject.org>; Fri, 31 Jul 2015 08:16:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:content-type:mime-version;
+	bh=7ylPLq2nsg585AZSEzsmKQjz5OImUpfVybHiPci9spI=;
+	b=n/iaFBF2AVgobjlmEiYOwA1tBJ27cPj+3mFYkdD6lImtVtBf6bsS6dHenOpkoVztWG
+	aMX2qKnVsJ8V1oxlk7q6LkCOhsa6BkkN/BoGDSfWX/slzFg+6hpk/Kbc8ay/kWpllCou
+	bBQDOX/gVxkPGjBGmTWwHErh7w+k+qkTkZa+Zcml/hiDYnRShNNvVZZnIQ5HmNF7Loe8
+	ZLpqtcPI8D5WMdwBTa6Gx9gtOiF8jrpaRqK8IZ/Y8dnjprgefKrhfPNhtZBqYfcSrsuf
+	5k6BC3iqegmKY96HeYHYxZ4uuUXtHSaM5lgG5Y98/OTolS4uDRAVBjU0F9HJIodSBSWT
+	w2Ew==
+X-Received: by 10.180.84.136 with SMTP id z8mr8059072wiy.63.1438355779030;
+	Fri, 31 Jul 2015 08:16:19 -0700 (PDT)
+Received: from ConcEmb (ger67-1-88-180-180-180.fbx.proxad.net.
+	[88.180.180.180]) by smtp.gmail.com with ESMTPSA id
+	gc4sm4926599wib.23.2015.07.31.08.16.16
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 31 Jul 2015 08:16:17 -0700 (PDT)
+Message-ID: <1438355775.3950.34.camel@gmail.com>
+From: Francois Muller <forlorn18@gmail.com>
+To: Petter =?ISO-8859-1?Q?Mab=E4cker?= <petter@technux.se>, Herve Jourdain
+	<herve.jourdain@neuf.fr>, Andrei Gherzan <andrei@gherzan.ro>
+Date: Fri, 31 Jul 2015 17:16:15 +0200
+In-Reply-To: <55BB7830.8010909@technux.se>
+References: <086901d0ca77$9e8f1300$dbad3900$@neuf.fr>
+	<55BB7830.8010909@technux.se>
+X-Mailer: Evolution 3.16.3-1 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi] Adding an additional device tree overlay in the SDCard
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,592 +66,321 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Jul 2015 15:14:44 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E555E9384fmsmsx111amrcor_"
+X-List-Received-Date: Fri, 31 Jul 2015 15:16:56 -0000
+Content-Type: multipart/alternative; boundary="=-Hd217HKdWln8gxwxG+10"
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E555E9384fmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--=-Hd217HKdWln8gxwxG+10
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Current Dev Position: 1.9 Milestone 2 (M2)
-Next Deadline: M2 cut off of July 27th at noon GMT (on hold, see status)
+Hi,
+My comment below.
+Best regards,
+François
 
-SWAT team rotation: Benjamin -> Juro
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+Le vendredi 31 juillet 2015 à 15:29 +0200, Petter Mabäcker a écrit :
+> Hi Herve,
+> 
+> See inline answers.
+> 
+> BR,
+> Petter
+> 
+> On 07/30/2015 05:27 AM, Herve Jourdain wrote:
+> > Hello,
+> >  
+> > I’m trying to add a specific .dts file to the raspberrypi.
+> > Therefore, in my own layer, I have made a linux
+> > -raspberrypi_3.%.bbappend, that applies a patch to the
+> > arch/arm/boot/dts makefile to add my own layer, and a new rule that
+> > copies my specific .dts file to the kernel source directory.
+> > And, initially, I had also defined KERNEL_DEVICETREE += “myown
+> > -overlay.dtb” in there.
+> >  
+> > It definitely compiles well, installation process is smooth, I get
+> > the Image-myown-overlay.dtb in tmp/deploy/raspberrypi2.
+> >  
+> > BUT when I flash my SDCard, it does NOT appear in the “overlays”
+> > directory of the DOS partition!
+> >  
+> > If I add it manually, everything works fine, so I know my overlay
+> > has been correctly generated and is working.
+> >  
+> > What I discovered is that, the sdcard_image_rpi class takes the
+> > list of .dtb to be considered from split_overlays(), which is
+> > defined in linux-raspberrypi-base class.
+> > And split_overlays() basically  gets the value of KERNEL_DEVICETREE
+> > (dts = d.getVar("KERNEL_DEVICETREE", True)).
+> >  
+> > But when I set KERNEL_DEVICETREE in linux-raspberrypi_3.%.bbappend,
+> > it seems the additional value it defines is NOT taken into account
+> > when linux-raspberry-class evaluates the value of
+> > KERNEL_DEVICETREE.
+> > I’ve checked in the create_image.rpi-sdimg script created, it does
+> > not appear in DTS nor DT_OVERLAYS.
+> >  
+> > But when I define KERNEL_DEVICETREE in my distro.conf, THEN it is
+> > taken into account…
+> >  
+> > My goal would be to add that overlay by NOT modifying distro.conf
+> > (distros are not necessarily RaspberryPi centric) nor in the
+> > raspberry machine files (or local.conf).
+> > This leads me to several questions:
+> > #1 Is there a specific reason why my addition to KERNEL_DEVICETREE
+> > gets lost when creating the image? I mean, is it normal, or are
+> > there some steps I missed there?
+> Yes, in the current solution KERNEL_DEVICETREE is needed in both the
+> kernel recipe and image creation context. When appending
+> KERNEL_DEVICETREE in linux-raspberrypi_3.%.bbappend your new overlay
+> will only be visible within the linux-raspberrypi scope and NOT
+> within the image class.
+> 
+> > #2 Is there a way that I could achieve adding my .dtb overlay in
+> > the sdcard image only from my linux kernel bbappend?
+> If I remember the code correct within the kernel scope we are only
+> interesting if device tree should be used. At least in theory
+> (assuming you are using a >= 3.18 kernel since then KERNEL_DEVICETREE
+> will bve set by default) you should be able to skip the
+> KERNEL_DEVICETREE += code in linux-raspberrypi_3.%.bbappend (since it
+> will be set any way and the overlays themselves isn't really used in
+> here..) then append the KERNEL_DEVICETREE within the image scope. If
+> you don't want to put this into the layer.conf or similiar in your
+> own layer I guess it should work to "prepend" for example the
+> IMAGE_CMD. But in the current solution I guess local.conf, layer.conf
+> (in your own layer) or rpi-base.inc (in meta-raspberrypi) is the
+> easiest options..
+If modifying *.inc / *.conf files is not an option, then I would give a
+try to Petter's suggestion to create a new image recipe (or bbappending
+the current one). I see no reason this shouldn't do the trick, while
+still being easy.
+> 
+>     
+> 
+>     > > 
+> >       > > 
+> >         
+> > 
+> >         > > #3 On a more general
+> >             note, wouldn’t it be simpler (better?) to just add all the
+> >             .dtb that are found in the deploy/images/ directory to the
+> >             DOS partition of the SDCard? After all, the .dtb need to be
+> >             compiled from a .dts, so all the .dtb that appear in
+> >             deploy/images are “legit”.
+> > 
+> >       
+> > 
+> >     
+> 
+>     
+> 
+>       That might perhaps be a better solution. Have you tried it out?
+>       Andrei or Francois might have some comments about this?
+As far as I can remember, deploy/images/ links are only updated (meaning created if not previously present, updated if a new artefact is available) but never removed. This implies that if you simply copy 'deploy/images/*-overlay.dtb'  to the sdcard, your image may end up with some devicetree overlays that are potentially no longer wanted or (even worse) not to be used with the specific kernel that will boot up the board...
+That's the reason why I think choosing consciously the devicetree (overlay) set to pack in the sdcard may be important.
 
-Key Status/Updates:
+> 
+>     > 
+>     > > 
+> >       > > 
+> >         
+> > 
+> >         > >  
+> > 
+> >         > > Herve
+> > 
+> >       
+> > 
+> >       
+> > 
+> >       > > 
+> >       
+> > 
+> >     
+> 
+>     
+> 
+>   
+> 
+> 
 
-  *   YP 1.9 M2 has been delayed whilst we investigated autobuilder runtime=
- failures, selftest failures, some potential license contamination issues.
-  *   The delay has also allowed us to prepare several important patch sets=
- including bitbake lock fixes, tinfoil2 and some toolchain improvements (in=
-cluding automated testing improvements).
-  *   Hoping for YP 1.9 M2 rc1 to build this weekend.
-  *   YP 1.8.1 and YP 1.7.3 point releases have been held until some of the=
- build issues are addressed.
-  *   Post YP 1.9 M2, there will be some more invasive changes including ch=
-anges to the default parameters to getVar and possibly getVarFLag as well a=
-s a switch to memory resident bitbake.
-  *   gcc5 is looking much improved, have fixes for u-boot but some linux-y=
-octo kernel issues remain.
+--=-Hd217HKdWln8gxwxG+10
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Key YP 1.9 Dates:
-1.9 Feature Freeze Date/M3 Cut off: Aug. 24, 2015 noon GMT
-YP Final/M4 Cut off: Sept. 28, 2015 noon GMT
-1.9 M2 Release Target: Before Aug. 14, 2015
-1.9 M3 Release Target: Before Sept. 11 2015
-1.9 final Release Target: Before Oct. 30, 2015
-
-Key Status Links for YP:
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.9_Status
-https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule
-https://wiki.yoctoproject.org/wiki/Yocto_1.9_Features
-
-Tracking Metrics:
-            WDD 1758 (last week 1791 )
-(https://wiki.yoctoproject.org/charts/combo.html)
-
-[If anyone has suggestions for other information you'd like to see on this =
-weekly status update, let us know!]
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E555E9384fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
+<html><head>
+    <meta content="text/html; charset=windows-1252" http-equiv="Content-Type">
+  </head>
+  <body><div><div>Hi,</div><div><br></div><div>My comment below.</div><div><br></div><div>Best regards,</div><div>François</div><div><br></div></div><div>Le vendredi 31 juillet 2015 à 15:29 +0200, Petter Mabäcker a écrit&nbsp;:</div><blockquote type="cite">
+    <div class="moz-cite-prefix">Hi Herve,<br>
+      <br>
+      See inline answers.<br>
+      <br>
+      BR,<br>
+      Petter<br>
+      <br>
+      On 07/30/2015 05:27 AM, Herve Jourdain wrote:<br>
+    </div>
+    <blockquote cite="mid:086901d0ca77$9e8f1300$dbad3900$@neuf.fr" type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
 /* Font Definitions */
 @font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
 @font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
+	{margin:0cm;
 	margin-bottom:.0001pt;
 	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
 a:link, span.MsoHyperlink
 	{mso-style-priority:99;
-	color:blue;
+	color:#0563C1;
 	text-decoration:underline;}
 a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
-	color:purple;
+	color:#954F72;
 	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-span.EmailStyle18
+span.EmailStyle17
 	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
+	font-family:"Calibri",sans-serif;
 	color:windowtext;}
-span.apple-tab-span
-	{mso-style-name:apple-tab-span;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-size:10.0pt;}
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
 @page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
 div.WordSection1
 	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:183252799;
-	mso-list-template-ids:1600923090;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1
-	{mso-list-id:1043292812;
-	mso-list-template-ids:-1269521096;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2
-	{mso-list-id:1263686088;
-	mso-list-template-ids:1562437380;}
-@list l2:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l2:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
 --></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+<o:shapedefaults v:ext="edit" spidmax="1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
 </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Current Dev Position: 1.9 Milestone 2 (M2)</sp=
-an><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,=
-&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Next Deadline: M2 cut off of July 27th at noon=
- GMT (on hold, see status)</span><span style=3D"font-size:12.0pt;font-famil=
-y:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">SWAT team rotation: Benjamin -&gt; Juro</span>=
-<span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&qu=
-ot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11.0pt;fo=
-nt-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_=
-Build_Failure_Swat_Team</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Key Status/Updates:</span><span style=3D"font-=
-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p=
-></o:p></span></p>
-<ul style=3D"margin-top:0in" type=3D"disc">
-<li class=3D"MsoNormal" style=3D"color:black;mso-list:l1 level1 lfo4;vertic=
-al-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">YP 1.9=
- M2 has been delayed whilst we investigated autobuilder runtime failures, s=
-elftest failures, some potential license contamination issues. &nbsp;<o:p><=
-/o:p></span></li><li class=3D"MsoNormal" style=3D"color:black;mso-list:l1 l=
-evel1 lfo4;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">The de=
-lay has also allowed us to prepare several important patch sets including b=
-itbake lock fixes, tinfoil2 and some toolchain improvements (including auto=
-mated testing improvements).<o:p></o:p></span></li><li class=3D"MsoNormal" =
-style=3D"color:black;mso-list:l1 level1 lfo4;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Hoping=
- for YP 1.9 M2 rc1 to build this weekend.
-<o:p></o:p></span></li><li class=3D"MsoNormal" style=3D"color:black;mso-lis=
-t:l1 level1 lfo4;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">YP 1.8=
-.1 and YP 1.7.3 point releases have been held until some of the build issue=
-s are addressed.<o:p></o:p></span></li><li class=3D"MsoNormal" style=3D"col=
-or:black;mso-list:l1 level1 lfo4;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">Post Y=
-P 1.9 M2, there will be some more invasive changes including changes to the=
- default parameters to getVar and possibly getVarFLag as well as a switch t=
-o memory resident bitbake.<o:p></o:p></span></li><li class=3D"MsoNormal" st=
-yle=3D"color:black;mso-list:l1 level1 lfo4;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">gcc5 i=
-s looking much improved, have fixes for u-boot but some linux-yocto kernel =
-issues remain.<o:p></o:p></span></li></ul>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Key YP 1.9 Dates:</span><span style=3D"font-si=
-ze:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">1.9 Feature Freeze =
-Date/M3 Cut off: Aug. 24, 2015 noon GMT
-</span><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">YP Final/M4 Cut off=
-: Sept. 28, 2015 noon GMT
-</span><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">1.9 M2 Release Targ=
-et: Before Aug. 14, 2015</span><span style=3D"font-size:12.0pt;font-family:=
-&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">1.9 M3 Release Targ=
-et: Before Sept. 11 2015</span><span style=3D"font-size:12.0pt;font-family:=
-&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">1.9 final Release T=
-arget: Before Oct. 30, 2015</span><span style=3D"font-size:12.0pt;font-fami=
-ly:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Key Status Links for YP:</span><span style=3D"=
-font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"=
-><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_Project_v1.9_Status"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Proj=
-ect_v1.9_Status</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_1.9_Schedule"><span style=3D"font-size:11.0pt;font-family:C=
-onsolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedul=
-e</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_1.9_Features"><span style=3D"font-size:11.0pt;font-family:C=
-onsolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Feature=
-s</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Tracking Metrics:</span><span style=3D"font-si=
-ze:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; WDD 1758 (last week 1791 )</span><span style=3D"font-s=
-ize:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"font-famil=
-y:Consolas;color:black">(</span><span style=3D"font-size:12.0pt;font-family=
-:&quot;Times New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoc=
-toproject.org/charts/combo.html"><span style=3D"font-size:11.0pt;font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#1155CC">https://wiki.yoct=
-oproject.org/charts/combo.html</span></a></span><span style=3D"font-family:=
-Consolas;color:black">)</span><span style=3D"font-size:12.0pt;font-family:&=
-quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas;color:black">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-<span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&qu=
-ot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">[If anyone has suggestions for other informati=
-on you&#8217;d like to see on this weekly status update, let us know!]</spa=
-n><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+      <div class="WordSection1">
+        <p class="MsoNormal">Hello,<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal"><span lang="EN-US">I’m trying to add a
+            specific .dts file to the raspberrypi.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">Therefore, in my own
+            layer, I have made a linux-raspberrypi_3.%.bbappend, that
+            applies a patch to the arch/arm/boot/dts makefile to add my
+            own layer, and a new rule that copies my specific .dts file
+            to the kernel source directory.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">And, initially, I had
+            also defined KERNEL_DEVICETREE += “myown-overlay.dtb” in
+            there.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">It definitely compiles
+            well, installation process is smooth, I get the
+            Image-myown-overlay.dtb in tmp/deploy/raspberrypi2.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">BUT when I flash my
+            SDCard, it does NOT appear in the “overlays” directory of
+            the DOS partition!<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">If I add it manually,
+            everything works fine, so I know my overlay has been
+            correctly generated and is working.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">What I discovered is
+            that, the sdcard_image_rpi class takes the list of .dtb to
+            be considered from split_overlays(), which is defined in
+            linux-raspberrypi-base class.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">And split_overlays()
+            basically&nbsp; gets the value of KERNEL_DEVICETREE (dts =
+            d.getVar("KERNEL_DEVICETREE", True)).<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">But when I set
+            KERNEL_DEVICETREE in linux-raspberrypi_3.%.bbappend, it
+            seems the additional value it defines is NOT taken into
+            account when linux-raspberry-class evaluates the value of
+            KERNEL_DEVICETREE.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">I’ve checked in the
+            create_image.rpi-sdimg script created, it does not appear in
+            DTS nor DT_OVERLAYS.<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">But when I define
+            KERNEL_DEVICETREE in my distro.conf, THEN it is taken into
+            account…<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">My goal would be to add
+            that overlay by NOT modifying distro.conf (distros are not
+            necessarily RaspberryPi centric) nor in the raspberry
+            machine files (or local.conf).<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">This leads me to several
+            questions:<o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">#1 Is there a specific
+            reason why my addition to KERNEL_DEVICETREE gets lost when
+            creating the image? I mean, is it normal, or are there some
+            steps I missed there?</span></p>
+      </div>
+    </blockquote>
+    Yes, in the current solution <span lang="EN-US"></span><span lang="EN-US">KERNEL_DEVICETREE is needed in both the kernel recipe
+      and image creation context. When appending </span><span lang="EN-US">KERNEL_DEVICETREE in </span><span lang="EN-US">linux-raspberrypi_3.%.bbappend
+      your new overlay will only be visible within the linux-raspberrypi
+      scope and NOT within the image class.</span><br>
+    <br>
+    <blockquote cite="mid:086901d0ca77$9e8f1300$dbad3900$@neuf.fr" type="cite">
+      <div class="WordSection1">
+        <p class="MsoNormal"><span lang="EN-US"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">#2 Is there a way that I
+            could achieve adding my .dtb overlay in the sdcard image
+            only from my linux kernel bbappend?</span></p>
+      </div>
+    </blockquote>
+    <br>
+    If I remember the code correct within the kernel scope we are only
+    interesting if device tree should be used. At least in theory
+    (assuming you are using a &gt;= 3.18 kernel since then
+    KERNEL_DEVICETREE will bve set by default) you should be able to
+    skip the <span lang="EN-US">KERNEL_DEVICETREE += code in </span><span lang="EN-US">linux-raspberrypi_3.%.bbappend (since it will be set
+      any way and the overlays themselves isn't really used in here..)
+      then append the KERNEL_DEVICETREE within the image scope. If you
+      don't want to put this into the layer.conf or similiar in your own
+      layer I guess it should work to "prepend" for example the
+      IMAGE_CMD.</span> But in the current solution I guess local.conf,
+    layer.conf (in your own layer) or rpi-base.inc (in meta-raspberrypi)
+    is the easiest options..<br></blockquote><div><br></div><div>If modifying *.inc / *.conf files is not an option, then I would give a try to Petter's suggestion to create a new image recipe (or bbappending the current one). I see no reason this shouldn't do the trick, while still being easy.</div><div><br></div><blockquote type="cite">
+    <br>
+    <blockquote cite="mid:086901d0ca77$9e8f1300$dbad3900$@neuf.fr" type="cite">
+      <div class="WordSection1">
+        <p class="MsoNormal"><span lang="EN-US"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">#3 On a more general
+            note, wouldn’t it be simpler (better?) to just add all the
+            .dtb that are found in the deploy/images/ directory to the
+            DOS partition of the SDCard? After all, the .dtb need to be
+            compiled from a .dts, so all the .dtb that appear in
+            deploy/images are “legit”.</span></p>
+      </div>
+    </blockquote>
+    <span lang="EN-US"><br>
+      That might perhaps be a better solution. Have you tried it out?
+      Andrei or Francois might have some comments about this?<br></span></blockquote><div><div><br></div><div>As far as I can remember, deploy/images/ links are only updated (meaning created if not previously present, updated if a new artefact is available) but never removed. This implies that if you simply copy 'deploy/images/*-overlay.dtb' &nbsp;to the sdcard, your image may end up with some devicetree overlays that are potentially no longer wanted or (even worse) not to be used with the specific kernel that will boot up the board...</div><div>That's the reason why I think choosing consciously the devicetree (overlay) set to pack in the sdcard may be important.</div><div><br></div></div><blockquote type="cite"><span lang="EN-US">
+    </span>
+    <blockquote cite="mid:086901d0ca77$9e8f1300$dbad3900$@neuf.fr" type="cite">
+      <div class="WordSection1">
+        <p class="MsoNormal"><span lang="EN-US"><o:p></o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+        <p class="MsoNormal"><span lang="EN-US">Herve<o:p></o:p></span></p>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <br>
+  
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E555E9384fmsmsx111amrcor_--
+</blockquote></body></html>
+
+--=-Hd217HKdWln8gxwxG+10--
