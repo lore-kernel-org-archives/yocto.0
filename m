@@ -1,6 +1,6 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <stanciux.mihail@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 42D7EE00B7B; Fri, 31 Jul 2015 09:11:01 -0700 (PDT)
+	id C3258E00B7B; Fri, 31 Jul 2015 09:18:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,32 +8,27 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6325E00B6C
-	for <yocto@yoctoproject.org>; Fri, 31 Jul 2015 09:10:57 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga102.fm.intel.com with ESMTP; 31 Jul 2015 09:10:57 -0700
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94FFEE00B6C
+	for <yocto@yoctoproject.org>; Fri, 31 Jul 2015 09:18:35 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga102.jf.intel.com with ESMTP; 31 Jul 2015 09:18:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,585,1432623600"; d="scan'208";a="775310642"
-Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com)
-	([10.252.23.101])
-	by orsmga002.jf.intel.com with ESMTP; 31 Jul 2015 09:10:56 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: =?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>
-Date: Fri, 31 Jul 2015 17:10:55 +0100
-Message-ID: <1692996.ymRgL7KP11@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.9 (Linux/4.0.8-200.fc21.x86_64; KDE/4.14.9; x86_64; ; )
-In-Reply-To: <55BB96B9.4050605@linux.intel.com>
-References: <1438203053-7909-1-git-send-email-anibal.limon@linux.intel.com>
-	<1954435.FDO7q63aNY@peggleto-mobl.ger.corp.intel.com>
-	<55BB96B9.4050605@linux.intel.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 10/10][auh] upgradehelper: Add support for generate buildhistory recipe diff's
+X-IronPort-AV: E=Sophos;i="5.15,585,1432623600"; d="scan'208";a="774143886"
+Received: from linux.intel.com ([10.23.219.25])
+	by fmsmga002.fm.intel.com with ESMTP; 31 Jul 2015 09:18:35 -0700
+Received: from localhost.localdomain (unknown [10.237.112.206])
+	by linux.intel.com (Postfix) with ESMTP id 90B7F6A4083;
+	Fri, 31 Jul 2015 09:17:49 -0700 (PDT)
+From: Mihail Stanciu <stanciux.mihail@intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 31 Jul 2015 20:49:39 +0300
+Message-Id: <1438364979-11084-1-git-send-email-stanciux.mihail@intel.com>
+X-Mailer: git-send-email 2.1.4
+Subject: [selftest][PATCH] Removed tests for TCs that are no longer valid
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,75 +40,166 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Jul 2015 16:11:01 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Fri, 31 Jul 2015 16:18:37 -0000
 
-On Friday 31 July 2015 10:39:37 An=EDbal Lim=F3n wrote:
-> Hi Paul,
->=20
-> On 31/07/15 10:29, Paul Eggleton wrote:
-> > Hi An=EDbal,
-> >=20
-> > On Wednesday 29 July 2015 15:50:53 An=EDbal Lim=F3n wrote:
-> >> Now AUH generates buildhistory diff when recipe was upgraded
-> >> successfully.
-> >>=20
-> >> For enable this feature set into local.conf.
-> >>=20
-> >> =09INHERIT +=3D "buildhistory"
-> >> =09BUILDHISTORY_COMMIT =3D "1"
-> >>=20
-> >> Summary of the changes,
-> >>=20
-> >> =09- bitbake.py: Enable environment generation without recipe,
-> >> =09
-> >>            removes Buildhistory class.
-> >> =09
-> >> =09- buildhistory.py: Add buildhistory class that generates initia=
-l
-> >> =09
-> >>            buildhistory revision and keeps track of build revision=
-s for
-> >>            generate diff when build is successful.
-> >>         =20
-> >>          - upgradehelper.py: Add buildhistory steps for upgrade, a=
-dd
-> >>         =20
-> >>            support for detect when buildhistory is enabled loading=
- the
-> >>            environment without recipe.
-> >=20
-> > So this looks OK, but I can't tell if it ensures you get the differ=
-ence
-> > between successful builds rather than the difference to the last bu=
-ild -
-> > we need to ensure that a failed build of a recipe in between isn't
-> > considered as part of the comparison. In practice I guess this woul=
-d mean
-> > storing the buildhistory revision of the last successful build for =
-each
-> > recipe.
->=20
-> I only made a diff if the build success in all machines this guarante=
-e
-> that only stores good information.
+Several toaster backend tests are no longer valid due to design changes.
 
-OK, I think I'm following now.
+Signed-off-by: Mihail Stanciu <stanciux.mihail@intel.com>
+---
+ meta/lib/oeqa/selftest/_toaster.py | 125 -------------------------------------
+ 1 file changed, 125 deletions(-)
 
-One other thing - I'm not particularly keen on the BB_ENV_EXTRAWHITE th=
-ing -=20
-can you perhaps query the build system for the path it's using instead?=
+diff --git a/meta/lib/oeqa/selftest/_toaster.py b/meta/lib/oeqa/selftest/_toaster.py
+index 51ebda3..c424659 100644
+--- a/meta/lib/oeqa/selftest/_toaster.py
++++ b/meta/lib/oeqa/selftest/_toaster.py
+@@ -45,38 +45,6 @@ class Toaster_DB_Tests(ToasterSetup):
+         total_builds = Build.objects.values('id').count()
+         self.assertEqual(distinct_path, total_builds, msg = 'Build coocker log path is not unique')
+ 
+-    # Check if the number of errors matches the number of orm_logmessage.level entries with value 2 - tc_id=820
+-    @testcase(820)
+-    def test_Build_Errors_No(self):
+-        builds = Build.objects.values('id', 'errors_no')
+-        cnt_err = []
+-        for build in builds:
+-            log_mess_err_no = LogMessage.objects.filter(build = build['id'], level = 2).count()
+-            if (build['errors_no'] != log_mess_err_no):
+-                cnt_err.append(build['id'])
+-        self.assertEqual(len(cnt_err), 0, msg = 'Errors for build id: %s' % cnt_err)
+-
+-    # Check if the number of warnings matches the number of orm_logmessage.level entries with value 1 - tc=821
+-    @testcase(821)
+-    def test_Build_Warnings_No(self):
+-        builds = Build.objects.values('id', 'warnings_no')
+-        cnt_err = []
+-        for build in builds:
+-            log_mess_warn_no = LogMessage.objects.filter(build = build['id'], level = 1).count()
+-            if (build['warnings_no'] != log_mess_warn_no):
+-                cnt_err.append(build['id'])
+-        self.assertEqual(len(cnt_err), 0, msg = 'Errors for build id: %s' % cnt_err)
+-
+-    # Check if the build succeeded then the errors_no is 0 - tc_id=822
+-    @testcase(822)
+-    def test_Build_Suceeded_Errors_No(self):
+-        builds = Build.objects.filter(outcome = 0).values('id', 'errors_no')
+-        cnt_err = []
+-        for build in builds:
+-            if (build['errors_no'] != 0):
+-                cnt_err.append(build['id'])
+-        self.assertEqual(len(cnt_err), 0, msg = 'Errors for build id: %s' % cnt_err)
+-
+     # Check if task order is unique for one build - tc=824
+     @testcase(824)
+     def test_Task_Unique_Order(self):
+@@ -237,88 +205,6 @@ class Toaster_DB_Tests(ToasterSetup):
+                 cnt_err.append(dep['id'])
+         self.assertEqual(len(cnt_err), 0, msg = 'Errors for package dependency id: %s' % cnt_err)
+ 
+-    # Check if recipe name does not start with a number (0-9) - tc=838
+-    @testcase(838)
+-    def test_Recipe_Name(self):
+-        recipes = Recipe.objects.values('id', 'name')
+-        cnt_err = []
+-        for recipe in recipes:
+-            if (recipe['name'][0].isdigit() is True):
+-                cnt_err.append(recipe['id'])
+-        self.assertEqual(len(cnt_err), 0, msg = 'Errors for recipe id: %s' % cnt_err)
+-
+-    # Check if recipe section matches the content of the SECTION variable (if set) in file_path - tc=839
+-    @testcase(839)
+-    def test_Recipe_DB_Section_Match_Recipe_File_Section(self):
+-        recipes = Recipe.objects.values('id', 'section', 'file_path')
+-        cnt_err = []
+-        for recipe in recipes:
+-            file_path = self.fix_file_path(recipe['file_path'])
+-            file_exists = os.path.isfile(file_path)
+-            if (not file_path or (file_exists is False)):
+-                cnt_err.append(recipe['id'])
+-            else:
+-                file_section = self.recipe_parse(file_path, "SECTION = ")
+-                db_section = recipe['section']
+-                if file_section:
+-                    if (db_section != file_section):
+-                        cnt_err.append(recipe['id'])
+-        self.assertEqual(len(cnt_err), 0, msg = 'Errors for recipe id: %s' % cnt_err)
+-
+-    # Check if recipe license matches the content of the LICENSE variable (if set) in file_path - tc=840
+-    @testcase(840)
+-    def test_Recipe_DB_License_Match_Recipe_File_License(self):
+-        recipes = Recipe.objects.values('id', 'license', 'file_path')
+-        cnt_err = []
+-        for recipe in recipes:
+-            file_path = self.fix_file_path(recipe['file_path'])
+-            file_exists = os.path.isfile(file_path)
+-            if (not file_path or (file_exists is False)):
+-                cnt_err.append(recipe['id'])
+-            else:
+-                file_license = self.recipe_parse(file_path, "LICENSE = ")
+-                db_license = recipe['license']
+-                if file_license:
+-                    if (db_license != file_license):
+-                        cnt_err.append(recipe['id'])
+-        self.assertEqual(len(cnt_err), 0, msg = 'Errors for recipe id: %s' % cnt_err)
+-
+-    # Check if recipe homepage matches the content of the HOMEPAGE variable (if set) in file_path - tc=841
+-    @testcase(841)
+-    def test_Recipe_DB_Homepage_Match_Recipe_File_Homepage(self):
+-        recipes = Recipe.objects.values('id', 'homepage', 'file_path')
+-        cnt_err = []
+-        for recipe in recipes:
+-            file_path = self.fix_file_path(recipe['file_path'])
+-            file_exists = os.path.isfile(file_path)
+-            if (not file_path or (file_exists is False)):
+-                cnt_err.append(recipe['id'])
+-            else:
+-                file_homepage = self.recipe_parse(file_path, "HOMEPAGE = ")
+-                db_homepage = recipe['homepage']
+-                if file_homepage:
+-                    if (db_homepage != file_homepage):
+-                        cnt_err.append(recipe['id'])
+-        self.assertEqual(len(cnt_err), 0, msg = 'Errors for recipe id: %s' % cnt_err)
+-
+-    # Check if recipe bugtracker matches the content of the BUGTRACKER variable (if set) in file_path - tc=842
+-    @testcase(842)
+-    def test_Recipe_DB_Bugtracker_Match_Recipe_File_Bugtracker(self):
+-        recipes = Recipe.objects.values('id', 'bugtracker', 'file_path')
+-        cnt_err = []
+-        for recipe in recipes:
+-            file_path = self.fix_file_path(recipe['file_path'])
+-            file_exists = os.path.isfile(file_path)
+-            if (not file_path or (file_exists is False)):
+-                cnt_err.append(recipe['id'])
+-            else:
+-                file_bugtracker = self.recipe_parse(file_path, "BUGTRACKER = ")
+-                db_bugtracker = recipe['bugtracker']
+-                if file_bugtracker:
+-                    if (db_bugtracker != file_bugtracker):
+-                        cnt_err.append(recipe['id'])
+-        self.assertEqual(len(cnt_err), 0, msg = 'Errors for recipe id: %s' % cnt_err)
+-
+     # Recipe key verification, recipe name does not depends on a recipe having the same name - tc=883
+     @testcase(883)
+     def test_Recipe_Dependency(self):
+@@ -409,17 +295,6 @@ class Toaster_DB_Tests(ToasterSetup):
+                 cnt_err.append(layer['id'])
+         self.assertEqual(len(cnt_err), 0, msg = 'Errors for layer id: %s' % cnt_err)
+ 
+-    # Check if the output of bitbake-layers show_layers matches the info from database - tc=895
+-    @testcase(895)
+-    def test_Layers_Show_Layers(self):
+-        layers = Layer.objects.values('id', 'name', 'local_path')
+-        cmd = commands.getoutput('bitbake-layers show_layers')
+-        cnt_err = []
+-        for layer in layers:
+-            if (layer['name'] or layer['local_path']) not in cmd:
+-                cnt_err.append(layer['id'])
+-        self.assertEqual(len(cnt_err), 0, msg = 'Errors for layer id: %s' % cnt_err)
+-
+     # Check if django server starts regardless of the timezone set on the machine - tc=905
+     @testcase(905)
+     def test_Start_Django_Timezone(self):
+-- 
+2.1.4
 
-
-CHeers,
-Paul
-
-Cheers,
-Paul
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
