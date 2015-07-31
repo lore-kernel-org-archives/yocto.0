@@ -1,44 +1,38 @@
-Return-Path: <lukas.weiss@janitza.de>
+Return-Path: <dimitar.yordanov@bmw-carit.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5C206E00B43; Thu, 30 Jul 2015 22:25:23 -0700 (PDT)
+	id 9FBAEE00B34; Thu, 30 Jul 2015 23:19:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.212.170 listed in list.dnswl.org]
+	*      [62.245.222.98 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
-	[209.85.212.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA93CE00B1A
-	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 22:25:21 -0700 (PDT)
-Received: by wibxm9 with SMTP id xm9so17163411wib.1
-	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 22:25:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=U4W3f2XB9TlJ/bqdgLDAplLYz4Ul3ljj0BJ+VbQzZnA=;
-	b=OjY66fXbQaflTZ6hvMqef7mQJ5KlcQkmNdAuqpeJaHkjRyrJgTXJVAMKgcjkpucOYN
-	D4IXCq+jvBW87E1vIH0UB3jTDkDsRQAEUH5gms/tBtUDNXUNjiBKvV5BhF2LQQPl4hst
-	LeSkIYpCq6zvB4ZuYrlmZhmX67lF5FXhebGCeO1zOMif7iL3YKceErlw+H7YZQQG0cQt
-	1zPiwtBG+Yn2h3FtdbNUB70+qfeZ95vys/O8PDBNRtnl9A2Zm/mIrHpSsrCgVuBEdpz9
-	FZM/airdC3XWIZpUz1okHBHzpyvcjbMUyLoD2kEZOgj+lBQ3QHljqYk7N+WqNSY+iw5d
-	EAXA==
-X-Gm-Message-State: ALoCoQlyESSA4M8tbF3QnYadLRrIo5eMuPhftuZupLK7+7tWUu85ih0zguihNSqC6yL3MNgbny5F
+Received: from mail.bmw-carit.de (mail.bmw-carit.de [62.245.222.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF7CAE0096A
+	for <yocto@yoctoproject.org>; Thu, 30 Jul 2015 23:19:06 -0700 (PDT)
+Received: from exchange2010.bmw-carit.intra ([192.168.100.28]:33383
+	helo=mail.bmw-carit.de)
+	by mail.bmw-carit.de with esmtps (TLSv1:AES128-SHA:128)
+	(Exim 4.82_1-5b7a7c0-XX)
+	(envelope-from <Dimitar.Yordanov@bmw-carit.de>) id 1ZL3eo-0004V0-0H
+	for yocto@yoctoproject.org; Fri, 31 Jul 2015 08:19:02 +0200
+Received: from localhost (172.20.20.170) by Exchange2010.bmw-carit.intra
+	(192.168.100.28) with Microsoft SMTP Server (TLS) id 14.1.218.12;
+	Fri, 31 Jul 2015 08:19:01 +0200
+X-CTCH-RefID: str=0001.0A0C0205.55BB1356.0067, ss=1, re=0.000, recu=0.000,
+	reip=0.000, cl=1, cld=1, fgs=0
+Date: Fri, 31 Jul 2015 08:19:00 +0200
+From: Dimitar Yordanov <dimitar.yordanov@bmw-carit.de>
+To: <yocto@yoctoproject.org>
+Message-ID: <20150731061900.GA23390@talasam>
 MIME-Version: 1.0
-X-Received: by 10.180.37.74 with SMTP id w10mr2939000wij.92.1438320321193;
-	Thu, 30 Jul 2015 22:25:21 -0700 (PDT)
-Received: by 10.27.174.208 with HTTP; Thu, 30 Jul 2015 22:25:21 -0700 (PDT)
-Date: Fri, 31 Jul 2015 07:25:21 +0200
-Message-ID: <CAM8P1k9OK=6xJydVg=_zeBgjbAC5En4TzaEANqWhjMVs+Sg0kg@mail.gmail.com>
-From: Lukas Weiss <lukas.weiss@janitza.de>
-To: yocto@yoctoproject.org
-Subject: arm-none-eabi toolchain
+User-Agent: Mutt/1.5.23 (2014-03-12)
+X-Originating-IP: [172.20.20.170]
+Subject: nativesdk-libgcc-initial race condition and sstate-mirror problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,52 +44,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Jul 2015 05:25:23 -0000
-Content-Type: multipart/alternative; boundary=e89a8f64720fd17f94051c250beb
+X-List-Received-Date: Fri, 31 Jul 2015 06:19:10 -0000
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
---e89a8f64720fd17f94051c250beb
-Content-Type: text/plain; charset=UTF-8
+Hi all,
 
-Hello,
+we are experiencing problems with our sstate-mirror handling after
+applying commit: be02588097dcdb61b76e5788a67ab062dabc78ad
 
-i need a arm-none-eabi toolchain on my yocto host/build system. Ive tried
-to use the arm-poky-linux-gnueabi, but it does not support the arm version
-+ format i need:
+Here is a short explanation to what we do and what happens:
 
-arm-poky-linux-gnueabi-ld: unrecognised emulation mode: thumb
-| Supported emulations: armelf_linux_eabi armelfb_linux_eabi
+We have an sstate-mirror, which we want to keep up to date when new
+builds are executed and also be clean from unused sstate files. For
+this purpose we set the SSTATE_MIRROR variable to point to the latest
+stable cache we have. Then we trigger a new build with changes to some
+of the recipes/sources. Under SSTATE_DIR a new cache is being created
+which has links to SSTATE_MIRROR for caches, which are still valid.
 
-My Linux runs on a ARM9 (armv5e, elf), I need cortex-m3 (armv7m, thumb).
-Where do I get that? I do not find any documentation about *additional*
-toolchains to generate code like peripheral-firmware in my yocto
-environment.
+To get a new clean SSTATE_MIRROR we take the newly created SSTATE_DIR
+and replace all the links with the real files. Then we promote that
+SSTATE_DIR to be the new SSTATE_MIRROR.
 
-a) How do I get the toolchain in by yocto host?
-b) How to i tell the bitbake-tool to use that toolchain on a certain
-receipe (PACKAGE_ARCH, TARGET_SYS, ... )?
+Where does the problem arises ...
 
-Do you have any hints?
+With the previously mentioned patch the do_package tasks are being
+skipped, thus there are no entries or links for that in the new
+SSTATE_DIR. When we now promote the SSTATE_DIR to a SSTATE_MIRROR
+bitbake decides that the do_package tasks need to be rebuilt, because
+the squashed reverse dependencies are not covered
+(runqueue.py:1931->execute). setscene_depvalid does not even get
+called.
 
-Regards,
-Lukas
+Maybe we wouldn't have noticed that, but we get some wired race
+conditions because of that, between nativesdk-libgcc-initial,
+nativesdk-glibc and nativesdk-linux-libc-headers. What happens:
 
---e89a8f64720fd17f94051c250beb
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+All packages have an sstate cache entries (apart from do_package), and
+they get executed, which populates the nativesdk sysroot with limits.h
+and linux/limits.h
 
-<div dir=3D"ltr"><div><div><div>Hello, <br><br></div>i need a arm-none-eabi=
- toolchain on my yocto host/build system. Ive tried to use the arm-poky-lin=
-ux-gnueabi, but it does not support the arm version + format i need:<br><br=
-><span style=3D"font-family:monospace,monospace">arm-poky-linux-gnueabi-ld:=
- unrecognised emulation mode: thumb<br>| Supported emulations: armelf_linux=
-_eabi armelfb_linux_eabi</span><br><br>My Linux runs on a ARM9 (armv5e, elf=
-), I need cortex-m3 (armv7m, thumb).<br></div>Where do I get that? I do not=
- find any documentation about <i>additional</i> toolchains to generate code=
- like peripheral-firmware in my yocto environment.<br><br></div><div>a) How=
- do I get the toolchain in by yocto host?<br></div><div>b) How to i tell th=
-e bitbake-tool to use that toolchain on a certain receipe (PACKAGE_ARCH, TA=
-RGET_SYS, ... )?<br></div><div><br></div>Do you have any hints?<br clear=3D=
-"all"><div><div><div><div><br></div><div>Regards,<br></div><div>Lukas<br></=
-div></div></div></div></div>
+And now bitbake decides it should re-trigger the do_configure stage of
+nativesdk-linux-libc-headers. That removes linux/limits.h, but
+limits.h is still there and includes (indirect) linux/limits.h. In
+this moment the do_configure step from nativesdk-libgcc-initial is
+called, which includes limits.h. Normally if the file would've not be
+there it would have used the embedded one from gcc but now there is a
+file there and it uses it. The bad point is limits.h indirectly
+includes linux/limits.h and the do_configure step from
+nativesdk-libgcc-initial fails :-(
 
---e89a8f64720fd17f94051c250beb--
+I see multiple issues here and would be glad to get your opinion on
+how to solve them properly:
+First problem skipped tasks and missing do_package entries in the sstate.
+Second the race condition with nativesdk-libgcc-initial.
+
+Best wishes
+Dimitar
+
+-- 
+BMW Car IT GmbH
+Dimitar Yordanov
+Lise-Meitner-Str.14
+89081 Ulm
+Tel.: +49-731-37804-290
+Fax: +49-731 378040-01
+Mail: dimitar.yordanov@bmw-carit.de
+Web: http://www.bmw-carit.de
+-------------------------------------------------------------------------
+BMW Car IT GmbH
+Geschäftsführer: Reinhard Stolle und Michael Würtenberger
+Sitz und Registergericht: München HRB 134810
+-------------------------------------------------------------------------
+
