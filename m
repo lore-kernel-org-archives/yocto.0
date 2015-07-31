@@ -1,38 +1,48 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <jfdavis@anuvainnovations.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5CE62E00B67; Fri, 31 Jul 2015 06:48:07 -0700 (PDT)
+	id 1584BE009E5; Fri, 31 Jul 2015 07:09:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.160.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29379E009F0
-	for <yocto@yoctoproject.org>; Fri, 31 Jul 2015 06:48:04 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga102.jf.intel.com with ESMTP; 31 Jul 2015 06:48:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,584,1432623600"; d="scan'208";a="616778864"
-Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com)
-	([10.252.23.101])
-	by orsmga003.jf.intel.com with ESMTP; 31 Jul 2015 06:48:03 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: =?ISO-8859-1?Q?An=EDbal_Lim=F3n?= <anibal.limon@linux.intel.com>
-Date: Fri, 31 Jul 2015 14:48:01 +0100
-Message-ID: <1780734.Ehxby87hf5@peggleto-mobl.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.14.9 (Linux/4.0.8-200.fc21.x86_64; KDE/4.14.9; x86_64; ; )
-In-Reply-To: <1438203053-7909-6-git-send-email-anibal.limon@linux.intel.com>
-References: <1438203053-7909-1-git-send-email-anibal.limon@linux.intel.com>
-	<1438203053-7909-6-git-send-email-anibal.limon@linux.intel.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-yk0-f177.google.com (mail-yk0-f177.google.com
+	[209.85.160.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0C39E009E5
+	for <yocto@yoctoproject.org>; Fri, 31 Jul 2015 07:09:19 -0700 (PDT)
+Received: by ykdu72 with SMTP id u72so59912318ykd.2
+	for <yocto@yoctoproject.org>; Fri, 31 Jul 2015 07:09:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=E3vQj0bu8kTzUeU8903Pf2I7tG05x2KTj+CGt6qdSG8=;
+	b=jxwGK7mfybv1KYOe+ckQuZIKQqDmccKWqa2wWFFiWTD5wccByGrYVeQXilhkmlOQGP
+	FItQrdOeWtL3CRp96VtYKWmNjrVpgNcgQzfSwjXlmckfeCGNM7+Pj3dREn1CAxqc2Tdb
+	LQXdMW8DxbYTkzTXM3eyqVtnVRl4QlK8zOy6Eb7cLbRCNk6GFBds3njFXKUblH1NY+4t
+	TVzFQMuvg4ZwthW5yxf5Ehloz/a2fClXd7ib3rVQ9+yOL69WtsRWmbc6p+vd+SthPd6g
+	vrOotfxsf9s54ttmps04IuqI5jyDTXh9+wQgSix8MuHR+kbMYIT+XW7FdmzB7GLHfalr
+	s9AQ==
+X-Gm-Message-State: ALoCoQmObciSUYiNMV0yNpf6E3152Nyn75dozzPFLrFReeBuh+xbD33QGLRdL+YhRenpuQcyMGGw
 MIME-Version: 1.0
+X-Received: by 10.170.70.66 with SMTP id m63mr3392589ykm.72.1438351758680;
+	Fri, 31 Jul 2015 07:09:18 -0700 (PDT)
+Received: by 10.37.44.137 with HTTP; Fri, 31 Jul 2015 07:09:18 -0700 (PDT)
+Received: by 10.37.44.137 with HTTP; Fri, 31 Jul 2015 07:09:18 -0700 (PDT)
+In-Reply-To: <87vbd0xxhj.fsf@email.parenteses.org>
+References: <87vbd0xxhj.fsf@email.parenteses.org>
+Date: Fri, 31 Jul 2015 10:09:18 -0400
+Message-ID: <CAPTvctUQOCU_5v7jOBqSpZpOs_BCGL=5aqijGiSuQOWGRO3weg@mail.gmail.com>
+From: John Davis <jfdavis@anuvainnovations.com>
+To: Mario Domenech Goulart <mario@ossystems.com.br>
 Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 05/10][auh] upgradehelper.py: Add own step for loading environment
+Subject: Re: [meta-oracle-java] oracle-jse-jre fetch issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,74 +54,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Jul 2015 13:48:07 -0000
+X-List-Received-Date: Fri, 31 Jul 2015 14:09:25 -0000
+Content-Type: multipart/alternative; boundary=001a1139cf14a396cf051c2c5d2b
+
+--001a1139cf14a396cf051c2c5d2b
+Content-Type: text/plain; charset=UTF-8
+
+I have the same error.  Im interested if you find a work around.
+On Jul 31, 2015 9:34 AM, "Mario Domenech Goulart" <mario@ossystems.com.br>
+wrote:
+
+> Hi,
+>
+> I started a build of oracle-jse-jre with an empty $DL_DIR and noticed
+> do_fetch fails due to checksum mismatch.
+>
+> The downloaded file
+>
+> (ejre-7u60-fcs-b19-linux-arm-vfp-hflt-client_headless-07_may_2014.tar.gz_bad-checksum_b72400960629e7403c4b579dada2a804)
+> is actually an HTML file which contains a page indicating a login
+> failure.
+>
+> Is this a known issue?
+>
+> Best wishes.
+> Mario
+> --
+> http://www.ossystems.com.br
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--001a1139cf14a396cf051c2c5d2b
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
 
-On Wednesday 29 July 2015 15:50:48 An=EDbal Lim=F3n wrote:
-> Instead of load environment in detecting git repository use own
-> function making easy to debug.
+<p dir=3D"ltr">I have the same error.=C2=A0 Im interested if you find a wor=
+k around.</p>
+<div class=3D"gmail_quote">On Jul 31, 2015 9:34 AM, &quot;Mario Domenech Go=
+ulart&quot; &lt;<a href=3D"mailto:mario@ossystems.com.br">mario@ossystems.c=
+om.br</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"=
+>Hi,<br>
+<br>
+I started a build of oracle-jse-jre with an empty $DL_DIR and noticed<br>
+do_fetch fails due to checksum mismatch.<br>
+<br>
+The downloaded file<br>
+(ejre-7u60-fcs-b19-linux-arm-vfp-hflt-client_headless-07_may_2014.tar.gz_ba=
+d-checksum_b72400960629e7403c4b579dada2a804)<br>
+is actually an HTML file which contains a page indicating a login<br>
+failure.<br>
+<br>
+Is this a known issue?<br>
+<br>
+Best wishes.<br>
+Mario<br>
+--<br>
+<a href=3D"http://www.ossystems.com.br" rel=3D"noreferrer" target=3D"_blank=
+">http://www.ossystems.com.br</a><br>
+--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div>
 
-The changes here don't seem to entirely match up with the commit messag=
-e.
-
-> Signed-off-by: An=EDbal Lim=F3n <anibal.limon@linux.intel.com>
-> ---
->  upgradehelper.py | 11 ++++++-----
->  1 file changed, 6 insertions(+), 5 deletions(-)
->=20
-> diff --git a/upgradehelper.py b/upgradehelper.py
-> index 13fc7dd..9119cb0 100755
-> --- a/upgradehelper.py
-> +++ b/upgradehelper.py
-> @@ -147,6 +147,7 @@ class Updater(object):
->=20
->          self.upgrade_steps =3D [
->              (self._create_workdir, None),
-> +            (self._get_env, "Loading environment ..."),
->              (self._detect_repo, "Detecting git repository location .=
-.."),
->              (self._clean_repo, "Cleaning git repository of temporary=
- branch
-> ..."), (self._detect_recipe_type, None),
-> @@ -205,18 +206,16 @@ class Updater(object):
->                  os.remove(os.path.join(self.workdir, f))
->=20
->      def _detect_repo(self):
-> -        self._get_env()
-> -
-> -        if self.env['PV'] =3D=3D self.new_ver:
-> +        if self.env['PKGV'] =3D=3D self.new_ver:
->              raise UpgradeNotNeededError
->=20
-> -        if self.git is not None:
-> +        # UniverseUpdater use git poky respository
-> +        if isinstance(self.git, UniverseUpdater):
->              return
->=20
->          self.git =3D Git(self.recipe_dir)
->=20
->          stdout =3D self.git.status()
-> -
->          if stdout !=3D "":
->              if self.interactive:
->                  W(" %s: git repository has uncommited work which wil=
-l be
-> dropped! Proceed? (y/N)" % self.pn) @@ -527,6 +526,8 @@ class
-> Updater(object):
->  class UniverseUpdater(Updater):
->      def __init__(self):
->          Updater.__init__(self, True, True)
-> +
-> +        # XXX: assume that the poky directory is the first entry in =
-the
-> PATH self.git =3D Git(os.path.dirname(os.getenv('PATH',
-> False).split(':')[0]))
->=20
->          # read history file
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
-
+--001a1139cf14a396cf051c2c5d2b--
