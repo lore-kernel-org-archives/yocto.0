@@ -1,43 +1,58 @@
-Return-Path: <petter@technux.se>
+Return-Path: <develone@sbcglobal.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B5706E00A3C; Sat,  1 Aug 2015 14:44:20 -0700 (PDT)
+	id 80A17E00A4D; Sun,  2 Aug 2015 04:40:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,URIBL_JP_SURBL autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [195.74.38.224 listed in list.dnswl.org]
-	* 1.2 URIBL_JP_SURBL Contains an URL listed in the JP SURBL blocklist
-	*      [URIs: gherzan.com]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [98.138.91.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from bin-vsp-out-04.atm.binero.net (vsp-authed01.binero.net
-	[195.74.38.224])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE973E00595
-	for <yocto@yoctoproject.org>; Sat,  1 Aug 2015 14:44:15 -0700 (PDT)
-X-Halon-ID: 716870cb-3896-11e5-b1e8-005056917c0c
-Authorized-sender: petter@technux.se
-Received: from [192.168.1.82] (unknown [81.229.90.163])
-	by bin-vsp-out-04.atm.binero.net (Halon Mail Gateway) with ESMTPSA;
-	Sat,  1 Aug 2015 23:44:09 +0200 (CEST)
-Message-ID: <55BD3DAF.4040202@technux.se>
-Date: Sat, 01 Aug 2015 23:44:15 +0200
-From: =?windows-1252?Q?Petter_Mab=E4cker?= <petter@technux.se>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm12-vm4.bullet.mail.ne1.yahoo.com
+	(nm12-vm4.bullet.mail.ne1.yahoo.com [98.138.91.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F676E00595
+	for <yocto@yoctoproject.org>; Sun,  2 Aug 2015 04:40:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
+	t=1438515601; bh=CmJq+ZrdT/dR1dqLMMBeYk8afv/oJC0iJzmcQ/O8nnk=;
+	h=Date:From:Reply-To:To:Subject:From:Subject;
+	b=BSmFiSkyGra0Y5tuDDNNjPsipCy8T2ZiuBNX/ucHZYo+ga9tF7HGnXiqf+rt3E9l3eV3b1Q4UGkHawM+3an0PQ4Pbv3q+tGyEMWxIDXYS4TBzChIcv7Xn+NKkuLjiCyrOhGhr50oXLDFyXtUKlGIlyIxeYbMQXBSc6QuUxru3j20DHZWDHOrT3TYIGsYe8efZEX+kSrXXFpIPBRNhPkeFlYsSVDb/Qi9DsV/2d+gl0hR9HuEqdHuUtuX9xmrM2kBkflpO1iHPTxc9xXdN6J8QusEiNRlQvMsofTtn/Bqx69iv/Fc55caJTDTmXQNz39i6Sprysa7IJMpqDSbkim1qw==
+Received: from [98.138.226.176] by nm12.bullet.mail.ne1.yahoo.com with NNFMP;
+	02 Aug 2015 11:40:01 -0000
+Received: from [98.138.89.163] by tm11.bullet.mail.ne1.yahoo.com with NNFMP;
+	02 Aug 2015 11:40:01 -0000
+Received: from [127.0.0.1] by omp1019.mail.ne1.yahoo.com with NNFMP;
+	02 Aug 2015 11:40:01 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 754283.21431.bm@omp1019.mail.ne1.yahoo.com
+X-YMail-OSG: Nc1Z74kVM1n_EJviY4xh1PocSKPGUCk0jo3HcVvAMudNojuVQryEeSZUqwEn8RG
+	DteJImoKeC_53gESmZ425jaJG4_KzWIIh3daTrRzOmHAsFXd8SgCwp6U0G1ZWa9vWDJI.PiGxQLB
+	HBb6YA4wvY7cCUVACXi_Wp5nPtmd8aBDjijdyy0VQi7lN7bDS99bO5p2eczdP2m6i2ewfjdTgue2
+	lM7SASL_KW7PIVRuPD1wZDfD4YW8.60RLbN2Hxl5mhljcL8hBi5c2stym4BQdkmFvc7RxZv58TNL
+	fB_zuThbl5rSbysJpgzmpNZ75Z519j.AQkQ6jRkvRHpLsKJlfdDAKNJ8ix2XqM6lMH0ANRwPc5UF
+	iLCKkH01nzdlzdpepNgfRP7VnXbH9LNT.ND5qbI_NxOVB3EsJBefarYk8PUmPuN4AShR8nbi8AEM
+	iLXZMiMvBgLUwtMXZm1J1P8_rS04lJFE1HlijEFiPdY4Lt1UMObgBp2CfMcwSENkuyTd9iX59JA.
+	j5GqfgMKh2Z_H1Cm3WPdsF4aPYQ6To6V0Ce3M8zu5MKl4CAEfP9pghSMfFREEqpM-
+Received: by 98.138.105.212; Sun, 02 Aug 2015 11:40:01 +0000 
+Date: Sun, 2 Aug 2015 11:40:00 +0000 (UTC)
+From: Edward Vidal <develone@sbcglobal.net>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <488834969.412649.1438515600815.JavaMail.yahoo@mail.yahoo.com>
 MIME-Version: 1.0
-To: Herve Jourdain <herve.jourdain@neuf.fr>
-References: <086901d0ca77$9e8f1300$dbad3900$@neuf.fr>	<55BB7830.8010909@technux.se>
-	<09b101d0cbf8$8d1ab4d0$a7501e70$@neuf.fr>
-In-Reply-To: <09b101d0cbf8$8d1ab4d0$a7501e70$@neuf.fr>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi] Adding an additional device tree overlay in the SDCard
+Subject: gtkwave recipe fails in do_configure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Edward Vidal <develone@sbcglobal.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -46,458 +61,586 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 01 Aug 2015 21:44:20 -0000
-Content-Type: multipart/alternative;
-	boundary="------------020003090209060105070804"
+X-List-Received-Date: Sun, 02 Aug 2015 11:40:04 -0000
+X-Groupsio-MsgNum: 25810
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_412648_1337930476.1438515600815"
 
---------------020003090209060105070804
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+------=_Part_412648_1337930476.1438515600815
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_412647_936702398.1438515600813"
 
-Hi,
+------=_Part_412647_936702398.1438515600813
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-BR,
-Petter
+Hello All,
 
-On 08/01/2015 03:22 AM, Herve Jourdain wrote:
->
-> Hi Petter,
->
-> Thanks for your answers.
->
-> At some point, I’ve set it in the disto.conf – it works there – but 
-> for maintenance reasons I’d love to be able to keep it “localized” 
-> with the kernel .bbappend – since it clearly depends on the kernel.
->
-> For now, I’ve just patched the sdcard_image-rpi.bbclass, to take the 
-> existing ${KERNEL_IMAGE}*.dtb in the ${DEPLOY_DIR_DIRECTORY}, split 
-> them in overlay and non-overlay, and then do the processing like it’s 
-> done now.
->
-> It does work in my case, and I can provide the patch if it’s deemed of 
-> interest. But I’m not sure whether or not there can be some side 
-> effects – looks like rather safe, but more opinions are definitely 
-> needed on that.
->
-Feel free to either send a RFC patch to the mailinglist or start by 
-sending it for early feedback to me, Andrei and Alex.
->
-> Regarding the kernel, yes I’m using the 3.18 that is supported by the 
-> meta-raspberry layer. As I mentioned in another thread, with more 
-> recent kernels, the RaspberryPi overlay layers were added in a 
-> separate directory, so in addition to a patch to build the newer 
-> kernel, the sdcard_image-rpi.bbclass will also have to be modified to 
-> get the files in the proper directory, when we switch to those newer 
-> kernels.
->
-I remember that thread. We are currently working with integrating 4.x 
-into meta-raspberrypi you can follow Alex work at 
-http://redmine.gherzan.com/issues/62. One problem is however how to 
-handle support for both 3.x and 4.x with the current KERNEL_DEVICETREE 
-solution in combination with the changed overlay directories.
->
-> Best regards,
->
-> Herve
->
-> *From:*Petter Mabäcker [mailto:petter@technux.se]
-> *Sent:* vendredi 31 juillet 2015 15:29
-> *To:* Herve Jourdain <herve.jourdain@neuf.fr>; 
-> francois@concept-embarque.fr; Andrei Gherzan <andrei@gherzan.ro>
-> *Cc:* yocto@yoctoproject.org
-> *Subject:* Re: [yocto] [meta-raspberrypi] Adding an additional device 
-> tree overlay in the SDCard
->
-> Hi Herve,
->
-> See inline answers.
->
-> BR,
-> Petter
->
-> On 07/30/2015 05:27 AM, Herve Jourdain wrote:
->
->     Hello,
->
->     I’m trying to add a specific .dts file to the raspberrypi.
->
->     Therefore, in my own layer, I have made a
->     linux-raspberrypi_3.%.bbappend, that applies a patch to the
->     arch/arm/boot/dts makefile to add my own layer, and a new rule
->     that copies my specific .dts file to the kernel source directory.
->
->     And, initially, I had also defined KERNEL_DEVICETREE +=
->     “myown-overlay.dtb” in there.
->
->     It definitely compiles well, installation process is smooth, I get
->     the Image-myown-overlay.dtb in tmp/deploy/raspberrypi2.
->
->     BUT when I flash my SDCard, it does NOT appear in the “overlays”
->     directory of the DOS partition!
->
->     If I add it manually, everything works fine, so I know my overlay
->     has been correctly generated and is working.
->
->     What I discovered is that, the sdcard_image_rpi class takes the
->     list of .dtb to be considered from split_overlays(), which is
->     defined in linux-raspberrypi-base class.
->
->     And split_overlays() basically  gets the value of
->     KERNEL_DEVICETREE (dts = d.getVar("KERNEL_DEVICETREE", True)).
->
->     But when I set KERNEL_DEVICETREE in
->     linux-raspberrypi_3.%.bbappend, it seems the additional value it
->     defines is NOT taken into account when linux-raspberry-class
->     evaluates the value of KERNEL_DEVICETREE.
->
->     I’ve checked in the create_image.rpi-sdimg script created, it does
->     not appear in DTS nor DT_OVERLAYS.
->
->     But when I define KERNEL_DEVICETREE in my distro.conf, THEN it is
->     taken into account…
->
->     My goal would be to add that overlay by NOT modifying distro.conf
->     (distros are not necessarily RaspberryPi centric) nor in the
->     raspberry machine files (or local.conf).
->
->     This leads me to several questions:
->
->     #1 Is there a specific reason why my addition to KERNEL_DEVICETREE
->     gets lost when creating the image? I mean, is it normal, or are
->     there some steps I missed there?
->
-> Yes, in the current solution KERNEL_DEVICETREE is needed in both the 
-> kernel recipe and image creation context. When appending 
-> KERNEL_DEVICETREE in linux-raspberrypi_3.%.bbappend your new overlay 
-> will only be visible within the linux-raspberrypi scope and NOT within 
-> the image class.
->
->
->     #2 Is there a way that I could achieve adding my .dtb overlay in
->     the sdcard image only from my linux kernel bbappend?
->
->
-> If I remember the code correct within the kernel scope we are only 
-> interesting if device tree should be used. At least in theory 
-> (assuming you are using a >= 3.18 kernel since then KERNEL_DEVICETREE 
-> will bve set by default) you should be able to skip the 
-> KERNEL_DEVICETREE += code in linux-raspberrypi_3.%.bbappend (since it 
-> will be set any way and the overlays themselves isn't really used in 
-> here..) then append the KERNEL_DEVICETREE within the image scope. If 
-> you don't want to put this into the layer.conf or similiar in your own 
-> layer I guess it should work to "prepend" for example the 
-> IMAGE_CMD.But in the current solution I guess local.conf, layer.conf 
-> (in your own layer) or rpi-base.inc (in meta-raspberrypi) is the 
-> easiest options..
->
->
->     #3 On a more general note, wouldn’t it be simpler (better?) to
->     just add all the .dtb that are found in the deploy/images/
->     directory to the DOS partition of the SDCard? After all, the .dtb
->     need to be compiled from a .dts, so all the .dtb that appear in
->     deploy/images are “legit”.
->
->
-> That might perhaps be a better solution. Have you tried it out? Andrei 
-> or Francois might have some comments about this?
->
->     Herve
->
->
->
+I am trying to add gtkwave with a bitbake recipe
+gtkwave_3.6.66.bb found at https://github.com/develone/raspberrypi2_yocto.g=
+it in the folder
+receipe_gtkwave.
+I need to add the following trying to get do_configure working.
 
+EXTRA_OECONF =3D "--with-tcl=3D/home/vidal/wkg/yocto/RaspberryPi2/poky/buil=
+d/tmp/sysroots/raspberrypi2/usr/lib --with-tk=3D/home/vidal/wkg/yocto/Raspb=
+erryPi2/poky/build/tmp/sysroots/raspberrypi2/usr/lib"
 
---------------020003090209060105070804
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+I tried replacing /home/vidal/wkg/yocto/RaspberryPi2/poky/build with ${BUIL=
+DDIR}.
+I still get the error
 
-<html>
-  <head>
-    <meta content="text/html; charset=windows-1252"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">Hi,<br>
-      <br>
-      BR,<br>
-      Petter<br>
-      <br>
-      On 08/01/2015 03:22 AM, Herve Jourdain wrote:<br>
-    </div>
-    <blockquote cite="mid:09b101d0cbf8$8d1ab4d0$a7501e70$@neuf.fr"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	color:black;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri",sans-serif;
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal"><span style="color:#1F497D">Hi Petter,<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">Thanks
-            for your answers.<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">At
-            some point, I’ve set it in the disto.conf – it works there –
-            but for maintenance reasons I’d love to be able to keep it
-            “localized” with the kernel .bbappend – since it clearly
-            depends on the kernel.<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">For
-            now, I’ve just patched the sdcard_image-rpi.bbclass, to take
-            the existing ${KERNEL_IMAGE}*.dtb in the
-            ${DEPLOY_DIR_DIRECTORY}, split them in overlay and
-            non-overlay, and then do the processing like it’s done now.<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">It
-            does work in my case, and I can provide the patch if it’s
-            deemed of interest. But I’m not sure whether or not there
-            can be some side effects – looks like rather safe, but more
-            opinions are definitely needed on that.</span></p>
-      </div>
-    </blockquote>
-    Feel free to either send a RFC patch to the mailinglist or start by
-    sending it for early feedback to me, Andrei and Alex.<br>
-    <blockquote cite="mid:09b101d0cbf8$8d1ab4d0$a7501e70$@neuf.fr"
-      type="cite">
-      <div class="WordSection1">
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">Regarding
-            the kernel, yes I’m using the 3.18 that is supported by the
-            meta-raspberry layer. As I mentioned in another thread, with
-            more recent kernels, the RaspberryPi overlay layers were
-            added in a separate directory, so in addition to a patch to
-            build the newer kernel, the sdcard_image-rpi.bbclass will
-            also have to be modified to get the files in the proper
-            directory, when we switch to those newer kernels.</span></p>
-      </div>
-    </blockquote>
-    I remember that thread. We are currently working with integrating
-    4.x into meta-raspberrypi you can follow Alex work at
-    <a class="moz-txt-link-freetext" href="http://redmine.gherzan.com/issues/62">http://redmine.gherzan.com/issues/62</a>. One problem is however how to
-    handle support for both 3.x and 4.x with the current
-    KERNEL_DEVICETREE solution in combination with the changed overlay
-    directories.<br>
-    <blockquote cite="mid:09b101d0cbf8$8d1ab4d0$a7501e70$@neuf.fr"
-      type="cite">
-      <div class="WordSection1">
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">Best
-            regards,<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US">Herve<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="color:#1F497D" lang="EN-US"><o:p> </o:p></span></p>
-        <div>
-          <div style="border:none;border-top:solid #E1E1E1
-            1.0pt;padding:3.0pt 0cm 0cm 0cm">
-            <p class="MsoNormal"><b><span
-                  style="color:windowtext;mso-fareast-language:FR"
-                  lang="EN-US">From:</span></b><span
-                style="color:windowtext;mso-fareast-language:FR"
-                lang="EN-US"> Petter Mabäcker [<a class="moz-txt-link-freetext" href="mailto:petter@technux.se">mailto:petter@technux.se</a>]
-                <br>
-                <b>Sent:</b> vendredi 31 juillet 2015 15:29<br>
-                <b>To:</b> Herve Jourdain
-                <a class="moz-txt-link-rfc2396E" href="mailto:herve.jourdain@neuf.fr">&lt;herve.jourdain@neuf.fr&gt;</a>;
-                <a class="moz-txt-link-abbreviated" href="mailto:francois@concept-embarque.fr">francois@concept-embarque.fr</a>; Andrei Gherzan
-                <a class="moz-txt-link-rfc2396E" href="mailto:andrei@gherzan.ro">&lt;andrei@gherzan.ro&gt;</a><br>
-                <b>Cc:</b> <a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-                <b>Subject:</b> Re: [yocto] [meta-raspberrypi] Adding an
-                additional device tree overlay in the SDCard<o:p></o:p></span></p>
-          </div>
-        </div>
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <div>
-          <p class="MsoNormal">Hi Herve,<br>
-            <br>
-            See inline answers.<br>
-            <br>
-            BR,<br>
-            Petter<br>
-            <br>
-            On 07/30/2015 05:27 AM, Herve Jourdain wrote:<span
-              style="font-size:12.0pt;mso-fareast-language:FR"><o:p></o:p></span></p>
-        </div>
-        <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-          <p class="MsoNormal">Hello,<o:p></o:p></p>
-          <p class="MsoNormal"> <o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US">I’m trying to add a
-              specific .dts file to the raspberrypi.</span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US">Therefore, in my own
-              layer, I have made a linux-raspberrypi_3.%.bbappend, that
-              applies a patch to the arch/arm/boot/dts makefile to add
-              my own layer, and a new rule that copies my specific .dts
-              file to the kernel source directory.</span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US">And, initially, I had
-              also defined KERNEL_DEVICETREE += “myown-overlay.dtb” in
-              there.</span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US"> </span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US">It definitely compiles
-              well, installation process is smooth, I get the
-              Image-myown-overlay.dtb in tmp/deploy/raspberrypi2.</span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US"> </span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US">BUT when I flash my
-              SDCard, it does NOT appear in the “overlays” directory of
-              the DOS partition!</span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US"> </span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US">If I add it manually,
-              everything works fine, so I know my overlay has been
-              correctly generated and is working.</span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US"> </span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US">What I discovered is
-              that, the sdcard_image_rpi class takes the list of .dtb to
-              be considered from split_overlays(), which is defined in
-              linux-raspberrypi-base class.</span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US">And split_overlays()
-              basically  gets the value of KERNEL_DEVICETREE (dts =
-              d.getVar("KERNEL_DEVICETREE", True)).</span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US"> </span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US">But when I set
-              KERNEL_DEVICETREE in linux-raspberrypi_3.%.bbappend, it
-              seems the additional value it defines is NOT taken into
-              account when linux-raspberry-class evaluates the value of
-              KERNEL_DEVICETREE.</span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US">I’ve checked in the
-              create_image.rpi-sdimg script created, it does not appear
-              in DTS nor DT_OVERLAYS.</span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US"> </span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US">But when I define
-              KERNEL_DEVICETREE in my distro.conf, THEN it is taken into
-              account…</span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US"> </span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US">My goal would be to
-              add that overlay by NOT modifying distro.conf (distros are
-              not necessarily RaspberryPi centric) nor in the raspberry
-              machine files (or local.conf).</span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US">This leads me to
-              several questions:</span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US">#1 Is there a specific
-              reason why my addition to KERNEL_DEVICETREE gets lost when
-              creating the image? I mean, is it normal, or are there
-              some steps I missed there?</span><o:p></o:p></p>
-        </blockquote>
-        <p class="MsoNormal"><span
-            style="font-size:12.0pt;font-family:&quot;Times New
-            Roman&quot;,serif;mso-fareast-language:FR">Yes, in the
-            current solution </span><span
-            style="font-size:12.0pt;font-family:&quot;Times New
-            Roman&quot;,serif;mso-fareast-language:FR" lang="EN-US">KERNEL_DEVICETREE
-            is needed in both the kernel recipe and image creation
-            context. When appending KERNEL_DEVICETREE in
-            linux-raspberrypi_3.%.bbappend your new overlay will only be
-            visible within the linux-raspberrypi scope and NOT within
-            the image class.</span><span
-            style="font-size:12.0pt;font-family:&quot;Times New
-            Roman&quot;,serif;mso-fareast-language:FR"><br>
-            <br>
-            <br>
-            <o:p></o:p></span></p>
-        <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-          <p class="MsoNormal"><span lang="EN-US">#2 Is there a way that
-              I could achieve adding my .dtb overlay in the sdcard image
-              only from my linux kernel bbappend?</span><o:p></o:p></p>
-        </blockquote>
-        <p class="MsoNormal"><span
-            style="font-size:12.0pt;font-family:&quot;Times New
-            Roman&quot;,serif;mso-fareast-language:FR"><br>
-            If I remember the code correct within the kernel scope we
-            are only interesting if device tree should be used. At least
-            in theory (assuming you are using a &gt;= 3.18 kernel since
-            then KERNEL_DEVICETREE will bve set by default) you should
-            be able to skip the </span><span
-            style="font-size:12.0pt;font-family:&quot;Times New
-            Roman&quot;,serif;mso-fareast-language:FR" lang="EN-US">KERNEL_DEVICETREE
-            += code in linux-raspberrypi_3.%.bbappend (since it will be
-            set any way and the overlays themselves isn't really used in
-            here..) then append the KERNEL_DEVICETREE within the image
-            scope. If you don't want to put this into the layer.conf or
-            similiar in your own layer I guess it should work to
-            "prepend" for example the IMAGE_CMD.</span><span
-            style="font-size:12.0pt;font-family:&quot;Times New
-            Roman&quot;,serif;mso-fareast-language:FR"> But in the
-            current solution I guess local.conf, layer.conf (in your own
-            layer) or rpi-base.inc (in meta-raspberrypi) is the easiest
-            options..<br>
-            <br>
-            <br>
-            <o:p></o:p></span></p>
-        <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-          <p class="MsoNormal"><span lang="EN-US">#3 On a more general
-              note, wouldn’t it be simpler (better?) to just add all the
-              .dtb that are found in the deploy/images/ directory to the
-              DOS partition of the SDCard? After all, the .dtb need to
-              be compiled from a .dts, so all the .dtb that appear in
-              deploy/images are “legit”.</span><o:p></o:p></p>
-        </blockquote>
-        <p class="MsoNormal"><span
-            style="font-size:12.0pt;font-family:&quot;Times New
-            Roman&quot;,serif;mso-fareast-language:FR" lang="EN-US"><br>
-            That might perhaps be a better solution. Have you tried it
-            out? Andrei or Francois might have some comments about this?<br>
-            <br>
-          </span><span style="font-size:12.0pt;font-family:&quot;Times
-            New Roman&quot;,serif;mso-fareast-language:FR"><o:p></o:p></span></p>
-        <blockquote style="margin-top:5.0pt;margin-bottom:5.0pt">
-          <p class="MsoNormal"><span lang="EN-US"> </span><o:p></o:p></p>
-          <p class="MsoNormal"><span lang="EN-US">Herve</span><o:p></o:p></p>
-          <p class="MsoNormal"><span
-              style="font-size:12.0pt;font-family:&quot;Times New
-              Roman&quot;,serif;mso-fareast-language:FR"><br>
-              <br>
-              <o:p></o:p></span></p>
-        </blockquote>
-        <p class="MsoNormal"><span
-            style="font-size:12.0pt;font-family:&quot;Times New
-            Roman&quot;,serif;mso-fareast-language:FR"><o:p> </o:p></span></p>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
+| checking for Tcl configuration... configure: error: /tmp/sysroots/raspber=
+rypi2/usr/lib directory doesn't contain tclConfig.sh
 
---------------020003090209060105070804--
+I get further with the full path as above.
+Which leads to a new error.
+ERROR: This autoconf log indicates errors, it looked at host include and/or=
+ library paths while determining system capabilities.
+Rerun configure task after fixing this. The path was '/home/vidal/wkg/yocto=
+/RaspberryPi2/poky/build/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnue=
+abi/gtkwave/3.6.66-r0/build'
+ERROR: Function failed: do_qa_configure
+ERROR: Logfile of failure stored in: /home/vidal/wkg/yocto/RaspberryPi2/pok=
+y/build/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/gtkwave/3.6.6=
+6-r0/temp/log.do_configure.22672
+ERROR: Task 5 (/home/vidal/wkg/yocto/RaspberryPi2/poky/meta/recipes-devtool=
+s/gtkwave/gtkwave_3.6.66.bb, do_configure) failed with exit code '1'
+
+I tried autotools-brokensep instead of autotools same results.
+
+Thanks in advance.=C2=A0Edward Vidal Jr.
+e-mail develone@sbcglobal.net
+915-595-1613
+
+------=_Part_412647_936702398.1438515600813
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
+nt-size:16px"><div dir=3D"ltr" id=3D"yui_3_16_0_1_1438515384115_3716"><span=
+>Hello All,<br class=3D""><br class=3D"">I am trying to add gtkwave with a =
+bitbake recipe<br class=3D"">gtkwave_3.6.66.bb found at https://github.com/=
+develone/raspberrypi2_yocto.git in the folder<br class=3D"">receipe_gtkwave=
+.<br class=3D"">I need to add the following trying to get do_configure work=
+ing.<br class=3D""><br class=3D"">EXTRA_OECONF =3D "--with-tcl=3D/home/vida=
+l/wkg/yocto/RaspberryPi2/poky/build/tmp/sysroots/raspberrypi2/usr/lib --wit=
+h-tk=3D/home/vidal/wkg/yocto/RaspberryPi2/poky/build/tmp/sysroots/raspberry=
+pi2/usr/lib"<br class=3D""><br class=3D"">I tried replacing /home/vidal/wkg=
+/yocto/RaspberryPi2/poky/build with ${BUILDDIR}.<br class=3D"">I still get =
+the error<br class=3D""><br class=3D"">| checking for Tcl configuration... =
+configure: error: /tmp/sysroots/raspberrypi2/usr/lib directory doesn't cont=
+ain tclConfig.sh<br class=3D""><br class=3D"">I get further with the full p=
+ath as above.<br class=3D"">Which leads to a new error.<br class=3D"">ERROR=
+: This autoconf log indicates errors, it looked at host include and/or libr=
+ary paths while determining system capabilities.<br class=3D"">Rerun config=
+ure task after fixing this. The path was '/home/vidal/wkg/yocto/RaspberryPi=
+2/poky/build/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/gtkwave/=
+3.6.66-r0/build'<br class=3D"">ERROR: Function failed: do_qa_configure<br c=
+lass=3D"">ERROR: Logfile of failure stored in: /home/vidal/wkg/yocto/Raspbe=
+rryPi2/poky/build/tmp/work/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/gtk=
+wave/3.6.66-r0/temp/log.do_configure.22672<br class=3D"">ERROR: Task 5 (/ho=
+me/vidal/wkg/yocto/RaspberryPi2/poky/meta/recipes-devtools/gtkwave/gtkwave_=
+3.6.66.bb, do_configure) failed with exit code '1'<br class=3D""><br class=
+=3D"">I tried autotools-brokensep instead of autotools same results.<br cla=
+ss=3D""><br class=3D"">Thanks in advance.</span></div><div>&nbsp;</div><div=
+><div>Edward Vidal Jr.<br>e-mail develone@sbcglobal.net<br>915-595-1613</di=
+v></div></div></body></html>
+
+------=_Part_412647_936702398.1438515600813--
+
+------=_Part_412648_1337930476.1438515600815
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename=log.do_configure.22672
+Content-ID: <bf4e8e64-5b9a-3277-9cc8-e3bbe46710ce@yahoo.com>
+
+REVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gc3lzcm9vdF9jbGVhbnNzdGF0ZQpERUJV
+RzogUHl0aG9uIGZ1bmN0aW9uIHN5c3Jvb3RfY2xlYW5zc3RhdGUgZmluaXNoZWQKREVCVUc6IFNJ
+VEUgZmlsZXMgWydlbmRpYW4tbGl0dGxlJywgJ2JpdC0zMicsICdhcm0tY29tbW9uJywgJ2FybS0z
+MicsICdjb21tb24tbGludXgnLCAnY29tbW9uLWdsaWJjJywgJ2FybS1saW51eCcsICdhcm0tbGlu
+dXgtZ251ZWFiaScsICdjb21tb24nXQpERUJVRzogRXhlY3V0aW5nIHNoZWxsIGZ1bmN0aW9uIGF1
+dG90b29sc19wcmVjb25maWd1cmUKREVCVUc6IFNoZWxsIGZ1bmN0aW9uIGF1dG90b29sc19wcmVj
+b25maWd1cmUgZmluaXNoZWQKREVCVUc6IEV4ZWN1dGluZyBweXRob24gZnVuY3Rpb24gYXV0b3Rv
+b2xzX2NvcHlfYWNsb2NhbHMKREVCVUc6IFNJVEUgZmlsZXMgWydlbmRpYW4tbGl0dGxlJywgJ2Jp
+dC0zMicsICdhcm0tY29tbW9uJywgJ2FybS0zMicsICdjb21tb24tbGludXgnLCAnY29tbW9uLWds
+aWJjJywgJ2FybS1saW51eCcsICdhcm0tbGludXgtZ251ZWFiaScsICdjb21tb24nXQpERUJVRzog
+UHl0aG9uIGZ1bmN0aW9uIGF1dG90b29sc19jb3B5X2FjbG9jYWxzIGZpbmlzaGVkCkRFQlVHOiBF
+eGVjdXRpbmcgc2hlbGwgZnVuY3Rpb24gZG9fY29uZmlndXJlCmF1dG9tYWtlIChHTlUgYXV0b21h
+a2UpIDEuMTUKQ29weXJpZ2h0IChDKSAyMDE0IEZyZWUgU29mdHdhcmUgRm91bmRhdGlvbiwgSW5j
+LgpMaWNlbnNlIEdQTHYyKzogR05VIEdQTCB2ZXJzaW9uIDIgb3IgbGF0ZXIgPGh0dHA6Ly9nbnUu
+b3JnL2xpY2Vuc2VzL2dwbC0yLjAuaHRtbD4KVGhpcyBpcyBmcmVlIHNvZnR3YXJlOiB5b3UgYXJl
+IGZyZWUgdG8gY2hhbmdlIGFuZCByZWRpc3RyaWJ1dGUgaXQuClRoZXJlIGlzIE5PIFdBUlJBTlRZ
+LCB0byB0aGUgZXh0ZW50IHBlcm1pdHRlZCBieSBsYXcuCgpXcml0dGVuIGJ5IFRvbSBUcm9tZXkg
+PHRyb21leUByZWRoYXQuY29tPgogICAgICAgYW5kIEFsZXhhbmRyZSBEdXJldC1MdXR6IDxhZGxA
+Z251Lm9yZz4uCkFVVE9WIGlzIDEKTk9URTogRXhlY3V0aW5nIEFDTE9DQUw9ImFjbG9jYWwgLS1z
+eXN0ZW0tYWNkaXI9L2hvbWUvdmlkYWwvd2tnL3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxk
+L3RtcC93b3JrL2NvcnRleGE3aGYtdmZwLXZmcHY0LW5lb24tcG9reS1saW51eC1nbnVlYWJpL2d0
+a3dhdmUvMy42LjY2LXIwL2J1aWxkL2FjbG9jYWwtY29weS8iIGF1dG9yZWNvbmYgLS12ZXJib3Nl
+IC0taW5zdGFsbCAtLWZvcmNlIC0tZXhjbHVkZT1hdXRvcG9pbnQgLUkgL2hvbWUvdmlkYWwvd2tn
+L3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC93b3JrL2NvcnRleGE3aGYtdmZwLXZm
+cHY0LW5lb24tcG9reS1saW51eC1nbnVlYWJpL2d0a3dhdmUvMy42LjY2LXIwL2d0a3dhdmUtMy4z
+LjY2LwphdXRvcmVjb25mOiBFbnRlcmluZyBkaXJlY3RvcnkgYC4nCmF1dG9yZWNvbmY6IGNvbmZp
+Z3VyZS5hYzogbm90IHVzaW5nIEdldHRleHQKYXV0b3JlY29uZjogcnVubmluZzogYWNsb2NhbCAt
+LXN5c3RlbS1hY2Rpcj0vaG9tZS92aWRhbC93a2cveW9jdG8vUmFzcGJlcnJ5UGkyL3Bva3kvYnVp
+bGQvdG1wL3dvcmsvY29ydGV4YTdoZi12ZnAtdmZwdjQtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkv
+Z3Rrd2F2ZS8zLjYuNjYtcjAvYnVpbGQvYWNsb2NhbC1jb3B5LyAtSSAvaG9tZS92aWRhbC93a2cv
+eW9jdG8vUmFzcGJlcnJ5UGkyL3Bva3kvYnVpbGQvdG1wL3dvcmsvY29ydGV4YTdoZi12ZnAtdmZw
+djQtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvZ3Rrd2F2ZS8zLjYuNjYtcjAvZ3Rrd2F2ZS0zLjMu
+NjYvIC1JIC9ob21lL3ZpZGFsL3drZy95b2N0by9SYXNwYmVycnlQaTIvcG9reS9idWlsZC90bXAv
+d29yay9jb3J0ZXhhN2hmLXZmcC12ZnB2NC1uZW9uLXBva3ktbGludXgtZ251ZWFiaS9ndGt3YXZl
+LzMuNi42Ni1yMC9ndGt3YXZlLTMuMy42Ni8gLS1mb3JjZSAKYXV0b3JlY29uZjogY29uZmlndXJl
+LmFjOiB0cmFjaW5nCmF1dG9yZWNvbmY6IGNvbmZpZ3VyZS5hYzogbm90IHVzaW5nIExpYnRvb2wK
+YXV0b3JlY29uZjogcnVubmluZzogL2hvbWUvdmlkYWwvd2tnL3lvY3RvL1Jhc3BiZXJyeVBpMi9w
+b2t5L2J1aWxkL3RtcC9zeXNyb290cy94ODZfNjQtbGludXgvdXNyL2Jpbi9hdXRvY29uZiAtLWlu
+Y2x1ZGU9L2hvbWUvdmlkYWwvd2tnL3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC93
+b3JrL2NvcnRleGE3aGYtdmZwLXZmcHY0LW5lb24tcG9reS1saW51eC1nbnVlYWJpL2d0a3dhdmUv
+My42LjY2LXIwL2d0a3dhdmUtMy4zLjY2LyAtLWZvcmNlCmF1dG9yZWNvbmY6IHJ1bm5pbmc6IC9o
+b21lL3ZpZGFsL3drZy95b2N0by9SYXNwYmVycnlQaTIvcG9reS9idWlsZC90bXAvc3lzcm9vdHMv
+eDg2XzY0LWxpbnV4L3Vzci9iaW4vYXV0b2hlYWRlciAtLWluY2x1ZGU9L2hvbWUvdmlkYWwvd2tn
+L3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC93b3JrL2NvcnRleGE3aGYtdmZwLXZm
+cHY0LW5lb24tcG9reS1saW51eC1nbnVlYWJpL2d0a3dhdmUvMy42LjY2LXIwL2d0a3dhdmUtMy4z
+LjY2LyAtLWZvcmNlCmF1dG9yZWNvbmY6IHJ1bm5pbmc6IGF1dG9tYWtlIC0tYWRkLW1pc3Npbmcg
+LS1jb3B5IC0tZm9yY2UtbWlzc2luZwpjb250cmliL3BjY3RzL2FudGxyL01ha2VmaWxlLmFtOjE4
+OiB3YXJuaW5nOiBzb3VyY2UgZmlsZSAnJChzcmNkaXIpLy4uL3N1cHBvcnQvc2V0L3NldC5jJyBp
+cyBpbiBhIHN1YmRpcmVjdG9yeSwKY29udHJpYi9wY2N0cy9hbnRsci9NYWtlZmlsZS5hbToxODog
+YnV0IG9wdGlvbiAnc3ViZGlyLW9iamVjdHMnIGlzIGRpc2FibGVkCmF1dG9tYWtlOiB3YXJuaW5n
+OiBwb3NzaWJsZSBmb3J3YXJkLWluY29tcGF0aWJpbGl0eS4KYXV0b21ha2U6IEF0IGxlYXN0IGEg
+c291cmNlIGZpbGUgaXMgaW4gYSBzdWJkaXJlY3RvcnksIGJ1dCB0aGUgJ3N1YmRpci1vYmplY3Rz
+JwphdXRvbWFrZTogYXV0b21ha2Ugb3B0aW9uIGhhc24ndCBiZWVuIGVuYWJsZWQuICBGb3Igbm93
+LCB0aGUgY29ycmVzcG9uZGluZyBvdXRwdXQKYXV0b21ha2U6IG9iamVjdCBmaWxlKHMpIHdpbGwg
+YmUgcGxhY2VkIGluIHRoZSB0b3AtbGV2ZWwgZGlyZWN0b3J5LiAgSG93ZXZlciwKYXV0b21ha2U6
+IHRoaXMgYmVoYXZpb3VyIHdpbGwgY2hhbmdlIGluIGZ1dHVyZSBBdXRvbWFrZSB2ZXJzaW9uczog
+dGhleSB3aWxsCmF1dG9tYWtlOiB1bmNvbmRpdGlvbmFsbHkgY2F1c2Ugb2JqZWN0IGZpbGVzIHRv
+IGJlIHBsYWNlZCBpbiB0aGUgc2FtZSBzdWJkaXJlY3RvcnkKYXV0b21ha2U6IG9mIHRoZSBjb3Jy
+ZXNwb25kaW5nIHNvdXJjZXMuCmF1dG9tYWtlOiBZb3UgYXJlIGFkdmlzZWQgdG8gc3RhcnQgdXNp
+bmcgJ3N1YmRpci1vYmplY3RzJyBvcHRpb24gdGhyb3VnaG91dCB5b3VyCmF1dG9tYWtlOiBwcm9q
+ZWN0LCB0byBhdm9pZCBmdXR1cmUgaW5jb21wYXRpYmlsaXRpZXMuCmNvbnRyaWIvcGNjdHMvZGxn
+L01ha2VmaWxlLmFtOjk6IHdhcm5pbmc6IHNvdXJjZSBmaWxlICckKHNyY2RpcikvLi4vc3VwcG9y
+dC9zZXQvc2V0LmMnIGlzIGluIGEgc3ViZGlyZWN0b3J5LApjb250cmliL3BjY3RzL2RsZy9NYWtl
+ZmlsZS5hbTo5OiBidXQgb3B0aW9uICdzdWJkaXItb2JqZWN0cycgaXMgZGlzYWJsZWQKY29udHJp
+Yi9wY2N0cy9zb3JjZXJlci9NYWtlZmlsZS5hbToyMjogd2FybmluZzogc291cmNlIGZpbGUgJyQo
+c3JjZGlyKS8uLi9zdXBwb3J0L3NldC9zZXQuYycgaXMgaW4gYSBzdWJkaXJlY3RvcnksCmNvbnRy
+aWIvcGNjdHMvc29yY2VyZXIvTWFrZWZpbGUuYW06MjI6IGJ1dCBvcHRpb24gJ3N1YmRpci1vYmpl
+Y3RzJyBpcyBkaXNhYmxlZApjb250cmliL3J0bGJyb3dzZS9NYWtlZmlsZS5hbToxODogd2Fybmlu
+Zzogc291cmNlIGZpbGUgJyQoc3JjZGlyKS8uLi8uLi9zcmMvaGVscGVycy9mc3QvbHo0LmMnIGlz
+IGluIGEgc3ViZGlyZWN0b3J5LApjb250cmliL3J0bGJyb3dzZS9NYWtlZmlsZS5hbToxODogYnV0
+IG9wdGlvbiAnc3ViZGlyLW9iamVjdHMnIGlzIGRpc2FibGVkCmNvbnRyaWIvcnRsYnJvd3NlL01h
+a2VmaWxlLmFtOjE4OiB3YXJuaW5nOiBzb3VyY2UgZmlsZSAnJChzcmNkaXIpLy4uLy4uL3NyYy9o
+ZWxwZXJzL2ZzdC9mYXN0bHouYycgaXMgaW4gYSBzdWJkaXJlY3RvcnksCmNvbnRyaWIvcnRsYnJv
+d3NlL01ha2VmaWxlLmFtOjE4OiBidXQgb3B0aW9uICdzdWJkaXItb2JqZWN0cycgaXMgZGlzYWJs
+ZWQKY29udHJpYi9ydGxicm93c2UvTWFrZWZpbGUuYW06MTg6IHdhcm5pbmc6IHNvdXJjZSBmaWxl
+ICckKHNyY2RpcikvLi4vLi4vc3JjL2hlbHBlcnMvZnN0L2ZzdGFwaS5jJyBpcyBpbiBhIHN1YmRp
+cmVjdG9yeSwKY29udHJpYi9ydGxicm93c2UvTWFrZWZpbGUuYW06MTg6IGJ1dCBvcHRpb24gJ3N1
+YmRpci1vYmplY3RzJyBpcyBkaXNhYmxlZApjb250cmliL3J0bGJyb3dzZS9NYWtlZmlsZS5hbTox
+ODogd2FybmluZzogc291cmNlIGZpbGUgJyQoc3JjZGlyKS8uLi8uLi9zcmMvaGVscGVycy92enRf
+cmVhZC5jJyBpcyBpbiBhIHN1YmRpcmVjdG9yeSwKY29udHJpYi9ydGxicm93c2UvTWFrZWZpbGUu
+YW06MTg6IGJ1dCBvcHRpb24gJ3N1YmRpci1vYmplY3RzJyBpcyBkaXNhYmxlZApjb250cmliL3J0
+bGJyb3dzZS9NYWtlZmlsZS5hbToxODogd2FybmluZzogc291cmNlIGZpbGUgJyQoc3JjZGlyKS8u
+Li8uLi9zcmMvaGVscGVycy9seHQyX3JlYWQuYycgaXMgaW4gYSBzdWJkaXJlY3RvcnksCmNvbnRy
+aWIvcnRsYnJvd3NlL01ha2VmaWxlLmFtOjE4OiBidXQgb3B0aW9uICdzdWJkaXItb2JqZWN0cycg
+aXMgZGlzYWJsZWQKY29udHJpYi9ydGxicm93c2UvTWFrZWZpbGUuYW06MTg6IHdhcm5pbmc6IHNv
+dXJjZSBmaWxlICckKHNyY2RpcikvLi4vLi4vc3JjL2xpYmx6bWEvTHptYUxpYi5jJyBpcyBpbiBh
+IHN1YmRpcmVjdG9yeSwKY29udHJpYi9ydGxicm93c2UvTWFrZWZpbGUuYW06MTg6IGJ1dCBvcHRp
+b24gJ3N1YmRpci1vYmplY3RzJyBpcyBkaXNhYmxlZApzcmMvTWFrZWZpbGUuYW06MzA6IHdhcm5p
+bmc6IHNvdXJjZSBmaWxlICdoZWxwZXJzL2x4dDJfcmVhZC5jJyBpcyBpbiBhIHN1YmRpcmVjdG9y
+eSwKc3JjL01ha2VmaWxlLmFtOjMwOiBidXQgb3B0aW9uICdzdWJkaXItb2JqZWN0cycgaXMgZGlz
+YWJsZWQKc3JjL01ha2VmaWxlLmFtOjMwOiB3YXJuaW5nOiBzb3VyY2UgZmlsZSAnaGVscGVycy9s
+eHRfd3JpdGUuYycgaXMgaW4gYSBzdWJkaXJlY3RvcnksCnNyYy9NYWtlZmlsZS5hbTozMDogYnV0
+IG9wdGlvbiAnc3ViZGlyLW9iamVjdHMnIGlzIGRpc2FibGVkCnNyYy9NYWtlZmlsZS5hbTozMDog
+d2FybmluZzogc291cmNlIGZpbGUgJ2hlbHBlcnMvdnp0X3JlYWQuYycgaXMgaW4gYSBzdWJkaXJl
+Y3RvcnksCnNyYy9NYWtlZmlsZS5hbTozMDogYnV0IG9wdGlvbiAnc3ViZGlyLW9iamVjdHMnIGlz
+IGRpc2FibGVkCnNyYy9oZWxwZXJzL01ha2VmaWxlLmFtOjQ3OiB3YXJuaW5nOiBzb3VyY2UgZmls
+ZSAnJChzcmNkaXIpLy4uLy4uL2NvbnRyaWIvcnRsYnJvd3NlL2pyYi5jJyBpcyBpbiBhIHN1YmRp
+cmVjdG9yeSwKc3JjL2hlbHBlcnMvTWFrZWZpbGUuYW06NDc6IGJ1dCBvcHRpb24gJ3N1YmRpci1v
+YmplY3RzJyBpcyBkaXNhYmxlZApzcmMvaGVscGVycy9NYWtlZmlsZS5hbToxODogd2FybmluZzog
+c291cmNlIGZpbGUgJyQoc3JjZGlyKS9mc3QvbHo0LmMnIGlzIGluIGEgc3ViZGlyZWN0b3J5LApz
+cmMvaGVscGVycy9NYWtlZmlsZS5hbToxODogYnV0IG9wdGlvbiAnc3ViZGlyLW9iamVjdHMnIGlz
+IGRpc2FibGVkCnNyYy9oZWxwZXJzL01ha2VmaWxlLmFtOjE4OiB3YXJuaW5nOiBzb3VyY2UgZmls
+ZSAnJChzcmNkaXIpL2ZzdC9mYXN0bHouYycgaXMgaW4gYSBzdWJkaXJlY3RvcnksCnNyYy9oZWxw
+ZXJzL01ha2VmaWxlLmFtOjE4OiBidXQgb3B0aW9uICdzdWJkaXItb2JqZWN0cycgaXMgZGlzYWJs
+ZWQKc3JjL2hlbHBlcnMvTWFrZWZpbGUuYW06MTg6IHdhcm5pbmc6IHNvdXJjZSBmaWxlICckKHNy
+Y2RpcikvZnN0L2ZzdGFwaS5jJyBpcyBpbiBhIHN1YmRpcmVjdG9yeSwKc3JjL2hlbHBlcnMvTWFr
+ZWZpbGUuYW06MTg6IGJ1dCBvcHRpb24gJ3N1YmRpci1vYmplY3RzJyBpcyBkaXNhYmxlZApzcmMv
+aGVscGVycy9NYWtlZmlsZS5hbToyMTogd2FybmluZzogc291cmNlIGZpbGUgJyQoc3JjZGlyKS9m
+c3QvbHo0LmMnIGlzIGluIGEgc3ViZGlyZWN0b3J5LApzcmMvaGVscGVycy9NYWtlZmlsZS5hbToy
+MTogYnV0IG9wdGlvbiAnc3ViZGlyLW9iamVjdHMnIGlzIGRpc2FibGVkCnNyYy9oZWxwZXJzL01h
+a2VmaWxlLmFtOjIxOiB3YXJuaW5nOiBzb3VyY2UgZmlsZSAnJChzcmNkaXIpL2ZzdC9mYXN0bHou
+YycgaXMgaW4gYSBzdWJkaXJlY3RvcnksCnNyYy9oZWxwZXJzL01ha2VmaWxlLmFtOjIxOiBidXQg
+b3B0aW9uICdzdWJkaXItb2JqZWN0cycgaXMgZGlzYWJsZWQKc3JjL2hlbHBlcnMvTWFrZWZpbGUu
+YW06MjE6IHdhcm5pbmc6IHNvdXJjZSBmaWxlICckKHNyY2RpcikvZnN0L2ZzdGFwaS5jJyBpcyBp
+biBhIHN1YmRpcmVjdG9yeSwKc3JjL2hlbHBlcnMvTWFrZWZpbGUuYW06MjE6IGJ1dCBvcHRpb24g
+J3N1YmRpci1vYmplY3RzJyBpcyBkaXNhYmxlZApzcmMvaGVscGVycy9NYWtlZmlsZS5hbTo0NTog
+d2FybmluZzogc291cmNlIGZpbGUgJyQoc3JjZGlyKS8uLi9naHdsaWIuYycgaXMgaW4gYSBzdWJk
+aXJlY3RvcnksCnNyYy9oZWxwZXJzL01ha2VmaWxlLmFtOjQ1OiBidXQgb3B0aW9uICdzdWJkaXIt
+b2JqZWN0cycgaXMgZGlzYWJsZWQKc3JjL2hlbHBlcnMvTWFrZWZpbGUuYW06MTU6IHdhcm5pbmc6
+IHNvdXJjZSBmaWxlICckKHNyY2RpcikvZnN0L2x6NC5jJyBpcyBpbiBhIHN1YmRpcmVjdG9yeSwK
+c3JjL2hlbHBlcnMvTWFrZWZpbGUuYW06MTU6IGJ1dCBvcHRpb24gJ3N1YmRpci1vYmplY3RzJyBp
+cyBkaXNhYmxlZApzcmMvaGVscGVycy9NYWtlZmlsZS5hbToxNTogd2FybmluZzogc291cmNlIGZp
+bGUgJyQoc3JjZGlyKS9mc3QvZmFzdGx6LmMnIGlzIGluIGEgc3ViZGlyZWN0b3J5LApzcmMvaGVs
+cGVycy9NYWtlZmlsZS5hbToxNTogYnV0IG9wdGlvbiAnc3ViZGlyLW9iamVjdHMnIGlzIGRpc2Fi
+bGVkCnNyYy9oZWxwZXJzL01ha2VmaWxlLmFtOjE1OiB3YXJuaW5nOiBzb3VyY2UgZmlsZSAnJChz
+cmNkaXIpL2ZzdC9mc3RhcGkuYycgaXMgaW4gYSBzdWJkaXJlY3RvcnksCnNyYy9oZWxwZXJzL01h
+a2VmaWxlLmFtOjE1OiBidXQgb3B0aW9uICdzdWJkaXItb2JqZWN0cycgaXMgZGlzYWJsZWQKc3Jj
+L2hlbHBlcnMvTWFrZWZpbGUuYW06MTU6IHdhcm5pbmc6IHNvdXJjZSBmaWxlICckKHNyY2Rpcikv
+Li4vLi4vY29udHJpYi9ydGxicm93c2UvanJiLmMnIGlzIGluIGEgc3ViZGlyZWN0b3J5LApzcmMv
+aGVscGVycy9NYWtlZmlsZS5hbToxNTogYnV0IG9wdGlvbiAnc3ViZGlyLW9iamVjdHMnIGlzIGRp
+c2FibGVkCnNyYy9oZWxwZXJzL01ha2VmaWxlLmFtOjM2OiB3YXJuaW5nOiBzb3VyY2UgZmlsZSAn
+JChzcmNkaXIpLy4uL2xpYmx6bWEvTHptYUxpYi5jJyBpcyBpbiBhIHN1YmRpcmVjdG9yeSwKc3Jj
+L2hlbHBlcnMvTWFrZWZpbGUuYW06MzY6IGJ1dCBvcHRpb24gJ3N1YmRpci1vYmplY3RzJyBpcyBk
+aXNhYmxlZApzcmMvaGVscGVycy9NYWtlZmlsZS5hbTozMzogd2FybmluZzogc291cmNlIGZpbGUg
+JyQoc3JjZGlyKS8uLi9saWJsem1hL0x6bWFMaWIuYycgaXMgaW4gYSBzdWJkaXJlY3RvcnksCnNy
+Yy9oZWxwZXJzL01ha2VmaWxlLmFtOjMzOiBidXQgb3B0aW9uICdzdWJkaXItb2JqZWN0cycgaXMg
+ZGlzYWJsZWQKc3JjL2hlbHBlcnMvTWFrZWZpbGUuYW06Mzk6IHdhcm5pbmc6IHNvdXJjZSBmaWxl
+ICckKHNyY2RpcikvLi4vbGlibHptYS9Mem1hTGliLmMnIGlzIGluIGEgc3ViZGlyZWN0b3J5LApz
+cmMvaGVscGVycy9NYWtlZmlsZS5hbTozOTogYnV0IG9wdGlvbiAnc3ViZGlyLW9iamVjdHMnIGlz
+IGRpc2FibGVkCmF1dG9yZWNvbmY6IHJ1bm5pbmc6IGdudS1jb25maWdpemUKYXV0b3JlY29uZjog
+TGVhdmluZyBkaXJlY3RvcnkgYC4nCk5PVEU6IFJ1bm5pbmcgL2hvbWUvdmlkYWwvd2tnL3lvY3Rv
+L1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC93b3JrL2NvcnRleGE3aGYtdmZwLXZmcHY0LW5l
+b24tcG9reS1saW51eC1nbnVlYWJpL2d0a3dhdmUvMy42LjY2LXIwL2d0a3dhdmUtMy4zLjY2L2Nv
+bmZpZ3VyZSAgLS1idWlsZD14ODZfNjQtbGludXggCQkgIC0taG9zdD1hcm0tcG9reS1saW51eC1n
+bnVlYWJpIAkJICAtLXRhcmdldD1hcm0tcG9reS1saW51eC1nbnVlYWJpIAkJICAtLXByZWZpeD0v
+dXNyIAkJICAtLWV4ZWNfcHJlZml4PS91c3IgCQkgIC0tYmluZGlyPS91c3IvYmluIAkJICAtLXNi
+aW5kaXI9L3Vzci9zYmluIAkJICAtLWxpYmV4ZWNkaXI9L3Vzci9saWIvZ3Rrd2F2ZSAJCSAgLS1k
+YXRhZGlyPS91c3Ivc2hhcmUgCQkgIC0tc3lzY29uZmRpcj0vZXRjIAkJICAtLXNoYXJlZHN0YXRl
+ZGlyPS9jb20gCQkgIC0tbG9jYWxzdGF0ZWRpcj0vdmFyIAkJICAtLWxpYmRpcj0vdXNyL2xpYiAJ
+CSAgLS1pbmNsdWRlZGlyPS91c3IvaW5jbHVkZSAJCSAgLS1vbGRpbmNsdWRlZGlyPS91c3IvaW5j
+bHVkZSAJCSAgLS1pbmZvZGlyPS91c3Ivc2hhcmUvaW5mbyAJCSAgLS1tYW5kaXI9L3Vzci9zaGFy
+ZS9tYW4gCQkgIC0tZGlzYWJsZS1zaWxlbnQtcnVsZXMgCQkgIC0tZGlzYWJsZS1kZXBlbmRlbmN5
+LXRyYWNraW5nIAkJICAtLXdpdGgtbGlidG9vbC1zeXNyb290PS9ob21lL3ZpZGFsL3drZy95b2N0
+by9SYXNwYmVycnlQaTIvcG9reS9idWlsZC90bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkyIC0td2l0
+aC10Y2w9L2hvbWUvdmlkYWwvd2tnL3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC9z
+eXNyb290cy9yYXNwYmVycnlwaTIvdXNyL2xpYiAtLXdpdGgtdGs9L2hvbWUvdmlkYWwvd2tnL3lv
+Y3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC9zeXNyb290cy9yYXNwYmVycnlwaTIvdXNy
+L2xpYiAKY29uZmlndXJlOiBXQVJOSU5HOiB1bnJlY29nbml6ZWQgb3B0aW9uczogLS13aXRoLWxp
+YnRvb2wtc3lzcm9vdApjb25maWd1cmU6IGxvYWRpbmcgc2l0ZSBzY3JpcHQgL2hvbWUvdmlkYWwv
+d2tnL3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L21ldGEvc2l0ZS9lbmRpYW4tbGl0dGxlCmNvbmZp
+Z3VyZTogbG9hZGluZyBzaXRlIHNjcmlwdCAvaG9tZS92aWRhbC93a2cveW9jdG8vUmFzcGJlcnJ5
+UGkyL3Bva3kvbWV0YS9zaXRlL2FybS1jb21tb24KY29uZmlndXJlOiBsb2FkaW5nIHNpdGUgc2Ny
+aXB0IC9ob21lL3ZpZGFsL3drZy95b2N0by9SYXNwYmVycnlQaTIvcG9reS9tZXRhL3NpdGUvYXJt
+LTMyCmNvbmZpZ3VyZTogbG9hZGluZyBzaXRlIHNjcmlwdCAvaG9tZS92aWRhbC93a2cveW9jdG8v
+UmFzcGJlcnJ5UGkyL3Bva3kvbWV0YS9zaXRlL2NvbW1vbi1saW51eApjb25maWd1cmU6IGxvYWRp
+bmcgc2l0ZSBzY3JpcHQgL2hvbWUvdmlkYWwvd2tnL3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L21l
+dGEvc2l0ZS9jb21tb24tZ2xpYmMKY29uZmlndXJlOiBsb2FkaW5nIHNpdGUgc2NyaXB0IC9ob21l
+L3ZpZGFsL3drZy95b2N0by9SYXNwYmVycnlQaTIvcG9reS9tZXRhL3NpdGUvYXJtLWxpbnV4CmNv
+bmZpZ3VyZTogbG9hZGluZyBzaXRlIHNjcmlwdCAvaG9tZS92aWRhbC93a2cveW9jdG8vUmFzcGJl
+cnJ5UGkyL3Bva3kvbWV0YS9zaXRlL2NvbW1vbgpjb25maWd1cmU6IGxvYWRpbmcgc2l0ZSBzY3Jp
+cHQgL2hvbWUvdmlkYWwvd2tnL3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L21ldGEtb2Uvc2l0ZS9l
+bmRpYW4tbGl0dGxlCmNvbmZpZ3VyZTogbG9hZGluZyBzaXRlIHNjcmlwdCAvaG9tZS92aWRhbC93
+a2cveW9jdG8vUmFzcGJlcnJ5UGkyL3Bva3kvYnVpbGQvdG1wL3dvcmsvY29ydGV4YTdoZi12ZnAt
+dmZwdjQtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvZ3Rrd2F2ZS8zLjYuNjYtcjAvYnVpbGQvYWNs
+b2NhbC1jb3B5L2dsaWJjX2NvbmZpZwpjaGVja2luZyBmb3IgYSBCU0QtY29tcGF0aWJsZSBpbnN0
+YWxsLi4uIC91c3IvYmluL2luc3RhbGwgLWMKY2hlY2tpbmcgd2hldGhlciBidWlsZCBlbnZpcm9u
+bWVudCBpcyBzYW5lLi4uIHllcwpjaGVja2luZyBmb3IgYXJtLXBva3ktbGludXgtZ251ZWFiaS1z
+dHJpcC4uLiBhcm0tcG9reS1saW51eC1nbnVlYWJpLXN0cmlwCmNoZWNraW5nIGZvciBhIHRocmVh
+ZC1zYWZlIG1rZGlyIC1wLi4uIC9iaW4vbWtkaXIgLXAKY2hlY2tpbmcgZm9yIGdhd2suLi4gZ2F3
+awpjaGVja2luZyB3aGV0aGVyIG1ha2Ugc2V0cyAkKE1BS0UpLi4uIHllcwpjaGVja2luZyB3aGV0
+aGVyIG1ha2Ugc3VwcG9ydHMgbmVzdGVkIHZhcmlhYmxlcy4uLiB5ZXMKY2hlY2tpbmcgd2hldGhl
+ciB0byBlbmFibGUgbWFpbnRhaW5lci1zcGVjaWZpYyBwb3J0aW9ucyBvZiBNYWtlZmlsZXMuLi4g
+bm8KY2hlY2tpbmcgaWYgTUlNRSBhbmQgZGVza3RvcCB1cGRhdGVzIHNob3VsZCBiZSBkaXNhYmxl
+ZC4uLiBubwpjaGVja2luZyBmb3IgdXBkYXRlLW1pbWUtZGF0YWJhc2UuLi4gL2hvbWUvdmlkYWwv
+d2tnL3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC9zeXNyb290cy94ODZfNjQtbGlu
+dXgvdXNyL2Jpbi91cGRhdGUtbWltZS1kYXRhYmFzZQpjaGVja2luZyBmb3IgdXBkYXRlLWRlc2t0
+b3AtZGF0YWJhc2UuLi4gL3Vzci9iaW4vdXBkYXRlLWRlc2t0b3AtZGF0YWJhc2UKY2hlY2tpbmcg
+aWYgc3RydWN0dXJlIHBhY2tpbmcgc2hvdWxkIGJlIGVuYWJsZWQuLi4gbm8KY2hlY2tpbmcgaWYg
+VGNsIHVzYWdlIHNob3VsZCBiZSBkaXNhYmxlZC4uLiBubwpjaGVja2luZyBmb3IgVGNsIGNvbmZp
+Z3VyYXRpb24uLi4gZm91bmQgL2hvbWUvdmlkYWwvd2tnL3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5
+L2J1aWxkL3RtcC9zeXNyb290cy9yYXNwYmVycnlwaTIvdXNyL2xpYi90Y2xDb25maWcuc2gKY2hl
+Y2tpbmcgZm9yIGV4aXN0ZW5jZSBvZiAvaG9tZS92aWRhbC93a2cveW9jdG8vUmFzcGJlcnJ5UGky
+L3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMi91c3IvbGliL3RjbENvbmZpZy5z
+aC4uLiBsb2FkaW5nCmNoZWNraW5nIGZvciBUayBjb25maWd1cmF0aW9uLi4uIGZvdW5kIC9ob21l
+L3ZpZGFsL3drZy95b2N0by9SYXNwYmVycnlQaTIvcG9reS9idWlsZC90bXAvc3lzcm9vdHMvcmFz
+cGJlcnJ5cGkyL3Vzci9saWIvdGtDb25maWcuc2gKY2hlY2tpbmcgZm9yIGV4aXN0ZW5jZSBvZiAv
+aG9tZS92aWRhbC93a2cveW9jdG8vUmFzcGJlcnJ5UGkyL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3Rz
+L3Jhc3BiZXJyeXBpMi91c3IvbGliL3RrQ29uZmlnLnNoLi4uIGxvYWRpbmcKY2hlY2tpbmcgaWYg
+VGNsL1RrIChpZiBwcmVzZW50KSBzaG91bGQgYmUgc3R1YmlmaWVkLi4uIG5vCmNoZWNraW5nIGlm
+IGd0azEgb3IgZ3RrMiBzaG91bGQgYmUgdXNlZC4uLiBndGsyCmNoZWNraW5nIGlmIGZhdGxpbmVz
+IHNob3VsZCBiZSB1c2VkLi4uIG5vCmNoZWNraW5nIGlmIG1hbnltYXJrZXJzIHNob3VsZCBiZSB1
+c2VkLi4uIG5vCmNoZWNraW5nIGlmIGFlMiBzdXBwb3J0IHNob3VsZCBiZSB1c2VkLi4uIG5vCmNo
+ZWNraW5nIGlmIEZzZGJSZWFkZXIgc3VwcG9ydCBzaG91bGQgYmUgdXNlZC4uLiBubwpjaGVja2lu
+ZyB3aGV0aGVyIHRoZSBDKysgY29tcGlsZXIgd29ya3MuLi4geWVzCmNoZWNraW5nIGZvciBDKysg
+Y29tcGlsZXIgZGVmYXVsdCBvdXRwdXQgZmlsZSBuYW1lLi4uIGEub3V0CmNoZWNraW5nIGZvciBz
+dWZmaXggb2YgZXhlY3V0YWJsZXMuLi4gCmNoZWNraW5nIHdoZXRoZXIgd2UgYXJlIGNyb3NzIGNv
+bXBpbGluZy4uLiB5ZXMKY2hlY2tpbmcgZm9yIHN1ZmZpeCBvZiBvYmplY3QgZmlsZXMuLi4gbwpj
+aGVja2luZyB3aGV0aGVyIHdlIGFyZSB1c2luZyB0aGUgR05VIEMrKyBjb21waWxlci4uLiB5ZXMK
+Y2hlY2tpbmcgd2hldGhlciBhcm0tcG9reS1saW51eC1nbnVlYWJpLWcrKyAgLW1hcmNoPWFybXY3
+LWEgLW1hcm0gIC1tdGh1bWItaW50ZXJ3b3JrIC1tZmxvYXQtYWJpPWhhcmQgLW1mcHU9bmVvbi12
+ZnB2NCAtbXR1bmU9Y29ydGV4LWE3IC0tc3lzcm9vdD0vaG9tZS92aWRhbC93a2cveW9jdG8vUmFz
+cGJlcnJ5UGkyL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMiBhY2NlcHRzIC1n
+Li4uIHllcwpjaGVja2luZyBmb3Igc3R5bGUgb2YgaW5jbHVkZSB1c2VkIGJ5IG1ha2UuLi4gR05V
+CmNoZWNraW5nIGRlcGVuZGVuY3kgc3R5bGUgb2YgYXJtLXBva3ktbGludXgtZ251ZWFiaS1nKysg
+IC1tYXJjaD1hcm12Ny1hIC1tYXJtICAtbXRodW1iLWludGVyd29yayAtbWZsb2F0LWFiaT1oYXJk
+IC1tZnB1PW5lb24tdmZwdjQgLW10dW5lPWNvcnRleC1hNyAtLXN5c3Jvb3Q9L2hvbWUvdmlkYWwv
+d2tnL3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC9zeXNyb290cy9yYXNwYmVycnlw
+aTIuLi4gbm9uZQpjaGVja2luZyBmb3IgZ2F3ay4uLiAoY2FjaGVkKSBnYXdrCmNoZWNraW5nIGZv
+ciBhcm0tcG9reS1saW51eC1nbnVlYWJpLWdjYy4uLiBhcm0tcG9reS1saW51eC1nbnVlYWJpLWdj
+YyAgLW1hcmNoPWFybXY3LWEgLW1hcm0gIC1tdGh1bWItaW50ZXJ3b3JrIC1tZmxvYXQtYWJpPWhh
+cmQgLW1mcHU9bmVvbi12ZnB2NCAtbXR1bmU9Y29ydGV4LWE3IC0tc3lzcm9vdD0vaG9tZS92aWRh
+bC93a2cveW9jdG8vUmFzcGJlcnJ5UGkyL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJy
+eXBpMgpjaGVja2luZyB3aGV0aGVyIHdlIGFyZSB1c2luZyB0aGUgR05VIEMgY29tcGlsZXIuLi4g
+eWVzCmNoZWNraW5nIHdoZXRoZXIgYXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2MgIC1tYXJjaD1h
+cm12Ny1hIC1tYXJtICAtbXRodW1iLWludGVyd29yayAtbWZsb2F0LWFiaT1oYXJkIC1tZnB1PW5l
+b24tdmZwdjQgLW10dW5lPWNvcnRleC1hNyAtLXN5c3Jvb3Q9L2hvbWUvdmlkYWwvd2tnL3lvY3Rv
+L1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC9zeXNyb290cy9yYXNwYmVycnlwaTIgYWNjZXB0
+cyAtZy4uLiB5ZXMKY2hlY2tpbmcgZm9yIGFybS1wb2t5LWxpbnV4LWdudWVhYmktZ2NjICAtbWFy
+Y2g9YXJtdjctYSAtbWFybSAgLW10aHVtYi1pbnRlcndvcmsgLW1mbG9hdC1hYmk9aGFyZCAtbWZw
+dT1uZW9uLXZmcHY0IC1tdHVuZT1jb3J0ZXgtYTcgLS1zeXNyb290PS9ob21lL3ZpZGFsL3drZy95
+b2N0by9SYXNwYmVycnlQaTIvcG9reS9idWlsZC90bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkyIG9w
+dGlvbiB0byBhY2NlcHQgSVNPIEM4OS4uLiBub25lIG5lZWRlZApjaGVja2luZyB3aGV0aGVyIGFy
+bS1wb2t5LWxpbnV4LWdudWVhYmktZ2NjICAtbWFyY2g9YXJtdjctYSAtbWFybSAgLW10aHVtYi1p
+bnRlcndvcmsgLW1mbG9hdC1hYmk9aGFyZCAtbWZwdT1uZW9uLXZmcHY0IC1tdHVuZT1jb3J0ZXgt
+YTcgLS1zeXNyb290PS9ob21lL3ZpZGFsL3drZy95b2N0by9SYXNwYmVycnlQaTIvcG9reS9idWls
+ZC90bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkyIHVuZGVyc3RhbmRzIC1jIGFuZCAtbyB0b2dldGhl
+ci4uLiB5ZXMKY2hlY2tpbmcgZGVwZW5kZW5jeSBzdHlsZSBvZiBhcm0tcG9reS1saW51eC1nbnVl
+YWJpLWdjYyAgLW1hcmNoPWFybXY3LWEgLW1hcm0gIC1tdGh1bWItaW50ZXJ3b3JrIC1tZmxvYXQt
+YWJpPWhhcmQgLW1mcHU9bmVvbi12ZnB2NCAtbXR1bmU9Y29ydGV4LWE3IC0tc3lzcm9vdD0vaG9t
+ZS92aWRhbC93a2cveW9jdG8vUmFzcGJlcnJ5UGkyL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3Jh
+c3BiZXJyeXBpMi4uLiBub25lCmNoZWNraW5nIHdoZXRoZXIgbWFrZSBzZXRzICQoTUFLRSkuLi4g
+KGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciBmbGV4Li4uIGZsZXgKY2hlY2tpbmcgbGV4IG91dHB1
+dCBmaWxlIHJvb3QuLi4gbGV4Lnl5CmNoZWNraW5nIGxleCBsaWJyYXJ5Li4uIC1sZmwKY2hlY2tp
+bmcgd2hldGhlciB5eXRleHQgaXMgYSBwb2ludGVyLi4uIHllcwpjaGVja2luZyBmb3IgYXJtLXBv
+a3ktbGludXgtZ251ZWFiaS1yYW5saWIuLi4gYXJtLXBva3ktbGludXgtZ251ZWFiaS1yYW5saWIK
+Y2hlY2tpbmcgZm9yIGdlZGl0Li4uIC91c3IvYmluL2dlZGl0CmNoZWNraW5nIGZvciBmc2RiZGVi
+dWcuLi4gbm90Zm91bmQKY2hlY2tpbmcgZm9yIGZzZGIydmNkLi4uIG5vdGZvdW5kCmNoZWNraW5n
+IGZvciB2cGQydmNkLi4uIG5vdGZvdW5kCmNoZWNraW5nIGZvciB3bGYydmNkLi4uIG5vdGZvdW5k
+CmNoZWNraW5nIGZvciBncGVyZi4uLiAvaG9tZS92aWRhbC93a2cveW9jdG8vUmFzcGJlcnJ5UGky
+L3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3g4Nl82NC1saW51eC91c3IvYmluL2dwZXJmCmNoZWNr
+aW5nIGZvciBkbG9wZW4gaW4gLWxkbC4uLiB5ZXMKY2hlY2tpbmcgZm9yIHNxcnQgaW4gLWxtLi4u
+IHllcwpjaGVja2luZyBmb3IgbWFpbiBpbiAtbHB0aHJlYWQuLi4geWVzCmNoZWNraW5nIGZvciBn
+enJlYWQgaW4gLWx6Li4uIHllcwpjaGVja2luZyBmb3IgQloyX2J6cmVhZCBpbiAtbGJ6Mi4uLiB5
+ZXMKY2hlY2tpbmcgaWYgWFogc2hvdWxkIGJlIGVuYWJsZWQuLi4geWVzCmNoZWNraW5nIGZvciBs
+em1hX2VuZCBpbiAtbGx6bWEuLi4geWVzCmNoZWNraW5nIGlmIEZhc3QgU1NUIFRyZWUgc2hvdWxk
+IGJlIGVuYWJsZWQuLi4geWVzCmNoZWNraW5nIGlmIEp1ZHkgYXJyYXkgc3VwcG9ydCBzaG91bGQg
+YmUgZW5hYmxlZC4uLiBubwpjaGVja2luZyBmb3IgYXJtLXBva3ktbGludXgtZ251ZWFiaS1wa2ct
+Y29uZmlnLi4uIG5vCmNoZWNraW5nIGZvciBwa2ctY29uZmlnLi4uIC9ob21lL3ZpZGFsL3drZy95
+b2N0by9SYXNwYmVycnlQaTIvcG9reS9idWlsZC90bXAvc3lzcm9vdHMveDg2XzY0LWxpbnV4L3Vz
+ci9iaW4vcGtnLWNvbmZpZwpjb25maWd1cmU6IFdBUk5JTkc6IHVzaW5nIGNyb3NzIHRvb2xzIG5v
+dCBwcmVmaXhlZCB3aXRoIGhvc3QgdHJpcGxldApjaGVja2luZyBwa2ctY29uZmlnIGlzIGF0IGxl
+YXN0IHZlcnNpb24gMC45LjAuLi4geWVzCmNoZWNraW5nIGZvciBHVEsuLi4geWVzCmNoZWNraW5n
+IGZvciBHVEtfVU5JWF9QUklOVC4uLiB5ZXMKY2hlY2tpbmcgaG93IHRvIHJ1biB0aGUgQyBwcmVw
+cm9jZXNzb3IuLi4gYXJtLXBva3ktbGludXgtZ251ZWFiaS1nY2MgLUUgLS1zeXNyb290PS9ob21l
+L3ZpZGFsL3drZy95b2N0by9SYXNwYmVycnlQaTIvcG9reS9idWlsZC90bXAvc3lzcm9vdHMvcmFz
+cGJlcnJ5cGkyICAtbWFyY2g9YXJtdjctYSAtbWFybSAgLW10aHVtYi1pbnRlcndvcmsgLW1mbG9h
+dC1hYmk9aGFyZCAtbWZwdT1uZW9uLXZmcHY0IC1tdHVuZT1jb3J0ZXgtYTcKY2hlY2tpbmcgZm9y
+IGdyZXAgdGhhdCBoYW5kbGVzIGxvbmcgbGluZXMgYW5kIC1lLi4uIC9iaW4vZ3JlcApjaGVja2lu
+ZyBmb3IgZWdyZXAuLi4gL2Jpbi9ncmVwIC1FCmNoZWNraW5nIGZvciBBTlNJIEMgaGVhZGVyIGZp
+bGVzLi4uIChjYWNoZWQpIHllcwpjaGVja2luZyBmb3Igc3lzL3R5cGVzLmguLi4gKGNhY2hlZCkg
+eWVzCmNoZWNraW5nIGZvciBzeXMvc3RhdC5oLi4uIChjYWNoZWQpIHllcwpjaGVja2luZyBmb3Ig
+c3RkbGliLmguLi4gKGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciBzdHJpbmcuaC4uLiAoY2FjaGVk
+KSB5ZXMKY2hlY2tpbmcgZm9yIG1lbW9yeS5oLi4uIChjYWNoZWQpIHllcwpjaGVja2luZyBmb3Ig
+c3RyaW5ncy5oLi4uIChjYWNoZWQpIHllcwpjaGVja2luZyBmb3IgaW50dHlwZXMuaC4uLiAoY2Fj
+aGVkKSB5ZXMKY2hlY2tpbmcgZm9yIHN0ZGludC5oLi4uIChjYWNoZWQpIHllcwpjaGVja2luZyBm
+b3IgdW5pc3RkLmguLi4gKGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciBzaXplX3QuLi4geWVzCmNo
+ZWNraW5nIGZvciB3b3JraW5nIGFsbG9jYS5oLi4uIHllcwpjaGVja2luZyBmb3IgYWxsb2NhLi4u
+IHllcwpjaGVja2luZyBmb3IgZGlyZW50LmggdGhhdCBkZWZpbmVzIERJUi4uLiB5ZXMKY2hlY2tp
+bmcgZm9yIGxpYnJhcnkgY29udGFpbmluZyBvcGVuZGlyLi4uIG5vbmUgcmVxdWlyZWQKY2hlY2tp
+bmcgZm9yIEFOU0kgQyBoZWFkZXIgZmlsZXMuLi4gKGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciBz
+eXMvd2FpdC5oIHRoYXQgaXMgUE9TSVguMSBjb21wYXRpYmxlLi4uIChjYWNoZWQpIHllcwpjaGVj
+a2luZyBmb3IgZmNudGwuaC4uLiAoY2FjaGVkKSB5ZXMKY2hlY2tpbmcgZm9yIGludHR5cGVzLmgu
+Li4gKGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciBsaWJpbnRsLmguLi4gKGNhY2hlZCkgeWVzCmNo
+ZWNraW5nIGZvciBsaW1pdHMuaC4uLiAoY2FjaGVkKSB5ZXMKY2hlY2tpbmcgZm9yIG1hbGxvYy5o
+Li4uIChjYWNoZWQpIHllcwpjaGVja2luZyBmb3Igc3RkZGVmLmguLi4gKGNhY2hlZCkgeWVzCmNo
+ZWNraW5nIGZvciBzdGRpbnQuaC4uLiAoY2FjaGVkKSB5ZXMKY2hlY2tpbmcgZm9yIHN0ZGxpYi5o
+Li4uIChjYWNoZWQpIHllcwpjaGVja2luZyBmb3Igc3RyaW5nLmguLi4gKGNhY2hlZCkgeWVzCmNo
+ZWNraW5nIGZvciBzdHJpbmdzLmguLi4gKGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciBzeXMvdGlt
+ZS5oLi4uIChjYWNoZWQpIHllcwpjaGVja2luZyBmb3IgdW5pc3RkLmguLi4gKGNhY2hlZCkgeWVz
+CmNoZWNraW5nIGZvciB3Y2hhci5oLi4uIChjYWNoZWQpIHllcwpjaGVja2luZyBmb3Igd2N0eXBl
+LmguLi4gKGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciBnZXRvcHQuaC4uLiAoY2FjaGVkKSB5ZXMK
+Y2hlY2tpbmcgZm9yIHJwYy90eXBlcy5oLi4uIChjYWNoZWQpIHllcwpjaGVja2luZyBmb3IgcnBj
+L3hkci5oLi4uIHllcwpjaGVja2luZyBzaXplIG9mIHZvaWQgKi4uLiAoY2FjaGVkKSA0CmNoZWNr
+aW5nIHNpemUgb2YgZG91YmxlLi4uIChjYWNoZWQpIDgKY2hlY2tpbmcgc2l6ZSBvZiBsb25nLi4u
+IChjYWNoZWQpIDQKY2hlY2tpbmcgc2l6ZSBvZiBpbnQuLi4gKGNhY2hlZCkgNApjaGVja2luZyBm
+b3IgYW4gQU5TSSBDLWNvbmZvcm1pbmcgY29uc3QuLi4geWVzCmNoZWNraW5nIGZvciBzdGRib29s
+LmggdGhhdCBjb25mb3JtcyB0byBDOTkuLi4gKGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciBfQm9v
+bC4uLiB5ZXMKY2hlY2tpbmcgZm9yIGlubGluZS4uLiBpbmxpbmUKY2hlY2tpbmcgZm9yIG9mZl90
+Li4uIHllcwpjaGVja2luZyBmb3IgcGlkX3QuLi4geWVzCmNoZWNraW5nIGZvciBzaXplX3QuLi4g
+KGNhY2hlZCkgeWVzCmNoZWNraW5nIHdoZXRoZXIgdGltZS5oIGFuZCBzeXMvdGltZS5oIG1heSBi
+b3RoIGJlIGluY2x1ZGVkLi4uIHllcwpjaGVja2luZyB3aGV0aGVyIHN0cnVjdCB0bSBpcyBpbiBz
+eXMvdGltZS5oIG9yIHRpbWUuaC4uLiB0aW1lLmgKY2hlY2tpbmcgZm9yIHB0cmRpZmZfdC4uLiB5
+ZXMKY2hlY2tpbmcgZm9yIHNwZWNpYWwgQyBjb21waWxlciBvcHRpb25zIG5lZWRlZCBmb3IgbGFy
+Z2UgZmlsZXMuLi4gbm8KY2hlY2tpbmcgZm9yIF9GSUxFX09GRlNFVF9CSVRTIHZhbHVlIG5lZWRl
+ZCBmb3IgbGFyZ2UgZmlsZXMuLi4gNjQKY2hlY2tpbmcgZm9yIGVycm9yX2F0X2xpbmUuLi4geWVz
+CmNoZWNraW5nIHZmb3JrLmggdXNhYmlsaXR5Li4uIG5vCmNoZWNraW5nIHZmb3JrLmggcHJlc2Vu
+Y2UuLi4gbm8KY2hlY2tpbmcgZm9yIHZmb3JrLmguLi4gbm8KY2hlY2tpbmcgZm9yIGZvcmsuLi4g
+KGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciB2Zm9yay4uLiAoY2FjaGVkKSB5ZXMKY2hlY2tpbmcg
+Zm9yIHdvcmtpbmcgZm9yay4uLiBjcm9zcwpjb25maWd1cmU6IFdBUk5JTkc6IHJlc3VsdCB5ZXMg
+Z3Vlc3NlZCBiZWNhdXNlIG9mIGNyb3NzIGNvbXBpbGF0aW9uCmNoZWNraW5nIGZvciB3b3JraW5n
+IHZmb3JrLi4uIChjYWNoZWQpIHllcwpjaGVja2luZyBmb3IgX0xBUkdFRklMRV9TT1VSQ0UgdmFs
+dWUgbmVlZGVkIGZvciBsYXJnZSBmaWxlcy4uLiBubwpjaGVja2luZyBmb3Igd29ya2luZyBtZW1j
+bXAuLi4gKGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciBzdGRsaWIuaC4uLiAoY2FjaGVkKSB5ZXMK
+Y2hlY2tpbmcgZm9yIHVuaXN0ZC5oLi4uIChjYWNoZWQpIHllcwpjaGVja2luZyBmb3Igc3lzL3Bh
+cmFtLmguLi4gKGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciBnZXRwYWdlc2l6ZS4uLiAoY2FjaGVk
+KSB5ZXMKY2hlY2tpbmcgZm9yIHdvcmtpbmcgbW1hcC4uLiAoY2FjaGVkKSB5ZXMKY2hlY2tpbmcg
+Zm9yIHN5cy9zZWxlY3QuaC4uLiAoY2FjaGVkKSB5ZXMKY2hlY2tpbmcgZm9yIHN5cy9zb2NrZXQu
+aC4uLiAoY2FjaGVkKSB5ZXMKY2hlY2tpbmcgdHlwZXMgb2YgYXJndW1lbnRzIGZvciBzZWxlY3Qu
+Li4gaW50LGZkX3NldCAqLHN0cnVjdCB0aW1ldmFsICoKKGNhY2hlZCkgY2hlY2tpbmcgd2hldGhl
+ciBsc3RhdCBjb3JyZWN0bHkgaGFuZGxlcyB0cmFpbGluZyBzbGFzaC4uLiAoY2FjaGVkKSB5ZXMK
+Y2hlY2tpbmcgd2hldGhlciBzdGF0IGFjY2VwdHMgYW4gZW1wdHkgc3RyaW5nLi4uIChjYWNoZWQp
+IG5vCmNoZWNraW5nIGZvciB3b3JraW5nIHN0cnRvZC4uLiAoY2FjaGVkKSB5ZXMKY2hlY2tpbmcg
+Zm9yIHZwcmludGYuLi4gKGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciBfZG9wcm50Li4uIG5vCmNo
+ZWNraW5nIGZvciBhdGV4aXQuLi4gKGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciBidG93Yy4uLiAo
+Y2FjaGVkKSB5ZXMKY2hlY2tpbmcgZm9yIGJ6ZXJvLi4uIChjYWNoZWQpIHllcwpjaGVja2luZyBm
+b3IgZHVwMi4uLiAoY2FjaGVkKSB5ZXMKY2hlY2tpbmcgZm9yIG1lbW1vdmUuLi4gKGNhY2hlZCkg
+eWVzCmNoZWNraW5nIGZvciBtZW1zZXQuLi4gKGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciBtdW5t
+YXAuLi4gKGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciBwb3cuLi4geWVzCmNoZWNraW5nIGZvciBw
+dXRlbnYuLi4gKGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciByZV9jb21wLi4uIChjYWNoZWQpIHll
+cwpjaGVja2luZyBmb3IgcmVhbHBhdGguLi4gKGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciByZWdj
+b21wLi4uIChjYWNoZWQpIHllcwpjaGVja2luZyBmb3Igc2VsZWN0Li4uIChjYWNoZWQpIHllcwpj
+aGVja2luZyBmb3Igc2V0ZW52Li4uIChjYWNoZWQpIHllcwpjaGVja2luZyBmb3Igc3RyY2FzZWNt
+cC4uLiAoY2FjaGVkKSB5ZXMKY2hlY2tpbmcgZm9yIHN0cmNoci4uLiAoY2FjaGVkKSB5ZXMKY2hl
+Y2tpbmcgZm9yIHN0cmR1cC4uLiAoY2FjaGVkKSB5ZXMKY2hlY2tpbmcgZm9yIHN0cmVycm9yLi4u
+IChjYWNoZWQpIHllcwpjaGVja2luZyBmb3Igc3RybmNhc2VjbXAuLi4gKGNhY2hlZCkgeWVzCmNo
+ZWNraW5nIGZvciBzdHJyY2hyLi4uIChjYWNoZWQpIHllcwpjaGVja2luZyBmb3Igc3Ryc3RyLi4u
+IChjYWNoZWQpIHllcwpjaGVja2luZyBmb3IgZ2V0b3B0X2xvbmcuLi4gKGNhY2hlZCkgeWVzCmNo
+ZWNraW5nIGZvciBzZXRlbnYuLi4gKGNhY2hlZCkgeWVzCmNoZWNraW5nIGZvciB1bnNldGVudi4u
+LiAoY2FjaGVkKSB5ZXMKY2hlY2tpbmcgZm9yIHhkcm1lbV9jcmVhdGUgaW4gLWxuc2wuLi4geWVz
+CmNoZWNraW5nIGZvciB4ZHJtZW1fY3JlYXRlIGluIC1scnBjLi4uIG5vCmNoZWNraW5nIGZvciBU
+Y2xfQ3JlYXRlSW50ZXJwIGluIC1sdGNsOC42Li4uIHllcwpjb25maWd1cmU6Ci0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiAgQ29uZmlndXJhdGlvbiBzdW1tYXJ5
+OgoKICBGQVNUVFJFRV9DRkxBR1MgICAgICAgOiAKCiAgZ3RrMSAgICAgICAgICAgICAgICAgIDog
+bm8KICBndGsgdmVyc2lvbiAgICAgICAgICAgOiAyLjI0LjI4CiAgR1RLX0NGTEFHUyAgICAgICAg
+ICAgIDogLXB0aHJlYWQgLUkvaG9tZS92aWRhbC93a2cveW9jdG8vUmFzcGJlcnJ5UGkyL3Bva3kv
+YnVpbGQvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMi91c3IvaW5jbHVkZS9ndGstMi4wIC1JL2hv
+bWUvdmlkYWwvd2tnL3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC9zeXNyb290cy9y
+YXNwYmVycnlwaTIvdXNyL2xpYi9ndGstMi4wL2luY2x1ZGUgLUkvaG9tZS92aWRhbC93a2cveW9j
+dG8vUmFzcGJlcnJ5UGkyL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMi91c3Iv
+aW5jbHVkZS9wYW5nby0xLjAgLUkvaG9tZS92aWRhbC93a2cveW9jdG8vUmFzcGJlcnJ5UGkyL3Bv
+a3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMi91c3IvaW5jbHVkZS9hdGstMS4wIC1J
+L2hvbWUvdmlkYWwvd2tnL3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC9zeXNyb290
+cy9yYXNwYmVycnlwaTIvdXNyL2luY2x1ZGUvY2Fpcm8gLUkvaG9tZS92aWRhbC93a2cveW9jdG8v
+UmFzcGJlcnJ5UGkyL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMi91c3IvaW5j
+bHVkZS9waXhtYW4tMSAtSS9ob21lL3ZpZGFsL3drZy95b2N0by9SYXNwYmVycnlQaTIvcG9reS9i
+dWlsZC90bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkyL3Vzci9pbmNsdWRlL2xpYnBuZzE2IC1JL2hv
+bWUvdmlkYWwvd2tnL3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC9zeXNyb290cy9y
+YXNwYmVycnlwaTIvdXNyL2luY2x1ZGUvZ2RrLXBpeGJ1Zi0yLjAgLUkvaG9tZS92aWRhbC93a2cv
+eW9jdG8vUmFzcGJlcnJ5UGkyL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMi91
+c3IvaW5jbHVkZS9saWJwbmcxNiAtSS9ob21lL3ZpZGFsL3drZy95b2N0by9SYXNwYmVycnlQaTIv
+cG9reS9idWlsZC90bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkyL3Vzci9pbmNsdWRlL3BhbmdvLTEu
+MCAtSS9ob21lL3ZpZGFsL3drZy95b2N0by9SYXNwYmVycnlQaTIvcG9reS9idWlsZC90bXAvc3lz
+cm9vdHMvcmFzcGJlcnJ5cGkyL3Vzci9pbmNsdWRlL2hhcmZidXp6IC1JL2hvbWUvdmlkYWwvd2tn
+L3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC9zeXNyb290cy9yYXNwYmVycnlwaTIv
+dXNyL2luY2x1ZGUvcGFuZ28tMS4wIC1JL2hvbWUvdmlkYWwvd2tnL3lvY3RvL1Jhc3BiZXJyeVBp
+Mi9wb2t5L2J1aWxkL3RtcC9zeXNyb290cy9yYXNwYmVycnlwaTIvdXNyL2luY2x1ZGUvZ2xpYi0y
+LjAgLUkvaG9tZS92aWRhbC93a2cveW9jdG8vUmFzcGJlcnJ5UGkyL3Bva3kvYnVpbGQvdG1wL3N5
+c3Jvb3RzL3Jhc3BiZXJyeXBpMi91c3IvbGliL2dsaWItMi4wL2luY2x1ZGUgLUkvaG9tZS92aWRh
+bC93a2cveW9jdG8vUmFzcGJlcnJ5UGkyL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJy
+eXBpMi91c3IvaW5jbHVkZS9mcmVldHlwZTIKICBHVEtfTElCUyAgICAgICAgICAgICAgOiAtbGd0
+ay14MTEtMi4wIC1sZ2RrLXgxMS0yLjAgLWxwYW5nb2NhaXJvLTEuMCAtbGF0ay0xLjAgLWxjYWly
+byAtbGdka19waXhidWYtMi4wIC1sZ2lvLTIuMCAtbHBhbmdvZnQyLTEuMCAtbHBhbmdvLTEuMCAt
+bGdvYmplY3QtMi4wIC1sZ2xpYi0yLjAgLWxmb250Y29uZmlnIC1sZnJlZXR5cGUKCiAgTElCWl9D
+RkxBR1MgICAgICAgICAgIDogCiAgTElCWl9MREFERCAgICAgICAgICAgIDogLWx6CgogIExJQkJa
+Ml9DRkxBR1MgICAgICAgICA6IAogIExJQkJaMl9MREFERCAgICAgICAgICA6IC1sYnoyCgogIExJ
+QlhaX0NGTEFHUyAgICAgICAgICA6IC1EX1dBVkVfSEFWRV9YWgogIExJQlhaX0xEQUREICAgICAg
+ICAgICA6IC1sbHptYQoKICBMSUJKVURZX0NGTEFHUyAgICAgICAgOiAKICBMSUJKVURZX0xEQURE
+ICAgICAgICAgOiAKCiAgQUVUMl9DRkxBR1MgICAgICAgICAgIDogCiAgQUVUMl9MREFERCAgICAg
+ICAgICAgIDogCgogIEZTREJfQ0ZMQUdTICAgICAgICAgICA6IAogIEZTREJfTERBREQgICAgICAg
+ICAgICA6IAoKICBFWFRMT0FEX0NGTEFHUyAgICAgICAgOiAKCiAgVENMX0lOQ0xVREVfU1BFQyAg
+ICAgIDogLUk9L3Vzci9pbmNsdWRlL3RjbDguNgogIFRDTF9MSUJfU1BFQyAgICAgICAgICA6IC1M
+PS91c3IvbGliIC1sdGNsOC42CiAgVENMX0xEQUREICAgICAgICAgICAgIDogLUw9L3Vzci9saWIg
+LWx0Y2w4LjYKICBUQ0xfREVGQUREICAgICAgICAgICAgOiAtREhBVkVfTElCVENMCgogIFRLX0lO
+Q0xVREVfU1BFQyAgICAgICA6IC1JL3Vzci9pbmNsdWRlCiAgVEtfTElCX1NQRUMgICAgICAgICAg
+IDogLUwvdXNyL2xpYiAtbHRrOC42CiAgVEtfTERBREQgICAgICAgICAgICAgIDogLUwvdXNyL2xp
+YiAtbHRrOC42CgogIENQUEZMQUdTICAgICAgICAgICAgICA6IC1EV0FWRV9VU0VfR1RLMiAKICBD
+RkxBR1MgICAgICAgICAgICAgICAgOiAgLU8yIC1waXBlIC1nIC1mZWxpbWluYXRlLXVudXNlZC1k
+ZWJ1Zy10eXBlcyAgLURGU1RfV1JJVEVSX1BBUkFMTEVMCiAgTERGTEFHUyAgICAgICAgICAgICAg
+IDogLVdsLC1PMSAtV2wsLS1oYXNoLXN0eWxlPWdudSAtV2wsLS1hcy1uZWVkZWQKICBMSUJTICAg
+ICAgICAgICAgICAgICAgOiAtbG5zbCAtbHB0aHJlYWQgLWxtIC1sZGwgCgogIE1JTkdXX0xEQURE
+ICAgICAgICAgICA6IAogIEdUS19NQUNfQ0ZMQUdTICAgICAgICA6IAogIEdUS19NQUNfTElCUyAg
+ICAgICAgICA6IAogIENPQ09BX0dUS19DRkxBR1MgICAgICA6IAogIENPQ09BX0dUS19MREFERCAg
+ICAgICA6IAogIENPQ09BX0dUS19MREZMQUdTICAgICA6IAoKICBHQ09ORl9DRkxBR1MgICAgICAg
+ICAgOiAKICBHQ09ORl9MSUJTICAgICAgICAgICAgOiAKCiAgR1RLX1VOSVhfUFJJTlRfQ0ZMQUdT
+IDogLXB0aHJlYWQgLUkvaG9tZS92aWRhbC93a2cveW9jdG8vUmFzcGJlcnJ5UGkyL3Bva3kvYnVp
+bGQvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMi91c3IvaW5jbHVkZS9ndGstdW5peC1wcmludC0y
+LjAgLUkvaG9tZS92aWRhbC93a2cveW9jdG8vUmFzcGJlcnJ5UGkyL3Bva3kvYnVpbGQvdG1wL3N5
+c3Jvb3RzL3Jhc3BiZXJyeXBpMi91c3IvaW5jbHVkZS9ndGstMi4wIC1JL2hvbWUvdmlkYWwvd2tn
+L3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC9zeXNyb290cy9yYXNwYmVycnlwaTIv
+dXNyL2xpYi9ndGstMi4wL2luY2x1ZGUgLUkvaG9tZS92aWRhbC93a2cveW9jdG8vUmFzcGJlcnJ5
+UGkyL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMi91c3IvaW5jbHVkZS9wYW5n
+by0xLjAgLUkvaG9tZS92aWRhbC93a2cveW9jdG8vUmFzcGJlcnJ5UGkyL3Bva3kvYnVpbGQvdG1w
+L3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMi91c3IvaW5jbHVkZS9hdGstMS4wIC1JL2hvbWUvdmlkYWwv
+d2tnL3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC9zeXNyb290cy9yYXNwYmVycnlw
+aTIvdXNyL2luY2x1ZGUvY2Fpcm8gLUkvaG9tZS92aWRhbC93a2cveW9jdG8vUmFzcGJlcnJ5UGky
+L3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMi91c3IvaW5jbHVkZS9waXhtYW4t
+MSAtSS9ob21lL3ZpZGFsL3drZy95b2N0by9SYXNwYmVycnlQaTIvcG9reS9idWlsZC90bXAvc3lz
+cm9vdHMvcmFzcGJlcnJ5cGkyL3Vzci9pbmNsdWRlL2xpYnBuZzE2IC1JL2hvbWUvdmlkYWwvd2tn
+L3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC9zeXNyb290cy9yYXNwYmVycnlwaTIv
+dXNyL2luY2x1ZGUvZ2RrLXBpeGJ1Zi0yLjAgLUkvaG9tZS92aWRhbC93a2cveW9jdG8vUmFzcGJl
+cnJ5UGkyL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMi91c3IvaW5jbHVkZS9s
+aWJwbmcxNiAtSS9ob21lL3ZpZGFsL3drZy95b2N0by9SYXNwYmVycnlQaTIvcG9reS9idWlsZC90
+bXAvc3lzcm9vdHMvcmFzcGJlcnJ5cGkyL3Vzci9pbmNsdWRlL3BhbmdvLTEuMCAtSS9ob21lL3Zp
+ZGFsL3drZy95b2N0by9SYXNwYmVycnlQaTIvcG9reS9idWlsZC90bXAvc3lzcm9vdHMvcmFzcGJl
+cnJ5cGkyL3Vzci9pbmNsdWRlL2hhcmZidXp6IC1JL2hvbWUvdmlkYWwvd2tnL3lvY3RvL1Jhc3Bi
+ZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC9zeXNyb290cy9yYXNwYmVycnlwaTIvdXNyL2luY2x1ZGUv
+cGFuZ28tMS4wIC1JL2hvbWUvdmlkYWwvd2tnL3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxk
+L3RtcC9zeXNyb290cy9yYXNwYmVycnlwaTIvdXNyL2luY2x1ZGUvZ2xpYi0yLjAgLUkvaG9tZS92
+aWRhbC93a2cveW9jdG8vUmFzcGJlcnJ5UGkyL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3Jhc3Bi
+ZXJyeXBpMi91c3IvbGliL2dsaWItMi4wL2luY2x1ZGUgLUkvaG9tZS92aWRhbC93a2cveW9jdG8v
+UmFzcGJlcnJ5UGkyL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBpMi91c3IvaW5j
+bHVkZS9mcmVldHlwZTIgLURXQVZFX0dUS19VTklYX1BSSU5UCiAgR1RLX1VOSVhfUFJJTlRfTElC
+UyAgIDogLWxndGsteDExLTIuMCAtbGdkay14MTEtMi4wIC1scGFuZ29jYWlyby0xLjAgLWxhdGst
+MS4wIC1sY2Fpcm8gLWxnZGtfcGl4YnVmLTIuMCAtbGdpby0yLjAgLWxwYW5nb2Z0Mi0xLjAgLWxw
+YW5nby0xLjAgLWxnb2JqZWN0LTIuMCAtbGdsaWItMi4wIC1sZm9udGNvbmZpZyAtbGZyZWV0eXBl
+CgogIEdFRElUX0NGTEFHUyAgICAgICAgICA6IC1ER0VESVRfUEFUSD1cIi91c3IvYmluL2dlZGl0
+XCIKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KCmNoZWNraW5n
+IHRoYXQgZ2VuZXJhdGVkIGZpbGVzIGFyZSBuZXdlciB0aGFuIGNvbmZpZ3VyZS4uLiBkb25lCmNv
+bmZpZ3VyZTogY3JlYXRpbmcgLi9jb25maWcuc3RhdHVzCmNvbmZpZy5zdGF0dXM6IGNyZWF0aW5n
+IE1ha2VmaWxlCmNvbmZpZy5zdGF0dXM6IGNyZWF0aW5nIGRvYy9NYWtlZmlsZQpjb25maWcuc3Rh
+dHVzOiBjcmVhdGluZyBjb250cmliL01ha2VmaWxlCmNvbmZpZy5zdGF0dXM6IGNyZWF0aW5nIGNv
+bnRyaWIvcGNjdHMvSUJNX1ZJU1VBTF9BR0VfUFJPSkVDVFMvTWFrZWZpbGUKY29uZmlnLnN0YXR1
+czogY3JlYXRpbmcgY29udHJpYi9wY2N0cy9NYWtlZmlsZQpjb25maWcuc3RhdHVzOiBjcmVhdGlu
+ZyBjb250cmliL3BjY3RzL2FudGxyL01ha2VmaWxlCmNvbmZpZy5zdGF0dXM6IGNyZWF0aW5nIGNv
+bnRyaWIvcGNjdHMvZGxnL01ha2VmaWxlCmNvbmZpZy5zdGF0dXM6IGNyZWF0aW5nIGNvbnRyaWIv
+cGNjdHMvaC9NYWtlZmlsZQpjb25maWcuc3RhdHVzOiBjcmVhdGluZyBjb250cmliL3BjY3RzL3Nv
+cmNlcmVyL01ha2VmaWxlCmNvbmZpZy5zdGF0dXM6IGNyZWF0aW5nIGNvbnRyaWIvcGNjdHMvc29y
+Y2VyZXIvaC9NYWtlZmlsZQpjb25maWcuc3RhdHVzOiBjcmVhdGluZyBjb250cmliL3BjY3RzL3Nv
+cmNlcmVyL2xpYi9NYWtlZmlsZQpjb25maWcuc3RhdHVzOiBjcmVhdGluZyBjb250cmliL3BjY3Rz
+L3NvcmNlcmVyL3Rlc3QvTWFrZWZpbGUKY29uZmlnLnN0YXR1czogY3JlYXRpbmcgY29udHJpYi9w
+Y2N0cy9zb3JjZXJlci90ZXN0L3Rlc3Q3L01ha2VmaWxlCmNvbmZpZy5zdGF0dXM6IGNyZWF0aW5n
+IGNvbnRyaWIvcGNjdHMvc29yY2VyZXIvdGVzdGNwcC9NYWtlZmlsZQpjb25maWcuc3RhdHVzOiBj
+cmVhdGluZyBjb250cmliL3BjY3RzL3N1cHBvcnQvREVDbW1zL01ha2VmaWxlCmNvbmZpZy5zdGF0
+dXM6IGNyZWF0aW5nIGNvbnRyaWIvcGNjdHMvc3VwcG9ydC9NYWtlZmlsZQpjb25maWcuc3RhdHVz
+OiBjcmVhdGluZyBjb250cmliL3BjY3RzL3N1cHBvcnQvZ2VubWsvTWFrZWZpbGUKY29uZmlnLnN0
+YXR1czogY3JlYXRpbmcgY29udHJpYi9wY2N0cy9zdXBwb3J0L3JleHByL01ha2VmaWxlCmNvbmZp
+Zy5zdGF0dXM6IGNyZWF0aW5nIGNvbnRyaWIvcGNjdHMvc3VwcG9ydC9zZXQvTWFrZWZpbGUKY29u
+ZmlnLnN0YXR1czogY3JlYXRpbmcgY29udHJpYi9wY2N0cy9zdXBwb3J0L3N5bS9NYWtlZmlsZQpj
+b25maWcuc3RhdHVzOiBjcmVhdGluZyBjb250cmliL3BjY3RzL3Rlc3RjcHAvTWFrZWZpbGUKY29u
+ZmlnLnN0YXR1czogY3JlYXRpbmcgY29udHJpYi9ydGxicm93c2UvTWFrZWZpbGUKY29uZmlnLnN0
+YXR1czogY3JlYXRpbmcgY29udHJpYi92ZXJtaW4vTWFrZWZpbGUKY29uZmlnLnN0YXR1czogY3Jl
+YXRpbmcgY29udHJpYi9idW5kbGVfZm9yX29zeC9NYWtlZmlsZQpjb25maWcuc3RhdHVzOiBjcmVh
+dGluZyBjb250cmliL2ZzdF9qbmkvTWFrZWZpbGUKY29uZmlnLnN0YXR1czogY3JlYXRpbmcgY29u
+dHJpYi93bGYydmNkL01ha2VmaWxlCmNvbmZpZy5zdGF0dXM6IGNyZWF0aW5nIGNvbnRyaWIvZnNk
+YjJ2Y2QvTWFrZWZpbGUKY29uZmlnLnN0YXR1czogY3JlYXRpbmcgZXhhbXBsZXMvTWFrZWZpbGUK
+Y29uZmlnLnN0YXR1czogY3JlYXRpbmcgbWFuL01ha2VmaWxlCmNvbmZpZy5zdGF0dXM6IGNyZWF0
+aW5nIHNyYy9NYWtlZmlsZQpjb25maWcuc3RhdHVzOiBjcmVhdGluZyBzcmMvY29jb2EvTWFrZWZp
+bGUKY29uZmlnLnN0YXR1czogY3JlYXRpbmcgc3JjL2hlbHBlcnMvTWFrZWZpbGUKY29uZmlnLnN0
+YXR1czogY3JlYXRpbmcgc3JjL2xpYmx6bWEvTWFrZWZpbGUKY29uZmlnLnN0YXR1czogY3JlYXRp
+bmcgc3JjL2xpYmJ6Mi9NYWtlZmlsZQpjb25maWcuc3RhdHVzOiBjcmVhdGluZyBzcmMvbGliei9N
+YWtlZmlsZQpjb25maWcuc3RhdHVzOiBjcmVhdGluZyBzcmMvaGVscGVycy9mc3QvTWFrZWZpbGUK
+Y29uZmlnLnN0YXR1czogY3JlYXRpbmcgc2hhcmUvTWFrZWZpbGUKY29uZmlnLnN0YXR1czogY3Jl
+YXRpbmcgc2hhcmUvbWltZS9NYWtlZmlsZQpjb25maWcuc3RhdHVzOiBjcmVhdGluZyBzaGFyZS9t
+aW1lL3BhY2thZ2VzL01ha2VmaWxlCmNvbmZpZy5zdGF0dXM6IGNyZWF0aW5nIHNoYXJlL2ljb25z
+L01ha2VmaWxlCmNvbmZpZy5zdGF0dXM6IGNyZWF0aW5nIHNoYXJlL2ljb25zL2dub21lL01ha2Vm
+aWxlCmNvbmZpZy5zdGF0dXM6IGNyZWF0aW5nIHNoYXJlL2ljb25zL2dub21lLzE2eDE2L01ha2Vm
+aWxlCmNvbmZpZy5zdGF0dXM6IGNyZWF0aW5nIHNoYXJlL2ljb25zL2dub21lLzE2eDE2L21pbWV0
+eXBlcy9NYWtlZmlsZQpjb25maWcuc3RhdHVzOiBjcmVhdGluZyBzaGFyZS9pY29ucy9nbm9tZS8z
+MngzMi9NYWtlZmlsZQpjb25maWcuc3RhdHVzOiBjcmVhdGluZyBzaGFyZS9pY29ucy9nbm9tZS8z
+MngzMi9taW1ldHlwZXMvTWFrZWZpbGUKY29uZmlnLnN0YXR1czogY3JlYXRpbmcgc2hhcmUvaWNv
+bnMvZ25vbWUvNDh4NDgvTWFrZWZpbGUKY29uZmlnLnN0YXR1czogY3JlYXRpbmcgc2hhcmUvaWNv
+bnMvZ25vbWUvNDh4NDgvbWltZXR5cGVzL01ha2VmaWxlCmNvbmZpZy5zdGF0dXM6IGNyZWF0aW5n
+IHNoYXJlL2FwcGxpY2F0aW9ucy9NYWtlZmlsZQpjb25maWcuc3RhdHVzOiBjcmVhdGluZyBzaGFy
+ZS9hcHBkYXRhL01ha2VmaWxlCmNvbmZpZy5zdGF0dXM6IGNyZWF0aW5nIGNvbmZpZy5oCmNvbmZp
+Zy5zdGF0dXM6IGV4ZWN1dGluZyBkZXBmaWxlcyBjb21tYW5kcwpjb25maWd1cmU6IFdBUk5JTkc6
+IHVucmVjb2duaXplZCBvcHRpb25zOiAtLXdpdGgtbGlidG9vbC1zeXNyb290CkRFQlVHOiBTaGVs
+bCBmdW5jdGlvbiBkb19jb25maWd1cmUgZmluaXNoZWQKREVCVUc6IEV4ZWN1dGluZyBweXRob24g
+ZnVuY3Rpb24gZG9fcWFfY29uZmlndXJlCk5PVEU6IENoZWNraW5nIGF1dG90b29scyBlbnZpcm9u
+bWVudCBmb3IgY29tbW9uIG1pc2NvbmZpZ3VyYXRpb24KRVJST1I6IFRoaXMgYXV0b2NvbmYgbG9n
+IGluZGljYXRlcyBlcnJvcnMsIGl0IGxvb2tlZCBhdCBob3N0IGluY2x1ZGUgYW5kL29yIGxpYnJh
+cnkgcGF0aHMgd2hpbGUgZGV0ZXJtaW5pbmcgc3lzdGVtIGNhcGFiaWxpdGllcy4KUmVydW4gY29u
+ZmlndXJlIHRhc2sgYWZ0ZXIgZml4aW5nIHRoaXMuIFRoZSBwYXRoIHdhcyAnL2hvbWUvdmlkYWwv
+d2tnL3lvY3RvL1Jhc3BiZXJyeVBpMi9wb2t5L2J1aWxkL3RtcC93b3JrL2NvcnRleGE3aGYtdmZw
+LXZmcHY0LW5lb24tcG9reS1saW51eC1nbnVlYWJpL2d0a3dhdmUvMy42LjY2LXIwL2J1aWxkJwpE
+RUJVRzogUHl0aG9uIGZ1bmN0aW9uIGRvX3FhX2NvbmZpZ3VyZSBmaW5pc2hlZApFUlJPUjogRnVu
+Y3Rpb24gZmFpbGVkOiBkb19xYV9jb25maWd1cmUK
+
+------=_Part_412648_1337930476.1438515600815--
