@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 26005E00A4C; Mon,  3 Aug 2015 12:04:42 -0700 (PDT)
+	id 9FBDFE00A2C; Mon,  3 Aug 2015 12:04:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3E29E00A53
-	for <yocto@yoctoproject.org>; Mon,  3 Aug 2015 12:04:41 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0334E00A49
+	for <yocto@yoctoproject.org>; Mon,  3 Aug 2015 12:04:42 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 03 Aug 2015 12:04:41 -0700
+	by fmsmga102.fm.intel.com with ESMTP; 03 Aug 2015 12:04:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,603,1432623600"; d="scan'208";a="775902958"
+X-IronPort-AV: E=Sophos;i="5.15,603,1432623600"; d="scan'208";a="775902972"
 Received: from alimon-thinkpad-w540.zpn.intel.com ([10.219.5.54])
 	by fmsmga002.fm.intel.com with ESMTP; 03 Aug 2015 12:04:41 -0700
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Mon,  3 Aug 2015 14:04:36 -0500
-Message-Id: <1438628679-8626-9-git-send-email-anibal.limon@linux.intel.com>
+Date: Mon,  3 Aug 2015 14:04:37 -0500
+Message-Id: <1438628679-8626-10-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1438628679-8626-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1438628679-8626-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: paul.eggleton@linux.intel.com
-Subject: [PATCHv2 08/11][auh] bitbake.py: Rename bitbake_log.txt to bitbake_error_log
+Subject: [PATCHv2 09/11][auh] upgradehelper.py: Remove unused references to Buildhistory class
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,49 +41,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Aug 2015 19:04:42 -0000
+X-List-Received-Date: Mon, 03 Aug 2015 19:04:46 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Bitbake log only is written when error appears, rename it to be
-consistent with information into the log.
+Buildhistory class isn't implemented so removed related code.
 
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- bitbake.py | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ upgradehelper.py | 11 +----------
+ 1 file changed, 1 insertion(+), 10 deletions(-)
 
-diff --git a/bitbake.py b/bitbake.py
-index 54389fb..e23dc28 100644
---- a/bitbake.py
-+++ b/bitbake.py
-@@ -36,6 +36,8 @@ for path in os.environ["PATH"].split(':'):
-         sys.path.insert(0, os.path.join(path, "../lib"))
-         import bb
+diff --git a/upgradehelper.py b/upgradehelper.py
+index d4a5360..8cca23e 100755
+--- a/upgradehelper.py
++++ b/upgradehelper.py
+@@ -43,7 +43,7 @@ from datetime import date
+ import shutil
+ from errors import *
+ from git import Git
+-from bitbake import Bitbake, BuildHistory
++from bitbake import Bitbake
+ from emailhandler import Email
+ from statistics import Statistics
+ from recipe import Recipe
+@@ -135,7 +135,6 @@ class Updater(object):
+             os.mkdir(self.uh_work_dir)
  
-+BITBAKE_ERROR_LOG = 'bitbake_error_log.txt'
-+
- class Bitbake(object):
-     def __init__(self, build_dir):
-         self.build_dir = build_dir
-@@ -63,7 +65,7 @@ class Bitbake(object):
-             D("%s returned:\n%s" % (cmd, e.__str__()))
+         self.bb = Bitbake(get_build_dir())
+-        self.buildhistory = BuildHistory(get_build_dir())
+         self.git = None
+         self.author_email = settings.get('from', 'uh@not.set')
+         self.author = "Upgrade Helper <%s>" % self.author_email
+@@ -266,14 +265,6 @@ class Updater(object):
+             I(" %s: compiling for %s ..." % (self.pn, machine))
+             self.recipe.compile(machine)
  
-             if self.log_dir is not None and os.path.exists(self.log_dir):
--                with open(os.path.join(self.log_dir, "bitbake_log.txt"), "w+") as log:
-+                with open(os.path.join(self.log_dir, BITBAKE_ERROR_LOG), "w+") as log:
-                     log.write(e.stdout)
+-    def _review(self):
+-        # Check build_history
+-        if not self.skip_compilation:
+-            I(" %s: Checking buildhistory ..." % self.pn)
+-            self.buildhistory.set_work_dir(self.workdir)
+-            if self.buildhistory.diff(len(self.machines)):
+-               I(" %s: Wrote buildhistory-diff output ..." % self.pn)
+-
+     def _check_upstream_versions(self, packages=[("universe", None, None)]):
+         I(" Fetching upstream version(s) ...")
  
-             raise Error("\'" + cmd + "\' failed", e.stdout, e.stderr)
-@@ -74,7 +76,7 @@ class Bitbake(object):
-         self.log_dir = dir
- 
-     def get_stdout_log(self):
--        return os.path.join(self.log_dir, "bitbake_log.txt")
-+        return os.path.join(self.log_dir, BITBAKE_ERROR_LOG)
- 
-     def env(self, recipe):
-         return self._cmd(recipe, "-e", output_filter="-v \"^#\"")
 -- 
 1.9.1
 
