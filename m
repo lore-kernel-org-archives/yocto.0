@@ -1,6 +1,6 @@
 Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4DA74E00902; Mon,  3 Aug 2015 12:04:37 -0700 (PDT)
+	id 615ADE009E4; Mon,  3 Aug 2015 12:04:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,24 +12,24 @@ X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79CE7E009E4
-	for <yocto@yoctoproject.org>; Mon,  3 Aug 2015 12:04:35 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D4CEE00A01
+	for <yocto@yoctoproject.org>; Mon,  3 Aug 2015 12:04:36 -0700 (PDT)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 03 Aug 2015 12:04:35 -0700
+	by fmsmga102.fm.intel.com with ESMTP; 03 Aug 2015 12:04:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,603,1432623600"; d="scan'208";a="775902891"
+X-IronPort-AV: E=Sophos;i="5.15,603,1432623600"; d="scan'208";a="775902901"
 Received: from alimon-thinkpad-w540.zpn.intel.com ([10.219.5.54])
-	by fmsmga002.fm.intel.com with ESMTP; 03 Aug 2015 12:04:34 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 03 Aug 2015 12:04:35 -0700
 From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Mon,  3 Aug 2015 14:04:32 -0500
-Message-Id: <1438628679-8626-5-git-send-email-anibal.limon@linux.intel.com>
+Date: Mon,  3 Aug 2015 14:04:33 -0500
+Message-Id: <1438628679-8626-6-git-send-email-anibal.limon@linux.intel.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1438628679-8626-1-git-send-email-anibal.limon@linux.intel.com>
 References: <1438628679-8626-1-git-send-email-anibal.limon@linux.intel.com>
 MIME-Version: 1.0
 Cc: paul.eggleton@linux.intel.com
-Subject: [PATCHv2 04/11][auh] bitbake.py: Improve performance on env() call
+Subject: [PATCHv2 05/11] [auh]upgradehelper.py: Add own step for loading environment
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,49 +45,43 @@ X-List-Received-Date: Mon, 03 Aug 2015 19:04:37 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-When AUH load recipe enviroment use bitbake -e call and parses the
-output using regex VAR=VALUE.
-
-For improve performance discard all the comments on cmd output adding
-a output_filter using grep.
+Instead of load environment in detecting git repository use own
+function making easy to debug.
 
 Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
 ---
- bitbake.py | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ upgradehelper.py | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/bitbake.py b/bitbake.py
-index 3631896..54389fb 100644
---- a/bitbake.py
-+++ b/bitbake.py
-@@ -42,7 +42,7 @@ class Bitbake(object):
-         self.log_dir = None
-         super(Bitbake, self).__init__()
+diff --git a/upgradehelper.py b/upgradehelper.py
+index 13fc7dd..a3813c3 100755
+--- a/upgradehelper.py
++++ b/upgradehelper.py
+@@ -147,6 +147,7 @@ class Updater(object):
  
--    def _cmd(self, recipe, options=None, env_var=None):
-+    def _cmd(self, recipe, options=None, env_var=None, output_filter=None):
-         cmd = ""
-         if env_var is not None:
-             cmd += env_var + " "
-@@ -52,6 +52,9 @@ class Bitbake(object):
+         self.upgrade_steps = [
+             (self._create_workdir, None),
++            (self._get_env, "Loading environment ..."),
+             (self._detect_repo, "Detecting git repository location ..."),
+             (self._clean_repo, "Cleaning git repository of temporary branch ..."),
+             (self._detect_recipe_type, None),
+@@ -205,8 +206,6 @@ class Updater(object):
+                 os.remove(os.path.join(self.workdir, f))
  
-         cmd += recipe
+     def _detect_repo(self):
+-        self._get_env()
+-
+         if self.env['PV'] == self.new_ver:
+             raise UpgradeNotNeededError
  
-+        if output_filter is not None:
-+            cmd += ' |  grep ' + output_filter
-+
-         os.chdir(self.build_dir)
+@@ -216,7 +215,6 @@ class Updater(object):
+         self.git = Git(self.recipe_dir)
  
-         try:
-@@ -74,7 +77,7 @@ class Bitbake(object):
-         return os.path.join(self.log_dir, "bitbake_log.txt")
- 
-     def env(self, recipe):
--        return self._cmd(recipe, "-e")
-+        return self._cmd(recipe, "-e", output_filter="-v \"^#\"")
- 
-     def fetch(self, recipe):
-         return self._cmd(recipe, "-c fetch")
+         stdout = self.git.status()
+-
+         if stdout != "":
+             if self.interactive:
+                 W(" %s: git repository has uncommited work which will be dropped! Proceed? (y/N)" % self.pn)
 -- 
 1.9.1
 
