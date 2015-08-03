@@ -1,49 +1,35 @@
-Return-Path: <daltonfury42@gmail.com>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0CB57E009C3; Mon,  3 Aug 2015 11:16:18 -0700 (PDT)
+	id C83C3E00A28; Mon,  3 Aug 2015 12:04:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (daltonfury42[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.181 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ob0-f181.google.com (mail-ob0-f181.google.com
-	[209.85.214.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9828DE0034B
-	for <yocto@yoctoproject.org>; Mon,  3 Aug 2015 11:16:15 -0700 (PDT)
-Received: by obbop1 with SMTP id op1so105473142obb.2
-	for <yocto@yoctoproject.org>; Mon, 03 Aug 2015 11:16:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=AnjEjAO/gfuj1sScooeB0WczjhmNZOMd3p1knpBGHtM=;
-	b=i5SEwPJMfLVeM1mTUj3PnT8kKyejxGhOlqKudb4ySoKBSegaDF08ZxfsxOjVUgarUy
-	j/WZPwWopPyovexLhNn/4ZwmfckPvGd5wIfTQhorTvusISadCKpY/r4R7NWsnXfZ3Vtm
-	8GZv8VGQYj/vplTrxTLRAISO40taHQwXYyajQ5HpvrgQqIvEcaa16Np58RV2CibYEZZ1
-	QMuJfGdMFTDSk2LvOnKtKdXR1slGV9CtWkSTCIHfYyhR4kuQJqUcRFB0sH0a8l7A3zwN
-	YBUy7Nhg8SD3q2trYhEpEOKFbJ6UAiOMaDnLmbgbzypeR2wQ44GLpPwDRfKrVKTaRTF7
-	LZqw==
-X-Received: by 10.60.78.104 with SMTP id a8mr17384894oex.58.1438625775246;
-	Mon, 03 Aug 2015 11:16:15 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.202.243.69 with HTTP; Mon, 3 Aug 2015 11:15:35 -0700 (PDT)
-From: Dalton Fury <daltonfury42@gmail.com>
-Date: Mon, 3 Aug 2015 23:45:35 +0530
-Message-ID: <CALH0Xhn6OnMMcQoH=XZQVzv+nVDjTkw0Ggrfxb93x7TVGKHAeQ@mail.gmail.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B9D5E00902
+	for <yocto@yoctoproject.org>; Mon,  3 Aug 2015 12:04:34 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 03 Aug 2015 12:04:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.15,603,1432623600"; d="scan'208";a="775902869"
+Received: from alimon-thinkpad-w540.zpn.intel.com ([10.219.5.54])
+	by fmsmga002.fm.intel.com with ESMTP; 03 Aug 2015 12:04:32 -0700
+From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
 To: yocto@yoctoproject.org
-Subject: How to flash core-image-sato to a Nvidia Jetson TK1?
+Date: Mon,  3 Aug 2015 14:04:29 -0500
+Message-Id: <1438628679-8626-2-git-send-email-anibal.limon@linux.intel.com>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1438628679-8626-1-git-send-email-anibal.limon@linux.intel.com>
+References: <1438628679-8626-1-git-send-email-anibal.limon@linux.intel.com>
+MIME-Version: 1.0
+Cc: paul.eggleton@linux.intel.com
+Subject: [PATCHv2 01/11][auh] upgradehelper.py: Only run with one recipe or all.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,82 +41,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Aug 2015 18:16:18 -0000
-Content-Type: multipart/alternative; boundary=089e0111b78e4c6180051c6c2a2c
-
---089e0111b78e4c6180051c6c2a2c
+X-List-Received-Date: Mon, 03 Aug 2015 19:04:36 -0000
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi,
+When try to upgrading a recipe is an interactive process it needs
+specify the version to upgrade, for simplify the upgrade process
+only support one recipe at time.
 
-I am a hobbyist, and liked yocto very much since I used in on an old
-Pandaboard ES. Now I got my hands on a Nvidia Jetson TK1, and want to get a
-yocto running on it. I intend to use it for heavy image processing and I
-prefer not to do it with the Ubuntu which comes with it loaded with GUI and
-Unity and all. So I build the image, but could not find any information on
-how to flash it to the eMMC on the board.
+Now supported modes:
 
-Nvidia provides scripts for doing this. The process is as follows:
+Batch mode for upgrade universe recipes to upstream version detected,
+	$ ./upgradehelper.py all
 
-1) Download the driver package and extract it.
+Interactive mode for upgrade one recipe to user provided version,
+	$ ./upgradehelper.py recipe --to_version VERSION
 
-2) Download the sample rootfs and extract it to `rootfs` folder in where
-the driver package is extracted.
+Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
+---
+ upgradehelper.py | 34 ++++++++++------------------------
+ 1 file changed, 10 insertions(+), 24 deletions(-)
 
-3) Run the apply_binaries.sh script. Upon inspecting the script, I found
-that it copies NVIDIA user space components, Nvidia firmware files, BSP
-test tools, gst test applications, create a lot of symbolic links within
-the rootfs extracted to the 'rootfs' folder. It also places the firmwares
-and kernel modules, and also copies some configuration files for the boot
-loader(U-Boot).
+diff --git a/upgradehelper.py b/upgradehelper.py
+index d6ac7fd..63b30e4 100755
+--- a/upgradehelper.py
++++ b/upgradehelper.py
+@@ -65,7 +65,7 @@ def parse_cmdline():
+     parser = argparse.ArgumentParser(description='Package Upgrade Helper',
+                                      formatter_class=argparse.RawTextHelpFormatter,
+                                      epilog=help_text)
+-    parser.add_argument("recipe", nargs="+", help="recipe to be upgraded")
++    parser.add_argument("recipe", help="recipe to be upgraded")
+ 
+     parser.add_argument("-t", "--to_version",
+                         help="version to upgrade the recipe to")
+@@ -507,14 +507,6 @@ class Updater(object):
+ 
+             self.statistics.update(self.pn, self.new_ver, self.maintainer, error)
+ 
+-            if self.interactive and attempted_pkgs < total_pkgs:
+-                I(" %s: Proceed to next recipe? (Y/n)" % self.pn)
+-                answer = sys.stdin.readline().strip().upper()
+-
+-                if answer != 'Y' and answer != '':
+-                    I("Aborted by user!")
+-                    exit(0)
+-
+         if (attempted_pkgs > 1):
+             I("%s" % self.statistics.pkg_stats())
+             if self.send_email:
+@@ -700,24 +692,18 @@ if __name__ == "__main__":
+ 
+     settings, maintainer_override = parse_config_file(args.config_file)
+ 
+-    if len(args.recipe) == 1 and args.recipe[0] == "all":
++    if args.recipe == "all":
+         updater = UniverseUpdater()
+         updater.run()
+-    elif len(args.recipe) >= 1:
+-        if len(args.recipe) == 1:
+-            if not args.to_version:
+-                E(" For upgrade only one recipe you must specify --to_version\n")
+-                exit(1)
+-
+-            if not args.maintainer and args.send_emails:
+-                E(" For upgrade only one recipe and send email you must specify --maintainer\n")
+-                exit(1)
++    else:
++        if not args.to_version:
++            E(" For upgrade only one recipe you must specify --to_version\n")
++            exit(1)
+ 
+-            pkg_list = [(args.recipe[0], args.to_version, args.maintainer)]
+-        else:
+-            pkg_list = []
+-            for pkg in args.recipe:
+-                pkg_list.append((pkg, None, None))
++        if not args.maintainer and args.send_emails:
++            E(" For upgrade only one recipe and send email you must specify --maintainer\n")
++            exit(1)
+ 
++        pkg_list = [(args.recipe, args.to_version, args.maintainer)]
+         updater = Updater(args.auto_mode, args.send_emails, args.skip_compilation)
+         updater.run(pkg_list)
+-- 
+1.9.1
 
-4) Run flash.sh.
 
-What I did is to copy the rootfs that was made with yocto, and entirely
-skip Step 3 assuming that all the necessary software is already made with
-yocto as a result of adding the BSP. This attempt of course, failed.
-Thought the kernel booted, it froze halfway. No error message. Just a flack
-screen with a while "_" on the top left corner.
-
-This is the bsp I used: https://github.com/kraj/meta-jetson-tk1
-
-This is the guide I used as reference:
-http://elinux.org/Tegra/Downstream_SW/Gentoo_From_eMMC
-
-If anyone has experience performing this(i bet you do), please help me out.
-Thanks.
-
---089e0111b78e4c6180051c6c2a2c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>I am a hobbyist, and liked yocto ve=
-ry much since I used in on an old Pandaboard ES. Now I got my hands on a Nv=
-idia Jetson TK1, and want to get a yocto running on it. I intend to use it =
-for heavy image processing and I prefer not to do it with the Ubuntu which =
-comes with it loaded with GUI and Unity and all. So I build the image, but =
-could not find any information on how to flash it to the eMMC on the board.=
-=C2=A0</div><div><br></div><div>Nvidia provides scripts for doing this. The=
- process is as follows:</div><div><br></div><div>1) Download the driver pac=
-kage and extract it.</div><div><br></div><div>2) Download the sample rootfs=
- and extract it to `rootfs` folder in where the driver package is extracted=
-.</div><div><br></div><div>3) Run the apply_binaries.sh script. Upon inspec=
-ting the script, I found that it copies NVIDIA user space components, Nvidi=
-a firmware files, BSP test tools, gst test applications, create a lot of sy=
-mbolic links within the rootfs extracted to the &#39;rootfs&#39; folder. It=
- also places the=C2=A0firmwares and kernel modules, and also copies some co=
-nfiguration files for the boot loader(U-Boot).</div><div><br></div><div>4) =
-Run flash.sh.</div><div><br></div><div>What I did is to copy the rootfs tha=
-t was made with yocto, and entirely skip Step 3 assuming that all the neces=
-sary software is already made with yocto as a result of adding the BSP. Thi=
-s attempt of course, failed. Thought the kernel booted, it froze halfway. N=
-o error message. Just a flack screen with a while &quot;_&quot; on the top =
-left corner.</div><div><br></div><div>This is the bsp I used:=C2=A0<a href=
-=3D"https://github.com/kraj/meta-jetson-tk1">https://github.com/kraj/meta-j=
-etson-tk1</a></div><div><br></div><div>This is the guide I used as referenc=
-e:=C2=A0<a href=3D"http://elinux.org/Tegra/Downstream_SW/Gentoo_From_eMMC">=
-http://elinux.org/Tegra/Downstream_SW/Gentoo_From_eMMC</a></div><div><br></=
-div><div>If anyone has experience performing this(i bet you do), please hel=
-p me out. Thanks.=C2=A0</div></div>
-
---089e0111b78e4c6180051c6c2a2c--
