@@ -1,35 +1,26 @@
-Return-Path: <flihp@twobit.us>
+Return-Path: <recipe-report@yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1E607E0086E; Sun,  2 Aug 2015 17:38:38 -0700 (PDT)
+	id BC3D8E00A84; Sun,  2 Aug 2015 21:27:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
 	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 1.5 DATE_IN_PAST_06_12 Date: is 6 to 12 hours before
-	Received: date
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 2649 seconds by postgrey-1.32 at yocto-www;
-	Sun, 02 Aug 2015 17:38:34 PDT
-Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D1ADE00758
-	for <yocto@yoctoproject.org>; Sun,  2 Aug 2015 17:38:34 -0700 (PDT)
-Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
-	helo=slag.twobit.us)
-	by smtp.twobit.us with esmtpsa (TLSv1.2:AES128-SHA256:128)
-	(Exim 4.80) (envelope-from <flihp@twobit.us>)
-	id 1ZM34Z-0002tu-4n; Sun, 02 Aug 2015 23:53:43 +0000
-From: flihp@twobit.us
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from packages.yoctoproject.org (unknown [198.145.29.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D26AE0086D
+	for <yocto@yoctoproject.org>; Sun,  2 Aug 2015 21:27:05 -0700 (PDT)
+Received: from packages.yoctoproject.org (localhost [IPv6:::1])
+	by packages.yoctoproject.org (Postfix) with ESMTP id BC4778765F10
+	for <yocto@yoctoproject.org>; Mon,  3 Aug 2015 00:27:04 -0400 (EDT)
+MIME-Version: 1.0
+From: recipe-report@yoctoproject.org
 To: yocto@yoctoproject.org
-Date: Sun,  2 Aug 2015 15:52:45 +0000
-Message-Id: <1438530765-127834-1-git-send-email-flihp@twobit.us>
-X-Mailer: git-send-email 2.1.4
-X-SA-Exim-Connect-IP: 50.185.54.102
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
-X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Subject: [][meta-selinux] libpam: Upgrade recipe with wildcard.
+Date: Mon, 03 Aug 2015 04:27:04 -0000
+Message-ID: <20150803042704.3837.7266@packages.yoctoproject.org>
+Subject: [Recipe reporting system] Upgradable recipe name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,90 +32,158 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Aug 2015 00:38:38 -0000
+X-List-Received-Date: Mon, 03 Aug 2015 04:27:10 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-From: Philip Tricca <flihp@twobit.us>
+This mail was sent out by Recipe reporting system.
 
-The DESTDIR prefix patch is now upstream and no longer necessary.
+This message list those recipes which need to be upgraded. If maintainers
+believe some of them needn't to upgrade this time, they can fill in
+RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
+recipe remainder until newer upstream version was detected.
 
-Signed-off-by: Philip Tricca <flihp@twobit.us>
----
- .../pam/libpam/sepermit-add-DESTDIR-prefix.patch   | 31 ----------------------
- recipes-extended/pam/libpam_1.%.bbappend           |  8 ++++++
- recipes-extended/pam/libpam_1.1.6.bbappend         | 10 -------
- 3 files changed, 8 insertions(+), 41 deletions(-)
- delete mode 100644 recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
- create mode 100644 recipes-extended/pam/libpam_1.%.bbappend
- delete mode 100644 recipes-extended/pam/libpam_1.1.6.bbappend
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
 
-diff --git a/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch b/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
-deleted file mode 100644
-index d48d386..0000000
---- a/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
-+++ /dev/null
-@@ -1,31 +0,0 @@
--Subject: [PATCH] libpam: add missing DESTDIR prefix
--
--The DESTDIR prefix is missing, this will cause build failures for
--mkdir /var/run/sepermit on the host.
--
--| mkdir -p /var/run/sepermit
--| mkdir: cannot create directory `/var/run/sepermit': Permission denied
--
--Upstream-Status: Pending
--
--Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com>
-----
-- modules/pam_sepermit/Makefile.am |    2 +-
-- 1 files changed, 1 insertions(+), 1 deletions(-)
--
--diff --git a/modules/pam_sepermit/Makefile.am b/modules/pam_sepermit/Makefile.am
--index cfc5594..bc82275 100644
----- a/modules/pam_sepermit/Makefile.am
--+++ b/modules/pam_sepermit/Makefile.am
--@@ -35,7 +35,7 @@ if HAVE_LIBSELINUX
--   securelib_LTLIBRARIES = pam_sepermit.la
-- 
-- install-data-local:
---	mkdir -p $(sepermitlockdir)
--+	mkdir -p $(DESTDIR)$(sepermitlockdir)
-- endif
-- if ENABLE_REGENERATE_MAN
-- noinst_DATA = README pam_sepermit.8 sepermit.conf.5
---- 
--1.7.5.4
--
-diff --git a/recipes-extended/pam/libpam_1.%.bbappend b/recipes-extended/pam/libpam_1.%.bbappend
-new file mode 100644
-index 0000000..100a376
---- /dev/null
-+++ b/recipes-extended/pam/libpam_1.%.bbappend
-@@ -0,0 +1,8 @@
-+#FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+FILESPATH_append := ":${@base_set_filespath(['${THISDIR}/${PN}'], d)}"
-+
-+PR .= ".4"
-+
-+inherit enable-selinux
-+
-+RDEPENDS_${PN}-runtime += "${@target_selinux(d, 'pam-plugin-selinux')}"
-diff --git a/recipes-extended/pam/libpam_1.1.6.bbappend b/recipes-extended/pam/libpam_1.1.6.bbappend
-deleted file mode 100644
-index 71acecc..0000000
---- a/recipes-extended/pam/libpam_1.1.6.bbappend
-+++ /dev/null
-@@ -1,10 +0,0 @@
--#FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--FILESPATH_append := ":${@base_set_filespath(['${THISDIR}/${PN}'], d)}"
--
--SRC_URI += "file://sepermit-add-DESTDIR-prefix.patch"
--
--PR .= ".4"
--
--inherit enable-selinux
--
--RDEPENDS_${PN}-runtime += "${@target_selinux(d, 'pam-plugin-selinux')}"
--- 
-2.1.4
+You can check the detail information at:
 
+http://packages.yoctoproject.org/
+
+Package               Version            Upstream version      Maintainer           NoUpgradeReason
+--------------------  -----------------  --------------------  -------------------  ------------------------------
+nfs-utils             1.3.1              1.3.2                 Alejandro Hernandez
+texinfo               5.2                6.0                   Alejandro Hernandez
+midori                0.5.8              0.5.10                Alejandro Hernandez
+python-smmap          0.8.2              0.9.0                 Alejandro Hernandez
+python                2.7.9              2.7.10                Alejandro Hernandez
+which                 2.20               2.21                  Alejandro Hernandez
+gnome-icon-theme      2.31.0             3.12.0                Alejandro Hernandez
+jpeg                  8d                 9a                    Aníbal Limón         webkit-gtk 1.8.3 doesn't wo...
+apt                   1.0.9.9            1.0.9.10              Aníbal Limón
+dpkg                  1.17.25            1.18.1                Aníbal Limón
+sqlite3               3.8.10.2           3.8.11.1              Aníbal Limón
+lsof                  4.88               4.89                  Aníbal Limón
+screen                4.0.3              4.3.1                 Aníbal Limón
+xinetd                2.3.15             20030122              Aníbal Limón
+lz4                   128+gitX           131+gitAUTOINC+d8...  Armin Kuster
+nettle                2.7.1              3.1.1                 Armin Kuster
+pinentry              0.9.2              0.9.5                 Armin Kuster
+linux-libc-headers    4.1                4.1.3                 Bruce Ashfield
+resolvconf            1.76               1.77                  Chen Qi
+cups                  2.0.3              2.0.4                 Chen Qi
+sysstat               11.1.5             11.1.5-1              Chen Qi
+apmd                  3.2.2-14           3.2.2-15              Cristian Iorga
+bluez5                5.32               5.33                  Cristian Iorga
+iproute2              3.17.0             4.1.1                 Cristian Iorga
+libpcap               1.6.2              1.7.4                 Cristian Iorga
+build-appliance-i...  12.0.1             13.0.0                Cristian Iorga
+qemu                  2.3.99+2.4.0-rc3   5                     Cristian Iorga
+db                    6.0.30             6.1.26                Cristian Iorga
+libtirpc              0.2.5              0.3.2                 Cristian Iorga
+net-tools             1.60-25            1.60-26               Cristian Iorga
+libical               1.0.0              1.0.1                 Cristian Iorga
+ncurses               5.9                6.0-20150725          Hongxu Jia
+createrepo            0.4.11             0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
+bash                  4.3                4.3.30                Hongxu Jia
+adt-installer         0.2.0              0.3.0                 Jessica Zhang
+libinput              0.18.0             0.20.0                Jussi Kukkonen
+gtk-icon-utils-na...  3.16.4             3.17.5                Jussi Kukkonen
+xf86-input-vmmouse    13.0.0             13.1.0                Jussi Kukkonen
+pixman                0.32.6             0.33.2                Jussi Kukkonen
+vte                   0.28.2             0.40.2                Jussi Kukkonen
+gtk+3                 3.16.4             3.16.6                Jussi Kukkonen
+libnotify             0.6.0              0.7.6                 Jussi Kukkonen
+cairo                 1.14.2             5c-1.5                Jussi Kukkonen
+fontconfig            2.11.93            2.11.94               Jussi Kukkonen
+mailx                 12.5               12.5-4                Kai Kang
+libsdl                1.2.15             1.2.15-1              Kai Kang
+python-nose           1.3.6              1.3.7                 Khem Raj
+python-numpy          1.7.0              1.9.2                 Khem Raj
+cross-localedef-n...  2.21               20090510              Khem Raj
+rpm                   5.4.14             5.4.15                Mark Hatle
+bootchart2            0.14.6+gitX        0.14.7+gitAUTOINC...  No maintainer
+gcc-source-4.9.3      4.9.3              5.2.0                 No maintainer
+orc                   0.4.23             0.4.24                No maintainer
+gcc-source-4.8.4      4.8.4              4.8.5                 No maintainer
+nss                   3.19.1             3.19.2                No maintainer
+xuser-account         0.1                1.0                   No maintainer
+libepoxy              1.2+gitX           1.3.1+gitAUTOINC+...  No maintainer
+clutter-gst-3.0       3.0.6              3.0.8                 No maintainer
+python3-pip           6.1.1              7.1.0                 No maintainer
+python3-setuptools    15.2               18.1                  No maintainer
+adwaita-icon-theme    3.16.2.1           3.17.4                No maintainer
+uclibc-initial        0.9.33+gitX        2001.11.23.+gitAU...  No maintainer
+glibc-initial         2.21               20090510              No maintainer
+binutils-cross-ca...  2.25               20131001              No maintainer
+binutils-cross-i586   2.25               20131001              No maintainer
+binutils-crosssdk...  2.25               20131001              No maintainer
+sgmlspl-native        1.1+gitX           1.03.+gitAUTOINC+...  No maintainer
+perl-native           5.22.0             5.23.1                No maintainer
+python3-native        3.4.3              3.5.0b4               No maintainer
+python-native         2.7.9              3.5.0b4               No maintainer
+opkg                  0.2.4              0.3.0                 Paul Barker
+docbook-sgml-dtd-...  3.1                41                    Paul Eggleton
+docbook-sgml-dtd-...  4.1                41                    Paul Eggleton
+openssh               6.8p1              6.9p1                 Paul Eggleton
+cmake                 3.2.2              3.3.0-1               Paul Eggleton
+libav                 9.18               11.4                  Paul Eggleton
+gpgme                 1.5.4              1.5.5                 Paul Eggleton
+libevdev              1.4.2              1.4.3                 Paul Eggleton
+blktool               4-6.1              4-7                   Paul Eggleton
+cmake-native          3.2.2              3.3.0-1               Paul Eggleton
+python-async          0.6.1              0.6.2                 Randy Witt
+mdadm                 3.3.2              3.3.3                 Randy Witt
+libunistring          0.9.4              0.9.6                 Randy Witt
+btrfs-tools           4.1.1+gitX         4.1.2+gitAUTOINC+...  Richard Purdie
+python-distribute     0.6.32             0.6.49                Richard Purdie
+python-pygobject      2.28.3             3.17.1                Richard Purdie       Newer versions of python-py...
+binutils              2.25               2.25.1                Robert Yang
+e2fsprogs             1.42.9             1.42.13               Robert Yang
+file                  5.23               5.24                  Robert Yang
+git                   2.4.6              2.5.0                 Robert Yang
+remake                3.82+dbg-0.9+gitX  4.1+dbg-1.1+cf546...  Robert Yang
+libcheck              0.9.14             0.10.0                Robert Yang
+liberation-fonts      1.04               2.00.1                Ross Burton          2.x depends on fontforge pa...
+base-passwd           3.5.29             3.5.38                Ross Burton
+kbd                   2.0.2              2.0.3                 Ross Burton
+uclibc                0.9.33+gitX        0.9.33.2+gitAUTOI...  Ross Burton
+systemtap             2.7+gitX           2.8+gitAUTOINC+08...  Ross Burton
+mkelfimage            4.0+gitX           4.1+gitAUTOINC+6c...  Ross Burton
+mtd-utils             1.5.1+gitX         1.5.2+gitAUTOINC+...  Ross Burton
+libidn                1.30               1.32                  Ross Burton
+webkit-gtk            1.8.3              1.9.92                Ross Burton          >= 1.10.2 needs ruby
+libxslt               1.1.28             1.1.28-1              Ross Burton
+libunique             1.1.6              3.0.2                 Ross Burton
+ca-certificates       20141019           20150426              Ross Burton
+libvorbis             1.3.4              1.3.5                 Tanu Kaskinen
+systemtap-uprobes     2.7+gitX           2.8+gitAUTOINC+08...  Tom Zanussi
+chkconfig-alterna...  1.3.59+X           6+AUTOINC+945b3d108b  Wenzong Fan
+gettext               0.19.4             0.19.5.1              Wenzong Fan
+ccache                3.1.11             3.2.2                 Wenzong Fan
+chkconfig             1.3.58             1.5                   Wenzong Fan
+
+Upgradable count: 105
+Upgradable total count: 110
+
+The based commit is:
+
+commit cf2b41fd37c18d59e1fd309ac7693ad03599b08f
+Author: Wenzong Fan <wenzong.fan@windriver.com>
+Date:   Fri Jul 10 16:54:55 2015 +0800
+
+    perl: fix build failure if building dir has the "blib" string
+    
+    If build dir includes the string "blib", filter it out from @INC may empty
+    the @INC and cause build errors like:
+    
+      Can't locate ExtUtils/MakeMaker.pm in @INC \
+      (you may need to install the ExtUtils::MakeMaker module) \
+      (@INC contains: .) at Makefile.PL
+    
+    Signed-off-by: Roy Li <rongqing.li@windriver.com>
+    Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+
+Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
