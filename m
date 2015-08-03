@@ -1,35 +1,56 @@
-Return-Path: <anibal.limon@linux.intel.com>
+Return-Path: <schnitzeltony@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E5F3FE00A53; Mon,  3 Aug 2015 12:04:50 -0700 (PDT)
+	id 5FF6AE00A01; Mon,  3 Aug 2015 13:14:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (schnitzeltony[at]googlemail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.171 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31C41E00AB9
-	for <yocto@yoctoproject.org>; Mon,  3 Aug 2015 12:04:44 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 03 Aug 2015 12:04:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,603,1432623600"; d="scan'208";a="775902989"
-Received: from alimon-thinkpad-w540.zpn.intel.com ([10.219.5.54])
-	by fmsmga002.fm.intel.com with ESMTP; 03 Aug 2015 12:04:43 -0700
-From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Mon,  3 Aug 2015 14:04:39 -0500
-Message-Id: <1438628679-8626-12-git-send-email-anibal.limon@linux.intel.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1438628679-8626-1-git-send-email-anibal.limon@linux.intel.com>
-References: <1438628679-8626-1-git-send-email-anibal.limon@linux.intel.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pd0-f171.google.com (mail-pd0-f171.google.com
+	[209.85.192.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35AEBE00902
+	for <yocto@yoctoproject.org>; Mon,  3 Aug 2015 13:14:30 -0700 (PDT)
+Received: by pdbbo16 with SMTP id bo16so20468269pdb.1
+	for <yocto@yoctoproject.org>; Mon, 03 Aug 2015 13:14:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=NxaDgnCcIiVjDGZ8ENo/nqh04KliKfcG1tblHEVCQOw=;
+	b=NcwXdFnZkWVXtGbGfpie0hn1e9ZgaKBtnye8Cfm0UcaPhjqghyXqZHCYn689YF6xhC
+	7eSSjSgPxArRcDLToqWJOp9dZWe0JT/BrcEnUmTKmpeCfShI0G2Va5qO3vYAjdUG4yRf
+	QH3nMcejo/3On7XlVmla9JElkTaXKbaVl9OGfYG2W7MU0PhakRwmH+7DrOTEpMlWqGje
+	lvpNEVjkSE+6YMXo4NRoLgFeF9cPoBSFWPnFYPourm+N2jP6vOctXp7zMnqj0utkeDvV
+	Ls43fyMYQ1kZBmiMcWRMCb1fS28sAqDnLUWFRPTgd32W2v7j0QvMpqfxOZPFK5cJ6ARC
+	TUbA==
 MIME-Version: 1.0
-Cc: paul.eggleton@linux.intel.com
-Subject: [PATCHv2 11/11][auh] upgradehelper: Add support for generate buildhistory recipe diff's
+X-Received: by 10.70.89.199 with SMTP id bq7mr38240486pdb.168.1438632869180;
+	Mon, 03 Aug 2015 13:14:29 -0700 (PDT)
+Received: by 10.70.65.4 with HTTP; Mon, 3 Aug 2015 13:14:29 -0700 (PDT)
+In-Reply-To: <1438245251-20437-6-git-send-email-javier@osg.samsung.com>
+References: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
+	<1438245251-20437-6-git-send-email-javier@osg.samsung.com>
+Date: Mon, 3 Aug 2015 22:14:29 +0200
+Message-ID: <CALbNGRSs3KQj4RYopow=+kwJXE-46yU-t5o-FWSbR0wqBoqESw@mail.gmail.com>
+From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
+To: Javier Martinez Canillas <javier@osg.samsung.com>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	Mauro Carvalho Chehab <mchehab@osg.samsung.com>,
+	Derek Foreman <derekf@osg.samsung.com>
+Subject: Re: [meta-raspberrypi][PATCH 5/5] rpi-default-providers: Switch providers according to used gfx stack
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,395 +62,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Aug 2015 19:04:51 -0000
+X-List-Received-Date: Mon, 03 Aug 2015 20:14:37 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
 
-Now AUH generates buildhistory diff when recipe was upgraded
-successfully.
+On Thu, Jul 30, 2015 at 10:34 AM, Javier Martinez Canillas
+<javier@osg.samsung.com> wrote:
+> From: Derek Foreman <derekf@osg.samsung.com>
+>
+> The Raspberry Pi boards can use one of two graphics stacks: The "userland"
+> user-space driver or the VC4 drm/kms kernel driver. This patch allows the
+> user to choose if the VC4 driver has to be used instead and set the right
+> preferred providers for that case.
+>
+> Signed-off-by: Derek Foreman <derekf@osg.samsung.com>
+> [javier: Extend commit msg and made conditional instead removing userland]
+> Signed-off-by: Javier Martinez Canillas <javier@osg.samsung.com>
+>
+> ---
+>
+>  conf/machine/include/rpi-default-providers.inc | 8 ++++----
+>  conf/machine/include/rpi-default-versions.inc  | 2 +-
+>  2 files changed, 5 insertions(+), 5 deletions(-)
+>
+> diff --git a/conf/machine/include/rpi-default-providers.inc b/conf/machine/include/rpi-default-providers.inc
+> index ee3a3acce7bd..233f177bd16e 100644
+> --- a/conf/machine/include/rpi-default-providers.inc
+> +++ b/conf/machine/include/rpi-default-providers.inc
+> @@ -3,8 +3,8 @@
+>  PREFERRED_PROVIDER_virtual/kernel = "linux-raspberrypi"
+>  PREFERRED_PROVIDER_u-boot = "u-boot-rpi"
+>  PREFERRED_PROVIDER_virtual/xserver = "xserver-xorg"
+> -PREFERRED_PROVIDER_virtual/egl ?= "userland"
+> -PREFERRED_PROVIDER_virtual/libgles2 ?= "userland"
+> -PREFERRED_PROVIDER_virtual/libgl ?= "mesa-gl"
+> -PREFERRED_PROVIDER_virtual/mesa ?= "mesa-gl"
+> +PREFERRED_PROVIDER_virtual/egl ?= "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'userland', d)}"
+> +PREFERRED_PROVIDER_virtual/libgles2 ?= "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'userland', d)}"
+> +PREFERRED_PROVIDER_virtual/libgl ?= "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'mesa-gl', d)}"
+> +PREFERRED_PROVIDER_virtual/mesa ?= "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'mesa-gl', d)}"
+>  PREFERRED_PROVIDER_jpeg = "jpeg"
+> diff --git a/conf/machine/include/rpi-default-versions.inc b/conf/machine/include/rpi-default-versions.inc
+> index bcf78281b6ff..c07ecac5924b 100644
+> --- a/conf/machine/include/rpi-default-versions.inc
+> +++ b/conf/machine/include/rpi-default-versions.inc
+> @@ -1,3 +1,3 @@
+>  # RaspberryPi BSP default versions
+>
+> -PREFERRED_VERSION_linux-raspberrypi ?= "3.18.%"
+> +PREFERRED_VERSION_linux-raspberrypi ?= "${@bb.utils.contains("DISTRO_FEATURES", "vc4-gfx", "4.1.%", "3.18.%", d)}"
+> --
+> 2.4.3
+>
+> --
+This patch series is an exciting starter but I think it is incomplete:
+Without further configuration mesa simply builds swrast which is not
+what we want. We need some '--with-gallium-drivers=vc4' right? [1]
 
-For enable this feature set into local.conf.
+Andreas
 
-	INHERIT += "buildhistory"
-	BUILDHISTORY_COMMIT = "1"
-
-Summary of the changes,
-
-	- bitbake.py: Enable environment generation without recipe,
-          removes Buildhistory class.
-	- buildhistory.py: Add buildhistory class that generates initial
-          buildhistory revision and keeps track of build revisions for
-          generate diff when build is successful.
-        - upgradehelper.py: Add buildhistory steps for upgrade, add
-          support for detect when buildhistory is enabled loading the
-          environment without recipe.
-
-[YOCTO #7175]
-
-Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
----
- bitbake.py       |  41 ++------------------
- buildhistory.py  |  75 ++++++++++++++++++++++++++++++++++++
- errors.py        |   6 +++
- upgradehelper.py | 115 ++++++++++++++++++++++++++++++++++++++++---------------
- 4 files changed, 170 insertions(+), 67 deletions(-)
- create mode 100644 buildhistory.py
-
-diff --git a/bitbake.py b/bitbake.py
-index e23dc28..a1587ce 100644
---- a/bitbake.py
-+++ b/bitbake.py
-@@ -44,7 +44,7 @@ class Bitbake(object):
-         self.log_dir = None
-         super(Bitbake, self).__init__()
- 
--    def _cmd(self, recipe, options=None, env_var=None, output_filter=None):
-+    def _cmd(self, recipe=None, options=None, env_var=None, output_filter=None):
-         cmd = ""
-         if env_var is not None:
-             cmd += env_var + " "
-@@ -52,7 +52,8 @@ class Bitbake(object):
-         if options is not None:
-             cmd += options + " "
- 
--        cmd += recipe
-+        if recipe is not None:
-+            cmd += recipe
- 
-         if output_filter is not None:
-             cmd += ' |  grep ' + output_filter
-@@ -78,7 +79,7 @@ class Bitbake(object):
-     def get_stdout_log(self):
-         return os.path.join(self.log_dir, BITBAKE_ERROR_LOG)
- 
--    def env(self, recipe):
-+    def env(self, recipe=None):
-         return self._cmd(recipe, "-e", output_filter="-v \"^#\"")
- 
-     def fetch(self, recipe):
-@@ -104,37 +105,3 @@ class Bitbake(object):
- 
-     def dependency_graph(self, package_list):
-         return self._cmd(package_list, "-g")
--
--class BuildHistory(object):
--    def __init__(self, build_dir):
--        self.build_dir = build_dir
--        self.work_dir = None
--
--    def set_work_dir(self, work_dir):
--        self.work_dir = work_dir
--
--    # Return True if buildhistory-diff gives output
--    def diff(self, revision_steps):
--        os.chdir(self.build_dir)
--        cmd = "buildhistory-diff HEAD~" + str(revision_steps)
--
--        try:
--            stdout, stderr = bb.process.run(cmd)
--            # Write diff output to log file if there is any
--
--            if stdout and os.path.exists(self.work_dir):
--                with open(os.path.join(self.work_dir, "buildhistory.txt"), "w+") as log:
--                    log.write(stdout)
--                return True
--        except bb.process.ExecutionError as e:
--            for line in e.stdout.split('\n'):
--                if line.find("Buildhistory directory \"buildhistory/\" does not exist") == 0:
--                    C(" \"buildhistory.bbclass\" not inherited. Consider adding "
--                      "the following to your local.conf:\n\n"
--                      "INHERIT =+ \"buildhistory\"\n"
--                      "BUILDHISTORY_COMMIT = \"1\"\n\n"
--                      "Do not remove any other inherited class in the process (e.g. distrodata)\n")
--                    exit(1)
--
--        return False
--
-diff --git a/buildhistory.py b/buildhistory.py
-new file mode 100644
-index 0000000..1732f23
---- /dev/null
-+++ b/buildhistory.py
-@@ -0,0 +1,75 @@
-+#!/usr/bin/env python
-+# vim: set ts=4 sw=4 et:
-+#
-+# Copyright (c) 2015 Intel Corporation
-+#
-+# This program is free software; you can redistribute it and/or
-+# modify it under the terms of the GNU General Public License
-+# as published by the Free Software Foundation; either version 2
-+# of the License, or (at your option) any later version.
-+#
-+# This program is distributed in the hope that it will be useful,
-+# but WITHOUT ANY WARRANTY; without even the implied warranty of
-+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+# GNU General Public License for more details.
-+#
-+# You should have received a copy of the GNU General Public License
-+# along with this program; if not, write to the Free Software
-+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-+#
-+
-+import os
-+import logging as log
-+from logging import info as I
-+from logging import debug as D
-+from logging import error as E
-+from logging import critical as C
-+import sys
-+from errors import *
-+
-+from bitbake import *
-+from git import Git
-+
-+os.environ['BB_ENV_EXTRAWHITE'] = os.environ['BB_ENV_EXTRAWHITE'] + \
-+                                    " BUILDHISTORY_DIR"
-+
-+class BuildHistory(object):
-+    def __init__(self, bb, pn, workdir):
-+        self.bb = bb
-+        self.pn = pn
-+        self.workdir = workdir
-+        self.revs = []
-+
-+        self.buildhistory_dir = os.path.join(self.workdir, 'buildhistory')
-+        if not os.path.exists(self.buildhistory_dir):
-+            os.mkdir(self.buildhistory_dir)
-+
-+        self.git = Git(self.buildhistory_dir)
-+
-+        os.environ["BUILDHISTORY_DIR"] = self.buildhistory_dir
-+
-+    def init(self, machines):
-+        self.bb.cleanall(self.pn)
-+        for machine in machines:
-+            self.bb.complete(self.pn, machine)
-+            self.revs.append(self.git.last_commit("master"))
-+
-+    def add(self):
-+        self.revs.append(self.git.last_commit("master"))
-+
-+    def diff(self):
-+        rev_initial = self.revs[0]
-+        rev_final = self.revs[-1]
-+
-+        cmd = "buildhistory-diff -a -p %s %s %s"  % (self.buildhistory_dir, 
-+                rev_initial, rev_final)
-+
-+        try:
-+            stdout, stderr = bb.process.run(cmd)
-+
-+            if stdout and os.path.exists(self.workdir):
-+                with open(os.path.join(self.workdir, "buildhistory-diff.txt"),
-+                        "w+") as log:
-+                    log.write(stdout)
-+        except bb.process.ExecutionError as e:
-+            W( "%s: Buildhistory checking fails\n%s" % (self.pn, e.stdout))
-diff --git a/errors.py b/errors.py
-index 7194944..1504fa5 100644
---- a/errors.py
-+++ b/errors.py
-@@ -85,3 +85,9 @@ class UpgradeNotNeededError(Error):
-     def __str__(self):
-         return "Failed(up to date)"
- 
-+class EmptyEnvError(Error):
-+    def __init__(self, stdout):
-+        super(EmptyEnvError, self).__init__("Empty environment returned", stdout)
-+
-+    def __str__(self):
-+        return "Failed(get_env)"
-diff --git a/upgradehelper.py b/upgradehelper.py
-index 80c7ef5..31f8f14 100755
---- a/upgradehelper.py
-+++ b/upgradehelper.py
-@@ -44,6 +44,7 @@ import shutil
- from errors import *
- from git import Git
- from bitbake import Bitbake
-+from buildhistory import BuildHistory
- from emailhandler import Email
- from statistics import Statistics
- from recipe import Recipe
-@@ -145,23 +146,40 @@ class Updater(object):
-         self.machines = settings.get('machines', 'qemux86 qemux86-64 qemuarm qemumips qemuppc').split()
- 
-         self.upgrade_steps = [
-+            (self._load_env, "Loading environment ..."),
-             (self._create_workdir, None),
--            (self._get_env, "Loading environment ..."),
-             (self._detect_repo, "Detecting git repository location ..."),
-             (self._clean_repo, "Cleaning git repository of temporary branch ..."),
-             (self._detect_recipe_type, None),
-+            (self._buildhistory_init, None),
-             (self._unpack_original, "Fetch & unpack original version ..."),
-             (self._rename, "Renaming recipes, reset PR (if exists) ..."),
-             (self._cleanall, "Clean all ..."),
-             (self._fetch, "Fetch new version (old checksums) ..."),
--            (self._compile, None)
-+            (self._compile, None),
-+            (self._buildhistory_diff, None)
-         ]
- 
-+        try:
-+            self.base_env = self._get_env()
-+        except EmptyEnvError as e:
-+            import traceback
-+            E( " %s\n%s" % (e.message, traceback.format_exc()))
-+            E( " Bitbake output:\n%s" % (e.stdout))
-+            exit(1)
-+        self.buildhistory_enabled = self._buildhistory_is_enabled()
-+
-         self.email_handler = Email(settings)
-         self.statistics = Statistics()
- 
--    def _get_env(self):
--        stdout = self.bb.env(self.pn)
-+    def _get_status_msg(self, err):
-+        if err:
-+            return str(err)
-+        else:
-+            return "Succeeded"
-+
-+    def _get_env(self, pn=None):
-+        stdout = self.bb.env(pn)
- 
-         assignment = re.compile("^([^ \t=]*)=(.*)")
-         bb_env = dict()
-@@ -173,38 +191,46 @@ class Updater(object):
- 
-                 bb_env[m.group(1)] = m.group(2).strip("\"")
- 
--        self.env = bb_env
--        self.recipe_dir = os.path.dirname(self.env['FILE'])
-+        if not bb_env:
-+            raise EmptyEnvError(stdout)
- 
--    def _detect_recipe_type(self):
--        if self.env['SRC_URI'].find("ftp://") != -1 or  \
--                self.env['SRC_URI'].find("http://") != -1 or \
--                self.env['SRC_URI'].find("https://") != -1:
--            recipe = Recipe
--        elif self.env['SRC_URI'].find("git://") != -1:
--            recipe = GitRecipe
--        else:
--            raise UnsupportedProtocolError
-+        return bb_env
- 
--        self.recipe = recipe(self.env, self.new_ver, self.interactive, self.workdir,
--                             self.recipe_dir, self.bb, self.git)
-+    def _buildhistory_is_enabled(self):
-+        enabled = False
- 
--    def _get_status_msg(self, err):
--        if err:
--            return str(err)
--        else:
--            return "Succeeded"
-+        if 'buildhistory' in self.base_env['INHERIT']:
-+            if not 'BUILDHISTORY_COMMIT' in self.base_env:
-+                E(" Buildhistory was enabled but need"\
-+                        " BUILDHISTORY_COMMIT=1 please set.")
-+                exit(1)
-+
-+            if not self.base_env['BUILDHISTORY_COMMIT'] == '1':
-+                E(" Buildhistory was enabled but need"\
-+                        " BUILDHISTORY_COMMIT=1 please set.")
-+                exit(1)
-+
-+            if self.skip_compilation:
-+                W(" Buildhistory disabled because user" \
-+                        " skip compilation!")
-+            else:
-+                enabled = True
-+
-+        return enabled
-+
-+    def _load_env(self):
-+        self.env = self._get_env(self.pn)
- 
-     def _create_workdir(self):
-         self.workdir = os.path.join(self.uh_work_dir, self.pn)
- 
--        if not os.path.exists(self.workdir):
--            os.mkdir(self.workdir)
--        else:
--            for f in os.listdir(self.workdir):
--                os.remove(os.path.join(self.workdir, f))
-+        if os.path.exists(self.workdir):
-+            shutil.rmtree(self.workdir)
-+        os.mkdir(self.workdir)
- 
-     def _detect_repo(self):
-+        self.recipe_dir = os.path.dirname(self.env['FILE'])
-+
-         if self.env['PV'] == self.new_ver:
-             raise UpgradeNotNeededError
- 
-@@ -227,7 +253,7 @@ class Updater(object):
-             self.git.reset_hard()
-             self.git.clean_untracked()
- 
--            self._get_env()
-+            self.env = self._get_env(self.pn)
- 
-     def _clean_repo(self):
-         try:
-@@ -239,14 +265,34 @@ class Updater(object):
-         except:
-             pass
- 
-+    def _detect_recipe_type(self):
-+        if self.env['SRC_URI'].find("ftp://") != -1 or  \
-+                self.env['SRC_URI'].find("http://") != -1 or \
-+                self.env['SRC_URI'].find("https://") != -1:
-+            recipe = Recipe
-+        elif self.env['SRC_URI'].find("git://") != -1:
-+            recipe = GitRecipe
-+        else:
-+            raise UnsupportedProtocolError
-+
-+        self.recipe = recipe(self.env, self.new_ver, self.interactive, self.workdir,
-+                             self.recipe_dir, self.bb, self.git)
-+
-+    def _buildhistory_init(self):
-+        if self.buildhistory_enabled == False:
-+            return
-+
-+        self.buildhistory = BuildHistory(self.bb, self.pn, self.workdir)
-+        I(" %s: Initial buildhistory for %s ..." % (self.pn, self.machines))
-+        self.buildhistory.init(self.machines)
-+
-     def _unpack_original(self):
-         self.recipe.unpack()
- 
-     def _rename(self):
-         self.recipe.rename()
- 
--        # fetch new environment
--        self._get_env()
-+        self.env = self._get_env(self.pn)
- 
-         self.recipe.update_env(self.env)
- 
-@@ -264,6 +310,15 @@ class Updater(object):
-         for machine in self.machines:
-             I(" %s: compiling for %s ..." % (self.pn, machine))
-             self.recipe.compile(machine)
-+            if self.buildhistory is not None:
-+                self.buildhistory.add()
-+
-+    def _buildhistory_diff(self):
-+        if self.buildhistory_enabled == False:
-+            return
-+
-+        I(" %s: Checking buildhistory ..." % self.pn)
-+        self.buildhistory.diff()
- 
-     def _get_packages_to_upgrade(self, packages=None):
-         if packages is None:
--- 
-1.9.1
-
+[1] http://dri.freedesktop.org/wiki/VC4/
 
