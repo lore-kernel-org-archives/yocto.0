@@ -1,38 +1,46 @@
-Return-Path: <petter@technux.se>
+Return-Path: <sarayu@tanmic.co.in>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B0012E00A75; Tue,  4 Aug 2015 02:16:27 -0700 (PDT)
+	id 308A0E00A75; Tue,  4 Aug 2015 02:31:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [195.74.38.226 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from bin-vsp-out-01.atm.binero.net (vsp-authed02.binero.net
-	[195.74.38.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC943E00A49
-	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 02:16:21 -0700 (PDT)
-X-Halon-ID: 8f7286fc-3a89-11e5-8491-005056917a89
-Authorized-sender: petter@technux.se
-Received: from [192.168.1.82] (unknown [81.229.90.163])
-	by bin-vsp-out-01.atm.binero.net (Halon Mail Gateway) with ESMTPSA;
-	Tue,  4 Aug 2015 11:16:59 +0200 (CEST)
-Message-ID: <55C082ED.6030405@technux.se>
-Date: Tue, 04 Aug 2015 11:16:29 +0200
-From: =?windows-1252?Q?Petter_Mab=E4cker?= <petter@technux.se>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.170 listed in list.dnswl.org]
+Received: from mail-io0-f170.google.com (mail-io0-f170.google.com
+	[209.85.223.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0017DE00A49
+	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 02:31:24 -0700 (PDT)
+Received: by iodd187 with SMTP id d187so11055402iod.2
+	for <yocto@yoctoproject.org>; Tue, 04 Aug 2015 02:31:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:sender:date:message-id:subject:from
+	:to:content-type;
+	bh=cv/lNIgRE+Wvbq1l74EBoN45tPdkIvliBX69GQcOAX8=;
+	b=U32KFqHBR4NKU6/CJRhi01DfFsik1up43wbtHBRQRMX+5qmkOAUog+zn7UIbo0ZFbI
+	BB9VwTp/HYQ8iDuOcaIraAzXBPQOGS4aPZgTNxtySvw4NFtNkyQOYYkN3KC0F0GuW+b+
+	G3erOA7dUyE2IvvMJ/1+6p0nihDOyI8lfklARUUL3GVjAEm8xXQTgisYe5rc0aZO9syg
+	blOKHnbQSN0tabe6TgHj63wovLGlwyHWdCm4HCSMJbgm6v6ogLuBENGZIWR/qHFrrrDb
+	v1eHFAbl11texKcSsHJaRlYmu1T7bNGdZu552nsHu6rgIBqY2DLpQcrRONg+QBK2Tv+P
+	BPOg==
+X-Gm-Message-State: ALoCoQnkn/hedqeEzLOHRsDbYw3wa8S7yfQ1X8QClxOJ5lj0WR+9Z3pJzah/ncPs08UkZYEN9R96
 MIME-Version: 1.0
-To: Javier Martinez Canillas <javier@osg.samsung.com>, 
-	Andrei Gherzan <andrei@gherzan.ro>, ajlennon@dynamicdevices.co.uk
-References: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
-In-Reply-To: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
-Cc: yocto@yoctoproject.org, Mauro Carvalho Chehab <mchehab@osg.samsung.com>,
-	Derek Foreman <derekf@osg.samsung.com>
-Subject: Re: [meta-raspberrypi][PATCH 0/5] Add support for 4.1 kernel with vc4 DRM/KMS driver
+X-Received: by 10.107.134.78 with SMTP id i75mr2645325iod.88.1438680683835;
+	Tue, 04 Aug 2015 02:31:23 -0700 (PDT)
+Sender: sarayu@tanmic.co.in
+Received: by 10.107.186.10 with HTTP; Tue, 4 Aug 2015 02:31:23 -0700 (PDT)
+Date: Tue, 4 Aug 2015 15:01:23 +0530
+X-Google-Sender-Auth: kTHFxyVyxA0pVAFz6jc3HMwpukE
+Message-ID: <CAF5S8SM0xn7SGrdTa6iRyN1SPxZDXy15ctPYrDuu0AFzxw0zcw@mail.gmail.com>
+From: Sarayu Krishna Sivanandam <sarayu@zaikenn.com>
+To: yocto@yoctoproject.org
+Subject: ADD GDB in FSL toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,123 +52,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Aug 2015 09:16:27 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 04 Aug 2015 09:31:31 -0000
+Content-Type: multipart/alternative; boundary=001a113ecbba1b05d5051c78f335
 
-On 07/30/2015 10:34 AM, Javier Martinez Canillas wrote:
-> Hello Andrei,
->
-> This series adds support for Eric Anholt's v4.1 kernel, that has support
-> for the vc4 DRM/KMS driver. Which is the new open source graphics driver
-> stack for the Raspberry Pi to be used instead of the userland driver.
->
-> We are using it in the Tizen port to RPI2 [0] and are trying to push all
-> the patches back to the tizen-distro and meta-raspberrypi OE layers so
-> I'm posting these patches to get your feedback.
->
-> The v4.1 kernel is under heavy development so is a work-in-progress and
-> should not be used in production. That's why a default preference of -1
-> is set and the kernel only is enabled if the "vc4-gfx" feature is added
-> to the DISTRO_FEATURES variable.
->
-> But even when it's still a development kernel, having the recipe in the
-> meta-raspberrypi will allow people to test it. The patches are for:
->
-> Patch 1/5 makes optional to add the kgdboc kernel command line parameter
->
-> Patch 2/5 allows to set the mask_gpu_interrupt0 option in config.txt
->
-> Patch 3/5 changes the partition layout to add more space for boot files
->
-> Patch 4/5 adds a recipe for the 4.1 and some patches to make it stable
->
-> Patch 5/5 switchs the default providers according to the gfx stack used
->
-> One problem I found is that the latest RPI kernels changed the path for
-> the DT overlays after commit 739c586c8757 ("BCM270X_DT: Move the overlays
-> into a subdirectory, adding the README") [1] so the kernel fails to build
-> with the default KERNEL_DEVICETREE. I tried to change get_dts() function
-> logic to take this into account but found that it would had been a more
-> intrusive change and KERNEL_DEVICETREE will have to be changed anyways
-> once the recipes for the other kernels are updated to the latest HEAD so
-> for now I just define the following on local.conf to make it build:
-As long as we bump SRCREV for 3.18 kernel as well, I see no problem. 
-Since then the KERNEL_DEVICETREE default value can look the same in all 
-situations (both 3.18 and 4.x can handle the new structure and we get no 
-compatibility issues) and for older kernels (3.12 and 3.14) it doesn't 
-matter since they don't have native device tree support and will turn 
-device tree support off by default.
+--001a113ecbba1b05d5051c78f335
+Content-Type: text/plain; charset=UTF-8
 
->
-> KERNEL_DEVICETREE = " \
->      bcm2708-rpi-b.dtb \
->      bcm2708-rpi-b-plus.dtb \
->      bcm2709-rpi-2-b.dtb \
->      \
->      overlays/hifiberry-amp-overlay.dtb \
->      overlays/hifiberry-dac-overlay.dtb \
->      overlays/hifiberry-dacplus-overlay.dtb \
->      overlays/hifiberry-digi-overlay.dtb \
->      overlays/iqaudio-dac-overlay.dtb \
->      overlays/iqaudio-dacplus-overlay.dtb \
->      overlays/lirc-rpi-overlay.dtb \
->      overlays/pps-gpio-overlay.dtb \
->      overlays/w1-gpio-overlay.dtb \
->      overlays/w1-gpio-pullup-overlay.dtb \
->      "
->
-> [0]: http://blogs.s-osg.org/tizen-rpi2-now-supporting-3d-acceleration/
-> [1]: https://github.com/raspberrypi/linux/commit/739c586c8757
->
-> Best regards,
-> ---
-> Javier Martinez Canillas
-> Open Source Group
-> Samsung Research America
->
->
-> Derek Foreman (4):
->    rpi-config: Allow to mask GPU irqs
->    sdcard_image-rpi.bbclass: Allocate more space for boot partition
->    linux-raspberrypi: Add a 4.1 linux kernel with vc4 support
->    rpi-default-providers: Switch providers according to used gfx stack
->
-> Mauro Carvalho Chehab (1):
->    linux-raspberrypi.inc: Make kgdboc kernel param optional
->
->   README                                             |  38 +++++--
->   classes/sdcard_image-rpi.bbclass                   |   6 +-
->   conf/machine/include/rpi-default-providers.inc     |   8 +-
->   conf/machine/include/rpi-default-versions.inc      |   2 +-
->   recipes-bsp/bootfiles/rpi-config_git.bb            |   6 ++
->   recipes-kernel/linux/linux-raspberrypi.inc         |   5 +-
->   ..._defconfig-Enable-config-options-for-vc4-.patch |  48 +++++++++
->   ...-ARM-dts-Fix-i2c-for-bcm2709-RPI2-B-board.patch |  85 +++++++++++++++
->   .../0003-drm-vc4-Use-the-fbdev_cma-helpers.patch   | 115 +++++++++++++++++++++
->   .../0004-drm-vc4-Allow-vblank-to-be-disabled.patch |  26 +++++
->   .../0005-drm-vc4-Disable-KMS-operations.patch      |  95 +++++++++++++++++
->   recipes-kernel/linux/linux-raspberrypi_4.1.bb      |  16 +++
->   12 files changed, 433 insertions(+), 17 deletions(-)
->   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0001-ARM-bcm2709_defconfig-Enable-config-options-for-vc4-.patch
->   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0002-ARM-dts-Fix-i2c-for-bcm2709-RPI2-B-board.patch
->   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0003-drm-vc4-Use-the-fbdev_cma-helpers.patch
->   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0004-drm-vc4-Allow-vblank-to-be-disabled.patch
->   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0005-drm-vc4-Disable-KMS-operations.patch
->   create mode 100644 recipes-kernel/linux/linux-raspberrypi_4.1.bb
->
+Hi all ,
 
-Nice and interesting changes, but you really should sync this with Alex 
-Lennon as well since he currently are working with integrating 4.1 into 
-meta-raspberrypi. An other opinion is that you should start by trying to 
-integrate relevant kernel changes both from 
-'git://github.com/anholt/linux.git;protocol=git;branch=vc4-kms-v3d-rpi2' 
-and the integration patches into the currently used upstream 
-(https://github.com/raspberrypi/linux) and I also think it's a good idea 
-to ensure that the new code is added within kernel config options so 
-it's easy to enable/disable the vc4 support. Then at least I think this 
-more easily can be integrated in meta-raspberrypi.
+I am using the QorIQ-SDK-V1.8 SDK for the toolchain generation for my ARM
+board .  I wanted to build gdb along with the toolchain . I got some ideas
+from google to add the gdb-cross in the fsl-toolchain.bb but on doing the
+same it gave me some errors when trying to build .
 
-BR,
-Petter
+Can you please let me know the right method to add gdb in the toolchain ?
 
+Below is the error i got ,
+*ERROR: gdb-cross not found in the base feeds (ls1021atwr
+cortexa7hf-vfp-neon cortexa7hf-vfp armv7ahf-vfp-neon armv7ahf-vfp
+armv6hf-vfp armv5ehf-vfp armv5hf-vfp noarch any all).*
+
+Thanks in advance for your help.
+
+
+Thanks and Regards,
+Sarayu K S
+Tech Lead
+Zaikenn Technologies
+
+--001a113ecbba1b05d5051c78f335
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:comic sa=
+ns ms,sans-serif"><span style=3D"font-size:12.8000001907349px">Hi all ,=C2=
+=A0</span></div><div class=3D"gmail_default" style=3D"font-family:comic san=
+s ms,sans-serif"><span style=3D"font-size:12.8000001907349px"><br></span></=
+div><div class=3D"gmail_default" style=3D"font-family:comic sans ms,sans-se=
+rif"><span style=3D"font-size:12.8000001907349px">I am using the=C2=A0QorIQ=
+-SDK-V1.8 SDK for the toolchain generation for my ARM board .=C2=A0 I wante=
+d to build gdb along with the toolchain . I got some ideas from google to a=
+dd the gdb-cross in the <a href=3D"http://fsl-toolchain.bb">fsl-toolchain.b=
+b</a> but on doing the same it gave me some errors when trying to build .=
+=C2=A0</span><br clear=3D"all"></div><div class=3D"gmail_default" style=3D"=
+font-family:comic sans ms,sans-serif"><span style=3D"font-size:12.800000190=
+7349px"><br></span></div><div class=3D"gmail_default" style=3D"font-family:=
+comic sans ms,sans-serif"><span style=3D"font-size:12.8000001907349px">Can =
+you please let me know the right method to add gdb in the toolchain ?</span=
+></div><div class=3D"gmail_default" style=3D"font-family:comic sans ms,sans=
+-serif"><span style=3D"font-size:12.8000001907349px"><br></span></div><div =
+class=3D"gmail_default" style=3D"font-family:comic sans ms,sans-serif"><spa=
+n style=3D"font-size:12.8000001907349px">Below is the error i got ,=C2=A0</=
+span></div><div class=3D"gmail_default"><font face=3D"comic sans ms, sans-s=
+erif"><span style=3D"font-size:12.8000001907349px"><b>ERROR: gdb-cross not =
+found in the base feeds (ls1021atwr cortexa7hf-vfp-neon cortexa7hf-vfp armv=
+7ahf-vfp-neon armv7ahf-vfp armv6hf-vfp armv5ehf-vfp armv5hf-vfp noarch any =
+all).</b></span></font><br></div><div class=3D"gmail_default" style=3D"font=
+-family:comic sans ms,sans-serif"><span style=3D"font-size:12.8000001907349=
+px"><br></span></div><div class=3D"gmail_default" style=3D"font-family:comi=
+c sans ms,sans-serif"><span style=3D"font-size:12.8000001907349px">Thanks i=
+n advance for your help.</span></div><div class=3D"gmail_default" style=3D"=
+font-family:comic sans ms,sans-serif"><span style=3D"font-size:12.800000190=
+7349px"><br></span></div><div class=3D"gmail_default" style=3D"font-family:=
+comic sans ms,sans-serif"><span style=3D"font-size:12.8000001907349px">=C2=
+=A0</span></div><div><div class=3D"gmail_signature"><div dir=3D"ltr"><div><=
+div dir=3D"ltr"><font face=3D"comic sans ms, sans-serif">Thanks and Regards=
+,</font><div><font face=3D"comic sans ms, sans-serif">Sarayu K S=C2=A0</fon=
+t></div><div><font face=3D"comic sans ms, sans-serif">Tech Lead=C2=A0</font=
+></div><div><font face=3D"comic sans ms, sans-serif">Zaikenn Technologies</=
+font></div></div></div></div></div></div>
+</div>
+
+--001a113ecbba1b05d5051c78f335--
