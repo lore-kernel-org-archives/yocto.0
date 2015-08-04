@@ -1,46 +1,58 @@
-Return-Path: <jbauer@blockwise.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9CE9BE00AB4; Tue,  4 Aug 2015 13:11:41 -0700 (PDT)
+	id 50D44E00AB4; Tue,  4 Aug 2015 13:14:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [173.203.187.70 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 481 seconds by postgrey-1.32 at yocto-www;
-	Tue, 04 Aug 2015 13:11:39 PDT
-Received: from smtp70.iad3a.emailsrvr.com (smtp70.iad3a.emailsrvr.com
-	[173.203.187.70])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29378E00AA2
-	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 13:11:39 -0700 (PDT)
-Received: from smtp25.relay.iad3a.emailsrvr.com (localhost.localdomain
-	[127.0.0.1])
-	by smtp25.relay.iad3a.emailsrvr.com (SMTP Server) with ESMTP id
-	3AB3A1803AF
-	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 16:03:38 -0400 (EDT)
-Received: by smtp25.relay.iad3a.emailsrvr.com (Authenticated sender:
-	jbauer-AT-blockwise.com) with ESMTPSA id F272C180219
-	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 16:03:37 -0400 (EDT)
-X-Sender-Id: jbauer@blockwise.com
-Received: from [192.168.1.126] (wsip-68-14-222-86.ph.ph.cox.net [68.14.222.86])
-	(using TLSv1 with cipher AES256-SHA) by 0.0.0.0:465 (trex/5.4.2);
-	Tue, 04 Aug 2015 20:03:38 GMT
-From: "Justin Bauer" <jbauer@blockwise.com>
-To: yocto@yoctoproject.org
-Date: Tue, 04 Aug 2015 20:03:41 +0000
-Message-Id: <em56b72e44-f32f-451c-9677-11ded6e322e9@jbauer-pc>
-User-Agent: eM_Client/6.0.22344.0
-Mime-Version: 1.0
-Subject: Qt SDK Static Build
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f174.google.com (mail-io0-f174.google.com
+	[209.85.223.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4E4CE00AA2
+	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 13:14:29 -0700 (PDT)
+Received: by iodd187 with SMTP id d187so28722172iod.2
+	for <yocto@yoctoproject.org>; Tue, 04 Aug 2015 13:14:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=cf4yXrJxExys014y6rgVF8MsYnTgifu6X2YDWLrFXyE=;
+	b=pvaIRMbdWS5a3+TRoJNlxY6INMIFYKkz/M1Kze8RZ+SmwQMGUt0QA9dZOhBeR9sqy+
+	oLv4Kg4Ft6Zxg3yE1qeVeUgakMqLsEvR1VrO6eQwbq/7oJKyIyY8QtSw5/igRjfYEV8G
+	hTUvfFf1q6u1wSY/EKt4qdtQaJ1hzLW5xNInzoTImYPtJnvDBeulXIo8j2riRzK3ZAkg
+	fMCbf4FM/jN/PXULsQgzoIkCjYVB9lrD5gCcFO1iK+wdY7wkjOB8RMOIpA7Skdl1AJ9X
+	a9LlfjUosec/2imsgijFKM97n/2F6AMiJRfvouD5P9X0YRMHdiBsnmtj8JCOwQe6cXrW
+	gV9g==
+X-Received: by 10.107.168.145 with SMTP id e17mr5923203ioj.112.1438719269377; 
+	Tue, 04 Aug 2015 13:14:29 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.107.38.79 with HTTP; Tue, 4 Aug 2015 13:13:59 -0700 (PDT)
+In-Reply-To: <CAF5S8SMdfH8rNHznXCLJ_yt7PDGnKDujiu9=dpZce8eMzH4DrA@mail.gmail.com>
+References: <CAF5S8SM0xn7SGrdTa6iRyN1SPxZDXy15ctPYrDuu0AFzxw0zcw@mail.gmail.com>
+	<55C0A75F.1000701@mlbassoc.com>
+	<CAF5S8SMdfH8rNHznXCLJ_yt7PDGnKDujiu9=dpZce8eMzH4DrA@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 4 Aug 2015 13:13:59 -0700
+Message-ID: <CAMKF1sq8GDP9fbZyyN7cJzM4ByMvd6p4xuKY-tyOd-VFe8=CLg@mail.gmail.com>
+To: Sarayu Krishna Sivanandam <sarayu@zaikenn.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Gary Thomas <gary@mlbassoc.com>
+Subject: Re: ADD GDB in FSL toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Justin Bauer <jbauer@blockwise.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -49,99 +61,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Aug 2015 20:11:41 -0000
-Content-Type: multipart/alternative;
-	boundary="------=_MB975910B9-67E2-45B0-9F61-E60233C9114B"
+X-List-Received-Date: Tue, 04 Aug 2015 20:14:33 -0000
+Content-Type: text/plain; charset=UTF-8
 
---------=_MB975910B9-67E2-45B0-9F61-E60233C9114B
-Content-Type: text/plain; format=flowed; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+On Tue, Aug 4, 2015 at 5:42 AM, Sarayu Krishna Sivanandam
+<sarayu@zaikenn.com> wrote:
+> hi Gary ,
+>
+> Thanks for the quick response. I still see the below error .
+>
+> NOTE: Resolving any missing task queue dependencies
+> ERROR: Nothing RPROVIDES 'gdb-cross-arm'
+> NOTE: Runtime target 'gdb-cross-arm' is unbuildable, removing...
+> Missing or unbuildable dependency chain was: ['gdb-cross-arm']
+> ERROR: Required build target 'fsl-toolchain' has no buildable providers.
+> Missing or unbuildable dependency chain was: ['fsl-toolchain',
+> 'gdb-cross-arm']
 
-Hello,
+this is not a target task. Its a host-x-target tool
+you should add db-cross-canadian-${TRANSLATED_TARGET_ARCH}  to
+TOOLCHAIN_HOST_TASK
 
-I'm using Yocto 1.8 Fido and trying to build Qt SDK statically so that=20
-my Qt application can be deployed as a single file. I've added
-SDKIMAGE_FEATURES_append =3D " staticdev-pkgs'
-to my local.conf before bitbaking the qt5 toolchain with no luck in=20
-finding the static libraries
-$ bitbake meta-toolchain-qt5
+if you want gdb on target then you would add 'gdb' to TOOLCHAIN_TARGET_TASK
 
-I'm using an imx6 processor and bsp similar to the Wandboard. I've tried=
-=20
-configuring Qt manually by downloading the Qt source files and using the=
-=20
-Yocto generated SDK, but ./configure fails due to the missing patches=20
-required to build it. Is there something I am missing?
+> -----
+>
+> Below is how the change ,
+> TOOLCHAIN_TARGET_TASK += " \
+>     glib-2.0 \
+>     glib-2.0-dev \
+>     dtc-staticdev \
+>     libgomp \
+>     libgomp-dev \
+>     libgomp-staticdev \
+>     libstdc++-staticdev \
+>     ${TCLIBC}-staticdev \
+>     util-linux-dev \
+>     gdb-cross-arm \
+> "
+>
+>
+> Thanks and Regards,
+> Sarayu K S
+> Tech Lead
+> Zaikenn Technologies
+>
+> On Tue, Aug 4, 2015 at 5:21 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+>>
+>> On 2015-08-04 03:31, Sarayu Krishna Sivanandam wrote:
+>>>
+>>> Hi all ,
+>>>
+>>> I am using the QorIQ-SDK-V1.8 SDK for the toolchain generation for my ARM
+>>> board .  I wanted to build gdb along with the toolchain . I got some ideas
+>>> from google to add the
+>>> gdb-cross in the fsl-toolchain.bb <http://fsl-toolchain.bb> but on doing
+>>> the same it gave me some errors when trying to build .
+>>>
+>>> Can you please let me know the right method to add gdb in the toolchain ?
+>>>
+>>> Below is the error i got ,
+>>> *ERROR: gdb-cross not found in the base feeds (ls1021atwr
+>>> cortexa7hf-vfp-neon cortexa7hf-vfp armv7ahf-vfp-neon armv7ahf-vfp
+>>> armv6hf-vfp armv5ehf-vfp armv5hf-vfp noarch any all).*
+>>
+>>
+>> Use gdb-cross-arm
+>>
+>> --
+>> ------------------------------------------------------------
+>> Gary Thomas                 |  Consulting for the
+>> MLB Associates              |    Embedded world
+>> ------------------------------------------------------------
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-Thanks
-
---------=_MB975910B9-67E2-45B0-9F61-E60233C9114B
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<HTML><HEAD>
-<STYLE id=3DeMClientCss>BLOCKQUOTE.cite {
-	PADDING-LEFT: 10px; MARGIN-LEFT: 5px; BORDER-LEFT: #cccccc 1px solid; PADD=
-ING-RIGHT: 0px; MARGIN-RIGHT: 0px
-}
-BLOCKQUOTE.cite2 {
-	PADDING-TOP: 0px; PADDING-LEFT: 10px; MARGIN-LEFT: 5px; BORDER-LEFT: #cccc=
-cc 1px solid; MARGIN-TOP: 3px; PADDING-RIGHT: 0px; MARGIN-RIGHT: 0px
-}
-.plain PRE {
-	FONT-SIZE: 100%; FONT-FAMILY: monospace; WHITE-SPACE: pre-wrap; FONT-WEIGH=
-T: normal; FONT-STYLE: normal
-}
-.plain TT {
-	FONT-SIZE: 100%; FONT-FAMILY: monospace; WHITE-SPACE: pre-wrap; FONT-WEIGH=
-T: normal; FONT-STYLE: normal
-}
-A IMG {
-	BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px
-}
-#xb2eb7dea90964d61adc40136033ed562 {
-	FONT-SIZE: 12pt; FONT-FAMILY: Tahoma
-}
-.plain PRE {
-	FONT-SIZE: 12pt; FONT-FAMILY: Tahoma
-}
-.plain TT {
-	FONT-SIZE: 12pt; FONT-FAMILY: Tahoma
-}
-BODY {
-	FONT-SIZE: 12pt; FONT-FAMILY: Tahoma
-}
-</STYLE>
-</HEAD>
-<BODY>
-<DIV>Hello,</DIV>
-<DIV>&nbsp;</DIV>
-<DIV>I'm using Yocto 1.8 Fido and trying to&nbsp;build Qt SDK statically=
- so that my Qt application can be deployed as a single file. I've added =
-</DIV>
-<DIV><PRE style=3D"BORDER-TOP: rgb(221,221,221) 1px solid; BORDER-RIGHT:=
- rgb(221,221,221) 1px solid; WORD-SPACING: 0px; BORDER-BOTTOM: rgb(221,221,=
-221) 1px solid; TEXT-TRANSFORM: none; COLOR: black; PADDING-BOTTOM: 1em;=
- PADDING-TOP: 1em; FONT: 14px/1.3em monospace, Courier; PADDING-LEFT: 1em;=
- BORDER-LEFT: rgb(221,221,221) 1px solid; WIDOWS: 1; LETTER-SPACING: normal=
-; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(249,249,249); TEXT-INDENT: 0px;=
- -webkit-text-stroke-width: 0px"><SPAN id=3Dxb2eb7dea90964d61adc40136033ed5=
-62>SDKIMAGE_FEATURES_append =3D " staticdev-pkgs' </SPAN></PRE></DIV>
-<DIV>to my local.conf before bitbaking the qt5 toolchain with no luck in=
- finding the static libraries&nbsp;<PRE style=3D"BORDER-TOP: rgb(221,221,22=
-1) 1px solid; BORDER-RIGHT: rgb(221,221,221) 1px solid; WORD-SPACING: 0px;=
- BORDER-BOTTOM: rgb(221,221,221) 1px solid; TEXT-TRANSFORM: none; COLOR:=
- black; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; FONT: 14px/1.3em monospace,=
- Courier; PADDING-LEFT: 1em; BORDER-LEFT: rgb(221,221,221) 1px solid; WIDOW=
-S: 1; LETTER-SPACING: normal; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(249=
-,249,249); TEXT-INDENT: 0px; -webkit-text-stroke-width: 0px">$ bitbake meta=
--toolchain-qt5</PRE></DIV>
-<DIV>&nbsp;</DIV>
-<DIV>I'm using an imx6 processor and bsp similar to the Wandboard. I've =
-tried configuring Qt manually by downloading the Qt source files and using=
- the Yocto generated SDK, but&nbsp;./configure fails due to the missing =
-patches required to build it. Is there something I am missing?</DIV>
-<DIV>&nbsp;</DIV>
-<DIV>Thanks</DIV></BODY></HTML>
-
---------=_MB975910B9-67E2-45B0-9F61-E60233C9114B--
