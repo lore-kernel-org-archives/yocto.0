@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65D53E00AB4; Tue,  4 Aug 2015 12:01:39 -0700 (PDT)
+	id 0AE76E00AA5; Tue,  4 Aug 2015 12:12:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.49 listed in list.dnswl.org]
+	*      [209.85.220.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,43 +19,41 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f49.google.com (mail-pa0-f49.google.com
-	[209.85.220.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62499E00B2E
-	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 12:01:25 -0700 (PDT)
-Received: by pacgq8 with SMTP id gq8so15005375pac.3
-	for <yocto@yoctoproject.org>; Tue, 04 Aug 2015 12:01:25 -0700 (PDT)
+Received: from mail-pa0-f47.google.com (mail-pa0-f47.google.com
+	[209.85.220.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE04BE009CC
+	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 12:12:13 -0700 (PDT)
+Received: by pacgq8 with SMTP id gq8so15190561pac.3
+	for <yocto@yoctoproject.org>; Tue, 04 Aug 2015 12:12:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:mime-version:content-type:from:in-reply-to:date:cc
 	:message-id:references:to;
-	bh=/eToDhGKc9L0PivwBuTqQFuxm7NVnekosDmMAEBxpmw=;
-	b=Ost+fULpy68eDH5xN7phbl6FLSHQ26JRArknLm4oo3oolXwPBbDmoYumgUZVyTYXGf
-	vMGdA1X/osOQ/3cvhuv8QR2GioJZ8/4x8DSjQYMtx7peDxqt4TvEp6xUnDYNzYUA+Nc+
-	aVxeQkk+UzbbrtefH2ymBp2NXGm5LNClNySA5j/fKBv1nnj+G+8ykCUKUoUieDvtoBeB
-	UdhYDX8k0YgJFudlT+7KMAofaGozxb7/rQRwfhrF7ovo2xfotT4MtryLyVXxbkp3LB3S
-	Rcrkgk/WdTjPWwa6/cp6r7F/VT2t6ozt6+bcOwkzzC+MoS1mSOkDM5m08BGB4erkB24E
-	Mw9A==
-X-Received: by 10.66.116.81 with SMTP id ju17mr10845447pab.35.1438714885550;
-	Tue, 04 Aug 2015 12:01:25 -0700 (PDT)
+	bh=VIVVmCA2MNb8P6ks7b5MgPY6CnhMvhT5MwjFryta+Ok=;
+	b=XUAwdwJgQHMZvzBpOMx7qABVMfei+AaXpDQeKAO1UA46DXXwkrl4IWLqwH+hqge5Fx
+	yIyivVUcWbcPrTuUptHFlRlaTHdrYZfwRcZL/B1WyQDPa+rZueiGcmklGimcJS6rMIuy
+	KOsm+rCfyoGF7WISHZyqXnaSCqq/Bl6z5StiOB5nMKxuUvxGZ0+1GrEws91V/XrRxQUt
+	0TCDpyHx5K2NFvC8LvmFLmYNUe5ZxbjHOEQBConcdbP61Y+Ta2JhhM2El62w8XsfZWun
+	VwhWsLto5kN3kqKjS3oCEpO9pRKHZya9OAlDirdxWv8BDrTZalN41HMbxG3SLoFVdupZ
+	cZ1g==
+X-Received: by 10.68.231.133 with SMTP id tg5mr11021527pbc.138.1438715532990; 
+	Tue, 04 Aug 2015 12:12:12 -0700 (PDT)
 Received: from ?IPv6:2601:646:8601:4580:b519:4241:e041:610a?
 	([2601:646:8601:4580:b519:4241:e041:610a])
 	by smtp.gmail.com with ESMTPSA id
-	je11sm126165pbd.77.2015.08.04.12.01.23
+	ms16sm174622pbc.11.2015.08.04.12.12.12
 	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 04 Aug 2015 12:01:24 -0700 (PDT)
+	Tue, 04 Aug 2015 12:12:12 -0700 (PDT)
 Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2104\))
 X-Pgp-Agent: GPGMail 2.5
 From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <1438245251-20437-6-git-send-email-javier@osg.samsung.com>
-Date: Tue, 4 Aug 2015 12:01:16 -0700
-Message-Id: <4731B312-4D73-4951-8E73-1579D8C54BD5@gmail.com>
-References: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
-	<1438245251-20437-6-git-send-email-javier@osg.samsung.com>
-To: Javier Martinez Canillas <javier@osg.samsung.com>
+In-Reply-To: <CAPzboydownzwbUC8m6wt7fSLiRTsuM2u0a5YgvXnLn2r0Qnkyw@mail.gmail.com>
+Date: Tue, 4 Aug 2015 12:12:07 -0700
+Message-Id: <A141608C-241E-4F20-AE60-39A1D4840B36@gmail.com>
+References: <CAPzboydownzwbUC8m6wt7fSLiRTsuM2u0a5YgvXnLn2r0Qnkyw@mail.gmail.com>
+To: Adam Rossi <ac.rossi@gmail.com>
 X-Mailer: Apple Mail (2.2104)
-Cc: yocto@yoctoproject.org, Mauro Carvalho Chehab <mchehab@osg.samsung.com>,
-	Derek Foreman <derekf@osg.samsung.com>
-Subject: Re: [meta-raspberrypi][PATCH 5/5] rpi-default-providers: Switch providers according to used gfx stack
+Cc: yocto@yoctoproject.org
+Subject: Re: Making a derivative BSP layer - where did I go wrong?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,87 +65,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Aug 2015 19:01:39 -0000
-X-Groupsio-MsgNum: 25867
+X-List-Received-Date: Tue, 04 Aug 2015 19:12:18 -0000
+X-Groupsio-MsgNum: 25868
 Content-Type: multipart/signed;
-	boundary="Apple-Mail=_84090E3B-726B-4293-A503-6EC2A7642DC1";
+	boundary="Apple-Mail=_4777BA3E-D74A-4CDF-8772-C651A132010A";
 	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---Apple-Mail=_84090E3B-726B-4293-A503-6EC2A7642DC1
+--Apple-Mail=_4777BA3E-D74A-4CDF-8772-C651A132010A
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
 	charset=utf-8
 
 
-> On Jul 30, 2015, at 1:34 AM, Javier Martinez Canillas =
-<javier@osg.samsung.com> wrote:
+> On Aug 4, 2015, at 7:47 AM, Adam Rossi <ac.rossi@gmail.com> wrote:
 >=20
-> From: Derek Foreman <derekf@osg.samsung.com>
+> Howdy folks. I am having trouble making a derivative BSP layer and am
+> asking for your help in determining what I am doing wrong.
 >=20
-> The Raspberry Pi boards can use one of two graphics stacks: The =
-"userland"
-> user-space driver or the VC4 drm/kms kernel driver. This patch allows =
-the
-> user to choose if the VC4 driver has to be used instead and set the =
-right
-> preferred providers for that case.
+> I am developing a Yocto distro for a beaglebone-based prototype.  I
+> made a few small changes directly to the meta-yocto-bsp layer and
+> bitbaked the core-image-sato image, and everything worked great. The
+> tweaks I made included:
 >=20
-> Signed-off-by: Derek Foreman <derekf@osg.samsung.com>
-> [javier: Extend commit msg and made conditional instead removing =
-userland]
-> Signed-off-by: Javier Martinez Canillas <javier@osg.samsung.com>
+> * Edited meta-yocto-bsp/conf/machine/beaglebone.conf to include
+> additional machine features:
 >=20
-> ---
+>     * MACHINE_FEATURES =3D "usbgadget usbhost vfat alsa touchscreen"
 >=20
-> conf/machine/include/rpi-default-providers.inc | 8 ++++----
-> conf/machine/include/rpi-default-versions.inc  | 2 +-
-> 2 files changed, 5 insertions(+), 5 deletions(-)
+> * Edited meta-yocto-bsp/recipes-kernel/linux/linux-yocto_3.14.bbappend
+> to include a cfg file with the following entries:
 >=20
-> diff --git a/conf/machine/include/rpi-default-providers.inc =
-b/conf/machine/include/rpi-default-providers.inc
-> index ee3a3acce7bd..233f177bd16e 100644
-> --- a/conf/machine/include/rpi-default-providers.inc
-> +++ b/conf/machine/include/rpi-default-providers.inc
-> @@ -3,8 +3,8 @@
-> PREFERRED_PROVIDER_virtual/kernel =3D "linux-raspberrypi"
-> PREFERRED_PROVIDER_u-boot =3D "u-boot-rpi"
-> PREFERRED_PROVIDER_virtual/xserver =3D "xserver-xorg"
-> -PREFERRED_PROVIDER_virtual/egl ?=3D "userland"
-> -PREFERRED_PROVIDER_virtual/libgles2 ?=3D "userland"
-> -PREFERRED_PROVIDER_virtual/libgl ?=3D "mesa-gl"
-> -PREFERRED_PROVIDER_virtual/mesa ?=3D "mesa-gl"
-> +PREFERRED_PROVIDER_virtual/egl ?=3D =
-"${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'userland', =
-d)}"
-> +PREFERRED_PROVIDER_virtual/libgles2 ?=3D =
-"${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'userland', =
-d)}"
-> +PREFERRED_PROVIDER_virtual/libgl ?=3D =
-"${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'mesa-gl', =
-d)}"
-> +PREFERRED_PROVIDER_virtual/mesa ?=3D =
-"${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'mesa-gl', =
-d)}=E2=80=9D
-
-who defines the distro feature ?
+>      * CONFIG_HID_MULTITOUCH=3Dy
+>        CONFIG_INPUT_MOUSEDEV_SCREEN_Y=3D600
+>        CONFIG_INPUT_MOUSEDEV_SCREEN_X=3D1024
 
 
-> PREFERRED_PROVIDER_jpeg =3D "jpeg"
-> diff --git a/conf/machine/include/rpi-default-versions.inc =
-b/conf/machine/include/rpi-default-versions.inc
-> index bcf78281b6ff..c07ecac5924b 100644
-> --- a/conf/machine/include/rpi-default-versions.inc
-> +++ b/conf/machine/include/rpi-default-versions.inc
-> @@ -1,3 +1,3 @@
-> # RaspberryPi BSP default versions
+you could do this in another bbappend in your own layer.
+
+
 >=20
-> -PREFERRED_VERSION_linux-raspberrypi ?=3D "3.18.%"
-> +PREFERRED_VERSION_linux-raspberrypi ?=3D =
-"${@bb.utils.contains("DISTRO_FEATURES", "vc4-gfx", "4.1.%", "3.18.%", =
-d)}"
-> --
-> 2.4.3
+> While this works perfectly, it does not feel like a clean solution to
+> be mucking with the meta-yocto-bsp layer directly. So I created my own
+> meta-custom BSP layer using the yocto-bsp script to hold these
+> changes. My bsp-layer has  the following attributes:
 >=20
+> *  meta-custom/conf/machine/custom.conf contains the following:
+>=20
+>       * require =
+/home/me/poky/meta-yocto-bsp/conf/machine/beaglebone.conf
+>=20
+>          MACHINEOVERRIDES =3D =E2=80=9Cbeaglebone:custom"
+
+may be you should append to it instead of overwriting
+
+MACHINEOVERRIDES =3D. =E2=80=9Cbeaglebone:=E2=80=9D
+
+>=20
+>          MACHINE_FEATURES =3D "usbgadget usbhost vfat alsa =
+touchscreen"
+>=20
+> *  meta-custom/recipes-kernel/linux/linux-yocto_3.14.bbappend contains
+> a single line    SRC_URI +=3D to the cfg file mentioned above
+>=20
+> When I bitbake the new layer with the new custom machine and the same
+> image target, I get file outputs which look very similar to the edited
+> meta-yocto-bsp, with the exception of the zImage, which is much
+> smaller and will not boot.
+
+linux-yocto has its own list of compatible machines. see
+=
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-yocto/tree/meta-yocto-bsp/r=
+ecipes-kernel/linux/linux-yocto_3.14.bbappend
+
+you might need to add
+
+KBRANCH_custom =3D "standard/beaglebone"
+SRCREV_machine_custom ?=3D =E2=80=9Cdbe5b52e93ff114b2c0f5da6f6af91f52c18f2=
+b8"
+COMPATIBLE_MACHINE_custom =3D =E2=80=9Ccustom"
+
+
+>=20
+> Perhaps I have an improper understanding of how layers build upon each
+> other? I had though that by including meta-yocto-bsp and meta-custom,
+> and specifying my custom machine in the local.conf file, it would
+> build the exact same image as my tweaked meta-yocto-bsp.
+>=20
+> Your guidance as to my mistake or a pointer to an example of a
+> derivative bsp-layer would be most appreciated.
 > --
 > _______________________________________________
 > yocto mailing list
@@ -155,7 +160,7 @@ d)}"
 > https://lists.yoctoproject.org/listinfo/yocto
 
 
---Apple-Mail=_84090E3B-726B-4293-A503-6EC2A7642DC1
+--Apple-Mail=_4777BA3E-D74A-4CDF-8772-C651A132010A
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment;
 	filename=signature.asc
@@ -166,9 +171,9 @@ Content-Description: Message signed with OpenPGP using GPGMail
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iEYEARECAAYFAlXBDAMACgkQuwUzVZGdMxSxawCggXVdpQzU4KrX2Brcj+DgfQ5j
-2gUAnRUD2DqeDY1W22w5io5jjPTOfi8B
-=8KkF
+iEYEARECAAYFAlXBDosACgkQuwUzVZGdMxQavACeOXgYOfT5iGVAewsRXrcrEr2F
+fUsAn1e1Jv/XA0A1/6zeD7byXQWhQLUO
+=TC59
 -----END PGP SIGNATURE-----
 
---Apple-Mail=_84090E3B-726B-4293-A503-6EC2A7642DC1--
+--Apple-Mail=_4777BA3E-D74A-4CDF-8772-C651A132010A--
