@@ -1,49 +1,37 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <javier@osg.samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A45C8E00A92; Tue,  4 Aug 2015 08:12:55 -0700 (PDT)
+	id 15D6DE00A92; Tue,  4 Aug 2015 09:07:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [54.187.51.154 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7F64E009C5
-	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 08:12:52 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by orsmga101.jf.intel.com with ESMTP; 04 Aug 2015 08:12:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,609,1432623600"; 
-	d="scan'208,217";a="776582472"
-Received: from orsmsx110.amr.corp.intel.com ([10.22.240.8])
-	by fmsmga002.fm.intel.com with ESMTP; 04 Aug 2015 08:12:29 -0700
-Received: from orsmsx160.amr.corp.intel.com (10.22.226.43) by
-	ORSMSX110.amr.corp.intel.com (10.22.240.8) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Tue, 4 Aug 2015 08:12:29 -0700
-Received: from fmsmsx156.amr.corp.intel.com (10.18.116.74) by
-	ORSMSX160.amr.corp.intel.com (10.22.226.43) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Tue, 4 Aug 2015 08:12:28 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.107]) by
-	fmsmsx156.amr.corp.intel.com ([169.254.13.124]) with mapi id
-	14.03.0224.002; Tue, 4 Aug 2015 08:12:28 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Reminder: Yocto Project Technical Team Meeting - Tuesday, July
-	7, 2015 8:00 AM US Pacific Time
-Thread-Index: AdDOx/ad4Y1ZUEsKTOWz0RjmpzpNrg==
-Date: Tue, 4 Aug 2015 15:12:27 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E555ED2ED@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.108]
+Received: from lists.s-osg.org (lists.s-osg.org [54.187.51.154])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F779E009C5
+	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 09:07:41 -0700 (PDT)
+Received: from [192.168.1.131] (199.50.23.95.dynamic.jazztel.es [95.23.50.199])
+	by lists.s-osg.org (Postfix) with ESMTPSA id 5444B46328;
+	Tue,  4 Aug 2015 09:07:39 -0700 (PDT)
+To: =?UTF-8?Q?Petter_Mab=c3=a4cker?= <petter@technux.se>,
+	Andrei Gherzan <andrei@gherzan.ro>, ajlennon@dynamicdevices.co.uk
+References: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
+	<55C082ED.6030405@technux.se>
+From: Javier Martinez Canillas <javier@osg.samsung.com>
+X-Enigmail-Draft-Status: N1110
+Message-ID: <55C0E347.9030508@osg.samsung.com>
+Date: Tue, 4 Aug 2015 18:07:35 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.0.1
 MIME-Version: 1.0
-Subject: Reminder: Yocto Project Technical Team Meeting - Tuesday, July 7, 2015 8:00 AM US Pacific Time
+In-Reply-To: <55C082ED.6030405@technux.se>
+Cc: yocto@yoctoproject.org, Mauro Carvalho Chehab <mchehab@osg.samsung.com>,
+	Derek Foreman <derekf@osg.samsung.com>
+Subject: Re: [meta-raspberrypi][PATCH 0/5] Add support for 4.1 kernel with vc4 DRM/KMS driver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,283 +43,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Aug 2015 15:12:55 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E555ED2EDfmsmsx111amrcor_"
+X-List-Received-Date: Tue, 04 Aug 2015 16:07:44 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E555ED2EDfmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hello Petter,
 
-Attendees: Stephen, Brian, Belen, Michael, Dave L., Sona,
+Thanks a lot for your feedback.
 
-
-
-* Opens collection - 5 min (Stephen)
-
-* Yocto Project status - 5 min (Stephen/team)
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.9_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.9_Features
-
-* Opens - 10 min
-
-* Team Sharing - 10 min
-
-Michael - HW Refresh should be in next week.   He will be a Linux Con Seatt=
-le the end of the month.
-
-Dave L. - What is the status of qt5?  - No sure check the mailing list.
-
-Dave L. - Who should I contact for ptest - Musat, George L george.l.musat@i=
-ntel.com<mailto:george.l.musat@intel.com> is the QA contact.  Eggleton, Pau=
-l paul.eggleton@intel.com<mailto:paul.eggleton@intel.com> is a general expe=
-rt on such things.
-
-
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E555ED2EDfmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 08/04/2015 11:16 AM, Petter Mabäcker wrote:
+> On 07/30/2015 10:34 AM, Javier Martinez Canillas wrote:
+>> Hello Andrei,
+>>
+>> This series adds support for Eric Anholt's v4.1 kernel, that has support
+>> for the vc4 DRM/KMS driver. Which is the new open source graphics driver
+>> stack for the Raspberry Pi to be used instead of the userland driver.
+>>
+>> We are using it in the Tizen port to RPI2 [0] and are trying to push all
+>> the patches back to the tizen-distro and meta-raspberrypi OE layers so
+>> I'm posting these patches to get your feedback.
+>>
+>> The v4.1 kernel is under heavy development so is a work-in-progress and
+>> should not be used in production. That's why a default preference of -1
+>> is set and the kernel only is enabled if the "vc4-gfx" feature is added
+>> to the DISTRO_FEATURES variable.
+>>
+>> But even when it's still a development kernel, having the recipe in the
+>> meta-raspberrypi will allow people to test it. The patches are for:
+>>
+>> Patch 1/5 makes optional to add the kgdboc kernel command line parameter
+>>
+>> Patch 2/5 allows to set the mask_gpu_interrupt0 option in config.txt
+>>
+>> Patch 3/5 changes the partition layout to add more space for boot files
+>>
+>> Patch 4/5 adds a recipe for the 4.1 and some patches to make it stable
+>>
+>> Patch 5/5 switchs the default providers according to the gfx stack used
+>>
+>> One problem I found is that the latest RPI kernels changed the path for
+>> the DT overlays after commit 739c586c8757 ("BCM270X_DT: Move the overlays
+>> into a subdirectory, adding the README") [1] so the kernel fails to build
+>> with the default KERNEL_DEVICETREE. I tried to change get_dts() function
+>> logic to take this into account but found that it would had been a more
+>> intrusive change and KERNEL_DEVICETREE will have to be changed anyways
+>> once the recipes for the other kernels are updated to the latest HEAD so
+>> for now I just define the following on local.conf to make it build:
+> As long as we bump SRCREV for 3.18 kernel as well, I see no problem. Since then the KERNEL_DEVICETREE default value can look the same in all situations (both 3.18 and 4.x can handle the new structure and we get no compatibility issues) and for older kernels (3.12 and 3.14) it doesn't matter since they don't have native device tree support and will turn device tree support off by default.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";
-	mso-fareast-language:ZH-CN;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Attendees: Stephen, Brian, Belen, Michael, Dave L.=
-, Sona,
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Project_v1.9_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-9_Status</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.9_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.9_Features">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Features</a>
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens - 10 min
-<o:p></o:p></span></p>
-<div style=3D"border:none;border-bottom:solid windowtext 1.0pt;padding:0in =
-0in 1.0pt 0in">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Team Sharing - 10 min</span><span style=3D"font-=
-size:10.5pt;font-family:Consolas;mso-fareast-language:EN-US"><o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:10.5=
-pt;font-family:Consolas;mso-fareast-language:EN-US">Michael &#8211; HW Refr=
-esh should be in next week.&nbsp;&nbsp; He will be a Linux Con Seattle the =
-end of the month.<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:10.5=
-pt;font-family:Consolas;mso-fareast-language:EN-US">Dave L. &#8211; What is=
- the status of qt5?&nbsp; - No sure check the mailing list.<o:p></o:p></spa=
-n></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:10.5=
-pt;font-family:Consolas;mso-fareast-language:EN-US">Dave L. &#8211; Who sho=
-uld I contact for ptest - Musat, George L
-<a href=3D"mailto:george.l.musat@intel.com">george.l.musat@intel.com</a> is=
- the QA contact.&nbsp; Eggleton, Paul
-<a href=3D"mailto:paul.eggleton@intel.com">paul.eggleton@intel.com</a> is a=
- general expert on such things.<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:10.5=
-pt;font-family:Consolas;mso-fareast-language:EN-US"><o:p>&nbsp;</o:p></span=
-></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt">Thanks,<o:p></o:p></p>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E555ED2EDfmsmsx111amrcor_--
+Yes, that's what I meant when I said that the problem will be solved once
+all the recipes for DT enabled kernels are updated to the latest branch
+HEAD. But I didn't want to do that in this series since I wanted the
+changes to be as less intrusive as possible.
+ 
+>>
+>> KERNEL_DEVICETREE = " \
+>>      bcm2708-rpi-b.dtb \
+>>      bcm2708-rpi-b-plus.dtb \
+>>      bcm2709-rpi-2-b.dtb \
+>>      \
+>>      overlays/hifiberry-amp-overlay.dtb \
+>>      overlays/hifiberry-dac-overlay.dtb \
+>>      overlays/hifiberry-dacplus-overlay.dtb \
+>>      overlays/hifiberry-digi-overlay.dtb \
+>>      overlays/iqaudio-dac-overlay.dtb \
+>>      overlays/iqaudio-dacplus-overlay.dtb \
+>>      overlays/lirc-rpi-overlay.dtb \
+>>      overlays/pps-gpio-overlay.dtb \
+>>      overlays/w1-gpio-overlay.dtb \
+>>      overlays/w1-gpio-pullup-overlay.dtb \
+>>      "
+>>
+>> [0]: http://blogs.s-osg.org/tizen-rpi2-now-supporting-3d-acceleration/
+>> [1]: https://github.com/raspberrypi/linux/commit/739c586c8757
+>>
+>> Best regards,
+>> ---
+>> Javier Martinez Canillas
+>> Open Source Group
+>> Samsung Research America
+>>
+>>
+>> Derek Foreman (4):
+>>    rpi-config: Allow to mask GPU irqs
+>>    sdcard_image-rpi.bbclass: Allocate more space for boot partition
+>>    linux-raspberrypi: Add a 4.1 linux kernel with vc4 support
+>>    rpi-default-providers: Switch providers according to used gfx stack
+>>
+>> Mauro Carvalho Chehab (1):
+>>    linux-raspberrypi.inc: Make kgdboc kernel param optional
+>>
+>>   README                                             |  38 +++++--
+>>   classes/sdcard_image-rpi.bbclass                   |   6 +-
+>>   conf/machine/include/rpi-default-providers.inc     |   8 +-
+>>   conf/machine/include/rpi-default-versions.inc      |   2 +-
+>>   recipes-bsp/bootfiles/rpi-config_git.bb            |   6 ++
+>>   recipes-kernel/linux/linux-raspberrypi.inc         |   5 +-
+>>   ..._defconfig-Enable-config-options-for-vc4-.patch |  48 +++++++++
+>>   ...-ARM-dts-Fix-i2c-for-bcm2709-RPI2-B-board.patch |  85 +++++++++++++++
+>>   .../0003-drm-vc4-Use-the-fbdev_cma-helpers.patch   | 115 +++++++++++++++++++++
+>>   .../0004-drm-vc4-Allow-vblank-to-be-disabled.patch |  26 +++++
+>>   .../0005-drm-vc4-Disable-KMS-operations.patch      |  95 +++++++++++++++++
+>>   recipes-kernel/linux/linux-raspberrypi_4.1.bb      |  16 +++
+>>   12 files changed, 433 insertions(+), 17 deletions(-)
+>>   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0001-ARM-bcm2709_defconfig-Enable-config-options-for-vc4-.patch
+>>   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0002-ARM-dts-Fix-i2c-for-bcm2709-RPI2-B-board.patch
+>>   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0003-drm-vc4-Use-the-fbdev_cma-helpers.patch
+>>   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0004-drm-vc4-Allow-vblank-to-be-disabled.patch
+>>   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0005-drm-vc4-Disable-KMS-operations.patch
+>>   create mode 100644 recipes-kernel/linux/linux-raspberrypi_4.1.bb
+>>
+> 
+> Nice and interesting changes, but you really should sync this with Alex Lennon as well since he currently are working with integrating 4.1 into meta-raspberrypi. An other opinion is that you should start by trying to integrate relevant kernel changes both from 'git://github.com/anholt/linux.git;protocol=git;branch=vc4-kms-v3d-rpi2' and the integration patches into the currently used upstream (https://github.com/raspberrypi/linux) and I also think it's a good idea to ensure that the new code is added within kernel config options so it's easy to enable/disable the vc4 support. Then at least I think this more easily can be integrated in meta-raspberrypi.
+>
+
+I didn't know there was a work in progress to integrate the 4.1 tree.
+Although that is for the branch in https://github.com/raspberrypi/linux
+that does not have the Broadcom VC4 DRM/KMS driver. I agree that ideally
+Eric's changes should be integrated back to that tree but I don't expect
+that to be a trivial task. I certainly don't know if have the bandwidth
+to do it. Also, it is under heavy development so will be hard to track.
+
+Another option is to have two recipes for 4.1, one for the raspberrypi
+tree with userland and another one with the tree with the VC4 DRM/KMS
+driver. Or use the same recipe but with a different SRC_URI for each case.
+
+I tried to isolate all the VC4 support so is enabled and disable easily
+using a config option.
+
+> BR,
+> Petter
+
+Best regards,
+-- 
+Javier Martinez Canillas
+Open Source Group
+Samsung Research America
+
