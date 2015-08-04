@@ -1,35 +1,38 @@
-Return-Path: <knopper@knopper.net>
+Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8EAB9E00A4C; Mon,  3 Aug 2015 21:14:47 -0700 (PDT)
+	id B0012E00A75; Tue,  4 Aug 2015 02:16:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [85.214.68.145 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [195.74.38.226 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from knopper.net (knopper.net [85.214.68.145])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DAFDCE00A28
-	for <yocto@yoctoproject.org>; Mon,  3 Aug 2015 21:14:44 -0700 (PDT)
-Received: by knopper.net (Postfix, from userid 26015)
-	id E694D442D; Tue,  4 Aug 2015 06:14:40 +0200 (CEST)
-Date: Tue, 4 Aug 2015 06:15:02 +0200
-From: Klaus Knopper <yocto@knopper.net>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>,
-	Yocto Mailinglist <yocto@yoctoproject.org>
-Message-ID: <20150804041502.GN10184@knopper.net>
-References: <20150708145002.GO5636@knopper.net>
-	<559D445A.4010308@linux.intel.com>
-	<20150708163604.GQ5636@knopper.net>
-	<559D5E4E.8020001@windriver.com>
+Received: from bin-vsp-out-01.atm.binero.net (vsp-authed02.binero.net
+	[195.74.38.226])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC943E00A49
+	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 02:16:21 -0700 (PDT)
+X-Halon-ID: 8f7286fc-3a89-11e5-8491-005056917a89
+Authorized-sender: petter@technux.se
+Received: from [192.168.1.82] (unknown [81.229.90.163])
+	by bin-vsp-out-01.atm.binero.net (Halon Mail Gateway) with ESMTPSA;
+	Tue,  4 Aug 2015 11:16:59 +0200 (CEST)
+Message-ID: <55C082ED.6030405@technux.se>
+Date: Tue, 04 Aug 2015 11:16:29 +0200
+From: =?windows-1252?Q?Petter_Mab=E4cker?= <petter@technux.se>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-In-Reply-To: <559D5E4E.8020001@windriver.com>
-Organization: Knopper Networks
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Subject: Re: Selecting different kernel inside an image recipe
+To: Javier Martinez Canillas <javier@osg.samsung.com>, 
+	Andrei Gherzan <andrei@gherzan.ro>, ajlennon@dynamicdevices.co.uk
+References: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
+In-Reply-To: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
+Cc: yocto@yoctoproject.org, Mauro Carvalho Chehab <mchehab@osg.samsung.com>,
+	Derek Foreman <derekf@osg.samsung.com>
+Subject: Re: [meta-raspberrypi][PATCH 0/5] Add support for 4.1 kernel with vc4 DRM/KMS driver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,79 +44,123 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Aug 2015 04:14:47 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Tue, 04 Aug 2015 09:16:27 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello Bruce & list,
+On 07/30/2015 10:34 AM, Javier Martinez Canillas wrote:
+> Hello Andrei,
+>
+> This series adds support for Eric Anholt's v4.1 kernel, that has support
+> for the vc4 DRM/KMS driver. Which is the new open source graphics driver
+> stack for the Raspberry Pi to be used instead of the userland driver.
+>
+> We are using it in the Tizen port to RPI2 [0] and are trying to push all
+> the patches back to the tizen-distro and meta-raspberrypi OE layers so
+> I'm posting these patches to get your feedback.
+>
+> The v4.1 kernel is under heavy development so is a work-in-progress and
+> should not be used in production. That's why a default preference of -1
+> is set and the kernel only is enabled if the "vc4-gfx" feature is added
+> to the DISTRO_FEATURES variable.
+>
+> But even when it's still a development kernel, having the recipe in the
+> meta-raspberrypi will allow people to test it. The patches are for:
+>
+> Patch 1/5 makes optional to add the kgdboc kernel command line parameter
+>
+> Patch 2/5 allows to set the mask_gpu_interrupt0 option in config.txt
+>
+> Patch 3/5 changes the partition layout to add more space for boot files
+>
+> Patch 4/5 adds a recipe for the 4.1 and some patches to make it stable
+>
+> Patch 5/5 switchs the default providers according to the gfx stack used
+>
+> One problem I found is that the latest RPI kernels changed the path for
+> the DT overlays after commit 739c586c8757 ("BCM270X_DT: Move the overlays
+> into a subdirectory, adding the README") [1] so the kernel fails to build
+> with the default KERNEL_DEVICETREE. I tried to change get_dts() function
+> logic to take this into account but found that it would had been a more
+> intrusive change and KERNEL_DEVICETREE will have to be changed anyways
+> once the recipes for the other kernels are updated to the latest HEAD so
+> for now I just define the following on local.conf to make it build:
+As long as we bump SRCREV for 3.18 kernel as well, I see no problem. 
+Since then the KERNEL_DEVICETREE default value can look the same in all 
+situations (both 3.18 and 4.x can handle the new structure and we get no 
+compatibility issues) and for older kernels (3.12 and 3.14) it doesn't 
+matter since they don't have native device tree support and will turn 
+device tree support off by default.
 
-I need to come back to the topic after quite some failed attempts to
-solve the problem of switching kernel configurations specific to an
-image recipe.
+>
+> KERNEL_DEVICETREE = " \
+>      bcm2708-rpi-b.dtb \
+>      bcm2708-rpi-b-plus.dtb \
+>      bcm2709-rpi-2-b.dtb \
+>      \
+>      overlays/hifiberry-amp-overlay.dtb \
+>      overlays/hifiberry-dac-overlay.dtb \
+>      overlays/hifiberry-dacplus-overlay.dtb \
+>      overlays/hifiberry-digi-overlay.dtb \
+>      overlays/iqaudio-dac-overlay.dtb \
+>      overlays/iqaudio-dacplus-overlay.dtb \
+>      overlays/lirc-rpi-overlay.dtb \
+>      overlays/pps-gpio-overlay.dtb \
+>      overlays/w1-gpio-overlay.dtb \
+>      overlays/w1-gpio-pullup-overlay.dtb \
+>      "
+>
+> [0]: http://blogs.s-osg.org/tizen-rpi2-now-supporting-3d-acceleration/
+> [1]: https://github.com/raspberrypi/linux/commit/739c586c8757
+>
+> Best regards,
+> ---
+> Javier Martinez Canillas
+> Open Source Group
+> Samsung Research America
+>
+>
+> Derek Foreman (4):
+>    rpi-config: Allow to mask GPU irqs
+>    sdcard_image-rpi.bbclass: Allocate more space for boot partition
+>    linux-raspberrypi: Add a 4.1 linux kernel with vc4 support
+>    rpi-default-providers: Switch providers according to used gfx stack
+>
+> Mauro Carvalho Chehab (1):
+>    linux-raspberrypi.inc: Make kgdboc kernel param optional
+>
+>   README                                             |  38 +++++--
+>   classes/sdcard_image-rpi.bbclass                   |   6 +-
+>   conf/machine/include/rpi-default-providers.inc     |   8 +-
+>   conf/machine/include/rpi-default-versions.inc      |   2 +-
+>   recipes-bsp/bootfiles/rpi-config_git.bb            |   6 ++
+>   recipes-kernel/linux/linux-raspberrypi.inc         |   5 +-
+>   ..._defconfig-Enable-config-options-for-vc4-.patch |  48 +++++++++
+>   ...-ARM-dts-Fix-i2c-for-bcm2709-RPI2-B-board.patch |  85 +++++++++++++++
+>   .../0003-drm-vc4-Use-the-fbdev_cma-helpers.patch   | 115 +++++++++++++++++++++
+>   .../0004-drm-vc4-Allow-vblank-to-be-disabled.patch |  26 +++++
+>   .../0005-drm-vc4-Disable-KMS-operations.patch      |  95 +++++++++++++++++
+>   recipes-kernel/linux/linux-raspberrypi_4.1.bb      |  16 +++
+>   12 files changed, 433 insertions(+), 17 deletions(-)
+>   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0001-ARM-bcm2709_defconfig-Enable-config-options-for-vc4-.patch
+>   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0002-ARM-dts-Fix-i2c-for-bcm2709-RPI2-B-board.patch
+>   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0003-drm-vc4-Use-the-fbdev_cma-helpers.patch
+>   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0004-drm-vc4-Allow-vblank-to-be-disabled.patch
+>   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0005-drm-vc4-Disable-KMS-operations.patch
+>   create mode 100644 recipes-kernel/linux/linux-raspberrypi_4.1.bb
+>
 
-On Wed, Jul 08, 2015 at 01:30:54PM -0400, Bruce Ashfield wrote:
-> On 2015-07-08 12:36 PM, Klaus Knopper wrote:
-> >Hello Leonardo,
-> >
-> >On Wed, Jul 08, 2015 at 10:40:10AM -0500, Leonardo Sandoval wrote:
-> >>On 07/08/2015 09:50 AM, Klaus Knopper wrote:
-> >>>Hello list,
-> >>>
-> >>>I'm trying to build variantions/brands of an image that only differ in
-> >>>kernel configuration and kernel modules included, but everything else stays
-> >>>the same, for the exact same board, as in the main image.
-> >>>
-> >>>Setting PREFERRED_PROVIDER_virtual/kernel = "different_kernel"
-> >>>right inside in the new image recipe does not have any effect, as that
-> >>>variable seems to be evaluated exclusively in the local.conf machine
-> >>>file, which is read by all recipes.
-> >>
-> >>This variable is commonly used inside configuration metadata (machine or
-> >>distro conf files). You may try it there.
-> >
-> >Please help me to understand your answer: You are saying that I do have
-> >to change the machine or distro config used for ALL recipes, to be able
-> >to use a different kernel configuration in ONE recipe, right?
-> >
-> >I was really trying to avoid that. :-(
-> >
-> >So it is really not possible to just select a different kernel config
-> >within a normal recipe without changing the global configuration?
-> 
-> You really want a different kernel recipe to provide that different
-> kernel configuration.  Which looks to be what you are describing, and
-> you just want to switch the provider (again, what you are saying).
+Nice and interesting changes, but you really should sync this with Alex 
+Lennon as well since he currently are working with integrating 4.1 into 
+meta-raspberrypi. An other opinion is that you should start by trying to 
+integrate relevant kernel changes both from 
+'git://github.com/anholt/linux.git;protocol=git;branch=vc4-kms-v3d-rpi2' 
+and the integration patches into the currently used upstream 
+(https://github.com/raspberrypi/linux) and I also think it's a good idea 
+to ensure that the new code is added within kernel config options so 
+it's easy to enable/disable the vc4 support. Then at least I think this 
+more easily can be integrated in meta-raspberrypi.
 
-Yes, and I had indeed already added a new kernel recipe, which builds
-the desired kernel as uImage when calling "bitbake kernel-recipename"
-directly, but it's ignored by the image recipes. All of them use only
-the kernel that's defined in build/conf/local.conf as
-PREFERRED_PROVIDER_virtual/kernel . Redefining the variable in the image
-recipes has no effect.
-
-> Changing the included kernel via that different kernel recipe/package
-> name, and setting it via the preferred provider is the same as any
-> bitbake variable.
-
-I thought so, but apparently I'mmissing something. It looks like
-PREFERRED_PROVIDER_virtual/kernel only works in local.conf, i.e. I need
-to fork the project or change the local.conf file each time I want to
-use a different kernel. Is this a known or desired behavior?
-
-> So you should be able to set it in any .conf file, and then have what
-> you want.
-
-So, can you confirm that it is not possible to set
-PREFERRED_PROVIDER_virtual/kernel inside an image recipe?
-
-> I've used layers with layer.conf files, and similar mechanisms
-> to do what you are trying in the past .. but the longer serving oe/bitbake
-> folks may have a better example to point at.
-
-If there are examples for a more convenient way to switch kernels in a
-recipe rather than inside a .conf file, please point me to the right
-direction.
-
-Regards
--Klaus
+BR,
+Petter
 
