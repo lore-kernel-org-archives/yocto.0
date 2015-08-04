@@ -1,6 +1,6 @@
 Return-Path: <javier@osg.samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 15D6DE00A92; Tue,  4 Aug 2015 09:07:44 -0700 (PDT)
+	id 8ABCFE00A9A; Tue,  4 Aug 2015 09:17:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,26 +12,27 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from lists.s-osg.org (lists.s-osg.org [54.187.51.154])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F779E009C5
-	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 09:07:41 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF344E009C5
+	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 09:17:09 -0700 (PDT)
 Received: from [192.168.1.131] (199.50.23.95.dynamic.jazztel.es [95.23.50.199])
-	by lists.s-osg.org (Postfix) with ESMTPSA id 5444B46328;
-	Tue,  4 Aug 2015 09:07:39 -0700 (PDT)
-To: =?UTF-8?Q?Petter_Mab=c3=a4cker?= <petter@technux.se>,
-	Andrei Gherzan <andrei@gherzan.ro>, ajlennon@dynamicdevices.co.uk
+	by lists.s-osg.org (Postfix) with ESMTPSA id D6FBC46328;
+	Tue,  4 Aug 2015 09:17:07 -0700 (PDT)
+To: =?UTF-8?Q?Andreas_M=c3=bcller?= <schnitzeltony@googlemail.com>
 References: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
-	<55C082ED.6030405@technux.se>
+	<1438245251-20437-6-git-send-email-javier@osg.samsung.com>
+	<CALbNGRSs3KQj4RYopow=+kwJXE-46yU-t5o-FWSbR0wqBoqESw@mail.gmail.com>
 From: Javier Martinez Canillas <javier@osg.samsung.com>
 X-Enigmail-Draft-Status: N1110
-Message-ID: <55C0E347.9030508@osg.samsung.com>
-Date: Tue, 4 Aug 2015 18:07:35 +0200
+Message-ID: <55C0E581.6080603@osg.samsung.com>
+Date: Tue, 4 Aug 2015 18:17:05 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
 	Thunderbird/38.0.1
 MIME-Version: 1.0
-In-Reply-To: <55C082ED.6030405@technux.se>
-Cc: yocto@yoctoproject.org, Mauro Carvalho Chehab <mchehab@osg.samsung.com>,
+In-Reply-To: <CALbNGRSs3KQj4RYopow=+kwJXE-46yU-t5o-FWSbR0wqBoqESw@mail.gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	Mauro Carvalho Chehab <mchehab@osg.samsung.com>,
 	Derek Foreman <derekf@osg.samsung.com>
-Subject: Re: [meta-raspberrypi][PATCH 0/5] Add support for 4.1 kernel with vc4 DRM/KMS driver
+Subject: Re: [meta-raspberrypi][PATCH 5/5] rpi-default-providers: Switch providers according to used gfx stack
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,137 +44,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Aug 2015 16:07:44 -0000
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Tue, 04 Aug 2015 16:17:10 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
-Hello Petter,
+Hello Andreas,
 
-Thanks a lot for your feedback.
-
-On 08/04/2015 11:16 AM, Petter Mabäcker wrote:
-> On 07/30/2015 10:34 AM, Javier Martinez Canillas wrote:
->> Hello Andrei,
+On 08/03/2015 10:14 PM, Andreas MÃ¼ller wrote:
+> On Thu, Jul 30, 2015 at 10:34 AM, Javier Martinez Canillas
+> <javier@osg.samsung.com> wrote:
+>> From: Derek Foreman <derekf@osg.samsung.com>
 >>
->> This series adds support for Eric Anholt's v4.1 kernel, that has support
->> for the vc4 DRM/KMS driver. Which is the new open source graphics driver
->> stack for the Raspberry Pi to be used instead of the userland driver.
+>> The Raspberry Pi boards can use one of two graphics stacks: The "userland"
+>> user-space driver or the VC4 drm/kms kernel driver. This patch allows the
+>> user to choose if the VC4 driver has to be used instead and set the right
+>> preferred providers for that case.
 >>
->> We are using it in the Tizen port to RPI2 [0] and are trying to push all
->> the patches back to the tizen-distro and meta-raspberrypi OE layers so
->> I'm posting these patches to get your feedback.
+>> Signed-off-by: Derek Foreman <derekf@osg.samsung.com>
+>> [javier: Extend commit msg and made conditional instead removing userland]
+>> Signed-off-by: Javier Martinez Canillas <javier@osg.samsung.com>
 >>
->> The v4.1 kernel is under heavy development so is a work-in-progress and
->> should not be used in production. That's why a default preference of -1
->> is set and the kernel only is enabled if the "vc4-gfx" feature is added
->> to the DISTRO_FEATURES variable.
->>
->> But even when it's still a development kernel, having the recipe in the
->> meta-raspberrypi will allow people to test it. The patches are for:
->>
->> Patch 1/5 makes optional to add the kgdboc kernel command line parameter
->>
->> Patch 2/5 allows to set the mask_gpu_interrupt0 option in config.txt
->>
->> Patch 3/5 changes the partition layout to add more space for boot files
->>
->> Patch 4/5 adds a recipe for the 4.1 and some patches to make it stable
->>
->> Patch 5/5 switchs the default providers according to the gfx stack used
->>
->> One problem I found is that the latest RPI kernels changed the path for
->> the DT overlays after commit 739c586c8757 ("BCM270X_DT: Move the overlays
->> into a subdirectory, adding the README") [1] so the kernel fails to build
->> with the default KERNEL_DEVICETREE. I tried to change get_dts() function
->> logic to take this into account but found that it would had been a more
->> intrusive change and KERNEL_DEVICETREE will have to be changed anyways
->> once the recipes for the other kernels are updated to the latest HEAD so
->> for now I just define the following on local.conf to make it build:
-> As long as we bump SRCREV for 3.18 kernel as well, I see no problem. Since then the KERNEL_DEVICETREE default value can look the same in all situations (both 3.18 and 4.x can handle the new structure and we get no compatibility issues) and for older kernels (3.12 and 3.14) it doesn't matter since they don't have native device tree support and will turn device tree support off by default.
->
-
-Yes, that's what I meant when I said that the problem will be solved once
-all the recipes for DT enabled kernels are updated to the latest branch
-HEAD. But I didn't want to do that in this series since I wanted the
-changes to be as less intrusive as possible.
- 
->>
->> KERNEL_DEVICETREE = " \
->>      bcm2708-rpi-b.dtb \
->>      bcm2708-rpi-b-plus.dtb \
->>      bcm2709-rpi-2-b.dtb \
->>      \
->>      overlays/hifiberry-amp-overlay.dtb \
->>      overlays/hifiberry-dac-overlay.dtb \
->>      overlays/hifiberry-dacplus-overlay.dtb \
->>      overlays/hifiberry-digi-overlay.dtb \
->>      overlays/iqaudio-dac-overlay.dtb \
->>      overlays/iqaudio-dacplus-overlay.dtb \
->>      overlays/lirc-rpi-overlay.dtb \
->>      overlays/pps-gpio-overlay.dtb \
->>      overlays/w1-gpio-overlay.dtb \
->>      overlays/w1-gpio-pullup-overlay.dtb \
->>      "
->>
->> [0]: http://blogs.s-osg.org/tizen-rpi2-now-supporting-3d-acceleration/
->> [1]: https://github.com/raspberrypi/linux/commit/739c586c8757
->>
->> Best regards,
 >> ---
->> Javier Martinez Canillas
->> Open Source Group
->> Samsung Research America
 >>
+>>  conf/machine/include/rpi-default-providers.inc | 8 ++++----
+>>  conf/machine/include/rpi-default-versions.inc  | 2 +-
+>>  2 files changed, 5 insertions(+), 5 deletions(-)
 >>
->> Derek Foreman (4):
->>    rpi-config: Allow to mask GPU irqs
->>    sdcard_image-rpi.bbclass: Allocate more space for boot partition
->>    linux-raspberrypi: Add a 4.1 linux kernel with vc4 support
->>    rpi-default-providers: Switch providers according to used gfx stack
+>> diff --git a/conf/machine/include/rpi-default-providers.inc b/conf/machine/include/rpi-default-providers.inc
+>> index ee3a3acce7bd..233f177bd16e 100644
+>> --- a/conf/machine/include/rpi-default-providers.inc
+>> +++ b/conf/machine/include/rpi-default-providers.inc
+>> @@ -3,8 +3,8 @@
+>>  PREFERRED_PROVIDER_virtual/kernel = "linux-raspberrypi"
+>>  PREFERRED_PROVIDER_u-boot = "u-boot-rpi"
+>>  PREFERRED_PROVIDER_virtual/xserver = "xserver-xorg"
+>> -PREFERRED_PROVIDER_virtual/egl ?= "userland"
+>> -PREFERRED_PROVIDER_virtual/libgles2 ?= "userland"
+>> -PREFERRED_PROVIDER_virtual/libgl ?= "mesa-gl"
+>> -PREFERRED_PROVIDER_virtual/mesa ?= "mesa-gl"
+>> +PREFERRED_PROVIDER_virtual/egl ?= "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'userland', d)}"
+>> +PREFERRED_PROVIDER_virtual/libgles2 ?= "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'userland', d)}"
+>> +PREFERRED_PROVIDER_virtual/libgl ?= "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'mesa-gl', d)}"
+>> +PREFERRED_PROVIDER_virtual/mesa ?= "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'mesa', 'mesa-gl', d)}"
+>>  PREFERRED_PROVIDER_jpeg = "jpeg"
+>> diff --git a/conf/machine/include/rpi-default-versions.inc b/conf/machine/include/rpi-default-versions.inc
+>> index bcf78281b6ff..c07ecac5924b 100644
+>> --- a/conf/machine/include/rpi-default-versions.inc
+>> +++ b/conf/machine/include/rpi-default-versions.inc
+>> @@ -1,3 +1,3 @@
+>>  # RaspberryPi BSP default versions
 >>
->> Mauro Carvalho Chehab (1):
->>    linux-raspberrypi.inc: Make kgdboc kernel param optional
+>> -PREFERRED_VERSION_linux-raspberrypi ?= "3.18.%"
+>> +PREFERRED_VERSION_linux-raspberrypi ?= "${@bb.utils.contains("DISTRO_FEATURES", "vc4-gfx", "4.1.%", "3.18.%", d)}"
+>> --
+>> 2.4.3
 >>
->>   README                                             |  38 +++++--
->>   classes/sdcard_image-rpi.bbclass                   |   6 +-
->>   conf/machine/include/rpi-default-providers.inc     |   8 +-
->>   conf/machine/include/rpi-default-versions.inc      |   2 +-
->>   recipes-bsp/bootfiles/rpi-config_git.bb            |   6 ++
->>   recipes-kernel/linux/linux-raspberrypi.inc         |   5 +-
->>   ..._defconfig-Enable-config-options-for-vc4-.patch |  48 +++++++++
->>   ...-ARM-dts-Fix-i2c-for-bcm2709-RPI2-B-board.patch |  85 +++++++++++++++
->>   .../0003-drm-vc4-Use-the-fbdev_cma-helpers.patch   | 115 +++++++++++++++++++++
->>   .../0004-drm-vc4-Allow-vblank-to-be-disabled.patch |  26 +++++
->>   .../0005-drm-vc4-Disable-KMS-operations.patch      |  95 +++++++++++++++++
->>   recipes-kernel/linux/linux-raspberrypi_4.1.bb      |  16 +++
->>   12 files changed, 433 insertions(+), 17 deletions(-)
->>   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0001-ARM-bcm2709_defconfig-Enable-config-options-for-vc4-.patch
->>   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0002-ARM-dts-Fix-i2c-for-bcm2709-RPI2-B-board.patch
->>   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0003-drm-vc4-Use-the-fbdev_cma-helpers.patch
->>   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0004-drm-vc4-Allow-vblank-to-be-disabled.patch
->>   create mode 100644 recipes-kernel/linux/linux-raspberrypi/0005-drm-vc4-Disable-KMS-operations.patch
->>   create mode 100644 recipes-kernel/linux/linux-raspberrypi_4.1.bb
->>
+>> --
+> This patch series is an exciting starter but I think it is incomplete:
+> Without further configuration mesa simply builds swrast which is not
+> what we want. We need some '--with-gallium-drivers=vc4' right? [1]
 > 
-> Nice and interesting changes, but you really should sync this with Alex Lennon as well since he currently are working with integrating 4.1 into meta-raspberrypi. An other opinion is that you should start by trying to integrate relevant kernel changes both from 'git://github.com/anholt/linux.git;protocol=git;branch=vc4-kms-v3d-rpi2' and the integration patches into the currently used upstream (https://github.com/raspberrypi/linux) and I also think it's a good idea to ensure that the new code is added within kernel config options so it's easy to enable/disable the vc4 support. Then at least I think this more easily can be integrated in meta-raspberrypi.
->
 
-I didn't know there was a work in progress to integrate the 4.1 tree.
-Although that is for the branch in https://github.com/raspberrypi/linux
-that does not have the Broadcom VC4 DRM/KMS driver. I agree that ideally
-Eric's changes should be integrated back to that tree but I don't expect
-that to be a trivial task. I certainly don't know if have the bandwidth
-to do it. Also, it is under heavy development so will be hard to track.
+Yes, this is only the kernel changes. I'm testing with more patches on top
+for mesa and libdrm [0]. I always find hard to draw a line between a BSP
+and a distro layer so I didn't know if I should include those in the series
+or not. But you are right and probably at least the GALLIUMDRIVERSTIZEN
+vc4 append should be in a mesa .bbappend. I'll do that when posting a v2
+once I get more feedback from others.
 
-Another option is to have two recipes for 4.1, one for the raspberrypi
-tree with userland and another one with the tree with the VC4 DRM/KMS
-driver. Or use the same recipe but with a different SRC_URI for each case.
+> Andreas
+> 
+> [1] http://dri.freedesktop.org/wiki/VC4/
+> 
 
-I tried to isolate all the VC4 support so is enabled and disable easily
-using a config option.
-
-> BR,
-> Petter
+[0]: https://github.com/martinezjavier/meta-raspberrypi/commits/rpi2-vc4-gfx
 
 Best regards,
 -- 
