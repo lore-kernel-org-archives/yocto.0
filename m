@@ -1,62 +1,46 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <jbauer@blockwise.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0AE76E00AA5; Tue,  4 Aug 2015 12:12:18 -0700 (PDT)
+	id 9CE9BE00AB4; Tue,  4 Aug 2015 13:11:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.47 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [173.203.187.70 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f47.google.com (mail-pa0-f47.google.com
-	[209.85.220.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE04BE009CC
-	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 12:12:13 -0700 (PDT)
-Received: by pacgq8 with SMTP id gq8so15190561pac.3
-	for <yocto@yoctoproject.org>; Tue, 04 Aug 2015 12:12:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=VIVVmCA2MNb8P6ks7b5MgPY6CnhMvhT5MwjFryta+Ok=;
-	b=XUAwdwJgQHMZvzBpOMx7qABVMfei+AaXpDQeKAO1UA46DXXwkrl4IWLqwH+hqge5Fx
-	yIyivVUcWbcPrTuUptHFlRlaTHdrYZfwRcZL/B1WyQDPa+rZueiGcmklGimcJS6rMIuy
-	KOsm+rCfyoGF7WISHZyqXnaSCqq/Bl6z5StiOB5nMKxuUvxGZ0+1GrEws91V/XrRxQUt
-	0TCDpyHx5K2NFvC8LvmFLmYNUe5ZxbjHOEQBConcdbP61Y+Ta2JhhM2El62w8XsfZWun
-	VwhWsLto5kN3kqKjS3oCEpO9pRKHZya9OAlDirdxWv8BDrTZalN41HMbxG3SLoFVdupZ
-	cZ1g==
-X-Received: by 10.68.231.133 with SMTP id tg5mr11021527pbc.138.1438715532990; 
-	Tue, 04 Aug 2015 12:12:12 -0700 (PDT)
-Received: from ?IPv6:2601:646:8601:4580:b519:4241:e041:610a?
-	([2601:646:8601:4580:b519:4241:e041:610a])
-	by smtp.gmail.com with ESMTPSA id
-	ms16sm174622pbc.11.2015.08.04.12.12.12
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 04 Aug 2015 12:12:12 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2104\))
-X-Pgp-Agent: GPGMail 2.5
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CAPzboydownzwbUC8m6wt7fSLiRTsuM2u0a5YgvXnLn2r0Qnkyw@mail.gmail.com>
-Date: Tue, 4 Aug 2015 12:12:07 -0700
-Message-Id: <A141608C-241E-4F20-AE60-39A1D4840B36@gmail.com>
-References: <CAPzboydownzwbUC8m6wt7fSLiRTsuM2u0a5YgvXnLn2r0Qnkyw@mail.gmail.com>
-To: Adam Rossi <ac.rossi@gmail.com>
-X-Mailer: Apple Mail (2.2104)
-Cc: yocto@yoctoproject.org
-Subject: Re: Making a derivative BSP layer - where did I go wrong?
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 481 seconds by postgrey-1.32 at yocto-www;
+	Tue, 04 Aug 2015 13:11:39 PDT
+Received: from smtp70.iad3a.emailsrvr.com (smtp70.iad3a.emailsrvr.com
+	[173.203.187.70])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29378E00AA2
+	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 13:11:39 -0700 (PDT)
+Received: from smtp25.relay.iad3a.emailsrvr.com (localhost.localdomain
+	[127.0.0.1])
+	by smtp25.relay.iad3a.emailsrvr.com (SMTP Server) with ESMTP id
+	3AB3A1803AF
+	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 16:03:38 -0400 (EDT)
+Received: by smtp25.relay.iad3a.emailsrvr.com (Authenticated sender:
+	jbauer-AT-blockwise.com) with ESMTPSA id F272C180219
+	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 16:03:37 -0400 (EDT)
+X-Sender-Id: jbauer@blockwise.com
+Received: from [192.168.1.126] (wsip-68-14-222-86.ph.ph.cox.net [68.14.222.86])
+	(using TLSv1 with cipher AES256-SHA) by 0.0.0.0:465 (trex/5.4.2);
+	Tue, 04 Aug 2015 20:03:38 GMT
+From: "Justin Bauer" <jbauer@blockwise.com>
+To: yocto@yoctoproject.org
+Date: Tue, 04 Aug 2015 20:03:41 +0000
+Message-Id: <em56b72e44-f32f-451c-9677-11ded6e322e9@jbauer-pc>
+User-Agent: eM_Client/6.0.22344.0
+Mime-Version: 1.0
+Subject: Qt SDK Static Build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Justin Bauer <jbauer@blockwise.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -65,115 +49,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Aug 2015 19:12:18 -0000
-X-Groupsio-MsgNum: 25868
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_4777BA3E-D74A-4CDF-8772-C651A132010A";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Tue, 04 Aug 2015 20:11:41 -0000
+Content-Type: multipart/alternative;
+	boundary="------=_MB975910B9-67E2-45B0-9F61-E60233C9114B"
 
---Apple-Mail=_4777BA3E-D74A-4CDF-8772-C651A132010A
+--------=_MB975910B9-67E2-45B0-9F61-E60233C9114B
+Content-Type: text/plain; format=flowed; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
 
+Hello,
 
-> On Aug 4, 2015, at 7:47 AM, Adam Rossi <ac.rossi@gmail.com> wrote:
->=20
-> Howdy folks. I am having trouble making a derivative BSP layer and am
-> asking for your help in determining what I am doing wrong.
->=20
-> I am developing a Yocto distro for a beaglebone-based prototype.  I
-> made a few small changes directly to the meta-yocto-bsp layer and
-> bitbaked the core-image-sato image, and everything worked great. The
-> tweaks I made included:
->=20
-> * Edited meta-yocto-bsp/conf/machine/beaglebone.conf to include
-> additional machine features:
->=20
->     * MACHINE_FEATURES =3D "usbgadget usbhost vfat alsa touchscreen"
->=20
-> * Edited meta-yocto-bsp/recipes-kernel/linux/linux-yocto_3.14.bbappend
-> to include a cfg file with the following entries:
->=20
->      * CONFIG_HID_MULTITOUCH=3Dy
->        CONFIG_INPUT_MOUSEDEV_SCREEN_Y=3D600
->        CONFIG_INPUT_MOUSEDEV_SCREEN_X=3D1024
+I'm using Yocto 1.8 Fido and trying to build Qt SDK statically so that=20
+my Qt application can be deployed as a single file. I've added
+SDKIMAGE_FEATURES_append =3D " staticdev-pkgs'
+to my local.conf before bitbaking the qt5 toolchain with no luck in=20
+finding the static libraries
+$ bitbake meta-toolchain-qt5
 
+I'm using an imx6 processor and bsp similar to the Wandboard. I've tried=
+=20
+configuring Qt manually by downloading the Qt source files and using the=
+=20
+Yocto generated SDK, but ./configure fails due to the missing patches=20
+required to build it. Is there something I am missing?
 
-you could do this in another bbappend in your own layer.
+Thanks
 
+--------=_MB975910B9-67E2-45B0-9F61-E60233C9114B
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
->=20
-> While this works perfectly, it does not feel like a clean solution to
-> be mucking with the meta-yocto-bsp layer directly. So I created my own
-> meta-custom BSP layer using the yocto-bsp script to hold these
-> changes. My bsp-layer has  the following attributes:
->=20
-> *  meta-custom/conf/machine/custom.conf contains the following:
->=20
->       * require =
-/home/me/poky/meta-yocto-bsp/conf/machine/beaglebone.conf
->=20
->          MACHINEOVERRIDES =3D =E2=80=9Cbeaglebone:custom"
+<HTML><HEAD>
+<STYLE id=3DeMClientCss>BLOCKQUOTE.cite {
+	PADDING-LEFT: 10px; MARGIN-LEFT: 5px; BORDER-LEFT: #cccccc 1px solid; PADD=
+ING-RIGHT: 0px; MARGIN-RIGHT: 0px
+}
+BLOCKQUOTE.cite2 {
+	PADDING-TOP: 0px; PADDING-LEFT: 10px; MARGIN-LEFT: 5px; BORDER-LEFT: #cccc=
+cc 1px solid; MARGIN-TOP: 3px; PADDING-RIGHT: 0px; MARGIN-RIGHT: 0px
+}
+.plain PRE {
+	FONT-SIZE: 100%; FONT-FAMILY: monospace; WHITE-SPACE: pre-wrap; FONT-WEIGH=
+T: normal; FONT-STYLE: normal
+}
+.plain TT {
+	FONT-SIZE: 100%; FONT-FAMILY: monospace; WHITE-SPACE: pre-wrap; FONT-WEIGH=
+T: normal; FONT-STYLE: normal
+}
+A IMG {
+	BORDER-TOP: 0px; BORDER-RIGHT: 0px; BORDER-BOTTOM: 0px; BORDER-LEFT: 0px
+}
+#xb2eb7dea90964d61adc40136033ed562 {
+	FONT-SIZE: 12pt; FONT-FAMILY: Tahoma
+}
+.plain PRE {
+	FONT-SIZE: 12pt; FONT-FAMILY: Tahoma
+}
+.plain TT {
+	FONT-SIZE: 12pt; FONT-FAMILY: Tahoma
+}
+BODY {
+	FONT-SIZE: 12pt; FONT-FAMILY: Tahoma
+}
+</STYLE>
+</HEAD>
+<BODY>
+<DIV>Hello,</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>I'm using Yocto 1.8 Fido and trying to&nbsp;build Qt SDK statically=
+ so that my Qt application can be deployed as a single file. I've added =
+</DIV>
+<DIV><PRE style=3D"BORDER-TOP: rgb(221,221,221) 1px solid; BORDER-RIGHT:=
+ rgb(221,221,221) 1px solid; WORD-SPACING: 0px; BORDER-BOTTOM: rgb(221,221,=
+221) 1px solid; TEXT-TRANSFORM: none; COLOR: black; PADDING-BOTTOM: 1em;=
+ PADDING-TOP: 1em; FONT: 14px/1.3em monospace, Courier; PADDING-LEFT: 1em;=
+ BORDER-LEFT: rgb(221,221,221) 1px solid; WIDOWS: 1; LETTER-SPACING: normal=
+; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(249,249,249); TEXT-INDENT: 0px;=
+ -webkit-text-stroke-width: 0px"><SPAN id=3Dxb2eb7dea90964d61adc40136033ed5=
+62>SDKIMAGE_FEATURES_append =3D " staticdev-pkgs' </SPAN></PRE></DIV>
+<DIV>to my local.conf before bitbaking the qt5 toolchain with no luck in=
+ finding the static libraries&nbsp;<PRE style=3D"BORDER-TOP: rgb(221,221,22=
+1) 1px solid; BORDER-RIGHT: rgb(221,221,221) 1px solid; WORD-SPACING: 0px;=
+ BORDER-BOTTOM: rgb(221,221,221) 1px solid; TEXT-TRANSFORM: none; COLOR:=
+ black; PADDING-BOTTOM: 1em; PADDING-TOP: 1em; FONT: 14px/1.3em monospace,=
+ Courier; PADDING-LEFT: 1em; BORDER-LEFT: rgb(221,221,221) 1px solid; WIDOW=
+S: 1; LETTER-SPACING: normal; PADDING-RIGHT: 1em; BACKGROUND-COLOR: rgb(249=
+,249,249); TEXT-INDENT: 0px; -webkit-text-stroke-width: 0px">$ bitbake meta=
+-toolchain-qt5</PRE></DIV>
+<DIV>&nbsp;</DIV>
+<DIV>I'm using an imx6 processor and bsp similar to the Wandboard. I've =
+tried configuring Qt manually by downloading the Qt source files and using=
+ the Yocto generated SDK, but&nbsp;./configure fails due to the missing =
+patches required to build it. Is there something I am missing?</DIV>
+<DIV>&nbsp;</DIV>
+<DIV>Thanks</DIV></BODY></HTML>
 
-may be you should append to it instead of overwriting
-
-MACHINEOVERRIDES =3D. =E2=80=9Cbeaglebone:=E2=80=9D
-
->=20
->          MACHINE_FEATURES =3D "usbgadget usbhost vfat alsa =
-touchscreen"
->=20
-> *  meta-custom/recipes-kernel/linux/linux-yocto_3.14.bbappend contains
-> a single line    SRC_URI +=3D to the cfg file mentioned above
->=20
-> When I bitbake the new layer with the new custom machine and the same
-> image target, I get file outputs which look very similar to the edited
-> meta-yocto-bsp, with the exception of the zImage, which is much
-> smaller and will not boot.
-
-linux-yocto has its own list of compatible machines. see
-=
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-yocto/tree/meta-yocto-bsp/r=
-ecipes-kernel/linux/linux-yocto_3.14.bbappend
-
-you might need to add
-
-KBRANCH_custom =3D "standard/beaglebone"
-SRCREV_machine_custom ?=3D =E2=80=9Cdbe5b52e93ff114b2c0f5da6f6af91f52c18f2=
-b8"
-COMPATIBLE_MACHINE_custom =3D =E2=80=9Ccustom"
-
-
->=20
-> Perhaps I have an improper understanding of how layers build upon each
-> other? I had though that by including meta-yocto-bsp and meta-custom,
-> and specifying my custom machine in the local.conf file, it would
-> build the exact same image as my tweaked meta-yocto-bsp.
->=20
-> Your guidance as to my mistake or a pointer to an example of a
-> derivative bsp-layer would be most appreciated.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---Apple-Mail=_4777BA3E-D74A-4CDF-8772-C651A132010A
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlXBDosACgkQuwUzVZGdMxQavACeOXgYOfT5iGVAewsRXrcrEr2F
-fUsAn1e1Jv/XA0A1/6zeD7byXQWhQLUO
-=TC59
------END PGP SIGNATURE-----
-
---Apple-Mail=_4777BA3E-D74A-4CDF-8772-C651A132010A--
+--------=_MB975910B9-67E2-45B0-9F61-E60233C9114B--
