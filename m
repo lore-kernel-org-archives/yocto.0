@@ -1,33 +1,48 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <ac.rossi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 909F9E00A92; Tue,  4 Aug 2015 07:08:16 -0700 (PDT)
+	id 6C3ADE00A92; Tue,  4 Aug 2015 07:47:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ac.rossi[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.52 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36062E009C5
-	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 07:08:12 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id BB30AF811DC; Tue,  4 Aug 2015 08:08:11 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 1E32FF811D7;
-	Tue,  4 Aug 2015 08:08:11 -0600 (MDT)
-Message-ID: <55C0C755.8000807@mlbassoc.com>
-Date: Tue, 04 Aug 2015 08:08:21 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.8.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f52.google.com (mail-pa0-f52.google.com
+	[209.85.220.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DD5EE009C5
+	for <yocto@yoctoproject.org>; Tue,  4 Aug 2015 07:47:28 -0700 (PDT)
+Received: by pasy3 with SMTP id y3so10240159pas.2
+	for <yocto@yoctoproject.org>; Tue, 04 Aug 2015 07:47:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=5lPhXO4W7aAhm7zNhD7/BORTeQiOVQ/TpqBdnarWeaM=;
+	b=sRacRIBl+O8avudyYjqLyq0gEF1kCYEA6Nm0i0WVkzsLE3TNlWSE8ZcKVNb7U+fAUS
+	e7pv798eMI9UHd4Ouu/u5LScFhK8xFJDC9BOODCT/F66/QKYJ5YYzpNB2knqAxVwiw18
+	KI6FhwB6R3IzvC1LiZyPd/BgUCNoemrjqr9Wt7OET3Eqdp8Ljh17GK042D2MhdfxpMCs
+	vkFL9cdKXmLNJqtJlBp3MXHH1o7eNv3fNfDJbQ7Y3P3kXkQ4GTN9huF5wc0TX6osfogs
+	Bubs87XFFgAzGp6nBCW2puvmn9hp5m/VEL6FaB2qsHqQ7nxhDe2hzwDXaCQRngHxgMD3
+	a7gQ==
 MIME-Version: 1.0
-To: Sarayu Krishna Sivanandam <sarayu@zaikenn.com>
-References: <CAF5S8SM0xn7SGrdTa6iRyN1SPxZDXy15ctPYrDuu0AFzxw0zcw@mail.gmail.com>	<55C0A75F.1000701@mlbassoc.com>	<CAF5S8SMdfH8rNHznXCLJ_yt7PDGnKDujiu9=dpZce8eMzH4DrA@mail.gmail.com>	<55C0B5D1.9080009@mlbassoc.com>	<CAF5S8SOEAvFCw6AiiBEk9CJJSYv7_5uTZ6kSciQNd90YB5iPHA@mail.gmail.com>	<55C0BDA7.9060507@mlbassoc.com>	<CAF5S8SMmLYAjJn5cuKcEEeYzKdBpj=mbkC4Do9X7S1yv1GeJeQ@mail.gmail.com>	<55C0C38F.7020809@mlbassoc.com>
-	<CAF5S8SNyEgKCw8dpisvbreg5gczDzEAt1FV1V17Ax75V+AX52A@mail.gmail.com>
-In-Reply-To: <CAF5S8SNyEgKCw8dpisvbreg5gczDzEAt1FV1V17Ax75V+AX52A@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: ADD GDB in FSL toolchain
+X-Received: by 10.66.245.142 with SMTP id xo14mr8291032pac.151.1438699648125; 
+	Tue, 04 Aug 2015 07:47:28 -0700 (PDT)
+Received: by 10.70.61.101 with HTTP; Tue, 4 Aug 2015 07:47:27 -0700 (PDT)
+Date: Tue, 4 Aug 2015 10:47:27 -0400
+Message-ID: <CAPzboydownzwbUC8m6wt7fSLiRTsuM2u0a5YgvXnLn2r0Qnkyw@mail.gmail.com>
+From: Adam Rossi <ac.rossi@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Making a derivative BSP layer - where did I go wrong?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,218 +54,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Aug 2015 14:08:16 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 04 Aug 2015 14:47:32 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 2015-08-04 08:05, Sarayu Krishna Sivanandam wrote:
-> I see that it is available in my code as well .
->
-> [sarayu@localhost QorIQ-SDK-V1.8-20150619-yocto]$ find . -name gdb-cross_7.6.2.bb <http://gdb-cross_7.6.2.bb>
-> ./poky/meta/recipes-devtools/gdb/gdb-cross_7.6.2.bb <http://gdb-cross_7.6.2.bb>
->
-> But when i try to build just this bb file it still shows the error .
-> [sarayu@localhost build_ls1021atwr_release]$ bitbake gdb-cross_7.6.2.bb
+Howdy folks. I am having trouble making a derivative BSP layer and am
+asking for your help in determining what I am doing wrong.
 
-You don't build like this - use only
-   $ bitbake gdb-cross
+I am developing a Yocto distro for a beaglebone-based prototype.  I
+made a few small changes directly to the meta-yocto-bsp layer and
+bitbaked the core-image-sato image, and everything worked great. The
+tweaks I made included:
 
-> Loading cache: 100% |####################################################| ETA:  00:00:00
-> Loaded 2148 entries from dependency cache.
-> ERROR: Nothing PROVIDES 'gdb-cross_7.6.2.bb <http://gdb-cross_7.6.2.bb>'
->
-> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-> [sarayu@localhost build_ls1021atwr_release]$
->
-> Could there be any other issue related to path or anything because i have been able to build the toolchain without gdb and also have been able to build the util-linux recipe just
-> form the bb file separately also .
-> Wondering why it is failing for gdb alone .
+* Edited meta-yocto-bsp/conf/machine/beaglebone.conf to include
+additional machine features:
 
-> On Tue, Aug 4, 2015 at 7:22 PM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
->
->     On 2015-08-04 07:47, Sarayu Krishna Sivanandam wrote:
->
->         hi Gary ,
->
->         I am working on the 1.8 SDK For the ARM board and followed the instructions from the freescale website link provided below
->         (http://www.freescale.com/infocenter/topic/qfamily-sdk/index.html) for my ARM board ls1021atwr  and hence i got the source ISO from the SDK and then used the same to build
->         the tool
->         chain as the same is currently available on my board.
->
->         when u use gdb-cross which bb file is executed ? Can you please provide the file name so that i can verify if it is present in my code as well.
->
->
->     I put the daisy checkout in /tmp/poky-daisy:
->        $ find /tmp/poky-daisy/meta -name "gdb-cross*"
->        /tmp/poky-daisy/meta/recipes-devtools/gdb/gdb-cross.inc
->        /tmp/poky-daisy/meta/recipes-devtools/gdb/gdb-cross_7.6.2.bb <http://gdb-cross_7.6.2.bb>
->        /tmp/poky-daisy/meta/recipes-devtools/gdb/gdb-cross-canadian_7.6.2.bb <http://gdb-cross-canadian_7.6.2.bb>
->        /tmp/poky-daisy/meta/recipes-devtools/gdb/gdb-cross-canadian.inc
->
->
->         On Tue, Aug 4, 2015 at 6:57 PM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>> wrote:
->
->              On 2015-08-04 07:01, Sarayu Krishna Sivanandam wrote:
->
->                  Hi Gary ,
->
->                  Pls find below my configuration details .
->
->                  Build Configuration:
->                  BB_VERSION        = "1.22.0"
->                  BUILD_SYS         = "x86_64-linux"
->                  NATIVELSBSTRING   = "CentOS-7.1.1503"
->                  TARGET_SYS        = "arm-fsl-linux-gnueabi"
->                  MACHINE           = "ls1021atwr"
->                  DISTRO            = "fsl-networking"
->                  DISTRO_VERSION    = "QorIQ-SDK-V1.8"
->                  TUNE_FEATURES     = "armv7a vfp neon callconvention-hard cortexa7"
->                  TARGET_FPU        = "vfp-neon"
->                  meta
->                  meta-yocto
->                  meta-yocto-bsp    = "daisy:18837ea4cdd4fdab608e0a032a11a2dfb6b1ee1a"
->                  meta-fsl-arm      = "daisy:b529ac5ba06a0d69d7e6e295776a4d684c6e1c56"
->                  meta-fsl-networking = "daisy:6eb28ed659bbadfa470237dfce98bcbf53c18fe1"
->                  meta-fsl-toolchain = "daisy:a253b3594d8d9e0a4ed869d1fb502c395c4438ac"
->                  meta-virtualization = "daisy:df44ec7a68c8e4b713a458a5b93e903103dea85c"
->                  meta-oe
->                  meta-networking
->                  meta-perl
->                  toolchain-layer   = "daisy:4a44c4107899363b22c01eb5621b0c86db1c659c"
->                  meta-java         = "daisy:65c89b93fa9d4c89e1dfb5b795075cbadb541009"
->                  meta-linaro-toolchain = "daisy:9e742fbb8cbb6d2087fb41429a77fcf0ce50dbb8"
->                  meta-security     = "daisy:9f4c3849521465b459845dcc1a7a885bacaae9d9"
->
->
->              Firstly, 'daisy' is really old, you should consider 'dizzy' or newer
->              The git revisions listed above do not match the public trees - where did
->              you get them?
->
->              I tried to build 'gdb-cross' using daisy and it worked with no issues using:
->              meta              = "(detachedfromorigin/daisy):b9ec9f7425cd11fada2ba104122b0f1ea823ae28"
->              meta-fsl-arm      = "(detachedfromorigin/daisy):0c4de80867c3ab4e9682dd7802d3fd907d1e1a23"
->
->                  On Tue, Aug 4, 2015 at 6:23 PM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>
->         <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>>> wrote:
->
->                       On 2015-08-04 06:42, Sarayu Krishna Sivanandam wrote:
->
->                           hi Gary ,
->
->                           Thanks for the quick response. I still see the below error .
->
->                           NOTE: Resolving any missing task queue dependencies
->                           ERROR: Nothing RPROVIDES 'gdb-cross-arm'
->                           NOTE: Runtime target 'gdb-cross-arm' is unbuildable, removing...
->                           Missing or unbuildable dependency chain was: ['gdb-cross-arm']
->                           ERROR: Required build target 'fsl-toolchain' has no buildable providers.
->                           Missing or unbuildable dependency chain was: ['fsl-toolchain', 'gdb-cross-arm']
->                           -----
->
->                           Below is how the change ,
->                           TOOLCHAIN_TARGET_TASK += " \
->                                 glib-2.0 \
->                                 glib-2.0-dev \
->                                 dtc-staticdev \
->                                 libgomp \
->                                 libgomp-dev \
->                                 libgomp-staticdev \
->                                 libstdc++-staticdev \
->                                 ${TCLIBC}-staticdev \
->                                 util-linux-dev \
->                                 gdb-cross-arm \
->                           "
->
->
->                       It works fine for me using the latest master git.
->
->                       What branch/release are you using?  I'm using:
->                       meta              = "master:a8b723498c9a7106210db140452886894494b4d6"
->                       meta-fsl-arm      = "master:48d7e70398f0f9f337b9edaeb29901c9bd895282"
->                       meta-fsl-arm-extra = "master:ffa8db2f33ff08fc618c7e8eb47924095f4a06c0"
->
->                       What is your target machine?
->
->
->                           On Tue, Aug 4, 2015 at 5:21 PM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>
->         <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>>
->                  <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>
->         <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>>>> wrote:
->
->                                On 2015-08-04 03:31, Sarayu Krishna Sivanandam wrote:
->
->                                    Hi all ,
->
->                                    I am using the QorIQ-SDK-V1.8 SDK for the toolchain generation for my ARM board .  I wanted to build gdb along with the toolchain . I got some
->         ideas from
->                  google to
->                           add the
->                                    gdb-cross in the fsl-toolchain.bb <http://fsl-toolchain.bb> <http://fsl-toolchain.bb> <http://fsl-toolchain.bb> <http://fsl-toolchain.bb>
->         <http://fsl-toolchain.bb> but on doing the
->                  same it gave me some errors when
->                           trying to build .
->
->                                    Can you please let me know the right method to add gdb in the toolchain ?
->
->                                    Below is the error i got ,
->                                    *ERROR: gdb-cross not found in the base feeds (ls1021atwr cortexa7hf-vfp-neon cortexa7hf-vfp armv7ahf-vfp-neon armv7ahf-vfp armv6hf-vfp armv5ehf-vfp
->                  armv5hf-vfp
->                           noarch any
->                                    all).*
->
->
->                                Use gdb-cross-arm
->
->                                --
->                                ------------------------------------------------------------
->                                Gary Thomas                 |  Consulting for the
->                                MLB Associates              |    Embedded world
->                                ------------------------------------------------------------
->                                --
->                                _______________________________________________
->                                yocto mailing list
->         yocto@yoctoproject.org <mailto:yocto@yoctoproject.org> <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>> <mailto:yocto@yoctoproject.org
->         <mailto:yocto@yoctoproject.org> <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>>> <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->                  <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>> <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org> <mailto:yocto@yoctoproject.org
->         <mailto:yocto@yoctoproject.org>>>>
->         https://lists.yoctoproject.org/listinfo/yocto
->
->
->
->                       --
->                       ------------------------------------------------------------
->                       Gary Thomas                 |  Consulting for the
->                       MLB Associates              |    Embedded world
->                       ------------------------------------------------------------
->
->
->
->
->
->              --
->              ------------------------------------------------------------
->              Gary Thomas                 |  Consulting for the
->              MLB Associates              |    Embedded world
->              ------------------------------------------------------------
->              --
->              _______________________________________________
->              yocto mailing list
->         yocto@yoctoproject.org <mailto:yocto@yoctoproject.org> <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>>
->         https://lists.yoctoproject.org/listinfo/yocto
->
->
->
->     --
->     ------------------------------------------------------------
->     Gary Thomas                 |  Consulting for the
->     MLB Associates              |    Embedded world
->     ------------------------------------------------------------
->
->
+     * MACHINE_FEATURES = "usbgadget usbhost vfat alsa touchscreen"
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+* Edited meta-yocto-bsp/recipes-kernel/linux/linux-yocto_3.14.bbappend
+to include a cfg file with the following entries:
+
+      * CONFIG_HID_MULTITOUCH=y
+        CONFIG_INPUT_MOUSEDEV_SCREEN_Y=600
+        CONFIG_INPUT_MOUSEDEV_SCREEN_X=1024
+
+While this works perfectly, it does not feel like a clean solution to
+be mucking with the meta-yocto-bsp layer directly. So I created my own
+meta-custom BSP layer using the yocto-bsp script to hold these
+changes. My bsp-layer has  the following attributes:
+
+*  meta-custom/conf/machine/custom.conf contains the following:
+
+       * require /home/me/poky/meta-yocto-bsp/conf/machine/beaglebone.conf
+
+          MACHINEOVERRIDES = "beaglebone:custom"
+
+          MACHINE_FEATURES = "usbgadget usbhost vfat alsa touchscreen"
+
+*  meta-custom/recipes-kernel/linux/linux-yocto_3.14.bbappend contains
+a single line    SRC_URI += to the cfg file mentioned above
+
+When I bitbake the new layer with the new custom machine and the same
+image target, I get file outputs which look very similar to the edited
+meta-yocto-bsp, with the exception of the zImage, which is much
+smaller and will not boot.
+
+Perhaps I have an improper understanding of how layers build upon each
+other? I had though that by including meta-yocto-bsp and meta-custom,
+and specifying my custom machine in the local.conf file, it would
+build the exact same image as my tweaked meta-yocto-bsp.
+
+Your guidance as to my mistake or a pointer to an example of a
+derivative bsp-layer would be most appreciated.
 
