@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <mar.krzeminski@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A0958E009E4; Wed,  5 Aug 2015 11:31:48 -0700 (PDT)
+	id 9129CE009E4; Wed,  5 Aug 2015 11:38:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (mar.krzeminski[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.223.175 listed in list.dnswl.org]
+	*      [209.85.215.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,34 +19,41 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f175.google.com (mail-io0-f175.google.com
-	[209.85.223.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50D16E009B3
-	for <yocto@yoctoproject.org>; Wed,  5 Aug 2015 11:31:45 -0700 (PDT)
-Received: by iodd187 with SMTP id d187so58063886iod.2
-	for <yocto@yoctoproject.org>; Wed, 05 Aug 2015 11:31:45 -0700 (PDT)
+Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B9DCE009B3
+	for <yocto@yoctoproject.org>; Wed,  5 Aug 2015 11:38:27 -0700 (PDT)
+Received: by labkb6 with SMTP id kb6so12715771lab.2
+	for <yocto@yoctoproject.org>; Wed, 05 Aug 2015 11:38:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=cRJU8YPsn1Q90y90Q2Ba1ND+/3o8eG06TVMb6ihxtWc=;
-	b=HUw0VklYDm8v6Z49IAHcao3qpqhAwnVvflYNIH6Rcw3b1VlUtbhBcRDdEr2qDJjGGr
-	LDwkF7zpTeK+oFVEtPHqZ5M/5373MczuATeXzUUboih3f47b9NzaqziOgN0UW09piRvd
-	VJ25sOOFZrM/5ajj9INpGrLLqE4kANHO0WJFgz1nnUmsNiq7C1N20khTMjo99/Myurcy
-	q33QfesFSru5fCcIOOFCVqgVKZSYSWpWUJyYKamy4VWqf8Xfy7MC+WYYfGf+xCBmIzSm
-	8PFlstkzZCajD6mz11G/u5EWrd+VqNbxbuZAxDDQtT1AoO8Bg1fbszM6f4kklJuK/goh
-	gx5g==
-X-Received: by 10.107.168.145 with SMTP id e17mr11246254ioj.112.1438799504930; 
-	Wed, 05 Aug 2015 11:31:44 -0700 (PDT)
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=2bjCif+p8HMQpV0rIpC8Xd9KwTtQj3U+3NDIrHmsY8I=;
+	b=F6ETBIq0JAqT1CeErRYCL7f38cGvGd2uto88CYLCmH01bAkda/KtkXjn7wI0gdSnU5
+	CEYUBaq/KiNrdtUuwO+40stngC1YLupcurpTbtHpp+4mdwrwGV3KEbQhbksCNL61kLX9
+	9T1KpGmnQmf4/WaLyFqSgsdf2tfkD1AuQG010FcF39HExGvFnt2EVg9y6wyJz2IF0tz4
+	SAXJ/82SdIKKOQLdt8g4wMd0WhaiYkgO109XzL5akUj2YW/y0aZXAq787JsSu2XRAMmU
+	hWU+tMCa/bsMFbo7yOW1Cd90cGttzxY2AgZNTyh6ED1kbnYXu2QowDN+CqeqF5dX4Aet
+	yfQA==
+X-Received: by 10.112.13.134 with SMTP id h6mr8942970lbc.15.1438799905824;
+	Wed, 05 Aug 2015 11:38:25 -0700 (PDT)
+Received: from [192.168.50.14] (89-70-157-137.dynamic.chello.pl.
+	[89.70.157.137])
+	by smtp.gmail.com with ESMTPSA id bn2sm727067lbc.47.2015.08.05.11.38.24
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 05 Aug 2015 11:38:24 -0700 (PDT)
+Message-ID: <55C2581E.2000108@gmail.com>
+Date: Wed, 05 Aug 2015 20:38:22 +0200
+From: "mar.krzeminski" <mar.krzeminski@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.8.0
 MIME-Version: 1.0
-Received: by 10.107.38.79 with HTTP; Wed, 5 Aug 2015 11:31:15 -0700 (PDT)
-In-Reply-To: <1299340381.458690.1438792839565.JavaMail.yahoo@mail.yahoo.com>
-References: <1299340381.458690.1438792839565.JavaMail.yahoo@mail.yahoo.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 5 Aug 2015 11:31:15 -0700
-Message-ID: <CAMKF1spxXj26NYAEG=DxxARXX6wAkstAtQ0pO6Ja_q59Nv6aNQ@mail.gmail.com>
-To: Edward Vidal <develone@sbcglobal.net>
+To: Khem Raj <raj.khem@gmail.com>
+References: <55C24689.80103@gmail.com>
+	<CAMKF1srMrRrcdMCK95vxQGThc_JP25wKtK3z70sb3fyUdfAR4g@mail.gmail.com>
+In-Reply-To: <CAMKF1srMrRrcdMCK95vxQGThc_JP25wKtK3z70sb3fyUdfAR4g@mail.gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Compile with ADT and recipe fails builds on target.
+Subject: Re: Perl usage in recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,81 +65,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Aug 2015 18:31:48 -0000
-Content-Type: text/plain; charset=UTF-8
-
-On Wed, Aug 5, 2015 at 9:40 AM, Edward Vidal <develone@sbcglobal.net> wrote:
-> Hello All,
->
-> Trying to use ADT to compile a package.  The package compiles and installs
-> on the target core-image-sato for the Raspberry Pi 2 B.  Also trying to
-> create a recipe. see
-> recipe_gtkwave/gtkwave/gtkwave_3.6.66.bb at
-> https://github.com/develone/raspberrypi2_yocto.git
-> The recipe downloads the source code, unpacks and runs do_configure, but
-> fails at
->  ERROR: Function failed: do_qa_configure.
->
-> 1.) "cd wkg/yocto/RaspberryPi2/poky/"
->
-> 2.) ". oe-init-build-env"
->
-> 3.) "bitbale core-image-sato -c populate_sdk"
->
-> 4.) "sudo
-> tmp/deploy/sdk/poky-glibc-x86_64-core-image-sato-cortexa7hf-vfp-vfpv4-neon-toolchain-1.8+snapshot.sh"
->
-> 5.) "cd ~/"
->
-> 6.) "tar xfz wkg/yocto/downloads/gtkwave-3.3.66.tar.gz"
->
-> 7.) "cd gtkwave-3.3.66/"
->
-> 8.) "source
-> /opt/poky/1.8+snapshot/environment-setup-cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi"
->
-> 9.a) "./configure ${CONFIGURE_FLAGS}"
-> checking for Tcl configuration... configure: error: Can't find Tcl
-> configuration definitions. Use --with-tcl to specify a directory containing
-> tclConfig.sh
->
-> Should the ADT be able to find theses since they are located at
-> ls
-> /opt/poky/1.8+snapshot/sysroots/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/usr/lib/tclConfig.sh
-> ls
-> /opt/poky/1.8+snapshot/sysroots/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/usr/lib/tkConfig.sh
-> without have to set the path
-
-you need to find out how TCL is used here. If its used during build or
-is it required during runtime as well.
-its not different when you do native compile but OE is all about cross
-compiling where it will matter.
-If its only needed during build then you will depend on tcl-native in
-recipe. If its also needed during runtime you will add tcl
-to DEPENDS as well. You will also need to add nativesdk-tcl and any
-other dependencies when creating SDK
+X-List-Received-Date: Wed, 05 Aug 2015 18:38:31 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
->
-> 9.b) "./configure ${CONFIGURE_FLAGS}
-> --with-tcl=/home/vidal/wkg/yocto/RaspberryPi2/poky/build/tmp/sysroots/raspberrypi2/usr/lib
-> --with-tk=/home/vidal/wkg/yocto/RaspberryPi2/poky/build/tmp/sysroots/raspberrypi2/usr/lib"
->
-> This goes further with the following warning
->
-> config.status: executing depfiles commands
-> configure: WARNING: unrecognized options: --with-libtool-sysroot
->
-> Thanks in advance.
->
-> Edward Vidal Jr.
-> e-mail develone@sbcglobal.net
-> 915-595-1613
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+
+W dniu 05.08.2015 o 20:08, Khem Raj pisze:
+> On Wed, Aug 5, 2015 at 10:23 AM, mar.krzeminski
+> <mar.krzeminski@gmail.com> wrote:
+>> Hello,
+>>
+>> In my recipe I want to call perl script that will create image.
+>> How should I do that to be absolutely sure that perl will be used from yocto
+>> not from my system?
+>> Maybe is there any example somewhere that I can check how this should be
+>> done?
+> inherit perlnative
+Ok, thanks. And one more question.
+How about scrip call after this inherit?
+Can I use simple perl MY_SCRIPT or should I consider to use something 
+like this (from perf recipe)
+
+inherit perlnative
+# Env var which tells perl if it should use host (no) or target (yes) settings
+export PERLCONFIGTARGET = "${@is_target(d)}"
+export PERL_INC = "${STAGING_LIBDIR}${PERL_OWN_DIR}/perl/${@get_perl_version(d)}/CORE"
+export PERL_LIB = "${STAGING_LIBDIR}${PERL_OWN_DIR}/perl/${@get_perl_version(d)}"
+export PERL_ARCHLIB = "${STAGING_LIBDIR}${PERL_OWN_DIR}/perl/${@get_perl_version(d)}"
+
+Regards,
+Marcin
+>> Regards,
+>> Marcin
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+
 
