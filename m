@@ -1,73 +1,43 @@
-Return-Path: <zhenhua.luo@freescale.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EAF48E00AC0; Wed,  5 Aug 2015 02:17:38 -0700 (PDT)
+	id 08FABE009B8; Wed,  5 Aug 2015 07:45:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [65.55.169.111 listed in list.dnswl.org]
-Received: from na01-bl2-obe.outbound.protection.outlook.com
-	(mail-bl2on0111.outbound.protection.outlook.com [65.55.169.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6D51E00A97
-	for <yocto@yoctoproject.org>; Wed,  5 Aug 2015 02:17:35 -0700 (PDT)
-Received: from BN3PR03MB1367.namprd03.prod.outlook.com (10.163.34.153) by
-	BN3PR03MB1366.namprd03.prod.outlook.com (10.163.34.152) with Microsoft
-	SMTP Server (TLS) id 15.1.225.19; Wed, 5 Aug 2015 09:17:33 +0000
-Received: from BN3PR03MB1367.namprd03.prod.outlook.com ([10.163.34.153]) by
-	BN3PR03MB1367.namprd03.prod.outlook.com ([10.163.34.153]) with mapi id
-	15.01.0225.018; Wed, 5 Aug 2015 09:17:33 +0000
-From: Luo Zhenhua <zhenhua.luo@freescale.com>
-To: Khem Raj <raj.khem@gmail.com>, Sarayu Krishna Sivanandam
-	<sarayu@zaikenn.com>
-Thread-Topic: [yocto] ADD GDB in FSL toolchain
-Thread-Index: AQHQzphhsLGHvRUXIkyORV9wQkFj8J37ur+AgAAOBQCAAH49gIAA2YiQ
-Date: Wed, 5 Aug 2015 09:17:32 +0000
-Message-ID: <BN3PR03MB1367948110F93EB2C59A8343E4750@BN3PR03MB1367.namprd03.prod.outlook.com>
-References: <CAF5S8SM0xn7SGrdTa6iRyN1SPxZDXy15ctPYrDuu0AFzxw0zcw@mail.gmail.com>
-	<55C0A75F.1000701@mlbassoc.com>
-	<CAF5S8SMdfH8rNHznXCLJ_yt7PDGnKDujiu9=dpZce8eMzH4DrA@mail.gmail.com>
-	<CAMKF1sq8GDP9fbZyyN7cJzM4ByMvd6p4xuKY-tyOd-VFe8=CLg@mail.gmail.com>
-In-Reply-To: <CAMKF1sq8GDP9fbZyyN7cJzM4ByMvd6p4xuKY-tyOd-VFe8=CLg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=zhenhua.luo@freescale.com; 
-x-originating-ip: [123.151.195.51]
-x-microsoft-exchange-diagnostics: 1; BN3PR03MB1366;
-	5:CSSqA1reg6kYM800836YYbOfKyxEsaB2tWy8qs3FBJaZu/I8mv1svC7fhE2X3pCnB7pFIl3oKU7DWxFeO7Y+Kr2u3C2YhQydoeQ9VnQpjIGIJ9Mo2tk/bmTkZDioYiH6HBqiOGi1O0IVQMUmH852tg==;
-	24:h4Bph48gvIuzKoB9TA9MNGwF/BzVYcuTpLA7ORNWwSbop3TO58ulwnRWddNlLM6WDi7nZnMQHQpSWh3yW+dpb+Mb8QZXVbGZaDPBWE3Q0kA=;
-	20:7Xr9p/+thJ8HTUKLMBZ6UNPMLjykw9kYRkGr8THTVYhF/SvhMuerhLOTlGjwBz/4Q/VXAKJurnA14Ld2AO/vKA==
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BN3PR03MB1366;
-bn3pr03mb1366: X-MS-Exchange-Organization-RulesExecuted
-x-microsoft-antispam-prvs: <BN3PR03MB1366A797BAEC565C7269C51DE4750@BN3PR03MB1366.namprd03.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(5005006)(3002001); SRVR:BN3PR03MB1366; BCL:0;
-	PCL:0; RULEID:; SRVR:BN3PR03MB1366; 
-x-forefront-prvs: 06592CCE58
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(51914003)(199003)(13464003)(377454003)(189002)(53754006)(377424004)(24454002)(87936001)(2900100001)(92566002)(5002640100001)(106116001)(97736004)(99286002)(77096005)(19580405001)(66066001)(5001830100001)(5001770100001)(101416001)(62966003)(93886004)(106356001)(76576001)(81156007)(105586002)(2950100001)(15975445007)(50986999)(102836002)(68736005)(74316001)(76176999)(5001860100001)(86362001)(2656002)(64706001)(54356999)(122556002)(46102003)(77156002)(19580395003)(40100003)(5001960100002)(10400500002)(5003600100002)(4001540100001)(33656002)(189998001)(217873001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN3PR03MB1366;
-	H:BN3PR03MB1367.namprd03.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (protection.outlook.com: freescale.com does not designate
-	permitted sender hosts)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.175 listed in list.dnswl.org]
+Received: from mail-wi0-f175.google.com (mail-wi0-f175.google.com
+	[209.85.212.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EADC3E009A7
+	for <yocto@yoctoproject.org>; Wed,  5 Aug 2015 07:45:51 -0700 (PDT)
+Received: by wicne3 with SMTP id ne3so7956878wic.1
+	for <yocto@yoctoproject.org>; Wed, 05 Aug 2015 07:45:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=1+kfO5ZMxyKiaD2x9ui/0Pk9wYr5iTqadgAi2zmnpLA=;
+	b=e3piL7Z6yKzkykvnIHOZ/R7EqQqhOq60JrNp+VDmBY1RdD0lFS1bTMXQbEw++8JRvJ
+	lpORywwFcgDMU2lGzocumFV6rMiXm/awOfGNf7RGdpM5mFljabeXZks73C6OjyFl9obc
+	VA+EET5JfXhz0C7aAR8i1yU08jjho0kbOh6K4B7X+ZjdxaDQLUNLvQ+PWOnKIkZmK3sB
+	ISeMJgu7G5/O/todNg8RfBrWdCSycAvFFTm7QhK/YrI9npLuV8qADz2mPTkfy27cbE2O
+	w5aGlEXlJQMbl77URohlcU9/BVPQLC/wudv1sOZ781HNEt2WHrwwfFMKpWwsFioeoyR8
+	IFNg==
+X-Gm-Message-State: ALoCoQl1V5cAyWMw2eWI6YSZMPK8FE8MvkxDBaZF8V3GL7jTguHdEJGbTs/sw6UFhXCZEU8C5yy2
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Aug 2015 09:17:32.7782 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 710a03f5-10f6-4d38-9ff4-a80b81da590d
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3PR03MB1366
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Gary Thomas <gary@mlbassoc.com>
-Subject: Re: ADD GDB in FSL toolchain
+X-Received: by 10.180.91.196 with SMTP id cg4mr11013697wib.16.1438785950509;
+	Wed, 05 Aug 2015 07:45:50 -0700 (PDT)
+Received: by 10.28.94.10 with HTTP; Wed, 5 Aug 2015 07:45:50 -0700 (PDT)
+Date: Wed, 5 Aug 2015 15:45:50 +0100
+Message-ID: <CAPhnLPB5-A5A3=RXjKL1WJqKp7DCZ2ku6U1eAsgFRPty8sjkWg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: [ANNOUNCEMENT] Milestone 1 for Yocto Project 1.9 now available.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,121 +49,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Aug 2015 09:17:39 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 05 Aug 2015 14:45:54 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi Sarayu,=20
+The first milestone release for Yocto Project 1.9 is available for download now.
 
-Do you want the gdb utility which can be executed on host machine or gdb st=
-uffs of target machine? If the former, the utility is already included(<too=
-lchain-install-dir>/sysroots/x86_64-fslsdk-linux/usr/bin/arm-fsl-linux-gnue=
-abi/arm-fsl-linux-gnueabi-gdb), if the latter, you can follow Khem's sugges=
-tion.=20
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.9_M1/
 
+Thank you everyone for your contributions.
 
-Best Regards,
+eclipse-poky/juno-master bbd410e2c5db9532ea373ec993c5e8d9
+eclipse-poky/kepler-master 989ee9bda9c0d5c05e790a289d4ca032
+eclipse-poky/luna-master fe928773cf7b952c368769fdc4be3688
+meta-qt3 139394eca6575b9ab31d2f79f7830f2a
+poky 59713c69884b4d459b0712133ba56034
 
-Zhenhua
+Test report at
+https://wiki.yoctoproject.org/wiki/WW28_-_2015-07-10_-_Full_Pass_1.9_M1.rc2
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Khem Raj
-> Sent: Wednesday, August 05, 2015 4:14 AM
-> To: Sarayu Krishna Sivanandam
-> Cc: yocto@yoctoproject.org; Gary Thomas
-> Subject: Re: [yocto] ADD GDB in FSL toolchain
->=20
-> On Tue, Aug 4, 2015 at 5:42 AM, Sarayu Krishna Sivanandam
-> <sarayu@zaikenn.com> wrote:
-> > hi Gary ,
-> >
-> > Thanks for the quick response. I still see the below error .
-> >
-> > NOTE: Resolving any missing task queue dependencies
-> > ERROR: Nothing RPROVIDES 'gdb-cross-arm'
-> > NOTE: Runtime target 'gdb-cross-arm' is unbuildable, removing...
-> > Missing or unbuildable dependency chain was: ['gdb-cross-arm']
-> > ERROR: Required build target 'fsl-toolchain' has no buildable providers=
-.
-> > Missing or unbuildable dependency chain was: ['fsl-toolchain',
-> > 'gdb-cross-arm']
->=20
-> this is not a target task. Its a host-x-target tool you should add db-cro=
-ss-
-> canadian-${TRANSLATED_TARGET_ARCH}  to TOOLCHAIN_HOST_TASK
->=20
-> if you want gdb on target then you would add 'gdb' to
-> TOOLCHAIN_TARGET_TASK
->=20
-> > -----
-> >
-> > Below is how the change ,
-> > TOOLCHAIN_TARGET_TASK +=3D " \
-> >     glib-2.0 \
-> >     glib-2.0-dev \
-> >     dtc-staticdev \
-> >     libgomp \
-> >     libgomp-dev \
-> >     libgomp-staticdev \
-> >     libstdc++-staticdev \
-> >     ${TCLIBC}-staticdev \
-> >     util-linux-dev \
-> >     gdb-cross-arm \
-> > "
-> >
-> >
-> > Thanks and Regards,
-> > Sarayu K S
-> > Tech Lead
-> > Zaikenn Technologies
-> >
-> > On Tue, Aug 4, 2015 at 5:21 PM, Gary Thomas <gary@mlbassoc.com> wrote:
-> >>
-> >> On 2015-08-04 03:31, Sarayu Krishna Sivanandam wrote:
-> >>>
-> >>> Hi all ,
-> >>>
-> >>> I am using the QorIQ-SDK-V1.8 SDK for the toolchain generation for
-> >>> my ARM board .  I wanted to build gdb along with the toolchain . I
-> >>> got some ideas from google to add the gdb-cross in the
-> >>> fsl-toolchain.bb <http://fsl-toolchain.bb> but on doing the same it
-> >>> gave me some errors when trying to build .
-> >>>
-> >>> Can you please let me know the right method to add gdb in the toolcha=
-in ?
-> >>>
-> >>> Below is the error i got ,
-> >>> *ERROR: gdb-cross not found in the base feeds (ls1021atwr
-> >>> cortexa7hf-vfp-neon cortexa7hf-vfp armv7ahf-vfp-neon armv7ahf-vfp
-> >>> armv6hf-vfp armv5ehf-vfp armv5hf-vfp noarch any all).*
-> >>
-> >>
-> >> Use gdb-cross-arm
-> >>
-> >> --
-> >> ------------------------------------------------------------
-> >> Gary Thomas                 |  Consulting for the
-> >> MLB Associates              |    Embedded world
-> >> ------------------------------------------------------------
-> >> --
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org
-> >> https://lists.yoctoproject.org/listinfo/yocto
-> >
-> >
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
