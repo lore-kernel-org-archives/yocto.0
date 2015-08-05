@@ -1,40 +1,58 @@
-Return-Path: <flihp@twobit.us>
+Return-Path: <develone@sbcglobal.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EF9B8E009B8; Wed,  5 Aug 2015 08:25:19 -0700 (PDT)
+	id 5A574E009E4; Wed,  5 Aug 2015 09:41:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RCVD_IN_SORBS_WEB
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.8 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable
-	web server *      [208.54.5.166 listed in dnsbl.sorbs.net]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [98.138.91.110 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECC2AE009A7
-	for <yocto@yoctoproject.org>; Wed,  5 Aug 2015 08:25:17 -0700 (PDT)
-Received: from ma60536d0.tmodns.net ([208.54.5.166] helo=[192.168.43.151])
-	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
-	(Exim 4.80) (envelope-from <flihp@twobit.us>)
-	id 1ZN0YQ-0005Gb-Tt; Wed, 05 Aug 2015 15:24:32 +0000
-Message-ID: <55C22AD6.30001@twobit.us>
-Date: Wed, 05 Aug 2015 08:25:10 -0700
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Icedove/31.7.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm17-vm6.bullet.mail.ne1.yahoo.com
+	(nm17-vm6.bullet.mail.ne1.yahoo.com [98.138.91.110])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B239E009B3
+	for <yocto@yoctoproject.org>; Wed,  5 Aug 2015 09:41:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
+	t=1438792880; bh=L6Xgt+oe9eFDGCCJcUj0mvYDn4fPUXE9w47CDu10kAk=;
+	h=Date:From:Reply-To:To:Subject:From:Subject;
+	b=M8Dl3VS8CX0a95XesSRO5oC9uE8iR0Xep2nhE+pJQdjvVTCPDSk8iWFXvDeVhc5S5qbGaeBhVbzFNtr1vDbQiBxHPLHRqnAaCb6nhCnnYTKhQbk2HtM6xfIwURiAVW8tm05dsVajjrm8oFgGWD76ukln8hrup891nqSLkvlJoMGc08iAZOUOp0qjAWgcZb271M5kdAcyVLjiQ1I3pnq2/VUBJOx1/bKMN1eS2KXI+JpF6DrWUMsTSQfjHZZ7/DKwXlJdeJ5nBb2EVbzqGj8qkW153QX6r6ajOFqnyAGhw6KrwxzhAbsOucO4Woyyw1F2l5YWbNrp2sXj/VpToU7P2g==
+Received: from [98.138.100.114] by nm17.bullet.mail.ne1.yahoo.com with NNFMP;
+	05 Aug 2015 16:41:20 -0000
+Received: from [98.138.88.232] by tm105.bullet.mail.ne1.yahoo.com with NNFMP;
+	05 Aug 2015 16:41:20 -0000
+Received: from [127.0.0.1] by omp1032.mail.ne1.yahoo.com with NNFMP;
+	05 Aug 2015 16:41:20 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 616522.37104.bm@omp1032.mail.ne1.yahoo.com
+X-YMail-OSG: UZD78JUVM1mJ1vSgyO2uhtPPVjUbraouhZM2Lrh.4oQvVWImDqgiO2xVCEyHirE
+	rzkwvlmSUHX8fZj90FBLDH8oxmcHFk4f8XmC4MjpvWuPpt64fH8umeYy.S9fHFGS12RkPFXXeC_v
+	_9cu3J_seHCNdrKV9E4xgB29JPMVN4adnBttlLWeDR429L43t.jYrmIsvzIoeyzHhBWGfkfH46Zf
+	4ETrek6iJVef9V4DvhtE6cnnEACW9E3egsXZ7QBCEGAsaqElpUCQwxlTKvAA4LTxyaK6xGovzzak
+	fK2RpO75zos2JRp941wHmkMejI7wWZNL_zoGWAadxPYoPFNlsJrnARmtwt.1BJslAOpPVUu8vGOB
+	R.aW.N8Bd7XkILYKUNKZnQvGuS4DjU5WWffOjq9oiHqSnilwWySOgx79rYpxjS4vuakCucg12qBF
+	ZclQSHvdU_LXnqDILsEMehvnRjkmfvhQR3bPQKAiSjgV40SV30HojALNSXqkoJ33ySVDjtmKB8Ai
+	kKPS4i7m06Slx9aKxtwuJfcaEzu5N7hp.RPtj7p78F4GWz4daDVAwolSggwXJvWY-
+Received: by 98.138.101.161; Wed, 05 Aug 2015 16:41:20 +0000 
+Date: Wed, 5 Aug 2015 16:40:39 +0000 (UTC)
+From: Edward Vidal <develone@sbcglobal.net>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <1299340381.458690.1438792839565.JavaMail.yahoo@mail.yahoo.com>
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <1438248304-7884-1-git-send-email-bobadeshrikant@gmail.com>
-	<CALwQErr1fTKQ=Nc8OXJ0m-itC-NzoNz5bsc4R6gsCN3cJC9ciw@mail.gmail.com>
-In-Reply-To: <CALwQErr1fTKQ=Nc8OXJ0m-itC-NzoNz5bsc4R6gsCN3cJC9ciw@mail.gmail.com>
-X-SA-Exim-Connect-IP: 208.54.5.166
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
-X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Subject: Re: [meta-selinux][PATCH v1] libpam: use wildcard for version and cleanup
+Subject: Compile with ADT and recipe fails builds on target.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Edward Vidal <develone@sbcglobal.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -43,128 +61,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Aug 2015 15:25:20 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 05 Aug 2015 16:41:28 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_458689_1144170009.1438792839563"
 
-Shrikant,
+------=_Part_458689_1144170009.1438792839563
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 07/30/2015 02:31 AM, Shrikant Bobade wrote:
-> This patch provides green build for core-image-selinux
-> (meta-selinux:master & poky:master) against libpam upgrade from 1.1.6 to
-> 1.2.1,
-> image boots fine,but I am unable to login at target. I have prepared
-> build for qemuarm, does anyone else facing similar issue? please advice.
+Hello All,
 
-I've reproduced this issue. Build works, we can drop the DESTDIR patch
-now. But login fails with the latest version.
+Trying to use ADT to compile a package.=C2=A0 The package compiles and inst=
+alls on the target core-image-sato for the Raspberry Pi 2 B.=C2=A0 Also try=
+ing to create a recipe. see=20
+recipe_gtkwave/gtkwave/gtkwave_3.6.66.bb at=20
+https://github.com/develone/raspberrypi2_yocto.git
+The recipe downloads the source code, unpacks and runs do_configure, but fa=
+ils at
+=C2=A0ERROR: Function failed: do_qa_configure.
 
-> Observed the login issue appears even with disabled selinux support
-> (selinux=0).
+1.) "cd wkg/yocto/RaspberryPi2/poky/"
 
-On a vanilla core-image-minimal with this libpam version login works
-fine. The SELinux images however, even with SELinux in permissive /
-disabled, login fails. I guess this means there's something wrong with
-the SELinux bits in the libpam package.
+2.) ". oe-init-build-env"
 
-Philip
+3.) "bitbale core-image-sato -c populate_sdk"
 
-> On Thu, Jul 30, 2015 at 2:55 PM, Shrikant Bobade
-> <bobadeshrikant@gmail.com <mailto:bobadeshrikant@gmail.com>> wrote:
-> 
->     From: Shrikant Bobade <shrikant_bobade@mentor.com
->     <mailto:shrikant_bobade@mentor.com>>
-> 
->     use wildcard for version: adopting libpam upgrade from 1.1.6 to 1.2.1,
->     cleanup older recipe and remove patch sepermit-add-DESTDIR-prefix.patch
->     since the changes already available with latest source.
-> 
->     Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com
->     <mailto:shrikant_bobade@mentor.com>>
->     ---
->      .../pam/libpam/sepermit-add-DESTDIR-prefix.patch   |   31
->     --------------------
->      recipes-extended/pam/libpam_%.bbappend             |    3 ++
->      recipes-extended/pam/libpam_1.1.6.bbappend         |   10 -------
->      3 files changed, 3 insertions(+), 41 deletions(-)
->      delete mode 100644
->     recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
->      create mode 100644 recipes-extended/pam/libpam_%.bbappend
->      delete mode 100644 recipes-extended/pam/libpam_1.1.6.bbappend
-> 
->     diff --git
->     a/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
->     b/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
->     deleted file mode 100644
->     index d48d386..0000000
->     --- a/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
->     +++ /dev/null
->     @@ -1,31 +0,0 @@
->     -Subject: [PATCH] libpam: add missing DESTDIR prefix
->     -
->     -The DESTDIR prefix is missing, this will cause build failures for
->     -mkdir /var/run/sepermit on the host.
->     -
->     -| mkdir -p /var/run/sepermit
->     -| mkdir: cannot create directory `/var/run/sepermit': Permission denied
->     -
->     -Upstream-Status: Pending
->     -
->     -Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com
->     <mailto:Xin.Ouyang@windriver.com>>
->     ----
->     - modules/pam_sepermit/Makefile.am |    2 +-
->     - 1 files changed, 1 insertions(+), 1 deletions(-)
->     -
->     -diff --git a/modules/pam_sepermit/Makefile.am
->     b/modules/pam_sepermit/Makefile.am
->     -index cfc5594..bc82275 100644
->     ---- a/modules/pam_sepermit/Makefile.am
->     -+++ b/modules/pam_sepermit/Makefile.am
->     -@@ -35,7 +35,7 @@ if HAVE_LIBSELINUX
->     -   securelib_LTLIBRARIES = pam_sepermit.la <http://pam_sepermit.la>
->     -
->     - install-data-local:
->     --      mkdir -p $(sepermitlockdir)
->     -+      mkdir -p $(DESTDIR)$(sepermitlockdir)
->     - endif
->     - if ENABLE_REGENERATE_MAN
->     - noinst_DATA = README pam_sepermit.8 sepermit.conf.5
->     ---
->     -1.7.5.4
->     -
->     diff --git a/recipes-extended/pam/libpam_%.bbappend
->     b/recipes-extended/pam/libpam_%.bbappend
->     new file mode 100644
->     index 0000000..adcf938
->     --- /dev/null
->     +++ b/recipes-extended/pam/libpam_%.bbappend
->     @@ -0,0 +1,3 @@
->     +inherit enable-selinux
->     +
->     +RDEPENDS_${PN}-runtime += "${@target_selinux(d, 'pam-plugin-selinux')}"
->     diff --git a/recipes-extended/pam/libpam_1.1.6.bbappend
->     b/recipes-extended/pam/libpam_1.1.6.bbappend
->     deleted file mode 100644
->     index 71acecc..0000000
->     --- a/recipes-extended/pam/libpam_1.1.6.bbappend
->     +++ /dev/null
->     @@ -1,10 +0,0 @@
->     -#FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->     -FILESPATH_append := ":${@base_set_filespath(['${THISDIR}/${PN}'], d)}"
->     -
->     -SRC_URI += "file://sepermit-add-DESTDIR-prefix.patch"
->     -
->     -PR .= ".4"
->     -
->     -inherit enable-selinux
->     -
->     -RDEPENDS_${PN}-runtime += "${@target_selinux(d, 'pam-plugin-selinux')}"
->     --
->     1.7.9.5
-> 
-> 
-> 
-> 
+4.) "sudo tmp/deploy/sdk/poky-glibc-x86_64-core-image-sato-cortexa7hf-vfp-v=
+fpv4-neon-toolchain-1.8+snapshot.sh"
 
+5.) "cd ~/"
 
+6.) "tar xfz wkg/yocto/downloads/gtkwave-3.3.66.tar.gz"
+
+7.) "cd gtkwave-3.3.66/"
+
+8.) "source /opt/poky/1.8+snapshot/environment-setup-cortexa7hf-vfp-vfpv4-n=
+eon-poky-linux-gnueabi"
+
+9.a) "./configure ${CONFIGURE_FLAGS}"
+checking for Tcl configuration... configure: error: Can't find Tcl configur=
+ation definitions. Use --with-tcl to specify a directory containing tclConf=
+ig.sh
+
+Should the ADT be able to find theses since they are located at
+ls /opt/poky/1.8+snapshot/sysroots/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnu=
+eabi/usr/lib/tclConfig.sh
+ls /opt/poky/1.8+snapshot/sysroots/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnu=
+eabi/usr/lib/tkConfig.sh
+without have to set the path
+
+9.b) "./configure ${CONFIGURE_FLAGS} --with-tcl=3D/home/vidal/wkg/yocto/Ras=
+pberryPi2/poky/build/tmp/sysroots/raspberrypi2/usr/lib --with-tk=3D/home/vi=
+dal/wkg/yocto/RaspberryPi2/poky/build/tmp/sysroots/raspberrypi2/usr/lib"
+
+This goes further with the following warning
+
+config.status: executing depfiles commands
+configure: WARNING: unrecognized options: --with-libtool-sysroot
+
+Thanks in advance.=C2=A0Edward Vidal Jr.
+e-mail develone@sbcglobal.net
+915-595-1613
+
+------=_Part_458689_1144170009.1438792839563
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
+nt-size:16px"><div dir=3D"ltr" id=3D"yui_3_16_0_1_1438779077387_39428"><spa=
+n>Hello All,<br class=3D""><br class=3D"">Trying to use ADT to compile a pa=
+ckage.&nbsp; The package compiles and installs on the target core-image-sat=
+o for the Raspberry Pi 2 B.&nbsp; Also trying to create a recipe. see <br c=
+lass=3D"">recipe_gtkwave/gtkwave/gtkwave_3.6.66.bb at <br class=3D"">https:=
+//github.com/develone/raspberrypi2_yocto.git<br class=3D"">The recipe downl=
+oads the source code, unpacks and runs do_configure, but fails at<br class=
+=3D"">&nbsp;ERROR: Function failed: do_qa_configure.<br class=3D""><br clas=
+s=3D"">1.) "cd wkg/yocto/RaspberryPi2/poky/"<br class=3D""><br class=3D"">2=
+.) ". oe-init-build-env"<br class=3D""><br class=3D"">3.) "bitbale core-ima=
+ge-sato -c populate_sdk"<br class=3D""><br class=3D"">4.) "sudo tmp/deploy/=
+sdk/poky-glibc-x86_64-core-image-sato-cortexa7hf-vfp-vfpv4-neon-toolchain-1=
+.8+snapshot.sh"<br class=3D""><br class=3D"">5.) "cd ~/"<br class=3D""><br =
+class=3D"">6.) "tar xfz wkg/yocto/downloads/gtkwave-3.3.66.tar.gz"<br class=
+=3D""><br class=3D"">7.) "cd gtkwave-3.3.66/"<br class=3D""><br class=3D"">=
+8.) "source /opt/poky/1.8+snapshot/environment-setup-cortexa7hf-vfp-vfpv4-n=
+eon-poky-linux-gnueabi"<br class=3D""><br class=3D"">9.a) "./configure ${CO=
+NFIGURE_FLAGS}"<br class=3D"">checking for Tcl configuration... configure: =
+error: Can't find Tcl configuration definitions. Use --with-tcl to specify =
+a directory containing tclConfig.sh<br class=3D""><br class=3D"">Should the=
+ ADT be able to find theses since they are located at<br class=3D"">ls /opt=
+/poky/1.8+snapshot/sysroots/cortexa7hf-vfp-vfpv4-neon-poky-linux-gnueabi/us=
+r/lib/tclConfig.sh<br class=3D"">ls /opt/poky/1.8+snapshot/sysroots/cortexa=
+7hf-vfp-vfpv4-neon-poky-linux-gnueabi/usr/lib/tkConfig.sh<br class=3D"">wit=
+hout have to set the path<br class=3D""><br class=3D"">9.b) "./configure ${=
+CONFIGURE_FLAGS} --with-tcl=3D/home/vidal/wkg/yocto/RaspberryPi2/poky/build=
+/tmp/sysroots/raspberrypi2/usr/lib --with-tk=3D/home/vidal/wkg/yocto/Raspbe=
+rryPi2/poky/build/tmp/sysroots/raspberrypi2/usr/lib"<br class=3D""><br clas=
+s=3D"">This goes further with the following warning<br class=3D""><br class=
+=3D"">config.status: executing depfiles commands<br class=3D"">configure: W=
+ARNING: unrecognized options: --with-libtool-sysroot<br class=3D""><br clas=
+s=3D"">Thanks in advance.</span></div><div>&nbsp;</div><div><div>Edward Vid=
+al Jr.<br>e-mail develone@sbcglobal.net<br>915-595-1613</div></div></div></=
+body></html>
+
+------=_Part_458689_1144170009.1438792839563--
