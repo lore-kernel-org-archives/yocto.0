@@ -1,52 +1,35 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <flihp@twobit.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2A15E009B8; Thu,  6 Aug 2015 06:42:59 -0700 (PDT)
+	id B27C4E00A01; Thu,  6 Aug 2015 07:22:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bruce.ashfield[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.160.172 listed in list.dnswl.org]
-Received: from mail-yk0-f172.google.com (mail-yk0-f172.google.com
-	[209.85.160.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31CD1E00867
-	for <yocto@yoctoproject.org>; Thu,  6 Aug 2015 06:42:54 -0700 (PDT)
-Received: by ykeo23 with SMTP id o23so62170265yke.3
-	for <yocto@yoctoproject.org>; Thu, 06 Aug 2015 06:42:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=YjPnX+2KAITbdUCvqIZrDmFYY9ThvOTcAPDCsohbtak=;
-	b=IoQdkMSrQhn1YGvBjF9PJUYoytEStc6u6qUK1iFozsnhNjdzgFODfFRR+oDKo+78+g
-	RI6hY0IZuMu7CwRSm2HIlu3b+PcH75zf5CyogXykIg/T+FxcRbl4hhZ/jnBZOziG8N3F
-	JX3RVwVQue2n8pGKtsfk+SsZgpQNIxn2j6GpiSGUV+PZ3jk3tae2bHD7rOfZiLwYvBy/
-	N68clmAyCiODsjJ5AK6bcZAQ1h1toF21BMT8npLfmFKOJYqUHNak+4wcXwUb5ItWH6ya
-	se08IjltVFI1CG5P8NHOKy1x+82zMAthjdHPRYXVsWeGkhQIlPPn59MJhfa0TjoiZIU+
-	wjfg==
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA57FE00867
+	for <yocto@yoctoproject.org>; Thu,  6 Aug 2015 07:22:45 -0700 (PDT)
+Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
+	helo=[10.79.148.103])
+	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1ZNM3R-0006Bw-Px; Thu, 06 Aug 2015 14:21:59 +0000
+Message-ID: <55C36DAB.1080002@twobit.us>
+Date: Thu, 06 Aug 2015 07:22:35 -0700
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Icedove/31.8.0
 MIME-Version: 1.0
-X-Received: by 10.170.77.5 with SMTP id t5mr1634142ykt.58.1438868574334; Thu,
-	06 Aug 2015 06:42:54 -0700 (PDT)
-Received: by 10.13.226.203 with HTTP; Thu, 6 Aug 2015 06:42:54 -0700 (PDT)
-In-Reply-To: <6A20517C7F5548459920A3A2C95FABA8770A25@POCITMSEXMB03.LntUniverse.com>
-References: <6A20517C7F5548459920A3A2C95FABA8770A25@POCITMSEXMB03.LntUniverse.com>
-Date: Thu, 6 Aug 2015 09:42:54 -0400
-Message-ID: <CADkTA4OO+1PjPAk0Xu7ubawR9ChwSRBnEiR3JBppf0b=8UpBpA@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Amit Kumar <Amit.Kumar@lnttechservices.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: qemux86 and generic86
+To: yocto@yoctoproject.org
+References: <1438530765-127834-1-git-send-email-flihp@twobit.us>
+In-Reply-To: <1438530765-127834-1-git-send-email-flihp@twobit.us>
+X-SA-Exim-Connect-IP: 50.185.54.102
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Subject: Re: [][meta-selinux] libpam: Upgrade recipe with wildcard.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,69 +41,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Aug 2015 13:42:59 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 06 Aug 2015 14:22:47 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-On Wed, Aug 5, 2015 at 1:44 AM, Amit Kumar
-<Amit.Kumar@lnttechservices.com> wrote:
-> Hi,
->
->
->
-> I have a basic doubts on qemux86 build application image is not working on
-> generic86 target.
->
-> Suppose I have a application which I would like to test on target board, but
-> the target board is not yet ready. If I will want to test that application I
-> will use the qemu  to test.
->
-> But if I build the application for qemu, it does not work for actual target
-> board.
->
-> Could you please let me know the details reason. If I want to do like that
-> what I should have to do.
->
+This is a duplicate. Please disregard in favor of:
+https://lists.yoctoproject.org/pipermail/yocto/2015-July/025833.html
 
-Are you concerned about the kernel, or userspace ? You say 'application', but
-I wanted to be sure.
+Philip
 
-Assuming that your application is generic, and isn't using any machine specific
-ops, then it will work fine on qemu and on a h/w target.
+On 08/02/2015 08:52 AM, flihp@twobit.us wrote:
+> From: Philip Tricca <flihp@twobit.us>
+> 
+> The DESTDIR prefix patch is now upstream and no longer necessary.
+> 
+> Signed-off-by: Philip Tricca <flihp@twobit.us>
+> ---
+>  .../pam/libpam/sepermit-add-DESTDIR-prefix.patch   | 31 ----------------------
+>  recipes-extended/pam/libpam_1.%.bbappend           |  8 ++++++
+>  recipes-extended/pam/libpam_1.1.6.bbappend         | 10 -------
+>  3 files changed, 8 insertions(+), 41 deletions(-)
+>  delete mode 100644 recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
+>  create mode 100644 recipes-extended/pam/libpam_1.%.bbappend
+>  delete mode 100644 recipes-extended/pam/libpam_1.1.6.bbappend
+> 
+> diff --git a/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch b/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
+> deleted file mode 100644
+> index d48d386..0000000
+> --- a/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
+> +++ /dev/null
+> @@ -1,31 +0,0 @@
+> -Subject: [PATCH] libpam: add missing DESTDIR prefix
+> -
+> -The DESTDIR prefix is missing, this will cause build failures for
+> -mkdir /var/run/sepermit on the host.
+> -
+> -| mkdir -p /var/run/sepermit
+> -| mkdir: cannot create directory `/var/run/sepermit': Permission denied
+> -
+> -Upstream-Status: Pending
+> -
+> -Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com>
+> ----
+> - modules/pam_sepermit/Makefile.am |    2 +-
+> - 1 files changed, 1 insertions(+), 1 deletions(-)
+> -
+> -diff --git a/modules/pam_sepermit/Makefile.am b/modules/pam_sepermit/Makefile.am
+> -index cfc5594..bc82275 100644
+> ---- a/modules/pam_sepermit/Makefile.am
+> -+++ b/modules/pam_sepermit/Makefile.am
+> -@@ -35,7 +35,7 @@ if HAVE_LIBSELINUX
+> -   securelib_LTLIBRARIES = pam_sepermit.la
+> - 
+> - install-data-local:
+> --	mkdir -p $(sepermitlockdir)
+> -+	mkdir -p $(DESTDIR)$(sepermitlockdir)
+> - endif
+> - if ENABLE_REGENERATE_MAN
+> - noinst_DATA = README pam_sepermit.8 sepermit.conf.5
+> --- 
+> -1.7.5.4
+> -
+> diff --git a/recipes-extended/pam/libpam_1.%.bbappend b/recipes-extended/pam/libpam_1.%.bbappend
+> new file mode 100644
+> index 0000000..100a376
+> --- /dev/null
+> +++ b/recipes-extended/pam/libpam_1.%.bbappend
+> @@ -0,0 +1,8 @@
+> +#FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> +FILESPATH_append := ":${@base_set_filespath(['${THISDIR}/${PN}'], d)}"
+> +
+> +PR .= ".4"
+> +
+> +inherit enable-selinux
+> +
+> +RDEPENDS_${PN}-runtime += "${@target_selinux(d, 'pam-plugin-selinux')}"
+> diff --git a/recipes-extended/pam/libpam_1.1.6.bbappend b/recipes-extended/pam/libpam_1.1.6.bbappend
+> deleted file mode 100644
+> index 71acecc..0000000
+> --- a/recipes-extended/pam/libpam_1.1.6.bbappend
+> +++ /dev/null
+> @@ -1,10 +0,0 @@
+> -#FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> -FILESPATH_append := ":${@base_set_filespath(['${THISDIR}/${PN}'], d)}"
+> -
+> -SRC_URI += "file://sepermit-add-DESTDIR-prefix.patch"
+> -
+> -PR .= ".4"
+> -
+> -inherit enable-selinux
+> -
+> -RDEPENDS_${PN}-runtime += "${@target_selinux(d, 'pam-plugin-selinux')}"
+> 
 
-That being said, applications are typically rebuilt o be included in a different
-image when switching between qemu and the h/w .. so they'l be rebuild and
-relinked anyway.
-
-Bruce
-
->
->
->
->
-> Thanks & Regards
->
-> Amit
->
-> L&T Technology Services Ltd
->
-> www.LntTechservices.com
->
-> This Email may contain confidential or privileged information for the
-> intended recipient (s). If you are not the intended recipient, please do not
-> use or disseminate the information, notify the sender and delete it from
-> your system.
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
-
-
--- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
 
