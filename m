@@ -1,35 +1,43 @@
-Return-Path: <flihp@twobit.us>
+Return-Path: <Virgil.Smith@flir.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B27C4E00A01; Thu,  6 Aug 2015 07:22:47 -0700 (PDT)
+	id D9C4FE00A26; Thu,  6 Aug 2015 08:47:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [208.0.64.244 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA57FE00867
-	for <yocto@yoctoproject.org>; Thu,  6 Aug 2015 07:22:45 -0700 (PDT)
-Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
-	helo=[10.79.148.103])
-	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
-	(Exim 4.80) (envelope-from <flihp@twobit.us>)
-	id 1ZNM3R-0006Bw-Px; Thu, 06 Aug 2015 14:21:59 +0000
-Message-ID: <55C36DAB.1080002@twobit.us>
-Date: Thu, 06 Aug 2015 07:22:35 -0700
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Icedove/31.8.0
+X-Greylist: delayed 67 seconds by postgrey-1.32 at yocto-www;
+	Thu, 06 Aug 2015 08:47:58 PDT
+Received: from east-edge.flir.com (east-edge.flir.com [208.0.64.244])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33BEEE009FD
+	for <yocto@yoctoproject.org>; Thu,  6 Aug 2015 08:47:58 -0700 (PDT)
+Received: from BOS-CH1.zone1.flir.net (10.128.150.52) by EAST-EDGE.flir.com
+	(10.128.210.250) with Microsoft SMTP Server (TLS) id 14.3.235.1;
+	Thu, 6 Aug 2015 11:53:32 -0400
+Received: from BOS-DAG1.zone1.flir.net ([169.254.2.131]) by
+	BOS-CH1.zone1.flir.net ([10.128.150.52]) with mapi id 14.03.0235.001;
+	Thu, 6 Aug 2015 11:46:50 -0400
+From: "Smith, Virgil" <Virgil.Smith@flir.com>
+To: Khem Raj <raj.khem@gmail.com>, Justin Bauer <jbauer@blockwise.com>
+Thread-Topic: [yocto] Qt SDK Static Build
+Thread-Index: AQHQzvHdmmWQB++WJkeY0+0+ixeF1p3+mQMAgACHNvA=
+Date: Thu, 6 Aug 2015 15:46:50 +0000
+Message-ID: <F14AEF751653024287138321000C846AF484EFAF@BOS-DAG1.zone1.flir.net>
+References: <em56b72e44-f32f-451c-9677-11ded6e322e9@jbauer-pc>
+	<CAMKF1srA5pRxcAKQVzDgH-CJkt5gmaTP=-t=3b4tnVEuadtbUg@mail.gmail.com>
+In-Reply-To: <CAMKF1srA5pRxcAKQVzDgH-CJkt5gmaTP=-t=3b4tnVEuadtbUg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.145.100.81]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <1438530765-127834-1-git-send-email-flihp@twobit.us>
-In-Reply-To: <1438530765-127834-1-git-send-email-flihp@twobit.us>
-X-SA-Exim-Connect-IP: 50.185.54.102
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
-X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Subject: Re: [][meta-selinux] libpam: Upgrade recipe with wildcard.
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Qt SDK Static Build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,97 +49,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Aug 2015 14:22:47 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 06 Aug 2015 15:47:58 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-This is a duplicate. Please disregard in favor of:
-https://lists.yoctoproject.org/pipermail/yocto/2015-July/025833.html
+> > $ bitbake meta-toolchain-qt5
+>
+> well SDKIMAGE_FEATURES only work when you generate SDKs using -
+> cpopulate_sdk out of real images and not meta-toolchain-* targets which I=
+MO
+> should no longer be used.
 
-Philip
+As a (non-expert/non-maintainer) user, I'm happy to hear it said [by Khem R=
+aj] that meta-toolchain-* targets should go away.  They easily lead to havi=
+ng multiple (incorrect) sysroot versions that can make (gdb remote)  debugg=
+ing a futile experience.  I assume there are good practices for what should=
+ go in an image recipe vs. local.conf or especially distro.conf that minimi=
+ze this (and other problems?), but the best practice I know is to promptly =
+delete any sysroot copy installed by a meta-toolchain-* produced installer.
 
-On 08/02/2015 08:52 AM, flihp@twobit.us wrote:
-> From: Philip Tricca <flihp@twobit.us>
-> 
-> The DESTDIR prefix patch is now upstream and no longer necessary.
-> 
-> Signed-off-by: Philip Tricca <flihp@twobit.us>
-> ---
->  .../pam/libpam/sepermit-add-DESTDIR-prefix.patch   | 31 ----------------------
->  recipes-extended/pam/libpam_1.%.bbappend           |  8 ++++++
->  recipes-extended/pam/libpam_1.1.6.bbappend         | 10 -------
->  3 files changed, 8 insertions(+), 41 deletions(-)
->  delete mode 100644 recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
->  create mode 100644 recipes-extended/pam/libpam_1.%.bbappend
->  delete mode 100644 recipes-extended/pam/libpam_1.1.6.bbappend
-> 
-> diff --git a/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch b/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
-> deleted file mode 100644
-> index d48d386..0000000
-> --- a/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
-> +++ /dev/null
-> @@ -1,31 +0,0 @@
-> -Subject: [PATCH] libpam: add missing DESTDIR prefix
-> -
-> -The DESTDIR prefix is missing, this will cause build failures for
-> -mkdir /var/run/sepermit on the host.
-> -
-> -| mkdir -p /var/run/sepermit
-> -| mkdir: cannot create directory `/var/run/sepermit': Permission denied
-> -
-> -Upstream-Status: Pending
-> -
-> -Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com>
-> ----
-> - modules/pam_sepermit/Makefile.am |    2 +-
-> - 1 files changed, 1 insertions(+), 1 deletions(-)
-> -
-> -diff --git a/modules/pam_sepermit/Makefile.am b/modules/pam_sepermit/Makefile.am
-> -index cfc5594..bc82275 100644
-> ---- a/modules/pam_sepermit/Makefile.am
-> -+++ b/modules/pam_sepermit/Makefile.am
-> -@@ -35,7 +35,7 @@ if HAVE_LIBSELINUX
-> -   securelib_LTLIBRARIES = pam_sepermit.la
-> - 
-> - install-data-local:
-> --	mkdir -p $(sepermitlockdir)
-> -+	mkdir -p $(DESTDIR)$(sepermitlockdir)
-> - endif
-> - if ENABLE_REGENERATE_MAN
-> - noinst_DATA = README pam_sepermit.8 sepermit.conf.5
-> --- 
-> -1.7.5.4
-> -
-> diff --git a/recipes-extended/pam/libpam_1.%.bbappend b/recipes-extended/pam/libpam_1.%.bbappend
-> new file mode 100644
-> index 0000000..100a376
-> --- /dev/null
-> +++ b/recipes-extended/pam/libpam_1.%.bbappend
-> @@ -0,0 +1,8 @@
-> +#FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> +FILESPATH_append := ":${@base_set_filespath(['${THISDIR}/${PN}'], d)}"
-> +
-> +PR .= ".4"
-> +
-> +inherit enable-selinux
-> +
-> +RDEPENDS_${PN}-runtime += "${@target_selinux(d, 'pam-plugin-selinux')}"
-> diff --git a/recipes-extended/pam/libpam_1.1.6.bbappend b/recipes-extended/pam/libpam_1.1.6.bbappend
-> deleted file mode 100644
-> index 71acecc..0000000
-> --- a/recipes-extended/pam/libpam_1.1.6.bbappend
-> +++ /dev/null
-> @@ -1,10 +0,0 @@
-> -#FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> -FILESPATH_append := ":${@base_set_filespath(['${THISDIR}/${PN}'], d)}"
-> -
-> -SRC_URI += "file://sepermit-add-DESTDIR-prefix.patch"
-> -
-> -PR .= ".4"
-> -
-> -inherit enable-selinux
-> -
-> -RDEPENDS_${PN}-runtime += "${@target_selinux(d, 'pam-plugin-selinux')}"
-> 
+If anyone with saavy and bandwidth out there is taking input on which of th=
+ese to attack first, I'll happily throw in a vote for Qt4.
 
+________________________________
+
+Notice to recipient: This email is meant for only the intended recipient of=
+ the transmission, and may be a communication privileged by law, subject to=
+ export control restrictions or that otherwise contains proprietary informa=
+tion. If you receive this email by mistake, please notify us immediately by=
+ replying to this message and then destroy it and do not review, disclose, =
+copy or distribute it. Thank you in advance for your cooperation.
 
