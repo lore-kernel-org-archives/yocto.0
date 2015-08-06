@@ -1,58 +1,73 @@
-Return-Path: <develone@sbcglobal.net>
+Return-Path: <denis.sazhaev@regenenergy.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B03E5E00707; Sat,  8 Aug 2015 11:32:07 -0700 (PDT)
+	id 6D6A5E00A31; Thu,  6 Aug 2015 13:34:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [98.138.91.144 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [207.46.100.92 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm14-vm3.bullet.mail.ne1.yahoo.com
-	(nm14-vm3.bullet.mail.ne1.yahoo.com [98.138.91.144])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 501E0E00343
-	for <yocto@yoctoproject.org>; Sat,  8 Aug 2015 11:32:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048;
-	t=1439058723; bh=K/E6RFQq+YuIdlgBEEqFzAkQV8fA19lcky5k4TXg8D8=;
-	h=Date:From:Reply-To:To:Subject:From:Subject;
-	b=hNwswiL1fcysq3zxSxLaAjeNs5X7eWdprorUq7mYdZb6Kbf07wyJc8HVZxMEnt7+TFbV8DwA7uc5GBPu90n769Qe223yhKAVG5dnYUlh2OiosBfxPe+xdu2VUWmd8HzyHFD0GNt5Oxx9v6aic+bW7V4v+0XLibpgIB8XQhzajJ/spLVlTMUsNiNZFgauqlFvkEOod6aB/uoYCxWBlg+ueG0/Kh+Ilq/JyVTJ5F/3Vd6p+zrfJRY7EgXej1AaWBsqx0Q3ZXrumOsonVnwc32f2AFIQSEfc13xseEDtv1ccgEmKdwwQ6dpEBsXieGx5kw85XvKylvEFbUQ75GDxqhtIw==
-Received: from [98.138.100.112] by nm14.bullet.mail.ne1.yahoo.com with NNFMP;
-	08 Aug 2015 18:32:03 -0000
-Received: from [98.138.89.160] by tm103.bullet.mail.ne1.yahoo.com with NNFMP;
-	08 Aug 2015 18:32:03 -0000
-Received: from [127.0.0.1] by omp1016.mail.ne1.yahoo.com with NNFMP;
-	08 Aug 2015 18:32:03 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 519093.85123.bm@omp1016.mail.ne1.yahoo.com
-X-YMail-OSG: YHmRLIwVM1mxojd4VkczrA2TiUbBBZmcznd6802CKCUz5Qqj0a97h1xT3qohTy8
-	QX4lN0fZoyKGdY70HCW.biHj1vAT.kyH6DK3x2XyJj.sdddam9tO9yvvBKRlVzK_UF0FV1vkdQSK
-	5dQzxtfS3GT2baIMmQzHFw8KpA6zSrup3RR3MUt1UMQ1C0jLcHPOJxLfia5G2Gy540rnQtUGNVCa
-	CQIJBqlB4UH9dDy2V8RxpSg..XzvHjnTuEO3SIKz.g_zKrqc7WQIlecBcRNR7eoILpYIQLHgkW0W
-	83McNF_UcYYToe2u8IJcYWKSlSKaDhmro_ODW6mMKWIp_1Iv2NMUyxohnOoIORq1EIL3mY35770A
-	DYZtE3ZmuVpTynEzVarLyPUAoHrSHRehgmaHXeNxEAJdBsk4uh2qMFTiIabFu1Mq2AzEKaHv854d
-	5ktVzGsKCr.em1KIyr3W0.z2eUTMOe0sVm1Ic6KMjlhPaXPD3SHObsxauPNgharP43JMmerKPSu1
-	gjRfnW9TNmvmsIg2122kQkNcoZ.qtPSR5yljSV8seUAMqhYfizYGZdwY9cDj_lOw-
-Received: by 98.138.105.247; Sat, 08 Aug 2015 18:32:03 +0000 
-Date: Sat, 8 Aug 2015 18:28:52 +0000 (UTC)
-From: Edward Vidal <develone@sbcglobal.net>
+X-Greylist: delayed 1077 seconds by postgrey-1.32 at yocto-www;
+	Thu, 06 Aug 2015 13:34:36 PDT
+Received: from na01-by2-obe.outbound.protection.outlook.com
+	(mail-by2on0092.outbound.protection.outlook.com [207.46.100.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 918C5E00767
+	for <yocto@yoctoproject.org>; Thu,  6 Aug 2015 13:34:36 -0700 (PDT)
+Received: from BY1PR0401MB1272.namprd04.prod.outlook.com (10.160.196.148) by
+	BY1PR0401MB1271.namprd04.prod.outlook.com (10.160.196.147) with
+	Microsoft
+	SMTP Server (TLS) id 15.1.225.19; Thu, 6 Aug 2015 20:02:28 +0000
+Received: from BY1PR0401MB1272.namprd04.prod.outlook.com ([10.160.196.148]) by
+	BY1PR0401MB1272.namprd04.prod.outlook.com ([10.160.196.148]) with
+	mapi id 15.01.0225.018; Thu, 6 Aug 2015 20:02:28 +0000
+From: Denis Sazhaev <denis.sazhaev@regenenergy.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Message-ID: <1882196486.1351102.1439058532899.JavaMail.yahoo@mail.yahoo.com>
+Thread-Topic: [bitbake-devel] Clone RSA key secured, password protected git
+	repository
+Thread-Index: AdDQgYsxZDAmy7jZT/6xFCPYAM1a5g==
+Date: Thu, 6 Aug 2015 20:02:28 +0000
+Message-ID: <BY1PR0401MB1272DD399E94A1F553F8757BE5740@BY1PR0401MB1272.namprd04.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=denis.sazhaev@regenenergy.com; 
+x-originating-ip: [206.223.191.234]
+x-microsoft-exchange-diagnostics: 1; BY1PR0401MB1271;
+	5:s+1VtADlnu83qyxNOkt27ee+vBkNSMMOn0srxA3UjXJm5A6ZZrh7sRu7p5sFA5r/MswwV6dcb6CAhqwIgTgLe8XWQgXTsdKQHEQd55xHxkQqBCafFI3aQpC9fHFa8jDU3pay80K3TUUg5NwA/HFQjA==;
+	24:v1zg586GTFIzglnFhFddYWS+6wbdjznpMV6yj0mPR5VeSOQ0NNsIhBzQsKM4+mWQmXBbQt+7bW9WUuc0/YUIon0W9z3+vTWHdH+0Xmxg7Mw=;
+	20:DdX6YvoznC1DsEI1Ug368cm3N18TKT2TqJHJfswi1FxO+QmRDQYltHrlSf0dCYvnlZGfYyc5QIj5MaUBOGjOEA==
+x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BY1PR0401MB1271;
+x-microsoft-antispam-prvs: <BY1PR0401MB127138279A75DE896751BB8AE5740@BY1PR0401MB1271.namprd04.prod.outlook.com>
+x-exchange-antispam-report-test: UriScan:(108003899814671);
+x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
+	RULEID:(601004)(5005006)(3002001); SRVR:BY1PR0401MB1271; BCL:0;
+	PCL:0; RULEID:; SRVR:BY1PR0401MB1271; 
+x-forefront-prvs: 06607E485E
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(6009001)(199003)(504964003)(189002)(106356001)(77156002)(99286002)(229853001)(62966003)(450100001)(46102003)(105586002)(19580395003)(2351001)(2656002)(87936001)(50986999)(40100003)(122556002)(19300405004)(86362001)(54356999)(101416001)(64706001)(66066001)(5002640100001)(107886002)(81156007)(5003600100002)(5001860100001)(2900100001)(33656002)(97736004)(5001830100001)(4001540100001)(76576001)(110136002)(189998001)(5001920100001)(19625215002)(551544002)(68736005)(15975445007)(102836002)(74316001)(92566002)(77096005)(16236675004)(5001960100002)(10400500002)(2501003);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BY1PR0401MB1271;
+	H:BY1PR0401MB1272.namprd04.prod.outlook.com; FPR:; SPF:None;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (protection.outlook.com: regenenergy.com does not designate
+	permitted sender hosts)
 MIME-Version: 1.0
-Subject: python-matplotlib core-image-sato.
+X-OriginatorOrg: regenenergy.com
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Aug 2015 20:02:28.2382 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b16e88d7-677b-4b82-993f-9101eb64f1cd
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR0401MB1271
+X-Mailman-Approved-At: Sat, 08 Aug 2015 11:34:30 -0700
+Subject: [bitbake-devel] Clone RSA key secured, password protected git repository
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Edward Vidal <develone@sbcglobal.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -61,93 +76,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Aug 2015 18:32:07 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_1351101_1391213773.1439058532895"
+X-List-Received-Date: Thu, 06 Aug 2015 20:34:40 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BY1PR0401MB1272DD399E94A1F553F8757BE5740BY1PR0401MB1272_"
 
-------=_Part_1351101_1391213773.1439058532895
-Content-Type: text/plain; charset=UTF-8
+--_000_BY1PR0401MB1272DD399E94A1F553F8757BE5740BY1PR0401MB1272_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,I added meta-python from meta-openembedded to my poky tree.python=
--matplotlib was fetched and installed on my core-image-sato.Build Configura=
-tion:
-BB_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "1.27.1"
-BUILD_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "x86_64-linux=
-"
-NATIVELSBSTRING=C2=A0=C2=A0 =3D "Ubuntu-12.04"
-TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "arm-poky-linux-gn=
-ueabi"
-MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "ra=
-spberrypi2"
-DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-=3D "poky"
-DISTRO_VERSION=C2=A0=C2=A0=C2=A0 =3D "1.8+snapshot-20150808"
-TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0 =3D "arm armv7a vfp thumb neon callco=
-nvention-hard vfpv4 cortexa7"
-TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "vfp-vfpv4-neon"
-meta=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=20
-meta-yocto=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=20
-meta-yocto-bsp=C2=A0=C2=A0=C2=A0 =3D "fido:0f8d89ce66cfffccc9911d6c61470a58=
-5173b79d"
-meta-raspberrypi=C2=A0 =3D "fido:7457bf182c8fd550ec877ecd786a3edd16e65495"
-meta-oe=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=20
-meta-python=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "fido:0f8d89ce66cfffccc=
-9911d6c61470a585173b79d"
+Hello,
 
-NOTE: Preparing RunQueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-NOTE: Tasks Summary: Attempted 6470 tasks of which 6432 didn't need to be r=
-erun and all succeeded.
-After booting I added some examples that I had from raspbian build git@gith=
-ub.com:develone/raspberrypi2_yocto.git=C2=A0 When I execute I do not get an=
-y errors but no plot appears.=C2=A0=C2=A0 Has anyone been able to get pytho=
-n-matplotlib working?Thanks in advance.=C2=A0Edward Vidal Jr.
-e-mail develone@sbcglobal.net
-915-595-1613
+There's a project I'm trying to pull in the recipe located on our private s=
+erver.
+Repository requires an RSA key as well as a password in order to pull files=
+ from it.
 
-------=_Part_1351101_1391213773.1439058532895
-Content-Type: text/html; charset=UTF-8
+I'm not sure how to provide a password for the respository that's required =
+for authentication.
+
+Currently my format is as follows:
+SRC_URI =3D  "git://git@<servername>:/opt/git/repo.git;branch=3DmyBranch;pr=
+otocol=3Dssh;user=3Dgit:password"
+
+I have also tried
+SRC_URI =3D  "git://git:password@<servername>:/opt/git/repo.git;branch=3Dmy=
+Branch;protocol=3Dssh"
+
+With no success.
+Does bitbake support publickey + password authentication?
+Is the format correct?
+
+The message I'm getting is "Permission denied (publickey,password)."
+
+I've ran git clone command manually and it's working properly. My best gues=
+s is that either my SRC_URI format is incorrect or bitbake does not support=
+ RSA key + password combination.
+
+
+Thank you in advance.
+
+--_000_BY1PR0401MB1272DD399E94A1F553F8757BE5740BY1PR0401MB1272_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
-lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
-nt-size:16px"><div id=3D"yui_3_16_0_1_1439042989042_47297"><span>Hello All,=
-</span></div><div dir=3D"ltr" id=3D"yui_3_16_0_1_1439042989042_47570"><span=
->I added meta-python from meta-openembedded to my poky tree.</span></div><d=
-iv dir=3D"ltr"><span>python-matplotlib was fetched and installed on my core=
--image-sato.</span></div><div id=3D"yui_3_16_0_1_1439042989042_48008" dir=
-=3D"ltr"><span>Build Configuration:<br class=3D"">BB_VERSION&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "1.27.1"<br class=3D"">BUILD_SYS&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "x86_64-linux"<br class=3D"">NATI=
-VELSBSTRING&nbsp;&nbsp; =3D "Ubuntu-12.04"<br class=3D"">TARGET_SYS&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "arm-poky-linux-gnueabi"<br class=3D=
-"">MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D =
-"raspberrypi2"<br class=3D"">DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp; =3D "poky"<br class=3D"">DISTRO_VERSION&nbsp;&nb=
-sp;&nbsp; =3D "1.8+snapshot-20150808"<br class=3D"">TUNE_FEATURES&nbsp;&nbs=
-p;&nbsp;&nbsp; =3D "arm armv7a vfp thumb neon callconvention-hard vfpv4 cor=
-texa7"<br class=3D"">TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-=3D "vfp-vfpv4-neon"<br class=3D"">meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br class=3D"">meta-yocto&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br class=3D"">meta-yocto-bsp&nbsp;&nbs=
-p;&nbsp; =3D "fido:0f8d89ce66cfffccc9911d6c61470a585173b79d"<br class=3D"">=
-meta-raspberrypi&nbsp; =3D "fido:7457bf182c8fd550ec877ecd786a3edd16e65495"<=
-br class=3D"">meta-oe&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp; <br class=3D"">meta-python&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "=
-fido:0f8d89ce66cfffccc9911d6c61470a585173b79d"<br class=3D""><br class=3D""=
->NOTE: Preparing RunQueue<br class=3D"">NOTE: Executing SetScene Tasks<br c=
-lass=3D"">NOTE: Executing RunQueue Tasks<br class=3D"">NOTE: Tasks Summary:=
- Attempted 6470 tasks of which 6432 didn't need to be rerun and all succeed=
-ed.</span></div><div dir=3D"ltr"><br><span></span></div><div id=3D"yui_3_16=
-_0_1_1439042989042_48409" dir=3D"ltr"><span>After booting I added some exam=
-ples that I had from raspbian build git@github.com:develone/raspberrypi2_yo=
-cto.git&nbsp; When I execute I do not get any errors but no plot appears.&n=
-bsp;&nbsp; Has anyone been able to get python-matplotlib working?</span></d=
-iv><div dir=3D"ltr"><span>Thanks in advance.</span></div><div dir=3D"ltr"><=
-span></span></div><div>&nbsp;</div><div><div>Edward Vidal Jr.<br>e-mail dev=
-elone@sbcglobal.net<br>915-595-1613</div></div></div></body></html>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-CA" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">There&#8217;s a project I&#8217;m trying to pull in =
+the recipe located on our private server.<o:p></o:p></p>
+<p class=3D"MsoNormal">Repository requires an RSA key as well as a password=
+ in order to pull files from it.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;m not sure how to provide a password for the=
+ respository that&#8217;s required for authentication.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Currently my format is as follows:<o:p></o:p></p>
+<p class=3D"MsoNormal">SRC_URI =3D &nbsp;&#8220;git://git@&lt;servername&gt=
+;:/opt/git/repo.git;branch=3DmyBranch;protocol=3Dssh;user=3Dgit:password&#8=
+221;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have also tried <o:p></o:p></p>
+<p class=3D"MsoNormal">SRC_URI =3D &nbsp;&#8220;git://git:password@&lt;serv=
+ername&gt;:/opt/git/repo.git;branch=3DmyBranch;protocol=3Dssh&#8221;<o:p></=
+o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">With no success. <o:p></o:p></p>
+<p class=3D"MsoNormal">Does bitbake support publickey &#43; password authen=
+tication?<o:p></o:p></p>
+<p class=3D"MsoNormal">Is the format correct?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The message I&#8217;m getting is &#8220;Permission d=
+enied (publickey,password).&#8221;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I&#8217;ve ran git clone command manually and it&#82=
+17;s working properly. My best guess is that either my SRC_URI format is in=
+correct or bitbake does not support RSA key &#43; password combination.<o:p=
+></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thank you in advance.<o:p></o:p></p>
+</div>
+</body>
+</html>
 
-------=_Part_1351101_1391213773.1439058532895--
+--_000_BY1PR0401MB1272DD399E94A1F553F8757BE5740BY1PR0401MB1272_--
