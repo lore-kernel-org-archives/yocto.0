@@ -1,49 +1,52 @@
-Return-Path: <yoctomailinglist@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8FCBFE009FD; Thu,  6 Aug 2015 13:32:43 -0700 (PDT)
+	id A1DA3E00A39; Thu,  6 Aug 2015 19:16:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (yoctomailinglist[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.181 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.173 listed in list.dnswl.org]
-Received: from mail-qk0-f173.google.com (mail-qk0-f173.google.com
-	[209.85.220.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA6D6E00767
-	for <yocto@yoctoproject.org>; Thu,  6 Aug 2015 13:32:40 -0700 (PDT)
-Received: by qkbm65 with SMTP id m65so30633234qkb.2
-	for <yocto@yoctoproject.org>; Thu, 06 Aug 2015 13:32:40 -0700 (PDT)
+Received: from mail-io0-f181.google.com (mail-io0-f181.google.com
+	[209.85.223.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFB73E00A31
+	for <yocto@yoctoproject.org>; Thu,  6 Aug 2015 19:16:28 -0700 (PDT)
+Received: by ioii16 with SMTP id i16so99504680ioi.0
+	for <yocto@yoctoproject.org>; Thu, 06 Aug 2015 19:16:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=kM9mGXMfbxDYeO1AgG1z9KISwy5oh+Mtyo962EpCLGA=;
-	b=uBem6zFKNbLLvxDPRE9yqHW3xT0ukarhimfrd8vvE32ItAGUktnruo1tyiH1upGjjz
-	J9ik/NMXLwiwhPRHsAVpYs3XnA4OhOssgBJAjhAusa1jO9XnGCJ9z19EJNjrT2VG+UZL
-	KZnAf7mr5yhlVb1aWD5ZGFsn+hNeY1vllvWe/T72w6kwkzF2f4mlbwvlroNsgvNrnEph
-	AEJtbpjj+iWDIgvI6OEYfnSsv5GH5E7R04VhV58XPzEtKx+BCzpaTd2Z8HToMgEVuAOd
-	oxXEy+pGnADfrQazwVRpdWovwXTk3JnwCAPdMZ7PIhFlAobtjrhUqFaNcEgNDnSj7ecD
-	/BMw==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=xWR+JgAqsoc4iSLM15V/YlHBE7FrMJPKBQzGkzPrAtc=;
+	b=sLchepziPFTje3QMrj1vphBGBkrTNLWsctjwlY+NTGJxLRQbgQU3VTcU4gA2GPzYl6
+	erpJiFG/h11RGoX1cJGfp7tYtqBYUhs9r29uzBxHP9c0vTZywTmGMJdzBI+IpXOnOLU1
+	HrPu/9d9P1eUrmH9VQNkbV3LUAsCga9pdOR9KE9wWFZLuuKPjYtiKkGq1UZGT5MyrJjO
+	GfBPwXUo/1k/1AFhomTYR4YP8NibpeHVGfE8ktTpT4JKu5dDML0Dt6C7NygOSnDs+j0G
+	FJkufVsvrZbiVPMwS3mSee3bhlGC9sD8mbIz9dgEDMqL40CnksFtC7LQMRaR5mgEETmE
+	zBNg==
+X-Received: by 10.107.34.194 with SMTP id i185mr5355055ioi.49.1438913788420;
+	Thu, 06 Aug 2015 19:16:28 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.55.26.36 with SMTP id a36mr6458807qka.45.1438893160402; Thu,
-	06 Aug 2015 13:32:40 -0700 (PDT)
-Received: by 10.140.39.148 with HTTP; Thu, 6 Aug 2015 13:32:40 -0700 (PDT)
-Date: Thu, 6 Aug 2015 22:32:40 +0200
-Message-ID: <CACTu1Lgz=8KYMHYoxxuYtemkCLGtFNQBGC5JVk8cm2WseJBh-w@mail.gmail.com>
-From: yocto yocto <yoctomailinglist@gmail.com>
-To: yocto@yoctoproject.org
-Subject: do_install_append_class-target(): Files are not being installed on the system
+Received: by 10.107.38.79 with HTTP; Thu, 6 Aug 2015 19:15:59 -0700 (PDT)
+In-Reply-To: <CACTu1Lgz=8KYMHYoxxuYtemkCLGtFNQBGC5JVk8cm2WseJBh-w@mail.gmail.com>
+References: <CACTu1Lgz=8KYMHYoxxuYtemkCLGtFNQBGC5JVk8cm2WseJBh-w@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 6 Aug 2015 19:15:59 -0700
+Message-ID: <CAMKF1sr3QqOKFH_deKQ_5qYCk=8_Yo45OrvmjERCpMf7Xo+7Tg@mail.gmail.com>
+To: yocto yocto <yoctomailinglist@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: do_install_append_class-target(): Files are not being installed on the system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,34 +58,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Aug 2015 20:32:43 -0000
-Content-Type: multipart/alternative; boundary=001a114729a0b21716051caa6b93
-
---001a114729a0b21716051caa6b93
+X-List-Received-Date: Fri, 07 Aug 2015 02:16:30 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Good day,
+On Thu, Aug 6, 2015 at 1:32 PM, yocto yocto <yoctomailinglist@gmail.com> wrote:
+> Good day,
+>
+> I am writing a recipe using "inherit autotools". I am using
+> "do_install_append_class-target()" to install all files on the system. The
+> folder
+>
+> build/tmp/work/core2-32-poky-linux/my-recipe/x.y.z-r0/image
+>
+> contains all files respectively the desired folder structure. However, after
+> flashing my image all folders and files are not there. What might be the
+> problem?
 
-I am writing a recipe using "inherit autotools". I am using
-"do_install_append_class-target()" to install all files on the system. The
-folder
+you are not including it in final image is the problem. In order to
+include it into final image
+you have to add it to RDEPENDS of a given packagegroup or
+IMAGE_INSTALL part of image recipe itself.
 
-build/tmp/work/core2-32-poky-linux/my-recipe/x.y.z-r0/image
+>
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-contains all files respectively the desired folder structure. However,
-after flashing my image all folders and files are not there. What might be
-the problem?
-
---001a114729a0b21716051caa6b93
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div>Good day,<br><br></div>I am writing a recip=
-e using &quot;inherit autotools&quot;. I am using &quot;do_install_append_c=
-lass-target()&quot; to install all files on the system. The folder<br><br><=
-/div>build/tmp/work/core2-32-poky-linux/my-recipe/x.y.z-r0/image<br><br></d=
-iv>contains all files respectively the desired folder structure. However, a=
-fter flashing my image all folders and files are not there. What might be t=
-he problem?<br><br><br><div><br></div></div>
-
---001a114729a0b21716051caa6b93--
