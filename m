@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B5687E00A39; Thu,  6 Aug 2015 23:15:35 -0700 (PDT)
+	id 3EA73E00A39; Thu,  6 Aug 2015 23:27:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,35 +18,35 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.223.182 listed in list.dnswl.org]
-Received: from mail-io0-f182.google.com (mail-io0-f182.google.com
-	[209.85.223.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63A71E00A31
-	for <yocto@yoctoproject.org>; Thu,  6 Aug 2015 23:15:24 -0700 (PDT)
-Received: by ioeg141 with SMTP id g141so102940704ioe.3
-	for <yocto@yoctoproject.org>; Thu, 06 Aug 2015 23:15:24 -0700 (PDT)
+	*      [209.85.213.177 listed in list.dnswl.org]
+Received: from mail-ig0-f177.google.com (mail-ig0-f177.google.com
+	[209.85.213.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5914DE00A31
+	for <yocto@yoctoproject.org>; Thu,  6 Aug 2015 23:27:39 -0700 (PDT)
+Received: by igbij6 with SMTP id ij6so25500513igb.1
+	for <yocto@yoctoproject.org>; Thu, 06 Aug 2015 23:27:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=2+/MrCkA9KTj3ZLjyaNk77NV2WECpRjvWzjrZE6Upsw=;
-	b=uyx6VN87WPj7z2d0fM0OCbeAjPEplfBeXCn4JpvEQopaalRf5ekoiC26QsOOXFiyCD
-	nEyXWno8xDTv5kNezk+Ko1Pnwln/qInrKpBMthKLhydR8ScSdINnrXl0ySac5kov/wrG
-	c3Ox7frMLSfy6pB6Zl0oOSmtqE4NBacZt7Ux2XfK7xFtHjJgwawfPtxgbOy5TtfNcoE/
-	lwCA4+DJIwmAPK+dwZ49Sqy869b9AxlsTyV/d+0sWH2pGtjd+qIyzn3lI2NUVG0oJjQ8
-	1l1OaXPW44p+8csEGAvVr9sRs27l2I+ZC1WKeHACTNwqGBwzWkLHMjEAOdY4ehXu0jWT
-	TpBg==
-X-Received: by 10.107.168.145 with SMTP id e17mr6167685ioj.112.1438928124455; 
-	Thu, 06 Aug 2015 23:15:24 -0700 (PDT)
+	:cc:content-type;
+	bh=M4NbKSg1UcgUP1x74GqPoEXIpPBIWVEsVDS5AwqQqhs=;
+	b=IT3harJHiYZCW8OpWQy3/ZAIYPZ/JN6zgAcpSatP8BFVclIf8VntDjq7F4dgbh28aX
+	fVWLEUuYivPCQ4Sc3TYRDeA63FCZFd9ft4OiIqiM/dkLBaDzunZkNQV11RiGlbZ96RPy
+	sucroDb5o9VpiuF7NAyEc7pcstw+h3S10nI3+sFtdo7VAgmR+yi7K4egMtsSNzq5xhex
+	uwf0ffBKgaBpaQeY1Sac627gqzcYG0bn/ht3KYG67/tIC6mBdbuxkynRU/DOYSzijnmG
+	XxPQEByaCacYSXcoOJNM0kZ8IkC4Gt+rrXz1OZ9JmLbIz7J3uizBljt5cFvXxPt4Wnip
+	mPyA==
+X-Received: by 10.50.59.148 with SMTP id z20mr1664064igq.77.1438928859215;
+	Thu, 06 Aug 2015 23:27:39 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.107.38.79 with HTTP; Thu, 6 Aug 2015 23:14:55 -0700 (PDT)
-In-Reply-To: <002501d0d0d6$1a587d50$4f0977f0$@neuf.fr>
-References: <002501d0d0d6$1a587d50$4f0977f0$@neuf.fr>
+Received: by 10.107.38.79 with HTTP; Thu, 6 Aug 2015 23:27:09 -0700 (PDT)
+In-Reply-To: <CAM8P1k9OK=6xJydVg=_zeBgjbAC5En4TzaEANqWhjMVs+Sg0kg@mail.gmail.com>
+References: <CAM8P1k9OK=6xJydVg=_zeBgjbAC5En4TzaEANqWhjMVs+Sg0kg@mail.gmail.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 6 Aug 2015 23:14:55 -0700
-Message-ID: <CAMKF1soYHzCF65peDgV=KBcwmx0RTZdRfgWo4Ts+Phsssd2qNA@mail.gmail.com>
-To: Herve Jourdain <herve.jourdain@neuf.fr>
+Date: Thu, 6 Aug 2015 23:27:09 -0700
+Message-ID: <CAMKF1sokctQ9+RVFFpZ2WFtLQi6Kq6oaRK6vG2Ssnn4iyFKQCg@mail.gmail.com>
+To: Lukas Weiss <lukas.weiss@janitza.de>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] userland
+Subject: Re: arm-none-eabi toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,54 +58,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Aug 2015 06:15:35 -0000
+X-List-Received-Date: Fri, 07 Aug 2015 06:27:43 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 6, 2015 at 10:57 PM, Herve Jourdain <herve.jourdain@neuf.fr> wr=
-ote:
-> Hi,
+On Thu, Jul 30, 2015 at 10:25 PM, Lukas Weiss <lukas.weiss@janitza.de> wrote:
+> Hello,
 >
+> i need a arm-none-eabi toolchain on my yocto host/build system. Ive tried to
+> use the arm-poky-linux-gnueabi, but it does not support the arm version +
+> format i need:
 >
+> arm-poky-linux-gnueabi-ld: unrecognised emulation mode: thumb
+> | Supported emulations: armelf_linux_eabi armelfb_linux_eabi
 >
-> Currently, userland_git.bb PROVIDES virtual/egl and virtual/libgles2.
+> My Linux runs on a ARM9 (armv5e, elf), I need cortex-m3 (armv7m, thumb).
+> Where do I get that? I do not find any documentation about additional
+> toolchains to generate code like peripheral-firmware in my yocto
+> environment.
 >
-> But =E2=80=9Cuserland=E2=80=9D seems to provide many additional component=
-s: mmal, vcos,
-> openmaxil, vchiq_arm, bcm_host, WFC, OpenVG
+> a) How do I get the toolchain in by yocto host?
+> b) How to i tell the bitbake-tool to use that toolchain on a certain receipe
+> (PACKAGE_ARCH, TARGET_SYS, ... )?
 >
->
->
-> Wouldn=E2=80=99t it make sense to add additional PROVIDES to handle those=
- as well?
+> Do you have any hints?
 
-
-if they are implementation of generic components then sure. openvg and
-openmax might be one of them but if no one
-is depending on them why bother ?
-
+this is not supported usecase but there was some talk about such a
+usecase. you could change ld to support additional emulations
+so you can then keep using same toolchain to link it but then the c
+runtime etc wont match. So far we dont support non-hosted(bare-metal)
+environments
 >
->
->
-> I=E2=80=99m thinking about openmaxil, for instance.
->
-> Right now for instance, I get it by adding a DEPEND userland to a .bbappe=
-nd,
-> but I=E2=80=99m considering adding maybe a virtual/openmaxil to userland_=
-git.bb.
->
->
->
-> Does it make sense? Any suggestion about that?
->
->
->
-> Best regards,
->
->
->
-> Herve
->
+> Regards,
+> Lukas
 >
 > --
 > _______________________________________________
