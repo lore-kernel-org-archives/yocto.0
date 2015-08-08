@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AECC0E003D7; Sat,  8 Aug 2015 12:02:52 -0700 (PDT)
+	id 9829BE003D7; Sat,  8 Aug 2015 12:37:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,6 +9,9 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,54 +19,39 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.177 listed in list.dnswl.org]
-Received: from mail-pd0-f177.google.com (mail-pd0-f177.google.com
-	[209.85.192.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E399DE00343
-	for <yocto@yoctoproject.org>; Sat,  8 Aug 2015 12:02:48 -0700 (PDT)
-Received: by pdrh1 with SMTP id h1so38594292pdr.0
-	for <yocto@yoctoproject.org>; Sat, 08 Aug 2015 12:02:48 -0700 (PDT)
+Received: from mail-pa0-f47.google.com (mail-pa0-f47.google.com
+	[209.85.220.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7636CE00349
+	for <yocto@yoctoproject.org>; Sat,  8 Aug 2015 12:37:23 -0700 (PDT)
+Received: by pabxd6 with SMTP id xd6so92267552pab.2
+	for <yocto@yoctoproject.org>; Sat, 08 Aug 2015 12:37:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=3iu/7/HsKEbq0azajufFtXNQhkF5IQZptnXk9ZhVSEA=;
-	b=rMt35eMnLBysAYQUmmDdoOxHEV06l6lAweRCuDBMTdzXK9BFkteYz9ieWK19ieOMpi
-	NGRKrsVgYQEhTT90/hNEfJ4A8KYxjhYo7CbjRDEEE/g6JALWkl8Vnd7VVUHiIV5V2ZJq
-	khKdsRIoz+/j+x6ggF3JxiK9RzNA/404uCPpkk/k1Iapef99+T/RgbdIP7MkVTpUhfAb
-	ofGhY3Zn2/g6pBvry7+uHO6IEuBhoh5pMxeulgZbwvqhjzgqncpbtPvaPKcF5gw2KRdZ
-	P+nOV7vwLF+ee4aOHB1Zm1Cl3t06tndzYI2rK8AmZaXNLRRjK5tpu9ucsxD6NbuinKoB
-	lL+g==
-X-Received: by 10.70.103.172 with SMTP id fx12mr28884082pdb.150.1439060567902; 
-	Sat, 08 Aug 2015 12:02:47 -0700 (PDT)
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=foaqMwg8tBBjwKuAskjdvgokotPQkS8718LVf7qOV9Q=;
+	b=QpAaYr/pvulSZmCy14xWgIG47A9oKhsd+a2uZjjFe3BGnQSPIj0u6n2PdMlbIaRyJL
+	hkAapFBp+0YdjllG8C62B2vxxRv2fciC1qYBW70j3BeR/yk6IMRdYGLGFqJfe82MrRVT
+	PY3eRdVLHdkt1IRniFN0e3ACwWUchR3yBgpNPGTNAWaoQXXmes1iRzcLGsLVgHTZ1fjI
+	X+lFqFtXNTWF/BBu7a2RBbsN0LkH7DT6b73xQ6o1uxOUiyd35tu00j/wjsubndBCfEuH
+	bewkh5AptdrdBw1My5qH+5oSIweJSPeZ1te+lv4yr9bW7qgAsnoWLFdJFLReMhlDTeU/
+	RUJA==
+X-Received: by 10.69.2.34 with SMTP id bl2mr28577123pbd.165.1439062642851;
+	Sat, 08 Aug 2015 12:37:22 -0700 (PDT)
 Received: from ?IPv6:2601:646:8601:4580:61b5:b56b:3665:2b08?
 	([2601:646:8601:4580:61b5:b56b:3665:2b08])
-	by smtp.gmail.com with ESMTPSA id
-	iw2sm14301857pbb.67.2015.08.08.12.02.46
+	by smtp.gmail.com with ESMTPSA id p1sm14442903pdb.3.2015.08.08.12.37.22
 	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sat, 08 Aug 2015 12:02:47 -0700 (PDT)
+	Sat, 08 Aug 2015 12:37:22 -0700 (PDT)
 Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2104\))
-X-Pgp-Agent: GPGMail 2.5
 From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <55BA6B07.3070905@balister.org>
-Date: Sat, 8 Aug 2015 12:02:42 -0700
-Message-Id: <7F3866E8-1A53-4BBF-99ED-95C746BDD543@gmail.com>
-References: <2238EDC6081C944E97E4EE915AE5CBEC5476A872@EXCHANGE-B.raylase.de>
-	<81e2e36e8df04c9584ea5a9ca8afa303@googlemail.com>
-	<2238EDC6081C944E97E4EE915AE5CBEC5476EED6@EXCHANGE-B.raylase.de>
-	<7861693.hW9MCO2lEF@peggleto-mobl.ger.corp.intel.com>
-	<CAMKF1soKnb5LR7pkiXW2=o0hjA4iVx_803yO3P=2vEc_85Y0gQ@mail.gmail.com>
-	<55BA6B07.3070905@balister.org>
-To: Philip Balister <philip@balister.org>
+In-Reply-To: <CAPzboycMBBs_d+06jX+CWCZ_9yaxvEbPOBzQrxDu6i3cEOgsLA@mail.gmail.com>
+Date: Sat, 8 Aug 2015 12:37:21 -0700
+Message-Id: <18E70ED4-2470-4A3D-ACCD-6C3590FCDDC1@gmail.com>
+References: <CAPzboycMBBs_d+06jX+CWCZ_9yaxvEbPOBzQrxDu6i3cEOgsLA@mail.gmail.com>
+To: Adam Rossi <ac.rossi@gmail.com>
 X-Mailer: Apple Mail (2.2104)
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	Yves Vandervennet <yvanderv@opensource.altera.com>,
-	"rfi@lists.rocketboards.org" <rfi@lists.rocketboards.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Dalon Westergreen <dwesterg@gmail.com>,
-	"enak999@googlemail.com" <enak999@googlemail.com>
-Subject: Re: Which repo for meta-altera ?
+Cc: yocto@yoctoproject.org
+Subject: Re: autotools --prefix ignored?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,62 +63,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Aug 2015 19:02:52 -0000
-X-Groupsio-MsgNum: 25937
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_0147846F-755B-4C99-8562-8EF3F38A19AE";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
-
---Apple-Mail=_0147846F-755B-4C99-8562-8EF3F38A19AE
+X-List-Received-Date: Sat, 08 Aug 2015 19:37:29 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
 
 
-> On Jul 30, 2015, at 11:20 AM, Philip Balister <philip@balister.org> =
-wrote:
+> On Aug 7, 2015, at 7:28 AM, Adam Rossi <ac.rossi@gmail.com> wrote:
 >=20
-> On 07/30/2015 01:02 PM, Khem Raj wrote:
->> On Thu, Jul 30, 2015 at 12:50 AM, Paul Eggleton
->> <paul.eggleton@linux.intel.com> wrote:
->>> (Adding Khem and Yves, the maintainers of the github repo, to CC)
->>>=20
->>> In the interests of keeping the layer index accurate, can we get =
-some
->>> clarification on which repo is the official BSP?
->>=20
->> Please use github.com/kraj/meta-altera as mentioned in layerindex as
->> well. This is the community supported BSP
+> Hi folks. I have tried a number of different ways to control the
+> installation location of an auto tools-based project. =46rom the =
+command
+> line I would run:
 >=20
-> What are the differences, shouldn't th ecommunity send in updates to =
-the
-> vendor BSP?
+> ./bootstrap
+> ./configure --prefix=3D/opt/myfolder
+> make
+> make install
+>=20
+> In my recipe I tried a number of ways to keep the binary out of
+> /usr/bin, but none seem to work. Relevant parts of the recipe:
+>=20
+> inherit autotools
+> EXTRA_OECONF =3D "--prefix=3D${D}/opt/myfolder=E2=80=9D
 
-In this case, github.com/kraj/meta-altera is upstream moving forward and
-https://github.com/altera-opensource/meta-altera will be more of staging =
-area for Altera
+you should look into the build scripts run.do_configure for this recipe
+and see if its honoring your =E2=80=94prefix and ${D} in there is wrong =
+since this
+is the prefix you want it to appear in on target which usually is =
+relative to /
+>=20
+> The above is ignored, auto tools puts the results in /usr/bin
+>=20
+> I also tried to override the do configure:
+>=20
+> do_configure() {
+>        oe_runconf --prefix=3D${D}/opt/myfolder
+> }
+>=20
+> But I get complaints that the configure script is not found. I realize
+> I am trying to swim upstream by controlling this location, but the
+> heart wants what the heart wants. Any ideas?
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-documentation for this has been updates to clear the confusion see
-http://rocketboards.org/foswiki/view/Documentation/MoveToGitHub
 
-Hope that helps
--Khem
-
-
---Apple-Mail=_0147846F-755B-4C99-8562-8EF3F38A19AE
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlXGUlUACgkQuwUzVZGdMxSneACgh2aurG9Cvn78vYeRFHx/O8Em
-VUUAmgOLBP47ZJeQO9itS/4ZI3zCxEYi
-=PnJt
------END PGP SIGNATURE-----
-
---Apple-Mail=_0147846F-755B-4C99-8562-8EF3F38A19AE--
