@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00B25E00A6D; Sun,  9 Aug 2015 15:55:07 -0700 (PDT)
+	id 5DA7DE00A8C; Sun,  9 Aug 2015 16:01:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,42 +13,44 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*      [score: 0.0000]
 Received: from mail-wi0-f175.google.com (mail-wi0-f175.google.com
 	[209.85.212.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37209E00306
-	for <yocto@yoctoproject.org>; Sun,  9 Aug 2015 15:55:00 -0700 (PDT)
-Received: by wicja10 with SMTP id ja10so17497662wic.1
-	for <yocto@yoctoproject.org>; Sun, 09 Aug 2015 15:55:00 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F9FBE006EE
+	for <yocto@yoctoproject.org>; Sun,  9 Aug 2015 16:01:18 -0700 (PDT)
+Received: by wijp15 with SMTP id p15so115133374wij.0
+	for <yocto@yoctoproject.org>; Sun, 09 Aug 2015 16:01:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent;
-	bh=odetrmfjEEVFuOMGypapf+QmVF15BGU6bRI1kBiHzWg=;
-	b=OW0radvllhCxr/krdnoNf8YAgxmgrl6mIdOjanGulg8sXx8hyqZ/UqQ885jpYZLJWy
-	S06DA5iAQTxVJ1pMUSopi1xv3eNRs08R/UANP+l8p4e47w7/lax5cesD5Pu2XoD8BJFg
-	Bu35d+VS5G6nBx2nJiu7vVAkcp2Lf+MmN1FadDzA1rz/1DKBjv06ngoQ1KN+emFSEkb5
-	fw3RuTqGNK8x5Qkq78ParG2PKNWRsDHnCOb/h3yDInoYOp2WJE6POkSEaRsY8SfBEu9n
-	MYy5obWscf6pfVAbyZc9Ss2oRNxvcqJkAOiWJJYdOZSk21UcK1NZcy3Ap1gBBBfa9XIX
-	W4RA==
-X-Gm-Message-State: ALoCoQkQwStnPbGLZErIQqTPg9mk49VUE9i4owDcrNrkOJef5bpUK0P2NmyCzsiYxuwtOSSWRRuJ
-X-Received: by 10.194.92.236 with SMTP id cp12mr37534861wjb.139.1439160899788; 
-	Sun, 09 Aug 2015 15:54:59 -0700 (PDT)
+	:mime-version:content-type:content-disposition
+	:content-transfer-encoding:in-reply-to:user-agent;
+	bh=wMJlg6khKdZ+SWZrOz57WGVvAOjmlneW6AWAKeR+d80=;
+	b=bwfXBE2d9soNdS2kf6oyfjydhssbCBQzRfjFkUHjkldQdaoqP41nISRygcS6jg+LOO
+	1L0/+VoM4nShJ24QzBan35JMbYwJ79mP69e2zfi3hsQxvh7+HFlYTG9F4GEYBJ8V4h+3
+	IMXjL8AwihZPTu3HVDC8CXp79NgeWR3ao3PgVjMtv32A7m1ao4IKDOnU6+MGh0u/4B3T
+	dnyMt2OfC59pllhqnMPvcqdUT5nag69Nhn14WSz4gc2loaeMTa/1KzGD/H4pQGNH0KHU
+	A49UQf7PRP2O3sY2LF64x0Tgyrz6aRZWcPCw0Q7T8wHUStOq+q8onhGk6DZ51vkXm+Jn
+	6gDg==
+X-Gm-Message-State: ALoCoQlzE05Ul2wzTX/2h/qqCvatxspc7MxG2bvmOgk0vRv4Dr/33eKhzhcxFJSkEYTGbc4VldA1
+X-Received: by 10.194.24.167 with SMTP id v7mr41940667wjf.37.1439161277491;
+	Sun, 09 Aug 2015 16:01:17 -0700 (PDT)
 Received: from resin ([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
 	by smtp.gmail.com with ESMTPSA id
-	r19sm10701960wib.7.2015.08.09.15.54.58
+	ul1sm26402298wjc.30.2015.08.09.16.01.16
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 09 Aug 2015 15:54:59 -0700 (PDT)
-Date: Mon, 10 Aug 2015 00:54:56 +0200
+	Sun, 09 Aug 2015 16:01:16 -0700 (PDT)
+Date: Mon, 10 Aug 2015 01:01:14 +0200
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: Javier Martinez Canillas <javier@osg.samsung.com>
-Message-ID: <20150809225456.GJ17962@resin>
+Message-ID: <20150809230114.GK17962@resin>
 References: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
-	<1438245251-20437-5-git-send-email-javier@osg.samsung.com>
+	<55C082ED.6030405@technux.se> <55C0E347.9030508@osg.samsung.com>
+	<929d9c24776929cd07c370278d4c2768@technux.se>
+	<55C306C6.5040703@osg.samsung.com>
 MIME-Version: 1.0
-In-Reply-To: <1438245251-20437-5-git-send-email-javier@osg.samsung.com>
+In-Reply-To: <55C306C6.5040703@osg.samsung.com>
 User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: yocto@yoctoproject.org, Derek Foreman <derekf@osg.samsung.com>,
-	Mauro Carvalho Chehab <mchehab@osg.samsung.com>
-Subject: Re: [meta-raspberrypi][PATCH 4/5] linux-raspberrypi: Add a 4.1 linux kernel with vc4 support
+Cc: yocto@yoctoproject.org, Mauro Carvalho Chehab <mchehab@osg.samsung.com>,
+	Derek Foreman <derekf@osg.samsung.com>
+Subject: Re: [meta-raspberrypi][PATCH 0/5] Add support for 4.1 kernel with vc4 DRM/KMS driver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,519 +62,180 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 09 Aug 2015 22:55:07 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Sun, 09 Aug 2015 23:01:20 -0000
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Cheers!
 
-On Thu, Jul 30, 2015 at 10:34:10AM +0200, Javier Martinez Canillas wrote:
-> From: Derek Foreman <derekf@osg.samsung.com>
+First of all good work. Additionally to the comments I made in patches, find
+some here.
+
+On Thu, Aug 06, 2015 at 09:03:34AM +0200, Javier Martinez Canillas wrote:
+> Hello Petter,
 >
-> This adds Eric Anholt's WIP kernel with dri/kms/3d support for the GPU on
-> the rpi2. Adding a recipe that tracks this kernel, will make it easier to
-> test this setup.
+> On 08/05/2015 10:48 PM, Petter Mabäcker wrote:
+> >
+> >
+> > 2015-08-04 18:07 skrev Javier Martinez Canillas:
+> >
+> >> Hello Petter,
+> >>
+> >
+> >> Thanks a lot for your feedback.
+> >>
+> >> On 08/04/2015 11:16 AM, Petter
+> > Mabäcker wrote:
+> >>
+> >>> On 07/30/2015 10:34 AM, Javier Martinez Canillas
+> > wrote:
+> >>>
+> >>>> Hello Andrei, This series adds support for Eric Anholt's
+> > v4.1 kernel, that has support for the vc4 DRM/KMS driver. Which is the
+> > new open source graphics driver stack for the Raspberry Pi to be used
+> > instead of the userland driver. We are using it in the Tizen port to
+> > RPI2 [0] and are trying to push all the patches back to the tizen-distro
+> > and meta-raspberrypi OE layers so I'm posting these patches to get your
+> > feedback. The v4.1 kernel is under heavy development so is a
+> > work-in-progress and should not be used in production. That's why a
+> > default preference of -1 is set and the kernel only is enabled if the
+> > "vc4-gfx" feature is added to the DISTRO_FEATURES variable. But even
+> > when it's still a development kernel, having the recipe in the
+> > meta-raspberrypi will allow people to test it. The patches are for:
+> > Patch 1/5 makes optional to add the kgdboc kernel command line parameter
+> > Patch 2/5 allows to set the mask_gpu_interrupt0 option in config.txt
+> > Patch 3/5 changes the partition layout to add more space for boot files
+> > Patch 4/5 adds a recipe for the 4.1 and some patches to make it stable
+> > Patch 5/5 switchs the default providers according to the gfx stack used
+> > One problem I found is that the latest RPI kernels changed the path for
+> > the DT overlays after commit 739c586c8757 ("BCM270X_DT: Move the
+> > overlays into a subdirectory, adding the README") [1] so the kernel
+> > fails to build with the default KERNEL_DEVICETREE. I tried to change
+> > get_dts() function logic to take this into account but found that it
+> > would had been a more intrusive change and KERNEL_DEVICETREE will have
+> > to be changed anyways once the recipes for the other kernels are updated
+> > to the latest HEAD so for now I just define the following on local.conf
+> > to make it build:
+> >>> As long as we bump SRCREV for 3.18 kernel as well,
+> > I see no problem. Since then the KERNEL_DEVICETREE default value can
+> > look the same in all situations (both 3.18 and 4.x can handle the new
+> > structure and we get no compatibility issues) and for older kernels
+> > (3.12 and 3.14) it doesn't matter since they don't have native device
+> > tree support and will turn device tree support off by default.
+> >>
+> >> Yes,
+> > that's what I meant when I said that the problem will be solved once
+> >>
+> > all the recipes for DT enabled kernels are updated to the latest
+> > branch
+> >> HEAD. But I didn't want to do that in this series since I
+> > wanted the
+> >> changes to be as less intrusive as possible.
+> >
+> > Ok, sounds
+> > reasonable. Alex found some problems when bumping 3.18 to latest but
+> > when that is solved he can push the 3.18 bumping and prepare the
+> > KERNEL_DEVICETREE variable with the new subdir for overlays.
+> >
 >
-> This recipe should only used for testing purposes for now, so it will not
-> be set as the default.
->
-> The kernel will be choosen though if the "vc4-gfx" feature has been added
-> to the the DISTRO_FEATURES variable.
+> Awesome.
 >
 
-It was said before - it seems like this is a MACHINE_FEATURE. I know you will
-address this in V2.
+Yes. This will be address along with rpi kernel bump to 4.X.
 
-> Signed-off-by: Derek Foreman <derekf@osg.samsung.com>
-> [javier: Extended commit message and set default preference to -1]
-> Signed-off-by: Javier Martinez Canillas <javier@osg.samsung.com>
+> >>>
+> > KERNEL_DEVICETREE = " bcm2708-rpi-b.dtb bcm2708-rpi-b-plus.dtb
+> > bcm2709-rpi-2-b.dtb overlays/hifiberry-amp-overlay.dtb
+> > overlays/hifiberry-dac-overlay.dtb
+> > overlays/hifiberry-dacplus-overlay.dtb
+> > overlays/hifiberry-digi-overlay.dtb overlays/iqaudio-dac-overlay.dtb
+> > overlays/iqaudio-dacplus-overlay.dtb overlays/lirc-rpi-overlay.dtb
+> > overlays/pps-gpio-overlay.dtb overlays/w1-gpio-overlay.dtb
+> > overlays/w1-gpio-pullup-overlay.dtb " [0]:
+> > http://blogs.s-osg.org/tizen-rpi2-now-supporting-3d-acceleration/ [1]
+> > [1]: https://github.com/raspberrypi/linux/commit/739c586c8757 [2] Best
+> > regards, --- Javier Martinez Canillas Open Source Group Samsung Research
+> > America Derek Foreman (4): rpi-config: Allow to mask GPU irqs
+> > sdcard_image-rpi.bbclass: Allocate more space for boot partition
+> > linux-raspberrypi: Add a 4.1 linux kernel with vc4 support
+> > rpi-default-providers: Switch providers according to used gfx stack
+> > Mauro Carvalho Chehab (1): linux-raspberrypi.inc: Make kgdboc kernel
+> > param optional README | 38 +++++-- classes/sdcard_image-rpi.bbclass | 6
+> > +- conf/machine/include/rpi-default-providers.inc | 8 +-
+> > conf/machine/include/rpi-default-versions.inc | 2 +-
+> > recipes-bsp/bootfiles/rpi-config_git.bb | 6 ++
+> > recipes-kernel/linux/linux-raspberrypi.inc | 5 +-
+> > ..._defconfig-Enable-config-options-for-vc4-.patch | 48 +++++++++
+> > ...-ARM-dts-Fix-i2c-for-bcm2709-RPI2-B-board.patch | 85 +++++++++++++++
+> > .../0003-drm-vc4-Use-the-fbdev_cma-helpers.patch | 115
+> > +++++++++++++++++++++ .../0004-drm-vc4-Allow-vblank-to-be-disabled.patch
+> > | 26 +++++ .../0005-drm-vc4-Disable-KMS-operations.patch | 95
+> > +++++++++++++++++ recipes-kernel/linux/linux-raspberrypi_4.1.bb | 16 +++
+> > 12 files changed, 433 insertions(+), 17 deletions(-) create mode 100644
+> > recipes-kernel/linux/linux-raspberrypi/0001-ARM-bcm2709_defconfig-Enable-config-options-for-vc4-.patch
+> > create mode 100644
+> > recipes-kernel/linux/linux-raspberrypi/0002-ARM-dts-Fix-i2c-for-bcm2709-RPI2-B-board.patch
+> > create mode 100644
+> > recipes-kernel/linux/linux-raspberrypi/0003-drm-vc4-Use-the-fbdev_cma-helpers.patch
+> > create mode 100644
+> > recipes-kernel/linux/linux-raspberrypi/0004-drm-vc4-Allow-vblank-to-be-disabled.patch
+> > create mode 100644
+> > recipes-kernel/linux/linux-raspberrypi/0005-drm-vc4-Disable-KMS-operations.patch
+> > create mode 100644 recipes-kernel/linux/linux-raspberrypi_4.1.bb
+> >> Nice
+> > and interesting changes, but you really should sync this with Alex
+> > Lennon as well since he currently are working with integrating 4.1 into
+> > meta-raspberrypi. An other opinion is that you should start by trying to
+> > integrate relevant kernel changes both from
+> > 'git://github.com/anholt/linux.git;protocol=git;branch=vc4-kms-v3d-rpi2'
+> > and the integration patches into the currently used upstream
+> > (https://github.com/raspberrypi/linux [3]) and I also think it's a good
+> > idea to ensure that the new code is added within kernel config options
+> > so it's easy to enable/disable the vc4 support. Then at least I think
+> > this more easily can be integrated in meta-raspberrypi.
+> >
+
+That would definitely be the preferate way but would involve some additional
+work in tracking the patches. So, as an initial state, I am fine with a
+different kernel recipe (with a different name).
+
+> > I didn't know
+> > there was a work in progress to integrate the 4.1 tree.
+> > Although that is
+> > for the branch in https://github.com/raspberrypi/linux [3]that does not
+> > have the Broa> n't expect that to be a trivial task. I certainly don't
+> > know if have the bandwidth to do it. Also, it is under heavy development
+> > so will be hard to track. Another option is to have two recipes for 4.1,
+> > one for the raspberrypi tree with userland and another one with the tree
+> > with the VC4 DRM/KMS driver. Or use the same recipe but with a different
+> > SRC_URI for each case. I tried to isolate all the VC4 support so is
+> > enabled and disable easily using a config option.
+> >>
+> >> Ok, in that case
+> > I think we don't have so much options. I vote for two recipes in that
+> > case (at least to start with) something like
+> > recipe-kernel/linux/linux-raspberrypi-vc4 or similar.
+> > r
+> >
 >
-> ---
+
+Vote++
+
+> Ok, that makes sense for me. I'll wait a couple of days to see if there
+> are more feedback and post a v2 based on your (an others) suggestions.
 >
->  README                                             |   9 ++
-
-Please split this change in another patch.
-
->  ..._defconfig-Enable-config-options-for-vc4-.patch |  48 +++++++++
->  ...-ARM-dts-Fix-i2c-for-bcm2709-RPI2-B-board.patch |  85 +++++++++++++++
->  .../0003-drm-vc4-Use-the-fbdev_cma-helpers.patch   | 115 +++++++++++++++++++++
->  .../0004-drm-vc4-Allow-vblank-to-be-disabled.patch |  26 +++++
->  .../0005-drm-vc4-Disable-KMS-operations.patch      |  95 +++++++++++++++++
->  recipes-kernel/linux/linux-raspberrypi_4.1.bb      |  16 +++
->  7 files changed, 394 insertions(+)
->  create mode 100644 recipes-kernel/linux/linux-raspberrypi/0001-ARM-bcm2709_defconfig-Enable-config-options-for-vc4-.patch
->  create mode 100644 recipes-kernel/linux/linux-raspberrypi/0002-ARM-dts-Fix-i2c-for-bcm2709-RPI2-B-board.patch
->  create mode 100644 recipes-kernel/linux/linux-raspberrypi/0003-drm-vc4-Use-the-fbdev_cma-helpers.patch
->  create mode 100644 recipes-kernel/linux/linux-raspberrypi/0004-drm-vc4-Allow-vblank-to-be-disabled.patch
->  create mode 100644 recipes-kernel/linux/linux-raspberrypi/0005-drm-vc4-Disable-KMS-operations.patch
->  create mode 100644 recipes-kernel/linux/linux-raspberrypi_4.1.bb
+> Thanks a lot!
 >
-> diff --git a/README b/README
-> index 678c0eb4a4e3..20788d6f48cb 100644
-> --- a/README
-> +++ b/README
-> @@ -25,6 +25,7 @@ Contents:
->      2.K. Boot to U-Boot
->      2.L. Image with Initramfs
->      2.M. Device tree support
-> +    2.O. Graphics stack
->  3. Extra apps
->      3.A. omxplayer
->  4. Source code and mirrors
-> @@ -195,6 +196,14 @@ kernels.
->  NOTE: KERNEL_DEVICETREE is default enabled for kernel >= 3.18 and always disabled for
->        older kernel versions.
+> > Best
+> > regards,
+> >
 >
-> +2.O. Graphic stacks
-> +===================
-> +The Raspberry Pi boards can use one of two graphics stacks: The userland
-> +user-space driver or the vc4 DRM/KMS kernel driver. By default userland
-> +is used since the vc4 is still experimental. But this can be changed by
-> +setting the following in the local.conf
-> +DISTRO_FEATURES_append = " vc4-gfx"
-
-Userland / binaries : vc-*. I'm wondering if we should actually define a
-feature for this or just let the users configure the providers as they want. We
-do this for vc-* / userland. We don't have a feature to switch from binaries to
-userland or so.
-
-> +
->  3. Extra apps
->  =============
->
-> diff --git a/recipes-kernel/linux/linux-raspberrypi/0001-ARM-bcm2709_defconfig-Enable-config-options-for-vc4-.patch b/recipes-kernel/linux/linux-raspberrypi/0001-ARM-bcm2709_defconfig-Enable-config-options-for-vc4-.patch
-> new file mode 100644
-> index 000000000000..1ea62489e077
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-raspberrypi/0001-ARM-bcm2709_defconfig-Enable-config-options-for-vc4-.patch
-> @@ -0,0 +1,48 @@
-> +From 5908700d3cb88114002aa66f920e91961ebe91e4 Mon Sep 17 00:00:00 2001
-> +From: Derek Foreman <derekf@osg.samsung.com>
-> +Date: Fri, 24 Jul 2015 01:58:31 +0200
-> +Subject: [PATCH 1/5] ARM: bcm2709_defconfig: Enable config options for vc4
-> + support
-> +
-> +Add the needed Kconfig symbols to build Eric Anholt's WIP kernel
-> +4.1 Linux kernel with vc4 dri/kms/3d support. Also increase CMA
-> +size from 5 MiB to 256 MiB as that is needed by the driver.
-> +
-> +Signed-off-by: Derek Foreman <derekf@osg.samsung.com>
-> +---
-> + arch/arm/configs/bcm2709_defconfig | 5 ++++-
-> + 1 file changed, 4 insertions(+), 1 deletion(-)
-> +
-> +diff --git a/arch/arm/configs/bcm2709_defconfig b/arch/arm/configs/bcm2709_defconfig
-> +index a3067bfb610f..7891bb17df57 100644
-> +--- a/arch/arm/configs/bcm2709_defconfig
-> ++++ b/arch/arm/configs/bcm2709_defconfig
-> +@@ -39,6 +39,7 @@ CONFIG_MAC_PARTITION=y
-> + CONFIG_CFQ_GROUP_IOSCHED=y
-> + CONFIG_ARCH_BCM2709=y
-> + CONFIG_BCM2709_DT=y
-> ++# CONFIG_VDSO is not set
-> + # CONFIG_CACHE_L2X0 is not set
-> + CONFIG_SMP=y
-> + CONFIG_HAVE_ARM_ARCH_TIMER=y
-> +@@ -388,7 +389,7 @@ CONFIG_NFC_PN533=m
-> + CONFIG_DEVTMPFS=y
-> + CONFIG_DEVTMPFS_MOUNT=y
-> + CONFIG_DMA_CMA=y
-> +-CONFIG_CMA_SIZE_MBYTES=5
-> ++CONFIG_CMA_SIZE_MBYTES=256
-> + CONFIG_BLK_DEV_LOOP=y
-> + CONFIG_BLK_DEV_CRYPTOLOOP=m
-> + CONFIG_BLK_DEV_DRBD=m
-> +@@ -771,6 +772,8 @@ CONFIG_VIDEO_TW9906=m
-> + CONFIG_VIDEO_OV7640=m
-> + CONFIG_VIDEO_MT9V011=m
-> + CONFIG_FB=y
-> ++CONFIG_DRM=y
-> ++CONFIG_DRM_VC4=y
-> + CONFIG_FB_BCM2708=y
-> + CONFIG_FB_SSD1307=m
-> + # CONFIG_BACKLIGHT_GENERIC is not set
-> +--
-> +2.4.3
-> +
-> diff --git a/recipes-kernel/linux/linux-raspberrypi/0002-ARM-dts-Fix-i2c-for-bcm2709-RPI2-B-board.patch b/recipes-kernel/linux/linux-raspberrypi/0002-ARM-dts-Fix-i2c-for-bcm2709-RPI2-B-board.patch
-> new file mode 100644
-> index 000000000000..acc09760e820
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-raspberrypi/0002-ARM-dts-Fix-i2c-for-bcm2709-RPI2-B-board.patch
-> @@ -0,0 +1,85 @@
-> +From 8882728be24f35f81da4558c84fb18658e23fcc9 Mon Sep 17 00:00:00 2001
-> +From: Derek Foreman <derekf@osg.samsung.com>
-> +Date: Wed, 27 May 2015 13:20:21 -0500
-> +Subject: [PATCH 2/5] ARM: dts: Fix i2c for bcm2709 RPI2 B board
-> +
-> +Fix up device tree and i2c setup for rpi2
-> +
-> +Signed-off-by: Derek Foreman <derekf@osg.samsung.com
-> +---
-> + arch/arm/boot/dts/bcm2708_common.dtsi | 2 +-
-> + arch/arm/boot/dts/bcm2709-rpi-2-b.dts | 6 ++++++
-> + drivers/i2c/busses/i2c-bcm2708.c      | 6 +++++-
-> + 3 files changed, 12 insertions(+), 2 deletions(-)
-> +
-> +diff --git a/arch/arm/boot/dts/bcm2708_common.dtsi b/arch/arm/boot/dts/bcm2708_common.dtsi
-> +index ccf01a568cb6..15277d2765bb 100644
-> +--- a/arch/arm/boot/dts/bcm2708_common.dtsi
-> ++++ b/arch/arm/boot/dts/bcm2708_common.dtsi
-> +@@ -155,7 +155,7 @@
-> + 		};
-> +
-> + 		i2c2: i2c@7e805000 {
-> +-			compatible = "brcm,bcm2835-i2c";
-> ++			compatible = "brcm,bcm2708-i2c";
-> + 			reg = <0x7e805000 0x1000>;
-> + 			interrupts = <2 21>;
-> + 			clocks = <&clk_i2c>;
-> +diff --git a/arch/arm/boot/dts/bcm2709-rpi-2-b.dts b/arch/arm/boot/dts/bcm2709-rpi-2-b.dts
-> +index 8aaaf1fb7143..712ca455cc46 100644
-> +--- a/arch/arm/boot/dts/bcm2709-rpi-2-b.dts
-> ++++ b/arch/arm/boot/dts/bcm2709-rpi-2-b.dts
-> +@@ -11,6 +11,7 @@
-> + 		spi0 = &spi0;
-> + 		i2c0 = &i2c0;
-> + 		i2c1 = &i2c1;
-> ++		i2c2 = &i2c2;
-> + 		i2s  = &i2s;
-> + 		gpio = &gpio;
-> + 		intc = &intc;
-> +@@ -94,6 +95,11 @@
-> + 	clock-frequency = <100000>;
-> + };
-> +
-> ++&i2c2 {
-> ++	pinctrl-names = "default";
-> ++	clock-frequency = <100000>;
-> ++};
-> ++
-> + &i2s {
-> + 	#sound-dai-cells = <0>;
-> + 	pinctrl-names = "default";
-> +diff --git a/drivers/i2c/busses/i2c-bcm2708.c b/drivers/i2c/busses/i2c-bcm2708.c
-> +index 8773203b34eb..2054ff44e744 100644
-> +--- a/drivers/i2c/busses/i2c-bcm2708.c
-> ++++ b/drivers/i2c/busses/i2c-bcm2708.c
-> +@@ -109,6 +109,7 @@ static void bcm2708_i2c_init_pinmode(int id)
-> + #define SET_GPIO_ALT(g,a) *(gpio+(((g)/10))) |= (((a)<=3?(a)+4:(a)==4?3:2)<<(((g)%10)*3))
-> +
-> + 	int pin;
-> ++
-> + 	u32 *gpio = ioremap(GPIO_BASE, SZ_16K);
-> +
-> + 	BUG_ON(id != 0 && id != 1);
-> +@@ -382,7 +383,7 @@ static int bcm2708_i2c_probe(struct platform_device *pdev)
-> + 		goto out_clk_put;
-> + 	}
-> +
-> +-	if (!pdev->dev.of_node)
-> ++	if (pdev->id < 2)
-> + 		bcm2708_i2c_init_pinmode(pdev->id);
-> +
-> + 	bi = kzalloc(sizeof(*bi), GFP_KERNEL);
-> +@@ -407,6 +408,9 @@ static int bcm2708_i2c_probe(struct platform_device *pdev)
-> + 	case 1:
-> + 		adap->class = I2C_CLASS_DDC;
-> + 		break;
-> ++	case 2:
-> ++		adap->class = I2C_CLASS_DDC;
-> ++		break;
-> + 	default:
-> + 		dev_err(&pdev->dev, "can only bind to BSC 0 or 1\n");
-> + 		err = -ENXIO;
-> +--
-> +2.4.3
-> +
-> diff --git a/recipes-kernel/linux/linux-raspberrypi/0003-drm-vc4-Use-the-fbdev_cma-helpers.patch b/recipes-kernel/linux/linux-raspberrypi/0003-drm-vc4-Use-the-fbdev_cma-helpers.patch
-> new file mode 100644
-> index 000000000000..bc50992dcdbe
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-raspberrypi/0003-drm-vc4-Use-the-fbdev_cma-helpers.patch
-> @@ -0,0 +1,115 @@
-> +From e877e76e5d723eb14bce9c58af40b962eced02bf Mon Sep 17 00:00:00 2001
-> +From: Derek Foreman <derekf@osg.samsung.com>
-> +Date: Thu, 2 Jul 2015 11:19:54 -0500
-> +Subject: [PATCH 3/5] drm/vc4: Use the fbdev_cma helpers
-> +
-> +Keep the fbdev_cma pointer around so we can use it on hotplog and close
-> +to ensure the frame buffer console is in a useful state.
-> +
-> +Signed-off-by: Derek Foreman <derekf@osg.samsung.com>
-> +---
-> + drivers/gpu/drm/vc4/vc4_drv.c | 15 +++++++++++++++
-> + drivers/gpu/drm/vc4/vc4_drv.h |  2 ++
-> + drivers/gpu/drm/vc4/vc4_kms.c | 18 +++++++++++++++---
-> + 3 files changed, 32 insertions(+), 3 deletions(-)
-> +
-> +diff --git a/drivers/gpu/drm/vc4/vc4_drv.c b/drivers/gpu/drm/vc4/vc4_drv.c
-> +index 5c023ba4f6ad..04f1f738ebc2 100644
-> +--- a/drivers/gpu/drm/vc4/vc4_drv.c
-> ++++ b/drivers/gpu/drm/vc4/vc4_drv.c
-> +@@ -13,6 +13,7 @@
-> + #include <linux/module.h>
-> + #include <linux/of_platform.h>
-> + #include <linux/platform_device.h>
-> ++#include <drm/drm_fb_cma_helper.h>
-> +
-> + #include "uapi/drm/vc4_drm.h"
-> + #include "vc4_drv.h"
-> +@@ -78,6 +79,11 @@ vc4_drm_load(struct drm_device *dev, unsigned long flags)
-> +
-> + static int vc4_drm_unload(struct drm_device *dev)
-> + {
-> ++	struct vc4_dev *vc4 = to_vc4_dev(dev);
-> ++
-> ++	if (vc4->fbdev)
-> ++		drm_fbdev_cma_fini(vc4->fbdev);
-> ++
-> + 	drm_mode_config_cleanup(dev);
-> +
-> + 	component_unbind_all(dev->dev, dev);
-> +@@ -93,6 +99,14 @@ static void vc4_drm_preclose(struct drm_device *dev, struct drm_file *file)
-> + 		vc4_cancel_page_flip(crtc, file);
-> + }
-> +
-> ++static void vc4_lastclose(struct drm_device *dev)
-> ++{
-> ++	struct vc4_dev *vc4 = to_vc4_dev(dev);
-> ++
-> ++	if (vc4->fbdev)
-> ++		drm_fbdev_cma_restore_mode(vc4->fbdev);
-> ++}
-> ++
-> + static const struct file_operations vc4_drm_fops = {
-> + 	.owner = THIS_MODULE,
-> + 	.open = drm_open,
-> +@@ -123,6 +137,7 @@ static struct drm_driver vc4_drm_driver = {
-> + 			    DRIVER_PRIME),
-> + 	.load = vc4_drm_load,
-> + 	.unload = vc4_drm_unload,
-> ++	.lastclose = vc4_lastclose,
-> + 	.set_busid = drm_platform_set_busid,
-> + 	.preclose = vc4_drm_preclose,
-> +
-> +diff --git a/drivers/gpu/drm/vc4/vc4_drv.h b/drivers/gpu/drm/vc4/vc4_drv.h
-> +index 13b475785ca0..d460bb3e6b64 100644
-> +--- a/drivers/gpu/drm/vc4/vc4_drv.h
-> ++++ b/drivers/gpu/drm/vc4/vc4_drv.h
-> +@@ -81,6 +81,8 @@ struct vc4_dev {
-> + 	} hangcheck;
-> +
-> + 	struct semaphore async_modeset;
-> ++
-> ++	struct drm_fbdev_cma *fbdev;
-> + };
-> +
-> + static inline struct vc4_dev *
-> +diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_kms.c
-> +index acfd1b23ab4a..cb18d8f0e387 100644
-> +--- a/drivers/gpu/drm/vc4/vc4_kms.c
-> ++++ b/drivers/gpu/drm/vc4/vc4_kms.c
-> +@@ -155,7 +155,17 @@ static int vc4_atomic_commit(struct drm_device *dev,
-> + 	return 0;
-> + }
-> +
-> ++static void vc4_output_poll_changed(struct drm_device *dev)
-> ++{
-> ++	struct vc4_dev *vc4 = to_vc4_dev(dev);
-> ++
-> ++	if (vc4->fbdev)
-> ++		drm_fbdev_cma_hotplug_event(vc4->fbdev);
-> ++}
-> ++
-> ++
-> + static const struct drm_mode_config_funcs vc4_mode_funcs = {
-> ++	.output_poll_changed = vc4_output_poll_changed,
-> + 	.atomic_check = drm_atomic_helper_check,
-> + 	.atomic_commit = vc4_atomic_commit,
-> + 	.fb_create = drm_fb_cma_create,
-> +@@ -214,9 +224,11 @@ vc4_kms_load(struct drm_device *dev)
-> +
-> + 	drm_mode_config_reset(dev);
-> +
-> +-	drm_fbdev_cma_init(dev, 32,
-> +-			   dev->mode_config.num_crtc,
-> +-			   dev->mode_config.num_connector);
-> ++	vc4->fbdev = drm_fbdev_cma_init(dev, 32,
-> ++					dev->mode_config.num_crtc,
-> ++					dev->mode_config.num_connector);
-> ++	if (IS_ERR(vc4->fbdev))
-> ++		vc4->fbdev = NULL;
-> +
-> + 	drm_kms_helper_poll_init(dev);
-> +
-> +--
-> +2.4.3
-> +
-> diff --git a/recipes-kernel/linux/linux-raspberrypi/0004-drm-vc4-Allow-vblank-to-be-disabled.patch b/recipes-kernel/linux/linux-raspberrypi/0004-drm-vc4-Allow-vblank-to-be-disabled.patch
-> new file mode 100644
-> index 000000000000..0293ed713c3e
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-raspberrypi/0004-drm-vc4-Allow-vblank-to-be-disabled.patch
-> @@ -0,0 +1,26 @@
-> +From 4388ed0f2d66399a6ad3133b91bd438cdb25e37b Mon Sep 17 00:00:00 2001
-> +From: Derek Foreman <derekf@osg.samsung.com>
-> +Date: Thu, 2 Jul 2015 11:20:21 -0500
-> +Subject: [PATCH 4/5] drm/vc4: Allow vblank to be disabled
-> +
-> +Signed-off-by: Derek Foreman <derekf@osg.samsung.com>
-> +---
-> + drivers/gpu/drm/vc4/vc4_kms.c | 2 ++
-> + 1 file changed, 2 insertions(+)
-> +
-> +diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_kms.c
-> +index cb18d8f0e387..1473df9ef4a1 100644
-> +--- a/drivers/gpu/drm/vc4/vc4_kms.c
-> ++++ b/drivers/gpu/drm/vc4/vc4_kms.c
-> +@@ -218,6 +218,8 @@ vc4_kms_load(struct drm_device *dev)
-> + 	dev->mode_config.funcs = &vc4_mode_funcs;
-> + 	dev->mode_config.preferred_depth = 24;
-> +
-> ++	dev->vblank_disable_allowed = true;
-> ++
-> + 	ret = vc4_init_modeset_objects(dev);
-> + 	if (ret)
-> + 		goto fail;
-> +--
-> +2.4.3
-> +
-> diff --git a/recipes-kernel/linux/linux-raspberrypi/0005-drm-vc4-Disable-KMS-operations.patch b/recipes-kernel/linux/linux-raspberrypi/0005-drm-vc4-Disable-KMS-operations.patch
-> new file mode 100644
-> index 000000000000..eff5058aeda7
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-raspberrypi/0005-drm-vc4-Disable-KMS-operations.patch
-> @@ -0,0 +1,95 @@
-> +From 844a32b8444a38b6378c98ad4a4b8b8c3522c020 Mon Sep 17 00:00:00 2001
-> +From: Derek Foreman <derekf@osg.samsung.com>
-> +Date: Fri, 24 Jul 2015 03:29:15 +0200
-> +Subject: [PATCH 5/5] drm/vc4: Disable KMS operations
-> +
-> +The vc4 driver KMS implementation still has some issues so
-> +for now skip most of the codepaths to avoid system hangs.
-> +
-> +Signed-off-by: Derek Foreman <derekf@osg.samsung.com>
-> +---
-> + drivers/gpu/drm/drm_atomic_helper.c | 2 +-
-> + drivers/gpu/drm/vc4/vc4_crtc.c      | 2 +-
-> + drivers/gpu/drm/vc4/vc4_hdmi.c      | 6 ++++--
-> + drivers/gpu/drm/vc4/vc4_kms.c       | 1 +
-> + 4 files changed, 7 insertions(+), 4 deletions(-)
-> +
-> +diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-> +index 1d2ca52530d5..ba7f355bcced 100644
-> +--- a/drivers/gpu/drm/drm_atomic_helper.c
-> ++++ b/drivers/gpu/drm/drm_atomic_helper.c
-> +@@ -1876,7 +1876,7 @@ void drm_atomic_helper_connector_dpms(struct drm_connector *connector,
-> + 	struct drm_connector *tmp_connector;
-> + 	int ret;
-> + 	bool active = false;
-> +-
-> ++return;
-> + 	if (mode != DRM_MODE_DPMS_ON)
-> + 		mode = DRM_MODE_DPMS_OFF;
-> +
-> +diff --git a/drivers/gpu/drm/vc4/vc4_crtc.c b/drivers/gpu/drm/vc4/vc4_crtc.c
-> +index f9960ac34fd7..1b85355baef0 100644
-> +--- a/drivers/gpu/drm/vc4/vc4_crtc.c
-> ++++ b/drivers/gpu/drm/vc4/vc4_crtc.c
-> +@@ -91,7 +91,7 @@ static void vc4_crtc_mode_set_nofb(struct drm_crtc *crtc)
-> + 		       ((mode->flags & DRM_MODE_FLAG_INTERLACE) ? 1 : 0));
-> + 	u32 format = PV_CONTROL_FORMAT_24;
-> + 	bool debug_dump_regs = false;
-> +-
-> ++return;
-> + 	if (debug_dump_regs) {
-> + 		DRM_INFO("CRTC %d regs before:\n", drm_crtc_index(crtc));
-> + 		vc4_crtc_dump_regs(vc4_crtc);
-> +diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
-> +index 8c41fdc4ef2e..2a212b08e108 100644
-> +--- a/drivers/gpu/drm/vc4/vc4_hdmi.c
-> ++++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-> +@@ -273,7 +273,7 @@ vc4_set_pixel_clock(struct vc4_dev *vc4, u32 clock)
-> + {
-> + 	u32 packet[2];
-> + 	int ret;
-> +-
-> ++return;
-> + 	packet[0] = 8; /* Pixel clock. */
-> + 	packet[1] = clock;
-> +
-> +@@ -295,6 +295,7 @@ static void vc4_hdmi_encoder_mode_set(struct drm_encoder *encoder,
-> + 	bool debug_dump_regs = false;
-> + 	bool hsync_pos = !(mode->flags & DRM_MODE_FLAG_NHSYNC);
-> + 	bool vsync_pos = !(mode->flags & DRM_MODE_FLAG_NVSYNC);
-> ++return;
-> + 	u32 vactive = (mode->vdisplay >>
-> + 		       ((mode->flags & DRM_MODE_FLAG_INTERLACE) ? 1 : 0));
-> + 	u32 verta = (VC4_SET_FIELD(mode->vsync_end - mode->vsync_start,
-> +@@ -405,7 +406,7 @@ static void vc4_hdmi_encoder_disable(struct drm_encoder *encoder)
-> + {
-> + 	struct drm_device *dev = encoder->dev;
-> + 	struct vc4_dev *vc4 = to_vc4_dev(dev);
-> +-
-> ++return;
-> + 	HDMI_WRITE(VC4_HDMI_TX_PHY_RESET_CTL, 0xf << 16);
-> + }
-> +
-> +@@ -413,6 +414,7 @@ static void vc4_hdmi_encoder_enable(struct drm_encoder *encoder)
-> + {
-> + 	struct drm_device *dev = encoder->dev;
-> + 	struct vc4_dev *vc4 = to_vc4_dev(dev);
-> ++return;
-> +
-> + 	HDMI_WRITE(VC4_HDMI_TX_PHY_RESET_CTL, 0);
-> + }
-> +diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_kms.c
-> +index 1473df9ef4a1..5ddc5d9beaae 100644
-> +--- a/drivers/gpu/drm/vc4/vc4_kms.c
-> ++++ b/drivers/gpu/drm/vc4/vc4_kms.c
-> +@@ -144,6 +144,7 @@ static int vc4_atomic_commit(struct drm_device *dev,
-> + 	 * current layout.
-> + 	 */
-> +
-> ++	async=0;
-> + 	if (async) {
-> + 		vc4_queue_seqno_cb(dev, &c->cb, wait_seqno,
-> + 				   vc4_atomic_complete_commit_seqno_cb);
-> +--
-> +2.4.3
-> +
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_4.1.bb b/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-
-We will have to rename this because the linux-raspberrypi recipes are known
-from the raspberrypi linux fork. So maybe havinf something like:
-linux-raspberrypi-vc4?
-
-> new file mode 100644
-> index 000000000000..a8e1863ddf2c
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-raspberrypi_4.1.bb
-> @@ -0,0 +1,16 @@
-> +LINUX_VERSION ?= "4.1.0"
-> +
-> +# Don't make this the default kernel, right now it is only for testing purposes
-> +DEFAULT_PREFERENCE = "-1"
-> +
-> +SRCREV = "07009cab090ade3dd180e8a55d590b1a00072eed"
-> +SRC_URI = "git://github.com/anholt/linux.git;protocol=git;branch=vc4-kms-v3d-rpi2"
-> +
-> +# Add patches needed for the vc4 driver but only if enabled as distro feature since are experimental
-> +SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'file://0001-ARM-bcm2709_defconfig-Enable-config-options-for-vc4-.patch', '', d)}"
-> +SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'file://0002-ARM-dts-Fix-i2c-for-bcm2709-RPI2-B-board.patch', '', d)}"
-> +SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'file://0003-drm-vc4-Use-the-fbdev_cma-helpers.patch', '', d)}"
-> +SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'file://0004-drm-vc4-Allow-vblank-to-be-disabled.patch', '', d)}"
-> +SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', 'vc4-gfx', 'file://0005-drm-vc4-Disable-KMS-operations.patch', '', d)}"
-> +
-
-I don't see the need of the selective inclusion as this fork is a vc4 one. So,
-as long as you select this provider, you will need the patches.
-
-> +require linux-raspberrypi.inc
+> Best regards,
 > --
-> 2.4.3
->
+> Javier Martinez Canillas
+> Open Source Group
+> Samsung Research America
 
 --
 Andrei Gherzan
