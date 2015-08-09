@@ -1,60 +1,51 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <pbarker@betafive.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 159D6E009BC; Sat,  8 Aug 2015 18:09:54 -0700 (PDT)
+	id 64921E009F0; Sun,  9 Aug 2015 03:45:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.51 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [188.165.48.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f51.google.com (mail-pa0-f51.google.com
-	[209.85.220.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 882FAE003D7
-	for <yocto@yoctoproject.org>; Sat,  8 Aug 2015 18:09:51 -0700 (PDT)
-Received: by pacgr6 with SMTP id gr6so1160584pac.2
-	for <yocto@yoctoproject.org>; Sat, 08 Aug 2015 18:09:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=W3B0tATb7yEIG8hhX9EvYGLBhit3SiNdRwQOXQhuy7c=;
-	b=XIyYH8vmrco5M3qMRcwQlbilK4cZJnaQ6NF3l8f6Qq650m76kDiDy/iuly0RZty82+
-	Oz4L7FFHCuvr3O3UqPcctTqH/l0n+4TgsoCxw2FLwIQG1/xoEbrfus8AgPegoj81tSNp
-	vwV833eF6CugiDB+DhK0/Uz140jkmqSKFsE/EQxuZ+ilR9AC0v3yfnOF6iKd//aH5/CZ
-	x3MuTy+yIYF9Iu69q9e3YbqX0MQCOSH+ZOGU849il+kAq9/ObU7bzltiOTXnGguMD+3y
-	9l2lSENak0xgeOqrdeHWTHmo1w9L30ofUPGd6WuiBozDy2vYrLYt/knkwlPtf33xEPd5
-	eGIQ==
-X-Received: by 10.66.248.9 with SMTP id yi9mr30095506pac.149.1439082591353;
-	Sat, 08 Aug 2015 18:09:51 -0700 (PDT)
-Received: from ?IPv6:2601:646:8601:4580:4ec:fbce:7a8:43c9?
-	([2601:646:8601:4580:4ec:fbce:7a8:43c9])
-	by smtp.gmail.com with ESMTPSA id
-	ov3sm14890982pdb.2.2015.08.08.18.09.50
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sat, 08 Aug 2015 18:09:50 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2104\))
-X-Pgp-Agent: GPGMail 2.5
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <SIXPR04MB0462DF3C7F4E2BD4EF05B39B938D0@SIXPR04MB0462.apcprd04.prod.outlook.com>
-Date: Sat, 8 Aug 2015 18:09:45 -0700
-Message-Id: <08F15723-A569-4034-8E00-CBCD9F517A93@gmail.com>
-References: <SIXPR04MB0462DF3C7F4E2BD4EF05B39B938D0@SIXPR04MB0462.apcprd04.prod.outlook.com>
-To: PRAVEEN KUMAR R <praveenr@tataelxsi.co.in>
-X-Mailer: Apple Mail (2.2104)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Glibc kernel version depends
+X-Greylist: delayed 2296 seconds by postgrey-1.32 at yocto-www;
+	Sun, 09 Aug 2015 03:45:16 PDT
+Received: from 7.mo2.mail-out.ovh.net (7.mo2.mail-out.ovh.net [188.165.48.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46017E003D7
+	for <yocto@yoctoproject.org>; Sun,  9 Aug 2015 03:45:16 -0700 (PDT)
+Received: from mail192.ha.ovh.net (b6.ovh.net [213.186.33.56])
+	by mo2.mail-out.ovh.net (Postfix) with SMTP id A9B2BFFC53B
+	for <yocto@yoctoproject.org>; Sun,  9 Aug 2015 12:06:58 +0200 (CEST)
+Received: from localhost (HELO queueout) (127.0.0.1)
+	by localhost with SMTP; 9 Aug 2015 12:06:57 +0200
+Received: from cpc19-shep11-2-0-cust55.8-3.cable.virginm.net (HELO
+	bang.betafive.co.uk) (paul@betafive.co.uk@81.111.243.56)
+	by ns0.ovh.net with AES256-GCM-SHA384 encrypted SMTP;
+	9 Aug 2015 12:06:56 +0200
+Received: by bang.betafive.co.uk (Postfix, from userid 1000)
+	id 5ABFA40A4F; Sun,  9 Aug 2015 11:07:24 +0100 (BST)
+Date: Sun, 9 Aug 2015 11:07:24 +0100
+From: Paul Barker <paul@paulbarker.me.uk>
+To: Trevor Woerner <twoerner@gmail.com>
+Message-ID: <20150809100724.GA24792@bang.betafive.co.uk>
+References: <55C4B071.30709@gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <55C4B071.30709@gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Ovh-Tracer-Id: 2756202973812014031
+X-Ovh-Remote: 81.111.243.56 (cpc19-shep11-2-0-cust55.8-3.cable.virginm.net)
+X-Ovh-Local: 213.186.33.20 (ns0.ovh.net)
+X-OVH-SPAMSTATE: OK
+X-OVH-SPAMSCORE: -100
+X-OVH-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeekfedrvdejucetufdoteggucfrrhhofhhilhgvmecuqfggjfenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrfeekfedrvdejucetufdoteggucfrrhhofhhilhgvmecuqfggjfenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
+Cc: yocto@yoctoproject.org
+Subject: Re: ipk zImage in master-next
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,179 +57,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 09 Aug 2015 01:09:54 -0000
-X-Groupsio-MsgNum: 25941
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_4C049023-317B-401F-AAB2-CAFFAA57CBC3";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Sun, 09 Aug 2015 10:45:23 -0000
+X-Groupsio-MsgNum: 25942
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="mP3DRpeJDSE+ciuQ"
+Content-Disposition: inline
 
---Apple-Mail=_4C049023-317B-401F-AAB2-CAFFAA57CBC3
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_1DEAA630-3A55-4D30-8248-F4BD10D18C11"
-
---Apple-Mail=_1DEAA630-3A55-4D30-8248-F4BD10D18C11
+--mP3DRpeJDSE+ciuQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=iso-8859-1
 
-
-> On Jul 28, 2015, at 7:21 AM, PRAVEEN KUMAR R =
-<praveenr@tataelxsi.co.in> wrote:
+On Fri, Aug 07, 2015 at 09:19:45AM -0400, Trevor Woerner wrote:
+> When packaging a zImage kernel for IPK in master-next the following
+> error shows up:
 >=20
+> | kernel-image-zImage-4.1.2-fslc+g95d9e15
+> | *** Error: Package name  contains illegal characters, (other than
+> [a-z0-9.+-])
 >=20
-> I am trying to bring QT 5.5 on armv6 arch which is running on linux =
-kernel v 2.6.27,
-> the qt5 libraries depends on glib 2.12+, I tried installing latest =
-glibc to satisfy run time depends on target
+> It looks like the newer kernel.bbclass is much more sophisticated about
+> generating package names than before.
 >=20
-> when I run the qt application, I get
-> FATAL: kernel too old
-
-since 2.21 minimal required version is 2.6.32
-
+> Has anyone else seen this? Is there a simple way of saying "the type is
+> zimage where packaging for ipk is concerned but zImage otherwise"?
 >=20
-> 1. is the glib 2.21 tightly coupled with kernel version ? 2.6.32+ ?
-> how do I make this is compatible with older versions of kernel
->=20
-> 2. I tried passing conf param --enable-kernel=3D2.6.27, I still get =
-the same error
->=20
-> any idea ?
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
-> https://lists.yoctoproject.org/listinfo/yocto =
-<https://lists.yoctoproject.org/listinfo/yocto>
+> Best regards,
+> 	Trevor
 
---Apple-Mail=_1DEAA630-3A55-4D30-8248-F4BD10D18C11
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=iso-8859-1
+I believe this check is present in opkg-build just to ensure compatibility =
+with
+the Debian Policy Manual. I don't remember this being an actual restriction=
+ of
+opkg.
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Diso-8859-1"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Jul 28, 2015, at 7:21 AM, PRAVEEN KUMAR R &lt;<a =
-href=3D"mailto:praveenr@tataelxsi.co.in" =
-class=3D"">praveenr@tataelxsi.co.in</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div =
-id=3D"divtagdefaultwrapper" style=3D"font-style: normal; font-variant: =
-normal; font-weight: normal; letter-spacing: normal; line-height: =
-normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px; font-size: 12pt; background-color: =
-rgb(255, 255, 255); font-family: Calibri, Arial, Helvetica, sans-serif;" =
-class=3D""><div style=3D"margin-top: 0px; margin-bottom: 0px;" =
-class=3D""><br class=3D"Apple-interchange-newline">I am trying to bring =
-QT 5.5 on armv6 arch which is running on&nbsp;linux kernel v =
-2.6.27,</div><div style=3D"margin-top: 0px; margin-bottom: 0px;" =
-class=3D"">the qt5 libraries depends on glib 2.12+, I tried installing =
-latest glibc to satisfy run time depends on target</div><div =
-style=3D"margin-top: 0px; margin-bottom: 0px;" class=3D""><br =
-class=3D""></div><div style=3D"margin-top: 0px; margin-bottom: 0px;" =
-class=3D"">when I run the qt&nbsp;application, I get</div><div =
-style=3D"margin-top: 0px; margin-bottom: 0px;" class=3D""><b =
-class=3D"">FATAL: kernel too =
-old</b></div></div></div></blockquote><div><br class=3D""></div><div>since=
- 2.21 minimal required version is 2.6.32</div><br class=3D""><blockquote =
-type=3D"cite" class=3D""><div class=3D""><div id=3D"divtagdefaultwrapper" =
-style=3D"font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-font-size: 12pt; background-color: rgb(255, 255, 255); font-family: =
-Calibri, Arial, Helvetica, sans-serif;" class=3D""><div =
-style=3D"margin-top: 0px; margin-bottom: 0px;" class=3D""><span =
-style=3D"font-size: 12pt;" class=3D""><br class=3D""></span></div><div =
-style=3D"margin-top: 0px; margin-bottom: 0px;" class=3D""><span =
-style=3D"font-size: 12pt;" class=3D"">1. is the glib 2.21 tightly =
-coupled with kernel version ? 2.6.32+ ?</span></div><div =
-style=3D"margin-top: 0px; margin-bottom: 0px;" class=3D""><span =
-style=3D"font-size: 12pt;" class=3D"">how do I make this is compatible =
-with older versions of kernel</span></div><div style=3D"margin-top: 0px; =
-margin-bottom: 0px;" class=3D""><span style=3D"font-size: 12pt;" =
-class=3D""><br class=3D""></span></div><div style=3D"margin-top: 0px; =
-margin-bottom: 0px;" class=3D""><span style=3D"font-size: 12pt;" =
-class=3D"">2. I tried passing conf param&nbsp;</span><span =
-style=3D"font-size: 12pt;" class=3D"">--enable-kernel=3D2.6.27, I still =
-get the same error</span><br class=3D""></div><div style=3D"margin-top: =
-0px; margin-bottom: 0px;" class=3D""><span style=3D"font-size: 12pt;" =
-class=3D""><br class=3D""></span></div><div style=3D"margin-top: 0px; =
-margin-bottom: 0px;" class=3D""><span style=3D"font-size: 12pt;" =
-class=3D"">any idea ?</span></div></div><span style=3D"font-family: =
-Helvetica; font-size: 13px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; float: none; display: inline =
-!important;" class=3D"">--<span =
-class=3D"Apple-converted-space">&nbsp;</span></span><br =
-style=3D"font-family: Helvetica; font-size: 13px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px;" class=3D""><span =
-style=3D"font-family: Helvetica; font-size: 13px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px; float: none; display: inline =
-!important;" =
-class=3D"">_______________________________________________</span><br =
-style=3D"font-family: Helvetica; font-size: 13px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px;" class=3D""><span =
-style=3D"font-family: Helvetica; font-size: 13px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px; float: none; display: inline =
-!important;" class=3D"">yocto mailing list</span><br style=3D"font-family:=
- Helvetica; font-size: 13px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" style=3D"font-family: Helvetica; =
-font-size: 13px; font-style: normal; font-variant: normal; font-weight: =
-normal; letter-spacing: normal; line-height: normal; orphans: auto; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
-0px;" class=3D"">yocto@yoctoproject.org</a><br style=3D"font-family: =
-Helvetica; font-size: 13px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
-style=3D"font-family: Helvetica; font-size: 13px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px;" =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
-uote></div><br class=3D""></body></html>=
+You could try patching the opkg-build script (in opkg-utils) to remove this
+check and see if opkg is happy to install the resulting package.
 
---Apple-Mail=_1DEAA630-3A55-4D30-8248-F4BD10D18C11--
+Thanks,
 
---Apple-Mail=_4C049023-317B-401F-AAB2-CAFFAA57CBC3
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
+--=20
+Paul Barker
+
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
+
+--mP3DRpeJDSE+ciuQ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
+Version: GnuPG v1.4.12 (GNU/Linux)
 
-iEYEARECAAYFAlXGqF0ACgkQuwUzVZGdMxQa+gCeKF1tAFsKAt5vFn7EnZ4gD+nj
-vRIAn3Dh3Q+MgQ0GpJaxAOrjIUnx1qfL
-=0Plb
+iQEcBAEBAgAGBQJVxyZcAAoJEBwoJlo7UPQD4SYH/2BYQBLGzw0Vx3+ls9B0YRHl
+qXG3V78uNqFi/PFfKkcJx2v5NpKaSyhpJfFecVXSkjUINXknWv172tBrtsXghm2I
+pxCKUgm36fP5SWEO6oxub5b688tzBcnc4uRF3uu+LJ9RFUECO3sDXChn4rFtui5C
+BolTVzKbDQhjL40NGhiH5hD2m4q8oZGez9tlymIzkCROaCdE2RPJqEbto/2RQJya
+tiYx6xZiZXO+2aFCCwNgK2o4a1RnozxoDl3eF6Wks4raP1tHdk2XFiYBNwwCnLr5
+xRscFoYFA+NdElmvqYpiwqWuBFH/3UFyfXGwWsPZX0cfTQv1c2arMwAJDtwmBWg=
+=qijc
 -----END PGP SIGNATURE-----
 
---Apple-Mail=_4C049023-317B-401F-AAB2-CAFFAA57CBC3--
+--mP3DRpeJDSE+ciuQ--
