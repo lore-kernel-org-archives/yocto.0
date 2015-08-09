@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC76AE008EC; Sun,  9 Aug 2015 09:05:27 -0700 (PDT)
+	id 14B8CE008EC; Sun,  9 Aug 2015 09:08:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,9 +9,6 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,34 +16,37 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f172.google.com (mail-io0-f172.google.com
-	[209.85.223.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50397E00306
-	for <yocto@yoctoproject.org>; Sun,  9 Aug 2015 09:05:24 -0700 (PDT)
-Received: by ioeg141 with SMTP id g141so149963411ioe.3
-	for <yocto@yoctoproject.org>; Sun, 09 Aug 2015 09:05:24 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.176 listed in list.dnswl.org]
+Received: from mail-io0-f176.google.com (mail-io0-f176.google.com
+	[209.85.223.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D531E00306
+	for <yocto@yoctoproject.org>; Sun,  9 Aug 2015 09:08:31 -0700 (PDT)
+Received: by iodd187 with SMTP id d187so149983527iod.2
+	for <yocto@yoctoproject.org>; Sun, 09 Aug 2015 09:08:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id;
 	bh=KZr9YCNIhU7DoqqWsqA7+nCpxHhb61PglpamPUp/kyg=;
-	b=q7sVL8H1BdoXcYGUICHvoqaQV/IhkG6AsKJ44YJP4QvuHO5nvmVo0sUnQtF0pb4Ql+
-	7k8jPBvIKpJiBKrAeCaUjUnaeBfYiyvJWpvR+JrcQmM4/J7rLKlTVH+q7wQiEtik4mo/
-	SPKeChPEPNHoXuLv2Q3fce7kRsQ5wPDv2UcVInAtQcBDAFsugGSIuqfZmVP7zW59YUL4
-	5H9hXFi8c8NSDQpjZZqwexNelPwzDHrbCdkmu4ucf362NTU5RM2WrcDjeLhBr9sFnAv7
-	VOyHGk9su9Cy8XKH0w3kYcEQTHL375TasZnCXaynWyJJbQuUti7n6QxLvKNs6QhRGgMO
-	oj5w==
-X-Received: by 10.107.14.10 with SMTP id 10mr16177140ioo.45.1439136323806;
-	Sun, 09 Aug 2015 09:05:23 -0700 (PDT)
+	b=fihH8eaanw6lO7WBjURwCooqTeJrW5a4VojLmy/TQGWH/+5N2DtsUNXhD6JR04d0WS
+	/Osv6IRHOS86TmARF1IZ4d21iFsa+f4Z23hUNsAHy0a8uAWSd3Q1nWbedEk6w4LtKySM
+	zyPpCXXCQ404mMfcIlNp/roQU9gs5ATodNo19vxQdtUKGULmk0yuJ76pUf6C7lyO9f3d
+	7NBfU/pVCDstZO9C5QUuGpFpArn/JrmhDd0ii6I7xLGKck5QAB28QmpqdZZlw4hK+7Op
+	awRhn2hwr1RLCwOEw5S7FPf+vjjYdmsoeZlHfHWzNod8KhluuHJbfR3TCl/6h6xVQWsF
+	h8PA==
+X-Received: by 10.107.137.208 with SMTP id t77mr15848584ioi.2.1439136511058;
+	Sun, 09 Aug 2015 09:08:31 -0700 (PDT)
 Received: from dvm-ch2e-038.sys.comcast.net (a-96-119-89-79.sys.comcast.net.
 	[96.119.89.79]) by smtp.gmail.com with ESMTPSA id
-	g123sm11308942iog.31.2015.08.09.09.05.22
+	ht6sm4012046igb.11.2015.08.09.09.08.30
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 09 Aug 2015 09:05:22 -0700 (PDT)
+	Sun, 09 Aug 2015 09:08:30 -0700 (PDT)
 From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sun,  9 Aug 2015 09:05:17 -0700
-Message-Id: <1439136317-7047-1-git-send-email-raj.khem@gmail.com>
+Date: Sun,  9 Aug 2015 09:08:20 -0700
+Message-Id: <1439136500-16714-1-git-send-email-raj.khem@gmail.com>
 X-Mailer: git-send-email 2.1.4
-Subject: [PATCH] userland: Fix POSIX compliance expectation
+Subject: [meta-raspberrypi][PATCH] userland: Fix POSIX compliance expectation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,7 +58,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 09 Aug 2015 16:05:27 -0000
+X-List-Received-Date: Sun, 09 Aug 2015 16:08:33 -0000
 
 We have errors like below with glibc 2.22+
 
