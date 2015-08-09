@@ -1,52 +1,52 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 14B8CE008EC; Sun,  9 Aug 2015 09:08:33 -0700 (PDT)
+	id B306FE008EC; Sun,  9 Aug 2015 14:08:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.212.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.176 listed in list.dnswl.org]
-Received: from mail-io0-f176.google.com (mail-io0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D531E00306
-	for <yocto@yoctoproject.org>; Sun,  9 Aug 2015 09:08:31 -0700 (PDT)
-Received: by iodd187 with SMTP id d187so149983527iod.2
-	for <yocto@yoctoproject.org>; Sun, 09 Aug 2015 09:08:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=KZr9YCNIhU7DoqqWsqA7+nCpxHhb61PglpamPUp/kyg=;
-	b=fihH8eaanw6lO7WBjURwCooqTeJrW5a4VojLmy/TQGWH/+5N2DtsUNXhD6JR04d0WS
-	/Osv6IRHOS86TmARF1IZ4d21iFsa+f4Z23hUNsAHy0a8uAWSd3Q1nWbedEk6w4LtKySM
-	zyPpCXXCQ404mMfcIlNp/roQU9gs5ATodNo19vxQdtUKGULmk0yuJ76pUf6C7lyO9f3d
-	7NBfU/pVCDstZO9C5QUuGpFpArn/JrmhDd0ii6I7xLGKck5QAB28QmpqdZZlw4hK+7Op
-	awRhn2hwr1RLCwOEw5S7FPf+vjjYdmsoeZlHfHWzNod8KhluuHJbfR3TCl/6h6xVQWsF
-	h8PA==
-X-Received: by 10.107.137.208 with SMTP id t77mr15848584ioi.2.1439136511058;
-	Sun, 09 Aug 2015 09:08:31 -0700 (PDT)
-Received: from dvm-ch2e-038.sys.comcast.net (a-96-119-89-79.sys.comcast.net.
-	[96.119.89.79]) by smtp.gmail.com with ESMTPSA id
-	ht6sm4012046igb.11.2015.08.09.09.08.30
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 09 Aug 2015 09:08:30 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sun,  9 Aug 2015 09:08:20 -0700
-Message-Id: <1439136500-16714-1-git-send-email-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.1.4
-Subject: [meta-raspberrypi][PATCH] userland: Fix POSIX compliance expectation
+Received: from mail-wi0-f169.google.com (mail-wi0-f169.google.com
+	[209.85.212.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B12DE00306
+	for <yocto@yoctoproject.org>; Sun,  9 Aug 2015 14:08:42 -0700 (PDT)
+Received: by wicne3 with SMTP id ne3so113899318wic.1
+	for <yocto@yoctoproject.org>; Sun, 09 Aug 2015 14:08:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=n7E9VAfU2ZoNHpmCcvS5C60ft8qVLEoWGAkVtXh1QlI=;
+	b=R2MGXicPTdXDZqHfnvGVh3aWOk12Gx5frCf6zaxoVSMJO8CdeXSmPVh3OknlTUo/Vp
+	whIdWbaTTOWNXBkqHLQgCln6zykIz8c3z7/XafzIlwO03datT9ZxTDiiSDpu6ZNWyn2z
+	bfcvWnGAKIBxE+zIp8KRkNoVO+e9yXBXa9lbX+b+XkDTgVfZc3W2Lnt9yu1YwfayGmzH
+	eW6LtTuS7Rzyvq4iDTAN3SLuNNlllrQ3XxgYfjPiC977+nkq3ftGn+KhkgmlMh1lkaoq
+	2S9FH35kAzEyTaWrTOQC2AwaJ5pT7icg3wIs946Cf4m1oyiOuPcyTvvzp9FWsG8hY2/w
+	a6uA==
+X-Gm-Message-State: ALoCoQnxNtPr/YumeI+njVmwRNQ0oyOIn/tsikwljwV/U2/zQY+RqBFEF7H6Iei44dRhfYlu9kbG
+X-Received: by 10.180.73.13 with SMTP id h13mr17438427wiv.79.1439154521580;
+	Sun, 09 Aug 2015 14:08:41 -0700 (PDT)
+Received: from resin ([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
+	by smtp.gmail.com with ESMTPSA id
+	hd6sm10351005wib.19.2015.08.09.14.08.40
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 09 Aug 2015 14:08:40 -0700 (PDT)
+Date: Sun, 9 Aug 2015 23:08:38 +0200
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20150809210838.GA17962@resin>
+References: <1439136500-16714-1-git-send-email-raj.khem@gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <1439136500-16714-1-git-send-email-raj.khem@gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH] userland: Fix POSIX compliance expectation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,78 +58,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 09 Aug 2015 16:08:33 -0000
+X-List-Received-Date: Sun, 09 Aug 2015 21:08:45 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-We have errors like below with glibc 2.22+
+Hello Khem,
 
-net_sockets_common.c:139:20: error: storage size of 'hints' isn't known
-    struct addrinfo hints, *info, *p;
-                        ^
+On Sun, Aug 09, 2015 at 09:08:20AM -0700, Khem Raj wrote:
+> We have errors like below with glibc 2.22+
+>
+> net_sockets_common.c:139:20: error: storage size of 'hints' isn't known
+>     struct addrinfo hints, *info, *p;
+>                         ^
+>
+> newer glibc has now fixed the definitions of getaddrinfo and ilk to be
+> enabled with correct posix version.
+>
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> ---
+>  .../userland/0001-Use-newer-POSIX-macro.patch      | 35 ++++++++++++++++++++++
+>  recipes-graphics/userland/userland_git.bb          |  1 +
+>  2 files changed, 36 insertions(+)
+>  create mode 100644 recipes-graphics/userland/userland/0001-Use-newer-POSIX-macro.patch
+>
 
-newer glibc has now fixed the definitions of getaddrinfo and ilk to be
-enabled with correct posix version.
+Patch merged to master. Thank you.
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- .../userland/0001-Use-newer-POSIX-macro.patch      | 35 ++++++++++++++++++++++
- recipes-graphics/userland/userland_git.bb          |  1 +
- 2 files changed, 36 insertions(+)
- create mode 100644 recipes-graphics/userland/userland/0001-Use-newer-POSIX-macro.patch
-
-diff --git a/recipes-graphics/userland/userland/0001-Use-newer-POSIX-macro.patch b/recipes-graphics/userland/userland/0001-Use-newer-POSIX-macro.patch
-new file mode 100644
-index 0000000..2a092c2
---- /dev/null
-+++ b/recipes-graphics/userland/userland/0001-Use-newer-POSIX-macro.patch
-@@ -0,0 +1,35 @@
-+From 12f7718bb0e08e2c06825c7ab7541b3c5bfe74c1 Mon Sep 17 00:00:00 2001
-+From: Khem Raj <raj.khem@gmail.com>
-+Date: Sun, 9 Aug 2015 08:55:05 -0700
-+Subject: [PATCH] Use newer POSIX macro
-+
-+Define _POSIX_C_SOURCE such that it demands correct
-+posix interfaces, netdb.h declares interfaces such as
-+getaddrinfo if __USE_POSIX, i.e. POSIX.1:1990 or later.
-+However, these interfaces were new in the 2001 edition of POSIX
-+therefore ask for Extension from POSIX.1:2001 since we use addrinfo
-+structure here.
-+
-+Signed-off-by: Khem Raj <raj.khem@gmail.com>
-+---
-+Upstream-Status: Submitted
-+
-+ containers/CMakeLists.txt | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/containers/CMakeLists.txt b/containers/CMakeLists.txt
-+index a29a885..5570038 100644
-+--- a/containers/CMakeLists.txt
-++++ b/containers/CMakeLists.txt
-+@@ -13,7 +13,7 @@ add_definitions(-DDL_PATH_PREFIX="${VMCS_PLUGIN_DIR}/")
-+ 
-+ SET( GCC_COMPILER_FLAGS -Wall -g -O2 -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wcast-qual -Wwrite-strings -Wundef )
-+ SET( GCC_COMPILER_FLAGS ${GCC_COMPILER_FLAGS} -Wextra )#-Wno-missing-field-initializers )
-+-SET( GCC_COMPILER_FLAGS ${GCC_COMPILER_FLAGS} -std=c99 -D_POSIX_C_SOURCE=199309L )
-++SET( GCC_COMPILER_FLAGS ${GCC_COMPILER_FLAGS} -std=c99 -D_POSIX_C_SOURCE=200112L )
-+ SET( GCC_COMPILER_FLAGS ${GCC_COMPILER_FLAGS} -Wno-missing-field-initializers )
-+ SET( GCC_COMPILER_FLAGS ${GCC_COMPILER_FLAGS} -Wno-unused-value )
-+ 
-+-- 
-+2.1.4
-+
-diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
-index dfb6701..2b3286a 100644
---- a/recipes-graphics/userland/userland_git.bb
-+++ b/recipes-graphics/userland/userland_git.bb
-@@ -16,6 +16,7 @@ SRCFORK = "raspberrypi"
- SRCREV = "c2f27fb8e581f8e5af83bf28422553ade8f7a7c8"
- 
- SRC_URI = "git://github.com/${SRCFORK}/userland.git;protocol=git;branch=${SRCBRANCH} \
-+           file://0001-Use-newer-POSIX-macro.patch \
-           "
- S = "${WORKDIR}/git"
- 
--- 
-2.1.4
-
+--
+Andrei Gherzan
 
