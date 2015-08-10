@@ -1,49 +1,47 @@
-Return-Path: <yoctomailinglist@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8D04BE006EE; Mon, 10 Aug 2015 04:13:37 -0700 (PDT)
+	id 1D5B2E006EE; Mon, 10 Aug 2015 04:16:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (yoctomailinglist[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.176 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.175 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qk0-f176.google.com (mail-qk0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57FC4E00306
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 04:13:33 -0700 (PDT)
-Received: by qkbm65 with SMTP id m65so56638822qkb.2
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 04:13:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=YNASRK+CoBFXJAMGDX72cBZBNi8Ev5cd8AdBOE8Zc+Y=;
-	b=nf2MGAKlTWpoMoKW0yeIqzF8UKNHgVKXheB7/GmschvZTcBD7K9g8RbSPzLyv8Lh++
-	POdb/R3nnnT1wKoF3TVjTHWAuzvO1gSZSyPQKTRG6A3F95wb6v6/L4Zjij41qe0LgmsR
-	zACzpJOh+hlnT3NQ7JxtYKrVLvmpPxcQ/84WjHASI7Zi1XMzOz3pKAx9GOKPC5Cj/PSJ
-	wmJetz107pDgAnrkx8s1m0YITf5fl6O5kJn+dBFPJ7JRReVBuSZ+8cpLsllEGosj79Cj
-	IEODmHm5bH1uLa5025kecW29YxYICxjklFlrzkx/RFs8nWfmJTh7v5NrjTT0aQkXWv+8
-	l+qA==
+Received: from mail-qk0-f175.google.com (mail-qk0-f175.google.com
+	[209.85.220.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7D84E00306
+	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 04:16:30 -0700 (PDT)
+Received: by qkfj126 with SMTP id j126so5362081qkf.0
+	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 04:16:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=HGmIf59t6wzvaqvOqb9Q84D1BH8ai84EeqATCgVXG/0=;
+	b=SKblnzoOAL+5Dd5b/F/HMqmoZsXVyUD3y2xt/wJ096JCZB36dsaCKQWZfKKxAI+T7I
+	MJkxEUMjrngKokhaMCrF8sye4WfYcZ9onF+BIG6/UNY6WtJpd2u51ABQmvBnnfzahfMR
+	0sP01kxAHVTxnI7OmzZJkSnX4+oivirNL1KzRMsmlRNNhH6o6A1mRngcQybJ7v6w1egJ
+	RLumFaxNo+7vSBj6G14gdZaXvDoNz1jhPOc8JN5AVS0dCXzZOMVO6OVF/tOPTdXdAjrH
+	Z9CN83dJq/b1/0nK+HOqig3xytH4zZ19uWao03Qmj0LmFBvakNIMR7582eYDpLbT+XaF
+	8ZPQ==
+X-Gm-Message-State: ALoCoQnEdWaqb5Qis5vNAwZjNCfEFiUnvGX/f29i1GPtMoFuf32lkiiNmr99q+RzzuqmoYNojMeH
+X-Received: by 10.55.20.207 with SMTP id 76mr9054732qku.67.1439205389793; Mon,
+	10 Aug 2015 04:16:29 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.55.40.89 with SMTP id o86mr24193269qkh.41.1439205212634;
-	Mon, 10 Aug 2015 04:13:32 -0700 (PDT)
-Received: by 10.140.39.148 with HTTP; Mon, 10 Aug 2015 04:13:32 -0700 (PDT)
-Date: Mon, 10 Aug 2015 13:13:32 +0200
-Message-ID: <CACTu1LjN5JStnAA8Gyu=xJED4feXTpj7JA-GNiE_f7JbKUhy_w@mail.gmail.com>
-From: yocto yocto <yoctomailinglist@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Header-Files of DEPEND recipe not found
+Received: by 10.140.98.67 with HTTP; Mon, 10 Aug 2015 04:16:10 -0700 (PDT)
+In-Reply-To: <CACTu1LjN5JStnAA8Gyu=xJED4feXTpj7JA-GNiE_f7JbKUhy_w@mail.gmail.com>
+References: <CACTu1LjN5JStnAA8Gyu=xJED4feXTpj7JA-GNiE_f7JbKUhy_w@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 10 Aug 2015 12:16:10 +0100
+Message-ID: <CAJTo0LYOJ_T3rTg9o2=Qo1twUfHFi1OTKBBnLqed1u+rxHKWTw@mail.gmail.com>
+To: yocto yocto <yoctomailinglist@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Header-Files of DEPEND recipe not found
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,80 +53,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Aug 2015 11:13:37 -0000
-Content-Type: multipart/alternative; boundary=001a11441c2a754216051cf3138a
+X-List-Received-Date: Mon, 10 Aug 2015 11:16:32 -0000
+Content-Type: multipart/alternative; boundary=001a11400532049230051cf31ecc
 
---001a11441c2a754216051cf3138a
+--001a11400532049230051cf31ecc
 Content-Type: text/plain; charset=UTF-8
 
-Good day,
+On 10 August 2015 at 12:13, yocto yocto <yoctomailinglist@gmail.com> wrote:
 
-I am using the "soci" recipe:
+> However, when compiling my own recipe I get compiling errors ("soci.h not
+> found"). I am 100% sure that I specified the correct paths.
+>
 
-https://github.com/openembedded/meta-openembedded/tree/9a5d25f2a717814f948b492b9c01c1ff0edb678d/meta-oe/recipes-support/soci
+The headers are likely installed in the sysroot, but your script can't find
+them.  The first step would be to verify that the sysroot does in fact have
+the headers installed in, and then you'll have to debug your configure
+scripts to find out why they don't find the headers.  Sharing your recipe
+and sources will help here.
 
-soci is successfully being built when using the following dependency in my
-own recipe which relies on soci:
+Ross
 
-DEPENDS = "soci"
-
-soci produces the following output:
-
-soci/3.2.2-r0/image/usr/include/soci/    (Contains the header-files needed
-by my recipe)
-soci/3.2.2-r0/image/usr/lib
-
-Furthermore the following *.ipk are being created by soci:
-
-soci/3.2.2-r0/deploy-ipks/core2-32/soci_3.2.2-r0_core2-32.ipk
-soci/3.2.2-r0/deploy-ipks/core2-32/soci-dev_3.2.2-r0_core2-32.ipk
-soci/3.2.2-r0/deploy-ipks/core2-32/soci-dbg_3.2.2-r0_core2-32.ipk
-soci/3.2.2-r0/deploy-ipks/core2-32/soci-staticdev_3.2.2-r0_core2-32.ipk
-
-The package soci-dev seems to contain the header-files as well as the
-libraries that my recipe needs.
-
-However, when compiling my own recipe I get compiling errors ("soci.h not
-found"). I am 100% sure that I specified the correct paths.
-
-What might be wrong here? I thought using DEPENDS = "soci" should handle
-this?
-
-DEPENDS = "soci-dev" results in:
-
- "ERROR: Nothing PROVIDES 'soci-dev' (but my-recipe.bb DEPENDS on or
-otherwise requires it)"
-
---001a11441c2a754216051cf3138a
+--001a11400532049230051cf31ecc
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Good day,<div><br></div><div>I am using the &quot;soci&quo=
-t; recipe:</div><div><br></div><div><a href=3D"https://github.com/openembed=
-ded/meta-openembedded/tree/9a5d25f2a717814f948b492b9c01c1ff0edb678d/meta-oe=
-/recipes-support/soci">https://github.com/openembedded/meta-openembedded/tr=
-ee/9a5d25f2a717814f948b492b9c01c1ff0edb678d/meta-oe/recipes-support/soci</a=
-><br></div><div><br></div><div>soci is successfully being built when using =
-the following dependency in my own recipe which relies on soci:</div><div><=
-br></div><div>DEPENDS =3D &quot;soci&quot;<br></div><div><br></div><div>soc=
-i produces the following output:</div><div><br></div><div>soci/3.2.2-r0/ima=
-ge/usr/include/soci/ =C2=A0 =C2=A0(Contains the header-files needed by my r=
-ecipe)</div><div>soci/3.2.2-r0/image/usr/lib =C2=A0<br></div><div><br></div=
-><div>Furthermore the following *.ipk are being created by soci:</div><div>=
-<br></div><div>soci/3.2.2-r0/deploy-ipks/core2-32/soci_3.2.2-r0_core2-32.ip=
-k<br></div><div>soci/3.2.2-r0/deploy-ipks/core2-32/soci-dev_3.2.2-r0_core2-=
-32.ipk<br></div><div>soci/3.2.2-r0/deploy-ipks/core2-32/soci-dbg_3.2.2-r0_c=
-ore2-32.ipk<br></div><div>soci/3.2.2-r0/deploy-ipks/core2-32/soci-staticdev=
-_3.2.2-r0_core2-32.ipk<br></div><div><br></div><div>The package soci-dev se=
-ems to contain the header-files as well as the libraries that my recipe nee=
-ds.</div><div><br></div><div>However, when compiling my own recipe I get co=
-mpiling errors (&quot;soci.h not found&quot;). I am 100% sure that I specif=
-ied the correct paths.</div><div><br></div><div>What might be wrong here? I=
- thought using DEPENDS =3D &quot;soci&quot; should handle this?=C2=A0</div>=
-<div><br></div><div>DEPENDS =3D &quot;soci-dev&quot; results in:</div><div>=
-<br></div><div>=C2=A0&quot;ERROR: Nothing PROVIDES &#39;soci-dev&#39; (but =
-<a href=3D"http://my-recipe.bb">my-recipe.bb</a> DEPENDS on or otherwise re=
-quires it)&quot;</div><div><br></div><div><br></div><div><br></div><div><br=
-></div><div><br></div></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On 10 August 2015 at 12:13, yocto yocto <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:yoctomailinglist@gmail.com" target=3D"_blank">yoctomailinglist@gmail.c=
+om</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div>However, wh=
+en compiling my own recipe I get compiling errors (&quot;soci.h not found&q=
+uot;). I am 100% sure that I specified the correct paths.</div><div></div><=
+/blockquote></div><br>The headers are likely installed in the sysroot, but =
+your script can&#39;t find them.=C2=A0 The first step would be to verify th=
+at the sysroot does in fact have the headers installed in, and then you&#39=
+;ll have to debug your configure scripts to find out why they don&#39;t fin=
+d the headers.=C2=A0 Sharing your recipe and sources will help here.</div><=
+div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Ross</div></=
+div>
 
---001a11441c2a754216051cf3138a--
+--001a11400532049230051cf31ecc--
