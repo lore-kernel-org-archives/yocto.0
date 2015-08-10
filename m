@@ -1,6 +1,6 @@
-Return-Path: <twoerner@gmail.com>
+Return-Path: <vm.rod25@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 28EC9E00A6D; Mon, 10 Aug 2015 06:50:02 -0700 (PDT)
+	id 539ABE00A7D; Mon, 10 Aug 2015 08:12:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (twoerner[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.175 listed in list.dnswl.org]
+	mail provider *      (vm.rod25[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,41 +16,40 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f175.google.com (mail-io0-f175.google.com
-	[209.85.223.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75C27E007B1
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 06:49:51 -0700 (PDT)
-Received: by ioii16 with SMTP id i16so169559145ioi.0
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 06:49:51 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.176 listed in list.dnswl.org]
+Received: from mail-io0-f176.google.com (mail-io0-f176.google.com
+	[209.85.223.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE6D6E00A5B
+	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 08:12:38 -0700 (PDT)
+Received: by iodb91 with SMTP id b91so112470117iod.1
+	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 08:12:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:to:references:cc:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-type:content-transfer-encoding;
-	bh=m5y2zo/W7lhB0NkP3iWN9HNUlqnWeF/syhY4Z4CWbqk=;
-	b=dwcqUX0ay9HCRkKXYhMCjL1NiMq3WMzfdS8eiyTO7vun3FWkIXB3hjLr/3xazSmBjl
-	CwYQVm6rItc/9Sagh9u5PTIhHALHwHyCl3xseQYWfQFn82oatsYcB37ap8QD9qP1xzPU
-	9AuI71cUo0r9ZPvXfdpliOTocgAJZWEmeaN687lARbGF24HX7O5pQsykUhzkK2g6USmU
-	JeMA+GvCLjrM7elYzW4Yz2bgQxUA0EIooFkfgqZVNR71lOnouv8wdglXHkC6vYXtXJd+
-	9Kg+WZ11egBN31rIaG0u3QQoG56kY+HTmLljODjLWlzk4a9ZqvPui3marbtmVqmEeHGU
-	/pPQ==
-X-Received: by 10.107.14.10 with SMTP id 10mr19442017ioo.45.1439214591059;
-	Mon, 10 Aug 2015 06:49:51 -0700 (PDT)
-Received: from [192.168.141.85] (dsl-67-55-28-109.acanac.net. [67.55.28.109])
-	by smtp.gmail.com with ESMTPSA id
-	w4sm5835790igl.22.2015.08.10.06.49.49
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 10 Aug 2015 06:49:50 -0700 (PDT)
-To: Paul Barker <paul@paulbarker.me.uk>
-References: <55C4B071.30709@gmail.com>
-	<20150809100724.GA24792@bang.betafive.co.uk>
-From: Trevor Woerner <twoerner@gmail.com>
-Message-ID: <55C8ABFB.3050802@gmail.com>
-Date: Mon, 10 Aug 2015 09:49:47 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
-	Thunderbird/38.1.0
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=X2GLS2tWy9H4vDz/srbVu91xp7dIkAG+AjkOM1AuXqs=;
+	b=NKRZeLZo1PUGmxwABC6MhL+yGIu+1KjJVlyZ4djBvD/n98n7QP3gMR1hQBs+8OEI/g
+	bHDItIjsWbQLR2Rt98UmH/cp9u+kZborHOfSGOx+MjgrMkebaepXOG1Y2vN3bBjU3Qlh
+	7uEmTMxvIjbMWzwaeNTf2lf1y3UDatQ3jWejvEAkew+q9nPFA8MDmYp4X96cAuhjXhyH
+	aQag7sNw3vZnhrWysVY9FZlPFqDhG4300fSsF1bHBJCgzWFaDYXHiDl1h8xMcyf0FN64
+	JvyjjdF0kqYPD4MIt8t42S7TKRTif/RUZCpZqxQywl1H72M5sZ5dsAszY2tdCXuaLiIt
+	6zLA==
 MIME-Version: 1.0
-In-Reply-To: <20150809100724.GA24792@bang.betafive.co.uk>
-Cc: yocto@yoctoproject.org
-Subject: Re: ipk zImage in master-next
+X-Received: by 10.107.136.146 with SMTP id s18mr21741464ioi.25.1439219558021; 
+	Mon, 10 Aug 2015 08:12:38 -0700 (PDT)
+Received: by 10.50.141.228 with HTTP; Mon, 10 Aug 2015 08:12:37 -0700 (PDT)
+In-Reply-To: <CAP9ODKp3d0tGGiVHDZmvmCiduh6xrC-bU14NteEKYpPRVOTkcw@mail.gmail.com>
+References: <CAK5mtexxdYxhwvv-MB27Ur56iwAV8O3Y6ah_BPAo+R58NmNouQ@mail.gmail.com>
+	<CAP9ODKq6U0udqPvjgs1WmHNFy693O6h5Qt+hHFwnYo5nbpH1kQ@mail.gmail.com>
+	<CAK5mtezxAk8pdCohRV8R4VCTcc4OypTd29Gf6mzK1g7F+_0OMg@mail.gmail.com>
+	<CAP9ODKp3d0tGGiVHDZmvmCiduh6xrC-bU14NteEKYpPRVOTkcw@mail.gmail.com>
+Date: Mon, 10 Aug 2015 10:12:37 -0500
+Message-ID: <CAK5mteyG+9GxQ5xo=Az0dfYLTq9hOeGjp5vYsR6=cNAs2W-t3A@mail.gmail.com>
+From: Victor Rodriguez <vm.rod25@gmail.com>
+To: OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [oe] Bug in Open CV receipt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,45 +61,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Aug 2015 13:50:02 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 10 Aug 2015 15:12:41 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 08/09/15 06:07, Paul Barker wrote:
-> On Fri, Aug 07, 2015 at 09:19:45AM -0400, Trevor Woerner wrote:
->> When packaging a zImage kernel for IPK in master-next the following
->> error shows up:
+On Thu, Jul 23, 2015 at 11:30 AM, Otavio Salvador
+<otavio.salvador@ossystems.com.br> wrote:
+> On Thu, Jul 23, 2015 at 12:05 PM, Victor Rodriguez <vm.rod25@gmail.com> wrote:
+>> On Wed, Jul 22, 2015 at 7:35 AM, Otavio Salvador
+>> <otavio.salvador@ossystems.com.br> wrote:
+>>> On Tue, Jul 21, 2015 at 11:57 AM, Victor Rodriguez <vm.rod25@gmail.com> wrote:
+>>>> Few weeks ago I was having some problems with open CV receipt. In the
+>>>> begining I toght I was adding opencv tro my core-image-minimal-xfce
+>>>> just with this:
+>>>>
+>>>> IMAGE_INSTALL_append = " gcc gcc-dev openssh php mariadb opencv"
+>>>>
+>>>> Now after booting the image I realize that none of the libraries for
+>>>> open stack were added to my image
+>>>>
+>>>> What I had to do was the following:
+>>>>
+>>>>
+>>>> IMAGE_INSTALL_append = " libopencv-core-dev libopencv-highgui-dev
+>>>> libopencv-imgproc-dev libopencv-objdetect-dev libopencv-ml-dev
+>>>> opencv-staticdev python-opencv"
+>>>>
+>>>> Even last night when one of the opencv developers ask me for python
+>>>> opencv I had to add the last part python-opencv. That is not cool at
+>>>> all . If I add opencv in the beginning I assume we are more than cool
+>>>> with that and yocto will add all the packages . Unless I am doing
+>>>> something wrong, in taht case I am more than happy to get the
+>>>> feedback.
+>>>>
+>>>> Thanks a lot for all the help . If someone else can reproduce this bug
+>>>> I am more than happy to report it in bugzila (not sure the URL)
+>>>
+>>> You should add the dev-pkgs and tools-sdk image features for the
+>>> image, not mangle it manually.
 >>
->> | kernel-image-zImage-4.1.2-fslc+g95d9e15
->> | *** Error: Package name  contains illegal characters, (other than
->> [a-z0-9.+-])
->>
->> It looks like the newer kernel.bbclass is much more sophisticated about
->> generating package names than before.
->>
->> Has anyone else seen this? Is there a simple way of saying "the type is
->> zimage where packaging for ipk is concerned but zImage otherwise"?
->>
->> Best regards,
->> 	Trevor
-> 
-> I believe this check is present in opkg-build just to ensure compatibility with
-> the Debian Policy Manual. I don't remember this being an actual restriction of
-> opkg.
-> 
-> You could try patching the opkg-build script (in opkg-utils) to remove this
-> check and see if opkg is happy to install the resulting package.
+>> I think the best solution is create a package group that will keep
+>> backward compatibility and aloud packages exist as expected
+>
+> Sorry but this does not make sense. The image recipe you described is
+> not using the framework structure for this and this is the problem you
+> should address not bloat the oe-core itself.
+>
+> Check core-image class for it.
 
-Yes, this works. Removing the check from opkg-build causes my build to
-succeed, and the resulting image boots with this kernel (meaning opkg is
-happy to install the package into the image).
+Thanks a lot for the help and answer these mails
 
-Normally this is the part where I'd ask if you want me to send a patch,
-but if that check is there for a reason, simply removing it isn't a
-proper solution.
+I will create a RFC patch just for this recipe and see what happen
 
-Thoughts?
+The problem is that when I add opencv to the image nothing is added
+not even the capabilities to run a binary with this library nor the
+capability to do development
 
-Best regards,
-	Trevor
+I will send the patch to the open embedded and see what the community think
+
+Best regards
+
+Victor Rodriguez
+
+> --
+> Otavio Salvador                             O.S. Systems
+> http://www.ossystems.com.br        http://code.ossystems.com.br
+> Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
+> --
+> _______________________________________________
+> Openembedded-devel mailing list
+> Openembedded-devel@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/openembedded-devel
 
