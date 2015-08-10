@@ -1,53 +1,33 @@
-Return-Path: <ac.rossi@gmail.com>
+Return-Path: <anibal.limon@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5F1B5E00A84; Mon, 10 Aug 2015 12:35:06 -0700 (PDT)
+	id CAEECE00A84; Mon, 10 Aug 2015 12:37:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ac.rossi[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.42 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-la0-f42.google.com (mail-la0-f42.google.com
-	[209.85.215.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE0E0E00A7D
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 12:35:02 -0700 (PDT)
-Received: by lagz9 with SMTP id z9so59274104lag.3
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 12:35:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=y5OtmGL2br+b+4EsSbGK7AmWFeyssxY55+S+Vgz3/Yw=;
-	b=ROvMnw7d3hrAxK86s5E0Gey36uyLy5vVFjcTufs1HI0WUIl+prRXH50WW79S+06/N0
-	hl0uksI1HNWrGHRf2nbrKOAFJJcQAS3WSbjiYWDF9iy1kxhKW2hJKp4UnIEcEm6zenPz
-	nVyomXivQB1bQSR4TGp/qwDAP6gr9ZqOtpgpLWRYE4U+DL6Lbq9QeCXSK49f6ZZSGwse
-	HY48eTnsJVlpCuoWED66rNF/SEJ+4fHgwa1WiNa/wWuHppJwH4LklPGyvIBWbJYJYw7+
-	Yw7mspP6FXodg1wZ+sY8uJuY9du/kQdoqay+tI1+U2T5vAJS80qVckqwd7W1W9lGRchI
-	PaEA==
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37901E00A7D
+	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 12:37:52 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga103.jf.intel.com with ESMTP; 10 Aug 2015 12:37:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.15,647,1432623600"; d="scan'208";a="745866420"
+Received: from alimon-thinkpad-w540.zpn.intel.com ([10.219.5.54])
+	by orsmga001.jf.intel.com with ESMTP; 10 Aug 2015 12:37:51 -0700
+From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Mon, 10 Aug 2015 14:38:01 -0500
+Message-Id: <1439235481-30554-1-git-send-email-anibal.limon@linux.intel.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-X-Received: by 10.112.25.39 with SMTP id z7mr22350561lbf.102.1439235300763;
-	Mon, 10 Aug 2015 12:35:00 -0700 (PDT)
-Received: by 10.114.5.197 with HTTP; Mon, 10 Aug 2015 12:35:00 -0700 (PDT)
-In-Reply-To: <CAJTo0LYVMnYUkLoGm=CxkzSJjSwXYM-5JCODZXXmjmDBwP973A@mail.gmail.com>
-References: <CAPzboycMBBs_d+06jX+CWCZ_9yaxvEbPOBzQrxDu6i3cEOgsLA@mail.gmail.com>
-	<CAJTo0LYVMnYUkLoGm=CxkzSJjSwXYM-5JCODZXXmjmDBwP973A@mail.gmail.com>
-Date: Mon, 10 Aug 2015 15:35:00 -0400
-Message-ID: <CAPzboycqfmRgXBTp1p83Um=cagi43kHWvq31cesKfKONAmif4A@mail.gmail.com>
-From: Adam Rossi <ac.rossi@gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: autotools --prefix ignored?
+Cc: alexander.kanavin@intel.com
+Subject: [PATCH][rrs] rrs_upstream_history.py: Use regexes in SPECIAL_PKGSUFFIX packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,26 +39,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Aug 2015 19:35:06 -0000
+X-List-Received-Date: Mon, 10 Aug 2015 19:37:57 -0000
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Perfection! Thanks Ross!
+When SPECIAL_PKGSUFFIX packages don't have regexes use it from package
+without SPECIAL_PKGSUFFIX.
 
-On Mon, Aug 10, 2015 at 5:53 AM, Burton, Ross <ross.burton@intel.com> wrote:
->
-> On 7 August 2015 at 15:28, Adam Rossi <ac.rossi@gmail.com> wrote:
->>
->> inherit autotools
->> EXTRA_OECONF = "--prefix=${D}/opt/myfolder"
->>
->> The above is ignored, auto tools puts the results in /usr/bin
->
->
-> Autotools already passes --prefix so you should probably just set prefix in
-> the recipe instead.  Also don't use ${D}.
->
-> inherit autotools
-> prefix=/opt/myfolder
->
-> Ross
+[YOCTO #8102]
+
+For example: python-native use regex from python if don't have one.
+
+Signed-off-by: Aníbal Limón <anibal.limon@linux.intel.com>
+---
+ rrs/tools/rrs_upstream_history.py | 40 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+
+diff --git a/rrs/tools/rrs_upstream_history.py b/rrs/tools/rrs_upstream_history.py
+index 521b733..aeac3d3 100755
+--- a/rrs/tools/rrs_upstream_history.py
++++ b/rrs/tools/rrs_upstream_history.py
+@@ -39,6 +39,43 @@ sys.path.insert(0, os.path.join(bitbakepath, 'lib'))
+ from layerindex.models import Recipe, LayerBranch
+ from rrs.models import RecipeUpstream, RecipeUpstreamHistory
+ 
++def set_regexes(d):
++    """
++        Utility function to set regexes to SPECIAL_PKGSUFFIX packages
++        that don't have set it.
++
++        For example: python-native use regex from python if don't have
++        one set it.
++    """
++
++    variables = ['REGEX', 'REGEX_URI', 'GITTAGREGEX']
++
++    if any(d.getVar(var, True) for var in variables):
++        return
++
++    suffixes = d.getVar('SPECIAL_PKGSUFFIX', True).split()
++    suffixes.append('nativesdk-')
++
++    localdata = bb.data.createCopy(d)
++
++    pn = localdata.getVar('PN', True)
++    for sfx in suffixes:
++        if pn.find(sfx) != -1:
++            pnstripped = pn.replace(sfx, '')
++            localdata.setVar('OVERRIDES', "pn-" + pnstripped + ":" +
++                    d.getVar('OVERRIDES', True))
++            bb.data.update_data(localdata)
++
++            for var in variables:
++                new_value = localdata.getVar(var, True)
++                if new_value is None:
++                    continue
++
++                d.setVar(var, new_value)
++                logger.debug("%s: %s new value %s" % (pn, var,
++                    d.getVar(var, True)))
++            break
++
+ def get_upstream_info(thread_worker, arg):
+     from bb.utils import vercmp_string
+     from oe.recipeutils import get_recipe_upstream_version, \
+@@ -122,6 +159,9 @@ if __name__=="__main__":
+         if not recipes:
+             continue
+ 
++        for recipe_data in recipes:
++            set_regexes(recipe_data)
++
+         history = RecipeUpstreamHistory(start_date = datetime.now())
+ 
+         from oe.utils import ThreadedPool
+-- 
+1.9.1
+
 
