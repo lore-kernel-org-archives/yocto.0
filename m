@@ -1,52 +1,37 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <javier@osg.samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8D4A5E00349; Mon, 10 Aug 2015 00:33:33 -0700 (PDT)
+	id 266E7E00349; Mon, 10 Aug 2015 00:48:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [54.187.51.154 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.178 listed in list.dnswl.org]
-Received: from mail-ig0-f178.google.com (mail-ig0-f178.google.com
-	[209.85.213.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 405F4E00306
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 00:33:26 -0700 (PDT)
-Received: by igui7 with SMTP id i7so13629810igu.1
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 00:33:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=0RkfOeKiqEx5XuWgmHxct2oq3dxlCv4IiU9Ck/E20j0=;
-	b=GHKMY9oVvX/pizMX3RC+GBM0uzvyziRv5ajqLLhRq1AG/XphoBOxm8pJ8NMa7L1+C+
-	b4YbEvnSJ2HmBC2JbbqqBeDcuBpQr4lKl+3K3FYHihLZYd+SYdQqg1wjyYafyKexc0sC
-	YJWhWYKzaDJgl/LmzKrs+waensFEImqsrMEC3oFyF/bhQQP2KYUh6DKZSiitFUmb3G+x
-	LIBmg3lsTwqVSmomWb33JMSg9qMMs+vpuo6dcp0AF/ZykvlhF8aWY13obtaBtNav76Ta
-	RVUqxt7DGEUqq/H7LLBaIZcAhYdOJuT6lblxMgkad9xwy9L88OfOq1m4cpjjstAr77qf
-	w0kw==
-X-Received: by 10.50.137.100 with SMTP id qh4mr9041518igb.1.1439192006155;
-	Mon, 10 Aug 2015 00:33:26 -0700 (PDT)
-Received: from dvm-ch2e-038.sys.comcast.net (a-96-119-89-79.sys.comcast.net.
-	[96.119.89.79])
-	by smtp.gmail.com with ESMTPSA id v1sm5343576igk.3.2015.08.10.00.33.24
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 10 Aug 2015 00:33:25 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-To: yocto@yoctoproject.org
-Date: Mon, 10 Aug 2015 00:33:17 -0700
-Message-Id: <1439191997-12810-1-git-send-email-raj.khem@gmail.com>
-X-Mailer: git-send-email 2.1.4
-Subject: [meta-raspberrypi][PATCH] userland: Fix install prefix and generate pkgconfigs
+Received: from lists.s-osg.org (lists.s-osg.org [54.187.51.154])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 696C6E00306
+	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 00:48:47 -0700 (PDT)
+Received: from [192.168.1.131] (199.50.23.95.dynamic.jazztel.es [95.23.50.199])
+	by lists.s-osg.org (Postfix) with ESMTPSA id 88292462CB;
+	Mon, 10 Aug 2015 00:48:46 -0700 (PDT)
+To: Andrei Gherzan <andrei@gherzan.ro>
+References: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
+	<1438245251-20437-3-git-send-email-javier@osg.samsung.com>
+	<20150809224410.GI17962@resin>
+From: Javier Martinez Canillas <javier@osg.samsung.com>
+X-Enigmail-Draft-Status: N1110
+Message-ID: <55C8575B.9020709@osg.samsung.com>
+Date: Mon, 10 Aug 2015 09:48:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.0.1
+MIME-Version: 1.0
+In-Reply-To: <20150809224410.GI17962@resin>
+Cc: yocto@yoctoproject.org, Derek Foreman <derekf@osg.samsung.com>,
+	Mauro Carvalho Chehab <mchehab@osg.samsung.com>
+Subject: Re: [meta-raspberrypi][PATCH 2/5] rpi-config: Allow to mask GPU irqs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,233 +43,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Aug 2015 07:33:33 -0000
+X-List-Received-Date: Mon, 10 Aug 2015 07:48:50 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-several userspace libraries like libepoxy poke for pkgconfigs ( .pc )
-files to detect egl support, and comes out to fail in configure stage,
-one of the patches now adds support to generate .pc files for some known
-cases. it could be further extended if needed for other libraries too
+Hello Andrei,
 
-Secondly, the default CMAKE_INSTALL_PREFIX is /opt/vc but in OE we use
-proper /usr so lets make this change as well, it simplifies do_install()
+Thanks a lot for your feedback and for picking patches #1 and #3!
 
-.so are not versioned so we need to grapple with OE's defaults of
-expecting versioned .so files.
+On 08/10/2015 12:44 AM, Andrei Gherzan wrote:
+> Hello,
+> 
+> On Thu, Jul 30, 2015 at 10:34:08AM +0200, Javier Martinez Canillas wrote:
+>> From: Derek Foreman <derekf@osg.samsung.com>
+>>
+>> The rpi config.txt file has a mask_gpu_interrupt option which needs to
+>> be set when using the new VC4 DRM/KMS driver. Since this option exists
+>> in the config file and needed by some kernels, add a option to set it.
+>>
+> 
+> I understand the scope of this change and it makes sense. The only confusion is
+> in the "since this option exixts in the config file". This option is not in the
+> config file. What do you mean by that?
+>
 
-Adjust packages for -dev package such that it can automatically package
-pkgconfig files and inherit pkgconfig because in cmake code we are not
-looking for pkgconfig so we need the dependency also put in place for
-consistent builds
+Right, that was worded badly. I meant that the option is a valid one for
+the config.txt file. IOW, that is a supported option by the RPi firmware
+but it was not possible to setup from the meta-raspberrypi layer.
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- .../0002-set-VMCS_INSTALL_PREFIX-to-usr.patch      |  29 ++++++
- ...make-generate-and-install-pkgconfig-files.patch | 114 +++++++++++++++++++++
- recipes-graphics/userland/userland_git.bb          |  21 ++--
- 3 files changed, 152 insertions(+), 12 deletions(-)
- create mode 100644 recipes-graphics/userland/userland/0002-set-VMCS_INSTALL_PREFIX-to-usr.patch
- create mode 100644 recipes-graphics/userland/userland/0003-cmake-generate-and-install-pkgconfig-files.patch
+I'll fix the commit message on v2.
+ 
+> --
+> Andrei Gherzan
+> 
 
-diff --git a/recipes-graphics/userland/userland/0002-set-VMCS_INSTALL_PREFIX-to-usr.patch b/recipes-graphics/userland/userland/0002-set-VMCS_INSTALL_PREFIX-to-usr.patch
-new file mode 100644
-index 0000000..1c981af
---- /dev/null
-+++ b/recipes-graphics/userland/userland/0002-set-VMCS_INSTALL_PREFIX-to-usr.patch
-@@ -0,0 +1,29 @@
-+From 05554d8486050546efc3c0605015786c8b267d19 Mon Sep 17 00:00:00 2001
-+From: Khem Raj <raj.khem@gmail.com>
-+Date: Sun, 9 Aug 2015 23:58:17 -0700
-+Subject: [PATCH 1/2] set VMCS_INSTALL_PREFIX to /usr
-+
-+in OE we dont use /opt/vc but standard prefix
-+
-+Signed-off-by: Khem Raj <raj.khem@gmail.com>
-+---
-+Upstream-Status: Submitted
-+ makefiles/cmake/vmcs.cmake | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/makefiles/cmake/vmcs.cmake b/makefiles/cmake/vmcs.cmake
-+index 0f8641b..e9d576d 100644
-+--- a/makefiles/cmake/vmcs.cmake
-++++ b/makefiles/cmake/vmcs.cmake
-+@@ -10,7 +10,7 @@ INCLUDE(CPack)
-+ if (ANDROID)
-+   SET(VMCS_INSTALL_PREFIX "/vendor/brcm/islands" CACHE PATH "Prefix prepended to install directories" FORCE)
-+ else()
-+-  SET(VMCS_INSTALL_PREFIX "/opt/vc" CACHE PATH "Prefix prepended to install directories" FORCE)
-++  SET(VMCS_INSTALL_PREFIX "/usr" CACHE PATH "Prefix prepended to install directories" FORCE)
-+ endif()
-+ 
-+ SET(CMAKE_INSTALL_PREFIX "${VMCS_INSTALL_PREFIX}" CACHE INTERNAL "Prefix
-+-- 
-+2.1.4
-+
-diff --git a/recipes-graphics/userland/userland/0003-cmake-generate-and-install-pkgconfig-files.patch b/recipes-graphics/userland/userland/0003-cmake-generate-and-install-pkgconfig-files.patch
-new file mode 100644
-index 0000000..c644d52
---- /dev/null
-+++ b/recipes-graphics/userland/userland/0003-cmake-generate-and-install-pkgconfig-files.patch
-@@ -0,0 +1,114 @@
-+From ef43e09c2d13b88c2e92cffc94b68003afcb1f13 Mon Sep 17 00:00:00 2001
-+From: Khem Raj <raj.khem@gmail.com>
-+Date: Sun, 9 Aug 2015 23:59:32 -0700
-+Subject: [PATCH 2/2] cmake: generate and install pkgconfig files
-+
-+many packages expect packageconfig support especially for detecting EGL
-+libraries. This patch helps in compiling those packages on RPi
-+
-+Signed-off-by: Khem Raj <raj.khem@gmail.com>
-+---
-+Upstream-Status: Submitted
-+ CMakeLists.txt           | 10 +++++++++-
-+ pkgconfig/bcm_host.pc.in | 10 ++++++++++
-+ pkgconfig/egl.pc.in      | 12 ++++++++++++
-+ pkgconfig/glesv2.pc.in   | 12 ++++++++++++
-+ pkgconfig/vg.pc.in       | 11 +++++++++++
-+ 5 files changed, 54 insertions(+), 1 deletion(-)
-+ create mode 100644 pkgconfig/bcm_host.pc.in
-+ create mode 100644 pkgconfig/egl.pc.in
-+ create mode 100644 pkgconfig/glesv2.pc.in
-+ create mode 100644 pkgconfig/vg.pc.in
-+
-+diff --git a/CMakeLists.txt b/CMakeLists.txt
-+index d8f776c..f15dc2b 100644
-+--- a/CMakeLists.txt
-++++ b/CMakeLists.txt
-+@@ -105,6 +105,14 @@ set(vmcs_host_apps_VERSION_MAJOR 1)
-+ set(vmcs_host_apps_VERSION_MINOR 0)
-+ 
-+ include_directories("${PROJECT_BINARY_DIR}")
-+-
-++include(FindPkgConfig QUIET)
-++if(PKG_CONFIG_FOUND)
-++	# Produce a pkg-config file
-++	foreach(PCFILE bcm_host.pc  egl.pc  glesv2.pc  vg.pc)
-++		configure_file("pkgconfig/${PCFILE}.in" "${PCFILE}" @ONLY)
-++		install(FILES       "${CMAKE_CURRENT_BINARY_DIR}/${PCFILE}"
-++			DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig")
-++	endforeach()
-++endif()
-+ # Remove cache entry, if one added by command line
-+ unset(KHRONOS_EGL_PLATFORM CACHE)
-+diff --git a/pkgconfig/bcm_host.pc.in b/pkgconfig/bcm_host.pc.in
-+new file mode 100644
-+index 0000000..c7237c5
-+--- /dev/null
-++++ b/pkgconfig/bcm_host.pc.in
-+@@ -0,0 +1,10 @@
-++prefix=@CMAKE_INSTALL_PREFIX@
-++exec_prefix=${prefix}
-++libdir=${exec_prefix}/lib
-++includedir=${prefix}/include
-++
-++Name: bcm_host
-++Description: Broadcom VideoCore host API library
-++Version: 1
-++Libs: -L${libdir} -lbcm_host -lvcos -lvchiq_arm -pthread
-++Cflags: -I${includedir} -I${includedir}/interface/vmcs_host/linux -I${includedir}/interface/vcos/pthreads -DUSE_VCHIQ_ARM
-+diff --git a/pkgconfig/egl.pc.in b/pkgconfig/egl.pc.in
-+new file mode 100644
-+index 0000000..4e3d6ac
-+--- /dev/null
-++++ b/pkgconfig/egl.pc.in
-+@@ -0,0 +1,12 @@
-++prefix=@CMAKE_INSTALL_PREFIX@
-++exec_prefix=${prefix}
-++libdir=${exec_prefix}/lib
-++includedir=${prefix}/include
-++
-++Name: EGL
-++Description: Fake EGL package for RPi
-++Version: 10
-++Requires: bcm_host
-++Libs: -L${libdir} -lEGL
-++Cflags: -I${includedir}
-++
-+diff --git a/pkgconfig/glesv2.pc.in b/pkgconfig/glesv2.pc.in
-+new file mode 100644
-+index 0000000..5900225
-+--- /dev/null
-++++ b/pkgconfig/glesv2.pc.in
-+@@ -0,0 +1,12 @@
-++prefix=@CMAKE_INSTALL_PREFIX@
-++exec_prefix=${prefix}
-++libdir=${exec_prefix}/lib
-++includedir=${prefix}/include
-++
-++Name: GLESv2
-++Description: Fake GL ES 2 package for RPi
-++Version: 10
-++Requires: bcm_host
-++Libs: -L${libdir} -lGLESv2
-++Cflags: -I${includedir}
-++
-+diff --git a/pkgconfig/vg.pc.in b/pkgconfig/vg.pc.in
-+new file mode 100644
-+index 0000000..8c39c98
-+--- /dev/null
-++++ b/pkgconfig/vg.pc.in
-+@@ -0,0 +1,11 @@
-++prefix=@CMAKE_INSTALL_PREFIX@
-++exec_prefix=${prefix}
-++libdir=${exec_prefix}/lib
-++includedir=${prefix}/include
-++
-++Name: OpenVG
-++Description: Fake OpenVG package for RPi
-++Version: 10
-++Requires: bcm_host
-++Libs: -L${libdir} -lOpenVG
-++Cflags: -I${includedir}
-+-- 
-+2.1.4
-+
-diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
-index 2b3286a..35e5672 100644
---- a/recipes-graphics/userland/userland_git.bb
-+++ b/recipes-graphics/userland/userland_git.bb
-@@ -17,30 +17,27 @@ SRCREV = "c2f27fb8e581f8e5af83bf28422553ade8f7a7c8"
- 
- SRC_URI = "git://github.com/${SRCFORK}/userland.git;protocol=git;branch=${SRCBRANCH} \
-            file://0001-Use-newer-POSIX-macro.patch \
-+           file://0002-set-VMCS_INSTALL_PREFIX-to-usr.patch \
-+           file://0003-cmake-generate-and-install-pkgconfig-files.patch \
-           "
- S = "${WORKDIR}/git"
- 
--inherit cmake
-+inherit cmake pkgconfig
- 
- EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release -DCMAKE_EXE_LINKER_FLAGS='-Wl,--no-as-needed'"
- CFLAGS_append = " -fPIC"
- 
--# The compiled binaries don't provide sonames.
--SOLIBS = "${SOLIBSDEV}"
--
--do_install_append() {
--    mkdir -p ${D}/${prefix}
--    mv ${D}/opt/vc/* ${D}/${prefix}
--    rm -rf ${D}/opt
--}
-+# Shared libs from userland package  build aren't versioned, so we need
-+# to force the .so files into the runtime package (and keep them
-+# out of -dev package).
-+FILES_SOLIBSDEV = ""
- 
- FILES_${PN} += " \
--    ${libdir}/*${SOLIBS} \
-+    ${libdir}/*.so \
-     ${libdir}/plugins"
--FILES_${PN}-dev = "${includedir} \
-+FILES_${PN}-dev += "${includedir} \
-                    ${prefix}/src"
- FILES_${PN}-doc += "${datadir}/install"
- FILES_${PN}-dbg += "${libdir}/plugins/.debug"
- 
- PACKAGE_ARCH = "${MACHINE_ARCH}"
--
+Best regards,
 -- 
-2.1.4
-
+Javier Martinez Canillas
+Open Source Group
+Samsung Research America
 
