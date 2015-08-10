@@ -1,55 +1,36 @@
-Return-Path: <vm.rod25@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 539ABE00A7D; Mon, 10 Aug 2015 08:12:41 -0700 (PDT)
+	id 89DEBE00A7F; Mon, 10 Aug 2015 08:30:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vm.rod25[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.176 listed in list.dnswl.org]
-Received: from mail-io0-f176.google.com (mail-io0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE6D6E00A5B
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 08:12:38 -0700 (PDT)
-Received: by iodb91 with SMTP id b91so112470117iod.1
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 08:12:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=X2GLS2tWy9H4vDz/srbVu91xp7dIkAG+AjkOM1AuXqs=;
-	b=NKRZeLZo1PUGmxwABC6MhL+yGIu+1KjJVlyZ4djBvD/n98n7QP3gMR1hQBs+8OEI/g
-	bHDItIjsWbQLR2Rt98UmH/cp9u+kZborHOfSGOx+MjgrMkebaepXOG1Y2vN3bBjU3Qlh
-	7uEmTMxvIjbMWzwaeNTf2lf1y3UDatQ3jWejvEAkew+q9nPFA8MDmYp4X96cAuhjXhyH
-	aQag7sNw3vZnhrWysVY9FZlPFqDhG4300fSsF1bHBJCgzWFaDYXHiDl1h8xMcyf0FN64
-	JvyjjdF0kqYPD4MIt8t42S7TKRTif/RUZCpZqxQywl1H72M5sZ5dsAszY2tdCXuaLiIt
-	6zLA==
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8B87E00A7B
+	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 08:30:37 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga102.jf.intel.com with ESMTP; 10 Aug 2015 08:30:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.15,646,1432623600"; d="scan'208";a="780558835"
+Received: from unknown (HELO peggleto-mobl.ger.corp.intel.com) ([10.252.12.59])
+	by fmsmga002.fm.intel.com with ESMTP; 10 Aug 2015 08:30:36 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto yocto <yoctomailinglist@gmail.com>
+Date: Mon, 10 Aug 2015 16:30:34 +0100
+Message-ID: <1801888.vlNrr9kKlZ@peggleto-mobl.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.14.9 (Linux/4.0.8-200.fc21.x86_64; KDE/4.14.9; x86_64; ; )
+In-Reply-To: <CACTu1LiQvOk76S+QiO=e+5h0gGosOySd_Ntf-grWEWfPr-7P-w@mail.gmail.com>
+References: <CACTu1LiQvOk76S+QiO=e+5h0gGosOySd_Ntf-grWEWfPr-7P-w@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.107.136.146 with SMTP id s18mr21741464ioi.25.1439219558021; 
-	Mon, 10 Aug 2015 08:12:38 -0700 (PDT)
-Received: by 10.50.141.228 with HTTP; Mon, 10 Aug 2015 08:12:37 -0700 (PDT)
-In-Reply-To: <CAP9ODKp3d0tGGiVHDZmvmCiduh6xrC-bU14NteEKYpPRVOTkcw@mail.gmail.com>
-References: <CAK5mtexxdYxhwvv-MB27Ur56iwAV8O3Y6ah_BPAo+R58NmNouQ@mail.gmail.com>
-	<CAP9ODKq6U0udqPvjgs1WmHNFy693O6h5Qt+hHFwnYo5nbpH1kQ@mail.gmail.com>
-	<CAK5mtezxAk8pdCohRV8R4VCTcc4OypTd29Gf6mzK1g7F+_0OMg@mail.gmail.com>
-	<CAP9ODKp3d0tGGiVHDZmvmCiduh6xrC-bU14NteEKYpPRVOTkcw@mail.gmail.com>
-Date: Mon, 10 Aug 2015 10:12:37 -0500
-Message-ID: <CAK5mteyG+9GxQ5xo=Az0dfYLTq9hOeGjp5vYsR6=cNAs2W-t3A@mail.gmail.com>
-From: Victor Rodriguez <vm.rod25@gmail.com>
-To: OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [oe] Bug in Open CV receipt
+Cc: yocto@yoctoproject.org
+Subject: Re: Disable "Warning: X, set to be excluded, is excluded [...]"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,74 +42,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Aug 2015 15:12:41 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 10 Aug 2015 15:30:40 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Thu, Jul 23, 2015 at 11:30 AM, Otavio Salvador
-<otavio.salvador@ossystems.com.br> wrote:
-> On Thu, Jul 23, 2015 at 12:05 PM, Victor Rodriguez <vm.rod25@gmail.com> wrote:
->> On Wed, Jul 22, 2015 at 7:35 AM, Otavio Salvador
->> <otavio.salvador@ossystems.com.br> wrote:
->>> On Tue, Jul 21, 2015 at 11:57 AM, Victor Rodriguez <vm.rod25@gmail.com> wrote:
->>>> Few weeks ago I was having some problems with open CV receipt. In the
->>>> begining I toght I was adding opencv tro my core-image-minimal-xfce
->>>> just with this:
->>>>
->>>> IMAGE_INSTALL_append = " gcc gcc-dev openssh php mariadb opencv"
->>>>
->>>> Now after booting the image I realize that none of the libraries for
->>>> open stack were added to my image
->>>>
->>>> What I had to do was the following:
->>>>
->>>>
->>>> IMAGE_INSTALL_append = " libopencv-core-dev libopencv-highgui-dev
->>>> libopencv-imgproc-dev libopencv-objdetect-dev libopencv-ml-dev
->>>> opencv-staticdev python-opencv"
->>>>
->>>> Even last night when one of the opencv developers ask me for python
->>>> opencv I had to add the last part python-opencv. That is not cool at
->>>> all . If I add opencv in the beginning I assume we are more than cool
->>>> with that and yocto will add all the packages . Unless I am doing
->>>> something wrong, in taht case I am more than happy to get the
->>>> feedback.
->>>>
->>>> Thanks a lot for all the help . If someone else can reproduce this bug
->>>> I am more than happy to report it in bugzila (not sure the URL)
->>>
->>> You should add the dev-pkgs and tools-sdk image features for the
->>> image, not mangle it manually.
->>
->> I think the best solution is create a package group that will keep
->> backward compatibility and aloud packages exist as expected
->
-> Sorry but this does not make sense. The image recipe you described is
-> not using the framework structure for this and this is the problem you
-> should address not bloat the oe-core itself.
->
-> Check core-image class for it.
+On Monday 10 August 2015 13:19:48 yocto yocto wrote:
+> I am building my own yocto image based on the intel edison image. For that
+> reason i created my own layer so that I do not have to touch the official
+> intel sources. Each change is done in my own layer.
+> 
+> Hence, to remove packages that are added within the intel edison
+> configuration I use PACKAGE_EXCLUDE in my own "layer.conf".
+> 
+> E.g.:
+> PACKAGE_EXCLUDE = "pwr-button-handler"
+> 
+> Result:
+> 
+> "Warning: Package pwr-button-handler, set to be excluded, is in myown-image
+> PACKAGE_INSTALL (*here follows a list with all recipes included*)."
+> 
+> So this warning is 100% correct: I am removing a package which has been
+> added before. But is it possible to avoid this warning? I only found this:
+> 
+> "PACKAGE_EXCLUDE is a mechanism for preventing packages from being
+> installed at all.  If the package is in the PACKAGE_INSTALL or
+>  ACKAGE_INSTALL_ATTEMPTONLY it will be filtered out, and a warning issued."
+> (http://comments.gmane.org/gmane.comp.handhelds.openembedded.core/41490)
 
-Thanks a lot for the help and answer these mails
+This isn't how PACKAGE_EXCLUDE was really intended to be used. It's telling 
+you that you've effectively explicitly said "install this thing" then you've 
+said "don't install this thing". PACKAGE_EXCLUDE was meant to remove (or at 
+least error) a package implicitly installed through dependencies.
 
-I will create a RFC patch just for this recipe and see what happen
+I have to be honest and say I think that image recipes are a special case and 
+should be more or less disposable - if you need to modify them, rather than 
+using a bbappend, just copy and modify as needed.
 
-The problem is that when I add opencv to the image nothing is added
-not even the capabilities to run a binary with this library nor the
-capability to do development
+Cheers,
+Paul
 
-I will send the patch to the open embedded and see what the community think
+-- 
 
-Best regards
-
-Victor Rodriguez
-
-> --
-> Otavio Salvador                             O.S. Systems
-> http://www.ossystems.com.br        http://code.ossystems.com.br
-> Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
-> --
-> _______________________________________________
-> Openembedded-devel mailing list
-> Openembedded-devel@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-devel
+Paul Eggleton
+Intel Open Source Technology Centre
 
