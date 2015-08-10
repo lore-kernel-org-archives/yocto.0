@@ -1,6 +1,6 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <javier@osg.samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E9157E00A81; Mon, 10 Aug 2015 14:38:10 -0700 (PDT)
+	id 86A55E00A81; Mon, 10 Aug 2015 14:54:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,45 +8,31 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.212.174 listed in list.dnswl.org]
+	*      [54.187.51.154 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-wi0-f174.google.com (mail-wi0-f174.google.com
-	[209.85.212.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9456FE00A7D
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 14:38:07 -0700 (PDT)
-Received: by wijp15 with SMTP id p15so152113623wij.0
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 14:38:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent;
-	bh=OS0a3d/2BlcBuxinI0aHCUeAJBieEd7NTU0IMIbhrCo=;
-	b=ATPOP3ZQYJL8ngcIVFTC94mZzVS+tyPJDhDDErnJpItPSJySClcL9ewRWXG1wlfVD5
-	hRzhxojofdT5v384m1kBCcdmPxRbHpz/B0XDsxngkTcFj3NhewVtXOxgcRIzr68t/mvn
-	vw3DacNNbqnP38JKmZu1XM65Y3tRWO4Vu8NpCeJeGI2ivgJQ/EEYDrPLbO0AMGPK/4Tb
-	GGhesbG7w+aY03lH4mlwBCigrX4XQVhf23pNao3srxQt0JiDBmwqZjTKja9z4LDwOvF5
-	uSi60yqw8zhBoW9Gkv2jMoLNjqmHDnAcvw3fiBhmSqgGt6Q9fLOEfxv3WMMWvsiloRKe
-	bGJQ==
-X-Gm-Message-State: ALoCoQnkSqHqt1A0+bgt0+UFf1Lh7aXVEAGTlC055mezFs35tQdFTxoi/gtBJ3KzVLyWD9itN9q/
-X-Received: by 10.194.103.130 with SMTP id fw2mr51758091wjb.121.1439242686707; 
-	Mon, 10 Aug 2015 14:38:06 -0700 (PDT)
-Received: from resin ([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
-	by smtp.gmail.com with ESMTPSA id
-	bu12sm31362244wjb.44.2015.08.10.14.38.05
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 10 Aug 2015 14:38:06 -0700 (PDT)
-Date: Mon, 10 Aug 2015 23:38:04 +0200
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20150810213804.GE4718@resin>
-References: <1439193167-20618-1-git-send-email-raj.khem@gmail.com>
+Received: from lists.s-osg.org (lists.s-osg.org [54.187.51.154])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 682D7E00A7D
+	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 14:54:18 -0700 (PDT)
+Received: from [192.168.1.131] (199.50.23.95.dynamic.jazztel.es [95.23.50.199])
+	by lists.s-osg.org (Postfix) with ESMTPSA id AE86546328;
+	Mon, 10 Aug 2015 14:54:16 -0700 (PDT)
+To: Andrei Gherzan <andrei@gherzan.ro>
+References: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
+	<55C082ED.6030405@technux.se> <55C0E347.9030508@osg.samsung.com>
+	<929d9c24776929cd07c370278d4c2768@technux.se>
+	<55C306C6.5040703@osg.samsung.com> <20150809230114.GK17962@resin>
+	<55C85A7B.4010008@osg.samsung.com> <20150810213411.GC4718@resin>
+From: Javier Martinez Canillas <javier@osg.samsung.com>
+Message-ID: <55C91D85.5070400@osg.samsung.com>
+Date: Mon, 10 Aug 2015 23:54:13 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.0.1
 MIME-Version: 1.0
-In-Reply-To: <1439193167-20618-1-git-send-email-raj.khem@gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH 2/2] README: Add extra iformation on creating/sending patches using git
+In-Reply-To: <20150810213411.GC4718@resin>
+Cc: yocto@yoctoproject.org, Mauro Carvalho Chehab <mchehab@osg.samsung.com>,
+	Derek Foreman <derekf@osg.samsung.com>
+Subject: Re: [meta-raspberrypi][PATCH 0/5] Add support for 4.1 kernel with vc4 DRM/KMS driver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,24 +44,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Aug 2015 21:38:11 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 10 Aug 2015 21:54:25 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-Hello,
+Hello Andrei,
 
-On Mon, Aug 10, 2015 at 12:52:47AM -0700, Khem Raj wrote:
-> Current instructions could be improvised to help user in creating
-> properly formatted patches with some command help on git format-patch
-> and git send-email
+On 08/10/2015 11:34 PM, Andrei Gherzan wrote:
+> On Mon, Aug 10, 2015 at 10:02:03AM +0200, Javier Martinez Canillas wrote:
+
+[snip]
+
+>>>>>
+>>>
+>>> That would definitely be the preferate way but would involve some additional
+>>> work in tracking the patches. So, as an initial state, I am fine with a
+>>> different kernel recipe (with a different name).
+>>>
+>>
+>> Ok, I was waiting for your feedback before preparing v2.
+> 
+> I guess this is my feedback. We can go on a separate linux provider for now.
+> Something like linux-raspbery-vc.bb . Or, if you want to maintain the patches
+> we can only pull in patches and apply them on top of 4.X based on a FEATURE.
+> What do you think?
 >
-> Signed-off-by: Khem Raj <raj.khem@gmail.com>
-> ---
->  README | 11 ++++++++---
->  1 file changed, 8 insertions(+), 3 deletions(-)
 
-Merged to master. Thanks.
+Yes, sorry I meant that I didn't post a v2 before because I was waiting for
+you but now I've all your feedback from your previous emails. I agree that
+is better to have a separate recipe (with all the patches unconditionally
+applied) and drop the feature for now.
 
---
-Andrei Gherzan
+Is just that I was busy today with other stuff but I'll post a v2 this week
+for sure!
+
+> --
+> Andrei Gherzan
+> 
+
+Best regards,
+-- 
+Javier Martinez Canillas
+Open Source Group
+Samsung Research America
 
