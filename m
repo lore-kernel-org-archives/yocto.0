@@ -1,58 +1,53 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <schnitzeltony@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 87107E00A81; Mon, 10 Aug 2015 15:00:30 -0700 (PDT)
+	id 5E802E00A92; Mon, 10 Aug 2015 15:20:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.212.172 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (schnitzeltony[at]googlemail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-wi0-f172.google.com (mail-wi0-f172.google.com
-	[209.85.212.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80714E00A7D
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 15:00:28 -0700 (PDT)
-Received: by wicja10 with SMTP id ja10so53275521wic.1
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 15:00:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent;
-	bh=EYfdOr34Tg6EpWS5lA/Y/o7Qv2U9bEfz/iuVXaY2348=;
-	b=MLNzz2z8V77R09CK4DqB24KUwbsJYaimNPUwqAVXygDk7/i0tl+KLN0XTJNEktGB4f
-	9yvwsfawhoiuU0fmLf5ZsX4M4RycXH6FO06m2dy3wouz+Mo91wbKnJLq8nD5j5OSjuA7
-	zvmgmOms5Dz9UCWuikdVMBbyA42k3YI2gCDE4y3YpBXiu3DF7aoUxwrgJVxDYjsIJddw
-	a9fKmcpIS8abHx65e48voaEuizxCu0ZAKBWKARS9bHNJ0n0AqhNLFYLPSTSKziPfU9j8
-	r/SCosJNWldFi9FGKiXU8qeACt+eTd9mb2Npzqw0nOMZel6wGJqbGnpNCpxUAYf6LP0+
-	6vuA==
-X-Gm-Message-State: ALoCoQmP1lGGx9W8ZuJ7fAZLej2VYS55OYtYnVtCkFMCXHgqOSsNxHcDXcozTGdsc7XsMehCDvLV
-X-Received: by 10.194.86.134 with SMTP id p6mr51848002wjz.71.1439244027299;
-	Mon, 10 Aug 2015 15:00:27 -0700 (PDT)
-Received: from resin ([2a02:8108:9b40:1710:5ee0:c5ff:fec8:435d])
-	by smtp.gmail.com with ESMTPSA id
-	bq7sm31394592wjc.31.2015.08.10.15.00.26
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 10 Aug 2015 15:00:26 -0700 (PDT)
-Date: Tue, 11 Aug 2015 00:00:24 +0200
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Javier Martinez Canillas <javier@osg.samsung.com>
-Message-ID: <20150810220024.GD5306@resin>
-References: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
-	<55C082ED.6030405@technux.se> <55C0E347.9030508@osg.samsung.com>
-	<929d9c24776929cd07c370278d4c2768@technux.se>
-	<55C306C6.5040703@osg.samsung.com> <20150809230114.GK17962@resin>
-	<55C85A7B.4010008@osg.samsung.com> <20150810213411.GC4718@resin>
-	<55C91D85.5070400@osg.samsung.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-io0-f174.google.com (mail-io0-f174.google.com
+	[209.85.223.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D26BE00A7D
+	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 15:20:03 -0700 (PDT)
+Received: by ioii16 with SMTP id i16so184295425ioi.0
+	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 15:20:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=GOEmBBTYkKuGGoPgA9JEW+JkEsPp0VhwSdZiRYVeew8=;
+	b=Sg65KPgj385Yl+5UmV8y+Tgl9/oUegvasbxz2IYsw1ZRA4npzkPpxYTRBgGNtNlurJ
+	OFBNjhHo6D4Xf0p+/y8O6II87Tj4tplF7l++YdsJwZasgCWPTzNC/Q39lCdr+fNfb01Q
+	pUDi1JLvC6d4H6gBOvsRpU564UNZMFNfdq/BjGeezaC8lY8yutWvXAQBQ/nNSh/Ftuzs
+	AWrvqKBTRkUGN1qmBduovpyYwhDf4bD/q3nIN5SZdHi1OiQKWhZff22nlHOvEYn3t99w
+	gSTXBYFNOOX62WguAc29vZ4FO+q7DES7UMIOM/k7qT8BDvXiSUWTCyYYWEIOqdHxipYj
+	qJ/Q==
 MIME-Version: 1.0
-In-Reply-To: <55C91D85.5070400@osg.samsung.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: yocto@yoctoproject.org, Mauro Carvalho Chehab <mchehab@osg.samsung.com>,
-	Derek Foreman <derekf@osg.samsung.com>
-Subject: Re: [meta-raspberrypi][PATCH 0/5] Add support for 4.1 kernel with vc4 DRM/KMS driver
+X-Received: by 10.107.158.197 with SMTP id h188mr22632948ioe.99.1439245203446; 
+	Mon, 10 Aug 2015 15:20:03 -0700 (PDT)
+Received: by 10.36.98.5 with HTTP; Mon, 10 Aug 2015 15:20:03 -0700 (PDT)
+In-Reply-To: <1439204904-8305-1-git-send-email-ajlennon@dynamicdevices.co.uk>
+References: <1439204904-8305-1-git-send-email-ajlennon@dynamicdevices.co.uk>
+Date: Tue, 11 Aug 2015 00:20:03 +0200
+Message-ID: <CALbNGRRmT5ZefSGBAZcNjWWfxpd6tjrYJRPMdkahcqGP3HHd7Q@mail.gmail.com>
+From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 1/2] linux-raspberrypi: Update kernel to 3.18.16
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,45 +59,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Aug 2015 22:00:30 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 10 Aug 2015 22:20:09 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi,
+On Mon, Aug 10, 2015 at 1:08 PM, Alex J Lennon
+<ajlennon@dynamicdevices.co.uk> wrote:
+> This requires some changes to KERNEL_DEVICETREE as the dtb
+> layout has changed to support overlays. This change also
+> makes us ready to support kernel 4.x series
+>
+> Signed-off-by: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+> ---
+>  conf/machine/include/rpi-base.inc              | 22 ++++++++++------------
+>  recipes-kernel/linux/linux-raspberrypi_3.18.bb |  9 +++++++--
+>  2 files changed, 17 insertions(+), 14 deletions(-)
+>
+> diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
+> index 1dda207..8caa5ba 100644
+> --- a/conf/machine/include/rpi-base.inc
+> +++ b/conf/machine/include/rpi-base.inc
+> @@ -23,18 +23,16 @@ KERNEL_DEVICETREE ?= " \
+>      bcm2708-rpi-b-plus.dtb \
+>      bcm2709-rpi-2-b.dtb \
+>      \
+> -    ds1307-rtc-overlay.dtb \
+> -    hifiberry-amp-overlay.dtb \
+> -    hifiberry-dac-overlay.dtb \
+> -    hifiberry-dacplus-overlay.dtb \
+> -    hifiberry-digi-overlay.dtb \
+> -    iqaudio-dac-overlay.dtb \
+> -    iqaudio-dacplus-overlay.dtb \
+> -    lirc-rpi-overlay.dtb \
+> -    pcf8523-rtc-overlay.dtb \
+> -    pps-gpio-overlay.dtb \
+> -    w1-gpio-overlay.dtb \
+> -    w1-gpio-pullup-overlay.dtb \
+> +    overlays/hifiberry-amp-overlay.dtb \
+> +    overlays/hifiberry-dac-overlay.dtb \
+> +    overlays/hifiberry-dacplus-overlay.dtb \
+> +    overlays/hifiberry-digi-overlay.dtb \
+> +    overlays/iqaudio-dac-overlay.dtb \
+> +    overlays/iqaudio-dacplus-overlay.dtb \
+> +    overlays/lirc-rpi-overlay.dtb \
+> +    overlays/pps-gpio-overlay.dtb \
+> +    overlays/w1-gpio-overlay.dtb \
+> +    overlays/w1-gpio-pullup-overlay.dtb \
+>      "
+>  KERNEL_IMAGETYPE ?= "Image"
+>
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.18.bb b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+> index 6d8b155..18c2020 100644
+> --- a/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+> +++ b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+> @@ -1,6 +1,11 @@
+> -LINUX_VERSION ?= "3.18.11"
+> +LINUX_VERSION ?= "3.18.16"
+>
+> -SRCREV = "d64fa8121fca9883d6fb14ca06d2abf66496195e"
+> +SRCREV = "1bb18c8f721ef674a447f3622273f2e2de7a205c"
+>  SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y"
+>
+>  require linux-raspberrypi.inc
+> +
+> +# Create missing out of tree 'overlays' directory prior to install step
+> +do_compile_append() {
+> +  mkdir -p ${B}/arch/arm/boot/dts/overlays
+> +}
+> --
+> 1.9.1
+>
+Have no time to test but if working fine this series could be a good
+base for V2 of the kernel 4.1 vc4 series.
 
-On Mon, Aug 10, 2015 at 11:54:13PM +0200, Javier Martinez Canillas wrote:
-> Hello Andrei,
->
-> On 08/10/2015 11:34 PM, Andrei Gherzan wrote:
-> > On Mon, Aug 10, 2015 at 10:02:03AM +0200, Javier Martinez Canillas wrote:
->
-> [snip]
->
-> >>>>>
-> >>>
-> >>> That would definitely be the preferate way but would involve some additional
-> >>> work in tracking the patches. So, as an initial state, I am fine with a
-> >>> different kernel recipe (with a different name).
-> >>>
-> >>
-> >> Ok, I was waiting for your feedback before preparing v2.
-> >
-> > I guess this is my feedback. We can go on a separate linux provider for now.
-> > Something like linux-raspbery-vc.bb . Or, if you want to maintain the patches
-> > we can only pull in patches and apply them on top of 4.X based on a FEATURE.
-> > What do you think?
-> >
->
-> Yes, sorry I meant that I didn't post a v2 before because I was waiting for
-> you but now I've all your feedback from your previous emails. I agree that
-> is better to have a separate recipe (with all the patches unconditionally
-> applied) and drop the feature for now.
->
-> Is just that I was busy today with other stuff but I'll post a v2 this week
-> for sure!
-
-No rush Javier. Just keep it in queue.
-
---
-Andrei Gherzan
+Andreas
 
