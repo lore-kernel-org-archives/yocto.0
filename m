@@ -1,34 +1,37 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <flihp@twobit.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A356CE00A90; Mon, 10 Aug 2015 22:37:20 -0700 (PDT)
+	id 9D1FEE00A90; Mon, 10 Aug 2015 22:41:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74BE4E00A80
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 22:37:16 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.1/8.15.1) with ESMTPS id t7B5bGJa024942
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 22:37:16 -0700 (PDT)
-Received: from ala-blade48.wrs.com (147.11.105.68) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.235.1;
-	Mon, 10 Aug 2015 22:37:16 -0700
-From: Robert Yang <liezhi.yang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Mon, 10 Aug 2015 22:37:16 -0700
-Message-ID: <1439271436-32621-1-git-send-email-liezhi.yang@windriver.com>
-X-Mailer: git-send-email 1.7.9.5
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 357F4E00A80
+	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 22:41:01 -0700 (PDT)
+Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
+	helo=[10.79.148.103])
+	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1ZP2IB-0001Zs-FE; Tue, 11 Aug 2015 05:40:09 +0000
+Message-ID: <55C98AE4.7050801@twobit.us>
+Date: Mon, 10 Aug 2015 22:40:52 -0700
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Icedove/31.8.0
 MIME-Version: 1.0
-Subject: [meta-selinux] [PATCH] audit: remove add-system-call-table-for-ARM.patch
+To: Joe MacDonald <Joe_MacDonald@mentor.com>
+References: <1434580258-18121-1-git-send-email-flihp@twobit.us>
+	<20150808210055.GC4021@mentor.com> <55C975D1.5020806@twobit.us>
+In-Reply-To: <55C975D1.5020806@twobit.us>
+X-SA-Exim-Connect-IP: 50.185.54.102
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCHv2 0/8] Label file system in build.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,87 +43,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Aug 2015 05:37:20 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 11 Aug 2015 05:41:05 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-There isn't lib/machinetabs.h any more, there isn't data structures like
-"static const char machine_strings", either.
+On 08/10/2015 09:10 PM, Philip Tricca wrote:
+> On 08/08/2015 02:00 PM, Joe MacDonald wrote:
+>> I'm sorry this has been in the merge queue for so long.
+> 
+> Better late than never :)
+> 
+>> I've merged it
+>> after taking the policy updates from Shrikant and a few other small
+>> patches that had been hanging around too.  I didn't drop it on master
+>> yet, though, since I wanted to give everyone else a little bit of time
+>> to try it out (myself included, I'm finally able to come up for air on
+>> some of the day job things :-)).  Instead it is currently living on the
+>> fs_label branch, but I rebased the patches on the current master HEAD
+>> commit.  That means, though, that if you get a chance I'd like to take a
+>> look at the branch to ensure I didn't mangle your patch set too much.
+> 
+> Will do.
 
-This fixed a do_patch error when arm.
+Built and tested. Works as expected. There are a couple AVCs from
+rpcbind related to stuff in /tmp but those are present in the master
+branch so they're not related.
 
-Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
----
- .../audit/add-system-call-table-for-ARM.patch      |   46 --------------------
- recipes-security/audit/audit_2.4.3.bb              |    2 -
- 2 files changed, 48 deletions(-)
- delete mode 100644 recipes-security/audit/audit/add-system-call-table-for-ARM.patch
+Philip
 
-diff --git a/recipes-security/audit/audit/add-system-call-table-for-ARM.patch b/recipes-security/audit/audit/add-system-call-table-for-ARM.patch
-deleted file mode 100644
-index ad94d11..0000000
---- a/recipes-security/audit/audit/add-system-call-table-for-ARM.patch
-+++ /dev/null
-@@ -1,46 +0,0 @@
--From 52ff74be2f01182ed9d4fcc3da059512fad63d72 Mon Sep 17 00:00:00 2001
--From: Han Chao <chan@windriver.com>
--Date: Thu, 27 Feb 2014 14:58:57 +0800
--Subject: [PATCH] add system call table for ARM.
--
--This change enable audit system call on ARM.
--Add arm System call table on machinetabs.h.
--Audit system call need enable kernel config CONFIG_AUDITSYSCALL.
--
--Signed-off-by: Han Chao <chan@windriver.com>
-----
-- lib/machinetabs.h |   11 ++++++-----
-- 1 file changed, 6 insertions(+), 5 deletions(-)
--
--diff --git a/lib/machinetabs.h b/lib/machinetabs.h
--index ec2d033..1c2e284 100644
----- a/lib/machinetabs.h
--+++ b/lib/machinetabs.h
--@@ -1,10 +1,11 @@
---/* This is a generated file, see Makefile.am for its inputs. */
---static const char machine_strings[] = "i386\0i486\0i586\0i686\0ia64\0ppc\0ppc64\0s390\0s390x\0x86_64";
--+/* Such is aways generated file, see Makefile.am for its inputs.
--+ * But this version is not generated file, which is for ARM. */
--+static const char machine_strings[] = "armeb\0armv5tejl\0armv5tel\0armv6l\0armv7l";
-- static const unsigned machine_s2i_s[] = {
---	0,5,10,15,20,25,29,35,40,46,
--+	0,6,16,25,32,
-- };
-- static const int machine_s2i_i[] = {
---	0,0,0,0,2,4,3,6,5,1,
--+	8,8,8,8,8,
-- };
-- static int machine_s2i(const char *s, int *value) {
-- 	size_t len, i;
--@@ -19,7 +20,7 @@ static int machine_s2i(const char *s, int *value) {
-- 	}
-- }
-- static const unsigned machine_i2s_direct[] = {
---	0,46,20,29,25,40,35,
--+    39,85,59,68,64,
-- };
-- static const char *machine_i2s(int v) {
-- 	return i2s_direct__(machine_strings, machine_i2s_direct, 0, 6, v);
---- 
--1.7.9.5
--
-diff --git a/recipes-security/audit/audit_2.4.3.bb b/recipes-security/audit/audit_2.4.3.bb
-index 233fb00..3f5026c 100644
---- a/recipes-security/audit/audit_2.4.3.bb
-+++ b/recipes-security/audit/audit_2.4.3.bb
-@@ -20,8 +20,6 @@ SRC_URI = "http://people.redhat.com/sgrubb/audit/audit-${PV}.tar.gz \
- SRC_URI[md5sum] = "544d863af2016b76afd8d1691b251164"
- SRC_URI[sha256sum] = "9c914704fecc602e143e37152f3efbab2469692684c1a8cc1b801c1b49c7abc6"
- 
--SRC_URI_append_arm = "file://add-system-call-table-for-ARM.patch"
--
- inherit autotools pythonnative update-rc.d systemd
- 
- UPDATERCPN = "auditd"
--- 
-1.7.9.5
+>> [[meta-selinux][PATCHv2 0/8] Label file system in build.] On 15.06.17 (Wed 15:30) Philip Tricca wrote:
+>>
+>>> This is the second version of a patch series that allows the file system
+>>> of SELinux images to be labeled as part of the build process. This will
+>>> allow SELinux images to boot read only file systems and remove the need to
+>>> label the file system on first boot.
+>>>
+>>> To do this we must label the file system in the build as well as add
+>>> support for extended attributes to the mke2fs utility in the e2fsprogs
+>>> package. The first version of this patch series is here:
+>>> https://lists.yoctoproject.org/pipermail/yocto/2015-June/025141.html
+>>> The approach described in this previous RFC remains the same.
+>>>
+>>> Changes in v2:
+>>> This second version has two significant changes: First I've done a bunch
+>>> of cleanup. This includes work to make the descriptions in the patch
+>>> headers / commit messages more exact as well as combining some commits
+>>> with related functionality. Secondly I've reimplemented the xattr cache
+>>> so that it actually works.
+>>>
+>>> I've made the patch headers as descriptive as possible and kept the git
+>>> commit messages minimal. If the preference is for more verbose commit
+>>> messages I'm happy to oblige if advised.
+>>>
+>>> The cache is just a single linked list that's searched for duplicates after
+>>> the creation of each new xattr block. The previous implementation was similar
+>>> but, aside from not working properly, it was overly complex in its attempt to
+>>> keep the list sorted.
+>>>
+>>> Tests:
+>>> To test this new implementation I used the core-image-selinux-minimal image
+>>> from the unmodified master branch as a control. This image has 2536 unique
+>>> file system objects including the root fs directory. The ext4 file system
+>>> produced by the build has 71492 blocks with 13621 free.
+>>>
+>>> As an additional test I added the patches from this set WITHOUT the cache
+>>> patches. This causes each file system object with an associated extended
+>>> attribute to use up an additional block for the xattr. This should cause
+>>> (hypothesis) the output file system to have 13621 - 2536 = 11085 free
+>>> blocks. The build producing an ext4 file system with 71492 blocks and 11088
+>>> free. That's an additional 2533 blocks used instead of the 2536 expected.
+>>> These 3 missing xattr blocks can be accounted for in that there are 3
+>>> unlabeled files in the file system.
+>>>
+>>> Introducing the cache allows files with identical xattr blocks to share
+>>> them to reduce the number of used blocks. Since we're only storing SELinux
+>>> labels in the xattrs we can say that every file with the same SELinux label
+>>> should share an xattr block. Counting the unique SELinux labels on file
+>>> objects we know that there are 83 in total. The second hypothesis we have
+>>> to test then is that using the cache will reduce the number of used blocks
+>>> from 2533 down to 83.
+>>>
+>>> Applying the patch that enables the cache produces a third and final ext4
+>>> file system. This one again report 71492 total blocks but this time 13538
+>>> free. This is 83 blocks fewer than the unlabled file system from the
+>>> initial test as we expected. The code added by this patch set is also
+>>> instrumented to count the objects in the cache when they're freed. With
+>>> this debug output enabled it reports the same number of objects in the
+>>> cache.
+>>>
+>>> From the test results I'm pretty confident that the cache functions as
+>>> expected. It's still a very basic implementation but given the small
+>>> number of unique SELinux labels in the reference file systems it's
+>>> likely sufficient for a first version. Feedback / comments on both the
+>>> implementation and testing approach would be appreciated.
+>>>
+>>> Regards,
+>>> Philip
+>>> ----
+>>>
+>>> Philip Tricca (8):
+>>>   policycoreutils: Patch setfiles to add FTS_NOCHDIR to fts_flags.
+>>>   selinux-image: Add new image class to label the rootfs, use it for
+>>>     selinux images.
+>>>   e2fsprogs: Add bbappend and stub for xattr module.
+>>>   e2fsprogs: Insert calls to xattr module into mke2fs and build xattr
+>>>     code.
+>>>   e2fsprogs: Add xattr security prefix data to
+>>>     lib/ext2fs/ext2_ext_attr.h
+>>>   e2fsprogs: Copy xattr block from source file.
+>>>   e2fsprogs: Add stub functions for an xattr cache and struct to hold
+>>>     the header and block data.
+>>>   e2fsprogs: Implement xattr block cache with simple linked list.
+>>>
+>>>  classes/selinux-image.bbclass                      |   8 +
+>>>  ...ib-ext2fs-ext2_ext_attr.h-add-xattr-index.patch |  20 ++
+>>>  .../misc-xattr-add-xattr-module-stub.patch         |  57 ++++
+>>>  .../misc-xattr-create-xattr-block-node.patch       | 175 +++++++++++
+>>>  .../e2fsprogs/misc-xattr-create-xattr-block.patch  | 341 +++++++++++++++++++++
+>>>  .../e2fsprogs/misc-xattr-create-xattr-cache.patch  | 181 +++++++++++
+>>>  .../mke2fs.c-create_inode.c-copy-xattrs.patch      | 164 ++++++++++
+>>>  .../e2fsprogs/e2fsprogs_1.42.9.bbappend            |  10 +
+>>>  .../images/core-image-selinux-minimal.bb           |   2 +-
+>>>  recipes-security/images/core-image-selinux.bb      |   2 +-
+>>>  .../policycoreutils-fts_flags-FTS_NOCHDIR.patch    |  25 ++
+>>>  recipes-security/selinux/policycoreutils_2.3.bb    |   1 +
+>>>  12 files changed, 984 insertions(+), 2 deletions(-)
+>>>  create mode 100644 classes/selinux-image.bbclass
+>>>  create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/lib-ext2fs-ext2_ext_attr.h-add-xattr-index.patch
+>>>  create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-add-xattr-module-stub.patch
+>>>  create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-block-node.patch
+>>>  create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-block.patch
+>>>  create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-cache.patch
+>>>  create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/mke2fs.c-create_inode.c-copy-xattrs.patch
+>>>  create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
+>>>  create mode 100644 recipes-security/selinux/policycoreutils/policycoreutils-fts_flags-FTS_NOCHDIR.patch
+>>>
+> 
 
 
