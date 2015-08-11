@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BE27EE00A97; Mon, 10 Aug 2015 21:11:56 -0700 (PDT)
+	id 12D76E00A90; Mon, 10 Aug 2015 22:10:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,7 @@ X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
 	RCVD_IN_DNSWL_LOW,T_DKIM_INVALID autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.181 listed in list.dnswl.org]
+	*      [209.85.213.171 listed in list.dnswl.org]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (raj.khem[at]gmail.com)
 	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
@@ -23,36 +23,36 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.0 T_DKIM_INVALID DKIM-Signature header exists but is not valid
 	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
 	and not from a mailing list
-Received: from mail-io0-f181.google.com (mail-io0-f181.google.com
-	[209.85.223.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CCEF9E00AA2
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 21:11:41 -0700 (PDT)
-Received: by ioeg141 with SMTP id g141so190409917ioe.3
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 21:11:40 -0700 (PDT)
+Received: from mail-ig0-f171.google.com (mail-ig0-f171.google.com
+	[209.85.213.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5CECE00A80
+	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 22:09:54 -0700 (PDT)
+Received: by igbpg9 with SMTP id pg9so84030867igb.0
+	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 22:09:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:mime-version:content-type
 	:content-transfer-encoding;
-	bh=FS36iZrwZrFt1yR8gNbrJQaTjF5q9/l5YbGZ2m0rnxs=;
-	b=BuscVZyhH2wZnsDTK/FXA2em0TL4V41O8EcKaSkO7uUMKQo0BOhsewBNOIqjk6lmsn
-	DGAJP0J01XywoPzGRkHOsZg3Gf9Bkvbrj2+qGcUDHbO5UAJ9lcYDllyDn10KPq4QyRnF
-	+J6eCLeDx935p6EJRLV2CBCRFdiSbWpoY3fkGCMWydLq/jzt7Zru43hsAiTeh4L+5hc7
-	M1KRFcQxzLv0OejExeR0vqjwDPadSUMp0JSdViUE6hD8kqUyTiMNrBFisN5ype9mYttf
-	eYpZyjdeqZFkylU7WSpgWockVcGOPOnzEQv4371Th6arwxhlpUrOTHttXHlS4HUO/S37
-	M33A==
-X-Received: by 10.107.37.14 with SMTP id l14mr26492144iol.12.1439266300661;
-	Mon, 10 Aug 2015 21:11:40 -0700 (PDT)
+	bh=H2TnwwCCTpcnEAEbjfSQrei7RccveC1EjGijMqVN2PM=;
+	b=olnb4aMxnlYB/oUTIQfpcvWv4EdF8JmI6381rY8eFtYXJ3wY3eJ2QkleJ3qO3Yr1Ts
+	ZrZ7ROH5HNfIbtZCLlc+sE/ycmx1jAuan5r7dUbXBSuTYWauCaVpwmNhlHuboVf4lybt
+	rfeBJ/tQ1iXvUb97bzQEcxrd98XALxVdkwjw63nUHi2MgPxSCLvCp/CJTL6nnISv5N7q
+	Wm40oeRcG/JNJLwf/AnXm+YNqH+mxhV5WPBWv1AZNxGab2ULRrN68Uj0+/ppSG52YU4w
+	HrTUyNiGQY7xt8jGn5/5/th7srNKC6R+GAb4ARafeGCIa8JD8IyfW6tiEb12NYy+v2PW
+	vjeg==
+X-Received: by 10.50.142.9 with SMTP id rs9mr15588796igb.17.1439269792773;
+	Mon, 10 Aug 2015 22:09:52 -0700 (PDT)
 Received: from dvm-ch2e-038.sys.comcast.net (a-96-119-89-79.sys.comcast.net.
 	[96.119.89.79])
-	by smtp.gmail.com with ESMTPSA id o39sm734954ioi.30.2015.08.10.21.11.39
+	by smtp.gmail.com with ESMTPSA id qd2sm819018igb.19.2015.08.10.22.09.51
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 10 Aug 2015 21:11:39 -0700 (PDT)
+	Mon, 10 Aug 2015 22:09:51 -0700 (PDT)
 From: Khem Raj <raj.khem@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 10 Aug 2015 21:11:31 -0700
-Message-Id: <1439266291-32170-1-git-send-email-raj.khem@gmail.com>
+Date: Mon, 10 Aug 2015 22:09:46 -0700
+Message-Id: <1439269786-26997-1-git-send-email-raj.khem@gmail.com>
 X-Mailer: git-send-email 2.1.4
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][RFC][PATCH V2] userland: Add wayland support
+Subject: [meta-raspberrypi][RFC][PATCH V3] userland: Add wayland support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,12 +64,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Aug 2015 04:11:56 -0000
+X-List-Received-Date: Tue, 11 Aug 2015 05:10:03 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 backport and fix needed patches for supporting wayland-egl
 use PACKAGECONFIG for wayland so we can add proper DEPENDS on wayland
+Fix QA warnings about dev-so
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
@@ -77,8 +78,8 @@ Signed-off-by: Khem Raj <raj.khem@gmail.com>
  ...ayland-Add-support-for-the-Wayland-winsys.patch | 1847 ++++++++++++++++++++
  .../0006-wayland-Add-Wayland-example.patch         |  864 +++++++++
  ...-wayland-egl-Add-bcm_host-to-dependencies.patch |   30 +
- recipes-graphics/userland/userland_git.bb          |   12 +-
- 5 files changed, 2962 insertions(+), 1 deletion(-)
+ recipes-graphics/userland/userland_git.bb          |   13 +-
+ 5 files changed, 2963 insertions(+), 1 deletion(-)
  create mode 100644 recipes-graphics/userland/userland/0004-Allow-applications-to-set-next-resource-handle.patch
  create mode 100644 recipes-graphics/userland/userland/0005-wayland-Add-support-for-the-Wayland-winsys.patch
  create mode 100644 recipes-graphics/userland/userland/0006-wayland-Add-Wayland-example.patch
@@ -3066,10 +3067,10 @@ index 0000000..011f255
 +2.1.4
 +
 diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
-index 35e5672..c5f8a12 100644
+index 35e5672..6c7200c 100644
 --- a/recipes-graphics/userland/userland_git.bb
 +++ b/recipes-graphics/userland/userland_git.bb
-@@ -19,12 +19,22 @@ SRC_URI = "git://github.com/${SRCFORK}/userland.git;protocol=git;branch=${SRCBRA
+@@ -19,18 +19,29 @@ SRC_URI = "git://github.com/${SRCFORK}/userland.git;protocol=git;branch=${SRCBRA
             file://0001-Use-newer-POSIX-macro.patch \
             file://0002-set-VMCS_INSTALL_PREFIX-to-usr.patch \
             file://0003-cmake-generate-and-install-pkgconfig-files.patch \
@@ -3093,6 +3094,13 @@ index 35e5672..c5f8a12 100644
  CFLAGS_append = " -fPIC"
  
  # Shared libs from userland package  build aren't versioned, so we need
+ # to force the .so files into the runtime package (and keep them
+ # out of -dev package).
+ FILES_SOLIBSDEV = ""
++INSANE_SKIP_${PN} += "dev-so"
+ 
+ FILES_${PN} += " \
+     ${libdir}/*.so \
 -- 
 2.1.4
 
