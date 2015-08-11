@@ -1,6 +1,6 @@
 Return-Path: <bobadeshrikant@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 67261E00A9A; Tue, 11 Aug 2015 04:09:38 -0700 (PDT)
+	id A4BE3E00A9A; Tue, 11 Aug 2015 04:15:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (bobadeshrikant[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.213.173 listed in list.dnswl.org]
+	*      [209.85.223.175 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,36 +20,34 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f173.google.com (mail-ig0-f173.google.com
-	[209.85.213.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32B8DE00A92
-	for <yocto@yoctoproject.org>; Tue, 11 Aug 2015 04:09:32 -0700 (PDT)
-Received: by igbjg10 with SMTP id jg10so19342829igb.0
-	for <yocto@yoctoproject.org>; Tue, 11 Aug 2015 04:09:31 -0700 (PDT)
+Received: from mail-io0-f175.google.com (mail-io0-f175.google.com
+	[209.85.223.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3849AE00A92
+	for <yocto@yoctoproject.org>; Tue, 11 Aug 2015 04:15:27 -0700 (PDT)
+Received: by ioeg141 with SMTP id g141so198192035ioe.3
+	for <yocto@yoctoproject.org>; Tue, 11 Aug 2015 04:15:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=6FHPSrwMRHfYk8I3+91Ub+NVFreGuWi69lGiEFWrT7Q=;
-	b=ztklw71OxvsubtgeUE/h+Ze4pASjUPN7RdxYKac8GhZzO4yrn/ukyTqSy4JfJUvn9p
-	U4Ydl5MGXWQNh88M4LLXjzkwO2/2GXyOEhLV3trfnekuhMF9Wt+qWxbVciWruOgW6LUa
-	yIjWAiXbE2WDIL8TcaTAaytz5cFMjbkstrUFlt4HU3/tSPc2BsQfk2BISP0sW0skp7UT
-	KE0Ths8MMFfu3xplQVPMenHLzmlt+SjOeu5Dx/68NYsTw5hVEoprqKblxggA/WickiCE
-	pqCpHB9R8wZJbqDkYfkT3YIUMD4fiXesQwn4SqMrF9ApMJiKGhCZ0CIVCFxjgPcYp48P
-	VjjQ==
+	bh=As+W0GKa80OFA+go9UHDtqJq0KX69o+OiUEkiuiqius=;
+	b=rvEOMRDgpjp9fTwbyS+2xqWKEpLUnWR2xihUfuN+xFWFM2i7bOGgSVIf+83pl5gFe5
+	9MeNlHevmTuqkHOAvfWl9HNyyTQhUSxkw4vI1t3wXURBBL7oLJTT3dRx0DvFelsnOR5a
+	E2YZ2tiqJl2ivvSBnkHJdY3Mp2wOqHKzuBlVUmSpgrzDjYIHl9Q4DcdQa4H2vnQh9IwG
+	59XzLTN9dDcvBe1fXsdqbz4VacUluPXnXXaYePfbxrQj0k7sh/lvi0jxMOZBQvACP6SD
+	e9vaVSX88x7v5ZMs2WETY3tSehT90EQiwPRjMT75h1em5RsziMD6hW4IBcnj9/b5AyOT
+	nM3g==
 MIME-Version: 1.0
-X-Received: by 10.50.59.211 with SMTP id b19mr16350990igr.42.1439291371722;
-	Tue, 11 Aug 2015 04:09:31 -0700 (PDT)
-Received: by 10.50.157.34 with HTTP; Tue, 11 Aug 2015 04:09:31 -0700 (PDT)
-In-Reply-To: <55C983A2.4050002@twobit.us>
-References: <1438248304-7884-1-git-send-email-bobadeshrikant@gmail.com>
-	<CALwQErr1fTKQ=Nc8OXJ0m-itC-NzoNz5bsc4R6gsCN3cJC9ciw@mail.gmail.com>
-	<55C983A2.4050002@twobit.us>
-Date: Tue, 11 Aug 2015 16:39:31 +0530
-Message-ID: <CALwQErqbQWUmMP0b=+tXhMd--ETNRMsrZzuiBVbg4XUxnRoyPA@mail.gmail.com>
+X-Received: by 10.107.128.28 with SMTP id b28mr27255825iod.84.1439291726848;
+	Tue, 11 Aug 2015 04:15:26 -0700 (PDT)
+Received: by 10.50.157.34 with HTTP; Tue, 11 Aug 2015 04:15:26 -0700 (PDT)
+In-Reply-To: <1439271436-32621-1-git-send-email-liezhi.yang@windriver.com>
+References: <1439271436-32621-1-git-send-email-liezhi.yang@windriver.com>
+Date: Tue, 11 Aug 2015 16:45:26 +0530
+Message-ID: <CALwQErpPD6pxceWxkOec1g5u7Qu5rHv3VJzb+yFqyMFJ4KQXGg@mail.gmail.com>
 From: Shrikant Bobade <bobadeshrikant@gmail.com>
-To: Philip Tricca <flihp@twobit.us>
-Cc: yocto@yoctoproject.org, Shrikant Bobade <shrikant_bobade@mentor.com>
-Subject: Re: [meta-selinux][PATCH v1] libpam: use wildcard for version and cleanup
+To: Robert Yang <liezhi.yang@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux] [PATCH] audit: remove add-system-call-table-for-ARM.patch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,361 +59,235 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Aug 2015 11:09:38 -0000
-Content-Type: multipart/alternative; boundary=047d7bd75758f0a01e051d0722a6
+X-List-Received-Date: Tue, 11 Aug 2015 11:15:30 -0000
+Content-Type: multipart/alternative; boundary=001a113f9a621b680c051d0738f3
 
---047d7bd75758f0a01e051d0722a6
+--001a113f9a621b680c051d0738f3
 Content-Type: text/plain; charset=UTF-8
 
-Hi Philip,
+Thanks for an update.
 
+Works for me too..
 
-On Tue, Aug 11, 2015 at 10:39 AM, Philip Tricca <flihp@twobit.us> wrote:
-
-> Hey Shrikant,
->
-> On 07/30/2015 02:31 AM, Shrikant Bobade wrote:
-> > This patch provides green build for core-image-selinux
-> > (meta-selinux:master & poky:master) against libpam upgrade from 1.1.6 to
-> > 1.2.1,
-> > image boots fine,but I am unable to login at target. I have prepared
-> > build for qemuarm, does anyone else facing similar issue? please advice.
-> >
-> > Observed the login issue appears even with disabled selinux support
-> > (selinux=0).
->
-> I just tested this again after Joe merged the commits from the backlog.
-> I'm not longer able to reproduce the failed login. Are you still having
-> login problems?
->
-
-I also got similar results:
-With the check on latest bits: the login issue is not reproducible on
-core-image-selinux(with poky-selinux distro)
-I can now login properly.
-
-
-Build Configuration:
-BB_VERSION        = "1.27.1"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Ubuntu-12.04"
-TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "qemuarm"
-DISTRO            = "poky-selinux"
-DISTRO_VERSION    = "1.8+snapshot-20150811"
-TUNE_FEATURES     = "arm armv5 thumb dsp"
-TARGET_FPU        = "soft"
-meta
-meta-yocto
-meta-yocto-bsp    = "master:a16e0b4014173af46ef80d643bb71055219b0dab"
-meta-selinux      = "master:684ee9401f33db7c9d5b183988d89c688c9dd0be"
-
-Thanks!
+Thanks
 Shrikant
 
+On Tue, Aug 11, 2015 at 11:07 AM, Robert Yang <liezhi.yang@windriver.com>
+wrote:
 
-
-> Philip
+> There isn't lib/machinetabs.h any more, there isn't data structures like
+> "static const char machine_strings", either.
 >
-> > On Thu, Jul 30, 2015 at 2:55 PM, Shrikant Bobade
-> > <bobadeshrikant@gmail.com <mailto:bobadeshrikant@gmail.com>> wrote:
-> >
-> >     From: Shrikant Bobade <shrikant_bobade@mentor.com
-> >     <mailto:shrikant_bobade@mentor.com>>
-> >
-> >     use wildcard for version: adopting libpam upgrade from 1.1.6 to
-> 1.2.1,
-> >     cleanup older recipe and remove patch
-> sepermit-add-DESTDIR-prefix.patch
-> >     since the changes already available with latest source.
-> >
-> >     Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com
-> >     <mailto:shrikant_bobade@mentor.com>>
-> >     ---
-> >      .../pam/libpam/sepermit-add-DESTDIR-prefix.patch   |   31
-> >     --------------------
-> >      recipes-extended/pam/libpam_%.bbappend             |    3 ++
-> >      recipes-extended/pam/libpam_1.1.6.bbappend         |   10 -------
-> >      3 files changed, 3 insertions(+), 41 deletions(-)
-> >      delete mode 100644
-> >     recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
-> >      create mode 100644 recipes-extended/pam/libpam_%.bbappend
-> >      delete mode 100644 recipes-extended/pam/libpam_1.1.6.bbappend
-> >
-> >     diff --git
-> >     a/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
-> >     b/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
-> >     deleted file mode 100644
-> >     index d48d386..0000000
-> >     --- a/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
-> >     +++ /dev/null
-> >     @@ -1,31 +0,0 @@
-> >     -Subject: [PATCH] libpam: add missing DESTDIR prefix
-> >     -
-> >     -The DESTDIR prefix is missing, this will cause build failures for
-> >     -mkdir /var/run/sepermit on the host.
-> >     -
-> >     -| mkdir -p /var/run/sepermit
-> >     -| mkdir: cannot create directory `/var/run/sepermit': Permission
-> denied
-> >     -
-> >     -Upstream-Status: Pending
-> >     -
-> >     -Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com
-> >     <mailto:Xin.Ouyang@windriver.com>>
-> >     ----
-> >     - modules/pam_sepermit/Makefile.am |    2 +-
-> >     - 1 files changed, 1 insertions(+), 1 deletions(-)
-> >     -
-> >     -diff --git a/modules/pam_sepermit/Makefile.am
-> >     b/modules/pam_sepermit/Makefile.am
-> >     -index cfc5594..bc82275 100644
-> >     ---- a/modules/pam_sepermit/Makefile.am
-> >     -+++ b/modules/pam_sepermit/Makefile.am
-> >     -@@ -35,7 +35,7 @@ if HAVE_LIBSELINUX
-> >     -   securelib_LTLIBRARIES = pam_sepermit.la <http://pam_sepermit.la>
-> >     -
-> >     - install-data-local:
-> >     --      mkdir -p $(sepermitlockdir)
-> >     -+      mkdir -p $(DESTDIR)$(sepermitlockdir)
-> >     - endif
-> >     - if ENABLE_REGENERATE_MAN
-> >     - noinst_DATA = README pam_sepermit.8 sepermit.conf.5
-> >     ---
-> >     -1.7.5.4
-> >     -
-> >     diff --git a/recipes-extended/pam/libpam_%.bbappend
-> >     b/recipes-extended/pam/libpam_%.bbappend
-> >     new file mode 100644
-> >     index 0000000..adcf938
-> >     --- /dev/null
-> >     +++ b/recipes-extended/pam/libpam_%.bbappend
-> >     @@ -0,0 +1,3 @@
-> >     +inherit enable-selinux
-> >     +
-> >     +RDEPENDS_${PN}-runtime += "${@target_selinux(d,
-> 'pam-plugin-selinux')}"
-> >     diff --git a/recipes-extended/pam/libpam_1.1.6.bbappend
-> >     b/recipes-extended/pam/libpam_1.1.6.bbappend
-> >     deleted file mode 100644
-> >     index 71acecc..0000000
-> >     --- a/recipes-extended/pam/libpam_1.1.6.bbappend
-> >     +++ /dev/null
-> >     @@ -1,10 +0,0 @@
-> >     -#FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> >     -FILESPATH_append := ":${@base_set_filespath(['${THISDIR}/${PN}'],
-> d)}"
-> >     -
-> >     -SRC_URI += "file://sepermit-add-DESTDIR-prefix.patch"
-> >     -
-> >     -PR .= ".4"
-> >     -
-> >     -inherit enable-selinux
-> >     -
-> >     -RDEPENDS_${PN}-runtime += "${@target_selinux(d,
-> 'pam-plugin-selinux')}"
-> >     --
-> >     1.7.9.5
-> >
-> >
-> >
-> >
+> This fixed a do_patch error when arm.
 >
+> Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+> ---
+>  .../audit/add-system-call-table-for-ARM.patch      |   46
+> --------------------
+>  recipes-security/audit/audit_2.4.3.bb              |    2 -
+>  2 files changed, 48 deletions(-)
+>  delete mode 100644
+> recipes-security/audit/audit/add-system-call-table-for-ARM.patch
+>
+> diff --git
+> a/recipes-security/audit/audit/add-system-call-table-for-ARM.patch
+> b/recipes-security/audit/audit/add-system-call-table-for-ARM.patch
+> deleted file mode 100644
+> index ad94d11..0000000
+> --- a/recipes-security/audit/audit/add-system-call-table-for-ARM.patch
+> +++ /dev/null
+> @@ -1,46 +0,0 @@
+> -From 52ff74be2f01182ed9d4fcc3da059512fad63d72 Mon Sep 17 00:00:00 2001
+> -From: Han Chao <chan@windriver.com>
+> -Date: Thu, 27 Feb 2014 14:58:57 +0800
+> -Subject: [PATCH] add system call table for ARM.
+> -
+> -This change enable audit system call on ARM.
+> -Add arm System call table on machinetabs.h.
+> -Audit system call need enable kernel config CONFIG_AUDITSYSCALL.
+> -
+> -Signed-off-by: Han Chao <chan@windriver.com>
+> ----
+> - lib/machinetabs.h |   11 ++++++-----
+> - 1 file changed, 6 insertions(+), 5 deletions(-)
+> -
+> -diff --git a/lib/machinetabs.h b/lib/machinetabs.h
+> -index ec2d033..1c2e284 100644
+> ---- a/lib/machinetabs.h
+> -+++ b/lib/machinetabs.h
+> -@@ -1,10 +1,11 @@
+> --/* This is a generated file, see Makefile.am for its inputs. */
+> --static const char machine_strings[] =
+> "i386\0i486\0i586\0i686\0ia64\0ppc\0ppc64\0s390\0s390x\0x86_64";
+> -+/* Such is aways generated file, see Makefile.am for its inputs.
+> -+ * But this version is not generated file, which is for ARM. */
+> -+static const char machine_strings[] =
+> "armeb\0armv5tejl\0armv5tel\0armv6l\0armv7l";
+> - static const unsigned machine_s2i_s[] = {
+> --      0,5,10,15,20,25,29,35,40,46,
+> -+      0,6,16,25,32,
+> - };
+> - static const int machine_s2i_i[] = {
+> --      0,0,0,0,2,4,3,6,5,1,
+> -+      8,8,8,8,8,
+> - };
+> - static int machine_s2i(const char *s, int *value) {
+> -       size_t len, i;
+> -@@ -19,7 +20,7 @@ static int machine_s2i(const char *s, int *value) {
+> -       }
+> - }
+> - static const unsigned machine_i2s_direct[] = {
+> --      0,46,20,29,25,40,35,
+> -+    39,85,59,68,64,
+> - };
+> - static const char *machine_i2s(int v) {
+> -       return i2s_direct__(machine_strings, machine_i2s_direct, 0, 6, v);
+> ---
+> -1.7.9.5
+> -
+> diff --git a/recipes-security/audit/audit_2.4.3.bb
+> b/recipes-security/audit/audit_2.4.3.bb
+> index 233fb00..3f5026c 100644
+> --- a/recipes-security/audit/audit_2.4.3.bb
+> +++ b/recipes-security/audit/audit_2.4.3.bb
+> @@ -20,8 +20,6 @@ SRC_URI = "
+> http://people.redhat.com/sgrubb/audit/audit-${PV}.tar.gz \
+>  SRC_URI[md5sum] = "544d863af2016b76afd8d1691b251164"
+>  SRC_URI[sha256sum] =
+> "9c914704fecc602e143e37152f3efbab2469692684c1a8cc1b801c1b49c7abc6"
+>
+> -SRC_URI_append_arm = "file://add-system-call-table-for-ARM.patch"
+> -
+>  inherit autotools pythonnative update-rc.d systemd
+>
+>  UPDATERCPN = "auditd"
+> --
+> 1.7.9.5
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
---047d7bd75758f0a01e051d0722a6
+--001a113f9a621b680c051d0738f3
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Philip, <br><br><div><div class=3D"gmail_extra"><br><di=
-v class=3D"gmail_quote">On Tue, Aug 11, 2015 at 10:39 AM, Philip Tricca <sp=
-an dir=3D"ltr">&lt;<a href=3D"mailto:flihp@twobit.us" target=3D"_blank">fli=
-hp@twobit.us</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" sty=
-le=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hey Sh=
-rikant,<br>
-<span class=3D""><br>
-On 07/30/2015 02:31 AM, Shrikant Bobade wrote:<br>
-</span><span class=3D"">&gt; This patch provides green build for core-image=
--selinux<br>
-&gt; (meta-selinux:master &amp; poky:master) against libpam upgrade from 1.=
-1.6 to<br>
-&gt; 1.2.1,<br>
-&gt; image boots fine,but I am unable to login at target. I have prepared<b=
-r>
-&gt; build for qemuarm, does anyone else facing similar issue? please advic=
-e.<br>
-&gt;<br>
-&gt; Observed the login issue appears even with disabled selinux support<br=
->
-&gt; (selinux=3D0).<br>
+<div dir=3D"ltr"><div><div><div>Thanks for an update. <br><br></div>Works f=
+or me too.. <br><br></div>Thanks<br></div>Shrikant<br><div><div><div><div><=
+div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Tue, Aug 11, 20=
+15 at 11:07 AM, Robert Yang <span dir=3D"ltr">&lt;<a href=3D"mailto:liezhi.=
+yang@windriver.com" target=3D"_blank">liezhi.yang@windriver.com</a>&gt;</sp=
+an> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
+border-left:1px #ccc solid;padding-left:1ex">There isn&#39;t lib/machinetab=
+s.h any more, there isn&#39;t data structures like<br>
+&quot;static const char machine_strings&quot;, either.<br>
 <br>
-</span>I just tested this again after Joe merged the commits from the backl=
-og.<br>
-I&#39;m not longer able to reproduce the failed login. Are you still having=
+This fixed a do_patch error when arm.<br>
 <br>
-login problems?<br></blockquote><div><br></div><div>I also got similar resu=
-lts: <br></div><div>With the check on latest bits: the login issue is not r=
-eproducible on core-image-selinux(with poky-selinux distro)<br></div><div>I=
- can now login properly. <br></div><div><br></div><div><br>Build Configurat=
-ion:<br>BB_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;1.27=
-.1&quot;<br>BUILD_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &=
-quot;x86_64-linux&quot;<br>NATIVELSBSTRING=C2=A0=C2=A0 =3D &quot;Ubuntu-12.=
-04&quot;<br>TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;=
-arm-poky-linux-gnueabi&quot;<br>MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;qemuarm&quot;<br>DISTRO=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;poky-selinux&=
-quot;<br>DISTRO_VERSION=C2=A0=C2=A0=C2=A0 =3D &quot;1.8+snapshot-20150811&q=
-uot;<br>TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;arm armv5 thumb dsp=
-&quot;<br>TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;so=
-ft&quot;<br>meta=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 <br>meta-yocto=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 <br>meta-yocto-bsp=C2=A0=C2=A0=C2=A0 =3D &quot;master:a16e0b4014173af46=
-ef80d643bb71055219b0dab&quot;<br>meta-selinux=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
- =3D &quot;master:684ee9401f33db7c9d5b183988d89c688c9dd0be&quot;<br><br>Tha=
-nks!<br></div><div>Shrikant<br><br></div><div><br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex">
+Signed-off-by: Robert Yang &lt;<a href=3D"mailto:liezhi.yang@windriver.com"=
+>liezhi.yang@windriver.com</a>&gt;<br>
+---<br>
+=C2=A0.../audit/add-system-call-table-for-ARM.patch=C2=A0 =C2=A0 =C2=A0 |=
+=C2=A0 =C2=A046 --------------------<br>
+=C2=A0recipes-security/audit/<a href=3D"http://audit_2.4.3.bb" rel=3D"noref=
+errer" target=3D"_blank">audit_2.4.3.bb</a>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=A0 2 -<br>
+=C2=A02 files changed, 48 deletions(-)<br>
+=C2=A0delete mode 100644 recipes-security/audit/audit/add-system-call-table=
+-for-ARM.patch<br>
 <br>
-Philip<br>
-<span class=3D""><br>
-&gt; On Thu, Jul 30, 2015 at 2:55 PM, Shrikant Bobade<br>
-</span><span class=3D"">&gt; &lt;<a href=3D"mailto:bobadeshrikant@gmail.com=
-">bobadeshrikant@gmail.com</a> &lt;mailto:<a href=3D"mailto:bobadeshrikant@=
-gmail.com">bobadeshrikant@gmail.com</a>&gt;&gt; wrote:<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0From: Shrikant Bobade &lt;<a href=3D"mailto:shrikan=
-t_bobade@mentor.com">shrikant_bobade@mentor.com</a><br>
-</span>&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:shrikant_bobade=
-@mentor.com">shrikant_bobade@mentor.com</a>&gt;&gt;<br>
-<span class=3D"">&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0use wildcard for version: adopting libpam upgrade f=
-rom 1.1.6 to 1.2.1,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0cleanup older recipe and remove patch sepermit-add-=
-DESTDIR-prefix.patch<br>
-&gt;=C2=A0 =C2=A0 =C2=A0since the changes already available with latest sou=
-rce.<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Signed-off-by: Shrikant Bobade &lt;<a href=3D"mailt=
-o:shrikant_bobade@mentor.com">shrikant_bobade@mentor.com</a><br>
-</span>&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:shrikant_bobade=
-@mentor.com">shrikant_bobade@mentor.com</a>&gt;&gt;<br>
-<div><div class=3D"h5">&gt;=C2=A0 =C2=A0 =C2=A0---<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 .../pam/libpam/sepermit-add-DESTDIR-prefix.patch=
-=C2=A0 =C2=A0|=C2=A0 =C2=A031<br>
-&gt;=C2=A0 =C2=A0 =C2=A0--------------------<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 recipes-extended/pam/libpam_%.bbappend=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A0 3 ++<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 recipes-extended/pam/libpam_1.1.6.bbappend=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A010 -------<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 3 files changed, 3 insertions(+), 41 deletions(-)<=
-br>
-&gt;=C2=A0 =C2=A0 =C2=A0 delete mode 100644<br>
-&gt;=C2=A0 =C2=A0 =C2=A0recipes-extended/pam/libpam/sepermit-add-DESTDIR-pr=
-efix.patch<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 create mode 100644 recipes-extended/pam/libpam_%.b=
-bappend<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 delete mode 100644 recipes-extended/pam/libpam_1.1=
-.6.bbappend<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0diff --git<br>
-&gt;=C2=A0 =C2=A0 =C2=A0a/recipes-extended/pam/libpam/sepermit-add-DESTDIR-=
-prefix.patch<br>
-&gt;=C2=A0 =C2=A0 =C2=A0b/recipes-extended/pam/libpam/sepermit-add-DESTDIR-=
-prefix.patch<br>
-&gt;=C2=A0 =C2=A0 =C2=A0deleted file mode 100644<br>
-&gt;=C2=A0 =C2=A0 =C2=A0index d48d386..0000000<br>
-&gt;=C2=A0 =C2=A0 =C2=A0--- a/recipes-extended/pam/libpam/sepermit-add-DEST=
-DIR-prefix.patch<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+++ /dev/null<br>
-&gt;=C2=A0 =C2=A0 =C2=A0@@ -1,31 +0,0 @@<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-Subject: [PATCH] libpam: add missing DESTDIR prefi=
-x<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-The DESTDIR prefix is missing, this will cause bui=
-ld failures for<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-mkdir /var/run/sepermit on the host.<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-| mkdir -p /var/run/sepermit<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-| mkdir: cannot create directory `/var/run/sepermi=
-t&#39;: Permission denied<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-Upstream-Status: Pending<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-Signed-off-by: Xin Ouyang &lt;<a href=3D"mailto:Xi=
-n.Ouyang@windriver.com">Xin.Ouyang@windriver.com</a><br>
-</div></div>&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:Xin.Ouyang=
-@windriver.com">Xin.Ouyang@windriver.com</a>&gt;&gt;<br>
-<span class=3D"">&gt;=C2=A0 =C2=A0 =C2=A0----<br>
-&gt;=C2=A0 =C2=A0 =C2=A0- modules/pam_sepermit/Makefile.am |=C2=A0 =C2=A0 2=
- +-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0- 1 files changed, 1 insertions(+), 1 deletions(-)<=
-br>
-&gt;=C2=A0 =C2=A0 =C2=A0-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-diff --git a/modules/pam_sepermit/Makefile.am<br>
-&gt;=C2=A0 =C2=A0 =C2=A0b/modules/pam_sepermit/Makefile.am<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-index cfc5594..bc82275 100644<br>
-&gt;=C2=A0 =C2=A0 =C2=A0---- a/modules/pam_sepermit/Makefile.am<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-+++ b/modules/pam_sepermit/Makefile.am<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-@@ -35,7 +35,7 @@ if HAVE_LIBSELINUX<br>
-</span>&gt;=C2=A0 =C2=A0 =C2=A0-=C2=A0 =C2=A0securelib_LTLIBRARIES =3D <a h=
-ref=3D"http://pam_sepermit.la" rel=3D"noreferrer" target=3D"_blank">pam_sep=
-ermit.la</a> &lt;<a href=3D"http://pam_sepermit.la" rel=3D"noreferrer" targ=
-et=3D"_blank">http://pam_sepermit.la</a>&gt;<br>
-<div class=3D"HOEnZb"><div class=3D"h5">&gt;=C2=A0 =C2=A0 =C2=A0-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0- install-data-local:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0--=C2=A0 =C2=A0 =C2=A0 mkdir -p $(sepermitlockdir)<=
-br>
-&gt;=C2=A0 =C2=A0 =C2=A0-+=C2=A0 =C2=A0 =C2=A0 mkdir -p $(DESTDIR)$(sepermi=
-tlockdir)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0- endif<br>
-&gt;=C2=A0 =C2=A0 =C2=A0- if ENABLE_REGENERATE_MAN<br>
-&gt;=C2=A0 =C2=A0 =C2=A0- noinst_DATA =3D README pam_sepermit.8 sepermit.co=
-nf.5<br>
-&gt;=C2=A0 =C2=A0 =C2=A0---<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-1.7.5.4<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0diff --git a/recipes-extended/pam/libpam_%.bbappend=
+diff --git a/recipes-security/audit/audit/add-system-call-table-for-ARM.pat=
+ch b/recipes-security/audit/audit/add-system-call-table-for-ARM.patch<br>
+deleted file mode 100644<br>
+index ad94d11..0000000<br>
+--- a/recipes-security/audit/audit/add-system-call-table-for-ARM.patch<br>
++++ /dev/null<br>
+@@ -1,46 +0,0 @@<br>
+-From 52ff74be2f01182ed9d4fcc3da059512fad63d72 Mon Sep 17 00:00:00 2001<br>
+-From: Han Chao &lt;<a href=3D"mailto:chan@windriver.com">chan@windriver.co=
+m</a>&gt;<br>
+-Date: Thu, 27 Feb 2014 14:58:57 +0800<br>
+-Subject: [PATCH] add system call table for ARM.<br>
+-<br>
+-This change enable audit system call on ARM.<br>
+-Add arm System call table on machinetabs.h.<br>
+-Audit system call need enable kernel config CONFIG_AUDITSYSCALL.<br>
+-<br>
+-Signed-off-by: Han Chao &lt;<a href=3D"mailto:chan@windriver.com">chan@win=
+driver.com</a>&gt;<br>
+----<br>
+- lib/machinetabs.h |=C2=A0 =C2=A011 ++++++-----<br>
+- 1 file changed, 6 insertions(+), 5 deletions(-)<br>
+-<br>
+-diff --git a/lib/machinetabs.h b/lib/machinetabs.h<br>
+-index ec2d033..1c2e284 100644<br>
+---- a/lib/machinetabs.h<br>
+-+++ b/lib/machinetabs.h<br>
+-@@ -1,10 +1,11 @@<br>
+--/* This is a generated file, see Makefile.am for its inputs. */<br>
+--static const char machine_strings[] =3D &quot;i386\0i486\0i586\0i686\0ia6=
+4\0ppc\0ppc64\0s390\0s390x\0x86_64&quot;;<br>
+-+/* Such is aways generated file, see Makefile.am for its inputs.<br>
+-+ * But this version is not generated file, which is for ARM. */<br>
+-+static const char machine_strings[] =3D &quot;armeb\0armv5tejl\0armv5tel\=
+0armv6l\0armv7l&quot;;<br>
+- static const unsigned machine_s2i_s[] =3D {<br>
+--=C2=A0 =C2=A0 =C2=A0 0,5,10,15,20,25,29,35,40,46,<br>
+-+=C2=A0 =C2=A0 =C2=A0 0,6,16,25,32,<br>
+- };<br>
+- static const int machine_s2i_i[] =3D {<br>
+--=C2=A0 =C2=A0 =C2=A0 0,0,0,0,2,4,3,6,5,1,<br>
+-+=C2=A0 =C2=A0 =C2=A0 8,8,8,8,8,<br>
+- };<br>
+- static int machine_s2i(const char *s, int *value) {<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0size_t len, i;<br>
+-@@ -19,7 +20,7 @@ static int machine_s2i(const char *s, int *value) {<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+- }<br>
+- static const unsigned machine_i2s_direct[] =3D {<br>
+--=C2=A0 =C2=A0 =C2=A0 0,46,20,29,25,40,35,<br>
+-+=C2=A0 =C2=A0 39,85,59,68,64,<br>
+- };<br>
+- static const char *machine_i2s(int v) {<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0return i2s_direct__(machine_strings, machine_i2=
+s_direct, 0, 6, v);<br>
+---<br>
+-1.7.9.5<br>
+-<br>
+diff --git a/recipes-security/audit/<a href=3D"http://audit_2.4.3.bb" rel=
+=3D"noreferrer" target=3D"_blank">audit_2.4.3.bb</a> b/recipes-security/aud=
+it/<a href=3D"http://audit_2.4.3.bb" rel=3D"noreferrer" target=3D"_blank">a=
+udit_2.4.3.bb</a><br>
+index 233fb00..3f5026c 100644<br>
+--- a/recipes-security/audit/<a href=3D"http://audit_2.4.3.bb" rel=3D"noref=
+errer" target=3D"_blank">audit_2.4.3.bb</a><br>
++++ b/recipes-security/audit/<a href=3D"http://audit_2.4.3.bb" rel=3D"noref=
+errer" target=3D"_blank">audit_2.4.3.bb</a><br>
+@@ -20,8 +20,6 @@ SRC_URI =3D &quot;<a href=3D"http://people.redhat.com/sgr=
+ubb/audit/audit-${PV}.tar.gz" rel=3D"noreferrer" target=3D"_blank">http://p=
+eople.redhat.com/sgrubb/audit/audit-${PV}.tar.gz</a> \<br>
+=C2=A0SRC_URI[md5sum] =3D &quot;544d863af2016b76afd8d1691b251164&quot;<br>
+=C2=A0SRC_URI[sha256sum] =3D &quot;9c914704fecc602e143e37152f3efbab24696926=
+84c1a8cc1b801c1b49c7abc6&quot;<br>
 <br>
-&gt;=C2=A0 =C2=A0 =C2=A0b/recipes-extended/pam/libpam_%.bbappend<br>
-&gt;=C2=A0 =C2=A0 =C2=A0new file mode 100644<br>
-&gt;=C2=A0 =C2=A0 =C2=A0index 0000000..adcf938<br>
-&gt;=C2=A0 =C2=A0 =C2=A0--- /dev/null<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+++ b/recipes-extended/pam/libpam_%.bbappend<br>
-&gt;=C2=A0 =C2=A0 =C2=A0@@ -0,0 +1,3 @@<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+inherit enable-selinux<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+<br>
-&gt;=C2=A0 =C2=A0 =C2=A0+RDEPENDS_${PN}-runtime +=3D &quot;${@target_selinu=
-x(d, &#39;pam-plugin-selinux&#39;)}&quot;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0diff --git a/recipes-extended/pam/libpam_1.1.6.bbap=
-pend<br>
-&gt;=C2=A0 =C2=A0 =C2=A0b/recipes-extended/pam/libpam_1.1.6.bbappend<br>
-&gt;=C2=A0 =C2=A0 =C2=A0deleted file mode 100644<br>
-&gt;=C2=A0 =C2=A0 =C2=A0index 71acecc..0000000<br>
-&gt;=C2=A0 =C2=A0 =C2=A0--- a/recipes-extended/pam/libpam_1.1.6.bbappend<br=
->
-&gt;=C2=A0 =C2=A0 =C2=A0+++ /dev/null<br>
-&gt;=C2=A0 =C2=A0 =C2=A0@@ -1,10 +0,0 @@<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-#FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${P=
-N}:&quot;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-FILESPATH_append :=3D &quot;:${@base_set_filespath=
-([&#39;${THISDIR}/${PN}&#39;], d)}&quot;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-SRC_URI +=3D &quot;file://sepermit-add-DESTDIR-pre=
-fix.patch&quot;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-PR .=3D &quot;.4&quot;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-inherit enable-selinux<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-<br>
-&gt;=C2=A0 =C2=A0 =C2=A0-RDEPENDS_${PN}-runtime +=3D &quot;${@target_selinu=
-x(d, &#39;pam-plugin-selinux&#39;)}&quot;<br>
-&gt;=C2=A0 =C2=A0 =C2=A0--<br>
-&gt;=C2=A0 =C2=A0 =C2=A01.7.9.5<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
+-SRC_URI_append_arm =3D &quot;file://add-system-call-table-for-ARM.patch&qu=
+ot;<br>
+-<br>
+=C2=A0inherit autotools pythonnative update-rc.d systemd<br>
 <br>
-</div></div></blockquote></div><br></div></div></div>
+=C2=A0UPDATERCPN =3D &quot;auditd&quot;<br>
+<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+1.7.9.5<br>
+<br>
+--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</font></span></blockquote></div><br></div></div></div></div></div></div>
 
---047d7bd75758f0a01e051d0722a6--
+--001a113f9a621b680c051d0738f3--
