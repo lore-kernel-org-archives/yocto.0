@@ -1,53 +1,48 @@
-Return-Path: <bobadeshrikant@gmail.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4BE3E00A9A; Tue, 11 Aug 2015 04:15:30 -0700 (PDT)
+	id B5474E00A9A; Tue, 11 Aug 2015 04:56:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bobadeshrikant[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.175 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f175.google.com (mail-io0-f175.google.com
-	[209.85.223.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3849AE00A92
-	for <yocto@yoctoproject.org>; Tue, 11 Aug 2015 04:15:27 -0700 (PDT)
-Received: by ioeg141 with SMTP id g141so198192035ioe.3
-	for <yocto@yoctoproject.org>; Tue, 11 Aug 2015 04:15:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=As+W0GKa80OFA+go9UHDtqJq0KX69o+OiUEkiuiqius=;
-	b=rvEOMRDgpjp9fTwbyS+2xqWKEpLUnWR2xihUfuN+xFWFM2i7bOGgSVIf+83pl5gFe5
-	9MeNlHevmTuqkHOAvfWl9HNyyTQhUSxkw4vI1t3wXURBBL7oLJTT3dRx0DvFelsnOR5a
-	E2YZ2tiqJl2ivvSBnkHJdY3Mp2wOqHKzuBlVUmSpgrzDjYIHl9Q4DcdQa4H2vnQh9IwG
-	59XzLTN9dDcvBe1fXsdqbz4VacUluPXnXXaYePfbxrQj0k7sh/lvi0jxMOZBQvACP6SD
-	e9vaVSX88x7v5ZMs2WETY3tSehT90EQiwPRjMT75h1em5RsziMD6hW4IBcnj9/b5AyOT
-	nM3g==
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83387E00A92
+	for <yocto@yoctoproject.org>; Tue, 11 Aug 2015 04:56:20 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 6319227E327;
+	Tue, 11 Aug 2015 11:56:18 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id CT0gTIhXGovP; Tue, 11 Aug 2015 11:56:15 +0000 (UTC)
+Received: from [192.168.0.2] (cpc47-live22-2-0-cust92.17-2.cable.virginm.net
+	[86.17.157.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id F1B9A27E30B;
+	Tue, 11 Aug 2015 11:56:09 +0000 (UTC)
+To: petter@technux.se, Herve Jourdain <herve.jourdain@neuf.fr>
+References: <1439204904-8305-1-git-send-email-ajlennon@dynamicdevices.co.uk>
+	<fc34ba0543c946b98d8d736ff5e66421@technux.se>
+	<55C9B2EE.2090406@gmail.com>
+	<af77dd672b17395613fdd2d09285aa46@technux.se>
+	<CAJ8H0rJe3Nz+d32ksyZ3iP7w9rzV5AkvCKsZy=qpFAmSbHjPpg@mail.gmail.com>
+	<034593ed817a9a220ef7074e598f9b2d@technux.se>
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Message-ID: <55C9E2D2.8010000@dynamicdevices.co.uk>
+Date: Tue, 11 Aug 2015 12:56:02 +0100
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.1.0
 MIME-Version: 1.0
-X-Received: by 10.107.128.28 with SMTP id b28mr27255825iod.84.1439291726848;
-	Tue, 11 Aug 2015 04:15:26 -0700 (PDT)
-Received: by 10.50.157.34 with HTTP; Tue, 11 Aug 2015 04:15:26 -0700 (PDT)
-In-Reply-To: <1439271436-32621-1-git-send-email-liezhi.yang@windriver.com>
-References: <1439271436-32621-1-git-send-email-liezhi.yang@windriver.com>
-Date: Tue, 11 Aug 2015 16:45:26 +0530
-Message-ID: <CALwQErpPD6pxceWxkOec1g5u7Qu5rHv3VJzb+yFqyMFJ4KQXGg@mail.gmail.com>
-From: Shrikant Bobade <bobadeshrikant@gmail.com>
-To: Robert Yang <liezhi.yang@windriver.com>
+In-Reply-To: <034593ed817a9a220ef7074e598f9b2d@technux.se>
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux] [PATCH] audit: remove add-system-call-table-for-ARM.patch
+Subject: Re: [meta-raspberrypi][PATCH 1/2] linux-raspberrypi: Update kernel to 3.18.16
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,235 +54,425 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Aug 2015 11:15:30 -0000
-Content-Type: multipart/alternative; boundary=001a113f9a621b680c051d0738f3
+X-List-Received-Date: Tue, 11 Aug 2015 11:56:30 -0000
+Content-Type: multipart/alternative;
+	boundary="------------080802070903060506000108"
 
---001a113f9a621b680c051d0738f3
-Content-Type: text/plain; charset=UTF-8
+--------------080802070903060506000108
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-Thanks for an update.
 
-Works for me too..
 
-Thanks
-Shrikant
-
-On Tue, Aug 11, 2015 at 11:07 AM, Robert Yang <liezhi.yang@windriver.com>
-wrote:
-
-> There isn't lib/machinetabs.h any more, there isn't data structures like
-> "static const char machine_strings", either.
+On 11/08/2015 11:34, Petter Mabäcker wrote:
 >
-> This fixed a do_patch error when arm.
+> 2015-08-11 11:03 skrev Alex Lennon:
 >
-> Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
-> ---
->  .../audit/add-system-call-table-for-ARM.patch      |   46
-> --------------------
->  recipes-security/audit/audit_2.4.3.bb              |    2 -
->  2 files changed, 48 deletions(-)
->  delete mode 100644
-> recipes-security/audit/audit/add-system-call-table-for-ARM.patch
+>>
+>>
+>> On Tuesday, August 11, 2015, Petter Mabäcker <petter@technux.se
+>> <mailto:petter@technux.se>> wrote:
+>>
+>>     2015-08-11 10:31 skrev Alex J Lennon:
+>>
+>>         On 11/08/2015 08:58, Petter Mabäcker wrote:
+>>
+>>             2015-08-10 13:08 skrev Alex J Lennon:
+>>
+>>                 This requires some changes to KERNEL_DEVICETREE as
+>>                 the dtb layout has changed to support overlays. This
+>>                 change also makes us ready to support kernel 4.x
+>>                 series Signed-off-by: Alex J Lennon
+>>                 <ajlennon@dynamicdevices.co.uk
+>>                 <mailto:ajlennon@dynamicdevices.co.uk>> ---
+>>                 conf/machine/include/rpi-base.inc | 22
+>>                 ++++++++++------------
+>>                 recipes-kernel/linux/linux-raspberrypi_3.18.bb
+>>                 <http://linux-raspberrypi_3.18.bb> | 9 +++++++-- 2
+>>                 files changed, 17 insertions(+), 14 deletions(-) diff
+>>                 --git a/conf/machine/include/rpi-base.inc
+>>                 b/conf/machine/include/rpi-base.inc index
+>>                 1dda207..8caa5ba 100644 ---
+>>                 a/conf/machine/include/rpi-base.inc +++
+>>                 b/conf/machine/include/rpi-base.inc @@ -23,18 +23,16
+>>                 @@ KERNEL_DEVICETREE ?= " \ bcm2708-rpi-b-plus.dtb \
+>>                 bcm2709-rpi-2-b.dtb \ \ - ds1307-rtc-overlay.dtb \ -
+>>                 hifiberry-amp-overlay.dtb \ -
+>>                 hifiberry-dac-overlay.dtb \ -
+>>                 hifiberry-dacplus-overlay.dtb \ -
+>>                 hifiberry-digi-overlay.dtb \ -
+>>                 iqaudio-dac-overlay.dtb \ -
+>>                 iqaudio-dacplus-overlay.dtb \ - lirc-rpi-overlay.dtb
+>>                 \ - pcf8523-rtc-overlay.dtb \ - pps-gpio-overlay.dtb
+>>                 \ - w1-gpio-overlay.dtb \ -
+>>                 w1-gpio-pullup-overlay.dtb \ +
+>>                 overlays/hifiberry-amp-overlay.dtb \ +
+>>                 overlays/hifiberry-dac-overlay.dtb \ +
+>>                 overlays/hifiberry-dacplus-overlay.dtb \ +
+>>                 overlays/hifiberry-digi-overlay.dtb \ +
+>>                 overlays/iqaudio-dac-overlay.dtb \ +
+>>                 overlays/iqaudio-dacplus-overlay.dtb \ +
+>>                 overlays/lirc-rpi-overlay.dtb \ +
+>>                 overlays/pps-gpio-overlay.dtb \ +
+>>                 overlays/w1-gpio-overlay.dtb \ +
+>>                 overlays/w1-gpio-pullup-overlay.dtb \ "
+>>                 KERNEL_IMAGETYPE ?= "Image" diff --git
+>>                 a/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+>>                 <http://linux-raspberrypi_3.18.bb>
+>>                 b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+>>                 <http://linux-raspberrypi_3.18.bb> index
+>>                 6d8b155..18c2020 100644 ---
+>>                 a/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+>>                 <http://linux-raspberrypi_3.18.bb> +++
+>>                 b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+>>                 <http://linux-raspberrypi_3.18.bb> @@ -1,6 +1,11 @@
+>>                 -LINUX_VERSION ?= "3.18.11" +LINUX_VERSION ?=
+>>                 "3.18.16" -SRCREV =
+>>                 "d64fa8121fca9883d6fb14ca06d2abf66496195e" +SRCREV =
+>>                 "1bb18c8f721ef674a447f3622273f2e2de7a205c" SRC_URI =
+>>                 "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y
+>>                 <http://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y>"
+>>                 require linux-raspberrypi.inc + +# Create missing out
+>>                 of tree 'overlays' directory prior to install step
+>>                 +do_compile_append() { + mkdir -p
+>>                 ${B}/arch/arm/boot/dts/overlays +} -- 1.9.1
+>>
+>>             Hi Alex, At least I get problems during compile step with
+>>             above change (I'm building for rpi2). So are your sure
+>>             '${B}/arch/arm/boot/dts/overlays' isn't needed during
+>>             compile? I tried with changing above from append to
+>>             prepand instead and then it worked fine for me (when
+>>             building 3.18 kernel). (from log.do_compile, complete log
+>>             can be found at:
+>>             http://www.technux.se/logs/log.do_compile.4398.fail )
+>>             KSYM .tmp_kallsyms1.o KSYM .tmp_kallsyms2.o LD vmlinux
+>>             SORTEX vmlinux SYSMAP System.map OBJCOPY
+>>             arch/arm/boot/Image Kernel: arch/arm/boot/Image is ready
+>>             NOTE: make -j 4 bcm2708-rpi-b.dtb DTC
+>>             arch/arm/boot/dts/bcm2708-rpi-b.dtb NOTE: make -j 4
+>>             bcm2708-rpi-b-plus.dtb DTC
+>>             arch/arm/boot/dts/bcm2708-rpi-b-plus.dtb NOTE: make -j 4
+>>             bcm2709-rpi-2-b.dtb DTC
+>>             arch/arm/boot/dts/bcm2709-rpi-2-b.dtb NOTE: make -j 4
+>>             overlays/hifiberry-amp-overlay.dtb DTC
+>>             arch/arm/boot/dts/overlays/hifiberry-amp-overlay.dtb cc1:
+>>             fatal error: opening output file
+>>             arch/arm/boot/dts/overlays/.hifiberry-amp-overlay.dtb.dts.tmp:
+>>             No such file or directory compilation terminated.
+>>             make[3]: ***
+>>             [arch/arm/boot/dts/overlays/hifiberry-amp-overlay.dtb]
+>>             Error 1 make[2]: *** [overlays/hifiberry-amp-overlay.dtb]
+>>             Error 2 make[1]: *** [sub-make] Error 2 make: ***
+>>             [__sub-make] Error 2 ERROR: oe_runmake failed ERROR:
+>>             Function failed: do_compile (log file is located at
+>>             /home/epetmab/programming/yocto/alex_test_sstate/tmp/work/raspberrypi2-poky-linux-gnueabi/linux-raspberrypi/3.18.16+git1bb18c8f721ef674a447f3622273f2e2de7a205c-r0/temp/log.do_compile.4398)
+>>             BR, Petter
+>>
+>>         Hi Petter,
+>>
+>>         Thanks for testing that out. That is indeed exactly what I was seeing
+>>         before I added the directory creation.
+>>
+>>         I did do the following test for both 3.18.x and 4.1.3 kernels (rpi2)
+>>
+>>         bitbake -f -c cleansstate virtual/kernel
+>>         bitbake -f virtual/kernel
+>>
+>>         I've just re-run that again here and it works for me as-is. I thought
+>>         cleansstate was causing me to build from scratch so I'm unclear as to
+>>         why I'm not seeing the problem...
+>>
+>>         NB. I'd also add that for preference I'd like to see the kernel build
+>>         Makefile patched with whatever is in 4.1 to create that needed overlays
+>>         directory but I've had a look and can't spot it.
+>>
+>>         Cheers,
+>>
+>>         Alex
+>>
+>>     Hmm Ok, might be some "pebcak" from my side, since I was using an
+>>     old sstate, but according to my history I did 'cleanall' before I
+>>     got the problem. But will re-try this on a completely new build
+>>     without any old savings (it will take some time to test
+>>     however..). What struck me was that the failure occurred in
+>>     do_compile (from what I can tell the failure in my logs occur
+>>     before your _append had been able to do anything about it?). I
+>>     will analyse the run.do_compile if the failure occurs again and
+>>     see if that make any sense. I will let you know if the problem
+>>     occurs again. But since both you and Herve haven't seen any
+>>     problem I guess it's something I'm doing wrong..
+>>
+>>  
+>> Thanks. As I was trying to figure out what was going on I did also
+>> drop into a devshell and run the configure/compile/install steps
+>> manually and it was the install step failing so I'd be a little
+>> surprised but let's see.
+>>  
+>> Cheer, Alex 
+>>  
+>>  
+>>  
 >
-> diff --git
-> a/recipes-security/audit/audit/add-system-call-table-for-ARM.patch
-> b/recipes-security/audit/audit/add-system-call-table-for-ARM.patch
-> deleted file mode 100644
-> index ad94d11..0000000
-> --- a/recipes-security/audit/audit/add-system-call-table-for-ARM.patch
-> +++ /dev/null
-> @@ -1,46 +0,0 @@
-> -From 52ff74be2f01182ed9d4fcc3da059512fad63d72 Mon Sep 17 00:00:00 2001
-> -From: Han Chao <chan@windriver.com>
-> -Date: Thu, 27 Feb 2014 14:58:57 +0800
-> -Subject: [PATCH] add system call table for ARM.
-> -
-> -This change enable audit system call on ARM.
-> -Add arm System call table on machinetabs.h.
-> -Audit system call need enable kernel config CONFIG_AUDITSYSCALL.
-> -
-> -Signed-off-by: Han Chao <chan@windriver.com>
-> ----
-> - lib/machinetabs.h |   11 ++++++-----
-> - 1 file changed, 6 insertions(+), 5 deletions(-)
-> -
-> -diff --git a/lib/machinetabs.h b/lib/machinetabs.h
-> -index ec2d033..1c2e284 100644
-> ---- a/lib/machinetabs.h
-> -+++ b/lib/machinetabs.h
-> -@@ -1,10 +1,11 @@
-> --/* This is a generated file, see Makefile.am for its inputs. */
-> --static const char machine_strings[] =
-> "i386\0i486\0i586\0i686\0ia64\0ppc\0ppc64\0s390\0s390x\0x86_64";
-> -+/* Such is aways generated file, see Makefile.am for its inputs.
-> -+ * But this version is not generated file, which is for ARM. */
-> -+static const char machine_strings[] =
-> "armeb\0armv5tejl\0armv5tel\0armv6l\0armv7l";
-> - static const unsigned machine_s2i_s[] = {
-> --      0,5,10,15,20,25,29,35,40,46,
-> -+      0,6,16,25,32,
-> - };
-> - static const int machine_s2i_i[] = {
-> --      0,0,0,0,2,4,3,6,5,1,
-> -+      8,8,8,8,8,
-> - };
-> - static int machine_s2i(const char *s, int *value) {
-> -       size_t len, i;
-> -@@ -19,7 +20,7 @@ static int machine_s2i(const char *s, int *value) {
-> -       }
-> - }
-> - static const unsigned machine_i2s_direct[] = {
-> --      0,46,20,29,25,40,35,
-> -+    39,85,59,68,64,
-> - };
-> - static const char *machine_i2s(int v) {
-> -       return i2s_direct__(machine_strings, machine_i2s_direct, 0, 6, v);
-> ---
-> -1.7.9.5
-> -
-> diff --git a/recipes-security/audit/audit_2.4.3.bb
-> b/recipes-security/audit/audit_2.4.3.bb
-> index 233fb00..3f5026c 100644
-> --- a/recipes-security/audit/audit_2.4.3.bb
-> +++ b/recipes-security/audit/audit_2.4.3.bb
-> @@ -20,8 +20,6 @@ SRC_URI = "
-> http://people.redhat.com/sgrubb/audit/audit-${PV}.tar.gz \
->  SRC_URI[md5sum] = "544d863af2016b76afd8d1691b251164"
->  SRC_URI[sha256sum] =
-> "9c914704fecc602e143e37152f3efbab2469692684c1a8cc1b801c1b49c7abc6"
+> I think I know what the problem is. Are you building using poky:fido?
+> Because I found a very interesting commit in this area from May that
+> isn't included in 'fido' from what I can see. d2e26ef kernel: Build
+> DTBs early ... kernel: Build DTBs early Pull out the compilation of
+> the DTB blobs right after the kernel's own do_compile function
+> finishes. This makes them available just in time for the kernel image
+> construction functions. ... This is also confirmed in the below
+> run.do_compile log. So I guess a my suggestion with a _prepend instead
+> will solve the problem.
 >
-> -SRC_URI_append_arm = "file://add-system-call-table-for-ARM.patch"
-> -
->  inherit autotools pythonnative update-rc.d systemd
+> do_compile() {
+>     kernel_do_compile
+>         if test -n "     bcm2708-rpi-b.dtb     bcm2708-rpi-b-plus.dtb     bcm2709-rpi-2-b.dtb         overlays/hifiberry-amp-overlay.dtb     overlays/hifiberry-dac-overlay.dtb     overlays/hifiberry-dacplus-overlay.d
+> tb     overlays/hifiberry-digi-overlay.dtb     overlays/iqaudio-dac-overlay.dtb     overlays/iqaudio-dacplus-overlay.dtb     overlays/lirc-rpi-overlay.dtb     overlays/pps-gpio-overlay.dtb     overlays/w1-gpio-overla
+> y.dtb     overlays/w1-gpio-pullup-overlay.dtb     "; then
+>                 for DTB in      bcm2708-rpi-b.dtb     bcm2708-rpi-b-plus.dtb     bcm2709-rpi-2-b.dtb         overlays/hifiberry-amp-overlay.dtb     overlays/hifiberry-dac-overlay.dtb     overlays/hifiberry-dacplus-ov
+> erlay.dtb     overlays/hifiberry-digi-overlay.dtb     overlays/iqaudio-dac-overlay.dtb     overlays/iqaudio-dacplus-overlay.dtb     overlays/lirc-rpi-overlay.dtb     overlays/pps-gpio-overlay.dtb     overlays/w1-gpio
+> -overlay.dtb     overlays/w1-gpio-pullup-overlay.dtb     ; do
+>                         if echo ${DTB} | grep -q '/dts/'; then
+>                                 bbwarn "${DTB} contains the full path to the the dts file, but only the dtb name should be used."
+>                                 DTB=`basename ${DTB} | sed 's,\.dts$,.dtb,g'`
+>                         fi
+>                         oe_runmake ${DTB}
+>                 done
+>         fi
+>   mkdir -p /tmp/work/raspberrypi2-poky-linux-gnueabi/linux-raspberrypi/3.18.16+git1bb18c8f721ef674a447f3622273f2e2de7a205c-r0/linux-raspberrypi2-standard-build/arch/arm/boot/dts/overlays
 >
->  UPDATERCPN = "auditd"
-> --
-> 1.7.9.5
+> }
 >
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> BR, Petter
+>
+>  
 >
 
---001a113f9a621b680c051d0738f3
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Very interesting. fido - I am indeed. OK I'll modify and resubmit with
+do_compile_prepend(). Thanks!
 
-<div dir=3D"ltr"><div><div><div>Thanks for an update. <br><br></div>Works f=
-or me too.. <br><br></div>Thanks<br></div>Shrikant<br><div><div><div><div><=
-div class=3D"gmail_extra"><br><div class=3D"gmail_quote">On Tue, Aug 11, 20=
-15 at 11:07 AM, Robert Yang <span dir=3D"ltr">&lt;<a href=3D"mailto:liezhi.=
-yang@windriver.com" target=3D"_blank">liezhi.yang@windriver.com</a>&gt;</sp=
-an> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
-border-left:1px #ccc solid;padding-left:1ex">There isn&#39;t lib/machinetab=
-s.h any more, there isn&#39;t data structures like<br>
-&quot;static const char machine_strings&quot;, either.<br>
-<br>
-This fixed a do_patch error when arm.<br>
-<br>
-Signed-off-by: Robert Yang &lt;<a href=3D"mailto:liezhi.yang@windriver.com"=
->liezhi.yang@windriver.com</a>&gt;<br>
----<br>
-=C2=A0.../audit/add-system-call-table-for-ARM.patch=C2=A0 =C2=A0 =C2=A0 |=
-=C2=A0 =C2=A046 --------------------<br>
-=C2=A0recipes-security/audit/<a href=3D"http://audit_2.4.3.bb" rel=3D"noref=
-errer" target=3D"_blank">audit_2.4.3.bb</a>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=A0 2 -<br>
-=C2=A02 files changed, 48 deletions(-)<br>
-=C2=A0delete mode 100644 recipes-security/audit/audit/add-system-call-table=
--for-ARM.patch<br>
-<br>
-diff --git a/recipes-security/audit/audit/add-system-call-table-for-ARM.pat=
-ch b/recipes-security/audit/audit/add-system-call-table-for-ARM.patch<br>
-deleted file mode 100644<br>
-index ad94d11..0000000<br>
---- a/recipes-security/audit/audit/add-system-call-table-for-ARM.patch<br>
-+++ /dev/null<br>
-@@ -1,46 +0,0 @@<br>
--From 52ff74be2f01182ed9d4fcc3da059512fad63d72 Mon Sep 17 00:00:00 2001<br>
--From: Han Chao &lt;<a href=3D"mailto:chan@windriver.com">chan@windriver.co=
-m</a>&gt;<br>
--Date: Thu, 27 Feb 2014 14:58:57 +0800<br>
--Subject: [PATCH] add system call table for ARM.<br>
--<br>
--This change enable audit system call on ARM.<br>
--Add arm System call table on machinetabs.h.<br>
--Audit system call need enable kernel config CONFIG_AUDITSYSCALL.<br>
--<br>
--Signed-off-by: Han Chao &lt;<a href=3D"mailto:chan@windriver.com">chan@win=
-driver.com</a>&gt;<br>
-----<br>
-- lib/machinetabs.h |=C2=A0 =C2=A011 ++++++-----<br>
-- 1 file changed, 6 insertions(+), 5 deletions(-)<br>
--<br>
--diff --git a/lib/machinetabs.h b/lib/machinetabs.h<br>
--index ec2d033..1c2e284 100644<br>
----- a/lib/machinetabs.h<br>
--+++ b/lib/machinetabs.h<br>
--@@ -1,10 +1,11 @@<br>
---/* This is a generated file, see Makefile.am for its inputs. */<br>
---static const char machine_strings[] =3D &quot;i386\0i486\0i586\0i686\0ia6=
-4\0ppc\0ppc64\0s390\0s390x\0x86_64&quot;;<br>
--+/* Such is aways generated file, see Makefile.am for its inputs.<br>
--+ * But this version is not generated file, which is for ARM. */<br>
--+static const char machine_strings[] =3D &quot;armeb\0armv5tejl\0armv5tel\=
-0armv6l\0armv7l&quot;;<br>
-- static const unsigned machine_s2i_s[] =3D {<br>
---=C2=A0 =C2=A0 =C2=A0 0,5,10,15,20,25,29,35,40,46,<br>
--+=C2=A0 =C2=A0 =C2=A0 0,6,16,25,32,<br>
-- };<br>
-- static const int machine_s2i_i[] =3D {<br>
---=C2=A0 =C2=A0 =C2=A0 0,0,0,0,2,4,3,6,5,1,<br>
--+=C2=A0 =C2=A0 =C2=A0 8,8,8,8,8,<br>
-- };<br>
-- static int machine_s2i(const char *s, int *value) {<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0size_t len, i;<br>
--@@ -19,7 +20,7 @@ static int machine_s2i(const char *s, int *value) {<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-- }<br>
-- static const unsigned machine_i2s_direct[] =3D {<br>
---=C2=A0 =C2=A0 =C2=A0 0,46,20,29,25,40,35,<br>
--+=C2=A0 =C2=A0 39,85,59,68,64,<br>
-- };<br>
-- static const char *machine_i2s(int v) {<br>
--=C2=A0 =C2=A0 =C2=A0 =C2=A0return i2s_direct__(machine_strings, machine_i2=
-s_direct, 0, 6, v);<br>
----<br>
--1.7.9.5<br>
--<br>
-diff --git a/recipes-security/audit/<a href=3D"http://audit_2.4.3.bb" rel=
-=3D"noreferrer" target=3D"_blank">audit_2.4.3.bb</a> b/recipes-security/aud=
-it/<a href=3D"http://audit_2.4.3.bb" rel=3D"noreferrer" target=3D"_blank">a=
-udit_2.4.3.bb</a><br>
-index 233fb00..3f5026c 100644<br>
---- a/recipes-security/audit/<a href=3D"http://audit_2.4.3.bb" rel=3D"noref=
-errer" target=3D"_blank">audit_2.4.3.bb</a><br>
-+++ b/recipes-security/audit/<a href=3D"http://audit_2.4.3.bb" rel=3D"noref=
-errer" target=3D"_blank">audit_2.4.3.bb</a><br>
-@@ -20,8 +20,6 @@ SRC_URI =3D &quot;<a href=3D"http://people.redhat.com/sgr=
-ubb/audit/audit-${PV}.tar.gz" rel=3D"noreferrer" target=3D"_blank">http://p=
-eople.redhat.com/sgrubb/audit/audit-${PV}.tar.gz</a> \<br>
-=C2=A0SRC_URI[md5sum] =3D &quot;544d863af2016b76afd8d1691b251164&quot;<br>
-=C2=A0SRC_URI[sha256sum] =3D &quot;9c914704fecc602e143e37152f3efbab24696926=
-84c1a8cc1b801c1b49c7abc6&quot;<br>
-<br>
--SRC_URI_append_arm =3D &quot;file://add-system-call-table-for-ARM.patch&qu=
-ot;<br>
--<br>
-=C2=A0inherit autotools pythonnative update-rc.d systemd<br>
-<br>
-=C2=A0UPDATERCPN =3D &quot;auditd&quot;<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-1.7.9.5<br>
-<br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</font></span></blockquote></div><br></div></div></div></div></div></div>
+Cheers, Alex
 
---001a113f9a621b680c051d0738f3--
+
+--------------080802070903060506000108
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <link href="chrome://translator/skin/floatingPanel.css"
+      type="text/css" rel="stylesheet">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <br>
+    <br>
+    <div class="moz-cite-prefix">On 11/08/2015 11:34, Petter Mabäcker
+      wrote:<br>
+    </div>
+    <blockquote cite="mid:034593ed817a9a220ef7074e598f9b2d@technux.se"
+      type="cite">
+      <p>2015-08-11 11:03 skrev Alex Lennon:</p>
+      <blockquote type="cite" style="padding-left:5px;
+        border-left:#1010ff 2px solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignored --><!-- meta ignored --><br>
+        <br>
+        On Tuesday, August 11, 2015, Petter Mabäcker &lt;<a
+          moz-do-not-send="true" href="mailto:petter@technux.se"><a class="moz-txt-link-abbreviated" href="mailto:petter@technux.se">petter@technux.se</a></a>&gt;
+        wrote:<br>
+        <blockquote class="gmail_quote" style="margin: 0 0 0 .8ex;
+          border-left: 1px #ccc solid; padding-left: 1ex;"><span
+            style="text-decoration: underline;"></span>
+          <div style="font-family: Helvetica,Arial,sans-serif;">
+            <p>2015-08-11 10:31 skrev Alex J Lennon:</p>
+            <blockquote style="padding-left: 5px; border-left: #1010ff
+              2px solid; margin-left: 5px; width: 100%;">
+              <pre>On 11/08/2015 08:58, Petter Mabäcker wrote:</pre>
+              <blockquote style="padding-left: 5px; border-left: #1010ff
+                2px solid; margin-left: 5px; width: 100%;">2015-08-10
+                13:08 skrev Alex J Lennon:
+                <blockquote style="padding-left: 5px; border-left:
+                  #1010ff 2px solid; margin-left: 5px; width: 100%;">This
+                  requires some changes to KERNEL_DEVICETREE as the dtb
+                  layout has changed to support overlays. This change
+                  also makes us ready to support kernel 4.x series
+                  Signed-off-by: Alex J Lennon &lt;<a
+                    moz-do-not-send="true"><a class="moz-txt-link-abbreviated" href="mailto:ajlennon@dynamicdevices.co.uk">ajlennon@dynamicdevices.co.uk</a></a>
+                  &lt;mailto:<a moz-do-not-send="true">ajlennon@dynamicdevices.co.uk</a>&gt;&gt;
+                  --- conf/machine/include/rpi-base.inc | 22
+                  ++++++++++------------ recipes-kernel/linux/<a
+                    moz-do-not-send="true"
+                    href="http://linux-raspberrypi_3.18.bb">linux-raspberrypi_3.18.bb</a>
+                  | 9 +++++++-- 2 files changed, 17 insertions(+), 14
+                  deletions(-) diff --git
+                  a/conf/machine/include/rpi-base.inc
+                  b/conf/machine/include/rpi-base.inc index
+                  1dda207..8caa5ba 100644 ---
+                  a/conf/machine/include/rpi-base.inc +++
+                  b/conf/machine/include/rpi-base.inc @@ -23,18 +23,16
+                  @@ KERNEL_DEVICETREE ?= " \ bcm2708-rpi-b-plus.dtb \
+                  bcm2709-rpi-2-b.dtb \ \ - ds1307-rtc-overlay.dtb \ -
+                  hifiberry-amp-overlay.dtb \ -
+                  hifiberry-dac-overlay.dtb \ -
+                  hifiberry-dacplus-overlay.dtb \ -
+                  hifiberry-digi-overlay.dtb \ - iqaudio-dac-overlay.dtb
+                  \ - iqaudio-dacplus-overlay.dtb \ -
+                  lirc-rpi-overlay.dtb \ - pcf8523-rtc-overlay.dtb \ -
+                  pps-gpio-overlay.dtb \ - w1-gpio-overlay.dtb \ -
+                  w1-gpio-pullup-overlay.dtb \ +
+                  overlays/hifiberry-amp-overlay.dtb \ +
+                  overlays/hifiberry-dac-overlay.dtb \ +
+                  overlays/hifiberry-dacplus-overlay.dtb \ +
+                  overlays/hifiberry-digi-overlay.dtb \ +
+                  overlays/iqaudio-dac-overlay.dtb \ +
+                  overlays/iqaudio-dacplus-overlay.dtb \ +
+                  overlays/lirc-rpi-overlay.dtb \ +
+                  overlays/pps-gpio-overlay.dtb \ +
+                  overlays/w1-gpio-overlay.dtb \ +
+                  overlays/w1-gpio-pullup-overlay.dtb \ "
+                  KERNEL_IMAGETYPE ?= "Image" diff --git
+                  a/recipes-kernel/linux/<a moz-do-not-send="true"
+                    href="http://linux-raspberrypi_3.18.bb">linux-raspberrypi_3.18.bb</a>
+                  b/recipes-kernel/linux/<a moz-do-not-send="true"
+                    href="http://linux-raspberrypi_3.18.bb">linux-raspberrypi_3.18.bb</a>
+                  index 6d8b155..18c2020 100644 ---
+                  a/recipes-kernel/linux/<a moz-do-not-send="true"
+                    href="http://linux-raspberrypi_3.18.bb">linux-raspberrypi_3.18.bb</a>
+                  +++ b/recipes-kernel/linux/<a moz-do-not-send="true"
+                    href="http://linux-raspberrypi_3.18.bb">linux-raspberrypi_3.18.bb</a>
+                  @@ -1,6 +1,11 @@ -LINUX_VERSION ?= "3.18.11"
+                  +LINUX_VERSION ?= "3.18.16" -SRCREV =
+                  "d64fa8121fca9883d6fb14ca06d2abf66496195e" +SRCREV =
+                  "1bb18c8f721ef674a447f3622273f2e2de7a205c" SRC_URI =
+                  "<a class="moz-txt-link-freetext" href="git://">git://</a><a moz-do-not-send="true"
+href="http://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y">github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y</a>"
+                  require linux-raspberrypi.inc + +# Create missing out
+                  of tree 'overlays' directory prior to install step
+                  +do_compile_append() { + mkdir -p
+                  ${B}/arch/arm/boot/dts/overlays +} -- 1.9.1</blockquote>
+                Hi Alex, At least I get problems during compile step
+                with above change (I'm building for rpi2). So are your
+                sure '${B}/arch/arm/boot/dts/overlays' isn't needed
+                during compile? I tried with changing above from append
+                to prepand instead and then it worked fine for me (when
+                building 3.18 kernel). (from log.do_compile, complete
+                log can be found at: <a moz-do-not-send="true"
+                  href="http://www.technux.se/logs/log.do_compile.4398.fail">http://www.technux.se/logs/log.do_compile.4398.fail</a>
+                ) KSYM .tmp_kallsyms1.o KSYM .tmp_kallsyms2.o LD vmlinux
+                SORTEX vmlinux SYSMAP System.map OBJCOPY
+                arch/arm/boot/Image Kernel: arch/arm/boot/Image is ready
+                NOTE: make -j 4 bcm2708-rpi-b.dtb DTC
+                arch/arm/boot/dts/bcm2708-rpi-b.dtb NOTE: make -j 4
+                bcm2708-rpi-b-plus.dtb DTC
+                arch/arm/boot/dts/bcm2708-rpi-b-plus.dtb NOTE: make -j 4
+                bcm2709-rpi-2-b.dtb DTC
+                arch/arm/boot/dts/bcm2709-rpi-2-b.dtb NOTE: make -j 4
+                overlays/hifiberry-amp-overlay.dtb DTC
+                arch/arm/boot/dts/overlays/hifiberry-amp-overlay.dtb
+                cc1: fatal error: opening output file
+                arch/arm/boot/dts/overlays/.hifiberry-amp-overlay.dtb.dts.tmp:
+                No such file or directory compilation terminated.
+                make[3]: ***
+                [arch/arm/boot/dts/overlays/hifiberry-amp-overlay.dtb]
+                Error 1 make[2]: ***
+                [overlays/hifiberry-amp-overlay.dtb] Error 2 make[1]:
+                *** [sub-make] Error 2 make: *** [__sub-make] Error 2
+                ERROR: oe_runmake failed ERROR: Function failed:
+                do_compile (log file is located at
+                /home/epetmab/programming/yocto/alex_test_sstate/tmp/work/raspberrypi2-poky-linux-gnueabi/linux-raspberrypi/3.18.16+git1bb18c8f721ef674a447f3622273f2e2de7a205c-r0/temp/log.do_compile.4398)
+                BR, Petter</blockquote>
+              <pre>Hi Petter,
+
+Thanks for testing that out. That is indeed exactly what I was seeing
+before I added the directory creation.
+
+I did do the following test for both 3.18.x and 4.1.3 kernels (rpi2)
+
+bitbake -f -c cleansstate virtual/kernel
+bitbake -f virtual/kernel
+
+I've just re-run that again here and it works for me as-is. I thought
+cleansstate was causing me to build from scratch so I'm unclear as to
+why I'm not seeing the problem...
+
+NB. I'd also add that for preference I'd like to see the kernel build
+Makefile patched with whatever is in 4.1 to create that needed overlays
+directory but I've had a look and can't spot it.
+
+Cheers,
+
+Alex
+</pre>
+            </blockquote>
+            <p>Hmm Ok, might be some "pebcak" from my side, since I was
+              using an old sstate, but according to my history I did
+              'cleanall' before I got the problem. But will re-try this
+              on a completely new build without any old savings (it will
+              take some time to test however..). What struck me was that
+              the failure occurred in do_compile (from what I can tell
+              the failure in my logs occur before your _append had been
+              able to do anything about it?). I will analyse the
+              run.do_compile if the failure occurs again and see if that
+              make any sense. I will let you know if the problem occurs
+              again. But since both you and Herve haven't seen any
+              problem I guess it's something I'm doing wrong..</p>
+          </div>
+        </blockquote>
+        <div> </div>
+        <div>Thanks. As I was trying to figure out what was going on I
+          did also drop into a devshell and run the
+          configure/compile/install steps manually and it was the
+          install step failing so I'd be a little surprised but let's
+          see.<span></span></div>
+        <div> </div>
+        <div>Cheer, Alex </div>
+        <div> </div>
+        <div> </div>
+        <div> </div>
+      </blockquote>
+      <p>I think I know what the problem is. Are you building using
+        poky:fido? Because I found a very interesting commit in this
+        area from May that isn't included in 'fido' from what I can see.
+        d2e26ef kernel: Build DTBs early ... kernel: Build DTBs early
+        Pull out the compilation of the DTB blobs right after the
+        kernel's own do_compile function finishes. This makes them
+        available just in time for the kernel image construction
+        functions. ... This is also confirmed in the below
+        run.do_compile log. So I guess a my suggestion with a _prepend
+        instead will solve the problem.</p>
+      <pre>do_compile() {
+    kernel_do_compile
+        if test -n "     bcm2708-rpi-b.dtb     bcm2708-rpi-b-plus.dtb     bcm2709-rpi-2-b.dtb         overlays/hifiberry-amp-overlay.dtb     overlays/hifiberry-dac-overlay.dtb     overlays/hifiberry-dacplus-overlay.d
+tb     overlays/hifiberry-digi-overlay.dtb     overlays/iqaudio-dac-overlay.dtb     overlays/iqaudio-dacplus-overlay.dtb     overlays/lirc-rpi-overlay.dtb     overlays/pps-gpio-overlay.dtb     overlays/w1-gpio-overla
+y.dtb     overlays/w1-gpio-pullup-overlay.dtb     "; then
+                for DTB in      bcm2708-rpi-b.dtb     bcm2708-rpi-b-plus.dtb     bcm2709-rpi-2-b.dtb         overlays/hifiberry-amp-overlay.dtb     overlays/hifiberry-dac-overlay.dtb     overlays/hifiberry-dacplus-ov
+erlay.dtb     overlays/hifiberry-digi-overlay.dtb     overlays/iqaudio-dac-overlay.dtb     overlays/iqaudio-dacplus-overlay.dtb     overlays/lirc-rpi-overlay.dtb     overlays/pps-gpio-overlay.dtb     overlays/w1-gpio
+-overlay.dtb     overlays/w1-gpio-pullup-overlay.dtb     ; do
+                        if echo ${DTB} | grep -q '/dts/'; then
+                                bbwarn "${DTB} contains the full path to the the dts file, but only the dtb name should be used."
+                                DTB=`basename ${DTB} | sed 's,\.dts$,.dtb,g'`
+                        fi
+                        oe_runmake ${DTB}
+                done
+        fi
+  mkdir -p /tmp/work/raspberrypi2-poky-linux-gnueabi/linux-raspberrypi/3.18.16+git1bb18c8f721ef674a447f3622273f2e2de7a205c-r0/linux-raspberrypi2-standard-build/arch/arm/boot/dts/overlays
+
+}
+
+</pre>
+      <p>BR, Petter</p>
+      <p> </p>
+    </blockquote>
+    <br>
+    Very interesting. fido - I am indeed. OK I'll modify and resubmit
+    with do_compile_prepend(). Thanks!<br>
+    <br>
+    Cheers, Alex<br>
+    <br>
+    <div style="bottom: auto; left: 470px; right: auto; top: 574px;"
+      class="translator-theme-default" id="translator-floating-panel">
+      <div title="Click to translate"
+        id="translator-floating-panel-button"></div>
+    </div>
+  </body>
+</html>
+
+--------------080802070903060506000108--
