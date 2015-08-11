@@ -1,6 +1,6 @@
-Return-Path: <picmaster@mail.bg>
+Return-Path: <schnitzeltony@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 646ADE0086D; Tue, 11 Aug 2015 08:00:34 -0700 (PDT)
+	id C5EAFE00AD5; Tue, 11 Aug 2015 08:00:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (picmaster[at]mail.bg)
+	mail provider *      (schnitzeltony[at]googlemail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [193.201.172.118 listed in list.dnswl.org]
+	*      [209.85.223.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,31 +19,42 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mx2.mail.bg (mx2.mail.bg [193.201.172.118])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F5F2E005A2
-	for <yocto@yoctoproject.org>; Tue, 11 Aug 2015 08:00:32 -0700 (PDT)
-Received: from [192.168.0.62] (unknown [93.152.143.60])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by mx2.mail.bg (Postfix) with ESMTPSA id 82B9B60028E2;
-	Tue, 11 Aug 2015 18:00:30 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mail.bg; s=default;
-	t=1439305230; bh=qoSVIIlKhNl3Jd1EbvOrrGG2m3hQ30dAOw0MLY95pMQ=;
-	h=Message-ID:Date:From:MIME-Version:To:Subject:References:
-	In-Reply-To:Content-Type:Content-Transfer-Encoding;
-	b=J08GAbtVyieemFe3FTzyADkXV9nG3EsLqJZ4Akid6rRnFc/d4JSpxA24CKiscB/Bw
-	e3dnzjY/UUc9Ml+TvIIJNBrwb+6Uk49lBGrVrWIrfa+7HEPri8uLqU3/DWuYsMwNaQ
-	fzBP33R9gfHVP/PZfjFiPE9kVQu5DymqtpjsWqAc=
-Message-ID: <55CA0E0E.5040602@mail.bg>
-Date: Tue, 11 Aug 2015 18:00:30 +0300
-From: Nikolay Dimitrov <picmaster@mail.bg>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Icedove/31.8.0
+Received: from mail-io0-f170.google.com (mail-io0-f170.google.com
+	[209.85.223.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F240DE00758
+	for <yocto@yoctoproject.org>; Tue, 11 Aug 2015 08:00:41 -0700 (PDT)
+Received: by ioeg141 with SMTP id g141so204692367ioe.3
+	for <yocto@yoctoproject.org>; Tue, 11 Aug 2015 08:00:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=ph8LN/iPi1sBhGldP1PF2pspZCghJuEwo7Rf3nQcuCY=;
+	b=YgddtHGMiZNuocwkGS6KMWhShwfZ2H3DmEaGFfRQpQXRWwYHuSbLJjiJcSFJJtmWEh
+	ZfgNNDCksKffauSj/E6De82DHVDY+mlsOFpDFJjKKWNhJHjsae3O374Bqrdg6PtJv6Jg
+	EAupLCR34qeZuPVKNE/H0AmzYhzulGDyiU8/x1geeer2XK9hJnio+KYWcY1IrM7zC9y7
+	yoKQBN599Nt1y7kTDr19jleYw1jbeMGKNN8LkmgYUdd9HeyK+SyjJLUGj1d/xvwXrKhu
+	exzbPnJT88Msd1eYfDGqxazDSl48xanKey42nOtCGuSUnYDtJxRVJOacjmfoK0I9Ys7t
+	9Bzg==
 MIME-Version: 1.0
-To: Adam Rossi <ac.rossi@gmail.com>, yocto@yoctoproject.org
-References: <CAPzboye4h_mF=aEOvFfyLuWBNc320KsffAC91y9NxGy4QGqAhQ@mail.gmail.com>
-In-Reply-To: <CAPzboye4h_mF=aEOvFfyLuWBNc320KsffAC91y9NxGy4QGqAhQ@mail.gmail.com>
-Subject: Re: Specifying location of DTB file
+X-Received: by 10.107.150.68 with SMTP id y65mr3105772iod.133.1439305240600;
+	Tue, 11 Aug 2015 08:00:40 -0700 (PDT)
+Received: by 10.36.98.5 with HTTP; Tue, 11 Aug 2015 08:00:40 -0700 (PDT)
+In-Reply-To: <3ad440473bcb6e0b15f98fb3abcb1cd9@technux.se>
+References: <1439204904-8305-1-git-send-email-ajlennon@dynamicdevices.co.uk>
+	<fc34ba0543c946b98d8d736ff5e66421@technux.se>
+	<55C9B2EE.2090406@gmail.com>
+	<af77dd672b17395613fdd2d09285aa46@technux.se>
+	<CAJ8H0rJe3Nz+d32ksyZ3iP7w9rzV5AkvCKsZy=qpFAmSbHjPpg@mail.gmail.com>
+	<034593ed817a9a220ef7074e598f9b2d@technux.se>
+	<55C9F42D.2050909@dynamicdevices.co.uk>
+	<3ad440473bcb6e0b15f98fb3abcb1cd9@technux.se>
+Date: Tue, 11 Aug 2015 17:00:40 +0200
+Message-ID: <CALbNGRTx2+HCJ7xpOFFRrABYmhukPOcBM4vt2fiGP0BikH9LUg@mail.gmail.com>
+From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
+To: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 1/2] linux-raspberrypi: Update kernel to 3.18.16
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,53 +66,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Aug 2015 15:00:34 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 11 Aug 2015 15:00:54 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Adam,
+On Tue, Aug 11, 2015 at 4:02 PM, Petter Mab=C3=A4cker <petter@technux.se> w=
+rote:
+>
+> Sounds good. I agree we should try to get that issue integrated as soon a=
+s possible.
+I asked for the kernel updates as base for vc4 stuff. From what I've
+learned so far vc4 is still a way to go and there is no need to hurry
+with other patches: so guys take the time required for patches.
 
-On 08/11/2015 04:31 PM, Adam Rossi wrote:
-> Howdy folks. I have had a devil of a time creating my own machine.conf
-> and getting it to boot, so I went back to using the stock
-> beaglebone.conf machine. I need to modify the DTB file that my
-> prototype loads, so I decompiled the yocto am335x-boneblack.dtb, added
-> some special sauce to the dts, and added the following to a
-> linux-yocto_3.19.bbappend recipe:
->
-> FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-> SRC_URI +="file://touchscreen.cfg \
->   file://special-am335x-boneblack.dts"
->
-> do_install_prepend() {
->          cp ${WORKDIR}/special-am335x-boneblack.dts ${S}/arch/${ARCH}/boot/dts/
-> }
-> KERNEL_DEVICETREE_beaglebone =  "special-am335x-boneblack.dtb"
->
-> This works, I get a special-am335x-boneblack.dtb in my image. However,
-> on booting the files on my beagle bone, I get an error that the system
-> cannot find the boot/am335x-boneblack.dtb file. Creating a symlink to
-> my special-am335x-boneblack.dtb solves the problem.
->
-> Where does the system configure the directions to look for
-> "am335x-boneblack.dtb"? I suspect this is because the stock
-> beaglebone.conf file also has a
-> KERNEL_DEVICETREE="am335x-boneblack.dtb". Perhaps my kernel recipe is
-> only partly overriding this?
->
-> Thanks for your continuing help. Regards, Adam
-
-The only component responsible for looking the DTB during boot is the
-bootloader (usually U-Boot). If you break the boot sequence and type
-"printenv", you can look at the contents of "bootcmd" variable and see
-which other scripts/vars it uses, in order to see how the bootloader
-tries to load the DT.
-
-If/when you do some modifications to the default U-Boot environment,
-you can generate a patch to your U-Boot source code and add this patch
-to your machine-specific U-Boot, so you can have the changes integrated
-in your next system build.
-
-Regards,
-Nikolay
+Andreas
 
