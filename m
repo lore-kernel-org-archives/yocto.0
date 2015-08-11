@@ -1,37 +1,34 @@
-Return-Path: <flihp@twobit.us>
+Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 01257E00A99; Mon, 10 Aug 2015 22:10:06 -0700 (PDT)
+	id A356CE00A90; Mon, 10 Aug 2015 22:37:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C594AE00A92
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 22:10:03 -0700 (PDT)
-Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
-	helo=[10.79.148.103])
-	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
-	(Exim 4.80) (envelope-from <flihp@twobit.us>)
-	id 1ZP1oD-0001Z0-HC; Tue, 11 Aug 2015 05:09:11 +0000
-Message-ID: <55C983A2.4050002@twobit.us>
-Date: Mon, 10 Aug 2015 22:09:54 -0700
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Icedove/31.8.0
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74BE4E00A80
+	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 22:37:16 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.1/8.15.1) with ESMTPS id t7B5bGJa024942
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 22:37:16 -0700 (PDT)
+Received: from ala-blade48.wrs.com (147.11.105.68) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.235.1;
+	Mon, 10 Aug 2015 22:37:16 -0700
+From: Robert Yang <liezhi.yang@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 10 Aug 2015 22:37:16 -0700
+Message-ID: <1439271436-32621-1-git-send-email-liezhi.yang@windriver.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-To: Shrikant Bobade <bobadeshrikant@gmail.com>
-References: <1438248304-7884-1-git-send-email-bobadeshrikant@gmail.com>
-	<CALwQErr1fTKQ=Nc8OXJ0m-itC-NzoNz5bsc4R6gsCN3cJC9ciw@mail.gmail.com>
-In-Reply-To: <CALwQErr1fTKQ=Nc8OXJ0m-itC-NzoNz5bsc4R6gsCN3cJC9ciw@mail.gmail.com>
-X-SA-Exim-Connect-IP: 50.185.54.102
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
-X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Cc: yocto@yoctoproject.org, Shrikant Bobade <shrikant_bobade@mentor.com>
-Subject: Re: [meta-selinux][PATCH v1] libpam: use wildcard for version and cleanup
+Subject: [meta-selinux] [PATCH] audit: remove add-system-call-table-for-ARM.patch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,124 +40,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Aug 2015 05:10:07 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 11 Aug 2015 05:37:20 -0000
+Content-Type: text/plain
 
-Hey Shrikant,
+There isn't lib/machinetabs.h any more, there isn't data structures like
+"static const char machine_strings", either.
 
-On 07/30/2015 02:31 AM, Shrikant Bobade wrote:
-> This patch provides green build for core-image-selinux
-> (meta-selinux:master & poky:master) against libpam upgrade from 1.1.6 to
-> 1.2.1,
-> image boots fine,but I am unable to login at target. I have prepared
-> build for qemuarm, does anyone else facing similar issue? please advice.
-> 
-> Observed the login issue appears even with disabled selinux support
-> (selinux=0).
+This fixed a do_patch error when arm.
 
-I just tested this again after Joe merged the commits from the backlog.
-I'm not longer able to reproduce the failed login. Are you still having
-login problems?
+Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+---
+ .../audit/add-system-call-table-for-ARM.patch      |   46 --------------------
+ recipes-security/audit/audit_2.4.3.bb              |    2 -
+ 2 files changed, 48 deletions(-)
+ delete mode 100644 recipes-security/audit/audit/add-system-call-table-for-ARM.patch
 
-Philip
-
-> On Thu, Jul 30, 2015 at 2:55 PM, Shrikant Bobade
-> <bobadeshrikant@gmail.com <mailto:bobadeshrikant@gmail.com>> wrote:
-> 
->     From: Shrikant Bobade <shrikant_bobade@mentor.com
->     <mailto:shrikant_bobade@mentor.com>>
-> 
->     use wildcard for version: adopting libpam upgrade from 1.1.6 to 1.2.1,
->     cleanup older recipe and remove patch sepermit-add-DESTDIR-prefix.patch
->     since the changes already available with latest source.
-> 
->     Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com
->     <mailto:shrikant_bobade@mentor.com>>
->     ---
->      .../pam/libpam/sepermit-add-DESTDIR-prefix.patch   |   31
->     --------------------
->      recipes-extended/pam/libpam_%.bbappend             |    3 ++
->      recipes-extended/pam/libpam_1.1.6.bbappend         |   10 -------
->      3 files changed, 3 insertions(+), 41 deletions(-)
->      delete mode 100644
->     recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
->      create mode 100644 recipes-extended/pam/libpam_%.bbappend
->      delete mode 100644 recipes-extended/pam/libpam_1.1.6.bbappend
-> 
->     diff --git
->     a/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
->     b/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
->     deleted file mode 100644
->     index d48d386..0000000
->     --- a/recipes-extended/pam/libpam/sepermit-add-DESTDIR-prefix.patch
->     +++ /dev/null
->     @@ -1,31 +0,0 @@
->     -Subject: [PATCH] libpam: add missing DESTDIR prefix
->     -
->     -The DESTDIR prefix is missing, this will cause build failures for
->     -mkdir /var/run/sepermit on the host.
->     -
->     -| mkdir -p /var/run/sepermit
->     -| mkdir: cannot create directory `/var/run/sepermit': Permission denied
->     -
->     -Upstream-Status: Pending
->     -
->     -Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com
->     <mailto:Xin.Ouyang@windriver.com>>
->     ----
->     - modules/pam_sepermit/Makefile.am |    2 +-
->     - 1 files changed, 1 insertions(+), 1 deletions(-)
->     -
->     -diff --git a/modules/pam_sepermit/Makefile.am
->     b/modules/pam_sepermit/Makefile.am
->     -index cfc5594..bc82275 100644
->     ---- a/modules/pam_sepermit/Makefile.am
->     -+++ b/modules/pam_sepermit/Makefile.am
->     -@@ -35,7 +35,7 @@ if HAVE_LIBSELINUX
->     -   securelib_LTLIBRARIES = pam_sepermit.la <http://pam_sepermit.la>
->     -
->     - install-data-local:
->     --      mkdir -p $(sepermitlockdir)
->     -+      mkdir -p $(DESTDIR)$(sepermitlockdir)
->     - endif
->     - if ENABLE_REGENERATE_MAN
->     - noinst_DATA = README pam_sepermit.8 sepermit.conf.5
->     ---
->     -1.7.5.4
->     -
->     diff --git a/recipes-extended/pam/libpam_%.bbappend
->     b/recipes-extended/pam/libpam_%.bbappend
->     new file mode 100644
->     index 0000000..adcf938
->     --- /dev/null
->     +++ b/recipes-extended/pam/libpam_%.bbappend
->     @@ -0,0 +1,3 @@
->     +inherit enable-selinux
->     +
->     +RDEPENDS_${PN}-runtime += "${@target_selinux(d, 'pam-plugin-selinux')}"
->     diff --git a/recipes-extended/pam/libpam_1.1.6.bbappend
->     b/recipes-extended/pam/libpam_1.1.6.bbappend
->     deleted file mode 100644
->     index 71acecc..0000000
->     --- a/recipes-extended/pam/libpam_1.1.6.bbappend
->     +++ /dev/null
->     @@ -1,10 +0,0 @@
->     -#FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->     -FILESPATH_append := ":${@base_set_filespath(['${THISDIR}/${PN}'], d)}"
->     -
->     -SRC_URI += "file://sepermit-add-DESTDIR-prefix.patch"
->     -
->     -PR .= ".4"
->     -
->     -inherit enable-selinux
->     -
->     -RDEPENDS_${PN}-runtime += "${@target_selinux(d, 'pam-plugin-selinux')}"
->     --
->     1.7.9.5
-> 
-> 
-> 
-> 
+diff --git a/recipes-security/audit/audit/add-system-call-table-for-ARM.patch b/recipes-security/audit/audit/add-system-call-table-for-ARM.patch
+deleted file mode 100644
+index ad94d11..0000000
+--- a/recipes-security/audit/audit/add-system-call-table-for-ARM.patch
++++ /dev/null
+@@ -1,46 +0,0 @@
+-From 52ff74be2f01182ed9d4fcc3da059512fad63d72 Mon Sep 17 00:00:00 2001
+-From: Han Chao <chan@windriver.com>
+-Date: Thu, 27 Feb 2014 14:58:57 +0800
+-Subject: [PATCH] add system call table for ARM.
+-
+-This change enable audit system call on ARM.
+-Add arm System call table on machinetabs.h.
+-Audit system call need enable kernel config CONFIG_AUDITSYSCALL.
+-
+-Signed-off-by: Han Chao <chan@windriver.com>
+----
+- lib/machinetabs.h |   11 ++++++-----
+- 1 file changed, 6 insertions(+), 5 deletions(-)
+-
+-diff --git a/lib/machinetabs.h b/lib/machinetabs.h
+-index ec2d033..1c2e284 100644
+---- a/lib/machinetabs.h
+-+++ b/lib/machinetabs.h
+-@@ -1,10 +1,11 @@
+--/* This is a generated file, see Makefile.am for its inputs. */
+--static const char machine_strings[] = "i386\0i486\0i586\0i686\0ia64\0ppc\0ppc64\0s390\0s390x\0x86_64";
+-+/* Such is aways generated file, see Makefile.am for its inputs.
+-+ * But this version is not generated file, which is for ARM. */
+-+static const char machine_strings[] = "armeb\0armv5tejl\0armv5tel\0armv6l\0armv7l";
+- static const unsigned machine_s2i_s[] = {
+--	0,5,10,15,20,25,29,35,40,46,
+-+	0,6,16,25,32,
+- };
+- static const int machine_s2i_i[] = {
+--	0,0,0,0,2,4,3,6,5,1,
+-+	8,8,8,8,8,
+- };
+- static int machine_s2i(const char *s, int *value) {
+- 	size_t len, i;
+-@@ -19,7 +20,7 @@ static int machine_s2i(const char *s, int *value) {
+- 	}
+- }
+- static const unsigned machine_i2s_direct[] = {
+--	0,46,20,29,25,40,35,
+-+    39,85,59,68,64,
+- };
+- static const char *machine_i2s(int v) {
+- 	return i2s_direct__(machine_strings, machine_i2s_direct, 0, 6, v);
+--- 
+-1.7.9.5
+-
+diff --git a/recipes-security/audit/audit_2.4.3.bb b/recipes-security/audit/audit_2.4.3.bb
+index 233fb00..3f5026c 100644
+--- a/recipes-security/audit/audit_2.4.3.bb
++++ b/recipes-security/audit/audit_2.4.3.bb
+@@ -20,8 +20,6 @@ SRC_URI = "http://people.redhat.com/sgrubb/audit/audit-${PV}.tar.gz \
+ SRC_URI[md5sum] = "544d863af2016b76afd8d1691b251164"
+ SRC_URI[sha256sum] = "9c914704fecc602e143e37152f3efbab2469692684c1a8cc1b801c1b49c7abc6"
+ 
+-SRC_URI_append_arm = "file://add-system-call-table-for-ARM.patch"
+-
+ inherit autotools pythonnative update-rc.d systemd
+ 
+ UPDATERCPN = "auditd"
+-- 
+1.7.9.5
 
 
