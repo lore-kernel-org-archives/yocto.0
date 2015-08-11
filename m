@@ -1,62 +1,43 @@
-Return-Path: <yoctomailinglist@gmail.com>
+Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2AFCAE00A81; Mon, 10 Aug 2015 23:59:36 -0700 (PDT)
+	id 91A52E00A90; Tue, 11 Aug 2015 00:58:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (yoctomailinglist[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.54 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [195.74.38.227 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qg0-f54.google.com (mail-qg0-f54.google.com
-	[209.85.192.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7659EE00A3B
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 23:59:35 -0700 (PDT)
-Received: by qgdd90 with SMTP id d90so32955336qgd.3
-	for <yocto@yoctoproject.org>; Mon, 10 Aug 2015 23:59:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=XC9gfvFcixOqVps5CzzNnDkJvDkiogyBUTdmMDJ+J8I=;
-	b=GY/nN2OumTkiUPy5UQ+gN0XNVob1lCWkdSPbxnsyqjz8HvQ+z+JrVCsawm06oUnI4S
-	E3P4LjghMr627Tn008s0qhljgAVip2Ktkwv/5C2VuTcXNFH58QMihZfClr/IZzIsDE3O
-	ajqGHyl61HQtWw8ESnvfbJnL3JEzoNITjXWMrfmLUjmkp4KChZQmI2mPOEmkxbou0Y/d
-	PHYNPxsV8PiTCHgukSA5HyP0JWXYti4SxBHxW1HBR3gsFwaieFl5BTsqjPOnNYslSMdc
-	IuQqtmEKP1p99Isq50O0P62lg73QhDW71eStNlOjm6zXJdhDNvu9/JXrO/+f1oJ768am
-	XIgQ==
+Received: from bin-vsp-out-05.atm.binero.net (vsp-unauthed02.binero.net
+	[195.74.38.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD4A3E00A80
+	for <yocto@yoctoproject.org>; Tue, 11 Aug 2015 00:58:17 -0700 (PDT)
+X-Halon-ID: c397b933-3ffe-11e5-8dab-005056916f53
+Authorized-sender: petter@technux.se
+Received: from webmail.binero.se (unknown [195.74.38.9])
+	by bin-vsp-out-05.atm.binero.net (Halon Mail Gateway) with ESMTPA;
+	Tue, 11 Aug 2015 09:58:34 +0200 (CEST)
 MIME-Version: 1.0
-X-Received: by 10.140.34.33 with SMTP id k30mr45923466qgk.56.1439276374566;
-	Mon, 10 Aug 2015 23:59:34 -0700 (PDT)
-Received: by 10.140.43.196 with HTTP; Mon, 10 Aug 2015 23:59:34 -0700 (PDT)
-In-Reply-To: <CACTu1LiPeGST8FQZREC_Tyryuehbg8r_Ur43j1qKrtRy53RJxA@mail.gmail.com>
-References: <CACTu1LjN5JStnAA8Gyu=xJED4feXTpj7JA-GNiE_f7JbKUhy_w@mail.gmail.com>
-	<CAJTo0LYOJ_T3rTg9o2=Qo1twUfHFi1OTKBBnLqed1u+rxHKWTw@mail.gmail.com>
-	<CACTu1Ljn2ven-b51Q+X9gGcWYxxe1-nv1T9+N=y4LSy6juLnoQ@mail.gmail.com>
-	<F8159D01-CD91-48A9-AA7B-EFE99FFDDCEB@gmail.com>
-	<CACTu1Lj+9WOZXh2-P5pWeaGwn_CPxBt5bcQSB3dTAJnK5Yc=Og@mail.gmail.com>
-	<CAMKF1soKzVgxH4HjJOPVVkEwaAm95=YWw0ncZ+0DW25oz5VnAA@mail.gmail.com>
-	<CACTu1LiPeGST8FQZREC_Tyryuehbg8r_Ur43j1qKrtRy53RJxA@mail.gmail.com>
-Date: Tue, 11 Aug 2015 08:59:34 +0200
-Message-ID: <CACTu1LiZu_ahYN6-qOi9eFAMvqwdM+Q0+ENZZre0FXVngssmow@mail.gmail.com>
-From: yocto yocto <yoctomailinglist@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Header-Files of DEPEND recipe not found
+Date: Tue, 11 Aug 2015 09:58:13 +0200
+From: =?UTF-8?Q?Petter_Mab=C3=A4cker?= <petter@technux.se>
+To: Alex J Lennon <ajlennon@gmail.com>
+Organization: Technux
+Mail-Reply-To: <petter@technux.se>
+In-Reply-To: <1439204904-8305-1-git-send-email-ajlennon@dynamicdevices.co.uk>
+References: <1439204904-8305-1-git-send-email-ajlennon@dynamicdevices.co.uk>
+Message-ID: <fc34ba0543c946b98d8d736ff5e66421@technux.se>
+X-Sender: petter@technux.se
+User-Agent: Binero Webmail/0.8.4
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH 1/2] linux-raspberrypi: Update kernel to 3.18.16
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: petter@technux.se
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -65,92 +46,292 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Aug 2015 06:59:36 -0000
-Content-Type: multipart/alternative; boundary=001a11c0b2ce0a420c051d03a5db
+X-List-Received-Date: Tue, 11 Aug 2015 07:58:22 -0000
+Content-Type: multipart/alternative;
+	boundary="=_d6ed5d47f716ffaa02dcf14fe901b602"
 
---001a11c0b2ce0a420c051d03a5db
+--=_d6ed5d47f716ffaa02dcf14fe901b602
+Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset=UTF-8
 
-Maybe this is of interest, here is my solution:
+ 
 
-In CMakeLists.txt
+2015-08-10 13:08 skrev Alex J Lennon: 
 
-SET(BITBAKE_SYSROOT "" CACHE STRING "Description")
-SET(SOCI_INCLUDEDIR ${BITBAKE_SYSROOT}/usr/include/soci)
-
-So if BITBAKE_SYSROOT is not passed the compiler takes /usr/include/soci as
-usual. My *.bb contains:
-
-EXTRA_OECMAKE = "-DBITBAKE_SYSROOT:STRING=${STAGING_DIR_HOST}"
-
-So when using bitbake the appropriate prefix will be added.
-
-
-
-2015-08-11 8:36 GMT+02:00 yocto yocto <yoctomailinglist@gmail.com>:
-
-> But not within CMakeLists.txt? At least this is not working, cmake is
-> handling "=" as a normal character. I guess I have to pass a parameter
-> within my *.bb to cmake containing the sysroot path
+> This requires some changes
+to KERNEL_DEVICETREE as the dtb
+> layout has changed to support
+overlays. This change also
+> makes us ready to support kernel 4.x
+series
+> 
+> Signed-off-by: Alex J Lennon
+<ajlennon@dynamicdevices.co.uk>
+> ---
 >
-> 2015-08-10 22:36 GMT+02:00 Khem Raj <raj.khem@gmail.com>:
+conf/machine/include/rpi-base.inc | 22 ++++++++++------------
 >
->> On Mon, Aug 10, 2015 at 12:08 PM, yocto yocto
->> <yoctomailinglist@gmail.com> wrote:
->> > SET(SOCI_INCLUDEDIR
->> >
->> /home/my-PC/development/2015-08-04_edison-src/edison-src/build/tmp/sysroots/edison/usr/include/soci)
->> >
->> > everything worked fine. Is there any way to get the path
->> >
->> "/home/my-PC/development/2015-08-04_edison-src/edison-src/build/tmp/sysroots/edison/"
->> > within CMakeLists.txt automatically?
->>
->> you can use =/usr/include/soci which will prepend sysroot automatically.
->>
+recipes-kernel/linux/linux-raspberrypi_3.18.bb | 9 +++++++--
+> 2 files
+changed, 17 insertions(+), 14 deletions(-)
+> 
+> diff --git
+a/conf/machine/include/rpi-base.inc
+b/conf/machine/include/rpi-base.inc
+> index 1dda207..8caa5ba 100644
 >
+--- a/conf/machine/include/rpi-base.inc
+> +++
+b/conf/machine/include/rpi-base.inc
+> @@ -23,18 +23,16 @@
+KERNEL_DEVICETREE ?= " 
+> bcm2708-rpi-b-plus.dtb 
+> bcm2709-rpi-2-b.dtb
+
+> 
+> - ds1307-rtc-overlay.dtb 
+> - hifiberry-amp-overlay.dtb 
+> -
+hifiberry-dac-overlay.dtb 
+> - hifiberry-dacplus-overlay.dtb 
+> -
+hifiberry-digi-overlay.dtb 
+> - iqaudio-dac-overlay.dtb 
+> -
+iqaudio-dacplus-overlay.dtb 
+> - lirc-rpi-overlay.dtb 
+> -
+pcf8523-rtc-overlay.dtb 
+> - pps-gpio-overlay.dtb 
+> -
+w1-gpio-overlay.dtb 
+> - w1-gpio-pullup-overlay.dtb 
+> +
+overlays/hifiberry-amp-overlay.dtb 
+> +
+overlays/hifiberry-dac-overlay.dtb 
+> +
+overlays/hifiberry-dacplus-overlay.dtb 
+> +
+overlays/hifiberry-digi-overlay.dtb 
+> +
+overlays/iqaudio-dac-overlay.dtb 
+> +
+overlays/iqaudio-dacplus-overlay.dtb 
+> + overlays/lirc-rpi-overlay.dtb
+
+> + overlays/pps-gpio-overlay.dtb 
+> + overlays/w1-gpio-overlay.dtb 
+>
++ overlays/w1-gpio-pullup-overlay.dtb 
+> "
+> KERNEL_IMAGETYPE ?=
+"Image"
+> 
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+> index
+6d8b155..18c2020 100644
+> ---
+a/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+> +++
+b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+> @@ -1,6 +1,11 @@
+>
+-LINUX_VERSION ?= "3.18.11"
+> +LINUX_VERSION ?= "3.18.16"
+> 
+> -SRCREV =
+"d64fa8121fca9883d6fb14ca06d2abf66496195e"
+> +SRCREV =
+"1bb18c8f721ef674a447f3622273f2e2de7a205c"
+> SRC_URI =
+"git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y"
 >
 
---001a11c0b2ce0a420c051d03a5db
-Content-Type: text/html; charset=UTF-8
+> require linux-raspberrypi.inc
+> +
+> +# Create missing out of tree
+'overlays' directory prior to install step
+> +do_compile_append() {
+> +
+mkdir -p ${B}/arch/arm/boot/dts/overlays
+> +}
+> -- 
+> 1.9.1
+
+Hi Alex,
+
+
+At least I get problems during compile step with above change (I'm
+building for rpi2). So are your sure '${B}/arch/arm/boot/dts/overlays'
+isn't needed during compile? I tried with changing above from append to
+prepand instead and then it worked fine for me (when building 3.18
+kernel). 
+
+(from log.do_compile, complete log can be found at:
+http://www.technux.se/logs/log.do_compile.4398.fail ) 
+
+ KSYM
+.tmp_kallsyms1.o
+ KSYM .tmp_kallsyms2.o
+ LD vmlinux
+ SORTEX vmlinux
+
+SYSMAP System.map
+ OBJCOPY arch/arm/boot/Image
+ Kernel:
+arch/arm/boot/Image is ready
+NOTE: make -j 4 bcm2708-rpi-b.dtb
+ DTC
+arch/arm/boot/dts/bcm2708-rpi-b.dtb
+NOTE: make -j 4
+bcm2708-rpi-b-plus.dtb
+ DTC
+arch/arm/boot/dts/bcm2708-rpi-b-plus.dtb
+NOTE: make -j 4
+bcm2709-rpi-2-b.dtb
+ DTC arch/arm/boot/dts/bcm2709-rpi-2-b.dtb
+NOTE:
+make -j 4 overlays/hifiberry-amp-overlay.dtb
+ DTC
+arch/arm/boot/dts/overlays/hifiberry-amp-overlay.dtb
+cc1: fatal error:
+opening output file
+arch/arm/boot/dts/overlays/.hifiberry-amp-overlay.dtb.dts.tmp: No such
+file or directory
+compilation terminated.
+make[3]: ***
+[arch/arm/boot/dts/overlays/hifiberry-amp-overlay.dtb] Error 1
+make[2]:
+*** [overlays/hifiberry-amp-overlay.dtb] Error 2
+make[1]: *** [sub-make]
+Error 2
+make: *** [__sub-make] Error 2
+ERROR: oe_runmake failed
+ERROR:
+Function failed: do_compile (log file is located at
+/home/epetmab/programming/yocto/alex_test_sstate/tmp/work/raspberrypi2-poky-linux-gnueabi/linux-raspberrypi/3.18.16+git1bb18c8f721ef674a447f3622273f2e2de7a205c-r0/temp/log.do_compile.4398)
+
+BR,
+Petter 
+
+--=_d6ed5d47f716ffaa02dcf14fe901b602
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
 
-<div dir=3D"ltr">Maybe this is of interest, here is my solution:<div><br></=
-div><div>In CMakeLists.txt</div><div><br></div><div><div>SET(BITBAKE_SYSROO=
-T &quot;&quot; CACHE STRING &quot;Description&quot;)</div><div>SET(SOCI_INC=
-LUDEDIR ${BITBAKE_SYSROOT}/usr/include/soci)</div></div><div><br></div><div=
->So if BITBAKE_SYSROOT is not passed the compiler takes /usr/include/soci a=
-s usual. My *.bb contains:</div><div><br></div><div>EXTRA_OECMAKE =3D &quot=
-;-DBITBAKE_SYSROOT:STRING=3D${STAGING_DIR_HOST}&quot;<br></div><div><br></d=
-iv><div>So when using bitbake the appropriate prefix will be added.=C2=A0</=
-div><div><div><br></div><div><br></div></div></div><div class=3D"gmail_extr=
-a"><br><div class=3D"gmail_quote">2015-08-11 8:36 GMT+02:00 yocto yocto <sp=
-an dir=3D"ltr">&lt;<a href=3D"mailto:yoctomailinglist@gmail.com" target=3D"=
-_blank">yoctomailinglist@gmail.com</a>&gt;</span>:<br><blockquote class=3D"=
-gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-=
-left:1ex"><div dir=3D"ltr">But not within CMakeLists.txt? At least this is =
-not working, cmake is handling &quot;=3D&quot; as a normal character. I gue=
-ss I have to pass a parameter within my *.bb to cmake containing the sysroo=
-t path</div><div class=3D"HOEnZb"><div class=3D"h5"><div class=3D"gmail_ext=
-ra"><br><div class=3D"gmail_quote">2015-08-10 22:36 GMT+02:00 Khem Raj <spa=
-n dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">r=
-aj.khem@gmail.com</a>&gt;</span>:<br><blockquote class=3D"gmail_quote" styl=
-e=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><span>O=
-n Mon, Aug 10, 2015 at 12:08 PM, yocto yocto<br>
-&lt;<a href=3D"mailto:yoctomailinglist@gmail.com" target=3D"_blank">yoctoma=
-ilinglist@gmail.com</a>&gt; wrote:<br>
-&gt; SET(SOCI_INCLUDEDIR<br>
-&gt; /home/my-PC/development/2015-08-04_edison-src/edison-src/build/tmp/sys=
-roots/edison/usr/include/soci)<br>
-&gt;<br>
-&gt; everything worked fine. Is there any way to get the path<br>
-&gt; &quot;/home/my-PC/development/2015-08-04_edison-src/edison-src/build/t=
-mp/sysroots/edison/&quot;<br>
-&gt; within CMakeLists.txt automatically?<br>
-<br>
-</span>you can use =3D/usr/include/soci which will prepend sysroot automati=
-cally.<br>
-</blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html><body style=3D'font-family: Helvetica,Arial,sans-serif'>
+<p>2015-08-10 13:08 skrev Alex J Lennon:</p>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px; width:100%"><!-- html ignored --><!-- head ignore=
+d --><!-- meta ignored -->
+<pre>This requires some changes to KERNEL_DEVICETREE as the dtb
+layout has changed to support overlays. This change also
+makes us ready to support kernel 4.x series
 
---001a11c0b2ce0a420c051d03a5db--
+Signed-off-by: Alex J Lennon &lt;<a href=3D"mailto:ajlennon@dynamicdevices=
+=2Eco.uk">ajlennon@dynamicdevices.co.uk</a>&gt;
+---
+ conf/machine/include/rpi-base.inc              | 22 ++++++++++------------
+ recipes-kernel/linux/linux-raspberrypi_3.18.bb |  9 +++++++--
+ 2 files changed, 17 insertions(+), 14 deletions(-)
+
+diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-b=
+ase.inc
+index 1dda207..8caa5ba 100644
+--- a/conf/machine/include/rpi-base.inc
++++ b/conf/machine/include/rpi-base.inc
+@@ -23,18 +23,16 @@ KERNEL_DEVICETREE ?=3D " \
+     bcm2708-rpi-b-plus.dtb \
+     bcm2709-rpi-2-b.dtb \
+     \
+-    ds1307-rtc-overlay.dtb \
+-    hifiberry-amp-overlay.dtb \
+-    hifiberry-dac-overlay.dtb \
+-    hifiberry-dacplus-overlay.dtb \
+-    hifiberry-digi-overlay.dtb \
+-    iqaudio-dac-overlay.dtb \
+-    iqaudio-dacplus-overlay.dtb \
+-    lirc-rpi-overlay.dtb \
+-    pcf8523-rtc-overlay.dtb \
+-    pps-gpio-overlay.dtb \
+-    w1-gpio-overlay.dtb \
+-    w1-gpio-pullup-overlay.dtb \
++    overlays/hifiberry-amp-overlay.dtb \
++    overlays/hifiberry-dac-overlay.dtb \
++    overlays/hifiberry-dacplus-overlay.dtb \
++    overlays/hifiberry-digi-overlay.dtb \
++    overlays/iqaudio-dac-overlay.dtb \
++    overlays/iqaudio-dacplus-overlay.dtb \
++    overlays/lirc-rpi-overlay.dtb \
++    overlays/pps-gpio-overlay.dtb \
++    overlays/w1-gpio-overlay.dtb \
++    overlays/w1-gpio-pullup-overlay.dtb \
+     "
+ KERNEL_IMAGETYPE ?=3D "Image"
+=20
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.18.bb b/recipes-kerne=
+l/linux/linux-raspberrypi_3.18.bb
+index 6d8b155..18c2020 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_3.18.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+@@ -1,6 +1,11 @@
+-LINUX_VERSION ?=3D "3.18.11"
++LINUX_VERSION ?=3D "3.18.16"
+=20
+-SRCREV =3D "d64fa8121fca9883d6fb14ca06d2abf66496195e"
++SRCREV =3D "1bb18c8f721ef674a447f3622273f2e2de7a205c"
+ SRC_URI =3D "git://github.com/raspberrypi/linux.git;protocol=3Dgit;branch=
+=3Drpi-3.18.y"
+=20
+ require linux-raspberrypi.inc
++
++# Create missing out of tree 'overlays' directory prior to install step
++do_compile_append() {
++  mkdir -p ${B}/arch/arm/boot/dts/overlays
++}
+<span class=3D"sig">--=20
+1.9.1
+<br /><br /></span></pre>
+</blockquote>
+<p>Hi Alex,</p>
+<p>At least I get problems during compile step with above change (I'm build=
+ing for rpi2). So are your sure '${B}/arch/arm/boot/dts/overlays' isn't nee=
+ded during compile? I tried with changing above from append to prepand inst=
+ead and then it worked fine for me (when building 3.18 kernel).</p>
+<p>(from log.do_compile, complete log can be found at: http://www.technux=
+=2Ese/logs/log.do_compile.4398.fail )</p>
+<pre>  KSYM    .tmp_kallsyms1.o
+  KSYM    .tmp_kallsyms2.o
+  LD      vmlinux
+  SORTEX  vmlinux
+  SYSMAP  System.map
+  OBJCOPY arch/arm/boot/Image
+  Kernel: arch/arm/boot/Image is ready
+NOTE: make -j 4 bcm2708-rpi-b.dtb
+  DTC     arch/arm/boot/dts/bcm2708-rpi-b.dtb
+NOTE: make -j 4 bcm2708-rpi-b-plus.dtb
+  DTC     arch/arm/boot/dts/bcm2708-rpi-b-plus.dtb
+NOTE: make -j 4 bcm2709-rpi-2-b.dtb
+  DTC     arch/arm/boot/dts/bcm2709-rpi-2-b.dtb
+NOTE: make -j 4 overlays/hifiberry-amp-overlay.dtb
+  DTC     arch/arm/boot/dts/overlays/hifiberry-amp-overlay.dtb
+cc1: fatal error: opening output file arch/arm/boot/dts/overlays/.hifiberry=
+-amp-overlay.dtb.dts.tmp: No such file or directory
+compilation terminated.
+make[3]: *** [arch/arm/boot/dts/overlays/hifiberry-amp-overlay.dtb] Error 1
+make[2]: *** [overlays/hifiberry-amp-overlay.dtb] Error 2
+make[1]: *** [sub-make] Error 2
+make: *** [__sub-make] Error 2
+ERROR: oe_runmake failed
+ERROR: Function failed: do_compile (log file is located at /home/epetmab/pr=
+ogramming/yocto/alex_test_sstate/tmp/work/raspberrypi2-poky-linux-gnueabi/l=
+inux-raspberrypi/3.18.16+git1bb18c8f721ef674a447f3622273f2e2de7a205c-r0/tem=
+p/log.do_compile.4398)
+<br />
+</pre>
+<p>BR, Petter</p>
+</body></html>
+
+--=_d6ed5d47f716ffaa02dcf14fe901b602--
