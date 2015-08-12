@@ -1,63 +1,49 @@
-Return-Path: <schnitzeltony@googlemail.com>
+Return-Path: <alejandro.delcastillo@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3489FE0071C; Wed, 12 Aug 2015 10:15:11 -0700 (PDT)
+	id 808C7E00758; Wed, 12 Aug 2015 10:24:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (schnitzeltony[at]googlemail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.177 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [130.164.80.23 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-io0-f177.google.com (mail-io0-f177.google.com
-	[209.85.223.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EED4E003D9
-	for <yocto@yoctoproject.org>; Wed, 12 Aug 2015 10:15:03 -0700 (PDT)
-Received: by iodv127 with SMTP id v127so10946663iod.3
-	for <yocto@yoctoproject.org>; Wed, 12 Aug 2015 10:15:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=v1hLdE0qTcNPgJoqIdV33QVs8rBU6HCw2bZqN8Vgmxo=;
-	b=Y6SN/L5nOyXkxCICavkM07zFgKt8rQqRXfgz+VZSmYbMbs01v+aMNzJKwETdbPBOC+
-	uePfD72zM2UxyYGet5DKRwKgmXAUodrTpaDNv8WJjN/9wsweZNV+W87f987VhsZoo5BW
-	08y4CyMnvm8oxwfs8IbZEbvXU5DsVtpUkp++3+zhJBBnEIy0ECm3aqKxUm7qA9WNCiql
-	tyFWn6XCMuHMhw1EEZDAh9PbM+EOo32f8efG7rRjFTror13WKh6QrtxvfUUL97sNrMH5
-	B8aD8ZLHQbK/0BeMRb2bKiV+NFJFb8tOfTsvGx9WyZpV3pDPx4Ea/hV3CqqwoL9ryMbm
-	0Ydg==
+X-Greylist: delayed 4732 seconds by postgrey-1.32 at yocto-www;
+	Wed, 12 Aug 2015 10:24:35 PDT
+Received: from ni.com (skprod2.natinst.com [130.164.80.23])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A3BEE003D9
+	for <yocto@yoctoproject.org>; Wed, 12 Aug 2015 10:24:35 -0700 (PDT)
+Received: from us-aus-mgwout2.amer.corp.natinst.com (nb-snip2-1338.natinst.com
+	[130.164.19.135])
+	by us-aus-skprod2.natinst.com (8.15.0.59/8.15.0.59) with ESMTP id
+	t7CG5g2i025722
+	for <yocto@yoctoproject.org>; Wed, 12 Aug 2015 11:05:42 -0500
+Received: from [10.2.106.105] ([130.164.14.198])
+	by us-aus-mgwout2.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6
+	HF1218) with ESMTP id 2015081211054264-1410062 ;
+	Wed, 12 Aug 2015 11:05:42 -0500 
+Message-ID: <55CB6ED6.6060007@ni.com>
+Date: Wed, 12 Aug 2015 11:05:42 -0500
+From: Alejandro del Castillo <alejandro.delcastillo@ni.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.7.0
 MIME-Version: 1.0
-X-Received: by 10.107.158.197 with SMTP id h188mr32510304ioe.99.1439399703391; 
-	Wed, 12 Aug 2015 10:15:03 -0700 (PDT)
-Received: by 10.36.98.5 with HTTP; Wed, 12 Aug 2015 10:15:03 -0700 (PDT)
-In-Reply-To: <55CB5F4A.9060806@osg.samsung.com>
-References: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
-	<1438245251-20437-6-git-send-email-javier@osg.samsung.com>
-	<4731B312-4D73-4951-8E73-1579D8C54BD5@gmail.com>
-	<55C1AE74.2030808@osg.samsung.com>
-	<CAMKF1spq-7CntKTpVEByr7hi8pf6-uuw2DZiM=ZSvQKsaxkyBA@mail.gmail.com>
-	<55C305EC.9030809@osg.samsung.com> <20150809230528.GL17962@resin>
-	<CALbNGRQhDdvVPdA1WHvfZ45WG45JYMYCJaNJTGns5ML5Rg+u6Q@mail.gmail.com>
-	<55C85F2E.9080600@osg.samsung.com>
-	<55CB5F4A.9060806@osg.samsung.com>
-Date: Wed, 12 Aug 2015 19:15:03 +0200
-Message-ID: <CALbNGRRU+HT+o7KsK_DDVFGMQgjERyp5ASfHE39YzeaomUxHnQ@mail.gmail.com>
-From: =?UTF-8?Q?Andreas_M=C3=BCller?= <schnitzeltony@googlemail.com>
-To: Javier Martinez Canillas <javier@osg.samsung.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Derek Foreman <derekf@osg.samsung.com>,
-	Mauro Carvalho Chehab <mchehab@osg.samsung.com>
-Subject: Re: [meta-raspberrypi][PATCH 5/5] rpi-default-providers: Switch providers according to used gfx stack
+To: yocto@yoctoproject.org
+References: <55C4B071.30709@gmail.com>	<20150809100724.GA24792@bang.betafive.co.uk>
+	<55C8ABFB.3050802@gmail.com>
+In-Reply-To: <55C8ABFB.3050802@gmail.com>
+X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut2/AUS/H/NIC(Release
+	8.5.3FP6 HF1218|December 12, 2014) at 08/12/2015 11:05:42 AM,
+	Serialize by Router on US-AUS-MGWOut2/AUS/H/NIC(Release 8.5.3FP6
+	HF1218|December 12, 2014) at 08/12/2015 11:05:42 AM,
+	Serialize complete at 08/12/2015 11:05:42 AM
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:, ,
+	definitions=2015-08-12_09:, , signatures=0
+Subject: Re: ipk zImage in master-next
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,106 +55,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Aug 2015 17:15:11 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 12 Aug 2015 17:24:41 -0000
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=windows-1252
 
-On Wed, Aug 12, 2015 at 4:59 PM, Javier Martinez Canillas
-<javier@osg.samsung.com> wrote:
-> Hello,
->
-> On 08/10/2015 10:22 AM, Javier Martinez Canillas wrote:
->> Hello Andreas,
->>
->> On 08/10/2015 01:37 AM, Andreas M=C3=BCller wrote:
->>>> Khem definitely has a very good point. Maybe his way of putting it in =
-words was
->>>> not that productive. But the core idea was definitely right: I don't w=
-ant rpi
->>>> layer to introduce distro features.
->>> Agreed but I still have issues make the changes work
->>>
->>> What I have done to test:
->>>
->>> 1. add
->>> MASK_GPU_INTERRUPT =3D "0x400"
->>> DISTRO_FEATURES_append =3D " vc4-gfx"
->>>
->>> to my local.conf
->>>
->>> 2. put [1] on top of the VC4 patches sent  (this is a WIP patch not
->>> yet finished)
->>> 3. tested running X11
->>>
->
-> I tested Andreas' WIP patch under X11 using the core-image-sato image and=
- I
-> could reproduce the same behavior. KMS/DRM works when using the modesetti=
-ng
-> Xorg DDX but no GLES with HW acceleration.
->
->>
->> I did only test with Weston since that is what Tizen uses and not with X=
-11.
->> I'll make sure to test with X11 and also include a mesa_%.bbappend for v=
-2.
->>
->>> Question: What setting does the trick getting vc4 driver created by
->>> mesa doing the OpenGL work. I see only swrast which is bulls...
->>>
->>
->> I'm not really a graphics person so I'll let Derek to answer this. He is
->> in fact the author of most of these patches and I'm just working on push
->> them upstream.
->>
->
-> Derek is on holidays until next week so I tried to dig on this. When runn=
-ing
-> the glmark2-es2 benchmark I get:
->
-> $ glmark2-es2
-> libEGL warning: DRI2: failed to authenticate
-> ** Failed to set swap interval. Results may be bounded above by refresh r=
-ate.
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
->     glmark2 2014.03
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
->     OpenGL Information
->     GL_VENDOR:     Mesa Project
->     GL_RENDERER:   Software Rasterizer
->     GL_VERSION:    OpenGL ES 2.0 Mesa 10.5.8
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D
->
-> so as Andreas said, it is using swrast instead of the VC4 hw one. And in =
-fact
-> by running strace I see that there is a open("/usr/lib/dri/swrast_dri.so"=
-,...)
-> but /usr/lib/dri/vc4_dri.so is never opened.
->
-> I tried bumping the mesa git recipe to use the same sha1 we are using in =
-our
-> Tizen port but ran into build issues...
->
-> But I've reworked the patch series according to your suggestions and I ca=
-n post
-> a v2 if you want since at least KMS/DRM is working with Andreas' changes =
-or do
-> you want to first sort out the mesa bits for 3D HW accel before posting a=
- v2?
->
-FYI: I managed to get the vc4 driver loaded (should be in my repo
-branch vc4-2). With this I get some repeating kernel error messages
-(don't have them here). I am sure that I read something about these
-messages when preparing vc4 (yes I started similar before you sent
-patches).
 
-Hope I have some energy left tonight to check further and let you know...
 
-Andreas
+On 08/10/2015 08:49 AM, Trevor Woerner wrote:
+> On 08/09/15 06:07, Paul Barker wrote:
+>> On Fri, Aug 07, 2015 at 09:19:45AM -0400, Trevor Woerner wrote:
+>>> When packaging a zImage kernel for IPK in master-next the following
+>>> error shows up:
+>>>
+>>> | kernel-image-zImage-4.1.2-fslc+g95d9e15
+>>> | *** Error: Package name  contains illegal characters, (other than
+>>> [a-z0-9.+-])
+>>>
+>>> It looks like the newer kernel.bbclass is much more sophisticated about
+>>> generating package names than before.
+>>>
+>>> Has anyone else seen this? Is there a simple way of saying "the type is
+>>> zimage where packaging for ipk is concerned but zImage otherwise"?
+>>>
+>>> Best regards,
+>>> 	Trevor
+>>
+>> I believe this check is present in opkg-build just to ensure compatibility with
+>> the Debian Policy Manual. I don't remember this being an actual restriction of
+>> opkg.
+>>
+>> You could try patching the opkg-build script (in opkg-utils) to remove this
+>> check and see if opkg is happy to install the resulting package.
+> 
+> Yes, this works. Removing the check from opkg-build causes my build to
+> succeed, and the resulting image boots with this kernel (meaning opkg is
+> happy to install the package into the image).
+> 
+> Normally this is the part where I'd ask if you want me to send a patch,
+> but if that check is there for a reason, simply removing it isn't a
+> proper solution.
+> 
+> Thoughts?
+
+Looks like the dpkg back-end should be broken too. Sounds to me like the problem
+is not on opkg-build but on the new changes to the kernel class, maybe is
+missing a call to legitimize_package_name?.
+
+-- 
+cheers,
+
+Alejandro
 
