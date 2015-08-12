@@ -1,43 +1,41 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3FFB6E00A3B; Wed, 12 Aug 2015 02:54:27 -0700 (PDT)
+	id 78EFBE00A80; Wed, 12 Aug 2015 06:06:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [192.94.38.131 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C730FE00A26
-	for <yocto@yoctoproject.org>; Wed, 12 Aug 2015 02:54:24 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 9AB2F27E329;
-	Wed, 12 Aug 2015 09:54:22 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 7bw5JQnjRDzL; Wed, 12 Aug 2015 09:54:21 +0000 (UTC)
-Received: from [192.168.0.2] (cpc47-live22-2-0-cust92.17-2.cable.virginm.net
-	[86.17.157.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 6C83527E30B;
-	Wed, 12 Aug 2015 09:54:19 +0000 (UTC)
-To: Joshua Lock <joshua.lock@collabora.co.uk>, yocto@yoctoproject.org
-References: <55CB0F2C.3020403@dynamicdevices.co.uk>
-	<1439371552.2733.1.camel@collabora.co.uk>
-	<1439372740.2733.4.camel@collabora.co.uk>
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-Message-ID: <55CB17C2.1000201@dynamicdevices.co.uk>
-Date: Wed, 12 Aug 2015 10:54:10 +0100
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:38.0) Gecko/20100101
-	Thunderbird/38.1.0
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA41CE00A3B
+	for <yocto@yoctoproject.org>; Wed, 12 Aug 2015 06:06:39 -0700 (PDT)
+Received: from svr-orw-fem-06.mgc.mentorg.com ([147.34.97.120])
+	by relay1.mentorg.com with esmtp 
+	id 1ZPVjq-0007T8-KN from Joe_MacDonald@mentor.com ;
+	Wed, 12 Aug 2015 06:06:38 -0700
+Received: from burninator (147.34.91.1) by SVR-ORW-FEM-06.mgc.mentorg.com
+	(147.34.97.120) with Microsoft SMTP Server id 14.3.224.2;
+	Wed, 12 Aug 2015 06:06:38 -0700
+Received: by burninator (Postfix, from userid 1000)	id DF53B58755D; Wed, 12
+	Aug 2015 09:05:56 -0400 (EDT)
+Date: Wed, 12 Aug 2015 09:05:56 -0400
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: wenzong fan <wenzong.fan@windriver.com>
+Message-ID: <20150812130556.GA16995@mentor.com>
+References: <55CB0D29.9070206@windriver.com>
 MIME-Version: 1.0
-In-Reply-To: <1439372740.2733.4.camel@collabora.co.uk>
-Subject: Re: [meta-raspberrypi] RFC on choice of tool for patch review
+In-Reply-To: <55CB0D29.9070206@windriver.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-704 http://www.vim.org
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux] How about remove libcap-ng from meta-selinux?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,47 +47,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Aug 2015 09:54:27 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 12 Aug 2015 13:06:42 -0000
+X-Groupsio-MsgNum: 26050
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="opJtzjQTFsWo+cga"
+Content-Disposition: inline
 
+--opJtzjQTFsWo+cga
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+[[yocto] [meta-selinux] How about remove libcap-ng from meta-selinux?] On 1=
+5.08.12 (Wed 17:08) wenzong fan wrote:
 
-On 12/08/2015 10:45, Joshua Lock wrote:
-> On Wed, 2015-08-12 at 10:25 +0100, Joshua Lock wrote:
->> On Wed, 2015-08-12 at 10:17 +0100, Alex J Lennon wrote:
->>> We've been having a discussion on a way forward to manage patches 
->>> and
->>> code review and would like to open this up for discussion to agree 
->>> a 
->>> way
->>> forward.
->> There's http://patchwork.openembedded.org/. I'm not sure who 
->> maintains
->> it, nor if anyone uses it, but patches sent to the mailing list end 
->> up
->> there.
->>
->> OOI who are "we" in this context? What benefits would a change bring?
-> I managed to miss both the [yocto] and [meta-raspberrypi] tags on this
-> mail, apologies for that. I guess that "we" are the meta-raspberrypi
-> maintainers.
+> Hi All,
+>=20
+> There's a libcap-ng in meta-oe layer, it has been updated to 0.7.7 and the
+> one in meta-selinux is 0.7.3.
+>=20
+> How about removing the one in meta-selinux and get this layer depends on
+> meta-oe? Any suggestions?
 
-Yes :)
+The last time we had this discussion my sense was that most users of
+meta-selinux wanted to continue with it only depending on oe-core.
+That's my preference as well.
 
-Andrei (maintainer) was using Gerrit but that went away for reasons
-outlined in the preceding email.
+I'm happy to merge an updated version of libcap-ng (or maybe I'll get to
+it myself, since I've known about it since Armin removed it from
+meta-security, that was the time of the last discussion, I think).
 
-Some visibility and control of the review process has been lost as a
-result and so it was suggested we kick off a conversation on what
-tooling to use to restore that.
+All I'm saying right now is that this isn't a case of accidental
+duplication of recipes in multiple layers, it's the result of a
+conscious decision.  It's totally worthwhile re-visiting that decision,
+though to make sure the reasons are still valid.
 
-> Still, the patchwork instance may be an option? The meta-freescale
-> layers appear to be using it.
+--=20
+-Joe MacDonald.
+:wq
 
-Many thanks!
+--opJtzjQTFsWo+cga
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-Cheers,
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
 
-Alex
+iQEcBAEBAgAGBQJVy0S0AAoJEEn8ffcsOfaWFY4H/AsjYfXClwAU9ryZyCg0Vykq
+0AjpfX9CXDkbNQhIbe5yHjXmUecsS0o9oA3eZcWAWNM94Py4mvtQgAtporaTQuAC
+FpldOAVYEd2BX3u8KOHAKJ1/6SsqxZSyT+o6Os3XtT4SijSc5Jcc3K3hngGpsU1p
+SH8nuY7DBCf7c7MrRspIgYZvt9KNhR+gbunqx7A23Fgu9gXXKQc5wrnHMHPdZOdu
+WgqdyeH4GhTrdtlZvQRlZfxJ7kzihUbXyEtkyGMwjWI3LdJjURx+2HMB3qaKIJpd
+Muueu0AWT8i1T40ZzL42+/Smky2zxe08lKz6YBbg20JAeMINTZLUD5lGMZQiTio=
+=gO3z
+-----END PGP SIGNATURE-----
 
+--opJtzjQTFsWo+cga--
