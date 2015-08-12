@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 859E2E009C3; Tue, 11 Aug 2015 18:36:40 -0700 (PDT)
+	id C9239E00A3B; Wed, 12 Aug 2015 00:39:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,6 +9,9 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.54 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,44 +19,41 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.45 listed in list.dnswl.org]
-Received: from mail-pa0-f45.google.com (mail-pa0-f45.google.com
-	[209.85.220.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4FB0FE007B1
-	for <yocto@yoctoproject.org>; Tue, 11 Aug 2015 18:36:34 -0700 (PDT)
-Received: by pabyb7 with SMTP id yb7so2669729pab.0
-	for <yocto@yoctoproject.org>; Tue, 11 Aug 2015 18:36:34 -0700 (PDT)
+Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
+	[209.85.220.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BE2AE00AC0
+	for <yocto@yoctoproject.org>; Wed, 12 Aug 2015 00:38:49 -0700 (PDT)
+Received: by pacgr6 with SMTP id gr6so8932289pac.2
+	for <yocto@yoctoproject.org>; Wed, 12 Aug 2015 00:38:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=subject:mime-version:content-type:from:in-reply-to:date:cc
 	:message-id:references:to;
-	bh=erYIo56afgI3c0Gc2sCNgEfkdLALVtPNUfd9m2Ud8FM=;
-	b=OheXO1aBhxnGv63V4EbznDXO+SI2UvMFka+fRWyp8bDHHFgDfr913l63kjTE3WhZ3d
-	qB5058DTZdbOzl2PfqM6Tf4DoplGpf1gAy7Z2bM3y8KaQX15q7rw42Z6SQSA1gTYfPVT
-	Hbczms7Oh3ixmRqpglC5Nwy4R7ytH4tV1j75j23mUonPZPR6S976j22tOXa4vS7Tm48v
-	1vB9ELsFM8pwkCKdiOXcLByhKK+a7HHCrvuoS12AxMhOxK2SnQ2+EquEjCi8RwncqAge
-	JhcyDUK7R3WAJVyAsHU0EP/gn9phWk3nuVkQAHIiawPn4mHejhisNDLcrPeHYD3251R4
-	u6TA==
-X-Received: by 10.66.138.40 with SMTP id qn8mr62054850pab.19.1439343394302;
-	Tue, 11 Aug 2015 18:36:34 -0700 (PDT)
-Received: from ?IPv6:2601:646:8601:4580:157:79f9:ef5c:d3d0?
-	([2601:646:8601:4580:157:79f9:ef5c:d3d0])
+	bh=52CEtgV1XvB/AaOwIlbxYeKrbFIowEwWEVCElWlylZc=;
+	b=wShqVjIWPDtZ15mO7nOUyNELHr8Gz6Ca19G0Ua1ivPW6BtyyVugopFUEYbLeg6iMQ9
+	cXfl6X+Ho5xLvE50yxNlZsWo5IZHB5B39k+bh6pVPXrRM8yqGFxe9tYwLKLLQviagDmN
+	X+uADf3jJG+eLAqmedDOx70KaJ1vJWFGt1IQ1pnYDrwQVf9w68BHAubiIuA1vlH7hfk2
+	20DDQvsh4yHW+AsLjlb2Uw+cOZeTH/qX+ex47t+ajGFUpHwR7Ms3tA4HhliZh0c4nzAz
+	GYxabQY7kP7mr9y11EEHxb5gl6qQWfYQ1MKt97niP8knyf8ZK3qmYmRm5ZSzuqwj/Rk1
+	dhfA==
+X-Received: by 10.68.253.232 with SMTP id ad8mr66161622pbd.115.1439365129097; 
+	Wed, 12 Aug 2015 00:38:49 -0700 (PDT)
+Received: from ?IPv6:2601:646:8601:4580:b9e7:cb72:7ff1:d60c?
+	([2601:646:8601:4580:b9e7:cb72:7ff1:d60c])
 	by smtp.gmail.com with ESMTPSA id
-	oq7sm4198767pbb.31.2015.08.11.18.36.33
+	u16sm5259362pdl.71.2015.08.12.00.38.46
 	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 11 Aug 2015 18:36:33 -0700 (PDT)
+	Wed, 12 Aug 2015 00:38:48 -0700 (PDT)
 Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2104\))
 X-Pgp-Agent: GPGMail 2.5
 From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CAHWMYyDRB9nO0cxM+-Pi4hWz_cfViiPND6qi+9cP2Y=ZRFF0Eg@mail.gmail.com>
-Date: Tue, 11 Aug 2015 18:36:28 -0700
-Message-Id: <53C7D019-CC77-4FDB-A40E-16FCF6D00781@gmail.com>
-References: <CAHWMYyDRB9nO0cxM+-Pi4hWz_cfViiPND6qi+9cP2Y=ZRFF0Eg@mail.gmail.com>
-To: Todd Efflam <todd.efflam@gmail.com>
+In-Reply-To: <CAM8P1k8HtFW8OniXY_dprAz+DdJWREpHQEe8nVtNALnWqYUwNA@mail.gmail.com>
+Date: Wed, 12 Aug 2015 00:38:41 -0700
+Message-Id: <B47319B5-6524-437E-BCFA-CEDBF14A4652@gmail.com>
+References: <CAM8P1k8HtFW8OniXY_dprAz+DdJWREpHQEe8nVtNALnWqYUwNA@mail.gmail.com>
+To: Lukas Weiss <lukas.weiss@janitza.de>
 X-Mailer: Apple Mail (2.2104)
 Cc: yocto@yoctoproject.org
-Subject: Re: No '/lib/modules' directory in image, modprobe fails
+Subject: Re: Add custom tools to yocto build environment
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,48 +65,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Aug 2015 01:36:40 -0000
-X-Groupsio-MsgNum: 26039
+X-List-Received-Date: Wed, 12 Aug 2015 07:39:06 -0000
+X-Groupsio-MsgNum: 26040
 Content-Type: multipart/signed;
-	boundary="Apple-Mail=_28C6A655-03BA-41C9-8CAC-C4AFC3722CF3";
+	boundary="Apple-Mail=_0DE69EF3-0AD3-4776-AF4A-8AD27DC2A789";
 	protocol="application/pgp-signature"; micalg=pgp-sha1
 
---Apple-Mail=_28C6A655-03BA-41C9-8CAC-C4AFC3722CF3
+--Apple-Mail=_0DE69EF3-0AD3-4776-AF4A-8AD27DC2A789
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
-	charset=utf-8
+	charset=us-ascii
 
 
-> On Aug 11, 2015, at 5:53 PM, Todd Efflam <todd.efflam@gmail.com> =
+> On Jul 22, 2015, at 12:00 AM, Lukas Weiss <lukas.weiss@janitza.de> =
 wrote:
 >=20
-> Hello,
-> We're trying to load and unload modules using modprobe but are having =
-problems.  The command fails with "modprobe: can't change directory to =
-'/lib/modules': no such file or directory".  There is actually no =
-/lib/modules directory on the image at all.  We tried to install the =
-linux-libc-headers package but it failed and I think the reason is we =
-are using the 3.14 kernel and the package is 3.19.  Any help would be =
-appreciated!
+> Hello yocto friends,
+>=20
+> I have a problem with yocto you could help me with. The Background:
+> Iam working on a yocto-linux for a TI OMAP-L138, which is a ARM9+DSP =
+in one package. The Linux on ARM is running fine, and does everything I =
+want. I have implemented a kernel driver to start the DSP-Core from the =
+Linux on the ARM9-Core, but now I need to generate the Firmware for the =
+DSP with the Yocto buid system. Main problem is, that I need a =
+compiler/toolchain from TI to compile the Code for the DSP in the yocto =
+build environment.
+>=20
+> At this point I did not understand how to add tools to the yocto build =
+environment at all. I think there must be a way to add software to my =
+host (build) system for generating code for my target. But I have no =
+idea how to do it. When I write a BB-recipe, the architecture of the =
+resulting files is checked to be from targets type (arm in my case), but =
+host tools are of type x86... (which is totally correct!)
+>=20
+> I think I need a recipe, which downloads the compiler/toolchain for =
+the DSP, extracts and installs it to my yocto build environment, so that =
+I can use it in another recipe that compiles my code to a loadable =
+firmware-image (which is placed to my targets rootfs).
+>=20
+> Do you have any suggestions for me how to do that?
 
-linux-libc-headers is kernel APIs for userland. The modules are =
-generated as individual packages during kernel build. You can choose =
-which modules you want to package
-default it none. if you want all default modules to be included in image =
-you can add
+This is a multi machine build case, and in single bitbake invocation we =
+only support single arch. But this is not a big issue you can issue two =
+cmds
 
-MACHINE_EXTRA_RRECOMMENDS =3D " kernel-modules=E2=80=9D
+MACHINE=3Ddsp-machine bitbake blah
 
-to you machine.conf
+and then
 
-Otherwise if you know which ones your system needs then you can add it =
-to IMAGE_INSTALL individually.
+MACHINE=3Darm-machine bitbake blah
 
-IMAGE_INSTALL +=3D "kernel-module-<name-of-module>=E2=80=9D
+I think DSP firmware is another rootfs+kernel  or may be bare metal app, =
+you could certainly use OE/Yocto tooling for that however, I think its =
+not trivial if you want to build from source and I think there is no =
+support for this DSP chip as supported architecture in OE, which means =
+it will require changes in OE-Core to support the DSP architecture and =
+then you would either build the toolchain internally or you can also =
+hook in a prebuilt toolchain into OE and only after that you can start =
+to build
+packages for firmware. You can look into git history and see how a new =
+architecture is added ( mips64 was one I remember last I did ) you will =
+need something like that.
+
+quick method would be to keep building DSP firmware outside OE/yocto =
+environment ( as you have been ) then just package the final firmware =
+blob into ARM image
+
+>=20
+> Thanks,
+>=20
+> Lukas
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
-
---Apple-Mail=_28C6A655-03BA-41C9-8CAC-C4AFC3722CF3
+--Apple-Mail=_0DE69EF3-0AD3-4776-AF4A-8AD27DC2A789
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment;
 	filename=signature.asc
@@ -117,9 +153,9 @@ Content-Description: Message signed with OpenPGP using GPGMail
 -----BEGIN PGP SIGNATURE-----
 Comment: GPGTools - https://gpgtools.org
 
-iEYEARECAAYFAlXKoyAACgkQuwUzVZGdMxRAiQCeM0VgsfyHwnhjDM+Pc6DYyqOZ
-HzYAmgKZszVfyVYn9W2zBqK2BAjMstUv
-=1bI8
+iEYEARECAAYFAlXK+AUACgkQuwUzVZGdMxQkTACfc2gK/+SbKqMg0x0WJqeSY8kE
+ixgAn3HUbW2bZGYVgK1fWwl7GgLoAvfc
+=VndI
 -----END PGP SIGNATURE-----
 
---Apple-Mail=_28C6A655-03BA-41C9-8CAC-C4AFC3722CF3--
+--Apple-Mail=_0DE69EF3-0AD3-4776-AF4A-8AD27DC2A789--
