@@ -1,34 +1,33 @@
 Return-Path: <petter@technux.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9E53BE00985; Thu, 13 Aug 2015 06:12:29 -0700 (PDT)
+	id 79D01E00A54; Thu, 13 Aug 2015 06:12:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,TVD_SPACE_RATIO
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
-Received: from bin-vsp-out-04.atm.binero.net (bin-mail-out-06.binero.net
-	[195.74.38.229])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76EAEE009D7
-	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 06:12:26 -0700 (PDT)
-X-Halon-ID: f041ec5d-41bc-11e5-b1f7-005056917c0c
+Received: from bin-vsp-out-04.atm.binero.net (bin-mail-out-05.binero.net
+	[195.74.38.228])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EE7EE009C5
+	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 06:12:24 -0700 (PDT)
+X-Halon-ID: ef625ebb-41bc-11e5-b1f7-005056917c0c
 Authorized-sender: petter@technux.se
 Received: from elxbvzzwp1-cy.lan (unknown [81.229.90.163])
 	by bin-vsp-out-04.atm.binero.net (Halon Mail Gateway) with ESMTPSA
-	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 15:12:24 +0200 (CEST)
+	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 15:12:22 +0200 (CEST)
 From: =?UTF-8?q?Petter=20Mab=C3=A4cker?= <petter@technux.se>
 To: yocto@yoctoproject.org
-Date: Thu, 13 Aug 2015 15:12:24 +0200
-Message-Id: <12ab56578c314024ff14e9a347242da521fa4029.1439471046.git.petter@technux.se>
+Date: Thu, 13 Aug 2015 15:12:21 +0200
+Message-Id: <4570377909d00208c3ade8e885c969e947982452.1439471046.git.petter@technux.se>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <cover.1439471046.git.petter@technux.se>
 References: <cover.1439471046.git.petter@technux.se>
 In-Reply-To: <cover.1439471046.git.petter@technux.se>
 References: <cover.1439471046.git.petter@technux.se>
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][fido][PATCH 4/4] rpi-default-providers: Let users overwrite the default providers
+Subject: [meta-raspberrypi][fido][PATCH 1/4] linux-raspberrypi: Update 3.18 branch to 3.18.11
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,42 +39,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Aug 2015 13:12:29 -0000
+X-List-Received-Date: Thu, 13 Aug 2015 13:12:33 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Andrei Gherzan <andrei@gherzan.ro>
+Update linux-raspberrypi_3.18 to latest version.
+Remove sl030raspberrypii2ckernel.patch since it will not apply anymore
+and its content seems to be obsolite in later kernel versions.
 
-[Feature #65]
+[Support #56]
 
+Change-Id: I91e57f4e65d9c1c9d12014f5d11b0acd950e2d1d
+Signed-off-by: Petter Mabäcker <petter@technux.se>
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
-Signed-off-by: Pierre FICHEUX <pierre.ficheux@gmail.com>
 
-(cherry picked from commit ade923f17d242f9a043b1714deb584929a2ffe8e)
+(cherry picked from commit c9f29df249b80ab488e4ea6eddc01a6522a28c09)
 Signed-off-by: Petter Mabäcker <petter@technux.se>
 ---
- conf/machine/include/rpi-default-providers.inc | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ recipes-kernel/linux/linux-raspberrypi_3.18.bb | 8 +++-----
+ 1 file changed, 3 insertions(+), 5 deletions(-)
 
-diff --git a/conf/machine/include/rpi-default-providers.inc b/conf/machine/include/rpi-default-providers.inc
-index ee3a3ac..cabbd43 100644
---- a/conf/machine/include/rpi-default-providers.inc
-+++ b/conf/machine/include/rpi-default-providers.inc
-@@ -1,10 +1,10 @@
- # RaspberryPi BSP default providers
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.18.bb b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+index 921e702..6d8b155 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_3.18.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_3.18.bb
+@@ -1,8 +1,6 @@
+-LINUX_VERSION ?= "3.18.5"
++LINUX_VERSION ?= "3.18.11"
  
--PREFERRED_PROVIDER_virtual/kernel = "linux-raspberrypi"
--PREFERRED_PROVIDER_u-boot = "u-boot-rpi"
--PREFERRED_PROVIDER_virtual/xserver = "xserver-xorg"
-+PREFERRED_PROVIDER_virtual/kernel ?= "linux-raspberrypi"
-+PREFERRED_PROVIDER_u-boot ?= "u-boot-rpi"
-+PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
- PREFERRED_PROVIDER_virtual/egl ?= "userland"
- PREFERRED_PROVIDER_virtual/libgles2 ?= "userland"
- PREFERRED_PROVIDER_virtual/libgl ?= "mesa-gl"
- PREFERRED_PROVIDER_virtual/mesa ?= "mesa-gl"
--PREFERRED_PROVIDER_jpeg = "jpeg"
-+PREFERRED_PROVIDER_jpeg ?= "jpeg"
+-SRCREV = "a6cf3c99bc89e2c010c2f78fbf9e3ed478ccfd46"
+-SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y \
+-           file://sl030raspberrypii2ckernel.patch \
+-          "
++SRCREV = "d64fa8121fca9883d6fb14ca06d2abf66496195e"
++SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.18.y"
+ 
+ require linux-raspberrypi.inc
 -- 
 1.9.1
 
