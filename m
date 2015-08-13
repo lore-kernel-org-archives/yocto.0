@@ -1,52 +1,51 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <ryansvb91@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E49DAE00A3C; Thu, 13 Aug 2015 10:41:25 -0700 (PDT)
+	id 4BA7EE0095C; Thu, 13 Aug 2015 13:25:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (todd.efflam[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.180 listed in list.dnswl.org]
-Received: from mail-io0-f180.google.com (mail-io0-f180.google.com
-	[209.85.223.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EBC9E007AE
-	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 10:41:18 -0700 (PDT)
-Received: by iodt126 with SMTP id t126so59986106iod.2
-	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 10:41:18 -0700 (PDT)
+Received: from mail-io0-f169.google.com (mail-io0-f169.google.com
+	[209.85.223.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFA9CE00767
+	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 13:25:44 -0700 (PDT)
+Received: by iods203 with SMTP id s203so64639265iod.0
+	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 13:25:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=SI/Y2ZkPOgPr/D5fFaY7ijBT99Co3+Xnw0m4+XzGmS0=;
-	b=U5RQldTEu+wtyND8lLJ16bP1sE6zT504z8KVmOG69OPfvTiTs7l3mH0w85dmVTqPal
-	gGqiss4RxPyyrCowJ1xlG2X+CStO20ZJq/J8YxjttRX43kNAmUT6s7cG7gzOvsbuFq6L
-	7atlb2725moL1nFntjo4iVQYHXT/4E04cdJhczPawOnDnBPyELrvcQotBz9oW+EDyF4u
-	vFkc2HKHAyzqkIjBR8yQqCXYFIoLeUBQ3/kDeyg9HYZEaD/nstt9XTNoHUZFzOEDw4Ce
-	bSWTtUdkl5zuLu1/uyj9x3CtvUy8CNu8nkiRWBoZDzZg9+V61/5Y8cr6l0wgiDhJbeLN
-	XcUw==
-X-Received: by 10.107.168.214 with SMTP id e83mr5660165ioj.112.1439487678362; 
-	Thu, 13 Aug 2015 10:41:18 -0700 (PDT)
+	h=mime-version:sender:date:message-id:subject:from:to:content-type;
+	bh=UQOsQFcrK2cIWd9QJloH1/6e9z7xA8JV7sPmqYojFSo=;
+	b=PSFoTOOURICeRrx4BYrbT86ZqYjBANg0cHBg4I9GjBTLnjm6e6EuO5sR3S4CPe3kyq
+	EXym/p6JVb2Tb20LEYz1B3nBRo994Kexvuwap0TaBmYOPv/TDSZYTB0CncFwOizJRbAP
+	MGSHpu22Y9wiVUVQcjrEB3q8qGNjE//u1DuVNHgwUrUQYqKTq2c2ZXDIe1/PO22+tJdf
+	AXC8m6KqnA4lJoHQ7Wf6ta9kxyaVW3Rca8i9WXSn9nt9uE91EmoIKwsXoMqcmZjJk6bH
+	T+DN2pJBpi/rEjQCkesIAX2AX7fF5PtLhn3gQvXOdjNxK3m3vJk29ZcumJ6uW9ATd8fE
+	8aMg==
 MIME-Version: 1.0
-Received: by 10.107.38.79 with HTTP; Thu, 13 Aug 2015 10:40:49 -0700 (PDT)
-In-Reply-To: <1908027641.2329580.1436853380447.JavaMail.yahoo@mail.yahoo.com>
-References: <1908027641.2329580.1436853380447.JavaMail.yahoo@mail.yahoo.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 13 Aug 2015 10:40:49 -0700
-Message-ID: <CAMKF1sqW-f1Yx+6Bx8aW4y1JtvJ6SGXuTpnX-Jc+wq=M-yLAhw@mail.gmail.com>
-To: Alvaro Martinez Tovar <alvaromartineztovar@yahoo.es>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: (No subject)
+X-Received: by 10.107.9.11 with SMTP id j11mr27819135ioi.191.1439497543722;
+	Thu, 13 Aug 2015 13:25:43 -0700 (PDT)
+Sender: ryansvb91@gmail.com
+Received: by 10.79.29.76 with HTTP; Thu, 13 Aug 2015 13:25:43 -0700 (PDT)
+Date: Thu, 13 Aug 2015 13:25:43 -0700
+X-Google-Sender-Auth: jwCugrBnZgRWmkZZsXRvRc7-CJw
+Message-ID: <CAMeZNHRGp89W8p9w9AGGoW9JeFLiNPV2ys_S66Qt5zd4g7YtHA@mail.gmail.com>
+From: Todd Efflam <todd.efflam@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Problem creating debug build with inlined functions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,54 +57,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Aug 2015 17:41:25 -0000
+X-List-Received-Date: Thu, 13 Aug 2015 20:25:45 -0000
+Content-Type: multipart/alternative; boundary=001a113f905abfae69051d372383
+
+--001a113f905abfae69051d372383
 Content-Type: text/plain; charset=UTF-8
 
-On Mon, Jul 13, 2015 at 10:56 PM, Alvaro Martinez Tovar
-<alvaromartineztovar@yahoo.es> wrote:
-> Dear all,
-> I am working with Qt5.5.0 and QtCreator 3.4.2 open source. On the hardware
-> side I work with a i.MX6 sabre platform for smart devices.
-> As a first aproach, after having created the image fsl-image-qt5 correctly
-> (I think), I would like to run different examples by cross compiling and
-> executing them on the SABRE platform. On my PC I run Ubuntu 14.04 LTS.
-> When I compile all the examples to run on the Ubuntu PC, they all work
-> properly (bluetooth, qtquick ...)
-> However, when I try to cross-compile and run them on the SABRE platform, I
-> get execution errors with some of them.
-> When I try to run a bluetooth scanner, I get:
-> ./btscanner: error while loading shared libraries: libQt5Bluetooth.so.5:
-> cannot open shared object file: No such file or directory
-> When I try to run a Qtquick example (dasboard), I get:
-> Qt Warning: Could not find a location of the system's Compose files.
-> Consider setting the QTCOMPOSE environment variable.
-> Qt Warning: Could not find a location of the system's Compose files.
-> Consider setting the QTCOMPOSE environment variable.
-> QQmlApplicationEngine failed to load component
-> qrc:/qml/dashboard.qml:45 module "QtQuick.Extras" is not installed
-> qrc:/qml/dashboard.qml:43 module "QtQuick.Controls" is not installed
-> qrc:/qml/dashboard.qml:44 module "QtQuick.Controls.Styles" is not installed
-> qrc:/qml/dashboard.qml:45 module "QtQuick.Extras" is not installed
-> qrc:/qml/dashboard.qml:43 module "QtQuick.Controls" is not installed
-> qrc:/qml/dashboard.qml:44 module "QtQuick.Controls.Styles" is not installed
-> qrc:/qml/dashboard.qml:45 module "QtQuick.Extras" is not installed
-> qrc:/qml/dashboard.qml:43 module "QtQuick.Controls" is not installed
-> qrc:/qml/dashboard.qml:44 module "QtQuick.Controls.Styles" is not installed
->
-> Can you please give me any advice on what to do? I am stuck at this point.
->
+Hello,
+We're trying to create a debug build so we can use our image with gdb,
+however we're unable to get it to compile.  We've added the lines
+"DEBUG_BUILD = "1"" and "EXTRA_IMAGE_FEATURES += "tools-sdk dbg-pkgs
+tools-debug debug-tweaks"" to the local.conf file, but it seems to be
+failing on glibc.  The errors we get have to do with inlined functions
+(./tlsdeschtab.h:28:1: error: inlining failed in call to 'hash_tlsdesc':
+indirect function call with a yet undetermined callee [-Werror=inline]
+|  hash_tlsdesc (void *p)).  Are we missing a compile flag?  We tried
+adding -gdwarf-2 to the CFLAGS option in local.conf but still got the same
+error.  Any help would be appreciated!
 
-you should use same version of qt that you are getting for meta-qt5
-and 5.5 is not yet in there
-the latest on master is 5.4
+Thanks,
+Todd
 
-> thank you in advance!
-> Regards
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+--001a113f905abfae69051d372383
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><div>Hello,<br></div>We&#39;re trying to create a deb=
+ug build so we can use our image with gdb, however we&#39;re unable to get =
+it to compile.=C2=A0 We&#39;ve added the lines &quot;DEBUG_BUILD =3D &quot;=
+1&quot;&quot; and &quot;EXTRA_IMAGE_FEATURES +=3D &quot;tools-sdk dbg-pkgs =
+tools-debug debug-tweaks&quot;&quot; to the local.conf file, but it seems t=
+o be failing on glibc.=C2=A0 The errors we get have to do with inlined func=
+tions (./tlsdeschtab.h:28:1: error: inlining failed in call to &#39;hash_tl=
+sdesc&#39;: indirect function call with a yet undetermined callee [-Werror=
+=3Dinline]<br>|=C2=A0 hash_tlsdesc (void *p)).=C2=A0 Are we missing a compi=
+le flag?=C2=A0 We tried adding -gdwarf-2 to the CFLAGS option in local.conf=
+ but still got the same error.=C2=A0 Any help would be appreciated!<br><br>=
+Thanks, <br>Todd</div></div>
+
+--001a113f905abfae69051d372383--
