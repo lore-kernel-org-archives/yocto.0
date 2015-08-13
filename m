@@ -1,33 +1,54 @@
-Return-Path: <belen.barros.pena@linux.intel.com>
+Return-Path: <picmaster@mail.bg>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 515DBE009D7; Thu, 13 Aug 2015 06:26:02 -0700 (PDT)
+	id 7E496E00978; Thu, 13 Aug 2015 07:11:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [193.201.172.118 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (picmaster[at]mail.bg)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7152BE00947
-	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 06:25:52 -0700 (PDT)
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga102.jf.intel.com with ESMTP; 13 Aug 2015 06:25:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,670,1432623600"; d="scan'208";a="624808541"
-Received: from bbarrosp-mac03.isw.intel.com ([10.237.224.32])
-	by orsmga003.jf.intel.com with ESMTP; 13 Aug 2015 06:25:52 -0700
-From: Belen Barros Pena <belen.barros.pena@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 13 Aug 2015 14:25:36 +0100
-Message-Id: <1439472336-20463-2-git-send-email-belen.barros.pena@linux.intel.com>
-X-Mailer: git-send-email 2.3.2 (Apple Git-55)
-In-Reply-To: <1439472336-20463-1-git-send-email-belen.barros.pena@linux.intel.com>
-References: <1439472336-20463-1-git-send-email-belen.barros.pena@linux.intel.com>
-Subject: [PATCH 2/2] rrs: avoid too many columns in the recipes table
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mx2.mail.bg (mx2.mail.bg [193.201.172.118])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29167E0096A
+	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 07:11:17 -0700 (PDT)
+Received: from [192.168.0.62] (unknown [93.152.143.60])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by mx2.mail.bg (Postfix) with ESMTPSA id D0FB560011F8;
+	Thu, 13 Aug 2015 17:11:15 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mail.bg; s=default;
+	t=1439475076; bh=tsaJedPDuevi5Sn+xlvIgF6L24JjVBHV5Ht9hjGaIH8=;
+	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
+	In-Reply-To:Content-Type:Content-Transfer-Encoding;
+	b=/cCpNHBrnKBXw1+QaXRaTl+9iE6+Yli+odkhNKfXplrNxS4McKkI+rFptc1VcrBCp
+	teIzzQ/Ft0NwAs6n6zcnh75we+F/gS5Ks+kDPJGAvdNum32QBv/9sH+RYYy4D84GM+
+	SIR8HBJatKaIqgnSN9HSo44ptY2nbBfoSEAFbQs8=
+Message-ID: <55CCA583.4090107@mail.bg>
+Date: Thu, 13 Aug 2015 17:11:15 +0300
+From: Nikolay Dimitrov <picmaster@mail.bg>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Icedove/31.8.0
+MIME-Version: 1.0
+To: Paul Sherwood <paul.sherwood@codethink.co.uk>
+References: <90967689f471f5ac0cf4edca77457a8c@codethink.co.uk>
+	<55CC8E62.7070102@mail.bg>
+	<0071ba1f11fafdd0812214d3da8ce4b4@codethink.co.uk>
+In-Reply-To: <0071ba1f11fafdd0812214d3da8ce4b4@codethink.co.uk>
+Cc: yocto@yoctoproject.org, Takeshi Saito <takeshi.saito.xv@renesas.com>,
+	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.yj@renesas.com>,
+	automotive-discussions@lists.linuxfoundation.org
+Subject: Re: How to submit patches upstream for repos at git.yoctoproject.org (eg meta-renesas)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,47 +60,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Aug 2015 13:26:02 -0000
+X-List-Received-Date: Thu, 13 Aug 2015 14:11:22 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Currently, when you select 'Can't be updated' in the upstream
-status filter, the resulting table will add the 'No update reason'
-column to the default column set.
+Hi Paul,
 
-Although this is probably useful information to see in the
-table itself, it results in too many columns, and a rather
-unpleasant layout change.
+On 08/13/2015 04:24 PM, Paul Sherwood wrote:
+> Hi Nikolay!
+> On 2015-08-13 13:32, Nikolay Dimitrov wrote:
+>> On 08/13/2015 02:21 PM, Paul Sherwood wrote:
+>>> Hi all,
+>>> I am not affiliated to any Yocto Project member organisation, but am
+>>> assisting with integration at the Automotive Grade Linux project, which
+>>> is re-using some work from upstreams at git.yoctoproject.org
+>>>
+>>> Recently members of the AGL community have started contributing patches
+>>> for meta-renesas at our mirror [1]. We would like to offer this and
+>>> future work to upstream, and I am hoping to understand so that I can
+>>> help guide AGL's activities so that we are properly aligned. Please can
+>>> someone guide us on the accepted way to offer these and subsequent
+>>> patches?
+>>>
+>>> br
+>>> Paul
+>>>
+>>> [1] https://gerrit.automotivelinux.org/gerrit/#/c/4047/
+>>
+>> Haven't seen you for a quite a while after Karlsruhe, hope you're doing
+>> fine.
+>
+> Small world! I am  very well thank you - it's great to re-connect with
+> old friends here :-)
+>
+>> Regarding the upstreaming guidelines, the usual steps apply - ask
+>> contributors to push patches as close to the upstream project as
+>> possible, and just then go downstream, like this (in order of
+>> preference):
+>>
+>> 1. Upstream components
+>> 2. Yocto meta layer (which you are reusing)
+>> 3. AGL repos
+>
+> Understood, thank you. So in this case, for patches to meta-renesas,
+> should we email them to this list, or another list, or send directly to
+> the maintainer, or is there another mechanism established?
 
-This patch hides the 'Summary' column whenever you select
-'Can't be updated' in the upstream status filter, effectively
-replacing the 'Summary' with the 'No update reason' column,
-which is probably more relevant in this context. Now you
-have less columns distracting you, and a slightly less
-jumpy layout change.
+Usually I would advice to send the patches to a Renesas-specific ML,
+but I couldn't find it in the OE layers index, so it would be best to
+ask the Renesas team.
 
-A designer would have come up with this solution in the
-first place. Sadly, she was never asked.
+@Stephen, Takeshi, Nobuhiro: Can you please advice which is the proper
+ML for sending meta-renesas patches? Thanks.
 
-Signed-off-by: Belen Barros Pena <belen.barros.pena@linux.intel.com>
----
- templates/rrs/recipes.html | 2 ++
- 1 file changed, 2 insertions(+)
+>> Also, it would be great if your AGL maintainers can enforce appropriate
+>> patch tracking by Upstream-status tag + description, as it will help
+>> everyone.
+>
+> Yes, I completely agree.
+>
+> br
+> Paul
 
-diff --git a/templates/rrs/recipes.html b/templates/rrs/recipes.html
-index 3ac73d2..8927b2f 100644
---- a/templates/rrs/recipes.html
-+++ b/templates/rrs/recipes.html
-@@ -218,8 +218,10 @@ $(document).ready(function() {
-     function applyFilters() {
-         if (upstreamStatus == 'Can\'t be updated') {
-             $('.no_update_reason_column').show()
-+            $('.summary_column').hide()            
-         } else {
-             $('.no_update_reason_column').hide()
-+            $('.summary_column').show()            
-         }
- 
-         if (upstreamStatus == 'All') {
--- 
-2.3.2 (Apple Git-55)
-
+Have a nice day,
+Nikolay
 
