@@ -1,6 +1,6 @@
-Return-Path: <stephen.lawrence@renesas.com>
+Return-Path: <javier@osg.samsung.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1089FE00978; Thu, 13 Aug 2015 07:37:33 -0700 (PDT)
+	id 19F48E00A7B; Thu, 13 Aug 2015 08:43:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,89 +8,39 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [210.160.252.173 listed in list.dnswl.org]
+	*      [54.187.51.154 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 303 seconds by postgrey-1.32 at yocto-www;
-	Thu, 13 Aug 2015 07:37:29 PDT
-Received: from relmlie2.idc.renesas.com (relmlor3.renesas.com
-	[210.160.252.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5027AE0096A
-	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 07:37:28 -0700 (PDT)
-Received: from unknown (HELO relmlir2.idc.renesas.com) ([10.200.68.152])
-	by relmlie2.idc.renesas.com with ESMTP; 13 Aug 2015 23:32:24 +0900
-Received: from relmlac1.idc.renesas.com (relmlac1.idc.renesas.com
-	[10.200.69.21])
-	by relmlir2.idc.renesas.com (Postfix) with ESMTP id 464B342A14;
-	Thu, 13 Aug 2015 23:32:24 +0900 (JST)
-Received: by relmlac1.idc.renesas.com (Postfix, from userid 0)
-	id 348618002E; Thu, 13 Aug 2015 23:32:24 +0900 (JST)
-Received: from relmlac1.idc.renesas.com (localhost [127.0.0.1])
-	by relmlac1.idc.renesas.com (Postfix) with ESMTP id 268398002D;
-	Thu, 13 Aug 2015 23:32:24 +0900 (JST)
-Received: from relmlii1.idc.renesas.com [10.200.68.65] 
-	by relmlac1.idc.renesas.com with ESMTP id ZAW08418;
-	Thu, 13 Aug 2015 23:32:24 +0900
-X-IronPort-AV: E=Sophos;i="5.15,670,1432566000"; d="scan'208";a="192258789"
-Received: from mail-hk2apc01lp0216.outbound.protection.outlook.com (HELO
-	APC01-HK2-obe.outbound.protection.outlook.com) ([65.55.88.216])
-	by relmlii1.idc.renesas.com with ESMTP/TLS/AES256-SHA;
-	13 Aug 2015 23:32:23 +0900
-Received: from TY1PR06MB0733.apcprd06.prod.outlook.com (10.163.245.143) by
-	TY1PR06MB1006.apcprd06.prod.outlook.com (10.164.99.28) with Microsoft
-	SMTP Server (TLS) id 15.1.231.21; Thu, 13 Aug 2015 14:32:20 +0000
-Received: from TY1PR06MB0733.apcprd06.prod.outlook.com ([10.163.245.143]) by
-	TY1PR06MB0733.apcprd06.prod.outlook.com ([10.163.245.143]) with mapi id
-	15.01.0225.018; Thu, 13 Aug 2015 14:32:20 +0000
-From: Stephen Lawrence <stephen.lawrence@renesas.com>
-To: Nikolay Dimitrov <picmaster@mail.bg>, Paul Sherwood
-	<paul.sherwood@codethink.co.uk>
-Thread-Topic: [yocto] How to submit patches upstream for repos at
-	git.yoctoproject.org (eg meta-renesas)
-Thread-Index: AQHQ1dHy6z5DM/B89Eiq4F224TB6E54J+w+Q
-Date: Thu, 13 Aug 2015 14:32:19 +0000
-Message-ID: <TY1PR06MB0733208D9718362D63E275DE927D0@TY1PR06MB0733.apcprd06.prod.outlook.com>
-References: <90967689f471f5ac0cf4edca77457a8c@codethink.co.uk>
-	<55CC8E62.7070102@mail.bg>
-	<0071ba1f11fafdd0812214d3da8ce4b4@codethink.co.uk>
-	<55CCA583.4090107@mail.bg>
-In-Reply-To: <55CCA583.4090107@mail.bg>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=stephen.lawrence@renesas.com; 
-x-originating-ip: [193.141.220.21]
-x-microsoft-exchange-diagnostics: 1; TY1PR06MB1006;
-	5:z5PFqH6MCWGLB3IPvOag0tY93NRyBCy9Qqta+enaQC/vd3OXxTuijBOkCnyilpTt4vfzu11L0Q5M2wgcNoZvXrkWbbgzd32uWhfg5+2Vmz9f47yKjNCMDu68Er3pnswUmb2ZFcEp5W78v27MvNTuhg==;
-	24:nCWaWvv8LFU3H8/jVlLVDvtzc8YvvPQyUYfE6e8yvln14LsXQG45aXM2nbGNJa0EcEoQGDGxyWrI3/j2ujlgwcq9A3BLR1ghVklMzDo3TMo=;
-	20:g3wuT9eo4wwCOyfb0y2LzQxuvlhuGSs1aVzGzqYrIDDOvFagjtLrLnGVPEr0P8d9wfIjIK/08acVcG2ABy/B9XWqaTM7XUk5Q9mwuXvnatdPrfxFGuWt3YIUBRFh8tM+Llh8h0tREY0ougpyxxM906E4ExUsWM+CpTHb/nQl0lg=
-x-microsoft-antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:TY1PR06MB1006;
-x-microsoft-antispam-prvs: <TY1PR06MB1006265A986EEC49CD2F34A5927D0@TY1PR06MB1006.apcprd06.prod.outlook.com>
-x-exchange-antispam-report-test: UriScan:;
-x-exchange-antispam-report-cfa-test: BCL:0; PCL:0;
-	RULEID:(601004)(5005006)(3002001); SRVR:TY1PR06MB1006; BCL:0;
-	PCL:0; RULEID:; SRVR:TY1PR06MB1006; 
-x-forefront-prvs: 0667289FF8
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(6009001)(13464003)(189002)(199003)(19580405001)(74316001)(92566002)(76576001)(5001830100001)(5001860100001)(2656002)(106356001)(106116001)(4001540100001)(97736004)(93886004)(46102003)(81156007)(5001770100001)(5001920100001)(64706001)(86362001)(66066001)(10400500002)(40100003)(122556002)(19580395003)(5003600100002)(87936001)(189998001)(33656002)(77096005)(2900100001)(2950100001)(68736005)(15975445007)(102836002)(62966003)(77156002)(5001960100002)(107886002)(101416001)(5002640100001)(76176999)(54356999)(105586002)(50986999)(4001430100001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:TY1PR06MB1006;
-	H:TY1PR06MB0733.apcprd06.prod.outlook.com; FPR:; SPF:None;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
-spamdiagnosticoutput: 1:23
-spamdiagnosticmetadata: NSPM
+Received: from lists.s-osg.org (lists.s-osg.org [54.187.51.154])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA8D3E00A31
+	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 08:43:47 -0700 (PDT)
+Received: from [192.168.1.132] (95.111.23.95.dynamic.jazztel.es [95.23.111.95])
+	by lists.s-osg.org (Postfix) with ESMTPSA id B137B46328;
+	Thu, 13 Aug 2015 08:43:45 -0700 (PDT)
+To: =?UTF-8?Q?Andreas_M=c3=bcller?= <schnitzeltony@googlemail.com>
+References: <1438245251-20437-1-git-send-email-javier@osg.samsung.com>
+	<1438245251-20437-6-git-send-email-javier@osg.samsung.com>
+	<4731B312-4D73-4951-8E73-1579D8C54BD5@gmail.com>
+	<55C1AE74.2030808@osg.samsung.com>
+	<CAMKF1spq-7CntKTpVEByr7hi8pf6-uuw2DZiM=ZSvQKsaxkyBA@mail.gmail.com>
+	<55C305EC.9030809@osg.samsung.com> <20150809230528.GL17962@resin>
+	<CALbNGRQhDdvVPdA1WHvfZ45WG45JYMYCJaNJTGns5ML5Rg+u6Q@mail.gmail.com>
+	<55C85F2E.9080600@osg.samsung.com> <55CB5F4A.9060806@osg.samsung.com>
+	<CALbNGRRU+HT+o7KsK_DDVFGMQgjERyp5ASfHE39YzeaomUxHnQ@mail.gmail.com>
+	<CALbNGRRpXGJ6HwkTNu-sZFn3_qPdc4s9n=o-TWVTyfKiAxnHZw@mail.gmail.com>
+	<55CC45B7.4010603@osg.samsung.com>
+From: Javier Martinez Canillas <javier@osg.samsung.com>
+X-Enigmail-Draft-Status: N1110
+Message-ID: <55CCBB2F.3050100@osg.samsung.com>
+Date: Thu, 13 Aug 2015 17:43:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
+	Thunderbird/38.0.1
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Aug 2015 14:32:19.9390 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR06MB1006
+In-Reply-To: <55CC45B7.4010603@osg.samsung.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Takeshi Saito <takeshi.saito.xv@renesas.com>,
-	YOSHIYUKI ITO <yoshiyuki.ito.ub@renesas.com>,
-	"automotive-discussions@lists.linuxfoundation.org"
-	<automotive-discussions@lists.linuxfoundation.org>
-Subject: Re: How to submit patches upstream for repos at git.yoctoproject.org (eg meta-renesas)
+	Derek Foreman <derekf@osg.samsung.com>,
+	Mauro Carvalho Chehab <mchehab@osg.samsung.com>
+Subject: Re: [meta-raspberrypi][PATCH 5/5] rpi-default-providers: Switch providers according to used gfx stack
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -102,41 +52,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Aug 2015 14:37:33 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 13 Aug 2015 15:43:56 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-SGksDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTmlrb2xheSBEaW1p
-dHJvdiBbbWFpbHRvOnBpY21hc3RlckBtYWlsLmJnXQ0KPiBTZW50OiAxMyBBdWd1c3QgMjAxNSAx
-NToxMQ0KPiBUbzogUGF1bCBTaGVyd29vZCA8cGF1bC5zaGVyd29vZEBjb2RldGhpbmsuY28udWs+
-DQo+IENjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnOyBhdXRvbW90aXZlLWRpc2N1c3Npb25zQGxp
-c3RzLmxpbnV4Zm91bmRhdGlvbi5vcmc7DQo+IFN0ZXBoZW4gTGF3cmVuY2UgPHN0ZXBoZW4ubGF3
-cmVuY2VAcmVuZXNhcy5jb20+OyBUYWtlc2hpIFNhaXRvDQo+IDx0YWtlc2hpLnNhaXRvLnh2QHJl
-bmVzYXMuY29tPjsgTm9idWhpcm8gSXdhbWF0c3UoUmV0aXJlZCkNCj4gPG5vYnVoaXJvLml3YW1h
-dHN1LnlqQHJlbmVzYXMuY29tPg0KPiBTdWJqZWN0OiBSZTogW3lvY3RvXSBIb3cgdG8gc3VibWl0
-IHBhdGNoZXMgdXBzdHJlYW0gZm9yIHJlcG9zIGF0DQo+IGdpdC55b2N0b3Byb2plY3Qub3JnIChl
-ZyBtZXRhLXJlbmVzYXMpDQo+IA0KDQpbc25pcF0NCg0KPiA+IFVuZGVyc3Rvb2QsIHRoYW5rIHlv
-dS4gU28gaW4gdGhpcyBjYXNlLCBmb3IgcGF0Y2hlcyB0byBtZXRhLXJlbmVzYXMsDQo+ID4gc2hv
-dWxkIHdlIGVtYWlsIHRoZW0gdG8gdGhpcyBsaXN0LCBvciBhbm90aGVyIGxpc3QsIG9yIHNlbmQg
-ZGlyZWN0bHkgdG8NCj4gPiB0aGUgbWFpbnRhaW5lciwgb3IgaXMgdGhlcmUgYW5vdGhlciBtZWNo
-YW5pc20gZXN0YWJsaXNoZWQ/DQo+IA0KPiBVc3VhbGx5IEkgd291bGQgYWR2aWNlIHRvIHNlbmQg
-dGhlIHBhdGNoZXMgdG8gYSBSZW5lc2FzLXNwZWNpZmljIE1MLA0KPiBidXQgSSBjb3VsZG4ndCBm
-aW5kIGl0IGluIHRoZSBPRSBsYXllcnMgaW5kZXgsIHNvIGl0IHdvdWxkIGJlIGJlc3QgdG8NCj4g
-YXNrIHRoZSBSZW5lc2FzIHRlYW0uDQo+IA0KPiBAU3RlcGhlbiwgVGFrZXNoaSwgTm9idWhpcm86
-IENhbiB5b3UgcGxlYXNlIGFkdmljZSB3aGljaCBpcyB0aGUgcHJvcGVyDQo+IE1MIGZvciBzZW5k
-aW5nIG1ldGEtcmVuZXNhcyBwYXRjaGVzPyBUaGFua3MuDQoNClRoZSBNQUlOVEFJTkVSUyBmaWxl
-IFsxXSBzYXlzIGVtYWlsIEdlbml2aSBicmFuY2ggY2hhbmdlcyBkaXJlY3RseSB0byBtZSA6KS4N
-Ckhvd2V2ZXIgaW4gdGhlIGNhc2Ugb2YgQUdMIEkgcmVjYWxsIHRoZSBBR0wgbWVldGluZyBtaW51
-dGVzIHNheWluZyB0aGV5IHdlcmUNCmdvaW5nIHRvIHN0YXJ0IHdpdGggYSBsb2NhbCBicmFuY2gu
-IEkgZG9uJ3Qga25vdyB0aGUgcmVhc29uaW5nLCBwZXJoYXBzIHRvIGZhY2lsaXRhdGUgDQp0aGUg
-YWdncmVzc2l2ZSAgdGltZXNjYWxlIGZvciB0aGUgZmlyc3QgcmVsZWFzZSBiZWZvcmUgcHJvY2Vz
-c2VzIGJlZCBkb3duIG9yIA0KYXJlIGFncmVlZC4gU28gdGhhdCBhcHBlYXJzIHRvIGJlIHRoZSBz
-aG9ydCB0ZXJtIHVwc3RyZWFtLiBDYW4gdGhlIGF0dGVuZGVlcw0Kc2hhcmUgdGhlIGRldGFpbD8N
-Cg0KSW4gdGhlIG1lZGl1bSB0ZXJtIGEgc2hhcmVkIHNvdXJjZSB3b3VsZCBzaW1wbGlmeSBidXQg
-dGhlIHV0aWxpdHkgb2YgdGhhdCB3aWxsIGRlcGVuZA0KbGFyZ2VseSBvbiB0aGUgZXh0ZW50IHRv
-IHdoaWNoIHZlcnNpb24gcm9hZG1hcHMgY2FuIGJlIGFsaWduZWQgZm9yIGJvdGggYWxsaWFuY2Vz
-DQplbHNlIHRoZXJlIHdpbGwganVzdCBiZSBzZXBhcmF0ZSBicmFuY2hlcyBhbnl3YXkuDQogDQpb
-MV0gaHR0cHM6Ly9naXRodWIuY29tL3NsYXdyL21ldGEtcmVuZXNhcy9ibG9iL2dlbml2aS03LjAt
-YnNwLTEuOC4wL01BSU5UQUlORVJTDQoNClJlZ2FyZHMNCg0KU3RldmUNCg0K
+Hello,
+
+On 08/13/2015 09:22 AM, Javier Martinez Canillas wrote:
+> Hello Andreas,
+> 
+> On 08/12/2015 10:22 PM, Andreas Müller wrote:
+>> On Wed, Aug 12, 2015 at 7:15 PM, Andreas Müller
+>> <schnitzeltony@googlemail.com> wrote:
+>>> FYI: I managed to get the vc4 driver loaded (should be in my repo
+>>> branch vc4-2). With this I get some repeating kernel error messages
+>>> (don't have them here). I am sure that I read something about these
+>>> messages when preparing vc4 (yes I started similar before you sent
+>>> patches).
+>>>
+> 
+> Awesome, I tried to get it working yesterday but couldn't. Good work!
+> 
+>>> Hope I have some energy left tonight to check further and let you know...
+>>>
+>> >From xorg perspective all looks fine
+>>
+>> [595923.730] (II) modeset(0): [DRI2] Setup complete
+>> [595923.730] (II) modeset(0): [DRI2]   DRI driver: vc4
+>> [595923.730] (II) modeset(0): [DRI2]   VDPAU driver: vc4
+>> [595923.740] (--) RandR disabled
+>> [595923.745] (II) AIGLX: enabled GLX_MESA_copy_sub_buffer
+>> [595923.745] (II) AIGLX: enabled GLX_ARB_create_context
+>> [595923.745] (II) AIGLX: enabled GLX_ARB_create_context_profile
+>> [595923.745] (II) AIGLX: enabled GLX_EXT_create_context_es2_profile
+>> [595923.745] (II) AIGLX: enabled GLX_INTEL_swap_event
+>> [595923.745] (II) AIGLX: enabled GLX_SGI_swap_control and GLX_MESA_swap_control
+>> [595923.745] (II) AIGLX: enabled GLX_EXT_framebuffer_sRGB
+>> [595923.745] (II) AIGLX: enabled GLX_ARB_fbconfig_float
+>> [595923.745] (II) AIGLX: GLX_EXT_texture_from_pixmap backed by buffer objects
+>> [595923.747] (II) AIGLX: Loaded and initialized vc4
+>> [595923.747] (II) GLX: Initialized DRI2 GL provider for screen 0
+>> [595923.782] (II) modeset(0): Setting screen physical size to 338 x 270
+>>
+>> but kernel complains periodically ~6s with
+>>
+>> [   36.814922] [drm:vc4_submit_cl_ioctl] *ERROR* Rendering requires
+>> BOs to validate
+>> [   43.060516] [drm:vc4_submit_cl_ioctl] *ERROR* Rendering requires
+>> BOs to validate
+>> [   49.325115] [drm:vc4_submit_cl_ioctl] *ERROR* Rendering requires
+>> BOs to validate
+>> [   55.558433] [drm:vc4_submit_cl_ioctl] *ERROR* Rendering requires
+>> BOs to validate
+>>
+> 
+> Yes, I was able to reproduce the issue. My X -verbose output:
+> 
+> http://hastebin.com/onovosojuw.md
+> 
+>> Will check what this message want me to say - anybody out there with
+>> helping hints?
+>>
+> 
+> No clue. I was looking and the error is in the VC4_SUBMIT_CL ioctl cmd
+> handler (vc4_submit_cl_ioctl) in drivers/gpu/drm/vc4/vc4_gem.c.
+> 
+> AFAIU bo_handle_count is supposed to always be > 0 but somehow mesa is
+> passing 0 on it.
+> 
+> The ioctl call is in vc4_flush (src/gallium/drivers/vc4/vc4_context.c)
+> in mesa. So it seems this is a mesa issue. I've asked Eric Anholt in
+> #dri-devel on IRC if his kernel is supposed to work with mesa 10.5.8
+> or if there is a minimum version / sha1 that is needed.
+>
+
+So I spent a lot of time trying to figure out what is wrong with mesa
+10.5.8 and then gave up and tried updating mesa to the version we are
+using for our Tizen port that works. I did the change in the meta layer
+just for testing purposes. This is the diff [0] on top of the kernel
+patches and Andreas' latest changes.
+
+I did this because it was a known mesa version that works and indeed
+Xorg starts and the "Rendering requires BOs to validate" error is gone.
+The complete Xorg log is at [1].
+
+Also, glmark2 says:
+
+=======================================================
+    glmark2 2014.03
+=======================================================
+    OpenGL Information
+    GL_VENDOR:     Broadcom
+    GL_RENDERER:   Gallium 0.4 on VC4
+    GL_VERSION:    2.1 Mesa 10.7.0-devel (git-1762568fd39b)
+=======================================================
+
+And I see the horse and the box spinning. It gives me a 33-35 FPS but
+the last texture-filter=linear test fails with:
+
+[drm:vc4_use_bo] *ERROR* BO index -980025344 greater than BO count 9
+
+So there are still some issues. The glkmar2 log is at [2].
+
+I'll post the v2 of the vc4 kernel recipe patches since the problem
+seems to be with mesa 10.5.8 and also is working for us with Weston.
+
+At least so we all are on the same page and testing with the same
+set of patches.
+
+Best regards,
+-- 
+Javier Martinez Canillas
+Open Source Group
+Samsung Research America
+
+[0]: http://hastebin.com/karakapeqa.diff
+[1]: http://hastebin.com/foyanotema.vhdl
+[2]: http://hastebin.com/ikotadavop.vbs
 
