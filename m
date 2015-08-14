@@ -1,53 +1,34 @@
-Return-Path: <bobadeshrikant@gmail.com>
+Return-Path: <Maxin.John@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8FBEEE009BC; Fri, 14 Aug 2015 03:01:26 -0700 (PDT)
+	id EF47EE0095C; Fri, 14 Aug 2015 05:45:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (bobadeshrikant[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.171 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [192.36.1.252 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pd0-f171.google.com (mail-pd0-f171.google.com
-	[209.85.192.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 679E3E00707
-	for <yocto@yoctoproject.org>; Fri, 14 Aug 2015 03:01:20 -0700 (PDT)
-Received: by pdrh1 with SMTP id h1so29953601pdr.0
-	for <yocto@yoctoproject.org>; Fri, 14 Aug 2015 03:01:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=Q0+ps+npeHhJngu6WHMlug3KtAM38olPkRTkg4hrJws=;
-	b=Yd/XQx7PhajKNOwSgGAWCMc68MfQoi5kgs4VbPggZF2uIrEnnW9EK3WtBaueNsX5WH
-	xmkKneMsXLDzZvCIJrLbSKVqjOstyPh7TQR3DbsTzBhRzbBCMnE0HXO16+9eCwmZsTTA
-	f+Dq2lE8aj8Ku+kBwflUB0W9+0cTO+Y+xoJ5pM2pMkqiK4upuJCLsXoxpYke2P8jgwtN
-	bCO1Dt/p+Dry8gLuFSBw1jeNtW4doOQC2PW9Q3qvY3tzL8KvPH1kTDfuECSqurlC+uFb
-	bqirOBhLqk31FyXlShPaQUycYHKmOhNilwv0yCdixr5x96z3Aap0Qos/F+CUdqSLkyJN
-	gKgQ==
-X-Received: by 10.70.108.137 with SMTP id hk9mr86776132pdb.105.1439546479899; 
-	Fri, 14 Aug 2015 03:01:19 -0700 (PDT)
-Received: from localhost.localdomain ([139.181.35.34])
-	by smtp.gmail.com with ESMTPSA id
-	pk8sm5459772pdb.54.2015.08.14.03.01.17
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 14 Aug 2015 03:01:19 -0700 (PDT)
-From: Shrikant Bobade <bobadeshrikant@gmail.com>
-To: yocto@yoctoproject.org
-Date: Fri, 14 Aug 2015 15:31:16 +0530
-Message-Id: <1439546476-23068-1-git-send-email-bobadeshrikant@gmail.com>
-X-Mailer: git-send-email 1.7.9.5
-Cc: Shrikant Bobade <shrikant_bobade@mentor.com>
-Subject: [meta-selinux][PATCH v2] audit: fix qa warning, update config option
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 5D592E00707
+	for <yocto@yoctoproject.org>; Fri, 14 Aug 2015 05:45:28 -0700 (PDT)
+Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
+	(172.21.1.208) with Microsoft SMTP Server id 14.3.224.2;
+	Fri, 14 Aug 2015 14:45:26 +0200
+Received: by sestofb10.enea.se (Postfix, from userid 4454)	id C780228BA20;
+	Fri, 14 Aug 2015 14:45:26 +0200 (CEST)
+From: "Maxin B. John" <maxin.john@enea.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 14 Aug 2015 14:45:20 +0200
+Message-ID: <1439556320-37622-1-git-send-email-maxin.john@enea.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Received-SPF: None (SESTOEX08.enea.se: maxin.john@enea.com does not
+	designate permitted sender hosts)
+Cc: Josep Puigdemont <josep.puigdemont@enea.com>
+Subject: [meta-selinux][PATCH] selinux-config: make DEFAULT_POLICY and DEFAULT_ENFORCING configurable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,32 +40,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Aug 2015 10:01:26 -0000
+X-List-Received-Date: Fri, 14 Aug 2015 12:45:47 -0000
+Content-Type: text/plain
 
-From: Shrikant Bobade <shrikant_bobade@mentor.com>
+From: Josep Puigdemont <josep.puigdemont@enea.com>
 
-update config option '--with-armeb' to '--with-arm'
-for audit qa warning fix.
+Make DEFAULT_POLICY and DEFAULT_ENFORCING configurations more flexible.
 
-Signed-off-by: Shrikant Bobade <shrikant_bobade@mentor.com>
+Signed-off-by: Maxin B. John <maxin.john@enea.com>
 ---
- recipes-security/audit/audit_2.4.3.bb |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ recipes-security/selinux/selinux-config_0.1.bb | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/recipes-security/audit/audit_2.4.3.bb b/recipes-security/audit/audit_2.4.3.bb
-index 8f125c0..869713a 100644
---- a/recipes-security/audit/audit_2.4.3.bb
-+++ b/recipes-security/audit/audit_2.4.3.bb
-@@ -41,7 +41,7 @@ EXTRA_OECONF += "--without-prelude \
-         --without-python3 \
-         --disable-zos-remote \
- 	"
--EXTRA_OECONF_append_arm = " --with-armeb=yes"
-+EXTRA_OECONF_append_arm = " --with-arm=yes"
+diff --git a/recipes-security/selinux/selinux-config_0.1.bb b/recipes-security/selinux/selinux-config_0.1.bb
+index 98f6d5f..f77b490 100644
+--- a/recipes-security/selinux/selinux-config_0.1.bb
++++ b/recipes-security/selinux/selinux-config_0.1.bb
+@@ -1,15 +1,15 @@
+-DEFAULT_POLICY = "mls"
+-DEFAULT_ENFORCING = "enforcing"
++DEFAULT_POLICY ??= "mls"
++DEFAULT_ENFORCING ??= "enforcing"
  
- EXTRA_OEMAKE += "PYLIBVER='python${PYTHON_BASEVERSION}' \
- 	PYINC='${STAGING_INCDIR}/$(PYLIBVER)' \
+ SUMMARY = "SELinux configuration"
+ DESCRIPTION = "\
+-This is the configuration files for SELinux on WRLinux system.  \
++SELinux configuration files for Yocto. \
+ "
+ 
+ SECTION = "base"
+ LICENSE = "MIT"
+ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+-PR = "r3"
++PR = "r4"
+ 
+ S = "${WORKDIR}"
+ 
+@@ -37,9 +37,11 @@ do_install () {
+ #     permissive - SELinux prints warnings instead of enforcing.
+ #     disabled - No SELinux policy is loaded.
+ SELINUX=${DEFAULT_ENFORCING}
+-# SELINUXTYPE= can take one of these two values:
++# SELINUXTYPE= can take one of these values:
+ #     standard - Standard Security protection.
+ #     mls - Multi Level Security protection.
++#     targeted - Targeted processes are protected.
++#     mcs - Multi Category Security protection.
+ SELINUXTYPE=${DEFAULT_POLICY}
+ " > ${WORKDIR}/config
+ 	install -d ${D}/${sysconfdir}/selinux
 -- 
-1.7.9.5
+1.9.1
 
 
