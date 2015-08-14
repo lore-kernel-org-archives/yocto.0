@@ -1,39 +1,59 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <mar.krzeminski@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B1C94E00A3C; Thu, 13 Aug 2015 23:42:02 -0700 (PDT)
+	id 52EC3E00A3C; Thu, 13 Aug 2015 23:49:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mar.krzeminski[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 540D1E00707
-	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 23:42:02 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.1/8.15.1) with ESMTPS id t7E6g1nB005531
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 13 Aug 2015 23:42:01 -0700 (PDT)
-Received: from [128.224.162.176] (128.224.162.176) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.235.1;
-	Thu, 13 Aug 2015 23:42:00 -0700
-Message-ID: <55CD8DB7.5050304@windriver.com>
-Date: Fri, 14 Aug 2015 14:41:59 +0800
-From: wenzong fan <wenzong.fan@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wi0-f172.google.com (mail-wi0-f172.google.com
+	[209.85.212.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1668DE00707
+	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 23:49:30 -0700 (PDT)
+Received: by wibhh20 with SMTP id hh20so10115605wib.0
+	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 23:49:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=UfPcSlMiptObfAJ482fbQwSPYkdOqCmR8dhs5yEfKhY=;
+	b=xvxxuXqfbI6KuWf3uRMtv53XQpEkqFIhWswZkh6iW/BzQxIA9SIAKjkOQWNNJidNlu
+	ZBugqHRJkeip3eRGPr50CncnLsRelA1tBpNWteq0pCX4BxIZkJLG1QNUiq7GDSoHZLqD
+	Y7fPyvi2j4J6DiYaH9BOY6DQDHW8rQ9IdCO/+gBp5GRkGjTYgkbwY6thl6y41LLqFGr5
+	an39ALa/a5uQCnPPItlknbdwTflJFreNF1BAMkQL+YN4ly8stQBRRp5PBl6Sq4cFK9Lp
+	5Z4fYhajis/C0wWhniuACsy3acDbNVAhkMUi89/HqHu6NLsTIfGhb0c1mPG8uYFT3wKT
+	P9Aw==
+X-Received: by 10.180.91.131 with SMTP id ce3mr3612386wib.84.1439534969545;
+	Thu, 13 Aug 2015 23:49:29 -0700 (PDT)
+Received: from [100.82.26.31] (ip-5-172-247-223.free.aero2.net.pl.
+	[5.172.247.223])
+	by smtp.gmail.com with ESMTPSA id 4sm6667288wjt.46.2015.08.13.23.49.27
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 13 Aug 2015 23:49:28 -0700 (PDT)
+Message-ID: <55CD8F72.5050402@gmail.com>
+Date: Fri, 14 Aug 2015 08:49:22 +0200
+From: "mar.krzeminski" <mar.krzeminski@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.8.0
 MIME-Version: 1.0
-To: Joe MacDonald <Joe_MacDonald@mentor.com>
-References: <55CB0D29.9070206@windriver.com>
-	<20150812130556.GA16995@mentor.com>
-In-Reply-To: <20150812130556.GA16995@mentor.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux] How about remove libcap-ng from meta-selinux?
+To: Khem Raj <raj.khem@gmail.com>
+References: <CABc_YGCV8RAVHLNc9tE8Q+ty5ys5C5X4-SvyNuw=tU+pWVh82A@mail.gmail.com>
+	<CAMKF1spm-OTtD3OtfLTJbX34xk1myvK5JVu_h5sJ=53tKCX8Tw@mail.gmail.com>
+In-Reply-To: <CAMKF1spm-OTtD3OtfLTJbX34xk1myvK5JVu_h5sJ=53tKCX8Tw@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: overriding install in recipe for nativesdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,36 +65,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Aug 2015 06:42:02 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 14 Aug 2015 06:49:40 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 08/12/2015 09:05 PM, Joe MacDonald wrote:
-> [[yocto] [meta-selinux] How about remove libcap-ng from meta-selinux?] On 15.08.12 (Wed 17:08) wenzong fan wrote:
->
->> Hi All,
->>
->> There's a libcap-ng in meta-oe layer, it has been updated to 0.7.7 and the
->> one in meta-selinux is 0.7.3.
->>
->> How about removing the one in meta-selinux and get this layer depends on
->> meta-oe? Any suggestions?
->
-> The last time we had this discussion my sense was that most users of
-> meta-selinux wanted to continue with it only depending on oe-core.
-> That's my preference as well.
->
-> I'm happy to merge an updated version of libcap-ng (or maybe I'll get to
-> it myself, since I've known about it since Armin removed it from
-> meta-security, that was the time of the last discussion, I think).
->
-> All I'm saying right now is that this isn't a case of accidental
-> duplication of recipes in multiple layers, it's the result of a
-> conscious decision.  It's totally worthwhile re-visiting that decision,
-> though to make sure the reasons are still valid.
+Thanks for the clue, but as you mentioned u-boot is small so there is no 
+big problem with that.
+
+W dniu 13.08.2015 o 19:36, Khem Raj pisze:
+> On Tue, Jul 14, 2015 at 9:57 PM, Marcin Krzemiński
+> <mar.krzeminski@gmail.com> wrote:
+>> Currently in our yocto layer there is a recipe for u-boot that also produce
+>> mkimage binary for host,
+>> I would like to have mkimage in SDK. Now, there is a separate recipe in
+>> yocto to do that, but I am wondering is it possible in some way to override
+>> install function for nativesdk. Then I could use same sources for u-boot and
+>> I won't be downloading them twice.maybe there is another way that I can try?
+> you could use shared-workdir model like what kernel and gcc use but
+> maintenance of such a setup is high clue
+> it may be appealing for components with large sourcecode and multiple
+> recipes uboot may not be particularly suitable
 >
 
-Thanks for clarifying this, just send out an update patch for libcap-ng.
-
-Wenzong
 
