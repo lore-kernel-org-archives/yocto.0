@@ -1,60 +1,34 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Wenzong.Fan@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 38F27E00A71; Thu, 13 Aug 2015 23:33:32 -0700 (PDT)
+	id 6C7FDE00A3C; Thu, 13 Aug 2015 23:38:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.41 listed in list.dnswl.org]
-Received: from mail-pa0-f41.google.com (mail-pa0-f41.google.com
-	[209.85.220.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6951E009B8
-	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 23:33:28 -0700 (PDT)
-Received: by pabyb7 with SMTP id yb7so53485515pab.0
-	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 23:33:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=4sLn6HQNGQV/aVovBhJDO1CiTBrWHVJKErcweB9Xk0U=;
-	b=M8zY9GR7chSC1JPjqDDK6cyyOsrvNrPlPkeN2hweDZzwf0IbU+gh2DhM5/4kUUqv8V
-	F4OoGxqyFJGbHQjsqma4mKWzYeyLvvdmDjmr4nBQscv5MgH5/b2IOitrPTkDGUf0MWAE
-	geX3PMLVEyexaL+QHTIRwmQgB1NEIDlNysMFUh0WsgugAS3mD2vTR6bozFxNhOxAtapU
-	XWgm1jPzFRwY0ALofshjwfw1IZ9lnQ2Um1kKkMBX9gfqJ1rNxp9AOBukq7afcXbC4Q+M
-	bn4G1yCdzzg9i6cpAxysyMUYaWEZO/000av/KhXHDfhbdgMkvqIHO3YbqnsyjzDlCax5
-	TSDg==
-X-Received: by 10.66.158.65 with SMTP id ws1mr84975907pab.18.1439534008257;
-	Thu, 13 Aug 2015 23:33:28 -0700 (PDT)
-Received: from ?IPv6:2601:646:8601:4580:7d4a:3993:27b2:859?
-	([2601:646:8601:4580:7d4a:3993:27b2:859])
-	by smtp.gmail.com with ESMTPSA id
-	t15sm4748368pbs.10.2015.08.13.23.33.27
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 13 Aug 2015 23:33:27 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2104\))
-X-Pgp-Agent: GPGMail 2.5
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <9F136EE5FB53D64397ED1089A0E760E0162D2974@SJEXCHMB12.corp.ad.broadcom.com>
-Date: Thu, 13 Aug 2015 23:33:26 -0700
-Message-Id: <3B9D298F-AFE4-4082-A14E-6C227B7E2F9F@gmail.com>
-References: <9F136EE5FB53D64397ED1089A0E760E0162D2974@SJEXCHMB12.corp.ad.broadcom.com>
-To: "Joel (Xi Zhou) Zhou" <joel.zhou@broadcom.com>
-X-Mailer: Apple Mail (2.2104)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Multi recipes for different defconfig on the same kernel source
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03B22E00707
+	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 23:38:20 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.1/8.15.1) with ESMTPS id t7E6cJe1005368
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 13 Aug 2015 23:38:19 -0700 (PDT)
+Received: from pek-lpggp1.wrs.com (128.224.153.74) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.235.1;
+	Thu, 13 Aug 2015 23:38:18 -0700
+From: <wenzong.fan@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 14 Aug 2015 02:38:17 -0400
+Message-ID: <1439534297-72448-1-git-send-email-wenzong.fan@windriver.com>
+X-Mailer: git-send-email 1.9.1
+MIME-Version: 1.0
+Subject: [PATCH][meta-selinux] libcap-ng: upgrade 0.7.4 -> 0.7.7
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,303 +40,225 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Aug 2015 06:33:32 -0000
-X-Groupsio-MsgNum: 26111
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_1689F129-DB19-449B-9695-93F2622E9BD9";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Fri, 14 Aug 2015 06:38:23 -0000
+Content-Type: text/plain
 
---Apple-Mail=_1689F129-DB19-449B-9695-93F2622E9BD9
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_C0F8C79B-013E-47ED-A460-97B7F071D87D"
+From: Wenzong Fan <wenzong.fan@windriver.com>
 
---Apple-Mail=_C0F8C79B-013E-47ED-A460-97B7F071D87D
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=us-ascii
+* Port changes from meta-oe:
+
+  commit bce4dba5546480c8e43c6442959ac7d0a4ef32f6
+  Author: Li xin <lixin.fnst@cn.fujitsu.com>
+  Date:   Thu Jul 23 15:29:31 2015 +0800
+
+    libcap-ng: upgrade 0.7.4 -> 0.7.7
+
+    Update python.patch,since the contents has been changed.
+
+    Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
+    Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
+
+* Remove patch CVE-2014-3215.patch that included by 0.7.7
+
+Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+---
+ .../libcap-ng/libcap-ng/CVE-2014-3215.patch        | 79 ----------------------
+ recipes-security/libcap-ng/libcap-ng/python.patch  | 55 ++++++++++-----
+ .../{libcap-ng_0.7.3.bb => libcap-ng_0.7.7.bb}     | 10 +--
+ 3 files changed, 42 insertions(+), 102 deletions(-)
+ delete mode 100644 recipes-security/libcap-ng/libcap-ng/CVE-2014-3215.patch
+ rename recipes-security/libcap-ng/{libcap-ng_0.7.3.bb => libcap-ng_0.7.7.bb} (84%)
+
+diff --git a/recipes-security/libcap-ng/libcap-ng/CVE-2014-3215.patch b/recipes-security/libcap-ng/libcap-ng/CVE-2014-3215.patch
+deleted file mode 100644
+index d7a868d..0000000
+--- a/recipes-security/libcap-ng/libcap-ng/CVE-2014-3215.patch
++++ /dev/null
+@@ -1,79 +0,0 @@
+-Upstream-Status: Pending
+-
+-diff --git a/docs/capng_lock.3 b/docs/capng_lock.3
+-index 7683119..a070c1e 100644
+---- a/docs/capng_lock.3
+-+++ b/docs/capng_lock.3
+-@@ -8,12 +8,13 @@ int capng_lock(void);
+- 
+- .SH "DESCRIPTION"
+- 
+--capng_lock will take steps to prevent children of the current process to regain full privileges if the uid is 0. This should be called while possessing the CAP_SETPCAP capability in the kernel. This function will do the following if permitted by the kernel: Set the NOROOT option on for PR_SET_SECUREBITS, set the NOROOT_LOCKED option to on for PR_SET_SECUREBITS, set the PR_NO_SETUID_FIXUP option on for PR_SET_SECUREBITS, and set the PR_NO_SETUID_FIXUP_LOCKED option on for PR_SET_SECUREBITS.
+-+capng_lock will take steps to prevent children of the current process from gaining privileges by executing setuid programs.  This should be called while possessing the CAP_SETPCAP capability in the kernel.
+- 
+-+This function will do the following if permitted by the kernel:  If the kernel supports PR_SET_NO_NEW_PRIVS, it will use it.  Otherwise it will set the NOROOT option on for PR_SET_SECUREBITS, set the NOROOT_LOCKED option to on for PR_SET_SECUREBITS, set the PR_NO_SETUID_FIXUP option on for PR_SET_SECUREBITS, and set the PR_NO_SETUID_FIXUP_LOCKED option on for PR_SET_SECUREBITS.  If both fail, it will return an error.
+- 
+- .SH "RETURN VALUE"
+- 
+--This returns 0 on success and a negative number on failure. -1 means a failure setting any of the PR_SET_SECUREBITS options.
+-+This returns 0 on success and a negative number on failure. -1 means a failure to use PR_SET_NO_NEW_PRIVS and a failure setting any of the PR_SET_SECUREBITS options.
+- 
+- .SH "SEE ALSO"
+- 
+-diff --git a/src/cap-ng.c b/src/cap-ng.c
+-index bd105ba..422f2bc 100644
+---- a/src/cap-ng.c
+-+++ b/src/cap-ng.c
+-@@ -45,6 +45,7 @@
+-  * 2.6.24 kernel	XATTR_NAME_CAPS
+-  * 2.6.25 kernel	PR_CAPBSET_DROP, CAPABILITY_VERSION_2
+-  * 2.6.26 kernel	PR_SET_SECUREBITS, SECURE_*_LOCKED, VERSION_3
+-+ * 3.5    kernel	PR_SET_NO_NEW_PRIVS
+-  */
+- 
+- /* External syscall prototypes */
+-@@ -122,6 +123,14 @@ extern int capget(cap_user_header_t header, const cap_user_data_t data);
+- #define SECURE_NO_SETUID_FIXUP_LOCKED   3  /* make bit-2 immutable */
+- #endif
+- 
+-+/* prctl values that we use */
+-+#ifndef PR_SET_SECUREBITS
+-+#define PR_SET_SECUREBITS		28
+-+#endif
+-+#ifndef PR_SET_NO_NEW_PRIVS
+-+#define PR_SET_NO_NEW_PRIVS		38
+-+#endif
+-+
+- // States: new, allocated, initted, updated, applied
+- typedef enum { CAPNG_NEW, CAPNG_ERROR, CAPNG_ALLOCATED, CAPNG_INIT,
+- 	CAPNG_UPDATED, CAPNG_APPLIED } capng_states_t;
+-@@ -663,15 +672,22 @@ int capng_change_id(int uid, int gid, capng_flags_t flag)
+- 
+- int capng_lock(void)
+- {
+--#ifdef PR_SET_SECUREBITS
+--	int rc = prctl(PR_SET_SECUREBITS,
+--			1 << SECURE_NOROOT |
+--			1 << SECURE_NOROOT_LOCKED |
+--			1 << SECURE_NO_SETUID_FIXUP |
+--			1 << SECURE_NO_SETUID_FIXUP_LOCKED, 0, 0, 0);
+-+	int rc;
+-+
+-+	// On Linux 3.5 and up, we can directly prevent ourselves and
+-+	// our descendents from gaining privileges.
+-+	if (prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0) == 0)
+-+		return 0;
+-+
+-+	// This kernel is too old or otherwise doesn't support
+-+	// PR_SET_NO_NEW_PRIVS.  Fall back to using securebits.
+-+	rc = prctl(PR_SET_SECUREBITS,
+-+		   1 << SECURE_NOROOT |
+-+		   1 << SECURE_NOROOT_LOCKED |
+-+		   1 << SECURE_NO_SETUID_FIXUP |
+-+		   1 << SECURE_NO_SETUID_FIXUP_LOCKED, 0, 0, 0);
+- 	if (rc)
+- 		return -1;
+--#endif
+- 
+- 	return 0;
+- }
+diff --git a/recipes-security/libcap-ng/libcap-ng/python.patch b/recipes-security/libcap-ng/libcap-ng/python.patch
+index d82ceb4..59591eb 100644
+--- a/recipes-security/libcap-ng/libcap-ng/python.patch
++++ b/recipes-security/libcap-ng/libcap-ng/python.patch
+@@ -1,16 +1,44 @@
+-configure.ac - Avoid an incorrect check for python.
+-Makefile.am - avoid hard coded host include paths.
++From b01bb2694f66cd981e6d61523433dc3eb5ed32f2 Mon Sep 17 00:00:00 2001
++From: Li xin <lixin.fnst@cn.fujitsu.com>
++Date: Sat, 18 Jul 2015 23:03:30 +0900
++Subject: [PATCH] configure.ac - Avoid an incorrect check for python.
++ Makefile.am - avoid hard coded host include paths.
++
++Upstream-Status: pending
+ 
+ Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
++Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
++---
++ bindings/python/Makefile.am |  3 ++-
++ configure.ac                | 15 ++-------------
++ 2 files changed, 4 insertions(+), 14 deletions(-)
+ 
+---- libcap-ng-0.6.5/configure.ac.orig	2012-01-17 13:59:03.645898989 -0600
+-+++ libcap-ng-0.6.5/configure.ac	2012-01-17 13:59:46.353959252 -0600
+-@@ -120,17 +120,8 @@
++diff --git a/bindings/python/Makefile.am b/bindings/python/Makefile.am
++index 82b9bb8..f9fe7a8 100644
++--- a/bindings/python/Makefile.am
+++++ b/bindings/python/Makefile.am
++@@ -23,7 +23,8 @@ SUBDIRS = test
++ CONFIG_CLEAN_FILES = *.loT *.rej *.orig
++ AM_CFLAGS = -fPIC -DPIC
++ PYLIBVER ?= python$(PYTHON_VERSION)
++-AM_CPPFLAGS = -I. -I$(top_builddir) -I@PYINCLUDEDIR@
+++PYINC ?= /usr/include/$(PYLIBVER)
+++AM_CPPFLAGS = -I. -I$(top_builddir) -I$(PYINC)
++ LIBS = $(top_builddir)/src/libcap-ng.la
++ SWIG_FLAGS = -python
++ SWIG_INCLUDES = ${AM_CPPFLAGS}
++diff --git a/configure.ac b/configure.ac
++index 1d777d5..9d90f64 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -123,19 +123,8 @@ if test x$use_python = xno ; then
+  else
+  AC_MSG_RESULT(testing)
+  AM_PATH_PYTHON
+--if test -f /usr/include/python${am_cv_python_version}/Python.h ; then
++-PYINCLUDEDIR=`python${am_cv_python_version} -c "from distutils import sysconfig; print(sysconfig.get_config_var('INCLUDEPY'))"`
++-if test -f ${PYINCLUDEDIR}/Python.h ; then
+ -	python_found="yes"
++-	AC_SUBST(PYINCLUDEDIR)
+ -	AC_MSG_NOTICE(Python bindings will be built)
+ -else
+ -	python_found="no"
+@@ -25,15 +53,6 @@ Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
+  fi
+  AM_CONDITIONAL(HAVE_PYTHON, test ${python_found} = "yes")
+  
+---- libcap-ng-0.6.5/bindings/python/Makefile.am.orig	2010-11-03 12:31:59.000000000 -0500
+-+++ libcap-ng-0.6.5/bindings/python/Makefile.am	2012-01-17 14:05:50.199834467 -0600
+-@@ -24,7 +24,8 @@
+- CONFIG_CLEAN_FILES = *.loT *.rej *.orig
+- AM_CFLAGS = -fPIC -DPIC
+- PYLIBVER ?= python$(PYTHON_VERSION)
+--INCLUDES = -I. -I$(top_builddir) -I/usr/include/$(PYLIBVER)
+-+PYINC ?= /usr/include/$(PYLIBVER)
+-+INCLUDES = -I. -I$(top_builddir) -I$(PYINC)
+- LIBS = $(top_builddir)/src/libcap-ng.la
+- pyexec_PYTHON = capng.py
+- pyexec_LTLIBRARIES = _capng.la
++-- 
++1.8.4.2
++
+diff --git a/recipes-security/libcap-ng/libcap-ng_0.7.3.bb b/recipes-security/libcap-ng/libcap-ng_0.7.7.bb
+similarity index 84%
+rename from recipes-security/libcap-ng/libcap-ng_0.7.3.bb
+rename to recipes-security/libcap-ng/libcap-ng_0.7.7.bb
+index e729518..a31d5dc 100644
+--- a/recipes-security/libcap-ng/libcap-ng_0.7.3.bb
++++ b/recipes-security/libcap-ng/libcap-ng_0.7.7.bb
+@@ -8,17 +8,17 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f \
+ 		    file://COPYING.LIB;md5=e3eda01d9815f8d24aae2dbd89b68b06"
+ 
+ SRC_URI = "http://people.redhat.com/sgrubb/libcap-ng/libcap-ng-${PV}.tar.gz \
+-           file://python.patch \
+-           file://CVE-2014-3215.patch \
+-          "
++           file://python.patch"
+ 
+ inherit lib_package autotools pythonnative
+ 
+-SRC_URI[md5sum] = "610afb774f80a8032b711281df126283"
+-SRC_URI[sha256sum] = "5ca441c8d3a1e4cfe8a8151907977662679457311ccaa7eaac91447c33a35bb1"
++SRC_URI[md5sum] = "3d7d126b29e2869a0257c17c8b0d9b2e"
++SRC_URI[sha256sum] = "615549ce39b333f6b78baee0c0b4ef18bc726c6bf1cca123dfd89dd963f6d06b"
+ 
+ DEPENDS += "swig-native python"
+ 
++EXTRA_OECONF += "--without-python3"
++
+ EXTRA_OEMAKE += "PYLIBVER='python${PYTHON_BASEVERSION}' PYINC='${STAGING_INCDIR}/${PYLIBVER}'"
+ 
+ PACKAGES += "${PN}-python"
+-- 
+1.9.1
 
 
-> On Jun 1, 2015, at 7:48 AM, Joel (Xi Zhou) Zhou =
-<joel.zhou@broadcom.com> wrote:
->=20
-> Hi all,
->=20
-> I need to create multiple recipes for different kernel config based on =
-the same kernel source.
-> In my experiment, I create a new recipe linux-brcm-nand based on =
-linux-brcm, the only different is the kernel defconfig file.
-> =46rom the following error message, it looks like the idea of =
-multi-kernel providers.
->=20
-> What is the correct way to different kernel config on the same kernel =
-source?
-
-look at multi-kernel options e.g.  =
-https://github.com/Angstrom-distribution/meta-ti/blob/master/recipes-kerne=
-l/linux/multi-kernel.inc =
-<https://github.com/Angstrom-distribution/meta-ti/blob/master/recipes-kern=
-el/linux/multi-kernel.inc>
-that might help here.
-
->=20
-> Thanks,
-> Joel
-> ----------------------------------
-> ERROR: The recipe linux-brcm-nand is trying to install files into a =
-shared area when those files already exist. Those files and their =
-manifest location are:
->    /projects/poky/build64/tmp/sysroots/brcm/pkgdata/runtime/kernel
-> Matched in manifest-brcm-linux-brcm.packagedata
-> =
-/projects/poky/build64/tmp/sysroots/brcm/pkgdata/runtime/kernel.packaged
-> Matched in manifest-brcm-linux-brcm.packagedata
-> ...
-> =
-/projects/poky/build64/tmp/sysroots/brcm/pkgdata/kernel-depmod/System.map-=
-3.14.29
-> Matched in manifest-brcm-linux-brcm.packagedata
-> Please verify which recipe should provide the above files.
-> The build has stopped as continuing in this scenario WILL break =
-things, if not now, possibly in the future (we've seen builds fail =
-several months later). If the system knew how to recover from this =
-automatically it would however there are several different scenarios =
-which can result in this and we don't know which one this is. It may be =
-you have switched providers of something like virtual/kernel (e.g. from =
-linux-yocto to linux-yocto-dev), in that case you need to execute the =
-clean task for both recipes and it will resolve this error. It may be =
-you changed DISTRO_FEATURES from systemd to udev or vice versa. Cleaning =
-those recipes should again resolve this error however switching =
-DISTRO_FEATURES on an existing build directory is not supported, you =
-should really clean out tmp and rebuild (reusing sstate should be safe). =
-It could be the overlapping files detected are harmless in which case =
-adding them to SSTATE_DUPWHITELIST may be the correct solution. It could =
-also be your build is including two different conflicting versions of =
-things (e.g. bluez 4 and bluez 5 and the correct solution for that would =
-be to resolve the conflict. If in doubt, please ask on the mailing list, =
-sharing the error and filelist above.
-> ERROR: If the above message is too much, the simpler version is you're =
-advised to wipe out tmp and rebuild (reusing sstate is fine). That will =
-likely fix things in most (but not all) cases.
-> ERROR: Function failed: sstate_task_postfunc
-> ERROR: Logfile of failure stored in: =
-/projects/poky/build64/tmp/work/brcm =
--poky-linux/linux-brcm-nand/3.14.29-r6/temp/log.do_packagedata.40045
-> NOTE: recipe linux-brcm-nand-3.14.29-r6: task do_packagedata: Failed
-> ERROR: Task 11 =
-(/projects/poky/build64../meta-brcm/meta/recipes-kernel/linux/linux-brcm-n=
-and_3.14.29.bb, do_packagedata) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 447 tasks of which 445 didn't need to =
-be rerun and 2 failed.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
-> https://lists.yoctoproject.org/listinfo/yocto =
-<https://lists.yoctoproject.org/listinfo/yocto>
-
---Apple-Mail=_C0F8C79B-013E-47ED-A460-97B7F071D87D
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=us-ascii
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" =
-class=3D""><br class=3D""><div><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Jun 1, 2015, at 7:48 AM, Joel (Xi Zhou) Zhou &lt;<a =
-href=3D"mailto:joel.zhou@broadcom.com" =
-class=3D"">joel.zhou@broadcom.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div =
-class=3D"WordSection1" style=3D"page: WordSection1; font-family: =
-Helvetica; font-size: 13px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;"><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">Hi =
-all,<o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D""><o:p =
-class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">I need to =
-create multiple recipes for different kernel config based on the same =
-kernel source.<o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in =
-0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">In my experiment, I create a new recipe linux-brcm-nand based =
-on linux-brcm, the only different is the kernel defconfig file.<o:p =
-class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">=46rom =
-the following error message, it looks like the idea of multi-kernel =
-providers.<o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in =
-0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D""><o:p class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0in =
-0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">What is the correct way to different kernel config on the =
-same kernel source?</div></div></div></blockquote><div><br =
-class=3D""></div><div>look at multi-kernel options e.g. &nbsp;<a =
-href=3D"https://github.com/Angstrom-distribution/meta-ti/blob/master/recip=
-es-kernel/linux/multi-kernel.inc" =
-class=3D"">https://github.com/Angstrom-distribution/meta-ti/blob/master/re=
-cipes-kernel/linux/multi-kernel.inc</a></div><div>that might help =
-here.</div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
-class=3D""><div class=3D"WordSection1" style=3D"page: WordSection1; =
-font-family: Helvetica; font-size: 13px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px;"><div style=3D"margin: 0in 0in =
-0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D""><o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in =
-0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D""><o:p class=3D"">&nbsp;</o:p></div><div style=3D"margin: 0in =
-0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">Thanks,<o:p class=3D""></o:p></div><div style=3D"margin: 0in =
-0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">Joel<o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in =
-0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">----------------------------------<o:p =
-class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">ERROR: =
-The recipe linux-brcm-nand is trying to install files into a shared area =
-when those files already exist. Those files and their manifest location =
-are:<o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">&nbsp;&nbsp; =
-/projects/poky/build64/tmp/sysroots/brcm/pkgdata/runtime/kernel<o:p =
-class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">Matched =
-in manifest-brcm-linux-brcm.packagedata<o:p class=3D""></o:p></div><div =
-style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" =
-class=3D"">/projects/poky/build64/tmp/sysroots/brcm/pkgdata/runtime/kernel=
-.packaged<o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in =
-0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">Matched in manifest-brcm-linux-brcm.packagedata<o:p =
-class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">...<o:p =
-class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">/projects/poky/build64/tmp/sysroots/brcm/pkgdata/kernel-depmod/=
-System.map-3.14.29<o:p class=3D""></o:p></div><div style=3D"margin: 0in =
-0in 0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">Matched in manifest-brcm-linux-brcm.packagedata<o:p =
-class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">Please =
-verify which recipe should provide the above files.<o:p =
-class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">The build =
-has stopped as continuing in this scenario WILL break things, if not =
-now, possibly in the future (we've seen builds fail several months =
-later). If the system knew how to recover from this automatically it =
-would however there are several different scenarios which can result in =
-this and we don't know which one this is. It may be you have switched =
-providers of something like virtual/kernel (e.g. from linux-yocto to =
-linux-yocto-dev), in that case you need to execute the clean task for =
-both recipes and it will resolve this error. It may be you changed =
-DISTRO_FEATURES from systemd to udev or vice versa. Cleaning those =
-recipes should again resolve this error however switching =
-DISTRO_FEATURES on an existing build directory is not supported, you =
-should really clean out tmp and rebuild (reusing sstate should be safe). =
-It could be the overlapping files detected are harmless in which case =
-adding them to SSTATE_DUPWHITELIST may be the correct solution. It could =
-also be your build is including two different conflicting versions of =
-things (e.g. bluez 4 and bluez 5 and the correct solution for that would =
-be to resolve the conflict. If in doubt, please ask on the mailing list, =
-sharing the error and filelist above.<o:p class=3D""></o:p></div><div =
-style=3D"margin: 0in 0in 0.0001pt; font-size: 11pt; font-family: =
-Calibri, sans-serif;" class=3D"">ERROR: If the above message is too =
-much, the simpler version is you're advised to wipe out tmp and rebuild =
-(reusing sstate is fine). That will likely fix things in most (but not =
-all) cases.<o:p class=3D""></o:p></div><div style=3D"margin: 0in 0in =
-0.0001pt; font-size: 11pt; font-family: Calibri, sans-serif;" =
-class=3D"">ERROR: Function failed: sstate_task_postfunc<o:p =
-class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">ERROR: =
-Logfile of failure stored in: /projects/poky/build64/tmp/work/brcm =
--poky-linux/linux-brcm-nand/3.14.29-r6/temp/log.do_packagedata.40045<o:p =
-class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">NOTE: =
-recipe linux-brcm-nand-3.14.29-r6: task do_packagedata: Failed<o:p =
-class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">ERROR: =
-Task 11 =
-(/projects/poky/build64../meta-brcm/meta/recipes-kernel/linux/linux-brcm-n=
-and_3.14.29.bb, do_packagedata) failed with exit code '1'<o:p =
-class=3D""></o:p></div><div style=3D"margin: 0in 0in 0.0001pt; =
-font-size: 11pt; font-family: Calibri, sans-serif;" class=3D"">NOTE: =
-Tasks Summary: Attempted 447 tasks of which 445 didn't need to be rerun =
-and 2 failed.<o:p class=3D""></o:p></div></div><span style=3D"font-family:=
- Helvetica; font-size: 13px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; float: none; display: inline =
-!important;" class=3D"">--<span =
-class=3D"Apple-converted-space">&nbsp;</span></span><br =
-style=3D"font-family: Helvetica; font-size: 13px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px;" class=3D""><span =
-style=3D"font-family: Helvetica; font-size: 13px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px; float: none; display: inline =
-!important;" =
-class=3D"">_______________________________________________</span><br =
-style=3D"font-family: Helvetica; font-size: 13px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px;" class=3D""><span =
-style=3D"font-family: Helvetica; font-size: 13px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px; float: none; display: inline =
-!important;" class=3D"">yocto mailing list</span><br style=3D"font-family:=
- Helvetica; font-size: 13px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"mailto:yocto@yoctoproject.org" style=3D"color: purple; =
-text-decoration: underline; font-family: Helvetica; font-size: 13px; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
-class=3D"">yocto@yoctoproject.org</a><br style=3D"font-family: =
-Helvetica; font-size: 13px; font-style: normal; font-variant: normal; =
-font-weight: normal; letter-spacing: normal; line-height: normal; =
-orphans: auto; text-align: start; text-indent: 0px; text-transform: =
-none; white-space: normal; widows: auto; word-spacing: 0px; =
--webkit-text-stroke-width: 0px;" class=3D""><a =
-href=3D"https://lists.yoctoproject.org/listinfo/yocto" style=3D"color: =
-purple; text-decoration: underline; font-family: Helvetica; font-size: =
-13px; font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;" =
-class=3D"">https://lists.yoctoproject.org/listinfo/yocto</a></div></blockq=
-uote></div><br class=3D""></body></html>=
-
---Apple-Mail=_C0F8C79B-013E-47ED-A460-97B7F071D87D--
-
---Apple-Mail=_1689F129-DB19-449B-9695-93F2622E9BD9
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlXNi7YACgkQuwUzVZGdMxRSBgCePD3649THclqFbPf3eqXGe6oS
-AUsAmQHVQfC+XkiYa4yZOHpMzEzQrI4l
-=ZWaQ
------END PGP SIGNATURE-----
-
---Apple-Mail=_1689F129-DB19-449B-9695-93F2622E9BD9--
