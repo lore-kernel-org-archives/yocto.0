@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0BF75E006BC; Sat, 15 Aug 2015 08:58:42 -0700 (PDT)
+	id 0F191E006BC; Sat, 15 Aug 2015 12:22:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,9 +9,6 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,34 +16,44 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f172.google.com (mail-ig0-f172.google.com
-	[209.85.213.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC554E0052C
-	for <yocto@yoctoproject.org>; Sat, 15 Aug 2015 08:58:38 -0700 (PDT)
-Received: by igfj19 with SMTP id j19so31147539igf.0
-	for <yocto@yoctoproject.org>; Sat, 15 Aug 2015 08:58:37 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.51 listed in list.dnswl.org]
+Received: from mail-pa0-f51.google.com (mail-pa0-f51.google.com
+	[209.85.220.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C82B5E0052C
+	for <yocto@yoctoproject.org>; Sat, 15 Aug 2015 12:22:18 -0700 (PDT)
+Received: by pabyb7 with SMTP id yb7so79982983pab.0
+	for <yocto@yoctoproject.org>; Sat, 15 Aug 2015 12:22:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=vHDskOBqntac821pxLVeOK9e7fC2sVX+O4G7DkpUv1M=;
-	b=S+sjuxLOzIWZ8IrLwTGmOGj0GUAKI9aIcBzHGXLh5y9yBkaMDVV/pXsdpSAIjQv0Px
-	aHL4liyyy5tGGWwQnwBaZweqEUAsx0+pPmGeoOzwYNpgquqbF1vtAVYfQBbwfUmrXEYp
-	7Jfyso2K6S3bCiNTjfdNpvnI530T+NcHPsyuzHXBFRO5WnMCT5riK/HfA7LhL2MlsX8g
-	VXzFkBOubKsS3BSclQ94Tf1GOXuWkmz0qs0reVcda2YFllmpIKG7FGUhHFmxSzzvWBqW
-	X1yzcdVxwmB4oufFaz8UH6cyVsjXMCk11jzj7A9pckrALDwCj2b4tF/yQBcwV25+teVD
-	0QwQ==
-X-Received: by 10.50.30.226 with SMTP id v2mr8931323igh.11.1439654317260; Sat,
-	15 Aug 2015 08:58:37 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.107.38.79 with HTTP; Sat, 15 Aug 2015 08:58:07 -0700 (PDT)
-In-Reply-To: <D873F586B6E4C24CB574DB3058959F8F011B5A14C3@vie196nt>
-References: <D873F586B6E4C24CB574DB3058959F8F011B5A14C3@vie196nt>
+	h=subject:mime-version:content-type:from:in-reply-to:date:cc
+	:message-id:references:to;
+	bh=x1oRVGloNmt82lD9gjq2l8ZfpMb1pll7Wygc7c2JMbU=;
+	b=zobZiOnsgLMD/JyG7DPzQXoGjCGCk8cRiSkz5c6FXi+BVfrlqEYZ03Cs39ntHTOMQR
+	BUPExgtyn8ATfzzjAIursBND2fE0P6wspu6/RKdhsZTNiQo15qgXaaH+ScUpJrp1e3sr
+	78BdaqYBmC7aqYnm3NqRM+4qvfOe/uUr0k4KZdehm41n/ZhyzoEWsyxjwKf1a8WqH0kA
+	A7nurfONHcqt0ELkLr/3iqVry7Bc+aMKCj+r+uUhlYO5jNmn36FH1GxTG22/JmtYWwBK
+	n1wD5iVZ2sUuRT8xFMqcLSwPZ4yKXJN/PgRJFebgS52CnbZzx4+Bc255desqibSQQU/8
+	E+Gw==
+X-Received: by 10.68.68.161 with SMTP id x1mr838648pbt.107.1439666538327;
+	Sat, 15 Aug 2015 12:22:18 -0700 (PDT)
+Received: from ?IPv6:2601:646:8601:4580:3486:a8d6:107a:4b76?
+	([2601:646:8601:4580:3486:a8d6:107a:4b76])
+	by smtp.gmail.com with ESMTPSA id
+	da17sm9602283pac.29.2015.08.15.12.22.17
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Sat, 15 Aug 2015 12:22:17 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2104\))
+X-Pgp-Agent: GPGMail 2.5
 From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 15 Aug 2015 08:58:07 -0700
-Message-ID: <CAMKF1srvfSR_L4mKhAu-7NLtS9BZt-34o8SHLAUfQJVuJ-4vbg@mail.gmail.com>
-To: FLASCH Franz <Franz.FLASCH@frequentis.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Disable global compile flags or tune settings for specific recipe
+In-Reply-To: <CAJJ_cjS8CCtzid1rsFO1-xGpkhkENxNu3SCN_UYNLw5qcpuMnQ@mail.gmail.com>
+Date: Sat, 15 Aug 2015 12:22:08 -0700
+Message-Id: <A1078771-9866-457D-A4D0-C3ED3BA5C029@gmail.com>
+References: <CAJJ_cjS8CCtzid1rsFO1-xGpkhkENxNu3SCN_UYNLw5qcpuMnQ@mail.gmail.com>
+To: Keshav Peswani <keshavpeswani@gmail.com>
+X-Mailer: Apple Mail (2.2104)
+Cc: yocto@yoctoproject.org
+Subject: Re: OE/Meta Gnome : Login Panel username and password
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,55 +65,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 15 Aug 2015 15:58:42 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sat, 15 Aug 2015 19:22:22 -0000
+X-Groupsio-MsgNum: 26132
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_18BA3D8C-81AA-4591-9C3F-7C27BE92DCCC";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
+
+--Apple-Mail=_18BA3D8C-81AA-4591-9C3F-7C27BE92DCCC
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-On Wed, Jul 8, 2015 at 4:27 AM, FLASCH Franz
-<Franz.FLASCH@frequentis.com> wrote:
-> Hi!
->
-> I=E2=80=99ve a question regarding global compile flags in yocto:
->
-> I have an autotools project and also a working recipe for it. My problem =
-is,
-> that I also have external shared libraries which I need to link in, when
-> compiling this package. However these libraries were built without
-> additional compile settings like =E2=80=9C-mfloat-abi=3Dhard -mfpu=3Dneon
-> -mtune=3Dcortex-a8=E2=80=9D - so the compiled package doesn=E2=80=99t wor=
-k with these external
-> libraries.
->
-> Is it possible to disable the global compile tune flags for one specific
-> recipe? I do not want to disable the global compiler flags just for this
-> single package.
 
-you could do so by TUNE_CCARGS_remove =3D "-mfloat-abi=3Dhard"
-but larger problem is it might not work on target which is compiled
-with hard float ABI
-since it will still link into glibc and libgcc and other C runtime
-libs which are hardfloat.
-better option for you is to remove callconvention-hard from TUNE_FEATURES
+> On Jul 4, 2015, at 12:54 AM, Keshav Peswani <keshavpeswani@gmail.com> =
+wrote:
+>=20
+> Hi ,
+>=20
+> As part of a project, I had built custom distro for raspberry-pi =
+through yocto which included meta-gnome as my desktop/UI layer. After =
+the build completed , the login panel for gnome is asking for username =
+and password which I couldn't figure out even after searching the recipe =
+files. It would be great if you could help me out in knowing the default =
+user name and password that 'gdm' uses and where to change it in recipe =
+files. PFA my gnome recipe file and screen shot of login screen.
+>=20
+>=20
 
->
-> I think these flags are coming from this:
-> TUNE_FEATURES     =3D "armv7a vfp thumb neon callconvention-hard cortexa8=
-"
->
-> Maybe there are also more which have to be disabled, but I don=E2=80=99t =
-know which
-> and how.
->
-> Any suggestions are greatly appreciated.
->
-> Regards,
-> Franz
->
->
-> --
+if you have debug-tweaks to your image then it should let you in with =
+passwordless entry for root user
+EXTRA_IMAGE_FEATURES =3D "debug-tweaks=E2=80=9D in local.conf is what =
+you might need.
+
+> Thanks
+> Keshav
+> <gnome.bb><login-gnome.jpg>--
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
->
 
+
+--Apple-Mail=_18BA3D8C-81AA-4591-9C3F-7C27BE92DCCC
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iEYEARECAAYFAlXPkWgACgkQuwUzVZGdMxQFlQCfTZKRl0ynlpLIxN+ABiHR2H43
+fJQAn2sUrTKlYbBSgdPrynGBWL35WTtA
+=tYIK
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_18BA3D8C-81AA-4591-9C3F-7C27BE92DCCC--
