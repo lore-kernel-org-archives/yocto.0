@@ -1,59 +1,34 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <flihp@twobit.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0F191E006BC; Sat, 15 Aug 2015 12:22:22 -0700 (PDT)
+	id 1F734E00A7F; Sat, 15 Aug 2015 14:36:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 1.5 DATE_IN_PAST_06_12 Date: is 6 to 12 hours before
+	Received: date
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.51 listed in list.dnswl.org]
-Received: from mail-pa0-f51.google.com (mail-pa0-f51.google.com
-	[209.85.220.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C82B5E0052C
-	for <yocto@yoctoproject.org>; Sat, 15 Aug 2015 12:22:18 -0700 (PDT)
-Received: by pabyb7 with SMTP id yb7so79982983pab.0
-	for <yocto@yoctoproject.org>; Sat, 15 Aug 2015 12:22:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=subject:mime-version:content-type:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=x1oRVGloNmt82lD9gjq2l8ZfpMb1pll7Wygc7c2JMbU=;
-	b=zobZiOnsgLMD/JyG7DPzQXoGjCGCk8cRiSkz5c6FXi+BVfrlqEYZ03Cs39ntHTOMQR
-	BUPExgtyn8ATfzzjAIursBND2fE0P6wspu6/RKdhsZTNiQo15qgXaaH+ScUpJrp1e3sr
-	78BdaqYBmC7aqYnm3NqRM+4qvfOe/uUr0k4KZdehm41n/ZhyzoEWsyxjwKf1a8WqH0kA
-	A7nurfONHcqt0ELkLr/3iqVry7Bc+aMKCj+r+uUhlYO5jNmn36FH1GxTG22/JmtYWwBK
-	n1wD5iVZ2sUuRT8xFMqcLSwPZ4yKXJN/PgRJFebgS52CnbZzx4+Bc255desqibSQQU/8
-	E+Gw==
-X-Received: by 10.68.68.161 with SMTP id x1mr838648pbt.107.1439666538327;
-	Sat, 15 Aug 2015 12:22:18 -0700 (PDT)
-Received: from ?IPv6:2601:646:8601:4580:3486:a8d6:107a:4b76?
-	([2601:646:8601:4580:3486:a8d6:107a:4b76])
-	by smtp.gmail.com with ESMTPSA id
-	da17sm9602283pac.29.2015.08.15.12.22.17
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sat, 15 Aug 2015 12:22:17 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 8.2 \(2104\))
-X-Pgp-Agent: GPGMail 2.5
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CAJJ_cjS8CCtzid1rsFO1-xGpkhkENxNu3SCN_UYNLw5qcpuMnQ@mail.gmail.com>
-Date: Sat, 15 Aug 2015 12:22:08 -0700
-Message-Id: <A1078771-9866-457D-A4D0-C3ED3BA5C029@gmail.com>
-References: <CAJJ_cjS8CCtzid1rsFO1-xGpkhkENxNu3SCN_UYNLw5qcpuMnQ@mail.gmail.com>
-To: Keshav Peswani <keshavpeswani@gmail.com>
-X-Mailer: Apple Mail (2.2104)
-Cc: yocto@yoctoproject.org
-Subject: Re: OE/Meta Gnome : Login Panel username and password
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2BC7E005B1
+	for <yocto@yoctoproject.org>; Sat, 15 Aug 2015 14:36:46 -0700 (PDT)
+Received: from c-50-185-54-102.hsd1.ca.comcast.net ([50.185.54.102]
+	helo=slag.twobit.us)
+	by smtp.twobit.us with esmtpsa (TLSv1.2:AES128-SHA256:128)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1ZQj7D-00066C-DX; Sat, 15 Aug 2015 21:35:48 +0000
+From: Philip Tricca <flihp@twobit.us>
+To: yocto@yoctoproject.org,
+	joe_macdonald@mentor.com
+Date: Sat, 15 Aug 2015 13:35:01 +0000
+Message-Id: <1439645701-15785-1-git-send-email-flihp@twobit.us>
+X-Mailer: git-send-email 2.1.4
+X-SA-Exim-Connect-IP: 50.185.54.102
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Subject: [meta-selinux][PATCH] Use the SELinux project release tarballs.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,61 +40,140 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 15 Aug 2015 19:22:22 -0000
-X-Groupsio-MsgNum: 26132
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_18BA3D8C-81AA-4591-9C3F-7C27BE92DCCC";
-	protocol="application/pgp-signature"; micalg=pgp-sha1
+X-List-Received-Date: Sat, 15 Aug 2015 21:36:51 -0000
 
---Apple-Mail=_18BA3D8C-81AA-4591-9C3F-7C27BE92DCCC
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
+The SRC_URI used for the last SELinux userspace upgrade was the
+wrong one. We were using the URI generated by GitHub when tags are
+added to a repo. These are not the SELinux release tarballs.
+
+The SELinux project generates and releases tarballs for each tool
+and posts them to their GitHub wiki 'Releases' page:
+https://github.com/SELinuxProject/selinux/wiki/Releases. This patch
+fixes this URI, fixes the SELINUX_RELEASE variable that didn't get
+updated during the last upgrade, removes the workaround for the 'S'
+variable and fixes up the SRC_URI hashes.
+
+Signed-off-by: Philip Tricca <flihp@twobit.us>
+---
+ recipes-security/selinux/checkpolicy_2.3.bb     | 4 ++--
+ recipes-security/selinux/libselinux_2.3.bb      | 4 ++--
+ recipes-security/selinux/libsemanage_2.3.bb     | 4 ++--
+ recipes-security/selinux/libsepol_2.3.bb        | 4 ++--
+ recipes-security/selinux/policycoreutils_2.3.bb | 4 ++--
+ recipes-security/selinux/selinux_20140506.inc   | 4 ++--
+ recipes-security/selinux/selinux_common.inc     | 4 ----
+ recipes-security/selinux/sepolgen_1.2.1.bb      | 4 ++--
+ 8 files changed, 14 insertions(+), 18 deletions(-)
+
+diff --git a/recipes-security/selinux/checkpolicy_2.3.bb b/recipes-security/selinux/checkpolicy_2.3.bb
+index 9f68487..0efc94e 100644
+--- a/recipes-security/selinux/checkpolicy_2.3.bb
++++ b/recipes-security/selinux/checkpolicy_2.3.bb
+@@ -3,5 +3,5 @@ include ${BPN}.inc
+ 
+ LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
+ 
+-SRC_URI[md5sum] = "920f1a048b6023a22e1bae7b40fd413c"
+-SRC_URI[sha256sum] = "8072c12121613ba943417bbb6d33224d12373ea19d75c5acd1846a35e0e05b74" 
++SRC_URI[md5sum] = "90caed59291291b184890f563bf6c095"
++SRC_URI[sha256sum] = "90632d11afecb66997971d4c5c5d70dfb02d3969ec610ee2918ba6df99c8207b"
+diff --git a/recipes-security/selinux/libselinux_2.3.bb b/recipes-security/selinux/libselinux_2.3.bb
+index 81e599d..ff74b61 100644
+--- a/recipes-security/selinux/libselinux_2.3.bb
++++ b/recipes-security/selinux/libselinux_2.3.bb
+@@ -3,8 +3,8 @@ include ${BPN}.inc
+ 
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=84b4d2c6ef954a2d4081e775a270d0d0"
+ 
+-SRC_URI[md5sum] = "d27e249ad8450e7182203134cf4d85e2"
+-SRC_URI[sha256sum] = "03fe2baa7ceeea531a64fd321b44ecf09a55f3af5ef66a58a4135944f34e9851"
++SRC_URI[md5sum] = "b11d4d95ef4bde732dbc8462df57a1e5"
++SRC_URI[sha256sum] = "0b1e0b43ecd84a812713d09564019b08e7c205d89072b5cbcd07b052cd8e77b2"
+ 
+ SRC_URI += "\
+         file://libselinux-drop-Wno-unused-but-set-variable.patch \
+diff --git a/recipes-security/selinux/libsemanage_2.3.bb b/recipes-security/selinux/libsemanage_2.3.bb
+index 5eada94..a238e08 100644
+--- a/recipes-security/selinux/libsemanage_2.3.bb
++++ b/recipes-security/selinux/libsemanage_2.3.bb
+@@ -3,8 +3,8 @@ include ${BPN}.inc
+ 
+ LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
+ 
+-SRC_URI[md5sum] = "cc313b400637d94e3a549bf77555d8c3"
+-SRC_URI[sha256sum] = "4c984379a98ee9f05b80ff6e57dd2de886273d7136146456cabdce21ac32ed7f"
++SRC_URI[md5sum] = "e564e2b92d18db35707060da29cddab9"
++SRC_URI[sha256sum] = "03e09e35e611c286e446bef92b6023ef2623815996f5a53394bb02e49a312e4b"
+ 
+ SRC_URI += "\
+ 	file://libsemanage-Fix-execve-segfaults-on-Ubuntu.patch \
+diff --git a/recipes-security/selinux/libsepol_2.3.bb b/recipes-security/selinux/libsepol_2.3.bb
+index 0c07d41..478a6ee 100644
+--- a/recipes-security/selinux/libsepol_2.3.bb
++++ b/recipes-security/selinux/libsepol_2.3.bb
+@@ -3,5 +3,5 @@ include ${BPN}.inc
+ 
+ LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
+ 
+-SRC_URI[md5sum] = "c6b3dc07bf19ab4f364f21bbecb44beb"
+-SRC_URI[sha256sum] = "5a4481bfd0fad6fdad1511c786d69de1fc3eddc28154eae1691e1bf4e9e505c3"
++SRC_URI[md5sum] = "e47e8527b5d4ea971726c455f847efdd"
++SRC_URI[sha256sum] = "cc8d8642c3b7b95d6928d65dcbca2ab0627abc1c05166637851e63c1a6eae68f"
+diff --git a/recipes-security/selinux/policycoreutils_2.3.bb b/recipes-security/selinux/policycoreutils_2.3.bb
+index c837266..b77094e 100644
+--- a/recipes-security/selinux/policycoreutils_2.3.bb
++++ b/recipes-security/selinux/policycoreutils_2.3.bb
+@@ -3,8 +3,8 @@ include ${BPN}.inc
+ 
+ LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
+ 
+-SRC_URI[md5sum] = "4f5c508e3c3867c8beb343e993d353dd"
+-SRC_URI[sha256sum] = "11e8815ac13debb87897d2781381b89ec5c6c746a3d44223a493bc7ace6cc71f"
++SRC_URI[md5sum] = "9a5db20adfe2250f53833b277ac796ae"
++SRC_URI[sha256sum] = "864cfaee58b5d2f15b140c354e59666e57143293c89f2b2e85bc0d0e4beefcd2"
+ 
+ SRC_URI += "\
+ 	file://policycoreutils-fix-sepolicy-install-path.patch \
+diff --git a/recipes-security/selinux/selinux_20140506.inc b/recipes-security/selinux/selinux_20140506.inc
+index 01cc52f..beaaff0 100644
+--- a/recipes-security/selinux/selinux_20140506.inc
++++ b/recipes-security/selinux/selinux_20140506.inc
+@@ -1,5 +1,5 @@
+-SELINUX_RELEASE = "20131030"
++SELINUX_RELEASE = "20140506"
+ 
+-SRC_URI = "https://github.com/SELinuxProject/selinux/archive/${BPN}-${PV}.tar.gz"
++SRC_URI = "https://raw.githubusercontent.com/wiki/SELinuxProject/selinux/files/releases/${SELINUX_RELEASE}/${BPN}-${PV}.tar.gz"
+ 
+ include selinux_common.inc
+diff --git a/recipes-security/selinux/selinux_common.inc b/recipes-security/selinux/selinux_common.inc
+index e53792d..7efa694 100644
+--- a/recipes-security/selinux/selinux_common.inc
++++ b/recipes-security/selinux/selinux_common.inc
+@@ -5,10 +5,6 @@ HOMEPAGE = "https://github.com/SELinuxProject"
+ # we redefine EXTRA_OEMAKE here
+ EXTRA_OEMAKE = "-e"
+ 
+-# Releases are now from the base of the full tree, necessitating our skipping
+-# through an extra level of directories.
+-S = "${WORKDIR}/selinux-${BPN}-${PV}/${BPN}"
+-
+ do_compile() {
+     oe_runmake all \
+             INCLUDEDIR='${STAGING_INCDIR}' \
+diff --git a/recipes-security/selinux/sepolgen_1.2.1.bb b/recipes-security/selinux/sepolgen_1.2.1.bb
+index b47ff26..c636ac3 100644
+--- a/recipes-security/selinux/sepolgen_1.2.1.bb
++++ b/recipes-security/selinux/sepolgen_1.2.1.bb
+@@ -3,5 +3,5 @@ include ${BPN}.inc
+ 
+ LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
+ 
+-SRC_URI[md5sum] = "308011ba495b6770239bb3d371d277d3"
+-SRC_URI[sha256sum] = "7a5710f7c8be16dfbaf8da98c3c0e46bc6159f2df5340e9efb975b084f61413c"
++SRC_URI[md5sum] = "ce662a83188bc3a9b40c15792fcaf2c8"
++SRC_URI[sha256sum] = "438c246bdc6b3cf1b12116831f4c601aaae6e93decb007dddab212a3c88781b0"
+-- 
+2.1.4
 
 
-> On Jul 4, 2015, at 12:54 AM, Keshav Peswani <keshavpeswani@gmail.com> =
-wrote:
->=20
-> Hi ,
->=20
-> As part of a project, I had built custom distro for raspberry-pi =
-through yocto which included meta-gnome as my desktop/UI layer. After =
-the build completed , the login panel for gnome is asking for username =
-and password which I couldn't figure out even after searching the recipe =
-files. It would be great if you could help me out in knowing the default =
-user name and password that 'gdm' uses and where to change it in recipe =
-files. PFA my gnome recipe file and screen shot of login screen.
->=20
->=20
-
-if you have debug-tweaks to your image then it should let you in with =
-passwordless entry for root user
-EXTRA_IMAGE_FEATURES =3D "debug-tweaks=E2=80=9D in local.conf is what =
-you might need.
-
-> Thanks
-> Keshav
-> <gnome.bb><login-gnome.jpg>--
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
---Apple-Mail=_18BA3D8C-81AA-4591-9C3F-7C27BE92DCCC
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iEYEARECAAYFAlXPkWgACgkQuwUzVZGdMxQFlQCfTZKRl0ynlpLIxN+ABiHR2H43
-fJQAn2sUrTKlYbBSgdPrynGBWL35WTtA
-=tYIK
------END PGP SIGNATURE-----
-
---Apple-Mail=_18BA3D8C-81AA-4591-9C3F-7C27BE92DCCC--
