@@ -1,41 +1,63 @@
-Return-Path: <Randy.MacLeod@windriver.com>
+Return-Path: <binhancntt@iritech.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E7ACCE009C3; Mon, 17 Aug 2015 19:28:47 -0700 (PDT)
+	id 3D4F9E009B3; Mon, 17 Aug 2015 23:27:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HK_RANDOM_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: *  1.0 HK_RANDOM_FROM From username looks random
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.175 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B368BE00861
-	for <yocto@yoctoproject.org>; Mon, 17 Aug 2015 19:28:43 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.1/8.15.1) with ESMTPS id t7I2SgoW018248
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 17 Aug 2015 19:28:42 -0700 (PDT)
-Received: from [172.25.44.6] (172.25.44.6) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.235.1;
-	Mon, 17 Aug 2015 19:28:42 -0700
-Message-ID: <55D29859.7050407@windriver.com>
-Date: Mon, 17 Aug 2015 22:28:41 -0400
-From: Randy MacLeod <randy.macleod@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.8.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pd0-f175.google.com (mail-pd0-f175.google.com
+	[209.85.192.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBC63E00861
+	for <yocto@yoctoproject.org>; Mon, 17 Aug 2015 23:27:49 -0700 (PDT)
+Received: by pdrh1 with SMTP id h1so65148258pdr.0
+	for <yocto@yoctoproject.org>; Mon, 17 Aug 2015 23:27:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iritech.com; s=google;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-type:content-transfer-encoding;
+	bh=oW7YsDO/FKEhIt2QoB0Sb4MUBh67WnDybLfkqyvQUJo=;
+	b=Tyjo9ZP3TPG0AVZpIL24sQx1f7/RXmiAAQ89hJ81V0KsKZYkaQ83b3COQ5uR/jDkUG
+	02/uyI/bsVGbusaO0bDk2d/h2OZGx2uNIgAa4xaFLZhNadDHJwRXt+fqwRA9aoTY1Bfx
+	ngQ9YPp9VsGVz8ly0t41dS01/T5kKpQ7j4IwM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-type:content-transfer-encoding;
+	bh=oW7YsDO/FKEhIt2QoB0Sb4MUBh67WnDybLfkqyvQUJo=;
+	b=ZImNKxsFXuQ4iPNJZV98ydDuUIFif363qRAgqbbcNcQ1u07N7AcnWGtqnh5nrvT9MQ
+	SmS8LL9hYrj5Kl/jp6YGmlWCD++bKawrljN3t+deWiY420wqOVRtSG0+Pr1qW7X8AVjU
+	SaYcgNme5o9/zPYVr1QAAOq3gFvCEyCGjCPYN8Ki9dGc1KqM2a6EAlu5QFjMMbBOLX/x
+	PKd2ZPxhSJVn4dGIjeHXDwV2jD3dxKCxh/CjOSWruJltBix/MZrYuQXXmInnAhJvJWTk
+	GckDRAFI/ot7e15MR0cxDZL0VjUvHhzhR53JkGXUc/E9G/cSmvDmQ22EH8gm3+mtEgVk
+	FMWg==
+X-Gm-Message-State: ALoCoQljFHrbz8mn+9ld6Xa9GbaPAXGcX9HhnXxyz7lVQ7wmdv+cl1a+KBE2xRYGAIU8N5TFTZVu
+X-Received: by 10.70.3.4 with SMTP id 4mr9939502pdy.103.1439879268642;
+	Mon, 17 Aug 2015 23:27:48 -0700 (PDT)
+Received: from [192.168.10.39] ([116.126.115.154])
+	by smtp.googlemail.com with ESMTPSA id
+	pt3sm16715390pbb.38.2015.08.17.23.27.47 for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 17 Aug 2015 23:27:47 -0700 (PDT)
+To: yocto@yoctoproject.org
+From: binhancntt <binhancntt@iritech.com>
+Message-ID: <55D2D061.8080201@iritech.com>
+Date: Tue, 18 Aug 2015 15:27:45 +0900
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:38.0) Gecko/20100101
+	Thunderbird/38.2.0
 MIME-Version: 1.0
-To: wenzong fan <wenzong.fan@windriver.com>, Joe MacDonald
-	<Joe_MacDonald@mentor.com>
-References: <55CB0D29.9070206@windriver.com>	<20150812130556.GA16995@mentor.com>
-	<55CD8DB7.5050304@windriver.com>
-In-Reply-To: <55CD8DB7.5050304@windriver.com>
-X-Originating-IP: [172.25.44.6]
-Cc: "Radzykewycz, T \(Radzy\)" <radzy@windriver.com>, yocto@yoctoproject.org
-Subject: Re: [meta-selinux] How about remove libcap-ng from meta-selinux?
+Subject: Deploy new driver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,94 +69,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Aug 2015 02:28:48 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+X-List-Received-Date: Tue, 18 Aug 2015 06:27:52 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2015-08-14 02:41 AM, wenzong fan wrote:
-> On 08/12/2015 09:05 PM, Joe MacDonald wrote:
->> [[yocto] [meta-selinux] How about remove libcap-ng from meta-selinux?]
->> On 15.08.12 (Wed 17:08) wenzong fan wrote:
->>
->>> Hi All,
->>>
->>> There's a libcap-ng in meta-oe layer, it has been updated to 0.7.7
->>> and the
->>> one in meta-selinux is 0.7.3.
->>>
->>> How about removing the one in meta-selinux and get this layer depends on
->>> meta-oe? Any suggestions?
->>
->> The last time we had this discussion my sense was that most users of
->> meta-selinux wanted to continue with it only depending on oe-core.
->> That's my preference as well.
->>
->> I'm happy to merge an updated version of libcap-ng (or maybe I'll get to
->> it myself, since I've known about it since Armin removed it from
->> meta-security, that was the time of the last discussion, I think).
->>
->> All I'm saying right now is that this isn't a case of accidental
->> duplication of recipes in multiple layers, it's the result of a
->> conscious decision.  It's totally worthwhile re-visiting that decision,
->> though to make sure the reasons are still valid.
->>
->
-> Thanks for clarifying this, just send out an update patch for libcap-ng.
+Hi all,
+I'm deploying a customized usb gadget as following ways:
+1. create a new recipes and specify MACHINE_ESSENTIAL_EXTRA_RDEPEND += 
+"mygadget". I expect it is loaded with kernel but the .KO is included 
+only to /lib/modules/3.14.28-1.0.0_ga+g91cf351/extra. I tried with 
+KERNEL_MODULE_AUTOLOAD += "mygadget" but it does not help.
 
-I still think it belongs in oe-core.
+2. Kernel source code is extracted to 
+build/tmp/work-shared/<MACHINE>/kernel-source. I intended to add my 
+driver to drivers/usb/gadget/ but whenever I tried 'bitbake linux-imx -c 
+menuconfig', this source is removed completely.
 
-Wenzong,
-
-Can you try to build up a case for that?
-If I look at the dependencies on Ubuntu-15.04:
-
-Reverse Depends:
-   qemu-system-common,libcap-ng0
-   libvirt0,libcap-ng0
-   libvirt-bin,libcap-ng0
-   libcap-ng0:i386,libcap-ng0 0.7.4-2
-   libcap-ng0:i386,libcap-ng0 0.7.4-2
-   suricata,libcap-ng0
-   libcap-ng-utils,libcap-ng0 0.7.4-2
-   ladvd,libcap-ng0
-   heimdal-kdc,libcap-ng0
-   audispd-plugins,libcap-ng0
-   smartmontools,libcap-ng0
-   qemu-system-common,libcap-ng0
-   libvirt0,libcap-ng0
-   libvirt-bin,libcap-ng0
-   libcap-ng-dev,libcap-ng0 0.7.4-2
-   irqbalance,libcap-ng0
-   gnome-keyring,libcap-ng0
-   dbus-1-dbg,libcap-ng0
-   dbus,libcap-ng0
-
-note that pkgs in:
-   meta-virtualization: irqbalance, libvirt, more?
-   meta-selinux: audit
-   meta-security-framework: audit
-could drop the local versions of libcap-ng and use the
-oe-core libcap-ng.
-
-
-Please check on the actual source/configure options so that
-we(I!!) get a better understanding of where libcap vs libcap-ng
-is used.
-
-In fact, since meta-security-framework isn't using selinux, I'd
-say that both audit and libcap-ng should both move to oe-core.
-
-
-Thanks,
-../Randy
-
-
->
-> Wenzong
-
-
--- 
-# Randy MacLeod. SMTS, Linux, Wind River
-Direct: 613.963.1350 | 350 Terry Fox Drive, Suite 200, Ottawa, ON, 
-Canada, K2K 2W5
+Can you please show me what wrong I have made and what direction should 
+I follow to add a new driver to kernel?
+Thank you!!!
 
