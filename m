@@ -1,44 +1,37 @@
 Return-Path: <lixin.fnst@cn.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A760FE00AE9; Tue, 18 Aug 2015 20:29:36 -0700 (PDT)
+	id 8AC3AE00AE0; Tue, 18 Aug 2015 22:04:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RDNS_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
 Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0F43E00ADB
-	for <yocto@yoctoproject.org>; Tue, 18 Aug 2015 20:29:34 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.15,520,1432569600"; d="scan'208,217";a="99790414"
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86DE5E00ADB
+	for <yocto@yoctoproject.org>; Tue, 18 Aug 2015 22:04:14 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.15,520,1432569600"; d="scan'208";a="99793171"
 Received: from unknown (HELO edo.cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 19 Aug 2015 11:32:49 +0800
-Received: from G08CNEXCHPEKD02.g08.fujitsu.local (localhost.localdomain
+	by heian.cn.fujitsu.com with ESMTP; 19 Aug 2015 13:07:27 +0800
+Received: from G08CNEXCHPEKD01.g08.fujitsu.local (localhost.localdomain
 	[127.0.0.1])
-	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id t7J3TT49007322;
-	Wed, 19 Aug 2015 11:29:29 +0800
-Received: from G08CNEXMBPEKD03.g08.fujitsu.local ([10.167.33.86]) by
-	G08CNEXCHPEKD02.g08.fujitsu.local ([10.167.33.83]) with mapi id
-	14.03.0181.006; Wed, 19 Aug 2015 11:29:33 +0800
-From: "Li, Xin" <lixin.fnst@cn.fujitsu.com>
-To: Jagadeesh Krishnanjanappa <jkrishnanjanappa@mvista.com>
-Thread-Topic: [yocto] [meta-cgl][PATCH] cluster-glue: upgrade 1.0.5 -> 1.0.12
-Thread-Index: AQHQ2igI7fVVO7JtlUGYpKpGkXltqZ4SIFYAgACI1dA=
-Date: Wed, 19 Aug 2015 03:29:32 +0000
-Message-ID: <A8FC939F80655644A89BB21CCD3741E8011BCBAF60@G08CNEXMBPEKD03.g08.fujitsu.local>
-References: <1439951854-8455-1-git-send-email-lixin.fnst@cn.fujitsu.com>
-	<CAD3vsf7ypEpGCErQ6fqqmY2qSVLb+pB9DzG1qbP=o3_N=7QMqw@mail.gmail.com>
-In-Reply-To: <CAD3vsf7ypEpGCErQ6fqqmY2qSVLb+pB9DzG1qbP=o3_N=7QMqw@mail.gmail.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.167.226.92]
+	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id t7J5479h011969
+	for <yocto@yoctoproject.org>; Wed, 19 Aug 2015 13:04:07 +0800
+Received: from localhost.localdomain (10.167.226.92) by
+	G08CNEXCHPEKD01.g08.fujitsu.local (10.167.33.89) with Microsoft SMTP
+	Server (TLS) id 14.3.181.6; Wed, 19 Aug 2015 13:04:10 +0800
+From: Li xin <lixin.fnst@cn.fujitsu.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 19 Aug 2015 13:03:57 +0800
+Message-ID: <1439960637-8744-1-git-send-email-lixin.fnst@cn.fujitsu.com>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <A8FC939F80655644A89BB21CCD3741E8011BCBAF60@G08CNEXMBPEKD03.g08.fujitsu.local>
+References: <A8FC939F80655644A89BB21CCD3741E8011BCBAF60@G08CNEXMBPEKD03.g08.fujitsu.local>
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-cgl][PATCH] cluster-glue: upgrade 1.0.5 -> 1.0.12
+X-Originating-IP: [10.167.226.92]
+Subject: [meta-cgl][PATCH v2] cluster-glue: upgrade 1.0.5 -> 1.0.12
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,235 +43,434 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Aug 2015 03:29:36 -0000
-Content-Language: zh-CN
-Content-Type: multipart/alternative;
-	boundary="_000_A8FC939F80655644A89BB21CCD3741E8011BCBAF60G08CNEXMBPEKD_"
+X-List-Received-Date: Wed, 19 Aug 2015 05:04:23 -0000
+Content-Type: text/plain
 
---_000_A8FC939F80655644A89BB21CCD3741E8011BCBAF60G08CNEXMBPEKD_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+* Add patch to aviod build Error and Warning.
+  --0001-don-t-compile-doc-and-Error-Fix.patch
+  --0001-ribcl.py.in-Warning-Fix.patch
 
-SGksSmFnYWRlZXNoLA0KDQpUaGFua3MgYSBsb3QuDQoNClBhdGNoIFYyIHdpbGwgYmUgc2VudC4N
-Cg0KUmVnYXJkcywNCkxpDQpGcm9tOiBKYWdhZGVlc2ggS3Jpc2huYW5qYW5hcHBhIFttYWlsdG86
-amtyaXNobmFuamFuYXBwYUBtdmlzdGEuY29tXQ0KU2VudDogV2VkbmVzZGF5LCBBdWd1c3QgMTks
-IDIwMTUgMTE6MTYgQU0NClRvOiBMaSwgWGluL+adjiDmrKMNCkNjOiB5b2N0b0B5b2N0b3Byb2pl
-Y3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBbbWV0YS1jZ2xdW1BBVENIXSBjbHVzdGVyLWds
-dWU6IHVwZ3JhZGUgMS4wLjUgLT4gMS4wLjEyDQoNCkhpIExpLA0KDQotRklMRVNfJHtQTn0tZGJn
-ICs9ICIvdXNyL2xpYi9oZWFydGJlYXQvLmRlYnVnLyINCitGSUxFU18ke1BOfS1kYmcgKz0gIi91
-c3IvbGliL2hlYXJ0YmVhdC8uZGVidWcvIFwNCisgICAgICAgICAgICAgICAgICAgIg0KK0ZJTEVT
-XyR7UE59LXBsdWdpbi1jb21wcmVzcyA9ICIvdXNyL2xpYi9oZWFydGJlYXQvcGx1Z2lucy9jb21w
-cmVzcy8qLnNvIg0KK0ZJTEVTXyR7UE59LXBsdWdpbi1jb21wcmVzcy1zdGF0aWNkZXYgPSAiL3Vz
-ci9saWIvaGVhcnRiZWF0L3BsdWdpbnMvY29tcHJlc3MvKi4qYSINCitGSUxFU18ke1BOfS1wbHVn
-aW4tY29tcHJlc3MtZGJnID0gIi91c3IvbGliL2hlYXJ0YmVhdC9wbHVnaW5zL2NvbXByZXNzLy5k
-ZWJ1Zy8iDQoNCiBGSUxFU18ke1BOfS1wbHVnaW4tdGVzdCA9ICIvdXNyL2xpYi9oZWFydGJlYXQv
-cGx1Z2lucy90ZXN0L3Rlc3Quc28iDQogRklMRVNfJHtQTn0tcGx1Z2luLXRlc3Qtc3RhdGljZGV2
-ID0gIi91c3IvbGliL2hlYXJ0YmVhdC9wbHVnaW5zL3Rlc3QvdGVzdC4qYSINCg0KSXQgd291bGQg
-YmUgdXNlZnVsIHRvIHJlcGxhY2UgdGhlIGhhcmRjb2RlZCBzdHJpbmdzIHN1Y2ggYXMgIi91c3Iv
-bGliIiB0byAke2xpYmRpcn0gLCBpbiBvcmRlciB0byBhdm9pZCBRQSB3YXJuaW5ncy9lcnJvcnMg
-d2hpY2ggYXJpc2Ugd2hpbGUgYnVpZGxpbmcNCmNsdXN0ZXItZ2x1ZSBmb3IgbXVsdGlsaWIgb3Ig
-aWYgQkFTRUxJQiBpcyBzZXQgdG8gb3RoZXIgdGhhbiAibGliIg0KDQpFeGFtcGxlOg0KLS0gc25p
-cCAtLQ0KRVJST1I6IFFBIElzc3VlOiBjbHVzdGVyLWdsdWU6IEZpbGVzL2RpcmVjdG9yaWVzIHdl
-cmUgaW5zdGFsbGVkIGJ1dCBub3Qgc2hpcHBlZA0KaW4gYW55IHBhY2thZ2U6DQogIC91c3IvbGli
-NjQvbGlic3Rvbml0aC5zby4xLjAuMA0KICAvdXNyL2xpYjY0L2xpYnBsdW1iLnNvLjINCiAgL3Vz
-ci9saWI2NC9saWJwaWxzLnNvLjINCiAgL3Vzci9saWI2NC9saWJwbHVtYi5zby4yLjAuMA0KICAv
-dXNyL2xpYjY0L2xpYnBpbHMuc28uMi4wLjANCiAgL3Vzci9saWI2NC9saWJscm0uc28uMg0KICAv
-dXNyL2xpYjY0L2xpYnN0b25pdGguc28uMQ0KICAvdXNyL2xpYjY0L2xpYnBsdW1iZ3BsLnNvLjIN
-CiAgL3Vzci9saWI2NC9saWJwbHVtYmdwbC5zby4yLjAuMA0KICAvdXNyL2xpYjY0L2xpYmxybS5z
-by4yLjAuMA0KLS0gQ1VUIC0tDQoNCkFsc28sIElmIGJpdGJha2UgZmFpbHMgdG8gZmluZCB0aGVz
-ZSBmaWxlcyBub3QgYmVpbmcgcHJvdmlkZWQgYnkNCmFueSBSUE1zL0RQS3MsIHRoZW4gd2UgZ2V0
-IGJlbG93IGVycm9yIGR1cmluZyBkb19yb290ZnM7DQoNCi0tIHNuaXAgLS0NCkVSUk9SOiBVbmFi
-bGUgdG8gaW5zdGFsbCBwYWNrYWdlcy4gQ29tbWFuZCAnL29wdC9wb2t5L2J1aWxkL3RtcC9zeXNy
-b290cy94ODZfNjQtbGludXgvdXNyL2Jpbi9zbWFydCAtLWxvZy1sZXZlbD13YXJuaW5nIC0tZGF0
-YS1kaXI9L29wdC9wb2t5L2J1aWxkL3RtcC93b3JrL3FlbXV4ODZfNjQtcG9reS1saW51eC9jb3Jl
-LWltYWdlLW1pbmltYWwvMS4wLXIwL3Jvb3Rmcy92YXIvbGliL3NtYXJ0IGluc3RhbGwgLXkgY2x1
-c3Rlci1nbHVlQGNvcmUyXzY0IHJ1bi1wb3N0aW5zdHNAYWxsIHBhY2thZ2Vncm91cC1jb3JlLWJv
-b3RAcWVtdXg4Nl82NCcgcmV0dXJuZWQgMToNCkxvYWRpbmcgY2FjaGUuLi4NClVwZGF0aW5nIGNh
-Y2hlLi4uICAgICAgICAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
-IyMjIyBbMTAwJV0NCg0KQ29tcHV0aW5nIHRyYW5zYWN0aW9uLi4uZXJyb3I6IENhbid0IGluc3Rh
-bGwgY2x1c3Rlci1nbHVlLTEuMC41LXIwQGNvcmUyXzY0PG1haWx0bzpjbHVzdGVyLWdsdWUtMS4w
-LjUtcjBAY29yZTJfNjQ+OiBubw0KcGFja2FnZSBwcm92aWRlcyBsaWJzdG9uaXRoLnNvLjEoKSg2
-NGJpdCkNCi0tIENVVCAtLQ0KDQpSZWdhcmRzLA0KSmFnYWRlZXNoDQoNCl9fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQp5b2N0byBtYWlsaW5nIGxpc3QNCnlv
-Y3RvQHlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpodHRw
-czovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg0K
+* Dropped backported patch:
+  --fix-const-cast.patch
+  --glue-remove-getpid-check.patch
+  --glue-repair-deprecated-glib-support.patch
+  --glue-repair-libxml-support.patch
 
---_000_A8FC939F80655644A89BB21CCD3741E8011BCBAF60G08CNEXMBPEKD_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+* Replace the hardcoded strings "/usr/lib" "/etc/" "/usr/sbin" "/usr/share"
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-5a6L5L2TOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtm
-b250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0
-O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUg
-MiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5v
-c2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJc
-QOWui+S9kyI7DQoJcGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQovKiBTdHlsZSBEZWZp
-bml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXtt
-YXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0K
-CWZvbnQtZmFtaWx5OuWui+S9kzt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1z
-dHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxp
-bmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1w
-cmlvcml0eTo5OTsNCgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9
-DQpzcGFuLmhvZW56Yg0KCXttc28tc3R5bGUtbmFtZTpob2VuemI7fQ0Kc3Bhbi5FbWFpbFN0eWxl
-MTgNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGli
-cmkiLCJzYW5zLXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21z
-by1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1z
-ZXJpZiI7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1h
-cmdpbjo3Mi4wcHQgOTAuMHB0IDcyLjBwdCA5MC4wcHQ7fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtw
-YWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0K
-PG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwh
-W2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9
-ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlv
-dXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJaSC1DTiIgbGluaz0i
-Ymx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkhpLEphZ2FkZWVzaCw8bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86
-cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFu
-Zz0iRU4tVVMiPlRoYW5rcyBhIGxvdC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlBhdGNoIFYyIHdpbGwg
-YmUgc2VudC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkxpPC9zcGFuPjxzcGFu
-IGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTomcXVvdDtD
-YWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD48
-L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29s
-aWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBjbSAwY20gMGNtIDQuMHB0Ij4NCjxkaXY+DQo8ZGl2IHN0
-eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0REYgMS4wcHQ7cGFkZGluZzoz
-LjBwdCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJF
-Ti1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1
-b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJF
-Ti1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1
-b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBKYWdhZGVlc2ggS3Jpc2huYW5qYW5hcHBhIFtt
-YWlsdG86amtyaXNobmFuamFuYXBwYUBtdmlzdGEuY29tXQ0KPGJyPg0KPGI+U2VudDo8L2I+IFdl
-ZG5lc2RheSwgQXVndXN0IDE5LCAyMDE1IDExOjE2IEFNPGJyPg0KPGI+VG86PC9iPiBMaSwgWGlu
-Lzwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdCI+5p2OPC9zcGFuPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVv
-dDtzYW5zLXNlcmlmJnF1b3Q7Ij4NCjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBw
-dCI+5qyjPC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtm
-b250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+PGJy
-Pg0KPGI+Q2M6PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+
-IFJlOiBbeW9jdG9dIFttZXRhLWNnbF1bUEFUQ0hdIGNsdXN0ZXItZ2x1ZTogdXBncmFkZSAxLjAu
-NSAtJmd0OyAxLjAuMTI8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
-cGFuPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBsYW5nPSJFTi1VUyI+SGkgTGksJm5ic3A7PG86cD48L286cD48L3NwYW4+PC9wPg0K
-PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJv
-cmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowY20gMGNt
-IDBjbSA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGNtIj4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4tRklMRVNfJHtQTn0tZGJnICYjNDM7PSAm
-cXVvdDsvdXNyL2xpYi9oZWFydGJlYXQvLmRlYnVnLyZxdW90Ozxicj4NCiYjNDM7RklMRVNfJHtQ
-Tn0tZGJnICYjNDM7PSAmcXVvdDsvdXNyL2xpYi9oZWFydGJlYXQvLmRlYnVnLyBcPGJyPg0KJiM0
-MzsmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
-ICZuYnNwOyAmbmJzcDsmcXVvdDs8YnI+DQomIzQzO0ZJTEVTXyR7UE59LXBsdWdpbi1jb21wcmVz
-cyA9ICZxdW90Oy91c3IvbGliL2hlYXJ0YmVhdC9wbHVnaW5zL2NvbXByZXNzLyouc28mcXVvdDs8
-YnI+DQomIzQzO0ZJTEVTXyR7UE59LXBsdWdpbi1jb21wcmVzcy1zdGF0aWNkZXYgPSAmcXVvdDsv
-dXNyL2xpYi9oZWFydGJlYXQvcGx1Z2lucy9jb21wcmVzcy8qLiphJnF1b3Q7PGJyPg0KJiM0MztG
-SUxFU18ke1BOfS1wbHVnaW4tY29tcHJlc3MtZGJnID0gJnF1b3Q7L3Vzci9saWIvaGVhcnRiZWF0
-L3BsdWdpbnMvY29tcHJlc3MvLmRlYnVnLyZxdW90Ozxicj4NCjxicj4NCiZuYnNwO0ZJTEVTXyR7
-UE59LXBsdWdpbi10ZXN0ID0gJnF1b3Q7L3Vzci9saWIvaGVhcnRiZWF0L3BsdWdpbnMvdGVzdC90
-ZXN0LnNvJnF1b3Q7PGJyPg0KJm5ic3A7RklMRVNfJHtQTn0tcGx1Z2luLXRlc3Qtc3RhdGljZGV2
-ID0gJnF1b3Q7L3Vzci9saWIvaGVhcnRiZWF0L3BsdWdpbnMvdGVzdC90ZXN0LiphJnF1b3Q7PG86
-cD48L286cD48L3NwYW4+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
-L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+SXQg
-d291bGQgYmUgdXNlZnVsIHRvIHJlcGxhY2UgdGhlIGhhcmRjb2RlZCBzdHJpbmdzIHN1Y2ggYXMg
-JnF1b3Q7L3Vzci9saWImcXVvdDsgdG8gJHtsaWJkaXJ9ICwgaW4gb3JkZXIgdG8gYXZvaWQgUUEg
-d2FybmluZ3MvZXJyb3JzIHdoaWNoIGFyaXNlIHdoaWxlIGJ1aWRsaW5nPG86cD48L286cD48L3Nw
-YW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0i
-RU4tVVMiPmNsdXN0ZXItZ2x1ZSBmb3IgbXVsdGlsaWIgb3IgaWYgQkFTRUxJQiBpcyBzZXQgdG8g
-b3RoZXIgdGhhbiAmcXVvdDtsaWImcXVvdDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJz
-cDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gbGFuZz0iRU4tVVMiPkV4YW1wbGU6PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+
-DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4t
-LSBzbmlwIC0tPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkVSUk9SOiBRQSBJc3N1ZTogY2x1c3Rlci1n
-bHVlOiBGaWxlcy9kaXJlY3RvcmllcyB3ZXJlIGluc3RhbGxlZCBidXQgbm90IHNoaXBwZWQ8bzpw
-PjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBsYW5nPSJFTi1VUyI+aW4gYW55IHBhY2thZ2U6PG86cD48L286cD48L3NwYW4+PC9wPg0K
-PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPiZu
-YnNwOyAvdXNyL2xpYjY0L2xpYnN0b25pdGguc28uMS4wLjA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+
-Jm5ic3A7IC91c3IvbGliNjQvbGlicGx1bWIuc28uMjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwv
-ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJz
-cDsgL3Vzci9saWI2NC9saWJwaWxzLnNvLjI8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7IC91
-c3IvbGliNjQvbGlicGx1bWIuc28uMi4wLjA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7IC91
-c3IvbGliNjQvbGlicGlscy5zby4yLjAuMDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0K
-PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsgL3Vz
-ci9saWI2NC9saWJscm0uc28uMjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsgL3Vzci9saWI2
-NC9saWJzdG9uaXRoLnNvLjE8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7IC91c3IvbGliNjQv
-bGlicGx1bWJncGwuc28uMjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsgL3Vzci9saWI2NC9s
-aWJwbHVtYmdwbC5zby4yLjAuMDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsgL3Vzci9saWI2
-NC9saWJscm0uc28uMi4wLjA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0K
-PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4tLSBDVVQgLS08
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+
-DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5B
-bHNvLCBJZiBiaXRiYWtlIGZhaWxzIHRvIGZpbmQgdGhlc2UgZmlsZXMgbm90IGJlaW5nIHByb3Zp
-ZGVkIGJ5PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPmFueSBSUE1zL0RQS3MsIHRoZW4gd2UgZ2V0IGJl
-bG93IGVycm9yIGR1cmluZyBkb19yb290ZnM7PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+
-DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5i
-c3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIGxhbmc9IkVOLVVTIj4tLSBzbmlwIC0tPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9k
-aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkVSUk9S
-OiBVbmFibGUgdG8gaW5zdGFsbCBwYWNrYWdlcy4gQ29tbWFuZCAnL29wdC9wb2t5L2J1aWxkL3Rt
-cC9zeXNyb290cy94ODZfNjQtbGludXgvdXNyL2Jpbi9zbWFydCAtLWxvZy1sZXZlbD13YXJuaW5n
-IC0tZGF0YS1kaXI9L29wdC9wb2t5L2J1aWxkL3RtcC93b3JrL3FlbXV4ODZfNjQtcG9reS1saW51
-eC9jb3JlLWltYWdlLW1pbmltYWwvMS4wLXIwL3Jvb3Rmcy92YXIvbGliL3NtYXJ0DQogaW5zdGFs
-bCAteSBjbHVzdGVyLWdsdWVAY29yZTJfNjQgcnVuLXBvc3RpbnN0c0BhbGwgcGFja2FnZWdyb3Vw
-LWNvcmUtYm9vdEBxZW11eDg2XzY0JyByZXR1cm5lZCAxOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5M
-b2FkaW5nIGNhY2hlLi4uPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlVwZGF0aW5nIGNhY2hlLi4uICZu
-YnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAjIyMjIyMjIyMj
-IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIFsxMDAlXTxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+Q29tcHV0aW5nIHRyYW5zYWN0aW9uLi4uZXJy
-b3I6IENhbid0IGluc3RhbGwNCjxhIGhyZWY9Im1haWx0bzpjbHVzdGVyLWdsdWUtMS4wLjUtcjBA
-Y29yZTJfNjQiPmNsdXN0ZXItZ2x1ZS0xLjAuNS1yMEBjb3JlMl82NDwvYT46IG5vPG86cD48L286
-cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
-bGFuZz0iRU4tVVMiPnBhY2thZ2UgcHJvdmlkZXMgbGlic3Rvbml0aC5zby4xKCkoNjRiaXQpPG86
-cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gbGFuZz0iRU4tVVMiPi0tIENVVCAtLTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2
-Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
-PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5SZWdhcmRzLDxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
-Ij5KYWdhZGVlc2gmbmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48
-L3NwYW4+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVy
-LWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBjbSAwY20gMGNtIDYuMHB0O21hcmdp
-bi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowY20iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gY2xhc3M9ImhvZW56YiI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjojODg4ODg4
-Ij5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzwvc3Bhbj48
-L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjojODg4ODg4Ij48YnI+DQo8c3Bh
-biBjbGFzcz0iaG9lbnpiIj55b2N0byBtYWlsaW5nIGxpc3Q8L3NwYW4+PGJyPg0KPHNwYW4gY2xh
-c3M9ImhvZW56YiI+PGEgaHJlZj0ibWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmciPnlvY3Rv
-QHlvY3RvcHJvamVjdC5vcmc8L2E+PC9zcGFuPjxicj4NCjxzcGFuIGNsYXNzPSJob2VuemIiPjxh
-IGhyZWY9Imh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0byIgdGFy
-Z2V0PSJfYmxhbmsiPmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0
-bzwvYT48L3NwYW4+PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxh
-bmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0K
-PC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
+---
+ .../0001-don-t-compile-doc-and-Error-Fix.patch     |  50 ++++++++++
+ .../0001-ribcl.py.in-Warning-Fix.patch             |  34 +++++++
+ .../cluster-glue/cluster-glue/fix-const-cast.patch | 103 ---------------------
+ .../cluster-glue/glue-remove-getpid-check.patch    |  31 -------
+ .../glue-repair-deprecated-glib-support.patch      |  12 ---
+ .../cluster-glue/glue-repair-libxml-support.patch  |  14 ---
+ ...luster-glue_1.0.5.bb => cluster-glue_1.0.12.bb} |  76 ++++++++-------
+ 7 files changed, 125 insertions(+), 195 deletions(-)
+ create mode 100644 meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-don-t-compile-doc-and-Error-Fix.patch
+ create mode 100644 meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-ribcl.py.in-Warning-Fix.patch
+ delete mode 100644 meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/fix-const-cast.patch
+ delete mode 100644 meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-remove-getpid-check.patch
+ delete mode 100644 meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-deprecated-glib-support.patch
+ delete mode 100644 meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-libxml-support.patch
+ rename meta-cgl-common/recipes-cgl/cluster-glue/{cluster-glue_1.0.5.bb => cluster-glue_1.0.12.bb} (49%)
 
---_000_A8FC939F80655644A89BB21CCD3741E8011BCBAF60G08CNEXMBPEKD_--
+diff --git a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-don-t-compile-doc-and-Error-Fix.patch b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-don-t-compile-doc-and-Error-Fix.patch
+new file mode 100644
+index 0000000..471b1e4
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-don-t-compile-doc-and-Error-Fix.patch
+@@ -0,0 +1,50 @@
++From b64b676f7abf896ca714341eb330099f2ff04213 Mon Sep 17 00:00:00 2001
++From: Li xin <lixin.fnst@cn.fujitsu.com>
++Date: Tue, 18 Aug 2015 17:43:29 +0900
++Subject: [PATCH] don't compile doc and Error Fix
++
++| help2man: can't get `--help' info from ../../lrm/admin/lrmadmin
++| make[2]: *** [lrmadmin.8] Error 1
++
++| make[2]: a2x: Command not found
++| /usr/bin/xsltproc \
++|       --xinclude \
++|       http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl ha_logd.xml
++| make[2]: *** [hb_report.8] Error 127
++
++Upstream-Status: pending
++
++Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
++---
++ Makefile.am           | 2 +-
++ configure.ac          | 6 ++++++
++ lrm/admin/Makefile.am | 2 +-
++ 3 files changed, 8 insertions(+), 2 deletions(-)
++
++diff --git a/Makefile.am b/Makefile.am
++index 93dbaf6..2f4d03b 100644
++--- a/Makefile.am
+++++ b/Makefile.am
++@@ -23,7 +23,7 @@ MAINTAINERCLEANFILES	= Makefile.in aclocal.m4 configure DRF/config-h.in \
++ 			  DRF/stamp-h.in libtool.m4 ltdl.m4 libltdl.tar
++ 
++ SUBDIRS			= include $(LIBLTDL_DIR) replace lib lrm logd \
++-			  hb_report doc config
+++			  hb_report config
++ 
++ install-exec-local:
++ 	$(INSTALL) -d $(DESTDIR)/$(HA_COREDIR)
++diff --git a/lrm/admin/Makefile.am b/lrm/admin/Makefile.am
++index a92cd72..ed938e0 100644
++--- a/lrm/admin/Makefile.am
+++++ b/lrm/admin/Makefile.am
++@@ -36,5 +36,5 @@ man8_MANS =	$(sbin_PROGRAMS:%=%.8)
++ %.8:	%
++ 	echo Creating $@
++ 	chmod a+x $<
++-	help2man --output $@ --no-info --section 8 --name "Part of the Linux-HA project" $(top_builddir)/lrm/admin/$<
+++	help2man --output $@ --no-info --section 8 --name "Part of the Linux-HA project" /usr/sbin/$<
++ endif
++-- 
++1.8.4.2
++
+diff --git a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-ribcl.py.in-Warning-Fix.patch b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-ribcl.py.in-Warning-Fix.patch
+new file mode 100644
+index 0000000..31010d4
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-ribcl.py.in-Warning-Fix.patch
+@@ -0,0 +1,34 @@
++From a2c66927b75547cee1db1340a67449ded0812df3 Mon Sep 17 00:00:00 2001
++From: Li xin <lixin.fnst@cn.fujitsu.com>
++Date: Wed, 19 Aug 2015 11:13:46 +0900
++Subject: [PATCH] ribcl.py.in: Warning Fix
++
++WARNING: QA Issue: /usr/lib/stonith/plugins/stonith2/ribcl.py_cluster-glue-plugin-stonith2-ribcl
++contained in package cluster-glue-plugin-stonith2-ribcl requires /usr/local/bin/python,
++but no providers found in its RDEPENDS [file-rdeps]
++
++Add target python handling
++Allow the build to specify a path for the python instead of reusing
++the PYTHON variable which can lead to inconsistencies if we are cross
++compiling.
++
++Upstream-Status: pending
++
++Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
++---
++ lib/plugins/stonith/ribcl.py.in | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/lib/plugins/stonith/ribcl.py.in b/lib/plugins/stonith/ribcl.py.in
++index 14e070c..01205e3 100644
++--- a/lib/plugins/stonith/ribcl.py.in
+++++ b/lib/plugins/stonith/ribcl.py.in
++@@ -1,4 +1,4 @@
++-#!@PYTHON@
+++#!@TRAGET_PYTHON@
++ 
++ 
++ #
++-- 
++1.8.4.2
++
+diff --git a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/fix-const-cast.patch b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/fix-const-cast.patch
+deleted file mode 100644
+index 6de65bf..0000000
+--- a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/fix-const-cast.patch
++++ /dev/null
+@@ -1,103 +0,0 @@
+-This patch gets rid of new warning introduced with gcc 4.5
+-Warning is explained here
+-http://gcc.gnu.org/viewcvs/trunk/gcc/doc/invoke.texi?r1=148037&r2=148053&diff_format=h
+-
+--Khem
+--updated by Alexandru Vaduva - patch needed redone
+-
+-diff -Naur a/lib/plugins/stonith/apcsmart.c b/lib/plugins/stonith/apcsmart.c
+---- a/lib/plugins/stonith/apcsmart.c	2014-07-09 17:14:24.492455034 +0200
+-+++ b/lib/plugins/stonith/apcsmart.c	2014-07-09 17:15:03.386817399 +0200
+-@@ -719,7 +719,7 @@
+- 	}
+- 	ERRIFNOTCONFIGED(s,NULL);
+- 
+--	return OurImports->CopyHostList((const char **)ad->hostlist);
+-+    return OurImports->CopyHostList(CONST_CAST(ad->hostlist));
+- }
+- 
+- static gboolean
+-diff -Naur a/lib/plugins/stonith/external.c b/lib/plugins/stonith/external.c
+---- a/lib/plugins/stonith/external.c	2014-07-09 17:15:28.661753145 +0200
+-+++ b/lib/plugins/stonith/external.c	2014-07-09 17:17:03.873743634 +0200
+-@@ -540,7 +540,7 @@
+- 		sd->confignames[dircount] = NULL;
+- 	}
+- 
+--	return (const char **)sd->confignames;
+-+    return CONST_CAST(sd->confignames);
+- }
+- 
+- /*
+-diff -Naur a/lib/plugins/stonith/meatware.c b/lib/plugins/stonith/meatware.c
+---- a/lib/plugins/stonith/meatware.c	2014-07-09 17:18:47.597375001 +0200
+-+++ b/lib/plugins/stonith/meatware.c	2014-07-09 17:19:35.943338541 +0200
+-@@ -136,7 +136,7 @@
+- 		return(NULL);
+- 	}
+- 
+--	return OurImports->CopyHostList((const char **)nd->hostlist);
+-+    return OurImports->CopyHostList(CONST_CAST(nd->hostlist));
+- }
+- 
+- /*
+-diff -Naur a/lib/plugins/stonith/null.c b/lib/plugins/stonith/null.c
+---- a/lib/plugins/stonith/null.c	2014-07-09 17:20:12.389803230 +0200
+-+++ b/lib/plugins/stonith/null.c	2014-07-09 17:20:55.156001606 +0200
+-@@ -126,7 +126,7 @@
+- 	struct pluginDevice*	nd = (struct pluginDevice*)s;
+- 
+- 	ERRIFWRONGDEV(s, NULL);
+--	return OurImports->CopyHostList((const char**)nd->hostlist);
+-+    return OurImports->CopyHostList(CONST_CAST(nd->hostlist));
+- }
+- 
+- 
+-diff -Naur a/lib/plugins/stonith/rcd_serial.c b/lib/plugins/stonith/rcd_serial.c
+---- a/lib/plugins/stonith/rcd_serial.c	2014-07-09 17:21:12.603266573 +0200
+-+++ b/lib/plugins/stonith/rcd_serial.c	2014-07-09 17:21:56.341423862 +0200
+-@@ -347,7 +347,7 @@
+- 		return(NULL);
+- 	}
+- 
+--	return OurImports->CopyHostList((const char **)rcd->hostlist);
+-+    return OurImports->CopyHostList(CONST_CAST(rcd->hostlist));
+- }
+- 
+- /*
+-diff -Naur a/lib/plugins/stonith/rhcs.c b/lib/plugins/stonith/rhcs.c
+---- a/lib/plugins/stonith/rhcs.c	2014-07-09 17:17:27.652742171 +0200
+-+++ b/lib/plugins/stonith/rhcs.c	2014-07-09 17:18:18.562597957 +0200
+-@@ -703,7 +703,7 @@
+- 		sd->confignames[dircount] = NULL;
+- 	}
+- 
+--	return (const char **)sd->confignames;
+-+    return CONST_CAST(sd->confignames);
+- }
+- 
+- /*
+-diff -Naur a/lib/plugins/stonith/ssh.c b/lib/plugins/stonith/ssh.c
+---- a/lib/plugins/stonith/ssh.c	2014-07-09 17:22:15.320624229 +0200
+-+++ b/lib/plugins/stonith/ssh.c	2014-07-09 17:22:53.499015642 +0200
+-@@ -161,7 +161,7 @@
+- 		return(NULL);
+- 	}
+- 
+--	return OurImports->CopyHostList((const char **)sd->hostlist);
+-+    return OurImports->CopyHostList(CONST_CAST(sd->hostlist));
+- }
+- 
+- 
+-diff -Naur a/lib/plugins/stonith/stonith_plugin_common.h b/lib/plugins/stonith/stonith_plugin_common.h
+---- a/lib/plugins/stonith/stonith_plugin_common.h	2014-07-09 17:23:16.954027367 +0200
+-+++ b/lib/plugins/stonith/stonith_plugin_common.h	2014-07-09 17:24:38.538609129 +0200
+-@@ -123,5 +123,8 @@
+-     return; \
+-   }
+- 
+-+#define CONST_CAST(s) \
+-+    (__extension__(union {char ** a; const char** b;})(s)).b
+-+
+- #endif
+- 
+diff --git a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-remove-getpid-check.patch b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-remove-getpid-check.patch
+deleted file mode 100644
+index 30f422c..0000000
+--- a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-remove-getpid-check.patch
++++ /dev/null
+@@ -1,31 +0,0 @@
+-diff -Naur a/configure.ac b/configure.ac
+---- a/configure.ac	2014-07-09 17:05:51.602037193 +0200
+-+++ b/configure.ac	2014-07-09 17:08:44.566761961 +0200
+-@@ -441,24 +441,9 @@
+- AC_MSG_RESULT($BUILD_VERSION)
+- AC_SUBST(BUILD_VERSION)
+- 
+--
+--dnl check if there are getpid() inconsistency
+--dnl	Note: reduce LIBS; in particular, ltdl can cause confusion.
+--dnl	Possibly better:  move 'LIBS="$LIBS -lltdl"' from above to beyond here.
+--dnl
+--AC_MSG_CHECKING(for getpid() consistency in multi-process/threads program)
+--ac_save_LIBS=$LIBS
+--LIBS="-lpthread"
+--AC_TRY_RUN(`cat $srcdir/config/pidtest.c`, 
+--AC_MSG_RESULT(ok), 
+--[AC_MSG_RESULT(fail); AC_DEFINE(GETPID_INCONSISTENT, 1 , [pid inconsistent])],)
+--LIBS=$ac_save_LIBS
+--
+--dnl check byte order
+--AC_MSG_CHECKING(for byteorder)
+--AC_TRY_RUN(`cat $srcdir/config/byteorder_test.c`,
+--[AC_MSG_RESULT(little-endian); AC_DEFINE(CONFIG_LITTLE_ENDIAN, 1, [little-endian])],
+--[AC_MSG_RESULT(big-endian); AC_DEFINE(CONFIG_BIG_ENDIAN, 1, [big-endian])],)
+-+AC_C_BIGENDIAN(
+-+  [AC_DEFINE(CONFIG_BIG_ENDIAN, 1, [big])],
+-+  [AC_DEFINE(CONFIG_LITTLE_ENDIAN, 1, [little])])
+- 
+- 
+- dnl ===============================================
+diff --git a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-deprecated-glib-support.patch b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-deprecated-glib-support.patch
+deleted file mode 100644
+index 16fc679..0000000
+--- a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-deprecated-glib-support.patch
++++ /dev/null
+@@ -1,12 +0,0 @@
+-diff -Naur a/include/clplumbing/cl_uuid.h b/include/clplumbing/cl_uuid.h
+---- a/include/clplumbing/cl_uuid.h	2014-07-14 14:25:24.127378762 +0200
+-+++ b/include/clplumbing/cl_uuid.h	2014-07-14 14:23:32.120193782 +0200
+-@@ -16,7 +16,7 @@
+- 
+- #ifndef _CL_UUID_H_
+- #define _CL_UUID_H_
+--#include <glib/gtypes.h>
+-+#include <glib.h>
+- 
+- typedef struct cl_uuid_s{	
+- 	unsigned char	uuid[16];
+diff --git a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-libxml-support.patch b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-libxml-support.patch
+deleted file mode 100644
+index a436575..0000000
+--- a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-libxml-support.patch
++++ /dev/null
+@@ -1,14 +0,0 @@
+-diff -Naur a/configure.ac b/configure.ac
+---- a/configure.ac	2014-07-14 13:02:42.016652860 +0200
+-+++ b/configure.ac	2014-07-14 13:03:59.585322332 +0200
+-@@ -679,8 +679,8 @@
+- 
+- CPPFLAGS="$CPPFLAGS $XML2HEAD"
+- 
+--AC_CHECK_HEADERS(libxml/xpath.h)
+--if test "$ac_cv_header_libxml_xpath_h" != "yes"; then
+-+AC_CHECK_HEADERS(libxml2/libxml/xpath.h)
+-+if test x"$ac_cv_header_libxml2_libxml_xpath_h" != x"yes"; then
+-    AC_MSG_ERROR(The libxml developement headers were not found)
+- fi
+- 
+diff --git a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.5.bb b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
+similarity index 49%
+rename from meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.5.bb
+rename to meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
+index f1b4a78..be04469 100644
+--- a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.5.bb
++++ b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
+@@ -7,21 +7,20 @@ LICENSE = "GPLv2"
+ DEPENDS = "libxml2 libtool glib-2.0 bzip2 util-linux net-snmp openhpi"
+ 
+ SRC_URI = " \
+-	http://hg.linux-ha.org/glue/archive/glue-${PV}.tar.bz2 \
+-    file://glue-repair-libxml-support.patch \
+-    file://glue-repair-deprecated-glib-support.patch \
+-    file://glue-remove-getpid-check.patch \
+-    file://fix-const-cast.patch \
++    http://hg.linux-ha.org/glue/archive/glue-${PV}.tar.bz2 \
++    file://0001-don-t-compile-doc-and-Error-Fix.patch \
++    file://0001-ribcl.py.in-Warning-Fix.patch \
+     file://volatiles \
+     file://tmpfiles \
+-	"
++"
+ SRC_URI_append_libc-uclibc = " file://kill-stack-protector.patch"
+-SRC_URI[md5sum] = "d2b6f798e58ef2497526e404b8ad640a"
+-SRC_URI[sha256sum] = "0e1922373aba1c3811f6ef61559a9c407c0bec71d2ebc451a4db5b940ded8ec0"
++
++SRC_URI[md5sum] = "ec620466d6f23affa3b074b72bca7870"
++SRC_URI[sha256sum] = "feba102fa1e24b6be2005089ebe362b82d6567af60005cf371679b1b44ec503f"
+ 
+ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.GPLv2;md5=751419260aa954499f7abaabaa882bbe"
+ 
+-inherit autotools useradd
++inherit autotools useradd pkgconfig
+ 
+ S = "${WORKDIR}/Reusable-Cluster-Components-glue--glue-${PV}"
+ 
+@@ -70,43 +69,50 @@ PACKAGES += "\
+ 	 ${PN}-plugin-interfacemgr-dbg \
+ 	 ${PN}-plugin-interfacemgr-staticdev \
+ 	 ${PN}-lrmtest \
++         ${PN}-plugin-compress \
++         ${PN}-plugin-compress-dbg \
++         ${PN}-plugin-compress-staticdev \
+ 	 "
+ 
+-FILES_${PN} = "/etc/ /var /usr/lib/lib*.so.* /usr/sbin /usr/share/cluster-glue/*sh /usr/share/cluster-glue/*pl\
+-	/usr/lib/heartbeat/transient-test.sh \
+-	/usr/lib/heartbeat/logtest \
+-	/usr/lib/heartbeat/ipctransientserver \
+-	/usr/lib/heartbeat/base64_md5_test \
+-	/usr/lib/heartbeat/ipctest \
+-	/usr/lib/heartbeat/ipctransientclient \
+-	/usr/lib/heartbeat/ha_logd \
+-	/usr/lib/heartbeat/lrmd \
++FILES_${PN} = "${sysconfdir} /var ${libdir}/lib*.so.* ${sbindir} ${datadir}/cluster-glue/*sh ${datadir}/cluster-glue/*pl\
++	${libdir}/heartbeat/transient-test.sh \
++	${libdir}/heartbeat/logtest \
++	${libdir}/heartbeat/ipctransientserver \
++	${libdir}/heartbeat/base64_md5_test \
++	${libdir}/heartbeat/ipctest \
++	${libdir}/heartbeat/ipctransientclient \
++	${libdir}/heartbeat/ha_logd \
++	${libdir}/heartbeat/lrmd \
+ 	"
+ 
+-FILES_${PN}-dbg += "/usr/lib/heartbeat/.debug/"
++FILES_${PN}-dbg += "${libdir}/heartbeat/.debug/ \
++                   "
++FILES_${PN}-plugin-compress = "${libdir}/heartbeat/plugins/compress/*.so"
++FILES_${PN}-plugin-compress-staticdev = "${libdir}/heartbeat/plugins/compress/*.*a"
++FILES_${PN}-plugin-compress-dbg = "${libdir}/heartbeat/plugins/compress/.debug/"
+ 
+-FILES_${PN}-plugin-test = "/usr/lib/heartbeat/plugins/test/test.so"
+-FILES_${PN}-plugin-test-staticdev = "/usr/lib/heartbeat/plugins/test/test.*a"
+-FILES_${PN}-plugin-test-dbg = "/usr/lib/heartbeat/plugins/test/.debug/"
++FILES_${PN}-plugin-test = "${libdir}/heartbeat/plugins/test/test.so"
++FILES_${PN}-plugin-test-staticdev = "${libdir}/heartbeat/plugins/test/test.*a"
++FILES_${PN}-plugin-test-dbg = "${libdir}/heartbeat/plugins/test/.debug/"
+ FILES_${PN}-plugin-stonith2 = " \
+-	/usr/lib/stonith/plugins/xen0-ha-dom0-stonith-helper \
+-	/usr/lib/stonith/plugins/stonith2/*.so \
++	${libdir}/stonith/plugins/xen0-ha-dom0-stonith-helper \
++	${libdir}/stonith/plugins/stonith2/*.so \
+ 	"
+-FILES_${PN}-plugin-stonith2-ribcl = "/usr/lib/stonith/plugins/stonith2/ribcl.py"
++FILES_${PN}-plugin-stonith2-ribcl = "${libdir}/stonith/plugins/stonith2/ribcl.py"
+ 
+-FILES_${PN}-plugin-stonith2-dbg = "/usr/lib/stonith/plugins/stonith2/.debug/"
+-FILES_${PN}-plugin-stonith2-staticdev = "/usr/lib/stonith/plugins/stonith2/*.*a"
++FILES_${PN}-plugin-stonith2-dbg = "${libdir}/stonith/plugins/stonith2/.debug/"
++FILES_${PN}-plugin-stonith2-staticdev = "${libdir}/stonith/plugins/stonith2/*.*a"
+ 
+-FILES_${PN}-plugin-stonith-external = "/usr/lib/stonith/plugins/external/"
+-FILES_${PN}-plugin-raexec = "/usr/lib/heartbeat/plugins/RAExec/*.so"
+-FILES_${PN}-plugin-raexec-staticdev = "/usr/lib/heartbeat/plugins/RAExec/*.*a"
+-FILES_${PN}-plugin-raexec-dbg = "/usr/lib/heartbeat/plugins/RAExec/.debug/"
++FILES_${PN}-plugin-stonith-external = "${libdir}/stonith/plugins/external/"
++FILES_${PN}-plugin-raexec = "${libdir}/heartbeat/plugins/RAExec/*.so"
++FILES_${PN}-plugin-raexec-staticdev = "${libdir}/heartbeat/plugins/RAExec/*.*a"
++FILES_${PN}-plugin-raexec-dbg = "${libdir}/heartbeat/plugins/RAExec/.debug/"
+ 
+-FILES_${PN}-plugin-interfacemgr = "/usr/lib/heartbeat/plugins/InterfaceMgr/generic.so"
+-FILES_${PN}-plugin-interfacemgr-staticdev = "/usr/lib/heartbeat/plugins/InterfaceMgr/generic.*a"
+-FILES_${PN}-plugin-interfacemgr-dbg = "/usr/lib/heartbeat/plugins/InterfaceMgr/.debug/"
++FILES_${PN}-plugin-interfacemgr = "${libdir}/heartbeat/plugins/InterfaceMgr/generic.so"
++FILES_${PN}-plugin-interfacemgr-staticdev = "${libdir}/heartbeat/plugins/InterfaceMgr/generic.*a"
++FILES_${PN}-plugin-interfacemgr-dbg = "${libdir}/heartbeat/plugins/InterfaceMgr/.debug/"
+ 
+-FILES_${PN}-lrmtest = "/usr/share/cluster-glue/lrmtest/"
++FILES_${PN}-lrmtest = "${datadir}/cluster-glue/lrmtest/"
+ 
+ RDEPENDS_${PN} += "perl"
+ RDEPENDS_${PN}-plugin-stonith2 += "bash"
+-- 
+1.8.4.2
+
+
