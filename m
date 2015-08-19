@@ -1,35 +1,44 @@
 Return-Path: <lixin.fnst@cn.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6861E00AE9; Tue, 18 Aug 2015 20:24:38 -0700 (PDT)
+	id A760FE00AE9; Tue, 18 Aug 2015 20:29:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RDNS_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
 Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1E3AE00ADB
-	for <yocto@yoctoproject.org>; Tue, 18 Aug 2015 20:24:34 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.15,520,1432569600"; d="scan'208";a="99790224"
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0F43E00ADB
+	for <yocto@yoctoproject.org>; Tue, 18 Aug 2015 20:29:34 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.15,520,1432569600"; d="scan'208,217";a="99790414"
 Received: from unknown (HELO edo.cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 19 Aug 2015 11:27:49 +0800
-Received: from G08CNEXCHPEKD01.g08.fujitsu.local (localhost.localdomain
+	by heian.cn.fujitsu.com with ESMTP; 19 Aug 2015 11:32:49 +0800
+Received: from G08CNEXCHPEKD02.g08.fujitsu.local (localhost.localdomain
 	[127.0.0.1])
-	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id t7J3OTkq007025
-	for <yocto@yoctoproject.org>; Wed, 19 Aug 2015 11:24:29 +0800
-Received: from localhost.localdomain (10.167.226.92) by
-	G08CNEXCHPEKD01.g08.fujitsu.local (10.167.33.89) with Microsoft SMTP
-	Server (TLS) id 14.3.181.6; Wed, 19 Aug 2015 11:24:32 +0800
-From: Li xin <lixin.fnst@cn.fujitsu.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 19 Aug 2015 11:24:12 +0800
-Message-ID: <1439954652-8570-1-git-send-email-lixin.fnst@cn.fujitsu.com>
-X-Mailer: git-send-email 1.7.9.5
+	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id t7J3TT49007322;
+	Wed, 19 Aug 2015 11:29:29 +0800
+Received: from G08CNEXMBPEKD03.g08.fujitsu.local ([10.167.33.86]) by
+	G08CNEXCHPEKD02.g08.fujitsu.local ([10.167.33.83]) with mapi id
+	14.03.0181.006; Wed, 19 Aug 2015 11:29:33 +0800
+From: "Li, Xin" <lixin.fnst@cn.fujitsu.com>
+To: Jagadeesh Krishnanjanappa <jkrishnanjanappa@mvista.com>
+Thread-Topic: [yocto] [meta-cgl][PATCH] cluster-glue: upgrade 1.0.5 -> 1.0.12
+Thread-Index: AQHQ2igI7fVVO7JtlUGYpKpGkXltqZ4SIFYAgACI1dA=
+Date: Wed, 19 Aug 2015 03:29:32 +0000
+Message-ID: <A8FC939F80655644A89BB21CCD3741E8011BCBAF60@G08CNEXMBPEKD03.g08.fujitsu.local>
+References: <1439951854-8455-1-git-send-email-lixin.fnst@cn.fujitsu.com>
+	<CAD3vsf7ypEpGCErQ6fqqmY2qSVLb+pB9DzG1qbP=o3_N=7QMqw@mail.gmail.com>
+In-Reply-To: <CAD3vsf7ypEpGCErQ6fqqmY2qSVLb+pB9DzG1qbP=o3_N=7QMqw@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.167.226.92]
 MIME-Version: 1.0
-X-Originating-IP: [10.167.226.92]
-Subject: [meta-cgl][PATCH] heartbeat: upgrade 3.0.5 -> 3.0.6
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-cgl][PATCH] cluster-glue: upgrade 1.0.5 -> 1.0.12
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,237 +50,235 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Aug 2015 03:24:38 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 19 Aug 2015 03:29:36 -0000
+Content-Language: zh-CN
+Content-Type: multipart/alternative;
+	boundary="_000_A8FC939F80655644A89BB21CCD3741E8011BCBAF60G08CNEXMBPEKD_"
 
-* Update configure.in-Error-and-warning-fix.patch,
-  since the contents has been changed.
+--_000_A8FC939F80655644A89BB21CCD3741E8011BCBAF60G08CNEXMBPEKD_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-* Dropped ucast.c-fix-compile-errors.patch,it it not needed anymore.
+SGksSmFnYWRlZXNoLA0KDQpUaGFua3MgYSBsb3QuDQoNClBhdGNoIFYyIHdpbGwgYmUgc2VudC4N
+Cg0KUmVnYXJkcywNCkxpDQpGcm9tOiBKYWdhZGVlc2ggS3Jpc2huYW5qYW5hcHBhIFttYWlsdG86
+amtyaXNobmFuamFuYXBwYUBtdmlzdGEuY29tXQ0KU2VudDogV2VkbmVzZGF5LCBBdWd1c3QgMTks
+IDIwMTUgMTE6MTYgQU0NClRvOiBMaSwgWGluL+adjiDmrKMNCkNjOiB5b2N0b0B5b2N0b3Byb2pl
+Y3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBbbWV0YS1jZ2xdW1BBVENIXSBjbHVzdGVyLWds
+dWU6IHVwZ3JhZGUgMS4wLjUgLT4gMS4wLjEyDQoNCkhpIExpLA0KDQotRklMRVNfJHtQTn0tZGJn
+ICs9ICIvdXNyL2xpYi9oZWFydGJlYXQvLmRlYnVnLyINCitGSUxFU18ke1BOfS1kYmcgKz0gIi91
+c3IvbGliL2hlYXJ0YmVhdC8uZGVidWcvIFwNCisgICAgICAgICAgICAgICAgICAgIg0KK0ZJTEVT
+XyR7UE59LXBsdWdpbi1jb21wcmVzcyA9ICIvdXNyL2xpYi9oZWFydGJlYXQvcGx1Z2lucy9jb21w
+cmVzcy8qLnNvIg0KK0ZJTEVTXyR7UE59LXBsdWdpbi1jb21wcmVzcy1zdGF0aWNkZXYgPSAiL3Vz
+ci9saWIvaGVhcnRiZWF0L3BsdWdpbnMvY29tcHJlc3MvKi4qYSINCitGSUxFU18ke1BOfS1wbHVn
+aW4tY29tcHJlc3MtZGJnID0gIi91c3IvbGliL2hlYXJ0YmVhdC9wbHVnaW5zL2NvbXByZXNzLy5k
+ZWJ1Zy8iDQoNCiBGSUxFU18ke1BOfS1wbHVnaW4tdGVzdCA9ICIvdXNyL2xpYi9oZWFydGJlYXQv
+cGx1Z2lucy90ZXN0L3Rlc3Quc28iDQogRklMRVNfJHtQTn0tcGx1Z2luLXRlc3Qtc3RhdGljZGV2
+ID0gIi91c3IvbGliL2hlYXJ0YmVhdC9wbHVnaW5zL3Rlc3QvdGVzdC4qYSINCg0KSXQgd291bGQg
+YmUgdXNlZnVsIHRvIHJlcGxhY2UgdGhlIGhhcmRjb2RlZCBzdHJpbmdzIHN1Y2ggYXMgIi91c3Iv
+bGliIiB0byAke2xpYmRpcn0gLCBpbiBvcmRlciB0byBhdm9pZCBRQSB3YXJuaW5ncy9lcnJvcnMg
+d2hpY2ggYXJpc2Ugd2hpbGUgYnVpZGxpbmcNCmNsdXN0ZXItZ2x1ZSBmb3IgbXVsdGlsaWIgb3Ig
+aWYgQkFTRUxJQiBpcyBzZXQgdG8gb3RoZXIgdGhhbiAibGliIg0KDQpFeGFtcGxlOg0KLS0gc25p
+cCAtLQ0KRVJST1I6IFFBIElzc3VlOiBjbHVzdGVyLWdsdWU6IEZpbGVzL2RpcmVjdG9yaWVzIHdl
+cmUgaW5zdGFsbGVkIGJ1dCBub3Qgc2hpcHBlZA0KaW4gYW55IHBhY2thZ2U6DQogIC91c3IvbGli
+NjQvbGlic3Rvbml0aC5zby4xLjAuMA0KICAvdXNyL2xpYjY0L2xpYnBsdW1iLnNvLjINCiAgL3Vz
+ci9saWI2NC9saWJwaWxzLnNvLjINCiAgL3Vzci9saWI2NC9saWJwbHVtYi5zby4yLjAuMA0KICAv
+dXNyL2xpYjY0L2xpYnBpbHMuc28uMi4wLjANCiAgL3Vzci9saWI2NC9saWJscm0uc28uMg0KICAv
+dXNyL2xpYjY0L2xpYnN0b25pdGguc28uMQ0KICAvdXNyL2xpYjY0L2xpYnBsdW1iZ3BsLnNvLjIN
+CiAgL3Vzci9saWI2NC9saWJwbHVtYmdwbC5zby4yLjAuMA0KICAvdXNyL2xpYjY0L2xpYmxybS5z
+by4yLjAuMA0KLS0gQ1VUIC0tDQoNCkFsc28sIElmIGJpdGJha2UgZmFpbHMgdG8gZmluZCB0aGVz
+ZSBmaWxlcyBub3QgYmVpbmcgcHJvdmlkZWQgYnkNCmFueSBSUE1zL0RQS3MsIHRoZW4gd2UgZ2V0
+IGJlbG93IGVycm9yIGR1cmluZyBkb19yb290ZnM7DQoNCi0tIHNuaXAgLS0NCkVSUk9SOiBVbmFi
+bGUgdG8gaW5zdGFsbCBwYWNrYWdlcy4gQ29tbWFuZCAnL29wdC9wb2t5L2J1aWxkL3RtcC9zeXNy
+b290cy94ODZfNjQtbGludXgvdXNyL2Jpbi9zbWFydCAtLWxvZy1sZXZlbD13YXJuaW5nIC0tZGF0
+YS1kaXI9L29wdC9wb2t5L2J1aWxkL3RtcC93b3JrL3FlbXV4ODZfNjQtcG9reS1saW51eC9jb3Jl
+LWltYWdlLW1pbmltYWwvMS4wLXIwL3Jvb3Rmcy92YXIvbGliL3NtYXJ0IGluc3RhbGwgLXkgY2x1
+c3Rlci1nbHVlQGNvcmUyXzY0IHJ1bi1wb3N0aW5zdHNAYWxsIHBhY2thZ2Vncm91cC1jb3JlLWJv
+b3RAcWVtdXg4Nl82NCcgcmV0dXJuZWQgMToNCkxvYWRpbmcgY2FjaGUuLi4NClVwZGF0aW5nIGNh
+Y2hlLi4uICAgICAgICAgICAgICAgIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMj
+IyMjIyBbMTAwJV0NCg0KQ29tcHV0aW5nIHRyYW5zYWN0aW9uLi4uZXJyb3I6IENhbid0IGluc3Rh
+bGwgY2x1c3Rlci1nbHVlLTEuMC41LXIwQGNvcmUyXzY0PG1haWx0bzpjbHVzdGVyLWdsdWUtMS4w
+LjUtcjBAY29yZTJfNjQ+OiBubw0KcGFja2FnZSBwcm92aWRlcyBsaWJzdG9uaXRoLnNvLjEoKSg2
+NGJpdCkNCi0tIENVVCAtLQ0KDQpSZWdhcmRzLA0KSmFnYWRlZXNoDQoNCl9fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQp5b2N0byBtYWlsaW5nIGxpc3QNCnlv
+Y3RvQHlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpodHRw
+czovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8NCg0K
 
-Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
----
- .../configure.in-Error-and-warning-fix.patch       | 58 +++++++++++-----------
- .../heartbeat/ucast.c-fix-compile-errors.patch     | 26 ----------
- .../{heartbeat_3.0.5.bb => heartbeat_3.0.6.bb}     | 11 ++--
- 3 files changed, 34 insertions(+), 61 deletions(-)
- delete mode 100644 meta-cgl-common/recipes-cgl/heartbeat/heartbeat/ucast.c-fix-compile-errors.patch
- rename meta-cgl-common/recipes-cgl/heartbeat/{heartbeat_3.0.5.bb => heartbeat_3.0.6.bb} (93%)
+--_000_A8FC939F80655644A89BB21CCD3741E8011BCBAF60G08CNEXMBPEKD_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-diff --git a/meta-cgl-common/recipes-cgl/heartbeat/heartbeat/configure.in-Error-and-warning-fix.patch b/meta-cgl-common/recipes-cgl/heartbeat/heartbeat/configure.in-Error-and-warning-fix.patch
-index f133d2b..5176b1f 100644
---- a/meta-cgl-common/recipes-cgl/heartbeat/heartbeat/configure.in-Error-and-warning-fix.patch
-+++ b/meta-cgl-common/recipes-cgl/heartbeat/heartbeat/configure.in-Error-and-warning-fix.patch
-@@ -1,6 +1,6 @@
--From e7c7e6abcfce50732a2d87b362b7bc797801ade7 Mon Sep 17 00:00:00 2001
-+From 94f1c2081c0c3c507f292ed386ed8ed107bccc80 Mon Sep 17 00:00:00 2001
- From: Li xin <lixin.fnst@cn.fujitsu.com>
--Date: Tue, 9 Dec 2014 17:56:50 +0900
-+Date: Thu, 30 Jul 2015 21:25:33 +0900
- Subject: [PATCH] configure.in: Error and warning fix
- 
- the error is "fatal error: ac_nonexistent.h: No such file or directory"
-@@ -11,14 +11,14 @@ Upstream-Status: pending
- 
- Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
- ---
-- configure.in | 58 +++++++++++++++++-----------------------------------------
-- 1 file changed, 17 insertions(+), 41 deletions(-)
-+ configure.ac | 53 ++++++++++++++++-------------------------------------
-+ 1 file changed, 16 insertions(+), 37 deletions(-)
- 
--diff --git a/configure.in b/configure.in
--index 22cfda0..92c06de 100644
----- a/configure.in
--+++ b/configure.in
--@@ -328,14 +328,12 @@ AC_MSG_RESULT($LibDirSuffix)
-+diff --git a/configure.ac b/configure.ac
-+index ab09b45..6fdd3f2 100644
-+--- a/configure.ac
-++++ b/configure.ac
-+@@ -328,8 +328,7 @@ AC_MSG_RESULT($LibDirSuffix)
-  case $libdir in
-    */*${LibDirSuffix})	: Cool ;;
-    *)			: Uh Oh... 
-@@ -26,16 +26,9 @@ index 22cfda0..92c06de 100644
- -	AC_MSG_WARN([Overriding libdir to: $libdir]);;
- +	AC_MSG_WARN([Prevent overriding]);;
-  esac
-- case $libexecdir in
--   */$LibDirSuffix)	: Cool ;;
--   *)			: Uh Oh... 
---	libexecdir=`dirname $libexecdir`/$LibDirSuffix
---	AC_MSG_WARN([Overriding libexecdir to: $libexecdir]);;
--+	AC_MSG_WARN([Prevent overriding]);;
-- esac
-- 
-  for j in exec_prefix bindir sbindir datadir sysconfdir localstatedir \
--@@ -385,15 +383,8 @@ then
-+ 	includedir oldincludedir mandir docdir stdocdir libdir noarchlibdir
-+@@ -378,15 +377,8 @@ then
-  	sleep $SNOOZING
-  fi
-  
-@@ -47,26 +40,31 @@ index 22cfda0..92c06de 100644
- -   AC_MSG_FAILURE(Core development headers were not found)
- -fi
- -
---CFLAGS="$CFLAGS -I${prefix}/include/heartbeat"
-+-CPPFLAGS="$CPPFLAGS -I${prefix}/include/heartbeat"
- +GLUE_HEADER=heartbeat/glue_config.h
- +CFLAGS="$CFLAGS -I${STAGING_DIR_TARGET}${prefix}/include/heartbeat"
-  AC_CHECK_HEADERS(glue_config.h)
-  if test "$ac_cv_header_glue_config_h" != "yes";  then
-     AC_MSG_FAILURE(Core development headers were not found)
--@@ -417,10 +408,10 @@ HA_NOARCHDATAHBDIR="$HA_DATADIR/${HB_PKG}"
-- AC_SUBST(HA_NOARCHDATAHBDIR)
-+@@ -411,7 +403,7 @@ AC_SUBST(HA_NOARCHDATAHBDIR)
-  AC_DEFINE_UNQUOTED(HA_NOARCHDATAHBDIR,"$HA_NOARCHDATAHBDIR", $HB_PKG noarch data directory)
-  
-+ 
- -HA_LIBHBDIR=`extract_header_define $GLUE_HEADER HA_LIBHBDIR`
- +HA_LIBHBDIR='/usr/lib/heartbeat'
-  AC_SUBST(HA_LIBHBDIR)
-+ if test x"$HA_LIBHBDIR" = x ; then
-+ # see rhbz#805147 and
-+@@ -430,7 +422,7 @@ AC_SUBST(CRM_DAEMON_DIR)
-+ CRM_DAEMON_DIR="$libexecdir/pacemaker"
-+ AC_DEFINE_UNQUOTED(CRM_DAEMON_DIR,"$CRM_DAEMON_DIR", pacemaker daemon directory)
-  
- -HA_VARRUNDIR=`extract_header_define $GLUE_HEADER HA_VARRUNDIR`
- +HA_VARRUNDIR='/var/run'
-  AC_SUBST(HA_VARRUNDIR)
-  
-  HA_VARRUNHBDIR="$HA_VARRUNDIR/${HB_PKG}"
--@@ -432,10 +423,10 @@ AC_SUBST(HA_VARRUNHBRSCDIR)
-+@@ -442,10 +434,10 @@ AC_SUBST(HA_VARRUNHBRSCDIR)
-  HA_VARLIBDIR="${localstatedir}/lib"
-  AC_SUBST(HA_VARLIBDIR)
-  
-@@ -79,7 +77,7 @@ index 22cfda0..92c06de 100644
-  AC_SUBST(HA_COREDIR)
-  
-  base_includedir="${includedir}"
--@@ -1740,10 +1731,10 @@ then
-+@@ -1780,10 +1772,10 @@ then
-    IP2UTIL=/sbin/ip
-  fi
-  
-@@ -92,9 +90,9 @@ index 22cfda0..92c06de 100644
-  AC_SUBST(HA_APIGROUP)
-  
-  if
--@@ -1988,24 +1979,9 @@ AC_CHECK_HEADERS(evs.h, , [openais_installed="no"],)
-- AC_CHECK_LIB(evs, evs_initialize , , [openais_installed="no"])
-- AM_CONDITIONAL(BUILD_OPENAIS_MODULE, test "x${openais_installed}" = "xyes")
-+@@ -2022,24 +2014,11 @@ AC_CHECK_HEADERS(bzlib.h, , [bz2_installed="no"],)
-+ AC_CHECK_LIB(bz2, BZ2_bzBuffToBuffCompress , , [bz2_installed="no"])
-+ AM_CONDITIONAL(BUILD_BZ2_COMPRESS_MODULE, test "x${bz2_installed}" = "xyes")
-  
- -dnl check if there are getpid() inconsistency
- -dnl	Note: reduce LIBS; in particular, ltdl can cause confusion.
-@@ -107,18 +105,18 @@ index 22cfda0..92c06de 100644
- -AC_MSG_RESULT(ok), 
- -[AC_MSG_RESULT(fail); AC_DEFINE(GETPID_INCONSISTENT, 1 , [pid inconsistent])],)
- -LIBS=$ac_save_LIBS
---
-+ 
-  dnl check byte order
-  AC_MSG_CHECKING(for byteorder)
- -AC_TRY_RUN(`cat $srcdir/config/byteorder_test.c`,
- -[AC_MSG_RESULT(little-endian); AC_DEFINE(CONFIG_LITTLE_ENDIAN, 1, [little-endian])],
- -[AC_MSG_RESULT(big-endian); AC_DEFINE(CONFIG_BIG_ENDIAN, 1, [big-endian])],)
---
-+ 
- +CROSS_ENDIAN_INFO
-  
-  dnl
-  dnl Lex and yacc can't be trusted to produce code that won't produce
--@@ -2158,19 +2134,19 @@ AM_CONDITIONAL(BUILD_DRBD_OUTDATE_PEER, test "x${enable_dopd}" != "xno")
-+@@ -2192,19 +2171,19 @@ AM_CONDITIONAL(BUILD_DRBD_OUTDATE_PEER, test "x${enable_dopd}" != "xno")
-  hb_libdir="${libdir}/${HB_PKG}"
-  AC_SUBST(hb_libdir)
-  
-@@ -143,7 +141,7 @@ index 22cfda0..92c06de 100644
-  AC_SUBST(LSB_RA_DIR)
-  
-  AC_ARG_ENABLE([valgrind],
--@@ -2452,7 +2428,7 @@ AC_MSG_RESULT([  Mangled CFLAGS           = "${CFLAGS}"])
-+@@ -2487,7 +2466,7 @@ AC_MSG_RESULT([  Mangled CFLAGS           = "${CFLAGS}"])
-  AC_MSG_RESULT([  Libraries                = "${LIBS}"])
-  AC_MSG_RESULT([  RPATH enabled            = "${enable_rpath}"])
-  AC_MSG_RESULT([  Distro-style RPMs        = "${enable_distro_rpm}"])
-diff --git a/meta-cgl-common/recipes-cgl/heartbeat/heartbeat/ucast.c-fix-compile-errors.patch b/meta-cgl-common/recipes-cgl/heartbeat/heartbeat/ucast.c-fix-compile-errors.patch
-deleted file mode 100644
-index 6340a55..0000000
---- a/meta-cgl-common/recipes-cgl/heartbeat/heartbeat/ucast.c-fix-compile-errors.patch
-+++ /dev/null
-@@ -1,26 +0,0 @@
--From ff2fb853c8f8e302d3f2e265f3c9ef09fca8b73a Mon Sep 17 00:00:00 2001
--From: Li xin <lixin.fnst@cn.fujitsu.com>
--Date: Mon, 1 Dec 2014 09:43:37 +0900
--Subject: [PATCH] ucast.c : fix compile errors
--
--Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
-----
-- lib/plugins/HBcomm/ucast.c | 2 +-
-- 1 file changed, 1 insertion(+), 1 deletion(-)
--
--diff --git a/lib/plugins/HBcomm/ucast.c b/lib/plugins/HBcomm/ucast.c
--index 4c1651a..d0a59dd 100644
----- a/lib/plugins/HBcomm/ucast.c
--+++ b/lib/plugins/HBcomm/ucast.c
--@@ -463,7 +463,7 @@ static int HB_make_send_sock(struct hb_media *mp)
-- 	struct ifreq i;
-- #endif
-- #if defined(SO_REUSEPORT)
---	int i = 1;
--+	//int i = 1;
-- #endif
-- 
-- 	UCASTASSERT(mp);
---- 
--1.8.4.2
--
-diff --git a/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.5.bb b/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.6.bb
-similarity index 93%
-rename from meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.5.bb
-rename to meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.6.bb
-index 3a02d35..af03843 100644
---- a/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.5.bb
-+++ b/meta-cgl-common/recipes-cgl/heartbeat/heartbeat_3.0.6.bb
-@@ -28,19 +28,19 @@ LIC_FILES_CHKSUM = " \
-     file://doc/COPYING.LGPL;md5=d8045f3b8f929c1cb29a1e3fd737b499 \
- "
- SRC_URI = " \
--    http://hg.linux-ha.org/heartbeat-STABLE_3_0/archive/7e3a82377fa8.tar.bz2 \
-+    http://hg.linux-ha.org/heartbeat-STABLE_3_0/archive/cceeb47a7d8f.tar.bz2 \
-     file://membership-ccm-Makefile.am-fix-warning.patch \
-     file://Makefile.am-not-chgrp-in-cross-compile.patch \
--    file://ucast.c-fix-compile-errors.patch \
-     file://configure.in-Error-and-warning-fix.patch \
-     file://heartbeat-init.d-heartbeat.in-modify-parameter.patch \
-     file://heartbeat-bootstrap-libtool.patch \
-     file://heartbeat.service \
- "
--SRC_URI[md5sum] = "396510e3c143a9c2288bc52cfc9caa3c"
--SRC_URI[sha256sum] = "085013154511f3c270b5e9a3281732dbbb9812924ae24d9c3c6db1af4dd260d0"
--S = "${WORKDIR}/Heartbeat-3-0-7e3a82377fa8/"
-+SRC_URI[md5sum] = "3a98cf97842b8a557728be4fb94c8c5d"
-+SRC_URI[sha256sum] = "a76ec86cd60428f89536c635a5109cf1e9c7f20283874041a4306960e69952f4"
-+S = "${WORKDIR}/Heartbeat-3-0-cceeb47a7d8f/"
- DEPENDS = "cluster-glue corosync gnutls"
-+RDEPENDS_${PN} += "python"
- inherit autotools-brokensep pkgconfig useradd
- EXTRA_OECONF = " \
-     STAGING_DIR_TARGET=${STAGING_DIR_TARGET} \
-@@ -119,4 +119,5 @@ FILES_${PN}-dbg += " \
- FILES_${PN} += " \
-     run/heartbeat/ccm \
-     run/heartbeat/dopd \
-+    ${libdir}/tmpfiles.d \
- "
--- 
-1.8.4.2
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+5a6L5L2TOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtm
+b250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQgNSAzIDUgNCA2IDMgMiA0
+O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUg
+MiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5v
+c2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJc
+QOWui+S9kyI7DQoJcGFub3NlLTE6MiAxIDYgMCAzIDEgMSAxIDEgMTt9DQovKiBTdHlsZSBEZWZp
+bml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXtt
+YXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTIuMHB0Ow0K
+CWZvbnQtZmFtaWx5OuWui+S9kzt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1z
+dHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxp
+bmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1w
+cmlvcml0eTo5OTsNCgljb2xvcjpwdXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9
+DQpzcGFuLmhvZW56Yg0KCXttc28tc3R5bGUtbmFtZTpob2VuemI7fQ0Kc3Bhbi5FbWFpbFN0eWxl
+MTgNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGli
+cmkiLCJzYW5zLXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21z
+by1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1z
+ZXJpZiI7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1h
+cmdpbjo3Mi4wcHQgOTAuMHB0IDcyLjBwdCA5MC4wcHQ7fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtw
+YWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0K
+PG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwh
+W2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9
+ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlv
+dXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJaSC1DTiIgbGluaz0i
+Ymx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkhpLEphZ2FkZWVzaCw8bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86
+cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFu
+Zz0iRU4tVVMiPlRoYW5rcyBhIGxvdC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlBhdGNoIFYyIHdpbGwg
+YmUgc2VudC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlJlZ2FyZHMsPG86cD48L286cD48L3NwYW4+PC9w
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkxpPC9zcGFuPjxzcGFu
+IGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjVwdDtmb250LWZhbWlseTomcXVvdDtD
+YWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD48
+L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29s
+aWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBjbSAwY20gMGNtIDQuMHB0Ij4NCjxkaXY+DQo8ZGl2IHN0
+eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0REYgMS4wcHQ7cGFkZGluZzoz
+LjBwdCAwY20gMGNtIDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJF
+Ti1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1
+b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJF
+Ti1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1
+b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBKYWdhZGVlc2ggS3Jpc2huYW5qYW5hcHBhIFtt
+YWlsdG86amtyaXNobmFuamFuYXBwYUBtdmlzdGEuY29tXQ0KPGJyPg0KPGI+U2VudDo8L2I+IFdl
+ZG5lc2RheSwgQXVndXN0IDE5LCAyMDE1IDExOjE2IEFNPGJyPg0KPGI+VG86PC9iPiBMaSwgWGlu
+Lzwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdCI+5p2OPC9zcGFuPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVv
+dDtzYW5zLXNlcmlmJnF1b3Q7Ij4NCjwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEwLjBw
+dCI+5qyjPC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtm
+b250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+PGJy
+Pg0KPGI+Q2M6PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+
+IFJlOiBbeW9jdG9dIFttZXRhLWNnbF1bUEFUQ0hdIGNsdXN0ZXItZ2x1ZTogdXBncmFkZSAxLjAu
+NSAtJmd0OyAxLjAuMTI8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
+cGFuPjwvcD4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBsYW5nPSJFTi1VUyI+SGkgTGksJm5ic3A7PG86cD48L286cD48L3NwYW4+PC9wPg0K
+PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9ImJv
+cmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkICNDQ0NDQ0MgMS4wcHQ7cGFkZGluZzowY20gMGNt
+IDBjbSA2LjBwdDttYXJnaW4tbGVmdDo0LjhwdDttYXJnaW4tcmlnaHQ6MGNtIj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4tRklMRVNfJHtQTn0tZGJnICYjNDM7PSAm
+cXVvdDsvdXNyL2xpYi9oZWFydGJlYXQvLmRlYnVnLyZxdW90Ozxicj4NCiYjNDM7RklMRVNfJHtQ
+Tn0tZGJnICYjNDM7PSAmcXVvdDsvdXNyL2xpYi9oZWFydGJlYXQvLmRlYnVnLyBcPGJyPg0KJiM0
+MzsmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
+ICZuYnNwOyAmbmJzcDsmcXVvdDs8YnI+DQomIzQzO0ZJTEVTXyR7UE59LXBsdWdpbi1jb21wcmVz
+cyA9ICZxdW90Oy91c3IvbGliL2hlYXJ0YmVhdC9wbHVnaW5zL2NvbXByZXNzLyouc28mcXVvdDs8
+YnI+DQomIzQzO0ZJTEVTXyR7UE59LXBsdWdpbi1jb21wcmVzcy1zdGF0aWNkZXYgPSAmcXVvdDsv
+dXNyL2xpYi9oZWFydGJlYXQvcGx1Z2lucy9jb21wcmVzcy8qLiphJnF1b3Q7PGJyPg0KJiM0MztG
+SUxFU18ke1BOfS1wbHVnaW4tY29tcHJlc3MtZGJnID0gJnF1b3Q7L3Vzci9saWIvaGVhcnRiZWF0
+L3BsdWdpbnMvY29tcHJlc3MvLmRlYnVnLyZxdW90Ozxicj4NCjxicj4NCiZuYnNwO0ZJTEVTXyR7
+UE59LXBsdWdpbi10ZXN0ID0gJnF1b3Q7L3Vzci9saWIvaGVhcnRiZWF0L3BsdWdpbnMvdGVzdC90
+ZXN0LnNvJnF1b3Q7PGJyPg0KJm5ic3A7RklMRVNfJHtQTn0tcGx1Z2luLXRlc3Qtc3RhdGljZGV2
+ID0gJnF1b3Q7L3Vzci9saWIvaGVhcnRiZWF0L3BsdWdpbnMvdGVzdC90ZXN0LiphJnF1b3Q7PG86
+cD48L286cD48L3NwYW4+PC9wPg0KPC9ibG9ja3F1b3RlPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
+L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+SXQg
+d291bGQgYmUgdXNlZnVsIHRvIHJlcGxhY2UgdGhlIGhhcmRjb2RlZCBzdHJpbmdzIHN1Y2ggYXMg
+JnF1b3Q7L3Vzci9saWImcXVvdDsgdG8gJHtsaWJkaXJ9ICwgaW4gb3JkZXIgdG8gYXZvaWQgUUEg
+d2FybmluZ3MvZXJyb3JzIHdoaWNoIGFyaXNlIHdoaWxlIGJ1aWRsaW5nPG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0i
+RU4tVVMiPmNsdXN0ZXItZ2x1ZSBmb3IgbXVsdGlsaWIgb3IgaWYgQkFTRUxJQiBpcyBzZXQgdG8g
+b3RoZXIgdGhhbiAmcXVvdDtsaWImcXVvdDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJz
+cDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gbGFuZz0iRU4tVVMiPkV4YW1wbGU6PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+
+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4t
+LSBzbmlwIC0tPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkVSUk9SOiBRQSBJc3N1ZTogY2x1c3Rlci1n
+bHVlOiBGaWxlcy9kaXJlY3RvcmllcyB3ZXJlIGluc3RhbGxlZCBidXQgbm90IHNoaXBwZWQ8bzpw
+PjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBsYW5nPSJFTi1VUyI+aW4gYW55IHBhY2thZ2U6PG86cD48L286cD48L3NwYW4+PC9wPg0K
+PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPiZu
+YnNwOyAvdXNyL2xpYjY0L2xpYnN0b25pdGguc28uMS4wLjA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+
+Jm5ic3A7IC91c3IvbGliNjQvbGlicGx1bWIuc28uMjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwv
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJz
+cDsgL3Vzci9saWI2NC9saWJwaWxzLnNvLjI8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7IC91
+c3IvbGliNjQvbGlicGx1bWIuc28uMi4wLjA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4N
+CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7IC91
+c3IvbGliNjQvbGlicGlscy5zby4yLjAuMDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsgL3Vz
+ci9saWI2NC9saWJscm0uc28uMjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsgL3Vzci9saWI2
+NC9saWJzdG9uaXRoLnNvLjE8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+Jm5ic3A7IC91c3IvbGliNjQv
+bGlicGx1bWJncGwuc28uMjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsgL3Vzci9saWI2NC9s
+aWJwbHVtYmdwbC5zby4yLjAuMDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4mbmJzcDsgL3Vzci9saWI2
+NC9saWJscm0uc28uMi4wLjA8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj4tLSBDVVQgLS08
+bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPC9kaXY+
+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5B
+bHNvLCBJZiBiaXRiYWtlIGZhaWxzIHRvIGZpbmQgdGhlc2UgZmlsZXMgbm90IGJlaW5nIHByb3Zp
+ZGVkIGJ5PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPmFueSBSUE1zL0RQS3MsIHRoZW4gd2UgZ2V0IGJl
+bG93IGVycm9yIGR1cmluZyBkb19yb290ZnM7PG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+
+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
+PjxzcGFuIGxhbmc9IkVOLVVTIj4tLSBzbmlwIC0tPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9k
+aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPkVSUk9S
+OiBVbmFibGUgdG8gaW5zdGFsbCBwYWNrYWdlcy4gQ29tbWFuZCAnL29wdC9wb2t5L2J1aWxkL3Rt
+cC9zeXNyb290cy94ODZfNjQtbGludXgvdXNyL2Jpbi9zbWFydCAtLWxvZy1sZXZlbD13YXJuaW5n
+IC0tZGF0YS1kaXI9L29wdC9wb2t5L2J1aWxkL3RtcC93b3JrL3FlbXV4ODZfNjQtcG9reS1saW51
+eC9jb3JlLWltYWdlLW1pbmltYWwvMS4wLXIwL3Jvb3Rmcy92YXIvbGliL3NtYXJ0DQogaW5zdGFs
+bCAteSBjbHVzdGVyLWdsdWVAY29yZTJfNjQgcnVuLXBvc3RpbnN0c0BhbGwgcGFja2FnZWdyb3Vw
+LWNvcmUtYm9vdEBxZW11eDg2XzY0JyByZXR1cm5lZCAxOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5M
+b2FkaW5nIGNhY2hlLi4uPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPlVwZGF0aW5nIGNhY2hlLi4uICZu
+YnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAjIyMjIyMjIyMj
+IyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIFsxMDAlXTxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+Q29tcHV0aW5nIHRyYW5zYWN0aW9uLi4uZXJy
+b3I6IENhbid0IGluc3RhbGwNCjxhIGhyZWY9Im1haWx0bzpjbHVzdGVyLWdsdWUtMS4wLjUtcjBA
+Y29yZTJfNjQiPmNsdXN0ZXItZ2x1ZS0xLjAuNS1yMEBjb3JlMl82NDwvYT46IG5vPG86cD48L286
+cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+bGFuZz0iRU4tVVMiPnBhY2thZ2UgcHJvdmlkZXMgbGlic3Rvbml0aC5zby4xKCkoNjRiaXQpPG86
+cD48L286cD48L3NwYW4+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PHNwYW4gbGFuZz0iRU4tVVMiPi0tIENVVCAtLTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2
+Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
+PjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj5SZWdhcmRzLDxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
+Ij5KYWdhZGVlc2gmbmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48
+L3NwYW4+PC9wPg0KPC9kaXY+DQo8YmxvY2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVy
+LWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBwdDtwYWRkaW5nOjBjbSAwY20gMGNtIDYuMHB0O21hcmdp
+bi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdodDowY20iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gY2xhc3M9ImhvZW56YiI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjojODg4ODg4
+Ij5fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXzwvc3Bhbj48
+L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjojODg4ODg4Ij48YnI+DQo8c3Bh
+biBjbGFzcz0iaG9lbnpiIj55b2N0byBtYWlsaW5nIGxpc3Q8L3NwYW4+PGJyPg0KPHNwYW4gY2xh
+c3M9ImhvZW56YiI+PGEgaHJlZj0ibWFpbHRvOnlvY3RvQHlvY3RvcHJvamVjdC5vcmciPnlvY3Rv
+QHlvY3RvcHJvamVjdC5vcmc8L2E+PC9zcGFuPjxicj4NCjxzcGFuIGNsYXNzPSJob2VuemIiPjxh
+IGhyZWY9Imh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0byIgdGFy
+Z2V0PSJfYmxhbmsiPmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0
+bzwvYT48L3NwYW4+PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj48bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxh
+bmc9IkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-
+--_000_A8FC939F80655644A89BB21CCD3741E8011BCBAF60G08CNEXMBPEKD_--
