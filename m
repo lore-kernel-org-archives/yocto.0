@@ -1,34 +1,35 @@
-Return-Path: <Jackie.Huang@windriver.com>
+Return-Path: <lixin.fnst@cn.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 04E88E00AE0; Tue, 18 Aug 2015 22:22:16 -0700 (PDT)
+	id 29A5DE00ADD; Wed, 19 Aug 2015 01:08:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44D51E00ADB
-	for <yocto@yoctoproject.org>; Tue, 18 Aug 2015 22:22:08 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.1/8.15.1) with ESMTPS id t7J5M7G0009737
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 18 Aug 2015 22:22:07 -0700 (PDT)
-Received: from pek-kkang-d2.wrs.com (128.224.163.135) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.235.1; Tue, 18 Aug 2015 22:22:06 -0700
-From: <jackie.huang@windriver.com>
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31053E00AD7
+	for <yocto@yoctoproject.org>; Wed, 19 Aug 2015 01:08:23 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.15,520,1432569600"; d="scan'208";a="99800939"
+Received: from unknown (HELO edo.cn.fujitsu.com) ([10.167.33.5])
+	by heian.cn.fujitsu.com with ESMTP; 19 Aug 2015 16:11:38 +0800
+Received: from G08CNEXCHPEKD01.g08.fujitsu.local (localhost.localdomain
+	[127.0.0.1])
+	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id t7J88IMT024852
+	for <yocto@yoctoproject.org>; Wed, 19 Aug 2015 16:08:18 +0800
+Received: from localhost.localdomain (10.167.226.92) by
+	G08CNEXCHPEKD01.g08.fujitsu.local (10.167.33.89) with Microsoft SMTP
+	Server (TLS) id 14.3.181.6; Wed, 19 Aug 2015 16:08:21 +0800
+From: Li xin <lixin.fnst@cn.fujitsu.com>
 To: <yocto@yoctoproject.org>
-Date: Wed, 19 Aug 2015 13:22:10 +0800
-Message-ID: <1439961730-5486-1-git-send-email-jackie.huang@windriver.com>
-X-Mailer: git-send-email 1.9.1
+Date: Wed, 19 Aug 2015 16:08:13 +0800
+Message-ID: <1439971693-9112-1-git-send-email-lixin.fnst@cn.fujitsu.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH] e2fsprogs: now depend on attr
+X-Originating-IP: [10.167.226.92]
+Subject: [meta-cgl][PATCH] ocfs2-tools: upgrade 1.4.3 -> 1.4.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,34 +41,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Aug 2015 05:22:16 -0000
+X-List-Received-Date: Wed, 19 Aug 2015 08:08:27 -0000
 Content-Type: text/plain
 
-From: Joe Slater <jslater@windriver.com>
-
-Patches added by this bbappend make us depend on the attr
-package.
-
-Signed-off-by: Joe Slater <jslater@windriver.com>
-Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
 ---
- recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend | 3 +++
- 1 file changed, 3 insertions(+)
+ .../ocfs2-tools/{ocfs2-tools_1.4.3.bb => ocfs2-tools_1.4.4.bb}     | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+ rename meta-cgl-common/recipes-cgl/ocfs2-tools/{ocfs2-tools_1.4.3.bb => ocfs2-tools_1.4.4.bb} (94%)
 
-diff --git a/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend b/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
-index d8de9da..e65df12 100644
---- a/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
-+++ b/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
-@@ -1,5 +1,8 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
-+# These patches make us depend on attr.
-+DEPENDS += "attr"
+diff --git a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.4.3.bb b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.4.4.bb
+similarity index 94%
+rename from meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.4.3.bb
+rename to meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.4.4.bb
+index 1296fd6..84da217 100644
+--- a/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.4.3.bb
++++ b/meta-cgl-common/recipes-cgl/ocfs2-tools/ocfs2-tools_1.4.4.bb
+@@ -20,9 +20,10 @@ SRC_URI = " \
+     file://o2cb.service \
+     file://ocfs2.service \
+ "
+-SRC_URI[md5sum] = "296f1242f4d00d188231d726d7a1d148"
+-SRC_URI[sha256sum] = "a809f03c62e515a4c23e98c4b4c3f8150377af2cf44cd2a2ee56e175b0e4d0b3"
+-S = "${WORKDIR}/ocfs2-tools-ocfs2-tools-1.4.3"
++SRC_URI[md5sum] = "4a17530629bfea5a7517d1db466e32e1"
++SRC_URI[sha256sum] = "a9956f296443360cf66a7bf8298bfd82c51a8e37e569674c0afb9cfa18f68af5"
 +
- SRC_URI += " \
-     file://misc-xattr-add-xattr-module-stub.patch \
-     file://mke2fs.c-create_inode.c-copy-xattrs.patch \
++S = "${WORKDIR}/${PN}-${PN}-${PV}"
+ inherit autotools-brokensep pkgconfig
+ DEPENDS = "corosync openais cluster-glue pacemaker libxml2 linux-libc-headers e2fsprogs"
+ RDEPENDS_${PN} = "bash coreutils net-tools module-init-tools e2fsprogs chkconfig glib-2.0"
 -- 
-1.9.1
+1.8.4.2
 
 
