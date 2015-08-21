@@ -1,39 +1,52 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <net147@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3F25BE00B02; Fri, 21 Aug 2015 02:09:47 -0700 (PDT)
+	id 901F6E00A28; Fri, 21 Aug 2015 07:02:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (net147[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5FADE00AAB
-	for <yocto@yoctoproject.org>; Fri, 21 Aug 2015 02:09:44 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id t7L99YLp009029
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 21 Aug 2015 02:09:34 -0700 (PDT)
-Received: from [128.224.162.176] (128.224.162.176) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.235.1;
-	Fri, 21 Aug 2015 02:09:34 -0700
-Message-ID: <55D6EACC.1000703@windriver.com>
-Date: Fri, 21 Aug 2015 17:09:32 +0800
-From: wenzong fan <wenzong.fan@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:31.0) Gecko/20100101 Thunderbird/31.5.0
-MIME-Version: 1.0
-To: Philip Tricca <flihp@twobit.us>, <joe_macdonald@mentor.com>
-References: <1439645701-15785-1-git-send-email-flihp@twobit.us>
-	<55D69175.7080708@twobit.us>
-In-Reply-To: <55D69175.7080708@twobit.us>
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH] Use the SELinux project release tarballs.
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.50 listed in list.dnswl.org]
+Received: from mail-pa0-f50.google.com (mail-pa0-f50.google.com
+	[209.85.220.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58C39E009D7
+	for <yocto@yoctoproject.org>; Fri, 21 Aug 2015 07:02:01 -0700 (PDT)
+Received: by padfo6 with SMTP id fo6so7961556pad.1
+	for <yocto@yoctoproject.org>; Fri, 21 Aug 2015 07:02:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=yV058IYHZScSTH1/UZ1aQiTpIcZVY9G/Gj7tdUxEu34=;
+	b=W21Oqhl6oJOP4YVbRiS17WxrWd1kqi4suF7OxcQ/IPoYJ2cgrHlLAxq/zyu3t14Ufl
+	zDwvKR6sGRUTQLH9rJqHEDY9uCAgllkFet6dhhM8VlD76G6dLLl7UPaWUzYUWuNylA72
+	qaSAH8uLE0vj5/xP8O74tbyw95JSEgD8uZJCzm7iPHRXG58Hp0j46DwU55Yepq32bbyP
+	ri2Gaq0C0tq/wWU0fgHcrqZzwpcnLkQT29Cd1lec6+2vRMP2kiVBOacQSJALoepgwu1U
+	g2bord8vShtTHlPQVBMDwXfvu1QXu67/GKZlexjTlEuO9g5MH+fGso0HRZVqewAyOurt
+	cMIA==
+X-Received: by 10.68.95.68 with SMTP id di4mr17701549pbb.36.1440165721523;
+	Fri, 21 Aug 2015 07:02:01 -0700 (PDT)
+Received: from 60-242-179-244.static.tpgi.com.au
+	(60-242-179-244.static.tpgi.com.au. [60.242.179.244])
+	by smtp.gmail.com with ESMTPSA id f5sm8020133pas.23.2015.08.21.07.01.59
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 21 Aug 2015 07:01:59 -0700 (PDT)
+From: Jonathan Liu <net147@gmail.com>
+To: yocto@yoctoproject.org
+Date: Sat, 22 Aug 2015 00:01:44 +1000
+Message-Id: <1440165704-5971-1-git-send-email-net147@gmail.com>
+X-Mailer: git-send-email 2.5.0
+Subject: [meta-raspberrypi][PATCH] linux-raspberrypi.inc: use SRCPV instead of SRCREV for PV
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,164 +58,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Aug 2015 09:09:47 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 21 Aug 2015 14:02:06 -0000
 
-On 08/21/2015 10:48 AM, Philip Tricca wrote:
-> Any opinions / thoughts on this one? I've got an upgrade for the
-> toolstack (2.3 -> 2.4) ready to go but I've based it on the release URIs
-> from the wiki so it depends on this patch.
+SRCPV is intended to be used by PV. Using SRCREV for PV is incorrect.
 
-Hi Philip,
+Signed-off-by: Jonathan Liu <net147@gmail.com>
+---
+ recipes-kernel/linux/linux-raspberrypi.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Good to know you have made the selinux toolstack upgrade (2.3 -> 2.4).
+diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
+index d60a3e9..2263822 100644
+--- a/recipes-kernel/linux/linux-raspberrypi.inc
++++ b/recipes-kernel/linux/linux-raspberrypi.inc
+@@ -12,7 +12,7 @@ SRC_URI += " \
+ 
+ COMPATIBLE_MACHINE = "raspberrypi"
+ 
+-PV = "${LINUX_VERSION}+git${SRCREV}"
++PV = "${LINUX_VERSION}+git${SRCPV}"
+ 
+ # NOTE: For now we pull in the default config from the RPi kernel GIT tree.
+ KERNEL_DEFCONFIG_raspberrypi ?= "bcmrpi_defconfig"
+-- 
+2.5.0
 
-Did you fix the refpolicy-* build issues with 2.4 tools?
-
-The policy store is moved to /var/lib/selinux, the install logic from 
-refpolicy_common.inc may fail to build policy DB and generate contexts 
-files.
-
-Thanks
-Wenzong
-
->
-> Best,
-> Philip
->
-> On 08/15/2015 06:35 AM, Philip Tricca wrote:
->> The SRC_URI used for the last SELinux userspace upgrade was the
->> wrong one. We were using the URI generated by GitHub when tags are
->> added to a repo. These are not the SELinux release tarballs.
->>
->> The SELinux project generates and releases tarballs for each tool
->> and posts them to their GitHub wiki 'Releases' page:
->> https://github.com/SELinuxProject/selinux/wiki/Releases. This patch
->> fixes this URI, fixes the SELINUX_RELEASE variable that didn't get
->> updated during the last upgrade, removes the workaround for the 'S'
->> variable and fixes up the SRC_URI hashes.
->>
->> Signed-off-by: Philip Tricca <flihp@twobit.us>
->> ---
->>   recipes-security/selinux/checkpolicy_2.3.bb     | 4 ++--
->>   recipes-security/selinux/libselinux_2.3.bb      | 4 ++--
->>   recipes-security/selinux/libsemanage_2.3.bb     | 4 ++--
->>   recipes-security/selinux/libsepol_2.3.bb        | 4 ++--
->>   recipes-security/selinux/policycoreutils_2.3.bb | 4 ++--
->>   recipes-security/selinux/selinux_20140506.inc   | 4 ++--
->>   recipes-security/selinux/selinux_common.inc     | 4 ----
->>   recipes-security/selinux/sepolgen_1.2.1.bb      | 4 ++--
->>   8 files changed, 14 insertions(+), 18 deletions(-)
->>
->> diff --git a/recipes-security/selinux/checkpolicy_2.3.bb b/recipes-security/selinux/checkpolicy_2.3.bb
->> index 9f68487..0efc94e 100644
->> --- a/recipes-security/selinux/checkpolicy_2.3.bb
->> +++ b/recipes-security/selinux/checkpolicy_2.3.bb
->> @@ -3,5 +3,5 @@ include ${BPN}.inc
->>
->>   LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
->>
->> -SRC_URI[md5sum] = "920f1a048b6023a22e1bae7b40fd413c"
->> -SRC_URI[sha256sum] = "8072c12121613ba943417bbb6d33224d12373ea19d75c5acd1846a35e0e05b74"
->> +SRC_URI[md5sum] = "90caed59291291b184890f563bf6c095"
->> +SRC_URI[sha256sum] = "90632d11afecb66997971d4c5c5d70dfb02d3969ec610ee2918ba6df99c8207b"
->> diff --git a/recipes-security/selinux/libselinux_2.3.bb b/recipes-security/selinux/libselinux_2.3.bb
->> index 81e599d..ff74b61 100644
->> --- a/recipes-security/selinux/libselinux_2.3.bb
->> +++ b/recipes-security/selinux/libselinux_2.3.bb
->> @@ -3,8 +3,8 @@ include ${BPN}.inc
->>
->>   LIC_FILES_CHKSUM = "file://LICENSE;md5=84b4d2c6ef954a2d4081e775a270d0d0"
->>
->> -SRC_URI[md5sum] = "d27e249ad8450e7182203134cf4d85e2"
->> -SRC_URI[sha256sum] = "03fe2baa7ceeea531a64fd321b44ecf09a55f3af5ef66a58a4135944f34e9851"
->> +SRC_URI[md5sum] = "b11d4d95ef4bde732dbc8462df57a1e5"
->> +SRC_URI[sha256sum] = "0b1e0b43ecd84a812713d09564019b08e7c205d89072b5cbcd07b052cd8e77b2"
->>
->>   SRC_URI += "\
->>           file://libselinux-drop-Wno-unused-but-set-variable.patch \
->> diff --git a/recipes-security/selinux/libsemanage_2.3.bb b/recipes-security/selinux/libsemanage_2.3.bb
->> index 5eada94..a238e08 100644
->> --- a/recipes-security/selinux/libsemanage_2.3.bb
->> +++ b/recipes-security/selinux/libsemanage_2.3.bb
->> @@ -3,8 +3,8 @@ include ${BPN}.inc
->>
->>   LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
->>
->> -SRC_URI[md5sum] = "cc313b400637d94e3a549bf77555d8c3"
->> -SRC_URI[sha256sum] = "4c984379a98ee9f05b80ff6e57dd2de886273d7136146456cabdce21ac32ed7f"
->> +SRC_URI[md5sum] = "e564e2b92d18db35707060da29cddab9"
->> +SRC_URI[sha256sum] = "03e09e35e611c286e446bef92b6023ef2623815996f5a53394bb02e49a312e4b"
->>
->>   SRC_URI += "\
->>   	file://libsemanage-Fix-execve-segfaults-on-Ubuntu.patch \
->> diff --git a/recipes-security/selinux/libsepol_2.3.bb b/recipes-security/selinux/libsepol_2.3.bb
->> index 0c07d41..478a6ee 100644
->> --- a/recipes-security/selinux/libsepol_2.3.bb
->> +++ b/recipes-security/selinux/libsepol_2.3.bb
->> @@ -3,5 +3,5 @@ include ${BPN}.inc
->>
->>   LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
->>
->> -SRC_URI[md5sum] = "c6b3dc07bf19ab4f364f21bbecb44beb"
->> -SRC_URI[sha256sum] = "5a4481bfd0fad6fdad1511c786d69de1fc3eddc28154eae1691e1bf4e9e505c3"
->> +SRC_URI[md5sum] = "e47e8527b5d4ea971726c455f847efdd"
->> +SRC_URI[sha256sum] = "cc8d8642c3b7b95d6928d65dcbca2ab0627abc1c05166637851e63c1a6eae68f"
->> diff --git a/recipes-security/selinux/policycoreutils_2.3.bb b/recipes-security/selinux/policycoreutils_2.3.bb
->> index c837266..b77094e 100644
->> --- a/recipes-security/selinux/policycoreutils_2.3.bb
->> +++ b/recipes-security/selinux/policycoreutils_2.3.bb
->> @@ -3,8 +3,8 @@ include ${BPN}.inc
->>
->>   LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
->>
->> -SRC_URI[md5sum] = "4f5c508e3c3867c8beb343e993d353dd"
->> -SRC_URI[sha256sum] = "11e8815ac13debb87897d2781381b89ec5c6c746a3d44223a493bc7ace6cc71f"
->> +SRC_URI[md5sum] = "9a5db20adfe2250f53833b277ac796ae"
->> +SRC_URI[sha256sum] = "864cfaee58b5d2f15b140c354e59666e57143293c89f2b2e85bc0d0e4beefcd2"
->>
->>   SRC_URI += "\
->>   	file://policycoreutils-fix-sepolicy-install-path.patch \
->> diff --git a/recipes-security/selinux/selinux_20140506.inc b/recipes-security/selinux/selinux_20140506.inc
->> index 01cc52f..beaaff0 100644
->> --- a/recipes-security/selinux/selinux_20140506.inc
->> +++ b/recipes-security/selinux/selinux_20140506.inc
->> @@ -1,5 +1,5 @@
->> -SELINUX_RELEASE = "20131030"
->> +SELINUX_RELEASE = "20140506"
->>
->> -SRC_URI = "https://github.com/SELinuxProject/selinux/archive/${BPN}-${PV}.tar.gz"
->> +SRC_URI = "https://raw.githubusercontent.com/wiki/SELinuxProject/selinux/files/releases/${SELINUX_RELEASE}/${BPN}-${PV}.tar.gz"
->>
->>   include selinux_common.inc
->> diff --git a/recipes-security/selinux/selinux_common.inc b/recipes-security/selinux/selinux_common.inc
->> index e53792d..7efa694 100644
->> --- a/recipes-security/selinux/selinux_common.inc
->> +++ b/recipes-security/selinux/selinux_common.inc
->> @@ -5,10 +5,6 @@ HOMEPAGE = "https://github.com/SELinuxProject"
->>   # we redefine EXTRA_OEMAKE here
->>   EXTRA_OEMAKE = "-e"
->>
->> -# Releases are now from the base of the full tree, necessitating our skipping
->> -# through an extra level of directories.
->> -S = "${WORKDIR}/selinux-${BPN}-${PV}/${BPN}"
->> -
->>   do_compile() {
->>       oe_runmake all \
->>               INCLUDEDIR='${STAGING_INCDIR}' \
->> diff --git a/recipes-security/selinux/sepolgen_1.2.1.bb b/recipes-security/selinux/sepolgen_1.2.1.bb
->> index b47ff26..c636ac3 100644
->> --- a/recipes-security/selinux/sepolgen_1.2.1.bb
->> +++ b/recipes-security/selinux/sepolgen_1.2.1.bb
->> @@ -3,5 +3,5 @@ include ${BPN}.inc
->>
->>   LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
->>
->> -SRC_URI[md5sum] = "308011ba495b6770239bb3d371d277d3"
->> -SRC_URI[sha256sum] = "7a5710f7c8be16dfbaf8da98c3c0e46bc6159f2df5340e9efb975b084f61413c"
->> +SRC_URI[md5sum] = "ce662a83188bc3a9b40c15792fcaf2c8"
->> +SRC_URI[sha256sum] = "438c246bdc6b3cf1b12116831f4c601aaae6e93decb007dddab212a3c88781b0"
->>
->
 
