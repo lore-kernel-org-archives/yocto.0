@@ -1,62 +1,35 @@
-Return-Path: <andrew@bradfordembedded.com>
+Return-Path: <flihp@twobit.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 080EBE00A8C; Thu, 20 Aug 2015 12:13:03 -0700 (PDT)
+	id 8746BE00AF7; Thu, 20 Aug 2015 19:48:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [66.111.4.27 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 323 seconds by postgrey-1.32 at yocto-www;
-	Thu, 20 Aug 2015 12:12:56 PDT
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com
-	[66.111.4.27])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC64EE00A7B
-	for <yocto@yoctoproject.org>; Thu, 20 Aug 2015 12:12:56 -0700 (PDT)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailout.nyi.internal (Postfix) with ESMTP id D114320303;
-	Thu, 20 Aug 2015 15:07:31 -0400 (EDT)
-Received: from frontend1 ([10.202.2.160])
-	by compute1.internal (MEProxy); Thu, 20 Aug 2015 15:07:31 -0400
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=
-	bradfordembedded.com; h=cc:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to:x-sasl-enc
-	:x-sasl-enc; s=mesmtp; bh=bG0KY5zLixRpJW8P5Ghtk1uAvrI=; b=D7avJn
-	0GcHHvx4ZEsFMumulMYW0/WYtAgJtETfmTK1ARKmAZ3dTXiYtp6ks9CDHweT1rHY
-	X80CXNwUSZFl0hClX7mUB6or/ZKxsp4AKQWJ6Mgo88ovKeepfz9CNUpSR0wvIJut
-	8m1AU3Gos9AWeoMW4yja4Cy52XaucgAFU4PGY=
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to:x-sasl-enc
-	:x-sasl-enc; s=smtpout; bh=bG0KY5zLixRpJW8P5Ghtk1uAvrI=; b=PbHUF
-	DxiDuUmp2G6FfjsrAG8uvsQMl4GhAv4donhNQA2nnh3so+aSl16bGSgXbA1CqUS3
-	PrJE/iMW/8eHnxR3VnPzBVm+TfKJup5vEfI+wlWyUR78EpfQB11uxpCJuNz8K/a5
-	UL7S9jq6Z0Dk2KZfI3o+E9JumzuEGM6+09pjYI=
-X-Sasl-enc: +Z6ye3TXkLEwiAAQSLObj87jBWX3rOK57S1ZxvHmqOwv 1440097651
-Received: from rhino.kodakalaris.net (clr-vpn01.kodakalaris.com
-	[198.140.222.129])
-	by mail.messagingengine.com (Postfix) with ESMTPA id 5D977C00014;
-	Thu, 20 Aug 2015 15:07:31 -0400 (EDT)
-Date: Thu, 20 Aug 2015 15:07:30 -0400
-From: Andrew Bradford <andrew@bradfordembedded.com>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20150820190729.GB17846@rhino.kodakalaris.net>
-References: <CAMeZNHRGp89W8p9w9AGGoW9JeFLiNPV2ys_S66Qt5zd4g7YtHA@mail.gmail.com>
-	<CAMKF1sohx3ChdbsVUTan=j7-D5Q0daEJYz_JeW9E9JXC=ZLDzw@mail.gmail.com>
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59B0CE00AF2
+	for <yocto@yoctoproject.org>; Thu, 20 Aug 2015 19:48:26 -0700 (PDT)
+Received: from [70.102.70.91] (helo=[10.10.7.122])
+	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1ZScMR-00014z-H1; Fri, 21 Aug 2015 02:47:21 +0000
+Message-ID: <55D69175.7080708@twobit.us>
+Date: Thu, 20 Aug 2015 19:48:21 -0700
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Icedove/31.8.0
 MIME-Version: 1.0
-In-Reply-To: <CAMKF1sohx3ChdbsVUTan=j7-D5Q0daEJYz_JeW9E9JXC=ZLDzw@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Problem creating debug build with inlined functions
+To: joe_macdonald@mentor.com
+References: <1439645701-15785-1-git-send-email-flihp@twobit.us>
+In-Reply-To: <1439645701-15785-1-git-send-email-flihp@twobit.us>
+X-SA-Exim-Connect-IP: 70.102.70.91
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH] Use the SELinux project release tarballs.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,39 +41,149 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Aug 2015 19:13:03 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-List-Received-Date: Fri, 21 Aug 2015 02:48:30 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-Hi Khem,
+Any opinions / thoughts on this one? I've got an upgrade for the
+toolstack (2.3 -> 2.4) ready to go but I've based it on the release URIs
+from the wiki so it depends on this patch.
 
-On 08/13 18:51, Khem Raj wrote:
-> On Thu, Aug 13, 2015 at 1:25 PM, Todd Efflam <todd.efflam@gmail.com> wrote:
-> > Hello,
-> > We're trying to create a debug build so we can use our image with gdb,
-> > however we're unable to get it to compile.  We've added the lines
-> > "DEBUG_BUILD = "1"" and "EXTRA_IMAGE_FEATURES += "tools-sdk dbg-pkgs
-> > tools-debug debug-tweaks"" to the local.conf file, but it seems to be
-> > failing on glibc.  The errors we get have to do with inlined functions
-> > (./tlsdeschtab.h:28:1: error: inlining failed in call to 'hash_tlsdesc':
-> > indirect function call with a yet undetermined callee [-Werror=inline]
-> > |  hash_tlsdesc (void *p)).  Are we missing a compile flag?  We tried adding
-> > -gdwarf-2 to the CFLAGS option in local.conf but still got the same error.
-> > Any help would be appreciated!
+Best,
+Philip
+
+On 08/15/2015 06:35 AM, Philip Tricca wrote:
+> The SRC_URI used for the last SELinux userspace upgrade was the
+> wrong one. We were using the URI generated by GitHub when tags are
+> added to a repo. These are not the SELinux release tarballs.
 > 
-> when you choose DEBUG_BUILD = "1" it also changes the default
-> optimization settings for glibc to -O which is -O1
-> really. Thats not a common flag used to build glibc so you might have
-> fallen into less used case
+> The SELinux project generates and releases tarballs for each tool
+> and posts them to their GitHub wiki 'Releases' page:
+> https://github.com/SELinuxProject/selinux/wiki/Releases. This patch
+> fixes this URI, fixes the SELINUX_RELEASE variable that didn't get
+> updated during the last upgrade, removes the workaround for the 'S'
+> variable and fixes up the SRC_URI hashes.
 > 
-> Please test out this patch and let me know if it fixed the problem for you
+> Signed-off-by: Philip Tricca <flihp@twobit.us>
+> ---
+>  recipes-security/selinux/checkpolicy_2.3.bb     | 4 ++--
+>  recipes-security/selinux/libselinux_2.3.bb      | 4 ++--
+>  recipes-security/selinux/libsemanage_2.3.bb     | 4 ++--
+>  recipes-security/selinux/libsepol_2.3.bb        | 4 ++--
+>  recipes-security/selinux/policycoreutils_2.3.bb | 4 ++--
+>  recipes-security/selinux/selinux_20140506.inc   | 4 ++--
+>  recipes-security/selinux/selinux_common.inc     | 4 ----
+>  recipes-security/selinux/sepolgen_1.2.1.bb      | 4 ++--
+>  8 files changed, 14 insertions(+), 18 deletions(-)
 > 
-> http://git.openembedded.org/openembedded-core-contrib/commit/?h=kraj/master&id=16935bb4b6df99c6443dab06c77a9cfd4eb35f5d
+> diff --git a/recipes-security/selinux/checkpolicy_2.3.bb b/recipes-security/selinux/checkpolicy_2.3.bb
+> index 9f68487..0efc94e 100644
+> --- a/recipes-security/selinux/checkpolicy_2.3.bb
+> +++ b/recipes-security/selinux/checkpolicy_2.3.bb
+> @@ -3,5 +3,5 @@ include ${BPN}.inc
+>  
+>  LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
+>  
+> -SRC_URI[md5sum] = "920f1a048b6023a22e1bae7b40fd413c"
+> -SRC_URI[sha256sum] = "8072c12121613ba943417bbb6d33224d12373ea19d75c5acd1846a35e0e05b74" 
+> +SRC_URI[md5sum] = "90caed59291291b184890f563bf6c095"
+> +SRC_URI[sha256sum] = "90632d11afecb66997971d4c5c5d70dfb02d3969ec610ee2918ba6df99c8207b"
+> diff --git a/recipes-security/selinux/libselinux_2.3.bb b/recipes-security/selinux/libselinux_2.3.bb
+> index 81e599d..ff74b61 100644
+> --- a/recipes-security/selinux/libselinux_2.3.bb
+> +++ b/recipes-security/selinux/libselinux_2.3.bb
+> @@ -3,8 +3,8 @@ include ${BPN}.inc
+>  
+>  LIC_FILES_CHKSUM = "file://LICENSE;md5=84b4d2c6ef954a2d4081e775a270d0d0"
+>  
+> -SRC_URI[md5sum] = "d27e249ad8450e7182203134cf4d85e2"
+> -SRC_URI[sha256sum] = "03fe2baa7ceeea531a64fd321b44ecf09a55f3af5ef66a58a4135944f34e9851"
+> +SRC_URI[md5sum] = "b11d4d95ef4bde732dbc8462df57a1e5"
+> +SRC_URI[sha256sum] = "0b1e0b43ecd84a812713d09564019b08e7c205d89072b5cbcd07b052cd8e77b2"
+>  
+>  SRC_URI += "\
+>          file://libselinux-drop-Wno-unused-but-set-variable.patch \
+> diff --git a/recipes-security/selinux/libsemanage_2.3.bb b/recipes-security/selinux/libsemanage_2.3.bb
+> index 5eada94..a238e08 100644
+> --- a/recipes-security/selinux/libsemanage_2.3.bb
+> +++ b/recipes-security/selinux/libsemanage_2.3.bb
+> @@ -3,8 +3,8 @@ include ${BPN}.inc
+>  
+>  LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
+>  
+> -SRC_URI[md5sum] = "cc313b400637d94e3a549bf77555d8c3"
+> -SRC_URI[sha256sum] = "4c984379a98ee9f05b80ff6e57dd2de886273d7136146456cabdce21ac32ed7f"
+> +SRC_URI[md5sum] = "e564e2b92d18db35707060da29cddab9"
+> +SRC_URI[sha256sum] = "03e09e35e611c286e446bef92b6023ef2623815996f5a53394bb02e49a312e4b"
+>  
+>  SRC_URI += "\
+>  	file://libsemanage-Fix-execve-segfaults-on-Ubuntu.patch \
+> diff --git a/recipes-security/selinux/libsepol_2.3.bb b/recipes-security/selinux/libsepol_2.3.bb
+> index 0c07d41..478a6ee 100644
+> --- a/recipes-security/selinux/libsepol_2.3.bb
+> +++ b/recipes-security/selinux/libsepol_2.3.bb
+> @@ -3,5 +3,5 @@ include ${BPN}.inc
+>  
+>  LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
+>  
+> -SRC_URI[md5sum] = "c6b3dc07bf19ab4f364f21bbecb44beb"
+> -SRC_URI[sha256sum] = "5a4481bfd0fad6fdad1511c786d69de1fc3eddc28154eae1691e1bf4e9e505c3"
+> +SRC_URI[md5sum] = "e47e8527b5d4ea971726c455f847efdd"
+> +SRC_URI[sha256sum] = "cc8d8642c3b7b95d6928d65dcbca2ab0627abc1c05166637851e63c1a6eae68f"
+> diff --git a/recipes-security/selinux/policycoreutils_2.3.bb b/recipes-security/selinux/policycoreutils_2.3.bb
+> index c837266..b77094e 100644
+> --- a/recipes-security/selinux/policycoreutils_2.3.bb
+> +++ b/recipes-security/selinux/policycoreutils_2.3.bb
+> @@ -3,8 +3,8 @@ include ${BPN}.inc
+>  
+>  LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
+>  
+> -SRC_URI[md5sum] = "4f5c508e3c3867c8beb343e993d353dd"
+> -SRC_URI[sha256sum] = "11e8815ac13debb87897d2781381b89ec5c6c746a3d44223a493bc7ace6cc71f"
+> +SRC_URI[md5sum] = "9a5db20adfe2250f53833b277ac796ae"
+> +SRC_URI[sha256sum] = "864cfaee58b5d2f15b140c354e59666e57143293c89f2b2e85bc0d0e4beefcd2"
+>  
+>  SRC_URI += "\
+>  	file://policycoreutils-fix-sepolicy-install-path.patch \
+> diff --git a/recipes-security/selinux/selinux_20140506.inc b/recipes-security/selinux/selinux_20140506.inc
+> index 01cc52f..beaaff0 100644
+> --- a/recipes-security/selinux/selinux_20140506.inc
+> +++ b/recipes-security/selinux/selinux_20140506.inc
+> @@ -1,5 +1,5 @@
+> -SELINUX_RELEASE = "20131030"
+> +SELINUX_RELEASE = "20140506"
+>  
+> -SRC_URI = "https://github.com/SELinuxProject/selinux/archive/${BPN}-${PV}.tar.gz"
+> +SRC_URI = "https://raw.githubusercontent.com/wiki/SELinuxProject/selinux/files/releases/${SELINUX_RELEASE}/${BPN}-${PV}.tar.gz"
+>  
+>  include selinux_common.inc
+> diff --git a/recipes-security/selinux/selinux_common.inc b/recipes-security/selinux/selinux_common.inc
+> index e53792d..7efa694 100644
+> --- a/recipes-security/selinux/selinux_common.inc
+> +++ b/recipes-security/selinux/selinux_common.inc
+> @@ -5,10 +5,6 @@ HOMEPAGE = "https://github.com/SELinuxProject"
+>  # we redefine EXTRA_OEMAKE here
+>  EXTRA_OEMAKE = "-e"
+>  
+> -# Releases are now from the base of the full tree, necessitating our skipping
+> -# through an extra level of directories.
+> -S = "${WORKDIR}/selinux-${BPN}-${PV}/${BPN}"
+> -
+>  do_compile() {
+>      oe_runmake all \
+>              INCLUDEDIR='${STAGING_INCDIR}' \
+> diff --git a/recipes-security/selinux/sepolgen_1.2.1.bb b/recipes-security/selinux/sepolgen_1.2.1.bb
+> index b47ff26..c636ac3 100644
+> --- a/recipes-security/selinux/sepolgen_1.2.1.bb
+> +++ b/recipes-security/selinux/sepolgen_1.2.1.bb
+> @@ -3,5 +3,5 @@ include ${BPN}.inc
+>  
+>  LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
+>  
+> -SRC_URI[md5sum] = "308011ba495b6770239bb3d371d277d3"
+> -SRC_URI[sha256sum] = "7a5710f7c8be16dfbaf8da98c3c0e46bc6159f2df5340e9efb975b084f61413c"
+> +SRC_URI[md5sum] = "ce662a83188bc3a9b40c15792fcaf2c8"
+> +SRC_URI[sha256sum] = "438c246bdc6b3cf1b12116831f4c601aaae6e93decb007dddab212a3c88781b0"
+> 
 
-Although I'm not the reporter of this issue, I ran into it as well and
-this patch fixes this issue for me when applying it on top of the
-fido-13.0.0 tag of poky.
-
-Thanks!
--Andrew
 
