@@ -1,47 +1,44 @@
-Return-Path: <lixin.fnst@cn.fujitsu.com>
+Return-Path: <Jackie.Huang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 61E99E00B01; Thu, 20 Aug 2015 19:50:44 -0700 (PDT)
+	id 52812E00B02; Thu, 20 Aug 2015 23:25:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.6 required=5.0 tests=BAYES_00, RDNS_NONE,
-	URIBL_BLACK autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 1.7 URIBL_BLACK Contains an URL listed in the URIBL
-	blacklist *      [URIs: configure.ac]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80288E00AF2
-	for <yocto@yoctoproject.org>; Thu, 20 Aug 2015 19:50:39 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.15,520,1432569600"; d="scan'208";a="99870127"
-Received: from unknown (HELO edo.cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 21 Aug 2015 10:53:53 +0800
-Received: from G08CNEXCHPEKD02.g08.fujitsu.local (localhost.localdomain
-	[127.0.0.1])
-	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id t7L2oYsw006994;
-	Fri, 21 Aug 2015 10:50:34 +0800
-Received: from G08CNEXMBPEKD03.g08.fujitsu.local ([10.167.33.86]) by
-	G08CNEXCHPEKD02.g08.fujitsu.local ([10.167.33.83]) with mapi id
-	14.03.0181.006; Fri, 21 Aug 2015 10:50:37 +0800
-From: "Li, Xin" <lixin.fnst@cn.fujitsu.com>
-To: Alexandru Vaduva <Alexandru.Vaduva@enea.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [meta-cgl][PATCH v2] cluster-glue: upgrade 1.0.5 ->
-	1.0.12
-Thread-Index: AQHQ2jx78Sdlq1PEA0m7CXHS/yK4K54UdJqAgAFOGNA=
-Date: Fri, 21 Aug 2015 02:50:37 +0000
-Message-ID: <A8FC939F80655644A89BB21CCD3741E8011BCBB87A@G08CNEXMBPEKD03.g08.fujitsu.local>
-References: <A8FC939F80655644A89BB21CCD3741E8011BCBAF60@G08CNEXMBPEKD03.g08.fujitsu.local>
-	<1439960637-8744-1-git-send-email-lixin.fnst@cn.fujitsu.com>
-	<DDB0C57E45663A458C5CACB7B5688BC21D8DB4FD@SESTOEX04.enea.se>
-In-Reply-To: <DDB0C57E45663A458C5CACB7B5688BC21D8DB4FD@SESTOEX04.enea.se>
-Accept-Language: zh-CN, en-US
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10A2FE00AF8
+	for <yocto@yoctoproject.org>; Thu, 20 Aug 2015 23:25:25 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id t7L6PFfd007866
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 20 Aug 2015 23:25:15 -0700 (PDT)
+Received: from ALA-MBB.corp.ad.wrs.com ([169.254.3.206]) by
+	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.03.0235.001;
+	Thu, 20 Aug 2015 23:25:14 -0700
+From: "Huang, Jie (Jackie)" <Jackie.Huang@windriver.com>
+To: Philip Tricca <flihp@twobit.us>
+Thread-Topic: [yocto] [meta-selinux][PATCHv2 6/8] e2fsprogs: Copy xattr
+	block	from source file.
+Thread-Index: AQHQqU6C2MCjJrzXZEyVb1rYLpg4Wp4WXEKA
+Date: Fri, 21 Aug 2015 06:25:14 +0000
+Message-ID: <1B858668EC6A94408DCA5225FDFA85AAFC70B693@ALA-MBB.corp.ad.wrs.com>
+References: <1434580258-18121-1-git-send-email-flihp@twobit.us>
+	<1434580258-18121-7-git-send-email-flihp@twobit.us>
+In-Reply-To: <1434580258-18121-7-git-send-email-flihp@twobit.us>
+Accept-Language: en-US, zh-CN
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.167.226.92]
+x-originating-ip: [128.224.162.153]
 MIME-Version: 1.0
-Subject: Re: [meta-cgl][PATCH v2] cluster-glue: upgrade 1.0.5 -> 1.0.12
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-selinux][PATCHv2 6/8] e2fsprogs: Copy xattr block	from source file.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,601 +50,445 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Aug 2015 02:50:44 -0000
-Content-Language: zh-CN
-Content-Type: text/plain; charset="iso-2022-jp"
+X-List-Received-Date: Fri, 21 Aug 2015 06:25:31 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi, Alex V.
 
-Thanks a lot.
 
-Indeed, the error does not occur on my system.
-I will do some extra test, and resend the patch.
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.o=
+rg] On Behalf Of Philip
+> Tricca
+> Sent: Thursday, June 18, 2015 6:31 AM
+> To: yocto@yoctoproject.org
+> Subject: [yocto] [meta-selinux][PATCHv2 6/8] e2fsprogs: Copy xattr block =
+from source file.
+>=20
+> Signed-off-by: Philip Tricca <flihp@twobit.us>
+> ---
+>  .../e2fsprogs/misc-xattr-create-xattr-block.patch  | 341 +++++++++++++++=
+++++++
+>  .../e2fsprogs/e2fsprogs_1.42.9.bbappend            |   1 +
+>  2 files changed, 342 insertions(+)
+>  create mode 100644 recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-creat=
+e-xattr-block.patch
+>=20
+> diff --git a/recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr=
+-block.patch b/recipes-
+> devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-block.patch
+> new file mode 100644
+> index 0000000..5955b44
+> --- /dev/null
+> +++ b/recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-block
+> +++ .patch
+> @@ -0,0 +1,341 @@
+> +To build the xattr disk block we process the output from listxattr and
+> +lgetxattr from the source file system object. This data is formated in
+> +a disk block according to the format specified in the kernel ext2 file s=
+ystem driver.
+> +See the comment block at the beginning of fs/ext2/xattr.c for details.
+> +
+> +Currently we only process attributes with the 'security.' prefix as our
+> +use case is SELinux labels and IMA. Additional prefixes can likely be
+> +supported with minimal effort but none have been tested.
+> +
+> +Once the xattr block has been created it is written to disk. The xattr
+> +block is associated with the appropriate file system object through the
+> +i_file_acl inode member and the inode is updated on disk.
+> +
+> +Signed-off-by: Philip Tricca <flihp@twobit.us>
+> +
+> +Index: e2fsprogs-1.42.9/misc/xattr.c
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +--- e2fsprogs-1.42.9.orig/misc/xattr.c
+> ++++ e2fsprogs-1.42.9/misc/xattr.c
+> +@@ -1,6 +1,23 @@
+> + #include "xattr.h"
+> +
+> ++#include <attr/xattr.h>
+> ++#include <ctype.h>
+> ++#include <errno.h>
+> ++#include <ext2fs/ext2_ext_attr.h>
+> ++#include <linux/xattr.h>
+> ++#include <stdint.h>
+> + #include <stdio.h>
+> ++#include <stdlib.h>
+> ++#include <string.h>
+> ++#include <sys/stat.h>
+> ++#include <sys/types.h>
+> ++#include <unistd.h>
+> ++
+> ++#define MIN(X, Y) (((X) < (Y)) ? (X) : (Y)) #define HEADER(ptr)
+> ++((struct ext2_ext_attr_header *)(ptr)) #define ENTRY(ptr)  ((struct
+> ++ext2_ext_attr_entry *)(ptr)) #define FIRST_ENTRY(ptr)
+> ++ENTRY(HEADER(ptr) + 1) #define VALUE(hdr, ent) (((char*)hdr) +
+> ++(ent->e_value_offs))
+> +
+> + #ifdef XATTR_DEBUG
+> + #define XATTR_STDERR(fmt, args...) fprintf (stderr, fmt, ##args) @@
+> +-8,6 +25,28 @@  #define XATTR_STDERR(fmt, args...) do {} while (0)
+> +#endif
+> +
+> ++/* structure for mapping xattr name prefix data */ typedef struct
+> ++xattr_prefix {
+> ++	int index;
+> ++	char *name;
+> ++	size_t length;
+> ++} xattr_prefix_t;
+> ++
+> ++xattr_prefix_t xattr_prefixes [] =3D {
+> ++/* Only interested in security prefix. Can support others though.
+> ++	{
+> ++		.index =3D EXT2_XATTR_INDEX_USER,
+> ++		.name =3D XATTR_USER_PREFIX,
+> ++		.length =3D XATTR_USER_PREFIX_LEN,
+> ++	},
+> ++*/
+> ++	{
+> ++		.index =3D EXT2_XATTR_INDEX_SECURITY,
+> ++		.name =3D XATTR_SECURITY_PREFIX,
+> ++		.length =3D XATTR_SECURITY_PREFIX_LEN,
 
-Regards,
-Li
+Hi Philip,
 
->-----Original Message-----
->From: Alexandru Vaduva [mailto:Alexandru.Vaduva@enea.com]
->Sent: Thursday, August 20, 2015 10:51 PM
->To: Li, Xin/=1B$BM{=1B(B =1B$B6U=1B(B; yocto@yoctoproject.org
->Subject: RE: [yocto] [meta-cgl][PATCH v2] cluster-glue: upgrade 1.0.5 -> 1=
-.0.12
->
->Hello,
->
->Could you please take one more look on this since for me the build is fail=
-ing in the
->do_compile stage.
->Due to this error I was not able to build the other two patches heardbleat=
- and
->pacemaker. :D
->
->Alex V.
->
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.or=
-g]
->On Behalf Of Li xin
->Sent: Wednesday, August 19, 2015 8:04 AM
->To: yocto@yoctoproject.org
->Subject: [yocto] [meta-cgl][PATCH v2] cluster-glue: upgrade 1.0.5 -> 1.0.1=
-2
->
->* Add patch to aviod build Error and Warning.
->  --0001-don-t-compile-doc-and-Error-Fix.patch
->  --0001-ribcl.py.in-Warning-Fix.patch
->
->* Dropped backported patch:
->  --fix-const-cast.patch
->  --glue-remove-getpid-check.patch
->  --glue-repair-deprecated-glib-support.patch
->  --glue-repair-libxml-support.patch
->
->* Replace the hardcoded strings "/usr/lib" "/etc/" "/usr/sbin" "/usr/share=
-"
->
->Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
->---
-> .../0001-don-t-compile-doc-and-Error-Fix.patch     |  50 ++++++++++
-> .../0001-ribcl.py.in-Warning-Fix.patch             |  34 +++++++
-> .../cluster-glue/cluster-glue/fix-const-cast.patch | 103 ----------------=
------
-> .../cluster-glue/glue-remove-getpid-check.patch    |  31 -------
-> .../glue-repair-deprecated-glib-support.patch      |  12 ---
-> .../cluster-glue/glue-repair-libxml-support.patch  |  14
->---  ...luster-glue_1.0.5.bb =3D> cluster-glue_1.0.12.bb} |  76 ++++++++--=
------
-> 7 files changed, 125 insertions(+), 195 deletions(-)  create mode 100644
->meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-don-t-compile-d=
-oc-and
->-Error-Fix.patch
-> create mode 100644
->meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-ribcl.py.in-War=
-ning-Fix.
->patch
-> delete mode 100644
->meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/fix-const-cast.patch
-> delete mode 100644
->meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-remove-getpid-c=
-heck.p
->atch
-> delete mode 100644
->meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-deprecat=
-ed-glib-
->support.patch
-> delete mode 100644
->meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-libxml-s=
-upport.p
->atch
-> rename meta-cgl-common/recipes-cgl/cluster-glue/{cluster-glue_1.0.5.bb =
-=3D>
->cluster-glue_1.0.12.bb} (49%)
->
->diff --git
->a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-don-t-compile=
--doc-a
->nd-Error-Fix.patch
->b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-don-t-compile=
--doc-a
->nd-Error-Fix.patch
->new file mode 100644
->index 0000000..471b1e4
->--- /dev/null
->+++ b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-don-t-c
->+++ ompile-doc-and-Error-Fix.patch
->@@ -0,0 +1,50 @@
->+From b64b676f7abf896ca714341eb330099f2ff04213 Mon Sep 17 00:00:00 2001
->+From: Li xin <lixin.fnst@cn.fujitsu.com>
->+Date: Tue, 18 Aug 2015 17:43:29 +0900
->+Subject: [PATCH] don't compile doc and Error Fix
->+
->+| help2man: can't get `--help' info from ../../lrm/admin/lrmadmin
->+| make[2]: *** [lrmadmin.8] Error 1
->+
->+| make[2]: a2x: Command not found
->+| /usr/bin/xsltproc \
->+|       --xinclude \
->+|
->+| http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.x
->+| sl ha_logd.xml
->+| make[2]: *** [hb_report.8] Error 127
->+
->+Upstream-Status: pending
->+
->+Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
->+---
->+ Makefile.am           | 2 +-
->+ configure.ac          | 6 ++++++
->+ lrm/admin/Makefile.am | 2 +-
->+ 3 files changed, 8 insertions(+), 2 deletions(-)
->+
->+diff --git a/Makefile.am b/Makefile.am
->+index 93dbaf6..2f4d03b 100644
->+--- a/Makefile.am
->++++ b/Makefile.am
->+@@ -23,7 +23,7 @@ MAINTAINERCLEANFILES	=3D Makefile.in aclocal.m4 configu=
-re
->DRF/config-h.in \
->+ 			  DRF/stamp-h.in libtool.m4 ltdl.m4 libltdl.tar
->+
->+ SUBDIRS			=3D include $(LIBLTDL_DIR) replace lib lrm logd \
->+-			  hb_report doc config
->++			  hb_report config
->+
->+ install-exec-local:
->+ 	$(INSTALL) -d $(DESTDIR)/$(HA_COREDIR) diff --git
->+a/lrm/admin/Makefile.am b/lrm/admin/Makefile.am index a92cd72..ed938e0
->+100644
->+--- a/lrm/admin/Makefile.am
->++++ b/lrm/admin/Makefile.am
->+@@ -36,5 +36,5 @@ man8_MANS =3D	$(sbin_PROGRAMS:%=3D%.8)
->+ %.8:	%
->+ 	echo Creating $@
->+ 	chmod a+x $<
->+-	help2man --output $@ --no-info --section 8 --name "Part of the Linux-HA
->project" $(top_builddir)/lrm/admin/$<
->++	help2man --output $@ --no-info --section 8 --name "Part of the
->++Linux-HA project" /usr/sbin/$<
->+ endif
->+--
->+1.8.4.2
->+
->diff --git
->a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-ribcl.py.in-W=
-arning-F
->ix.patch
->b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-ribcl.py.in-W=
-arning-F
->ix.patch
->new file mode 100644
->index 0000000..31010d4
->--- /dev/null
->+++ b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/0001-ribcl.p
->+++ y.in-Warning-Fix.patch
->@@ -0,0 +1,34 @@
->+From a2c66927b75547cee1db1340a67449ded0812df3 Mon Sep 17 00:00:00 2001
->+From: Li xin <lixin.fnst@cn.fujitsu.com>
->+Date: Wed, 19 Aug 2015 11:13:46 +0900
->+Subject: [PATCH] ribcl.py.in: Warning Fix
->+
->+WARNING: QA Issue:
->+/usr/lib/stonith/plugins/stonith2/ribcl.py_cluster-glue-plugin-stonith2
->+-ribcl contained in package cluster-glue-plugin-stonith2-ribcl requires
->+/usr/local/bin/python, but no providers found in its RDEPENDS
->+[file-rdeps]
->+
->+Add target python handling
->+Allow the build to specify a path for the python instead of reusing the
->+PYTHON variable which can lead to inconsistencies if we are cross
->+compiling.
->+
->+Upstream-Status: pending
->+
->+Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
->+---
->+ lib/plugins/stonith/ribcl.py.in | 2 +-
->+ 1 file changed, 1 insertion(+), 1 deletion(-)
->+
->+diff --git a/lib/plugins/stonith/ribcl.py.in
->+b/lib/plugins/stonith/ribcl.py.in index 14e070c..01205e3 100644
->+--- a/lib/plugins/stonith/ribcl.py.in
->++++ b/lib/plugins/stonith/ribcl.py.in
->+@@ -1,4 +1,4 @@
->+-#!@PYTHON@
->++#!@TRAGET_PYTHON@
->+
->+
->+ #
->+--
->+1.8.4.2
->+
->diff --git
->a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/fix-const-cast.pat=
-ch
->b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/fix-const-cast.pat=
-ch
->deleted file mode 100644
->index 6de65bf..0000000
->--- a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/fix-const-cast=
-.patch
->+++ /dev/null
->@@ -1,103 +0,0 @@
->-This patch gets rid of new warning introduced with gcc 4.5 -Warning is ex=
-plained
->here
->-http://gcc.gnu.org/viewcvs/trunk/gcc/doc/invoke.texi?r1=3D148037&r2=3D148=
-053&diff
->_format=3Dh
->-
->--Khem
->--updated by Alexandru Vaduva - patch needed redone
->-
->-diff -Naur a/lib/plugins/stonith/apcsmart.c b/lib/plugins/stonith/apcsmar=
-t.c
->---- a/lib/plugins/stonith/apcsmart.c	2014-07-09 17:14:24.492455034 +0200
->-+++ b/lib/plugins/stonith/apcsmart.c	2014-07-09 17:15:03.386817399 +0200
->-@@ -719,7 +719,7 @@
->- 	}
->- 	ERRIFNOTCONFIGED(s,NULL);
->-
->--	return OurImports->CopyHostList((const char **)ad->hostlist);
->-+    return OurImports->CopyHostList(CONST_CAST(ad->hostlist));
->- }
->-
->- static gboolean
->-diff -Naur a/lib/plugins/stonith/external.c b/lib/plugins/stonith/externa=
-l.c
->---- a/lib/plugins/stonith/external.c	2014-07-09 17:15:28.661753145 +0200
->-+++ b/lib/plugins/stonith/external.c	2014-07-09 17:17:03.873743634 +0200
->-@@ -540,7 +540,7 @@
->- 		sd->confignames[dircount] =3D NULL;
->- 	}
->-
->--	return (const char **)sd->confignames;
->-+    return CONST_CAST(sd->confignames);
->- }
->-
->- /*
->-diff -Naur a/lib/plugins/stonith/meatware.c b/lib/plugins/stonith/meatwar=
-e.c
->---- a/lib/plugins/stonith/meatware.c	2014-07-09 17:18:47.597375001 +0200
->-+++ b/lib/plugins/stonith/meatware.c	2014-07-09 17:19:35.943338541 +0200
->-@@ -136,7 +136,7 @@
->- 		return(NULL);
->- 	}
->-
->--	return OurImports->CopyHostList((const char **)nd->hostlist);
->-+    return OurImports->CopyHostList(CONST_CAST(nd->hostlist));
->- }
->-
->- /*
->-diff -Naur a/lib/plugins/stonith/null.c b/lib/plugins/stonith/null.c
->---- a/lib/plugins/stonith/null.c	2014-07-09 17:20:12.389803230 +0200
->-+++ b/lib/plugins/stonith/null.c	2014-07-09 17:20:55.156001606 +0200
->-@@ -126,7 +126,7 @@
->- 	struct pluginDevice*	nd =3D (struct pluginDevice*)s;
->-
->- 	ERRIFWRONGDEV(s, NULL);
->--	return OurImports->CopyHostList((const char**)nd->hostlist);
->-+    return OurImports->CopyHostList(CONST_CAST(nd->hostlist));
->- }
->-
->-
->-diff -Naur a/lib/plugins/stonith/rcd_serial.c b/lib/plugins/stonith/rcd_s=
-erial.c
->---- a/lib/plugins/stonith/rcd_serial.c	2014-07-09 17:21:12.603266573 +020=
-0
->-+++ b/lib/plugins/stonith/rcd_serial.c	2014-07-09 17:21:56.341423862 +020=
-0
->-@@ -347,7 +347,7 @@
->- 		return(NULL);
->- 	}
->-
->--	return OurImports->CopyHostList((const char **)rcd->hostlist);
->-+    return OurImports->CopyHostList(CONST_CAST(rcd->hostlist));
->- }
->-
->- /*
->-diff -Naur a/lib/plugins/stonith/rhcs.c b/lib/plugins/stonith/rhcs.c
->---- a/lib/plugins/stonith/rhcs.c	2014-07-09 17:17:27.652742171 +0200
->-+++ b/lib/plugins/stonith/rhcs.c	2014-07-09 17:18:18.562597957 +0200
->-@@ -703,7 +703,7 @@
->- 		sd->confignames[dircount] =3D NULL;
->- 	}
->-
->--	return (const char **)sd->confignames;
->-+    return CONST_CAST(sd->confignames);
->- }
->-
->- /*
->-diff -Naur a/lib/plugins/stonith/ssh.c b/lib/plugins/stonith/ssh.c
->---- a/lib/plugins/stonith/ssh.c	2014-07-09 17:22:15.320624229 +0200
->-+++ b/lib/plugins/stonith/ssh.c	2014-07-09 17:22:53.499015642 +0200
->-@@ -161,7 +161,7 @@
->- 		return(NULL);
->- 	}
->-
->--	return OurImports->CopyHostList((const char **)sd->hostlist);
->-+    return OurImports->CopyHostList(CONST_CAST(sd->hostlist));
->- }
->-
->-
->-diff -Naur a/lib/plugins/stonith/stonith_plugin_common.h
->b/lib/plugins/stonith/stonith_plugin_common.h
->---- a/lib/plugins/stonith/stonith_plugin_common.h	2014-07-09
->17:23:16.954027367 +0200
->-+++ b/lib/plugins/stonith/stonith_plugin_common.h	2014-07-09
->17:24:38.538609129 +0200
->-@@ -123,5 +123,8 @@
->-     return; \
->-   }
->-
->-+#define CONST_CAST(s) \
->-+    (__extension__(union {char ** a; const char** b;})(s)).b
->-+
->- #endif
->-
->diff --git
->a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-remove-getpid=
--check
->.patch
->b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-remove-getpid=
--check
->.patch
->deleted file mode 100644
->index 30f422c..0000000
->---
->a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-remove-getpid=
--check
->.patch
->+++ /dev/null
->@@ -1,31 +0,0 @@
->-diff -Naur a/configure.ac b/configure.ac
->---- a/configure.ac	2014-07-09 17:05:51.602037193 +0200
->-+++ b/configure.ac	2014-07-09 17:08:44.566761961 +0200
->-@@ -441,24 +441,9 @@
->- AC_MSG_RESULT($BUILD_VERSION)
->- AC_SUBST(BUILD_VERSION)
->-
->--
->--dnl check if there are getpid() inconsistency
->--dnl	Note: reduce LIBS; in particular, ltdl can cause confusion.
->--dnl	Possibly better:  move 'LIBS=3D"$LIBS -lltdl"' from above to beyond =
-here.
->--dnl
->--AC_MSG_CHECKING(for getpid() consistency in multi-process/threads progra=
-m)
->--ac_save_LIBS=3D$LIBS --LIBS=3D"-lpthread"
->--AC_TRY_RUN(`cat $srcdir/config/pidtest.c`, --AC_MSG_RESULT(ok),
->--[AC_MSG_RESULT(fail); AC_DEFINE(GETPID_INCONSISTENT, 1 , [pid inconsiste=
-nt])],)
->--LIBS=3D$ac_save_LIBS
->--
->--dnl check byte order
->--AC_MSG_CHECKING(for byteorder)
->--AC_TRY_RUN(`cat $srcdir/config/byteorder_test.c`,
->--[AC_MSG_RESULT(little-endian); AC_DEFINE(CONFIG_LITTLE_ENDIAN, 1,
->[little-endian])], --[AC_MSG_RESULT(big-endian); AC_DEFINE(CONFIG_BIG_ENDI=
-AN,
->1, [big-endian])],)
->-+AC_C_BIGENDIAN(
->-+  [AC_DEFINE(CONFIG_BIG_ENDIAN, 1, [big])],
->-+  [AC_DEFINE(CONFIG_LITTLE_ENDIAN, 1, [little])])
->-
->-
->- dnl =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->diff --git
->a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-deprec=
-ated-gli
->b-support.patch
->b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-deprec=
-ated-gli
->b-support.patch
->deleted file mode 100644
->index 16fc679..0000000
->---
->a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-deprec=
-ated-gli
->b-support.patch
->+++ /dev/null
->@@ -1,12 +0,0 @@
->-diff -Naur a/include/clplumbing/cl_uuid.h b/include/clplumbing/cl_uuid.h
->---- a/include/clplumbing/cl_uuid.h	2014-07-14 14:25:24.127378762 +0200
->-+++ b/include/clplumbing/cl_uuid.h	2014-07-14 14:23:32.120193782 +0200
->-@@ -16,7 +16,7 @@
->-
->- #ifndef _CL_UUID_H_
->- #define _CL_UUID_H_
->--#include <glib/gtypes.h>
->-+#include <glib.h>
->-
->- typedef struct cl_uuid_s{
->- 	unsigned char	uuid[16];
->diff --git
->a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-libxml=
--support
->.patch
->b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-libxml=
--support
->.patch
->deleted file mode 100644
->index a436575..0000000
->---
->a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue/glue-repair-libxml=
--support
->.patch
->+++ /dev/null
->@@ -1,14 +0,0 @@
->-diff -Naur a/configure.ac b/configure.ac
->---- a/configure.ac	2014-07-14 13:02:42.016652860 +0200
->-+++ b/configure.ac	2014-07-14 13:03:59.585322332 +0200
->-@@ -679,8 +679,8 @@
->-
->- CPPFLAGS=3D"$CPPFLAGS $XML2HEAD"
->-
->--AC_CHECK_HEADERS(libxml/xpath.h)
->--if test "$ac_cv_header_libxml_xpath_h" !=3D "yes"; then
->-+AC_CHECK_HEADERS(libxml2/libxml/xpath.h)
->-+if test x"$ac_cv_header_libxml2_libxml_xpath_h" !=3D x"yes"; then
->-    AC_MSG_ERROR(The libxml developement headers were not found)
->- fi
->-
->diff --git a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.5.b=
-b
->b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
->similarity index 49%
->rename from meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.5.bb
->rename to meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
->index f1b4a78..be04469 100644
->--- a/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.5.bb
->+++ b/meta-cgl-common/recipes-cgl/cluster-glue/cluster-glue_1.0.12.bb
->@@ -7,21 +7,20 @@ LICENSE =3D "GPLv2"
-> DEPENDS =3D "libxml2 libtool glib-2.0 bzip2 util-linux net-snmp openhpi"
->
-> SRC_URI =3D " \
->-	http://hg.linux-ha.org/glue/archive/glue-${PV}.tar.bz2 \
->-    file://glue-repair-libxml-support.patch \
->-    file://glue-repair-deprecated-glib-support.patch \
->-    file://glue-remove-getpid-check.patch \
->-    file://fix-const-cast.patch \
->+    http://hg.linux-ha.org/glue/archive/glue-${PV}.tar.bz2 \
->+    file://0001-don-t-compile-doc-and-Error-Fix.patch \
->+    file://0001-ribcl.py.in-Warning-Fix.patch \
->     file://volatiles \
->     file://tmpfiles \
->-	"
->+"
-> SRC_URI_append_libc-uclibc =3D " file://kill-stack-protector.patch"
->-SRC_URI[md5sum] =3D "d2b6f798e58ef2497526e404b8ad640a"
->-SRC_URI[sha256sum] =3D
->"0e1922373aba1c3811f6ef61559a9c407c0bec71d2ebc451a4db5b940ded8ec0"
->+
->+SRC_URI[md5sum] =3D "ec620466d6f23affa3b074b72bca7870"
->+SRC_URI[sha256sum] =3D
->"feba102fa1e24b6be2005089ebe362b82d6567af60005cf371679b1b44ec503f"
->
-> LIC_FILES_CHKSUM =3D
->"file://${COREBASE}/meta/COPYING.GPLv2;md5=3D751419260aa954499f7abaabaa88
->2bbe"
->
->-inherit autotools useradd
->+inherit autotools useradd pkgconfig
->
-> S =3D "${WORKDIR}/Reusable-Cluster-Components-glue--glue-${PV}"
->
->@@ -70,43 +69,50 @@ PACKAGES +=3D "\
-> 	 ${PN}-plugin-interfacemgr-dbg \
-> 	 ${PN}-plugin-interfacemgr-staticdev \
-> 	 ${PN}-lrmtest \
->+         ${PN}-plugin-compress \
->+         ${PN}-plugin-compress-dbg \
->+         ${PN}-plugin-compress-staticdev \
-> 	 "
->
->-FILES_${PN} =3D "/etc/ /var /usr/lib/lib*.so.* /usr/sbin /usr/share/clust=
-er-glue/*sh
->/usr/share/cluster-glue/*pl\
->-	/usr/lib/heartbeat/transient-test.sh \
->-	/usr/lib/heartbeat/logtest \
->-	/usr/lib/heartbeat/ipctransientserver \
->-	/usr/lib/heartbeat/base64_md5_test \
->-	/usr/lib/heartbeat/ipctest \
->-	/usr/lib/heartbeat/ipctransientclient \
->-	/usr/lib/heartbeat/ha_logd \
->-	/usr/lib/heartbeat/lrmd \
->+FILES_${PN} =3D "${sysconfdir} /var ${libdir}/lib*.so.* ${sbindir}
->${datadir}/cluster-glue/*sh ${datadir}/cluster-glue/*pl\
->+	${libdir}/heartbeat/transient-test.sh \
->+	${libdir}/heartbeat/logtest \
->+	${libdir}/heartbeat/ipctransientserver \
->+	${libdir}/heartbeat/base64_md5_test \
->+	${libdir}/heartbeat/ipctest \
->+	${libdir}/heartbeat/ipctransientclient \
->+	${libdir}/heartbeat/ha_logd \
->+	${libdir}/heartbeat/lrmd \
-> 	"
->
->-FILES_${PN}-dbg +=3D "/usr/lib/heartbeat/.debug/"
->+FILES_${PN}-dbg +=3D "${libdir}/heartbeat/.debug/ \
->+                   "
->+FILES_${PN}-plugin-compress =3D "${libdir}/heartbeat/plugins/compress/*.s=
-o"
->+FILES_${PN}-plugin-compress-staticdev =3D
->"${libdir}/heartbeat/plugins/compress/*.*a"
->+FILES_${PN}-plugin-compress-dbg =3D
->"${libdir}/heartbeat/plugins/compress/.debug/"
->
->-FILES_${PN}-plugin-test =3D "/usr/lib/heartbeat/plugins/test/test.so"
->-FILES_${PN}-plugin-test-staticdev =3D "/usr/lib/heartbeat/plugins/test/te=
-st.*a"
->-FILES_${PN}-plugin-test-dbg =3D "/usr/lib/heartbeat/plugins/test/.debug/"
->+FILES_${PN}-plugin-test =3D "${libdir}/heartbeat/plugins/test/test.so"
->+FILES_${PN}-plugin-test-staticdev =3D "${libdir}/heartbeat/plugins/test/t=
-est.*a"
->+FILES_${PN}-plugin-test-dbg =3D "${libdir}/heartbeat/plugins/test/.debug/=
-"
-> FILES_${PN}-plugin-stonith2 =3D " \
->-	/usr/lib/stonith/plugins/xen0-ha-dom0-stonith-helper \
->-	/usr/lib/stonith/plugins/stonith2/*.so \
->+	${libdir}/stonith/plugins/xen0-ha-dom0-stonith-helper \
->+	${libdir}/stonith/plugins/stonith2/*.so \
-> 	"
->-FILES_${PN}-plugin-stonith2-ribcl =3D "/usr/lib/stonith/plugins/stonith2/=
-ribcl.py"
->+FILES_${PN}-plugin-stonith2-ribcl =3D "${libdir}/stonith/plugins/stonith2=
-/ribcl.py"
->
->-FILES_${PN}-plugin-stonith2-dbg =3D "/usr/lib/stonith/plugins/stonith2/.d=
-ebug/"
->-FILES_${PN}-plugin-stonith2-staticdev =3D "/usr/lib/stonith/plugins/stoni=
-th2/*.*a"
->+FILES_${PN}-plugin-stonith2-dbg =3D "${libdir}/stonith/plugins/stonith2/.=
-debug/"
->+FILES_${PN}-plugin-stonith2-staticdev =3D "${libdir}/stonith/plugins/ston=
-ith2/*.*a"
->
->-FILES_${PN}-plugin-stonith-external =3D "/usr/lib/stonith/plugins/externa=
-l/"
->-FILES_${PN}-plugin-raexec =3D "/usr/lib/heartbeat/plugins/RAExec/*.so"
->-FILES_${PN}-plugin-raexec-staticdev =3D "/usr/lib/heartbeat/plugins/RAExe=
-c/*.*a"
->-FILES_${PN}-plugin-raexec-dbg =3D "/usr/lib/heartbeat/plugins/RAExec/.deb=
-ug/"
->+FILES_${PN}-plugin-stonith-external =3D "${libdir}/stonith/plugins/extern=
-al/"
->+FILES_${PN}-plugin-raexec =3D "${libdir}/heartbeat/plugins/RAExec/*.so"
->+FILES_${PN}-plugin-raexec-staticdev =3D "${libdir}/heartbeat/plugins/RAEx=
-ec/*.*a"
->+FILES_${PN}-plugin-raexec-dbg =3D "${libdir}/heartbeat/plugins/RAExec/.de=
-bug/"
->
->-FILES_${PN}-plugin-interfacemgr =3D
->"/usr/lib/heartbeat/plugins/InterfaceMgr/generic.so"
->-FILES_${PN}-plugin-interfacemgr-staticdev =3D
->"/usr/lib/heartbeat/plugins/InterfaceMgr/generic.*a"
->-FILES_${PN}-plugin-interfacemgr-dbg =3D
->"/usr/lib/heartbeat/plugins/InterfaceMgr/.debug/"
->+FILES_${PN}-plugin-interfacemgr =3D
->"${libdir}/heartbeat/plugins/InterfaceMgr/generic.so"
->+FILES_${PN}-plugin-interfacemgr-staticdev =3D
->"${libdir}/heartbeat/plugins/InterfaceMgr/generic.*a"
->+FILES_${PN}-plugin-interfacemgr-dbg =3D
->"${libdir}/heartbeat/plugins/InterfaceMgr/.debug/"
->
->-FILES_${PN}-lrmtest =3D "/usr/share/cluster-glue/lrmtest/"
->+FILES_${PN}-lrmtest =3D "${datadir}/cluster-glue/lrmtest/"
->
-> RDEPENDS_${PN} +=3D "perl"
-> RDEPENDS_${PN}-plugin-stonith2 +=3D "bash"
->--
->1.8.4.2
->
->--
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+This cause build errors on some host OS when building e2fsprogs-native:
+
+| /build/yp/y_x64_150821/tmp/work/x86_64-linux/e2fsprogs-native/1.42.9-r0/e=
+2fsprogs-1.42.9/debugfs/../misc/xattr.c:62:11: error: 'XATTR_SECURITY_PREFI=
+X' undeclared here (not in a function)
+|    .name =3D XATTR_SECURITY_PREFIX,
+|            ^
+| /build/yp/y_x64_150821/tmp/work/x86_64-linux/e2fsprogs-native/1.42.9-r0/e=
+2fsprogs-1.42.9/debugfs/../misc/xattr.c:63:13: error: 'XATTR_SECURITY_PREFI=
+X_LEN' undeclared here (not in a function)
+|    .length =3D XATTR_SECURITY_PREFIX_LEN,
+|              ^
+
+I did some investigate and found that your patch needs the header linux/xat=
+tr.h,
+which is provided by linux-libc-headers, but for -native package, there is =
+no linux-libc-headers-native,
+so it search the one from host OS, but the problem is, there is no XATTR_SE=
+CURITY_PREFIX definition
+in the linux/xattr.h on some host OS like: SUSE 11.x, centos 6, etc.
+
+I'm not sure if your patch is really needed by the e2fsprogs-native, if not=
+, I think we can make this
+patch only apply for target package. If yes, you may need to make it avoid =
+the dependency on host's
+header or you may have a better idea about this.
+
+Thanks,
+Jackie
+
+> ++	},
+> ++	{ 0 },
+> ++};
+> +
+> + /* Free remaining resources after all files have been processed. */
+> +void @@ -16,6 +55,211 @@ xattr_cleanup ()
+> + 	XATTR_STDERR ("Cleaning up resources from xattrs.\n");  }
+> +
+> ++/* Get value for named xattr from file at path.
+> ++ * Returns pointer to allocated block for value and length in length pa=
+ram.
+> ++ * If no value, return NULL pointer and length of 0.
+> ++ * On error return NULL pointer and length set to -1.
+> ++ */
+> ++static char*
+> ++xattr_get_value (const char *path, const char *name, ssize_t *length)
+> ++{
+> ++	char *value =3D NULL;
+> ++
+> ++	*length =3D lgetxattr (path, name, NULL, 0);
+> ++	if (*length =3D=3D -1) {
+> ++		com_err (__func__, errno, "lgetattr");
+> ++		goto out;
+> ++	}
+> ++	if (*length =3D=3D 0) {
+> ++		fprintf (stderr, "xattr %s has value length 0\n", name);
+> ++		goto out;
+> ++	}
+> ++	value =3D calloc (1, *length);
+> ++	if (value =3D=3D NULL) {
+> ++		com_err (__func__, errno, "calloc");
+> ++		goto out;
+> ++	}
+> ++	*length =3D lgetxattr (path, name, value, *length);
+> ++	if (*length =3D=3D -1) {
+> ++		com_err (__func__, errno, "lgetattr");
+> ++		goto value_err;
+> ++	}
+> ++out:
+> ++	return value;
+> ++
+> ++value_err:
+> ++	if (value)
+> ++		free (value);
+> ++	return NULL;
+> ++}
+> ++
+> ++/* Get all attribute names for file at path. Return pointer to
+> ++allocated memory
+> ++ * block holding all names and the length through parameter size.
+> ++ * If no xattrs: return NULL and set size to 0
+> ++ * If error: return NULL and set size to -1  */ static char*
+> ++xattr_get_names (const char *path, ssize_t *size) {
+> ++	char *names =3D NULL;
+> ++
+> ++	*size =3D llistxattr (path, NULL, 0);
+> ++	if (*size =3D=3D -1) {
+> ++		com_err (__func__, errno, "llistxattr");
+> ++		goto out;
+> ++	}
+> ++	if (*size =3D=3D 0) {
+> ++		/* no xattrs */
+> ++		goto out;
+> ++	}
+> ++	names =3D calloc (1, *size);
+> ++	if (names =3D=3D NULL) {
+> ++		com_err (__func__, errno, "calloc");
+> ++		goto out;
+> ++	}
+> ++	*size =3D llistxattr (path, names, *size);
+> ++	if (*size =3D=3D -1) {
+> ++		com_err (__func__, errno, "llistxattr");
+> ++		goto cleanup;
+> ++	}
+> ++	if (*size =3D=3D 0) {
+> ++		fprintf (stdout, "Conflicting data, no xattrs for file: %s\n", path);
+> ++		goto cleanup;
+> ++	}
+> ++out:
+> ++	return names;
+> ++
+> ++cleanup:
+> ++	if (names)
+> ++		free (names);
+> ++	return NULL;
+> ++}
+> ++
+> ++/* return pointer to next string in xattr name block, don't go beyond
+> ++length  */ static inline char* next_name (char *name, size_t length) {
+> ++	int i =3D 0;
+> ++
+> ++	for (i =3D 0; i < length; ++i)
+> ++		if (name [i] =3D=3D '\0') {
+> ++			++i;
+> ++			break;
+> ++		}
+> ++
+> ++	return name + i;
+> ++}
+> ++
+> ++/* Find entry in xattr_table with matching prefix. */ static const
+> ++xattr_prefix_t* xattr_find_prefix (char *name, size_t length) {
+> ++	int i =3D 0;
+> ++
+> ++	XATTR_STDERR ("find_attr_data: searching for prefix from xattr name: %=
+s\n", name);
+> ++	for (i =3D 0; xattr_prefixes[i].index !=3D 0; ++i) {
+> ++		if (!strncmp (name, xattr_prefixes[i].name, MIN (length, xattr_prefix=
+es[i].length))) {
+> ++			XATTR_STDERR ("found match in table with index: %d\n",
+> xattr_prefixes[i].index);
+> ++			return &xattr_prefixes[i];
+> ++		}
+> ++	}
+> ++	return NULL;
+> ++}
+> ++
+> ++/* Query file at path for attributes. build up structure the file
+> ++system
+> ++ * expects of an extended attribute disk block (header parameter).
+> ++ *
+> ++ * The main loop walks through the xattr names one at a time. It gets
+> ++the value
+> ++ * for each named xattr and copies the data into the xattr block
+> ++pointed to by
+> ++ * the header parameter. To do this the loop also tracks the location
+> ++of the
+> ++ * associated entry and value. Values start at the end of the buffer
+> ++and grow
+> ++ * back towards the header while the entries start immediately after
+> ++the header
+> ++ * and grow towards the end of the block.
+> ++ *
+> ++ * See the comment block at the beginning of the xattr.c file in the
+> ++ext2 file
+> ++ * system code in the kernel: fs/ext2/xattr.c
+> ++ * Assume the xattr block pointed to by header parameter is initialized=
+ to 0s.
+> ++ */
+> ++static int
+> ++xattr_build_block (const char *path,
+> ++		struct ext2_ext_attr_header **header,
+> ++		size_t header_length)
+> ++{
+> ++	struct ext2_ext_attr_entry *entry =3D NULL;
+> ++	char *names =3D NULL, *value =3D NULL, *name_curr =3D NULL;
+> ++	ssize_t names_length =3D 0, value_length =3D 0;
+> ++	size_t name_length =3D 0, value_index =3D 0, len_rem =3D 0;
+> ++	const xattr_prefix_t *prefix =3D NULL;
+> ++	int ret =3D 0;
+> ++
+> ++	XATTR_STDERR ("xattr_build_block for file: %s\n", path);
+> ++	*header =3D NULL;
+> ++	names =3D xattr_get_names (path, &names_length);
+> ++	if (names =3D=3D NULL) {
+> ++		// no xattrs for file @ path or error
+> ++		ret =3D names_length;
+> ++		goto out;
+> ++	}
+> ++	*header =3D calloc (1, header_length);
+> ++	if (*header =3D=3D NULL) {
+> ++		com_err (__func__, errno, "calloc");
+> ++		goto out;
+> ++	}
+> ++	(*header)->h_magic =3D EXT2_EXT_ATTR_MAGIC;
+> ++	(*header)->h_blocks =3D 1;
+> ++	/* Values start at end of buffer. NOTE: It must be moved before a valu=
+e can
+> ++	 * be stored.
+> ++	 */
+> ++	value_index =3D header_length;
+> ++	for (name_curr =3D names, entry =3D FIRST_ENTRY(*header), len_rem =3D =
+names_length;
+> ++		name_curr < names + names_length;
+> ++		len_rem =3D names_length - (name_curr - names),
+> ++			name_curr =3D next_name (name_curr, len_rem),
+> ++			entry =3D EXT2_EXT_ATTR_NEXT(entry))
+> ++	{
+> ++		XATTR_STDERR ("xattr_build_block: processing xattr with name %s\n", n=
+ame_curr);
+> ++		name_length =3D strnlen (name_curr, len_rem);
+> ++		prefix =3D xattr_find_prefix (name_curr, name_length);
+> ++		if (!prefix) {
+> ++			fprintf (stderr, "Don't currently handle xattr: %s\n", name_curr);
+> ++			continue;
+> ++		}
+> ++		value =3D xattr_get_value (path, name_curr, &value_length);
+> ++		if (value =3D=3D NULL) {
+> ++			// no xattr value or error
+> ++			fprintf (stderr, "failed to get value, skipping\n");
+> ++			goto next;
+> ++		}
+> ++		/* setup offsets and lengths for name and value */
+> ++		entry->e_name_len =3D name_length - prefix->length;
+> ++		entry->e_name_index =3D prefix->index;
+> ++		/* Can't know these till we know the length of the value. */
+> ++		entry->e_value_offs =3D value_index -=3D EXT2_EXT_ATTR_SIZE(value_len=
+gth);
+> ++		entry->e_value_size =3D value_length;
+> ++		/* Check to be sure entry name and value don't overlap before copy. *=
+/
+> ++		if (EXT2_EXT_ATTR_NAME(entry) + entry->e_name_len > VALUE(*header, en=
+try)) {
+> ++			fprintf (stderr, "xattr entry name and value overlap! Too much xattr=
+ data.");
+> ++			ret =3D -1;
+> ++			goto out;
+> ++		}
+> ++		/* copy name and value data then calculate the hash */
+> ++		memcpy (EXT2_EXT_ATTR_NAME(entry),
+> ++			name_curr + prefix->length,
+> ++			entry->e_name_len);
+> ++		memcpy (VALUE(*header, entry), value, entry->e_value_size);
+> ++		entry->e_hash =3D ext2fs_ext_attr_hash_entry (entry, VALUE(*header,
+> ++entry));
+> ++next:
+> ++		if (value)
+> ++			free (value);
+> ++	}
+> ++	XATTR_STDERR ("xattr_build_block: done building xattr buffer\n");
+> ++out:
+> ++	if (names)
+> ++		free (names);
+> ++	return ret;
+> ++}
+> ++
+> + /* This is the entry point to the xattr module. This function copies
+> +the xattrs
+> +  * from the file at 'path' to the file system object at 'ino'.
+> +  *
+> +@@ -28,7 +272,56 @@ errcode_t
+> + set_inode_xattr (ext2_filsys fs, ext2_ino_t ino, const char *path)  {
+> + 	errcode_t ret =3D 0;
+> ++	char *buf =3D NULL;
+> ++	struct ext2_inode inode =3D { 0 };
+> ++	blk_t block =3D 0;
+> ++	struct ext2_ext_attr_header *header =3D NULL;
+> ++	uint32_t newcount =3D 0;
+> +
+> + 	XATTR_STDERR ("Copying xattrs from %s to inode 0x%x.\n", path, ino);
+> ++	/* Populate the xattr block for the file at path */
+> ++	if (ret =3D xattr_build_block (path, &header, fs->blocksize)) {
+> ++		goto out;
+> ++	}
+> ++	if (header =3D=3D NULL) {
+> ++		XATTR_STDERR ("set_inode_xattrs: no xattrs for %s\n", path);
+> ++		goto out;
+> ++	}
+> ++	if (ret =3D ext2fs_read_inode (fs, ino, &inode)) {
+> ++		com_err(__func__, ret, "ext2fs_read_inode");
+> ++		goto out;
+> ++	}
+> ++	if (ret =3D ext2fs_alloc_block (fs, 0, NULL, &block)) {
+> ++		com_err(__func__, ret, "ext2fs_alloc_block: returned %d", ret);
+> ++		goto out;
+> ++	}
+> ++	ext2fs_mark_block_bitmap2 (fs->block_map, block);
+> ++	XATTR_STDERR ("writing xattr block 0x%x to disk:\n", block);
+> ++	if (ret =3D ext2fs_write_ext_attr (fs, block, header)) {
+> ++		com_err(__func__, ret, "ext2fs_write_ext_attr: returned %d", ret);
+> ++		goto out;
+> ++	}
+> ++	/* point inode for current file to xattr block, update block count and
+> ++	 * write inode to disk
+> ++	 */
+> ++	inode.i_file_acl =3D block;
+> ++	if (ret =3D ext2fs_adjust_ea_refcount2(fs,
+> ++					block,
+> ++					(char*)header,
+> ++					1,
+> ++					&newcount))
+> ++	{
+> ++		com_err(__func__, ret, "ext2fs_adjust_ea_refcount");
+> ++		goto out;
+> ++	}
+> ++	if (ret =3D ext2fs_iblk_add_blocks (fs, &inode, 1)) {
+> ++		com_err(__func__, ret, "ext2fs_iblk_add_blocks failed");
+> ++		goto out;
+> ++	}
+> ++	if (ret =3D ext2fs_write_inode (fs, ino, &inode))
+> ++		com_err(__func__, ret, "ext2fs_write_inode: returned %d", ret);
+> ++out:
+> ++	if (header)
+> ++		free (header);
+> + 	return ret;
+> + }
+> diff --git a/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend b/recip=
+es-
+> devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
+> index a4576b1..edc94d8 100644
+> --- a/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
+> +++ b/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
+> @@ -4,4 +4,5 @@ SRC_URI +=3D " \
+>      file://misc-xattr-add-xattr-module-stub.patch \
+>      file://mke2fs.c-create_inode.c-copy-xattrs.patch \
+>      file://lib-ext2fs-ext2_ext_attr.h-add-xattr-index.patch \
+> +    file://misc-xattr-create-xattr-block.patch \
+>  "
+> --
+> 2.1.4
+>=20
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
