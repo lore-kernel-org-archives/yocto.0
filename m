@@ -1,50 +1,36 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <flihp@twobit.us>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8E9EBE00B2F; Fri, 21 Aug 2015 08:24:20 -0700 (PDT)
+	id 5C602E00B34; Fri, 21 Aug 2015 09:02:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1932E00B2E
-	for <yocto@yoctoproject.org>; Fri, 21 Aug 2015 08:24:17 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga103.fm.intel.com with ESMTP; 21 Aug 2015 08:23:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.15,722,1432623600"; 
-	d="scan'208,217";a="546105600"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by FMSMGA003.fm.intel.com with ESMTP; 21 Aug 2015 08:23:55 -0700
-Received: from orsmsx114.amr.corp.intel.com (10.22.240.10) by
-	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Fri, 21 Aug 2015 08:23:55 -0700
-Received: from fmsmsx114.amr.corp.intel.com (10.18.116.8) by
-	ORSMSX114.amr.corp.intel.com (10.22.240.10) with Microsoft SMTP Server
-	(TLS) id 14.3.224.2; Fri, 21 Aug 2015 08:23:55 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.103]) by
-	FMSMSX114.amr.corp.intel.com ([10.18.116.8]) with mapi id
-	14.03.0224.002; Fri, 21 Aug 2015 08:23:54 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Yocto Project Status WW34
-Thread-Index: AdDcJV0P7P4STStJQ8+jJexTT7wD2A==
-Date: Fri, 21 Aug 2015 15:23:54 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E5562F327@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.108]
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BF15E00B2E
+	for <yocto@yoctoproject.org>; Fri, 21 Aug 2015 09:02:09 -0700 (PDT)
+Received: from [69.84.245.29] (helo=[10.11.19.209])
+	by smtp.twobit.us with esmtpsa (TLSv1.2:DHE-RSA-AES128-SHA:128)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1ZSokW-0001VT-Tp; Fri, 21 Aug 2015 16:01:03 +0000
+Message-ID: <55D74B76.5070405@twobit.us>
+Date: Fri, 21 Aug 2015 09:01:58 -0700
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Icedove/31.8.0
 MIME-Version: 1.0
-Subject: Yocto Project Status WW34
+To: wenzong fan <wenzong.fan@windriver.com>
+References: <1439645701-15785-1-git-send-email-flihp@twobit.us>
+	<55D69175.7080708@twobit.us> <55D6EACC.1000703@windriver.com>
+In-Reply-To: <55D6EACC.1000703@windriver.com>
+X-SA-Exim-Connect-IP: 69.84.245.29
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH] Use the SELinux project release tarballs.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,594 +42,201 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Aug 2015 15:24:20 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5562F327fmsmsx111amrcor_"
+X-List-Received-Date: Fri, 21 Aug 2015 16:02:15 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5562F327fmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Greetings Wenzong,
 
-Current Dev Position: 1.9 Milestone 3 (M3)
-Next Deadline: M3 cut off of August 24th at noon GMT
+On 08/21/2015 02:09 AM, wenzong fan wrote:
+> On 08/21/2015 10:48 AM, Philip Tricca wrote:
+>> Any opinions / thoughts on this one? I've got an upgrade for the
+>> toolstack (2.3 -> 2.4) ready to go but I've based it on the release URIs
+>> from the wiki so it depends on this patch.
+> 
+> Good to know you have made the selinux toolstack upgrade (2.3 -> 2.4).
+> 
+> Did you fix the refpolicy-* build issues with 2.4 tools?
 
-SWAT team rotation: Tracy -> Alejandro
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+I think so :)
 
-Key Status/Updates:
+> The policy store is moved to /var/lib/selinux, the install logic from
+> refpolicy_common.inc may fail to build policy DB and generate contexts
+> files.
 
-  *   The autobuilder situation has become problematic as it appears some t=
-hings we think are being built are not what is actually being built. We're =
-looking into the scope of the issue, we're hoping it's contained within a s=
-mall subset of builds and the milestone/master releases are not affected bu=
-t this yet to be confirmed.
-  *   We did add automated runtime testing of the SDK (-c testsdk) and auto=
-mated runtime testing of LSB images which wasn't previously being tested. T=
-his significantly increases the automated coverage of project artefacts.
-  *   We have a potential fix for the "qemu networking hang" which turns ou=
-t to be a qemu serial port issue, thanks to Randy for figuring that out!
-  *   We also have a lead on the systemd ttyS0 failure to start (thanks Ani=
-bal!) and a way to reproduce it but no fix yet for it.
-  *   The autobuilder situation combined with everything else means patches=
- are delaying being merged and the M3 release cutoff/feature freeze will be=
- delayed.
-  *   RP is on vacation for the second half of next week.
+Indeed it failed spectacularly. Additionally the format of the policy
+store has changed a bit with the addition of the CIL. I've got all of
+this up on github in a branch if you'd like to give it a review. It
+currently works but I'm sure it can be improved:
 
-Key YP 1.9 Dates:
-YP Final - 2.0 Cut off: Sept. 28, 2015 noon GMT
-1.9 M3 Release Target: Before Sept. 11 2015
-2.0 final Release Target: Before Oct. 30, 2015
+https://github.com/flihp/meta-selinux/tree/upgrade
 
-Key Status Links for YP:
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.9_Status
-https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedule
-https://wiki.yoctoproject.org/wiki/Yocto_1.9_Features
+Best,
+Philip
 
-Tracking Metrics:
-            WDD 1950 (last week 1889 )
-(https://wiki.yoctoproject.org/charts/combo.html)
+>> On 08/15/2015 06:35 AM, Philip Tricca wrote:
+>>> The SRC_URI used for the last SELinux userspace upgrade was the
+>>> wrong one. We were using the URI generated by GitHub when tags are
+>>> added to a repo. These are not the SELinux release tarballs.
+>>>
+>>> The SELinux project generates and releases tarballs for each tool
+>>> and posts them to their GitHub wiki 'Releases' page:
+>>> https://github.com/SELinuxProject/selinux/wiki/Releases. This patch
+>>> fixes this URI, fixes the SELINUX_RELEASE variable that didn't get
+>>> updated during the last upgrade, removes the workaround for the 'S'
+>>> variable and fixes up the SRC_URI hashes.
+>>>
+>>> Signed-off-by: Philip Tricca <flihp@twobit.us>
+>>> ---
+>>>   recipes-security/selinux/checkpolicy_2.3.bb     | 4 ++--
+>>>   recipes-security/selinux/libselinux_2.3.bb      | 4 ++--
+>>>   recipes-security/selinux/libsemanage_2.3.bb     | 4 ++--
+>>>   recipes-security/selinux/libsepol_2.3.bb        | 4 ++--
+>>>   recipes-security/selinux/policycoreutils_2.3.bb | 4 ++--
+>>>   recipes-security/selinux/selinux_20140506.inc   | 4 ++--
+>>>   recipes-security/selinux/selinux_common.inc     | 4 ----
+>>>   recipes-security/selinux/sepolgen_1.2.1.bb      | 4 ++--
+>>>   8 files changed, 14 insertions(+), 18 deletions(-)
+>>>
+>>> diff --git a/recipes-security/selinux/checkpolicy_2.3.bb
+>>> b/recipes-security/selinux/checkpolicy_2.3.bb
+>>> index 9f68487..0efc94e 100644
+>>> --- a/recipes-security/selinux/checkpolicy_2.3.bb
+>>> +++ b/recipes-security/selinux/checkpolicy_2.3.bb
+>>> @@ -3,5 +3,5 @@ include ${BPN}.inc
+>>>
+>>>   LIC_FILES_CHKSUM =
+>>> "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
+>>>
+>>> -SRC_URI[md5sum] = "920f1a048b6023a22e1bae7b40fd413c"
+>>> -SRC_URI[sha256sum] =
+>>> "8072c12121613ba943417bbb6d33224d12373ea19d75c5acd1846a35e0e05b74"
+>>> +SRC_URI[md5sum] = "90caed59291291b184890f563bf6c095"
+>>> +SRC_URI[sha256sum] =
+>>> "90632d11afecb66997971d4c5c5d70dfb02d3969ec610ee2918ba6df99c8207b"
+>>> diff --git a/recipes-security/selinux/libselinux_2.3.bb
+>>> b/recipes-security/selinux/libselinux_2.3.bb
+>>> index 81e599d..ff74b61 100644
+>>> --- a/recipes-security/selinux/libselinux_2.3.bb
+>>> +++ b/recipes-security/selinux/libselinux_2.3.bb
+>>> @@ -3,8 +3,8 @@ include ${BPN}.inc
+>>>
+>>>   LIC_FILES_CHKSUM =
+>>> "file://LICENSE;md5=84b4d2c6ef954a2d4081e775a270d0d0"
+>>>
+>>> -SRC_URI[md5sum] = "d27e249ad8450e7182203134cf4d85e2"
+>>> -SRC_URI[sha256sum] =
+>>> "03fe2baa7ceeea531a64fd321b44ecf09a55f3af5ef66a58a4135944f34e9851"
+>>> +SRC_URI[md5sum] = "b11d4d95ef4bde732dbc8462df57a1e5"
+>>> +SRC_URI[sha256sum] =
+>>> "0b1e0b43ecd84a812713d09564019b08e7c205d89072b5cbcd07b052cd8e77b2"
+>>>
+>>>   SRC_URI += "\
+>>>           file://libselinux-drop-Wno-unused-but-set-variable.patch \
+>>> diff --git a/recipes-security/selinux/libsemanage_2.3.bb
+>>> b/recipes-security/selinux/libsemanage_2.3.bb
+>>> index 5eada94..a238e08 100644
+>>> --- a/recipes-security/selinux/libsemanage_2.3.bb
+>>> +++ b/recipes-security/selinux/libsemanage_2.3.bb
+>>> @@ -3,8 +3,8 @@ include ${BPN}.inc
+>>>
+>>>   LIC_FILES_CHKSUM =
+>>> "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
+>>>
+>>> -SRC_URI[md5sum] = "cc313b400637d94e3a549bf77555d8c3"
+>>> -SRC_URI[sha256sum] =
+>>> "4c984379a98ee9f05b80ff6e57dd2de886273d7136146456cabdce21ac32ed7f"
+>>> +SRC_URI[md5sum] = "e564e2b92d18db35707060da29cddab9"
+>>> +SRC_URI[sha256sum] =
+>>> "03e09e35e611c286e446bef92b6023ef2623815996f5a53394bb02e49a312e4b"
+>>>
+>>>   SRC_URI += "\
+>>>       file://libsemanage-Fix-execve-segfaults-on-Ubuntu.patch \
+>>> diff --git a/recipes-security/selinux/libsepol_2.3.bb
+>>> b/recipes-security/selinux/libsepol_2.3.bb
+>>> index 0c07d41..478a6ee 100644
+>>> --- a/recipes-security/selinux/libsepol_2.3.bb
+>>> +++ b/recipes-security/selinux/libsepol_2.3.bb
+>>> @@ -3,5 +3,5 @@ include ${BPN}.inc
+>>>
+>>>   LIC_FILES_CHKSUM =
+>>> "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
+>>>
+>>> -SRC_URI[md5sum] = "c6b3dc07bf19ab4f364f21bbecb44beb"
+>>> -SRC_URI[sha256sum] =
+>>> "5a4481bfd0fad6fdad1511c786d69de1fc3eddc28154eae1691e1bf4e9e505c3"
+>>> +SRC_URI[md5sum] = "e47e8527b5d4ea971726c455f847efdd"
+>>> +SRC_URI[sha256sum] =
+>>> "cc8d8642c3b7b95d6928d65dcbca2ab0627abc1c05166637851e63c1a6eae68f"
+>>> diff --git a/recipes-security/selinux/policycoreutils_2.3.bb
+>>> b/recipes-security/selinux/policycoreutils_2.3.bb
+>>> index c837266..b77094e 100644
+>>> --- a/recipes-security/selinux/policycoreutils_2.3.bb
+>>> +++ b/recipes-security/selinux/policycoreutils_2.3.bb
+>>> @@ -3,8 +3,8 @@ include ${BPN}.inc
+>>>
+>>>   LIC_FILES_CHKSUM =
+>>> "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
+>>>
+>>> -SRC_URI[md5sum] = "4f5c508e3c3867c8beb343e993d353dd"
+>>> -SRC_URI[sha256sum] =
+>>> "11e8815ac13debb87897d2781381b89ec5c6c746a3d44223a493bc7ace6cc71f"
+>>> +SRC_URI[md5sum] = "9a5db20adfe2250f53833b277ac796ae"
+>>> +SRC_URI[sha256sum] =
+>>> "864cfaee58b5d2f15b140c354e59666e57143293c89f2b2e85bc0d0e4beefcd2"
+>>>
+>>>   SRC_URI += "\
+>>>       file://policycoreutils-fix-sepolicy-install-path.patch \
+>>> diff --git a/recipes-security/selinux/selinux_20140506.inc
+>>> b/recipes-security/selinux/selinux_20140506.inc
+>>> index 01cc52f..beaaff0 100644
+>>> --- a/recipes-security/selinux/selinux_20140506.inc
+>>> +++ b/recipes-security/selinux/selinux_20140506.inc
+>>> @@ -1,5 +1,5 @@
+>>> -SELINUX_RELEASE = "20131030"
+>>> +SELINUX_RELEASE = "20140506"
+>>>
+>>> -SRC_URI =
+>>> "https://github.com/SELinuxProject/selinux/archive/${BPN}-${PV}.tar.gz"
+>>> +SRC_URI =
+>>> "https://raw.githubusercontent.com/wiki/SELinuxProject/selinux/files/releases/${SELINUX_RELEASE}/${BPN}-${PV}.tar.gz"
+>>>
+>>>
+>>>   include selinux_common.inc
+>>> diff --git a/recipes-security/selinux/selinux_common.inc
+>>> b/recipes-security/selinux/selinux_common.inc
+>>> index e53792d..7efa694 100644
+>>> --- a/recipes-security/selinux/selinux_common.inc
+>>> +++ b/recipes-security/selinux/selinux_common.inc
+>>> @@ -5,10 +5,6 @@ HOMEPAGE = "https://github.com/SELinuxProject"
+>>>   # we redefine EXTRA_OEMAKE here
+>>>   EXTRA_OEMAKE = "-e"
+>>>
+>>> -# Releases are now from the base of the full tree, necessitating our
+>>> skipping
+>>> -# through an extra level of directories.
+>>> -S = "${WORKDIR}/selinux-${BPN}-${PV}/${BPN}"
+>>> -
+>>>   do_compile() {
+>>>       oe_runmake all \
+>>>               INCLUDEDIR='${STAGING_INCDIR}' \
+>>> diff --git a/recipes-security/selinux/sepolgen_1.2.1.bb
+>>> b/recipes-security/selinux/sepolgen_1.2.1.bb
+>>> index b47ff26..c636ac3 100644
+>>> --- a/recipes-security/selinux/sepolgen_1.2.1.bb
+>>> +++ b/recipes-security/selinux/sepolgen_1.2.1.bb
+>>> @@ -3,5 +3,5 @@ include ${BPN}.inc
+>>>
+>>>   LIC_FILES_CHKSUM =
+>>> "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
+>>>
+>>> -SRC_URI[md5sum] = "308011ba495b6770239bb3d371d277d3"
+>>> -SRC_URI[sha256sum] =
+>>> "7a5710f7c8be16dfbaf8da98c3c0e46bc6159f2df5340e9efb975b084f61413c"
+>>> +SRC_URI[md5sum] = "ce662a83188bc3a9b40c15792fcaf2c8"
+>>> +SRC_URI[sha256sum] =
+>>> "438c246bdc6b3cf1b12116831f4c601aaae6e93decb007dddab212a3c88781b0"
+>>>
+>>
 
-[If anyone has suggestions for other information you'd like to see on this =
-weekly status update, let us know!]
 
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5562F327fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.apple-tab-span
-	{mso-style-name:apple-tab-span;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:37704898;
-	mso-list-template-ids:-719657544;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1
-	{mso-list-id:96289582;
-	mso-list-template-ids:222344988;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2
-	{mso-list-id:376517150;
-	mso-list-template-ids:-637870386;}
-@list l2:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Current Dev Position: 1.9 Milestone 3 (M3)</sp=
-an><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,=
-&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Next Deadline: M3 cut off of August 24th at no=
-on GMT</span><span style=3D"font-size:12.0pt;font-family:&quot;Times New Ro=
-man&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">SWAT team rotation: Tracy -&gt; Alejandro</spa=
-n><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&=
-quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_Build_Failure_Swat_Team"><span style=3D"font-size:11.0pt;fo=
-nt-family:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_=
-Build_Failure_Swat_Team</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Key Status/Updates:</span><span style=3D"font-=
-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p=
-></o:p></span></p>
-<ul style=3D"margin-top:0in" type=3D"disc">
-<li class=3D"MsoNormal" style=3D"color:black;mso-list:l0 level1 lfo4;vertic=
-al-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">The au=
-tobuilder situation has become problematic as it appears some things we thi=
-nk are being built are not what is actually being built. We&#8217;re lookin=
-g into the scope of the issue, we&#8217;re hoping it&#8217;s contained with=
-in
- a small subset of builds and the milestone/master releases are not affecte=
-d but this yet to be confirmed.<o:p></o:p></span></li><li class=3D"MsoNorma=
-l" style=3D"color:black;mso-list:l0 level1 lfo4;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">We did=
- add automated runtime testing of the SDK (-c testsdk) and automated runtim=
-e testing of LSB images which wasn&#8217;t previously being tested. This si=
-gnificantly increases the automated coverage of project artefacts.<o:p></o:=
-p></span></li><li class=3D"MsoNormal" style=3D"color:black;mso-list:l0 leve=
-l1 lfo4;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">We hav=
-e a potential fix for the &#8220;qemu networking hang&#8221; which turns ou=
-t to be a qemu serial port issue, thanks to Randy for figuring that out!<o:=
-p></o:p></span></li><li class=3D"MsoNormal" style=3D"color:black;mso-list:l=
-0 level1 lfo4;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">We als=
-o have a lead on the systemd ttyS0 failure to start (thanks Anibal!) and a =
-way to reproduce it but no fix yet for it.<o:p></o:p></span></li><li class=
-=3D"MsoNormal" style=3D"color:black;mso-list:l0 level1 lfo4;vertical-align:=
-baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">The au=
-tobuilder situation combined with everything else means patches are delayin=
-g being merged and the M3 release cutoff/feature freeze will be delayed.<o:=
-p></o:p></span></li><li class=3D"MsoNormal" style=3D"color:black;mso-list:l=
-0 level1 lfo4;vertical-align:baseline">
-<span style=3D"font-family:&quot;Arial&quot;,&quot;sans-serif&quot;">RP is =
-on vacation for the second half of next week.<o:p></o:p></span></li></ul>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Key YP 1.9 Dates:</span><span style=3D"font-si=
-ze:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">YP Final - 2.0 Cut =
-off: Sept. 28, 2015 noon GMT
-</span><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">1.9 M3 Release Targ=
-et: Before Sept. 11 2015</span><span style=3D"font-size:12.0pt;font-family:=
-&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">2.0 final Release T=
-arget: Before Oct. 30, 2015</span><span style=3D"font-size:12.0pt;font-fami=
-ly:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Key Status Links for YP:</span><span style=3D"=
-font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"=
-><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_Project_v1.9_Status"><span style=3D"font-size:11.0pt;font-f=
-amily:Consolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_Proj=
-ect_v1.9_Status</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_1.9_Schedule"><span style=3D"font-size:11.0pt;font-family:C=
-onsolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Schedul=
-e</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoctoproject=
-.org/wiki/Yocto_1.9_Features"><span style=3D"font-size:11.0pt;font-family:C=
-onsolas;color:#1155CC">https://wiki.yoctoproject.org/wiki/Yocto_1.9_Feature=
-s</span></a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
-mes New Roman&quot;,&quot;serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Tracking Metrics:</span><span style=3D"font-si=
-ze:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp; WDD 1950 (last week 1889 )</span><span style=3D"font-s=
-ize:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;"><o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in"><span style=3D"font-famil=
-y:Consolas;color:black">(</span><span style=3D"font-size:12.0pt;font-family=
-:&quot;Times New Roman&quot;,&quot;serif&quot;"><a href=3D"https://wiki.yoc=
-toproject.org/charts/combo.html"><span style=3D"font-size:11.0pt;font-famil=
-y:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#1155CC">https://wiki.yoct=
-oproject.org/charts/combo.html</span></a></span><span style=3D"font-family:=
-Consolas;color:black">)</span><span style=3D"font-size:12.0pt;font-family:&=
-quot;Times New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas;color:black">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-<span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&qu=
-ot;serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">[If anyone has suggestions for other informati=
-on you&#8217;d like to see on this weekly status update, let us know!]<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black">Thanks,</span><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;,&quot;serif&quot=
-;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-,&quot;serif&quot;;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-si=
-ze:8.0pt;font-family:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</=
-span></b><span style=3D"font-family:&quot;MS Sans Serif&quot;,&quot;serif&q=
-uot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-,&quot;serif&quot;">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;,&quot;serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;,&quot;serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-,&quot;serif&quot;">(208) 244-4460<span style=3D"color:black"><o:p></o:p></=
-span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;,&quot;serif&quot;;color:teal">:<=
-/span><span lang=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans =
-Serif&quot;,&quot;serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5562F327fmsmsx111amrcor_--
