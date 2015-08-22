@@ -1,17 +1,14 @@
 Return-Path: <net147@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 43823E00B4C; Sat, 22 Aug 2015 01:34:20 -0700 (PDT)
+	id EAD4BE00B57; Sat, 22 Aug 2015 01:43:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
+	TVD_SPACE_RATIO autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (net147[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,35 +16,38 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pd0-f169.google.com (mail-pd0-f169.google.com
-	[209.85.192.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C25CE00A99
-	for <yocto@yoctoproject.org>; Sat, 22 Aug 2015 01:34:15 -0700 (PDT)
-Received: by pdbmi9 with SMTP id mi9so34623757pdb.3
-	for <yocto@yoctoproject.org>; Sat, 22 Aug 2015 01:34:15 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.180 listed in list.dnswl.org]
+	*  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
+Received: from mail-pd0-f180.google.com (mail-pd0-f180.google.com
+	[209.85.192.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1224E00A99
+	for <yocto@yoctoproject.org>; Sat, 22 Aug 2015 01:43:29 -0700 (PDT)
+Received: by pdbfa8 with SMTP id fa8so34739721pdb.1
+	for <yocto@yoctoproject.org>; Sat, 22 Aug 2015 01:43:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id;
-	bh=akKFSrfeaZg3zbahuYEiK1r6aPtT+VhlnGTRCYPWiiM=;
-	b=l/gsWBS/xVrnDODKNvGqu3854mI/cP28Zyc0fPk63wvtYwxHyWkInulWlvCQvRF7d+
-	tU7+dyRvSpHgaaVat7wa/VEyPfY99Zdgd/JXm5KIVaK0gc8zMCVguMRzUXP06CnH7D3S
-	1Qlh45nboCj1y7Ozst8YLv0ixCbQRg5BnEqMtYYOJ48Au1pRFVy8K8oO04JpK5vMkr3I
-	90WHssQbpyAqSdsCWuDHUHIaCFQXQw7fnF2qLRfoTez4deTrg2MBZGEhqf2bUZlghiuI
-	swPb/avgHc1RG9FMBlEazQGJ+TMeznrIPbbayihCogljA1096eO+I6OiO02huhte/pTn
-	yiGg==
-X-Received: by 10.70.41.100 with SMTP id e4mr25947057pdl.169.1440232454977;
-	Sat, 22 Aug 2015 01:34:14 -0700 (PDT)
+	bh=QfIoF5+gQqUN11jYUGFSNnCMfqEKfSMJXZM0Z1oYz/M=;
+	b=hVNIX+6u6mQFIVWWx4NMqIKA/ACBs8id1qg+pBgc3kwqQbkUKJO1q8IAmU4+q8anGn
+	TWNzeVVQoTFIlmeNNQa1yBI5SEjzIAvzhcPDvA6V6i6U2pB0/qD1Z6OFmf21lMMoHTxy
+	IHsQgpZKK9RbSGRtAvBoSHV0NgtJ1iG53KFzGhr9FsVsLzW8vjygTUkE5Id/nnZcSOaY
+	rzEm5YSAo9aWctlzhg0k9HRRMrQRH3Z1kCrlDvEfntukLPtpPgpUTF5Pcn1VYkesVHGK
+	fWopwRaz6XiF5xYERPZL2WLtD3HZlpXA9nUAXgxOtPRSs0HT1g404JkLc1DogH0kUTie
+	DWiQ==
+X-Received: by 10.70.140.238 with SMTP id rj14mr26385407pdb.38.1440233009218; 
+	Sat, 22 Aug 2015 01:43:29 -0700 (PDT)
 Received: from 60-242-179-244.static.tpgi.com.au
 	(60-242-179-244.static.tpgi.com.au. [60.242.179.244])
-	by smtp.gmail.com with ESMTPSA id
-	nv8sm8397461pdb.92.2015.08.22.01.34.13
+	by smtp.gmail.com with ESMTPSA id n9sm7713310pdi.88.2015.08.22.01.43.28
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 22 Aug 2015 01:34:14 -0700 (PDT)
+	Sat, 22 Aug 2015 01:43:28 -0700 (PDT)
 From: Jonathan Liu <net147@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sat, 22 Aug 2015 18:33:38 +1000
-Message-Id: <1440232418-4519-1-git-send-email-net147@gmail.com>
+Date: Sat, 22 Aug 2015 18:43:32 +1000
+Message-Id: <1440233012-18802-1-git-send-email-net147@gmail.com>
 X-Mailer: git-send-email 2.5.0
-Subject: [meta-raspberrypi][PATCH] gstreamer1.0-plugins-bad: remove unrecognized configure option
+Subject: [meta-raspberrypi][PATCH] gstreamer1.0-omx: enable Raspberry Pi support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,25 +59,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 22 Aug 2015 08:34:20 -0000
+X-List-Received-Date: Sat, 22 Aug 2015 08:43:34 -0000
 
-The --with-egl-window-system=rpi configure option is not recognized
-in the current version.
+[Support #25]
 
 Signed-off-by: Jonathan Liu <net147@gmail.com>
 ---
- recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ recipes-multimedia/gstreamer/gstreamer1.0-omx_%.bbappend | 6 ++++++
+ 1 file changed, 6 insertions(+)
+ create mode 100644 recipes-multimedia/gstreamer/gstreamer1.0-omx_%.bbappend
 
-diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
-index 39ded59..ab0280e 100644
---- a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
-+++ b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_%.bbappend
-@@ -1,3 +1,2 @@
- EXTRA_OECONF_append_rpi = " CPPFLAGS='-I${STAGING_DIR_TARGET}/usr/include/interface/vcos/pthreads \
--                                   -I${STAGING_DIR_TARGET}/usr/include/interface/vmcs_host/linux' \
--                                    --with-egl-window-system=rpi"
-+                                   -I${STAGING_DIR_TARGET}/usr/include/interface/vmcs_host/linux'"
+diff --git a/recipes-multimedia/gstreamer/gstreamer1.0-omx_%.bbappend b/recipes-multimedia/gstreamer/gstreamer1.0-omx_%.bbappend
+new file mode 100644
+index 0000000..c242aa2
+--- /dev/null
++++ b/recipes-multimedia/gstreamer/gstreamer1.0-omx_%.bbappend
+@@ -0,0 +1,6 @@
++CPPFLAGS_append_rpi = " -I${STAGING_INCDIR}/IL \
++                        -I${STAGING_INCDIR}/interface/vcos/pthreads \
++                        -I${STAGING_INCDIR}/interface/vmcs_host/linux"
++LDFLAGS_append_rpi = " -lEGL -lbcm_host"
++GSTREAMER_1_0_OMX_CORE_NAME_rpi = "${libdir}/libopenmaxil.so"
++GSTREAMER_1_0_OMX_TARGET_rpi = "rpi"
 -- 
 2.5.0
 
