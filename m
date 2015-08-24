@@ -1,26 +1,46 @@
-Return-Path: <recipe-report@yoctoproject.org>
+Return-Path: <Jackie.Huang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C0E6E00ACF; Sun, 23 Aug 2015 21:32:38 -0700 (PDT)
+	id 11BBAE00ACF; Sun, 23 Aug 2015 22:27:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from packages.yoctoproject.org (unknown [198.145.29.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27A53E00AC8
-	for <yocto@yoctoproject.org>; Sun, 23 Aug 2015 21:32:35 -0700 (PDT)
-Received: from packages.yoctoproject.org (localhost [IPv6:::1])
-	by packages.yoctoproject.org (Postfix) with ESMTP id 3F53584820AC
-	for <yocto@yoctoproject.org>; Mon, 24 Aug 2015 00:32:34 -0400 (EDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7ADE5E00AC8
+	for <yocto@yoctoproject.org>; Sun, 23 Aug 2015 22:27:20 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id t7O5RAwW000030
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 23 Aug 2015 22:27:10 -0700 (PDT)
+Received: from ALA-MBB.corp.ad.wrs.com ([169.254.3.206]) by
+	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.03.0235.001;
+	Sun, 23 Aug 2015 22:27:09 -0700
+From: "Huang, Jie (Jackie)" <Jackie.Huang@windriver.com>
+To: Philip Tricca <flihp@twobit.us>
+Thread-Topic: [yocto] [meta-selinux][PATCHv2 6/8] e2fsprogs: Copy xattr
+	block from source file.
+Thread-Index: AQHQ3i2FouqiWWiTsEqNESgjFGnP9Q==
+Date: Mon, 24 Aug 2015 05:27:08 +0000
+Message-ID: <1B858668EC6A94408DCA5225FDFA85AAFC70D591@ALA-MBB.corp.ad.wrs.com>
+References: <1434580258-18121-1-git-send-email-flihp@twobit.us>
+	<1434580258-18121-7-git-send-email-flihp@twobit.us>
+	<1B858668EC6A94408DCA5225FDFA85AAFC70B693@ALA-MBB.corp.ad.wrs.com>
+	<55DA4823.2090000@twobit.us>
+In-Reply-To: <55DA4823.2090000@twobit.us>
+Accept-Language: en-US, zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [128.224.162.153]
 MIME-Version: 1.0
-From: recipe-report@yoctoproject.org
-To: yocto@yoctoproject.org
-Date: Mon, 24 Aug 2015 04:32:34 -0000
-Message-ID: <20150824043234.29195.16642@packages.yoctoproject.org>
-Subject: [Recipe reporting system] Upgradable recipe name list
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-selinux][PATCHv2 6/8] e2fsprogs: Copy xattr block from source file.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,148 +52,483 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Aug 2015 04:32:38 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 24 Aug 2015 05:27:23 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-This mail was sent out by Recipe reporting system.
 
-This message list those recipes which need to be upgraded. If maintainers
-believe some of them needn't to upgrade this time, they can fill in
-RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this
-recipe remainder until newer upstream version was detected.
 
-Example:
-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 is unstable"
+> -----Original Message-----
+> From: Philip Tricca [mailto:flihp@twobit.us]
+> Sent: Monday, August 24, 2015 6:25 AM
+> To: Huang, Jie (Jackie)
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] [meta-selinux][PATCHv2 6/8] e2fsprogs: Copy xattr bl=
+ock from source file.
+>=20
+> Hello Jackie,
+>=20
+> On 08/20/2015 11:25 PM, Huang, Jie (Jackie) wrote:
+> >> -----Original Message-----
+> >> From: yocto-bounces@yoctoproject.org
+> >> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Philip Tricca
+> >> Sent: Thursday, June 18, 2015 6:31 AM
+> >> To: yocto@yoctoproject.org
+> >> Subject: [yocto] [meta-selinux][PATCHv2 6/8] e2fsprogs: Copy xattr blo=
+ck from source file.
+> >>
+> >> Signed-off-by: Philip Tricca <flihp@twobit.us>
+> >> ---
+> >>  .../e2fsprogs/misc-xattr-create-xattr-block.patch  | 341 ++++++++++++=
++++++++++
+> >>  .../e2fsprogs/e2fsprogs_1.42.9.bbappend            |   1 +
+> >>  2 files changed, 342 insertions(+)
+> >>  create mode 100644
+> >> recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-block.pa
+> >> tch
+> >>
+> >> diff --git
+> >> a/recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-block.
+> >> patch b/recipes-
+> >> devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-block.patch
+> >> new file mode 100644
+> >> index 0000000..5955b44
+> >> --- /dev/null
+> >> +++ b/recipes-devtools/e2fsprogs/e2fsprogs/misc-xattr-create-xattr-bl
+> >> +++ ock
+> >> +++ .patch
+> >> @@ -0,0 +1,341 @@
+> >> +To build the xattr disk block we process the output from listxattr
+> >> +and lgetxattr from the source file system object. This data is
+> >> +formated in a disk block according to the format specified in the ker=
+nel ext2 file system driver.
+> >> +See the comment block at the beginning of fs/ext2/xattr.c for details=
+.
+> >> +
+> >> +Currently we only process attributes with the 'security.' prefix as
+> >> +our use case is SELinux labels and IMA. Additional prefixes can
+> >> +likely be supported with minimal effort but none have been tested.
+> >> +
+> >> +Once the xattr block has been created it is written to disk. The
+> >> +xattr block is associated with the appropriate file system object
+> >> +through the i_file_acl inode member and the inode is updated on disk.
+> >> +
+> >> +Signed-off-by: Philip Tricca <flihp@twobit.us>
+> >> +
+> >> +Index: e2fsprogs-1.42.9/misc/xattr.c
+> >> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >> +--- e2fsprogs-1.42.9.orig/misc/xattr.c
+> >> ++++ e2fsprogs-1.42.9/misc/xattr.c
+> >> +@@ -1,6 +1,23 @@
+> >> + #include "xattr.h"
+> >> +
+> >> ++#include <attr/xattr.h>
+> >> ++#include <ctype.h>
+> >> ++#include <errno.h>
+> >> ++#include <ext2fs/ext2_ext_attr.h>
+> >> ++#include <linux/xattr.h>
+> >> ++#include <stdint.h>
+> >> + #include <stdio.h>
+> >> ++#include <stdlib.h>
+> >> ++#include <string.h>
+> >> ++#include <sys/stat.h>
+> >> ++#include <sys/types.h>
+> >> ++#include <unistd.h>
+> >> ++
+> >> ++#define MIN(X, Y) (((X) < (Y)) ? (X) : (Y)) #define HEADER(ptr)
+> >> ++((struct ext2_ext_attr_header *)(ptr)) #define ENTRY(ptr)  ((struct
+> >> ++ext2_ext_attr_entry *)(ptr)) #define FIRST_ENTRY(ptr)
+> >> ++ENTRY(HEADER(ptr) + 1) #define VALUE(hdr, ent) (((char*)hdr) +
+> >> ++(ent->e_value_offs))
+> >> +
+> >> + #ifdef XATTR_DEBUG
+> >> + #define XATTR_STDERR(fmt, args...) fprintf (stderr, fmt, ##args) @@
+> >> +-8,6 +25,28 @@  #define XATTR_STDERR(fmt, args...) do {} while (0)
+> >> +#endif
+> >> +
+> >> ++/* structure for mapping xattr name prefix data */ typedef struct
+> >> ++xattr_prefix {
+> >> ++	int index;
+> >> ++	char *name;
+> >> ++	size_t length;
+> >> ++} xattr_prefix_t;
+> >> ++
+> >> ++xattr_prefix_t xattr_prefixes [] =3D {
+> >> ++/* Only interested in security prefix. Can support others though.
+> >> ++	{
+> >> ++		.index =3D EXT2_XATTR_INDEX_USER,
+> >> ++		.name =3D XATTR_USER_PREFIX,
+> >> ++		.length =3D XATTR_USER_PREFIX_LEN,
+> >> ++	},
+> >> ++*/
+> >> ++	{
+> >> ++		.index =3D EXT2_XATTR_INDEX_SECURITY,
+> >> ++		.name =3D XATTR_SECURITY_PREFIX,
+> >> ++		.length =3D XATTR_SECURITY_PREFIX_LEN,
+> >
+> > Hi Philip,
+> >
+> > This cause build errors on some host OS when building e2fsprogs-native:
+> >
+> > | /build/yp/y_x64_150821/tmp/work/x86_64-linux/e2fsprogs-native/1.42.9-=
+r0/e2fsprogs-
+> 1.42.9/debugfs/../misc/xattr.c:62:11: error: 'XATTR_SECURITY_PREFIX' unde=
+clared here (not in a
+> function)
+> > |    .name =3D XATTR_SECURITY_PREFIX,
+> > |            ^
+> > | /build/yp/y_x64_150821/tmp/work/x86_64-linux/e2fsprogs-native/1.42.9-=
+r0/e2fsprogs-
+> 1.42.9/debugfs/../misc/xattr.c:63:13: error: 'XATTR_SECURITY_PREFIX_LEN' =
+undeclared here (not in a
+> function)
+> > |    .length =3D XATTR_SECURITY_PREFIX_LEN,
+> > |              ^
+> >
+> > I did some investigate and found that your patch needs the header
+> > linux/xattr.h, which is provided by linux-libc-headers, but for
+> > -native package, there is no linux-libc-headers-native, so it search
+> > the one from host OS, but the problem is, there is no XATTR_SECURITY_PR=
+EFIX definition in the
+> linux/xattr.h on some host OS like: SUSE 11.x, centos 6, etc.
+> >
+> > I'm not sure if your patch is really needed by the e2fsprogs-native,
+> > if not, I think we can make this patch only apply for target package.
+> > If yes, you may need to make it avoid the dependency on host's header o=
+r you may have a better
+> idea about this.
+>=20
+> I took a look at this yesterday. Creating a bbappend for linux-libc-heade=
+rs and adding 'native' to
+> BBCLASSEXTEND seems like the most direct fix. Add a new dependency to the=
+ e2fsprogs package and I
+> think the issue is resolved. I'll send patches to the list and if you're =
+willing to test them I'd appreciate it.
 
-You can check the detail information at:
+I tested with your patch and it works fine, thanks!
 
-http://packages.yoctoproject.org/
+Thanks,
+Jackie
 
-Package               Version            Upstream version      Maintainer           NoUpgradeReason
---------------------  -----------------  --------------------  -------------------  ------------------------------
-nfs-utils             1.3.1              1.3.2                 Alejandro Hernandez
-midori                0.5.8              0.5.10                Alejandro Hernandez
-python-smmap          0.8.2              0.9.0                 Alejandro Hernandez
-python                2.7.9              2.7.10                Alejandro Hernandez
-gnome-icon-theme      2.31.0             3.12.0                Alejandro Hernandez
-acpid                 2.0.23             2.0.25                Aníbal Limón
-jpeg                  8d                 9a                    Aníbal Limón         webkit-gtk 1.8.3 doesn't wo...
-apt                   1.0.10.1           1.0.10.2              Aníbal Limón
-dpkg                  1.17.25            1.18.2                Aníbal Limón
-sqlite3               3.8.10.2           3.8.11.1              Aníbal Limón
-lsof                  4.88               4.89                  Aníbal Limón
-xinetd                2.3.15             20030122              Aníbal Limón
-nettle                2.7.1              3.1.1                 Armin Kuster
-pinentry              0.9.2              0.9.5                 Armin Kuster
-linux-libc-headers    4.1                4.1.6                 Bruce Ashfield
-sysstat               11.1.5             11.1.5-1              Chen Qi
-iproute2              3.17.0             4.1.1                 Cristian Iorga
-libpcap               1.6.2              1.7.4                 Cristian Iorga
-build-appliance-i...  12.0.1             13.0.0                Cristian Iorga
-db                    6.0.30             6.1.26                Cristian Iorga
-libical               1.0.0              1.0.1                 Cristian Iorga
-libtirpc              0.2.5              0.3.2                 Cristian Iorga
-net-tools             1.60-25            1.60-26               Cristian Iorga
-harfbuzz              1.0.1              1.0.2                 Cristian Iorga
-gnupg                 2.1.6              2.1.7                 Hongxu Jia
-ncurses               5.9                6.0-20150822          Hongxu Jia
-qmmp                  0.8.6              0.8.7                 Hongxu Jia
-pax-utils             1.0.5              1.1                   Hongxu Jia
-createrepo            0.4.11             0.10.4                Hongxu Jia           Versions after 0.9.* use YU...
-man-pages             4.01               4.02                  Hongxu Jia
-adt-installer         0.2.0              0.3.0                 Jessica Zhang
-libinput              0.18.0             0.99.1                Jussi Kukkonen
-wayland               1.8.1              1.8.91                Jussi Kukkonen
-weston                1.8.0              1.8.91                Jussi Kukkonen
-gtk-icon-utils-na...  3.16.6             3.17.7                Jussi Kukkonen
-pixman                0.32.6             0.33.2                Jussi Kukkonen
-xf86-video-omapfb     0.1.1+gitrX        0.1.1.1+gitrAUTOI...  Jussi Kukkonen
-vala                  0.28.0             0.28.1                Jussi Kukkonen
-vte                   0.28.2             0.41.90               Jussi Kukkonen
-libnotify             0.6.0              0.7.6                 Jussi Kukkonen
-glew                  1.12.0             1.13.0                Jussi Kukkonen
-mailx                 12.5               12.5-5                Kai Kang
-libsdl                1.2.15             1.2.15-1              Kai Kang
-python-nose           1.3.6              1.3.7                 Khem Raj
-python-numpy          1.7.0              1.9.2                 Khem Raj
-rpm                   5.4.14             5.4.15                Mark Hatle
-gcc-source-4.9.3      4.9.3              5.2.0                 No maintainer
-orc                   0.4.23             0.4.24                No maintainer
-gcc-source-4.8.4      4.8.4              4.8.5                 No maintainer
-sgmlspl-native        1.1+gitX           1.03+gitAUTOINC+f...  No maintainer
-binutils-cross-ca...  2.25.1             20131001              No maintainer
-binutils-cross-i586   2.25.1             20131001              No maintainer
-binutils-crosssdk...  2.25.1             20131001              No maintainer
-xuser-account         0.1                1.0                   No maintainer
-python3-pip           6.1.1              7.1.2                 No maintainer
-python3-setuptools    15.2               18.2                  No maintainer
-uclibc-initial        0.9.33+gitX        0.9.33.2+gitAUTOI...  No maintainer
-apt-native            1.0.10.1           1.0.10.2              No maintainer
-openjade-native       1.3.2              1.3.3                 No maintainer
-python-native         2.7.9              2.7.10                No maintainer
-opkg                  0.2.4              0.3.0                 Paul Barker
-openssh               7.0p1              7.1p1                 Paul Eggleton
-dropbear              2015.67            2015.68               Paul Eggleton
-cmake                 3.2.2              3.3.1-1               Paul Eggleton
-libav                 9.18               11.4                  Paul Eggleton
-gpgme                 1.5.4              1.5.5                 Paul Eggleton
-libevdev              1.4.2              1.4.3                 Paul Eggleton
-cmake-native          3.2.2              3.3.1-1               Paul Eggleton
-libpng                1.6.17             1.6.18                Randy Witt
-python-async          0.6.1              0.6.2                 Randy Witt
-unfs3                 0.9.22.r490        0.9.22.r495           Randy Witt
-libunistring          0.9.5              0.9.6                 Randy Witt
-mdadm                 3.3.2              3.3.4                 Randy Witt
-btrfs-tools           4.1.1+gitX         4.1.2+gitAUTOINC+...  Richard Purdie
-oprofile              1.0.0              1.1.0                 Richard Purdie
-python-distribute     0.6.32             0.6.49                Richard Purdie
-python-pygobject      2.28.3             3.17.90               Richard Purdie       Newer versions of python-py...
-subversion            1.8.13             1.9.0                 Richard Purdie
-libdrm                2.4.62             2.4.64                Richard Purdie
-gnu-efi               3.0.2              3.0.3                 Robert Yang
-e2fsprogs             1.42.9             1.42.13               Robert Yang
-file                  5.24               6.23                  Robert Yang
-remake                3.82+dbg-0.9+gitX  4.1+dbg-1.1           Robert Yang
-gmp                   6.0.0              6.0.0a                Robert Yang
-liberation-fonts      1.04               2.00.1                Ross Burton          2.x depends on fontforge pa...
-base-passwd           3.5.29             3.5.38                Ross Burton          Version 3.5.38 requires cde...
-kbd                   2.0.2              2.0.3                 Ross Burton
-uclibc                0.9.33+gitX        0.9.33.2+gitAUTOI...  Ross Burton
-systemtap             2.7+gitX           2.8+gitAUTOINC+08...  Ross Burton
-mkelfimage            4.0+gitX           4.1+gitAUTOINC+6c...  Ross Burton
-mtd-utils             1.5.1+gitX         1.5.2+gitAUTOINC+...  Ross Burton
-webkit-gtk            1.8.3              1.9.92                Ross Burton          >= 1.10.2 needs ruby
-icu                   55.1               55.1-AIX7.1-VA2       Ross Burton
-libxslt               1.1.28             1.1.28-1              Ross Burton
-libidn                1.30               1.32                  Ross Burton
-lsbinitscripts        9.63               9.64                  Ross Burton
-procps                3.3.10             3.3.11                Ross Burton
-libunique             1.1.6              3.0.2                 Ross Burton
-libvorbis             1.3.4              1.3.5                 Tanu Kaskinen
-systemtap-uprobes     2.7+gitX           2.8+gitAUTOINC+08...  Tom Zanussi
-gettext               0.19.4             0.19.5.1              Wenzong Fan
-ccache                3.1.11             3.2.3                 Wenzong Fan
-chkconfig             1.3.58             1.5                   Wenzong Fan          Version 1.5 requires selinux
+>=20
+> Thanks,
+> Philip
+>=20
+> >> ++	},
+> >> ++	{ 0 },
+> >> ++};
+> >> +
+> >> + /* Free remaining resources after all files have been processed. */
+> >> +void @@ -16,6 +55,211 @@ xattr_cleanup ()
+> >> + 	XATTR_STDERR ("Cleaning up resources from xattrs.\n");  }
+> >> +
+> >> ++/* Get value for named xattr from file at path.
+> >> ++ * Returns pointer to allocated block for value and length in length=
+ param.
+> >> ++ * If no value, return NULL pointer and length of 0.
+> >> ++ * On error return NULL pointer and length set to -1.
+> >> ++ */
+> >> ++static char*
+> >> ++xattr_get_value (const char *path, const char *name, ssize_t
+> >> ++*length) {
+> >> ++	char *value =3D NULL;
+> >> ++
+> >> ++	*length =3D lgetxattr (path, name, NULL, 0);
+> >> ++	if (*length =3D=3D -1) {
+> >> ++		com_err (__func__, errno, "lgetattr");
+> >> ++		goto out;
+> >> ++	}
+> >> ++	if (*length =3D=3D 0) {
+> >> ++		fprintf (stderr, "xattr %s has value length 0\n", name);
+> >> ++		goto out;
+> >> ++	}
+> >> ++	value =3D calloc (1, *length);
+> >> ++	if (value =3D=3D NULL) {
+> >> ++		com_err (__func__, errno, "calloc");
+> >> ++		goto out;
+> >> ++	}
+> >> ++	*length =3D lgetxattr (path, name, value, *length);
+> >> ++	if (*length =3D=3D -1) {
+> >> ++		com_err (__func__, errno, "lgetattr");
+> >> ++		goto value_err;
+> >> ++	}
+> >> ++out:
+> >> ++	return value;
+> >> ++
+> >> ++value_err:
+> >> ++	if (value)
+> >> ++		free (value);
+> >> ++	return NULL;
+> >> ++}
+> >> ++
+> >> ++/* Get all attribute names for file at path. Return pointer to
+> >> ++allocated memory
+> >> ++ * block holding all names and the length through parameter size.
+> >> ++ * If no xattrs: return NULL and set size to 0
+> >> ++ * If error: return NULL and set size to -1  */ static char*
+> >> ++xattr_get_names (const char *path, ssize_t *size) {
+> >> ++	char *names =3D NULL;
+> >> ++
+> >> ++	*size =3D llistxattr (path, NULL, 0);
+> >> ++	if (*size =3D=3D -1) {
+> >> ++		com_err (__func__, errno, "llistxattr");
+> >> ++		goto out;
+> >> ++	}
+> >> ++	if (*size =3D=3D 0) {
+> >> ++		/* no xattrs */
+> >> ++		goto out;
+> >> ++	}
+> >> ++	names =3D calloc (1, *size);
+> >> ++	if (names =3D=3D NULL) {
+> >> ++		com_err (__func__, errno, "calloc");
+> >> ++		goto out;
+> >> ++	}
+> >> ++	*size =3D llistxattr (path, names, *size);
+> >> ++	if (*size =3D=3D -1) {
+> >> ++		com_err (__func__, errno, "llistxattr");
+> >> ++		goto cleanup;
+> >> ++	}
+> >> ++	if (*size =3D=3D 0) {
+> >> ++		fprintf (stdout, "Conflicting data, no xattrs for file: %s\n", pat=
+h);
+> >> ++		goto cleanup;
+> >> ++	}
+> >> ++out:
+> >> ++	return names;
+> >> ++
+> >> ++cleanup:
+> >> ++	if (names)
+> >> ++		free (names);
+> >> ++	return NULL;
+> >> ++}
+> >> ++
+> >> ++/* return pointer to next string in xattr name block, don't go
+> >> ++beyond length  */ static inline char* next_name (char *name, size_t =
+length) {
+> >> ++	int i =3D 0;
+> >> ++
+> >> ++	for (i =3D 0; i < length; ++i)
+> >> ++		if (name [i] =3D=3D '\0') {
+> >> ++			++i;
+> >> ++			break;
+> >> ++		}
+> >> ++
+> >> ++	return name + i;
+> >> ++}
+> >> ++
+> >> ++/* Find entry in xattr_table with matching prefix. */ static const
+> >> ++xattr_prefix_t* xattr_find_prefix (char *name, size_t length) {
+> >> ++	int i =3D 0;
+> >> ++
+> >> ++	XATTR_STDERR ("find_attr_data: searching for prefix from xattr name=
+: %s\n", name);
+> >> ++	for (i =3D 0; xattr_prefixes[i].index !=3D 0; ++i) {
+> >> ++		if (!strncmp (name, xattr_prefixes[i].name, MIN (length, xattr_pre=
+fixes[i].length))) {
+> >> ++			XATTR_STDERR ("found match in table with index: %d\n",
+> >> xattr_prefixes[i].index);
+> >> ++			return &xattr_prefixes[i];
+> >> ++		}
+> >> ++	}
+> >> ++	return NULL;
+> >> ++}
+> >> ++
+> >> ++/* Query file at path for attributes. build up structure the file
+> >> ++system
+> >> ++ * expects of an extended attribute disk block (header parameter).
+> >> ++ *
+> >> ++ * The main loop walks through the xattr names one at a time. It
+> >> ++gets the value
+> >> ++ * for each named xattr and copies the data into the xattr block
+> >> ++pointed to by
+> >> ++ * the header parameter. To do this the loop also tracks the
+> >> ++location of the
+> >> ++ * associated entry and value. Values start at the end of the
+> >> ++buffer and grow
+> >> ++ * back towards the header while the entries start immediately
+> >> ++after the header
+> >> ++ * and grow towards the end of the block.
+> >> ++ *
+> >> ++ * See the comment block at the beginning of the xattr.c file in
+> >> ++the
+> >> ++ext2 file
+> >> ++ * system code in the kernel: fs/ext2/xattr.c
+> >> ++ * Assume the xattr block pointed to by header parameter is initiali=
+zed to 0s.
+> >> ++ */
+> >> ++static int
+> >> ++xattr_build_block (const char *path,
+> >> ++		struct ext2_ext_attr_header **header,
+> >> ++		size_t header_length)
+> >> ++{
+> >> ++	struct ext2_ext_attr_entry *entry =3D NULL;
+> >> ++	char *names =3D NULL, *value =3D NULL, *name_curr =3D NULL;
+> >> ++	ssize_t names_length =3D 0, value_length =3D 0;
+> >> ++	size_t name_length =3D 0, value_index =3D 0, len_rem =3D 0;
+> >> ++	const xattr_prefix_t *prefix =3D NULL;
+> >> ++	int ret =3D 0;
+> >> ++
+> >> ++	XATTR_STDERR ("xattr_build_block for file: %s\n", path);
+> >> ++	*header =3D NULL;
+> >> ++	names =3D xattr_get_names (path, &names_length);
+> >> ++	if (names =3D=3D NULL) {
+> >> ++		// no xattrs for file @ path or error
+> >> ++		ret =3D names_length;
+> >> ++		goto out;
+> >> ++	}
+> >> ++	*header =3D calloc (1, header_length);
+> >> ++	if (*header =3D=3D NULL) {
+> >> ++		com_err (__func__, errno, "calloc");
+> >> ++		goto out;
+> >> ++	}
+> >> ++	(*header)->h_magic =3D EXT2_EXT_ATTR_MAGIC;
+> >> ++	(*header)->h_blocks =3D 1;
+> >> ++	/* Values start at end of buffer. NOTE: It must be moved before a v=
+alue can
+> >> ++	 * be stored.
+> >> ++	 */
+> >> ++	value_index =3D header_length;
+> >> ++	for (name_curr =3D names, entry =3D FIRST_ENTRY(*header), len_rem =
+=3D names_length;
+> >> ++		name_curr < names + names_length;
+> >> ++		len_rem =3D names_length - (name_curr - names),
+> >> ++			name_curr =3D next_name (name_curr, len_rem),
+> >> ++			entry =3D EXT2_EXT_ATTR_NEXT(entry))
+> >> ++	{
+> >> ++		XATTR_STDERR ("xattr_build_block: processing xattr with name %s\n"=
+, name_curr);
+> >> ++		name_length =3D strnlen (name_curr, len_rem);
+> >> ++		prefix =3D xattr_find_prefix (name_curr, name_length);
+> >> ++		if (!prefix) {
+> >> ++			fprintf (stderr, "Don't currently handle xattr: %s\n", name_curr)=
+;
+> >> ++			continue;
+> >> ++		}
+> >> ++		value =3D xattr_get_value (path, name_curr, &value_length);
+> >> ++		if (value =3D=3D NULL) {
+> >> ++			// no xattr value or error
+> >> ++			fprintf (stderr, "failed to get value, skipping\n");
+> >> ++			goto next;
+> >> ++		}
+> >> ++		/* setup offsets and lengths for name and value */
+> >> ++		entry->e_name_len =3D name_length - prefix->length;
+> >> ++		entry->e_name_index =3D prefix->index;
+> >> ++		/* Can't know these till we know the length of the value. */
+> >> ++		entry->e_value_offs =3D value_index -=3D EXT2_EXT_ATTR_SIZE(value_=
+length);
+> >> ++		entry->e_value_size =3D value_length;
+> >> ++		/* Check to be sure entry name and value don't overlap before copy=
+. */
+> >> ++		if (EXT2_EXT_ATTR_NAME(entry) + entry->e_name_len > VALUE(*header,=
+ entry)) {
+> >> ++			fprintf (stderr, "xattr entry name and value overlap! Too much xa=
+ttr data.");
+> >> ++			ret =3D -1;
+> >> ++			goto out;
+> >> ++		}
+> >> ++		/* copy name and value data then calculate the hash */
+> >> ++		memcpy (EXT2_EXT_ATTR_NAME(entry),
+> >> ++			name_curr + prefix->length,
+> >> ++			entry->e_name_len);
+> >> ++		memcpy (VALUE(*header, entry), value, entry->e_value_size);
+> >> ++		entry->e_hash =3D ext2fs_ext_attr_hash_entry (entry, VALUE(*header=
+,
+> >> ++entry));
+> >> ++next:
+> >> ++		if (value)
+> >> ++			free (value);
+> >> ++	}
+> >> ++	XATTR_STDERR ("xattr_build_block: done building xattr buffer\n");
+> >> ++out:
+> >> ++	if (names)
+> >> ++		free (names);
+> >> ++	return ret;
+> >> ++}
+> >> ++
+> >> + /* This is the entry point to the xattr module. This function
+> >> +copies the xattrs
+> >> +  * from the file at 'path' to the file system object at 'ino'.
+> >> +  *
+> >> +@@ -28,7 +272,56 @@ errcode_t
+> >> + set_inode_xattr (ext2_filsys fs, ext2_ino_t ino, const char *path)  =
+{
+> >> + 	errcode_t ret =3D 0;
+> >> ++	char *buf =3D NULL;
+> >> ++	struct ext2_inode inode =3D { 0 };
+> >> ++	blk_t block =3D 0;
+> >> ++	struct ext2_ext_attr_header *header =3D NULL;
+> >> ++	uint32_t newcount =3D 0;
+> >> +
+> >> + 	XATTR_STDERR ("Copying xattrs from %s to inode 0x%x.\n", path,
+> >> + ino);
+> >> ++	/* Populate the xattr block for the file at path */
+> >> ++	if (ret =3D xattr_build_block (path, &header, fs->blocksize)) {
+> >> ++		goto out;
+> >> ++	}
+> >> ++	if (header =3D=3D NULL) {
+> >> ++		XATTR_STDERR ("set_inode_xattrs: no xattrs for %s\n", path);
+> >> ++		goto out;
+> >> ++	}
+> >> ++	if (ret =3D ext2fs_read_inode (fs, ino, &inode)) {
+> >> ++		com_err(__func__, ret, "ext2fs_read_inode");
+> >> ++		goto out;
+> >> ++	}
+> >> ++	if (ret =3D ext2fs_alloc_block (fs, 0, NULL, &block)) {
+> >> ++		com_err(__func__, ret, "ext2fs_alloc_block: returned %d", ret);
+> >> ++		goto out;
+> >> ++	}
+> >> ++	ext2fs_mark_block_bitmap2 (fs->block_map, block);
+> >> ++	XATTR_STDERR ("writing xattr block 0x%x to disk:\n", block);
+> >> ++	if (ret =3D ext2fs_write_ext_attr (fs, block, header)) {
+> >> ++		com_err(__func__, ret, "ext2fs_write_ext_attr: returned %d", ret);
+> >> ++		goto out;
+> >> ++	}
+> >> ++	/* point inode for current file to xattr block, update block count =
+and
+> >> ++	 * write inode to disk
+> >> ++	 */
+> >> ++	inode.i_file_acl =3D block;
+> >> ++	if (ret =3D ext2fs_adjust_ea_refcount2(fs,
+> >> ++					block,
+> >> ++					(char*)header,
+> >> ++					1,
+> >> ++					&newcount))
+> >> ++	{
+> >> ++		com_err(__func__, ret, "ext2fs_adjust_ea_refcount");
+> >> ++		goto out;
+> >> ++	}
+> >> ++	if (ret =3D ext2fs_iblk_add_blocks (fs, &inode, 1)) {
+> >> ++		com_err(__func__, ret, "ext2fs_iblk_add_blocks failed");
+> >> ++		goto out;
+> >> ++	}
+> >> ++	if (ret =3D ext2fs_write_inode (fs, ino, &inode))
+> >> ++		com_err(__func__, ret, "ext2fs_write_inode: returned %d", ret);
+> >> ++out:
+> >> ++	if (header)
+> >> ++		free (header);
+> >> + 	return ret;
+> >> + }
+> >> diff --git a/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
+> >> b/recipes- devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
+> >> index a4576b1..edc94d8 100644
+> >> --- a/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
+> >> +++ b/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bbappend
+> >> @@ -4,4 +4,5 @@ SRC_URI +=3D " \
+> >>      file://misc-xattr-add-xattr-module-stub.patch \
+> >>      file://mke2fs.c-create_inode.c-copy-xattrs.patch \
+> >>      file://lib-ext2fs-ext2_ext_attr.h-add-xattr-index.patch \
+> >> +    file://misc-xattr-create-xattr-block.patch \
+> >>  "
+> >> --
+> >> 2.1.4
+> >>
+> >> --
+> >> _______________________________________________
+> >> yocto mailing list
+> >> yocto@yoctoproject.org
+> >> https://lists.yoctoproject.org/listinfo/yocto
 
-Upgradable count: 96
-Upgradable total count: 103
-
-The based commit is:
-
-commit c38acd720b3f6ffbeb544063692eb471dada8593
-Author: Ross Burton <ross.burton@intel.com>
-Date:   Tue Aug 18 17:31:26 2015 +0100
-
-    binconfig-disabled: write an message to stderr to help confused developers
-    
-    Often configure scripts or Makefiles that use the stub scripts written by
-    binconfig-disabled fail mysteriously with no obvious problem.  Attempt to solve
-    this by writing an error to stderr which hopefully makes it to the logs.
-    
-    [ YOCTO #8169 ]
-    
-    Signed-off-by: Ross Burton <ross.burton@intel.com>
-
-Any problem, please contact Anibal Limon <anibal.limon@intel.com> 
 
